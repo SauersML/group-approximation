@@ -363,6 +363,17 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
   - This lane's landed isolated-turn packaging (64df6e8c8) stays valid but covers only isolated turns. The cell selection will
     instantiate the chord version once its list-level names land.
   - Residual after that: vertices where every non-first turn is crossed (the rose).
+- **CLAIM (agreed with w1-binder-3, ~09:3x): piece (b), the corner-fix transport across one insertion.** Module:
+  `Estimating/OsinPocketOuterPinchChordLift.lean`. w1-binder-3 keeps (a) selection, (c) the corner loop with the arc-successor
+  lemma, and the step assembly.
+  - Setting: `M' = EdgeInsertion.toCombMap M a b` with `a ≠ b`, and `c' = c.map (embed M)`.
+  - The list-level chord data of w1-binder-3's `OuterPinchChord.chordKept_of_uncrossed` lift to embedded darts:
+    - (b1) the minimal run `hk₀`/`hk₀min` from `embed (α d₀)` to `embed e₀`;
+    - (b2) the non-keep run `hm`/`hkeepm` from `embed e₀` to `embed x`;
+    - (b3) the non-keep run `hq0`/`hq`/`hkeepq` from `embed y` to `embed (α d₀)`;
+    - (b4) `RotationBetween M (α d₀) e₀ z ↔ RotationBetween M' (embed (α d₀)) (embed e₀) (embed z)`.
+  - Tools: `EdgeInsertion.exists_sigma_pow_lift`, `walkKeep_map_embed_iff`, and `not_walkKeep_map_embed_none` /
+    `_some_none` (c2927f84f).
 - **Noted (ct-return-tower, 2a4d58ae6 `Estimating/OsinPocketTwoArcSection`):** the two-arc producer consumed by this lane's
   `osinSectionPocketCutSection_of_residualsTwoArc` (f81311dc9) is reduced to two statements. The theorem is
   `osinSectionPocketFaceSetTwoArcSection_of_proper_of_wholeSection hproper hwhole`.
