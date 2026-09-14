@@ -6,8 +6,12 @@ Lane oa-hyperfinite, launched ~20:15 by main. Brief: `ct/ROSTER-sk.md`, "OA LANE
 CLAIM twisted group von Neumann algebra L_β(Γ) on ℓ²(Γ) (twisted regular operators, commutation, trace, separating vector) GroupApproximation/Analysis/TwistedGroupVonNeumann.lean
 CLAIM the Pauli model R = L_β(ℕ →₀ (ZMod 2 × ZMod 2)): factor, infinite-dimensional, faithful trace, hyperfinite GroupApproximation/Analysis/PauliHyperfiniteFactor.lean
 CLAIM unital trace-preserving M_{2^j} ↪ R from Pauli matrix units GroupApproximation/Analysis/PauliMatrixUnits.lean
-CLAIM the tracial ultrapower R^ω (bounded sequences modulo the 2-norm null ideal, ultratrace) GroupApproximation/Analysis/HyperfiniteTracialUltrapower.lean
-CLAIM unital trace-preserving *-homomorphism from the tracial matrix ultraproduct into R^ω (the interface for oa-ozawa71) GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean
+CLAIM unital trace-preserving *-homomorphism from the tracial matrix ultraproduct into R^ω (the interface for oa-ozawa71), over oa-ultrapower's M^ω at M = R GroupApproximation/Analysis/MatrixUltraproductToHyperfiniteUltrapower.lean
+
+Scope split (main, 20:35): the general tracial ultrapower M^ω (trace, factoriality, M ↪ M^ω) belongs to oa-ultrapower, and
+R^ω is its construction at M = R. The earlier claim on `Analysis/HyperfiniteTracialUltrapower.lean` is withdrawn; nothing
+was drafted there. This lane keeps R: the construction, trace-preserving unital M_{2^j} ↪ R, R ⊗̄ M_2 ≅ R where a consumer
+needs it, and θ into R^ω.
 
 ## Model: why this R
 R := L_β(Γ), the twisted group von Neumann algebra of Γ = ℕ →₀ (ZMod 2 × ZMod 2) for the Pauli bicharacter
