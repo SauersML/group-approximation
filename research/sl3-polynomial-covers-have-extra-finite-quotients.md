@@ -22,16 +22,22 @@ vertex (`el-r-vertex-instability-via-rank-three-covers`).
 
 ## Attempts
 
-- **Profinite criterion (sufficient, undecided).**
-  - It suffices that the profinite completion of `Γ` is not finitely presented as a profinite
-    group.
-  - Expected shape: up to the finite congruence kernel, this completion is the congruence
-    completion `∏_(v≠∞) SL_3(O_v)`, a product over the finite places of `F_q(t)`. Neither the
-    congruence subgroup property nor the kernel's value was verified here.
-  - Whether such characteristic-`p` adelic groups are finitely presented was not checked. The arXiv
-    API query from MSI returned nothing on 2026-09-13.
-  - Behr's failure of finite presentation comes from the place `∞`, which the congruence completion
-    does not see. So the criterion may well fail even though `Γ` is infinitely presented.
+- **Profinite criterion: false for `q >= 4` (2026-09-13, lane `hl-hyperlinear-vs-sofic`).**
+  - The sufficient condition "the profinite completion of `Γ` is not finitely presented" fails:
+    `sl3-fq-t-profinite-completion-is-finitely-presented` proves
+    `Γ^ ≅ SL_3(F_q[[t]]) × SL_3(F_q[t,t^-1])^`, a product of two finitely presented profinite
+    groups, from the congruence subgroup property with trivial kernel, strong approximation,
+    Capdeboscq's bounded presentations of `SL_3(F_q[t,t^-1])` and the Capdeboscq--Lubotzky--Rémy
+    transfer to `F_q[[t]]` (`clr-profinite-presentations-and-csp-over-fq-t`).
+  - As expected above, Behr's obstruction at `∞` is invisible profinitely. `q in {2,3}` is not
+    covered.
+  - **What is left, exactly** (`fp-cover-truncations-see-kernel-iff-profinite-closures-differ`):
+    the claim holds for a given cover and enumeration iff for every `L` the truncation `Γ_L` has a
+    different profinite completion from `Γ`, i.e. `cl(N_L) ≠ cl(N)` in `Γ~^`. Surviving at
+    infinitely many `L` is the same as surviving at every `L`. Since `Γ^` is finitely presented,
+    `cl(N)` is finitely normally generated as a closed normal subgroup, so the survivors cannot come
+    from counting profinite relations; they must come from the specific truncation kernels
+    (sector colimits, Krstić--McCool witnesses).
 - **Ring-induced quotients are useless (elementary).** Suppose a quotient of `Γ_L` comes from
   `EL_3(B)` via a ring map `F_q[t] -> B`. Its image is a commutative ring, so the quotient factors
   through `Γ`. Extra quotients, if they exist, are not elementary groups over rings receiving
