@@ -47,6 +47,20 @@ Formal route:
 - **oa-ozawa71:** owns `HasTracePreservingMatrixModel G` and its producer from `IsHyperlinear G`, the amplification step of Ozawa Prop 7.1, in `Analysis/HyperlinearTraceVanishingModels.lean`. This lane declares no copy. The core theorem takes the model data as hypotheses, and a one-line wrapper consumes their Prop once it lands.
 - **oa-ucp:** owns Arveson extension from operator systems. `OperatorSystemMatrixArvesonStatement` is declared in `LocalLiftingProperty.lean` as a statement only, and the factorization theorem is proved over it.
 
+## Landed
+
+- **bacdfad19**, probe 0914-083605-62533 GREEN, wire-queued:
+  - `Analysis/LocalLiftingProperty`: `IsOperatorSystem`, `IsCompletelyPositiveOn`, `IsLocallyUCPLiftable`, `HasLocalLiftingProperty` (Ozawa Def 3.5). Calibration `hasLocalLiftingProperty_complex` (ℂ has the LLP, closed).
+  - `Analysis/OperatorSystemStateExtension`: Krein extension from an operator system.
+  - `Analysis/OperatorSystemChoiFunctional`: the Choi functional of a cp map on an operator system is nonnegative on ambient positives.
+  - `Analysis/OperatorSystemMatrixArveson`: `operatorSystemMatrixArvesonStatement_holds` (closed), Arveson extension into matrices, Ozawa Thm 2.2, ucp case.
+
+## In probe
+
+- `Analysis/MatrixModelFormPositivity`: cp operator models pulled back to `M_Y` are form-positive.
+- `Analysis/LocalLiftingFactorization`: `localLiftingFactorizationStatement_holds`. For countable G, the LLP of C*(G) plus `HasTracePreservingMatrixModel G` gives `HasFactorizationProperty G`, along Ozawa's p. 24 route.
+- Next: the printed endpoint `Manuscript/SimpleKazhdanSofic/CStarNoLocalLifting`. It contraposes the theorem above with oa-kirchberg's ¬(F) and oa-mcduff's producer `HyperlinearTracePreservingModelStatement` (statement on origin at bf8ea9f9e).
+
 ## Status
 
 - 21:3x: claim landed at the current tip. `LocalLiftingProperty.lean` is in progress: definitions, the Arveson statement, and the calibration that ℂ has the LLP.
