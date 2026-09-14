@@ -83,9 +83,13 @@ Calibration: breadth-first search in `SL_4(F_p)` for `p = 3, 5, 7, 11` recompute
 
 ## Exact gaps and next steps
 
-1. **`G_HC2(1)(p)` and `G_HBC2(2)(p)`.** There is no `{±1, ±2}` labelling at `T = 24`. MSI job 788598 runs
-   labels `{±1, ±2, ±3}` at `T = 24`, and `T = 48` for `G_HC2(1)`. A label `±3` excludes `p = 3` only.
-   Alternatives: mod-`p` labellings for a fixed `p`, or larger `T`.
+1. **`G_HC2(1)(p)` and `G_HBC2(2)(p)`.** MSI job 788598 (`summary-job788598.txt`) found no integer labelling:
+   - `G_HBC2(2)`, `T = 24`: none of the 72 girth surfaces has a labelling with labels in `{±1, ±2, ±3}`;
+   - `G_HC2(1)`, `T = 24`: none of the 5 surfaces, all non-orientable, has one with labels in `{±1, ±2, ±3}`;
+   - `G_HC2(1)`, `T = 48`: none of the 191 girth surfaces has one with labels in `{±1, ±2}`.
+
+   These are search outcomes within those parameters, not obstructions. Next: labels mod `p` for a fixed prime,
+   larger `T`, or an invariant explaining the fast failures (the `T = 48` run failed all 191 surfaces in 3 s).
 2. **Presentations.** For the five families other than `G_HB2(2)`, the commutator words were read from the text
    extraction and not cross-checked against a compiled presentation.
 3. **KMS groups over `F_q`, `q = p^e`**, and generalized triangle groups with other unipotent vertex groups.

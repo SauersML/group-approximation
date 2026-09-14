@@ -38,4 +38,5 @@ Proof: `kms-hc2-hb3-hbc3-contain-genus-two-surface-subgroups-proof`.
 - `G_HBC2(2)(p)`, of type `(3,4,4)`.
 
 For both, an exhaustive search of all girth surfaces with `T = 24` found no labelling with labels in
-`{±1, ±2}` (`summary-job785007.txt`). Larger label sets and `T = 48` are recorded in the lane artifact.
+`{±1, ±2, ±3}` (`summary-job785007.txt`, `summary-job788598.txt`). For `G_HC2(1)`, none of the 191 girth surfaces
+with `T = 48` has a labelling with labels in `{±1, ±2}`. These are search outcomes, not obstructions.

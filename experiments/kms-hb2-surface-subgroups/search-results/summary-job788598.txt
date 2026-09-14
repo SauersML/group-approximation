@@ -1,0 +1,6 @@
+hbc2-t24-l3 exit 0 :: HBC2_2 T=24: 72 girth surfaces (0.3s) :: done 121.3s, surfaces with solutions 0
+hc1-t24-l3 exit 0 :: HC2_1 T=24: 5 girth surfaces (0.0s) :: done 15.8s, surfaces with solutions 0
+hc1-t48 exit 0 :: HC2_1 T=48: 191 girth surfaces (14.0s) :: done 17.2s, surfaces with solutions 0
+21c2e6441a84fdae396f3a0ba350cb70  hbc2-t24-l3.json
+a6f65fd15ba2378254423b8ba1106672  hc1-t24-l3.json
+874dc98a3f540d617887c4c0065cc6c6  hc1-t48.json
