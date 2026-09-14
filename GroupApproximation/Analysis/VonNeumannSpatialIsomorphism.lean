@@ -143,8 +143,8 @@ theorem conj_image_twistedTensor [Group Γ] (U : H ≃ₗᵢ[ℂ] K) {M : VonNeu
       · exact Set.mem_union_left _ ⟨_, conj_mem hMN hx, (conj_vecMap_ampOperator U x).symm⟩
       · exact Set.mem_union_right _ (Set.mem_union_left _ ⟨γ, (conj_vecMap_twistedShiftOperator U σ γ).symm⟩)
       · refine Set.mem_union_right _ (Set.mem_union_right _ ⟨γ, ?_⟩)
-        change star (twistedShiftOperator σ γ) =
-          (vecMap (Γ := Γ) U).conjStarAlgEquiv (star (twistedShiftOperator σ γ))
+        change star (twistedShiftOperator (H := K) σ γ) =
+          (vecMap (Γ := Γ) U).conjStarAlgEquiv (star (twistedShiftOperator (H := H) σ γ))
         rw [map_star, conj_vecMap_twistedShiftOperator]
     · rintro (⟨x, hx, rfl⟩ | ⟨γ, rfl⟩ | ⟨γ, rfl⟩)
       · obtain ⟨T, hT, rfl⟩ : x ∈ U.conjStarAlgEquiv '' (M : Set (H →L[ℂ] H)) := hMN.symm ▸ hx

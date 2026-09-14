@@ -21,7 +21,7 @@ namespace GroupApproximation
 namespace TwistedProduct
 
 open ReducedGroupCStarTrace TwistedGroupVonNeumann TwistedTensor IIOneFactor
-open scoped InnerProductSpace
+open scoped InnerProductSpace ComplexOrder
 
 noncomputable section
 
@@ -37,7 +37,7 @@ theorem isIIOneFactor_of_conj_image (U : H ≃ₗᵢ[ℂ] K) {M : VonNeumannAlge
     {N : VonNeumannAlgebra K}
     (hMN : U.conjStarAlgEquiv '' (M : Set (H →L[ℂ] H)) = (N : Set (K →L[ℂ] K)))
     (hN : IsIIOneFactor N) : IsIIOneFactor M := by
-  set Φ := U.conjStarAlgEquiv with hΦ
+  set Φ := U.conjStarAlgEquiv
   have hmem : ∀ {T : H →L[ℂ] H}, T ∈ M → Φ T ∈ N := fun {T} hT ↦ by
     have h : Φ T ∈ (N : Set (K →L[ℂ] K)) := hMN ▸ ⟨T, hT, rfl⟩
     exact h
@@ -58,6 +58,7 @@ theorem isIIOneFactor_of_conj_image (U : H ≃ₗᵢ[ℂ] K) {M : VonNeumannAlge
     have h := congrArg Φ.symm hz
     rwa [Φ.symm_apply_apply, map_smul, map_one] at h
   · intro hfin
+    haveI := hfin
     apply hN.infinite_dimensional
     let e : ↥M.toStarSubalgebra ≃ₗ[ℂ] ↥N.toStarSubalgebra :=
       { toFun := fun T ↦ ⟨Φ T, hmem T.2⟩

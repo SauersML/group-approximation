@@ -34,7 +34,7 @@ universe u v w
 
 section Entries
 
-variable {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+variable {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable {Γ : Type u} [DecidableEq Γ]
 
 /-- The `(γ, δ)` matrix entry `ev_γ ∘ Y ∘ ι_δ`. -/
@@ -66,11 +66,10 @@ theorem ampOperator_single (x : H →L[ℂ] H) (δ : Γ) (w : H) :
     ampOperator Γ x (lp.single 2 δ w) = lp.single 2 δ (x w) := by
   apply lp.ext
   funext ε
-  rw [ampOperator_apply]
   by_cases hε : ε = δ
   · subst hε
-    rw [lp.single_apply_self, lp.single_apply_self]
-  · rw [lp.single_apply_ne 2 δ w hε, lp.single_apply_ne 2 δ (x w) hε, map_zero]
+    simp only [ampOperator_apply, lp.single_apply, Pi.single_eq_same]
+  · simp only [ampOperator_apply, lp.single_apply, Pi.single_eq_of_ne hε, map_zero]
 
 theorem entry_ampOperator_mul (γ δ : Γ) (x : H →L[ℂ] H) (Y : VecHilbert Γ H →L[ℂ] VecHilbert Γ H) :
     entry γ δ (ampOperator Γ x * Y) = x * entry γ δ Y := by
@@ -168,7 +167,6 @@ theorem curryConj_image_twistedTensor (hσ : IsSignCocycle σ) (hρ : IsSignCocy
   classical
   let Φ : (VecHilbert Γ (GroupHilbert A) →L[ℂ] VecHilbert Γ (GroupHilbert A)) ≃*
       (GroupHilbert (Γ × A) →L[ℂ] GroupHilbert (Γ × A)) := (curryConj (Γ := Γ) (A := A)).toMulEquiv
-  have hΦ : ∀ T, Φ T = curryConj T := fun _ ↦ rfl
   -- the images of the generators
   have hshift : ∀ γ : Γ, Φ (twistedShiftOperator (H := GroupHilbert A) σ γ) =
       twistedLeftOperator (prodCocycle σ ρ) (γ, 1) := fun γ ↦ curryConj_twistedShiftOperator σ ρ hρ γ
@@ -196,13 +194,15 @@ theorem curryConj_image_twistedTensor (hσ : IsSignCocycle σ) (hρ : IsSignCocy
       rcases hm with ⟨⟨γ, a⟩, rfl⟩ | ⟨⟨γ, a⟩, rfl⟩
       · rw [twistedLeftOperator_prod_eq_mul σ ρ hσ hρ]
         exact (h1 γ).mul_left (h2 a)
-      · rw [twistedLeftOperator_prod_eq_mul σ ρ hσ hρ, star_mul]
+      · show star (twistedLeftOperator (prodCocycle σ ρ) (γ, a)) * X =
+          X * star (twistedLeftOperator (prodCocycle σ ρ) (γ, a))
+        rw [twistedLeftOperator_prod_eq_mul σ ρ hσ hρ, star_mul]
         exact (h4 a).mul_left (h3 γ)
     · intro X hX m hm
       obtain ⟨g, hg, rfl⟩ := hm
       rcases hg with ⟨x, hx, rfl⟩ | ⟨γ, rfl⟩ | ⟨γ, rfl⟩
       · -- `x ⊗ 1` with `x ∈ L_ρ(A)`
-        set Y := Φ.symm X with hY
+        set Y := Φ.symm X
         have hXY : X = Φ Y := (Φ.apply_symm_apply X).symm
         have hcomm : ∀ s ∈ twistedGenerators ρ, ampOperator Γ s * Y = Y * ampOperator Γ s := by
           intro s hs
@@ -211,7 +211,9 @@ theorem curryConj_image_twistedTensor (hσ : IsSignCocycle σ) (hρ : IsSignCocy
           rcases hs with ⟨a, rfl⟩ | ⟨a, rfl⟩
           · rw [hamp]
             exact hX _ (Set.mem_union_left _ ⟨(1, a), rfl⟩)
-          · rw [← star_ampOperator, hstar, hamp]
+          · show Φ (ampOperator Γ (star (twistedLeftOperator ρ a))) * X =
+              X * Φ (ampOperator Γ (star (twistedLeftOperator ρ a)))
+            rw [← star_ampOperator, hstar, hamp]
             exact hX _ (Set.mem_union_right _ ⟨(1, a), rfl⟩)
         have hentry : ∀ γ δ, entry γ δ Y ∈ Set.centralizer (twistedGenerators ρ) :=
           fun γ δ s hs ↦ entry_commute_of_commute s (hcomm s hs) γ δ
@@ -220,7 +222,9 @@ theorem curryConj_image_twistedTensor (hσ : IsSignCocycle σ) (hρ : IsSignCocy
         rw [hXY, ← map_mul, ← map_mul, hxY]
       · rw [hshift]
         exact hX _ (Set.mem_union_left _ ⟨(γ, 1), rfl⟩)
-      · rw [hstar, hshift]
+      · show Φ (star (twistedShiftOperator (H := GroupHilbert A) σ γ)) * X =
+          X * Φ (star (twistedShiftOperator (H := GroupHilbert A) σ γ))
+        rw [hstar, hshift]
         exact hX _ (Set.mem_union_right _ ⟨(γ, 1), rfl⟩)
   change Φ '' Set.centralizer (Set.centralizer (tensorGenerators (twistedVonNeumannAlgebra ρ) σ)) =
     Set.centralizer (Set.centralizer (twistedGenerators (prodCocycle σ ρ)))
