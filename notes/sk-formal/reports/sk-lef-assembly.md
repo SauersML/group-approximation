@@ -25,6 +25,13 @@ CLAIM solvable word problem gives a recursive presentation GroupApproximation/Ma
 
 CLAIM instances of the last statement of cor:host (tex l.324–327) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFHostInstances.lean
 
+CLAIM lamplighter host combination GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFLamplighterCombination.lean
+
+- 09:3x: skf-consequences landed its statement Props at 04544e6d6: `Lamplighter.PrintedLamplighterAffineSolvableWordProblem` and
+  `Lamplighter.PrintedLamplighterHostSolvableWordProblem` (G_Δ = `elementaryGroup (Fin 3) (LampRing Δ)` has solvable WP whenever Δ does).
+  `LEFLamplighterCombination` names the concrete host piece `LamplighterHostStatement`. Its spelling was sent to sk-lef-action, whose
+  thm:general application should produce it. The module derives `LEFLamplighterStatement`, `LEFLamplighterSolvableWordProblemStatement`, and
+  both statements of cor:lef over it.
 - Boundary agreed with skf-consequences at 09:1x: it takes l.445–455 (the WP of Λ and G_Δ, module `LamplighterWordProblem`) and the rows
   581584337a04, 7bfa078c0bed, e3cd35e16e2f and 14148c1b4df0, which this lane dropped from its row file. This lane combines its SWP theorem with
   sk-lef-action's host into `LEFLamplighterSolvableWordProblemStatement` once both land.
