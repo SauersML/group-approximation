@@ -1,0 +1,10 @@
+# run on MSI login node, /scratch.global/sauer354/ideas-kaplansky-atiyah-2, 2026-09-14 ~08:57, python3
+$ wc -l twisted_integral_unit_check.py && python3 twisted_integral_unit_check.py
+124 twisted_integral_unit_check.py
+|supp alpha| = 21  |supp beta| = 21
+(1) every coefficient class equals rho(g): True
+    rho agrees on 9 common support elements: True
+(2) abar*bbar == 1 in Z^c[P]: True   bbar*abar == 1: True
+    abar coefficients are +-1 with 21 terms: True
+    control alpha*beta == 1 in R[P]: True
+(3) psi(a) = (rho_1+rho_2)(a) = 1
