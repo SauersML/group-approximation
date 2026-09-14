@@ -114,3 +114,22 @@ CLAIM `lefSolvableWordProblemEmbeddingStatement` and the printed sentence endpoi
 
 Ownership check (09:0x): none of these paths or names exist on origin or in the shared tree. `lanes/*.files` names no half-line
 module. The only origin mention of the piece is its statement in `LEFSolvableWordProblem`.
+
+### CLAIM 2 revised (09:1x): takeover of oa-expanders' draft
+
+oa-expanders stood down (main's ruling) and handed over its draft `GroupApproximation/GroupTheory/LevelShiftDelta.lean` (origin
+aa8679415, unverified): β = `levelShift`, h_γ = `levelMul`, `commutator_levelShift_levelMul`, `levelDelta`,
+`exists_levelZeroEmbedding`, `wordBall`, `IsLevelForm`, `LevelBounds`, `exists_levelForm_of_mem_wordBall`, `levelGen`. This lane
+adopts it, and the `HalfLineLevels` and `HalfLineNormalForm` claims above are withdrawn (never written). The remaining claims:
+
+CLAIM takeover: the level permutations and the normal form of the second choice of Δ GroupApproximation/GroupTheory/LevelShiftDelta.lean
+
+CLAIM θ, κ via complements, ζ, and the conjugation ζ v ζ⁻¹ = θ(v) GroupApproximation/GroupTheory/ShiftTransversalBijection.lean
+
+CLAIM ψ and the models fβ^ℓ ↦ (ψ(f(m)))_{|m|≤3r} ζ^ℓ: Δ is LEF GroupApproximation/GroupTheory/LevelShiftDeltaModels.lean
+
+CLAIM Δ has solvable word problem (tex l.439–444) GroupApproximation/Manuscript/SimpleKazhdanSofic/LevelShiftDeltaWordProblem.lean
+
+CLAIM `lefSolvableWordProblemEmbeddingStatement` and the printed endpoints GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSecondDelta.lean
+
+The `HalfLineModels` and `HalfLineWordProblem` claims are renamed as above.
