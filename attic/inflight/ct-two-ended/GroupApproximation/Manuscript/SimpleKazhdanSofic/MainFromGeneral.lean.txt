@@ -131,7 +131,7 @@ theorem isMinimal_shift (S : Subshift A ℤ) (hmin : IsMinimal S) :
 
 /-- **No periodic points, so the action is topologically free** (tex l.240–242). -/
 theorem isTopologicallyFree_shift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
-    IsTopologicallyFreeAction (Multiplicative ℤ) S.carrier := by
+    ∀ ξ : Multiplicative ℤ, ξ ≠ 1 → ∀ U : Set S.carrier, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z := by
   intro ξ hξ U _ hU
   obtain ⟨z, hz⟩ := hU
   have hj : toAdd ξ ≠ 0 := fun h => hξ (by rw [← ofAdd_toAdd ξ, h, ofAdd_zero])

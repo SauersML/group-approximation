@@ -2,7 +2,6 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitSpecialLinear
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialQuotientsExpanders
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralRingPropertyT
-import GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAction
 import GroupApproximation.Dynamics.ClopenGroupCrossedProduct
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Dynamics.Minimal
@@ -32,8 +31,8 @@ This module is additive.  `thm:main` keeps its statement and assembly in `Simple
 
 ## Definitions
 
-* topological freeness is sk-lef-action's `IsTopologicallyFreeAction Λ Z` (`LamplighterAction`); minimality is
-  Mathlib's `MulAction.IsMinimal Λ Z`;
+* topological freeness is stated as printed, `∀ ξ ≠ 1, ∀ U` open nonempty, `∃ z ∈ U, ξ • z ≠ z`; this is
+  definitionally sk-lef-action's `IsTopologicallyFreeAction Λ Z`.  Minimality is Mathlib's `MulAction.IsMinimal Λ Z`;
 * `IsMatricialVia S N φ`: `R` is matricial via `φ_k : R → M_{N_k}(F₂)`, with `N_k ≥ 1`;
 * `elementaryMarking n S`, `matricialMarking n S N φ k`: the markings by the `e_ij(s)` and the `e_ij(φ_k(s))`;
 * `PrintedSimpleKazhdanGeneral`.  The finite groups are `EL_n(M_{N_k}(F₂))`.  Block flattening carries
@@ -90,7 +89,8 @@ noncomputable def matricialMarking (n : ℕ) {R : Type*} [Ring R] (S : Finset R)
 def PrintedSimpleKazhdanGeneral : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFreeAction Λ Z →
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z →
+    (∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z) →
     ∀ S : Finset (ClopenGroupCrossedProduct Λ Z (ZMod 2)), 1 ∈ S →
       Subring.closure (S : Set (ClopenGroupCrossedProduct Λ Z (ZMod 2))) = ⊤ →
     ∀ (N : ℕ → ℕ)
@@ -114,7 +114,8 @@ def PrintedSimpleKazhdanGeneral : Prop :=
 def PrintedGeneralSimplicityStatement : Prop :=
   ∀ (Λ : Type) [Group Λ] [Group.FG Λ] (Z : Type) [TopologicalSpace Z] [CompactSpace Z]
     [TopologicalSpace.MetrizableSpace Z] [TotallyDisconnectedSpace Z] [PerfectSpace Z] [Nonempty Z]
-    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z → IsTopologicallyFreeAction Λ Z →
+    [MulAction Λ Z] [ContinuousConstSMul Λ Z], MulAction.IsMinimal Λ Z →
+    (∀ ξ : Λ, ξ ≠ 1 → ∀ U : Set Z, IsOpen U → U.Nonempty → ∃ z ∈ U, ξ • z ≠ z) →
     ∀ n : ℕ, 3 ≤ n → IsSimpleGroup ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
 
 /-- **The marked limit** (section "Finite simple models", tex l.211–233), for any unital ring generated
