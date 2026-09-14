@@ -199,9 +199,9 @@ theorem e12_kernelWord_mem_ker_iff (S : Subshift A ℤ) (v : List A) :
   rw [MonoidHom.mem_ker, elementaryGroupMap_e12, e12_eq_one_iff, freeAlgebraProj_kernelWord,
     coeff_prod_coordIndicator_eq_zero_iff]
 
+omit [DiscreteTopology A] [DecidableEq A] in
 /-- **A subshift is determined by its language**: if every word of `X` is a word of `X'`, then
 `X ⊆ X'`, since `X'` is closed and a point is approximated by the points of `X'` with its windows. -/
-omit [DiscreteTopology A] [DecidableEq A] in
 theorem carrier_subset_of_listLanguage_subset {S S' : Subshift A ℤ}
     (h : CylinderTables.listLanguage S.carrier ⊆ CylinderTables.listLanguage S'.carrier) :
     S.carrier ⊆ S'.carrier := by
