@@ -180,3 +180,11 @@ No false claim found. Each item gives the check.
   (discharged by ms-traces-3's 178808d0a) and `coreModelsLEFStatement : DynamicRankBudget.CoreModelsLEFStatement`, audited
   closed to propext, Classical.choice and Quot.sound. The first landing attempt hit push contention; the retry landed.
   Census: c825bc73828a is now formalized. d8e1a694d87c stays partial because its nonempty clause has no carrier here.
+- 09-13 ~19:45: FIRST SENTENCE CLOSED, LANDED a28419dba (probe 0913-193800-96165 GREEN, BUILT, 0 sorryAx/error lines), queued
+  for wiring. `Manuscript/NonMFSentences/ChainCoreModelsStatement`:
+  - `itineraryCore_nonempty` and `generalCore_nonempty` (from `coreSubshift_nonempty`, ms-traces-3 178808d0a, and
+    `inverseLimitCore_nonempty`);
+  - `chainRecurrentSet_nonempty`, through `generalCore_eq_chainRecurrentSet`;
+  - `PrintedChainCoreModelsFirstSentence` with `printedChainCoreModelsFirstSentence` (Y nonempty, closed, invariant, R_Y LEF),
+    audited closed to propext, Classical.choice and Quot.sound.
+  - Census: d8e1a694d87c is now formalized. This lane's scope is finished; main released it.
