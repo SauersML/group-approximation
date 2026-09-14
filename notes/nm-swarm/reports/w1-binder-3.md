@@ -383,3 +383,23 @@ CLAIM the split at an uncrossed turn: GroupApproximation/GGT/VanKampen/Estimatin
   - Correction to the corner analysis above: the cycle holds `invDarts X sourceArc.darts`, so `alpha e₀` can be a
     source-arc dart. The source-cell corner then needs the same two options as the exterior corner (double `alpha e₀`
     or `σ e₀`). If both fail, the turn would be a first turn.
+- 09:3x: `OsinPocketOuterPinchCorners` (selection) built in probe 0914-092527-30160, with all 4 `#audit_axioms` within
+  `[propext, Classical.choice, Quot.sound]` and no warnings. It lands in the same commit as this entry, unwired and
+  queued for wiring.
+  - `OuterPinchCorners.exists_firstArrival` and `false_of_between_of_pow`: first arrivals on a rotation cycle, and
+    three-point order.
+  - `OuterPinchCorners.exists_outside_of_not_firstTurn`: at an uncrossed non-first turn of a list in walk order, a cycle
+    dart `z₀ ≠ e₀` at the vertex lies outside the stretch from `alpha d₀` to `e₀`. It is either the dart met, or the dart
+    after the one it reverses.
+  - `PocketFaceSet.exists_not_firstTurn`: a pocket not in first-turn order has a non-first turn.
+
+CLAIM the corner fixes at the split corners: GroupApproximation/GGT/VanKampen/Estimating/OsinPocketOuterPinchCornerFix.lean
+- Plan for the corner after a dart `u`, whose face is `g = faceOf (alpha u)`. The x-corner has `u = e₀`; the y-corner
+  has `u = y₀` with `σ y₀ = alpha d₀`.
+  - Monogon `g`: at `ρ₀ = 2` it is a G-face, and `u` is the corner dart as it is.
+  - Otherwise, Option A doubles or thickens `alpha u`, and the new corner dart is `embed u`. Option B uses `σ u`, and
+    the new corner dart is `some none`. Either way the corner becomes a digon.
+  - If both options fail, then `alpha (σ u)` and `u` are consecutive in the proper arc, hence in the cycle. Both corners
+    then give `σ e₀ = alpha d₀`, a first turn.
+- Residual, a restriction of the target statement: the step for pockets where every non-first turn is crossed (the
+  rose), or whose boundary word has at most one letter (no thickening of an exterior monogon).
