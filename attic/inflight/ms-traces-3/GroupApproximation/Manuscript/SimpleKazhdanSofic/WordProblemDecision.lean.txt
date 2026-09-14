@@ -93,7 +93,7 @@ theorem primrec_allWords [Primcodable A] (L : List A) : Primrec (allWords L) :=
     (Primrec.list_flatMap Primrec.snd
       (Primrec.list_map (Primrec.const L)
         (Primrec.list_append.comp (Primrec.snd.comp Primrec.fst)
-          (Primrec.list_cons.comp Primrec.snd (Primrec.const []))).to₂).to₂)).of_eq
+          (Primrec.list_cons.comp Primrec.snd (Primrec.const []))).to₂).to₂).to₂).of_eq
     fun n => (allWords_eq_rec L n).symm
 
 theorem primrec_cylRadius [Primcodable A] : Primrec (cylRadius : Cyl A → ℕ) :=
