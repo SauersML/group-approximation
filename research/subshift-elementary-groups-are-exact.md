@@ -39,3 +39,14 @@ Search bounds: web searches for exactness or property A of topological full grou
   - A non-exact subgroup of GL_m(LC(X,F_2)⋊Z) must admit banded finite representations (sk-lef-embedding-d, for f.p. subgroups).
   - It must also have no distorted infinite-order elements (`sk-sl3z-bandwidth`).
   - Neither forbids Osajda-type growing-girth relator graphs, and no embedding of an Osajda group is known.
+- **Two-ended skew lattices (sk-exact-gx, 2026-09-13), open at the last step.**
+  - G_X acts on pairs of finitely generated B[[u]]- and B[[u^{-1}]]-lattices in B((u))^3 × B((u^{-1}))^3, with B = LC(X,F_2).
+  - Every pair stabilizer has width ≤ 2n, so it is locally finite: `subshift-el3-two-ended-lattice-stabilizers-locally-finite`, through `bounded-width-subgroups-of-subshift-gl-are-locally-finite`.
+  - This repairs the single-end Tate attempt above, whose stabilizer contains SL_3(F_2[u]).
+  - Dies (for now) at the base: the lattice spaces have infinite residue ring B twisted by α, so no finite asymptotic dimension. The scaling lattices with a(Tx) ≤ a(x)+1 give unboundedly many independent directions.
+  - Guentner–Tessera–Yu permanence (GGD 7 (2013) p. 378: subgroups, extensions, amalgams, HNN, direct unions; commutative-ring linear groups) does not reach G_X, which is finitely generated, simple and Kazhdan over a non-PI ring.
+  - Artifact `research/artifacts/sk-exact-gx-2026-09-13-part1.md` §2.
+- **Cut space G_X/S_y, reformulation only.** S_y is locally finite (PASS), but an amenable action on β(G_X/S_y) is as hard as exactness itself: for F_2[u^{±1}] the cut space is the group modulo a finite subgroup.
+- **Linear wobbling reformulation, open.** G_X ≤ GL^{band}(Z×3;F_2), the units of the algebraic uniform Roe algebra of Z over F_2. Exactness of finitely generated subgroups of GL^{band}(Z×k;F_q) would settle G_X. Strang's block-diagonal factorization gives the same "two locally finite groups at bounded depth" structure as W(Z), so it decides nothing. Unlike W(Z), this unit group contains infinite simple Kazhdan groups.
+- **Weakly embedded expanders through tower copies, dies.** The matrix units of tower copies GL_{3h}(F_2) involve level indicators of return time ≥ h, which depend on ≳ h/2 coordinates for Sturmian X. So every non-constant generator has G_X-length ≳ h/2, and homomorphic tower copies are not uniformly Lipschitz.
+- **Sup-metric copies through full-group cocycles, dies.** Commuting first-return maps on k disjoint pieces need 2^k masks, and balls grow at most exponentially, so some masks cost ≳ k/C. The induced metric is not uniformly ℓ^∞ on Z^k.
