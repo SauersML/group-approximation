@@ -1,0 +1,230 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.LamplighterAffineWordProblem
+import GroupApproximation.Computability.OracleTruthTable
+
+/-!
+# The word problem of `Δ` decides equality in `Λ`
+
+`simple_kazhdan_sofic_group.tex` at 8b36733d7, section "LEF groups", l.444–446:
+
+> An element $x\mapsto\delta x+c$ of $\Lambda$ is given by a word for $\delta$ and words for the lamps
+> of $c$, so the word problem of $\Delta$ decides equality in $\Lambda$ and computes the values of $c$.
+
+For generators `t : ι → Δ` with a computable word problem, the letters `lampGen t` of `Λ` have a word
+problem Turing reducible to that of `Δ`. The reduction is a truth-table reduction
+(`OracleTruthTable.turingReducible_of_truthTable`).
+
+* The queries on a word `w`, with prefixes `L = lampPrefixes w` and `m = |L|`: the `Δ`-letters
+  `deltaWord w`, then `L_j⁻¹ L_k` for all `j, k < m` (`affineQueryWords`).
+* The decision: the answer to `deltaWord w` is `1`, and for each `k` the number of `j` whose answer is
+  `1` is even (`affineDecide`).
+* Correctness is `wordValue_lampGen_eq_one_iff`.
+* `printedLamplighterAffineSolvableWordProblem`: `Λ` has solvable word problem when `Δ` has.
+-/
+
+namespace GroupApproximation
+namespace SimpleKazhdanSofic
+namespace Lamplighter
+
+open Encodable
+
+section Lists
+
+variable {α β : Type*}
+
+/-- The index pairs `(j, k)`, `j, k < m`, row by row. -/
+def pairsIdx (m : ℕ) : List (ℕ × ℕ) :=
+  (List.range m).flatMap fun j => (List.range m).map fun k => (j, k)
+
+/-- In a `flatMap` of blocks of one length `m`, position `j * m + k` is entry `k` of block `j`. -/
+theorem getElem?_flatMap_block {l : List α} {f : α → List β} {m : ℕ}
+    (hf : ∀ a ∈ l, (f a).length = m) {j k : ℕ} (hk : k < m) :
+    (l.flatMap f)[j * m + k]? = l[j]?.bind fun a => (f a)[k]? := by
+  induction l generalizing j with
+  | nil => simp
+  | cons a l ih =>
+    have hfa : (f a).length = m := hf a (List.mem_cons_self)
+    rw [List.flatMap_cons]
+    cases j with
+    | zero =>
+      rw [zero_mul, zero_add, List.getElem?_append_left (by rw [hfa]; exact hk)]
+      simp
+    | succ j =>
+      rw [List.getElem?_append_right (by rw [hfa]; nlinarith),
+        show (j + 1) * m + k - (f a).length = j * m + k by rw [hfa]; ring_nf; omega,
+        ih fun b hb => hf b (List.mem_cons_of_mem a hb)]
+      simp
+
+theorem getElem?_pairsIdx {m j k : ℕ} (hj : j < m) (hk : k < m) :
+    (pairsIdx m)[j * m + k]? = some (j, k) := by
+  rw [pairsIdx, getElem?_flatMap_block (fun a _ => by simp) hk, List.getElem?_range hj]
+  simp [List.getElem?_range hk]
+
+/-- The entries of a list, indexed by `List.range`. -/
+theorem map_getD_range (l : List α) (d : α) : (List.range l.length).map (l.getD · d) = l := by
+  refine List.ext_getElem (by simp) fun i h1 h2 => ?_
+  simp only [List.getElem_map, List.getElem_range, List.getD_eq_getElem?_getD,
+    List.getElem?_eq_getElem h2, Option.getD_some]
+
+theorem length_filter_range_getD (l : List α) (d : α) (P : α → Bool) :
+    ((List.range l.length).filter fun j => P (l.getD j d)).length = (l.filter P).length := by
+  conv_rhs => rw [← map_getD_range l d]
+  rw [List.filter_map, List.length_map]
+  rfl
+
+end Lists
+
+variable {Δ : Type} [Group Δ] {ι : Type}
+
+/-- The `Δ`-letter of a letter of `Λ`, if any. -/
+def lettersOf (x : Option ι × Bool) : List (ι × Bool) :=
+  (x.1.map fun i => (i, x.2)).toList
+
+theorem deltaWord_eq_flatMap (w : List (Option ι × Bool)) : deltaWord w = w.flatMap lettersOf := by
+  induction w with
+  | nil => rfl
+  | cons x w ih =>
+    obtain ⟨o, b⟩ := x
+    cases o <;> simp [deltaWord, lettersOf, ih]
+
+theorem lampPrefixes_eq_foldr (w : List (Option ι × Bool)) :
+    lampPrefixes w = w.foldr (fun x rest =>
+      if x.1.isSome then rest.map (fun p => lettersOf x ++ p) else [] :: rest) [] := by
+  induction w with
+  | nil => rfl
+  | cons x w ih =>
+    obtain ⟨o, b⟩ := x
+    cases o <;> simp [lampPrefixes, lettersOf, ih]
+
+/-- The queried words: the `Δ`-letters, then `L_j⁻¹ L_k` for all index pairs. -/
+def affineQueryWords (w : List (Option ι × Bool)) : List (List (ι × Bool)) :=
+  deltaWord w :: (pairsIdx (lampPrefixes w).length).map fun jk =>
+    wordInv ((lampPrefixes w).getD jk.1 []) ++ (lampPrefixes w).getD jk.2 []
+
+variable [Primcodable ι]
+
+/-- The codes of the queries on the input `n`. -/
+def affineQueries (n : ℕ) : List ℕ :=
+  (affineQueryWords ((decode (α := List (Option ι × Bool)) n).getD [])).map encode
+
+/-- The number of `j < m` whose answer for the pair `(j, k)` is `1`. -/
+def pairCount (m k : ℕ) (ans : List ℕ) : ℕ :=
+  ((List.range m).filter fun j => decide (ans.getD (1 + (j * m + k)) 0 = 1)).length
+
+/-- Accept iff the input is a word, its `Δ`-letters are trivial, and every count is even. -/
+def affineDecide (n : ℕ) (ans : List ℕ) : ℕ :=
+  if (decode (α := List (Option ι × Bool)) n).isSome && decide (ans.getD 0 0 = 1) &&
+      (List.range (lampPrefixes ((decode (α := List (Option ι × Bool)) n).getD [])).length).all
+        fun k => decide (pairCount (lampPrefixes ((decode (α := List (Option ι × Bool)) n).getD [])).length
+          k ans % 2 = 0)
+  then 1 else 0
+
+/-! ### Correctness -/
+
+open Classical in
+/-- The total answers of the word problem of `Δ`. -/
+noncomputable def deltaAnswer (t : ι → Δ) (q : ℕ) : ℕ :=
+  if ∃ v : List (ι × Bool), decode q = some v ∧ wordValue t v = 1 then 1 else 0
+
+theorem deltaAnswer_encode [DecidableEq Δ] (t : ι → Δ) (v : List (ι × Bool)) :
+    deltaAnswer t (encode v) = if wordValue t v = 1 then 1 else 0 := by
+  by_cases h : wordValue t v = 1 <;> simp [deltaAnswer, h]
+
+theorem answers_getD_zero [DecidableEq Δ] (t : ι → Δ) (w : List (Option ι × Bool)) :
+    ((affineQueryWords w).map fun v => deltaAnswer t (encode v)).getD 0 0 =
+      if wordValue t (deltaWord w) = 1 then 1 else 0 := by
+  simp [affineQueryWords, deltaAnswer_encode]
+
+theorem answers_getD_pair [DecidableEq Δ] (t : ι → Δ) (w : List (Option ι × Bool)) {j k : ℕ}
+    (hj : j < (lampPrefixes w).length) (hk : k < (lampPrefixes w).length) :
+    ((affineQueryWords w).map fun v => deltaAnswer t (encode v)).getD
+        (1 + (j * (lampPrefixes w).length + k)) 0 =
+      if wordValue t ((lampPrefixes w).getD j []) = wordValue t ((lampPrefixes w).getD k [])
+      then 1 else 0 := by
+  rw [List.getD_eq_getElem?_getD, List.getElem?_map, affineQueryWords, add_comm,
+    List.getElem?_cons_succ, List.getElem?_map, getElem?_pairsIdx hj hk]
+  simp only [Option.map_some, Option.getD_some, deltaAnswer_encode, wordValue_append,
+    wordValue_wordInv, inv_mul_eq_one]
+
+theorem pairCount_answers [DecidableEq Δ] (t : ι → Δ) (w : List (Option ι × Bool)) {k : ℕ}
+    (hk : k < (lampPrefixes w).length) :
+    pairCount (lampPrefixes w).length k
+        ((affineQueryWords w).map fun v => deltaAnswer t (encode v)) =
+      ((lampPrefixes w).filter fun q =>
+        wordValue t q = wordValue t ((lampPrefixes w).getD k [])).length := by
+  unfold pairCount
+  rw [← length_filter_range_getD (lampPrefixes w) []]
+  congr 1
+  refine List.filter_congr fun j hj => ?_
+  rw [answers_getD_pair t w (List.mem_range.1 hj) hk]
+  by_cases h : wordValue t ((lampPrefixes w).getD j []) = wordValue t ((lampPrefixes w).getD k [])
+  · rw [if_pos h, decide_eq_decide]
+    exact ⟨fun _ => h, fun _ => rfl⟩
+  · rw [if_neg h, decide_eq_decide]
+    exact ⟨fun h0 => absurd h0 (by decide), fun h1 => absurd h1 h⟩
+
+open Classical in
+theorem affineDecide_answers [DecidableEq Δ] (t : ι → Δ) {n : ℕ} {w : List (Option ι × Bool)}
+    (hd : decode (α := List (Option ι × Bool)) n = some w) :
+    affineDecide (ι := ι) n ((affineQueries (ι := ι) n).map (deltaAnswer t)) =
+      if wordValue (lampGen t) w = 1 then 1 else 0 := by
+  have hq : (affineQueries (ι := ι) n).map (deltaAnswer t) =
+      (affineQueryWords w).map fun v => deltaAnswer t (encode v) := by
+    simp [affineQueries, hd, List.map_map, Function.comp_def]
+  rw [hq]
+  simp only [wordValue_lampGen_eq_one_iff]
+  simp only [affineDecide, hd, Option.isSome_some, Option.getD_some, Bool.true_and,
+    answers_getD_zero]
+  have hall : ((List.range (lampPrefixes w).length).all fun k =>
+      decide (pairCount (lampPrefixes w).length k
+        ((affineQueryWords w).map fun v => deltaAnswer t (encode v)) % 2 = 0)) = true ↔
+      ∀ p ∈ lampPrefixes w,
+        ((lampPrefixes w).filter fun q => wordValue t q = wordValue t p).length % 2 = 0 := by
+    rw [List.all_eq_true]
+    constructor
+    · intro h p hp
+      obtain ⟨k, hk, rfl⟩ := List.getElem_of_mem hp
+      have h1 := h k (List.mem_range.2 hk)
+      rw [pairCount_answers t w hk, List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk,
+        Option.getD_some] at h1
+      simpa using h1
+    · intro h k hk
+      have hk' := List.mem_range.1 hk
+      rw [pairCount_answers t w hk']
+      have := h ((lampPrefixes w).getD k []) (by
+        rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem hk', Option.getD_some]
+        exact List.getElem_mem hk')
+      simpa using this
+  by_cases hδ : wordValue t (deltaWord w) = 1
+  · by_cases hc : ∀ p ∈ lampPrefixes w,
+        ((lampPrefixes w).filter fun q => wordValue t q = wordValue t p).length % 2 = 0
+    · simpa [hδ, hall.2 hc] using hc
+    · have hc' : ((List.range (lampPrefixes w).length).all fun k =>
+          decide (pairCount (lampPrefixes w).length k
+            ((affineQueryWords w).map fun v => deltaAnswer t (encode v)) % 2 = 0)) = false := by
+        cases h : ((List.range (lampPrefixes w).length).all fun k =>
+          decide (pairCount (lampPrefixes w).length k
+            ((affineQueryWords w).map fun v => deltaAnswer t (encode v)) % 2 = 0))
+        · rfl
+        · exact absurd (hall.1 h) hc
+      simp [hδ, hc, hc']
+  · simp [hδ]
+
+/-- **The oracle of `Λ` from the answers of `Δ`**: on every input, the word problem of `Λ` is the
+decision applied to the answers of `Δ` to the queries. -/
+theorem affineOracle_eq [DecidableEq Δ] (t : ι → Δ) (n : ℕ) :
+    wordProblemOracle (lampGen t) n =
+      Part.some (affineDecide (ι := ι) n ((affineQueries (ι := ι) n).map (deltaAnswer t))) := by
+  classical
+  cases hd : (decode (α := List (Option ι × Bool)) n) with
+  | none =>
+    simp [wordProblemOracle, hd, affineDecide]
+  | some w =>
+    rw [affineDecide_answers t hd]
+    simp [wordProblemOracle, hd]
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Lamplighter.getElem?_pairsIdx
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Lamplighter.affineOracle_eq
+
+end Lamplighter
+end SimpleKazhdanSofic
+end GroupApproximation
