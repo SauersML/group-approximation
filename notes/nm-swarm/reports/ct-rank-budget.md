@@ -84,6 +84,15 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
 - 09-13 19:52: census regrade on the lead's order (LANDED 2fb94570a): 15 rows of ct-bilateral-mf, ms-core-4, ct-return-tower and ct-two-ended
   (partial over CoreModelsLEFStatement / PrintedBilateralThree only) now name these endpoints; my own rows regraded after.
 
+- 09-13 20:30: DynamicRankBudgetInducedCoreClosed LANDED 2829a1eb9 (GREEN 0913-202257-47589), on main's go-ahead:
+  `PrintedInducedCore` (tex 1743, "The induced core is C ∩ Y": `Subtype.val '' CR(S_C) = C ∩ CR(T)` for every return
+  section) and `printedInducedCore_closed` (`#audit_closed_axioms`), over ms-core-1's
+  `image_chainRecurrentSet_firstReturn_printed` with `coreRingReflectionStatement_holds` and `coreModelsLEFStatement`.
+  Route checked against tex 1743–1749. `mem_chainRecurrentSet_firstReturn_of_pieces` (c56f96a99) says the return ring of
+  `C ∩ Y` is a corner of the LEF ring `R_Y`, then applies thm:core-ring-reflection.
+  `coe_mem_chainRecurrentSet_of_firstReturn_of_pieces` (afa5cd02d) saturates through the towers, gets a corner of a matrix
+  ring over an LEF ring, then applies thm:core-ring-reflection. Census LINE:1743 → formalized.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
