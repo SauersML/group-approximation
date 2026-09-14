@@ -47,6 +47,7 @@ there, so this lane rebuilt their core in a scratch tool (`rwprep.py`):
 | ~~`Manuscript.ChainCore.BilateralThreeClosures`, `Algebra.BilateralThreeCellZOrder`~~ released ~19:05 | reached `Dynamics/BilateralThreeCellClopen`, which redeclared `ClopenCrossedProduct.coeff_injective`; fixed at 131abe1b5, GREEN 0913-185912-77650 | ct-bilateral-cell |
 | `Dynamics.ClopenCrossedProductAlgebra` | global `ClopenCoeff.instAlgebra`, a second `Algebra (ZMod 2) R_X` beside ms-units' `zmodTwoAlgebra`; waits for main's ruling | ms-compress-3 |
 | `Estimating.OsinLemma94ClassCovers` | red since a25fe2383 (roster) | hull-component |
+| `Estimating.OsinLemma94ClassTransitions` | redeclares `OsinLemma94RealizedPolygons.cuttingSides` (l.68), identical to `Estimating/OsinLemma94CuttingSides.lean:48` (w1-binder-1, 3d2744463); fix: import `OsinLemma94CuttingSides` and delete the local def | sec5-sentences (ec3c531fc) |
 | ~~`Algebra.IntegerPolynomialUnisolvence`~~ released ~20:00 | was red at 122:80 (ℤ vs ℂ coefficients); fixed by ms-traces-1 at ad637cf5a, GREEN 0913-194043-12780 (BUILT fresh), md5 = origin 77ac966c5 | dgo-geometric → ms-traces-1 |
 | ~~`Dynamics.CoreKernelFTwo` and its importers~~ released ~20:00 | FAILED 0913-182039-93403 is ms-units' probe of `TransientTowerFamily`, where `CoreKernelFTwo` compiled; fresh GREEN 0913-194625-49937 covers `CoreKernelFTwo`, `InvolutionLocalizationClosed`, `TransientIdealLocallyMatricial`, `CoreKernelRelativeElementary`, md5 = origin 77ac966c5 | ms-units |
 | LIX campaign files | in flight | LIX lanes |
@@ -126,6 +127,32 @@ Result: **ROOT GREEN, landed lead-wire 6425614c8** at 20:02.
 - No instance diamond surfaced in the `ClopenCrossedProductAlgebra` chain.
 - The lane's own turn was cut by the ~20:03 API outage, after the root landed and before this report and main's
   message; both were written at 20:22.
+
+## Wave 19, launched 09-13 ~20:40
+
+Attempts:
+1. 20:25: stopped at the gate. The only blocking line was `OsinLemma94RealizedPolygons.cuttingSides`, declared in both
+   `Estimating/OsinLemma94ClassTransitions` (sec5-sentences, ec3c531fc) and `Estimating/OsinLemma94CuttingSides`
+   (w1-binder-1, 3d2744463). `ClassTransitions` is dropped and held (see Held); the fix recipe went to main.
+2. 20:31: gate clean at 6f63d0e37 (33 modules), but `nmwire.sh` exited rc=255 right after "submitting to SLURM".
+   - The MSI SSH master was absent, with another auth attempt in progress.
+   - The submitted job 731738 kept running with nothing to land its result, so it was cancelled at ~20:36 after 3:49.
+   - `rw-wave19.mods` from that attempt is kept as `rw-wave19.mods.infra-rc255-2031`.
+3. ~20:40: launched from `wave19-draft7.mods` (38 modules) with main's 20:3x additions: `CoreModelsLEFClosed`
+   (ms-core-2, b7e521e57; 26 census rows wait on it), `DynamicRankBudgetInducedCoreClosed`, `MainAssembly`,
+   `OsinGreendlingerWaistV4` / `TorsionFreeResidualsV4`, and `OsinGreendlingerWaistV4Split`.
+   - The launcher keeps unwired tops only. `CoreModelsLEFClosed` and `ClassPairTransfer` are not tops; the first is
+     reached through `ChainCoreClosures` and `ChainCoreModelsStatement`, and `WaistV4` through `WaistV4Split` and
+     `TorsionFreeResidualsV4`.
+   - A simulation of the filter at 53963b72a confirmed that all six requested modules are reached.
+   - Joint pre-flight at 22ec98b46: 104 newly reachable files (closure 6669 → 6773), 0 blocking lines, 0 lexical hits.
+   - Launcher gate at d1b8ef2d9: 36 modules kept, same numbers.
+
+Result: **ROOT GREEN, landed lead-wire a1f1820bd** at 21:17.
+- 36 import lines after line 5215, matching `rw-wave19.mods` exactly. Root build tag 0913-204150-7770, base 705832afc.
+- At 2fc90db55 all six requested modules are root-reachable.
+- This lane's turn ended at the session limit before this report and main's message were written; both were written at
+  21:25.
 
 ## Evidence and holds, 18:45–19:10
 
