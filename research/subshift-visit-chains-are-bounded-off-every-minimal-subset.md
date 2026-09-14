@@ -16,3 +16,5 @@ Let X ⊆ A^Z be a subshift and Y ⊆ X closed invariant. The following are equi
 - (b) for every clopen V ⊆ X∖Y and every J ≥ 1 there is M < ∞ with this property: whenever z ∈ X and t_0 < … < t_{m−1} satisfy T^{t_i}z ∈ V and t_{i+1} − t_i ≤ J, we have m ≤ M.
 
 Consequence: for the orbit closure of a recurrent, not uniformly recurrent point whose only minimal subset is Y, visit chains are bounded. This corrects §7 of `research/artifacts/sk-k2-subsystems-2026-09-13-part1.md`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

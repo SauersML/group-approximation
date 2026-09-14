@@ -20,3 +20,5 @@ groupoid (artifact §5) is effective and minimal with Z/2 isotropy, so it fails 
 isomorphic to some R_Y is open and would decide (U) at that Y.
 
 Proof route: `cartan-uniqueness-iff-orbit-cocycle-and-ring-rigidity-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§5); conditional on Theorem C of `subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidity`.

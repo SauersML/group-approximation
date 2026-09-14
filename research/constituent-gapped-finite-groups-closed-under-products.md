@@ -29,3 +29,5 @@ distinct_from:
 **Use.** With `fp-simple-models-concentrate-on-template-constituents` (Corollary 2), no finitely presented infinite simple
 group has a finite-group hyperlinear model through targets in `𝒢_θ`. See
 `fp-simple-groups-have-no-models-through-classical-products`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§3); item (c) and the classical instances are conditional on `lst-quasisimple-classical-character-ratio-bound`.

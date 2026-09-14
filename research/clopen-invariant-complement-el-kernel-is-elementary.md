@@ -14,3 +14,5 @@ artifacts:
 Let X ⊆ A^Z be a subshift, Y ⊆ X closed invariant and n ≥ 2. If X∖Y is a union of clopen invariant subsets of X, then ker(EL_n(R_X) → EL_n(R_Y)) = E_n(I_Y).
 
 Example: α_k → α irrational and X = X_α ∪ ⋃_k X_{α_k}. Each X_{α_k} is clopen, because the others accumulate only on X_α. The minimal subsets outside Y = X_α accumulate on Y.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

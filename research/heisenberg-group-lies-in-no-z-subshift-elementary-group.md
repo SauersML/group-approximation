@@ -17,3 +17,5 @@ H is finitely generated and residually finite, hence LEF. So the note's Z-family
 **Proof idea.** c has infinite order and c^{n²} = [a^n,b^n], so |c^N| ≤ 12√N. Every infinite-order element of a finitely generated subgroup of GL_m(LC(X,F_q)⋊Z) has positive stable length. In BS(1,2), a^{2^k} = t^k a t^{-k}.
 
 Route: `heisenberg-group-lies-in-no-z-subshift-elementary-group-proof`. Artifact: `research/artifacts/sk-sl3z-bandwidth-distortion-obstruction-2026-09-13.md`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

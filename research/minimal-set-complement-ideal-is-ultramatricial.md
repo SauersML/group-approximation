@@ -16,3 +16,5 @@ Let X ⊆ A^Z be a subshift, R_X = LC(X,F_2) ⋊ Z, and Y ⊆ X closed invariant
 - So for every n ≥ 2, GL_n(R_X, I_Y) = E_n(I_Y), and this group is locally finite.
 
 Over a recurrent point x ∉ Y the limit-set hypothesis of `biasymptotic-subshift-complement-ideal-is-ultramatricial` fails, because x ∈ ω(x). This claim still applies.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§4); the GL clause is conditional on `ultramatricial-ideals-have-elementary-congruence-kernels`.

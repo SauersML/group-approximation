@@ -32,3 +32,5 @@ artifacts:
 - König's lemma turns legal words of every length into a periodic point; pigeonhole pumping gives the explicit run length.
 
 Route: `strip-commutative-tiling-families-force-periodic-points-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

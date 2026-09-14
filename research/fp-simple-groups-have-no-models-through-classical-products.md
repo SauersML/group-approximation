@@ -37,3 +37,5 @@ Let `S` be a finitely presented infinite simple group. Fix `θ < 1` and `L ≥ 0
 **What it does not remove.** `𝒢_θ` is not closed under subgroups, and models through subgroups such as `A_m ≤ SL_m(F_q)` are not
 excluded. This is where permutation models of sofic groups live. The remaining room is organized on
 `fp-simple-finite-group-models-reduce-to-alternating-constituents`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§3); item (c) and the classical instances are conditional on `lst-quasisimple-classical-character-ratio-bound`.

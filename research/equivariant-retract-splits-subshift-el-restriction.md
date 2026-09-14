@@ -17,3 +17,5 @@ Let X ⊆ A^Z be a subshift and Y ⊆ X closed invariant. Suppose r : X → Y is
 - for n ≥ 3, K_2(n,R_X) → K_2(n,R_Y) is split onto.
 
 Example: S is the closure of the periodic orbits of (0^k1)^∞, X = X_α × S and Y = X_α × {0^∞}. The minimal subsets outside Y accumulate on Y, but (w,s) ↦ (w,0^∞) is an equivariant retraction.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

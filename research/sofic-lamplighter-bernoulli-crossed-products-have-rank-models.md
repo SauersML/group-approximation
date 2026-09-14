@@ -30,3 +30,5 @@ So `R` embeds unitally and injectively in `∏_ω M_(N_k)(k)` modulo rank-null s
   translates, which exists because the action is topologically free.
 
 Route: `sofic-lamplighter-bernoulli-rank-models-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

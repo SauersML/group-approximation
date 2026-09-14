@@ -27,3 +27,5 @@ because `λ_Γ|_Λ` is a multiple of `λ_Λ`. The same restriction sharpens the 
 itself would make `C*_r(Γ)` non-MF for every `Γ ⊇ SL_4(Z)`.
 
 Proof: route `laurent-sl4-stability-makes-overgroups-reduced-non-mf-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

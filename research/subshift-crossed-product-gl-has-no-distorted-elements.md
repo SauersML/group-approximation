@@ -24,3 +24,5 @@ Setting:
 **Proof idea.** M_m(R) acts faithfully on ⊕_{x}⊕_{t∈Z} F_q^m, and a word of length k moves the coordinate t by at most wk. If |z^n| = o(n), the Krylov spaces of one-slot vectors have dimension o(N). So the local minimal polynomials have bounded degree, one polynomial over F_q annihilates z, and z has finite order.
 
 Route: `subshift-crossed-product-gl-has-no-distorted-elements-proof`. Artifact: `research/artifacts/sk-sl3z-bandwidth-distortion-obstruction-2026-09-13.md`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

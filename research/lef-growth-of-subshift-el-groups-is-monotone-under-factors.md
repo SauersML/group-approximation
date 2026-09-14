@@ -16,3 +16,5 @@ Consequences:
 **Status: established** by `lef-growth-of-subshift-el-groups-is-monotone-under-factors-proof`. UNREVIEWED; queued with sk-verify-7.
 
 The embedding G_Y ≤ G_X is also recorded in sk-open-4's dictionary artifact. The new content here is the distortion bound and the restriction of local models.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

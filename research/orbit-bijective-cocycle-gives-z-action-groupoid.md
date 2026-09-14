@@ -17,3 +17,5 @@ finite isotropy group carries no such cocycle. Example: the dihedral Sturmian gr
 **Credit.** Folklore. Novelty check: a grep of main only.
 
 Proof route: `orbit-bijective-cocycle-gives-z-action-groupoid-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

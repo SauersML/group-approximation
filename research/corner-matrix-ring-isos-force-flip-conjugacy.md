@@ -22,3 +22,5 @@ conjugate subshifts, and so does the tower identity R_{X^(k)} ≅ M_k(R_X). Any 
 clopen corner.
 
 Proof route: `corner-matrix-ring-isos-force-flip-conjugacy-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§5); conditional on `diagonal-preserving-isomorphisms-reconstruct-effective-groupoids` and `topological-full-groups-determine-flip-conjugacy`.

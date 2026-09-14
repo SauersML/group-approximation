@@ -32,3 +32,5 @@ not needed.
   source. No literature search for simple linear-sofic envelopes.
 
 Route: `sofic-groups-simple-kazhdan-linear-sofic-envelope-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§7); conditional on `rank-modelled-simple-rings-give-linear-sofic-projective-el`.

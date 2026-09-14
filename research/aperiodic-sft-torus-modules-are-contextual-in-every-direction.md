@@ -27,3 +27,5 @@ artifacts:
 - The noncommutation is carried by holonomy around the rational cycles of narrow annuli, for all directions at once.
 
 Route: `aperiodic-sft-torus-modules-contextual-every-direction-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§6). Note W9: Corollary D needs finite-dimensional families, so that U^e has finite order.

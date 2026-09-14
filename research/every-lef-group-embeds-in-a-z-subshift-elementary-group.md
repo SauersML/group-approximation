@@ -40,3 +40,5 @@ minimal Z-subshift `X`? A yes would have made the note's family universal for LE
   known to this lane. See `research/artifacts/sk-lef-embedding-d-z-family-2026-09-13-part2.md` §5.
 - **Lamplighter host.** sk-universal-embedding-b (22e2749154, unreviewed) uses `LC(2^Δ,F_2)⋊(Z/2≀Δ)`. Mapping its unit
   group into some `GL_m(LC(X,F_2)⋊Z)` would settle the question positively, and no such map is known.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** The refutation by the Heisenberg group holds (distortion obstruction re-derived, §1).

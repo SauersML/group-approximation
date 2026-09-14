@@ -20,3 +20,5 @@ Conclusions:
 - For n ≥ 3, K_2(n,R_X) → K_2(n,R_Y) is onto.
 
 Example: X is the orbit closure of a recurrent, not uniformly recurrent point, and Y is its unique minimal subset (`recurrent-orbit-closure-with-unique-sturmian-minimal-set`, with Z = ∅).
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§4); the K_2 clause is conditional on Lemma A of sk-k2-subsystems.

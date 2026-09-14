@@ -17,3 +17,5 @@ distinct_from:
 **Why it matters for the open question.** Chacón is weakly mixing, so none of the rotation or Toeplitz factor arguments apply. The same letter-change mechanism at the partial-rigidity times h_n still gives linear-cost towers.
 
 **Status: established** by `chacon-elementary-group-lef-growth-is-exp-r-squared-proof`. UNREVIEWED; queued with sk-verify-7.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

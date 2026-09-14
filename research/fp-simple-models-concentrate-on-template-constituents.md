@@ -71,3 +71,5 @@ Then the template orbits have total weight at least `η` along `ω`, and each ha
 
 What is new here is the per-constituent formulation and the single-constituent projective corollary. The novelty check was
 bounded to a grep of this graph for "template", "constituent", "Mal'cev" and the related gap nodes.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

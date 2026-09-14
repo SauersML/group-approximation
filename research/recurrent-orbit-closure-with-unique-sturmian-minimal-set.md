@@ -19,3 +19,5 @@ Put P = {finite subsums of the n_i}, x_t = (y_t, 1_P(t)) and X = cl O(x). Then:
 - ω(x) = X meets Y, so the limit-set hypothesis of `subshift-restriction-kernel-is-relative-elementary` fails.
 
 For n ≥ 3 the normal subgroups of EL_n(LC(X,F_2)⋊Z) correspond exactly to the closed invariant subsets of X. The kernel onto Y is locally finite, with quotient EL_n(LC(X_α,F_2)⋊Z), an infinite simple Kazhdan LEF group.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

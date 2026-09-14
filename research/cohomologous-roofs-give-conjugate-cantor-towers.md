@@ -23,3 +23,5 @@ and induced systems go back to Kakutani, and to Herman–Putnam–Skau and Glasn
 Novelty check: a grep of main only.
 
 Full proof: `research/artifacts/sk-cartan-counterexample-2026-09-13-part1.md` §1.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS; every step re-derived (see the artifact).

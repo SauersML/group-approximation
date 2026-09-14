@@ -12,3 +12,5 @@ distinct_from:
 - **above:** 2^{9·128²(4r+1)²}, from linear recurrence R(n) ≤ 64n.
 
 **Status: established** by `thue-morse-elementary-group-lef-growth-is-exp-r-squared-proof`. UNREVIEWED; queued with sk-verify-7.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§2). Note W8: hypothesis (T) is phrased for two-sided points, and period doubling is one-sided; use forward-orbit density with s >= |t|.

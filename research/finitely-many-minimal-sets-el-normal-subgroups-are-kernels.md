@@ -16,3 +16,5 @@ Let X ⊆ A^Z be a subshift whose minimal subsets M_1, …, M_s are finitely man
 - (b) The kernel onto M_1 ∪ … ∪ M_s is locally finite, and the quotient is ∏_i EL_n(R_{M_i}), a finite product of infinite, finitely generated, simple Kazhdan LEF groups.
 
 This settles `elementary-group-normal-subgroups-are-subsystem-kernels` for this class, which includes `recurrent-orbit-closure-with-unique-sturmian-minimal-set`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§4); conditional on `aperiodic-subshift-el-normal-subgroups-are-sandwiched` and `aperiodic-subshift-ring-ideals-are-invariant-open-sets`.

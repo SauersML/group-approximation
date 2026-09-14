@@ -33,3 +33,5 @@ be replaced by the Chinese remainder theorem, so items 1–2 should hold for eve
 function field. That extension is not written out here.
 
 Proof: route `laurent-sl-n-representations-have-sl2-invariant-vectors-proof`.
+
+**Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part4.md`):** PASS (§8); conditional on the BMS page-image import and `sl4-over-finite-chain-rings-has-sl2-invariant-vectors`.
