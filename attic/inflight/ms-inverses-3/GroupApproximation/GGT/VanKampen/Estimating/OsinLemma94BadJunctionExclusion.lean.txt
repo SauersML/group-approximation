@@ -24,6 +24,20 @@ This module proves the planar part of the exclusion.
 * `listVal_junctionGap_ne_one_of_mem_badJunctions`: so a bad same-cell junction is exactly a gap
   whose word does not have value one.
 * Closed endpoint: `osinLemma94JunctionFaceClause : OsinLemma94JunctionFaceClauseStatement`.
+* `card_badJunctions_le_boundaryBad`, `sum_card_badJunctions_le_sum_boundaryBad`: when every
+  kind-level same-cell join has a gap of value one, the bad junctions are the boundary bad junctions
+  (`boundaryBadJunctions`).
+
+Residual pieces, stated over the polygons with an (A1) side and at least two class non-joins (the
+index set agreed with ms-binary for `OsinLemma94BadJunctionInput`) and model-tested by hand in
+`notes/nm-swarm/reports/ms-inverses-3.md`:
+* `OsinLemma94CellJunctionValueInput`: the gap of a kind-level same-cell join has value one.  A pocket
+  with a relator cell is a loop cut (`false_of_pocketRegion_of_below`); a pocket of `G`-faces has value
+  one given a face assembly; with the exterior on the gap side the polygon lies in a hole of the cell
+  and has one class non-join, so it is not in the index set.
+* `OsinLemma94BoundaryJunctionBudgetInput`: the boundary bad junctions number at most `K n`.  A backward
+  junction sees a lobe of `∂Δ` through the base dart, and a value failure a lobe carrying a relator
+  cell.
 
 ## Manuscript status
 
@@ -174,6 +188,33 @@ theorem listVal_junctionGap_ne_one_of_mem_badJunctions (P : OsinLemma94RealizedP
   · rw [hj] at hj'
     cases hj'
 
+/-- The bad junctions after a side of kind `boundary j`. -/
+noncomputable def boundaryBadJunctions (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    Finset ℕ :=
+  (P.badJunctions k).filter fun s => ∃ j, P.kind k s = .boundary j
+
+/-- **With value one on same-cell gaps, the bad junctions are boundary bad junctions.** -/
+theorem card_badJunctions_le_boundaryBad (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (hval : ∀ s < P.sideCount k, P.KindJoins k s → ∀ j, P.kind k s = .cell j →
+      RelLetter.listVal (dartWord S.diagram (P.junctionGap k s)) = 1) :
+    (P.badJunctions k).card ≤ (P.boundaryBadJunctions k).card := by
+  apply Finset.card_le_card
+  intro s hs
+  refine Finset.mem_filter.mpr ⟨hs, ?_⟩
+  obtain ⟨hsr, hjoin, -⟩ := Finset.mem_filter.mp hs
+  rcases hjoin.2 with ⟨j, hj⟩ | ⟨j, hj⟩
+  · exact absurd (hval s (Finset.mem_range.mp hsr) hjoin j hj)
+      (P.listVal_junctionGap_ne_one_of_mem_badJunctions hs hj)
+  · exact ⟨j, hj⟩
+
+/-- The same, summed over any set of polygons. -/
+theorem sum_card_badJunctions_le_sum_boundaryBad (P : OsinLemma94RealizedPolygons S)
+    (T : Finset (Fin P.count))
+    (hval : ∀ k ∈ T, ∀ s < P.sideCount k, P.KindJoins k s → ∀ j, P.kind k s = .cell j →
+      RelLetter.listVal (dartWord S.diagram (P.junctionGap k s)) = 1) :
+    ∑ k ∈ T, (P.badJunctions k).card ≤ ∑ k ∈ T, (P.boundaryBadJunctions k).card :=
+  Finset.sum_le_sum fun k hk => P.card_badJunctions_le_boundaryBad k (hval k hk)
+
 end OsinLemma94RealizedPolygons
 
 /-- **The cell face clause of `ClassJoins`, for every kind-level same-cell join.**  For realized
@@ -191,6 +232,60 @@ def OsinLemma94JunctionFaceClauseStatement : Prop :=
 theorem osinLemma94JunctionFaceClause : OsinLemma94JunctionFaceClauseStatement.{u, w, v} :=
   fun P _ _ hs hjoin _ hj => P.junctionGap_faceOf_ne_face hs hj hjoin
 
+/-- **Value one on same-cell junction gaps (residual).**  At the parameters of Lemma 9.4, for `ρ`
+large, with clause (b) of Lemma 9.7 below the number of relator cells of `Δ`: on a polygon with an
+(A1) side and at least two class non-joins, the gap of every kind-level same-cell join has value one. -/
+def OsinLemma94CellJunctionValueInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∀ k ∈ P.relatorPolygons,
+                      2 ≤ ((Finset.range (P.sideCount k)).filter fun s => ¬ P.ClassJoins k s).card →
+                        ∀ s < P.sideCount k, P.KindJoins k s → ∀ j, P.kind k s = .cell j →
+                          RelLetter.listVal (dartWord S.diagram (P.junctionGap k s)) = 1
+
+/-- **The boundary bad junctions (residual).**  At the parameters of Lemma 9.4, for `ρ` large, with
+clause (b) of Lemma 9.7 below the number of relator cells of `Δ`: summed over the polygons with an
+(A1) side and at least two class non-joins, the boundary bad junctions number at most `K n`. -/
+def OsinLemma94BoundaryJunctionBudgetInput : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ K : ℕ, ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))),
+            OsinCCondition D W eps mu lambda c rho →
+            ∀ (Delta : DiscDiagram.{u, w, v} W)
+              (cuts : SectionCuts D lambda c Delta.boundaryWord),
+              Delta.LeastArea → 0 < Delta.rCellCount →
+              (∀ (Xi : DiscDiagram.{u, w, v} W)
+                  (cutsXi : SectionCuts D lambda c Xi.boundaryWord),
+                Xi.LeastArea → 0 < Xi.rCellCount → Xi.rCellCount < Delta.rCellCount →
+                  ∃ T : RealizedSectionFamily D lambda c eps Xi cutsXi,
+                    OsinLemma97bConclusion mu T) →
+              ∀ S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts,
+                S.family.card ≤ 3 * (Delta.rCellCount + cuts.count - 1) → S.DartMinimal →
+                  ∀ P : OsinLemma94RealizedPolygons S, P.Maximal →
+                    ∑ k ∈ P.relatorPolygons.filter (fun k =>
+                        2 ≤ ((Finset.range (P.sideCount k)).filter
+                          fun s => ¬ P.ClassJoins k s).card),
+                      (P.boundaryBadJunctions k).card ≤ K * Delta.rCellCount
+
 end GroupApproximation.GGT.VanKampen
 
 #audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLemma94JunctionFaceClause
@@ -200,3 +295,5 @@ end GroupApproximation.GGT.VanKampen
   GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.junctionGap_faceOf_ne_face
 #audit_axioms
   GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.listVal_junctionGap_ne_one_of_mem_badJunctions
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.sum_card_badJunctions_le_sum_boundaryBad
