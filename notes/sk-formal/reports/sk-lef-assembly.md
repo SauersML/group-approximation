@@ -21,6 +21,13 @@ CLAIM cor:lef second statement, solvable word problem, heredity (tex l.317–319
 
 CLAIM countably many recursive presentations (tex l.435–436) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFRecursivePresentationClasses.lean
 
+CLAIM solvable word problem gives a recursive presentation GroupApproximation/Manuscript/SimpleKazhdanSofic/SolvableWordProblemRecursivePresentation.lean
+
+CLAIM instances of the last statement of cor:host (tex l.324–327) GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFHostInstances.lean
+
+- Boundary agreed with skf-consequences at 09:1x: it takes l.445–455 (the WP of Λ and G_Δ, module `LamplighterWordProblem`) and the rows
+  581584337a04, 7bfa078c0bed, e3cd35e16e2f and 14148c1b4df0, which this lane dropped from its row file. This lane combines its SWP theorem with
+  sk-lef-action's host into `LEFLamplighterSolvableWordProblemStatement` once both land.
 - Interfaces agreed at 08:3x:
   - skf-degrees: `HasSolvableWordProblem` over `wordProblemOracle` (landed 8be083fcd).
   - oa-expanders: owns the second choice of Δ (`LevelShiftDelta.levelDelta`, `LEFSecondChoiceStatement`). This lane takes its word problem
@@ -124,6 +131,26 @@ CLAIM countably many recursive presentations (tex l.435–436) GroupApproximatio
     `PresentedGroup (relatorSetOf gen)` (`Higman.presentedGroupEquiv`); the kernel membership of reduced words is r.e. and so is the domain of
     a program `c` (`exists_code_dom_iff`, through `Nat.Partrec.Code.exists_code`). Hence Γ ≃* `CodeGroup c`, and `Code` is countable.
   - `LEFCharacterizationAssembly`: cor:lef (first statement) and the three statements of cor:host rest only on `LEFLamplighterStatement`.
+- 09:1x: LANDED b7e8fc938 `SolvableWordProblemRecursivePresentation` (probe 0914-091203-16383 GREEN, wire-queued).
+  `nonempty_recursivePresentation_of_hasSolvableWordProblem` depends on [propext, Classical.choice, Quot.sound], and the log has 0 sorryAx.
+  The first probe failed at one `rfl` because the definition was not unfolded; `unfold letterToFamily` fixed it.
+  The same commit drops the four G_Δ word-problem rows (now skf-consequences').
+- 09:1x ruling from main: the "for instance" clauses of cor:host go to ct-involution (module `HostForInstance`). This lane's unlanded,
+  unregistered draft `LEFHostInstances.lean` (instance statements, pieces `FinitelyPresentedRecursivePresentationStatement` and
+  `GenValueGeneratesStatement`, assemblies) was offered to it for adoption. This lane keeps row 31ffcc3c38e6 and adds ct-involution's carriers
+  when they land.
+- 09:2x: the note changed at f34e9c0b1 (09:05, "Shorten ... and apply the final audits"): 772 lines, md5 c909343ec38f3d3e7976342073509639. The
+  census on origin is still aa6f988f4 (at 696c4b602). Fidelity check of this lane's statements against the tip:
+  - cor:lef now reads "whose Cayley graphs with respect to the images of a fixed generating set form a family of expanders". `IsLEFHost` already
+    requires `IsMarkedLimit s σ ∧ IsExpanderFamily σ` over the images `σ ℓ` of the marking `s`, so no respelling is needed.
+  - cor:lef's second statement, cor:host's three statements and the proof steps carried here are unchanged in content.
+  - The two proof sentences "Conversely, a countable group has countably many finitely generated subgroups" and "There are countably many
+    recursive presentations" are merged into one sentence.
+  - The attribution paragraph moved after the corollaries ("Each property alone was known. …") and gained a new opening ("Kionke and Schesler
+    asked …").
+  - The Osajda remark is gone, so row fdf7d6e33044 is obsolete.
+  - 8 of the 18 row sentences changed text: 197333c03a92, 42f4246af4ac, 4cc7b9e7d709, 19d10ddcbec2, 31ffcc3c38e6, 4d817ab1caf8, b88e89d11935 and
+    fdf7d6e33044. They are held until skf-census regenerates at f34e9c0b1.
 - Ownership 09:0x: main assigned the whole piece `LEFSolvableWordProblemEmbeddingStatement` to sk-lef-ultra (module `LEFSecondDelta`), including
   l.439–444 (the WP of the second choice of Δ). Its spelling is frozen as landed in eb53a0116. This lane keeps l.444–455 (the WP of Λ and G_Δ)
   and the "for instance" clauses of cor:host.
