@@ -1,0 +1,131 @@
+import Mathlib.Data.List.Chain
+import Mathlib.Data.Finset.Card
+import Mathlib.Data.List.Infix
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Words with no `a b a b` are short
+
+A word with no two equal neighbours and no subsequence `a b a b` with `a ≠ b` (a Davenport–Schinzel
+sequence of order two) has at most `2 d − 1` letters, where `d` is the number of distinct letters.
+
+Induction on the length.  Let `w = a :: rest`.
+* If `a` does not occur again, drop it: both the length and the number of letters go down by one.
+* Otherwise split `rest = u ++ a :: v` at the next occurrence of `a`.  The word `u` is not empty,
+  since `a` has no equal neighbour.  No letter of `u` occurs in `v`, since `a b a b` would appear.
+  So the letters of `u` and of `a :: v` are disjoint, both words inherit the hypotheses, and the
+  two bounds add up.
+
+This is the per-polygon bound of the contact count of Osin's Lemma 9.4: along one polygon the
+objects read in order have no equal neighbours after merging runs, and no `a b a b` by
+`neighbourFacesNoninterleaving`.
+
+* `ListNoABAB.NoABAB`, `NoABAB.sublist`.
+* `ListNoABAB.exists_split_first`: the first occurrence of a letter.
+* `ListNoABAB.length_add_one_le_two_mul_card`: `|w| + 1 ≤ 2 d`.
+
+Model tests (hand).
+* `a b a`: 3 letters, `d = 2`, `3 + 1 ≤ 4`, sharp.
+* `a b c b a`: 5 letters, `d = 3`, `5 + 1 ≤ 6`, sharp.
+* `a b a b` violates the hypothesis, and `4 + 1 ≤ 4` fails, so the hypothesis is needed.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4,
+arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.ListNoABAB
+
+variable {α : Type*} [DecidableEq α]
+
+/-- **No `a b a b`**: no subsequence `a, b, a, b` with `a ≠ b`. -/
+def NoABAB (w : List α) : Prop :=
+  ∀ a b : α, a ≠ b → ¬ [a, b, a, b] <+ w
+
+theorem NoABAB.sublist {w w' : List α} (h : NoABAB w) (hs : w' <+ w) : NoABAB w' :=
+  fun a b hab habab => h a b hab (habab.trans hs)
+
+/-- **The first occurrence of a letter.** -/
+theorem exists_split_first {a : α} : ∀ {l : List α}, a ∈ l → ∃ u v, l = u ++ a :: v ∧ a ∉ u
+  | [], h => absurd h (by simp)
+  | x :: l, h => by
+    by_cases hx : x = a
+    · exact ⟨[], l, by rw [hx]; rfl, by simp⟩
+    · have hl : a ∈ l := by
+        rcases List.mem_cons.mp h with h' | h'
+        · exact absurd h'.symm hx
+        · exact h'
+      obtain ⟨u, v, huv, hu⟩ := exists_split_first hl
+      refine ⟨x :: u, v, by rw [huv]; rfl, ?_⟩
+      simp only [List.mem_cons, not_or]
+      exact ⟨fun h => hx h.symm, hu⟩
+
+/-- **A word with no equal neighbours and no `a b a b` has at most `2 d − 1` letters.** -/
+theorem length_add_one_le_two_mul_card :
+    ∀ (n : ℕ) (w : List α), w.length = n → w ≠ [] → w.IsChain (· ≠ ·) → NoABAB w →
+      w.length + 1 ≤ 2 * w.toFinset.card := by
+  intro n
+  induction n using Nat.strong_induction_on with
+  | _ n ih =>
+  intro w hn hne hchain hno
+  obtain ⟨a, rest, rfl⟩ := List.exists_cons_of_ne_nil hne
+  by_cases hrest : rest = []
+  · subst hrest
+    simp
+  by_cases ha : a ∈ rest
+  · obtain ⟨u, v, rfl, hau⟩ := exists_split_first ha
+    have hw : a :: (u ++ a :: v) = [a] ++ u ++ a :: v := by simp
+    -- `u` is not empty: `a` has no equal neighbour
+    have hune : u ≠ [] := by
+      rintro rfl
+      have h := hchain.infix (show [a, a] <:+: a :: ([] ++ a :: v) from ⟨[], v, by simp⟩)
+      simp at h
+    -- no letter of `u` occurs in `a :: v`
+    have hdisj : Disjoint u.toFinset (a :: v).toFinset := by
+      refine Finset.disjoint_left.mpr fun b hbu hbv => ?_
+      have hbu' : b ∈ u := List.mem_toFinset.mp hbu
+      have hbv' : b ∈ a :: v := List.mem_toFinset.mp hbv
+      have hba : b ≠ a := fun h => hau (h ▸ hbu')
+      rcases List.mem_cons.mp hbv' with h | hbv''
+      · exact hba h
+      · refine hno a b (fun h => hba h.symm) ?_
+        refine List.cons_sublist_cons.mpr ?_
+        show [b] ++ [a, b] <+ u ++ a :: v
+        exact List.Sublist.append (List.singleton_sublist.mpr hbu')
+          (List.cons_sublist_cons.mpr (List.singleton_sublist.mpr hbv''))
+    have hinfu : u <:+: a :: (u ++ a :: v) := ⟨[a], a :: v, by simp⟩
+    have hinfv : (a :: v) <:+: a :: (u ++ a :: v) := ⟨a :: u, [], by simp⟩
+    have hlenu : u.length < n := by
+      rw [← hn]
+      simp only [List.length_cons, List.length_append]
+      omega
+    have hlenv : (a :: v).length < n := by
+      rw [← hn]
+      have : 0 < u.length := List.length_pos_of_ne_nil hune
+      simp only [List.length_cons, List.length_append]
+      omega
+    have hu := ih _ hlenu u rfl hune (hchain.infix hinfu) (hno.sublist hinfu.sublist)
+    have hv := ih _ hlenv (a :: v) rfl (by simp) (hchain.infix hinfv) (hno.sublist hinfv.sublist)
+    have hcard : (a :: (u ++ a :: v)).toFinset.card = u.toFinset.card + (a :: v).toFinset.card := by
+      rw [List.toFinset_cons, List.toFinset_append, Finset.insert_eq_of_mem
+        (Finset.mem_union_right _ (List.mem_toFinset.mpr (by simp))),
+        Finset.card_union_of_disjoint hdisj]
+    rw [hcard]
+    simp only [List.length_cons, List.length_append] at hu hv ⊢
+    omega
+  · have hinf : rest <:+: a :: rest := ⟨[a], [], by simp⟩
+    have hlen : rest.length < n := by
+      rw [← hn]
+      simp
+    have hr := ih _ hlen rest rfl hrest (hchain.infix hinf) (hno.sublist hinf.sublist)
+    have hcard : (a :: rest).toFinset.card = rest.toFinset.card + 1 := by
+      rw [List.toFinset_cons, Finset.card_insert_of_notMem (by simpa using ha)]
+    rw [hcard]
+    simp only [List.length_cons] at hr ⊢
+    omega
+
+end GroupApproximation.GGT.VanKampen.ListNoABAB
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.exists_split_first
+#audit_axioms GroupApproximation.GGT.VanKampen.ListNoABAB.length_add_one_le_two_mul_card
