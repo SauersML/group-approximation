@@ -65,3 +65,19 @@ CLAIM cor:lef and cor:host statements and assemblies GroupApproximation/Manuscri
 - 21:49: claim landed (e75bb3f65), spelled at 9047d0d3c.
 - 22:00: first draft written, spelled at 9047d0d3c, never probed. Superseded by the restructure at c8b6021ca.
 - 23:32: resumed. Re-ledgered at 37551fd93, sent the piece spellings to sk-lef-ultra and sk-lef-action, reported to main.
+- 00:28: probe 0914-002812-94212 GREEN (BUILT, compiled, exit 0). The closed endpoint's `#audit_closed_axioms` gate is part of that build.
+  I have not read the remote axiom lines of the `_of_pieces` audits yet, because the MSI master dropped right after the probe.
+- 00:3x: LANDED ad79bfbc2 `Manuscript/SimpleKazhdanSofic/LEFCharacterization.lean` and queued it for wiring. Attic copy b6ed6884f,
+  ledger 88db2a211. Census rows for the section's 14 keys are in `metadata/sk-census-rows/sk-lef-assembly.tsv`.
+- Next: prove `RestrictedSumLEFStatement` and `RecursivePresentationClassesStatement`, then carry the two "for instance" clauses of cor:host over
+  the Vershik–Gordon/RF ⇒ LEF names and skf-degrees' WP ≤_T L(Y), once those land.
+- 01:1x: the note changed again after landing: 4eee46fb3 (23:40) and 696c4b602 (23:51), 841 lines, md5 0648e5f876e467e21ebf475e08b8ee92. The census on
+  origin is still 649cb1f80 (at 37551fd93).
+  - cor:lef has a new second statement (l.317–319): "It is LEF with solvable word problem if and only if it is a subgroup of such a group with
+    solvable word problem." `PrintedLEFSubgroupCharacterization` carries only the first statement. The second gets its own statement Prop
+    and assembly in a new module, and the landed module stays unchanged.
+  - New proof paragraphs: a second choice of Δ that keeps a solvable word problem (l.358–382), the solvable word problem of Δ and of G_Δ
+    (l.439–459), and the Osajda remark (l.462–465). Owners are for main to rule; these are in the ledger below once the census regenerates.
+  - Of my 14 census rows, 11 sentences survive verbatim at the tip and are kept. 488b860770fb (Boone–Higman sentence, rewritten with Thompson),
+    0ccc4462441b ("This proves ...", rewritten) and 6f1b3edd435b ("For the second, ...", rewritten) are dropped until the census is regenerated.
+- The remote axiom lines of probe 0914-002812-94212 are still unread: the MSI wrapper refuses auth during a cooldown after the master drop.
