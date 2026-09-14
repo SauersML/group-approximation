@@ -544,6 +544,26 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - U4: approximants marked by e_ij(φ_k(s));
       - U5: "a tower over one small cylinder".
     - SKIP U6 (Γ×Z is harmless; keep it for clarity).
+115. **sk-free-1 final** (8272cf22d3, 983048add0, 2f393536d9, 748e3b74d1; unreviewed → sk-verify-15).
+    - E1: Osajda's f.g. residually finite non-exact groups (GAFA 28 (2018)) are LEF, so by Corollary 3 they lie in infinite f.g. simple Kazhdan LEF groups. Property A passes to subgroups, so these hosts are not exact, while L(G) ⊂ R^ω.
+    - E1′: the universal recursive host is not exact, via the effectiveness of Osajda's construction.
+    - Exactness of G_X stays OPEN.
+    - DECIDED: rev4.1 IN after an E1 PASS: Version S (+3 text, +1 bibitem): "Applied to the residually finite non-exact groups of Osajda~\cite{OsajdaRF}, Corollary~\ref{cor:lef} gives infinite simple Kazhdan LEF groups that are not exact." It is the C*-side contrast to L(G) ⊂ R^ω, at citation-level cost.
+    - OUT: Version R (it rests on an effectiveness argument that is not printed). No new Question.
+116. **Wave 11 (~23:10): 8 forks on the sharpest open targets the lanes named.** Most wave-10 lanes have finished, and the user's order stands: many agents, strongest results.
+    - sk-diagonal-recognition: G_X ≅ G_Y ⇒ SOE (it would turn a note Question into a theorem).
+    - sk-cornulier-q7: uniform exponential growth of [[φ]]′ (Cornulier, Bourbaki 1064, Question 7).
+    - sk-exact-gx: exactness of G_X.
+    - sk-algebraic-putnam: R_X an exchange ring of stable rank one (the gluing step).
+    - sk-cstar-idempotent: C*-simplicity through an idempotent Le Boudec–Matte Bon lemma.
+    - sk-popa-lgx: a weakly dense Popa algebra in L(G_X) (the Popa clause of Brown Q3).
+    - sk-fq-port: port the every-finite-field subsection to Theorem 2's S1 form, as text for rev4.1.
+    - sk-verify-16: second review of Theorem D (78 elementary matrices) and the sk-free-6 claims, plus new queue lines.
+117. **sk-cairn-steward-2 final** (c4d7e6b7b7, e2b351f151, ca940b2edd, 1ef9b6a5e1, b1ff569431, 0d44c399cf, 9347f879f0).
+    - Every sk finding landed 20:00–22:58 (324 ids: 195 claims, 129 routes) is wired: theme assemblies, open conjunction, D1 subsumption, RF hosts derived from LEF hosts, N4/N5 model tests.
+    - The only unreachable claim is the refuted Z-family universality, dead space on purpose.
+    - cairn check still exits 4 on 7 PEER errors (a2-kernel-removal missing; bowen-chapman Lean artifacts absent); no sk node is named.
+    - Landings after 22:58, including wave 11, need a steward pass. Main launches sk-cairn-steward-3 when wave 11 reports.
 108. **Ops:** disk swings 0.4–7.5 GiB, driven by swap near its 16 GB cap. `git prune --expire=3.hours.ago` freed about 570 MiB. Main landed the held work of sk-decidable-host, sk-cstar-simple-2, sk-verify-13 and sk-verify-14 in the up-windows.
 
 ## Rejected (recorded)
