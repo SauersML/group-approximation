@@ -346,6 +346,15 @@ Both modules are new and unwired, and are queued for wiring. They certify no pri
       lemmas at `c := K.boundary.cycle`: `isChain_of_rel_next`, `turnKept_of_isolated`, `runsIntoY_of_isolated` and
       `runsIntoX_of_isolated`. It mirrors the section version `PocketFaceSet.exists_pinchStepSection_of_isolatedTurn`.
     - A background watcher probes it once w1-binder-3's `OsinPocketOuterPinchSplit` and `…Isolated` land.
+  - **LANDED 64df6e8c8 `Estimating/OsinPocketCellOuterPinchStep`** (probe 0914-085134-35060 GREEN, BUILT; unwired, queued for
+    wiring). The watcher saw w1-binder-3's split modules on origin at 08:51 and probed with the tree equal to origin.
+  - Remaining for `CellPocketOuterPinchStepSectionDistinctStatement`: the selection. From `¬ K.FirstTurns` and a pinch, find an
+    isolated turn with its positions, a split `I` avoiding `K` with G-face corners after the corner fixes, and `z₀`. The fixes
+    are:
+    - `CellPocketFaceSet.faceEdgeDoubling` on `σ e₀` or `α y`;
+    - `outerSpurThickening` (28caa3d7f) for exterior corners.
+    This waits for w1-binder-3's list-level `…Corners` core: the successor lemma, and the transport of the isolated-turn data
+    across one insertion.
     - It imports w1-binder-3's unlanded `OsinPocketOuterPinchSplit`, so it waits for that landing. The list-level isolated-turn
       step and the corner selection will follow w1-binder-3's `…Isolated` and `…Corners`.
     - Exterior corners need a cell transport of `outerSpurThickening`, which this lane builds.
