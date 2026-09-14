@@ -67,3 +67,12 @@ are superseded after c8b6021ca. Released: `TowerUnits.lean` (attic 3ff509880), `
 - 09-14 00:3x: not-fp probe replayed without BUILT; not landed. MSI master down since.
 - 09-14 ~01:00: item 3 split agreed with sk-lef-action; module B adopted and reviewed offline (EJZ import added).
 - 09-14 08:4x: resumed after the laptop reboot (infra rebuilt, green records lost); re-probed both modules (real build), LANDED 04ba48c58; rows 44b4aa4489ab (partial) and the nine Lambda keys landed.
+
+## Item 4 (main, 09-14 ~09:0x): the kernels after cor:wp ("Word problems and factors")
+
+CLAIM bdd19b7d1e1f (tip 696c4b602, l.541–544: "every G_X is a simple quotient of EL₃(F), and e₁₂(∏_{t<m} τ₋^t τ_{v_t} τ₊^t) lies in the
+kernel iff v ∉ L(X), so different subshifts give different kernels"), taken over from skf-degrees by one agreement message, in
+`GroupApproximation/Manuscript/SimpleKazhdanSofic/WordProblemKernels.lean`: F = `FreeAlgebra (ZMod 2) (Coeff A)`, π_X = `FreeAlgebra.lift` of
+`coeffValue S`, EL₃(π_X) onto G_X, the kernel criterion through `listLanguage`, and a subshift is determined by its language.
+
+The ℤ ↔ Λ bridge was cancelled by main: ct-two-ended's `MainFromGeneral` already has `ringEquiv`; nothing was drafted here.
