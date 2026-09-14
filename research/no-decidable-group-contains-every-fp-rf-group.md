@@ -28,3 +28,10 @@ no-decidable-group-contains-every-fp-rf-group-proof
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS, conditional on `uniform-wp-bound-excludes-bh-universal-targets` (§4).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS, independent concurrence (§4), conditional on `uniform-wp-bound-excludes-bh-universal-targets`. `t(n)` is recursive and `WP(U) ∈ F(t)` with `C = 1`.
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part2.md` §1):** PASS, independent, and the import is now checked at source. Journal PDF of Bull. Math. Sci. 7 (2017), fetched on MSI:
+- §1.3 defines `f ≼ g` iff `f(n) ≤ Cg(Cn) + Cn + C` for some `C`;
+- Definition 2.2(a): "A is as hard as B if for any decision algorithm for A which solves the problem in time T_A there exists an algorithm for B that solves it in time ≼ T_A";
+- Theorem 4.21: "the word problem in G is as hard as the membership problem in X".
+
+So `(KMS1)` and the condition on `uniform-wp-bound-excludes-bh-universal-targets` are met. I re-derived Steps 1–3 of `uniform-wp-bound-excludes-bh-targets-proof`. Nit: the closure constant `C_2 = C·C_1 + C + C_1` in `kms-arbitrarily-hard-fp-rf-groups-citation` does not cover the linear term `C²C_1 n`. `C_2 = C²C_1 + C·C_1 + C + C_1` does, and the conclusion is unaffected.

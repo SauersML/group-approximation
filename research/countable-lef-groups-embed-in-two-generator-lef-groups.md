@@ -37,3 +37,5 @@ nodes. The isolation trick is classical, in the style of Hall and B. H. and H. N
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review. Re-derived (§3): evenness and the Ore data; the level conjugation; isolation (the congruence is an equality below `4^k`, then the 2-adic valuation of `s − s′`); and LEF of subgroups of the ultraproduct.
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part1.md`):** PASS, independent (§1, §4). Re-derived both presentations: the level form (congruence becomes equality because the sum of absolute values is below `2·4^k`; 2-adic valuation) and the wreath form (binary uniqueness, `N_n = 2^(2n+3)`), plus `ι(Γ) ≤ [Δ,Δ]`. Nit: host-a's "`m_n ≥ 5`" fails for trivial `K_n` but is unused, since Ore's Theorem 1 holds for all `n`.

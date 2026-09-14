@@ -31,3 +31,5 @@ artifacts:
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS (§3). Note N6: the linear-group example relies on solvable word problem for f.g. linear groups (Rabin, Malcev), which is recalled and not re-read.
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review (§3). Restricted direct sums are LEF, and there are countably many recursive presentations. The examples rest on recalled inputs (N6).
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part1.md`):** PASS, independent (§3). Recursive presentation enters only through countability. The linear-group example needs no recursive presentation: RF (Mal'cev) and countably many types (f.g. fields) make part (a) apply directly. That is the route rev4 prints, so N6 does not reach the note.

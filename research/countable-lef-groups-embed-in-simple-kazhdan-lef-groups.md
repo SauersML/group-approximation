@@ -25,3 +25,5 @@ This extends the reviewed f.g. characterization to countable groups at the cost 
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS; every step re-derived (see the artifact).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS, independent second review. Re-derived (§3): `Γ × Z`, Lemma A, and the f.g. host.
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part1.md`):** PASS, independent (§2). `Γ × Z` is LEF by product models. Composing with `lef-groups-embed-in-simple-kazhdan-lef-groups`, which accepts any f.g. LEF input, is valid.

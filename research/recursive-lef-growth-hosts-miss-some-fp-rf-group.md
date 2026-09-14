@@ -36,3 +36,9 @@ recursive-lef-growth-hosts-miss-some-fp-rf-group-proof
 **Review (sk-verify-7, 2026-09-13, `research/artifacts/sk-review-7-2026-09-13-part3.md`):** PASS: Steps 1-6 re-derived; conditional on the KMS Theorem 4.19 import (§4).
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part3.md`):** PASS, independent concurrence (§4), conditional on the KMS Theorem 4.19 import. Steps 1–6 re-derived, including extension of partial models past the relator length and `ρ_Γ(n) ≤ L_Γ(n) ≤ L_U(Cn) ≤ h(n²)`, with a fixed generating set.
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part1.md` §5, part2):** PASS, independent, and unconditional: the import is checked at source. My own fetches on MSI:
+- arXiv:1204.6506v5 source, `\label{t:rhog}`: "such that $\rho_G(n)>f(n)$ for all $n$";
+- Bull. Math. Sci. 7 (2017), the journal PDF, Theorem 4.22 (p. 346): "For every recursive function f and a recursive set X of natural numbers, one can construct two residually finite finitely presented solvable of class 3 groups G1,G2. Both groups have depth functions greater than f."
+
+Journal locator: Theorem 4.22. arXiv v5: Theorem 4.19.

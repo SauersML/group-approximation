@@ -23,3 +23,5 @@ many isomorphism types.
 Route: `simple-kazhdan-lef-host-iff-lef-and-countably-many-types-proof`.
 
 **Review (sk-verify-8, 2026-09-13, `research/artifacts/sk-review-8-2026-09-13-part1.md`):** PASS (§3). Re-derived: (1)⇒(2)⇒(3)⇒(1), and both examples (f.g. fields have countably many isomorphism types; solvable word problem gives countably many relator sets).
+
+**Review (sk-verify-11, 2026-09-13, `research/artifacts/sk-verify-11-2026-09-13-part1.md`):** PASS, independent (§4). Model tests: the family of all finite groups has one host, consistent with `GL_d(F_2) ≤ G_X`; the Sturmian `G_X` fail (3) and have no host.
