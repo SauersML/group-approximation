@@ -221,6 +221,42 @@ Path free on origin, in the shared tree and in every `lanes/*.files` (checked 19
   - the induction on `repeatedVisits`, finishing through `SameCellCellLobeSides.isSimpleClosedWalk_lobe` and
     `SameCellSimplePocket.false_of_simpleWalk_of_below`.
 
+### 20:15 resume: the touch route is dropped
+
+- Main ruled at ~20:03 (the message arrived at 20:15, after the API outage): ms-intro-1's bbe90003a reduces the X-pocket through the enclosed
+  loop cut, so `OsinLemma94CaseOneTouchVertexStatement` and the walk-level shape leaves are not needed. Land only what is green.
+- LANDED 0427c82ac `Estimating/OsinPocketWalkTightNoncrossing.lean` (probe 0913-195408-78323 GREEN, BUILT, first try; queued for wiring):
+  `IsTightClosedWalk.exists_successor` and `IsTightClosedWalk.isNoncrossingClosedWalk`.
+- Not probed, not landed: `Estimating/OsinPocketWalkEmbedTransport.lean` (tight walks across ms-compress-2's dart map). The text is
+  preserved in the attic at 58c4321b0.
+- ms-compress-2's `OsinPocketTouchCornerStatement` producer (d1d4d90da) now has no consumer on the live route.
+
+## Item 4 (main, 20:15): non-interleaving passages for the two-gon and pocket walks
+
+Target: `PassagesNoninterleaving M w` (ms-inverses-2, a660c5856, `NoncrossingClosedWalkEulerNoninterleaving.lean:65`), the input
+of `IsNoncrossingClosedWalk.eulers_of_noninterleaving`.
+
+Route (sec2-sentences' hand argument, made generic):
+- The passage of `d` is the forward rotation sector from `alpha d` to `next d`.
+- Kind (i) joints, the boundary steps of a region (`BoundaryStep`: rotate from `alpha d` past internal darts), have no kept dart
+  strictly inside the sector.
+- Kind (ii) joints, the face steps along a cell arc or the exterior arc, have `σ (next d) = alpha d`, so the complementary sector
+  is empty.
+- Map-level lemma: if every passage has its inner sector or its outer sector free of kept darts, then the passages do not
+  interleave. For kind (i), both endpoints of any other passage lie outside. For kind (ii), both lie inside.
+  - It needs only `Nodup`, `alpha_not_mem` and the vertex chain.
+  - The outer-sector form is `WalkSplit.TightTurn d (next d)` (82bd275f7).
+- Per walk: every joint of `PocketWalk.walk`, `CellPocketWalk.walk` and the two-gon walk is of kind (i) or (ii), from the region
+  boundary decompositions and `FaceBoundary.chain`.
+
+CLAIM (ownership checked 20:3x on origin, the shared tree and every `lanes/*.files`; no `PassagesNoninterleaving` producer exists):
+- `GroupApproximation/GGT/VanKampen/NoncrossingClosedWalkSectorNoninterleaving.lean`: `InnerSectorFree`, the per-dart
+  disjunction, and `passagesNoninterleaving_of_sectors`;
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketWalkNoninterleaving.lean`: the joint kinds of the section pocket walk,
+  the cell pocket walk and the two-gon walk, and `PassagesNoninterleaving` for each.
+Not claimed: `NoninterleavingVertexCountStatement`, the calibrations, and the wiring into the Euler statements. Those stay with
+ms-inverses-2.
+
 ### Spelling note for the walk-level leaf (ms-intro-1, a2b068902)
 
 - `OsinLemma94CaseOneWalkTouchVertexStatement` also asks only for a touch, and `osinLemma94CaseOneXWalk_of_shapes` tests the touch
