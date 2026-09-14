@@ -166,7 +166,7 @@ for `a_i` (with `A = P_(m-1)`, `B = G^[m]`) and `b_i` (with `A = R_m`,
    `r_1` then adds no unknown; this is the obstruction recorded in the target.
    Not resolved.
 
-## 5. Model test (MSI job 794056)
+## 5. Model test (MSI job 794612)
 
 Script `research/artifacts/hl-kl-two-level-words-2026-09-14-extremetest.py`.
 Exact normal forms in free products of `S_3`, `Z/4` and `Z`; no external
@@ -188,7 +188,28 @@ Output: see section 5.1 (filled in from the job log).
 
 ### 5.1 Output
 
-(pending)
+Job 794612 (MSI, 7 s), script md5 `fb2c1eafca88632fb6de56cad7b893a9`, verbatim:
+
+```text
+T3 palindrome-vs-cyclic-reduction trials=3139 failures=0
+T2 stripped-core trials: infinite=1621 finite=1163 failures=0
+T1 canonical-cut decomposition trials=3000 failures=0
+T4 sign-index-two constrained blocks trials=1500 failures=0
+TOTAL_FAILURES 0
+```
+
+**Incident.** The first submission, job 794056, hung and was cancelled. The
+random block generator retried forever at lengths where no reduced word with
+same-factor ends exists (`L = 2`, or `L` even with two factors). The fix bounds
+the retries and skips those lengths, so T3 ran 3139 of 4000 draws. No result
+from 794056 was used.
+
+**Scope of the test.** Normal forms are exact. Factor groups `S_3` and `Z/4`
+give finite-order syllables; `Z` gives infinite-order ones.
+- T2 checks injectivity only on random reduced words of bounded length, so it
+  is evidence for item 1 of the free-factor claim, not a proof.
+- The sharpness relation is checked exactly.
+- Lemma 2 itself is not tested.
 
 ## 6. Exact gap
 
