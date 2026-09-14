@@ -171,6 +171,19 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   arcs are strictly positive.  It is a thin-quadrilateral lemma in the style of `index_lt_of_prefix_near`.  Plan: agree the
   statement with ct-bilateral-cell in one message, model-test it, then build it.
 
+- 09-14 09:00: B1 split lemma, statement AGREED with ct-bilateral-cell (one message each way).  Module
+  `Estimating/UnboundAntitonePartners`, namespace `UnboundEstimate`:
+  - (1) `exists_antitonePartners (D) (lambda c) (hlambda) (hδ : IsHyperbolicSpace δ (Cayley D.alphabet)) (hδ0)` : ∃ κ ≥ 0,
+    ∀ B M, `5 * B + 15 * kappa + 24 * (δ + 6) ≤ M` → for (λ, c+2)-quasi-geodesic ws, wt, a ≤ a' ≤ |ws|, b' ≤ b ≤ |wt|,
+    `wordDist` at both corners ≤ B → ∃ h antitone on [a, a'], h a = b, h a' = b', h g ∈ [b', b], `wordDist (vertex g,
+    vertex (h g)) ≤ M`.  Generic in ws, wt, so the swapped application at target gaps is the same theorem.
+  - (2) `exists_positive_split`: the split point with a strictly positive target arc.
+  Metric: `wordDist D.alphabet.carrier`, consumed at `symmetricLabelAlphabet D`.  Margin affine in B (consumer feeds
+  B ≈ epsC ≪ ε).  Model tests on paper: (i) the antiparallel model sⁿ / (s⁻¹)ⁿ with h g = n − g, closed in Lean as
+  `latestPartner_antiparallel` and `antiparallel_split_model`; (ii) calibration over ℤ, where long backwards pairs cannot
+  occur, so the check is vacuous and uninformative; (iii) the margin is necessary, since at g near a the partner can be b.
+  Combinatorial core in probe; metric half next.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
