@@ -51,6 +51,13 @@ ultraproduct `∏_ω M_(d_k)(F_k)` of matrix algebras over fields?
     ring.
   - With `lef-simple-rings-are-not-finitely-presented`, finite presentation of `R` makes every `EL_N(R)` with
     `N >= 4` non-LEF.
+- **Thin tori carry nothing (sk-labbe-matricial, unreviewed).** `thin-cylinder-sft-tiling-families-force-periodic-points`
+  (`Ω_U` is free with `r = 1`):
+  - a scale-`D` family on any vector space that is periodic along an axis with period `<= 4D+1` is zero;
+  - so every witness torus has BOTH axis periods `>= 4D+2`, and no `U_i^ℓ` with `ℓ <= 4D+1` centralizes a covariant
+    family.
+  - The proof is one-dimensional: column patterns commute, and an ordered product over a long run of columns kills
+    every term. It says nothing about tori that are long in both directions, which is where row 7 now lives.
 - **Rank model is unconditional (un-labbe-ring, unreviewed).** `labbe-wang-shift-has-polynomial-pattern-complexity`
   with `subexponential-complexity-zd-subshift-rings-have-rank-models` gives `R` a unital rank model over `F_q`. So the
   "no" polarity would realize the middle rung with no extra input.
