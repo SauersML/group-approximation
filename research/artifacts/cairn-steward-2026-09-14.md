@@ -90,3 +90,50 @@ removed those three errors.
 - **Warning introduced by the kl-schur-universal batch** (a warning, not an error): a dependency cycle
   `kervaire-laudenbach-nonsingular-conjecture -> universal-schur-injectivity-for-nonsingular-adjunctions -> kervaire-laudenbach-nonsingular-conjecture`,
   from the equivalence routes of `kl-iff-acyclic-torus-amalgam-schur-injectivity`.
+
+## 5. Final compile and unreachable results
+
+- **Final plain check** (main 4842f898d): 5 ERROR lines, all left alone. The sweep's own errors are gone.
+  - 4 FOREIGN Bowen–Chapman `.lean` artifact paths.
+  - 1 in `leavitt-rooted-defect-window-carries-no-strict-design`, from lane gk3-leavitt-nonlinear, still running.
+- **Stubbed compile** (clone only): placeholder `.lean` files, plus `requires` stripped from that one claim, gives
+  exit 0: 12265 claims and 12424 routes compiled. 7078 of 24689 nodes are ESTABLISHED with `reachable: false`.
+- **This session's nodes.** Commits carrying either trailer since 2026-09-12 touched 381 research ids. 154 of them
+  are ESTABLISHED and unreachable; the list is in `research/artifacts/cairn-steward-2026-09-14-unreachable-established.txt`.
+  No routes were invented to reconnect them.
+- **Unreachable among the 78 claims and routes this sweep landed** (31, ESTABLISHED, serving no root):
+  - `adian-lots-with-acyclic-initial-or-terminal-graph-are-dr`
+  - `arzhantseva-steenbock-kazhdan-groups-without-unique-products`
+  - `block-weight-matrix-test-lot-presentations-are-dr`
+  - `centerless-fp-finitely-many-conjugacy-classes-gives-pbh`
+  - `connes-embeddable-tracial-algebras-solve-nonsingular-equations`
+  - `diagonal-cone-covered-actors-lie-in-binary-leavitt-unit-group`
+  - `fp-simple-type-a-actions-iff-finite-bi-index-subgroups`
+  - `fpbs-tree-projected-rigid-decorations-discrete-automorphisms`
+  - `fully-residual-limits-preserve-trivial-idempotents`
+  - `howie-locally-indicable-nonsingular-equations-are-solvable`
+  - `injective-labeled-oriented-trees-are-aspherical`
+  - `kazhdan-groups-without-unique-products-are-zero-divisor-hosts`
+  - `kl-iff-acyclic-torus-amalgam-schur-injectivity`
+  - `kl-yields-tracial-roots-for-quotient-indicator-traces`
+  - `length15-16-free-piece-residue-classes-hyperbolic-special`
+  - `linton-graph-certificate-for-free-magnus-pieces`
+  - `lot-collapsed-maximal-sub-lot-test-transfers-asphericity`
+  - `lot-disjoint-sub-lots-relatively-injective-transfer-asphericity`
+  - `lot-reductions-preserve-homotopy-type`
+  - `magnus-embedding-mod-m-into-wreath-product`
+  - `no-free-subsemigroups-give-fg-kernels-over-ea-quotients`
+  - `non-automorphic-hnn-extensions-contain-free-subsemigroups`
+  - `nonsingular-coefficient-kernel-in-locally-indicable-residual`
+  - `nonsingular-injectivity-passes-to-proper-power-relators`
+  - `product-variety-free-groups-satisfy-permutational-boone-higman`
+  - `proper-self-conjugate-subgroups-force-free-subsemigroups`
+  - `q34-counterexample-necessary-conditions`
+  - `residually-p-groups-have-trivial-idempotents-in-characteristic-p`
+  - `root-extensions-descend-from-a-locally-universal-algebra`
+  - `zero-divisor-host-is-not-virtually-compact-special`
+  - `zero-one-coloring-test-implies-dr`
+- **Duplicate warning naming a sweep node:** `no-free-subsemigroups-give-fg-kernels-over-ea-quotients`
+  (solve-fp-intermediate-growth, landed ff757f44a) states the same theorem as
+  `no-free-semigroup-ea-quotient-kernels-are-fg` (694acc5bc, session 01LwePEPxjENyat74TYf4oCw). It is a genuine
+  duplicate, not a distinct claim. It needs a merge by the owners, and no `distinct_from` was added.
