@@ -1,0 +1,187 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ContactMap
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: counting the darts and vertices of the contact map
+
+`contactMap P` retains, for each rich polygon `k` (at least two neighbours) and each neighbour `o`,
+the representative `rep P k o` and its reverse.  So it has at least `2 ∑_{k rich} d_k` darts, where
+`d_k = |neighbours P k|`.  A vertex of the contact map is based at one face of the diagram, a rich
+polygon or an object, and different vertices at different faces.  So it has at most
+`#rich + n + 1` vertices.
+
+* `richPolygons`, `richNeighbourSum`, `richPairs`, `card_richPairs`.
+* `two_mul_richNeighbourSum_le_dartCount`.
+* `vertexCount_contactMap_le`.
+
+With `CombMap.two_mul_edgeCount_add_six_le_of_isRestriction` these give
+`2 ∑ d_k + 6 ≤ 3 (#rich + n + 1) + t`, and `2 #rich ≤ ∑ d_k`, so `∑ d_k ≤ 6 (n + 1) + 2 t`.
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through the contact count of Osin's Lemma 9.4,
+arXiv:math/0411039v3, §9); certifies no printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open scoped Classical
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- The rich polygons. -/
+noncomputable def richPolygons (P : OsinLemma94RealizedPolygons S) : Finset (Fin P.count) :=
+  Finset.univ.filter fun k => P.Rich k
+
+/-- `∑_{k rich} d_k`. -/
+noncomputable def richNeighbourSum (P : OsinLemma94RealizedPolygons S) : ℕ :=
+  ∑ k ∈ P.richPolygons, (P.neighbours k).card
+
+/-- The pairs of a rich polygon and a neighbour. -/
+noncomputable def richPairs (P : OsinLemma94RealizedPolygons S) :
+    Finset (Σ _k : Fin P.count, Option (Fin S.diagram.rCellCount)) :=
+  P.richPolygons.sigma fun k => P.neighbours k
+
+theorem card_richPairs (P : OsinLemma94RealizedPolygons S) :
+    P.richPairs.card = P.richNeighbourSum :=
+  Finset.card_sigma _ _
+
+theorem mem_richPairs (P : OsinLemma94RealizedPolygons S)
+    (p : Σ _k : Fin P.count, Option (Fin S.diagram.rCellCount)) :
+    p ∈ P.richPairs ↔ P.Rich p.1 ∧ p.2 ∈ P.neighbours p.1 := by
+  simp [richPairs, richPolygons, Finset.mem_sigma]
+
+/-- The representative of a rich pair, as a dart of the contact map. -/
+noncomputable def repDart (P : OsinLemma94RealizedPolygons S) (p : {p // p ∈ P.richPairs}) :
+    P.contactMap.Dart :=
+  ⟨P.rep p.1.1 p.1.2 ((P.mem_richPairs p.1).mp p.2).2,
+    Or.inl ⟨p.1.1, p.1.2, ((P.mem_richPairs p.1).mp p.2).2, ((P.mem_richPairs p.1).mp p.2).1,
+      rfl⟩⟩
+
+theorem repDart_val (P : OsinLemma94RealizedPolygons S) (p : {p // p ∈ P.richPairs}) :
+    (P.repDart p).1 = P.rep p.1.1 p.1.2 ((P.mem_richPairs p.1).mp p.2).2 := rfl
+
+theorem isRep_repDart (P : OsinLemma94RealizedPolygons S) (p : {p // p ∈ P.richPairs}) :
+    P.IsRep (P.repDart p).1 :=
+  ⟨p.1.1, p.1.2, ((P.mem_richPairs p.1).mp p.2).2, ((P.mem_richPairs p.1).mp p.2).1, rfl⟩
+
+theorem repDart_injective (P : OsinLemma94RealizedPolygons S) :
+    Function.Injective P.repDart := by
+  intro p q h
+  have hv := congrArg Subtype.val h
+  rw [repDart_val, repDart_val] at hv
+  have hk : p.1.1 = q.1.1 := by
+    have e := congrArg S.diagram.toCombMap.faceOf hv
+    rw [P.faceOf_rep, P.faceOf_rep] at e
+    exact P.face_injective e
+  have ho : p.1.2 = q.1.2 := by
+    have e := congrArg S.diagram.toCombMap.faceOf (congrArg S.diagram.toCombMap.alpha hv)
+    rw [P.faceOf_alpha_rep, P.faceOf_alpha_rep] at e
+    exact objectFace_injective S e
+  exact Subtype.ext (Sigma.ext hk (heq_of_eq ho))
+
+/-- **The contact map has at least `2 ∑_{k rich} d_k` darts.** -/
+theorem two_mul_richNeighbourSum_le_dartCount (P : OsinLemma94RealizedPolygons S) :
+    2 * P.richNeighbourSum ≤ P.contactMap.dartCount := by
+  let g : {p // p ∈ P.richPairs} ⊕ {p // p ∈ P.richPairs} → P.contactMap.Dart :=
+    Sum.elim P.repDart fun p => P.contactMap.alpha (P.repDart p)
+  have hg : Function.Injective g := by
+    rintro (p | p) (q | q) h
+    · exact congrArg Sum.inl (P.repDart_injective h)
+    · exfalso
+      have hv : (P.repDart p).1 = S.diagram.toCombMap.alpha (P.repDart q).1 :=
+        congrArg Subtype.val h
+      exact P.not_isRep_alpha_of_isRep (P.isRep_repDart q) (hv ▸ P.isRep_repDart p)
+    · exfalso
+      have hv : S.diagram.toCombMap.alpha (P.repDart p).1 = (P.repDart q).1 :=
+        congrArg Subtype.val h
+      exact P.not_isRep_alpha_of_isRep (P.isRep_repDart p) (hv.symm ▸ P.isRep_repDart q)
+    · have hv : S.diagram.toCombMap.alpha (P.repDart p).1 =
+          S.diagram.toCombMap.alpha (P.repDart q).1 := congrArg Subtype.val h
+      have hv' := congrArg S.diagram.toCombMap.alpha hv
+      rw [S.diagram.toCombMap.alpha_involutive, S.diagram.toCombMap.alpha_involutive] at hv'
+      exact congrArg Sum.inr (P.repDart_injective (Subtype.ext hv'))
+  have h := Nat.card_le_card_of_injective g hg
+  rw [Nat.card_sum, Nat.card_eq_fintype_card, Fintype.card_coe, P.card_richPairs] at h
+  unfold CombMap.dartCount
+  omega
+
+/-- The face of the diagram at a vertex of the contact map. -/
+noncomputable def vertexFace (P : OsinLemma94RealizedPolygons S) :
+    P.contactMap.Vertex → S.diagram.toCombMap.Face :=
+  Quotient.lift (fun x : P.contactMap.Dart => S.diagram.toCombMap.faceOf x.1)
+    (fun x y h => P.faceOf_eq_of_vertexOf_eq ((P.contactMap.vertexOf_eq_iff x y).mpr h))
+
+theorem vertexFace_injective (P : OsinLemma94RealizedPolygons S) :
+    Function.Injective P.vertexFace := by
+  intro v v' h
+  induction v using Quotient.inductionOn' with
+  | h x =>
+  induction v' using Quotient.inductionOn' with
+  | h y =>
+  have e : S.diagram.toCombMap.faceOf x.1 = S.diagram.toCombMap.faceOf y.1 := h
+  have hsame : S.diagram.toCombMap.dual.sigma.SameCycle x.1 y.1 :=
+    (S.diagram.toCombMap.faceOf_eq_iff _ _).mp e
+  have hq : P.contactMap.sigma.SameCycle x y :=
+    (PermFirstReturn.sameCycle_iff _ _ _ P.contactMap_isRestriction.sigma_firstReturn x y).mpr
+      hsame
+  exact Quotient.sound hq
+
+/-- The faces at which vertices of the contact map can sit. -/
+noncomputable def vertexFaces (P : OsinLemma94RealizedPolygons S) :
+    Finset S.diagram.toCombMap.Face :=
+  P.richPolygons.image P.face ∪ Finset.univ.image (objectFace S)
+
+theorem vertexFace_mem (P : OsinLemma94RealizedPolygons S) (v : P.contactMap.Vertex) :
+    P.vertexFace v ∈ P.vertexFaces := by
+  induction v using Quotient.inductionOn' with
+  | h x =>
+  show S.diagram.toCombMap.faceOf x.1 ∈ P.vertexFaces
+  rcases P.isRep_or x with ⟨k, o, h, hrich, hx⟩ | ⟨k, o, h, _, hx⟩
+  · refine Finset.mem_union_left _ (Finset.mem_image.mpr ⟨k, ?_, ?_⟩)
+    · simpa [richPolygons] using hrich
+    · rw [hx, P.faceOf_rep]
+  · refine Finset.mem_union_right _ (Finset.mem_image.mpr ⟨o, Finset.mem_univ _, ?_⟩)
+    have e := P.faceOf_alpha_rep k o h
+    rw [← hx, S.diagram.toCombMap.alpha_involutive] at e
+    exact e.symm
+
+/-- **The contact map has at most `#rich + n + 1` vertices.** -/
+theorem vertexCount_contactMap_le (P : OsinLemma94RealizedPolygons S) :
+    P.contactMap.vertexCount ≤ P.richPolygons.card + (S.diagram.rCellCount + 1) := by
+  let g : P.contactMap.Vertex → {f // f ∈ P.vertexFaces} := fun v => ⟨P.vertexFace v, P.vertexFace_mem v⟩
+  have hg : Function.Injective g := fun v v' h => P.vertexFace_injective (congrArg Subtype.val h)
+  have h := Nat.card_le_card_of_injective g hg
+  rw [Nat.card_eq_fintype_card (α := {f // f ∈ P.vertexFaces}), Fintype.card_coe] at h
+  have hT : P.vertexFaces.card ≤ P.richPolygons.card + (S.diagram.rCellCount + 1) := by
+    refine (Finset.card_union_le _ _).trans (Nat.add_le_add Finset.card_image_le ?_)
+    refine Finset.card_image_le.trans ?_
+    rw [Finset.card_univ, Fintype.card_option, Fintype.card_fin]
+  unfold CombMap.vertexCount
+  omega
+
+/-- `2 #rich ≤ ∑_{k rich} d_k`. -/
+theorem two_mul_card_richPolygons_le (P : OsinLemma94RealizedPolygons S) :
+    2 * P.richPolygons.card ≤ P.richNeighbourSum := by
+  unfold richNeighbourSum
+  rw [mul_comm, ← smul_eq_mul, ← Finset.sum_const]
+  exact Finset.sum_le_sum fun k hk => by
+    have := (Finset.mem_filter.mp hk).2
+    unfold Rich at this
+    exact this
+
+end OsinLemma94RealizedPolygons
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.two_mul_richNeighbourSum_le_dartCount
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.vertexCount_contactMap_le
+#audit_axioms GroupApproximation.GGT.VanKampen.OsinLemma94RealizedPolygons.two_mul_card_richPolygons_le
