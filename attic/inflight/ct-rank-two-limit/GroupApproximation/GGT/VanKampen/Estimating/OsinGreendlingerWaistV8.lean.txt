@@ -5,6 +5,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixSectionInductionB
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketMultipleEdgeCopyBelow
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchSectionDistinct
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerTwoGonCopyRoute
+import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketWalkEulerSectorFree
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -28,10 +29,11 @@ which reads the multiple-edge cut below the inductive bound of Lemma 9.7.  Again
   given-family edge conditions, whose global clauses no producer can derive.
 
 The class route of Lemma 9.4, the Case 1 relator-cell branch over the successor-form enclosed pieces
-with the proved spur enclosure, the Euler equalities of the cell pocket walk from the proved
-non-interleaving, and the two-arc section pinch from its outer pinch step are as in V7.
+with the proved spur enclosure, and the two-arc section pinch from its outer pinch step are as in V7.
+The Euler equalities of the cell pocket walk are proved outright, `cellPocketWalkEuler`
+(`OsinPocketWalkEulerSectorFree`), so the vertex count leaf of V7 is gone.
 
-* `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8`: thirteen named leaf residual Props.
+* `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8`: twelve named leaf residual Props.
 
 ## Manuscript status
 
@@ -43,7 +45,7 @@ namespace GroupApproximation.GGT.VanKampen
 
 universe u w v
 
-/-- **Osin's Lemma 4.4 at least-area diagrams from thirteen leaf residuals, below the inductive
+/-- **Osin's Lemma 4.4 at least-area diagrams from twelve leaf residuals, below the inductive
 bound**: Lemma 9.4 along the two-threshold class route, the multiple-edge cut below the bound from
 binder 5 below the bound, loops, C6′ from a clean copy, and the section pocket cut from the split
 two-arc face set producer and the two-arc pinch. -/
@@ -55,7 +57,6 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8
     (hspan : OsinLemma94ClassCaseGapSpanStatement.{u, w, v})
     (htwocopy : OsinTwoGonCleanCopySectionStatement.{u, w, v})
     (htwoeuler : OsinTwoGonDecompositionEulerSectionStatement.{u, w, v})
-    (hcount : NoninterleavingVertexCountStatement.{v})
     (hcellStep : CellPocketOuterPinchStepSectionDistinctStatement.{u, w, v})
     (hproper : CellPocketWalkProperArcsBelowSectionStatement.{u, w, v})
     (hfaces : OsinSectionPocketFaceSetProperSectionStatement.{u, w, v})
@@ -79,7 +80,7 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV8
     (osinMultipleEdgeCutBelowSection_of_copyPieces
       (osinMultipleEdgePocketRegionCopyBelowSection_of_pinchSectionOrderEuler
         cellPocketCopyCleanBothOrders cellPocketWalkOuterOffSideSomeOrder
-        (cellPocketWalkEuler_of_noninterleaving hcount cellPocketWalkNoninterleaving)
+        cellPocketWalkEuler
         (cellPocketPinchSectionDistinctStatement_of_outerPinchStep hcellStep) hproper)
       GeodesicCollar.StripStep.geodesicCollarStatement_holds pocketCellTransport)
     osinLoopCutSection
