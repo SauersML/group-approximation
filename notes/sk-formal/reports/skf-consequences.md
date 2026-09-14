@@ -1,63 +1,47 @@
-# skf-consequences — ledger for simple_kazhdan_sofic_group.tex at bf961c128
+# skf-consequences — ledger for simple_kazhdan_sofic_group.tex, subsection "Simplicity"
 
-Lane brief: `ct/ROSTER-sk.md` (session nonsofic-existence-49), re-scoped at 18:58. The committed note is the 340-line
-version at bf961c128 (md5 7b3dc4ec92b4581553bc0dc2b0edcb99). Rows are keyed `LINE:<l>@bf961c128`.
+Lane brief: `ct/ROSTER-sk.md` (session nonsofic-existence-49). Target = origin/main tip 9047d0d3c (md5
+274f19367f7f706b05c017af721c3884), Simplicity at l.188–253. Rows are keyed by 12-hex sentence hash from
+`metadata/SK_SENTENCE_CENSUS.tsv` (regenerated at 9047d0d3c). Every row key below was checked verbatim at the tip.
 
-## Earlier range withdrawn
+## History
 
-The original range, tex 684–743 at b965d63ba (sec:consequences), no longer exists at the tip, so nothing was built or landed
-for it.
+- The first range, tex 684–743 at b965d63ba (sec:consequences), was removed from the committed note (bf961c128). Nothing was built for it.
+- At bf961c128 (tower route through κ₀), I landed `TowerCornerWitness` (TowerStatement, 94f396a4f). The route was rewritten at e80dcf20a, so it is superseded, unwired and has no consumer.
+- At e80dcf20a and 9047d0d3c the proof goes through one finite simple subgroup. The note prints EL_3; `thm:main` and ct-two-ended's `PrintedSimplicityStatement` (MainAssembly) cover EL_n for n ≥ 3. So everything here is at Fin n or at a general index type ι.
 
-## Range and split
+## Split with ct-bilateral-mf (agreed 19:5x, re-agreed at Fin n)
 
-- ct-bilateral-mf and skf-consequences share tex 174–228, "A finite tower detects every normal subgroup".
-- Split proposed to ct-bilateral-mf (one direct message, 19:0x); it replies only if it objects:
-  - ct-bilateral-mf, l.174–204: g, w, the separated partition, a root h not commuting with g, s ∈ B_1(U), k = [g,h] in
-    the corner M_3(B_m(U)), κ locally constant, and the clopen W with κ ≡ κ₀ ≠ I_d.
-  - skf-consequences, l.205–228: the tower copy H_W ≤ G; simplicity of GL_d(F_2); H_W ≤ N; e_12(e_W) ∈ N; the level
-    ideal I_N; N = G.
-- Interface, landed first in my module: the named Prop `TowerCornerWitnessStatement`. ct-bilateral-mf produces it.
+- ct-bilateral-mf covers l.189–211 and 228–238: small V, the noncommuting root h = e_ij(e_V), k = [g,h] ∈ K∖1, and the entries of k − I and k⁻¹ − I lying in the ε-span. It produces `SimplicityCommutatorWitness T n`.
+- skf-consequences covers l.213–226 and 240–252: ε_ab, ψ, H ≤ G, k ∈ H, K ∩ H, H ≅ GL_d(F₂) = PSL_d(F₂) simple, H ⊆ K, e_pq(e_V) ∈ K, J, the cover and K = G.
+- The coordinator's 20:15 resume note has ct-bilateral-mf producing k ∈ H_V. The agreed interface is the span witness, and k ∈ H (l.240) is on this side.
 
-CLAIM l.205–228 GroupApproximation/Manuscript/SimpleKazhdanSofic/TowerNormalSubgroup.lean
+CLAIM l.213–226, 240–252 GroupApproximation/Manuscript/SimpleKazhdanSofic/{TowerStatement,TowerMatrixUnits,SimplicityStatement,TowerCopy,TowerCopyGroup,SimplicityNormalSubgroup}.lean
 
-## Route check (tex 174–228)
+## Carriers
 
-The Pestov91 simplicity route on main (`SplitSimplicity.rootDetection_of_split`, `SimpleModCentreCrossed` via local
-annihilation) is not the printed tower route, so the printed proof needs new carriers. Reusable carriers on main:
-
-| printed step | carrier | verdict |
+| printed step (tip) | carrier | state |
 |---|---|---|
-| GL_d(F_2) simple for d ≥ 3 (l.217–218) | `FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo` (Algebra/FinitaryLinearBinarySimple, root-imported) | fits; centerless follows from simple and nonabelian |
-| every matrix over F_2 is elementary (generation, l.215) | `FinitaryLinear.elementaryGroup_zmodTwo_eq_top`, `ChainRadical.elementaryGroup_matrix_zmodTwo_eq_top` | fits |
-| I_N two-sided ideal, R simple ⇒ N = G (l.224–228) | `Pestov91.levelIdeal`, `normal_eq_top_of_elGen_mem` (SimpleModCentre) | statement fits; Lean moves roots by commutators, while the printed sentence uses permutation matrices plus eq:elementary |
+| ε_ab = e_{T^aV}u^{a−b} | `towerE` (TowerStatement) | landed 94f396a4f |
+| ε_ab ε_{a′b′} = δ_{ba′}ε_{ab′}; ε_ab ≠ 0 | `towerE_mul_towerE`, `towerE_ne_zero` (TowerMatrixUnits) | landed fb00c31be |
+| interface: entries of k − I, k⁻¹ − I in the ε-span | `towerSpanOf`, `SimplicityCommutatorWitness T n` (SimplicityStatement) | landed 23e633ae1 (Fin n) |
+| ψ injective, multiplicative, linear | `towerHom`, `towerAddHom_mul`, `towerHom_single`, `towerHom_injective` (TowerCopy) | landed 23e633ae1 |
+| M ↦ I − ψ(I_d) + ψ(M) embeds GL_d(F₂) | `flatEquiv`, `towerCopy`, `towerCopy_injective` (TowerCopyGroup) | landed 23e633ae1 |
+| H ≤ G: transvections, p ≠ q roots, p = q commutator | `towerCopy_mem_elementaryGroup`, `towerCopy_transvection` | landed 23e633ae1 |
+| GL_d(F₂) = SL_d(F₂) = PSL_d(F₂), simple for d ≥ 3 | `det_units_matrix_zmodTwo`, `center_units_matrix_zmodTwo_eq_bot`, `FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo` | landed 23e633ae1 / main |
+| k ∈ H via (I + M)(I + M′) = I | `exists_towerCopy_eq`, `mem_range_towerHom_of_mem_towerSpanOf` (SimplicityNormalSubgroup) | probing |
+| K ∩ H nontrivial normal, H ⊆ K, e_pq(e_V) ∈ K | inside `eq_top_of_simplicityCommutatorWitness` (codRestrict, comap, simplicity) | probing |
+| J two-sided ideal | `Pestov91.SimpleModCentre.levelIdeal` (commutator identities, as printed) | main |
+| e_{T^aV} = u^a e_V u^{−a} ∈ J; the finite cover; 1 = 1 − ∏(1 − e_{T^{a_i}V}) ∈ J | `unit_zpow_mul_charFn_mul_inv`, `exists_finset_cover_zpow_image`, `one_sub_map_prod_one_sub_mem`, `prod_one_sub_charFn_eq_zero`, `one_mem_levelIdeal_of_cover` | probing |
+| J = R and K = G | `eq_top_of_simplicityCommutatorWitness`; group form `isSimpleGroup_elementaryGroup_of_simplicityCommutatorWitness`; endpoints `printedSimplicityThroughFiniteSimpleSubgroup`, `printedSimplicityIsSimpleGroup` | probing |
 
-## RE-SCOPED 19:45 to the tip e80dcf20a (386 lines, md5 4ad4921253626a4f858866c716a13385)
+The product ∏(1 − e_{T^{a_i}V}) is taken in the commutative ring LC(X, F₂) and pushed through `coeff`, because R_X is not
+commutative. The finite cover is proved from compactness and dense orbits (`Pestov91.exists_finset_cover_of_dense_orbits`),
+not assumed. For S : Subshift, `minimalSubshift_dense_orbits` gives the dense orbits.
 
-The "Simplicity" subsection (≈ tex 179–238) was rewritten to go through one finite simple subgroup, with no κ₀
-conjugation. Rows are keyed by 12-hex sentence hash from `metadata/SK_SENTENCE_CENSUS.tsv`, once skf-census has
-regenerated it at the tip.
+## Open
 
-Split re-proposed to ct-bilateral-mf (19:5x); it replies only if it objects:
-- ct-bilateral-mf: small V, the noncommuting root h = e_ij(e_V), k = [g,h], and the entries of k − I₃ and k⁻¹ − I₃
-  lying in the ε-span (≈ l.180–196, 210–221).
-- skf-consequences: ε_ab products and nonvanishing, ψ injective and multiplicative, the embedding of GL_d(F₂), H ≤ G,
-  k ∈ H, H ≤ N, e_pq(e_V) ∈ N, the ideal J, the cover, N = G (≈ l.197–209, 222–238).
-- Interface: `SimplicityCommutatorWitness` in the new module `Manuscript/SimpleKazhdanSofic/SimplicityStatement`.
-
-CLAIM ≈ l.197–209, 222–238 GroupApproximation/Manuscript/SimpleKazhdanSofic/{SimplicityStatement,TowerMatrixUnits,TowerCopy,TowerCopyGroup,SimplicityNormalSubgroup}.lean
-
-## Ledger
-
-| printed step (tip e80dcf20a) | carrier | state |
-|---|---|---|
-| ε_ab = e_{T^aV}u^{a−b} | `SimpleKazhdanSofic.towerE` (TowerStatement, 94f396a4f) | landed |
-| ε_ab ε_{a′b′} = δ_{ba′} ε_{ab′} (V ∩ T^jV = ∅, 0<\|j\|≤2w) | `towerE_mul_towerE` (TowerMatrixUnits) | probing |
-| ε_ab ≠ 0 as V ≠ ∅ | `towerE_ne_zero` (TowerMatrixUnits) | probing |
-| ψ injective, multiplicative, linear | `towerHom`, `towerHom_injective` (TowerCopy; blockwise ψ) | probing |
-| A ↦ I₃ − ψ(I_d) + ψ(A) embeds GL_d(F₂) | `towerCopy`, `towerCopy_injective` (TowerCopyGroup) | probing |
-| H ≤ G through transvections | `towerCopy_mem_elementaryGroup`, `towerCopy_elementaryUnit` | probing |
-| GL_d(F₂) simple (d ≥ 3) | `FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo` (on main) | fits |
-| k ∈ H, N ∩ H nontrivial normal, H ≤ N, e_pq(e_V) ∈ N; the ideal J, the cover, N = G | SimplicityNormalSubgroup (to write) | open |
-
-Superseded: `TowerCornerWitness` (94f396a4f) was the interface for the bf961c128 text. It is landed, unwired, and not
-consumed.
+- Land SimplicityNormalSubgroup, then add the rows for l.240–252 (4931edb04ef5, 71bc505f11f0, 5ca0ef79b43c, 1389f89a7fcc, 6d7586ebf19b, 5e01e0c9f3ac, 01834024ae6c, 52eb27a0e171).
+- The sentence rows at l.236 (eb298be3ab50) and l.238 (78f77dd99dc6) are left to ct-bilateral-mf ("lie in it" is its half). Only the clause "say k = I + ψ(M)" is carried here, by `mem_range_towerHom_of_mem_towerSpanOf`.
+- cor:lef (lamplighter action of Δ): sk-lef-simplicity will ask for a group-action interface. The level-ideal and cover
+  steps are generic. The tower carriers use ℤ exponents, so generalizing them is not cheap.
