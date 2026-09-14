@@ -263,6 +263,18 @@ Route of the relator-cell branch (`OsinLemma94CaseOneRCellStatement`, jacobson i
   - turn_mem from `BoundaryCycle.boundaryWalk_next` on the following outer cycle, where internal darts are off the walk
     edges.
   - Module: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedNoncrossing.lean`.
+- RESUME 20:15 after the ~20:03 outage. Records checked: 32910e583, bbe90003a and 70cf7175a are on main, and no probe of
+  mine was pending. Ruling: the enclosed route (bbe90003a) is primary for the X-pocket. I own (2) and the Y twin; (1)
+  goes to ms-traces-2 with ms-inverses-1, (3) to w1-binder-8.
+- (2) `enclosedFaceSetOfNoncrossing` in `ClosedWalkEnclosedNoncrossing.lean`: `EnclosedNoncrossing.exists_sigma_pow_of_boundaryWalk`,
+  `mem_of_first_kept`. First probe 0913-202655-75681 FAILED at one step: `simp only [IsBoundaryDart, …]` gave "Invalid
+  simp theorem". It is replaced by `Iff.trans` plus `show` plus `mem_sideOutside_iff`, and the co-probe is running.
+- Y twin: ms-intro-3's `osinLemma94CaseOneYPocketOf_of_xPocketOf` (on origin, the swap of the connector pair) gives
+  every Y shape statement from the X one, so the twin is a composition. CLAIM
+  `GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellPocketNoSpur.lean` (path free):
+  `osinLemma94CaseOneNoSpurXPocket_of_enclosedLoopCut` and `...NoSpurYPocket...` over `hloop` alone, plus
+  `osinLemma94CaseOneXPocket_of_enclosedLoopCut` and `...YPocket...` over `hloop` and `hspur`. The interface was sent to
+  w1-binder-8, whose `_of_enclosed` assembly is its own.
 - Excision route check (before any Prop): `sideFaces` crosses every non-walk edge. Removing the lobe's edges can join a
   pocket face to f, and so to the exterior, when the walk crosses at the lobe vertex. So "the exterior stays off the side"
   needs a noncrossing walk. `SameCellPocketNoncrossing.pocketInputs_X` (on origin) gives noncrossing only at s = x with no
