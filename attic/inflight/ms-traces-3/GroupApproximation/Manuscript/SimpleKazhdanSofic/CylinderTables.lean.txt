@@ -1,0 +1,201 @@
+import GroupApproximation.Dynamics.ClopenCrossedProduct
+import GroupApproximation.Dynamics.SubshiftFiniteWindow
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Cylinder tables in `LC(X, F₂) ⋊ ℤ`
+
+`simple_kazhdan_sofic_group.tex`, section "Word problems", first paragraph of the proof:
+
+> Multiplying out a word in the generators in `LC(A^ℤ, F₂) ⋊ ℤ`, which maps onto `R`, gives a matrix
+> with entries `∑_j f_j u^j`, each `f_j` given by a table on the words of some length, using
+> `uf = (f∘T⁻¹)u`.  The word is trivial in `G_X` if and only if the tables of its difference from
+> `I₃` vanish on `L(X)`, ...
+
+A cylinder is a finite list of constraints `x_i = a`; a table is a finite list of monomials
+`1_c · u^j`, read in `LC(X, F₂) ⋊ ℤ` by `eval`.  Products of cylinders are concatenations of their
+constraint lists, so no merging is needed: inconsistent constraints give the empty cylinder.  The
+conjugation `u^j 1_c u^{-j} = 1_c ∘ T^{-j}` translates the constraints by `-j` (`cylInd_mul_comap`).
+
+* `eval_tableMul`: the table product is the ring product;
+* `coeff_eval`: the coefficient of `u^j` is the sum of the cylinder indicators with exponent `j`;
+* `eval_eq_zero_iff`: a table vanishes in the crossed product iff these sums vanish at every point.
+
+`X` is any shift-invariant set of configurations and `T` acts on it as the shift.
+-/
+
+namespace GroupApproximation
+namespace CylinderTables
+
+open SymbolicDynamics.FullShift SkewMonoidAlgebra
+open Multiplicative (ofAdd toAdd)
+
+section Cylinders
+
+variable {A : Type*}
+
+/-- A cylinder `{x : x_i = a for (i, a) ∈ c}`, as a finite list of constraints. -/
+abbrev Cyl (A : Type*) : Type _ := List (ℤ × A)
+
+/-- Membership in a cylinder. -/
+def cylMem (c : Cyl A) (x : ℤ → A) : Prop :=
+  ∀ p ∈ c, x p.1 = p.2
+
+instance [DecidableEq A] (c : Cyl A) (x : ℤ → A) : Decidable (cylMem c x) := by
+  unfold cylMem
+  infer_instance
+
+/-- The translate of a cylinder by `j` on coordinates. -/
+def cylShift (j : ℤ) (c : Cyl A) : Cyl A :=
+  c.map fun p => (p.1 + j, p.2)
+
+theorem cylMem_append {c₁ c₂ : Cyl A} {x : ℤ → A} :
+    cylMem (c₁ ++ c₂) x ↔ cylMem c₁ x ∧ cylMem c₂ x := by
+  simp only [cylMem, List.mem_append, or_imp, forall_and]
+
+theorem cylMem_cylShift {j : ℤ} {c : Cyl A} {x : ℤ → A} :
+    cylMem (cylShift j c) x ↔ cylMem c (fun i => x (i + j)) := by
+  simp only [cylMem, cylShift, List.mem_map, forall_exists_index, and_imp]
+  constructor
+  · intro h p hp
+    exact h _ p hp rfl
+  · rintro h _ p hp rfl
+    exact h p hp
+
+variable [TopologicalSpace A] [DiscreteTopology A]
+
+theorem isClopen_cyl (X : Set (ℤ → A)) (c : Cyl A) : IsClopen {x : ↥X | cylMem c x.1} := by
+  induction c with
+  | nil =>
+    convert isClopen_univ using 1
+    ext x
+    simp [cylMem]
+  | cons p c ih =>
+    have hp : IsClopen {x : ↥X | x.1 p.1 = p.2} :=
+      (isClopen_discrete ({p.2} : Set A)).preimage
+        ((continuous_apply p.1).comp continuous_subtype_val)
+    convert hp.inter ih using 1
+    ext x
+    simp [cylMem]
+
+/-- The indicator of a cylinder on `X`. -/
+noncomputable def cylInd (X : Set (ℤ → A)) (c : Cyl A) : LocallyConstant ↥X (ZMod 2) :=
+  LocallyConstant.charFn (ZMod 2) (isClopen_cyl X c)
+
+theorem cylInd_apply [DecidableEq A] (X : Set (ℤ → A)) (c : Cyl A) (x : ↥X) :
+    cylInd X c x = if cylMem c x.1 then 1 else 0 := by
+  by_cases h : cylMem c x.1
+  · rw [if_pos h]
+    exact (LocallyConstant.charFn_eq_one (Y := ZMod 2) x (isClopen_cyl X c)).2 h
+  · rw [if_neg h]
+    exact (LocallyConstant.charFn_eq_zero (Y := ZMod 2) x (isClopen_cyl X c)).2 h
+
+end Cylinders
+
+section Eval
+
+variable {A : Type*} [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] {X : Set (ℤ → A)}
+
+/-- A monomial `1_c · u^j`. -/
+abbrev Mono (A : Type*) : Type _ := ℤ × Cyl A
+
+/-- A finite sum of monomials. -/
+abbrev Table (A : Type*) : Type _ := List (Mono A)
+
+/-- The value of a monomial in `LC(X, F₂) ⋊ ℤ`. -/
+noncomputable def monoEval (T : ↥X ≃ₜ ↥X) (m : Mono A) : ClopenCrossedProduct T (ZMod 2) :=
+  single (ofAdd m.1) (ClopenCoeff.of T (ZMod 2) (cylInd X m.2))
+
+/-- The value of a table in `LC(X, F₂) ⋊ ℤ`. -/
+noncomputable def eval (T : ↥X ≃ₜ ↥X) (l : Table A) : ClopenCrossedProduct T (ZMod 2) :=
+  (l.map (monoEval T)).sum
+
+theorem eval_cons (T : ↥X ≃ₜ ↥X) (m : Mono A) (l : Table A) :
+    eval T (m :: l) = monoEval T m + eval T l := by
+  simp [eval]
+
+theorem eval_append (T : ↥X ≃ₜ ↥X) (l₁ l₂ : Table A) :
+    eval T (l₁ ++ l₂) = eval T l₁ + eval T l₂ := by
+  simp [eval]
+
+/-- The product of monomials: `1_{c₁} u^{j₁} · 1_{c₂} u^{j₂} = 1_{c₁ ∩ T^{j₁} c₂} u^{j₁ + j₂}`. -/
+def monoMul (m₁ m₂ : Mono A) : Mono A :=
+  (m₁.1 + m₂.1, m₁.2 ++ cylShift (-m₁.1) m₂.2)
+
+/-- The product of tables. -/
+def tableMul (l₁ l₂ : Table A) : Table A :=
+  l₁.flatMap fun m₁ => l₂.map (monoMul m₁)
+
+/-- **`uf = (f ∘ T⁻¹)u` on cylinders.** -/
+theorem cylInd_mul_comap (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (j : ℤ)
+    (c₁ c₂ : Cyl A) :
+    cylInd X c₁ * LocallyConstant.comap ⟨⇑(T ^ (-j)), (T ^ (-j)).continuous⟩ (cylInd X c₂) =
+      cylInd X (c₁ ++ cylShift (-j) c₂) := by
+  ext x
+  have hshift : cylMem c₂ ((T ^ (-j)) x).1 ↔ cylMem (cylShift (-j) c₂) x.1 := by
+    rw [cylMem_cylShift]
+    have hx : ((T ^ (-j)) x).1 = fun i => x.1 (i + -j) :=
+      funext fun m => by rw [zpow_apply_coord hT, add_comm]
+    rw [hx]
+  rw [LocallyConstant.coe_mul, Pi.mul_apply, LocallyConstant.coe_comap, Function.comp_apply,
+    ContinuousMap.coe_mk, cylInd_apply, cylInd_apply, cylInd_apply]
+  by_cases h₁ : cylMem c₁ x.1 <;> by_cases h₂ : cylMem c₂ ((T ^ (-j)) x).1 <;>
+    simp [cylMem_append, h₁, h₂, ← hshift]
+
+theorem monoEval_mul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (m₁ m₂ : Mono A) :
+    monoEval T m₁ * monoEval T m₂ = monoEval T (monoMul m₁ m₂) := by
+  rw [monoEval, monoEval, monoEval, monoMul, single_mul_single, ClopenCoeff.smul_of, ← map_mul,
+    cylInd_mul_comap T hT, ofAdd_add]
+
+theorem eval_map_monoMul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (m₁ : Mono A)
+    (l₂ : Table A) : eval T (l₂.map (monoMul m₁)) = monoEval T m₁ * eval T l₂ := by
+  induction l₂ with
+  | nil => simp [eval]
+  | cons m₂ l₂ ih => rw [List.map_cons, eval_cons, eval_cons, ih, mul_add, monoEval_mul T hT]
+
+/-- **The table product is the ring product.** -/
+theorem eval_tableMul (T : ↥X ≃ₜ ↥X) (hT : ∀ x : ↥X, (T x).1 = shift 1 x.1) (l₁ l₂ : Table A) :
+    eval T (tableMul l₁ l₂) = eval T l₁ * eval T l₂ := by
+  simp only [tableMul]
+  induction l₁ with
+  | nil => simp [eval]
+  | cons m₁ l₁ ih =>
+    rw [List.flatMap_cons, eval_append, eval_map_monoMul T hT, ih, eval_cons, add_mul]
+
+/-- The sum of the cylinder indicators with exponent `j`. -/
+noncomputable def coeffFun (X : Set (ℤ → A)) (l : Table A) (j : ℤ) : LocallyConstant ↥X (ZMod 2) :=
+  ((l.filter fun m => m.1 = j).map fun m => cylInd X m.2).sum
+
+/-- **The coefficient of `u^j`.** -/
+theorem coeff_eval (T : ↥X ≃ₜ ↥X) (l : Table A) (j : ℤ) :
+    (eval T l).coeff (ofAdd j) = ClopenCoeff.of T (ZMod 2) (coeffFun X l j) := by
+  induction l with
+  | nil => simp [eval, coeffFun]
+  | cons m l ih =>
+    rw [eval_cons, coeff_add, Finsupp.add_apply, ih]
+    by_cases h : m.1 = j
+    · simp [monoEval, coeffFun, coeff_single_apply, h]
+    · simp [monoEval, coeffFun, coeff_single_apply, h]
+
+/-- **A table vanishes iff its coefficient sums vanish at every point of `X`.** -/
+theorem eval_eq_zero_iff (T : ↥X ≃ₜ ↥X) (l : Table A) :
+    eval T l = 0 ↔ ∀ (j : ℤ) (x : ↥X), coeffFun X l j x = 0 := by
+  constructor
+  · intro h j x
+    have hc : ClopenCoeff.of T (ZMod 2) (coeffFun X l j) = 0 := by
+      rw [← coeff_eval, h, coeff_zero, Finsupp.zero_apply]
+    rw [map_eq_zero_iff _ (ClopenCoeff.of T (ZMod 2)).injective] at hc
+    rw [hc, LocallyConstant.coe_zero, Pi.zero_apply]
+  · intro h
+    refine SkewMonoidAlgebra.ext fun a => ?_
+    have hj : coeffFun X l (toAdd a) = 0 := LocallyConstant.ext fun x => h (toAdd a) x
+    rw [coeff_zero, Finsupp.zero_apply, ← ofAdd_toAdd a, coeff_eval, hj, map_zero]
+
+end Eval
+
+end CylinderTables
+end GroupApproximation
+
+#audit_axioms GroupApproximation.CylinderTables.eval_tableMul
+#audit_axioms GroupApproximation.CylinderTables.coeff_eval
+#audit_axioms GroupApproximation.CylinderTables.eval_eq_zero_iff
