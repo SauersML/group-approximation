@@ -72,7 +72,7 @@ theorem sum_zsign_fdot (c : StageIdx j) :
     ∑ z : StageIdx j, zsign (fdot z c) = if c = 0 then (2 : ℂ) ^ j else 0 := by
   by_cases hc : c = 0
   · subst hc
-    simp [Finset.card_univ, card_stageIdx]
+    simp [Finset.card_univ]
   · rw [if_neg hc]
     obtain ⟨i, hi⟩ := Function.ne_iff.mp hc
     have hi1 : c i = 1 := zmod_two_eq_one_of_ne_zero hi
@@ -179,7 +179,8 @@ theorem stageOp_zero : stageOp (0 : StageIdx j) 0 = 1 := by
 
 theorem coefficient_stageOp (x z : StageIdx j) :
     (stageOp x z (deltaOne PauliGroup)) 1 = if x = 0 ∧ z = 0 then 1 else 0 := by
-  rw [stageOp, coefficient_pauliOp, stageEmb_eq_zero_iff, stageEmb_eq_zero_iff]
+  rw [stageOp, coefficient_pauliOp]
+  simp only [stageEmb_eq_zero_iff]
 
 /-- The sum over a coordinate shift that the matrix-unit product reduces to. -/
 theorem stageOp_mul_sum (x x' z d : StageIdx j) :

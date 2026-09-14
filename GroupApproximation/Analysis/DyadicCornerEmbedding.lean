@@ -29,6 +29,7 @@ variable {Y N : Type*} [Fintype Y] [DecidableEq Y] [Fintype N] [DecidableEq N] {
 def cornerUnit (φ : Y × Fin r ↪ N) (a b : Y) : Matrix N N ℂ :=
   ∑ s : Fin r, Matrix.single (φ (a, s)) (φ (b, s)) (1 : ℂ)
 
+omit [Fintype Y] in
 theorem cornerUnit_isMatrixUnits (φ : Y × Fin r ↪ N) : IsMatrixUnits (cornerUnit φ) where
   mul a b c d := by
     rw [cornerUnit, cornerUnit, Finset.sum_mul_sum]
@@ -54,6 +55,7 @@ theorem cornerUnit_isMatrixUnits (φ : Y × Fin r ↪ N) : IsMatrixUnits (corner
     refine Finset.sum_congr rfl fun s _ ↦ ?_
     rw [Matrix.star_eq_conjTranspose, conjTranspose_single, star_one]
 
+omit [Fintype Y] in
 theorem trace_cornerUnit (φ : Y × Fin r ↪ N) (a b : Y) :
     Matrix.trace (cornerUnit φ a b) = if a = b then (r : ℂ) else 0 := by
   rw [cornerUnit, Matrix.trace_sum]
@@ -81,6 +83,7 @@ theorem trace_cornerHom (φ : Y × Fin r ↪ N) (M : Matrix Y Y ℂ) :
   trace_matrixUnitSum (cornerUnit φ) (Matrix.traceLinearMap N ℂ ℂ) (r : ℂ)
     (trace_cornerUnit φ) M
 
+omit [DecidableEq Y] [DecidableEq N] in
 /-- A corner exists as soon as `card Y · r ≤ card N`. -/
 theorem nonempty_cornerEmbedding (h : Fintype.card Y * r ≤ Fintype.card N) :
     Nonempty (Y × Fin r ↪ N) :=
