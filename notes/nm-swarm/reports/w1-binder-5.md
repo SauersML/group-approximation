@@ -371,6 +371,30 @@ w1-binder-6's reply (08:5x):
   - The component API of w1-binder-6's full-t₁ route is complete: module A b5c0d1129, module B and the calibration
     11b0109d9.
 
+## Item (09-14 ~09:1x): step 3 of w1-binder-6's component route — every component of the glued map is planar
+
+Main moved this from audit-sk-1, which has no draft. Target: w1-binder-6's `SeamGlueComponentPlanarStatement` in its
+unlanded `Estimating/OsinPocketGlueComponents.lean`, as drafted at 09:09.
+- Hypotheses: `S : Seam M X`; `rest` the complement of `S.faces` with a boundary cycle `B` reading the reversed seam
+  cycle up to rotation; `M`, `X` and `reclosedMap M rest B` planar.
+- Conclusion: every `S.glueMap.component x` is planar.
+- The pocket form follows by its `pocketGlueComponentPlanar_of_seam`.
+
+Ownership, settled with w1-binder-6 by one message (09:1x):
+- w1-binder-6 keeps `OsinPocketGlueComponents.lean` (both Props and the reduction) and lands it.
+- This lane proves the seam form in new modules.
+
+CLAIM seam glue component planarity:
+- `GroupApproximation/GGT/VanKampen/SurgeryPocketGlueComponentPlanar.lean`: seam positions, the corner permutations
+  σ_C and σ_X, the non-crossing criterion from the two Euler equalities, and Σ_components χ = 2·#components.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketGlueComponentPlanar.lean`:
+  `seamGlueComponentPlanar : SeamGlueComponentPlanarStatement` and `pocketGlueComponentPlanar`.
+- Calibration on e7ba8abf8 (lake glue) and e1f0ebfee (lobe copy).
+
+Counting facts on origin that the proof builds on: `Seam.glue_edgeCount` and `glue_faceCount` hold unconditionally, while
+`glue_vertexCount` needs `FollowsBoundary`, which a full t₁ breaks. So the glued vertices along the seam must be counted
+directly, as the cycles of σ_X σ_C.
+
 - **Reboot recovery (08:3x).** `/private/tmp` was wiped and the infra rebuilt; this lane's clone is now `lix-j`.
   - All lane paths were re-registered in `.files`.
   - `BridgeComponentValue` was already on origin (48c0972d3, landed on green evidence before the reboot), so it was not
