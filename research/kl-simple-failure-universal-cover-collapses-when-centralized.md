@@ -4,7 +4,7 @@ id: kl-simple-failure-universal-cover-collapses-when-centralized
 kind: claim
 title: The universal central extension of a simple counterexample collapses in the centralized adjunction
 distinct_from:
-  kl-counterexample-can-be-superperfect-quasisimple: that asks for a failure over a superperfect quasisimple group in the plain adjunction and is open; this proves a collapse only after the center is forced to commute with the new letter.
+  kl-counterexample-can-be-superperfect-quasisimple: that asks for a failure over a superperfect quasisimple group in the plain adjunction, and is now established through a simple acyclic envelope rather than this cover; this proves a collapse only after the center is forced to commute with the new letter.
   central-extension-kl-schur-criterion: that assumes the quotient adjunction injects and derives injectivity for the central extension; this starts from a quotient adjunction that kills the whole coefficient group.
   kl-counterexample-can-be-two-generator-simple: that produces the simple counterexample; this passes to its universal central extension.
 ---
@@ -24,8 +24,10 @@ Write `S = F/R` with `F` free of rank two, and put
 3. **The plain adjunction.** The kernel of `S^ -> (S^ * <t>)/<<w^>>` either lies
    in `A` or is all of `S^`.
    * In the second case `S^` is a counterexample with `K_2(S^, w^) <= H_2(S^) = 0`.
-   * Whether some simple failure lifts to that case is the OPEN
-     `kl-counterexample-can-be-superperfect-quasisimple`.
+   * Some simple failure does lift to that case. Over the simple acyclic
+     counterexample of `kl-counterexample-can-be-two-generator-simple-acyclic`,
+     `A = H_2(S) = 0` and `S^ = S`. Whether EVERY simple failure lifts stays open;
+     `kl-counterexample-can-be-superperfect-quasisimple` no longer needs it.
 
 Item 1 is the textbook universal central extension. The route derives it from
 Hopf's formula alone. No novelty is claimed.
