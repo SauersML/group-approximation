@@ -3,9 +3,12 @@
 Date: 2026-09-14. Lane `gk3-leavitt-nonlinear`. `G = R^x`, `R = L_(F_2)(1,2)`.
 Target: a nonlinear strict pair over `G`, or the exact obstruction.
 
-**Verdict so far:** not decided. This lane proved and landed one rule-free filter,
-`two-rectangle-surjunctive-images-kill-all-designs` (0363ccee5). The screen of
-concrete windows over `G` has not run yet, because the MSI master was dropping.
+**Verdict:** not decided. No strict pair was found. This lane landed:
+- the rule-free filter `two-rectangle-surjunctive-images-kill-all-designs` (0363ccee5);
+- the hand computation `leavitt-rooted-defect-window-carries-no-strict-design`
+  (e39a422ba, moved to a route in 0b43ab3fc);
+- the screen claim `small-leavitt-windows-carry-no-strict-design`. Seven windows are dead
+  for every design, and three are undecided within the search bounds.
 
 ## 1. What "reading compressed copies" can mean for an automaton over `G`
 
@@ -78,7 +81,31 @@ defect node.
 This matches the "small core" death recorded in the defect node, now for all designs
 on the window at once.
 
-## 4. Screen (prepared, not yet run)
+## 4. Screen and results
+
+**Results** (MSI jobs 790307 and 791209; witnesses replayed on MSI and locally in dual mode, 1214
+products cross-checked).
+
+| window | letters / relators | reverse classes | verdict |
+|---|---|---|---|
+| control-gl2-1-1 | 3 / 20 | 6 | dead: `<S u M>` has order 6 |
+| thompson-aw-1-1 | 3 / 12 | 10 | dead: PSL(3,2) images separate 10 of 10 |
+| thompson-aw-2-1 | 9 / 40 | 20 | dead: 20 of 20 |
+| thompson-aw-1-2 | 9 / 40 | 20 | dead: 20 of 20 |
+| transvections-1-1 | 5 / 26 | 23 | dead: 23 of 23 |
+| defect-direct-E01 | 4 / 6 | 10 | dead: 10 of 10, agreeing with Section 3 |
+| defect-ball-1-1 | 6 / 24 | 30 | dead: 30 of 30 |
+| defect-nested-E01 | 7 / 12 | 31 | undecided: GAP timeout (simplified 5 / 2) |
+| eld1-cu-1-1 | 8 / 44 | 59 | undecided: GAP timeout (simplified 7 / 12) |
+| eld1-cu-c-1-1 | 10 / 76 | 83 | undecided: GAP timeout (simplified 8 / 18) |
+
+Every separating image found is onto PSL(3,2) on 7 points. The two defect windows are dead:
+the defect `d` sits in the memory, yet the table group has finite images separating all
+reverse products. The undecided windows are the ones containing the six `E_ij(1)` of
+`Gamma` together with the compressor, where the rectangle relators carry
+elementary-matrix commutation relations.
+
+**Method.**
 
 `experiments/gk3-leavitt-nonlinear/general_window_screen.py`, MSI outputs under
 `/scratch.global/sauer354/gk3-leavitt-nonlinear/runs/`.
@@ -101,12 +128,17 @@ on the window at once.
 
 ## 5. Exact gap
 
-- **Computation.** The screen results above.
-- **Surviving windows.** Any window whose `T` has no separating finite image within
-  the search bounds is a candidate, not a counterexample. For such a window the question
-  becomes: does some reverse hinge word lie in the sofic radical of `T`? The expected
-  survivors are windows whose rectangle relators encode a Kazhdan presentation plus
-  nesting (`nested-rigid-defects-force-nonsurjunctivity`).
+- **Undecided windows.** `defect-nested-E01`, `eld1-cu-1-1` and `eld1-cu-c-1-1` hit the
+  GAP time limit. The next step is a longer run with targeted images:
+  - the GL(4,2) / GL(6,2) position-dependent corner images of
+    `small-leavitt-invariant-output-windows-have-finite-separations`, which realize the
+    nine-leaf products;
+  - PSL(3,2) and PSL(3,4) images of the `E_ij(1)`.
+
+  A window with no separating image is a candidate, not a counterexample. For such a window
+  the question becomes whether some reverse hinge word lies in the sofic radical of `T`.
+- **Larger windows.** Survivors are expected only where the rectangle relators encode a
+  Kazhdan presentation plus nesting (`nested-rigid-defects-force-nonsurjunctivity`).
 - **Rules.** For survivors, a SAT search for rules whose minimal forward partition
   forces those relators and whose reverse partition needs a surviving hinge. The
   abstract census belongs to lane `gk3-strict-census-4`. Here it would run only on

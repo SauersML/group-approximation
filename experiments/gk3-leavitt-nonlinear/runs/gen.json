@@ -1,0 +1,111 @@
+{
+ "control-gl2-1-1": {
+  "S": 4,
+  "M": 4,
+  "letters": 3,
+  "relators": 20,
+  "ms_classes": 6,
+  "finite_subgroup_order": 6,
+  "stage": "finite",
+  "verdict": "DEAD"
+ },
+ "thompson-aw-1-1": {
+  "S": 4,
+  "M": 4,
+  "letters": 3,
+  "relators": 12,
+  "ms_classes": 10,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified_separated": 10,
+  "verdict": "DEAD"
+ },
+ "thompson-aw-2-1": {
+  "S": 10,
+  "M": 4,
+  "letters": 9,
+  "relators": 40,
+  "ms_classes": 20,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified_separated": 20,
+  "verdict": "DEAD"
+ },
+ "thompson-aw-1-2": {
+  "S": 4,
+  "M": 10,
+  "letters": 9,
+  "relators": 40,
+  "ms_classes": 20,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified_separated": 20,
+  "verdict": "DEAD"
+ },
+ "transvections-1-1": {
+  "S": 6,
+  "M": 6,
+  "letters": 5,
+  "relators": 26,
+  "ms_classes": 23,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified_separated": 23,
+  "verdict": "DEAD"
+ },
+ "eld1-cu-1-1": {
+  "S": 9,
+  "M": 9,
+  "letters": 8,
+  "relators": 44,
+  "ms_classes": 59,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified": "NO_WITNESS"
+ },
+ "eld1-cu-c-1-1": {
+  "S": 11,
+  "M": 11,
+  "letters": 10,
+  "relators": 76,
+  "ms_classes": 83,
+  "finite_subgroup_order": null,
+  "stage": "gap",
+  "verified": "NO_WITNESS"
+ },
+ "defect-direct-E01": {
+  "S": 4,
+  "M": 3,
+  "letters": 4,
+  "relators": 6,
+  "ms_classes": 10,
+  "finite_subgroup_order": null,
+  "d01_nontrivial": true,
+  "stage": "gap",
+  "verified_separated": 10,
+  "verdict": "DEAD"
+ },
+ "defect-nested-E01": {
+  "S": 6,
+  "M": 6,
+  "letters": 7,
+  "relators": 12,
+  "ms_classes": 31,
+  "finite_subgroup_order": null,
+  "d01_nontrivial": true,
+  "stage": "gap",
+  "verified": "NO_WITNESS"
+ },
+ "defect-ball-1-1": {
+  "S": 6,
+  "M": 7,
+  "letters": 6,
+  "relators": 24,
+  "ms_classes": 30,
+  "finite_subgroup_order": null,
+  "d01_nontrivial": true,
+  "stage": "gap",
+  "verified_separated": 30,
+  "verdict": "DEAD"
+ }
+}

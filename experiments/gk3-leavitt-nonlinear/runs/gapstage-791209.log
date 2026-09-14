@@ -1,0 +1,40 @@
+=== defect-ball-1-1 10:32:23
+exit 0
+SIMPLIFIED gens 4 rels 2
+RESULT 30 of 30
+=== defect-direct-E01 10:35:09
+exit 0
+SIMPLIFIED gens 2 rels 1
+RESULT 10 of 10
+=== defect-nested-E01 10:35:12
+exit 124
+SIMPLIFIED gens 5 rels 2
+=== eld1-cu-1-1 10:50:12
+exit 124
+SIMPLIFIED gens 7 rels 12
+=== eld1-cu-c-1-1 11:05:12
+exit 124
+SIMPLIFIED gens 8 rels 18
+=== thompson-aw-1-1 11:20:12
+exit 0
+SIMPLIFIED gens 2 rels 1
+RESULT 10 of 10
+=== thompson-aw-1-2 11:20:14
+exit 0
+SIMPLIFIED gens 2 rels 2
+RESULT 20 of 20
+=== thompson-aw-2-1 11:20:16
+exit 0
+SIMPLIFIED gens 2 rels 2
+RESULT 20 of 20
+=== transvections-1-1 11:20:19
+exit 0
+SIMPLIFIED gens 5 rels 8
+RESULT 23 of 23
+thompson-aw-1-1 DEAD 10 of 10
+thompson-aw-2-1 DEAD 20 of 20
+thompson-aw-1-2 DEAD 20 of 20
+transvections-1-1 DEAD 23 of 23
+defect-direct-E01 DEAD 10 of 10
+defect-ball-1-1 DEAD 30 of 30
+GAPSTAGE_DONE 0
