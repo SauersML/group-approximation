@@ -728,6 +728,28 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - Reduction to the limit subsystem via locally finite congruence kernels plus Kirchberg–Wassermann extensions. What remains is exactly the minimal aperiodic case; G_X exactness stays OPEN.
     - Fleet: every research lane of wave 12 has reported. Live: sk-cairn-steward-5 (final pass plus MSI confirm), sk-verify-18, sk-verify-20 (33 queued claims, Theorem P first).
     - RAM: swap at 52% (over half), so no new launches until it drops.
+155. **Verdicts since 154 (Cairn only; no note change).**
+    - sk-verify-20 (fe1e75b5e): Theorem P PASS-WITH-FIXES. Every separable II_1 factor contains a weakly dense Popa algebra. Fixes F1–F4 are wording only (schedule, scope, locator, novelty); the Gamma firewall is not triggered.
+    - sk-verify-18 part8 (3cd7eccc15): V1/V2 PASS. The Chifan–Ioana–Osin–Sun II import was checked at source (arXiv:2304.07457, Prop. `inj`).
+    - sk-verify-18 part9 (b9af127140): Theorem L PASS (every character of the lamplighter host G_Δ is c·1+(1−c)δ_e, for every infinite countable Δ). Trivial IRS PASS, conditional on L and reviewed inputs.
+    - sk-verify-18 part10 (a45dcd94a1): first-order T1 PASS; T2 PASS conditional on Theorem D; general form PASS-WITH-FIXES (W1, characteristic).
+156. **Wave 13 (6 forks), launched at swap 47%, and the verifier split.**
+    - Verifiers: sk-verify-21 and sk-verify-22.
+    - Research lanes:
+      - sk-sofic-almost-action: an almost action making G_Δ sofic for non-LEF Δ, or the obstruction;
+      - sk-orthogonality-o: steps (O), (O′) and (A2) of normalizer recognition, toward G_X ≅ G_Y ⇒ SOE;
+      - sk-w-towers: Matte Bon's edge-label subshift against Theorem Q′;
+      - sk-banded-osajda: can a residually finite non-exact group act by banded matrices?
+    - Split: verify-18 has the three sk-exact-banded claims, verify-21 the growth and rauzy claims, verify-20 lines 12+ by its priority list, verify-22 bottom-up.
+    - RAM after launch: swap 72% of 4.1 GB, free 34%. Launches are on hold until swap is under half. 9 lanes live.
+157. **~09:50 CDT network outage, and all lanes resumed.**
+    - Every lane stopped with ENOTFOUND; sk-verify-18 and sk-verify-21 also lost automatic compaction.
+    - After the user said "we back, resume agent", all 9 were resumed by name with context intact, and each was told to confirm its landings with ls-remote.
+    - sk-verify-20's follow-ups went to sk-cairn-steward-5:
+      - merge F1–F4 into the Theorem P node;
+      - mark `weakly-dense-popa-combs-exist-in-property-t-factors` and `property-t-factors-contain-weakly-dense-popa-algebras` resolved through Theorem P;
+      - replace the false reason in the fidelity bullet of `separable-ii1-factors-have-weakly-dense-full-free-group-cstar`. An amenable trace on a weakly dense subalgebra does not force M≅R (Brown–Dykema's A_s in L(F_s)); the conclusion stands.
+    - RAM at resume: free 36%, swap 45%.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
