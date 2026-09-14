@@ -63,6 +63,34 @@ external existence theorem.
   including the head-dart facts and the merged-face identification, are already drafted in its
   `SurgeryGeodesicCollarStripStep.lean`, and that nothing independent is left to split off. No leaf taken.
 
+## Binder 3, shape 2: `OsinLemma94CaseOneCellPinchStatement` (main ~18:25)
+
+Stated by ms-intro-1 at f82985905. Model test at the definition level, origin 0103d58eb:
+- Shape 2 is inhabited: `DiscDiagram` puts no simplicity condition on relator-cell carriers, and a planar R-cell face can
+  pinch around an inner sub-disc attached at one vertex. Nothing in the hypotheses excludes it; LeastArea counts relator
+  cells.
+- Split, at the innermost repeat on `b = invDarts B`:
+  - (2a) the side of the innermost lobe holds an R-cell: `false_of_pocketRegion_of_below` with `s = []` and the window
+    arc of Π, once the lobe's hin, hout and hi are proved;
+  - (2b) every innermost lobe holds only G-cells, hairs included: excision keeps the value, but the remaining walk has a
+    two-arc Π-part, and no loop cut on origin takes two arcs. BLOCKER sent to main.
+
+CLAIM innermost lobe of a walk at its first repeated vertex (closed dart walk, no repeated vertex, simple from length 3): GroupApproximation/GGT/VanKampen/ClosedWalkInnermostLobe.lean
+
+Ruling (main ~18:40): land the reduction CellPinch ⇐ (2a) ∧ (2b), then prove (2a) over w1-binder-8's walk-level kill. ms-binary
+builds the two-arc loop cut for (2b).
+- LANDED 18239bf0f `ClosedWalkInnermostLobe` (probe 0913-184847-38440 GREEN): `exists_first_repeat`,
+  `isClosedDartWalk_window`, `exists_innermost_lobe`, `isSimpleClosedWalk_of_nodup`.
+- LANDED 0104e60f1 `Estimating/OsinLemma94SameCellCellPinchLobes` (probe 0913-185813-73379 GREEN): the shapes
+  `PocketWalkCellLobeValueShape` and `PocketWalkCellLobeExcisionShape`, the statements
+  `OsinLemma94CaseOneCellLobeValueStatement` (2a) and `OsinLemma94CaseOneCellLobeExcisionStatement` (2b), and
+  `osinLemma94CaseOneCellPinch_of_lobes`.
+- Two-arc kill for (2b): `false_of_pocketRegion_of_below_twoArcs` (ms-binary 6672828c1). Arithmetic: the side section
+  contributes μ/2 and each cell section μ, against 1 − 13μ. Two arcs are valid for every μ ≤ 1/16; k arcs need
+  (2k + 27)μ < 2, which fails at μ = 1/16 for k ≥ 3, so several G-only bubbles are not covered by it.
+
+CLAIM the lobe inputs of the (2a) kill (arc, simplicity, Π off the side, exterior off the side): GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellLobeSides.lean
+
 ## Progress log
 - 16:56: ledger landed at 1193c722d; two gaps (rows 2 and 9) claimed.
 - 17:0x: both gaps closed at 88180a8b8.
