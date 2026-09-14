@@ -789,6 +789,19 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - K1: the quote reads "if and only if".
       - K2: the route names B. Marcus and T. Meyerovitch.
     - F1, F2, K1 and K2 go to the Cairn steward. Remaining queue: lines 32–33 (sk-verify-22).
+162. **sk-verify-22 final (d899c3c06d): the verifier queue is fully served.**
+    - `dyadic-derived-full-groups-no-uniform-semifree-diameter`: PASS-WITH-FIXES, wording only.
+      - The counting argument and ω([[T]]′) = 1 were re-derived.
+      - The Bourbaki quote is verbatim at bou1064.tex l.216, question (7).
+      - N1 bounds the "torsion-free clause stays open" remark.
+    - `subshift-gl-exactness-reduces-to-limit-subsystem`: PASS-WITH-FIXES.
+      - X1: the lamplighter model test 1+e_[1] is an idempotent over F_2, not a unit; use ⟨diag(u,u), e_12(e_[1])⟩ in GL_2.
+      - X2: Corollary (c) routes the rank through Whitehead's lemma into EL_{max(2m,3)}.
+      - S1: the theorem holds when Z merely contains every minimal subset of Y.
+    - False remarks to correct: the "Not covered" paragraph of sk-exact-banded part2 §3, and the remark on `biasymptotic-subshift-complement-ideal-is-ultramatricial` about corners meeting recurrent orbits.
+    - All fixes go to the Cairn steward, with the false remarks first.
+    - RAM: swap 4.0/5.1 GB (the total grew 3→4→5 GB this session), level 2, free 32%. This session is ~490 MB; the heaviest users are peer sessions.
+    - Live: sk-cairn-steward-5, sk-sofic-almost-action, sk-orthogonality-o.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
