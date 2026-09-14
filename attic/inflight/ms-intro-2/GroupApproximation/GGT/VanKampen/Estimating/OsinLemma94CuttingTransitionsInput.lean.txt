@@ -1,0 +1,474 @@
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94CuttingTransitions
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Osin's Lemma 9.4: the cutting transitions, proved
+
+`OsinLemma94CuttingTransitionInput`, piece 2 of `OsinLemma94LongTransitions`, with `K = 4`.
+
+`OsinLemma94CuttingTransitions` bounds the starts of the forest darts by `4 |T| - 4`, for every set
+`T` of darts of the deleted map `S.forestDeleted` meeting every component.  This module supplies
+`T` (`hittingSet`): one dart of the exterior and one dart of each relator cell, so `|T| ≤ n + 1`.
+
+* `Joined`: two retained darts joined in the deleted map.  Reversal always joins
+  (`joined_alpha`), and so does the face rotation onto a retained dart (`eqvGen_facePerm`), since
+  the first return then takes one step.  On a face with no forest darts, any two darts are joined
+  (`eqvGen_of_faceOf_eq`).
+* `exists_joined_cellOrOuter_of_region`: a dart of a selected region is joined to a dart of a
+  relator cell.  Either the joined faces of the region reach a boundary dart, and the boundary cycle
+  (`joined_of_isChain`) reaches the source arc, or the joined faces are closed under crossing, and
+  connectedness puts the exterior inside the region.
+* `exists_joined_cellOrOuter`: a retained dart of a polygon crosses its side into a relator cell,
+  the exterior or a selected region.
+* `hittingSet_hits`, `card_hittingSet_le`.
+* `sum_card_sameFaceStarts_le`: the starts of the polygons are starts of the forest darts, of
+  different faces.
+* `osinLemma94CuttingTransitionInput`.
+
+Model tests.
+* A polygon around one relator cell, joined to `∂Δ` by one bridge: the forest is the bridge, with
+  two starts and no interior vertex, so `starts ≤ |X| - 2 v₀ = 2`.  The deleted map has two
+  components, the cell and the exterior, and `|T| = 2`, so `2 + 4 ≤ 8`.
+* Calibration: a pendant edge inside a polygon has one start and one interior vertex, so
+  `starts + 2 v₀ = 3 > 2 = |X|`.  `DartMinimal` excludes it (`sigma_ne_of_mem_forestDarts`).
+
+## Manuscript status
+
+Infrastructure for `thm:hull` (through Osin's Lemma 9.4, arXiv:math/0411039v3, §9); certifies no
+printed sentence on its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen
+
+universe u w v
+
+open GroupApproximation.GGT.VanKampen.Embedded
+open GroupApproximation.GGT.VanKampen.UnboundEstimate
+open scoped Classical
+
+namespace GloballyDistinguishedSectionFamily
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+
+/-- Two retained darts joined in the deleted map. -/
+def Joined (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (y y' : S.diagram.toCombMap.Dart) : Prop :=
+  ∃ (hy : y ∉ S.forestDarts) (hy' : y' ∉ S.forestDarts),
+    Relation.EqvGen S.forestDeleted.Adjacent ⟨y, hy⟩ ⟨y', hy'⟩
+
+variable {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+theorem Joined.refl {y : S.diagram.toCombMap.Dart} (hy : y ∉ S.forestDarts) : S.Joined y y :=
+  ⟨hy, hy, Relation.EqvGen.refl _⟩
+
+theorem Joined.symm {y y' : S.diagram.toCombMap.Dart} (h : S.Joined y y') : S.Joined y' y := by
+  obtain ⟨hy, hy', p⟩ := h
+  exact ⟨hy', hy, Relation.EqvGen.symm _ _ p⟩
+
+theorem Joined.trans {y y' y'' : S.diagram.toCombMap.Dart} (h1 : S.Joined y y')
+    (h2 : S.Joined y' y'') : S.Joined y y'' := by
+  obtain ⟨hy, -, p1⟩ := h1
+  obtain ⟨-, hy'', p2⟩ := h2
+  exact ⟨hy, hy'', Relation.EqvGen.trans _ _ _ p1 p2⟩
+
+theorem not_mem_forestDarts_alpha {d : S.diagram.toCombMap.Dart} (hd : d ∉ S.forestDarts) :
+    S.diagram.toCombMap.alpha d ∉ S.forestDarts :=
+  (not_congr (alpha_mem_forestDarts_iff d)).mpr hd
+
+theorem not_mem_forestDarts_of_faceOf_eq_outer {y : S.diagram.toCombMap.Dart}
+    (hy : S.diagram.toCombMap.faceOf y = S.diagram.outerFace) : y ∉ S.forestDarts :=
+  fun hX => (mem_forestDarts.mp hX).2.1 hy
+
+theorem not_mem_forestDarts_of_cell {y : S.diagram.toCombMap.Dart}
+    {C : RelatorCell S.diagram.toCombMap S.diagram.outerFace W} (hC : C ∈ S.diagram.relatorCells)
+    (hy : C.face = S.diagram.toCombMap.faceOf y) : y ∉ S.forestDarts :=
+  fun hX => (mem_forestDarts.mp hX).2.2.1 C hC hy
+
+theorem not_mem_forestDarts_of_mem_region {a : RegionCandidate D eps S.diagram}
+    (ha : a ∈ S.family) {y : S.diagram.toCombMap.Dart}
+    (hy : S.diagram.toCombMap.faceOf y ∈ a.1) : y ∉ S.forestDarts :=
+  fun hX => (mem_forestDarts.mp hX).2.2.2 a ha hy
+
+/-! ## Steps of the deleted map -/
+
+theorem joined_alpha {y : S.diagram.toCombMap.Dart} (hy : y ∉ S.forestDarts) :
+    S.Joined y (S.diagram.toCombMap.alpha y) :=
+  ⟨hy, not_mem_forestDarts_alpha hy, Relation.EqvGen.rel _ _ (Or.inl rfl)⟩
+
+/-- When the rotation of a retained dart is retained, the first return takes one step. -/
+theorem sigma_val_of_not_mem (b : S.forestDeleted.Dart)
+    (h : S.diagram.toCombMap.sigma b.1 ∉ S.forestDarts) :
+    (S.forestDeleted.sigma b).1 = S.diagram.toCombMap.sigma b.1 := by
+  obtain ⟨m, hm, heq, hskip⟩ := CombMap.PredicateRestriction.sigma_firstReturn
+    S.diagram.toCombMap (fun d => d ∉ S.forestDarts) b
+  have hm1 : m = 1 := by
+    by_contra hne
+    exact hskip 1 Nat.one_pos (by omega) ⟨⟨_, h⟩, by rw [pow_one]; rfl⟩
+  subst hm1
+  rw [pow_one] at heq
+  exact heq.symm
+
+theorem eqvGen_facePerm (b : S.forestDeleted.Dart)
+    (h : S.diagram.toCombMap.facePerm b.1 ∉ S.forestDarts) :
+    Relation.EqvGen S.forestDeleted.Adjacent b ⟨S.diagram.toCombMap.facePerm b.1, h⟩ := by
+  refine Relation.EqvGen.trans _ ⟨S.diagram.toCombMap.alpha b.1, not_mem_forestDarts_alpha b.2⟩ _
+    (Relation.EqvGen.rel _ _ (Or.inl rfl)) (Relation.EqvGen.rel _ _ (Or.inr ?_))
+  exact Subtype.ext (sigma_val_of_not_mem ⟨_, not_mem_forestDarts_alpha b.2⟩ h)
+
+theorem faceOf_facePerm_pow (x : S.diagram.toCombMap.Dart) (m : ℕ) :
+    S.diagram.toCombMap.faceOf ((S.diagram.toCombMap.facePerm ^ m) x) =
+      S.diagram.toCombMap.faceOf x := by
+  induction m with
+  | zero => rfl
+  | succ m ih => rw [pow_succ', Equiv.Perm.mul_apply, S.diagram.toCombMap.faceOf_facePerm, ih]
+
+/-- **On a face with no forest darts, the deleted map joins any two darts.** -/
+theorem eqvGen_of_faceOf_eq (b : S.forestDeleted.Dart)
+    (hface : ∀ y, S.diagram.toCombMap.faceOf y = S.diagram.toCombMap.faceOf b.1 →
+      y ∉ S.forestDarts)
+    (c : S.forestDeleted.Dart)
+    (hbc : S.diagram.toCombMap.faceOf c.1 = S.diagram.toCombMap.faceOf b.1) :
+    Relation.EqvGen S.forestDeleted.Adjacent b c := by
+  have key : ∀ (m : ℕ) (y : S.diagram.toCombMap.Dart) (hy : y ∉ S.forestDarts),
+      (S.diagram.toCombMap.facePerm ^ m) b.1 = y →
+        Relation.EqvGen S.forestDeleted.Adjacent b ⟨y, hy⟩ := by
+    intro m
+    induction m with
+    | zero =>
+      intro y hy hm
+      simp only [pow_zero, Equiv.Perm.one_apply] at hm
+      have hb : (⟨y, hy⟩ : S.forestDeleted.Dart) = b := Subtype.ext hm.symm
+      rw [hb]
+      exact Relation.EqvGen.refl _
+    | succ m ih =>
+      intro y hy hm
+      have hz : (S.diagram.toCombMap.facePerm ^ m) b.1 ∉ S.forestDarts :=
+        hface _ (faceOf_facePerm_pow b.1 m)
+      have hsucc : (S.diagram.toCombMap.facePerm ^ (m + 1)) b.1 =
+          S.diagram.toCombMap.facePerm ((S.diagram.toCombMap.facePerm ^ m) b.1) := by
+        rw [pow_succ', Equiv.Perm.mul_apply]
+      have hfz : S.diagram.toCombMap.facePerm ((S.diagram.toCombMap.facePerm ^ m) b.1) ∉
+          S.forestDarts := by
+        rw [← hsucc, hm]
+        exact hy
+      have hyeq : (⟨y, hy⟩ : S.forestDeleted.Dart) = ⟨_, hfz⟩ :=
+        Subtype.ext (hm.symm.trans hsucc)
+      rw [hyeq]
+      exact Relation.EqvGen.trans _ _ _ (ih _ hz rfl) (eqvGen_facePerm _ hfz)
+  obtain ⟨n, hn⟩ := ((S.diagram.toCombMap.faceOf_eq_iff b.1 c.1).mp hbc.symm).exists_nat_pow_eq
+  exact key n c.1 c.2 hn
+
+/-! ## Selected regions -/
+
+/-- Internal moves of a selected region are paths of the deleted map. -/
+theorem joined_of_internalMoves {a : RegionCandidate D eps S.diagram} (ha : a ∈ S.family)
+    {y y' : S.diagram.toCombMap.Dart} (hy : S.diagram.toCombMap.faceOf y ∈ a.1)
+    (h : Relation.ReflTransGen (InternalBoundaryMove S.diagram a.1) y y') : S.Joined y y' := by
+  induction h with
+  | refl => exact Joined.refl (not_mem_forestDarts_of_mem_region ha hy)
+  | @tail b c _ hbc ih =>
+    obtain ⟨-, hαface, rfl⟩ := hbc
+    have hα : S.diagram.toCombMap.alpha b ∉ S.forestDarts :=
+      not_mem_forestDarts_of_mem_region ha hαface
+    have hfp : S.diagram.toCombMap.facePerm (S.diagram.toCombMap.alpha b) ∉ S.forestDarts :=
+      not_mem_forestDarts_of_mem_region ha
+        (by rw [S.diagram.toCombMap.faceOf_facePerm]; exact hαface)
+    obtain ⟨-, hb, -⟩ := ih
+    exact ih.trans ((S.joined_alpha hb).trans ⟨hα, hfp, eqvGen_facePerm ⟨_, hα⟩ hfp⟩)
+
+/-- A boundary step of a selected region is a path of the deleted map. -/
+theorem joined_of_boundaryStep {a : RegionCandidate D eps S.diagram} (ha : a ∈ S.family)
+    {y y' : S.diagram.toCombMap.Dart} (h : BoundaryStep S.diagram a.1 y y') : S.Joined y y' := by
+  obtain ⟨hyb, -, hmoves⟩ := h
+  have hy := not_mem_forestDarts_of_mem_region ha hyb.1
+  have hfy : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.facePerm y) ∈ a.1 := by
+    rw [S.diagram.toCombMap.faceOf_facePerm]
+    exact hyb.1
+  have hfk := not_mem_forestDarts_of_mem_region ha hfy
+  exact (⟨hy, hfk, eqvGen_facePerm ⟨y, hy⟩ hfk⟩ : S.Joined y _).trans
+    (joined_of_internalMoves ha hfy hmoves)
+
+/-- Every dart of a chain of joining steps is joined to its head. -/
+theorem joined_of_isChain {R : S.diagram.toCombMap.Dart → S.diagram.toCombMap.Dart → Prop}
+    (hR : ∀ y y', R y y' → S.Joined y y') :
+    ∀ (y : S.diagram.toCombMap.Dart) (l : List S.diagram.toCombMap.Dart), (y :: l).IsChain R →
+      y ∉ S.forestDarts → ∀ z ∈ y :: l, S.Joined y z := by
+  intro y l
+  induction l generalizing y with
+  | nil =>
+    intro _ hy z hz
+    rw [List.mem_singleton] at hz
+    subst hz
+    exact Joined.refl hy
+  | cons b l ih =>
+    intro hchain hy z hz
+    rw [List.isChain_cons_cons] at hchain
+    obtain ⟨hyb, hrest⟩ := hchain
+    have hjb := hR _ _ hyb
+    rcases List.mem_cons.mp hz with rfl | hz'
+    · exact Joined.refl hy
+    · obtain ⟨-, hb, -⟩ := hjb
+      exact hjb.trans (ih b hrest hb z hz')
+
+/-- The exterior dart of the hitting set. -/
+noncomputable def outerDart (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    S.diagram.toCombMap.Dart :=
+  (S.diagram.faceBoundary S.diagram.outerFace).darts.head
+    (S.diagram.faceBoundary S.diagram.outerFace).nonempty
+
+theorem faceOf_outerDart :
+    S.diagram.toCombMap.faceOf S.outerDart = S.diagram.outerFace :=
+  ((S.diagram.faceBoundary S.diagram.outerFace).mem_iff _).mp (List.head_mem _)
+
+/-- **A dart of a selected region is joined to a dart of a relator cell.** -/
+theorem exists_joined_cell_of_region {a : RegionCandidate D eps S.diagram} (ha : a ∈ S.family)
+    {x : S.diagram.toCombMap.Dart} (hx : S.diagram.toCombMap.faceOf x ∈ a.1) :
+    ∃ y, S.Joined x y ∧ ∃ C ∈ S.diagram.relatorCells, C.face = S.diagram.toCombMap.faceOf y := by
+  have hxk := not_mem_forestDarts_of_mem_region ha hx
+  have hjoinface : ∀ z z', S.diagram.toCombMap.faceOf z ∈ a.1 →
+      S.diagram.toCombMap.faceOf z' = S.diagram.toCombMap.faceOf z → S.Joined z z' := by
+    intro z z' hz hz'
+    have hzk := not_mem_forestDarts_of_mem_region ha hz
+    have hz'k := not_mem_forestDarts_of_mem_region ha (hz'.symm ▸ hz)
+    exact ⟨hzk, hz'k, eqvGen_of_faceOf_eq ⟨z, hzk⟩
+      (fun w hw => not_mem_forestDarts_of_mem_region ha (hw.symm ▸ hz)) ⟨z', hz'k⟩ hz'⟩
+  by_cases hbd : ∃ z, S.diagram.toCombMap.faceOf z ∈ a.1 ∧
+      S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha z) ∉ a.1 ∧ S.Joined x z
+  · obtain ⟨z, hz1, hz2, hxz⟩ := hbd
+    have hzc : z ∈ a.2.boundary.cycle := (a.2.boundary.cycle_mem_iff z).mpr ⟨hz1, hz2⟩
+    obtain ⟨e, he⟩ := List.exists_mem_of_ne_nil a.2.sourceArc.darts (by
+      intro hnil
+      have hl := a.2.sourceArc.darts_length
+      rw [hnil, List.length_nil] at hl
+      exact absurd hl.symm (Nat.pos_iff_ne_zero.mp (S.nondegenerate a ha).1))
+    have hs : S.diagram.toCombMap.alpha e ∈ a.2.boundary.cycle := by
+      rw [a.2.boundary_decomposition]
+      refine List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ ?_))
+      simp only [Embedded.CyclicArc.reverseDarts, List.mem_map, List.mem_reverse]
+      exact ⟨e, he, rfl⟩
+    obtain ⟨h0, t, hcyc⟩ := List.exists_cons_of_ne_nil a.2.boundary.cycle_nonempty
+    have hchain : (h0 :: t).IsChain (BoundaryStep S.diagram a.1) :=
+      hcyc ▸ a.2.boundary.cycle_chain
+    have hh0 : S.diagram.toCombMap.faceOf h0 ∈ a.1 :=
+      ((a.2.boundary.cycle_mem_iff h0).mp (hcyc ▸ List.mem_cons_self)).1
+    have hall := joined_of_isChain (fun _ _ hyy' => joined_of_boundaryStep ha hyy') h0 t hchain
+      (not_mem_forestDarts_of_mem_region ha hh0)
+    have hz' := hall z (hcyc ▸ hzc)
+    have hs' := hall _ (hcyc ▸ hs)
+    obtain ⟨-, hk, -⟩ := hs'
+    have hαe : S.Joined (S.diagram.toCombMap.alpha e) e := by
+      have h := S.joined_alpha hk
+      rwa [S.diagram.toCombMap.alpha_involutive] at h
+    exact ⟨e, hxz.trans (hz'.symm.trans (hs'.trans hαe)), Embedded.cell S.diagram a.2.source,
+      Embedded.cell_mem _ _,
+      (Embedded.faceOf_of_mem_cellDarts (a.2.sourceArc.mem_cycle_of_mem_darts he)).symm⟩
+  · push Not at hbd
+    exfalso
+    let Q : S.diagram.toCombMap.Dart → Prop := fun y =>
+      S.diagram.toCombMap.faceOf y ∈ a.1 ∧
+        ∃ z, S.diagram.toCombMap.faceOf z = S.diagram.toCombMap.faceOf y ∧ S.Joined x z
+    have hQα : ∀ y, Q y → Q (S.diagram.toCombMap.alpha y) := by
+      intro y hy
+      obtain ⟨hy1, z, hz1, hz2⟩ := hy
+      have hxy : S.Joined x y := hz2.trans (hjoinface z y (hz1 ▸ hy1) hz1.symm)
+      have hαy : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) ∈ a.1 := by
+        by_contra hnot
+        exact hbd y hy1 hnot hxy
+      obtain ⟨-, hyk, -⟩ := hxy
+      exact ⟨hαy, _, rfl, hxy.trans (S.joined_alpha hyk)⟩
+    have hQiff : ∀ y, Q (S.diagram.toCombMap.alpha y) ↔ Q y := fun y =>
+      ⟨fun h => by
+        have h2 := hQα _ h
+        rwa [S.diagram.toCombMap.alpha_involutive] at h2, hQα y⟩
+    have hQσ : ∀ y, Q (S.diagram.toCombMap.sigma y) ↔ Q y := by
+      intro y
+      have hfp : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.sigma y) =
+          S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) := by
+        have h := S.diagram.toCombMap.faceOf_facePerm (S.diagram.toCombMap.alpha y)
+        rwa [CombMap.facePerm, Equiv.Perm.mul_apply, S.diagram.toCombMap.alpha_involutive] at h
+      have hswap : Q (S.diagram.toCombMap.sigma y) ↔ Q (S.diagram.toCombMap.alpha y) := by
+        show (S.diagram.toCombMap.faceOf (S.diagram.toCombMap.sigma y) ∈ a.1 ∧
+            ∃ z, S.diagram.toCombMap.faceOf z =
+              S.diagram.toCombMap.faceOf (S.diagram.toCombMap.sigma y) ∧ S.Joined x z) ↔
+          (S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) ∈ a.1 ∧
+            ∃ z, S.diagram.toCombMap.faceOf z =
+              S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) ∧ S.Joined x z)
+        rw [hfp]
+      exact hswap.trans (hQiff y)
+    have hQx : Q x := ⟨hx, x, rfl, Joined.refl hxk⟩
+    have hQo := (S.diagram.toCombMap.iff_of_eqvGen Q hQiff hQσ
+      (S.diagram.planar.1 x S.outerDart)).mp hQx
+    have ho := hQo.1
+    rw [faceOf_outerDart] at ho
+    exact (a.2.boundary.all_gCells _ ho).1 rfl
+
+/-- **Every retained dart is joined to a dart of a relator cell or of the exterior.** -/
+theorem exists_joined_cellOrOuter (P : OsinLemma94RealizedPolygons S)
+    {x : S.diagram.toCombMap.Dart} (hx : x ∉ S.forestDarts) :
+    ∃ y, S.Joined x y ∧ ((∃ C ∈ S.diagram.relatorCells, C.face = S.diagram.toCombMap.faceOf y) ∨
+      S.diagram.toCombMap.faceOf y = S.diagram.outerFace) := by
+  by_cases hout : S.diagram.toCombMap.faceOf x = S.diagram.outerFace
+  · exact ⟨x, Joined.refl hx, Or.inr hout⟩
+  by_cases hcell : ∃ C ∈ S.diagram.relatorCells, C.face = S.diagram.toCombMap.faceOf x
+  · exact ⟨x, Joined.refl hx, Or.inl hcell⟩
+  by_cases hreg : ∃ a ∈ S.family, S.diagram.toCombMap.faceOf x ∈ a.1
+  · obtain ⟨a, ha, hxa⟩ := hreg
+    obtain ⟨y, hy, hy'⟩ := exists_joined_cell_of_region ha hxa
+    exact ⟨y, hy, Or.inl hy'⟩
+  have hunsel : S.UnselectedGFace (S.diagram.toCombMap.faceOf x) :=
+    ⟨hout, fun C hC h => hcell ⟨C, hC, h⟩, fun a ha h => hreg ⟨a, ha, h⟩⟩
+  obtain ⟨k, hk⟩ := P.face_complete (S.diagram.toCombMap.faceOf x) hout
+    (fun j h => hcell ⟨Embedded.cell S.diagram j, Embedded.cell_mem _ j, h⟩)
+    (fun a ha h => hreg ⟨a, ha, h⟩)
+  have hmem : x ∈ (List.range (P.sideCount k)).flatMap (P.sideDarts k) := by
+    rw [← P.walk k]
+    exact List.mem_rotate.mpr (((S.diagram.faceBoundary (P.face k)).mem_iff x).mpr hk.symm)
+  obtain ⟨i, hi, hxi⟩ := List.mem_flatMap.mp hmem
+  have hin := List.mem_range.mp hi
+  have hxα : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha x) ≠
+      S.diagram.toCombMap.faceOf x := fun h => hx (mem_forestDarts.mpr ⟨h, hunsel⟩)
+  have hjoin := S.joined_alpha hx
+  cases hkind : P.kind k i with
+  | cell j =>
+    obtain ⟨arc, harc⟩ := P.cell_arc k i j hin hkind
+    rw [harc] at hxi
+    simp only [Embedded.CyclicArc.reverseDarts, List.mem_map, List.mem_reverse] at hxi
+    obtain ⟨e, he, rfl⟩ := hxi
+    refine ⟨S.diagram.toCombMap.alpha (S.diagram.toCombMap.alpha e), hjoin,
+      Or.inl ⟨Embedded.cell S.diagram j, Embedded.cell_mem _ j, ?_⟩⟩
+    rw [S.diagram.toCombMap.alpha_involutive]
+    exact (Embedded.faceOf_of_mem_cellDarts (arc.mem_cycle_of_mem_darts he)).symm
+  | boundary j =>
+    obtain ⟨_hj, arc, harc, _, _⟩ := P.boundary_arc k i j hin hkind
+    rw [harc] at hxi
+    exact ⟨_, hjoin, Or.inr (Embedded.faceOf_alpha_of_mem_targetArc_none S.diagram none arc rfl hxi)⟩
+  | cutting =>
+    exact absurd ((P.cutting_internal k i hin hkind x hxi).trans hk) hxα
+  | short =>
+    obtain ⟨a, ha, hall⟩ := P.short_region k i hin hkind
+    obtain ⟨y, hy, hy'⟩ := exists_joined_cell_of_region ha (hall x hxi)
+    exact ⟨y, hjoin.trans hy, Or.inl hy'⟩
+
+/-! ## The hitting set -/
+
+/-- The dart of relator cell `j` in the hitting set. -/
+noncomputable def cellDart (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (j : Fin S.diagram.rCellCount) : S.diagram.toCombMap.Dart :=
+  (S.diagram.faceBoundary (Embedded.cell S.diagram j).face).darts.head
+    (S.diagram.faceBoundary (Embedded.cell S.diagram j).face).nonempty
+
+theorem faceOf_cellDart (j : Fin S.diagram.rCellCount) :
+    S.diagram.toCombMap.faceOf (S.cellDart j) = (Embedded.cell S.diagram j).face :=
+  ((S.diagram.faceBoundary (Embedded.cell S.diagram j).face).mem_iff _).mp (List.head_mem _)
+
+/-- **The hitting set**: one exterior dart and one dart of each relator cell. -/
+noncomputable def hittingSet (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts) :
+    Finset S.forestDeleted.Dart :=
+  insert ⟨S.outerDart, not_mem_forestDarts_of_faceOf_eq_outer faceOf_outerDart⟩
+    (Finset.univ.image fun j => ⟨S.cellDart j,
+      not_mem_forestDarts_of_cell (Embedded.cell_mem S.diagram j) (faceOf_cellDart j).symm⟩)
+
+theorem card_hittingSet_le : S.hittingSet.card ≤ S.diagram.rCellCount + 1 :=
+  (Finset.card_insert_le _ _).trans
+    (Nat.succ_le_succ (Finset.card_image_le.trans (Finset.card_fin _).le))
+
+theorem hittingSet_hits (P : OsinLemma94RealizedPolygons S) (b : S.forestDeleted.Dart) :
+    ∃ t ∈ S.hittingSet, Relation.EqvGen S.forestDeleted.Adjacent b t := by
+  obtain ⟨y, hby, hy⟩ := exists_joined_cellOrOuter P b.2
+  rcases hy with ⟨C, hC, hCy⟩ | hout
+  · obtain ⟨j, rfl⟩ := List.mem_iff_get.mp hC
+    have hyk := not_mem_forestDarts_of_cell hC hCy
+    have hjoin : S.Joined y (S.cellDart j) :=
+      ⟨hyk, not_mem_forestDarts_of_cell (Embedded.cell_mem S.diagram j) (faceOf_cellDart j).symm,
+        eqvGen_of_faceOf_eq ⟨y, hyk⟩
+          (fun z hz => not_mem_forestDarts_of_cell hC (hCy.trans hz.symm)) _
+          ((faceOf_cellDart j).trans hCy)⟩
+    obtain ⟨-, -, p⟩ := hby.trans hjoin
+    exact ⟨_, Finset.mem_insert_of_mem (Finset.mem_image_of_mem _ (Finset.mem_univ j)), p⟩
+  · have hyk := not_mem_forestDarts_of_faceOf_eq_outer hout
+    have hjoin : S.Joined y S.outerDart :=
+      ⟨hyk, not_mem_forestDarts_of_faceOf_eq_outer faceOf_outerDart,
+        eqvGen_of_faceOf_eq ⟨y, hyk⟩
+          (fun z hz => not_mem_forestDarts_of_faceOf_eq_outer (hz.trans hout)) _
+          (faceOf_outerDart.trans hout.symm)⟩
+    obtain ⟨-, -, p⟩ := hby.trans hjoin
+    exact ⟨_, Finset.mem_insert_self _ _, p⟩
+
+end GloballyDistinguishedSectionFamily
+
+namespace OsinLemma94RealizedPolygons
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+theorem unselectedGFace_face (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    S.UnselectedGFace (P.face k) := by
+  refine ⟨P.face_ne_outer k, fun C hC => ?_, P.face_unselected k⟩
+  obtain ⟨j, rfl⟩ := List.mem_iff_get.mp hC
+  exact P.face_not_cell k j
+
+/-- The starts of a polygon are starts of the forest darts. -/
+theorem sameFaceStarts_subset_forestStarts (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) :
+    S.diagram.toCombMap.sameFaceStarts (P.face k) ⊆
+      S.forestDarts.filter fun y => S.diagram.toCombMap.sigma.symm y ∉ S.forestDarts := by
+  intro y hy
+  obtain ⟨hyF, hnot⟩ := S.diagram.toCombMap.mem_sameFaceStarts.mp hy
+  obtain ⟨hyf, hαf⟩ := (S.diagram.toCombMap.mem_sameFaceDarts _ _).mp hyF
+  refine Finset.mem_filter.mpr ⟨GloballyDistinguishedSectionFamily.mem_forestDarts.mpr
+    ⟨hαf.trans hyf.symm, by rw [hyf]; exact P.unselectedGFace_face k⟩, fun hX => hnot ?_⟩
+  obtain ⟨hX1, -⟩ := GloballyDistinguishedSectionFamily.mem_forestDarts.mp hX
+  have hface : S.diagram.toCombMap.faceOf
+      (S.diagram.toCombMap.alpha (S.diagram.toCombMap.sigma.symm y)) = P.face k := by
+    have h := S.diagram.toCombMap.faceOf_facePerm
+      (S.diagram.toCombMap.alpha (S.diagram.toCombMap.sigma.symm y))
+    rw [CombMap.facePerm, Equiv.Perm.mul_apply, S.diagram.toCombMap.alpha_involutive,
+      Equiv.apply_symm_apply] at h
+    exact h.symm.trans hyf
+  exact (S.diagram.toCombMap.mem_sameFaceDarts _ _).mpr ⟨hX1.symm.trans hface, hface⟩
+
+/-- **The starts of the polygons number at most the starts of the forest darts.** -/
+theorem sum_card_sameFaceStarts_le (P : OsinLemma94RealizedPolygons S)
+    (s : Finset (Fin P.count)) :
+    ∑ k ∈ s, (S.diagram.toCombMap.sameFaceStarts (P.face k)).card ≤
+      (S.forestDarts.filter fun y => S.diagram.toCombMap.sigma.symm y ∉ S.forestDarts).card := by
+  refine (Finset.card_sigma s fun k => S.diagram.toCombMap.sameFaceStarts (P.face k)).symm.le.trans
+    ?_
+  refine Finset.card_le_card_of_injOn (fun p => p.2) ?_ ?_
+  · intro p hp
+    obtain ⟨-, hp2⟩ := Finset.mem_sigma.mp (Finset.mem_coe.mp hp)
+    exact Finset.mem_coe.mpr (P.sameFaceStarts_subset_forestStarts p.1 hp2)
+  · intro p hp q hq hpq
+    obtain ⟨-, hp2⟩ := Finset.mem_sigma.mp (Finset.mem_coe.mp hp)
+    obtain ⟨-, hq2⟩ := Finset.mem_sigma.mp (Finset.mem_coe.mp hq)
+    have hfp := ((S.diagram.toCombMap.mem_sameFaceDarts _ _).mp
+      (S.diagram.toCombMap.mem_sameFaceStarts.mp hp2).1).1
+    have hfq := ((S.diagram.toCombMap.mem_sameFaceDarts _ _).mp
+      (S.diagram.toCombMap.mem_sameFaceStarts.mp hq2).1).1
+    have hpq' : p.2 = q.2 := hpq
+    have hk : p.1 = q.1 := P.face_injective (hfp.symm.trans ((congrArg _ hpq').trans hfq))
+    exact Sigma.ext hk (heq_of_eq hpq')
+
+end OsinLemma94RealizedPolygons
+
+/-- **The cutting transitions of Lemma 9.4, proved**, with `K = 4`, `ε₀ = 0` and `ρ₀ = 1`. -/
+theorem osinLemma94CuttingTransitionInput : OsinLemma94CuttingTransitionInput.{u, w, v} := by
+  intro _ _ _ _ _ _ _ _ _ _ _ _ _
+  refine ⟨0, fun _ _ => ⟨4, 1, Nat.one_pos, fun _ _ _ _ Delta _ _ _ _ S _ hminimal P _ => ?_⟩⟩
+  have h1 := (Finset.sum_le_sum fun k (_ : k ∈ P.relatorPolygons) =>
+    P.card_cuttingTransitions_le_sameFaceStarts k).trans
+      (P.sum_card_sameFaceStarts_le P.relatorPolygons)
+  have h2 := GloballyDistinguishedSectionFamily.card_forestStarts_add_four_le hminimal
+    S.hittingSet (GloballyDistinguishedSectionFamily.hittingSet_hits P)
+  have h3 := GloballyDistinguishedSectionFamily.card_hittingSet_le (S := S)
+  have h4 : S.diagram.rCellCount = Delta.rCellCount := S.equiv.rCellCount_eq
+  omega
+
+end GroupApproximation.GGT.VanKampen
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.exists_joined_cellOrOuter
+#audit_axioms GroupApproximation.GGT.VanKampen.GloballyDistinguishedSectionFamily.hittingSet_hits
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.osinLemma94CuttingTransitionInput

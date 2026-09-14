@@ -48,7 +48,7 @@ theorem vertexCount_le :
     by_cases h : ∃ d, M.vertexOf d = v ∧ keep d
     · obtain ⟨d, rfl, hd⟩ := h
       exact ⟨Sum.inl (Quotient.mk'' ⟨d, hd⟩), rfl⟩
-    · push_neg at h
+    · push Not at h
       exact ⟨Sum.inr ⟨v, h⟩, rfl⟩
   change Nat.card M.Vertex ≤ Nat.card (toCombMap M keep hkeep).Vertex +
     Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → ¬ keep d}
@@ -85,8 +85,7 @@ theorem faceOf_facePerm_eq (hdel : ∀ y, ¬ keep y → M.faceOf (M.alpha y) = M
           rwa [CombMap.facePerm, Perm.mul_apply, M.alpha_involutive] at h2
         rw [pow_succ', Perm.mul_apply, h1, hdel _ hy, ih hkpos (by omega)]
   have h3 := key m hm le_rfl
-  rw [heq] at h3
-  exact h3
+  exact (congrArg M.faceOf heq).symm.trans h3
 
 /-- `F ≤ F'`. -/
 theorem faceCount_le (hdel : ∀ y, ¬ keep y → M.faceOf (M.alpha y) = M.faceOf y)
@@ -138,7 +137,7 @@ theorem card_starts_add_two_mul_le (M : CombMap.{u}) (X : Finset M.Dart)
         2 * Nat.card {v : M.Vertex // ∀ d, M.vertexOf d = v → d ∈ X} ≤ X.card := by
   have hvs : ∀ y, M.vertexOf (M.sigma.symm y) = M.vertexOf y := fun y => by
     have h := M.vertexOf_sigma (M.sigma.symm y)
-    rwa [Perm.apply_symm_apply] at h
+    rwa [Equiv.apply_symm_apply] at h
   let A := X.filter fun y => ∀ d, M.vertexOf d = M.vertexOf y → d ∈ X
   let V₀ := Finset.univ.filter fun v : M.Vertex => ∀ d, M.vertexOf d = v → d ∈ X
   have hdisj : Disjoint (X.filter fun y => M.sigma.symm y ∉ X) A := by

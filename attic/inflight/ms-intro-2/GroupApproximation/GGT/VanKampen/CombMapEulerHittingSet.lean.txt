@@ -81,7 +81,8 @@ theorem eulerCharacteristic_le_two_mul_of_hitting_aux (n : ℕ) :
           intro x hx
           obtain ⟨hxT, hxS⟩ := Finset.mem_filter.mp hx
           exact Finset.mem_erase.mpr ⟨fun hxt => hxS (hxt ▸ Relation.EqvGen.refl t), hxT⟩
-        rw [Finset.card_subtype]
+        have hsubcard : T'.card = (T.filter fun x => ¬ S x).card := Finset.card_subtype _ _
+        rw [hsubcard]
         have := Finset.card_le_card hsub
         rw [Finset.card_erase_of_mem ht] at this
         omega
