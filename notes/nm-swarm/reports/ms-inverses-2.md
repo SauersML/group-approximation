@@ -467,6 +467,31 @@ The residual comes from w1-binder-1's `Estimating/OsinAppendixEulerTwoGonSpanOfC
   `relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV7`, `TorsionFreeResidualsV7`.
 - Sent ct-rank-two-limit all the closures: two-gon Euler, cell and section pocket Euler, kept cell, sector-free count.
 
+## Item 9 (main, 09-14 ~09:30, resumed after the 09:36 outage): the face-edge doubling step in V8 leaf 6
+
+`OsinTwoGonCleanCopySectionStatement` belongs to w1-binder-1, whose producer composes the closed thickenings. The open step is carrying a
+clean two-gon of `Φ'_M` through one doubling.
+- Reconciled after the outage:
+  - every landing of mine is on origin (f6099656e, ac902a9c1, e5ac33f58, 0bd28eecc, 68838eeae);
+  - `landed.log` agrees, and no probe or landing was in flight;
+  - the MSI master socket is down, so I author offline.
+- Statement, proposed to w1-binder-1 in one message: its six named Props from a7e2c216e
+  (`Estimating/OsinAppendixEulerTwoGonDoublingTransport`), verbatim:
+  - `TwoGonSpurStepStatement`, `TwoGonOuterCellStepStatement`, `TwoGonOuterSideStepStatement`;
+  - `TwoGonCellSideStepStatement`, `TwoGonCellHairStepStatement`, `TwoGonRegionPairStepStatement`.
+- Split. w1-binder-1 keeps the invariant drivers (`SurgeryOuterThickeningInvariant`), the composition
+  (`OsinAppendixEulerTwoGonCleanCopy`) and `DoublingTransport` as landed.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerPhiMapTransport.lean: the generic transport. A crossing-preserving
+  correspondence of `phiMapO` that commutes with `alpha` and the rotation, with the same regions, sides, orientations and target profiles,
+  carries `HasCleanTwoGon`. Split files `OsinAppendixEulerPhiMapTransport*` as needed.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonDoublingInner.lean: the CellSide, CellHair and RegionPair
+  steps through `FaceEdgeDoubling`. Split files `OsinAppendixEulerTwoGonDoublingInner*`.
+- CLAIM GroupApproximation/GGT/VanKampen/Estimating/OsinAppendixEulerTwoGonDoublingOuter.lean: the Spur, OuterCell and OuterSide steps
+  through the outer insertion. Split files `OsinAppendixEulerTwoGonDoublingOuter*`.
+- Does `ClosedWalkEnclosedBridgeDoublingProof` (c2fa6eed0) transport? Not as a whole: it carries an enclosed walk and face set, not
+  `phiMapO`. Its edge-insertion first-return lemmas in `ClosedWalkEnclosedBridgeDoublingRun` (`sigma_eq_none_iff`, `firstKept_lift`,
+  `first_kept_unique`) are the reusable part.
+
 ## Progress log
 
 - 09-13 ~17:01: ledger landed (d5d320909).
