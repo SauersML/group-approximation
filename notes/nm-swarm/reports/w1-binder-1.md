@@ -155,6 +155,14 @@ CLAIM two-gon gap faces GroupApproximation/GGT/VanKampen/Estimating/OsinAppendix
 
 - Step 1, the model test. Check the non-retention claim against the definitions: from the first cell dart of `a`, the rotation of `phiMapO` at cell `i` returns first to the first cell dart of `b`, and the darts in between are exactly `a`'s later source darts and the gap. Do the same at the outer vertex.
 - Step 2: the class chain along both gaps, then `twoGonPocketFace_of_faceClassO`.
+- Model-test verdict (step 1): the claim holds. This was derived against the definitions, not built as a separate Lean model; the proof below is the check.
+  - `CombMap.dual.sigma := M.facePerm`, so `phiMapO`'s rotation is the first return of the collapsed face permutation.
+  - At `O`: hull-euler's `exists_sigma_eq_of_twoGon` and `outer_collapsed_facePerm_pow` walk from `b`'s crossing back along `∂Δ` to `a`'s crossing, and no dart in between is retained.
+  - At cell `i`: facePerm² y is the first retained dart after `a`'s first source dart, i.e. `b`'s first source dart; with `source.darts = a ++ gap ++ b` the gap lies strictly between.
+  - Map-level caution: a region touching cell `i` along a side (not its arc) inside the gap is excluded by debt-conditional's class lemmas, since the face class meets no other region.
+- Finding: `TwoGonEulerGapInput` as spelled (inclusions only) doesn't locate the source gap, so its producer is stated with the gap equation of `PocketWalk.exists_of_exteriorAt`. ms-inverses-2's L1a drops that equation, so the respelled span input needs a variant of L1a that keeps it.
+- 00:38 probe 0914-003836-16332: the MSI hop died (rc=255) before the summary came back, but the remote log shows the module BUILT: `faceClassO_pow_of_firstReturn` and `twoGonPocketFace_of_outerGap`, both [propext, Classical.choice, Quot.sound]. There is no local record, so the whole module is being re-probed with the cell-side lemma added.
+- 00:36 probe 0914-003538: MSI connection down (infra); retried.
 
 ## Residuals of the Euler C6′ route
 
