@@ -337,6 +337,19 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
     - REV4 candidate after a PASS: a "Characters" subsection (+45 lines, Larsen–Tiep bibitem). High impact for operator algebraists; weigh it against the 7-page budget.
 74. **sk-el2-fq** (fa92d5adcb, unreviewed): EL_2(LC(X,F_q)⋊Z)/Z is infinite, f.g., simple, Kazhdan and LEF for every q. REV4 option R3: an "Other finite fields" paragraph (+12 lines) naming the changes (roots e_ij(e_V u), tower margin, SL_d quasisimple, Peirce level step), per item 23.
 
+75. **REV3 LANDED 9047d0d3c9** (~20:45; 618 lines, 7 pp, md5 274f1936…, pdflatex clean after the typesetting patch). Local copy updated. Referee reports a/b still owed; their findings go to rev4.
+76. **sk-lit-locators** (0ce25f499d). Locators checked against the journals: EJZ, Kirchberg, Stepanov, Pestov BSL, GM, Kassabov, Thom, Wilson; Ozawa p. 527 and Prop 7.1 confirmed through printed citations. Apply in rev4:
+    - GPS pages 51–111 (not 112);
+    - Kionke–Schesler "online first (2024)";
+    - Stepin credit: `\cite{Stepin,VershikGordon}` for "a f.p. LEF group is residually finite", with a Stepin bibitem;
+    - never build on Kirchberg Cor 1.2 item (v), which Thom corrected.
+77. **REV4 editor launched** (sk-editor-4) on the item 71 plan. It uses only PASSed inputs; items gated on sk-verify-8 go in once they PASS.
+
+78. **sk-sl3z-bandwidth** (68539769be, unreviewed; queued with sk-verify-7).
+    - Theorem: GL_m(LC(X,F_q)⋊Z) has no distorted infinite-order elements; the stable length is at least 1/(2wm), by a Krylov dimension count.
+    - Corollary: H_3(Z), SL_n(Z) for n ≥ 3, and BS(1,2) lie in no G_X. The Z-family is NOT universal for LEF groups (refutes `every-lef-group-embeds-in-a-z-subshift-elementary-group`).
+    - REV4 candidate after a PASS: the 6-line trimmed paragraph after Corollary 2, explaining why the lamplighter hosts are necessary. A sharp boundary at small cost; credit Cyr–Franks–Kra–Petite as the nearest prior. Main's lean: ADOPT (trimmed).
+
 ## Rejected (recorded)
 - The explicit Kazhdan constant 1/727 in the note (it stays in Cairn).
 - The exact centre formula over F_q (it stays in Cairn).
