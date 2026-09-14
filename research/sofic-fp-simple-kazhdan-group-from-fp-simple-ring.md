@@ -55,6 +55,11 @@ finitely generated (`elementary-groups-over-fg-rings-have-property-t`).
     embedding. Affine maps of finite vector spaces and `PGL_m(F_q)` on lines have gap `1/2`. So for
     finitely presented infinite simple `S`, no sofic approximation of `S` takes values in `F_q`-linear,
     affine or projective linear maps, and gate (c) needs permutation models of another kind.
+  - Unitary form (sk-fp-sofic-c, 2026-09-13, unreviewed): `fp-simple-groups-have-no-classical-group-unitary-models`.
+    No unitary representation or action of a finite group whose commutator subgroup is quasi-simple
+    classical gives hyperlinear or sofic models of a finitely presented infinite simple `S`. So rank
+    models cannot be upgraded through the representation theory of `GL_N(F_q)`, and gate (c) needs
+    finite targets outside these families.
 - **Standard soficity certificates: dead.**
   - A finitely presented infinite simple group is not LEA (`hyperlinear-fp-infinite-simple-group`,
     Attempts).

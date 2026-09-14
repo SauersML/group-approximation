@@ -62,6 +62,19 @@ hyperlinear half is open. The trivial group is not infinite.
     asymptotically trivial already makes `S` sofic: its ultraproduct is a nontrivial hence
     injective homomorphism into a universal sofic group. The Leavitt case of this is
     `binary-leavitt-unit-group-is-permutation-stable`.
+- **Representations of gapped finite groups.** Dead (lane sk-fp-sofic-c, 2026-09-13, unreviewed).
+  - `fp-simple-groups-have-no-gapped-finite-unitary-models`: no hyperlinear approximation of a finitely
+    presented infinite simple group factors through unitary representations of finite groups with a
+    uniform character-ratio gap at noncentral elements. Equivalently, every almost-homomorphism of that
+    form is asymptotically trivial.
+  - By Larsen--Shalev--Tiep (`fp-simple-groups-have-no-classical-group-unitary-models`), this covers every
+    finite group whose commutator subgroup is quasi-simple classical, in any rank and over any field,
+    with any representation or action.
+  - Room left:
+    - symmetric and alternating targets;
+    - unbounded products of gapped groups;
+    - finite groups with long chief series;
+    - unitary models that do not factor through finite groups.
 - **Measure equivalence.** Open. By `paunescu-class-is-measure-equivalence-invariant`,
   either every lattice of `Aut(X_+) x Aut(X_-)` for a Kac--Moody twin building lies in
   Paunescu's class `𝒮` or none does. A lattice in `𝒮` has a sofic free action and is sofic.

@@ -27,8 +27,12 @@ gapped finite groups, even when the maps into the groups are arbitrary.
   permutation representations. So `S` has no sofic approximation through actions of a θ-gapped family.
 - **Abelian targets.** Every element is central, so the family is vacuously gapped. The theorem then says that a nonabelian
   `S` has no hyperlinear models through representations of abelian groups.
-- **Classical groups.** Larsen–Shalev–Tiep give θ = 2^{−1/481} for finite simply connected classical groups, uniformly in
-  rank and field. Applying the theorem there is `fp-simple-groups-have-no-classical-group-unitary-models`.
+- **Classical groups.** Larsen–Shalev–Tiep give θ = 2^{−1/481} for finite quasi-simple classical groups, uniformly in rank
+  and field (`lst-quasisimple-classical-character-ratio-bound`). Applying the theorem there is
+  `fp-simple-groups-have-no-classical-group-unitary-models`.
+
+**Equivalent form.** For simple `S`, a nontrivial homomorphism into the ultraproduct is injective. So every homomorphism
+`S → ∏_ω U(d_k)` induced through a θ-gapped family in this way is trivial: such almost-homomorphisms are asymptotically trivial.
 
 **Hypotheses are needed (model tests).**
 - `SL_3(Z)` is finitely presented and infinite, but not simple. It has hyperlinear, even sofic, approximations through its
