@@ -163,3 +163,29 @@ CLAIM the exterior face against the cell pocket walk and the two-order statement
     built.
 - `CellPocketWalkSideRelatorCellStatement` (same file, same fixed order) may have the same issue: the side of the fixed
   order holds the pocket after the first gap, and the relator cells may lie in the other pocket. Not checked here.
+
+## Item 4: the two-order dichotomy (main's 19:0x assignment, ruling "choose the order" accepted)
+
+Target: for noncrossing walks `w₁` (order `(a, b)`) and `w₂` (order `(b, a)`), the exterior face is off the side of
+one of them. ms-cite-1 lands the respelled residuals; this lane discharges them by name once it sends the names.
+
+CLAIM the two-order dichotomy:
+- `GroupApproximation/GGT/VanKampen/CyclicArcComplement.lean`: two arcs of a duplicate-free cycle spanning `P G₁ Q`
+  and `Q G₂ P` have disjoint gaps `G₁`, `G₂`.
+- `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketCellWalkOrder.lean`: a face on both sides is a face of `a` or
+  `b`, so by `FaceSetBoundary.all_gCells` the exterior face is off one side.
+
+Proof plan, and the case analysis used as the model test:
+- Take a face-class chain of `w₁` from a walk dart to the face. Carry along it the invariant "on the side of `w₂` ⇒ in
+  `a ∪ b`". Every face on the chain is on the side of `w₁`.
+- Across an edge on neither walk, membership in the side of `w₂` is preserved. Membership in `a` and in `b` is
+  preserved too: every boundary dart of `a` or `b` lies in `inv(arc on i)`, `sideFrom i`, `inv(arc on j)` or
+  `sideFrom j`, and each of these is on `w₁` or `w₂`.
+- Across an edge of `w₂` only, the dart is a side of `w₂`, whose own face is in a region. Otherwise it is a gap dart of
+  `w₂`, whose other face is `Π_i` or `Π_j`. Both cells are off the side of `w₁`, so that step cannot occur on the chain.
+- Base case at a gap dart of `w₁`:
+  - if the edge is on neither walk, `Π_i`, off the side of `w₂`, shares its face class;
+  - if the dart lies on a side of `w₂`, its own face is in a region;
+  - the case of a gap dart of `w₂` needs the gaps disjoint (first module);
+  - the other cases contradict the arcs having no repeated dart, or the cells being distinct.
+- No `CopyClean` field is used.
