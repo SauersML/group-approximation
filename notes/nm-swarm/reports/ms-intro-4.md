@@ -249,3 +249,33 @@ hull-respell's unlanded good-corner step) and the full-arc case with both sides 
   `PocketFaceSet.FirstTurns`, `firstTurns_iff`, `FirstTurns.closedWalk`, `exists_turn_of_not_unpinched`, `avoids_of_turn`, `exists_turnInput`,
   `firstTurn_pinchSplitInside`, `firstTurns_pinchSplitInside`, `pinchSplitInside_repeatedVisits_lt_of_turn`, `exists_firstTurnStep_of_turn`,
   `GoodCorners`, `exists_firstTurnStep_of_goodCorners`, `PocketPinchGoodCornerStepStatement` and `pocketPinchGoodCornerStep`.
+
+## Resume after the 20:03 outage
+
+- The CellPinchSection probe 0913-195914-338 finished GREEN before the outage, and the tree md5 e6ed224f equals its record, so it
+  landed under that record without a re-probe.
+- The cell good-corner draft had no attic copy and no probe, so it was probed fresh.
+
+### LANDED d3b0769b8 `Estimating/OsinPocketCellPinchSection` (probe 0913-195914-338 GREEN)
+
+This is the additive respelling, after w1-binder-7's `OsinPocketPinchSection`. ms-cite-1's full-arc refutation at ε = 1 shows the Pos spelling is false as stated.
+- `CellPocketPinchSectionInput D eps W`: least area, letter labels, `ClosedWalk`, and proper arcs on both cells, concluding a copy with letter labels
+  and a simple cell pocket face set.
+- `CellPocketPinchSectionStatement`: the `OsinCCondition` prefix of `PocketPinchLabelledSectionStatement`.
+- `cellPocketPinchSectionStatement_of_pos`, and `CellPocketFaceSet.copyRegion_of_pinchSection`.
+- ms-cite-1 got the names, plus the two new premises V2Copy must thread: least area of the copy via `S'.equiv`, and a named proper-arc input.
+
+### LANDED e577feeff `Estimating/OsinPocketCellPinchFirstTurn` (probe 0913-202522-64932 GREEN, BUILT and COMPILED)
+
+The module is unwired and queued for wiring. It mirrors the adopted `OsinPocketPinchFirstTurn` (5c9707cfe) at cell level, reusing its public
+`PinchFirstTurn.exists_mem_ne_rel_of_isChain` and `FirstTurn.reverse_map_alpha_iff`.
+- `CellPocketFaceSet.FirstTurns` and `FirstTurns.closedWalk`, `exists_turn_of_not_unpinched`, `avoids_of_turn`, `exists_turnInput`, `firstTurn_pinchSplitInside`,
+  `firstTurns_pinchSplitInside`, `pinchSplitInside_repeatedVisits_lt_of_turn`, `exists_firstTurnStep_of_turn`, `GoodCorners`,
+  and `exists_firstTurnStep_of_goodCorners`.
+- `CellPocketPinchGoodCornerStepStatement` and `cellPocketPinchGoodCornerStep`, stated without the least-area or proper-arc premises, so they hold under the
+  section premises too. The step returns first-turn order, so the step can be iterated.
+
+What remains for `CellPocketPinchSectionInput` (proper-arc case only; w1-binder-6 handles the full-arc crux through the Lemma 9.7 induction):
+1. First-turn order of the cell pocket produced by `exists_cellPocketFaceSet_closedWalk_of_orient`. Walk order alone is not enough (the rose shape).
+2. Re-establishing `GoodCorners` after each step by corner doublings, which keep first-turn order: `faceEdgeDoubling_firstTurnChain` for cells (4bda24f4d), and
+   `EdgeInsertion.firstTurnChain_map_embed` through `faceEdgeDoublingInside_boundary_cycle`. Corners in the cells use trim–double (4bda24f4d) when a side has room.
