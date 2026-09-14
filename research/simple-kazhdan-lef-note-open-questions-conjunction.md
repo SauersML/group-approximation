@@ -2,14 +2,20 @@
 rg: 2
 id: simple-kazhdan-lef-note-open-questions-conjunction
 kind: route
-title: The note's two closing questions, as a conjunction
+title: The note's closing questions, as a conjunction
 target: simple-kazhdan-lef-groups-note-open-questions
 requires:
   - hyperlinear-fp-infinite-simple-kazhdan-group
   - subshift-el3-f2-isomorphism-forces-strong-orbit-equivalence
+  - sofic-groups-embed-in-simple-kazhdan-sofic-groups
+  - sofic-non-lef-infinite-simple-kazhdan-group-exists
 ---
 
-Assembly only: the root claim `simple-kazhdan-lef-groups-note-open-questions` is the conjunction of the two listed open
-claims. The second is the binary case of `subshift-elementary-group-isomorphism-forces-orbit-equivalence`, which is the
-question the note prints for `G_X` over `F_2`. This route makes both reachable from a root, so the frontier report
-lists them as holes of this program.
+Assembly only: the root claim `simple-kazhdan-lef-groups-note-open-questions` is the conjunction of the listed open
+claims.
+- The second is the binary case of `subshift-elementary-group-isomorphism-forces-orbit-equivalence`, the question the
+  note prints for `G_X` over `F_2`.
+- The third is the sofic host question of the revision 4 draft.
+- The fourth is the negative answer to "Is every sofic infinite simple Kazhdan group LEF?", proposed by sk-questions-section.
+
+This route makes all of them reachable from a root, so the frontier report lists them as holes of this program.
