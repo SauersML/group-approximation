@@ -12,5 +12,6 @@ Conjecture:
 - Every quotient of G_X is isomorphic to some G_Y.
 
 Status:
-- Established: the sandwich E_Y ≤ N ≤ ker π_Y (`aperiodic-subshift-el-normal-subgroups-are-sandwiched`) and the simple-iff-minimal corollary (`subshift-elementary-group-simple-iff-minimal`).
+- Established: the sandwich E_Y ≤ N ≤ ker π_Y (`aperiodic-subshift-el-normal-subgroups-are-sandwiched`).
+- The simplicity criterion is the special case in `subshift-elementary-group-simple-iff-infinite-minimal`.
 - Open: the K_2 layer (`aperiodic-subshift-ring-unstable-k2-vanishes`).

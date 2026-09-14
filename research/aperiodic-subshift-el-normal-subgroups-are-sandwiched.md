@@ -5,6 +5,7 @@ kind: claim
 title: Normal subgroups of EL_n over an aperiodic subshift crossed product are sandwiched by a unique subsystem
 distinct_from:
   steinberg-elementary-groups-are-simple-mod-centre: that is the minimal case (normal subgroups central or everything); this classifies the normal subgroups for every aperiodic subshift, up to the K_2 layer
+  subshift-elementary-group-simple-iff-infinite-minimal: that is the simplicity criterion (a proper subsystem gives one noncentral proper kernel); this places every normal subgroup between E_Y and the restriction kernel of a unique subsystem Y
 artifacts:
   - research/artifacts/sk-open-1-subsystem-normal-subgroups-2026-09-13-part1.md
 ---
