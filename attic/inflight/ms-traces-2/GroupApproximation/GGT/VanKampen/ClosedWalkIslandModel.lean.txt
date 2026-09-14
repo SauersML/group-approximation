@@ -291,7 +291,8 @@ theorem enclosedFaceSet : EnclosedFaceSet diagram islandFaces outerWalk where
     rcases Nat.lt_or_ge 1 m with h1 | h1
     · exact absurd (walkKeep_all _) (hmin 1 Nat.one_pos h1)
     · obtain rfl : m = 1 := by omega
-      simpa only [pow_one] using sigma_alpha_mem d hd
+      rw [pow_one]
+      exact sigma_alpha_mem d hd
 
 open scoped Classical in
 /-- **Calibration.**  The clauses of `ClosedWalkEnclosedSubdiagramStatement` hold at `{Π, I}`,
@@ -321,7 +322,7 @@ theorem enclosedSubdiagram_realized :
   · rw [← hout, Embedded.dartWord_outerDarts]
   · have hfilter :
         (diagram.relatorCells.filter fun C => C.face ∈ islandFaces) = diagram.relatorCells :=
-      List.filter_eq_self.mpr fun C hC => by simpa using hfaces C hC
+      List.filter_eq_self.mpr fun C hC => decide_eq_true (hfaces C hC)
     exact (congrArg List.length hfilter).ge
   · intro j
     exact ⟨rfl, hfaces _ (Embedded.cell_mem diagram j)⟩
