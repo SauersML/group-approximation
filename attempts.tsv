@@ -333,3 +333,4 @@
 34775745254	2026-09-13T18:49:02Z	GroupApproximation/Sofic/ExactInvolutionCut.lean	exactInvolutionNegativeCut_isOrthogonalProjection
 34783781516	2026-09-13T21:26:22Z	GroupApproximation/Sofic/ExactInvolutionLifts.lean	norm_unitary_conj
 34789930204	2026-09-13T23:32:26Z	GroupApproximation/Sofic/CliffordWitnessHSRemarkGeneral.lean	manuscriptCliffordWitnessSoficModelsHS
+34796668834	2026-09-14T02:21:23Z	GroupApproximation/Sofic/VerticalAscendingHNN.lean	manuscriptPrintedVerticalIsAscendingHNN
