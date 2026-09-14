@@ -17,3 +17,5 @@ More precisely, if `Δ` is f.g. and `ρ : Δ -> GL_m(R_X)` is injective, then `g
 
 Route: `z-family-lef-universality-reduces-to-gl-m-crossed-products-proof`. Artifact:
 `research/artifacts/sk-lef-embedding-d-z-family-2026-09-13-part1.md` §1.
+
+**Review (sk-verify-3, 2026-09-13): PASS.** Overgroup, tower isomorphism `M_m(R_X) ≅ R_(X^(m))`, Whitehead's lemma and `c ↦ diag(c,1,1)` on `[S^×,S^×]` re-derived, and so is the known-subgroups list. See `research/artifacts/sk-review-3-2026-09-13-part8.md` §1.

@@ -23,3 +23,5 @@ distance ≤ w.
 
 Route: `fp-subgroups-of-subshift-gl-have-banded-representations-proof`. Artifact:
 `research/artifacts/sk-lef-embedding-d-z-family-2026-09-13-part2.md`.
+
+**Review (sk-verify-3, 2026-09-13): PASS for Propositions B, C and Corollary B1; display GAP in the obstruction test.** The hypothesis must quantify over every `w` ("for every w there is r such that no w-banded representation is injective on B(r)"), not "for some w"; the artifact's Corollary B2 is correct. Wiring note: the required periodic-models node is stated for balls of EL_3, while the route uses its proof for general finite lists. See `research/artifacts/sk-review-3-2026-09-13-part8.md` §§2–3.
