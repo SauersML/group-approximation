@@ -60,7 +60,6 @@ theorem eq_or_mem_of_cycle_mem_iff {M : CombMap.{0}} (hM : M.IsConnected)
     (d₀ := B.darts.head B.nonempty) (Or.inl ((B.mem_iff _).mp (List.head_mem B.nonempty))) f
   intro d hd
   change M.faceOf d = g ∨ M.faceOf d ∈ faces at hd
-  change M.faceOf (M.alpha d) = g ∨ M.faceOf (M.alpha d) ∈ faces
   rcases hd with hdg | hdf
   · have hdB : d ∈ B.darts := (B.mem_iff d).mpr hdg
     have hb : IsBoundaryDart M faces (M.alpha d) :=
@@ -194,7 +193,7 @@ theorem false_of_simple {X' : DiscDiagram.{0, 0, 0} pinchW}
   -- The side of the simple cycle is a pocket region.
   have hS : IsSimpleClosedWalk X'.toCombMap K'.boundary.cycle := hsimple
   have hside : SimpleClosedWalkSides.sideFaces X'.toCombMap K'.boundary.cycle = K'.faces :=
-    K'.sideFaces_boundary_cycle_eq
+    K'.sideFaces_boundary_cycle_eq_faces
   obtain ⟨P, hPfaces, hPouter⟩ : ∃ P : PocketRegion X',
       P.faces = K'.faces ∧ invDarts X' P.outer.cycle = K'.boundary.cycle :=
     ⟨PocketRegion.ofSimpleClosedWalk hS (K'.outerFace_not_mem_sideFaces hside),
@@ -211,7 +210,6 @@ theorem false_of_simple {X' : DiscDiagram.{0, 0, 0} pinchW}
     P.diagram_rCellCount_pos (cell_mem X' K'.kept) (by rw [hPfaces]; exact K'.kept_mem)
   obtain ⟨C, hCs⟩ := List.length_eq_one_iff.mp (le_antisymm hcells1 (Nat.succ_le_of_lt hpos))
   have hmemC : C ∈ P.diagram.relatorCells := by
-    change C ∈ P.diagram.relatorCells
     rw [show P.diagram.relatorCells = [C] from hCs]
     exact List.mem_singleton_self C
   -- Its word is the word of a relator cell of `X'` inside the face set.
@@ -224,9 +222,12 @@ theorem false_of_simple {X' : DiscDiagram.{0, 0, 0} pinchW}
       g hg)
   have hgP : g ∈ P.faces := P.mem_faces_of_not_mem_outside hg
   have hgo : g ≠ X'.outerFace := fun h => hg (h ▸ P.outerFace_mem)
+  have hfw : X'.faceWord g ∈ pinchW := by
+    rw [← hCword]
+    exact C.word_mem
   rcases X'.inner_face g hgo with ⟨C', hC', hC'g⟩ | hone
   swap
-  · exact listVal_ne_one_of_mem_pinchW (hCword ▸ C.word_mem) hone
+  · exact listVal_ne_one_of_mem_pinchW hfw hone
   obtain ⟨k, hk⟩ := List.get_of_mem hC'
   have hkword : C.word = (cell X' k).word := by
     rw [hCword, show cell X' k = C' from hk, X'.relatorCell_word C' hC', hC'g]
