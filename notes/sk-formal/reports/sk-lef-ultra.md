@@ -95,3 +95,22 @@ All four are wire-queued. Closed endpoints, each with `#audit_closed_axioms` (pr
   embedding step with levels on Γ × ℤ, `β`, `h_γ`, finite models `ψ` and transversals `κ`. It is unassigned in the census, and I
   have not claimed it.
 - 08:38 probe 0914-083724-84633 GREEN (4 files compiled, LEFLevelEmbedding BUILT, build succeeded, audit gate clean); rows and report landed.
+
+## CLAIM 2 (main ~09:00): the second choice of Δ, `LEFSolvableWordProblemEmbeddingStatement`
+
+Target: tex l.358–382 and l.439–444 at 696c4b602. The piece is sk-lef-assembly's `LEFSolvableWordProblemEmbeddingStatement`
+(`Manuscript/SimpleKazhdanSofic/LEFSolvableWordProblem`, eb53a0116), adopted verbatim. oa-expanders has no files or claim and is
+standing down (main). `RestrictedSumLEFStatement` is already proved by sk-lef-assembly (eb53a0116).
+
+CLAIM β, h_γ, [β,h_γ] multiplies the level 0 by γ⁻¹, Γ ≤ [Δ,Δ], Δ infinite and f.g. GroupApproximation/GroupTheory/HalfLineLevels.lean
+
+CLAIM the normal form f β^ℓ of elements of length ≤ r GroupApproximation/GroupTheory/HalfLineNormalForm.lean
+
+CLAIM ψ, θ, κ (transversals), ζ, the finite models, Δ LEF GroupApproximation/GroupTheory/HalfLineModels.lean
+
+CLAIM Δ has solvable word problem (l.439–444) GroupApproximation/Manuscript/SimpleKazhdanSofic/HalfLineWordProblem.lean
+
+CLAIM `lefSolvableWordProblemEmbeddingStatement` and the printed sentence endpoints GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFSecondDelta.lean
+
+Ownership check (09:0x): none of these paths or names exist on origin or in the shared tree. `lanes/*.files` names no half-line
+module. The only origin mention of the piece is its statement in `LEFSolvableWordProblem`.
