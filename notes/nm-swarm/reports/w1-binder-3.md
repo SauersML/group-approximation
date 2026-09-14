@@ -189,3 +189,37 @@ Proof plan, and the case analysis used as the model test:
   - the case of a gap dart of `w₂` needs the gaps disjoint (first module);
   - the other cases contradict the arcs having no repeated dart, or the cells being distinct.
 - No `CopyClean` field is used.
+- 19:5x: ms-cite-1 respelled the residual to the shape agreed here: `CellPocketWalkOuterOffSideSomeOrderStatement`
+  (da5b1466e, `Estimating/OsinPocketMultipleEdgeCopy`).
+  - The complementary order is `(b, a, i, j)`, not `(b, a, j, i)`. The order `(b, a, j, i)` spells the same walk as
+    `(a, b, i, j)`, up to rotation.
+  - The statement needs no CopyClean and no least area.
+  - Its consumers are `multipleEdgePocketRegionCopyInput_of_pinchOrder` and its successors, `OsinGreendlingerWaistV4`
+    and `TorsionFreeResidualsV4`.
+- The first two probes were red (0913-193144-68949, 0913-194106-15623). Fixes:
+  - the identifiers `hΠ…` do not parse, because `Π` is a binder token; they are renamed `hcells`, `hoffi₁`, and so on;
+  - `isNoncrossingClosedWalk_of_orient` lives in `OsinPocketColourNoncrossing`, and the import now names that module;
+  - the local copy of `mem_invDarts_iff` is dropped in favour of `Embedded.mem_invDarts_iff` (FaceSetBoundaryWalk).
+  Both failed probes wrote `.green` records. Those records are not evidence.
+- 20:33: probe 0913-202753-83639 GREEN.
+  - `OsinPocketCellWalkOrder` built with 0 warnings, and all 12 `#audit_axioms` report only
+    `[propext, Classical.choice, Quot.sound]`.
+  - `CyclicArcComplement` was restored from cache with the md5 it had when built at 0913-193144-68949. Its two audits
+    there report the same three axioms.
+  - Both modules land in the same commit as this entry.
+  - `GGT/VanKampen/CyclicArcComplement`:
+    - `CyclicArc.rotate_eq_of_head?_eq_of_nodup`;
+    - `CyclicArc.not_mem_of_complementary_spans`: on a cycle with no repeated dart, arcs reading `P G₁ Q` and
+      `Q G₂ P`, with `P` and `Q` nonempty, have disjoint gaps.
+  - `Estimating/OsinPocketCellWalkOrder`:
+    - `CellPocketWalkOrder.mem_regions_of_mem_sideFaces_both`: for noncrossing walks of both orders, a face on both
+      sides is a face of `a` or `b`. The proof carries a face-class invariant along a chain of `w₁`.
+    - `CellPocketWalkOrder.outerFace_not_mem_sideFaces_or`: so the exterior face is off one of the two sides
+      (`FaceSetBoundary.all_gCells`).
+    - `CellPocketWalkOrder.outerFace_not_mem_sideFaces_or_of_walks`: the same from the walk data and closed-walk facts of
+      both orders, with noncrossing from `CellPocketWalkColour.walk_orient`.
+    - `cellPocketWalkOuterOffSideSomeOrder : CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v}`: the discharge by
+      name.
+  - No CopyClean field and no least area are used.
+- The closed-walk facts of the `(b, a, i, j)` walk on the clean copy come from ms-cite-1's
+  `CellPocketCopyCleanBothOrdersStatement` (owner w1-binder-5), not from this lane.
