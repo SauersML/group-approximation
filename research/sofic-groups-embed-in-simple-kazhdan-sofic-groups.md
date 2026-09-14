@@ -47,6 +47,14 @@ groups.
   minimal `X` and a sofic orbit relation; the missing input is
   `sofic-groups-have-measured-free-minimal-subshifts`. The conditional rank bound is written in
   `research/artifacts/sk-sofic-embedding-b-ultraproduct-envelopes-2026-09-13.md` §4.
+  For the rank route this is superseded by the lamplighter host in the next bullet.
+- **All sofic inputs, rank metric (sk-measured-subshift, 2026-09-13, unreviewed).**
+  - Every finitely generated sofic `Γ` is a subgroup of an infinite finitely generated simple Kazhdan `F_2`-linear
+    sofic group (`sofic-groups-embed-in-simple-kazhdan-linear-sofic-groups`).
+  - The host is the lamplighter action of `Z/2 ≀ C(Γ)` on `2^(C(Γ))`. Its crossed product has counting rank models
+    over sofic approximations (`sofic-lamplighter-bernoulli-crossed-products-have-rank-models`).
+  - So the measured free minimal subshift is not needed for the rank route, and what remains of this claim is the
+    rank-to-Hamming gap.
 - **Ultraproduct envelopes directly.** Inside a rank ultraproduct `∏_ω M_(N_k)(F_2)` the image of a
   sofic group is available at once. But a finitely generated simple subring with local annihilation
   containing it must still be produced. Paradoxical rings such as Leavitt algebras are excluded,
