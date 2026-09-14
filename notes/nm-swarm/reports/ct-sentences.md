@@ -182,3 +182,24 @@ were not recomputed here.
     LINE:1769 partial, LINE:1770 and LINE:1772 formalized) for the same sentences.
   - Kept: the six structural rows only. Every ct lane except ct-involution and ct-rank-two-limit now keeps its own row
     file, and neither of those two has a closed endpoint yet.
+- 09-13 20:15 resume after the API outage: nothing lost. Landings through cfdcdecbc are on origin and byte-identical to local;
+  no probe was in flight.
+- 09-13 ~20:30 SWEEP against the regenerated census f78d19014 (20:02). It is keyed to the current tex (SHA-256 0c4ada3c…) and
+  merged after every ct row file. Block: 121 sentences, 86 partial, 12 formalized, 11 unassigned, 8 structural, 4 definition.
+  - Rows LANDED ba2a9baf2 for 7 of the 11 unassigned. Each has a landed, closed carrier whose statement I read.
+    - structural: 7cb6740cda5d (Introduction lead-in)
+    - definition: 307b3272f639 (`ClopenCrossedProduct`), b98536a82318 (`Cell.d`, `Cell.f`, `bilateralCell_d`),
+      5c75b0bf2db4 (`FinitaryGL.GLfin`, `shiftGL`, `shiftAction`)
+    - formalized: 518c40eb5865 (Introduction radical sentence, `printedCoreMFRadical_closed`), 8985ec7b13b2 ("then kill
+      the defect root", `root_killed_of_finite_central_defect` + `bilateralThreeCellStatement`), 512b53c80bd2 (rank n≥3
+      by extension, `relativeElementary_killed_of_rootThree_killed` + `printedBilateralThree_closed`)
+    - Only unconditional declarations are named; no `_of_pieces` / `_of_cell` forms with Prop hypotheses.
+  - The only uncarried proof step: tex 1743–1750, C∩Y ⊆ CR(S_C) by the printed saturation route, and the equality J = p_C I p_C
+    (7da9f1c6076f, 8f8f0c7b59fa, d5dcf496d149, e7f732e9cb78). It is NOT taken here. ct-rank-budget owns it and has it in flight:
+    `DynamicRankBudgetInducedCoreReverse` and `…Saturation` landed, `…InducedCoreClosed` attic 484a4b651 at 20:23.
+  - Stale grades, for the owning lanes and the census lane: 26 rows of the merged map naming `ChainCoreClosures` endpoints
+    are still `partial` "over CoreModelsLEFStatement" (ct-bilateral-mf 1baaaaa0fb29 69ef136d809a c890294ad9b0, ms-core-4
+    e94a545b030a 84bacecbfa4c cc05d5f6226c, chain-reflection 42c043ef7ab5 8981cd70915a 43afa4ee3f10 cfbacaa0fffa
+    400dde0dbd9d, and others). `coreModelsLEFStatement` is closed (`CoreModelsLEFClosed.lean:46`, `#audit_closed_axioms`).
+    ct-rank-budget has already regraded LINE:257 after the merge.
+  - No printed claim found false.
