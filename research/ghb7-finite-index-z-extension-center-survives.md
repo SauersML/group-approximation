@@ -42,6 +42,14 @@ such that the order of the image of `z` in finite quotients of `K~` is unbounded
   - If `G` is hyperlinear, stability of `G` forces a persistent degree-two class and non-goodness
     (`hs-stable-hyperlinear-kazhdan-hyperbolic-forces-persistent-class`). This claim is the opposite
     profinite behaviour.
+- **Smaller hosts and a combinatorial form (2026-09-14, lane `hl-ghb7-central-survival`).**
+  - `ghb7-normal-subgroup-b2-is-orbit-euler-count`: `K_7 = Ker(G → Z/7, a,b,c ↦ 1)` has
+    `b_2(K_7;Q) = 6`, so the premise can already be tested at index 7.
+  - `z-extension-centre-orders-are-restricted-evaluation-indices`: the centre orders in finite
+    quotients of `K~` are exactly the indices `[Z : c(i_*H_2(N;Z))]` over finite-index `N <= K`.
+  - `ghb7-centre-survival-iff-unbounded-orbit-cycle-indices`: those indices agree, up to a factor 7,
+    with `[Z : ω(p_* Z_2(N\Y;Z))]` for an integer cochain `ω` on `K\Y`. So the premise is a
+    statement about finite orbit complexes and integer linear algebra.
 - **Not done.** No finite quotient of any `K~` was computed, and no finite-index `K` smaller than `H`
   with a real degree-two class was exhibited. By `ghb7-congruence-kernel-hyperbolic-kazhdan-with-large-b2`,
   a torsion-free `K` of index `m` has `χ(K) = 1381·m/2401 > 0`, so every torsion-free finite-index
