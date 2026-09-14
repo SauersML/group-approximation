@@ -188,6 +188,56 @@ CLAIM conditional-baseline-sweep GroupApproximation/Manuscript/NonMFSentences/Ch
 - Each gets a closed named endpoint with `#audit_closed_axioms` along the printed route. Row notes say "retires <kind> <decl>",
   and the census lane removes the baseline line.
 
+### Sweep triage (origin 9fb719923 → da7a808e9)
+
+Merge rules that decide what a lane can flip (census `merge_rows.py`):
+- One key's rows from all lanes are united. The grade is `partial` if any row says partial, and the decls are joined.
+- Only a later row of the same lane marked SUPERSEDES replaces that lane's rows.
+- Declarations leave another lane's row only through a census DROP override.
+- A carrier outside the root import closure downgrades the row to partial; the next merge after wiring restores it.
+
+What the triage found, from tex 1541 on:
+- My five CoreModelsLEF rows (`e94a545b030a`, `84bacecbfa4c`, `cc05d5f6226c`, `aef6776a7348`, `646debe8463c`): ct-rank-budget regraded them
+  in 2fb94570a, naming `printedCoreMFRadical_closed`. They are partial only while ChainCoreClosures is unwired.
+- Rank-two rows (`f31fa0413ffd`, `dd5ef3eafd48`, `5e4354e1556b`): `RankTwoKazhdanLimitClosed.coreRestrictionLocallyFiniteKernel` is already
+  closed. Partial for wiring only.
+- Bilateral cell, return tower, two-ended and trace rows at tex 1550–2062: partial only for wiring. Not conditional.
+- ct-rank-budget's rows (1697–1760): ct-rank-budget regrades them itself.
+
+### Landed
+
+Module `GroupApproximation.Manuscript.NonMFSentences.ChainCoreSweepClosed`, LANDED f107803fc (probe GREEN 0913-203909-79737), queued for
+wiring. Namespace `GroupApproximation.ChainCore.ChainCoreSweep`, each endpoint with `#audit_closed_axioms`:
+- `printedBilateralThreeRootAddition_closed : PrintedBilateralThreeRootAddition` (tex 1594–1596), via the closed cell,
+  `rootThree_killed_of_cell` and root addition;
+- `printedNotDirectlyFiniteGLNotMF_closed : PrintedNotDirectlyFiniteGLNotMF` (tex 1599–1600), via the nonzero defect over the closed
+  LEF core, the cell kill in `GL₃`, extension by identity and `not_isOperatorMF_of_root_killed`;
+- `coreMFRadicalKillGLStatement_holds : CoreMFRadicalGLKill.CoreMFRadicalKillGLStatement` (tex 1643–1644).
+
+Census rows appended: `7f55f9a11e5a`, `2016c672dd6a`, `2b6b9904f2d6` (formalized, naming the closed endpoints only).
+
+### Left for owners and the census lane (not lane-editable)
+
+- DROP `relativeElementary_killed_of_rootThree_killed` from ct-bilateral-mf `LINE:1594`. Retires that inlined-statement finding.
+- DROP `not_isOperatorMF_of_root_killed` from both ct-bilateral-mf `LINE:1599` rows. Retires that finding.
+- DROP all six declarations of sec5-sentences `LINE:1629` (idle since 17:39): `GGT.IsAcylindricallyHyperbolicOsin`,
+  `GGT.isAcylindricallyHyperbolic_iff_osin`, `GGT.exists_hullGeneratingSet_of_osin`,
+  `GGT.SequentialBoundary.IsAcylindricallyHyperbolicLimitSet`, `GGT.SequentialBoundary.isAcylindricallyHyperbolicLimitSet_of_osin`
+  and `TorsionFreeLimitSetNotion.manuscriptSentence_hullGeneratingSetLimitSet`.
+  - This retires the 2114 finding and skips that stale partial row, whose "hard direction" reason is gone
+    (`isAcylindricallyHyperbolicOsin_of_limitSet`, 3f71a3a50).
+  - Key `a9dd4b90e479` then takes its grade from ms-torsionfree's and cite-hull's formalized rows (`printedHullGeneratingSetLimitSet`,
+    `printedHullTheorem312`, both root-imported).
+  - Dropping only the conditional declaration would leave the key partial.
+- Owner supersedes:
+  - ct-bilateral-mf: `LINE:1541`, `LINE:1598`, `LINE:1599`, `LINE:1600` (partial over `printedBilateralThree_of_pieces` / `_of_reflection`).
+    Name `printedBilateralThree_closed` and my two endpoints.
+  - ms-core-5: `2b6b9904f2d6`. Name `coreMFRadicalKillGLStatement_holds`.
+  - ms-core-3: `50c5dd41dff4`, `5c06eec5555b`, `1c114e2c4209` (partial over `CoreKernelElementaryStatement`). Name ct-involution's closed
+    `coreKernelElementaryStatement_holds` and `printedInvolutionLocalization_closed`.
+- Wiring: ChainCoreClosures, CoreModelsLEFClosed, BilateralThreeCoreModels and TransientCellsClosed are all still outside the root
+  closure. Every regraded row above stays partial until they are wired.
+
 Exact residual list: `DynamicRankBudget.CoreModelsLEFStatement` (lem:chain-core-models, "R_Y is LEF"; chain-itinerary). It enters
 twice: through prop:bilateral-three (`printedBilateralThree_of_coreModels`) for the GL kill, and as the MF/LEF target for the upper
 bounds and the LEF quotients.
