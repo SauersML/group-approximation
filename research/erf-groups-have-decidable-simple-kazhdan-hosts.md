@@ -7,18 +7,31 @@ distinct_from:
   perfect-erf-groups-have-decidable-simple-kazhdan-hosts: that is the case where the group lies in the derived subgroup of a computable overgroup, in particular the perfect case; this drops that hypothesis.
 artifacts:
   - research/artifacts/sk-wp-embedding-decidable-envelopes-2026-09-13.md
+  - research/artifacts/sk-decidable-host-2026-09-13.md
 ---
 
-**OPEN.** Let `Γ` be finitely generated, infinite, effectively residually finite with solvable word problem. Does
-`Γ` embed in an infinite, finitely generated, simple Kazhdan LEF group whose word problem is solvable?
+**ESTABLISHED (unreviewed)**, through `erf-groups-decidable-hosts-via-half-line-proof` (sk-decidable-host,
+2026-09-13). Let `Γ` be finitely generated, infinite, effectively residually finite, with solvable word problem.
+Then `Γ` embeds in an infinite, finitely generated, simple Kazhdan LEF group whose word problem is solvable.
 
-Everything is in place except one step: `perfect-erf-groups-have-decidable-simple-kazhdan-hosts` needs a finitely
-generated overgroup `Δ ⊇ Γ` with `Γ ≤ [Δ,Δ]` that is again effectively residually finite AND has solvable word
-problem. The overgroup of `rf-groups-lie-in-derived-subgroups-of-rf-groups` is residually finite but its word
-problem is not controlled.
+The effectivity hypothesis is not needed. `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts` gives such a host
+for every finitely generated LEF group with solvable word problem, so for every finitely generated residually finite
+group with solvable word problem.
+
+**The step that was missing.** `perfect-erf-groups-have-decidable-simple-kazhdan-hosts` needs a finitely generated
+overgroup `Δ ⊇ Γ` with `Γ ≤ [Δ,Δ]` that is again effectively residually finite AND has solvable word problem. The
+overgroup of `rf-groups-lie-in-derived-subgroups-of-rf-groups` is residually finite, but its word problem is not
+controlled. The resolution gives up residual finiteness of the overgroup:
+- the half-line overgroup `C(Γ)` is LEF with `WP(C(Γ)) ≡_T WP(Γ)`
+  (`half-line-overgroup-keeps-lef-and-solvable-word-problem`);
+- the lamplighter host over a LEF acting group replaces the Toeplitz host over a residually finite one.
 
 ## Attempts
 
+- **Settled with a non-residually-finite overgroup (sk-decidable-host, 2026-09-13).** `Δ = C(Γ)`, with explicit
+  finite models of its balls: a permutation of `Q^({-3r,…,3r})` intertwines the partial level shift. Its word problem
+  reduces to `WP(Γ)` through levelwise normal forms, and the lamplighter host `EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` has word
+  problem reducible to `WP(Δ)`. See `research/artifacts/sk-decidable-host-2026-09-13.md`.
 - **The Ore overgroup, as built.** `Δ = ⟨ρ(S), a_s, b_s⟩ ≤ ∏_n Alt(Ω_n)`, with the commutator witnesses chosen in
   each coordinate separately. Every coordinate of a word in these generators is computable, so nontriviality is
   semi-decidable and `WP(Δ)` is co-r.e. Nothing makes it r.e.: the witnesses in different coordinates are unrelated,
@@ -34,8 +47,9 @@ problem is not controlled.
   through the index map, which is how the full group embeds in
   `topological-full-group-embeds-in-subshift-elementary-group`; over a general acting group no such homomorphism is
   known.
-- **Live route: coherent Ore witnesses.** In the chain the maps `Δ/Δ_{m+1} → Δ/Δ_m` make `Ω_{m+1} → Ω_m`
-  fiber-preserving and `λ_{m+1}(s)` covers `λ_m(s)`. Inside the fiber-preserving subgroup `Sym(F) ≀ Alt(Ω_m)` the
-  projection is a homomorphism, so the question is whether a commutator decomposition lifts along it with
-  prescribed images, correcting arbitrary lifts by kernel elements. Coherent witnesses would present `Δ` as an
-  inverse limit of computable finite data, with a decidable word problem, and would settle this claim.
+- **Coherent Ore witnesses (superseded, not needed).** In the chain the maps `Δ/Δ_{m+1} → Δ/Δ_m` make
+  `Ω_{m+1} → Ω_m` fiber-preserving and `λ_{m+1}(s)` covers `λ_m(s)`. Inside the fiber-preserving subgroup
+  `Sym(F) ≀ Alt(Ω_m)` the projection is a homomorphism, so the question is whether a commutator decomposition lifts
+  along it with prescribed images, correcting arbitrary lifts by kernel elements. Coherent witnesses would present `Δ`
+  as an inverse limit of computable finite data, with a decidable word problem. This would give a residually finite
+  overgroup, which the half-line route shows is unnecessary.

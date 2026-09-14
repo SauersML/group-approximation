@@ -29,6 +29,13 @@ problem. It need not be residually finite: `[[T]]'` of a computable minimal subs
 **Sharpness.** Effective residual finiteness cannot be weakened to residual finiteness with solvable word problem:
 by Rauzy's Theorem 2, imported in `rf-higman-embedding-for-decidable-groups-fails`, the two are different.
 
+**Correction to the sharpness remark (sk-decidable-host, 2026-09-13).** The two hypotheses differ, but the conclusion
+survives the weakening. `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts` (unreviewed) gives an infinite
+finitely generated simple Kazhdan LEF host with solvable word problem for every finitely generated LEF group with
+solvable word problem. So it gives one for every finitely generated residually finite group with solvable word
+problem, effective or not, and with no derived-subgroup hypothesis. Effective residual finiteness is sharp only for
+this node's route through Toeplitz subshifts and residually finite overgroups.
+
 Route: `perfect-erf-groups-have-decidable-simple-kazhdan-hosts-proof`.
 
 **Review (sk-verify-4, 2026-09-13): PASS.** Computable chain, computable Toeplitz subshift, Corollary T, the `[Δ,Δ]` embedding and the degree formula composed; the `SL_n(Z)` corollary and the converse checked. See `research/artifacts/sk-review-4-2026-09-13-part5.md` §4.

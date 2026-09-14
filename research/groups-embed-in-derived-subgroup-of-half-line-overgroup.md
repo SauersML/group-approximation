@@ -30,10 +30,13 @@ every `Δ`-system `Y` and every field `k`. So `γ ↦ diag(u_(δ_0(γ)), 1, 1)` 
 the overgroup step for amenable and sofic inputs; see `amenable-groups-embed-in-kazhdan-linear-sofic-via-half-line`.
 
 **Scope.**
-- Residual finiteness is lost (item 5), so residually finite and LEF envelopes still go through the Ore overgroup of
+- Residual finiteness is lost (item 5), so residually finite envelopes still go through the Ore overgroup of
   `rf-groups-lie-in-derived-subgroups-of-rf-groups`.
-- Whether `C(Γ)` is LEF when `Γ` is LEF is not decided here. The naive cyclic truncation of the half-lines is not a
-  partial homomorphism (artifact §4).
+- LEF is kept (sk-decidable-host, 2026-09-13, unreviewed). If `Γ` is LEF then `C(Γ)` is LEF, and
+  `WP(C(Γ)) ≡_T WP(Γ)`: `half-line-overgroup-keeps-lef-and-solvable-word-problem`. The naive cyclic truncation of the
+  half-lines is not a partial homomorphism (artifact §4). The models there realize the level shift by a permutation of
+  a finite power of a finite model that intertwines the partial shift. So LEF envelopes can use `C(Γ)`, and they then
+  keep a solvable word problem (`lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts`).
 - `C(Γ)` is not perfect, since `σ` survives in the abelianization. A perfect overgroup is not needed for the use above.
 
 **Credit.** The half-line commutator is the classical device behind embeddings into Cartesian wreath products (compare
