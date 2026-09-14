@@ -98,8 +98,11 @@ theorem coe_mem_chainRecurrentSet_of_firstReturn_of_pieces (hRefl : CoreRingRefl
       (returnTowerUnits (ZMod 2) hC' hr).cornerEquiv.injective
   -- Core-ring reflection for the saturated subsystem.
   have hall := (hRefl _ (restrictHomeo T hY) (ZMod 2)).2.2.1 hLEF_Y
-  exact Dynamics.mapsTo_chainRecurrentSet continuous_subtype_val (fun _ => rfl)
-    (hall ⟨(y : X), subset_returnSaturation y hy⟩)
+  have hmaps : Set.MapsTo
+      (Subtype.val : returnSaturation T C (Dynamics.chainRecurrentSet (firstReturnHomeomorph hC)) → X)
+      (Dynamics.chainRecurrentSet (restrictHomeo T hY)) (Dynamics.chainRecurrentSet T) :=
+    Dynamics.mapsTo_chainRecurrentSet continuous_subtype_val (fun _ => rfl)
+  exact hmaps (hall ⟨(y : X), subset_returnSaturation y hy⟩)
 
 /-- **The induced core is `C ∩ Y`** (tex 1743–1750): `CR(S_C) = C ∩ CR(T)`, with both inclusions
 along the printed route, over Lemma `lem:chain-core-models` and Theorem `thm:core-ring-reflection`. -/
