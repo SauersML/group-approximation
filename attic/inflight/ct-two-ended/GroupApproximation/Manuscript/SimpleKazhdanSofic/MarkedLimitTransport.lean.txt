@@ -80,8 +80,10 @@ theorem IsExpanderFamily.map_target (hexp : IsExpanderFamily σ) (e : ∀ ℓ, H
     have hcardS : S.ncard = S₀.ncard := by
       rw [hSS₀]
       exact Set.ncard_image_of_injective _ (e ℓ).injective
-    have hinjP : Function.Injective (Prod.map (e ℓ) (id : ι → ι)) := fun a b h =>
-      Prod.ext ((e ℓ).injective (congrArg Prod.fst h)) (congrArg Prod.snd h)
+    have hinjP : Function.Injective (Prod.map (e ℓ) (id : ι → ι)) := by
+      intro a b h
+      simp only [Prod.map, Prod.mk.injEq, id] at h
+      exact Prod.ext ((e ℓ).injective h.1) h.2
     have hE : {p : H' ℓ × ι | p.1 ∈ S ∧ e ℓ (σ ℓ p.2) * p.1 ∉ S} =
         Prod.map (e ℓ) id '' {p : H ℓ × ι | p.1 ∈ S₀ ∧ σ ℓ p.2 * p.1 ∉ S₀} := by
       ext ⟨x, i⟩

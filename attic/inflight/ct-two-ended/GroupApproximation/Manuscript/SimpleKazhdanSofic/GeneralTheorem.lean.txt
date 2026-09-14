@@ -263,7 +263,7 @@ theorem finite_elementaryGroup_matrix (n N : ℕ) :
     inferInstanceAs (Finite (Fin n → Fin n → Fin N → Fin N → ZMod 2))
   haveI : Finite (Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2)))ˣ :=
     Finite.of_injective (fun u => (u : Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))))
-      Units.ext
+      fun _ _ h => Units.ext h
   exact Subtype.finite
 
 /-! ## Assembly -/
