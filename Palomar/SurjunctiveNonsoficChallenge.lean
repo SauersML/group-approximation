@@ -52,7 +52,7 @@ Every notion except the definitions in the shared block is Mathlib's.
 
 All groups are quantified over `Type`, where the counterexample lives.
 
-The prose of this module was written by Claude (Anthropic).
+Original prose: Claude (Anthropic). Literature and editorial revisions: Codex (OpenAI).
 -/
 
 namespace SurjunctiveNonsofic

@@ -68,9 +68,10 @@ Comparator, Lean, NanoDa, and statement/axiom checks passed for commit
 6738ce3d092e23a5976f6d45042f4d92c12bf5b0:
 https://github.com/SauersML/group-approximation/actions/runs/34785942633
 https://github.com/SauersML/group-approximation/actions/runs/34785945798
-The present revision renames the modules and declarations and updates their
-exposition. The renamed declarations have not been rechecked by Lean or
-NanoDa during this pass. These recorded verification runs do not constitute
+The renamed modules passed the build, definition checks, statement comparison
+and axiom audit at acfbb7877804a60efc08f3c26f79919dfcb32f1e:
+https://github.com/SauersML/group-approximation/actions/runs/34790950434
+Final Comparator and NanoDa replay is pending for the submission candidate. These recorded verification runs do not constitute
 Palomar acceptance or human expert review.
 
 Astra developed the original argument using a custom proof tool under
