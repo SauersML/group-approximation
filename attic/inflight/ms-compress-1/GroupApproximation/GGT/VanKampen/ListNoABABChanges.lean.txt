@@ -60,9 +60,9 @@ theorem adjChanges_add_two_le_two_mul_card {w : List α} (hne : w ≠ []) (hno :
   obtain ⟨a, l, rfl⟩ := List.exists_cons_of_ne_nil hne
   set m := l.destutter' (· ≠ ·) a with hm
   have hlen : adjChanges (a :: l) + 1 = m.length := adjChanges_cons_add_one l a
-  have hsub : m <+ a :: l := List.destutter'_sublist (R := (· ≠ ·)) a
+  have hsub : m <+ a :: l := List.destutter'_sublist l (· ≠ ·) a
   have hchain : m.IsChain (· ≠ ·) := List.isChain_destutter' (R := (· ≠ ·)) l a
-  have hmne : m ≠ [] := List.destutter'_ne_nil
+  have hmne : m ≠ [] := List.destutter'_ne_nil l (· ≠ ·)
   have hbound := length_add_one_le_two_mul_card m.length m rfl hmne hchain (hno.sublist hsub)
   have hcard : m.toFinset.card ≤ (a :: l).toFinset.card :=
     Finset.card_le_card fun x hx => List.mem_toFinset.mpr (hsub.subset (List.mem_toFinset.mp hx))
