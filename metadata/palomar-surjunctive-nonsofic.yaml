@@ -250,7 +250,9 @@ review:
     GitHub Actions runs 34785942633 and 34785945798. After the descriptive
     rename, run 34790950434 at acfbb7877804a60efc08f3c26f79919dfcb32f1e
     passed the build, definition checks, statement comparison and axiom
-    audit. Final Comparator and NanoDa replay is pending for this revision.
+    audit. Verification for a selected revision is recorded separately in
+    that revision's GitHub Actions runs; earlier runs certify only their
+    named revisions.
     The previous Palomar submission was withdrawn; this revision has not
     been submitted.
 
