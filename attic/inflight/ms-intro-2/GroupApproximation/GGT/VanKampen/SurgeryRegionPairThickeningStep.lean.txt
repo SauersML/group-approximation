@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingHoldingGeometry
 import GroupApproximation.GGT.VanKampen.SurgeryFaceEdgeDoublingSideRegions
 import GroupApproximation.GGT.VanKampen.SurgeryRegionPairThickening
+import GroupApproximation.GGT.VanKampen.Estimating.OsinUnboundCaseOne
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -202,8 +203,9 @@ theorem stepMap_bijective (T : StepData Delta f j family) :
           exact Finset.mem_map_of_mem _ (Finset.mem_attach _ _)
         exact absurd hmem (holding_not_mem_carried Delta f j hlen hf T)
       · rw [stepMap_val_of_ne Delta f j hlen hf T ha, stepMap_val_of_ne Delta f j hlen hf T hb] at hv
-        exact Subtype.ext (congrArg Subtype.val
-          ((FaceEdgeDoubling.regionFamilyOfArcsEmbedding Delta f j hlen hf _ T.avoid).injective hv))
+        have hab' :=
+          (FaceEdgeDoubling.regionFamilyOfArcsEmbedding Delta f j hlen hf _ T.avoid).injective hv
+        exact Subtype.ext (Subtype.mk.inj hab')
   · rcases Finset.mem_insert.mp y.property with hy | hy
     · refine ⟨⟨T.holder, T.holder_mem⟩, Subtype.ext ?_⟩
       rw [stepMap_val_of_eq Delta f j hlen hf T rfl]
