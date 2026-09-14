@@ -46,19 +46,19 @@ theorem elementaryUnit_zero_one_val (a : R) :
     ((elementaryUnit (0 : Fin 3) 1 (by decide) a : (Matrix (Fin 3) (Fin 3) R)ˣ) :
       Matrix (Fin 3) (Fin 3) R) = !![1, a, 0; 0, 1, 0; 0, 0, 1] := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.one_apply, Matrix.single]
+  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.single]
 
 theorem elementaryUnit_one_zero_val (a : R) :
     ((elementaryUnit (1 : Fin 3) 0 (by decide) a : (Matrix (Fin 3) (Fin 3) R)ˣ) :
       Matrix (Fin 3) (Fin 3) R) = !![1, 0, 0; a, 1, 0; 0, 0, 1] := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.one_apply, Matrix.single]
+  fin_cases i <;> fin_cases j <;> simp [elementaryUnit, Matrix.single]
 
 theorem diagPairAt_zero_one_val (u v : Rˣ) :
     ((diagPairAt (0 : Fin 3) 1 u v : (Matrix (Fin 3) (Fin 3) R)ˣ) : Matrix (Fin 3) (Fin 3) R) =
       !![(u : R), 0, 0; 0, (v : R), 0; 0, 0, 1] := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [diagPairAt_val, Matrix.diagonal_apply]
+  fin_cases i <;> fin_cases j <;> simp [diagPairAt_val]
 
 /-- `diagPairAt 0 1 u v` is `diag(u, v, 1)`. -/
 theorem diagPairAt_zero_one_diagonal (u v : Rˣ) :
