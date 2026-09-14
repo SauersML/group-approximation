@@ -405,8 +405,10 @@ theorem proper_decomposition :
 
 theorem exterior_side_norm (eps : ℕ) (heps : 1 ≤ eps) :
     WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal
-      (Embedded.dartWord diagram ([5] : List diagram.toCombMap.Dart))) ≤ eps :=
-  (WordMetric.wordNorm_le_one_of_mem (Or.inl (Set.mem_univ _))).trans heps
+      (Embedded.dartWord diagram ([5] : List diagram.toCombMap.Dart))) ≤ eps := by
+  have hmem : RelLetter.listVal (Embedded.dartWord diagram ([5] : List diagram.toCombMap.Dart)) ∈
+      D.alphabet.carrier := Or.inl (Set.mem_univ _)
+  exact (WordMetric.wordNorm_le_one_of_mem hmem).trans heps
 
 /-- **Calibration.**  At `ε ≥ 1` the face set `{K}`, with the exterior dart read as its second side, is a
 pocket face set with an empty, proper target arc. -/
