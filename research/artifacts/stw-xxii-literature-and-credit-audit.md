@@ -69,7 +69,13 @@ origination to the presenter.[^19]
 The transcript has obvious automated transcription errors in mathematical
 terms and names. This report paraphrases its mathematical content rather
 than presenting silently corrected wording as a verbatim quotation. The
-event date is distinct from any later video-upload date. White's
+event took place on May 25, 2020; the supplied video-page record dates
+its public upload to June 4, 2020. These are respectively the documented
+asking date and the recording's upload date. Its description includes an
+unrelated “Quantum Graphs and Quantum Graph C*-Algebras” title. That appears
+to be a copy-paste error: the video title, named speaker, event, abstract,
+and transcript all identify the tracial-completion talk. The unrelated
+description title should not be propagated into the citation. White's
 accessible 2022 slides are later framework evidence and do not improve
 the earliest located asking.[^12]
 
@@ -341,4 +347,4 @@ information. No Palomar intake or submission was initiated.
 [^17]: akopjan/HamSandwich. [Source at commit 76202dbbb6610ffcebbccfbf7a56f833a4c2a376](https://github.com/akopjan/HamSandwich/tree/76202dbbb6610ffcebbccfbf7a56f833a4c2a376), July 6, 2026. Local port details in [`UPSTREAM.md`](../../GroupApproximation/ThirdParty/HamSandwich/UPSTREAM.md).
 [^18]: Andrew S. Toms. [*Schubert Calculus and uniform property Gamma*](https://arxiv.org/abs/2606.12188), June 2026. Abstract used to distinguish regularity/comparison results from the selected trace assertion.
 
-[^19]: Aaron Tikuisis, [*Uniformly tracially complete C*-algebras*, official Fields Institute recording](https://www.youtube.com/watch?v=qrtLAOC3ZIU&t=2260s), Questions section 37:40–38:58; collaboration credit 35:23–35:56. Access note: the timestamped transcript and video URL were supplied on September 13, 2026 America/Chicago; the transcript was read directly and YouTube's oEmbed record independently confirmed the title and Fields Institute channel. No independent audio transcription is claimed. The event identification and May 25, 2020 date are supported by the Fields event record; the preceding Matthew Kennedy talk mentioned in the transcript also matches its program.
+[^19]: Aaron Tikuisis, [*Uniformly tracially complete C*-algebras*, official Fields Institute recording](https://www.youtube.com/watch?v=qrtLAOC3ZIU&t=2260s), Questions section 37:40–38:58; collaboration credit 35:23–35:56. Access note: the timestamped transcript and video URL were supplied on September 13, 2026 America/Chicago; the transcript was read directly and YouTube's oEmbed record independently confirmed the title and Fields Institute channel. No independent audio transcription is claimed. The supplied video-page metadata dates its upload to June 4, 2020. The event identification and May 25, 2020 talk date are supported by the Fields event record; the preceding Matthew Kennedy talk mentioned in the transcript also matches its program. The description's unrelated Quantum Graphs title is inconsistent with the actual video title and content.
