@@ -34,4 +34,13 @@ Carriers, all over a unital ring `R` with `u : Λ →* Rˣ`:
 | 17c59a49b0ee | 396–402 | `[Λ,Λ]` into `G_Δ`, and `Γ ≤ [Δ,Δ] ≤ [Λ,Λ]` | formalized | `printedLEFDiagonalEmbedding` |
 
 **LANDED a39853967** (23:5x): probe 0913-234246-2153 GREEN, `#audit_closed_axioms` on both endpoints, no sorryAx, and
-wire-queued. Census rows wait until skf-census regenerates the census at c8b6021ca.
+wire-queued.
+
+Census rows (09-14 09:3x). The census is at 696c4b602 (md5 0648e5f8…), while origin's note is at f34e9c0b1 (md5
+c909343e…). Following the protocol, only sentences whose text I verified at the tip are keyed, in
+`metadata/sk-census-rows/ms-intro-2.tsv`:
+- `66cb283340f3` "Finally, ξ ↦ diag(u_ξ,1,1) is an injective homomorphism Λ → GL_3(R_Δ)." formalized.
+- `cbce9a479de2` "So G_Δ contains Γ ≤ [Δ,Δ] ≤ [Λ,Λ]." formalized.
+- `816030a10c14` "It maps [Λ,Λ] into G_Δ, since over F_2 every unit v satisfies …" is not keyed yet. At f34e9c0b1 the product reads
+  `v = v_1, v_2, (v_2v_1)^{-1}` instead of `c, c', (c'c)^{-1}`, so the hash changes. The carrier is unchanged
+  (`printedLEFDiagonalIdentities`, `lefDiagonalHom_commutator_le`), and the row lands when skf-census regenerates.
