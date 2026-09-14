@@ -264,3 +264,17 @@ Hand model tests (23:3x):
 - Next: `osinLemma94BadJunctionInput_of_pieces`, i.e. `OsinLemma94BadJunctionInput` from the two residuals, once
   ms-binary's `OsinLemma94ClassJoins` lands. The module certifies no printed sentence, so no census rows.
 - Queued for wiring at ad307e323.
+
+### Split of the boundary budget and a correction (09:0x)
+
+- ms-core-1 (assigned by main) produces `OsinLemma94BoundaryJunctionBudgetInput` with K = 3, in
+  `Estimating/OsinLemma94BoundaryJunctionBudget.lean`, importing ad307e323. The split:
+  - `P.boundaryBadJunctions k ⊆ backwardJunctions ∪ valueFailureJunctions`, closed. The two are disjoint, since a backward
+    gap is `take 0 = []` with value one.
+  - Residual pieces: `OsinLemma94BackwardJunctionCountInput` (≤ n + 1) and `OsinLemma94BoundaryValueFailureCountInput` (≤ n).
+- This lane keeps `OsinLemma94CellJunctionValueInput`, the respell over ms-binary's `classNonJoins` / `nonJoinPolygons`, and
+  `osinLemma94BadJunctionInput_of_pieces`.
+- **Correction** to the model tests above: "Backward junction ... at most one" is false. ms-core-1's model has nested lobes
+  L₂ ⊂ L₁ of ∂Δ, both containing index 0, with a relator polygon at each pinch, which gives two backward junctions.
+  - What holds: at most one per polygon, and each nesting level carries a distinct relator cell, so at most n + 1.
+  - The residual Prop has `∃ K`, so its statement is unaffected. Only the count in these notes changes.
