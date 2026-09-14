@@ -29,7 +29,7 @@ universe u
 
 variable (G : Type u) [Group G]
 
-local instance : DecidableEq G := Classical.decEq G
+local instance unitaryGroupDecEq : DecidableEq G := Classical.decEq G
 
 /-- **Distinct group elements give distinct left translations.** -/
 theorem leftRegularOperator_injective : Function.Injective (leftRegularOperator G) := by
