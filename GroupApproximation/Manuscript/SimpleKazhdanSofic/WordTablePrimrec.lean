@@ -1,0 +1,151 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.WordNormalForm
+import GroupApproximation.Higman.IntPrimrec
+import Mathlib.Computability.Primrec.List
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# Multiplying out a word is primitive recursive
+
+`simple_kazhdan_sofic_group.tex`, section "Word problems": "Multiplying out a word in the generators
+... gives a matrix with entries `∑_j f_j u^j`, each `f_j` given by a table", and this is an effective
+computation.  The table arithmetic of `CylinderTables` and `WordNormalForm` is primitive recursive:
+
+* `primrec_int_natAbs`, `primrec_int_toNat`: integer magnitudes and truncations, read off the codes of
+  integers (`Higman.ofNat_int_eq`);
+* `primrec_monoMul`, `primrec_tableMul`: products of monomials and of tables;
+* `primrec_matMul`, `primrec_elemMat`, `primrec_wordMat`: products of `3 × 3` matrices of tables, the
+  elementary letter matrices, and multiplying out a word.
+-/
+
+namespace GroupApproximation
+namespace CylinderTables
+
+open Primrec
+
+/-- Integer magnitudes are primitive recursive. -/
+theorem primrec_int_natAbs : Primrec Int.natAbs := by
+  refine Primrec.ofNat_iff.2 ((Primrec.cond
+    ((Primrec.eq (α := ℕ)).decide.comp (Primrec.nat_mod.comp Primrec.id (Primrec.const 2))
+      (Primrec.const 0))
+    (Primrec.nat_div.comp Primrec.id (Primrec.const 2))
+    (Primrec.succ.comp (Primrec.nat_div.comp Primrec.id (Primrec.const 2)))).of_eq fun m => ?_)
+  show (bif decide (m % 2 = 0) then m / 2 else Nat.succ (m / 2)) = Int.natAbs (Denumerable.ofNat ℤ m)
+  rw [Higman.ofNat_int_eq]
+  by_cases h : m % 2 = 0
+  · rw [if_pos h, decide_eq_true h, cond_true]
+    omega
+  · rw [if_neg h, decide_eq_false h, cond_false]
+    omega
+
+/-- Integer truncations are primitive recursive. -/
+theorem primrec_int_toNat : Primrec Int.toNat := by
+  refine Primrec.ofNat_iff.2 ((Primrec.cond
+    ((Primrec.eq (α := ℕ)).decide.comp (Primrec.nat_mod.comp Primrec.id (Primrec.const 2))
+      (Primrec.const 0))
+    (Primrec.nat_div.comp Primrec.id (Primrec.const 2)) (Primrec.const 0)).of_eq fun m => ?_)
+  show (bif decide (m % 2 = 0) then m / 2 else 0) = Int.toNat (Denumerable.ofNat ℤ m)
+  rw [Higman.ofNat_int_eq]
+  by_cases h : m % 2 = 0
+  · rw [if_pos h, decide_eq_true h, cond_true]
+    omega
+  · rw [if_neg h, decide_eq_false h, cond_false]
+    omega
+
+variable {A : Type*} [Primcodable A]
+
+theorem primrec_cylShift : Primrec₂ (cylShift : ℤ → Cyl A → Cyl A) := by
+  show Primrec fun a : ℤ × Cyl A => cylShift a.1 a.2
+  exact (Primrec.list_map Primrec.snd
+    (Primrec.pair (Higman.primrec2_int_add.comp (Primrec.fst.comp Primrec.snd)
+      (Primrec.fst.comp Primrec.fst)) (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun a => rfl
+
+theorem primrec_monoMul : Primrec₂ (monoMul : Mono A → Mono A → Mono A) := by
+  show Primrec fun a : Mono A × Mono A => monoMul a.1 a.2
+  exact (Primrec.pair
+    (Higman.primrec2_int_add.comp (Primrec.fst.comp Primrec.fst) (Primrec.fst.comp Primrec.snd))
+    (Primrec.list_append.comp (Primrec.snd.comp Primrec.fst)
+      (primrec_cylShift.comp (Higman.primrec_int_neg.comp (Primrec.fst.comp Primrec.fst))
+        (Primrec.snd.comp Primrec.snd)))).of_eq fun a => rfl
+
+theorem primrec_tableMul : Primrec₂ (tableMul : Table A → Table A → Table A) := by
+  show Primrec fun a : Table A × Table A => tableMul a.1 a.2
+  exact (Primrec.list_flatMap Primrec.fst
+    (Primrec.list_map (Primrec.snd.comp Primrec.fst)
+      (primrec_monoMul.comp (Primrec.snd.comp Primrec.fst) Primrec.snd).to₂).to₂).of_eq
+    fun a => rfl
+
+/-- Applying a primitive recursive `Fin n`-indexed family at a primitive recursive index. -/
+theorem primrec_fin_app {α σ : Type*} [Primcodable α] [Primcodable σ] {n : ℕ} {f : α → Fin n → σ}
+    {g : α → Fin n} (hf : Primrec f) (hg : Primrec g) : Primrec fun a => f a (g a) :=
+  (Primrec.fin_app.comp hf hg).of_eq fun _ => rfl
+
+/-- A matrix-valued function is primitive recursive if its entries are, jointly in the index. -/
+theorem primrec_mat {α : Type*} [Primcodable α] {f : α → Mat A}
+    (h : Primrec fun r : (α × Fin 3) × Fin 3 => f r.1.1 r.1.2 r.2) : Primrec f := by
+  have h2 : Primrec fun p : α × Fin 3 => f p.1 p.2 := Primrec.fin_curry.2 h
+  exact Primrec.fin_curry.2 h2
+
+theorem primrec_matMul : Primrec₂ (matMul : Mat A → Mat A → Mat A) := by
+  show Primrec fun a : Mat A × Mat A => matMul a.1 a.2
+  refine primrec_mat ?_
+  have hM : ∀ k : Fin 3,
+      Primrec fun r : ((Mat A × Mat A) × Fin 3) × Fin 3 => r.1.1.1 r.1.2 k := fun k =>
+    primrec_fin_app (primrec_fin_app (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
+      (Primrec.snd.comp Primrec.fst)) (Primrec.const k)
+  have hN : ∀ k : Fin 3,
+      Primrec fun r : ((Mat A × Mat A) × Fin 3) × Fin 3 => r.1.1.2 k r.2 := fun k =>
+    primrec_fin_app (primrec_fin_app (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
+      (Primrec.const k)) Primrec.snd
+  exact (Primrec.list_append.comp
+    (Primrec.list_append.comp (primrec_tableMul.comp (hM 0) (hN 0))
+      (primrec_tableMul.comp (hM 1) (hN 1)))
+    (primrec_tableMul.comp (hM 2) (hN 2))).of_eq fun r => rfl
+
+theorem primrec_elemMat :
+    Primrec fun g : (Fin 3 × Fin 3) × Table A => (elemMat g.1.1 g.1.2 g.2 : Mat A) := by
+  refine primrec_mat ?_
+  have hpq : Primrec fun r : (((Fin 3 × Fin 3) × Table A) × Fin 3) × Fin 3 =>
+      decide (r.1.2 = r.2) :=
+    (Primrec.eq (α := Fin 3)).decide.comp (Primrec.snd.comp Primrec.fst) Primrec.snd
+  have hi : Primrec fun r : (((Fin 3 × Fin 3) × Table A) × Fin 3) × Fin 3 =>
+      decide (r.1.2 = r.1.1.1.1) :=
+    (Primrec.eq (α := Fin 3)).decide.comp (Primrec.snd.comp Primrec.fst)
+      (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+  have hj : Primrec fun r : (((Fin 3 × Fin 3) × Table A) × Fin 3) × Fin 3 =>
+      decide (r.2 = r.1.1.1.2) :=
+    (Primrec.eq (α := Fin 3)).decide.comp Primrec.snd
+      (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+  refine (Primrec.cond hpq (Primrec.const ([(0, [])] : Table A))
+    (Primrec.cond (Primrec.and.comp hi hj) (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
+      (Primrec.const ([] : Table A)))).of_eq fun r => ?_
+  unfold elemMat
+  by_cases h1 : r.1.2 = r.2
+  · rw [if_pos h1, decide_eq_true h1, cond_true]
+  · rw [if_neg h1, decide_eq_false h1, cond_false]
+    by_cases h2 : r.1.2 = r.1.1.1.1
+    · by_cases h3 : r.2 = r.1.1.1.2
+      · rw [if_pos ⟨h2, h3⟩, decide_eq_true h2, decide_eq_true h3, Bool.and_self, cond_true]
+      · rw [if_neg fun e => h3 e.2, decide_eq_false h3, Bool.and_false, cond_false]
+    · rw [if_neg fun e => h2 e.1, decide_eq_false h2, Bool.false_and, cond_false]
+
+omit [Primcodable A] in
+theorem wordMat_eq_foldr (w : List ((Fin 3 × Fin 3) × Table A)) :
+    wordMat w = w.foldr (fun g M => matMul (elemMat g.1.1 g.1.2 g.2) M) matOne := by
+  induction w with
+  | nil => rfl
+  | cons g w ih =>
+    rw [List.foldr_cons, ← ih]
+    rfl
+
+theorem primrec_wordMat : Primrec (wordMat : List ((Fin 3 × Fin 3) × Table A) → Mat A) :=
+  (Primrec.list_foldr Primrec.id (Primrec.const (matOne : Mat A))
+    (primrec_matMul.comp (primrec_elemMat.comp (Primrec.fst.comp Primrec.snd))
+      (Primrec.snd.comp Primrec.snd)).to₂).of_eq fun w => (wordMat_eq_foldr w).symm
+
+end CylinderTables
+end GroupApproximation
+
+#audit_axioms GroupApproximation.CylinderTables.primrec_int_natAbs
+#audit_axioms GroupApproximation.CylinderTables.primrec_tableMul
+#audit_axioms GroupApproximation.CylinderTables.primrec_elemMat
+#audit_axioms GroupApproximation.CylinderTables.primrec_wordMat
