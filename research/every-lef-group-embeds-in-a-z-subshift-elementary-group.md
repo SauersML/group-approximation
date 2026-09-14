@@ -5,12 +5,23 @@ kind: claim
 title: Every finitely generated LEF group is a subgroup of EL_3(LC(X,F_2)⋊Z) for some infinite minimal Z-subshift X
 distinct_from:
   lef-groups-embed-in-simple-kazhdan-lef-groups: that allows any simple Kazhdan LEF envelope; this asks whether the note's own Z-family is universal.
+refuted_by: [heisenberg-group-lies-in-no-z-subshift-elementary-group]
 ---
 
-**OPEN.** Is every finitely generated LEF group a subgroup of `G_X = EL_3(LC(X,F_2)⋊Z)` for some infinite minimal
-Z-subshift `X`? A yes would make the note's family universal for LEF groups.
+**REFUTED (unreviewed, sk-sl3z-bandwidth 2026-09-13).** The integer Heisenberg group is finitely generated and residually
+finite, hence LEF, but it is a subgroup of no `GL_m(LC(X,F_q)⋊Z)`, hence of no `G_X`. The same holds for `SL_n(Z)`,
+`n ≥ 3`. See `heisenberg-group-lies-in-no-z-subshift-elementary-group`.
+
+Original question: is every finitely generated LEF group a subgroup of `G_X = EL_3(LC(X,F_2)⋊Z)` for some infinite
+minimal Z-subshift `X`? A yes would have made the note's family universal for LEF groups.
 
 ## Attempts
+
+- **Refutation by distortion (established, unreviewed).** `subshift-crossed-product-gl-has-no-distorted-elements`: in a
+  finitely generated subgroup of `GL_m(LC(X,F_q)⋊Z)`, every infinite-order element has stable length `≥ 1/(2wm)`. Proof:
+  Krylov dimension against propagation on the faithful orbit module. The Heisenberg centre has `|c^N| ≤ 12√N`, so the
+  Heisenberg group, and `SL_n(Z) ⊇` it, lie in no `G_X`. Neither the banded representations nor dimension expansion are
+  needed. Artifact: `research/artifacts/sk-sl3z-bandwidth-distortion-obstruction-2026-09-13.md`.
 
 - **Reduction (established, unreviewed).** `z-family-lef-universality-reduces-to-gl-m-crossed-products`: it suffices
   to embed every f.g. LEF group in some `GL_m(LC(X,F_2)⋊Z)`.
