@@ -22,8 +22,14 @@ is `Δ`.
 - The fixed words `w_j = [b^(-2^(2j-1)) a b^(2^(2j-1)), b^(-4^j) a b^(4^j)]` isolate the model of `γ_j` on level 0,
   because differences of distinct powers of 2 are distinct.
 
-**Consumers.** `countable-lef-groups-embed-in-simple-kazhdan-lef-groups`, and through it
-`simple-kazhdan-lef-host-for-recursive-lef-groups`.
+**Commutator subgroup** (merged by sk-universal-lef-host-a). The embedding sends `γ_j` to the commutator `w_j(a,b)` (route
+step 5), so `ι(Γ) ≤ [Δ,Δ]`. An independent presentation in wreath products `Sym(m)≀Z/2^(2n+3)`, with positions `2^j`,
+gives the same conclusion: `research/artifacts/sk-universal-lef-host-a-2026-09-13.md` §1.
+
+**Consumers.**
+- `countable-lef-groups-embed-in-simple-kazhdan-lef-groups`, and through it
+  `simple-kazhdan-lef-host-for-recursive-lef-groups`.
+- `lef-groups-embed-via-two-generator-lef-envelope`, which uses `ι(Γ) ≤ [Δ,Δ]` and needs no quotient doubling.
 
 **Novelty (bounded).** I found no printed source: two web searches, and a grep of main for LEF 2-generator embedding
 nodes. The isolation trick is classical, in the style of Hall and B. H. and H. Neumann.
