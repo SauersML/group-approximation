@@ -24,7 +24,9 @@ namespace GroupApproximation.GGT.VanKampen
 
 universe u w v
 
-/-- **A cell-free same-cell pocket reads one, proved.** -/
+/-- **A cell-free same-cell pocket reads one, proved.**  It discharges the `hvalue` binder of
+`osinLemma94SameCellPocketInput_of_loopCut`, so `OsinLemma94SameCellPocketInput` rests only on
+`SameCellPocketLoopCutStatement`. -/
 theorem sameCellPocketCellFreeValue : SameCellPocketCellFreeValueStatement.{u, w, v} := by
   unfold SameCellPocketCellFreeValueStatement
   intro G _ Lambda W X a hface hout hor m hm hstep hne_a hne_alpha hfree
