@@ -257,6 +257,14 @@ CLAIM clean copy producer GroupApproximation/GGT/VanKampen/Estimating/OsinAppend
   - region pair, keeping the outer conditions, no cell-side dart and no cell hair, via `noOuterSpur_of_step`, `noOuterCellDart_of_step`, `noOuterSideDart_step`, `noCellSideDart_step`, `noCellHair_step`.
   - Then `CopyCleanAt` for every label pair from the six global freeness predicates. `1 < Delta.boundaryWord.length` comes from the two disjoint nonempty target arcs.
 - ~09:3x split with ms-inverses-2 (main's item): ms-inverses-2 proves the six step Props verbatim, in new modules `OsinAppendixEulerPhiMapTransport*`, `OsinAppendixEulerTwoGonDoublingInner*` and `OsinAppendixEulerTwoGonDoublingOuter*`. This lane keeps the drivers and the composition `twoGonCleanCopyInput_of_steps`, which takes the six Props as hypotheses.
+- (2) drivers `SurgeryOuterThickeningInvariant`: probe 0914-093020-64478 BUILT; the MSI hop died before the summary came back (rc=255), but the remote log shows four audits [propext, Classical.choice, Quot.sound] and no sorryAx. Re-probe 0914-101108-54760 GREEN for local evidence; landing now.
+- LANDED drivers at 0f4475355 (`SurgeryOuterThickeningInvariant`), on the wire queue.
+- LANDED (3) at 73835dd09: `Estimating/OsinAppendixEulerTwoGonCleanCopy`, probe 0914-102626-36239 GREEN, BUILT on the first try; four audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+- Leaf 6 now reduces to the six step Props, through `osinTwoGonCleanCopySection_of_steps`. With the Euler section Prop, `osinTwoGonHoldsSection_of_stepsEuler` gives `OsinTwoGonHoldsSectionStatement`. ms-inverses-2 is proving the six step Props and the Euler section Prop.
+- (3) composition `Estimating/OsinAppendixEulerTwoGonCleanCopy`:
+  - `twoGonCopyCleanAt_of_free`;
+  - `twoGonCleanCopyInput_of_steps` over the six step Props;
+  - `osinTwoGonCleanCopySection_of_steps`, `osinTwoGonHoldsSection_of_stepsEuler`.
 - `side_cell` needs `1 < length` of cell `i`'s face for `IsCellSideDart`. For distinct exterior regions `a`, `b` of `i` it holds: on a one-dart face both source arcs would be that dart, so the face across it would lie in both regions, and `eq_of_face_mem_of_face_mem` gives `a = b`.
 
 ## Current C6′ leaves (binder 4)
