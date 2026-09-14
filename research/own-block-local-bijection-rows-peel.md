@@ -1,0 +1,36 @@
+---
+rg: 2
+id: own-block-local-bijection-rows-peel
+kind: claim
+title: An own-block row that is a local bijection peels like a type-(O) step, even when nonlinear
+distinct_from:
+  controlled-self-linear-feedback-ca-are-surjunctive: that peels rows whose own part is a bijective linear automaton; this peels any own-block row whose self-map is a cellular bijection with a uniform local inverse, linearity dropped, and only reduces to a corrected tail rather than concluding surjectivity.
+  nonlinear-certificate-fibers-are-all-surjective-or-all-strict: that is the fiber dichotomy for a certificate-fixing finite-memory map; this is the peeling step for one own-block row built on top of it, identifying local invertibility of the own-block self-map as the exact peelability condition.
+artifacts:
+  - research/artifacts/corrected-tail-peeling-boundary-2026-09-12.md
+---
+
+Let `F` be an injective cellular automaton on blocks `X, Y` over a group `G` and
+a finite ring `R`, whose `X`-rows form an **own-block local-bijection row**: for
+every configuration `Y` the self-map `Phi_Y : X -> row(X,Y)` of the block-`X`
+full shift is a bijection whose inverse is a cellular automaton with memory
+bounded uniformly in `Y`. Linearity is not assumed. Let `X^*(Y) = Phi_Y^{-1}(0)`
+be the correction and `F'` the `Y`-rows of `F` evaluated at `(X^*(Y), Y)`.
+
+Then `F'` is injective, `F` is surjective iff `F'` is surjective, and if `F'` is
+surjective then so is `F`.
+
+This extends the type-(O) peeling step of
+`controlled-self-linear-feedback-ca-are-surjunctive` from a bijective linear
+`L_Y` to any own-block cellular bijection. A sufficient nonlinear instance is a
+graded-nilpotent own part `row(X,Y) = X + N_Y(X)` with `N_Y^{(D)} = 0`, whose
+inverse is the finite local sum `sum_{k<D} (-N_Y)^{(k)}`.
+
+## Attempts
+
+Proved in Section 1 of the artifact via
+`nonlinear-certificate-fibers-are-all-surjective-or-all-strict`: `E(X,Y) =
+(Phi_Y(X), Y)` is a bijective cellular automaton fixing the certificate `Y`, so
+`F = (F o E^{-1}) o E` with `F o E^{-1}` certificate-fixing and injective; the
+fiber dichotomy gives the corrected-tail equivalence. Established by the
+companion route.

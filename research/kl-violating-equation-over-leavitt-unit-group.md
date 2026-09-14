@@ -3,6 +3,7 @@ rg: 2
 id: kl-violating-equation-over-leavitt-unit-group
 kind: claim
 title: A Kervaire--Laudenbach-violating equation over the binary Leavitt unit group
+refuted_by: [kl-holds-over-binary-leavitt-unit-group]
 distinct_from:
   kervaire-laudenbach-holds-for-hyperlinear: that is the established positive theorem for hyperlinear groups; this asks for a violation over one specific group, which would refute hyperlinearity of that group
   openai-leavitt-unit-nonsofic: that is the nonsoficity of the same group; this concerns its hyperlinearity, which that result explicitly does not decide
@@ -52,3 +53,37 @@ normal-closure identity using `A` old-relator factors must already furnish
 the old coefficient norm bound with constant `A`; occurrences of the new
 nonsingular equation contribute zero after exact matrix root substitution.
 These are necessary conditions, not a construction of a violating word.
+
+**2026-09-11: where the lane now sits.**  `R^x` is simple
+(`binary-leavitt-unit-group-is-simple`), so a violation kills every
+coefficient and is equivalent to
+`leavitt-degree-kernel-normally-generated-by-one-word` (the route pair
+`leavitt-kl-violation-via-total-cyclic-collapse` /
+`leavitt-kl-violation-forces-kernel-normal-generation`).  The lane lives
+inside the stable branch of `leavitt-steinberg-hs-stability-fork`
+(`leavitt-kl-violation-selects-the-stable-steinberg-branch`), and the unstable
+branch refutes it (`kl-leavitt-holds-on-the-unstable-steinberg-branch`, into
+the negation `kl-holds-over-binary-leavitt-unit-group`).  Coefficient packets
+whose entries generate a residually finite-dimensional subalgebra of `L`
+inject at every length (`leavitt-rfd-entry-packets-satisfy-kl`), so a
+candidate must carry non-residually-finite-dimensional entry behaviour such as
+a one-sided inverse pair.  From ten variable occurrences on, a candidate must
+also be nearly periodic: a word without an exact repeated block of about a
+sixth of its length satisfies relative `C'(1/6)` and injects every coefficient
+group (`kl-small-cancellation-words-inject-every-coefficient-group`).  A
+candidate whose `t`-exponents are all `+-1` must have same-sign corner labels
+that are not free, or a sign-change coefficient absorbed by them
+(`kl-unit-exponent-words-inject-when-same-sign-corners-are-free`).  This covers
+all window cyclic-cover words and settles the length-six classes `+++-+-` and
+`++-++-` generically (`kl-length-six-four-sign-change-words-inject`).
+
+What remains is the conjunction of two independent problems.  The analytic
+problem is the stable branch: `R^x` must have full hyperlinear radical.  The
+combinatorial problem is a collapse mechanism.  Even over a coefficient group
+with no nontrivial tracial approximations nothing forces a nonsingular word to
+normally generate the degree kernel.  Whatever the certificate does, it must
+interleave old relators between uses of `w`.  Every equality or conjugacy
+between coefficient words derived from `w` alone already holds in the free
+group on the coefficient letters: free groups satisfy the conjecture, their
+finite-dimensional unitary representations extend across the equation, and
+free groups are conjugacy separable.

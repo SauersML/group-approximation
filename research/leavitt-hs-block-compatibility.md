@@ -32,13 +32,17 @@ boundary, by decompositions whose abelian block algebras satisfy
 B_(G,n) <= B_(Gamma,n)
 ```
 
-and whose fine atoms obey, for `t in {u,v}`,
+and whose fine atoms obey, for `t in {u,v}` and some map `sigma_(t,n)` on
+the atoms of `B_(Gamma,n)`,
 
 ```text
-forall p_j in At(B_(Gamma,n)), exists p_k in At(B_(Gamma,n)),
-||phi_n(t) p_j phi_n(t)^* - p_k||_2 = o(1),
-tau(p_k) >= tau(p_j)-o(1).
+sum_(p_j in At(B_(Gamma,n))) ||phi_n(t) p_j phi_n(t)^* - p_(sigma_(t,n)(j))||_2^2 = o(1).
 ```
+
+*Corrected 2026-09-11* from the per-atom form
+`||phi_n(t)p_j phi_n(t)^* - p_k||_2 = o(1)`, `tau(p_k) >= tau(p_j)-o(1)`.
+That form is automatic on small atoms (`hs-per-atom-compressor-clause-is-vacuous`)
+and could not supply the consumer's size drift.
 
 The replacement must preserve dimension-independent positive scalar adjoint
 gaps on all surviving coarse and fine blocks.  The `o(1)` bounds are required
@@ -60,6 +64,24 @@ compressors send the three `alpha` leaves into the corresponding three
 the specific nine-leaf configuration.  Any positive proof has to turn that
 prefix geometry, expressed only through almost-multiplicative unitary words,
 into an approximately common coordinate algebra.
+
+## A reformulation of the stable branch, not a step toward it (2026-09-11)
+
+By `stable-branch-trivializes-hs-block-programme` this claim holds on the
+stable branch; there the rank-one algebra synchronizes anything
+(`hs-block-compatibility-from-stable-branch`).  Granting
+`hs-one-level-expander-block-decomposition`, it implies the branch through
+`hs-expander-block-decomposition-from-one-level-and-compatibility` and
+`hs-blocks-select-stable-branch-through-masa-transport`.  So modulo the
+universal one-level theorem it is *equivalent* to `leavitt-steinberg-hs-stable`.
+
+Concretely, in every faithful normalized-HS model of `G` the synchronization
+fails.  The scalar-gap fine atoms form a masa `B` of the relative commutant
+`A_0` of `Gamma`, and `sigma(u) B sigma(u)^*` can never lie in `A_0`, because
+`sigma(u J u^(-1))` would then be abelian (`transported-gap-masa-kills-leavitt-hs-models`,
+part (A)).  Attempts 3 and 4 below are constructive alignments.  They cannot
+succeed in a hyperlinear world, so any successful version of them is really a
+contradiction argument excluding faithful models.
 
 ## Attempts
 

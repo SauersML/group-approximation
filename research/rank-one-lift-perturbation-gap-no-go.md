@@ -29,3 +29,13 @@ normalized-HS Kun block decomposition.  A usable strengthening must control
 the Hilbert-space `L2` ultraproduct / uniform integrability of almost-central
 vectors, or impose a finite-level spectral-gap statement in addition to
 algebraic centralizer capture.
+
+**Scope (2026-09-11).**  The previous paragraph is about the per-block gap
+inequality for *arbitrary* self-adjoint witnesses, which is how the block
+clauses were then written.  Every consumer of those clauses feeds them only
+operator-bounded observables, in block-summed form: see the bounded-witness
+section of `hs-one-level-expander-block-decomposition` and step 2 of
+`transported-gap-masa-kills-leavitt-hs-models-proof`.  For that bounded,
+summed inequality exact-centralizer capture does suffice, and this no-go does
+not obstruct it.  Its spiky witnesses have diverging operator norm.  The
+theorem above is unaffected.

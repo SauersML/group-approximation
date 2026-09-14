@@ -36,3 +36,30 @@ OPEN counterexample-construction target. No such group or chain is constructed. 
   finite generation (`discrete-kazhdan-groups-are-finitely-generated`) and
   residual-finiteness obstructions, not rank gradients of Farber chains.
   Nothing in it supplies a chain with the required asymptotic lower bound.
+* **Force the gradient with a presentation of positive power p-deficiency**
+  (Schlage-Puchta, Osin). Such a presentation gives positive `p`-gradient even
+  with infinitely many relators or with torsion, and the residual pro-`p`
+  image of a Kazhdan example would satisfy this claim
+  (`fpbs-kazhdan-gradient-via-power-p-deficiency`). **Dead:**
+  `fpbs-power-p-deficiency-excludes-property-t` proves that no such group is
+  Kazhdan. Openness of (T) gives a Kazhdan finitely presented truncation of
+  positive power deficiency, and Lackenby makes that truncation `p`-large.
+  Weighted Golod-Shafarevich presentations are not excluded, since Kazhdan
+  Golod-Shafarevich groups exist, but they give no lower bound on ordinary
+  rank.
+* **Necessary condition for the mod-`l` certificate: exponential subgroup
+  growth.** Suppose `dim H_1(Gamma_n;F_l) >= c[Gamma:Gamma_n]`. The index-`l`
+  normal subgroups of `Gamma_n` give at least `(l^(c m_n)-1)/(l-1)` subgroups
+  of index `l m_n` in `Gamma`, where `m_n=[Gamma:Gamma_n]`. So
+  `limsup_N log s_N(Gamma)/N >= c log(l)/l > 0`. Any candidate must therefore
+  be a Kazhdan group of at least exponential subgroup growth. Ershov's survey
+  (IJAC 2012, Section 14, discussion of Problem 6) records that no such
+  Kazhdan group was known, and expects that the Kazhdan Golod-Shafarevich
+  groups have subexponential growth. The status after 2012 was not rechecked
+  here.
+* **Where a candidate can still come from.** It must be residually finite and
+  infinitely presented whenever the chain is a cofinal `p`-chain: for a
+  finitely presented Kazhdan group, positive `p`-gradient contradicts Lackenby
+  just as above. Non-cofinal chains and non-`p`-power chains are not excluded.
+  Lackenby's (tau) dichotomy (arXiv:math/0509036) allows linear mod-`p` growth
+  along a chain with respect to which (tau) holds.

@@ -4,6 +4,7 @@ id: stw99-problem-xxiii-rank-problem
 kind: claim
 title: All ranks occur in unital simple separable stably finite non-elementary C*-algebras (STW Problem XXIII, the Rank Problem)
 root: true
+refuted_by: [stw23-rank-problem-counterexample-exists]
 artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
   - research/artifacts/stw18-23-26-finite-tracial-boundary-audit-2026-08-30.md
@@ -48,6 +49,14 @@ rank one nor comparison.
   `stw99-problem-xxvii-comparison-vs-divisibility`; through the
   `stw99-xxvi-xxvii-imply-xviii` wiring, the Rank Problem plus Winter's
   question XXVI would settle the Toms--Winter conjecture.
+* **Negation root and one known feeder (2026-09-11).**
+  `stw23-rank-problem-counterexample-exists` is the negation of this problem.
+  By Lin's theorem (`strict-comparison-rank-surjectivity-forces-sr1`), a
+  strict-comparison algebra that is not K1-injective has a non-surjective rank
+  map, so it would refute this problem
+  (`stw23-counterexample-from-stw18-k1-witness`). That shared prerequisite,
+  `stw18-k1-witness-strict-comparison-not-k1-injective`, is open with no
+  candidate.
 * The hard region is a selection problem of the same type as in
   `stw99-problem-xix-uniform-gamma-stably-finite-nuclear`: realizing a
   prescribed rank function fibrewise is easy in each tracial GNS factor;

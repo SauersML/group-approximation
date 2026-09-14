@@ -84,6 +84,26 @@ nonsofic group that is already the contradiction, with no median device
 needed.  The median device is what handles unequal block traces, so the
 substance of the assembly is exactly the unequal-trace case.
 
+## Update 2026-09-11: a shorter route, and why this is a restatement
+
+`hs-blocks-select-stable-branch-through-masa-transport` derives the same target
+from the fine clauses and the `u`-clause of `hs-expander-block-decomposition`
+alone.  In normalized HS, step 5 needs only that `J` is nonabelian.
+
+The positive scalar adjoint gap on fine blocks makes their atom algebra a masa
+of the Kazhdan relative commutant.  By part (A) of
+`transported-gap-masa-kills-leavitt-hs-models`, transporting such a masa back
+into that commutant makes `sigma(u J u^(-1))` abelian, and simplicity of `G`
+does the rest.
+
+Conversely, `stable-branch-trivializes-hs-block-programme` shows the
+prerequisite holds on the stable branch.  So this route's load-bearing
+prerequisite is equivalent to its target.  The transcription is exact, but
+it is not a reduction: in normalized HS, "blocks with gap" means masa-strength
+blocks, whereas Kun's components carry only a vector-level gap, which normalized
+HS cannot see.  See the differential section of
+`transported-gap-masa-kills-leavitt-hs-models`.
+
 ## Step 1 is the whole gap
 
 What does not transcribe is Kun's decomposition of a sofic approximation of

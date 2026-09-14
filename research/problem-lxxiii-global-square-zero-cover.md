@@ -4,6 +4,8 @@ id: problem-lxxiii-global-square-zero-cover
 kind: claim
 title: Problem LXXIII has a positive answer for every C-star algebra without finite-dimensional representations
 root: true
+refuted_by:
+  - lxxiii-unital-counterexample-exists
 artifacts:
   - research/artifacts/problem-lxxiii-literature-audit-2026-08-30.md
   - research/artifacts/stw99-lxxiii-lxvi-focused-audit-2026-08-31.md
@@ -43,6 +45,17 @@ prescribed compact cutdown.
   packet ideals then have zero intersection, all cross products vanish, and
   their nilpotents fuse without stabilization.  Thus any counterexample to
   the finite-fusion route needs overlapping incomparable packet ideals.
+- **Negative side (2026-09-12).**  A unital counterexample only has to show,
+  stage by stage, that no matrix bundle algebra in a unital tower of unbounded
+  rank has a nowhere-zero square-zero section
+  (`unital-limit-full-square-zero-at-finite-stage`,
+  `homogeneous-full-square-zero-is-nilpotent-section`).  One bundle can be
+  obstructed in every rank, since a full square-zero section kills
+  `Delta(E)^(floor(N/2))`
+  (`full-square-zero-forces-discriminant-power-vanishing`).  That obstruction
+  dies along diagonal towers
+  (`discriminant-obstruction-dies-in-multiplicity-towers`).  The open refuter
+  is `lxxiii-unital-counterexample-exists`.
 - Stabilizing gives an immediate off-diagonal matrix nilpotent, but that
   element lies in a matrix algebra over `A`; the local multiplier theorem
   handles this whenever the reserved cutdown has a properly infinite

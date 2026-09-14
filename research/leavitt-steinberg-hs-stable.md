@@ -142,6 +142,52 @@ faithful on each root subgroup.  In the regular representation those root
 algebras are diffuse, so the finite coefficient-quotient argument cannot be
 reused at factor level.
 
+**The normalized-HS differential, settled (2026-09-11).**  Both proved
+mechanisms have now been transcribed, and each fails at a named step.
+
+* *Operator norm (non-MF).*  It fails at the transport of the Kazhdan
+  projection by `Ad V_n(u)`.  Two-norm multiplicativity gives no operator
+  control of conjugation: `hs-analogue-of-normal-kazhdan-criterion-is-false`.
+* *Hamming (nonsofic).*  Its conservation, majority matching and median steps
+  transcribe; `hs-per-atom-compressor-clause-is-vacuous` records the corrected,
+  mass-weighted compressor clause they need.  Kun's expander components do
+  not transcribe.  Normalized HS cannot see their vector-level gap, and the
+  only tracially visible gap, the adjoint one, makes the block algebra a masa
+  of the Kazhdan relative commutant.  Transporting such a masa by `u` is
+  algebraically fatal to every nontrivial model:
+  `transported-gap-masa-kills-leavitt-hs-models`.
+
+Hence the block programme below is exact but not a reduction.
+`stable-branch-trivializes-hs-block-programme` proves that
+`hs-expander-block-decomposition` is equivalent to this claim.  Modulo the
+universal one-level theorem, `leavitt-hs-block-compatibility` is equivalent
+too.  A proof along these lines must exclude faithful models directly, and
+any faithful model must realize the strict relative-commutant tower
+described in the masa claim.
+
+The remaining non-restated inputs in this region are universal statements
+about Kazhdan groups:
+
+* `hs-one-level-expander-block-decomposition`, which only needs bounded
+  witnesses; and
+* coordinate capture of Kazhdan relative commutants.
+
+Neither mentions `L`.
+
+**Shape of a faithful model (2026-09-11).**  Two established claims say what
+excluding faithful models has to defeat.
+
+* `leavitt-kazhdan-relative-commutant-has-no-type-one-part`: the Kazhdan
+  relative commutant `A_0` is of type II_1, and `A_0 (tensor) L(V)^(tensor k)`
+  sits in `A_k ~= A_0`.  Captured multiplicities diverge on almost all mass,
+  and the Thompson copy acts on the multiplicity spaces.
+* `leavitt-thompson-copy-and-compressor-generate-v-wreath-z`: the shift layers
+  generate `V wr Z`, which is hyperlinear exactly when `V` is.
+
+So a tower exclusion either proves `V` nonhyperlinear or uses property (T) of
+`Gamma` on diverging multiplicity spaces, where dimension counting is invisible
+in normalized HS.
+
 **Where the branch is actually decided.**  The only mechanism that has ever
 closed a question of this shape for this group is the one that proved `Q`
 nonsofic: Kun's expander decomposition, a conservation identity, and a
@@ -149,4 +195,56 @@ majority matching.  Transcribing it to the normalized-HS metric needs
 exactly one new input, `hs-expander-block-decomposition`; the other two
 steps do transcribe, and the transcription is written out in
 `hs-block-decomposition-to-steinberg-stable`.  That route is currently the
-sharpest formulation of what proving this claim requires.
+sharpest formulation of what proving this claim requires.  *Superseded
+2026-09-11:* that route's load-bearing prerequisite is equivalent to this
+claim (`stable-branch-trivializes-hs-block-programme`), so it is a
+reformulation, not a reduction.
+
+**Next attack (2026-09-11, speculative).**  The atom algebra of a gap
+decomposition has to be *chosen*, and choosing it is where both the nonmonomial
+obstruction and the masa collapse live.
+
+*A choice-free observable on exact representations.*  For an exact
+finite-dimensional representation `pi` of any group containing the
+configuration, put
+
+```text
+K = sum_sigma (dim sigma / d) e_sigma,
+```
+
+the local irreducible dimension, summed over the `Gamma`-isotypic central
+projections `e_sigma`.  It is central, so nothing is chosen.
+
+*The compressor collapses it.*
+
+* `pi(u) K pi(u)^* <= K`: a `u Gamma u^(-1)`-isotypic component lies inside
+  `Gamma`-irreducibles of at least its dimension, and the two families of
+  central projections commute.
+* Trace conservation forces equality, so every `Gamma`-irreducible restricts
+  irreducibly to `u Gamma u^(-1)`.
+* Schur's lemma then makes `pi(u J u^(-1))` central in `pi(Gamma)''`.
+
+This re-proves, choice-free, the finite-dimensional collapse of
+`compression-defect-dies-in-finite-dimensions`.
+
+*Both approximate versions are dead (checked 2026-09-11).*  `Gamma = EL_3(L)`
+has no nontrivial finite-dimensional representations, so `K` has to be read
+from one of two places.
+
+* **The tracial ultraproduct.**  There the multiplicity of `sigma(Gamma)''` in
+  a central component is a continuous coupling dimension.  It is not a
+  conjugation-invariant strictly monotone size: `trace-blindness-sharpness`
+  realizes `u N u^* ⊊ N` in a II_1 factor.  So `Ad sigma(u)(K) <= K` with
+  equal trace forces nothing.  This is `invariant-size-argument` again.
+* **Exact atlas coordinates.**  Only the finite charts act exactly there, and a
+  finite group admits no strict compression.  The algebra generated by the
+  `Gamma`-generator matrices is not HS-continuous: a generic small
+  perturbation of any tuple generates all of `M_d`, making `K = 1`
+  identically and uninformative.
+
+A choice-free size observable therefore exists in neither category.  Any
+stable-side argument that extracts coordinates must choose an approximate
+commutant algebra, and choosing is where the masa collapse makes it of branch
+strength.  So the stable side needs a mechanism that does not factor through
+block or coordinate structure, e.g. `fp-simple-nonhyperlinearity-is-one-word-domination`
+or an algebraic certificate such as `kl-violating-equation-over-leavitt-unit-group`.

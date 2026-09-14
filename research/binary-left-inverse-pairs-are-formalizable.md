@@ -1,0 +1,45 @@
+---
+rg: 2
+id: binary-left-inverse-pairs-are-formalizable
+kind: claim
+title: Every binary cellular automaton pair with a left-inverse identity admits representatives in which the identity is formal
+distinct_from:
+  formal-polynomial-strict-pairs-need-unstable-linearization: that proves formal pairs are bijective under direct finiteness; this asks whether every pair over F_2^n alphabets can be made formal, which would make direct finiteness of F_2[G] enough for surjunctivity over alphabets of size 2^n.
+  multilinear-collapse-defect-does-not-obstruct-bijectivity: that shows canonical multilinear representatives can fail to be formal even for a reversible pair; this asks for some representatives, on possibly larger memories, that are formal.
+artifacts:
+  - research/artifacts/formal-polynomial-strict-pairs-2026-09-12.md
+---
+
+**OPEN.** For every group `G` and `n >= 1`: if `tau`, `sigma` are cellular automata on
+`(F_2^n)^G` with `sigma o tau = id`, then there are polynomial representatives of their local rules,
+on possibly larger memories, with `sigma o tau = id` as a formal polynomial identity.
+
+**Why it matters.** With `formal-polynomial-strict-pairs-need-unstable-linearization`, this claim
+makes every group with stably finite `F_2[G]` surjunctive over every alphabet of size `2^n`, through
+the route `formalizable-pairs-reduce-surjunctivity-to-kaplansky`. On a host with stably finite
+`F_2[G]`, a strict binary pair is never formalizable. So any counterexample there is exactly a
+non-formalizable strict pair.
+
+## Attempts
+
+- **Sitewise pairs (memory `{1}`):** true on every group.
+  - A shear `x_i -> x_i + f(other coordinates)` is a formal involution in characteristic 2.
+  - Shears with `f` the indicator of one point realize the transpositions along hypercube edges.
+    These generate `Sym(F_2^n)`, because the hypercube is connected.
+  - So every permutation is a composite of shears, and the reverse composite inverts it formally.
+    Artifact, Section 6.2.
+- **Canonical multilinear representatives:** they can fail
+  (`multilinear-collapse-defect-does-not-obstruct-bijectivity`), so the claim needs freedom in the
+  representatives.
+- **Bennett form:** `V = P o S o T` with `T(x,y) = (x, y + tau(x))`, `S(x,y) = (x + sigma(y), y)` and
+  `P` the track swap. `V` is formally invertible with any representatives, and
+  `V(x,0) = (tau(x), x + sigma(tau(x)))`. Formalizability asks for representatives in which the
+  second coordinate vanishes formally on `X_0 = A^G x 0`. Artifact, Section 6.3.
+- **Where it stops.**
+  - Replacing `tau` by `tau + (X^2 - X) P` and `sigma` by `sigma + (Y^2 - Y) Q` changes the defect by
+    `J_sigma(tau)(X^2 - X) P` plus higher terms, plus `(tau'^2 - tau') Q(tau')`.
+  - Cancelling it is an equivariant finite-memory solvability problem inside the ideal
+    `(X_h^2 - X_h)`. No argument is known on any group with nontrivial memory, and no
+    non-formalizable pair is known.
+  - A non-formalizable **bijective** pair on some group would refute this claim without deciding
+    Gottschalk.

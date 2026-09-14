@@ -118,6 +118,24 @@ Solving for `tau(p_i)` shows that two fine blocks meeting `e_n` in the same
 `q_A` have trace ratio trapped between quantities tending to `1`.  This is
 exactly the operative output of `tracial-median-concentration`.
 
+**Which compressor clause the drift uses (2026-09-11).**  The one-sided drift
+above needs the multiplicative estimate
+`tau(p_(sigma(j))) >= (1 - eta) tau(p_j)` on most mass.  The per-atom
+additive clause formerly written in `hs-expander-block-decomposition` does
+not give it: it is automatic below trace `eps(delta)^2/4`
+(`hs-per-atom-compressor-clause-is-vacuous`).  The prerequisite now states
+the mass-weighted clause.  By that claim, off atoms of total trace
+`8 eps + eps^(1/2)` the matching is injective and non-shrinking with
+`eta = 2 eps^(1/4)`, which is what the functional-calculus inequality
+consumes.
+
+**Redundant for the Leavitt consumer.**  With scalar fine gaps, the fine
+atom algebra is already a masa of the relative commutant of `Gamma`.  So
+`transported-gap-masa-kills-leavitt-hs-models` reaches the stable branch
+directly from the fine clauses and the `u`-clause, without this median step
+(`hs-blocks-select-stable-branch-through-masa-transport`).  This route
+remains valid; it is simply no longer on the shortest path.
+
 **What disappeared.**  There is no coarea step, no Cheeger conversion, and no
 need to prove that `q_A phi(s) q_A` is close enough to a genuine unitary for a
 projection-boundary calculation.  The spectral-gap inequality demanded by

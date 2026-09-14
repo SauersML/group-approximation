@@ -49,6 +49,11 @@ hypothetical witness `G` and every `K[G]` over a characteristic-zero field are
 coherent.  Thus incoherence cannot supply the missing nonsoficity mechanism;
 these finiteness theorems constrain the search without deciding it.
 
+A syllable constraint (2026-09-11):
+[[nonsofic-one-relator-has-no-peelable-extreme]] says that in every basis in
+which `t` has exponent sum zero, both Magnus extreme letters form at least
+three syllables, or two syllables of different absolute exponent.
+
 There is now one further exact constraint.  By
 [[one-relator-fox-magnus-descent-to-derived-linton-radical]], `G/R'` is sofic,
 `E/R'` is residually finite, and every element outside `R'` is separated by a

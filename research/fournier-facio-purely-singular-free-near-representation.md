@@ -6,6 +6,8 @@ title: The Fournier--Facio group admits a purely singular essentially free amena
 distinct_from:
   fournier-facio-hyperlinear-iff-singular-near: That proves this witness is equivalent to hyperlinearity; this is the unresolved existence assertion itself.
   wreath-amenable-near-representation: That asks for a witness for the Kun--Thom wreath; this concerns the separate torsion-free Fournier--Facio candidate.
+artifacts:
+  - research/artifacts/fournier-facio-hyperlinearity-survivor-audit-2026-09-11.md
 ---
 
 For the finitely presented torsion-free Fournier--Facio group `G`, construct
@@ -116,3 +118,16 @@ dimension infinity.
 The remaining difficulty is therefore simultaneous: couple that off-diagonal
 Haar field to the other generators and both compressors without reverting to
 a monomial near action.
+
+**Survivor audit (2026-09-11).**  Take the actors themselves as comparison
+unitaries.  The support-component cutoff theorem then splits every witness
+into two faces: positive charge on infinite support components, or all charge
+on finite components whose sizes escape every cutoff, where the fixed-sector
+Haar law applies.  Both faces are relative to the chosen charged basis.  Every
+killer recorded above uses the group only through nonsoficity,
+torsion-freeness and essential freeness; the coset-charge killer additionally
+uses non-coamenability.  The first structure specific to this group is the
+wreath shift `S wr Z` of `fournier-facio-group-contains-simple-wreath-shift`.
+A witness must realize its Hilbert-hotel shift on the `Gamma`-commutant
+(`fournier-facio-regular-models-carry-commutant-shift`), and it must come
+with a hyperlinear model of the simple factor `S`.  See the linked artifact.

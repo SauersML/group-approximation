@@ -38,3 +38,12 @@ separation problem.
   with trivial finite radical and elementary (in particular amenable) finite
   residual is residually finite and satisfies the root.  The two unrestricted
   alternatives remain open.
+- **2026-09-11, the negative answer and its equivalence.**
+  `hyperbolic-vtf-decided-by-counterexample` records the negative outcome
+  through `non-virtually-torsion-free-hyperbolic-group`, which previously had
+  no node.  `hyperbolic-rf-question-equals-vtf-question` proves that this
+  counterexample exists exactly when a non-residually-finite hyperbolic group
+  exists: a deep Dehn filling of an infinite-order residual element produces
+  invisible torsion.  So this root and `non-residually-finite-hyperbolic-group`
+  are decided together, and the per-group distinction in `distinct_from` above
+  does not survive quantification over all hyperbolic groups.

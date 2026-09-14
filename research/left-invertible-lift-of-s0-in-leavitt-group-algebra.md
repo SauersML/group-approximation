@@ -67,3 +67,50 @@ Equivalently, in element form: correct chosen lifts `a, b` of `s_0, t_0` by
 kernel elements `alpha, beta` so that `(b + beta)(a + alpha) = 1`, that is
 
     (b a - 1) + b alpha + beta a + beta alpha = 0,   alpha, beta in ker(pi).
+
+## Attempts
+
+**2026-09-12, normal form and unit reformulation (lane `gk-kdf-structure`).**
+
+* **Exhaustiveness.** By `leavitt-inverse-defects-are-visible-or-invisible`, every
+  Kaplansky pair in `F_2[R^x]` whose defect survives evaluation is a translate, by
+  one group element, of a witness to this claim. The partner can then be taken
+  over `t_0`. If `pi(b) = t_0 + gamma t_1`, the involution `1 + s_0 gamma t_1` fixes
+  `s_0` on the left and turns `pi(b)` into `t_0` on the right. The only other kind
+  of pair is `leavitt-evaluation-kernel-unitization-not-directly-finite`.
+* **Unit reformulation.** This claim holds exactly when some lifts `a` of `s_0` and
+  `b` of `t_0` have `b a` a unit of `F_2[R^x]`. Then `b' = (b a)^(-1) b` satisfies
+  `b' a = 1` and still lies over `t_0`, since `pi(b a) = 1`. In particular
+  `b a - 1` nilpotent is sufficient. Trivial units over `1` are only `[1]`, so a
+  nontrivial correction needs a nontrivial unit of the group algebra in `1 + ker(pi)`.
+* **Completion is impossible.** A witness never extends to lifts of `(s_1, t_1)` that
+  complete a Leavitt family, because the augmentation forbids a unital binary Leavitt
+  family in any group algebra over a field. So the defect `1 - a b` lifts `s_1 t_1`
+  but is not equivalent to `1` (Proposition 6 of
+  `research/artifacts/leavitt-inverse-defect-normal-forms-2026-09-12.md`).
+* **Gate.** If `R^x` is linear sofic over `F_2`
+  (`binary-leavitt-unit-group-is-f2-linear-sofic`), this claim is false.
+
+**2026-09-12, SAT on bounded supports (lane `kdf-sat`).** The encoder
+`experiments/nonsofic-certificates/kaplansky-df/sat/dfsat.py`, in target mode,
+imposes two conditions:
+- `pi(a) = s_0`, as linear XOR rows over the normal-form monomial coordinates of `R`;
+- `b a = 1`, as bilinear XORs over shared AND variables.
+
+Strictness is then automatic, since `s_0` is not a unit of `R`. Results so far:
+
+* **Thompson `V`**, generators `A, B, C, P`. `s_0` is not in the `F_2`-span of
+  `pi(B_r(V))` for `r <= 4`, so no lift of `s_0` is supported in those balls. This
+  is exact Gaussian elimination.
+* **Nine-leaf `EL_D` generators** of `openai-nine-leaf-leavitt-configuration`.
+  `s_0` is not in the span of `pi(B_2)`, again by Gaussian elimination.
+* **The two `GL(4,2)` atlas charts**, which generate all of `R^x`. Here `s_0` lies
+  in the span of `pi(B_3)`, but the solver finds no pair
+  - with `supp a` in `B_3` and `supp b` in `B_2` (15,529 AND variables, UNSAT in 2.1 s);
+  - with `supp a` in `B_3` and `supp b` in `B_1`;
+  - with `supp a` in `B_5` and `supp b` in `B_1` (UNSAT in 1.6 s).
+
+Where it dies: every support tried so far is too small. The UNSAT verdicts are
+CryptoMiniSat outputs without proof logs, so they record where nothing was found
+and certify nothing. Larger radii are running. Details:
+`research/artifacts/kaplansky-df-sat-search-2026-09-12.md`.

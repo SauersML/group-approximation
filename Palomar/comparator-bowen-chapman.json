@@ -1,0 +1,9 @@
+{
+  "challenge_module": "Palomar.BowenChapmanChallenge",
+  "solution_module": "Palomar.BowenChapmanSolution",
+  "theorem_names": [
+    "BowenChapman.not_all_surjunctive_groups_sofic",
+    "BowenChapman.exists_finitelyGenerated_surjunctive_not_sofic"
+  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

@@ -4,6 +4,7 @@ id: stw99-problem-xviii-toms-winter-conjecture
 kind: claim
 title: Strict comparison forces Jiang--Su stability (STW Problem XVIII, Toms--Winter)
 root: true
+refuted_by: [stw18-strict-comparison-non-z-stable-algebra-exists]
 distinct_from:
   stw99-problem-xix-uniform-gamma-stably-finite-nuclear: that asks whether every stably finite algebra in the class has uniform property Gamma; uniform Gamma together with strict comparison is a sufficient route to this problem, but the two assertions are not equivalent.
   stw99-problem-xxv-unique-trace-sr1-z-stable: that assumes unique trace and stable rank one instead of strict comparison.
@@ -41,3 +42,15 @@ the Toms--Winter conjecture.  It remains open in this generality.
   STW survey.
 - `stw99-xviii-implies-xxvi` records the exact conditional implication from a
   positive solution here to Winter's Cuntz-semigroup problem XXVI.
+- Unital simple AH algebras and Lin's condition (C) tracial strata are
+  closed positively: `simple-ah-strict-comparison-is-z-stable` and
+  `lin-condition-c-boundary-strict-comparison-z-stable`.
+- **K1 route to a counterexample (2026-09-11).** The negation root is
+  `stw18-strict-comparison-non-z-stable-algebra-exists`. A strict-comparison
+  algebra that is not K1-injective would refute this problem (Jiang). The
+  LIX algebras fail strict comparison
+  (`stw59-lix-algebras-fail-strict-comparison`), and every AH upgrade is dead.
+  `stw18-k1-witness-constraints` shows any witness has stable rank at least
+  two, a rank gap refuting Problem XXIII, no pureness, and a trace simplex
+  outside condition (C). See
+  `research/artifacts/stw18-k1-route-constraint-map-2026-09-11.md`.

@@ -47,3 +47,9 @@ Consequently:
 This does not settle the unrestricted problem: a torsion element can still
 lie in `R intersect Z(E)`, or can normally generate the non-elementary
 alternative.
+
+The first alternative is never forced.  `residual-prime-torsion-via-free-factor`
+replaces any counterexample `G` by `G * Z`, which has trivial finite radical and
+keeps the invisible torsion, so every counterexample converts into the second
+alternative (`hyperbolic-group-trivial-radical-residual-prime-torsion`).  An
+argument that excludes only the central alternative cannot decide the root.

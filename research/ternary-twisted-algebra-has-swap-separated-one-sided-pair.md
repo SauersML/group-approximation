@@ -1,0 +1,46 @@
+---
+rg: 2
+id: ternary-twisted-algebra-has-swap-separated-one-sided-pair
+kind: claim
+title: The anti-central summand of the ternary Leavitt group algebra has a one-sided pair separated by the swap
+distinct_from:
+  ternary-anti-invariant-swap-corner-is-full: that is the corner equation c e_- b = eps_- for the swap-averaging idempotent; this is the equivalent statement with no idempotent, a one-sided pair c a = 1 with c [w] a = 0 in the twisted algebra. The two claims are equivalent through two routes.
+  projective-ternary-swap-idempotent-is-full: that is the corner equation on the central summand F_3[PG], where augmentation forbids a swap-separated pair; this is the separated pair on the anti-central summand, where no augmentation exists.
+  leavitt-unit-group-algebra-not-directly-finite: that asks for any one-sided inverse pair in the binary group algebra over F_2; this asks, over F_3 and a different group, for a pair whose partner kills the swap translate, which augmentation forbids in every group algebra with a unital map to a field.
+artifacts:
+  - research/artifacts/ternary-swap-separated-pairs-2026-09-12.md
+---
+
+**OPEN.** Let `R = L_(F_3)(1,2)`, `G = R^x`, `z = -1`, `w = s0 t1 + s1 t0`. Put
+
+    S_- = F_3[G] / (1 + [z]),
+
+the twisted group algebra of `G/<z>` in which the lift of `z` equals `-1`. Exhibit `a, c` in `S_-`
+with
+
+    c a = 1,        c [w] a = 0.
+
+Equivalent forms, all proved in Theorem 1 of the artifact:
+
+* **Idempotent form.** Some idempotent `p ~ 1` in `S_-` satisfies `p [w] p = 0`.
+* **Cross-term form.** Some pair with `c a = 1` has `1 - m^2` invertible, where `m = c [w] a`.
+  A nilpotent cross term suffices.
+* **Corner form.** `ternary-anti-invariant-swap-corner-is-full`, through the routes
+  `swap-separated-pair-gives-anti-invariant-corner` and
+  `anti-invariant-corner-gives-swap-separated-pair`.
+
+A solution refutes Gottschalk's conjecture on `G`
+(`anti-invariant-swap-corner-refutes-ternary-surjunctivity`).
+
+## Attempts
+
+- *The image pair satisfies it.* In `R`, `t0 s0 = 1` and `t0 w s0 = t0 s1 = 0`, and any image pair
+  with these relations will do. Lifting is open: direct finiteness does not pass to quotients.
+- *Augmentation forbids the central analogue.* In any algebra with a unital map to a field, `c a = 1`
+  and `c [w] a = 0` contradict each other at the augmentation. So the statement fails in `F_3[PG]` and
+  in every group algebra. `S_-` has no such map, so augmentation does not bind there.
+- *Split into one-sided pair and cross term.* By the cross-term form, a lift must first make `S_-`
+  fail direct finiteness through some `(a, c)`. It must then keep `1 - (c[w]a)^2` invertible. With
+  `pi(a) = s0` and `pi(c) = t0`, the cross term lies in the evaluation kernel. This is where it dies:
+  no one-sided pair in `S_-` is known.
+- *Gate.* F_3-linear soficity of the unit group would refute it through stable finiteness.

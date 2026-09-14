@@ -88,6 +88,52 @@ of bad blocks admitting a fixed `L^infinity/L2` bound.  The established
 claim: normalized low-energy vectors may concentrate on vanishing-rank
 supports and never define bounded ultraproduct elements.
 
+## Bounded witnesses are all any consumer uses (2026-09-11)
+
+Every downstream use feeds the block gap an operator-bounded observable, and
+only in block-summed form.
+
+* The median step uses `0 <= f <= 1`.
+* The masa argument uses bounded relative commutant elements (step 2 of
+  `transported-gap-masa-kills-leavitt-hs-models-proof`).
+* The endgame uses unitaries.
+
+The form actually consumed is
+
+```text
+(F2) sum_s sum_i ||[p_i phi(s) p_i, x_i]||_2^2
+       >= kappa'^2 sum_i ||x_i - tau_i(x_i) p_i||_2^2 - o(1)
+       for self-adjoint block-diagonal x with ||x||_op <= 1.
+```
+
+The spiky low-energy vectors of `rank-one-lift-perturbation-gap-no-go`
+violate the per-block inequality above.  They do not violate `(F2)`.
+
+**Exact-centralizer capture does give the bounded form.**  Suppose the
+relative commutant of the model is captured by exact finite-level
+centralizers `A_n` of lifts `g_(s,n)` HS-close to `phi_n(s)`.
+
+* *Choice of atoms.*  Take the atoms `p_(n,j)` to be a maximal orthogonal
+  family of minimal projections of `A_n`.
+* *Boundary.*  `[phi_n(s), p_j] = [phi_n(s) - g_(s,n), p_j]`, so the total
+  boundary is at most `4 ||phi_n(s) - g_(s,n)||_2^2 -> 0`.
+* *The inequality in the ultraproduct.*  Property (T) gives
+  `sum_s ||[sigma(s), x]||_2^2 >= kappa^2 ||x - E_(A_0)(x)||_2^2` on `L^2(M)`.
+  Conjugation by `sigma(Gamma)` preserves the block-diagonal algebra
+  `D = B' cap M`, so `E_(A_0)` maps `D` into `A_0 cap B'`.  That is `B` under
+  capture, because an ultraproduct of masas of the `A_n` is a masa of
+  `prod A_n`.
+* *Descent to finite levels.*  A diagonal argument gives the inequality
+  there for bounded `x` with an `o(1)` error.  The off-diagonal part of
+  `[phi(s), x]` is `O(||x||_op^2)` times the boundary, which is why bounded
+  witnesses are needed.
+
+So for the consumers, the open universal content is coordinate capture
+(Alekseev--Thom Open Problem 6.2 for inexact lifts), not an anti-spike or
+uniform-integrability theorem.
+`at-op62-holds-for-representation-lifts` supplies it on the
+representation-lift sector.
+
 ## Attempts
 
 1. **Recursive balanced cutting.**  If every gap failure produced a balanced

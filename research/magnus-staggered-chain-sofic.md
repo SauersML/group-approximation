@@ -103,3 +103,12 @@ also handles all orders and collisions of the three indices arising from
 `w=b^p a^s b^q`, using cyclic HNN extensions and root adjunctions where
 needed. These results close concrete higher-overlap cases. The assertion
 about all staggered kernels remains open.
+
+## Peelable extremes (2026-09-11)
+
+[[peelable-extreme-one-relator-groups-are-sofic]] closes every chain whose top
+or bottom letter forms one syllable, or two syllables of equal absolute
+exponent, in `W_0`. The window step `S_(j-1) *_(F_j) B_j` is then at most two
+cyclic amalgams or HNN extensions of `S_(j-1)`, whatever the overlap rank.
+What remains open is the unpeelable class
+[[unpeelable-extreme-one-relator-groups-sofic]].
