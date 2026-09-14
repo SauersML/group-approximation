@@ -1,9 +1,0 @@
-{
-  "cut_instances": 102,
-  "vertex_cover_graphs": 71,
-  "compiled_selection_assignments": 856,
-  "largest_compiled_expanded_length": 350168,
-  "incidence_width_graphs": 34,
-  "all_checks_passed": true,
-  "seconds": 0.111855
-}

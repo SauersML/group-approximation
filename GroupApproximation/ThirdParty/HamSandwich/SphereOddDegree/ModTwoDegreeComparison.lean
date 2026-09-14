@@ -1,73 +1,73 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AntipodalDegree
 
-/-!
-# Mod-two comparison of the integer degree
 
-This file implements **Route A** of
-`docs/plans/Mod_Two_Degree_Comparison_Roadmap.md`: keep the genuine *integer*
-degree of a self-map of `Sphere n` (the conditional `degreeOfIso` /
-`SphereOrientation.degree` of `Degree.lean` / `SphereTopHomology.lean`), and
-attach the parity statement by **reducing that integer modulo `2`** via the cast
-`ℤ → ZMod 2`. The whole "comparison" content is then a single, fully-proved
-arithmetic bridge,
 
-```text
-(z : ZMod 2) = 1   ↔   Odd z,
-```
 
-with no new topological machinery. Both final-theorem idioms
 
-```text
-(degree f : ZMod 2) = 1        and        Odd (degree f)
-```
 
-become interchangeable.
 
-## What is genuinely provable today
 
-The *unconditional* topological degree is still blocked (it needs
-`Hₙ(Sⁿ; ℤ) ≅ ℤ`, absent from pinned Mathlib), so every degree-level statement
-below is **conditional on a chosen identification** `e : SphereTopHomologyIso n`
-(equivalently a bundled `SphereOrientation`), exactly like the rest of the degree
-API. There is **no fake `degree`, no fake top class, and no fake coefficient
-reduction**.
 
-* **Arithmetic parity/cast bridges** (pure, topology-free):
-  `intCast_zmodTwo_eq_one_iff_odd`, `intCast_zmodTwo_eq_zero_iff_even`,
-  `Odd.intCast_zmodTwo`, `odd_of_intCast_zmodTwo_eq_one`,
-  `Even.intCast_zmodTwo`, `even_of_intCast_zmodTwo_eq_zero`,
-  `intCast_zmodTwo_eq_zero_or_one`, `intCast_zmodTwo_mul`,
-  and the conversion-free corollary `intCast_zmodTwo_eq_one_of_eq_one_or_neg_one`.
-* **Mod-2 reduction of the conditional degree** (Route A applied to the genuine
-  integer degree):
-  `degreeOfIso_intCast_zmodTwo_eq_one_iff_odd` (the comparison theorem: the
-  induced action on the top `F₂`-class — i.e. the reduction of the integer degree
-  — is `1` iff the integer degree is odd), the multiplicativity
-  `degreeOfIso_comp_intCast_zmodTwo`, and the concrete values
-  `degreeOfIso_homeomorph_intCast_zmodTwo_eq_one`,
-  `degreeOfIso_antipodal_intCast_zmodTwo_eq_one`.
-* **Oriented wrappers** on `SphereOrientation.degree` with the same statements.
 
-## Coefficient-reduction blocker (documented, not faked)
 
-Route A obtains the `F₂` statement as the *arithmetic reduction* of the integer
-degree. It does **not** require — and this file does **not** claim — a
-*topological* coefficient-reduction theorem identifying that reduction with a map
-induced on `Hₙ(Sⁿ; F₂)` or `Hⁿ(Sⁿ; F₂)`. The genuinely missing topological
-inputs for a *native* `F₂`-(co)homology comparison are, precisely:
 
-1. **chain-level coefficient change** — the additive/zero-preserving wiring for
-   `ModuleCat.extendScalars (algebraMap ℤ (ZMod 2))` so that
-   `Functor.mapHomologicalComplex` applies (the `U6` wiring gap);
-2. **the universal coefficient theorem** — `Hₙ(X; F₂) ≅ Hₙ(X;ℤ)⊗F₂ ⊕
-   Tor(Hₙ₋₁(X;ℤ), F₂)` with naturality, which is *absent* from pinned Mathlib;
-3. **top homology generator compatibility** — `Hₙ(Sⁿ; ℤ) ≅ ℤ` and
-   `Hₙ(Sⁿ; F₂) ≅ F₂` (the shared degree blocker);
-4. **the cohomology/homology pairing** for the cup-product (`RP n`) route.
 
-None of these is needed for the parity of a single integer scalar, which is the
-content of this file.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

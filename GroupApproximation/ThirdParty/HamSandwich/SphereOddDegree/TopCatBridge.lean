@@ -1,53 +1,53 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Basic
 import Mathlib.Topology.Category.TopCat.Sphere
 
-/-!
-# Bridge between the raw `Sphere n` model and `TopCat.sphere n`
 
-This file records the precise relationship between the project's raw subtype
-model of the sphere,
 
-```lean
-SphereOddDegree.Sphere n = ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1)
-```
 
-and Mathlib's categorical sphere object `TopCat.sphere n`.
 
-In the installed Mathlib, `TopCat.sphere n` unfolds to
-`TopCat.diskBoundary (n + 1)`, whose carrier is
-`ULift (↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1))`.
 
-In particular the *ambient space* `EuclideanSpace ℝ (Fin (n + 1))` and the
-metric-sphere subtype agree exactly; the only difference is a universe
-`ULift` wrapper.  The bridge is therefore provided at three matching strengths,
-each strictly packaging the previous one and all reducing to the bare `ULift`
-wrapper:
 
-* **definitional equality of carriers** — the carrier of `TopCat.sphere n` is
-  *definitionally* `ULift (Sphere n)` (`topCatSphere_carrier_eq`, by `rfl`);
-* **homeomorphism** — `TopCat.sphere n ≃ₜ Sphere n` via `Homeomorph.ulift`
-  (`topCatSphereHomeomorph`);
-* **categorical isomorphism** — `TopCat.sphere n ≅ TopCat.of (Sphere n)` in
-  `TopCat`, the categorical packaging of the homeomorphism through
-  `TopCat.isoOfHomeo` (`topCatSphereIso`).
 
-This is **Option B** of `PR_02_TopCat_Sphere_Alignment.md`: keep the subtype
-model `Sphere n` as the working type for the quotient / antipodal / covering-space
-layer (where negation `-x`, the `ZMod 2` action and the `RP n` quotient are
-cleanest with no `ULift` noise) and transport across these bridges wherever a
-`TopCat` object is required by a later algebraic-topology API.
 
-## Universes
 
-The carrier-equality and homeomorphism are universe-polymorphic in the `TopCat`
-universe `u`.  The categorical isomorphism is stated at universe `0`
-(`TopCat.sphere.{0} n ≅ TopCat.of (Sphere n)`) because the target
-`TopCat.of (Sphere n)` lives in `TopCat.{0}` (`Sphere n : Type`); this is the
-universe in which Mathlib's `TopCat.sphere`-based algebraic topology is used.
-A universe-polymorphic categorical statement is available without `isoOfHomeo`
-as `TopCat.sphere.{u} n ≅ TopCat.of (ULift.{u,0} (Sphere n))` (which holds by
-`Iso.refl`, since the carriers are definitionally equal).
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

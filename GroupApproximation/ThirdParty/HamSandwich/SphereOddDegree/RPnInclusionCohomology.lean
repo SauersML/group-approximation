@@ -1,37 +1,37 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RealProjectiveSpaceInclusion
 
-/-!
-# Pullbacks on singular cohomology of the equatorial inclusions
 
-This file equips the genuine equatorial inclusions
-`sphereInclusion n : Sⁿ ↪ Sⁿ⁺¹` and `rpInclusion n : RPⁿ ↪ RPⁿ⁺¹`
-(`RealProjectiveSpaceInclusion.lean`) with their induced pullbacks on the
-project's genuine mod-two singular cohomology, and proves the basic functorial
-and double-cover-compatibility facts.
 
-These are the cohomological maps consumed by the long-exact-sequence / cellular
-route for `H^k(RPⁿ; F₂)`: the restriction map `H^k(RPⁿ⁺¹; F₂) → H^k(RPⁿ; F₂)`
-together with its compatibility with the double cover `proj`.
 
-## What is built
 
-* `rpInclusionCohPullback n k : H^k(RPⁿ⁺¹; F₂) ⟶ H^k(RPⁿ; F₂)` — the restriction
-  pullback `ī^*`; `sphereInclusionCohPullback n k` — its sphere analogue.
-* `rpInclusion_pullback_naturality` — the **double-cover naturality square**
-  ```text
-  ī^* ≫ proj^* = proj^* ≫ i^*   : H^k(RPⁿ⁺¹; F₂) ⟶ H^k(Sⁿ; F₂),
-  ```
-  the cohomological image of `rpInclusion_comp_proj` (`ī ∘ proj = proj ∘ i`).
-* `rpInclusionCohPullback_eq_cohPullback` / `sphereInclusionCohPullback_eq_cohPullback`
-  — identifications with the project's generic `cohPullback`.
 
-The relative cohomology `H^k(RPⁿ⁺¹, RPⁿ; F₂)` and the resulting long exact
-sequence of the pair `(RPⁿ⁺¹, RPⁿ)` are **not** built here (they require the
-relative singular cochain complex `ker(ī^*)` and its connecting map, gated on the
-split-injectivity of the chain-level inclusion, which is absent from pinned
-Mathlib); see `RPn_Cell_Structure_Or_LES_Setup_Result.md`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 
@@ -85,29 +85,29 @@ theorem rpInclusion_pullback_naturality (n k : ℕ) :
     ← Functor.map_comp, ← Functor.map_comp, ← op_comp, ← op_comp, ← TopCat.ofHom_comp,
     ← TopCat.ofHom_comp, rpInclusion_comp_proj]
 
-/-! ### Relative cochain complex and relative cohomology of the pair `(RPⁿ⁺¹, RPⁿ)`
 
-The restriction of cochains along the equatorial inclusion is the cochain map
-`rpInclusionCochainMap n : C^•(RPⁿ⁺¹; F₂) ⟶ C^•(RPⁿ; F₂)`. Its **kernel** is the
-relative cochain complex `C^•(RPⁿ⁺¹, RPⁿ; F₂)`, and its homology is the genuine
-**relative cohomology** `H^k(RPⁿ⁺¹, RPⁿ; F₂)`. These are real objects in the
-abelian category `CochainComplex (ModuleCat (ZMod 2)) ℕ`.
 
-The relative complex sits in the short complex
-`rpPairShortComplex n`:
 
-```text
-C^•(RPⁿ⁺¹, RPⁿ; F₂) --ι--> C^•(RPⁿ⁺¹; F₂) --restr--> C^•(RPⁿ; F₂).
-```
 
-This short complex is exact at the left two spots and `ι` is a monomorphism for
-free (it is a kernel). It is a **short exact sequence** — and hence yields, via
-Mathlib's `HomologicalComplex.HomologySequence`, the long exact cohomology
-sequence of the pair — exactly when the restriction `rpInclusionCochainMap n` is
-an epimorphism. That epi statement (surjectivity of cochain restriction,
-equivalently split-injectivity of the singular chain inclusion `C_•(RPⁿ) ↪
-C_•(RPⁿ⁺¹)`) is the single remaining input; see
-`RPn_Cell_Structure_Or_LES_Setup_Result.md`. -/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /-- The cochain-level restriction map `C^•(RPⁿ⁺¹; F₂) ⟶ C^•(RPⁿ; F₂)` induced by
 the equatorial inclusion. Its homology in degree `k` is `rpInclusionCohPullback`. -/

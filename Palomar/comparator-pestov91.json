@@ -1,9 +1,0 @@
-{
-  "challenge_module": "Palomar.Pestov91Challenge",
-  "solution_module": "Palomar.Pestov91Solution",
-  "theorem_names": [
-    "Pestov91.exists_infinite_simple_propertyT_hyperlinear",
-    "Pestov91.exists_infinite_simple_propertyT_sofic"
-  ],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

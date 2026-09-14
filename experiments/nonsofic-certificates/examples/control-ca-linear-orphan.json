@@ -1,9 +1,0 @@
-{
-  "type": "gottschalk-ca",
-  "expect": "FAIL",
-  "note": "Control: tau = tau_{1+[u]} for the involution u has the Garden-of-Eden pattern (1,0) on {e,u}, but it is not injective, so the identity candidate is not a left inverse.",
-  "alphabet": 2,
-  "tau": {"memory": ["@e", "@u"], "rule": [0, 1, 1, 0]},
-  "sigma": {"memory": ["@e"], "rule": [0, 1]},
-  "orphan": {"cells": ["@e", "@u"], "values": [1, 0]}
-}

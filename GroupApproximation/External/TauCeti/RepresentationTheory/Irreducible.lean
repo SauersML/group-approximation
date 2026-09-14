@@ -16,65 +16,65 @@ import Mathlib.RingTheory.SimpleModule.Rank
 import GroupApproximation.External.TauCeti.RingTheory.Semisimple.DoubleCentralizer
 import GroupApproximation.External.TauCeti.RingTheory.Semisimple.Schur
 
-/-!
-# Criteria for irreducibility
 
-This file collects three ways of recognising an irreducible representation from outside, without
-inspecting its subrepresentations one by one, and the finite-dimensional existence statement that
-makes the second of them usable.
 
-A representation on a one-dimensional vector space is irreducible, whatever the group and however
-it acts: a subrepresentation is in particular a subspace, and a line has only the two trivial
-subspaces.  Nontriviality, the other half of irreducibility, is the same dimension count.  This is
-how the smallest representations of a group are recognised as irreducible without knowing anything
-about the group -- the trivial representation, a character, a sign.
 
-The second criterion turns a lattice-theoretic statement about a fixed ambient representation into
-a statement about a subrepresentation on its own: a subrepresentation that is an **atom** of the
-lattice of subrepresentations carries an irreducible representation.  Irreducibility of a
-subrepresentation `σ` of `ρ` is a statement about the subrepresentations of `σ.toRepresentation`,
-one level down from `ρ`, whereas minimality is a statement inside the lattice attached to `ρ`; the
-translation between them is the correspondence sending a subrepresentation of `σ.toRepresentation`
-to its image in `ρ` under the inclusion of `σ.toSubmodule`.  In practice the atom form is the one
-that gets proved -- one exhibits an invariant subspace of the ambient representation and shows it
-has no proper nonzero invariant subspace -- and the irreducibility form is the one that gets used.
 
-At the other extreme, a representation whose algebra map exhausts `End k V` is irreducible, because
-a vector space is a simple module over its own endomorphism ring, so a nonzero vector can be carried
-to any other.  This is the criterion a matrix block of a semisimple group algebra is recognised as
-irreducible by.
 
-## Main results
 
-* `TauCeti.Representation.IsIrreducible.nontrivial`: an irreducible representation has a nonzero
-  carrier.
-* `Representation.IsIrreducible.finrank_pos`: a finite-dimensional irreducible
-  representation has positive dimension.
-* `Representation.IsIrreducible.natCast_finrank_ne_zero`: in characteristic zero that
-  dimension is nonzero, hence invertible, in the base field.
-* `Representation.IsIrreducible.finiteDimensional`: an irreducible representation of a finite
-  monoid is finite-dimensional.
-* `TauCeti.Representation.isIrreducible_of_finrank_eq_one`: a line is irreducible.
-* `TauCeti.Representation.isIrreducible_of_linearEquiv`: irreducibility transports along an
-  equivariant linear equivalence.
-* `TauCeti.Representation.isIrreducible_toRepresentation_of_isAtom`: an atom of the lattice of
-  subrepresentations carries an irreducible representation.
-* `TauCeti.Representation.isIrreducible_of_asAlgebraHom_surjective`: a representation whose
-  algebra map exhausts the endomorphisms is irreducible.
-* `Representation.asAlgebraHom_surjective_of_isIrreducible`: over an algebraically closed
-  field, every finite-dimensional irreducible representation exhausts the endomorphisms.
-* `TauCeti.Representation.exists_isAtom_le`: every nonzero finite-dimensional subrepresentation
-  contains an atom, so the atom criterion always has something to apply to.
-* `TauCeti.Representation.exists_isAtom`: in particular a nonzero finite-dimensional
-  representation has an atom.
-* `TauCeti.Representation.exists_isIrreducible_subrepresentation`: consequently every nonzero
-  finite-dimensional representation contains an irreducible subrepresentation.
 
-## References
 
-* [Schur--Weyl roadmap](https://github.com/TauCetiProject/TauCetiRoadmap/blob/main/TauCetiRoadmap/RepresentationTheory/SchurWeyl/README.md),
-  Layer 4, "the named small irreducibles".
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 namespace TauCeti

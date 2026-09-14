@@ -1,6 +1,0 @@
-CAND1 d6c2 :: trace ideal = (1): no hom
-CAND2 d6c2 :: trace ideal = (1): no hom
-CAND3 d6c2 :: trace ideal = (1): no hom
-CAND4 d6c2 :: trace ideal = (1): no hom
-LIND_DONE d6c2 cands 2.1s
-EXIT=0

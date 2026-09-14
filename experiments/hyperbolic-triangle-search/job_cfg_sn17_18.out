@@ -1,7 +1,0 @@
-girth-6 generating pairs of A7 up to conjugacy: 108
-CONFIG n=17 alphaSets=432 betaSets(non-natural)=216 dcs=
-10287648 configurations=0 ms=528324
-CONFIG n=18 alphaSets=432 betaSets(non-natural)=216 dcs=
-10287648 configurations=0 ms=860266
-CONFIG_DONE
-EXIT=0

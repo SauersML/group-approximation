@@ -2,49 +2,49 @@ import GroupApproximation.Sofic.ApproxInvolutionCorner
 import GroupApproximation.Sofic.KazhdanCornerModel
 import GroupApproximation.Sofic.KazhdanCornerPolar
 
-/-!
-# The negative corner of an approximate central involution
 
-Step 5 of the marked-compression blueprint
-(`notes/NON_MF_FORMALIZATION_BLUEPRINT.md`): given a weak-MF approximation of
-a group carrying a central involution `z ≠ 1`, cut every microstate by the
-negative spectral sector of the rounded involution and repackage the corner
-as an honest operator-norm almost representation on which `z` converges to
-`-1`.
 
-The corner coordinates are the eigenvectors of the Hermitian part of the
-`z`-microstate with nonpositive eigenvalue.  In that eigenbasis the rounded
-involution of `ApproxInvolutionCorner` is exactly the `±1` sign diagonal,
-and the corner leakage of every group element is controlled with no
-spectral gap: the `(≤0, >0)` block of the commutator `[D, V]` with the sign
-diagonal `D` is exactly `-2` times the same block of `V`, so asymptotic
-commutation (centrality of `z`) forces the off-corner blocks to vanish.
-Principal compression then has vanishing multiplicative and Gram defects
-(`norm_principalBlock_mul_defect_le`, `norm_principalBlock_gram_sub_one_le`),
-polar correction makes the corner exactly unitary, and separation of `z`
-from `1` keeps the corner nonempty along a tail
-(`negativeProjection_eventually_ne_zero`).
 
-Main result: `exists_negativeCorner_opAlmostRepresentation`.  This is the
-finite-stage form of the central-corner cut in the non-MF manuscript
-(`non_mf_groups_exist.tex`, Lemma `lem:corner`); no lower bound on the
-corner ranks is consumed anywhere.  The downstream Kazhdan compressor takes
-exactly the exported interface.
 
-Mathematical provenance: compression of an approximate central involution to
-its negative eigenspace appears in Slofstra--Vidick, *Entanglement in
-non-local games and the hyperlinear profile of groups*, Proposition 2.7
-(arXiv:1711.10676).  Their normalized Hilbert--Schmidt argument obtains a
-positive relative dimension.  The operator-norm construction here needs only
-that the corner is nonempty and then treats it as the whole finite model, so
-no rank-density estimate is used. Bachner--Dogon--Lubotzky,
-*On L1-approximation of groups*, Lemma 2.3 and Propositions 1.5 and 2.4,
-already carry out the corresponding operator-norm, dimension-changing
-corner restriction and polar correction for a central involution. The new
-downstream ingredient here is not this local corner technology but its use in
-the Kazhdan-adjoint/stable-finiteness universal-kernel argument. This file is
-an independent Lean proof; no external Lean code was copied.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace NegativeCornerModel

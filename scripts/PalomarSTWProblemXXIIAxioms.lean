@@ -6,7 +6,7 @@ import Lean.Util.CollectAxioms
 # The axiom closure of the Problem XXII theorems
 
 `lake env lean scripts/PalomarSTWProblemXXIIAxioms.lean`, run by
-`.github/workflows/palomar-check.yml` after the Palomar libraries build.  It
+`.github/workflows/palomar-comparator.yml` after the Palomar libraries build.  It
 prints the axiom closure of each theorem `Palomar/comparator-stw-xxii.json`
 selects and fails unless every closure lies inside the permitted axioms.  A
 missing declaration fails too: a driver that cannot find its input must not

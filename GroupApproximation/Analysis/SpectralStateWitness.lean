@@ -1,25 +1,25 @@
 import GroupApproximation.Analysis.StateExtension
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Basic
 
-/-!
-# A state concentrated at a spectral point
 
-For a self-adjoint element `m` of a unital C-star algebra and a real
-point `μ` of its spectrum, there is a state of the algebra that is
-multiplicative on the elemental subalgebra of `m`, sends `m` to `μ`, and
-therefore annihilates `(m - μ)²`.
 
-The construction composes the character of the commutative elemental
-algebra sitting over the spectral point (Gelfand theory,
-`StarAlgebra.elemental.characterSpaceHomeo`) with the positive extension
-theorem of `StateExtension`.
 
-This is the spectral brick of the strict-Kazhdan-compression program of
-`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: fed into GNS it
-produces a representation in which `m` has the genuine eigenvalue `μ`,
-which is what transfers a spectral-gap violation into a concrete
-Hilbert-space contradiction.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace SpectralStateWitness

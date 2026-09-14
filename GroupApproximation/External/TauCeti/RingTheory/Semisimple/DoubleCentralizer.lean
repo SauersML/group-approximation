@@ -14,61 +14,61 @@ import Mathlib.LinearAlgebra.Basis.VectorSpace
 import Mathlib.RingTheory.SimpleModule.Basic
 import Mathlib.RingTheory.SimpleRing.Basic
 
-/-!
-# The double centralizer theorem
 
-Mathlib's Jacobson density theorem (`Module.Finite.toModuleEnd_moduleEnd_surjective`) says that for
-a semisimple `R`-module `M` which is finite over its endomorphism ring `D = Module.End R M`, the
-natural map `R → Module.End D M` is **surjective**. This file sharpens that to a **bijection** for
-a faithful such `M`, so that `R` is recovered from its action: `R ≃+* Module.End D M`.
 
-The half that is missing upstream is injectivity, and injectivity is exactly faithfulness of `M`.
-Faithfulness is not automatic, but it is automatic in the case the structure theory cares about:
-a nontrivial module over a **simple** ring is faithful, because the elements killing `M` form a
-two-sided ideal not containing `1`. So over a simple ring every simple module finite over `D`
-gives `R ≃+* Module.End D M`, which is the Wedderburn presentation of a simple ring in
-module-internal form -- no ambient base field is involved, only finiteness over `D`.
 
-## Main results
 
-* `TauCeti.faithfulSMul_of_isSimpleRing`: a nontrivial module over a simple ring is faithful.
-* `TauCeti.toModuleEnd_moduleEnd_bijective`: **the double centralizer theorem**. For a faithful
-  semisimple module `M` finite over `D = Module.End R M`, the map `R → Module.End D M` is bijective;
-  `TauCeti.ringEquivEndEnd` packages it as a ring isomorphism, and
-  `TauCeti.algEquivEndEnd` as an algebra isomorphism over a compatible base ring.
-* `TauCeti.toModuleEnd_moduleEnd_bijective_of_isSimpleRing`: the specialization to a simple module
-  over a simple ring, where faithfulness is automatic.
-* `TauCeti.exists_smul_eq_of_linearIndependent`: the Jacobson-Chevalley form of density. Over a
-  simple module, a single element of `R` carries any `D`-linearly independent family to an
-  arbitrary family of targets.
-* `TauCeti.finite_end_of_smulCommClass`: finiteness over a base ring acting compatibly supplies the
-  finiteness hypothesis density needs.
-* `TauCeti.algEquivEndEndOfIsSimpleRing`: the finite-dimensional-algebra form, where the finiteness
-  hypothesis is supplied by finiteness over a commutative base ring acting compatibly.
 
-## Implementation notes
 
-The finiteness hypothesis is `Module.Finite (Module.End R M) M`, finiteness over the endomorphism
-ring itself, rather than finite-dimensionality over an unrelated base ring. That is the hypothesis
-density actually needs; when a base ring `K` acting compatibly is available, the `K`-scalars are
-themselves `R`-linear endomorphisms, so `Module.Finite K M` gives it by
-`TauCeti.finite_end_of_smulCommClass`.
 
-A faithful simple module makes `R` a *primitive* ring, not necessarily a simple one, so
-`TauCeti.toModuleEnd_moduleEnd_bijective` is genuinely more general than its simple-ring corollary.
-It is also stated for a merely semisimple `M`, which is all that Mathlib's surjectivity needs.
 
-The main theorem is named after the Mathlib lemma it sharpens,
-`Module.Finite.toModuleEnd_moduleEnd_surjective`, keeping the surjective/bijective pair in step; the
-roadmap calls the same statement `toModuleEnd_bijective`.
 
-## References
 
-This implements the Layer 3 target `toModuleEnd_bijective` of the
-[semisimple algebras roadmap](https://github.com/TauCetiProject/TauCetiRoadmap/blob/main/TauCetiRoadmap/RepresentationTheory/SemisimpleAlgebras/README.md),
-together with its Jacobson-Chevalley corollary. See T. Y. Lam, *A First Course in Noncommutative
-Rings*, GTM 131, Chapter 4, and N. Jacobson, *Basic Algebra II*, Chapter 4.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 namespace TauCeti

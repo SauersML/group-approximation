@@ -1,8 +1,0 @@
-relator (73) h2 h3^-1 h3^-1 h2 h2 h3^-1 h2
-   phi(h2) = h2 ; phi(h3) = h3 h2 h2
-   phi(r) cyclically = h3^-1 h2^-1 h2^-1 h3^-1 h3^-1  syllables [[2, -3], [1, -2]]  verified True
-relator (77) h2 h3^-1 h3^-1 h2 h3^-1 h3^-1 h2
-   phi(h2) = h2 h3 h3 ; phi(h3) = h3
-   phi(r) cyclically = h2 h2 h2 h3 h3  syllables [[2, -2], [1, -3]]  verified True
-h3 -> h2 h3 applied to (73): h2 h3^-1 h2^-1 h3^-1 h2 h3^-1 | A-T wrote: h2 h3^-1 h2^-1 h3^-1 h3^-1 | equal up to cyclic/inverse: False
-h3 -> h3 h2 applied to (73): h3^-1 h2^-1 h3^-1 h2 h3^-1 h2

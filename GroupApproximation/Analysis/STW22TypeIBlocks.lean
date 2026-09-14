@@ -3,61 +3,61 @@ import Mathlib.Analysis.Normed.Operator.Compact.Basic
 import Mathlib.Topology.Algebra.Module.FiniteDimension
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
-/-!
-# Type I (GCR) C⋆-algebras, homogeneous blocks, and the counterexample's step (A5)
 
-Step (A5) of the STW Problem XXII counterexample audit
-(`research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`)
-reads:
 
-> Each `D s` is separable, nuclear and type I; these properties pass through a
-> countable `c₀`-sum and unitization.  Hence `A` is separable, unital, nuclear
-> and type I.
 
-This file supplies the representation-theoretic definitions that sentence
-needs and proves the elementary homogeneous-to-type-I implication used by the
-concrete block construction.
 
-## The definitional choice
 
-**Type I is taken in the GCR sense**: every irreducible representation contains
-the compact operators in its range.  Concretely, a *representation* of a unital
-C⋆-algebra `A` on a complex Hilbert space `H` is a unital `⋆`-algebra
-homomorphism `A →⋆ₐ[ℂ] (H →L[ℂ] H)` — Mathlib supplies the C⋆-algebra structure
-on `H →L[ℂ] H` (`Analysis/CStarAlgebra/ContinuousLinearMap`) and
-`IsCompactOperator` (`Analysis/Normed/Operator/Compact/Basic`), so every piece of
-the definition is Mathlib-supported.
 
-*Irreducibility* is topological irreducibility: the only closed invariant
-subspaces are `⊥` and `⊤`, and the representation is nonzero.  The nonzero
-clause is not decoration: without it the zero representation on a one-dimensional
-space would count as irreducible and would refute the GCR condition for every
-algebra.
 
-Mathlib has no representation theory of C⋆-algebras — no Jacobson density, no
-double commutant, no primitive-ideal space — so the *equivalences* that make
-GCR usable (Glimm, Sakai) are unavailable, and so is the classification of the
-irreducible representations of `C(X) ⊗ Mₙ`.  What is available, and is used here,
-is the elementary implication that a representation whose range is everything
-contains the compacts.
 
-## Universes
 
-The carrier of the represented C⋆-algebra and the representation Hilbert
-space live in independent universes.  Thus `IsTypeI.{u,v} A` is the literal
-GCR condition for representations of `A : Type u` on Hilbert spaces in
-`Type v`; every theorem below is polymorphic in `v`.
 
-## What is proved
 
-* `IsHomogeneousRep.isTypeI` — an algebra all of whose irreducible
-  representations are surjective is type I.  This is the form in which the
-  audit's blocks `D s = Γ(End(1 ⊕ L_s^{⊕s}))` enter: their irreducible
-  representations are the fibre evaluations onto `M_(s+1)`.
-* `isHomogeneousRep_one_complex` / `isTypeI_complex` — `ℂ` is homogeneous of
-  degree one, hence type I, proved directly from the invariant-subspace
-  definition.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace STW22

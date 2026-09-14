@@ -1,82 +1,82 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProductScaffolding
 import Mathlib.Data.Finset.NatAntidiagonal
 
-/-!
-# Alexander–Whitney diagonal — combinatorial and simplex-level layer
 
-This file builds the **build-clean** combinatorial and simplex-level groundwork
-for the Alexander–Whitney (AW) chain diagonal
 
-```text
-Δ : C_•(X) → C_•(X) ⊗ C_•(X)
-```
 
-the chain-level ingredient underlying the singular cochain cup product (gap `U3`
-of `docs/inventories/Cup_Product_Inventory.md`). The pinned Mathlib
-(`v4.28.0`, commit `8f9d9cff6bd728b17a24e163c9402775d9e6a365`) has **no**
-Alexander–Whitney map, no diagonal approximation, and no Eilenberg–Zilber
-equivalence (re-verified by `grep` over `Mathlib/AlgebraicTopology/`). It does
-provide the simplex category, the standard face maps, the singular simplicial
-set `TopCat.toSSet`, the singular chain complex functor, and (via
-`CupProductScaffolding.lean`) the monoidal structure on chain complexes of
-`ModuleCat R`.
 
-There are **no** placeholder definitions, **no** axioms, and **no** fake diagonal
-or cup-product maps here: every declaration is fully proved. The genuinely
-missing topological/algebraic input — the *linearization* of the set-level AW
-formula into a chain map valued in the tensor complex, together with its
-chain-map identity — is **not** faked; it is documented as the remaining blocker
-(see the module footer and
-`docs/current/Alexander_Whitney_Diagonal_Construction_Result.md`).
 
-## Mathematical content
 
-For a singular `n`-simplex `σ` (with `n = p + q`), the AW diagonal is
 
-```text
-Δ(σ) = Σ_{p+q=n} (front_p σ) ⊗ (back_q σ),
-```
 
-where:
 
-* the **front `p`-face** `front_p σ` is the restriction of `σ` to the first
-  `p+1` vertices `{0,…,p}`;
-* the **back `q`-face** `back_q σ` is the restriction of `σ` to the last
-  `q+1` vertices `{p,…,p+q}`.
 
-These restrictions are induced by the order-preserving maps
 
-```text
-frontFace p q : ⦋p⦌ ⟶ ⦋p+q⦌ ,  i ↦ i           (inclusion of an initial segment)
-backFace  p q : ⦋q⦌ ⟶ ⦋p+q⦌ ,  i ↦ i + p       (inclusion of a final segment)
-```
 
-in `SimplexCategory`. The two faces **overlap in the single vertex `p`**
-(`front`'s last vertex `=` `back`'s first vertex), which is the geometric content
-of the diagonal.
 
-## What this file supplies
 
-1. **Front/back combinatorial face maps** `frontFace`, `backFace` in
-   `SimplexCategory`, with their value lemmas, the overlap/matching identity
-   `frontFace_last_eq_backFace_zero`, injectivity, and the two structural
-   recursion identities
-   `frontFace_succ` (adding a top vertex via `δ (last)`) and
-   `backFace_succ_square` (the front-of-`δ₀` commuting square) that drive the
-   eventual chain-map identity.
-2. **Singular-simplex front/back restrictions** `frontSimplex`, `backSimplex`
-   of a singular `(p+q)`-simplex, with their **naturality in the space**
-   (`frontSimplex_naturality`, `backSimplex_naturality`).
-3. **Degree bookkeeping** for `p + q = n` via `Finset.antidiagonal`
-   (`awIndex`, `mem_awIndex`, `awIndex_add`).
-4. **Tensor-complex target objects** `singularChainTensorSquare` (the chain-level
-   `C_•(X) ⊗ C_•(X)`, the *codomain* of the AW diagonal) with its functorial
-   pullback and `map_id`/`map_comp` laws — the chain-level analogue of the
-   cochain tensor square already in `CupProductScaffolding.lean`.
-5. **Object-level diagonal shape** `awPair` — the `(p,q)`-component
-   `σ ↦ (front_p σ, back_q σ)` of the (un-linearized) AW diagonal, natural in the
-   space (`awPair_naturality`).
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory MonoidalCategory AlgebraicTopology Simplicial SimplexCategory
 

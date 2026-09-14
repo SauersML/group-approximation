@@ -1,5 +1,0 @@
-twist orbit representatives: 58
-CAND1 d7c0 twist tally :: {'trace ideal = (1): no hom': 58}
-CAND2 d7c0 twist tally :: {'trace ideal = (1): no hom': 58}
-LIND_DONE d7c0 twistorbits 900.6s
-EXIT=0

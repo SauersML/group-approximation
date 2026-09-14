@@ -1,58 +1,58 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProduct
 
-/-!
-# Cup-product naturality and powers: fixed-point powers and reusable algebra
 
-This file advances the cup-product *naturality and powers* track on top of the
-genuine cochain-level cup product of `CupProduct.lean`. It proves the strongest
-build-clean statements currently available toward the final-theorem target
 
-```text
-fbar^*(α) = α  ⟹  fbar^*(αⁿ) = αⁿ          (α ∈ H¹(RPⁿ; F₂))
-```
 
-without introducing any fake `cup`, fake powers, fake `α`, or fake final theorem
-(per `Axioms_And_Placeholders.md`).
 
-## Status of the cup product (unchanged from `CupProduct.lean`)
 
-* **Cochain level: present and genuine.** `cochainCup` (Alexander–Whitney
-  formula), full `R`-bilinearity, naturality `cochainCup_naturality`
-  (`f^*(φ⌣ψ)=f^*φ⌣f^*ψ`), the unit `cochainOne`, powers `cochainPow`, and powers
-  naturality `cochainPow_naturality` (`f^*(φⁿ)=(f^*φ)ⁿ`).
-* **Cohomology level: present** (over `ZMod 2`), in
-  `CohomologyCupProduct.lean`: the cochain Leibniz / coboundary identity now
-  descends the cup product to singular cohomology (`cupZMod2`, `cupZMod2_mk`),
-  with naturality (`cohPullback_cupZMod2`), powers (`cupPowZMod2`), power
-  naturality (`cohPullback_cupPowZMod2`), and the fixed-point power theorem
-  (`cohPullback_cupPowZMod2_fixed`). The abstract `GradedCupPullback` API of this
-  file remains the reusable algebraic core.
 
-## What this file adds
 
-1. **Reusable algebra lemmas** (`Monoid`/`MonoidHom`/`RingHom`): a multiplicative,
-   unital self-map preserves powers, hence fixes the powers of any fixed point.
-   These are exactly the algebraic step that closes the final target once a
-   cohomology *ring* with a `RingHom` pullback exists: `f^*(αⁿ)=(f^*α)ⁿ=αⁿ`.
-2. **An abstract graded multiplicative-pullback API** `GradedCupPullback`: any
-   degreewise product with unit and a multiplicative degreewise pullback has
-   `pull(xⁿ) = (pull x)ⁿ` and the fixed-point corollary `pull(xⁿ)=xⁿ`. This is the
-   "power preservation from any multiplicative pullback API" requested; the future
-   cohomology-level cup product will instantiate it directly.
-3. **The cochain-level realization**: the unit is pullback-stable
-   (`cochainPullback_one`), the cochain cup product/unit/pullback of a self-map
-   `f : X ⟶ X` assemble into a `GradedCupPullback`
-   (`cochainCupPullback`), and the **fixed-point power theorem**
-   `cochainPow_fixed` (`f^*φ=φ ⟹ f^*(φⁿ)=φⁿ`) with its `ZMod 2` specialization
-   `cochainPow_fixedZMod2`. This is the cochain-level form of the final target.
 
-The descent of all of this to cohomology is now carried out in
-`CohomologyCupProduct.lean`: the cohomology analogue of `cochainPow_fixed` is
-`cohPullback_cupPowZMod2_fixed` (`fbar^* a = a ⟹ fbar^*(aⁿ) = aⁿ`), and
-`InducedOnRPCohomology.lean` specializes it to the descended odd map on `RP n`
-(`inducedOnRP_cohPullback_cupPow_fixed`). The remaining input to the final theorem
-is the degree-1 class `α ∈ H¹(RPⁿ; F₂)` from the universal coefficient theorem.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology
 

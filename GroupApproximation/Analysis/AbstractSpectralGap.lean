@@ -1,27 +1,27 @@
 import GroupApproximation.Analysis.GNSEigenvector
 import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
 
-/-!
-# The abstract Kazhdan spectral gap
 
-For a Kazhdan pair `(Q, ε)` and a unitary representation of the group in
-an arbitrary unital C-star algebra, the real spectrum of the unitary
-average over a finite symmetric superset `S ⊇ Q` containing `1` meets
-`(1 - ε²/(4|S|), 1)` in nothing: every real spectral value other than `1`
-is at most the machine rate.
 
-The chain: a spectral value yields a state annihilating `(m - μ)²`
-(`SpectralStateWitness`), GNS turns it into a genuine eigenvector
-(`GNSEigenvector`), unitaries act isometrically on the GNS space, the
-representation realifies, and the projection argument of
-`KazhdanEigenvalueBound` forbids the eigenvalue.
 
-This is the β2 keystone of the strict-Kazhdan-compression program of
-`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: applied componentwise
-over the universal representation family it gives the uniform spectral
-gap that builds the Kazhdan projection in the maximal group C-star
-algebra.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace AbstractSpectralGap

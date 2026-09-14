@@ -1,58 +1,58 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassAlphaPower
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnInclusionCohomology
 
-/-!
-# Additive mod-two cohomology of `RPⁿ` (cellular computation)
 
-The classical additive computation of the mod-two singular cohomology of finite
-real projective space is
 
-```text
-H^k(RPⁿ; F₂) ≅ F₂   for 0 ≤ k ≤ n,        H^k(RPⁿ; F₂) = 0   for k > n.
-```
 
-The standard proof uses the **CW/cellular structure** of `RPⁿ` (one cell in each
-dimension `0, 1, …, n`). Over the field `F₂` the cellular boundary maps all
-vanish (the integral incidence numbers alternate between `0` and `±2`, both `≡ 0
-mod 2`), so the cellular cochain complex is
 
-```text
-F₂ --0--> F₂ --0--> ⋯ --0--> F₂      (degrees 0 … n, zero elsewhere)
-```
 
-with **zero differentials**, and its cohomology is `F₂` in each degree `0 … n`
-and `0` above.
 
-This file carries out exactly that computation, in three honest layers:
 
-1. **A reusable, unconditional lemma** (`cochainHomologyIsoOfZeroDiff`): the
-   `k`-th homology of *any* zero-differential cochain complex over `F₂` is
-   (canonically isomorphic to) its `k`-th object. This is genuine homological
-   algebra with no projective-space input.
 
-2. **The concrete cellular model** (`rpCellularCochainComplex n`): the genuine
-   zero-differential cochain complex above, an honest object of
-   `CochainComplex (ModuleCat (ZMod 2)) ℕ`, with its additive cohomology fully
-   and **unconditionally** computed:
-   `rpCellularCohomology n k ≅ F₂` for `k ≤ n` (dimension one) and `= 0` for
-   `k > n`, plus the top-degree and degree-one nonvanishing.
 
-3. **The conditional bridge to genuine singular cohomology**
-   (`RPnCellularCochainStructure n`): the single honest hypothesis that the
-   project's *genuine* singular cochain complex `C^•(RPⁿ; F₂)` is isomorphic, as
-   a cochain complex, to the cellular model. This is precisely the
-   cellular-approximation input that pinned Mathlib does not provide (there is no
-   CW structure on `RPⁿ` and no cellular-equals-singular theorem). Granting it,
-   **every additive cohomology statement transports to the genuine
-   `rpCohomology n k`**: one-dimensionality in range, vanishing above the
-   dimension, and the load-bearing **top-degree** and **`H¹`** nonvanishing.
 
-No fake `α`, no fake cohomology group, no placeholder isomorphism to topological
-cohomology is asserted: layers 1–2 are unconditional genuine mathematics, and
-layer 3 states its one missing input as an explicit, clearly-labelled
-hypothesis (policy: `Axioms_And_Placeholders.md`). Every declaration depends only
-on `[propext, Classical.choice, Quot.sound]`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

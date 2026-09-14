@@ -1,68 +1,68 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.Degree
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnLowDimensional
 
-/-!
-# Top singular homology of spheres: abbreviations, model bridge, low-dim cases
 
-This file assembles the **genuine, build-clean** support layer toward the missing
-topological input
 
-```text
-Hₙ(Sⁿ; ℤ) ≅ ℤ
-```
 
-that would turn the conditional degree API of `Degree.lean` into an unconditional
-topological degree.  The full computation `Hₙ(Sⁿ; ℤ) ≅ ℤ` is **not** provable from
-the pinned Mathlib (it needs excision / Mayer–Vietoris / the long exact sequence of
-a topological pair / a suspension isomorphism, none of which exist in
-`Mathlib v4.28.0`; see `docs/inventories/Sphere_Homology_Inventory.md`).  Per the
-project policy this file therefore implements the **largest build-clean useful
-subset** and contains **no fake top-homology isomorphism**:
 
-* **Top-homology abbreviations.** `sphereHomologyℤ k n = Hₖ(Sⁿ; ℤ)` over the
-  categorical sphere `TopCat.sphere n`, and `sphereTopHomologyℤ n = Hₙ(Sⁿ; ℤ)`.
-* **Model bridge.** `sphereModelHomologyIso k n` transports `Hₖ(TopCat.sphere n)`
-  to `Hₖ` of the project's raw subtype model `Sphere n`, by functoriality of
-  `singularHomologyℤ` applied to the bridge iso `topCatSphereIso`.
-* **Genuine low-dimensional case `n = 0`.** `Sphere 0` is the two-point set
-  `{±e}`, hence finite, discrete and totally disconnected; via the bridge so is
-  `TopCat.sphere 0`.  Mathlib's
-  `isZero_singularHomologyFunctor_of_totallyDisconnectedSpace` then gives the
-  honest vanishing `Hₖ(S⁰; ℤ) = 0` for `k ≠ 0`
-  (`sphere0_singularHomologyℤ_isZero`).  Note that the *top* `n = 0` case is
-  genuinely **not** `≅ ℤ`: `H₀(S⁰; ℤ) ≅ ℤ²` (two path components), so the degree
-  theory is meaningful only for `n ≥ 1`; no `SphereTopHomologyIso 0` is asserted.
-* **Conditional isomorphism wrappers.** `SphereTopHomologyIso n` is the *type* of
-  identifications `Hₙ(Sⁿ; ℤ) ≅ ℤ` (over `TopCat.sphere n`).  It transports across
-  the model bridge (`sphereTopHomologyIso_of_modelIso` and its inverse), so the
-  computation may be carried out in whichever sphere model is convenient.
-* **Bundled orientation ⇒ unconditional degree.** `SphereOrientation` bundles a
-  family `∀ n, SphereTopHomologyIso n` (exactly the missing input).  Given one,
-  `SphereOrientation.degree` is an honest integer degree with `degree_id`,
-  `degree_comp`, choice-independence (`degree_well_defined`) and, assuming the
-  prism operator, homotopy invariance (`degree_eq_of_homotopic`).  This is a
-  *parameterised* wrapper, **not** a fake global `degree`: no `SphereOrientation`
-  is constructed here.
 
-## Exact remaining blocker
 
-The single missing piece is a term of `SphereTopHomologyIso n` for `n ≥ 1` (i.e.
-`Hₙ(Sⁿ; ℤ) ≅ ℤ`).  Its dependency DAG in pinned Mathlib:
 
-```text
-Hₙ(Sⁿ;ℤ) ≅ ℤ
-  ⇐ reduced suspension iso  H̃ₖ(Sⁿ) ≅ H̃ₖ₋₁(Sⁿ⁻¹)            [ABSENT]
-      ⇐ excision / Mayer–Vietoris for singular homology       [ABSENT]
-      ⇐ LES of the topological pair (𝔻ⁿ, Sⁿ⁻¹)               [ABSENT: no
-            relative singular homology of a pair of spaces]
-      ⇐ contractibility ⇒ Hₖ(𝔻ⁿ)=0 (k>0)                      [needs the prism
-            operator `SingularPrismOperator`, link 8b]
-  base case  S⁰:  Hₖ(S⁰)=0 (k≠0) DONE here; H₀(S⁰)≅ℤ²         [the k=0 part is
-            not packaged]
-```
 
-Everything above the base case is the genuinely missing topological theory.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology
 

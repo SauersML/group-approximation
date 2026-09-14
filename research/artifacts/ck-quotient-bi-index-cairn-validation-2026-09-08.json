@@ -1,1 +1,0 @@
-{"checks":[{"completedAt":"2026-09-08T20:44:53Z","conclusion":"success","name":"Validate the research graph","startedAt":"2026-09-08T20:44:40Z"}],"commit":"ba4dd3b4b42e211a251822c1d5e3f92746e01330","run_url":"https://github.com/SauersML/group-approximation/actions/runs/34276442326","scope":"Cairn structural validation; not a Lean proof check"}

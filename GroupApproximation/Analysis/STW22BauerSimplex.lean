@@ -2,61 +2,61 @@ import Mathlib.Analysis.Convex.Extreme
 import Mathlib.Topology.Separation.Hausdorff
 import Mathlib.Data.NNReal.Basic
 
-/-!
-# Choquet simplices, Bauer simplices, and transport of the extreme boundary
 
-This file gives the two convexity definitions used by the STW Problem XXII
-counterexample audit (`research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`,
-step (A6)) and proves the transport principle that the audit's identification
-`T(A) ≅ Prob(K)` is used through.
 
-## The definitional choices
 
-* **Choquet simplex.**  A compact convex set `S` is a simplex, in the sense of
-  Choquet, exactly when the cone over `S` is a *lattice cone*: the order that
-  the cone induces on the group it generates is a lattice.  Since Mathlib has no
-  Choquet theory at all, the condition is transcribed directly, in the form that
-  needs no subtraction and therefore makes sense over an arbitrary ordered
-  semiring of scalars:
 
-  - `coneOver 𝕜 S ⊆ E × 𝕜` is the set of pairs `(t • x, t)` with `0 ≤ t`, `x ∈ S`;
-  - `coneLE C u v` is `∃ c ∈ C, v = u + c`, the preorder a cone `C` induces;
-  - `IsChoquetSimplex 𝕜 S` says every pair of elements of `coneOver 𝕜 S` has a
-    least upper bound **inside the cone** for that preorder.
 
-  Restricting the lattice condition to the cone itself is the standard
-  formulation: a cone is a lattice cone iff every pair of its elements has a
-  supremum in it, the general case following by translation.
 
-* **Bauer simplex.**  `IsBauerSimplex 𝕜 S` is `IsChoquetSimplex 𝕜 S` together
-  with `IsCompactConvexClosedBoundary 𝕜 S`, i.e. `S` compact and convex with
-  *closed extreme boundary*.  The extreme boundary is Mathlib's
-  `Set.extremePoints`; nothing about it is re-invented here.
 
-  The two clauses are kept apart deliberately.  For the trace simplex of a
-  C⋆-algebra the Choquet clause is classical and unformalisable at the present
-  state of Mathlib, whereas the closed-boundary clause is exactly what the audit
-  computes, and it is proved unconditionally for probability simplices in
-  `Analysis/STW22ProbabilitySimplexBauer`.
 
-## Why the scalars are left general
 
-The set the audit needs this for is a set of *measures*, which form a module
-over `ℝ≥0` and not over `ℝ` — there is no negation available.  Every definition
-below is therefore stated over an arbitrary `[Semiring 𝕜] [PartialOrder 𝕜]`, and
-instantiated at `𝕜 = ℝ≥0`.  On a set contained in a cone the notions of extreme
-point over `ℝ≥0` and over `ℝ` agree, because `openSegment` only ever uses
-strictly positive coefficients summing to one.
 
-## Model test
 
-`isChoquetSimplex_singleton` and `isBauerSimplex_singleton` verify that a
-one-point set — a C⋆-algebra with a unique trace — is a Bauer simplex under
-these definitions, with the lattice structure on its cone computed explicitly
-(the supremum of `(t • x, t)` and `(s • x, s)` is `(max t s • x, max t s)`).
-This is a genuine test: the least-upper-bound clause is discharged from the
-cone data, not by unfolding a triviality.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace STW22

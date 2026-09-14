@@ -1,9 +1,0 @@
-{
-  "challenge_module": "Palomar.STWProblemX1Challenge",
-  "solution_module": "Palomar.STWProblemX1Solution",
-  "theorem_names": [
-    "STWProblemX1.exists_separable_amenable_not_quasidiagonal",
-    "STWProblemX1.not_every_amenable_trace_quasidiagonal"
-  ],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

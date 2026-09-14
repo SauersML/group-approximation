@@ -1,4 +1,0 @@
-CAND1 rational GB = not [1], len 16 (4.5s)
-CAND1 integral GB: 22 elements, integer element N = None, factor = None (5.7s)
-LINZ_DONE
-EXIT=0

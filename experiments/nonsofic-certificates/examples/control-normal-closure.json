@@ -1,8 +1,0 @@
-{
-  "type": "normal-closure-membership",
-  "expect": "PASS",
-  "note": "Control: g = x^-1 (x g x^-1) x lies in the normal closure of the singular equation x g x^-1.",
-  "equation": "x @g x^-1",
-  "coefficient": "@g",
-  "factors": [{"conj": "x^-1", "sign": 1}]
-}

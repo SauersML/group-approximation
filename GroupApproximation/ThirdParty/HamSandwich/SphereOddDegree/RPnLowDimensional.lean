@@ -1,36 +1,36 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RealProjectiveSpace
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.HomotopyToChainHomotopy
 
-/-!
-# Low-dimensional real projective space: `RP⁰`
 
-This file records the genuine low-dimensional computations available in pinned
-Mathlib for `RP⁰`, the base case of the `H^*(RPⁿ; F₂)` ring computation.
 
-`RP⁰` is a single point: `Sphere 0` is the unit sphere in `ℝ¹`, which is the
-two-point set `{±e}`, and the antipodal quotient identifies the two points. Hence
-`RP⁰` is a `Subsingleton`, therefore `TotallyDisconnectedSpace`, and Mathlib's
-`isZero_singularHomologyFunctor_of_totallyDisconnectedSpace` /
-`singularHomologyFunctorZeroOfTotallyDisconnectedSpace` give its singular homology
-outright:
 
-```text
-Hₙ(RP⁰; ℤ) = 0   (n ≠ 0),     H₀(RP⁰; ℤ) ≅ ℤ.
-```
 
-These are honest, build-clean computations: the only inputs are the point-set fact
-`Subsingleton (RP 0)` (proved here from the project's `proj_eq_iff` and the
-one-dimensional sphere geometry) and Mathlib's totally-disconnected homology API.
 
-**Scope note.** This is the *homology* base case. The corresponding mod-two
-*cohomology* base case `H^k(RP⁰; F₂) = 0 (k≠0)`, `H⁰(RP⁰; F₂) ≅ F₂` requires
-dualizing the totally-disconnected chain complex through the project's
-`singularCohomologyFunctor` (a contravariant `Hom(-, F₂)` of an exact-at-`n`
-complex); pinned Mathlib has no off-the-shelf "dual of an exact complex is exact"
-in this packaged form, so that step is the recorded next concrete theorem (see
-`docs/current/RPn_Mod_Two_Cohomology_Ring_Computation_Result.md`). No fake
-cohomology computation is introduced.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology
 

@@ -1,8 +1,0 @@
-{
-  "challenge_module": "Palomar.TypeA2Challenge",
-  "solution_module": "Palomar.TypeA2Solution",
-  "theorem_names": [
-    "FFWZ.exists_isTypeA2_quotient_not_isFinitelyPresented"
-  ],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

@@ -1,0 +1,13 @@
+This submission contains the complete local Lean import closure of the two selected
+Problem XXII theorems and their definition checks.
+
+The group-approximation authors retain their source copyright notices.
+The reused HamSandwich and Tau Ceti sources retain their respective copyright
+and adaptation notices. Their pinned origins, licenses, and contributor credits
+appear in formalization.yaml. The repository license is Apache License 2.0.
+
+Codex (OpenAI) wrote the submission prose and edited source comments during
+submission preparation. Claude (Anthropic) wrote the earlier exposition and
+original local Lean module prose. The mathematical and formalization roles of
+Astra, Claude, Codex, and the credited upstream contributors are disclosed in
+formalization.yaml. Sauers is responsible for the submission.

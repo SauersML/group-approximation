@@ -2,25 +2,25 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SphereOrientationPosFromMV
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyHomotopyInvariance
 
-/-!
-# Final assumption aliases (Prompt 61)
 
-This file collects, under stable `final_`-prefixed names, the root assumptions of
-the project that already have a genuine **unconditional** constructor after
-Branches 1–4.  Every declaration below is a one-line application of an existing,
-already-proved term; **no new mathematics, hypotheses, `axiom`, `sorry`,
-`opaque`, `unsafe`, or `admit` is introduced.**
 
-Only the assumptions that are unconditionally constructed in the current project
-are aliased here.  The assumptions that remain genuinely conditional
-(`ModTwoTopClassComparison`, `RPnGeneratorIdentification`,
-`RPnTopPowerIdentification`, `RPnCellularCochainStructure`, `RPnTopClassTransfer`,
-`RPToSphereTransferTopNonzero`, `TopHomologyTransferNonzeroWitness`) are **not**
-given unconditional aliases here, because their underlying constructors still take
-free hypotheses; doing so would falsely claim them discharged.  See
-`FINAL_ASSUMPTION_INVENTORY.md` for the exact status of each assumption and the
-conditional constructors that do exist.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

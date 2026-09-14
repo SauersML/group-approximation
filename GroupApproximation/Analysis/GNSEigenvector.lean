@@ -2,23 +2,23 @@ import GroupApproximation.Analysis.SpectralStateWitness
 import Mathlib.Analysis.CStarAlgebra.GelfandNaimarkSegal
 import Mathlib.Analysis.InnerProductSpace.Adjoint
 
-/-!
-# The GNS eigenvector of a spectrally concentrated state
 
-For a state `Φ` annihilating `(m - μ)²`, the cyclic vector of the GNS
-representation is a genuine unit eigenvector of the represented `m` with
-eigenvalue `μ`.  Together with `SpectralStateWitness` this turns a real
-spectral point of a self-adjoint element in an abstract unital C-star
-algebra into an eigenvector in a concrete Hilbert-space representation.
 
-The module also provides the bridge from unitary elements of the operator
-algebra to isometric linear equivalences, so a unitary group
-representation composed with the GNS representation yields an isometric
-group action ready for the Kazhdan machinery.
 
-Bricks of the strict-Kazhdan-compression program of
-`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace GNSEigenvector

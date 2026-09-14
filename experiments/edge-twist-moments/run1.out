@@ -1,7 +1,0 @@
-sanity: dimZ should be >= n(1-3/p)+2 when all vertex groups equal G
-Q=PSL(2,19) p=5 girths=[ 6, 8, 8 ] |G|=3420 dimZ=1370 dimI=3
-Q=PSL(2,19) p=5 girths=[ 6, 8, 6 ] |G|=3420 dimZ=1370 dimI=3
-Q=PSL(2,23) p=3 girths=[ 12, 12, 16 ] |G|=6072 dimZ=178 dimI=1
-Q=PSL(2,23) p=3 girths=[ 4, 12, 8 ] |G|=6072 dimZ=529 dimI=2
-DONE
-EXIT=0

@@ -1,8 +1,0 @@
-{
-  "challenge_module": "Palomar.BlanchardToeplitzChallenge",
-  "solution_module": "Palomar.BlanchardToeplitzSolution",
-  "theorem_names": [
-    "BlanchardToeplitz.blanchard_question_5_4"
-  ],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

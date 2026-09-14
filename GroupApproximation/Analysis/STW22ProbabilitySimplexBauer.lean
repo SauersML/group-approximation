@@ -2,59 +2,59 @@ import Mathlib.MeasureTheory.Measure.DiracProba
 import Mathlib.MeasureTheory.Measure.Prokhorov
 import GroupApproximation.Analysis.STW22BauerSimplex
 
-/-!
-# The probability simplex of a compact metrizable space has a closed extreme boundary
 
-This is the analytic half of step (A6) of the STW Problem XXII counterexample
-audit (`research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`).
-The audit asserts
 
-```text
-T(A) = Prob(K),   ∂ₑ T(A) = K,
-```
 
-for `K` the one-point compactification of `⨆ₛ CP^(s²)`, and concludes that
-`T(A)` is Bauer.  Everything in that sentence except the identification of
-`T(A)` with `Prob(K)` is proved here, unconditionally, for an arbitrary compact
-second-countable Hausdorff Borel space `K`:
 
-* `convex_probSimplex`, `isCompact_probSimplex` — `Prob(K)` is a compact convex
-  set;
-* `extremePoints_probSimplex` — `∂ₑ Prob(K)` is **exactly** the set of Dirac
-  masses, so the extreme boundary *is* `K`;
-* `isClosed_extremePoints_probSimplex` — that boundary is closed, i.e. the Bauer
-  clause;
-* `isEmbedding_diracFM` — the identification `∂ₑ Prob(K) ≅ K` is a topological
-  embedding, not merely a bijection.
 
-## The ambient vector space
 
-`Prob(K)` is realised as `{μ : FiniteMeasure K | μ.mass = 1}` inside Mathlib's
-`MeasureTheory.FiniteMeasure K`, which carries the topology of weak convergence,
-is Hausdorff, and is a module over `ℝ≥0`.  There is no larger *real* vector
-space of measures available in Mathlib (no lattice structure on signed measures,
-no Riesz-space completion), so the convexity notions are taken over `ℝ≥0`.  This
-loses nothing: `openSegment` only ever uses strictly positive coefficients
-summing to one, so a set inside a cone has the same extreme points computed over
-`ℝ≥0` as over `ℝ`.
 
-## What is proved and what is assumed
 
-The Choquet (lattice-cone) clause of `IsBauerSimplex` is **not** proved here; it
-is classical for `Prob(K)` — the cone of finite measures is a lattice by
-Hahn--Jordan — but Mathlib has no lattice structure on measures to quote.  It is
-carried as an explicit hypothesis of `isBauerSimplex_probSimplex`, and the
-unconditional content is `isCompactConvexClosedBoundary_probSimplex`.
 
-The hard inclusion `∂ₑ Prob(K) ⊆ {δₓ}` is proved from scratch:
 
-1. an extreme point is `{0,1}`-valued, because a set `E` with `0 < μE < 1`
-   splits `μ` as `μE · μ(·|E) + μEᶜ · μ(·|Eᶜ)` (`FiniteMeasure.restrict`);
-2. a `{0,1}`-valued Borel probability measure on a second-countable T1 space is a
-   Dirac mass: for a countable basis `B`, replacing each `B n` by whichever of
-   `B n`, `(B n)ᶜ` has measure one and intersecting gives a measure-one set which
-   separation forces to be a singleton.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace STW22

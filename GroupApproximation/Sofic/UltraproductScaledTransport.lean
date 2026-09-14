@@ -1,145 +1,145 @@
 import GroupApproximation.Sofic.ScaledKazhdanTransport
 import GroupApproximation.Sofic.UltraproductKazhdanTransport
 
-/-!
-# Transport at every Hilbertian scale: the printed proof of that weighted transport theorem
 
-This file replays Theorem `\ref{thm:transport-variants}`
-("one-sided conjugation at an arbitrary weight") of `non_mf_groups_exist.tex`,
-inside `\section{Weighted asymptotic-commutant invariance}` (`\ref{supp:transport-variants}`).
-The route is the one the manuscript prints: "the ultraproduct proof of Theorem
-the Kazhdan transport result applies with `\tr_{d_n}` replaced by
-`\operatorname{Tr}(\,\cdot\,)/\nu_n`".
 
-The manuscript writes the weight `\nu_n` where this file writes `w`.  It also
-used to close the section with a remark specializing the weight to the
-dimension; commit `fd45b050` deleted that remark as an unused application, so
-the dimension-weight material below (`## The dimension weight`) now has no
-printed counterpart.  What survives of the specializations is
-`Taking $\nu_n=k_n$`, the rank of the projection lift in the proof of
-`\ref{thm:projection-collapse}`.
 
-## STATUS: THE ROUTE IS NOT YET CLOSED
 
-**Nothing here certifies the printed theorem yet, and no declaration in this
-file may carry a `\leanverified` badge.**  The endpoints `transport_variants_one`
-and `scaled_transport_both_of_ambient` each take an `ambient` argument: a
-`WeightedUltraproductAdjointModel` for every free ultrafilter on `ℕ`.  **Until
-an instance of that structure is constructed from the real ambient, the
-endpoints are vacuous** — true, but about an empty hypothesis class — and this
-file is an unfinished target, not a formalization of
-that weighted transport theorem, clause 1,.  The structure is retained only because it is
-scheduled to be discharged: it is an interface awaiting its construction, not a
-standing assumption.  **The signature of `WeightedUltraproductAdjointModel` is
-frozen**: the construction is being built against it as written, so it must not
-be changed --- neither field added nor field removed --- until that instance
-exists.  The same caveat applies verbatim to `ultraproductKazhdanTransport` in
-`Sofic.UltraproductKazhdanTransport`.
 
-What *is* closed here, unconditionally and with no structure in sight, is the
-whole weight layer: `eq_zero_of_matMass_eq_zero`, `eq_zero_of_weight_zero`,
-`kt_01_matMass_adjoint`, `kt_01_matMass_coadjoint`, the `WeightNull` calculus,
-`weightNull_atTop_of_forall_free_ultrafilter` (the manuscript's contradiction
-skeleton at the weight), `weightNull_atTop_iff_scaledMassVanishing`, and the
-dimension-weight dictionaries `hsNormSq_eq_matMass_div`,
-`matMass_le_iff_hsNormSq_le`, `weightNull_dimension_iff_tendsto`,
-`hsNormSq_displacement_eq_commutator`.  Also closed, modulo the interface, are
-KT.10 and KT.11 at an arbitrary weight in both directions.
 
-## The printed statement
 
-Let `Γ`, `H`, `ι`, `s` be as in the Kazhdan transport result, let
-`(U_n)` be as there, let `(w_n)` be nonnegative weights, suppose there is `C`
-with `Tr(x_n* x_n) ≤ C w_n` for all `n`, and suppose that for every `γ ∈ Γ`
-and every `ε > 0`, eventually
 
-`Tr |x_n - U_n(ι γ) x_n U_n(ι γ)*|² ≤ ε w_n`.
 
-Then `U_n(s) x_n U_n(s)*` **and** `U_n(s)* x_n U_n(s)` satisfy both conditions
-as well.  Both directions are asserted, and both are proved here
-(`transport_variants_one`).
 
-Here `Tr` is the *unnormalized* trace, so `Tr(x* x)` is the unnormalized
-squared Frobenius mass `matMass` of `Sofic.ScaledKazhdanTransport`; that file's
-`matMass` API is reused verbatim rather than rebuilt.
 
-## The printed proof, step by step
 
-> Give each coordinate space with `w_n > 0` the inner product
-> `⟨x,y⟩ = Tr(y* x)/w_n`; an index with `w_n = 0` forces `x_n = 0`.
-> Conjugation by a unitary is unitary for every weight, and both hypotheses
-> and both conclusions concern only the renormalized norms, so the
-> ultraproduct proof of the Kazhdan transport result applies verbatim: the mass
-> bound defines the ultraproduct vector, the adjoint actions remain
-> operator-norm almost multiplicative, and finiteness reverses the one-sided
-> compression in both directions.
 
-Each clause is a declaration below.
 
-* "an index with `w_n = 0` forces `x_n = 0`" is `eq_zero_of_weight_zero`.
-* "conjugation by a unitary is unitary for every weight" is
-  `kt_01_matMass_adjoint` and `kt_01_matMass_coadjoint`: the renormalized norm
-  at weight `w_n` is `matMass/w_n`, and `matMass` is exactly invariant under
-  `X ↦ U X U*` and `X ↦ U* X U`, with no weight entering.
-* "both hypotheses and both conclusions concern only the renormalized norms"
-  is the pair of predicates `WeightBounded` and `WeightNull`, which are the
-  printed conditions verbatim.
-* "the ultraproduct proof of the Kazhdan transport result applies verbatim" is the
-  interface `WeightedUltraproductAdjointModel`, which is
-  `UltraproductAdjointModel` of `Sofic.UltraproductKazhdanTransport` with the
-  dimension normalization `hsNormSq` replaced by the weight `w`.
-* "the mass bound defines the ultraproduct vector" is the hypothesis
-  `WeightBounded w C ξ` guarding `cls_eq_iff`.
-* "finiteness reverses the one-sided compression in both directions" is
-  `kt_10_conjugate_eq` (Dedekind finiteness of `B_ω` turns `P ≤ Q` into
-  `Q = P`, exactly as in KT.10) together with `pi_mul_P` and `star_pi_mul_P`,
-  the two directions in which `Q = P` is used.
-* KT.11 at the weight is `kt_11_descend_at_every_weight`, and the manuscript's
-  contradiction skeleton ("fix a free ultrafilter `ω` with `I ∈ ω`") is
-  `weightNull_atTop_of_forall_free_ultrafilter`.
 
-## What the weight does and does not touch
 
-Only two things in the chain see the weight: the Hilbert-space ultraproduct
-`K_ω` (its vectors, hence `cls` and `cls_eq_iff`) and the concluding descent.
-The ambient algebra `B_ω = ∏_ω B(K_n)`, the homomorphism `π`, the averaged
-operator `h`, its spectral projection `P`, the unitary `V = π s`, the
-compression `Q = V P V*` and the identity `Q = P` are all *the same objects at
-every weight*, because rescaling the inner product of `K_n` by a positive
-constant does not change the operator norm of any operator on `K_n`.  That is
-the precise sense in which the manuscript's "applies verbatim" is true, and it
-is why KT.10 below never mentions `w`.
 
-The converse warning matters just as much, and it is why this file exists
-rather than being a corollary of the dimension-weight one: **the weighted model
-is not derivable from its own `w n = card (Y n)` instance.**  Since
-`‖ξ‖²_w = matMass ξ / w n`, a family null at the dimension weight need not be
-null at `w` when `w n ≪ card (Y n)`; there is a natural map
-`K_ω^w → K_ω^card` and none back.  Building the Hilbert-space half at the
-dimension weight and retrofitting would build it twice.  Equivalently, and this
-was the manuscript's own closing remark until `fd45b050` deleted it, the
-dimension weight recovers
-the Kazhdan transport result *with the operator-norm bound relaxed to mass
-boundedness*, so the weighted statement is strictly stronger and cannot be got
-from the unweighted one by rescaling: `y_n = x_n √(d_n/w_n)` is
-Hilbert--Schmidt bounded but not operator-norm bounded.
 
-## Coordinates
 
-Everything is indexed by a model family `Y : ℕ → FiniteModel`, never by
-`naturalFiniteModel (d n)`, so that the block space `Y¹ n ⊕ Y² n` of the
-intertwiner reduction can be substituted directly with no reindexing bridge.
-`Y = B.model`, `U = B.map` recovers the `OpAlmostRepresentation` convention of
-`Sofic.ScaledKazhdanTransport`; that specialization is
-`scaled_transport_both_of_ambient`, the exact statement consumed by
-that weighted transport theorem, clause 2,.
 
-The trap of `notes/NOTEPAD.md:548` is avoided exactly as in the unweighted
-file: no step uses a Hilbert--Schmidt bound on the *unitaries*.  Almost
-multiplicativity of `U_n` is consumed only inside the ambient, in operator
-norm, and the only bound placed on `(x_n)` is the printed mass bound, which is
-what makes the ultraproduct vector well defined at the weight `w`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace UltraproductScaledTransport
@@ -180,14 +180,14 @@ theorem eq_zero_of_matMass_eq_zero {Z : Type*} [Fintype Z]
   ext i j
   simp [hentry i j]
 
-/-- **"An index with `w_n = 0` forces `x_n = 0`."**  The printed proof's first
-sentence: the renormalized inner product is only defined where the weight is
-positive, and the mass bound makes the coordinate vanish everywhere else, so
-nothing is lost by ignoring those indices.
 
-This is also exactly the tolerance that `notes/COLLAPSE_STEP_AUDIT.md` §4 asks
-of the weighted transport: the collapse weight `k_n` is positive only
-eventually. -/
+
+
+
+
+
+
+
 theorem eq_zero_of_weight_zero {Z : Type*} [Fintype Z] {X : Matrix Z Z ℂ}
     {C c : ℝ} (h : matMass X ≤ C * c) (hc : c = 0) : X = 0 := by
   refine eq_zero_of_matMass_eq_zero (le_antisymm ?_ (matMass_nonneg X))
@@ -685,21 +685,21 @@ theorem weightNull_atTop_iff_scaledMassVanishing
   · intro h ε hε
     exact Filter.eventually_atTop.mpr (h ε hε)
 
-/-- **that weighted transport theorem, clause 1, in coordinate form.**  A one-sided compressor
-of a Kazhdan image acts in both directions on the `w`-mass-bounded, `w`-scaled
-asymptotic commutant, for every nonnegative weight, by the printed ultraproduct
-proof.  This is the same assertion as
-`ScaledKazhdanTransport.scaled_transport_both`, by the printed ultraproduct
-route rather than by the finite-stage equal-rank route.
 
-This is the shape specified for the collapse proof by
-`notes/COLLAPSE_STEP_AUDIT.md` §4, route (b): the qualitative `∀ ε` form at an
-arbitrary weight, tolerating `w n = 0` at finitely many stages (there the mass
-bound forces `x n = 0`, which is the manuscript's own convention --- see
-`eq_zero_of_weight_zero`).  It still needs the diagonalization lemma of that
-section to be usable there, and **it is not badgeable until `ambient` has an
-instance**; until then `ScaledKazhdanTransport.scaled_transport_both` remains
-the only proved form of this assertion, by the finite-stage route. -/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 theorem scaled_transport_both_of_ambient
     {Γ E : Type} [Group Γ] [Group E]
     (B : OpAlmostRepresentation E) (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n)

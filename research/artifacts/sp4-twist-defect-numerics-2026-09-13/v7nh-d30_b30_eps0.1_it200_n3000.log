@@ -1,2 +1,0 @@
-d=30 m=3 init=seed:seed_theta_x3_d30_abmin.json beta=30.0 pin=0 eps0=0.1 n_unl=3000 restart=0: Else=0.0098 meansq=0.007109 maxdef_unl=0.2629 maxdef_lift=0.2793 t=2300s
-BEST d=30 m=3 init=seed:seed_theta_x3_d30_abmin.json beta=30.0 pin=0 eps0=0.1: Else=0.0098 meansq=0.007109 maxdef_unl=0.2629 maxdef_lift=0.2793 saved=best7_m3_seed_seed_theta_x3_d30_abmin.json_d30_p30.0_pin0_eps0.1_seed63.npy

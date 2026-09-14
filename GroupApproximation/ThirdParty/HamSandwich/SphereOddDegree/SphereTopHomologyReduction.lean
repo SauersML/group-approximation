@@ -1,48 +1,48 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereTopHomology
 import Mathlib.Algebra.Category.ModuleCat.Products
 
-/-!
-# Sharp reduction of the missing top-homology family to a suspension tower
 
-The conditional degree API of `Degree.lean` consumes, for each dimension, a chosen
-identification `Hₙ(Sⁿ; ℤ) ≅ ℤ` (the type `SphereTopHomologyIso n`).  The genuinely
-missing topological input is a term of this type for `n ≥ 1`; it is unprovable
-from pinned Mathlib (`v4.28.0`), which has no excision / Mayer–Vietoris / long
-exact sequence of a pair / suspension isomorphism for singular homology (see
-`Sphere_Top_Homology_Result.md` and `docs/inventories/Sphere_Homology_Inventory.md`).
 
-This file makes the **strongest honest build-clean reduction** of that missing
-input, in two complementary directions.
 
-## 1. The `n = 0` obstruction is genuine, not a gap
 
-`SphereTopHomologyIso 0` is `H₀(S⁰; ℤ) ≅ ℤ`, which is **false**: `S⁰` is the
-two-point space, so `H₀(S⁰; ℤ) ≅ ℤ²` (one `ℤ` per path component).  We do *not*
-fake an `n = 0` identification; instead the structural `SphereOrientation` of
-`SphereTopHomology.lean`, whose field is `∀ n, SphereTopHomologyIso n`, is
-therefore **uninhabited** (it demands the impossible `n = 0` case).  The honest
-replacement is `SphereOrientationPos`, which only asks for identifications in
-dimensions `n ≥ 1` — exactly where the integral top-homology degree theory lives.
 
-## 2. The whole `n ≥ 1` family reduces to one suspension theorem
 
-`SphereSuspensionTower` packages exactly the classical inductive input:
 
-* a base identification `H₁(S¹; ℤ) ≅ ℤ`, and
-* a **suspension step** `Hₙ₊₁(Sⁿ⁺¹; ℤ) ≅ Hₙ(Sⁿ; ℤ)` for every `n ≥ 1`
-  (the top-degree restriction of the reduced-homology suspension isomorphism
-  `H̃ₖ(ΣX) ≅ H̃ₖ₋₁(X)`).
 
-From a tower, `SphereSuspensionTower.iso` constructs `SphereTopHomologyIso n` for
-**all** `n ≥ 1` by a one-line induction, and `SphereSuspensionTower.orientation`
-produces a genuine (non-vacuous) `SphereOrientationPos`.  Thus the only remaining
-missing Mathlib theorem is the **suspension isomorphism for singular homology of
-spheres** (equivalently excision / Mayer–Vietoris); everything else in the
-unconditional degree API now follows mechanically.
 
-No fake top-homology isomorphism is constructed here, and every declaration is
-build-clean.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology
 

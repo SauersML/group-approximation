@@ -4,59 +4,59 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RealProjectiveS
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProductPowers
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CohomologyCupProduct
 
-/-!
-# Pullback on singular cohomology of the descended odd map
 
-This file connects the project's two finished layers — the **genuine** singular
-cohomology functor of `SingularCohomology.lean` and the **genuine** odd-map
-descent / double-cover API of `RealProjectiveSpace.lean` — into honest,
-build-clean statements about the pullback action of the descended odd map on the
-real `mod-2` singular cohomology of real projective space.
 
-Everything here is a real mathematical object:
 
-* `rpCohomology n k` and `sphereCohomology n k` are the actual
-  `k`-th singular cohomology `ModuleCat (ZMod 2)`-objects of `RP n` and `S^n`,
-  obtained by applying the constructed functor `singularCohomologyZMod2 k` to the
-  genuine `TopCat` objects `TopCat.of (RP n)` and `TopCat.of (Sphere n)`;
-* `inducedOnRPPullback f hf k`, `projPullback n k`, and `spherePullback f k` are
-  the actual pullback `ModuleCat (ZMod 2)`-morphisms induced by the descended odd
-  map `inducedOnRP f hf`, the double cover `proj n`, and an odd map `f`,
-  respectively. They are the functor's action on the opposite of the
-  corresponding `TopCat` morphisms; their naturality is structural.
 
-**No fake `α`, no fake cohomology group, and no fake final theorem statement is
-introduced.** The degree-1 generator `α ∈ H¹(RPⁿ; F₂)`, its powers `αⁿ`, the cup
-product, and the top-class / degree comparison remain genuinely absent (they need
-the universal coefficient theorem, the Alexander–Whitney cup product, and the
-transfer/Gysin comparison — none of which exist in pinned Mathlib); see
-`docs/current/RPn_Mod_Two_Cohomology_And_Final_Comparison_Result.md` for the
-exact missing theorems.
 
-## What is proved here
 
-* `inducedOnRPPullback_id` — the pullback of the descended identity is the
-  identity on `H^k(RP n; F₂)` (functoriality at the identity).
-* `inducedOnRPPullback_comp` — contravariant functoriality of the descended
-  pullback: `(g ∘ f)bar^* = gbar^* ≫ fbar^*` (note the reversal).
-* `inducedOnRP_pullback_naturality` — the **naturality square** of the double
-  cover:
-  ```text
-  fbar^* ≫ proj^* = proj^* ≫ f^*    on  H^k(RP n; F₂) ⟶ H^k(S^n; F₂)
-  ```
-  This is the cohomological form of the commuting square
-  `inducedOnRP_comp_proj` (`fbar ∘ proj = proj ∘ f`); it is exactly the
-  square that the future top-class / degree comparison (`C3b`) will read on the
-  top class.
-* `proj_pullback_antipodal` — the nontrivial deck transformation (the antipodal
-  map) acts trivially on the image of `proj^*`: `proj^* ≫ antipodal^* = proj^*`.
-* `inducedOnRPPullback_antipodal` — the descended antipodal pullback is the
-  identity (a corollary of `inducedOnRP_antipodal` and `inducedOnRPPullback_id`).
 
-These are the functorial pullback / double-cover-compatibility / descended-map
-naturality facts that do **not** require the (still absent) cup-product ring
-computation.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

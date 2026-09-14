@@ -1,20 +1,20 @@
 import GroupApproximation.Kazhdan.KazhdanProjection
 
-/-!
-# The Kazhdan eigenvalue bound
 
-Any eigenvalue of the orbit average of a Kazhdan set, other than `1`, is
-at most the machine rate `1 - ε²/(4|S|)`.  The proof projects the
-eigenvalue equation onto the invariant subspace — the average fixes the
-invariant part and preserves its complement, so a `μ ≠ 1` eigenvector has
-no invariant component — and then applies the one-step contraction of
-`norm_averageOperator_pow_le` on the complement.  No limits are needed.
 
-This is the spectral-gap payoff brick of the strict-Kazhdan-compression
-program of `notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: combined
-with the GNS eigenvector of a spectrally concentrated state it forbids
-abstract C-star spectrum of the averaging element in the gap window.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace KazhdanEigenvalueBound

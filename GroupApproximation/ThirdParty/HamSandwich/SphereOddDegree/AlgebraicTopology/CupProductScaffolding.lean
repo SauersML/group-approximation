@@ -2,61 +2,61 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import Mathlib.Algebra.Homology.Monoidal
 import Mathlib.Algebra.Category.ModuleCat.Monoidal.Basic
 
-/-!
-# Cup product scaffolding — coefficient-category wiring and the cochain tensor square
 
-This file implements the first **build-clean** supporting layer toward a singular
-cup product / cohomology ring (the `PR-cup1` step of
-`docs/plans/Cup_Product_And_Cohomology_Ring_Roadmap.md`). It contains **no**
-placeholder definitions and **no** axioms: every declaration is fully proved.
 
-The pinned Mathlib (`v4.28.0`, commit
-`8f9d9cff6bd728b17a24e163c9402775d9e6a365`) has **no** cup product, no
-Alexander–Whitney chain diagonal, and no Eilenberg–Zilber equivalence. It does,
-however, provide the full monoidal structure on homological complexes
-(`Mathlib.Algebra.Homology.Monoidal`) whenever the coefficient category is an
-additive monoidal category with the right coproduct-preservation side
-conditions. The obstacle recorded in the cup-product inventories (gap `U6`) is
-that those side conditions are **not registered as instances** for the
-coefficient categories `ModuleCat R` we need, so the generic monoidal structure
-does not apply to `ChainComplex (ModuleCat R) ℕ` / `CochainComplex (ModuleCat R) ℕ`
-out of the box.
 
-## What this file supplies
 
-1. **Coefficient-category wiring (`U6`).** For any preadditive monoidal category
-   `C` with `MonoidalPreadditive C`, the additivity instances
-   `((curriedTensor C).obj X).Additive` and `(curriedTensor C).Additive` that the
-   chain/cochain tensor product asks for. These hold mathematically from
-   `MonoidalPreadditive` but were previously unregistered. With them, the generic
-   `HomologicalComplex.monoidalCategory` instance applies to
-   `ChainComplex (ModuleCat R) ℕ` for every commutative ring `R`
-   (in particular `R = ZMod 2`).
 
-2. **Cochain-shape tensor signs.** Mathlib registers `ComplexShape.TensorSigns`
-   only for `ComplexShape.down ℕ` (chain complexes) and `ComplexShape.up ℤ`. It
-   does **not** register it for `ComplexShape.up ℕ`, the shape of the singular
-   *cochain* complex `Hom(C_•(X), M)`. We supply this instance (the same
-   `(-1)^•` sign convention as the chain case), which is exactly what unblocks the
-   monoidal structure on `CochainComplex (ModuleCat R) ℕ`.
 
-3. **The cochain tensor square `C^•(X) ⊗ C^•(X)`.** With the above wiring, the
-   tensor product of the singular cochain complex with itself is a genuine
-   `CochainComplex (ModuleCat R) ℕ`, the domain on which a cup product would be
-   defined. We package it together with its functorial pullback
-   `(f ⊗ f)^* = f^* ⊗ f^*` and the corresponding `map_id` / `map_comp` laws — the
-   naturality substrate for the eventual `f^*(a ⌣ b) = f^* a ⌣ f^* b`.
 
-## Scope and blocker
 
-This is the **algebraic substrate only**. The single genuinely *topological*
-input still missing is the **Alexander–Whitney chain diagonal**
-`Δ : C_•(X) → C_•(X) ⊗ C_•(X)` (absent from pinned Mathlib); once it exists, the
-cup product is `Δ^*` precomposed with the lax-monoidal pairing
-`Hom(A, R) ⊗ Hom(B, R) → Hom(A ⊗ B, R)`, descended to cohomology. No fake `cup`
-declaration is introduced here, since a faithful one cannot be defined without
-`Δ`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory MonoidalCategory Limits
 

@@ -3,58 +3,58 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCohomologyRi
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ModTwoDegreeComparison
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ConstructRPAlpha
 
-/-!
-# Final odd-map cohomological comparison
 
-This file assembles the currently available components of the project into the
-strongest *honest* statement of the classical odd-map degree argument
 
-```text
-f odd
-  ⇒ f descends to fbar : RPⁿ → RPⁿ
-  ⇒ fbar^*(α) = α                          (action on the H¹ generator)
-  ⇒ fbar^*(αⁿ) = αⁿ                        (pullback preserves cup powers)
-  ⇒ f^*(proj^* αⁿ) = proj^* αⁿ            (double-cover naturality — PROVED here)
-  ⇒ degree(f) ≡ 1 (mod 2)                  (top-class / degree comparison)
-  ⇒ Odd (degree f).
-```
 
-The genuine, unconditional ingredients already in the project are wired in:
 
-* the **descended-map pullback** `inducedOnRPPullback`, the **double-cover
-  pullback** `projPullback`, the **sphere pullback** `spherePullback`, and their
-  functoriality + the **naturality square** `inducedOnRP_pullback_naturality`
-  (`InducedOnRPCohomology.lean`);
-* the genuine **integer degree** `degreeOfIso` relative to a chosen
-  `e : SphereTopHomologyIso n` and its mod-2 parity bridge
-  `degreeOfIso_intCast_zmodTwo_eq_one_iff_odd` (`Degree.lean`,
-  `ModTwoDegreeComparison.lean`);
-* the **top-degree targets** `rpTopCohomology`, `sphereTopCohomology`
-  (`RPnTopClassAlphaPower.lean`).
 
-The **genuinely missing** topological inputs (documented, *not faked*: see
-`docs/current/RPn_Top_Class_Alpha_Power_Nonvanishing_Result.md` and
-`docs/plans/Top_Class_Nonvanishing_And_Degree_Comparison_Strategy.md`) are kept
-as **explicit hypotheses** so each conditional theorem specializes verbatim to the
-final theorem once the input is supplied:
 
-1. **`α` exists** — a class `alpha : H¹(RPⁿ; F₂)` (needs the degree-one universal
-   coefficient theorem `H¹(X; F₂) ≅ Hom(π₁(X)ᵃᵇ, F₂)`);
-2. **`αⁿ` is the nonzero top class** — `alphaPow : Hⁿ(RPⁿ; F₂)` (needs the
-   cohomology-ring computation `H^*(RPⁿ; F₂) ≅ F₂[α]/(αⁿ⁺¹)`);
-3. **fbar^* fixes `α`** — `inducedOnRPPullback f hf 1 alpha = alpha` (needs `α` to
-   be a genuine class plus the H¹-action computation);
-4. **pullback preserves powers** — `fbar^*(α)=α ⇒ fbar^*(αⁿ)=αⁿ` (the
-   cohomology-level cup product, gated on the Leibniz/coboundary identity; the
-   *cochain-level* version is already proved, `inducedOnRP_cochainPow_fixed`);
-5. **top-class / degree comparison** — that `f^*` fixing the nonzero sphere top
-   class forces `degree f ≡ 1 (mod 2)` (the `F₂`-coefficient transfer/reduction).
 
-The single step `f^*` **fixes** the sphere top class `proj^* αⁿ` — i.e. the
-push of `fbar^*(αⁿ)=αⁿ` across the double-cover naturality square — is **proved
-unconditionally** here (`spherePullback_fixes_projPullback`), so the conditional
-theorems do real assembly work and are not vacuous.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

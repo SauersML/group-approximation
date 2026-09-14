@@ -12,67 +12,67 @@ mathematics and the declaration names are unchanged.
 
 import Mathlib.RepresentationTheory.AlgebraRepresentation.Basic
 
-/-!
-# Schur's lemma for simple modules
 
-This file packages the two forms of Schur's lemma used by the semisimple-algebra development.
 
-For simple modules over an arbitrary ring, Mathlib proves that a linear map is either bijective or
-zero (`LinearMap.bijective_or_eq_zero`). Consequently the entire hom group vanishes exactly when the
-two modules are not linearly equivalent. When an equivalence does exist, Mathlib's
-`LinearEquiv.arrowCongrAddEquiv` identifies the hom group with either endomorphism ring by
-composition; no separate construction is needed here.
 
-Over an algebraically closed field `k`, a domain algebra that is integral over `k` is `k` itself.
-The proof uses Mathlib's theorem that the algebra map from an algebraically closed field into such
-an algebra is bijective; a finite-dimensional division algebra is the special case that the roadmap
-names, integrality there coming from finite dimensionality. The same collapse for the endomorphism
-ring of a finite-dimensional simple module is
-Mathlib's `IsSimpleModule.algebraMap_end_bijective_of_isAlgClosed`, packaged here as an algebra
-equivalence.
 
-Both forms are then read as statements about dimensions, for a `k`-algebra `A` acting on modules
-that are `k`-modules compatibly: the hom space between inequivalent simple modules has dimension
-`0`, and between equivalent finite-dimensional simple modules it is a line. Transporting a hom
-space along an isomorphism of its target, `TauCeti.homCongrRight`, is what carries the endomorphism
-computation to an arbitrary equivalent target.
 
-## Main definitions
 
-* `TauCeti.homCongrRight`: isomorphic `A`-modules have `k`-isomorphic hom spaces out of a fixed
-  module. This is `LinearEquiv.congrRight` for a noncommutative `A`, with the auxiliary scalars
-  `k` supplying the linear structure that `A` cannot; it is assembled from Mathlib's
-  `LinearMap.compRight`.
 
-## Main results
 
-* `TauCeti.hom_eq_zero_of_isEmpty_linearEquiv`: every map between inequivalent simple modules is
-  zero.
-* `TauCeti.subsingleton_linearMap_iff_isEmpty_linearEquiv`: the corresponding characterization of
-  the whole hom group.
-* `TauCeti.nontrivial_linearMap_iff_nonempty_linearEquiv`: two simple modules are equivalent exactly
-  when their hom group is nontrivial.
-* `TauCeti.nonempty_algEquiv_self_of_isIntegral`: a domain algebra over an algebraically closed
-  field that is integral over that field is isomorphic to it as an algebra, with
-  `TauCeti.nonempty_algEquiv_self_of_finiteDimensional_divisionRing` the finite-dimensional
-  division algebra special case, also available under the name the roadmap pins,
-  `TauCeti.algEquiv_self_of_finiteDimensional_divisionRing`.
-* `TauCeti.endAlgEquivSelfOfIsSimpleModule`: the endomorphism ring of a finite-dimensional simple
-  module over an algebraically closed field collapses to that field, canonically, as the inverse
-  of the structure map; `TauCeti.nonempty_end_algEquiv_self_of_isSimpleModule` is its existence
-  form.
-* `TauCeti.finrank_linearMap_eq_zero_of_isEmpty_linearEquiv` and
-  `TauCeti.finrank_linearMap_eq_one_of_nonempty_linearEquiv`: the two forms of Schur's lemma in
-  dimensions, with `TauCeti.finiteDimensional_linearMap_of_isSimpleModule` recording that the hom
-  space is finite-dimensional either way.
 
-## References
 
-This implements Layer 1, "Schur, assembled", of the
-[semisimple algebras roadmap](https://github.com/TauCetiProject/TauCetiRoadmap/blob/main/TauCetiRoadmap/RepresentationTheory/SemisimpleAlgebras/README.md).
-See N. Jacobson, *Basic Algebra II*, Chapter 3, or T. Y. Lam, *A First Course in Noncommutative
-Rings*, Chapter 1.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 namespace TauCeti

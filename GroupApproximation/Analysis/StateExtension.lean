@@ -3,25 +3,25 @@ import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
 import Mathlib.Analysis.CStarAlgebra.PositiveLinearMap
 import Mathlib.Analysis.Complex.Order
 
-/-!
-# Positive extension of functionals from unital star subalgebras
 
-The Krein extension step: a linear functional on a unital star subalgebra
-of a unital C-star algebra that is nonnegative on the positives of the
-ambient algebra extends to a positive linear functional on the whole
-algebra.
 
-The proof runs the M. Riesz extension theorem on the real vector space of
-self-adjoint elements, against the cone of positives, with density of the
-domain supplied by `IsSelfAdjoint.le_algebraMap_norm_self`; the complex
-functional is then reassembled from its real and imaginary parts.  The
-subalgebra is not required to be closed.
 
-This is the extension brick of the strict-Kazhdan-compression program of
-`notes/FORMALIZATION_DIRECTIVES_2026-08-15.md` §1: it turns a character at
-a spectral point of the averaging element (living on the commutative
-elemental subalgebra) into a state of the full algebra, ready for GNS.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace StateExtension

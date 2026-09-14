@@ -1,6 +1,0 @@
-CAND1 d7p11 :: trace ideal = (1): no hom
-CAND2 d7p11 :: trace ideal = (1): no hom
-CAND3 d7p11 :: trace ideal = (1): no hom
-CAND4 d7p11 :: trace ideal = (1): no hom
-LIND_DONE d7p11 cands 3.6s
-EXIT=0

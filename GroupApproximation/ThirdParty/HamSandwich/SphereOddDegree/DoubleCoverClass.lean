@@ -2,69 +2,69 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Monodromy
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
 import Mathlib.GroupTheory.Perm.Sign
 
-/-!
-# The canonical `ZMod 2` monodromy class of the double cover `S^n → RP n`
 
-This file advances *Route A* of `docs/plans/Double_Cover_Class_To_H1_Roadmap.md`
-toward the canonical degree-one class
 
-```text
-α ∈ H¹(RPⁿ; F₂)
-```
 
-associated with the double cover `proj n : S^n → RP n`.
 
-## What is honestly constructed here
 
-The covering / monodromy side of Route A is realised as a genuine, fully-proved
-group homomorphism
 
-```text
-classifyingHom n x : FundamentalGroup (RP n) x →* Multiplicative (ZMod 2)
-```
 
-— the **monodromy classifying homomorphism** of the double cover.  It is the
-composite
 
-```text
-π₁(RP n, x)  --projMonodromyHom-->  Equiv.Perm (proj n ⁻¹' {x})
-             --permToZMod2-->       Multiplicative (ZMod 2)
-```
 
-where `projMonodromyHom` (from `Monodromy.lean`) is the genuine action of the
-fundamental group on the two-element fibre, and `permToZMod2` is the parity
-(`Equiv.Perm.sign` composed with `ℤˣ ≅ ZMod 2`) of a permutation of a finite
-set.  On the two-element fibre this parity records exactly whether a loop swaps
-the two sheets of the cover, i.e. it *is* the classifying datum of the regular
-`ZMod 2`-cover.
 
-This homomorphism is the source datum from which `α` is obtained, in Route A, by
-the **degree-one universal coefficient theorem**
-`H¹(X; F₂) ≅ Hom(π₁(X)ᵃᵇ, F₂)`.  That theorem is **absent** from the pinned
-Mathlib, so an honest `α ∈ H¹(RPⁿ; F₂)` cannot yet be produced; this file
-therefore stops exactly at the last build-clean object before `α`, plus the
-`H¹` target abbreviations, with **no fake `α` and no fake nonzero statement**.
 
-## Target abbreviations
 
-* `rpH1ZMod2 n` / `rpDegreeOneCohomology n` — the genuine `H¹(RP n; F₂)` object
-  (`rpCohomology n 1`), the eventual home of `α`.
 
-## Monodromy → `ZMod 2`
 
-* `intUnitsToZMod2` — the canonical isomorphism `ℤˣ →* Multiplicative (ZMod 2)`.
-* `permToZMod2` — the parity homomorphism `Equiv.Perm α →* Multiplicative (ZMod 2)`
-  for a finite `α`.
-* `classifyingHom n x` — the monodromy classifying homomorphism
-  `π₁(RP n, x) →* Multiplicative (ZMod 2)` of the double cover.
 
-## Naturality under descended odd maps
 
-* `classifyingHom_inducedOnRP_naturality` — the descended odd map `fbar` acts
-  trivially on the classifying homomorphism:
-  `classifyingHom n (fbar x) ∘ (π₁ map fbar) = classifyingHom n x`.  This is the
-  fundamental-group form of the eventual `fbar^*(α) = α`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

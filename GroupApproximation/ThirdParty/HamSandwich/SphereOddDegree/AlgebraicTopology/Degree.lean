@@ -3,39 +3,39 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.HomotopyInvariance
 import Mathlib.LinearAlgebra.Determinant
 
-/-!
-# Toward a topological degree of self-maps of spheres
 
-This file assembles the **genuine, build-clean support layer** for a topological
-degree of continuous self-maps of the sphere via top singular homology, following
-the design in `docs/plans/Degree_Via_Top_Homology_Roadmap.md` and
-`docs/plans/Minimal_Topological_Degree_API_Design.md`.
 
-It contains **no fake `degree`** and **no placeholder final theorem.** The genuine
-unconditional degree cannot yet be defined because the topological input
-`Hₙ(Sⁿ; ℤ) ≅ ℤ` (excision / Mayer–Vietoris, absent from pinned Mathlib) is not yet
-available. What *is* build-clean today, and is provided here, is:
 
-* **Model transport.** `toTopCatSphereSelfMap` sends a `C(Sphere n, Sphere n)` to a
-  self-morphism of Mathlib's categorical sphere `TopCat.sphere n`, with
-  functoriality (`toTopCatSphereSelfMap_id`, `toTopCatSphereSelfMap_comp`).
-* **Induced endomorphism on top homology.** `inducedOnTopHomology` is the induced
-  endomorphism of `Hₙ(TopCat.sphere n; ℤ)`, with functoriality
-  (`inducedOnTopHomology_id`, `inducedOnTopHomology_comp`).
-* **The ℤ-endomorphism scalar API.** `evalAtOneℤ : (ℤ →ₗ[ℤ] ℤ) →+* ℤ` (evaluation
-  at `1`) and `endℤ_acts_by_evalAtOne` (a rank-one ℤ-endomorphism acts by its value
-  at `1`), packaging "multiplication by an integer on `ℤ`".
-* **Scalar extraction.** `degreeRingHomOfIso`, a ring hom `End M →+* ℤ` for any
-  `M ≅ ModuleCat.of ℤ ℤ`, obtained by conjugating into `ℤ` and evaluating at `1`.
-* **The conditional degree.** `degreeOfIso e f`, the integer degree of `f`
-  *relative to a supplied isomorphism* `e : Hₙ(Sⁿ; ℤ) ≅ ℤ`, with
-  `degreeOfIso_id`, `degreeOfIso_comp`, and the choice-independence
-  `degreeOfIso_well_defined`.
 
-Once `Hₙ(Sⁿ; ℤ) ≅ ℤ` is proved (the only remaining topological blocker), the
-unconditional `degree f := degreeOfIso (sphereTopHomologyIso n) f` follows with all
-of `degree_id`, `degree_comp`, and choice-independence already in hand.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

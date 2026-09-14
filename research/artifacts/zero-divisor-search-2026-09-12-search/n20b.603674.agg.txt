@@ -1,7 +1,0 @@
-logs 128 without ALLDONE 0
-shards 128 rc!=0 0 graphs 97546 surv 0 budget 0 seconds 27276 max 565
-g6 lines 97546 duplicates 0 GRAPH lines 97546
-items 97546 nodes 2114114462 coinc 1330870633 ab 0 finite 72794708 power 40
-per graph 21673 median 10278 max 779445
-duplicate GRAPH lines 0
-070ad002c4763d9dad5e0d04c4994310  -

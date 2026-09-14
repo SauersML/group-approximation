@@ -1,57 +1,57 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AlexanderWhitney
 
-/-!
-# Cochain-level singular cup product (Alexander–Whitney formula)
 
-This file builds a **genuine, build-clean** cochain-level singular cup product
-from the Alexander–Whitney front/back faces of `AlexanderWhitney.lean`. There are
-no placeholder definitions and no axioms: every declaration is fully implemented.
 
-## What is and is not here
 
-Pinned Mathlib (`v4.28.0`, commit
-`8f9d9cff6bd728b17a24e163c9402775d9e6a365`) has **no** cup product. The genuine
-*topological* input — the Alexander–Whitney front/back faces — is supplied by
-`AlexanderWhitney.lean`. Using the definitional facts
 
-* a singular chain group in degree `n` is the coproduct
-  `C_n(X) = ∐_{σ : n-simplex} R` (`rfl`), so an `R`-linear map out of it is
-  determined by its values on the generators (`cochain_ext`);
-* a singular cochain in degree `p` is exactly a morphism `C_p(X) ⟶ R` (`rfl`);
-* the pullback of a cochain is precomposition with the singular chain map (`rfl`),
 
-we define the **cochain cup product** by the classical Alexander–Whitney formula
 
-```text
-(φ ⌣ ψ)(σ) = φ(front_p σ) · ψ(back_q σ)        (σ a (p+q)-simplex)
-```
 
-with coefficients in the ring `R` itself (`M = R`, which covers the downstream
-`R = ZMod 2` case). The operation is genuine, `R`-bilinear, natural in the space,
-strictly unital on the right, and assembled into degree-`n` powers of a
-degree-one cochain.
 
-**What is NOT here (the exact remaining blocker).** The descent to *cohomology*
-(`H^p × H^q → H^{p+q}`) requires the Leibniz / coboundary identity
 
-```text
-δ(φ ⌣ ψ) = (δφ) ⌣ ψ + (-1)^p φ ⌣ (δψ),
-```
 
-equivalently that the assembled cochain map `C^•(X) ⊗ C^•(X) → C^•(X)` is a
-morphism of cochain complexes. That identity is the standard telescoping argument
-over the front/back simplicial identities
-(`frontFace_last_eq_backFace_zero`, `frontFace_succ`, `backFace_succ_square`); it
-is **not** proved here, so no cohomology-level `cup` is introduced (per the
-project's no-fake-declarations policy). See the module footer and
-`docs/current/Cup_Product_Implementation_Result.md`.
 
-## Coefficients
 
-Everything is stated for a general `CommRing R`, with coefficients in `R` itself
-(`ModuleCat.of R R`). The `ZMod 2` specializations (`cochainCupZMod2`, …) are thin
-abbreviations; over `ZMod 2` the Koszul sign in the Leibniz rule is trivial.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology Limits GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlexanderWhitney
 

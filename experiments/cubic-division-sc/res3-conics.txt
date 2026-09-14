@@ -1,4 +1,0 @@
-p=29 N=20510308 space=conics twist=0 ctl=0 m=19 c1=1 c2=1 k=300 lmax=3.466337 lmin=-3.474110 norm=3.474110 regular=3.464102 excess=+0.010009
-p=29 N=20510308 space=conics twist=0 ctl=2 m=19 c1=1 c2=1 k=300 lmax=3.464815 lmin=-3.465651 norm=3.465651 regular=3.464102 excess=+0.001549
-p=29 N=20510308 space=conics twist=1 ctl=0 m=19 c1=1 c2=1 k=300 lmax=3.466326 lmin=-3.474110 norm=3.474110 regular=3.464102 excess=+0.010009
-p=29 N=20510308 space=conics twist=1 ctl=2 m=19 c1=1 c2=1 k=300 lmax=3.464886 lmin=-3.465670 norm=3.465670 regular=3.464102 excess=+0.001568

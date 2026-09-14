@@ -2,69 +2,69 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereTopHomolo
 import Mathlib.CategoryTheory.Limits.Shapes.Kernels
 import Mathlib.Algebra.Category.ModuleCat.Abelian
 
-/-!
-# Reduced-to-unreduced bridge for sphere top homology
 
-This file builds the **genuine** reduced-to-unreduced comparison for integral
-singular homology and uses it to reduce the missing positive-dimensional sphere
-top-homology family to the corresponding *reduced* statement.
 
-## Reduced homology, honestly
 
-Pinned Mathlib (`v4.28.0`, commit `8f9d9cff6bd728b17a24e163c9402775d9e6a365`) has
-**no** reduced-homology API, no suspension, no Mayer–Vietoris and no excision (see
-`docs/current/Suspension_Homology_API_Inventory_And_Backport_Result.md`).  Rather
-than assume a reduced theory, we *define* reduced integral singular homology in the
-standard way, as the kernel of the augmentation to a point:
 
-```text
-H̃ₙ(X; ℤ) := ker ( Hₙ(X; ℤ) --Hₙ(X → pt)--> Hₙ(pt; ℤ) ).
-```
 
-This is a legitimate definition of reduced homology (the kernel of the map induced
-by the unique map to a one-point space), and it requires no fake input.
 
-## The bridge (proved)
 
-For `n ≥ 1` the point has vanishing homology `Hₙ(pt; ℤ) = 0` (the one-point space
-is totally disconnected, via Mathlib's
-`isZero_singularHomologyFunctor_of_totallyDisconnectedSpace`).  Hence the
-augmentation `Hₙ(X) → Hₙ(pt)` is the zero map and its kernel is all of `Hₙ(X)`:
 
-```text
-n ≥ 1  ⇒  H̃ₙ(X; ℤ) ≅ Hₙ(X; ℤ).            (`reducedToUnreducedIso`)
-```
 
-This is the exact reduced/unreduced comparison theorem requested by Prompt 04,
-proved as an actual Lean isomorphism, not assumed.
 
-## Consequence for the sphere top-homology family
 
-Transporting along the bridge turns a *reduced* sphere top-homology computation
-into the ordinary one consumed by the degree API:
 
-```text
-(∀ n ≥ 1, H̃ₙ(Sⁿ; ℤ) ≅ ℤ)  ⇒  ∀ n ≥ 1, Hₙ(Sⁿ; ℤ) ≅ ℤ.
-```
 
-i.e. `sphereTopHomologyIsoPos_of_reducedSphereHomology`, and as a
-`SphereOrientationPos` via `sphereOrientationPos_of_reducedSphereHomology`.
 
-## Honest blocker recorded
 
-In the *positive degree* regime reduced and unreduced homology **coincide** (this
-file proves exactly that), so the bridge alone supplies no new computation: the
-hypothesis `H̃ₙ(Sⁿ) ≅ ℤ` for `n ≥ 1` is, via the bridge, equivalent to the goal
-`Hₙ(Sⁿ) ≅ ℤ`.  The genuine content needed to *discharge* that reduced hypothesis is
-the **reduced suspension isomorphism** `H̃ₖ(Sⁿ) ≅ H̃ₖ₋₁(Sⁿ⁻¹)` (with base
-`H̃₀(S⁰) ≅ ℤ`), which rests on Mayer–Vietoris / excision and is absent from pinned
-Mathlib.  Consequently `SphereSuspensionTower.step` is **not** fillable from this
-bridge alone; see `docs/current/Reduced_To_Unreduced_Sphere_Top_Homology_Result.md`.
 
-No fake declaration or forbidden placeholder token is introduced; every
-declaration is build-clean and depends only on the standard logical foundations
-(`propext`, `Classical.choice`, `Quot.sound`).
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory Limits AlgebraicTopology
 

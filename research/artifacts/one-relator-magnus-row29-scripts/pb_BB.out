@@ -1,4 +1,0 @@
-== pullback: P=<yxxYYx,y> (V=5,E=6)  Q=<yxxYYx,y> (V=5,E=6)
-BASE P cap Q: rank=2 gens=['y', 'XyyXX']
-COMPONENT contains_base=True rank=2 rep=(0, 0) alpha= beta= gens=['y', 'XyyXX']
-SENTINEL_DONE

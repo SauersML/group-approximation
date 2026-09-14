@@ -4,74 +4,74 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Basic
 import Mathlib.Topology.Homotopy.Contractible
 import Mathlib.Analysis.Convex.Contractible
 
-/-!
-# The ball–boundary pair route toward `Hₙ(Sⁿ; ℤ) ≅ ℤ`
 
-This file develops the **genuine, build-clean** part of the classical pair route
 
-```text
-(Dⁿ⁺¹, Sⁿ)
-```
 
-for computing the top integral singular homology of spheres.  The route is:
 
-```text
-Dⁿ⁺¹ contractible
-  ⇒ Hₖ(Dⁿ⁺¹; ℤ) = 0           for k ≥ 1            (proved here)
-LES of the pair (Dⁿ⁺¹, Sⁿ):
-  Hₙ₊₁(Dⁿ⁺¹) → Hₙ₊₁(Dⁿ⁺¹, Sⁿ) → Hₙ(Sⁿ) → Hₙ(Dⁿ⁺¹)
-  with the two outer disk groups zero (n ≥ 1)
-  ⇒ Hₙ₊₁(Dⁿ⁺¹, Sⁿ) ≅ Hₙ(Sⁿ)                          (the connecting iso)
-excision / quotient:
-  Hₙ₊₁(Dⁿ⁺¹, Sⁿ) ≅ ℤ                                  [the genuine missing input]
-  ⇒ Hₙ(Sⁿ; ℤ) ≅ ℤ.
-```
 
-## What is proved here (genuine theorems, no placeholders)
 
-* **Homotopy invariance ⇒ homology iso from a homotopy equivalence of spaces.**
-  `singularHomologyℤ_isoOfHomotopyEquivSpace` turns any
-  `ContinuousMap.HomotopyEquiv X Y` into an isomorphism on every integral singular
-  homology group, using the project's unconditional homotopy invariance
-  (`map_singularHomologyℤ_eq_of_homotopic_continuousMap`).
-* **Contractible spaces have vanishing positive homology.**
-  `isZero_singularHomologyℤ_of_contractibleSpace`: for a contractible space `X`
-  and `k ≥ 1`, `Hₖ(X; ℤ) = 0` (it is homotopy equivalent to a point, whose higher
-  homology vanishes).
-* **The disk `Dⁿ⁺¹` and its vanishing homology.**  `Disk n` is the closed unit
-  ball in `EuclideanSpace ℝ (Fin (n+1))` (whose topological boundary is the
-  project's `Sphere n`).  It is convex and nonempty, hence contractible
-  (`instContractibleSpaceDisk`), so `Hₖ(Dⁿ⁺¹; ℤ) = 0` for `k ≥ 1`
-  (`isZero_singularHomologyℤ_disk`).
 
-## The exact remaining blocker
 
-The two disk-homology vanishings are exactly the inputs the LES of the pair needs
-at the outer terms, so the connecting map `Hₙ₊₁(Dⁿ⁺¹, Sⁿ) ≅ Hₙ(Sⁿ)` is forced.
-Mathlib **does** provide the homology long exact sequence of a short exact
-sequence of homological complexes
-(`HomologicalComplex.HomologySequence`, `ShortComplex.ShortExact.δIso`), so once a
-**relative singular homology** `Hₖ(Dⁿ⁺¹, Sⁿ; ℤ)` is built (as the homology of the
-cokernel chain complex `C(Dⁿ⁺¹)/C(Sⁿ)`, whose defining short exact sequence is
-degreewise split because `C(Sⁿ) ↪ C(Dⁿ⁺¹)` is a free-module inclusion on a subset
-of the singular-simplex basis), the connecting iso above follows mechanically.
 
-The single genuinely missing topological input is then
 
-```text
-Hₙ₊₁(Dⁿ⁺¹, Sⁿ; ℤ) ≅ ℤ,
-```
 
-i.e. the excision / quotient identification `Dⁿ⁺¹ / Sⁿ ≃ Sⁿ⁺¹` feeding
-`H̃ₙ₊₁(Sⁿ⁺¹)`.  This rests on the **barycentric-subdivision / small-simplices
-(excision) theorem**, which is absent from pinned Mathlib and is the same missing
-keystone as for the suspension route.  See
-`docs/current/Ball_Boundary_LES_Alternative_Result.md`.
 
-No fake declaration or forbidden placeholder token is introduced; every
-declaration is build-clean and depends only on the standard logical foundations
-(`propext`, `Classical.choice`, `Quot.sound`).
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 open CategoryTheory AlgebraicTopology Limits
 

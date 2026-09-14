@@ -1,2 +1,0 @@
-d=20 m=3 init=seed:seed_theta_x2_d20_abmin.json beta=30.0 pin=0 eps0=0.1 n_unl=6000 restart=0: Else=0.0092 meansq=0.006619 maxdef_unl=0.2557 maxdef_lift=0.3204 t=2151s
-BEST d=20 m=3 init=seed:seed_theta_x2_d20_abmin.json beta=30.0 pin=0 eps0=0.1: Else=0.0092 meansq=0.006619 maxdef_unl=0.2557 maxdef_lift=0.3204 saved=best7_m3_seed_seed_theta_x2_d20_abmin.json_d20_p30.0_pin0_eps0.1_seed62.npy

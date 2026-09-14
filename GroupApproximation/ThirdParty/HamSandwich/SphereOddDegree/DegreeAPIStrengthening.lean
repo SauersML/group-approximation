@@ -1,51 +1,51 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.SphereTopHomology
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Antipodal
 
-/-!
-# Strengthening of the conditional sphere-degree API
 
-The genuine *unconditional* topological degree of self-maps of `Sphere n` still
-cannot be defined, because the only missing input — the top-homology isomorphism
 
-```text
-Hₙ(Sⁿ; ℤ) ≅ ℤ
-```
 
-(equivalently a term of `SphereTopHomologyIso n` for `n ≥ 1`) — is genuinely
-absent from the pinned Mathlib (it requires excision / Mayer–Vietoris / the long
-exact sequence of a topological pair / a suspension isomorphism, none of which are
-present; see `docs/current/Sphere_Top_Homology_Computation_Result.md`).  **No fake
-`degree` and no fake `SphereTopHomologyIso` are introduced.**
 
-Instead, this file strengthens the *conditional* degree API of `Degree.lean`
-(`degreeOfIso`) and the *bundled-orientation* degree of `SphereTopHomology.lean`
-(`SphereOrientation.degree`) with the largest genuinely provable layer:
 
-* **`TopCat.sphere`-based degree.** `degreeOfIsoTop e g` is the degree of a raw
-  `TopCat.sphere n` self-morphism `g`, with `degreeOfIsoTop_id`,
-  `degreeOfIsoTop_comp`, choice-independence `degreeOfIsoTop_well_defined`, and the
-  compatibility `degreeOfIso_eq_degreeOfIsoTop` identifying it with the raw
-  `Sphere n` degree through the model transport `toTopCatSphereSelfMap`.
-* **Degree of one-point maps.** For `n ≥ 1` a self-map with a single value
-  (`ContinuousMap.const`) has degree `0` (`degreeOfIso_const`), because it factors
-  through a point whose `n`-th homology
-  vanishes (`inducedOnTopHomology_const`).
-* **Degree of homeomorphisms is a unit.** A self-homeomorphism has degree `±1`
-  (`degreeOfIso_homeomorph_eq_one_or_neg_one`, `isUnit_degreeOfIso_homeomorph`),
-  in particular it is **odd** (`odd_degreeOfIso_homeomorph`) — a genuine parity
-  wrapper.
-* **Degree of the antipodal map is `±1`** (`degreeOfIso_antipodal_eq_one_or_neg_one`),
-  with its square equal to `1` (`degreeOfIso_antipodal_sq`).  Which sign occurs is
-  exactly `(-1)^(n+1)` once `Hₙ(Sⁿ;ℤ) ≅ ℤ` is available (cf. `det_ambientNeg`);
-  that refinement is the remaining blocker.
-* **Oriented-degree wrappers.** The same facts repackaged on
-  `SphereOrientation.degree` (`degree_const`, `degree_homeomorph_eq_one_or_neg_one`,
-  `degree_antipodal_eq_one_or_neg_one`, `odd_degree_homeomorph`).
 
-Every statement is conditional only on the explicit identification `e`
-(resp. a `SphereOrientation`), which is honest: these are genuine strengthenings of
-the conditional API, not a disguised unconditional degree.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

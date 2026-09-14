@@ -2,45 +2,45 @@ import Mathlib
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCellularCochainStructure
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCohomologyRingBridge
 
-/-!
-# Singular-to-cellular cochain comparison for `RPⁿ` (additive)
 
-This file constructs the comparison between the **actual singular cohomology** of
-`RPⁿ` and the **cellular / model cohomology**, in the additive form usable by the
-model-bridge structure `RPnCohomologyToModelHom n`:
 
-```text
-H^k_sing(RPⁿ; F₂) ≅ H^k_cell(RPⁿ; F₂)        (singularToCellularRPnCohomologyIso)
-```
 
-and, transporting one step further into the algebraic model ring
-`RPnCohomologyRingModel n = F₂[α]/(αⁿ⁺¹)`, an explicit linear comparison
 
-```text
-H^k_sing(RPⁿ; F₂) ≃ₗ[F₂]  F₂ · αᵏ ⊆ F₂[α]/(αⁿ⁺¹)     (0 ≤ k ≤ n)
-```
 
-carrying the canonical degree-`k` cohomology generator to the model power `αᵏ`.
-This is the additive "transport to the model and back": being a *linear
-equivalence*, every actual cohomology class is sent to the model and recovered on
-the nose (`rpCohomologyModelEquiv_symm_apply_apply`).
 
-All declarations are conditional on the single honest input
-`RPnCellularCochainStructure n` (the Mathlib-absent cellular-approximation
-identification of the singular cochain complex of `RPⁿ` with the cellular model;
-see `Axioms_And_Placeholders.md`), through which the genuine singular cohomology
-`rpCohomology n k` is identified with the cellular model.
 
-## Scope: additive only
 
-The comparison delivered here is **additive** (`F₂`-linear). Multiplicativity —
-i.e. that the per-degree maps assemble into a *ring* homomorphism with
-`map_one'` and `map_cup'` (the cup product going to the model product) — is **not**
-proved here and is left for the next prompt. The degree-indexed family
-`rpCohomologyToModelToFun` provides exactly the additive `toFun` field of
-`RPnCohomologyToModelHom n`; supplying the `map_one'`, `map_cup'`, `alpha`, and
-`alpha_spec` fields is the remaining multiplicative work.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

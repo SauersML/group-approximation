@@ -1,4 +1,0 @@
-(cab^-1aba)^2cb(cabab^-1a)^2
-a(cb)^2a(b^-1c)^2bcabcb^-1cab^-1acb^-1(cb)^2ab^-1
-ab^-1cbc(ab^-1)^2cbcb^-1a(b^-1c)^2babcb^-1cab^-1
-ca(b^-1c)^2bacabacbc(b^-1ca)^2b(cb^-1)^2(acb)^2cb^-1cab^-1

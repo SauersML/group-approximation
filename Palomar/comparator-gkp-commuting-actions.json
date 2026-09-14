@@ -1,6 +1,0 @@
-{
-  "challenge_module": "Palomar.GKPCommutingActionsChallenge",
-  "solution_module": "Palomar.GKPCommutingActionsSolution",
-  "theorem_names": ["GKPCommutingActions.commuting_sofic_actions_need_not_combine", "GKPCommutingActions.exists_commuting_sofic_actions_not_sofic"],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

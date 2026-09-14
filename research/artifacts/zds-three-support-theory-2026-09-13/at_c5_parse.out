@@ -1,5 +1,0 @@
-parsed rows: 105 starred: 35
-starred row 73 relator [1, -2, -2, 1, 1, -2, 1] census type C
-starred row 77 relator [1, -2, -2, 1, -2, -2, 1] census type C
-unmatched rows: []
-(starred, census type) counts: [((False, 'B'), 6), ((False, 'C'), 28), ((False, 'G'), 36), ((True, 'A'), 15), ((True, 'C'), 2), ((True, 'S'), 18)]

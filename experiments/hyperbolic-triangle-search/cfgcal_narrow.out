@@ -1,5 +1,0 @@
-literal pair girths: 6 6 6
-pairs=108 k1=44 k2=21
-PNARROW alphas=2 betas=2 dcs=392 found=12 (must be >= 1) ms=590
-CFGCAL_NARROW_DONE
-EXIT=0

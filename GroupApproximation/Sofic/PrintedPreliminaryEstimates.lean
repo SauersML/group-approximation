@@ -1,44 +1,44 @@
 import GroupApproximation.Sofic.KazhdanCornerPolar
 import GroupApproximation.Sofic.NormTraceGap
 
-/-!
-# Two printed estimates of the preliminaries
 
-`notes/NON_MF_PROOF_LEDGER.md` records two small steps of
-`non_mf_groups_exist.tex` that the development uses but never states.  Both are
-stated here, in closed form, with nothing to the left of the colon.
 
-## The trace bound
 
-The preliminaries list three inequalities "used without comment" on `M_r(ℂ)`:
 
-> `‖x‖₂ ≤ ‖x‖`;  `|tr_r(x)| ≤ ‖x‖`;  and `‖uxv‖₂ = ‖x‖₂` for unitaries `u, v`.
 
-The first and third are `hsDistSq_le_sq_l2_opNorm` and
-`hsNormSq_mul_left`/`hsNormSq_mul_right`.  The middle one — the bound on the
-*normalized trace* — had no declaration.  It is `norm_normTrace_le_l2_opNorm`
-below: each diagonal entry is bounded by the operator norm
-(`normSq_entry_le_sq_l2_opNorm`), the trace is the sum of `r` of them, and
-dividing by `r` is what the normalization does.
 
-The empty model is not excluded.  There `tr_r` divides by zero, which in Lean
-is zero, and the bound holds for the uninteresting reason; no positivity
-hypothesis is needed and none is taken.
 
-## The polar-correction estimate
 
-The lifting lemma's proof prints an explicit constant:
 
-> once `‖xₙ*xₙ − 1‖ ≤ 1/2`, polar correction `uₙ = xₙ(xₙ*xₙ)^{-1/2}` is unitary
-> with `‖uₙ − xₙ‖ ≤ 2‖xₙ‖‖xₙ*xₙ − 1‖ → 0` by continuous functional calculus.
 
-`Sofic/KazhdanCornerPolar` proves this, but in a form indexed by an auxiliary
-tolerance `delta` with `‖xᴴx − 1‖ ≤ delta`, so the printed inequality — the one
-with `‖xᴴx − 1‖ itself` in the bound — is not a located statement.
-`manuscriptPolarCorrectionEstimate` takes `delta` to be that norm, which is the
-sharpest admissible choice, and also records that the corrected matrix is the
-printed formula `x(xᴴx)^{-1/2}` rather than merely some unitary nearby.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 namespace GroupApproximation
 namespace PrintedPreliminaryEstimates

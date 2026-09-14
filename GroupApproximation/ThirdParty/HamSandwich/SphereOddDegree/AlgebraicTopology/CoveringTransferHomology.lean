@@ -1,56 +1,56 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferBoundary
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
 
-/-!
-# Descending the mod-2 transfer to homology and cohomology
 
-This file (Prompt 05 of the transfer/Gysin sequence) descends the **chain map**
-`projTransferChainMap n : C_•(RPⁿ; F₂) ⟶ C_•(Sⁿ; F₂)` of
-`CoveringTransferBoundary.lean` to:
 
-* a **homology-level transfer** `projTransferHomologyZMod2 n k : Hₖ(RPⁿ; F₂) ⟶ Hₖ(Sⁿ; F₂)`,
-  obtained by applying Mathlib's `HomologicalComplex.homologyFunctor`; and
-* a **cohomology-level transfer** `cohTransferZMod2 n k : Hᵏ(Sⁿ; F₂) ⟶ Hᵏ(RPⁿ; F₂)`,
-  obtained by *dualizing* the chain map with the same `Hom(-, F₂)` machinery that
-  builds `singularCohomologyZMod2`, and then taking homology of the resulting
-  cochain map. Its source and target are **definitionally** the existing
-  `sphereCohomology n k` and `rpCohomology n k` objects.
 
-## The direction of the cohomology transfer (important convention note)
 
-The chain transfer goes `C_•(RPⁿ) ⟶ C_•(Sⁿ)`, so its homology transfer goes
-`Hₖ(RPⁿ) ⟶ Hₖ(Sⁿ)` (base ⟶ cover). Dualizing a chain map with the
-contravariant functor `Hom(-, F₂)` **reverses arrows**, so the induced cochain map
-goes `C^•(Sⁿ) ⟶ C^•(RPⁿ)` and the cohomology transfer goes
-`Hᵏ(Sⁿ) ⟶ Hᵏ(RPⁿ)` (cover ⟶ base). This is the genuine *cohomology transfer*
-`tr` of the double cover; it is **not** `projPullback` (the pullback `proj^*`
-goes `Hᵏ(RPⁿ) ⟶ Hᵏ(Sⁿ)` and is degenerate on the top class — see the project
-documentation), and it is **not** faked from it.
 
-`RPnTopClassTransfer n` requires producing a sphere top class from an `RPⁿ` top
-class, i.e. a map in the **opposite** direction `Hⁿ(RPⁿ) ⟶ Hⁿ(Sⁿ)`. As recorded
-in `docs/current/Transfer_Homology_Cohomology_Result.md`, no such non-degenerate
-map arises by dualizing a chain map (the only chain map `C_•(Sⁿ) ⟶ C_•(RPⁿ)` is
-the pushforward `proj_*`, whose dual is the degenerate `proj^*`). The assembly of
-`RPnTopClassTransfer` (Prompt 09) will therefore route through the genuine
-transfer `cohTransferZMod2` built here together with the top-degree
-identifications of Prompts 07–08, rather than a single linear `RPⁿ ⟶ Sⁿ`
-cohomology map.
 
-## Main declarations
 
-* `singularHomologyCxZMod2 X k` — the `k`-th mod-2 singular homology object of `X`.
-* `projTransferHomologyZMod2 n k` — the homology-level transfer.
-* `dualizeCochainFunctor` — the `Hom(-, F₂)` dualizer on chain complexes,
-  matching the construction of `singularCochainComplexFunctor`.
-* `cohTransferZMod2 n k : sphereCohomology n k ⟶ rpCohomology n k` — the
-  cohomology-level transfer (genuine dual of the chain map).
-* `cohTransferZMod2_hom_add`, `cohTransferZMod2_hom_smul` — `ZMod 2`-linearity.
-* `RPToSphereTransferNaturalityOdd`, `RPToSphereTransferTopNonzero` — the two
-  expected top-degree future facts, stated as `Prop` predicates (the analogues of
-  `rpToSphereTransfer_naturality_odd` / `rpToSphereTransfer_top_nonzero`), to be
-  discharged in Prompts 06–08.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

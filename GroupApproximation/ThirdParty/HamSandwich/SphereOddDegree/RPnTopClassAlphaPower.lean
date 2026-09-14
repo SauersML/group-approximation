@@ -1,64 +1,64 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCohomologyRingModel
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
 
-/-!
-# The `RPⁿ` top class and the nonvanishing of `αⁿ`
 
-The classical mod-two cohomology-ring computation
 
-```text
-H^*(RPⁿ; F₂) ≅ F₂[α] / (αⁿ⁺¹),   deg α = 1,
-```
 
-has as its load-bearing consequence the **top-class nonvanishing**
 
-```text
-αⁿ ≠ 0   in   Hⁿ(RPⁿ; F₂),
-```
 
-with `αⁿ` the (nonzero) top class of `RPⁿ`. This file assembles the largest
-build-clean layer toward that statement that the current project API supports,
-*without faking* `α`, `αⁿ`, the cup product, the top class, or the topological
-cohomology ring `H^*(RPⁿ; F₂)` (policy: `Axioms_And_Placeholders.md`).
 
-What is genuine and present in the project today:
 
-* the genuine **algebraic model ring** `RPnCohomologyRingModel n = F₂[α]/(αⁿ⁺¹)`
-  with its generator `modelAlpha n` and the proven facts `αⁿ⁺¹ = 0`, `αⁿ ≠ 0`,
-  `αᵏ = 0 ↔ n+1 ≤ k`, `dim_F₂ = n+1` (`RPnCohomologyRingModel.lean`);
-* the genuine **cohomology functor** and the genuine topological cohomology
-  objects `rpCohomology n k = Hᵏ(RPⁿ; F₂)` (`InducedOnRPCohomology.lean`);
-* the genuine **cochain-level cup product / powers** `cochainCup`, `cochainPow`
-  and their naturality / fixed-point lemmas (`CupProduct.lean`,
-  `CupProductPowers.lean`).
 
-What remains genuinely **absent** (and is *not* faked here): the cohomology-level
-cup product (gated on the Leibniz/coboundary identity), the degree-one class
-`α ∈ H¹(RPⁿ; F₂)` (gated on the degree-one universal coefficient theorem), and the
-ring isomorphism `H^*(RPⁿ; F₂) ≅ F₂[α]/(αⁿ⁺¹)` (gated additionally on the
-LES/Mayer–Vietoris induction). See
-`docs/current/RPn_Top_Class_Alpha_Power_Nonvanishing_Result.md` for the exact
-dependency DAG.
 
-## What this file adds (all fully proved, build-clean)
 
-1. **Top-degree target abbreviations.** `rpTopCohomology n = Hⁿ(RPⁿ; F₂)`,
-   `sphereTopCohomology n = Hⁿ(Sⁿ; F₂)`, and the top-degree pullback
-   `rpTopPullback f hf` of a descended odd map.
-2. **The model top class.** `modelTopClass n = αⁿ` in the model ring, with
-   `modelTopClass_ne_zero` (the model-side `αⁿ ≠ 0`) and the annihilation
-   `α · αⁿ = 0`. A `Nontrivial` instance on the model ring.
-3. **Cup-power notation.** Scoped notation `φ ^⌣ n` for the cochain cup power
-   `cochainPow φ n`.
-4. **Conditional nonvanishing interfaces.** If a ring map (resp. ring
-   isomorphism) carries a candidate class `a` to `modelAlpha n`, then `aᵏ ≠ 0`
-   for `k ≤ n` (resp. `aᵏ = 0 ↔ n+1 ≤ k`). These are exactly the interfaces the
-   full computation plugs into: once `H^*(RPⁿ; F₂) ≅ F₂[α]/(αⁿ⁺¹)` is supplied,
-   `αⁿ ≠ 0` and the truncation transport verbatim.
-5. **Low-dimensional cases.** The `n = 0` and `n = 1` instances on the model
-   side: `modelAlpha 0 = 0` but `α⁰ = 1 ≠ 0` (the `H⁰` top class), and
-   `modelAlpha 1 ≠ 0`, `α² = 0` for `RP¹`.
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

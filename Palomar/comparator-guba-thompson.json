@@ -1,9 +1,0 @@
-{
-  "challenge_module": "Palomar.GubaThompsonChallenge",
-  "solution_module": "Palomar.GubaThompsonSolution",
-  "theorem_names": [
-    "GubaThompson.question_3_20",
-    "GubaThompson.question_3_20_common_multiple"
-  ],
-  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
-}

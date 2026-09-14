@@ -1,6 +1,0 @@
-girth-6 generating pairs of A7 up to conjugacy: 108
-  classes of 7-elements=5 |C(t)|=[ 1176, 1176, 49, 3528, 3528 ] bucket sizes=
-[ 108, 108, 108, 0, 0 ]
-CONFIG L6_2 A7-classes=3 alphas=324 dcs=1714608 configurations=0 ms=2496676
-CONFIG_DONE
-EXIT=0

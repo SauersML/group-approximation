@@ -1,9 +1,0 @@
-srun: Setting account: hsiehph
-srun: job 713880 queued and waiting for resources
-srun: job 713880 has been allocated resources
-md5 bs12order.py deae4e5292ea2369677d6cc509b48846
-selftest OK
-md5 bs12order.py deae4e5292ea2369677d6cc509b48846
-SUMMARY surv3.txt KMAX=4096 ORDER=16 order70=16
-md5 bs12order.py deae4e5292ea2369677d6cc509b48846
-SUMMARY surv4.txt KMAX=4096 ORDER=16 order70=16

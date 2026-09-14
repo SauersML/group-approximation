@@ -1,3 +1,0 @@
-research/artifacts/hexagon-closing-letter-stage-obstruction-2026-09-12.md
-research/binary-complement-corner-has-no-weakly-finite-image.md
-research/stage-models-cannot-close-the-leavitt-hexagon.md

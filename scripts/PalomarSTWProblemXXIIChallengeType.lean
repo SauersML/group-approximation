@@ -13,7 +13,7 @@ name, type and value.  For the shared definitions, the constructors of the four
 shared structures and the two compared theorems this driver prints the level
 parameters, the type hash, the transitive closure with a type and value hash
 per constant, and the `pp.all` type, and
-`scripts/check_palomar_statement_match.sh` diffs the two drivers' output.
+the verification workflow diffs the two drivers' output.
 
 The constructors are listed because a structure's own type is a sort, so its
 fields are reached only through `mk`.  The values of the definitions are walked

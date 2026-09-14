@@ -1,8 +1,0 @@
-CAND2 rational GB = [1] (2.4s)
-CAND2 integral GB: 1 elements, integer element N = 1, factor = 1 (2.5s)
-CAND3 rational GB = [1] (1.9s)
-CAND3 integral GB: 1 elements, integer element N = 1, factor = 1 (1.9s)
-CAND4 rational GB = [1] (1.7s)
-CAND4 integral GB: 1 elements, integer element N = 1, factor = 1 (1.7s)
-LINZ_DONE
-EXIT=0

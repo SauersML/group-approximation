@@ -1,8 +1,0 @@
-LINE:229@bf961c128	structural		section heading; no mathematical content
-LINE:231@bf961c128	open		Corollary (every Turing degree is a word-problem degree of an infinite simple Kazhdan LEF group; continuum many classes); no carrier on main
-LINE:238@bf961c128	open		WP(G_X) in the finite generators has the Turing degree of L(X); no carrier on main
-LINE:240@bf961c128	open		an L(X) oracle decides whether a matrix word equals I_3 (WP <=_T L(X)); no carrier on main
-LINE:242@bf961c128	open		cylinder indicator effectively converted to a word for e_12(e_[v]) (L(X) <=_T WP); no carrier on main
-LINE:247@bf961c128	open		that word equals 1 exactly when v notin L(X); no carrier on main
-LINE:256@bf961c128	open		every Turing degree has an irrational representative; no carrier on main
-LINE:259@bf961c128	open		continuum many degrees; word-problem degree is an isomorphism invariant of f.g. groups; no carrier on main

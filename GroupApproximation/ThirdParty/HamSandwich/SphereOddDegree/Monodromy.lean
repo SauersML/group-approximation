@@ -1,53 +1,53 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Covering
 import Mathlib.Topology.Homotopy.Lifting
 
-/-!
-# Monodromy of the canonical double cover `S^n → RP n`
 
-This file specialises Mathlib's covering-space lifting and monodromy API
-(`Mathlib.Topology.Homotopy.Lifting`) to the canonical double cover
-`proj n : S^n → RP n` established in `Covering.lean`.
 
-It records the genuine input data of *Route A* of
-`Double_Cover_To_Cohomology_Roadmap.md` — the route
 
-```text
-double cover → π₁(RPⁿ) acting on the fibre → ZMod 2 → H¹(RPⁿ; F₂)
-```
 
-namely the path-lifting property and the monodromy action of the fundamental
-groupoid of `RP n` on the (two-element) fibres of `proj n`. No cohomology and no
-classifier placeholder is introduced; every declaration is a thin, honest
-specialisation of an existing Mathlib theorem to `proj_isCoveringMap`.
 
-## Main results
 
-* `proj_exists_path_lifts` — every path in `RP n` lifts to `S^n` from a chosen
-  start point (the *existence* half of lifting; uniqueness is Mathlib's
-  `IsCoveringMap.eq_of_comp_eq`).
-* `projMonodromy` — the monodromy action of a path-homotopy class on the fibres.
-* `projMonodromy_bijective` — the monodromy action is bijective (it is a
-  permutation of the two-element fibre when the endpoints coincide).
-* `projMonodromyFunctor` — the monodromy packaged as a functor
-  `FundamentalGroupoid (RP n) ⥤ Type _`.
-* `projMonodromy_refl` / `projMonodromy_refl_apply` — the monodromy of the
-  trivial (`refl`) path is the identity of the fibre.
-* `projMonodromy_trans_apply` — the monodromy of a concatenation of paths is the
-  composite of the monodromies (functoriality, pointwise).
-* `projMonodromy_map` — the monodromy of the `proj n`-image of an upstairs path
-  sends the start point (as a fibre element) to the end point.
-* `projMonodromyPerm` / `projMonodromyPerm_apply` — the monodromy of a *loop* at
-  `x` packaged as a permutation `Equiv.Perm (proj n ⁻¹' {x})` of the two-element
-  fibre over the base point.
-* `projMonodromyPerm_refl` / `projMonodromyPerm_trans` — the unit and
-  (anti-)composition laws for the fibre permutation, i.e. the honest
-  (anti-)homomorphism data of the action of `π₁(RP n, x)` on the fibre.
 
-These do **not** yet construct the classifying homomorphism `π₁(RPⁿ) → ZMod 2`
-or the class `α ∈ H¹(RPⁿ; F₂)`: that requires the regular/Galois-cover
-classification and degree-1 universal coefficients, which are still absent from
-the pinned Mathlib (see `Fundamental_Group_Double_Cover_Inventory.md`).
--/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 noncomputable section
 

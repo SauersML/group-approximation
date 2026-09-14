@@ -1,7 +1,0 @@
-q=4  [dim Z^1, dim B^1, dim H^1] over GF(16):
-  Lambda_0   natural [ 4, 2, 2 ]  sl_2 [ 4, 2, 2 ]  gl_2 [ 4, 3, 1 ]
-  SL_2(16) natural [ 3, 2, 1 ]  sl_2 [ 3, 2, 1 ]  gl_2 [ 3, 3, 0 ]  (160 ms)
-q=8  [dim Z^1, dim B^1, dim H^1] over GF(64):
-  Lambda_0   natural [ 4, 2, 2 ]  sl_2 [ 4, 2, 2 ]  gl_2 [ 4, 3, 1 ]
-  SL_2(64) natural [ 3, 2, 1 ]  sl_2 [ 3, 2, 1 ]  gl_2 [ 3, 3, 0 ]  (508 ms)
-DONE
