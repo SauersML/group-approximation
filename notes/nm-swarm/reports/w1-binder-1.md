@@ -193,7 +193,13 @@ CLAIM span input from copy-clean GroupApproximation/GGT/VanKampen/Estimating/Osi
 - `PocketWalk.exists_noncrossing_decomposition_gap_of_copyCleanAt`: ms-inverses-2's decomposition with the gap equation kept (additive; their files untouched).
 - `TwoGonCopyCleanInput`, `TwoGonDecompositionEulerInput` (named residuals); `twoGonEulerSpanInput_of_copyCleanAt`, `twoGonHoldsInput_of_copyCleanEuler`.
 - Planned next: section-level forms with the `OsinTwoGonHoldsSectionStatement` preamble, and `osinTwoGonHoldsSection_of_copyCleanEuler`, for ct-rank-two-limit's V6 composition.
-- The Euler-pair spelling went to ms-inverses-2 in one message.
+- The Euler-pair spelling went to ms-inverses-2 in one message. ms-inverses-2 had said earlier that its generic lemma needs a named no-interleaving hypothesis.
+- LANDED at 9f29a234d: `Estimating/OsinAppendixEulerTwoGonSpanOfCopyClean`, probe 0914-084129-9185 GREEN on the first try; eight audits [propext, Classical.choice, Quot.sound], no sorryAx; on the wire queue.
+  - `PocketWalk.exists_noncrossing_decomposition_gap_of_copyCleanAt`;
+  - `TwoGonCopyCleanInput`, `TwoGonDecompositionEulerInput`;
+  - `twoGonEulerSpanInput_of_copyCleanAt`, `twoGonHoldsInput_of_copyCleanEuler`;
+  - `OsinTwoGonCopyCleanSectionStatement`, `OsinTwoGonDecompositionEulerSectionStatement`, `osinTwoGonHoldsSection_of_copyCleanEuler : … → OsinTwoGonHoldsSectionStatement`.
+- The V6 leaf names went to ct-rank-two-limit.
 
 ## State of C6′ on the Euler route
 
