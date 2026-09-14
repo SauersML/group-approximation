@@ -91,7 +91,7 @@ theorem facePerm_getLast_last_eq_head_zero (P : OsinLemma94RealizedPolygons S) {
     rw [hL0, List.head?_append_of_ne_nil _ (P.side_ne_nil k 0 hpos)]
     exact he'
   obtain ⟨h1, rfl⟩ := List.mem_getLast?_eq_getLast hlast
-  rw [List.head?_eq_head hne] at hhead
+  rw [List.head?_eq_some_head hne] at hhead
   exact hclose.trans (Option.some_inj.mp (Option.mem_def.mp hhead))
 
 /-- **Consecutive sides, read cyclically.**  The last dart of side `s` and the first dart of side
