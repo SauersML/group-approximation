@@ -42,7 +42,10 @@ variable {Y : Type*} [TopologicalSpace Y] (T : Y ≃ₜ Y)
 theorem dense_range_zpow_neg {y : Y} (h : Dense (Set.range fun j : ℤ => (T ^ j) y)) :
     Dense (Set.range fun j : ℤ => (T ^ (-j)) y) := by
   have hset : (Set.range fun j : ℤ => (T ^ (-j)) y) = Set.range fun j : ℤ => (T ^ j) y :=
-    Set.ext fun z => ⟨fun ⟨j, hj⟩ => ⟨-j, hj⟩, fun ⟨j, hj⟩ => ⟨-j, by rw [neg_neg]; exact hj⟩⟩
+    Set.ext fun z => ⟨fun ⟨j, hj⟩ => ⟨-j, hj⟩, fun ⟨j, hj⟩ => ⟨-j, by
+      show (T ^ (- -j)) y = z
+      rw [neg_neg]
+      exact hj⟩⟩
   rw [hset]
   exact h
 
@@ -167,7 +170,7 @@ theorem mem_center_iff_eq_zero_or_one [TotallySeparatedSpace Y] [Nonempty Y]
   rw [mem_center_iff T (ZMod 2) hmin hfree]
   constructor
   · rintro ⟨c, rfl⟩
-    have hc : c = 0 ∨ c = 1 := by fin_cases c <;> simp
+    have hc : c = 0 ∨ c = 1 := (by decide : ∀ c : ZMod 2, c = 0 ∨ c = 1) c
     rcases hc with rfl | rfl
     · exact Or.inl (by rw [show LocallyConstant.const Y (0 : ZMod 2) = 0 from rfl, map_zero])
     · exact Or.inr (by rw [show LocallyConstant.const Y (1 : ZMod 2) = 1 from rfl, map_one])
