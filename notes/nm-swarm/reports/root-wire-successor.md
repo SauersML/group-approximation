@@ -245,7 +245,20 @@ Result: **ROOT GREEN, landed lead-wire daa821b00** at 23:41.
   - A background task polls `ssh -O check` for up to 90 minutes without starting auth.
   - Once the master is up, it checks job 749262, waits if it is live, and relaunches wave 22 behind the full gate.
 
-Result: pending MSI master.
+- 00:38: the MSI master came back.
+  - The orphan job 749262 had COMPLETED at acl42 in 5:00, and its rootout reads ROOT GREEN (15597 jobs, base
+    881e3a1a5).
+  - Nothing landed that root, because `nmwire.sh` had already exited at dispatch.
+- 00:58: the relaunch passed the gate again at bb887b17d: 15 modules, 21 newly reachable files, 0 blocking lines.
+  - `nmwire.sh`'s own `git fetch` then failed with "Could not resolve host: github.com" (rc=1). DNS was flapping.
+  - That attempt's `rw-wave22.mods` is kept as `rw-wave22.mods.nmwire-rc1-0058`.
+- 01:00: fetch, DNS and the MSI master all work again. Wave 22 relaunches from a retrying task:
+  - it waits for a working fetch and stops if any root commit landed since daa821b00;
+  - it goes through the full gate and widens the job by tag;
+  - after an infra failure (unresolved host, or rc=255 once its orphan job clears) it retries, up to 3 attempts;
+  - it never retries a gate stop or a real red.
+
+Result: pending relaunch.
 
 ## Evidence and holds, 18:45–19:10
 
