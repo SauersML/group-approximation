@@ -32,6 +32,8 @@ import Mathlib.GroupTheory.ResiduallyFinite
 namespace GroupApproximation
 namespace SimpleKazhdanSofic
 
+open SymbolicDynamics.FullShift
+
 /-! ## Statements -/
 
 /-- **Finitely presented residually finite groups** are finitely generated, recursively presented
