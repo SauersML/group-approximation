@@ -25,3 +25,6 @@ and likewise for the other five root subgroups after permuting coordinates. Cons
 **Scope.** No soficity, no property (T) and no simplicity of `G` is used. Nothing is claimed for `EL_2`, for other coefficient rings, or for the lamplighter hosts.
 
 **Status: established** by `subshift-el-group-interprets-its-ring-proof`. UNREVIEWED; queued in the wave-12 verifier queue.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part10.md`):** re-derived Lemma Z (T-invariant coefficients; aperiodicity kills j ≠ 0); Lemma C (commuting with e_12(1), e_23(1) forces g = cI + g_13E_13; c commutes with S, is a unit from the (2,2) entries of gg⁻¹ = g⁻¹g = I, so c = 1); Lemma W (e_23(1)e_32(1)e_23(1) = P_23 over F_2); and T1 via [e_12(r), e_23(s)] = e_13(rs).

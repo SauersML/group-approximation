@@ -35,3 +35,6 @@ artifacts:
 **Scope.** Minimal Cantor system, coefficients `F_2`, rank 3. Nothing is claimed for `EL_2`, other coefficient rings, or the lamplighter hosts, where no bounded elementary generation is known.
 
 **Status: established** by `subshift-el-group-bi-interpretable-with-its-ring-proof`, conditional on the bounded generation claim (reviewed twice, PASS-WITH-FIXES). UNREVIEWED; queued in the wave-12 verifier queue.
+
+## Review
+- **sk-verify-18 PASS (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part10.md`):** re-derived (a) existential definability of G in R from Theorem D fixed positions; (b) the R-side composite r ↦ ê_13(r); (c) Θ total, single-valued, injective, onto G* and multiplicative. Conditional on Theorem D and its fixed pattern.

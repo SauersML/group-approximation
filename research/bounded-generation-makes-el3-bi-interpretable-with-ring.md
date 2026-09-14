@@ -28,3 +28,6 @@ artifacts:
 **Credit.** Recovering a ring from a Chevalley-type group by centralisers of root subgroups, and using bounded elementary generation to make the group definable in the ring, is the standard route; it is the pattern used for `SL_n(O)` by Avni, Lubotzky and Meiri. What is contributed here is the packaging and the check that these hypotheses suffice. Bound of the novelty check: a grep of main only, no literature search.
 
 **Status: established** by `bounded-generation-makes-el3-bi-interpretable-with-ring-proof`. UNREVIEWED; queued in the wave-12 verifier queue.
+
+## Review
+- **sk-verify-18 PASS-WITH-FIXES (2026-09-14, `research/artifacts/sk-verify-18-2026-09-14-part10.md`):** items 1–2 run verbatim with "c a central unit, so c = 1". Fix W1: outside characteristic 2 the Weyl parameters are signed permutations, so w_{ij}e_13(r)w_{ij}⁻¹ = e_ij(±r) and the commutator gives e_13(εrs) with a fixed sign ε; multiplication stays definable. Model test R = F_3, central unit 2, shows the hypothesis is needed.
