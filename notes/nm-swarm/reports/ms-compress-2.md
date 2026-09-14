@@ -94,6 +94,10 @@ literal step missing.
   The corners are then distinct faces, not relator cells, and off the exterior, with no planarity lemma needed.
   - Delivered: an O-equivalent labelled copy and a dart map compatible with alpha, labels and vertices.
   - Also delivered: the exterior and the cell off the side of the transported walk, and the cell darts transported.
+- Target text on origin: `OsinPocketTouchCornerStatement` (d1d4d90da, `Estimating/OsinPocketTouchSplitStatements.lean`). It adds the
+  rotation clause: `σ′ (e d) = e (σ d)` unless `d = alpha in_k` or `σ d = in_k`.
+- CLAIM side transport across the doubling: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerSides.lean`
+- CLAIM the closed proof of `OsinPocketTouchCornerStatement`: `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketTouchCornerProof.lean`
 
 ## Progress log
 
