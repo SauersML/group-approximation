@@ -8,16 +8,16 @@ Rows: 187 (183 prose sentences, 4 displays).  Assignments do not attest to a suc
 
 | status | rows |
 | --- | --- |
-| `formalized` | 120 |
+| `formalized` | 122 |
 | `definition` | 18 |
-| `partial` | 16 |
 | `attribution` | 15 |
+| `partial` | 14 |
 | `structural` | 14 |
 | `unassigned` | 3 |
 | `open` | 1 |
 | **total** | **187** |
 
-Completely formalized or definitional: **138/187** (73.8%).
+Completely formalized or definitional: **140/187** (74.9%).
 
 ## Superseded rows (sentence reworded or removed)
 
@@ -100,7 +100,7 @@ Completely formalized or definitional: **138/187** (73.8%).
 | `770348ecbf71` | 112–116 | definition | Suppose that there are maps $\varphi_k\colon R\to M_{N_k}(\F_2)$ with $\varphi_k(1)=I$ such that $\varphi_k(S… |
 | `b4a4e3abdeda` | 116–118 | formalized | Then for every $n\ge3$, $\EL_n(R)$ is an infinite, finitely generated, simple Kazhdan group. |
 | `8bd3ab27271c` | 118–120 | partial | Marked by the $e_{ij}(s)$ with $s\in S$, it is the limit of the finite simple groups $\SL_{nN_k}(\F_2)$ marke… |
-| `ce4df433abd6` | 123–126 | partial | Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which gives Theorem~\ref{thm:main}, and … |
+| `ce4df433abd6` | 123–126 | formalized | Periodic approximations give such maps for $\LC(X,\F_2)\rtimes_T\Z$, which gives Theorem~\ref{thm:main}, and … |
 
 ### Proof of Theorem~\ref{thm:general}
 
@@ -211,7 +211,7 @@ Completely formalized or definitional: **138/187** (73.8%).
 | `01a45cdd9370` | 303–304 | partial | It is LEF with solvable word problem if and only if it is a subgroup of such a group with solvable word probl… |
 | `cc439ae277d4` | 308–308 | formalized | Every countable LEF group is a subgroup of such a group. |
 | `9cdf19db0ef4` | 309–310 | formalized | A set of finitely generated groups lies in one such group if and only if its members are LEF and represent co… |
-| `9b1a6e7489a1` | 310–313 | partial | So one such group contains every recursively presented finitely generated LEF group, for instance every finit… |
+| `9b1a6e7489a1` | 310–313 | formalized | So one such group contains every recursively presented finitely generated LEF group, for instance every finit… |
 | `2745cd64eada` | 316–316 | attribution | Simple hosts with only one of property~\textup{(T)} and LEF were known. |
 | `8212b1470040` | 316–321 | attribution | Without property~\textup{(T)}, Kionke and Schesler proved that every finitely generated residually finite gro… |
 | `fc84c012b409` | 321–325 | attribution | Without LEF, every countable group embeds in a finitely generated simple group~\cite{Gorjuskin,Schupp}, and e… |
