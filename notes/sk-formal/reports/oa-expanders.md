@@ -145,3 +145,12 @@ Status (09-14 09:3x):
   - S4 and S5 are on origin as unverified copies (b38eae2c4). Their first re-probe failed on infrastructure (MSI overlay upload during
     the outage), and they are re-probing.
 - Next step is main's ruling: finish and land the carriers, which prove a correct general theorem, or withdraw.
+- RULING (main, 09-14 10:1x): rows `5c3fdfb60aaf`, `bdd19b7d1e1f` and `71621aaa37e7` are superseded and no census rows are added.
+  - S4/S5 re-probe 0914-100302-22536 was GREEN, with BUILT lines for `OzawaUnitaryCountability` and `OzawaUnitaryCountabilityPrinted`. The
+    record's md5s equal the origin bytes (7398e70b…, 7dab4ad7…), and S2/S3 were compiled in the same build.
+  - All four modules stay on origin as OFF-NOTE carriers with no census row. The tip consumes none of them, so all four are removed from
+    the wire queue.
+  - Off-note contents: `KazhdanBimoduleRigidity.bimodule_rigidity`, `TracialStandardFormBimodule` (left and right actions),
+    `OzawaUnitaryCountability.countable_kernels_of_unitary`, and `SimpleKazhdanSofic.printedUnitaryGroupContainsCountablyMany`.
+  - Process note: b38eae2c4 landed never-green bytes, which main ruled breaks the landing rule. New bytes land only after a real BUILT
+    line.
