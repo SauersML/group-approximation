@@ -1,0 +1,145 @@
+{
+ "args": {
+  "family": "mix2",
+  "lift_radius": 1,
+  "radius": 3,
+  "level": 2,
+  "samples": 6,
+  "controls_only": false,
+  "out": "../run3-mix2-r3-l2.json"
+ },
+ "controls": {
+  "C1_leavitt_t0_s0": true,
+  "C2_unit_left_inverse": true,
+  "C3_e_minus_unsat": true,
+  "C3_dual_certificate_verifies": true,
+  "C3_corrupted_certificate_rejected": true,
+  "C5_nilpotent_correction_found": true,
+  "C4_no_s0_lift_in_V": true
+ },
+ "instances": [
+  {
+   "support": 4,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1090,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 735,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 8,
+   "sat": false,
+   "seconds": 0.1,
+   "stats": {
+    "columns": 875,
+    "rows": 1238,
+    "rank": 855
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 761,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  }
+ ],
+ "controls_stats_C3": {
+  "columns": 794,
+  "rows": 830,
+  "rank": 779
+ },
+ "sizes": {
+  "lift_ball": 8,
+  "C": 147,
+  "P": 729,
+  "kernel_vectors_in_lift_ball": 1
+ }
+}

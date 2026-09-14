@@ -1,0 +1,9 @@
+controls {'C1_leavitt_t0_s0': True, 'C2_unit_left_inverse': True, 'C3_e_minus_unsat': True, 'C3_dual_certificate_verifies': True, 'C3_corrupted_certificate_rejected': True, 'C5_nilpotent_correction_found': True, 'C4_no_s0_lift_in_V': True} 0.2s
+4 False 0.1
+8 False 0.1
+8 False 0.1
+8 False 0.1
+8 False 0.1
+8 False 0.1
+8 False 0.1
+EXIT=0

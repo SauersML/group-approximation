@@ -1,0 +1,113 @@
+{
+ "args": {
+  "family": "mix",
+  "lift_radius": 1,
+  "radius": 2,
+  "level": 2,
+  "samples": 4,
+  "controls_only": false,
+  "out": "../run3-mix-r2-l2.json"
+ },
+ "controls": {
+  "C1_leavitt_t0_s0": true,
+  "C2_unit_left_inverse": true,
+  "C3_e_minus_unsat": true,
+  "C3_dual_certificate_verifies": true,
+  "C3_corrupted_certificate_rejected": true,
+  "C5_nilpotent_correction_found": true,
+  "C4_no_s0_lift_in_V": true
+ },
+ "instances": [
+  {
+   "support": 4,
+   "sat": false,
+   "seconds": 1.5,
+   "stats": {
+    "columns": 5014,
+    "rows": 17690,
+    "rank": 5014
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 739,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 11,
+   "sat": false,
+   "seconds": 1.7,
+   "stats": {
+    "columns": 5014,
+    "rows": 45109,
+    "rank": 5014
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 781,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 11,
+   "sat": false,
+   "seconds": 1.1,
+   "stats": {
+    "columns": 5014,
+    "rows": 44611,
+    "rank": 5014
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 773,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 11,
+   "sat": false,
+   "seconds": 0.8,
+   "stats": {
+    "columns": 5014,
+    "rows": 45239,
+    "rank": 5014
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 773,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  },
+  {
+   "support": 11,
+   "sat": false,
+   "seconds": 1.6,
+   "stats": {
+    "columns": 5014,
+    "rows": 44883,
+    "rank": 5014
+   },
+   "image_feasible": true,
+   "dual_certificate": {
+    "support": 773,
+    "verified": true,
+    "note": "ok, 150 sampled products dual-checked"
+   }
+  }
+ ],
+ "controls_stats_C3": {
+  "columns": 794,
+  "rows": 830,
+  "rank": 779
+ },
+ "sizes": {
+  "lift_ball": 75,
+  "C": 4286,
+  "P": 729,
+  "kernel_vectors_in_lift_ball": 30
+ }
+}
