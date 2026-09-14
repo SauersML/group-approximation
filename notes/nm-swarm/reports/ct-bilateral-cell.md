@@ -218,6 +218,27 @@ refuted by a short side-level Case 1; (B2) regions with several boundary circuit
 piece. Long-segment dependencies for B1: `osinLemma94CaseOne_false_of_walk` (different kinds) uses no `source_long`/`target_long`;
 the same-cell value-one kills use the Morse hairpin bound on long ends; Case 2 uses `C.target_long` against `DartMinimal`.
 
+## Item 10: GapSpan producer, route B1 with unsplit special branches (main rulings)
+
+LANDED 9ff7b91cb (probe 0914-083703-54750 GREEN, BUILT; axioms [propext, Classical.choice, Quot.sound], no sorryAx), module
+`Estimating/OsinLemma94ShortCaseOne`: `UnboundEstimate.ShortWordConnectorPair` (a connector pair without the long clauses),
+`WordConnectorPair.toShort`, `ShortWordConnectorPair.exists_nonempty_connectors`, `osinLemma94ShortCaseOneWalk`, and the closed
+`osinLemma94ShortCaseOne_false`: a backwards short pair of different kinds with a non-cutting target is refuted at `ε ≥ 3`.
+
+Model tests of the special branches (short pieces break both):
+* same-cell: the value-one kills feed the hairpin bound with `ε < ‖p‖`, `ε < ‖q‖` from the long clauses; a short cell arc reading a
+  short value is consistent, and the region runs from the cell to itself;
+* cutting targets: Case 2 weighs removing `2 (b − b') > 2ε` darts against inserting fewer than `2ε`.
+
+Ruling: both special branches unsplit at class level (not B3). Model-tested on paper, all plausible:
+* class-level same-cell kill: the class segments are reversed sub-arcs of one cell arc, gaps included, longer than `ε` after the
+  corner move, and gaps read one; residual a class-level relator-cell branch;
+* class-level Case 2: a cutting class is a single side, so only the source spans gaps, and it enters as a face-walk run of cell sides;
+* B1 split point: partners at the two corners of a gap are one group element, so the positive target decrease splits over source
+  sides, and some source side and target side run have strictly positive arcs; needs a monotone partner selection with the margin
+  `M ≥ B + 2κ + 12 (δ + 1)`.
+Shared foundation: a class-level four-windows lemma for gap-deleted class runs.
+
 ## Residual statements
 
 In this lane's own modules, none. The W1 waist residuals are listed above (V2: six; V3: seven), with
