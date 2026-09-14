@@ -102,6 +102,50 @@ CLAIM the lobe inputs of the (2a) kill (arc, simplicity, Π off the side, exteri
 
 CLAIM the excision case at walk level (arcs, sides and value of the excised walk; the simple excision refuted by the two-arc loop cut; the residual): GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionSides.lean, GroupApproximation/GGT/VanKampen/Estimating/OsinLemma94SameCellCellExcisionWalk.lean
 
+## Excision residual dropped; singular least-area filter (main ~20:15)
+
+- Ruling: `OsinLemma94CaseOneWalkCellLobeExcisionRestStatement` is not built. ms-intro-1's `osinLemma94CaseOneXPocket_of_enclosed`
+  (bbe90003a) handles pinched pocket walks through the enclosed loop cut, so the shape route is unnecessary.
+- Probe 10 (`…CellExcisionWalk`) was red only on an unused binder, `htrav`. It is fixed and re-probing as 10b.
+- LANDED 730d36397 `…CellExcisionSides` (probe 0913-194402-36186 GREEN).
+
+### `EnclosedLeastAreaFilterStatement` (ms-traces-2's statement, a5dc9e6b0)
+
+Model test, at the definition level, on `ClosedWalkIslandModel` (690bf92f2):
+- The model diagram is not least area. `cellI` reads gt·gb·gt⁻¹ = swap(1,0) = ga and `cellP` reads ga, so the boundary
+  value is ga·ga = 1, which is `IsRelatorProduct 0 1`. LeastArea would force rCellCount = 2 ≤ 0. The filter is vacuous
+  there, and so is the calibration clause `diagram.LeastArea → Xi.LeastArea := id`.
+- At `{Π, I}` with the exterior walk, the enclosed set holds every cell and the walk is the boundary, so the filter at
+  this configuration is LeastArea itself. A non-vacuous test needs a least-area relabelling (over Multiplicative ℤ²,
+  lower bound by the ℓ¹ character) and a cell outside the enclosed set.
+
+Split (ms-traces-2, ~20:35):
+- ms-traces-2: `EnclosedBridgeDoublingStatement` and the assembly `enclosedLeastAreaFilter_of_pieces`, in
+  `ClosedWalkEnclosedSubdiagramPieces`.
+- ms-inverses-1: `EnclosedPocketRegionStatement`.
+- The route is correct. With bridges doubled, the disc-region collapse splits the pinch vertices: at the doubled island
+  model V = 4, E = 4, F = 2. An earlier note here said the merge gives Euler characteristic 0; that holds only while
+  both darts of a bridge are in the walk, which is exactly what doubling removes.
+
+### FALSE PROP (~20:40): the filter and the pocket statement fail for out-of-order lobes
+
+`EnclosedFaceSet.turn_mem` only asks that the first kept dart after α d lie in the walk, not that it be the successor.
+- Map: one vertex, loops 0/1, 2/3, 4/5; Π₁ = [0], Π₂ = [2], Π₃ = [4]; exterior [1,3,5]; V − E + F = 2.
+- Walk [1,5,3]: `EnclosedFaceSet {Π₁,Π₂,Π₃}` holds field by field. turn_mem holds at m = 1, since σ(α1) = 3, σ(α5) = 1 and
+  σ(α3) = 5. The walk has no bridges.
+- Letters a, b, c on darts 0, 2, 4; W = {[a],[b],[c]}; B = c·b·a. The inverse walk [2,4,0] reads b·c·a.
+- G = S₃×S₃: a = (τ, ρ), b = (ρ′, τ′), h = (τ″, ρ⁻¹) a conjugate of a, c = b⁻¹·h·a⁻¹.
+  - b·c·a = h ∈ N₁.
+  - B = (transposition, 1) is not conjugate to a relator^{±1}.
+  - (sign, sign) sends each relator to a unit vector and B to (1,0), so every relator product for B has odd length ≥ 3.
+  - So Δ is least area with 3 cells inside, and the filter claims 3 ≤ 1.
+- No pocket region has outer cycle [1,5,3] following its boundary: the boundary walk from α1 = 0 reaches 3.
+- Proposed fix (sent to ms-traces-2): the successor form of the turning condition,
+  `(σ ^ m) (α outerWalk[i]) = outerWalk[(i+1) % length]`.
+
+CLAIM the refutation model `¬ EnclosedLeastAreaFilterStatement`: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedOutOfOrderModel.lean
+CLAIM `EnclosedPocketRegionStatement` under the corrected turning condition: GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedPocketRegion.lean
+
 ## Progress log
 - 16:56: ledger landed at 1193c722d; two gaps (rows 2 and 9) claimed.
 - 17:0x: both gaps closed at 88180a8b8.
