@@ -1,4 +1,5 @@
 import GroupApproximation.Leavitt.ElementaryGroup
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.RingGeneration
 import GroupApproximation.Pestov91.Kazhdan
 import GroupApproximation.Dynamics.ClopenCrossedProductComap
 import Mathlib.Topology.LocallyConstant.Algebra
@@ -250,6 +251,21 @@ theorem printedElementaryInfinite : PrintedElementaryInfinite := by
   exact infinite_elementaryGroup_fin_three_of_injective (ClopenCrossedProduct.coeff T (ZMod 2))
     (ClopenCrossedProduct.coeff_injective T (ZMod 2))
 
+/-! ## At `G_X` -/
+
+/-- **"So `G` has property (T)"** (origin 9047d0d3c, "The ring and property (T)"), at `G_X = EL_3(R)`
+for every subshift `X ⊆ A^ℤ` over a finite alphabet.  `R` has the finite ring generating set `u^{±1}`
+and the letter indicators (`printedSubshiftRingFinitelyGenerated`), so Ershov--Jaikin-Zapirain applies
+(`printedElementaryPropertyT`). -/
+def PrintedGXPropertyT : Prop :=
+  ∀ (A : Type) [TopologicalSpace A] [DiscreteTopology A] [DecidableEq A] [Finite A]
+    (S : SymbolicDynamics.FullShift.Subshift A ℤ), HasKazhdanPropertyT.{0, 0} (G S)
+
+theorem printedGXPropertyT : PrintedGXPropertyT := by
+  intro A _ _ _ _ S
+  obtain ⟨gens, hgens⟩ := printedSubshiftRingFinitelyGenerated A S
+  exact printedElementaryPropertyT (R S) gens hgens
+
 end SimpleKazhdanSofic
 end GroupApproximation
 
@@ -260,3 +276,4 @@ end GroupApproximation
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedElementaryGeneration
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedElementaryPropertyT
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedElementaryInfinite
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedGXPropertyT

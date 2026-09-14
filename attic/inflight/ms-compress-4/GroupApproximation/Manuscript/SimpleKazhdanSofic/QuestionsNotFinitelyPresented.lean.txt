@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Setting
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MainAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.FiniteModelsGroup
 import GroupApproximation.Sofic.FinitelyPresentedLEF
 import GroupApproximation.Algebra.FiniteResidual
@@ -113,10 +114,22 @@ theorem printedGXNotFinitelyPresented_of_pieces
   exact printedNotFinitelyPresentedOfLEFSimpleInfinite (G S)
     (printedFiniteModelsLEFSoficHyperlinear (ZMod 2) (R S) (hlef A S hinf hmin)).1
 
+/-- **The instance at `G_X` from `thm:main`.**  The theorem of the note makes `G_X` infinite, simple
+and LEF, so `G_X` is not finitely presented.  This closes when the assembly
+`printedSimpleKazhdanSoficMain_of_pieces` closes. -/
+theorem printedGXNotFinitelyPresented_of_main (hmain : PrintedSimpleKazhdanSoficMain) :
+    PrintedGXNotFinitelyPresented := by
+  intro A _ _ _ S hinf hmin
+  obtain ⟨hinfG, -, hsimple, -, -, hLEF, -, -⟩ := hmain A S hinf hmin 3 le_rfl
+  haveI := hinfG
+  haveI := hsimple
+  exact printedNotFinitelyPresentedOfLEFSimpleInfinite (G S) hLEF
+
 end SimpleKazhdanSofic
 end GroupApproximation
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.exists_presentedGroup_mulEquiv
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_pieces
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.printedGXNotFinitelyPresented_of_main
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedFinitelyPresentedLEFResiduallyFinite
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.printedNotFinitelyPresentedOfLEFSimpleInfinite
