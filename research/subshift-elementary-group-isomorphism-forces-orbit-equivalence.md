@@ -91,3 +91,9 @@ ambiguity, but not which `X`.
     with firewalls: Petechuk's non-standard `n = 3` automorphisms in characteristic 2, `E_3 ≠ GL_3` (`K_1(R_X) ≅ Z`),
     no minimal idempotents, and exotic elementary abelian 2-subgroups. Artifacts
     `research/artifacts/sk-rigidity-ring-2026-09-13-part{1,2}.md`.
+- **Recognition step (i) alone gives strong orbit equivalence (sk-iso-rigidity, 2026-09-13, unreviewed).**
+  - `diagonal-recognition-makes-subshift-el3-isos-standard` shows that (i) makes `α` standard. So
+    `M_3(R_X) ≅ M_3(R_Y)`, and `cantor-crossed-product-matrix-ring-iso-forces-soe` gives strong orbit equivalence with
+    no Cartan uniqueness.
+  - For `q = 2` the strong-orbit-equivalence form of this claim now follows from
+    `subshift-el3-isomorphisms-recognize-diagonal-subgroups`. Step (ii) is needed only for flip conjugacy.

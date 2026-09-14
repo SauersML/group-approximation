@@ -67,3 +67,15 @@ strongly orbit equivalent. The converse direction holds for flip conjugacy, sinc
 - **Literature, second reading (sk-rigidity-f2, bounded to the same secondary source).** The Bunina–Vladykina
   introduction dates the arbitrary-ring `n, m ≥ 4` result to "In 1997 I.Z Golubchik [24]", where the Attempts entry
   above says 1992, Contemp. Math. 131. Neither primary was read, so the year is unsettled here.
+- **Reduction to Peirce roots and to the diagonal (sk-iso-rigidity, 2026-09-13, unreviewed; artifacts
+  `research/artifacts/sk-iso-rigidity-2026-09-13-part1.md` and `-part2.md`).**
+  - `peirce-root-homomorphisms-of-e3-are-standard`: suppose a homomorphism `E_3(R) → M^×` maps the root subgroups onto
+    the Peirce root groups `1 + E_iME_j` of three full orthogonal idempotents. Then it is the restriction of a ring
+    isomorphism `M_3(R) ≅ M`. Fullness replaces direct finiteness.
+  - So standardness is equivalent to root subgroups going to the Peirce root groups of SOME decomposition of `I`,
+    not necessarily the standard one (`peirce-root-preserving-subshift-el3-isos-force-orbit-equivalence`).
+  - `diagonal-recognition-makes-subshift-el3-isos-standard`: suppose `α(L_X)` is conjugate to `GL_3(B)` for a maximal
+    commutative idempotent-spanned `B ⊆ R_Y`. Then `α` is standard.
+  - The locally mixed orientation is excluded because `R_Y` is simple. That orientation is the identity on one clopen
+    piece and the graph automorphism on the other, which is Petechuk's non-standard pattern over product rings.
+  - Left open: `subshift-el3-isomorphisms-recognize-diagonal-subgroups`.
