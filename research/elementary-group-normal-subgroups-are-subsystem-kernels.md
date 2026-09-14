@@ -15,3 +15,5 @@ Status:
 - Established: the sandwich E_Y ≤ N ≤ ker π_Y (`aperiodic-subshift-el-normal-subgroups-are-sandwiched`).
 - The simplicity criterion is the special case in `subshift-elementary-group-simple-iff-infinite-minimal`.
 - Open: the K_2 layer (`aperiodic-subshift-ring-unstable-k2-vanishes`).
+- Established for finite limit type (unreviewed). If the closure of the limit set of X is a finite union of infinite minimal subshifts, the dictionary holds, and the kernel onto the limit set is locally finite (`finite-limit-type-el-normal-subgroups-are-subsystem-kernels`).
+- The K_2 layer needs only surjectivity of K_2(n,R_X) → K_2(n,R_Y) (`subshift-restriction-kernel-is-relative-elementary`).
