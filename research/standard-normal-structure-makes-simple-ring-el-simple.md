@@ -6,6 +6,7 @@ title: If a simple ring with centre a field is an exchange ring or has stable ra
 distinct_from:
   local-annihilation-makes-projective-el-simple: that criterion assumes local annihilation and uses no stable range or exchange property; this derives the same conclusion from Preusser's or Vaserstein's sandwich theorem.
   steinberg-elementary-groups-are-simple-mod-centre: that proves simplicity for every simple Steinberg algebra of a minimal effective groupoid with towers; this is the citation shortcut, which applies once the ring is exchange or of small stable rank.
+  amenable-crossed-product-gl-normal-structure-is-standard: that gets the sandwich for simple amenable crossed products from Stepanov's condition (b) by a dimension count; this gets it for simple rings that are exchange or have stable rank at most n−1.
 artifacts:
   - research/artifacts/sk-stable-rank-a-shortcut-2026-09-13-part1.md
 ---
@@ -15,6 +16,6 @@ exchange ring, or that `sr(R) ≤ n − 1`. Then every subgroup `H` of `GL_n(R)`
 `GL_n(R)` or contains `EL_n(R)`. So every normal subgroup of `EL_n(R)` is central or everything, and
 `EL_n(R)/Z(EL_n(R))` is simple.
 
-Conditional use: for `R_X = LC(X,F_q) ⋊ Z` this would give the simplicity step of the Pestov 9.1 answer in a few
-lines. The ring hypotheses are open: `minimal-cantor-crossed-product-is-an-exchange-ring` and
-`minimal-cantor-crossed-product-has-stable-rank-at-most-two`.
+For `R_X = LC(X,F_q) ⋊ Z` both ring hypotheses are open (`minimal-cantor-crossed-product-is-an-exchange-ring`,
+`minimal-cantor-crossed-product-has-stable-rank-at-most-two`). For that ring the same conclusion already follows from
+Stepanov's theorem through `amenable-crossed-products-meet-stepanov-condition-b`.

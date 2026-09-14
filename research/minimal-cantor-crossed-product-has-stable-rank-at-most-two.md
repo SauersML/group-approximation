@@ -6,6 +6,7 @@ title: The algebraic crossed product LC(X,k) ⋊ Z of a minimal Cantor system ha
 distinct_from:
   finite-simple-rr0-algebras-have-stable-rank-one: that is the C*-algebra question about topological stable rank; this is the Bass stable rank of the dense algebraic crossed product over an arbitrary field.
   urp-cos-crossed-products-are-k1-bijective: that gives topological stable rank one for C*-crossed products by norm approximation; this asks for exact algebraic stable range in LC(X,k) ⋊ Z.
+  subshift-crossed-product-ring-has-bass-stable-rank-at-most-two: that is the same question for infinite minimal subshifts, landed independently by sk-stable-rank-b; this is the general minimal Cantor case, which implies it through subshift-bass-stable-rank-from-minimal-cantor-case.
 artifacts:
   - research/artifacts/sk-stable-rank-a-shortcut-2026-09-13-part1.md
 ---
@@ -14,7 +15,9 @@ artifacts:
 `sr(R) ≤ 2`? Is it `1`?
 
 If yes, `standard-normal-structure-makes-simple-ring-el-simple` gives simplicity of `EL_3(R)/Z` from Vaserstein's
-Theorem 4 in a few lines, replacing the tower argument of the Pestov 9.1 answer.
+Theorem 4 in a few lines. For subshift rings that conclusion is already reached without stable rank, through
+Stepanov's condition (b) (`subshift-elementary-group-simple-stepanov-proof`). So the question stays open only as ring
+theory.
 
 ## Attempts
 

@@ -14,7 +14,8 @@ an exchange ring, i.e. for every `a ∈ R` is there an idempotent `e ∈ aR` wit
 
 If yes, `standard-normal-structure-makes-simple-ring-el-simple` and Preusser's Theorem 3
 (`preusser-exchange-rings-have-standard-normal-subgroups`) give simplicity of `EL_n(R)/Z` for every `n ≥ 3` in a few
-lines. This is the algebraic analogue of real rank zero for `C(X) ⋊ Z`.
+lines. This is the algebraic analogue of real rank zero for `C(X) ⋊ Z`. Simplicity itself no longer depends on it
+(`amenable-crossed-products-meet-stepanov-condition-b`), so the question stays open as ring theory.
 
 ## Attempts
 
