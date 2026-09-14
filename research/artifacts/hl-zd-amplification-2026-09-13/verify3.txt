@@ -1,0 +1,46 @@
+{
+ "lengths": [
+  77,
+  120,
+  119
+ ],
+ "max_piece_over_length": "1/7",
+ "max_piece_float": 0.14285714285714285,
+ "worst": [
+  [
+   0,
+   0,
+   35
+  ],
+  [
+   0,
+   0,
+   50
+  ],
+  11
+ ],
+ "C_prime_one_sixth": true,
+ "exponent_sums": [
+  [
+   38,
+   39
+  ],
+  [
+   79,
+   -41
+  ],
+  [
+   -37,
+   82
+  ]
+ ],
+ "H1_invariants": [
+  1,
+  1
+ ],
+ "relators": [
+  "xxyyyxxyyxyyyxxyxxxyyxxxxyxyxyyyxxxyxxxyyyyxxxyxyyyxxxyyyyxxxxyyyyxyyxxxxyyyy",
+  "xxYxYxYxxYxYxYxxYxYxYxYxxYxYxYxYxxxxYxxxxYxYxYxxxxxYxYxYxxxxYxxxxYxxxxxYxYxYxxYxYxYxxxYxYxxxYxYxYxxxxxYxxYxYxxxxYxYxYxYx",
+  "yyyXyXyyyyyXyXyXyXyyyyXyXyyXyyyXyXyXyXyyyyXyyyyXyXyXyyyyyXyyyXyyyyyXyXyXyyyXyXyXyyyyXyXyXyXyyyyyXyyyyXyXyXyXyyXyXyyyyXy"
+ ]
+}
