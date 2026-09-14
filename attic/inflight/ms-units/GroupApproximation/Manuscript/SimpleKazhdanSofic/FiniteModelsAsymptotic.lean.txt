@@ -53,12 +53,12 @@ abbrev AsymptoticModels {A : Type} [TopologicalSpace A] (X : Set (ℤ → A)) (T
     (∀ ℓ, 2 * ℓ + 1 ≤ m ℓ ∧ word x 0 (2 * ℓ) = word x (m ℓ) (2 * ℓ) ∧
       N ℓ = leastPeriod (periodicExt x (m ℓ)) ∧
       {w | ∃ t : ℤ, word (periodicExt x (m ℓ)) t (2 * ℓ + 1) = w} = language X (2 * ℓ + 1)) ∧
-    (∀ ℓ (f : ClopenCoeff T k),
+    (∀ (ℓ : ℕ) (f : ClopenCoeff T k),
       (∀ y z : ↥X, (∀ i : ℤ, |i| ≤ ℓ → y.1 i = z.1 i) →
         (ClopenCoeff.of T k).symm f y = (ClopenCoeff.of T k).symm f z) →
       ∀ (t : ℤ) (z : ↥X), (∀ i : ℤ, |i| ≤ ℓ → z.1 i = periodicExt x (m ℓ) (t + i)) →
         D ℓ f (t : ZMod (N ℓ)) = (ClopenCoeff.of T k).symm f z) ∧
-    (∀ ℓ (ℓ' : ℕ) (f : ClopenCoeff T k),
+    (∀ (ℓ : ℕ) (ℓ' : ℕ) (f : ClopenCoeff T k),
       (∀ y z : ↥X, (∀ i : ℤ, |i| ≤ ℓ' → y.1 i = z.1 i) →
         (ClopenCoeff.of T k).symm f y = (ClopenCoeff.of T k).symm f z) →
       ∀ g : Multiplicative ℤ, (ℓ' : ℤ) + |toAdd g| ≤ (ℓ : ℤ) → ∀ n : ZMod (N ℓ),
@@ -85,7 +85,7 @@ theorem exists_asymptoticModels {A : Type} [TopologicalSpace A] [DiscreteTopolog
     ⟨_, fun _ => rfl⟩
   have hNpos : ∀ ℓ, 0 < N ℓ := fun ℓ => by rw [hNdef]; exact leastPeriod_periodicExt_pos x
   haveI hNz : ∀ ℓ, NeZero (N ℓ) := fun ℓ => ⟨(hNpos ℓ).ne'⟩
-  have hper : ∀ ℓ (t : ℤ), periodicExt x (m ℓ) (N ℓ + t) = periodicExt x (m ℓ) t := fun ℓ t => by
+  have hper : ∀ (ℓ : ℕ) (t : ℤ), periodicExt x (m ℓ) (N ℓ + t) = periodicExt x (m ℓ) t := fun ℓ t => by
     rw [hNdef]
     exact periodicExt_leastPeriod_add x (m ℓ) t
   have hcong : ∀ ℓ {a b : ℤ}, (a : ZMod (N ℓ)) = (b : ZMod (N ℓ)) → ∀ i : ℤ,
@@ -121,14 +121,14 @@ theorem exists_asymptoticModels {A : Type} [TopologicalSpace A] [DiscreteTopolog
         map_mul' := fun _ _ => rfl
         map_zero' := rfl
         map_add' := fun _ _ => rfl }, fun _ _ _ => rfl⟩
-  have hval : ∀ ℓ (n : ZMod (N ℓ)), (((n.val : ℕ) : ℤ) : ZMod (N ℓ)) = n := fun ℓ n => by
+  have hval : ∀ (ℓ : ℕ) (n : ZMod (N ℓ)), (((n.val : ℕ) : ℤ) : ZMod (N ℓ)) = n := fun ℓ n => by
     rw [Int.cast_natCast, ZMod.natCast_zmod_val]
   choose rad hrad using fun f : ClopenCoeff T k => exists_radius hXc ((ClopenCoeff.of T k).symm f)
   have hdep : ∀ (f : ClopenCoeff T k) (ℓ' : ℕ), rad f ≤ ℓ' → ∀ y z : ↥X,
       (∀ i : ℤ, |i| ≤ ℓ' → y.1 i = z.1 i) →
         (ClopenCoeff.of T k).symm f y = (ClopenCoeff.of T k).symm f z :=
     fun f ℓ' hle y z hyz => hrad f y z fun i hi => hyz i (hi.trans (by exact_mod_cast hle))
-  have hform : ∀ ℓ (f : ClopenCoeff T k),
+  have hform : ∀ (ℓ : ℕ) (f : ClopenCoeff T k),
       (∀ y z : ↥X, (∀ i : ℤ, |i| ≤ ℓ → y.1 i = z.1 i) →
         (ClopenCoeff.of T k).symm f y = (ClopenCoeff.of T k).symm f z) →
       ∀ (t : ℤ) (z : ↥X), (∀ i : ℤ, |i| ≤ ℓ → z.1 i = periodicExt x (m ℓ) (t + i)) →
@@ -138,7 +138,7 @@ theorem exists_asymptoticModels {A : Type} [TopologicalSpace A] [DiscreteTopolog
     refine hf _ _ fun i hi => ?_
     rw [hw ℓ _ i hi, hz i hi]
     exact hcong ℓ (hval ℓ _) i
-  have hcovD : ∀ ℓ (ℓ' : ℕ) (f : ClopenCoeff T k),
+  have hcovD : ∀ (ℓ : ℕ) (ℓ' : ℕ) (f : ClopenCoeff T k),
       (∀ y z : ↥X, (∀ i : ℤ, |i| ≤ ℓ' → y.1 i = z.1 i) →
         (ClopenCoeff.of T k).symm f y = (ClopenCoeff.of T k).symm f z) →
       ∀ g : Multiplicative ℤ, (ℓ' : ℤ) + |toAdd g| ≤ (ℓ : ℤ) → ∀ n : ZMod (N ℓ),
