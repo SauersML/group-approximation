@@ -91,3 +91,41 @@ fixed finitely presented torsion-free group `U`.
     this host, over any field, needs `rad_L(supp alpha) + rad_R(supp beta) >= 7`
     or one radius at least 5. The next instance, `(3,4)`, has about 9 million
     pairs; `(3,3)` already took 86 minutes of CaDiCaL.
+  - **Known groups without unique products, sorted against the known cases.**
+    Sources were read from the arXiv PDFs on 2026-09-12.
+    - **Promislow and Nielsen--Soelberg groups: not hosts.** Promislow's group
+      is virtually `Z^3`, and the two Nielsen--Soelberg groups are virtually
+      class-2 nilpotent (Tabei, arXiv:2607.19687). All three are elementary
+      amenable.
+    - **Carter's groups `P_k`: not hosts.** They (arXiv:1302.0049, Theorem 2)
+      are torsion-free, not amenable, and amalgams of two Klein bottle groups
+      over `Z^2`. Carter shows that each satisfies this conjecture by Lewin's
+      amalgam theorem. Each also has a finite-index subgroup `Z^2 x F` with
+      `F` free, which is a right-angled Artin group, so `P_k` is virtually
+      compact special as well.
+    - **Generalised Rips--Segev groups: undecided.** These come from
+      Rips--Segev 1987, Steenbock arXiv:1307.0981, Arzhantseva--Steenbock
+      arXiv:1407.2441 (Theorem 1) and Gruber--Martin--Steenbock
+      arXiv:1407.6850. They are torsion-free and hyperbolic, so not elementary
+      amenable, and they would be excluded if cubulated (by Agol, then
+      `zero-divisor-host-is-not-virtually-compact-special`). Martin--Steenbock
+      (arXiv:1409.3678, §1.5) cubulate only classical `C'(1/6)` quotients of
+      free products. They state that it is open whether these groups satisfy
+      the conjecture, and ask whether some can be cubulated.
+    - **Arzhantseva--Steenbock's Kazhdan groups: hosts, with one case open.**
+      - They avoid the unique-product, elementary amenable, special and class-C
+        cases (`kazhdan-groups-without-unique-products-are-zero-divisor-hosts`).
+      - The Tarski monsters among them are not residually finite, so they also
+        avoid linear groups and every `p`-adic congruence kernel, which is the
+        Farkas--Linnell case above.
+      - For the hyperbolic examples, the congruence case would force residual
+        finiteness, and whether they are residually finite is open.
+
+      These groups provably lack unique products. So the Tarski monsters are
+      characteristic-0 hosts outside every case recorded above, which `E_3(3)`
+      no longer is. No concrete presentation or normal form is recorded for
+      them, so no ball census can run there.
+    - **Bengi--Wise group: not classified here.** Bengi--Wise
+      (arXiv:2602.11819) give a finitely generated, residually finite,
+      torsion-free group all of whose finite-index subgroups contain
+      Promislow's group.

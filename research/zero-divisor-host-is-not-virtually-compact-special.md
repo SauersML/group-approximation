@@ -33,8 +33,13 @@ in characteristics other than `0` and `3`. An earlier version of this paragraph
 said "for every field".
 
 Graphical small-cancellation hyperbolic groups without unique products
-(Rips--Segev, Steenbock) are excluded exactly when they are cubulated. That was
-not checked here.
+(Rips--Segev, Steenbock) are excluded if they are cubulated, and whether they
+are is open. Martin--Steenbock (arXiv:1409.3678, §1.5) cubulate classical
+`C'(1/6)` quotients of free products. They leave open whether generalised
+Rips--Segev groups can be cubulated or satisfy the conjecture. The Kazhdan
+groups without unique products of Arzhantseva--Steenbock are never cubulated,
+so they escape this node entirely
+(`kazhdan-groups-without-unique-products-are-zero-divisor-hosts`).
 
 DERIVATION
 [[zero-divisor-host-not-special-proof]]
