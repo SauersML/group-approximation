@@ -239,6 +239,26 @@ literal step missing.
   - The induction draft is ms-traces-2's, credited in the commit, with the nonempty-free form added here.
   - The lane's in-flight file list is empty.
 
+## Item 5 (main ~09:1x 09-14): `SameCellPocketLoopCutStatement` (V7 leaf 3)
+
+- Taken over from ms-traces-2 in one message. ms-traces-2 keeps `EnclosedSubdiagramLoopCutSuccStatement`, and w1-binder-8
+  keeps the subdiagram construction.
+- Mismatch found: `EnclosedSubdiagramLoopCutSuccStatement` needs `λ ≤ 1`, `0 ≤ c` and an O-equivalent letter-labelled copy.
+  `OsinLemma94SameCellPocketInput` quantifies over an arbitrary least-area `Δ` with no labels, so this lane does not
+  consume that statement.
+- Route (label-free, over landed pieces):
+  - A1: the far faces of the same-cell bridge dart `d` of cell `i`, enclosed in successor form by the pocket walk
+    `f d … fᵐ d`, which is an arc of cell `i`. A relator cell with a far-side dart is inside, and cell `i` is outside.
+  - A2: bridge doubling with the arc tracked. Every bridge dart of an arc walk lies on cell `i` ≠ exterior, so only
+    the inner-face branch occurs, and `image_eq_dartImage` keeps the walk an arc.
+  - A3: `enclosedPocketRegionSucc`, then `OsinLoopCut.ofPocketRegion` with `s = []` and the quasi-geodesic cell arc,
+    with transport from `twoSectionCuts_cellTransport pocketCellTransport`.
+- CLAIM model test on the island map: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCutModel.lean`
+- CLAIM A1: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketEnclosed.lean`
+- CLAIM A2: `GroupApproximation/GGT/VanKampen/ClosedWalkEnclosedBridgeDoublingArc.lean`
+- CLAIM A3: `GroupApproximation/GGT/VanKampen/Estimating/OsinUnboundSameCellPocketLoopCut.lean`
+- All four paths are free on origin, in the shared tree and in every `lanes/*.files` (checked ~09:15).
+
 ## Progress log
 
 - 2026-09-13 ~17:05: ledger and claims.
