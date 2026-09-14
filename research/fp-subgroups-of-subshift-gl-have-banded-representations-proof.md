@@ -6,6 +6,7 @@ title: Periodic ring models applied to relators give genuine banded representati
 target: fp-subgroups-of-subshift-gl-have-banded-representations
 requires:
   - subshift-lef-models-period-below-twice-recurrence
+  - minimal-subshift-algebra-is-simple-lef-ring
 artifacts:
   - research/artifacts/sk-lef-embedding-d-z-family-2026-09-13-part2.md
 ---

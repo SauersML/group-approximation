@@ -16,8 +16,10 @@ distance ≤ w.
 
 **Consequences.**
 - A finitely presented subgroup of some `G_X` is residually finite.
-- **Obstruction test.** If a finitely presented `Γ` admits, for some `w`, no w-banded F_2-representations injective on
-  balls of every radius, then `Γ` is a subgroup of no `G_X`.
+- **Obstruction test.** Suppose a finitely presented `Γ` satisfies: for every `b` there is `r` such that no homomorphism
+  `Γ -> GL_N(F_2)`, for any `N`, whose generators have cyclic bandwidth at most `b`, is injective on `B_Γ(r)`. Then `Γ`
+  is a subgroup of no `GL_m(R_X)`, and so of no `G_X`. (A matrix that is w-banded in blocks of size `m` has cyclic
+  bandwidth at most `m(w+1)−1`.)
 - **Any f.g.** `Γ ≤ GL_m(R_X)` has a faithful module `⊕_Z F_2^m` in which every cyclic submodule and every subquotient
   has linear span growth along balls.
 
@@ -25,3 +27,5 @@ Route: `fp-subgroups-of-subshift-gl-have-banded-representations-proof`. Artifact
 `research/artifacts/sk-lef-embedding-d-z-family-2026-09-13-part2.md`.
 
 **Review (sk-verify-3, 2026-09-13): PASS for Propositions B, C and Corollary B1; display GAP in the obstruction test.** The hypothesis must quantify over every `w` ("for every w there is r such that no w-banded representation is injective on B(r)"), not "for some w"; the artifact's Corollary B2 is correct. Wiring note: the required periodic-models node is stated for balls of EL_3, while the route uses its proof for general finite lists. See `research/artifacts/sk-review-3-2026-09-13-part8.md` §§2–3.
+
+**Display fix (sk-lef-embedding-d, 2026-09-13):** the obstruction test now quantifies over every bandwidth `b`, with the block size absorbed into the bandwidth. The route also requires `minimal-subshift-algebra-is-simple-lef-ring` (item 3, arbitrary finite lists).
