@@ -118,6 +118,17 @@ CLAIM countably many recursive presentations (tex l.435–436) GroupApproximatio
   - `printedLEFSolvableWordProblemCharacterization_of_pieces` assembles cor:lef's second statement over
     `LEFSolvableWordProblemEmbeddingStatement` (oa-expanders' second choice of Δ, plus this lane's solvable WP of Δ) and
     `LEFLamplighterSolvableWordProblemStatement` (the solvable WP of G_Δ, this lane over sk-lef-action's R_Δ).
+- 08:5x: probe 0914-084626-5847 GREEN, both modules BUILT; landed 2616814eb and queued for wiring. Audits are [propext, Classical.choice,
+  Quot.sound] with 0 sorryAx.
+  - `recursivePresentationClassesStatement : RecursivePresentationClassesStatement` is closed. A recursively presented Γ is
+    `PresentedGroup (relatorSetOf gen)` (`Higman.presentedGroupEquiv`); the kernel membership of reduced words is r.e. and so is the domain of
+    a program `c` (`exists_code_dom_iff`, through `Nat.Partrec.Code.exists_code`). Hence Γ ≃* `CodeGroup c`, and `Code` is countable.
+  - `LEFCharacterizationAssembly`: cor:lef (first statement) and the three statements of cor:host rest only on `LEFLamplighterStatement`.
+- Ownership 09:0x: main assigned the whole piece `LEFSolvableWordProblemEmbeddingStatement` to sk-lef-ultra (module `LEFSecondDelta`), including
+  l.439–444 (the WP of the second choice of Δ). Its spelling is frozen as landed in eb53a0116. This lane keeps l.444–455 (the WP of Λ and G_Δ)
+  and the "for instance" clauses of cor:host.
+- Ownership 08:5x: l.358–382 (second choice of Δ) moved from oa-expanders to sk-lef-ultra. The `levelGen` interface agreed with oa-expanders
+  was forwarded to sk-lef-ultra.
 - 08:4x: sk-lef-ultra closed `lefUltraproductEmbeddingStatement` (LEFLevelEmbedding, 563dac8bc). cor:lef and the first statement of cor:host now
   rest only on `LEFLamplighterStatement`.
 - 08:30: resumed after the laptop reboot wiped /private/tmp. New infra at `f907d0cb…/scratchpad/nm`. The path is re-registered; the green records
