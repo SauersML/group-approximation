@@ -84,7 +84,15 @@ theorem enclosedLeastAreaFilterSucc_of_pieces
   obtain ⟨Delta', faces', outerWalk', ⟨equiv⟩, hE', hfree, hword, hcount⟩ :=
     hdouble Delta faces outerWalk hE hne
   obtain ⟨P, hPfaces, hPcycle, -⟩ := hpocket Delta' faces' outerWalk' hE' hfree
-  have hlea' : Delta'.LeastArea := equiv.leastArea hlea
+  have hlea' : Delta'.LeastArea := by
+    intro n hn
+    have hval : Delta'.boundaryValue = Delta.boundaryValue :=
+      congrArg RelLetter.listVal equiv.boundaryWord_eq
+    rw [hval] at hn
+    have hcount : Delta'.rCellCount = Delta.rCellCount := by
+      simpa only [Fintype.card_fin] using (Fintype.card_congr equiv.cellIndex).symm
+    rw [hcount]
+    exact hlea hn
   have hm' : RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
       P.diagram.boundaryValue := by
     show RelatorDefectBudget.IsRelatorProduct (RelLetter.listVal '' W) m
