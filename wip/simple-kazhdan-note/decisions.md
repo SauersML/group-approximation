@@ -925,6 +925,12 @@ Line numbers refer to the frozen disk copy unless stated otherwise. "PASS" means
       - Decided: IN for 7b, and in 7a only if it fits.
     - P3 (finite models give φ_k over any f.g. Λ): PASS-WITH-FIXES with X1 (a gap in step 4, fixed), X2, X3. Decided: optional remark in 7b, out of 7a.
     - Both editors were told.
+174. **USER ORDER (relayed by peer session nonsofic-existence-59): "\"the author is resposible for the final manuscript\" no I never said that. delete, fix tex manuscript."**
+    - The peer landed the deletion at 42a95d13d. The diff is exactly that sentence; main's note is now md5 d3a3fd6e7d9438810f6f03021ff05628, and the local copy matches.
+    - Both rev5 editors were told to delete it and never reintroduce it. The rev5 landing must pin onto 42a95d13d's blob, not rev4.5's.
+    - Memory rule: never write statements on the author's behalf.
+    - SK census: no workflow gates on it. It is regenerated once, when rev5 lands, on MSI.
+    - Archival drafts under wip/ stay as history. The similar line in `Palomar/SurjunctiveNonsoficOverview.txt:84` belongs to another lane; it was raised with the user.
 148. **Infra:** skland2/plumbland fetched into one shared ref, so concurrent lanes collided on the ref lock (sk-vn-rigidity: 24 of 25 pushes rejected). Fixed: per-lane fetch ref refs/sk-land/<lane>, 25 attempts, jittered retries.
 
 ## Rejected (recorded)
