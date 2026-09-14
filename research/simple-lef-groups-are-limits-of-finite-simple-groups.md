@@ -8,6 +8,7 @@ distinct_from:
   lef-iff-subgroup-of-simple-kazhdan-limit-of-finite-simple: that constructs SL_N(F_2) configuration models for the lamplighter hosts; this is the general quotient lemma, which gives finite simple approximants of every simple LEF group without new models.
 artifacts:
   - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part1.md
+  - research/artifacts/sk-verify-14-2026-09-13-part1.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `G` be an infinite simple group with finite generating set `T`, and
@@ -32,3 +33,5 @@ marked limit of finite simple groups, and every finite approximation of it event
 Credit: elementary, and likely folklore (bounded search in artifact part 3).
 
 Route: `simple-lef-groups-are-limits-of-finite-simple-groups-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Theorem B re-derived: relators and nonrelators survive quotients by any maximal normal subgroups, uniformly in the choice, and simplicity is used only for normal closures (model test `Z` with `Z/p^a`). Proposition B3 re-derived: ultraproduct, Łoś, Mal'cev. Wording fix F-B3 for the artifact's classification step: use `PGL_m(K) ↪ GL_(m^2)(K)` by conjugation on `M_m(K)`, not the adjoint representation. See `research/artifacts/sk-verify-14-2026-09-13-part1.md` §§2–3.

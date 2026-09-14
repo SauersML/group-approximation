@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part1.md
   - research/artifacts/sk-free-4-finite-simple-shadows-2026-09-13-part3.md
+  - research/artifacts/sk-verify-14-2026-09-13-part1.md
 ---
 
 **ESTABLISHED (unreviewed).** Let `G` have property (T) with finite generating set `T`. There are `κ > 0` and a finite set
@@ -25,3 +26,5 @@ Credit: an immediate consequence of Shalom's openness of (T) plus Margulis' argu
 arXiv:1606.04471 (Bowen's conjecture). Folklore level; claimed only as a recorded lemma.
 
 Route: `kazhdan-marked-limits-eventually-uniform-expanders-proof`.
+
+**Review (sk-verify-14, 2026-09-13): PASS.** Openness import checked at source (Stalder arXiv:0803.2592 e-print l.158–160, Theorem attributed to Shalom; bibitem Invent. Math. 141 (2000) 1–54). Quotient step, Kazhdan transfer on `ℓ^2_0(Q_k)`, the gap identity, size growth and Cheeger re-derived. `κ` is a Kazhdan constant of the finitely presented cover and depends only on `(G, T)`. See `research/artifacts/sk-verify-14-2026-09-13-part1.md` §1.
