@@ -31,12 +31,14 @@ Lane `sk-panel-referee-3`, 2026-09-13 ~19:25 CDT. Emphasis: exposition, structur
 
 **B2. The novelty sentence is a credit risk.**
 - r1 l.59 says "The new step is simplicity."
-- sk-stable-rank-b (7ff75787cb, f5622522e1; unreviewed, queued with sk-referee-1) proposes a proof of simplicity through Stepanov's Theorem 4.4. Condition (b) there (linear dependence) is verified by a dimension count on one cylinder: any p, q ∈ R have (r,s) ≠ 0 with pr + qs = 0.
-- If that route passes review, simplicity is an application of a 1997 theorem with a short verification. A referee who knows Stepanov will then call the "new step" claim an overstatement.
+- sk-stable-rank-b (7ff75787cb, f5622522e1) proves simplicity through Stepanov's Theorem 4.4. Condition (b) there (linear dependence) is verified by a dimension count on one cylinder: any p, q ∈ R have (r,s) ≠ 0 with pr + qs = 0.
+- **This route has PASSED review** (`sk-review-1-2026-09-13-part9.md` §1 and §3). The pass is conditional on the import node's quotation of Theorem 4.4 and its reading of p. 2152.
+- So simplicity is an application of a 1997 theorem with a short verification. A referee who knows Stepanov will call the "new step" claim an overstatement.
 - The pattern of the note's argument is also Matui's (r1 l.62-65 already credits him).
 - **Recommendation:**
   - Drop "The new step is simplicity."
-  - State what each property rests on, credit Matui for the localization pattern, and, once sk-stable-rank-b passes review, add one sentence: "Simplicity also follows from Stepanov's normal-structure theorem [Stepanov, Theorem 4.4]."
+  - State what each property rests on, credit Matui for the localization pattern, and add one sentence (the route has passed review): "Simplicity also follows from Stepanov's normal-structure theorem [Stepanov, Theorem 4.4]."
+  - Keep the self-contained proof. The reader-trade-off note in review part 9 applies: citing the theorem alone would ask the reader to trust a noncommutative normal-structure theorem the note does not prove.
   - The novelty is the group: the first infinite simple Kazhdan group shown to be LEF. That claim needs no qualifier; do not attach novelty to a step.
 
 **B3. Credit locators and metadata.** Each is small, and together a referee reads them as carelessness.
@@ -64,7 +66,7 @@ Rev1 is 291 source lines, about 4 pages. The budget that stays "short" for a top
 |---|---|---|---|---|
 | I1 | Every f.g. residually finite group is a subgroup of an infinite f.g. simple Kazhdan LEF group (sk-universal-embedding-a 3bcc003284; without (T): Kionke–Schesler) | UNREVIEWED; with sk-verify-3/-4 | Corollary plus proof: at most 20 lines, plus a 6-8 line remark that Theorem 1's proof uses only a free minimal subshift with finite models over a f.g. group, plus 2 bibitems (Ore, Kionke–Schesler) | ADD after PASS. It is the single statement a non-specialist remembers: the class of simple Kazhdan sofic groups contains SL_n(Z), surface groups and Grigorchuk's group. Put it in the abstract. |
 | I2 | Brown bridge plus the Kirchberg sentence (sk-operator-algebras Option B) | sources verified; nodes unreviewed with sk-referee-2 | +8 lines, +5 bibliography | ADD. The Brown bridge is B1. The factorization property and LLP answer why Ozawa asked. |
-| I3 | Marked limits of finite simple groups SL_{3N}(F_2) with a uniform Kazhdan constant, hence expanders (node `finite-simple-groups-converge-to-simple-kazhdan-group` PASS twice; credit Kassabov) | reviewed | +8 lines (sk-expanders-limits Option A replaces r1 l.130-132) | ADD if the page budget allows after I1 and I2. It turns the LEF step into a sentence expander theorists will quote. Otherwise one sentence. |
+| I3 | Marked limits of finite simple groups SL_{3N}(F_2) with a uniform Kazhdan constant, hence expanders (node `finite-simple-groups-converge-to-simple-kazhdan-group` PASS twice; credit Kassabov) | reviewed; the Option A LaTeX is PASS+repair (`sk-review-2-2026-09-13-part2.md` §7b, repairs 7b.i-iii) | +8 lines (sk-expanders-limits Option A replaces r1 l.130-132) | ADD if the page budget allows after I1 and I2. It turns the LEF step into a sentence expander theorists will quote. Otherwise one sentence. |
 | I4 | [[T]]' ⊂ G_X through g ↦ diag(w_g,1,1): the amenable simple group of X inside the Kazhdan simple group of X (sk-subgroups Corollary A) | UNREVIEWED | +4 lines (two identities) | One sentence in the intro after PASS. It shows the reader the mechanism behind the approximation. Keep the proof in Cairn if space is short. |
 | I5 | Turing degrees and continuum many (r1 §2) | reviewed nodes; new continued-fraction route unreviewed | as in rev1 | KEEP, as the last section. |
 | — | characters (partial), LEF growth, K-theory, generators (orders 7, 2, 2), hypotheses sharpness, subsystem sandwich, F_q remark, other acting groups beyond I1's remark, rigidity theorems | various | — | OUT. Each is true or partial but adds machinery without strengthening the headline. Rigidity survives only as Question 2 in §3. |
