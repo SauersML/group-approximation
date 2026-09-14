@@ -66,7 +66,8 @@ theorem isSimpleGroup_clopenGroupCrossedProduct_of_isOpen {Λ Z : Type*} [Group 
   refine isSimpleGroup_clopenGroupCrossedProduct (fun ξ hξ => ?_) hn
   by_contra hne
   obtain ⟨z, hz, hmove⟩ := hfree ξ hξ _ isOpen_interior (Set.nonempty_iff_ne_empty.2 hne)
-  exact hmove (interior_subset hz)
+  have hfix : z ∈ {z : Z | ξ • z = z} := interior_subset hz
+  exact hmove hfix
 
 /-- **Printed simplicity for group actions** (`thm:general`, simplicity clause, and "Simplicity",
 tex l.151–210), over `ClopenGroupCrossedProduct Λ Z (ZMod 2)`. -/
