@@ -1,0 +1,5 @@
+# /usr/bin/python3.12 level15_parity_character.py  (MSI, /scratch.global/sauer354/hl-atiyah, 2026-09-13)
+|P5| = 32
+|K| = 16
+|Phi(K)| = 2  dim V = log2(|K|/|Phi|) = 3
+|V| = 8  results over all M with chi(M)=1 (M^2 in image(1+sigma)?, |image|): {(False, 2)}
