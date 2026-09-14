@@ -178,7 +178,8 @@ Quot.sound, no sorryAx; wire-queued). **`SectionPocketRegionsCopyStatement` is p
 CLAIM binder 6 variant `GroupApproximation/GGT/VanKampen/Estimating/OsinPocketFaceSetRegionsProved.lean`:
 - `osinSectionPocketFaceSetSection_of_euler` discharges `regions` by `sectionPocketRegionsCopy`, so binder 6 rests only
   on `SectionPocketWalkEulerStatement`.
-- It also has `_of_keptCell` variants. The landing is additive; attic bcd9ca157.
+- It also has `_of_keptCell` variants.
+- **LANDED 350fce5b4** (21:39): probe 0913-212739-59611 GREEN, audit with no sorryAx, wire-queued. Additive; attic bcd9ca157.
 
 CLAIM SK LEF part (iv) `GroupApproximation/Manuscript/SimpleKazhdanSofic/LEFDiagonalCommutators.lean`: the diag
 identities, `ℓ ↦ diag(u_ℓ,1,1)`, `[L,L] → EL₃(R)`, and `Γ ≤ [Δ,Δ] ≤ [L,L]`. Ledger at `notes/sk-formal/reports/ms-intro-2.md`.
