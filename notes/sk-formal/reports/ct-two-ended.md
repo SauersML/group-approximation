@@ -54,7 +54,7 @@ These are the rows in `metadata/sk-census-rows/ct-two-ended.tsv`:
 | a9d39de3a9f7 | 110–112 | definition | binders of `PrintedSimpleKazhdanGeneral`, `ClopenGroupCrossedProduct` |
 | 770348ecbf71 | 112–116 | definition | `IsMatricialVia`, which adds N_k ≥ 1 (see the note above) |
 | b4a4e3abdeda | 116–118 | formalized | `printedSimpleKazhdanGeneral` (first four conjuncts) |
-| ce4df433abd6 | 123–126 | partial | the periodic clause is carried by `printedPeriodicMatricialStatement`, `printedSimpleKazhdanSoficMain_of_general` and `printedSimpleKazhdanSoficMain`. Residual: the cor:host clause, `PrintedCountableLEFHost`, which `printedCountableLEFHost_of_lamplighter` reduces to the one open piece `LEFLamplighterStatement` |
+| ce4df433abd6 | 123–126 | formalized | periodic clause: `printedPeriodicMatricialStatement`, `printedSimpleKazhdanSoficMain_of_general`, `printedSimpleKazhdanSoficMain`. cor:host clause: `printedCountableLEFHost` (LEFCharacterizationClosed, 83164235d), whose host is EL_3 of the lamplighter crossed product through `printedLamplighterHost` and `printedSimpleKazhdanGeneral`. Converse: `printedMarkedLimitSubgroupsLEF` on the marked-limit conjunct, with finite targets by `finite_elementaryGroup_matrix`. Was partial until 83164235d landed green |
 | 386f01325a6d | 130 | structural | every sec:proof endpoint quantifies n ≥ 3 |
 
 Simplicity step rows 18ac299bc474, e503326bf5e2, 5b3ad392ecb5 and 2b5ba855ed5c: `skf-consequences.tsv` landed 09:25, after the 09:21 census, and grades all four formalized with step declarations. I checked each printed step against the source on origin and added no duplicate rows. The merge accepts a second lane's row only at the same status, and that row replaces the first lane's decls.
@@ -93,3 +93,13 @@ Uncovered, by block:
   - e18417562d36 (443–444), 581584337a04 (444–447), 7bfa078c0bed (447–451), e3cd35e16e2f (451–454), 14148c1b4df0 (455).
 
   The rows around them, l.356–389 and l.397–403, are sk-lef-action and ms-intro-2 rows.
+
+Owners, as main assigned them after d01228889. Rows land together with their carriers.
+- The cor:host proof rows:
+  - l.356–392: sk-lef-action;
+  - l.397–403: sk-lef-assembly;
+  - l.409–438: sk-lef-ultra;
+  - l.440–444 (86b1b005fc2a, e18417562d36): skf-degrees with sk-lef-ultra;
+  - l.444–455: skf-consequences (Λ) and sk-stepanov (G_Δ).
+- 022271399cfb and 9b1a6e7489a1 stay with sk-lef-assembly.
+- Questions block: 7d13cf4208bc landed at 2667a181a, and ms-traces-3 is probing the rest.
