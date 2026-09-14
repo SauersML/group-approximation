@@ -140,6 +140,36 @@ since Lemma 3.2(a) predicts infeasibility there.
 - **Checking.** Any feasible `r < 3^k` instance is re-verified by an independent product computation in the shared
   certificate checker `experiments/nonsofic-certificates/`, and lands only as OPEN, awaiting independent re-derivation.
 
-## 5. Census results and where it stops
+## 5. Where it stops
 
-Pending at first landing. The exact gap is recorded here when the census lands.
+### 5.1 What a certificate must defeat
+- **Rank functions regular on the subgroups.** Let a coset certificate live on `L = ⟨K_1, ..., K_r⟩`, `|K_j| = 3^k`.
+  - Any Sylvester matrix rank function on `F_2[L]` with `rk(e_(K_j)) = 3^(-k)` for every `j` refutes it, because
+    `1 = rk(1) <= Σ_j rk(e_(K_j)) = r 3^(-k) < 1`.
+  - Sofic approximations supply such functions (finite subgroups act almost freely), so `L` is not sofic.
+  - The same holds for linear sofic approximations over characteristic two in which each `K_j` acts with invariant
+    subspace of normalized dimension `3^(-k)`.
+- **Characteristic zero excludes the analog.** Over `ℂ` take `p_j = |K_j|^(-1) Σ_(h in K_j) h`. The analogous identity
+  `1 = Σ_j a_j p_j b_j` fails in every group: in the group von Neumann algebra, the identity of `ℓ²L` factors through
+  `⊕_j p_j ℓ²L`, so `1 <= Σ_j τ(p_j) = r 3^(-k)` (Kaplansky's trace positivity). A certificate must therefore use
+  characteristic two essentially.
+  - The idempotent `|K|^(-1) e_K` over `ℤ_2` lifts `e_K`, but `1 + 2y` need not be a unit of `ℤ_2[L]`, so the identity
+    does not lift.
+  - The 2-adic lifted trace has no positivity, and every inverse defect has zero class in `K_0` (Attempts of
+    `leavitt-unit-group-algebra-is-directly-finite`). So additive invariants cannot exclude a certificate.
+- **Small cases.** Excluded outright:
+  - `r = 2`, at every level and for any odd orders (Lemma 3.2(a));
+  - families generating their free product, at every `r` (Lemma 3.2(b)).
+
+### 5.2 Census over V
+MSI job `785769` (smoke test of controls and one `r = 3` instance) was submitted at 09:3x. The MSI master then dropped,
+so the results are not yet recorded. The full census (`run_census.sbatch`) waits on the smoke test.
+
+### 5.3 Exact gap
+1. **Existence over any group.** No group is known to carry a coset certificate, that is `r < 3^k` subgroups of order
+   `3^k` whose invariant-function spaces sum to contain `δ_1`. Such a group is nonsofic, and `F_2` of it has no rank
+   function regular on those subgroups. For a Theorem B host it gives a strict automaton.
+2. **V.** Bounded instances are exact; Section 5.2 records the tested range. A negative census proves only the
+   absence of certificates supported on those cosets.
+3. **General left factors.** At `k = 1` the certificate is the original bilinear equation `c e b = 1`. Proposition 2.1
+   linearizes only once the left factors are fixed, and group-element left factors may be incomplete.
