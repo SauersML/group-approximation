@@ -184,6 +184,25 @@ The piece Props of `printedDynamicRankBudget_of_pieces` (`CoreRingReflectionStat
   occur, so the check is vacuous and uninformative; (iii) the margin is necessary, since at g near a the partner can be b.
   Combinatorial core in probe; metric half next.
 
+- 09-14 09:37: **B1 split lemma LANDED** `c642c1991` (probe 0914-092929-34006, BUILT, `#audit_axioms` standard only).  Module
+  `Estimating/UnboundAntitonePartners`, namespace `UnboundEstimate`:
+  - (1) `exists_antitonePartners`, as agreed with ct-bilateral-cell: margin `5 * B + 15 * kappa + 24 * (δ + 6)`, connectors
+    by `wordDist D.alphabet.carrier`, generic ws, wt so the swapped application at target gaps is the same theorem.
+    One sharpening: `a < a'` in place of `a ≤ a'`.  At `a = a'` with `b' < b` the conclusions `h a = b` and `h a' = b'`
+    contradict each other, and the consumer's `source_forward` supplies `a < a'`.
+  - `exists_antitonePartners_of_morseRadius`: the same statement over a given Morse radius (`IsWordMorseRadius D lambda c
+    kappa`, `IsHyperbolicSpace δ (PointQuot D.alphabet)`), margin `5B + 15κ + 24δ` in the realisation.  The consumer
+    can keep the κ of `exists_word_replacement_morse_monotone`.
+  - (2) `exists_positive_split`, over `latestPartner`, `latestPartner_antitone`, `exists_later_partner`; helper
+    `exists_runGeodesic` (a run of a quasi-geodesic word, its geodesic, Morse both ways, monotone indices).
+  - Proof of the margin: partners within `P = B + 2κ + 6δ` exist across the reversed target geodesic.  The latest
+    partner `L` of `g` is a partner of a later `g''`.  `index_lt_of_prefix_near` on both runs, plus the corners pinning
+    `t + s`, gives `t'' - t ≤ 4B + 11κ + 18δ`, so `dist (g, L) ≤ 5B + 15κ + 24δ`.
+  - Model tests: (i) the antiparallel model, closed in Lean (`latestPartner_antiparallel`, `antiparallel_split_model`).
+    (ii) Calibration over ℤ is vacuous, since long backwards pairs cannot occur, and so tells us nothing.  (iii) The
+    margin is necessary: `h a = b`, so the first step's target arc can be empty, and (2) chooses the step.
+  - Wiring queued.
+
 **cor:dynamic-rank-budget is closed** (`printedDynamicRankBudget_closed`); the three inputs below are closed by
 `coreRingReflectionStatement_holds`, `coreModelsLEFStatement`, `coreMFRadicalKillStatement_holds`.
 
