@@ -342,3 +342,4 @@
 34935707194	2026-09-15T06:10:16Z	GroupApproximation/Sofic/ExplicitNonMFBase.lean	compression_injective
 34964735600	2026-09-15T11:43:27Z	GroupApproximation/Sofic/ExplicitSuitableDefect.lean	isPowerTorsionFree_pi
 34990175512	2026-09-15T15:42:48Z	GroupApproximation/Sofic/ExplicitSuitableDefect.lean	exists_isAlgebraicallySuitable_le_defectNormal
+35012213608	2026-09-15T19:13:07Z	GroupApproximation/Sofic/ExplicitSuitableDefect.lean	unbounded_of_isSuitable
