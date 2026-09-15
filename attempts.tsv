@@ -338,3 +338,4 @@
 34852867576	2026-09-14T14:03:37Z	GroupApproximation/Analysis/MaxInfiniteConjugateKazhdanProjection.lean	manuscriptConjugateKazhdanProjection
 34886316349	2026-09-14T19:21:41Z	GroupApproximation/Analysis/MaxInfiniteProperIsometry.lean	manuscriptMaxInfiniteProperIsometry
 34905608795	2026-09-14T22:45:30Z	GroupApproximation/Algebra/BilateralThreeCellZOrder.lean	manuscriptSentence_bilateralThreeZCentralOfOrderChar
+34915186738	2026-09-15T00:56:32Z	GroupApproximation/Sofic/ExactInvolutionLifts.lean	norm_cornerInvolutionCorrection_sub_le
