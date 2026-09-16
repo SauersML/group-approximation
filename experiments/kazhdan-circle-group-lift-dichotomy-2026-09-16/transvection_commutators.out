@@ -1,0 +1,7 @@
+[rho12, rho23] = {1: (1, 2, -3, -2), 2: (2,), 3: (3,)}
+equals rho13 ? False ; equals rho13^-1 ? False
+rho13 commutes with rho12 ? False
+rho13 commutes with rho23 ? True
+c commutes with rho12 ? False
+c commutes with rho23 ? True
+rho13(rho12(x1)) = (1, 3, 2)  rho12(rho13(x1)) = (1, 2, 3)
