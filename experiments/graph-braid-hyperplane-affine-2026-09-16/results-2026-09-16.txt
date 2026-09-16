@@ -1,0 +1,30 @@
+K4 n=2 k=1 field=Q {'V': 6, 'E': 12, 'S': 3, 'comps': 1, 'b1': 4, 'H': 6, 'kerD': 4, 'image': 3, 'euler_2skeleton': -3} NOT-AFFINE
+K4 n=2 k=2 field=Q {'V': 45, 'E': 96, 'S': 48, 'comps': 1, 'b1': 4, 'H': 12, 'kerD': 10, 'image': 3, 'euler_2skeleton': -3} NOT-AFFINE
+K4 n=2 k=3 field=Q {'V': 120, 'E': 252, 'S': 129, 'comps': 1, 'b1': 4, 'H': 18, 'kerD': 16, 'image': 3, 'euler_2skeleton': -3} NOT-AFFINE
+K4 n=2 k=[1, 2, 1, 3, 1, 2] field=Q {'V': 28, 'E': 60, 'S': 29, 'comps': 1, 'b1': 4, 'H': 10, 'kerD': 8, 'image': 3, 'euler_2skeleton': -3} NOT-AFFINE
+theta n=2 k=2 field=Q {'V': 10, 'E': 18, 'S': 6, 'comps': 1, 'b1': 3, 'H': 6, 'kerD': 5, 'image': 2, 'euler_2skeleton': -2} NOT-AFFINE
+theta n=2 k=3 field=Q {'V': 28, 'E': 54, 'S': 24, 'comps': 1, 'b1': 3, 'H': 9, 'kerD': 8, 'image': 2, 'euler_2skeleton': -2} NOT-AFFINE
+theta n=2 k=4 field=Q {'V': 55, 'E': 108, 'S': 51, 'comps': 1, 'b1': 3, 'H': 12, 'kerD': 11, 'image': 2, 'euler_2skeleton': -2} NOT-AFFINE
+theta n=2 k=[2, 2, 3] field=Q {'V': 15, 'E': 28, 'S': 11, 'comps': 1, 'b1': 3, 'H': 7, 'kerD': 6, 'image': 2, 'euler_2skeleton': -2} NOT-AFFINE
+theta n=2 k=[1, 2, 2] field=Q {'V': 6, 'E': 10, 'S': 2, 'comps': 1, 'b1': 3, 'H': 6, 'kerD': 4, 'image': 3, 'euler_2skeleton': -2} AFFINE
+theta n=2 k=[1, 3, 3] field=Q {'V': 15, 'E': 28, 'S': 11, 'comps': 1, 'b1': 3, 'H': 8, 'kerD': 6, 'image': 3, 'euler_2skeleton': -2} AFFINE
+theta4 n=2 k=2 field=Q {'V': 15, 'E': 32, 'S': 12, 'comps': 1, 'b1': 6, 'H': 8, 'kerD': 6, 'image': 3, 'euler_2skeleton': -5} NOT-AFFINE
+K5 n=2 k=1 field=Q {'V': 10, 'E': 30, 'S': 15, 'comps': 1, 'b1': 6, 'H': 10, 'kerD': 5, 'image': 6, 'euler_2skeleton': -5} AFFINE
+K33 n=2 k=1 field=Q {'V': 15, 'E': 36, 'S': 18, 'comps': 1, 'b1': 4, 'H': 9, 'kerD': 6, 'image': 4, 'euler_2skeleton': -3} AFFINE
+cycle3 n=2 k=2 field=Q {'V': 15, 'E': 24, 'S': 9, 'comps': 1, 'b1': 1, 'H': 6, 'kerD': 6, 'image': 1, 'euler_2skeleton': 0} AFFINE
+figure8 n=2 k=2 field=Q {'V': 55, 'E': 108, 'S': 50, 'comps': 1, 'b1': 4, 'H': 16, 'kerD': 13, 'image': 4, 'euler_2skeleton': -3} AFFINE
+dumbbell n=2 k=2 field=Q {'V': 78, 'E': 154, 'S': 74, 'comps': 1, 'b1': 4, 'H': 20, 'kerD': 17, 'image': 4, 'euler_2skeleton': -2} AFFINE
+triangle_with_legs n=2 k=2 field=Q {'V': 66, 'E': 120, 'S': 51, 'comps': 1, 'b1': 4, 'H': 21, 'kerD': 18, 'image': 4, 'euler_2skeleton': -3} AFFINE
+lollipop n=2 k=2 field=Q {'V': 28, 'E': 48, 'S': 19, 'comps': 1, 'b1': 2, 'H': 11, 'kerD': 10, 'image': 2, 'euler_2skeleton': -1} AFFINE
+triod n=2 k=2 field=Q {'V': 21, 'E': 30, 'S': 9, 'comps': 1, 'b1': 1, 'H': 12, 'kerD': 12, 'image': 1, 'euler_2skeleton': 0} AFFINE
+star4 n=2 k=2 field=Q {'V': 36, 'E': 56, 'S': 18, 'comps': 1, 'b1': 3, 'H': 20, 'kerD': 18, 'image': 3, 'euler_2skeleton': -2} AFFINE
+Htree n=2 k=2 field=Q {'V': 55, 'E': 90, 'S': 34, 'comps': 1, 'b1': 2, 'H': 22, 'kerD': 21, 'image': 2, 'euler_2skeleton': -1} AFFINE
+theta n=3 k=3 field=Q {'V': 56, 'E': 135, 'S': 96, 'comps': 1, 'b1': 3, 'H': 9, 'kerD': 8, 'image': 2, 'euler_2skeleton': 17} NOT-AFFINE
+K4 n=3 k=2 field=Q {'V': 120, 'E': 336, 'S': 288, 'comps': 1, 'b1': 4, 'H': 12, 'kerD': 10, 'image': 3, 'euler_2skeleton': 72} NOT-AFFINE
+cycle3 n=3 k=3 field=Q {'V': 84, 'E': 189, 'S': 135, 'comps': 1, 'b1': 1, 'H': 9, 'kerD': 9, 'image': 1, 'euler_2skeleton': 30} AFFINE
+lollipop n=3 k=3 field=Q {'V': 220, 'E': 540, 'S': 424, 'comps': 1, 'b1': 3, 'H': 19, 'kerD': 17, 'image': 3, 'euler_2skeleton': 104} AFFINE
+triod n=3 k=3 field=Q {'V': 120, 'E': 252, 'S': 162, 'comps': 1, 'b1': 3, 'H': 27, 'kerD': 25, 'image': 3, 'euler_2skeleton': 30} AFFINE
+star4 n=3 k=3 field=Q {'V': 286, 'E': 660, 'S': 468, 'comps': 1, 'b1': 11, 'H': 52, 'kerD': 42, 'image': 11, 'euler_2skeleton': 94} AFFINE
+Htree n=3 k=3 field=Q {'V': 560, 'E': 1365, 'S': 1068, 'comps': 1, 'b1': 6, 'H': 51, 'kerD': 46, 'image': 6, 'euler_2skeleton': 263} AFFINE
+K4_triangle n=2 k=2 field=Q {'V': 105, 'E': 234, 'S': 123, 'comps': 1, 'b1': 8, 'H': 23, 'kerD': 17, 'image': 7, 'euler_2skeleton': -6} NOT-AFFINE
+K4_bridge_cycle n=2 k=2 field=Q {'V': 136, 'E': 300, 'S': 160, 'comps': 1, 'b1': 8, 'H': 27, 'kerD': 21, 'image': 7, 'euler_2skeleton': -4} NOT-AFFINE

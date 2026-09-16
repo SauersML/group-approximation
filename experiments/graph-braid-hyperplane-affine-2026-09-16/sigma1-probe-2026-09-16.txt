@@ -1,0 +1,15 @@
+cycle3 n=2 k=2 classes=6 collapses_to_graph=True passing_sign_patterns=2 witness=[1, 1, 1, 1, 1, 1]
+triod n=2 k=2 classes=12 collapses_to_graph=True passing_sign_patterns=2 witness=[-1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1]
+star4 n=2 k=2 classes=20 collapses_to_graph=True passing_sign_patterns=0 witness=None
+K4 n=2 k=1 classes=6 collapses_to_graph=True passing_sign_patterns=0 witness=None
+K4 n=2 k=2 classes=12 collapses_to_graph=True passing_sign_patterns=0 witness=None
+theta n=2 k=2 classes=6 collapses_to_graph=True passing_sign_patterns=0 witness=None
+theta n=2 k=3 classes=9 collapses_to_graph=True passing_sign_patterns=0 witness=None
+theta n=2 k=[1, 2, 2] classes=6 collapses_to_graph=True passing_sign_patterns=0 witness=None
+figure8 n=2 k=2 classes=16 collapses_to_graph=True passing_sign_patterns=0 witness=None
+lollipop n=2 k=2 classes=11 collapses_to_graph=True passing_sign_patterns=0 witness=None
+theta4 n=2 k=2 classes=8 collapses_to_graph=True passing_sign_patterns=0 witness=None
+triangle_with_legs n=2 k=2 classes=21 collapses_to_graph=True passing_sign_patterns=0 witness=None
+dumbbell n=2 k=2 classes=20 collapses_to_graph=False passing_sign_patterns=0 witness=None
+K4_triangle n=2 k=2 classes=23 collapses_to_graph=False passing_sign_patterns=0 witness=None
+K4_bridge_cycle n=2 k=2 classes=27 collapses_to_graph=False passing_sign_patterns=0 witness=None
