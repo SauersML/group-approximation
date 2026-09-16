@@ -1,0 +1,67 @@
+check1 [[2,1],[1,1]] n= 1 |w_n|= 12 area=det(u,v)=-3
+check1 [[2,1],[1,1]] n= 2 |w_n|= 20 area=det(u,v)=-21
+check1 [[2,1],[1,1]] n= 3 |w_n|= 28 area=det(u,v)=-144
+check1 [[2,1],[1,1]] n= 4 |w_n|= 36 area=det(u,v)=-987
+check1 [[2,1],[1,1]] n= 5 |w_n|= 44 area=det(u,v)=-6765
+check1 [[2,1],[1,1]] n= 6 |w_n|= 52 area=det(u,v)=-46368
+check1 [[2,1],[1,1]] n= 7 |w_n|= 60 area=det(u,v)=-317811
+check1 [[2,1],[1,1]] n= 8 |w_n|= 68 area=det(u,v)=-2178309
+check1 [[2,1],[1,1]] n= 9 |w_n|= 76 area=det(u,v)=-14930352
+check1 [[2,1],[1,1]] n=10 |w_n|= 84 area=det(u,v)=-102334155
+check2 [[2,1],[1,1]]: det(M^k - I) != 0 for 1 <= |k| <= 30
+check3 [[2,1],[1,1]] m=1e2 K=6 max|digit|=1 residual s(M)v=(0, 0) wordlen<=59 wordlen/log(m)=12.81
+check3 [[2,1],[1,1]] m=1e3 K=9 max|digit|=1 residual s(M)v=(0, 0) wordlen<=83 wordlen/log(m)=12.02
+check3 [[2,1],[1,1]] m=1e4 K=11 max|digit|=1 residual s(M)v=(0, 0) wordlen<=88 wordlen/log(m)=9.55
+check3 [[2,1],[1,1]] m=1e5 K=13 max|digit|=1 residual s(M)v=(0, 0) wordlen<=99 wordlen/log(m)=8.60
+check3 [[2,1],[1,1]] m=1e6 K=16 max|digit|=1 residual s(M)v=(0, 0) wordlen<=135 wordlen/log(m)=9.77
+check3 [[2,1],[1,1]] m=1e7 K=18 max|digit|=1 residual s(M)v=(0, 0) wordlen<=134 wordlen/log(m)=8.31
+check3 [[2,1],[1,1]] m=1e8 K=21 max|digit|=1 residual s(M)v=(0, 0) wordlen<=161 wordlen/log(m)=8.74
+check3 [[2,1],[1,1]] m=1e9 K=23 max|digit|=1 residual s(M)v=(0, 0) wordlen<=169 wordlen/log(m)=8.16
+check3 [[2,1],[1,1]] m=1e10 K=25 max|digit|=1 residual s(M)v=(1, 2) wordlen<=213 wordlen/log(m)=9.25
+check3 [[2,1],[1,1]] m=1e11 K=28 max|digit|=1 residual s(M)v=(0, 0) wordlen<=210 wordlen/log(m)=8.29
+check3 [[2,1],[1,1]] m=1e12 K=30 max|digit|=1 residual s(M)v=(0, 0) wordlen<=230 wordlen/log(m)=8.32
+check1 [[1,1],[1,0]] (det -1) n= 1 |w_n|= 12 area=det(u,v)=1
+check1 [[1,1],[1,0]] (det -1) n= 2 |w_n|= 20 area=det(u,v)=-3
+check1 [[1,1],[1,0]] (det -1) n= 3 |w_n|= 28 area=det(u,v)=8
+check1 [[1,1],[1,0]] (det -1) n= 4 |w_n|= 36 area=det(u,v)=-21
+check1 [[1,1],[1,0]] (det -1) n= 5 |w_n|= 44 area=det(u,v)=55
+check1 [[1,1],[1,0]] (det -1) n= 6 |w_n|= 52 area=det(u,v)=-144
+check1 [[1,1],[1,0]] (det -1) n= 7 |w_n|= 60 area=det(u,v)=377
+check1 [[1,1],[1,0]] (det -1) n= 8 |w_n|= 68 area=det(u,v)=-987
+check1 [[1,1],[1,0]] (det -1) n= 9 |w_n|= 76 area=det(u,v)=2584
+check1 [[1,1],[1,0]] (det -1) n=10 |w_n|= 84 area=det(u,v)=-6765
+check2 [[1,1],[1,0]] (det -1): det(M^k - I) != 0 for 1 <= |k| <= 30
+check3 [[1,1],[1,0]] (det -1) m=1e2 K=11 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=107 wordlen/log(m)=23.23
+check3 [[1,1],[1,0]] (det -1) m=1e3 K=16 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=133 wordlen/log(m)=19.25
+check3 [[1,1],[1,0]] (det -1) m=1e4 K=21 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=183 wordlen/log(m)=19.87
+check3 [[1,1],[1,0]] (det -1) m=1e5 K=25 max|digit|=1 residual s(M)v=(3, 1) wordlen<=229 wordlen/log(m)=19.89
+check3 [[1,1],[1,0]] (det -1) m=1e6 K=30 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=249 wordlen/log(m)=18.02
+check3 [[1,1],[1,0]] (det -1) m=1e7 K=35 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=305 wordlen/log(m)=18.92
+check3 [[1,1],[1,0]] (det -1) m=1e8 K=40 max|digit|=1 residual s(M)v=(3, 1) wordlen<=337 wordlen/log(m)=18.29
+check3 [[1,1],[1,0]] (det -1) m=1e9 K=45 max|digit|=1 residual s(M)v=(3, 1) wordlen<=381 wordlen/log(m)=18.39
+check3 [[1,1],[1,0]] (det -1) m=1e10 K=49 max|digit|=1 residual s(M)v=(3, 1) wordlen<=427 wordlen/log(m)=18.54
+check3 [[1,1],[1,0]] (det -1) m=1e11 K=54 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=465 wordlen/log(m)=18.36
+check3 [[1,1],[1,0]] (det -1) m=1e12 K=59 max|digit|=1 residual s(M)v=(-3, -1) wordlen<=509 wordlen/log(m)=18.42
+check1 [[3,2],[1,1]] n= 1 |w_n|= 12 area=det(u,v)=-4
+check1 [[3,2],[1,1]] n= 2 |w_n|= 20 area=det(u,v)=-56
+check1 [[3,2],[1,1]] n= 3 |w_n|= 28 area=det(u,v)=-780
+check1 [[3,2],[1,1]] n= 4 |w_n|= 36 area=det(u,v)=-10864
+check1 [[3,2],[1,1]] n= 5 |w_n|= 44 area=det(u,v)=-151316
+check1 [[3,2],[1,1]] n= 6 |w_n|= 52 area=det(u,v)=-2107560
+check1 [[3,2],[1,1]] n= 7 |w_n|= 60 area=det(u,v)=-29354524
+check1 [[3,2],[1,1]] n= 8 |w_n|= 68 area=det(u,v)=-408855776
+check1 [[3,2],[1,1]] n= 9 |w_n|= 76 area=det(u,v)=-5694626340
+check1 [[3,2],[1,1]] n=10 |w_n|= 84 area=det(u,v)=-79315912984
+check2 [[3,2],[1,1]]: det(M^k - I) != 0 for 1 <= |k| <= 30
+check3 [[3,2],[1,1]] m=1e2 K=5 max|digit|=2 residual s(M)v=(0, 0) wordlen<=58 wordlen/log(m)=12.59
+check3 [[3,2],[1,1]] m=1e3 K=7 max|digit|=2 residual s(M)v=(1, 2) wordlen<=90 wordlen/log(m)=13.03
+check3 [[3,2],[1,1]] m=1e4 K=8 max|digit|=2 residual s(M)v=(-1, -2) wordlen<=82 wordlen/log(m)=8.90
+check3 [[3,2],[1,1]] m=1e5 K=10 max|digit|=2 residual s(M)v=(0, 0) wordlen<=108 wordlen/log(m)=9.38
+check3 [[3,2],[1,1]] m=1e6 K=12 max|digit|=2 residual s(M)v=(0, 0) wordlen<=122 wordlen/log(m)=8.83
+check3 [[3,2],[1,1]] m=1e7 K=14 max|digit|=2 residual s(M)v=(-1, -2) wordlen<=166 wordlen/log(m)=10.30
+check3 [[3,2],[1,1]] m=1e8 K=15 max|digit|=2 residual s(M)v=(0, 0) wordlen<=158 wordlen/log(m)=8.58
+check3 [[3,2],[1,1]] m=1e9 K=17 max|digit|=2 residual s(M)v=(0, 0) wordlen<=202 wordlen/log(m)=9.75
+check3 [[3,2],[1,1]] m=1e10 K=19 max|digit|=2 residual s(M)v=(0, 0) wordlen<=216 wordlen/log(m)=9.38
+check3 [[3,2],[1,1]] m=1e11 K=21 max|digit|=2 residual s(M)v=(0, 0) wordlen<=242 wordlen/log(m)=9.55
+check3 [[3,2],[1,1]] m=1e12 K=22 max|digit|=2 residual s(M)v=(0, 0) wordlen<=198 wordlen/log(m)=7.17
+ALL CHECKS PASSED
