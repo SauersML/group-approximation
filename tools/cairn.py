@@ -914,6 +914,20 @@ def _tokens(text):
             if (len(w) > 2 or w == "no") and w not in TEXT_STOPWORDS}
 
 
+_NODE_TOKENS = {}
+
+
+def _node_tokens(n):
+    # `check` asks for neighbours of every open lane top, each a scan of the
+    # whole graph; re-tokenizing 12k titles per scan dominated its runtime.
+    key = (n.title, n.id)
+    u = _NODE_TOKENS.get(key)
+    if u is None:
+        u = _NODE_TOKENS[key] = frozenset(
+            _tokens(n.title + " " + n.id.replace("-", " ")))
+    return u
+
+
 def similar_nodes(text, nodes, kinds=None, limit=5, threshold=0.5, exclude=(),
                   min_overlap=2):
     t = _tokens(text)
@@ -921,7 +935,7 @@ def similar_nodes(text, nodes, kinds=None, limit=5, threshold=0.5, exclude=(),
     for n in nodes.values():
         if (kinds and n.kind not in kinds) or n.id in exclude:
             continue
-        u = _tokens(n.title + " " + n.id.replace("-", " "))
+        u = _node_tokens(n)
         if not t or not u:
             continue
         inter = len(t & u)
