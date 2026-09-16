@@ -257,3 +257,6 @@ than vanishing.
     - At a minimizer the numbers are the Theorem S numbers, which agrees with w7-sylv-global Section 4.2.
   * **Where it stops.** Is `<x, y, u, beta>` amenable, or does it contain a free subgroup? If it is amenable, theta = 1
     on `Gamma_b`.
+  * **Update (2026-09-16).** `Gamma_b` is sofic without deciding amenability: claim
+    `right-child-exchange-group-is-sofic` (each window of `b`-conjugates of the frame roots lies in one depth-monotone
+    weighted unit group, then sofic-by-cyclic). So theta = 1 on `Gamma_b × iota_B(D_8)`, and this candidate is dead.
