@@ -4,7 +4,7 @@ id: kt-actor-model-with-totally-non-roundable-vertex
 kind: claim
 title: Some trace-preserving model of the Kun--Thom actor is at intertwining distance at least kappa from every genuine model on the polynomial vertex
 refuted_by:
-  - hs-stable-vertex-rounding-for-every-model
+  - theorem-e-vertex-rounds-at-every-actor-model
 distinct_from:
   hs-stable-vertex-rounding-for-every-model: that is (H1) at every actor model, the rounding side of (FT); this is one actor model at which no nonzero invariant corner of the vertex rounds, the no-rounding side.
   el-r-polynomial-vertex-not-flexibly-hs-stable: that asks for a non-roundable vertex model with no extension required; this requires a trace-preserving model of the whole actor, where retract and scalar witnesses are void.

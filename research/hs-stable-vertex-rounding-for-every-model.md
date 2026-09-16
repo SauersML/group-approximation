@@ -8,9 +8,17 @@ distinct_from:
   el-r-polynomial-robust-spectral-gap: that is the robust spectral gap for asymptotic finite-dimensional representations, free from property (T); this asks for rounding to genuine representations close on generators, which a spectral gap alone does not supply.
   hs-literal-commutant-profile-rounding-is-false: that refutes rounding onto the exact commutant of the supplied matrices; this asks for a nearby genuine representation, a target stable under the perturbation that kills the literal version.
   hs-rounding-and-actor-gap-force-ccr: that is the proved conditional which assumes (H1) for one model and derives normalization; this is (H1) itself, for every model, and nothing proved decides it.
+refuted_by:
+  - vertex-rounding-fails-at-symplectic-product-pair
 ---
 
-**OPEN.** Let `Gamma < G` be an infranormal, non-normal pair of Kazhdan groups, with `(F, kappa)` a Kazhdan
+**REFUTED as stated (2026-09-16).** (H1) fails at an explicit trace-preserving model of the residually finite
+Kazhdan pair `Z^(2g) ⋊ Sp_(2g)(Z) × EL_r(F_q[x_1..x_d]) < Z^(2g) ⋊ Sp_(2g)(Z) × (EL_r(F_q[x_1^(±1)..x_d^(±1)]) ⋊ SL_d(Z))`
+(`vertex-rounding-fails-at-symplectic-product-pair`). The Theorem E instance, which is what the unit-type chain
+uses, is untouched and is now the open claim `theorem-e-vertex-rounds-at-every-actor-model`. The statement as
+posed:
+
+Let `Gamma < G` be an infranormal, non-normal pair of Kazhdan groups, with `(F, kappa)` a Kazhdan
 pair for `Gamma`. For every trace-preserving `sigma : G -> U(prod_U M_n)` with coordinates `sigma_n`, after
 `o(n)` padding there are genuine representations `pi_n : Gamma -> U(n')`, `n'/n -> 1`, with
 
@@ -24,6 +32,23 @@ extend to trace-preserving representations of `G`.
 
 ## Attempts
 
+- **Refuted by a product pair (2026-09-16, lane `swarm-hs-stable-vertex-rounding-for-every-model`).**
+  - **The pair.** Put `Γ_g = Z^(2g) ⋊ Sp_(2g)(Z)`, let `K < H` be the Theorem E pair, and take
+    `Γ = Γ_g × K < G = Γ_g × H`. It is residually finite and Kazhdan, with compression semigroup `Γ_g × P_K`,
+    so it is infranormal and not normal.
+  - **The model.** Tensor the Heisenberg models `α_(k_j)` of `rf-kazhdan-group-not-flexibly-hs-stable` with
+    permutation models `λ_j` of `H`. The result is trace-preserving on `G`.
+  - **Why nothing rounds.** Any rounding of `σ|Γ` on a generating set propagates to `Γ_g × e`. There the
+    amplified models `α_(k_j) ⊗ 1_(m_j)` are non-roundable with constants uniform in `m_j`, by property (T)
+    of the Heisenberg cover and the bimodule argument.
+  - **Scope.** It holds under padding and under Dogon's compression, at every Kazhdan set. Unlike the Leavitt
+    and Fournier--Facio scope bullets below, it needs no hyperlinearity input.
+  - **Consequences.** `theorem-e-vertex-unit-type-via-deep-root-mass`,
+    `hs-normalization-via-vertex-rounding-and-actor-gap` and `hs-normalization-via-vertex-rounding-and-liftable-masa`
+    required this claim. The first is restated as `theorem-e-unit-type-via-instance-vertex-rounding`, through the
+    instance claim. The other two target the general `kt-centralizer-normalization-hs` and have no replacement.
+    Artifact:
+    `research/artifacts/vertex-rounding-product-pair-2026-09-16.md`.
 - **Literal commutant rounding.** Dead (`hs-literal-commutant-profile-rounding-is-false`). A small generic
   perturbation makes the literal commutant scalar, so the rounding target must be a nearby genuine
   representation.
