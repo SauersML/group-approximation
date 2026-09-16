@@ -5,6 +5,8 @@ kind: claim
 title: The wreath product of Z by Z^2 is isomorphic to a subgroup of Thompson's group V
 artifacts:
   - research/artifacts/zp-pl-interval-subgroup-obstructions-2026-09-13-part3.md
+refuted_by:
+  - wreath-z-by-z2-does-not-embed-in-thompson-v
 ---
 
 `Z ≀ Z^2` is isomorphic to a subgroup of Thompson's group `V`.
@@ -28,3 +30,14 @@ With `wreath-z-by-z2-does-not-embed-in-thompson-f`, this would answer the repose
   - *Tool.* Bodart–D'Angeli–Perego–Rodaro (arXiv:2608.02111): a f.g. group embeds in `V`
     iff it has a faithful context-free action. Deciding whether `Z ≀ Z^2` has one is an
     equivalent formulation.
+- 2026-09-16 (swarm lane, zaremsky-2-15b). *Refuted by the literature.*
+  - N. Corwin's 2013 UNL PhD thesis proves that `Z ≀ Z^2` is not a subgroup of `V`,
+    confirming a Bleak–Salazar-Díaz conjecture. Burillo–Cleary–Röver restate it as a
+    theorem (arXiv:1402.3860v2).
+  - Recorded as claim `wreath-z-by-z2-does-not-embed-in-thompson-v` with a citation route,
+    and listed under `refuted_by` above.
+  - The thesis proof itself was not readable (HTTP 403). Only the abstract and the survey
+    statement were checked.
+  - The dead ends above are consistent with it.
+  - Surviving candidates for the negative answer are in
+    `cleary-golden-ratio-group-embeds-in-thompson-v`.

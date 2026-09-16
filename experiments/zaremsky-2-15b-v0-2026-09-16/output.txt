@@ -1,0 +1,3 @@
+{'lemma2_cases': 345, 'verified': 345, 'failures': 0}
+{'lemma2_cases': 274, 'verified': 274, 'failures': 0}
+{'lemma2_cases': 301, 'verified': 301, 'failures': 0}
