@@ -37,3 +37,11 @@ see `zaremsky-4-07-type-f-groups-have-contractible-rips`.
   Non-product generating sets remain.
 - Test objects: groups of type F with distorted infinite cyclic subgroups, such as the
   integral Heisenberg group and `BS(1,2)`.
+- 2026-09-16 (swarm, refereed): neither test object is a witness. Every `BS(m,n)` has a
+  2-dimensional contractible scale-1 Rips complex
+  (`baumslag-solitar-groups-have-contractible-rips-complexes`). `H_3(Z)` has a scale-1
+  Rips complex homeomorphic to `R^3`
+  (`heisenberg-group-has-a-contractible-rips-complex`). So distortion, exponential or
+  cubic Dehn functions, non-automaticity and non-Hopficity do not by themselves obstruct.
+  Where both methods stop is recorded in
+  `notes/some-type-f-group-has-no-contractible-ri-swarm-2026-09-16.md`.

@@ -1,0 +1,18 @@
+# controls for recheck.py
+# positive: Brown-fibred atataTAAT, k=1 (from or-length15 cal.out)
+CERT atataTAAT k=1 a=[0] t=[0] cp=[0, 1]
+# negative: BS(1,2) with phi = +-chi (from or-length15 negcert.txt)
+CERT taTAA k=1 a=[0] t=[0] cp=[0, 1]
+CERT taTAA k=1 a=[0] t=[0] cp=[0, -1]
+# negative: BS(2,3) with phi = chi
+CERT taaTAAA k=1 a=[0] t=[0] cp=[0, 1]
+# negative: non-primitive character (gcd 2)
+CERT atataTAAT k=1 a=[0] t=[0] cp=[0, 2]
+# negative: proper power relator
+CERT atATatAT k=1 a=[0] t=[0] cp=[0, 1]
+# negative: first CERT of vf4.out with cp[0] increased by 1
+CERT TTTATAAtaTatAATA k=2 a=[0, 1] t=[1, 0] c=[-1, 0, 0, 1] pot=[0, 0] cp=[0, 0, 0, 1] delta=[1, 0, 0, 0, -1]
+# negative: character with gcd 2 on an index-2 cover (k=2, t swaps, a fixes, w = taTAA)
+CERT taTAA k=2 a=[0, 1] t=[1, 0] cp=[0, 0, 1, 1]
+# negative: relator does not act trivially (k=2, a swaps, t fixes, w = taTAA)
+CERT taTAA k=2 a=[1, 0] t=[0, 1] cp=[0, 0, 1, 1]

@@ -1,0 +1,137 @@
+{
+ "n": 5,
+ "seed": 20260916,
+ "trials": 1,
+ "NC": 42,
+ "lift_checks": 120,
+ "link": {
+  "V": 82,
+  "E": 570,
+  "T": 1100
+ },
+ "results": [
+  {
+   "label": "local triple {1,2,3} (resonant, not in Sigma^1)",
+   "a": {
+    "12": 1,
+    "13": 1,
+    "23": -2
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 0.0,
+    "summary": {
+     "pi1=1": 40,
+     "disconnected": 40,
+     "H1!=0": 40
+    },
+    "level1_types": 80,
+    "level2_types": 40
+   },
+   "verdict": "criterion not met in the trials"
+  },
+  {
+   "label": "generic, nonzero sum (Sigma^infinity)",
+   "a": {
+    "12": 679,
+    "13": 44,
+    "14": 699,
+    "15": 392,
+    "23": 965,
+    "24": 163,
+    "25": 892,
+    "34": 660,
+    "35": 112,
+    "45": 379
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 2.5,
+    "summary": {
+     "pi1=1": 120
+    },
+    "level1_types": 120,
+    "level2_types": 120
+   },
+   "verdict": "criterion passes at level 2"
+  },
+  {
+   "label": "generic zero sum (Sigma^{n-3} by Theorem M)",
+   "a": {
+    "12": 33,
+    "13": -506,
+    "14": 774,
+    "15": 560,
+    "23": 208,
+    "24": -104,
+    "25": 355,
+    "34": 173,
+    "35": 235,
+    "45": -1728
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 0.5,
+    "summary": {
+     "pi1=1": 112,
+     "H1!=0": 8
+    },
+    "level1_types": 120,
+    "level2_types": 112
+   },
+   "verdict": "criterion passes at level 1"
+  },
+  {
+   "label": "zero sum with c_12 = 0 (the open case)",
+   "a": {
+    "12": 0,
+    "13": 150,
+    "14": 254,
+    "15": 95,
+    "23": -503,
+    "24": -491,
+    "25": -646,
+    "34": -108,
+    "35": -450,
+    "45": 1699
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 0.0,
+    "summary": {
+     "pi1=1": 111,
+     "H1!=0": 9
+    },
+    "level1_types": 120,
+    "level2_types": 111
+   },
+   "verdict": "criterion not met in the trials"
+  },
+  {
+   "label": "zero sum with c_12 = 0 (second sample)",
+   "a": {
+    "12": 0,
+    "13": -72,
+    "14": 634,
+    "15": -157,
+    "23": 304,
+    "24": -147,
+    "25": 86,
+    "34": 671,
+    "35": -171,
+    "45": -1148
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 0.0,
+    "summary": {
+     "pi1=1": 113,
+     "H1!=0": 7
+    },
+    "level1_types": 120,
+    "level2_types": 113
+   },
+   "verdict": "criterion not met in the trials"
+  }
+ ]
+}

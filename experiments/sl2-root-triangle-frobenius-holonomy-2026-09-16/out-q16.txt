@@ -1,0 +1,2 @@
+(A) q=16: zero-holonomy semilinear gluings with agreeing explicit configuration: 40/40
+(B) q=16: |GL_f(F_2)|^3 = 8193540096000, semilinear triples = 216000, zero holonomy = 54000, nonzero holonomy semilinear = 162000

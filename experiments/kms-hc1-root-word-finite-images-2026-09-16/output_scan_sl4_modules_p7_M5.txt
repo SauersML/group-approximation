@@ -1,0 +1,22 @@
+R1 relators True
+R1 Sym^1: dim=4 q=7 rho(w)=I:True dimZ1=6 rank(delta->delta(w))=0
+R1 Sym^1 dual: dim=4 q=7 rho(w)=I:True dimZ1=6 rank(delta->delta(w))=0
+R1 Sym^2: dim=10 q=7 rho(w)=I:True dimZ1=10 rank(delta->delta(w))=0
+R1 Sym^2 dual: dim=10 q=7 rho(w)=I:True dimZ1=12 rank(delta->delta(w))=0
+R1 Sym^3: dim=20 q=7 rho(w)=I:True dimZ1=20 rank(delta->delta(w))=0
+R1 Sym^3 dual: dim=20 q=7 rho(w)=I:True dimZ1=22 rank(delta->delta(w))=0
+R1 Sym^4: dim=35 q=7 rho(w)=I:True dimZ1=35 rank(delta->delta(w))=0
+R1 Sym^4 dual: dim=35 q=7 rho(w)=I:True dimZ1=37 rank(delta->delta(w))=0
+R1 Sym^5: dim=56 q=7 rho(w)=I:True dimZ1=56 rank(delta->delta(w))=0
+R1 Sym^5 dual: dim=56 q=7 rho(w)=I:True dimZ1=58 rank(delta->delta(w))=0
+R2 relators True
+R2 Sym^1: dim=4 q=7 rho(w)=I:True dimZ1=7 rank(delta->delta(w))=0
+R2 Sym^1 dual: dim=4 q=7 rho(w)=I:True dimZ1=7 rank(delta->delta(w))=0
+R2 Sym^2: dim=10 q=7 rho(w)=I:True dimZ1=14 rank(delta->delta(w))=0
+R2 Sym^2 dual: dim=10 q=7 rho(w)=I:True dimZ1=14 rank(delta->delta(w))=0
+R2 Sym^3: dim=20 q=7 rho(w)=I:True dimZ1=24 rank(delta->delta(w))=0
+R2 Sym^3 dual: dim=20 q=7 rho(w)=I:True dimZ1=25 rank(delta->delta(w))=0
+R2 Sym^4: dim=35 q=7 rho(w)=I:True dimZ1=39 rank(delta->delta(w))=0
+R2 Sym^4 dual: dim=35 q=7 rho(w)=I:True dimZ1=41 rank(delta->delta(w))=0
+R2 Sym^5: dim=56 q=7 rho(w)=I:True dimZ1=60 rank(delta->delta(w))=0
+R2 Sym^5 dual: dim=56 q=7 rho(w)=I:True dimZ1=62 rank(delta->delta(w))=0

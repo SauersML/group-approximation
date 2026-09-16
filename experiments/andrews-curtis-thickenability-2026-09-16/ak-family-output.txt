@@ -1,0 +1,5 @@
+AK(1) | ['xYY', 'xyxYXY'] | E=9 V=4 c=1 F_target=7 | d_x=4 d_y=5 | orient: False (dfs nodes 73, 0.00s) | brute orient: False after 144 rotations | either: False (dfs nodes 247, 0.02s) | brute either: False after 576 rotations
+AK(2) | ['xxYYY', 'xyxYXY'] | E=11 V=4 c=1 F_target=9 | d_x=5 d_y=6 | orient: False (dfs nodes 336, 0.00s) | brute orient: False after 2880 rotations | either: False (dfs nodes 1166, 0.03s) | brute either: False after 11520 rotations
+AK(3) | ['xxxYYYY', 'xyxYXY'] | E=13 V=4 c=1 F_target=11 | d_x=6 d_y=7 | orient: False (dfs nodes 2213, 0.09s) | brute orient: False after 86400 rotations | either: False (dfs nodes 7257, 0.36s) | brute either: False after 345600 rotations
+AK(4) | ['xxxxYYYYY', 'xyxYXY'] | E=15 V=4 c=1 F_target=13 | d_x=7 d_y=8 | orient: False (dfs nodes 18239, 1.01s) | either: False (dfs nodes 59614, 3.59s)
+AK(5) | ['xxxxxYYYYYY', 'xyxYXY'] | E=17 V=4 c=1 F_target=15 | d_x=8 d_y=9 | orient: False (dfs nodes 176829, 11.87s) | either: False (dfs nodes 583625, 38.83s)

@@ -64,11 +64,17 @@ What is established (`subshift-ring-cartan-uniqueness-iff-groupoid-model-rigidit
 - **Test object for (D1).** Take the dihedral Sturmian groupoid: `D_∞ = ⟨T′, s⟩` acting on `X_α × Z/2` by
   `T′(x,e) = (Tx, e+1)` and `s(x,e) = (Rx, e+1)`, with `R` the reversal.
   - It is effective and minimal, with `Z/2` isotropy at the palindromic points, so it fails (D1).
-  - Open: is `LC(X_α × Z/2, F_2) ⋊ D_∞` isomorphic to some `R_Y`? A yes refutes this claim at `Y`.
+  - Asked: is `LC(X_α × Z/2, F_2) ⋊ D_∞` isomorphic to some `R_Y`? A yes would refute this claim at `Y`.
   - Details: artifact `research/artifacts/sk-cartan-counterexample-2026-09-13-part1.md` §5.
+  - **Settled no (2026-09-16).** `dihedral-sturmian-groupoid-algebra-is-no-subshift-ring`: its `K_1` is killed by 4, while
+    `K_1(R_Y) ≅ Z`. Over `F_2`, restriction to the rotation subring followed by induction is multiplication by 2, and the
+    reflection inverts `[u]` (`dihedral-cantor-crossed-product-k1-has-exponent-four`). More generally, no Cartan model has
+    an index-two structure `(H, B)` whose involutive full bisection `B` acts as `−id` on `K_1(A_(F_2)(H))`
+    (artifact `research/artifacts/dihedral-cantor-k1-exponent-four-2026-09-16.md` §5, Proposition 5).
+    This test object gives no counterexample; (D1) stays open for models whose isotropy has no such global structure.
 - **Sharpest decider.**
   - (a) find a ring isomorphism `R_X ≅ R_Y` between strongly orbit equivalent, non-flip-conjugate subshifts of equal
     complexity growth that is non-spatial on every corner. The standing candidates are proper orderings on one
     stationary Bratteli diagram.
   - (b) prove (D1) and (D2).
-  - (c) settle the dihedral test object.
+  - (c) settle the dihedral test object: done, negatively (see above). It refutes nothing.

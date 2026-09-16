@@ -1,0 +1,6 @@
+box10x10 n=100 diam=18 t=1 Z/2 reduced betti [0, 81, 0, 0]  (0.0s)
+box10x10 n=100 diam=18 t=2 Z/2 reduced betti [0, 0, 0, 0]  (0.0s)
+box10x10 n=100 diam=18 t=3 Z/2 reduced betti [0, 0, 0, 0]  (0.0s)
+box10x10 n=100 diam=18 t=4 Z/2 reduced betti [0, 0, 0, 0]  (0.3s)
+box10x10 n=100 diam=18 t=5 Z/2 reduced betti [0, 0, 0, 0]  (1.1s)
+box10x10 n=100 diam=18 t=6 Z/2 reduced betti [0, 0, 0, 0]  (3.0s)

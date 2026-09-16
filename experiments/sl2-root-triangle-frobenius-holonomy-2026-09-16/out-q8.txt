@@ -1,0 +1,11 @@
+(A) q=8: zero-holonomy semilinear gluings with agreeing explicit configuration: 80/80
+(B) q=8: |GL_f(F_2)|^3 = 4741632, semilinear triples = 9261, zero holonomy = 3087, nonzero holonomy semilinear = 6174
+(C) exponents (a12,a13,a23)=(1, 0, 2) holonomy=0: configurations over F with g_3 = I: 6
+(C) exponents (a12,a13,a23)=(0, 1, 0) holonomy=2: configurations over F with g_3 = I: 0
+(C) exponents (a12,a13,a23)=(0, 2, 2) holonomy=0: configurations over F with g_3 = I: 6
+(C) exponents (a12,a13,a23)=(2, 0, 0) holonomy=2: configurations over F with g_3 = I: 0
+(C) exponents (a12,a13,a23)=(0, 2, 2) holonomy=0: configurations over F with g_3 = I: 6
+(C) exponents (a12,a13,a23)=(2, 1, 0) holonomy=1: configurations over F with g_3 = I: 0
+(C) exponents (a12,a13,a23)=(0, 1, 1) holonomy=0: configurations over F with g_3 = I: 6
+(C) exponents (a12,a13,a23)=(2, 0, 1) holonomy=0: configurations over F with g_3 = I: 6
+(C) non-semilinear twist on E_12 only, identity elsewhere: configurations over F: 0

@@ -1,0 +1,43 @@
+3 1 5 random W0 #0 zero types 3 intervals 3 d 1 level 1 0.0s
+3 1 5 random W0 #1 zero types 3 intervals 3 d 1 level 1 0.0s
+3 1 5 first leaf zero types 13 d 3 exact level -1 0.0s
+3 1 7 random W0 #0 zero types 8 intervals 8 d 2 level 2 0.0s
+3 1 7 random W0 #1 zero types 8 intervals 8 d 2 level 2 0.0s
+3 1 7 first leaf zero types 66 d 5 exact level -1 0.0s
+3 1 9 random W0 #0 zero types 15 intervals 15 d 3 level 3 0.0s
+3 1 9 random W0 #1 zero types 15 intervals 15 d 3 level 3 0.1s
+3 1 9 first leaf zero types 281 d 7 greedy lower bound level -1 0.1s
+3 1 11 random W0 #0 zero types 34 intervals 24 d 4 level 4 0.1s
+3 1 11 random W0 #1 zero types 34 intervals 24 d 4 level 4 0.1s
+3 1 11 first leaf zero types 1138 d 9 greedy lower bound level -1 0.2s
+3 1 13 random W0 #0 zero types 143 intervals 35 d 5 level 5 0.4s
+3 1 13 random W0 #1 zero types 143 intervals 35 d 5 level 5 0.6s
+3 1 13 first leaf zero types 4544 d 11 greedy lower bound level -1 0.9s
+3 2 6 random W0 #0 zero types 6 intervals 6 d 2 level 1 0.9s
+3 2 6 random W0 #1 zero types 6 intervals 6 d 2 level 1 0.9s
+3 2 6 first leaf zero types 31 d 4 exact level -1 0.9s
+3 2 8 random W0 #0 zero types 14 intervals 12 d 3 level 2 0.9s
+3 2 8 random W0 #1 zero types 12 intervals 12 d 3 level 2 1.0s
+3 2 8 first leaf zero types 139 d 6 exact level -1 1.2s
+3 2 10 random W0 #0 zero types 35 intervals 20 d 4 level 3 1.2s
+3 2 10 random W0 #1 zero types 22 intervals 20 d 4 level 3 1.2s
+3 2 10 first leaf zero types 571 d 8 greedy lower bound level -1 1.3s
+3 2 12 random W0 #0 zero types 114 intervals 30 d 5 level 4 1.4s
+3 2 12 random W0 #1 zero types 66 intervals 30 d 5 level 4 1.4s
+3 2 12 first leaf zero types 2287 d 10 greedy lower bound level -1 1.6s
+4 1 7 random W0 #0 zero types 4 intervals 4 d 1 level 3 1.6s
+4 1 7 random W0 #1 zero types 4 intervals 4 d 1 level 3 1.6s
+4 1 7 first leaf zero types 61 d 5 exact level -1 1.6s
+4 1 10 random W0 #0 zero types 11 intervals 11 d 2 level 5 1.6s
+4 1 10 random W0 #1 zero types 11 intervals 11 d 2 level 5 1.6s
+4 1 10 first leaf zero types 529 d 8 greedy lower bound level -1 1.7s
+4 1 13 random W0 #0 zero types 21 intervals 21 d 3 level 7 1.8s
+4 1 13 random W0 #1 zero types 29 intervals 21 d 3 level 7 2.0s
+4 1 13 first leaf zero types 4255 d 11 greedy lower bound level -1 2.3s
+4 2 8 random W0 #0 zero types 7 intervals 7 d 2 level 3 2.3s
+4 2 8 random W0 #1 zero types 7 intervals 7 d 2 level 3 2.3s
+4 2 8 first leaf zero types 129 d 6 exact level -1 2.5s
+4 2 11 random W0 #0 zero types 15 intervals 15 d 3 level 5 2.5s
+4 2 11 random W0 #1 zero types 15 intervals 15 d 3 level 5 2.5s
+4 2 11 first leaf zero types 1068 d 9 greedy lower bound level -1 2.6s
+exit 0

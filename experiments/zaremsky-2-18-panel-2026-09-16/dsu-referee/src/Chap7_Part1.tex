@@ -1,0 +1,906 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Preliminaries}
+%%\section{Preliminaries}
+%\label{partpreliminaries}
+%This part will be divided as follows: In Section \ref{sectionROSSONCTs} we define the class of rank one symmetric spaces of noncompact type (\ROSSs). In Sections \ref{sectiongeometry1}-\ref{sectiongeometry2}, we define the class of hyperbolic metric spaces and study their geometry. In Section \ref{sectiondiscreteness}, we explore different notions of discreteness for groups of isometries of a metric space. In Section \ref{sectionclassification} we prove two classification theorems, one for isometries (Theorem \ref{classificationofisometries}) and one for semigroups of isometries (Theorem \ref{classificationofsemigroups}). Finally, in Section \ref{sectionlimitsets} we define and study the limit set of a semigroup of isometries.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draftnewpage
+\chapter{Limit sets} \label{sectionlimitsets}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Throughout this chapter, we fix a subsemigroup $G\prec\Isom(X)$. We define the \emph{limit set} of $G$, along with various subsets. We then define several concepts in terms of the limit set including elementariness and compact type, while relating other concepts to the limit set, such as the quasiconvex core and irreducibility of a group action. We also prove that the limit set is minimal in an approprate sense (Proposition \ref{propositionminimal} - Proposition \ref{propositionminimal2}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Modes of convergence to the boundary}
+\label{subsectionmodes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We recall (Observation \ref{observationboundaryconvergence}) that a sequence $(x_n)_1^\infty$ in $X$ converges to a point $\xi\in\del X$ if and only if
+\[
+\lb x_n|\xi\rb_\zero \tendsto n \infty.
+\]
+In this section we define more restricted modes of convergence. To get an intuition let us consider the case where $X = \E = \E^\alpha$ is the half-space model of a real hyperbolic space. Consider a sequence $(\xx_n)_1^\infty$ in $\E$ which converges to a point $\xi\in\BB := \del\E\butnot\{\infty\} = \HH^{\alpha - 1}$. We say that $\xx_n \to \xi$ \emph{conically} if there exists $\theta > 0$ such that if we let
+\[
+C(\xi,\theta) = \{\xx\in\E: x_1 \geq \sin(\theta)\|\xx - \xi\|\}
+\]
+then $\xx_n\in C(\xi,\theta)$ for all $n\in\N$. We call $C(\xi,\theta)$ the \emph{cone centered at $\xi$ with inclination $\theta$}; see Figure \ref{figurecone}.
+
+
+
+\definecolor{qqwuqq}{rgb}{0,0.39,0}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.69,-0.26) rectangle (5.35,3.56);
+\draw [shift={(0,0)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (147.02:0.44) arc (147.02:180:0.44) -- cycle;
+\draw (0,0)-- (4.26,2.76);
+\draw (-4.26,2.76)-- (0,0);
+\draw (-5,0)-- (5,0);
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1.2pt);
+\draw[color=black] (0.09,-0.17) node {$\xi$};
+\draw[color=black] (-0.60,0.18) node {$\theta$};
+\fill [color=black] (-1.62,2.69) circle (0.81pt);
+\fill [color=black] (0.35,1.2) circle (0.81pt);
+\fill [color=black] (-1.67,1.77) circle (0.81pt);
+\fill [color=black] (-0.26,1.24) circle (0.81pt);
+\fill [color=black] (0.04,0.64) circle (0.81pt);
+\draw[color=black] (0.35,2.2) node {$C(\xi,\theta)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Conical convergence to the boundary]{A sequence converging conically to $\xi$. For each point $\xx$, the height of $\xx$ is greater than $\sin(\theta)$ times the distance from $\xx$ to $\xi$.}
+\label{figurecone}
+\end{center}
+\end{figure}
+
+
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale=.5]{cone.png}}}
+%\caption{A sequence converging conically to $\xi$. For each point $\xx$, the height of $\xx$ is greater than $\sin(\theta)$ times the distance from $\xx$ to $\xi$.}
+%\label{figurecone}
+%\end{figure}
+
+
+\begin{proposition}
+\label{propositionradialconvergence}
+Let $(\xx_n)_1^\infty$ be a sequence in $\E$ converging to a point $\xi\in\BB$. Then the following are equivalent:
+\begin{itemize}
+\item[(A)] $(\xx_n)_1^\infty$ converges conically to $\xi$.
+\item[(B)] The sequence $(\xx_n)_1^\infty$ lies within a bounded distance of the geodesic ray $\geo\zero\xi$.
+\item[(C)] There exists $\sigma > 0$ such that for all $n\in\N$,
+\[
+\lb\zero|\xi\rb_{\xx_n}\leq\sigma,
+\]
+or equivalently
+\begin{equation}
+\label{sigmaradially}
+\xi\in\Shad(\xx_n,\sigma).
+\end{equation}
+\end{itemize}
+Moreover, the equivalence of (B) and (C) holds in all geodesic hyperbolic metric spaces.
+\end{proposition}
+\begin{proof}
+The equivalence of (B) and (C) follows directly from (i) of Proposition \ref{propositionrips}. Moreover, conditions (B) and (C) are clearly independent of the basepoint $\zero$. Thus, in proving (A) \iff (B) we may without loss of generality suppose that $\xi = \0$ and $\zero = (1,\0)$. Note that if $\theta > 0$ is fixed, then
+\[
+C(\0,\theta) = \{\xx\in\E : \ang(\xx) \leq \pi/2 - \theta\}
+= \{\xx\in\E : \theta(\xx) \leq -\log\cos(\pi/2 - \theta)\},
+\]
+where $\theta = \theta_{\0,\infty,\zero}$ is as in Proposition \ref{propositionrtheta}. Since $-\log\cos(\pi/2 - \theta) \to \infty$ as $\theta \to 0$, we have (A) if and only if the sequence $(\theta(\xx_n))_1^\infty$ is bounded. But
+\begin{align*}
+\theta(\xx_n) = \lb \0 | \infty \rb_{\xx_n}
+&\asymp_\plus \dist(\xx_n,\geo\0\infty) \by{(i) of Proposition \ref{propositionrips}}\\
+&=_\pt \dist(\xx_n,\geo\zero\0), &\text{(for $n$ sufficiently large)}
+\end{align*}
+which completes the proof.
+\end{proof}
+
+Condition (B) of Proposition \ref{propositionradialconvergence} motivates calling this kind of convergence \emph{radial}; we shall use this terminology henceforth. However, condition (C) is best suited to a general hyperbolic metric space.
+
+\begin{definition}
+\label{definitionradialconvergence}
+Let $(x_n)_1^\infty$ be a sequence in $X$ converging to a point $\xi\in\del X$. We will say that $(x_n)_1^\infty$ converges to $\xi$
+\begin{itemize}
+\item \emph{$\sigma$-radially} if \eqref{sigmaradially} holds for all $n\in\N$,
+\item \emph{radially} if it converges $\sigma$-radially for some $\sigma > 0$,
+\item \emph{$\sigma$-uniformly radially} if it converges $\sigma$-radially, $x_1 = \zero$, and
+\[
+\dist(x_n,x_{n + 1})\leq \sigma \all n\in\N,
+\]
+\item \emph{uniformly radially} if it converges $\sigma$-uniformly radially for some $\sigma > 0$.
+\end{itemize}
+\end{definition}
+Note that a sequence can converge $\sigma$-radially and uniformly radially without converging $\sigma$-uniformly radially.
+
+We next define horospherical convergence. Again, we motivate the discussion by considering the case of a real hyperbolic space $X = \E = \E^\alpha$. This time, however, we will let $\xi = \infty$, and we will say that a sequence $(\xx_n)_1^\infty$ converges \emph{horospherically} to $\xi$ if
+\[
+\height(\xx_n) \tendsto n \infty,
+\]
+where the \emph{height} of a point $\xx\in\E$ is its first coordinate $x_1$. This terminology comes from defining a \emph{horoball centered at $\infty$} to be a set of the form $H_{\infty,t} = \{\xx : \height(\xx) > e^t\}$; then $\xx_n\to\infty$ horospherically if and only if for every horoball $H_{\infty,t}$ centered at infinity, we have $\xx_n\in H_{\infty,t}$ for all sufficiently large $n$. (See also Definition \ref{definitionhoroball} below.)
+
+Recalling (cf. Proposition \ref{propositionbusemannE}) that
+\[
+\height(x) = b^{\busemann_\infty(\zero,x)},
+\]
+the above discussion motivates the following definition:
+\begin{definition}
+\label{definitionhorosphericalconvergence}
+A sequence $(x_n)_1^\infty$ in $X$ converges \emph{horospherically} to a point to $\xi\in\del X$ if
+\[
+\busemann_\xi(\zero,x_n)\tendsto n +\infty.
+\]
+\end{definition}
+
+\begin{observation}
+If $x_n\to\xi$ radially, then $x_n\to\xi$ horospherically.
+\end{observation}
+\begin{proof}
+Indeed,
+\[
+\busemann_\xi(\zero,x_n) \asymp_\plus \dox{x_n} - 2\lb\zero|\xi\rb_{x_n} \asymp_\plus \dox{x_n} \tendsto n \infty.
+\]
+\end{proof}
+
+The converse is false, as illustrated in Figure \ref{figurehorospherical}.
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.69,-0.39) rectangle (5.35,3.76);
+\draw (0,0)-- (4.26,2.76);
+\draw (-4.26,2.76)-- (0,0);
+\draw (-5,0)-- (5,0);
+\draw(0.03,1.86) circle (1.86cm);
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1.2pt);
+\draw[color=black] (0.12,-0.26) node {$\xi$};
+\fill [color=black] (-1.61,2.26) circle (0.81pt);
+\fill [color=black] (-0.91,0.42) circle (0.81pt);
+\fill [color=black] (-1.61,1.39) circle (0.81pt);
+\fill [color=black] (-1.32,0.75) circle (0.81pt);
+\fill [color=black] (-0.5,0.19) circle (0.81pt);
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Converging horospherically but not radially to the boundary]{A sequence converging horospherically but not radially to $\xi$.}
+\label{figurehorospherical}
+\end{center}
+\end{figure}
+
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale=.5]{horosphere.png}}}
+%\caption{A sequence converging horospherically but not radially to $\xi$.}
+%\label{figurehorospherical}
+%\end{figure}
+
+\begin{observation}
+\label{observationdependenceonbasepoint}
+The concepts of convergence, radial convergence, uniformly radial convergence, and horospherical convergence are independent of the basepoint $\zero$, whereas the concepts of $\sigma$-radial convergence and $\sigma$-uniformly radial convergence depend on the basepoint. (Regarding $\sigma$-radial convergence, this dependence on basepoint is not too severe; see Proposition \ref{propositionnearinvariance} below.)
+\end{observation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Limit sets}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We define the limit set of $G$, a subset of $\del X$ which encodes geometric information about $G$. We also define a few important subsets of the limit set.
+
+\begin{definition}
+\label{definitionlimitset}
+Let
+\begin{align*}
+\Lambda(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ for some $(g_n)_1^\infty \in G^\N$}\}\\
+\Lr(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ radially for some $(g_n)_1^\infty \in G^\N$}\}\\
+\Lrsigma(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ $\sigma$-radially for some $(g_n)_1^\infty \in G^\N$}\}\\
+\Lur(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ uniformly radially for some $(g_n)_1^\infty \in G^\N$}\}\\
+\Lursigma(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ $\sigma$-uniformly radially for some $(g_n)_1^\infty \in G^\N$}\}\\
+\Lh(G) &:= \{\eta\in\del X: g_n(\zero)\to \eta \text{ horospherically for some $(g_n)_1^\infty \in G^\N$}\}.
+\end{align*}
+These sets are respectively called the \emph{limit set}, \emph{radial limit set}, \emph{$\sigma$-radial limit set}, \emph{uniformly radial limit set}, \emph{$\sigma$-uniformly radial limit set}, and \emph{horospherical limit set} of the semigroup $G$.
+\end{definition}
+Note that
+\begin{align*}
+\Lr &= \bigcup_{\sigma > 0}\Lrsigma\\
+\Lur &= \bigcup_{\sigma > 0}\Lursigma\\
+\Lur &\subset \Lr \subset \Lh \subset \Lambda.
+\end{align*}
+
+\begin{observation}
+\label{observationlimitsets}
+The sets $\Lambda$, $\Lr$, $\Lur$, and $\Lh$ are invariant\Footnote{By \emph{invariant} we always mean \emph{forward invariant}.} under the action of $G$, and are independent of the basepoint $\zero$. The set $\Lambda$ is closed.
+\end{observation}
+\begin{proof}
+The first assertion follows from Observation \ref{observationdependenceonbasepoint} and the second follows directly from the definition of $\Lambda$ as the intersection of $\del X$ with the set of accumulation points of the set $G(\zero)$.
+\end{proof}
+
+
+\begin{proposition}[Near-invariance of the sets $\Lrsigma$]
+\label{propositionnearinvariance}
+For every $\sigma > 0$, there exists $\tau > 0$ such that for every $g\in G$, we have
+\begin{equation}
+\label{nearinvariance}
+g(\Lrsigma) \subset \Lrtau.
+\end{equation}
+If $X$ is strongly hyperbolic, then \eqref{nearinvariance} holds for all $\tau > \sigma$.
+\end{proposition}
+\begin{proof}
+Fix $\xi\in\Lrsigma$. There exists a sequence $(h_n)_1^\infty$ so that $h_n(\zero)\to \xi$ $\sigma$-radially, i.e.
+\[
+\lb \zero|\xi\rb_{h_n(\zero)} \leq \sigma\all n\in\N
+\]
+and $h_n(\zero)\to \xi$. Now
+\[
+\lb \zero|g^{-1}(\zero)\rb_{h_n(\zero)} \geq \dogo{h_n} - \dogo{g^{-1}} \tendsto n +\infty.
+\]
+Thus, for $n$ sufficiently large, Gromov's inequality gives
+\begin{equation}
+\label{ghnsigma}
+\lb g^{-1}(\zero)|\xi\rb_{h_n(\zero)} \lesssim_\plus \sigma
+\end{equation}
+i.e.
+\[
+\lb \zero|g(\xi)\rb_{gh_n(\zero)} \lesssim_\plus \sigma.
+\]
+So $gh_n(\zero)\to g(\xi)$ $\tau$-radially, where $\tau$ is equal to $\sigma$ plus the implied constant of this asymptotic. Thus, $g(\xi)\in\Lrtau$.
+
+If $X$ is strongly hyperbolic, then by using \eqref{gromovforCAT} instead of Gromov's inequality, the implied constant of \eqref{ghnsigma} can be made arbitrarily small. Thus $\tau$ may be taken arbitrarily close to $\sigma$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Cardinality of the limit set}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we characterize the cardinality of the limit set according to the classification of the semigroup $G$.
+
+\begin{proposition}[Cardinality of the limit set by classification]
+\label{propositioncardinalitylimitset}
+Fix $G\prec\Isom(X)$.
+\begin{itemize}
+\item[(i)] If $G$ is elliptic, then $\LambdaG = \emptyset$.
+\item[(ii)] If $G$ is parabolic or inward focal with global fixed point $\xi$, then $\LambdaG = \{\xi\}$.
+\item[(iii)] If $G$ is lineal with fixed pair $\{\xi_1,\xi_2\}$, then $\LambdaG \subset \{\xi_1,\xi_2\}$, with equality if $G$ is a group.
+\item[(iv)] If $G$ is outward focal or of general type, then $\#(\LambdaG) \geq \#(\R)$. Equality holds if $X$ is separable.
+\end{itemize}
+\end{proposition}
+Case (i) is immediate, while case (iv) requires the theory of Schottky groups and will be proven in Chapter \ref{sectionschottky} (see Proposition \ref{propositionnonelementaryequivalent}).
+\begin{proof}[Proof of \text{(ii)}]
+For $g\in G$, $g'(\xi) \leq 1$, so by Proposition \ref{propositionbusemannpreserved}, we have $\busemann_\xi(g(\zero),\zero) \lesssim_\plus 0$. In particular, by (h) of Proposition \ref{propositionbasicidentities} we have
+\[
+\lb x | \xi \rb_\zero \gtrsim_\plus \frac12 \dox x \all x\in G(\zero).
+\]
+This implies that $x_n\to \xi$ for any sequence $(x_n)_1^\infty$ in $G(\zero)$ satisfying $\dox{x_n}\to \infty$. It follows that $\LambdaG = \{\xi\}$.
+\end{proof}
+\begin{proof}[Proof of \text{(iii)}]
+By Lemma \ref{lemmatranslationdistance} we have
+\[
+\theta(g(\zero)) \asymp_\plus \theta(\zero) = \zero \all g\in G,
+\]
+where $\theta = \theta_{\xi_1,\xi_2,\zero} = \theta_{\xi_2,\xi_1,\zero}$ is as in Section \ref{subsectionpolar}. Thus
+\[
+\lb \xi_1 | \xi_2 \rb_x \asymp_\plus 0 \all x\in G(\zero).
+\]
+Fix a sequence $G(\zero)\ni x_n \to \xi\in\LambdaG$. By Gromov's inequality, there exists $i = 1,2$ such that
+\[
+\lb \zero | \xi_i \rb_{x_n} \asymp_\plus 0 \text{ for infinitely many $n$.}
+\]
+It follows that $x_n \to \xi_i$ radially along some subsequence, and in particular $\xi = \xi_i$. Thus $\LambdaG \subset \{\xi_1,\xi_2\}$.
+\end{proof}
+
+\begin{definition}
+\label{definitionelementary}
+Fix $G\prec\Isom(X)$. $G$ is called \emph{elementary} if $\#(\Lambda) < \infty$ and \emph{nonelementary} if $\#(\Lambda) = \infty$.
+\end{definition}
+
+Thus, according to Proposition \ref{propositioncardinalitylimitset}, elliptic, parabolic, lineal, and inward focal semigroups are elementary while outward focal semigroups and semigroups of general type are nonelementary.
+
+\begin{remark}
+In the Standard Case, some authors (e.g. \cite[\65.5]{Ratcliffe}) define a subgroup of $\Isom(X)$ to be elementary if there is a global fixed point or a global fixed geodesic line. According to this definition, focal groups are considered elementary. By contrast, we follow \cite{CCMT} and others in considering them to be nonelementary.
+
+Another common definition in the Standard Case is that a group is elementary if it is virtually abelian. This agrees with our definition, but beyond the Standard Case this equivalence no longer holds (cf. Observation \ref{observationmargulislemma} and Remark \ref{remarkmargulislemma}).
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Minimality of the limit set}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Observation \ref{observationlimitsets} identified the limit set $\Lambda$ as a closed $G$-invariant subset of the Gromov boundary $\del X$. In this section, we give a characterization of $\Lambda$ depending on the classification of $G$.
+
+\begin{proposition}[Cf. {\cite[Th\'eor\`eme 5.1]{Coornaert}}]
+\label{propositionminimal}
+Fix $G\prec\Isom(X)$. Then any closed $G$-invariant subset of $\del X$ containing at least two points contains $\Lambda$.
+\end{proposition}
+\begin{proof}
+We begin with the following lemma, which will also be useful later:
+\begin{lemma}
+\label{lemmaminimal}
+Let $(x_n)_1^\infty$, $(y_n^{(1)})_1^\infty$, $(y_n^{(2)})_1^\infty$ be sequences in $\bord X$ satisfying
+\[
+\lb y_n^{(1)} | y_n^{(2)} \rb_{x_n} \asymp_\plus 0
+\]
+and
+\[
+x_n \to \xi\in\del X.
+\]
+Then $\xi\in\cl{\{y_n^{(i)} : n\in\N , i = 1,2\}}$.
+\end{lemma}
+\begin{subproof}
+For $n\in\N$ fixed, by Gromov's inequality there exists $i_n = 1,2$ such that
+\[
+\lb \zero | y_n^{(i_n)} \rb_{x_n} \asymp_\plus 0.
+\]
+It follows that
+\[
+\lb x_n | y_n^{(i_n)}\rb_\zero \asymp_\plus \dox{x_n} \tendsto n \infty.
+\]
+On the other hand
+\[
+\lb x_n | \xi\rb_\zero \tendsto n \infty,
+\]
+so by Gromov's inequality
+\[
+\lb y_n^{(i_n)} | \xi \rb_\zero \tendsto n \infty,
+\]
+i.e. $y_n^{(i_n)} \to \xi$.
+\end{subproof}
+Now let $F$ be a closed $G$-invariant subset of $\del X$ containing two points $\xi_1\neq\xi_2$, and let $\eta\in\Lambda$. Then there exists a sequence $(g_n)_1^\infty$ so that $g_n(\zero)\to\eta$. Applying Lemma \ref{lemmaminimal} with $x_n = g_n(\zero)$ and $y_n^{(i)} = g_n(\xi_i)\in F$ completes the proof.
+
+%Let $F$ be a closed $G$-invariant subset of $\del X$ containing two points $\xi_1\neq\xi_2$, and let $\eta\in\Lambda$. Then there exists a sequence $(g_n)_1^\infty$ so that $g_n(\zero)\to\eta$. We have
+%\[
+%0 \asymp_{\plus,\xi_1,\xi_2} \lb \xi_1|\xi_2\rb_\zero
+%\gtrsim_\plus \min\left(\lb g_n^{-1}(\zero)|\xi_1\rb_\zero,\lb g_n^{-1}(\zero)|\xi_2\rb_\zero\right).
+%\]
+%Let $i_n$ be $1$ or $2$, depending on which term in the minimum is smaller. We then have 
+%\[
+%\lb g_n^{-1}(\zero)|\xi_{i_n}\rb_\zero \asymp_{\plus,\xi_1,\xi_2} 0,
+%\]
+%or equivalently
+%\[
+%\lb g_n(\zero)|g_n(\xi_{i_n})\rb_\zero \asymp_{\plus,\xi_1,\xi_2} \dogo{g_n} \tendsto n \infty.
+%\]
+%On the other hand, since $g_n(\zero)\to\eta$ we have
+%\[
+%\lb g_n(\zero)|\eta\rb_\zero\tendsto n \infty.
+%\]
+%Applying Gromov's inequality yields
+%\[
+%\lb g_n(\xi_{i_n})|\eta\rb_\zero \tendsto n \infty
+%\]
+%and thus $g_n(\xi_{i_n})\to\eta$. But $g_n(\xi_{i_n})\in F$ for all $n$ by the $G$-invariance of $F$; since $F$ is closed we have $\eta\in F$.
+\end{proof}
+The proof of Proposition \ref{propositionminimal} may be compared to the proof of \cite[Theorem 3.1]{FSU4}, where a quantitative convergence result is proven assuming that $\eta$ is in the radial limit set (and assuming that $G$ is a group).
+
+\begin{corollary}
+\label{corollaryminimal}
+Let $G\prec\Isom(X)$ be nonelementary.
+\begin{itemize}
+\item[(i)] If $G$ is outward focal with global fixed point $\xi$, then $\LambdaG$ is the smallest closed $G$-invariant subset of $\del X$ which contains a point other than $\xi$.
+\item[(ii)] (Cf. {\cite[Theorem 5.3.7]{Beardon_book}}) If $G$ is of general type, then $\LambdaG$ is the smallest nonempty closed $G$-invariant subset of $\del X$.
+\end{itemize}
+\end{corollary}
+\begin{proof}
+Any $G$-invariant set containing a point which is not fixed by $G$ contains two points.
+\end{proof}
+
+\begin{corollary}
+Let $G\prec\Isom(X)$ be nonelementary. Then
+\[
+\Lambda = \cl{\Lr} = \cl{\Lur}.
+\]
+\end{corollary}
+\begin{proof}
+The implications $\supset$ are clear. On the other hand, for each loxodromic $g\in G$ we have $g_+\in\Lur$. Thus $\Lur\neq\emptyset$, and $\Lur\nsubset\{\xi\}$ if $G$ is outward focal with global fixed point $\xi$. By Proposition \ref{propositioncardinalitylimitset}, $G$ is either outward focal or of general type. Applying Corollary \ref{corollaryminimal}, we have $\cl{\Lur}\supset\LambdaG$.
+\end{proof}
+
+\begin{remark}
+If $G$ is elementary, it is easily verified that $\Lambda = \Lr = \Lur$ unless $G$ is parabolic, in which case $\Lr = \Lur = \emptyset \propersubset \Lambda$.
+\end{remark}
+
+If $G$ is a nonelementary group, then Corollary \ref{corollaryminimal} immediately implies that the set of loxodromic fixed points of $G$ is dense in $\Lambda$. However, if $G$ is not a group then this conclusion does not follow, since the set of attracting loxodromic fixed points is not necessarily $G$-invariant. (The set of attracting fixed points is the right set to consider, since the set of repelling fixed points is not necessarily a subset of $\Lambda$.) Nevertheless, we have the following:
+
+\begin{proposition}
+\label{propositionminimal2}
+Let $G\prec\Isom(X)$ be nonelementary. Then the set
+\[
+\Lambda_+ := \{g_+ : g\in G \text{ is loxodromic}\}.
+\]
+is dense in $\Lambda$.
+\end{proposition}
+\begin{proof}
+First note that it suffices to show that $\cl{\Lambda_+}$ contains all elements of $\Lambda$ which are not global fixed points. Indeed, if this is true, then $\cl{\Lambda_+}$ is $G$-invariant, and applying Corollary \ref{corollaryminimal} completes the proof.
+
+Fix $\xi\in\Lambda$ which is not a global fixed point of $G$, and choose $h\in G$ such that $h(\xi)\neq \xi$. Fix $\epsilon > 0$ small enough so that $\Dist(B,h(B)) > \epsilon$, where $B = B(\xi,\epsilon)$. Let $\sigma > 0$ be large enough so that the Big Shadows Lemma \ref{lemmabigshadow} holds. Since $\xi\in\Lambda$, there exists $g\in G$ such that
+\[
+\Shad(g(\zero),\sigma) \subset B.
+\]
+Let $Z = g^{-1}(\Shad(g(\zero),\sigma)) = \Shad_{g^{-1}(\zero)}(\zero,\sigma)$. Then by Lemma \ref{lemmabigshadow}, $\Diam(\del X\butnot Z)\leq\epsilon$. Thus $\del X\butnot Z$ can intersect at most one of the sets $B$, $h(B)$. So $B\subset Z$ or $h(B)\subset Z$. If $B\subset Z$ then
+\[
+g(B) \subset B \text{ and } B \subset \Shad_{g^{-1}(\zero)}(\zero,\sigma),
+\]
+whereas if $h(B)\subset Z$ then
+\[
+gh(B) \subset B \text{ and } B \subset \Shad_{(gh)^{-1}(\zero)}(\zero,\sigma + \dogo h).
+\]
+So by Lemma \ref{lemmaloxodromic}, we have $j_+\in B$, where $j = g$ or $j = gh$ is a loxodromic isometry.
+%Fix $\sigma > 0$ large to be determined, and let $r$ be large enough so that Corollary \ref{corollaryloxodromic} holds. Since $\xi\in\Lambda$, there exists $g\in G$ with $\lb g(\zero)|\xi\rb_\zero \geq \sigma$. By contradiction suppose that $g$ and $hg$ are both not loxodromic. Then
+%\begin{align*}
+%\Dist(\xi,h(\xi)) &\leq_{\phantom{\times,h}} \Dist(g(\zero),\xi) + \Dist(g(\zero),g^{-1}(\zero)) + \Dist(g^{-1}(\zero),g^{-1}h^{-1}(\zero))\\
+%&\hspace{.5 in} + \Dist(g^{-1}h^{-1}(\zero), hg(\zero)) + \Dist(hg(\zero),h(\xi))\\
+%&\lesssim_{\times,h} b^{-\sigma} \tendsto\sigma 0.
+%\end{align*}
+%By choosing $\sigma$ large enough, this is a contradiction. Thus at least one of $g,hg$ is loxodromic. Let $j$ denote this loxodromic element. The proof of Lemma \ref{lemmaloxodromic} shows that [Continue\internal]
+\end{proof}
+
+The following improvement over Proposition \ref{propositionminimal2} has a quite intricate proof:
+
+\begin{proposition}[Cf. {\cite[Theorem 5.3.8]{Beardon_book}}, {\cite[p.349]{Koebe}}]
+\label{propositionminimal3}
+Let $G\prec\Isom(X)$ be of general type. Then
+\[
+\{(g_+,g_-) : g\in G \text{ is loxodromic}\}
+\]
+is dense in $\Lambda(G)\times\Lambda(G^{-1})$. Here $G^{-1} = \{g^{-1} : g\in G\}$.
+\end{proposition}
+\begin{proof}
+
+\begin{claim}
+\label{claimi04}
+Let $g$ be a loxodromic isometry and fix $\epsilon > 0$. There exists $\delta = \delta(\epsilon,g)$ such that for all $\xi_1,\xi_2\in\del X$ with $\Dist(\xi_2,\Fix(g)) \geq \epsilon$,
+\[
+\#\{i = 0,\ldots,4 : \Dist(g^i(\xi_1),\xi_2) \leq \delta\} \leq 1.
+\]
+\end{claim}
+\begin{subproof}
+Suppose that $\Dist(g^i(\xi_1),\xi_2) \leq \delta$ for two distinct values of $i$. Then $\Dist(g^{i_1}(\xi_1),g^{i_2}(\xi_1)) \leq 2\delta$. For every $n$, we have
+\[
+\Dist(g^{n + i_1}(\xi_1),g^{n + i_2}(\xi_1)) \lesssim_\times b^{\dogo{g^n}}\delta
+\]
+and thus by the triangle inequality
+\[
+\Dist(g^{i_1}(\xi_1),g^{n(i_2 - i_1) + i_1}(\xi_1)) \lesssim_{\times,n} \delta.
+\]
+By Theorem \ref{theoremloxodromicextra}, if $n$ is sufficiently large then $\Dist(g^{n(i_2 - i_1) + i_1}(\xi_1), g_+) \leq \epsilon/2$, which implies that
+\[
+\epsilon/2 \leq \Dist(\xi_2,\Fix(g)) - \Dist(g^{n(i_2 - i_1) + i_1}(\xi_1), g_+) \leq \Dist(\xi_2, g^{n(i_2 - i_1) + i_1}(\xi_1)) \lesssim_{\times,n} \delta,
+\]
+which is a lower bound on $\delta$ independent of $\xi_1,\xi_2$. Choosing $\delta$ less than this lower bound yields a contradiction.
+\end{subproof}
+
+\begin{claim}
+\label{claimxi1234}
+There exist $\epsilon,\rho > 0$ such that for all $\xi_1,\xi_2,\xi_3,\xi_4\in\Lambda$, there exists $j\in G$ such that
+\begin{equation}
+\label{xi1234}
+\Dist(j(\xi_k),\xi_\ell) \geq \epsilon \all k = 1,2 \all \ell = 3,4 \text{ and } \dogo j \leq \rho.
+\end{equation}
+\end{claim}
+\begin{subproof}
+Fix $g,h\in G$ loxodromic with $\Fix(g)\cap\Fix(h) = \emptyset$, and let
+\[
+\rho = \max_{i = 0}^4 \max_{j = 0}^4 \dogo{g^i h^j}.
+\]
+Now fix $\xi_1,\xi_2,\xi_3,\xi_4\in\Lambda$. By Claim \ref{claimi04}, for each $k = 1,2$ and $\eta\in\Fix(g)$, we have
+\[
+\#\{j = 0,\ldots,4 : \Dist(h^j(\xi_k),\eta) \leq \delta_1 := \delta(\Dist(\Fix(g),\Fix(h)),h)\} \leq 1.
+\]
+It follows that there exists $j\in\{0,\ldots,4\}$ such that $\Dist(h^j(\xi_k),\eta) \geq \delta_1$ for all $k = 1,2$ and $\eta\in\Fix(g)$. Applying Claim \ref{claimi04} again, we see that for each $k = 1,2$ and $\ell = 3,4$, we have
+\[
+\#\{i = 0,\ldots,4 : \Dist(g^{-i}(\xi_\ell),h^j(\xi_k)) \leq \delta_2 := \delta(\delta_1,g^{-1})\} \leq 1.
+\]
+It follows that there exists $i\in\{0,\ldots,4\}$ such that $\Dist(g^{-i}(\xi_\ell),h^j(\xi_k)) \geq \delta_2$ for all $k = 1,2$ and $\ell = 3,4$. But then
+\[
+\Dist(g^i h^j(\xi_k) , \xi_\ell) \gtrsim_\times \delta_2,
+\]
+completing the proof.
+\end{subproof}
+
+Now fix $\xi_+\in\Lambda$, $\xi_-\in\Lambda(G^{-1})$ distinct, and fix $\delta > 0$ arbitrarily small. By the definition of $\Lambda$, there exist $g,h\in G$ such that
+\[
+\Dist(g(\zero),\xi_+) , \Dist(h^{-1}(\zero),\xi_-) \leq \delta.
+\]
+Let $\sigma > 0$ be large enough so that the Big Shadows Lemma \ref{lemmabigshadow} holds for $\epsilon = \epsilon/2$, where $\epsilon$ is as in Claim \ref{claimxi1234}. Then
+\[
+\Diam(\del X\butnot\Shad_{g^{-1}(\zero)}(\zero,\sigma)) , \Diam(\del X\butnot \Shad_{h(\zero)}(\zero,\sigma)) \leq \epsilon/2.
+\]
+On the other hand,
+\[
+\Diam(\Shad(g(\zero),\sigma)) , \Diam(\Shad(h^{-1}(\zero),\sigma)) \lesssim_\times \delta.
+\]
+Since $\Shad(g(\zero),\sigma)$ is far from $h^{-1}(\zero)$ and $\Shad(h^{-1}(\zero),\sigma)$ is far from $g(\zero)$, the Bounded Distortion Lemma \ref{lemmaboundeddistortion} gives
+\[
+\Diam(h(\Shad(g(\zero),\sigma))) , \Diam(g^{-1}(\Shad(h^{-1}(\zero),\sigma))) \lesssim_\times \delta.
+\]
+Choose $\xi_1\in h(\Shad(g(\zero),\sigma))$, $\xi_2\in g^{-1}(\Shad(h^{-1}(\zero),\sigma))$, $\xi_3\in \del X\butnot\Shad_{g^{-1}(\zero)}(\zero,\sigma)$ and $\xi_4\in \del X\butnot\Shad_{h(\zero)}(\zero,\sigma)$. By Claim \ref{claimxi1234}, there exists $j\in G$ such that \eqref{xi1234} holds. Then
+\[
+\Diam(jh(\Shad(g(\zero),\sigma))) , \Diam(j^{-1} g^{-1}(\Shad(h^{-1}(\zero),\sigma))) \lesssim_\times \delta,
+\]
+and by choosing $\delta$ sufficiently small, we can make these diameters less than $\epsilon/2$. It follows that
+\begin{align*}
+jh(\Shad(g(\zero),\sigma)) &\subset \Shad_{g^{-1}(\zero)}(\zero,\sigma), \text{ and }\\ 
+j^{-1} g^{-1}(\Shad(h^{-1}(\zero),\sigma)) &\subset \Shad_{h(\zero)}(\zero,\sigma)
+\end{align*}
+or equivalently that
+\begin{align*}
+gjh(\Shad(g(\zero),\sigma)) &\subset \Shad(g(\zero),\sigma), \text{ and }\\ 
+(gjh)^{-1}(\Shad(h^{-1}(\zero),\sigma)) &\subset \Shad(h^{-1}(\zero),\sigma).
+\end{align*}
+By Lemma \ref{lemmaloxodromic}, it follows that $gjh$ is a loxodromic isometry satisfying
+\[
+(gjh)_+\in\Shad(g(\zero),\sigma) ,\; (gjh)_-\in\Shad(h^{-1}(\zero),\sigma).
+\]
+In particular $\Dist((gjh)_+,\xi_+) , \Dist((gjh)_-,\xi_-) \lesssim_\times \delta$. Since $\delta$ was arbitrary, this completes the proof.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Convex hulls}
+\label{subsectionconvexhulls}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, we assume that $X$ is regularly geodesic (see Section \ref{subsectiongeodesicsCAT}). Recall that for points $x,y\in\bord X$, the notation $\geo xy$ denotes the geodesic segment, line, or ray joining $x$ and $y$.
+
+\begin{definition}
+\label{definitionconvexhull}
+Given $S\subset\bord X$, let
+\begin{align*}
+\Hull_1(S) &:= \bigcup_{x,y\in S} \geo xy,\\
+\Hull_n(S) &:= \underbrace{\Hull_1\cdots \Hull_1}_{\text{$n$ times}}(S)\\
+\Hull_\infty(S) &:= \cl{\bigcup_{n\in\N}\Hull_n(S)}.
+\end{align*}
+The set $\Hull_n(S)$ will be called the \emph{$n$th convex hull} of $S$. Moreover, $\Hull_\infty(S)$ will be called the \emph{convex hull} of $S$, and $\Hull_1(S)$ will be called the \emph{quasiconvex hull} of $S$.
+\end{definition}
+
+The terminology ``convex hull'' comes from the following fact:
+
+\begin{proposition}
+\label{propositionconvexhull}
+$\Hull_\infty(S)$ is the smallest closed set $F\subset \bord X$ such that $S\subset F$ and
+\begin{equation}
+\label{convex}
+\geo xy\subset F \all x,y\in F.
+\end{equation}
+\end{proposition}
+A set $F$ satisfying \eqref{convex} will be called \emph{convex}.
+\begin{proof}
+It is clear that $S\subset\Hull_\infty(S)\subset\bord X$. To show that $\Hull_\infty(S)$ is convex, fix $x,y\in\Hull_\infty(S)$. Then there exist sequences $A\ni x_n\to x$ and $A\ni y_n\to y$, where $A = \bigcup_{n\in\N}\Hull_n(S)$. For each $n$, $\geo{x_n}{y_n}\subset A\subset \Hull_\infty(S)$. But since $X$ is regularly geodesic, $\geo{x_n}{y_n}\to \geo xy$ in the Hausdorff metric on $\bord X$. Since $\Hull_\infty(S)$ is closed, it follows that $\geo xy\subset\Hull_\infty(S)$.
+
+Conversely, if $S\subset F\subset \bord X$ is a closed convex set, then an induction argument shows that $F\supset \Hull_n(S)$ for all $n$. Since $F$ is closed, we have $F\supset \Hull_\infty(S)$.
+\end{proof}
+
+Another connection between the operations $\Hull_1$ and $\Hull_\infty$ is given by the following proposition:
+
+\begin{proposition}
+\label{propositionhull}
+Suppose that $X$ is a algebraic hyperbolic space. Then there exists $\tau > 0$ such that for every set $S\subset\bord X$ we have
+\[
+X\cap \Hull_1(S) \subset X\cap \Hull_\infty(S) \subset \thicken_\tau(X\cap\Hull_1(S)).
+\]
+(Recall that $\thicken_\tau(S)$ denotes the $\tau$-thickening of a set with respect to the hyperbolic metric $\dist$.)
+\end{proposition}
+\begin{proof}
+The proof will proceed using the ball model $X = \B = \B_\F^\alpha$. We will need the following lemma:
+\begin{lemma}
+\label{lemmaF}
+There exists a closed convex set $F\propersubset\bord\B$ whose interior intersects $\del\B$.
+\end{lemma}
+\begin{subproof}
+If $\alpha < \infty$, this is a consequence of \cite[Theorem 3.3]{Anderson}.
+
+We will use the finite-dimensional case to prove the infinite-dimensional case. Suppose that $\alpha$ is infinite. Let $Y = \B_\F^3 \subset X$. Then by the $\alpha < \infty$ case of Lemma \ref{lemmaF}, there exists a closed convex set $F_2 \propersubset\bord Y$ whose interior intersects $\del Y$, say $\xi\in \interior(F_2)\cap\del Y$. Choose $\epsilon > 0$ such that $B_Y(\xi,\epsilon) \subset F_2$. Then
+\[
+F_1 := \Hull_\infty(B_Y(\xi,\epsilon)) \subset F_2 \propersubset \bord Y
+\]
+by Proposition \ref{propositionconvexhull}. On the other hand, $F_1$ is invariant under the action of the group
+\[
+G_1 := \{g\in\Isom(Y) : g(\0) = \0, g(\xi) = \xi\}.
+\]
+Let
+\[
+G = \{g\in\Isom(X) : g(\0) = \0, g(\xi) = \xi\},
+\]
+and note that $G(\bord Y) = \bord X$. Let $F = G(F_1)$, and note that $F\cap \bord Y = F_1$. We claim that $F$ is convex. Indeed, suppose that $x,y\in F$; then there exists $g\in G$ such that $g(x),g(y)\in\bord Y$. (Note that in this step, we need all three dimensions of $Y$.) Then $g(x),g(y)\in F\cap \bord Y = F_1$, so by the convexity of $F_1$ we have $g(\geo xy) = \geo{g(x)}{g(y)} \subset F_1 \subset F$. Since $F$ is $G$-invariant, we have $\geo xy\subset F$.
+
+In addition to being convex, $F$ is also closed and contains the set $G(B_Y(\xi,\epsilon)) = B_X(\xi,\epsilon)$. Thus, $\xi\in\interior(F)$. Finally, since $F\cap \bord Y = F_1 \propersubset \bord Y$, it follows that $F\propersubset\bord X$.
+\end{subproof}
+Let $F$ be as in Lemma \ref{lemmaF}. Since $F\propersubset\bord\B$ is a closed set, it follows that $\B\butnot F\neq\emptyset$. By the transitivity of $\Isom(\B)$ (Observation \ref{observationtransitivity}), we may without loss of generality assume that $\0\in\B\butnot F$. By the transitivity of $\Stab(\Isom(\B);\0)$ on $\del\B$, we may without loss of generality assume that $\ee_1\in\interior(F)$. Fix $\epsilon > 0$ such that $B(\ee_1,\epsilon) \subset F$.
+
+We now proceed with the proof of Proposition \ref{propositionhull}. It is clear from the definitions that $\B\cap\Hull_1(S) \subset \B\cap\Hull_\infty(S)$. To prove the second inclusion, fix $\zz\in\B \butnot \thicken_\tau(\Hull_1(S))$ and we will show that $\zz\notin\Hull_\infty(S)$. By the transitivity of $\Isom(\B)$, we may without loss of generality assume that $\zz = \0$. Now for every $\xx, \yy\in S$, we have $\zz = \0 \notin \thicken_\tau(\geo\xx\yy)$. By (i) of Proposition \ref{propositionrips}, we have
+\[
+\lb \xx | \yy \rb_\0 \gtrsim_\plus \tau
+\]
+and thus by \eqref{euclideanball1},
+\[
+\|\yy - \xx\| \lesssim_\times e^{-\tau}.
+\]
+By choosing $\tau$ sufficiently large, this implies that
+\[
+\|\yy - \xx\| \leq \epsilon/2 \all \xx,\yy\in S.
+\]
+Moreover, since $\dist(\0,\xx) = 2\lb \xx | \xx \rb_\0 \gtrsim_\plus \tau$, by choosing $\tau$ sufficiently large we may guarantee that
+\[
+\|\xx\| \geq 1 - \epsilon/2 \all \xx\in S.
+\]
+Since the claim is trivial if $S = \emptyset$, assume that $S\neq \emptyset$ and choose $\xx\in S$. Without loss of generality, assume that $\xx = \lambda \ee_1$ for some $\lambda \geq 2/3$. Then $S \subset B_\EE(\xx,\epsilon/2) \subset B(\ee_1,\epsilon) \subset F$. But then $F$ is a closed convex set containing $S$, so by Proposition \ref{propositionconvexhull} $\Hull_\infty(S) \subset F$. Since $\zz = \0 \notin F$, it follows that $\zz\notin\Hull_\infty(S)$.
+\end{proof}
+\begin{corollary}
+\label{corollaryanderson}
+Suppose that $X$ is an algebraic hyperbolic space. Then for every closed set $S\subset\bord X$, we have
+\[
+\Hull_\infty(S) \cap \del X = S\cap \del X.
+\]
+\end{corollary}
+\begin{proof}
+The inclusion $\supset$ is immediate. Suppose that $\xi\in\Hull_\infty(S)\cap\del X$, and find a sequence $X\cap\Hull_\infty(S)\ni x_n\to \xi$. By Proposition \ref{propositionhull}, for each $n$ there exist $y_n^{(1)},y_n^{(2)}\in S$ such that $x_n\in\thicken_\tau(\geo{y_n^{(1)}}{y_n^{(2)}})$; by Proposition \ref{propositionrips} we have $\lb y_n^{(1)} | y_n^{(2)}\rb_{x_n} \asymp_\plus 0$. Applying Lemma \ref{lemmaminimal} gives $\xi\in S$.
+\end{proof}
+
+\begin{remark}
+Corollary \ref{corollaryanderson} was proven for the case where $X$ is a pinched (finite-dimensional) Hadamard manifold and $S\subset\del X$ by M. T. Anderson \cite[Theorem 3.3]{Anderson}. It was conjectured to hold whenever $X$ is ``strictly convex'' by Gromov \cite[p.11]{Gromov1}, who observed that it holds in the Standard Case. However, this conjecture was proven to be false independently by A. Ancona \cite[Corollary C]{Ancona} and A. Borb\'ely \cite[Theorem 1]{Borbely}, who each constructed a three-dimensional CAT(-1) manifold $X$ and a point $\xi\in\del X$ such that for every neighborhood $U$ of $\xi$, $\Hull_\infty(U) = \bord X$.% As late as 2006, it was stated by N. Monod \cite[p.789]{Monod} that Corollary \ref{corollaryanderson} was open for infinite-dimensional complex hyperbolic spaces. In particular, in the notation of \cite{Monod}, Corollary \ref{corollaryanderson} shows that $\scrT_c \given \del X = \scrT \given\del X$ whenever $X$ is a \ROSS\ (in particular, including the case where $X$ is an infinite-dimensional complex hyperbolic space).
+
+
+%If $X$ is not assumed to be a \ROSS, then the validity of Proposition \ref{propositionhull} is far from clear. Its proof depended on the existence of ``large'' convex sets (i.e. those whose interior contains a point of $\del X$) which are nonetheless not equal to all of $\bord X$. The existence of such sets holds for many CAT(-1) spaces which it is easy to think of, and in particular for complex and quaternionic hyperbolic space, $\R$-trees, and for two-dimensional Riemannian manifolds with curvature $\leq -1$, but it is by no means clear that it holds for all regularly geodesic hyperbolic metric spaces, or even for all CAT(-1) spaces.
+
+Thus, although the $\infty$-convex hull has more geometric and intuitive appeal based on Proposition \ref{propositionconvexhull}, without more hypotheses there is no way to restrain its geometry. The $1$-convex hull is thus more useful for our applications. Proposition \ref{propositionhull} indicates that in the case of an algebraic hyperbolic space, we are not losing too much by the change.
+\end{remark}
+
+
+\begin{definition}
+\label{definitionconvexcore}
+The \emph{convex core} of a semigroup $G\prec\Isom(X)$ is the set
+\[
+\CC_\Lambda := X\cap \Hull_\infty(\LambdaG),
+\]
+and the \emph{quasiconvex core} is the set
+\[
+\CC_\zero := X\cap \cl{\Hull_1(G(\zero))}.
+\]
+\end{definition}
+
+\begin{observation}
+The convex core and quasiconvex core are both closed $G$-invariant sets. The quasiconvex core depends on the distinguished point $\zero$. However:
+\end{observation}
+
+\begin{proposition}
+\label{propositionC0comparison}
+Fix $x,y\in X$. Then
+\[
+\CC_x \subset \thicken_R(\CC_y)
+\]
+for some $R > 0$.
+\end{proposition}
+\begin{proof}
+Fix $z\in\CC_x$. Then $z\in \geo{g(x)}{h(x)}$ for some $g,h\in G$. It follows that
+\[
+\lb g(y)|h(y)\rb_z \asymp_\plus \lb g(x)|h(x)\rb_z = 0.
+\]
+So by Proposition \ref{propositionrips}, $\dist(z,\geo{g(y)}{h(y)}) \asymp_\plus 0$. But $\geo{g(y)}{h(y)} \subset \CC_y$, so $\dist(z,\CC_y) \asymp_\plus 0$. Letting $R$ be the implied constant completes the proof.
+\end{proof}
+
+\begin{remark}
+In many cases, we can get information about the action of $G$ on $X$ by looking just at its restriction to $\CC_\Lambda$ or to $\CC_\zero$. We therefore also remark that if $X$ is a CAT(-1) space, then $\CC_\Lambda$ is also a CAT(-1) space.
+\end{remark}
+
+In the sequel the following notation will be useful:
+\begin{notation}
+For a set $S\subset\bord X$ let
+\begin{equation}
+\label{primenotation}
+S' = \cl S \cap \del X.
+\end{equation}
+\end{notation}
+
+\begin{observation}
+\label{observationboundaryofconvexcore}
+$(\CC_\zero)' = \LambdaG$.
+\end{observation}
+\begin{proof}
+Since $\LambdaG = (G(\zero))'$ and $G(\zero) \subset\CC_\zero$, we have $(\CC_\zero)' \supset \LambdaG$. Suppose that $\xi\in(\CC_\zero)'$, and let $\CC_\zero\ni x_n\to \xi$. By definition, for each $n$ there exist $y_n^{(1)},y_n^{(2)}\in G(\zero)$ such that $x_n\in \geo{y_n^{(1)}}{y_n^{(2)}}$. Lemma \ref{lemmaminimal} completes the proof.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Semigroups which act irreducibly on algebraic hyperbolic spaces}
+\label{subsectionirreducibly}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+\label{definitionreducibly}
+Suppose that $X$ is an algebraic hyperbolic space, and fix $G\prec\Isom(X)$. We shall say that $G$ \emph{acts reducibly} on $X$ if there exists a nontrivial totally geodesic $G$-invariant subset $S\propersubset \bord X$. Otherwise, we shall say that $G$ \emph{acts irreducibly} on $X$.
+\end{definition}
+
+\begin{remark}
+A parabolic or focal subsemigroup of $\Isom(X)$ may act either reducibly or irreducibly on $X$.
+\end{remark}
+
+%\comdavid{May need some rewording with our new def of $\CC_\zero$}
+%
+%\comdavid{Also, we should include the parabolic case to be compatible with Proposition \ref{propositionparabolicdiscrete}.}
+%
+%\comdavid{Actually, I disagree, I like the idea of all actions being reducible to an irreducible action.}
+
+\begin{proposition}
+\label{propositionactsreducibly}
+Let $G\prec\Isom(X)$ be nonelementary. Then the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ acts reducibly on $X$.
+\item[(B)] There exists a nontrivial totally geodesic subset $S\propersubset \bord X$ such that $\LambdaG\subset S$.
+\item[(C)] There exists a nontrivial totally geodesic subset $S\propersubset \bord X$ such that $\CC_\Lambda\subset S$.
+\item[(D)] There exists a nontrivial totally geodesic subset $S\propersubset \bord X$ such that $\CC_\zero\subset S$ for some $\zero\in X$.
+\end{itemize}
+\end{proposition}
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+Let $S\propersubset \bord X$ be a nontrivial totally geodesic $G$-invariant subset. Fix $\zero\in S\cap X$. Then $\LambdaG\subset\cl{G(\zero)}\subset S$.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (C)}]
+If $S$ is any totally geodesic set which contains $\LambdaG$, then $S$ is a closed convex set containing $\LambdaG$, so by Proposition \ref{propositionconvexhull}, $\CC_\Lambda\subset S$.
+\end{proof}
+\begin{proof}[Proof of \text{(C) \implies (D)}]
+Since $G$ is nonelementary, $\CC_\Lambda \neq \emptyset$. Fix $\zero\in\CC_\Lambda$; then $\CC_\zero\subset \CC_\Lambda$.
+\end{proof}
+\begin{proof}[Proof of \text{(D) \implies (A)}]
+Let $S$ be the smallest totally geodesic subset of $X$ which contains $\CC_\zero$, i.e.
+\[
+S := \bigcap\{W:W\supseteq \CC_\zero\text{ totally geodesic}\}.
+\]
+Then our hypothesis implies that $S\propersubset \bord X$. Since $\zero\in S$, $S$ is nontrivial. It is obvious from the definition that $S$ is $G$-invariant. This completes the proof.
+\end{proof}
+
+\begin{remark}
+If $G\prec\Isom(X)$ is nonelementary, then Proposition \ref{propositionactsreducibly} gives us a way to find a nontrivial totally geodesic set on which $G$ acts reducibly; namely, the smallest totally geodesic set containing $\LambdaG$, or equivalently $\CC_G$, will have this property (cf. Lemma \ref{lemmatotallygeodesic}). On the other hand, there exists a parabolic group $G\leq\Isom(\H^\infty)$ such that $G$ does not act irreducibly on any nontrivial totally geodesic subset $S\subset\bord \H^\infty$ (Remark \ref{remarkparabolictorsion}).
+\end{remark}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Semigroups of compact type}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+\label{definitioncompacttype}
+We say that a semigroup $G\prec\Isom(X)$ is of \emph{compact type} if its limit set $\Lambda$ is compact.
+\end{definition}
+
+\begin{proposition}
+\label{propositioncompacttype}
+For $G\prec\Isom(X)$, the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is of compact type.
+\item[(B)] Every sequence $(x_n)_1^\infty$ in $G(\zero)$ with $\dox{x_n}\to \infty$ has a convergent subsequence.
+\end{itemize}
+Furthermore, if $X$ is regularly geodesic, then \text{(A)-(B)} are equivalent to:
+\begin{itemize}
+\item[(C)] The set $\CC_\zero$ is a proper metric space.
+\end{itemize}
+and if $X$ is an algebraic hyperbolic space, then they are equivalent to:
+\begin{itemize}
+\item[(D)] The set $\CC_\Lambda$ is a proper metric space.
+\end{itemize}
+\end{proposition}
+\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+Fix a sequence $(g_n)_1^\infty$ in $G$ with $\dogo{g_n}\to \infty$. The existence of such a sequence implies that $G$ is not elliptic. If $G$ is parabolic or inward focal, then the proof of Proposition \ref{propositioncardinalitylimitset}(ii) shows that $g_n(\zero)\to \xi$, where $\Lambda = \{\xi\}$. So we may assume that $G$ is lineal, outward focal, or of general type, in which case Proposition \ref{propositioncardinalitylimitset} gives $\#(\Lambda)\geq 2$.
+
+Fix distinct $\xi_1,\xi_2\in\LambdaG$, and let $(n_k)_1^\infty$ be a sequence such that $(g_{n_k}(\xi_i))_1^\infty$ converges for $i = 1,2$, and such that
+\[
+\lb g_{n_k}^{-1}(\zero)|\xi_1\rb_\zero \leq \lb g_{n_k}^{-1}(\zero)|\xi_2\rb_\zero
+\]
+for all $k$. (If this is not possible, switch $\xi_1$ and $\xi_2$.) We have
+\[
+0 \asymp_{\plus,\xi_1,\xi_2} \lb \xi_1|\xi_2\rb_\zero
+\gtrsim_\plus \min\left(\lb g_{n_k}^{-1}(\zero)|\xi_1\rb_\zero,\lb g_{n_k}^{-1}(\zero)|\xi_2\rb_\zero\right)
+= \lb g_{n_k}^{-1}(\zero)|\xi_1\rb_\zero
+\]
+and thus
+\[
+\lb g_{n_k}(\zero)|g_{n_k}(\xi_1)\rb_\zero \asymp_{\plus,\xi_1,\xi_2} \dogo{g_{n_k}} \tendsto n \infty.
+\]
+On the other hand, there exists $\eta\in\LambdaG$ such that $g_{n_k}(\xi_1)\tendsto k\eta$, and thus
+\[
+\lb g_{n_k}(\xi_1)|\eta\rb_\zero\tendsto n \infty.
+\]
+Applying Gromov's inequality yields
+\[
+\lb g_{n_k}(\zero)|\eta\rb_\zero \tendsto n \infty
+\]
+and thus $g_{n_k}(\zero)\tendsto k\eta$. This completes the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+Fix a sequence $(\xi_n)_1^\infty$ in $\LambdaG$. For each $n\in\N$, choose $g_n\in G$ with
+\[
+\lb g_n(\zero)|\xi_n\rb_\zero \geq n.
+\]
+In particular $\dogo{g_n}\geq n\tendsto n \infty$. Thus by our hypothesis, there exists a convergent subsequence $g_{n_k}(\zero)\tendsto k\eta\in\LambdaG$. Now
+\[
+\Dist(\xi_{n_k},\eta) \leq \Dist(g_{n_k}(\zero),\xi_{n_k}) + \Dist(g_{n_k}(\zero),\eta)
+\lesssim_\times b^{-n_k} + \Dist(g_{n_k}(\zero),\eta) \tendsto k 0,
+\] 
+i.e. $\xi_{n_k}\tendsto k\eta$.
+\end{proof}
+\begin{proof}[Proof of \text{(A)} \implies \text{(C)}]
+Let $(x_n)_1^\infty$ be a bounded sequence in $\CC_\zero$. For each $n\in\N$, there exist $y_n^{(1)},y_n^{(2)}\in G(\zero)$ such that $x_n\in\thicken_{1/n}(\geo{y_n^{(1)}}{y_n^{(2)}})$. Choose a sequence $(n_k)_1^\infty$ on which $y_{n_k}^{(1)}\tendsto k\alpha$ and $y_{n_k}^{(2)}\tendsto k\beta$. Since $X$ is regularly geodesic we have
+\[
+\geo{y_{n_k}^{(1)}}{y_{n_k}^{(2)}}\tendsto k\geo{y^{(1)}}{y^{(2)}}.
+\]
+For each $k$, choose $z_k\in \geo{y_{n_k}^{(1)}}{y_{n_k}^{(2)}}$ with $\dist(x_{n_k},z_k)\leq 1/n_k$. Since the sequence $(z_k)_1^\infty$ is bounded, it must have a subsequence which converges to a point in $\geo{y^{(1)}}{y^{(2)}}$; it follows that the corresponding subsequence of $(x_{n_k})_1^\infty$ is also convergent. Thus every bounded sequence in $\CC_\zero$ has a convergent subsequence, so $\CC_\zero$ is proper.
+\end{proof}
+\begin{proof}[Proof of \text{(C)} \implies \text{(B)}]
+Obvious since $G(\zero)\subset\CC_\zero$.
+\end{proof}
+\begin{proof}[Proof of \text{(A)} \implies \text{(D)}]
+Note first of all that we cannot get (A) \implies (D) immediately from Proposition \ref{propositionhull}, since the $\tau$-thickening of a compact set is no longer compact.
+
+By \cite[Proposition 1.5]{Bowditch_convexity}, there exists a metric $\rho$ on $\bord X$ compatible with the topology such that the map $F\mapsto \Hull_1(F)$ is a semicontraction with respect to the Hausdorff metric of $(\bord X,\rho)$. (Finite-dimensionality is not used in any crucial way in the proof of \cite[Proposition 1.5]{Bowditch_convexity},\Footnote{One should keep in mind that the Cartan--Hadamard theorem \cite[IX, Theorem 3.8]{Lang_differential_geometry} can be used as a substitute for the Hopf--Rinow theorem in most circumstances.} and in any case for algebraic hyperbolic spaces it can be proven by looking at finite-dimensional subsets, as we did in the proof of Proposition \ref{propositionhull}.) We remark that if $\F = \R$, then such a metric $\rho$ can be prescribed explicitly: if $X = \B$ is the ball model, then the Euclidean metric on $\bord\B\subset\HH$ has this property, due to the fact that geodesics in the ball model are line segments in $\HH$ (cf. \eqref{geodesic}).\Footnote{Recall that our ``ball model'' $\amsbb B$ is the Klein model rather than the Poincar\'e model.}
+
+Now let us demonstrate (D). It suffices to show that $\bord\CC_\Lambda = \Hull_\infty(\Lambda)$ is compact. Since $\Hull_\infty(\Lambda)$ is by definition closed, it suffices to show that $\Hull_\infty(\Lambda)$ is totally bounded with respect to the $\rho$ metric. Indeed, fix $\epsilon > 0$. Since $\Lambda$ is compact, there is a finite set $F_\epsilon\subset\Lambda$ such that
+\[
+\Lambda\subset \thicken_{\epsilon/2}(F_\epsilon).
+\]
+(In this proof, all neighborhoods are taken with respect to the $\rho$ metric.) Let $X_\epsilon \subset X$ be a finite-dimensional totally geodesic set containing $F_\epsilon$. Then $\Lambda\subset \thicken_{\epsilon/2}(X_\epsilon)$. On the other hand, since $X_\epsilon$ is compact, there exists a finite set $F_\epsilon'\subset X_\epsilon$ such that $X_\epsilon\subset \thicken_{\epsilon/2}(F_\epsilon')$.
+
+Now, our hypothesis on $\rho$ implies that
+\[
+\Hull_1(\thicken_{\epsilon/2}(X_\epsilon)) \subset \thicken_{\epsilon/2}(\Hull_1(X_\epsilon)) = \thicken_{\epsilon/2}(X_\epsilon),
+\]
+and thus that $\thicken_{\epsilon/2}(X_\epsilon)$ is convex. But $\Lambda\subset \thicken_{\epsilon/2}(X_\epsilon)$, so $\Hull_\infty(\Lambda) \subset \thicken_{\epsilon/2}(X_\epsilon)$. Thus
+\[
+\Hull_\infty(\Lambda)\subset \thicken_{\epsilon/2}(X_\epsilon) \subset \thicken_\epsilon(F_\epsilon').
+\]
+Since $\epsilon$ was arbitrary, this shows that $\Hull_\infty(\Lambda)$ is totally bounded, completing the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(D)} \implies \text{(B)}]
+Since property (B) is clearly basepoint-independent, we may without loss of generality suppose $\zero\in\CC_\Lambda$. Then (D) \implies (C) \implies (B).
+\end{proof}
+
+As an example of an application we prove the following corollary.
+\begin{corollary}
+Suppose that $X$ is regularly geodesic. Then any moderately discrete subgroup of $\Isom(X)$ of compact type is strongly discrete.
+\end{corollary}
+\begin{proof}
+If $G$ is a moderately discrete group, then $G\given\CC_\zero$ is moderately discrete by Observation \ref{observationrestrictions}, and therefore strongly discrete by Propositions \ref{propositionproperMDSD} and \ref{propositioncompacttype}. Thus by Observation \ref{observationrestrictions}, $G$ is strongly discrete.
+\end{proof}
+
+
+A well-known characterization of the complement of the limit set in the Standard Case is that it is the set of points where the action of $G$ is discrete. We extend this characterization to hyperbolic metric spaces for groups of compact type:
+
+
+\begin{proposition}
+\label{propositionSDonclX}
+Let $G\leq\Isom(X)$ be a strongly discrete group of compact type. Then the action of $G$ on $\bord X\butnot\LambdaG$ is strongly discrete in the following sense: For any set $S\subset\bord X\butnot\LambdaG$ satisfying
+\begin{equation}
+\label{Lambdabounded}
+\Dist(S,\LambdaG) > 0,
+\end{equation}
+we have
+\[
+\#\{g\in G : g(S)\cap S \neq \emptyset\} < \infty.
+\]
+\end{proposition}
+%\comdavid{Note that in the case where $G$ is parabolic with fixed point $\xi$, the condition \eqref{Lambdabounded} reduces to $S$ being $\xi$-bounded.}
+\begin{proof}
+By contradiction, suppose that there exists a sequence of distinct $(g_n)_1^\infty$ such that $g_n(S)\cap S\neq \emptyset$ for all $n\in\N$. Since $G$ is strongly discrete, we have $\dogo{g_n}\to\infty$, and since $G$ is of compact type there exist an increasing sequence $(n_k)_1^\infty$ and $\xi_+,\xi_-\in\LambdaG$ such that $g_{n_k}(\zero)\to \xi_+$ and $g_{n_k}^{-1}(\zero)\to\xi_-$. In the remainder of the proof we restrict to this subsequence, so that $g_n(\zero)\to \xi_+$ and $g_n^{-1}(\zero)\to\xi_-$.
+
+For each $n$, fix $x_n\in g_n^{-1}(g_n(S)\cap S)$, so that $x_n,g_n(x_n)\in S$. Then
+\[
+\Dist(x_n,\xi_-), \Dist(g_n(x_n),\xi_+) \geq \Dist(S,\LambdaG) \asymp_\times 1,
+\]
+and so
+\[
+\lb x_n|\xi_-\rb_\zero , \lb g_n(x_n)|\xi_+ \rb_\zero \asymp_\plus 0.
+\]
+On the other hand, $\lb g_n^{-1}(\zero)|\xi_-\rb_\zero, \lb g_n(\zero)|\xi_+\rb_\zero \to \infty$. Applying Gromov's inequality gives
+\[
+\lb x_n|g_n^{-1}(\zero)\rb_\zero , \lb g_n(x_n)|g_n(\zero) \rb_\zero \asymp_\plus 0
+\]
+for all $n$ sufficiently large. But then
+\[
+\dogo{g_n} = \lb g_n(x_n)|\zero\rb_{g_n(\zero)} + \lb g_n(x_n)|g_n(\zero) \rb_\zero \asymp_\plus 0,
+\]
+a contradiction.
+\end{proof}
+
+\endinput

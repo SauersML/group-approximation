@@ -1,0 +1,16 @@
+graph P4hull2xP2 n 26 m 9 k 3 maxcubes 7 median True ham True
+  q=4 centres=5 bestF=6.66e-16
+graph K13^3 n 64 m 9 k 3 maxcubes 27 median True ham True
+  q=4 centres=5 bestF=4.44e-16
+graph Q4 n 16 m 4 k 4 maxcubes 1 median True ham True
+  q=5 centres=6 bestF=4.44e-16
+graph K13xQ3? n 32 m 6 k 4 maxcubes 3 median True ham True
+  q=5 centres=6 bestF=2.22e-16
+graph K1*P4-rand n 10 m 4 k 3 maxcubes 2 median True ham True
+  q=4 centres=5 bestF=2.22e-16
+graph tri+pend-rand n 13 m 9 k 2 maxcubes 8 median True ham True
+  q=3 centres=4 bestF=0
+graph P4-rand n 20 m 8 k 2 maxcubes 11 median True ham True
+  q=3 centres=4 bestF=4.44e-16
+graph K2*P4-rand n 18 m 5 k 3 maxcubes 4 median True ham True
+  q=4 centres=5 bestF=4.44e-16

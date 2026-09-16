@@ -1,0 +1,11 @@
+GL_3(F_2): |F|=168, d=14, tr(Z)=0.285714, tr(P_F)=0.142857, tr(Z P_F)=0.000e+00
+  (FSV-a) trace formula ||T R_Z||_2^2 = 0.00680272
+  (FSV-b) bound tr(P_F)tr(ZP_F)+tr(Z)/delta^2 = 0.03174603  holds=True
+  unrestricted ||T||_2^2 = 0.04081633  vs tr(P_F)^2+1/delta^2 = 0.13151927
+  (FSV-a) direct ||T R_Z||_2^2 = 0.00680272  agree=True
+  (FSV-c) dim(F-commutant right-supported on Z) = 0; rank T = 8
+  (FSV-d) identity: lhs=0.0673075955 rhs=0.0673075955 agree=True
+GL_4(F_2): |F|=20160, d=30, tr(Z)=0.266667, tr(P_F)=0.066667, tr(Z P_F)=0.000e+00
+  (FSV-a) trace formula ||T R_Z||_2^2 = 0.00126984
+  (FSV-b) bound tr(P_F)tr(ZP_F)+tr(Z)/delta^2 = 0.00544218  holds=True
+  unrestricted ||T||_2^2 = 0.00888889  vs tr(P_F)^2+1/delta^2 = 0.02485261

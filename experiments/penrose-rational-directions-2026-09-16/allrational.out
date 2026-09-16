@@ -1,0 +1,4 @@
+10*(p*r + p*s - q*r - 5*q*s)
+-20*(p*s - q*r)
+-10*(p*r - p*s + q*r - 5*q*s)
+[{p: 0, q: 0}, {p: -sqrt(5)*q, r: -sqrt(5)*s}, {p: sqrt(5)*q, r: sqrt(5)*s}]

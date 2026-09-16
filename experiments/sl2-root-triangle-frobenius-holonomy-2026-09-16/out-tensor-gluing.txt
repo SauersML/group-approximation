@@ -1,0 +1,13 @@
+(1) f=3 h=1: centralizer dimension 4; 1, x_c1, y_c2, x_c1*y_c2 lie in it: True; independent: True
+(1) f=3 h=2: centralizer dimension 4; 1, x_c1, y_c2, x_c1*y_c2 lie in it: True; independent: True
+(1) f=4 h=1: centralizer dimension 4; 1, x_c1, y_c2, x_c1*y_c2 lie in it: True; independent: True
+(1) f=4 h=3: centralizer dimension 4; 1, x_c1, y_c2, x_c1*y_c2 lie in it: True; independent: True
+(2) f=3 h=1: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=3 h=2: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=4 h=1: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=4 h=3: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=5 h=1: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=5 h=2: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=5 h=3: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(2) f=5 h=4: distinct nonzero entries of [P,Q] mod 2: ['b*d2', 'b*g2', 'd*d2', 'd*g2']; equal to {b g', b d', d g', d d'}: True
+(3) f=4 h=2: P = x_0 + y_2, Q = x_2 + y_0 commute mod 2: True; P y_0 != y_0 P: True; P x_2 != x_2 P: True

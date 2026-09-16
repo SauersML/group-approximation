@@ -1,0 +1,11 @@
+A: R1 = (-2, -2, -1, -1, 2, 1)
+A: c2 c1 c0^-1 == g R1^-1 g^-1 (g = u^2 v^2): True  conjugate check: True
+A: theta([x1,x2]) == [x1,x2]^-1 exactly: True
+A: theta is an automorphism (explicit inverse): True
+A: u c2 u^-1 (c1 c2^-1)^-1 = (1, 1, 1, 2, 2, -1, -2, -1) is conjugate of R1^+-1 or trivial: True
+B: R2 = (-2, -2, -1, -2, 1, 1)
+B: c0 c3 c1^-1 = (1, 1, -2, -2, -1, -2) conjugate of R2^+-1: True
+B: psi is an automorphism (explicit inverse): True
+B: c1 c4 c2^-1 conjugate of R2^+-1: True
+B: periodic conjugacy classes up to length 7 and k <= 12 : 0
+ALL IDENTITIES OK: True

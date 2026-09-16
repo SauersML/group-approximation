@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw01-universal-order-pair-test-2026-09-12.md
   - research/artifacts/stw01-order-pair-rescaling-2026-09-12.md
+  - research/artifacts/stw01-order-pair-klein-symmetrization-2026-09-16.md
 ---
 
 Let `U` be the universal unital C*-algebra of two elements `h_0, k_0` with
@@ -87,3 +88,20 @@ So this claim is generic additivity after an affine change of coordinates.
   dimension function on `Cu(U)` is a counterexample to Problem I, and by
   `stw01-quasitrace-crux-is-awstar-factor-w-star` needs a type `II_1` AW*-factor with no large
   W*-corner. No construction is known. Rescaling artifact, Section 6.
+- **Symmetrization over the order-pair automorphisms.** Dead. `beta : h_0 -> 1 - h_0` and
+  `gamma : k_0 -> (h_0 - h_0^2) - k_0` generate a Klein four-group `K` of automorphisms of `U`.
+  - If Problem I fails, there are `K`-invariant witnesses with either sign of defect. At the
+    rescaling centre `1/4`, the averaged defect is `eps [E(x, y) + E(x, x/2 - y)] / 4` to first
+    order, where `E` is a second difference along a line.
+  - For each `g != 1` in `K`, "`sigma o g` reverses the defect for every `sigma`" is equivalent to
+    Problem I.
+  - So the three-projection mechanism, an automorphism reversing the defect unconditionally, is
+    unavailable within `K`.
+  - Not analysed: the automorphisms outside `K`, such as
+    `h_0 -> f(h_0), k_0 -> g(h_0) k_0 g(h_0)` with `g^2 = (f - f^2) / (lambda - lambda^2)` for
+    suitable homeomorphisms `f` of `[0, 1]`.
+  - Byproducts:
+    - a quasitrace is a trace iff every line `t -> sigma(b + t a)` is midpoint convex;
+    - a continuous function whose step-`rho` differences are `kappa rho`-periodic for all `rho`
+      is affine.
+  - Artifact `research/artifacts/stw01-order-pair-klein-symmetrization-2026-09-16.md`.

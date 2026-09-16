@@ -1,0 +1,1424 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Examples}
+%%\section{Examples}
+%\label{partexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%This part will be divided as follows: In Section \ref{sectionschottky} we consider semigroups of isometries which can be written as the ``Schottky product'' of two subsemigroups. In Section \ref{sectionRtrees}, we consider methods of constructing $\R$-trees which admit natural group actions, including what we call the ``stapling method''. In Section \ref{sectionparabolic}, we analyze in detail the class of parabolic groups of isometries. In Section \ref{sectionexamples}, we give a list of examples whose main importance is that they are counterexamples to certain implications; however, these examples are often geometrically interesting in their own right. In Section \ref{sectionGF}, we define a subclass of the class of groups of isometries which we call \emph{geometrically finite}, generalizing known results from the Standard Case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{$\R$-trees and their isometry groups} \label{sectionRtrees}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we describe various ways to construct $\R$-trees which admit isometric actions. Section \ref{subsectionconeconstruction} describes the cone construction, in which one starts with an ultrametric space $(Z,\Dist)$ and builds an $\R$-tree $X$ whose Gromov boundary contains a point $\infty$ such that $(Z,\Dist) = (\del X\butnot\{\infty\},\Dist_{\infty,\zero})$. Sections \ref{subsectiongraphtheory} and \ref{subsectionRtreegeometric} are preliminaries for Section \ref{subsectionstapling}, which describes the ``stapling method'' in which one starts with a collection of $\R$-trees $(X_v)_{v\in V}$ and staples them together to get another $\R$-tree. We give three very general examples of the stapling method in which the resulting $\R$-tree admits a natural isometric action.
+
+We recall that whenever we have an example of an $\R$-tree $X$ with an isometric action $\Gamma\leq\Isom(X)$, then we can get a corresponding example of a group of isometries of $\H^\infty$ by applying a BIM representation (Theorem \ref{theoremBIM}). Thus, the examples of this chapter contribute to our goal of understanding the behavior of isometry groups acting on $\H^\infty$.
+
+\section{Construction of $\R$-trees by the cone method}
+\label{subsectionconeconstruction}
+The construction of hyperbolic metric spaces by cone methods has a long history; see e.g. \cite[1.8.A.(b)]{Gromov3}, \cite{TrotsenkoVaisala}, \cite[\67]{BonkSchramm}. The construction below does not appear to be equivalent to any of those existing in the literature, although our formula \eqref{coneconstruction} is similar to \cite[7.1]{BonkSchramm} (with the difference that their $+$ sign is replaced by a $\vee$; this change only works because we assume that $Z$ is ultrametric).
+
+Let $(Z,\Dist)$ be a complete ultrametric space. Define an equivalence relation on $Z\times (0,\infty)$ by letting $(z_1,r_1) \sim (z_2,r_2)$ if $\dist(z_1,z_2)\leq r_1 = r_2$, and denote the equivalence class of $(z,r)$ by $\lb z,r\rb$. Let $X = Z\times (0,\infty)/\sim$, and define a distance function on $X$:
+\begin{equation}
+\label{coneconstruction}
+\dist\big(\lb z_1,r_1\rb,\lb z_2,r_2\rb\big) = \log\left(\frac{r_1^2\vee r_2^2\vee \Dist^2(z_1,z_2)}{r_1 r_2}\right)
+\end{equation}
+(cf. Corollary \ref{corollarysullivansformula}). We call $(X,\dist)$ the \emph{cone} of $(Z,\Dist)$. Note that
+\begin{equation}
+\label{coneconstructiongromov}
+\big\lb \lb z_1,r_1\rb | \lb z_2,r_2\rb\big\rb_{\lb z_0,r_0\rb} = \log\left(\frac{(r_0\vee r_1\vee \Dist(z_0,z_1))(r_0\vee r_2\vee \Dist(z_0,z_2))}{r_0(r_1\vee r_2\vee \Dist(z_1,z_2))}\right).
+\end{equation}
+\begin{theorem}
+\label{theoremconeconstruction}
+The cone $(X,\dist)$ is an $\R$-tree. Moreover, there exists a map $\iota:Z\to\del X$ such that $\del X\butnot \iota(Z)$ consists of one point, $\infty$, and such that $\Dist = \Dist_{\infty,\zero}\circ\iota$, where $\zero = \lb z_0,1\rb$ for any $z_0\in Z$.
+%$\del X \equiv Z\cup\{\infty\}$, and $\Dist_{\infty,\zero} \equiv \Dist$ for any $\zero = \lb z_0,1\rb \in X$.
+\end{theorem}
+\begin{proof}
+Fix $x_i = \lb z_i,r_i\rb \in X$, $i = 1,2$, let $R = r_1\vee r_2\vee \Dist(z_1,z_2)$, and let $\gamma_i:[\log(r_i),\log(R)]\to X$ be defined by $\gamma_i(t) = \lb z_i,e^t\rb$. Then $\gamma_i$ parameterizes a geodesic connecting $x_i$ and $\lb z_i,R\rb$. Since $(z_1,R) \sim (z_2,R)$, the geodesics $\gamma_i$ can be concatenated, and their concatenation is a geodesic connecting $x_1$ and $x_2$. It can be verified that the collection of such geodesics satisfies the conditions of Lemma \ref{lemmaRtreeequivalent}. Thus $(X,\dist)$ is an $\R$-tree. (For an alternative proof that $(X,\dist)$ is an $\R$-tree, see Example \ref{exampleconeconstruction} below.)
+
+Fix $z_0\in Z$. For all $z_1,z_2\in Z$ and $R > 0$, \eqref{coneconstructiongromov} gives
+\[
+\lim_{r_1,r_2\to 0} \big\lb \lb z_1,r_1\rb \big| \lb z_2,r_2\rb \big\rb_{\lb z_0,R\rb} = \sum_{i = 1}^2 \log(\sqrt R)\vee\log\left(\frac{\Dist(z_0,z_i)}{\sqrt R}\right) - \log\Dist(z_1,z_2).
+\]
+In particular, if $z_1 = z_2 = z$, then this shows that the sequence $\big(\lb z,1/n\rb\big)_1^\infty$ is a Gromov sequence. Let $\iota(z) = \left[\big(\lb z,1/n\rb\big)_1^\infty\right]$. Similarly, the sequence $\big(\lb z_0,n\rb\big)_1^\infty$ is a Gromov sequence; let $\infty = \left[\big(\lb z_0,1/n\rb\big)_1^\infty\right]$. Then Lemma \ref{lemmanearcontinuity} gives
+\[
+\lb \iota(z_1) | \iota(z_2)\rb_{(z_0,R)} = \sum_{i = 1}^2 \log(R)\vee\log\left(\frac{\Dist(z_0,z_i)}{R}\right) - \log\Dist(z_1,z_2)
+\]
+and thus
+\[
+-\log\Dist_{\infty,\zero}(\iota(z_1),\iota(z_2)) = \lim_{R\to\infty} \Big[ \lb \iota(z_1) | \iota(z_2)\rb_{(z_0,R)} - \log(R) \Big] = -\log\Dist(z_1,z_2),
+\]
+i.e. $\Dist_{\infty,\zero}\equiv \Dist$.
+
+To complete the proof we need to show that $\del X = \iota(Z)\cup\{\infty\}$. Indeed, fix $\xi = \left[\big(\lb z_n,r_n\rb\big)_1^\infty\right]\in\del X$. Without loss of generality suppose that $r_n\to r\in [0,\infty]$ and $\Dist(z_0,z_n) \to R\in[0,\infty]$. If $r = \infty$ or $R = \infty$, then it follows from \eqref{coneconstructiongromov} that $\lb \lb z_n,r_n\rb | \infty\rb_{\lb z_0,1\rb} \to \infty$, i.e. $\xi = \infty$. Otherwise, it follows from \eqref{coneconstructiongromov} that
+\begin{align*}
+\infty &= \lim_{n,m \to\infty} \big\lb \lb z_n,r_n\rb | \lb z_m,r_m\rb \big\rb_{\lb z_0,1\rb}\\ 
+&= 2\log(1\vee r\vee R) - \log \left( \lim_{n,m\to\infty} r_n\vee r_m\vee \Dist(z_n,z_m) \right),
+\end{align*}
+which implies that $r_n\vee r_m\vee \Dist(z_n,z_m) \tendsto{n,m} 0$, i.e. $r_n\to 0$ and $(z_n)_1^\infty$ is a Cauchy sequence. Since $Z$ is complete we can find a limit point $z_n\to z\in Z$. Then \eqref{coneconstructiongromov} shows that $\xi = \iota(z)$.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryultrametricRtree}
+Every ultrametric space can be isometrically embedded into an $\R$-tree.
+\end{corollary}
+\begin{proof}
+Let $(Y,\dist)$ be an ultrametric space, and without loss of generality suppose that $Y$ is complete. Let $Z = Y$, and let $\Dist(z_1,z_2) = e^{(1/2)\dist(z_1,z_2)}$. Then $(Z,\Dist)$ is a complete ultrametric space. Let $(X,\dist)$ be the cone of $(Z,\Dist)$; by Theorem \ref{theoremconeconstruction}, $X$ is an $\R$-tree. Now define an embedding $\iota:Y\to X$ via $\iota(y) = \lb y,1\rb$. Then
+\[
+\dist(\iota(y_1),\iota(y_2)) = 0\vee \log\Dist^2(y_1,y_2) = \dist(y_1,y_2),
+\]
+i.e. $\iota$ is an isometric embedding.
+\end{proof}
+
+\begin{remark}
+Corollary \ref{corollaryultrametricRtree} can also be proven from \cite[Theorem 4.1]{BonkSchramm} by verifying directly that an ultrametric space satisfies Gromov's inequality with an implied constant of zero, and then proving that every geodesic metric space satisfying Gromov's inequality with an implied constant of zero is an $\R$-tree.
+
+However, the proof of Corollary \ref{corollaryultrametricRtree} yields the additional information that the isometric image of $(Y,\dist)$ is contained in a horosphere, i.e.
+\begin{equation}
+\label{ultrametrichorosphere}
+\busemann_\infty(\iota(y_1),\iota(y_2)) = 0 \all y_1,y_2\in Y,
+\end{equation}
+where $\infty$ is as in Theorem \ref{theoremconeconstruction}.
+\end{remark}
+
+\begin{remark}
+\label{remarkconverseultrametric}
+The converse of the cone construction also holds: if $(X,\dist)$ is an $\R$-tree and $\zero\in X$, $\xi\in\del X$, then $(\del X\butnot\{\xi\},\Dist_{\xi,\zero})$ and $(\{x\in X: \busemann_\xi(\zero,x) = 0\},\dist)$ are both ultrametric spaces.
+\end{remark}
+\begin{proof}
+For all $x,y\in\EE_\xi$, we have $\Dist_\xi(x,y) = \exp\busemann_\xi(\zero,C(x,y,\xi)))$, where $C(x,y,\xi)$ denotes the center of the geodesic triangle $\Delta(x,y,\xi)$ (cf. Definition \ref{definitioncenterRtree}). It can be verified by drawing appropriate diagrams (cf. Figure \ref{figurequadruple}) that for all $x_1,x_2,x_3\in\EE_\xi$, there exists $i$ such that $C(x_i,x_j,\xi) = C(x_i,x_k,\xi)$ and $C(x_j,x_k,\xi) \in \geo{\xi}{C(x_i,x_j,\xi)}$ (where $j,k$ are chosen so that $\{i,j,k\} = \{1,2,3\}$), from which follows the ultrametric inequality for $\Dist_\xi$. Since $\Dist_\xi = e^{(1/2)\dist}$ on $\{x\in X: \busemann_\xi(\zero,x) = 0\}$, the space $(\{x\in X: \busemann_\xi(\zero,x) = 0\},\dist)$ is also ultrametric.
+\end{proof}
+
+
+
+
+\begin{theorem}
+\label{theoremRtreeorbitalcounting}
+Given an unbounded function $f:\CO 0\infty\to\N$, the following are equivalent:
+\begin{itemize}
+\item[(A)] $f$ is right-continuous and satisfies
+\begin{equation}
+\label{Rtreeorbitalcounting}
+\forall R_1,R_2 \geq 0 \text{ such that } R_1\leq R_2, \;\; f(R_1)\text{ divides } f(R_2).
+\end{equation}
+\item[(B)] There exist an $\R$-tree $X$ (with a distinguished point $\zero$) and a parabolic group $G\leq\Isom(X)$ such that $\NN_{X,G} = f$.
+\item[(C)] There exist an $\R$-tree $X$ (with a distinguished point $\zero$) and a parabolic group $G\leq\Isom(X)$ such that $\NN_{\EE_\bp,G} = f$, where $\bp$ is the global fixed point of $G$.
+\end{itemize}
+Moreover, in \text{(B)} and \text{(C)} the $\R$-tree $X$ may be chosen to be proper.
+\end{theorem}
+%\begin{remark}
+%Applying a BIM representation (see Theorem \ref{theoremBIM} below) shows that if $f$ is any right-continuous function satisfying \eqref{Rtreeorbitalcounting}, then there exists a strongly discrete group acting on $\H^\infty$ whose orbital counting function is equal to $f$. This improves our previous result \cite[Proposition A.2]{FSU4}.
+%\end{remark}
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+Let $(\lambda_n)_1^\infty$ and $(N_n)_1^\infty$ be sequences such that
+\[
+f(\rho) = \prod_{\substack{n\in\N \\ \lambda_n \leq \rho}} N_n.
+\]
+The hypotheses on $f$ guarantee that $(N_n)_1^\infty$ can be chosen to be integers. Then for each $n\in\N$, let $\Gamma_n$ be a finite group of cardinality $N_n$, and let
+\[
+\Gamma% = \coprod_{n\in\N} \Gamma_n
+= \left\{(\gamma_n)_1^\infty \in \prod_{n\in\N} \Gamma_n : \gamma_n = e \text{ for all but finitely many $n$}\right\}.
+\]
+For each $(\gamma_n)_1^\infty \in \Gamma$ let
+\begin{equation}
+\label{infinitecoproduct}
+\|(\gamma_n)_1^\infty\| = \max_{\substack{n\in\N \\ \gamma_n\neq e}} \lambda_n,
+\end{equation}
+with the understanding that $\|e\| = 0$. For each $\alpha,\beta\in \Gamma$ let $\dist(\alpha,\beta) = \|\alpha^{-1} \beta\|$. It is readily verified that $\dist$ is an ultrametric on $\Gamma$. Thus by Corollary \ref{corollaryultrametricRtree}, $(\Gamma,\dist)$ can be isometrically embedded into an $\R$-tree $(X,\dist)$. Since $\Gamma$ is proper, $X$ is proper. Moreover, the natural isometric action of $\Gamma$ on itself extends naturally to an isometric action on $X$. Denote this isometric action by $\phi$, and let $G = \phi(\Gamma)$. Then by \eqref{ultrametrichorosphere}, $G$ is a parabolic group with global fixed point $\infty$. If we let $\zero$ be the image of $e$ under the isometric embedding of $\Gamma$ into $X$, then $G$ satisfies
+\[
+\NN_{X,G}(\rho) = \#\{\gamma\in \Gamma : \|\gamma\| \leq \rho\} = \prod_{\substack{n\in\N \\ \lambda_n\leq \rho}} \#(\Gamma_n) = f(\rho).
+\]
+This completes the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (A)}]
+For each $\rho > 0$ let
+\[
+G_\rho = \{g\in G : \dist(\zero,g(\zero)) \leq \rho\}.
+\]
+Since $G(\zero)$ is an ultrametric space by Remark \ref{remarkconverseultrametric}, $G_\rho$ is a subgroup of $G$. Thus by Lagrange's theorem, the function $f(\rho) = \NN_{X,G}(\rho) = \#(G_\rho)$ satisfies \eqref{Rtreeorbitalcounting}. Since orbital counting functions are always right-continuous, this completes the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(A) \iff (C)}]
+Since the equation
+\[
+\NN_{\EE_\bp,G}(R) = \NN_{X,G}(2\log(R))
+\]
+holds for strongly hyperbolic spaces, including $\R$-trees (Observation \ref{observationeuclideanparabolicasymp}), and since condition (A) is invariant under the transformation $f\mapsto (R\mapsto f(2\log(R)))$, the equivalence (A) \iff (B) directly implies the equivalence (A) \iff (C).
+\end{proof}
+
+\begin{remark}
+Applying a BIM representation (Theorem \ref{theoremBIM}) shows that if $f:\Rplus\to\N$ is an unbounded function satisfying (A) of Theorem \ref{theoremRtreeorbitalcounting}, then there exists a parabolic group $G\leq\Isom(\H^\infty)$ such that $\NN_{X,G} = f$. This improves a previous result of two of the authors \cite[Proposition A.2]{FSU4}.
+\end{remark}
+
+
+
+%The following example is not directly related to the above, so it probably should go somewhere else in the main file (specifically, in the section on geometric products\internal):
+
+%\begin{example}
+%Let $(Y,\dist)$ be an $\R$-tree and fix $H\leq\Isom(Y)$, a set $E\subset Y$, and a collection of abstract groups $(\Gamma_a)_{a\in E}$. Suppose that $h(E)\cap E = \emptyset$ for all $h\in H\butnot\{\id\}$. Then for each $h(a)\in H(E)$, we may write $\Gamma_{h(a)} = \Gamma_a$ without confusion. Let $(X,K)$ be the geometric product of $Y$ with the collection $(\Gamma_a)_{a\in H(E)}$, and let $\phi:\Gamma := \ast_{a\in h(E)} \Gamma_a \to K$ be the homomorphism considered in the definition of the geometric product. The naturalness of the geometric product construction can be used to define a homomorphism from $H$ to $\Isom(X)$ which projects to the inclusion homomorphism from $H$ to $\Isom(Y)$: concretely, given $h\in H$ and $\lb y,\gamma\rb\in X = Y\times \Gamma / \sim$, we let
+%\[
+%h(\lb y,\gamma\rb) = \lb y, \psi_h(\gamma)\rb,
+%\]
+%where $\psi_h: \Gamma \to \Gamma$ is defined on the generating set $\coprod_{a\in h(E)} \Gamma_a$ via the formula
+%\[
+%\psi_h((a,\gamma)) = (h(a),\gamma).
+%\]
+%We abuse notation by denoting the image of $h$ under this homomorphism by $h$, and the image of $H$ by $H$. It is readily verified that $H$ normalizes $K$, and thus $G := HK$ is a group.
+%\end{example}
+%
+%\begin{claim}
+%If
+%\[
+%J = \phi(\ast_{a\in E} \Gamma_a),
+%\]
+%then $G$ is a Schottky product of $H$ and $J$. Moreover, if $E = \{\zero\}$, then for all $g = h_1 j_1 h_2 j_2\cdots h_n j_n\in G$ we have
+%\[
+%\dogo g = \dogo{h_1} + \dogo{j_1} + \dogo{h_2} + \dogo{j_2} + \ldots + \dogo{h_n} + \dogo{j_n}.
+%\]
+%\end{claim}
+%[Add in proof\internal]
+
+\section{Graphs with contractible cycles}
+\label{subsectiongraphtheory}
+
+In Section \ref{subsectionstapling}, we will describe a method of stapling together a collection of $\R$-trees $(X_v)_{v\in V}$ based on some data. This data will include a collection of edge pairings $E\subset V\times V\butnot\{(v,v) : v\in V\}$ that indicates which trees are to be stapled to each other. In this section, we describe the criterion which this collection of edge pairings needs to satisfy in order for the construction to work (Definition \ref{definitioncontractiblecycles}), and we analyze that criterion.
+
+Let $(V,E)$ be an unweighted undirected graph, and let $\dist_E$ denote the path metric of $(V,E)$ (cf. Definition \ref{definitiongraphmetrization}). A sequence $(v_i)_0^n$ in $V$ will be called a \emph{path} if $(v_i,v_{i + 1})\in E\all i < n$. The path $(v_i)_0^n$ is said to \emph{connect} the vertices $v_0$ and $v_n$. The path $(v_i)_0^n$ is called a \emph{geodesic} if $n = \dist_E(v_0,v_n)$, in which case it is denoted $\geo{v_0}{v_n}$. Note that a sequence is a geodesic if and only if $\geo{v_0}{v_1}\ast\cdots\ast\geo{v_{n - 1}}{v_n}$ is a geodesic in the metrization $X(V,E)$ (cf. Definition \ref{definitiongraphmetrization}). Also, recall that a \emph{cycle} in $(V,E)$ is a finite sequence of distinct vertices $v_1,\ldots,v_n\in V$, with $n\geq 3$, such that $(v_1,v_2), (v_2,v_3), \ldots, (v_{n - 1},v_n), (v_n,v_1)\in E$ (cf. \eqref{cycle}).
+
+\begin{definition}
+\label{definitioncontractiblecycles}
+The graph $(V,E)$ is said to have \emph{contractible cycles} if every cycle forms a complete graph, i.e. if for every cycle $(v_i)_0^n$ we have $(v_i,v_j)\in E \all i,j \text{ such that $v_i\neq v_j$}$.
+\end{definition}
+
+\begin{standingassumption}
+In the remainder of this section, $(V,E)$ denotes a connected graph with contractible cycles.
+\end{standingassumption}
+
+
+
+
+\begin{lemma}
+\label{lemmacontractiblecycles1}
+For every $v,w\in V$ there exists a unique geodesic $\geo vw = (v_i)_0^n$ connecting $v$ and $w$; moreover, if $(w_j)_0^m$ is any path connecting $v$ and $w$, then the vertices $(v_i)_0^n$ appear in order (but not necessarily consecutively) in the sequence $(w_j)_0^m$.
+\end{lemma}
+\begin{proof}
+\begin{claim}
+\label{claimonevertex}
+Let $(v_i)_0^n$ be a geodesic, and let $(w_j)_0^m$ be a path connecting $v_0$ and $v_n$. Suppose $n\geq 2$. Then there exist $i = 1,\ldots,n - 1$ and $j = 1,\ldots,m - 1$ such that $v_i = w_j$.
+\end{claim}
+\begin{subproof}
+By contradiction suppose not, and without loss of generality suppose that $(w_j)_0^m$ is minimal with this property. Then the vertices $(w_j)_0^m$ are distinct, since if we had $w_{j_1} = w_{j_2}$ for some $j_1 < j_2$, we could replace $(w_j)_0^m$ by $(w_0,\ldots,w_{j_1 - 1},w_{j_1} = w_{j_2},w_{j_2 + 1},\ldots,w_m)$. Since $n\geq 2$, it follows that the path $(v_0,v_1,\ldots,v_n = w_m,w_{m - 1},\ldots,w_1,w_0 = v_0)$ is a cycle. But then $(v,w)\in E$, contradicting that $(v_i)_0^n$ is a geodesic of length $n\geq 2$.
+\end{subproof}
+\begin{claim}
+\label{claimcontractiblecycles1}
+Let $(v_i)_0^n$ be a geodesic, and let $(w_j)_0^m$ be a path connecting $v_0$ and $v_n$. Then the vertices $(v_i)_0^n$ appear in order in the sequence $(w_j)_0^m$.
+\end{claim}
+\begin{subproof}
+We proceed by induction on $n$. The cases $n = 0$, $n = 1$ are trivial. Suppose the claim is true for all geodesics of length less than $n$. By Claim \ref{claimonevertex}, there exist $i_0 = 1,\ldots,n - 1$ and $j_0 = 1,\ldots,m - 1$ such that $v_i = w_j$. By the induction hypothesis, the vertices $(v_i)_0^{i_0}$ appear in order in the sequence $(w_j)_0^{j_0}$, and the vertices $(v_i)_{i_0}^n$ appear in order in the sequence $(w_j)_{j_0}^m$. Combining these facts yields the conclusion.
+\end{subproof}
+To finish the proof of Lemma \ref{lemmacontractiblecycles1}, it suffices to observe that if $(v_i)_0^n$ and $(w_j)_0^m$ are two geodesics connecting the same vertices $v$ and $w$, then by Claim \ref{claimcontractiblecycles1} the vertices $(v_i)_0^n$ appear in order in the sequence $(w_j)_0^m$, and the vertices $(w_j)_0^m$ appear in order in the sequence $(v_i)_0^n$. It follows that $(v_i)_0^n = (w_j)_0^m$, so geodesics are unique.
+\end{proof}
+
+
+\begin{lemma}[Cf. Figure \ref{figurecontractiblecycles}]
+\label{lemmacontractiblecycles2}
+Fix $v_1,v_2,v_3\in V$ distinct. Then either
+\begin{itemize}
+\item[(1)] there exists $w\in V$ such that for all $i\neq j$, $\geo{v_i}{v_j} = \geo{v_i}w\ast \geo w{v_j}$, or
+\item[(2)] there exists a cycle $w_1,w_2,w_3\in V$ such that for all $i\neq j$, $\geo{v_i}{v_j} = \geo{v_i}{w_i}\ast \geo{w_i}{w_j}\ast \geo{w_j}{v_j}$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+For each $i = 1,2,3$, let $n_i$ be the number of initial vertices on which the geodesics $\geo{v_i}{v_j}$ and $\geo{v_i}{v_k}$ agree, i.e.
+\[
+n_i = \max\{n : \geo{v_i}{v_j}_\ell = \geo{v_i}{v_k}_\ell \all \ell = 0,\ldots,n\},
+\]
+and let $w_i = \geo{v_i}{v_j}_{n_i}$. Here $j,k$ are chosen such that $\{i,j,k\} = \{1,2,3\}$. Then uniqueness of geodesics implies that the geodesics $\geo{w_i}{w_j}$, $i\neq j$ are disjoint except for their common endpoints. If $(w_i)_1^3$ are distinct, then the path $\geo{w_1}{w_2}\ast\geo{w_2}{w_3}\ast\geo{w_3}{w_1}$ is a cycle, and since $(V,E)$ has contractible cycles, this implies $(w_1,w_2),(w_2,w_3),(w_3,w_1)\in E$, completing the proof. Otherwise, we have $w_i = w_j$ for some $i\neq j$; letting $w = w_i = w_j$ completes the proof.
+\end{proof}
+%, and for each $i = 1,2,3$, let $n_i$ be the number of initial vertices on which the geodesics $\geo{v_i}{v_j}$ and $\geo{v_i}{v_k}$ agree, i.e.
+%\[
+%n_i = \max\{n : \geo{v_i}{v_j}_\ell = \geo{v_i}{v_k}_\ell \all \ell = 0,\ldots,n\}.
+%\]
+%Here $j,k$ are chosen such that $\{i,j,k\} = \{1,2,3\}$. Then $2(n_1 + n_2 + n_3) \geq \dist_E(v_1,v_2) + \dist_E(v_2,v_3) + \dist_E(v_3,v_1) - 3$.
+%\end{lemma}
+%\begin{proof}
+%By replacing $v_1,v_2,v_3$ by $\geo{v_1}{v_2}_{n_1},\geo{v_2}{v_3}_{n_2},\geo{v_3}{v_1}_{n_3}$, we may without loss of generality suppose that $n_1 = n_2 = n_3 = 0$. Then uniqueness of geodesics implies that the geodesics $\geo{v_i}{v_j}$, $i\neq j$ are disjoint except for their common endpoints. Thus their concatenation $\geo{v_1}{v_2}\ast\geo{v_2}{v_3}\ast\geo{v_3}{v_1}$ forms a cycle, and since $(V,E)$ has contractible cycles, this implies $(v_1,v_2),(v_2,v_3),(v_3,v_1)\in E$.
+%\end{proof}
+
+
+%Let $(u_i)_0^n$ denote the geodesic connecting $v$ and $u$, and let $(w_j)_0^m$ denote the geodesic connecting $v$ and $w$. Since $(v_0,\ldots,v_n,w)$ is a path connecting $v$ and $w$, the sequence $(w_j)_0^m$ must appear in order in $(v_0,\ldots,v_n,w)$. But the minimality of $(v_i)_0^n$ implies that $(v_i,v_j)\notin E$ whenever $j > i + 1$, so an induction argument shows that for each $j = 0,\ldots,m - 1$, we have $w_j = v_j$. In particular, $m \leq n + 1$, and if $m = n + 1$ then $\pi_v(u,x) = \pi_v\lb w,y\rb$. By a symmetric argument, $n\leq m + 1$, and if $n = m + 1$ then $\pi_v(u,x) = \pi_v\lb w,y\rb$. We are left with the case $n = m$. Let $v' = v_{n - 1} = w_{m - 1}$;
+
+
+
+\begin{figure}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.799999999999999,-0.6200000000000001) rectangle (5.639999999999999,5.120000000000001);
+\draw (-2.76,4.24)-- (-2.76,2.32);
+\draw (-2.76,2.32)-- (-3.62,1.26);
+\draw (-3.62,1.26)-- (-1.86,1.28);
+\draw (-1.86,1.28)-- (-2.76,2.32);
+\draw (-3.62,1.26)-- (-5.06,0.22);
+\draw (-1.86,1.28)-- (-0.56,0.26);
+\draw (3.32,4.38)-- (3.32,2.46);
+\draw (3.32,2.46)-- (1.98,1.4);
+\draw (3.32,2.46)-- (4.78,1.36);
+\begin{scriptsize}
+\draw [fill=black] (-2.76,4.24) circle (1pt);
+\draw[color=black] (-2.6199999999999997,4.52) node {$v_1$};
+\draw [fill=black] (-2.76,2.32) circle (1pt);
+\draw[color=black] (-2.5,2.60) node {$w_1$};
+\draw [fill=black] (-3.62,1.26) circle (1pt);
+\draw[color=black] (-3.8599999999999994,1.52) node {$w_2$};
+\draw [fill=black] (-1.86,1.28) circle (1pt);
+\draw[color=black] (-1.6599999999999997,1.50) node {$w_3$};
+\draw [fill=black] (-5.06,0.22) circle (1pt);
+\draw[color=black] (-5.319999999999999,0.40) node {$v_2$};
+\draw [fill=black] (-0.56,0.26) circle (1pt);
+\draw[color=black] (-0.31999999999999995,0.34) node {$v_3$};
+\draw [fill=black] (3.32,4.38) circle (1pt);
+\draw[color=black] (3.42,4.66) node {$v_1$};
+\draw [fill=black] (3.32,2.46) circle (1pt);
+\draw[color=black] (3.5199999999999996,2.66) node {$w$};
+\draw [fill=black] (1.98,1.4) circle (1pt);
+\draw[color=black] (1.7,1.42) node {$v_2$};
+\draw [fill=black] (4.78,1.36) circle (1pt);
+\draw[color=black] (5.059999999999999,1.4) node {$v_3$};
+\draw [fill=black] (-2.7599999999999993,3.77) circle (.75pt);
+\draw [fill=black] (-2.7599999999999993,3.4) circle (.75pt);
+\draw [fill=black] (-2.7599999999999993,3.06) circle (.75pt);
+\draw [fill=black] (-4.08369168356998,0.9251115618661258) circle (.75pt);
+\draw [fill=black] (-4.358985801217038,0.7262880324543608) circle (.75pt);
+\draw [fill=black] (-4.602150101419878,0.5506693711967542) circle (.75pt);
+\draw [fill=black] (-1.457011426897158,0.9638089657193085) circle (.75pt);
+\draw [fill=black] (-1.1945736888368006,0.7578962789334895) circle (.75pt);
+\draw [fill=black] (-0.9559419865221214,0.5706621740404336) circle (.75pt);
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Triangles in graphs with contractible cycles]{The two possibilities for a geodesic triangle in a graph with contractible cycles. Lemma \ref{lemmacontractiblecycles2} states that either the geodesic triangle looks like a triangle in an $\R$-tree (right figure), or there is 3-cycle in the ``center'' of the triangle (left figure).}
+\label{figurecontractiblecycles}
+\end{figure}
+
+
+
+\begin{corollary}[Cf. Figure \ref{figurecontractiblecycles2}]
+\label{corollarycontractiblecycles}
+Fix $v_1,v_2,u\in V$ distinct such that $(v_1,v_2)\in E$. Then either $v_1\in\geo u{v_2}$, $v_2\in\geo u{v_1}$, or there exists $w\in V$ such that for each $i = 1,2$, $(w,v_i)\in E$ and $w\in \geo u{v_i}$.
+\end{corollary}
+\begin{proof}
+Write $v_3 = u$, so that we can use the same notation as Lemma \ref{lemmacontractiblecycles2}. If we are in case (1), then the equation $\geo{v_1}{v_2} = \geo{v_1}w\ast \geo w{v_2}$ implies that $w\in\{v_1,v_2\}$, and so either $v_1 = w\in \geo u{v_2}$ or $v_2 = w\in \geo u{v_1}$. If we are in case 2, then the equation $\geo{v_1}{v_2} = \geo{v_1}{w_1}\ast\geo{w_1}{w_2}\ast\geo{w_2}{v_2}$ implies that $w_1 = v_1$ and $w_2 = v_2$. Letting $w = w_3$ completes the proof.
+%If $n_1 = 1$, then $v_2\in\geo w{v_1}$, and if $n_2 = 1$, then $v_1\in\geo w{v_2}$. So we can assume $n_1 = n_2 = 0$, in which case we get $2n_3 \geq \dist_E(w,v_1) + \dist_E(w,v_2) - 2$. If $n_3 = \dist_E(w,v_1)$, then $v_1\in\geo w{v_2}$, and if $n_3 = \dist_E(w,v_2)$, then $v_2\in\geo w{v_1}$. So we can assume $n_3 \leq \min(\dist_E(w,v_1),\dist_E(w,v_2)) - 1$. The only way these inequalities can be satisfied is if
+%\[
+%\dist_E(w,v_1) = \dist_E(w,v_2) = n_3 + 1.
+%\]
+%This completes the proof.
+\end{proof}
+
+
+\begin{figure}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.2,2.0) rectangle (10.84,4.68);
+\draw (0.48,3.18)-- (2.7,3.2);
+\draw (4.04,3.18)-- (6.38,3.2);
+\draw (7.26,3.14)-- (8.82,3.12);
+\draw (8.82,3.12)-- (10.0,4.0);
+\draw (10.0,4.0)-- (10.06,2.64);
+\draw (10.06,2.64)-- (8.82,3.12);
+\begin{scriptsize}
+\draw [fill=black] (0.48,3.18) circle (1.5pt);
+\draw[color=black] (0.6200000000000001,3.46) node {$u$};
+\draw [fill=black] (1.9195228047394903,3.1929686739165724) circle (1.5pt);
+\draw[color=black] (2.06,3.4800000000000004) node {$v_1$};
+\draw [fill=black] (2.7,3.2) circle (1.5pt);
+\draw[color=black] (2.8400000000000003,3.48) node {$v_2$};
+
+\draw [fill=black] (4.04,3.18) circle (1.5pt);
+\draw[color=black] (4.18,3.4600000000000004) node {$u$};
+\draw [fill=black] (5.5397195032870705,3.1928181154127095) circle (1.5pt);
+\draw[color=black] (5.68,3.4800000000000004) node {$v_2$};
+\draw [fill=black] (6.38,3.2) circle (1.5pt);
+\draw[color=black] (6.52,3.4800000000000004) node {$v_1$};
+
+\draw [fill=black] (7.26,3.14) circle (1.5pt);
+\draw[color=black] (7.3999999999999995,3.42) node {$u$};
+\draw [fill=black] (8.82,3.12) circle (1.5pt);
+\draw[color=black] (8.95,3.42) node {$w$};
+\draw [fill=black] (10.0,4.0) circle (1.5pt);
+\draw[color=black] (10.14,4.28) node {$v_1$};
+\draw [fill=black] (10.06,2.64) circle (1.5pt);
+\draw[color=black] (10.33,2.6) node {$v_2$};
+\end{scriptsize}
+\end{tikzpicture}
+%\caption{When the edges $v_1$ and $v_2$ are adjacent, Corollary \ref{corollarycontractiblecycles} describes three possible pictures for the geodesic triangle $\Delta(u,v_1,v_2)$. In the rightmost figure, $w$ is the vertex at which the two paths $\geo u{v_1}$ and $\geo u{v_2}$ diverge, and is adjacent to both $v_1$ and $v_2$.}
+\caption[Triangles in graphs with contractible cycles: general case]{When the vertices $v_1$ and $v_2$ are adjacent, Corollary \ref{corollarycontractiblecycles} describes three possible pictures for the geodesic triangle $\Delta(u,v_1,v_2)$. In the rightmost figure, $w$ is the vertex adjacent to both $v_1$ and $v_2$ from which the paths $\geo u{v_1}$ and $\geo u{v_2}$ diverge.}
+\label{figurecontractiblecycles2}
+\end{figure}
+
+
+
+\section{The nearest-neighbor projection onto a convex set}
+\label{subsectionRtreegeometric}
+
+Let $X$ be an $\R$-tree, and let $A\subset X$ be a nonempty closed convex set. Since $X$ is a CAT(-1) space, for each $z\in X$ there is a unique point $\pi(z)\in A$ such that $\dist(z,\pi(z)) = \dist(z,A)$, and the map $z\to\pi(z)$ is semicontracting (see e.g. \cite{BridsonHaefliger}). Since $X$ is an $\R$-tree, we can say more about this nearest-neighbor projection map $\pi$, as well as providing a simpler proof of its existence. In the following theorems, $X$ denotes an $\R$-tree.
+
+
+
+\begin{lemma}
+\label{lemmaconvexprojection1}
+Let $A\subset X$ be a nonempty closed convex set. Then for each $z\in X$ there exists a unique point $\pi(z)\in A$ such that for all $x\in A$, $\pi(z)\in \geo zx$. Moreover, for all $z_1,z_2\in X$, we have
+\begin{equation}
+\label{convexprojection1}
+\dist(\pi(z_1),\pi(z_2)) = 0\vee(\dist(z_1,z_2) - \dist(z_1,A) - \dist(z_2,A)).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Since $A$ is nonempty and closed, there exists a point $\pi(z)\in A$ such that $\geo z{\pi(z)}\cap A = \{\pi(z)\}$. Fix $z\in A$. Since $C(x,z,\pi(z))\in \geo z{\pi(z)}\cap \geo x{\pi(x)}\subset \geo z{\pi(z)}\cap A$, we get $C(x,z,\pi(z)) = \pi(z)$, i.e. $\lb x|z\rb_{\pi(z)} = 0$, i.e. $\pi(z)\in \geo zx$. This completes the proof of existence; uniqueness is trivial.
+
+To demonstrate the equation \eqref{convexprojection1}, we consider two cases:
+\begin{itemize}
+\item[Case 1:] If $\geo{z_1}{z_2}\cap A\neq\emptyset$, then $\pi(z_1)$ and $\pi(z_2)$ both lie on the geodesic $\geo{z_1}{z_2}$, so $\dist(\pi(z_1),\pi(z_2)) = \dist(z_1,z_2) - \dist(z_1,A) - \dist(z_2,A) \geq 0$.
+\item[Case 2:]  Suppose that $\geo{z_1}{z_2}\cap A = \emptyset$; we claim that $\pi(z_1) = \pi(z_2)$. Indeed, by the definition of $\pi(z_2)$ we have $\pi(z_2)\in \geo{z_2}{\pi(z_1)}$, and by assumption we have $\pi(z_2)\notin \geo{z_1}{z_2}$, so we must have $\pi(z_2)\in \geo{z_1}{\pi(z_1)}$. But from the definition of $\pi(z_1)$, this can only happen if $\pi(z_1) = \pi(z_2)$. The proof is completed by noting that the triangle inequality gives $\dist(z_1,z_2) - \dist(z_1,A) - \dist(z_2,A) = \dist(z_1,z_2) - \dist(z_1,\pi(z_1)) - \dist(z_2,\pi(z_1)) \leq 0$.
+\end{itemize}
+\end{proof}
+
+
+\begin{lemma}
+\label{lemmaconvexprojection2}
+Let $A_1, A_2\subset X$ be closed convex sets such that $A_1\cap A_2\neq\emptyset$. For each $i$ let $\pi_i:X\to A_i$ denote the nearest-neighbor projection map. Then for all $z\in X$, either $\pi_1(z)\in A_2$ or $\pi_2(z)\in A_1$. In particular, $\pi_1(A_2) \subset A_1\cap A_2$.
+\end{lemma}
+\begin{proof}
+Let $x_1 = \pi_1(z)$ and $x_2 = \pi_2(z)$, and fix $y\in A_1\cap A_2$. By Lemma \ref{lemmaconvexprojection1}, $x_1,x_2\in \geo zy$. Without loss of generality assume $\dist(z,x_1)\leq \dist(z,x_2)$, so that $x_2\in \geo{x_1}y$. Since $A_1$ is convex, $x_2\in A_1$.
+\end{proof}
+
+\begin{lemma}
+\label{lemmaconvexunion}
+Let $A_1, A_2\subset X$ be closed convex sets such that $A_1\cap A_2\neq\emptyset$. Then $A_1\cup A_2$ is convex.
+\end{lemma}
+\begin{proof}
+It suffices to show that if $x_1\in A_1$ and $x_2\in A_2$, then $\geo{x_1}{x_2}\subset A_1\cup A_2$. Since $x_2\in A_2$, Lemma \ref{lemmaconvexprojection1} shows that $\geo{x_1}{x_2}$ intersects the point $\pi_2(x_1)$. By Lemma \ref{lemmaconvexprojection2}, $\pi_2(x_1)\in A_1\cap A_2$. But then the two subsegments $\geo{x_1}{\pi_2(x_1)}$ and $\geo{\pi_2(x_1)}{x_2}$ are contained in $A_1\cup A_2$, so the entire geodesic $\geo{x_1}{x_2}$ is contained in $A_1\cup A_2$.
+\end{proof}
+
+
+%\begin{lemma}
+%\label{lemmaultrametrichorosphere}
+%Let $X$ be an $\R$-tree, fix $\zero\in X$, $\xi\in\del X$, and let
+%\[
+%Y = \{x\in X : \busemann_\xi(\zero,x) = 0\}.
+%\]
+%Then $Y$ is an ultrametric space.
+%\end{lemma}
+%\begin{proof}
+%For each $b > 1$, the space $(X,\log(b)\dist)$ is an $\R$-tree and is therefore strongly hyperbolic, implying that
+%\[
+%\Dist_{b,\xi,\zero}(x_1,x_2) = b^{-[\lb x_1 | x_2 \rb_\zero - \sum_{i = 1}^2 \lb x_i | \xi \rb_\zero]} = b^{(1/2)[\dist(x_1,x_2) + \sum_{i = 1}^2 \busemann_\xi(\zero,x_i)]}
+%\]
+%is a metametric on $X$. Since $b$ was arbitrary, we conclude that the function
+%\[
+%\dist_\xi(x_1,x_2) = \dist(x_1,x_2) + \sum_{i = 1}^2 \busemann_\xi(\zero,x_i)
+%\]
+%satisfies the ultrametric inequality. Since $\dist_\xi$ agrees with $\dist$ on $Y$, this completes the proof.
+%\end{proof}
+
+
+
+\section{Constructing $\R$-trees by the stapling method}
+\label{subsectionstapling}
+
+%\begin{definition}
+%Let $(V,E)$ be an unweighted undirected graph, let $(X_v)_{v\in V}$ be a collection of metric spaces, and for each $(v,w)\in E$ fix a point $\point vw\in X_v$. The \emph{stapled union} of of the collection $(X_v)_{v\in V}$ with respect to the points $(\point vw)_{(v,w)\in E}$ is the set $X =  \coprod_{v\in V}^{\text{st}} X_v := \coprod_{v\in V} X_v / \sim$, where $\point vw\sim \point wv \all (v,w)\in E$, equipped with the \emph{path metric}
+%\[
+%\dist(x,y) = \inf\left\{\dist_{v_0}(x,\point{v_0}{v_1}) + \sum_{i = 1}^{n - 1} \dist_{v_i}(\point{v_i}{v_{i - 1}},\point{v_i}{v_{i + 1}}) + \dist_{v_n}(\point{v_n}{v_{n - 1}},y) \left\vert
+%\begin{split}
+%v_0,\ldots,v_n\in V\\
+%x\in X_{v_0}, \; y\in X_{v_n}
+%\end{split}
+%\right.\right\}.
+%\]
+%Note that $\dist$ is finite as long as the graph $(V,E)$ is connected. We leave it to the reader to verify that in this case, $\dist$ is a metric on $X$.
+%\end{definition}
+%
+%Intuitively, the stapled union $\coprod_{v\in V}^{\text{st}} X_v$ is the metric space that results from starting with the spaces $(X_v)_{v\in V}$ and for each $(v,w)\in E$, stapling the point $\point vw\in X_v$ to the point $\point wv\in X_w$.
+%
+%A sequence $(v_i)_0^n$ will be called a \emph{path} if $(v_i,v_{i + 1})\in E\all i$, and a \emph{simple path} if in addition $v_i\neq v_j \all i\neq j$. The path $(v_i)_0^n$ is said to \emph{connect} the vertices $v_0$ and $v_n$. Note that if $(V,E)$ is a connected graph with no cycles, then for all $v,w\in V$ there exists a unique simple path connecting $v$ and $w$.
+%
+%\begin{proposition}
+%\label{propositionstapledunion}
+%Let $(V,E)$ be a connected graph with no cycles, and let $(X_v)_{v\in V}$ be a collection of $\R$-trees. Then the stapled union $X = \coprod_{v\in V}^{\text{st}} X_v$ is an $\R$-tree. Moreover, if $(v_i)_0^n$ is a simple path, then for all $x\in X_{v_0}$, $y\in V_{v_n}$ we have
+%\begin{equation}
+%\label{simplepathlength}
+%\dist(x,y) = \dist(x,\point{v_0}{v_1}) + \sum_{i = 1}^{n - 1} \dist_{v_i}(\point{v_i}{v_{i - 1}},\point{v_i}{v_{i + 1}}) + \dist_{v_n}(\point{v_n}{v_{n - 1}},y).
+%\end{equation}
+%\end{proposition}
+%\begin{proof}
+%Given distinct $v,w\in V$, let $\pi_v(w)$ denote the vertex adjacent to $v$ on the unique simple path connecting $v$ and $w$. Fix $v\in V$, and define the map $\pi_v:X\to X_v$ by letting $\pi_v(x) = x$ for $x\in X_v$ and $\pi_v(x) = \point{v}{\pi_v(w)}$ for $x\in X_w$, $w\neq v$. It is clear that $\pi_v$ is Lipschitz $1$-continuous. \comdavid{Is there a better notation than $\pi_v$ repeated?}
+%
+%We prove the ``moreover'' part first. Fix $x,y\in X$. Write $x\in X_v$ and $y\in X_w$ for some $v,w\in V$, and let $(v_i)_0^n$ be the unique simple path connecting $v$ and $w$. Write
+%\begin{align*}
+%x_i &= \begin{cases}
+%x & i = 0\\
+%\point{v_i}{v_{i - 1}} & i = 1,\ldots,n
+%\end{cases}\\
+%y_i &= \begin{cases}
+%\point{v_i}{v_{i + 1}} & i = 0,\ldots,n - 1\\
+%y & i = n
+%\end{cases}.
+%\end{align*}
+%The map
+%\[
+%f(z) = \big(\dist_{v_i}(x_i,\pi_{v_i}(z))\big)_{i = 0}^n
+%\]
+%is a Lipschitz $1$-continuous map from $X$ to $\R^{n + 1}$ equipped with the max norm. Now
+%\[
+%f(X) \subset S := \{(r_i)_0^n : \exists j = 0,\ldots,n \; [\forall i < j \; r_i = \dist_{v_i}(x_i,y_i) \text{ and } \forall i > j \; r_i = 0]\}.
+%\]
+%Since $S$ is a union of coordinate-parallel lines, the path metric of the max norm on $S$ is equal to the path metric of the $\ell^1$ norm on $S$. Thus
+%\[
+%\dist(x,y) \geq \|f(y) - f(x)\|_1 = \sum_{i = 0}^n \dist_{v_i}(x_i,y_i),
+%\]
+%demonstrating \eqref{simplepathlength}. Let
+%%
+%%Let $S$ be the collection of finite sequences  $(v_i)_0^n$ such that $v_0 = v$, $v_n = w$, and $(v_i,v_{i + 1})\in E$ for all $i = 0,\ldots,n - 1$. For each $(v_i)_0^n\in S$ write
+%%\[
+%%f\big((v_i)_0^n\big) = \dist(x,\point{v_0}{v_1}) + \sum_{i = 1}^{n - 1} \dist_{v_i}(\point{v_i}{v_{i - 1}},\point{v_i}{v_{i + 1}}) + \dist_{v_n}(\point{v_n}{v_{n - 1}},y),
+%%\]
+%%so that $\dist(x,y) = \inf_S f$. Moreover, write
+%%\[
+%%\geo xy_{(v_i)_0^n} = \geo x{\point{v_0}{v_1}}_{v_0} \ast \geo{\point{v_1}{v_0}}{\point{v_1}{v_2}}_{v_1}\ast\cdots\ast \geo{\point{v_{n - 1}}{v_{n - 2}}}{\point{v_{n - 1}}{v_n}}_{v_{n - 1}} \ast \geo{\point{v_n}{v_{n - 1}}}{y},_{v_n},
+%%\]
+%%where $\ast$ denotes the concatenation of geodesics. Then $f\big((v_i)_0^n\big)$ is the length of the geodesic $\geo xy_{(v_i)_0^n}$.
+%%
+%%Since $(V,E)$ is a connected graph with no cycles, there exists a unique sequence $(v_i)_0^n\in S$ such that $v_i\neq v_j$ for $i\neq j$. Now fix $(w_j)_0^m\in S\butnot\{(v_i)_0^n\}$, so that $w_k = w_\ell$ for some $\ell > k$. Let
+%%\[
+%%\w w_j = \begin{cases}
+%%w_j & j \leq k\\
+%%w_{j + (\ell - k)} & j\geq k
+%%\end{cases}.
+%%\]
+%%Applying the triangle inequality to the Since the path $\geo xy_{(\w w_j)_0^{m - (\ell - k)}}$ is equal to the concatenation of two disjoint subsegments of the path $\geo xy_{(w_j)_0^m}$, we have $f\big((w_j)_0^m\big) \geq f\big((\w w_j)_0^{m - (\ell - k)}\big)$. It follows that the minimum value of $f$ is attained at the point $(v_i)_0^n$. Thus the length
+%%
+%%
+%%
+%%$v_0 = v$, $v_n = w$, $(v_i,v_{i + 1})\in E$ for all $i = 0,\ldots,n - 1$, and $v_i\neq v_j$ for $i\neq j$. We claim that
+%%\[
+%%\dist(x,y) + \dist(x,\point{v_0}{v_1}) + \sum_{i = 1}^{n - 1} \dist_{v_i}(\point{v_i}{v_{i - 1}},\point{v_i}{v_{i + 1}}) + \dist_{v_n}(\point{v_n}{v_{n - 1}},y).
+%%\]
+%%Indeed, suppose $(w_j)_0^m$ is a finite sequence such that $w_0 = v$, $w_m = w$, and $(w_j,w_{j + 1})\in E$ for all $j = 0,\ldots,m - 1$. If $w_j = w_{j'}$ for some $j' > j$, then 
+%\[
+%\geo xy = \geo x{\point{v_0}{v_1}}_{v_0} \ast \geo{\point{v_1}{v_0}}{\point{v_1}{v_2}}_{v_1}\ast\cdots\ast \geo{\point{v_{n - 1}}{v_{n - 2}}}{\point{v_{n - 1}}{v_n}}_{v_{n - 1}} \ast \geo{\point{v_n}{v_{n - 1}}}{y}_{v_n},
+%\]
+%where $\ast$ denotes the concatenation of geodesics. Then by \eqref{simplepathlength}, $\geo xy$ is a geodesic connecting $x$ and $y$. Thus we have a family of geodesics $(\geo xy)_{x,y\in X}$.
+%
+%We now prove that $X$ is an $\R$-tree, using the criteria of Lemma \ref{lemmaRtreeequivalent}. Condition (BII) is readily verified. So to complete the proof, we must demonstrate (BIII). Fix $x_1,x_2,x_3\in X$ distinct, and we show that two of the geodesics $\geo{x_i}{x_j}$ have a nontrivial intersection. Write $x_i\in X_{v_i}$. If there is more than one possible choice, choose $(v_i)_1^3$ so as to minimize $\sum_{i\neq j} \dist_E(v_i,v_j)$, where $\dist_E$ is the path metric of the graph $(V,E)$.
+%
+%\begin{itemize}
+%\item[Case 1:] Suppose $v_1,v_2,v_3\in V$ are distinct. Then since the geometric realization of $(V,E)$ is an $\R$-tree, there exist distinct $i,j,k\in\{1,2,3\}$ such that $\pi_{v_i}(v_j) = \pi_{v_i}(v_k) = w$. The choice of $(v_i)_1^3$ guarantees that $x_i\neq \point{v_i}w$, so that $\geo{x_i}{\point{v_i}w}$ forms a common initial segment of the geodesics $\geo{x_i}{x_j}$ and $\geo{x_i}{x_k}$.
+%\item[Case 2:] Suppose $v_1 \neq v_2 = v_3$. Then $\pi_{v_1}(v_2) = \pi_{v_1}(v_3)$, and we proceed as in Case 1.
+%\item[Case 3: ] Suppose that $v_1 = v_2 = v_3 = v$. Then since $X_v$ is an $\R$-tree, there exist distinct $i,j,k\in\{1,2,3\}$ such that the geodesics $\geo{x_i}{x_j} = \geo{x_i}{x_j}_v$ and $\geo{x_i}{x_k} = \geo{x_i}{x_k}_v$ have a common initial segment.
+%\end{itemize}
+%\end{proof}
+
+
+
+%\begin{definition}
+%If $\Gamma$ is a group, a function $\|\cdot\|:\Gamma\to\Rplus$ is called \emph{tree-geometric} if there exist an $\R$-tree $X$, a distinguished point $\zero\in X$, and an isometric action $\phi:\Gamma\to\Isom(X)$ such that
+%\[
+%\dogo{\phi(\gamma)} = \|\gamma\| \all \gamma\in\Gamma.
+%\]
+%\end{definition}
+%
+%Then Example \ref{exampleinfinitecoproduct} shows that the function $\|\cdot|$ defined by \eqref{infinitecoproduct} is tree-geometric.
+%
+%
+%
+%\begin{proposition}
+%Let $H = H_1,J = H_2$ be groups and let $\|\cdot\|:H\to\Rplus$ and $\|\cdot\|:J\to\Rplus$ be tree-geometric functions. Then the function $\|\cdot\|:G = H\ast J\to\Rplus$ defined by
+%\[
+%\|h_1 j_1 \cdots h_n j_n\| := \|h_1\| + \|j_1\| + \cdots + \|h_n\| + \|j_n\|
+%\]
+%($h_i\in H \all i$, $j_i\in J \all i$, $h_i\neq e\all i\neq 1$, $j_i\neq e\all i\neq n$) is a tree-geometric function.
+%\end{proposition}
+%\begin{proof}
+%For each $i = 1,2$ write $H_i\leq\Isom(X_i)$ and $\|h\| = \dist(\zero_i,h(\zero_i))$ for some $\R$-tree $X_i$ and for some distinguished point $\zero_i\in X_i$. Let $T_i$ be a transversal of $G/H_i$. Let $V = T_1\dot\cup T_2$, and let
+%\begin{align*}
+%E_1 &= \{(g_1,g_2)\in T_1\times T_2 : g_1 H_1\cap g_2 H_2 \neq\emptyset\}\\
+%E_2 &= \{(g_2,g_1) : (g_1,g_2) \in E_1\}\\
+%E &= E_1\cup E_2.
+%\end{align*}
+%For each $(g_1,g_2)\in E_1$, write $g_1 h_1 = g_2 h_2$ for some $h_i\in H_i$, and let
+%\[
+%\point{g_1}{g_2} = h_1^{-1}(\zero_1), \; \point{g_2}{g_1} = h_2^{-1}(\zero_2).
+%\]
+%Consider the stapled union $X = \coprod_{(i,g)\in V}^{\text{st}} X_i$. Elements of $X$ consist of pairs $((i,g),x)$, where $g\in T_i$ and $x\in X_i$. More generally, if $g\in T_i$, $h\in H_i$, and $x\in X_i$ we can write
+%\[
+%((i,gh),x) := ((i,g),h(x))
+%\]
+%without confusion. This gives a natural action of $G$ on $X$ via the formula
+%\[
+%g_1\big(((i,g_2),x)\big) = ((i,g_1 g_2),x).
+%\]
+%
+%
+%
+%
+%\end{proof}
+
+We now describe the ``stapling method'' for constructing $\R$-trees. The following definition is phrased for arbitrary metric spaces.
+
+\begin{definition}
+\label{definitionstapledunion}
+Let $(V,E)$ be an unweighted undirected graph, let $(X_v)_{v\in V}$ be a collection of metric spaces, and for each $(v,w)\in E$ fix a set $\set vw\subset X_v$ and an isometry $\bij vw:\set vw\to \set wv$ such that $\bij wv = \bij vw^{-1}$. Let $\sim$ be the equivalence relation on $\coprod_{v\in V} X_v$ defined by the relations
+\[
+x\sim \bij vw(x) \all (v,w)\in E \all x\in \set vw.
+\]
+Then the \emph{stapled union} of of the collection $(X_v)_{v\in V}$ with respect to the sets $(\set vw)_{(v,w)\in E}$ and the bijections $(\bij vw)_{(v,w)\in E}$ is the set 
+\[
+X =  \coprod_{v\in V}^{\text{st}} X_v := \coprod_{v\in V} X_v / \sim,
+\] 
+equipped with the \emph{path metric}
+\begin{equation}
+\label{pathmetricv3}
+\dist\big(\lb v,x\rb,\lb w,y\rb\big) = \inf\left\{\sum_{i = 0}^n \dist_{v_i}(x_i,y_i) \left\vert
+\begin{split}
+v_0,\ldots,v_n\in V\\
+(v_i,v_{i + 1}) \in E \all i < n\\
+v_0 = v, \; v_n = w\\
+y_i\in \set{v_i}{v_{i + 1}} \all i < n\\
+x_{i + 1} = \bij{v_i}{v_{i + 1}}(y_i) \all i < n\\
+x_0 = x, y_n = y
+\end{split}
+\right.\right\}.
+\end{equation}
+Note that $\dist$ is finite as long as the graph $(V,E)$ is connected. We leave it to the reader to verify that in this case, $\dist$ is a metric on $X$.
+\end{definition}
+
+\begin{example}
+If for each $(v,w)\in E$ we fix a point $\point vw\in X_v$, then we can let $\set vw = \{\point vw\}$ and let $\bij vw$ be the unique bijection between $\{\point vw\}$ and $\{\point wv\}$.
+\end{example}
+
+Intuitively, the stapled union $\coprod_{v\in V}^{\text{st}} X_v$ is the metric space that results from starting with the spaces $(X_v)_{v\in V}$ and for each $(v,w)\in E$, stapling the set $\set vw\subset X_v$ with the set $\set wv\subset X_w$ along the bijection $\bij vw$.
+
+\begin{definition}[Cf. Figure \ref{figureconsistencycondition}]
+\label{definitionconsistency}
+We say that the \emph{consistency condition} is satisfied if for every $3$-cycle $u,v,w\in V$, we have
+\begin{itemize}
+\item[(I)] $\set uv\cap \set uw \neq \emptyset$, and
+\item[(II)] for all $z\in \set uv\cap \set uw$, we have
+\begin{itemize}
+\item[(a)] $\bij uw(z)\in \set wv$ and
+\item[(b)] $\bij wv\bij uw(z) = \bij uv(z)$.
+\end{itemize}
+\end{itemize}
+\end{definition}
+
+
+
+
+\begin{figure}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-6.280000000000002,-2.5000000000000018) rectangle (5.080000000000002,5.38);
+\draw\ellipseA;
+\draw\ellipseB;
+\draw\ellipseC;
+\draw\ellipseD;
+\draw\ellipseE;
+\draw\ellipseF;
+%\draw [rotate around={39.01185162422447:(-4.15,2.2600000000000002)}] (-4.15,2.2600000000000002) ellipse (1.4310425486624263cm and 1.0070664208890356cm);
+%\draw [rotate around={31.06516488549863:(-2.7499999999999996,3.64)}] (-2.7499999999999996,3.64) ellipse (1.4391779605649575cm and 1.0641114613497555cm);
+%\draw [rotate around={-31.930682103717796:(1.8900000000000008,3.85)}] (1.8900000000000008,3.85) ellipse (1.3500580747303617cm and 1.0778018394605968cm);
+%\draw [rotate around={-42.089162173832236:(2.9,2.5199999999999996)}] (2.9,2.5199999999999996) ellipse (1.4375510221432186cm and 1.1698516748994354cm);
+%\draw [rotate around={0.6030911943805329:(-1.6300000000000001,-0.8499999999999999)}] (-1.6300000000000001,-0.8499999999999999) ellipse (1.3858345482283274cm and 1.0089288354800905cm);
+%\draw [rotate around={6.137255949261987:(0.06999999999999999,-1.1000000000000003)}] (0.06999999999999999,-1.1000000000000003) ellipse (1.4251601572520578cm and 1.0752587938811333cm);
+\begin{scope}
+\clip\ellipseA;
+\fill[Gray]\ellipseB;
+\end{scope}
+\begin{scope}
+\clip\ellipseC;
+\fill[Gray]\ellipseD;
+\end{scope}
+\begin{scope}
+\clip\ellipseE;
+\fill[Gray]\ellipseF;
+\end{scope}
+\draw[<->] (-0.88,4.1)-- (0.1,4.12);
+\draw[<->] (-2.86,0.2)-- (-3.44,0.98);
+\draw[<->] (2.24,1.06)-- (1.38,0.02);
+\begin{scriptsize}
+\draw [fill=black] (-4.52,2.06) circle (1.5pt);
+\draw [fill=black] (-2.88,4.16) circle (1.5pt);
+\draw [fill=black] (-2.54,3.92) circle (1.5pt);
+\draw [fill=black] (-2.24,3.64) circle (1.5pt);
+\draw [fill=black] (1.14,3.88) circle (1.5pt);
+\draw [fill=black] (1.58,4.26) circle (1.5pt);
+\draw [fill=black] (2.08,4.62) circle (1.5pt);
+\draw [fill=black] (3.28,2.08) circle (1.5pt);
+\draw [fill=black] (2.78,1.82) circle (1.5pt);
+\draw [fill=black] (0.28,-0.74) circle (1.5pt);
+\draw [fill=black] (0.5,-1.22) circle (1.5pt);
+\draw [fill=black] (-2.1,-0.68) circle (1.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The consistency condition for stapling metric spaces]{In this diagram, the arrows represent the bijections $\bij{v_i}{v_j}$, while the ovals represent the sets $\set{v_i}{v_j}$. The consistency condition (Definition \ref{definitionconsistency}) states that (I) each of the shaded regions is nonempty, (IIa) shaded regions go to shaded regions, and (IIb) if you start in a shaded region and traverse the diagram, then you will get back to where you started.}
+\label{figureconsistencycondition}
+\end{figure}
+
+
+
+Obviously, the consistency condition is satisfied whenever $(V,E)$ has no cycles. Theorem \ref{theoremschottkyproductRtree} and Examples \ref{exampleconeconstruction}-\ref{examplegeometricproducts} below show how it can be satisfied in many reasonable circumstances. Now we prove the main theorem of this chapter: for a connected graph with contractible cycles, the consistency condition implies that the stapled union of $\R$-trees is an $\R$-tree, if the staples are taken along convex sets. More precisely:
+
+\begin{theorem}
+\label{theoremstapledunion}
+Let $(V,E)$ be a connected graph with contractible cycles, let $(X_v)_{v\in V}$ be a collection of $\R$-trees, and for each $(v,w)\in E$ let $\set vw\subset X_v$ be a nonempty closed convex set and let $\bij vw:\set vw\to \set wv$ be an isometry such that $\bij wv = \bij vw^{-1}$. Assume that the consistency condition is satisfied. Then
+\begin{itemize}
+\item[(i)] The stapled union $X = \coprod_{v\in V}^{\text{st}} X_v$ is an $\R$-tree.
+\item[(ii)] The infimum in \eqref{pathmetricv3} is achieved when
+\begin{itemize}
+\item[(a)] $(v_i)_0^n = \geo vw$, and
+\item[(b)] for each $i < n$, $y_i$ is the image of $x_i$ under the nearest-neighbor projection to $\set{v_i}{v_{i + 1}}$.
+\end{itemize}
+\end{itemize}
+%In particular, if $\set vw = \{\point vw\}$ for all $(v,w)\in E$ then
+%\begin{equation}
+%\label{simplepathlength}
+%\dist(x,y) = \dist(x,\point{v_0}{v_1}) + \sum_{i = 1}^{n - 1} \dist_{v_i}(\point{v_i}{v_{i - 1}},\point{v_i}{v_{i + 1}}) + \dist_{v_n}(\point{v_n}{v_{n - 1}},y).
+%\end{equation}
+\end{theorem}
+\begin{proof}
+We prove part (ii) first. For each $(v,w)\in E$, let $\pi_{v,w}:X_v\to \set vw$ be the nearest-neighbor projection; then $\pi_{v,w}$ is $1$-Lipschitz. Now fix $v\in V$ arbitrary. We define a map $\pi_v:X\to X_v$ as follows. Fix $\wbar x = \lb w,x\rb\in X$, so that $x\in X_w$. Let $(v_i)_0^n = \geo vw$, and let
+\[
+\pi_v(\wbar x) = \pi_v(w,x) = \bij{v_1}{v_0}\pi_{v_1,v_0}\cdots\bij{v_n}{v_{n - 1}}\pi_{v_n,v_{n - 1}}(x).
+\]
+\begin{claim}
+\label{claimpiv}
+The map $\pi_v$ is well-defined.
+\end{claim}
+\begin{subproof}
+Fix $(u,w)\in E$ and $x\in \set uw$ and let $y = \bij uw(x)$; we need to show that $\pi_v(u,x) = \pi_v(w,y)$. If $w\in \geo vu$ or $u\in \geo vw$ then the equality is trivial, so by Corollary \ref{corollarycontractiblecycles} we are reduced to proving the case where there exists $v'\in V$ such that $(v',w),(v',u)\in E$ and $v'\in \geo vw,\geo vu$. We have $\pi_v(u,x) = \pi_v(v',\bij u{v'}\pi_{u,v'}(x))$ and $\pi_v(w,y) = \pi_v(v',\bij w{v'}\pi_{w,v'}(y))$, so to complete the proof it suffices to show that
+\begin{equation}
+\label{NTSpiv}
+\bij u{v'}\pi_{u,v'}(x) = \bij w{v'}\pi_{w,v'}(y).
+\end{equation}
+Since $u,v',w$ form a $3$-cycle, part (I) of the consistency condition gives $\set u{v'}\cap \set uw\neq\emptyset$. By Lemma \ref{lemmaconvexprojection2}, we have $x' := \pi_{u,v'}(x)\in \set u{v'}\cap \set uw$. Applying part (IIa) of the consistency condition gives $y'' := \bij uw(x') \in \set w{v'}$ and thus $\dist(x,\set u{v'}) = \dist(x,x') = \dist(y,y'') \leq \dist(y,\set w{v'})$. A symmetric argument gives $\dist(y,\set w{v'}) \leq \dist(x,\set u{v'})$, so we have equality and thus $y'' = y' := \pi_{w,v'}(y)$. Applying part (IIb) of the consistency condition gives $\bij u{v'}(x') = \bij w{v'}(y')$, i.e. \eqref{NTSpiv} holds.
+\end{subproof}
+
+Since for each $w\in V$ the map $X_w\ni x\mapsto \pi_v(w,x)\in X_v$ is $1$-Lipschitz, the map $\pi_v:X\to X_v$ is also $1$-Lipschitz.
+
+Fix $\wbar x = \lb v,x\rb,\wbar y = \lb w,y\rb\in X$. Let $(v_i)_0^n$, $(x_i)_0^n$, and $(y_i)_0^n$ be as in (ii), i.e.
+\begin{align*}
+(v_i)_0^n = \geo vw, \text{ where } &\; x_0 = x,\\ 
+&\; y_i = \pi_{v_i,v_{i + 1}}(x_i)  \all i < n,\\ 
+&\; x_{i + 1} = \bij{v_i}{v_{i + 1}}(y_i) \all i < n, \text{ and }\\ 
+&\; y_n = y.
+\end{align*}
+We define a function $f:X\to \R^{n + 1}$ as follows: for each $\wbar z\in X$, we let
+\[
+f(\wbar z) = \big(\dist_{v_i}(x_i,\pi_{v_i}(\wbar z))\big)_{i = 0}^n.
+\]
+Then $f$ is $1$-Lipschitz, when $\R^{n + 1}$ is interpreted as having the max norm.
+
+\begin{claim}
+\label{claimfS}
+Fix $\wbar z\in X$ and $i = 0,\ldots,n - 1$. If $f_{i + 1}(\wbar z) > 0$, then $f_i(\wbar z) \geq r_i := \dist_{v_i}(x_i,y_i)$.
+\end{claim}
+\begin{subproof}
+By contradiction, suppose that $f_{i + 1}(\wbar z) > 0$ but $f_i(\wbar z) < \dist_{v_i}(x_i,y_i)$. Then $z_{i + 1} := \pi_{v_{i + 1}}(\wbar z) \neq x_{i + 1}$, but $z_i := \pi_{v_i}(\wbar z) \in B(x_i,r_i)\butnot\{y_i\}$. In particular, $\pi_{v_{i + 1},v_i}(z_i) = y_i$, so
+\begin{equation}
+\label{fS1}
+z_{i + 1} \neq \bij{v_i}{v_{i + 1}}\pi_{v_i,v_{i + 1}}(z_i).
+\end{equation}
+On the other hand, since $z_i \notin \set{v_i}{v_{i + 1}}$, we have 
+\begin{equation}
+\label{fS2}
+z_i \neq \bij{v_{i + 1}}{v_i}\pi_{v_{i + 1},v_i}(z_{i + 1}).
+\end{equation}
+Write $\wbar z = \lb w,z\rb$. Then the definition of the maps $(\pi_v)_{v\in V}$ together with \eqref{fS1}, \eqref{fS2} implies that $v_i\notin\geo w{v_{i + 1}}$ and $v_{i + 1}\notin\geo w{v_i}$. Thus by Corollary \ref{corollarycontractiblecycles}, there exists $w'\in V$ such that $(w',v_i),(w',v_{i + 1})\in E$ and $w'\in\geo w{v_i},\geo w{v_{i + 1}}$. Let $z' = \pi_{w'}(\wbar z)$, so that $\bij{w'}{v_i}\pi_{w',v_i}(z') = z_i$ and $\bij{w'}{v_{i + 1}}\pi_{w',v_{i + 1}}(z') = z_{i + 1}$. Let $F = \bij{v_i}{w'}(B(x_i,r_i)\cap \set{v_i}{w'})$, and let $\pi_F:X_{w'}\to F$ be the nearest-neighbor projection map. By Lemma \ref{lemmaconvexprojection2}, either $\pi_F(z')\in \set{w'}{v_{i + 1}}$ or $\pi_{w',v_{i + 1}}(z')\in F$.
+\begin{itemize}
+\item[Case 1:] $\pi_F(z')\in \set{w'}{v_{i + 1}}$. Since $F\subset \set{w'}{v_i}$ and $\pi_{w',v_i}(z')\in F$, we have $\pi_{w',v_i}(z') = \pi_F(z')\in \set{w'}{v_{i + 1}}$ and then part (IIa) of the consistency condition gives $z_i = \bij{w'}{v_i}\pi_{w',v_i}(z') \in \set{v_i}{v_{i + 1}}$, a contradiction.
+\item[Case 2:] $\pi_{w',v_{i + 1}}(z')\in F$. Since $F\subset \set{w'}{v_i}$, part (IIa) of the consistency condition gives $z_{i + 1} = \bij{w'}{v_{i + 1}}\pi_{w',v_{i + 1}}(z') \in \set{v_{i + 1}}{v_i}$ and $\bij{v_{i + 1}}{v_i}(z_{i + 1})\in \bij{w'}{v_i}(F) \subset B(x_i,r_i)$. But then $\bij{v_{i + 1}}{v_i}(z_{i + 1}) = y_i$ and thus $z_{i + 1} = x_{i + 1}$, a contradiction.
+\end{itemize}
+\end{subproof}
+
+Thus $f(X)$ is contained in the set
+\[
+S = \{(t_i)_0^n : \forall i = 0,\ldots,n - 1 \; t_{i + 1} > 0 \; \Rightarrow t_i \geq r_i\} \subset \R^{n + 1}.
+\]
+Now the function $h:S\to\R$ defined by
+\[
+h\big((t_i)_0^n\big) = \max_{\substack{i \in\{0,\ldots,n\} \\ t_i > 0 \text{ if }i > 0}} [r_0 + \ldots + r_{i - 1} + t_i]
+\]
+is Lipschitz $1$-continuous with respect to the path metric of the max norm. Thus since $X$ is a path-metric space, $h\circ f:X\to\R$ is Lipschitz $1$-continuous. Thus
+\[
+\dist(\wbar x,\wbar y) \geq h\circ f(\wbar y) - h\circ f(\wbar x) \geq r_0 + \ldots + r_n = \sum_{i = 0}^n \dist_{v_i}(x_i,y_i),
+\]
+completing the proof of (ii).
+
+
+%Fix $\lb v,x\rb,\lb w,y\rb\in X$, and let $(v_i)_0^n$ be the geodesic connecting $v$ and $w$. Let $(w_j)_0^m$ be an arbitrary path connecting $v$ and $w$, and let $(x_j)_0^m$, $(y_j)_0^m$ be as in \eqref{pathmetricv3}. We will recursively define a sequence of vertices $(u_j)_0^m$ in $\{v_0,\ldots,v_n\}$. For each $j = 0,\ldots,m$, once $u_j$ is defined we let
+%\[
+%\w x_j = \pi_{u_j}(w_j,x_j) \text{ and } \w y_j = \pi_{u_j}(w_j,y_j).
+%\]
+%Now we define the sequence $(u_j)_0^m$. For the base case we let $u_0 = v_0$. Fix $j$ and suppose that $u_j$ is defined, say $u_j = v_i$ for some $i = i_j = 0,\ldots,n$. If $\w y_j\in \set{v_i}{v_{i + 1}}$, then we let $u_{j + 1} = v_{i + 1}$, otherwise we let $u_{j + 1} = u_j$. This completes the recursive definition of the sequence $(u_j)_0^m$.
+%\begin{claim}
+%Let $(j_i)_0^n$ be an increasing sequence such that $w_{j_i} = v_i \all i$. Then for each $i = 0,\ldots,n$, we have $i_{j_i} \geq i$.
+%\end{claim}
+%\begin{subproof}
+%By induction, suppose that $i_{j_i} \geq i$. By contradiction, suppose that $i_{j_{i + 1}} < i + 1$. Let $j = j_{i + 1}$. Then $i_{j - 1} = i_j = i$. By the construction of the sequence $(i_j)_0^m$ this implies that $\w x_j = \w y_{j - 1} \notin \set{v_i}{v_{i + 1}}$. This is a contradiction, as $\w x_j = \pi_{v_i}(v_{i + 1},x_j) \in \set{v_i}{v_{i + 1}}$.
+%\end{subproof}
+%
+%In particular, we have $i_m = n$.
+%
+%\begin{claim}
+%For all $j = 0,\ldots,m - 1$, we have $(u_j,\w y_j) \sim (u_{j + 1},\w x_{j + 1})$.
+%\end{claim}
+%\begin{subproof}
+%If $u_{j + 1} = u_j$, then the conclusion is immediate from the definitions. Otherwise, we have $\w y_j\in \set{v_i}{v_{i + 1}}$, where $i = i_j$. 
+%
+%\end{subproof}
+%
+%For each $i = 0,\ldots,n$, let $j_i$ be the smallest value of $j$ such that $w_j = v_i$. Also, let $j_{n + 1} = m + 1$. Fix $i = 0,\ldots,n$. For all $j = j_i,\ldots, j_{i + 1} - 1$, let
+%\[
+%x_{i,j} = \pi_{v_i}(w_j,x_j), \; y_{i,j} = \pi_{v_i}(w_j,y_j),
+%\]
+%and note that $x_{i,j + 1} = y_j$ for all $j = j_i,\ldots,j_{i + 1} - 2$. Write $\w x_i = x_{i,j_i}$ and $\w y_i = y_{i,j_{i + 1} - 1}$, so that
+%\begin{align*}
+%\sum_{j = 0}^m \dist_{w_j}(x_j,y_j)
+%= \sum_{i = 0}^n \sum_{j = j_i}^{j_{i + 1} - 1} \dist_{w_j}(x_j,y_j)
+%\geq \sum_{i = 0}^n \sum_{j = j_i}^{j_{i + 1} - 1} \dist_{v_i}(x_{i,j},y_{i,j})
+%\geq \sum_{i = 0}^n \dist_{v_i}(\w x_i,\w y_i).
+%\end{align*}
+%On the other hand, $\w x_{i + 1} = \bij{v_i}{v_{i + 1}}(\w y_i) \all i < n$, $\w x_0 = x$, and $\w y_n = y$. Thus the right hand side represents a term in the infimum \eqref{pathmetricv3} corresponding to the path $(v_i)_0^n$. So the infimum in \eqref{pathmetricv3} is achieved when $(w_j)_0^m = (v_i)_0^n$.
+%
+%%Fix $\lb v,x\rb,\lb w,y\rb\in X$, and let $(v_i)_0^n$ be the geodesic connecting $v$ and $w$. Let $(w_j)_0^m$ be an arbitrary path connecting $v$ and $w$, and let $(x_j)_0^m$, $(y_j)_0^m$ be as in \eqref{pathmetricv3}. For each $i = 0,\ldots,n$, let $j_i$ be the smallest value of $j$ such that $w_j = v_i$. Also, let $j_{n + 1} = m + 1$. Fix $i = 0,\ldots,n$. For all $j = j_i,\ldots, j_{i + 1} - 1$, let
+%%\[
+%%x_{i,j} = \pi_{v_i}(w_j,x_j), \; y_{i,j} = \pi_{v_i}(w_j,y_j),
+%%\]
+%%and note that $x_{i,j + 1} = y_j$ for all $j = j_i,\ldots,j_{i + 1} - 2$. Write $\w x_i = x_{i,j_i}$ and $\w y_i = y_{i,j_{i + 1} - 1}$, so that
+%%\begin{align*}
+%%\sum_{j = 0}^m \dist_{w_j}(x_j,y_j)
+%%= \sum_{i = 0}^n \sum_{j = j_i}^{j_{i + 1} - 1} \dist_{w_j}(x_j,y_j)
+%%\geq \sum_{i = 0}^n \sum_{j = j_i}^{j_{i + 1} - 1} \dist_{v_i}(x_{i,j},y_{i,j})
+%%\geq \sum_{i = 0}^n \dist_{v_i}(\w x_i,\w y_i).
+%%\end{align*}
+%%On the other hand, $\w x_{i + 1} = \bij{v_i}{v_{i + 1}}(\w y_i) \all i < n$, $\w x_0 = x$, and $\w y_n = y$. Thus the right hand side represents a term in the infimum \eqref{pathmetricv3} corresponding to the path $(v_i)_0^n$. So the infimum in \eqref{pathmetricv3} is achieved when $(w_j)_0^m = (v_i)_0^n$.
+%
+%
+%Let $(x_i)_0^n$, $(y_i)_0^n$ be as in \eqref{pathmetricv3}. Fix $j < n$, and let $\w y_j$ be the image of $x_j$ under the nearest-neighbor projection to $\set{v_j}{v_{j + 1}}$, i.e. $\w y_j = \pi_{v_j,v_{j + 1}}(x_j)$. Let $\w x_{j + 1} = \bij{v_j}{v_{j + 1}}(\w y_j)$, and let $\w x_i = x_i$, $\w y_i = y_i$ otherwise. Then
+%\[
+%\dist_{v_j}(x_j,\w y_j) = \dist_{v_j}(x_j,y_j) - \dist_{v_j}(y_j,\w y_j) = \dist_{v_j}(x_j,y_j) - \dist_{v_{j + 1}}(x_{j + 1},\w x_{j + 1})
+%\]
+%and thus
+%\begin{align*}
+%\sum_{i = 0}^{n - 1} \dist_{v_i}(x_i,y_i) - \sum_{i = 0}^{n - 1} \dist_{v_i}(\w x_i,\w y_i)
+%&= \dist_{v_j}(x_j,y_j) + \dist_{v_{j + 1}}(x_{j + 1},y_{j + 1}) - \dist_{v_j}(x_j,\w y_j) - \dist_{v_{j + 1}}(\w x_{j + 1},y_{j + 1})\\
+%&= \dist_{v_{j + 1}}(x_{j + 1},y_{j + 1}) + \dist_{v_{j + 1}}(x_{j + 1},\w x_{j + 1}) - \dist_{v_{j + 1}}(\w x_{j + 1},y_{j + 1}) \geq 0.
+%\end{align*}
+%So we may replace $(x_i,y_i)_0^n$ by $(\w x_i,\w y_i)_0^n$ without increasing the corresponding value in \eqref{pathmetricv3}. Applying this replacement consecutively for $j = 0,\ldots,n - 1$ finishes the proof of (ii).
+
+For each $\wbar x = \lb v,x\rb,\wbar y = \lb w,y\rb\in X$, let
+\[
+\geo{\wbar x}{\wbar y}= \geo{x_0}{y_0}_{v_0}\ast \cdots \ast \geo{x_n}{y_n}_{v_n},
+\]
+where $\ast$ denotes the concatenation of geodesics, and $(v_i)_0^n$, $(x_i)_0^n$, and $(y_i)_0^n$ are as in (ii). Here $\geo xy_v$ denotes the image of the geodesic $\geo xy$ under the map $X_v\ni z\to \lb v,z\rb\in X$. Then by (ii), $\geo{\wbar x}{\wbar y}$ is a geodesic connecting $\wbar x$ and $\wbar y$. Thus we have a family of geodesics $(\geo{\wbar x}{\wbar y})_{\wbar x,\wbar y\in X}$.
+
+We now prove that $X$ is an $\R$-tree, using the criteria of Lemma \ref{lemmaRtreeequivalent}. Condition (BII) is readily verified. So to complete the proof, we must demonstrate (BIII). Fix $\wbar x_1,\wbar x_2,\wbar x_3\in X$ distinct, and we show that two of the geodesics $\geo{\wbar x_i}{\wbar x_j}$ have a nontrivial intersection. Write $\wbar x_i = \lb v_i,x_i\rb$. If there is more than one possible choice, choose $(v_i)_1^3$ so as to minimize $\sum_{i\neq j} \dist_E(v_i,v_j)$.
+
+Let $w_1,w_2,w_3\in V$ be as in Lemma \ref{lemmacontractiblecycles2}, with the convention that $w_1 = w_2 = w_3 = w$ if we are in Case 1 of Lemma \ref{lemmacontractiblecycles2}.
+\begin{itemize}
+\item[Case A:] For some $i$, $v_i\neq w_i$. Choose $j,k$ such that $i,j,k$ are distinct. Then there exists a vertex $w\in V$ adjacent to $v_i$ such that $w\in\geo{v_i}{v_j}\cap \geo{v_i}{v_k}$. The choice of $(v_i)_1^3$ guarantees that $x_i\notin \set{v_i}w$, so that $\geo{x_i}{\pi_{v_i,w}(x_i)}_{v_i}$ forms a common initial segment of the geodesics $\geo{\wbar x_i}{\wbar x_j}$ and $\geo{\wbar x_i}{\wbar x_k}$.
+\item[Case B:] For all $i$, $v_i = w_i$. Then either $v_1 = v_2 = v_3$, or $v_1,v_2,v_3$ form a cycle.
+\begin{itemize}
+%\item[Case 0:] Suppose that for some $i$, $v_i\neq w_i$. Choose $j,k$ such that $i,j,k$ are distinct. Then there exists a vertex $w\in V$ adjacent to $v_i$ such that $w\in\geo{v_i}{v_j}\cap \geo{v_i}{v_k}$. The choice of $(v_i)_1^3$ guarantees that $x_i\notin \set{v_i}w$, so that $\geo{x_i}{\pi_{v_i,w}(x_i)}_{v_i}$ forms a common initial segment of the geodesics $\geo{\wbar x_i}{\wbar x_j}$ and $\geo{\wbar x_i}{\wbar x_k}$.
+%\item[Case 1:] Suppose $v_1 \neq v_2 = v_3$. Then the geodesics $\geo{v_1}{v_2}$ and $\geo{v_1}{v_3}$ have nontrivial intersection, and we proceed as in Case 1.
+\item[Case B1:] Suppose that $v_1 = v_2 = v_3 = v$. Then since $X_v$ is an $\R$-tree, there exist distinct $i,j,k\in\{1,2,3\}$ such that the geodesics $\geo{x_i}{x_j}_v$ and $\geo{x_i}{x_k}_v$ have a common initial segment.
+\item[Case B2:] Suppose that $v_1,v_2,v_3$ form a cycle. Then by part (I) of the consistency condition $\set{v_1}{v_2}\cap\set{v_1}{v_3}\neq\emptyset$, so by Lemma \ref{lemmaconvexunion} the set $F = \set{v_1}{v_2}\cup\set{v_1}{v_3}$ is convex. But the choice of $(v_i)_1^3$ guarantees that $x_1\notin F$, so that $\geo{x_1}{\pi_F(x_1)}_{v_1}$ forms a common initial segment of the geodesics $\geo{\wbar x_1}{\wbar x_2}$ and $\geo{\wbar x_1}{\wbar x_3}$.
+\end{itemize}
+\end{itemize}
+\end{proof}
+
+\section{Examples of $\R$-trees constructed using the stapling method}
+\label{subsectionstaplingexamples}
+We give three examples of ways to construct $\R$-trees using the stapling method so that the resulting $\R$-tree admits a natural isometric action.
+
+\begin{example}[Cone construction again]
+\label{exampleconeconstruction}
+Let $(Z,\Dist)$ be a complete ultrametric space, let $V = Z$ and $E = V\times V\butnot\{(v,v) : v\in V\}$, and for each $v\in V$ let $X_v = \R$. For each $v,w\in V$ let $\set vw = \CO{\log\Dist(v,w)}\infty$, and let $\bij vw$ be the identity map. Since $(V,E)$ is a complete graph, it is connected and has contractible cycles. Part (IIa) of the consistency condition is equivalent to the ultrametric inequality for $\Dist$, while parts (I) and (IIb) are obvious. Thus we can consider the stapled union $X = \coprod_{v\in V}^{\text{st}} X_v$. One can verify that the stapled union is isometric to the $\R$-tree $X$ considered in the proof of Theorem \ref{theoremconeconstruction}. Indeed, the map $\lb z,t\rb \mapsto \lb z,e^t\rb$ provides the desired isometry. Note that the map $\iota$ constructed in Theorem \ref{theoremconeconstruction} can be described in terms of the stapled union as follows: For each $z\in Z$, $\iota(z)$ is the image of $-\infty$ under the isometric embedding of $X_z \equiv\R$ into $X$. (The image of $+\infty$ is $\infty$).
+\end{example}
+
+Our next example is a type of Schottky product which we call a ``pure Schottky product''. To describe it, it will be convenient to introduce the following terminology:
+
+\begin{definition}
+\label{definitiontreegeometric}
+If $\Gamma$ is a group, a function $\|\cdot\|:\Gamma\to\Rplus$ is called \emph{tree-geometric} if there exist an $\R$-tree $X$, a distinguished point $\zero\in X$, and an isometric action $\phi:\Gamma\to\Isom(X)$ such that
+\[
+\dogo{\phi(\gamma)} = \|\gamma\| \all \gamma\in\Gamma.
+\]
+\end{definition}
+
+\begin{example}
+Theorem \ref{theoremRtreeorbitalcounting} gives a sufficient but not necessary condition for a function to be tree-geometric.
+\end{example}
+
+\begin{remark}
+If the group $\Gamma$ is countable, then whenever $\Gamma$ is a tree-geometric function, the $\R$-tree $X$ can be chosen to be separable.
+\end{remark}
+\begin{proof}
+Without loss of generality, we may replace $X$ by the convex hull of $\Gamma(\zero)$.
+\end{proof}
+
+
+\begin{theorem}[Cf. Figure \ref{figureschottkyproductRtree}]
+\label{theoremschottkyproductRtree}
+Let $(H_j)_{j\in J}$ be a (possibly infinite) collection of groups and for each $j\in J$ let $\|\cdot\|:H_j\to\Rplus$ be a tree-geometric function. Then the function $\|\cdot\|:G = \ast_{j\in J} H_j \to\Rplus$ defined by
+\begin{equation}
+\label{schottkyproductRtree}
+\|h_1 \cdots h_n\| := \|h_1\| + \cdots + \|h_n\|
+\end{equation}
+(assuming $h_1\ldots h_n$ is given in reduced form) is a tree-geometric function.% Moreover, if for each $j\in J$ we find an $\R$-tree $X_j$ and an embedding $\phi_j:H_j\to\Isom(X_j)$ such that $\|\gamma\| = \|\phi(\gamma)\|\all\gamma\in\Gamma_j$, then 
+\end{theorem}
+\begin{proof}
+For each $j\in J$ write $H_j\leq\Isom(X_j)$ and $\|h\| = \dist(\zero_j,h(\zero_j))\all h\in H_j$ for some $\R7$-tree $X_j$ and for some distinguished point $\zero_j\in X_j$. Let $V = J\times G$, and for each $(j,g)\in V$ let $X_v = X_j$. Let
+\begin{align*}
+E_1 &= \{((j,g),(k,g)) : j\neq k, \; g\in G\}\\
+E_2 &= \{((j,g),(j,gh)) : j\in J, \; g\in G,\; h\in H_j\butnot\{e\}\}\\
+E &= E_1\cup E_2.
+\end{align*}
+\begin{claim}
+\label{claimcycleE2}
+Any cycle in $(V,E)$ is contained in a complete graph of one of the following forms:
+\begin{align} \label{form1}
+&\{(j,gh): h\in H_j\} \; (j\in J, g\in G \text{ fixed}),\\ \label{form2}
+&\{(j,g) : j\in J\} \; (g\in G \text{ fixed}).
+\end{align}
+In particular, $(V,E)$ is a graph with contractible cycles.
+\end{claim}
+\begin{subproof}
+Let $(v_i)_0^n$ be a cycle in $V$, and for each $i = 0,\ldots,n - 1$ let $e_i = (v_i,v_{i + 1})$. By contradiction suppose that $(v_i)_0^n$ is not contained in a complete graph of one of the forms \eqref{form1},\eqref{form2}. Without loss of generality suppose that $(v_i)_0^n$ is minimal with this property. Then no two consecutive edges $e_i,e_{i + 1}$ can lie in the same set $E_k$. After reindexing if necessary, we find ourselves in the position that $e_i\in E_2$ for $i$ even and $e_i\in E_1$ for $i$ odd. Write $v_0 = (j_1,g)$; then
+\[
+v_0 = (j_1,g), \; v_1 = (j_1,g h_1), \; v_2 = (j_2,g h_1), \; v_3 = (j_2,g h_1 h_2), \; \text{[etc.]}
+\]
+with $h_i\in H_{j_i}$, $j_i\neq j_{i + 1}$. Since $G$ is a free product, this contradicts that $v_n = v_0$.
+\end{subproof}
+
+
+For each $(v,w) = ((j,g),(k,g))\in E_1$, we let $\set vw = \{\zero_j\}$ and we let $\bij vw(\zero_j) = \zero_j$. For each $(v,w) = ((j,g),(j,gh))\in E_2$, we let $\set vw = X_j$ and we let $\bij vw = h^{-1}$. Claim \ref{claimcycleE2} then implies the consistency condition. Consider the stapled union $X = \coprod_{(j,g)\in V}^{\text{st}} X_j = \coprod_{(j,g)\in V} X_j / \sim$. Elements of $\coprod_{(j,g)\in V} X_j$ consist of pairs $((j,g),x)$, where $g\in G$ and $x\in X_j$. We will abuse notation by writing $((j,g),x) = (j,g,x)$ and $\lb (j,g),x\rb = \lb j,g,x\rb$. Then the ``staples'' are given by the relations
+\begin{align*}
+(j,g,\zero_j) &\sim  (k,g,\zero_k) \; [g\in G, \; j,k\in J],\\
+\;\; (j,gh,x) & \sim (j,g,h(x)) \; [g\in G, \; j\in J, \; h\in H_j, \; x\in X_j].
+\end{align*}
+Now consider the following action of $G$ on $\coprod_{(j,g)\in V} X_j$:
+\[
+g_1\big((j,g_2,x)\big) = (j,g_1g_2,x).
+\]
+Since the ``staples'' are preserved by this action, it descends to an action on the stapled union $X$. To finish the proof, we need to show that $\dogovar g = \|g\|\all g\in G$, where $\zero = \lb j,e,\zero_j\rb \all j\in J$, and $\|\cdot\|$ is given by \eqref{schottkyproductRtree}. Indeed, fix $g\in G$ and write $g = h_1 \cdots h_n$, where for each $i = 1,\ldots,n$, $h_i\in H_{j_i}\butnot\{e\}$ for some $j\in J$, and $j_i\neq j_{i + 1}\all i$. For each $i = 0,\ldots,n$ let $g_i = h_1 \cdots h_i$, and for each $i = 1,\ldots,n$ let
+\[
+v_i^{(1)} = (j_i,g_{i - 1}), \; v_i^{(2)} = (j_i,g_i).
+\]
+Then the sequence $(v_1^{(1)},v_1^{(2)},v_2^{(1)},\ldots,v_n^{(1)},v_n^{(2)})$ is a geodesic whose endpoints are $(j_1,e)$ and $(j_n,g)$. We compute the sequences $(x_i^{(k)})$, $(y_i^{(k)})$ as in Theorem \ref{theoremstapledunion}(ii):
+\[
+x_i^{(1)} = \zero_{j_i}, \; y_i^{(1)} = \zero_{j_i}, \; x_i^{(2)} = h_i^{-1}(\zero_{j_i}), \; y_i^{(2)} = \zero_{j_i},
+\]
+It follows that
+\[
+\dogovar g = \sum_{i = 1}^n \sum_{j = 1}^2 \dist(x_i^{(j)},y_i^{(j)}) = \sum_{i = 1}^n \|h_i\| = \|g\|,
+\]
+which completes the proof.
+\end{proof}
+
+\begin{figure}
+\begin{center}
+%\begin{tabular}{ll}
+\begin{tabular}{@{}ll@{}}
+
+%%%FIRST FIGURE
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.5cm,y=0.5cm]
+\clip(-6.705221014292816,-5.620235521243468) rectangle (6.556270148687806,5.50828853160739);
+\draw (0.0,3.0)-- (0.0,-3.0);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw (-1.5,3.0)-- (0.0,3.0);
+\draw (0.0,3.0)-- (1.5,3.0);
+\draw (0.0,3.0)-- (0.0,4.5);
+\draw (-3.0,0.0)-- (-3.0,1.5);
+\draw (-3.0,0.0)-- (-4.5,0.0);
+\draw (-3.0,0.0)-- (-3.0,-1.5);
+\draw (0.0,-3.0)-- (-1.5,-3.0);
+\draw (0.0,-3.0)-- (1.5,-3.0);
+\draw (0.0,-3.0)-- (0.0,-4.5);
+\draw (3.0,0.0)-- (3.0,1.5);
+\draw (3.0,0.0)-- (3.0,-1.5);
+\draw (0.0,4.5)-- (0.0,5.5);
+\draw (0.0,4.5)-- (-1.0,4.5);
+\draw (0.0,4.5)-- (1.0,4.5);
+\draw (-1.5,3.0)-- (-1.5,4.0);
+\draw (-1.5,3.0)-- (-2.5,3.0);
+\draw (-1.5,3.0)-- (-1.5,2.0);
+\draw (1.5,3.0)-- (1.5,4.0);
+\draw (1.5,3.0)-- (2.5,3.0);
+\draw (1.5,3.0)-- (1.5,2.0);
+\draw (3.0,1.5)-- (3.0,2.5);
+\draw (3.0,1.5)-- (2.0,1.5);
+\draw (3.0,1.5)-- (4.0,1.5);
+\draw (3.0,-1.5)-- (2.0,-1.5);
+\draw (3.0,-1.5)-- (4.0,-1.5);
+\draw (3.0,-1.5)-- (3.0,-2.5);
+\draw (1.5,-3.0)-- (1.5,-2.0);
+\draw (1.5,-3.0)-- (2.5,-3.0);
+\draw (1.5,-3.0)-- (1.5,-4.0);
+\draw (0.0,-4.5)-- (1.0,-4.5);
+\draw (0.0,-4.5)-- (0.0,-5.5);
+\draw (0.0,-4.5)-- (-1.0,-4.5);
+\draw (-1.5,-3.0)-- (-2.5,-3.0);
+\draw (-1.5,-3.0)-- (-1.5,-2.0);
+\draw (-1.5,-3.0)-- (-1.5,-4.0);
+\draw (-3.0,-1.5)-- (-2.0,-1.5);
+\draw (-3.0,-1.5)-- (-3.0,-2.5);
+\draw (-3.0,-1.5)-- (-4.0,-1.5);
+\draw (-4.5,0.0)-- (-4.5,1.0);
+\draw (-4.5,0.0)-- (-4.5,-1.0);
+\draw (-4.5,0.0)-- (-5.5,0.0);
+\draw (-3.0,1.5)-- (-4.0,1.5);
+\draw (-3.0,1.5)-- (-3.0,2.5);
+\draw (-3.0,1.5)-- (-2.0,1.5);
+\draw (4.5,0.0)-- (4.5,1.0);
+\draw (4.5,0.0)-- (4.5,-1.0);
+\draw (4.5,0.0)-- (5.5,0.0);
+\draw (3.0,0.0)-- (4.5,0.0);
+\begin{scriptsize}
+%\draw [fill=black] (1.5,0) circle (1.0pt);
+\draw [fill=black] (0.0,3.0) circle (1.0pt);
+\draw [fill=black] (0.0,-3.0) circle (1.0pt);
+\draw [fill=black] (-3.0,0.0) circle (1.0pt);
+\draw [fill=black] (3.0,0.0) circle (1.0pt);
+\draw [fill=black] (-1.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,3.0) circle (1.0pt);
+\draw [fill=black] (0.0,4.5) circle (1.0pt);
+\draw [fill=black] (-3.0,1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,0.0) circle (1.0pt);
+\draw [fill=black] (-3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (0.0,-4.5) circle (1.0pt);
+\draw [fill=black] (3.0,1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.5,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,5.4) circle (1.0pt);
+\draw [fill=black] (-1.0,4.5) circle (1.0pt);
+\draw [fill=black] (1.0,4.5) circle (1.0pt);
+\draw [fill=black] (-1.5,4.0) circle (1.0pt);
+\draw [fill=black] (-2.5,3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,2.0) circle (1.0pt);
+\draw [fill=black] (1.5,4.0) circle (1.0pt);
+\draw [fill=black] (2.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,2.0) circle (1.0pt);
+\draw [fill=black] (3.0,2.5) circle (1.0pt);
+\draw [fill=black] (2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.0,1.5) circle (1.0pt);
+\draw [fill=black] (2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (0.0,-5.5) circle (1.0pt);
+\draw [fill=black] (-1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (-2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (-2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (-4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,1.0) circle (1.0pt);
+\draw [fill=black] (-4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (-5.5,0.0) circle (1.0pt);
+\draw [fill=black] (-4.0,1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,2.5) circle (1.0pt);
+\draw [fill=black] (-2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.5,1.0) circle (1.0pt);
+\draw [fill=black] (4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (5.5,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,0.0) circle (1.0pt);
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+
+\caption[The Cayley graph of $\F_2(\Z)$ as a pure Schottky product]{The Cayley graph of $\F_2(\Z)$, interpreted as the pure Schottky product $H_1\ast H_2$, where $H_1 = H_2 = \Z$ is interpreted as acting on $X_1 = X_2 = \R$ by translation. The horizontal lines correspond to copies of $\R$ which correspond to vertices of the form $(1,g)$, while the vertical lines correspond to copies of $\R$ which correspond to vertices of the form $(2,g)$. The intersection points between horizontal and vertical lines are the staples which hold the tree together.}
+\label{figureschottkyproductRtree}
+\end{center}
+\end{figure}
+
+
+%\begin{theorem}
+%\label{theoremschottkyproductRtree}
+%Let $H = H_1,J = H_2$ be groups and let $\|\cdot\|:H\to\Rplus$ and $\|\cdot\|:J\to\Rplus$ be tree-geometric functions. Then the function $\|\cdot\|:G = H\ast J\to\Rplus$ defined by
+%\begin{equation}
+%\label{schottkyproductRtree}
+%\|h_1 j_1 \cdots h_n j_n\| := \|h_1\| + \|j_1\| + \cdots + \|h_n\| + \|j_n\|
+%\end{equation}
+%($h_i\in H \all i$, $j_i\in J \all i$, $h_i\neq e\all i > 1$, $j_i\neq e\all i < n$) is a tree-geometric function.
+%\end{theorem}
+%\begin{proof}
+%For each $i = 1,2$ write $H_i\leq\Isom(X_i)$ and $\|h\| = \dist(\zero_i,h(\zero_i))$ for some $\R$-tree $X_i$ and for some distinguished point $\zero_i\in X_i$. Let $V = \{1,2\}\times G$, and for each $(i,g)\in V$ let $X_v = X_i$. Let
+%\begin{align*}
+%E_1 &= \{((i,g),(j,g)) : i\neq j, \; g\in G\}\\
+%E_2 &= \{((i,g),(i,gh)) : i = 1,2, \; g\in G,\; h\in H_i\butnot\{e\}\}\\
+%E &= E_1\cup E_2.
+%\end{align*}
+%\begin{claim}
+%\label{claimcycleE2}
+%Any cycle in $(V,E)$ is contained in $\{(i,gh): h\in H_i\}$ for some $i = 1,2$ and $g\in G$. In particular, $(V,E)$ is a graph with contractible cycles.
+%\end{claim}
+%\begin{subproof}
+%Let $(v_i)_0^n$ be a cycle in $V$, and for each $i = 0,\ldots,n - 1$ let $e_i = (v_i,v_{i + 1})$. By contradiction suppose that $e_i\in E_1$ for some $i$. Without loss of generality suppose that $(v_i)_0^n$ is a minimal cycle. Then no two consecutive edges $e_i,e_{i + 1}$ can lie in the same set $E_j$. After reindexing if necessary, we find ourselves in the position that $e_i\in E_2$ for $i$ even and $e_i\in E_1$ for $i$ odd. Without loss of generality suppose that $v_0 = (1,g)$; then
+%\[
+%v_0 = (1,g), \; v_1 = (1,g h_1), \; v_2 = (2,g h_1), \; v_3 = (2,g h_1 j_1), \; v_4 = (1,g h_1 j_1), \; \ldots
+%\]
+%which contradicts that $v_n = v_0$.
+%
+%Thus $e_i\in E_2$ for all $i$. If we write $v_0 = (1,g)$, then for all $i = 0,\ldots,n$ we can write $v_i = (1,gh)$ for some $h\in H_1$. It follows that $(v_i,v_j)\in E$ for all $i,j$, and thus $(V,E)$ is a graph with contractible cycles.
+%\end{subproof}
+%
+%
+%For each $(v,w) = ((i,g),(j,g))\in E_1$, we let $\set vw = \{\zero_i\}$ and we let $\bij vw(\zero_i) = \zero_j$. For each $(v,w) = ((i,g),(i,gh))\in E_2$, we let $\set vw = X_i$ and we let $\bij vw = h^{-1}$. Claim \ref{claimcycleE2} then implies the consistency condition. Consider the stapled union $X = \coprod_{(i,g)\in V}^{\text{st}} X_i = \coprod_{(i,g)\in V} X_i / \sim$. Elements of $\coprod_{(i,g)\in V} X_i$ consist of pairs $((i,g),x)$, where $g\in G$ and $x\in X_i$. We will abuse notation by writing $((i,g),x) = (i,g,x)$ and $\lb (i,g),x\rb = \lb i,g,x\rb$. Then the ``staples'' are given by the relations
+%\[
+%(1,g,\zero_1) \sim  (2,g,\zero_2) \; [g\in G], \;\; (i,gh,x) \sim (i,g,h(x)) \; [g\in G, \; h\in H_i, \; x\in X_i].
+%\]
+%Now consider the following action of $G$ on $\coprod_{(i,g)\in V} X_i$:
+%\[
+%g_1\big((i,g_2,x)\big) = (i,g_1g_2,x).
+%\]
+%Since the ``staples'' are preserved by this action, it descends to an action on the stapled union $X$. To finish the proof, we need to show that $\dogovar g = \|g\|\all g\in G$, where $\zero = \lb 1,e,\zero_1\rb = \lb 2,e,\zero_2\rb$, and $\|\cdot\|$ is given by \eqref{schottkyproductRtree}. Indeed, fix $g\in G$ and write $g = h_1 j_1 \cdots h_n j_n$, where $h_i\in H\all i$, $j_i\in J \all i$, $h_i\neq e\all i > 1$, and $j_i\neq e\all i < n$. For each $i = 0,\ldots,n$ let $g_i = h_1 j_1 \cdots h_i j_i$, and for each $i = 1,\ldots,n$ let
+%\[
+%v_i^{(1)} = (1,g_{i - 1}), \; v_i^{(2)} = (1,g_{i - 1} h_i), \; v_i^{(3)} = (2,g_{i - 1} h_i), \; v_i^{(4)} = (2,g_{i - 1} h_i j_i) = (2,g_i).
+%\]
+%Then the sequence $(v_1^{(1)},v_1^{(2)},v_1^{(3)},v_1^{(4)},v_2^{(1)},\ldots,v_n^{(1)},v_n^{(2)},v_n^{(3)},v_n^{(4)})$ is a geodesic whose endpoints are $(1,e)$ and $(2,g)$. We compute the sequences $(x_i^{(j)})$, $(y_i^{(j)})$ as in Theorem \ref{theoremstapledunion}(ii):
+%\begin{align*}
+%x_i^{(1)} = \zero_1, \; y_i^{(1)} = \zero_1, \; x_i^{(2)} = h_i^{-1}(\zero_1), \; y_i^{(2)} = \zero_1,\\
+%x_i^{(3)} = \zero_2, \; y_i^{(3)} = \zero_2, \; x_i^{(4)} = j_i^{-1}(\zero_2), \; y_i^{(4)} = \zero_2.
+%\end{align*}
+%It follows that
+%\[
+%\dogovar g = \sum_{i = 1}^n \sum_{j = 1}^4 \dist(x_i^{(j)},y_i^{(j)}) = \sum_{i = 1}^n [\|h_i\| + \|j_i\|] = \|g\|.
+%\]
+%\end{proof}
+
+\begin{definition}
+\label{definitionschottkyproductRtree}
+Let $(H_j)_{j\in J}$ and $G$ be as in Theorem \ref{theoremschottkyproductRtree}. If we write $G\leq\Isom(X)$ and $\|g\| = \dist(\zero,g(\zero))\all g\in G$ for some $\R$-tree $X$ and some distinguished point $\zero\in X$, then we call $(X,G)$ the \emph{pure Schottky product} of $(H_j)_{j\in J}$. (It is readily verified that every pure Schottky product is a Schottky product.)
+\end{definition}
+
+\begin{proposition}
+\label{propositionschottkyproductRtree}
+The Poincar\'e set of a pure Schottky product $H_1\ast H_2$ can be computed by the formula
+\[
+s\in \Delta(H_1\ast H_2) \;\;\Leftrightarrow\;\; (\Sigma_s(H_1) - 1)(\Sigma_s(H_2) - 1) \geq 1.
+\]
+\end{proposition}
+\begin{proof}
+Let
+\[
+E = (H_1\butnot\{\id\})(H_2\butnot\{\id\}),
+\]
+so that
+\[
+G = \bigcup_{n\geq 0} H_2 E^n H_1.
+\]
+Then by \eqref{schottkyproductRtree}, we have for all $s\geq 0$
+\begin{align*}
+\Sigma_s(G)
+= \sum_{g\in G} e^{-s\dogo g}
+&= \sum_{n = 0}^\infty \; \sum_{h_0\in H_2} \; \sum_{g_1,\ldots,g_n\in E} \; \sum_{h_{n + 1}\in H_1} e^{-s[\|h_0\| + \sum_1^n \|g_i\| + \|h_{n + 1}\|]}\\
+&= \Sigma_s(H_2) \Sigma_s(H_1) \sum_{n = 0}^\infty \left(\sum_{g\in E} e^{-s\|g\|}\right)^n\\
+&= \Sigma_s(H_2) \Sigma_s(H_1) \sum_{n = 0}^\infty \big((\Sigma_s(H_1) - 1)(\Sigma_s(H_2) - 1)\big)^n.
+\end{align*}
+This completes the proof.
+\end{proof}
+
+%The Poincar\'e set of a pure Schottky product of more than two groups can also be computed from the Poincar\'e series of the factors, but the formula involves the spectral radius of certain matrices, so we omit it.
+
+Proposition \ref{propositionschottkyproductRtree} generalizes to the case of more than two groups as follows: 
+
+
+\begin{proposition}
+\label{propositionschottkyproductRtree2}
+The Poincar\'e set of a finite pure Schottky product 
+\[
+G = \ast_{j = 1}^k H_j
+\] 
+can be computed by the formula
+\[
+s\in \Delta(H_1\ast H_2) \;\;\Leftrightarrow\;\; \rho(A_s) \geq 1,
+\]
+where $\rho$ denotes spectral radius, and $A_s$ denotes the matrix whose $(j,j')$th entry is
+\[
+(A_s)_{j,j'} = \begin{cases}
+\Sigma_s(H_j) & j'\neq j\\
+0 & j' = j
+\end{cases}.
+\]
+\end{proposition}
+\begin{proof}
+Let $J = \{1,\ldots,k\}$. Then
+\[
+G = \bigcup_{n = 0}^\infty \; \bigcup_{\substack{j_1,\ldots,j_n\in J \\ j_1\neq \cdots \neq j_n}} \{h_1\cdots h_n : h_1\in H_{j_1}, \cdots, h_n\in H_{j_n}\}.
+\]
+So by \eqref{schottkyproductRtree}, we have for all $s\geq 0$
+\begin{align*}
+\Sigma_s(G)
+= \sum_{g\in G} e^{-s\dogo g}
+&= \sum_{n = 0}^\infty \; \sum_{\substack{j_1,\ldots,j_n\in J \\ j_1\neq \cdots \neq j_n}} \; \sum_{h_1\in H_{j_1}} \cdots \sum_{h_n\in H_{j_n}} ~~~~ e^{-s\sum_1^n \dogo{h_i}}\\
+&= \sum_{n = 0}^\infty \; \sum_{\substack{j_1,\ldots,j_n\in J \\ j_1\neq \cdots \neq j_n}} \; \prod_{i = 1}^n (\Sigma_s(H_{j_i}) - 1)\\
+&= 1 + \sum_{n = 1}^\infty [1 \cdots 1] A_s^{n - 1} \left[\begin{array}{l}
+\Sigma_s(H_1) - 1\\
+\phantom{MM}\vdots\phantom{MM}\\
+\Sigma_s(H_n) - 1
+\end{array}\right]\\
+&\begin{cases}
+= \infty & \rho(A_s) \geq 1\\
+< \infty & \rho(A_s) < 1
+\end{cases}.
+\end{align*}
+This completes the proof.
+\end{proof}
+Note that only the last step (the series converges or diverges according to whether or not the spectral radius is at least one) uses the hypothesis that $J$ is finite.
+
+
+Our last example of an $\R$-tree constructed using the stapling method is similar to the method of pure Schottky products, but differs in important ways:
+
+\begin{example}[Geometric products]
+\label{examplegeometricproducts}
+Let $Y$ be an $\R$-tree, let $P\subset Y$ be a set, and let $(\Gamma_p)_{p\in P}$ be a collection of abstract groups. Let $\Gamma = \ast_{p\in P} \Gamma_p$. Let $V = \Gamma$, and let
+\[
+E = \{(\gamma,\gamma\alpha) : \gamma\in \Gamma , \; \alpha\in \Gamma_p\butnot\{e\}\}.
+\]
+For each $v\in V$, let $X_v = Y$. For each $(v,w) = (\gamma,\gamma\alpha)\in E$, where $\gamma\in\Gamma$ and $\alpha\in \Gamma_p\butnot\{e\}$, we let $\set vw = \{p\}$, and we let $\bij vw(p) = p$. In a manner similar to the proof of Claim \ref{claimcycleE2}, one can check that every cycle in $(V,E)$ is contained in one of the complete graphs $\gamma\Gamma_p \subset V$ ($\gamma\in\Gamma$, $p\in P$), so $(V,E)$ has contractible cycles. The consistency condition is trivial. Thus we can consider the stapled union $X = \coprod_{v\in V}^{\text{st}} X_v$, which admits a natural left action $\phi:\Gamma\to\Isom(X)$:
+\[
+\iota(\gamma)(\lb v,x\rb) = \lb\gamma v,x\rb.
+\]
+We let $G = \phi(\Gamma)$, and we call the pair $(X,G)$ the \emph{geometric product} of $Y$ with $(\Gamma_p)_{p\in P}$.
+\end{example}
+
+Note that if $(X,G)$ is the geometric product of $Y$ with $(\Gamma_y)_{y\in A}$, then for all $g = (p_1,\gamma_1)\cdots (p_n,\gamma_n)\in G$, we have
+\begin{equation}
+\label{geometricproducts}
+\dogo g = \dist(\zero,p_1) + \sum_{i = 1}^{n - 1} \dist(p_i,p_{i + 1}) + \dist(p_n,\zero).
+\end{equation}
+To compare this formula with \eqref{schottkyproductRtree}, we observe that if $n = 1$, then we get $\|(a,\gamma)\| = 2\dist(\zero,a)$, so that
+\begin{align*}
+\dogo{(p_1,\gamma_1)} + \cdots + \dogo{(p_n,\gamma_n)} &= \sum_{i = 1}^n 2\dist(\zero,p_i)\\
+& = \dist(\zero,p_1) + \sum_{i = 1}^{n - 1} [\dist(\zero,p_i) + \dist(\zero,p_{i + 1})] + \dist(\zero,p_n).
+\end{align*}
+So if $(X,G)$ is a geometric product, then the right hand side of \eqref{schottkyproductRtree} exceeds the left hand side by $\sum_{i = 1}^{n - 1} 2\lb p_i|p_{i + 1}\rb_\zero$. The formula \eqref{geometricproducts} is more complicated to deal with because its terms depend on the relation between the neighborhing points $p_i$ and $p_{i + 1}$, rather than just on the individual terms $p_i$. In particular, it is more difficult to compute the Poincar\'e exponent of a geometric product than it is to compute the Poincar\'e exponent of a group coming from Theorem \ref{theoremschottkyproductRtree}. We will investigate the issue of computing Poincar\'e exponents of geometric products in \cite{DSU2}, as well as other topics related to the geometry of these groups.
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{ll}
+%\begin{tabular}{@{}l|@{}}
+
+%%%FIRST FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.85]
+%\clip(-3.58,-1.06) rectangle (4.50,3.65);
+\clip(-3.5,-1.0) rectangle (4.41,3.56);
+%\draw [dashed] (-3.0,3.5)-- (-3.0,3.0);
+\draw [dashed] (-3.0,3.0)-- (-3.0,3.5);
+\draw (-3.0,3.0)-- (3.0,3.0);
+\draw (3.0,3.0)-- (3.0,2.5);
+\draw (-3.0,2.5)-- (3.0,2.5);
+\draw (-3.0,2.5)-- (-3.0,2.0);
+\draw (-3.0,2.0)-- (3.0,2.0);
+\draw (3.0,2.0)-- (3.0,1.5);
+\draw (3.0,1.5)-- (-3.0,1.5);
+\draw (-3.0,1.5)-- (-3.0,1.0);
+\draw (-3.0,1.0)-- (3.0,1.0);
+\draw (3.0,1.0)-- (3.0,0.5);
+\draw (3.0,0.5)-- (-3.0,0.5);
+\draw (-3.0,0.5)-- (-3.0,0.0);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw [dashed] (3.0,0.0)-- (3.0,-0.5);
+\begin{scriptsize}
+\draw [fill=black] (-3.0,3.0) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,3.2108404326819784) node {$B$};
+%\draw[color=black] (-3.2025644965398152,3.374601723039145) node {$a$};
+%\draw[color=black] (-2.726168015500785,3.374601723039145) node {$b$};
+\draw [fill=black] (3.0,3.0) circle (1pt);
+%\draw[color=black] (3.1096888772273363,3.2108404326819784) node {$C$};
+\draw [fill=black] (3.0,2.5) circle (1pt);
+%\draw[color=black] (3.1096888772273363,2.7046691715780082) node {$D$};
+\draw [fill=black] (-3.0,2.5) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,2.7046691715780082) node {$E$};
+\draw [fill=black] (-3.0,2.0) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,2.213385300506508) node {$F$};
+\draw [fill=black] (3.0,2.0) circle (1pt);
+%\draw[color=black] (3.1096888772273363,2.213385300506508) node {$G$};
+\draw[color=black] (0.04288653053857866,2.8333178519676443) node {$(Y,bab)$};
+%\draw[color=black] (2.797053686545473,2.8833178519676443) node {$d$};
+\draw[color=black] (0.04288653053857866,2.342033980896144) node {$(Y,ba)$};
+%\draw[color=black] (-3.2025644965398152,2.3771465908636746) node {$f$};
+\draw[color=black] (0.04288653053857866,1.8358627197921742) node {$(Y,b)$};
+\draw [fill=black] (3.0,1.5) circle (1pt);
+\draw[color=black] (3.2,1.5) node {$1$};
+\draw [fill=black] (-3.0,1.5) circle (1pt);
+\draw[color=black] (-3.2,1.5) node {$0$};
+\draw [fill=black] (-3.0,1.0) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,1.2010427782985675) node {$J$};
+\draw [fill=black] (3.0,1.0) circle (1pt);
+%\draw[color=black] (3.1096888772273363,1.2010427782985675) node {$K$};
+\draw [fill=black] (3.0,0.5) circle (1pt);
+%\draw[color=black] (3.1096888772273363,0.709758907227067) node {$L$};
+\draw [fill=black] (-3.0,0.5) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,0.709758907227067) node {$M$};
+%\draw[color=black] (2.797053686545473,1.8709753297597045) node {$h$};
+\draw[color=black] (0.027999140506108963,1.339691458688204) node {$(Y,e)$};
+%\draw[color=black] (-3.2025644965398152,1.379691458688204) node {$j$};
+\draw[color=black] (0.04288653053857866,0.8384075876167036) node {$(Y,a)$};
+%\draw[color=black] (2.797053686545473,0.8735201975842338) node {$l$};
+\draw[color=black] (0.013111750473639265,0.30246154644779404) node {$(Y,ab)$};
+\draw [fill=black] (-3.0,0.0) circle (1pt);
+%\draw[color=black] (-2.8899293058579514,0.20358764612309696) node {$N$};
+\draw [fill=black] (3.0,0.0) circle (1pt);
+%\draw[color=black] (3.1096888772273363,0.20358764612309696) node {$O$};
+%\draw[color=black] (-3.2025644965398152,0.3822363265127335) node {$n$};
+\draw[color=black] (0.04288653053857866,-0.15904754455876693) node {$(Y,aba)$};
+%\draw[color=black] (2.797053686545473,-0.12393493459123665) node {$q$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%SECOND FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.76]
+\clip(-3.5,-1.0) rectangle (4.41,3.56);
+\draw (-3.0,3.0)-- (-3.0,3.0);
+\draw (-3.0,3.0)-- (-3.0,3.0);
+\draw (-3.0,3.0)-- (3.0,2.5);
+\draw (3.0,2.5)-- (3.0,2.5);
+\draw (-3.0,2.0)-- (3.0,2.5);
+\draw (-3.0,2.0)-- (-3.0,2.0);
+\draw (-3.0,2.0)-- (3.0,1.5);
+\draw (3.0,1.5)-- (3.0,1.5);
+\draw (3.0,1.5)-- (-3.0,1.0);
+\draw (-3.0,1.0)-- (-3.0,1.0);
+\draw (-3.0,1.0)-- (3.0,0.5);
+\draw (3.0,0.5)-- (3.0,0.5);
+\draw (3.0,0.5)-- (-3.0,0.0);
+\draw (-3.0,0.0)-- (-3.0,0.0);
+\draw (-3.0,0.0)-- (3.0,-0.5);
+\draw (3.0,-0.5)-- (3.0,-0.5);
+\draw [dashed] (-3.0,3.0)-- (-1.9817985138773002,3.478813453266429);
+\draw [dashed] (3.0,-0.5)-- (1.6209498739803665,-1.0022909465069538);
+\begin{scriptsize}
+\draw [fill=black] (-3.0,3.0) circle (1pt);
+\draw [fill=black] (-3.0,0.0) circle (1pt);
+\draw [fill=black] (3.0,0.5) circle (1pt);
+\draw [fill=black] (-3.0,1.0) circle (1pt);
+\draw [fill=black] (3.0,1.5) circle (1pt);
+\draw [fill=black] (-3.0,2.0) circle (1pt);
+\draw [fill=black] (3.0,2.5) circle (1pt);
+\draw [fill=black] (3.0,2.5) circle (1pt);
+\draw [fill=black] (-3.0,2.0) circle (1pt);
+\draw [fill=black] (3.0,1.5) circle (1pt);
+\draw [fill=black] (-3.0,1.0) circle (1pt);
+\draw [fill=black] (3.0,0.5) circle (1pt);
+\draw [fill=black] (-3.0,0.0) circle (1pt);
+\draw [fill=black] (3.0,-0.5) circle (1pt);
+%\draw [fill=black] (-1.9817985138773002,3.478813453266429) circle (1pt);
+%\draw [fill=black] (1.6209498739803665,-1.0022909465069538) circle (1pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+\end{tabular}
+\caption[An example of a geometric product]{The geometric product of $Y$ with $(\Gamma_p)_{p\in P}$, where $Y = [0,1]$, $P = \{0,1\}$, $\Gamma_0 = \{e,\gamma_0\} \equiv \Z_2$, and $\Gamma_1 = \{e,\gamma_1\} \equiv \Z_2$. In the left hand picture, copies of $Y$ are drawn as horizontal lines and identifications between points in different copies are drawn as vertical lines. The right hand picture is the result of stapling together certain pairs of points in the left hand picture.}
+\end{center}
+\end{figure}
+
+
+\begin{example}[Cf. Figure \ref{figuregeometricproduct}]
+\label{examplegeometricproduct1}
+Let $(a_n)_1^\infty$ be an increasing sequence of nonnegative real numbers, and let $(b_n)_1^\infty$ be a sequence of nonnegative real numbers. Let
+\[
+Y = (\Rplus\times\{0\}) \cup \bigcup_{n = 1}^\infty (\{a_n\}\times [0,b_n])
+\]
+with the path metric induced from $\R^2$. Let $P = \{p_n : n\in\N\}$, where $p_n = (a_n,b_n)$. Then
+\begin{equation}
+\label{geometricproduct1}
+\dist(p_n,p_m) = b_n + b_m + |a_n - a_m| \all m\neq n,
+\end{equation}
+so \eqref{geometricproducts} would become
+\begin{align*}
+\dogo g &= b_1 + a_1 + \sum_{i = 1}^{n - 1} [b_i + b_{i + 1} + |a_{i + 1} - a_i|] + b_n + a_n\\ 
+&= \sum_{i = 1}^n 2b_i + a_1 + \sum_{i = 1}^{n - 1} |a_{i + 1} - a_i| + a_n.
+\end{align*}
+This formula exhibits clearly the fact that the relation between neighborhing points $p_i$ and $p_{i + 1}$ is involved, via the appearance of the term $|a_{i + 1} - a_i|$.
+\end{example}
+
+\begin{figure}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.48,0.4000000000000001) rectangle (8.56,6.7200000000000015);
+\draw[<-] (8.0,1.0)-- (1.0,1.0);
+\draw (2.0,4.0)-- (2.0,1.0);
+\draw [fill=black] (2.0,4.0) circle (1.5pt);
+\draw (3.0,1.0)-- (3.0,3.0);
+\draw [fill=black] (3.0,3.0) circle (1.5pt);
+\draw (4.0,4.0)-- (4.0,1.0);
+\draw [fill=black] (4.0,4.0) circle (1.5pt);
+\draw (5.0,1.0)-- (5.0,5.0);
+\draw [fill=black] (5.0,5.0) circle (1.5pt);
+\draw (7.0,6.0)-- (7.0,1.0);
+\draw [fill=black] (7.0,6.0) circle (1.5pt);
+\begin{scriptsize}
+\draw [fill=black] (1.0,1.0) circle (1.5pt);
+\draw[color=black] (0.8400000000000001,0.8000000000000002) node {$0$};
+%\draw [fill=black] (8.0,1.0) circle (1.5pt);
+\draw[color=black] (8.16,0.8400000000000002) node {$\infty$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Another example of a geometric product]{The set $Y$ of Example \ref{examplegeometricproduct1}. The points at the tops of the vertical lines are ``branch points'' which correspond to fixed points in the geometric product $(X,G)$. If a geodesic in the geometric product is projected down to $Y$, the result will be a sequence of geodesics, each of which starts and ends at one of the indicated points (either $\zero$, an element of $P$, or $\infty$).}
+\label{figuregeometricproduct}
+\end{figure}
+
+
+
+\begin{proposition}
+\label{propositionschottkyRtree}
+Let $(X,G)$ be the geometric product of $Y$ with $(\Gamma_p)_{p\in P}$, where $P\subset Y$.
+\begin{itemize}
+\item[(i)] If
+\begin{equation}
+\label{schottkyRtree1}
+\inf\{\dist(y,z) : y,z\in E, y\neq z \} > 0,
+\end{equation}
+then $G = \lb G_a\rb_{a\in E}$ is a global weakly separated Schottky product. If furthermore
+\begin{equation}
+\label{schottkyRtree2}
+\inf\{\wbar\Dist(y,z) : y,z\in E, y\neq z \} > 0,
+\end{equation}
+then $G$ is strongly separated.
+\item[(ii)] $X$ is proper if and only if all three of the following hold: $Y$ is proper, $\#(\Gamma_a) < \infty$ for all $a\in E$, and $\#(E\cap B(\zero,\rho)) < \infty$ for all $\rho > 0$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof of \text{(i)}]
+Suppose that \eqref{schottkyRtree1} holds, and for each $p\in P$, let
+\[
+U_p = \{\lb g_1\cdots g_n,y\rb \in X : g_1\in G_p\} \cup \{\lb \id,y\rb : y\in B(p,\epsilon)\},
+\]
+where $\epsilon \leq \inf\{\dist(y,z) : y,z\in P, y\neq z\}/2$. Then $(U_p)_{p\in P}$ a global Schottky system for $G$. If \eqref{schottkyRtree2} also holds, then it is strongly separated, because 
+\[
+\inf\{\wbar\Dist(U_p,U_q) : p\neq q\} \geq \inf\{\wbar\Dist(y,z) : y,z\in P, y\neq z\} - 2\epsilon
+\] 
+can be made positive if $\epsilon$ is sufficiently small. Finally, if we go back to assuming only that \eqref{schottkyRtree1} holds, then $(U_p)_{p\in P}$ is still weakly separated, because \eqref{schottkyRtree2} holds for finite subsets.
+\end{proof}
+
+\begin{proof}[Proof of \text{(ii)}]
+The necessity of these conditions is obvious; conversely, suppose they hold. Fix $\rho > 0$ and $x = \lb g,y\rb\in B_X(\zero,\rho)$; by \eqref{pathmetricv3}, we have
+\[
+\dist(\zero,p_1) + \dist(p_1,p_2) + \ldots + \dist(p_{n - 1},p_n) + \dist(p_n,y) \leq \rho,
+\]
+where $g = h_1\cdots h_n$, $h_i\in G_{p_i}\butnot\{\id\}$, $p_i\in P$, and $p_i\neq p_{i + 1}$ for all $i$. It follows that $\dox{p_i} \leq \rho$ for all $i = 1,\ldots,n$, i.e. $p_i\in P\cap B(\zero,\rho)$. In particular, letting $\epsilon = \min_{p,q\in P\cap B(\zero,\rho)} \dist(a,b)$, we have $(n - 1)\epsilon\leq \rho$, or equivalently $n\leq 1 + \rho/\epsilon$. It follows that
+\[
+g\in\bigcup_{n\leq 1 + \rho/\epsilon} \; \bigcup_{p_1,\ldots,p_n\in P\cap B(\zero,\rho)} (G_{p_1}\butnot\{\id\})\cdots (G_{p_n}\butnot\{\id\}),
+\]
+a finite set. Thus, $B_X(\zero,\rho)$ is contained in the union of finitely many compact sets of the form $B_Y(\zero,\rho)\times\{g\}\subset X$, and is therefore compact.
+\end{proof}
+
+\endinput

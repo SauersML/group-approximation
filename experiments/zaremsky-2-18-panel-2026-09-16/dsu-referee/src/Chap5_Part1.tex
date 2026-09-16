@@ -1,0 +1,501 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Preliminaries}
+%%\section{Preliminaries}
+%\label{partpreliminaries}
+%This part will be divided as follows: In Section \ref{sectionROSSONCTs} we define the class of rank one symmetric spaces of noncompact type (\ROSSs). In Sections \ref{sectiongeometry1}-\ref{sectiongeometry2}, we define the class of hyperbolic metric spaces and study their geometry. In Section \ref{sectiondiscreteness}, we explore different notions of discreteness for groups of isometries of a metric space. In Section \ref{sectionclassification} we prove two classification theorems, one for isometries (Theorem \ref{classificationofisometries}) and one for semigroups of isometries (Theorem \ref{classificationofsemigroups}). Finally, in Section \ref{sectionlimitsets} we define and study the limit set of a semigroup of isometries.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Discreteness} \label{sectiondiscreteness}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $X$ be a metric space. In this chapter we discuss several different notions of what it means for a group or semigroup $G\prec\Isom(X)$ to be \emph{discrete}. We show that these notions are equivalent in the Standard Case. Finally, we give examples to show that these notions are no longer equivalent when $X = \H^\infty$.
+
+Throughout this chapter, the standing assumptions that $X$ is a (not necessarly hyperbolic) metric space and that $\zero\in X$ replace the paper's overarching standing assumption that $(X,\zero,b)$ is a Gromov triple (cf. \6\ref{standingassumptions2}). Of course, if $(X,\zero,b)$ is a Gromov triple then $X$ is a metric space and $\zero\in X$, and therefore all theorems in this chapter can be used in other chapters without comment.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Topologies on $\Isom(X)$}
+\label{subsectiontopologies}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we discuss different topologies that may be put on the isometry group of the metric space $X$.
+
+In the Standard Case, the most natural topology is the \emph{compact-open topology (COT)}, i.e. the topology whose subbasic open sets are of the form
+\[
+\GG(K,U) = \{f\in \Isom(X):f(K)\subset U\}
+\]
+where $K\subset X$ is compact and $U\subset X$ is open. When we replace $X$ by a metric space which is not proper, it is tempting to replace the compact-open topology with a ``bounded-open'' topology. However, it is hard to define such a topology in a way that does not result in pathologies. It turns out that the compact-open topology is still the ``right'' topology for many applications in an arbitrary metric space. But we are getting ahead of ourselves.
+
+Let's start by considering the case where $X$ is an algebraic hyperbolic space, i.e., $X = \H = \H_\F^\alpha$, and figure out what topology or topologies we can put on $\Isom(\H)$. Recall from Theorem \ref{theoremisometries} that
+\begin{equation}
+\label{IsomH}
+\Isom(\H) \equiv \PO^*(\LL;\QQ) \equiv \O^*(\LL;\QQ)/\sim
+\end{equation}
+where $\LL = \HH_\F^{\alpha + 1}$, $\QQ$ is the quadratic form \eqref{Qdef}, and $T_1\sim T_2$ means that $[T_1] = [T_2]$ (in the notation of Section \ref{subsectionisometries}). Thus $\Isom(\H)$ is isomorphic to a quotient of a subspace of $L(\LL)$, the set of bounded linear maps from $\LL$ to itself. This indicates that to define a topology or topologies on $\Isom(\H)$, it may be best to start from the functional analysis point of view and look for topologies on $L(\LL)$. In particular, we will be interested in the following widely used topologies on $L(\LL)$:
+\begin{itemize}
+\item The \emph{uniform operator topology (UOT)} is the topology on $L(\LL)$ which comes from looking it as a metric space with the metric
+\[
+\dist(T_1,T_2) = \|T_1 - T_2\| = \sup\{\|(T_1 - T_2)\xx\|:\xx\in\LL,\|\xx\| = 1\}.
+\]
+\item The \emph{strong operator topology (SOT)} is the topology on $L(\LL)$ which comes from looking at it as a subspace of the product space $\LL^\LL$. Note that in this topology,
+\[
+T_n\tendsto n T \;\;\;\; \Leftrightarrow \;\;\;\; T_n \xx \tendsto n T\xx \all \xx\in\LL.
+\]
+The strong operator topology is weaker than the uniform operator topology.
+\end{itemize}
+
+\begin{remark}
+There are many other topologies used in functional analysis, for example the weak operator topology, which we do not consider here.
+\end{remark}
+
+Starting with either the uniform operator topology or the strong operator topology, we may restrict to the subspace $\O^*(\LL;\QQ)$ and then quotient by $\sim$ to induce a topology on $\Isom(\H)$ using the identification \eqref{IsomH}. For convenience, we will also call these induced topologies the uniform operator topology and the strong operator topology, respectively.
+
+We now return to the general case of a metric space $X$. Define the \emph{Tychonoff topology} to be the topology on $\Isom(X)$ inherited from the product topology on $X^X$.
+
+\begin{proposition}
+\label{propositionCOTSOT}~
+\begin{itemize}
+\item[(i)] The Tychonoff topology and the compact-open topology on $\Isom(X)$ are identical.
+\item[(ii)] If $X$ is an algebraic hyperbolic space, then the strong operator topology is identical to the Tychonoff topology (and thus also to the compact-open topology).
+\end{itemize}
+\end{proposition}
+\begin{proof}~
+\begin{itemize}
+\item[(i)] Since subbasic sets in the Tychonoff topology take the form $\GG(\{x\},U)$, it is clear that the compact-open topology is at least as fine as the Tychonoff topology. Conversely, suppose that $\GG(K,U)$ is a subbasic open set in the Tychonoff topology, and fix $f\in \GG(K,U)$. Let $\epsilon = \dist(f(K),X\butnot U) > 0$, and let $(x_i)_1^n$ be a set of points in $K$ such that $K\subset \bigcup_1^n B(x_i,\epsilon/3)$. Then
+\[
+f\in\UU := \bigcap_{i = 1}^n \GG(\{x_i\},\thicken_{\epsilon/3}(f(K))).\Footnote{Here and elsewhere $\thicken_\epsilon(S) = \{x\in X : \dist(x,S) \leq \epsilon\}$.}
+\]
+The set $\UU$ is open in the Tychonoff topology; we claim that $\UU\subset \GG(K,U)$. Indeed, suppose that $\w f\in\UU$. Then for $x\in K$, fix $i$ with $x\in B(x_i,\epsilon/3)$; since $\w f$ is an isometry, $\dist(\w f(x),f(K)) \leq \dist(\w f(x),\w f(x_i)) + \dist(\w f(x_i),f(K)) \leq 2\epsilon/3 < \epsilon$. It follows that $\w f(x)\in U$; since $x\in K$ was arbitrary, $\w f\in \GG(K,U)$.
+
+\item[(ii)] It is clear that the strong operator topology is at least as fine as the Tychonoff topology. Conversely, suppose that a set $\UU\subset\Isom(\H)$ is open in the strong operator topology, and fix $[T]\in\UU$. Let $T\in\O^*(\LL;\QQ)$ be a representative of $[T]$. There exist $(\vv_i)_1^n$ in $\LL$ and $\epsilon > 0$ such that for all $\w T\in \O^*(\LL;\QQ)$ satisfying $\|(\w T - T)\vv_i\| \leq \epsilon\all i$, we have $[\w T]\in \UU$. Let $\ff_0 = \ee_0$, and let $V = \lb \ff_0,\vv_1,\ldots,\vv_n\rb$. Extend $\{\ff_0\}$ to an $\F$-basis $\{\ff_0,\ff_1,\ldots,\ff_k\}$ of $V$ with the property that $B_\QQ(\ff_{j_1},\ff_{j_2}) = 0$ for all $j_1\neq j_2$. Without loss of generality, suppose that $k\geq 1$. For each $i = 1,\ldots,n$ we have $\vv_i = \sum_j \ff_j c_{i,j}$ for some $c_{i,j}\in\F$, so there exists $\epsilon_2 > 0$ such that for all $\w T\in\O^*(\LL;\QQ)$ satisfying $\|(\w T - T)\ff_j\| \leq \epsilon_2 \all j$ and $\|\sigma_{\w T} - \sigma_T\| \leq \epsilon_2$, we have $[\w T]\in \UU$.
+
+Let
+\begin{equation}
+\label{IFdef}
+I_\F = \begin{cases}
+\{1\} & \F = \R\\
+\{1,i\} & \F = \C\\
+\{1,i,j,k\}& \F = \Q
+\end{cases},
+\end{equation}
+and let
+\[
+F = \{\ee_0\} \cup \{\ee_0 \pm (1/2)\ff_1 \ell : j = 1,\ldots,k , \ell\in I_\F\}.
+\]
+Fix $\epsilon_3 > 0$ small to be determined, and for the remainder of this proof write $A\sim B$ if $\|A - B\|$ is bounded by a constant which tends to zero as $\epsilon\to 0$. Let
+\[
+\VV = \left\{[\w T]\in\Isom(\H): \forall \xx\in F, \;\;\exists \yy_\xx\in [\w T]([\xx]) \text{ such that } \|\yy_\xx - T\xx\| < \epsilon_3\right\}.
+\]
+For each $\xx\in F$, we have $[\xx]\in\H$, so the set 
+\[
+\{[\yy]\in\H : \exists \yy\in[\yy] \text{ such that } \|\yy - T\xx\| < \epsilon_3\}
+\] 
+is open in the natural topology on $\H$. It follows that $\VV$ is open in the Tychonoff topology. Moreover, $[T]\in\VV$. To complete the proof we show that $\VV\subset\UU$. Indeed, fix $[\w T]\in\VV$, and let $\yy = \yy_{\ee_0}$. There exists a representative $\w T\in\O^*(\LL;\QQ)$ such that $\w T\ee_0 = \lambda \yy$ for some $\lambda > 0$. Since
+\[
+-1 = \QQ(\ee_0) \sim \QQ(\yy) = \lambda^{-2}\QQ(\lambda\yy) = -\lambda^{-2},
+\]
+we have $\lambda\sim 1$ and thus $\w T\ee_0 \sim T\ee_0$.
+
+Now for each $\xx\in F\butnot\{\ee_0\}$, there exists $a_\xx\in\F$ such that $\yy_\xx = \w T(\xx a_\xx)$. Fix $j = 1,\ldots,k$ and $\ell\in I_\F$. Writing $a_\pm = a_{\ee_0 \pm (1/2)\ff_j \ell}$, we have
+\[
+\left\|T\left(\ee_0 \pm \frac12\ff_j \ell\right) - \w T\left(\left(\ee_0 \pm \frac12\ff_j \ell\right)a_\pm\right)\right\| < \epsilon_3,
+\]
+i.e. $T(\ee_0 \pm (1/2)\ff_j \ell) \sim \w T((\ee_0 \pm (1/2)\ff_j \ell) a_\pm)$. Substituting $\pm = +$ and $\pm = -$ and adding the resulting equations gives
+\[
+2T\ee_0 \sim \w T(\ee_0 (a_+ + a_-)) + \frac12 \w T(\ff_j \ell (a_+ - a_-));
+\]
+using $T\ee_0 \sim \w T\ee_0$ and rearranging gives
+\[
+\w T(\ee_0 (2 - a_+ - a_-)) \sim \frac12 \w T(\ff_j \ell (a_+ - a_-)).
+\]
+Now by Lemma \ref{lemmaoperatornorm}, we have $\|\w T\|\sim 1$, and thus $\ee_0(2 - a_+ - a_-) \sim (1/2)\ff_j \ell(a_+ - a_-)$. Since $\|\ee_0 a + \ff_j \ell b\| \asymp_\times \max(|a|,|b|)$ for all $a,b\in\F$, it follows that
+\[
+2 - a_+ - a_- \sim \ell(a_+ - a_-) \sim 0,
+\]
+from which we deduce $a_+\sim a_- \sim 1$. Thus
+\[
+T\left(\ee_0 \pm \frac12\ff_j \ell\right) \sim \w T\left(\ee_0 \pm \frac12\ff_j \ell\right).
+\]
+Substituting $\pm = +$ and $\pm = -$, subtracting the resulting equations, and using the fact that $T\ee_0\sim \w T\ee_0$ gives
+\[
+T(\ff_j \ell) \sim \w T(\ff_j \ell).
+\]
+In particular, letting $\ell = 1$ we have $T\ff_j \sim \w T\ff_j$. Thus
+\[
+(T\ff_j) (\sigma_T\ell) \sim (\w T\ff_j) (\sigma_{\w T}\ell) \sim (T\ff_j) (\sigma_{\w T}\ell).
+\]
+Since this holds for all $\ell\in I_\F$, we have $\sigma_T\sim \sigma_{\w T}$. By the definition of $\sim$, this means that we can choose $\epsilon_3$ small enough so that $\|T\ff_j \ell - \w T\ff_j \ell\| \leq \epsilon_2 \all j$ and $\|\sigma_{\w T} - \sigma_T\| \leq \epsilon_2$. Then $[\w T]\in\UU$, completing the proof.
+\end{itemize}
+\end{proof}
+
+\begin{proposition}
+The compact-open topology makes $\Isom(X)$ into a topological group, i.e. the maps
+\[
+(g,h) \mapsto gh, \hspace{.5 in}
+g \mapsto g^{-1}
+\]
+are continuous.
+\end{proposition}
+\begin{proof}
+Fix $g_0,h_0\in\Isom(X)$, and let $\GG(\{x\},U)$ be a neighborhood of $g_0 h_0$. For some $\epsilon > 0$, we have $B(g_0 h_0(x),\epsilon)\subset U$. We claim that
+\[
+\GG\Big(\{h_0(x)\},B(g_0 h_0(x),\epsilon/2)\Big) \GG\Big(\{x\},B(h_0(x),\epsilon/2)\Big) \subset \GG(\{x\},U).
+\]
+Indeed, fix $g\in \GG(\{h_0(x)\},B(g_0 h_0(x),\epsilon/2))$ and $h\in \GG(\{x\},B(h_0(x),\epsilon/2))$. Then
+\[
+\dist(gh(x),g_0 h_0(x)) \leq \dist(h(x),h_0(x)) + \dist(gh_0(x),g_0 h_0(x)) \leq \epsilon/2 + \epsilon/2 = \epsilon,
+\]
+demonstrating that $gh(x)\in U$, and thus that the map $(g,h) \mapsto gh$ is continuous.
+
+Now fix $g_0\in\Isom(X)$, and let $\GG(\{x\},U)$ be a neighborhood of $g_0^{-1}$. For some $\epsilon > 0$, we have $B(g_0^{-1}(x),\epsilon)\subset U$. We claim that
+\[
+\GG\big(\{g_0^{-1}(x)\},B(x,\epsilon)\big)^{-1} \subset \GG(\{x\},U).
+\]
+Indeed, fix $g\in \GG(\{g_0^{-1}(x)\},B(x,\epsilon))$. Then
+\[
+\dist(g^{-1}(x),g_0^{-1}(x)) = \dist(x,g g_0^{-1}(x)) \leq \epsilon,
+\]
+demonstrating that $g^{-1}(x)\in U$, and thus that the map $g \mapsto g^{-1}$ is continuous.
+\end{proof}
+
+\begin{remark}[{\cite[9.B(9), p.60]{Kechris}}]
+\label{remarkpolish}
+If $X$ is a separable complete metric space, then the group $\Isom(X)$ with the compact-open topology is a Polish space.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Discrete groups of isometries}
+\label{subsectiondiscrete}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we discuss several different notions of what it means for a group $G\leq\Isom(X)$ to be \emph{discrete}, and then we show that they are equivalent in the Standard Case. However, each of our notions will be distinct when $X = \H = \H_\F^\alpha$ for some infinite cardinal $\alpha$.
+
+\begin{definition}
+\label{definitiondiscreteness}
+Fix $G\leq\Isom(X)$.
+\begin{itemize}
+\item $G$ is called \emph{strongly discrete (SD)} if for every bounded set $B \subset X$, we have
+\[
+\#\{g\in G: g(B) \cap B \neq \emptyset\} < \infty.
+\]
+\item $G$ is called \emph{moderately discrete (MD)} if for every $x\in X$, there exists an open set $U\ni x$ such that
+\[
+\#\{g\in G: g(U) \cap U \neq \emptyset\} < \infty.
+\]
+\item $G$ is called \emph{weakly discrete (WD)} if for every $x\in X$, there exists an open set $U \ni x$ such that
+\[
+g(U) \cap U \neq \emptyset \Rightarrow g(x) = x.
+\]
+\end{itemize}
+\end{definition}
+\begin{remark}
+Strongly discrete groups are known in the literature as \emph{metrically proper}, and moderately discrete groups are known as \emph{wandering}.
+\end{remark}
+\begin{remark}
+\label{remarkdiscretenessequivalent}
+We may equivalently give the definitions as follows:
+\begin{itemize}
+\item $G$ is \emph{strongly discrete (SD)} if for every $R > 0$ and $x\in X$,
+\begin{equation}
+\label{SD2}
+\#\{g\in G: \dist(x,g(x)) \leq R\} < \infty.
+\end{equation}
+\item $G$ is \emph{moderately discrete (MD)} if for every $x\in X$, there exists $\epsilon > 0$ such that
+\begin{equation}
+\label{MD2}
+\#\{g\in G: \dist(x,g(x)) \leq \epsilon\} < \infty.
+\end{equation}
+\item $G$ is \emph{weakly discrete (WD)} if for every $x\in X$, there exists $\epsilon > 0$ such that
+\begin{equation}
+\label{WD2}
+G(x)\cap B(x,\epsilon) = \{x\}.
+\end{equation}
+\end{itemize}
+\end{remark}
+
+As our naming suggests, the condition of strong discreteness is stronger than the condition of moderate discreteness, which is in turn stronger than the condition of weak discreteness.
+\begin{proposition}
+\label{propositionSDMDWD}
+Any strongly discrete group is moderately discrete, and any moderately discrete group is weakly discrete.
+\end{proposition}
+\begin{proof}
+It is clear from the second formulation that strongly discrete groups are moderately discrete. Let $G\leq\Isom(X)$ be a moderately discrete group. Fix $x\in X$, and let $\epsilon > 0$ be such that \eqref{MD2} holds. Letting $\epsilon' = \epsilon \wedge \min\{\dist(x,g(x)) : g(x)\neq x, g(x)\in B(x,\epsilon)\}$, we see that \eqref{WD2} holds.
+\end{proof}
+
+The reverse directions, WD \implies MD and MD \implies SD, both fail in infinite dimensions. Examples \ref{examplevalette} and \ref{exampletranslations}-\ref{examplenotstronglydiscreteBIM} are moderately discrete groups which are not strongly discrete, and Examples \ref{exampleMDWD} and \ref{exampleAutT} are weakly discrete groups which are not moderately discrete.
+
+If $X$ is a proper metric space, then the classes MD and SD coincide, but are still distinct from WD. Example \ref{exampleAutT} is a weakly discrete group acting on a proper metric space which is not moderately discrete. We show now that MD $\Leftrightarrow$ SD when $X$ is proper:
+
+\begin{proposition}
+\label{propositionproperMDSD}
+Suppose that $X$ is proper. Then a subgroup of $\Isom(X)$ is moderately discrete if and only if it is strongly discrete.
+\end{proposition}
+\begin{proof}
+Let $G\leq\Isom(X)$ be a moderately discrete subgroup. Fix $x\in X$, and let $\epsilon > 0$ satisfy \eqref{MD2}. Fix $R > 0$ and let $K = \cl{G(\zero)}\cap B(x,R)$; $K$ is compact since $X$ is proper. The collection $\{B(g(x),\epsilon): g\in G\}$ covers $K$, so there is a finite subcover $\{B(g_i(x),\epsilon): i = 1,\ldots,n\}$. Now
+\[
+\#\{g\in G: \dist(x,g(x)\leq R)\} \leq \sum_{i = 1}^n \#\{g\in G: g(x)\in B(g_i(x),\epsilon)\} < \infty,
+\]
+i.e. \eqref{SD2} holds.
+\end{proof}
+
+\subsection{Topological discreteness}
+\begin{definition}
+\label{definitionparametricdiscreteness}
+Let $\scrT$ be a topology on $\Isom(X)$. A group $G\leq\Isom(X)$ is \emph{$\scrT$-discrete} if it is discrete as a subspace of $\Isom(X)$ in the topology $\scrT$.
+\end{definition}
+
+Most of the time, we will let $\scrT$ be the compact-open topology (COT). The relation between COT-discreteness and our previous notions of discreteness is as follows:
+\begin{proposition}
+\label{propositionparametricdiscreteness}~
+\begin{itemize}
+\item[(i)] Any moderately discrete group is COT-discrete.
+\item[(ii)] Any weakly discrete group that is acting on an algebraic hyperbolic space is COT-discrete.%Suppose that $\Fix(g)$ has empty interior for all $g\in\Isom(X)\butnot\{\id\}$. Then any weakly discrete group acting on $X$ is COT-parametrically discrete.
+\item[(iii)] Any COT-discrete group that is acting on a proper metric space is strongly discrete.
+\end{itemize}
+\end{proposition}
+\begin{proof}~
+\begin{itemize}
+\item[(i)]
+Let $G\leq\Isom(X)$ be moderately discrete, and let $\epsilon > 0$ satisfy \eqref{MD2}. Then the set $\UU := \GG(\{\zero\},B(\zero,\epsilon))\subset\Isom(X)$ satisfies $\#(\UU\cap G) < \infty$. But $\UU$ is a neighborhood of $\id$ in the compact-open topology. It follows that $G$ is COT-discrete.
+
+\item[(ii)]
+Suppose that $X = \H = \H_\F^\alpha$. Let $G\leq\Isom(\H)$ be weakly discrete, and by contradiction suppose it is not COT-discrete. For any finite set $F\subset\H$, let $\epsilon > 0$ be small enough so that \eqref{WD2} holds for all $x\in F$; since $G$ is not COTD, there exists $g = g_F\in G\butnot\{\id\}$ such that $\dist(x,g(x))\leq \epsilon$ for all $x\in F$, and it follows that $g(x) = x$ for all $x\in F$. Now suppose that $J$ is a finite set of indices, and let $F = \{[\ee_0]\} \cup \{[\ee_0 \pm (1/2)\ee_i] \ell : i\in J, \ell\in I_\F\}$, where $I_\F$ is as in \eqref{IFdef}. Then if $T_I$ is a representative of $g_F$ satisfying $T_J\ee_0 = \ee_0$, an argument similar to the proof of Proposition \ref{propositionCOTSOT}(ii) shows that $\sigma_{T_J} = I$ and $T_J \ee_i = \ee_i$ for all $i\in J$.
+
+Now we define an infinite sequence of indices $(i_n)_1^\infty$ as follows: If $i_1,\ldots,i_{n - 1}$ have been defined, let $T_n = T_{\{i_1,\ldots,i_{n - 1}\}}$, and let $i_n$ be such that $\ee_{i_n}\notin \Fix(T_n)$.
+
+Choose a nonnegative summable sequence $(t_n)_1^\infty$, and let $\xx = \ee_0 + \sum_{n = 1}^\infty t_n \ee_{i_n}$. Then $T_n\xx\to \xx$; since $G$ is weakly discrete, it follows that $T_n\xx = \xx$ for all $n$ sufficiently large. Fix such an $n$, and observe that
+\[
+0 = T_n\xx - \xx = t_n (T_n(\ee_n) - \ee_n) + \sum_{m > n} t_m (T_n(\ee_m) - \ee_m);
+\]
+the triangle inequality gives
+\[
+t_n \leq \frac{\sum_{m > n}2t_m}{\|T_n\ee_n - \ee_n\|}\cdot
+\]
+By choosing the sequence $(t_n)_1^\infty$ to satisfy
+\[
+t_{n + 1} < \frac14 \|T_n\ee_n - \ee_n\| t_n \leq \frac12 t_n ,
+\]
+we arrive at a contradiction.
+
+%\ignore{
+%
+%[Separable case:]
+%
+%By contradiction, suppose that we have a sequence $(g_n)_1^\infty$ in $G$ such that $g_n\to\id$ in the compact-open topology.
+%
+%Let us view $G$ as a subgroup of $\O^*(\LL;\QQ)$. For each $n$, we have $g_n\neq \id$, so $\Fix_\LL(g_n)$ is a proper subspace of $\LL$. Now the Baire category theorem implies that
+%\[
+%\bigcup_{n\in\N}\Fix_\LL(g_n) \neq \LL
+%\]
+%so let us choose $\xx\in\LL\butnot \bigcup_n\Fix_\LL(g_n)$. Let $U$ be a neighborhood of $\xx$ such that 
+%\[
+%g(\xx)\in U \Rightarrow g(\xx) = \xx.
+%\]
+%Since $\xx\notin\Fix_\LL(g_n)$ for all $n$, we have $g_n(\xx)\notin U$ for all $n$. But on the other hand we must have $g_n(\xx)\to\xx$ since $g_n\to\id$ in the compact-open topology. This is a contradiction.
+%}% end ignore
+
+\item[(iii)]
+Let $G$ be a COT-discrete group acting by isometries on a proper metric space $X$. By contradiction, suppose that $G$ is not strongly discrete. Then there exists an infinite set $A\subset G$ such that the set $A(\zero)$ is bounded. Without loss of generality we may suppose that $A^{-1} = A$. Note that for each $x\in X$, the set $A(x)$ is bounded and therefore precompact. Now since $X$ is a proper metric space, it is $\sigma$-compact and therefore separable. Let $\SS$ be a countable dense subset of $X$. Then
+\[
+\KK := \left(\prod_{q\in\SS}\cl{A(q)}\right)^2
+\]
+is a compact metrizable space. For each $g\in A$ let
+\[
+\phi_g := \left((g(q))_{q\in\SS},(g^{-1}(q))_{q\in\SS}\right)\in \KK.
+\]
+Since $A$ is infinite, there exists an infinite sequence $(g_n)_1^\infty$ in $A$ such that
+\[
+\phi_{g_n}\to \left((y_q^{(+)})_{q\in\SS},(y_q^{(-)})_{q\in\SS}\right)\in\KK.
+\]
+Thus
+\[
+g_n^\pm(q) \tendsto n y_q^{(\pm)} \all q\in\SS.
+\]
+The density of $\SS$ and the equicontinuity of the sequences $(g_n)_1^\infty$ and $(g_n^{-1})_1^\infty$ imply that for all $x\in X$, there exist $y_x^{(\pm)}$ such that $g_n^\pm(y)\to y_x^{(\pm)}$. Thus, the sequence $(g_n)_1^\infty$ converges in the Tychonoff topology to some $g^{(+)}\in X^X$. Similarly, the sequence $(g_n^{-1})_1^\infty$ converges to some $g^{(-)}\in X^X$. Again, the equicontinuity of the sequences $(g_n)_1^\infty$ and $(g_n^{-1})_1^\infty$ allows us to take limits and deduce that
+\[
+g^{(+)} g^{(-)} = \lim_{n\to\infty} g_n g_n^{-1} = \id.
+\]
+Similarly, $g^{(-)}g^{(+)} = \id$. Thus $g^{(+)}$ and $g^{(-)}$ are inverses, and in particular $g^{(+)}\in\Isom(X)$. Since $g_n\to g^{(+)}$ in the compact-open topology, the proof is completed by the following lemma from topological group theory:
+\begin{lemma}
+\label{lemmadiscretesubgroup}
+Let $H$ be a topological group, and let $G$ be a subgroup of $H$. Suppose there is a sequence $(g_n)_1^\infty$ of distinct elements in $G$ which converges to an element of $H$. Then $G$ is not discrete in the topology inherited from $H$.
+\end{lemma}
+\begin{subproof}
+Suppose $g_n\to h\in H$. Then
+\[
+g_n g_{n + 1}^{-1} \to h h^{-1} = \id,
+\]
+while on the other hand $g_n g_{n + 1}^{-1}\neq \id$ (since the sequence $(g_n)_1^\infty$ consists of distinct elements). This demonstrates that $G$ is not discrete in the inherited topology.
+\end{subproof}
+\end{itemize}
+\end{proof}
+If $X$ is not an algebraic hyperbolic space, then it is possible for a weakly discrete group to not be COT-discrete; see Example \ref{exampleAutT}. Conversely, it is possible for a COT-discrete group to not be weakly discrete; see Examples \ref{examplepoincareextension} amd \ref{examplepoincareextensiontwo}.
+
+On the other hand, suppose that $X$ is an algebraic hyperbolic space. The uniform operator topology (abbreviated as UOT) is finer than the COT, i.e. it has more open sets, and therefore it is easier for every subset of $G$ to be relatively open in that topology, which is exactly what it means to be discrete. Notice that there is an ``order switch'' here; the UOT is finer than the COT, but the condition of being COT-discrete is stronger than the condition of being UOT-discrete. We record this for later use as the following 
+\begin{observation}
+\label{observationCOTUOT}
+Let $X$ be an algebraic hyperbolic space. If a subgroup $G\leq\Isom(X)$ is COT-discrete, then it is also UOT-discrete.
+\end{observation}
+
+The inclusion in the previous observation is strict. A significant example of a group acting on $\H^\infty$ which is UOT-discrete but not COT-discrete is described in Example \ref{exampleAutTBIM}.
+
+The various relations between the distinct shades of discreteness are somewhat subtle when first discerned. We speculate that it may be fruitful to study such distinctions with a finer lens. For the reader's ease, we summarize the relations between our different notions of discreteness in Table \ref{figurediscreteness} below.
+
+\subsection{Equivalence in finite dimensions}
+
+\begin{proposition}\label{propositionfinitedimequivalent}
+Suppose that $X$ is a finite-dimensional Riemannian manifold. Then the notions of strong discreteness, moderate discreteness, weak discreteness, and COT-discreteness agree. If $X$ is an algebraic hyperbolic space, these notions also agree with the notion of UOT-discreteness.
+\end{proposition}
+\begin{proof}
+By Propositions \ref{propositionSDMDWD} and \ref{propositionparametricdiscreteness}, the conditions of strong discreteness, moderate discreteness, and COT-discreteness agree and imply weak discreteness. Conversely, suppose that $G\leq\Isom(X)$ is weakly discrete, and by contradiction suppose that $G$ is not COT-discrete. Since $X$ is separable, so is $\Isom(X)$, and thus there exists a sequence $\Isom(X)\butnot\{\id\}\ni g_n\to\id$ in the compact-open topology. For each $n$ let $F_n = \{x\in X : g_n(x) = x\}$. Since $G$ is weakly discrete, $X = \bigcup_1^\infty F_n$, so by the Baire category theorem, $F_n$ has nonempty interior for some $n$. But then $g_n = \id$ on an open set; in particular there exists a point $x_0\in X$ such that $g_n(x_0) = x_0$ and $g_n'(x_0)$ is the identity map on the tangent space of $x_0$. By the naturality of the exponential map, this implies that $g_n$ is the identity map, a contradiction.
+
+Finally, suppose $X = \H = \H_\F^\alpha$ is an algebraic hyperbolic space, and let $\LL = \LL_\F^{\alpha + 1}$. Since $\LL$ is finite-dimensional, the SOT and UOT topologies on $L(\LL)$ are equivalent. This in turn  demonstrates that the notions of COT-discreteness and UOT-discreteness agree.
+\end{proof}
+In such a setting, we shall call a group satisfying any of these equivalent definitions simply \emph{discrete}.
+
+\subsection{Proper discontinuity}
+\begin{definition}
+\label{definitionproperdiscontinuity}
+A group $G\leq\Isom(X)$ \emph{acts properly discontinuously (PrD)} on $X$ if for every $x\in X$, there exists an open set $U \ni x$ with 
+\[
+g(U) \cap U \neq \emptyset \Rightarrow g = \id,
+\]
+or equivalently, if
+\[
+\dist(x,\{g(x):g\neq\id\}) > 0.
+\]
+\end{definition}
+
+Let us discuss the relations between proper discontinuity and some of our notions of discreteness. We begin by noting that even in finite dimensions, the notion of proper discontinuity is not the same as the notion of discreteness; instead, a group acts properly discontinuously if and only if it both discrete and torsion-free. We also remark that in finite dimensions Selberg's lemma (see e.g. \cite{Alperin}) can be used to pass from a discrete group to a finite-index subgroup that acts properly discontinuously. However, it is impossible to do this in infinite dimensions; cf. Example \ref{exampleparabolictorsion}.
+
+Although no notion of discreteness implies proper discontinuity, the reverse is true for certain types of discreteness. Namely, since $\#\{\id\} = 1 < \infty$, we have:
+\begin{observation}
+\label{observationproperlydiscontinuous}
+Any group which acts properly discontinuously is moderately discrete.
+\end{observation}
+
+In particular, by combining with Proposition \ref{propositionproperMDSD} we see that if $X$ is proper then any group which acts properly discontinuously is strongly discrete. This provides a connection between our results, in which strong discreteness is often a hypothesis, and many results from the literature in which proper discontinuity and properness are both hypotheses.
+
+Observation \ref{observationproperlydiscontinuous} admits the following partial converse, which generalizes the fact that in finite dimensions every discrete torsion-free group acts properly discontinuously: 
+\begin{remark}
+If $X$ is a proper CAT(0) space, then a group acts properly discontinously if and only if it is moderately discrete and torsion free.
+\end{remark}
+\begin{proof}
+Suppose that $G\leq\Isom(X)$ acts properly discontinuously. If $g\in G\butnot\{\id\}$ is a torsion element, then by Cartan's lemma \cite[II.2.8(1)]{BridsonHaefliger}, $g$ has a fixed point. This contradicts $G$ acting properly discontinuously. Thus $G$ is torsion-free.
+
+Conversely, suppose that $G\leq\Isom(X)$ is moderately discrete and torsion-free. Given $x\in X$, let $\epsilon > 0$ be as in \eqref{WD2}, and by contradiction suppose that there exists $g\neq\id$ such that $\dist(x,g(x)) < \epsilon$. By \eqref{WD2}, $g(x) = x$. But then by \eqref{MD2}, the set $\{g^n : n\in\Z\}$ is finite, i.e. $g$ is a torsion element. This is a contradiction, so $G$ acts properly discontinuously.
+\end{proof}
+
+We summarize the relations between our various notions of discreteness, together with proper discontinuity, in the following table:
+
+\begin{table}[h!]
+\begin{tabular}{ | c | c c c c c c c | }
+ \hline
+ Finite dimensional			& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & WD && \\
+ Riemannian manifold 	& $\uparrow$ & & & & $\updownarrow$ && \\
+	 			& PrD & & & & COTD & $\leftrightarrow$ & UOTD\\
+ \hline
+	 		& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+ General metric space		& & $\nearrow$ & & $\searrow$ & && \\
+				& PrD & & & & COTD && \\
+ \hline
+ Infinite dimensional				& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+ algebraic hyperbolic space 	& & $\nearrow$ & & & $\downarrow$ && \\
+			& PrD & & & & COTD & $\rightarrow$ & UOTD \\
+ \hline
+	 		& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & COTD && \\
+ Proper metric  space 		& $\uparrow$ & & & & $\downarrow$ &&\\
+			& PrD & & & & WD && \\
+ \hline
+\end{tabular}
+\vskip0.12cm
+\caption{The relations between different notions of discreteness. COTD and UOTD stand for discrete with respect to the compact-open and uniform operator topologies respectively. All implications not listed have counterexamples; see Chapter \ref{sectionexamples}.}
+\label{figurediscreteness}
+\end{table}
+
+%\begin{table}[h!]
+%\begin{tabular}{ | c | c c c c c c c | }
+% \hline
+% Finite				& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & WD && \\
+% dimensional	& $\uparrow$ & & & & $\updownarrow$ && \\
+% manifold	 			& PrD & & & & COTD & $\leftrightarrow$ & UOTD\\
+% \hline
+% General		 		& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+% metric 		& & $\nearrow$ & & $\searrow$ & && \\
+% space				& PrD & & & & COTD && \\
+% \hline
+% Infinite				& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+% dimensional	& & $\nearrow$ & & & $\downarrow$ && \\
+% algebraic hyperbolic space			& PrD & & & & COTD & $\rightarrow$ & UOTD \\
+% \hline
+% Proper		 		& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & COTD && \\
+% metric		& $\uparrow$ & & & & $\downarrow$ &&\\
+% space			& PrD & & & & WD && \\
+% \hline
+%\end{tabular}
+%\vskip0.12cm
+%\caption{The relations between different notions of discreteness. All implications not listed have counterexamples; see Section \ref{sectionexamples}.}
+%\label{figurediscreteness}
+%\end{table}
+
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale = 0.7]{discreteness.png}}}
+%\caption{The relations between different notions of discreteness. All implications not listed have counterexamples.}
+%\label{figurediscreteness}
+%\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Covering space interpretation
+%\begin{remark}
+%Properly discontinuous actions are also known as \emph{covering space actions} and in this language we could also have said a group $G$ acts properly discontinuously on a topological space $X$ if and only if the natural projection
+%\[
+%\pi_G : X \to X/G
+%\]
+%is a covering map.
+%\end{remark}
+
+
+\subsection{Behavior with respect to restrictions}
+Fix $G\leq\Isom(X)$, and suppose $Y\subset X$ is a subspace of $X$ preserved by $G$, i.e. $g(Y) = Y$ for all $g\in G$. Then $G$ can be viewed as a group acting on the metric space $(Y,\dist\given_Y)$.
+
+\begin{observation}~
+\label{observationrestrictions}
+\begin{itemize}
+\item[(i)] $G$ is strongly discrete $\Leftrightarrow$ $G\given Y$ is strongly discrete
+\item[(ii)] $G$ is moderately discrete \implies $G\given Y$ is moderately discrete
+\item[(iii)] $G$ is weakly discrete \implies $G\given Y$ is weakly discrete
+\item[(iv)] $G$ is $\scrT$-discrete $\Leftarrow$ $G\given Y$ is $\scrT\given Y$-discrete
+\item[(v)] $G$ acts properly discontinuously on $X$ \implies $G$ acts properly discontinuously on $Y$.
+\end{itemize}
+\end{observation}
+In particular, strong discreteness is the only concept which is ``independent of the space being acted on''. It is thus the most robust of all our definitions.
+
+Note that for the notions of topological discreteness like COTD and UOTD, the order of implication reverses; restricting to a subspace may cause a group to no longer be discrete. Example \ref{examplepoincareextension} is an example of this phenomenon.
+
+\subsection{Countability of discrete groups}
+In finite dimensions, all discrete groups are countable. In general, it depends on what type of discreteness you are considering.
+
+\begin{proposition}
+Fix $G\leq\Isom(X)$, and suppose that either
+\begin{itemize}
+\item[(1)] $G$ is strongly discrete, or
+\item[(2)] $X$ is separable and $G$ is COT-discrete.
+\end{itemize}
+Then $G$ is countable.
+\end{proposition}
+\begin{proof}
+If $G$ is strongly discrete, then
+\[
+\#(G) \leq \sum_{n\in\N}\#\{g\in G:\dogo g\leq n\} \leq \sum_{n\in\N}\#(\N) = \#(\N).
+\]
+On the other hand, if $X$ is a separable metric space, then by Remark \ref{remarkpolish} $\Isom(X)$ is separable metrizable, so it contains no uncountable discrete subspaces.
+\end{proof}
+\begin{remark}
+An example of an uncountable UOT-discrete subgroup of $\Isom(\H^\infty)$ is given in Example \ref{exampleAutTBIM}, and an example of an uncountable weakly discrete group acting on a separable $\R$-tree is given in Example \ref{exampleAutT}. An example of an uncountable moderately discrete group acting on a (non-separable) $\R$-tree is given in Remark \ref{remarkMDuncountable}.
+\end{remark}
+

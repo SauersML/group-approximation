@@ -1,0 +1,5 @@
+P = 5 N = 3
+(1) N-cocycle identity in Z[Z^2]: True
+(2) tau o b = 0 on random homogeneous 3-chains: True
+(3) f is a group 2-cocycle on random words in GL_3(R): True
+(4) f(D1,D2) - f(D2,D1) = constant 4 = -1 mod 5

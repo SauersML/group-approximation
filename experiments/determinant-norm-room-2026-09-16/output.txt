@@ -1,0 +1,43 @@
+# tripod norms rho(T_{k,k,k}) vs 3/sqrt2 = 2.1213203436
+k= 1 rho=1.7320508076 rayleigh_lower=1.6970562748 gap=3.893e-01 ok=True
+k= 2 rho=2.0000000000 rayleigh_lower=1.9581418556 gap=1.213e-01 ok=True
+k= 3 rho=2.0743132931 rayleigh_lower=2.0481713662 gap=4.701e-02 ok=True
+k= 4 rho=2.1010029896 rayleigh_lower=2.0865446002 gap=2.032e-02 ok=True
+k= 5 rho=2.1119907363 rayleigh_lower=2.1043497808 gap=9.330e-03 ok=True
+k= 6 rho=2.1168831579 rayleigh_lower=2.1129356782 gap=4.437e-03 ok=True
+k= 8 rho=2.1202612237 rayleigh_lower=2.1192426547 gap=1.059e-03 ok=True
+k=10 rho=2.1210595877 rayleigh_lower=2.1208020635 gap=2.608e-04 ok=True
+k=15 rho=2.1213122487 rayleigh_lower=2.1213041588 gap=8.095e-06 ok=True
+k=20 rho=2.1213200907 rayleigh_lower=2.1213198378 gap=2.529e-07 ok=True
+k=30 rho=2.1213203433 rayleigh_lower=2.1213203431 gap=2.470e-10 ok=True
+# first k with rho(T_kkk) > 2.019 and > 2.1:
+  target 2.019: k=3 rho=2.074313
+  target 2.100: k=4 rho=2.101003
+  target 2.120: k=8 rho=2.120261
+# subdivision checks: name, L, size, connected, tripod_lower, norm, schur_upper, max(Af/f), spectrum_err, ok
+Z/7, gens (1,2)          L=2 n=  70 conn=True low=1.732051 norm=2.449490 up=3.181981 Af/f=2.828427 err=2.11e-08 ok=True
+Z/12, gens (1,5)         L=2 n= 120 conn=True low=1.732051 norm=2.449490 up=3.181981 Af/f=2.828427 err=5.11e-15 ok=True
+S3, gens ((01),(012))    L=2 n=  60 conn=True low=1.732051 norm=2.449490 up=3.181981 Af/f=2.828427 err=3.65e-08 ok=True
+D5, gens (refl, rot)     L=2 n= 100 conn=True low=1.732051 norm=2.449490 up=3.181981 Af/f=2.828427 err=8.44e-15 ok=True
+Z/9, gens (1,3,0)        L=2 n= 135 conn=True low=1.732051 norm=2.449490 up=3.181981 Af/f=2.828427 err=3.50e-15 ok=True
+Z/7, gens (1,2)          L=3 n= 112 conn=True low=2.000000 norm=2.302776 up=2.871320 Af/f=2.675417 err=5.77e-15 ok=True
+Z/12, gens (1,5)         L=3 n= 192 conn=True low=2.000000 norm=2.302776 up=2.871320 Af/f=2.675417 err=6.77e-15 ok=True
+S3, gens ((01),(012))    L=3 n=  96 conn=True low=2.000000 norm=2.302776 up=2.871320 Af/f=2.675417 err=5.11e-15 ok=True
+D5, gens (refl, rot)     L=3 n= 160 conn=True low=2.000000 norm=2.302776 up=2.871320 Af/f=2.675417 err=7.99e-15 ok=True
+Z/9, gens (1,3,0)        L=3 n= 216 conn=True low=2.000000 norm=2.302776 up=2.871320 Af/f=2.675417 err=1.14e-14 ok=True
+Z/7, gens (1,2)          L=4 n= 154 conn=True low=2.074313 norm=2.236068 up=2.651650 Af/f=2.545584 err=1.33e-08 ok=True
+Z/12, gens (1,5)         L=4 n= 264 conn=True low=2.074313 norm=2.236068 up=2.651650 Af/f=2.545584 err=7.11e-15 ok=True
+S3, gens ((01),(012))    L=4 n= 132 conn=True low=2.074313 norm=2.236068 up=2.651650 Af/f=2.545584 err=1.33e-08 ok=True
+D5, gens (refl, rot)     L=4 n= 220 conn=True low=2.074313 norm=2.236068 up=2.651650 Af/f=2.545584 err=1.33e-08 ok=True
+Z/9, gens (1,3,0)        L=4 n= 297 conn=True low=2.074313 norm=2.236068 up=2.651650 Af/f=2.545584 err=1.33e-08 ok=True
+Z/7, gens (1,2)          L=6 n= 238 conn=True low=2.111991 norm=2.175328 up=2.386485 Af/f=2.357023 err=6.08e-09 ok=True
+Z/12, gens (1,5)         L=6 n= 408 conn=True low=2.111991 norm=2.175328 up=2.386485 Af/f=2.357023 err=1.27e-14 ok=True
+S3, gens ((01),(012))    L=6 n= 204 conn=True low=2.111991 norm=2.175328 up=2.386485 Af/f=2.357023 err=1.05e-08 ok=True
+D5, gens (refl, rot)     L=6 n= 340 conn=True low=2.111991 norm=2.175328 up=2.386485 Af/f=2.357023 err=1.07e-14 ok=True
+Z/9, gens (1,3,0)        L=6 n= 459 conn=True low=2.111991 norm=2.175328 up=2.386485 Af/f=2.357023 err=1.07e-14 ok=True
+Z/7, gens (1,2)          L=8 n= 322 conn=True low=2.119166 norm=2.148961 up=2.253903 Af/f=2.246104 err=6.35e-09 ok=True
+Z/12, gens (1,5)         L=8 n= 552 conn=True low=2.119166 norm=2.148961 up=2.253903 Af/f=2.246104 err=1.33e-14 ok=True
+S3, gens ((01),(012))    L=8 n= 276 conn=True low=2.119166 norm=2.148961 up=2.253903 Af/f=2.246104 err=6.35e-09 ok=True
+D5, gens (refl, rot)     L=8 n= 460 conn=True low=2.119166 norm=2.148961 up=2.253903 Af/f=2.246104 err=6.35e-09 ok=True
+Z/9, gens (1,3,0)        L=8 n= 621 conn=True low=2.119166 norm=2.148961 up=2.253903 Af/f=2.246104 err=6.35e-09 ok=True
+ALL OK

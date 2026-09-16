@@ -1,0 +1,275 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{GMSW01}
+
+\bibitem[ABO19]{ABO}
+C.~R. Abbott, S.~H. Balasubramanya, and D.~Osin, \emph{Hyperbolic structures on
+  groups}, Algebr. Geom. Topol. \textbf{19} (2019), no.~4, 1747--1835.
+  \MR{3995018}
+
+\bibitem[ABR23]{confining}
+C.~Abbott, S.~Balasubramanya, and A.~J. Rasmussen, \emph{Higher rank confining
+  subsets and hyperbolic actions of solvable groups}, Adv. Math. \textbf{424}
+  (2023), Paper No. 109045, 47. \MR{4585997}
+
+\bibitem[ABR24]{ABR2}
+C.~R. Abbott, S.~Balasubramanya, and A.~J. Rasmussen, \emph{Valuations,
+  completions, and hyperbolic actions of metabelian groups}, J. Lond. Math.
+  Soc. (2) \textbf{109} (2024), no.~6, Paper No. e12916, 72, With an appendix
+  by Abbot, Balasubramanya, Rasmussen and S. Payne. \MR{4751864}
+
+\bibitem[AR23]{AR:BS}
+C.~R. Abbott and A.~J. Rasmussen, \emph{Actions of solvable
+  {B}aumslag-{S}olitar groups on hyperbolic metric spaces}, Algebr. Geom.
+  Topol. \textbf{23} (2023), no.~4, 1641--1692. \MR{4602410}
+
+\bibitem[Bal20]{sahana:wreath}
+S.~H. Balasubramanya, \emph{Hyperbolic structures on wreath products}, J. Group
+  Theory \textbf{23} (2020), no.~2, 357--383. \MR{4069979}
+
+\bibitem[Bav91]{bavard91}
+C.~Bavard, \emph{Longueur stable des commutateurs}, Enseign. Math. (2)
+  \textbf{37} (1991), no.~1-2, 109--150. \MR{1115747}
+
+\bibitem[BBCS08]{brady08}
+T.~Brady, J.~Burillo, S.~Cleary, and M.~Stein, \emph{Pure braid subgroups of
+  braided {T}hompson's groups}, Publ. Mat. \textbf{52} (2008), no.~1, 57--89.
+  \MR{2384840}
+
+\bibitem[BCS01]{burillo01}
+J.~Burillo, S.~Cleary, and M.~I. Stein, \emph{Metrics and embeddings of
+  generalizations of {T}hompson's group {$F$}}, Trans. Amer. Math. Soc.
+  \textbf{353} (2001), no.~4, 1677--1689. \MR{1806724}
+
+\bibitem[Bel04]{belk04}
+J.~M. Belk, \emph{Thompson's group {F}}, ProQuest LLC, Ann Arbor, MI, 2004,
+  Thesis (Ph.D.)--Cornell University. \MR{2706280}
+
+\bibitem[BFFG]{NL}
+S.~H. Balasubramanya, F.~Fournier-Facio, and A.~Genevois, \emph{Property ({NL})
+  for group actions on hyperbolic spaces}, With an appendix by A. Sisto.
+  arXiv:2212.14292. To appear in Groups Geom. Dyn.
+
+\bibitem[BG84]{brown84}
+K.~S. Brown and R.~Geoghegan, \emph{An infinite-dimensional torsion-free
+  {$FP_\infty$} group}, Invent. Math. \textbf{77} (1984), no.~2, 367--381.
+  \MR{752825}
+
+\bibitem[BNR21]{burillo21}
+J.~Burillo, B.~Nucinkis, and L.~Reeves, \emph{An irrational-slope {T}hompson's
+  group}, Publ. Mat. \textbf{65} (2021), no.~2, 809--839. \MR{4278765}
+
+\bibitem[BNS87]{bieri87}
+R.~Bieri, W.~D. Neumann, and R.~Strebel, \emph{A geometric invariant of
+  discrete groups}, Invent. Math. \textbf{90} (1987), no.~3, 451--477.
+  \MR{914846}
+
+\bibitem[Bri07]{brin07}
+M.~G. Brin, \emph{The algebra of strand splitting. {I}. {A} braided version of
+  {T}hompson's group {$V$}}, J. Group Theory \textbf{10} (2007), no.~6,
+  757--788. \MR{2364825}
+
+\bibitem[Bro87a]{brown87}
+K.~S. Brown, \emph{Finiteness properties of groups}, Proceedings of the
+  {N}orthwestern conference on cohomology of groups ({E}vanston, {I}ll., 1985),
+  vol.~44, 1987, pp.~45--75. \MR{885095}
+
+\bibitem[Bro87b]{brown87trees}
+\bysame, \emph{Trees, valuations, and the {B}ieri-{N}eumann-{S}trebel
+  invariant}, Invent. Math. \textbf{90} (1987), no.~3, 479--504. \MR{914847}
+
+\bibitem[BS85]{brin85}
+M.~G. Brin and C.~C. Squier, \emph{Groups of piecewise linear homeomorphisms of
+  the real line}, Invent. Math. \textbf{79} (1985), no.~3, 485--498.
+  \MR{782231}
+
+\bibitem[BS16]{bieristrebel}
+R.~Bieri and R.~Strebel, \emph{On groups of {PL}-homeomorphisms of the real
+  line}, Mathematical Surveys and Monographs, vol. 215, American Mathematical
+  Society, Providence, RI, 2016. \MR{3560537}
+
+\bibitem[Cal07]{calegari:PL}
+D.~Calegari, \emph{Stable commutator length in subgroups of {${\rm PL}^+(I)$}},
+  Pacific J. Math. \textbf{232} (2007), no.~2, 257--262. \MR{2366352}
+
+\bibitem[Cal09]{scl}
+\bysame, \emph{scl}, MSJ Memoirs, vol.~20, Mathematical Society of Japan,
+  Tokyo, 2009. \MR{2527432}
+
+\bibitem[CCMT15]{caprace15}
+P.-E. Caprace, Y.~Cornulier, N.~Monod, and R.~Tessera, \emph{Amenable
+  hyperbolic groups}, J. Eur. Math. Soc. (JEMS) \textbf{17} (2015), no.~11,
+  2903--2947. \MR{3420526}
+
+\bibitem[CFP96]{cannon96}
+J.~W. Cannon, W.~J. Floyd, and W.~R. Parry, \emph{Introductory notes on
+  {R}ichard {T}hompson's groups}, Enseign. Math. (2) \textbf{42} (1996),
+  no.~3-4, 215--256. \MR{1426438}
+
+\bibitem[Cle00]{cleary00}
+S.~Cleary, \emph{Regular subdivision in {$\bold Z[\frac{1+\sqrt 5}{2}]$}},
+  Illinois J. Math. \textbf{44} (2000), no.~3, 453--464. \MR{1772420}
+
+\bibitem[Deh06]{dehornoy06}
+P.~Dehornoy, \emph{The group of parenthesized braids}, Adv. Math. \textbf{205}
+  (2006), no.~2, 354--409. \MR{2258261}
+
+\bibitem[FFL23]{commutingconjugates}
+F.~Fournier-Facio and Y.~Lodha, \emph{Second bounded cohomology of groups
+  acting on 1-manifolds and applications to spectrum problems}, Adv. Math.
+  \textbf{428} (2023), Paper No. 109162, 42. \MR{4604795}
+
+\bibitem[FFLZ24]{fff_lodha_zar}
+F.~Fournier-Facio, Y.~Lodha, and M.~C.~B. Zaremsky, \emph{Braided {T}hompson
+  groups with and without quasimorphisms}, Algebr. Geom. Topol. \textbf{24}
+  (2024), no.~3, 1601--1622. \MR{4767881}
+
+\bibitem[Gen19]{anthony}
+A.~Genevois, \emph{Hyperbolic and cubical rigidities of {T}hompson's group
+  {$V$}}, J. Group Theory \textbf{22} (2019), no.~2, 313--345. \MR{3918481}
+
+\bibitem[GMSW01]{ascending}
+R.~Geoghegan, M.~L. Mihalik, M.~Sapir, and D.~T. Wise, \emph{Ascending {HNN}
+  extensions of finitely generated free groups are {H}opfian}, Bull. London
+  Math. Soc. \textbf{33} (2001), no.~3, 292--298. \MR{1817768}
+
+\bibitem[Gro87]{gromov87}
+M.~Gromov, \emph{Hyperbolic groups}, Essays in group theory, Math. Sci. Res.
+  Inst. Publ., vol.~8, Springer, New York, 1987, pp.~75--263. \MR{919829}
+
+\bibitem[GS17]{golansapir}
+G.~Golan and M.~Sapir, \emph{On the stabilizers of finite sets of numbers in
+  the {R}. {T}hompson group {$F$}}, Algebra i Analiz \textbf{29} (2017), no.~1,
+  70--110. \MR{3660685}
+
+\bibitem[GS19]{divergence}
+\bysame, \emph{Divergence functions of {T}hompson groups}, Geom. Dedicata
+  \textbf{201} (2019), 227--242. \MR{3978542}
+
+\bibitem[GT]{houghton_hyp_structures}
+A.~Genevois and G.~Tournier, \emph{Hyperbolic structures on {H}oughton groups},
+  arXiv preprint arXiv:2502.12590.
+
+\bibitem[Hae20]{haettel}
+T.~Haettel, \emph{Hyperbolic rigidity of higher rank lattices}, Ann. Sci.
+  \'{E}c. Norm. Sup\'{e}r. (4) \textbf{53} (2020), no.~2, 439--468, With an
+  appendix by V. Guirardel and C. Horbez. \MR{4094562}
+
+\bibitem[Ham17]{hamann17}
+M.~Hamann, \emph{Group actions on metric spaces: fixed points and free
+  subgroups}, Abh. Math. Semin. Univ. Hambg. \textbf{87} (2017), no.~2,
+  245--263. \MR{3696149}
+
+\bibitem[Hig74]{higman74}
+G.~Higman, \emph{Finitely presented infinite simple groups}, Notes on Pure
+  Mathematics, No. 8, Australian National University, Department of Pure
+  Mathematics, Department of Mathematics, I.A.S., Canberra, 1974. \MR{0376874}
+
+\bibitem[HL]{hydelodha}
+J.~Hyde and Y.~Lodha, \emph{Finitely presented simple torsion-free groups in
+  the landscape of {R}ichard {T}hompson}, arXiv:2302.04805. To appear in Ann.
+  Sci. {\'E}c. Norm. Sup{\'e}r.
+
+\bibitem[HM23]{hydemoore}
+J.~Hyde and J.~T. Moore, \emph{Subgroups of {${\rm PL}_+I$} which do not embed
+  into {T}hompson's group {$F$}}, Groups Geom. Dyn. \textbf{17} (2023), no.~2,
+  533--554. \MR{4584675}
+
+\bibitem[Hou79]{houghton78}
+C.~H. Houghton, \emph{The first cohomology of a group with permutation module
+  coefficients}, Arch. Math. (Basel) \textbf{31} (1978/79), no.~3, 254--258.
+  \MR{521478}
+
+\bibitem[HZ97]{confined:subgroup}
+B.~Hartley and A.~E. Zalesski\u{\i}, \emph{Confined subgroups of simple locally
+  finite groups and ideals of their group rings}, J. London Math. Soc. (2)
+  \textbf{55} (1997), no.~2, 210--230. \MR{1438625}
+
+\bibitem[Leh08]{lehnert08}
+J.~Lehnert, \emph{Gruppen von quasi-automorphismen}, Ph.D. thesis,
+  Goethe-Universität, Frankfurt am Main, 2008.
+
+\bibitem[LM16]{lodha16}
+Y.~Lodha and J.~T. Moore, \emph{A nonamenable finitely presented group of
+  piecewise projective homeomorphisms}, Groups Geom. Dyn. \textbf{10} (2016),
+  no.~1, 177--200. \MR{3460335}
+
+\bibitem[Lod20a]{lodha20}
+Y.~Lodha, \emph{Coherent actions by homeomorphisms on the real line or an
+  interval}, Israel J. Math. \textbf{235} (2020), no.~1, 183--212. \MR{4068782}
+
+\bibitem[Lod20b]{lodhaFinfty}
+\bysame, \emph{A nonamenable type {$\rm F_\infty$} group of piecewise
+  projective homeomorphisms}, J. Topol. \textbf{13} (2020), no.~4, 1767--1838.
+  \MR{4186144}
+
+\bibitem[LZ23]{lodha23}
+Y.~Lodha and M.~C.~B. Zaremsky, \emph{The {BNSR}-invariants of the
+  {L}odha-{M}oore groups, and an exotic simple group of type {${\rm
+  F}_\infty$}}, Math. Proc. Cambridge Philos. Soc. \textbf{174} (2023), no.~1,
+  25--48. \MR{4523108}
+
+\bibitem[Man08]{manning}
+J.~F. Manning, \emph{Actions of certain arithmetic groups on {G}romov
+  hyperbolic spaces}, Algebr. Geom. Topol. \textbf{8} (2008), no.~3,
+  1371--1402. \MR{2443247}
+
+\bibitem[MNSR24]{MNSR}
+L.~Molyneux, B.~Nucinkis, and Y.~Santos~Rego, \emph{The sigma invariants for
+  the golden mean {T}hompson group}, New York J. Math. \textbf{30} (2024),
+  532--549. \MR{4729606}
+
+\bibitem[MO19]{erratum}
+A.~Minasyan and D.~Osin, \emph{Correction to: {A}cylindrical hyperbolicity of
+  groups acting on trees}, Math. Ann. \textbf{373} (2019), no.~1-2, 895--900.
+  \MR{3968890}
+
+\bibitem[NSJG18]{nucinkis18}
+B.~E.~A. Nucinkis and S.~St. John-Green, \emph{Quasi-automorphisms of the
+  infinite rooted 2-edge-coloured binary tree}, Groups Geom. Dyn. \textbf{12}
+  (2018), no.~2, 529--570. \MR{3813202}
+
+\bibitem[Ser77]{serre}
+J.-P. Serre, \emph{Arbres, amalgames, {${\rm SL}_{2}$}}, Soci\'{e}t\'{e}
+  Math\'{e}matique de France, Paris, 1977, Avec un sommaire anglais,
+  R\'{e}dig\'{e} avec la collaboration de Hyman Bass, Ast\'{e}risque, No. 46.
+  \MR{0476875}
+
+\bibitem[She]{divergencen}
+X.~Sheng, \emph{Divergence properties of the generalised {T}hompson groups and
+  the braided-{T}hompson groups}, arXiv:2106.15571. To appear in Transform.
+  Groups.
+
+\bibitem[Ste92]{stein92}
+M.~Stein, \emph{Groups of piecewise linear homeomorphisms}, Trans. Amer. Math.
+  Soc. \textbf{332} (1992), no.~2, 477--514. \MR{1094555}
+
+\bibitem[SZ21]{spahn21}
+R.~Spahn and M.~C.~B. Zaremsky, \emph{The {BNSR}-invariants of the {S}tein
+  group {$F_{2,3}$}}, J. Group Theory \textbf{24} (2021), no.~6, 1149--1162.
+  \MR{4334008}
+
+\bibitem[Win22]{winstone}
+N.~Winstone, \emph{{B}ieri-{S}trebel groups with irrational slopes}, Ph.D.
+  thesis, Royal Holloway, University of London, 2022.
+
+\bibitem[Zar16]{zaremsky16}
+M.~C.~B. Zaremsky, \emph{H{NN} decompositions of the {L}odha-{M}oore groups,
+  and topological applications}, J. Topol. Anal. \textbf{8} (2016), no.~4,
+  627--653. \MR{3545015}
+
+\bibitem[Zar17]{zaremsky17F_n}
+\bysame, \emph{On the {$\Sigma$}-invariants of generalized {T}hompson groups
+  and {H}oughton groups}, Int. Math. Res. Not. IMRN (2017), no.~19, 5861--5896.
+  \MR{3741884}
+
+\bibitem[Zar20]{zaremsky20}
+\bysame, \emph{The {BNSR}-invariants of the {H}oughton groups, concluded},
+  Proc. Edinb. Math. Soc. (2) \textbf{63} (2020), no.~1, 1--11. \MR{4054771}
+
+\end{thebibliography}

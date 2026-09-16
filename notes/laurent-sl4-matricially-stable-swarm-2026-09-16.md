@@ -1,0 +1,232 @@
+# Swarm note: `laurent-sl4-matricially-stable` (2026-09-16)
+
+Agent: `swarm-laurent-sl4-matricially-stable`. Lock held on `laurent-sl4-matricially-stable` for the session.
+
+## 0. Setup and verdict
+
+- `A = F_q[t,t^{-1}]`, `Λ = SL_4(A)`. Target: every point-norm asymptotic homomorphism `φ_n : Λ → U(k_n)` is
+  pointwise `o(1)`-close to genuine representations `π_n : Λ → U(k_n)`.
+- Known about `Λ` (from the graph): finitely presented (`F_5`), perfect, property (T), congruence subgroup property,
+  all finite-dimensional representations congruence, `H^ν(Λ;Q) = 0` for `ν ≠ 0, 6`, and a purity sketch for `H^6 = 0`.
+  So the existing attempts on the target conclude that Dadarlat's even-cohomology obstruction is void and that the
+  Exel–Loring two-homology invariants are void.
+- **Main finding (a reduction, not a proof).** Those attempts only look at the *identity sector*. `Λ` has torsion, and
+  Bott-type obstructions also live in the *twisted (delocalized) sectors*: centralizers `Z_Λ(g)` of finite-order
+  elements `g`. For `q ≥ 4` the centralizer of `g = diag(a, a^{-1}, 1, 1)` (`a ∈ F_q^*`, `a² ≠ 1`) has
+  `H^2(Z_Λ(g);Q) ≠ 0`. That is an elementary, checked computation.
+- **Conditional conclusion.** If Dadarlat's Corollary 1.3 extends from the identity sector to all finite-order sectors
+  (claim `weak-matricial-stability-kills-centralizer-even-cohomology`, OPEN), then `Λ` is **not** matricially stable
+  for `q ≥ 4`. The cases `q = 2, 3` are not reached.
+- **Unconditional evidence that the extension is genuinely new.** The virtually abelian group
+  `G = (Z^2 × Z/3) ⋊ Z/2` has `H^{2k}(G;Q) = 0` for all `k ≥ 1`, so Dadarlat's theorem is silent, yet an elementary
+  delocalized Bott invariant shows that `G` is not matricially stable, and not stable in the padded sense for unitary
+  asymptotic homomorphisms (§3). Since `C*(G)` is nuclear, Choi–Effros lifting (recalled) should also cover Dadarlat's
+  ucp formulation.
+- Outcome: **reduction** (negation for `q ≥ 4` ⇐ an OPEN delocalized Dadarlat theorem), plus an elementary
+  obstruction mechanism recorded in full.
+
+## 1. Literature gate (checked 2026-09-16)
+
+**Status.** No source found that decides matricial stability of `SL_n(F_q[t,t^{-1}])`, `n ≥ 3`, or that states a
+twisted-sector version of Dadarlat's obstruction. The target stays OPEN as of 2026-09-16. The search was bounded: the
+WebSearch budget ran out mid-session, so this is a weak negative.
+
+**Read at source this session.**
+- M. Dadarlat, *Cohomological obstructions to group stability with respect to the operator norm*, survey,
+  Rev. Roumaine Math. Pures Appl. 69 (2024), starting p. 471. PDF text extracted and read in full. Relevant:
+  - Thm 2.2 is the identity-sector theorem (MF, `γ`-element, `H^{2k}(Γ;Q) ≠ 0` ⇒ not local-to-local stable).
+  - Thm 6.1: `Γ` quasidiagonal with a `γ`-element ⇒ `γKK(C*(Γ),B) ⊂ KK(C*(Γ),B)_qd` and
+    `ν(KK(C*(Γ),Q)_qd) = RK_0(BΓ;Q)`. The realization sketch after it assumes `Γ` torsion free "for simplicity" and
+    works over compact `Y ⊂ BΓ`. Nothing about finite-order sectors.
+  - Remark 6.2(i): finitely generated linear groups are quasidiagonal. Linear groups are uniformly embeddable
+    ([26] Guentner–Higson–Weinberger, Publ. IHES 101 (2005)); uniformly embeddable groups have a `γ`-element ([42] Tu).
+  - Examples: among crystallographic groups exactly `Z`, `Z/2∗Z/2` and the 12 wallpaper groups with `H^2(Γ;Q) = 0`
+    are local-to-local stable. Virtually free groups are stable (Eilers–Shulman–Sørensen [17]), and the class is closed
+    under amalgams and HNN extensions over finite subgroups (Gerasimova–Shchepin, arXiv:2305.08720, cited there, not
+    fetched).
+- `research/dadarlat-matricial-stability-obstruction.md` (verbatim Thm 1.1, 1.2, Cor 1.3 of arXiv:2007.12655, read
+  2026-08-14). Only the ar5iv paraphrase of §§3–4 was re-consulted this session.
+
+**Cited from memory, not read at source (marked unverified wherever used).**
+- G. Kasparov, *Equivariant KK-theory and the Novikov conjecture*, Invent. Math. 91 (1988): the `γ`-element and
+  split surjectivity of `KK^G(C,C) → RKK^G(E̲G;C,C)`.
+- W. Lück, *Chern characters for proper equivariant homology theories and applications to K- and L-theory*,
+  J. reine angew. Math. 543 (2002), and P. Baum–A. Connes, *Chern character for discrete groups* (1988): the delocalized
+  Chern character `K^*_G(Y)⊗C ≅ ⊕_{(g)} H^*(Z_G(g)\Y^g;C)` for proper cocompact `Y`.
+- Exel–Loring (1989–91) and Voiculescu (1983): the Bott index of almost commuting unitaries and clock–shift pairs.
+- Kazhdan (1982): `ε`-representations of finite (amenable) groups are uniformly close to representations.
+
+**Earlier in the session** further 2025–2026 arXiv listings were opened for the status check (ids recorded in the
+session log: 2512.09180, 2506.20843, 2512.15494, 2510.17003 (withdrawn)). Their contents are not re-verified here, and
+nothing below depends on them.
+
+## 2. Reformulation via finite subgroups, and where it dies
+
+- `Λ = E_4(A)` is generated by the twelve finite root subgroups `U_ij = x_ij(F_q + F_q t + F_q t^{-1}) ≅ F_q^3`, because
+  `[x_ik(f), x_kj(h)] = x_ij(fh)` for distinct `i, j, k` produces every `x_ij(c t^m)` by induction on `|m|`. Since `Λ` is
+  finitely presented, some finite presentation uses only these generators.
+- Restricted to each `U_ij`, an asymptotic homomorphism has uniformly small defect (finite set), so by Kazhdan it is
+  uniformly `o(1)`-close to a representation `ρ^ij_n` of `U_ij`. Stability is therefore equivalent to choosing these
+  twelve finite-group representations so that the finitely many relators hold **exactly** in the same dimension, at
+  `o(1)` cost.
+- So the worry in the target's Attempts about gluing across infinitely many cells is not the issue in itself. The
+  problem is a finite, same-dimension gluing problem, uniform in `n`.
+- **Where it dies.** There is no general gluing theorem. Property (T) gives spectral gaps, not same-dimension rigidity.
+  §3 shows that gluing can fail for torsion groups through a Bott index carried by eigenspaces of torsion elements,
+  which is invisible to identity-sector invariants.
+
+## 3. The delocalized Bott invariant and the toy group
+
+Full proofs: `research/artifacts/laurent-sl4-delocalized-bott-2026-09-16.md` §§0–2.
+
+**Definition.** Let `g ∈ G` have finite order `m`, let `s_1, s_2 ∈ Z_G(g)` commute, and let `ω` be an `m`-th root of
+unity. For an asymptotic homomorphism `φ_n : G → U(k_n)` and large `n`:
+- the spectrum of `φ_n(g)` lies within `o(1)` of the `m`-th roots of unity;
+- `P_ω` is the spectral projection of `φ_n(g)` near `ω`;
+- `‖[φ_n(s_i), P_ω]‖ → 0`, and `β_ω(φ_n) := Bott(polar part of P_ω φ_n(s_1) P_ω, polar part of P_ω φ_n(s_2) P_ω)`.
+
+**Proven (elementary).**
+- `β_ω(π) = 0` for a genuine representation `π`.
+- `β_ω` is unchanged under pointwise `o(1)` perturbation on `{g, s_1, s_2}`, and it is additive under direct sums.
+- Hence **matricial stability forces `β_ω(φ_n) = 0` eventually, for every asymptotic homomorphism**. The same holds for
+  the padded (weak) notion `φ_n ⊕ π^0_n ≈ π^1_n`.
+- `Σ_ω β_ω` is the ordinary Bott index of `(φ_n(s_1), φ_n(s_2))`, the identity-sector invariant. The individual
+  `β_ω` are **not** functions on `H_2(G;Z)`.
+
+**Toy group (proven).** `G = (Z^2 × Z/3) ⋊ Z/2 = ⟨u, v⟩ × ⟨w⟩ ⋊ ⟨r⟩`, with `r` fixing `u` and inverting `v` and `w`.
+- `H^*(G;Q) = Λ^*(Q^2)^{Z/2}`, and `r` acts by `−1` on `Λ^2`. So `H^{2k}(G;Q) = 0` for `k ≥ 1`, and Dadarlat's
+  theorem is silent. `G` is virtually abelian and linear.
+- **Model.** On `C^n ⊕ C^n`, let `U_n` be the clock and `V_n = S_n^*` the backward shift (Bott index `+1`, commutator
+  norm `|1 − e^{2πi/n}|`). Put `u ↦ U ⊕ U`, `v ↦ V ⊕ V^*`, `w ↦ ωI ⊕ ω̄I`, `r ↦` swap. Only `[u,v] = 1` is inexact,
+  so by the presentation lemma (artifact Lemma 2.1) this is an asymptotic homomorphism.
+- `β_ω = Bott(U, V) = +1` and `β_ω̄ = Bott(U, V^*) = −1` (sum `0`). So **`G` is not matricially stable**, although all
+  its positive even rational cohomology vanishes. The script uses the forward shift, so it prints `−1` and `+1`.
+- `Z_G(w) = Z^2 × Z/3` has `H^2 ≠ 0`, as the delocalized statement of §4 predicts.
+- Numerical replay: `experiments/laurent-sl4-delocalized-bott-2026-09-16/toy_bott.py`, output in `output.txt` in the
+  same folder.
+- Consistency: `G` has a finite normal subgroup, so it is not crystallographic, and the survey's classification is not
+  contradicted.
+
+## 4. Theorem D: the delocalized Dadarlat corollary
+
+**Statement** (new OPEN claim `weak-matricial-stability-kills-centralizer-even-cohomology`). Let `G` be a finitely
+generated linear group over a field. If `G` is weakly matricially stable, then `H^{2k}(Z_G(g);Q) = 0` for every
+finite-order `g ∈ G` and every `k ≥ 1`. The case `g = 1` is contained in Dadarlat's Corollary 1.3, which covers
+countable linear groups. The statement is restricted to finitely generated groups because (P2) uses survey
+Remark 6.2(i), and that is all the application to `Λ` needs.
+
+**Consistency tests (all pass).**
+- Finite groups.
+- Virtually free groups: centralizers of torsion are virtually free.
+- The 12 stable wallpaper groups: a nontrivial rotation has an isolated fixed point, so a finite centralizer, and a
+  reflection has a line of fixed points, so a virtually cyclic centralizer.
+- The toy group of §3.
+
+**Proof plan: Dadarlat's proof with the pullback `σ* : E̲G → EG` removed.**
+- **(P1)** Kasparov: for `G` with a `γ`-element, `KK(C*G, C) ≅ KK^G(C,C) → RKK^G(E̲G;C,C)` is surjective, with
+  `γ`-part mapping onto. *Recalled, unverified at the `E̲G` level.*
+- **(P2)** Survey Thm 6.1 (read at source): `γKK(C*G,B) ⊂ KK(C*G,B)_qd` for quasidiagonal `G` with a `γ`-element.
+  Finitely generated linear groups qualify (Remark 6.2(i), [26], [42]).
+- **(P3)** For proper cocompact `Y ⊂ E̲G` with cutoff projection `p_Y ∈ C_0(Y) ⋊ G`, a quasidiagonal Cuntz pair with
+  compressions `φ_n, φ'_n` should give `λ_Y(x) = (id ⊗ φ_n)_♯Δ(p_Y) − (id ⊗ φ'_n)_♯Δ(p_Y)` in
+  `K_0(C_0(Y) ⋊ G) ≅ K^0_G(Y)`. Here `Δ` is the coaction `f u_s ↦ f u_s ⊗ u_s`. This replaces Dadarlat's Mishchenko
+  projection over `Y ⊂ BG`. **Not written anywhere I read. This is the main gap.**
+- **(P4)** Weak matricial stability gives `φ_n ⊕ π^0_n ≈ π^1_n` (the compressions are ucp, so Dadarlat's notion applies
+  as stated). So `λ_Y(x)` is a difference of flat equivariant bundles `Y × C^k`.
+- **(P5)** A flat equivariant bundle has delocalized Chern character concentrated in degree 0 in every sector.
+  - On `Y^g` it splits into `Z_G(g)`-equivariant flat eigenbundles `E_ω`, and `ch_(g) = Σ_ω ω·ch(E_ω)`.
+  - Chern–Weil kills positive degrees rationally on the Borel construction, which is rationally the quotient for
+    proper actions.
+  - *The normalization of Lück's character on sectors is recalled, not read.*
+- **(P6)** Limits.
+  - For cocompact `Y`, only finitely many sectors meet `Y`, and each `H^*(Z_G(g)\Y^g;Q)` is finite-dimensional. So
+    `lim^1 = 0` and `H^{2k}(Z_G(g)\E̲G^g;Q) = lim_Y H^{2k}(Z_G(g)\Y^g;Q)`.
+  - `E̲G^g` is a model for `E̲Z_G(g)`, so this is `H^{2k}(Z_G(g);Q)`.
+  - The rationalization of `RK^0_G(E̲G)` needs Dadarlat's `Q`-coefficient device (`KK(C*G, Q)`, `Q` the universal UHF
+    algebra). *Not checked.*
+
+**Where the attempt dies (exactly).** (P3) is an unproven adaptation. (P1), (P5) and the rationalization in (P6) rest on
+recalled imports. Everything else is either elementary or read at source.
+
+## 5. Application to `Λ`: centralizers of torsion
+
+Full proofs: artifact §3.
+
+**Centralizer (proven).** Let `q ≥ 4`, choose `a ∈ F_q^*` with `a² ≠ 1` (possible because `F_q^*` is cyclic of order
+`q − 1 ≥ 3`), and set `g = diag(a, a^{-1}, 1, 1)`, of finite order.
+- The eigenvalues `a, a^{-1}, 1` are pairwise distinct and their differences are units of `A`. So
+  `Z_Λ(g) = {(u_1, u_2, h) ∈ A^* × A^* × GL_2(A) : u_1 u_2 det h = 1}`.
+- `(u_1, u_2, h) ↦ (u_1, u_2)` is a retraction onto `A^* × A^*`, split by `(u_1,u_2) ↦ (u_1,u_2,diag((u_1u_2)^{-1},1))`,
+  with kernel `SL_2(A)`.
+- Composing with the `t`-degree `A^* = F_q^* × t^Z → Z` gives `ρ : Z_Λ(g) → Z^2`.
+  `s_1 = diag(t,1,t^{-1},1)` and `s_2 = diag(1,t,1,t^{-1})` lie in `Z_Λ(g)` and map to the standard basis. So `ρ^*`
+  of the generator of `H^2(Z^2;Q)` restricts to the generator on `⟨s_1,s_2⟩`, and **`H^2(Z_Λ(g);Q) ≠ 0`**.
+- With Theorem D, and because matricial stability implies weak matricial stability (read at source), this gives: **`Λ`
+  is not matricially stable for `q ≥ 4`.** This is route `laurent-sl4-instability-from-delocalized-dadarlat`.
+- Example for `q = 7`: `g = diag(1,2,3,6)` is regular of order 6, with `Z_Λ(g) = T(A) ≅ (F_7^*)^3 × Z^3`.
+
+**Weyl antisymmetry (proven).** The permutation matrix `w'` of `(12)(34)` has determinant 1 and satisfies
+`w' g w'^{-1} = g^{-1}` and `w' s_1 w'^{-1} = s_2`.
+- For every asymptotic homomorphism `φ`, `φ(w')` carries the `ω`-eigenspace of `φ(g)` to within `o(1)` of the
+  `ω̄`-eigenspace, and swaps the compressions of `s_1` and `s_2`.
+- Since Bott is antisymmetric, `β_ω(g; s_1, s_2) = −β_ω̄(g; s_1, s_2)`.
+- So `β_{±1} = 0`, `Σ_ω β_ω = 0` (consistent with finite `H_2(Λ;Z)`), and a nonzero invariant needs a nonreal `ω`,
+  i.e. `ord(g) ≥ 3`. That is why `q ≥ 4` enters.
+- Sector picture: inducing `Bott ⊗ χ` from `⟨s_1, s_2⟩ × ⟨g⟩` puts `(ω − ω̄)·[s_1 ∧ s_2]` into the `(g)`-sector.
+  This is nonzero exactly for nonreal `ω`, and its identity-sector part cancels.
+
+**`q = 2, 3` (not resolved).**
+- `F_q^*` has no element with `a² ≠ 1`.
+- The torsion candidates I checked are: unipotent `x_12(1)`; `diag(c,1,1)` with `c ∈ SL_2(F_q)` of order 3 or 4;
+  `c ⊕ c` with eigenvalues in `F_{q²}`; and `diag(−1,−1,1,1)`. In each, the centralizer retracts onto only one copy of
+  `Z` and the second torus direction lies in an `SL_2`-block.
+- `SL_2(F_q[t^{±1}]) = E_2` is generated by elements of order `p`, so its `H_1(;Q) = 0`. In the Hochschild–Serre
+  spectral sequence the torus class then dies.
+- Deciding these cases needs `H_2(SL_2(F_q[t^{±1}]);Q)`, higher `H^{2k}`, or another `g`. Not computed.
+
+## 6. Why explicit realization fails
+
+To refute the target without Theorem D one needs an explicit asymptotic homomorphism of `Λ` with `β_ω ≠ 0`. Since `Λ`
+has property (T), the only obvious source is induction from a finite-index subgroup.
+- **Lemma (artifact §4).** Let `N ⊴ Λ` have finite index with `⟨g⟩ ∩ N = 1`, and let `ψ_n` be an asymptotic
+  homomorphism of `N`. Put `D = ⟨g, s_1, s_2⟩` and `D_0 = D ∩ N`.
+  - Mackey restriction to `D` gives induced models from `D_0`, because `N` is normal.
+  - `D_1 = D_0 × ⟨g⟩` is a direct product, since `g` is central in `D`.
+  - The `ω`-eigenspace of `Ind ψ_n` is `Ind_{D_1}^D(ψ ⊗ χ_ω)`.
+  - As an almost representation of `⟨s_1, s_2⟩` it changes with `ω` only by tensoring with a character of `Z^2`, which
+    extends from the finite-index subgroup `⟨s_1,s_2⟩ ∩ D_1`. So the generators are multiplied by scalars, the Bott
+    index is unchanged, and `β_ω` is independent of `ω`.
+  - Combined with Weyl antisymmetry, `β_ω = 0`.
+- If `N ∋ g`, then `N` is again a finite-index property (T) lattice and the problem is unchanged.
+- The toy group escapes this only because its model is induced from the normal subgroup `Z^2 × Z/3 ∋ w`, which carries
+  Voiculescu pairs. `Λ` has no such subgroup.
+- So a refutation seems to need the abstract quasidiagonal `γ`-machinery, which is exactly Theorem D (P3).
+
+## 7. Other directions and where they die
+
+- **Identity-sector invariants.** The target's Attempt "two-homology invariants are void" is correct for the
+  Exel–Loring invariant, which is a function on the finite group `H_2(Λ;Z)`. It does **not** cover the `β_ω`, which
+  live on centralizers of torsion. The Attempt "Dadarlat's obstruction can only live in degree 6" is likewise an
+  identity-sector statement.
+- **Non-RFD consequence (recalled, not checked).** `Λ` has (T), CSP, and only congruence finite-dimensional
+  representations. So a Bekka-type argument should show that `C*(Λ)` is not RFD, and stability together with MF of
+  `C*(Λ)` would force RFD. This gives only the implication "stable ⇒ `C*(Λ)` not MF", which is a consequence rather
+  than a refutation, since MF of `C*(Λ)` is open. Dead end for deciding the target.
+- **Positive direction.** Stability would require every almost-compatible family of twelve root-subgroup
+  representations to glue exactly (§2), including killing every `β_ω`. No mechanism is known that produces such
+  gluing in a group with torsion centralizers carrying `Z^2`, and the toy group shows it can fail. I found no
+  positive route.
+
+## 8. Graph changes
+
+- New OPEN claim `research/weak-matricial-stability-kills-centralizer-even-cohomology.md` (Theorem D, with Attempts).
+- New OPEN claim `research/laurent-sl4-not-matricially-stable-for-q-at-least-4.md`.
+- New route `research/laurent-sl4-instability-from-delocalized-dadarlat.md`: Theorem D ⇒ that negation (§5).
+- Artifact `research/artifacts/laurent-sl4-delocalized-bott-2026-09-16.md`.
+- An Attempts bullet appended to `research/laurent-sl4-matricially-stable.md`. **`refuted_by:` is not wired**, for two
+  reasons:
+  - The negation is not established.
+  - The target's `q` is a free parameter. Downstream (`subshift-el-reduced-not-mf-from-laurent-sl4-stability`) uses
+    the same `q` as the subshift ring, so a `q ≥ 4` refutation should be wired only once someone decides how the
+    target is quantified over `q`.
+- Experiment: `experiments/laurent-sl4-delocalized-bott-2026-09-16/`.

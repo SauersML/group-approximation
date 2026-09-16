@@ -1,0 +1,26 @@
+{
+"R": 1,
+"pair": [
+"r",
+"s"
+],
+"cosets": {
+"q": "a",
+"r": "b",
+"s": "ab"
+},
+"num_four_term_elements": 243,
+"num_ordered_pairs": 59049,
+"stats": {
+"sign": 59049
+},
+"num_survivors": 0,
+"survivors": [],
+"sign_cert_coefficient_patterns": {
+"[0, 0, 0, 0, -1]": 22729,
+"[0, 0, 0, 0, 1]": 20768,
+"[1, 0, 0, 0, 0]": 7776,
+"[0, 1, 0, 0, 0]": 7776
+},
+"seconds": 61.7
+}

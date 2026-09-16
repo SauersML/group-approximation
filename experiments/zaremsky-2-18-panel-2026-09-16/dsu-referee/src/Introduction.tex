@@ -1,0 +1,602 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+%\section{Introduction}
+\chapter{Introduction and Overview}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The purpose of this monograph is to present the theory of groups and semigroups acting isometrically on Gromov hyperbolic metric spaces in full detail as we understand it, with special emphasis on the case of infinite-dimensional algebraic hyperbolic spaces $X = \H_\F^\infty$, where $\F$ denotes a division algebra. We have not skipped over the parts which some would call ``trivial'' extensions of the finite-dimensional/proper theory, for two main reasons: first, intuition has turned out to be wrong often enough regarding these matters that we feel it is worth writing everything down explicitly; second, we feel it is better methodologically to present the entire theory from scratch, in order to provide a basic reference for the theory, since no such reference exists currently (the closest, \cite{BridsonHaefliger}, has a fairly different emphasis). Thus Part \ref{partpreliminaries} of this monograph should be treated as mostly expository, while Parts \ref{partbishopjones}-\ref{partahlforsthurston} contain a range of new material. For experts who want a geodesic path to significant theorems, we list here five such results that we prove in this monograph: Theorems \ref{theorembishopjonesregular} and \ref{theoremglobalmeasureintro} provide generalizations of the Bishop--Jones theorem \cite[Theorem 1]{BishopJones} and the Global Measure Formula \cite[Theorem 2]{StratmannVelani}, respectively, to Gromov hyperbolic metric spaces. Theorem \ref{theoremahlforsthurstongeneral} guarantees the existence of a $\delta$-quasiconformal measure for groups of divergence type, even if the space they are acting on is not proper. Theorem \ref{theoremhlogseriesintro} provides a sufficient condition for the exact dimensionality of the Patterson-Sullivan measure of a geometrically finite group, and Theorem  \ref{theoremequivalentVWAintro} relates the exact dimensionality to Diophantine properties of the measure. However, the reader should be aware that a sharp focus on just these results, without care for their motivation or the larger context in which they are situated, will necessarily preclude access to the interesting and uncharted landscapes that our work has begun to uncover. The remainder of this chapter provides an overview of these landscapes.
+%We remark that the five most significant results of  this monograph are Theorems \ref{theorembishopjonesregular}, \ref{theoremahlforsthurstongeneral}, \ref{theoremglobalmeasureintro}, \ref{theoremhlogseriesintro} and Theorem \ref{theoremequivalentVWAintro}. Theorems \ref{theorembishopjonesregular} and \ref{theoremglobalmeasureintro} provide generalizations of the Bishop--Jones theorem \cite[Theorem 1]{BishopJones} and the Global Measure Formula \cite[Theorem 2]{StratmannVelani}, respectively, to Gromov hyperbolic metric spaces. Theorem \ref{theoremahlforsthurstongeneral} guarantees the existence of a $\delta$-quasiconformal measure for groups of divergence type, even if the space they are acting on is not proper. Theorem \ref{theoremhlogseriesintro} provides a sufficient condition for the exact dimensionality of the Patterson-Sullivan measure of a geometrically finite group, and Theorem \ref{theoremequivalentVWAintro} relates the exact dimensionality to Diophantine properties of the measure.
+%%%
+% Potential new v: We remark that the five most significant results of  this monograph are Theorems \ref{theoremtukiaintro}, \ref{theoremahlforsthurstongeneral}, \ref{theoremglobalmeasureintro}, \ref{theoremhlogseriesintro} and Theorem \ref{theoremequivalentVWAintro}. Theorems \ref{theoremtukiaintro} and \ref{theoremglobalmeasureintro} provide generalizations of Tukia's isomorphism theorem \cite[Theorem 3.3]{Tukia2} and the Global Measure Formula \cite[Theorem 2]{StratmannVelani}, respectively, to Gromov hyperbolic metric spaces. Old v: We remark that the six most significant results of  this monograph are Theorems \ref{theorembishopjonesregular}, \ref{theoremtukiaintro}, \ref{theoremahlforsthurstongeneral}, \ref{theoremglobalmeasureintro}, \ref{theoremhlogseriesintro} and Theorem \ref{theoremequivalentVWAintro}. Theorems \ref{theorembishopjonesregular}, \ref{theoremtukiaintro}, and \ref{theoremglobalmeasureintro} provide generalizations of the Bishop--Jones theorem \cite[Theorem 1]{BishopJones}, Tukia's isomorphism theorem \cite[Theorem 3.3]{Tukia2}, and the Global Measure Formula \cite[Theorem 2]{StratmannVelani}, respectively, to Gromov hyperbolic metric spaces.
+
+
+\begin{convention}
+\label{conventionimplied}
+The symbols $\lesssim$, $\gtrsim$, and $\asymp$ will denote coarse asymptotics; a subscript of $\plus$ indicates that the asymptotic is additive, and a subscript of $\times$ indicates that it is multiplicative. For example, $A\lesssim_{\times,K} B$ means that there exists a constant $C > 0$ (the \emph{implied constant}\label{pageimpliedconstant}), depending only on $K$, such that $A\leq C B$. Moreover, $A\lesssim_{\plus,\times}B$ means that there exist constants $C_1,C_2 > 0$ so that $A\leq C_1 B + C_2$. In general, dependence of the implied constant(s) on universal objects such as the metric space $X$, the group $G$, and the distinguished point $\zero\in X$ (cf. Notation \ref{standingassumptions}) will be omitted from the notation.
+\end{convention}
+
+\begin{convention}
+\label{conventiontendston}
+The notation $x_n\tendsto n x$ means that $x_n\to x$ as $n\to \infty$, while the notation $x_n\tendsto{n,\plus} x$ means that
+\[
+x \asymp_\plus \limsup_{n\to\infty}x_n \asymp_\plus \liminf_{n\to\infty} x_n,
+\]
+and similarly for $x_n\tendsto{n,\times} x$.
+\end{convention}
+
+\begin{convention}
+The symbol $\triangleleft$ is used to indicate the end of a nested proof.
+\end{convention}
+
+\begin{convention}
+We use the Iverson bracket notation: 
+$$[\text{statement}] = \begin{cases} 1 & \text{statement true} \\ 0 & \text{statement false} \end{cases}$$
+\end{convention}
+
+\begin{convention}
+Given a distinguished point $\zero\in X$, we write
+\begin{align*}
+\dox x = \dist(\zero,x) \text{ and } \dogo g = \dox{g(\zero)}.
+\end{align*}
+\end{convention}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+\section{Preliminaries}
+%(Part \ref{partpreliminaries})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Algebraic hyperbolic spaces}
+%(Section \ref{sectionROSSONCTs})
+
+Although we are mostly interested in this monograph in the \emph{real} infinite-dimensional hyperbolic space $\H_\R^\infty$, the complex and quaternionic hyperbolic spaces $\H_\C^\infty$ and $\H_\Q^\infty$ are also interesting. In finite dimensions, these spaces constitute (modulo the Cayley hyperbolic plane\Footnote{We omit all discussion of the Cayley hyperbolic plane $\amsbb H_{\amsbb O}^2$, as the algebra involved is too exotic for our taste; cf. Remark \ref{remarkH2O}.}) the \emph{rank one symmetric spaces of noncompact type}. In the infinite-dimensional case we retain this terminology by analogy; cf. Remark \ref{remarkROSSONCTterminology}. For brevity we will refer to a rank one symmetric space of noncompact type as an {\it algebraic hyperbolic space}.
+
+There are several equivalent ways to define algebraic hyperbolic spaces; these are known as ``models'' of hyperbolic geometry. We consider here the hyperboloid model, ball model (Klein's, not Poincar\'e's), and upper half-space model (which only applies to algebraic hyperbolic spaces defined over the reals, which we will call \emph{real hyperbolic spaces}), which we denote by $\H_\F^\alpha$, $\B_\F^\alpha$, and $\E^\alpha$, respectively. Here $\F$ denotes the base field (either $\R$, $\C$, or $\Q$), and $\alpha$ denotes a cardinal number. We omit the base field when it is $\R$, and denote the exponent by $\infty$ when it is $\#(\N)$, so that $\H^\infty = \H_\R^{\#(\N)}$ is the unique separable infinite-dimensional real hyperbolic space.%and prove their equivalence (Observation \ref{observationHequivB}, Proposition \ref{propositionHequivE})
+
+The main theorem of Chapter \ref{sectionROSSONCTs} is Theorem \ref{theoremisometries}, which states that any isometry of an algebraic hyperbolic space must be an ``algebraic'' isometry. The finite-dimensional case is given as an exercise in Bridson--Haefliger \cite[Exercise II.10.21]{BridsonHaefliger}. We also describe the relation between totally geodesic subsets of algebraic hyperbolic spaces and fixed point sets of isometries (Theorem \ref{theoremtotallygeodesic}), a relation which will be used throughout the paper.
+
+\begin{remark}
+Key to the study of finite-dimensional algebraic hyperbolic spaces is the theory of quasiconformal mappings (e.g., as in Mostow and Pansu's rigidity theorems \cite{Mostow, Pansu1}). Unfortunately, it appears to be quite difficult to generalize this theory to infinite dimensions. For example, it is an open question \cite[p.1335]{Heinonen2} whether every quasiconformal homeomorphism of Hilbert space is also quasisymmetric.
+\end{remark}
+
+\subsection{Gromov hyperbolic metric spaces}
+\label{subsubsectionlist}
+%(Sections \ref{sectiongeometry1}-\ref{sectiongeometry2})
+
+Historically, the first motivation for the theory of negatively curved metric spaces came from differential geometry and the study of negatively curved Riemannian manifolds. The idea was to describe the most important consequences of negative curvature in terms of the metric structure of the manifold. This approach was pioneered by Aleksandrov \cite{Aleksandrov}, who discovered for each $\kappa\in\R$ an inequality regarding triangles in a metric space with the property that a Riemannian manifold satisfies this inequality if and only if its sectional curvature is bounded above by $\kappa$, and popularized by Gromov, who called Aleksandrov's inequality the ``CAT($\kappa$) inequality'' as an abbreviation for ``comparison inequality of Alexandrov--Toponogov'' \cite[p.106]{Gromov3}.\Footnote{It appears that Bridson and Haefliger may be responsible for promulgating the idea that the C in CAT refers to E. Cartan \cite[p.159]{BridsonHaefliger}. We were unable to find such an indication in \cite{Gromov3}, although Cartan is referenced in connection with some theorems regarding CAT($\kappa$) spaces (as are Riemann and Hadamard).} A metric space is called CAT($\kappa$) if the distance between any two points on a geodesic triangle is smaller than the corresponding distance on the ``comparison triangle'' in a model space of constant curvature $\kappa$; see Definition \ref{definitionCAT}.
+%A metric space is called CAT($\kappa$) if the distance between any two points on a geodesic triangle is smaller than the corresponding distance on the ``comparison triangle''; see Definition \ref{definitionCAT}.
+
+The second motivation came from geometric group theory, in particular the study of groups acting on manifolds of negative curvature. For example, Dehn proved that the word problem is solvable for finitely generated Fuchsian groups \cite{Dehn}, and this was generalized by Cannon to groups acting cocompactly on manifolds of negative curvature \cite{Cannon}. Gromov attempted to give a geometric characterization of these groups in terms of their Cayley graphs; he tried many definitions (cf. \cite[\66.4]{Gromov1}, \cite[\64]{Gromov2}) before converging to what is now known as Gromov hyperbolicity in 1987 \cite[1.1, p.89]{Gromov3}, a notion which has influenced much research. A metric space is said to be \emph{Gromov hyperbolic} if it satisfies a certain inequality that we call \emph{Gromov's inequality}; see Definition \ref{definitiongromovhyperbolic}. A finitely generated group is then said to be \emph{word-hyperbolic} if its Cayley graph is Gromov hyperbolic.
+
+The big advantage of Gromov hyperbolicity is its generality. We give some idea of its scope by providing the following nested list of metric spaces which have been proven to be Gromov hyperbolic:
+
+
+\begin{itemize}
+\item CAT(-1) spaces (Definition \ref{definitionCAT})
+\begin{itemize}
+\item Riemannian manifolds (both finite- and infinite-dimensional) with sectional curvature $\leq -1$
+\begin{itemize}
+\item Algebraic hyperbolic spaces (Definition \ref{definitionROSSONCT})
+\begin{itemize}
+\item Picard--Manin spaces of projective surfaces defined over algebraically closed fields \cite{Manin}, cf. \cite[\63.1]{Cantat_Cremona}
+\end{itemize}
+\end{itemize}
+\item $\R$-trees (Definition \ref{definitionRtree})
+\begin{itemize}
+\item Simplicial trees
+\begin{itemize}
+\item Unweighted simplicial trees
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\item Cayley metrics (Example \ref{examplecayleygraph}) on word-hyperbolic groups
+\item Green metrics on word-hyperbolic groups \cite[Corollary 1.2]{BHM}
+\item Quasihyperbolic metrics of uniform domains in Banach spaces \cite[Theorem 2.12]{Vaisala2}
+\item Arc graphs and curve graphs \cite{HPW} and arc complexes \cite{MasurSchleimer, HilionHorbez} of finitely punctured oriented surfaces
+\item Free splitting complexes \cite{HandelMosher, HilionHorbez} and free factor complexes \cite{BestvinaFeighn, KapovichRafi, HilionHorbez}
+\end{itemize}
+
+\begin{remark}
+Many of the above examples admit natural isometric group actions:
+\begin{itemize}
+\item The Cremona group acts isometrically on the Picard--Manin space \cite{Manin}, cf. \cite[Theorem 3.3]{Cantat_Cremona}.
+\item The mapping class group of a finitely punctured oriented surface acts isometrically on its arc graph, curve graph, and arc complex.
+\item The outer automorphism group $\Out(\F_N)$ of the free group on $N$ generators acts isometrically on the free splitting complex $\FF\SS(\F_N)$ and the free factor complex $\FF\FF(\F_N)$.
+\end{itemize}
+\end{remark}
+
+\begin{remark}
+\label{remarkproper}
+Most of the above examples are examples of \emph{non-proper} hyperbolic metric spaces. Recall that a metric space is said to be \emph{proper} if its distance function $x\mapsto \dox x = \doxvar x$ is proper, or equivalently if closed balls are compact. Though much of the existing literature on CAT(-1) and hyperbolic metric spaces assumes that the spaces in question are proper, it is often not obvious whether this assumption is really essential. However, since results about proper metric spaces do not apply to infinite-dimensional algebraic hyperbolic spaces, we avoid the assumption of properness.
+\end{remark}
+
+\begin{remark}
+\label{remarkgeodesic}
+One of the above examples, namely, Green metrics on word-hyperbolic groups, is a natural class of \emph{non-geodesic} hyperbolic metric spaces.\Footnote{Quasihyperbolic metrics on uniform domains in Banach spaces can also fail to be geodesic, but they are \emph{almost geodesic} which is almost as good. See e.g. \cite{Vaisala} for a study of almost geodesic hyperbolic metric spaces.} However, Bonk and Schramm proved that all non-geodesic hyperbolic metric spaces can be isometrically embedded into geodesic hyperbolic metric spaces \cite[Theorem 4.1]{BonkSchramm}, and the equivariance of their construction was proven by Blach\`ere, Ha\"issinsky, and Mathieu \cite[Corollary A.10]{BHM}. Thus, one could view the assumption of geodesicity to be harmless, since most theorems regarding geodesic hyperbolic metric spaces can be pulled back to non-geodesic hyperbolic metric spaces. However, for the most part we also avoid the assumption of geodesicity, mostly for methodological reasons rather than because we are considering any particular non-geodesic hyperbolic metric space. Specifically, we felt that Gromov's definition of hyperbolicity in metric spaces is a ``deep'' definition whose consequences should be explored independently of such considerations as geodesicity. We do make the assumption of geodesicity in Chapter \ref{sectionGF}, where it seems necessary in order to prove the main theorems. (The assumption of geodesicity in Chapter \ref{sectionGF} can for the most part be replaced by the weaker assumption of almost geodesicity \cite[p.271]{BonkSchramm}, but we felt that such a presentation would be more technical and less intuitive.)
+\end{remark}
+
+We now introduce a list of standing assumptions and notations. They apply to all chapters except for Chapters \ref{sectionROSSONCTs}, \ref{sectiongeometry1}, and \ref{sectiondiscreteness} (see also \6\ref{standingassumptions2}).
+
+\begin{notation}
+\label{standingassumptions}
+Throughout the introduction,
+\begin{itemize}
+\item $X$ is a Gromov hyperbolic metric space (cf. Definition \ref{definitiongromovhyperbolic}),
+\item $\dist$ denotes the distance function of $X$,
+\item $\del X$ denotes the Gromov boundary of $X$, and $\bord X$ denotes the bordification $\bord X = X\cup \del X$ (cf. Definition \ref{definitiongromovboundary}),
+\item $\Dist$ denotes a visual metric on $\del X$ with respect to a parameter $b > 1$ and a distinguished point $\zero\in X$ (cf. Proposition \ref{propositionDist}). By definition, a visual metric satisfies the asymptotic
+\begin{equation}
+\label{distanceasymptoticv1}
+\Dist_{b,\zero}(\xi,\eta) \asymp_\times b^{-\lb\xi|\eta\rb_\zero},
+\end{equation}
+where $\lb\cdot|\cdot\rb$ denotes the Gromov product (cf. \eqref{gromovproduct}).
+\item $\Isom(X)$ denotes the isometry group of $X$. Also, $G\leq\Isom(X)$ will mean that $G$ is a subgroup of $\Isom(X)$, while $G\prec\Isom(X)$ will mean that $G$ is a subsemigroup of $\Isom(X)$.
+\end{itemize}
+\end{notation}
+
+A prime example to have in mind is the special case where $X$ is an infinite-dimensional algebraic hyperbolic space, in which case the Gromov boundary $\del X$ can be identified with the natural boundary of $X$ (Proposition \ref{propositionboundariesequivalent}), and we can set $b = e$ and get equality in \eqref{distanceasymptoticv1} (Observation \ref{observationDist}).
+
+Another important example of a hyperbolic metric space that we will keep in our minds is the case of $\R$-trees alluded to above. $\R$-trees are a generalization of simplicial trees, which in turn are a generalization of unweighted simplicial trees, also known as ``$\Z$-trees'' or just ``trees''. $\R$-trees are worth studying in the context of hyperbolic metric spaces for two reasons: first of all, they are ``prototype spaces'' in the sense that any finite set in a hyperbolic metric space can be roughly isometrically embedded into an $\R$-tree, with a roughness constant depending only on the cardinality of the set \cite[pp.33-38]{GhysHarpe1}; second of all, $\R$-trees can be equivariantly embedded into infinite-dimensional real hyperbolic space $\H^\infty$ (Theorem \ref{theoremBIM}), meaning that any example of a group acting on an $\R$-tree can be used to construct an example of the same group acting on $\H^\infty$. $\R$-trees are also much simpler to understand than general hyperbolic metric spaces: for any finite set of points, one can draw out a list of all possible diagrams, and then the set of distances must be determined from one of these diagrams (cf. e.g., Figure \ref{figurequadruple}).
+
+Besides introducing $\R$-trees, CAT(-1) spaces, and hyperbolic metric spaces, the following things are done in Chapter \ref{sectiongeometry1}: construction of the Gromov boundary $\del X$ and analysis of its basic topological properties (Section \ref{subsectionboundary}), proof that the Gromov boundary of an algebraic hyperbolic space is equal to its natural boundary (Proposition \ref{propositionboundariesequivalent}), and the construction of various metrics and metametrics on the boundary of $X$ (Section \ref{subsectionmetametrics}). None of this is new, although the idea of a metametric (due to V\"ais\"al\"a \cite[\64]{Vaisala}) is not very well known.
+
+In Chapter \ref{sectiongeometry2}, we go more into detail regarding the geometry of hyperbolic metric spaces. We prove the geometric mean value theorem for hyperbolic metric spaces (Section \ref{subsectionderivatives}), the existence of geodesic rays connecting two points in the boundary of a CAT(-1) space (Proposition \ref{propositiongeodesicconvergence}), and various geometrical theorems regarding the sets
+\[
+\Shad_z(x,\sigma) := \{\xi\in\del X : \lb x|\xi\rb_z \leq \sigma\},
+\]
+which we call ``shadows'' due to their similarity to the famous shadows of Sullivan \cite[Fig. 2]{Sullivan_density_at_infinity} on the boundary of $\H^d$ (Section \ref{subsectionshadows}). We remark that most proofs of the existence of geodesics between points on the boundary of complete CAT(-1) spaces, e.g. \cite[Proposition II.9.32]{BridsonHaefliger}, assume properness and make use of it in a crucial way, whereas we make no such assumption in Proposition \ref{propositiongeodesicconvergence}. Finally, in Section \ref{subsectionpolar} we introduce ``generalized polar coordinates'' in a hyperbolic metric space. These polar coordinates tell us that the action of a loxodromic isometry (see Definition \ref{definitionclassification1}) on a hyperbolic metric space is roughly the same as the map $\xx\mapsto \lambda\xx$ in the upper half-plane $\E^2$.
+
+%Morgan: Lambda-trees
+
+%Besides ROSSONCTs, the other example we shall keep constantly in mind is the class of $\R$-trees. $\R$-trees are a generalization of simplicial trees, which are in turn a generalization of unweighted simplicial trees; see Definitions \ref{definitionweightedtree} and \ref{definitionRtree}. $\R$-trees are in a sense the simplest examples of negatively curved spaces.
+
+%A class of spaces which includes both ROSSONCTs and $\R$-trees is the class of CAT(-1) spaces; cf. Definition \ref{definitionCAT} and \6\ref{subsubsectionexamplesCAT}. Although we prove some theorems about CAT(-1) spaces, most of the time we consider the much larger class of \emph{Gromov hyperbolic metric spaces}; cf. Definition \ref{definitiongromovhyperbolic} and Propostition \ref{propositionCATimpliesGromov}.
+
+
+\subsection{Discreteness}
+\label{subsubsectiondiscreteness}
+%(Section \ref{sectiondiscreteness})
+
+The first step towards extending the theory of Kleinian groups to infinite dimensions (or more generally to hyperbolic metric spaces) is to define the appropriate class of groups to consider. This is less trivial than might be expected. Recalling that a $d$-dimensional Kleinian group is defined to be a discrete subgroup of $\Isom(\H^d)$, we would want to define an infinite-dimensional Kleinian group to be a discrete subgroup of $\Isom(\H^\infty)$. But what does it mean for a subgroup of $\Isom(\H^\infty)$ to be discrete? In finite dimensions, the most natural definition is to call a subgroup discrete if it is discrete relative to the natural topology on $\Isom(\H^d)$; this definition works well since $\Isom(\H^d)$ is a Lie group. But in infinite dimensions and especially in more exotic spaces, many applications require stronger hypotheses (e.g., Theorem \ref{theorembishopjonesregular}, Chapter \ref{sectionGF}). In Chapter \ref{sectiondiscreteness}, we discuss several potential definitions of discreteness, which are inequivalent in general but agree in the case of finite-dimensional space $X = \H^d$ (Proposition \ref{propositionfinitedimequivalent}):
+
+\makeatletter
+\def\rep@title{Definitions \ref{definitiondiscreteness} and \ref{definitionparametricdiscreteness}}
+\begin{rep@definition}
+Fix $G\leq\Isom(X)$.
+\begin{itemize}
+\item $G$ is called \emph{strongly discrete (SD)} if for every bounded set $B \subset X$, we have
+\[
+\#\{g\in G: g(B) \cap B \neq \emptyset\} < \infty.
+\]
+\item $G$ is called \emph{moderately discrete (MD)} if for every $x\in X$, there exists an open set $U$ containing $x$ such that
+\[
+\#\{g\in G: g(U) \cap U \neq \emptyset\} < \infty.
+\]
+\item $G$ is called \emph{weakly discrete (WD)} if for every $x\in X$, there exists an open set $U$ containing $x$ such that
+\[
+g(U) \cap U \neq \emptyset \Rightarrow g(x) = x.
+\]
+\item $G$ is called \emph{COT-discrete (COTD)} if it is discrete as a subset of $\Isom(X)$ when $\Isom(X)$ is given the compact-open topology (COT).
+\item If $X$ is an algebraic hyperbolic space, then $G$ is called \emph{UOT-discrete (UOTD)} if it is discrete as a subset of $\Isom(X)$ when $\Isom(X)$ is given the uniform operator topology (UOT; cf. Section \ref{subsectiontopologies}).
+\end{itemize}
+\end{rep@definition}\makeatother
+
+As our naming suggests, the condition of strong discreteness is stronger than the condition of moderate discreteness, which is in turn stronger than the condition of weak discreteness (Proposition \ref{propositionSDMDWD}). Moreover, any moderately discrete group is COT-discrete, and any weakly discrete subgroup of $\Isom(\H^\infty)$ is COT-discrete (Proposition \ref{propositionparametricdiscreteness}). These relations and more are summarized in Table \ref{figurediscreteness} on p. \pageref{figurediscreteness}.
+
+Out of all these definitions, strong discreteness should perhaps be thought of as the best generalization of discreteness to infinite dimensions. Thus, we propose that the phrase ``infinite-dimensional Kleinian group'' should mean ``strongly discrete subgroup of $\Isom(\H^\infty)$''. However, in this monograph we will be interested in the consequences of all the different notions of discreteness, as well as the interactions between them.
+
+\begin{remark}
+Strongly discrete groups are known in the literature as \emph{metrically proper}, and moderately discrete groups are known as \emph{wandering}. However, we prefer our terminology since it more clearly shows the relationship between the different notions of discreteness.
+\end{remark}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\subsection{The classification of semigroups}
+%(Section \ref{sectionclassification})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+After clarifying the different types of discreteness which can occur in infinite dimensions, we turn to the question of classification. This question makes sense both for individual isometries and for entire semigroups.\Footnote{In Chapters \ref{sectionclassification}-\ref{sectionschottky}, we work in the setting of semigroups rather than groups. Like dropping the assumption of geodesicity (cf. Remark \ref{remarkgeodesic}), this is done partly in order to broaden our class of examples and partly for methodological reasons -- we want to show exactly where the assumption of being closed under inverses is being used. It should be also noted that semigroups sometimes show up naturally when one is studying groups; cf. Proposition \ref{propositionnonelementaryequivalent}(B).} Historically, the study of classification began in the 1870s when Klein proved a theorem classifying isometries of $\H^2$ and attached the words ``elliptic'', ``parabolic'', and ``hyperbolic'' to these classifications. Elliptic isometries are those which have at least one fixed point in the interior, while parabolic isometries have exactly one fixed point, which is a neutral fixed point on the boundary, and hyperbolic isometries have two fixed points on the boundary, one of which is attracting and one of which is repelling. Later, the word ``loxodromic'' was used to refer to isometries in $\H^3$ which have two fixed points on the boundary but which are geometrically ``screw motions'' rather than simple translations. In what follows we use the word ``loxodromic'' to refer to all isometries of $\H^n$ (or more generally a hyperbolic metric space) with two fixed points on the boundary -- this is analogous to calling a circle an ellipse. Our real reason for using the word ``loxodromic'' in this instance, rather than ``hyperbolic'', is to avoid confusion with the many other meanings of the word ``hyperbolic'' that have entered usage in various scenarios.
+%(Our real reason for using the word ``loxodromic'' rather than ``hyperbolic'' is to avoid confusion with the many other meanings of the word ``hyperbolic''.)
+
+To extend this classification from individual isometries to groups, we call a group ``elliptic'' if its orbits are bounded, ``parabolic'' if it has a unique neutral global fixed point on the boundary, and ``loxodromic'' if it contains at least one loxodromic isometry. The main theorem of Chapter \ref{sectionclassification} (viz. Theorem \ref{classificationofsemigroups}) is that every subsemigroup of $\Isom(X)$ is either elliptic, parabolic, or loxodromic.
+
+Classification of groups has appeared in the literature in various contexts, from Eberlein and O'Neill's results regarding visiblility manifolds \cite{EberleinOneill}, through Gromov's remarks about groups acting on strictly convex spaces \cite[\63.5]{Gromov1} and word-hyperbolic groups \cite[\63.1]{Gromov3}, to the more general results of Hamann \cite[Theorem 2.7]{Hamann}, Osin \cite[\63]{Osin}, and Caprace, de Cornulier, Monod, and Tessera \cite[\63.A]{CCMT} regarding geodesic hyperbolic metric spaces.\Footnote{We remark that the results of \cite[\63.A]{CCMT} can be generalized to non-geodesic hyperbolic metric spaces by using the Bonk--Schramm embedding theorem \cite[Theorem 4.1]{BonkSchramm} (see also \cite[Corollary A.10]{BHM}).} Many of these theorems have similar statements to ours (\cite{Hamann} and \cite{CCMT} seem to be the closest), but we have not kept track of this carefully, since our proof appears to be sufficiently different to warrant independent interest anyway.
+
+After proving Theorem \ref{classificationofsemigroups}, we discuss further aspects of the classification of groups, such as the further classification of loxodromic groups given in \6\ref{subsubsectionloxodromic}: a loxodromic group is called ``lineal'', ``focal'', or ``of general type'' according to whether it has two, one, or zero global fixed points, respectively. (This terminology was introduced in \cite{CCMT}.) The ``focal'' case is especially interesting, as it represents a class of nonelementary groups which have global fixed points.\Footnote{Some sources (e.g. \cite[\65.5]{Ratcliffe}) define nonelementarity in a way such that global fixed points are automatically ruled out, but this is not true of our definition (Definition \ref{definitionelementary}).} We show that certain classes of discrete groups cannot be focal (Proposition \ref{propositionnonfocal}), which explains why such groups do not appear in the theory of Kleinian groups. On the other hand, we show that in infinite dimensions, focal groups can have interesting limit sets even though they satisfy only a weak form of discreteness; cf. Remark \ref{remarkfocalfractal}.
+
+\subsection{Limit sets}
+%(Section \ref{sectionlimitsets})
+
+An important invariant of a Kleinian group $G$ is its \emph{limit set} $\Lambda = \Lambda_G$, the set of all accumulation points of the orbit of any point in the interior. By putting an appropriate topology on the bordification of our hyperbolic metric space $X$ (\6\ref{subsubsectiontopologyclX}), we can generalize this definition to an arbitrary subsemigroup of $\Isom(X)$. Many results generalize relatively straightforwardly\Footnote{As is the case for many of our results, the classical proofs use compactness in a crucial way -- so here ``straightforwardly'' means that the statements of the theorems themselves do not require modification.} to this new context, such as the minimality of the limit set (Proposition \ref{propositionminimal}) and the connection between classification and the cardinality of the limit set (Proposition \ref{propositioncardinalitylimitset}). In particular, we call a semigroup \emph{elementary} if its limit set is finite.
+
+In general, the convex hull of the limit set may need to be replaced by a quasiconvex hull (cf. Definition \ref{definitionconvexhull}), since in certain cases the convex hull does not accurately reflect the geometry of the group. Indeed, Ancona \cite[Corollary C]{Ancona} and Borbely \cite[Theorem 1]{Borbely} independently constructed examples of CAT(-1) three-manifolds $X$ for which there exists a point $\xi\in\del X$ such that the convex hull of any neighborhood of $\xi$ is equal to $\bord X$. Although in a non-proper setting the limit set may no longer be compact, compactness of the limit set is a reasonable geometric condition that is satisfied for many examples of subgroups of $\Isom(\H^\infty)$ (e.g. Examples \ref{exampleinfinitepoincareBIM}, \ref{exampleAutTBIM}). We call this condition \emph{compact type} (Definition \ref{definitioncompacttype}).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{The Bishop--Jones theorem and its generalization}
+%(Part \ref{partbishopjones})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+The term \emph{Poincar\'e series} classically referred to a variety of averaging procedures, initiated by Poincar\'e in his aforementioned Acta memoirs, with a view towards uniformization of Riemann surfaces via the construction of automorphic forms. Given a Fuchsian group $\Gamma$ and a rational function $H:\what\C\to\what\C$ with no poles on $\del\B^2$, Poincar\'e proved that for every $m\geq 2$ the series
+\[
+\sum_{\gamma \in \Gamma} H(\gamma(z))(\gamma'(z))^m
+\]
+(defined for $z$ outside the limit set of $\Gamma$) converges uniformly to an automorphic form of dimension $m$; see \cite[p.218]{Saint-Gervais}. Poincar\'e called these series ``$\theta$-fuchsian series of order $m$'', but the name ``Poincar\'e series'' was later used to refer to such objects.\Footnote{The modern definition of Poincar\'e series (cf. Definition \ref{definitionpoincareexponent}) is phrased in terms of hyperbolic geometry rather than complex analysis, but it agrees with the special case of Poincar\'e's original definition which occurs when $H\equiv 1$ and $z = 0$, with the caveat that $\gamma'(z)^m$ should be replaced by $|\gamma'(z)|^m$.} The question of for which $m < 2$ the Poincar\'e series still converges was investigated by Schottky, Burnside, Fricke, and Ritter; cf. \cite[pp.37-38]{AdelmannGerbracht}.
+
+In what would initially appear to be an unrelated development, mathematicians began to study the ``thickness'' of the limit set of a Fuchsian group: in 1941 Myrberg \cite{Myrberg} showed that the limit set $\Lambda$ of a nonelementary Fuchsian group has positive logarithmic capacity; this was improved by Beardon \cite{Beardon2} who showed that $\Lambda$ has positive Hausdorff dimension, thus deducing Myrberg's result as a corollary (since positive Hausdorff dimension implies positive logarithmic capacity for compact subsets of $\R^2$ \cite{Taylor}). The connection between this question and the Poincar\'e series was first observed by Akaza, who showed that if $G$ is a Schottky group for which the Poincar\'e series converges in dimension $s$, then the Hausdorff $s$-dimensional measure of $\Lambda$ is zero \cite[Corollary of Theorem A]{Akaza2}. Beardon then extended Akaza's result to finitely generated Fuchsian groups \cite[Theorem 5]{Beardon3}, as well as defining the \emph{exponent of convergence} (or \emph{Poincar\'e exponent}) $\delta = \ \delta_G$ of a Fuchsian or Kleinian group to be the infimum of $s$ for which the Poincar\'e series converges in dimension $s$ (cf. Definition \ref{definitionpoincareexponent} and \cite{Beardon1}). The reverse direction was then proven by Patterson \cite{Patterson2} using a certain measure on $\Lambda$ to produce the lower bound, which we will say more about below in \6\ref{subsectionconformal}. Patterson's results were then generalized by Sullivan \cite{Sullivan_density_at_infinity} to the setting of geometrically finite Kleinian groups. The necessity of the geometrical finiteness assumption was demonstrated by Patterson \cite{Patterson3}, who showed that there exist Kleinian groups of the first kind (i.e. with limit set equal to $\del\H^d$) with arbitrarily small Poincar\'e exponent \cite{Patterson3} (see also \cite{Hopf_statistik} or \cite[Example 8]{Starkov} for an earlier example of the same phenomenon).
+
+% Beardon was also the first to introduce the term ``exponent of convergence'' to refer to the infimum of $s$ for which the Poincar\'e series converges \cite{Beardon1}.
+
+%The reverse direction, however, required inspiration from another apparently unrelated field: thermodynamic formalism. In 1979, Bowen \cite{Bowen} proved using Markov partitions and Gibbs states that if $G$ is a quasi-Fuchsian group, then $\HD(\Lambda) > 1$. Three years earlier, Patterson \cite{Patterson2} had 
+
+%Bowen's influential paper which computes the Hausdorff dimension of the limit set of a quasi-Fuchsian group \cite{Bowen} has been generalized in two main directions. One direction is based on generalizing Bowen's Markov partition technique to more general dynamical systems; emblematic of this approach is the theorem known as ``Bowen's formula'' (e.g. \cite{Rugh, MauldinUrbanski1, MauldinUrbanski2}) which associates to any conformal dynamical system a \emph{pressure function} whose unique zero is equal to the Hausdorff dimension of the attractor of that dynamical system. The other direction has less in common with Bowen's techniques, but the setting is the same as in Bowen's original paper - groups acting on hyperbolic space. The analogue of the pressure function is the \emph{Poincar\'e series}, and the supremum of dimensions for which the Poincar\'e series diverges is called the \emph{Poincar\'e exponent}, denoted $\delta$.\Footnote{The connection between the Poincar\'e series and the pressure function is made fairly explicit in e.g. \cite{PPS}.}
+
+%Shortly after Bowen's paper, Sullivan (\cite[Theorem 25]{Sullivan_density_at_infinity},\cite[\66]{Sullivan_entropy}) showed that the Hausdorff dimension of the limit set of a nonelementary geometrically finite Kleinian group is equal to its Poincar\'e exponent. Sullivan's proof was quite different from Bowen's, using the notion of a \emph{conformal measure} which had been recently constructed by Patterson \cite{Patterson2} rather than relying on the existence of a Markov partition. The assumption of geometrical finiteness cannot be dropped, since there exist Kleinian groups of the first kind (i.e. with limit set equal to $\del\H^d$) with arbitrarily small Poincar\'e exponent \cite{Patterson3}.
+
+Generalizing these theorems beyond the geometrically finite case requires the introduction of the \emph{radial} and \emph{uniformly radial} limit sets. In what follows, we will denote these sets by $\Lr$ and $\Lur$, respectively. Note that the radial and uniformly radial limit sets as well as the Poincar\'e exponent can all (with some care) be defined for general hyperbolic metric spaces; see Definitions \ref{definitionradialconvergence}, \ref{definitionlimitset}, and \ref{definitionpoincareexponent}. The radial limit set was introduced by Hedlund in 1936 in his analysis of transitivity of horocycles \cite[Theorem 2.4]{Hedlund}.
+
+After some intermediate results \cite{FernandezMelian,Stratmann1}, Bishop and Jones \cite[Theorem 1]{BishopJones} generalized Patterson and Sullivan by proving that if $G$ is a nonelementary Kleinian group, then $\HD(\Lr) = \HD(\Lur) = \delta$.\Footnote{Although Bishop and Jones' theorem only states that $\HD(\Lr) = \delta$, they remark that their proof actually shows that $\HD(\Lur) = \delta$ \cite[p.4]{BishopJones}.} Further generalization was made by Paulin \cite{Paulin}, who proved the equation $\HD(\Lr) = \delta$ in the case where $G\leq\Isom(X)$, and $X$ is either a word-hyperbolic group, a CAT(-1) manifold, or a locally finite unweighted simplicial tree which admits a discrete cocompact action. We may now state the first major theorem of this monograph, which generalizes all the aforementioned results:
+
+%\begin{theorem*}[{\cite[Theorem 1]{BishopJones}}]
+%For every nonelementary discrete group $G\leq\Isom(\H^d)$ ($d < \infty$), we have
+%\begin{equation}
+%\label{bishopjones}
+%\HD(\Lr) = \HD(\Lur) = \delta.\HDfootnote
+%\end{equation}
+%\end{theorem*}
+
+\begin{theorem}
+\label{theorembishopjonesregular}
+Let $G\leq\Isom(X)$ be a nonelementary group. Suppose either that
+\begin{itemize}
+\item[(1)] $G$ is strongly discrete,
+\item[(2)] $X$ is a CAT(-1) space and $G$ is moderately discrete,
+\item[(3)] $X$ is an algebraic hyperbolic space and $G$ is weakly discrete, or that
+\item[(4)] $X$ is an algebraic hyperbolic space and $G$ acts irreducibly (cf. Section \ref{subsectionirreducibly}) and is COT-discrete.
+\end{itemize}
+Then there exists $\sigma > 0$ such that
+\begin{equation}
+\label{bishopjonesregular}
+\HD(\Lr) = \HD(\Lur) = \HD(\Lur\cap\Lrsigma) = \delta
+\end{equation}
+(cf. Definitions \ref{definitionradialconvergence} and \ref{definitionlimitset} for the definition of $\Lrsigma$); moreover, for every $0 < s < \delta$ there exist $\tau > 0$ and an Ahlfors $s$-regular\Footnote{Recall that a measure $\mu$ on a metric space $Z$ is called \emph{Ahlfors $s$-regular} if for all $z\in Z$ and $0 < r \leq 1$, we have that $\mu(B(z,r)) \asymp_\times r^s$. The topological support of an Ahlfors $s$-regular measure is called an Ahlfors $s$-regular set. \label{footnoteahlforsregular}} set $\limitset_s\subset\Lurtau\cap\Lrsigma$.
+\end{theorem}
+
+For the proof of Theorem \ref{theorembishopjonesregular}, see the comments below Theorem \ref{theorembishopjonesmodified}.
+
+\begin{remark*}
+We note that weaker versions of Theorem \ref{theorembishopjonesregular} already appeared in \cite{DSU0} and \cite{FSU4}, each of which has a two-author intersection with the present paper. In particular, case (1) of Theorem \ref{theorembishopjonesregular} appeared in \cite{FSU4} and the proofs of Theorem \ref{theorembishopjonesregular} and \cite[Theorem 5.9]{FSU4} contain a number of redundancies. This was due to the fact that we worked on two projects which, despite having fundamentally different objectives, both required essentially the same argument to produce ``large, nice'' subsets of the limit set: in the present monograph, this argument forms the core of the proof of our generalization of the Bishop--Jones theorem, while in \cite{FSU4}, the main use of the argument is in proving the full dimension of the set of badly approximable points, in two different senses of the phrase ``badly approximable" (approximation by the orbits of distinguished points, vs. approximation by rational vectors in an ambient Euclidean space). There are also similarities between the proof of Theorem \ref{theorembishopjonesregular} and the proof of the weaker version found in \cite[Theorem 8.13]{DSU0}, although in this case the presentation is significantly different. However, we remark that the main Bishop--Jones theorem of this monograph, Theorem \ref{theorembishopjonesmodified}, is significantly more powerful than both \cite[Theorem 5.9]{FSU4} and \cite[Theorem 8.13]{DSU0}.
+%We note that weaker versions of Theorem \ref{theorembishopjonesregular} already appeared in \cite{DSU0, FSU4}, each of which has a two-author intersection with the present paper. In particular, case (1) of Theorem \ref{theorembishopjonesregular} appeared in \cite{FSU4} and the authors acknowledge that the proofs of Theorem \ref{theorembishopjonesregular} and \cite[Theorem 5.9]{FSU4} contain a large number of redundancies. This is due to the fact that we wrote two papers which, despite having fundamentally different objectives, required an irreducible core argument in common. It should be observed that the main Bishop--Jones theorem of this monograph, Theorem \ref{theorembishopjonesmodified}, is significantly more powerful than \cite[Theorem 5.9]{FSU4}. There are also similarities between the proof of Theorem \ref{theorembishopjonesregular} and the proof of the Bishop--Jones theorem found in \cite[Theorem 8.13]{DSU0}, although in this case the presentation is significantly different.
+\end{remark*}
+
+\begin{remark*}
+The ``moreover'' clause is new even in the case which Bishop and Jones considered, demonstrating that the limit set $\Lur$ can be approximated by subsets which are particularly well distributed from a geometric point of view. It does not follow from their theorem since a set could have large Hausdorff dimension without having any closed Ahlfors regular subsets of positive dimension (much less full dimension); in fact it follows from the work of Kleinbock and Weiss \cite{KleinbockWeiss1} that the set of well approximable numbers forms such a set.\Footnote{It could be objected that this set is not closed and therefore should not constitute a counterexample. However, since it has full measure, it has closed subsets of arbitrarily large measure (which in particular still have dimension 1).} In \cite{FSU4}, a slight strengthening of this clause was used to deduce the full dimension of badly approximable vectors in the radial limit set of a Kleinian group \cite[Theorem 9.3]{FSU4}.
+\end{remark*}
+
+\begin{remark*}
+It is possible for a group satisfying one of the hypotheses of Theorem \ref{theorembishopjonesregular} to also satisfy $\delta = \infty$ (Examples \ref{exampleinfinitepoincare}-\ref{examplenotstronglydiscreteBIM} and \ref{examplepoincareextensiontwo}-\ref{exampleMDWD});\Footnote{For the parabolic examples, take a Schottky product (Definition \ref{definitionschottkyproduct}) with a lineal group (Definition \ref{definitionCCMT}) to get a nonelementary group, as suggested at the beginning of Chapter \ref{sectionexamples}.} note that Theorem \ref{theorembishopjonesregular} still holds in this case.
+\end{remark*}
+
+\begin{remark*}
+A natural question is whether \eqref{bishopjonesmodified} can be improved by showing that there exists some $\sigma > 0$ for which $\HD(\Lursigma) = \delta$ (cf. Definitions \ref{definitionradialconvergence} and \ref{definitionlimitset} for the definition of $\Lursigma$). The answer is negative. For a counterexample, take $X = \H^2$ and $G = \SL_2(\Z)\leq\Isom(X)$; then for all $\sigma > 0$ there exists $\epsilon > 0$ such that $\Lursigma\subset\BA(\epsilon)$, where $\BA(\epsilon)$ denotes the set of all real numbers with Lagrange constant at most $1/\epsilon$. (This follows e.g. from making the correspondence in \cite[Observation 1.15 and Proposition 1.21]{FSU4} explicit.) It is well-known (see e.g. \cite{Kurzweil} for a more precise result) that $\HD(\BA(\epsilon)) < 1$ for all $\epsilon > 0$, demonstrating that $\HD(\Lursigma) < 1 = \delta$.
+\end{remark*}
+
+\begin{remark*}
+Although Theorem \ref{theorembishopjonesregular} computes the Hausdorff dimension of the radial and uniformly radial limit sets, there are many other subsets of the limit set whose Hausdorff dimension it does not compute, such as the horospherical limit set (cf. Definitions \ref{definitionhorosphericalconvergence} and \ref{definitionlimitset}) and the ``linear escape'' sets $(\Lambda_\alpha)_{\alpha\in (0,1)}$ \cite{Lundh}. We plan on discussing these issues at length in \cite{DSU2}.
+\end{remark*}
+
+Finally, let us also remark that the hypotheses (1) - (4) cannot be weakened in any of the obvious ways:
+\begin{proposition}
+\label{propositionbishopjones}
+We may have $\HD(\Lr) < \delta$ even if:
+\begin{itemize}
+\item[(1)] $G$ is moderately discrete (even properly discontinuous) (Example \ref{exampleAutTparttwo}).
+\item[(2)] $X$ is a proper CAT(-1) space and $G$ is weakly discrete (Example \ref{exampleAutT}).
+\item[(3)] $X = \H^\infty$ and $G$ is COT-discrete (Example \ref{examplepoincareextension}).
+\item[(4)] $X = \H^\infty$ and $G$ is irreducible and UOT-discrete (Example \ref{exampleAutTBIM}).
+\item[(5)] $X = \H^2$ (Example \ref{examplenondiscrete}).
+\end{itemize}
+In each case the counterexample group $G$ is of general type (see Definition \ref{definitionCCMT}) and in particular is nonelementary.
+\end{proposition}
+
+\subsection{The modified Poincar\'e exponent}
+%(Section \ref{sectionmodified})
+The examples of Proposition \ref{propositionbishopjones} illustrate that the Poincar\'e exponent does not always accurately calculate the Hausdorff dimension of the radial and uniformly radial limit sets. In Chapter \ref{sectionmodified} we introduce a modified version of the Poincar\'e exponent which succeeds at accurately calculating $\HD(\Lr)$ and $\HD(\Lur)$ for all nonelementary groups $G$. (When $G$ is an elementary group, $\HD(\Lr) = \HD(\Lur) = 0$, so there is no need for a sophisticated calculation in this case.) Some motivation for the following definition is given in \6\ref{subsectionmodified}.
+
+\begin{repdefinition}{definitionmodifiedexponent}
+Let $G$ be a subsemigroup of $\Isom(X)$.
+\begin{itemize}
+\item For each set $S\subset X$ and $s\geq 0$, let
+\begin{align*}
+\Sigma_s(S) &= \sum_{x\in S} b^{-s\dox x}\\
+\Delta(S) &= \{s\geq 0: \Sigma_s(S) = \infty\}\\
+\delta(S) &= \sup\Delta(S).
+\end{align*}
+\item The \emph{modified Poincar\'e set} of $G$ is the set
+\begin{repequation}{modifiedpoincaredef}
+\w\Delta_G = \bigcap_{\rho > 0} \bigcap_{S_\rho} \Delta(S_\rho),
+\end{repequation}
+where the second intersection is taken over all maximal $\rho$-separated sets $S_\rho \subset G(\zero)$.
+\item The number $\w\delta_G = \sup\w\Delta_G$ is called the \emph{modified Poincar\'e exponent} of $G$. If $\w\delta_G\in\w\Delta_G$, we say that $G$ is of \emph{generalized divergence type},\Footnote{We use the adjective ``generalized'' rather than ``modified'' because all groups of convergence/divergence type are also of generalized convergence/divergence type; see Corollary \ref{corollarygeneralizedtypes} below.} while if $\w\delta_G\in\Rplus\butnot\w\Delta_G$, we say that $G$ is of \emph{generalized convergence type}. Note that if $\w\delta_G = \infty$, then $G$ is neither of generalized convergence type nor of generalized divergence type.
+\end{itemize}
+\end{repdefinition}
+
+%\noindent Some motivation for this definition is given in \6\ref{subsectionmodified}.
+
+We may now state the most powerful version of our Bishop--Jones theorem:
+
+\begin{theorem}[Proven in Chapter \ref{sectionbishopjones}]
+\label{theorembishopjonesmodified}
+Let $G\prec\Isom(X)$ be a nonelementary semigroup. There exists $\sigma > 0$ such that
+\begin{equation}
+\label{bishopjonesmodified}
+\HD(\Lr) = \HD(\Lur) = \HD(\Lur\cap\Lrsigma) = \w\delta.
+\end{equation}
+Moreover, for every $0 < s < \w\delta$ there exist $\tau > 0$ and an Ahlfors $s$-regular set $\limitset_s\subset\Lurtau\cap\Lrsigma$.
+\end{theorem}
+%\noindent The proof of Theorem \ref{theorembishopjonesmodified} will be given in Chapter \ref{sectionbishopjones}.
+
+Theorem \ref{theorembishopjonesregular} can be deduced as a corollary of Theorem \ref{theorembishopjonesmodified}; specifically, Propositions \ref{propositionbasicmodified}(ii) and \ref{propositionpoincareregular} show that any group satisfying the hypotheses of Theorem \ref{theorembishopjonesregular} satisfies $\delta = \w\delta$, and hence for such a group \eqref{bishopjonesmodified} implies \eqref{bishopjonesregular}. On the other hand, Proposition \ref{propositionbishopjones} shows that Theorem \ref{theorembishopjonesmodified} applies in many cases where Theorem \ref{theorembishopjonesregular} does not.
+
+We call a group \emph{Poincar\'e regular} if its Poincar\'e exponent $\delta$ and modified Poincar\'e exponent $\w\delta$ are equal. In this language, Proposition \ref{propositionpoincareregular}/Theorem \ref{theorembishopjonesregular} describes sufficient conditions for a group to be Poincar\'e regular, and Proposition \ref{propositionbishopjones} provides a list of examples of groups which are Poincar\'e irregular.
+
+Though Theorem \ref{theorembishopjonesmodified} requires $G$ to be nonelementary, the following corollary does not:
+
+\begin{corollary}
+\label{corollaryLrLur}
+Fix $G\prec\Isom(X)$. Then for some $\sigma > 0$,
+\begin{equation}
+\label{LrLur}
+\HD(\Lr) = \HD(\Lur) = \HD(\Lur\cap\Lrsigma).
+\end{equation}
+\end{corollary}
+\begin{proof}
+If $G$ is nonelementary, then \eqref{LrLur} follows from \eqref{bishopjonesmodified}. On the other hand, if $G$ is elementary, then all three terms of \eqref{LrLur} are equal to zero.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Examples}
+\label{subsectionexamples}
+%(Part \ref{partexamples})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A theory of groups acting on infinite-dimensional space would not be complete without some good ways to construct examples. Techniques used in the finite-dimensional setting, such as arithmetic construction of lattices and Dehn surgery, do not work in infinite dimensions. (The impossibility of constructing lattices in $\Isom(\H^\infty)$ as a direct limit of arithmetic lattices in $\Isom(\H^d)$ is due to known lower bounds on the covolumes of such lattices which blow up as the dimension goes to infinity; see Proposition \ref{propositionarithmeticvolume} below.) Nevertheless, there is a wide variety of groups acting on $\H^\infty$, including many examples of actions which have no analogue in finite dimensions.
+
+\subsection{Schottky products}
+%(Section \ref{sectionschottky})
+The most basic tool for constructing groups or semigroups on hyperbolic metric spaces is the theory of Schottky products. This theory was created by Schottky in 1877 when he considered the Fuchsian group generated by a finite collection of loxodromic isometries $g_i$ described by a disjoint collection of balls $B_{i}^+$ and $B_{i}^-$ with the property that $g_i(\H^2\butnot B_{i}^-) = B_{i}^+$. It was extended further in 1883 by Klein's Ping-Pong Lemma, and used effectively by Patterson \cite{Patterson3} to construct a ``pathological'' example of a Kleinian group of the first kind with arbitrarily small Poincar\'e exponent.
+
+We consider here a quite general formulation of Schottky products: a collection of subsemigroups of $\Isom(X)$ is said to be in \emph{Schottky position} if open sets can be found satisfying the hypotheses of the Ping-Pong lemma whose closure is not equal to $X$ (cf. Definition \ref{definitionschottkyproduct}). This condition is sufficient to guarantee that the product of groups in Schottky position (called a \emph{Schottky product}) is always COT-discrete, but stronger hypotheses are necessary in order to prove stronger forms of discreteness. There is a tension here between hypotheses which are strong enough to prove useful theorems and hypotheses which are weak enough to admit interesting examples. For the purposes of this monograph we make a fairly strong assumption (the \emph{strong separation condition}, Definition \ref{definitionstrongseparation}), one which rules out infinitely generated Schottky groups whose generating regions have an accumulation point (for example, infinitely generated Schottky subgroups of $\Isom(\H^d)$). However, we plan on considering weaker hypotheses in future work \cite{DSU2}.
+
+One theorem of significance in Chapter \ref{sectionschottky} is Theorem \ref{theoremschottkylimitset}, which relates the limit set of a Schottky product to the limit set of its factors together with the image of a Cantor set $\del\Gamma$ under a certain symbolic coding map $\pi:\del\Gamma\to\del X$. As a consequence, we deduce that the properties of compact type and geometrical finiteness are both preserved under finite strongly separated Schottky products (Corollary \ref{corollaryschottkycompacttype} and Proposition \ref{propositionSproductGF}, respectively). A result analogous to Theorem \ref{theoremschottkylimitset} in the setting of infinite alphabet conformal iterated function systems can be found in \cite[Lemma 2.1]{MauldinUrbanski1}.
+
+In \6\ref{subsectionschottkyexamples}, we discuss some (relatively) explicit constructions of Schottky groups, showing that Schottky products are fairly ubiquitous - for example, any two groups which act properly discontinuously at some point of $\del X$ may be rearranged to be in Schottky position, assuming that $X$ is sufficiently symmetric (Proposition \ref{propositionschottkyproduct}).% On the other hand, the examples of \6\ref{subsectionschottkyRtrees} give a way to translate numerical data into data of a Schottky group acting on an $\R$-tree. Later, Theorem \ref{theoremBIM} will show us how to translate this data further into the data of a group acting on infinite-dimensional hyperbolic space $\H^\infty$.
+
+
+\subsection{Parabolic groups}
+%(Section \ref{sectionparabolic})
+
+A major point of departure where the theory of subgroups of $\Isom(\H^\infty)$ becomes significantly different from the finite-dimensional theory is in the study of parabolic groups. As a first example, knowing that a group admits a discrete parabolic action on $\Isom(X)$ places strong restrictions on the algebraic properties of the group if $X = \H_\F^d$, but not if $X = \H_\F^\infty$. Concretely, discrete parabolic subgroups of $\Isom(\H_\F^d)$ are always virtually nilpotent (virtually abelian if $\F = \R$), but any group with the Haagerup property admits a parabolic strongly discrete action on $\H^\infty$ (indeed, this is a reformulation of one of the equivalent definitions of the Haagerup property; cf. \cite[p.1, (4)]{CCJJV}). Examples of groups with the Haagerup property include all amenable groups and free groups. Moreover, strongly discrete parabolic subgroups of $\Isom(\H^\infty)$ need not be finitely generated; cf. Example \ref{exampleQparabolic}.
+
+Moving to infinite dimensions changes not only the algebraic but also the geometric properties of parabolic groups. For example, the cyclic group generated by a parabolic isometry may fail to be discrete in any reasonable sense (Example \ref{exampleedelstein}), or it may be discrete in some senses but not others (Example \ref{examplevalette}). The Poincar\'e exponent of a parabolic subgroup of $\Isom(\H_\F^d)$ is always a half-integer \cite[Proof of Lemma 3.5]{CorletteIozzi}, but the situation is much more complicated in infinite dimensions. We prove a general lower bound on the Poincar\'e exponent of a parabolic subgroup of $\Isom(X)$ for any hyperbolic metric space $X$, depending only on the algebraic structure of the group (Theorem \ref{theoremparaboliclowerbound}); in particular, the Poincar\'e exponent of a parabolic action of $\Z^k$ on a hyperbolic metric space is always at least $k/2$. Of course, it is well-known that all parabolic actions of $\Z^k$ on $\H^d$ achieve equality. By contrast, we show that for every $\delta > k/2$ there exists a parabolic action of $\Z^k$ on $\H^\infty$ whose Poincar\'e exponent is equal to $\delta$ (Theorem \ref{theoremnilpotentembedding}).
+
+\subsection{Geometrically finite and convex-cobounded groups}
+%(Section \ref{sectionGF})
+
+It has been known for a long time that every finitely generated Fuchsian group has a finite-sided convex fundamental domain (e.g. \cite[Theorem 4.6.1]{Katok_book}). This result does not generalize beyond two dimensions (e.g. \cite{Bers, Jorgensen}), but subgroups of $\Isom(\H^3)$ with finite-sided fundamental domains came to be known as \emph{geometrically finite} groups. Several equivalent definitions of geometrical finiteness in the three-dimensional setting became known, for example Beardon and Maskit's condition that the limit set is the union of the radial limit set $\Lr$ with the set $\Lbp$ of bounded parabolic points \cite{BeardonMaskit}, but the situation in higher dimensions was somewhat murky until Bowditch \cite{Bowditch_geometrical_finiteness} wrote a paper which described which equivalences remain true in higher dimensions, and which do not. The condition of a finite-sided convex fundamental domain is no longer equivalent to any other conditions in higher dimensions (e.g. \cite{Apanasov}), so a higher-dimensional Kleinian group is said to be \emph{geometrically finite} if it satisfies any of Bowditch's five equivalent conditions (GF1)-(GF5).
+
+In infinite dimensions, conditions (GF3)-(GF5) are no longer useful (cf. Remark \ref{remarkbowditchcomparision}), but appropriate generalizations of conditions (GF1) (convex core is equal to a compact set minus a finite number of cusp regions) and (GF2) (the Beardon--Maskit formula $\Lambda = \Lr\cup\Lbp$) are still equivalent for groups of compact type. In fact, (GF1) is equivalent to (GF2) + compact type (Theorem \ref{theoremGFcompact}). We define a group to be \emph{geometrically finite} if it satisfies the appropriate analogue of (GF1) (Definition \ref{definitionGF}). A large class of examples of geometrically finite subgroups of $\Isom(\H^\infty)$ is furnished by combining the techniques of Chapters \ref{sectionschottky} and \ref{sectionparabolic}; specifically, the strongly separated Schottky product of any finite collection of parabolic groups and/or cyclic loxodromic groups is geometrically finite (Corollary \ref{corollaryschottkyGF}).
+
+It remains to answer the question of what can be proven about geometrically finite groups. This is a quite broad question, and in \thispaper\ we content ourselves with proving two theorems. The first theorem, Theorem \ref{theoremGF}, is a generalization of the Milnor--Schwarz lemma \cite[Proposition I.8.19]{BridsonHaefliger} (see also Theorem \ref{theoremCCB}), and describes both the algebra and geometry of a geometrically finite group $G$: firstly, $G$ is generated by a finite subset $F\subset G$ together with a finite collection of parabolic subgroups $G_\xi$ (which are not necessarily finitely generated, e.g. Example \ref{exampleQparabolic}), and secondly, the orbit map $g\mapsto g(\zero)$ is a quasi-isometric embedding from $(G,\dist_G)$ into $X$, where $\dist_G$ is a certain weighted Cayley metric (cf. Example \ref{examplecayleygraph} and \eqref{l0def}) on $G$ whose generating set is $F\cup \bigcup_\xi G_\xi$. As a consequence (Corollary \ref{corollaryGF}), we see that if the groups $G_\xi$, $\xi\in\Lbp$, are all finitely generated, then $G$ is finitely generated, and if these groups have finite Poincar\'e exponent, then $G$ has finite Poincar\'e exponent.
+
+%Our second theorem regarding geometrically finite groups is a generalization of Tukia's isomorphism theorem \cite[Theorem 3.3]{Tukia2}, which states that any type-preserving isomorphism $\Phi$ between two geometrically finite subgroups of $\Isom(\H^d)$ (not necessarily the same $d$ for both groups) extends to a quasisymmetric equivariant homeomorphism between their limit sets. The theorem cannot be generalized as stated, because there are examples of type-preserving isomorphisms of geometrically finite subgroups of finite-dimensional \CROSSs\ whose boundary extension is not quasisymmetric (cf. Example \ref{exampletukia} and Remark \ref{remarktukia}). Instead, we show the following:
+%
+%\begin{theorem}[Generalization of Tukia's isomorphism theorem; cf. Theorem \ref{theoremtukia}]
+%\label{theoremtukiaintro}
+%Let $X$, $\w X$ be CAT(-1) spaces, let $G\leq\Isom(X)$ and $\w G\leq\Isom(\w X)$ be two geometrically finite groups (cf. Definition \ref{definitionGF}), and let $\Phi:G\to \w G$ be a type-preserving isomorphism (cf. Definition \ref{definitiontypepreserving}). Let $P$ be a complete set of inequivalent parabolic points for $G$ (cf. Definition \ref{definitioncompleteset}).
+%\begin{itemize}
+%\item[(i)] If for every $\bp\in P$ we have
+%\begin{equation}
+%\label{tukiaintro}
+%\dogo{\Phi(h)} \asymp_{\plus,\times,\bp} \dogo h \all h\in \Stab(G;\bp),
+%\end{equation}
+%then there is an equivariant homeomorphism between $\Lambda := \Lambda(G)$ and $\w\Lambda := \Lambda(\w G)$.
+%\item[(ii)] If for every $\bp\in P$ there exists $\alpha_\bp > 0$ such that
+%\begin{equation}
+%\label{tukia2intro}
+%\dogo{\Phi(h)}  \asymp_{\plus,\bp} \alpha_\bp \dogo h \all h\in \Stab(G;\bp),
+%\end{equation}
+%then the homeomorphism of \text{(i)} is quasisymmetric (cf. Definition \ref{definitionquasisymmetric}).
+%\end{itemize}
+%\end{theorem}
+
+%\noindent The proof of Theorem \ref{theoremtukiaintro} will be given in Subsection \ref{subsectiontukia}.
+
+%%This theorem divides type-preserving isomorphisms into three classes: those which satisfy \eqref{tukia2}, those which satisfy \eqref{tukia} but not \eqref{tukia2}, and those which do not satisfy \eqref{tukia}.
+
+%%our Theorem \ref{theoremtukia} is a two-tiered result, saying different things about different classes of type-preserving isomorphisms $\Phi$. The first class is the class of $\Phi$ which act quasi-isometrically on parabolic subgroups (i.e. for which \eqref{tukia} holds); isomorphisms in this class extend to equivariant homeomorphisms of the limit sets, but these homeomorphisms are not necessarily quasisymmetric. The second class is the class of $\Phi$ which act roughly isometrically on parabolic subgroups (i.e. for which \eqref{tukia2} holds); this class is contained in the first class, and the equivariant extensions of isomorphisms in this class are quasisymmetric.
+
+%When the spaces under consideration are finite-dimensional real hyperbolic spaces, all isomorphisms satisfy \eqref{tukia2intro} (Corollary \ref{corollaryrealROSSONCTquasi}); this is why Tukia did not need to make any additional hypotheses in his theorem. Things become more interesting when one considers the more general case where the spaces under consideration are finite-dimensional \CROSSs; then all isomorphisms satisfy \eqref{tukiaintro}, but not all satisfy \eqref{tukia2intro}. A sufficient condition for an isomorphism to satisfy \eqref{tukia2intro} is that one of the groups in question is a lattice, and the underlying base fields $\F$ and $\w\F$ are the same or at least satisfy $\dim_\R(\F)\geq\dim_\R(\w\F)$ (Corollary \ref{corollarylatticequasi}). This turns out to be good enough to generalize a rigidity theorem of Xie \cite[Theorem 3.1]{Xie} to the setting of finite-dimensional \CROSSs; see Corollary \ref{corollaryxie}.
+
+\subsection{Counterexamples}
+%(Section \ref{sectionexamples})
+
+
+
+A significant class of subgroups of $\Isom(\H^\infty)$ that has no finite-dimensional analogue is provided by the \emph{Burger--Iozzi--Monod (BIM) representation theorem} \cite[Theorem 1.1]{BIM}, which states that any unweighted simplicial tree can be equivariantly and quasi-isometrically embedded into an infinite-dimensional real hyperbolic space, with a precise relation between distances in the domain and distances in the range. We call the embeddings provided by their theorem \emph{BIM embeddings}, and the corresponding homomorphisms provided by the equivariance we call \emph{BIM representations}. We generalize the BIM embedding theorem to the case where $X$ is a separable $\R$-tree rather than an unweighted simplicial tree (Theorem \ref{theoremBIM}).
+
+If we have an example of an $\R$-tree $X$ and a subgroup $\Gamma\leq\Isom(X)$ with a certain property, then the image of $\Gamma$ under a BIM representation generally has the same property (Remark \ref{remarkBIM}). Thus, the BIM embedding theorem allows us to translate counterexamples in $\R$-trees into counterexamples in $\H^\infty$. For example, if $\Gamma$ is the free group on two elements acting on its Cayley graph, then the image of $\Gamma$ under a BIM representation provides a counterexample both to an infinite-dimensional analogue of Margulis's lemma (cf. Example \ref{examplemargulis}) and to an infinite-dimensional analogue of I. Kim's theorem regarding length spectra of finite-dimensional algebraic hyperbolic spaces (cf. Remark \ref{remarklengthspectrum}).
+
+Most of the other examples in Chapter \ref{sectionexamples} are concerned with our various notions of discreteness (cf. \6\ref{subsubsectiondiscreteness} above), the notion of Poincar\'e regularity (i.e. whether or not $\delta = \w\delta$), and the relations between them. Specifically, we show that the only relations are the relations which were proven in Chapter \ref{sectiondiscreteness} and Proposition \ref{propositionpoincareregular}, as summarized in Table \ref{figurediscreteness}, p.\pageref{figurediscreteness}. Perhaps the most interesting of the counterexamples we give is Example \ref{exampleAutTBIM}, which is the image under a BIM representation of (a countable dense subgroup of) the automorphism group $\Gamma$ of the $4$-regular unweighted simplicial tree. This example is notable because discreteness properties are not preserved under taking the BIM representation: specifically, $\Gamma$ is weakly discrete but its image under the BIM representation is not. It is also interesting to try to visualize this image geometrically (cf. Figure \ref{figureexampleAutTBIM}).
+
+\subsection{$\R$-trees and their isometry groups}
+%(Section \ref{sectionRtrees})
+
+Motivated by the BIM representation theorem, we discuss some ways of constructing $\R$-trees which admit natural isometric actions. Our first method is the cone construction, in which one starts with an ultrametric space $(Z,\Dist)$ and builds an $\R$-tree $X$ as a ``cone'' over $Z$. This construction first appeared in a paper of F. Choucroun \cite{Choucroun}, although it is similar to several other known cone constructions: \cite[1.8.A.(b)]{Gromov3}, \cite{TrotsenkoVaisala}, \cite[\67]{BonkSchramm}. $\R$-trees constructed by the cone method tend to admit natural parabolic actions, and in Theorem \ref{theoremRtreeorbitalcounting} we provide a necessary and sufficient condition for a function to be the orbital counting function of some parabolic group acting on an $\R$-tree.
+%and we give a necessary and sufficient condition for a function to be the orbital counting function of some parabolic group acting on an $\R$-tree (Theorem \ref{theoremRtreeorbitalcounting}).
+
+Our second method is to staple $\R$-trees together to form a new $\R$-tree. We give sufficient conditions on a graph $(V,E)$, a collection of $\R$-trees $(X_v)_{v\in V}$, and a collection of sets $\set vw\subset X_v$ and bijections $\bij vw:\set vw\to\set wv$ ($(v,w)\in E$) such that stapling the trees $(X_v)_{v\in V}$ along the isometries $(\bij vw)_{(v,w)\in E}$ yields an $\R$-tree (Theorem \ref{theoremstapledunion}). In \6\ref{subsectionstaplingexamples}, we give three examples of the stapling construction, including looking at the cone construction as a special case of the stapling construction. The stapling construction is somewhat similar to a construction of G. Levitt \cite{Levitt}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Patterson--Sullivan theory}
+\label{subsectionconformal}
+%(Part \ref{partahlforsthurston})
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The connection between the Poincar\'e exponent $\delta$ of a Kleinian group and the geometry of its limit set is not limited to Hausdorff dimension considerations such as those in the Bishop--Jones theorem. As we mentioned before, Patterson and Sullivan's proofs of the equality $\HD(\Lambda) = \delta$ for geometrically finite groups rely on the construction of a certain measure on $\Lambda$, the \emph{Patterson--Sullivan measure}, whose Hausdorff dimension is also equal to $\delta$. In addition to connecting the Poincar\'e exponent and Hausdorff dimension, the Patterson--Sullivan measure also relates to the spectral theory of the Laplacian (e.g. \cite[Theorem 3.1]{Patterson2}, \cite[Proposition 28]{Sullivan_density_at_infinity}) and the geodesic flow on the quotient manifold \cite{Kaimanovich2}. An important property of Patterson--Sullivan measures is \emph{conformality}. Given $s > 0$, a measure $\mu$ on $\del\B^d$ is said to be \emph{$s$-conformal} with respect to a discrete group $G\leq\Isom(\B^d)$ if
+\begin{equation}
+\label{conformal}
+\mu(g(A)) = \int_A |g'(\xi)|^s\;\dee\mu(\xi) \all g\in G \all A\subset \del\B^d.
+\end{equation}
+The Patterson--Sullivan theorem on the existence of conformal measures may now be stated as follows: For every Kleinian group $G$, there exists a $\delta$-conformal measure on $\Lambda$, where $\delta$ is the Poincar\'e exponent of $G$ and $\Lambda$ is the limit set of $G$.
+
+When dealing with ``coarse'' spaces such as arbitrary hyperbolic metric spaces, it is unreasonable to expect equality in \eqref{conformal}. Thus, a measure $\mu$ on $\del X$ is said to be \emph{$s$-quasiconformal} with respect to a group $G\leq\Isom(X)$ if
+\[
+\mu(g(A)) \asymp_\times \int_A \overline g'(\xi)^s\;\dee\mu(\xi) \all g\in G \all A\subset \del X.
+\]
+Here $\overline g'(\xi)$ denotes the upper metric derivative of $g$ at $\xi$; cf. \6\ref{subsubsectionderivativemaps}. We remark that if $X$ is a CAT(-1) space and $G$ is countable, then every quasiconformal measure is coarsely asymptotic to a conformal measure (Proposition \ref{propositionQCtoC}).
+
+In Chapter \ref{sectionconformal}, we describe the theory of conformal and quasiconformal measures in hyperbolic metric spaces. The main theorem is the existence of $\w\delta$-conformal measures for groups of compact type (Theorem \ref{theorempattersonsullivangeneral}). An important special case of this theorem has been proven by Coornaert \cite[Th\'eor\`eme 5.4]{Coornaert} (see also \cite[\61]{BurgerMozes}, \cite[Lemme 2.1.1]{Roblin2}): the case where $X$ is proper and geodesic and $G$ satisfies $\delta < \infty$. The main improvement from Coornaert's theorem to ours is the ability to construct quasiconformal measures for Poincar\'e irregular ($\w\delta < \delta = \infty$) groups; this improvement requires an argument using the class of uniformly continuous functions on $\bord X$.
+
+The big assumption of Theorem \ref{theorempattersonsullivangeneral} is the assumption of compact type. All proofs of the Patterson--Sullivan theorem seem to involve taking a weak-* limit of a sequence of measures in $X$ and then proving that the limit measure is (quasi)conformal, but how can we take a weak-* limit if the limit set is not compact? In fact, Theorem \ref{theorempattersonsullivangeneral} becomes false if you remove the assumption of compact type. In Proposition \ref{propositioncounterexample}, we construct a group acting on an $\R$-tree and satisfying $\delta < \infty$ which admits no $\delta$-conformal measure on its limit set, and then use the BIM embedding theorem (Theorem \ref{theoremBIM}) to get an example in $\H^\infty$.
+
+Surprisingly, it turns out that if we replace the hypothesis of compact type with the hypothesis of \emph{divergence type}, then the theorem becomes true again. Specifically, we have the following:
+
+\begin{theorem}[Proven in Chapter \ref{sectionahlforsthurston}]
+\label{theoremahlforsthurstongeneral}
+Let $G\leq\Isom(X)$ be a nonelementary group of generalized divergence type (see Definition \ref{definitionmodifiedexponent}). Then there exists a $\w\delta$-quasiconformal measure $\mu$ for $G$ supported on $\Lambda$, where $\w\delta$ is the modified Poincar\'e exponent of $G$. It is unique up to a multiplicative constant in the sense that if $\mu_1,\mu_2$ are two such measures then $\mu_1\asymp_\times \mu_2$ (cf. Remark \ref{remarkmuasymp}). In addition, $\mu$ is ergodic and gives full measure to the radial limit set of $G$.
+\end{theorem}
+
+%\noindent The proof of Theorem \ref{theoremahlforsthurstongeneral} will be given in Chapter \ref{sectionahlforsthurston}.
+
+To motivate Theorem \ref{theoremahlforsthurstongeneral}, we recall the connection between the divergence type condition and Patterson--Sullivan theory in finite dimensions. Although the Patterson--Sullivan theorem guarantees the existence of a $\delta$-conformal measure, it does not guarantee its uniqueness. Indeed, the $\delta$-conformal measure is often not unique; see e.g. \cite{AFT}. However, it turns out that the hypothesis of divergence type is enough to guarantee uniqueness. In fact, the condition of divergence type turns out to be quite important in the theory of conformal measures:
+
+\begin{theorem}[Hopf--Tsuji--Sullivan theorem, {\cite[Theorem 8.3.5]{Nicholls}}]
+\label{theoremahlforsthurston}
+Fix $d\geq 2$, let $G\leq\Isom(\H^d)$ be a discrete group, and let $\delta$ be the Poincar\'e exponent of $G$. Then for any $\delta$-conformal measure $\mu\in\MM(\Lambda)$, the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is of divergence type.
+\item[(B)] $\mu$ gives full measure to the radial limit set $\Lr(G)$.
+\item[(C)] $G$ acts ergodically on $(\LambdaG,\mu)\times (\LambdaG,\mu)$.
+%\item[(D)] The geodesic flow on the quotient manifold $\H^d/G$ is ergodic with respect to the Bowen--Margulis--Sullivan measure $\mu_{\mathrm{BMS}}$.
+\end{itemize}
+In particular, if $G$ is of divergence type, then every $\delta$-conformal measure is ergodic, so there is exactly one (ergodic) $\delta$-conformal probability measure.
+\end{theorem}
+%We remark that \cite[Theorem 8.3.5]{Nicholls} does not include our sentence ``In particular \ldots'' but it is well-known and follows easily from the equivalence of (A) and (C).
+We remark that our sentence ``In particular \ldots'' stated in theorem above was not included in \cite[Theorem 8.3.5]{Nicholls} but it is well-known and follows easily from the equivalence of (A) and (C).
+
+\begin{remark}
+Theorem \ref{theoremahlforsthurston} has a long history. The equivalence (B) \iff (C) was first proven by E. Hopf in the case $\delta = d - 1$\Footnote{In this paragraph, when we say that someone proves the case $\delta = d - 1$, we mean that they considered the case where $\mu$ is Hausdorff $(d - 1)$-dimensional measure on $S^{d - 1}$.} \cite{Hopf_fuchsian, Hopf_statistik} (1936, 1939). The equivalence (A) \iff (B) was proven by Z. Y\^uj\^ob\^o in the case $\delta = d - 1 = 1$ \cite{Yujobo} (1949), following an incorrect proof by M. Tsuji \cite{Tsuji_multiply_connected} (1944).\Footnote{See \cite[p.484]{Sullivan_ergodic_theory_at_infinity} for some further historical remarks on the case $\delta = d - 1 = 1$.} Sullivan proved (A) \iff (C) in the case $\delta = d - 1$ \cite[Theorem II]{Sullivan_ergodic_theory_at_infinity}, then generalized this equivalence to the case $\delta > (d - 1)/2$ \cite[Theorem 32]{Sullivan_density_at_infinity}. He also proved (B) \iff (C) in full generality \cite[Theorem 21]{Sullivan_density_at_infinity}. Next, W. P. Thurston gave a simpler proof of (A) \implies (B)\Footnote{By this point, it was considered obvious that (B) \implies (A).} in the case $\delta = d - 1$ \cite[Theorem 4 of Section VII]{Ahlfors}. P. J. Nicholls finished the proof by showing (A) \iff (B) in full generality \cite[Theorems 8.2.2 and 8.2.3]{Nicholls}. Later S. Hong re-proved (A) \implies (B) in full generality twice in two independent papers \cite{Hong1,Hong2}, apparently unaware of any previous results. Another proof of (A) \implies (B) in full generality, which was conceptually similar to Thurston's proof, was given by P. Tukia \cite[Theorem 3A]{Tukia}. Further generalization was made by C. Yue \cite{Yue} to negatively curved manifolds, and by T. Roblin \cite[Th\'eor\`eme 1.7]{Roblin1} to proper CAT(-1) spaces.
+\end{remark}
+
+%\ignore{
+%\begin{corollary}
+%Fix $d\in\N$, let $G\leq\Isom(\B^d)$ be a discrete group, and let $\delta$ be the Poincar\'e exponent of $G$. If $G$ is of divergence type, then there is exactly one $\delta$-conformal probability measure $\mu\in\MM(\Lambda)$; moreover, $\mu$ is ergodic.
+%\end{corollary}
+%\begin{proof}
+%Clearly, (C) of Theorem \ref{theoremahlforsthurston} implies
+%\begin{itemize}
+%\item[(D)] $G$ acts ergodically on $(\LambdaG,\mu)$, i.e. $\mu$ is ergodic.
+%\end{itemize}
+%So by Theorem \ref{theoremahlforsthurston}, every $\delta$-conformal measure is ergodic. By \cite[Theorem 4.2.1]{Nicholls},\Footnote{Theorem 4.2.1 of \cite{Nicholls} is stated incorrectly; the hypothesis should be that $G$ is ergodic with respect to every $\delta$-conformal measure, not that it is ergodic with respect to a particular given $\delta$-conformal measure. However, the proof is correct.} this implies that the $\delta$-conformal measures are all scalar multiples of each other, so there is only one $\delta$-conformal probability measure.
+%\end{proof}
+%}% end ignore
+
+
+%Note that if $X$ is proper and geodesic, then any group acting on $X$ has a compact limit set, so Theorem \ref{theorempattersonsullivangeneral} includes the case of proper geodesic hyperbolic metric spaces.
+
+%It is much more difficult to prove the existence of quasiconformal measures in the case where $G$ does not have a compact limit set. Unexpectedly, it is possible to use a generalization of the implication (A) \implies (B) of Theorem \ref{theoremahlforsthurston} to prove the existence of $\delta$-quasiconformal measures for groups of divergence type, by considering the Samuel--Smirnov compactification of $\bord X$ (cf. \cite[\67]{NaimpallyWarrack}). Specifically, we have the following:
+
+Having stated the Hopf--Tsuji--Sullivan theorem, we can now describe why Theorem \ref{theoremahlforsthurstongeneral} is true, first on an intuitive level and then giving a sketch of the real proof. On an intuitive level, the fact that divergence type implies both ``existence and uniqueness'' of the $\delta$-conformal measure in finite dimensions indicates that perhaps the compactness assumption is not needed -- the sequence of measures used to construct the Patterson--Sullivan measure converges already, so it should not be necessary to use compactness to take a convergent subsequence.
+
+The real proof involves taking the Samuel--Smirnov compactification of $\bord X$, considered as a metric space with respect to a visual metric (cf. \6\ref{subsectionvisual}). The Samuel--Smirnov compactification of a metric space (cf. \cite[\67]{NaimpallyWarrack}) is conceptually similar to the more familiar Stone--\v Cech compactification, except that only uniformly continuous functions on the metric space extend to continuous functions on the compactification, not all continuous functions. If we used the Stone--\v Cech compactification rather than the Samuel--Smirnov compactification, then our proof would only apply to groups with finite Poincar\'e exponent; cf. Remark \ref{remarkstonecech} and Remark \ref{remarksamuelsmirnov}.
+
+% The reason that we consider the Samuel--Smirnov compactification rather than the Stone--\v Cech compactification is that we need to be able to extend the proof of Theorem \ref{theorempattersonsullivangeneral} to the compactified case, and as we mentioned above this requires an argument using uniformly continuous functions.
+
+\begin{proof}[Sketch of the proof of Theorem \ref{theoremahlforsthurstongeneral}]
+%Let $\what X$ denote the Samuel--Smirnov compactification of $\bord X$. 
+We denote the Samuel--Smirnov compactification of $\bord X$ by $\what X$. By a nonstandard analogue of Theorem \ref{theorempattersonsullivangeneral} (viz. Lemma \ref{lemmapattersonsullivannonstandard}), there exists a $\w\delta$-quasiconformal measure $\what\mu$ on $\what{\del X}$. By a generalization of Theorem \ref{theoremahlforsthurston} (viz. Proposition \ref{propositionahlforsthurston}), $\what\mu$ gives full measure to the radial limit set $\what\Lr$. But a simple computation (Lemma \ref{lemmaradialstandard}) shows that $\what\Lr = \Lr$, demonstrating that $\what\mu\in\MM(\Lambda)$.
+\end{proof}
+
+\subsection{Quasiconformal measures of geometrically finite groups}
+%(Section \ref{sectionGFmeasures})
+%Let $G\leq\Isom(X)$ be a geometrically finite group with Poincar\'e exponent $\delta < \infty$, and let $\mu$ be a $\delta$-quasiconformal measure on $\Lambda$. 
+Let us consider a geometrically finite group $G\leq\Isom(X)$ with Poincar\'e exponent $\delta < \infty$, and let $\mu$ be a $\delta$-quasiconformal measure on $\Lambda$. 
+Such a measure exists since geometrically finite groups are of compact type (Theorem \ref{theoremGFcompact} and Theorem \ref{theorempattersonsullivangeneral}), and is unique as long as $G$ is of divergence type (Corollary \ref{corollaryahlforsthurston}). When $X = \H^d$, the geometry of $\mu$ is described by the Global Measure Formula \cite[Theorem on p.271]{Sullivan_entropy}, \cite[Theorem 2]{StratmannVelani}: the measure of a ball $B(\eta,e^{-t})$ is coarsely asymptotic to $e^{-\delta t}$ times a factor depending on the location of the point $\eta_t := \geo\zero\eta_t$ in the quotient manifold $\H^d/G$. Here $\geo\zero\eta_t$ is the unique point on the geodesic connecting $\zero$ and $\eta$ with distance $t$ from $\zero$; cf. Notations \ref{notationgeopqt}, \ref{notationgeopqt2}.
+
+In a general hyperbolic metric space $X$ (indeed, already for $X = \H^\infty$), one cannot get a precise asymptotic for $\mu(B(\eta,e^{-t}))$, due to the fact that the measure $\mu$ may fail to be doubling (Example \ref{exampledoublingnondoubling}). Instead, our version of the global measure formula gives both an upper bound and a lower bound for $\mu(B(\eta,e^{-t}))$. Specifically, we define a function $m:\Lambda\times\Rplus\to(0,\infty)$ (for details see \eqref{metat}) and then show:
+\begin{theorem}[Global measure formula, Theorem \ref{theoremglobalmeasure}; proven in Section \ref{subsectionglobalmeasureproof}]
+\label{theoremglobalmeasureintro}
+For all $\eta\in\Lambda$ and $t > 0$,
+\begin{equation}
+\label{globalmeasureformulaintro}
+m(\eta,t + \sigma) \lesssim_\times \mu(B(\eta,e^{-t})) \lesssim_\times m(\eta,t - \sigma),
+\end{equation}
+where $\sigma > 0$ is independent of $\eta$ and $t$.
+\end{theorem}
+%\noindent The proof of Theorem \ref{theoremglobalmeasureintro} is given in Section \ref{subsectionglobalmeasureproof}.
+
+It is natural to ask for which groups \eqref{globalmeasureformulaintro} can be improved to an exact asymptotic, i.e. for which groups $\mu$ is doubling. We address this question in Section \ref{subsectiondoubling}, proving a general result (Proposition \ref{propositiondoubling2}), a special case of which is that if $X$ is a finite-dimensional algebraic hyperbolic space, then $\mu$ is doubling (Example \ref{exampledoubling}). Nevertheless, there are large classes of examples of groups $G\leq\Isom(\H^\infty)$ for which $\mu$ is not doubling (Example \ref{exampledoublingnondoubling}), illustrating once more the wide difference between $\H^\infty$ and its finite-dimensional counterparts.
+
+It is also natural to ask about the implications of the Global Measure Formula for the dimension theory of the measure $\mu$. For example, when $X = \H^d$, the Global Measure Formula was used to show that $\HD(\mu) = \delta$ \cite[Proposition 4.10]{StratmannVelani}. In our case we have: 
+\begin{theorem}[Cf. Theorem \ref{theoremhlogseries}]
+\label{theoremhlogseriesintro}
+If for all $\bp\in P$, the series
+\begin{equation}
+\label{hlogseriesintro}
+\sum_{h\in G_\bp} e^{-\delta\dogo h} \dogo h
+\end{equation}
+converges, then $\mu$ is exact dimensional (cf. Definition \ref{definitionexactdimensional}) of dimension $\delta$. In particular, 
+\[
+\HD(\mu) = \PD(\mu) = \delta ~.
+\]
+\end{theorem}
+The hypothesis that \eqref{hlogseriesintro} converges is a very non-restrictive hypothesis. For example, it is satisfied whenever $\delta > \delta_\bp$ for all $\bp\in P$ (Corollary \ref{corollarydeltagtrdeltap}). Combining with Proposition \ref{propositiondeltagtrdeltap} shows that any counterexample must satisfy
+\[
+\sum_{h\in G_\bp} e^{-\delta\dogo h} < \infty = \sum_{h\in G_\bp} e^{-\delta\dogo h} \dogo h
+\]
+for some $\bp\in P$, creating a very narrow window for the orbital counting function $\NN_\bp$ (cf. Notation \ref{notationmetat}) to lie in. Nevertheless, we show that there exist counterexamples (Example \ref{examplenotexactdim}) for which the series \eqref{hlogseriesintro} diverges. After making some simplifying assumptions, we are able to prove (Theorem \ref{theoremhlogseriesconverse}) that the Patterson--Sullivan measures of groups for which \eqref{hlogseriesintro} diverges cannot be exact dimensional, and in fact satisfy $\HD(\mu) = 0$.
+
+There is a relation between exact dimensionality of the Patterson--Sullivan measure and the theory of Diophantine approximation on the boundary of $\del X$, as described in \cite{FSU4}. Specifically, if $\VWA_\xi$ denotes the set of points which are very well approximable with respect to a distinguished point $\xi$ (cf. \6\ref{subsubsectiondiophantineapproximation}), then we have the following:
+
+\begin{theorem}[Cf. Theorem \ref{theoremequivalentVWA}]
+\label{theoremequivalentVWAintro}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] For all $p \in P$, $\mu(\VWA_\bp) = 0$.
+\item[(B)] $\mu$ is exact dimensional.
+\item[(C)] $\HD(\mu) = \delta$.
+\item[(D)] For all $\xi \in \Lambda$, $\mu(\VWA_\xi) = 0$.
+\end{itemize}
+\end{theorem}
+%$\mu(\VWA_\bp) = 0\all \bp\in P$
+%$\mu(\VWA_\xi) = 0\all \xi\in\Lambda$.
+
+In particular, combining with Theorem \ref{theoremhlogseriesintro} demonstrates that the equation 
+\[
+\mu(\VWA_\xi) = 0
+\] 
+holds for a large class of geometrically finite groups $G$ and for all $\xi\in\Lambda$. This improves the results of \cite[\61.5.3]{FSU4}.
+
+%\section{Appendices (Part \ref{partappendices})}
+\section{Appendices}
+
+%We conclude with two appendices: a list of open problems (Appendix \ref{appendixopenproblems}) and an index (Appendix \ref{appendixindex}).
+We conclude this monograph with two appendices. Appendix \ref{appendixopenproblems} contains a list of open problems, and Appendix \ref{appendixindex} an index of defined terms.
+
+%The assumption that $G$ is of divergence type cannot be removed, as the following proposition shows:
+%\begin{repproposition}{propositioncounterexample}
+%Let $X = \B^\infty$. There exists a strongly discrete group $G\leq\Isom(X)$ of general type satisfying $\delta < \infty$, such that there does not exist any $\delta$-quasiconformal measure in $\MM(\Lambda)$.
+%\end{repproposition}
+
+\endinput

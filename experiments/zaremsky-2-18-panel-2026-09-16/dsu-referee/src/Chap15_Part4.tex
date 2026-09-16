@@ -1,0 +1,470 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Patterson--Sullivan theory}
+%%\section{Patterson--Sullivan theory}
+%\label{partahlforsthurston}
+%This part will be divided as follows: In Section \ref{sectionconformal} we recall the definition of quasiconformal measures, and we prove basic existence and non-existence results. In Section \ref{sectionahlforsthurston}, we prove Theorem \ref{theoremahlforsthurstongeneral} (Patterson--Sullivan theorem for groups of divergence type). In Section \ref{sectionGFmeasures}, we investigate the geometry of quasiconformal measures of geometrically finite groups, and we prove a generalization of the Global Measure Formula (Theorem \ref{theoremglobalmeasure}) as well as giving various necessary and/or sufficient conditions for the Patterson--Sullivan measure of a geometrically finite group to be doubling (\6\ref{subsectiondoubling}) or exact dimensional (\6\ref{subsectionexactdimensional}).
+%
+%Throughout the entire part, we fix $(X,\dist,\zero,b)$ as in \6\ref{standingassumptions2}, and a \emph{group} $G\leq\Isom(X)$.
+
+
+\chapter{Conformal and quasiconformal measures}\label{sectionconformal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{standingassumption*}
+\label{}
+Throughout the final part of the monograph, i.e. in Chapters \ref{sectionconformal}-\ref{sectionGFmeasures},  we fix $(X,\dist,\zero,b)$ as in \6\ref{standingassumptions2}, and a \emph{group} $G\leq\Isom(X)$.
+\end{standingassumption*}
+
+\section{The definition}
+Conformal measures, introduced by S. G. Patterson \cite{Patterson2} and D. P. Sullivan \cite{Sullivan_density_at_infinity}, are an important tool in studying the geometry of the limit set of a Kleinian group. Their definition can be generalized directly to the case of a group acting on a strongly hyperbolic metric space, but for a hyperbolic metric space which is not strongly hyperbolic, a multiplicative error term is required. Thus we make the following definition (cf. \cite[Definition 4.1]{Coornaert}):
+
+\begin{definition}
+\label{definitionquasiconformal}
+For each $s\geq 0$, a nonzero measure\Footnote{In this monograph, ``measure'' always means ``nonnegative finite Borel measure''.} $\mu$ on $\del X$ is called \emph{$s$-quasiconformal}\Footnote{Not to be confused with the concept of a quasiconformal \emph{map}, cf. \cite{Heinonen2}.} if
+\begin{equation}
+\label{quasiconformal}
+\mu(g(A)) \asymp_\times \int_A [\overline g'(\xi)]^s\;\dee\mu(\xi)
+\end{equation}
+for every $g\in G$ and for every Borel set $A\subset\del X$. If $X$ is strongly hyperbolic and if equality holds in \eqref{quasiconformal}, then $\mu$ is called \emph{$s$-conformal}.
+\end{definition}
+\begin{remark}
+\label{remarkmuasymp}
+For two measures $\mu_1,\mu_2$, write $\mu_1\asymp_\times \mu_2$ if $\mu_1$ and $\mu_2$ are in the same measure class and if the Radon--Nikodym derivative $\dee \mu_1/\dee \mu_2$ is bounded from above and below. Then a measure $\mu$ is $s$-quasiconformal if and only if
+\[
+\mu\circ g \asymp_\times [\overline g'(\xi)]^s\mu,
+\]
+and is $s$-conformal if $X$ is strongly hyperbolic and if equality holds.
+\end{remark}
+
+\begin{remark}
+One might ask whether it is possible to generalize the notions of conformal and quasiconformal measures to semigroups. However, this appears to be difficult. The issue is that the condition \eqref{quasiconformal} is sometimes impossible to satisfy for measures supported on $\Lambda$ -- for example, it may happen that there exist $g_1,g_2\in G$ such that $g_1(\Lambda)\cap g_2(\Lambda) = \emptyset$, in which case letting $A = \del X\butnot\Lambda$ in \eqref{quasiconformal} shows both that $\Supp(\mu)\subset g_1(\Lambda)$ and that $\Supp(\mu)\subset g_2(\Lambda)$, and thus that $\mu = 0$. One may try to fix this by changing the formula \eqref{quasiconformal} somehow, but it is not clear what the details of this should be.% The analogous situation of conformal iterated function systems (e.g. \cite{MauldinUrbanski1}) has a lot more structure, and 
+\end{remark}
+
+
+
+
+\section{Conformal measures}
+Before discussing quasiconformal measures, let us consider the relation between conformal measures and quasiconformal measures. Obviously, every conformal measure is quasiconformal. In the converse direction we have:
+
+\begin{proposition}
+\label{propositionQCtoC}
+Suppose that $G$ is countable and that $X$ is strongly hyperbolic. Then for every $s\geq 0$, if $\mu$ is an $s$-quasiconformal measure, then there exists an $s$-conformal measure $\nu$ satisfying $\nu\asymp_\times \mu$.
+\end{proposition}
+\begin{proof}
+For each $g\in G$, let $f_g:\del X\to(0,\infty)$ be a Radon--Nikodym derivative of $\mu\circ g$ with respect to $\mu$. Since $\mu$ is $s$-quasiconformal, we have for $\mu$-a.e. $\xi\in\del X$
+\begin{equation}
+\label{fgxiasymp}
+f_g(\xi) \asymp_\times [g'(\xi)]^s.
+\end{equation}
+Since $G$ is countable, the set of $\xi\in\del X$ for which \eqref{fgxiasymp} holds for all $g\in G$ is of full $\mu$-measure. In particular, if
+\[
+f(\xi) = \sup_{g\in G} \frac{f_g(\xi)}{[g'(\xi)]^s},
+\]
+then $f(\xi)\asymp_\times 1$ for $\mu$-a.e. $\xi\in X$. Now for each $g,h\in G$, the equality $\mu\circ(gh) = (\mu\circ g)\circ h$ implies that
+\[
+f_{gh}(\xi) = f_g(h(\xi)) f_h(\xi) \text{ for $\mu$-a.e. $\xi\in\del X$.}
+\]
+Combining with the chain rule for metric derivatives, we have
+\[
+\frac{f_{gh}(\xi)}{[(gh)'(\xi)]^s} = \frac{f_g(h(\xi))}{[g'(h(\xi))]^s}\frac{f_h(\xi)}{[h'(\xi)]^s} \text{ for $\mu$-a.e. $\xi\in\del X$.}
+\]
+Note that we are using the strong hyperbolicity assumption here to get equality rather than a coarse asymptotic. Taking the supremum over all $g$ gives
+\[
+f(\xi) = f(h(\xi))\frac{f_h(\xi)}{[h'(\xi)]^s} \text{ for $\mu$-a.e. $\xi\in\del X$.}
+\]
+We now claim that $\nu := f\mu$ is an $s$-conformal measure. Indeed,
+\[
+\frac{\dee\nu\circ g}{\dee\nu}(\xi)
+= \frac{f(g(\xi))}{f(\xi)}\frac{\dee\mu\circ g}{\dee\mu}(\xi)
+= \frac{f(g(\xi))}{f(\xi)}f_g(\xi)
+= [g'(\xi)]^s \text{ for $\mu$-a.e. $\xi\in\del X$.}
+\]
+\end{proof}
+
+\section{Ergodic decomposition}
+
+Let $\MM(\del X)$ denote the set of all measures on $\del X$, and let $\MM_1(\del X)$ denote the set of all probability measures on $\del X$.
+
+\begin{definition}
+\label{definitionergodic}
+A measure $\mu\in\MM(\del X)$ is \emph{ergodic} if for every $G$-invariant Borel set $A\subset\del X$, we have $\mu(A) = 0$ or $\mu(\del X\butnot A) = 0$.
+\end{definition}
+
+It is often useful to be able to write a non-ergodic measure as the convex combination of ergodic measures. To make this rigorous, suppose that $X$ is complete and separable, so that $\bord X$ and $\del X$ are Polish spaces. Then $\del X$ together with its Borel $\sigma$-algebra forms a standard Borel space. Let $\BB$ denote the smallest $\sigma$-algebra on $\MM(\del X)$ with the following property:
+\begin{property}
+\label{propertymeasurablestructure}
+For every bounded Borel-measurable function $f:\del X\to\R$, the function
+\[
+\mu \mapsto \int f\;\dee\mu
+\]
+is a $\BB$-measurable map from $\MM(\del X)$ to $\R$.
+\end{property}
+Then $(\MM(\del X),\BB)$ is a standard Borel space. We may now state the following theorem:
+
+\begin{proposition}[Ergodic decomposition of quasiconformal measures]
+\label{propositionergodicdecomposition}
+We suppose that $G$ is countable and that $X$ is separable. 
+%Let $G$ be a countable group and $X$ be a separable space. 
+Fix $s\geq 0$.
+\begin{itemize}
+\item[(i)] For every $s$-quasiconformal measure $\mu$, there is a measure $\what\mu$ on $\MM_1(\del X)$ which satisfies
+\begin{equation}
+\label{ergodicdecomposition}
+\mu(A) = \int \nu(A)\;\dee\what\mu(\nu) \text{ for every Borel set $A\subset\del X$}
+\end{equation}
+and gives full measure to the set of ergodic $s$-quasiconformal measures.\Footnote{If $A$ is a non-measurable set, then a measure $\mu$ gives full measure to $A$ if and only if $A$ contains a measurable set of full $\mu$-measure. Thus we do not need to check whether or not the set of ergodic $s$-quasiconformal measures is a measurable set in $\MM_1(\del X)$.}
+\item[(ii)] If $X$ is strongly hyperbolic, then for every $s$-conformal measure $\mu$, there is a unique measure $\what\mu$ on $\MM(\del X)$ which satisfies \eqref{ergodicdecomposition} and which gives full measure to the set of ergodic $s$-conformal measures.
+\end{itemize}
+\end{proposition}
+\begin{remark}
+Note that we have uniqueness in (ii) but not in (i).
+\end{remark}
+\begin{proof}[Proof of Proposition \ref{propositionergodicdecomposition}]
+Both cases of the proposition are essentially special cases of \cite[Theorem 1.4]{GreschonigSchmidt}, as we now demonstrate:
+\begin{itemize}
+\item[(i)]
+Let $\mu$ be an $s$-quasiconformal measure. Let $\varrho:G\times\del X\to\R$ satisfy \cite[(1.1)-(1.3)]{GreschonigSchmidt}. Then by \cite[Theorem 1.4]{GreschonigSchmidt}, there is a measure $\what\mu$ satisfying \eqref{ergodicdecomposition} supported on the set of ergodic probability measures which are ``$\varrho$-admissible'' (in the terminology of \cite{GreschonigSchmidt}). But by \cite[(1.1)]{GreschonigSchmidt}, we have $b^{\varrho(g,\xi)}\asymp_\times \overline g'(\xi)^s$ for $\mu$-a.e. $\xi\in\del X$, say for all $\xi\in\del X\butnot S$, where $\mu(S) = 0$. Then every $\varrho$-admissible measure $\nu$ satisfying $\nu(S) = 0$ is $s$-quasiconformal. But by \eqref{ergodicdecomposition}, $\nu(S) = 0$ for $\what\mu$-a.e. $\nu$, so $\what\mu$-a.e. $\nu$ is $s$-quasiconformal.
+\item[(ii)] Let $\mu$ be an $s$-conformal measure. Let $\varrho:G\times\del X\to\R$ satisfy \cite[(1.1)-(1.3)]{GreschonigSchmidt}. Then by \cite[(1.1)]{GreschonigSchmidt}, we have $b^{\varrho(g,\xi)} = g'(\xi)^s$ for $\mu$-a.e. $\xi\in\del X$, say for all $\xi\in\del X\butnot S$, where $\mu(S) = 0$. Then for every measure $\nu$ satisfying $\nu(S) = 0$, $\nu$ is $\varrho$-admissible \emph{if and only if} $\nu$ is $s$-conformal. By \cite[Theorem 1.4]{GreschonigSchmidt}, there is a unique measure $\what\mu$ satisfying \eqref{ergodicdecomposition} supported on the set of $\varrho$-admissible ergodic probability measures; such a measure is also unique with respect to satisfying \eqref{ergodicdecomposition} being supported on the set of $s$-conformal ergodic measures.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+Suppose that $G$ is countable and that $X$ is separable, and fix $s\geq 0$. If there is an $s$-(quasi)conformal measure, then there is an ergodic $s$-(quasi)conformal measure.
+\end{corollary}
+
+In the sequel, we will be concerned with when an $s$-quasiconformal measure is unique up to coarse asymptotic. This is closely connected with ergodicity:
+\begin{proposition}
+\label{propositionquasiconformaluniqueness}
+Suppose that $G$ is countable and that $X$ is separable, and fix $s\geq 0$. Suppose that there is an $s$-quasiconformal measure $\mu$. The following are equivalent:
+\begin{itemize}
+\item[(A)] $\mu$ is unique up to coarse asymptotic i.e. $\mu\asymp_\times \w\mu$ for any $s$-quasiconformal measure $\w\mu$.
+\item[(B)] Every $s$-quasiconformal measure is ergodic.
+\end{itemize}
+If in addition $X$ is strongly hyperbolic, then (A)-(B) are equivalent to
+\begin{itemize}
+\item[(C)] There is exactly one $s$-conformal probability measure.
+\end{itemize}
+\end{proposition}
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+If $\mu$ is a non-ergodic $s$-quasiconformal measure, then there exists a $G$-invariant set $A\subset\del X$ such that $\mu(A),\mu(\del X\butnot A) > 0$. But then $\nu_1 = \mu\given A$ and $\nu_2 = \mu\given\del X\butnot A$ are non-asymptotic $s$-quasiconformal measures, a contradiction.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (A)}]
+Suppose that $\mu_1,\mu_2$ are two $s$-quasiconformal measures. Then the measure $\mu = \mu_1 + \mu_2$ is also $s$-quasiconformal, and therefore ergodic. Let $f_i$ be a Radon--Nikodym derivative of $\mu_i$ with respect to $\mu$. Then for all $g\in G$,
+\begin{equation}
+\label{fiinvariant}
+f_i \circ g(\xi) = \frac{\dee \mu_i\circ g}{\dee \mu\circ g}(\xi) \asymp_\times \frac{[\overline g'(\xi)]^s}{[\overline g'(\xi)]^s} \frac{\dee\mu_i}{\dee\mu}(\xi) = f_i(\xi) \text{ for $\mu$-a.e. $\xi\in\del X$}.
+\end{equation}
+It follows that
+\[
+h_i(\xi) := \sup_{g\in G} f_i\circ g(\xi) \asymp_\times f_i(\xi) \text{ for $\mu$-a.e. $\xi\in\del X$}.
+\]
+But the functions $h_i$ are $G$-invariant, so since $\mu$ is ergodic, they are constant $\mu$-a.e., say $h_i = c_i$. It follows that $\mu_i \asymp_\times c_i \mu$; since $\mu_i \neq 0$, we have $c_i > 0$ and thus $\mu_1\asymp_\times \mu_2$.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (C)}]
+The existence of an $s$-conformal measure is guaranteed by Proposition \ref{propositionQCtoC}. If $\mu_1,\mu_2$ are two $s$-conformal measures, then the Radon--Nikodym derivatives $f_i = \dee\mu_i/\dee(\mu_1 + \mu_2)$ satisfy \eqref{fiinvariant} with equality, so $f_i = c_i$ for some constants $c_i$. It follows that $\mu_1 = (c_1/c_2) \mu_2$, and so if $\mu_1,\mu_2$ are probability measures then $\mu_1 = \mu_2$.
+\end{proof}
+\begin{proof}[Proof of \text{(C) \implies (A)}]
+Follows immediately from Proposition \ref{propositionQCtoC}.
+\end{proof}
+
+
+\section{Quasiconformal measures}
+
+We now turn to the deeper question of when a quasiconformal measure exists in the first place. To approach this question we begin with a fundamental geometrical lemma about quasiconformal measures:
+
+\begin{lemma}[Sullivan's Shadow Lemma, cf. {\cite[Proposition 3]{Sullivan_density_at_infinity}}, {\cite[\61.1]{Roblin2}}]
+\label{lemmasullivanshadow}
+Fix $s\geq 0$, and let $\mu$ be a $s$-quasiconformal measure on $\del X$ which is not a pointmass. Then for all $\sigma > 0$ sufficiently large and for all $g\in G$,
+\[
+\mu(\Shad(g(\zero),\sigma)) \asymp_{\times,\sigma,\mu} b^{-s \dogo g}.
+\]
+\end{lemma}
+\begin{proof}
+We have
+\begin{align*}
+\mu(\Shad(g(\zero),\sigma))
+&\asymp_{\times,\mu} \int_{g^{-1}(\Shad(g(\zero),\sigma))}\big(\overline g'\big)^s \;\dee\mu\\
+\by{the definition of $s$-quasiconformality}\\
+&=_{\phantom{\times,\mu}} \int_{\Shad_{g^{-1}(\zero)}(\zero,\sigma)}\big(\overline g'\big)^s \;\dee\mu\\
+&\asymp_{\times,\sigma} \int_{\Shad_{g^{-1}(\zero)}(\zero,\sigma)}b^{-s\dogo g} \;\dee\mu\\
+\by{the Bounded Distortion Lemma \ref{lemmaboundeddistortion}}\\
+&=_{\phantom{\times,\mu}} b^{-s\dogo g}\mu\big(\Shad_{g^{-1}(\zero)}(\zero,\sigma)\big).
+\end{align*}
+Thus, to complete the proof, it is enough to show that
+\[
+\mu\big(\Shad_{g^{-1}(\zero)}(\zero,\sigma)\big) \asymp_{\times,\mu,\sigma} 1,
+\]
+assuming $\sigma$ is sufficiently large (depending on $\mu$). The upper bound is automatic since $\mu$ is finite. Now, since by assumption $\mu$ is not a pointmass, we have $\#(\Supp(\mu))\geq 2$. Choose distinct $\xi_1,\xi_2\in\Supp(\mu)$, and let $\epsilon = \Dist(\xi_1,\xi_2)/3$. By the Big Shadows Lemma \ref{lemmabigshadow}, we have
+\[
+\Diam(\del X\butnot \Shad_{g^{-1}(\zero)}(\zero,\sigma)) \leq \epsilon
+\]
+for all $\sigma > 0$ sufficiently large (independent of $g$). Now since 
+$$\Dist(B(\xi_1,\epsilon),B(\xi_2,\epsilon))\geq \epsilon,$$ it follows that
+\[
+\exists i = 1,2 \;\; B(\xi_i,\epsilon)\subset \Shad_{g^{-1}(\zero)}(\zero,\sigma)
+\]
+and thus
+\[
+\mu\big(\Shad_{g^{-1}(\zero)}(\zero,\sigma)\big) \geq \min_{i = 1}^2 \mu\big(B(\xi_i,\epsilon)\big) > 0.
+\]
+The right hand side is independent of $g$, which completes the proof.
+\end{proof}
+
+Sullivan's Shadow Lemma suggests that in the theory of quasiconformal measures, there is a division between those measures which are pointmasses and those which are not. Let us first consider the easier case of a pointmass quasiconformal measure, and then move on to the more interesting theory of non-pointmass quasiconformal measures.
+
+\subsection{Pointmass quasiconformal measures}
+\begin{proposition}
+\label{propositionquasiconformalpointmass}
+A pointmass $\delta_\xi$ is $s$-quasiconformal if and only if
+\begin{itemize}
+\item[(I)] $\xi\in\del X$ is a global fixed point of $G$, and
+\item[(II)] either
+\begin{itemize}
+\item[(IIA)] $\xi$ is neutral with respect to every $g\in G$, or
+\item[(IIB)] $s = 0$.
+\end{itemize}
+\end{itemize}
+\end{proposition}
+\begin{proof} To begin we recall that $g'(\xi)$ denotes the dynamical derivative, cf. Proposition \ref{propositiondynamicalderivative}.
+For each $\xi\in\del X$,
+%\begin{align*} 
+%\text{$\delta_\xi$ is $s$-quasiconformal}
+%&\Leftrightarrow \delta_\xi\circ g \asymp_\times (\overline g')^s\delta_\xi \all g\in G\\
+%&\Leftrightarrow \text{$g(\xi) = \xi$ and $[\overline g'(\xi)]^s \asymp_\times 1$} \all g\in G\\
+%&\Leftrightarrow \text{$g(\xi) = \xi$ and $[g'(\xi)]^s = 1$} \all g\in G & \text{(here $g'(\xi)$ is the dynamical derivative)}\\
+%&\Leftrightarrow \text{$g(\xi) = \xi$ and ($g'(\xi) = 1$ or $s = 0$)} \all g\in G.\noreason
+%\end{align*}
+\begin{align*} 
+\text{$\delta_\xi$ is $s$-quasiconformal}
+&\Leftrightarrow \delta_\xi\circ g \asymp_\times (\overline g')^s\delta_\xi \all g\in G\\
+&\Leftrightarrow \text{$g(\xi) = \xi$ and $[\overline g'(\xi)]^s \asymp_\times 1$} \all g\in G\\
+&\Leftrightarrow \text{$g(\xi) = \xi$ and $[g'(\xi)]^s = 1$} \all g\in G\\
+&\Leftrightarrow \text{$g(\xi) = \xi$ and ($g'(\xi) = 1$ or $s = 0$)} \all g\in G.\noreason
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+\label{corollaryquasiconformalpointmass}
+~
+\begin{itemize}
+\item[(i)] If $G$ is of general type, then no pointmass is $s$-quasiconformal for any $s\geq 0$.
+\item[(ii)] If $G$ is loxodromic, then no pointmass is $s$-quasiconformal for any $s > 0$.
+\end{itemize}
+\end{corollary}
+
+\subsection{Non-pointmass quasiconformal measures}
+Next we will ask the following question: Given a group $G$, for what values of $s$ does a non-pointmass quasiconformal measure exist, and when is it unique up to coarse asymptotic? We first recall the situation in the Standard Case, where the answers are well-known. The first result is the Patterson--Sullivan theorem \cite[Theorem 1]{Sullivan_density_at_infinity}, which states that any discrete subgroup $G\leq\Isom(\H^d)$ admits a $\delta_G$-conformal measure supported on $\LambdaG$. It is unique up to a multiplicative constant if $G$ is of divergence type (\cite[Theorem 8.3.5]{Nicholls} together with Proposition \ref{propositionquasiconformaluniqueness}). The next result is negative, stating that if $s < \delta_G$, then $G$ admits no non-pointmass $s$-conformal measure. From these results and from Corollary \ref{corollaryquasiconformalpointmass}, it follows that if $G$ is of general type, then $\delta_G$ is the infimum of $s$ for which there exists an $s$-conformal measure \cite[Corollary 4]{Sullivan_density_at_infinity}. Finally, for $s > \delta_G$, an $s$-conformal measure on $\LambdaG$ exists if and only if $G$ is not convex-cocompact (\cite[Theorem 4.1]{AFT} for $\Leftarrow$, \cite[Theorem 4.4.1]{Nicholls} for $\Rightarrow$); no nontrivial conditions are known which guarantee uniqueness in this case.
+
+We now generalize the above results to the setting of hyperbolic metric spaces, replacing the Poincar\'e exponent $\delta_G$ with the modified Poincar\'e exponent $\w\delta_G$, and the notion of divergence type with the notion of generalized divergence type. By Proposition \ref{propositionbasicmodified}(ii), our theorems will reduce to the known results in the case of a strongly discrete group.
+
+We begin with the negative result, as its proof is the easiest:
+\begin{proposition}[cf. {\cite[p.178]{Sullivan_density_at_infinity}}]
+\label{propositionlessthandelta}
+For any $s < \w\delta_G$, there does not exist a non-pointmass $s$-quasiconformal measure.
+\end{proposition}
+\begin{proof}
+By contradiction, suppose that $\mu$ is a non-pointmass $s$-quasiconformal measure. Let $\sigma > 0$ be large enough so that Sullivan's Shadow Lemma \ref{lemmasullivanshadow} holds, and let $\tau > 0$ be the implied constant of \eqref{distbusemann} from the Intersecting Shadows Lemma \ref{lemmatau}. Let $S_{\tau + 1}$ be a maximal $(\tau + 1)$-separated subset of $G(\zero)$. Fix $n\in\N$, and let $A_n$ be the $n$th annulus $A_n = B(\zero,n)\butnot B(\zero,n - 1)$. Now by the Intersecting Shadows Lemma \ref{lemmatau}, the shadows $\big(\Shad(x,\sigma)\big)_{x\in S_{\tau + 1}\cap A_n}$ are disjoint, and so by Sullivan's Shadow Lemma \ref{lemmasullivanshadow}
+\begin{align*}
+1 \asymp_{\times,\mu} \mu(\del X)
+&\geq
+\sum_{x\in S_{\tau + 1}\cap A_n}\mu(\Shad(x,\sigma))\\
+&\asymp_{\times,\sigma,\mu} \sum_{x\in S_{\tau + 1}\cap A_n}b^{-s\dox x}\\
+& \asymp_{\times}
+b^{-sn}\#(S_{\tau + 1}\cap A_n).
+\end{align*}
+Thus for all $t > s$,
+\[
+\Sigma_t(S_{\tau + 1})
+\asymp_\times \sum_{n\in\N} b^{-tn}\#(S_{\tau + 1}\cap A_n)
+\lesssim_{\times,\sigma,\mu} \sum_{n\in\N}b^{(s - t)n} < \infty.
+\]
+But this implies that $\w\delta_G\leq t$ (cf. \eqref{modifiedpoincaredef}); letting $t\searrow s$ gives $\w\delta_G\leq s$, contradicting our hypothesis.
+\end{proof}
+
+\begin{remark}
+\label{remarkupperorbitalbound}
+The above proof shows that if there exists a non-pointmass $\w\delta$-conformal measure, then
+\[
+\#(S_{\tau + 1}\cap A_n) \lesssim_\times b^{\w\delta n} \all n\geq 1.
+\]
+In particular, if $\w\delta > 0$ then summing over $n = 1,\ldots,N$ gives
+\[
+\#(S_{\tau + 1}\cap B(\zero,N)) \lesssim_\times b^{\w\delta N} \all n\geq 1.
+\]
+If $G$ is strongly discrete, then for all $\rho > 0$,
+\begin{align*}
+\NN_{X,G}(\rho) = \#\{g\in G : \dogo g \leq \rho\} 
+&\lesssim_\times \#(S_{\tau + 1}\cap B(\zero,\rho + \tau + 1))\\
+&\lesssim_\times b^{\delta\lceil\rho + \tau + 1\rceil}\\
+&\asymp_\times b^{\delta\rho}.
+\end{align*}
+The bound $\NN_{X,G}(\rho) \lesssim_\times b^{\delta\rho}$ in fact holds without assuming the existence of a $\delta$-conformal measure; see Corollary \ref{corollaryupperorbitalbound}.
+\end{remark}
+
+Next we study hypotheses which guarantee the existence of a $\w\delta_G$-quasiconformal measure. In particular, we will show that if $\w\delta_G < \infty$ and if $G$ is of compact type or of generalized divergence type, then there exists a $\w\delta_G$-quasiconformal measure. The first case we consider now, while the case of a group of generalized divergence type will be considered in Chapter \ref{sectionahlforsthurston}.
+
+\draftnewpage
+\begin{theorem}[cf. {\cite[Th\'eor\`eme 5.4]{Coornaert}}]
+\label{theorempattersonsullivangeneral}
+Assume that $G$ is of compact type and that $\w\delta < \infty$. Then there exists a $\w\delta$-quasiconformal measure supported on $\Lambda$. If $X$ is strongly hyperbolic, then there exists a $\w\delta$-conformal measure supported on $\Lambda$.
+\end{theorem}
+\begin{remark}
+Any group acting on a proper geodesic hyperbolic metric space is of compact type, so Theorem \ref{theorempattersonsullivangeneral} includes the case of proper geodesic hyperbolic metric spaces.
+\end{remark}
+
+\begin{remark}
+Combining Theorem \ref{theorempattersonsullivangeneral} with Proposition \ref{propositionlessthandelta} and Corollary \ref{corollaryquasiconformalpointmass} shows that for $G$ nonelementary of compact type,
+\[
+\w\delta = \inf\{s > 0 : \text{there exists an $s$-quasiconformal measure supported on $\Lambda$}\},
+\]
+thus giving another geometric characterization of $\w\delta$ (the first being Theorem \ref{theorembishopjonesmodified}).
+\end{remark}
+
+Before proving Theorem \ref{theorempattersonsullivangeneral}, we recall the following lemma due to Patterson:
+
+\begin{lemma}[{\cite[Lemma 3.1]{Patterson2}}]
+\label{lemmapatterson}
+Let $\AA = (a_n)_1^\infty$ be a sequence of positive real numbers, and let
+\[
+\delta = \delta(\AA) = \inf\left\{s \geq 0 : \sum_{n = 1}^\infty a_n^{-s} < \infty\right\}.
+\]
+Then there exists an increasing continuous function $k:(0,\infty)\to(0,\infty)$ such that:
+\begin{itemize}
+\item[(i)] The series
+\[
+\Sigma_{s,k}(\AA) = \sum_{n = 1}^\infty k(a_n) a_n^{-s}
+\]
+converges for $s > \delta$ and diverges for $s\leq \delta$.
+\item[(ii)] There exists a decreasing function $\epsilon:(0,\infty)\to(0,\infty)$ such that for all $y > 0$ and $x > 1$,
+\begin{equation}
+\label{patterson}
+k(xy) \leq x^{\epsilon(y)} k(y),
+\end{equation}
+and such that $\lim_{y\to\infty}\epsilon(y) = 0$.
+\end{itemize}
+\end{lemma}
+
+
+\begin{proof}[Proof of Theorem \ref{theorempattersonsullivangeneral}]
+By Proposition \ref{propositionbasicmodified}, there exist $\rho > 0$ and a maximal $\rho$-separated set $S_\rho\subset G(\zero)$ such that $\w\delta(G) = \delta(S_\rho)$; moreover, this $\rho$ may be chosen large enough so that $S_{\rho/2}$ does not contain a bounded infinite set, where $S_{\rho/2}$ is a $\rho/2$-separated set. Let $\AA = (a_n)_1^\infty$ be any indexing of the sequence $(b^{\dox x})_{x\in S_\rho}$, and let $k:(0,\infty)\to(0,\infty)$ be the function given by Lemma \ref{lemmapatterson}. For shorthand let
+\begin{align*}
+k(x) &= k(b^{\dox x})\\
+\epsilon(x) &= \epsilon(b^{\dox x})\\
+\Sigma_{s,k} &= \Sigma_{s,k}(\AA) = \sum_{x\in S_\rho} k(x) b^{-s\dox x}.
+\end{align*}
+Then $\Sigma_{s,k} < \infty$ if and only if $s > \w\delta$; moreover, the function $s\mapsto \Sigma_{s,k}$ is continuous. For each $s > \w\delta_G$, let
+\begin{equation}
+\label{musdef}
+\mu_s = \frac{1}{\Sigma_{s,k}}\sum_{x\in S_\rho}k(x) b^{-s\dox x}\delta_x\in\MM_1(S_\rho\cup\LambdaG).
+\end{equation}
+Now since $G$ is of compact type, the set $S_\rho\cup\LambdaG$ is compact (cf. (B) of Proposition \ref{propositioncompacttype}). Thus by the Banach--Alaoglu theorem, the set $\MM_1(S_\rho\cup\LambdaG)$ is compact in the weak-* topology. So there exists a sequence $s_n\searrow\w\delta$ so that if we let $\mu_n = \mu_{s_n}$, then $\mu_n\to\mu\in\MM_1(S_\rho\cup\LambdaG)$. We will show that $\mu$ is $\w\delta_G$-quasiconformal and that $\Supp(\mu) = \LambdaG$.
+
+\begin{claim}
+\label{claimboundarysupport}
+$\Supp(\mu) \subset\Lambda$.
+\end{claim}
+\begin{subproof}
+Fix $R > 0$. Since $\delta(S_\rho) < \infty$, we have $\#(S_\rho\cap B(\zero,R)) < \infty$. Thus,
+\begin{align*}
+\mu(B(\zero,R)) \leq \limsup_{s\searrow\w\delta} \mu_s(B(\zero,R))
+&\leq \limsup_{s\searrow\w\delta} \frac{\#(S_\rho\cap B(\zero,R)) k(b^R) b^{-\w\delta R}}{\Sigma_{s,k}}\\
+&= \frac{\#(S_\rho\cap B(\zero,R)) k(b^R) b^{-\w\delta R}}{\infty} = 0.
+\end{align*}
+Letting $R\to\infty$ shows that $\mu(X) = 0$; thus $\Supp(\mu)\subset \cl{S_\rho\cup\Lambda\butnot X} = \Lambda$.
+\end{subproof}
+
+To complete the proof, we must show that $\mu$ is $\w\delta$-quasiconformal. Fix $g\in G$, and let
+\[
+\nu_g = [(\overline g')^{\w\delta} \mu] \circ g^{-1}.
+\]
+We want to show that $\nu_g \asymp_\times\mu$.
+
+\begin{claim}
+\label{claimconformalf}
+For every continuous function $f:\bord X\to(0,\infty)$, we have
+\begin{equation}
+\label{conformalf}
+\int f\;\dee \nu_g \asymp_\times \int f\;\dee\mu.
+\end{equation}
+\end{claim}
+%\begin{remark}
+%If $G$ is Poincar\'e regular then this claim essentially follows from taking the limit 
+%\end{remark}
+\begin{subproof}
+Since $S_\rho\cup \LambdaG$ is compact, $\log_b(f)$ is uniformly continuous on $S_\rho\cup\LambdaG$ with respect to the metric $\wbar\Dist$. Let $\phi_f$ denote the modulus of continuity of $\log_b(f)$, so that
+\begin{equation}
+\label{uniformcontinuity}
+\wbar\Dist(x,y) \leq r \;\;\Rightarrow\;\; \frac{f(x)}{f(y)} \leq b^{\phi_f(r)} \all x,y\in S_\rho\cup\LambdaG.
+\end{equation}
+For each $n\in\N$ let
+\[
+\nu_{g,n} = [(\overline g')^{s_n} \mu_n] \circ g^{-1},
+\]
+so that $\nu_{g,n} \tendsto{n,\times} \nu$.
+Then
+\begin{align*}
+\nu_{g,n} &=_\pt \frac{1}{\Sigma_{s_n,k}} \sum_{x\in S_\rho} k(x) b^{-s_n \dox x} [(\overline g')^{s_n} \delta_x] \circ g^{-1}\\
+&\asymp_\times \frac{1}{\Sigma_{s_n,k}} \sum_{x\in S_\rho} k(x) b^{-s_n \dox x} b^{s_n[\dox x - \dox{g(x)}]} [\delta_x \circ g^{-1}]\\
+&=_\pt \frac{1}{\Sigma_{s_n,k}} \sum_{x\in S_\rho} b^{-s_n \dox{g(x)}} k(x) \delta_{g(x)}\\
+&=_\pt \frac{1}{\Sigma_{s_n,k}} \sum_{x\in g(S_\rho)} b^{-s_n \dox x} k(g^{-1}(x)) \delta_x,
+\end{align*}
+and so
+\begin{equation}
+\label{nugnmun}
+\frac{\int f\;\dee\nu_{g,n}}{\int f\;\dee\mu_n} \asymp_\times \frac{\sum_{x\in g(S_\rho)}b^{-s_n\dox x} k(g^{-1}(x)) f(x)}{\sum_{y\in S_\rho}b^{-s_n\dox y} k(y) f(y)}\cdot
+\end{equation}
+For each $x\in g(S_\rho)\subset G(\zero)$, there exists $y_x\in S_\rho$ such that $\dist(x,y_x) \leq \rho$.
+\begin{observation}
+$\#\{x : y_x = y\}$ is bounded independent of $y$ and $g$.
+\end{observation}
+\begin{subproof}
+Write $y = h(\zero)$; then
+\[
+\#\{x : y_x = y\} \leq \#(g(S_\rho)\cap B(y,\rho)) = \#(h^{-1}g(S_\rho)\cap B(\zero,\rho)).
+\]
+But $S_\rho' := h^{-1}g(S_\rho)$ is a $\rho$-separated set. For each $x\in S_\rho'$, choose $z_x\in S_{\rho/2}$ such that $\dist(x,z_x) < \rho/2$; then the map $x\mapsto z_x$ is injective, so
+\[
+\#(S_\rho') \leq \#(S_{\rho/2}\cap B(\zero,2\rho)),
+\]
+which is bounded independent of $y$ and $g$.
+\end{subproof}
+Now
+\[
+\wbar\Dist(x,y_x) \leq b^{-\lb x|y_x\rb_\zero} \leq b^{\rho - \dox{y_x}};
+\]
+applying \eqref{uniformcontinuity} gives
+\[
+f(x) \leq b^{\phi_f(b^{\rho - \dox{y_x}})} f(y_x).
+\]
+On the other hand, by \eqref{patterson} we have
+\[
+k(g^{-1}(x)) \leq b^{\epsilon(y_x) [\rho + \dogo g]} k(y_x),
+\]
+and we also have
+\[
+b^{-s_n \dox x} \leq b^{s_n \rho} b^{-s_n \dox{y_x}}.
+\]
+Combining everything gives
+\begin{align*}
+&\sum_{x\in g(S_\rho)}b^{-s_n\dox x} k(g^{-1}(x)) f(x)\\
+&\leq_\pt \sum_{x\in g(S_\rho)} \exp_b\left(s_n \rho + \epsilon(y_x)[\rho + \dogo g] + \phi_f(b^{\rho - \dox{y_x}})\right) b^{-s_n\dox{y_x}} k(y_x) f(y_x)\\
+&\lesssim_\times \sum_{y\in S_\rho} \exp_b\left(\epsilon(y)[\rho + \dogo g] + \phi_f(b^{\rho - \dox y})\right) b^{-s_n\dox y} k(y) f(y),
+\end{align*}
+and taking the limit as $n\to\infty$ we have
+\[
+\int f(x) \;\dee \nu(x) \lesssim_\times \int \exp_b\left(\epsilon(y)[\rho + \dogo g] + \phi_f(b^{\rho - \dox y})\right) f(y)\;\dee\mu(y) = \int f(y)\;\dee\mu(y)
+\]
+since $\phi_f(b^{\rho - \dox y}) = \epsilon(y) = 0$ for all $y\in\del X$. A symmetric argument gives the converse direction.
+\end{subproof}
+Now let $C$ be the implied constant of \eqref{conformalf}. Then for every continuous function $f:X\to (0,\infty)$,
+\[
+C\int f\;\dee\nu - \int f\;\dee\mu \geq 0 \text{ and }C\int f \;\dee \mu - \int f\;\dee\nu \geq 0,
+\]
+i.e. the linear functionals $I_1[f] = C\int f\;\dee\nu - \int f\;\dee\mu$ and $I_2[f] = C\int f \;\dee \mu - \int f\;\dee\nu$ are positive. Thus by the Riesz representation theorem, there exist measures $\gamma_1,\gamma_2$ such that $I_{\gamma_i} = I_i$ ($i = 1,2$). The uniqueness assertion of the Riesz representation theorem then guarantees that
+\begin{equation}
+\label{riesz}
+\gamma_1 + \mu = C\nu \text{ and } \gamma_2 + \nu = C\mu.
+\end{equation}
+In particular, $C\nu \geq \mu$, and $C\mu \geq \nu$. This completes the proof.
+\end{proof}

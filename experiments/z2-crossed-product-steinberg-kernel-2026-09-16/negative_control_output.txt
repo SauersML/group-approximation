@@ -1,0 +1,1 @@
+naive cocycle fails tau o b = 0, as expected

@@ -1,0 +1,158 @@
+SOME OPEN PROBLEMS
+MATTHEW C. B. ZAREMSKY
+Here are some open problems that I specifically like. In general these are just stated,
+with minimal explanation or background. Some are famous, some are not; some might be
+easy in the end, most probably not. Any new problems I’ve added over the years include
+the date added; the original list was made on 6/15/23. The numbering of the problems is
+fixed forever.
+1. Finiteness properties, BNSR-invariants, and Dehn functions
+1. Does every group of type Fn embed in a group of type Fn+1, for n≥ 2? What
+about in a group of type F ∞?
+2. Does every group of type F3 have solvable word problem? [The answer is no –
+Xiaolei Wu pointed out a result of Collins and Miller producing a group of type F
+with unsolvable word problem.]
+3. If a finitely generated group is quasi-isometric to an ( n− 1)-connected proper
+metric space, is the group of type F n? (The converse is true.)
+4. Are type FPn and type FHn equivalent? That is, does every group of type FPn
+admit a proper, cocompact action on an ( n− 1)-acyclic complex?
+5. Are all Artin groups of type F ∞?
+6. Compute the BNS-invariant Σ 1(A) for an arbitrary Artin group.
+7. Conjecture of Juan-Pineda–Leary: If a group admits a finite classifying space for
+the family of virtually cyclic subgroups, then the group is virtually cyclic. Related
+Conjecture of von Puttkamer–Wu: If a finitely presented group has finitely many
+virtually cyclic subgroups into which all virtually cyclic subgroups are conjugate,
+then the group is virtually cyclic.
+8. Compute the BNSR-invariants of graph braid groups.
+9. Compute the BNSR-invariants of pure braid groups.
+10. Find a finitely presented (or F ∞), infinite, simple, amenable group.
+11. Find a finitely presented (or F ∞), infinite, torsion group.
+12. Find an amenable, non-elementary amenable group of type F ∞.
+13. Every Σ n(G) is an open subset of the character sphere Σ( G), but what about
+Σ∞(G)? Must that be open?
+14. Compute the BNSR-invariants of R¨ over–Nekrashevych groups.
+15. Find finitely presented groups Gn (n≥ 2) with quadratic Dehn function such that
+Gn is of type Fn but not Fn+1. (E.g., do Bieri–Stallings groups all have quadratic
+Date: July 12, 2026.
+2 M. C. B. ZAREMSKY
+Dehn function?) [Actually this isn’t open, it was proved by Carter and Forester
+using Bieri–Stallings groups.]
+16. Find finitely presented simple groups with arbitrarily large (recursive) Dehn func-
+tion.
+17. (Vague:) If a finitely presented group acts cocompactly on a highly connected
+complex with finitely presented cell stabilizers, prove that the Dehn function
+is determined by the filling function of the complex, the Dehn functions of the
+stabilizers, and the distortion of the stabilizers.
+18. Does there exist a group G of type F∞ such that the BNSR-invariants Σ 1(G) ⊋
+Σ2(G) ⊋··· are all properly nested?
+19. Conjecture: If a right-angled Artin group has a finite index subgroup that maps
+onto Z with kernel of type F n, then so does the right-angled Artin group itself.
+20. (Added 6/12/25) Are there uncountably many simple groups of type FP2? Of type
+FP?
+21. (Added 7/24/25) For a group G, if G× Z is of type F then is G of type F? This
+turns out to be equivalent to: If G is of type F∞ and has finite cohomological
+dimension then is G of type F?
+22. (Added 10/2/25) Find an example of a left-orderable simple group of type F. (Type
+F∞ was done by Hyde–Lodha. If Burger–Mozes groups are left-orderable then
+they’d do it.)
+23. (Added 1/20/26) For a right-angled Artin group AΓ, it turns out that if some kernel
+of a map onto Z is finitely presented then specifically the Bestvina–Brady kernel
+BBΓ is finitely presented. Does something similar happen with Dehn functions?
+That is, does the Dehn function of BBΓ serve as a lower bound for the Dehn
+functions of all finitely presented kernels of maps onto Z?
+24. (Added 2/24/26) For n≥ 3, Houghton’s group Hn is finitely presented. Lee proved
+the Dehn function of Hn is at most exponential. Is it polynomial? Quadratic?
+25. (Added 7/12/26) (Llosa Isenrich–Schesler–Wu) Does every countable group embed
+in a simple group of type FP2? (Leary proved that every countable group embeds
+in a group of type FP2, so this would prove a sort of “ FP2 version” of the Boone–
+Higman conjecture.)
+2. Thompson groups
+1. Is Thompson’s group F amenable?
+2. Is F automatic?
+3. Is every subgroup of F either elementary amenable or else contains a copy of F ?
+(Brin–Sapir Conjecture)
+4. (Bridson) Is F quasi-isometric to F× Z? (Related:) Is F quasi-isometric to
+F× F ? Is F quasi-isometric to T ? (Surely not, but why not?) “Easier”: Does F
+quasi-retract onto F× Z or F× F ? Does T quasi-retract onto F ?
+5. Prove T and V have quadratic Dehn function. Compute the higher-rank Dehn
+functions of F , T , and V (are they all euclidean?) [Update: Matteo Migliorini
+SOME OPEN PROBLEMS 3
+has proved that T has quadratic Dehn function: https://arxiv.org/abs/2410.
+23088.]
+6. Prove the Stein group F2,3 does not embed into V . [Update: James Hyde, Rachel
+Skipper, and myself proved this in https://arxiv.org/abs/2605.20564]
+7. Do the Brin–Thompson groups nV (n≥ 2) have the Haagerup property? Or
+Property (T)?
+8. Find an infinite dimensional torsion-free group of type F∞ that does not contain F .
+9. Is braided V acyclic?
+10. Is braided V Hopfian? Is every quotient of braided V finitely presented? (This
+would imply Hopfian.)
+11. Is braided V inner amenable? (Probably not.)
+12. Prove “loop braided V ” is of type F∞.
+13. Compute the BNSR-invariants of the pure braided Brown–Higman–Thompson
+groups bFn,r.
+14. Boone–Higman Conjecture: A finitely generated group has solvable word problem
+iff it embeds in a finitely presented simple group. (I put this in the “Thompson
+groups” section since a resolution to this conjecture would presumably come from
+the world of Thompson-like groups.)
+15. (Added 2/10/24) Does every torsion-free subgroup of V with no non-abelian free
+subgroups embed into F ? [Update 4/3/26: No, Corentin Bodart points out the
+(torsion-free) Klein bottle group embeds in V , but cannot embed in F since it is
+not bi-orderable. So perhaps the question should be re-posed with “torsion-free”
+replaced by “bi-orderable”.]
+16. (Added 2/10/24) Lehnert’s conjecture: Every group with context-free co-word
+problem embeds in Thompson’s group V . So, question, given a cloning system on
+a family of finite groups Gn, is the Thompson-like group T (G∗) coCF and/or does
+it embed into V ?
+17. (Added 2/10/24) Does T contain a copy of T× T ? (Surely yes, but how?) [In
+fact no! Jim Belk points out that every finite subgroup of T is cyclic, so T cannot
+contain T× T .]
+18. (Added 6/19/24) Does Thompson’s group F admit a cobounded action by isometries
+on the hyperbolic plane?
+19. (Added 10/2/24) Various questions about which groups embed in Thompson’s
+group V and/or the Brin–Thompson groups 2 V , 3V , etc. Does every hyperbolic
+group embed in one of these? Is there a hyperbolic group that does not embed in
+V ? Does every GLn(Z) embed in some mV ? Maybe even in 2 V ? Does Q embed in
+2V ? [Xiaolei Wu points out that the answer to, “Is there a hyperbolic group that
+does not embed in V ?” is yes, because an infinite hyperbolic group with property
+(T) cannot embed in V , on account of V having the Haagerup property. For 2 V
+and up, things remain mysterious.]
+20. (Added 10/2/25) Does F admit a faithful 2-transitive action? (Question of Le
+Boudec–Matte Bon)
+4 M. C. B. ZAREMSKY
+3. Matrix groups, braid groups, etc
+1. Is the Torelli group of Out(Fn) (or M CG(Sg), or Aut(Fn)) finitely presented for
+large enough n or g?
+2. Do braid groups embed in GL n(Z)?
+3. Is SL 2(Z[t, t−1]) finitely generated?
+4. Is SL3(Z) coherent? (Meaning every finitely generated subgroup is finitely pre-
+sented.) (Famous problem of Serre.)
+5. Is the 4-strand Burau representation faithful?
+6. Are braid groups CAT(0)? Even without requiring cocompactness this is unknown.
+7. Do braid groups have the Haagerup property?
+8. Given an Artin group A, we can embed it in the finitely generated simple twisted
+Brin–Thompson group AVA. Does this group embed in a finitely presented group?
+If so, then this would prove that Artin groups have solvable word problem.
+9. (Added 5/18/24) Are braid groups self-similar? More generally, are there any
+examples of (say, finitely presented) groups that are residually finite but don’t
+embed in a (say, finitely presented) self-similar group?
+10. (Added 3/20/25) Does every Out(Fm) embed in some Aut(Fn)? Does every
+MCG(Sg) embed in some Out( Fn) and/or some Aut( Fn)?
+4. Vietoris–Rips complexes
+1. If a group is amenable and automatic, does it have a contractible Rips complex?
+(This would show that F cannot be both amenable and automatic.)
+2. Is every (connected) Rips complex of every (finite?) subset of the plane homotopy
+equivalent to a wedge of spheres?
+3. Is the Rips complex of Zn with the standard word metric contractible for large
+enough Rips parameter? [The answer is yes, recently proved by Ziga Virk in
+arXiv:2405.09134.]
+4. If a group is of type Fn does it admit an ( n− 1)-connected Rips complex? For
+n = 2 the answer is yes, but for n > 2 we don’t know.
+5. (Added 10/2/24): Is the Rips complex of any RAAG with the standard word metric
+contractible for large enough Rips parameter?
+6. (Added 10/2/24): If a group is of type F∞ and has finite cohomological dimension,
+then does it have a contractible Rips complex? (This would imply it’s of type F,
+so this would solve Problem 21 in Section 1 above.)
+7. (Added 7/24/25): Relatedly, does every group of type F have a contractible Rips
+complex?
+Department of Mathematics and Statistics, University at Albany (SUNY), Albany, NY
+Email address : mzaremsky@albany.edu

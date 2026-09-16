@@ -1,0 +1,124 @@
+{
+ "n": 4,
+ "seed": 20260916,
+ "trials": 3,
+ "NC": 14,
+ "lift_checks": 28,
+ "link": {
+  "V": 26,
+  "E": 84,
+  "T": 64
+ },
+ "results": [
+  {
+   "label": "local triple {1,2,3} (resonant, not in Sigma^1)",
+   "a": {
+    "12": 1,
+    "13": 1,
+    "23": -2
+   },
+   "best": {
+    "trial": 2,
+    "minabs_increment": 67.00008024831186,
+    "summary": {
+     "empty": 1,
+     "H1!=0": 10,
+     "disconnected": 5,
+     "pi1=1": 8
+    },
+    "level1_types": 18,
+    "level2_types": 8
+   },
+   "verdict": "criterion not met in the trials"
+  },
+  {
+   "label": "generic, nonzero sum (Sigma^infinity)",
+   "a": {
+    "12": 679,
+    "13": 44,
+    "14": 699,
+    "23": 392,
+    "24": 965,
+    "34": 163
+   },
+   "best": {
+    "trial": 0,
+    "minabs_increment": 22.0,
+    "summary": {
+     "pi1=1": 24
+    },
+    "level1_types": 24,
+    "level2_types": 24
+   },
+   "verdict": "criterion passes at level 2"
+  },
+  {
+   "label": "generic zero sum (Sigma^{n-3} by Theorem M)",
+   "a": {
+    "12": 782,
+    "13": 318,
+    "14": -778,
+    "23": -244,
+    "24": 33,
+    "34": -111
+   },
+   "best": {
+    "trial": 2,
+    "minabs_increment": 0.9799320526506534,
+    "summary": {
+     "pi1=1": 21,
+     "H1!=0": 3
+    },
+    "level1_types": 24,
+    "level2_types": 21
+   },
+   "verdict": "criterion passes at level 1"
+  },
+  {
+   "label": "zero sum with c_12 = 0 (the open case)",
+   "a": {
+    "12": 0,
+    "13": 560,
+    "14": 208,
+    "23": -104,
+    "24": 355,
+    "34": -1019
+   },
+   "best": {
+    "trial": 1,
+    "minabs_increment": 0.4138844515839848,
+    "summary": {
+     "disconnected": 1,
+     "pi1=1": 17,
+     "H1!=0": 6
+    },
+    "level1_types": 23,
+    "level2_types": 17
+   },
+   "verdict": "criterion not met in the trials"
+  },
+  {
+   "label": "zero sum with c_12 = 0 (second sample)",
+   "a": {
+    "12": 0,
+    "13": 25,
+    "14": 505,
+    "23": 150,
+    "24": 254,
+    "34": -934
+   },
+   "best": {
+    "trial": 2,
+    "minabs_increment": 1.0732334685604457,
+    "summary": {
+     "pi1=1": 20,
+     "H1!=0": 2,
+     "disconnected": 2
+    },
+    "level1_types": 22,
+    "level2_types": 20
+   },
+   "verdict": "criterion not met in the trials"
+  }
+ ]
+}

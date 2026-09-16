@@ -1,0 +1,1422 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{The Bishop--Jones theorem}
+%%\section{The Bishop--Jones theorem}
+%\label{partbishopjones}
+%This part will be divided as follows: In Section \ref{sectionmodified}, we motivate and define the \emph{modified} Poincar\'e exponent of a semigroup, which is used in the statement of Theorem \ref{theorembishopjonesmodified}. In Section \ref{sectionbishopjones} we prove Theorem \ref{theorembishopjonesmodified} and deduce Theorem \ref{theorembishopjonesregular} from Theorem \ref{theorembishopjonesmodified}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Generalization of the Bishop--Jones theorem}
+\label{sectionbishopjones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we prove Theorem \ref{theorembishopjonesmodified}, the first part of which states that if $G\prec\Isom(X)$ is a nonelementary semigroup, then
+\begin{repequation}{bishopjonesmodified}
+\HD(\Lr) = \HD(\Lur) = \HD(\Lur\cap\Lrsigma) = \w\delta
+\end{repequation}
+for some $\sigma > 0$. Our strategy is to prove that $\HD(\Lur\cap\Lrsigma)\leq \HD(\Lur) \leq \HD(\Lr) \leq \w\delta \leq \HD(\Lur\cap\Lrsigma)$ for some $\sigma > 0$. The first two inequalities are obvious. The third we prove now, and the proof of the fourth inequality will occupy \6\6\ref{subsectionpartitionstructures}-\ref{subsectionlemmastructure}.
+
+\begin{lemma}
+\label{lemmaonedirection}
+For $G\prec\Isom(X)$, we have
+\[
+\HD(\Lr)\leq \w\delta.
+\]
+\end{lemma}
+\begin{proof}
+It suffices to show that for each $\sigma > 0$ and for each $s > \w\delta$, we have $\HD(\Lrsigma)\leq s$. Fix $\sigma > 0$ and $s > \w\delta$. Then there exists $\rho > 0$ and a maximal $\rho$-separated set $S_\rho \subset G(\zero)$ such that $s > \delta(S_\rho)$, which implies that $\Sigma_s(S_\rho) < \infty$. For each $x\in S_\rho$ let $\PP_x = \Shad(x,\sigma + \rho)$.
+\begin{claim}
+\label{claimonedirection}
+\[
+\xi\in \Lrsigma \Rightarrow \xi\in \PP_x\text{ for infinitely many }x\in S_\rho.
+\]
+\end{claim}
+\begin{subproof}
+Fix $\xi\in\Lrsigma$. Then there exists a sequence $g_n(\zero)\to\xi$ such that for all $n\in\N$ we have $\xi\in \Shad(g_n(\zero),\sigma)$. For each $n$, let $x_n\in S_\rho$ be such that $\dist(g_n(\zero),x_n)\leq \rho$; such an $x_n$ exists since $S_\rho$ is maximal $\rho$-separated. Then by (d) of Proposition \ref{propositionbasicidentities} we have $\xi\in \PP_{x_n} = \Shad(x_n,\sigma + \rho)$.
+
+To complete the proof of Claim \ref{claimonedirection}, we need to show that the collection $(x_n)_1^\infty$ is infinite. Indeed, if $x_n\in F$ for some finite $F$ and for all $n\in\N$, then we would have $\dist(g_n(\zero),F)\leq\rho$ for all $n\in\N$. This would imply that the sequence $(g_n(\zero))_1^\infty$ is bounded, contradicting that $g_n(\zero)\to\xi$.
+\end{subproof}
+We next observe that by the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} we have
+\[
+\sum_{x\in S_\rho}\Diam^s(\PP_x)
+\lesssim_{\times,\sigma,\rho} \sum_{x\in S_\rho}b^{-s\dox x}
+= \Sigma_s(S_\rho) < \infty.
+\]
+Thus by the Hausdorff--Cantelli lemma \cite[Lemma 3.10]{BernikDodson}, we have $\HH^s(\Lrsigma) = 0$, and thus $\HD(\Lrsigma)\leq s$.
+\end{proof}
+
+
+\section{Partition structures} \label{subsectionpartitionstructures}
+In this section we introduce the notion of a partition structure, an important technical tool for proving Theorem \ref{theorembishopjonesmodified}. We state some theorems about these structures, which will be proven in subsequent sections, and then use them to prove Theorem \ref{theorembishopjonesmodified}.
+\Footnote{
+\label{footnoteFSUcomparison}
+Much of the material for this section has been taken (with modifications) from \cite[\65]{FSU4}. In \cite{FSU4} we also included as standing assumptions that $G$ was strongly discrete and of general type (see Definitions \ref{definitiondiscreteness} and \ref{definitionCCMT}). Thus some propositions which appear to have the exact same statement are in fact stronger in this monograph than in \cite{FSU4}. Specifically, this applies to Proposition \ref{propositionstructure} and Lemmas \ref{lemmaDSU} and \ref{sublemmaDSU}.
+}
+
+Throughout this section, $(Z,\Dist)$ denotes a metric space. We will constantly have in mind the special case $Z = \del X$, $\Dist = \Dist_{b,\zero}$.
+
+\begin{notation}
+Let
+\[
+\N^* = \bigcup_{n = 0}^\infty \N^n.
+\]
+If $\omega\in\N^*\cup\N^\N$, then we denote by $|\omega|$ the unique element of $\N\cup \{\infty\}$ such that $\omega\in \N^{|\omega|}$ and call $|\omega|$ the \emph{length} of $\omega$. For each $r\in\N$, we denote the initial segment of $\omega$ of length $r$ by
+\[
+\omega_1^r := (\omega_n)_1^r\in\N^r.
+\]
+For two words $\omega,\tau\in\N^\N$, let $\omega\wedge\tau$ denote their longest common initial segment, and let
+\[
+\dist_2(\omega,\tau) = 2^{-|\omega\wedge\tau|}.
+\]
+Then $(\N^\N,\dist_2)$ is a metric space.
+\end{notation}
+\begin{definition}
+\label{definitiontree}
+A \emph{tree} on $\N$ is a set $T\subset\N^*$ which is closed under initial segments. (Not to be confused with the various notions of ``trees'' introduced in Section \ref{subsectiongraphs}.)
+\end{definition}
+\begin{notation}
+If $T$ is a tree on $\N$, then we denote its set of infinite branches by
+\[
+T(\infty) := \{\omega\in\N^\N:\omega_1^n\in T\all n\in\N\}.
+\]
+On the other hand, for $n\in\N$ we let
+\[
+T(n) := T\cap \N^n.
+\]
+For each $\omega\in T$, we denote the set of its children by
+\[
+T(\omega) := \{a\in\N:\omega a\in T\}.
+\]
+\end{notation}
+
+\begin{definition}
+\label{definitionpartitionstructure}
+A \emph{partition structure} on $Z$ consists of a tree $T\subset\N^*$ together with a collection of closed subsets $(\PP_\omega)_{\omega\in T}$ of $Z$, each having positive diameter and enjoying the following properties:
+\begin{itemize}
+\item[(I)] If $\omega\in T$ is an initial segment of $\tau\in T$ then $\PP_\tau\subset \PP_\omega$. If neither $\omega$ nor $\tau$ is an initial segment of the other then $\PP_\omega\cap \PP_\tau = \emptyset$.
+\item[(II)] For each $\omega\in T$ let
+\[
+D_\omega = \Diam(\PP_\omega).
+\]
+There exist $\kappa > 0$ and $0 < \lambda < 1$ such that for all $\omega\in T$ and for all $a\in T(\omega)$, we have 
+\begin{equation}\label{kappa}
+\Dist(\PP_{\omega a},Z\setminus \PP_\omega) \geq \kappa D_\omega
+\end{equation}
+and
+\begin{equation}\label{lambda}
+\kappa D_\omega \leq D_{\omega a} \leq \lambda D_\omega.
+\end{equation}
+\end{itemize}
+Fix $s > 0$. The partition structure $(\PP_\omega)_{\omega\in T}$ is called \emph{$s$-thick} if for all $\omega\in T$, 
+\begin{equation}
+\label{redistribution}
+\sum_{a\in T(\omega)}D_{\omega a}^s \geq D_\omega^s.
+\end{equation}
+\end{definition}
+
+\begin{definition}
+\label{definitionpartitionsubstructure}
+Given a partition structure $(\PP_\omega)_{\omega\in T}$, a \emph{substructure} of $(\PP_\omega)_{\omega\in T}$ is a partition structure of the form $(\PP_\omega)_{\omega\in \w T}$, where $\w T\subset T$ is a subtree.
+\end{definition}
+
+\begin{observation}
+Let $(\PP_\omega)_{\omega\in T}$ be a partition structure on a
+complete metric space $(Z,\Dist)$. For each $\omega\in T(\infty)$, the set 
+\[
+\bigcap_{n\in\N}\PP_{\omega_1^n}
+\]
+is a singleton. If we define $\pi(\omega)$ to be the unique member of this set, then the map $\pi:T(\infty)\to Z$ is continuous. (In fact, it was shown in \cite[Lemma 5.11]{FSU4} that $\pi$ is quasisymmetric.)
+\end{observation}
+
+\begin{definition}
+\label{definitionpartitionlimitset}
+The set $\pi(T(\infty))$ is called the \emph{limit set} of the partition structure.
+\end{definition}
+
+We remark that a large class of examples of partition structures comes from the theory of conformal iterated function systems \cite{MauldinUrbanski1} (or in fact even graph directed Markov systems \cite{MauldinUrbanski2}) satisfying the strong separation condition (also known as the disconnected open set condition \cite{RiediMandelbrot}; see also \cite{FalconerMarsh}, where the limit sets of iterated function systems satisfying the strong separation condition are called \emph{dust-like}). Indeed, the notion of a partition structure was intended primarily to generalize these examples. The difference is that in a partition structure, the sets $(\PP_\omega)_\omega$ do not necessarily have to be defined by dynamical means. We also note that if $Z = \R^d$ for some $d\in\N$, and if $(\PP_\omega)_{\omega\in T}$ is a partition structure on $Z$, then the tree $T$ has bounded degree, meaning that there exists $N < \infty$ such that $\#(T(\omega))\leq N$ for every $\omega\in T$.
+
+We will now state two propositions about partition structures and then use them to prove Theorem \ref{theorembishopjonesmodified}. Theorem \ref{theoremahlforsgeneral} will be proven below, and Proposition \ref{propositionstructure} will be proven in the following section.
+
+\begin{theorem}[{\cite[Theorem 5.12]{FSU4}}]
+\label{theoremahlforsgeneral}
+Fix $s > 0$. Then any $s$-thick partition structure $(\PP_\omega)_{\omega\in T}$ on a complete metric space $(Z,\Dist)$ has a substructure $(\PP_\omega)_{\omega\in \w T}$ whose limit set is Ahlfors $s$-regular. Furthermore the tree $\w T$ can be chosen so that for each $\omega\in \w T$, we have that $\w T(\omega)$ is an initial segment of $T(\omega)$, i.e. $\w T(\omega) = T(\omega)\cap\{1,\ldots,N_\omega\}$ for some $N_\omega\in\N$. 
+\end{theorem}
+
+After these theorems about partition structures on an abstract metric space, we return to our more geometric setting of a Gromov triple $(X,\zero,b)$:
+
+\begin{proposition}[Cf. {\cite[Lemma 5.13]{FSU4}}, Footnote \ref{footnoteFSUcomparison}]
+\label{propositionstructure}
+Let $G\prec\Isom(X)$ be nonelementary. Then for all $\sigma > 0$ sufficiently large and for every $0 < s < \w\delta_G$, there exist $\tau > 0$, a tree $T$ on $\N$, and an embedding $T\ni\omega\mapsto x_\omega\in G(\zero)$ such that if 
+\[
+\PP_\omega := \Shad(x_\omega,\sigma),
+\]
+then $(\PP_\omega)_{\omega\in T}$ is an $s$-thick partition structure on $(\del X,\Dist)$, whose limit set is a subset of $\Lurtau\cap\Lrsigma$.\end{proposition}
+
+\begin{proof}[Proof of Theorem \ref{theorembishopjonesmodified} using Theorem \ref{theoremahlforsgeneral} \& Proposition \ref{propositionstructure}]
+\hspace{0 in}
+
+\noindent We first demonstrate the ``moreover'' clause. Fix $\sigma > 0$ large enough such that Proposition \ref{propositionstructure} holds. Fix $0 < s < \w\delta$, and let $(\PP_\omega)_{\omega\in T}$ be the partition structure guaranteed by Proposition \ref{propositionstructure}. Since this structure is $s$-thick, applying Theorem \ref{theoremahlforsgeneral} yields a substructure $(\PP_\omega)_{\omega\in \w T}$ whose limit set $\limitset_s\subset\Lurtau\cap\Lrsigma$ is Ahlfors $s$-regular, where $\tau > 0$ is as in Proposition \ref{propositionstructure}. Since $0 < s < \w\delta$ was arbitrary, this completes the proof of the ``moreover'' clause.
+
+To demonstrate \eqref{bishopjonesmodified}, note that the inequality $\HD(\Lr)\leq\w\delta$ has already been established (Lemma \ref{lemmaonedirection}), and that the inequalities 
+\[
+\HD(\Lur\cap\Lrsigma) \leq \HD(\Lur) \leq \HD(\Lr)\] 
+are obvious. Thus it suffices to show that 
+\[
+\HD(\Lur\cap\Lrsigma)\geq\w\delta.
+\] 
+But the mass distribution principle guarantees that 
+\[
+\HD(\Lur\cap\Lrsigma)\geq \HD(\limitset_s)\geq s
+\] 
+for each $0 < s < \w\delta$. This completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{theoremahlforsgeneral}]
+We will recursively define a sequence of maps 
+\[
+\mu_n:T(n)\to[0,1]
+\]
+with the following consistency property:
+\begin{equation}
+\label{consistency}
+\mu_n(\omega) = \sum_{a\in T(\omega)}\mu_{n + 1}(\omega a).
+\end{equation}
+The Kolmogorov consistency theorem will then guarantee the existence of a measure $\w\mu$ on $T(\infty)$ satisfying 
+\begin{equation}
+\label{Kolmogorov}
+\w\mu([\omega]) = \mu_n(\omega)
+\end{equation}
+for each $\omega\in T(n)$.
+
+Let $c = 1 - \lambda^s > 0$, where $\lambda$ is as in \eqref{lambda}. For each $n\in\N$, we will demand of our function $\mu_n$ the following property: for all $\omega\in T(n)$, if $\mu_n(\omega) > 0$, then 
+\begin{equation}
+\label{regularity}
+cD_\omega^s \leq \mu_n(\omega) < D_\omega^s.
+\end{equation}
+
+We now begin our recursion. For the case $n = 0$, let $\mu_0(\emptyset):= c D_\smallemptyset^s$; \eqref{regularity} is clearly satisfied.
+
+For the inductive step, fix $n\in\N$ and suppose that $\mu_n$ has been constructed satisfying \eqref{regularity}. Fix $\omega\in T(n)$, and suppose that $\mu_n(\omega) > 0$. Formulas \eqref{redistribution} and \eqref{regularity} imply that
+\[
+\sum_{a\in T(\omega)}D_{\omega a}^s > \mu_n(\omega).
+\]
+Let $N_\omega\in T(\omega)$ be the smallest integer such that
+\begin{equation}\label{regularitya}
+\sum_{a\leq N_\omega}D_{\omega a}^s > \mu_n(\omega).\Footnote{Obviously, this and similar sums are restricted to $T(\omega)$.}
+\end{equation}
+Then the minimality of $N_\omega$ says precisely that
+\[
+\sum_{a\leq N_\omega - 1}D_{\omega a}^s \leq \mu_n(\omega).
+\]
+Using the above, \eqref{regularitya}, and \eqref{lambda}, we have
+\begin{equation}
+\label{sumaNbounds}
+\mu_n(\omega) < \sum_{a\leq N_\omega}D_{\omega a}^s \leq \mu_n(\omega) +
+D_{\omega N_\omega}^s \leq \mu_n(\omega) + \lambda^s D_\omega^s. 
+\end{equation}
+For each $a\in T(\omega)$ with $a > N_\omega$, let $\mu_{n + 1}(\omega a) =
+0$, and for each $a \leq N_\omega$, let 
+\[
+\mu_{n + 1}(\omega a) = \frac{D_{\omega a}^s\mu_n(\omega)}{\sum_{b\leq N_\omega}D_{\omega b}^s}. 
+\]
+Obviously, $\mu_{n + 1}$ defined in this way satisfies \eqref{consistency}. Let us prove that \eqref{regularity} holds (of course, with $n = n + 1$). The second inequality follows directly from the definition of $\mu_{n + 1}$ and from \eqref{regularitya}. Using \eqref{sumaNbounds}, \eqref{regularity} (with $n = n$), and the equation $c = 1 - \lambda^s$, we deduce the first inequality as follows:
+\begin{align*}
+\mu_{n + 1}(\omega a)
+&\geq \frac{D_{\omega a}^s\mu_n(\omega)}{\mu_n(\omega) + \lambda^sD_\omega^s}
+= D_{\omega a}^s\left[1 - \frac{\lambda^sD_\omega^s}{\mu_n(\omega) + \lambda^sD_\omega^s}\right]\\ 
+&\geq D_{\omega a}^s\left[1 - \frac{\lambda^s}{c + \lambda^s}\right] \\
+&= cD_{\omega a}^s.
+\end{align*}
+The proof of \eqref{regularity} (with $n = n + 1$) is complete. This completes the recursive step.
+
+Let
+\[
+\w T = \bigcup_{n = 1}^\infty\{\omega\in T(n):\mu_n(\omega) > 0\}.
+\] 
+Clearly, the limit set of the partition structure $(\PP_\omega)_{\omega\in \w T}$ is exactly the topological support of $\mu := \pi[\w\mu]$, where $\w\mu$ is defined by \eqref{Kolmogorov}. Furthermore, for each $\omega\in \w T$, we have $\w T(\omega) = T(\omega)\cap\{1,\ldots,N_\omega\}$. Thus, to complete the proof of Theorem \ref{theoremahlforsgeneral} it suffices to show that the measure $\mu$ is Ahlfors $s$-regular.
+
+To this end, fix $z = \pi(\omega)\in\Supp(\mu)$ and $0 < r \leq \kappa D_\smallemptyset$, where $\kappa$ is as in \eqref{kappa} and \eqref{lambda}. For convenience of notation let 
+\[
+\PP_n := \PP_{\omega_1^n}, \;\; D_n := \Diam(\PP_n),
+\]
+and let $n\in\N$ be the largest integer such that $r < \kappa D_n$. We have
+\begin{equation}\label{1fsdk9}
+\kappa^2 D_n \leq \kappa D_{n + 1} \leq r < \kappa D_n.
+\end{equation}
+(The first inequality comes from \eqref{lambda}, whereas the latter two come from the definition of $r$.)
+
+We now claim that
+\[
+B(z,r)\subseteq \PP_n.
+\]
+Indeed, by contradiction suppose that $w\in B(z,r)\butnot \PP_n$. By \eqref{kappa} we have
+\[
+\Dist(z,w)\geq \Dist(z,Z\butnot \PP_n)\geq \kappa D_n > r
+\]
+which contradicts the fact that $w\in B(z,r)$.
+
+Let $k\in\N$ be large enough so that $\lambda^k\leq\kappa^2$. It follows from \eqref{1fsdk9} and repeated applications of the second inequality of \eqref{lambda} that
+\[
+D_{n + k} \leq \lambda^k D_n \leq \kappa^2 D_n \leq r,
+\]
+and thus
+\[
+\PP_{n + k} \subseteq B(z,r)\subseteq \PP_n.
+\]
+Thus, invoking \eqref{regularity}, we get
+\begin{equation}
+\label{muomegarbounds}
+(1 - \lambda^s)D_{n + k}^s \leq \mu(\PP_{n + k}) \leq \mu(B(z,r))
+\leq \mu(\PP_n) \leq D_n^s. 
+\end{equation}
+
+On the other hand, it follows from \eqref{1fsdk9} and repeated applications of the first inequality of \eqref{lambda} that
+\begin{equation}
+\label{above}
+D_{n + k} \geq \kappa^k D_n \geq \kappa^{k - 1}r.
+\end{equation}
+Combining \eqref{1fsdk9}, \eqref{muomegarbounds}, and \eqref{above} yields
+\[
+(1 - \lambda^s)\kappa^{s(k - 1)}r^s \leq \mu(B(z,r)) \leq \kappa^{-2s}r^s,
+\]
+i.e. $\mu$ is Ahlfors $s$-regular. This completes the proof of Theorem \ref{theoremahlforsgeneral}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Proof of Proposition \ref{propositionstructure} (A partition structure on $\del X$)} 
+\section{A partition structure on $\del X$}
+\label{subsectionlemmastructure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We begin by stating our key lemma.
+
+\begin{lemma}[Construction of children; cf. {\cite[Lemma 5.14]{FSU4}}, Footnote \ref{footnoteFSUcomparison}]
+\label{lemmaDSU}
+Let $G\prec\Isom(X)$ be nonelementary. Then for all $\sigma > 0$ sufficiently large, for every $0 < s < \w\delta_G$, for every $0 < \lambda < 1$, and for every $w\in G(\zero)$, there exists a finite subset $T(w)\subset G(\zero)$ (the \underline{children} of $w$) such that if we let
+\begin{align*}
+\PP_x &:= \Shad(x,\sigma)\\
+D_x &:= \Diam(\PP_x)
+\end{align*}
+then the following hold:
+\begin{itemize}
+\item[(i)] The family $(\PP_x)_{x\in T(w)}$ consists of pairwise disjoint shadows contained in $\PP_w$.
+\item[(ii)] There exists $\kappa > 0$ independent of $w$ such that for all $x\in T(w)$,
+\begin{align*}
+\Dist(\PP_x,\del X\butnot \PP_w) &\geq \kappa D_w\\
+\kappa D_w \leq D_x &\leq \lambda D_w.
+\end{align*}
+\item[(iii)]
+\[
+\sum_{x\in T(w)}D_x^s \geq D_w^s.
+\]
+\end{itemize}
+\end{lemma}
+
+%%%STAND ALONE figurepartitionA
+%\begin{figure}
+%\begin{center}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%\clip(-3.4572857703551514,-2.8017885679782344) rectangle (3.5396123591861617,2.7742377570998817);
+%\draw(0.0,-0.0) circle (2.6129676614916217cm);
+%\draw(1.2444064831035602,0.7132854804669598) circle (0.3679391468439666cm);
+%\draw(1.7882027204795168,1.4262864278568905) circle (0.1351026446829843cm);
+%\draw(2.0629778937273007,1.1515112546091066) circle (0.11246824164327565cm);
+%\draw(2.1202227214872558,0.7965933224973857) circle (0.12035035832634534cm);
+%\draw (0,0)-- (1.85778232681272,1.8374560746269037);
+%%\draw (0.9856692509421991,0.9748849079773113)-- (1.85778232681272,1.8374560746269037);
+%\draw (0,0)-- (2.5244367854319023,0.6744026366787416);
+%%\draw (1.3393709690502582,0.3578126092247999)-- (2.5244367854319023,0.6744026366787416);
+%\draw (2.156504665055924,0.6818421598881995)-- (2.491401614304384,0.7877296466697858);
+%\draw (2.0719679454251,0.9068461471164001)-- (2.3937366645507177,1.0476758949153115);
+%\draw (2.113056993311799,1.0508077831538636)-- (2.3396374875948704,1.1634846052448466);
+%\draw (2.003548920208303,1.2469958213453562)-- (2.218386998924586,1.3807096447129514);
+%\draw (1.86606101634726,1.315874425045114)-- (2.1354355680057964,1.5058269936804682);
+%\draw (1.6978674333274448,1.5267466712145967)-- (1.9429624621724708,1.747139625384784);
+%\begin{scriptsize}
+%\draw [fill=black] (0.0,-0.0) circle (1pt);
+%\draw[color=black] (-0.16181839193637584,-0.10332614941794697) node {$\zero$};
+%\draw [fill=black] (1.3742581787476496,0.7888486360608391) circle (0.5pt);
+%%\draw[color=black] (1.3306940077098086,0.6683010919754203) node {$g(\zero)$};
+%\draw [fill=black] (1.8429159652907778,1.4693036915224922) circle (0.5pt);
+%%\draw[color=black] (1.5933761900475372,1.3653060518338909) node {$L_1$};
+%\draw [fill=black] (2.122308107268412,1.1854052246742528) circle (0.5pt);
+%%\draw[color=black] (1.8082979755965878,1.1145639686933333) node {$M_1$};
+%\draw [fill=black] (2.1711576420553347,0.8167939855719956) circle (0.5pt);
+%%\draw[color=black] (1.9038187691739434,0.7683010919754203) node {$N_1$};
+%\end{scriptsize}
+%\end{tikzpicture}
+%\caption{This is figure ``figurepartitionA''.}
+%\label{figurepartitionA}
+%\end{center}
+%\end{figure}
+
+%%%STAND ALONE figurepartitionB
+%\begin{figure}
+%\begin{center}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%\clip(-3.1523484637064905,-2.8877191998915075) rectangle (3.2787162204964657,2.856417764820188);
+%\draw(0.0,-0.0) circle (2.611235899552007cm);
+%\draw(0.0,-0.0) circle (1.1901105590689844cm);
+%\draw [shift={(-3.3794741494806733,0.7796181967120758)}] plot[domain=-0.7176127868835138:0.6257318419197768,variable=\t]({1.0*2.279326680308009*cos(\t r)+-0.0*2.279326680308009*sin(\t r)},{0.0*2.279326680308009*cos(\t r)+1.0*2.279326680308009*sin(\t r)});
+%\draw [shift={(-1.7623065030786575,-3.0487890331884815)}] plot[domain=0.2114358851577187:1.5278846809760946,variable=\t]({1.0*2.3316956611045625*cos(\t r)+-0.0*2.3316956611045625*sin(\t r)},{0.0*2.3316956611045625*cos(\t r)+1.0*2.3316956611045625*sin(\t r)});
+%\draw(0.16511694177641764,2.046955552778598) circle (0.30789402561067564cm);
+%\draw(1.6180556349350896,-1.1660470857511598) circle (0.31806155761471966cm);
+%\draw(1.8661183386451068,1.0310797185375715) circle (0.27576581560448304cm);
+%\draw [shift={(-3.923946814679157,2.3225255909878184)}] plot[domain=-0.06724121069882294:0.07518735908343538,variable=\t]({1.0*3.7904448753248996*cos(\t r)+-0.0*3.7904448753248996*sin(\t r)},{0.0*3.7904448753248996*cos(\t r)+1.0*3.7904448753248996*sin(\t r)});
+%\draw [shift={(-4.64426430538874,3.825227515133297)}] plot[domain=5.9298153627837396:6.043103905803468,variable=\t]({1.0*5.4354771773979484*cos(\t r)+-0.0*5.4354771773979484*sin(\t r)},{0.0*5.4354771773979484*cos(\t r)+1.0*5.4354771773979484*sin(\t r)});
+%\draw [shift={(-1.060629324509099,-5.220932382140508)}] plot[domain=0.8585679463877474:0.9872882702824342,variable=\t]({1.0*4.5417198944649*cos(\t r)+-0.0*4.5417198944649*sin(\t r)},{0.0*4.5417198944649*cos(\t r)+1.0*4.5417198944649*sin(\t r)});
+%\draw [shift={(-0.21908948347075194,-6.549804754789044)}] plot[domain=1.1275322215585417:1.2404427016586532,variable=\t]({1.0*6.006520366955727*cos(\t r)+-0.0*6.006520366955727*sin(\t r)},{0.0*6.006520366955727*cos(\t r)+1.0*6.006520366955727*sin(\t r)});
+%\draw [shift={(-30.82463631611864,52.86866068223544)}] plot[domain=5.274920930454794:5.282870997078253,variable=\t]({1.0*61.009065644834784*cos(\t r)+-0.0*61.009065644834784*sin(\t r)},{0.0*61.009065644834784*cos(\t r)+1.0*61.009065644834784*sin(\t r)});
+%\draw [shift={(-51.465499934296915,125.44723710829089)}] plot[domain=5.117413840983604:5.120957170067834,variable=\t]({1.0*135.64048286553125*cos(\t r)+-0.0*135.64048286553125*sin(\t r)},{0.0*135.64048286553125*cos(\t r)+1.0*135.64048286553125*sin(\t r)});
+%\begin{scriptsize}
+%\draw [fill=black] (0.0,-0.0) circle (1pt);
+%\draw[color=black] (0.08094925045079697,0.16792479370770388) node {$\zero$};
+%\draw [fill=black] (-1.6622803095029393,-0.719239845767749) circle (0.5pt);
+%%\draw[color=black] (-1.8311186992417487,-0.9150924600470811) node {$g^{-1}(\zero)$};
+%\draw [fill=black] (0.17980173196364405,2.1717367802041783) circle (0.5pt);
+%%\draw[color=black] (0.17569790141511307,2.027367068882418) node {$G_1$};
+%\draw [fill=black] (2.0000614646072825,1.1099186028287176) circle (0.5pt);
+%%\draw[color=black] (1.7864249678084871,1.0325062337570932) node {$H_1$};
+%\draw [fill=black] (1.7294585171156684,-1.2410351367538701) circle (0.5pt);
+%%\draw[color=black] (1.5140225962860783,-0.9809025992346352) node {$I_1$};
+%\end{scriptsize}
+%\end{tikzpicture}
+%\caption{This is figure ``figurepartitionB''.}
+%\label{figurepartitionB}
+%\end{center}
+%\end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+%\begin{tabular}{ll}
+\begin{tabular}{@{}ll|@{}}
+
+%%%FIRST FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.85]
+%\clip(-3.4572857703551514,-2.8017885679782344) rectangle (3.5396123591861617,2.7742377570998817);
+\clip(-3.3,-2.7) rectangle (3.5,2.7);
+\draw(0.0,-0.0) circle (2.6129676614916217cm);
+\draw(1.2444064831035602,0.7132854804669598) circle (0.3679391468439666cm);
+\draw(1.7882027204795168,1.4262864278568905) circle (0.1351026446829843cm);
+\draw(2.0629778937273007,1.1515112546091066) circle (0.11246824164327565cm);
+\draw(2.1202227214872558,0.7965933224973857) circle (0.12035035832634534cm);
+\draw (0,0)-- (1.85778232681272,1.8374560746269037);
+%\draw (0.9856692509421991,0.9748849079773113)-- (1.85778232681272,1.8374560746269037);
+\draw (0,0)-- (2.5244367854319023,0.6744026366787416);
+%\draw (1.3393709690502582,0.3578126092247999)-- (2.5244367854319023,0.6744026366787416);
+\draw (2.156504665055924,0.6818421598881995)-- (2.491401614304384,0.7877296466697858);
+\draw (2.0719679454251,0.9068461471164001)-- (2.3937366645507177,1.0476758949153115);
+\draw (2.113056993311799,1.0508077831538636)-- (2.3396374875948704,1.1634846052448466);
+\draw (2.003548920208303,1.2469958213453562)-- (2.218386998924586,1.3807096447129514);
+\draw (1.86606101634726,1.315874425045114)-- (2.1354355680057964,1.5058269936804682);
+\draw (1.6978674333274448,1.5267466712145967)-- (1.9429624621724708,1.747139625384784);
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (1pt);
+\draw[color=black] (-0.16181839193637584,-0.10332614941794697) node {$\zero$};
+\draw [fill=black] (1.3742581787476496,0.7888486360608391) circle (0.75pt);
+\draw[color=black] (1.3,-0.85) node {$g(\zero)$};
+\draw[thin,->,>=stealth] (1.37,-0.58) -- (1.37,0.67);
+\draw [fill=black] (1.8429159652907778,1.4693036915224922) circle (0.5pt);
+%\draw[color=black] (1.5933761900475372,1.3653060518338909) node {$L_1$};
+\draw [fill=black] (2.122308107268412,1.1854052246742528) circle (0.5pt);
+%\draw[color=black] (1.8082979755965878,1.1145639686933333) node {$M_1$};
+\draw [fill=black] (2.1711576420553347,0.8167939855719956) circle (0.5pt);
+%\draw[color=black] (1.9038187691739434,0.7683010919754203) node {$N_1$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%ARROW
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.36]
+\clip(-1.59,-2.97) rectangle (1.57,2.72);
+\draw [shift={(0.0,0.0)}] plot[domain=0.7354397676755055:2.3211211596591195,variable=\t]({1.0*1.6991762710207554*cos(\t r)+-0.0*1.6991762710207554*sin(\t r)},{0.0*1.6991762710207554*cos(\t r)+1.0*1.6991762710207554*sin(\t r)});
+\draw (1.212984563827671,1.3292510070809178)-- (1.26,1.14);
+\draw (1.0801070470812233,1.1485375843057488)-- (1.26,1.14);
+\begin{scriptsize}
+\draw[color=black] (0.36,2.34) node {$g^{-1}$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%SECOND FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.85]
+%\clip(-3.1523484637064905,-2.8877191998915075) rectangle (3.2787162204964657,2.856417764820188);
+\clip(-3.1,-2.7) rectangle (3.2,2.8);
+\draw(0.0,-0.0) circle (2.611235899552007cm);
+\draw(0.0,-0.0) circle (1.1901105590689844cm);
+\draw [shift={(-3.3794741494806733,0.7796181967120758)}] plot[domain=-0.7176127868835138:0.6257318419197768,variable=\t]({1.0*2.279326680308009*cos(\t r)+-0.0*2.279326680308009*sin(\t r)},{0.0*2.279326680308009*cos(\t r)+1.0*2.279326680308009*sin(\t r)});
+\draw [shift={(-1.7623065030786575,-3.0487890331884815)}] plot[domain=0.2114358851577187:1.5278846809760946,variable=\t]({1.0*2.3316956611045625*cos(\t r)+-0.0*2.3316956611045625*sin(\t r)},{0.0*2.3316956611045625*cos(\t r)+1.0*2.3316956611045625*sin(\t r)});
+\draw(0.16511694177641764,2.046955552778598) circle (0.30789402561067564cm);
+\draw(1.6180556349350896,-1.1660470857511598) circle (0.31806155761471966cm);
+\draw(1.8661183386451068,1.0310797185375715) circle (0.27576581560448304cm);
+\draw [shift={(-3.923946814679157,2.3225255909878184)}] plot[domain=-0.06724121069882294:0.07518735908343538,variable=\t]({1.0*3.7904448753248996*cos(\t r)+-0.0*3.7904448753248996*sin(\t r)},{0.0*3.7904448753248996*cos(\t r)+1.0*3.7904448753248996*sin(\t r)});
+\draw [shift={(-4.64426430538874,3.825227515133297)}] plot[domain=5.9298153627837396:6.043103905803468,variable=\t]({1.0*5.4354771773979484*cos(\t r)+-0.0*5.4354771773979484*sin(\t r)},{0.0*5.4354771773979484*cos(\t r)+1.0*5.4354771773979484*sin(\t r)});
+\draw [shift={(-1.060629324509099,-5.220932382140508)}] plot[domain=0.8585679463877474:0.9872882702824342,variable=\t]({1.0*4.5417198944649*cos(\t r)+-0.0*4.5417198944649*sin(\t r)},{0.0*4.5417198944649*cos(\t r)+1.0*4.5417198944649*sin(\t r)});
+\draw [shift={(-0.21908948347075194,-6.549804754789044)}] plot[domain=1.1275322215585417:1.2404427016586532,variable=\t]({1.0*6.006520366955727*cos(\t r)+-0.0*6.006520366955727*sin(\t r)},{0.0*6.006520366955727*cos(\t r)+1.0*6.006520366955727*sin(\t r)});
+\draw [shift={(-30.82463631611864,52.86866068223544)}] plot[domain=5.274920930454794:5.282870997078253,variable=\t]({1.0*61.009065644834784*cos(\t r)+-0.0*61.009065644834784*sin(\t r)},{0.0*61.009065644834784*cos(\t r)+1.0*61.009065644834784*sin(\t r)});
+\draw [shift={(-51.465499934296915,125.44723710829089)}] plot[domain=5.117413840983604:5.120957170067834,variable=\t]({1.0*135.64048286553125*cos(\t r)+-0.0*135.64048286553125*sin(\t r)},{0.0*135.64048286553125*cos(\t r)+1.0*135.64048286553125*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (1pt);
+\draw[color=black] (0.08094925045079697,0.16792479370770388) node {$\zero$};
+\draw [fill=black] (-1.6622803095029393,-0.719239845767749) circle (0.75pt);
+\draw[color=black] (-1.8311186992417487,-0.9150924600470811) node {$g^{-1}(\zero)$};
+\draw [fill=black] (0.17980173196364405,2.1717367802041783) circle (0.5pt);
+%\draw[color=black] (0.17569790141511307,2.027367068882418) node {$G_1$};
+\draw [fill=black] (2.0000614646072825,1.1099186028287176) circle (0.5pt);
+%\draw[color=black] (1.7864249678084871,1.0325062337570932) node {$H_1$};
+\draw [fill=black] (1.7294585171156684,-1.2410351367538701) circle (0.5pt);
+%\draw[color=black] (1.5140225962860783,-0.9809025992346352) node {$I_1$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+\caption[The construction of children]{The strategy for the proof of Lemma \ref{lemmaDSU}. To construct a collection of ``children'' of the point $w = g(\zero)$, we ``pull back'' the entire picture via $g^{-1}$. In the pulled-back picture, the Big Shadows Lemma \ref{lemmabigshadow} guarantees the existence of many points $x\in G(\zero)$ such that $\Shad_z(x,\sigma)\subset \Shad_z(\zero,\sigma)$, where $z = g^{-1}(\zero)$. (Cf. Lemma \ref{sublemmaDSU} below.) These children can then be pushed forward via $g$ to get children of $w$.}
+\label{figureexperiment}
+\end{center}
+\end{figure}
+
+
+It is not too hard to deduce Proposition \ref{propositionstructure} from Lemma \ref{lemmaDSU}. We do it now:
+\begin{proof}[Proof of Proposition \ref{propositionstructure} assuming Lemma \ref{lemmaDSU}]
+Let $\sigma > 0$ be large enough so that Lemma \ref{lemmaDSU} holds. Fix $0 < s < \w\delta$, and let $\lambda = 1/2$. For each $w\in G(\zero)$, let $(y_n(w))_{n = 1}^{N(w)}$ be an enumeration of $T(w)$. Define a tree $T\subset\N^*$ and a collection $(x_\omega)_{\omega\in T}$ inductively as follows:
+\begin{align*}
+x_\smallemptyset &= \zero\\
+T(\omega) &= \{1,\ldots,N(x_\omega)\}\\
+x_{\omega a} &= y_a(x_\omega).
+\end{align*}
+Then the conclusion of Lemma \ref{lemmaDSU} precisely implies that $(\PP_\omega := \PP_{x_\omega})_{\omega\in T}$ is an $s$-thick partition structure on $(\del X,\Dist)$.
+
+To complete the proof, we must show that the limit set of the partition structure $(\PP_\omega)_{\omega\in T}$ is contained in $\Lurtau\cap\Lrsigma$ for some $\tau > 0$. Indeed, fix $\omega\in T(\infty)$. Then for each $n\in\N$, $\pi(\omega)\in \PP_{\omega_1^n}=\Shad(x_{\omega_1^n},\sigma)$ and $\dox{x_{\omega_1^n}}\to \infty$. So, the sequence $(x_{\omega_1^n})_1^\infty$ converges $\sigma$-radially to $\pi(\omega)$. On the other hand,
+\begin{align*}
+\dist(x_{\omega_1^n},x_{\omega_1^{n + 1}}) &\asymp_{\plus,\sigma} \busemann_\zero(x_{\omega_1^{n + 1}},x_{\omega_1^n}) \by{\eqref{distbusemann}}\\
+&\asymp_{\plus,\sigma} -\log_b\left(\frac{D_{\omega_1^{n + 1}}}{D_{\omega_1^n}}\right) \by{Lemma \ref{lemmadiameterasymptotic}}\\
+&\leq_{\phantom{\plus,\sigma}} -\log_b(\kappa) \asymp_{\plus,\kappa} 0. \by {\eqref{lambda}}
+\end{align*}
+Thus the sequence $(x_{\omega_1^n})_1^\infty$ converges to $\pi(\omega)$ $\tau$-uniformly radially, where $\tau$ depends only on $\sigma$ and $\kappa$ (which in turn depends on $s$).
+\end{proof}
+
+
+The proof of Lemma \ref{lemmaDSU} will proceed through a series of lemmas.
+
+%Given $t < \w\delta$, a point $\eta\in \Lambda$ will be called \emph{$t$-divergent} if for every neighborhood $B$ of $\eta$, for every $\tau > 0$, and for every maximal $\tau$-separated set $S_\tau\subset G(\zero)$ we have
+%\begin{equation}
+%\label{tseries}
+%\Sigma_t(S_\tau\cap B) = \infty.
+%\end{equation}
+%(See \eqref{SigmasS}.)
+
+%The following lemma was proven in the Standard Case in \cite{BishopJones}, using the compactness of $\bord\H^d$ in a crucial way.
+
+
+
+\begin{lemma}[Cf. {\cite[Lemma 5.15]{FSU4}}]
+\label{lemmatdivergent}
+Fix $\tau > 0$, and let $S_\tau\subset G(\zero)$ be a maximal $\tau$-separated subset. Let $B\subset\bord X$ be an open set which intersects $\Lambda$. Then for every $0 < t < \w\delta$, the series
+\[
+\Sigma_t(S_\tau\cap B)
+\]
+diverges.
+\end{lemma}
+\begin{proof}
+
+%\comdavid{The following material is taken from the $t$-divergent file.}
+%
+%
+%\begin{observation}\comdavid{Should we prove?}
+%The set of $t$-divergent points is closed and invariant under the action of $G$.
+%\end{observation}
+%
+%\begin{lemma}
+%\label{lemmatdivergent}
+%There exist at least two $t$-divergent points.
+%\end{lemma}
+%
+%\begin{remark}
+%By Lemma \internalmissingref\ and Observation \ref{observationtdivergent}, Lemma \ref{lemmatdivergent} is equivalent to the assertion that every point of $\Lambda$ is $t$-divergent.
+%\end{remark}
+%
+%We split the proof of Lemma \ref{lemmatdivergent} into two cases according to whether $G$ is focal or of general type. The general type case is much easier.
+%\begin{proof}[Proof of Lemma \ref{lemmatdivergent} assuming that $G$ is of general type]
+%Let $g\in G$ be a loxodromic isometry, and let $g_+$ and $g_-$ be the attracting and repelling fixed points of $g$, respectively.
+%\begin{sublemma}
+%\label{sublemmatdivergent}
+%Suppose that for every $\rho > 0$, there exists a $\rho$-separated set $S_\rho$ such that $\Sigma_t(S_\rho) = \infty$ and such that $g_-\notin\cl{S_\rho}$. Then $g_+$ is a $t$-divergent point.
+%\end{sublemma}
+%\begin{proof}
+%Fix $B$ a neighborhood of $g_+$, fix $\kappa > 0$, and let $S_\kappa$ be a maximal $\kappa$-separated subset of $G(\zero)$; we will show that $\Sigma_t(S_\kappa\cap B) = \infty$. Indeed, let $\rho = 2\kappa$, and let $S_\rho$ be the $\rho$-separated set given in the hypotheses. Let $S_\rho^{(\kappa)}$ be the $\kappa$-thickening of $S_\rho$. Note that $\cl{S_\rho^{(\kappa)}}\cap \del X = \cl{S_\rho}\cap\del X$, so we have $g_-\notin\cl{S_\rho^{(\kappa)}}$. Thus Lemma \internalmissingref\ implies that $g^n$ tends to $g_+$ uniformly on $S_\rho^{(\kappa)}$. Thus for $n$ sufficiently large, we have $g^n(S_\rho^{(\kappa)})\subset B$.
+%
+%We now claim that $\Sigma_t(S_\kappa\cap B)$ diverges. For each $x\in g^n(S_\rho)$, there exists $y_x\in S_\kappa$ such that $\dist(x,y_x)\leq\kappa$. In particular
+%\[
+%y_x\in B(x,\kappa)\subset g^n(S_\rho^{(\kappa)})\subset B.
+%\]
+%Since $S_\rho$ is $\rho = 2\kappa$-separated, the map $x\mapsto y_x$ is injective (cf. argument for Lemma \internalmissingref). Thus
+%\[
+%\Sigma_t(S_\rho)
+%= \sum_{x\in S_\rho}b^{-t\dox x}
+%\asymp_{\times,\kappa} \sum_{x\in S_\rho}b^{-t\dox{y_x}}
+%\geq \sum_{y\in S_\kappa\cap B}b^{-t\dox y}
+%= \Sigma_t(S_\kappa\cap B).
+%\]
+%This completes the proof.
+%\QEDmod\end{proof}
+%Now let $B_+$ and $B_-$ be disjoint neighborhoods of $g_+$ and $g_-$, respectively. For each $\rho > 0$, let $S_\rho$ be a $\rho$-separated set. Since the series $\Sigma_t(S_\rho)$ diverges, it follows that
+%\begin{itemize}
+%\item[(i)] $\Sigma_t(S_\rho\butnot B_-) = \infty$ or
+%\item[(ii)] $\Sigma_t(S_\rho\butnot B_+) = \infty$.
+%\end{itemize}
+%In particular, either (i) or (ii) holds for a sequence $\rho_n\tendsto n +\infty$. Since the situation is symmetric, let us assume that (i) holds. Then the sets $(S_{\rho_n}\butnot B_-)_1^\infty$ satisfy the hypotheses of Sublemma \ref{sublemmatdivergent}, which demonstrates that $g_+$ is a $t$-divergent point. Now since $G$ is of general type, Lemma \internalmissingref\ and Observation \ref{observationtdivergent} imply that every point of $\Lambda$ is $t$-divergent, and in particular that there are at least two $t$-divergent points.
+%\end{proof}
+%Next we consider the case where $G$ is focal. In this case, it is not enough to prove the existence of one $t$-divergent point; there is no way to know whether or not it is the focal point. Instead, we prove that $g_+$ and $g_-$ are both $t$-divergent points.
+%
+%\begin{proof}[Proof of Lemma \ref{lemmatdivergent} in the case where $G$ is focal]
+%We remark that this proof is also valid in the case where $G$ is of general type, although much longer than necessary in that case.
+%
+%Let $g\in G$ be a loxodromic isometry, and let $g_+$ and $g_-$ be the attracting and repelling fixed points of $g$, respectively. We claim that $g_+$ and $g_-$ are both $t$-divergent points. Since the argument is symmetric, let us show that $g_+$ is a $t$-divergent point.
+%
+%For each $x\in X$ let
+%\[
+%f(x) = \frac{1}{2}\left[\busemann_{g_+}(\zero,x) - \busemann_{g_-}(\zero,x)\right].
+%\]
+%\comdavid{Cf. with Polar Coordinates section.\internal}
+%\begin{lemma}
+%\label{lemmatranslationdistance}
+%For all $n\in\Z$ and $x\in X$ we have
+%\[
+%f(g^n(x)) \asymp f(x) + n\ell(g),
+%\]
+%where $\ell(g)$ is the minimum translation distance of $g$ (or average translation distance in the non CAT(-1) case)
+%\end{lemma}
+%\begin{proof}
+%\begin{align*}
+%f(g^n(x)) - f(x)
+%&= \frac{1}{2}\left[\busemann_{g_+}(\zero,g^n(x)) - \busemann_{g_-}(\zero,g^n(x)) - (\busemann_{g_+}(\zero,x) - \busemann_{g_-}(\zero,x))\right]\\
+%&= \frac{1}{2}\left[\busemann_{g_+}(g^{-n}(\zero),x) - \busemann_{g_-}(g^{-n}(\zero),x) - (\busemann_{g_+}(\zero,x) - \busemann_{g_-}(\zero,x))\right]\\
+%&= \frac{1}{2}\left[\busemann_{g_+}(g^{-n}(\zero),\zero) - \busemann_{g_-}(g^{-n}(\zero),\zero)\right]\\
+%&= \dogo{g^n} - \lb g^{-n}(\zero)|g_+\rb_\zero - \lb g^n(\zero)|g_-\rb_\zero\\
+%&\asymp n\ell(g).
+%\end{align*}
+%\end{proof}
+%\begin{lemma}
+%\label{lemmafabs}
+%For all $x\in X$ we have
+%\[
+%\dox x \asymp \lb g_+|g_-\rb_x + |f(x)|.
+%\]
+%\end{lemma}
+%\begin{proof}
+%Algebra; done in a prev. section?
+%\end{proof}
+
+By Proposition \ref{propositionminimal2}, there exists a loxodromic isometry $g\in G$ such that $g_+\in B$. Let $\ell(g) = \log_b g'(g_-) = -\log_b g'(g_+) > 0$, and let the functions $r = r_{g_+,g_-,\zero}, \theta = \theta_{g_+,g_-,\zero}$ be as in Section \ref{subsectionpolar}. Fix $N\in\N$ large to be determined, let $\kappa = N\ell(g)$, and for each $n\in\Z$ let
+\[
+C_n = \{x\in X: n\kappa \leq r(x) < (n + 1)\kappa\}
+\]
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=1.2]
+\clip(-3.28,-3.04) rectangle (3.35,2.93);
+\draw(0.0,-0.0) circle (2.92cm);
+\draw (0.0,-2.92)-- (0.0,2.9199999999999995);
+\draw [shift={(-7.9807385594024085,0.22846692826476303)}] plot[domain=-0.40293664452450617:0.34569769451385884,variable=\t]({1.0*7.497384482406696*cos(\t r)+-0.0*7.497384482406696*sin(\t r)},{0.0*7.497384482406696*cos(\t r)+1.0*7.497384482406696*sin(\t r)});
+\draw [shift={(-4.358450318907789,0.3145920313756659)}] plot[domain=-0.8023891554417188:0.6582794941876258,variable=\t]({1.0*3.4231925825980647*cos(\t r)+-0.0*3.4231925825980647*sin(\t r)},{0.0*3.4231925825980647*cos(\t r)+1.0*3.4231925825980647*sin(\t r)});
+\draw [shift={(-3.50200819090357,0.20509253639486452)}] plot[domain=-1.0351538170621417:0.9181589198842997,variable=\t]({1.0*2.240662432657915*cos(\t r)+-0.0*2.240662432657915*sin(\t r)},{0.0*2.240662432657915*cos(\t r)+1.0*2.240662432657915*sin(\t r)});
+\draw [shift={(8.568849511994815,0.3086758429165517)}] plot[domain=2.830100098137627:3.5251001108755213,variable=\t]({1.0*8.061553144764865*cos(\t r)+-0.0*8.061553144764865*sin(\t r)},{0.0*8.061553144764865*cos(\t r)+1.0*8.061553144764865*sin(\t r)});
+\draw [shift={(4.358450318907789,0.3145920313756659)}] plot[domain=2.4833131594021673:3.943981809031512,variable=\t]({1.0*3.4231925825980647*cos(\t r)+-0.0*3.4231925825980647*sin(\t r)},{0.0*3.4231925825980647*cos(\t r)+1.0*3.4231925825980647*sin(\t r)});
+\draw [shift={(3.50200819090357,0.20509253639486452)}] plot[domain=2.2234337337054937:4.176746470651935,variable=\t]({1.0*2.2406624326579156*cos(\t r)+-0.0*2.2406624326579156*sin(\t r)},{0.0*2.2406624326579156*cos(\t r)+1.0*2.2406624326579156*sin(\t r)});
+\begin{scriptsize}
+\draw[color=black] (0.273556687080068,1.39) node {$C_0$};
+\draw[color=black] (-0.23313923665707456,1.39) node {$C_{-1}$};
+\draw[color=black] (-0.81,1.39) node {$C_{-2}$};
+\draw[color=black] (-1.35,1.39) node {$C_{-3}$};
+\draw[color=black] (0.8049694851458516,1.39) node {$C_1$};
+\draw[color=black] (1.29,1.39) node {$C_2$};
+\draw [fill=black] (1.727358295319231,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (1.9520571528523318,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (2.1879909532620876,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (-1.727358295319231,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (-1.9520571528523318,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (-2.1879909532620876,0.028247325459469327) circle (0.75pt);
+\draw [fill=black] (-2.923,0.028247325459469327) circle (0.5pt);
+\draw[color=black] (-3.127,0.028247325459469327) node {$g_-$};
+\draw [fill=black] (2.923,0.028247325459469327) circle (0.5pt);
+\draw[color=black] (3.217,0.028247325459469327) node {$g_+$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The sets $C_n$, for $n\in\Z$]{The sets $C_n$, for $n\in\Z$.}
+\label{figurepartitionintofour}
+\end{center}
+\end{figure}
+(cf. Figure \ref{figurepartitionintofour}). Let
+\begin{align*}
+C_{+,0} = \bigcup_{\substack{n\geq 0 \\ \text{even}}}C_n,&\hspace{.5 in}
+C_{+,1} = \bigcup_{\substack{n\geq 0 \\ \text{odd}}}C_n\\
+C_{-,0} = \bigcup_{\substack{n < 0 \\ \text{even}}}C_n,&\hspace{.5 in}
+C_{-,1} = \bigcup_{\substack{n < 0 \\ \text{odd}}}C_n.
+\end{align*}
+Fix $\rho > 0$, and let $S_\rho\subset G(\zero)$ be a maximal $\rho$-separated set. Since $\Sigma_t(S_\rho) = \infty$, one of the series $\Sigma_t(S_\rho\cap C_{+,0})$, $\Sigma_t(S_\rho\cap C_{+,1})$, $\Sigma_t(S_\rho\cap C_{-,0})$, and $\Sigma_t(S_\rho\cap C_{-,1})$ must diverge. By way of illustration let us consider the case where
+\[
+\Sigma_t(S_\rho\cap C_{-,0}) = \infty.
+\]
+Let
+\[
+A_\rho = \bigcup_{\substack{n < 0 \\ \text{even}}}g^{2N |n|}(C_n\cap S_\rho).
+\]
+\begin{claim}
+$\Sigma_t(A_\rho) = \infty$.
+\end{claim}
+\begin{subproof}
+Fix $n = -m < 0$ even and $x\in C_n$. Then by \eqref{rtranslation},
+\[
+r(g^{2Nm}(x)) \asymp_+ 2Nm\ell(g) + r(x) = 2m\kappa + r(x) \asymp_{\plus,\kappa} 2m\kappa -m\kappa = m\kappa
+\]
+and thus
+\[
+|r(g^{2Nm}(x))| \asymp_{\plus,\kappa} |r(x)|.
+\]
+On the other hand, by \eqref{thetatranslation} we have $\theta(g^{2Nm}(x)) \asymp_\plus \theta(x)$. Combining with Lemma \ref{lemmafabs} gives
+\[
+\dist(0,x) \asymp_{\plus,\kappa} \dist(0,g^{2Nm}(x)).
+\]
+Thus
+\begin{align*}
+\Sigma_t(A_\rho)
+&= \sum_{\substack{m > 0 \\ \text{even}}}\sum_{x\in C_{-m}\cap S_\rho} b^{-t\dox{g^{2Nm}(x)}}\\
+&\asymp_{\times,\kappa} \sum_{\substack{m > 0 \\ \text{even}}}\sum_{x\in C_{-m}\cap S_\rho} b^{-t\dox x}\\
+&= \Sigma_t(C_{-,0}\cap S_\rho) = \infty.
+\end{align*}
+\end{subproof}
+\begin{claim}
+$A_\rho$ is a $\rho$-separated set.
+\end{claim}
+\begin{subproof}
+Fix $y_1,y_2\in A_\rho$. Then for some $m_1,m_2 > 0$ even, we have $x_i := g^{-2Nm_i}(y_i)\in C_{-m_i}$ ($i = 1,2$). If $n_1 = n_2$, then we have
+\[
+\dist(y_1,y_2) = \dist(x_1,x_2) \geq \rho,
+\]
+since $x_1,x_2\in S_\rho$ and $S_\rho$ is $\rho$-separated. So suppose $n_1\neq n_2$; without loss of generality we may assume $n_1 > n_2$. Then by \eqref{rtranslation} we have
+\begin{align*}
+r(y_1) - r(y_2) &\asymp_\plus 2Nm_1\ell(g) + r(x_1) - (2Nm_2\ell(g) + r(x_2))\\
+&=_\pt 2\kappa(m_1 - m_2) + r(x_1) - r(x_2)\\
+&\geq_\pt 2\kappa[m_1 - m_2] + \kappa(-m_1) - \kappa(-m_2 + 1)\\
+&=_\pt \kappa(m_1 - m_2 - 1)\\
+&\geq_\pt \kappa = N\ell(g).
+\end{align*}
+By choosing $N$ sufficiently large, we may guarantee that $r(y_1) - r(y_2)\geq \rho$, which implies $\dist(y_1,y_2)\geq \rho$.
+\end{subproof}
+
+For all $x\in \thicken_\rho(A_\rho)$, we have $r(x)\gtrsim_\plus 0$. Thus $g_-\notin \cl{\thicken_\rho(A_\rho)}$. So by Theorem \ref{theoremloxodromicextra}, we can find $n\in\N$ such that $\thicken_\rho(g^n(A_\rho))\subset B$.
+
+Let $S_{\rho/2}\subset G(\zero)$ be a maximal $\rho/2$-separated set. By Lemma \ref{lemma2tau}, we have
+\[
+\Sigma_t(S_{\rho/2}\cap B) \gtrsim_\times \Sigma_t(g^n(A_\rho)) \asymp_\times \Sigma_t(A_\rho) = \infty.
+\]
+Since $\rho > 0$ was arbitrary, this completes the proof.
+\end{proof}
+
+
+
+%\begin{proof}
+%Since $G$ is nonelementary, there exists a loxodromic isometry $g\in G$ (Theorem \internalmissingref). Let $g_+$ and $g_-$ be the attracting and repelling fixed points of $g$, respectively. Let $B_+$ and $B_-$ be disjoint neighborhoods of $g_+$ and $g_-$, respectively. For each $R\in\N$, let $S_R$ be a $R$-separated set. Since the series $\Sigma_t(S_R)$ diverges, it follows that
+%\begin{itemize}
+%\item[(1)] $\Sigma_t(S_R\butnot B_-) = \infty$ or
+%\item[(2)] $\Sigma_t(S_R\butnot B_+) = \infty$.
+%\end{itemize}
+%In particular, either (1) or (2) holds for infinitely many $R\in\N$. Without loss of generality, suppose that (1) holds for infinitely many $R\in\N$.
+%
+%We claim that $g_+$ is a $t$-divergent point. To this end, fix $B$ a neighborhood of $g_+$, fix $\tau > 0$, and let $S_\tau$ be a maximal $\tau$-separated subset of $G(\zero)$; we will show that \eqref{tseries} holds. Indeed, by Lemma \internalmissingref, $g^n$ tends to $g_+$ uniformly on $\del X\butnot B_-$. Thus for $n$ sufficiently large, we have $g^n(\del X\butnot B_-)\subset B$. Letting $R = \lceil 2\tau\rceil$, we have
+%\[
+%\Sigma_t(g^n(S_R)\cap B) \geq \Sigma_t(g^n(S_R\butnot B_-)) \asymp_{\plus,g,n} \Sigma_t(S_R\butnot B_-) = \infty.
+%\]
+%By Lemma \ref{lemma2tau}\comdavid{Verify}, we have
+%\[
+%\Sigma_t(S_\tau\cap B)\gtrsim_\plus \Sigma_t(g^n(S_R)\cap B) = \infty,
+%\]
+%which proves that $g_+$ is a $t$-divergent point.
+%\QEDmod\end{proof}
+
+%\begin{remark}
+%\label{remarktdivergent}
+%It is not hard to see that the set of $t$-divergent points is closed and invariant under the action of the group.\comdavid{Should we give more details?} If $G$ is of general type, then it follows from this and from Proposition \internalmissingref\ that every point of $\Lambda$ is $t$-divergent.
+%\end{remark}
+
+
+
+\begin{lemma}[Cf. {\cite[Sublemma 5.17]{FSU4}}, Footnote \ref{footnoteFSUcomparison}]
+\label{sublemmaDSU}
+Let $B\subset\bord X$ be an open set which intersects $\Lambda$. For all $\sigma > 0$ sufficiently large and for all $0 < s < \w\delta$, there exists a set $S_B\subset G(\zero)\cap B$ such that for all $z\in X\butnot B$,
+\begin{itemize}
+\item[(i)] If
+\[
+\PP_{z,x} := \Shad_z(x,\sigma),
+\]
+then the family $(\PP_{z,x})_{x\in S_B}$ consists of pairwise disjoint shadows contained in $\PP_{z,\zero}\cap B$.
+\item[(ii)] There exists $\kappa > 0$ independent of $z$ (but depending on $s$) such that for all $x\in S_B$,
+\begin{align} \label{epsilonnew}
+\Dist_{b,z}(\PP_{z,x},\del X\butnot \PP_{z,\zero}) &\geq \kappa\Diam_z(\PP_{z,\zero})\\ \label{lambdanew}
+\kappa\Diam_z(\PP_{z,\zero}) \leq \Diam_z(\PP_{z,x}) &\leq \lambda\Diam_z(\PP_{z,\zero}).
+\end{align}
+\item[(iii)]
+\[
+\sum_{x\in S_B}\Diam_z^s(\PP_{z,x}) \geq \Diam_z^s(\PP_{z,\zero}).
+\]
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Let $B\subset\bord X$ be an open set which contains a point $\eta\in\Lambda$. Choose $\rho > 0$ large enough so that
+\[
+\{x\in\bord X:\lb x|\eta\rb_\zero\geq \rho\} \subset B.
+\]
+Then fix $\sigma > 0$ large to be determined, depending only on $\rho$. Fix $\w\rho\geq\rho$ large to be determined, depending only on $\rho$ and $\sigma$.
+
+Fix $0 < s < \w\delta$ and $z\in X\butnot B$. For all $x\in X$ we have
+\[
+0 \asymp_{\plus,\rho} \lb z|\eta\rb_\zero \gtrsim_\plus \min(\lb x|\eta\rb_\zero,\lb x|z\rb_\zero).
+\]
+Let
+\[
+\w B = \{x\in X:\lb x|\eta\rb_\zero \geq \w\rho\ew\}.
+\]
+If $\w\rho$ is chosen large enough, then we have
+\begin{equation}\label{xz0}
+\lb x|z\rb_\zero \asymp_{\plus,\rho} 0,
+\end{equation}
+for all $x\in \w B$. We emphasize that the implied constants of these asymptotics are independent of both $z$ and $s$.
+
+For each $n\in\N$ let 
+\[
+A_n := B(\zero,n)\butnot B(\zero,n - 1)
+\] 
+be the $n$th annulus centered at $\zero$. We shall need the following variant of the Intersecting Shadows Lemma:
+
+\begin{claim}
+\label{claimtau}
+There exists $\tau > 0$ depending on $\rho$ and $\sigma$ such that for all $n\in\N$ and for all $x,y\in A_n\cap \w B$, if
+\[
+\PP_{z,x}\cap \PP_{z,y}\neq\emptyset,
+\]
+then 
+\[
+\dist(x,y) < \tau.
+\] 
+\end{claim}
+\begin{subproof}
+Without loss of generality suppose $\dist(z,y)\geq \dist(z,x)$. Then by the Intersecting Shadows Lemma \ref{lemmatau} we have
+\[
+\dist(x,y) \asymp_{\plus,\sigma} \busemann_z(y,x)
+= \busemann_\zero(y,x) + 2\lb x|z\rb_\zero - 2\lb y|z\rb_\zero.
+\]
+Now $|\busemann_\zero(y,x)| \leq 1$ since $x,y\in A_n$. On the other hand, since $x,y\in\w B$, we have
+\[
+\lb x|z\rb_\zero \asymp_{\plus,\rho} \lb y|z\rb_\zero \asymp_{\plus,\rho} 0.
+\]
+Combining gives
+\[
+\dist(x,y) \asymp_{\plus,\rho,\sigma} 0,
+\]
+and letting $\tau$ be the implied constant finishes the proof.
+\end{subproof}
+
+Fix $M > 0$ large to be determined, depending on $\rho$ and $\tau$ (and thus implicitly on $\sigma$). Let $S_\tau\subset G(\zero)$ be a maximal $\tau$-separated set. Fix $t\in (s,\w\delta)$; then by Lemma \ref{lemmatdivergent} we have
+\begin{align*}
+\infty
+= \Sigma_t(S_\tau\cap \w B)
+&=_\pt \sum_{n = 1}^\infty\Sigma_t(S_\tau\cap\w B\cap A_n)\\
+&=_\pt \sum_{n = 1}^\infty\sum_{x\in S_\tau\cap\w B\cap A_n}b^{-t\dox x}\\
+&\asymp_\times \sum_{n = 1}^\infty b^{-(t - s)n}\sum_{x\in S_\tau\cap\w B\cap A_n} b^{-s\dox x}.
+\end{align*}
+It follows that there exist arbitrarily large numbers $n\in\N$ such that
+\begin{equation}
+\label{ndef}
+\sum_{x\in S_\tau\cap\w B\cap A_n} b^{-s\dox x} \geq M.
+\end{equation}
+Fix such an $n$, also to be determined, depending on $\lambda$, $\rho$, $\w\rho$, and $M$ (and thus implicitly on $\tau$ and $\sigma$), and let $S_B = S_\tau\cap \w B\cap A_n$. To complete the proof, we demonstrate (i)-(iii).
+\begin{subproof}[Proof of \textup{(i)}]
+In order to see that the shadows $(\PP_{z,x})_{x\in S_B}$ are pairwise disjoint, suppose that $x,y\in S_B$ are such that $\PP_{z,x}\cap \PP_{z,y}\neq\emptyset$. By Claim \ref{claimtau} we have $\dist(x,y) < \tau$. Since $S_B$ is $\tau$-separated, this implies $x = y$.
+
+Fix $x\in S_B$. Using \eqref{xz0} and the fact that $x\in A_{n}$, we have
+\[
+\lb\zero|z\rb_x \asymp_\plus \dox x - \lb x|z\rb_\zero\asymp_{\plus,\rho} \dox x\asymp_\plus n.
+\]
+Thus for all $\xi\in\PP_{z,x}$,
+\[
+0
+\asymp_{\plus,\sigma} \lb z|\xi\rb_x
+\gtrsim_\plus \min(\lb\zero|z\rb_x,\lb\zero|\xi\rb_x)
+\asymp_\plus \min(n,\lb\zero|\xi\rb_x);
+\]
+taking $n$ sufficiently large (depending on $\sigma$), this gives
+\[
+\lb\zero|\xi\rb_x \asymp_{\plus,\sigma} 0,
+\]
+from which it follows that
+\[
+\lb x|\xi\rb_\zero
+\asymp_\plus d(\zero,x)-\lb\zero|\xi\rb_x
+\asymp_{\plus,\sigma} n.
+\]
+Therefore, since $x\in\w B$, we get
+\[
+\lb\xi|\eta\rb_\zero
+\gtrsim_\plus \min(\lb x|\xi\rb_\zero,\lb x|\eta\rb_\zero)
+\gtrsim_{\plus,\sigma} \min(n,\w\rho).
+\]
+Thus $\xi\in B$ as long as $\w\rho$ and $n$ are large enough (depending on $\sigma$). Thus $\PP_{z,x}\subset B$.
+
+Finally, note that we do not need to prove that $\PP_{z,x}\subset \PP_{z,\zero}$, since it is implied by \eqref{epsilonnew} which we prove below.
+
+\ignore{
+Next we shall prove that
+\begin{equation}\label{BaB0}
+\PP_{z,x}\subset \PP_{z,\zero}.
+\end{equation}
+Indeed, fix $\xi\in \PP_{z,x}$. Then by \eqref{1fsdk13} and \eqref{2fsdk13} we get that
+\[
+\sigma
+\gtrsim_\plus \lb\zero|\xi\rb_x
+\gtrsim_\plus \min(\lb\zero|z\rb_x,\lb z|\xi\rb_x)
+\asymp_\plus \min(n,\lb z|\xi\rb_x).
+\]
+Thus if $n$ is large enough (depending on $\sigma$) then
+\[
+\lb\zero|\xi\rb_x\gtrsim_\plus \lb z|\xi\rb_x;
+\]
+it follows from this, \eqref{xz0}, and (z) of Proposition \ref{propositionbasicidentities} that
+\begin{equation}\label{2fsdk15}
+\lb z|\xi\rb_\zero
+\asymp_\plus \lb z|\xi\rb_x + \lb x|z\rb_\zero - \lb\zero|\xi\rb_x
+\asymp_\plus \lb z|\xi\rb_x - \lb\zero|\xi\rb_x
+\lesssim_\plus 0.
+\end{equation}
+So, if $\sigma > 0$ is taken large enough (not depending on anything), then $\lb z|\xi\rb_\zero < \sigma$, meaning that $\xi\in \PP_{z,\zero}$. The inclusion \eqref{BaB0} is proved, and in consequence the whole item (i).
+}% end ignore
+\end{subproof}
+\begin{subproof}[Proof of \textup{(ii)}]
+Take any $x\in S_B$. Then by \eqref{xz0}, we have
+\begin{equation}
+\label{asympan1}
+\dist(x,z) - \dox z = \dox x - 2\lb x|z\rb_\zero \asymp_{\plus,\rho} \dox x \asymp_\plus n.
+\end{equation}
+Combining with the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} gives
+\begin{equation}
+\label{asympan1new}
+\frac{\Diam_z(\PP_{z,x})}{\Diam_z(\PP_{z,\zero})}
+\asymp_{\times,\sigma} \frac{b^{-\dist(z,x)}}{b^{-\dist(z,\zero)}}
+\asymp_{\times,\rho} b^{-n}.
+\end{equation}
+Thus by choosing $n$ sufficiently large depending on $\sigma$, $\lambda$, and $\rho$ (and satisfying \eqref{ndef}), we guarantee that the second inequality of \eqref{lambdanew} holds. On the other hand, once $n$ is chosen, \eqref{asympan1new} guarantees that if we choose $\kappa$ sufficiently small, then the first inequality of \eqref{lambdanew} holds.
+
+In order to prove \eqref{epsilonnew}, let $\xi\in \PP_{z,x}$ and let $\gamma\in \del X\setminus \PP_{z,\zero}$. We have
+\begin{align*}
+\lb x|\xi\rb_z &\asymp_\plus \dist(x,z) - \lb z|\xi\rb_x \geq \dist(x,z) - \sigma\\
+\lb \zero|\gamma\rb_z &\asymp_\plus \dox z - \lb\zero|\xi\rb_x \leq \dox z - \sigma.
+\end{align*}
+Also, by \eqref{xz0} we have
+\[
+\lb \zero|x\rb_z \asymp_\plus \dox z - \lb x|z\rb_\zero \asymp_{\plus,\rho} \dox z.
+\]
+Applying Gromov's inequality twice and then applying \eqref{asympan1} gives
+\begin{align*}
+\dox z - \sigma \gtrsim_\plus \lb \zero|\gamma\rb_z
+&\gtrsim_{\plus\phantom{,\rho}} \min\left(\lb\zero|x\rb_z,\lb x|\xi\rb_z,\lb \xi|\gamma\rb_z\right)\\
+&\gtrsim_{\plus,\rho} \min\left(\dox z,\dist(x,z) - \sigma,\lb \xi|\gamma\rb_z\right)\\
+&\asymp_{\plus\phantom{,\rho}} \min\left(\dox z,\dox z + n - \sigma,\lb \xi|\gamma\rb_z\right).
+\end{align*}
+By choosing $n$ and $\sigma$ sufficiently large (depending on $\rho$), we can guarantee that neither of the first two expressions can represent the minimum without contradicting the inequality. Thus
+\[
+\dox z - \sigma \gtrsim_{\plus,\rho} \lb\xi|\gamma\rb_z;
+\]
+exponentiating and the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} give
+\[
+\Dist_{b,z}(\xi,\gamma)
+\gtrsim_{\times,\rho} b^{-(\dox z - \sigma)}
+\asymp_{\times,\sigma} b^{-\dox z}
+\asymp_{\times,\sigma} \Diam_z(\PP_{z,\zero}).
+\]
+Thus we may choose $\kappa$ small enough, depending on $\rho$ and $\sigma$, so that \eqref{epsilonnew} holds.
+\ignore{
+Note that $\lb\gamma|z\rb_\zero\lesssim_\plus 0$ as $\gamma\in \del X\setminus \PP_{z,\zero}$. Therefore, using \eqref{2fsdk15}, we get
+\[
+0
+\asymp_\plus \lb z|\xi\rb_\zero
+\gtrsim_\plus \min(\lb\xi|\gamma\rb_\zero,\lb z|\gamma\rb_\zero)
+\gtrsim_\plus \min(\lb\xi|\gamma\rb_\zero,\sigma).
+\]
+So, $\lb\xi|\gamma\rb_\zero\lesssim_\plus 0$. Combining with (d) of Proposition \ref{propositionbasicidentities}, we have
+\[
+\lb\xi|\gamma\rb_z \lesssim_\plus d(\zero,z).
+\]
+Inserting this in turn to \eqref{1fsdk19} and applying the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} gives
+\[
+\Dist_{b,z}(\xi,\gamma)\gtrsim_\times b^{-d(\zero,z)}\asymp_\times\Diam_z(\PP_{z,\zero}).
+\]
+Thus,
+\[
+\Dist_{b,z}(\PP_{z,x},\del X\setminus \PP_{z,\zero})\gtrsim_\times\Diam_z(\PP_{z,\zero}),
+\]
+finishing the proof of \eqref{epsilonnew} and thus of item (ii). 
+}% end ignore
+\end{subproof}
+\begin{subproof}[Proof of \textup{(iii)}]
+\begin{align*}
+\sum_{x\in S_B}\Diam_z^s(\PP_{z,x})
+&\asymp_{\times\phantom{,\rho}} \sum_{x\in S_B}b^{-s\dist(z,x)} \by{the Diameter of Shadows Lemma}\\
+&\asymp_{\times,\rho} \;\; b^{-s\dist(z,\zero)}\sum_{x\in S_B}b^{-\dox x} \hspace{-0.85in}\by{\eqref{asympan1}}\\
+&\geq_{\phantom{\times,\rho}}Mb^{-s\dist(z,\zero)} \by{\eqref{ndef}}\\
+&\asymp_{\times\phantom{,\rho}} M\Diam_z^s(\PP_{z,\zero}). \by{the Diameter of Shadows Lemma}
+\end{align*}
+Letting $M$ be larger than the implied constant yields the result.
+\end{subproof}
+\end{proof}
+
+We may now complete the proof of Lemma \ref{lemmaDSU}:
+
+\begin{proof}[Proof of Lemma \ref{lemmaDSU}]
+Let $\eta_1,\eta_2\in\Lambda$ be distinct points, and let $B_1$ and $B_2$ be disjoint neighborhoods of $\eta_1$ and $\eta_2$, respectively. Let $\sigma > 0$ be large enough so that Lemma \ref{sublemmaDSU} holds for both $B_1$ and $B_2$. Fix $0 < s < \w\delta$, and let $S_1\subset G(\zero)\cap B_1$ and $S_2\subset G(\zero)\cap B_2$ be the sets guaranteed by Lemma \ref{sublemmaDSU}. Now suppose that $w = g_w(\zero)\in G(\zero)$. Let $z = g_w^{-1}(\zero)$. Then either $z\notin B_1$ or $z\notin B_2$; say $z\notin B_i$. Let $T(w) = g_w(S_i)$; then (i)-(iii) of Lemma \ref{sublemmaDSU} exactly guarantee (i)-(iii) of Lemma \ref{lemmaDSU}.
+\end{proof}
+
+
+
+
+%
+%Let $\eta_1$ and $\eta_2$ be two distinct $t$-divergent points. Let $B_1$ and $B_2$ be disjoint neighborhoods of $\eta_1$ and $\eta_2$, respectively. Choose $\rho$ large enough so that
+%\[
+%\{x\in\bord X:\lb x|\eta_i\rb_\zero\geq \rho\} \subset B_i,\;\; i = 1,2.
+%\]
+%Fix $\sigma > 0$ large to be determined, depending only on $\rho$. Let $w = g_w(\zero)\in G(\zero)$. Let $z = g_w^{-1}(\zero)$. Then either $z\notin B_1$ or $z\notin B_2$; without loss of generality, suppose that $z\notin B_1$.
+%
+%Now for all $x\in X$ we have
+%\[
+%0 \asymp_{\plus,\rho} \lb z|\eta_1\rb_\zero \gtrsim_\plus \min(\lb x|\eta_1\rb_\zero,\lb x|z\rb_\zero).
+%\]
+%Fix $\w{\rho} \geq \rho$ large to be determined, depending only on $\rho$. Let
+%\[
+%\w{B}_1 = \{x\in X:\lb x|\eta_1\rb_\zero \geq \w{\rho}\}.
+%\]
+%It follows that for all $x\in \w{B}_1$, we have 
+%\begin{equation}\label{xz0}
+%\lb x|z\rb_\zero \asymp_{\plus,\rho} 0,
+%\end{equation}
+%assuming $\w\rho$ is chosen large enough. We emphasize that the implied constants of these asymptotics are independent of $w$.
+%
+%For each $n\in\N$ let 
+%\[
+%A_n := B(\zero,n + 1)\butnot B(\zero,n)
+%\] 
+%be the $n$th annulus centered at $\zero$. We shall need the following variant of the Intersecting Shadows Lemma \ref{lemmatau}:
+%
+%\begin{claim}
+%\label{claimtau}
+%There exists $\tau > 0$ depending on $\rho$ and $\sigma$ such that for all $n\in\N$ and for all $x,y\in A_n\cap \w{B}_1$,
+%\[
+%\Shad_z(x,\sigma)\cap \Shad_z(y,\sigma)\neq\emptyset,
+%\] 
+%then 
+%\[
+%\dist(x,y) < \tau.
+%\] 
+%\end{claim}
+%\begin{proof}
+%Without loss of generality suppose $\dist(z,y)\geq \dist(z,x)$. Then by the Intersecting Shadows Lemma \ref{lemmatau} we have
+%\[
+%\dist(x,y) \asymp_{\plus,\sigma} \busemann_z(y,x)
+%= \busemann_\zero(y,x) + 2\lb x|z\rb_\zero - 2\lb y|z\rb_\zero.
+%\]
+%Now $\busemann_\zero(y,x) \leq 1$ since $x,y\in A_n$. On the other hand, since $x,y\in\w{B}_1$, we have
+%\[
+%\lb x|z\rb_\zero \asymp_{\plus,\rho} \lb y|z\rb_\zero \asymp_{\plus,\rho} 0.
+%\]
+%Combining gives
+%\[
+%\dist(x,y) \asymp_{\plus,\rho,\sigma} 0,
+%\]
+%i.e. there exists $\tau$ depending only on $\rho$ and $\sigma$ such that $\dist(x,y) < \tau$.
+%\QEDmod\end{proof}
+%Let $\tau > 0$ be as in Claim \ref{claimtau}, and let $S_\tau$ be a maximal $\tau$-separated set. Fix $\w{M} > 0$ large to be determined, depending on $\rho$. Since $\eta_1$ is $t$-divergent, we have
+%\begin{align*}
+%\infty
+%= \Sigma_t(S_\tau\cap\w{B}_1)
+%&= \sum_{n\in\N}\Sigma_t(S_\tau\cap\w{B}_1\cap A_n)\\
+%&= \sum_{n\in\N}\sum_{x\in S_\tau\cap\w{B}_1\cap A_n}b^{-\dox x}\\
+%&\asymp_\plus \sum_{n\in\N}b^{-(t - s)n}b^{-sn}\#(S_\tau\cap \w{B}_1\cap A_n).
+%\end{align*}
+%It follows that there exist arbitrarily large numbers $n_1\in\N$ such that
+%\begin{equation}
+%\label{ndef}
+%b^{-sn_1}\#(S_\tau\cap \w{B}_1\cap A_{n_1})\geq \w{M}.
+%\end{equation}
+%Fix such an $n_1$, also to be determined, depending on $\lambda$, $\rho$, $\tau$ (and thus implicitly on $\sigma$), $\w{\rho}$, and $\w{M}$. Let
+%\[
+%S_{1,\tau} = S_\tau\cap \w{B}_1 \cap A_{n_1}.
+%\]
+%Then
+%\begin{equation}
+%\label{asdist0a}
+%\sum_{x\in S_{1,\tau}}b^{-s\dox x} \asymp_\plus b^{-sn_1}\#(S_{1,\tau}) \geq \w{M}.
+%\end{equation}
+%Let $T(w) = g_w(S_{1,\tau})$. Then (i) - (iii) of Lemma \ref{lemmaDSU} can be rewritten as follows:
+%
+%\begin{itemize}
+%\item[(i)] If
+%\[
+%\PP_{z,x} := \Shad_z(x,\sigma)
+%\]
+%then the family $(\PP_{z,x})_{x\in S_{1,\tau}}$ consists of pairwise disjoint shadows contained in $\PP_{z,\zero}$.
+%\item[(ii)] There exists $\kappa > 0$ independent of $w$ such that for all $x\in S_{1,\tau}$,
+%\begin{align} \label{epsilonnew}
+%\Dist_z(\PP_{z,x},\del X\butnot \PP_{z,\zero}) &\geq \kappa\Diam_z(\PP_{z,\zero})\\ \label{lambdanew}
+%\kappa\Diam_z(\PP_{z,\zero}) \leq \Diam_z(\PP_{z,x}) &\leq \lambda\Diam_z(\PP_{z,\zero}).
+%\end{align}
+%\item[(iii)]
+%\[
+%\sum_{x\in S_{1,\tau}}\Diam_z^s(\PP_{z,x}) \geq \Diam_z^s(\PP_{z,\zero}).
+%\]
+%\end{itemize}
+%
+%\begin{proof}[Proof of \text{(i)}]
+%In order to see that the shadows $(\PP_{z,x})_{x\in S_{1,\tau}}$ are pairwise disjoint, suppose that $x,y\in S_{1,\tau}$ are such that $\PP_{z,x}\cap \PP_{z,y}\neq\emptyset$. By Claim \ref{claimtau} we have $\dist(x,y) < \tau$. Since $S_{1,\tau}$ is $\tau$-separated, this implies $x = y$.
+%
+%Note that we do not need to prove that $\PP_{z,x}\subset \PP_{z,\zero}$, since it is implied by \eqref{epsilonnew} which we prove below.
+%%\ignore{
+%%Next, we shall prove that
+%%\begin{equation}\label{BaB}
+%%\PP_{z,x}\subset B_1
+%%\end{equation}
+%%for all $x\in S_{1,\tau}$. Using \eqref{xz0} and the fact that $x\in A_{n_1}$, we have
+%%\begin{equation}\label{1fsdk13}
+%%\lb\zero|z\rb_x \asymp_\plus \dox x - \lb x|z\rb_\zero\asymp_\plus \dox x\asymp_\plus n.
+%%\end{equation}
+%%Let $\xi\in \PP_{z,x}$. We then have
+%%\[
+%%\sigma
+%%\ge \lb z|\xi\rb_x
+%%\gtrsim_\plus \min(\lb\zero|z\rb_x,\lb\zero|\xi\rb_x)
+%%\asymp_\plus \min(n,\lb\zero|\xi\rb_x);
+%%\]
+%%taking $n_1$ sufficiently larger than $\sigma$, this gives
+%%\begin{equation}\label{2fsdk13}
+%%\lb\zero|\xi\rb_x \lesssim_\plus \sigma,
+%%\end{equation}
+%%from which it follows that
+%%\[
+%%\lb x|\xi\rb_\zero
+%%\asymp_\plus \dox x-\lb\zero|\xi\rb_x
+%%\gtrsim_\plus n - \sigma.
+%%\]
+%%Therefore, since $x\in\w{B}_1$, we get
+%%\[
+%%\lb\xi|\eta_1\rb_\zero
+%%\gtrsim_\plus \min(\lb x|\xi\rb_\zero,\lb x|\eta_1\rb_\zero)
+%%\gtrsim_\plus \min(n_1 - \sigma,\w{\rho})
+%%\]
+%%Thus $\xi\in B_1$ provided that $\w{\rho}$ and $n_1$ are large enough, with $n_1$ depending on $\sigma$. The inclusion \eqref{BaB} is proved.
+%%
+%%Next we shall prove that
+%%\begin{equation}\label{BaB0}
+%%\PP_{z,x}\subset \PP_{z,\zero}.
+%%\end{equation}
+%%Indeed, fix $\xi\in \PP_{z,x}$. Then by \eqref{1fsdk13} and \eqref{2fsdk13} we get that
+%%\[
+%%\sigma
+%%\gtrsim_\plus \lb\zero|\xi\rb_x
+%%\gtrsim_\plus \min(\lb\zero|z\rb_x,\lb z|\xi\rb_x)
+%%\asymp_\plus \min(n_1,\lb z|\xi\rb_x).
+%%\]
+%%Thus if $n_1$ is large enough (depending on $\sigma$) then
+%%\[
+%%\lb\zero|\xi\rb_x\gtrsim_\plus \lb z|\xi\rb_x;
+%%\]
+%%it follows from this, \eqref{xz0}, and the change of viewpoint formula that
+%%\begin{equation}\label{2fsdk15}
+%%\lb z|\xi\rb_\zero
+%%\asymp_\plus \lb z|\xi\rb_x + \lb x|z\rb_\zero - \lb\zero|\xi\rb_x
+%%\asymp_\plus \lb z|\xi\rb_x - \lb\zero|\xi\rb_x
+%%\lesssim_\plus 0.
+%%\end{equation}
+%%So, if $\sigma > 0$ is taken large enough (not depending on anything), then $\lb z|\xi\rb_\zero < \sigma$, meaning that $\xi\in \PP_{z,\zero}$. The inclusion \eqref{BaB0} is proved, and in consequence the whole item (i).
+%%}% end ignore
+%\QEDmod\end{proof}
+%\begin{proof}[Proof of \text{(ii)}]
+%Take any $x\in S_{1,\tau}$. Then by \eqref{xz0}, we have
+%\begin{equation}
+%\label{asympan1}
+%\dist(x,z) - \dox z = \dox x - 2\lb x|z\rb_\zero \asymp_{\plus,\rho} \dox x \asymp_\plus n_1.
+%\end{equation}
+%Combining with the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} gives
+%\begin{equation}
+%\label{asympan1new}
+%\frac{\Diam_z(\PP_{z,x})}{\Diam_z(\PP_{z,\zero})}
+%\asymp_\times\frac{b^{-\dist(z,x)}}{b^{-\dist(z,\zero)}}
+%\asymp_{\times,\rho} b^{-n_1}.
+%\end{equation}
+%Thus by choosing $n_1$ sufficiently large depending on $\lambda$ and $\rho$ (and satisfying \eqref{ndef}), we guarantee that the second inequality of \eqref{lambdanew} holds. On the other hand, once $n_1$ and $n_2$ are chosen, \eqref{asympan1new} guarantees that if we choose $\kappa$ sufficiently small, then the first inequality of \eqref{lambdanew} holds.
+%
+%In order to prove \eqref{epsilonnew}, let $\xi\in \PP_{z,x}$ and let $\gamma\in \del X\setminus \PP_{z,\zero}$. We have
+%\begin{align*}
+%\lb x|\xi\rb_z &\asymp_\plus \dist(x,z) - \lb z|\xi\rb_x \geq \dist(x,z) - \sigma\\
+%\lb \zero|\gamma\rb_z &\asymp_\plus \dox z - \lb\zero|\xi\rb_x \leq \dox z - \sigma.
+%\end{align*}
+%Also, by \eqref{xz0} we have
+%\[
+%\lb \zero|x\rb_z \asymp_\plus \dox z - \lb x|z\rb_\zero \asymp_{\plus,\rho} \dox z.
+%\]
+%Applying Gromov's inequality twice and then applying \eqref{asympan1} gives
+%\begin{align*}
+%\dox z - \sigma \gtrsim_\plus \lb \zero|\gamma\rb_z
+%&\gtrsim_\plus \min\left(\lb\zero|x\rb_z,\lb x|\xi\rb_z,\lb \xi|\gamma\rb_z\right)\\
+%&\gtrsim_{\plus,\rho} \min\left(\dox z,\dist(x,z) - \sigma,\lb \xi|\gamma\rb_z\right)\\
+%&\asymp_\plus \min\left(\dox z,\dox z + n_1 - \sigma,\lb \xi|\gamma\rb_z\right).
+%\end{align*}
+%By choosing $n_1$ and $\sigma$ sufficiently large (depending on $\rho$), we can guarantee that neither of the first two expressions can represent the minimum without contradicting the inequality. Thus
+%\[
+%\dox z - \sigma \gtrsim_{\plus,\rho} \lb\xi|\gamma\rb_z;
+%\]
+%exponentiating and the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} give
+%\[
+%\Dist_z(\xi,\gamma)
+%\gtrsim_{\times,\rho} b^{-(\dox z - \sigma)}
+%\asymp_{\times,\sigma} b^{-\dox z}
+%\asymp_{\times,\sigma} \Diam_z(\PP_{z,\zero}).
+%\]
+%Thus we may choose $\kappa$ small enough, depending on $\rho$ and $\sigma$, so that \eqref{epsilonnew} holds.
+%%\ignore{
+%%Note that $\lb\gamma|z\rb_\zero\lesssim_\plus 0$ as $\gamma\in \del X\setminus \PP_{z,\zero}$. Therefore, using \eqref{2fsdk15}, we get
+%%\[
+%%0
+%%\asymp_\plus \lb z|\xi\rb_\zero
+%%\gtrsim_\plus \min(\lb\xi|\gamma\rb_\zero,\lb z|\gamma\rb_\zero)
+%%\gtrsim_\plus \min(\lb\xi|\gamma\rb_\zero,\sigma).
+%%\]
+%%So, $\lb\xi|\gamma\rb_\zero\lesssim_\plus 0$. Combining with (d) of Proposition \ref{propositionbasicidentities}, we have
+%%\[
+%%\lb\xi|\gamma\rb_z \lesssim_\plus \dox z.
+%%\]
+%%Inserting this in turn to \eqref{1fsdk19} and applying the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} gives
+%%\[
+%%\Dist_z(\xi,\gamma)\gtrsim_\times b^{-\dox z}\asymp_\times\Diam_z(\PP_{z,\zero}).
+%%\]
+%%Thus,
+%%\[
+%%\Dist_z(\PP_{z,x},\del X\setminus \PP_{z,\zero})\gtrsim_\times\Diam_z(\PP_{z,\zero}),
+%%\]
+%%finishing the proof of \eqref{epsilonnew} and thus of item (ii). 
+%%}% end ignore
+%\QEDmod\end{proof}
+%\begin{proof}[Proof of \text{(iii)}]
+%\begin{align*}
+%\sum_{x\in S_{1,\tau}}\Diam_z^s(\PP_{z,x})
+%&\asymp_{\times\phantom{,M}} \sum_{x\in S_{1,\tau}}b^{-s\dist(z,x)} \by{the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic}}\\
+%&\asymp_{\times,\rho} \;\; b^{-s\dist(z,\zero)}\sum_{x\in S_{1,\tau}}b^{-\dox x} \by{\eqref{asympan1}}\\
+%&\gtrsim_{\times,M} Mb^{-s\dist(z,\zero)} \by{\eqref{asdist0a}}\\
+%&\asymp_{\times\phantom{,M}} M\Diam_z^s(\PP_{z,\zero}). \by{the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic}}
+%\end{align*}
+%Letting $M$ be larger than the implied constant yields the result.
+%\QEDmod\end{proof}
+%\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+%\section{Groups for which $\delta = \w\delta$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section{Proof of Proposition \ref{propositionpoincareregular}}
+\section{Sufficient conditions for Poincar\'e regularity}
+\label{subsectionpropositionpoincareregular}
+We end this chapter by relating the modified Poincar\'e exponent to the classical Poincar\'e exponent under certain additional assumptions, thus completing the proof of Theorem \ref{theorembishopjonesregular}.
+
+\begin{proposition}
+\label{propositionpoincareregular}
+Let $G\leq\Isom(X)$ be nonelementary, and assume either that
+\begin{itemize}
+\item[(1)] $X$ is regularly geodesic and $G$ is moderately discrete,
+\item[(2)] $X$ is an algebraic hyperbolic space and $G$ is weakly discrete, or that
+\item[(3)] $X$ is an algebraic hyperbolic space and $G$ is COT-discrete and acts irreducibly.
+\end{itemize}
+Then $G$ is Poincar\'e regular.
+\end{proposition}
+
+\begin{remark}
+Example \ref{exampleAutTBIM} shows that Proposition \ref{propositionpoincareregular} cannot be improved by replacing ``COT'' with ``UOT'', Example \ref{examplepoincareextension} shows that Proposition \ref{propositionpoincareregular} cannot be improved by removing the assumption that $G$ acts irreducibly, Example \ref{exampleAutT} shows that Proposition \ref{propositionpoincareregular} cannot be improved by removing the hypothesis that $X$ is an algebraic hyperbolic space from (ii), and Example \ref{exampleAutTparttwo} shows that Proposition \ref{propositionpoincareregular} cannot be improved by removing the assumption that $X$ is regularly geodesic.
+\end{remark}
+
+We begin with the following observation:
+\begin{observation}
+If (3) implies that $G$ is Poincar\'e regular, then (2) does as well.
+\end{observation}
+\begin{proof}
+Suppose (2) holds, and let $S$ be the smallest totally geodesic subset of $\bord X$ which contains $\LambdaG$ (cf. Lemma \ref{lemmatotallygeodesic}). Since $G$ is nonelementary, $V := S\cap X$ is nonempty; it is clear that $V$ is $G$-invariant. By Observation \ref{observationrestrictions}, the action $G\given V$ is weakly discrete. By Proposition \ref{propositionparametricdiscreteness}, $G\given V$ is COT-discrete. Furthermore, $G$ acts irreducibly on $V$ because of the way $V$ was defined (cf. Proposition \ref{propositionactsreducibly}). Thus (3) holds for the action $G\given V$, which by our hypothesis implies $\Delta_G = \w\Delta_G$ (since the Poincar\'e set and modified Poincar\'e set are clearly stable under restrictions).
+\end{proof}
+
+We now proceed to prove that (1) and (3) each imply that $G$ is Poincar\'e regular.
+
+By contradiction, let us suppose that $G$ is Poincar\'e irregular. By Proposition \ref{propositionbasicmodified}(ii), we have that $G$ is not strongly discrete and thus
+\[
+\w\delta_G < \delta_G = \infty.
+\]
+This gives us two contrasting behaviors: On one hand, by Proposition \ref{propositionbasicmodified}(iii), there exist $\rho > 0$ and a maximal $\rho$-separated set $S_\rho\subset G(\zero)$ so that $S_\rho$ does not contain an bounded infinite set. On the other hand, since $G$ is not strongly discrete, there exists $\sigma > 0$ such that $\#(G_\sigma) = \infty$, where
+\[
+G_\sigma := \{g\in G:g(\zero)\in B(\zero,\sigma)\}.
+\]
+\begin{claim}
+\label{claimprecompact}
+For every $\xi\in\LambdaG$, the orbit $G_\sigma(\xi)$ is precompact.
+\end{claim}
+\begin{proof}
+Suppose not. Then the set $\cl{G_\sigma(\xi)}$ is complete (with respect to the metric $\Dist$) but not compact. It follows that $\cl{G_\sigma(\xi)}$, and thus also $G_\sigma(\xi)$, is not totally bounded. So there exists $\epsilon > 0$ and an infinite $\epsilon$-separated subset $(g_n(\xi))_1^\infty$.
+
+Fix $L$ large to be determined. Since $\xi\in\Lambda$, we can find $x\in G(\zero)$ such that $\lb x | \xi \rb_\zero \geq L$.
+
+\begin{subclaim}
+By choosing $L$ large enough we can ensure
+\[
+\dist(g_m(x),g_n(x)) \geq 2\rho \all m,n\in\N.
+\]
+\end{subclaim}
+\begin{subproof}
+By (d) of Proposition \ref{propositionbasicidentities},
+\[
+\lb g_n(x) | g_n(\xi) \rb_\zero \asymp_{\plus,\sigma} \lb g_n(x) | g_n(\xi) \rb_{g_n(\zero)} = \lb x|\xi\rb_\zero \geq L ,
+\]
+and thus 
+\[
+\Dist(g_n(x),g_n(\xi)) \lesssim_{\times,\sigma} b^{-L} .
+\]
+If $L$ is large enough, then this implies
+\[
+\Dist(g_n(x),g_n(\xi)) \leq \epsilon/3.
+\]
+Since by construction the sequence $(g_n(\xi))_1^\infty$ is $\epsilon$-separated, we also have
+\[
+\Dist(g_m(\xi),g_n(\xi)) \geq \epsilon
+\]
+and then the triangle inequality gives
+\[
+\Dist(g_m(x),g_n(x)) \geq \epsilon/3,
+\]
+or, taking logarithms,
+\[
+\lb g_m(x) | g_n(x) \rb_\zero \lesssim_\plus \ -\log_b(\epsilon/3).
+\]
+Now we also have
+\[
+\dox{g_n(x)} \asymp_{\plus,\sigma} \dox x \geq \lb x|\xi\rb_\zero \geq L
+\]
+and therefore
+\begin{align*}
+\dist(g_m(x),g_n(x))
+&=_{\phantom{\plus,\sigma}} \dox{g_m(x)} + \dox{g_n(x)} - 2\lb g_m(x)|g_n(x)\rb_\zero\\
+&\gtrsim_{\plus,\sigma} 2L - 2(- \log_b (\epsilon/3)).
+\end{align*}
+Thus by choosing $L$ sufficiently large, we ensure that $\dist(g_m(x),g_n(x)) \geq 2\rho$.
+
+\end{subproof}
+Recall that $S_\rho$ is a maximal $\rho$-separated set. Thus for each $n\in\N$, we can find $y_n\in S_\rho$ with $\dist(g_n(x),y_n) < \rho$. Then the subclaim implies $y_n\neq y_m$ for $n\neq m$. But on the other hand
+\[
+\dox{y_n} \leq \dox x + \sigma + \rho \all n\in\N,
+\]
+which implies that $S_\rho$ contains a bounded infinite set, a contradiction.
+\end{proof}
+
+We now proceed to disprove the hypotheses (1) and (3) of Proposition \ref{propositionpoincareregular}. Thus if either of these hypotheses are assumed, we have a contradiction which finishes the proof.
+
+\begin{proof}[Proof that \text{(1)} cannot hold]
+Since $G$ is assumed to be nonelementary, we can find distinct points $\xi_1,\xi_2\in \LambdaG$. By Claim \ref{claimprecompact}, there exist a sequence $(g_n)_1^\infty$ in $G_\sigma$ and points $\eta_1,\eta_2\in\LambdaG$ such that
+\[
+g_n(\xi_i)\tendsto n \eta_i.
+\]
+Next, choose a point $x\in\geo{\xi_1}{\xi_2}$. For each $n\in\N$, we have
+\[
+g_n(x)\in\geo{g_n(\xi_1)}{g_n(\xi_2)}.
+\]
+Thus since $X$ is regularly geodesic there exist a sequence $(n_k)_1^\infty$ and a point $z\in \geo{\eta_1}{\eta_2}$ such that
+\[
+g_{n_k}(x)\tendsto k z.
+\]
+Since $g_n\in G_\sigma \all n$, the sequence $(g_n(x))_1^\infty$ is bounded and thus $z\in X$. By contradiction, suppose that $G$ is moderately discrete, and fix $\epsilon > 0$ satisfying \eqref{MD2}. For all $m,n\in\N$ large enough so that $g_m(x),g_n(x)\in B(z,\epsilon/2)$, we have $\dist(x,g_m^{-1} g_n(x)) = \dist(g_m(x),g_n(x)) \leq \epsilon$. Thus for some $N\in\N$, we have 
+\[
+\#\{g_m^{-1} g_n : m,n\geq N\} < \infty.
+\] 
+This is clearly a contradiction.
+\end{proof}
+
+\begin{proof}[Proof that \text{(3)} cannot hold]
+Now we assume that $X$ is an algebraic hyperbolic space, say $X = \H = \H_\F^\alpha$, and that $G$ acts irreducibly on $X$. Using the identification
+\[
+\Isom(\H) \equiv \O^*(\LL;\QQ)/\sim,
+\]
+(Theorem \ref{theoremisometries}), for each $g\in G_\sigma$ let $T_g\in\O^*(\LL;\QQ)$ be a representative of $g$. Recall (Lemma \ref{lemmaoperatornorm}) that
+\[
+\|T_g\| = \|T_g^{-1}\| = e^{\dogo g},
+\]
+so since $g\in G_\sigma$ we have $\|T_g\| = \|T_g^{-1}\| \leq b^\sigma$. In particular, the family $(T_g)_{g\in G_\sigma}$ acts equicontinuously on $\LL$.
+
+For simplicity of exposition, in the following proof we will assume that $X$ is separable. (In the non-separable case, the reader should use nets instead of sequences.) It follows that $\LambdaG\subset\del X$ is also separable; let $(\xi_k = [\xx_k])_1^\infty$ be a dense sequence, with $\xx_k\in\LL$, $\|\xx_k\| = 1$.
+
+\begin{claim}
+There exists a sequence of distinct elements $(g_n)_1^\infty$ in $G_\sigma$ such that the following hold:
+\begin{align*}
+T_{g_n}[\xx_k] &\;\tendsto n\; \yy_k^{(+)}\in\LL\butnot\{\0\} \\
+T_{g_n}^{-1}[\xx_k] &\;\tendsto n\; \yy_k^{(-)}\in\LL\butnot\{\0\}\\
+\sigma(T_{g_n}) &\tendsto n \sigma\in\Aut(\F).
+\end{align*} 
+\end{claim}
+\begin{subproof}
+For each $k\in\N$ let
+\[
+\KK_k = \{\yy\in\LL\butnot\{\0\}: [\yy]\in \cl{G_\sigma(\xi_k)} \text{ and } b^{-\sigma} \leq \|\yy\| \leq b^\sigma\},
+\]
+and let
+\[
+\KK := \left(\prod_{k\in\N}\KK_k\right)^2 \times \Aut(\F).
+\]
+Then by Claim \ref{claimprecompact} (and general topology), $\KK$ is a compact metrizable space, and is in particular sequentially compact. Now for each $g\in G_\sigma$,
+\[
+b^{-\sigma} \leq \|T_g[\xx_k]\| \leq b^\sigma \text{ and } b^{-\sigma} \leq \|T_g^{-1}[\xx_k]\| \leq b^\sigma 
+\]
+and thus
+\[
+\phi_g := \left((T_g(\xx_k))_1^\infty, (T_g^{-1}(\xx_k))_1^\infty, \sigma(T_g)\right)\in\KK,
+\]
+and so since $\#(G_\sigma) = \infty$, there exists a sequence of distinct elements $(g_n)_1^\infty$ in $G_\sigma$ so that the sequence $(\phi_{g_n})_1^\infty$ converges to a point
+\[
+\left((\yy_k^{(+)})_1^\infty, (\yy_k^{(-)})_1^\infty, \sigma\right)\in\KK.
+\]
+Writing out what this means yields the claim.
+\end{subproof}
+
+Let $T_n = T_{g_n}$ and $\sigma_n = \sigma(T_n) \to \sigma$. We claim that the sequence $(T_n)_1^\infty$ is convergent in the strong operator topology. Let
+\begin{align*}
+\K &= \{a\in\F : \sigma(a) = a\}\\
+V &= \{\xx\in\LL:\text{the sequence $(T_n[\xx])_1^\infty$ converges}\}.
+\end{align*}
+Then $\K$ is an $\R$-subalgebra of $\F$, and $V$ is a $\K$-module. Given $\xx,\yy\in V$, by Observation \ref{observationBQpreserving} we have
+\[
+\sigma_n(B_\QQ(\xx,\yy)) = B_\QQ(T_n\xx,T_n\yy) \tendsto n B_\QQ(\xx,\yy),
+\]
+so $B(\xx,\yy)\in \K$. Thus $V$ satisfies \eqref{totallygeodesic}. On the other hand, since the family $(T_n)_1^\infty$ acts equicontinuously on $\LL$, the set $V$ is closed. Thus $[V]\cap\bord X$ is totally geodesic. But by construction, $\xi_k\in[V]$ for all $k$, and so
+\[
+\LambdaG \subset [V]
+\]
+Therefore, since by hypothesis $G$ acts irreducibly, it follows that $[V] = X$, i.e. $V = \LL$ (Proposition \ref{propositionactsreducibly}). So for every $\xx\in\LL$, the sequence $(T_n(\xx))_1^\infty$ converges. Thus
+\[
+T_n \tendsto n T^{(+)}\in L(\LL)
+\]
+in the strong operator topology. (The boundedness of the operator $T^{(+)}$ follows from the uniform boundedness of the operators $(T_n)_1^\infty$.) We do not yet know that $T^{(+)}$ is invertible. But a similar argument yields that
+\[
+T_n^{-1} \tendsto n T^{(-)}\in L(\LL),
+\]
+and since the sequences $(T_n)_1^\infty$ and $(T_n^{-1})_1^\infty$ are equicontinuous, we have
+\[
+T^{(+)}T^{(-)} = \lim_{n\to\infty}T_n T_n^{-1} = I,
+\]
+and similarly $T^{(-)}T^{(+)} = I$. Thus $T^{(+)}$ and $T^{(-)}$ are inverses of each other and in particular
+\[
+T^{(+)}\in \O^*(\LL;\QQ).
+\]
+Let $h = [T^{(+)}]\in\Isom(X)$. By Proposition \ref{propositionCOTSOT}, we have $g_n\to h$ in the compact-open topology. Thus, Lemma \ref{lemmadiscretesubgroup} completes the proof.
+\end{proof}
+
+\endinput

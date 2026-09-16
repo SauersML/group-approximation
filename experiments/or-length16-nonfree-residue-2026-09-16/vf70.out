@@ -1,0 +1,395 @@
+K TTTATATTaaTAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATTaaTAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATTaaTAAtaa k=3 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTATATTaaTAAtaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTATATTaaTAAtaa k=5 reps=3 b1=[(1, 1), (2, 1)] chars=4 monic=3 cert=True
+CERT TTTATATTaaTAAtaa k=5 a=[0, 3, 4, 2, 1] t=[1, 3, 0, 4, 2] c=[-1, -2, 0, 0, 1, 0, -1, 0, 2, -1] pot=[0, -1, 1, 1, -1] cp=[-1, 0, -2, 0, 1, -1, 1, -1, 0, 1] delta=[1, -2, 3, -1, 0, 2, -2, 3, 0, 0, -1, -2, -1]
+K TTTATATTaatAATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATTaatAATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATTaatAATaa k=3 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=6 cert=False
+K TTTATATTaatAATaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATATTaatAATaa k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATATTaatAATaa k=6 reps=27 b1=[(1, 9), (2, 7)] chars=58 monic=22 cert=True
+CERT TTTATATTaatAATaa k=6 a=[1, 2, 0, 5, 3, 4] t=[1, 4, 5, 0, 3, 2] c=[0, 3, 0, 0, 0, 3, 0, 1, -3, 0, 0, 2] pot=[0, 0, -1, 0, -1, 0] cp=[0, 2, 1, 0, 1, 2, 0, 0, -2, 0, 1, 1] delta=[1, -5, 6, 0, -1, 7, -7, -7, 8, 2, -3, -1]
+K TTTATATTaatAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATTaatAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATTaatAAtaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATATTaatAAtaa k=4 reps=8 b1=[(1, 1), (2, 1)] chars=4 monic=3 cert=True
+CERT TTTATATTaatAAtaa k=4 a=[0, 2, 3, 1] t=[1, 3, 0, 2] c=[2, 4, 0, 2, 0, 1, 0, -1] pot=[0, -1, -1, -1] cp=[2, 4, 0, 2, -1, 1, 1, -1] delta=[1, 0, 0, -2, 3, -3, 1, 2, -3, 3, -5, 3, -2, 0, 1, 1, 0, -2, 3, -2, 1]
+K TTTATATaaTAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATaaTAAttaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATaaTAAttaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATaaTAAttaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATATaaTAAttaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATaaTAAttaa k=6 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTATATaatAATTaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATaatAATTaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATaatAATTaa k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATATaatAATTaa k=4 reps=6 b1=[(1, 6)] chars=6 monic=0 cert=False
+K TTTATATaatAATTaa k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATATaatAATTaa k=6 reps=19 b1=[(1, 15), (2, 4)] chars=47 monic=13 cert=False
+K TTTATATaatAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATATaatAAttaa k=2 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=5 cert=False
+K TTTATATaatAAttaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATATaatAAttaa k=4 reps=5 b1=[(1, 2), (2, 3)] chars=26 monic=15 cert=False
+K TTTATATaatAAttaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATaatAAttaa k=6 reps=9 b1=[(1, 6), (2, 3)] chars=30 monic=20 cert=False
+K TTTATAAATTattATA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAATTattATA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAATTattATA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAAATTattATA k=4 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=5 cert=False
+K TTTATAAATTattATA k=5 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATAAATTattATA k=6 reps=7 b1=[(2, 1)] chars=4 monic=3 cert=True
+CERT TTTATAAATTattATA k=6 a=[0, 3, 5, 1, 4, 2] t=[1, 4, 0, 5, 2, 3] c=[-1, -1, 0, -5, 1, 6, 0, 0, 0, 0, 0, 0] pot=[0, 1, -1, 1, 1, 1] cp=[-1, -1, 2, -5, 1, 4, 1, 0, 1, 0, -2, 0] delta=[1, 0, 1, -1, 3, -1, 0, 0, 0, -1, -3, -4, 0, 2, 0, 1, -1, 0, -2, 0, 4, 3, 1, 0, 0, 0, 1, -3, 1, -1, 0, -1]
+K TTTATAAATATTattA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAATATTattA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAATATTattA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAAATATTattA k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAAATATTattA k=5 reps=7 b1=[(1, 1), (2, 1)] chars=3 monic=1 cert=True
+CERT TTTATAAATATTattA k=5 a=[0, 3, 1, 4, 2] t=[1, 4, 0, 3, 2] c=[3, -9, 1, 0, 0, 0, 6, 0, 1, -2] pot=[0, -1, 1, 1, 0] cp=[3, -7, -1, -1, 1, -1, 7, -1, 1, -1] delta=[1, 0, -1, 0, 0, 1, 1, -1, -4, -1, 3, 2, -4, 1, 2, 1, 4, 2, -7, -1, 3, 3, -5, 0, 4, -7, 2, 0, -4, 1, 6, -2, -6, 1, 6, -1, 6, 2, -7, 1, 2, -1, -2, 0, 0, -2, 1, 1, -2, 0, 1]
+K TTTATAAtaTTAtATA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtaTTAtATA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtaTTAtATA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAAtaTTAtATA k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAAtaTTAtATA k=5 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATAAtaTTAtATA k=6 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=0 cert=False
+K TTTATAAtaTattATA k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAAtaTattATA k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAAtaTattATA k=3 reps=4 b1=[(3, 1)] chars=11 monic=4 cert=True
+CERT TTTATAAtaTattATA k=3 a=[0, 1, 2] t=[1, 2, 0] c=[1, 1, -2, 0, 0, 0] pot=[0, -1, -1] cp=[1, 1, -2, -1, 0, 1] delta=[-1, 1, -1, 3, -2, 2, -3, 1, -1, 1]
+K TTTATAAtataTTAtA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtataTTAtA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtataTTAtA k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATAAtataTTAtA k=4 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAAtataTTAtA k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtataTTAtA k=6 reps=10 b1=[(2, 1)] chars=1 monic=1 cert=True
+CERT TTTATAAtataTTAtA k=6 a=[0, 1, 3, 2, 4, 5] t=[1, 3, 0, 5, 2, 4] c=[-5, -1, 0, -2, -1, 3, 0, 0, 0, 6, 0, 0] pot=[0, 0, 1, 0, 0, -1] cp=[-5, -1, -1, -1, -1, 3, 0, 0, -1, 5, 1, 1] delta=[-1, -1, 1, -1, -1, 3, -3, -1, 3, 1, 0, 1, -1, -1, 1, 0, -2, 4, -6, -1, 6, -2, 0, 1, -1, 1, 2, -2, -3, 3, -1, -1, 1, -1, 1, 1]
+K TTTATAAtataTattA k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAAtataTattA k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAAtataTattA k=3 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAAtataTattA k=4 reps=2 b1=[(1, 2)] chars=2 monic=1 cert=False
+K TTTATAAtataTattA k=5 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=9 cert=False
+K TTTATAAtataTattA k=6 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=8 cert=False
+K TTTATAtATATTatAA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATATTatAA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATATTatAA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAtATATTatAA k=4 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtATATTatAA k=5 reps=7 b1=[(1, 6), (2, 1)] chars=14 monic=3 cert=False
+K TTTATAtATATTatAA k=6 reps=9 b1=[(1, 9)] chars=9 monic=0 cert=False
+K TTTATAtATATaattA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATATaattA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATATaattA k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATAtATATaattA k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAtATATaattA k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtATATaattA k=6 reps=6 b1=[(1, 5), (2, 1)] chars=13 monic=0 cert=False
+K TTTATAtATaattATA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATaattATA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATaattATA k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATAtATaattATA k=4 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtATaattATA k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTTATAtATaattATA k=6 reps=10 b1=[(1, 4), (2, 1)] chars=9 monic=4 cert=True
+CERT TTTATAtATaattATA k=6 a=[1, 3, 0, 4, 5, 2] t=[0, 4, 3, 2, 5, 1] c=[0, -2, 0, 0, 2, 0, -1, -3, 0, 1, 1, 2] pot=[0, -1, -1, 0, 1, 1] cp=[-1, -1, 1, 1, 2, -2, -1, -1, 1, 0, 1, 0] delta=[-1, 4, -5, 0, 15, -31, 24, 0, -24, 21, -6, 0, 4, -1]
+K TTTATAtaaTAATTaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtaaTAATTaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtaaTAATTaa k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATAtaaTAATTaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTATAtaaTAATTaa k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTTATAtaaTAATTaa k=6 reps=13 b1=[(1, 12), (2, 1)] chars=20 monic=0 cert=False
+K TTTATAtaaTAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtaaTAAttaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=2 monic=1 cert=True
+CERT TTTATAtaaTAAttaa k=2 a=[1, 0] t=[0, 1] c=[0, 0, -1, 1] pot=[0, -1] cp=[-1, 1, -1, 1] delta=[-1, -1, 1, -1, 1, 1]
+K TTTATAtaatAATTaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtaatAATTaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtaatAATTaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtaatAATTaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATAtaatAATTaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtaatAATTaa k=6 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAttaaTAATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttaaTAATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAttaaTAATaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAttaaTAATaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTATAttaaTAATaa k=5 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=3 cert=False
+K TTTATAttaaTAATaa k=6 reps=10 b1=[(1, 8), (2, 2)] chars=24 monic=1 cert=False
+K TTTATAttaaTAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttaaTAAtaa k=2 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTTATAttaaTAAtaa k=3 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAttaaTAAtaa k=4 reps=6 b1=[(1, 2), (2, 4)] chars=34 monic=1 cert=False
+K TTTATAttaaTAAtaa k=5 reps=4 b1=[(1, 3), (2, 1)] chars=11 monic=0 cert=False
+K TTTATAttaaTAAtaa k=6 reps=18 b1=[(1, 1), (2, 1)] chars=7 monic=1 cert=True
+CERT TTTATAttaaTAAtaa k=6 a=[0, 2, 1, 4, 3, 5] t=[1, 3, 0, 5, 2, 4] c=[10, -5, 22, 0, 11, 4, 0, -8, 0, 8, 0, 0] pot=[0, -1, 0, 0, 1, -1] cp=[10, -4, 21, 1, 10, 4, -1, -7, 0, 7, -1, 2] delta=[-1, 1, 0, -3, 3, 0, -5, 5, 0, -5, 4, 0, -4, 2, -1, -2, 1, -2, -1, 5, -5, -5, 13, -7, -11, 22, -4, -19, 29, 2, -27, 28, 11, -31, 19, 24, -33, 11, 30, -36, 4, 34, -40, -2, 40, -40, -8, 40, -30, -22, 40, -18, -33, 39, -2, -39, 30, 13, -37, 18, 17, -25, 6, 16, -13, -1, 12, -7, -3, 8, -3, -3, 5, -3, -1, 3, -3, 0, 1, -1]
+K TTTATAttaaattATA k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttaaattATA k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttaaattATA k=3 reps=2 b1=[(2, 1)] chars=2 monic=2 cert=True
+CERT TTTATAttaaattATA k=3 a=[0, 2, 1] t=[1, 0, 2] c=[-3, 0, 4, 0, 1, -2] pot=[0, -1, 1] cp=[-3, 2, 2, -1, 2, -2] delta=[1, -1, 0, 1, -1, -2, 1, 0, -1, 2, 1, -1, 0, 1, -1]
+K TTTATAttaatAATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttaatAATaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=2 monic=1 cert=True
+CERT TTTATAttaatAATaa k=2 a=[1, 0] t=[0, 1] c=[0, 0, -1, 1] pot=[0, -1] cp=[-1, 1, -1, 1] delta=[1, -2, 0, 0, 0, 0, 2, -1]
+K TTTATAttataTTAAA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataTTAAA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataTTAAA k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATAttataTTAAA k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAttataTTAAA k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataTTAAA k=6 reps=10 b1=[(1, 8), (2, 2)] chars=24 monic=2 cert=False
+K TTTATAttataTatAA k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttataTatAA k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttataTatAA k=3 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttataTatAA k=4 reps=2 b1=[(1, 2)] chars=2 monic=2 cert=False
+K TTTATAttataTatAA k=5 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=2 cert=False
+K TTTATAttataTatAA k=6 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=9 cert=False
+K TTTATAttataaTAtA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataaTAtA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataaTAtA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAttataaTAtA k=4 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=0 cert=False
+K TTTATAttataaTAtA k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAttataaTAtA k=6 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=4 cert=False
+K TTTAATTaTaTAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaTaTAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaTaTAAtaa k=3 reps=5 b1=[(1, 4), (3, 1)] chars=53 monic=49 cert=False
+K TTTAATTaTaTAAtaa k=4 reps=6 b1=[(1, 5), (2, 1)] chars=13 monic=5 cert=False
+K TTTAATTaTaTAAtaa k=5 reps=4 b1=[(1, 3), (2, 1)] chars=11 monic=0 cert=False
+K TTTAATTaTaTAAtaa k=6 reps=24 b1=[(1, 10), (3, 2), (4, 1)] chars=115 monic=28 cert=True
+CERT TTTAATTaTaTAAtaa k=6 a=[1, 3, 0, 5, 2, 4] t=[2, 0, 1, 4, 5, 3] c=[0, 0, 0, -2, 0, 0, -3, 2, 0, 0, 2, -1] pot=[0, 0, 0, 1, 0, 0] cp=[0, 1, 0, -3, 0, 0, -3, 2, 0, -1, 2, 0] delta=[1, -3, 3, -2, 3, 2, -9, 9, -14, 22, -27, 24, -11, 3, 5, -18, 23, -13, -3, 9, -4, -1, 1]
+K TTTAATTaTatAATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaTatAATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaTatAATaa k=3 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=4 cert=False
+K TTTAATTaTatAATaa k=4 reps=6 b1=[(1, 6)] chars=6 monic=0 cert=False
+K TTTAATTaTatAATaa k=5 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTAATTaTatAATaa k=6 reps=25 b1=[(1, 8), (2, 3)] chars=29 monic=10 cert=True
+CERT TTTAATTaTatAATaa k=6 a=[1, 3, 0, 5, 2, 4] t=[0, 2, 1, 4, 3, 5] c=[0, -2, 0, -1, 0, 0, 1, -2, 1, 0, -1, 1] pot=[0, -1, -1, -1, -1, 0] cp=[-1, -2, 1, 0, 0, -1, 1, -2, 1, 0, -1, 1] delta=[-1, 3, -5, 11, -9, 6, 4, -8, 4, 4, -9, -2, -3, 3, 1, 1]
+K TTTAATTaTatAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaTatAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaTatAAtaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaTatAAtaa k=4 reps=8 b1=[(1, 7), (2, 1)] chars=15 monic=6 cert=False
+K TTTAATTaTatAAtaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaTatAAtaa k=6 reps=12 b1=[(1, 11), (2, 1)] chars=19 monic=1 cert=False
+K TTTAATTaaTATAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaaTATAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaaTATAtaa k=3 reps=4 b1=[(1, 3), (3, 1)] chars=52 monic=49 cert=False
+K TTTAATTaaTATAtaa k=4 reps=6 b1=[(1, 1), (2, 1)] chars=7 monic=3 cert=True
+CERT TTTAATTaaTATAtaa k=4 a=[0, 3, 1, 2] t=[1, 2, 0, 3] c=[1, -6, 1, 0, 0, -2, 0, 2] pot=[0, -1, 1, 1] cp=[1, -4, -1, 0, -1, 0, -1, 2] delta=[-1, 1, 0, 0, 0, -2, 1, 1, 2, 1, -5, 6, 0, -4, 3, -2, 1, -1, -2, 0, 1]
+K TTTAATTaaTAAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaaTAAtata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaaTAAtata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaaTAAtata k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAATTaaTAAtata k=5 reps=4 b1=[(1, 3), (2, 1)] chars=11 monic=0 cert=False
+K TTTAATTaaTAAtata k=6 reps=8 b1=[(1, 8)] chars=8 monic=0 cert=False
+K TTTAATTaaTAtAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaaTAtAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaaTAtAtaa k=3 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=5 cert=False
+K TTTAATTaaTAtAtaa k=4 reps=8 b1=[(1, 7), (2, 1)] chars=15 monic=5 cert=False
+K TTTAATTaaTAtAtaa k=5 reps=5 b1=[(1, 3), (2, 2)] chars=19 monic=0 cert=False
+K TTTAATTaaTAtAtaa k=6 reps=14 b1=[(1, 1), (2, 1), (3, 1)] chars=10 monic=3 cert=True
+CERT TTTAATTaaTAtAtaa k=6 a=[0, 2, 4, 1, 3, 5] t=[1, 2, 0, 5, 3, 4] c=[-2, -3, 0, 0, 0, -1, 0, -1, 0, 0, 1, 0] pot=[0, -1, 0, -1, -1, 0] cp=[-2, -2, -1, 0, 0, -1, -1, 0, 0, 1, 1, -1] delta=[-1, 1, -2, 6, -8, 8, -7, 9, -9, 1, 8, -14, 14, -10, 5, -1]
+K TTTAATTaatATATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatATATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatATATaa k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTAATTaatATATaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTaatATATaa k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatATATaa k=6 reps=14 b1=[(1, 13), (2, 1)] chars=21 monic=0 cert=False
+K TTTAATTaatATAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatATAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatATAtaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatATAtaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAATTaatATAtaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatATAtaa k=6 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAATata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAATata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAATata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatAATata k=4 reps=8 b1=[(1, 7), (2, 1)] chars=15 monic=2 cert=False
+K TTTAATTaatAATata k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAATata k=6 reps=14 b1=[(1, 11), (2, 3)] chars=35 monic=5 cert=False
+K TTTAATTaatAAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAAtata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAAtata k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAAtata k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTaatAAtata k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAAtata k=6 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAtATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAtATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAtATaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatAtATaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAATTaatAtATaa k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatAtATaa k=6 reps=9 b1=[(1, 9)] chars=9 monic=0 cert=False
+K TTTAATTaatAtAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAtAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAtAtaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAtAtaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTaatAtAtaa k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTaatAtAtaa k=6 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTataTAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTataTAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTataTAAtaa k=3 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=5 cert=False
+K TTTAATTataTAAtaa k=4 reps=8 b1=[(1, 4), (2, 1)] chars=5 monic=1 cert=True
+CERT TTTAATTataTAAtaa k=4 a=[1, 3, 0, 2] t=[0, 3, 1, 2] c=[0, -4, 0, 0, 2, -3, 0, 1] pot=[0, -1, 1, 1] cp=[-1, -2, -1, 0, 2, -1, -2, 1] delta=[-1, 0, 1, 1, -1, -1, -3, 4, 3, -4, 0, 0, 1, 1, -3, 0, 3, -1]
+K TTTAATTatatAATaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTatatAATaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTatatAATaa k=3 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTatatAATaa k=4 reps=8 b1=[(1, 8)] chars=8 monic=0 cert=False
+K TTTAATTatatAATaa k=5 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTatatAATaa k=6 reps=18 b1=[(1, 7), (2, 2)] chars=20 monic=8 cert=True
+CERT TTTAATTatatAATaa k=6 a=[1, 3, 0, 5, 2, 4] t=[0, 2, 1, 4, 3, 5] c=[0, -1, 0, 1, 0, 0, -1, -2, 1, 0, 1, 1] pot=[0, -1, 0, 1, 1, 0] cp=[-1, 1, 0, 0, -1, 1, -1, -1, 0, 0, 1, 1] delta=[1, -1, 2, -2, 6, -4, -3, 5, -5, 3, 4, -6, 2, -2, 1, -1]
+K TTTAATTatatAAtaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATTatatAAtaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTatatAAtaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTatatAAtaa k=4 reps=6 b1=[(1, 6)] chars=6 monic=0 cert=False
+K TTTAATTatatAAtaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTatatAAtaa k=6 reps=12 b1=[(1, 12)] chars=12 monic=0 cert=False
+K TTTAATaTaTAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaTaTAAttaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaTaTAAttaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaTaTAAttaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAATaTaTAAttaa k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=1 cert=False
+K TTTAATaTaTAAttaa k=6 reps=4 b1=[(1, 3), (2, 1)] chars=11 monic=7 cert=False
+K TTTAATaTatAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaTatAAttaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=2 monic=1 cert=True
+CERT TTTAATaTatAAttaa k=2 a=[1, 0] t=[0, 1] c=[0, 0, -1, 1] pot=[0, -1] cp=[-1, 1, -1, 1] delta=[-1, 0, 1, 1, -1, -1, 0, 1]
+K TTTAATaaTATAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaaTATAttaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaaTATAttaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATaaTATAttaa k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAATaaTATAttaa k=5 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATaaTATAttaa k=6 reps=11 b1=[(1, 9), (2, 2)] chars=25 monic=4 cert=False
+K TTTAATaaTAAttata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaaTAAttata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaaTAAttata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATaaTAAttata k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATaaTAAttata k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=3 cert=False
+K TTTAATaaTAAttata k=6 reps=10 b1=[(1, 8), (2, 2)] chars=24 monic=1 cert=False
+K TTTAATaaTAtAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaaTAtAttaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaaTAtAttaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATaaTAtAttaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATaaTAtAttaa k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaaTAtAttaa k=6 reps=10 b1=[(1, 10)] chars=10 monic=0 cert=False
+K TTTAATaatATAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaatATAttaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=3 monic=2 cert=True
+CERT TTTAATaatATAttaa k=2 a=[1, 0] t=[0, 1] c=[0, 1, 2, -2] pot=[0, -1] cp=[-1, 2, 2, -2] delta=[-1, 2, -2, 1, 1, -2, 4, -7, 5, -2, 0, 1, -1, 2, -1]
+K TTTAATaatAATTata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATaatAATTata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaatAATTata k=3 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaatAATTata k=4 reps=9 b1=[(1, 8), (2, 1)] chars=16 monic=1 cert=False
+K TTTAATaatAATTata k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATaatAATTata k=6 reps=20 b1=[(1, 14), (2, 6)] chars=62 monic=13 cert=False
+K TTTAATataTAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATataTAAttaa k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATataTAAttaa k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAATataTAAttaa k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATataTAAttaa k=5 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=0 cert=False
+K TTTAATataTAAttaa k=6 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTAAtaTaTAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaTaTAAttaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=3 monic=1 cert=True
+CERT TTTAAtaTaTAAttaa k=2 a=[1, 0] t=[0, 1] c=[0, 1, 2, -2] pot=[0, -1] cp=[-1, 2, 2, -2] delta=[1, -2, 3, -6, 7, -9, 8, -6, 5, -2, 1]
+K TTTAAtaaTATAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaaTATAttaa k=2 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=1 cert=False
+K TTTAAtaaTATAttaa k=3 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAtaaTATAttaa k=4 reps=5 b1=[(1, 2), (2, 3)] chars=26 monic=1 cert=False
+K TTTAAtaaTATAttaa k=5 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAAtaaTATAttaa k=6 reps=13 b1=[(1, 8), (2, 5)] chars=48 monic=4 cert=False
+K TTTAAtaaTAATTata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaaTAATTata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAtaaTAATTata k=3 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAtaaTAATTata k=4 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTTAAtaaTAATTata k=5 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=5 cert=False
+K TTTAAtaaTAATTata k=6 reps=15 b1=[(1, 12), (2, 3)] chars=36 monic=9 cert=False
+K TTTAAtaatAATTata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaatAATTata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAtaatAATTata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAAtaatAATTata k=4 reps=6 b1=[(1, 6)] chars=6 monic=0 cert=False
+K TTTAAtaatAATTata k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAAtaatAATTata k=6 reps=11 b1=[(1, 10), (2, 1)] chars=18 monic=6 cert=False
+K TTTAAtaatAAttata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaatAAttata k=2 reps=3 b1=[(1, 1), (2, 1)] chars=2 monic=1 cert=True
+CERT TTTAAtaatAAttata k=2 a=[1, 0] t=[0, 1] c=[0, 0, -1, 1] pot=[0, -1] cp=[-1, 1, -1, 1] delta=[1, -1, 1, 0, 0, -1, 1, -1]
+K TTTAAtaatAtAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtaatAtAttaa k=2 reps=3 b1=[(1, 1), (2, 1)] chars=3 monic=1 cert=True
+CERT TTTAAtaatAtAttaa k=2 a=[1, 0] t=[0, 1] c=[0, 1, 2, -2] pot=[0, -1] cp=[-1, 2, 2, -2] delta=[1, -2, 3, -2, 3, -5, 4, -2, 1, -2, 1]
+K TTTAAtataTTATAtA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtataTTATAtA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtataTTATAtA k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTAAtataTTATAtA k=4 reps=2 b1=[(2, 1)] chars=1 monic=1 cert=True
+CERT TTTAAtataTTATAtA k=4 a=[0, 2, 3, 1] t=[1, 2, 0, 3] c=[-2, -1, 0, 1, 0, 0, 0, 2] pot=[0, -1, -1, 1] cp=[-2, -1, 2, -1, -1, 0, 1, 2] delta=[1, -2, 3, -5, 10, -11, 17, -25, 20, -23, 28, -18, 14, -14, 7, -4, 3, -1]
+K TTTAAtataTatattA k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTAAtataTatattA k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTAAtataTatattA k=3 reps=2 b1=[(2, 1)] chars=2 monic=2 cert=True
+CERT TTTAAtataTatattA k=3 a=[0, 2, 1] t=[1, 0, 2] c=[-3, 0, 4, 0, 1, -2] pot=[0, -1, -1] cp=[-3, 0, 4, -1, 2, -2] delta=[-1, 1, 0, 1, -1, 2, -1, 0, -3, 2, -1, 1, 0, 1, -1]
+K TTTAAtatatAAttaa k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAtatatAAttaa k=2 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=5 cert=False
+K TTTAAtatatAAttaa k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAAtatatAAttaa k=4 reps=5 b1=[(1, 2), (2, 3)] chars=26 monic=15 cert=False
+K TTTAAtatatAAttaa k=5 reps=3 b1=[(3, 1)] chars=9 monic=5 cert=True
+CERT TTTAAtatatAAttaa k=5 a=[0, 2, 1, 4, 3] t=[1, 3, 0, 4, 2] c=[2, 1, -4, 0, -2, 0, 2, 0, -2, 0] pot=[0, 0, -1, -1, -1] cp=[2, 0, -3, 0, -2, 0, 1, 1, -2, 0] delta=[1, -2, 3, -3, 1, 0, -2, 1, -2, 2, 5, -5, 3, 3, -6, -1, 2, 0, -2, 2, 0, 1, -2, 2, -1]
+K TTTAAttaaTAATata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAttaaTAATata k=2 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAttaaTAATata k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAttaaTAATata k=4 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAAttaaTAATata k=5 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAAttaaTAATata k=6 reps=6 b1=[(1, 5), (2, 1)] chars=13 monic=0 cert=False
+K TTTAAttaatAAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAAttaatAAtata k=2 reps=3 b1=[(1, 1), (2, 1)] chars=2 monic=1 cert=True
+CERT TTTAAttaatAAtata k=2 a=[1, 0] t=[0, 1] c=[0, 0, -1, 1] pot=[0, -1] cp=[-1, 1, -1, 1] delta=[1, 0, -1, 1, -1, 1, 0, -1]
+K TTTAtATATaatattA k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAtATATaatattA k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAtATATaatattA k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAtATATaatattA k=4 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=4 cert=False
+K TTTAtATATaatattA k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTAtATATaatattA k=6 reps=7 b1=[(2, 1)] chars=4 monic=3 cert=True
+CERT TTTAtATATaatattA k=6 a=[0, 3, 5, 1, 4, 2] t=[1, 4, 0, 5, 2, 3] c=[1, 1, 0, -3, -1, 2, 0, 0, 0, 0, 0, 0] pot=[0, 0, -1, -1, -1, -1] cp=[1, 0, 0, -2, -1, 2, 0, -1, 1, 0, 0, 0] delta=[-1, 2, -1, 1, -1, 0, 2, -2, -1, 3, -3, 1, 2, -2, 0, 1, -1, 1, -2, 1]
+K TTATAAtaTTAttata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAAtaTTAttata k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAAtaTTAttata k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAAtaTTAttata k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAAtaTTAttata k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTATAAtaTTAttata k=6 reps=7 b1=[(1, 4), (2, 3)] chars=28 monic=0 cert=False
+K TTATAtATTatAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATTatAtata k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATTatAtata k=3 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATTatAtata k=4 reps=2 b1=[(1, 2)] chars=2 monic=1 cert=False
+K TTATAtATTatAtata k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=6 cert=False
+K TTATAtATTatAtata k=6 reps=4 b1=[(1, 4)] chars=4 monic=1 cert=False
+K TTATAtATATTatAta k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATATTatAta k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATATTatAta k=3 reps=4 b1=[(3, 1)] chars=9 monic=4 cert=True
+CERT TTATAtATATTatAta k=3 a=[0, 1, 2] t=[1, 2, 0] c=[3, 1, -2, 0, -2, 0] pot=[0, -1, -1] cp=[3, 1, -2, -1, -2, 1] delta=[1, -1, -2, 2, 0, -1, 1, 3, -1, -4, 0, 2, 1, -1]
+K TTATAtATATaTAtta k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAtATATaTAtta k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAtATATaTAtta k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTATAtATATaTAtta k=4 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTATAtATATaTAtta k=5 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTATAtATATaTAtta k=6 reps=8 b1=[(1, 6), (2, 2)] chars=22 monic=11 cert=False
+K TTATAtATaTAttata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAtATaTAttata k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAtATaTAttata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAtATaTAttata k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAtATaTAttata k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAtATaTAttata k=6 reps=7 b1=[(1, 7)] chars=7 monic=0 cert=False
+K TTATAttaTTAAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTTAAtata k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTTAAtata k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTTAAtata k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAttaTTAAtata k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTATAttaTTAAtata k=6 reps=7 b1=[(1, 5), (2, 2)] chars=21 monic=4 cert=False
+K TTATAttaTatAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTatAtata k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTatAtata k=3 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAttaTatAtata k=4 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTATAttaTatAtata k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTatAtata k=6 reps=7 b1=[(1, 6), (2, 1)] chars=14 monic=0 cert=False
+K TTATAttaaTAttata k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaaTAttata k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaaTAttata k=3 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaaTAttata k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAttaaTAttata k=5 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaaTAttata k=6 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=2 cert=False
+K TTAtATTatatAtata k=1 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTAtATTatatAtata k=2 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTAtATTatatAtata k=3 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=8 cert=False
+K TTAtATTatatAtata k=4 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=2 cert=False
+K TTAtATTatatAtata k=5 reps=2 b1=[(2, 1)] chars=1 monic=1 cert=True
+CERT TTAtATTatatAtata k=5 a=[1, 0, 3, 4, 2] t=[2, 3, 1, 0, 4] c=[0, 1, -2, 0, -1, 0, 1, 0, 0, 1] pot=[0, 0, -1, -1, -1] cp=[0, 1, -2, 0, -1, -1, 0, 1, 1, 1] delta=[-1, 2, -1, -1, 0, 3, -3, 0, 1, 1, -2, 1]
+K TTAtATATaTATAtta k=1 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTAtATATaTATAtta k=2 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTAtATATaTATAtta k=3 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTAtATATaTATAtta k=4 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTAtATATaTATAtta k=5 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTAtATATaTATAtta k=6 reps=6 b1=[(1, 6)] chars=6 monic=0 cert=False
+SWEEP_DONE

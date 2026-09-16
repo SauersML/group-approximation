@@ -1,0 +1,329 @@
+== Part A: shapes on 5 vertices ==
+connected triangle-free graphs on 5 vertices, iso classes: 6
+  edges=4 degseq=[1, 1, 1, 1, 4] complement-4-cycle=True
+  edges=4 degseq=[1, 1, 1, 2, 3] complement-4-cycle=True
+  edges=4 degseq=[1, 1, 2, 2, 2] complement-4-cycle=True
+  edges=5 degseq=[1, 2, 2, 2, 3] complement-4-cycle=False
+  edges=5 degseq=[2, 2, 2, 2, 2] complement-4-cycle=False
+  edges=6 degseq=[2, 2, 2, 3, 3] complement-4-cycle=False
+with an embedded 4-cycle in the complement: ['K_{1,4}', 'P5', 'fork']
+4-vertex graphs with complement 4-cycle are matchings: checked
+== Part B: combinatorial type vs Gram matrix ==
+labelled connected diagrams checked: 116274 mismatches: 0
+counts (rank, S/A/O): {(2, 'S'): 7, (3, 'A'): 4, (3, 'O'): 383, (3, 'S'): 5, (4, 'A'): 5, (4, 'O'): 20238, (4, 'S'): 7, (5, 'A'): 6, (5, 'O'): 95615, (5, 'S'): 4}
+smallest eigenvalue of a spherical Gram matrix: 5.478e-03
+smallest |negative eigenvalue| of a type-O Gram matrix: 1.184e-02
+4-vertex diagrams containing a triangle are neither spherical nor affine: checked
+== Part C: Vinberg predicate, Lanner and quasi-Lanner counts ==
+rank 4: compact 9, noncompact 23
+rank 5: compact 5, noncompact 9
+== Part D: census of P5 and fork labellings ==
+P5: 325 labellings up to symmetry
+  flag counts: {'sph': 2, 'aff': 2, 'LR': 191, 'thm1.1': 266, 'cor:tree': 240, 'QL': 1, 'prop:red': 1, 'prop:red-noC2': 1, 'lanner': 3}
+  first covering flag (in order ('sph', 'aff', 'LR', 'thm1.1', 'cor:tree', 'QL', 'prop:red')): {'sph': 2, 'aff': 2, 'LR': 191, 'thm1.1': 73, 'cor:tree': 0, 'QL': 1, 'prop:red': 0}
+  residual (no flag): 56
+fork: 375 labellings up to symmetry
+  flag counts: {'sph': 1, 'aff': 1, 'LR': 206, 'thm1.1': 286, 'cor:tree': 280, 'QL': 3, 'prop:red': 3, 'prop:red-noC2': 3, 'lanner': 1}
+  first covering flag (in order ('sph', 'aff', 'LR', 'thm1.1', 'cor:tree', 'QL', 'prop:red')): {'sph': 1, 'aff': 1, 'LR': 206, 'thm1.1': 79, 'cor:tree': 22, 'QL': 3, 'prop:red': 0}
+  residual (no flag): 63
+residual list (shape, labels, Lanner?, Gram (neg,zero), dim, vertex-deleted types, flags that hold):
+  P5   (3, 3, 3, 5) lanner=True gram=(1,0) dim=4 almost-spherical=True deleted=['S:H4', 'S:H3', 'S:I2(3)+S:I2(5)', 'S:A3', 'S:A4']
+  P5   (3, 3, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:C~2', 'S:I2(3)+S:I2(4)', 'S:A3', 'S:B4']
+  P5   (3, 3, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:A3', 'S:B4']
+  P5   (3, 3, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(3)+S:I2(3)', 'S:A3', 'S:H4']
+  P5   (3, 3, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(4)', 'S:A3', 'S:H4']
+  P5   (3, 3, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:A3', 'S:H4']
+  P5   (3, 4, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(3)+S:I2(5)', 'S:B3', 'S:F4']
+  P5   (3, 4, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:B3', 'S:I2(3)+S:I2(3)', 'S:B3', 'O']
+  P5   (3, 4, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:C~2', 'S:I2(3)+S:I2(4)', 'S:B3', 'O']
+  P5   (3, 4, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:B3', 'O']
+  P5   (3, 4, 4, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(6)', 'S:B3', 'O']
+  P5   (3, 4, 4, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(>=7)', 'S:B3', 'O']
+  P5   (3, 4, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(3)+S:I2(3)', 'S:B3', 'O']
+  P5   (3, 4, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(4)', 'S:B3', 'O']
+  P5   (3, 4, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:B3', 'O']
+  P5   (3, 4, 5, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(6)', 'S:B3', 'O']
+  P5   (3, 4, 5, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(>=7)', 'S:B3', 'O']
+  P5   (3, 5, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:B3', 'S:I2(3)+S:I2(4)', 'S:H3', 'O']
+  P5   (3, 5, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(3)+S:I2(5)', 'S:H3', 'O']
+  P5   (3, 5, 3, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:G~2', 'S:I2(3)+S:I2(6)', 'S:H3', 'O']
+  P5   (3, 5, 3, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(>=7)', 'S:H3', 'O']
+  P5   (3, 5, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:C~2', 'S:I2(3)+S:I2(4)', 'S:H3', 'O']
+  P5   (3, 5, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:H3', 'O']
+  P5   (3, 5, 4, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(6)', 'S:H3', 'O']
+  P5   (3, 5, 4, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(>=7)', 'S:H3', 'O']
+  P5   (3, 5, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(3)+S:I2(3)', 'S:H3', 'O']
+  P5   (3, 5, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(4)', 'S:H3', 'O']
+  P5   (3, 5, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(5)', 'S:H3', 'O']
+  P5   (3, 5, 5, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(6)', 'S:H3', 'O']
+  P5   (3, 5, 5, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(3)+S:I2(>=7)', 'S:H3', 'O']
+  P5   (4, 3, 3, 5) lanner=True gram=(1,0) dim=4 almost-spherical=True deleted=['S:H4', 'S:H3', 'S:I2(4)+S:I2(5)', 'S:B3', 'S:B4']
+  P5   (4, 3, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:C~2', 'S:I2(4)+S:I2(4)', 'S:B3', 'A:C~3']
+  P5   (4, 3, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(5)', 'S:B3', 'A:C~3']
+  P5   (4, 3, 4, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(6)', 'S:B3', 'A:C~3']
+  P5   (4, 3, 4, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(>=7)', 'S:B3', 'A:C~3']
+  P5   (4, 3, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(4)', 'S:B3', 'O']
+  P5   (4, 3, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(5)', 'S:B3', 'O']
+  P5   (4, 3, 5, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(6)', 'S:B3', 'O']
+  P5   (4, 3, 5, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(>=7)', 'S:B3', 'O']
+  P5   (4, 4, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(4)+S:I2(5)', 'A:C~2', 'O']
+  P5   (4, 4, 3, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:G~2', 'S:I2(4)+S:I2(6)', 'A:C~2', 'O']
+  P5   (4, 4, 3, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(>=7)', 'A:C~2', 'O']
+  P5   (4, 5, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'S:H3', 'S:I2(4)+S:I2(5)', 'O', 'O']
+  P5   (4, 5, 3, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:G~2', 'S:I2(4)+S:I2(6)', 'O', 'O']
+  P5   (4, 5, 3, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(4)+S:I2(>=7)', 'O', 'O']
+  P5   (5, 3, 3, 5) lanner=True gram=(1,0) dim=4 almost-spherical=True deleted=['S:H4', 'S:H3', 'S:I2(5)+S:I2(5)', 'S:H3', 'S:H4']
+  P5   (5, 3, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(5)', 'S:H3', 'O']
+  P5   (5, 3, 4, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(6)', 'S:H3', 'O']
+  P5   (5, 3, 4, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(>=7)', 'S:H3', 'O']
+  P5   (5, 3, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(5)', 'S:H3', 'O']
+  P5   (5, 3, 5, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(6)', 'S:H3', 'O']
+  P5   (5, 3, 5, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(>=7)', 'S:H3', 'O']
+  P5   (5, 4, 3, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:G~2', 'S:I2(5)+S:I2(6)', 'O', 'O']
+  P5   (5, 4, 3, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(>=7)', 'O', 'O']
+  P5   (5, 5, 3, 6) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'A:G~2', 'S:I2(5)+S:I2(6)', 'O', 'O']
+  P5   (5, 5, 3, 7) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['O', 'O', 'S:I2(5)+S:I2(>=7)', 'O', 'O']
+  fork (3, 3, 3, 5) lanner=True gram=(1,0) dim=4 almost-spherical=True deleted=['S:I2(5)', 'S:H4', 'S:H4', 'S:A3', 'S:D4']
+  fork (3, 3, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:A3', 'A:B~3']
+  fork (3, 3, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:A3', 'A:B~3']
+  fork (3, 3, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'S:A3', 'O']
+  fork (3, 3, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:A3', 'O']
+  fork (3, 3, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:A3', 'O']
+  fork (3, 4, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'S:H4', 'S:B3', 'A:B~3']
+  fork (3, 4, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'S:F4', 'S:B3', 'O']
+  fork (3, 4, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:B3', 'O']
+  fork (3, 4, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:B3', 'O']
+  fork (3, 4, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'S:B3', 'O']
+  fork (3, 4, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:B3', 'O']
+  fork (3, 4, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:B3', 'O']
+  fork (3, 5, 3, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'S:H4', 'S:A4', 'S:H3', 'O']
+  fork (3, 5, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'S:B4', 'S:H3', 'O']
+  fork (3, 5, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'S:H4', 'S:H3', 'O']
+  fork (3, 5, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'S:F4', 'S:H3', 'O']
+  fork (3, 5, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:H3', 'O']
+  fork (3, 5, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:H3', 'O']
+  fork (3, 5, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'S:H3', 'O']
+  fork (3, 5, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'S:H3', 'O']
+  fork (3, 5, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'S:H3', 'O']
+  fork (3, 6, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'A:G~2', 'O']
+  fork (3, 6, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'A:G~2', 'O']
+  fork (3, 6, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'A:G~2', 'O']
+  fork (3, 6, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'A:G~2', 'O']
+  fork (3, 6, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'A:G~2', 'O']
+  fork (3, 7, 4, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'O', 'O']
+  fork (3, 7, 4, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (3, 7, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (3, 7, 5, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'O', 'O']
+  fork (3, 7, 5, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (4, 4, 3, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'S:B4', 'S:B4', 'A:C~2', 'O']
+  fork (4, 4, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'A:C~3', 'A:C~3', 'A:C~2', 'O']
+  fork (4, 4, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'A:C~2', 'O']
+  fork (4, 4, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'A:C~2', 'O']
+  fork (4, 4, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'A:C~2', 'O']
+  fork (4, 5, 3, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'S:H4', 'S:B4', 'O', 'O']
+  fork (4, 5, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'A:C~3', 'O', 'O']
+  fork (4, 5, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (4, 5, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (4, 5, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (4, 6, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'A:C~3', 'O', 'O']
+  fork (4, 6, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (4, 6, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (4, 6, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (4, 7, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'A:C~3', 'O', 'O']
+  fork (4, 7, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (4, 7, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (4, 7, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 5, 3, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'S:H4', 'S:H4', 'O', 'O']
+  fork (5, 5, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'O', 'O']
+  fork (5, 5, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (5, 5, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 5, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 6, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'O', 'O']
+  fork (5, 6, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (5, 6, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 6, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 7, 3, 4) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(4)', 'O', 'O', 'O', 'O']
+  fork (5, 7, 3, 5) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(5)', 'O', 'O', 'O', 'O']
+  fork (5, 7, 4, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+  fork (5, 7, 5, 3) lanner=False gram=(1,0) dim=4 almost-spherical=False deleted=['S:I2(3)', 'O', 'O', 'O', 'O']
+residual total: 119  of which Lanner: 4
+residual classes containing the label class >=7 (each an infinite family): 26
+residual classes with some label >= 6: 52
+almost-spherical residual classes: 4
+cutting every edge of label >= 6 in a residual class (components as vertex lists with their induced labels):
+  P5   (3, 4, 4, 6) -> [([0, 1, 2, 3], [3, 4, 4], 'O')]
+  P5   (3, 4, 4, 7) -> [([0, 1, 2, 3], [3, 4, 4], 'O')]
+  P5   (3, 4, 5, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (3, 4, 5, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (3, 5, 3, 6) -> [([0, 1, 2, 3], [3, 3, 5], 'O')]
+  P5   (3, 5, 3, 7) -> [([0, 1, 2, 3], [3, 3, 5], 'O')]
+  P5   (3, 5, 4, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (3, 5, 4, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (3, 5, 5, 6) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  P5   (3, 5, 5, 7) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  P5   (4, 3, 4, 6) -> [([0, 1, 2, 3], [3, 4, 4], 'A:C~3')]
+  P5   (4, 3, 4, 7) -> [([0, 1, 2, 3], [3, 4, 4], 'A:C~3')]
+  P5   (4, 3, 5, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (4, 3, 5, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (4, 4, 3, 6) -> [([0, 1, 2, 3], [3, 4, 4], 'O')]
+  P5   (4, 4, 3, 7) -> [([0, 1, 2, 3], [3, 4, 4], 'O')]
+  P5   (4, 5, 3, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (4, 5, 3, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (5, 3, 4, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (5, 3, 4, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (5, 3, 5, 6) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  P5   (5, 3, 5, 7) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  P5   (5, 4, 3, 6) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (5, 4, 3, 7) -> [([0, 1, 2, 3], [3, 4, 5], 'O')]
+  P5   (5, 5, 3, 6) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  P5   (5, 5, 3, 7) -> [([0, 1, 2, 3], [3, 5, 5], 'O')]
+  fork (3, 6, 4, 4) -> [([0, 1, 3, 4], [3, 4, 4], 'O')]
+  fork (3, 6, 4, 5) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (3, 6, 5, 3) -> [([0, 1, 3, 4], [3, 3, 5], 'O')]
+  fork (3, 6, 5, 4) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (3, 6, 5, 5) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+  fork (3, 7, 4, 4) -> [([0, 1, 3, 4], [3, 4, 4], 'O')]
+  fork (3, 7, 4, 5) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (3, 7, 5, 3) -> [([0, 1, 3, 4], [3, 3, 5], 'O')]
+  fork (3, 7, 5, 4) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (3, 7, 5, 5) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+  fork (4, 6, 3, 4) -> [([0, 1, 3, 4], [3, 4, 4], 'A:C~3')]
+  fork (4, 6, 3, 5) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (4, 6, 4, 3) -> [([0, 1, 3, 4], [3, 4, 4], 'O')]
+  fork (4, 6, 5, 3) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (4, 7, 3, 4) -> [([0, 1, 3, 4], [3, 4, 4], 'A:C~3')]
+  fork (4, 7, 3, 5) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (4, 7, 4, 3) -> [([0, 1, 3, 4], [3, 4, 4], 'O')]
+  fork (4, 7, 5, 3) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (5, 6, 3, 4) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (5, 6, 3, 5) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+  fork (5, 6, 4, 3) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (5, 6, 5, 3) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+  fork (5, 7, 3, 4) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (5, 7, 3, 5) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+  fork (5, 7, 4, 3) -> [([0, 1, 3, 4], [3, 4, 5], 'O')]
+  fork (5, 7, 5, 3) -> [([0, 1, 3, 4], [3, 5, 5], 'O')]
+RESIDUAL P5 3,3,3,5
+RESIDUAL P5 3,3,4,4
+RESIDUAL P5 3,3,4,5
+RESIDUAL P5 3,3,5,3
+RESIDUAL P5 3,3,5,4
+RESIDUAL P5 3,3,5,5
+RESIDUAL P5 3,4,3,5
+RESIDUAL P5 3,4,4,3
+RESIDUAL P5 3,4,4,4
+RESIDUAL P5 3,4,4,5
+RESIDUAL P5 3,4,4,6
+RESIDUAL P5 3,4,4,>=7
+RESIDUAL P5 3,4,5,3
+RESIDUAL P5 3,4,5,4
+RESIDUAL P5 3,4,5,5
+RESIDUAL P5 3,4,5,6
+RESIDUAL P5 3,4,5,>=7
+RESIDUAL P5 3,5,3,4
+RESIDUAL P5 3,5,3,5
+RESIDUAL P5 3,5,3,6
+RESIDUAL P5 3,5,3,>=7
+RESIDUAL P5 3,5,4,4
+RESIDUAL P5 3,5,4,5
+RESIDUAL P5 3,5,4,6
+RESIDUAL P5 3,5,4,>=7
+RESIDUAL P5 3,5,5,3
+RESIDUAL P5 3,5,5,4
+RESIDUAL P5 3,5,5,5
+RESIDUAL P5 3,5,5,6
+RESIDUAL P5 3,5,5,>=7
+RESIDUAL P5 4,3,3,5
+RESIDUAL P5 4,3,4,4
+RESIDUAL P5 4,3,4,5
+RESIDUAL P5 4,3,4,6
+RESIDUAL P5 4,3,4,>=7
+RESIDUAL P5 4,3,5,4
+RESIDUAL P5 4,3,5,5
+RESIDUAL P5 4,3,5,6
+RESIDUAL P5 4,3,5,>=7
+RESIDUAL P5 4,4,3,5
+RESIDUAL P5 4,4,3,6
+RESIDUAL P5 4,4,3,>=7
+RESIDUAL P5 4,5,3,5
+RESIDUAL P5 4,5,3,6
+RESIDUAL P5 4,5,3,>=7
+RESIDUAL P5 5,3,3,5
+RESIDUAL P5 5,3,4,5
+RESIDUAL P5 5,3,4,6
+RESIDUAL P5 5,3,4,>=7
+RESIDUAL P5 5,3,5,5
+RESIDUAL P5 5,3,5,6
+RESIDUAL P5 5,3,5,>=7
+RESIDUAL P5 5,4,3,6
+RESIDUAL P5 5,4,3,>=7
+RESIDUAL P5 5,5,3,6
+RESIDUAL P5 5,5,3,>=7
+RESIDUAL fork 3,3,3,5
+RESIDUAL fork 3,3,4,4
+RESIDUAL fork 3,3,4,5
+RESIDUAL fork 3,3,5,3
+RESIDUAL fork 3,3,5,4
+RESIDUAL fork 3,3,5,5
+RESIDUAL fork 3,4,3,5
+RESIDUAL fork 3,4,4,3
+RESIDUAL fork 3,4,4,4
+RESIDUAL fork 3,4,4,5
+RESIDUAL fork 3,4,5,3
+RESIDUAL fork 3,4,5,4
+RESIDUAL fork 3,4,5,5
+RESIDUAL fork 3,5,3,3
+RESIDUAL fork 3,5,3,4
+RESIDUAL fork 3,5,3,5
+RESIDUAL fork 3,5,4,3
+RESIDUAL fork 3,5,4,4
+RESIDUAL fork 3,5,4,5
+RESIDUAL fork 3,5,5,3
+RESIDUAL fork 3,5,5,4
+RESIDUAL fork 3,5,5,5
+RESIDUAL fork 3,6,4,4
+RESIDUAL fork 3,6,4,5
+RESIDUAL fork 3,6,5,3
+RESIDUAL fork 3,6,5,4
+RESIDUAL fork 3,6,5,5
+RESIDUAL fork 3,>=7,4,4
+RESIDUAL fork 3,>=7,4,5
+RESIDUAL fork 3,>=7,5,3
+RESIDUAL fork 3,>=7,5,4
+RESIDUAL fork 3,>=7,5,5
+RESIDUAL fork 4,4,3,3
+RESIDUAL fork 4,4,3,4
+RESIDUAL fork 4,4,3,5
+RESIDUAL fork 4,4,4,3
+RESIDUAL fork 4,4,5,3
+RESIDUAL fork 4,5,3,3
+RESIDUAL fork 4,5,3,4
+RESIDUAL fork 4,5,3,5
+RESIDUAL fork 4,5,4,3
+RESIDUAL fork 4,5,5,3
+RESIDUAL fork 4,6,3,4
+RESIDUAL fork 4,6,3,5
+RESIDUAL fork 4,6,4,3
+RESIDUAL fork 4,6,5,3
+RESIDUAL fork 4,>=7,3,4
+RESIDUAL fork 4,>=7,3,5
+RESIDUAL fork 4,>=7,4,3
+RESIDUAL fork 4,>=7,5,3
+RESIDUAL fork 5,5,3,3
+RESIDUAL fork 5,5,3,4
+RESIDUAL fork 5,5,3,5
+RESIDUAL fork 5,5,4,3
+RESIDUAL fork 5,5,5,3
+RESIDUAL fork 5,6,3,4
+RESIDUAL fork 5,6,3,5
+RESIDUAL fork 5,6,4,3
+RESIDUAL fork 5,6,5,3
+RESIDUAL fork 5,>=7,3,4
+RESIDUAL fork 5,>=7,3,5
+RESIDUAL fork 5,>=7,4,3
+RESIDUAL fork 5,>=7,5,3
+rank-5 quasi-Lanner trees found: 5  decoded from figure: 5  equal: True
+rank-5 compact simplex trees equal the four named trees: True
+== Label collapse: labels 7, 8, 12 give identical flags ==
+labellings checked: 4802
+== SELF-CHECK FAILURES: 0

@@ -1,0 +1,44 @@
+K TTATAAtaTTAttata k=7 reps=8 b1=[(1, 6), (2, 2)] chars=22 monic=5 cert=False
+K TTATAtATATaTAtta k=7 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTATAtATTatAtata k=7 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTATAtATaTAttata k=7 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTATAttaTTAAtata k=7 reps=4 b1=[(1, 2), (2, 2)] chars=18 monic=0 cert=False
+K TTATAttaTatAtata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTATAttaaTAttata k=7 reps=5 b1=[(1, 3), (2, 2)] chars=19 monic=0 cert=False
+K TTAtATATaTATAtta k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaTatAAtaa k=7 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTAATTaaTAAtata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatAATata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatAAtata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTaatATATaa k=7 reps=5 b1=[(1, 5)] chars=5 monic=0 cert=False
+K TTTAATTaatATAtaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAtATaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAATTaatAtAtaa k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATTatatAAtaa k=7 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=1 cert=False
+K TTTAATaTaTAAttaa k=7 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=0 cert=False
+K TTTAATaaTAAttata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATaaTATAttaa k=7 reps=5 b1=[(1, 4), (2, 1)] chars=12 monic=0 cert=False
+K TTTAATaaTAtAttaa k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATaatAATTata k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAATataTAAttaa k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTAAtaaTAATTata k=7 reps=7 b1=[(1, 5), (2, 2)] chars=21 monic=0 cert=False
+K TTTAAtaaTATAttaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTAAtaatAATTata k=7 reps=4 b1=[(1, 2), (3, 1)] chars=28 monic=18 cert=True
+CERT TTTAAtaatAATTata k=7 a=[0, 3, 5, 4, 1, 6, 2] t=[1, 4, 0, 6, 5, 3, 2] c=[3, 0, 0, 0, 3, 5, 0, 0, -2, 0, 0, 1, 1, 0] pot=[0, 0, -1, -1, -1, 1, -1] cp=[3, -1, 2, 0, 4, 3, 0, 0, -3, 1, 0, 3, -1, 0] delta=[-1, 2, -3, 1, 4, -8, 9, 1, -9, 7, 3, -16, 17, 2, -21, 16, -8, -6, 13, 0, -5, 6, -3, -4, 4, -1]
+K TTTAAttaaTAATata k=7 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTTATAAtaTTAtATA k=7 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=0 cert=False
+K TTTATAAtataTattA k=7 reps=2 b1=[(1, 1), (2, 1)] chars=9 monic=1 cert=False
+K TTTATATaaTAAttaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATATaatAATTaa k=7 reps=4 b1=[(1, 4)] chars=4 monic=0 cert=False
+K TTTATATaatAAttaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAtATATTatAA k=7 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAtATATaattA k=7 reps=3 b1=[(1, 2), (2, 1)] chars=10 monic=0 cert=False
+K TTTATAtaaTAATTaa k=7 reps=8 b1=[(1, 8)] chars=8 monic=0 cert=False
+K TTTATAtaatAATTaa k=7 reps=2 b1=[(1, 2)] chars=2 monic=0 cert=False
+K TTTATAttaaTAATaa k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAttataTTAAA k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAttataTatAA k=7 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+K TTTATAttataaTAtA k=7 reps=1 b1=[(1, 1)] chars=1 monic=0 cert=False
+K TTTATAAtataaTAAA k=7 reps=3 b1=[(1, 3)] chars=3 monic=0 cert=False
+K TTTATAAtataaatAA k=7 reps=1 b1=[(1, 1)] chars=1 monic=1 cert=False
+SWEEP_DONE

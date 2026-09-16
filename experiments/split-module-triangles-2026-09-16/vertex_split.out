@@ -1,0 +1,164 @@
+cckw334_q.g G_0^{14,14,48} vertex (label, |split kernel|): [(14, 21), (14, 21), (48, 1)] 
+cckw334_q.g G_1^{14,14,48} vertex (label, |split kernel|): [(14, 21), (14, 21), (48, 1)] 
+cckw334_q.g G_4^{14,14,48} vertex (label, |split kernel|): [(14, 21), (14, 21), (48, 1)] 
+cckw334_q.g G_5^{14,14,48} vertex (label, |split kernel|): [(14, 21), (14, 21), (48, 1)] 
+cckw334_q.g G_0^{14,14,54} vertex (label, |split kernel|): [(14, 21), (14, 21), (54, 1)] 
+cckw334_q.g G_4^{14,14,54} vertex (label, |split kernel|): [(14, 21), (14, 21), (54, 1)] 
+cckw334_q.g G_0^{14,16,40} vertex (label, |split kernel|): [(14, 21), (16, 1), (40, 1)] 
+cckw334_q.g G_0^{14,16,48} vertex (label, |split kernel|): [(14, 21), (16, 1), (48, 1)] 
+cckw334_q.g G_1^{14,16,48} vertex (label, |split kernel|): [(14, 21), (16, 1), (48, 1)] 
+cckw334_q.g G_0^{14,16,54} vertex (label, |split kernel|): [(14, 21), (16, 1), (54, 1)] 
+cckw334_q.g G_2^{14,16,54} vertex (label, |split kernel|): [(14, 21), (16, 1), (54, 1)] 
+cckw334_q.g G_0^{14,18,54} vertex (label, |split kernel|): [(14, 21), (18, 3), (54, 1)] 
+cckw334_q.g G_2^{14,18,54} vertex (label, |split kernel|): [(14, 21), (18, 3), (54, 1)] 
+cckw334_q.g G_0^{14,24,48} vertex (label, |split kernel|): [(14, 21), (24, 4), (48, 1)] 
+cckw334_q.g G_0^{14,24,54} vertex (label, |split kernel|): [(14, 21), (24, 4), (54, 1)] 
+cckw334_q.g G_0^{14,26,40} vertex (label, |split kernel|): [(14, 21), (26, 39), (40, 1)] 
+cckw334_q.g G_4^{14,26,40} vertex (label, |split kernel|): [(14, 21), (26, 39), (40, 1)] 
+cckw334_q.g G_0^{14,26,48} vertex (label, |split kernel|): [(14, 21), (26, 39), (48, 1)] 
+cckw334_q.g G_1^{14,26,48} vertex (label, |split kernel|): [(14, 21), (26, 39), (48, 1)] 
+cckw334_q.g G_4^{14,26,48} vertex (label, |split kernel|): [(14, 21), (26, 39), (48, 1)] 
+cckw334_q.g G_5^{14,26,48} vertex (label, |split kernel|): [(14, 21), (26, 39), (48, 1)] 
+cckw334_q.g G_0^{14,26,54} vertex (label, |split kernel|): [(14, 21), (26, 39), (54, 1)] 
+cckw334_q.g G_2^{14,26,54} vertex (label, |split kernel|): [(14, 21), (26, 39), (54, 1)] 
+cckw334_q.g G_4^{14,26,54} vertex (label, |split kernel|): [(14, 21), (26, 39), (54, 1)] 
+cckw334_q.g G_6^{14,26,54} vertex (label, |split kernel|): [(14, 21), (26, 39), (54, 1)] 
+cckw334_q.g G_0^{16,16,48} vertex (label, |split kernel|): [(16, 1), (16, 1), (48, 1)] ALL SPLIT-FAITHFUL
+cckw334_q.g G_0^{16,16,54} vertex (label, |split kernel|): [(16, 1), (16, 1), (54, 1)] ALL SPLIT-FAITHFUL
+cckw334_q.g G_0^{16,18,48} vertex (label, |split kernel|): [(16, 1), (18, 3), (48, 1)] 
+cckw334_q.g G_0^{16,18,54} vertex (label, |split kernel|): [(16, 1), (18, 3), (54, 1)] 
+cckw334_q.g G_2^{16,18,54} vertex (label, |split kernel|): [(16, 1), (18, 3), (54, 1)] 
+cckw334_q.g G_0^{16,24,48} vertex (label, |split kernel|): [(16, 1), (24, 4), (48, 1)] 
+cckw334_q.g G_2^{16,24,54} vertex (label, |split kernel|): [(16, 1), (24, 4), (54, 1)] 
+cckw334_q.g G_0^{16,26,40} vertex (label, |split kernel|): [(16, 1), (26, 39), (40, 1)] 
+cckw334_q.g G_0^{16,26,48} vertex (label, |split kernel|): [(16, 1), (26, 39), (48, 1)] 
+cckw334_q.g G_1^{16,26,48} vertex (label, |split kernel|): [(16, 1), (26, 39), (48, 1)] 
+cckw334_q.g G_0^{16,26,54} vertex (label, |split kernel|): [(16, 1), (26, 39), (54, 1)] 
+cckw334_q.g G_2^{16,26,54} vertex (label, |split kernel|): [(16, 1), (26, 39), (54, 1)] 
+cckw334_q.g G_0^{18,18,48} vertex (label, |split kernel|): [(18, 3), (18, 3), (48, 1)] 
+cckw334_q.g G_0^{18,18,54} vertex (label, |split kernel|): [(18, 3), (18, 3), (54, 1)] 
+cckw334_q.g G_0^{18,26,40} vertex (label, |split kernel|): [(18, 3), (26, 39), (40, 1)] 
+cckw334_q.g G_0^{18,26,54} vertex (label, |split kernel|): [(18, 3), (26, 39), (54, 1)] 
+cckw334_q.g G_2^{18,26,54} vertex (label, |split kernel|): [(18, 3), (26, 39), (54, 1)] 
+cckw334_q.g G_0^{24,26,40} vertex (label, |split kernel|): [(24, 4), (26, 39), (40, 1)] 
+cckw334_q.g G_0^{24,26,48} vertex (label, |split kernel|): [(24, 4), (26, 39), (48, 1)] 
+cckw334_q.g G_1^{24,26,48} vertex (label, |split kernel|): [(24, 4), (26, 39), (48, 1)] 
+cckw334_q.g G_2^{24,26,54} vertex (label, |split kernel|): [(24, 4), (26, 39), (54, 1)] 
+cckw334_q.g G_0^{26,26,40} vertex (label, |split kernel|): [(26, 39), (26, 39), (40, 1)] 
+cckw334_q.g G_0^{26,26,48} vertex (label, |split kernel|): [(26, 39), (26, 39), (48, 1)] 
+cckw334_q.g G_1^{26,26,48} vertex (label, |split kernel|): [(26, 39), (26, 39), (48, 1)] 
+cckw334_q.g G_4^{26,26,48} vertex (label, |split kernel|): [(26, 39), (26, 39), (48, 1)] 
+cckw334_q.g G_5^{26,26,48} vertex (label, |split kernel|): [(26, 39), (26, 39), (48, 1)] 
+cckw334_q.g G_0^{26,26,54} vertex (label, |split kernel|): [(26, 39), (26, 39), (54, 1)] 
+cckw334_q.g G_4^{26,26,54} vertex (label, |split kernel|): [(26, 39), (26, 39), (54, 1)] 
+cckw334_yes.g G_0^{14,14,40} vertex (label, |split kernel|): [(14, 21), (14, 21), (40, 1)] 
+cckw334_yes.g G_4^{14,14,40} vertex (label, |split kernel|): [(14, 21), (14, 21), (40, 1)] 
+cckw334_yes.g G_0^{14,18,40} vertex (label, |split kernel|): [(14, 21), (18, 3), (40, 1)] 
+cckw334_yes.g G_0^{14,18,48} vertex (label, |split kernel|): [(14, 21), (18, 3), (48, 1)] 
+cckw334_yes.g G_0^{14,24,40} vertex (label, |split kernel|): [(14, 21), (24, 4), (40, 1)] 
+cckw334_yes.g G_1^{14,24,48} vertex (label, |split kernel|): [(14, 21), (24, 4), (48, 1)] 
+cckw334_yes.g G_2^{14,24,54} vertex (label, |split kernel|): [(14, 21), (24, 4), (54, 1)] 
+cckw334_yes.g G_0^{16,16,40} vertex (label, |split kernel|): [(16, 1), (16, 1), (40, 1)] ALL SPLIT-FAITHFUL
+cckw334_yes.g G_1^{16,16,48} vertex (label, |split kernel|): [(16, 1), (16, 1), (48, 1)] ALL SPLIT-FAITHFUL
+cckw334_yes.g G_0^{16,18,40} vertex (label, |split kernel|): [(16, 1), (18, 3), (40, 1)] 
+cckw334_yes.g G_0^{16,24,40} vertex (label, |split kernel|): [(16, 1), (24, 4), (40, 1)] 
+cckw334_yes.g G_1^{16,24,48} vertex (label, |split kernel|): [(16, 1), (24, 4), (48, 1)] 
+cckw334_yes.g G_0^{16,24,54} vertex (label, |split kernel|): [(16, 1), (24, 4), (54, 1)] 
+cckw334_yes.g G_0^{18,18,40} vertex (label, |split kernel|): [(18, 3), (18, 3), (40, 1)] 
+cckw334_yes.g G_0^{18,24,40} vertex (label, |split kernel|): [(18, 3), (24, 4), (40, 1)] 
+cckw334_yes.g G_0^{18,24,48} vertex (label, |split kernel|): [(18, 3), (24, 4), (48, 1)] 
+cckw334_yes.g G_0^{18,24,54} vertex (label, |split kernel|): [(18, 3), (24, 4), (54, 1)] 
+cckw334_yes.g G_2^{18,24,54} vertex (label, |split kernel|): [(18, 3), (24, 4), (54, 1)] 
+cckw334_yes.g G_0^{18,26,48} vertex (label, |split kernel|): [(18, 3), (26, 39), (48, 1)] 
+cckw334_yes.g G_0^{24,24,40} vertex (label, |split kernel|): [(24, 4), (24, 4), (40, 1)] 
+cckw334_yes.g G_0^{24,24,48} vertex (label, |split kernel|): [(24, 4), (24, 4), (48, 1)] 
+cckw334_yes.g G_1^{24,24,48} vertex (label, |split kernel|): [(24, 4), (24, 4), (48, 1)] 
+cckw334_yes.g G_0^{24,24,54} vertex (label, |split kernel|): [(24, 4), (24, 4), (54, 1)] 
+cckw334_yes.g G_0^{24,26,54} vertex (label, |split kernel|): [(24, 4), (26, 39), (54, 1)] 
+cckw334_yes.g G_4^{26,26,40} vertex (label, |split kernel|): [(26, 39), (26, 39), (40, 1)] 
+cckw344_q.g G_0^{14,40,48} vertex (label, |split kernel|): [(14, 21), (40, 1), (48, 1)] 
+cckw344_q.g G_1^{14,48,48} vertex (label, |split kernel|): [(14, 21), (48, 1), (48, 1)] 
+cckw344_q.g G_0^{14,48,54} vertex (label, |split kernel|): [(14, 21), (48, 1), (54, 1)] 
+cckw344_q.g G_0^{14,54,54} vertex (label, |split kernel|): [(14, 21), (54, 1), (54, 1)] 
+cckw344_q.g G_8^{14,54,54} vertex (label, |split kernel|): [(14, 21), (54, 1), (54, 1)] 
+cckw344_q.g G_0^{16,40,48} vertex (label, |split kernel|): [(16, 1), (40, 1), (48, 1)] ALL SPLIT-FAITHFUL
+cckw344_q.g G_0^{18,40,54} vertex (label, |split kernel|): [(18, 3), (40, 1), (54, 1)] 
+cckw344_q.g G_0^{18,54,54} vertex (label, |split kernel|): [(18, 3), (54, 1), (54, 1)] 
+cckw344_q.g G_2^{24,48,54} vertex (label, |split kernel|): [(24, 4), (48, 1), (54, 1)] 
+cckw344_q.g G_0^{24,54,54} vertex (label, |split kernel|): [(24, 4), (54, 1), (54, 1)] 
+cckw344_q.g G_2^{24,54,54} vertex (label, |split kernel|): [(24, 4), (54, 1), (54, 1)] 
+cckw344_q.g G_0^{26,40,48} vertex (label, |split kernel|): [(26, 39), (40, 1), (48, 1)] 
+cckw344_q.g G_2^{26,40,54} vertex (label, |split kernel|): [(26, 39), (40, 1), (54, 1)] 
+cckw344_q.g G_0^{26,48,54} vertex (label, |split kernel|): [(26, 39), (48, 1), (54, 1)] 
+cckw344_q.g G_2^{26,48,54} vertex (label, |split kernel|): [(26, 39), (48, 1), (54, 1)] 
+cckw344_q.g G_0^{26,54,54} vertex (label, |split kernel|): [(26, 39), (54, 1), (54, 1)] 
+cckw444_q.g G_0^{48,48,48} vertex (label, |split kernel|): [(48, 1), (48, 1), (48, 1)] ALL SPLIT-FAITHFUL
+cckw444_q.g G_0^{48,54,54} vertex (label, |split kernel|): [(48, 1), (54, 1), (54, 1)] ALL SPLIT-FAITHFUL
+cckw444_q.g G_8^{48,54,54} vertex (label, |split kernel|): [(48, 1), (54, 1), (54, 1)] ALL SPLIT-FAITHFUL
+cckw444_q.g G_0^{54,54,54} vertex (label, |split kernel|): [(54, 1), (54, 1), (54, 1)] ALL SPLIT-FAITHFUL
+cckw444_q.g G_2^{54,54,54} vertex (label, |split kernel|): [(54, 1), (54, 1), (54, 1)] ALL SPLIT-FAITHFUL
+
+Distinct vertex group presentations analysed: 12
+label 14 order 21 classes 5 |S| 21 relators ('x^3', 'y*x*y^-1*x^-1*y*x', 'y^3')
+    dims of all irreps: [1, 1, 1, 3, 3] max delta over nontrivial: -1
+label 48 order 72 classes 21 |S| 1 relators ('(y*x)^2*(y^-1*x^-1)^2', 'x^3', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 3}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 3}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3] max delta over nontrivial: 0
+label 48 order 72 classes 21 |S| 1 relators ('(y*x^-1)^2*(y^-1*x)^2', 'x^3', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 24}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 3}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 3}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 1}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3] max delta over nontrivial: 0
+label 14 order 21 classes 5 |S| 21 relators ('x^3', 'y*x^-1*y^-1*x*y*x^-1', 'y^3')
+    dims of all irreps: [1, 1, 1, 3, 3] max delta over nontrivial: -1
+label 54 order 81 classes 17 |S| 1 relators ('(y*x*y^-1*x)^3', 'x^3', 'y*x*y^-1*x^-1*y^-1*x*y*x^-1', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 3, 'fx': 1, 'fy': 2, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 3, 'fx': 1, 'fy': 2, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3] max delta over nontrivial: 0
+label 16 order 24 classes 7 |S| 1 relators ('x^3', 'y*x*y*x^-1*y^-1*x^-1', 'y^3')
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 2, 'fx': 1, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    dims of all irreps: [1, 1, 1, 2, 2, 2, 3] max delta over nontrivial: 0
+label 40 order 60 classes 5 |S| 1 relators ('(y*x^-1*y*x)^2', '(y^-1*x^-1*y*x^-1)^2', 'x^3', 'y^3')
+    delta=0 irrep: {'dim': 4, 'fx': 2, 'fy': 2, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    dims of all irreps: [1, 3, 3, 4, 5] max delta over nontrivial: 0
+label 54 order 81 classes 17 |S| 1 relators ('(x*y*x^-1*y)^3', 'x*y*x^-1*y^-1*x^-1*y*x*y^-1', 'x^3', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 27}
+    delta=0 irrep: {'dim': 3, 'fx': 2, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 1}
+    delta=0 irrep: {'dim': 3, 'fx': 2, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 1}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3] max delta over nontrivial: 0
+label 18 order 27 classes 11 |S| 3 relators ('(y*x)^3', '(y*x^-1)^3', 'x^3', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 9}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 9}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 9}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 9}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3] max delta over nontrivial: 0
+label 24 order 36 classes 12 |S| 4 relators ('(y*x)^3', 'x^3', 'y*x*y^-1*x*y^-1*x^-1*y*x^-1', 'y^3')
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 1, 'kernel_order': 12}
+    delta=0 irrep: {'dim': 1, 'fx': 0, 'fy': 1, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 12}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 12}
+    delta=0 irrep: {'dim': 1, 'fx': 1, 'fy': 0, 'delta': 0, 'mult_x_omega': 0, 'kernel_order': 12}
+    dims of all irreps: [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 3] max delta over nontrivial: 0
+label 26 order 39 classes 7 |S| 39 relators ('(y*x)^3', 'x^3', 'y*x*y^-1*x*y^-1*x*y^-1*x^-1', 'y^3')
+    dims of all irreps: [1, 1, 1, 3, 3, 3, 3] max delta over nontrivial: -1
+label 26 order 39 classes 7 |S| 39 relators ('(y*x^-1)^3', 'x^3', 'y*x^-1*y^-1*x^-1*y^-1*x^-1*y^-1*x', 'y^3')
+    dims of all irreps: [1, 1, 1, 3, 3, 3, 3] max delta over nontrivial: -1

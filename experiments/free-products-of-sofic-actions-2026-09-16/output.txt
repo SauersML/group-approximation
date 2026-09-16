@@ -1,0 +1,4 @@
+N 437400 |S|/N 0.2 |S°|/N 0.022222222222222223 #words 14
+orbit identity violations on S°: 0
+max multiplicativity defect (exact factor models): 0.0
+ablation (unmatched bijection, per-word suffix-good points): violations 197286 of 722064 checks

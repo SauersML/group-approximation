@@ -1,0 +1,1158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Examples}
+%%\section{Examples}
+%\label{partexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%This part will be divided as follows: In Section \ref{sectionschottky} we consider semigroups of isometries which can be written as the ``Schottky product'' of two subsemigroups. In Section \ref{sectionRtrees}, we consider methods of constructing $\R$-trees which admit natural group actions, including what we call the ``stapling method''. In Section \ref{sectionparabolic}, we analyze in detail the class of parabolic groups of isometries. In Section \ref{sectionexamples}, we give a list of examples whose main importance is that they are counterexamples to certain implications; however, these examples are often geometrically interesting in their own right. In Section \ref{sectionGF}, we define a subclass of the class of groups of isometries which we call \emph{geometrically finite}, generalizing known results from the Standard Case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Schottky products} \label{sectionschottky}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+An important tool for constructing examples of discrete subgroups of $\Isom(X)$ is the technique of \emph{Schottky products}. Schottky groups are a special case of Schottky products; cf. Definition \ref{definitionschottkygroup}. In this chapter we explain the basics of Schottky products on hyperbolic metric spaces, and give several important examples. We intend to give a more comprehensive account of Schottky products in \cite{DSU2}, where we will study their relation to pseudo-Markov systems (defined in \cite{StratmannUrbanski3}).
+
+\begin{remark}
+Throughout this chapter, $E$ denotes an index set with at least two elements. There are no other restrictions on the cardinality of $E$; in particular, $E$ may be infinite.
+\end{remark}
+
+\section{Free products}
+\label{subsectionfreeproducts}
+We provide a brief review of the theory of free products, mainly to fix notation. Let $(\Gamma_a)_{a\in E}$ be a collection of nontrivial abstract semigroups. Let
+\[
+\Gamma_E = \coprod_{a\in E} (\Gamma_a\butnot\{e\}) = \bigcup_{a\in E} \{a\}\times (\Gamma_a\butnot\{e\}).
+\]
+Let $(\Gamma_E)^*$ denote the set of finite words with letters in $\Gamma_E$, including the empty word, which we denote by $\emptyset$. The \emph{free product} of $(\Gamma_a)_{a\in E}$, denoted $\ast_{a\in E}\Gamma_a$, is the set
+\[
+\left\{\gg = (a_1,\gamma_1)\cdots(a_n,\gamma_n)\in (\Gamma_E)^* : a_i\neq a_{i + 1} \all i = 1,\ldots,n - 1, \; n \geq 0\right\},
+\]
+together with the operation of multiplication defined as follows: To multiply two words $\gg,\hh\in \ast_{a\in E} \Gamma_a$, begin by concatenating them. The concatenation may no longer satisfy $a_i\neq a_{i + 1}$ for all $i$; namely, this condition may fail at the point where the two words are joined. \emph{Reduce} the concatenated word $\gg\ast\hh$ using the rule
+\[
+(a,\gamma_1)(a,\gamma_2) = \begin{cases}
+(a,\gamma_1 \gamma_2) & \gamma_1 \gamma_2 \neq e\\
+\emptyset & \gamma_1 \gamma_2 = e
+\end{cases}.
+\]
+The word may require multiple reductions in order to satisfy $a_i\neq a_{i + 1}$. The reduced form of $\gg\ast\hh$ will be denoted $\gg\hh$.
+
+One verifies that the operation of multiplication defined above is associative, so that the free product $\ast_{a\in E}\Gamma_a$ is a semigroup. If $(\Gamma_a)_{a\in E}$ are groups, then $\ast_{a\in E}\Gamma_a$ is a group. The inclusion maps $\iota_a: \Gamma_a\to \ast_{a\in E}\Gamma_a$ defined by $\iota_a(\gamma) = (a,\gamma)$ are homomorphisms, and $\ast_{a\in E}\Gamma_a = \lb \iota_a(\Gamma_a)\rb_{a\in E}$.
+
+An important fact about free products is their \emph{universal property}: Given any semigroup $\Gamma$ and any collection of homomorphisms $(\pi_a: \Gamma_a\to \Gamma)$, there exists a unique homomorphism $\pi:\ast_{a\in E}\Gamma_a\to \Gamma$ such that $\pi_a = \pi\circ\iota_a$ for all $a$. For example, if $(\Gamma_a)_{a\in E}$ are subsemigroups of $\Gamma$ and $(\pi_a)_{a\in E}$ are the identity inclusions, then $\pi((a_1,\gamma_1)\cdots(a_n,\gamma_n)) = \gamma_1\cdots \gamma_n$. We will call the map $\pi$ the \emph{natural map} from $\ast_{a\in E} \Gamma_a$ to $\Gamma$.
+
+\begin{remark}
+\label{remarkfreegroup}
+We will use the notation $\Gamma_1\ast\cdots\ast \Gamma_n$ to denote $\ast_{a\in\{1,\ldots,n\}}\Gamma_a$. The semigroups
+\[
+\F_n(\Z) = \underbrace{\Z\ast \cdots\ast \Z}_{n\text{ times}} \text{ and } \F_n(\N) = \underbrace{\N\ast\cdots\ast\N}_{n\text{ times}}
+\]
+are called the \emph{free group on $n$ elements} and the \emph{free semigroup on $n$ elements}, respectively.
+\end{remark}
+
+\section{Schottky products}
+\label{subsectionschottkyproducts}
+Given a collection of semigroups $G_a \prec \Isom(X)$, we can ask whether the semigroup $\lb G_a\rb_{a\in E}\prec\Isom(X)$ is isomorphic to the free product $\ast_{a\in E} G_a$. A sufficient condition for this is that the groups $(G_a)_{a\in E}$ are in \emph{Schottky position}.
+
+\begin{definition}
+\label{definitionschottkyproduct}
+A collection of nontrivial semigroups $(G_a \prec\Isom(X) )_{a\in E}$ is in \emph{Schottky position} if there exist disjoint open sets $U_a\subset\bord X$ satisfying:
+\begin{itemize}
+\item[(I)] For all $a,b\in E$ distinct and $g\in G_a\butnot\{\id\}$,
+\[
+g(U_b) \subset U_a.
+\]
+\item[(II)] There exists $\zero\in X\butnot \cl{\bigcup_{a\in E} U_a}$ satisfying
+\begin{equation}
+\label{zerodef}
+g(\zero)\in U_a \all a\in E \all g\in G_a\butnot\{\id\}.
+\end{equation}
+\end{itemize}
+Such a collection $(U_a)_{a\in E}$ is called a \emph{Schottky system} for $(G_a)_{a\in E}$. If the collection $(G_a)_{a\in E}$ is in Schottky position, then we will call the semigroup $G = \lb G_a\rb_{a\in E}$ the \emph{Schottky product} of $(G_a)_{a\in E}$.
+
+A Schottky system will be called \emph{global} if for all $a\in E$ and $g\in G_a\butnot\{\id\}$,
+\begin{equation}
+\label{schottkyglobal}
+g(\bord X\butnot U_a) \subset \schottkycl{U_a}.
+\end{equation}
+\end{definition}
+
+\begin{remark*}
+In most references (e.g. \cite[\65]{DPPS}), \eqref{schottkyglobal} or a similar hypothesis is taken as the definition of Schottky position. So what these references call a ``Schottky group'', we would call a ``global Schottky group''. There are important examples of Schottky semigroups which are not global; see e.g. (B) of Proposition \ref{propositionnonelementaryequivalent}. It should be noted that such examples tend to be semigroups rather than groups, which explains why references which consider only groups can afford to include globalness in their definition of Schottky position.
+\end{remark*}
+
+\begin{remark*}
+The above definition may be slightly confusing to someone familiar with classical Schottky groups, since in that context the sets $U_a$ in the above definition are not half-spaces but rather unions of pairs of half-spaces; cf. Definition \ref{definitionschottkygroup}.
+%The above definition may be slightly confusing to someone familiar with classical Schottky groups, since the sets $(U_a)_{a\in E}$ in the above definition are not the half-spaces of classical Schottky products, but rath
+\end{remark*}
+
+The basic properties of Schottky products are summarized in the following lemma:
+
+\begin{lemma}
+\label{lemmapingpong}
+Let $G = \lb G_a\rb_{a\in E}$ be a Schottky product. Then:
+\begin{itemize}
+\item[(i)] (Ping-Pong Lemma) The natural map $\pi:\ast_{a\in E} G_a\to G$ is an injection (and therefore an isomorphism).
+\item[(ii)] Fix $\gg = (a_1,g_1)(a_2,g_2)\cdots(a_n,g_n)\in\ast_{a\in E}G_a$, and let $g = \pi(\gg)$. Then
+\begin{equation}
+\label{pingpong}
+g(\zero)\in U_{a_1}.
+\end{equation}
+Moreover, for all $b\neq a_n$
+\begin{equation}
+\label{pingpong2}
+g(U_b) \subset U_{a_1},
+\end{equation}
+and if the system $(U_a)_{a\in E}$ is global
+\begin{equation}
+\label{pingpong3}
+g(\bord X\butnot U_{a_n}) \subset \schottkycl{U_{a_1}}.
+\end{equation}
+\item[(iii)] If $G$ is a group, then $G$ is COT-discrete.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+\eqref{pingpong}-\eqref{pingpong3} may be proven by an easy induction argument. Now \eqref{pingpong} immediately demonstrates (i), since it implies that $\pi(\gg)\neq\id$. (iii) also follows from \eqref{pingpong}, since it shows that $\dogo g$ is bounded from below for all $g\in G\butnot\{\id\}$.
+\end{proof}
+\begin{remark}
+Lemma \ref{lemmapingpong}(i) says that Schottky products are (isomorphic to) free products. However, we warn the reader that the converse is not necessarily true; cf. Lemma \ref{lemmafreenotschottky}.
+\end{remark}
+
+Two important classes of Schottky products are \emph{Schottky groups} and \emph{Schottky semigroups}.
+
+\begin{definition}
+\label{definitionschottkygroup}
+A \emph{Schottky group} is the Schottky product of cyclic groups $G_a = (g_a)^\Z$ with the following property: For each $a\in E$, $U_a$ may be written as the disjoint union of two sets $U_a^+$ and $U_a^-$ satisfying
+\[
+g_a(\bord X\butnot U_a^-) \subset \schottkycl{U_a^+}.
+\]
+A \emph{Schottky semigroup} is simply the Schottky product of cyclic semigroups; no additional hypotheses are needed.
+\end{definition}
+
+\begin{remark}
+\label{remarkhalfspace}
+In the classical theory of Schottky groups, the sets $U_a^\pm$ are required to be half-spaces. A \emph{half-space} in $\bord\H^\alpha$ is a connected component of the complement of a totally geodesic subset of $\bord\H^\alpha$ of codimension one. Requiring the sets $U_a^\pm$ to be half-spaces has interesting effects on the geometry of Schottky groups.
+
+Although the notion of half-spaces cannot be generalized to hyperbolic metric spaces in general or even to nonreal algebraic hyperbolic spaces (since a totally geodesic subspace of an algebraic hyperbolic space over $\F = \C$ or $\Q$ always has real codimension at least 2, so deleting it yields a connected set), it at least makes sense over real hyperbolic spaces and in the context of $\R$-trees. A \emph{half-space} in an $\R$-tree $X$ is a connected component of the complement of a point in $X$.
+
+We hope to study the effect of requiring the sets $U_a^\pm$ to be half-spaces, both in the case of real (but infinite-dimensional) algebraic hyperbolic spaces and in the case of $\R$-trees, in more detail in \cite{DSU2}.
+\end{remark}
+
+\section{Strongly separated Schottky products}
+Many questions about Schottky products cannot be answered without some additional information. For example, one can ask whether or not the Schottky product of strongly (resp. moderately, weakly) discrete groups is strongly (resp. moderately, weakly) discrete. One can also ask about the relation between the Poincar\'e exponent of a Schottky group and the Poincar\'e exponent of its factors. 
+
+For the purposes of this monograph, we will be interested in Schottky products which satisfy the following condition:
+
+\begin{definition}
+\label{definitionstrongseparation}
+A Schottky product $G = \lb G_a\rb_{a\in E}$ is said to be \emph{strongly separated} (with respect to a Schottky system $(U_a)_{a\in E}$) if there exists $\epsilon > 0$ such that for all $a,b\in E$ distinct and $g\in G_a\butnot\{\id\}$,
+\begin{equation}
+\label{strongseparation}
+\wbar\Dist\big(U_a\cup g^{-1}(\bord X\butnot U_a),U_b\big) \geq \epsilon.
+\end{equation}
+Here $\wbar\Dist$ is as in Proposition \ref{propositionwbarDist}. Abusing terminology, we will also call the semigroup $G$ and the Schottky system $(U_a)_{a\in E}$ strongly separated.
+
+The product $G = \lb G_a\rb_{a\in E}$ is \emph{weakly separated} if \eqref{strongseparation} holds for a constant $\epsilon > 0$ which depends on $a$ and $b$ (but not on $g$).
+\end{definition}
+
+\begin{remark}
+There are many important examples of Schottky products which are not strongly separated, and we hope to analyze these in more detail in \cite{DSU2}. Some examples of Schottky products that do satisfy the condition are given in Section \ref{subsectionschottkyexamples}.
+\end{remark}
+
+\begin{standingassumptions}
+For the remainder of this chapter, 
+\[
+G = \lb G_a\rb_{a\in E}
+\] 
+denotes a strongly separated Schottky product and $(U_a)_{a\in E}$ denotes the corresponding Schottky system. Moreover, from now on we assume that the hyperbolic metric space $X$ is \emph{geodesic}.
+\end{standingassumptions}
+
+\begin{notation}
+\label{notationVa}
+Let $\Gamma$ denote the free product $\Gamma = \ast_{a\in E} G_a$, and let $\pi:\Gamma\to G$ denote the natural isomorphism. Whenever we have specified an element $\gg\in\Gamma$, we denote its length by $|\gg|$ and we write $\gg = (a_1,g_1)\cdots(a_{|\gg|},g_{|\gg|})$. For $\hh\in\Gamma$, we write $\hh = (b_1,h_1)\cdots(b_{|\hh|},h_{|\hh|})$.
+
+Let $\zero\in X$ satisfy \eqref{zerodef}. Let $\epsilon\leq \dist(\zero,\bigcup_a U_a)$ satisfy \eqref{strongseparation}, and for each $a\in E$ let $V_a$ denote the closed $\epsilon/4$-thickening of $U_a$ with respect to the $\wbar\Dist$ metric. Then the sets $(\Int(V_a))_{a\in E}$ are also a Schottky system for $(G_a)_{a\in E}$; they are strongly separated with $\epsilon = \epsilon/2$; moreover,
+\begin{equation}
+\label{UaVa}
+\wbar\Dist(U_a,\bord X\butnot V_a) \geq \epsilon/2 \all a\in E.
+\end{equation}
+Finally, let
+\[
+X_a = \begin{cases}
+\bord X \butnot \Int(V_a) & \text{$(U_a)_{a\in E}$ is global}\\
+\{\zero\}\cup\bigcup_{b\neq a} V_b & \text{otherwise}
+\end{cases},
+\]
+so that
+\begin{equation}
+\label{XaUa}
+g(X_a) \subset \schottkycl{U_a} \all a\in E.
+\end{equation}
+Note that since the sets $(V_a)_{a\in E}$ are $\epsilon/2$-separated, they have no accumulation points and thus $X_a$ is closed for all $a\in E$.
+\end{notation}
+
+The strong separation condition will allow us to relate the discreteness of the groups $G_a$ to the discreteness of their Schottky product $G$. It will also allow us to relate the Poincar\'e exponents of $G_a$ with the Poincar\'e exponent of $G$. The underlying fact which will allow us to prove both of these relations is the following lemma:
+
+\begin{lemma}
+\label{lemmastrongseparation}
+There exist constants $C,\epsilon > 0$ such that for all $\gg\in\Gamma$,
+\begin{equation}
+\label{quasiisometry1}
+\sum_{i = 1}^{|\gg|} (\dogo{g_i} - C) \vee \epsilon \leq \dist(X\butnot V_{a_1},\pi(\gg)(X_{a_{|\gg|}})) \leq \sum_{i = 1}^{|\gg|} \dogo{g_i}.
+\end{equation}
+In particular
+\begin{equation}
+\label{quasiisometry2}
+\sum_{i = 1}^{|\gg|} (\dogo{g_i} - C) \vee \epsilon \leq \dogo{\pi(\gg)} \leq \sum_{i = 1}^{|\gg|} \dogo{g_i}
+\end{equation}
+and thus
+\begin{equation}
+\label{quasiisometry3}
+\dogo{\pi(\gg)} \asymp_\times \sum_{i = 1}^{|\gg|} 1\vee\dogo{g_i}
+\end{equation}
+\end{lemma}
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%\clip(-4.899966767441925,-4.127792913218684) rectangle (5.000500669258825,4.12259661736531);
+\clip(-4.895,-4.02) rectangle (5.00,4.05);
+\draw(0.0,0.0) circle (4.0cm);
+\draw [shift={(4.283099034513885,0.4329696912868889)},dash pattern=on 2pt off 2pt] plot[domain=2.0507039028046368:4.4339728284114255,variable=\t]({1.0*1.6748784256043165*cos(\t r)+-0.0*1.6748784256043165*sin(\t r)},{0.0*1.6748784256043165*cos(\t r)+1.0*1.6748784256043165*sin(\t r)});
+\draw [shift={(4.748353951077781,0.47506938161209916)}] plot[domain=2.247889155975885:4.234731034706145,variable=\t]({1.0*2.7142499830912525*cos(\t r)+-0.0*2.7142499830912525*sin(\t r)},{0.0*2.7142499830912525*cos(\t r)+1.0*2.7142499830912525*sin(\t r)});
+\draw [shift={(5.192066955590817,0.5369298934377099)}] plot[domain=2.3728917598059724:4.116387978350911,variable=\t]({1.0*3.5487868285549222*cos(\t r)+-0.0*3.5487868285549222*sin(\t r)},{0.0*3.5487868285549222*cos(\t r)+1.0*3.5487868285549222*sin(\t r)});
+\draw [shift={(-3.012083040210043,3.2835854841554135)}] plot[domain=-1.9392257232190016:0.28223225373733796,variable=\t]({1.0*2.222612337905064*cos(\t r)+-0.0*2.222612337905064*sin(\t r)},{0.0*2.222612337905064*cos(\t r)+1.0*2.222612337905064*sin(\t r)});
+\draw [shift={(-2.9425720821605914,3.156105058241987)}] plot[domain=-2.00634379344784:0.36555006299211396,variable=\t]({1.0*1.5526360140016449*cos(\t r)+-0.0*1.5526360140016449*sin(\t r)},{0.0*1.5526360140016449*cos(\t r)+1.0*1.5526360140016449*sin(\t r)});
+\draw [shift={(-2.754185174565803,2.935836630029507)},dash pattern=on 2pt off 2pt] plot[domain=-2.2439490561832196:0.6093252827785631,variable=\t]({1.0*0.9385331439412178*cos(\t r)+-0.0*0.9385331439412178*sin(\t r)},{0.0*0.9385331439412178*cos(\t r)+1.0*0.9385331439412178*sin(\t r)});
+\draw [shift={(-3.194110354106763,-4.9225766162334885)}] plot[domain=0.24650964162935474:1.7439226966111823,variable=\t]({1.0*4.511504567019594*cos(\t r)+-0.0*4.511504567019594*sin(\t r)},{0.0*4.511504567019594*cos(\t r)+1.0*4.511504567019594*sin(\t r)});
+\draw [shift={(-2.8366865058196393,-4.158283214595901)}] plot[domain=0.05462014450100066:1.8896444693721808,variable=\t]({1.0*3.2086081775267683*cos(\t r)+-0.0*3.2086081775267683*sin(\t r)},{0.0*3.2086081775267683*cos(\t r)+1.0*3.2086081775267683*sin(\t r)});
+\draw [shift={(-2.6011377721289524,-3.285711019315482)},dash pattern=on 2pt off 2pt] plot[domain=-0.3641423721372501:2.1664758878545376,variable=\t]({1.0*1.42391741251383*cos(\t r)+-0.0*1.42391741251383*sin(\t r)},{0.0*1.42391741251383*cos(\t r)+1.0*1.42391741251383*sin(\t r)});
+\draw (-1.2804269894594213,-0.8370546865272379)-- (0.0,-0.0);
+\draw (0.0,-0.0)-- (3.1999910454812306,0.348915424894208);
+\draw [shift={(1.11888072943081,6.533679518855568)}] plot[domain=4.06530989835595:4.846727654763512,variable=\t]({1.0*5.025532715624298*cos(\t r)+-0.0*5.025532715624298*sin(\t r)},{0.0*5.025532715624298*cos(\t r)+1.0*5.025532715624298*sin(\t r)});
+\draw [shift={(-4.486159245286336,-0.24644631226103308)}] plot[domain=-0.7705046356929692:0.6152247592940139,variable=\t]({1.0*2.3406407569929826*cos(\t r)+-0.0*2.3406407569929826*sin(\t r)},{0.0*2.3406407569929826*cos(\t r)+1.0*2.3406407569929826*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (1pt);
+\draw[color=black] (0.2,-0.2) node {$\zero$};
+\draw[color=black] (3.2956551912579393,0.9655415669897534) node {$g_1(X_a)$};
+
+\draw[color=black] (3.3,2.7) node {$U_a$};
+\draw[color=black] (2.8,3.2) node {$V_a$};
+
+%\draw[color=black] (2.2124380003028663,0.7655415669897534) node {$a_2$};
+%\draw[color=black] (1.4158486663154497,0.7939911860607327) node {$a_1$};
+%\draw[color=black] (-1.5713613361373626,1.4341076151577667) node {$b_1$};
+%\draw[color=black] (-1.941206384060092,1.8893015202934353) node {$b_2$};
+\draw[color=black] (-2.6964002891957583,2.33515619473106552) node {$g_2(X_b)$};
+
+\draw[color=black] (-3.8,1.8) node {$U_b$};
+\draw[color=black] (-4.05,1.2) node {$V_b$};
+
+%\draw[color=black] (-0.5898494781885815,-0.8845363391270453) node {$c_1$};
+%\draw[color=black] (-0.8743456688983732,-1.254381387049776) node {$c_2$};
+%\draw[color=black] (-1.5713613361373626,-1.922947435217789) node {$c_3$};
+\draw [fill=black] (3.1999910454812306,0.348915424894208) circle (1pt);
+\draw[color=black] (3.2935235250000745,0.0801927097768155) node {$\pi(\gg)(\zero)$};
+\draw [fill=black] (1.7919753189387375,1.5534262372055987) circle (1pt);
+\draw[color=black] (1.5580967616703456,1.8177511393644147) node {$x_1$};
+\draw [fill=black] (-1.9108045456133846,2.5240677907713494) circle (.5pt);
+%\draw[color=black] (-2.069229669879498,2.9134878068486896) node {$F_1$};
+\draw [fill=black] (-2.574689601306593,1.104435974779788) circle (1pt);
+\draw[color=black] (-2.780470146653977,0.9077896623446498) node {$x_2$};
+\draw [fill=black] (-2.8066107407049277,-1.8766965918362397) circle (.5pt);
+\draw[color=black] (-2.094694956189467,-2.450970721037196) node {$g_3(X_c)$};
+
+\draw[color=black] (-4.2,-0.5) node {$V_c$};
+\draw[color=black] (-4.05,-1.2) node {$U_c$};
+
+\draw [fill=black] (-1.2804269894594213,-0.8370546865272379) circle (1pt);
+\draw[color=black] (-1.3295395740340399,-0.57201686259784564) node {$x_3$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The strong separation lemma for Schottky products]{The geodesic segment $\geo\zero{\pi(\gg)(\zero})$ splits up naturally into four subsegments, which can then be rearranged by the isometry group to form geodesic segments which connect $\zero$ with $g_1(X_a)$, $V_a$ with $g_2(X_b)$, $V_b$ with $g_3(X_c)$, and $V_c$ with $\zero$, respectively. Here $\gg = (a,g_1)(b,g_2)(c,g_3)$.}
+\label{figureschottkylemma}
+\end{center}
+\end{figure}
+\begin{proof}
+The second inequality of \eqref{quasiisometry1} is immediate from the triangle inequality. For the first inequality, fix $\gg\in\Gamma$, $x\in X\butnot V_{a_1}$, and $y\in X_{a_{|\gg|}}$. Write $n = |\gg|$. We have
+\begin{align*}
+\pi(\gg)(y)
+\in g_1\cdots g_n(X_{a_n})
+&\subset g_1\cdots g_{n - 1}(V_{a_n}) 
+\subset g_1\cdots g_{n - 1}(X_{a_{n - 1}})\\ 
+&\subset \cdots \subset g_1(V_{a_2})
+\subset g_1(X_{a_1}) \subset V_{a_1} \not\ni x.
+\end{align*}
+Consequently, the geodesic $\geo{x}{\pi(\gg)(y)}$ intersects the sets
+\[
+\del V_{a_1},\; g_1(\del X_{a_1}),\; g_1(\del V_{a_2}), \ldots,\; g_1\cdots g_{n - 1}(\del V_{a_n}),\; g_1\cdots g_n(\del X_{a_n})
+\]
+in their respective orders. Thus
+\begin{equation}
+\label{d0pig}
+\begin{split}
+\dist(x,\pi(\gg)(y))
+&\geq \sum_{i = 1}^n \dist(g_1\cdots g_{i - 1}(\del V_{a_i}),g_1\cdots g_i(\del X_{a_i}))\\
+&= \sum_{i = 1}^n \dist(\del V_{a_i},g_i(\del X_{a_i}))\\
+&\geq \sum_{i = 1}^n \dist(X\butnot V_{a_i}, g_i(X_{a_i})).
+\end{split}
+\end{equation}
+(Cf. Figure \ref{figureschottkylemma}.) Now fix $i = 1,\ldots,n$, and we will estimate the distance $\dist(X\butnot V_{a_i}, g_i(X_{a_i}))$. For convenience of notation write $a = a_i$ and $g = g_i$.
+
+Fix $z\in X\butnot V_a$ and $w\in g(X_a)$. Combining \eqref{UaVa} and \eqref{XaUa} gives
+\[
+\wbar\Dist(z,w) \geq \epsilon/2
+\]
+and in particular
+\begin{equation}
+\label{XVagVb}
+\dist(z,w) \geq \epsilon/2.
+\end{equation}
+On the other hand, converting the inequality $\Dist(z,w) \geq \epsilon/2$ into a statement about Gromov products shows that
+\[
+\dist(z,w) \asymp_{\plus,\epsilon} \dist(\zero,z) + \dist(\zero,w) \geq \dist(\zero,w) \geq \dist(g^{-1}(\zero),X_a).
+\]
+Since $\wbar\Dist(g^{-1}(\zero),X_a) \geq \wbar\Dist(g^{-1}(\bord X\butnot V_a),X_a) \geq \epsilon/2$, we have
+\[
+\dist(g^{-1}(\zero),X_a) \gtrsim_{\plus,\epsilon} \dist(g^{-1}(\zero),\zero) = \dogo g.
+\]
+Combining with \eqref{XVagVb} gives
+\[
+\dist(z,w) \geq (\dogo g - C) \vee (\epsilon/2)
+\]
+for some $C > 0$ depending only on $\epsilon$. Taking the infimum over all $z,w$ gives
+\[
+\dist(X\butnot V_{a_i}, g_i(X_{a_i})) \geq (\dogo{g_i} - C) \vee (\epsilon/2).
+\]
+Summing over all $i = 1,\ldots,n$ and combining with \eqref{d0pig} yields \eqref{quasiisometry1}. Since $\zero\in X_{a_{|\gg|}}$ and $\zero\in X\butnot V_{a_1}$, \eqref{quasiisometry2} follows immediately. Finally, the coarse asymptotic
+\[
+(\dogo{g_i} - C)\vee \epsilon \asymp_{\times,C,\epsilon} 1\vee \dogo{g_i}.
+\]
+implies \eqref{quasiisometry3}.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryschottkySD}
+Suppose that $\#\{a\in E : \dist(\zero,U_a) \leq \rho\} < \infty$ for all $\rho > 0$. If the groups $(G_a)_{a\in E}$ are strongly discrete, then $G$ is strongly discrete.
+
+In fact, this corollary holds even if $G$ is only weakly separated and not strongly separated.
+\end{corollary}
+\begin{proof}
+Since $\dogo g \geq \dist(\zero,U_a)$ for all $a\in E$ and $g\in G_a$, our hypotheses implies that
+\[
+\#\{(a,g)\in \Gamma_E : \dogo g \leq \rho\} < \infty \all \rho.
+\]
+It follows that for all $N\in\N$,
+\begin{equation}
+\label{Gamman}
+\begin{split}
+\#&\left\{\gg\in\Gamma : \sum_{i = 1}^{|\gg|} 1\vee\dogo{g_i} \leq N\right\}\\
+&\leq \sum_{n = 0}^N \#\left\{\gg\in (\Gamma_E)^n : \dogo{g_i} \leq N \all i = 1,\ldots,n\right\}\\
+&\leq \sum_{n = 0}^N \#\left\{(a,g)\in\Gamma_E : \dogo g \leq N\right\}^n
+< \infty.
+\end{split}
+\end{equation}
+Applying \eqref{quasiisometry3} completes the proof. If $G$ is only weakly separated, then for all $\rho > 0$ the Schottky product $\lb G_a\rb_{\dist(\zero,U_a)\leq \rho}$ is still stronglly separated, which is enough to apply \eqref{quasiisometry3} in this context.
+\end{proof}
+
+
+\begin{proposition}
+\label{propositionSproductexponent}
+~
+\begin{itemize}
+\item[(i)] If $\#(E) < \infty$ and the groups $G_a$ satisfy $\delta_{G_a} < \infty$, then $\delta_G < \infty$.
+\item[(ii)] Suppose that for some $a\in E$, $G_a$ is of divergence type. Then $\delta_G > \delta_{G_a}$.
+\item[(iii)] Suppose that $G$ is a group. If $\delta_{G_a} = \infty$ for some $a$, and if $G_b$ is infinite for some $b\neq a$, then $\w\delta_G = \infty$.
+\item[(iv)] If $E = \{a,b\}$ and $G_b = g^\Z$, then
+\[
+\lim_{n\to\infty} \delta(G_a\ast g^{n\Z}) = \delta(G_a).
+\]
+Moreover, if $G_a$ is of convergence type, then for all $n$ sufficiently large, $G_a\ast g^{n\Z}$ is of convergence type.
+\end{itemize}
+Moreover, (ii) holds for any free product $G = \lb G_a\rb_{a\in E}$, even if the product is not Schottky.
+\end{proposition}
+
+% Remark: The main theorem of \cite{Peigne} states that in the case of (ii), $G$ is of divergence type. It is in the setting of Kleinian groups.
+
+\begin{remark}
+Property (iii) tells us that an analogue of property (i) cannot hold for the modified Poincar\'e exponent: if we take the Schottky product of two groups $G_1,G_2$ with $\w\delta(G_i) < \infty$ but $\delta(G_i) = \infty$, then the product $G$ will have $\w\delta(G) = \infty$.
+\end{remark}
+
+\begin{proof}[Proof of \text{(i)}]
+\eqref{Gamman} shows that for some $C > 0$,
+\[
+\#\{g\in G : \dogo g \leq \rho\} \leq \#\left\{(a,g)\in\Gamma_E : \dogo g \leq C\rho \right\}^{C\rho} \all \rho > 0.
+\]
+Applying \eqref{poincarealternate} completes the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(ii)}]
+For all $s\geq 0$,
+\begin{align*}
+\Sigma_s(G) = \sum_{\gg\in\Gamma} b^{-s\dogo{\pi(\gg)}}
+&\geq \sum_{\gg\in\Gamma} b^{-s\sum_1^{|\gg|} \dogo{g_i}}\\
+&= \sum_{\gg\in\Gamma} \prod_{i = 1}^{|\gg|} b^{-s\dogo{g_i}}\\
+&= \sum_{n = 0}^\infty \sum_{a_1\neq \cdots \neq a_n} \sum_{g_1\in G_{a_1}\butnot\{\id\}}\cdots \sum_{g_n\in G_{a_n}\butnot\{\id\}}\prod_{i = 1}^n b^{-s\dogo{g_i}}\\
+&= \sum_{n = 0}^\infty \sum_{a_1\neq \cdots \neq a_n} \prod_{i = 1}^n \sum_{g\in G_{a_i}\butnot\{\id\}} b^{-s\dogo g}\\
+&= \sum_{n = 0}^\infty \sum_{a_1\neq \cdots \neq a_n} \prod_{i = 1}^n (\Sigma_s(G_{a_i}) - 1).
+\end{align*}
+To simplify further calculations, we will assume that $\#(E) = 2$; specifically we will let $E = \{1,2\}$. Then
+\begin{align*}
+\Sigma_s(G)
+&\geq_\pt \sum_{n = 0}^\infty \begin{cases}
+2\left(\displaystyle\prod_{a\in E}\big(\Sigma_s(G_a) - 1\big)\right)^{n/2} & n \text{ even}\\
+\left(\displaystyle\prod_{a\in E}\big(\Sigma_s(G_a) - 1\big)\right)^{(n - 1)/2}\left(\displaystyle\sum_{a\in E}\big(\Sigma_s(G_a) - 1\big)\right) & n \text{ odd}
+\end{cases}\\
+&\asymp_\times \sum_{n = 0}^\infty \left(\prod_{a\in E}\big(\Sigma_s(G_a) - 1\big)\right)^{n/2}.
+\end{align*}
+This series diverges if and only if
+\begin{equation}
+\label{prodSsGa}
+\prod_{a\in E}(\Sigma_s(G_a) - 1) \geq 1.
+\end{equation}
+Now suppose that $G_1$ is of divergence type, and let $\delta_1 = \delta(G_1)$. By the monotone convergence theorem,
+\[
+\lim_{s\searrow \delta_1} \prod_{a\in E}(\Sigma_s(G_a) - 1) = \prod_{a\in E}(\Sigma_{\delta_1}(G_a) - 1) = \infty(\Sigma_{\delta_1}(G_2) - 1) = \infty.
+\]
+(The last equality holds since $G_2$ is nontrivial, see Definition \ref{definitionschottkyproduct}.) So for $s$ sufficiently close to $\delta_1$, \eqref{prodSsGa} holds, and thus $\Sigma_s(G) = \infty$.
+\end{proof}
+\begin{proof}[Proof of \text{(iii)}]
+Fix $\rho > 0$, and let $h\in G_b$ satisfy $\dist(h(\zero),U_a) \geq \rho$. (This is possible since $G_b$ is non-elliptic and $\dist(h(\zero),U_a) \asymp_\plus \dogo h \all h\in G_b$.) Then the set
+\[
+S_\rho = \{gh(\zero) : g\in G_a\}
+\]
+is $\rho$-separated, but $\delta(S_\rho) = \delta(G_a) = \infty$. Since $\rho$ was arbitrary, it follows from Proposition \ref{propositionbasicmodified}(iv) that $\w\delta(G) = \infty$.
+\end{proof}
+\begin{proof}[Proof of \text{(iv)}]
+We will in fact show the following more general result:
+\begin{proposition}
+Suppose $E = \{a,b\}$, and fix $s\notin \Delta(G_a)\cup\Delta(G_b)$. Then there exists a finite set $F\subset G_b$ such that for all $H\leq G_b$, if $H\cap F = \{\id\}$, then $s\notin\Delta(G_a\ast H)$.
+\end{proposition}
+\noindent Indeed, for such an $s$, the Poincar\'e series $\Sigma_s(G_a\ast H)$ can be estimated using \eqref{quasiisometry2} as follows:
+\[
+\Sigma_s(G_a\ast H) = \sum_{\gg\in\Gamma} b^{-s\dogo{\pi(\gg)}}
+\leq \sum_{\gg\in\Gamma} b^{-s\sum_1^{|\gg|} (\dogo{g_i} - C)} = \sum_{\gg\in\Gamma} b^{sC|\gg|} b^{-s\sum_1^{|\gg|} \dogo{g_i}}.
+\]
+Continuing as in the proof of part (ii), we get
+%&=_\pt \sum_{\gg\in\Gamma} \prod_{i = 1}^{|\gg|} b^{-s(\dogo{g_i} - C)}\\
+%&= \sum_{n = 0}^\infty \sum_{a_1\neq \cdots \neq a_n} \sum_{g_1\in G_{a_1}\butnot\{\id\}}\cdots \sum_{g_n\in G_{a_n}\butnot\{\id\}}\prod_{i = 1}^n b^{-s(\dogo{g_i} - C)}\\
+%&= \sum_{n = 0}^\infty \sum_{a_1\neq \cdots \neq a_n} \prod_{i = 1}^n \sum_{g\in G_{a_i}\butnot\{\id\}} b^{-s(\dogo g - C)}\\
+%&= \sum_{n = 0}^\infty b^{sCn} \begin{cases}
+%2\left(\displaystyle\big(\Sigma_s(G_a) - 1\big)\big(\Sigma_s(H) - 1\big)\right)^{n/2} & n \text{ even}\\
+%\left(\displaystyle\big(\Sigma_s(G_a) - 1\big)\big(\Sigma_s(H) - 1\big)\right)^{(n - 1)/2}\left(\displaystyle\big(\Sigma_s(G_a) - 1\big) + \big(\Sigma_s(H) - 1\big)\right) & n \text{ odd}
+%\end{cases}\\
+\[
+\Sigma_s(G_a\ast H) \lesssim_\times \sum_{n = 0}^\infty b^{sCn} \Big(\big(\Sigma_s(G_a) - 1\big)\big(\Sigma_s(H) - 1\big)\Big)^{n/2}.
+\]
+Since $\Sigma_s(H) - 1 \leq \Sigma_s(G_b\butnot F)$, to show that $\Sigma_s(G_a\ast H) < \infty$ it suffices to show that
+\begin{equation}
+\label{ETSSproductexponent4}
+b^{sC} \Big(\big(\Sigma_s(G_a) - 1\big)\big(\Sigma_s(G_b\butnot F)\big)\Big)^{1/2} < 1.
+\end{equation}
+But since the series $\Sigma_s(G_a)$ and $\Sigma_s(G_b)$ both converge by assumption, \eqref{ETSSproductexponent4} holds for all $F\subset G_b$ sufficiently large.
+\end{proof}
+
+We will sometimes find the following variant of Proposition \ref{propositionSproductexponent}(ii) more useful than the original:
+
+\begin{proposition}[Cf. {\cite[Proposition 2]{DOP}}]
+\label{propositiondeltagtrdeltap}
+Fix $H\leq G\leq\Isom(X)$, and suppose that
+\begin{itemize}
+\item[(I)] $\Lambda_H \propersubset \Lambda_G$,
+\item[(II)] $G$ is of general type, and
+\item[(III)] $H$ is of compact type and of divergence type.
+\end{itemize}
+Then $\delta_G > \delta_H$.
+\end{proposition}
+\begin{proof}
+Fix $\xi\in\Lambda_G\butnot\Lambda_H$, and fix $\epsilon > 0$ small enough so that $B(\xi,\epsilon)\cap\Lambda_H = \emptyset$. Since $G$ is of general type, by Proposition \ref{propositionminimal3}, there exists a loxodromic isometry $g\in G$ such that $g_+,g_-\in B(\xi,\epsilon/4)$. After replacing $g$ by an appropriate power, we may assume that $g^n(\bord X\butnot B(\xi,\epsilon/2)) \subset B(\xi,\epsilon/2)$ for all $n\in\Z\butnot\{0\}$. Now let
+\begin{align*}
+U_1 &= B(\xi,\epsilon/2)\\
+U_2 &= \thick{\Lambda_H}{\epsilon/4}.
+\end{align*}
+Since $H$ is of compact type (and strongly discrete by Observation \ref{observationnotstronglydiscrete}), Proposition \ref{propositionSDonclX} shows that there exists a finite set $F\subset H$ such that for all $h\in H\butnot F$, $h(\bord X\butnot U_2)\subset U_2$. Let
+\[
+S = \coprod_{n\geq 0} \big((H\butnot F)\times(g^\Z\butnot\{\id\})\big)^n,
+\]
+and define $\pi:S\to G$ via the formula
+\[
+\pi\big((h_i,j_i)_{i = 1}^n\big) = h_1 j_1 \cdots h_n j_n.
+\]
+A variant of the Ping-Pong Lemma shows that $\pi$ is injective. On the other hand, for all $(h_i,j_i)_{i = 1}^n\in S$, the triangle inequality gies
+\[
+\dist\left(\zero,\pi\big((h_i,j_i)_{i = 1}^n\big)(\zero)\right) \leq \sum_{i = 1}^n [\dogo{h_i} + \dogo{j_i}].
+\]
+Thus for all $s > \delta_H$,
+\begin{align*}
+\Sigma_s(G) &\geq \sum_{g\in \pi(S)} e^{-s\dogo g}\\
+&\geq \sum_{(h_i,j_i)_{i = 1}^n \in S} \prod_{i = 1}^n e^{-s[\dogo{h_i} + \dogo{j_i}]}\\
+&= \sum_{n\geq 0} \left(\sum_{h\in H\butnot F}\sum_{j\in g^\Z\butnot\{\id\}} e^{-s[\dogo h + \dogo j]}\right)^n\\
+&= \sum_{n\geq 0} \left(\Sigma_s(H\butnot F) \Sigma_s(g^\Z\butnot\{\id\})\right)^n\\
+&\begin{cases}
+= \infty & \Sigma_s(H\butnot F) \Sigma_s(g^\Z\butnot\{\id\}) \geq 1\\
+< \infty & \Sigma_s(H\butnot F) \Sigma_s(g^\Z\butnot\{\id\}) < 1
+\end{cases}.
+\end{align*}
+Now since $H$ is of divergence type, by the monotone convergence theorem,
+\begin{align*}
+\lim_{s\searrow\delta_H} \Sigma_s(H\butnot F) \Sigma_s(g^\Z\butnot\{\id\}) &= \Sigma_{\delta_H}(H\butnot F) \Sigma_{\delta_H}(g^\Z\butnot\{\id\})\\ 
+&= \infty \cdot (\text{positive constant})\\
+&= \infty.
+\end{align*}
+Thus, for $s$ sufficiently close to $\delta_H$, $\Sigma_s(G) = \infty$. This shows that $\delta_G > \delta_H$.
+\end{proof}
+\begin{remark}
+The reason that we couldn't deduce Proposition \ref{propositiondeltagtrdeltap} directly from Proposition \ref{propositionSproductexponent}(ii) is that the group $\lb H,g^\Z\rb$ considered in the proof of Proposition \ref{propositiondeltagtrdeltap} is not necessarily a free product due to the existence of the finite set $F$. In the Standard Case, this could be solved by taking a finite-index subgroup of $H$ whose intersection with $F$ is trivial, but in general, it is not clear that such a subgroup exists.
+\end{remark}
+
+
+
+\section{A partition-structure--like structure}
+\label{subsectionWg}
+For each $\gg \in\Gamma$, let
+\[
+W_\gg = \pi(\gg)(X_{a_{|\gg|}}),
+\]
+unless $\gg = \emptyset$, in which case let $W_\smallemptyset = \bord X$.
+
+\begin{standingassumption}
+\label{assumptionGa}
+In what follows, we assume that for each $a\in E$, either
+\begin{itemize}
+\item[(1)] $G_a$ is a group, or
+\item[(2)] $G_a\equiv\N$.
+\end{itemize}
+\end{standingassumption}
+
+For $\gg,\hh\in\Gamma$, write $\gg \leq \hh$ if $\hh = \gg\ast\kk$ for some $\kk\in\Gamma$.
+
+\begin{lemma}
+\label{lemmaincomparable}
+Fix $\gg,\hh\in\Gamma$. If $\gg\leq \hh$, then $W_\hh\subset W_\gg$. On the other hand, if $\gg$ and $\hh$ are incomparable ($\gg\not\leq\hh$ and $\hh\not\leq\gg$), then $W_\gg\cap W_\hh = \emptyset$.
+\end{lemma}
+\begin{proof}
+The first assertion follows from Lemma \ref{lemmapingpong}. For the second assertion, it suffices to show that if $(a,g),(b,h)\in \Gamma_E$ are distinct, then $W_{(a,g)}\cap W_{(b,h)} = \emptyset$. Since $W_{(a,g)} \subset \schottkycl{U_a}$ and $(\schottkycl{U_a})_{a\in E}$ are disjoint, if $a\neq b$ then $W_{(a,g)}\cap W_{(b,h)} = \emptyset$. So suppose $a = b$. Assumption \ref{assumptionGa} guarantees that either $g^{-1}h\in G_a$ or $h^{-1}g\in G_a$; without loss of generality assume that $g^{-1}h\in G_a$. Then
+\[
+W_{(a,g)}\cap W_{(b,h)} = g(X_a)\cap h(X_a) = g(X_a\cap g^{-1}h(X_a)) \subset g(X_a\cap \schottkycl{U_a}) = \emptyset.
+\]
+\end{proof}
+
+
+
+
+
+\begin{lemma}
+\label{lemmastrongseparation2}
+There exists $\sigma > 0$ such that for all $\gg\in \Gamma$,
+\begin{equation}
+\label{WgShad}
+W_\gg \subset \Shad(\pi(\gg)(\zero),\sigma).
+\end{equation}
+In particular
+\begin{equation}
+\label{WgDiam}
+\Diam(W_\gg) \lesssim_\times b^{-\dogo{\pi(\gg)}}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $n = |\gg|$, $g = g_n$, $a = a_n$, and $z = \pi(\gg)^{-1}(\zero)$. Observe that if $g(z)\in V_a$, then Lemma \ref{lemmapingpong} implies that $\zero\in V_{a_1}$, a contradiction. Thus $z\in g^{-1}(X\butnot V_a)$. If $X$ is not global, then $\eqref{strongseparation}_{U_a = V_a, \epsilon = \epsilon/2}$ implies that $\Dist(z,X_a) \geq \epsilon/2$. On the other hand, if $X$ is global then we have $z\in U_a$, so \eqref{UaVa} implies that $\Dist(z,X_a) \geq \epsilon/2$. Either way, we have $\Dist(z,X_a) \geq \epsilon/2$.
+
+Let $\sigma > 0$ be large enough so that the Big Shadows Lemma \ref{lemmabigshadow} holds; then we have $X_a \subset \Shad_z(\zero,\sigma)$. Applying $\pi(\gg)$ yields \eqref{WgShad}, and combining with the Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} yields \eqref{WgDiam}.
+\end{proof}
+
+
+
+Let $\del\Gamma$ denote the set of all infinite words with letters in $\Gamma_E$ such that $a_i \neq a_{i + 1}$ for all $i$. Given $\gg\in\del\Gamma$, for each $n$, $\gg\given n\in\Gamma$. Then Lemmas \ref{lemmaincomparable} and \ref{lemmastrongseparation2} show that the sequence $(W_{\gg\given n})_0^\infty$ is an infinite descending sequence of closed sets with diameters tending to zero; thus there exists a unique point $\xi\in \bigcap_0^\infty W_{\gg\given n}$, which will be denoted $\pi(\gg)$.
+
+\begin{lemma}
+\label{lemmaschottkyradial}
+For all $\gg\in\del\Gamma$, $\pi(\gg\given n)(\zero)\to \pi(\gg)$ radially. In particular $\pi(\del\Gamma)\subset\Lr(G)$.
+\end{lemma}
+\begin{proof}
+This is immediate from \eqref{WgShad}, since by definition $\pi(\gg)\in W_{\gg\given n}$ for all $n$.
+\end{proof}
+
+
+\begin{lemma}[Cf. Klein's combination theorem {\cite[Theorem 1.1]{LOW}}, \cite{Klein_combination_theorem}]
+\label{lemmaschottkydomain}
+The set
+\begin{equation}
+\label{schottkydomain}
+\DD = \bord X \butnot \bigcup_{a\in E}\bigcup_{g\in G_a} g(X_a) = \bord X \butnot \bigcup_{(a,g)\in \Gamma_E} W_{(a,g)}
+\end{equation}
+satisfies $G(\DD) = \bord X\butnot\pi(\del\Gamma)$.
+\end{lemma}
+\noindent Before we begin the proof of this lemma, note that since $\DD\cap X$ is open (Lemma \ref{lemmaDopen} below), the connectedness of $X$ implies that $g(\DD)\cap \DD\neq\emptyset$ for some $g\in G$. Thus $\DD$ is not a fundamental domain.
+%\begin{remark*}
+%This corollary fails without the strong separation condition.
+%\end{remark*}
+\begin{proof}
+Fix $x\in\bord X\butnot \pi(\del\Gamma)$, and consider the set
+\[
+\Gamma_x := \left\{\gg\in \Gamma : x\in W_\gg\right\}.
+\]
+By Lemma \ref{lemmaincomparable}, $\Gamma_x$ is totally ordered as a subset of $\Gamma$. If $\Gamma_x$ is infinite, let $\gg\in\del\Gamma$ be the unique word such that $\Gamma_x = \{\gg\given n : n\in\Neur\}$; Lemma \ref{lemmastrongseparation2} implies that $x = \pi(\gg)\in \pi(\del\Gamma)$, contradicting our hypothesis. Thus $\Gamma_x$ is finite. If $\Gamma_x = \emptyset$, we are done. Otherwise, let $\gg$ be the largest element of $\Gamma_x$. Then $x\in W_\gg$, so $\pi(\gg)^{-1}(x)\in X_a$, where $a = a_{|\gg|}$. The maximality of $\gg$ implies that
+\[
+\pi(\gg)^{-1}(x) \notin W_{(b,h)} = h(X_b) \all b\in E\butnot \{a\} \all h\in G_b\butnot\{\id\},
+\]
+but on the other hand $\pi(\gg)^{-1}(x)\in X_a\subset \bord X\butnot U_a$ implies that $\pi(\gg)^{-1}(x)\notin W_{(a,h)}$ for all $h\in G_a\butnot\{\id\}$. Thus $\pi(\gg)^{-1}(x)\in\DD$.
+\end{proof}
+
+\begin{lemma}
+\label{lemmaDopen}
+Suppose that for each $a\in E$, $G_a$ is strongly discrete. Then
+\[
+\DD\butnot\Int(\DD)\subset \bigcup_{a\in E} \Lambda_a,
+\]
+where $\Lambda_a = \Lambda(G_a)$. In particular, $\DD\cap X$ is open.
+\end{lemma}
+\begin{proof}
+Fix $x\in\DD\butnot\Int(\DD)$, and find a sequence $(a_n,g_n)\in \Gamma_E$ such that $\wbar\Dist(x,g_n(X_{a_n})) \to 0$. Since $g_n(X_{a_n}) \subset \schottkycl{U_{a_n}}$, \eqref{strongseparation} implies that $a_n$ is constant for all sufficiently large $n$, say $a_n = a$. On the other hand, if there is some $g\in G_a$ such that $g_n = g$ for infinitely many $n$, then since $g(X_a)$ is closed we would have $x\in g(X_a)$, contradicting that $x\in\DD$. Since $G_a$ is strongly discrete, it follows that $\dogo{g_n}\to\infty$, and thus $\Diam(g_n(X_a))\to 0$ by Lemma \ref{lemmastrongseparation2}. Since $g_n(\zero)\in g_n(X_a)$, it follows that $g_n(\zero)\to x$, and thus $x\in \Lambda_a$.
+\end{proof}
+
+
+
+
+\begin{theorem}
+\label{theoremschottkylimitset}
+\[
+\Lambda = \pi(\del\Gamma)\cup\bigcup_{g\in G}\bigcup_{a\in E} g(\Lambda_a).
+\]
+\end{theorem}
+\begin{proof}
+The $\supset$ direction follows from Lemma \ref{lemmaschottkyradial}, so let us show $\subset$. It suffices to show that $\Lambda\cap \DD\subset \bigcup_{a\in E} \Lambda_a$. Indeed, for all $\gg\in\Gamma\butnot\{\emptyset\}$, Lemma \ref{lemmapingpong} gives $\pi(\gg)(\zero)\in g_1(X_{a_1}) \subset \bord X\butnot\DD$. Thus $\Lambda\cap\DD = \DD\cap\del\DD \subset \bigcup_{a\in E}\Lambda_a$ by Lemma \ref{lemmaDopen}.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryschottkycompacttype}
+If $E$ is finite and each $G_a$ is strongly discrete and of compact type, then $G$ is strongly discrete and of compact type.
+\end{corollary}
+\begin{proof}
+Strong discreteness follows from Corollary \ref{corollaryschottkySD}, so let us show that $G$ is of compact type. Let $(\xi_n)_1^\infty$ be a sequence in $\Lambda$. For each $n\in\N$, if $\xi_n\in \pi(\del\Gamma)$, write $\xi_n = \pi(\gg_n)$ for some $\gg_n\in\del\Gamma$; otherwise, write $\xi_n = \pi(\gg_n)(\eta_n)$ for some $\gg_n\in\Gamma$ and $\eta_n\in\Lambda_{a_n}$. Either way, note that $\xi_n\in W_\hh$ for all $\hh\leq\gg$.
+
+For each $\hh\in\Gamma$, let
+\[
+S_\hh = \{n\in\N : \hh\leq\gg_n\}.
+\]
+Since $\Gamma$ is countable, by extracting a subsequence we may without loss of generality assume that for all $\hh\in\Gamma$, either $n\in S_\hh$ for all but finitely many $n$, or $n\in S_\hh$ for only finitely many $n$. Let
+\[
+\Gamma' = \{\hh\in\Gamma : \text{$n\in S_\hh$ for all but finitely many $n$}\}.
+\]
+Then by Lemma \ref{lemmaincomparable}, the set $\Gamma'$ is totally ordered. Moreover, $\emptyset\in \Gamma'$. If $\Gamma'$ is infinite, then choose $\gg\in\del\Gamma$ such that $\Gamma' = \{\gg\given m : m\geq 0\}$; by Lemma \ref{lemmastrongseparation2}, we have $\xi_n\to\pi(\gg)$. Otherwise, let $\gg$ be the largest element of $\Gamma'$. For each $n$, either $\xi_n\in W_{\gg(b_n,h_n)}$ for some $(b_n,h_n)\in\Gamma_E$, or $\xi_n = \pi(\gg)(\eta_n)$ for some $a_n\in E$ and $\eta_n\in\Lambda_{a_n}$. By extracting another subsequence, we may assume that either the first case holds for all $n$, or the second case holds for all $n$. Suppose the first case holds for all $n$. The maximality of $\gg$ implies that for each $(b,h)\in\Gamma_E$, there are only finitely many $n$ such that $(b_n,h_n) = (b,h)$. Since $E$ is finite, by extracting a further subsequence we may assume that $b_n = b$ for all $n$. Since $G_b$ is strongly discrete and of compact type, by extracting a further subsequence we may assume that $h_n(\zero)\to \eta$ for some $\eta\in \Lambda_b$. But then $\xi_n \to \pi(\gg)(\eta)\in\Lambda$.
+
+Suppose the second case holds for all $n$. Since $\Lambda_E = \bigcup_{a\in E} \Lambda_a$ is compact, by extracting a further subsequence we may assume that $\eta_n\to \eta$ for some $\eta\in\Lambda_E$. But then $\xi_n \to \pi(\gg)(\eta)\in\Lambda$.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryuncountable}
+If $\#(\Gamma_E) \geq 3$, then $\#(\Lambda)\geq \#(\R)$.
+\end{corollary}
+\begin{proof}
+The hypothesis $\#(\Gamma_E)\geq 3$ implies that for each $\gg\in\Gamma$,
+\[
+\#\{(a,g)(b,h)\in\Gamma_E^2 : \gg(a,g)(b,h)\in \Gamma\} = \sum_{b\neq a\neq a_{|\gg|}} (\#(G_a) - 1)(\#(G_b) - 1) \geq 2.
+\]
+Thus, the tree $\Gamma$ has no terminal nodes or infinite isolated paths. It follows that $\del\Gamma$ is perfect and therefore has cardinality at least $\#(\R)$; since $\pi(\del\Gamma)\subset\Lambda$, we have $\#(\Lambda) \geq \#(\del\Gamma)\geq \#(\R)$.
+\end{proof}
+
+
+
+
+
+%Let
+%\[
+%H = \{(\gg,a) : \gg = (a_1,g_1)\cdots(a_n,g_n)\in\Gamma, a\in E, a_n\neq a\}.
+%\]
+%For each $(\gg,a)\in H$, let
+%\[
+%V_{\gg,a} = \pi(\gg)(V_a).
+%\]
+%Introduce a partial order on $H$ by letting $(\gg_1,c_1) < (\gg_2,c_2)$ if and only if $\gg_2$ is of the form $\gg_2 = \gg_1 (c_1,g_{n + 1})(a_{n + 2},g_{n + 2})\cdots (a_m,g_m)$. We observe that $V_{\gg_2,a_2} \subset V_{\gg_1,a_1}$ if and only if $(\gg_1,a_1) \leq (\gg_2,a_2)$; moreover, if $(\gg_1,a_1)$ and $(\gg_2,a_2)$ are incomparable then $V_{\gg_1,a_1}$ and $V_{\gg_2,a_2}$ are disjoint.
+
+
+
+
+
+\begin{proposition}
+\label{propositionSproductMDWDPD}
+Suppose that the Schottky system $(U_a)_{a\in E}$ is global. Then if $(G_a)_{a\in E}$ are moderately (resp. weakly) discrete, then $G$ is moderately (resp. weakly) discrete. If $(G_a)_{a\in E}$ act properly discontinuously, then $G$ acts properly discontinuously.
+\end{proposition}
+\begin{proof}
+Let $\DD$ be as in \eqref{schottkydomain}. Fix $x\in \DD$ and $\gg \in\Gamma$, let $n = |\gg|$, and suppose that $\pi(\gg)(x)\in \DD$. Then:
+\begin{itemize}
+\item[(A)] For all $i = 1,\ldots,n$, if $g_{i + 1}\cdots g_n(x)\in X_{a_i}$ then Lemma \ref{lemmapingpong} would give $\pi(\gg)(x)\in g_1(X_{a_1})$, so $g_{i + 1}\cdots g_n(x)\in V_{a_i}$.
+\item[(B)] For all $i = 0,\ldots,n - 1$, if $g_{i + 1}\cdots g_n(x)\in X_{a_{i + 1}}$ then Lemma \ref{lemmapingpong} would give $x\in g_n^{-1}(X_{a_n})$, so $g_{i + 1}\cdots g_n(x)\in V_{a_{i + 1}}$.
+\end{itemize}
+If $n\geq 2$, letting $i = 1$ in (A)-(B) yields a contradiction, so $n = 0$ or $1$. Moreover, if $n = 1$, plugging in $i = 1$ in (A) gives $x\in V_{a_1}$.
+
+To summarize, if we let
+\[
+G_x = \begin{cases}
+G_a & x\in V_a\\
+\{\id\} & x\notin \bigcup_{a\in E} V_a
+\end{cases}
+\]
+then
+\[
+g(x)\in \DD \;\Rightarrow\; g\in G_x \all g\in G.
+\]
+More concretely,
+\[
+\dist(x,g(x)) < \dist(x,X\butnot \DD) \;\Rightarrow\; g\in G_x \all g\in G.
+\]
+Comparing with the definitions of moderate and weak discreteness (Definition \ref{definitiondiscreteness}) and the definition of proper discontinuity (Definition \ref{definitionproperdiscontinuity}) completes the proof.
+\end{proof}
+
+
+
+
+
+
+\section{Existence of Schottky products}
+\label{subsectionschottkyexamples}
+
+\begin{proposition}
+\label{propositionschottkyproduct}
+Suppose that $\Lambda_{\Isom(X)} = \del X$, and let $G_1,G_2\leq\Isom(X)$ be groups with the following property: For $i = 1,2$, there exist $\xi_i\in\del X$ and $\epsilon > 0$ such that
+\begin{equation}
+\label{xiidef}
+\Dist(\xi_i,g(\xi_i)) \geq \epsilon \all g\in G_i\butnot\{\id\}.
+\end{equation}
+Then there exists $\phi\in\Isom(X)$ such that the product $\lb G_1,\phi(G_2)\rb$ is a global strongly separated Schottky product.
+\end{proposition}
+\begin{proof} We begin the proof with the following
+\begin{claim}
+For each $i = 1,2$, there exists an open set $A_i\ni \xi_i$ such that $g(A_i)\cap A_i = \emptyset$ for all $g\in G_i\butnot\{\id\}$.
+\end{claim}
+\begin{subproof}
+Fix $i = 1,2$. Clearly, \eqref{xiidef} implies that $\xi_i\notin \Lambda(G_i)$. Thus, there exists $\delta > 0$ such that $\Dist(g(\zero),\xi_i)\geq \delta$ for all $g\in G_i$. Applying the Big Shadows Lemma \ref{lemmabigshadow}, there exists $\sigma > 0$ such that $B(\xi_i,\delta/2) \subset \Shad_{g^{-1}(\zero)}(\zero,\sigma)$ for all $g\in G$. But then by the Bounded Distortion Lemma \ref{lemmaboundeddistortion}, we have
+\[
+\Diam(g(B(\xi_i,\gamma))) \asymp_{\times,\sigma} b^{-\dogo g} \Diam(B(\xi_i,\gamma)) \leq 2\gamma \all g\in G \all 0 < \gamma \leq \delta/2.
+\]
+Choosing $\gamma$ appropriately gives $\Diam(g(B(\xi_i,\gamma))) < \epsilon/2$ for all $g\in G$. Letting $A_i = B(\xi_i,\gamma)$ completes the proof of the claim.
+\end{subproof}
+For each $i = 1,2$, let $A_i$ be as above, and fix an open set $B_i\ni\xi_i$ such that $\wbar\Dist(B_i,\bord X\butnot A_i) > 0$. Since $\Lambda_{\Isom(X)} = \del X$, there exists a loxodromic isometry $\phi\in\Isom(X)$ such that $\phi_-\in B_1$ and $\phi_+\in B_2$ (Proposition \ref{propositionminimal3}). Then by Theorem \ref{theoremloxodromicextra}, $\phi^n\to \phi_+$ uniformly on $\bord X\butnot B_1$, so $\phi^n(B_1)\cup B_2 = \bord X$ for all $n\in\N$ sufficiently large. Fix such an $n$, and let $U_1 = \phi^n(\bord X\butnot A_1)$, $U_2 = \bord X\butnot A_2$, $V_1 = \phi^n(\bord X\butnot B_1)$, $V_2 = \bord X\butnot B_2$. Then $(V_1,V_2)$ is a global Schottky system for $(G_1,\phi(G_2))$, which implies that $(U_1,U_2)$ is a global strongly separated Schottky system for $(G_1,\phi(G_2))$. This concludes the proof of the proposition.
+\end{proof}
+
+\begin{remark}
+\label{remarkschottkyproduct}
+The hypotheses of the above theorem are satisfied if $X$ is an algebraic hyperbolic space and for each $i = 1,2$, $G_i$ is strongly discrete and of compact type and $\Lambda_i = \Lambda(G_i) \propersubset\del X$.
+\end{remark}
+\begin{proof}
+We have $\Lambda_{\Isom(X)} = \del X$ by Observation \ref{observationtransitivity}. Fix $i = 1,2$. Since $\Lambda_i \propersubset\del X$, $\del X\butnot\Lambda(G_i)$ is a nonempty open set. For each $g\in G_i\butnot\{\id\}$, the set $\Fix(g)$ is totally geodesic (Theorem \ref{theoremtotallygeodesic}) and therefore nowhere dense; since $G_i$ is countable, it follows that $\bigcup_{g\in G_i\butnot\{\id\}} \Fix(g)$ is a meager set, so the set
+\[
+S_i = \big(\del X\butnot\Lambda(G_i)\big)\butnot\bigcup_{g\in G_i\butnot\{\id\}} \Fix(g)
+\]
+is nonempty. Fix $\xi_i\in S_i$. By Proposition \ref{propositionSDonclX}, 
+\[
+\liminf_{g\in G_i} \Dist(\xi_i,g(\xi_i)) \geq \Dist(\xi_i,\Lambda(G_i)) > 0. 
+\]
+On the other hand, for all $g\in G_i\butnot\{\id\}$ we have $\xi_i \notin \Fix(g)$ and therefore $\Dist(\xi_i,g(\xi_i)) > 0$. Combining yields $\inf_{g\in G_i\butnot\{\id\}} \Dist(\xi_i,g(\xi_i)) > 0$ and thus \eqref{xiidef}. This concludes the proof of the remark.
+\end{proof}
+
+
+
+\begin{proposition}
+\label{propositionnonelementaryequivalent}
+For a semigroup $G\prec\Isom(X)$, the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is either outward focal or of general type.
+\item[(B)] $G$ contains a strongly separated Schottky subsemigroup.
+\item[(C)] $\w\delta(G) > 0$.
+\item[(D)] $\#(\Lambda_G) \geq \#(\R)$.
+\item[(E)] $\#(\Lambda_G) \geq 3$, i.e. $G$ is nonelementary.
+\end{itemize}
+If $G$ is a group, then these are also equivalent to:
+\begin{itemize}
+\item[(F)] $G$ contains a global strongly separated Schottky subgroup.
+\end{itemize}
+\end{proposition}
+The implications (C) \implies (E) \implies (A) have been proven elsewhere in the paper; see Proposition \ref{propositioncardinalitylimitset} and Theorem \ref{theorembishopjonesmodified}. The implication (B) \implies (D) is an immediate consequence of Corollary \ref{corollaryuncountable}, and (D) \implies (E) and (F) \implies (B) are both trivial. So it remains to prove (A) \implies (B) \implies (C), and that (A) \implies (F) if $G$ is a group.
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+Suppose first that $G$ is outward focal with global fixed point $\xi$. Then there exists $g\in G$ with $g'(\xi) > 1$, and there exists $h\in G$ such that $h_+ \neq g_+$. If we let $j = g^n h$, then $j'(\xi) > 1$ (after choosing $n$ sufficiently large), and $j_+ \neq g_+$.
+
+So regardless of whether $G$ is outward focal or of general type, there exist loxodromic isometries $g,h\in G$ such that $g_+ \notin \Fix(h)$ and $h_+\notin\Fix(g)$. It follows that there exists $\epsilon > 0$ such that
+\[
+B(g_+,\epsilon) \cap h^n\big(B(g_+,\epsilon)\big) = B(h_+,\epsilon) \cap g^n\big(B(h_+,\epsilon)\big) = \emptyset \all n\geq 1.
+\]
+Let $U_1 = B(g_+,\epsilon/2)$, $U_2 = B(h_+,\epsilon/2)$, $V_1 = B(g_+,\epsilon)$, and $V_2 = B(h_+,\epsilon)$. By Theorem \ref{theoremloxodromicextra}, for all sufficiently large $n$ we have $g^n(V_1\cup V_2) \subset U_1$ and $h^n(V_1\cup V_2) \subset U_2$. It follows that $(V_1,V_2)$ is a Schottky system for $((g^n)^\N,(h^n)^\N)$, and that $(U_1,U_2)$ is a strongly separated Schottky system for $((g^n)^\N,(h^n)^\N)$.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (C)}]
+Since a cyclic loxodromic semigroup is of divergence type (an immediate consequence of \eqref{dognoloxodromic}), Proposition \ref{propositionSproductexponent}(i),(ii) shows that $0 < \delta(H) < \infty$, where $H\prec G$ is a Schottky subsemigroup. Thus $\w\delta(H) > 0$, and so $\w\delta(G) > 0$.
+\end{proof}
+\begin{proof}[Proof of \text{(A) \implies (F)} for groups]
+Fix loxodromic isometries $g,h\in G$ with $\Fix(g)\cap \Fix(h) = \emptyset$. Choose $\epsilon > 0$ such that
+\[
+B(\Fix(g),\epsilon) \cap h^n\big(B(\Fix(g),\epsilon)\big) = B(\Fix(h),\epsilon) \cap g^n\big(B(\Fix(h),\epsilon)\big) = \emptyset \all n\geq 1.
+\]
+Let $U_1 = B(\Fix(g),\epsilon/2)$, $U_2 = B(\Fix(h),\epsilon/2)$, $V_1 = B(\Fix(g),\epsilon)$, and $V_2 = B(\Fix(h),\epsilon)$. By Theorem \ref{theoremloxodromicextra}, for all sufficiently large $n$ we have $g^n(\bord X\butnot B(g_-,\epsilon/2)) \subset B(g_+,\epsilon/2)$ and $h^n(\bord X\butnot B(h_-,\epsilon/2)) \subset B(h_+,\epsilon/2)$. It follows that $(V_1,V_2)$ is a global Schottky system for $((g^n)^\Z,(h^n)^\Z)$, and that $(U_1,U_2)$ is a global strongly separated Schottky system for $((g^n)^\Z,(h^n)^\Z)$.
+
+
+\end{proof}
+
+
+
+%%\subsection{Schottky products on $\R$-trees}
+%%\label{subsectionschottkyRtrees}
+%%
+%%The easiest way to construct a Schottky product on an $\R$-tree is to construct the $\R$-tree itself at the same time as you construct the group acting on the $\R$-tree. Thus, we begin by describing a general method for constructing $\R$-trees on which Schottky groups can act:
+%%
+%%
+%%{\bf The fundamental construction.}
+%%Fix an $\R$-tree $Y$, a set $E\subset Y$, and a collection of abstract groups $(\Gamma_a)_{a\in E}$. Let $\Gamma = \ast_{a\in E}\Gamma_a$. We define the \emph{geometric product} of $Y$ with $(\Gamma_a)_{a\in E}$ as follows:
+%%\begin{itemize}
+%%\item[1.] For $(y_1,\gamma_1),(y_2,\gamma_2)\in Y\times\Gamma$, write $(y_1,\gamma_1) \sim (y_2,\gamma_2)$ if $y_1 = y_2\in E$ and $\gamma_1 \Gamma_{y_1} = \gamma_2 \Gamma_{y_2}$. We denote the equivalence class of $(y,\gamma)$ by $\lb y,\gamma\rb $.
+%%\item[2.] Let $X = Y\times \Gamma/\sim$, equipped with the \emph{path metric}
+%%\begin{equation}
+%%\label{pathmetric2}
+%%\dist\big(\lb y_1,\gamma_1\rb,\lb y_2,\gamma_2\rb\big)
+%%= \min \left\{\dist(y_1,z_1) + \sum_{i = 1}^{n - 1} \dist(z_i,z_{i + 1}) + \dist(z_n,y_2) \left\vert
+%%\begin{split}
+%%(z_i,\beta_i)\in E\times \Gamma \all i,\\
+%%\beta_0 = \gamma_1,\; \beta_n = \gamma_2,\\
+%%(z_i,\beta_{i - 1}) \sim (z_i,\beta_i) \all i
+%%\end{split}
+%%\right.
+%%\right\}.
+%%\end{equation}
+%%\item[3.] Define the homomorphism $\phi:\Gamma\to\Isom(X)$ via the formula
+%%\[
+%%\phi(\beta)\big(\lb y,\gamma\rb\big) = \lb y,\beta\gamma\rb.
+%%\]
+%%Let $G_a = \phi(\Gamma_a)$ for each $a\in E$, and let $G = \phi(\Gamma)$.
+%%\item[4.] The pair $(X,G)$ is called the \emph{geometric product} of $Y$ with $(\Gamma_a)_{a\in E}$.
+%%\end{itemize}
+%%
+%%\begin{figure}
+%%\begin{center}
+%%\begin{tabular}{ll}
+%%%\begin{tabular}{@{}l|@{}}
+%%
+%%%%%FIRST FIGURE
+%%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%%\clip(-3.58,-1.06) rectangle (4.50,3.65);
+%%%\draw [dashed] (-3.0,3.5)-- (-3.0,3.0);
+%%\draw [dashed] (-3.0,3.0)-- (-3.0,3.5);
+%%\draw (-3.0,3.0)-- (3.0,3.0);
+%%\draw (3.0,3.0)-- (3.0,2.5);
+%%\draw (-3.0,2.5)-- (3.0,2.5);
+%%\draw (-3.0,2.5)-- (-3.0,2.0);
+%%\draw (-3.0,2.0)-- (3.0,2.0);
+%%\draw (3.0,2.0)-- (3.0,1.5);
+%%\draw (3.0,1.5)-- (-3.0,1.5);
+%%\draw (-3.0,1.5)-- (-3.0,1.0);
+%%\draw (-3.0,1.0)-- (3.0,1.0);
+%%\draw (3.0,1.0)-- (3.0,0.5);
+%%\draw (3.0,0.5)-- (-3.0,0.5);
+%%\draw (-3.0,0.5)-- (-3.0,0.0);
+%%\draw (-3.0,0.0)-- (3.0,0.0);
+%%\draw [dashed] (3.0,0.0)-- (3.0,-0.5);
+%%\begin{scriptsize}
+%%\draw [fill=black] (-3.0,3.0) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,3.2108404326819784) node {$B$};
+%%%\draw[color=black] (-3.2025644965398152,3.374601723039145) node {$a$};
+%%%\draw[color=black] (-2.726168015500785,3.374601723039145) node {$b$};
+%%\draw [fill=black] (3.0,3.0) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,3.2108404326819784) node {$C$};
+%%\draw [fill=black] (3.0,2.5) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,2.7046691715780082) node {$D$};
+%%\draw [fill=black] (-3.0,2.5) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,2.7046691715780082) node {$E$};
+%%\draw [fill=black] (-3.0,2.0) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,2.213385300506508) node {$F$};
+%%\draw [fill=black] (3.0,2.0) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,2.213385300506508) node {$G$};
+%%\draw[color=black] (0.04288653053857866,2.8333178519676443) node {$(Y,bab)$};
+%%%\draw[color=black] (2.797053686545473,2.8833178519676443) node {$d$};
+%%\draw[color=black] (0.04288653053857866,2.342033980896144) node {$(Y,ba)$};
+%%%\draw[color=black] (-3.2025644965398152,2.3771465908636746) node {$f$};
+%%\draw[color=black] (0.04288653053857866,1.8358627197921742) node {$(Y,b)$};
+%%\draw [fill=black] (3.0,1.5) circle (1pt);
+%%\draw[color=black] (3.2,1.5) node {$1$};
+%%\draw [fill=black] (-3.0,1.5) circle (1pt);
+%%\draw[color=black] (-3.2,1.5) node {$0$};
+%%\draw [fill=black] (-3.0,1.0) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,1.2010427782985675) node {$J$};
+%%\draw [fill=black] (3.0,1.0) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,1.2010427782985675) node {$K$};
+%%\draw [fill=black] (3.0,0.5) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,0.709758907227067) node {$L$};
+%%\draw [fill=black] (-3.0,0.5) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,0.709758907227067) node {$M$};
+%%%\draw[color=black] (2.797053686545473,1.8709753297597045) node {$h$};
+%%\draw[color=black] (0.027999140506108963,1.339691458688204) node {$(Y,e)$};
+%%%\draw[color=black] (-3.2025644965398152,1.379691458688204) node {$j$};
+%%\draw[color=black] (0.04288653053857866,0.8384075876167036) node {$(Y,a)$};
+%%%\draw[color=black] (2.797053686545473,0.8735201975842338) node {$l$};
+%%\draw[color=black] (0.013111750473639265,0.30246154644779404) node {$(Y,ab)$};
+%%\draw [fill=black] (-3.0,0.0) circle (1pt);
+%%%\draw[color=black] (-2.8899293058579514,0.20358764612309696) node {$N$};
+%%\draw [fill=black] (3.0,0.0) circle (1pt);
+%%%\draw[color=black] (3.1096888772273363,0.20358764612309696) node {$O$};
+%%%\draw[color=black] (-3.2025644965398152,0.3822363265127335) node {$n$};
+%%\draw[color=black] (0.04288653053857866,-0.15904754455876693) node {$(Y,aba)$};
+%%%\draw[color=black] (2.797053686545473,-0.12393493459123665) node {$q$};
+%%\end{scriptsize}
+%%\end{tikzpicture}
+%%
+%%%%%SECOND FIGURE
+%%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%%\clip(-3.58,-1.06) rectangle (4.50,3.65);
+%%\draw (-3.0,3.0)-- (-3.0,3.0);
+%%\draw (-3.0,3.0)-- (-3.0,3.0);
+%%\draw (-3.0,3.0)-- (3.0,2.5);
+%%\draw (3.0,2.5)-- (3.0,2.5);
+%%\draw (-3.0,2.0)-- (3.0,2.5);
+%%\draw (-3.0,2.0)-- (-3.0,2.0);
+%%\draw (-3.0,2.0)-- (3.0,1.5);
+%%\draw (3.0,1.5)-- (3.0,1.5);
+%%\draw (3.0,1.5)-- (-3.0,1.0);
+%%\draw (-3.0,1.0)-- (-3.0,1.0);
+%%\draw (-3.0,1.0)-- (3.0,0.5);
+%%\draw (3.0,0.5)-- (3.0,0.5);
+%%\draw (3.0,0.5)-- (-3.0,0.0);
+%%\draw (-3.0,0.0)-- (-3.0,0.0);
+%%\draw (-3.0,0.0)-- (3.0,-0.5);
+%%\draw (3.0,-0.5)-- (3.0,-0.5);
+%%\draw [dashed] (-3.0,3.0)-- (-1.9817985138773002,3.478813453266429);
+%%\draw [dashed] (3.0,-0.5)-- (1.6209498739803665,-1.0022909465069538);
+%%\begin{scriptsize}
+%%\draw [fill=black] (-3.0,3.0) circle (1pt);
+%%\draw [fill=black] (-3.0,0.0) circle (1pt);
+%%\draw [fill=black] (3.0,0.5) circle (1pt);
+%%\draw [fill=black] (-3.0,1.0) circle (1pt);
+%%\draw [fill=black] (3.0,1.5) circle (1pt);
+%%\draw [fill=black] (-3.0,2.0) circle (1pt);
+%%\draw [fill=black] (3.0,2.5) circle (1pt);
+%%\draw [fill=black] (3.0,2.5) circle (1pt);
+%%\draw [fill=black] (-3.0,2.0) circle (1pt);
+%%\draw [fill=black] (3.0,1.5) circle (1pt);
+%%\draw [fill=black] (-3.0,1.0) circle (1pt);
+%%\draw [fill=black] (3.0,0.5) circle (1pt);
+%%\draw [fill=black] (-3.0,0.0) circle (1pt);
+%%\draw [fill=black] (3.0,-0.5) circle (1pt);
+%%%\draw [fill=black] (-1.9817985138773002,3.478813453266429) circle (1pt);
+%%%\draw [fill=black] (1.6209498739803665,-1.0022909465069538) circle (1pt);
+%%\end{scriptsize}
+%%\end{tikzpicture}
+%%
+%%\end{tabular}
+%%\caption{The geometric product of $Y$ with $(\Gamma_a)_{a\in E}$, where $Y = [0,1]$, $E = \{0,1\}$, $\Gamma_0 = \{e,\gamma_0\} \equiv \Z_2$, and $\Gamma_1 = \{e,\gamma_1\} \equiv \Z_2$. In the left hand picture, copies of $Y$ are drawn as horizontal lines and identifications between points in different copies are drawn as vertical lines. The right hand picture is the result of physically ``squeezing'' the left hand picture to bring identified points to the same position.}
+%%\end{center}
+%%\end{figure}
+%%
+%%
+%%\begin{notation}
+%%Let $\pi:\bigcup_{a\in E} G_a\to E$ be defined by the formula $\pi(g) = a \all g\in G_a$.
+%%\end{notation}
+%%
+%%
+%%
+%%\begin{proposition}
+%%\label{propositionschottkyRtree}
+%%~
+%%\begin{itemize}
+%%\item[(i)] $X$ is an $\R$-tree. If $Y$ is a simplicial tree (resp. unweighted simplicial tree), then $X$ is a simplicial tree (resp. unweighted simplicial tree).
+%%\item[(ii)] If
+%%\begin{equation}
+%%\label{schottkyRtree1}
+%%\inf\{\dist(y,z) : y,z\in E, y\neq z \} > 0,
+%%\end{equation}
+%%then $G = \lb G_a\rb_{a\in E}$ is a global weakly separated Schottky product. If furthermore
+%%\begin{equation}
+%%\label{schottkyRtree2}
+%%\inf\{\wbar\Dist(y,z) : y,z\in E, y\neq z \} > 0,
+%%\end{equation}
+%%then $G$ is strongly separated.
+%%\item[(iii)] $X$ is proper if and only if all three of the following hold: $Y$ is proper, $\#(\Gamma_a) < \infty$ for all $a\in E$, and $\#(E\cap B(\zero,\rho)) < \infty$ for all $\rho > 0$.
+%%\end{itemize}
+%%\end{proposition}
+%%\begin{proof}[Proof of \text{(i)}]
+%%We begin by computing the path metric \eqref{pathmetric2}:
+%%
+%%\begin{claim}
+%%\label{claimRtree}
+%%Fix $x_1 = \lb y_1,g_1\rb,x_2 = \lb y_2,g_2\rb\in X$. If $g_1 = g_2$, then $\dist(x_1,x_2) = \dist(y_1,y_2)$. Otherwise, write
+%%\[
+%%g_1^{-1} g_2 = h_1\cdots h_n
+%%\]
+%%where $h_i\in G_{z_i}\butnot\{\id\}$, $z_i\in E$, and $z_i\neq z_{i + 1}$ for all $i$. (This representation is unique, since $G\equiv \ast_{a\in E}G_a$.) Then
+%%\begin{equation}
+%%\label{x1x2}
+%%\dist(x_1,x_2) = \dist(y_1,z_1) + \dist(z_1,z_2) + \ldots + \dist(z_{n - 1},z_n) + \dist(z_n,y_2).
+%%\end{equation}
+%%\end{claim}
+%%\begin{subproof}
+%%The $\leq$ direction is obvious; we may write $j_i = g_1 h_1\cdots h_i$, and then the right hand side of \eqref{x1x2} is a member of the minimum \eqref{pathmetric2}. Conversely, let $(w_i,j_i)\in E\times G$ be as in \eqref{pathmetric2}. Write $k_i = j_{i - 1}^{-1} j_i\in G_{w_i}$, so that
+%%\[
+%%g_1^{-1} g_2 = k_1\cdots k_m = h_1 \cdots h_n.
+%%\]
+%%Since the word $h_1\cdots h_n$ is written in reduced form, there exists an increasing sequence $(\ell_i)_1^n$ such that $\pi(k_{\ell_i}) = \pi(h_i)$ for all $i$, i.e.
+%%\[
+%%w_{\ell_i} = z_i \all i = 1,\ldots,n.
+%%\]
+%%Now by the triangle inequality \comdavid{I'm finding this calculation suspicious...}\internal
+%%\begin{align*}
+%%&\dist(y_1,w_1) + \dist(w_1,w_2) + \ldots + \dist(w_{m - 1},w_m) + \dist(w_m,y_2)\\
+%%&\geq \dist(y_1,w_{\ell_1}) + \dist(w_{\ell_1},w_{\ell_2}) + \ldots + \dist(w_{\ell_{n - 1}},w_{\ell_n}) + \dist(w_{\ell_n},y_2)\\
+%%&= \dist(y_1,z_1) + \dist(z_1,z_2) + \ldots + \dist(z_{n - 1},z_n) + \dist(z_n,y_2).
+%%\end{align*}
+%%Taking the infimum over all sequences $(w_i,j_i)_1^m$ completes the proof.
+%%\end{subproof}
+%%
+%%We may use Claim \ref{claimRtree} to construct a geodesic between $x_1$ and $x_2$. Indeed, let $h_1,\ldots,h_n$ be as above, and let $j_i = g_1 h_1 \cdots h_i$. Consider the geodesic
+%%\[
+%%\geo{x_1}{x_2} := (\geo{y_1}{z_1}\times\{j_0\}) \ast (\geo{z_1}{z_2}\times\{j_1\}) \ast\cdots\ast (\geo{z_{n - 1}}{z_n} \times \{j_{n - 1}\}) \ast (\geo{z_n}{y_2}\times\{j_n\}).
+%%\]
+%%Here $\ast$ represents the concatenation of geodesics. Note that the right endpoint of each geodesic agrees with the left endpoint of the subsequent geodesic, namely $(z_i,j_{i - 1}) \sim (z_i,j_i)$, making this concatenation possible. Since the length of $\geo{x_1}{x_2}$ is equal to $\dist(x_1,x_2)$ as proven in Claim \ref{claimRtree}, $\geo{x_1}{x_2}$ is a geodesic.
+%%
+%%We now prove that $X$ is an $\R$-tree, using the criteria of Lemma \ref{lemmaRtreeequivalent}. Conditions (BI) and (BII) are clearly satisfied. So to complete the proof, we must demonstrate (BIII). Fix $x_1,x_2,x_3\in X$ distinct, and we show that two of the geodesics $\geo{x_i}{x_j}$ have a nontrivial intersection. Write $x_i = (y_i,g_i)$, and write
+%%\begin{align*}
+%%g_1^{-1} g_2 &= h_1 \cdots h_n\\
+%%g_1^{-1} g_3 &= k_1 \cdots k_m.
+%%\end{align*}
+%%By rewriting the $x_i$s in an equivalent form, we may without loss of generality suppose that $h_1$ and $k_1$ are not both in $G_{y_1}$, that $h_n\notin G_{y_2}$, and that $k_m \notin G_{y_3}$.
+%%\begin{itemize}
+%%\item[Case 1:] $n,m\geq 1$. If $\pi(h_1) = \pi(k_1) \neq y_1$, then the geodesics $\geo{x_1}{x_2}$ and $\geo{x_1}{x_3}$ agree on their initial segment $\geo{y_1}{z_1}\times\{g_1\}$, where $z_1 = \pi(h_1) = \pi(k_1)$. Thus, we may assume that $\pi(h_1)\neq \pi(k_1)$. It follows that the word
+%%\[
+%%g_2^{-1} g_3 = h_n^{-1} \cdots h_1^{-1} k_1 \cdots k_m
+%%\]
+%%is in reduced form. But we also have
+%%\[
+%%g_2^{-1} g_1 = h_n^{-1} \cdots h_1^{-1},
+%%\]
+%%and now the same argument applies to show that $\geo{x_2}{x_3}$ and $\geo{x_2}{x_1}$ agree on their initial segment $\geo{y_2}{z_2}\times\{g_2\}$, where $h_n^{-1}\in G_{z_2}$.
+%%\item[Case 2:] $n = 0$, $m \geq 1$. In this case, the above argument shows that $\geo{x_3}{x_1}$ and $\geo{x_3}{x_2}$ agree on their initial segments.
+%%\item[Case 3:] $n = m = 0$. In this case, (BIII) follows directly from the fact that $Y$ is an $\R$-tree.
+%%\end{itemize}
+%%This completes the proof that $X$ is an $\R$-tree. The assertions regarding simplicial trees are left to the reader.
+%%%If $Y$ is a simplicial tree with vertex set $W$, then the set $V = (W\times\Gamma)/\sim$ is a vertex set for $X$ (cf. Remark \ref{remarksimplicialtree}), so $X$ is also a simplicial tree, which is unweighted if $Y$ is unweighted.
+%%\end{proof}
+%%
+%%\begin{proof}[Proof of \text{(ii)}]
+%%Suppose that \eqref{schottkyRtree1} holds, and for each $a\in E$, let
+%%\[
+%%U_a = \{(y,g_1\cdots g_n)\in X : g_1\in G_a\} \cup \{(y,\id) : y\in B(a,\epsilon)\},
+%%\]
+%%where $\epsilon \leq \inf\{\dist(y,z) : y,z\in E, y\neq z\}/2$. Then $(U_a)_{a\in E}$ a global Schottky system for $G$. If \eqref{schottkyRtree2} also holds, then it is strongly separated, because $\inf\{\wbar\Dist(U_a,U_b) : a\neq b\} \geq \inf\{\wbar\Dist(y,z) : y,z\in E, y\neq z\} - 2\epsilon$ can be made positive if $\epsilon$ is sufficiently small. Finally, if we go back to assuming only that \eqref{schottkyRtree1} holds, then $(U_a)_{a\in E}$ is still weakly separated, because \eqref{schottkyRtree2} holds for finite subsets.
+%%\end{proof}
+%%
+%%\begin{proof}[Proof of \text{(iii)}]
+%%The necessity of these conditions is obvious; conversely, suppose they hold. Fix $\rho > 0$ and $x = \lb y,g\rb\in B_X(\zero,\rho)$; by \eqref{x1x2}, we have
+%%\[
+%%\dox{z_1} + \dist(z_1,z_2) + \ldots + \dist(z_{n - 1},z_n) + \dist(z_n,y) \leq \rho,
+%%\]
+%%where $g = h_1\cdots h_n$, $h_i\in G_{z_i}\butnot\{\id\}$, $z_i\in E$, and $z_i\neq z_{i + 1}$ for all $i$. It follows that $\dox{z_i} \leq \rho$ for all $i = 1,\ldots,n$, i.e. $z_i\in E\cap B(\zero,\rho)$. In particular, letting $\epsilon = \min_{a,b\in E\cap B(\zero,\rho)} \dist(a,b)$, we have $(n - 1)\epsilon\leq \rho$, or equivalently $n\leq 1 + \rho/\epsilon$. It follows that
+%%\[
+%%g\in\bigcup_{n\leq 1 + \rho/\epsilon} \; \bigcup_{z_1,\ldots,z_n\in E\cap B(\zero,\rho)} (G_{z_1}\butnot\{\id\})\cdots (G_{z_n}\butnot\{\id\}),
+%%\]
+%%a finite set. Thus, $B_X(\zero,\rho)$ is contained in the union of finitely many compact sets of the form $B_Y(\zero,\rho)\times\{g\}\subset X$, and is therefore compact.
+%%\end{proof}
+%%
+%%
+%%\begin{example}
+%%\label{exampleRtree1}
+%%Let $(a_n)_1^\infty$ be a sequence of real numbers. Let
+%%\[
+%%Y = \left(\bigcup_{n = 1}^\infty (\{n\}\times [0,a_n])\right)/\sim,
+%%\]
+%%where $(n,0)\sim(m,0)$ for all $m,n\in\N$. Let $E = \{z_n : n\in\N\}$, where $z_n = (n,a_n)$. Let $(\Gamma_n)_1^\infty$ be a collection of groups, and let $(X,G)$ be the geometric product of $Y$ with $(\Gamma_n)_{z_n\in E}$. Since
+%%\[
+%%\dist(z_n,z_m) = \wbar\Dist(z_n,z_m) = a_n + a_m,
+%%\]
+%%if $\inf a_n > 0$ then $G = \lb G_n \rb_1^\infty$ is a global strongly separated Schottky product. However, $X$ is never proper, since $Y$ is only proper when $a_n\to 0$, and this condition prevents $X$ from being proper.
+%%\end{example}
+%%
+%%\begin{example}
+%%\label{exampleRtree2}
+%%Let $(a_n)_1^\infty$ be an increasing sequence of nonnegative real numbers, and let $(b_n)_1^\infty$ be a sequence of nonnegative real numbers. Let
+%%\[
+%%Y = \Rplus \cup \bigcup_{n = 1}^\infty (\{a_n\}\times [0,b_n])
+%%\]
+%%with the path metric induced from $\R^2$. Let $E = \{z_n : n\in\N\}$, where $z_n = (a_n,b_n)$. Let $(\Gamma_n)_1^\infty$ be a collection of groups, and let $(X,G)$ be the geometric product of $Y$ with $(\Gamma_n)_{z_n\in E}$. Since
+%%\[
+%%\dist(z_n,z_m) = b_n + b_m + a_n - a_m \text{ and }\Dist(z_n,z_m) = e^{-a_m} \all m < n,
+%%\]
+%%if $\inf_{m < n}(b_n + b_m + a_n - a_m) > 0$, then $G = \lb G_n \rb_1^\infty$ is a global Schottky product; $G$ is strongly separated if and only if the sequence $(a_n)_1^\infty$ remains bounded. Finally, $X$ is proper if and only if $\inf b_n > 0$ and $a_n\to\infty$.
+%%\end{example}
+%%
+%%\begin{remark}
+%%In both of these examples, we see that no set of parameters can lead to both $X$ being proper and $G$ being strongly separated. This holds more generally. Indeed, suppose that $(U_a)_{a\in E}$ is a strongly separated Schottky system, and for each $a$ let $x_a$ be a point in $\del V_a\cap B(\zero,-\log(\epsilon))$, where $V_a$ is as in Notation \ref{notationVa}. Then $(x_a)_{a\in E}$ is a bounded $\epsilon$-separated set, so if $E$ is infinite then $X$ is not proper.
+%%\end{remark}
+
+
+
+%\ignore{
+%
+%We begin by proving the following general lemma:
+%\begin{lemma}
+%\label{lemmaRtree}
+%Let $S$ be a nonempty set, and let $X_S$ be the set of all pairs $(\gamma,t)$, where $\gamma:(0,t)\to S$. For $x_1 = (\gamma_1,t_1),x_2 = (\gamma_2,t_2)\in X$ let
+%\begin{equation}
+%\label{Rtreedistdef}
+%\dist(x_1,x_2) = t_1 + t_2 - 2\inf\{0 < t < \min(t_1,t_2): \gamma_1(t) \neq \gamma_2(t)\}.
+%\end{equation}
+%Then $(X_S,\dist)$ is an $\R$-tree.
+%\end{lemma}
+%\begin{subproof}
+%Let $\zero$ denote the pair $(\emptyset,0)$ where $\emptyset:\emptyset\to S$ is the empty function. Then \eqref{Rtreedistdef} immediately yields the following:
+%\begin{align} \label{Rtreedist0}
+%\dist(\zero,(\gamma,t)) &= t\\ \label{RtreeGproduct}
+%\lb(\gamma_1,t_1),(\gamma_2,t_2)\rb_\zero &= \inf\{0 < t < \min(t_1,t_2): \gamma_1(t) \neq \gamma_2(t)\}.
+%\end{align}
+%Given $x_1 = (\gamma_1,t_1),x_2 = (\gamma_2,t_2)\in X_S$, we define the geodesic $\geo{x_1}{x_2}$ as follows: Let $t_3 = \lb x_1|x_2\rb_\zero$, and for each $t_3\leq t\leq t_1$ let
+%\[
+%x_{1,t} = (\gamma_1\given(0,t),t).
+%\]
+%Similarly, for each $t_3\leq t\leq t_2$ let $x_{2,t} = (\gamma_2\given(0,t),t)$. One then verifies that these two segments form a geodesic.
+%
+%Now for each $i = 1,2,3$ fix $x_i = (\gamma_i,t_i)\in X_S$. Since for all $t$,
+%\[
+%\gamma_1(t)\neq\gamma_2(t) \;\;\Rightarrow\;\; \gamma_1(t)\neq\gamma_3(t) \text{ or }\gamma_2(t)\neq\gamma_3(t),
+%\]
+%\eqref{RtreeGproduct} gives
+%\[
+%\lb x_1|x_2\rb_\zero \geq \min\left(\lb x_1|x_3\rb_\zero,\lb x_2|x_3\rb_\zero\right).
+%\]
+%Thus the collection of numbers $\{\lb x_i|x_j\rb_\zero : i\neq j\}$ does not have a unique minimum. Without loss of generality suppose that
+%\[
+%\lb x_1|x_2\rb_\zero \geq \lb x_1|x_3\rb_\zero = \lb x_2|x_3\rb_\zero.
+%\]
+%Let $t_4 = \lb x_1|x_2\rb_\zero$, and let $\gamma_4 = \gamma_1\given(0,t_4) = \gamma_2\given(0,t_4)$. Write $x_4 = (\gamma_4,t_4)$. It is readily verified that $x_4$ lies on the geodesic segments defined as above, so by Observation \internalmissingref\ this completes the proof.
+%\end{subproof}
+%
+%Now fix $\zero_Y\in Y\butnot E_Y$, let $S = (Y\butnot E_Y)\cup\coprod_{y\in E_Y}(\Gamma_y\butnot\{e\})$, and let $\pi:S\to Y$ be the projection map. Let $X$ be the set of all pairs $(\gamma,t)\in X_S$ such that:
+%\begin{itemize}
+%\item[(I)] $\gamma(0) = \zero_Y$.
+%\item[(II)] The set $\gamma^{-1}(\pi^{-1}(E_Y))$ is finite, say $\gamma^{-1}(\pi^{-1}(E_Y)) = \{t_1,\ldots,t_n\}$ with $0 < t_1 < \ldots < t_n < t$.
+%\item[(III)] For each $i = 0,\ldots,n$, the path $\pi\circ\gamma\given[t_i,t_{i + 1}]$ is a geodesic. Here $t_0 = 0$ and $t_{n + 1} = t$.
+%\end{itemize}
+%Then $X$ is closed under truncation. By the definition of geodesics in $X_S$, this implies that $X$ is a convex subset of $X_S$, so by Lemma \ref{lemmaRtree}, $X$ is an $\R$-tree. We define the isometric embedding $\iota:Y\to X$ as follows: Given $y\in Y$, let $t_y = \dist(\zero_Y,y)$, and let $\gamma_y:(0,t)\to\geo\zero y\butnot\{\zero,y\} \subset Y\butnot E_Y$ be the unit speed parameterization. Then we let $\iota(y) = (\gamma_y,t_y)$. It is readily verified that $\iota$ is an isometric embedding.
+%
+%To define the action of $G$ is a little more complicated. Note that we only have to define the action of $\Gamma_y$ for each $y\in E_Y$. Fix such a $y$, and let $t_y$ and $\gamma_y$ be as above. Fix $g\in \Gamma_y$ and $(\gamma,t)\in X$.
+%\begin{itemize}
+%\item Suppose first that $t > t_y$ and $\gamma\given (0,t_y) = \gamma_y$. If $\gamma(t_y) \neq g^{-1}$, then we let $g(\gamma,t) = (\gamma',t)$ where
+%\[
+%\gamma'(s) = \begin{cases}
+%\gamma(s) & s \neq t_y\\
+%g\gamma(s) & s = t_y
+%\end{cases}.
+%\]
+%On the other hand, suppose $\gamma(t_y) = g^{-1}$. Let
+%\[
+%s = \inf\{0 \leq s \leq t_y : \gamma\given(t_y,2t_y - s) = -\gamma_y\given(s,t_y)\}.
+%\]
+%\item Next, suppose that $t\leq t_y$ or that $\gamma\given (0,t_y) \neq \gamma_y$. Let
+%\[
+%s = \sup\{0 \leq s \leq t_y : \gamma\given (0,s) = \gamma_y\given(0,s)\}.
+%\]
+%We let $g(\gamma,t) = (\gamma',t + 2(t_y - s))$,where
+%\[
+%\gamma'(r) = \begin{cases}
+%\gamma_y(r) & 0 < r < t_y\\
+%g & r = t_y\\
+%\gamma_y(2t_y - r) & t_y < r \leq 2t_y - s\\
+%\gamma(2(t_y - s) + r) & 2t_y - s \leq r < t + 2(t_y - s)
+%\end{cases}.
+%\]
+%\end{itemize}
+%}% end ignore

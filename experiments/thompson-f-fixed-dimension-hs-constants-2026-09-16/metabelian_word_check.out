@@ -1,0 +1,6 @@
+{"relators_are_cyclic_conjugates": true, "free_identity_holds": true, "u2_in_second_derived": true}
+{"n": 2, "tau": 0.01, "hs_c": 1.847761, "two_hs_R1_plus_hs_R2": 2.296105, "hs_u2": 4.8e-05}
+{"n": 2, "tau": 0.5, "hs_c": 1.847757, "two_hs_R1_plus_hs_R2": 2.296096, "hs_u2": 2.4e-05}
+{"n": 4, "tau": 0.05, "hs_c": 1.763589, "two_hs_R1_plus_hs_R2": 1.638664, "hs_u2": 1.171007}
+{"n": 6, "tau": 0.05, "hs_c": 1.440737, "two_hs_R1_plus_hs_R2": 1.341397, "hs_u2": 0.959946}
+METABELIAN_CHECKS_HOLD

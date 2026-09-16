@@ -1,0 +1,1002 @@
+% !TEX root = allinone_main_v2.tex
+
+\section{The classifying space for the Cantor groupoid}\label{sec:classifying}
+
+As before, we fix a finite set~$A=\{a_1,\dots,a_n\}$ of cardinality~$n\ge 2$. 
+Recall from Section~\ref{sec:catcan} the groupoids~$\Set^\times$  of finite sets~$[r]=\{1,\dots,r\}$, with~$r\ge 0$, and their bijections,  and the groupoid~$\Can_A^\times$  of free Cantor algebras~$\rmC_A[r]$ of type~$A$, with~$r\ge 0$, and morphisms their isomorphisms. The groupoids~$\Set^\times$ and~$\Can_A^\times$ are both permutative categories, and taking the free Cantor algebra on a set defines a symmetric monoidal functor
+\[
+\rmC_A\colon\Set^\x\to \Can_A^\x.
+\]
+%The purpose of this section is to describe the homotopy type of the classifying space~$|\Can_A^\times|$ of the symmetric monoidal groupoid~$\Can_A^\times$ and its associated infinite loop space 
+%$$\Omega^\infty \bbK(\Can_A^\times)$$
+%in terms of the of the classifying spaces~$|\Set^\x|$.
+The unit of the permutative category~$\Set^\x$ is the empty set~$[0]=\emptyset$ and that of~$\Can_A^\x$ is the empty Cantor algebra~$\rmC_A[0]$. Both have no non-trivial automorphisms and behave like disjoint basepoints:
+\[
+\Set^\x\ = \ \bSet^\x \sqcup \{[0]\} \ \ \ \textrm{and}\ \ \ \Can_A^\x\ =\ \bCan_A^\x\sqcup \{\rmC_A[0]\}
+\]
+for~$\bSet^\x$ the full subgroupoid of~$\Set^\x$ on the objects~$[r]$ with~$r>0$, and~$\bCan_A^\x$ the full subgroupoid of~$\Can_A^\x$ on the objects~$\rmC_A[r]$ with~$r>0$. 
+Following Thomason \cite{Thomason}, we will in this section discard these units and work with non-unital permutative categories like~$\bSet^\x$ and~$\bCan^\x_A$,  
+inserting units back again as disjoint basepoints only at the very end, just before taking spectra, as we explain now. 
+
+There are algebraic K-theory ``machines'' that produce for every unital symmetric monoidal category~$\bfC$ a spectrum~$\bbK(\bfC)$ whose underlying infinite loop space
+$\Omega^\infty\bbK(\bfC)$
+is a group completion of the classifying space~$|\bfC|$ of~$\bfC$. (See~\cite[App C]{Thomason} for the particular machine that we will be using here.) 
+If~$\bfC$ is a non-unital symmetric monoidal category, we will, following Thomason \cite[App C]{Thomason}, define 
+$$\bbK(\bfC):=\bbK(\bfC_+)$$
+for~$\bfC_+$ the category build from~$\bfC$ by adding a disjoint unit. In particular, when~$\bfC=\bSet^\x$, we have that~\hbox{$\bfC_+\cong \Set^\x$} and similarly for~$\bCan_A^\times$ and~$\Can_A^\x$. The Barratt--Priddy--Quillen theorem says that the spectrum
+\[
+\bbK(\bSet^\times)=\bbK(\Set^\times)\simeq \bbS
+\]
+is the sphere spectrum, so that there is a group completion~$|\Set^\times|\to\Omega^\infty\bbS$ (see \cite{BP72}). Our goal here is to compute~$\bbK(\Can_A^\x)$. We will do this using a permutative category~$\Tho_A$, build 
+from~$\bSet^\times$ and the set~$A$, using a homotopy colimit construction of Thomason. Our main result for the section is the following: 
+
+\begin{theorem}\label{back}
+There is a strict symmetric monoidal functor~$\Tho_A \rar \bCan_A^\times$ of non-unital permutative categories that induces a homotopy equivalence~$|\Tho_A|\stackrel{\simeq}\rar |\bCan_A^\times|$ between the classifying spaces. 
+\end{theorem}
+
+The category~$\Tho_A$ will be build as a non-unital permutative category, and can be made unital by adding a disjoint basepoint. By a strict symmetric monoidal functor between non-unital permutative categories~$\bfC$ and~${\bf D}$, we will mean a functor~$F\colon\bfC\to {\bf D}$ such that~$F(X\oplus Y)=F(X)\oplus F(Y)$ for every objects~$X,Y$ of~$\bfC$ and likewise for morphisms. Adding disjoint units will give an associated strict symmetric monoidal functor~$F_+\colon\bfC_+\to {\bf D}_+$ in the usual sense. 
+
+Using~\cite[Lem.~2.3]{Thomason}, we get the following corollary: 
+
+\begin{corollary}\label{cor:KCan=KTho}
+There is an equivalence~$\bbK(\Tho_A) \stackrel{\simeq}\rar \bbK(\bCan_A^\times)=\bbK(\Can_A^\x)$ of spectra.
+\end{corollary}
+
+The idea behind the permutative category~$\Tho_A$ is as follows. 
+%First of all, there is a symmetric monoidal functor from the symmetric monoidal category~$\Set$ to~$\Can_A$ that sends a set~$[r]$ to the free Cantor algebra~$\rmC_A[r]$. It restricts to a symmetric monoidal functor~\hbox{$\rmC_A\colon\Set^\times\to\Can_A^\times$}. 
+There is a symmetric monoidal endofunctor
+\[
+\Sigma_A\colon\bSet^\times\rar\bSet^\times
+\]
+that ``crosses with~$A$" (see Section~\ref{def:Sigma_A} for a precise definition). %takes a set~$[r]$ to the set~$[r]\times A$ and similarly for maps. %(Recall that~$A$ was any choice of set with~$a$ elements.) 
+Now the functor~$\rmC_A\colon\bSet^\x\to \bCan_A^\x$ has the property that it is insensitive to pre-composition with~$\Sigma_A$: as seen in Example~\ref{ex:iso}, there are isomorphisms~\hbox{$\rmC_A(X\times A)\cong\rmC_A(X)$}, and these isomorphisms are essentially the defining property of Cantor algebras of type~$A$. There is in fact a natural isomorphism~\hbox{$\rmC_A\circ\Sigma_A\cong\rmC_A$} of functors. This suggests that the functor~$\rmC_A$ extends over a ``mapping torus of~$\Sigma_A$'' and the category~$\Tho_A$, which we define below, will be precisely such a device. 
+
+%%%
+
+Given a diagram~$\bfC\colon\lambda\mapsto\bfC_\lambda$ of non-unital permutative categories, indexed
+on a small category~$\Lambda$, Thomason~\cite[Const.~3.22]{Thomason} defines a new non-unital  permutative category, denoted here by~$\hocolim_{\Lambda}\bfC_\lambda$, with the property that
+\begin{equation}\label{eq:thmTho}
+\bbK(\hocolim_{\Lambda}\bfC_\lambda)
+\simeq
+\hocolim_{\Lambda}\bbK(\bfC_\lambda).
+\end{equation}
+(See~\cite[Thm.~4.1]{Thomason}.) 
+In order to construct~$\Tho_A$, we take the diagram that is indexed by the monoid~$\bbN$ of natural numbers, thought of as a category with one object. Given a pair~$(\bfC,F)$ consisting of a non-unital permutative category~$\bfC$ together with a symmetric monoidal endo-functor~$F$, we get a diagram on~$\bbN$ that associates to the unique object the category~$\bfC$ and to the morphism~$k\in \bbN$ the functor~$F^k$. We  define
+\begin{equation}\label{eq:defTho}
+\Tho_A=\hocolim_{\bbN}(\bSet^\times,\Sigma_A)
+\end{equation}
+for $(\bSet^\times,\Sigma_A)$ the corresponding diagram on $\bbN$. 
+By the universal property of Thomason's construction (see~\cite[Prop 3.21]{Thomason}), %or~\cite[p.~337]{Thomason1979}), 
+symmetric monoidal functors from~$\Tho_A$ to~$\bCan_A^\times$ can be defined by the following data:~a symmetric monoidal functor~$F\colon\bSet^\times\to\bCan_A^\times$ and a symmetric monoidal natural transformation~\hbox{$F\circ\Sigma_A\to F$}. Taking~$F=\rmC_A$ will thus give rise to a symmetric monoidal functor~\hbox{$\Tho_A\to\bCan_A^\times$}. We will construct this functor explicitly, and show that it induces an equivalence on the level of classifying spaces by showing that it fits inside a diagram
+of categories and functors 
+\[
+\xymatrix@C=30pt{\Tho_A \ar[rrr] & & &  \bCan_A^\times\\
+& \Lev_A \ar[ul]^\sim\ar[r]_\sim & \ar[ur]_\sim \Exp_A &}
+\]
+where all the other arrows induce homotopy equivalences on classifying spaces, and such that the diagram  commutes up to homotopy. 
+The idea behind the intermediate categories~$\Exp_A$ and~$\Lev_A$ is as follows. Considering the functor~$\Tho_A\to\bCan_A^\times$, one sees that morphisms of~$\bCan_A^\times$ differ from morphisms of~$\Tho_A$ in two ways. Firstly, the morphisms of~$\Tho_A$ that map to the canonical isomorphism $\rmC_A[1]\to \rmC_A[n]$ are not invertible in~$\Tho_A$. Secondly, only certain simple types of expansions occur directly as morphisms of~$\Tho_A$, those that we will call~``level expansions''. We will take care of these two issues one at a time, writing the homotopy equivalence in three steps, studying the homotopy fibers each time. 
+
+
+The section is organized as follows: In Section~\ref{sec:Exp}, we define the category $\Exp_A$ and show that it is equivalent to $\bCan_A^\x$. In Section~\ref{levexpsec}, we define the category $\Lev_A$ and show that it is equivalent to $\Exp_A$. In Section~\ref{def:Sigma_A} we defined the category $\Tho_A$ and show that it is equivalent to $\Lev_A$. Finally, in Section~\ref{sec:square} we define the functor $\Tho_A\to \bCan_A^\x$ and show that the resulting diagram commutes.  
+
+
+
+
+\subsection{Expansions}\label{sec:Exp}
+
+We will define the non-unital permutative category~$\Exp_A$ as a subcategory of~$\bCan_A^\x$, and show that passing from the groupoid~$\bCan_A^\times$ to its subcategory~$\Exp_A$ preserves the homotopy type of the classifying space. Here~$\bCan_A^\x$ denotes, as above, the category of free Cantor algebras~$\rmC_A[r]$ with~$r>0$ with morphisms the isomorphisms of Cantor algebras.  
+
+Recall from Section~\ref{sec:isos} that 
+a morphism from~$\rmC_A[r]$ to~$\rmC_A[s]$ in~$\bCan_A^\times$ can be described by a triple~$(E,F,\lambda)$, with the set~$E$ an expansion of~$[r]$, the set~$F$ an expansion of~$[s]$, and~$\lambda\colon E\to F$ a bijection. Recall also that there is a minimal such representative, where the minimality is defined using the poset structure of the set~$\calE[r]$ of expansions of $[r]$. 
+Note that if either $E=[r]$ or if $F=[s]$, the representative is necessarily the minimal one. 
+This allows for the following definition: 
+
+
+%\begin{definition}
+%The {\em expansion category}~$\Exp_A$ has objects the finite sets and morphism~$X\to Y$ given by pairs~$(E,\lambda)$ of an expansion~$E$ of~$X$ and a bijection~$\lambda\colon E\to Y$. This expansion category can be identified with the subcategory of~$\Can_A^\times$, with the same objects, and with morphisms that can be presented as~$(E,Y,\lambda)$ with~$F=Y$. This description also makes the composition obvious.
+%\end{definition}
+
+\begin{definition}
+The {\em expansion category}~$\Exp_A$ is the subcategory of~$\bCan_A^\times$, with the same objects, and with morphisms~$\rmC_A[r]\to\rmC_A[s]$ the morphisms of~$\bCan_A^\x$ that can be represented by a triple~$(E,F,\lambda)$ with~$F=[s]$. 
+We will write~$(E,\lambda)$ for such a morphism. The symmetric monoidal structure of~$\bCan_A^\x$ restricts to one on~$\Exp_A$, making it a non-unital permutative category. 
+\end{definition}
+
+Note that $\Exp_A$ is indeed a subcategory: if $f:\rmC_A[r]\to \rmC_A[s]$ and $g:\rmC_A[s]\to \rmC_A[t]$ in $\bCan_A^\x$  are represented by $(E,[s],\la)$ and $(F,[t],\mu)$ respectively, then their composition $g\circ f$ is represented by $(\hat E,[t],\mu\circ\hat\la)$ for~\hbox{$\hat E=\hat\la^{-1}(F)$} the expansion of $E$ corresponding to $F$ under $\la$. 
+
+
+
+\begin{rem}
+Recall from Section~\ref{sec:exp} that an expansion~$E$ of~$[r]$ can be thought of as a planar~$n$--ary forest on~$r$ roots corresponding to the elements of~$[r]$, whose leaves identify with the elements of~$E$. A bijection~\hbox{$\la\colon E\to[s]$} can then be interpreted as a labeling of the leaves of this forest. 
+Identifying the objects of~$\Exp_A$ with the natural numbers and the the morphisms with labeled planar forests in this way, we thus see that~$\Exp_A$ can be thought of as a certain~``cobordism category'' of sets where the cobordisms are planar~$n$--ary forests. 
+\end{rem}
+
+
+Our main result in this section is the following: 
+
+\begin{proposition}\label{prop:expcan}
+The inclusion~$I\colon\Exp_A\to\bCan_A^\times$ is a symmetric monoidal
+functor of non-unital permutative categories that induces an equivalence
+\[
+|\Exp_A|\simeq|\bCan_A^\times|
+\]
+on classifying spaces. 
+%of~$\rmE_\infty$--monoids.
+\end{proposition}
+
+\begin{rem}
+The above result can be seen as a special case of  \cite[Prop 2.13]{Thumann} by interpreting the Higman--Thompson groups as {\em operad groups} and applying the results in Section 3 of that paper. 
+As the preparatory work for our proof will be useful in the following sections, we decided to keep the proof as is rather than explaining this alternative approach. 
+\end{rem}
+
+\begin{notation}[Induced maps~$\hat \la$]\label{not:hatla}
+Given a bijection~$\la\colon X\stackrel{\cong}\to Y$ between finite sets, we get an induced isomorphism  
+$$\rmC_A(\la)\colon\rmC_A(X)\stackrel{\cong}\rar \rmC_A(X)$$ of Cantor algebras, which in turn induces an isomorphism of posets 
+$$\calE(\la)\colon\calE(X)\stackrel{\cong}\rar \calE(Y)$$ as~$\rmC_A(\la)$ takes expansions to expansions. And if~$E$ is an expansion of~$X$ and~$F=\calE(\la)(E)$ is the expansion of~$Y$ corresponding to~$E$ under~$\la$,  then restricting 
+$\rmC_A(\la)$ to~$E$ induces a bijection~$E\to F$. In what follows, to ease notations, we will write~$\hat \la$ for these three types of maps induced by~$\la$: the map of Cantor algebra~$\rmC_A(\la)$, its restriction to subsets of~$\rmC_A(X)$, and the poset map~$\calE(\la)$. 
+\end{notation} 
+
+
+
+Recall that~$A=\{a_1,\dots,a_n\}$ is an ordered set and that any expansion~$E$ of~$[r]$ is a subset 
+$$E\subset \bigsqcup_{n\ge 0}[r]\x A^n\ =\ \rmC_A^+[r].$$
+Hence~$E$ is also canonically ordered, using the lexicographic ordering on the words~$\bigsqcup_{n\ge 0}[r]\x A^n$.  (In terms of forests, this corresponds to the naturally induced planar ordering.) 
+In the proof of Proposition~\ref{prop:expcan}, as well as later in Section~\ref{sec:classifying}, we will use this lexicographic ordering to identify any expansion~$E$ with the set~$[e]$ of the same cardinality as~$E$. 
+The following result shows that this chosen identification is compatible with taking further expansions. 
+
+\begin{lem}\label{lem:lexi}
+Let~$A=\{a_1,\dots,a_n\}$. For any expansion~$E$ of~$[r]$ of cardinality~$e$, denote by~$\la_E\colon E \stackrel{\cong}\rar [e]$ the bijection defined by the lexicographic ordering of~$E$. 
+Let~$F$ be an expansion of~$[e]$, with~$E'=\hat\la_E^{-1}(F)$ the corresponding expansion of~$E$ under~$\la_E$. Then~$\la_F\circ \hat\la_E=\la_{E'}$, i.e.~the upper triangle in the following diagram commutes:  
+\begin{equation}\label{equ:EF}
+\xymatrix@R-1pc{E'\ar@{}[d]|{\IV} \ar[rr]^-\cong_-{\hat \la_E} \ar@/^2pc/[rrrr]^-\cong_-{\la_{E'}} && \hat\la_E(E')=F \ar@{}[d]|{\IV} \ar[rr]^-\cong_-{\la_F} && [e']\\
+ E \ar@{}[d]|{\IV}\ar[rr]^-\cong_-{\la_E} &&  [e]& & \\
+[r] &  & &&
+}\end{equation}
+\end{lem}
+
+\begin{proof}
+The compatibility property follows from the fact that the map~$\la_E$ also induces a bijection of the set~$\rmC_A^+(E)\subset \rmC_A^+[r]$ with~$\rmC_A^+[e]$, and that this map respects the lexicographic order: this is true by definition of~$\la_E$ on the generating set~$E$, and by definition of the lexicographic order on the remaining elements. So the lexicographic order of~$E'\subset \rmC_A^+(E)\subset \rmC_A^+[r]$ agrees with that of~$\hat\la_E(E')\subset \rmC_A^+[e]$. 
+%Through the map~$\rmC_A^+(\la_E)$, this induces a map of posets
+%$$\hat \la_E:\calE(E)\rar \calE[e].$$
+%\nnote{should we use such a notation for it?}
+%The map~$\hat \la_E$ is compatible with the lexicographic orderings in the sense that, if~$E'\ge E\ge [r]$ is mapped to~$F\ge [e]$ by~$\hat \la_E$, then the composition 
+%\begin{equation}\label{equ:EF}
+%E'\ \stackrel{\rmC_A^+\la_E}\rar\ \hat\la_E(E')=F\ \stackrel{\la_F}\rar\  [e']
+%\end{equation}
+%equals the canonical map~$\la_{E'}:E'\to [e']$. This is because, whether we are working within expansions of~$[r]$ to compute~$\la_{E'}$ or expansions of~$[e]$ to compute~$\la_F$, an expansion replaces an element~$x$ by the~$n$ elements~$xa_1,\dots,xa_n$, and these are inserted instead of~$x$ in the ordering, wherever this expansion is considered. 
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:expcan}]
+We have already seen that the categories are (non-unital) permutative and that the inclusion respects this structure. 
+The result will follow Quillen's Theorem A~\cite[\S1]{Quillen} if we show that, for any~$r>0$,  the fiber of~$I$ under~$\rmC_A[r]$ is equivalent to the poset~$\calE[r]$. Indeed, the poset~$\calE[r]$ has~$[r]$ as least element, and hence is contractible. 
+
+
+
+The fiber~$\rmC_A[r]\setminus I$ of the functor~$I$ under an object~$\rmC_A[r]$ of~$\bCan_A^\times$  has objects the pairs~$(\rmC_A[s],f)$ with~$f\colon\rmC_A[r]\to\rmC_A[s]$ a morphism in~$\bCan_A^\x$, and morphisms~$(\rmC_A[s],f)\to (\rmC_A[s'],f')$ given by morphisms~$(F,\lambda)\colon \rmC_A[s]\to \rmC_A[s']$ in~$\Exp_A$ such that
+%~\hbox{$g\circ I(E,\lambda)=f$}.
+the diagram 
+$$\xymatrix{\rmC_A[s]\ar[rr]^-{I(F,\lambda)} &&\rmC_A[s'] \\
+& \ar[ul]^{f} \rmC_A[r] \ar[ur]_{f'} & }$$ 
+commutes in~$\bCan_A^\x$. 
+ 
+We define a functor~$\Lambda\colon\calE[r]\to \rmC_A[r]\setminus I$ on objects by~\hbox{$\Lambda(E)=(\rmC_A[e],f_E)$}, where~$e=|E|$ is the cardinality of~$E$, and the map~\hbox{$f_E\colon\rmC_A[r]\to \rmC_A[e]$} is represented by the triple~$(E,[e],\la_E)$ 
+with~$\la_E$ as in Lemma~\ref{lem:lexi}. 
+ %where~$e$ is the isomorphism~$\rmC_A(E)\to\rmC_A(X)$ described by the triple~$(E,E,\id)$, 
+%and on morphisms by taking an expansion to the corresponding morphism of~$I/\rmC_A(X)$. 
+If~$E'\ge E$ is an expansion of~$E$, we have a diagram
+\begin{equation}\label{diag:1}
+\xymatrix@R-1pc{E'\ar@{}[d]|{\IV} \ar[rr]^-\cong_-{\hat \la_E} \ar@/^2pc/[rrrr]^-\cong_-{\la_{E'}} && F \ar@{}[d]|{\IV} \ar[rr]^-\cong_-{\la_F} && [e']\\
+ E \ar[rr]^-\cong_-{\la_E} &&  [e]& & %\\
+%[r] &  & &&
+}\end{equation}
+where triangle commutes by Lemma~\ref{lem:lexi}. We  define~$\Lambda$ on the inequality~\hbox{$E\leqslant E'$} in $\calE[r]$ to be the morphism of~$\Exp_A$ defined by the pair~\hbox{$(F,\la_F)\colon\rmC_A[e]\rar \rmC_A[e']$} for~$F=\hat\la_E(E')$ as in (\ref{diag:1}). %the expansion of~$[e]$ corresponding to~$E'$ along~$\hat\la_E$. 
+The fact that the diagram 
+$$\xymatrix{\rmC_A[e]\ar[rr]^-{I(F,\la_F)} &&\rmC_A[e'] \\
+& \ar[ul]^{(E,[e],\la_E)} \rmC_A[r] \ar[ur]_{(E',[e'],\la_{E'})}& }$$ 
+commutes is the commutativity of the triangle in (\ref{diag:1}). 
+
+We now define a functor~\hbox{$\Pi\colon \rmC_A[r]\setminus I\to\calE[r]$} in the other direction: Given an object~$(\rmC_A[s],f)$ in the fiber, with~$f\colon\rmC_A[r]\to\rmC_A[s]$ an isomorphism of Cantor algebras, let~\hbox{$(E,G,\mu)$} be the minimal representative of~$f$. We set~$\Pi (\rmC_A[s],f)=E$. On morphisms, we have no choice as the target category is a poset, but we have to check that, given a morphism~$(F,\lambda)\colon(\rmC_A[s],f)\to(\rmC_A[s'],f')$ in the fiber, the expansion~$\Pi(\rmC_A[s'],f')$ of~$[r]$ is an expansion of~$\Pi(\rmC_A[s],f)$. This follows from the fact that~\hbox{$f'= I(F,\lambda)\circ f$}, implying that also~\hbox{$f^{-1}= f'^{-1}\circ I(F,\lambda)$}  and the fact that~$I(F,\lambda)$ comes from $\Exp_A$:  
+%minimality of~$\Pi(\rmC_A(Y),y)$ as a presentation of~$y$ and the fact that~$\Pi(\rmC_A(Z),z)$ is involved in a presentation of~$y$ coming from its description as a composition~\hbox{$y=z\circ I(E,\lambda)$}.
+if~$f'$ has minimal presentations~$(E',G',\mu)$, then $f'^{-1}$ can be represented by~$(G',E',\mu'^{-1})$, and the composition~$f'^{-1}\circ I(F,\lambda)$ can be computed using the diagram: 
+$$\xymatrix@R-1pc{ \hat F \ar@{}[d]|{\IV}\ar[rr]^-{\hat\la}&&   G' \ar@{}[d]|{\IV} \ar[rr]^-{\mu'^{-1}} && E' \ar@{}[d]|{\IV}\\
+ F \ar@{}[d]|{\IV}\ar[rr]^-{\la} &&  [s']& & [r] \\
+[s] &  & &&
+}$$
+%for~$\hat G=\hat F$ a common expansion of~$G$ and~$F$, and~$H=\hat \la(\hat F)$, and 
+with the triple~$(\hat F,E',\mu'^{-1}\circ \hat\la)$ representing the composition.  
+%Given that~$(F,G,\mu)$ was the least representative of~$f$,  the expansion of~$E$ corresponding to~$F'$ under~$\la$, with~$\hat\la:E'\to F'$ the induced map.
+Given that this composition is equal to~$f^{-1}$, which has minimal presentation~$(G,E,\mu^{-1})$, we must have that $E'\ge E$, as required. 
+%necessarily have that~$\hat E$ is an expansion of~$E'$, and~$H$ is an expansion of~$G'$. Now as~$G'$ is itself an expansion of~$[s']$, we see that in fact~$H\ge G'\ge [s']$ and hence we also have, pulling back along~$\la\circ \mu$, that~$\hat E\ge E'\ge E$, yielding in particular the required inequality~$E\le E'$. 
+%and~$G'$ is an expansion of~$G$, the latter giving the needed inequality. 
+
+The composition~$\Pi \Lambda$ is the identity: it is enough to check this on objects as~$\calE[r]$ is a poset, and~$\Lambda$ takes an expansion~$E$ to the object~$(\rmC_A[e],(E,[e],\la_E))$, itself taken back to~$E$ by~$\Pi$. On the other hand, the composition~$\Lambda\Pi$ takes an object~$(\rmC_A[s],f)$ with~$f$ minimally represented by~$(E,G,\mu)$ to~$(\rmC_A[e],f_E)$ for~$e=|E|$ and~$f_E$ represented par~$(E,[e],\la_E)$. Now note that the diagram in~$\Can_A^\x$
+$$\xymatrix{\rmC_A[s]\ar[rr]^-{(G,[e],\la_E\circ\mu^{-1})} &&\rmC_A[e] \\
+& \ar[ul]^{(E,G,\mu)} \rmC_A[r]  \ar[ur]_{(E,[e],\la_E)}& }$$ 
+commutes, where we have written the morphisms in terms of representatives. 
+Thus~$(G,\la_E\circ\mu^{-1})$ defines a morphism in~$\rmC_A[r]\setminus I$ from~$(\rmC_A[s],f)$ to~$\Lambda\Pi(\rmC_A[s],f)$. We check now that these morphisms assemble to a natural transformation between the identity functor on~$\rmC_A[r]\setminus I$ and the composition~$\Lambda\Pi$. Indeed, consider a morphism~$(F,\la)\colon(\rmC_A[s],f)\to (\rmC_A[s'],f')$ where~$f$ has minimal representative~$(E,G,\mu)$ and~$f'$ has minimal representative~$(E',G', \mu')$. We need to check that the following square commutes in~$\rmC_A[r]\setminus I$: 
+$$\xymatrix{(\rmC_A[s],f) \ar@{<--}[drr]_{f}\ar[dd]_{(F,\la)} \ar[rrrr]^-{(G,\la_E\circ\mu^{-1})} &&&& (\rmC_A[e],f_E)=\Lambda\Pi(\rmC_A[s],f) \ar@<-4ex>[dd]^{\Lambda\Pi(F,\la)} \ar@{<--}[dll]^{f_E} \\
+&& \rmC_A[r] && \\
+(\rmC_A[s'],f') \ar@{<--}[urr]^{f'}\ar[rrrr]^-{(G',\la_{E'}\circ\mu'^{-1})} &&&& (\rmC_A[e'],f_{E'}) =\Lambda\Pi(\rmC_A[s],f) \ar@{<--}[ull]_{f_{E'}}
+}$$
+Now this square commutes in~$\Exp_A$ if and only if its image in~$\bCan_A^\x$ commutes, as~$\Exp_A$ is a subcategory of~$\bCan_A^\x$. But in~$\bCan_A^\x$, each triangle in the diagram commutes by the fact that the maps in the square are maps in the fiber~$\rmC_A[r]\setminus I$. As all the maps are isomorphisms of Cantor algebras, it follows that the outside square commutes, as needed. 
+\end{proof}
+
+%%%
+
+\subsection{Level expansions}\label{levexpsec}
+
+The category~$\Exp_A$ has morphisms given by pairs consisting of an expansion and a bijection. We will now decompose the expansions into simpler types of expansions, which we call {\em level expansions}, that can be described in terms of subsets. We will construct a category~$\Lev_A$, which we will show is equivalent to~$\Exp_A$, where the morphisms will now be given by level expansions and bijections.
+
+\begin{Def}
+An expansion~$E$ of~$X$ is called a {\em level expansion} if there exists a subset~$P$ of~$X$ such that~\hbox{$E=(P\x A)\cup Q$} as a subset of~$\rmC_A^+(X)$, where~$Q=X\setminus P$ is the complement of~$P$ in~$X$. 
+%partition~$X=P\sqcup Q$ with~$P\cap Q=\emptyset$ so that~$E$ results from~$X$ by expanding the elements in~$P$ once each while leaving the complement~$Q$ as it is. In particular, there is a canonical bijection~$E\cong(A\times P)\sqcup Q$. Note that there is at most one such partition.
+% for some subset~$E\subset X$, with~$(E\times A)\sqcup (X\setminus E)$ seen as a subset of 
+%$X\lambdangle A\rangle$  by identifying the pair~$(e,a)$ with~$ea\in X\lambdangle A\rangle$ for each~$e\in E$. 
+\end{Def}
+
+Note that level expansions do not ``compose'' in the sense that if~$E$ is a level expansion of~$X$ and~$F$ a level expansion of~$E$, then~$F$, while still an expansion of~$X$, need not be a level expansion of~$X$. For that reason, we do not get a category of level expansions analogous to~$\Exp_A$ right away. To define the category~$\Lev_A$, we will start with a semi-simplicial set of level expansions, and then pass to its poset of simplices.
+
+
+% old definition of L(X):
+%
+%\begin{definition}\label{def:L}
+%Given a set~$X$, we let~$\rmL(X)$ denote the simplicial complex whose vertices are the expansions~$E$ of~$X$, and where a set of~$p+1$ expansions~$E_0,\dots,E_p$ forms a~$p$--simplex if, after re-ordering them, all of them are level expansions of~$E_0$, and there exists pairwise disjoint subsets~$P_1,\dots,P_p\subseteq E_0$ such that~$E_i$ is also the level expansion of~$E_{i-1}$ along~$P_i$ for each~$i=1,\dots,p$. 
+%\end{definition}
+
+\begin{definition}\label{def:L}
+Given a finite set~$X$, we define~$\rmL(X)$ to be the semi-simplicial set with~$0$--simplices the expansions of~$X$ and  with~$p$--simplices the sequences 
+$$E_0< E_1<E_2<\dots< E_p$$
+in the poset~$\calE(X)$ satisfying that each~$E_i$ is a level expansion of the smallest set~$E_0$. 
+The~$i$--th face map forgets~$E_i$: 
+%there is a semi-simplicial set whose vertices are the expansions~$E$ of~$X$, and whose~$p$--simplices are the~$(p+1)$--tuples~$(E_0,\dots,E_p)$ of expansions~$E_j$ of~$X$ such that there exist pairwise disjoint subsets~$P_1,\dots,P_p\subseteq E_0$ with~$E_j$ the level expansion of~$E_{j-1}$ along~$P_j$ for each~\hbox{$j=1,\dots,p$}. (Then all of the expansions~$E_j$ are level expansions of~$E_0$, and a~$p$--simplex can be identified with~$(E_0,P)$, where~$E_0$ is an expansion of~$X$, and~$P=(P_1,\dots,P_p)$ is a~$p$--tuple of pairwise disjoint subsets of~$E_0$.) The face maps~$\partial_j$, for~$j=0,\dots,p$, are given by omitting the entry~$E_j$ from the~$(p+1)$--tuple~$(E_0,\dots,E_p)$, that is
+\[
+d_i(E_0<\dots<E_p)= \ E_0<\dots<\widehat{E}_i<\dots<E_p.
+\]
+%We define~$\rmL(X)$ as the associated simplicial complex, with the same vertices, the expansions of~$X$, and where a set of~$p+1$ vertices forms a~$p$--simplex if and only if there is a~$p$--simplex in the semi-simplicial set that has these as its vertices. A pair of expansions of~$X$ forms an edge in~$\rmL(X)$ if and only if one is a level expansion of the other. 
+\end{definition}
+
+Note that also the differential $d_0$ makes sense. In fact,  if~$E_i=(Q_i\x A)\cup E_0\minus Q_i$ and~$E_j=(Q_j\x A)\cup E_0\minus Q_j$ are both level expansions of~$E_0$ with~$E_j>E_i$, then one necessarily has that~$Q_i\subset Q_j$ and~$E_j$ is the level expansion of~$E_i$ as well. 
+%along~$Q_j\minus Q_i$. So in a simplex~$E_0< E_1<E_2<\dots< E_p$ of~$\rmL(X)$, the set~$E_j$ is a level expansion of~$E_i$ whenever~$j>i$. 
+%In fact,~$\rmL(X)$ is isomorphic to the following semi-simplicial set: 
+This leads to the following alternative description of $\rmL(X)$: 
+
+\begin{definition}\label{def:L'}
+Given a finite set~$X$, we define~$\rmL'(X)$ to be the semi-simplicial set with~$0$--simplices the expansions of~$X$ and  with~$p$--simplices the tuples
+$$ (E,(P_1,\dots,P_p))$$
+with~$E$ an expansion of~$X$ and~$(P_1,\dots,P_p)$ a collection of disjoint non-empty subsets of~$E$. The face maps are defined by
+\[
+d_i(E,(P_1,\dots,P_p)) =\left\{\begin{array}{ll} \big((P_1\x A)\cup (E\minus P_1), (P_2,\dots,P_p)\big) & i=0\\
+ (E,(P_1,\dots,P_i\cup P_{i+1},\dots,P_p)) & 0< i <p\\
+ (E,(P_1,\dots,P_{p-1})) & i=p.
+\end{array}\right.
+\]
+\end{definition}
+
+\begin{lem}\label{lem:corr}
+The map~$\Phi\colon\rmL'(X)\to \rmL(X)$ that takes~$(E,(P_1,\dots,P_p))$ to~$E<E_1<\dots<E_p$ with the sets~$E_i$ defined by~\hbox{$E_i=(P_{[1,i]}\x A)\cup (E\minus P_{[1,i]})$} for~$P_{[1,i]}=P_1\cup\dots\cup P_i$, is an isomorphism of semi-simplicial sets. 
+\end{lem}
+
+\begin{proof}
+The map~$\Phi$ is well-defined since each~$E_i$ is by definition a level expansion of~$E=E_0$, and the fact that~$E_i<E_{i+1}$ follows from the fact that~$P_{[1,i]}\subset P_{[1,i+1]}$; in fact,~$E_{i+1}$ is the level expansion of~$E_i$ along~\hbox{$P_{i+1}=P_{[1,i+1]}\minus P_{[1,i]}$}. The face maps in~$\rmL'(X)$ were defined to make this map simplicial:~$d_0$ corresponds to replacing~$E$ by~$E_1$, forgetting~$E=E_0$, and when~$0<i<p$, the map~$d_i$ corresponds to forgetting~$E_i$, and~$d_p$ forgets~$E_p$. 
+Injectivity is immediate. For surjectivity, note that if~$E_0<\dots<E_p$ is a simplex of~$\rmL(X)$, then we must have that~$E_i=(Q_{i}\x A)\cup(E_0\minus Q_{i})$ for each~$i$, as~$E_i$ is a level expansion of~$E_0$, and the fact that~$E_i<E_{i+1}$ imposes that~$Q_{i}\subset Q_{i+1}$ as we have seen above. Setting~$P_i=Q_{i}\minus Q_{i-1}$ for each~$i$ gives a simplex~$ (E,(P_1,\dots,P_p))$ of~$\rmL'(X)$ mapping to~$E_0<\dots<E_p$, showing that~$\Phi$ is also surjective. 
+\end{proof}
+
+
+This lemma is in some way crucial, as it is the point where we switch from talking about expansions and morphisms of Cantor algebras, to solely talking about sets and subsets. 
+Both ways of thinking of the simplices of~$\rmL(X)$ will be useful throughout the rest of the section. 
+
+Note that any expansion~$E$ of a set~$X$ can be factored as a ``composition'' of level expansions, in the sense that one can always find expansions~$E_1,\dots,E_k$ of~$X$ such that 
+$$X=E_0< E_1< \dots<  E_k<  E_{k+1}=E$$
+in the poset~$\calE(X)$ of expansions of~$X$, in such a way that each~$E_i$ is a level expansion of~$E_{i-1}$. 
+(There is even a canonical such factorization using the height filtration of~$\rmC_A^+(X)$, but we will not use it.) 
+Given that~$\calE(X)$ is contractible, we get that~$\rmL(X)$ is connected for every finite set~$X$. The following result shows that the realization of~$\rmL(X)\cong \rmL'(X)$, which is a subspace of the nerve of~$\calE(X)$, is in fact,  like~$\calE(X)$,  contractible. 
+
+
+
+\begin{rem}\label{rem:semisimple}
+Semi-simplicial sets have a realization, defined just like the ``thick'' realization of simplicial sets  (see eg.~\cite{EbertRW}). Given a poset~$P$, its nerve is a simplicial set, which can be considered as a semi-simplicial set by forgetting the degeneracies. This semi-simplicial set has~$q$--simplices the sequences~\hbox{$p_0\le \dots\le p_q$} in the poset~$P$, with the face map~$d_i$ forgetting the~$i$--th element. Alternatively, we can associate a smaller semi-simplicial  set to~$P$, 
+that has~$q$--simplices the sequences~$p_0< \dots< p_q$ in the poset~$P$. Now the classical nerve of~$P$ can be recovered from this smaller nerve by freely adding all the degeneracies. The classical nerve as simplicial set or as semi-simplicial set (forgetting the degeneracies), and the smaller nerve using only strict inequalities, all have homotopy equivalent realizations (see eg.~\cite[Lem.~1.7, 1.8]{EbertRW}). In particular, if a poset has a least or greatest element, its realization is contractible, using whichever of these three possible realizations. 
+%if~$L$ is a semi-simplicial set with~$L_p$ its set of~$p$--simplices, then its realization is the space~$\bigsqcup_{p\ge 0} L_p\x \Delta^p/\sim$, where~$(d_ix,t)\sim (x,d^it)$
+\end{rem}
+
+
+\begin{prop}\label{expcomplex}
+For all finite sets~$X$, the semi-simplicial set~$\rmL(X)\cong \rmL'(X)$ is contractible. 
+\end{prop}
+
+\begin{proof}
+If~$Y$ is an expansion of~$X$, we define~$\rmL(X,Y)$ to be the full subcomplex of~$\rmL(X)$ whose vertices are expansions~$E$ of~$X$ admitting~$Y$ as an expansion. As any finite collection of expansions of~$X$ admits a common expansion (by repeated use of Lemma~\ref{lem:common}), compactness of the spheres implies that every homotopy class can be represented by a map into some~\hbox{$\rmL(X,Y)\subseteq\rmL(X)$}. It is therefore sufficient to show that the complexes~$\rmL(X,Y)$ are contractible.
+
+For an expansion~$E$ of~$X$, we define its {\em rank} to be~$rk(E)=(|E|-|X|)/(n-1)$. This is the number of simple expansions (expanding a single element~$x$ once) needed to obtain~$E$ from~$X$, and thus also the rank of~$E$ in the poset~$\calE(X)$. Suppose that the expansion~$Y$ has rank~$r$. Let~$F_i\rmL(X,Y)$ denote the full subcomplex of~$\rmL(X,Y)$ on the vertices of rank at least~$i$. This defines a descending filtration of~$\rmL(X,Y)$. 
+\[
+\rmL(X,Y)=F_0\rmL(X,Y)\supseteq F_1\rmL(X,Y)\supseteq F_2\rmL(X,Y)\supseteq\dots\supseteq F_r\rmL(X,Y)=\{Y\}
+\]
+For each~$i<r$,  the complex~$F_i\rmL(X,Y)$ is obtained  from~$F_{i+1}\rmL(X,Y)$ by attaching cones on the vertices~$E$ of rank~$i$ along their links, because no two such vertices are part of the same simplex. Now~$E_0<\dots<E_p$ is in~$\Link(E)\cap F_{i+1}(X,Y)$ if and only if 
+$$E<E_0<\dots<E_p\le Y,$$
+that is if and only if~$E_0<\dots<E_p$ is a sequence of non-trivial level expansions of~$E$ admitting~$Y$ as an expansion. 
+Let $\calE_{\textrm Lev}(E,Y)$ denote the set of non-trivial level expansions of~$E$ admitting $Y$ as an expansion. Consider $\calE_{\textrm Lev}(E,Y)$ as a subposet of $\calE(E)$. We claim  that~\hbox{$\Link(E)\cap F_{i+1}(X,Y)$} is isomorphic to its associated (small) semi-simplicial set (in the sense of in Remark~\ref{rem:semisimple}). 
+%Moreover,  the non-trivial level expansions of~$E$ admitting~$Y$ as an expansion form a subposet of~$\calE(E)$, and~$\Link(E)\cap F_{i+1}(X,Y)$  is precisely the thin nerve of that poset~(in the sense of Remark~\ref{rem:semisimple}): 
+Indeed, if~$E_0,\dots,E_p\in \calE_{\textrm Lev}(E,Y)$ are level expansions of~$E$ such that $E_0<\dots<E_p$ is a simplex in the nerve of the poset $\calE$, and thus also by definition in the nerve of  $\calE_{\textrm Lev}(E,Y)$, then $E<E_0<\dots<E_p\le Y$ and we exactly have a simplex in~\hbox{$\Link(E)\cap F_{i+1}(X,Y)$}. 
+
+
+Our last step in the proof is to show that $\calE_{\textrm Lev}(E,Y)$ has a greatest element, and is hence contractible. 
+Under the isomorphism of  Lemma~\ref{lem:corr}, $\calE_{\textrm Lev}(E,Y)$ is isomorphic to the poset~$\calP(E,Y)$ of $\emptyset\neq P\subset E$ such that~\hbox{$E(P)=(P\x A)\cup (E\minus P)$} admits~$Y$ as an expansion, where the poset structure is now inclusion.  Let~$\hat P=\bigcup_{P\in \calP(E,Y)} P$ be the union of all such~$P$'s. The check that $\hat P\in \calP(E,Y)$, we need to check that the expansion~$E(\hat P)=(\hat P\x A)\cup (E\minus \hat P)$ still admits $Y$ as an expansion. This follows from the fact that we can check this component-wise: writing~$Y=\cup_{e\in E}Y_e$ for~$Y_e=Y\cap \rmC_A^+(e)\subset \rmC_A^+[E]$, the condition that~$Y\ge E(\hat P)$ is equivalent to~$Y_e\in \rmC_A^+(e\x A)\subset \rmC_A^+(e)$ for every~$e\in \hat P$, which holds by the definition of~$\hat P$ as every such $e$ lies in an element $P$ of $\calP(E,Y)$. Hence $\hat P$ is a greatest element for $\calP(E,Y)$, showing that    $\calP(E,Y)$, and thus also~$\calE_{\textrm Lev}(E,Y)$, is contractible, as needed. The result follows by induction. 
+\end{proof}
+
+Let~$\calL(X)$ denote the poset of simplices of~$\rmL'(X)$, so the elements of~$\calL(X)$ are the simplices of~$\rmL'(X)$, and the morphisms are the inclusions among them. 
+Explicitly, the elements of~$\calL(X)$ are the  tuples~$ (E,(P_1,\dots,P_p))$ with~$E$ an expansion of~$X$ and~$(P_1,\dots,P_p)$, for some~$p\ge 0$, a sequence of disjoint non-empty subsets of~$E$. 
+To describe the poset structure, recall from Definition~\ref{def:L'} that the face map~$d_0$ in~$L'(X)$ takes a level expansion along~$P_1$, then for~$0<i<p$, the face map~$d_i$ takes the union of the neighbouring subsets~$P_i$ and~$P_{i+1}$, and finally the last face map~$d_p$ forgets the last subset~$P_p$. 
+Writing
+\[
+P_{[i,j]}:=P_i\cup \dots\cup P_j
+\]
+for~$i\le j$, we thus have that
+\[
+(F,(Q_1,\dots,Q_q))\le (E,(P_1,\dots,P_p))
+\]
+if there exists~$0\le p_0,p_1\le p$ and~$\kappa_1,\dots,\kappa_q\ge 1$ with 
+$p_0+\sum_{j=1}^q\kappa_j+p_1=p$
+such that 
+$$F=(P_{[1,p_0]}\x A)\cup (E\minus P_{[1,p_0]})$$ is the level expansion of~$E$ along the first~$p_0$ subsets and 
+each~$Q_j$ is a union
+%The poset~$\calL(X)$ can be identified with the poset of pairs~$(E,P)$, with~$E$ an expansion of~$X$ and~\hbox{$P=(P_1,\dots,P_p)$} a~$p$--tuple of pairwise disjoint subsets of~$E$, for some~$p\geqslant0$. We have~\hbox{$(E,P)\leqslant(F,Q)$} if there is an~$i$ such that~
+%$F$  the level expansion of~$E$ along the union~$P_1\sqcup\dots\sqcup P_i$ for some~$i\ge 0$ (that is~$F=E_i$ of the above description), and 
+\[
+%Q_j=P_{i+\kappa(1)+\dots+\kappa(j-1)+1}\sqcup\dots\sqcup P_{i+\kappa(1)+\dots+\kappa(j)}
+Q_j=P_{[p_0+\kappa_1+\dots+\kappa_{j-1}+1,p_0+\kappa_1+\dots+\kappa_j]}.
+\]
+In particular 
+$Q_1\cup\dots \cup Q_q=P_{[p_0+1,p-p_1]}$. (The numbers~$p_0$ and~$p_1$ count the number of~$0$--th and last face maps that have been applied.) 
+
+
+
+Note that the order relation in the poset~$\calL[r]$ is opposite to the order relation in the poset~$\calE[r]$ in the sense that if~\hbox{$ ([r],(P_1,\dots,P_p))\ge(F,(Q_1,\dots,Q_q)$} in~$\calL[r]$, then~$F\ge [r]$ in~$\calE[r]$. This is why the order relation of~$\calL[r]$ will occur in the reversed direction in the definition of~$\Lev_A$ below. 
+
+%%%
+
+We have already seen that a bijection~$\lambda\colon X\to Y$ induces an isomorphism~$\hat\la\colon\calE(X)\to\calE(Y)$ of posets (see Notation~\ref{not:hatla}). This in turn induces a map~$\hat\lambda\colon \rmL(X)\to \rmL(Y)$ of semi-simplicial sets, and hence also  a map~$\hat\lambda\colon\calL(X)\to \calL(Y)$ of posets of simplices, which we will denote by~$\hat\la$ again. Explicitly, this last map takes~$ (E,(P_1,\dots,P_p))$ to~~$(\hat\la E,(\hat\la P_1,\dots,\hat\la P_p))$.
+%, where, abusing notation as in Notation~\ref{not:hatla}, we use~$\hat\la$ to denote all the maps induced by~$\la$. 
+%$(\hat{la}(E),(Q_1,\dots,Q_q))$
+%As this maps comes from a map between the semi-simplicial sets and preserves the cardinality of expansions, in the subsets description of the elements of~$\calL(X)$, this map has the property that  if 
+%$(E,(P_1,\dots,P_p))$ is mapped to~$(F,(Q_1,\dots,Q_q))$ by~$\calL(\lambda)$, then~$p=q$ and~$\lambda$ also induces a bijection~\hbox{$\lambda:E\to F$} with the property that~$\lambda(P_i)=Q_i$ for each~$i$. %, which we also write as~$\lambda(P)=Q$. 
+Note also that for any expansion $E$ of $X$, the poset $\calL(E)$ identifies with the subposet of $\calL(X)$ with objects the tuples $(F,(P_1,\dots,P_p))$ such that $F$ is an expansion of $E$. 
+
+
+We are now ready to construct the category~$\Lev_A$ from the posets~$\calL(X)$ in a way similar to the one in which we constructed~$\Exp_A$ from the posets~$\calE(X)$. 
+As in the case of~$\bCan_A^\x$ and~$\Exp_A$, we will restrict to objects build from the non-zero natural numbers. %in order to get a strict monoidal structure on the category. 
+%, where we consider all objects~$(E,P)$ of the poset~$\calL(X)$ for all sets~$X$, and where morphisms are generated by bijections and ``level expansions,'' now interpreted as the poset structure of~$\calL(X)$ for some~$X$. 
+
+\begin{definition}
+The category~$\Lev_A$ has as objects the sequences~$([r],(P_1,\dots,P_p))$ for~$r>0$ and~$(P_1,\dots,P_p)$ a~$p$--tuple of~$p\geqslant0$ disjoint non-empty subsets of~$[r]$. (In particular, 
+$([r],(P_1,\dots,P_p))\in \calL[r]$.) 
+The morphisms
+\[
+\phi\colon([r],(P_1,\dots,P_p)) \ \rar \  ([s],(Q_1,\dots,Q_q))
+\]
+are given by tuples~$\phi=(F,(Q'_1,\dots,Q'_q),\lambda)$ where the element $(F,(Q'_{1},\dots,Q'_{q}))\in \calL[r]$ is such that the relation~$([r],(P_1,\dots,P_p))\geqslant (F,(Q'_{1},\dots,Q'_{q}))$  holds in~$\calL([r])$
+and~\hbox{$\la\colon F\to [s]$} is a bijection such that~\hbox{$\la(Q'_{i})=Q_{i}$} for each~$i$. (In particular, $F$ is a level expansion of $[r]$ along some $P_i$'s and each $Q_i'$ is a union of $P_i$'s.) 
+The composition of~$\phi$ with a morphism~\hbox{$\psi=(G,(R'_1,\dots,R'_u),\mu)\colon ([s],(Q_1,\dots,Q_q))\to ([t],(R_1,\dots,R_u))$}  is defined by 
+$$(G,(R'_1,\dots,R'_u),\mu) \circ (F,(Q'_1,\dots,Q'_q),\lambda) = (\hat\la^{-1}G,(\hat\la^{-1}R'_1,\dots,\hat\la^{-1}R'_q),\mu\circ\hat\lambda)$$
+where 
+$$\xymatrix@R-1pc{\hat\la^{-1}(G) \ar[rr]^-{\hat \la} \ar@{}[d]|\IV && G \ar[rr]^-{\mu} \ar@{}[d]|\IV && [t]\\
+F \ar[rr]^-{\la} \ar@{}[d]|\IV && [s]&&\\
+[r] &&&& 
+}$$
+and where we use that~$\la$ induces an isomorphism~$\hat \la\colon\calL(F)\to \calL[s]$ and that~$\calL(F)$ is naturally a subposet of~$\calL[r]$, so that $ ([s],(Q_1,\dots,Q_q)) \ge (G,(R'_1,\dots,R'_u)$ in $\calL[s]$ gives 
+\[
+([r],(P_1,\dots,P_p))\ge  (F,(Q'_1,\dots,Q'_q)\ge  (\hat\la^{-1}G,(\hat\la^{-1}R'_1,\dots,\hat\la^{-1}R'_q))
+\]
+in~$\calL[r]$. (In particular, $\hat\la^{-1}(G)$ is necessarily again a level expansion of $[r]$ along some $P_i$'s and each $\hat\la^{-1}(R'_i)$ is a union of $P_i$'s.) 
+\end{definition}
+
+
+We see here that it is crucial for the composition that we use the poset structure of $\calL[r]$ and not the simpler notion of level expansion to define the morphisms in $\Lev_A$, as level expansions in general do not compose to level expansions. 
+
+
+Note that part of the data of a morphism~$\phi=(F,(Q'_1,\dots,Q'_q),\lambda)$ from~$([r],(P_1\dots,P_p))$ to~$([s],(Q_1,\dots,Q_q))$ in~$\Lev_A$ is an expansion~$F$ of~$[r]$ and a bijection~$\la\colon F\stackrel{\cong}\rar [s]$. In fact, there is a functor
+$$J\colon \Lev_A\to \Exp_A$$
+defined on objects and morphisms as a forgetful map: 
+$$J([r],(P_1\dots,P_p)):=\rmC_A[r] \ \ \ \textrm{and}\ \ \ J(F,(Q'_1,\dots,Q'_q),\lambda)=(F,\la).$$
+This is compatible with composition as can be seen directly from the definition of composition in~$\Lev_A$ above. 
+
+\begin{proposition}\label{prop:levexp}
+The  functor
+\[
+J\colon\Lev_A\to\Exp_A   %\,,\,([r],(P_1,\dots,P_p))\longmapsto \rmC_A[r]
+\]
+defined above induces an equivalence~$|\Lev_A|\simeq |\Exp_A|$ on classifying spaces.
+\end{proposition}
+
+\begin{proof}
+We will show that the fiber of~$J$ under~$\rmC_A[r]$ is homotopy equivalent to~$\calL[r]$. As~$\calL[r]$ is the poset of simplices of~$\rmL'[r]$, the result will then follow from Proposition~\ref{expcomplex}, which says that~$\rmL'[r]$ is contractible. 
+
+\noindent {\em Description of the fibers.} 
+The objects of the fiber~$\rmC_A[r]\setminus J$ can be written as tuples 
+$$([s],(P_1,\dots,P_p), [s] \stackrel{\ \la}\lar E)$$ 
+for~$([s],(P_1,\dots,P_p))$ an object of the category~$\Lev_A$, the set~$E$ an expansion of~$[r]$ and~$\lambda\colon E\stackrel{\cong}\rar [s]$ a bijection defining a morphism 
+$(E,\la)\colon \rmC_A[r]\to \rmC_A[s]=J([s],(P_1,\dots,P_p))$ in~$\Exp_A$. 
+A morphism 
+$$\phi\colon([s],(P_1,\dots,P_p), [s]\stackrel{\ \la}\lar E)\ \rar \ ([t],(Q_1\dots,Q_q), [t]\stackrel{\ \mu}\lar F)$$ 
+in the fiber is given by a morphism
+\[
+\phi=(G,(Q_1',\dots,Q'_q),G\stackrel{\kappa}\to [t])\colon([s],(P_1,\dots,P_p))\ \rar \ ([t],(Q_1,\dots,Q_q))
+\]
+in the category~$\Lev_A$, with in particular~$G$ an expansion of~$[s]$ and~$\kappa$ a bijection (where we have spelled out the source and target of~$\kappa$ for clarity), such that the diagram 
+$$\xymatrix{J([s],(P_1,\dots,P_p))=\rmC_A[s] \ar[rr]^-{J(\phi)=(G,\kappa)}&& \rmC_A[t]=J([t],(Q_1\dots,Q_q)) \\
+&\rmC_A[r] \ar[ul]+<10ex,-2ex>^{(E,\la)} \ar[ur]+<-10ex,-2ex>_{(F,\mu)}&}$$
+commutes in~$\Exp_A$. 
+%~\hbox{$(F',\mu)=J(\phi)\circ(E',\lambda)\colon E\cong\rar [s]$} as morphisms~$\rmC_A(X)\to\rmC_A(F)$ in~$\Exp_A$.
+
+Just as in the proof of Proposition~\ref{prop:expcan}, we define a pair of functors~$\Lambda\colon\calL[r]^{\op}\longleftrightarrow \rmC_A[r]\backslash J\colon\Pi$, where the order of~$\calL[r]$ is reversed. 
+
+\noindent {\em Definition of~$\Lambda\colon \calL[r]^{\op}\longrightarrow \rmC_A[r]\backslash J$.} 
+Define~$\Lambda$ on objects by 
+\begin{gather*}
+%\Pi(E,P,\lambda\colon E'\cong E)=(E',\lambda^{-1}P)\\
+\Lambda(E,(P_1,\dots,P_p))=([e],(\la_E P_1,\dots,\la_EP_p),[e]\stackrel{\ \la_E}\lar E)
+\end{gather*}
+for~$e=|E|$ and~$\la_E\colon E\to [e]$ the map of Lemma~\ref{lem:lexi} given by the lexicographic ordering of~$E$. 
+The functor~$\Lambda$ is given on morphisms as follows: if~$(E,(P_1\dots,P_p))\ge (E',(Q_1,\dots,Q_q))$ in~$\calL[r]$, we have that~$E'$ is an expansion of~$E$ along~$P_1\cup \dots\cup P_i$ for some~$i$ and 
+we get a diagram of expansions and isomorphisms 
+$$\xymatrix@R-1pc{[e'] & \ar[l]_-{\la_{E'}} E' \ar@{}[d]|{\IV} \ar[r]^-{\hat\la_E} & \hat\la_EE' \ar@{}[d]|{\IV}\\
+& E \ar[r]^-{\la_E} & [e].
+}$$
+We define a morphism 
+$$\phi\colon([e],(\la_EP_1,\dots,\la_EP_p),[e]\stackrel{\ \la_E}\lar E) \rar ([e'],(\la_{E'}Q_1,\dots,\la_{E'}Q_q),[e']\stackrel{\ \la_{E'}}\lar E')$$
+in the fiber by setting~$\phi=(\hat\la_EE',\hat\la_E Q_1,\dots,\hat\la_EQ_q,\hat\la_EE'\xrightarrow{\la_{E'}\hat\la_E^{-1}} [e'])$. 
+%So~$\phi$ is the image under~$\la_E$ of the poset morphism~$(E,(P_1\dots,P_p))\leqslant(E',(Q_1,\dots,Q_q))$, 
+This makes sense because 
+$$([e],(\la_EP_1,\dots,\la_EP_p))\ \ge \ (\hat\la_EE',(\hat\la_E Q_1,\dots,\hat\la_EQ_q))$$
+in~$\calL[e]$, as it is 
+the image under~$\hat \la_E\colon \calL(E)\subset \calL[r]\to \calL[e]$ of~$(E,(P_1\dots,P_p))\geqslant(E',(Q_1,\dots,Q_q))$ in~$\calL[r]$. 
+Also, we have~$\la_{E'}\hat\la_E^{-1}(\hat\la_EQ_i)=\la_{E'}Q_i$ for each~$i$, so~$\phi$ defines a morphism in~$\Lev_A$ from~$([e],(\la_EP_1,\dots,\la_EP_p))$ to~$([e'],(\la_{E'}Q_1,\dots,\la_{E'}Q_q))$.  
+%Finally, using Lemma~\ref{lem:lexi}, we have that~$\la_{E'}\circ \hat\la_E^{-1}:\hat\la_E(E')\to [e']$ identifies with the map induced by the lexicographic ordering. This gives the commutativity of 
+Finally, we see that the diagram 
+$$\xymatrix{\rmC_A[e] \ar[rr]^-{(\hat\la_EE',\la_{E'}\hat\la_E^{-1})} && \rmC_A[e']\\
+&\rmC_A[r], \ar[ul]^{(E,\la_E)}\ar[ur]_{(E',\la_{E'})}&
+}$$
+commutes in~$\Exp_A$, 
+showing that~$\phi$ indeed defines a morphism in the fiber. Functoriality follows from the following computation: 
+if~$(E,(P_1\dots,P_p))\ge (E',(Q_1,\dots,Q_q))\ge (E'',(R_1,\dots,R_u))$ in~$\calL[r]$, the composition of the images of these morphisms under~$\Lambda$ is 
+\begin{align*}
+\big(\hat\la_{E'}E'',(\hat\la_{E'}R_1,&\dots,\hat\la_{E'}R_u),\la_{E''}\hat\la_{E'}^{-1}\big)\circ \big(\hat\la_EE',(\hat\la_EQ_1,\dots,\hat\la_EQ_q),\la_{E'}\hat\la_E^{-1}\big)\\
+=&\big((\hat\la_{E'}\hat\la_E^{-1})^{-1}\hat\la_{E'}E'',((\hat\la_{E'}\hat\la_E^{-1})^{-1}\hat\la_{E'}R_1,\dots,(\hat\la_{E'}\hat\la_E^{-1})^{-1}\hat\la_{E'}R_u),(\la_{E''}\hat\la_{E'}^{-1})\circ (\hat\la_{E'}\hat\la_E^{-1})\big)\\
+=&\big(\hat\la_{E}E'',(\hat\la_{E}R_1,\dots,\hat\la_{E}R_u),\la_{E''}\hat\la_E^{-1}\big), 
+\end{align*}
+which is equal to image under~$\Lambda$ of the composition. 
+%this, together with~$\id_F$, defines a morphism~$\phi\colon(E,P)\to(F,Q)$ in~$\Lev_A$ such that~$(F,\id_F)=J(\phi)\circ(E,\id_E)$ in~$\Exp_A$. By what has been explained above, this~$\phi$ defines a morphism~$\Lambda(E,P)\to\Lambda(F,Q)$ in the fiber~$X\backslash J$.
+
+\noindent {\em Definition of~$\Pi\colon \rmC_A[r]\backslash J\rar \calL[r]^{\op}$.} 
+Define the functor~$\Pi$ on objects by 
+\begin{gather*}
+\Pi([s],(P_1,\dots,P_p),[s]\stackrel{\ \la}\lar E)=(E,(\lambda^{-1}P_1,\dots,\la^{-1}P_p))
+%\Lambda(E,P)=(E,P,\id\colon E=E).
+\end{gather*}
+which makes sense as~$E$ is an expansion of~$[r]$ and~$\la$ a bijection. As the target of~$\Pi$ is a poset, we are left to check that the existence of a morphism in the source gives the appropriate inequality in the target. 
+Given a morphism
+$$\phi=(G,(Q_1',\dots,Q'_q),G\stackrel{\kappa}\to [t])\colon([s],(P_1,\dots.P_p),[s]\stackrel{\ \la}\lar E)\ \rar\ ([t],(Q_1,\dots,Q_q),[t]\stackrel{\ \mu}\lar F)$$ 
+in the fiber~$\rmC_A[r]\backslash J$, 
+%with~$\phi=(G,(Q_1',\dots,Q'_q),G\stackrel{\kappa}\to [t])\colon([s],(P_1,\dots,P_p)) \rar ([t],(Q_1,\dots,Q_q))$ the underlying morphism in~$\Lev_A$, 
+we have $ ([s],(P_1,\dots.P_p))\ge (G,(Q_1',\dots,Q'_q))$
+in~$\calL[s]$ and~$\kappa\colon G\to [t]$ an isomorphism taking~$Q_i'$ to~$Q_{i}$ for each~$i$.
+Pulling back along the bijection~$\la\colon E\to [s]$ we get  that
+\[
+(E,(\lambda^{-1}P_1,\dots,\la^{-1}P_p))\ge  (\hat\la^{-1}G,(\hat\la^{-1}Q_1',\dots,\hat\la^{-1}Q'_q))
+\]
+in the poset~$\calL(E)$, which can be identified with a subposet of~$\calL[r]$. 
+We claim that the right hand side is equal to~\hbox{$(F,(\mu^{-1}Q_1,\dots,\mu^{-1}Q_q))$}, which  will give the required inequality. 
+Indeed, because $\phi$ is a morphism in the fiber, we have~\hbox{$(G,\kappa)\circ (E,\la)=(F,\mu)$}. Computing the left hand side in 
+\[
+\xymatrix@R-1pc{\hat\la^{-1}G \ar[r]^-{\hat\la} \ar@{}[d]|{\IV} & G \ar[r]^-{\kappa} \ar@{}[d]|{\IV} & [t]\\
+E \ar[r]^-{\la} \ar@{}[d]|{\IV} & [s] & \\
+[r],&&}
+\]
+shows that~$\hat\la^{-1}G=F$ and~$\kappa\circ \hat\la=\mu$. The claim then follows from the fact that~$Q'_i=\kappa^{-1}Q_i$. 
+%\begin{align*}
+% (\hat\la^{-1}G,(\hat\la^{-1}(Q_1'),\dots,\hat\la^{-1}(Q'_q))) &=  (\hat\la^{-1}G,(\hat\la^{-1}\circ \kappa^{-1}(Q_1),\dots,\hat\la^{-1}\circ \kappa^{-1}(Q_q))) \\
+%&=(F,(\mu^{-1}(Q_1),\dots,\mu^{-1}(Q_q)))
+%\end{align*}
+
+
+\noindent {\em The functors~$\Lambda$ and~$\Pi$ define an equivalence.} 
+The composition~$\Pi\Lambda$ is the identity on~$\calL^{\op}[r]$: it is enough to check this on objects as~$\calL^{\op}[r]$ is a poset. An object~$(E,(P_1,\dots,P_p))\in\calL^{\op}[r]$ is mapped by~$\Lambda$ to~$([e],(\la_EP_1,\dots,\la_EP_p),[e]\stackrel{\la_E}\lar E)$, which is 
+mapped back to the original tuple by~$\Pi$. On the other hand, we have
+\begin{align*}
+\Lambda\Pi([s],(P_1,\dots,P_p),[s]\stackrel{\ \la}\lar E) %&=([e],(\la_E\lambda^{-1}P_1,\dots,\la_E\la^{-1}P_p),[e]\stackrel{\ \la_E}\lar E)\\
+&=([s],(\la_E\lambda^{-1}P_1,\dots,\la_E\la^{-1}P_p),[s]\stackrel{\ \la_E}\lar E)
+%(E,P,\id\colon E'\cong E),
+\end{align*}
+where we have used that~$e=s$ as~$E$ and~$[s]$ have the same cardinality. These objects of~$\rmC_A[r]\minus J$ are not equal in general, but 
+$$\eta=([s],(P_1,\dots,P_p),[s]\xrightarrow{\la_E\la^{-1}} [s])$$ is a morphism in~$\Lev_A$ from~$([s],(P_1,\dots,P_p))$ to~$([s],(\la_E\lambda^{-1}P_1,\dots,\la_E\la^{-1}P_p)$, which induces a morphism in the fiber from~$([s],(P_1,\dots,P_p),[s]\stackrel{\ \la}\lar E)$ to its image by~$\Lambda\Pi$ by 
+ the commutativity of the diagram 
+$$\xymatrix{\rmC_A[s]\ar[rr]^-{([s],\la_E\la^{-1})} && \rmC_A[s] \\
+&\rmC_A[r] \ar[ur]_{(E,\la_E)} \ar[ul]^{(E,\la)} & 
+}$$
+in~$\Exp_A$.  We are left to check that these morphisms~$\eta$ fit together to define a natural transformation from the identity to~$\Lambda\Pi$. Consider a morphism 
+$$\phi=(G,(Q_1',\dots,Q'_q),G\stackrel{\kappa}\to [t])\colon([s],(P_1,\dots.P_p), [s]\stackrel{\ \la}\lar E)\ \rar\ ([t],(Q_1,\dots,Q_q),[t]\stackrel{\ \mu}\lar F)$$
+in the fiber. Then~$\Pi(\phi)$ just remembers that the images under~$\Pi$ of the source and target are comparable in~$\calL[r]$, and 
+\begin{align*}\Lambda\Pi(\phi) %&=(\hat\la_E\hat\la^{-1}(G),(\hat\la_E\hat\la^{-1}(Q_1'),\dots,\hat\la_E\hat\la^{-1}(Q_q')),\hat\la_E\hat\la^{-1}(G)\stackrel{\la_F\circ\hat\la_E^{-1}}\rar [s]) \\
+&=(\hat\la_EF,(\hat\la_E\mu^{-1}Q_1,\dots,\hat\la_E\mu^{-1}Q_q),\hat\la_EF\xrightarrow{\la_F\hat \la_E^{-1}} [t]).
+\end{align*}
+We need to check that 
+\begin{equation}\label{diag:2}
+\xymatrix{ ([s],(P_1,\dots.P_p)) \ar[d]_{([s],(P_1,\dots,P_p),[s]\xrightarrow{\la_E\la^{-1}} [s])} \ar[rrr]^-{\phi=(G,(Q_1',\dots,Q'_q),G\stackrel{\kappa}\to [t])} 
+&&& ([t],(Q_1,\dots,Q_q)) \ar[d]^{([t],(Q_1,\dots,Q_q),[t]\xrightarrow{\la_F\mu^{-1}} [t])}\\
+([s],(\la_E\lambda^{-1}P_1,\dots,\la_E\la^{-1}P_p)) \ar[rrr]^-{\Lambda\Pi(\phi)} &&& ([t],(\la_F\mu^{-1}Q_1,\dots,\la_F\mu^{-1}Q_q)}
+\end{equation}
+commutes in~$\Lev_A$. 
+Now because all the morphisms in the diagram define morphisms in the fiber $\rmC_A[r]\minus J$, we get a diagram 
+$$\xymatrix@R-1pc{\rmC_A[s]\ar[dd]_{([s],\la_E\la^{-1})} \ar[rr]^-{(G,\kappa)} & & \rmC_A[t] \ar[dd]^{([t],\la_F\mu^{-1})}\\
+& \rmC_A[r]  \ar[ul] \ar[ur] \ar[dl] \ar[dr] & \\
+\rmC_A[s] \ar[rr]_-{(\hat\la_EF,\la_F\hat\la_E^{-1})} && \rmC_A[t]}$$
+of commuting triangles in $\Exp_A$, from which it follows that the outer square commutes  as $\Exp_A$ is a subcategory of the groupoid $\bCan_A^\x$. 
+From this, we get that 
+~$G=\hat\la(F)$ and   $\la_F\mu^{-1}\kappa=\la_F\hat\la^{-1}$. 
+Now going along the top of diagram (\ref{diag:2}), the maps compose to $(G,(Q_1',\dots,Q_q'),G\xrightarrow{\la_F\mu^{-1}\kappa}[t])$ while going along the bottom they compose to 
+$((\hat\la F,(\la\mu^{-1}Q_1,\dots,\la\mu^{-1}Q_q),\hat\la F\xrightarrow{\la_F\hat\la^{-1}} [t])$. And these are equal by the previous computation, using also that $Q_i=\kappa(Q_i')$ for each $i$.  
+This completes the proof.
+\end{proof}
+
+
+%%%
+
+\subsection{Thomason's homotopy colimit}\label{def:Sigma_A}
+
+We will now recall Thomason's explicit model for the homotopy colimit~\eqref{eq:defTho}. Let
+\[
+\Si_A\colon\bSet^\x \to \bSet^\x
+\]
+be the functor defined on objects by~$\Si_A[r]=[rn]$ and on morphisms~$\la\colon[r]\to [r]$ by the diagram 
+\begin{equation}\label{diag:SiA}
+\xymatrix@R-1pc{[rn] \ar@{-->}[rr]^-{\Si_A(\la)} && [rn]\\
+[r]\x A=E \ar[rr]^-{\hat\la=\la\x A} \ar@{}[d]|{\IV} \ar[u]^{\la_E}&& E=[r]\x A \ar@{}[d]|{\IV} \ar[u]_{\la_E}\\
+[r] \ar[rr]^-{\la} && [r], }
+\end{equation}
+that is setting~$\Si_A(\la)=\la_E\circ \hat\la\circ \la_E^{-1}$, where~$\la_E$ is the map given by lexicographic ordering of Lemma~\ref{lem:lexi}. 
+Explicitly~$\la_E$ orders the elements of~$[r]\x A$ as 
+$$(1,a_1),\dots,(1,a_n),\dots, (r,a_1),\dots,(r,a_n),$$
+so~$\Si_A(\la)$ is the well-known ``block'' version of~$\la$, permuting blocks of size~$n$. 
+Using this block permutation description, one sees that~$\Si_A$ is a strict symmetric monoidal functor. 
+
+Recall that 
+$$\Tho_A=\hocolim_\bbN(\bSet^\x,\Si_A)$$
+is obtained as a homotopy colimit in the category of non-unital permutative categories for~$\bbN$ here considered as the category with one object~$*$ associated to the monoid~$(\bbN,+)$ and 
+$$(\bSet^\x,\Si_A)\colon \bbN\rar \mathbf{Perm}$$ 
+denoting the functor from~$\bbN$ to the category of non-unital 
+permutative categories taking the unique object to~$\bSet^\x$ and a morphism~$k\in \bbN$ to~$\Si_A^k$, the~$k$--th iterate of the functor~$\Si_A$.  
+Here we use the explicit model given by Thomason in~\cite[Construction 3.22]{Thomason} for this homotopy colimit.
+The objects of~$\Tho_A$ are the tuples~$([r_1],\dots,[r_m])$ with~$m>0$ and each~$r_i>0$.
+Morphisms are given as tuples
+\[
+(\psi,\mu,f_1,\dots,f_{n})\colon ([r_1],\dots,[r_{m}])\rar ([s_1],\dots,[s_{n}])
+\] 
+where~$\psi\colon [m]\to [n]$ is a surjection,~$\mu\colon [m]\to\bbN$ is a function, and for each $j=1,\dots,n$,
+\[
+f_j\colon [\sum_{i\in\psi^{-1}(j)} r_in^{\mu(i)}]\longrightarrow [s_j]
+\]
+is a bijection. 
+%where~$[m]=\{1,\dots,m\}$ as before and
+% where we have already used the notation
+%for
+%\[
+%E(\psi,\mu)_j=\bigsqcup_{i\in\psi^{-1}(j)} [r_i]\times A^{\mu(i)}.
+%\] 
+%(Here of course we will soon identify the source of~$f_j$ with an expansion of the set~$[\sum_{i\in \psi^{-1}(j)}r_i]$.) 
+The composition of such morphisms is defined by composition of the surjections, corresponding~``multi-additions'' of the values~$\mu(i)$ and composition of the bijections~$f_j$, appropriately multiplied with powers of~$A$: if~$(\psi,\mu,f_1,\dots,f_{n})$ is as above and~$(\psi',\mu',f'_1,\dots,f'_{p})\colon ([s_1],\dots,[s_{n}])\rar ([t_1],\dots,[t_{p}])$, then the composition~$(\psi',\mu',f'_1,\dots,f'_{p})\circ (\psi,\mu,f_1,\dots,f_{n})$ 
+is given by
+\[
+(\psi'\circ \psi,
+\mu+(\mu'\circ\psi),
+f'_1\circ\left(\bigoplus_{j\in \psi'^{-1}(1)}\Si_A^{\mu'(j)}f_j\right)\circ\s_1,
+\dots,
+f'_p\circ\left(\bigoplus_{j\in \psi'^{-1}(p)}\Si_A^{\mu'(j)}f_j\right)\circ \s_p
+)
+\]
+for~$\s_k$ the block permutation induced by the permutation reordering~$(\psi'\psi)^{-1}(k)$ as~$\psi^{-1}(j_1),\dots,\psi^{-1}(j_q)$ for~$\{j_1<\dots<j_q\}=(\psi')^{-1}(k)$. 
+The monoidal structure is given on objects by juxtaposition: 
+\[
+([r_1],\dots,[r_{m}])\oplus ([s_1],\dots,[s_{n}])=([r_1],\dots,[r_{m}],[s_1],\dots,[s_{n}])
+\]
+%The unit is the empty sequence~$()$ 
+and likewise on morphisms, 
+and the symmetry is the map~$(\s_{m,n},{\bf 0},\id,\dots,\id)$ is induced by the symmetry in~$\bSet^\x$, with~${\bf 0}\colon[m+n]\to \bbN$ denoting the zero map. 
+
+
+The goal of this section is to prove the following
+
+\begin{theorem}\label{thm:LevTh}
+There is a functor
+$$H\colon\Lev_A\rar \Tho_A$$
+which induces a homotopy equivalence on classifying spaces. 
+\end{theorem}
+
+\begin{proof}[Part 1 of the proof of Theorem~\ref{thm:LevTh}: Definition of the functor.]
+The functor~$H\colon\Lev_A\rar \Tho_A$ is defined on objects~$([r],(P_1,\dots,P_p))$ of~$\Lev_A$ with~$r_i=|P_i|$  by setting 
+\[
+H([r],(P_1,\dots,P_p))=\left\{\begin{array}{ll}([r_1],\dots,[r_p],[r-\sum_ir_i]) & \textrm{if}\ \sum_i r_i\neq r\\
+([r_1],\dots,[r_p]) & \textrm{if}\ \sum_i r_i= r.
+\end{array}\right.
+\]
+Consider now a morphism 
+$$\phi\colon([r],(P_1,\dots,P_p)) \ge (E,(Q'_1,\dots,Q'_q))\ \stackrel{\la}\rar\ ([s],(Q_1,\dots,Q_q))$$ in~$\Lev_A$.
+% is given by a tuple~$\phi=(E,(Q'_1,\dots,Q'_q),E\stackrel{\ \la}\rar [s])$ with 
+%$([r],(P_1,\dots,P_p))\ge (E,(Q'_1,\dots,Q'_q))$ in~$\calL[r]$ and~$\la$ an isomorphism  between~$(E,(Q'_1,\dots,Q'_q))$ and~$([s],(Q_1,\dots,Q_q))$. 
+%To define~$H$ on morphisms, we first associate to the poset morphisms of~$\calL[r]$ objects of the same form as the morphisms in the category~$\Tho_A$: 
+The relation~$([r],(P_1,\dots,P_p))\ge (E,(Q'_1,\dots,Q'_q))$ in~$\calL[r]$ gives that 
+there exists~$0\le p_0,p_1\le p$ and~$\kappa_1,\dots,\kappa_q\ge 1$ such that~$p_0+\sum_j \kappa_j+p_1=p$, with~$E$ the level expansion of~$[r]$ along~$P_1\cup \dots\cup P_{p_0}$ and
+\[
+Q'_j=P_{p_0+\kappa(1)+\dots+\kappa(j-1)+1}\sqcup\dots\sqcup P_{p_0+\kappa(1)+\dots+\kappa(j)}.
+\]
+The object~$H([r],(P_1,\dots,P_p))$ will be a sequence of~$p'=p$ or~$p+1$ elements depending on whether~\hbox{$\cup_\ell P_\ell=[r]$} or not. Likewise, the image~$H([s],(Q_1,\dots,Q_q))$ will be a sequence of~$q'=q$ or~$q+1$ elements. 
+We define~$H(\phi)=(\psi,\mu,f_1,\dots,f_{q'})$ for~$\psi,\mu$, and the functions~$f_j$ are defined as follows. Let 
+\[
+\psi(i)=
+\begin{cases}
+j 	& \textrm{if }P_i\subset Q'_j \\
+q+1 & \textrm{if }P_i\not\subset\cup_j Q'_j\textrm{ or }i=p+1.
+\end{cases}
+\]
+This gives a well-defined surjective map~$\psi\colon[p']\to [q']$: any~$j\in [q]$ with~$j\le q$ is in the image of~$\psi$ because any~$Q_j$ is a union of~$P_i$'s, and if~$q'=q+1$, then we must either have~$p'=p+1$ and~$\psi(p+1)=q+1$ or~$p'=p$ with~$p_0\ge 1$ or~$p_1\ge 1$, in which case either~$\psi(1)=q+1$ or~$\psi(p)=q+1$.    
+%$$\psi(l)=\left\{\begin{array}{ll} q+1& 1\le l\le i\\
+%j & i+\kappa_1+\dots+\kappa_{j-1}+1\le l\le i+\kappa_1+\dots+\kappa_{j}\\
+%q+1 & p-k+1\le l\le p+1
+%\end{array}\right.$$
+We define~$\mu\colon[p']\to \bbN$ by 
+$$\mu(i)=\left\{\begin{array}{ll} 1 & 1\le i\le p_0\\
+0 & \textrm{else}. 
+\end{array}\right.$$
+Finally, for~$1\le j\le q$, let~$f_j\colon[\sum_{i\in \psi^{-1}(j)}r_i]\to [\sum_{i\in \psi^{-1}(j)}r_i]=[s_j]$ for $s_j=|Q_j|$, be the bijection making the following diagram commute: 
+\begin{equation}\label{equ:Hmor}
+\xymatrix@R-2pc{&[\sum_{i\in \psi^{-1}(j)}r_i]  \ar[rr]^-{f_j} && [\sum_{i\in \psi^{-1}(j)}r_i]=[s_j]\\
+\bigsqcup_{i\in \psi^{-1}(j)}[r_i]\ar[ur]^-\oplus & &&  \\
+&\bigsqcup_{i\in \psi^{-1}(j)}P_i  \ar[ul]^-{\sqcup_i\la_{P_i}} & \ar[l]\bigcup_{i\in \psi^{-1}(j)}P_i = Q'_j \ar[r]^-{\la|_{Q'_j}} & Q_j \ar[uu]_-{\la_{Q_j}} 
+}\end{equation}
+for~$\la_{P_i}$ and~$\la_{Q_j}$ the lexicographic maps of Lemma~\ref{lem:lexi}. (In this case, each $\mu(i)=0$.)  %and~$\hat\la$ the restriction of~$\la\colon E\to [s]$ to~$Q'_j$.  
+If~$q'=q+1$, we set $f_{q+1}$ 
+%\[
+%f_{q+1}\colon[\sum_{i\in \psi^{-1}(q+1)}\!\!\! r_i n^{\mu(i)}]=[\sum_{1\le i\le p_0}\!\! r_i n + \sum_{p-p_1\le i\le p}\!\! r_i \,+\,(r-\!\!\sum_{1\le i\le p}\!\! r_i)]\to [\sum_{i\in \psi^{-1}(q+1)}\!\!\! r_i n^{\mu(i)}]=[s-\sum_{1\le j\le q}\!\! s_j]
+%\] 
+to be the bijection making the following diagram commute: 
+$$\xymatrix{[\sum_{i\in \psi^{-1}(q+1)}r_i n^{\mu(i)}]  \ar[rr]^-{f_{q+1}} && [\sum_{i\in \psi^{-1}(q+1)}r_i n^{\mu(i)}]\\
+\big(\bigsqcup_{1\le i\le p_0}P_i\x A \big)\,\sqcup\,\big(\bigsqcup_{p-p_1< i\le p}P_i\big)\,  \sqcup \,\big([r]\minus \cup_i P_i\big) \ar[u]^{\sqcup(\textrm{lexi})}%^{\sqcup_i\la_{P_i\x A^{\mu(i)}}} 
+& \ar[l] E\minus (\cup_jQ'_j) \ar[r]^-{\la} & [s]\minus(\cup_jQ_j) \ar[u]_{(\textrm{lexi})}%_{\la_{Q_j}} 
+}$$
+with the vertical maps defined as in the previous case. 
+
+
+
+We check that~$H$ respects composition. Consider a composition in~$\Lev_A$: 
+$$\xymatrix@R-1pc{([r],(P_1,\dots,P_p)) \ge   (E,(Q_1',\dots,Q_q')) %\ar@{}@<-6ex>[d]|{\IV} 
+\ar[r]^-\la & ([s],(Q_1,\dots,Q_q)) \ge  (G,(R_1',\dots,R_u')) \ar[r]^-\kappa  %\ar@<6ex>[d]^\kappa 
+&  ([t],(R_1,\dots,R_u))  %\\
+%(\hat\la^{-1}G,(\hat\la^{-1}R_1',\dots,\hat\la^{-1}R_u')) \ \ \ \ \ \ \ \ar[r]^-{\kappa\circ\hat\la} & \ \ \ \  \ \ \ ([t],(R_1,\dots,R_u))  
+}$$
+with image under~$H$ the composition 
+$$\xymatrix{([r_1],\dots,[r_{p'}]) \ar[r]^-{(\psi,\mu,{\bf f})} & ([s_1],\dots,[s_{q'}]) \ar[r]^-{(\psi',\mu',{\bf f'})} & ([t_1],\dots,[t_{u'}]).}$$
+By definition of the composition in~$\Tho_A$, these maps compose to
+\[
+\big(\psi'\circ \psi,\mu+(\mu'\circ\psi),f'_1\circ (\oplus_{i\in \psi'^{-1}(1)}\Si_A^{\mu'(i)} f_i)\circ\s_1,\dots,f'_{u'}\circ (\oplus_{i\in \psi'^{-1}(u')}\Si_A^{\mu'(i)}f_i)\circ \s_{u'}\big).
+\]
+The fact that the value of the functor~$H$ on the composed morphism  
+$$\xymatrix{([r],(P_1,\dots,P_p)) \ge (\hat\la^{-1}G,(\hat\la^{-1}R_1',\dots,\hat\la^{-1}R_u')) \ar[r]^-{\kappa\circ\hat\la} &  ([t],(R_1,\dots,R_u))  
+}$$
+agrees on the first component follows from the fact that~\hbox{$P_i\subset \hat\la^{-1}(R_k)$} if and only if~$P_i\subset Q'_j$ and~$\la(Q'_j)=Q_j\subset R_k$. 
+On the second component, it is because~$\mu$ records the~$P_i$'s that are expanded by the first map and~$\mu'$ records those that are expanded by the second map. For the last component, assuming first  $1\le k\le u$,  with~$(\psi')^{-1}(k)=\{j_1<\dots<j_m\}$, we have $\mu+(\mu'\circ\psi)(i)=0$ for each $i\in (\psi'\psi)^{-1}(k)$, and the diagram 
+$$\xymatrix{[\sum_{i\in (\psi'\psi)^{-1}(k)}r_i]\stackrel{\s_k}\cong  [\sum_{\ell=1}^m(\sum_{i\in (\psi)^{-1}(j_\ell)}r_i)] \ar[r]^-{\oplus_\ell f_\ell} & [\sum_{\ell=1}^m(\sum_{i\in (\psi)^{-1}(j_\ell)}r_i)] \ar[r]^-{f'_k} & [\sum_{i\in (\psi'\psi)^{-1}(k)}r_i]\\
+\bigsqcup_{i\in (\psi'\psi)^{-1}(k)}P_i \stackrel{\s_k}\cong \bigsqcup_{\ell=1}^m(\bigsqcup_{i\in (\psi)^{-1}(j_\ell)}P_i) \lar \bigsqcup_{\ell=1}^mQ'_{j_\ell}  \ar[r]^-{\hat \la}
+ \ar@<-6ex>[u]^{\sqcup(\textrm{lexi})} \ar@<13ex>[u]^{\sqcup(\textrm{lexi})}
+ & \bigsqcup_{\ell=1}^mQ_{j_\ell} \ar[u]^{\sqcup(\textrm{lexi})} \lar R'_k\ar[r]^-\kappa & R_k \ar[u]^{(\textrm{lexi})}\\
+& \bigcup_{i\in (\psi'\psi)^{-1}(k)}P_i=\hat\la^{-1}R'_k \ar[ul] \ar[ul]+<-17ex,-2ex> \ar[ul]+<20ex,-2ex> \ar[u]+<5ex,-2ex>^-{\hat \la}  \ar[ur]_{\kappa\circ\hat\la}& 
+}$$
+%with $\bar \mu:=\mu+(\mu'\circ\psi)$, and similarly for
+commutes by definition of $H$ on morphisms for the squares, and with the first three diagonal maps at the bottom of the diagram  the canonical maps coming from the fact that the target is in each case a decomposition of the source into disjoint subsets of it. The top row is the map $f'_{u'}\circ (\oplus_{i\in \psi'^{-1}(u')}\Si_A^{\mu'(i)}f_i)\circ \s_{u'}$, but is also equal to corresponding component of the value of $H$ on the composition by the commutativity of the outer diagram. 
+The case~$k=u+1$, when relevant, is similar.   
+\end{proof}
+
+The proof that the functor~$H$ induces a homotopy equivalence on classifying spaces will be analogous to that of the functor~$\Lev_A\to \Exp_A$: we will compare the homotopy fibers to  a poset of simplices of a semi-simplicial set analogous to~$\rmL(X)$. %Given a tuple of positive numbers~$(r_1,\dots,r_k)$, we will now define a semi-simplicial set~$\rmL(r_1,\dots,r_k)$. 
+We start by introducing the relevant semi-simplicial set. 
+
+Let~$\bbN=\{0,1,2,\dots\}$ denote the set of  natural numbers and  
+$(\bbN^k,\le)$ the poset of~$k$--tuples of natural numbers, with the poset structure defined by~$(m_1,\dots,m_k)\le (n_1,\dots,n_k)$ if~$m_i\le n_i$ for each~$i$. 
+
+\begin{definition}
+For~$k> 0$, let~$\rmM(k)$ denote the semi-simplicial subset of the nerve of~$(\bbN^{k},\le)$ with 
+%with 0--simplices the elements of~$\bbN^{k}$, and
+the same vertices and where a~$p$--simplex is a sequence 
+\[
+v_0= (n_1^0,\dots,n^0_{k})<\dots <  v_p=(n^p_1,\dots,n^p_{k})
+\]
+in~$(\bbN^{k},\le)$ such that~$v_i -v_0\in \{0,1\}^k$ for all~$1\le i\le p$, i.e.~$n_j^i-n_j^0\in\{0,1\}$ for all~$j$.  
+%If~$k=0$,~$\rmL()$ is a point, denoted~$()$. 
+\end{definition}
+
+
+
+Note that the condition~$v_i -v_0\in \{0,1\}^k$ for all~$1\le i\le p$ is equivalent to the condition~$v_i -v_j\in \{0,1\}^k$ for all~$0\le j\le  i\le p$ given that~$v_0<\dots<v_p$ in the poset~$(\bbN^k,\le)$. 
+
+For any a tuple of positive numbers~$(r_1,\dots,r_k)$, we can identify $\rmM(k)$ with a semi-simplicial subset of~$\rmL[\sum r_i]$: to a vertex~$v=(n_1,\dots,n_k)$ of~$\rmM(k)$, we can associate the set  
+$$[r_1]\x A^{n_1}\sqcup \dots \sqcup [r_k]\x A^{n_k}.$$
+which we think of as an expansion of the set~$[r]=[r_1]\oplus \dots\oplus [r_k]$. Under this identification, the condition for a sequence~\hbox{$(n_1^0,\dots,n^0_k)<\dots <(n^p_1,\dots,n^p_k)$} to form a~$p$--simplex in~$\rmM(k)$ 
+is precisely that the corresponding expansions of~$[r]$ form a~$p$--simplex in~$\rmL[r]$. But note that here we are only considering level expansions of a specific form, allowing only expansions along the subsets~$[r_i]\times A^{n_i}$, or unions of such. 
+
+\begin{lem}\label{lem:Lk}
+For any~$k> 0$, the semi-simplicial set~$\rmM(k)$ is contractible. 
+\end{lem}
+
+\begin{proof}
+%It is enough consider the case where~$k\ge 1$ and each~$r_i\ge 1$. 
+%This proof is very similar to the proof of the contractibility of~$\rmL(X)$. 
+We consider the restriction of the rank filtration of the poset~$(\bbN^k,\le)$ to~$\rmM(k)$: the {\em rank} of a vertex~$(n_1,\dots,n_k)$ is~$\sum_in_i$. Let~$F_i\rmM(k)$ be the semi-simplicial subset on the vertices of rank at most~$i$.  We have 
+$$\{(0,\dots,0)\}=F_0\rmM(k)\subset F_1\rmM(k)\subset \dots \subset F_i\rmM(k)\subset \dots\subset \rmM(k).$$
+By compactness, any map from a sphere into~$\rmM(k)$ will land in a finite filtration, so it is enough to show that~$F_i\rmM(k)$ is contractible for each~$i$. Clearly~$F_0\rmM(k)$ is contractible, as it is just a point. Assuming that we have proved that~$F_i\rmM(k)$ is contractible, we will show that~$F_{i+1}\rmM(k)$ is also contractible. As vertices of any simplex in 
+$\rmM(k)$ necessarily have distinct rank, we see that~$F_{i+1}\rmM(k)$ is obtained from~$F_i\rmM(k)$ by adding a cone on each vertex~$v$ of rank equal to~$i+1$, attached to 
+$F_i\rmM(k)$ along~$\Link(v)\cap F_i\rmM(k)$. By definition, a simplex~$w_0<\dots<w_q$ of~$\rmM(k)$ lies in~$\Link(v)$ precisely if~$w_0<\dots<w_p<v<w_{p+1}<\dots<w_q$ is a simplex of~$\rmM(k)$. As~$v$ has rank~$i+1$, we see that only~$w_0,\dots,w_p$ have rank at most~$i$, and hence that 
+$\Link(v)\cap F_i\rmM(k)$ identifies with the semi-simplical subset~$\rmM(k)_{<v}\subset \rmM(k)$ of simplices~$w_0<\dots<w_p$ such that~\hbox{$w_0<\dots<w_p<v$} is also a simplex of~$\rmM(k)$. 
+% Indeed, any such~$w$ necessarily has rank at most~$i$ and any simplex~$w_0<\dots<w_p$ in~$\rmM(k)_{<v}$  lies in the link of~$v$. And conversally, if 
+%$w_0<\dots<w_p<v<w_{p+1}<\dots<w_q$ is a simplex of~$\rmM(k)$ with the~$w_i$'s in~$F_i\rmM(k)$, then we must have~$p=q$ and~$w_0<\dots<w_p$ a simplex of~$\rmM(k)_{<v}$.
+
+So we are left to show that each~$\rmM(k)_{<v}$ is contractible. Note first that the semi-simplicial set~$\rmM(k)_{<v}$ is the~(small) nerve of a poset: for vertices~$w,w'$ of~$\rmM(k)_{<v}$, set~\hbox{$w\prec w'$} if~$w<w'$ is a~$1$--simplex in~$\rmM(k)_{<v}$. This defines a poset structure on~$\rmM(k)_{<v}$  as~$w\prec w'\prec w''$ implies that~$w<w''$ is also a~$1$--simplex in $\rmM(k)_{<v}$, because~$w<v$ and~$w''<v$ are simplices in~$\rmM(k)$, which means that~\hbox{$v-w\in \{0,1\}^k$} and~\hbox{$0\le w''_i-w_i\le v_i-w_i\le 1$} is also necessarily in~$\{0,1\}$ for each~$i$. 
+%Contractibility then follows from the fact that this is the nerve of a poset with a least element: 
+This allows us to finish the proof, because that poset has a least element: indeed, if~$v=(n_1,\dots,n_k)$, then~\hbox{$w=(n_1,\dots,n_k)-(\epsilon_1,\dots,\epsilon_k)$} 
+with $\epsilon_i=\min\{1,n_i\}$ 
+%\[
+%\epsilon_i =\left\{ \begin{array}{ll}1 & \textrm{if}\ n_i\ge 1\\
+% 0 & \textrm{if}\ n_i=0.
+%\end{array}\right. 
+%\]
+is the least element.
+\end{proof}
+
+As in the case of~$\rmL[r]$, we will need to pass to the poset of simplices of~$\rmM(k)$. We start by giving a description of~$\rmM(k)$ that is more suitable for our needs. The idea is, just as in the case of $\rmL(X)$,  that we can encode the information of a simplex
+\[
+(n_1^0,\dots,n^0_{k})<\dots <  (n^p_1,\dots,n^p_{k})
+\]
+by remembering the first tuple of elements~$ (n_1^0,\dots,n^0_{k})$, and then remembering for each~$1\le i\le p$ which set of indices~$J_i\subset \{1,\dots,k\}$ was raised by 1 when going from 
+$ (n_1^{i-1},\dots,n^{i-1}_{k})$ to~$ (n_1^i,\dots,n^i_{k})$, that is for which index~$\ell$ the difference~$n_\ell^{i}-n_\ell^{i-1}$ is equal to 1. This idea formalizes to the following:  
+
+\begin{lem}\label{lem:LL'k}
+%Let~$\calL(r_1,\dots,r_k)$ denote the poset of simplices of~$\rmM(k)$. This poset is isomorphic to the poset 
+The semi-simplicial set~$\rmM(k)$ is isomorphic to the semi-simplicial set 
+$\rmM'(k)$ whose~$p$--simplices are the tuples 
+$$((n_1,\dots,n_k),J_1,\dots,J_p)$$
+for~$(n_1,\dots,n_k)\in \bbN^k$ and~$J_1,\dots,J_p$ a collection of~$p\ge 0$ disjoint non-empty subsets of~$[k]=\{1,\dots,k\}$, 
+%with poset structure defined by 
+%$$((m_1,\dots,m_k),I_1,\dots,I_q)\le ((n_1,\dots,n_k),J_1,\dots,J_p)$$
+%if one can get~$((m_1,\dots,m_k),I_1,\dots,I_q)$ from~$ ((n_1,\dots,n_k),J_1,\dots,J_p)$ by a composition of the following operations: 
+and with the face maps defined by 
+%\begin{enumerate}
+%\item~$d_0 ((n_1,\dots,n_k),J_1,\dots,J_p)=((n_1+\epsilon_1,\dots,n_k+\epsilon_k),J_2,\dots,J_p)$ for~$\epsilon_j=1$ if~$j\in J_1$ and~$0$ otherwise;
+%\item~$d_i ((n_1,\dots,n_k),J_1,\dots,J_p)=((n_1,\dots,n_k),J_1,\dots,J_i\cup J_{i+1},\dots ,J_p)$ for~$1\le i\le p$; 
+%\item~$d_p ((n_1,\dots,n_k),J_1,\dots,J_p)=((n_1,\dots,n_k),J_1,\dots,J_{p-1})$.
+%\end{enumerate}
+\[
+d_i ((n_1,\dots,n_k),J_1,\dots,J_p)=
+\begin{cases}
+((n_1+\epsilon_1,\dots,n_k+\epsilon_k),J_2,\dots,J_p) & i=0 \\
+((n_1,\dots,n_k),J_1,\dots,J_i\cup J_{i+1},\dots ,J_p) & 0<i<p\\ 
+((n_1,\dots,n_k),J_1,\dots,J_{p-1}) & i=p,
+\end{cases}
+\]
+where $\epsilon_j=1$ if $j\in J_1$ and $0$ otherwise.
+%there exists~$0\le i,k\le p$ and~$\kappa_1,\dots,\kappa_q$ such that 
+%\begin{enumerate}
+%\item~$n_j=m_j+\epsilon_j$ with~$\epsilon_j=1$ if~$j\in\cup_{1\le l\le i}I_i$ and~$\epsilon_j=0$ otherwise, 
+%\item~$J_j=I_{i+\kappa_1+\dots \kappa_{j-1}+1}\cup\dots\cup I_{i+\kappa_1+\dots \kappa_j}$
+%\item~$i+\kappa_1+\dots+\kappa_q=p-k$. 
+%\end{enumerate}
+\end{lem}
+
+\begin{proof}
+Define a map~$F\colon\rmM(k)\to \rmM'(k)$ on~$p$--simplices by setting 
+$$F\big((n_1^0,\dots,n^0_{k})<\dots <  (n^p_1,\dots,n^p_{k})\big)=\big((n_1^0,\dots,n^0_{k}),J_1,\dots,J_p\big)$$
+for~$J_i\subset \{1,\dots,k\}$ the set of indices of~$(n_1^{i},\dots,n^{i}_{k})- (n_1^{i-1},\dots,n^{i-1}_{k})$ that are equal to 1. By definition of~$\rmM(k)$, this difference lies in~$\{0,1\}^k\minus \{0\}^k$ so~$J_i$ is non-empty.
+Also the subsets~$J_i$ must be pairwise disjoint since the existence of $\ell\in J_i\cap J_j$ for $i<j$ would contradict that $n_\ell^j-n_\ell^0\in\{0,1\}$. 
+%as each difference~$(n_1^{j},\dots,n^{j}_{k})- (n_1^{i},\dots,n^{i}_{k})$ for any~$j>i$ likewise   lies in~$\{0,1\}^k\minus\{0\}^k$. 
+Hence~$F$ has image inside~$\rmM'(k)$. The face maps on the latter semi-simplicial set are defined so that~$F$ is semi-simplicial. An inverse is obtained by taking 
+a tuple~$\big(v=(n_1,\dots,n_{k}),J_1,\dots,J_p\big)$ to the simplex~$v<v+\langle J_1\rangle<\dots<v+\langle J_p\rangle$ with~$\langle J_i\rangle=(\epsilon_1,\dots,\epsilon_k)$ for~$\epsilon_j=1$ if~$\epsilon_j\in J_i$ and~$0$ otherwise. 
+%As these cover the requirements for being a simplex of~$\rmL(r_1,\dots,r_k)$, we see that~$F$ is well-defined and bijective as a map of sets. We are left to check that it respects the ordering. We have defined the ordering on~$\calL'(r_1,\dots,r_k)$ so that this holds, each operation~$d_i$ corresponding to the~$i$--th face map in~$\rmL(r_1,\dots,r_k)$.  \nnote{enough?} 
+\end{proof}
+
+\begin{proof}[Part 2 of the proof of Theorem~\ref{thm:LevTh}: The functor~$H\colon\Lev_A\to \Tho_A$ is an equivalence]
+We will again consider the homotopy fibers of the functor~$H$. We will show that they are homotopy equivalent to  
+the poset~$\calM(k)$ of simplices of~$\rmM'(k)$, 
+from which the result will follow as a consequence of Lemma~\ref{lem:Lk} and Lemma~\ref{lem:LL'k}. 
+For any object~$([r_1],\dots,[r_k])$ in~$\Tho_A$, we will define functors
+$$\Lambda\colon\calM(k)^{\op} \ \longleftrightarrow \ ([r_1],\dots,[r_k])\minus H\colon\Pi$$
+and show that they define an equivalence. 
+We start by defining~$\Lambda$. 
+
+\noindent
+{\em Definition of~$\Lambda$.} To a~$p$--simplex~$((n_1,\dots,n_k),J_1,\dots,J_p)$ of the semi-simplicial set~$\rmM'(k)$ we 
+can associate the set~\hbox{$E=[r_1]\x A^{n_1}\sqcup \dots\sqcup [r_k]\x A^{n_k}$}, considered as an expansion of $[\sum_ir_i]$ via the sum $[r_1]\sqcup\dots\sqcup [r_k]\xrightarrow{\oplus} [\sum_ir_i]$, and  canonically identified with~$[\sum_i r_in^{n_i}]$ via~$\la_E$. 
+%with its corresponding lexicographic ordering bijection~$\la_E:E\to [\sum r_in_i]$, 
+For $1\le j\le p$, let 
+\[
+P_j=\la_E(\bigsqcup_{i\in J_j}[r_i]\x A^{n_i})\subset [\sum_{1\le i\le k} r_in^{n_i}]
+\]
+be the subset of $ [\sum_ir_in^{n_i}]$ corresponding to~$J_j$. 
+We define~$\Lambda$ on objects by setting
+$$\Lambda((n_1,\dots,n_k),J_1,\dots,J_p)= (([\sum_{1\le i\le k} r_in^{n_i}],P_1,\dots,P_p),(\psi,\mu,\id))$$
+with
+\[
+(\psi,\mu,\bid)\colon([r_1],\dots,[r_k])\rar H([\sum_{1\le i\le k} r_in^{n_i}],(P_1,\dots,P_p))=([\sum_{i\in J_1}r_in^{n_i}],\dots,[\sum_{i\in J_p}r_in^{n_i}],([\sum_{i\notin\cup_j J_j}r_in^{n_i}]))
+\]
+defined by  
+setting~$\psi(i)=j$ if~$i\in J_j$, and~$\psi(i)=p+1$ if~$i\notin\cup_jJ_j$, and~$\mu(i)=n_i$, and with~$\bid=(\id,\dots,\id)$ denoting a $p'$--tuple of identity maps; 
+here, and in the rest of the proof, the last component of the rightmost term above is dropped if it is an empty set. And as before, we use $p'$ to denote $p$ or $p+1$ accordingly. 
+
+
+To define~$\Lambda$ on morphisms, note first that 
+\[
+X=((m_1,\dots,m_k),I_1,\dots,I_p)\ge ((n_1,\dots,n_k),J_1,\dots,J_q)=Y
+\]
+in~$\calM(k)$ if there are~$0\le p_0,p_1\le p$ and~$\kappa_1,\dots,\kappa_q\ge 1$ with 
+$p_0+\sum \kappa_j+p_1=p$ such that  
+$n_i=m_i+\epsilon_i$ for~$\epsilon_i=1$ if~$i\in I_1\cup\dots\cup I_{p_0}$ and~$0$ otherwise, and~$J_j=I_{p_0+\kappa_1+\dots+\kappa_{j-1}+1}\cup\dots\cup I_{p_0+\kappa_1+\dots+\kappa_{j}}$. 
+To such an inequality, we associate the morphism 
+$$\alpha\colon\Lambda(X)=([\sum_{1\le i\le k}r_in^{m_i}],(P_1,\dots,P_p)) \ge (E,(Q_1',\dots,Q_q')) \stackrel{\la_E}\rar ([\sum_{1\le i\le k}r_in^{n_i}],(Q_1,\dots,Q_q))=\Lambda(Y)$$
+ in~$\Lev_A$ with~$E$ the level expansion of~$[\sum_ir_in^{m_i}]$ along the subset~$P_1\cup\dots\cup P_{p_0}$, and~$Q'_j=\cup_{i\in J_j}P_i$. 
+For this to make sense, we need that $\la_E(Q'_j)=Q_j$, which holds by the compatibility of the lexicographic orderings~(Lemma~\ref{lem:lexi}). 
+Analyzing diagram~\eqref{equ:Hmor} in the definition of $H$, we see that~\hbox{$H(\al)=(\phi,\nu,\s_1,\dots,\s_{q'})$} with 
+$$\s_j\colon \sum_{i\in \psi^{-1}(j)}\sum_{\ell\in I_i}r_\ell n^{m_\ell} \rar  \sum_{i\in J_j}r_\ell n^{m_\ell}$$
+if $j\le q$ reordering the summands (corresponding to the natural map $\sqcup_{i\in \psi^{-1}(j)}P_i\to Q'_j$ as subsets of $[\sum_ir_in^{m_i}]$), and similarly for $j=q+1$ if relevant. And the diagram 
+$$\xymatrix{([r_1],\dots,[r_k])\ar[rr]^-{(\psi,\mu,\bid)} \ar[drr]_-{(\psi',\mu',\bid)} &&  ([\sum_{i\in I_1}r_in^{m_i}],\dots,[\sum_{i\in I_p}r_in^{m_i}],([\sum_{i\notin\cup_{j=1}^p I_j}r_in^{m_i}])) \ar[d]^{H(\alpha)=(\phi,\nu,{\bf\s})} \\
+&&  ([\sum_{i\in J_1}r_in^{n_i}],\dots,[\sum_{i\in J_q}r_in^{n_i}],([\sum_{i\notin\cup_{j=1}^q I_j}r_in^{n_i}]))}$$
+commutes, as~$\phi\circ\psi=\psi'$, both surjections keeping track of which component each expanded~$[r_i]$ goes to,  and~$\mu'=\mu+(\nu\circ\psi)$ as~$\nu$ records which additional expansions occurred from~$\mu$ to~$\mu'$, and because the maps $\s_j$ precisely take care of the necessary reordering of the summands.  
+Hence we have defined a morphism in the fiber from~$\Lambda(X)$ to~$\Lambda(Y)$. Left is to check that this assignment is compatible with composition, which is a direct computation. 
+
+
+
+\noindent
+{\em Definition of~$\Pi$.} We define~$\Pi$ on objects of the fiber as follows. Let~$X=\big(([s],(P_1,\dots,P_p)),(\psi,\mu,{\bf f})\big)$ be an object of the fiber, with 
+$$([r_1],\dots,[r_k]) \ \stackrel{(\psi,\mu,{\bf f})}\rar\ H([s],(P_1,\dots,P_p))= ([s_1],\dots,[s_p],[s-\sum_js_j])= ([s_1],\dots,[s_{p'}])$$
+for~${\bf f}=(f_1,\dots,f_{p'})$ with~$f_j\colon\sqcup_{i\in \psi^{-1}(j)}[r_in^{\mu(i)}] \ \stackrel{\cong}\rar \ [s_j]$, where we set $[s_{p+1}]:=[s-\sum_js_j]$ if the latter set is non-empty. 
+We define 
+$$\Pi(X)=((\mu(1),\dots,\mu(k)),\psi^{-1}(1),\dots,\psi^{-1}(p)).$$ 
+This is well-defined as the sets $[s_1],\dots,[s_p]$ are non-empty. 
+Given a morphism~$X\to Y$ in the fiber, we need to check that we have the relation~$\Pi(X)\ge \Pi(Y)$ in $\calM(k)$. If~\hbox{$X=\big((\psi,\mu,{\bf f}),([s],(P_1,\dots,P_p))\big)$} and 
+$Y=\big((\psi',\mu',{\bf f'}),([s'],(Q_1,\dots,Q_q))\big)$, such a morphism is given by a morphism in~$\Lev_A$
+$$\al\colon([s],(P_1,\dots,P_p))\ge (E,(Q_1',\dots,Q_q')) \ \stackrel{\la}\rar\ ([s'],(Q_1,\dots,Q_q))$$
+with~$E$ the level expansion of~$[s]$ along~$P_1\cup\dots\cup P_{p_0}$ and each~$Q_j'$ a union of~$P_i'$, and~$\la\colon E\to [s']$ a bijection, such that the diagram 
+\begin{equation}\label{equ:morfib}
+\xymatrix{([r_1],\dots,[r_k])\ar[rr]^-{(\psi,\mu,{\bf f})} \ar[drr]_-{(\psi',\mu',{\bf f'})} && ([s_1],\dots,[s_{p'}]) \ar[d]^{H(\al)}\\
+&& ([s'_1],\dots,[s'_{q'}])
+}\end{equation}
+commutes. 
+Because~$\al$ is a level expansion along the first~$p_0\ge 0$ subsets~$P_i$, we get that~$\mu'=\mu+\epsilon$ for~\hbox{$\epsilon_i=1$} if~\hbox{$i\in \psi^{-1}\{1,\dots,p_0\}$} and $\epsilon_i=0$ otherwise. Also, each~$\psi'^{-1}(j)$ is the union of the~$\psi^{-1}(i)$ for those $i$ for which~$Q'_j$ is the union of the~$P_i$'s. This precisely gives that 
+$$\Pi(X)=((\mu(1),\dots,\mu(k)),\psi^{-1}(1),\dots,\psi^{-1}(p))\ge ((\mu'(1),\dots,\mu'(k)),\psi'^{-1}(1),\dots,\psi'^{-1}(q))=\Pi(Y)$$ in~$\calM(k)$, as required. 
+
+\noindent
+{\em The functors define an equivalence.} The composition~$\Pi\Lambda$ is the identity: As $\calM(k)^{\op}$ is a poset, it is enough to check this on objects, where 
+\[
+\Pi\Lambda ((n_1,\dots,n_k),J_1,\dots,J_q)=((\mu(1),\dots,\mu(k)),\psi^{-1}(1),\dots,\psi^{-1}(p))
+\]
+for the function~$\mu$ defined by setting~$\mu(i)=n_i$ and~$\psi$ defined by setting~$\psi(i)=j$ if~$i\in J_j$. On the other hand, the composition~$\Lambda\Pi$ is not the identity, but we will see that, just like in the previous cases,  the information forgotten by that composition can be used to define a natural transformation between~$\Lambda\Pi$ and the identity functor. Indeed, given an object~\hbox{$X=\big(([s],(P_1,\dots,P_p)),(\psi,\mu,{\bf f})\big)$} in the fiber, we have~\hbox{$\Lambda\Pi (X)=\big(([s],(\bar P_1,\dots,\bar P_p)),(\psi,\mu,\bid)\big)$} with~$s=\sum_ir_in^{\mu(i)}$ and~$\bar P_j$  the subset of~$[s]$ corresponding to 
+the inclusion~\hbox{$[\sum_{i\in \psi^{-1}(j)}r_in^{\mu(i)}]\subset [\sum_ir_in^\mu(i)]=[s]$} coming from the inclusion of indexing sets $\psi^{-1}(j)\subset [k]$. 
+Consider the following bijection
+\begin{align*}
+\underline f\colon [s]\rar P_1\sqcup\dots\sqcup P_p\sqcup [s\minus \cup_iP_i] &\xrightarrow{\sqcup_j\la_{P_j}}  [s_1]\sqcup\dots\sqcup [s_{p'}] \\
+&\xrightarrow{\sqcup_jf_{j}}  [s_1]\sqcup\dots\sqcup [s_{p'}] \\
+%&= [\textstyle\sum_{i\in \psi^{-1}(1)}r_in^{\mu(i)}]\sqcup\dots\sqcup [\textstyle\sum_{i\in \psi^{-1}(p')}r_in^{\mu(i)}]
+& \xrightarrow{\sqcup_j\la_{\bar P_j}^{-1}} \bar P_1\sqcup\dots\sqcup \bar P_p\sqcup [s\minus \cup_i\bar P_i] \rar  [\textstyle\sum_{i}r_in^{\mu(i)}]=[s]
+\end{align*}
+where the first map splits $[s]$ into components according to the $P_j$'s and the last map  reassembles the components using the inclusion of the sets $\bar P_i$ instead. 
+As $\underline f(P_j)=\bar P_j$, it defines a morphism $([s],(P_1,\dots,P_p),\underline f)$ in~$\Lev_A$ from $([s],(P_1,\dots,P_p))$ to~\hbox{$([s],(\bar P_1,\dots,\bar P_p))$}. 
+Moreover, applying~$H$ to this morphism gives a commutative diagram in~$\Tho_A$
+\[
+\xymatrix{([r_1],\dots,[r_k])\ar[rr]^-{(\psi,\mu,\id)} \ar[drr]_-{(\psi,\mu,f_1,\dots,f_{p'})} &&([\sum_{i\in \psi^{-1}(1)}r_in^{n_i}],\dots,[\sum_{i\in \psi^{-1}(p')}r_in^{n_i}]) %([\sum_{i\notin\cup_j J_j}r_in^{n_i}])) %\ar@{=}[r] 
+\ar[d]^{H([s],(P_1,\dots,P_p),\underline f)=(\id,{\bf 0},f_1,\dots,f_{p'})}\\ %& ([s_1],\dots,[s_p],[s-\sum_js_j]) \\
+&& ([s_1],\dots,[s_p],[s-\sum_js_j]). %& 
+}
+\]
+%and the maps~$f$ assemble to the map~$$[\sum_i r_i\mu(i)\ \stackrel{\la_E^{-1}}\rar \ \sqcup_{i}[r_i]\x A^{\mu(i)} \ \stackrel{\underline f}\rar \ [s]$$
+%for~$\underline f$ the map of (\ref{equ:barf}), which takes each~$\tilde P_j$ to~$P_j$, 
+Hence we have defined a morphism~$\eta$ in the fiber from~$\Lambda\Pi(X)$ back to~$X$. 
+We are left to check that these morphisms together form a natural transformation. 
+Given~$X=\big(([s],(P_1,\dots,P_p)),(\psi,\mu,{\bf f})\big)$ and~\hbox{$Y=\big(([s'],(Q_1,\dots,Q_q)),(\psi',\mu',{\bf f'})\big)$}, a  morphism~$X\to Y$ in the fiber is defined by a map 
+$$\al\colon([s],(P_1,\dots,P_p))\ge (E,(Q_1',\dots,Q_q')) \ \stackrel{\la}\rar\ ([s'],(Q_1,\dots,Q_q))$$
+in~$\Lev_A$ making the diagram (\ref{equ:morfib}) commute. We need to check that 
+\begin{equation}\label{diag:3}
+\xymatrix{ ([s],(P_1,\dots,P_p))\ge (E,(Q_1',\dots,Q_q'))\ar[r]^-\la\ar@<-7ex>[d]_{\underline f} & ([s'],(Q_1,\dots,Q_q))\ar[d]^{\underline f'}\\
+ ([s],(P_1,\dots,P_p)) \ge (\bar E,(\bar Q_1',\dots,\bar Q_q'))\ar[r]^-{\la_{\bar E}} & ([s'],(Q_1,\dots,Q_q))
+}\end{equation}
+commutes in~$\Lev_A$, where we have suppressed the trivial inequalities in the vertical morphisms and where the bottom row is $\Lambda\Pi(\al)$. 
+Now going along the top of the diagram, the morphisms compose to give $(E,(Q_1',\dots,Q_q'),\underline f'\circ \la)$ whereas going along the bottom, they compose to the morphism
+$(\underline{\hat f}^{-1}\bar E,(\underline{\hat f}^{-1}\bar Q_1',\dots,\underline{\hat f}^{-1}\bar Q_q'),\la_E\circ \underline f)$. So we are left to check that $\underline f'\circ \la=\la_E\circ \underline f$ and that $\underline{\hat f}$ takes $(E,(Q_1',\dots,Q_q'))$ to 
+$(\bar E,(\bar Q_1',\dots,\bar Q_q'))$. The latter fact follows from the fact that $\underline f$ takes $([s],(P_1,\dots,P_p))$ to  $([s],(\bar P_1,\dots,\bar P_p))$ and that the fact that $E$ and the $Q_j'$'s are build from $[s]$ and the $P_i$'s in exactly the same way as $\bar E$ from $[s]$ and the $\bar P_i$'s. Finally, the fact that the morphisms in (\ref{diag:3}) are morphisms in the fiber, gives a commutative diagram 
+in $\Tho_A$: 
+$$\xymatrix@R-1pc{([s_1],\dots,[s_{p}],[s-\sum_is_i]]) \ar[dd]_{H(\eta_X)}\ar[rr]^{H(\al)} & & ([s'_1],\dots,[s'_{q}],[s'-\sum_js'_j])\ar[dd]^{H(\eta_Y)} \\
+& ([r_1],\dots,[r_k]) \ar[ul]\ar[ur]\ar[dl]\ar[dr] & \\
+([s_1],\dots,[s_{p}],[s-\sum_is_i]]) \ar[rr]^{H(\Lambda\Pi\al)} & & ([s'_1],\dots,[s'_{q}],[s'-\sum_js'_j]) }$$
+Now the maps in this diagram assemble to give a commutative diagram of bijections on the set $[s']$ where $s'=|E|=|\bar E|=\sum_ir_in^{\mu'(i)}$, where the left vertical map is induced by $\underline f$, the right vertical  map is induced by $\underline f'$, the top one by $\la$ and the bottom one by $\la_E$. Because this is now a commutative diagram of invertible maps, we can conclude that the outer square commutes, which precisely  gives the equality $\underline f'\circ \la=\la_E\circ \underline f$. 
+\end{proof}
+
+\subsection{From the Thomason construction to Cantor algebras}\label{sec:square}
+
+There is a canonical functor~$\Tho_A$ to~$\bCan_A^\x$ coming from the universal property of the homotopy colimit~$\Tho_A$ and the defining structure of Cantor algebras. We give it here explicitly and check that it is symmetric monoidal using the universal property. Finally, we prove that it is compatible with the zig-zag of functors we have so far defined between the two categories. 
+
+Let
+\[
+F\colon\Tho_A\ \rar\ \bCan_A^\x
+\]
+be the functor defined on objects by 
+$$F([r_1],\dots,[r_m])=\rmC_A[r_1+\dots+r_m]$$
+and on morphisms by taking 
+$$(\psi,\mu,{\bf f})\colon([r_1],\dots,[r_m])\rar ([s_1],\dots,[s_n]) \ \ \textrm{with}\ \ f_j\colon\bigsqcup_{i\in\psi^{-1}(j)}[r_in^{\mu(i)}]\stackrel{\cong}\rar [s_j]$$
+to the isomorphism of Cantor algebras represented by 
+$$(E,[s_1+\dots+s_n],\underline f)\colon\rmC_A[r_1+\dots+r_m]\ \rar \ \rmC_A[s_1+\dots+s_n]$$
+for~$E=\bigsqcup_i r_i\x A^{\mu(i)}$ considered as an expansion of~$[r_1]\oplus\dots\oplus[r_k]=[r_1+\dots+r_m]$ and with 
+$$\underline f\colon E=\bigsqcup_{1\le i\le m}r_i\x A^{\mu(i)} \ \stackrel{\cong}\rar\ \bigsqcup_{1\le j\le n}\ \bigsqcup_{i\in \psi^{-1}(j)} r_i\x A^{\mu(i)}\ \xrightarrow{\sqcup_j f_j}\ \bigsqcup_{1\le j\le n} [s_j]\xrightarrow{\oplus} [s_1+\dots+s_n]$$
+where the first map reorders the factors. 
+
+\begin{prop}
+The functor $F\colon\Tho_A\ \rar\ \bCan_A^\x$ is symmetric monoidal. 
+\end{prop}
+
+\begin{proof}
+The functor $F$ is the functor induced, via the universal property of the homotopy colimit $\Tho_A$ \cite[Prop 3.21]{Thomason}, from the free Cantor algebra functor 
+$\rmC_A\colon \bSet^\x\to \bCan_A^\x$ and the natural transformation $\eta\colon \rmC_A\to \rmC_A\circ \Si_A$ defined on objects as the morphism $\eta_r\colon \rmC_A[r]\to \rmC_A[rn]$ represented by the triple 
+$(E=[r]\x A,[rn],\la_E)$. Indeed, for the naturality, we need to check that for any bijection $\la\colon [r]\to [r]$,  the diagram 
+$$\xymatrix{\rmC_A[r] \ar[rr]^-{\rmC_A(\la)} \ar[d]_{\eta_r} && \rmC_A[r] \ar[d]^{\eta_r}\\
+\rmC_A[rn] \ar[rr]^-{\rmC_A\Si_A(\la)} && \rmC_A[rn] }$$
+commutes, which precisely follows from the commutativity of diagram (\ref{diag:SiA}) defining $\Si_A(\la)$. 
+(One can also check directly that $F$ is a symmetric monoidal functor. In fact it is strict symmetric monoidal.) 
+%For the monoidality, recall that 
+%\[
+%([r_1],\dots,[r_m])\oplus  ([s_1],\dots,[s_n])= ([r_1],\dots,[r_m],[s_1],\dots,[s_n])
+%\]
+%while 
+%\[
+%\rmC_A[r_1+\dots+r_m]\oplus \rmC_A[s_1+\dots+s_n]= \rmC_A[r_1+\dots+r_m+s_1+\dots+s_n].
+%\]
+%This shows that we have~$F(X\oplus Y)=F(X)\oplus F(Y)$ for objects~$X=([r_1],\dots,[r_m])$ and~$Y=([s_1],\dots,[s_n])$ in the category~$\Tho_A$. And if~$(\psi,\mu,f)$ and~$(\psi',\mu',f')$ are two morphisms of~$\Tho_A$, one sees likewise that~\hbox{$F((\psi,\mu,f)\oplus (\psi',\mu',f'))=F(\psi,\mu,f)\oplus F(\psi',\mu',f')$}, as in both cases, the maps and expansions are just sat ``side-by-side'' in the sum. 
+%The symmetry~$\s_{X,Y}\colon X\oplus Y\to Y\oplus X$ in~$\Tho_A$ is the map
+%$$(\s_{m,n},{\bf 0},\id)\colon([r_1],\dots,[r_m],[s_1],\dots,[s_n])  \ \rar \ ([s_1],\dots,[s_n],[r_1],\dots,[r_m])$$
+%induced by the block permutation~$\s_{m,n}\colon[m+n]\to [n+m]$. Now the map  
+%$$F(\s_{X,Y})\colon\rmC_A[r_1+\dots+r_m+s_1+\dots+s_n]\ \rar\ \rmC_A[s_1+\dots+s_n+r_1+\dots+r_m]$$
+%is then precisely the map induced by the (larger) block permutation
+%\[
+%\s_{\sum r_i,\sum s_i}\colon[r_1+\dots+r_m+s_1+\dots+s_n]\to [s_1+\dots+s_n+r_1+\dots+r_m]
+%\]
+%and hence coincides with the symmetry of~$\bCan_A^\x$.  
+\end{proof} 
+
+Note that~$F$ has image in the subcategory~$I\colon\Exp_A\inc \bCan_A^\x$. We will denote by~$F_0\colon\Tho_A\to \Exp_A$ the functor considered with~$\Exp_A$ as target category. 
+
+We have constructed a diagram of functors 
+\[\xymatrix{\Tho_A \ar[rr]^{F}\ar@{-->}[rrd]^{F_0} & &  \bCan_A^\times\\
+\Lev_A \ar[u]^{H}_\sim\ar[rr]_J^\sim &&  \ar[u]_I^\sim \Exp_A }
+\]
+and we are left to check that the diagram commutes up to homotopy, which will follow once we have shown that the bottom triangle commutes up to homotopy. 
+
+\begin{prop}
+Consider the diagram 
+$$\xymatrix{\Lev_A \ar[dr]_{J} \ar[r]^-H & \Tho_A \ar[d]^{F_0}\\
+& \Exp_A}$$
+of categories. There is a natural transformation~$\eta\colon J \to F_0\circ H$. In particular, the corresponding diagram of classifying spaces commutes up to homotopy. 
+\end{prop}
+
+\begin{proof}
+Given an object~$([r],(P_1,\dots,P_p))$ of~$\Lev_A$, we have that
+$$J([r],(P_1,\dots,P_p))=\rmC_A[r]=F_0\circ H([r],(P_1,\dots,P_p)).$$ Indeed,~$J$ forgets the subsets~$(P_1,\dots,P_p)$, while~$H$ takes 
+$([r],(P_1,\dots,P_p))$ to~$([r_1],\dots,[r_p],[r-\sum_i r_i])$ in~$\Tho_A$ for~$r_i=|P_i|$ (dropping the last component if it is zero), which is then taken by~$F_0$ to the Cantor algebra~\hbox{$\rmC_A[\sum_i r_i+r-\sum_i r_i]=\rmC_A[r]$}. However we see that the subsets~$P_i$ have been ``permuted'' in the composition~$F_0\circ H$, which will affect the value of the composed functor~$F_0\circ H$ on morphisms. The natural transformation~$\eta$ is given by that permutation: 
+Let~$\eta([r],(P_1,\dots,P_p))\colon\rmC_A[r] \ \rar\ \rmC_A[r]$ be induced by the bijection  
+%\begin{multline*}
+$$[r]\rar P_1\sqcup\dots\sqcup P_p\sqcup\left([r]\minus\sqcup_iP_i\right) \stackrel{(\textrm{lexi})}\rar [r_1]\sqcup\dots\sqcup [r_p]\sqcup [r-\sum_i r_i]\xrightarrow{\oplus} [\sum r_i + (r-\sum r_i)]=[r].$$
+%\end{multline*}
+% where the first map takes each subset~$P_i$ of~$[r]$, as well as the complement of~$\sqcup_i P_i$, to itself, and the second map is the canonical order preserving map. 
+We need to check that this is natural with respect to the morphisms of~$\Lev_A$. It is enough to check naturality for each of the generating morphisms~$d_0,d_i,d_p$ and~$\la$.
+Recall that~$d_0$ expands along~$P_0$, that~$d_i$ takes the union of~$P_i$ and~$P_{i+1}$, and that~$d_P$ forgets~$P_p$. We see that~$\eta$ is precisely the map that ensures that we apply these operations to the ``same'' subsets of~$[r]$: indeed,~$J$ considers each~$P_i$ as the original~$P_i\subset [r]$, while~$F_0\circ H$ considers~$P_i$ as the subset of~\hbox{$P_1\sqcup\dots\sqcup P_p\sqcup ([r]\minus \sqcup_iP_i)\cong [r]$}, and~$\eta$ precisely takes the one version of~$P_i$ to the other. 
+Likewise, applying a bijection~$\la$ will be compatible by the definition of the functors involved: 
+Given a bijection~$\la\colon[r]\to [r]$ inducing a morphism~\hbox{$\la\colon([r],(P_1,\dots,P_p))\to ([r],(\la P_1,\dots,\la P_p))$} in~$\Lev_A$, we get a commutative diagram 
+$$\xymatrix{\rmC[r] \ar[r]^{J(\la)=\la} \ar[d]_\eta^\cong& \rmC[r] \ar[d]^\eta_\cong\\
+ \big(\rmC_A[r_1]\oplus\dots\oplus \rmC_A[r_p]\big)\oplus \rmC_A[r-\sum_i r_i] \ar@{=}[d] \ar[r]^{\oplus_i \la_i} &\big(\rmC_A[r_1]\oplus\dots\oplus \rmC_A[r_p]\big)\oplus \rmC_A[r-\sum_i r_i] \ar@{=}[d]\\
+\rmC_A[r] \ar[r]^{F_0\circ H(\la)} &  \rmC_A[r]
+}$$
+where~$\la_i$ is the map induced by~$\la$ on each~$P_i$ (resp. on~$[r]\minus\sqcup_iP_i$), through their canonical identification with~$[r_i]$ via the lexicographic ordering map~$\la_{P_i}$. 
+\end{proof}
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+== S3, K=<(01)>: |G|=6 k=2 m=6 #subgroups=6 covered=True (|A|=3, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=3
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 5.6e-15) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 6.6e-16) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=0.7584 permutable mu(L)=0.7584 chain_len=1 Phi(T)=0.8658 N1=True val=0.8658 N2=True cert=0.8792 (resid 5.1e-14) bound=-0.2371 N3=True ratio(1-muL)/eps=2.000
+   nested mu(L)=0.9538 permutable mu(L)=0.9538 chain_len=1 Phi(T)=0.9744 N1=True val=0.9744 N2=True cert=0.9769 (resid 3.3e-13) bound=0.7636 N3=True ratio(1-muL)/eps=2.000
+== A4, K=<(012)>: |G|=12 k=3 m=6 #subgroups=10 covered=True (|A|=4, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=4
+   nested mu(L)=0.9500 permutable mu(L)=0.9500 chain_len=1 Phi(T)=0.9500 N1=True val=0.9500 N2=True cert=0.9500 (resid 2.6e-13) bound=0.4876 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.8667 permutable mu(L)=0.8667 chain_len=1 Phi(T)=0.9084 N1=True val=0.9084 N2=True cert=0.9111 (resid 2.4e-13) bound=0.0899 N3=True ratio(1-muL)/eps=1.500
+   nested mu(L)=0.8030 permutable mu(L)=0.8030 chain_len=1 Phi(T)=0.8646 N1=True val=0.8646 N2=True cert=0.8687 (resid 3.8e-14) bound=-0.3450 N3=True ratio(1-muL)/eps=1.500
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 7.4e-16) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+== D12, K=<reflection>: |G|=12 k=2 m=6 #subgroups=16 covered=True (|A|=3, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=3
+   nested mu(L)=0.9879 permutable mu(L)=0.9879 chain_len=1 Phi(T)=0.9879 N1=True val=0.9879 N2=True cert=0.9879 (resid 1.1e-16) bound=0.8761 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.9994 permutable mu(L)=0.9994 chain_len=1 Phi(T)=0.9994 N1=True val=0.9994 N2=True cert=0.9994 (resid 1.5e-14) bound=0.9942 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 1.3e-14) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 2.0e-14) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+== Dic12, K=<b> order 4: |G|=12 k=4 m=12 #subgroups=8 covered=True (|A|=3, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=3
+   nested mu(L)=0.9163 permutable mu(L)=0.9163 chain_len=1 Phi(T)=0.9163 N1=True val=0.9567 N2=True cert=0.9617 (resid 1.4e-13) bound=-0.7151 N3=True ratio(1-muL)/eps=2.185
+   nested mu(L)=0.9095 permutable mu(L)=0.9095 chain_len=1 Phi(T)=0.9095 N1=True val=0.9095 N2=True cert=0.9095 (resid 5.3e-14) bound=-3.0534 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.8848 permutable mu(L)=0.8848 chain_len=1 Phi(T)=0.8848 N1=True val=0.8848 N2=True cert=0.8848 (resid 3.7e-12) bound=-4.1593 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.8574 permutable mu(L)=0.8574 chain_len=1 Phi(T)=0.8642 N1=True val=0.8688 N2=True cert=0.8702 (resid 2.0e-10) bound=-4.8125 N3=True ratio(1-muL)/eps=1.099
+== F3 wr Z2, K=<swap>: |G|=18 k=2 m=6 #subgroups=14 covered=True (|A|=3, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=3
+   nested mu(L)=0.9576 permutable mu(L)=0.9576 chain_len=1 Phi(T)=0.9576 N1=True val=0.9576 N2=True cert=0.9576 (resid 2.6e-12) bound=0.5660 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 2.4e-14) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 3.1e-14) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 7.5e-15) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+== F2 wr Z3, K=<top>: |G|=24 k=3 m=6 #subgroups=26 covered=True (|A|=4, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=4
+   nested mu(L)=0.9217 permutable mu(L)=0.9217 chain_len=1 Phi(T)=0.9217 N1=True val=0.9217 N2=True cert=0.9217 (resid 7.0e-14) bound=0.1975 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=1.0000 permutable mu(L)=1.0000 chain_len=1 Phi(T)=1.0000 N1=True val=1.0000 N2=True cert=1.0000 (resid 6.4e-16) bound=1.0000 N3=True ratio(1-muL)/eps=0.000
+   nested mu(L)=0.9614 permutable mu(L)=0.9614 chain_len=1 Phi(T)=0.9614 N1=True val=0.9614 N2=True cert=0.9614 (resid 7.9e-14) bound=0.6046 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.9361 permutable mu(L)=0.9361 chain_len=1 Phi(T)=0.9361 N1=True val=0.9361 N2=True cert=0.9361 (resid 3.7e-13) bound=0.3458 N3=True ratio(1-muL)/eps=1.000
+== S4, K=<(012)>: |G|=24 k=3 m=12 #subgroups=30 covered=False (|A|=-, [K,G]<=A: False, K<=A: False) d_A(K)=3 at |A|=1
+   nested mu(L)=0.8815 permutable mu(L)=0.8815 chain_len=1 Phi(T)=0.8815 N1=True val=0.9111 N2=True cert=0.9210 (resid 3.2e-13) bound=-4.3069 N3=True ratio(1-muL)/eps=1.500
+   nested mu(L)=0.8702 permutable mu(L)=0.8702 chain_len=1 Phi(T)=0.8702 N1=True val=0.8702 N2=True cert=0.8702 (resid 3.1e-12) bound=-7.7185 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.8662 permutable mu(L)=0.8662 chain_len=1 Phi(T)=0.8662 N1=True val=0.8821 N2=True cert=0.8836 (resid 4.2e-13) bound=-6.8222 N3=True ratio(1-muL)/eps=1.149
+   nested mu(L)=0.9336 permutable mu(L)=0.9336 chain_len=1 Phi(T)=0.9336 N1=True val=0.9336 N2=True cert=0.9336 (resid 8.7e-14) bound=-3.4598 N3=True ratio(1-muL)/eps=1.000
+== S4, K=<(01)>: |G|=24 k=2 m=12 #subgroups=30 covered=False (|A|=-, [K,G]<=A: False, K<=A: False) d_A(K)=2 at |A|=1
+   nested mu(L)=0.8650 permutable mu(L)=0.8650 chain_len=1 Phi(T)=0.9364 N1=True val=0.9364 N2=True cert=0.9452 (resid 4.6e-14) bound=-1.4537 N3=True ratio(1-muL)/eps=2.464
+   nested mu(L)=0.9795 permutable mu(L)=0.9795 chain_len=1 Phi(T)=0.9795 N1=True val=0.9795 N2=True cert=0.9795 (resid 4.9e-14) bound=0.0820 N3=True ratio(1-muL)/eps=1.000
+   nested mu(L)=0.9034 permutable mu(L)=0.9034 chain_len=1 Phi(T)=0.9034 N1=True val=0.9082 N2=True cert=0.9135 (resid 3.8e-15) bound=-2.8727 N3=True ratio(1-muL)/eps=1.117
+   nested mu(L)=0.9135 permutable mu(L)=0.9135 chain_len=1 Phi(T)=0.9135 N1=True val=0.9520 N2=True cert=0.9568 (resid 7.7e-14) bound=-0.9366 N3=True ratio(1-muL)/eps=2.000
+== F2 wr F2^2, K=T (order 4): |G|=64 k=4 m=4 #subgroups=225 covered=True (|A|=8, [K,G]<=A: True, K<=A: False) d_A(K)=1 at |A|=8
+   nested mu(L)=0.9414 permutable mu(L)=0.9414 chain_len=1 Phi(T)=0.9414 N1=True cert=0.9453 (resid 2.2e-13) bound=-0.1216 N3=True ratio(1-muL)/eps=1.071
+   nested mu(L)=0.9136 permutable mu(L)=0.9136 chain_len=1 Phi(T)=0.9189 N1=True cert=0.9189 (resid 2.1e-15) bound=-0.6611 N3=True ratio(1-muL)/eps=1.066
+failures {'N1': 0, 'N2': 0, 'N3': 0} nested>permutable instances 0
+
+real	0m54.137s
+user	0m15.475s
+sys	0m0.046s

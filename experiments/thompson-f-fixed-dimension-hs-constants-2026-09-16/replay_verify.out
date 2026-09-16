@@ -1,0 +1,7 @@
+{"n": 2, "tau": 0.01, "e_c": 3.4142195546648537, "e_R1": 0.5858044151993792, "e_R2": 0.5857564759087329, "claimed_lower_bound": "24141/10000", "exact_check_holds": true, "e_c_denominator_digits": 37}
+{"n": 2, "tau": 0.5, "e_c": 3.4142058397204127, "e_R1": 0.5857632700666402, "e_R2": 0.5858250511767117, "claimed_lower_bound": "24141/10000", "exact_check_holds": true, "e_c_denominator_digits": 41}
+{"n": 3, "tau": 0.01, "e_c": 2.2761407398802507, "e_R1": 0.39051937936933806, "e_R2": 0.39053249610041224, "claimed_lower_bound": "24141/10000", "exact_check_holds": true, "e_c_denominator_digits": 58}
+{"n": 3, "tau": 0.5, "e_c": 2.2761458555397303, "e_R1": 0.3905349660150406, "e_R2": 0.39050678674323125, "claimed_lower_bound": "24141/10000", "exact_check_holds": true, "e_c_denominator_digits": 61}
+{"n": 4, "tau": 0.05, "e_c": 3.1102471319455116, "e_R1": 0.29835180787718046, "e_R2": 0.2983699982639022, "claimed_lower_bound": "16143/5000", "exact_check_holds": true, "e_c_denominator_digits": 83}
+{"n": 6, "tau": 0.05, "e_c": 2.0757237157613, "e_R1": 0.19992875494235188, "e_R2": 0.19992432318467707, "claimed_lower_bound": "32221/10000", "exact_check_holds": true, "e_c_denominator_digits": 129}
+ALL_EXACT_CHECKS_HOLD

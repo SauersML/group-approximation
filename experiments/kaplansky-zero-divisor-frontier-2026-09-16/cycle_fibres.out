@@ -1,0 +1,36 @@
+k = 5  G classes: 36
+   12 EXCLUDED
+   24 open:n3
+  by census least form:
+     {'open:n3': 24} | min length 6: (-2, -2, -1, -2, 1, 1)
+     {'EXCLUDED': 12} | min length 6: (-2, -2, -1, -1, 2, 1)
+  example n2-inverting relator [1, 1, -2, -1, 2, 2] phi (1, -1) theta {1: [2], 2: [1, 2]}
+k = 6  G classes: 233
+   36 EXCLUDED
+   6 open:n2-preserving
+   3 open:n2-preserving/n3/n4/n>=5/not-fibred
+   72 open:n3
+   2 open:n3/n4/n>=5/not-fibred
+   36 open:n4
+   24 open:n>=5
+   54 open:not-fibred
+  by census least form:
+     {'open:n>=5': 24} | min length 7: (-2, -2, -2, -1, -1, 2, -1)
+     {'open:n3': 24} | min length 7: (-2, -2, -2, -1, -1, 2, 1)
+     {'open:n4': 24} | min length 7: (-2, -2, -2, -1, -2, 1, 1)
+     {'open:n3': 36} | min length 6: (-2, -2, -1, -2, 1, 1)
+     {'open:not-fibred': 12} | min length 7: (-2, -2, -1, -1, -2, 1, 1)
+     {'open:n4': 12} | min length 7: (-2, -2, -1, -2, -2, 1, 1)
+     {'open:not-fibred': 6} | min length 8: (-2, -2, -2, -1, -2, -1, -1, -1) | (-2, -2, -1, -2, -1, -2, 1, 1)
+     {'open:n2-preserving': 6} | min length 8: (-2, -2, -2, -1, -1, -2, -1, -1) | (-2, -2, -1, -2, 1, 1, -2, -1) | (-2, -1, -2, -1, -2, 1, -2, 1)
+     {'open:not-fibred': 12} | min length 7: (-2, -2, -1, -1, 2, 1, 1)
+     {'EXCLUDED': 24} | min length 6: (-2, -2, -1, -1, 2, 1)
+     {'EXCLUDED': 12} | min length 8: (-2, -2, -1, -2, 1, 1, 2, -1) | (-2, -2, -1, -2, 1, 2, -1, -1) | (-2, -1, -2, -1, 2, -1, 2, 1)
+     {'open:not-fibred': 6} | min length 8: (-2, -2, -1, -2, -1, -1, 2, 1) | (-2, -2, -1, -2, -1, 2, 1, 1)
+     {'open:n3/n4/n>=5/not-fibred': 2} | min length 8: (-2, -2, -1, -1, 2, 1, 2, 1)
+     {'open:not-fibred': 12} | min length 8: (-2, -2, -1, -2, 1, -2, -1, -1) | (-2, -2, -1, -1, -2, 1, 2, 1) | (-2, -1, -2, -1, 2, -1, -2, 1)
+     {'open:n3': 6} | min length 8: (-2, -2, -1, -2, -1, 2, -1, -1) | (-2, -2, -1, -2, 1, 1, 2, 1)
+     {'open:n3': 6} | min length 8: (-2, -2, -1, -2, -1, -1, -2, 1) | (-2, -2, -1, -2, 1, 2, 1, 1)
+     {'open:not-fibred': 6} | min length 8: (-2, -2, -1, -1, -2, 1, 2, -1) | (-2, -1, -2, 1, -2, -1, 2, 1)
+     {'open:n2-preserving/n3/n4/n>=5/not-fibred': 3} | min length 8: (-2, -2, -1, 2, 1, 1, 2, -1) | (-2, -1, -2, 1, 2, -1, 2, 1)
+  example n2-inverting relator [1, 1, -2, -1, -2, -1, 2] phi (-1, 0) theta {1: [2], 2: [2, 1]}

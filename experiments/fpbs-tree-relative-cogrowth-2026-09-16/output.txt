@@ -1,0 +1,26 @@
+(A) N = [F_3,F_3], Q = Z^3
+  brute f_n : [1, 0, 0, 0, 24, 0, 360, 0, 6120, 0, 114576, 0, 2235120, 0, 45158904, 0, 936789000, 0, 19834832160, 0, 426948208200, 0, 9315232297800]
+  series    : [1, 0, 0, 0, 24, 0, 360, 0, 6120, 0, 114576, 0, 2235120, 0, 45158904, 0, 936789000, 0, 19834832160, 0, 426948208200, 0, 9315232297800]
+  identity holds for n <= 22 : True
+(B) N = <<c>>, Q = F_2 with two loops
+  brute f_n : [1, 2, 2, 10, 42, 130, 466, 1802, 6714, 25346, 98018, 380554, 1484874, 5841922, 23110066]
+  series    : [1, 2, 2, 10, 42, 130, 466, 1802, 6714, 25346, 98018, 380554, 1484874, 5841922, 23110066]
+  identity holds for n <= 14 : True
+(C) constants
+  Watson G_Z3(1)            = 1.516386059
+  Polya return probability  = 0.340537330
+  chi^N_(1/5) = (4/5) G     = 1.213108847
+  partial sum n<=22 of f_n 5^-n = 1.125117 (increasing to the value above)
+  case (B): rho_Q = 0.910683603, s_N = 0.232461018, 1/s_N = 4.301797
+  case (B): all series coefficients nonnegative: True
+    n= 60  sqrt(h_(n+1)/h_(n-1)) = 4.205072
+    n=120  sqrt(h_(n+1)/h_(n-1)) = 4.251078
+    n=180  sqrt(h_(n+1)/h_(n-1)) = 4.267371
+    n=239  sqrt(h_(n+1)/h_(n-1)) = 4.275625
+  case (B): sum_(n<=240) h_n 5^-n = 1.800000000  (formula (7.1): 9/5 = 1.8; last term 1.45e-19)
+  case (B): closed form s_N = 0.23246101817, phi(s_N) = 0.74474008588, chi^N_(s_N) = phi(s_N)(3+sqrt3) = 3.52414792481
+  case (A): n= 40  sqrt(h_(n+2)/h_n) = 4.824568  (limit 5)
+  case (A): n= 80  sqrt(h_(n+2)/h_n) = 4.909343  (limit 5)
+  case (A): n=118  sqrt(h_(n+2)/h_n) = 4.937874  (limit 5)
+ALL EXACT CHECKS PASSED
+NUMERICAL CHECK OF (7.1) IN CASE (B) PASSED

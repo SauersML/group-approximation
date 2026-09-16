@@ -1,0 +1,2 @@
+rational sequences tested: 1024
+all checks passed

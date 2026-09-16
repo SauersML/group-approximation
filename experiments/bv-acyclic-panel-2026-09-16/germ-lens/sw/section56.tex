@@ -1,0 +1,449 @@
+
+% !TEX root = allinone_main_v2.tex
+
+\section{Homotopy theory and homology}\label{sec:main}
+
+In this section, we identify the spectrum~$\bbK(\Tho_A)$ from the preceding section with the Moore spectrum for~$\bbZ/(n-1)$, where~$n$ is the cardinality of the set~$A$ as above.  
+We will use this and the relationship between the category~$\Tho_A$
+and the Higman--Thompson groups to give, in
+Section~\ref{sec:explicit}, concrete computations of the homology of
+the Higman--Thompson groups.
+
+%\Mnote{Yes.
+%\begin{remark}
+%A Cantor algebra of type~$1$ is a set~$X$ together with a bijection~$f\colon X\to X$. A model for the free Cantor algebra of type~$1$ on a set~$S$ is~$X=\bbZ\times S$ with~$f(n,x)=(n+1,x)$. If~$S=[r]$, then its automorphism group is the wreath product~$\bbZ\wr\Sigma_r$. For these, homological stability is known, and also the stable homology, for instance from Segal's generalization of the BPQ theorem: the algebraic K-theory spectrum is~$\bbS\vee\Sigma\bbS$ with
+%\[
+%\Omega^\infty_0(\bbS\vee\Sigma\bbS)=Q_0(\rmS^0)\times Q(\rmS^1).
+%\]
+%This agrees with our computation, because the cofiber of~$1-1=0$ on~$\bbS$ is also~$\bbS\vee\Sigma\bbS$.
+%\end{remark}
+%}
+
+\subsection{Entry of the Moore spectra}\label{sec:Moore}
+
+For any integer~$n\geqslant 1$ let~$\bbM_n$ denote the homotopy cofiber of the multiplication by~$n$ map on the sphere spectrum~$\bbS$, so that there is a homotopy cofiber sequence as follows.
+\begin{equation}\label{eq:cofib}
+\bbS\overset{n}{\longrightarrow}\bbS\longrightarrow\bbM_n
+\end{equation}
+The spectrum~$\bbM_n$ is the Moore spectrum for~$\bbZ/n$, also known as the {\em mod~$n$ Moore spectrum}.
+
+\begin{theorem}\label{thm:hocolim_is_Moore}
+Let~$A$ be a finite set of cardinality~$n\geqslant 2$. There is an equivalence of spectra
+\[
+\bbK(\Tho_A)\simeq\bbM_{n-1}.
+\]
+\end{theorem}
+
+\begin{proof} Recall from Section~\ref{def:Sigma_A} that the category~$\Tho_A$ is defined from the diagram of categories on~$\bbN$ which takes the unique object to the category~$\bSet^\x$ and the arrow~$k$ to the functor~$\Sigma_A^k$ that corresponds to taking the product with~$A^k$. 
+By the Barratt--Priddy--Quillen theorem \cite{BP72}, we have that~$\bbK(\bSet^\x):=\bbK(\Set^\x)\simeq\bbS$ and  the functor~$\Sigma_A$  induces multiplication with the cardinality~$n$ of~$A$ on~$\bbS$. 
+We apply Thomason's formula~\eqref{eq:thmTho} to our definition~\eqref{eq:defTho} and get
+\[
+\bbK(\Tho_A)
+=
+\bbK(\hocolim_{\bbN}(\Set^\times,\Sigma_A))
+\simeq
+\hocolim_{\bbN}(\bbK(\Set^\times),\bbK(\Sigma_A))
+\simeq
+\hocolim_{\bbN}(\bbS,n).
+\]
+
+There is a spectral sequence
+\[
+\rmE^2_{p,q}=\rmH_p(\bbN;(\pi_q\bbS,n))\ \Longrightarrow\ \pi_*\hocolim_{\bbN}(\bbS,n)
+\]
+that computes the homotopy groups of the homotopy colimit, see~\cite[Sec.~3]{Thomason}. Here~$(\pi_q\bbS,n)$ is the diagram of abelian groups on~$\bbN$ that takes the object to~$\pi_q\bbS$ and the morphism~$1$ to multiplication by~$n$. 
+The monoid ring~$\bbZ[\bbN]\cong\bbZ[\rmT]$ is polynomial on one generator~$\rmT$, so that we can use the standard Koszul resolution 
+\[
+\bbZ[\rmT]\stackrel{\rmT-1}\rar \bbZ[\rmT]\rar\bbZ
+\] 
+to compute the~$\rmE^2$ page. As the resolution has length one, the spectral sequence degenerates at~$\rmE^2$, and yields a long exact sequence 
+\begin{equation}\label{eq:les}
+\cdots
+\xrightarrow{\hspace*{2em}}\pi_*\bbS
+\overset{n-1}{\xrightarrow{\hspace*{2em}}}\pi_*\bbS
+\xrightarrow{\hspace*{2em}}\pi_*\hocolim_{\bbN}(\bbS,n)
+\xrightarrow{\hspace*{2em}}\cdots.
+\end{equation}
+Let~$\epsilon\in \pi_0\hocolim_{\bbN}(\bbS,n)=[\,\bbS,\hocolim_{\bbN}(\bbS,n)\,]$ be the image of~$1\in \pi_0\bbS=[\,\bbS,\bbS\,]$ in the long exact sequence. 
+From the long exact sequence we get that~$(n-1)\epsilon=0$. Therefore, this map factors through the Moore spectrum to give a map
+\[
+\overline\epsilon\colon\bbM_{n-1}\longrightarrow\hocolim_{\bbN}(\bbS,n).
+\]
+Comparison of the long exact sequence obtained from the homotopy cofibration sequence~\eqref{eq:cofib} with the long exact sequence~\eqref{eq:les} shows that~$\overline\epsilon$ induces an isomorphism on homotopy groups, and thus that it is an equivalence. 
+\end{proof}
+
+Together with Corollary~\ref{cor:KCan=KTho} the proposition gives the following result.
+
+\begin{corollary}\label{cor:KCan=M}
+For any finite set~$A$ of cardinality~$n\geqslant 2$ there is an equivalence of spectra
+\[
+\bbK(\Can_A^\times)\simeq\bbM_{n-1}.
+\]
+\end{corollary}
+
+\begin{remark}\label{rem:components}
+It is instructive to work out the implications of Corollary~\ref{cor:KCan=M} on the level of components. The cofiber sequence \eqref{eq:cofib} shows that the group~$\pi_0\bbM_{n-1}$ is the cokernel of the multiplication by~$n-1$ map on the group~$\pi_0\bbS=\bbZ$, so that it is cyclic of order~\hbox{$n-1$}. On the other hand the abelian group~\hbox{$\pi_0\Omega^\infty\bbK(\Can_A^\times)=\pi_0\rmK(\Can_A^\times)$} is the group completion of the abelian monoid~$\pi_0|\Can_A^\times|$. The latter can be identified with~$\{0,1,\dots,n-1\}$ as a set, where an integer~$r$ corresponds to the free Cantor algebra~$\rmC_{A}[r]$ of type~$A$ on~$r$ generators. The monoid structure is dictated by~$\rmC_{A}[r]\oplus\rmC_{A}[s]=\rmC_A[r+s]$ and~$\rmC_A[r+(n-1)]\cong\rmC_A[r]$ if~$r\geqslant1$. Note that the neutral element~$0$ is the only invertible element in this monoid. The group completion of this monoid is~$\bbZ/(n-1)$ by the theorem, but this can of course also be worked out by hand: Once~$1$ is inverted, the element~$n-1$ is identified with~$0$ and we immediately obtain the group~$\bbZ/(n-1)$. 
+\end{remark}
+
+\subsection{The (stable) homology of the Higman--Thompson groups}
+
+If~$\bbX$ is a spectrum, its associated infinite loop space~$\Omega^\infty\bbX$ is a group-like~$\rmE_\infty$--space: the monoid of components is a group. 
+It follows that all its components are homotopy equivalent, and in the following, we denote by~$\Omega_0^\infty\bbX$ the component corresponding to the zero element~$0\in\pi_0\bbX$. 
+We will now relate the homology of the zeroth component~$\Omega_0^\infty\bbK(\Can_A)$ to that of the Higman--Thompson groups. 
+Together with  Corollary~\ref{cor:KCan=M} this will yield the main identification we are after, namely the isomorphism of the homology of the Higman--Thompson groups with that of~$\Omega_0^\infty\bbM_{n-1}$.
+%We will now pass from equivalences of spaces and spectra to maps that are merely homology isomorphisms. The slogan is: K-theory computes stable homology.
+
+Recall from Section~\ref{sec:stabsubsec} the stabilization homomorphism~$s_r\colon\rmV_{n,r}\to \rmV_{n,r+1}$ and let
+\[
+\rmV_{n,\infty}=\colim(\rmV_{n,1}\longrightarrow \rmV_{n,2}\longrightarrow \cdots)
+\] 
+denote the associated {\em stable group}. The homology of~$\rmV_{n,\infty}$ is usually called the {\em stable homology} of the groups~$\rmV_{n,r}$ for~$r\geqslant 1$, but 
+a direct consequence of our stability theorem, Theorem~\ref{thm:HS},  is that
+\[
+\rmH_*(\rmV_{n,r})\cong \rmH_*(\rmV_{n,\infty}).
+\]
+So in the case at hand, {\em all} the homology is stable and hence it is enough to identify the homology of~$\rmV_{n,\infty}$. 
+
+Given a monoid~$M$, one can form its bar construction~$\rmB M$ and the loop space~$\Omega\rmB M$ is a group-like space, known as the {\em group completion of~$M$}. The group completion theorem of McDuff and Segal~\cite{McDuff-Segal}  identifies in good cases the  homology of~$\Omega\rmB M$ with that of its ``stable part.'' We will use this theorem to compute the homology of~$\Omega^\infty\bbK(\Can_A^\times)\simeq \Omega\rmB|\Can_A^\x|$, the group completion of the~$\rmE_\infty$ monoid~$|\Can_A^\x|$. 
+
+\begin{theorem}\label{thm:gpcomp}
+Let~$A=\{a_1,\dots,a_n\}$ with~$n\geqslant2$. There is a map 
+\[
+\rmB\rmV_{n,\infty}\longrightarrow\Omega_0^\infty\bbK(\Can_A^\times)
+\]
+which induces an isomorphism in homology 
+%\[
+%\rmH_*(\rmV_{n,\infty})
+%\cong
+%\rmH_*(\Omega_0^\infty\bbK(\Can_A^\times))
+%\]
+with all systems of local coefficients on~$\Omega_0^\infty\bbK(\Can_A^\times)$. 
+\end{theorem}
+
+%\begin{theorem}\label{gpcomp}
+%$H_*(\Omega B |Cantor_n|)\cong  H_*(\bbZ/_{n-1}\x BV_{n,\infty})$ 
+%\end{theorem}
+
+\begin{proof}
+We apply the group completion theorem to the monoid~$M=|\Can_A^\x|$. More precisely, we will 
+use Theorem 1.1 in \cite{Randal-Williams}, which makes explicit the relevant result in \cite{McDuff-Segal}. 
+The monoid~$M$ is homotopy commutative, as it is the classifying space of a permutative category. 
+It has components indexed by~$0,\dots,n-1$, forming a monoid in the way describe in Remark~\ref{rem:components}. To apply Theorem 1.1 of  \cite{Randal-Williams}, we use the constant sequence of elements of~$M$ given by~$\rmC_A[1],\rmC_A[1],\dots$. 
+We need to check that for every~$m\in M$, the component of~$m$ in~$M$ is a right factor of the component of some finite sum~$\rmC_A[1]\oplus \dots\oplus \rmC_A[1]$, which is obvious as every component is reached this way except for the zero component which is a right factor of any such sum. 
+
+Form  the colimit 
+\[
+M_\infty=\colim\big(|\Can^\x_A|\stackrel{\oplus \rmC_A[1]}\rar |\Can^\x_A|\stackrel{\oplus \rmC_A[1]}\rar\cdots).
+\]
+Theorem 1.1 in \cite{Randal-Williams} says that there is a homology isomorphism
+\[
+M_\infty\longrightarrow\Omega\rmB|\Can^\x_A|\simeq \Omega^\infty\bbK(\Can_A)
+\]
+with respect to all local coefficient systems on the target.  
+%We have already computed that~$\Omega B|\Can_A|$ has components~$\bbZ/_{n-1}$, so we are left to identify the homology of its components, which we do using~$M_\infty$ and the equivalence just computed. 
+%We are left to identify the~$0$th component of~$M_\infty$. Under the equivalence of groupoids~$$\Can^\x_A\simeq \coprod{0\leqslant r\leqslant n-1}{V_{n,r}},$$  
+Now the zeroth component of~$M_\infty$ can be identified with the colimit on classifying space of the maps 
+\[
+\rmV_{n,0}\longrightarrow\rmV_{n,1}\stackrel{s_1}\longrightarrow\cdots\longrightarrow \rmV_{n,n-1} \stackrel{s_{n-1}}\longrightarrow\rmV_{n,n} \stackrel{s_n}\longrightarrow\rmV_{n,n+1}\longrightarrow\cdots
+\]
+of groups , and this colimit of groups is the group~$\rmV_{n,\infty}$ in the stability statement. The result follows. 
+\end{proof}
+
+%\begin{proof}
+%This follows from the agreement of various models for algebraic K-theory. Thomason~\cite[p.~1653]{Thomason} argues that there is an equivalence
+%\[
+%\Omega_0^\infty\bbK(\Mod_R^\times)\simeq\BGL_\infty(R)^+,
+%\]
+%where~$\Mod_R^\times$ is the symmetric monoidal category of finitely generated projective~$R$-modules and their isomorphisms over a given ring~$R$, and~$\BGL_\infty(R)^+$ is the Quillen plus construction on the classifying space of the infinite general linear group. The same arguments give an equivalence
+%\[
+%\Omega_0^\infty\bbK(\Can_a^\times)\simeq\rmB\rmV_{a,\infty}^+,
+%\]
+%where~$\rmV_{a,\infty}$ is infinite Higman--Thompson group. Since the Quillen plus construction~$\rmB\rmV_{a,\infty}\to\rmB\rmV_{a,\infty}^+$ is a homology equivalence, we are done.
+%\end{proof}
+
+%\begin{corollary}
+%For all~$n\geqslant2$ there is a homology  isomorphism
+%\[
+%\rmH_*(\rmV_{n,\infty})
+%\cong
+%\rmH_*(\Omega_0^\infty\bbM_{n-1}).
+%\]
+%\end{corollary}
+
+%%%
+
+%\subsection{The unstable homology of the Higman--Thompson groups}
+
+We are now ready to prove the main result of this text.
+
+%\begin{theorem}\label{thm:main}
+%For all~$n\geqslant2$ and all~$r\geqslant1$ there is a map  isomorphisms
+%\[
+%\rmH_*(\rmV_{n,r})
+%\cong
+%\rmH_*(\Omega_0^\infty\bbM_{n-1})
+%\]
+%in homology.
+%\end{theorem}
+
+%Note that the right hand side does not depend on~$r$. The proof reflects that.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+%From Section~\ref{sec:Cantor} we have isomorphisms~$\rmV_{n,r}\cong\rmV_{n,r+(n-1)}$ of groups. Therefore, we only need to compute~$\rmH_*(\rmV_{n,r})$ for arbitrarily large~$r$. However, 
+As a consequence of our stability result, Theorem~\ref{thm:HS}, for all~$r\geqslant 1$, the stabilization map~\hbox{$s_r\colon\rmV_{n,r}\to \rmV_{n,r+1}$} induces an isomorphism in homology with coefficients in any~$\rmH_1(\rmV_{n,\infty})$--module. Note that, in particular, we have an isomorphism~$\rmH_1(\rmV_{n,r})\cong\rmH_1(\rmV_{n,\infty})$, so that~$\rmH_1(\rmV_{n,\infty})$--modules are the same as~$\rmH_1(\rmV_{n,r})$--modules.  It follows that 
+the map~$\rmB\rmV_{n,r}\to \rmB\rmV_{n,\infty}$ induces an isomorphism in homology with abelian coefficients for all~$r\geqslant 1$. 
+%$\rmH_*(\rmV_{n,r})\cong\rmH_*(\rmV_{n,\infty})$ for all~$r\geqslant 1$. 
+Theorem~\ref{thm:gpcomp} gives that there is a map~\hbox{$\rmB\rmV_{n,\infty}\to \Omega^\infty_0(\Can_A^\x)$} which induces an isomorphism in homology with all local coefficients on the target. (Note that~\hbox{$\pi_1 \Omega^\infty_0(\Can_A^\x)\cong\rmH_1( \Omega^\infty_0(\Can_A^\x))\cong\rmH_1(\rmV_{n,\infty})$}, so these are again~$\rmH_1(\rmV_{n,r})$--modules as above.)
+%identified the homology of~$\rmV_{n,\infty}$ to that of~$\Omega^\infty_0(\Can_A^\x)$ which, 
+By Corollary~\ref{cor:KCan=M}, we have a homotopy equivalence~$\Omega^\infty_0\bbK(\Can_A^\x)\simeq \Omega_0^\infty\bbM_{n-1}$, proving the result.
+\end{proof}
+
+%In the following Section~\ref{sec:explicit} we will give explicit consequences of Theorem~\ref{thm:main}.
+
+%%%
+
+\section{Computational consequences}\label{sec:explicit}
+
+We will in this section explain how Theorem~\ref{thm:main} can be used to give explicit consequences for the homology of the Higman--Thompson groups. Concretely, we will compute the abelianizations and Schur multipliers of the Higman--Thompson groups directly from Theorem~\ref{thm:main}, and we will also completely decide which of the groups are integrally or rationally acyclic. We recover old results with new methods, as well as prove new results. In particular, we prove the acyclicity of the Thompson group~$\rmV$. 
+
+The results in this section are based on computations of the homology groups of the infinite loop space of the Moore spectrum~$\bbM_{n}$ with classical methods from homotopy theory. Given a spectrum~$\bbX$, the stable homotopy groups~$\pi_*\bbX$ agree with the (unstable) homotopy groups~$\pi_*\Omega^\infty\bbX$ of the underlying infinite loop space~$\Omega^\infty\bbX$. The situation is different for homology, however. The homology of the Moore spectrum~$\bbM_n$ is, up to a shift, the homology of the mod~$n$ Moore space:~$\rmH_0\bbM_n\cong\bbZ/n$ and~$\rmH_d\bbM_n=0$ for~$d\not=0$. In contrast, the homology of the underlying infinite loop space~$\Omega^\infty\bbM_n$ is more difficult to compute. We will here give some partial computations of these homology groups. Further computations can be obtained by working harder. 
+
+%%%
+
+\subsection{Abelianizations and Schur multipliers}
+
+%In general, it can be a very laborious endeavor to compute the homology of an infinite loop space, even (or perhaps especially) if the homology of the spectrum is very simple, as for the Moore spectra. We will here content ourselves with the computation of~$\rmH_1$ and~$\rmH_2$ in order to confirm and extend the known result from the literature.
+
+In this section, we compute~$\rmH_1$ and~$\rmH_2$ as well as the first non-trivial homology group of~$\rmV_{n,r}$  by computing these groups for~$\Omega_0^\infty\bbM_{n-1}$. We confirm and extend the known results from the literature.
+
+\begin{proposition}\label{prop:H1}
+For all~$n\geqslant 2$ and~$r\geqslant1$ there are isomorphisms
+\[
+\rmH_1(\rmV_{n,r})\cong
+\begin{cases}
+0 		& n\text{ even}\\
+\bbZ/2 	& n\text{ odd.}\\
+\end{cases}
+\]
+\end{proposition}
+
+\begin{proposition}\label{prop:non-trivial}
+For all~$n\geqslant 3$, we have that
+\[
+\rmH_d(\rmV_{n,r})\cong
+\begin{cases}
+0 & 0<d<2p-3\\
+\bbZ/p & d=2p-3
+\end{cases}
+\]
+for~$p$ the smallest prime dividing~$n-1$, and 
+\[
+\rmH_{2q-3}(\rmV_{n,r})\neq 0
+\]
+for~$q$ any prime dividing~$n-1$.
+%\begin{center}
+%\begin{tabular}{ll}
+%$\rmH_{0<*<2p-3}(\rmV_{n,r})=0$ & for~$p$ the smallest prime dividing~$n-1$\\
+%$\rmH_{2p-3}(\rmV_{n,r})\cong \bbZ/p$ & for~$p$ the smallest prime dividing~$n-1$\\
+%$\rmH_{2q-3}(\rmV_{n,r})\neq 0$ & for~$q$ any prime dividing~$n-1$. 
+%\end{tabular}
+%\end{center}
+\end{proposition}
+
+Proposition~\ref{prop:H1} is essentially the case~$p=2$ of Proposition~\ref{prop:non-trivial}. We prove both propositions together. 
+
+\begin{proof}[Proof of Propositions~\ref{prop:H1} and~\ref{prop:non-trivial}]
+%For~$n\geqslant 3$, the connected cover of~$\bbM_{n-1}$ is non-contractible. If~$d>0$ is the first dimension with a non-trivial homotopy group, then~$\rmH_d\rmV_{n,r}\not=0$ by Hurewicz' theorem.
+By Theorem~\ref{thm:main}, it is equivalent to compute these homology groups for~$\Omega^\infty_0\bbM_{n-1}$. 
+The space~$\Omega^\infty_0\bbM_{n-1}$ is a connected infinite loop space, and so
+\[
+\rmH_1\Omega^\infty_0\bbM_{n-1}
+\cong\pi_1\Omega^\infty_0\bbM_{n-1}
+\cong\pi_1\bbM_{n-1}.
+\]
+As~$\pi_1\bbS\cong \bbZ/2$, the latter can easily be computed from the cofiber sequence~\eqref{eq:cofib} of spectra to be the cokernel of multiplication by~$n-1$ on~$\pi_1\bbS=\bbZ/2$, which proves the first proposition.
+
+For the second proposition, we assume that~$n\geqslant 3$ so that~$n-1\geqslant 2$. Let~$p$ be a prime. The~$p$-parts of the homotopy groups of the sphere spectrum are zero between dimension~$0$ and~\hbox{$2p-3$} and then~\hbox{$\pi_{2p-3}(\bbS)\otimes \bbZ_{(p)}\cong \bbZ/p$}. 
+Now multiplication by~$n-1$ is an isomorphism on~$\bbZ/p$ if and only if~$p$ does not divide~$n-1$, and if it does, the map is zero. The result follows using the same long exact sequence now for homotopy groups with coefficients and Hurewicz's theorem.   
+\end{proof}
+
+%\begin{remark}\label{rem:non-trivial} The proof above extends to compute the first non-trivial homology of~$\rmV_{n,r}$ at any prime~$p$, and in particular its first non-trivial homology group. Indeed, the~$p$-parts of the homotopy groups of the sphere spectrum vanish below dimension~\hbox{$2p-3$}, where they are~$\bbZ/p$. Consequently, the same vanishing holds for the~$p$-parts of the homotopy groups of the Moore spectrum, and in dimension~\hbox{$2p-3$} we see the cokernel of multiplication by~$n-1$ on~$\bbZ/p$. It follows that, when~$n\geqslant3$, 
+%\begin{equation}\label{eq:not_acylic}
+%\rmH_{2p-3}(\rmV_{n,r})\not=0
+%\end{equation}
+%for any prime~$p$ that divides~$n-1$. And if~$p$ is the smallest prime dividing~$n-1$, we have that~$\rmH_{2p-3}(\rmV_{n,r})=\bbZ/p$ is the first non-trivial homology group of~$\rmV_{n,r}$.  
+%The above proposition gives the case~$p=2$. \nnote{I would prefer to have this remark as the result, with the proposition as a particular case, specially as we use it later.}
+%\end{remark}
+
+The following result recovers and extends the computation of Kapoudjian~\cite{Kapoudjian}, who worked out the case~$r=1$ by entirely different methods.
+
+\begin{proposition}\label{prop:H2}
+For all~$n\geqslant 2$ and~$r\geqslant1$ there are group isomorphisms
+%\[
+%\rmH_1\rmV_{n,r}\cong
+%\begin{cases}
+%0 		& n\text{ even}\\
+%\bbZ/2 	& n\text{ odd}\\
+%\end{cases}
+%\]
+%and
+\[
+\rmH_2(\rmV_{n,r})\cong
+\begin{cases}
+0						& n\text{ even}\\
+\bbZ/4 					& n\equiv 3\text{ mod }4\\
+\bbZ/2\oplus\bbZ/2 		& n\equiv 1\text{ mod }4.
+\end{cases}
+\]
+\end{proposition}
+
+\begin{proof}
+Again, by Theorem~\ref{thm:main}, it is equivalent to compute these homology groups for~$\Omega^\infty_0\bbM_{n-1}$. 
+Let us first tick off the case when~$n$ is even, so that~$n-1$ is odd. 
+%Then the cofibration sequence~\eqref{eq:cofib} shows that the space~$\Omega^\infty_0\bbM_{n-1}$ is~$2$-connected, so that~$\rmH_1$ and~$\rmH_2$ vanish.
+By Proposition~\ref{prop:non-trivial}, when~$n\geqslant 3$ with~$n-1$ odd, the first possible non-trivial homology group of~$\rmV_{n,r}$ is in degree~$2\cdot 3-3=3$ (if~$3$ divides~$n-1$). In particular~$\rmH_2$ vanishes. 
+If~$n=2$, the group vanishes because multiplication by~$n-1$ is the identity, making~$\bbM_1$ the trivial spectrum. (See also the more general Theorem~\ref{thm:Vacyclic}.) 
+
+Let us now assume that~$n$ is odd, and write~$X=\Omega^\infty_0\bbM_{n-1}$. We have that~$\pi_1X\cong \bbZ/2$. Consider the Postnikov truncation~$X_2$, with the same first and second homotopy groups as~$X$. We have~\hbox{$\rmH_2X\cong\rmH_2X_2$}. As~$X$ is an infinite loop space, its first~$k$-invariant vanishes (see~\cite{Arlettaz}), so that 
+\[
+X_2\simeq \rmK(\pi_1X,1)\times \rmK(\pi_2X,2).
+\] 
+%where~$X{[1]}\cong \rmK(\pi_1X,1)\cong \rmK(\bbZ/2,1)$ and~$X{[2]}\cong \rmK(\pi_2X,2)$. 
+Now the K\"unneth theorem gives
+\[
+\rmH_2X_2 \cong  \rmH_2\rmK(\pi_1X,1) \oplus \rmH_2\rmK(\pi_2X,2) \cong  \rmH_2\rmK(\pi_2X,2),
+\]
+given that~$ \pi_1X\cong \bbZ/2$ has trivial~$\rmH_2$. As~$\rmH_2\rmK(\pi_2X,2)\cong \pi_2X$, we obtain that 
+\[
+\rmH_2\Omega^\infty_0\bbM_{n-1}\cong \pi_2\Omega^\infty_0\bbM_{n-1}\cong \pi_2\bbM_{n-1},
+\]
+%and let~$\widetilde\Omega^\infty_0\bbM_{n-1}$ denote the universal (i.e.~$2$-fold) covering. 
+%The spectral sequence of the covering shows that the only contributions to~$\rmH_2\Omega^\infty_0\bbM_{n-1}$ are the following three groups. Firstly, there is the group
+%\[
+%\rmH_2(\bbZ/2;\rmH_0\widetilde\Omega^\infty_0\bbM_{n-1})
+%\cong\rmH_2(\bbZ/2;\bbZ)=0,
+%\]
+%since the action on~$\rmH_0$ is trivial. Secondly, there is the group~$\rmH_1(\bbZ/2;\rmH_1\widetilde\Omega^\infty_0\bbM_{n-1})$, and this vanishes since~$\widetilde\Omega^\infty_0\bbM_{n-1}$ is simply-connected (by construction). Thirdly and finally, we need to consider the cokernel of the~$\mathrm{d}_3$ differential that hits the group~$\rmH_0(\bbZ/2;\rmH_2\widetilde\Omega^\infty_0\bbM_{n-1})$. This differential is given by the first~$k$-invariant, and that is always trivial for infinite loop spaces, \nnote{Markus promised some reference or extra explanation here :)}  so that this cokernel is
+%\[
+%\rmH_0(\bbZ/2;\rmH_2\widetilde\Omega^\infty_0\bbM_{n-1})
+%=\rmH_2\widetilde\Omega^\infty_0\bbM_{n-1},
+%\]
+%the latter because the actions of the fundamental groups are trivial for h-spaces, so in particular for infinite loop spaces. In summary, we have seen that
+%\[
+%\rmH_2\Omega^\infty_0\bbM_{n-1}
+%\cong
+%\rmH_2\widetilde\Omega^\infty_0\bbM_{n-1},
+%\]
+%and it remains to compute the latter. This can be done as follows. The computation
+%\[
+%\rmH_2\widetilde\Omega^\infty_0\bbM_{n-1}
+%\cong\pi_2\widetilde\Omega^\infty_0\bbM_{n-1}
+%\cong\pi_2\Omega^\infty_0\bbM_{n-1}
+%\cong\pi_2\bbM_{n-1}
+%\]
+which reduces the question to stable homotopy theory as above. 
+When~$n$ is odd, the homotopy cofibre sequence~\eqref{eq:cofib} only shows that this group is of order~$4$. We need a further computation to identify the group. 
+
+Let us assume that~$n\equiv 3$ mod~$4$. Then~$n-1$ is even but not divisible by~$4$, and we can use the cofibre sequence 
+\[
+\bbM_{(n-1)/2}\longrightarrow
+\bbM_{n-1}\longrightarrow
+\bbM_2
+\]
+from the octahedral axiom to see that~$\pi_2\bbM_{n-1}\cong\pi_2\bbM_2$, and the latter group is known to be cyclic of order~$4$, see~\cite[Thm.~3.2]{Mukai}.
+
+%One way to see this is to note that the unit~$\bbS\to\KO$ of the real topological K-theory spectrum~$\KO$ induces an isomorphism
+%\[
+%\pi_2\bbM_n\cong\KO_2\bbM_n\cong\KO^0\Sigma\bbM_n
+%\]
+%for any~$n$ because~$\pi_i\bbS\to \KO_i\bbS$ is an isomorphism for~$i=1,2$. Now~$\KO^0\Sigma\bbM_2$ is the~$0$-th reduced real~K-theory of the real projective plane, which is cyclic of order~$4$. 
+
+Lastly, if~$n\equiv 1$ mod~$4$, then~$n-1$ is divisible by~$4$. The factorization~$4k=2k\cdot 2$ gives a map~$j\colon\bbM_2\to\bbM_{4k}$ that has even degree on the bottom cell and odd degree on the top cell. Analyzing the diagram
+\[
+\xymatrix{
+\cdots&\KO^0(\Sigma\bbS)\cong \bbZ/2\ar[l]&\KO^0(\Sigma\bbM_2)\cong \bbZ/4\ar[l]&\KO^0(\Sigma^2\bbS)\cong \bbZ/2\ar[l]&\cdots\ar[l]\\
+\cdots&\KO^0(\Sigma\bbS) \cong \bbZ/2\ar[l]\ar[u]_0&\KO^0(\Sigma\bbM_{4k})\cong \ ?\ \ar[l]\ar[u]_{j^*}&\KO^0(\Sigma^2\bbS) \cong \bbZ/2\ar[l]\ar[u]_\cong&\cdots\ar[l]\\
+}
+\]
+shows that~$j^*$ cannot be zero or epi, so that~$\KO^0\Sigma\bbM_{4k}$ must split into~$\bbZ/2$ summands. 
+\end{proof}
+
+%%%
+
+\subsection{Acyclicity results}
+
+We now deduce global results about the homology of the groups~$\rmV_{n,r}$. 
+
+The following result has been suggested by Brown~\cite[Sec.~6]{Brown:Suggestion}.
+
+\begin{theorem}\label{thm:Vacyclic}
+For all~$r\geqslant 1$, the Thompson group~$\rmV\cong\rmV_{2,r}$ is integrally acyclic: 
+\[
+\rmH_d(\rmV)=\rmH_d(\rmV_{2,r})=0
+\]
+for all~$d\not=0$.
+\end{theorem}
+
+\begin{proof}
+For~$n=2$ multiplication by~$n-1=1$ is homotopic to the identity, so that it is a self-equivalence of the sphere spectrum. Then the homotopy cofiber, the Moore spectrum~$\bbM_1$, is contractible, and the homology of the infinite loop space vanishes.
+\end{proof}
+
+\vbox{\begin{theorem}\label{thm:Qacyclic}
+For all~$n\geqslant 3$ and~$r\geqslant 1$, the group~$\rmV_{n,r}$ is rationally but not integrally acyclic: 
+\[
+\rmH_d(\rmV_{n,r})\otimes\bbQ=0
+\]
+for all~$d\not=0$, but 
+\[
+\rmH_{2p-3}(\rmV_{n,r})\neq 0
+\]
+for any prime~$p$ such that~$p$ divides~$n-1$.
+\end{theorem}}
+
+\begin{proof}
+For~$n\geqslant2$ multiplication by~$n-1$ is a rational equivalence, so that the Moore spectrum~$\bbM_{n-1}$ is rationally contractible,  and the rational homology groups vanish.
+This proves the first part of the statement. The second part of the statement is given by Proposition~\ref{prop:non-trivial}.
+\end{proof}
+
+\begin{remark}
+In the case~$n=2$, rationally acyclicity of the Thompson group has earlier been shown by Brown~\cite[Thm.~4]{Brown:Suggestion}, where the author also indicated that his proof can be adapted to prove the case~$n\geqslant 3$. The case~$n=2$, still only rationally, was later reproved by Farley in~\cite{Farley}. 
+%In view of the integral acyclicity of the groups in that case, see our Theorem~\ref{thm:Vacyclic}, that turns out to be arguably the least interesting case. 
+\end{remark}
+
+%%%
+
+We end by mentioning a consequence of our work for the commutator subgroups. When~$n$ is odd, Proposition~\ref{prop:H1} implies that the commutator subgroup~$\rmV_{n,r}^+$ of~$\rmV_{n,r}$ is an index-two subgroup. Let~$\tilde\Omega^\infty_0\bbK(\Can_A^\x)$ denote the universal cover of the space~$\Omega^\infty_0\bbK(\Can_A^\x)$. Shapiro's Lemma, Theorem~\ref{thm:main} and Theorem~\ref{thm:HS} applied to the twisted coefficients~\hbox{$M=\bbZ\rmH_1(\rmV_{n,r})\cong \bbZ\rmH_1(\Omega^\infty_0\bbK(\Can_A^\x))$} give the following:  
+
+\begin{corollary}\label{cor:commutator}
+There are homology isomorphisms 
+\[
+\rmH_*(\rmV_{n,r}^+)\cong \rmH_*(\rmV_{n,\infty}^+)\cong \rmH_*(\tilde\Omega^\infty_0\bbK(\Can_A^\x)).
+\]
+In particular, the groups~$\rmV_{n,r}^+$ and~$\rmV_{n,\infty}^+$ are not acyclic when~$n$ is odd. 
+\end{corollary}
+ 
+\begin{proof}
+See Sections 3.1 and 3.2 of \cite{Randal-Williams+Wahl}. 
+\end{proof}
+
+%If~$n$ is an odd integer, the isomorphism~$\rmH_1(\rmV_{n,\infty})\cong\bbZ/2$ from Proposition~\ref{prop:H1} defines a unique normal subgroup~$\rmV_{n,\infty}^+$ of~$\rmV_{n,\infty}$ of index~$2$. That notation seems standard and the~$+$ does {\em not} refer to the Quillen plus construction. \nnote{This is the commutator subgroup, right? stability also holds for these guys but the twisted stability. Why do you want to consider the stable guy here? Also, the group completion holds with abelian coefficients  and we do also get a computation as the homology of the universal cover of~$\Omega_0^\infty\bbM_{n-1}$. Should we write this up?}
+
+%\begin{proposition}
+%For all odd~$n$ the group~$\rmV_{n,\infty}^+$ is not acyclic.
+%\end{proposition}
+
+%\begin{proof}
+%The spectral sequence
+%\[
+%\rmH_*(\bbZ/2;\rmH_*(\rmV_{n,\infty}^+;\bbZ[1/2]))\Longrightarrow\rmH_*(\rmV_{a,\infty};\bbZ[1/2]))
+%\]
+%degenerates to give an isomorphism
+%\[
+%(\rmH_*(\rmV_{n,\infty}^+;\bbZ[1/2]))_{\bbZ/2}\cong\rmH_*(\rmV_{n,\infty};\bbZ[1/2]).
+%\]
+%Since the right hand side is not trivial, the left hand side is not either.
+%\end{proof}
+
+This answers a question of Sergiescu.
+
+%%%

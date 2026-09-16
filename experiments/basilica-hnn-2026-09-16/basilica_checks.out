@@ -1,0 +1,17 @@
+PASS sigma^0([a,a^b]) = 1  (word length 8)
+PASS sigma^1([a,a^b]) = 1  (word length 12)
+PASS sigma^2([a,a^b]) = 1  (word length 16)
+PASS sigma^3([a,a^b]) = 1  (word length 24)
+PASS sigma^4([a,a^b]) = 1  (word length 32)
+PASS sigma^5([a,a^b]) = 1  (word length 48)
+PASS [[b,a],a] = 1
+PASS [a, a^(b^2)] != 1 (other commutator convention fails)
+PASS b^2 = (a,a)
+PASS a^b = (b^a, 1)
+PASS [a,b^2] = (1,[b,a])
+PASS [b,a] != 1
+PASS sigma(a) = b^2 and sigma(b) = a
+PASS sigma(g) = (a^eps_a(g), g) on 300 random words
+PASS 1 x B' and B' x 1 realised in B (100 random conjugates of [b,a])
+PASS one-coordinate reduced words have the form b^-1? a^k b? (lengths 1..8)
+PASS no g^k = 1 (2 <= k <= 6) among 4372 nontrivial words of length <= 7

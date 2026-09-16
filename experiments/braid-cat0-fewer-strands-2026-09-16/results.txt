@@ -1,0 +1,36 @@
+centralizer_check.py runs, 2026-09-16 (python3, modest runtime; each well under 600 s)
+
+$ python3 centralizer_check.py 2 12 20 3
+n=2: |ball_12(B_3)| = 45933, |table| = 287
+  commuting with gamma: 79, last strand fixed: 79, in <z> iota(B_n): 79
+  delta commutes with gamma: True
+  delta in <z> iota(B_n) table: True (1, (-1, -1))
+
+$ python3 centralizer_check.py 3 6 10 2
+n=3: |ball_6(B_4)| = 5121, |table| = 55235
+  commuting with gamma: 579, last strand fixed: 579, in <z> iota(B_n): 579
+  delta commutes with gamma: True
+  delta in <z> iota(B_n) table: True (1, (-1, -1, -2, -1, -1, -2))
+
+$ python3 centralizer_check.py 4 5 8 1
+n=4: |ball_5(B_5)| = 4743, |table| = 151743
+  commuting with gamma: 1579, last strand fixed: 1579, in <z> iota(B_n): 1579
+  delta commutes with gamma: True
+  delta in <z> iota(B_n) table: False None
+
+Reading.
+- For n = 2, 3, 4, every element of B_{n+1} of word length <= 12, 6, 5
+  (respectively) that commutes with gamma = (sigma_1 ... sigma_{n-1})^n fixes the
+  last strand and lies in <Delta^2_{n+1}> . <sigma_1, ..., sigma_{n-1}>. This agrees
+  with Proposition B. No commuting element outside the predicted subgroup was
+  found.
+- The direct-product check (z^k in the B_n ball only for k = 0) printed no
+  failure.
+- The last "False" for n = 4 is a radius effect, not a counterexample.
+  delta = gamma^-1 z needs gamma^-1, of length 12, and the B_4 ball has radius 8.
+  For n = 3, delta is found with k = 1 and
+  v = sigma_1^-1 sigma_1^-1 sigma_2^-1 sigma_1^-1 sigma_1^-1 sigma_2^-1, a word for
+  gamma^-1, so delta = z . gamma^-1 as predicted.
+- Scope: the script checks finite balls only. It is a sanity check of
+  Proposition B, not a proof. It uses the faithful Artin action on the free group,
+  and it is independent of the configuration-space argument in the artifact.

@@ -1,0 +1,5 @@
+P4 R 2 ball 53 hull 169 badiso 0
+raagP4:2 n=169 diam=8 t=1 Z/2 reduced betti [0, 128, 0, 0]  (0.0s)
+raagP4:2 n=169 diam=8 t=2 Z/2 reduced betti [0, 0, 0, 0]  (0.0s)
+raagP4:2 n=169 diam=8 t=3 Z/2 reduced betti [0, 0, 0, 0]  (1.0s)
+raagP4:2 n=169 diam=8 t=4 Z/2 reduced betti [0, 0, 0, 0]  (22.5s)

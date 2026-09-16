@@ -1,0 +1,4 @@
+V E F Q 14 36 24 0
+chi 2
+ray counts {1}
+points not covered exactly once: 0 tets 5574

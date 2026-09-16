@@ -1,0 +1,12 @@
+b inverse ok True True
+[[b,a],a]=1: True
+[a,a^b]=1: True
+[a,a^(b^2)]=1 (should be False): False
+sigma^0 rel True
+sigma^1 rel True
+sigma^2 rel True
+sigma^3 rel True
+sigma^4 rel True
+sigma^2(a)=aa aa
+a^b=(b^a,1): True
+sigma formula: True

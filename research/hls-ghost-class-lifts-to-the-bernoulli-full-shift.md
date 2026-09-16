@@ -6,9 +6,15 @@ title: Some torsion-free host with isometrically embedded expanders carries a fu
 distinct_from:
   reduced-group-algebras-contain-no-nonzero-ghosts: that rules out ghost classes inside a reduced group algebra; this asks for a Bernoulli-coefficient class restricting to the HLS ghost, which would refute surjectivity for a wreath product.
   hls-ghost-lift-needs-forest-shift-failure: that is the established reduction of any such class to a forest-shift defect; this is the open existence of one.
+refuted_by:
+  - hls-ghost-class-never-lifts-to-the-bernoulli-full-shift
 ---
 
-**OPEN.** There are a prime `p` and a torsion-free host `G` satisfying hypotheses (M) and (H-K) of
+**REFUTED 2026-09-16 (unreviewed)** by `hls-ghost-class-never-lifts-to-the-bernoulli-full-shift`: over every host
+satisfying (M), a full-shift class vanishing on `∂Y` has `r_(x_n)(y) = 0` for all large `n`. The refuted statement
+follows.
+
+There are a prime `p` and a torsion-free host `G` satisfying hypotheses (M) and (H-K) of
 `hls-ghost-lift-needs-forest-shift-failure`, together with `y ∈ K_0(C_0((Z/p)^G \ {0}) ⋊_r G)` such that:
 - `y|_(∂Y) = 0`;
 - `r_(x_n)(y) ≠ 0` for infinitely many `n`.
@@ -34,3 +40,10 @@ surjective, so reduced assembly for `F_p wr_G G` fails to be surjective with tri
 - **Where it stops.**
   - No forest-shift class with nonzero tree-boundary restriction outside the cylinder image is known over any group.
   - If the forest comparison is surjective for a host satisfying (H-K), the claim fails for that host.
+- **Refutation (2026-09-16, `hls-ghost-class-never-lifts-to-the-bernoulli-full-shift`).**
+  - Restrict to the CND-support shift `T_cnd` instead of the forest shift. Its action is a-T-menable
+    (`cnd-support-shift-actions-are-a-t-menable`), so its cylinder comparison is an isomorphism
+    (`cnd-support-shift-bc-and-k-amenability`).
+  - Large girth puts `∂Y \ {0}` inside `T_cnd`. So (H-K) holds, and reduced assembly at `∂Y` is injective.
+  - The key step of the reduction then runs through injective assembly and half-exactness, and ranks at `x_n` vanish
+    eventually. Details: `research/artifacts/bc-cnd-support-shift-a-t-menable-2026-09-16.md`, Section 6.

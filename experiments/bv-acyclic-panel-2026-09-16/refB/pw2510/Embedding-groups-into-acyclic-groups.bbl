@@ -1,0 +1,257 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{WWZZ25}
+
+\bibitem[And]{Konstantin22}
+Konstantin Andritsch.
+\newblock Bounded cohomology of groups acting on {C}antor sets.
+\newblock \href{https://arxiv.org/abs/2210.00459}{arXiv:2210.00459}.
+
+\bibitem[BB97]{BestvinaBrady97}
+Mladen Bestvina and Noel Brady.
+\newblock Morse theory and finiteness properties of groups.
+\newblock {\em Invent. Math.}, 129(3):445--470, 1997.
+
+\bibitem[BBMZ]{BBMZ23}
+James Belk, Collin Bleak, Francesco Matucci, and Matthew C.~B. Zaremsky.
+\newblock Hyperbolic groups satisfy the {B}oone-{H}igman conjecture.
+\newblock \href{https://arxiv.org/abs/2309.06224}{arXiv:2309.06224}. To appear
+  in Duke Math.\ J.
+
+\bibitem[BCM04]{BerrickChatterjiMislin04}
+A.~J. Berrick, I.~Chatterji, and G.~Mislin.
+\newblock From acyclic groups to the {B}ass conjecture for amenable groups.
+\newblock {\em Math. Ann.}, 329(4):597--621, 2004.
+
+\bibitem[BDH80]{BauDyHe80}
+G.~Baumslag, E.~Dyer, and A.~Heller.
+\newblock The topology of discrete groups.
+\newblock {\em J. Pure Appl. Algebra}, 16(1):1--47, 1980.
+
+\bibitem[BDM83]{BauDyMi83}
+G.~Baumslag, E.~Dyer, and C.~F. Miller, III.
+\newblock On the integral homology of finitely presented groups.
+\newblock {\em Topology}, 22(1):27--46, 1983.
+
+\bibitem[BEH24]{BleakElliottHyde2024}
+Collin Bleak, Luna Elliott, and James Hyde.
+\newblock Sufficient conditions for a group of homeomorphisms of the {C}antor
+  set to be two-generated.
+\newblock {\em J. Inst. Math. Jussieu}, 23(6):2825--2858, 2024.
+
+\bibitem[Ber89]{Berrick1989}
+A.~J. Berrick.
+\newblock Universal groups, binate groups and acyclicity.
+\newblock In {\em Group theory ({S}ingapore, 1987)}, pages 253--266. de
+  Gruyter, Berlin, 1989.
+
+\bibitem[Ber91]{Berrick91}
+A.~J. Berrick.
+\newblock Torsion generators for all abelian groups.
+\newblock {\em J. Algebra}, 139(1):190--194, 1991.
+
+\bibitem[Ber11]{Berrick11}
+A.~J. Berrick.
+\newblock The acyclic group dichotomy.
+\newblock {\em J. Algebra}, 326:47--58, 2011.
+
+\bibitem[BG04]{BridsonGrunewald04}
+Martin~R. Bridson and Fritz~J. Grunewald.
+\newblock Grothendieck's problems concerning profinite completions and
+  representations of groups.
+\newblock {\em Ann. of Math. (2)}, 160(1):359--373, 2004.
+
+\bibitem[BH03]{BerrickHillman03}
+A.~J. Berrick and J.~A. Hillman.
+\newblock Perfect and acyclic subgroups of finitely presentable groups.
+\newblock {\em J. London Math. Soc. (2)}, 68(3):683--698, 2003.
+
+\bibitem[Bie76]{Bieri76}
+Robert Bieri.
+\newblock Normal subgroups in duality groups and in groups of cohomological
+  dimension {$2$}.
+\newblock {\em J. Pure Appl. Algebra}, 7(1):35--51, 1976.
+
+\bibitem[BM92]{BerrickMiller92}
+A.~J. Berrick and C.~F. Miller, III.
+\newblock Strongly torsion generated groups.
+\newblock {\em Math. Proc. Cambridge Philos. Soc.}, 111(2):219--229, 1992.
+
+\bibitem[Bri98]{Bridson98}
+Martin~R. Bridson.
+\newblock Controlled embeddings into groups that have no non-trivial finite
+  quotients.
+\newblock In {\em The {E}pstein birthday schrift}, volume~1 of {\em Geom.
+  Topol. Monogr.}, pages 99--116. Geom. Topol. Publ., Coventry, 1998.
+
+\bibitem[Bri04]{Brin04}
+Matthew~G. Brin.
+\newblock Higher dimensional {T}hompson groups.
+\newblock {\em Geom. Dedicata}, 108:163--192, 2004.
+
+\bibitem[Bri20]{Bridson20}
+Martin~R. Bridson.
+\newblock The homology of groups, profinite completions, and echoes of
+  {G}ilbert {B}aumslag.
+\newblock In {\em Elementary theory of groups and group rings, and related
+  topics}, De Gruyter Proc. Math., pages 11--27. De Gruyter, Berlin, 2020.
+
+\bibitem[BZ22]{BelkZaremsky22}
+James Belk and Matthew C.~B. Zaremsky.
+\newblock Twisted {B}rin-{T}hompson groups.
+\newblock {\em Geom. Topol.}, 26(3):1189--1223, 2022.
+
+\bibitem[CM99]{CollinsMiller99}
+Donald~J. Collins and Charles~F. Miller, III.
+\newblock The word problem in groups of cohomological dimension 2.
+\newblock In {\em Groups {S}t. {A}ndrews 1997 in {B}ath, {I}}, volume 260 of
+  {\em London Math. Soc. Lecture Note Ser.}, pages 211--218. Cambridge Univ.
+  Press, Cambridge, 1999.
+
+\bibitem[CM00]{CrainicMoerdijk00}
+Marius Crainic and Ieke Moerdijk.
+\newblock A homology theory for \'etale groupoids.
+\newblock {\em J. Reine Angew. Math.}, 521:25--46, 2000.
+
+\bibitem[CM03]{ChatterjiMislin03}
+Indira Chatterji and Guido Mislin.
+\newblock Atiyah's {$L^2$}-index theorem.
+\newblock {\em Enseign. Math. (2)}, 49(1-2):85--93, 2003.
+
+\bibitem[dlHM83]{dlHM83}
+Pierre de~la Harpe and Dusa McDuff.
+\newblock Acyclic groups of automorphisms.
+\newblock {\em Comment. Math. Helv.}, 58(1):48--71, 1983.
+
+\bibitem[FFLM23]{FFLM23}
+Francesco Fournier-Facio, Clara L\"{o}h, and Marco Moraschini.
+\newblock Bounded cohomology and binate groups.
+\newblock {\em J. Aust. Math. Soc.}, 115(2):204--239, 2023.
+
+\bibitem[Hig51]{Higman51}
+Graham Higman.
+\newblock A finitely generated infinite simple group.
+\newblock {\em J. London Math. Soc.}, 26:61--64, 1951.
+
+\bibitem[Hig61]{Higman1961}
+Graham Higman.
+\newblock Subgroups of finitely presented groups.
+\newblock {\em Proc. Roy. Soc. London Ser. A}, 262:455--475, 1961.
+
+\bibitem[HNN49]{HigmanNeumannNeumann49}
+Graham Higman, B.~H. Neumann, and Hanna Neumann.
+\newblock Embedding theorems for groups.
+\newblock {\em J. London Math. Soc.}, 24:247--254, 1949.
+
+\bibitem[KLM{\etalchar{+}}]{KLM+24}
+Alexander Kupers, Ezekiel Lemann, Cary Malkiewich, Jeremy Miller, and Robin~J.
+  Sroka.
+\newblock Scissors automorphism groups and their homology.
+\newblock \href{https://arxiv.org/abs/2408.08081}{arXiv:2408.08081}.
+
+\bibitem[KT76]{KanThurston76}
+D.~M. Kan and W.~P. Thurston.
+\newblock Every connected space has the homology of a {$K(\pi ,1)$}.
+\newblock {\em Topology}, 15(3):253--258, 1976.
+
+\bibitem[Li25]{Li2024}
+Xin Li.
+\newblock Ample groupoids, topological full groups, algebraic {K}-theory
+  spectra and infinite loop spaces.
+\newblock {\em Forum Math. Pi}, 13:Paper No. e9, 56, 2025.
+
+\bibitem[Mat71]{Mather1971}
+John~N. Mather.
+\newblock The vanishing of the homology of certain groups of homeomorphisms.
+\newblock {\em Topology}, 10:297--298, 1971.
+
+\bibitem[Mat12]{Matui2012}
+Hiroki Matui.
+\newblock Homology and topological full groups of \'{e}tale groupoids on
+  totally disconnected spaces.
+\newblock {\em Proc. Lond. Math. Soc. (3)}, 104(1):27--56, 2012.
+
+\bibitem[Mat16]{Matui2016}
+Hiroki Matui.
+\newblock \'{E}tale groupoids arising from products of shifts of finite type.
+\newblock {\em Adv. Math.}, 303:502--548, 2016.
+
+\bibitem[Mat17]{Matui15}
+Hiroki Matui.
+\newblock Topological full groups of \'{e}tale groupoids.
+\newblock In {\em Operator algebras and applications---the {A}bel {S}ymposium
+  2015}, volume~12 of {\em Abel Symp.}, pages 203--230. Springer, 2017.
+
+\bibitem[MS]{MillerSteinberg24}
+Alistair Miller and Benjamin Steinberg.
+\newblock Homology and {K}-theory for self-similar actions of groups and
+  groupoids.
+\newblock \href{https://https://arxiv.org/abs/2409.02359}{arXiv:2409.02359}.
+
+\bibitem[NO19]{NylandOrtega2019}
+Petter Nyland and Eduard Ortega.
+\newblock Topological full groups of ample groupoids with applications to graph
+  algebras.
+\newblock {\em Internat. J. Math.}, 30(4):1950018, 66, 2019.
+
+\bibitem[OH07]{Ould07}
+Abderezak Ould~Houcine.
+\newblock Embeddings in finitely presented groups which preserve the center.
+\newblock {\em J. Algebra}, 307(1):1--23, 2007.
+
+\bibitem[PW24]{PalmerWu2024}
+Martin Palmer and Xiaolei Wu.
+\newblock On the homology of big mapping class groups.
+\newblock {\em J. Topol.}, 17(4):Paper No. e12358, 41, 2024.
+
+\bibitem[Ren80]{Renault80}
+Jean Renault.
+\newblock {\em A groupoid approach to {$C\sp{\ast} $}-algebras}, volume 793 of
+  {\em Lecture Notes in Mathematics}.
+\newblock Springer, Berlin, 1980.
+
+\bibitem[Sta63]{Stallings63}
+John Stallings.
+\newblock A finitely presented group whose 3-dimensional integral homology is
+  not finitely generated.
+\newblock {\em Amer. J. Math.}, 85:541--543, 1963.
+
+\bibitem[SW19]{SW19}
+Markus Szymik and Nathalie Wahl.
+\newblock The homology of the {H}igman--{T}hompson groups.
+\newblock {\em Invent. Math.}, 216(2):445--518, 2019.
+
+\bibitem[SWZ19]{SkipperWitzelZaremsky19}
+Rachel Skipper, Stefan Witzel, and Matthew C.~B. Zaremsky.
+\newblock Simple groups separated by finiteness properties.
+\newblock {\em Invent. Math.}, 215(2):713--740, 2019.
+
+\bibitem[Tho80]{Thompson80}
+Richard~J. Thompson.
+\newblock Embeddings into finitely generated simple groups which preserve the
+  word problem.
+\newblock In {\em Word problems, {II} ({C}onf. on {D}ecision {P}roblems in
+  {A}lgebra, {O}xford, 1976)}, volume~95 of {\em Stud. Logic Found. Math.},
+  pages 401--441. North-Holland, Amsterdam-New York, 1980.
+
+\bibitem[Var85]{Varadarajan85}
+K.~Varadarajan.
+\newblock Pseudo-mitotic groups.
+\newblock {\em J. Pure Appl. Algebra}, 37(2):205--213, 1985.
+
+\bibitem[Wil84]{Williams1984}
+Scott~W. Williams.
+\newblock Box products.
+\newblock In {\em Handbook of set-theoretic topology}, pages 169--200.
+  North-Holland, Amsterdam, 1984.
+
+\bibitem[WWZZ25]{WuWuZhaoZhou2025}
+Fan Wu, Xiaolei Wu, Mengfei Zhao, and Zixiang Zhou.
+\newblock Embedding groups into boundedly acyclic groups.
+\newblock {\em J. Lond. Math. Soc. (2)}, 111(5):Paper No. e70164, 2025.
+
+\bibitem[WZ]{WuZhao25+}
+Xiaolei Wu and Mengfei Zhao.
+\newblock Twisted topological groupoids and their full groups.
+\newblock In preparation.
+
+\end{thebibliography}

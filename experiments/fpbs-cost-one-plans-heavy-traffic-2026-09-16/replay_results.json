@@ -1,0 +1,38 @@
+{
+ "status": "passed",
+ "trials": 160,
+ "cutoffs": [
+  "0",
+  "1/2",
+  "1",
+  "2",
+  "3",
+  "5"
+ ],
+ "groups": {
+  "Z_40": {
+   "order": 40,
+   "trials": 40,
+   "min_slack": "0",
+   "max_uncovered": 40
+  },
+  "Z_12xZ_6": {
+   "order": 72,
+   "trials": 40,
+   "min_slack": "5/36",
+   "max_uncovered": 144
+  },
+  "S_4": {
+   "order": 24,
+   "trials": 40,
+   "min_slack": "1/3",
+   "max_uncovered": 48
+  },
+  "A_5_three_gens": {
+   "order": 60,
+   "trials": 40,
+   "min_slack": "1/2",
+   "max_uncovered": 180
+  }
+ }
+}

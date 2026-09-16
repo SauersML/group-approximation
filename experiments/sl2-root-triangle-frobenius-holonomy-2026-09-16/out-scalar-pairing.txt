@@ -1,0 +1,9 @@
+(1) f=4: gcd(e(q-1), q^2-1) = q-1 for all four exponents: True
+(1) f=6: gcd(e(q-1), q^2-1) = q-1 for all four exponents: True
+(1) f=8: gcd(e(q-1), q^2-1) = q-1 for all four exponents: True
+(1) f=10: gcd(e(q-1), q^2-1) = q-1 for all four exponents: True
+(1) f=12: gcd(e(q-1), q^2-1) = q-1 for all four exponents: True
+(2) f=4: |k| = 16; 7680 ratios tested, 0 lie in k
+(3) [y_a, z] = B + D y_b: True
+(3) [x_b, B x_a + G y_b] = G: True
+(3) [B x_a + G y_b, B2 x_b + G2 y_a] = B G2 + G B2: True

@@ -5,6 +5,8 @@ kind: claim
 title: Every nontrivial Brunnian 4-braid has a conjugate and a 5-strand push map giving parity-clean arcs with unequal intersection counts
 distinct_from:
   brunnian-four-braids-have-five-strand-moody-witness: that claim is the existence of a five-strand push map changing the Moody polynomial; this claim is the stronger combinatorial statement Proposition 6.4 of arXiv:2607.05283 asserts (parity condition for both arcs plus unequal intersection counts), which implies that one
+refuted_by:
+  - parity-correcting-push-fails-for-a-brunnian-four-braid
 artifacts:
   - research/artifacts/zp-burau-n4-verification-2026-09-13-part1.md
   - research/artifacts/zp-burau-n4-verification-2026-09-13-part2.md
@@ -49,3 +51,12 @@ repairs gap G6.
 - **Where it stands.** For a braid in the kernel, the two unproved facts in G1
   contradict each other. So this claim is no easier than the theorem for that braid,
   and a proof must choose `gamma''` with control over the new disk types.
+- **2026-09-16 (swarm frontier lane hi-fron-zaremsky-3-05-four-strand-bura): false.**
+  - Parity-clean arcs see only `M(alpha, .)(-1)`. So if `rho_n(Psi) = I mod (t+1)`,
+    parity-clean representatives before and after `Psi` cross `alpha` equally often
+    (`parity-clean-arc-counts-see-only-burau-mod-t-plus-one`).
+  - The nontrivial Brunnian braid `Phi_0 = [(s1 s2)^6, [A14, [A24, A34]]]` has
+    `rho_4(Phi_0) = I mod (t+1)` (`burau-minus-one-kernel-meets-brunnian-four-braids`).
+  - So the claim fails for `Phi_0`, for all `k`, `y` and `Gamma`
+    (`parity-correcting-push-fails-for-a-brunnian-four-braid`).
+  - Artifact: `research/artifacts/zp-burau-parity-t-minus-one-obstruction-2026-09-16.md`.

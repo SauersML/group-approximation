@@ -1,0 +1,14 @@
+# signed tree of negative squares: rho of ball submatrices
+# 3/sqrt2 = 2.121320, 1+sqrt2 = 2.414214
+local test at e: (M^2)_vv=3, sum_{w!=v} (M^2)_wv^2=4 (need <= 4)
+R= 2 n=    9 rho=2.101003 above_3/sqrt2=False
+R= 3 n=   17 rho=2.236068 above_3/sqrt2=True
+R= 4 n=   30 rho=2.299619 above_3/sqrt2=True
+R= 5 n=   51 rho=2.334414 above_3/sqrt2=True
+R= 6 n=   85 rho=2.355488 above_3/sqrt2=True
+R= 7 n=  140 rho=2.369204 above_3/sqrt2=True
+R= 8 n=  229 rho=2.378624 above_3/sqrt2=True
+R= 9 n=  373 rho=2.385371 above_3/sqrt2=True
+R=10 n=  606 rho=2.390367 above_3/sqrt2=True
+R=11 n=  983 rho=2.394170 above_3/sqrt2=True
+R=12 n= 1593 rho=2.397131 above_3/sqrt2=True

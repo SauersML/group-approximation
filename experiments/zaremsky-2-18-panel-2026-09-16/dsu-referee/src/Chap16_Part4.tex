@@ -1,0 +1,634 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Patterson--Sullivan theory}
+%%\section{Patterson--Sullivan theory}
+%\label{partahlforsthurston}
+%This part will be divided as follows: In Section \ref{sectionconformal} we recall the definition of quasiconformal measures, and we prove basic existence and non-existence results. In Section \ref{sectionahlforsthurston}, we prove Theorem \ref{theoremahlforsthurstongeneral} (Patterson--Sullivan theorem for groups of divergence type). In Section \ref{sectionGFmeasures}, we investigate the geometry of quasiconformal measures of geometrically finite groups, and we prove a generalization of the Global Measure Formula (Theorem \ref{theoremglobalmeasure}) as well as giving various necessary and/or sufficient conditions for the Patterson--Sullivan measure of a geometrically finite group to be doubling (\6\ref{subsectiondoubling}) or exact dimensional (\6\ref{subsectionexactdimensional}).
+%
+%Throughout the entire part, we fix $(X,\dist,\zero,b)$ as in \6\ref{standingassumptions2}, and a \emph{group} $G\leq\Isom(X)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Patterson--Sullivan theorem for groups of divergence type}
+\label{sectionahlforsthurston}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter, we prove Theorem \ref{theoremahlforsthurstongeneral}, which states that a nonelementary group of generalized divergence type possesses a $\w\delta$-quasiconformal measure.
+
+\section{Samuel--Smirnov compactifications}
+We begin by summarizing the theory of Samuel--Smirnov compactifications, which will be used in the proof of Theorem \ref{theoremahlforsthurstongeneral}.
+
+\begin{proposition}
+\label{propositionsamuelsmirnov}
+Let $(Z,\Dist)$ be a complete metric space. Then there exists a compact Hausdorff space $\what Z$ together with a homeomorphic embedding $\iota:Z\to\what Z$ with the following property:
+\begin{property}
+\label{propertysamuelsmirnov}
+\narrower
+If $A,B\subset Z$, then $\cl A\cap \cl B \neq \emptyset$ if and only if $\Dist(A,B) = 0$. Here $\cl A$ and $\cl B$ denote the closures of $A$ and $B$ relative to $\what Z$.
+\end{property}
+\noindent The pair $(\what Z,\iota)$ is unique up to homeomorphism. Moreover, if $Z_1,Z_2$ are two complete metric spaces and if $f:Z_1\to Z_2$ is uniformly continuous, then there exists a unique continuous map $\fhat:\what Z_1\to \what Z_2$ such that $\iota\circ f = \fhat\circ \iota$. The reverse is also true: if $f$ admits such an extension, then $f$ is uniformly continuous.
+\end{proposition}
+The space $\what Z$ will be called the \emph{Samuel--Smirnov compactification} of $Z$.
+\begin{proof}[Proof of Proposition \ref{propositionsamuelsmirnov}]
+The metric $\Dist$ induces a proximity on $Z$ in the sense of \cite[Definition 1.7]{NaimpallyWarrack}. Then the existence and uniqueness of a pair $(\what Z,\iota)$ for which Property \ref{propertysamuelsmirnov} holds is guaranteed by \cite[Theorem 7.7]{NaimpallyWarrack}. The assertions concerning uniformly continuous maps follow from \cite[Theorem 7.10]{NaimpallyWarrack} and \cite[Theorem 4.4]{NaimpallyWarrack}, respectively (cf. \cite[Remark 4.8]{NaimpallyWarrack} and \cite[Definition 4.10]{NaimpallyWarrack}).
+\end{proof}
+\begin{remark}
+\label{remarkstonecech}
+The Samuel--Smirnov compactification may be compared with the Stone--\v Cech compactification, which is usually larger. The difference is that instead of Property \ref{propertysamuelsmirnov}, the Stone--\v Cech compactification has the property that for all $A,B\subset Z$, $\cl A\cap \cl B \neq \emptyset$ if and only if $\cl A\cap \cl B \cap Z \neq \emptyset$. Moreover, in the remarks following Property \ref{propertysamuelsmirnov}, ``uniformly continuous'' should be replaced with just ``continuous''.
+
+We remark that if $\delta_G < \infty$ (i.e. if $G$ is of divergence type rather than of generalized divergence type), then the proof below works equally well if the Samuel--Smirnov compactification is replaced by the Stone--\v Cech compactification. This is not the case for the general proof; cf. Remark \ref{remarksamuelsmirnov}.
+\end{remark}
+
+To prove Theorem \ref{theoremahlforsthurstongeneral}, we will consider the Samuel--Smirnov compactification of the complete metric space $(\bord X,\wbar\Dist)$ (cf. Proposition \ref{propositionwbarDist}), which we will denote by $\what X$. For convenience of notation we will assume that $\bord X$ is a subset of $\what X$ and that $\iota:\bord X\to\what X$ is the inclusion map. As a point of terminology we will call points in $\bord X$ ``standard points'' and points in $\what X\butnot\bord X$ ``nonstandard points''.
+
+\begin{remark}
+Since $\wbar\Dist \asymp_\times \wbar\Dist_x$ for all $x\in X$, the Samuel--Smirnov compactification $\what X$ is independent of the basepoint $\zero$.
+\end{remark}
+
+At this point we can give a basic outline of the proof of Theorem \ref{theoremahlforsthurstongeneral}: First we will construct a measure $\what\mu$ on $\what X$ which satisfies the transformation equation \eqref{quasiconformal}. We will call such a measure $\what\mu$ a quasiconformal measure, although it is not \emph{a priori} a quasiconformal measure in the sense of Definition \ref{definitionquasiconformal}, as it is not necessarily supported on the set of standard points. Then we will use Thurston's proof of the Hopf--Tsuji--Sullivan theorem \cite[Theorem 4 of Section VII]{Ahlfors} (see also \cite[Theorem 2.4.6]{Nicholls}) to show that $\what\mu$ is supported on the nonstandard analogue of radial limit set. Finally, we will show that the nonstandard analogue of the radial limit set is actually a subset of $\bord X$, i.e. we will show that radial limit points are automatically standard. This demonstrates that $\what\mu$ is a measure on $\bord X$, and is therefore a \emph{bona fide} quasiconformal measure.
+
+We now begin the preliminaries to the proof of Theorem \ref{theoremahlforsthurstongeneral}. As always $(X,\zero,b)$ denotes a Gromov triple. Let $\what X$ be the Samuel--Smirnov compactification of $\bord X$.
+
+\begin{remark}
+Throughout this chapter, $\cl S$ denotes the closure of a set $S$ taken with respect to $\what X$, not $\bord X$.
+\end{remark}
+
+\section{Extending the geometric functions to $\what X$}
+We begin by extending the geometric functions $\dist(\cdot,\cdot)$, $\lb\cdot|\cdot\rb$, and $\busemann(\cdot,\cdot)$ to the Samuel--Smirnov compactification $\what X$. Extending $\dist(\cdot,\cdot)$ is the easiest:
+
+\begin{observation}
+If $x\in X$ is fixed, then the function $f_x:\bord X\to [0,1]$ defined by $f_x(y) = b^{-\dist(x,y)}$ is uniformly continuous by Remark \ref{remarkDistunifcont}. Thus by Proposition \ref{propositionsamuelsmirnov}, there exists a unique continuous extension $\fhat_x:\what X\to [0,1]$. We write 
+\[
+\dhat(x,\what y) = -\log_b\fhat_x(\what y).
+\]
+We define the \emph{extended boundary} of $X$ to be the set
+\[
+\what{\del X} := \{\xihat\in\what X:\dhat(\zero,\xihat) = \infty\}.
+\]
+Note that $\dhat(x,y) = \dist(x,y)$ if $x,y\in X$, and $\what{\del X} \cap \bord X = \del X$.
+\end{observation}
+
+\begin{warning*}
+It is possible that $\what{\del X}\neq\cl{\del X}$.
+\end{warning*}
+
+On the other hand, extending the Gromov product to $\what X$ presents some difficulty, since the Gromov product is not necessarily continuous (cf. Example \ref{examplegromovnotcont}). Our solution is as follows: Fix $x\in X$ and $y\in\bord X$. Then by Remark \ref{remarkDistunifcont}, the map $\bord X\ni z\mapsto \Dist_x(y,z)$ is uniformly continuous, so by Proposition \ref{propositionsamuelsmirnov} it extends to a continuous map $\what X\ni \what z\mapsto \what\Dist_x(y,\what z)$. We define the \emph{Gromov product in $\what X$} via the formula
+\[
+\lb y|\what z\rb_x = -\log_b \what\Dist_x(y,\what z).
+\]
+Note that if $\what z\in \bord X$, then this notation conflicts with the previous definition of the Gromov product, but by Proposition \ref{propositionDist} the harm is only an additive asymptotic. We will ignore this issue in what follows.
+
+%\ignore{
+%\begin{definition}
+%Let $(Z,\Dist)$ be a metric space. A function $f:Z\to[-\infty,+\infty]$ will be called \emph{roughly uniformly continuous} if there exists a function $\rho:(0,\infty)\to(0,\infty)$ such that
+%\[
+%\Dist(x,y) \leq R \;\;\Rightarrow f(x) - \rho(R) \leq f(y) \leq f(x) + \rho(R).
+%\]
+%\end{definition}
+%Note that Lemma \internalmissingref\ implies that for $x\in X$ and $y\in\bord X$ fixed, the maps $z\mapsto \lb y|z\rb_x$ and $z\mapsto \busemann_z(x,y)$ are roughly uniformly continuous for some $k$.
+%
+%
+%
+%\begin{definition}
+%Fix $0\leq k < \infty$ and a topological space $Z$. A function $f:Z\to[-\infty,+\infty]$ will be called \emph{$k$-continuous} if for all $z\in Z$, 
+%\[
+%\limsup_{y\to z}f(y) - k \leq f(x) \leq \liminf_{y\to z}f(y) + k.
+%\]
+%\end{definition}
+%Note that Lemma \ref{lemmanearcontinuity} implies that for $x\in X$ and $y\in\bord X$ fixed, the maps $z\mapsto \lb y|z\rb_x$ and $z\mapsto \busemann_z(x,y)$ are $k$-continuous for some $k$.
+%
+%\begin{lemma}
+%\label{lemmasamuelsmirnov}
+%Every $k$-continuous function $f:\bord X\to[-\infty,+\infty]$ has a $4k$-continuous extension $\fhat:\what X\to[-\infty,+\infty]$.
+%\end{lemma}
+%Note that when $A = [-\infty,\infty]$, then the final assertion of Proposition \ref{propositionsamuelsmirnov} is simply the case $k = 0$ of this lemma.
+%\begin{proof}[Proof of Lemma \ref{lemmasamuelsmirnov}]
+%For each $r\in[-\infty,+\infty]$, the sets
+%\[
+%\begin{aligned}
+%A_r &:= \{x\in\bord X :\limsup_{y\to x}f(y)\geq r + k\}\\
+%B_r &:= \{x\in\bord X:\liminf_{y\to x}f(y)\leq r - k\}
+%\end{aligned}
+%\]
+%are closed relative to $\bord X$. Let
+%\[
+%\what g(\what x) = \sup\{r\in[-\infty,+\infty]:\what x\in\cl{A_r}\}.
+%\]
+%\begin{claim}
+%$\what g$ is $2k$-continuous.
+%\end{claim}
+%\begin{proof}
+%Indeed, fix $\what x\in\what X$, and let $r = \what g(\what x)$. For convenience of notation assume $r\in\R$. Fix $\epsilon > 0$; then $\what x\in\cl{A_{r - \epsilon}}\butnot\cl{A_{r + \epsilon}}$. On the other hand, since $f$ is $k$-continuous, we have $A_{r - \epsilon}\cap B_{r - 2\epsilon} = \emptyset$. By Urysohn's lemma, there exists a continuous function $h:\bord X\to [0,1]$ such that 
+%\[
+%h\equiv 0 \ \text{ on } \ A_{r - \epsilon}
+%\ \ \text{ and } \ \
+%h \ \equiv 1\ \text{ on } \ B_{r - 2\epsilon}.
+%\] 
+%Let $\what h:\what X\to[0,1]$ be the unique continuous extension of $h$ (cf. Proposition \ref{propositionsamuelsmirnov}). Then $\what h\equiv 0$ on $\cl{A_{r - \epsilon}}$, and $\what h\equiv 1$ on $\cl{B_{r - 2\epsilon}}$. In particular $\cl{A_{r - \epsilon}}\cap\cl{B_{r - 2\epsilon}} = \emptyset$, and so $\what x\notin \cl{B_{r - 2\epsilon}}$. Let 
+%\[
+%\what U = \what X\butnot(\cl{A_{r + \epsilon}}\cup\cl{B_{r - 2\epsilon}}).
+%\] 
+%Then $\what U$ is an open neighborhood of $\what x$, and in particular
+%\begin{align*}
+%\limsup_{\what y\to \what x}\what g(\what y) &\leq
+%\sup_{\what y\in\what U}\what g(\what y)\\ 
+%\liminf_{\what y\to \what x}\what g(\what y) &\geq
+%\inf_{\what y\in\what U}\what g(\what y). 
+%\end{align*}
+%Thus to complete the proof, it suffices to show that for any $\what y\in\what U$ we have 
+%\[
+%\what g(\what y) - \epsilon \leq \what g(\what x) \leq
+%\what g(\what y) + 2k + 2\epsilon. 
+%\]
+%Indeed, since $\what y\notin \cl{A_{r + \epsilon}}$ we have $\what g(\what y)\leq r + \epsilon$, proving the left hand inequality. Finally, since $\what y\notin \cl{B_{r - 2\epsilon}}$, we must have $\what y\in\cl{A_{r - 2k - 2\epsilon}}$, and so $\what g(\what y) \geq r - 2k - 2\epsilon$, demonstrating the right hand inequality. 
+%\QEDmod\end{proof}
+%Now define an extension $\fhat$ of $f$ by the formula
+%\[
+%\fhat(\what x) = \begin{cases}
+%f(\what x) & \text{if } \what x\in \bord X\\
+%\what g(\what x) & \text{if } \what x\in\what X\setminus \bord X
+%\end{cases}.
+%\]
+%For a point $x\in \bord X$, we have $\what g(x) = \limsup_{y\to x}f(y)$, and so $|\what g(x) - f(x)| \leq k$. Thus for all $\what x\in\what X$, we have $|\what g(\what x) - \fhat(\what x)| \leq k$. It is then readily verified that $2k$-continuity of $\what g$ implies $4k$-continuity of $\fhat$. We are done.
+%\end{proof}
+%}% end ignore
+
+\begin{observation}
+Using (j) of Proposition \ref{propositionbasicidentities} we may define for each $x,y\in X$ the Busemann function
+\[
+\what\busemann_{\what z}(x,y) = \lb x|\what z\rb_y - \lb y|\what z\rb_x.
+\]
+Again, if $\what z\in\bord X$, then this definition conflicts with the previous one, but again the harm is only an additive asymptotic.
+\end{observation}
+
+\begin{remark}
+We note that an appropriate analogue of Proposition \ref{propositionbasicidentities} (cf. also Corollary \ref{corollaryboundaryasymptotic}) holds on $\what X$. Specifically, each formula of Proposition \ref{propositionbasicidentities} holds with an additive asymptotic, as long as all expressions are defined. Note in particular that we have not defined the value of expressions which contain more than one nonstandard point. Such a definition would present additional difficulties (namely, noncommutativity of limits) which we choose to avoid.
+\end{remark}
+
+
+%\ignore{
+%
+%We now introduce several notations:
+%
+%\begin{notation}
+%Given $x\in X$, let $\dhat(x,\cdot)$ denote the unique continuous extension to $\what X$ of the function $\bord X\ni y\mapsto \dist(x,y)\in [0,\infty]$, so that
+%\[
+%\dhat(x,\what y)\in [0,\infty] \all x\in X \all \what y\in X.
+%\]
+%We define the \emph{extended boundary} of $X$ to be the set
+%\[
+%\what{\del X} := \{\xihat\in\what X:\dhat(\zero,\xihat) = \infty\}.
+%\]
+%Note that $\dhat(x,y) = \dist(x,y)$ if $x,y\in X$, and $\what{\del X} \cap \bord X = \del X$.
+%\end{notation}
+%
+%\begin{notation}
+%Given $x\in X$ and $y\in\bord X$, we denote the $4k$-continuous extension to $\what X$ of the functions $\bord X\ni z\mapsto \lb y|z\rb_x\in [0,\infty]$ and $\bord X\ni z\mapsto \busemann_z(x,y)\in [0,\infty]$ by $\lb y|\cdot\rb_x$ and $\what\busemann_\cdot(x,y)$, respectively.
+%
+%We note that an appropriate analogue of Proposition \ref{propositionbasicidentities} holds in this setting; cf. also Corollary \ref{corollaryboundaryasymptotic}. Specifically, each formula of Proposition \ref{propositionbasicidentities} holds with an additive asymptotic, as long as all expressions are defined. Note in particular that we have not defined the value of expressions which contain more than one nonstandard point. Such a definition would present additional difficulties which we choose to avoid.
+%\end{notation}
+%}% end ignore
+
+We are now ready to define the nonstandard analogue of the radial limit set:
+
+\begin{definition}[cf. Definitions \ref{definitionshadow} and \ref{definitionradialconvergence}]
+Given $x\in X$ and $\sigma > 0$, let
+\[
+\what\Shad(x,\sigma) = \{\xihat\in\what X : \lb\zero|\xihat\rb_x\leq\sigma\},
+\]
+so that $\what\Shad(x,\sigma)\cap\bord X = \Shad(x,\sigma)$. A sequence $(x_n)_1^\infty$ in $X$ will be said to converge to a point $\xihat\in \what{\del X}$ \emph{$\sigma$-radially} if $\dox{x_n}\to\infty$ and if $\xihat\in \what\Shad(x_n,\sigma)$ for all $n\in\N$. Note that in the definition of $\sigma$-radial convergence, we do not require that $x_n\to\xihat$ in the topology on $\what X$, although this can be seen from the proof of Lemma \ref{lemmaradialstandard} below.
+\end{definition}
+
+We conclude this section with the following lemma:
+
+\begin{lemma}[Every radial limit point is a standard point]
+\label{lemmaradialstandard}
+Suppose that a sequence $(x_n)_1^\infty$ converges to a point $\xihat\in\what{\del X}$ $\sigma$-radially for some $\sigma > 0$. Then $\xihat\in\del X$.
+\end{lemma}
+\begin{proof}
+We observe first that
+\[
+\lb x_n|\xihat\rb_\zero \asymp_\plus \dox{x_n} - \lb \zero|\xihat\rb_{x_n} \asymp_{\plus,\sigma} \dox{x_n} \tendsto n \dhat(\zero,\xihat) = \infty.
+\]
+Together with Gromov's inequality $\lb x_n|x_m\rb_\zero \gtrsim_\plus \min(\lb x_n|\xihat\rb_\zero,\lb x_m|\xihat\rb_\zero)$, this implies that $(x_n)_1^\infty$ is a Gromov sequence.
+
+By the definition of the Gromov boundary, it follows that there exists a (standard) point $\eta\in\del X$ such that the sequence $(x_n)_1^\infty$ converges to $\eta$. Gromov's inequality now implies that $\lb \eta|\xihat\rb_\zero = \infty$. We claim now that $\xihat = \eta$, so that $\xihat$ is standard. By contradiction, suppose $\xihat\neq\eta$. Since $\what X$ is a Hausdorff space, it follows that there exist disjoint open sets $U,V\subset\what X$ containing $\xihat$ and $\eta$, respectively. Since $V$ contains a neighborhood of $\eta$, the function $f_{\zero,\eta}(z) = \lb \eta|z\rb_\zero$ is bounded from above on $\bord X\butnot V$. By continuity, $\fhat_{\zero,\eta}$ is bounded from above on $\cl{\bord X\butnot V}$. In particular, $\xihat\notin \cl{\bord X\butnot V}$. On the other hand $\xihat\notin \cl V$, since $\xihat$ is in the open set $U$ which is disjoint from $V$. It follows that $\xihat\notin \cl{\bord X} = \what X$, a contradiction.
+\end{proof}
+\begin{remark}
+\label{remarkradialstandard}
+In fact, the above proof shows that if
+\begin{equation}
+\label{strongconvergence}
+\lb x_n|\xihat\rb_\zero \to \infty
+\end{equation}
+for some sequence $(x_n)_1^\infty$ in $X$ and some $\xihat\in\what{\del X}$, then $\xihat\in\del X$. However, there may be a sequence $(x_n)_1^\infty$ such that $x_n\to \xihat$ in the topology on $\what X$ but for which \eqref{strongconvergence} does not hold. In this case, we could have $\xihat\notin\del X$.
+\end{remark}
+
+\section{Quasiconformal measures on $\what X$}
+We define the notion of a quasiconformal measure on $\what X$ as follows:
+
+\begin{definition}[cf. Definition \ref{definitionquasiconformal}, Proposition \ref{propositionderivativebusemann}]
+\label{definitionquasiconformalnonstandard}
+For each $s\geq 0$, a Radon probability measure $\what\mu$ on $\what{\del X}$ is called \emph{$s$-quasiconformal} if
+\[
+\what\mu(\what g(A)) \asymp_\times \int_A b^{s\what\busemann_{\what\eta}(\zero,g^{-1}(\zero))}\;\dee\what\mu(\what\eta).
+\]
+for every $g\in G$ and for every Borel set $A\subset\what{\del X}$. Here $\what g$ denotes the unique continuous extension of $g$ to $\what X$ (cf. Proposition \ref{propositionsamuelsmirnov}).
+\end{definition}
+
+\begin{remark}
+\label{remarkradon}
+Note that we have added here the assumption that the measure $\what\mu$ is \emph{Radon}. Since the phrase ``Radon measure'' seems to have no generally accepted meaning in the literature, we should make clear that for us a (finite, nonnegative, Borel) measure $\mu$ on a compact Hausdorff space $Z$ is Radon if the following two conditions hold (cf. \cite[\67]{Folland}):
+\begin{align*}
+\mu(A) &= \inf\{\mu(U) : U\supset A, \;\; U\text{ open}\} \all A\subset Z \text{ Borel}\\
+\mu(U) &= \sup\{\mu(K) : K\subset U, \;\; K\text{ compact}\} \all U\subset Z \text{ open.}
+\end{align*}
+The assumption of Radonness was not needed in Definition \ref{definitionquasiconformal}, since every measure on a compact metric space is Radon \cite[Theorem 7.8]{Folland}. However, the assumption is important in the present proof, since $\what X$ is not necessarily metrizable, and so it may have non-Radon measures.
+
+On the other hand, the Radon condition itself is of no importance to us, except for the following facts:
+\begin{itemize}
+\item[(i)] The image of a Radon measure under a homeomorphism is Radon.
+\item[(ii)] Every measure absolutely continuous to a Radon measure is Radon.
+\item[(iii)] The sum of two Radon measures is Radon.
+\item[(iv)] (Riesz representation theorem, \cite[Theorem 7.2]{Folland}) Let $Z$ be a compact Hausdorff space. For each measure $\mu$ on $Z$, let $I_\mu$ denote the nonnegative linear function
+\[
+I_\mu[f] := \int f\;\dee\mu.
+\]
+Then for every nonnegative linear functional $I:C(Z)\to \R$, there exists a unique Radon measure $\mu$ on $Z$ such that $I_\mu = I$. (If $\mu_1$ and $\mu_2$ are not both Radon, it is possible that $I_{\mu_1} = I_{\mu_2}$ while $\mu_1\neq\mu_2$.)
+\end{itemize}
+%Fact (i) is obvious, fact (ii) is \cite[Exercise 7.8]{Folland}, and fact (iii) is \cite[Theorem 7.2]{Folland}.
+\end{remark}
+
+We now state two lemmas which are nonstandard analogues of lemmas proven in Chapter \ref{sectionconformal}. We omit the parts of the proofs which are the same as in the standard case, reminding the reader that the important point is that no function is ever used which takes two nonstandard points as inputs. We begin by proving an analogue of Sullivan's shadow lemma:
+
+\begin{lemma}[Sullivan's Shadow Lemma on $\what X$; cf. Lemma \ref{lemmasullivanshadow}]
+\label{lemmasullivanshadownonstandard}
+Fix $s\geq 0$, and let $\what\mu\in\MM(\what{\del X})$ be an $s$-quasiconformal measure which is not a pointmass supported on a standard point. Then for all $\sigma > 0$ sufficiently large and for all $g\in G$, we have
+\[
+\what\mu(\what\Shad(g(\zero),\sigma)) \asymp_\times b^{-s\dogo g}.
+\]
+\end{lemma}
+\begin{proof}
+Obvious modifications\Footnote{We remark that the expression $\overline g'(\xi)$ occuring in the proof of Lemma \ref{lemmasullivanshadow} should be replaced by $b^{-\what\busemann_{\what\xi}(\zero,g^{-1}(\zero))}$ as per Proposition \ref{propositionderivativebusemann}; of course, the expression $\overline g'(\what\xi)$ makes no sense, since $\what X$ is not a metric space. \label{footnotenonstandardderivative}} to the proof of Lemma \ref{lemmasullivanshadow} yield
+\[
+\what\mu(\what\Shad(g(\zero),\sigma)) \asymp_{\times,\mu,\sigma} b^{-s\dogo g}\what\mu\big(\what\Shad_{g^{-1}(\zero)}(\zero,\sigma)\big).
+\]
+So to complete the proof, we need to show that
+\[
+\what\mu\big(\what\Shad_{g^{-1}(\zero)}(\zero,\sigma)\big) \asymp_{\times,\mu,\sigma} 1,
+\]
+assuming $\sigma > 0$ is sufficiently large (depending on $\what\mu$). By contradiction, suppose that for each $n\in\N$ there exists $g_n\in G$ such that
+\[
+\what\mu\big(\what\Shad_{g_n^{-1}(\zero)}(\zero,n)\big) \leq \frac{1}{2^n}\cdot
+\]
+Then for $\what\mu$-a.e. $\xihat\in\what X$,
+\[
+\xihat\in \what\Shad_{g_n^{-1}(\zero)}(\zero,n) \text{ for all but finitely many $n$},
+\]
+which implies
+\[
+\lb g_n^{-1}(\zero)|\xihat\rb_\zero \gtrsim_\plus n \tendsto n \infty.
+\]
+By Remark \ref{remarkradialstandard}, it follows that $\xihat\in\del X$ and $g_n^{-1}(\zero) \to \xihat$. This implies that $\what\mu$ is a pointmass supported on the standard point $\lim_{n\to\infty} g_n^{-1}(\zero)$, contradicting our hypothesis.
+\end{proof}
+
+\begin{lemma}[cf. Theorem \ref{theorempattersonsullivangeneral}]
+\label{lemmapattersonsullivannonstandard}
+Assume that $\w\delta = \w\delta_G < \infty$. Then there exists a $\w\delta$-quasiconformal measure supported on $\what{\del X}$.
+\end{lemma}
+\begin{proof}
+Let the measures $\mu_s$ be as in \eqref{musdef}. The compactness of $\what X$ replaces the assumption that $G$ is of compact type which occurs in Theorem \ref{theorempattersonsullivangeneral}, so there exists a sequence $s_n\searrow\w\delta$ such that $\mu_n := \mu_{s_n}\to \what\mu$ for some Radon measure $\what\mu\in \MM(\what X)$. Claim \ref{claimboundarysupport} shows that $\what\mu$ is supported on $\what{\del X}$.
+
+To complete the proof, we must show that $\what\mu$ is $\w\delta$-quasiconformal. Fix $g\in G$ and a continuous function $f:\what X\to (0,\infty)$. The final assertion of Proposition \ref{propositionsamuelsmirnov} guarantees that $\log(f) \given \bord X$ is uniformly continuous, so the proof of Claim \ref{claimconformalf} shows that \eqref{conformalf} holds.
+
+The equation \eqref{riesz} deserves some comment; it depends on the uniqueness assertion of the Riesz representation theorem, which, now that we are no longer in a metric space, holds only for Radon measures. But by Remark \ref{remarkradon}, all measures involved in \eqref{riesz} are Radon, so \eqref{riesz} still holds.
+%\ignore{
+%To show that $\what\mu\circ \what g \asymp_\times |\overline g'|^{\w\delta}\what\mu$ (cf. Footnote \ref{footnotenonstandardderivative}), we will use the Radon property. The measures $\what\nu_1 := \what\mu\circ \what g$ and $\what\nu_2 := |\overline g'|^{\w\delta}\what\mu$ are Radon by (i) and (ii) of Remark \ref{remarkradon}, respectively. Let $C$ be the implied constant of \eqref{conformalf}. Then for all continuous $f:\what X\to (0,\infty)$,
+%\[
+%C\int f\;\dee\what\nu_1 - \int f\;\dee\what\nu_2 \geq 0 \text{ and }C\int f \;\dee \what\nu_2 - \int f\;\dee\what\nu_1 \geq 0,
+%\]
+%i.e. the linear functionals $I_1[f] = C\int f\;\dee\what\nu_1 - \int f\;\dee\what\nu_2$ and $I_2[f] = C\int f \;\dee \what\nu_2 - \int f\;\dee\what\nu_1$ are positive. Thus by the Riesz representation theorem, there exist Radon measures $\what\gamma_1,\what\gamma_2$ such that $I_{\what\gamma_i} = I_i$ ($i = 1,2$). The uniqueness assertion of the Riesz representation theorem then guarantees that
+%\[
+%\what\gamma_1 + \what\nu_2 = C\what\nu_1 \text{ and } \what\gamma_2 + \what\nu_1 = C\what\nu_2.
+%\]
+%In particular, $C\what\nu_1 \geq \what\nu_2$, and $C\what\nu_2 \geq \what\nu_1$. This completes the proof.
+%}% end ignore
+\end{proof}
+
+\begin{remark}
+\label{remarksamuelsmirnov}
+In this lemma we used the final assertion of Proposition \ref{propositionsamuelsmirnov} in a nontrivial way. The proof of this lemma would not work for the Stone--\v Cech compactification, except in the case $\delta < \infty$, in which case the uniform continuity of $f$ is not necessary in the proof of Theorem \ref{theorempattersonsullivangeneral}.
+\end{remark}
+
+\begin{lemma}[Intersecting Shadows Lemma on $\what X$; cf. Lemma \ref{lemmatau}]
+\label{lemmataunonstandard}
+For each $\sigma > 0$, there exists $\tau = \tau_\sigma > 0$ such that for all $x,y,z\in X$ satisfying $\dist(z,y)\geq \dist(z,x)$ and $\what\Shad_z(x,\sigma)\cap \what\Shad_z(y,\sigma)\neq\emptyset$, we have
+\begin{equation}
+\label{shadcontainmentnonstandard}
+\what\Shad_z(y,\sigma) \subset \what\Shad_z(x,\tau)
+\end{equation}
+and
+\begin{equation}
+\label{distbusemannnonstandard}
+\dist(x,y) \asymp_{\plus,\sigma} \dist(z,y) - \dist(z,x).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The proof of Lemma \ref{lemmatau} goes through with no modifications needed.
+\end{proof}
+
+\section{The main argument}
+
+\begin{proposition}[Generalization/nonstandard version of Theorem \ref{theoremahlforsthurston}(A) \implies (B)]
+\label{propositionahlforsthurston}
+Let $\what\mu$ be a $\w\delta$-quasiconformal measure on $\what{\del X}$ which is not a pointmass supported on a standard point. If $G$ is of generalized divergence type, then $\what\mu(\Lr(G)) > 0$.
+\end{proposition}
+\begin{proof}
+Fix $\sigma > 0$ large enough so that Sullivan's Shadow Lemma \ref{lemmasullivanshadownonstandard} holds. Let $\rho > 0$ be large enough so that there exists a maximal $\rho$-separated set $S_\rho\subset G(\zero)$ which has finite intersection with bounded sets (cf. Proposition \ref{propositionbasicmodified}(iii)). Let $(x_n)_1^\infty$ be an indexing of $S_\rho$. By Lemma \ref{lemmaradialstandard}, we have 
+\[
+\bigcap_{N\in\N}\bigcup_{n\geq N}\what\Shad(x_n,\sigma + \rho) \subset \Lr(G).
+\] 
+By contradiction suppose that $\what\mu(\Lr(G)) = 0$. Fix $\epsilon > 0$ small to be determined. Then there exists $N\in\N$ such that
+\[
+\what\mu\left(\bigcup_{n\geq N}\what\Shad(x_n,\sigma + \rho)\right) \leq \epsilon.
+\]
+Let $R = \rho + \max_{n < N}\dox{x_n}$. Then
+\[
+\what\mu\left(\bigcup_{\substack{g\in G \\ \dogo g >
+R}}\what\Shad(g(\zero),\sigma)\right) \leq \epsilon. 
+\]
+We shall prove the following.
+
+\begin{observation}
+\label{observationhypothesis}
+If $A\subset G(\zero)$ is any subcollection satisfying
+\begin{itemize}
+\item [(I)] $\dox x > R$ for all $x\in A$, and
+\item [(II)] $(\what\Shad(x,\sigma))_{x\in A}$ are disjoint,
+\end{itemize}
+then
+\begin{equation}
+\label{hypothesis}
+\sum_{x\in A}b^{-s\dox x} \lesssim_\times \epsilon.
+\end{equation}
+\end{observation}
+\begin{subproof}
+The disjointness condition guarantees that
+\[
+\sum_{x\in A}\what\mu(\what\Shad(x,\sigma)) \leq \what\mu\left(\bigcup_{\substack{g\in G \\ \dogo g > R}}\what\Shad(g_n(\zero),\sigma)\right) \leq \epsilon.
+\]
+Combining with Sullivan's Shadow Lemma \ref{lemmasullivanshadownonstandard} yields \eqref{hypothesis}.
+\end{subproof}
+
+Now choose $R' > R$ and $\sigma' > \sigma$ large to be determined. Let $S_{R'}$ be a maximal $R'$-separated subset of $G(\zero)$. For convenience we assume $\zero\in S_{R'}$. By Proposition \ref{propositionbasicmodified}(iv), if $R'$ is sufficiently large then $\Sigma_{\w\delta}(S_{R'}) = \infty$ if and only if $\w\delta$ is of generalized divergence type. So to complete the proof, it suffices to show that
+\[
+\Sigma_{\w\delta}(S_{R'}) < \infty.
+\]
+\begin{notation}
+\label{notationpartialorder}
+Let $(x_i)_1^\infty$ be an indexing of $S_{R'}$ such that $i < j$ implies $\dox{x_i} \leq \dox{x_j}$. For $x_i,x_j\in S_{R'}$ distinct, we write $x_i < x_j$ if
+\begin{itemize}
+\item [(I)] $i < j$ and
+\item [(II)] $\what\Shad(x_i,\sigma')\cap\what\Shad(x_j,\sigma')\neq\emptyset$.
+\end{itemize}
+(This is just a notation, it does not mean that $<$ is a partial order on $S_{R'}$.)
+\end{notation}
+\begin{lemma}
+\label{lemmaahlforsdisjoint}
+If $R'$ and $\sigma'$ are sufficiently large (with $\sigma'$ chosen first), then
+\[
+x < y \;\;\Rightarrow\;\; \what\Shad_x(y,\sigma) \subset \what\Shad(y,\sigma').
+\]
+\end{lemma}
+\begin{subproof}
+Suppose $x < y$; then $\what\Shad(x,\sigma')\cap\what\Shad(y,\sigma')\neq\emptyset$. By the Intersecting Shadows Lemma \ref{lemmataunonstandard}, we have $\dist(x,y) \asymp_{\plus,\sigma'} \dox y - \dox x$. On the other hand, since $S_{R'}$ is $R'$-separated we have $\dist(x,y) \geq R'$. Thus
+\[
+\lb \zero|x\rb_y \gtrsim_{\plus,\sigma'} R'.
+\]
+Now for any $\xihat\in\what X$, we have
+\[
+\lb x|\xihat\rb_y \gtrsim_\plus \min(\lb \zero|\xihat\rb_y,\lb \zero|x\rb_y).
+\]
+Thus if $\xihat\in\what\Shad_x(y,\sigma)$, then
+\[
+\sigma \gtrsim_\plus \lb \zero|\xihat\rb_y \text{ or } \sigma \gtrsim_{\plus,\sigma'} R'.
+\]
+Let $\sigma'$ be $\sigma$ plus the implied constant of the first asymptotic, and then let $R'$ be $\sigma + 1$ plus the implied constant of the second asymptotic. Then the second asymptotic is automatically impossible, so
+\[
+\lb \zero|\xihat\rb_y \leq \sigma',
+\]
+i.e. $\xihat\in\what\Shad(y,\sigma')$.
+\end{subproof}
+If $x\in S_{R'}$ is fixed, let us call $y\in S_{R'}$ an \emph{immediate successor} of $x$ if $x < y$ but there is no $z$ such that $x < z < y$. We denote by $S_{R'}(x)$ the collection of all immediate successors of $x$.
+
+\begin{lemma}
+\label{lemmasuccessors}
+For each $z\in S_{R'}$, we have
+\begin{equation}
+\label{successors}
+\sum_{y\in S_{R'}(z)}b^{-s\dox y} \lesssim_\times \epsilon b^{-s\dox z}.
+\end{equation}
+\end{lemma}
+\begin{subproof}
+We claim first that the collection $(\what\Shad(y,\sigma'))_{y\in S_{R'}(z)}$ consists of mutually disjoint sets. Indeed, if $\what\Shad(y_1,\sigma')\cap \what\Shad(y_2,\sigma')\neq\emptyset$ for some distinct $y_1,y_2\in S_{R'}(z)$, then we would have either $z < y_1 < y_2$ or $z < y_2 < y_1$, contradicting the definition of immediate successor. Combining with Lemma \ref{lemmaahlforsdisjoint}, we see that the collection $(\what\Shad_z(y,\sigma))_{y\in S_{R'}(z)}$ also consists of mutually disjoint sets.
+
+Fix $g\in G$ such that $g(\zero) = z$. We claim that the collection
+\[
+A = g^{-1}(S_{R'}(z))
+\]
+satisfies the hypotheses of Observation \ref{observationhypothesis}. Indeed, as $\zero\notin A$ (since $z\notin S_{R'}(z)$) and as $g$ is an isometry of $X$, (I) follows from the fact that $S_{R'}$ is $R'$-separated and $R' > R$. Since $\what\Shad(g^{-1}(y),\sigma) = g^{-1}(\what\Shad_z(y,\sigma))$ for all $y\in S_{R'}(z)$, the collection $(\what\Shad(x,\sigma))_{x\in A}$ consists of mutually disjoint sets, meaning that (II) holds. Thus, by Observation \ref{observationhypothesis}, we have
+\[
+\sum_{x\in A}b^{-s\dox x} \lesssim_\times \epsilon,
+\]
+or, since $g$ is an isometry of $X$ and $z=g(\zero)$,
+\[
+\sum_{y\in S_{R'}(z)}b^{-s\dist(z,y)} \lesssim_\times \epsilon.
+\]
+Inserting \eqref{distbusemannnonstandard} into the last inequality yields \eqref{successors}.
+\end{subproof}
+
+Using Lemma \ref{lemmasuccessors}, we complete the proof. Define the sequence $(S_n)_{n = 0}^\infty$ inductively as follows:
+\begin{align*}
+S_0 &= \{\zero\}, \\
+S_{n + 1} &= \bigcup_{x\in S_n}S_{R'}(x). 
+\end{align*}
+Clearly, all immediate successors of all points of $\bigcup_{n\geq 0}S_n$ belong to $\bigcup_{n\geq 0}S_n$. We claim that
+\[
+S_{R'} = \bigcup_{n\geq 0}S_n.
+\]
+Indeed, let $(x_i)_1^\infty$ be the indexing of $S_{R'}$ considered in Notation \ref{notationpartialorder}, and by induction suppose that $x_i\in \bigcup_1^\infty S_n$ for all $i < j$. If $j = 0$, then $x_j = \zero\in S_0$. Otherwise, let $i < j$ be maximal satisfying $x_i < x_j$. Then $x_j$ is an immediate successor of $x_i\in \bigcup_1^\infty S_n$, so $x_j\in \bigcup_1^\infty S_n$.
+
+Summing \eqref{successors} over all $x\in S_n$, we have
+\[
+\sum_{y\in S_{n + 1}}b^{-s\dox y} \lesssim_\times \epsilon
+\sum_{x\in S_n}b^{-s\dox x}. 
+\]
+Set $\epsilon$ equal to $1/2$ divided by the implied constant, so that
+\[
+\sum_{y\in S_{n + 1}}b^{-s\dox y} \leq \frac12 \sum_{x\in S_n}b^{-s\dox x}.
+\]
+Applying the Ratio Test, we see that the series $\Sigma_{\w\delta}(S_{R'})$ converges, contradicting that $G$ was of generalized divergence type. 
+\end{proof}
+
+\begin{corollary}
+\label{corollaryahlforsthurston}
+Let $\what\mu$ be a $\w\delta$-quasiconformal measure on $\what{\del X}$. If $G$ is of generalized divergence type, then $\what\mu(\Lr(G)) = 1$.
+\end{corollary}
+\begin{proof}
+By contradiction suppose not. Then $\what\nu := \what\mu\given \what{\del X}\butnot\Lr(G)$ is a $\w\delta$-quasiconformal measure on $\what{\del X}$ which gives zero measure to $\Lr(G)$, contradicting Proposition \ref{propositionahlforsthurston}.
+\end{proof}
+
+\section{End of the argument}
+We now complete the proof of Theorem \ref{theoremahlforsthurstongeneral}:
+
+\begin{proof}[Proof of Theorem \ref{theoremahlforsthurstongeneral}]
+Let $\what\mu$ be the $\w\delta$-quasiconformal measure supported on $\what{\del X}$ guaranteed by Lemma \ref{lemmapattersonsullivannonstandard}. By Corollary \ref{corollaryquasiconformalpointmass}, $\what\mu$ is not a pointmass supported on a standard point. By Corollary \ref{corollaryahlforsthurston}, $\what\mu$ is supported on $\Lr(G) \subset \del X$. This completes the proof of the existence assertion.
+
+Suppose that $\mu_1,\mu_2$ are two $\w\delta$-quasiconformal measures on $\del X$. By Corollary \ref{corollaryahlforsthurston}, $\mu_1$ and $\mu_2$ are both supported on $\Lr(G)$.
+
+Suppose first that $\mu_1,\mu_2$ are supported on $\Lrsigma$ for some $\sigma > 0$. Fix an open set $U\subset\del X$. By the Vitali covering theorem, there exists a collection of disjoint shadows $(\Shad(g(\zero),\sigma))_{g\in A}$ contained in $U$ such that 
+\[
+\mu_1(U\butnot \bigcup_{g\in A}\Shad(g(\zero),\sigma)) = 0.
+\]
+Then we have 
+\begin{align*}
+\mu_1(U) = \sum_{g\in A} \mu_1(\Shad(g(\zero),\sigma)) 
+&\asymp_{\times,\mu_1} \sum_{g\in A} b^{-s\dogo g}\\
+&\asymp_{\times,\mu_2} \sum_{g\in A} \mu_2(\Shad(g(\zero),\sigma))\\
+&\leq \mu_2(U).
+\end{align*}
+A similar argument shows that $\mu_2(U) \lesssim_\times \mu_1(U)$. Since $U$ was arbitrary, a standard approximation argument shows that $\mu_1\asymp_\times \mu_2$. It follows that any individual measure $\mu$ supported on $\Lrsigma$ is ergodic, because if $A$ is an invariant set with $0 < \mu(A) < 1$ then $\frac{1}{\mu(A)}\mu\given A$ and $\frac{1}{1 - \mu(A)}\mu\given (\Lr\butnot A)$ are two measures which are not asymptotic, a contradiction.
+
+In the general case, define the function $f:\Lr\to \Rplus$ by
+\[
+f(\xi) = \sup\{\sigma > 0 : \exists g\in G \;\; g(\xi)\in\Lrsigma\}.
+\]
+By Proposition \ref{propositionnearinvariance}, $f(\xi) < \infty$ for all $\xi\in\Lr$. On the other hand, $f$ is $G$-invariant. Now let $\mu$ be a $\w\delta$-quasiconformal measure on $\Lr$. Then for each $\sigma_0 < \infty$ the measure $\mu\given f^{-1}([0,\sigma_0])$ is supported on $\Lambda_{\mathrm r, \sigma_0}$, and is therefore ergodic; thus $f$ is constant $\mu\given f^{-1}([0,\sigma_0])$-a.s. It is clear that this constant value is independent of $\sigma_0$ for large enough $\sigma_0$, so $f$ is constant $\mu$-a.s. Thus there exists $\sigma > 0$ such that $\mu$ is supported on $\Lrsigma$, and we can reduce to the previous case.
+\end{proof}
+
+
+\section{Necessity of the generalized divergence type assumption}
+The proof of Theorem \ref{theoremahlforsthurstongeneral} makes crucial use of the generalized divergence type assumption, just as the proof of Theorem \ref{theorempattersonsullivangeneral} made crucial use of the compact type assumption. What happens if neither of these assumptions holds? Then there may not be a $\w\delta$-quasiconformal measures supported on the limit set, as we now show:
+
+\begin{proposition}
+\label{propositioncounterexample}
+There exists a strongly discrete group of general type $G\leq\Isom(\H^\infty)$ satisfying $\delta < \infty$, such that there does not exist any quasiconformal measure supported on $\Lambda$.
+\end{proposition}
+\begin{proof}
+The idea is to first construct such a group in an $\R$-tree, and then to use a BIM embedding (Theorem \ref{theoremBIM}) to get an example in $\H^\infty$. Fix a sequence of numbers $(a_k)_1^\infty$. For each $k$ let $\Gamma_k = \{e,\gamma_k\} \equiv \Z_2$, and let $\|\cdot\|:\Gamma_k\to\R$ be defined by $\|\gamma_k\| = a_k$, $\|e\| = 0$. Clearly, the function $\|\cdot\|$ is tree-geometric in the sense of Definition \ref{definitiontreegeometric}, so by Theorem \ref{theoremschottkyproductRtree}, the function $\|\cdot\|:\Gamma\to\Rplus$ defined by \eqref{schottkyproductRtree} is tree-geometric, where $\Gamma = \ast_{k\in\N} \Gamma_k$. So there exist an $\R$-tree $X$ and a homomorphism $\phi:\Gamma\to\Isom(X)$ such that $\dogo{\phi(\gamma)} = \|\gamma\| \all\gamma\in\Gamma$. Let $G = \phi(\Gamma)$.
+\begin{claim}
+If the sequences $(a_k)_1^\infty$ is chosen appropriately, then $G$ is of convergence type.
+\end{claim}
+\begin{subproof}
+For $s\geq 0$ we have
+\begin{align*}
+\Sigma_s(G) - 1 &= \sum_{g\in G\butnot\{\id\}} e^{-s\dogo g}\\
+&= \sum_{(k_1,\gamma_1)\cdots(k_n,\gamma_n)\in (\Gamma_E)^*\butnot\{\smallemptyset\}} \exp\big(-s\big[a_{k_1} +\ldots + a_{k_n}\big]\big)\\
+&= \sum_{n\in\N} \sum_{k_1\neq k_2\neq \cdots \neq k_n} \sum_{\gamma_1\in \Gamma_{k_1}\butnot\{e\}}\cdots\sum_{\gamma_n\in \Gamma_{k_n}\butnot\{e\}} \exp\big(-s\big[a_{k_1} + \ldots + a_{k_n}\big]\big)\\
+&= \sum_{n\in\N} \sum_{k_1\neq k_2\neq \cdots \neq k_n} \prod_{i = 1}^n e^{-s a_{k_i}}\\
+\Sigma_s(G) &\leq 1 + \sum_{n\in\N} \left( \sum_{k\in\N} e^{-s a_k}\right)^n\\
+\Sigma_s(G) &\geq 1 + \sum_{k\in\N} e^{-s a_k}.
+\end{align*}
+Thus, letting
+\[
+P_s = \sum_{k\in\N} e^{-s a_k},
+\]
+we have
+\begin{equation}
+\label{esak}
+\begin{cases}
+\Sigma_s(G) < \infty & \text{ if } P_s < 1 \\
+\Sigma_s(G) = \infty & \text{ if } P_s = \infty
+\end{cases}.
+\end{equation}
+Now clearly, there exists a sequence $(a_k)_1^\infty$ such that $P_{1/2} < 1$ but $P_s = \infty$ for all $s < 1/2$; for example, take $a_k = \log(k) + 2\log\log(k) + C$ for sufficiently large $C$.
+\end{subproof}
+\begin{claim}
+$\Lambda(G) = \Lr(G)$.
+\end{claim}
+\begin{subproof}
+For all $\xi\in\LambdaG$, the path traced by the geodesic ray $\geo\zero\xi$ in $X/G$ is the concatenation of infinitely many paths of the form $\geo\zero{g(\zero)}$, where $g\in \bigcup_{n\in\N}\phi(\Gamma_n)$. Each such path crosses $\zero$, so the path traced by the geodesic ray $\geo\zero\xi$ in $X/G$ crosses $\zero$ infinitely often. Equivalently, the geodesic ray $\geo\zero\xi$ crosses $G(\zero)$ infinitely often. By Proposition \ref{propositionradialconvergence}, this implies that $\xi\in\Lr(G)$.
+\end{subproof}
+
+Now let $\w G$ be the image of $G$ under a BIM representation (cf. Theorem \ref{theoremBIM}). By Remark \ref{remarkBIM}, $\w G$ is of convergence type and $\Lambda(\w G) = \Lr(\w G)$. The proof is completed by the following lemma:
+
+\begin{lemma}
+\label{lemmaconvergencetype}
+If the group $G$ is of generalized convergence type and $\mu$ is a $\w\delta$-quasiconformal measure, then $\mu(\Lr) = 0$.
+\end{lemma}
+\begin{subproof}
+Fix $\sigma > 0$ large enough so that Sullivan's Shadow Lemma \ref{lemmasullivanshadow} holds. Fix $\rho > 0$ and a maximal $\rho$-separated set $S_\rho\subset G(\zero)$ such that $\Sigma_{\w\delta}(S_\rho) < \infty$. Then
+\[
+\sum_{x\in S_\rho} \mu(\Shad(x,\rho + \sigma)) \asymp_{\times,\rho,\sigma} \sum_{x\in S_\rho} b^{-\w\delta\dox x} < \infty.
+\]
+On the other hand, $\Lrsigma\subset\limsup_{x\in S_\rho} \Shad(x,\rho + \sigma)$. So by the Borel--Cantelli lemma, $\mu(\Lrsigma) = 0$. Since $\sigma$ was arbitrary, $\mu(\Lr) = 0$.
+\end{subproof}
+\end{proof}
+
+
+Combining Theorem \ref{theoremahlforsthurstongeneral} and Lemma \ref{lemmaconvergencetype} yields the following:
+
+\begin{proposition}
+\label{propositiondivtypedichotomy}
+Let $G\leq\Isom(X)$ be a nonelementary group with $\w\delta < \infty$. Then the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is of generalized divergence type.
+\item[(B)] There exists a $\w\delta$-conformal measure $\mu$ on $\Lambda$ satisfying $\mu(\Lr) > 0$.
+\item[(C)] Every $\w\delta$-conformal measure $\mu$ on $\Lambda$ satisfies $\mu(\Lr) = 1$.
+\item[(D)] There exists a unique $\w\delta$-conformal measure $\mu$ on $\Lambda$, and it satisfies $\mu(\Lr) = 1$.
+\end{itemize}
+\end{proposition}
+
+\section{Orbital counting functions of nonelementary groups}
+Theorem \ref{theoremahlforsthurston} allows us to prove the following result which, on the face of it, does not involve quasiconformal measures at all:
+
+\begin{corollary}
+\label{corollaryupperorbitalbound}
+Let $G\leq\Isom(X)$ be nonelementary and satisfy $\delta < \infty$. Then
+\[
+\NN_{X,G}(\rho) \lesssim_\times b^{\delta\rho} \all \rho\geq 0.
+\]
+\end{corollary}
+\begin{proof}
+If $G$ is of convergence type, then the bound is obvious, as
+\[
+b^{-\delta \rho} \NN_{X,G}(\rho) \leq \sum_{\substack{g\in G \\ \dogo g \leq \rho}} b^{-\delta\dogo g} \leq \Sigma_\delta(G) < \infty.
+\]
+On the other hand, if $G$ is of divergence type, then by Theorem \ref{theoremahlforsthurstongeneral}, there exists a $\delta$-conformal measure $\mu$ on $\Lambda$, which is not a pointmass by Corollary \ref{corollaryquasiconformalpointmass} and Proposition \ref{propositionnonelementaryequivalent}(C). Remark \ref{remarkupperorbitalbound} finishes the proof.
+\end{proof}
+
+We contrast this with a philosophically related result whose proof uses the Ahlfors regular measures constructed in the proof of Theorem \ref{theorembishopjonesregular}:
+
+\begin{proposition}
+Let $G\leq\Isom(X)$ be a nonelementary and strongly discrete. Then
+\[
+\frac{\log_b\NN_{X,G}(\rho)}{\rho} \tendsto{\rho\to\infty} \delta.
+\]
+\end{proposition}
+\begin{proof}
+Fix $s < \delta$. By Theorem \ref{theorembishopjonesregular}, there exist $\tau > 0$ and an Ahlfors $s$-regular measure $\mu$ supported on $\Lurtau$. Now fix $\rho > 0$. By definition, for all $\xi\in\Lurtau$ there exists $g\in G$ such that $\rho - \tau \leq \|g\| \leq \rho$ and $\lb \zero | \xi \rb_{g(\zero)} \leq \tau$. Equivalently,
+\[
+\Lurtau \subset \bigcup_{\substack{g\in G \\ \rho - \tau \leq \|g\| \leq \rho}} \Shad(g(\zero),\tau).
+\]
+Applying $\mu$ to both sides gives
+\[
+1 \leq \sum_{\substack{g\in G \\ \rho - \tau \leq \|g\| \leq \rho}} \mu\big(\Shad(g(\zero),\tau)\big).
+\]
+By the Diameter of Shadows Lemma, $\Diam(\Shad(g(\zero),\tau)) \lesssim_{\times,s} b^{-\|g\|}$ and thus since $\mu$ is Ahlfors $s$-regular,
+\[
+\mu\big(\Shad(g(\zero),\tau)\big) \lesssim_{\times,s} b^{-s\|g\|} \asymp_{\times,s} b^{-s\rho}.
+\]
+So
+\[
+1 \lesssim_{\times,s} b^{-s\rho}\#\{g\in G : \rho - \tau \leq \|g\| \leq \rho\}
+\]
+and thus
+\[
+\#\{g\in G : \|g\| \leq \rho\} \gtrsim_{\times,s} b^{s\rho}.
+\]
+Since $s < \delta$ was arbitrary, we get
+\[
+\liminf_{\rho\to\infty} \frac{\log_b\#\{g\in G : \|g\| \leq \rho\}}{\rho} \geq \delta.
+\]
+Combining with \eqref{poincarealternate} completes the proof.
+\end{proof}

@@ -1,0 +1,143 @@
+VERDICT PRIM TTTATAAATTatAATA phi=-1,1 W0=A0.A0.A1.A2.a0.A1.A2.A2 kill=x3 A=[XYXXXYYxyyxxxyx,yyxxxyx] B=[yyxxxyx,XYXXXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyx A:XYXXXYYxyyxxxyx B:yyxxxyx B:Xyxxxyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTTATAAATATaattA phi=-1,1 W0=A0.A0.A1.A2.A2.A0.a2.a1 kill=x2 A=[YYXyXXYxyxxYxyy,xxYxyy] B=[xxYxyy,YYXyXXy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXX A:YYXyXXYxyxxYxyy B:YYXyXX B:YYXyXXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTTATAAtaTatAATA W0=A0.A0.A1.a2.a0.A1.A2.A2 whmin=8
+NONPRIM TTTATAAtaaTAtATA W0=A0.A0.A1.a2.a1.A0.A2.A2 whmin=8
+VERDICT PRIM TTTATAAtaaatAATA phi=-1,1 W0=A0.A0.A1.a2.a1.a0.A1.A2.A2 kill=x3 A=[XYxyyyx,XYYYXYYXyxyx] B=[XYYYXYYXyxyx,XYYYXYYXyxyXYxyyxyyyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XYxyyyx A:XYXYxyyxyyyx A:XYYYXYYXYYXyxYYXXYxyyxyyXYxyyxyyXYxyyxyyxyyyx A:yx B:XYYYXYYXyxyXYxyyxyyyx B:XYXYxyyxyyyx B:XYYYXYYXyxYXYxyyxyyXYxyyxyyXYxyyxyyyx B:XXYxyyxx] H=2 t=6 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTTATAAtaaattATA phi=-1,1 W0=A0.A0.A1.a2.a1.a0.A2.A2 kill=x3 A=[yyXYx,XyxYxYY] B=[XyxYxYY,XyxYXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyxYY A:yyXyXYx B:yyXyXYx B:XyxyXYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTTATAAtataTTAAA phi=-1,1 W0=A0.A0.A1.a2.a2.A0.A1.A2 kill=x3 A=[yxyxYx,XyXYXXYXY] B=[XyXYXXYXY,XyXYYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyxYx A:yxyxxyxYx B:yxyxxyxYx B:XyyxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTTATAAtataTatAA W0=A0.A0.A1.a2.a2.a0.A1.A2 whmin=8
+VERDICT PRIM TTTATAAtataaTAAA phi=-1,1 W0=A0.A0.A1.a2.a1.a0.a2.a2.a1 kill=x3 A=[XXYYXXYxyxxyyxx,XXYYXXYXyxxyyyxxyyxx] B=[XXYYXXYXyxxyyyxxyyxx,XXYYXXYXyxxYXXYxyxxyyxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXYYXXYXyxxyyyxxyyxx A:XXYYXXYxyxxyyxx B:XXYYXXYXyxxyXXYxyxxyyxx B:XXYYXXYXyxxyyyxxyyxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTTATAAtataaTAtA W0=A0.A0.A1.a2.a0.a2.a2.a1 whmin=8
+VERDICT PRIM TTTATAAtataaatAA phi=-1,1 W0=A0.A0.A1.A2.a1.a0.a2.a2.a1 kill=x3 A=[YXXyxYxxy,YXXyXYxxyy] B=[YXXyXYxxyy,YXXyXYxxxxYXXyxYxxy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXXyxYxxy A:YXXyxYxxy B:YYXXyxYxxy B:YXXyXYxxxxYXXyxYxxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTTATAtATATaatAA W0=A0.A0.a1.a2.A1.A0.A2.A2 whmin=8
+VERDICT PRIM TTTATAttataaTAAA phi=-1,1 W0=A0.A0.A1.a2.a1.a0.a2.a2 kill=x3 A=[XYYXYxx,XXyxyyyxyyx] B=[XXyxyyyxyyx,XXyxYXYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXyxyyyxyyx A:XXyxyyx B:XXyxyyyxyyx B:XXyxyXYxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTTAAtataaTATAtA W0=A0.A0.A1.a2.a2.a0.a2.a1 whmin=8
+NONPRIM TTATTATTaaTAAtaa W0=A0.A0.A1.A1.A2.A2.A0.a2 whmin=8
+NONPRIM TTATTATTaatAAtaa W0=A0.A0.A1.A1.A2.A2.a0.a2 whmin=8
+NONPRIM TTATTATaaTAAttaa W0=A0.A0.A1.A1.A2.A0.a2.a2 whmin=8
+NONPRIM TTATTATaatAATTaa W0=A0.A0.A1.A1.A2.a0.A2.A2 whmin=8
+NONPRIM TTATTATaatAAttaa W0=A0.A0.A1.A1.A2.a0.a2.a2 whmin=8
+NONPRIM TTATTAtaaTAATTaa W0=A0.A0.A1.A1.a2.A0.A2.A2 whmin=8
+NONPRIM TTATTAtaaTAAttaa W0=A0.A0.A1.A1.a2.A0.a2.a2 whmin=7
+NONPRIM TTATTAtaatAATTaa W0=A0.A0.A1.A1.a2.a0.A2.A2 whmin=8
+NONPRIM TTATTAttaaTAATaa W0=A0.A0.A1.A1.a2.a2.A0.A2 whmin=8
+NONPRIM TTATTAttaaTAAtaa W0=A0.A0.A1.A1.a2.a2.A0.a2 whmin=7
+NONPRIM TTATTAttaatAATaa W0=A0.A0.A1.A1.a2.a2.a0.A2 whmin=8
+NONPRIM TTATATTaTaTAAtaa W0=A0.A0.A1.A2.A2.a0.A2.A1 whmin=7
+NONPRIM TTATATTaTatAATaa W0=A0.A0.A1.A2.A2.A0.a2.A1 whmin=8
+NONPRIM TTATATTaTatAAtaa W0=A0.A0.A1.A2.A2.a0.a2.A1 whmin=8
+VERDICT PRIM TTATATTaaTATAtaa phi=-1,0 W0=A0.A0.A1.A2.A2.A0.A1.a2 kill=x3 A=[YYxxY,yXXyyXyy] B=[yXXyyXyy,yXXYxxY] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yXXyyXyy A:YYxxY B:yXXyyXyy B:yXXyxxY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATATTaaTAAtata phi=-1,0 W0=A0.A0.A1.A2.A2.A0.a2.a1 kill=x2 A=[YYXyXXYxyxxYxyy,xxYxyy] B=[xxYxyy,YYXyXXy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYXyXX A:YYXyXXYxyxxYxyy B:YYXyXX B:YYXyXXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATATTaaTAtAtaa W0=A0.A0.A1.A2.A2.A0.a1.a2 whmin=8
+NONPRIM TTATATTaatATAtaa W0=A0.A0.A1.A2.A2.a0.A1.a2 whmin=8
+NONPRIM TTATATTaatAATata W0=A0.A0.A1.A2.A2.a0.A2.a1 whmin=8
+VERDICT PRIM TTATATTaatAAtata phi=-1,0 W0=A0.A0.A1.A2.A2.a0.a2.a1 kill=x2 A=[YYxyXXYxyxxYXyy,YXyxxYXyy] B=[YXyxxYXyy,YYxyXXy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXyxxYXyy A:YYxyXXYxyxxYXyy B:YXyxxYXyy B:YYxyXXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATATTaatAtAtaa W0=A0.A0.A1.A2.A2.a0.a1.a2 whmin=7
+NONPRIM TTATATaTaTAAttaa W0=A0.A0.A1.A2.A1.A0.a2.a2 whmin=7
+NONPRIM TTATATaTatAATTaa W0=A0.A0.A1.A2.A1.a0.A2.A2 whmin=8
+NONPRIM TTATATaTatAAttaa W0=A0.A0.A1.A2.A1.a0.a2.a2 whmin=8
+VERDICT PRIM TTATATaaTATAttaa phi=-1,0 W0=A0.A0.A1.A2.A0.A1.a2.a2 kill=x3 A=[YxxYY,yyXXyXy] B=[yyXXyXy,yyXXYxxYY] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YxYxxYY A:YxxYY B:YxYxxYY B:yyXXyxxYY] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATATaaTAAttaTa W0=A0.A0.A1.A2.A0.a2.a2.A1 whmin=8
+VERDICT PRIM TTATATaaTAAttata phi=-1,0 W0=A0.A0.A1.A2.A0.a2.a2.a1 kill=x2 A=[YYxyxxYxyXXYXyy,YXyXXYXyy] B=[YXyXXYXyy,YYxyxxy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxyxxYxy A:YYxyxxYxyXXYXyy B:YYxyxxy B:YYxyxxYxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATATaaTAtAttaa W0=A0.A0.A1.A2.A0.a1.a2.a2 whmin=8
+VERDICT PRIM TTATATaatATATTaa phi=-1,0 W0=A0.A0.A1.A2.a0.A1.A2.A2 kill=x3 A=[XYXXXYYxyyxxxyx,yyxxxyx] B=[yyxxxyx,XYXXXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyxxxyx A:XYXXXYYxyyxxxyx B:yyxxxyx B:Xyxxxyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATATaatATAttaa W0=A0.A0.A1.A2.a0.A1.a2.a2 whmin=8
+NONPRIM TTATATaatAATTata W0=A0.A0.A1.A2.a0.A2.A2.a1 whmin=8
+NONPRIM TTATATaatAAttaTa W0=A0.A0.A1.A2.a0.a2.a2.A1 whmin=8
+NONPRIM TTATATaatAtATTaa W0=A0.A0.A1.A2.a0.a1.A2.A2 whmin=8
+NONPRIM TTATATataTAAttaa W0=A0.A0.A1.A2.a1.A0.a2.a2 whmin=8
+VERDICT PRIM TTATATatatAATTaa phi=-1,0 W0=A0.A0.A1.A2.a1.a0.A2.A2 kill=x3 A=[YxYYxx,XXyyXyXyyXy] B=[XXyyXyXyyXy,XXyyXYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXyyXyXyyXy A:XXyyXy B:XXyyXyXyyXy B:XXyyXYxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAAtaTTAAtata phi=-1,1 W0=A0.A0.A1.a2.A0.A1.a2.a2 kill=x3 A=[XYxYYxx,XXyyXyyyXyx] B=[XXyyXyyyXyx,XXyyXyxYYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXyyXyyyXyx A:XXyyXyx B:XXyyXyyyXyx B:XXyyXyxYYxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAAtaaTAAtata phi=-1,1 W0=A0.A0.A1.a2.a1.A0.A1.a2.a2 kill=x3 A=[XYXYYxyyxyx,XYXYYXXyyxyxyyxyx] B=[XYXYYXXyyxyxyyxyx,XYXYYXXyyxYxxyyxyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XYXYYXXyyxyxyyxyx A:XYXYYxyyxyx B:XYXYYXXyyxyxyyxyx B:XYXYYXXyyxYxxyyxyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAtATATaTAAta phi=-1,1 W0=A0.A0.a1.A2.A1.a0.A2.A2 kill=x3 A=[xyxyyx,yxyyxxyxyyx] B=[yxyyxxyxyyx,XYYXYXXYYXyxxyxyyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyxxyxyyx A:xyxyyx B:yxyyxxyxyyx B:XYYXYXXYxyyxxyxyyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAtATATaatAta phi=-1,1 W0=A0.A0.a1.a2.A1.a0.A2.A2 kill=x3 A=[yyXYx,XyyXYxyyXYx] B=[XyyXYxyyXYx,XyxYYXyxYXYxyyXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyxYY A:XyyXYxyyXYx B:XyyXYxyyXYx B:XyxYYXyxyXYxyyXYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAtATaTAAtata phi=-1,1 W0=A0.A0.a1.a2.A1.a0.a2.a2 kill=x3 A=[yyXyx,XyyXyxyyXyx] B=[XyyXyxyyXyx,XYxYYXYxyXyxyyXyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyyXyxyyXyx A:XYxYY B:XyyXyxyyXyx B:XYxYYXYxyXyxyyXyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATAtaTaTAATTaa W0=A0.A0.A1.a2.A1.A0.A2.A2 whmin=7
+NONPRIM TTATAtaTaTAAttaa W0=A0.A0.A1.a2.A1.A0.a2.a2 whmin=8
+NONPRIM TTATAtaTatAATTaa W0=A0.A0.A1.a2.A1.a0.A2.A2 whmin=8
+VERDICT PRIM TTATAtaaTATAttaa phi=-1,0 W0=A0.A0.A1.a2.A0.A1.a2.a2 kill=x3 A=[XYxYYxx,XXyyXyyyXyx] B=[XXyyXyyyXyx,XXyyXyxYYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXyyXyyyXyx A:XXyyXyx B:XXyyXyyyXyx B:XXyyXyxYYxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAtaaTAATTata phi=-1,0 W0=A0.A0.A1.a2.A0.A2.A2.a1 kill=x3 A=[YxxYxYYxyXyXXy,yyXyXXy] B=[yyXyXXy,yXyXXy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yyXyXXy A:YxxYxYYxyXyXXy B:yyXyXXy B:yXyXXy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATAtaaTAAttaTa W0=A0.A0.A1.a2.A0.a2.a2.A1 whmin=8
+NONPRIM TTATAtaaTAtATTaa W0=A0.A0.A1.a2.A0.a1.A2.A2 whmin=8
+NONPRIM TTATAtaatATATTaa W0=A0.A0.A1.a2.a0.A1.A2.A2 whmin=8
+VERDICT PRIM TTATAtaatAATTata phi=-1,0 W0=A0.A0.A1.a2.a0.A2.A2.a1 kill=x3 A=[XYxyxyyxYXYXyx,YYXYXyx] B=[YYXYXyx,YXYXyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XYxyxyy A:XYxyxyyxYXYXyx B:XYxyxyy B:XYxyxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATAtaatAAttata W0=A0.A0.A1.a2.a0.a2.a2.a1 whmin=8
+NONPRIM TTATAtaatAtATTaa W0=A0.A0.A1.a2.a0.a1.A2.A2 whmin=7
+NONPRIM TTATAtataTAATTaa W0=A0.A0.A1.a2.a1.A0.A2.A2 whmin=8
+VERDICT PRIM TTATAtatatAATTaa phi=-1,0 W0=A0.A0.A1.a2.a1.a0.A2.A2 kill=x3 A=[yyXYx,XyxYxYY] B=[XyxYxYY,XyxYXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyxYY A:yyXyXYx B:yyXyXYx B:XyxyXYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAtatatAAttaa phi=1,0 W0=A0.A0.A1.a2.a1.a0.a2.a2 kill=x3 A=[XYYXYxx,XXyxyyyxyyx] B=[XXyxyyyxyyx,XXyxYXYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XXyxyyyxyyx A:XXyxyyx B:XXyxyyyxyyx B:XXyxyXYxx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATAttaTaTAATaa W0=A0.A0.A1.a2.a2.A1.A0.A2 whmin=7
+NONPRIM TTATAttaTaTAAtaa W0=A0.A0.A1.a2.a2.A1.A0.a2 whmin=8
+NONPRIM TTATAttaTatAATaa W0=A0.A0.A1.a2.a2.A1.a0.A2 whmin=8
+VERDICT PRIM TTATAttaaTATATaa phi=-1,0 W0=A0.A0.A1.a2.a2.A0.A1.A2 kill=x3 A=[yxyxYx,XyXYXXYXY] B=[XyXYXXYXY,XyXYYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyxYx A:yxyxxyxYx B:yxyxxyxYx B:XyyxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAttaaTATAtaa phi=-1,0 W0=A0.A0.A1.a2.a2.A0.A1.a2 kill=x3 A=[XYXYYx,Xyyxyxyyxyx] B=[Xyyxyxyyxyx,XyyxYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:Xyyxyx A:Xyyxyxyyxyx B:Xyyxyxyyxyx B:XyyxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTATAttaaTAATata phi=-1,0 W0=A0.A0.A1.a2.a2.A0.A2.a1 kill=x3 A=[YXYXXYYXYXyxxyxyyxxyxy,Yxyxyyxxyxy] B=[Yxyxyyxxyxy,yxxyxy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YXYXXYYXYXyxxyxyyxxyxy A:Yxyxyyxxyxy B:yxxyxy B:Yxyxyyxxyxy] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTATAttaaTAtATaa W0=A0.A0.A1.a2.a2.A0.a1.A2 whmin=8
+NONPRIM TTATAttaatATATaa W0=A0.A0.A1.a2.a2.a0.A1.A2 whmin=8
+NONPRIM TTATAttaatAAtata W0=A0.A0.A1.a2.a2.a0.a2.a1 whmin=8
+NONPRIM TTATAttaatAtAtaa W0=A0.A0.A1.a2.a2.a0.a1.a2 whmin=8
+NONPRIM TTATaTAATTaTAtaa W0=A0.A0.A1.A0.A2.A2.A1.a2 whmin=8
+NONPRIM TTATaTAATTatATaa W0=A0.A0.A1.A0.A2.A2.a1.A2 whmin=7
+NONPRIM TTATaTAATTatAtaa W0=A0.A0.A1.A0.A2.A2.a1.a2 whmin=8
+NONPRIM TTATaTAATaTAttaa W0=A0.A0.A1.A0.A2.A1.a2.a2 whmin=8
+NONPRIM TTATaTAATatATTaa W0=A0.A0.A1.A0.A2.a1.A2.A2 whmin=7
+NONPRIM TTATaTAATatAttaa W0=A0.A0.A1.A0.A2.a1.a2.a2 whmin=8
+NONPRIM TTATaTAAtaTATTaa W0=A0.A0.A1.A0.a2.A1.A2.A2 whmin=8
+NONPRIM TTATaTAAtaTAttaa W0=A0.A0.A1.A0.a2.A1.a2.a2 whmin=8
+NONPRIM TTATaTAAtatATTaa W0=A0.A0.A1.A0.a2.a1.A2.A2 whmin=8
+NONPRIM TTATaTAAttaTATaa W0=A0.A0.A1.A0.a2.a2.A1.A2 whmin=8
+NONPRIM TTATaTAAttaTAtaa W0=A0.A0.A1.A0.a2.a2.A1.a2 whmin=8
+NONPRIM TTATaTAAttatATaa W0=A0.A0.A1.A0.a2.a2.a1.A2 whmin=8
+NONPRIM TTATaaTTAATTaatA W0=A0.A0.A2.A2.A0.A1.A1.a2 whmin=8
+NONPRIM TTATaaTTAAttaaTA W0=A0.A0.A2.A1.A1.A0.a2.a2 whmin=8
+NONPRIM TTATaaTTAAttaatA W0=A0.A0.A2.A1.A1.a0.a2.a2 whmin=8
+NONPRIM TTATaaTAATTaattA W0=A0.A0.a1.a1.a2.a0.a2.a2 whmin=8
+NONPRIM TTATaatAATTaattA W0=A0.A0.a1.a1.a2.A0.a2.a2 whmin=7
+NONPRIM TTATaatAAttaattA W0=A0.A0.a1.a1.a2.A0.A2.A2 whmin=8
+NONPRIM TTATaattAATTaatA W0=A0.A0.a2.A1.A1.A0.a2.a2 whmin=7
+NONPRIM TTATaattAAttaatA W0=A0.A0.A2.A2.A0.a1.a1.a2 whmin=8
+NONPRIM TTATatAATTaTAtaa W0=A0.A0.A1.a0.A2.A2.A1.a2 whmin=7
+NONPRIM TTATatAATTatATaa W0=A0.A0.A1.a0.A2.A2.a1.A2 whmin=8
+NONPRIM TTATatAATTatAtaa W0=A0.A0.A1.a0.A2.A2.a1.a2 whmin=7
+NONPRIM TTATatAATaTAttaa W0=A0.A0.A1.a0.A2.A1.a2.a2 whmin=7
+NONPRIM TTATatAATatATTaa W0=A0.A0.A1.a0.A2.a1.A2.A2 whmin=8
+NONPRIM TTATatAAtaTATTaa W0=A0.A0.A1.a0.a2.A1.A2.A2 whmin=7
+NONPRIM TTATatAAtatATTaa W0=A0.A0.A1.a0.a2.a1.A2.A2 whmin=7
+NONPRIM TTATatAAttaTATaa W0=A0.A0.A1.a0.a2.a2.A1.A2 whmin=7
+NONPRIM TTAATTaaTATAtata W0=A0.A0.a1.a2.A1.A0.A2.A2 whmin=8
+NONPRIM TTAATTaaTAATatta W0=A0.A0.a1.a1.A2.A0.A2.A2 whmin=7
+NONPRIM TTAATTaaTAtATata W0=A0.A0.a1.A2.a1.A0.A2.A2 whmin=8
+NONPRIM TTAATTaaTAtAtata W0=A0.A0.a1.a2.a1.A0.A2.A2 whmin=7
+NONPRIM TTAATTaaTAttATaa W0=A0.A0.A2.A2.A0.a1.a1.A2 whmin=7
+NONPRIM TTAATTaatATTAtaa W0=A0.A0.A2.A2.a0.A1.A1.a2 whmin=8
+VERDICT PRIM TTAATTaatATATata phi=-1,0 W0=A0.A0.a1.A2.A1.a0.A2.A2 kill=x3 A=[xyxyyx,yxyyxxyxyyx] B=[yxyyxxyxyyx,XYYXYXXYYXyxxyxyyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:yxyyxxyxyyx A:xyxyyx B:yxyyxxyxyyx B:XYYXYXXYxyyxxyxyyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTAATTaatATAtata phi=-1,0 W0=A0.A0.a1.a2.A1.a0.A2.A2 kill=x3 A=[yyXYx,XyyXYxyyXYx] B=[XyyXYxyyXYx,XyxYYXyxYXYxyyXYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyxYY A:XyyXYxyyXYx B:XyyXYxyyXYx B:XyxYYXyxyXYxyyXYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTAATTaatAATatta W0=A0.A0.a1.a1.A2.a0.A2.A2 whmin=8
+NONPRIM TTAATTaatAtATata W0=A0.A0.a1.A2.a1.a0.A2.A2 whmin=8
+NONPRIM TTAATTatATaaTAta W0=A0.A0.a1.A0.A2.a1.A2.A2 whmin=8
+NONPRIM TTAATTatATaatAta W0=A0.A0.a1.A0.a2.a1.A2.A2 whmin=8
+VERDICT PRIM TTAATTataTAAtata phi=-1,0 W0=A0.A0.a1.A2.a0.a1.A2.A2 kill=x3 A=[x,XyXXXyy] B=[XyXXXyy,XXXyy] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:YYxxxYx A:x B:YYxxx B:YYxxxYx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTAATaTAATTatAta phi=-2,1 W0=A0.a1.A2.A0.a2.A1.a0.A2 kill=x3 A=[x,XyyXYxx] B=[XyyXYxx,XXyXYxx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XXyxYYx B:XXyxYYx B:XXyxYxx] H=2 t=4 hloops=0 tloops=0 cycle=True -> FAIL(alternating cycle)
+VERDICT PRIM TTAATaTAATaTAtta phi=-2,1 W0=A0.a1.A2.A0.a1.A2.A0.a2 kill=x3 A=[x,yxYYx] B=[yxYYx,YYx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:x A:XyyXY A:yxYYxyxYY B:yyy B:Xyy B:XyyXY] H=1 t=5 hloops=1 tloops=0 cycle=False -> PASS_HLOOP
+NONPRIM TTAATaTAttaaTAta W0=A0.A0.a1.A0.a2.a2.A1.A2 whmin=8
+NONPRIM TTAATaTaTATAttaa W0=A0.A0.a1.a2.a1.a0.a2.a2 whmin=8
+NONPRIM TTAATaTatATAttaa W0=A0.A0.a1.A2.a1.a0.a2.a2 whmin=8
+NONPRIM TTAATaTatAATTata W0=A0.A0.a1.A2.A2.A0.A1.a2 whmin=8
+NONPRIM TTAATaaTAATTatta W0=A0.A0.a1.a1.A2.A2.A0.A2 whmin=7
+NONPRIM TTAATaaTAtATTata W0=A0.A0.a1.A2.A2.A0.A2.a1 whmin=8
+NONPRIM TTAATaatATTAttaa W0=A0.A0.a1.a1.A2.a0.a2.a2 whmin=8
+NONPRIM TTAATaatAATTatta W0=A0.A0.a1.a1.A2.A2.A0.a2 whmin=8
+NONPRIM TTAATaatAtATTata W0=A0.A0.a1.A2.A2.A0.a2.a1 whmin=8
+NONPRIM TTAATatATTaaTAta W0=A0.A0.a1.A0.A2.A2.a1.A2 whmin=8
+NONPRIM TTAATatATTaatAta W0=A0.A0.a1.A0.A2.A2.a1.a2 whmin=8
+VERDICT PRIM TTAATataTATAttaa phi=-1,0 W0=A0.A0.a1.a2.A1.a0.a2.a2 kill=x3 A=[yyXyx,XyyXyxyyXyx] B=[XyyXyxyyXyx,XYxYYXYxyXyxyyXyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:XyyXyxyyXyx A:XYxYY B:XyyXyxyyXyx B:XYxYYXYxyXyxyyXyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+VERDICT PRIM TTAATatatAATTata phi=-1,0 W0=A0.A0.a1.A2.A2.A0.a1.a2 kill=x3 A=[xyyyx,yyxxyyyx] B=[yyxxyyyx,XYYYXXyxxyyyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xyyyx A:yyxxyyyx B:XYYYXXyxxyyyx B:yyxxyyyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTAAtaTAttATAtaa W0=A0.A0.a1.A0.A2.A1.a2.a2 whmin=8
+NONPRIM TTAAtaTaTATAttaa W0=A0.A0.a1.a2.a1.A0.a2.a2 whmin=8
+NONPRIM TTAAtaTatAATTata W0=A0.A0.a1.A2.A2.a0.A1.a2 whmin=7
+VERDICT PRIM TTAAtaTatatAtata phi=1,-1 W0=A0.A0.a1.A2.A2.A0.a1.a2 kill=x3 A=[xyyyx,yyxxyyyx] B=[yyxxyyyx,XYYYXXyxxyyyx] rankA=2 rankB=2 sZ=(2, 2) depth=3 mixed_nc=0 V=[A:xyyyx A:yyxxyyyx B:XYYYXXyxxyyyx B:yyxxyyyx] H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+NONPRIM TTAAtaaTAtATTata W0=A0.A0.a1.A2.A2.a0.A2.a1 whmin=7
+NONPRIM TTAAtatATTAtAtaa W0=A0.A0.a1.A2.A0.A1.a2.a2 whmin=8
+NONPRIM TTAAtatATATAttaa W0=A0.A0.a1.A2.A1.A0.a2.a2 whmin=8
+COUNTS [('FAIL', 1), ('NONPRIM', 105), ('PASS', 34), ('PASS_HLOOP', 1)]
+SENTINEL_DONE

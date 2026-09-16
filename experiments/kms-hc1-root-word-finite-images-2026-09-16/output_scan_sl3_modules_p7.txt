@@ -1,0 +1,30 @@
+SL3 natural: relators {'a^p': True, 'b^p': True, 'c^p': True, '[a,b,a]': True, '[a,b,b]': True, '[b,c,b]': True, '[b,c,c]': True, '[a,c,a]': True, '[a,c,c,a]': True, '[a,c,c,c]': True}
+rho(rs)-I =
+ [[0 0 6]
+ [1 0 0]
+ [0 0 0]]
+Sym^1: dim=3 q=7 relators_ok=True rho(w)=I:True dimZ1=4 rank(delta->delta(w))=0
+Sym^1 dual: dim=3 q=7 relators_ok=True rho(w)=I:True dimZ1=4 rank(delta->delta(w))=0
+Sym^2: dim=6 q=7 relators_ok=True rho(w)=I:True dimZ1=7 rank(delta->delta(w))=0
+Sym^2 dual: dim=6 q=7 relators_ok=True rho(w)=I:True dimZ1=6 rank(delta->delta(w))=0
+Sym^3: dim=10 q=7 relators_ok=True rho(w)=I:True dimZ1=10 rank(delta->delta(w))=0
+Sym^3 dual: dim=10 q=7 relators_ok=True rho(w)=I:True dimZ1=10 rank(delta->delta(w))=0
+Sym^4: dim=15 q=7 relators_ok=True rho(w)=I:True dimZ1=15 rank(delta->delta(w))=0
+Sym^4 dual: dim=15 q=7 relators_ok=True rho(w)=I:True dimZ1=15 rank(delta->delta(w))=0
+Sym^5: dim=21 q=7 relators_ok=True rho(w)=I:True dimZ1=21 rank(delta->delta(w))=0
+Sym^5 dual: dim=21 q=7 relators_ok=True rho(w)=I:True dimZ1=21 rank(delta->delta(w))=0
+Sym^6: dim=28 q=7 relators_ok=True rho(w)=I:True dimZ1=28 rank(delta->delta(w))=0
+Sym^6 dual: dim=28 q=7 relators_ok=True rho(w)=I:True dimZ1=28 rank(delta->delta(w))=0
+Sym^7: dim=36 q=7 relators_ok=True rho(w)=I:True dimZ1=37 rank(delta->delta(w))=0
+Sym^7 dual: dim=36 q=7 relators_ok=True rho(w)=I:True dimZ1=36 rank(delta->delta(w))=0
+Sym^8: dim=45 q=7 relators_ok=True rho(w)=I:True dimZ1=47 rank(delta->delta(w))=0
+Sym^8 dual: dim=45 q=7 relators_ok=True rho(w)=I:True dimZ1=45 rank(delta->delta(w))=0
+F_2[P2 points]: dim=57 q=2 relators_ok=True rho(w)=I:True dimZ1=57 rank(delta->delta(w))=0
+F_2[P2 lines]: dim=57 q=2 relators_ok=True rho(w)=I:True dimZ1=57 rank(delta->delta(w))=0
+F_2[nonzero vectors]: dim=342 q=2 relators_ok=True rho(w)=I:True dimZ1=341 rank(delta->delta(w))=0
+F_3[P2 points]: dim=57 q=3 relators_ok=True rho(w)=I:True dimZ1=57 rank(delta->delta(w))=0
+F_3[P2 lines]: dim=57 q=3 relators_ok=True rho(w)=I:True dimZ1=57 rank(delta->delta(w))=0
+F_3[nonzero vectors]: dim=342 q=3 relators_ok=True rho(w)=I:True dimZ1=341 rank(delta->delta(w))=0
+F_7[P2 points]: dim=57 q=7 relators_ok=True rho(w)=I:True dimZ1=59 rank(delta->delta(w))=0
+F_7[P2 lines]: dim=57 q=7 relators_ok=True rho(w)=I:True dimZ1=59 rank(delta->delta(w))=0
+F_7[nonzero vectors]: dim=342 q=7 relators_ok=True rho(w)=I:True dimZ1=345 rank(delta->delta(w))=0

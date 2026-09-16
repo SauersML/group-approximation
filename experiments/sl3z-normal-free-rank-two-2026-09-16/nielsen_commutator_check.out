@@ -1,0 +1,6 @@
+c^-1 conjugate to c in F_2: False
+sigma: image of c = [2, 1, -2, -1], sign = -1, det = -1
+iota: image of c = [-1, 2, 1, -2], sign = -1, det = -1
+mu: image of c = [1, 2, -1, -2], sign = 1, det = 1
+random products checked: 3000, failures: 0
+OK

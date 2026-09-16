@@ -1,0 +1,10 @@
+cap=19 level=1 visited=33 next_frontier=32 tested=1 t=0.1s
+cap=19 level=2 visited=93 next_frontier=60 tested=33 t=11.8s
+cap=19 level=3 visited=154 next_frontier=61 tested=93 t=55.0s
+cap=19 level=4 visited=223 next_frontier=69 tested=154 t=101.1s
+cap=19 level=5 visited=255 next_frontier=32 tested=223 t=187.8s
+cap=19 level=6 visited=364 next_frontier=109 tested=255 t=212.4s
+cap=19 level=7 visited=558 next_frontier=194 tested=364 t=300.8s
+cap=19 level=8 visited=746 next_frontier=188 tested=558 t=441.4s
+cap=19 level=9 visited=916 next_frontier=170 tested=746 t=560.6s
+CAP 19 RUN STOPPED BY timeout 600 DURING LEVEL 10: search INCOMPLETE (no RESULT line); 746 states tested, no THICKENABLE line printed.

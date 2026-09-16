@@ -1,0 +1,294 @@
+%    Replace amsbook by the documentclass code for the monograph series.
+\documentclass{surv-l}
+
+\usepackage{setspace}
+\onehalfspacing
+
+%%%Changed section numbering
+% Fix from \url{http://tex.stackexchange.com/questions/20837/section-numbering-with-chapter-in-amsbook}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+%%%%%%
+
+%    If you need symbols beyond the basic set, uncomment this command.
+%\usepackage{amssymb}
+
+%    If your book includes graphics, or such features as rotation or
+%    scaling, uncomment this command.
+%\usepackage{graphicx}
+
+%    If the book includes commutative diagrams:
+%\usepackage[cmtip,all]{xy}
+
+%    If you are using the author-year citation style:
+%\usepackage{natbib}
+
+%    Include other referenced packages here.
+%\usepackage{palatino}
+%\usepackage{charter}
+%\usepackage{libertine}
+
+\usepackage{macros}
+%\setcounter{section}{-1}
+\standardpackages\standardrenews\standardmakes\standardlabeling
+\colorcommentstrue
+
+
+%%% Changed spacing in LoF
+%Fix from \url{http://tex.stackexchange.com/questions/117088/numbers-too-close-to-figure-captions-in-list-of-figures-can-this-be-fixed-witho}
+\makeatletter
+%\def\l@figure{\@tocline{0}{3pt plus2pt}{0pt}{1.5pc}{}}
+\def\l@figure{\@tocline{0}{3pt plus2pt}{0pt}{3em}{}}
+\makeatother
+%%%
+
+
+%    For use when working on individual chapters
+%\includeonly{}
+
+%    As set up here, all theorem-class objects will be numbered with
+%    the same counter, starting with 1 at every new chapter; numbers
+%    will have the form <chapter>.<theorem>.  This may be changed if
+%    the author prefers.
+
+%    For a single index; for multiple indexes, see the manual
+%    "Instructions for preparation of papers and monographs:
+%    AMS-LaTeX" (instr-l.pdf in the AMS-LaTeX distribution).
+%    Do not \usepackage{makeidx}; all facilities are contained
+%    within the AMS document classes.
+\makeindex
+
+
+%%%%
+% We have put here our additional commands beyond those coming from macros.sty
+%%%%
+
+
+\makeatletter
+\usepackage{xstring}
+\renewcommand{\tocappendix}[3]{%
+  \indentlabel{\IfStrEq{#3}{Bibliography}{}{#1}\@ifnotempty{#2}{ #2.\quad}}#3}
+\makeatother
+
+
+\def\ellipseA{[rotate around={39.01185162422447:(-4.15,2.2600000000000002)}] (-4.15,2.2600000000000002) ellipse (1.4310425486624263cm and 1.0070664208890356cm)}
+\def\ellipseB{[rotate around={31.06516488549863:(-2.7499999999999996,3.64)}] (-2.7499999999999996,3.64) ellipse (1.4391779605649575cm and 1.0641114613497555cm)}
+\def\ellipseC{[rotate around={-31.930682103717796:(1.8900000000000008,3.85)}] (1.8900000000000008,3.85) ellipse (1.3500580747303617cm and 1.0778018394605968cm)}
+\def\ellipseD{[rotate around={-42.089162173832236:(2.9,2.5199999999999996)}] (2.9,2.5199999999999996) ellipse (1.4375510221432186cm and 1.1698516748994354cm)}
+\def\ellipseE{[rotate around={0.6030911943805329:(-1.6300000000000001,-0.8499999999999999)}] (-1.6300000000000001,-0.8499999999999999) ellipse (1.3858345482283274cm and 1.0089288354800905cm)}
+\def\ellipseF{[rotate around={6.137255949261987:(0.06999999999999999,-1.1000000000000003)}] (0.06999999999999999,-1.1000000000000003) ellipse (1.4251601572520578cm and 1.0752587938811333cm)}
+
+\newcommand{\dexp}{\alpha}
+\newcommand{\lexp}{\dexp_*}
+\newcommand{\uexp}{\dexp^*}
+%\newcommand{\dexp}{\GG}
+%\newcommand{\lexp}{\underline\dexp}
+%\newcommand{\uexp}{\overline\dexp}
+\newcommand{\thicken}{N}
+\newcommand{\schottkycl}{\cl}
+
+\let\O\undefined
+\DeclareMathOperator{\O}{O}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Out}{Out}
+\renewcommand{\prec}{\preceq}
+\newcommand{\LambdaG}{\Lambda}% using a different macro in order to preserve information - but I think all $\Lambda_G$s should be $\Lambda$
+%\renewcommand{\cl}[1]{\operatorname{cl}#1}% closure
+
+\newcommand{\ROSS}{ROSSONCT}
+\newcommand{\ROSSs}{ROSSONCTs}
+\newcommand{\CROSS}{ROSSONCT}
+\newcommand{\CROSSs}{ROSSONCTs}
+\newcommand{\bp}{p}
+\newcommand{\bq}{q}
+\newcommand{\dox}[1]{\|#1\|}
+\newcommand{\doxvar}[1]{\dist(\zero,#1)}
+\newcommand{\dogo}[1]{\|#1\|}
+\newcommand{\dogovar}[1]{\dist(\zero,#1(\zero))}
+
+\newcommand{\point}[2]{p(#1,#2)}
+\newcommand{\set}[2]{A(#1,#2)}
+\newcommand{\bij}[2]{\psi_{#1,#2}}
+
+\newcommand{\SigmaVWA}{\Sigma_{\text{div}}}
+
+
+%\theoremlevel{subsection}
+\theoremlevel{section}
+%\makeatletter
+%\let\theorem\undefined
+%\let\c@theorem\undefined
+%\newtheorem{theorem}{Theorem}[subsection]
+%\makeatother
+
+%\numberwithin{equation}{subsection}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}% There seems to be a bug with doing anything other than this.
+
+\theoremstyle{theorem}
+\let\problem\undefined
+\newtheorem{problem}{Problem}[]
+
+
+\theoremstyle{definition}
+%\maketheorem{standingassumptions}{Standing Assumptions}
+\maketheorems{standingassumption}{Standing Assumption}
+%\maketheorem{remarks}{Remarks}
+\maketheorems{edelsteinexample}{Edelstein-type Example}
+
+
+
+%\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+%\let\endchangemargin=\endlist
+%\usepackage{changepage}
+
+
+
+\setcounter{tocdepth}{2}
+
+% Uncomment to ignore proofs
+%\noproofs
+% Uncomment to get out of draft mode
+\draftfalse
+
+\newcommand{\thispaper}{this monograph}
+
+
+\newcommand{\limitset}{\mathcal J}
+\newcommand{\refl}{\mathrm{ref \hspace{0 in} l}}% freaky formatting hack; it's just supposed to say ``refl''
+\DeclareMathOperator{\interior}{Int}
+\newcommand{\notzero}{w}
+
+
+
+\begin{document}
+
+\frontmatter
+
+\title[Geometry and dynamics in hyperbolic metric spaces]{
+\uppercase{
+\large Geometry and dynamics in Gromov hyperbolic metric spaces \\ {\small{\textnormal{With an emphasis on non-proper settings}}}
+}
+}
+
+%    Remove any unused author tags.
+
+%    author one information
+\author{Tushar Das}
+\address{University of Wisconsin -- La Crosse, Department of Mathematics \& Statistics, 1725 State Street, La Crosse, WI 54601, USA}
+\email{tdas\at uwlax.edu}
+\urladdr{\url{https://sites.google.com/a/uwlax.edu/tdas/}}
+
+%    author two information
+\author{David Simmons}
+\address{University of York, Department of Mathematics, Heslington, York YO10 5DD, UK}
+\email{David.Simmons\at york.ac.uk}
+\urladdr{\url{https://sites.google.com/site/davidsimmonsmath/}}
+
+%    author three information
+\author{Mariusz Urba\'nski}
+\address{University of North Texas, Department of Mathematics, 1155 Union Circle \#311430, Denton, TX 76203-5017, USA}
+\email{urbanski\at unt.edu}
+\urladdr{\url{http://www.urbanskimath.com/}}
+
+%    If any version of the Mathematics Subject Classification other
+%    than the 2010 edition appears, then you have an old version
+%    of the AMS-LaTeX collection and need to upgrade.  Download from
+%    http://www.ams.org/tex/amslatex.html .
+\subjclass[2010]{Primary 20H10, 28A78, 37F35, 20F67, 20E08; Secondary 37A45, 22E65, 20M20}
+
+\keywords{hyperbolic geometry, Gromov hyperbolic metric space, infinite-dimensional symmetric space, metric tree, Hausdorff dimension, Poincar\'e exponent, Patterson--Sullivan measure, conformal measure, divergence type, geometrically finite group, global measure formula, exact dimensional measure}
+
+%\date{TESTING}
+
+\begin{Abstract}
+%%% NEW VERSION:
+Our monograph presents the foundations of the theory of groups and semigroups acting isometrically on Gromov hyperbolic metric spaces. We make it a point to avoid any assumption of properness/compactness, keeping in mind the motivating example of $\mathbb H^\infty$, the infinite-dimensional rank-one symmetric space of noncompact type over the reals. We have not skipped over parts that might be thought of as ``trivial'' extensions of the finite-dimensional/proper theory, as our intuition has turned out to be wrong often enough regarding these matters that we feel it is worth writing everything down explicitly and with an eye to detail. Moreover, we feel that it is a methodological advantage to have the entire theory presented from scratch, in order to provide a basic reference for the theory.
+
+
+Though our work unifies and extends a long list of results obtained by many authors, Part \ref{partpreliminaries} of this monograph may be treated as mostly expository. The remainder of this work, some of whose highlights are described in brief below, contains several new methods, examples, and theorems. In Part \ref{partbishopjones}, we introduce a modification of the Poincar\'e exponent, an invariant of a group which provides more information than the usual Poincar\'e exponent, which we then use to vastly generalize the Bishop--Jones theorem relating the Hausdorff dimension of the radial limit set to the Poincar\'e exponent of the underlying semigroup. We construct examples which illustrate the surprising connection between Hausdorff dimension and various notions of discreteness which show up in non-proper settings. Part \ref{partexamples} of the monograph provides a number of examples of groups acting on $\mathbb H^\infty$ which exhibit a wide range of phenomena not to be found in the finite-dimensional theory. Such examples often demonstrate the optimality of our theorems.
+
+In Part \ref{partahlforsthurston}, we construct Patterson--Sullivan measures for groups of divergence type without any compactness assumption on either the boundary or the limit set. This is carried out by first constructing such measures on the Samuel--Smirnov compactification of the bordification of the underlying hyperbolic space, and then showing that the measures are supported on the (non-compactified) bordification. 
+%We speculate that the methods used here may prove more fruitful that the results. 
+We end with a study of quasiconformal measures of geometrically finite groups in terms of \emph{doubling} and \emph{exact dimensionality}. Our analysis characterizes exact dimensionality in terms of Diophantine approximation on the boundary. We demonstrate that though all doubling Patterson--Sullivan measures are exact dimensional, there exist Patterson--Sullivan measures that are exact dimensional but not doubling, as well as ones that are neither doubling nor exact dimensional.
+%%% OLD VERSION:
+%Our monograph presents the foundations of the theory of groups and semigroups acting isometrically on Gromov hyperbolic metric spaces. Our work unifies and extends a long list of results by many authors. We make it a point to avoid any assumption of properness/compactness, keeping in mind the motivating example of $\mathbb H^\infty$, the infinite-dimensional rank-one symmetric space of noncompact type over the reals. The monograph provides a number of examples of groups acting on $\mathbb H^\infty$ which exhibit a wide range of phenomena not to be found in the finite-dimensional theory. Such examples often demonstrate the optimality of our theorems.
+%
+%We introduce a modification of the Poincar\'e exponent, an invariant of a group which gives more information than the usual Poincar\'e exponent, which we then use to vastly generalize the Bishop--Jones theorem relating the Hausdorff dimension of the radial limit set to the Poincar\'e exponent of the underlying semigroup. We give some examples based on our results which illustrate the connection between Hausdorff dimension and various notions of discreteness which show up in non-proper settings.
+%
+%We construct Patterson--Sullivan measures for groups of divergence type without any compactness assumption. This is carried out by first constructing such measures on the Samuel--Smirnov compactification of the bordification of the underlying hyperbolic space, and then showing that the measures are supported on the bordification.
+%
+%We study quasiconformal measures of geometrically finite groups in terms of (a) doubling and (b) exact dimensionality. Our analysis characterizes exact dimensionality in terms of Diophantine approximation on the boundary. We demonstrate that some Patterson--Sullivan measures are neither doubling nor exact dimensional, and that some are exact dimensional but not doubling, but that all doubling measures are exact-dimensional.
+\end{Abstract}
+\maketitle
+
+%    Dedication.  If the dedication is longer than a line or two,
+%    remove the centering instructions and the line break.
+\cleardoublepage
+\thispagestyle{empty}
+%    If this book uses the documentclass stml-l or mmono-s, change
+%    13.5pc to 10.5pc.
+\vspace*{13.5pc}
+\begin{center}
+Dedicated to the memory of our friend\\ 
+{\bf \Large Bernd O. Stratmann}\\
+Mathematiker\\
+17th July 1957 -- 8th August 2015 
+\end{center}
+\cleardoublepage
+
+%    Change page number to 7 if a dedication is present.
+\setcounter{page}{7}
+
+\tableofcontents
+
+\listoffigures
+
+%    Include unnumbered chapters (preface, acknowledgments, etc.) here.
+\include{Prologue}
+\include{Introduction}
+%\chapter*{Prologue}
+%\chapter*{Introduction}
+
+\mainmatter
+%    Include main chapters here.
+\include{Part1_Preliminaries}
+\include{Chap2_Part1}
+\include{Chap3_Part1}
+\include{Chap4_Part1}
+\include{Chap5_Part1}
+\include{Chap6_Part1}
+\include{Chap7_Part1}
+
+
+\include{Part2_Bishop_Jones}
+\include{Chap8_Part2}
+\include{Chap9_Part2}
+
+
+\include{Part3_Examples}
+\include{Chap10_Part3}
+\include{Chap11_Part3}
+\include{Chap12_Part3}
+\include{Chap13_Part3}
+\include{Chap14_Part3}
+
+\include{Part4_Patterson_Sullivan}
+\include{Chap15_Part4}
+\include{Chap16_Part4}
+\include{Chap17_Part4}
+
+\appendix
+%    Include appendix "chapters" here.
+\include{Open_Problems}
+\include{Index}
+
+\backmatter
+%    Bibliographies can be prepared with BibTeX using amsplain,
+%    amsalpha, or (for "historical" overviews) natbib style.
+\bibliographystyle{amsplain}
+\bibliography{bibliography}
+
+%    See note above about multiple indexes.
+\printindex
+
+\end{document}

@@ -1,0 +1,24 @@
+(a) vertex groups B(p,q) = <(0..p-1), (p-1..p+q-2)>
+  p=2 q=2 | n=3 | |B|=6 (Sym(3)) | orbit graph tree: True | half-girth r = 3
+  p=2 q=3 | n=4 | |B|=24 (Sym(4)) | orbit graph tree: True | half-girth r = 4
+  p=2 q=4 | n=5 | |B|=120 (Sym(5)) | orbit graph tree: True | half-girth r = 5
+  p=2 q=5 | n=6 | |B|=720 (Sym(6)) | orbit graph tree: True | half-girth r = 6
+  p=2 q=6 | n=7 | |B|=5040 (Sym(7)) | orbit graph tree: True | half-girth r = 6
+  p=2 q=7 | n=8 | |B|=40320 (Sym(8)) | orbit graph tree: True | half-girth r = 6
+  p=2 q=8 | n=9 | |B|=362880 (Sym(9)) | orbit graph tree: True | half-girth r = 6
+  p=3 q=3 | n=5 | |B|=60 (Alt(5)) | orbit graph tree: True | half-girth r = 4
+  p=3 q=4 | n=6 | |B|=720 (Sym(6)) | orbit graph tree: True | half-girth r = 4
+  p=3 q=5 | n=7 | |B|=2520 (Alt(7)) | orbit graph tree: True | half-girth r = 4
+  p=3 q=6 | n=8 | |B|=40320 (Sym(8)) | orbit graph tree: True | half-girth r = 4
+  p=3 q=7 | n=9 | |B|=181440 (Alt(9)) | orbit graph tree: True | half-girth r = 4
+  p=4 q=4 | n=7 | |B|=5040 (Sym(7)) | orbit graph tree: True | half-girth r = 6
+  p=4 q=5 | n=8 | |B|=40320 (Sym(8)) | orbit graph tree: True | half-girth r = 6
+  p=4 q=6 | n=9 | |B|=362880 (Sym(9)) | orbit graph tree: True | half-girth r = 6
+  p=5 q=5 | n=9 | |B|=181440 (Alt(9)) | orbit graph tree: True | half-girth r = 6
+(b) Theorem A with W_v = augmentation module, floating point
+edge orders (3, 3, 3) | dim V = 6 | pi_e|U_e = id err 7.7e-16 | max ||sigma_v(x) - sigma_e(x)|| = 2.5e-15 | sigma_e(x)^p = 1 err 4.8e-15 | <sigma_e(x), sigma_e(y)> has order |B| (checked where |B| <= 5040): [True, True, True] | OK
+edge orders (4, 4, 4) | dim V = 9 | pi_e|U_e = id err 2.9e-15 | max ||sigma_v(x) - sigma_e(x)|| = 6.0e-15 | sigma_e(x)^p = 1 err 1.6e-14 | <sigma_e(x), sigma_e(y)> has order |B| (checked where |B| <= 5040): [True, True, True] | OK
+edge orders (3, 4, 5) | dim V = 9 | pi_e|U_e = id err 1.8e-15 | max ||sigma_v(x) - sigma_e(x)|| = 4.7e-15 | sigma_e(x)^p = 1 err 5.1e-15 | <sigma_e(x), sigma_e(y)> has order |B| (checked where |B| <= 5040): [True, True] | OK
+edge orders (2, 3, 4) | dim V = 6 | pi_e|U_e = id err 1.5e-15 | max ||sigma_v(x) - sigma_e(x)|| = 4.7e-15 | sigma_e(x)^p = 1 err 2.8e-15 | <sigma_e(x), sigma_e(y)> has order |B| (checked where |B| <= 5040): [True, True, True] | OK
+edge orders (5, 5, 5) | dim V = 12 | pi_e|U_e = id err 2.0e-15 | max ||sigma_v(x) - sigma_e(x)|| = 5.6e-15 | sigma_e(x)^p = 1 err 1.1e-14 | <sigma_e(x), sigma_e(y)> has order |B| (checked where |B| <= 5040): [] | OK
+ALL OK

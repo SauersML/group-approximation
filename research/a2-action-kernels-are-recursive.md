@@ -3,6 +3,8 @@ rg: 2
 id: a2-action-kernels-are-recursive
 kind: claim
 title: Every type [A_2] action has a recursive kernel, so every action image has solvable word problem
+refuted_by:
+  - some-a2-action-has-a-nonrecursive-kernel
 distinct_from:
   a2-kernel-removal-forces-recursive-kernel: that proves every type [A_2] kernel is co-recursively enumerable and every removable kernel is recursive; this asserts that every kernel is recursive.
   a2-pairs-embed-in-a2-pairs-with-fng-kernels: that asks for removal of every kernel, which implies this; this is only the computability condition, which gives removal once the permutational Boone--Higman conjecture is added.

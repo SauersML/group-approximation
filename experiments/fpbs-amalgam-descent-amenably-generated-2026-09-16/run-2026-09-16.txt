@@ -1,0 +1,9 @@
+check <a,b>: (2, True, True, 1, 2)
+check <a,bab^-1>: (2, False, False, 2, 3)
+check <a^2,b>: (2, False, False, 2, 3)
+check <aba^-1,b^2> (T5): (2, False, False, 3, 4)
+u=a v=babb folded V=4 E=5 rank=2 proper malnormal
+u=a v=baBB folded V=3 E=4 rank=2 proper malnormal
+u=a v=bbab folded V=4 E=5 rank=2 proper malnormal
+u=a v=bbaB folded V=3 E=4 rank=2 proper malnormal
+u=a v=bbAb folded V=4 E=5 rank=2 proper malnormal

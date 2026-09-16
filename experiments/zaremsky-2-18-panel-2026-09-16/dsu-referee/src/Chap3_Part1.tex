@@ -1,0 +1,2082 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Preliminaries}
+%%\section{Preliminaries}
+%\label{partpreliminaries}
+%This part will be divided as follows: In Section \ref{sectionROSSONCTs} we define the class of rank one symmetric spaces of noncompact type (\ROSSs). In Sections \ref{sectiongeometry1}-\ref{sectiongeometry2}, we define the class of hyperbolic metric spaces and study their geometry. In Section \ref{sectiondiscreteness}, we explore different notions of discreteness for groups of isometries of a metric space. In Section \ref{sectionclassification} we prove two classification theorems, one for isometries (Theorem \ref{classificationofisometries}) and one for semigroups of isometries (Theorem \ref{classificationofsemigroups}). Finally, in Section \ref{sectionlimitsets} we define and study the limit set of a semigroup of isometries.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{$\R$-trees, CAT(-1) spaces, and Gromov hyperbolic metric spaces} \label{sectiongeometry1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we review the theory of ``negative curvature'' in general metric spaces. A good reference for this subject is \cite{BridsonHaefliger}. We begin by defining the class of \emph{$\R$-trees}, the main class of examples we will talk about in this monograph other than the class of algebraic hyperbolic spaces, which we will discuss in more detail in Chapter \ref{sectionRtrees}. Next we will define CAT(-1) spaces, which are geodesic metric spaces whose triangles are ``thinner'' than the corresponding triangles in two-dimensional real hyperbolic space $\H^2$. Both algebraic hyperbolic spaces and $\R$-trees are examples of CAT(-1) spaces. The next level of generality considers Gromov hyperbolic metric spaces. After defining these spaces, we proceed to define the boundary $\del X$ of a hyperbolic metric space $X$, introducing the families of so-called \emph{visual metametrics} and \emph{extended visual metrics} on the bordification $\bord X := X\cup\del X$. We show that the bordification of an algebraic hyperbolic space $X$ is isomorphic to its closure $\bord X$ defined in Chapter \ref{sectionROSSONCTs}; under this isomorphism, the visual metric on $\del \B^\alpha$ is proportional to the Euclidean metric.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Graphs and $\R$-trees}
+\label{subsectiongraphs}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To motivate the definition of $\R$-trees we begin by defining simplicial trees, which requires first defining graphs.
+
+\begin{definition}
+\label{definitiongraphmetrization}
+A \emph{weighted undirected graph} is a triple $(V,E,\ell)$, where $V$ is a nonempty set, $E\subset V\times V\butnot\{(x,x) : x\in V\}$ is invariant under the map $(x,y)\mapsto (y,x)$, and $\ell:E\to(0,\infty)$ is also invariant under $(x,y)\to (y,x)$. (If $\ell \equiv 1$, the graph is called \emph{unweighted}, and can be denoted simply $(V,E)$.) The graph is called \emph{connected} if for all $x,y\in V$, there exist $x = z_0,z_1,\ldots,z_n = y$ such that $(z_i,z_{i + 1}) \in E$ for all $i = 0,\ldots,n - 1$. If $(V,E,\ell)$ is connected, then the \emph{path metric} on $V$ is the metric
+%\begin{equation}
+%\label{pathmetric}
+%\dist_{E,\ell}(x,y) := \inf\left\{ \sum_{i = 0}^{n - 1} \ell(z_i,z_{i + 1}) : z_0 = x,\; z_n = y,\; (z_i,z_{i + 1})\in E \all i = 0,\ldots,n - 1\right\}
+%\end{equation}
+\begin{equation}
+\label{pathmetric}
+\dist_{E,\ell}(x,y) := \inf\left\{ \sum_{i = 0}^{n - 1} \ell(z_i,z_{i + 1}) \left|
+\begin{split}
+z_0 = x,\; z_n = y,\\
+(z_i,z_{i + 1})\in E \all i = 0,\ldots,n - 1
+\end{split}
+\right.
+\right\}
+\end{equation}
+The \emph{geometric realization} of the graph $(V,E,\ell)$ is the metric space
+\[
+X = X(V,E,\ell) = \left(V\cup\bigcup_{(v,w)\in E} [0,\ell(v,w)]\right)/\sim,
+\]
+where $\sim$ represents the following identifications:
+\begin{align*}
+v &\sim ((v,w),0) \all (v,w)\in E\\
+((v,w),t) &\sim ((w,v),\ell(v,w) - t) \all (v,w)\in E \all t\in[0,\ell(v,w)]
+\end{align*}
+and the metric $\dist$ on $X$ is given by
+%\[
+%\dist\big(((v_0,v_1),t),((w_0,w_1),s)\big) = \min\{ |t - i\ell(v_0,v_1)| + \dist(v_i,w_j) + |s - j\ell(w_0,w_1)| : i = 0,1, j = 0,1\}.
+%\]
+\[
+\dist\big(((v_0,v_1),t),((w_0,w_1),s)\big) = \min_{\substack{i\in\{0,1\}\\ j\in \{0,1\}}}\{ |t - i\ell(v_0,v_1)| + \dist(v_i,w_j) + |s - j\ell(w_0,w_1)|\}.
+\]
+(The geometric realization of a graph is sometimes also called a graph. In the sequel, we shall call it a \emph{geometric graph}.)
+\end{definition}
+
+\begin{example}[The Cayley graph of a group]
+\label{examplecayleygraph}
+Let $\Gamma$ be a group, and let $E_0\subset \Gamma$ be a generating set. (In most circumstances $E_0$ will be finite; there is an exception in Example \ref{examplenotstronglydiscrete} below.) Assume that $E_0 = E_0^{-1}$. The \emph{Cayley graph} of $\Gamma$ with respect to the generating set $E_0$ is the unweighted graph $(\Gamma,E)$, where
+\begin{equation}
+\label{Edef}
+(\gamma,\beta)\in E \;\;\Leftrightarrow\;\; \gamma^{-1}\beta\in E_0.
+\end{equation}
+More generally, if $\ell_0:E_0\to (0,\infty)$ satisfies $\ell_0(g^{-1}) = \ell_0(g)$, the \emph{weighted Cayley graph} of $\Gamma$ with respect to the pair $(E_0,\ell_0)$ is the graph $(\Gamma,E,\ell)$, where $E$ is defined by \eqref{Edef}, and
+\begin{equation}
+\label{elldef}
+\ell(\gamma,\beta) = \ell_0(\gamma^{-1}\beta).
+\end{equation}
+The path metric of a Cayley graph is called a \emph{Cayley metric}.
+\end{example}
+
+\begin{remark}
+\label{remarknaturalaction}
+The equations \eqref{Edef}, \eqref{elldef} guarantee that for each $\gamma\in\Gamma$, the map $\Gamma\ni\beta\to \gamma\beta\in\Gamma$ is an isometry of $\Gamma$ with respect to any Cayley metric. This isometry extends in a unique way to an isometry of the geometric Cayley graph $X = X(\Gamma,E,\ell)$. The map sending $\gamma$ to this isometry is a homomorphism from $\Gamma$ to $\Isom(X)$, and is called the \emph{natural action} of $\Gamma$ on $X$.
+\end{remark}
+
+\begin{remark}
+\label{remarkpathmetricuniversal}
+The path metric \eqref{pathmetric} satisfies the following \emph{universal property}: If $Y$ is a metric space and if $\phi:V\to Y$ satisfies $\dist(\phi(v),\phi(w)) \leq \ell(v,w)$ for every $(v,w)\in E$, then $\dist(\phi(v),\phi(w)) \leq \dist(v,w)$ for every $v,w\in V$.
+% In particular, any two Cayley metrics defined by finite generating sets are bi-Lipschitz equivalent. Thus, whenever $\Gamma$ is finitely generated we call any 
+\end{remark}
+
+\begin{remark}
+\label{remarkgeodesicmetric}
+The main difference between the metric space $(V,\dist_{E,\ell})$ and the geometric graph $X = X(V,E,\ell)$ is that the latter is a \emph{geodesic} metric space. A metric space $X$ is said to be \emph{geodesic} if for every $p,q\in X$, there exists an isometric embedding $\pi:[t,s]\to X$ such that $\pi(t) = p$ and $\pi(s) = q$, for some $t,s\in\R$. The set $\pi([t,s])$ is denoted $\geo pq$ and is called a \emph{geodesic segment connecting $p$ and $q$}. The map $\pi$ is called a \emph{parameterization} of the geodesic segment $\geo pq$. (Note that although $\geo qp = \geo pq$, $\pi$ is not a parameterization of $\geo qp$.)
+
+Warning: Although we may denote any geodesic segment connecting $p$ and $q$ by $\geo pq$, such a geodesic segment is not necessarily unique. A geodesic metric space $X$ is called \emph{uniquely geodesic} if for every $p,q\in X$, the geodesic segment connecting $p$ and $q$ is unique.
+\end{remark}
+
+\begin{notation}
+\label{notationgeopqt}
+If $\pi:[0,t_0]\to X$ is a parameterization of the geodesic segment $\geo pq$, then for each $t\in[0,t_0]$, $\geo pq_t$ denotes the point $\pi(t)$, i.e. the unique point on the geodesic segment $\geo pq$ such that $\dist(p,\geo pq_t) = t$.
+\end{notation}
+
+We are now ready to define the class of simplicial trees. Let $(V,E,\ell)$ be a weighted undirected graph. A \emph{cycle} in $(V,E,\ell)$ is a finite sequence of distinct vertices $v_1,\ldots,v_n\in V$, with $n\geq 3$, such that
+\begin{equation}
+\label{cycle}
+(v_1,v_2), (v_2,v_3), \ldots, (v_{n - 1},v_n), (v_n,v_1)\in E.
+\end{equation}
+\begin{definition}
+\label{definitionweightedtree}
+A \emph{simplicial tree} is the geometric realization of a weighted undirected graph with no cycles. A \emph{$\Z$-tree} (or \emph{unweighted simplicial tree}, or just \emph{tree}\Footnote{However, in \cite{Tits}, the word ``trees'' is used to refer to what are now known as $\R$-trees.}) is the geometric realization of an unweighted undirected graph with no cycles.
+\end{definition}
+
+\begin{example}
+Let $\F_2(\Z)$ denote the free group on two elements $\gamma_1,\gamma_2$. Let $E_0 = \{\gamma_1,\gamma_1^{-1},\gamma_2,\gamma_2^{-1}\}$. The geometric Cayley graph of $\F_2(\Z)$ with respect to the generating set $E_0$ is an unweighted simplicial tree.
+\end{example}
+
+\begin{example}
+\label{exampletreetriangle}
+Let $V = \{\wbar C,\wbar p,\wbar q,\wbar r\}$, and fix $\ell_{\wbar p},\ell_{\wbar q},\ell_{\wbar r} > 0$. Let 
+\begin{align*}
+E &= \{(\wbar C,x), (x,\wbar C) : x = \wbar p,\wbar q,\wbar r\},\\
+\ell(\wbar C,x) &= \ell(x,\wbar C) = \ell_x.
+\end{align*} 
+The geometric realization of the graph $(V,E,\ell)$ is a simplicial tree; see Figure \ref{figureRtree}. It will be denoted $\wbar \Delta = \Delta(\wbar p,\wbar q,\wbar r)$, and will be called a \emph{tree triangle}. For $x,y\in\{\wbar p,\wbar q,\wbar r\}$ distinct, the distance between $x$ and $y$ is given by
+\[
+\dist(x,y) = \ell_x + \ell_y.
+\]
+Solving for $\ell_{\wbar p}$ in terms of $\dist(\wbar p,\wbar q),\dist(\wbar p,\wbar r),\dist(\wbar q,\wbar r)$ gives
+\begin{equation}
+\label{gromovprecursor}
+\ell_{\wbar p} = \dist(\wbar p,\wbar C) = \frac12[\dist(\wbar p,\wbar q) + \dist(\wbar p,\wbar r) - \dist(\wbar q,\wbar r)].
+\end{equation}
+\end{example}
+
+\begin{definition}
+\label{definitionRtree}
+A metric space $X$ is an \emph{$\R$-tree} if for all $p,q,r\in X$, there exists a tree triangle $\wbar\Delta = \Delta(\wbar p,\wbar q,\wbar r)$ and an isometric embedding $\iota:\wbar\Delta\to X$ sending $\wbar p,\wbar q,\wbar r$ to $p,q,r$, respectively.
+\end{definition}
+\begin{definition}
+\label{definitioncenterRtree}
+Let $X$ be an $\R$-tree, fix $p,q,r\in X$, and let $\iota:\wbar\Delta\to X$ be as above. The point $C = C(p,q,r) := \iota(\wbar C)$ is called the \emph{center} of the geodesic triangle $\Delta = \Delta(p,q,r)$.
+\end{definition}
+
+As the name suggests, every simplicial tree is an $\R$-tree; the converse does not hold; see e.g. \cite[Example on p.50]{Chiswell}. Before we can prove that every simplicial tree is an $\R$-tree, we will need a lemma:
+
+\begin{lemma}[Cf. {\cite[p.29]{Chiswell}}]
+\label{lemmaRtreeequivalent}
+Let $X$ be a metric space. The following are equivalent:
+\begin{itemize}
+\item[(A)] $X$ is an $\R$-tree.
+\item[(B)] There exists a collection of geodesics $\GG$, with the following properties:
+\begin{itemize}
+\item[(BI)] For each $x,y\in X$, there is a geodesic $\geo xy\in\GG$ connecting $x$ and $y$.
+\item[(BII)] Given $\geo xy\in\GG$ and $z,w\in \geo xy$, we have $\geo zw\in\GG$, where $\geo zw$ is interpreted as the set of points in $\geo xy$ which lie between $z$ and $w$.
+\item[(BIII)] Given $x_1,x_2,x_3\in X$ distinct and geodesics $\geo{x_1}{x_2},\geo{x_1}{x_3},\geo{x_2}{x_3}\in\GG$, at least one pair of the geodesics $\geo{x_i}{x_j}$, $i\neq j$, has a nontrivial intersection. More precisely, there exist distinct $i,j,k\in\{1,2,3\}$ such that
+\[
+\geo{x_i}{x_j} \cap \geo{x_i}{x_k} \propersupset \{x_i\}.
+\]
+\end{itemize}
+\end{itemize}
+\end{lemma}
+\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+Note that (BI) and (BII) are true for any uniquely geodesic metric space. Given $x_1,x_2,x_3$ distinct, let $C$ be the center. Then $x_i\neq C$ for some $i$; without loss of generality $x_1\neq C$. Then
+\[
+\geo{x_1}{x_2} \cap \geo{x_1}{x_3} = \geo{x_1}{C} \propersupset \{x_1\}.
+\]
+\end{proof}
+\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+We first show that given points $x_1,x_2,x_3\in X$ and geodesics $\geo{x_1}{x_2},\geo{x_1}{x_3},\geo{x_2}{x_3}\in\GG$, the intersection $\bigcap_{i\neq j} \geo{x_i}{x_j}$ is nonempty. Indeed, suppose not. For $i = 2,3$ let $\gamma_i:[0,\dist(x_1,x_i)]\to X$ be a parameterization of $\geo{x_1}{x_i}$, and let
+\[
+t_1 = \max\{t\geq 0 : \gamma_2(t) = \gamma_3(t)\}.
+\]
+By replacing $x$ with $\gamma_2(t_1) = \gamma_3(t_1)$ and using (BII), we may without loss of generality assume that $t_1 = 0$, or equivalently that $\geo{x_1}{x_2}\cap \geo{x_1}{x_3} = \{x_1\}$. Similarly, we may without loss of generality assume that $\geo{x_2}{x_1}\cap \geo{x_2}{x_3} = \{x_2\}$ and $\geo{x_3}{x_1}\cap\geo{x_3}{x_2} = \{x_3\}$. But then (BIII) implies that $x_1,x_2,x_3$ cannot be all distinct. This immediately implies that $\bigcap_{i\neq j} \geo{x_i}{x_j} \neq \emptyset$.
+
+To complete the proof, we must show that $X$ is uniquely geodesic. Indeed suppose that for some $x_1,x_2\in X$, there is more than one geodesic connecting $x_1$ and $x_2$. Let $\geo{x_1}{x_2}\in\GG$ be a geodesic connecting $x_1$ and $x_2$, and let $\geo{x_1}{x_2}'$ be another geodesic connecting $x_1$ and $x_2$. Then there exists $x_3\in\geo{x_1}{x_2}'\butnot\geo{x_1}{x_2}$. By the above paragraph, there exists $w\in\bigcap_{i\neq j} \geo{x_i}{x_j}$. Since $w\in \geo{x_i}{x_3}$, we have
+\begin{equation}
+\label{dxiw}
+\dist(x_i,w) \leq \dist(x_i,x_3).
+\end{equation}
+On the other hand, since $w\in \geo{x_1}{x_2}$ and $x_3\in\geo{x_1}{x_2}'$, we have
+\[
+\dist(x_1,x_2) = \dist(x_1,w) + \dist(x_2,w) \leq \dist(x_1,x_3) + \dist(x_2,x_3) = \dist(x_1,x_2).
+\]
+It follows that equality holds in \eqref{dxiw}, i.e. $\dist(x_i,w) = \dist(x_i,x_3)$. Since $w\in \geo{x_i}{x_3}$, this implies $w = x_3$. But then $x_3 = w\in \geo{x_1}{x_2}$, a contradiction.
+\end{proof}
+
+%\begin{lemma}
+%\label{lemmaRtreeequivalent}
+%Let $X$ be a metric space. The following are equivalent:
+%\begin{itemize}
+%\item[(A)] $X$ is an $\R$-tree.
+%\item[(B)] There exists a collection of geodesics $(\geo xy)_{x,y\in X}$, with the following properties:
+%\begin{itemize}
+%\item[(BI)] For each $x,y\in X$, $\geo xy$ is a geodesic between $x$ and $y$.
+%\item[(BII)] Given $z,w\in \geo xy$, $\geo zw\subset \geo xy$.
+%\item[(BIII)] Given $x_1,x_2,x_3\in X$ distinct, at least one pair of the geodesics $\geo{x_i}{x_j}$, $i\neq j$, has a nontrivial intersection. More precisely, there exist distinct $i,j,k\in\{1,2,3\}$ such that
+%\[
+%\geo{x_i}{x_j} \cap \geo{x_i}{x_k} \propersupset \{x_i\}.
+%\]
+%\end{itemize}
+%\end{itemize}
+%\end{lemma}
+%\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+%Note that (BI) and (BII) are true for any uniquely geodesic metric space. Given $x_1,x_2,x_3$ distinct, let $C$ be the center. Then $x_i\neq C$ for some $i$; without loss of generality $x_1\neq C$. Then
+%\[
+%\geo{x_1}{x_2} \cap \geo{x_1}{x_3} = \geo{x_1}{C} \propersupset \{x_1\}.
+%\]
+%\end{proof}
+%\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+%We first show that given $x_1,x_2,x_3\in X$, the intersection $\bigcap_{i\neq j} \geo{x_i}{x_j}$ is nonempty. Indeed, suppose not. For $i = 2,3$ let $\gamma_i:[0,\dist(x_1,x_i)]\to X$ be a parameterization of $\geo{x_1}{x_i}$, and let
+%\[
+%t_1 = \max\{t\geq 0 : \gamma_2(t) = \gamma_3(t)\}.
+%\]
+%By replacing $x$ with $\gamma_2(t_1) = \gamma_3(t_1)$ and using (BII), we may without loss of generality assume that $t_1 = 0$, or equivalently that $\geo{x_1}{x_2}\cap \geo{x_1}{x_3} = \{x_1\}$. Similarly, we may without loss of generality assume that $\geo{x_2}{x_1}\cap \geo{x_2}{x_3} = \{x_2\}$ and $\geo{x_3}{x_1}\cap\geo{x_3}{x_2} = \{x_3\}$. But then (BIII) implies that $x_1,x_2,x_3$ cannot be all distinct. This immediately implies that $\bigcap_{i\neq j} \geo{x_i}{x_j} \neq \emptyset$.
+%
+%To complete the proof, we must show that $X$ is uniquely geodesic. Indeed suppose that for some $x_1,x_2\in X$, there is a geodesic $\geo{x_1}{x_2}'$ which is not in the collection. Then there exists $x_3\in\geo{x_1}{x_2}'\butnot\geo{x_1}{x_2}$. By the above paragraph, there exists $w\in\bigcap_{i\neq j} \geo{x_i}{x_j}$. Since $w\in \geo{x_i}{x_3}$, we have
+%\begin{equation}
+%\label{dxiw}
+%\dist(x_i,w) \leq \dist(x_i,x_3).
+%\end{equation}
+%On the other hand, since $w\in \geo{x_1}{x_2}$ and $x_3\in\geo{x_1}{x_2}'$, we have
+%\[
+%\dist(x_1,x_2) = \dist(x_1,w) + \dist(x_2,w) \leq \dist(x_1,x_3) + \dist(x_2,x_3) = \dist(x_1,x_2).
+%\]
+%It follows that equality holds in \eqref{dxiw}, i.e. $\dist(x_i,w) = \dist(x_i,x_3)$. Since $w\in \geo{x_i}{x_3}$, this implies $w = x_3$. But then $x_3 = w\in \geo{x_1}{x_2}$, a contradiction.
+%\end{proof}
+
+\begin{corollary}
+Every simplicial tree is an $\R$-tree.
+\end{corollary}
+\begin{proof}
+Let $X = X(V,E,\ell)$ be a simplicial tree, and let $\GG$ be the collection of all geodesics; then (BI) and (BII) both hold. By contradiction, suppose that there exist points $x_1,x_2,x_3\in X$ such that $\geo{x_i}{x_j}\cap\geo{x_i}{x_k} = \{x_i\}$ for all distinct $i,j,k\in\{1,2,3\}$. Then the path $\geo{x_1}{x_2}\cup\geo{x_2}{x_3}\cup\geo{x_3}{x_1}$ is equal to the union of the edges of a cycle of the graph $(V,E,\ell)$. This is a contradiction.
+\end{proof}
+
+We shall investigate $\R$-trees in more detail in Chapter \ref{sectionRtrees}, where we will give various examples of $\R$-trees together with groups acting isometrically on them.
+
+
+
+%\begin{corollary}
+%Let $X$ be a tree, and fix $p,q,r\in X$.
+%\begin{itemize}
+%\item[(i)] If $\geo pq\cap \geo qr = \{q\}$, then $\geo pr = \geo pq \cup \geo qr$
+%\item[(ii)] There exists $C\in X$ such that $\geo pq\cap \geo pr = \geo pC$.
+%\item[(iii)] $\geo pq\cap \geo qr\cap \geo rp \neq \emptyset$.
+%\end{itemize}
+%\end{corollary}
+
+
+
+
+
+
+%\begin{definition}[Cf. {\cite[p.29]{Chiswell}}]
+%A metric space $X$ is an \emph{$\R$-tree} (or \emph{metric tree}) if the following hold:
+%\begin{itemize}
+%\item[(I)] $X$ is a geodesic metric space.
+%\item[(II)] Given three points $p,q,r\in X$, if $\geo pq\cap \geo qr = \{q\}$, then $\geo pr = \geo pq \cup \geo qr$.
+%\item[(III)] Given three points $p,q,r\in X$, there exists $C$ such that $\geo pq\cap \geo pr = \geo pC$.
+%\end{itemize}
+%\end{definition}
+
+%\begin{definition}
+%A metric space $X$ is an \emph{$\R$-tree} (or \emph{metric tree}) if for any geodesic triangle $\Delta = \Delta(p,q,r)$ in $X$, there is a (unique) point
+%\[
+%C(p,q,r)\in\geo pq\cap \geo qr\cap \geo rp.
+%\]
+%The point $C(p,q,r)$ is called the \emph{center} of the triangle $\Delta$; see Figure \ref{figureRtree}.
+%\end{definition}
+
+
+%\begin{proposition}
+%Let $(V,E)$ be an undirected graph. The metrization $X(V,E)$ is an $\R$-tree if and only if $(V,E)$ is a tree.
+%\end{proposition}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(0.22,0.49) rectangle (5.46,4.0);
+\draw (0.8,0.8)-- (2.76,1.84);
+\draw (2.76,1.84)-- (2.84,3.74);
+\draw (2.76,1.84)-- (4.74,2);
+\begin{scriptsize}
+\fill [color=black] (0.8,0.8) circle (1.2pt);
+\draw[color=black] (0.68,0.6) node {$p$};
+\fill [color=black] (2.76,1.84) circle (1.2pt);
+\draw[color=black] (2.06,1.98) node {$C(p,q,r)$};
+\fill [color=black] (2.84,3.74) circle (1.2pt);
+\draw[color=black] (3.02,3.86) node {$q$};
+\fill [color=black] (4.74,2) circle (1.2pt);
+\draw[color=black] (5.04,2.04) node {$r$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{A geodesic triangle in an $\R$-tree}
+\label{figureRtree}
+\end{center}
+\end{figure}
+
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale = 0.7]{Rtree.png}}}
+%\caption{A geodesic triangle in an $\R$-tree.}
+%\label{figureRtree}
+%\end{figure}
+
+%There are several equivalent definitions of $\R$-trees; cf. \cite[p.29]{Chiswell}. One which we will find particularly useful is the following:
+
+
+
+%
+%\begin{remark}
+%This definition disagrees slightly with other sources (e.g. \cite{Chiswell}) that would consider the set $V$ to be the $\Z$-tree rather than $X$. Hopefully this will not cause too much confusion.
+%\end{remark}
+
+
+%\begin{remark}
+%\label{remarksimplicialtree}
+%An $\R$-tree $X$ is a simplicial tree if and only if there exists a discrete set $V\subset X$ with the following properties:
+%\begin{itemize}
+%\item[(I)] If $x,y,z\in V$, then $C(x,y,z)\in V$.
+%\item[(II)] $X = \bigcup_{x,y\in V}\geo xy$.
+%\end{itemize}
+%Moreover, the simplicial tree is unweighted if and only if $\dist(x,y)\in\N$ for all $x,y\in V$.
+%\end{remark}
+%\begin{proof}
+%First, suppose that $X$ is a simplicial tree, the geometric realization of the weigted undirected graph $(V,E,\ell)$. Fix $x,y,z\in V$, and let $C = C(x,y,z)$. If $C\in \geo pq\butnot\{p,q\}$ for some $(p,q)\in E$, we would have $\#(\del B(C,r)) = 2$ for all sufficiently small $r$, but the fact that $C$ is the center of the triangle $\Delta(x,y,z)$ implies that $\#(\del B(C,r)) \geq 3$ for all sufficiently small $r$, unless $C\in \{x,y,z\}$. Either is a contradiction, so we conclude that $C\in V$, demonstrating (I). (II) is obvious from the definition of a simplicial tree.
+%
+%Conversely, suppose that we have a discrete set $V$ satisfying (I) and (II). Let $E = \{(x,y)\in V: \geo xy\cap V = \{x,y\}\}$, let $\ell((x,y)) = \dist(x,y)$, and let $Y$ be the geometric realization of the weighted undirected graph $(V,E,\ell)$. We can define an embedding from $Y$ to $X$ by letting $\phi(((x,y),t)) = \geo xy_t$. This embedding is clearly $1$-Lipschitz; to show that it is isometric, take $x,y\in Y$ and [Continue\internal]
+%\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{CAT(-1) spaces}
+\label{subsectionCAT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The following definitions have been modified from \cite[p.158]{BridsonHaefliger}, to which the reader is referred for more details.
+
+A \emph{geodesic triangle} in $X$ consists of three points $p,q,r\in X$ (the \emph{vertices} of the triangle) together with a choice of three geodesic segments $\geo pq$, $\geo qr$, and $\geo rp$ joining them (the \emph{sides}). Such a geodesic triangle will be denoted $\Delta(p,q,r)$, although we note that this could cause ambiguity if $X$ is not uniquely geodesic. Although formally $\Delta(p,q,r)$ is an element of $X^3\times \P(X)^3$, we will sometimes identify $\Delta(p,q,r)$ with the set $\geo pq \cup \geo qr\cap \geo rp \subset X$, writing $x\in\Delta(p,q,r)$ if $x\in \geo pq \cup \geo qr\cup \geo rp$.
+
+A triangle $\wbar{\Delta} = \Delta(\wbar p,\wbar q,\wbar r)$ in $\H^2$ is called a \emph{comparison triangle} for $\Delta = \Delta(p,q,r)$ if $\dist(\wbar p, \wbar q) = \dist(p,q)$, $\dist(\wbar q,\wbar r) = \dist(q, r)$, and $\dist(\wbar p,\wbar r) = \dist(p,r)$. Any triangle admits a comparison triangle, unique up to isometry. For any point $x\in\geo pq$, we define its \emph{comparison point} $\wbar x\in\geo{\wbar p}{\wbar q}$ to be the unique point such that $\dist(\wbar x,\wbar p) = \dist(x,p)$ and $\dist(\wbar x,\wbar q) = \dist(x,q)$. In the notation above, the comparison point of $\geo pq_t$ is equal to $\geo{\wbar p}{\wbar q}_t$ for all $t\in[0,\dist(p,q)] = [0,\dist(\wbar p,\wbar q)]$. For $x\in \geo qr$ and $x\in \geo rp$, the comparison point is defined similarly.
+
+Let $X$ be a metric space and let $\Delta$ be a geodesic triangle in $X$. We say that $\Delta$ \emph{satisfies the CAT(-1) inequality} if for all $x,y\in\Delta$,
+\begin{equation}
+\label{CAT}
+\dist(x, y) \leq \dist(\wbar x, \wbar y),
+\end{equation}
+where $\wbar x$ and $\wbar y$ are any\Footnote{The comparison points $\wbar x$ and $\wbar y$ may not be uniquely determined if either $x$ or $y$ lies on two sides of the triangle simultaneously.} comparison points for $x$ and $y$, respectively. Intuitively, $\Delta$ satisfies the CAT(-1) inequality if it is ``thinner'' than its comparison triangle $\wbar{\Delta}$.
+
+\begin{definition}
+\label{definitionCAT}
+$X$ is a \emph{CAT(-1) space} if it is a geodesic metric space and if all of its geodesic triangles satisfy the CAT(-1) inequality.
+\end{definition}
+%Note that it follows from this definition that CAT(-1) spaces are uniquely geodesic.
+\begin{observation}[{\cite[Proposition II.1.4(1)]{BridsonHaefliger}}]
+\label{observationCATuniquelygeo}
+CAT(-1) spaces are uniquely geodesic.
+\end{observation}
+\begin{proof}
+Let $X$ be a CAT(-1) space, and suppose that two points $p,q\in X$ are connected by two geodesic segments $\geo pq$ and $\geo pq'$. Fix $t\in [0,\dist(p,q)]$ and let $x = \geo pq_t$, $x' = \geo pq_t'$. Consider the triangle $\Delta(p,q,x)$ determined by the geodesic segments $\geo pq'$, $\geo px$, and $\geo xq$, and a comparison triangle $\Delta(\wbar p,\wbar q,\wbar x)$. Then $x$ and $x'$ have the same comparison point $\wbar x$, so by the CAT(-1) inequality
+\[
+\dist(x,x')\leq \dist(\wbar x,\wbar x) = 0,
+\]
+and thus $x = x'$. Since $t$ was arbitrary, it follows that $\geo pq = \geo pq'$. Since $\geo pq'$ was arbitrary, $\geo pq$ is the unique geodesic segment connecting $p$ and $q$.
+\end{proof}
+
+\subsection{Examples of CAT(-1) spaces}
+\label{subsubsectionexamplesCAT}
+In this text we concentrate on two main examples of CAT(-1) spaces: algebraic hyperbolic spaces and $\R$-trees. We therefore begin by proving the following result which implies that algebraic hyperbolic spaces are CAT(-1):
+
+\begin{proposition}
+\label{propositioncurvatureCAT}
+Any Riemannian manifold (finite- or infinite-dimensional) with sectional curvature bounded above by $-1$ is a CAT(-1) space.
+\end{proposition}
+\begin{proof}
+The finite-dimensional case is proven in \cite[Theorem II.1A.6]{BridsonHaefliger}. The infinite-dimensional follows upon augmenting the finite-dimensional proof with the infinite-dimensional Cartan--Hadamard theorem \cite[IX, Theorem 3.8]{Lang_differential_geometry} to guarantee surjectivity of the exponential map.%\comdavid{ Check the BH more carefully to see what precisely do they need...}
+\end{proof}
+
+Since algebraic hyperbolic spaces have sectional curvature bounded between $-4$ and $-1$ (e.g. \cite[Corollary of Proposition 4]{Heintze}; see also \cite[Lemmas 2.3, 2.7, and 2.11]{Quint}% for \CROSSs, \cite[(5)]{AravindaFarrell} for the Cayley hyperbolic plane
+), the following corollary is immediate:
+
+\begin{corollary}
+\label{corollaryROSSONCTCAT}
+Every algebraic hyperbolic space is a CAT(-1) space.
+\end{corollary}
+
+\begin{remark}
+One can prove Corollary \ref{corollaryROSSONCTCAT} without using the full strength of Proposition \ref{propositioncurvatureCAT}. Indeed, any geodesic triangle in an algebraic hyperbolic space is isometric to a geodesic triangle in $\H_\F^2$ for some $\F\in\{\R,\C,\Q\}$. Since $\H_\F^2$ is finite-dimensional, thinness of its geodesic triangles follows from the finite-dimensional version of Proposition \ref{propositioncurvatureCAT}.
+\end{remark}
+
+%\ignore{
+%
+%In fact, the above remark is true as well for infinite-dimensional Riemannian manifolds:
+%
+%\begin{theorem}[Infinite-dimensional Cartan--Hadamard theorem]
+%Let $(X,g)$ be a simply-connected infinite-dimensional Riemannian manifold with nonpositive sectional curvature. Then for each $x\in X$, the exponential map $\exp:T_x X\to X$ is a diffeomorphism.
+%\end{theorem}
+%
+%\begin{proof}
+%Let $h$ be the pullback of $g$ under the exponential map. It follows from \cite{}\internal that $h\geq e$, where $e$ is the Euclidean metric on $T_x X\equiv \H$.
+%
+%We claim first that $\exp$ is a local diffeomorphism. By the inverse function theorem, it suffices to show that $D\exp(\vv)$ is invertible for all $\vv\in T_x X$. Indeed, fix suc a $\vv$, and for each $t\in [0,1]$ let $T_t = D\exp(t\vv)$. Let's assume for simplicity that $X = \H$, although in fact this is only locally true. Then $t\mapsto T_t$ is a continuous map from $[0,1]$ to the set of semiexpanding operators on $\H$. (The semiexpandingness comes from the theorem from \cite{}\intermal.) The continuity is with respect to the norm topology. Moreover, $T_0 = I$.
+%
+%Let $S = \{t\in[0,1]: T_t \text{ is invertible}\}$. To complete the proof, we need to show that $S$ is a clopen set. To see that $S$ is closed, suppose $S\ni t_n\to t$. Fix $\ee\in \H$. For each $n\in\N$, let $\vv_n = T_{t_n}^{-1}[\ee]$; we have $\|\vv_n\| \leq \|\ee\|$ since $T_{t_n}$ is semiexpanding. Then
+%\[
+%\|T_t[\vv_n] - \ee\| = \|(T_t - T_{t_n})[\vv_n]\| \leq \|T_t - T_{t_n}\| \cdot \|\ee\| \to 0,
+%\]
+%so $\ee\in \cl{T_t[\H]}$. Since $T_t$ is semiexpanding, $T_t[\H]$ is closed and so $\ee\in T_t[\H]$. Since $\ee$ was arbitrary, $T_t$ is invertible.
+%
+%To see that $S$ is open, suppose $t_n\to t\in S$. Then for sufficiently large $n$, $\|T_{t_n} - T_t\| < 1/\|T_t^{-1}\|$, which implies that the series
+%\[
+%T_t^{-1}\sum_{n = 0}^\infty (1 - T_{t_n}T_t^{-1})^n
+%\]
+%converges. Direct calculation shows that the sum of this series is an inverse of $T_{t_n}$, so $t_n\in S$ for all sufficiently large $n$.
+%
+%The conclusion now follows upon applying Lemma \ref{lemmacartanhadamard}.\end{proof}
+%\begin{lemma}
+%\label{lemmacartanhadamard}
+%Let $(X,g)$ and $(Y,h)$ be complete infinite-dimensional Riemannian manifolds, and suppose that $\Phi:Y\to X$ is a local diffeomorphism which is also a local isometry. If $X$ is simply-connected, then $\Phi$ is a diffeomorphism (and thus a global isometry).
+%\end{lemma}
+%\begin{proof}
+%We claim first that $\Phi$ has the homotopy lifting property for smooth maps: If $f:[0,1]\to X$ is smooth, and $y\in \Phi^{-1}(f(0))$, then there is a unique smooth map $g:[0,1]\to Y := T_x X$ such that $\Phi\circ g = f$. Indeed, consider the set $S = \{t\in[0,1]: \exists g:[0,t]\to Y \text{ a lift of $f$}\}$. Clearly $0\in S$; we need to show $1\in S$, so it suffices to show that $S$ is clopen. Suppose first that $S\ni t_n\to t$. Then there is a lift $g:\CO 0t\to Y$. The length of the path $g$ is the same as the length of the path $\Phi\circ g = f\given \CO 0t$, which is finite since $f$ is smooth. It follows that the sequence $(g(t_n))_1^\infty$ is Cauchy with respect to the metric $\dist_h$ for any sequence $t_n\to t$. Since $\dist_h\geq\dist_e$, the sequence is also Cauchy with respect to $\dist_e$, and since $\dist_e$ is complete it converges to a point $z\in Y$. Letting $g(t) = z$ therefore gives a lift $g:[0,t]\to Y$, demonstrating that $t\in S$.
+%
+%Now suppose that $t\in S$. Since $\Phi$ is a local diffeomorphism, there is a neighborhood $U$ of $g(t)$ such that $\Phi$ is a diffeomorphism on $U$. Let $t_0 > t$ be close enough to $t$ so that $f(t')\in \Phi(U)$ for all $t < t' < t_0$. Then there exists a lift $g:\CO 0{t_0}\to Y$, and it follows that $\CO 0{t_0}\subset S$.
+%
+%Thus $S$ is a clopen set, and so $1\in S$, completing the proof.
+%\end{proof}
+%
+%}% end ignore
+
+
+
+%Now we move on to our second example of a CAT(-1) space, namely $\R$-trees.
+%
+%\begin{definition}
+%A metric space $X$ is an \emph{$\R$-tree} (or \emph{metric tree}) if for any geodesic triangle $\Delta = \Delta(p,q,r)$ in $X$, there is a (unique) point
+%\[
+%C(p,q,r)\in\geo pq\cap \geo qr\cap \geo rp.
+%\]
+%The point $C(p,q,r)$ is called the \emph{center} of the triangle $\Delta$; see Figure \ref{figureRtree}.
+%\end{definition}
+%
+%
+%\begin{figure}
+%\begin{center}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%\clip(0.22,0.28) rectangle (5.46,4.2);
+%\draw (0.8,0.8)-- (2.76,1.84);
+%\draw (2.76,1.84)-- (2.84,3.74);
+%\draw (2.76,1.84)-- (4.74,2);
+%\begin{scriptsize}
+%\fill [color=black] (0.8,0.8) circle (1.2pt);
+%\draw[color=black] (0.68,0.6) node {$p$};
+%\fill [color=black] (2.76,1.84) circle (1.2pt);
+%\draw[color=black] (2.06,1.98) node {$C(p,q,r)$};
+%\fill [color=black] (2.84,3.74) circle (1.2pt);
+%\draw[color=black] (3.02,3.86) node {$q$};
+%\fill [color=black] (4.74,2) circle (1.2pt);
+%\draw[color=black] (5.04,2.04) node {$r$};
+%\end{scriptsize}
+%\end{tikzpicture}
+%\caption{A geodesic triangle in an $\R$-tree.}
+%\label{figureRtree}
+%\end{center}
+%\end{figure}
+%
+%%\begin{figure}
+%%\centerline{\mbox{\includegraphics[scale = 0.7]{Rtree.png}}}
+%%\caption{A geodesic triangle in an $\R$-tree.}
+%%\label{figureRtree}
+%%\end{figure}
+%
+\begin{observation}
+\label{observationRtreesCAT}
+$\R$-trees are CAT(-1).
+\end{observation}
+\begin{proof}
+First of all, an argument similar to the proof of Observation \ref{observationCATuniquelygeo} shows that $\R$-trees are uniquely geodesic, justifying Figure \ref{figureRtree}. In particular, if $\Delta(p,q,r)$ is a geodesic triangle in an $\R$-tree and if $C = C(p,q,r)$ then $\geo pq = \geo pC\cup\geo qC$, $\geo qr = \geo qC\cup\geo rC$, and $\geo rp = \geo rC\cup\geo pC$. It follows that any two points $x,y\in \Delta$ share a side in common, without loss of generality say $x,y\in\geo pq$. Then
+\[
+\dist(x,y) = \dist(p,q) - \dist(x,p) - \dist(y,q) = \dist(\wbar p,\wbar q) - \dist(\wbar x,\wbar p) - \dist(\wbar y,\wbar q) \leq \dist(\wbar x,\wbar y).
+\]
+\end{proof}
+
+In a sense $\R$-trees are the ``most negatively curved spaces''; although we did not define the notion of a CAT($\kappa$) space, $\R$-trees are CAT($\kappa$) for every $\kappa\in\R$.
+%
+%There are several equivalent definitions of $\R$-trees; cf. \cite[p.29\internal]{Chiswell}. One which we will find particularly useful is the following:
+%
+%\begin{lemma}
+%\label{lemmaRtreeequivalent}
+%Let $X$ be a metric space. The following are equivalent:
+%\begin{itemize}
+%\item[(A)] $X$ is an $\R$-tree.
+%\item[(B)] There exists a collection of geodesics $(\geo xy)_{x,y\in X}$, with the following properties:
+%\begin{itemize}
+%\item[(BI)] For each $x,y\in X$, $\geo xy$ is a geodesic between $x$ and $y$.
+%\item[(BII)] Given $z,w\in \geo xy$, $\geo zw\subset \geo xy$.
+%\item[(BIII)] Given $x_1,x_2,x_3\in X$ distinct, at least one pair of the geodesics $\geo{x_i}{x_j}$, $i\neq j$, have a nontrivial intersection. More precisely, there exist distinct $i,j,k\in\{1,2,3\}$ such that
+%\[
+%\geo{x_i}{x_j} \cap \geo{x_i}{x_k} \propersupset \{x_i\}.
+%\]
+%\end{itemize}
+%\end{itemize}
+%\end{lemma}
+%\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+%Note that (BI) and (BII) are true for any uniquely geodesic metric space. Given $x_1,x_2,x_3$ distinct, let $C$ be the center. Then $x_i\neq C$ for some $i$; without loss of generality $x_1\neq C$. Then
+%\[
+%\geo{x_1}{x_2} \cap \geo{x_1}{x_3} = \geo{x_1}{C} \propersupset \{x_1\}.
+%\]
+%\end{proof}
+%\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+%We first show that given $x_1,x_2,x_3\in X$, the intersection $\bigcap_{i\neq j} \geo{x_i}{x_j}$ is nonempty. Indeed, suppose not. For $i = 2,3$ let $\gamma_i:[0,\dist(x_1,x_i)]\to X$ be a parameterization of $\geo{x_1}{x_i}$, and let
+%\[
+%t_1 = \max\{t\geq 0 : \gamma_2(t) = \gamma_3(t)\}.
+%\]
+%By replacing $x$ with $\gamma_2(t_1) = \gamma_3(t_1)$ and using (BII), we may without loss of generality assume that $t_1 = 0$, or equivalently that $\geo{x_1}{x_2}\cap \geo{x_1}{x_3} = \{x_1\}$. Similarly, we may without loss of generality assume that $\geo{x_2}{x_1}\cap \geo{x_2}{x_3} = \{x_2\}$ and $\geo{x_3}{x_1}\cap\geo{x_3}{x_2} = \{x_3\}$. But then (BIII) implies that $x_1,x_2,x_3$ cannot be all distinct. This immediately implies that $\bigcap_{i\neq j} \geo{x_i}{x_j} \neq \emptyset$.
+%
+%To complete the proof, we must show that $X$ is uniquely geodesic. Indeed suppose that for some $x_1,x_2\in X$, there is a geodesic $\geo{x_1}{x_2}'$ which is not in the collection. Then there exists $x_3\in\geo{x_1}{x_2}'\butnot\geo{x_1}{x_2}$. By the above paragraph, there exists $w\in\bigcap_{i\neq j} \geo{x_i}{x_j}$. Since $w\in \geo{x_i}{x_3}$, we have
+%\begin{equation}
+%\label{dxiw}
+%\dist(x_i,w) \leq \dist(x_i,x_3).
+%\end{equation}
+%On the other hand, since $w\in \geo{x_1}{x_2}$ and $x_3\in\geo{x_1}{x_2}'$, we have
+%\[
+%\dist(x_1,x_2) = \dist(x_1,w) + \dist(x_2,w) \leq \dist(x_1,x_3) + \dist(x_2,x_3) = \dist(x_1,x_2).
+%\]
+%It follows that equality holds in \eqref{dxiw}, i.e. $\dist(x_i,w) = \dist(x_i,x_3)$. Since $w\in \geo{x_i}{x_3}$, this implies $w = x_3$. But then $x_3 = w\in \geo{x_1}{x_2}$, a contradiction.
+%\end{proof}
+%
+%\begin{definition}
+%\label{definitionZtree}
+%A \emph{$\Z$-tree} is an $\R$-tree $X$ together with a set $V\subset X$ (the \emph{vertex set}) with the following properties:
+%\begin{itemize}
+%\item[(I)] $\dist(x,y)\in\N$ for all $x,y\in V$
+%\item[(II)] If $x,y\in V$, $z\in \geo xy$, and $\dist(x,z)\in\N$, then $z\in V$
+%\item[(III)] $X = \bigcup_{x,y\in V}\geo xy$.
+%\end{itemize}
+%\end{definition}
+%
+%\begin{remark}
+%This definition disagrees slightly with other sources (e.g. \cite{Chiswell}) that would consider the set $V$ to be the $\Z$-tree rather than $X$. Hopefully this will not cause too much confusion.
+%\end{remark}
+%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Gromov hyperbolic metric spaces}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now come to the theory of Gromov hyperbolic metric spaces. In a sense, Gromov hyperbolic metric spaces are those which are ``approximately $\R$-trees''. A good reference for this section is \cite{Vaisala}.
+
+% In this subsection we review the theory of hyperbolic metric spaces and their boundaries. There is a vast literature on this subject \cite{BH, KapovichBenakli, Oshika, Va}. We would like to single out \cite{BridsonHaefliger}, \cite{BonkSchramm}, and \cite{Vaisala} as exceptions that work in not necessarily proper settings and make reference to infinite-dimensional hyperbolic space.
+
+For any three numbers $d_{pq},d_{qr},d_{rp}\geq 0$ satisfying the triangle inequality, there exists an $\R$-tree $X$ and three points $p,q,r\in X$ such that $\dist(p,q) = d_{pq}$, etc. Thus in some sense looking at triples ``does not tell you'' that you are looking at an $\R$-tree. Now let us look at quadruples. A quadruple $(p,q,r,s)$ in an $\R$-tree $X$ looks something like Figure \ref{figurequadruple}. Of course, the points $p,q,r,s\in X$ could be arranged in any order. However, let us consider them the way that they are arranged in Figure \ref{figurequadruple} and note that
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+%\clip(0.56,0.9) rectangle (7.44,4.9);
+\clip(0.56,1.2) rectangle (7.44,4.8);
+\draw (2.02,3.3)-- (2.8,2.68);
+\draw (2.8,2.68)-- (1.56,1.46);
+\draw (2.8,2.68)-- (5.5,2.64);
+\draw (5.5,2.64)-- (6.58,4.54);
+\draw (5.5,2.64)-- (6.3,1.46);
+\begin{scriptsize}
+\fill [color=black] (2.02,3.3) circle (1.2pt);
+\draw[color=black] (1.83,3.3) node {$q$};
+\fill [color=black] (1.56,1.46) circle (1.2pt);
+\draw[color=black] (1.44,1.3) node {$p$};
+\fill [color=black] (6.58,4.54) circle (1.2pt);
+\draw[color=black] (6.61,4.72) node {$r$};
+\fill [color=black] (6.3,1.46) circle (1.2pt);
+\draw[color=black] (6.16,1.3) node {$s$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{A quadruple of points in an $\R$-tree}
+\label{figurequadruple}
+\end{center}
+\end{figure}
+
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale = 0.7]{quadruple.png}}}
+%\caption{A quadruple of points in an $\R$-tree.}
+%\label{figurequadruple}
+%\end{figure}
+
+\begin{equation}
+\label{centersequal}
+C(p,q,r) = C(p,q,s).
+\end{equation}
+In order to write this equality in terms of distances, we need some way of measuring the distance from the vertex of a geodesic triangle to its center.
+\begin{observation}
+%If $\Delta(p,q,r)$ is a geodesic triangle in an $\R$-tree then $\dist(p,C(p,q,r))$ is equal to
+If $\Delta(p,q,r)$ is a geodesic triangle in an $\R$-tree then the distance from the vertex $p$ to the center $C(p,q,r)$, i.e. $\dist(p,C(p,q,r))$, is equal to
+\begin{equation}
+\label{gromovproduct}
+\lb q|r\rb_p := \frac12[\dist(p,q) + \dist(p,r) - \dist(q,r)].
+\end{equation}
+\end{observation}
+The expression $\lb q|r\rb_p$ is called the \emph{Gromov product} of $q$ and $r$ with respect to $p$, and it makes sense in any metric space. It can be thought of as measuring the ``defect in the triangle inequality''; indeed, the triangle inequality is exactly what assures that $\lb q|r\rb_p\geq 0$ for all $p,q,r\in X$.
+
+Now \eqref{centersequal} implies that
+\[
+\lb q|r\rb_p = \lb q|s\rb_p \leq \lb r|s\rb_p.
+\]
+(The last inequality does not follow from \eqref{centersequal} but it may be seen from Figure \ref{figurequadruple}.) However, since the arrangement of points was arbitrary we do not know which two Gromov products will be equal and which one will be larger. An inequality which captures all possibilities is
+\begin{equation}
+\label{gromovinRtrees}
+\lb q|r\rb_p \geq \min(\lb q|s\rb_p,\lb r|s\rb_p).
+\end{equation}
+Now, as mentioned before, we will define hyperbolic metric spaces as those which are ``approximately $\R$-trees''. Thus they will satisfy \eqref{gromovinRtrees} with an asymptotic.
+\begin{definition}
+\label{definitiongromovhyperbolic}
+A metric space $X$ is called \emph{hyperbolic} (or \emph{Gromov hyperbolic}) if for every four points $x,y,z,w\in X$ we have 
+\begin{equation}
+\label{gromov}
+\lb x|z\rb_w \gtrsim_\plus \min(\lb x|y\rb_w,\lb y|z\rb_w),
+\end{equation}
+We refer to \eqref{gromov} as \emph{Gromov's inequality}.
+\end{definition}
+From the above discussion, every $\R$-tree is Gromov hyperbolic with an implied constant of $0$ in \eqref{gromov}. (This can also be deduced from Proposition \ref{propositionCATimpliesGromov} below.)
+
+Note that many authors require $X$ to be a geodesic metric space in order to be hyperbolic; we do not. If $X$ is a geodesic metric space, then the condition of hyperbolicity can be reformulated in several different ways, including the \emph{thin triangles condition}; for details, see \cite[\6 III.H.1]{BridsonHaefliger} or Section \ref{subsectionrips} below.
+
+It will be convenient for us to make a list of several identities satisfied by the Gromov product. For each $z\in X$, let $\busemann_z$ denote the \emph{Busemann function}
+\begin{equation}
+\label{busemanndef}
+\busemann_z(x,y) := \dist(z,x) - \dist(z,y).
+\end{equation}
+
+
+\begin{proposition}
+\label{propositionbasicidentities}
+The Gromov product and Busemann function satisfy the following identities and inequalities:
+\begin{align*}
+\tag{a} \lb x|y\rb_z &= \lb y|x\rb_z \\
+\tag{b} \dist(y,z) &= \lb y|x\rb_z + \lb z|x\rb_y\\
+\tag{c} 0\leq \lb x|y\rb_z &\leq \min(\dist(x,z),\dist(y,z))\\
+\tag{d} \lb x|y\rb_z &\leq \lb x|y\rb_w + \dist(z,w)\\
+\tag{e} \lb x|y\rb_w &\leq \lb x|z\rb_w + \dist(y,z)\\
+\tag{f} |\busemann_x(z,w)| &\leq \dist(z,w)\\
+\tag{g} \lb x|y\rb_z &= \lb x|y\rb_w + \frac12[\busemann_x(z,w) + \busemann_y(z,w)]\\
+\tag{h} \lb x|y\rb_z &= \frac12[\dist(x,z) + \busemann_y(z,x)]\\
+\tag{j} \busemann_x(y,z) &= \lb z|x\rb_y - \lb y|x\rb_z \\
+\tag{k} \lb x|y\rb_z &= \lb x|y\rb_w + \dist(z,w) - \lb x|z\rb_w - \lb y|z\rb_w\\% (i) omitted because it causes confusion with Roman numerals - (v) and (x) will also be omitted
+\tag{l} \lb x|y\rb_w &= \lb x|z\rb_w + \frac12[\busemann_w(y,z) - \busemann_x(y,z)]
+\end{align*}
+\end{proposition}
+The proof is a straightforward computation. We remark that (a)-(e) may be found in \cite[Lemma 2.8]{Vaisala}.% We will refer to (f) as the \emph{change of viewpoint formula}.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.54,-0.63) rectangle (5.02,3.6);
+\draw (-0.68,-0.48)-- (1.02,0.66);
+\draw (1.02,0.66)-- (1.76,1.86);
+\draw (1.76,1.86)-- (2.06,3.26);
+\draw (1.76,1.86)-- (4.3,2.42);
+\draw (1.9621294832739777,3.244449991852601)-- (1.6662459503620535,1.8663069374640353);
+\draw (1.9621294832739777,3.244449991852601)-- (1.920651867546605,3.2029723761252282);
+\draw (1.9621294832739777,3.244449991852601)-- (1.9850941143735463,3.194322722245245);
+\draw (1.6662459503620535,1.8663069374640353)-- (1.645781680327839,1.9358422158191166);
+\draw (1.6662459503620535,1.8663069374640353)-- (1.712620501296158,1.919132510577037);
+\draw (1.811554396247592,1.7618958525911042)-- (4.322472096464471,2.330897992557095);
+\draw (1.811554396247592,1.7618958525911042)-- (1.8414665959029357,1.8362946416296355);
+\draw (1.811554396247592,1.7618958525911042)-- (1.8757672524481015,1.7219591198124153);
+\draw (4.322472096464471,2.330897992557095)-- (4.258520422692855,2.3649896261428003);
+\draw (4.322472096464471,2.330897992557095)-- (4.284871880487056,2.2595837949659954);
+\begin{scriptsize}
+\draw [fill=black] (-0.68,-0.48) circle (.75pt);
+\draw[color=black] (-0.9047548310928106,-0.48743844483680343) node {$x$};
+\draw [fill=black] (2.06,3.26) circle (.75pt);
+\draw[color=black] (2.1685467646948235,3.4849673412078808) node {$y$};
+\draw[color=black] (1.3983054592304987,2.7983786868297873) node {$\lb z|x\rb_y$};
+\draw [fill=black] (4.3,2.42) circle (.75pt);
+\draw[color=black] (4.408133565880492,2.6512525466059103) node {$z$};
+\draw[color=black] (3.083998303865608,1.701190403090175) node {$\lb y|x\rb_z$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Expressing distance via Gromov products in an $\R$-tree]{An illustration of (b) of Proposition \ref{propositionbasicidentities} in an $\R$-tree.}
+\end{center}
+\end{figure}
+
+\subsection{Examples of Gromov hyperbolic metric spaces}
+
+\begin{proposition}[Proven in Section \ref{subsectionGromovinH}]
+\label{propositionCATimpliesGromov}
+Every CAT(-1) space (in particular every algebraic hyperbolic space) is Gromov hyperbolic. In fact, if $X$ is a CAT(-1) space then for every four points $x,y,z,w\in X$ we have 
+\begin{equation}
+\label{gromovforCAT}
+e^{-\lb x|z\rb_w} \leq e^{-\lb x|y\rb_w} + e^{-\lb y|z\rb_w},
+\end{equation}
+and so $X$ satisfies \eqref{gromov} with an implied constant of $\log(2)$.
+\end{proposition}
+%Proposition \ref{propositionCATimpliesGromov} will be proven below in Section \ref{subsectionGromovinH}.
+\begin{remark}
+The first assertion of Proposition \ref{propositionCATimpliesGromov}, namely, that CAT(-1) spaces are Gromov hyperbolic, is \cite[Proposition III.H.1.2]{BridsonHaefliger}. The inequality \eqref{gromovforCAT} in the case where $x,y,z\in\del X$ and $w\in X$ can be found in \cite[Th\'eor\`eme 2.5.1]{Bourdon}.
+\end{remark}
+
+\begin{definition}
+\label{definitionstronglyhyperbolic}
+A space $X$ satisfying the conclusion of Proposition \ref{propositionCATimpliesGromov} is said to be \emph{strongly hyperbolic}.
+\end{definition}
+Note that
+\[
+\text{$\R$-tree \implies CAT(-1) \implies Strongly hyperbolic \implies Hyperbolic.}
+\]
+
+A large class of examples of hyperbolic metric spaces which are not CAT(-1) is furnished by the Cayley graphs of finitely presented groups. Indeed, we have the following:
+
+\begin{theorem}[{\cite[p.78]{Gromov4}}, \cite{Olshanskii}; see also \cite{Champetier}]
+\label{theoremolshanskii}
+Fix $k\geq 2$ and an alphabet $A = \{a_1^{\pm 1},a_2^{\pm 1},\cdots,a_k^{\pm 1}\}$. Fix $i\in\Namer$ and a sequence of positive integers $(n_1,\cdots,n_i)$. Let $N = N(k,i,n_1,\cdots,n_i)$ be the number of group presentations $G = \lb a_1,\cdots, a_k|r_1,\cdots,r_i\rb$ such that $r_1,\cdots,r_i$ are reduced words in the alphabet $A$ such that the length of $r_j$ is $n_j$ for $j = 1,2,\cdots,i$. If $N_h$ is the number of groups in this collection whose Cayley graphs are hyperbolic and if $n = \min(n_1,\cdots,n_i)$ then $\lim_{n\to\infty}N_h/N = 1$.
+\end{theorem}
+
+This theorem says that in some sense, ``almost every'' finitely presented group is hyperbolic.
+
+%\begin{remark}
+%A similar theorem was asserted without proof by M. Gromov in \cite[pp.78-79]{Gromov4}.
+%\end{remark}
+
+If one has a hyperbolic metric space $X$, there are two ways to get another hyperbolic metric space from $X$, one trivial and one nontrivial.
+
+\begin{observation}
+\label{observationsubspace}
+Any subspace of a hyperbolic metric space is hyperbolic. Any subspace of a strongly hyperbolic metric space is strongly hyperbolic.
+\end{observation}
+
+To describe the other method we need to define the notion of a \emph{quasi-isometric embedding}.
+\begin{definition}
+\label{definitionquasiisometry}
+Let $(X_1,\dist_1)$ and $(X_2,\dist_2)$ be metric spaces. A map $\Phi:X_1\to X_2$ is a \emph{quasi-isometric embedding} if for every $x,y\in X_1$
+\[
+\dist_2(\Phi(x),\Phi(y)) \asymp_{\plus,\times} \dist_1(x,y).
+\]
+A quasi-isometric embedding $\Phi$ is called a \emph{quasi-isometry} if its image $\Phi(X_1)$ is cobounded in $X_2$, that is, if there exists $R > 0$ such that $\Phi(X_1)$ is $R$-dense in $X_2$, meaning that $\min_{x\in X_2} \dist(x,\Phi(X_1)) \leq R$. In this case, the spaces $X_1$ and $X_2$ are said to be \emph{quasi-isometric}.
+\end{definition}
+
+\begin{theorem}[{\cite[Theorem III.H.1.9]{BridsonHaefliger}}]
+\label{theoremquasiisometric}
+Any geodesic metric space which can be quasi-isometrically embedded into a geodesic hyperbolic metric space is also a hyperbolic metric space.
+\end{theorem}
+
+\begin{remark}
+Theorem \ref{theoremquasiisometric} is not true if the hypothesis of geodesicity is dropped. For example, $\R$ is quasi-isometric to $\Rplus\times\{0\}\cup\{0\}\times\Rplus\subset\R^2$, but the former is hyperbolic and the latter is not.
+\end{remark}
+
+There are many more examples of hyperbolic metric spaces which we will not discuss; cf. the list in \6\ref{subsubsectionlist}.
+
+
+\bigskip
+\section{The boundary of a hyperbolic metric space}
+\label{subsectionboundary}
+
+In this section we define the Gromov boundary of a hyperbolic metric space $X$. The construction will depend on a distinguished point $\zero\in X$, but the resulting space will be independent of which point is chosen. If $X$ is an $\R$-tree, then the boundary of $X$ will turn out to be the set of infinite branches through $X$, i.e. the set of all isometric embeddings $\pi:\Rplus\to X$ sending $0$ to $\zero$, where $\zero\in X$ is a distinguished fixed point. If $X$ is an algebraic hyperbolic space, then the boundary of $X$ will turn out to be isomorphic to the space $\del X$ defined in Chapter \ref{sectionROSSONCTs}.
+
+To motivate the definition of the boundary, suppose that $X$ is an $\R$-tree. An infinite branch through $X$ can be approximated by finite branches which agree on longer and longer segments. Suppose that $(\geo\zero{x_n})_1^\infty$ is a sequence of geodesic segments. For each $n,m\in\Namer$, the length of the intersection of $\geo\zero{x_n}$ and $\geo\zero{x_m}$ is equal to $\dist(\zero,C(\zero,x_n,x_m))$, which in turn is equal to $\lb x_n|x_m\rb_\zero$. Thus, the sequence $(\geo\zero{x_n})_1^\infty$ converges to an infinite geodesic if and only if
+\begin{equation}
+\label{gromovsequence}
+\lb x_n|x_m\rb_\zero \tendsto{n,m} \infty.
+\end{equation}
+(Cf. Figure \ref{figuregromovseq}.) The formula \eqref{gromovsequence} is reminiscent of the definition of a Cauchy sequence. This intuition will be made explicit in Section \ref{subsectionmetametrics}, where we will introduce a \emph{metametric} on $X$ with the property that a sequence in $X$ satisfies \eqref{gromovsequence} if and only if it is Cauchy with respect to this metametric.
+%\ignore{
+%To motivate the definition of the boundary, consider the inequality \eqref{gromovforCAT}. It indicates that the expression
+%\[
+%\Dist_w(x,y) := b^{-\lb x|y\rb_w}
+%\]
+%satisfies a triangle inequality. Note, however, that it is not a metric since $\Dist_w(x,x) > 0$. Now recall that the completion of a metric space can be defined as the set of Cauchy sequences modulo their equivalence. We can do the same thing with our near-metric $\Dist_w$ (actually called a \emph{metametric}; see Subection \internalmissingref\ below).
+%}% end ignore
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.74,-1.0) rectangle (7.98,3.16);
+\draw (-1.8,-0.78)-- (0.52,0.72);
+\draw (0.52,0.72)-- (0.7,2.3);
+\draw (0.52,0.72)-- (2.28,0.52);
+\draw (2.28,0.52)-- (2.96,-0.64);
+\draw (2.28,0.52)-- (3.46,1.62);
+\draw (3.46,1.62)-- (3.7,2.48);
+\draw (3.46,1.62)-- (4.78,2.16);
+\draw (4.78,2.16)-- (5.38,2.92);
+\draw (4.78,2.16)-- (6.8,2.36);
+\begin{scriptsize}
+\fill [color=black] (-1.8,-0.78) circle (1pt);
+\draw[color=black] (-2,-0.86) node {$\zero$};
+\fill [color=black] (0.7,2.3) circle (1pt);
+\draw[color=black] (0.9,2.48) node {$x_1$};
+\fill [color=black] (2.96,-0.64) circle (1pt);
+\draw[color=black] (3.32,-0.72) node {$x_2$};
+\fill [color=black] (3.7,2.48) circle (1pt);
+\draw[color=black] (3.96,2.74) node {$x_3$};
+\fill [color=black] (5.38,2.92) circle (1pt);
+\draw[color=black] (5.74,3.08) node {$x_5$};
+\fill [color=black] (6.8,2.36) circle (1pt);
+\draw[color=black] (7.36,2.4) node {$\ldots$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{A Gromov sequence in an $\R$-tree}
+\label{figuregromovseq}
+\end{center}
+\end{figure}
+
+
+\begin{definition}
+\label{definitiongromovsequence}
+A sequence $(x_n)_1^\infty$ in $X$ for which \eqref{gromovsequence} holds is called a \emph{Gromov sequence}. Two Gromov sequences $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are called \emph{equivalent} if
+\[
+\lb x_n|y_n\rb_\zero \tendsto n \infty,
+\]
+or equivalently if
+\[
+\lb x_n|y_m\rb_\zero \tendsto{n,m} \infty.
+\]
+In this case, we write $(x_n)_1^\infty \sim (y_n)_1^\infty$. It is readily verified using Gromov's inequality that $\sim$ is an equivalence relation on the set of Gromov sequences in $X$. We will denote the class of sequences equivalent to a given sequence $(x_n)_1^\infty$ by $[(x_n)_1^\infty]$.
+\end{definition}
+
+\begin{definition}
+\label{definitiongromovboundary}
+The \emph{Gromov boundary} of $X$ is the set of Gromov sequences modulo equivalence. It is denoted $\del X$. The \emph{Gromov closure} or \emph{bordification} of $X$ is the disjoint union $\bord X := X\cup\del X$. 
+\end{definition}
+
+\begin{remark}
+\label{remarkambiguityboundary}
+If $X$ is an algebraic hyperbolic space, then this notation causes some ambiguity, since it is not clear whether $\del X$ represents the Gromov boundary of $X$, or rather the topological boundary of $X$ as in Chapter \ref{sectionROSSONCTs}. This ambiguity will be resolved in \6\ref{subsubsectionboundariesequivalent} below when it is shown that the two bordifications are isomorphic.
+\end{remark}
+
+\begin{remark}
+\label{remarkambiguityboundary2}
+In the literature, the ideal boundary of a hyperbolic metric space is often taken to be the set of equivalence classes of geodesic rays under asymptotic equivalence, rather than the set of equivalence classes of Gromov sequences (e.g. \cite[p.427]{BridsonHaefliger}). If $X$ is proper and geodesic, then these two notions are equivalent \cite[Lemma III.H.3.13]{BridsonHaefliger}, but in general they may be different.
+\end{remark}
+
+\begin{remark}
+\label{remarkbasepoint1}
+By (d) of Proposition \ref{propositionbasicidentities}, the concepts of Gromov sequence and equivalence do not depend on the basepoint $\zero$. In particular, the Gromov boundary $\del X$ is independent of $\zero$.
+\end{remark}
+
+%old version:
+%\subsection{Extending the Gromov product and the Busemann function to the boundary}
+%new shortened version:
+\subsection{Extending the Gromov product to the boundary}
+We now wish to extend the Gromov product and Busemann function to the boundary ``by continuity''. Fix $\xi,\eta\in\del X$ and $z\in X$. Ideally, we would like to define $\lb \xi|\eta\rb_z$ to be
+\begin{equation}
+\label{gromovproductdef}
+\lim_{n,m\to\infty}\lb x_n|y_m\rb_z ,
+\end{equation}
+where $(x_n)_1^\infty\in\xi$ and $(y_m)_1^\infty\in\eta$. (The definition would then have to be shown independent of which sequences were chosen.) The naive definition \eqref{gromovproductdef} does not work, because the limit \eqref{gromovproductdef} does not necessarily exist:
+\begin{example}
+\label{examplegromovnotcont}
+Let
+\[
+X = \{\xx\in\R^2: x_2\in[0,1]\}
+\]
+be interpreted as a subspace of $\R^2$ with the $L^1$ metric. Then $X$ is a hyperbolic metric space, since it contains the cobounded hyperbolic metric space $\R\times\{0\}$. Its Gromov boundary consists of two points $-\infty$ and $+\infty$, which are the limits of $\xx$ as $x_1$ approaches $-\infty$ or $+\infty$, respectively. Let $\yy = (0,1)$ and $\zz = (1,0)$. Then for all $\xx\in X$, $\lb \xx|\yy\rb_\zz = x_2$. In particular, we can find a sequence $\xx_n\to +\infty$ such that $\lim_{n\to\infty} \lb \xx_n|\yy\rb_\zz$ does not exist.
+\end{example}
+
+Fortunately, the limit \eqref{gromovproductdef} ``exists up to a constant'':
+\begin{lemma}
+\label{lemmawelldefined}
+Let $(x_n)_1^\infty$ and $(y_m)_1^\infty$ be Gromov sequences, and fix $y,z\in X$. Then
+\begin{align} \label{welldefined1}
+\liminf_{n,m\to\infty}\lb x_n|y_m\rb_z &\asymp_\plus \limsup_{n,m\to\infty}\lb x_n|y_m\rb_z\\ \label{welldefined2}
+\liminf_{n\to\infty}\lb x_n|y\rb_z &\asymp_\plus \limsup_{n\to\infty}\lb x_n|y\rb_z ,
+\end{align}
+with equality if $X$ is strongly hyperbolic.
+\end{lemma}
+Note that except for the statement about strongly hyperbolic spaces, this lemma is simply \cite[Lemma 5.6]{Vaisala}.
+\begin{proof}[Proof of Lemma \ref{lemmawelldefined}]
+Fix $n_1,n_2,m_1,m_2\in\Namer$. By Gromov's inequality
+\[
+\lb x_{n_1}|y_{m_1}\rb_z \gtrsim_\plus \min(\lb x_{n_2}|y_{m_2}\rb_z,\lb x_{n_1}|x_{n_2}\rb_z,\lb y_{m_1}|y_{m_2}\rb_z).
+\]
+Taking the liminf over $n_1,m_1$ and the limsup over $n_2,m_2$ gives
+\begin{align*}
+&\liminf_{n,m\to\infty}\lb x_n|y_m \rb_z\\ 
+&\gtrsim_\plus \min\left(\limsup_{n,m\to\infty}\lb x_n|y_m \rb_z,\liminf_{n_1,n_2\to\infty}\lb x_{n_1}|x_{n_2}\rb_z,\liminf_{m_1,m_2\to\infty}\lb y_{m_1}|y_{m_2}\rb_z\right) \noreason\\
+&=_\pt \limsup_{n,m\to\infty}\lb x_n|y_m\rb_z, \phantom{XxX}\since{$(x_n)_1^\infty$ and $(y_m)_1^\infty$ are Gromov}
+\end{align*}
+demonstrating \eqref{welldefined1}. On the other hand, suppose that $X$ is strongly hyperbolic. Then by \eqref{gromovforCAT} we have
+\[
+\exp\big(-\lb x_{n_1}|y_{m_1}\rb_z\big) \leq \exp\big(-\lb x_{n_2}|y_{m_2}\rb_z\big) + \exp\big(-\lb x_{n_1}|x_{n_2}\rb_z\big) + \exp\big(-\lb y_{m_1}|y_{m_2}\rb_z\big);
+\]
+taking the limsup over $n_1,m_1$ and the liminf over $n_2,m_2$ gives
+\begin{align*}
+\exp \big(-\liminf_{n,m\to\infty}\lb x_n|y_m\rb_z\big) &\leq \exp\big(-\limsup_{n,m\to\infty}\lb x_n|y_m \rb_z\big) +\\
+&\phantom{XxX}+ \exp\big(-\liminf_{n_1,n_2\to\infty}\lb x_{n_1}|x_{n_2}\rb_z\big) +\\ 
+&\phantom{XxX}+ \exp\big(-\liminf_{m_1,m_2\to\infty}\lb y_{m_1}|y_{m_2}\rb_z\big) \noreason\\
+&= \exp\big(-\limsup_{n,m\to\infty}\lb x_n|y_m\rb_z\big),\\ 
+&\phantom{XxXxXx}\text{(since $(x_n)_1^\infty$ and $(y_m)_1^\infty$ are Gromov)}
+\end{align*}
+demonstrating equality in \eqref{welldefined1}. The proof of \eqref{welldefined2} is similar and will be omitted.
+\end{proof}
+
+\begin{remark}
+Many of the statements in this monograph concerning strongly hyperbolic metric spaces are in fact valid for all hyperbolic metric spaces satisfying the conclusion of Lemma \ref{lemmawelldefined}.
+\end{remark}
+
+Now that we know that it does not matter too much whether we replace the limit in \eqref{gromovproductdef} by a liminf or a limsup, we make the following definition without fear:
+
+\begin{definition}
+For $\xi,\eta\in\del X$ and $y,z\in X$, let
+\begin{align} \label{gromovboundarydef1}
+\lb \xi|\eta\rb_z &:= \inf\left\{\liminf_{n,m\to\infty}\lb x_n|y_m\rb_z:(x_n)_1^\infty\in\xi,(y_m)_1^\infty\in\eta\right\}\\ \label{gromovboundarydef2}
+\lb \xi|y\rb_z &:= \lb y|\xi\rb_z := \inf\left\{\liminf_{n\to\infty}\lb x_n|y\rb_z:(x_n)_1^\infty\in\xi\right\}\\ \label{gromovboundarydef3}
+\busemann_\xi(y,z) &= \lb z|\xi\rb_y - \lb y|\xi\rb_z.
+\end{align}
+\end{definition}
+
+As a corollary of Lemma \ref{lemmawelldefined}, we have the following:
+
+\begin{lemma}
+\label{lemmaboundaryasymptotic}
+Fix $\xi,\eta\in\del X$ and $y,z\in X$. For all $(x_n)_1^\infty\in\xi$ and $(y_m)_1^\infty\in\eta$ we have 
+\begin{align} \label{boundaryasymptotic1}
+\lb x_n|y_m\rb_z &\tendsto{n,m,\plus} \lb \xi|\eta\rb_z\\ \label{boundaryasymptotic2}
+\lb x_n|y\rb_z &\tendsto{\;\; n,\plus \;\;} \lb \xi|y\rb_z\\ \label{boundaryasymptotic3}
+\busemann_{x_n}(y,z) &\tendsto{\;\; n,\plus \;\;} \busemann_\xi(y,z),
+\end{align}
+(cf. Convention \ref{conventiontendston}), with exact limits if $X$ is strongly hyperbolic.
+\end{lemma}
+Note that except for the statement about strongly hyperbolic spaces, this lemma is simply \cite[Lemma 5.11]{Vaisala}.
+\begin{proof}[Proof of Lemma \ref{lemmaboundaryasymptotic}]
+Say we are given $(x_n^{(i)})_1^\infty\in \xi$ and $(y_m^{(i)})_1^\infty\in\eta$ for each $i = 1, 2$.
+%Suppose that for each $i = 1,2$, we are given $(x_n^{(i)})_1^\infty\in \xi$ and $(y_m^{(i)})_1^\infty\in\eta$. 
+Let
+\[
+x_n = \begin{cases}
+x_{n/2}^{(1)} & n \text{ even}\\
+x_{(n + 1)/2}^{(2)} & n \text{ odd}
+\end{cases},
+\]
+and define $y_m$ similarly. It may be verified using Gromov's inequality that $(x_n)_1^\infty\in \xi$ and $(y_m)_1^\infty\in\eta$. Applying Lemma \ref{lemmawelldefined}, we have
+\[
+\min_{i = 1}^2 \min_{j = 1}^2 \liminf_{n,m\to\infty} \lb x_n^{(i)}|y_m^{(j)}\rb_z \asymp_\plus \max_{i = 1}^2 \max_{j = 1}^2 \limsup_{n,m\to\infty} \lb x_n^{(i)}|y_m^{(j)}\rb_z .
+\]
+In particular,
+\begin{align*}
+\liminf_{n,m\to\infty} \lb x_n^{(1)} | y_n^{(1)} \rb_z
+&\lesssim_\plus \limsup_{n,m\to\infty} \lb x_n^{(1)} | y_n^{(1)} \rb_z\\
+&\lesssim_\plus \liminf_{n,m\to\infty} \lb x_n^{(2)} | y_n^{(2)} \rb_z\\
+&\lesssim_\plus \limsup_{n,m\to\infty} \lb x_n^{(2)} | y_n^{(2)} \rb_z
+\lesssim_\plus \liminf_{n,m\to\infty} \lb x_n^{(1)} | y_n^{(1)} \rb_z.
+\end{align*}
+Taking the infimum over all $(x_n^{(2)})_1^\infty\in\xi$ and $(y_m^{(2)})_1^\infty\in\eta$ gives \eqref{boundaryasymptotic1}. A similar argument gives \eqref{boundaryasymptotic2}. Finally, \eqref{boundaryasymptotic3} follows from \eqref{boundaryasymptotic2}, \eqref{gromovboundarydef3}, and (j) of Proposition \ref{propositionbasicidentities}.
+
+If $X$ is strongly hyperbolic, then all error terms are equal to zero, demonstrating that the limits converge exactly.
+\end{proof}
+\begin{remark}
+In the sequel, the statement that ``if $X$ is strongly hyperbolic, then all error terms are zero'' will typically be omitted from our proofs.
+\end{remark}
+
+A simple but useful consequence of Lemma \ref{lemmaboundaryasymptotic} is the following:
+
+\begin{corollary}
+\label{corollaryboundaryasymptotic}
+The formulas of Proposition \ref{propositionbasicidentities} together with Gromov's inequality hold for points on the boundary as well, if the equations and inequalities there are replaced by additive asymptotics.
+ If $X$ is strongly hyperbolic, then we may keep the original formulas without adding an error term.
+\end{corollary}
+\begin{proof}
+For each identity, choose a Gromov sequence representing each element of the boundary which appears in the formula. Replace each occurrence of this element in the formula by the general term of the chosen sequence. This yields a sequence of formulas, each of which is known to be true. Take a subsequence on which each term in these formulas converges. Taking the limit along this subsequence again yields a true formula, and by Lemma \ref{lemmaboundaryasymptotic} we may replace each limit term by the term which it stood for, with only bounded error in doing so, and no error if $X$ is strongly hyperbolic. Thus the formula holds as an additive asymptotic, and holds exactly if $X$ is strongly hyperbolic.
+\end{proof}
+
+\begin{remark}
+\label{remarkacde}
+In fact, (a), (c), (d), and (e) of Proposition \ref{propositionbasicidentities} hold in $\bord X$ in the usual sense, i.e. as exact formulas without additive constants. 
+\end{remark}
+\begin{proof}
+These are the identities where there is at most one Gromov product on each side of the formula. For each element of the boundary, we may simply replace each occurence of that element with the general term of an arbitrary Gromov sequence, take the liminf, and then take the infimum over all Gromov sequences.
+\end{proof}
+
+\begin{observation}
+\label{observationyzinfinity}
+$\lb x|y\rb_z = \infty$ if and only if $x = y\in\del X$.
+\end{observation}
+\begin{proof}
+This follows directly from \eqref{gromovboundarydef1} and \eqref{gromovboundarydef2}.
+\end{proof}
+
+\subsection{A topology on $\bord X$}
+\label{subsubsectiontopologyclX}
+One can endow the bordification $\bord X = X\cup\del X$ with a topological structure $\scrT$ as follows: Given $S\subset\bord X$, write $S\in\scrT$ (i.e. call $S$ open) if
+\begin{itemize}
+\item[(I)] $S\cap X$ is open, and
+\item[(II)] For each $\xi\in S\cap\del X$ there exists $t\geq 0$ such that $N_t(\xi)\subset S$, where
+\[
+N_t(\xi) := N_{t,\zero}(\xi) := \{y\in \bord X:\lb y|\xi\rb_\zero > t\}
+\]
+\end{itemize}
+
+\begin{remark}
+The topology $\scrT$ may equivalently be defined to be the unique topology on $\bord X$ satisfying:
+\begin{itemize}
+\item[(I)] $\scrT\given X$ is compatible with the metric $\dist$, and
+\item[(II)] For each $\xi\in\del X$, the collection
+\begin{equation}
+\label{Ntxibase}
+\{N_t(\xi) : t \geq 0\}
+\end{equation}
+is a neighborhood base for $\scrT$ at $\xi$.
+\end{itemize}
+\end{remark}
+
+\begin{remark}
+\label{remarkNtxiopen}
+It follows from Lemma \ref{lemmalowersemicontinuous} below that the sets $N_t(\xi)$ are open in the topology $\scrT$.
+\end{remark}
+
+\begin{remark}
+\label{remarkbasepoint2}
+By (d) of Proposition \ref{propositionbasicidentities} (cf. Remark \ref{remarkacde}), we have $N_{t,x}(\xi) \supset N_{t + \dist(x,y),y}(\xi)$ for all $x,y\in X$, $\xi\in\del X$, and $t\geq 0$. Thus the topology $\scrT$ is independent of the basepoint $\zero$.
+\end{remark}
+
+The topology $\scrT$ is quite nice. In fact, we have the following:
+
+\begin{proposition}\label{propositionclX}
+The topological space $(\bord X,\scrT)$ is completely metrizable. If $X$ is proper and geodesic, then $\bord X$ (and thus also $\del X$) is compact. If $X$ is separable, then $\bord X$ (and thus also $\del X$) is separable.
+\end{proposition}
+\begin{remark}
+If $X$ is proper and geodesic, then Proposition \ref{propositionclX} is \cite[Exercise III.H.3.18(4)]{BridsonHaefliger}.
+\end{remark}
+\begin{proof}[Proof of Proposition \ref{propositionclX}]
+We delay the proof of the complete metrizability of $\bord X$ until Section \ref{subsectionmetametrics}, where we will introduce a class of compatible complete metrics on $\bord X$ which are important from a geometric point of view, the so-called \emph{visual} metrics.
+
+Since $X$ is dense in $\bord X$, the separability of $X$ implies the separability of $\bord X$. Moreover, since $\bord X$ is metrizable (as we will show in Section \ref{subsectionmetametrics}), the separability of $\bord X$ implies the separability of $\del X$.
+
+Finally, assume that $X$ is proper and geodesic; we claim that $\bord X$ is compact. Let $(x_n)_1^\infty$ be a sequence in $X$. If $(x_n)_1^\infty$ contains a bounded subsequence, then since $X$ is proper it contains a convergent subsequence. Thus we assume that $(x_n)_1^\infty$ contains no bounded subsequence, i.e. $\dox{x_n}\to \infty$.
+
+For each $n\in\Namer$ and $t\geq 0$ let
+\[
+x_{n,t} = \geo\zero{x_n}_{t\wedge\dox{x_n}},\Footnote{Here and from now on $A\wedge B = \min(A,B)$ and $A\vee B = \max(A,B)$.}
+\]
+where $\geo\zero{x_n}$ is any geodesic connecting $\zero$ and $x_n$. Since $X$ is proper, there exists a sequence $(n_k)_1^\infty$ such that for each $t\geq 0$, the sequence $(x_{n_k,t})_1^\infty$ is convergent, say
+\[
+x_{n_k,t}\tendsto k x_t.
+\]
+It is readily verified that the map $t\mapsto x_t$ is an isometric embedding from $\Rplus$ to $X$. Thus there exists a point $\xi\in\del X$ such that $x_t\to \xi$. We claim that $x_{n_k}\to \xi$. Indeed, for each $t\geq 0$,
+\[
+\limsup_{k\to\infty}\Dist(x_{n_k},x_{n_k,t}) \asymp_\times \limsup_{k\to\infty}\Dist(x_{n_k,t},x_t) \asymp_\times \limsup_{k\to\infty} \Dist(x_t,\xi) \asymp_\times b^{-t},
+\]
+and so the triangle inequality gives
+\[
+\limsup_{k\to\infty}\Dist(x_{n_k},\xi) \lesssim_\times b^{-t}.
+\]
+Letting $t\to\infty$ shows that $x_{n_k}\to\xi$.
+\end{proof}
+
+\begin{observation}
+\label{observationboundaryconvergence}
+A sequence $(x_n)_1^\infty$ in $\bord X$ converges to a point $\xi\in \del X$ if and only if
+\begin{equation}\label{boundaryconvergence}
+\lb x_n|\xi\rb_\zero \tendsto n \infty.
+\end{equation}
+\end{observation}
+
+\begin{observation}
+\label{observationboundaryconvergence2}
+A sequence $(x_n)_1^\infty$ in $X$ converges to a point $\xi\in \del X$ if and only if $(x_n)_1^\infty$ is a Gromov sequence and $(x_n)_1^\infty\in\xi$.
+\end{observation}
+
+% Not sure what this corollary is saying nor how it is used later.
+%\ignore{
+%\begin{corollary}
+%\label{corollarygromovboundarydef34}
+%We may rewrite \eqref{gromovboundarydef1} and \eqref{gromovboundarydef2} as
+%\begin{align} \label{gromovboundarydef1B}
+%\lb \xi|\eta\rb_z &= \liminf_{x\to\xi,y\to\eta}\lb x|y\rb_z\\ \label{gromovboundarydef2B}
+%\lb \xi|y\rb_z &:= \lb y|\xi\rb_z = \liminf_{x\to\xi}\lb x|y\rb_z
+%\end{align}
+%\end{corollary}
+%}% end ignore
+
+
+We now investigate the continuity properties of the Gromov product and Busemann function.
+
+\begin{lemma}[Near-continuity of the Gromov product and Busemann function]
+\label{lemmanearcontinuity}
+The maps $(x,y,z)\mapsto \lb x|y\rb_z$ and $(x,z,w)\mapsto \busemann_x(z,w)$ are \underline{nearly continuous} in the following sense: Suppose that $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are sequences in $\bord X$ which converge to points $x_n\to x\in\bord X$ and $y_n\to y\in\bord X$. Suppose that $(z_n)_1^\infty$ and $(w_n)_1^\infty$ are sequences in $X$ which converge to points $z_n\to z\in X$ and $w_n\to w\in X$. Then
+\begin{align} \label{continuousextension1}
+\lb x_n|y_n\rb_{z_n} &\tendsto{n,\plus} \lb x|y\rb_z\\ \label{continuousextension2}
+\busemann_{x_n}(z_n,w_n) &\tendsto{n,\plus} \busemann_x(z,w),
+\end{align}
+with $\tendsto n$ if $X$ is strongly hyperbolic.
+\end{lemma}
+\begin{proof}
+In the proof of \eqref{continuousextension1}, there are three cases:
+\begin{itemize}
+\item[Case 1:] $x,y\in X$. In this case, \eqref{continuousextension1} follows directly from (d) and (e) of Proposition \ref{propositionbasicidentities}.
+\item[Case 2:] $x,y\in\del X$. In this case, for each $n\in\Namer$, choose $\what x_n\in X$ such that either
+\begin{itemize}
+\item[(1)] $\what x_n = x_n$ (if $x_n\in X$), or
+\item[(2)] $\lb \what x_n|x_n\rb_z\geq n$ (if $x_n\in\del X$).
+\end{itemize}
+Choose $\what y_n$ similarly. Clearly, $\what x_n\to x$ and $\what y_n \to y$. By Observation \ref{observationboundaryconvergence2}, $(\what x_n)_1^\infty\in x$ and $(\what y_n)_1^\infty\in y$. Thus by Lemma \ref{lemmaboundaryasymptotic},
+\begin{equation}
+\label{whatxwhaty}
+\lb \what x_n|\what y_n\rb_z \tendsto{n,\plus} \lb x|y\rb_z.
+\end{equation}
+Now by Gromov's inequality and (e) of Proposition \ref{propositionbasicidentities}, either
+\begin{align*} \tag{1}
+\lb \what x_n|\what y_n\rb_z &\asymp_\plus \lb x_n|y_n\rb_{z_n} \text{ or }\\ \tag{2}
+\lb \what x_n|\what y_n\rb_z &\gtrsim_\plus n,
+\end{align*}
+with which asymptotic is true depending on $n$. But for $n$ sufficiently large, \eqref{whatxwhaty} ensures that the (2) fails, so (1) holds.
+\item[Case 3:] $x\in X$, $y\in\del X$, or vice-versa. In this case, a straightforward combination of the above arguments demonstrates \eqref{continuousextension1}.
+\end{itemize}
+Finally, note that \eqref{continuousextension2} is an immediate consequence of \eqref{continuousextension1}, \eqref{gromovboundarydef3}, and (j) of Proposition \ref{propositionbasicidentities}.
+\end{proof}
+
+Although Lemma \ref{lemmanearcontinuity} is generally sufficient for applications, we include the following lemma which reassures us that the Gromov product does behave somewhat regularly even on an ``exact'' level.
+
+\begin{lemma}
+\label{lemmalowersemicontinuous}
+The function $(x,y,z)\mapsto\lb x|y\rb_z$ is lower semicontinuous on $\bord X\times\bord X\times X$.
+\end{lemma}
+\begin{proof}
+Since $\bord X$ is metrizable, it is enough to show that if $x_n\to x$, $y_n\to y$, and $z_n\to z$, then
+\[
+\liminf_{n\to\infty}\lb x_n|y_n\rb_{z_n} \geq \lb x|y\rb_z.
+\]
+Now fix $\epsilon > 0$.
+\begin{claim}
+For each $n\in\N$, there exist points $\what x_n,\what y_n\in X$ satisfying:
+\begin{align} \label{LSC1}
+\lb \what x_n|\what y_n\rb_{z_n} &\leq \lb x_n|y_n\rb_{z_n} + \epsilon,\\ \label{LSC2}
+\lb \what x_n|x_n\rb_\zero &\geq n, \text{ or }\what x_n = x_n\in X,\\ \label{LSC3}
+\lb \what y_n|y_n\rb_\zero &\geq n, \text{ or }\what y_n = y_n\in X.
+\end{align}
+\end{claim}
+\begin{subproof}
+Suppose first that $x_n,y_n\in\del X$. By the definition of $\lb x_n|y_n\rb_{z_n}$, there exist $(x_{n,k})_1^\infty\in x_n$ and $(y_{n,\ell})_1^\infty\in y_n$ such that
+\[
+\liminf_{k,\ell\to\infty} \lb x_{n,k}|y_{n,\ell}\rb_{z_n} \leq \lb x_n|y_n\rb_{z_n} + \epsilon/2.
+\]
+It follows that there exist arbitrarily large\Footnote{Here, of course, ``arbitrarily large'' means that $\min(k,\ell)$ can be made arbitrarily large.} pairs $(k,\ell)\in\N^2$ such that the points $\what x_n := x_{n,k}$ and $\what y_n := y_{n,\ell}$ satisfy \eqref{LSC1}. Since \eqref{LSC2} and \eqref{LSC3} are satisfied for all sufficiently large $(k,\ell)\in\N^2$, this completes the proof. Finally, if either $x_n\in X$, $y_n\in X$, or both, a straightforward adaptation of the above argument yields the claim.
+\end{subproof}
+The equations \eqref{LSC2} and \eqref{LSC3}, together with Gromov's inequality, imply that $\what x_n\to x$ and $\what y_n\to y$. Now suppose that $x,y\in \del X$. Then by Observation \ref{observationboundaryconvergence2}, $(\what x_n)_1^\infty\in x$ and $(\what y_n)_1^\infty\in y$. So by the definition of $\lb x|y\rb_z$, we have
+\begin{align*}
+\lb x|y\rb_z &\leq \liminf_{n\to\infty}\lb \what x_n|\what y_n\rb_z \by{the definition of $\lb x|y\rb_z$}\\
+&= \liminf_{n\to\infty}\lb \what x_n|\what y_n\rb_{z_n} \by{(d) of Proposition \ref{propositionbasicidentities}}\\
+&\leq \liminf_{n\to\infty}\lb x_n|y_n\rb_{z_n} + \epsilon. \by{\eqref{LSC1}}
+\end{align*}
+Letting $\epsilon$ tend to zero completes the proof. A similar argument applies to the case where $x\in X$, $y\in X$, or both.
+\end{proof}
+
+
+%\begin{proof}[Proof of Remark \ref{remarkNtxiopen}]
+%The fact that $N_t(\xi)\cap X$ is open follows from (g) of Proposition \ref{propositionbasicidentities} - recall that we do not have to add an error term when moving this formula to the boundary (Remark \ref{remarkace}). Fix $\eta\in %N_t(\xi)\cap\del X$. Then $\lb\xi|\eta\rb_\zero > t$; fix $t < \w t < \lb\xi|\eta\rb_\zero$.
+%\begin{claim}
+%\label{claimNtxiopen}
+%There exists $n\in\N$ such that $\lb y|\xi\rb_\zero\geq \w t$ for all $y\in N_n(\eta)\cap X$.
+%\end{claim}
+%\begin{proof}
+%Suppose not. Then we have a sequence $y_n\to \eta$ so that $\lb y_n|\xi\rb_\zero < \w t$ for all $n$. For each $n\in\N$, by \eqref{gromovboundarydef2B}, there exists $x_n\in X$ such that $\lb x_n|y_n\rb_\zero < \w t$ and $\lb %x_n|\xi\rb_\zero > n$. Then $x_n\to \xi$. Thus by \eqref{gromovboundarydef1B} we have
+%\[
+%\w t < \lb\xi|\eta\rb_\zero \leq \liminf_{m,n\to\infty}\lb x_m|y_n\rb_\zero
+%\leq \liminf_{n\to\infty}\lb x_n|y_n\rb_\zero \leq \w t,
+%\]
+%a contradiction.
+%\QEDmod\end{proof}
+%Let $n$ be as in Claim \ref{claimNtxiopen}, and let
+%\[
+%U = \bord X \butnot \cl{X\butnot N_n(\eta)}.
+%\]
+%Clearly, $U$ is open and $\eta\in U$. Fix $z\in U$. If $z\in X$, then Claim \ref{claimNtxiopen} implies that $\lb z|\xi\rb_\zero \geq \w t > t$, so $z\in N_t(\xi)$. If $z\in\del X$, then
+%\[
+%\lb z|\xi\rb_\zero = \liminf_{x\to\xi,y\to z}\lb x|y\rb_\zero \geq \inf_{y\in N_n(\eta)}\liminf_{x\to\xi}\lb x|y\rb_\zero = \inf_{y\in N_n(\eta)}\lb y|\xi\rb_\zero \geq \w t > t,
+%\]
+%so again $z\in N_t(\xi)$. Thus $U\subset N_t(\xi)$, and $N_t(\xi)$ contains a neighborhood of $\eta$.
+%\end{proof}
+
+
+\begin{lemma}
+\label{lemmaisometryextension}
+If $g$ is an isometry of $X$, then it extends in a unique way to a continuous map $\w g:\bord X\to\bord X$.
+\end{lemma}
+\begin{proof}
+This follows more or less directly from Remarks \ref{remarkbasepoint1} and \ref{remarkbasepoint2}; details are left to the reader.
+\end{proof}
+%\ignore{
+%\begin{proof}
+%It is clear that $g$ sends Gromov sequences to Gromov sequences, and equivalent Gromov sequences to equivalent Gromov sequences. Thus the formula
+%\[
+%\del g([(x_n)_1^\infty]) = [(g(x_n))_1^\infty]
+%\]
+%defines a map $\del g:\del X\to \del X$. Let $\w g:\bord X\to\bord X$ be the combination of $g$ and $\del g$. To show that $\w g$ is continuous, suppose that $U\subset\bord X$ is open, and let $V = \w g^{-1}(U)$. Then $V\cap X = g^{-1}(U\cap X)$ is open. Fix $\xi\in V\cap \del X$. Then there exists $t > 0$ such that $N_t(\del g(\xi)) \subset U$.
+%\begin{claim}
+%$\w g(N_{t + \dogo g})(\xi) \subset N_t(\del g(\xi))$.
+%\end{claim}
+%\begin{subproof}
+%Suppose $y\in N_{t + \dogo g}(\xi)$, i.e. $\lb y|\xi\rb_\zero > t + \dogo g$. Suppose first that $y\in\del X$. Then
+%\begin{align*}
+%\lb \w g(y) | \w g(\xi)\rb_{\w g(\zero)}
+%&= \inf\left\{\liminf_{n,m\to\infty} \lb y_n | x_m\rb_{g(\zero)} : (y_n)_1^\infty\in\w g(y), (x_m)_1^\infty\in\w g(\xi)\right\}\\
+%&= \inf\left\{\liminf_{n,m\to\infty} \lb g(y_n) | g(x_m)\rb_{g(\zero)} : (y_n)_1^\infty\in y, (x_m)_1^\infty\in\xi\right\}\\
+%&= \inf\left\{\liminf_{n,m\to\infty} \lb y_n | x_m\rb_\zero : (y_n)_1^\infty\in y, (x_m)_1^\infty\in\xi\right\}\\
+%&= \lb y|\xi\rb_\zero > t + \dogo g.
+%\end{align*}
+%On the other hand, by (d) of Proposition \ref{propositionbasicidentities} (cf. Remark \ref{remarkacde}), we have $\lb \w g(y) | \w g(\xi)\rb_{\w g(\zero)} \leq \lb \w g(y) | \w g(\xi)\rb_\zero + \dogo g$. Thus $\lb \w g(y) | \w g(\xi)\rb_\zero > t$, i.e. $\w g(y)\in N_t(\w g(\xi))$. A similar argument works if $y\in X$. \comdavid{This proof seems too detailed - can we say it in words, like in the proof of Corollary \ref{corollaryboundaryasymptotic}?}
+%\end{subproof}
+%
+%Thus $N_{t + \dogo g}(\xi) \subset \w g^{-1}(U) = V$. Since $\xi$ was arbitrary, this demonstrates that $V$ is open.
+%\end{proof}
+%}% end ignore
+In the sequel we will omit the tilde from the extended map $\w g$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{The Gromov product in algebraic hyperbolic spaces} \label{subsectionGromovinH}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section we analyze the Gromov product in an algebraic hyperbolic space $X$. We prove Proposition \ref{propositionCATimpliesGromov} which states that CAT(-1) spaces are strongly hyperbolic, and then we show that the Gromov boundary of $X$ is isomorphic to its topological boundary, justifying Remark \ref{remarkambiguityboundary}.
+
+In what follows, we will switch between the hyperboloid model $\H = \H_\F^\alpha$ and the ball model $\B = \B_\F^\alpha$ according to convenience. In the following lemma, $\del\B$ and $\bord\B$ denote the topological boundary and closure of $\B$ as defined in Chapter \ref{sectionROSSONCTs}, not the Gromov boundary and closure as defined above.
+
+\begin{figure}
+\begin{center}
+\definecolor{qqwuqq}{rgb}{0.0,0.39215686274509803,0.0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.40,-3.1) rectangle (3.40,3.13);
+\draw [shift={(0.0,-0.0)},color=qqwuqq,fill=qqwuqq,fill opacity=0.1] (0,0) -- (27.07967008819517:0.5963691863565421) arc (27.07967008819517:60.832386620422206:0.5963691863565421) -- cycle;
+\draw(0.0,0.0) circle (3.0cm);
+\draw (0.0,-0.0)-- (2.6711231603651164,1.3656870293596084);
+\draw (0.0,-0.0)-- (1.4620984777924115,2.619593106044737);
+\draw (1.4620984777924115,2.619593106044737)-- (2.6711231603651164,1.3656870293596084);
+\begin{scriptsize}
+\draw [fill=black] (1.4620984777924115,2.619593106044737) circle (.75pt);
+\draw[color=black] (1.5997838888502904,2.7999980589688112) node {$\xx$};
+\draw [fill=black] (2.6711231603651164,1.3656870293596084) circle (.75pt);
+\draw[color=black] (2.9117960988346834,1.4482279032273154) node {$\yy$};
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.2290816159764389,-0.12160581857100267) node {$\0$};
+\draw[color=qqwuqq] (0.6040198381009913,0.57476336778553957) node {$\theta$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Relating angle and the Gromov product]{If $\F = \R$ and $\xx,\yy\in\del\B$, then $e^{-\lb\xx|\yy\rb_\0} = \frac12\|\yy - \xx\| = \sin(\theta/2)$, where $\theta$ denotes the angle $\ang_\0(\xx,\yy)$ drawn in the figure.}
+\end{center}
+\end{figure}
+
+
+\begin{lemma}
+\label{lemmagromovextension}
+The Gromov product $(\xx,\yy,\zz)\mapsto \lb \xx|\yy\rb_\zz:\B\times\B\times\B\to\Rplus$ extends uniquely to a continuous function $(\xx,\yy,\zz)\mapsto \lb \xx|\yy\rb_\zz:\bord\B\times\bord\B\times\B\to[0,\infty]$. Moreover, the extension satisfies the following:
+\begin{itemize}
+\item[(i)] $\lb\xx|\yy\rb_{\zz} = \infty$ if and only if $\xx = \yy\in\del\B$.
+\item[(ii)] For all $\xx,\yy\in\bord\B$,
+\begin{equation}
+\label{euclideanball1}
+e^{-\lb\xx|\yy\rb_\0} \geq \frac{1}{\sqrt 8}\|\yy - \xx\|.
+\end{equation}
+If $\F = \R$ and $\xx,\yy\in\del\B$, then
+\begin{equation}
+\label{euclideanball2}
+e^{-\lb\xx|\yy\rb_\0} = \frac12\|\yy - \xx\|.
+\end{equation}
+%\item[(iii)]
+%\begin{equation}
+%\label{Gromovasymptotic}
+%\lb \xx|\yy\rb_\0 \asymp_\plus \min\left(\dist_\B(\0,\xx),\dist_\B(\0,\yy),-\log\ang(\xx,\yy)\right)\text{ for $\xx,\yy\in\bord\B$}.
+%\end{equation}
+%Here by convention $\dist_\B(\0,\xx) = \infty$ if $\xx\in\del\B$.
+\end{itemize}
+\end{lemma}
+%\ignore{
+%\begin{proof}
+%Define the function $F:\Rplus\times\Rplus\times[0,\pi]\to\Rplus$ by
+%\[
+%F(A,B,\gamma) = \frac{\exp\left[\cosh^{-1}\left(\cosh(A)\cosh(B) - \sinh(A)\sinh(B)\cos(\gamma)\right)\right]}{e^A e^B}.
+%\]
+%Then by Proposition \ref{lawofcosines},we have
+%\begin{align*}
+%e^{-2\lb \xx|\yy\rb_\zero} &= F(\dist_\B(\zero,\xx),\dist_\B(\zero,\yy),\ang(\xx,\yy))
+%%\\&= F(2\tanh^{-1}(\|\xx\|),2\tanh^{-1}(\|\yy\|),\cos^{-1}(\lb\xx,\yy\rb/(\|\xx\|\cdot\|\yy\|)))
+%\end{align*}
+%for all $\xx,\yy\in\B$. Now since $\lim_{t\to\infty}\frac{e^t}{\cosh(t)} = 2$, we have
+%\begin{align*}
+%\lim_{B\to\infty}F(A,B,\gamma)
+%&= \lim_{B\to\infty}\frac{2\left(\cosh(A)\cosh(B) - \sinh(A)\sinh(B)\cos(\gamma)\right)}{e^A [2\cosh(B)]}\\
+%&= \lim_{B\to\infty}\frac{\cosh(A) - \sinh(A)\tanh(B)\cos(\gamma)}{e^A}\\
+%&= \frac{\cosh(A) - \sinh(A)\cos(\gamma)}{e^A}
+%\end{align*}
+%and 
+%\[
+%\lim_{A\to\infty}\frac{\cosh(A) - \sinh(A)\cos(\gamma)}{e^A}
+%= \frac{1 - \cos(\gamma)}{2}
+%= \sin^2(\gamma/2).
+%\]
+%Thus if we let
+%\[
+%\what F(A,B,\gamma) :=
+%\begin{cases}
+%F(A,B,\gamma) & A,B < \infty\\
+%\frac{\cosh(A) - \sinh(A)\cos(\gamma)}{e^A} & A < B = \infty\\
+%\frac{\cosh(B) - \sinh(B)\cos(\gamma)}{e^B} & B < A = \infty\\
+%\sin^2(\gamma/2) & A = B = \infty
+%\end{cases}
+%\]
+%then $\what F:[0,\infty]\times[0,\infty]\times[0,\pi]\to[0,\infty]$ is a continuous function.\Footnote{Technically, the calculations above do not prove the continuity of $\what F$; however, this continuity is easily verified.} Thus, letting
+%\[
+%\lb \xx|\yy\rb_\zero := -\frac12\log\left(\what F\bigl(\dist_\B(\zero,\xx),\dist_\B(\zero,\yy),\ang(\xx,\yy)\bigr)\right)
+%\]
+%defines a continuous extension of the Gromov product to the boundary.
+%
+%We now prove (i)-(iii):
+%\begin{itemize}
+%\item[(i)] By inspection, we see that $\what F(A,B,\gamma) = 0$ if and only if $A = B = \infty$ and $\sin^2(\gamma/2) = 0$, i.e. $\gamma = 0$. Thus, in order to have $\lb \xx|\yy\rb_\zero = \infty$ we must have $\dist_\B(\zero,\xx) = \dist_\B(\zero,\yy) = \infty$ and $\ang(\xx,\yy) = 0$, or in other words $\xx,\yy\in\del\B$ and $\xx = \yy$.
+%\item[(ii)] If $\xx,\yy\in\del\B$, then $\dist_\B(\zero,\xx) = \dist_\B(\zero,\yy) = \infty$. Thus
+%\[
+%e^{-2\lb\xx|\yy\rb_\zero} = \what F\bigl(\infty,\infty,\ang(\xx,\yy)\bigr) = \sin^2\bigl(\ang(\xx,\yy)/2\bigr)
+%\]
+%and thus
+%\[
+%e^{-\lb\xx|\yy\rb_\zero} = \sin\bigl(\ang(\xx,\yy)/2\bigr)
+%= \frac12\|\yy - \xx\|
+%\]
+%(see Figure \internalmissingref).
+%\item[(iii)] For all $A,B\in\Rplus$ and $\gamma\in[0,\pi]$, using the asymptotic $\cosh(x)\asymp_\times e^x$ three times we have
+%\begin{align*}
+%\what F(A,B,\gamma)
+%&\asymp_\times \frac{\cosh(A)\cosh(B) - \sinh(A)\sinh(B)\cos(\gamma)}{\cosh(A)\cosh(B)}\\
+%&=_\pt 1 - \tanh(A)\tanh(B)\cos(\gamma)\\
+%&\asymp_\times \max\left(1 - \tanh(A),1 - \tanh(B),1 - \cos(\gamma)\right)\\
+%&\asymp_\times \max\left(e^{-2A},e^{-2B},\gamma^2\right).
+%\end{align*}
+%Thus
+%\[
+%-\frac12\log(\what F(A,B,\gamma)) \asymp_\plus \min(A,B,-\log(\gamma)),
+%\]
+%which implies \eqref{Gromovasymptotic}.
+%\end{itemize}
+%\end{proof}
+%}% end ignore
+\begin{proof}
+We begin by making some computations in the hyperboloid model $\H$. For $[\xx],[\yy]\in\bord\H$ and $[\zz]\in\H$, let
+\[
+\alpha_{[\zz]}([\xx],[\yy]) = \frac{|\QQ(\zz)|\cdot |B_\QQ(\xx,\yy)|}{|B_\QQ(\xx,\zz)|\cdot |B_\QQ(\yy,\zz)|}\in\Rplus.
+\]
+By \eqref{distanceinL}, for $[\xx],[\yy],[\zz]\in\H$ we have
+\begin{equation}
+\label{lorentzlawofcosh}
+\alpha_{[\zz]}([\xx],[\yy]) = \frac{\cosh\dist_\H([\xx],[\yy])}{\cosh\dist_\H([\xx],[\zz])\cosh\dist_\H([\yy],[\zz])}\cdot
+\end{equation}
+Let $\DD = \{(A,B,C)\in\Rplus^3: \cosh(A)\cosh(B)C \geq 1\}$, and define $F: \DD\to\Rplus$ by
+\[
+F(A,B,C) = \frac{\exp\left[\cosh^{-1}\left(\cosh(A)\cosh(B)C\right)\right]}{e^A e^B}\cdot
+\]
+Then by \eqref{lorentzlawofcosh}, we have
+\[
+e^{-2\lb [\xx]|[\yy]\rb_{[\zz]}} = F\left(\dist_\H([\zz],[\xx]),\dist_\H([\zz],[\yy]),\alpha_{[\zz]}([\xx],[\yy])\right)
+\]
+for all $[\xx],[\yy],[\zz]\in\H$. Now since $\lim_{t\to\infty}\frac{e^t}{\cosh(t)} = 2$, we have for all $A\geq 0$ and $C > 0$
+\begin{align*}
+\lim_{B\to\infty}F(A,B,C)
+&= \lim_{B\to\infty}\frac{2\left(\cosh(A)\cosh(B)C\right)}{e^A e^B}\\
+&= \frac{\cosh(A)}{e^A} C
+\end{align*}
+and 
+\[
+\lim_{A\to\infty}\frac{\cosh(A)}{e^A} C
+= C/2.
+\]
+Let $\what \DD$ be the closure of $\DD$ relative to $[0,\infty]^2\times \Rplus$, i.e. 
+\[
+\what \DD = \DD\cup \left([0,\infty]^2\times \Rplus\butnot \Rplus^3\right).
+\] 
+If we let
+\[
+\what F(A,B,C) :=
+\begin{cases}
+F(A,B,C) & A,B < \infty\\
+\frac{\cosh(A)}{e^A} C & A < B = \infty\\
+\frac{\cosh(B)}{e^B} C & B < A = \infty\\
+C/2 & A = B = \infty
+\end{cases}
+\]
+then $\what F: \what \DD\to\Rplus$ is a continuous function.\Footnote{Technically, the calculations above do not prove the continuity of $\what F$; however, this continuity is easily verified using standard methods.} Thus, letting
+\[
+\lb [\xx]|[\yy]\rb_{[\zz]} := -\frac12\log\what F\left(\dist_\H([\zz],[\xx]),\dist_\H([\zz],[\yy]),\alpha_{[\zz]}([\xx],[\yy])\right)
+\]
+defines a continuous extension of the Gromov product to $\bord\H\times\bord\H\times\H$.
+
+We now prove (i)-(ii):
+\begin{itemize}
+\item[(i)] Using the inequality $e^t/2 \leq \cosh(t) \leq e^t$, it is easily verified that
+\begin{equation}
+\label{C4}
+\what F(A,B,C) \geq C/4
+\end{equation}
+for all $(A,B,C)\in\what\DD$. In particular, if $\what F(A,B,C) = 0$ then $C = 0$. Thus if $\lb [\xx]|[\yy]\rb_{[\zz]} = \infty$ then $\alpha_{[\zz]}([\xx],[\yy]) = 0$; since $[\zz]\in\H$ we have $B_\QQ(\xx,\yy) = 0$, and by Observation \ref{observationBQnonzero} we have $[\xx] = [\yy]\in\del\H$. Conversely, if $[\xx] = [\yy]\in\del\H$, then $\dist_\H([\zz],[\xx]) = \dist_\H([\zz],[\yy]) = \infty$ and $\alpha_{[\zz]}([\xx],[\yy]) = 0$, so $\lb [\xx]|[\yy]\rb_{[\zz]} = -\frac12 \log\what F(\infty,\infty,0) = \infty$.
+
+%\item[(ii)] If $\xx,\yy\in\del\B$, then $\dist_\B(\zz,\xx) = \dist_\B(\zz,\yy) = \infty$. Thus
+%\[
+%e^{-2\lb\xx|\yy\rb_{\zz}} = \what F\bigl(\infty,\infty,\alpha_{\zz}(\xx,\yy)\bigr) = \alpha_{\zz}(\xx,\yy)/2.
+%\]
+%Letting $\zz = \ee_0$ and normalizing $\xx$ and $\yy$ so that $x_0 = y_0 = 1$, we have $B_\QQ(\xx,\zz) = B_\QQ(\yy,\zz) = \QQ(\zz) = 1$; thus
+%\[
+%\alpha_{\zz}(\xx,\yy) = B_\QQ(\xx,\yy) = \cdots
+%\]
+\item[(ii)] Recall that in $\B$, $\zero = [(1,\0)]$. For $\xx,\yy\in\B$,
+\begin{align*}
+\alpha_\zero(e_{\B,\H}(\xx),e_{\B,\H}(\yy)) &= \frac{|\QQ(1,\0)|\cdot|B_\QQ((1,\xx),(1,\yy))|}{|B_\QQ((1,\0),(1,\xx))|\cdot |B_\QQ((1,\0),(1,\yy))|} \noreason\\
+&= |1 - B_\EE(\xx,\yy)|\\
+&\geq 1 - \Re B_\EE(\xx,\yy) &\text{(with equality if $\F = \R$)}\\
+&\geq \frac12 [\|\xx\|^2 + \|\yy\|^2] - \Re B_\EE(\xx,\yy) &\text{(with equality if $\xx,\yy\in\del\B$)}\\
+&= \frac12\|\yy - \xx\|^2.
+\end{align*}
+Combining with \eqref{C4} gives
+\[
+e^{-2\lb \xx|\yy\rb_\0} \geq \frac14\alpha_\zero(e_{\B,\H}(\xx),e_{\B,\H}(\yy)) \geq \frac18\|\yy - \xx\|^2.
+\]
+If $\F = \R$ and $\xx,\yy\in\del\B$, then
+\[
+e^{-2\lb \xx|\yy\rb_\0} = \frac12\alpha_\zero(e_{\B,\H}(\xx),e_{\B,\H}(\yy)) = \frac14\|\yy - \xx\|^2.
+\]
+\end{itemize}
+\end{proof}
+
+
+We now prove Proposition \ref{propositionCATimpliesGromov}, beginning with the following lemma:
+\begin{lemma}
+\label{lemmaHstrongly}
+If $\F = \R$ then $\B$ is strongly Gromov hyperbolic.
+\end{lemma}
+\begin{proof}
+By the transitivity of the isometry group (Observation \ref{observationtransitivity}), it suffices to check \eqref{gromovforCAT} for the special case $w = \zero$. So let us fix $x,y,z\in\B$, and by contradiction suppose that
+\[
+e^{-\lb x|z\rb_\zero} > e^{-\lb x|y\rb_\zero} + e^{-\lb y|z\rb_\zero},
+\]
+or equivalently that
+\[
+1 > e^{\lb x|z\rb_\zero - \lb x|y\rb_\zero} + e^{\lb x|z\rb_\zero - \lb y|z\rb_\zero}.
+\]
+Clearly, the above inequality implies that $x\neq z$ and $y\neq\zero$. Now let $\gamma_1$ and $\gamma_2$ be the unique bi-infinite geodesics extending the geodesic segments $\geo xz$ and $\geo\zero y$, respectively. Let $x_\infty,z_\infty\in\del\B$ be the appropriate endpoints of $\gamma_1$, and let $y_\infty$ be the endpoint of $\gamma_2$ which is closer to $y$ than to $\zero$. (See Figure \ref{figureHstrongly}.) For each $t\in\Rplus$, let
+\[
+x_t = \geo x{x_\infty}_t\in\gamma_1,
+\]
+and let $y_t\in\gamma_2$, $z_t\in\gamma_1$ be defined similarly. 
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.4402812927177227cm,y=0.44028129271787425cm]
+\clip(-9.71,-7.2) rectangle (11,7.5);
+\draw(0,0) ellipse (3.11cm and 3.11cm);
+\draw (5,5)-- (-5,-5);
+\draw [shift={(12.49,9.91)}] plot[domain=3.35:4.27,variable=\t]({1*14.67*cos(\t r)+0*14.67*sin(\t r)},{0*14.67*cos(\t r)+1*14.67*sin(\t r)});
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1pt);
+\draw[color=black] (0.45,-0.58) node {$\zero$};
+\fill [color=black] (5,5) circle (1pt);
+\draw[color=black] (5.9,4.96) node {$y_\infty$};
+\fill [color=black] (-1.85,6.83) circle (1pt);
+\draw[color=black] (-2.5,7.14) node {$x_\infty$};
+\fill [color=black] (6.29,-3.33) circle (1pt);
+\draw[color=black] (7.2,-3.6) node {$z_\infty$};
+\fill [color=black] (-0.97,4.09) circle (1pt);
+\draw[color=black] (-1.53,3.88) node {$x$};
+\fill [color=black] (-1.36,5.08) circle (1pt);
+\draw[color=black] (-1.84,4.81) node {$x_t$};
+\fill [color=black] (4.34,-2.28) circle (1pt);
+\draw[color=black] (3.99,-2.7) node {$z$};
+\fill [color=black] (4.91,-2.64) circle (1pt);
+\draw[color=black] (4.93,-3.3) node {$z_t$};
+\fill [color=black] (3.12,3.12) circle (1pt);
+\draw[color=black] (3.67,2.63) node {$y_t$};
+\fill [color=black] (2,2) circle (1pt);
+\draw[color=black] (2.42,1.7) node {$y$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[$\B$ is strongly Gromov hyperbolic]{If Gromov's inequality fails for the quadruple $x,y,z,\zero$, then it also fails for the quadruple $x_\infty,y_\infty,z_\infty,\zero$.}
+\label{figureHstrongly}
+\end{center}
+\end{figure}
+
+
+We observe that
+\begin{align*}
+\frac{\del}{\del t}\left[\lb x_t|z_t\rb_\zero - \lb x_t|y_t\rb_\zero\right]
+&= \frac12 \frac{\del}{\del t}\bigl[\dist_\B(\zero,z_t) + \dist_\B(x_t,y_t) - \dist_\B(x_t,z_t) - \dist_\B(\zero,y_t)\bigr]\\
+&= \frac12 \frac{\del}{\del t}\bigl[\dist_\B(\zero,z_t) + \dist_\B(x_t,y_t) - 2t - t\bigr]\\
+&\leq \frac12 \frac{\del}{\del t}\bigl[t + 2t - 2t - t\bigr] = 0,
+\end{align*}
+i.e. the expression $\lb x_t|z_t\rb_\zero - \lb x_t|y_t\rb_\zero$ is nonincreasing with respect to $t$. Taking the limit as $t$ approaches infinity, we have
+\[
+\lb x_\infty|z_\infty\rb_\zero - \lb x_\infty|y_\infty\rb_\zero \leq \lb x|z\rb_\zero - \lb x|y\rb_\zero
+\]
+and a similar argument shows that
+\[
+\lb x_\infty|z_\infty\rb_\zero - \lb y_\infty|z_\infty\rb_\zero \leq \lb x|z\rb_\zero - \lb y|z\rb_\zero.
+\]
+Thus
+\[
+1 > e^{\lb x_\infty|z_\infty\rb_\zero - \lb x_\infty|y_\infty\rb_\zero} + e^{\lb x_\infty|z_\infty\rb_\zero - \lb y_\infty|z_\infty\rb_\zero}
+\]
+or equivalently,
+\[
+e^{-\lb x_\infty|z_\infty\rb_\zero} > e^{-\lb x_\infty|y_\infty\rb_\zero} + e^{-\lb y_\infty|z_\infty\rb_\zero}.
+\]
+But by \eqref{euclideanball2}, if we write $x_\infty = \xx$, $y_\infty = \yy$, and $z_\infty = \zz$, then
+\[
+\frac12\|\zz - \xx\| > \frac12\|\yy - \xx\| + \frac12\|\zz - \yy\|.
+\]
+This is a contradiction.
+\end{proof}
+
+We are now ready to prove
+\begin{repproposition}{propositionCATimpliesGromov}
+Every CAT(-1) space is strongly hyperbolic.
+\end{repproposition}
+\begin{proof}
+Let $X$ be a CAT(-1) space, and fix $x,y,z,w\in X$. By \cite[Proposition II.1.11]{BridsonHaefliger}, there exist $\wbar x,\wbar y,\wbar z,\wbar w\in \H^2$ such that
+\begin{align*}
+\dist(x,y) &= \dist(\wbar x,\wbar y) &
+\dist(y,z) &= \dist(\wbar y,\wbar z)\\
+\dist(z,w) &= \dist(\wbar z,\wbar w) &
+\dist(w,x) &= \dist(\wbar w,\wbar x)\\
+\dist(x,z) &\leq \dist(\wbar x,\wbar z) &
+\dist(y,w) &\leq \dist(\wbar y,\wbar w).
+\end{align*}
+It follows that
+\[
+e^{-\lb x|z\rb_w} \leq e^{-\lb \wbar x|\wbar z\rb_{\wbar w}} \leq e^{-\lb \wbar x|\wbar y\rb_{\wbar w}} + e^{-\lb \wbar y|\wbar z\rb_{\wbar w}} \leq e^{-\lb x|y\rb_w} + e^{-\lb y|z\rb_w}.
+\]
+%\ignore{
+%
+%
+%
+%Let $\Delta(\wbar x,\wbar y, \wbar w) \subset \B^2$ be a comparison triangle for $\Delta(x,y,w)$, Then the geodesic $\geo{\wbar y}{\wbar w}$ can be extended to a triangle $\Delta(\wbar y,\wbar z,\wbar w) \subset \B^2$ which is a comparison triangle for $\Delta(y,z,w)$ and which has the following property: the points $\wbar x$ and $\wbar z$ lie on opposite sides of the unique bi-infinite geodesic $\gamma$ which is an extension of $\geo{\wbar y}{\wbar w}$. Let $\wbar p$ be the unique intersection point of $\geo{\wbar x}{\wbar z}$ and $\gamma$. We now divide into three cases:
+%\begin{itemize}
+%\item[Case 1:] $\wbar p\in \geo{\wbar y}{\wbar w}$. In this case, we can draw a point $p\in\geo yw$ whose comparison point is $\wbar p$. Then by the CAT(-1) inequality
+%\[
+%\dist(x,z) \leq \dist(x,p) + \dist(p,z) \leq \dist(\wbar x, \wbar p) + \dist(\wbar p,\wbar z) = \dist(\wbar x, \wbar z).
+%\]
+%On the other hand, because of the way that the points $\wbar x$, $\wbar y$, $\wbar z$, and $\wbar w$ were constructed, all other distances are equal in the original and comparison figures. This and the fact that the comparison figure satisfies \eqref{gromovforCAT} implies that $(x,y,z,w)$ satisfies \eqref{gromovforCAT}.
+%
+%
+%\item[Case 2:] $\wbar w\in\geo{\wbar p}{\wbar y}$. In this case, for each $t\in [0,\dist(\wbar w,\wbar p)]$ let $\wbar w_t = \geo{\wbar w}{\wbar p}_t$. Consider the inequality
+%\begin{equation}
+%\label{1leq}
+%1 \leq e^{-\lb \wbar z|\wbar y\rb_{\wbar w_t}} + e^{-\lb \wbar x|\wbar y\rb_{\wbar w_t}}.
+%\end{equation}
+%By Lemma \ref{lemmaHstrongly}, \eqref{1leq} holds when $t = \dist(\wbar w,\wbar p)$, since then $\wbar w_t = \wbar p$ and thus $\lb \wbar x|\wbar z\rb_{\wbar w_t} = 0$. On the other hand, one checks that the right hand side of \eqref{1leq} is decreasing with respect to $t$. This implies that \eqref{1leq} holds when $t = 0$. Thus
+%\[
+%e^{-\lb x|z\rb_w} \leq 1 \leq e^{-\lb \wbar z|\wbar y\rb_{\wbar w}} + e^{-\lb \wbar x|\wbar y\rb_{\wbar w}} = e^{-\lb z|y\rb_w} + e^{-\lb x|y\rb_w}.
+%\]
+%\item[Case 3:] $\wbar y\in\geo{\wbar p}{\wbar w}$. This case follows from Case 2, since the equation \eqref{gromovforCAT} is invariant under switching $y$ and $w$.
+%\end{itemize}
+%}% end ignore
+\end{proof}
+
+\bigskip
+\subsection{The Gromov boundary of an algebraic hyperbolic space}
+\label{subsubsectionboundariesequivalent}
+
+Again let $X = \H = \H_\F^\alpha$ be an algebraic hyperbolic space. By Proposition \ref{propositionCATimpliesGromov}, $X$ is a (strongly) hyperbolic metric space. (If $\F = \R$, we can use Lemma \ref{lemmaHstrongly}.) In particular, $X$ has a Gromov boundary, defined in Section \ref{subsectionboundary}. On the other hand, $X$ also has a topological boundary, defined in Chapter \ref{sectionROSSONCTs}. For this subsection only, we will write
+\begin{align*}
+\del_G X &= \text{ Gromov boundary of $X$}, \\
+\del_T X &= \text{ topological boundary of $X$}.
+\end{align*}
+We will now show that this distinction is in fact unnecessary.
+\begin{proposition}
+\label{propositionboundariesequivalent}
+The identity map $\id:X\to X$ extends uniquely to a homeomorphism $\what\id:X\cup\del_G X\to X\cup\del_T X$. Thus the pairs $(X,X\cup\del_G X)$ and $(X,X\cup\del_T X)$ are isomorphic in the sense of Section \ref{subsectiontotallygeodesic}.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{propositionboundariesequivalent}]
+By Observation \ref{observationHequivB} and Proposition \ref{propositionHequivE}, it suffices to consider the case where $X = \B = \B_\F^\alpha$ is the ball model. Fix $\xi\in\del_G\B$. By definition, $\xi = [(\xx_n)_1^\infty]$ for some Gromov sequence $(\xx_n)_1^\infty$. By \eqref{euclideanball1}, the sequence $(\xx_n)_1^\infty$ is Cauchy in the metric $\|\cdot - \cdot\|$. Thus $\xx_n\to\xx$ for some $\xx\in\bord\B$; since $(\xx_n)_1^\infty$ is a Gromov sequence, we have
+\[
+\lb \xx|\xx\rb_\0 = \lim_{n,m\to\infty}\lb \xx_n|\xx_m\rb_\0 = \infty,
+\]
+and thus $\xx\in\del_T\B$ by (i) of Lemma \ref{lemmagromovextension}. Let
+\[
+\what\id(\xi) = \xx.
+\]
+To see that the map $\what\id$ is well-defined, note that if $(\yy_n)_1^\infty$ is another Gromov sequence equivalent to $(\xx_n)_1^\infty$, and if $\yy_n\to\yy\in\del_T \B$, then
+\[
+\lb \xx|\yy\rb_\0 = \lim_{n\to\infty}\lb \xx_n|\yy_n\rb_\0 = \infty,
+\]
+and so by (i) of Lemma \ref{lemmagromovextension} we have $\xx = \yy$.
+
+We next claim that $\what\id:\del_G\B\to\del_T\B$ is a bijection. To demonstrate injectivity, we note that if $\what\id(\xi) = \what\id(\eta) = \xx$, then by (i) of Lemma \ref{lemmagromovextension}
+\[
+\lim_{n\to\infty}\lb \xx_n|\yy_n\rb_\0 = \lb \xx|\xx\rb_\0 = \infty,
+\]
+where $(\xx_n)_1^\infty$ and $(\yy_n)_1^\infty$ are Gromov sequences representing $\xi$ and $\eta$, respectively. Thus $(\xx_n)_1^\infty$ and $(\yy_n)_1^\infty$ are equivalent, and so $\xi = \eta$.
+
+To demonstrate surjectivity, we observe that for $\xx\in\del_T\B$, we have
+\[
+\what\id\left(\left[\left(\frac{n - 1}{n}\xx\right)_1^\infty\right]\right) = \xx.
+\]
+Finally, we must demonstrate that $\what\id$ is a homeomorphism, or in other words that the topology defined in \6\ref{subsubsectiontopologyclX} is the usual topology on $\bord\B$ (i.e. the topology inherited from $\HH$). It suffices to demonstrate the following:
+\begin{claim}
+For any $\xx\in\del_T\B$, the collection \eqref{Ntxibase} (with $\xi = \xx$) is a neighborhood base of $\xx$ with respect to the usual topology.
+\end{claim}
+\begin{subproof}
+By \eqref{euclideanball1}, we have
+\[
+N_t(\xx) \subset B(\xx,\sqrt 8 e^{-t}).
+\]
+On the other hand, the continuity of the Gromov product on $\bord\B$ guarantees that $N_t(\xx)$ contains a neighborhood of $\xx$ with respect to the usual topology.
+\end{subproof}
+
+% Ignored since it's not clear whether we'll have metrizability at this point
+%\ignore{
+%Since both topologies are metrizable, it suffices to show that for any sequence $(\xx_n)_1^\infty$ in $\bord\B$ and for any $\xx\in\bord\B$, $\xx_n\to\xx$ in the former topology if and only if $\xx_n\to\xx$ in the latter topology. If $\xx\in\B$, this is clear. Suppose that $\xx\in\del \B$. Then $\xx_n\to\xx$ in the topology $\scrT$ if and only if
+%\[
+%\lb \xx_n|\xx\rb_\zero \tendsto n \infty,
+%\]
+%and by (iii) of Lemma \ref{lemmagromovextension}, this is equivalent to
+%\[
+%\dist_\B(\zero,\xx_n)\tendsto n \infty, \hspace{.5 in} \ang(\xx,\xx_n)\tendsto n 0,
+%\]
+%i.e. $\xx_n\to\xx$ in the usual topology.
+%}% end ignore
+\end{proof}
+
+In the sequel, the following will be useful:
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.8,-0.0) rectangle (5.57,4.41);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw [dash pattern=on 5pt off 5pt] (-1.52,2.22)-- (-1.52,0.0);
+\draw [dash pattern=on 5pt off 5pt] (1.76,1.48)-- (1.7800000000000002,0.0);
+\begin{scriptsize}
+%\draw[color=black] (0.05368624806072046,-0.1412911554774228) node {$a$};
+\draw [fill=black] (0.0,4.0) circle (.75pt);
+\draw[color=black] (0.13316978586974992,4.270045192923707) node {$\infty$};
+\draw [fill=black] (-1.52,2.22) circle (.75pt);
+\draw[color=black] (-1.7346933526424422,2.5810200144818323) node {$\xx$};
+\draw [fill=black] (1.76,1.48) circle (.75pt);
+\draw[color=black] (1.961291155477427,1.7663137519392818) node {$\yy$};
+\draw[color=black] (-1.834047774903729,1.1304454494670468) node {$x_1$};
+\draw[color=black] (2.0209038088341993,0.8721239515877014) node {$y_1$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[A formula for the Busemann function in the half-space model]{The value of the Busemann function $\busemann_\infty(\xx,\yy)$ depends on the heights of the points $\xx$ and $\yy$.}
+\end{center}
+\end{figure}
+
+\begin{proposition}
+\label{propositionbusemannE}
+Let $\E = \E^\alpha$ be the half-space model of a real hyperbolic space. For $\xx,\yy\in\E$, we have
+\[
+\busemann_\infty(\xx,\yy) = -\log(x_1/y_1).
+\]
+\end{proposition}
+\begin{proof}
+By \eqref{distE} we have
+\begin{align*}
+e^{\busemann_\infty(\xx,\yy)}
+= \lim_{\zz\to\infty} \frac{\exp\dist_\E(\zz,\xx)}{\exp\dist_\E(\zz,\yy)}
+&= \lim_{\zz\to\infty} \frac{\cosh\dist_\E(\zz,\xx)}{\cosh\dist_\E(\zz,\yy)}\\
+&= \lim_{\zz\to\infty} \frac{1 + \frac{\|\zz - \xx\|^2}{2 x_1 z_1}}{1 + \frac{\|\zz - \yy\|^2}{2 y_1 z_1}}
+= \lim_{\zz\to\infty} \frac{\left(\frac{\|\zz - \xx\|^2}{2 x_1 z_1}\right)}{\left(\frac{\|\zz - \yy\|^2}{2 y_1 z_1}\right)}
+= \frac{y_1}{x_1}\cdot
+\end{align*}
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Metrics and metametrics on $\bord X$}
+\label{subsectionmetametrics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{General theory of metametrics}
+
+\begin{definition}
+\label{definitionmetametric}
+Recall that a \emph{metric} on a set $Z$ is a map $\Dist:Z\times Z\to\Rplus$ which satisfies:
+\begin{itemize}
+\item[(I)] Reflexivity: $\Dist(x,x) = 0$.
+\item[(II)] Reverse reflexivity: $\Dist(x,y) = 0$ \implies $x = y$.
+\item[(III)] Symmetry: $\Dist(x,y) = \Dist(y,x)$.
+\item[(IV)] Triangle inequality: $\Dist(x,z) \leq \Dist(x,y) + \Dist(y,z)$.
+\end{itemize}
+Now we can define a \emph{metametric} on $Z$ to be a map $\Dist: Z\times Z\to\Rplus$ which satisfies (II), (III), and (IV), but not necessarily (I). This concept is not to be confused with the more common notion of a \emph{pseudometric}, which satisfies (I), (III), and (IV), but not necessarily (II). The term ``metametric'' was introduced by J. V\"ais\"al\"a in \cite{Vaisala}.
+
+If $\Dist$ is a metametric, we define its \emph{domain of reflexivity} to be the set $Z_\refl := \{x\in Z:\Dist(x,x) = 0\}$.\Footnote{In the terminology of \cite[p.19]{Vaisala}, the domain of reflexivity is the set of ``small points''.} Obviously, $\Dist$ restricted to its domain of reflexivity is a metric.
+\end{definition}
+
+As in metric spaces, a sequence $(x_n)_1^\infty$ in a metametric space $(Z,\Dist)$ is called \emph{Cauchy} if $\Dist(x_n,x_m)\tendsto{n,m} 0$, and \emph{convergent} if there exists $x\in Z$ such that $\Dist(x_n,x)\to 0$. (However, see Remark \ref{remarktopologymetametrics} below.) The metametric space $(Z,\Dist)$ is called \emph{complete} if every Cauchy sequence is convergent. Using these definitions, the standard proof of the Banach contraction principle immediately yields the following:
+
+\begin{theorem}[Banach contraction principle for metametric spaces]\label{banachcontractionprinciple}
+Let $(Z,\Dist)$ be a complete metametric space. Fix $0 < \lambda < 1$. If $g:Z\to Z$ satisfies
+\[
+\Dist(g(z),g(w)) \leq \lambda\Dist(z,w) \all z,w\in Z,
+\]
+then there exists a unique point $z\in Z$ so that $g(z) = z$. Moreover, for all $w\in Z$, we have $g^n(w)\to z$ with respect to the metametric $\Dist$.
+\end{theorem}
+%\begin{proof}
+%Any standard proof of the Banach contraction principle (see e.g. \cite{}\internal) does not use condition 1 in the proof, so it goes through verbatim to metametric spaces.
+%\end{proof}
+
+\begin{observation}
+The fixed point coming $z$ coming from Theorem \ref{banachcontractionprinciple} must lie in the domain of reflexivity $Z_\refl$.
+\end{observation}
+\begin{proof}
+\[
+\Dist(z,z) = \Dist(g(z),g(z)) \leq \lambda \Dist(z,z),
+\]
+and thus $\Dist(z,z) = 0$.
+\end{proof}
+
+Recall that a metric is said to be \emph{compatible} with a topology if that topology is equal to the topology induced by the metric. We now generalize this concept by introducing the notion of compatibility between a topology and a metametric.
+
+\begin{definition}
+\label{definitioncompatiblemetametric}
+Let $(Z,\Dist)$ be a metametric space. A topology $\scrT$ on $Z$ is \emph{compatible} with the metametric $\Dist$ if for every $\xi\in Z_\refl$, the collection
+\begin{equation}
+\label{balls}
+\left\{B_\Dist(\xi,r) := \{y\in Z : \Dist(\xi,y) < r\} : r > 0\right\}
+\end{equation}
+forms a neighborhood base for $\scrT$ at $\xi$.
+\end{definition}
+
+Note that unlike a metric, a metametric may have multiple topologies with which it is compatible.\Footnote{The topology considered in \cite[p.19]{Vaisala} is the finest topology compatible with a given metametric.} The metametric is viewed as determining a neighborhood base for points in the domain of reflexivity; neighborhood bases for other points must arise from some other structure. In the case we are interested in, namely the case where the underlying space for the metametric is the Gromov closure of a hyperbolic metric space $X$, the topology on the complement of the domain of reflexivity will come from the original metric $\dist$ on $X$.
+
+\begin{remark}
+\label{remarktopologymetametrics}
+If $(Z,\Dist)$ is a metametric space with a compatible topology $\scrT$, then there are two notions of what it means for a sequence $(x_n)_1^\infty$ in $Z$ to converge to a point $x\in Z$: the sequence may converge with respect to the topology $\scrT$, or it may converge with respect to the metametric (i.e. $\Dist(x_n,x)\to 0$). The relation between these notions is as follows: $x_n\to x$ with respect to the metametric $\Dist$ if and only if both of the following hold: $x_n\to x$ with respect to the topology $\scrT$, and $x\in Z_\refl$.
+\end{remark}
+
+\begin{remark}
+If a metametric $\Dist$ on a set $Z$ is compatible with a topology $\scrT$, then the metric $\Dist\given Z_\refl$ is compatible with the topology $\scrT\given Z_\refl$. However, the converse does not necessarily hold.
+\end{remark}
+
+
+For the remainder of this chapter, we fix a hyperbolic metric space $X$, and we let $\scrT$ be the topology on $\bord X$ introduced in \6\ref{subsubsectiontopologyclX}. We will consider various metrics and metametrics on $\bord X$ which are compatible with the topology $\scrT$.
+
+\subsection{The visual metametric based at a point $\notzero\in X$}
+The first metametric that we will consider is designed to emulate the Euclidean or ``spherical'' metric on the boundary of the ball model $\B$. Recall from Lemma \ref{lemmagromovextension} that
+\begin{repequation}{euclideanball2}
+\frac12\|\yy - \xx\| = e^{-\lb \xx|\yy\rb_\0} \text{ for all $\xx,\yy\in\del\B$.}
+\end{repequation}
+The metric $(\xx,\yy)\mapsto \frac12\|\yy - \xx\|$ can be thought of as ``seen from $\0$''. The expression on the right hand side makes sense if $\xx,\yy\in\bord\B$, and defines a metametric on $\bord\B$. Moreover, the formula can be generalized to an arbitrary strongly hyperbolic metric space:
+\begin{observation}
+\label{observationDist}
+If $X$ is a strongly hyperbolic metric space, then for each $\notzero\in X$ the map $\Dist_\notzero:\bord X\times\bord X\to \Rplus$ defined by
+\begin{equation}
+\label{distancedef}
+\Dist_\notzero(x,y) := e^{-\lb x|y\rb_\notzero}
+\end{equation}
+is a complete metametric on $\bord X$. This metametric is compatible with the topology $\scrT$; moreover, its domain of reflexivity is $\del X$.
+\end{observation}
+\begin{proof}
+Reverse reflexivity and the fact that $(\bord X)_\refl = \del X$ follow directly from Observation \ref{observationyzinfinity}; symmetry follows from (a) of Proposition \ref{propositionbasicidentities} together with Corollary \ref{corollaryboundaryasymptotic}; the triangle inequality follows from the definition of strong hyperbolicity together with Corollary \ref{corollaryboundaryasymptotic}.
+
+To show that $\Dist_\notzero$ is complete, suppose that $(x_n)_1^\infty$ is a Cauchy sequence in $X$. Applying \eqref{distancedef}, we see that $\lb x_n | x_m\rb_\notzero \tendsto{n,m} \infty$, i.e. $(x_n)_1^\infty$ is a Gromov sequence. Letting $\xi = [(x_n)_1^\infty]$, we have $x_n\to \xi$ in the $\Dist_{b,\notzero}$ metametric. Thus every Cauchy sequence in $X$ converges in $\bord X$. Since $X$ is dense in $\bord X$, a standard approximation argument shows that $\bord X$ is complete.
+
+Given $\xi\in (\bord X)_\refl = \del X$, the collection \eqref{balls} is equal to the collection \eqref{Ntxibase}, and is therefore a neighborhood base for $\scrT$ at $\xi$. Thus $\Dist_\notzero$ is compatible with $\scrT$.
+\end{proof}
+
+Next, we drop the assumption that $X$ is strongly hyperbolic. Fix $b > 1$ and $\notzero\in X$, and consider the function
+\begin{equation}
+\label{Distdef}
+\Dist_{b,\notzero}(x,y) = \inf_{(x_i)_0^n} \sum_{i = 0}^{n - 1} b^{-\lb x_i | x_{i + 1}\rb_\notzero},
+\end{equation}
+where the infimum is taken over finite sequences $(x_i)_0^n$ satisfying $x_0 = x$ and $x_n = y$.
+
+\begin{proposition}
+\label{propositionDist}
+If $b > 1$ is sufficiently close to $1$, then for each $\notzero\in X$, the function $\Dist_{b,\notzero}$ defined by \eqref{Distdef} is a complete metametric on $\bord X$ satisfying the following inequality:
+\begin{equation}
+\label{distanceasymptotic}
+b^{-\lb x|y\rb_\notzero} / 4 \leq \Dist_{b,\notzero}(x,y) \leq b^{-\lb x|y\rb_\notzero}.
+\end{equation}
+This metametric is compatible with the topology $\scrT$; moreover, its domain of reflexivity is $\del X$.
+\end{proposition}
+We will refer to $\Dist_{b,\notzero}$ as the ``visual (meta)metric from the point $\notzero$ with respect to the parameter $b$''.
+
+\begin{remark}
+The metric $\Dist_{b,\notzero}\given\del X$ has been referred to in the literature as the \emph{Bourdon metric}.
+\end{remark}
+
+\begin{remark}
+The first part of Proposition \ref{propositionDist} is \cite[Propositions 5.16 and 5.31]{Vaisala}.
+\end{remark}
+
+% Since the explicit form of the metametric $\Dist_{b,\notzero}$ will be important in what follows, we include the proof of Proposition \ref{propositionDist}.
+\begin{proof}[Proof of Proposition \ref{propositionDist}]
+Let $\delta \geq 0$ be the implied constant in Gromov's inequality, and fix $1 < b \leq 2^{1/\delta}$. Then raising $b^{-1}$ to the power of both sides of Gromov's inequality gives
+\[
+b^{-\lb x|z\rb_\notzero} \leq 2\max\left(b^{-\lb x|y\rb_w}, b^{-\lb y|z\rb_w}\right),
+\]
+i.e. the function
+\[
+(x,y)\mapsto b^{-\lb x|y\rb_\notzero}
+\]
+satisfies the ``weak triangle inequality'' of \cite{Schroeder}. A straightforward adaptation of the proof of \cite[Theorem 1.2]{Schroeder} demonstrates \eqref{distanceasymptotic}. Condition (II) of being a metametric and the equality $(\bord X)_\refl = \del X$ now follow from Observation \ref{observationyzinfinity}. Conditions (III) and (IV) of being a metametric are immediate from \eqref{Distdef}.
+
+The argument for completeness is the same as in the proof of Observation \ref{observationDist}.
+
+Finally, given $\xi\in (\bord X)_\refl = \del X$, we observe that although the collections \eqref{balls} and \eqref{Ntxibase} are no longer equal, \eqref{distanceasymptotic} guarantees that the filters they generate are equal, which is enough to show that $\Dist_{b,\notzero}$ is compatible with $\scrT$.
+\end{proof}
+
+\begin{remark}
+\label{remarkDist}
+If $X$ is strongly hyperbolic, then Proposition \ref{propositionDist} holds for all $1 < b\leq e$; moreover, the metametric $\Dist_{e,\notzero}$ is equal to the metametric $\Dist_\notzero$ defined in Observation \ref{observationDist}.
+\end{remark}
+
+\begin{remark}
+\label{remarkDistRtree}
+If $(X,\dist)$ is an $\R$-tree, then for all $t > 0$, $(X,t\dist)$ is also an $\R$-tree and is therefore strongly hyperbolic (by Observation \ref{observationRtreesCAT} and Proposition \ref{propositionCATimpliesGromov}). It follows that Proposition \ref{propositionDist} holds for all $b > 1$.
+\end{remark}
+
+
+For the remainder of this chapter, we fix $b > 1$ close enough to $1$ so that Proposition \ref{propositionDist} holds.
+
+% Not clear whether it's used; also, needs a new proof.
+%\ignore{
+%\begin{proposition}
+%\label{propositionDistBasymp}
+%For all $\xx,\yy\in\bord\B$,
+%\[
+%\Dist_\0(\xx,\yy) \asymp_\times \max(1 - \|\xx\|,1 - \|\yy\|,\|\yy - \xx\|).
+%\]
+%\end{proposition}
+%\begin{proof}
+%Follows directly from [(iii) of Lemma \ref{lemmagromovextension}\internal] and the fact that $e^{-\dist_\B(\0,\xx)} \asymp_\times 1 - \|\xx\|$ fpr all $\xx\in\bord\B$.
+%\end{proof}
+%}% end ignore
+
+\subsection{The extended visual metric on $\bord X$}
+\label{subsectionvisual}
+Although the metametric $\Dist_{b,\notzero}$ has the advantage of being directly linked to the Gromov product via \eqref{distanceasymptotic}, it is sometimes desirable to put a metric on $\bord X$, not just a metametric. We show now that such a metric can be constructed which agrees with $\Dist_{b,\notzero}$ on $\del X$.
+
+In the following proposition, we use the convention that $\dist(x,y) = \infty$ if $x,y\in\bord X$ and either $x\in\del X$ or $y\in\del X$.
+
+\begin{proposition}
+\label{propositionwbarDist}
+Fix $\notzero\in X$, and for all $x,y\in \bord X$ let
+\[
+\wbar\Dist_{b,\notzero}(x,y) = \min\big(\log(b)\dist(x,y), \Dist_{b,\notzero}(x,y)\big).
+\]
+Then $\wbar\Dist = \wbar\Dist_{b,\notzero}$ is a complete metric on $\bord X$ which agrees with $\Dist = \Dist_{b,\notzero}$ on $\del X$ and induces the topology $\scrT$.
+\end{proposition}
+We call the metric $\wbar\Dist$ an \emph{extended visual metric}.
+
+As an immediate consequence we have the following result which was promised in \6\ref{subsubsectiontopologyclX}:
+\begin{corollary}
+The topological space $(\bord X,\scrT)$ is completely metrizable.
+\end{corollary}
+\begin{proof}[Proof of Proposition \ref{propositionwbarDist}]
+Let us show that $\wbar\Dist$ is a metric. Conditions (I)-(III) are obvious. To demonstrate the triangle inequality, fix $x,y,z\in\bord X$.
+\begin{itemize}
+\item[(1)] If $\wbar\Dist(x,y) = \log(b)\dist(x,y)$ and $\wbar\Dist(y,z) = \log(b)\dist(y,z)$, then $\wbar\Dist(x,z) \leq \log(b)\dist(x,z) \leq \log(b)\dist(x,y) + \log(b)\dist(y,z) = \wbar\Dist(x,y) + \wbar\Dist(y,z)$. Similarly, if $\wbar\Dist(x,y) = \Dist(x,y)$ and $\wbar\Dist(y,z) = \Dist(y,z)$, then $\wbar\Dist(x,z) \leq \Dist(x,z) \leq \Dist(x,y) + \Dist(y,z) = \wbar\Dist(x,y) + \wbar\Dist(y,z)$.
+\item[(2)] If $\wbar\Dist(x,y) = \log(b)\dist(x,y)$ and $\wbar\Dist(y,z) = \Dist(y,z)$, fix $\epsilon > 0$, and let $y = y_0,y_1,\ldots,y_n = z$ be a sequence such that
+\[
+\sum_{i = 0}^{n - 1}b^{-\lb y_i,y_{i + 1}\rb_\notzero} \leq \Dist(y,z) + \epsilon.
+\]
+Let $x_i = y_i$ for $i\geq 1$ but let $x_0 = x$. Then by (e) of Proposition \ref{propositionbasicidentities} and the inequality
+\[
+b^{-t} \leq s\log(b) + b^{-(t + s)} \hspace{.5 in} (s,t \geq 0),
+\]
+we have
+\[
+b^{-\lb x|y_1\rb_\notzero} \leq \log(b)\dist(x,y) + b^{-\lb y|y_1\rb_\notzero}.
+\]
+It follows that
+\begin{align*}
+\wbar\Dist(x,z) \leq \Dist(x,z) &\leq \sum_{i = 0}^{n - 1} b^{-\lb x_i|x_{i + 1}\rb_\notzero}\\
+&= b^{-\lb x|y_1\rb_\notzero} + \sum_{i = 1}^{n - 1} b^{-\lb y_i|y_{i + 1}\rb_\notzero}\\
+&\leq \log(b)\dist(x,y) + b^{-\lb y|y_1\rb_\notzero} + \sum_{i = 1}^{n - 1} b^{-\lb y_i|y_{i + 1}\rb_\notzero}\\
+&\leq \log(b)\dist(x,y) + \Dist(y,z) + \epsilon = \wbar\Dist(x,y) + \wbar\Dist(y,z) + \epsilon.
+\end{align*}
+Taking the limit as $\epsilon$ goes to zero finishes the proof.
+
+\item[(3)] The third case is identical to the second.
+\end{itemize}
+
+If a sequence $(x_n)_1^\infty$ is Cauchy with respect to $\wbar\Dist$, then Ramsey's theorem (for example) guarantees that some subsequence is Cauchy with respect to either $\dist$ or $\Dist$. This subsequence converges with respect to that metametric, and therefore also with respect to $\wbar\Dist$. It follows that the entire sequence converges, and therefore that $\wbar\Dist$ is complete.
+
+Finally, to show that $\wbar\Dist$ induces the topology $\scrT$, suppose that $U\subset\del X$ is open in $\scrT$, and fix $x\in U$. If $x\in X$, then $B_\dist(x,r)\subset U$ for some $r > 0$. On the other hand, by the triangle inequality $\Dist(x,y) \geq \frac12\Dist(x,x) > 0$ for all $y\in\bord X$. Letting $\w r = \min(r, \frac12\Dist(x,x))$, we have $B_{\wbar\Dist}(x,\w r) \subset B_\dist(x,r) \subset U$. If $x\in\del X$, then $N_t(x)\subset U$ for some $t\geq 0$; letting $C$ be the implied constant of \eqref{distanceasymptotic}, we have $B_{\wbar\Dist}(x,e^{-t}/C) = B_\Dist(x,e^{-t}/C) \subset N_t(x) \subset U$. Thus $U$ is open in the topology generated by the $\wbar\Dist$ metric. The converse direction is similar but simpler, and will be omitted.
+\end{proof}
+
+\begin{remark}
+\label{remarkDistunifcont}
+The proof of Proposition \ref{propositionwbarDist} actually shows more, namely that
+\[
+\Dist(x,z) \leq \Dist(x,y) + \wbar\Dist(y,z) \all x,y,z\in\bord X.
+\]
+Since $\Dist(x,x) = b^{-\dox x} = \inf_{y\in\bord X} \Dist(x,y)$, plugging in $x = z$ gives
+\[
+b^{-\dox x} \leq b^{-\dox y} + \wbar\Dist(x,y) \all x,y\in\bord X.
+\]
+\end{remark}
+
+\begin{remark}
+Although the metric $\wbar\Dist$ is convenient since it induces the correct topology on $\bord X$, it is not a generalization of the Euclidean metric on the closure of an algebraic hyperbolic space. Indeed, when $X = \B^2$, then $\wbar\Dist$ is not bi-Lipschitz equivalent to the Euclidean metric on $\bord X$.
+\end{remark}
+
+
+
+
+\subsection{The visual metametric based at a point $\xi\in\del X$}
+Our final metametric is supposed to generalize the Euclidean metric on the boundary of the half-space model $\E$. This metric should be thought of as ``seen from the point $\infty$''.
+
+\begin{notation}
+If $X$ is a hyperbolic metric space and $\xi\in\del X$, then let $\EE_\xi := \bord X\butnot\{\xi\}$.
+\end{notation}
+
+Since we have not yet introduced a formula analogous to \eqref{euclideanball2} for the Euclidean metric on $\del\E\butnot\{\infty\}$, we will instead motivate the visual metametric based at a point $\xi\in\del X$ by considering a sequence $(\notzero_n)_1^\infty$ in $X$ converging to $\xi$, and taking the limits of their visual metametrics.
+
+
+
+In fact, $\Dist_{b,\notzero_n}(y_1,y_2)\to 0$ for every $y_1, y_2\in\EE_\xi$. Some normalization is needed.
+
+
+\begin{lemma}
+\label{lemmaeuclideanmetametric}
+Fix $\zero\in X$, and suppose $\notzero_n\to\xi\in\del X$. Then for all $y_1, y_2\in\EE_\xi$,
+\[
+b^{\dox{\notzero_n}} \Dist_{b,\notzero_n} (y_1,y_2) \tendsto{n,\times} b^{-[\lb y_1 | y_2 \rb_\zero - \sum_{i = 1}^2 \lb y_i | \xi \rb_\zero]} .
+\]
+with $\tendsto n$ if $X$ is strongly hyperbolic.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+b^{\dox{\notzero_n}} \Dist_{b,\notzero_n}(y_1,y_2)
+&\asymp_\times b^{-[\lb y_1 | y_2 \rb_{\notzero_n} - \dox{\notzero_n}]} \by{\eqref{distanceasymptotic}}\\
+&\asymp_\times b^{-[\lb y_1 | y_2 \rb_\zero - \sum_{i = 1}^2 \lb y_i | \notzero_n \rb_\zero]} \by{(k) of Proposition \ref{propositionbasicidentities}}\\
+&\tendsto{n,\times} b^{-[\lb y_1 | y_2 \rb_\zero - \sum_{i = 1}^2 \lb y_i | \xi \rb_\zero]}. \by{Lemma \ref{lemmanearcontinuity}}
+\end{align*}
+In each step, equality holds if $X$ is strongly hyperbolic.
+\end{proof}
+
+We can now construct the visual metametric based at a point $\xi\in\del X$.
+
+\begin{proposition}
+\label{propositioneuclideanmetametric}
+For each $\zero\in X$ and $\xi\in\del X$, there exists a complete metametric $\Dist_{b,\xi,\zero}$ on $\EE_\xi$ satisfying
+\begin{equation}
+\label{euclideanmetametric}
+\Dist_{b,\xi,\zero}(y_1,y_2) \asymp_\times b^{-[\lb y_1 | y_2 \rb_\zero - \sum_{i = 1}^2 \lb y_i | \xi \rb_\zero]} \ ,
+\end{equation}
+with equality if $X$ is strongly hyperbolic. The metametric $\Dist_{b,\xi,\zero}$ is compatible with the topology $\scrT\given\EE_\xi$; moreover, a set $S\subset\EE_\xi$ is bounded in the metametric $\Dist_{b,\xi,\zero}$ if and only if $\xi\notin\cl S$.
+\end{proposition}
+\begin{remark}
+The metric $\Dist_{b,\xi,\zero}\given\EE_\xi\cap\del X$ has been referred to in the literature as the \emph{Hamenst\"adt metric}.
+\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{propositioneuclideanmetametric}]
+Let
+\begin{align*}
+\Dist_{b,\xi,\zero}(y_1,y_2) 
+&= \limsup_{\notzero\to\xi}b^{\dox{\notzero}}\Dist_\notzero(y_1,y_2)\\ 
+&:= \sup\left\{\limsup_{n\to\infty} b^{\dox{\notzero_n}}\Dist_{\notzero_n}(y_1,y_2) : \notzero_n \tendsto n \xi\right\}
+\end{align*}
+Since the class of metametrics is closed under suprema and limits, it follows that $\Dist_{b,\xi,\zero}$ is a metametric. The asymptotic \eqref{euclideanmetametric} follows from Lemma \ref{lemmaeuclideanmetametric}.
+
+For the remainder of this proof, we write $\Dist = \Dist_{b,\zero}$ and $\Dist_\xi = \Dist_{b,\xi,\zero}$.
+
+For all $x\in\EE_\xi$,
+\begin{equation}
+\label{euclideancomparison}
+\Dist_\xi(\zero,x) \asymp_\times b^{-[\lb \zero|x\rb_\zero - \lb \zero|\xi\rb_\zero - \lb x|\xi\rb_\zero]} = b^{\lb x|\xi\rb_\zero} \asymp_\times \frac{1}{\Dist(x,\xi)},
+\end{equation}
+with equality if $X$ is strongly hyperbolic. It follows that for any set $S\subset\EE_\xi$, the function $\Dist_\xi(\zero,\cdot)$ is bounded on $S$ if and only if the function $\Dist(\cdot,\xi)$ is bounded from below on $S$. This demonstrates that $S$ is bounded in the $\Dist_\xi$ metametric if and only if $\xi\notin\cl S$.
+
+
+Let $(x_n)_1^\infty$ be a Cauchy sequence with respect to $\Dist_\xi$. Since $\Dist \lesssim_\times \Dist_\xi$, it follows that $(x_n)_1^\infty$ is also Cauchy with respect to the metametric $\Dist$, so it converges to a point $x\in\bord X$ with respect to $\Dist$. If $x\in\EE_\xi$, then we have
+\[
+\Dist_\xi(x_n,x) \asymp_\times b^{\lb x_n | \xi\rb_\zero + \lb x | \xi\rb_\zero} \Dist(x_n,x) \tendsto{n,\times} b^{2\lb x | \xi\rb_\zero} 0 = 0.
+\]
+On the other hand, if $x = \xi$, then the sequence $(x_n)_1^\infty$ is unbounded in the $\Dist_\xi$ metametric, which contradicts the fact that it is Cauchy. Thus $\Dist_\xi$ is complete.
+
+Finally, given $\eta\in (\EE_\xi)_\refl = \EE_\xi\cap\del X$, consider the filters $\FF_1$ and $\FF_2$ generated by the collections $\{B_{\Dist}(\eta,r) : r > 0\}$ and $\{B_{\Dist_\xi}(\eta,r) : r > 0\}$, respectively. Since $\Dist \lesssim_\times \Dist_\xi$, we have $\FF_2\subset\FF_1$. Conversely, since $B_{\Dist_\xi}(\eta,1)$ is bounded in the $\Dist_\xi$ metametric, its closure does not contain $\xi$, and so the function $\lb \cdot | \xi\rb_\zero$ is bounded on this set. Thus $\Dist \asymp_{\times,\eta} \Dist_\xi$ on $B_{\Dist_\xi}(\eta,1)$. Letting $C$ be the implied constant of the asymptotic, we have $B_{\Dist_\xi}(\eta,\min(r,1)) \subset B_{\Dist}(\eta,Cr)$, which demonstrates that $\FF_1\subset\FF_2$. Thus $\Dist_\xi$ is compatible with the topology $\scrT\given\EE_\xi$.
+\end{proof}
+
+From Lemma \ref{lemmaeuclideanmetametric} and Proposition \ref{propositioneuclideanmetametric} it immediately follows that
+\begin{equation}
+\label{euclideanmetrictendsasymp}
+b^{d(\zero,\notzero_n)} \Dist_{b,\notzero_n} (y_1,y_2) \tendsto{n,\times} \Dist_{b,\xi,\zero}(y_1,y_2) 
+\end{equation}
+whenever $(\notzero_n)_1^\infty\in\xi$.
+
+\begin{remark}
+It is not clear whether a result analogous to Proposition \ref{propositionwbarDist} holds for the metametric $\Dist_{b,\xi,\zero}$. A straightforward adaptation of the proof of Proposition \ref{propositioneuclideanmetametric} does not work, since
+\begin{align*}
+b^{\dox{\notzero_n}}\wbar\Dist_{b,\notzero_n}(x,y)
+&= \min(b^{\dox{\notzero_n}}\dist(x,y)) , b^{\dox{\notzero_n}}\Dist_{b,\notzero_n}(x,y)\\
+&\tendsto{n,\times} \min(\infty, \Dist_{b,\xi,\zero}(x,y))\\
+&= \Dist_{b,\xi,\zero}(x,y).
+\end{align*}
+\end{remark}
+
+We finish this chapter by describing the relation between the visual metametric based at $\infty$ and the Euclidean metric on the boundary of the half-space model $\E$.
+
+\begin{figure}[h!]
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.801,-0.18) rectangle (3.96,4.50);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw (0.44800000000000006,-0.0)-- (1.76,1.48);
+\draw [dashed] (-1.52,2.22)-- (-1.52,0);
+\draw [dashed] (1.76,1.48)-- (1.78,0);
+\draw (0.44800000000000006,-0.0)-- (-1.52,2.22);
+\begin{scriptsize}
+%\draw[color=black] (0.05368624806072046,-0.1412911554774228) node {$a$};
+%\draw [fill=black] (0.0,4.0) circle (.75pt);
+\draw[color=black] (0.13316978586974992,4.270045192923707) node {$\infty$};
+\draw [fill=black] (-1.52,2.22) circle (.75pt);
+\draw[color=black] (-1.7346933526424422,2.5810200144818323) node {$\xx$};
+\draw [fill=black] (1.76,1.48) circle (.75pt);
+\draw[color=black] (1.961291155477427,1.7663137519392818) node {$\yy$};
+%\draw[color=black] (-1.7346933526424422,-0.1810329243819375) node {$H$};
+%\draw[color=black] (-1.834047774903729,1.1304454494670468) node {$d$};
+\draw [fill=black] (1.78,-6.938893903907228) circle (1.5pt);
+%\draw[color=black] (1.961291155477427,-0.16116203992968017) node {$I$};
+%\draw[color=black] (2.0209038088341993,0.8721239515877014) node {$e$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The Hamenst\"adt distance]{The Hamenst\"adt distance $\Dist_{e,\infty,\zero}(\xx,\yy)$ between two points $\xx,\yy\in\E$ is coarsely asymptotic to the maximum of the following three quantities: $x_1$, $y_1$, and $\|\yy - \xx\|$. Equivalently, $\Dist_{e,\infty,\zero}(\xx,\yy)$ is coarsely asymptotic to the length of the shortest path which both connects $\xx$ and $\yy$ and touches $\BB$.}
+\label{figurehamenstadt}
+\end{center}
+\end{figure}
+
+\begin{proposition}[Cf. Figure \ref{figurehamenstadt}]
+\label{propositionhamenstadt}
+Let $X = \E = \E^\alpha$, let $\zero = (1,\0)\in X$, and fix $\xx,\yy\in \EE_\infty = \E\cup\BB$. We have
+\begin{equation}
+\label{hamenstadt}
+\Dist_{e,\infty,\zero}(\xx,\yy) \asymp_\times \max(x_1,y_1,\|\yy - \xx\|),
+\end{equation}
+with equality if $\xx,\yy\in\BB = \del\E\butnot\{\infty\}$.
+\end{proposition}
+\begin{proof}
+First suppose that $\xx,\yy\in\E$. By (h) of Proposition \ref{propositionbasicidentities},
+\begin{align*}
+\Dist_{e,\infty,\zero}(\xx,\yy)
+&=_\pt \exp\left(\frac12\big(\dist(\xx,\yy) + \busemann_\infty(\zero,x) + \busemann_\infty(\zero,\yy)\big)\right)\\
+&=_\pt \sqrt{x_1 y_1} \exp\left(\frac12\left(\cosh^{-1}\left(1 + \frac{\|\yy - \xx\|^2}{2 x_1 y_1}\right)\right)\right)\\ 
+\by{\eqref{distE} and Proposition \ref{propositionbusemannE}}\\
+&\asymp_\times \sqrt{x_1 y_1} \sqrt{1 + \frac{\|\yy - \xx\|^2}{2 x_1 y_1}}\\ 
+\since{$e^{t/2} \asymp_\times \sqrt{\cosh(t)}$}\\
+&=_\pt \sqrt{x_1 y_1 + \|\yy - \xx\|^2}\\
+&\asymp_\times \max(\sqrt{x_1 y_1}, \|\yy - \xx\|).
+\end{align*}
+Since $\sqrt{x_1 y_1}\leq \max(x_1,y_1)$, this demonstrates the $\lesssim$ direction of \eqref{hamenstadt}. Since $y_1 \leq x_1 + \|\yy - \xx\|$ and $x_1 \leq y_1 + \|\yy - \xx\|$, we have
+\[
+\max(x_1,y_1) \lesssim_\times \max(\min(x_1,y_1),\|\yy - \xx\|) \leq \max(\sqrt{x_1 y_1}, \|\yy - \xx\|)
+\]
+which demonstrates the reverse inequality. Thus \eqref{hamenstadt} holds for $\xx,\yy\in\E$; a continuity argument demonstrates \eqref{hamenstadt} for $\xx,\yy\in\EE_\infty$.
+
+If $\xx,\yy\in\BB$, then
+\begin{align*}
+\Dist_{e,\infty,\zero}(\xx,\yy)
+&= \lim_{a,b\to 0} \sqrt{a b} \exp\left(\frac12\left(\cosh^{-1}\left(1 + \frac{\|\yy - \xx\|^2}{2 a b}\right)\right)\right) \noreason\\
+&= \lim_{a,b\to 0} \sqrt{a b} \sqrt{2\left(1 + \frac{\|\yy - \xx\|^2}{2 a b}\right)} \since{$\lim_{t\to\infty} e^{t/2}/\sqrt{2\cosh(t)} = 1$}\\
+&= \lim_{a,b\to 0} \sqrt{2\left(ab + \frac{\|\yy - \xx\|^2}{2}\right)} = \sqrt{\|\yy - \xx\|^2} = \|\yy - \xx\|.\noreason
+\end{align*}
+\end{proof}
+
+\begin{corollary}[Cf. {\cite[Fig. 5]{Sullivan_entropy}}]
+\label{corollarysullivansformula}
+For $\xx,\yy\in\E$, we have 
+\[
+e^{\dist(\xx,\yy)} \asymp_\times \frac{\max(x_1^2,y_1^2,\|\yy - \xx\|^2)}{x_1 y_1}\cdot
+\]
+\end{corollary}
+\begin{proof}
+The result follows from 
+\begin{align*}
+\max(x_1^2,y_1^2,\|\yy - \xx\|^2) \asymp_\times \Dist_{e,\infty,\zero}(\xx,\yy)^2
+&= \exp\big(\dist(\xx,\yy) + \busemann_\infty(\zero,\xx) + \busemann_\infty(\zero,\yy)\big)\\
+&= x_1 y_1 e^{\dist(\xx,\yy)}
+\end{align*}
+which may be easily rearranged to complete the proof.
+\end{proof}
+
+%[NOTE: Start talking about ``compatible with the topology'' metametrics in the sense introduced above. Note that we don't care about this compatibility for the Euclidean metametric (Observation \ref{observationxibounded} is more important), but it is important for the Bourdon metametric.]
+
+
+
+
+% Note: Some deleted material here may be found in Frink's Lemma.tex.
+
+
+

@@ -1,0 +1,6 @@
+[A5] |K| = 60, #Hom(K,K) = 121
+[A5] #Hom(K^2,K) = 241, surjective = 240, socle-invariance violations: surjective = 0, non-surjective = 0
+[A5xZ2] |K| = 120, #Hom(K,K) = 272
+[A5xZ2] #Hom(K^2,K) = 1264, surjective = 720, socle-invariance violations: surjective = 0, non-surjective = 300
+[S4] |K| = 24, #Hom(K,K) = 58
+[S4] #Hom(K^2,K) = 148, surjective = 48, socle-invariance violations: surjective = 0, non-surjective = 0

@@ -1,0 +1,15 @@
+/home/user/group-approximation/experiments/split-module-triangles-2026-09-16/construct.py:153: ComplexWarning: Casting complex values to real discards the imaginary part
+  key = lambda M: np.round(M * 1e6).astype(np.int64).tobytes() + np.round(M.imag * 1e6).astype(np.int64).tobytes()
+G_0^{16,16,48} dim V = 60 | max relator error 1.37e-14 | vertex orders [24, 24, 72] expected [24, 24, 72] | pi_x|U_x = id err 2.8e-15 | OK
+G_0^{16,16,54} dim V = 84 | max relator error 1.01e-14 | vertex orders [24, 24, 81] expected [24, 24, 81] | pi_x|U_x = id err 2.1e-15 | OK
+G_0^{16,16,40} dim V = 24 | max relator error 4.16e-15 | vertex orders [24, 24, 60] expected [24, 24, 60] | pi_x|U_x = id err 6.1e-16 | OK
+G_1^{16,16,48} dim V = 60 | max relator error 6.60e-15 | vertex orders [24, 24, 72] expected [24, 24, 72] | pi_x|U_x = id err 1.3e-15 | OK
+G_0^{16,40,48} dim V = 120 | max relator error 1.47e-14 | vertex orders [24, 60, 72] expected [24, 60, 72] | pi_x|U_x = id err 3.0e-15 | OK
+G_0^{48,48,48} dim V = 30 | max relator error 1.66e-14 | vertex orders [72, 72, 72] expected [72, 72, 72] | pi_x|U_x = id err 2.8e-15 | OK
+G_0^{48,54,54} dim V = 210 | max relator error 4.03e-14 | vertex orders [72, 81, 81] expected [72, 81, 81] | pi_x|U_x = id err 4.8e-15 | OK
+G_8^{48,54,54} dim V = 210 | max relator error 4.04e-14 | vertex orders [72, 81, 81] expected [72, 81, 81] | pi_x|U_x = id err 4.8e-15 | OK
+G_0^{54,54,54} dim V = 42 | max relator error 2.09e-14 | vertex orders [81, 81, 81] expected [81, 81, 81] | pi_x|U_x = id err 2.3e-15 | OK
+G_2^{54,54,54} dim V = 42 | max relator error 2.21e-14 | vertex orders [81, 81, 81] expected [81, 81, 81] | pi_x|U_x = id err 2.3e-15 | OK
+ALL OK
+negative control (twisted edge isomorphism, expected FAIL):
+G_0^{48,48,48} [twisted] dim V = 30 | max relator error 3.59e+00 | vertex orders [72, 72, 72] expected [72, 72, 72] | pi_x|U_x = id err 2.8e-15 | FAIL

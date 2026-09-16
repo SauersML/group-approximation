@@ -1,0 +1,34 @@
+== variant: toy SFT, shapes 2 + wc by 2 + hc
+  [ok] parent covariance E'_a(e_l) = u_l E'_a(0) u_l^-1
+  [ok] parent (Q1)
+  [ok] parent (Q2) at scale 1
+  [ok] parent (Q3) dominoes
+  [ok] parent is noncommutative: [E'_(t=1)(0), E'_(t=1)(3,1)] != 0
+  [ok] omega maps all 32768 legal 3x3 patterns to legal patterns (H1 on 3x3 words)
+  [ok] Lemma 1: u_2 commutes with M_(=m)(0), u_1 with N_(=n)(0)
+  [ok] Pi is idempotent
+  [ok] Lemma 2: A_l, B_l map W_T into W_T
+  [ok] Lemma 2: A_l B_l = B_l A_l = 1 on W_T
+  [ok] Lemma 2: A_1 A_2 = A_2 A_1 on W_T
+  [ok] (Q1) for the child family
+  [ok] dim W_T = trace(Pi) = 240 = sum_a w h rank E'_a(0) = 240
+  dim W' = 36, dim W_T = 240
+  surviving legal Q-patterns per fibre: [2]
+  [ok] Proposition 5: E_b(z) diagonal with entries ev_Q(f^b_(ij,z)) for all z in [0,4]^2, all b
+  [ok] (Q2) at scale 2: [E_b(0), E_c(z)] = 0 for all z in B_4 (lexicographically >= 0), all b, c
+  [ok] (Q3) at scale 2 via dominoes (sufficient for this SFT given (Q2))
+  [ok] child family is noncommutative: first [E_(t=1)(0), E_(t=1)(z)] != 0 at z = (-6, -6)
+== variant: NEGATIVE CONTROL (widths depend on t)
+  [ok] parent covariance E'_a(e_l) = u_l E'_a(0) u_l^-1
+  [ok] parent (Q1)
+  [ok] parent (Q2) at scale 1
+  [ok] parent (Q3) dominoes
+  [ok] parent is noncommutative: [E'_(t=1)(0), E'_(t=1)(3,1)] != 0
+  [FAIL] Lemma 1: u_2 commutes with M_(=m)(0), u_1 with N_(=n)(0)
+  [ok] Pi is idempotent
+  [FAIL] Lemma 2: A_l, B_l map W_T into W_T
+  [ok] Lemma 2: A_l B_l = B_l A_l = 1 on W_T
+  [FAIL] Lemma 2: A_1 A_2 = A_2 A_1 on W_T
+  [ok] (Q1) for the child family
+  negative control: construction fails as expected = True
+ALL CHECKS PASSED

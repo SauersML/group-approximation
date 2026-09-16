@@ -1,0 +1,11 @@
+OK ['x', 'y'] orient True brute True expected True -- standard presentation, two balls
+OK ['xx'] orient True brute True expected True -- RP^2 is a spine of punctured RP^3
+OK ['xxx'] orient True brute True expected True -- pseudo-projective plane = spine of punctured L(3,1)
+OK ['xyXY'] orient True brute True expected True -- torus x I
+OK ['xyXy'] orient True brute True expected True -- Klein bottle, twisted I-bundle is orientable
+OK ['xxX'] orient True brute True expected True -- dunce hat embeds in R^3
+OK ['xYyyY', 'yYyYy'] orient True brute True expected True -- Lackenby StableAC1june26.tex l.855-876 Heegaard diagram of S^3
+OK ['xxyxzyyzz'] orient False brute False expected False -- link graph contains K_{3,3}
+link edges of xxyxzyyzz: [(('x', 0), ('x', 1)), (('x', 0), ('y', 1)), (('x', 0), ('z', 1)), (('x', 1), ('y', 0)), (('x', 1), ('z', 0)), (('y', 0), ('y', 1)), (('y', 0), ('z', 1)), (('y', 1), ('z', 0)), (('z', 0), ('z', 1))]
+random cross-check: {'cases': 3000, 'orient_true': 2540, 'either_true': 2908, 'either_not_orient': 368} examples either-but-not-orient: [['X', 'y', 'Yyyy'], ['ZyzYZ'], ['x', 'yxy', 'YxXxX']]
+TOTAL MISMATCHES 0

@@ -1,0 +1,17 @@
+SL3 p=7 points: |orbit|=57 rows=528 after_sparse rows=240 cols=28 free_rank(Z^E/im d2)=56 (expect |orbit|-1=56) echelon pivots!=1 (not SNF)=[14, 3, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL3 p=7 lines: |orbit|=57 rows=528 after_sparse rows=188 cols=18 free_rank(Z^E/im d2)=56 (expect |orbit|-1=56) echelon pivots!=1 (not SNF)=[7, 42, 7] [w_p]=0 in H_1(H;Z): True
+SL3 p=7 vectors: |orbit|=342 rows=3168 after_sparse rows=1585 cols=169 free_rank(Z^E/im d2)=341 (expect |orbit|-1=341) echelon pivots!=1 (not SNF)=[7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R1 p=7 points orbit-rep=(0, 0, 0, 1): |orbit|=343 rows=3318 after_sparse rows=1414 cols=92 free_rank(Z^E/im d2)=342 (expect |orbit|-1=342) echelon pivots!=1 (not SNF)=[7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R1 p=7 points orbit-rep=(0, 0, 1, 0): |orbit|=57 rows=528 after_sparse rows=186 cols=29 free_rank(Z^E/im d2)=56 (expect |orbit|-1=56) echelon pivots!=1 (not SNF)=[2, 7, 7, 21] [w_p]=0 in H_1(H;Z): True
+SL4 R1 p=7 hyperplanes orbit-rep=(0, 0, 0, 1): |orbit|=1 rows=3 after_sparse rows=3 cols=3 free_rank(Z^E/im d2)=0 (expect |orbit|-1=0) echelon pivots!=1 (not SNF)=[7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R1 p=7 hyperplanes orbit-rep=(0, 0, 1, 0): |orbit|=399 rows=3801 after_sparse rows=1804 cols=141 free_rank(Z^E/im d2)=398 (expect |orbit|-1=398) echelon pivots!=1 (not SNF)=[7, 7, 21, 2] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 points orbit-rep=(0, 0, 0, 1): |orbit|=343 rows=3367 after_sparse rows=1566 cols=167 free_rank(Z^E/im d2)=342 (expect |orbit|-1=342) echelon pivots!=1 (not SNF)=[7, 7, 7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 points orbit-rep=(0, 0, 1, 0): |orbit|=49 rows=483 after_sparse rows=205 cols=20 free_rank(Z^E/im d2)=48 (expect |orbit|-1=48) echelon pivots!=1 (not SNF)=[7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 points orbit-rep=(0, 1, 0, 0): |orbit|=7 rows=35 after_sparse rows=18 cols=4 free_rank(Z^E/im d2)=6 (expect |orbit|-1=6) echelon pivots!=1 (not SNF)=[7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 points orbit-rep=(1, 0, 0, 0): |orbit|=1 rows=3 after_sparse rows=3 cols=3 free_rank(Z^E/im d2)=0 (expect |orbit|-1=0) echelon pivots!=1 (not SNF)=[7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 hyperplanes orbit-rep=(0, 0, 0, 1): |orbit|=1 rows=3 after_sparse rows=3 cols=3 free_rank(Z^E/im d2)=0 (expect |orbit|-1=0) echelon pivots!=1 (not SNF)=[7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 hyperplanes orbit-rep=(0, 0, 1, 0): |orbit|=7 rows=35 after_sparse rows=19 cols=5 free_rank(Z^E/im d2)=6 (expect |orbit|-1=6) echelon pivots!=1 (not SNF)=[7, 7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 hyperplanes orbit-rep=(0, 1, 0, 0): |orbit|=49 rows=343 after_sparse rows=157 cols=15 free_rank(Z^E/im d2)=48 (expect |orbit|-1=48) echelon pivots!=1 (not SNF)=[7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL4 R2 p=7 hyperplanes orbit-rep=(1, 0, 0, 0): |orbit|=343 rows=3374 after_sparse rows=1479 cols=174 free_rank(Z^E/im d2)=342 (expect |orbit|-1=342) echelon pivots!=1 (not SNF)=[7, 7, 7, 7] [w_p]=0 in H_1(H;Z): True
+SL3 p=11 points: |orbit|=133 rows=1268 after_sparse rows=581 cols=75 free_rank(Z^E/im d2)=132 (expect |orbit|-1=132) echelon pivots!=1 (not SNF)=[11, 22, 55] [w_p]=0 in H_1(H;Z): True
+SL3 p=11 lines: |orbit|=133 rows=1268 after_sparse rows=429 cols=41 free_rank(Z^E/im d2)=132 (expect |orbit|-1=132) echelon pivots!=1 (not SNF)=[2, 11, 55, 11] [w_p]=0 in H_1(H;Z): True

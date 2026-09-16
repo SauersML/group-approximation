@@ -1,0 +1,30 @@
+pentagram base right-hand side b0 = [1, 0, 0, 0, 0]  parity 1
+base solution failures: []
+odd right-hand sides verified with explicit 8-dim solutions: 16
+K_4: 6 columns, derived 3 commutations
+   x12 commutes with x34   (row 3)
+   x13 commutes with x24   (row 2)
+   x14 commutes with x23   (row 2)
+   central columns: ['12', '13', '14', '23', '24', '34']
+   remaining noncommuting pairs: []
+K_5 minus 45: 9 columns, derived 12 commutations
+   x12 commutes with x34   (row 4)
+   x12 commutes with x35   (row 5)
+   x13 commutes with x24   (row 4)
+   x13 commutes with x25   (row 5)
+   x23 commutes with x14   (row 4)
+   x23 commutes with x15   (row 5)
+   x24 commutes with x15   (row 1)
+   x24 commutes with x35   (row 3)
+   x25 commutes with x14   (row 1)
+   x25 commutes with x34   (row 3)
+   x34 commutes with x15   (row 1)
+   x35 commutes with x14   (row 1)
+   central columns: ['12', '13', '14', '15', '23', '24', '25', '34', '35']
+   remaining noncommuting pairs: []
+K_5: 10 columns, derived 0 commutations
+   central columns: []
+   remaining noncommuting pairs: [('12', '34'), ('12', '35'), ('12', '45'), ('13', '24'), ('13', '25'), ('13', '45'), ('14', '23'), ('14', '25'), ('14', '35'), ('15', '23'), ('15', '24'), ('15', '34'), ('23', '45'), ('24', '35'), ('25', '34')]
+weight-4 columns meet every even column when |S| <= 5: ok
+labelled graphs on 5 vertices with complete closure: 1023 of 1024
+ALL CHECKS PASSED

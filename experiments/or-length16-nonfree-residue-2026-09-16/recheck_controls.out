@@ -1,0 +1,11 @@
+atataTAAT RECHECKED k=1 S=2 chi(X[0,S])=-1
+taTAA REJECT bottom-collapse
+taTAA REJECT top-collapse
+taaTAAA REJECT top-collapse
+atataTAAT REJECT gcd=2
+atATatAT REJECT word
+TTTATAAtaTatAATA REJECT cocycle
+taTAA REJECT gcd=2
+taTAA REJECT relator
+CHECKED 9
+SENTINEL_DONE

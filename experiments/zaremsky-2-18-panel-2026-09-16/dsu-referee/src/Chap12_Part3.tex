@@ -1,0 +1,2586 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Examples}
+%%\section{Examples}
+%\label{partexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%This part will be divided as follows: In Section \ref{sectionschottky} we consider semigroups of isometries which can be written as the ``Schottky product'' of two subsemigroups. In Section \ref{sectionRtrees}, we consider methods of constructing $\R$-trees which admit natural group actions, including what we call the ``stapling method''. In Section \ref{sectionparabolic}, we analyze in detail the class of parabolic groups of isometries. In Section \ref{sectionexamples}, we give a list of examples whose main importance is that they are counterexamples to certain implications; however, these examples are often geometrically interesting in their own right. In Section \ref{sectionGF}, we define a subclass of the class of groups of isometries which we call \emph{geometrically finite}, generalizing known results from the Standard Case.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Geometrically finite and convex-cobounded groups}\label{sectionGF}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we generalize the notion of geometrically finite groups to regularly geodesic strongly hyperbolic metric spaces, mainly CAT(-1) spaces. We generalize finite-dimensional theorems such as the Beardon--Maskit theorem \cite{BeardonMaskit} %,%Sullivan's theorem stating that geometrically finite groups are of divergence type \cite[Proposition 2]{Sullivan_entropy},
+and Tukia's isomorphism theorem \cite[Theorem 3.3]{Tukia2}.
+
+\begin{standingassumptions}
+Throughout this chapter, we assume that
+\begin{itemize}
+\item[(I)] $X$ is regularly geodesic and strongly hyperbolic, and that
+\item[(II)] $G\leq\Isom(X)$ is strongly discrete.
+\end{itemize}
+Recall that for $x,y\in\bord X$, $\geo xy$ denotes the geodesic segment, ray, or line connecting $x$ and $y$.
+\end{standingassumptions}
+Note that we do not assume that $G$ is nonelementary.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Some geometric shapes}
+\label{subsectionGFgeometry}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To define geometrically finite groups requires three geometric concepts. The first, the quasiconvex core $\CC_\zero$ of the group $G$, has already been introduced in Section \ref{subsectionconvexhulls}. The remaining two concepts are horoballs and Dirichlet domains.
+
+\subsection{Horoballs}
+\label{subsubsectionhoroballs}
+
+\begin{definition}
+\label{definitionhoroball}
+A \emph{horoball} is a set of the form
+\[
+H_{\xi,t} = \{x\in X : \busemann_\xi (\zero, x) > t\},
+\]
+where $\xi\in\del X$ and $t\in\R$. The point $\xi$ is called the \emph{center} of a horoball $H_{\xi,t}$, and will be denoted $\Center(H_{\xi,t})$. Note that for any horoball $H$, we have
+\[
+\cl H \cap \del X = \{\Center(H)\}.
+\]
+(Cf. Figure \ref{figurehoroball}.)
+\end{definition}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.9]
+%\clip(-3.166127993676996,-3.1524629220616016) rectangle (3.4577955811784222,3.106506185859636);
+\clip(-3.16,-3.06) rectangle (3.45,3.06);
+\draw(0.0,0.0) circle (3.0cm);
+%\draw [fill=black,pattern=dots,pattern color=black] (2.0,0.0) circle (1.0cm);
+\draw [fill=black,pattern=north east lines,pattern color=black] (2.0,0.0) circle (1.0cm);
+%\draw (2.0,0.0) circle (1.0cm);
+\draw (0.03714500501000815,0.06519516118026925)-- (0.9681603188456883,0.060396113170806974);
+\draw (0.03714500501000815,0.06519516118026925)-- (0.09979385703413489,0.11506179560495189);
+\draw (0.03714500501000815,0.06519516118026925)-- (0.10974098801916482,0.018077268500909828);
+\draw (0.9681603188456883,0.060396113170806974)-- (0.9204321632991048,0.10511466461992194);
+\draw (0.9681603188456883,0.060396113170806974)-- (0.9204321632991048,0.023050833993424807);
+\draw (0,0)-- (1,0);
+\begin{scriptsize}
+%\draw[color=black] (1.7060141398943445,0.11387955699933604) node {$H_{\xi,t}$};
+\draw[color=black] (0.7,1.0) node {$H_{\xi,t}$};
+%\draw[color=black] (1.3,0.6687955699933604) node {$\searrow$};
+\draw[thin,->,>=stealth] (0.9,0.8) -- (1.6,0.1) ;
+\draw [fill=black] (3.0,0.0) circle (.75pt);
+\draw[color=black] (3.2,0.13) node {$\xi$};
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.1,-0.1) node {$\zero$};
+\draw[color=black] (0.4469212289714138,0.1875703566282652) node {$t$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.85]
+%\clip(-3.6847619735656663,-0.7561099191983705) rectangle (3.8538569459514744,4.668418042454149);
+\clip(-3.68,-0.75) rectangle (3.85,4.36);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw (-3.0,1.5)-- (3.0,1.5);
+\draw (-2.958916691465665,2.5399933831077948)-- (-1.646103861448389,3.7681086111884694);
+\draw (-2.7895214875924683,1.8624125676150085)-- (-1.1590926503129475,3.4081438029579267);
+\draw (-1.8366734658057353,1.8624125676150085)-- (-0.16389582755791549,3.4928414048945253);
+\draw (-0.8626510435348529,1.8200637666467094)-- (0.7677777937446677,3.450492603926226);
+\draw (0.09019697825187993,1.7777149656784101)-- (1.7418002160155501,3.4716670044103757);
+\draw (1.1065682014910616,1.8200637666467094)-- (2.6099506358656845,3.3869694024737775);
+\draw (2.038241822793645,1.735366164710111)-- (3.5416242571682677,3.3234462010213286);
+\draw (0.0,1.5)-- (0.0,1.0);
+\begin{scriptsize}
+\draw [fill=black] (0.0,1.0) circle (.75pt);
+\draw[color=black] (0.2942550361666618,0.9810500926903516) node {$\zero$};
+\draw [fill=black] (0.0,4.0) circle (.75pt);
+\draw[color=black] (0.1139837141782084,4.225933888482493) node {$\xi$};
+\draw[color=black] (-0.9512559157535614,2.177396138613717) node {$H_{\xi,t}$};
+\draw[color=black] (-0.16127704379135044,1.2449331126798539) node {$t$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+\caption[Visualizing horoballs in the ball and half-space models]{Two pictures of the same horoball, in the ball model and half-space model, respectively.}
+\label{figurehoroball}
+\end{figure}
+
+\begin{lemma}\label{lemmaHdiameter}
+For every horoball $H\subset X$, we have
+\[
+\Diam(H) \asymp_\times b^{-\dist(\zero,H)}.
+\]
+\end{lemma}
+\begin{proof}
+Write $H = H_{\xi,t}$ for some $\xi\in\del X$, $t\in\R$. If $t < 0$, then $\zero\in H$, so $\dist(\zero,H) = 0$ and $\Diam(H) = 1$. So suppose $t\geq 0$. Then the intersection $\geo\zero\xi\cap \del H$ consists of a single point $x_0$ satisfying $\dox{x_0} = t$. It follows that $\dist(\zero,H) \leq \dox{x_0} = t$ and $\Diam(H) \geq \Dist(x_0,x_0) = b^{-t}$. For the reverse directions, fix $x\in H$. Since $\busemann_\xi(\zero, x) > t$, we have
+\[
+\dox x > t
+\]
+and
+\[
+\Dist(x,\xi) = b^{-\lb x|\xi\rb_\zero} = b^{-[\busemann_\xi(\zero,x) + \lb\zero|\xi\rb_x]}
+\leq b^{-\busemann_\xi(\zero,x)}
+< b^{-t}.
+\]
+It follows that $\Diam(H) \asymp_\times b^{-t} = b^{-\dist(\zero,H)}$.
+\end{proof}
+
+\begin{lemma}[Cf. Figure \ref{figureDSC05176disc}]
+\label{lemmaHcutBdiameter}
+Suppose that $H$ is a horoball not containing $\zero$. Then
+\[
+\Diam(H\butnot B(\zero,\rho)) \leq 2e^{-(1/2)\rho}.
+\]
+\end{lemma}
+\begin{proof}
+Write $H = H_{\xi,t}$ for some $\xi\in\del X$ and $t\in\R$; we have $t\geq 0$ since $\zero\notin H$. Then for all $x\in H\butnot B(\zero,\rho)$,
+\[
+\lb x|\xi\rb_\zero = \frac 12[\dox x + \busemann_\xi(\zero,x)] \geq \frac 12[\rho + t] \geq \frac 12 \rho
+\]
+and so $\Dist(x,\xi) \leq e^{-(1/2)\rho}$.
+\end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.98,-3.06) rectangle (4.44,3.06);
+\draw(0.0,0.0) circle (3.0cm);
+\draw(2.0,0.0) circle (1.0cm);
+\draw [shift={(0.0,-0.0)}] plot[domain=-0.49916630796940265:0.5863917531910169,variable=\t]({1.0*2.6608551854448765*cos(\t r)+-0.0*2.6608551854448765*sin(\t r)},{0.0*2.6608551854448765*cos(\t r)+1.0*2.6608551854448765*sin(\t r)});
+\draw (0.0,-0.0)-- (2.2141953354369233,1.4709837919838016);
+\draw (2.725648009077071,0.6128495628882283)-- (2.6440345586902594,0.5176338707702813);
+\draw (2.8299318623491088,0.48136122615392063)-- (2.6984435256148007,0.3226684059573425);
+\draw (2.8979430710047853,0.3226684059573425)-- (2.716579847922981,0.10956661883622314);
+\draw (2.9432838767752365,0.11863477999031333)-- (2.702977606191846,-0.12167149059307653);
+\draw (2.9523520379293267,-0.12167149059307653)-- (2.6848412838836655,-0.3665118417535115);
+\draw (2.879806748696605,-0.4118526475239624)-- (2.6485686392673045,-0.5932158706057661);
+\draw (2.6032278334968533,-0.7428405296482541)-- (2.712045767345936,-0.6657611598384875);
+\begin{scriptsize}
+\draw[color=black] (1.3244253846810095,-0.4609545880123348) node {$H$};
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.12690497269437848,-0.15753256418730905) node {$\zero$};
+\draw[color=black] (1.1175813370309577,0.8973467018588107) node {$\rho$};
+\draw [fill=black] (3.0,0.0) circle (.75pt);
+\draw[color=black] (3.223917845298176,0.14576257479200725) node {$\xi$};
+\draw[color=black] (3.7,0.75) node {$H\butnot B(\zero,\rho)$};
+\draw[color=black] (2.87,0.63) node {$\swarrow$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Diameter decay of a ball complement inside a horoball]{The set $H\butnot B(\zero,\rho)$ decreases in diameter as $\rho\to\infty$.}
+\label{figureDSC05176disc}
+\end{center}
+\end{figure}
+
+
+
+
+\subsection{Dirichlet domains}
+
+\begin{definition}
+\label{definitiondirichletdomain}
+Let $G$ be a group acting by isometries on a metric space $X$. Fix $z\in X$. We define the \emph{Dirichlet domain for $G$ centered at $z$} by
+\begin{equation}
+\label{dirichletdomain}
+\DD_z := \{ x : \dist(z,x) \leq \dist(z,g(x)) \all g\in G\} = \{x : \busemann_x(z,g^{-1}(z))\leq 0 \all g\in G\}.
+\end{equation}
+\end{definition}
+
+
+The idea is that the Dirichlet domain is a ``tile'' whose iterates under $G$ tile the space $X$. This is made explicit in the following proposition:
+
+\begin{proposition}
+\label{propositiondirichletdomain}
+For all $z\in X$, $G(\DD_z) = X$.
+\end{proposition}
+\begin{proof} 
+Fix $x\in X$. Since the group $G$ is strongly discrete, the minimum $\min_{g\in G}\{ \dist(x,g(z)) \}$ is attained at some $g\in G$. Now for every $h\in G$, we have $\dist(x,g(z)) \leq \dist(x,h(z))$. Replacing $h$ by $gh$, it follows that for every $h\in G$ we have $\dist(x,g(z)) \leq \dist(x,gh(z))$ which is the same as $\dist(g^{-1}(x),z) \leq \dist(g^{-1}(x),h(z))$. Thus $g^{-1}(x)\in\DD_z$, i.e. $x\in g(\DD_z)$.
+\end{proof}
+
+
+
+\begin{corollary}
+\label{corollarydirichletdomain}
+Let $S\subset X$ be a $G$-invariant set. The following are equivalent:
+\begin{itemize}
+\item[(A)] There exists a bounded set $S_0\subset X$ such that $S\subset G(S_0)$.
+\item[(B)] The set $S\cap\DD_z$ is bounded.
+\end{itemize}
+\end{corollary}
+\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+Given $x\in S\cap\DD_z$, fix $g\in G$ with $x\in g(S_0)$. Then $\dist(z,x) \leq \dist(z,g^{-1}(x)) \asymp_\plus 0$, i.e. $x$ is in a bounded set.
+\end{proof}
+\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+The set $S_0 = S\cap\DD_z$ is such a set. Specifically, given $x\in S$ by Proposition \ref{propositiondirichletdomain} there exists $g\in G$ such that $x\in g(\DD_z)$. Since $S$ is $G$-invariant, $g^{-1}(x)\in S\cap \DD_z = S_0$.
+\end{proof}
+
+
+
+\begin{remark}
+It is tempting to define the Dirichlet domain of $G$ centered at $z$ to be the set
+\[
+\DD_z^* := \{ x : \dist(z,x) < \dist(z,g(x)) \all g\in G \text{ such that }g(z)\neq z\},
+\]
+and then to try to prove that $G(\cl{\DD_z^*}) = X$. However, there is a simple example which disproves this hypothesis. Let $X$ be the Cayley graph of $\Gamma = \F_2(\Z) = \lb \gamma_1,\gamma_2\rb$, let $\Phi:\Gamma\to\Isom(X)$ be the natural action, and let $G = \Phi(\Gamma)$. If we let $z = ((e,\gamma_1),1/2)$, then $\DD_z^* = \{((e,\gamma_1),t) : t\in (0,1)\}$, and
+\[
+G(\cl{\DD_z^*}) = \{((\gg,\gg\gamma_1),t) : \gg\in\Gamma,t\in[0,1]\}.
+\]
+This set excludes all elements of the form $((\gg,\gg\gamma_2),t)$, $t\in (0,1)$. (Cf. Figure \ref{figurefree2}.)
+\end{remark}
+
+
+%\ignore{
+%\begin{itemize}
+%\item[(i)]
+%By contradiction, suppose that there exists $x\in \DD_z \cap g(\DD_z)$. Then $x\in\DD_z$ and $g^{-1}(x)\in\DD_z$; we have 
+%\[
+%\dist(x,z) < \dist(x,g(z)) = \dist(g^{-1}(x),z) < \dist(g^{-1}(x),g^{-1}(z)) = \dist(x,z),
+%\]
+%a contradiction.
+%
+%\item[(ii)]
+%\begin{align*}
+%x\in g(\DD_z)
+%&\Leftrightarrow g^{-1}(x)\in\DD_z\\
+%&\Leftrightarrow \dist(z,g^{-1}(x)) < \dist(z,hg^{-1}(x)) \ \all h\in G \text{ such that }h(z)\neq z\\
+%&\Leftrightarrow \dist(z,x) < \dist(z,j(x)) \ \all j\in G \text{ such that }j(z)\neq z\\
+%&\Leftrightarrow x\in\DD_z.
+%\end{align*}
+%Here the substitution $j = hg^{-1}$ is used in the third equivalence.
+%
+%\item[(iii)] Fix $x\in X$. Since $G$ is strongly discrete, the minimum $\min_{g\in G} \{ \dist(x,g(z)) \}$ is attained at some $g\in G$. Now for every $h\in G$, we have $\dist(x,g(z)) \leq \dist(x,h(z))$. Replacing $h$ by $gh$, it follows that for every $h\in G$ we have $\dist(x,g(z)) \leq \dist(x,gh(z))$ which is the same as $\dist(g^{-1}(x),z) \leq \dist(g^{-1}(x),h(z))$.
+%
+%We claim that $y := g^{-1}(x)\in\cl{\DD_z}$. Indeed, let $\geo zy$ be the geodesic segment connecting $z$ and $y$; we claim that $\geo zy\butnot\{y\}\subset\DD_z$. Fix $w\in\geo zy\butnot\{y\}$ and $h\in G$ with $h(z)\neq z$; as mentioned above we have $\dist(y,z)\leq\dist(y,h(z))$. Now
+%\begin{align*}
+%\dist(w,h(z)) - \dist(w,z) &= \dist(w,h(z)) + \dist(w,y) - \dist(y,z)\\
+%&\geq \dist(w,h(z)) + \dist(w,y) - \dist(y,h(z)) =2\lb y|h(z)\rb_w,
+%\end{align*}
+%which is strictly positive unless $w$ is on the geodesic segment between $y$ and $h(z)$. By contradiction, suppose that it is. Then $w$, $h(z)$, and $z$ all lie on a common geodesic (the one spanned by $y$ and $w$). Furthermore, $z$ and $h(z)$ both lie on the same side of $w$ (the side opposite the side that $y$ lies on). Also, $\dist(w,z) = \dist(w,h(z))$ by our contradiction hypothesis. These three facts together imply that $z = h(z)$, a contradiction.
+%
+%Thus $\dist(w,h(z)) > \dist(w,z)$ for all $h\in G$ with $h(z)\neq z$, i.e. $w\in\DD_z$. Then $y\in\cl{\DD_z}$, completing the proof.
+%\end{itemize}
+%}% end ignore
+
+
+\begin{figure}
+\begin{center}
+%\begin{tabular}{ll}
+\begin{tabular}{@{}ll@{}}
+
+%%%FIRST FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.49cm,y=0.49cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.45]
+\clip(-6.705221014292816,-5.620235521243468) rectangle (6.556270148687806,5.50828853160739);
+\draw (0.0,3.0)-- (0.0,-3.0);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw (-1.5,3.0)-- (0.0,3.0);
+\draw (0.0,3.0)-- (1.5,3.0);
+\draw (0.0,3.0)-- (0.0,4.5);
+\draw (-3.0,0.0)-- (-3.0,1.5);
+\draw (-3.0,0.0)-- (-4.5,0.0);
+\draw (-3.0,0.0)-- (-3.0,-1.5);
+\draw (0.0,-3.0)-- (-1.5,-3.0);
+\draw (0.0,-3.0)-- (1.5,-3.0);
+\draw (0.0,-3.0)-- (0.0,-4.5);
+\draw (3.0,0.0)-- (3.0,1.5);
+\draw (3.0,0.0)-- (3.0,-1.5);
+\draw (0.0,4.5)-- (0.0,5.5);
+\draw (0.0,4.5)-- (-1.0,4.5);
+\draw (0.0,4.5)-- (1.0,4.5);
+\draw (-1.5,3.0)-- (-1.5,4.0);
+\draw (-1.5,3.0)-- (-2.5,3.0);
+\draw (-1.5,3.0)-- (-1.5,2.0);
+\draw (1.5,3.0)-- (1.5,4.0);
+\draw (1.5,3.0)-- (2.5,3.0);
+\draw (1.5,3.0)-- (1.5,2.0);
+\draw (3.0,1.5)-- (3.0,2.5);
+\draw (3.0,1.5)-- (2.0,1.5);
+\draw (3.0,1.5)-- (4.0,1.5);
+\draw (3.0,-1.5)-- (2.0,-1.5);
+\draw (3.0,-1.5)-- (4.0,-1.5);
+\draw (3.0,-1.5)-- (3.0,-2.5);
+\draw (1.5,-3.0)-- (1.5,-2.0);
+\draw (1.5,-3.0)-- (2.5,-3.0);
+\draw (1.5,-3.0)-- (1.5,-4.0);
+\draw (0.0,-4.5)-- (1.0,-4.5);
+\draw (0.0,-4.5)-- (0.0,-5.5);
+\draw (0.0,-4.5)-- (-1.0,-4.5);
+\draw (-1.5,-3.0)-- (-2.5,-3.0);
+\draw (-1.5,-3.0)-- (-1.5,-2.0);
+\draw (-1.5,-3.0)-- (-1.5,-4.0);
+\draw (-3.0,-1.5)-- (-2.0,-1.5);
+\draw (-3.0,-1.5)-- (-3.0,-2.5);
+\draw (-3.0,-1.5)-- (-4.0,-1.5);
+\draw (-4.5,0.0)-- (-4.5,1.0);
+\draw (-4.5,0.0)-- (-4.5,-1.0);
+\draw (-4.5,0.0)-- (-5.5,0.0);
+\draw (-3.0,1.5)-- (-4.0,1.5);
+\draw (-3.0,1.5)-- (-3.0,2.5);
+\draw (-3.0,1.5)-- (-2.0,1.5);
+\draw (4.5,0.0)-- (4.5,1.0);
+\draw (4.5,0.0)-- (4.5,-1.0);
+\draw (4.5,0.0)-- (5.5,0.0);
+\draw (3.0,0.0)-- (4.5,0.0);
+\draw [line width=2.0pt] (0.0,0.0)-- (3.0,0.0);
+\begin{scriptsize}
+\draw [fill=black] (1.5,0) circle (1.0pt);
+\draw[color=black] (1.5,0.3) node {$z$};
+\draw [fill=black] (0.0,3.0) circle (1.0pt);
+\draw[color=black] (0.33,2.63) node {$\gamma_2$};
+\draw [fill=black] (0.0,-3.0) circle (1.0pt);
+\draw[color=black] (0.57,-3.37) node {$\gamma_2^{-1}$};
+\draw [fill=black] (-3.0,0.0) circle (1.0pt);
+\draw[color=black] (-2.4,0.4) node {$\gamma_1^{-1}$};
+\draw [fill=black] (3.0,0.0) circle (1.0pt);
+\draw[color=black] (3.4,0.3) node {$\gamma_1$};
+\draw [fill=black] (-1.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,3.0) circle (1.0pt);
+\draw [fill=black] (0.0,4.5) circle (1.0pt);
+\draw [fill=black] (-3.0,1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,0.0) circle (1.0pt);
+\draw [fill=black] (-3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (0.0,-4.5) circle (1.0pt);
+\draw [fill=black] (3.0,1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.5,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,5.4) circle (1.0pt);
+\draw [fill=black] (-1.0,4.5) circle (1.0pt);
+\draw [fill=black] (1.0,4.5) circle (1.0pt);
+\draw [fill=black] (-1.5,4.0) circle (1.0pt);
+\draw [fill=black] (-2.5,3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,2.0) circle (1.0pt);
+\draw [fill=black] (1.5,4.0) circle (1.0pt);
+\draw [fill=black] (2.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,2.0) circle (1.0pt);
+\draw [fill=black] (3.0,2.5) circle (1.0pt);
+\draw [fill=black] (2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.0,1.5) circle (1.0pt);
+\draw [fill=black] (2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (0.0,-5.5) circle (1.0pt);
+\draw [fill=black] (-1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (-2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (-2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (-4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,1.0) circle (1.0pt);
+\draw [fill=black] (-4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (-5.5,0.0) circle (1.0pt);
+\draw [fill=black] (-4.0,1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,2.5) circle (1.0pt);
+\draw [fill=black] (-2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.5,1.0) circle (1.0pt);
+\draw [fill=black] (4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (5.5,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,0.0) circle (1.0pt);
+\draw[color=black] (0.27329094384908476,0.3) node {$e$};
+\draw[color=black] (1.9339097257857616,-0.48055544635952215) node {$\cl{\DD_z^*}$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%SECOND FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=0.49cm,y=0.49cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.45]
+\clip(-6.705221014292816,-5.620235521243468) rectangle (6.556270148687806,5.50828853160739);
+\draw (0.0,3.0)-- (0.0,-3.0);
+\draw (-3.0,0.0)-- (3.0,0.0);
+\draw [line width=2.0pt] (-1.5,3.0)-- (0.0,3.0);
+\draw [line width=2.0pt] (0.0,3.0)-- (1.5,3.0);
+\draw (0.0,3.0)-- (0.0,4.5);
+\draw (-3.0,0.0)-- (-3.0,1.5);
+\draw (-3.0,0.0)-- (-4.5,0.0);
+\draw (-3.0,0.0)-- (-3.0,-1.5);
+\draw [line width=2.0pt] (0.0,-3.0)-- (-1.5,-3.0);
+\draw [line width=2.0pt] (0.0,-3.0)-- (1.5,-3.0);
+\draw (0.0,-3.0)-- (0.0,-4.5);
+\draw (3.0,0.0)-- (3.0,1.5);
+\draw (3.0,0.0)-- (3.0,-1.5);
+\draw (0.0,4.5)-- (0.0,5.4);
+\draw [line width=2.0pt] (0.0,4.5)-- (-1.0,4.5);
+\draw [line width=2.0pt] (0.0,4.5)-- (1.0,4.5);
+\draw (-1.5,3.0)-- (-1.5,4.0);
+\draw [line width=2.0pt] (-1.5,3.0)-- (-2.5,3.0);
+\draw (-1.5,3.0)-- (-1.5,2.0);
+\draw (1.5,3.0)-- (1.5,4.0);
+\draw [line width=2.0pt] (1.5,3.0)-- (2.5,3.0);
+\draw (1.5,3.0)-- (1.5,2.0);
+\draw (3.0,1.5)-- (3.0,2.5);
+\draw [line width=2.0pt] (3.0,1.5)-- (2.0,1.5);
+\draw [line width=2.0pt] (3.0,1.5)-- (4.0,1.5);
+\draw [line width=2.0pt] (3.0,-1.5)-- (2.0,-1.5);
+\draw [line width=2.0pt] (3.0,-1.5)-- (4.0,-1.5);
+\draw (3.0,-1.5)-- (3.0,-2.5);
+\draw (1.5,-3.0)-- (1.5,-2.0);
+\draw [line width=2.0pt] (1.5,-3.0)-- (2.5,-3.0);
+\draw (1.5,-3.0)-- (1.5,-4.0);
+\draw [line width=2.0pt] (0.0,-4.5)-- (1.0,-4.5);
+\draw (0.0,-4.5)-- (0.0,-5.5);
+\draw [line width=2.0pt] (0.0,-4.5)-- (-1.0,-4.5);
+\draw [line width=2.0pt] (-1.5,-3.0)-- (-2.5,-3.0);
+\draw (-1.5,-3.0)-- (-1.5,-2.0);
+\draw (-1.5,-3.0)-- (-1.5,-4.0);
+\draw [line width=2.0pt] (-3.0,-1.5)-- (-2.0,-1.5);
+\draw (-3.0,-1.5)-- (-3.0,-2.5);
+\draw [line width=2.0pt] (-3.0,-1.5)-- (-4.0,-1.5);
+\draw (-4.5,0.0)-- (-4.5,1.0);
+\draw (-4.5,0.0)-- (-4.5,-1.0);
+\draw (-4.5,0.0)-- (-5.5,0.0);
+\draw [line width=2.0pt] (-3.0,1.5)-- (-4.0,1.5);
+\draw (-3.0,1.5)-- (-3.0,2.5);
+\draw [line width=2.0pt] (-3.0,1.5)-- (-2.0,1.5);
+\draw (4.5,0.0)-- (4.5,1.0);
+\draw (4.5,0.0)-- (4.5,-1.0);
+\draw (4.5,0.0)-- (5.5,0.0);
+\draw (3.0,0.0)-- (4.5,0.0);
+\draw [line width=2.0pt] (-5.5,0.0)-- (5.44,0.0);
+\begin{scriptsize}
+\draw [fill=black] (1.5,0) circle (1.0pt);
+\draw[color=black] (1.5,0.3) node {$z$};
+\draw [fill=black] (0.0,3.0) circle (1.0pt);
+\draw[color=black] (0.33,2.68) node {$\gamma_2$};
+\draw [fill=black] (0.0,-3.0) circle (1.0pt);
+\draw[color=black] (0.574,-3.471) node {$\gamma_2^{-1}$};
+\draw [fill=black] (-3.0,0.0) circle (1.0pt);
+\draw[color=black] (-2.4,0.45) node {$\gamma_1^{-1}$};
+\draw [fill=black] (3.0,0.0) circle (1.0pt);
+\draw[color=black] (3.36,0.3) node {$\gamma_1$};
+\draw [fill=black] (-1.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,3.0) circle (1.0pt);
+\draw [fill=black] (0.0,4.5) circle (1.0pt);
+\draw [fill=black] (-3.0,1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,0.0) circle (1.0pt);
+\draw [fill=black] (-3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-3.0) circle (1.0pt);
+\draw [fill=black] (0.0,-4.5) circle (1.0pt);
+\draw [fill=black] (3.0,1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.5,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,5.4) circle (1.0pt);
+\draw [fill=black] (-1.0,4.5) circle (1.0pt);
+\draw [fill=black] (1.0,4.5) circle (1.0pt);
+\draw [fill=black] (-1.5,4.0) circle (1.0pt);
+\draw [fill=black] (-2.5,3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,2.0) circle (1.0pt);
+\draw [fill=black] (1.5,4.0) circle (1.0pt);
+\draw [fill=black] (2.5,3.0) circle (1.0pt);
+\draw [fill=black] (1.5,2.0) circle (1.0pt);
+\draw [fill=black] (3.0,2.5) circle (1.0pt);
+\draw [fill=black] (2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.0,1.5) circle (1.0pt);
+\draw [fill=black] (2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (0.0,-5.5) circle (1.0pt);
+\draw [fill=black] (-1.0,-4.5) circle (1.0pt);
+\draw [fill=black] (-2.5,-3.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-2.0) circle (1.0pt);
+\draw [fill=black] (-1.5,-4.0) circle (1.0pt);
+\draw [fill=black] (-2.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,-2.5) circle (1.0pt);
+\draw [fill=black] (-4.0,-1.5) circle (1.0pt);
+\draw [fill=black] (-4.5,1.0) circle (1.0pt);
+\draw [fill=black] (-4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (-5.5,0.0) circle (1.0pt);
+\draw [fill=black] (-4.0,1.5) circle (1.0pt);
+\draw [fill=black] (-3.0,2.5) circle (1.0pt);
+\draw [fill=black] (-2.0,1.5) circle (1.0pt);
+\draw [fill=black] (4.5,1.0) circle (1.0pt);
+\draw [fill=black] (4.5,-1.0) circle (1.0pt);
+\draw [fill=black] (5.44,0.0) circle (1.0pt);
+\draw [fill=black] (0.0,0.0) circle (1.0pt);
+\draw[color=black] (0.27329094384908476,0.23676420562238503) node {$e$};
+\draw[color=black] (1.8339097257857616,-0.5) node {$G(\cl{\DD_z^*})$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+\caption[The Cayley graph of $\Gamma = \F_2(\Z) = \lb \gamma_1,\gamma_2\rb$]{The Cayley graph of $\Gamma = \F_2(\Z) = \lb \gamma_1,\gamma_2\rb$. The closure of the naive Dirichlet domain $\DD_z^*$ is the geodesic segment $\cl{\DD_z^*} = \geo e{\gamma_1}$. Its orbit $G(\cl{\DD_z^*})$ is the union of all geodesic segments which appear as horizontal lines in this picture.}
+\label{figurefree2}
+\end{center}
+\end{figure}
+
+
+\begin{remark}
+The assumption that $G$ is strongly discrete is crucial for Proposition \ref{propositiondirichletdomain}. In general, tiling Hilbert spaces turns out to be a very subtle problem and has been studied (among others) by Klee \cite{Klee1,Klee2}, Fonf and Lindenstrauss \cite{FonfLindenstrauss} and most recently by Preiss \cite{Preiss}.
+\end{remark}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Cobounded and convex-cobounded groups}
+\label{subsectionCBCCB}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Before studying geometrically finite groups, we begin by considering the simpler case of cobounded and convex-cobounded groups. The theory of these groups will provide motivation for the theory of geometrically finite groups.
+
+\begin{definition}
+\label{definitionCB}
+Let $G$ be a group acting by isometries on a metric space $X$. We say that $G$ is \emph{cobounded} if there exists $\sigma > 0$ such that $X = G(B(\zero,\sigma))$.
+\end{definition}
+
+It has been a long-standing conjecture to prove or disprove the existence of cobounded subgroups of $\Isom(\H^\infty)$ that are discrete in an appropriate sense. To the best of our knowledge, this conjecture was first stated explicitly by D. P. Sullivan in his IH\'ES seminar on conformal dynamics \cite[p.17]{Sullivan_seminar}. We give here two partial answers to this question, both negative. Our first partial answer is as follows:
+
+\begin{proposition}
+\label{propositionnocoboundedgroups}
+A strongly discrete subgroup of $\Isom(\H^\infty)$ cannot be cobounded.
+\end{proposition}
+\begin{proof}
+Let us work in the ball model $\B^\infty$. Suppose that $G\leq\Isom(\B^\infty)$ is a strongly discrete cobounded group, and choose $\sigma > 0$ so that $\B^\infty = G(B_\B(\0,\sigma))$. Since $G$ is strongly discrete, we have $\#(F) < \infty$ where
+\[
+F := \{\xx\in G(\0):\dist_\B(\0,\xx) \leq 2\sigma + 1\}.
+\]
+Choose $\vv\in \del\B^\infty$ such that $B_\EE(\vv,\zz) = 0$ for all $\zz\in F$, and let $\xx = t\vv$, where $0 < t < 1$ is chosen to make
+\[
+\dist_\B(\0,\xx) = \sigma + 1.
+\]
+Since $\xx\in\B$, we have $\xx\in B_\B(\yy,\sigma)$ for some $\yy\in G(\0)$. But then $\dist(\0,\yy)\leq 2\sigma + 1$, which implies $\yy\in F$, and thus $B_\EE(\xx,\yy) = 0$. On the other hand
+\[
+\dist_\B(\xx,\yy) \leq \sigma < \sigma + 1 = \dist_\B(\0,\xx),
+\]
+which contradicts \eqref{distB}.
+\end{proof}
+
+Proposition \ref{propositionnocoboundedgroups} leaves open the question of whether there exist cobounded subgroups of $\Isom(\H)$ which satisfy a weaker discreteness condition than strong discreteness. One way that we could try to construct such a group would be to take the direct limit of a sequence cobounded subgroups of $\Isom(\H^d)$ as $d\to\infty$. The most promising candidate for such a direct limit has been the direct limit of a sequence of \emph{arithmetic} cocompact subgroups of $\Isom(\H^d)$. (See e.g. \cite{Belolipetsky_survey} for the definition of an arithmetic subgroup of $\Isom(\H^d)$.) Nevertheless, such innocent hopes are dashed by the following result:
+
+\begin{proposition}
+\label{propositionarithmeticvolume}
+If $G_d\leq\Isom(\H^d)$ is a sequence of arithmetic subgroups, then the codiameter of $G_d$ tends to infinity, that is, there is no $\sigma > 0$ such that $G_d(B(\zero,\sigma)) = \H^d$ for every $d$.
+\end{proposition}
+\begin{proof}
+It is known \cite[Corollary 3.3]{Belolipetsky_survey} that the covolume of $G_d$ tends to infinity superexponentially fast as $d\to\infty$.
+%\[
+%V_d := \begin{cases}
+%\frac{4\cdot 5^{r^2 + r/2}\cdot (2\pi)^r}{(2r - 1)!!} \prod_{i = 1}^r \frac{(2i - 1)!^2}{(2\pi)^{4i}}\bq_{k_0}(2i)
+%& \text{if $d = 2r$, $r$ even}\\
+%\frac{2\cdot 5^{r^2 + r/2}\cdot(2\pi)^r\cdot(4r - 1)}{(2r - 1)!!}\prod_{i = 1}^r \frac{(2i - 1)!^2}{(2\pi)^{4i}}\bq_{k_0}(2i)
+%& \text{if $d = 2r$, $r$ odd}\\
+%\frac{5^{r^2 - r/2}\cdot 11^{r - 1/2}\cdot (r - 1)!}{2^{2r - 1} \pi^r} L_{\ell_0|k_0}(r) \prod_{i = 1}^{r - 1} \frac{(2i - 1)!^2}{(2\pi)^{4i}}\bq_{k_0}(2i)
+%& \text{if $d = 2r - 1$}
+%\end{cases},
+%\]
+%%where $\bq_{k_0}$ is the Dedekind zeta function \cite{} of the quadratic number field $k_0 = \Q[\sqrt 5]$, and $L_{\ell_0|k_0}$ is the Dirichlet $L$-function \cite{} of the field extension $\ell_0/k_0$, where $\ell_0$ is the quartic number field with defining polynomial $x^4 - x^4 + 2x - 1$. 
+On the other hand, the volume of $B(\zero,\sigma)$ in $\H^d$ tends to zero superexponentially fast. Indeed, it is equal to 
+\[
+(2\pi^{d/2}/\Gamma(d/2))\int_0^\sigma \sinh^{d - 1}(r)\;\dee r \asymp_\times \pi^{d/2} \sigma^{d - 1}/\Gamma(d/2).
+\] 
+Thus, for sufficiently large $d$, the volume of $B(\zero,\sigma)$ is less than the covolume of $G_d$, which implies that $G_d(B(\zero,\sigma)) \propersubset \H^d$.
+\end{proof}
+\begin{remark}
+Proposition \ref{propositionarithmeticvolume} strongly suggests, but does not prove, that it is impossible to get a cobounded subgroup of $\Isom(\H^\infty)$ as the direct limit of arithmetic subgroups of $\Isom(\H^d)$. One might ask whether one can get a cobounded subgroup of $\Isom(\H^\infty)$ as the direct limit of non-arithmetic subgroups of $\Isom(\H^d)$; the analogous known lower bounds on volume \cite{AdeboyeWei,Kellerhalls} are insufficient to disprove this. However, this approach seems unlikely to work, for two reasons: first of all, the much worse lower bounds for the covolumes of non-arithmetic groups may just be a failure of technique; there are no known examples of non-arithmetic groups with volume lower than the bound which holds for arithmetic groups, and it is conjectured that there are no such examples \cite[p.9]{Belolipetsky_survey}. %\Footnote{In fact, for sufficiently large $d$, there are no known examples of non-arithmetic cocompact groups.}
+Second of all, even if such groups exist, they are of no use to the problem unless an entire sequence of groups may be found, each one of which is a subgroup of all its higher dimensional analogues. Such structure exists in the arithmetic case but it is unclear whether or not it will also exist in the non-arithmetic case.
+\end{remark}
+
+From Propositions \ref{propositionnocoboundedgroups} and \ref{propositionarithmeticvolume}, we see that the theory of cobounded groups acting on $\H^\infty$ will be rather limited. Consequently we focus on the weaker condition of \emph{convex-coboundedness}.
+
+For the remainder of this chapter, we return to our standing assumption that the group $G$ is strongly discrete.
+
+\begin{definition}
+\label{definitionCCB}
+We say that $G\leq\Isom(X)$ is \emph{convex-cobounded} if its restriction to the quasiconvex core $\CC_\zero$ is cobounded, or equivalently if there exists $\sigma > 0$ such that
+\[
+\CC_\zero\subset G(B(\zero,\sigma)).
+\]
+\end{definition}
+We remark that whether or not $G$ is convex-cobounded is independent of the base point $\zero$ (cf. Proposition \ref{propositionC0comparison}).
+
+From Proposition \ref{propositionhull} we immediately deduce the following:
+\begin{observation}
+\label{observationCCBwCCB}
+If $X$ is an algebraic hyperbolic space and if $G$ is nonelementary, then the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is convex-cobounded.
+\item[(B)] There exists $\sigma > 0$ such that $\CC_\Lambda\subset G(B(\zero,\sigma))$.
+\end{itemize}
+In particular, when $X$ is finite-dimensional, we see that the notion of convex-coboundedness coincides with the standard notion of convex-cocompactness.
+\end{observation}
+
+\subsection{Characterizations of convex-coboundedness}
+The property of convex-coboundedness can be characterized in terms of the limit set. Precisely:
+
+\begin{theorem}\label{theoremCCBcompact}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is convex-cobounded.
+\item[(B)] $G$ is of compact type and any of the following hold:
+\begin{itemize}
+\item[(B1)] $\Lambda(G) = \Lursigma(G)$ for some $\sigma > 0$.
+\item[(B2)] $\Lambda(G) = \Lur(G)$.
+\item[(B3)] $\Lambda(G) = \Lr(G)$.
+\item[(B4)] $\Lambda(G) = \Lh(G)$.
+\end{itemize}
+\end{itemize}
+\end{theorem}
+\begin{remark}
+\label{remarkanyBn}
+(B1)-(B4) should be regarded as equivalent conditions which also assume that $G$ is of compact type, so that there are a total of $5$ equivalent conditions in this theorem.
+\end{remark}
+The implications (B1) \implies (B2) \implies (B3) \implies (B4) follow immediately from the definitions. We therefore proceed to prove (A) \implies (B1) and (B4) \implies (A).
+
+\begin{proof}[Proof of \text{(A) \implies (B1)}]
+The proof consists of two parts: showing that $\Lambda(G) = \Lursigma(G)$ for some $\sigma > 0$, and showing that $\Lambda(G)$ is compact.
+
+\begin{subproof}[Proof that $\Lambda(G) = \Lursigma(G)$ for some $\sigma > 0$]
+Fix $\xi\in\Lambda(G)$, so that 
+\[
+\geo\zero\xi \subset \CC_\zero \subset G(B(\zero,\sigma)).
+\] 
+For each $n\in\N$, let $x_n = \geo\zero\xi_n$, so that $x_n\to\xi$ and $\dist(x_n,x_{n + 1}) = 1$. Then for each $n$, there exists $g_n\in G$ satisfying $\dist(g_n(\zero),x_n) \leq \sigma$. Then
+\[
+\lb \zero|\xi\rb_{g_n(\zero)} \leq \lb \zero|\xi\rb_{x_n} + \sigma = \sigma;
+\]
+moreover,
+\[
+\dist(g_n(\zero),g_{n + 1}(\zero)) \leq \dist(x_n,x_{n + 1}) + 2\sigma = 2\sigma + 1.
+\]
+Thus the convergence $g_n(\zero)\to \xi$ is $(2\sigma + 1)$-uniformly radial, so $\xi\in\Lambda_{\text{ur},2\sigma + 1}(G)$.
+\end{subproof}
+\begin{subproof}[Proof that $G$ is of compact type]
+By contradiction, suppose that $G$ is not of compact type. Then $\Lambda$ is a complete metric space which is not compact, which implies that there exist $\epsilon > 0$ and an infinite $\epsilon$-separated set $I\subset\Lambda$. Fix $\rho > 0$ large to be determined. For each $\xi\in I$, let $x_\xi = \geo\zero\xi_\rho$. Then $x_\xi\in\CC_\zero \subset G(B(\zero,\sigma))$, so there exists $g_\xi\in G$ such that $\dist(g_\xi(\zero),x_\xi)\leq \sigma$.
+\begin{claim}
+\label{claiminjectiveCCB}
+For $\rho$ sufficiently large, the function $\xi \mapsto g_\xi (\zero)$ is injective.
+\end{claim}
+\begin{subproof}
+Fix $\xi_1,\xi_2\in I$ distinct, and suppose $g_{\xi_1}(\zero) = g_{\xi_2}(\zero)$. Then (cf. Figure \ref{figureDSC05177A}) we have that 
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=1.2]
+\clip(-1.237,-0.3) rectangle(4.17,3.31);
+\draw (0.0,-0.0)-- (2.0,3.0);
+\draw (0.0,-0.0)-- (3.14,1.94);
+\draw [shift={(2.5257374476052528,1.3202338754377372)}]
+plot[domain=2.6968619804241416:3.3014726936094725,variable=\t]({1.0*1.3833805462278395*cos(\t r)+-0.0*1.3833805462278395*sin(\t r)},{0.0*1.3833805462278395*cos(\t r)+1.0*1.3833805462278395*sin(\t r)});
+\draw [shift={(1.3158446112993265,2.7637714989592004)}]
+plot[domain=4.618992018202531:5.148642321848299,variable=\t]({1.0*1.67105450049362*cos(\t r)+-0.0*1.67105450049362*sin(\t r)},{0.0*1.67105450049362*cos(\t r)+1.0*1.67105450049362*sin(\t r)});
+\draw [shift={(2.0259885237973716,2.003438282067574)}]
+plot[domain=3.258607010908317:4.707025332181733,variable=\t]({1.0*0.7542231048683804*cos(\t r)+-0.0*0.7542231048683804*sin(\t r)},{0.0*0.7542231048683804*cos(\t r)+1.0*0.7542231048683804*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.11563980272751029,-0.1993420851850086) node {$\zero$};
+\draw [fill=black] (2.0,3.0) circle (.75pt);
+\draw[color=black] (2.2403553977854944,3.1888033936479783) node {$\xi_1$};
+\draw [fill=black] (3.14,1.94) circle (.75pt);
+\draw[color=black] (3.373476898984607,2.1342150657993) node {$\xi_2$};
+\draw [fill=black] (1.276923076923077,1.9153846153846157) circle (.75pt);
+\draw[color=black] (1.0633290204081213,2.010805793391476) node {$x_1$};
+\draw [fill=black] (2.021943155793059,1.249226026190616) circle (.75pt);
+\draw[color=black] (2.2515744225498424,1.1581599113010557) node {$x_2$};
+\draw [fill=black] (1.16,1.1) circle (.75pt);
+\draw[color=black] (1.000262673707254,0.8889033169567123) node
+{$g_\xi(\zero)$};
+\draw[color=black] (1.511842209096808,1.2010935646001886) node {$\sigma$};
+\draw[color=black] (1.2516143918733356,1.3601023570593131) node {$\sigma$};
+\draw[color=black] (1.7028134319759368,1.6283877285245278) node {$2\sigma$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Proving that convex-cobounded groups are of compact type]{If $g_{\xi_1}(\zero) = g_{\xi_2}(\zero)$, then $\xi_1$ and $\xi_2$ must be close to each other.}
+\label{figureDSC05177A}
+\end{center}
+\end{figure}
+\[
+\lb \xi_1 | \xi_2 \rb_\zero \geq \lb x_1 | x_2 \rb_\zero
+= \frac12 [2\rho - \dist(x_1,x_2)]
+\geq \rho - \sigma.
+\]
+On the other hand, since $I$ is $\epsilon$-separated we have $\lb \xi_1|\xi_2\rb_\zero \leq -\log(\epsilon)$. This is a contradiction if $\rho > \sigma - \log(\epsilon)$.
+\end{subproof}
+\noindent The strong discreteness of $G$ therefore implies
+\[
+\#(I) \leq \# \{ g\in G : \dogo g \leq \rho + \sigma \} < \infty,
+\]
+which is a contradiction since $\#(I) = \infty$ by assumption.
+\end{subproof}
+\noindent This completes the proof of (A) \implies (B1).
+\end{proof}
+\begin{proof}[Proof of \text{(B4) \implies (A)}]
+We use the notation \eqref{primenotation}.
+\begin{lemma}
+\label{lemmahorosphericaldirichlet}
+$\Lh\cap\DD_\zero' = \emptyset$.
+\end{lemma}
+(Lemma \ref{lemmahorosphericaldirichlet} is true even without assuming (B4); this fact will be used in the proof of Theorem \ref{theoremGFcompact} below.)
+\begin{subproof}
+By contradiction fix $\xi\in\Lh\cap\DD_\zero'$. Since $\xi\in(\DD_\zero)'$, \eqref{dirichletdomain} gives $\busemann_\xi(\zero,g(\zero)) \leq 0$ for all $g\in G$ (cf. Lemma \ref{lemmanearcontinuity}). But then $\xi \notin \Lh$, since by definition $\xi\in \Lh$ if and only if there exists a sequence $(g_n)_1^\infty$ satisfying $\busemann_\xi(\zero,g_n(\zero)) \to \ +\infty$.
+\end{subproof}
+
+Now by (B4) and Observation \ref{observationboundaryofconvexcore}, we have $(\CC_\zero\cap \DD_\zero)' \subset \Lambda\cap\DD_\zero' = \Lh\cap \DD_\zero'$, and so $(\CC_\zero\cap\DD_\zero)' = \emptyset$. By (C) of Proposition \ref{propositioncompacttype}, we get that $\CC_\zero\cap\DD_\zero$ is bounded, and Corollary \ref{corollarydirichletdomain} finishes the proof.
+\end{proof}
+\noindent The proof of Theorem \ref{theoremCCBcompact} is now complete.
+
+\begin{remark}
+(B4) \implies (A) may also be deduced as a consequence of Theorem \ref{theoremGFcompact}(B3)$\Rightarrow$(A) below; cf. Remark \ref{remarkGFCCBcompact}. However, the above prove is much shorter. Alternatively, the above proof may be viewed as the ``skeleton'' of the proof of Theorem \ref{theoremGFcompact}(B3)$\Rightarrow$(A), which is made more complicated by the presence of parabolic points.
+\end{remark}
+
+\subsection{Consequences of convex-coboundedness}
+The notion of convex-coboundedness also has several important consequences. In the following theorem, $G$ is endowed with an arbitrary Cayley metric (cf. Example \ref{examplecayleygraph}).
+
+\begin{theorem}[Cf. {\cite[Proposition I.8.19]{BridsonHaefliger}}]
+\label{theoremCCB}
+Suppose that $G$ is convex-cobounded. Then:
+\begin{itemize}
+\item[(i)] $G$ is finitely generated.
+\item[(ii)] The orbit map $g\mapsto g(\zero)$ is a quasi-isometric embedding (cf. Definition \ref{definitionquasiisometry}).
+\item[(iii)] %$G$ is of divergence type. In particular,
+$\delta_G < \infty$.
+\end{itemize}
+\end{theorem}
+We shall prove Theorem \ref{theoremCCB} as a corollary of a similar statement about geometrically finite groups; cf. Theorem \ref{theoremGF} and Observation \ref{observationGFCCB} below. For now, we list some corollaries of Theorem \ref{theoremCCB}.
+
+\begin{corollary}
+Suppose that $G$ is convex-cobounded. Then $G$ is word-hyperbolic, i.e. $G$ is a hyperbolic metric space with respect to any Cayley metric.
+\end{corollary}
+\begin{proof}
+This follows from Theorem \ref{theoremCCB}(ii) and Theorem \ref{theoremquasiisometric}.
+\end{proof}
+
+
+\begin{corollary}
+Suppose that $G$ is convex-cobounded. Then 
+\[
+\HD(\LambdaG) = \delta < \infty.
+\]
+\end{corollary}
+\begin{proof}
+This follows from Theorem \ref{theoremCCB}(iii), Theorem \ref{theorembishopjonesregular}, and Theorem \ref{theoremCCBcompact}.
+\end{proof}
+
+
+
+%\ignore{
+%
+%\begin{definition}[\cite{CCMT}]
+%A subset $Y \subset X$ is \emph{quasi-convex} if there exists $c \geq 0$ such that for all $x,y\in Y$ there exist a sequence $x = x_0, \ldots, x_n = y$ in $Y$ with $\dist(x_i,x_{i+1}) \leq c$ for all $i$ and $n \leq c(\dist(x,y)+1)$. An group $G$ is \emph{quasi-convex} if some (and hence every) orbit is quasi-convex.
+%\end{definition}
+%
+%
+%\begin{proposition}
+%A subgroup $G\leq\Isom(X)$ is convex-cobounded if and only if it is quasi-convex.
+%\end{proposition}
+%
+%[Add in proof.\internal]
+%
+%}% end ignore
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Bounded parabolic points}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The difference between groups that are geometrically finite and those that are convex-cobounded is the potential presence of \emph{bounded parabolic points} in the former. 
+%The difference between geometrically finite groups and convex-cobounded groups is the presence of \emph{bounded parabolic points} in the former.
+In the Standard Case, a parabolic fixed point $\xi$ in the limit set of a geometrically finite group $G$, is said to be \emph{bounded} if $(\Lambda\butnot\{\xi\})/\Stab(G;\xi)$ is compact \cite[p.272]{Bowditch_geometrical_finiteness}. We will have to modify this definition a bit to make it work for arbitrary hyperbolic metric spaces, but we show that in the usual case, our definition coincides with the standard one (Remark \ref{remarkLbpvsstandarddef}).
+
+Fix $\xi\in\del X$. Recall that $\EE_\xi$ denotes the set $\bord X\butnot\{\xi\}$.
+
+\begin{definition}
+\label{definitionxibounded}
+A set $S\subset\EE_\xi$ is \emph{$\xi$-bounded} if $\xi\notin\cl S$.
+\end{definition}
+The motivation for this definition is that if $X = \H^d$ and $\xi = \infty$, then $\xi$-bounded sets are exactly those which are bounded in the Euclidean metric. Actually, this can be generalized as follows:
+
+\begin{observation}
+\label{observationxibounded}
+Fix $S\subset\EE_\xi$. The following are equivalent:
+\begin{itemize}
+\item[(A)] $S$ is $\xi$-bounded.
+\item[(B)] $\lb x|\xi\rb_\zero\asymp_\plus 0$ for all $x\in X$.
+\item[(C)] $\Dist_\xi(\zero,x)\lesssim_\times 1$ for all $x\in X$.
+\item[(D)] $S$ has bounded diameter in the $\Dist_\xi$ metametric.
+\end{itemize}
+\end{observation}
+Condition (D) motivates the terminology ``$\xi$-bounded''.
+
+\begin{proof}[Proof of Observation \ref{observationxibounded}]
+(A) \iff (B) follows from the definition of the topology on $\bord X$, (B) \iff (C) follows from \eqref{euclideancomparison}, and (C) \iff (D) is obvious.
+\end{proof}
+
+Now fix $G\leq\Isom(X)$, and let $G_\xi$ denote the stabilizer of $\xi$ relative to $G$. Recall (Definition \ref{definitionparabolic}) that $\xi$ is said to be a \emph{parabolic fixed point} of $G$ if $G_\xi$ is a parabolic group, i.e. if $G_\xi(\zero)$ is unbounded and
+\[
+g\in G_\xi \Rightarrow g'(\xi) = 1.
+\]
+(Here $g'(\xi)$ is the dynamical derivative of $g$ at $\xi$; cf. Proposition \ref{propositiondynamicalderivative}.)
+
+\begin{observation}
+If $\xi$ is a parabolic point then $\xi\in\LambdaG$.
+\end{observation}
+\begin{proof}
+This follows directly from Observation \ref{observationparabolic}.
+\end{proof}
+
+\begin{definition}
+\label{definitionboundedparabolic}
+A parabolic point $\xi\in\LambdaG$ is a \emph{bounded} parabolic point if there exists a $\xi$-bounded set $S\subset\EE_\xi$ such that
+\begin{equation}
+\label{boundedparabolic}
+G(\zero) \subset G_\xi(S).
+\end{equation}
+We denote the set of bounded parabolic points by $\Lbp$.
+\end{definition}
+
+\begin{lemma}
+Let $G\leq\Isom(X)$, and fix $\xi\in\del X$. The following are equivalent:
+\begin{itemize}
+\item[(A)] $\xi$ is a bounded parabolic point.
+\item[(B)] All three of the following hold:
+\begin{itemize}
+\item[(BI)] $\xi\in\LambdaG$, 
+\item[(BII)] $g'(\xi) = 1 \all g\in G_\xi$, and
+\item[(BIII)] there exists a $\xi$-bounded set $S\subset \EE_\xi$ satisfying \eqref{boundedparabolic}.
+\end{itemize}
+\end{itemize}
+\end{lemma}
+\begin{proof}
+The only thing to show is that if (B) holds, then $G_\xi(\zero)$ is unbounded. By contradiction suppose otherwise. Let $S$ be a $\xi$-bounded set satisfying \eqref{boundedparabolic}. Then for all $x\in G(\zero)$, we have $x\in h(S)$ for some $h\in G_\xi$, and so
+\begin{align*}
+\lb x|\xi\rb_\zero = \lb h^{-1}(x)|\xi\rb_{h^{-1}(\zero)} &\asymp_\plus \lb h^{-1}(x)|\xi\rb_\zero \since{$G_\xi(\zero)$ is bounded}\\
+&\asymp_\plus 0. \since{$h^{-1}(x)\in S$}
+\end{align*}
+By Observation \ref{observationxibounded}, the set $G(\zero)$ is $\xi$-bounded and so $\xi\notin\LambdaG$, contradicting (BI).
+\end{proof}
+
+%\ignore{
+%\comtushar{Pick a definition!}
+%\begin{definition}\label{bp2}
+%Let $G$ be a strongly discrete group and fix $\xi\in\Lambda(G)$.
+%Then $\xi$ is a \emph{bounded parabolic point} if: 
+%\begin{itemize}
+%\item[(I)] There exists a $C>0$ such that for every $g\in G$ there exists $h\in G_\xi =: H$ with
+%\[
+%\lb hg(\zero) | \xi \rb_\zero \leq C \ ,
+%\]
+%or equivalently that
+%\[
+%\Dist_\xi(g(\zero), H(\zero)) \asymp_\plus 0 \ .
+%\]
+%\item[(II)] $\xi$ is neutral with respect to $H$, i.e.
+%\[
+%h'(\xi) = 1
+%\]
+%for every $h\in H$.
+%\end{itemize}
+%We denote the set of bounded parabolic points by $\Lbp$.
+%\end{definition}
+%}% end ignore
+
+We now prove a lemma that summarizes a few geometric properties about bounded parabolic points.
+
+\begin{lemma}
+\label{lemmaboundedparabolic}
+Let $\xi$ be a parabolic limit point of $G$. The following are equivalent:
+\begin{itemize}
+\item[(A)] $\xi$ is a bounded parabolic point, i.e. there exists a $\xi$-bounded set $S\subset\EE_\xi$ such that
+\begin{equation}
+\label{LbpA}
+G(\zero)\subset G_\xi(S).
+\end{equation}
+\item[(B)] There exists a $\xi$-bounded set $S\subset\EE_\xi\cap\del X$ such that
+\begin{equation}
+\label{LbpB}
+\LambdaG\setminus\{\xi\}\subset G_\xi(S).
+\end{equation}
+\end{itemize}
+Moreover, if $H$ is a horoball centered at $\xi$ satisfying $G(\zero)\cap H = \emptyset$, then \text{(A)-(B)} are moreover equivalent to the following:
+\begin{itemize}
+\item[(C)] There exists a $\xi$-bounded set $S\subset\EE_\xi$ such that
+\begin{equation}
+\label{LbpC}
+\CC_\zero \setminus H \subset G_\xi(S).
+\end{equation}
+\item[(D)] There exists $\rho > 0$ such that
+\begin{equation}
+\label{LbpD}
+\CC_\zero\cap\del H \subset G_\xi(B(\zero,\rho)).
+\end{equation}
+\end{itemize}
+\end{lemma}
+
+\begin{remark}
+\label{remarkLbpvsstandarddef}
+The equivalence of conditions (A) and (B) implies that in the Standard Case, our definition of a bounded parabolic point coincides with the usual one.
+\end{remark}
+
+
+
+\begin{proof}[Proof of \text{(A)} \implies \text{(B)}]
+This is immediate since $\LambdaG\butnot\{\xi\} \subset G(\zero)^{(1)_\euc}$. Here $\thicken_{1,\euc}(S)$ denotes the $1$-thickening of $S$ with respect to the Euclidean metametric $\Dist_\xi$.
+\end{proof}
+\begin{proof}[Proof of \text{(B)} \implies \text{(A)}]
+If $\#(\Lambda) = 1$, then $G = G_\xi$ and there is nothing to prove. Otherwise, let $\eta_1,\eta_2\in\Lambda$ be distinct points.
+
+Let $S$ be as in \eqref{LbpB}. Fix $x = g_x(\zero)\in G$. Since $\lb g_x(\eta_1)|g_x(\eta_2)\rb_{g_x(\zero)} \asymp_\plus 0$, Gromov's inequality implies that there exists $i = 1,2$ such that $\lb g_x(\eta_i)|\xi\rb_x \asymp_\plus 0$. By \eqref{LbpB}, there exists $h_x\in G_\xi$ such that $h_x^{-1}g_x(\eta_i)\in S$. We have
+\[
+\lb h_x^{-1}g_x(\eta_i)|\xi\rb_\zero \asymp_\plus \lb h_x^{-1}g_x(\eta_i)|\xi\rb_{h_x^{-1}(x)} \asymp_\plus 0.
+\]
+By Proposition \ref{propositionrips}(i), this means that $\zero$ and $y_x := h_x^{-1}(x)$ are both within a bounded distance of the geodesic line $\geo{h_x^{-1}g_x(\eta_i)}\xi$. Since one of these two points must lie closer to $\xi$ then the other, we have either
+\begin{equation}
+\label{twocases}
+\lb y_x|\xi\rb_\zero \asymp_\plus 0 \text{ or } \lb \zero|\xi\rb_{y_x} \asymp_\plus 0.
+\end{equation}
+By contradiction, let us suppose that there exists a sequence $x_n\in G(\zero)$ such that $\Dist_\xi(\zero,y_{x_n}) \to \infty$. (If no such sequence exists, then for some $N\in\N$ the set $S = \{y\in X : \Dist_\xi(\zero,y) \leq N\}$ is a $\xi$-bounded set satisfying \eqref{LbpA}.) For $n$ sufficiently large, the first case of \eqref{twocases} cannot hold, so the second case holds. It follows that $y_n := y_{x_n} \to \xi$ radially. So $\xi$ is a radial limit point of $G$. In the remainder of the proof, we show that this yields a contradiction.
+
+By Proposition \ref{propositionrips}(i), for each $n\in\N$ there exists a point $z_n\in \geo\zero\xi$ satisfying
+\begin{equation}
+\label{dxyx}
+\dist(y_n,z_n) \asymp_\plus 0.
+\end{equation}
+Now let $\rho$ be the implied constant of \eqref{dxyx}, and let $\delta$ be the implied constant of Proposition \ref{propositionrips}(ii). Since $G$ is strongly discrete, $M := \#\{g\in G : \dogo g \leq 2\rho + 2\delta\} < \infty$. Let $F\subset G_\xi$ be a finite set with cardinality strictly greater than $M$. By Proposition \ref{propositionrips}(ii), there exists $t > 0$ such that for all $y\in\geo\zero\xi$ with $y > t$, then $\dist(y,\geo{h(\zero)}\xi) \leq \delta$ for all $h\in F$.
+
+Suppose $z_n > t$. Then for all $h\in F$, we have $\dist(z_n,\geo{h(\zero)}\xi) \leq \delta$. On the other hand, $h(z_n)\in \geo{h(\zero)}\xi$ and $\busemann_\xi(z_n,h(z_n)) = 0$; this implies that $\dist(z_n,h(z_n)) \leq 2\delta$ and thus $\dist(y_n,h(y_n)) \leq 2\rho + 2\delta$. But $y_n = g_n(\zero)$ for some $g_n\in G$, so we have $\dogo{g_n^{-1}hg_n} \leq 2\rho + 2\delta$. But since $\#(F) > M$, this contradicts the definition of $M$.
+
+It follows that $z_n \leq t$. But then $\dox{y_n} \leq \dox{z_n} + \rho \leq t + \rho$, implying that the sequence $(y_n)_1^\infty$ is bounded, a contradiction.
+\end{proof}
+
+
+
+
+
+%\ignore{
+%\begin{subproof}[\text{(B1)} \implies \text{(B2)}]
+%Fix $\eta\in\DD_\zero' \cap \LambdaG\butnot\{\xi\}$. By (B1), there exists $h\in G_\xi$ such that $\Dist_\euc(h(\zero),\eta)\lesssim_\times 1$. Now by (\ELL) of Proposition \ref{propositionbasicidentities},
+%\[
+%\Dist_\euc(\zero,\eta) = \frac{e^{-\busemann_\xi(\zero,h(\zero))}}{e^{-\busemann_\eta(\zero,h(\zero))}} \Dist_\euc(h(\zero),\eta).
+%\]
+%On the other hand, $\busemann_\xi(\zero,h(\zero)) = 0$ since $h'(\xi) = 1$, and $\busemann_\eta(\zero,h(\zero)) \leq 0$ since $\eta\in\DD_\zero'$. Thus
+%\[
+%\Dist_\euc(\zero,\eta) \leq \Dist_\euc(h(\zero),\eta) \lesssim_\times 1.
+%\]
+%\end{subproof}
+%}% end ignore
+
+%\ignore{
+%
+%\begin{subproof}[\text{(B1)} \implies \text{(A)}]
+%By contradiction suppose that $\xi$ is not bounded. Then for each $n\in\N$ there exists $x_n = g_n(\zero)\in G(\zero)$ with $\Dist_\euc(x,G(\zero)) \geq n$. Since $G$ is nonelementary, we may fix $\eta_1,\eta_2\in\LambdaG$ distinct. Then
+%\[
+%\lb g_n(\eta_1)|g_n(\eta_2)\rb_{x_n} \asymp_\plus 0,
+%\]
+%and so by Gromov's inequality, there exists $i = 1,2$ such that
+%\[
+%\lb g_n(\eta_i)|\xi\rb_{x_n} \asymp_\plus 0.
+%\]
+%By (B1), there exists $h = h_n\in G_\xi$ such that $\Dist_\euc(\zero,h_n g_n(\eta_i)) \lesssim_\times 1$. Let $j_n = h_n g_n$, so that
+%\[
+%\Dist_\euc(\zero,j_n(\eta_i)) \lesssim_\times 1 \text{ and } \lb j_n(\eta_i)|\xi\rb_{j_n(\zero)} \asymp_\plus 0.
+%\]
+%Now these inequalities imply
+%\[
+%n \leq \Dist_\euc(\zero,j_n(\zero)) \lesssim_\times e^{\busemann_\xi(\zero,j_n(\zero))},
+%\]
+%so $\busemann_\xi(\zero,j_n(\zero)) \to \infty$. On the other hand, 
+%
+%
+%For any set $S\subset\EE_\xi$ and for any $r > 0$, let $\thicken_{r,\euc}(S)$ denote the $r$-thickening of $S$ with respect to the Euclidean metametric $\Dist_\euc = \Dist_\xi$. To demonstrate the lemma, it is enough to show that there exists $r > 0$ so that
+%\begin{align} \label{NTS1}
+%\LambdaG\butnot\{\xi\} &\subset \thicken_{r,\euc}G(\zero)\\ \label{NTS2}
+%G(\zero) &\subset \thicken_{r,\euc}(\LambdaG\butnot\{\xi\}).
+%\end{align}
+%Indeed, \eqref{NTS1} is immediate since $\LambdaG\subset \cl{G(\zero)}$. By contradiction suppose that \eqref{NTS2} is false, and for each $n\in\N$ choose $x_n = g_n(\zero)\in G(\zero)$ with $\Dist_\euc(x,\LambdaG\butnot\{\xi\}) \geq n$. Since $G$ is nonelementary, we may fix $\eta_1,\eta_2\in\LambdaG$ distinct. Then
+%\[
+%\lb g_n(\eta_1)|g_n(\eta_2)\rb_{x_n} \asymp_\plus 0,
+%\]
+%and so by Gromov's inequality, there exists $i = 1,2$ such that
+%\[
+%\lb g_n(\eta_i)|\xi\rb_{x_n} \asymp_\plus 0.
+%\]
+%Fix $h = h_n\in G_\xi$ such that $\Dist_\euc(\zero,h_n g_n(\eta_i)) \lesssim_\times 1$. Let $j_n = h_n g_n$, so that
+%\[
+%\lb 
+%\]
+%
+%
+%we have
+%\begin{align*}
+%\Dist_\euc(x,g(\eta_i)) &\lesssim_\times \Dist_{\xi,x}(x,g(\eta_i)) \by{\eqref{GMVT3}} \\
+%&\asymp_\times e^{\lb g(\eta_i)|\xi\rb_x} \by{\eqref{euclideancomparison}}\\
+%&\asymp_\times 1.
+%\end{align*}
+%ERROR: the first asymptotic is false
+%\end{subproof}
+%
+%\begin{subproof}
+%[\text{(B1)}]
+%Recall from Definition \ref{bp2} that for $\xi\in \Lbp$ there exists $C>0$ such that for every $g\in G$ there exists $h\in G_\xi$ with
+%\[
+%\Dist_\xi(\zero,hg(\zero)) \leq C .
+%\]
+%Suppose $\eta\in \Lambda \setminus \{ \xi \}$ with $g_n (\zero) \to \eta$. Therefore there exist $h_n\in G_\xi$ with
+%\[
+%\Dist_\xi(\zero,h_n g_n(\zero)) \leq C .
+%\]
+%Therefore
+%\begin{align*}
+%\Dist_\xi(\zero,h_n(\eta)) &\leq\hspace{.055 in} C + \Dist_\xi(h_n g_n(\zero),h_n(\eta)) \\
+%&=\hspace{.055 in} C + \Dist_\xi(g_n(\zero),\eta) \since{$h'(\xi) = 1$} \\
+%&\tendsto n C .
+%\end{align*}
+%\end{subproof}
+%}% end ignore
+
+%example from http://en.wikibooks.org/wiki/LaTeX/Advanced_Mathematics
+%\[
+% z = \overbrace{
+% \underbrace{x}_\text{real} +
+% \underbrace{iy}_\text{imaginary}
+% }^\text{complex number}
+%\]
+
+For the remainder of the proof, we fix a horoball $H = H_{\xi,t} \subset X$ disjoint from $G(\zero)$.
+
+\begin{proof}[Proof of \text{(A)} \implies \text{(C)}]
+Let $S$ be as in \eqref{LbpA}. Fix $x\in\CC_\zero \setminus H$. Then there exist $g_1,g_2\in G$ with $x\in\geo{g_1(\zero)}{g_2(\zero)}$. We have $\lb g_1(\zero) | g_2(\zero) \rb_x = 0$, so by Gromov's inequality there exists $i = 1,2$ such that $\lb g_i(\zero) | \xi \rb_x \asymp_\plus 0$. By \eqref{euclideancomparison}, we have $\Dist_{\xi,x}(x,g_i(\zero)) \asymp_\times 1$, and combining with \eqref{derivative3} gives
+\[
+\Dist_\xi(x,g_i(\zero)) \asymp_\times e^{\busemann_\xi(\zero,x)} \leq e^t \asymp_{\times,H} 1.
+\]
+Now by \eqref{LbpA}, there exists $h\in G_\xi$ such that $h^{-1}(g_i(\zero))\in S$. Then by Observation \ref{observationuniformlyLipschitz},
+\[
+\Dist_\xi(\zero,h^{-1}(x)) \leq \Dist_\xi(\zero,h^{-1}(g_i(\zero))) + \Dist_\xi(x,g_i(\zero)) \lesssim_\times 1.
+\]
+Thus $h^{-1}(x)$ lies in some $\xi$-bounded set which is independent of $x$.
+\end{proof}
+\begin{proof}[Proof of \text{(C)} \implies \text{(D)}]
+Let $S$ be a $\xi$-bounded set satisfying \eqref{LbpC}. Then for all $x\in S\cap\del H$, by (h) of Proposition \ref{propositionbasicidentities} we have
+\[
+\dox x = 2\underbrace{\lb x|\xi\rb_\zero}_{\asymp_\plus 0 \text{ since }x\in S} - \underbrace{\busemann_\xi(\zero,x)}_{ = t \text{ since }x\in\del H} \asymp_{\plus,H} 0.
+\]
+Thus $S\cap\del H\subset B(\zero,\rho)$ for sufficiently large $\rho$. Applying $G_\xi$ demonstrates \eqref{LbpD}.
+\end{proof}
+\begin{proof}[Proof of \text{(D)} \implies \text{(A)}]
+Let $\rho$ be as in \eqref{LbpD}, and fix $g\in G$. Since by assumption $G(\zero)\cap H = \emptyset$, we have $\busemann_\xi(\zero,g(\zero)) \leq t$. Let $x = \geo{g(\zero)}{\xi}_{t - \busemann_\xi(\zero,g(\zero))}$, so that $x\in \geo{g(\zero)}{\xi}\cap \del H$ (cf. Figure \ref{figureDSC05151}). By \eqref{LbpD}, there exists $h\in G_\xi$ such that $x\in B(h(\zero),\rho)$. Then
+\begin{align*}
+\lb h^{-1}g(\zero) | \xi \rb_\zero
+= \lb g(\zero)|\xi\rb_{h(\zero)}
+&\leq \lb g(\zero) | \xi \rb_x + \dist(h(\zero),x)\\
+&= \dist(h(\zero),x) \since{$x\in\geo{g(\zero)}\xi$}\\
+&\leq \rho.
+\end{align*}
+This demonstrates that $g(\zero)\in h(S)$ for some $\xi$-bounded set $S$.
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.74,-0.18) rectangle (6.03,5.39);
+\draw (-5.0,0.0)-- (5.0,0.0);
+\draw (-5.0,2.0)-- (5.0,2.0);
+\draw (-3.58,2.0)-- (-0.81,2.0);
+\draw (-0.81,2.0)-- (-0.81,5.0);
+\draw (-3.58,2.0)-- (-3.58,5.0);
+\draw [shift={(-1.7378227225855478,0.1269240644762515)}] plot[domain=0.5892046179331553:1.1108779656108625,variable=\t]({1.0*2.0902795183382112*cos(\t r)+-0.0*2.0902795183382112*sin(\t r)},{0.0*2.0902795183382112*cos(\t r)+1.0*2.0902795183382112*sin(\t r)});
+\draw (-3.58,2.0)-- (-3.58,0.65);
+\draw (-0.81,2.0)-- (-0.81,0.65);
+\begin{scriptsize}
+\draw[color=black] (2.069012341908649,2.5) node {$H$};
+\draw [fill=black] (0.0,5.0) circle (.75pt);
+\draw[color=black] (0.19765287332143666,5.1) node {$\xi$};
+\draw [fill=black] (0.0,1.2884922500123306) circle (.75pt);
+\draw[color=black] (0.13525283424696695,1.426597976040203) node {$\zero$};
+\draw [fill=black] (-3.58,2.0) circle (.75pt);
+\draw[color=black] (-3.3799461107423507,2.177237725963598) node {$x$};
+\draw [fill=black] (-0.81,2.0) circle (.75pt);
+\draw[color=black] (-1.327946892231745,2.177237725963598) node {$h^{-1}(x)$};
+\draw [fill=black] (-3.58,0.65) circle (.75pt);
+\draw[color=black] (-3.1799461107423507,0.6) node {$g(\zero)$};
+\draw [fill=black] (-0.81,0.65) circle (.75pt);
+\draw[color=black] (-0.157946892231745,0.6) node {$h^{-1}g(\zero)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The geometry of bounded parabolic points]{By moving $x$ close to $\zero$ with respect to the $\dist$ metric, $h^{-1}$ also moves $g(\zero)$ close to $\zero$ with respect to the $\Dist_\xi$ metametric.}
+\label{figureDSC05151}
+\end{center}
+\end{figure}
+\end{proof}
+\begin{remark}
+\label{remarkLbpLr}
+The proof of (B) \implies (A) given above shows a little more than asked for, namely that a parabolic point of a strongly discrete group cannot also be a radial limit point.
+\end{remark}
+
+It will also be useful to rephrase the above equivalent conditions in terms of a Dirichlet domain of $G_\xi$. Indeed, letting $\DD_\zero(G_\xi)$ denote such a Dirichlet domain, we have the following analogue of Corollary \ref{corollarydirichletdomain}:
+\begin{lemma}
+Let $\xi$ be a parabolic point of $G$, and let $S\subset\EE_\xi$ be a $G_\xi$-invariant set. The following are equivalent:
+\begin{itemize}
+\item[(A)] There exists a $\xi$-bounded set $S_0\subset\EE_\xi$ such that $S\subset G_\xi(S_0)$.
+\item[(B)] The set $S\cap\cl{\DD_\zero(G_\xi)}$ is $\xi$-bounded.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+We first observe that for all $x\in \EE_\xi$ and $h\in G_\xi$, (g) of Proposition \ref{propositionbasicidentities} gives
+\[
+\lb x|\xi\rb_\zero - \lb x|\xi\rb_{h(\zero)} = \frac12 \left[ \busemann_x(\zero,h(\zero)) + \busemann_\xi(\zero,h(\zero)) \right] = \frac12 \busemann_x(\zero,h(\zero)).
+\]
+In particular
+\begin{align*}
+x\in \cl{\DD_\zero(G_\xi)}
+&\Leftrightarrow \lb x|\xi\rb_\zero \leq \lb x|\xi\rb_{h(\zero)} \all h\in G_\xi\\
+&\Leftrightarrow \Dist_\xi(x,\xi) \leq \Dist_\xi(h(x),\xi) \all h\in G_\xi,
+\end{align*}
+i.e. $\cl{\DD_\zero(G_\xi)}$ is the Dirichlet domain of $\zero$ for the action of $G_\xi$ on the metametric space $(\EE_\xi,\DD_\xi)$. Note that this action is isometric (Observation \ref{observationuniformlyLipschitz}) and strongly discrete (Proposition \ref{propositionSDonclX}). Modifying the proof of Corollary \ref{corollarydirichletdomain} now yields the conclusion.
+
+%\ignore{
+%\begin{subproof}
+%[\text{(B1)} \implies \text{(B2)}]
+%Fix $\eta\in\DD_\zero' \cap \LambdaG \setminus \{ \xi \}$. By (B1), there exists $h\in G_\xi$ such that $\lb \eta | \xi \rb_{h^{-1}(\zero)} = \lb h(\eta) | \xi \rb_\zero \lesssim_\plus 0$. By the change of viewpoint formula,
+%\begin{align*}
+%\lb \eta | \xi \rb_\zero &= \underbrace{\lb \eta | \xi \rb_{h^{-1}(\zero)}}_{\asymp_\plus 0} + \frac12 \left[ \underbrace{\busemann_{\eta}(\zero,h^{-1}(\zero))}_{\leq 0} + \underbrace{\busemann_\xi(\zero,h^{-1}(\zero))}_{= 0} \right] \lesssim_\plus 0.
+%\end{align*}
+%Thus the set $\DD_\zero' \cap \LambdaG \setminus \{ \xi \}$ is $\xi$-bounded.
+%\end{subproof}
+%
+%\begin{subproof}[\text{(C1)} \implies \text{(C2)}]
+%Suppose $\eta\in (\CC_\zero \cap \DD_\zero) \setminus H$. By (C1) there exists $h\in G_\xi$ such that $\lb \eta | \xi \rb_{h^{-1}(\zero)} = \lb h(\eta) | \xi \rb_\zero \leq C$. Now the proof follows in exactly the same way as in that of (B2). 
+%\end{subproof}
+%}% end ignore
+
+\end{proof}
+
+\begin{corollary}
+\label{corollaryboundedparabolic}
+In Lemma \ref{lemmaboundedparabolic}, the equivalent conditions \text{(A)-(D)} are also equivalent to:
+\begin{itemize}
+\item[(A$'$)] $G(\zero)\cap \cl{\DD_\zero(G_\xi)}$ is $\xi$-bounded.
+\item[(B$'$)] $\cl{\DD_\zero(G_\xi)}\cap\Lambda\butnot\{\xi\}$ is $\xi$-bounded.
+\item[(C$'$)] $\CC_\zero\cap\cl{\DD_\zero(G_\xi)}\butnot H$ is $\xi$-bounded.
+\end{itemize}
+\end{corollary}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Geometrically finite groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}\label{definitionGF}
+We say that $G$ is \emph{geometrically finite} if there exists a disjoint $G$-invariant collection of horoballs $\scrH$ satisfying $\zero\notin\bigcup\scrH$ such that
+\begin{itemize}
+\item[(I)] for every $\rho > 0$, the set
+\begin{equation}
+\label{Hrhodef}
+\scrH_\rho := \{ H\in\scrH : \dist(\zero,H) \leq \rho \}
+\end{equation}
+is finite, and
+\item[(II)] there exists $\sigma > 0$ such that
+\begin{equation}
+\label{sigmadef}
+\CC_\zero \subset G(B(\zero,\sigma)) \cup \bigcup\scrH.
+\end{equation}
+\end{itemize}
+\end{definition}
+
+\begin{observation}
+Notice that the following implications hold:
+\[
+\text{$G$ cobounded} \Rightarrow \text{$G$ convex-cobounded} \Rightarrow \text{$G$ geometrically finite} .
+\]
+Indeed, $G$ is convex-cobounded if and only if it satisfies Definition \ref{definitionGF} with $\scrH = \emptyset$.
+\end{observation}
+
+\begin{remark}
+It is not immediately obvious that the definition of geometrical finiteness is independent of the basepoint $\zero$, but this follows from Theorems \ref{theoremGFcompact} and \ref{theoremGF} below.
+\end{remark}
+
+\begin{remark}
+Geometrical finiteness is closely related to the notion of \emph{relative hyperbolicity} of a group; see e.g. \cite{Bowditch_relatively_hyperbolic}. The main differences are:
+\begin{itemize}
+\item[1.] Relative hyperbolicity is a property of an abstract group, whereas geometrical finiteness is a property of an isometric group action (equivalently, of a subgroup of an isometry group)
+\item[2.] The maximal parabolic subgroups of relatively hyperbolic groups are assumed to be finitely generated, whereas we do not make this assumption (cf. Corollary \ref{corollaryGF}(i)).
+\item[3.] The relation between relative hyperbolicity and geometrical finiteness is only available in retrospect, once one proves that both are equivalent to a decomposition of the limit set into radial and bounded parabolic limit points plus auxiliary assumptions (compare Theorem \ref{theoremGFcompact} with \cite[Definition 1]{Bowditch_relatively_hyperbolic}).
+\end{itemize}
+\end{remark}
+
+\subsection{Characterizations of geometrical finiteness}
+We now state and prove an analogue of Theorem \ref{theoremCCBcompact} in the setting of geometrically finite groups. In the Standard Case, the equivalence (A) \iff (B2) of the following theorem was proven by A. F. Beardon and B. Maskit \cite{BeardonMaskit}. Note that while in Theorem \ref{theoremCCBcompact}, one of the equivalent conditions involved the uniformly radial limit set, no such characterization exists for geometrically finite groups. This is because for many geometrically finite groups, the typical point on the limit set is neither parabolic nor uniformly radial. (For example, the set of uniformly radial limit points of the geometrically finite Fuchsian group $\SL_2(\Z)$ is equal to the set of badly approximable numbers; cf. e.g. \cite[Observation 1.15 and Proposition 1.21]{FSU4}.)
+
+\begin{theorem}[Generalization of the Beardon--Maskit Theorem; see also {\cite[Proposition 1.10]{Roblin1}}]
+\label{theoremGFcompact}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is geometrically finite.
+\item[(B)] $G$ is of compact type and any of the following hold (cf. Remark \ref{remarkanyBn}):
+\begin{itemize}
+\item[(B1)] $\Lambda(G) = \Lrsigma(G) \cup \Lbp(G)$ for some $\sigma > 0$.
+\item[(B2)] $\Lambda(G) = \Lr(G) \cup \Lbp(G)$.
+\item[(B3)] $\Lambda(G) = \Lh(G) \cup \Lbp(G)$.
+\end{itemize}
+\end{itemize}
+\end{theorem}
+\begin{remark}
+\label{remarkbowditchcomparision}
+Of the equivalent definitions of geometrical finiteness discussed in \cite{Bowditch_geometrical_finiteness}, it seems the above definitions most closely correspond with (GF1) and (GF2).\Footnote{Cf. Remark \ref{remarkLbpvsstandarddef} above regarding (GF2).} It seems that definitions (GF3) and (GF5) cannot be generalized to our setting. Indeed, (GF5) depend on the notion of volume, which does not exist in infinite dimensional spaces, while (GF3) already fails in the case of variable curvature; cf. \cite{Bowditch_geometrical_finiteness2}. It seems plausible that a version of (GF4) could be made to work at least in the setting of algebraic hyperbolic spaces, but we do not study the issue at this stage.
+\end{remark}
+
+The implications (B1) \implies (B2) \implies (B3) follow immediately from the definitions. We therefore proceed to prove (A) \implies (B1) and then the more difficult (B3) \implies (A).
+
+\begin{proof}[Proof of \text{(A) \implies (B1)}]
+The proof consists of two parts: showing that $\Lambda(G) = \Lrsigma(G) \cup \Lbp(G)$ for some $\sigma > 0$, and showing that $G$ is of compact type.
+
+\begin{subproof}[Proof that $\Lambda(G) = \Lrsigma(G) \cup \Lbp(G)$ for some $\sigma > 0$]
+Let $\scrH$ be the disjoint $G$-invariant collection of horoballs as defined in Definition \ref{definitionGF}, and let $\sigma > 0$ be large enough so that \eqref{sigmadef} holds. Fix $\xi\in\LambdaG$, and we will show that $\xi\in\Lrsigma\cup\Lbp$. For each $t\geq 0$, recall that $\geo\zero\xi_t$ denotes the unique point on $\geo\zero\xi$ so that $\dist(\zero,\geo\zero\xi_t) = t$; since $\geo\zero\xi_t\in\CC_\zero$, by \eqref{sigmadef} either $\geo\zero\xi_t\in G(B(\zero,\sigma))$ or $\geo\zero\xi_t\in\bigcup\scrH$.
+
+Now if there exists a sequence $t_n\to \infty$ satisfying $\geo\zero\xi_{t_n}\in G(B(\zero,\sigma))$, then $\xi\in\Lrsigma$ (Corollary \ref{corollaryshadowsrelation}). Assume not; then there exists $t_0$ such that $\geo\zero\xi_t\in\bigcup\scrH$ for all $t > t_0$. This in turn implies that the collection
+\[
+\big\{\{t > t_0: \geo\zero\xi_t\in H\}: H\in\scrH\big\}
+\]
+is a disjoint open cover of $(t_0,\infty)$. Since $(t_0,\infty)$ is connected, we have $(t_0,\infty) = \{t > t_0: \geo\zero\xi_t\in H\}$ for some $H\in\scrH$, or equivalently
+\[
+\geo\zero\xi_t\in H\all t > t_0.
+\]
+Therefore $\xi = \Center(H)$. Now it suffices to show 
+\begin{lemma}
+\label{lemmacentersLbp}
+For every $H\in\scrH$, if $\Center(H)\in\LambdaG$, then $\Center(H)\in\Lbp$. 
+\end{lemma}
+\begin{subproof}
+Let $\xi = \Center(H)$. For every $g\in G_\xi$, we have $g(H)\cap H\neq\emptyset$. Since $\scrH$ is disjoint, this implies $g(H) = H$ and thus $g'(\xi) = 1$. Thus $\xi$ is neutral with respect to every element of $G_\xi$.
+
+We will demonstrate equivalent condition (D) of Lemma \ref{lemmaboundedparabolic}. First of all, we observe that $G(\zero)$ is disjoint from $H$ since $\zero\notin\bigcup\scrH$. Fix $x\in\CC_\zero\cap\del H \subset \CC_\zero\butnot\bigcup\scrH$. Then by \eqref{sigmadef}, we have $x\in g_x(B(\zero,\sigma))$ for some $g_x\in G$. It follows that $g_x^{-1}(x)\in B(\zero,\sigma)$ and so $g_x^{-1}(H) \cap B(\zero,\sigma + \epsilon) \neq \emptyset$ for every $\epsilon >0$. Equivalently, $g_x^{-1}(H)\in\scrH_{\sigma + \epsilon}$, where $\scrH_\rho$ is defined as in \eqref{Hrhodef}. Therefore, by (I) of Definition \ref{definitionGF}, the set
+\[
+\{g_x^{-1}(H) : x\in \CC_\zero\cap\del H\}
+\]
+is finite. Let $(g_{x_i}^{-1}(H))_1^n$ be an enumeration of this set. Then for any $x\in\CC_\zero\cap\del H$ there exists $i = 1,\ldots,n$ with $g_x^{-1}(H) = g_{x_i}^{-1}(H)$. Then $g_x g_{x_i}^{-1} (H) = H$ and so $g_x g_{x_i}^{-1}(\xi) = \xi$. Equivalently, $h_x := g_x g_{x_i}^{-1}\in G_\xi$. Thus
+\[
+\dist(x,G_\xi(\zero)) \leq \dist(h_x(\zero), x) = \dist(g_{x_i}^{-1}(\zero),g_x^{-1}(x)) \leq \dogo{g_{x_i}^{-1}} + \dox{g_x^{-1}(x)} \leq \sigma + \max_{i = 1}^n \dogo{g_{x_i}}.
+\]
+Letting $\rho = \sigma + \max_{i = 1}^n \dogo{g_{x_i}}$, we have \eqref{LbpD}, which completes the proof.
+\end{subproof}
+\noindent The identity $\Lambda(G) = \Lrsigma(G) \cup \Lbp(G)$ has been proven.
+\end{subproof}
+
+\begin{subproof}[Proof that $G$ is of compact type]
+By contradiction, suppose otherwise. Then $\Lambda$ is a complete metric space which is not compact, which implies that there exist $\epsilon > 0$ and an infinite $\epsilon$-separated set $I\subset\Lambda$. Fix $\rho > 0$ large to be determined. For each $\xi\in I$, let $x_\xi = \geo\zero\xi_\rho$. Then $x_\xi\in\CC_\zero \subset G(B(\zero,\sigma)) \cup \bigcup\scrH$, so either
+\begin{itemize}
+\item[(1)] there exists $g_\xi\in G$ such that $\dist(g_\xi(\zero),x_\xi)\leq \sigma$, or
+\item[(2)] there exists $H_\xi\in\scrH$ such that $x_\xi\in H_\xi$.
+\end{itemize}
+
+\begin{claim}
+\label{claiminjectiveGF}
+For $\rho$ sufficiently large, the partial functions $\xi \mapsto g_\xi (\zero)$ and $\xi \mapsto H_\xi$ are injective.
+\end{claim}
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.7]
+\clip(-6.028,-5.1) rectangle (6.161,4.39);
+\draw (0.0,-0.0)-- (2.8,3.38);
+\draw (0.0,-0.0)-- (4.0,2.0);
+\draw(2.53983892263005,1.8532030631106415) circle (1.291991690158774cm);
+\draw(-0.09397058823529784,-0.3482352941176511) circle (4.719619070844117cm);
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.264,-0.12399999999999917) node {$\zero$};
+\draw [fill=black] (2.8,3.38) circle (.75pt);
+\draw[color=black] (2.978,3.5820000000000017) node {$\xi_1$};
+\draw [fill=black] (4.0,2.0) circle (.75pt);
+\draw[color=black] (4.258,2.21) node {$\xi_2$};
+\draw [fill=black] (1.7594402109590748,2.123895683229169) circle (.75pt);
+\draw[color=black] (1.6940000000000002,2.362) node {$x_1$};
+\draw [fill=black] (2.464,1.232) circle (.75pt);
+\draw[color=black] (2.706,1.0961) node {$x_2$};
+\draw[color=black] (2.706,0.296) node {$H_{\xi_i}$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Proving that geometrically finite groups are of compact type]{If $H_{\xi_1} = H_{\xi_2}$, then $\xi_1$ and $\xi_2$ must be close to each other.}
+\label{figureDSC05177B}
+\end{center}
+\end{figure}
+\begin{subproof}
+For the first partial function $\xi\mapsto g_\xi(\zero)$, see Claim \ref{claiminjectiveCCB}. Now fix $\xi_1,\xi_2\in I$ distinct, and suppose that $H_{\xi_1} = H_{\xi_2}$ (cf. Figure \ref{figureDSC05177B}). Then $x_i := x_{\xi_i}\in H_{\xi_i} \setminus B(\zero,\rho)$. By Lemma \ref{lemmaHcutBdiameter}, this implies that
+\[
+\epsilon \leq \Dist (\xi_1,\xi_2) \leq \Dist (x_1,x_2) \leq 2 e^{-(1/2)\rho}.
+\]
+For $\rho > 2(\log(2) - \log(\epsilon))$, this is a contradiction. Thus the second partial function $\xi \mapsto H_\xi$ is also injective.
+\end{subproof}
+\noindent The strong discreteness of $G$ and \eqref{Hrhodef} therefore imply
+\[
+\#(I) \leq \# \{ H\in\scrH : \dist(\zero,H) \leq \rho \} + \# \{ g\in G : \dogo g \leq \rho + \sigma \} < \infty \ ,
+\]
+which is a contradiction since $\#(I) = \infty$ by assumption.
+\end{subproof}
+\noindent This completes the proof of (A) \implies (B1).
+\end{proof}
+\begin{proof}[Proof of \text{(B3)} \implies \text{(A)}]
+Let $F := (\CC_\zero \cap \DD_\zero)'$, where we use the notation \eqref{primenotation}. By Lemma \ref{lemmahorosphericaldirichlet} Observation \ref{observationboundaryofconvexcore}, and our hypothesis (B3), we have
+\begin{equation}
+\label{FLbp}
+F \subset \Lambda \setminus \Lh \subset \Lbp.
+\end{equation}
+\begin{claim}
+\label{claimFfinite}
+$\#(F) < \infty$.
+\end{claim}
+\begin{subproof}
+Note that $F$ is compact since $G$ is of compact type and so it is enough to show that $F$ has no accumulation points. By contradiction, suppose there exists $\xi\in F$ such that $\xi\in\cl{F \setminus \{ \xi \}}$. Then by \eqref{FLbp}, $\xi\in\Lbp$, so by (B$'$) of Corollary \ref{corollaryboundedparabolic}, $\cl{\DD_\zero(G_\xi)} \cap \LambdaG \setminus \{ \xi \}$ is $\xi$-bounded. But $F \setminus \{ \xi \} \subset \DD_\zero' \cap \LambdaG \setminus \{ \xi \} \subset \cl{\DD_\zero(G_\xi)} \cap \LambdaG \setminus \{ \xi \}$, contradicting that $\xi\in\cl{F\butnot\{\xi\}}$.
+\end{subproof}
+Let $P$ be a transversal of the partition of $F$ into $G$-orbits. Fix $t > 0$ large to be determined. For each $\bp\in P$ let
+\[
+H_\bp = H_{\bp,t} = \{ x : \busemann_\bp(\zero,x) > t \},
+\]
+and let
+\begin{equation}
+\label{scrHdef}
+\scrH := \{ g(H_\bp) : \bp\in P, g\in G\} \ .
+\end{equation}
+Clearly, $\scrH$ is a $G$-invariant collection of horoballs. To finish the proof, we need to show that:
+\begin{itemize}
+\item[(i)] $\zero\notin\bigcup\scrH$.
+\item[(ii)] For $t$ sufficiently large, $\scrH$ is a disjoint collection.
+\item[(iii)] ((I) of Definition \ref{definitionGF}) For every $\rho > 0$ we have $\#(\scrH_\rho) < \infty$.
+\item[(iv)] ((II) of Definition \ref{definitionGF}) There exists $\sigma > 0$ satisfying \eqref{sigmadef}.
+\end{itemize}
+It turns out that (ii) is the hardest, so we prove it last.
+\begin{subproof}[Proof of \text{(i)}]
+Fix $g\in G$ and $\bp\in P$. Since $\bp\in P \subset \DD_\zero'$, we have
+\[
+\busemann_\bp(\zero,g^{-1}(\zero)) \leq 0 < t.
+\]
+It follows that $g^{-1}(\zero)\notin H_\bp$, or equivalently $\zero\notin g(H_\bp)$.
+\end{subproof}
+\begin{subproof}[Proof of \text{(iii)}]
+Fix $H = g(H_\bp)\in\scrH_\sigma$ for some $\bp\in P$. Consider the point $x_H = \geo\zero{g(\bp)}_{\dist(\zero,H)}\in\del H$, and note that $\dist (\zero, x_H) = \dist(\zero,H) \leq \sigma$. Now $g^{-1}(x_H)\in H_\bp$, so by (D) of Lemma \ref{lemmaboundedparabolic} there exists $h\in G_\bp$ such that
+\[
+\dist(h(\zero),g^{-1}(x_H)) \asymp_\plus 0.
+\]
+(Cf. Figure \ref{figureDSC05164}.) Letting $C$ be the implied constant, we have
+\[
+\dogo{gh} \leq \dist(\zero,x_H) + \dist(x_H,gh(\zero)) \leq \rho + C.
+\]
+On the other hand, $gh(H_\bp) = g(H_\bp) = H$ since $h\in G_\bp$. Summarizing, we have
+\[
+\scrH_\rho \subset \{g(H_\bp) : \bp\in P,\;\; \dogo g \leq \rho + C\}.
+\]
+But this set is finite because $G$ is strongly discrete and because of Claim \ref{claimFfinite}. Thus $\#(\scrH_\rho) < \infty$.
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.746,-0.18) rectangle (6.031,5.39);
+\draw (-5.0,0.0)-- (5.0,0.0);
+\draw (-5.0,2.0)-- (5.0,2.0);
+\draw [shift={(-1.7378227225855478,0.1269240644762515)}] plot[domain=0.5892046179331553:1.1108779656108625,variable=\t]({1.0*2.0902795183382112*cos(\t r)+-0.0*2.0902795183382112*sin(\t r)},{0.0*2.0902795183382112*cos(\t r)+1.0*2.0902795183382112*sin(\t r)});
+\begin{scriptsize}
+\draw[color=black] (2.069012341908649,2.5) node {$H_\bp$};
+\draw [fill=black] (0.0,5.0) circle (.75pt);
+\draw[color=black] (0.19765287332143666,5.17) node {$p$};
+\draw [fill=black] (0.0,1.2884922500123306) circle (.75pt);
+\draw[color=black] (0.13525283424696695,1.426597976040203) node {$\zero$};
+\draw [fill=black] (-3.58,2.0) circle (.75pt);
+\draw[color=black] (-3.3799461107423507,2.277237725963598) node {$g^{-1}(x_H)$};
+\draw [fill=black] (-0.81,2.0) circle (.75pt);
+\draw[color=black] (-1.027946892231745,2.277237725963598) node {$h^{-1}g^{-1}(x_H)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Local finiteness of the horoball collection]{Since $g^{-1}(x_H)$ lies on the boundary of the horoball $H_\bp$, an element of $G_\bp$ can move it close to $\zero$.}
+\label{figureDSC05164}
+\end{center}
+\end{figure}
+\end{subproof}
+\begin{subproof}[Proof of \text{(iv)}]
+\begin{claim}
+\label{claimC0D0H}
+\[
+\Bigl( \CC_\zero \cap \DD_\zero \setminus \bigcup\scrH \Bigr)' = \emptyset.
+\]
+\end{claim}
+\begin{subproof}
+By contradiction, suppose that there exists
+\begin{equation}
+\label{CC0DzeroscrH}
+\xi\in\Bigl( \CC_\zero \cap \DD_\zero \setminus \bigcup\scrH \Bigr)' \subset F \subset \Lbp .
+\end{equation}
+By the definition of $P$, there exist $\bp\in P$ and $g\in G$ so that $g(\bp) = \xi$. Then $H_\xi := g(H_\bp)\in\scrH$ is centered at $\xi$, and so by (C$'$) of Corollary \ref{corollaryboundedparabolic}, 
+\[
+\CC_\zero\cap\DD_\zero\butnot H_\xi \subset \cl{\DD_\zero(G_\xi)}\cap\CC_\zero\butnot H_\xi
+\] 
+is $\xi$-bounded, contradicting \eqref{CC0DzeroscrH}.
+\end{subproof}
+Since $G$ is of compact type, Claim \ref{claimC0D0H} implies that the set $\CC_\zero \cap \DD_\zero \setminus \bigcup\scrH$ is bounded (cf. (C) of Proposition \ref{propositioncompacttype}), and Corollary \ref{corollarydirichletdomain} finishes the proof.
+\end{subproof}
+\begin{subproof}[Proof of \text{(ii)}]
+Fix $H_1,H_2\in\scrH$ distinct, and write $H_i = g_i(H_{\xi_i})$ for $i = 1, 2$. The distinctness of $H_1$ and $H_2$ implies that they have different centers, i.e. $g_1(\xi_1) \neq g_2(\xi_2)$. (This is due to the inequivalence of distinct points in $P$.) By contradiction, suppose that $H_1\cap H_2\neq\emptyset$. Without loss of generality, we may suppose that $g_1 = \id$ and that $g_2(\xi_2)\in\cl{\DD_\zero(G_{\xi_1})}$. Otherwise, let $h\in G_{\xi_1}$ be such that $hg_1^{-1}g_2(\xi_2)\in\cl{\DD_\zero(G_{\xi_1})}$ (such an $h$ exists by Proposition \ref{propositiondirichletdomain}), and we have $H_{\xi_1}\cap hg_1^{-1}g_2(H_{\xi_2}) \neq \emptyset$.
+
+By (B$'$) of Corollary \ref{corollaryboundedparabolic}, we have
+\[
+\lb \xi_1 | g_2(\xi_2)\rb_\zero \asymp_\plus 0,
+\]
+where the implied constant depends on $\xi_1$. Since there are only finitely many choices for $\xi_1$, we may ignore this dependence.
+
+Fix $x\in H_1\cap H_2$. We have
+\begin{align*}
+\busemann_{g_2(\xi_2)}(\zero,x) &= \busemann_{\xi_2}(g_2^{-1}(\zero),\zero) + \busemann_{\xi_2}(\zero,g_2^{-1}(x))\\
+&> \busemann_{\xi_2}(g_2^{-1}(\zero),\zero) + t \since{$x\in H_2 = g_2(H_{\xi_2})$}\\
+&\geq 0 + t. \since{$\xi_2\in \DD_\zero'$}
+\end{align*}
+On the other hand, $\busemann_{\xi_1}(\zero,x) > t$ since $x\in H_1$. Thus (g) of Proposition \ref{propositionbasicidentities} gives
+\begin{align*}
+0\leq \lb \xi_1 | g_2(\xi_2)\rb_x &= \lb \xi_1 | g_2(\xi_2)\rb_\zero - \frac12\left[\busemann_{\xi_1}(\zero,x) + \busemann_{g_2(\xi_2)}(\zero,x)\right]\\
+&\leq \lb \xi_1 | g_2(\xi_2)\rb_\zero - \frac12\left[t + t\right] \asymp_\plus -t.
+\end{align*}
+This is a contradiction for sufficiently large $t$.
+\end{subproof}
+\noindent The implication (B3) \implies (A) has been proven.
+\end{proof}
+\noindent The proof of Theorem \ref{theoremGFcompact} is now complete.
+
+
+
+
+\begin{remark}
+\label{remarkGFCCBcompact}
+The implication (B4) \implies (A) of Theorem \ref{theoremCCBcompact} follows directly from the proof of the implication (B3) \implies (A) of Theorem \ref{theoremGFcompact}, since if there are no parabolic points then we have $F = \emptyset$ and so no horoballs will be defined in \eqref{scrHdef}.
+\end{remark}
+
+
+
+\begin{observation}
+\label{observationPfinite}
+The proof of Theorem \ref{theoremGFcompact} shows that if $G\leq\Isom(X)$ is geometrically finite, then the set $G\bs\Lbp(G)$ is finite. When $X = \H^3$, this is a special case of Sullivan's Cusp Finiteness Theorem \cite{Sullivan_cusp_finiteness}, which applies to all finitely generated subgroups of $\Isom(\H^3)$ (not just the geometrically finite ones). However, the Cusp Finiteness Theorem does not generalize to higher dimensions \cite{Kapovich3}.
+\end{observation}
+\begin{proof}
+Let $\scrH$ be the collection of horoballs defined in the proof of (B3) \implies (A), i.e. $\scrH = \{g(H_\bp) : \bp\in P\}$ for some finite set $P$. We claim that $\Lbp = G(P)$. Indeed, fix $\xi\in\Lbp$. By the proof of (A) \implies (B1), either $\xi\in\Lr$ or $\xi = \Center(H)$ for some $H\in\scrH$. Since $\Lbp\cap\Lr = \emptyset$ (Remark \ref{remarkLbpLr}), the latter possibility holds. Write $H = g(H_\bp)$; then $\xi = g(\bp)\in G(P)$.
+\end{proof}
+The set $G\bs\Lbp(G)$ is called the set of \emph{cusps} of $G$.
+
+\begin{definition}
+\label{definitioncompleteset}
+A \emph{complete set of inequivalent parabolic points} for a geometrically finite group $G$ is a transversal of $G\bs\Lbp(G)$, i.e. a set $P$ such that $\Lbp = G(P)$ but $G(\bp_1)\cap G(\bp_2) = \emptyset$ for all $\bp_1,\bp_2\in P$ distinct.
+\end{definition}
+
+Then Observation \ref{observationPfinite} can be interpreted as saying that any complete set of inequivalent parabolic points for a geometrically finite group is finite.
+
+\subsection{Consequences of geometrical finiteness}
+
+%Like convex-coboundedness, geometrical finiteness has some 
+Geometrical finiteness, like convex-coboundedness,  has some 
+further geometric consequences. Recall (Theorem \ref{theoremCCB}) that if $G$ is convex-cobounded, then $G$ is finitely generated, and for any Cayley graph of $G$, the orbit map $g\mapsto g(\zero)$ is a quasi-isometric embedding. If $G$ is only geometrically finite rather than convex-cobounded, then in general neither of these things is true.\Footnote{For examples of infinitely generated strongly discrete parabolic groups, see Examples \ref{exampleparabolictorsion} and \ref{exampleQparabolic}; these examples can be extended to nonelementary examples by taking a Schottky product with a lineal group. Theorem \ref{theoremparaboliclowerbound} guarantees that the orbit map of a parabolic group is never a quasi-isometric embedding.} Nevertheless, by considering a certain \emph{weighted} Cayley metric with infinitely many generators, we can recover the rough metric structure of the orbit $G(\zero)$.
+
+Recall that the \emph{weighted Cayley metric} of $G$ with respect to a generating set $E_0$ and a weight function $\ell_0:E_0\to(0,\infty)$ is the metric
+\[
+\dist_G(g_1,g_2) := \inf_{\substack{(h_i)_1^n\in (E\cup F)^n \\ g_1 = g_2 h_1\cdots h_n}} \sum_{i = 1}^n \ell_0(h_i).
+\]
+(Example \ref{examplecayleygraph}). To describe the generating set and weight function that we want to use, let $P$ be a complete set of inequivalent parabolic points of $G$, and consider the set
+\[
+E := \bigcup_{\bp\in P} G_\bp.
+\]
+We will show that there exists a finite set $F$ such that $G$ is generated by $E\cup F$. Without loss of generality, we will assume that this set is symmetric, i.e. $h^{-1}\in F$ for all $h\in F$. For each $h\in E\cup F$ let
+\begin{equation}
+\label{l0def}
+\ell_0(h) := 1\vee\dogo h.
+\end{equation}
+We then claim that when $G$ is endowed with its weighted Cayley metric with respect to $(E\cup F,\ell_0)$, then the orbit map will be a quasi-isometric embedding. Specifically:
+
+\begin{theorem}
+\label{theoremGF}
+If $G$ is geometrically finite, then
+\begin{itemize}
+\item[(i)] There exists a finite set $F$ such that $G$ is generated by $E\cup F$.
+\item[(ii)] With the metric $\dist_G$ as above, the orbit map $g\mapsto g(\zero)$ is a quasi-isometric embedding.
+\end{itemize}
+\end{theorem}
+
+\begin{observation}
+\label{observationGFCCB}
+Theorem \ref{theoremCCB} follows directly from Theorem \ref{theoremGF}, since by Theorem \ref{theoremCCBcompact} we have $\Lbp = \emptyset$ if $G$ is convex-cobounded.
+\end{observation}
+
+%\begin{remark}
+%When $X$ is a Hadamard manifold, (vi) of Theorem \ref{theoremGF} is proven in \cite[Theoreme A]{DOP}.
+%\end{remark}
+
+We now begin the proof of Theorem \ref{theoremGF}. Of course, part (i) has been proven already (Theorem \ref{theoremGFcompact}).% Note that the proof of (vi) requires the use of conformal measures which will be discussed in Section \ref{sectionconformal}. Thus, the proof of (vi) will be delayed until \internalmissingref\internal.
+
+\begin{proof}[Proof of \text{(i)} and \text{(ii)}]
+Let $\scrH$ and $\sigma$ be as in Definition \ref{definitionGF}. Without loss of generality, we may suppose that $\scrH = \{k(H_{\bp,t}) : k\in G,\; \bp\in P\}$ for some $t > 0$ (cf. the proof of Theorem \ref{theoremGFcompact}).
+
+Fix $\rho > 2\sigma + 1$ large to be determined, and let $F = \{g\in G : \dogo g \leq \rho\}$. Then $F$ is finite since $G$ is strongly discrete.
+\begin{claim}
+\label{claimGcutF}
+For all $g\in G\butnot F$, there exist $h_1,h_2\in E\cup F$ such that
+\[
+\dogo g - \dist(h_1 h_2(\zero),g(\zero)) \gtrsim_{\times,\rho} 1\vee \dogo{h_1}\vee \dogo{h_2} \asymp_\times \ell_0(h_1) + \ell_0(h_2).
+\]
+\end{claim}
+\begin{subproof}
+Let $\gamma:[0,\dogo g]\to \geo\zero{g(\zero)}$ be the unit speed parameterization. Let $I = [\sigma + 1,\rho - \sigma]$. Then $\gamma(I)\subset\CC_\zero$, so by \eqref{sigmadef}, either $\gamma(I)\cap h(B(\zero,\sigma))\neq\emptyset$ for some $h\in G$, or $\gamma(I)\subset\bigcup\scrH$.
+
+\begin{itemize}
+\item[Case 1:] $\gamma(I) \cap h(B(\zero,\sigma)) \neq \emptyset$ for some $h\in G$. In this case, fix $x\in \gamma(I) \cap h(B(\zero,\sigma))$. Then
+\[
+\dogo h \leq \dox x + \dist(x,h(\zero)) \leq (\rho - \sigma) + \sigma = \rho,
+\]
+so $h\in F$. On the other hand,
+\begin{align*}
+\dist(h(\zero),g(\zero)) &\leq \dist(h(\zero),x) + \dist(x, g(\zero)) \\
+&= \dist(h(\zero),x) + \dogo g - \dox x\\
+&\leq \sigma + \dogo g - (\sigma + 1)\\
+&= \dogo g - 1,
+\end{align*}
+so
+\[
+\dogo g - \dist(h(\zero),g(\zero)) \geq 1 \asymp_{\times,\rho} \dogo h.
+\]
+The claim follows upon letting $h_1 = h$ and $h_2 = \id$.
+
+\item[Case 2:] $\gamma(I) \subset \bigcup\scrH$. In this case, since $\gamma(I)$ is connected and $\scrH$ is a disjoint open cover of $\gamma(I)$, there exists $H\in\scrH$ such that $\gamma(I) \subset H$. Since $\gamma(0),\gamma(\dogo g)\in G(\zero)\subset X\butnot H$, there exist
+\[
+0 < t_1 < \sigma + 1 < \rho - \sigma < t_2 < \dogo g
+\]
+so that $\gamma(t_1),\gamma(t_2)\in\del H$. Let $x_i = \gamma(t_i)$ for $i = 1,2$ (cf. Figure \ref{figureDSC05180}).% Since $x_i\in\del H$, by \eqref{sigmadef} we have $x_i\in B(h_i(\zero),\sigma)$ for some $h_i\in G$. In particular,
+%\[
+%\dist(\zero,h_1(\zero)) \leq \dox{x_1} + \dist(x_1,h_1(\zero)) \leq (\sigma + 1) + \sigma = 2\sigma + 1 \leq \rho,
+%\]
+%so $h_1\in F$.
+
+\begin{figure}
+\begin{center}
+%\begin{tabular}{ll}
+\begin{tabular}{@{}ll|@{}}
+
+%%%FIRST FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.84]
+\clip(-3.2616777565392376,-0.7167337528936658) rectangle (3.3677361988958543,3.4064383413403285);
+\draw (-3.3,0.0)-- (3.3,0.0);
+\draw (-3.3,1.5)-- (3.3,1.5);
+\draw [shift={(-0.6866012280010922,0.05351828745891047)}] plot[domain=0.32579805555008284:2.563050322940295,variable=\t]({1.0*1.8270110460256037*cos(\t r)+-0.0*1.8270110460256037*sin(\t r)},{0.0*1.8270110460256037*cos(\t r)+1.0*1.8270110460256037*sin(\t r)});
+\draw [shift={(-0.6866012280010922,0.05351828745891047)},line width=1.2000000000000002pt] plot[domain=1.62579805555008284:2.063050322940295,variable=\t]({1.0*1.8270110460256037*cos(\t r)+-0.0*1.8270110460256037*sin(\t r)},{0.0*1.8270110460256037*cos(\t r)+1.0*1.8270110460256037*sin(\t r)});
+\draw (-2.162165198076832,1.3691062477188254)-- (-1.8026926299856103,1.5);
+\draw (1.0576640552230778,1.2529812582555515)-- (0.4294901739834259,1.5);
+%the next six lines are the endpoints of $\gamma(I)$
+%\draw (-0.962616102001676,1.9158801676326878)-- (-0.9130025993806734,1.9229678108642594);
+%\draw (-0.9130025993806734,1.9229678108642594)-- (-0.8988273129175298,1.8166531623906832);
+%\draw (-0.8988273129175298,1.8166531623906832)-- (-0.9437157200508179,1.8072029714152542);
+%\draw (-1.687591969654601,1.6406431909253556)-- (-1.7359344225433202,1.6095658997826077);
+%\draw (-1.7359344225433202,1.6095658997826077)-- (-1.6841389373054065,1.5232400910527522);
+%\draw (-1.6841389373054065,1.5232400910527522)-- (-1.6185313226707159,1.5612234468938886);
+\begin{scriptsize}
+\draw[color=black] (-1.4304721747735372,1.99) node {$\gamma(I)$};
+\draw [fill=black] (-2.162165198076832,1.3691062477188254) circle (.75pt);
+\draw[color=black] (-2.7,1.28) node {$k j_1 (\zero)$};
+\draw [fill=black] (-2.2162855901742153,1.0525353615985757) circle (.75pt);
+\draw[color=black] (-2.2430117097284796,0.8840271778089437) node {$\zero$};
+
+\draw [fill=black] (-2.2162855901742153,3.1525353615985757) circle (.75pt);
+\draw[color=black] (-2.0030117097284796,3.2) node {$\bp$};
+
+\draw [fill=black] (1.0443009954459461,0.6382805085074923) circle (.75pt);
+\draw[color=black] (1.2495575936226908,0.4546727591663085) node {$g(\zero)$};
+\draw [fill=black] (-1.8026926299856103,1.5) circle (.75pt);
+\draw[color=black] (-1.6304721747735372,1.34895081083073896) node {$x_1$};
+\draw [fill=black] (0.4294901739834259,1.5) circle (.75pt);
+\draw[color=black] (0.5866161980791817,1.7218467129680482) node {$x_2$};
+\draw [fill=black] (1.0576640552230778,1.2529812582555515) circle (.75pt);
+\draw[color=black] (1.7,1.2) node {$k j_2 (\zero)$};
+
+\draw[color=black] (2.1057268959530203,2.0) node {$H_\bp$};
+
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%ARROW
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.33]
+\clip(-1.594946279998675,-2.975509096397911) rectangle (1.5782665910292664,2.720001184934291);
+\draw [shift={(0.0,0.0)}] plot[domain=0.7354397676755055:2.3211211596591195,variable=\t]({1.0*1.6991762710207554*cos(\t r)+-0.0*1.6991762710207554*sin(\t r)},{0.0*1.6991762710207554*cos(\t r)+1.0*1.6991762710207554*sin(\t r)});
+\draw (1.212984563827671,1.3292510070809178)-- (1.26,1.14);
+\draw (1.0801070470812233,1.1485375843057488)-- (1.26,1.14);
+\begin{scriptsize}
+\draw[color=black] (0.3,2.3) node {$k^{-1}$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%%%SECOND FIGURE
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.84]
+\clip(-3.2616777565392376,-0.7167337528936658) rectangle (3.3677361988958543,3.4064383413403285);
+\draw (-3.3,0.0)-- (3.3,0.0);
+\draw (-3.3,1.5)-- (3.3,1.5);
+\draw [shift={(-0.6866012280010922,0.05351828745891047)}] plot[domain=0.32579805555008284:2.563050322940295,variable=\t]({1.0*1.8270110460256037*cos(\t r)+-0.0*1.8270110460256037*sin(\t r)},{0.0*1.8270110460256037*cos(\t r)+1.0*1.8270110460256037*sin(\t r)});
+\draw [shift={(-0.6866012280010922,0.05351828745891047)},line width=1.2000000000000002pt] plot[domain=1.62579805555008284:2.063050322940295,variable=\t]({1.0*1.8270110460256037*cos(\t r)+-0.0*1.8270110460256037*sin(\t r)},{0.0*1.8270110460256037*cos(\t r)+1.0*1.8270110460256037*sin(\t r)});
+\draw (-2.162165198076832,1.3691062477188254)-- (-1.8026926299856103,1.5);
+\draw (1.0576640552230778,1.2529812582555515)-- (0.4294901739834259,1.5);
+%the next six lines are the endpoints of $\gamma(I)$
+%\draw (-0.962616102001676,1.9158801676326878)-- (-0.9130025993806734,1.9229678108642594);
+%\draw (-0.9130025993806734,1.9229678108642594)-- (-0.8988273129175298,1.8166531623906832);
+%\draw (-0.8988273129175298,1.8166531623906832)-- (-0.9437157200508179,1.8072029714152542);
+%\draw (-1.687591969654601,1.6406431909253556)-- (-1.7359344225433202,1.6095658997826077);
+%\draw (-1.7359344225433202,1.6095658997826077)-- (-1.6841389373054065,1.5232400910527522);
+%\draw (-1.6841389373054065,1.5232400910527522)-- (-1.6185313226707159,1.5612234468938886);
+\begin{scriptsize}
+\draw[color=black] (-1.7304721747735372,1.99) node {$k^{-1}\gamma(I)$};
+\draw [fill=black] (-2.162165198076832,1.3691062477188254) circle (.75pt);
+\draw[color=black] (-2.5885354307014453,1.2852755500491547) node {$j_1 (\zero)$};
+\draw [fill=black] (-2.2162855901742153,1.0525353615985757) circle (.75pt);
+\draw[color=black] (-2.2430117097284796,0.7840271778089437) node {$k^{-1}(\zero)$};
+
+\draw [fill=black] (-2.2162855901742153,3.1525353615985757) circle (.75pt);
+\draw[color=black] (-1.6030117097284796,3.2) node {$k^{-1}(\bp)$};
+
+\draw [fill=black] (1.0443009954459461,0.6382805085074923) circle (.75pt);
+\draw[color=black] (1.2495575936226908,0.4546727591663085) node {$k^{-1}g(\zero)$};
+\draw [fill=black] (-1.8026926299856103,1.5) circle (.75pt);
+\draw[color=black] (-1.3304721747735372,1.27895081083073896) node {$k^{-1}(x_1)$};
+\draw [fill=black] (0.4294901739834259,1.5) circle (.75pt);
+\draw[color=black] (0.7866161980791817,1.7218467129680482) node {$k^{-1}(x_2)$};
+\draw [fill=black] (1.0576640552230778,1.2529812582555515) circle (.75pt);
+\draw[color=black] (1.5057268959530203,1.2) node {$j_2 (\zero)$};
+
+\draw[color=black] (2.4057268959530203,2.0) node {$k^{-1}(H_\bp)$};
+\end{scriptsize}
+\end{tikzpicture}
+
+\end{tabular}
+\caption[Orbit maps of geometrically finite groups are QI embeddings]{Since $j_1^{-1} j_2\in E$ and $k j_1\in F$, the points $\zero$, $k j_1(\zero)$, and $k j_2(\zero)$ are connected to each other by edges in the weighted Cayley graph. Since the distance from $k j_2(\zero)$ to $g(\zero)$ are both significantly less than the distance from $\zero$ to $g(\zero)$, our recursive algorithm will eventually halt.}
+\label{figureDSC05180}
+\end{center}
+\end{figure}
+
+Since $H\in\scrH$, we have $H = k(H_\bp)$ for some $\bp\in P$ and $k\in G$. By (D) of Lemma \ref{lemmaboundedparabolic}, there exist $j_1, j_2\in G_\bp$ with
+\[
+\dist(k^{-1}(x_i), j_i(\zero)) \leq \rho_\bp \;\; (i = 1,2)
+\] 
+for some $\rho_\bp > 0$ depending only on $\bp$. Letting $\rho_0 = \max_{\bp\in P} \rho_\bp$, we have
+\[
+\dogo{k j_1} \leq \dox{x_1} + \dist(x_1, k j_1(\zero))
+\leq (\sigma + 1) + \rho_0.
+\]
+Letting $\rho = \max(\rho_0 + \sigma + 1,2\sigma + 2)$, we see that $\dogo{k j_1} \leq \rho$, so $h_1 := k j_1\in F$. On the other hand, $h_2 := j_1^{-1} j_2\in E$ by construction, since $j_1, j_2\in G_\bp$. Observe that $h_1 h_2 = k j_2$. Now
+\begin{align*}
+\dist(h_1 h_2(\zero),g(\zero)) &\leq \dist(g(\zero),x_2) + \dist(x_2, kj_2(\zero)) \\
+&\leq (\dogo g - t_2) + \rho_0,
+\end{align*}
+and so
+\begin{equation}
+\label{t2rhoxi}
+\dogo g - \dist(h_1 h_2(\zero),g(\zero)) \geq t_2 - \rho_0.
+\end{equation}
+Now
+\begin{align*}
+t_2 \geq t_2 - t_1 &= \dist(x_1,x_2)\\
+&\geq \dist(j_1(\zero),j_2(\zero)) - \dist(k^{-1}(x_1),j_1(\zero)) - \dist(k^{-1}(x_2),j_2(\zero))\\
+&\geq \dogo{j_1^{-1}j_2} - 2\rho_0 = \dogo{h_2} - 2\rho_0
+\end{align*}
+and on the other hand
+\[
+t_2 \geq \rho - \sigma \geq \rho_0 + 1.
+\]
+Combining with \eqref{t2rhoxi}, we see that
+\begin{align*}
+\dogo g - \dist(h_1 h_2(\zero),g(\zero))
+&\geq_\pt (\dogo{h_2} - 2\rho_0)\vee(\rho_0 + 1) - \rho_0\\
+&=_\pt (\dogo{h_2} - 3\rho_0)\vee 1\\
+&\asymp_\times 1\vee\dogo{h_1}\vee\dogo{h_2}.
+\end{align*}
+\end{itemize}
+\end{subproof}
+Fix $j\in G$, and define the sequence $(h_i)_1^n$ in $E\cup F$ inductively as follows: If $h_1,\ldots,h_{2i}$ have been defined for some $i\geq 0$, then let
+\[
+g = g_{2i} = h_{2i}^{-1}\cdots h_1^{-1} j = (h_1\cdots h_{2i})^{-1} j.
+\]
+(Note that $g_0 = j$.) If $g\in F$, then let $h_{2i + 1} = g$ and let $n = 2i + 1$ (i.e. stop the sequence here). Otherwise, by Claim \ref{claimGcutF} there exist $h_{2i + 1},h_{2i + 2}\in E\cup F$ such that
+\begin{equation}
+\label{hi1hi2}
+\dogo{g_{2i}} - \dist(h_{2i + 1} h_{2i + 2}(\zero),g_{2i}(\zero)) \gtrsim_{\times,\rho} \ell_0(h_{2i + 1}) + \ell_0(h_{2i + 2}).
+\end{equation}
+This completes the inductive step, as now $h_1,\ldots,h_{2(i + 1)}$ have been defined. We remark that \emph{a priori}, this process could be infinite and so we could have $n = \infty$; however, it will soon be clear that $n$ is always finite.
+
+We observe that \eqref{hi1hi2} may be rewritten:
+\[
+\dogo{g_{2i}} - \dogo{g_{2(i + 1)}} \gtrsim_{\times,\rho} \ell_0(h_{2i + 1}) + \ell_0(h_{2i + 2}).
+\]
+Iterating yields
+\begin{equation}
+\label{h1h2m}
+\dogo j - \dogo{g_{2m}} \gtrsim_\times \sum_{i = 1}^{2m} \ell_0(h_i) \all m \leq n/2.
+\end{equation}
+In particular, since $\ell_0(h_i) \geq 1$ for all $i$, we have
+\[
+\dogo j \gtrsim_\times \lfloor n/2\rfloor \asymp_\times n,
+\]
+and thus $n < \infty$. This demonstrates that the sequence $(h_i)_1^n$ is in fact a finite sequence. In particular, since the only way the sequence can terminate is if $g_{2i}\in F$ for some $i\geq 0$, we have $g_{n - 1}\in F$ and $h_n = g_{n - 1}$. From the definition of $g_{n - 1}$, it follows that $j = h_1\cdots h_n$. Since $j$ was arbitrary and $h_1,\ldots,h_n\in E\cup F$, this demonstrates that $E\cup F$ generates $G$, completing the proof of (i).
+
+To demonstrate (ii), we observe that by \eqref{h1h2m} we have
+\begin{align*}
+\dogo j &\gtrsim_\times \sum_{i = 1}^{n - 1} \ell_0(h_i)\\
+&\asymp_\plus \sum_{i = 1}^n \ell_0(h_i) \since{$h_n\in F$}\\
+&\geq_\pt \dist_G(\id,j),
+\end{align*}
+where $\dist_G$ denotes the weighted Cayley metric. Conversely, if $(h_i)_1^n$ is any sequence satisfying $j = h_1\cdots h_n$, then
+\[
+\dogo j \leq \sum_{i = 1}^n \dist(h_1\cdots h_{i - 1}(\zero), h_1\cdots h_i(\zero)) = \sum_{i = 1}^n \dogo{h_i} \leq \sum_{i = 1}^n \ell_0(h_i),
+\]
+and taking the infimum gives $\dogo j \leq \dist_G(\id,j)$.
+\end{proof}
+This finishes the proof of Theorem \ref{theoremGF}.
+
+\begin{corollary}
+\label{corollaryGF}
+If $G$ is geometrically finite, then
+\begin{itemize}
+\item[(i)] If for every $\xi\in\Lbp$, $G_\xi$ is finitely generated, then $G$ is finitely generated.
+\item[(ii)] If for every $\xi\in\Lbp$, $\delta(G_\xi) < \infty$, then $\delta(G) < \infty$.
+%\item[(iii)] If for every $\xi\in\Lbp$, $G_\xi$ is of divergence type, then $G$ is of divergence type.
+\end{itemize}
+\end{corollary}
+\begin{proof}[Proof of \text{(i)}]
+This is immediate from Theorem \ref{theoremGF}(i) and Observation \ref{observationPfinite}.
+\end{proof}
+\begin{proof}[Proof of \text{(ii)}]
+Call a sequence $(h_i)_1^n\in E^n$ \emph{minimal} if
+\begin{equation}
+\label{quasiisometry}
+\sum_{i = 1}^n \ell_0(h_i) = \dist_G(\id,h_1\cdots h_n).
+\end{equation}
+Then for each $g\in G\butnot\{\id\}$, there exists a minimal sequence $(h_i)_1^n\in (E\cup F)^n$ so that $g = h_1\cdots h_n$.
+
+Let $C$ be the implied multiplicative constant of \eqref{quasiisometry}, so that for every minimal sequence $(h_i)_1^n$, we have
+\[
+\sum_{i = 1}^n \ell_0(h_i) \gtrsim_\plus \frac1C \dogo{h_1\cdots h_m}.
+\]
+Fix $s > 0$. Then
+\begin{align*}
+\Sigma_s(G) - 1 &\leq_\pt \sum_{g\in G\butnot\{\id\}}\sum_{n\in\N}\sum_{\substack{(h_i)_1^n\in (E\cup F)^n \\ \text{minimal} \\ g = h_1\cdots h_n}} e^{-s\dogo g}\\
+&=_\pt \sum_{n\in\N}\sum_{\substack{(h_i)_1^n\in (E\cup F)^n \\ \text{minimal}}} e^{-s\dogo g}\\
+&\lesssim_\times \sum_{n\in\N}\sum_{\substack{(h_i)_1^n\in (E\cup F)^n \\ \text{minimal}}} \exp\left(-\frac sC\sum_{i = 1}^n \ell_0(h_i)\right)\\
+&\leq_\pt \sum_{n\in\N}\sum_{(h_i)_1^n\in (E\cup F)^n} \exp\left(-\frac sC\sum_{i = 1}^n \ell_0(h_i)\right)\\
+&=_\pt \sum_{n\in\N}\sum_{(h_i)_1^n\in (E\cup F)^n}\prod_{i = 1}^n e^{-(s/C)\ell_0(h_i)}\\
+&=_\pt \sum_{n\in\N}\prod_{i = 1}^n \sum_{h\in E\cup F} e^{-(s/C)\ell_0(h)}\\
+&=_\pt \sum_{n\in\N}\left(\sum_{h\in E\cup F} e^{-(s/C)\ell_0(h)}\right)^n.
+\end{align*}
+In particular, if
+\[
+\lambda_s := \sum_{h\in E\cup F} e^{-(s/C)\ell_0(h)} < 1,
+\]
+then $\Sigma_s(G) < \infty$. Now when $s/C > \max_{\bp\in P}\delta(G_\bp)$, we have $\lambda_s < \infty$. On the other hand, each term of the sum defining $\lambda_s$ tends to zero as $s\to\infty$. Thus $\lambda_s\to 0$ as $s\to \infty$, and in particular there exists some value of $s$ for which $\lambda_s < 1$. For this $s$, $\Sigma_s(G) < \infty$ and so $\delta_G \leq s < \infty$.
+\end{proof}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\subsection{Examples of geometrically finite groups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We conclude this section by giving some basic examples of geometrically finite groups. We begin with the following observation:
+
+\begin{observation}~
+\label{observationclassificationGF}
+\begin{itemize}
+\item[(i)] Any elliptic or lineal group is convex-cobounded.
+\item[(ii)] Any parabolic group is geometrically finite and is not convex-cobounded.
+\end{itemize}
+\end{observation}
+\begin{proof}
+This follows directly from Theorems \ref{theoremCCBcompact} and \ref{theoremGFcompact}. It may also be proven directly; we leave this as an exercise to the reader.
+\end{proof}
+
+
+
+\begin{proposition}
+\label{propositionSproductGF}
+The strongly separated Schottky product $G = \lb G_a\rb_{a\in E}$ of a finite collection of geometrically finite groups is geometrically finite. Moreover, if $P_1$ and $P_2$ are complete sets of inequivalent parabolic points for $G_1$ and $G_2$ respectively, then $P = P_1\cup P_2$ is a complete set of inequivalent parabolic points for $G$. In particular, if the groups $(G_a)_{a\in E}$ are convex-cobounded, then $G$ is convex-cobounded.
+\end{proposition}
+\begin{proof}
+This follows direction from Lemma \ref{lemmaschottkyradial}, Theorem \ref{theoremschottkylimitset}, Corollary \ref{corollaryschottkycompacttype}, and Theorem \ref{theoremGFcompact}.
+\end{proof}
+
+
+%The strong discreteness follows from Proposition \ref{propositionSproductdiscrete}
+%
+%For $i = 1,2$, let $\scrH_i$ be a disjoint $G_i$-invariant collection of horoballs satisfying (I) and (II) of Definition \ref{definitionGF}. Without loss of generality [explain why], we may assume that $\bigcup\scrH_i \subset U_i$. Let
+%\[
+%\scrH = \{g(H) : H\in\scrH_1\cup\scrH_2 , g\in G\}.
+%\]
+%Clearly, the collection of horoballs $\scrH$ is $G$-invariant. Let us show that the horoballs are disjoint. Suppose $g_1(H_1) \cap g_2(H_2) \neq \emptyset$. WLOG $g_2 = \id$. Let $g_1 = h_1\cdots h_n$ be the decomposition of $g_1$. Write $H_i\in\scrH_{j_i}$ for some $j_1,j_2\in\{1,2\}$. WLOG $h_1\notin G_{j_2}$ and $h_n\notin G_{j_1}$ [explain why]. Then by Lemma \ref{lemmapingpong} $g_1(H_1) \subset U_{3 - j_2}$, and on the other hand $H_2\subset U_{j_2}$. Thus $g_1(H_1)\cap H_2 = \emptyset$. The only way this wouldn't work is if $g = \id$ and $j_1 = j_2$, in which case $H_1\cap H_2 = \emptyset$ by the disjointness of $\scrH_j$.
+%
+%Now we need to show that $\scrH_\rho$ is finite. Fix $g(H)\in\scrH$, and suppose $x\in g(H)\cap B(\zero,\rho)$. Write $g = h_1\cdots h_n$, again WLOG $h_n\notin G_j$ where $H\in\scrH_j$. Then Lemma \ref{lemmapingpong} guarantees $x\in g(U_j)$, and splitting up the geodesic $\geo\zero x$ shows that
+%\[
+%\dox x \geq \sum_{i = 1}^n \QQ(h_i) + \dist(H,X\butnot U_j).
+%\]
+%Here $\QQ(h)$ is some quantity depending on $h$. It belongs to the Ping-Pong section. The two important properties it has are being proper and bounded from below.\internal
+%
+%So if $\dox x \leq \rho$, then $n\leq \rho$ and all of these quantities are also less than $\rho$. There are only finitely many of these.
+%
+%Finally, let's fix $x\in\CC_\zero$ and try to show that $x\in G(B(\zero,\sigma))\cup\bigcup\scrH$. Write $x\in\geo\zero{g(\zero)}$ for some $g\in G$. \comdavid{Here $\CC_\zero = \geo\zero{G(\zero)}$... but actually the two resulting definitions of GF are equivalent.} Let $t = \dox x$, and let $g = h_1\cdots h_n$. Let $m$ be minimal so that $\dist(\zero,h_1\cdots h_m(\zero)) > t$. Then $x$ is close to the geodesic connecting $h_1\cdots h_{m - 1}(\zero)$ with $h_1\cdots h_m(\zero)$. Thus we may WLOG $m = n = 1$ [why?]. Then we can use the known case.
+%
+%The assertion regarding $P$ follows directly from the above construction.
+
+Combining Observation \ref{observationclassificationGF} and Proposition \ref{propositionSproductGF} yields the following:
+
+\begin{corollary}
+\label{corollaryschottkyGF}
+The Schottky product of finitely many parabolic and/or lineal groups is geometrically finite. If only lineal groups occur in the product, then it is convex-cobounded.
+\end{corollary}
+
+%\ignore{
+%\begin{example}
+%Infinitely generated strongly discrete Schottky groups are not geometrically finite and there not convex-cobounded.
+%\end{example}
+%
+%\begin{remark}
+%Theorem \internalmissingref\ states that infinitely generated Schottky groups whose generating balls have diameters going to zero are strongly discrete. However, we don't yet have a converse to this result.
+%\end{remark}
+%}% end ignore
+
+
+% For arXiv version:
+%\begin{remark}
+%A previous version of this document included Section 12.5 (Tukia's isomorphism theorem). The results of that subsection have been split off into a new document which is available at \cite{DSU_Tukia}.
+%\end{remark}
+
+\ignore{
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\subsection{Tukia's isomorphism theorem}
+\label{subsectiontukia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+As an application of Theorem \ref{theoremGF}, we prove Theorem \ref{theoremtukiaintro} from the introduction:
+
+\begin{definition}
+\label{definitiontypepreserving}
+An isomorphism between two groups acting on hyperbolic metric spaces is \emph{type-preserving} if the image of a loxodromic (resp. parabolic, elliptic) isometry is loxodromic (resp. parabolic, elliptic).
+\end{definition}
+
+\begin{definition}
+\label{definitionquasisymmetric}
+Let $(Z,\Dist)$ and $(\w Z,\w\Dist)$ be metric spaces. A homeomorphism $\phi:Z\to\w Z$ is said to be \emph{quasisymmetric} if there exists an increasing homeomorphism $f:(0,\infty)\to(0,\infty)$ such that
+\[
+\frac{\w\Dist(\phi(z),\phi(y))}{\w\Dist(\phi(z),\phi(x))} \leq f\left(\frac{\Dist(z,y)}{\Dist(z,x)}\right) \all x,y,z\in Z.
+\]
+\end{definition}
+
+% generalize Tukia's isomorphism theorem \cite[Theorem 3.3]{Tukia2} to the setting of regularly geodesic strongly hyperbolic metric spaces. We call an isomorphism between two groups acting on hyperbolic metric spaces \emph{type-preserving} if the image of a loxodromic (resp. parabolic, elliptic) isometry is loxodromic (resp. parabolic, elliptic).
+
+\begin{theorem}[Generalization of Tukia's isomorphism theorem; cf. Theorem \ref{theoremtukiaintro}]
+\label{theoremtukia}
+Let $X$, $\w X$ be CAT(-1) spaces (or more generally, regularly geodesic strongly hyperbolic metric spaces), let $G\leq\Isom(X)$ and $\w G\leq\Isom(\w X)$ be two geometrically finite groups, and let $\Phi:G\to \w G$ be a type-preserving isomorphism. Let $P$ be a complete set of inequivalent parabolic points for $G$.
+\begin{itemize}
+\item[(i)] If for every $\bp\in P$ we have
+\begin{equation}
+\label{tukia}
+\dogo{\Phi(h)} \asymp_{\plus,\times,\bp} \dogo h \all h\in G_\bp,
+\end{equation}
+then there is an equivariant homeomorphism between $\Lambda := \Lambda(G)$ and $\w\Lambda := \Lambda(\w G)$.
+\item[(ii)] If for every $\bp\in P$ there exists $\alpha_\bp > 0$ such that
+\begin{equation}
+\label{tukia2}
+\dogo{\Phi(h)}  \asymp_{\plus,\bp} \alpha_\bp \dogo h \all h\in G_\bp,
+\end{equation}
+then the homeomorphism of \text{(i)} is quasisymmetric.
+%The equivariant homeomorphism of \text{(i)} is quasisymmetric if and only if there exists a function $f_\bp:\Rplus\to\Rplus$ such that
+%\begin{repequation}{tukia2}
+%\|\Phi(h)\|  \asymp_{\plus,\bp} f_\bp(\ell_0(h)) \all h\in G_\bp
+%\end{repequation}
+%and there exist constants $0 < c < C < \infty$ such that
+%\[
+%f(\rho_1) + c\rho_2 + \leq f_\bp(\rho_1 + \rho_2) \leq f(\rho_1) + C\rho_2 \all \rho_1,\rho_2 > 0.
+%\]
+\end{itemize}
+\end{theorem}
+
+
+When $X$ and $\w X$ are finite-dimensional real \ROSSs, Theorem \ref{theoremtukia} was proven by P. Tukia \cite[Theorem 3.3]{Tukia2}. Note that in this case, the hypothesis \eqref{tukia2} always holds with $\alpha_\bp = 1$ (Corollary \ref{corollaryrealROSSONCTquasi}; see also \cite[Theorem 5.4.3]{Ratcliffe}). This is why Tukia's original theorem does not need to mention the conditions \eqref{tukia} and \eqref{tukia2}.
+%, due to the structure theorem for parabolic subgroups of $\Isom(X)$ \cite[Theorem 5.4.3]{Ratcliffe}.
+
+A natural question is then whether the assumptions \eqref{tukia} and/or \eqref{tukia2} are really necessary. In the case of finite-dimensional nonreal \ROSSs, we show that \eqref{tukia} holds automatically (Corollary \ref{corollaryCROSSONCTquasi}), and that \eqref{tukia2} holds assuming both that (A) one of the groups $G$, $\w G$ is a lattice, and that (B) the underlying base fields of $X$ and $\w X$ are the same (Corollary \ref{corollarylatticequasi}). Without these assumptions, it is easy to construct examples of groups $G$, $\w G$ satisfying the hypotheses of the theorem but for which the equivariant homeomorphism is not quasisymmetric (Example \ref{exampletukia} and Remark \ref{remarktukia}). This shows that the assumption \eqref{tukia2} cannot be omitted from the second assertion of Theorem \ref{theoremtukia}.
+
+For the remainder of this subsection, the notation will be as in Theorem \ref{theoremtukia}.
+
+Observe that a subgroup of $G$ is parabolic if and only if it is infinite and consists only of parabolic and elliptic elements. Since $\Phi$ is type-preserving, it follows that $\Phi$ preserves the class of parabolic subgroups, and also the class of maximal parabolic subgroups. But all maximal parabolic subgroups of $G$ are of the form $G_\xi$, where $\xi$ is a parabolic fixed point of $G$. It follows that there is a bijection $\phi:\Lbp(G)\to\Lbp(\w G)$ such that $\Phi(G_\xi) = \w G_{\phi(\xi)}$ for all $\xi\in\Lbp(G)$. The equivariance of $\phi$ implies that $\w P := \phi(P)$ is a complete set of inequivalent parabolic points for $\w G$.
+
+Let $\dist_G$ and $\dist_{\w G}$ denote the weighted Cayley metrics on $G$ and $\w G$, respectively.
+
+\begin{lemma}
+\label{lemmatukia1}
+$\dist_G \asymp_\times \dist_{\w G}\circ\Phi$.
+\end{lemma}
+\begin{proof}
+Let $E$ and $F$ be as in Theorem \ref{theoremGF}, and let $\w E$ and $\w F$ be the corresponding sets for $\w G$. Since $\w P = \phi(P)$, we have $\w E = \Phi(E)$. On the other hand, for all $h\in E$, we have $\ell_0(h) \asymp_\times \ell_0(\Phi(h))$ by \eqref{tukia}. Thus, edges in the weighted Cayley graph of $G$ have roughly the same weight as their corresponding edges in the weighted Cayley graph of $\w G$. (The sets $F$ and $\w F$ are both finite, and so their edges are essentially irrelevant.) The lemma follows.
+\end{proof}
+
+Thus, the map $\Phi(g(\zero)) := \Phi(g)(\zero)$ is a quasi-isometry between $G(\zero)$ and $\w G(\zero)$. At this point, we would like to extend $\Phi$ to an equivariant homeomorphism between $\Lambda$ and $\w\Lambda$. However, all known theorems which give such extensions, e.g. \cite[Theorem 6.5]{BonkSchramm}, require the spaces in question to be geodesic or at least roughly geodesic -- for the good reason that the extension theorems are false without this hypothesis\Footnote{A counterexample is given by letting $X_1 = X_2 = \amsbb R$, $\dist_1(x,y) = \log(1 + |y - x|)$, $\dist_2(x,y) = \begin{cases} \dist_1(x,y) & xy\geq 0 \\ \dist_1(0,x) + \dist_1(0,y) & xy\leq 0 \end{cases}$, and $\Phi:X_1\to X_2$ the identity map -- since $\#(\del X_1) = 1 < 2 = \#(\del X_2)$, $\Phi$ cannot be extended to a homeomorphism between $\del X_1$ and $\del X_2$. On the other hand, if one of the spaces in question is geodesic, then the extension theorem can be proven by isometrically embedding the other space into a geodesic hyperbolic metric space via \cite[Theorem 4.1]{BonkSchramm} -- a fact which however has no relevance to the present situation.} -- but the spaces $G(\zero)$ and $\w G(\zero)$ are not roughly geodesic. They are, however, embedded in the roughly geodesic metric spaces $\CC_\zero$ and $\w\CC_\zero$, which suggests the strategy of extending the map $\Phi$ to a quasi-isometry between $\CC_\zero$ and $\w\CC_\zero$. It turns out that this strategy works if we assume \eqref{tukia2}, and thus proves the existence of a \emph{quasisymmetric} equivariant homeomorphism between $\Lambda$ and $\w\Lambda$ in that case. Since we know that the equivariant homeomorphism is not necessarily quasisymmetric if \eqref{tukia2} fails (Example \ref{exampletukia} and Remark \ref{remarktukia}), this strategy can't be used to prove part (i) of Theorem \ref{theoremtukia}. Thus the proof splits into two parts at this point, depending on whether we have the stronger assumption \eqref{tukia2} which guarantees quasisymmetry, or only the weaker assumption \eqref{tukia}.
+
+\subsection{Completion of the proof assuming \eqref{tukia2}}
+
+\begin{lemma}
+\label{lemmatukia2}
+Fix $\bp\in P$ and let $\w\bp = \phi(\bp)$. Let
+\[
+A = A(\bp) = \bigcup_{h\in G_\bp} \geo{h(\zero)}{\bp},
+\]
+and define a bijection $\psi = \psi_\bp:A\to \w A := A(\w\bp)$ by
+\[
+\psi(\geo{h(\zero)}{\bp}_t) = \geo{\Phi(h)(\zero)}{\w\bp}_{\alpha_\bp t}.
+\]
+Then $\psi$ is a quasi-isometry.
+\end{lemma}
+\begin{proof}
+Fix two points $x_i = \geo{h_i(\zero)}{\bp}_{t_i} \in A$, $i = 1,2$. Write $y_i = h_i(\zero)$, $i = 1,2$. Then
+%\[
+%\lb y_1|\bp\rb_{y_2} = \lb y_2|\bp\rb_{y_1} = t := \frac12\dist(y_1,y_2).
+%\]
+%It follows that
+\begin{equation}
+\label{distinhoroball}
+\dist(x_1,x_2) \asymp_\plus |t_2 - t_1| \vee (\dist(y_1,y_2) - t_1 - t_2).
+\end{equation}
+(This can be seen e.g. by repeated application of Proposition \ref{propositionrips}(ii).) On the other hand, if we write $\w y_i = \Phi(h_i)(\zero)$, $\w t_i = \alpha_\bp t_i$, and $\w x_i = \geo{\w y_i}{\w\bp}_{\w t_i}$, then by \eqref{tukia2} we have $\dist(\w y_1,\w y_2) \asymp_\plus \alpha_\bp \dist(y_1,y_2)$; applying \eqref{distinhoroball} along with its tilded version, we see that $\dist(\w x_1,\w x_2) \asymp_\plus \alpha_\bp \dist(x_1,x_2)$.
+\end{proof}
+
+For $g(\bp)\in G(P) = \Lbp(G)$, write $A_{g(\bp)} = g(A_\bp)$ and $\psi_{g(\bp)} = \Phi(g)\circ\psi_\bp\circ g^{-1}$; then $\psi_{g(\bp)}: A_{g(\bp)}\to A_{\phi(g(\bp))}$ is a quasi-isometry, and the implied constants are independent of $g(\bp)$. Let
+\[
+S = S(G) = \bigcup_{\xi\in \Lbp(G)} A_\xi \supset G(\zero),
+\]
+and define $\psi:S\to \w S := S(\w G)$ by letting
+\[
+\psi(x) = \psi_\xi(x) \all \xi\in \Lbp(G) \all x\in A_\xi.
+\]
+Note that for $g\in G$, $\psi(g(\zero)) = \Phi(g)(\zero)$.
+\begin{lemma}
+\label{lemmapsiquasi}
+$\psi$ is a quasi-isometry.
+\end{lemma}
+\begin{proof}
+Fix two points $x_1,x_2\in S$. For each $i = 1,2$, write $x_i \in A_{g_i(\bp_i)}$ for some $g_i(\bp_i)\in \Lbp(G_i)$. If $g_1(\bp_1) = g_2(\bp_2)$, then $\dist(\psi(x_1),\psi(x_2)) \asymp_\plus \dist(x_1,x_2)$ by Lemma \ref{lemmatukia2}. Otherwise, let $t > 0$ be large enough so that the collection $\scrH = \{H_{g(\bp)} := g(H_{\bp,t}) : g\in G, \; \bp\in P\}$ is disjoint. Then $y_i := \geo{x_i}{g_i(\bp_i)}_t \in H_{g_i(\bp_i)}$. It follows that the geodesic $\geo{y_1}{y_2}$ intersects both $\del H_{g_1(\bp_1)}$ and $\del H_{g_2(\bp_2)}$ (cf. Figure \ref{figurepsiquasi}), say in the points $z_1,z_2$. By Lemma \ref{lemmaboundedparabolic}, there exist points $w_i\in g_i G_{\bp_i}(\zero)$ such that $\dist(z_i,w_i) \asymp_\plus 0$. To summarize, we have
+\[
+\dist(x_1,x_2) \asymp_{\plus,t} \dist(y_1,y_2) = \dist(z_1,z_2) + \sum_{i = 1}^2 \dist(y_i,z_i) \asymp_{\plus,t} \dist(w_1,w_2) + \sum_{i = 1}^2 \dist(x_i,w_i).
+\]
+As $x_i,w_i\in A_{g_i(\bp_i)}$, we have $\dist(\psi(x_i),\psi(w_i)) \asymp_\plus \dist(x_i,w_i)$ by Lemma \ref{lemmatukia2}. On the other hand, since $w_1,w_2\in G(\zero)$, we have $\dist(\w w_1,\w w_2) \asymp_{\plus,\times} \dist(w_1,w_2)$ by Lemma \ref{lemmatukia1} and Theorem \ref{theoremGF}(ii). (Here $\w x = \psi(x)$.) Thus,
+\[
+\dist(x_1,x_2) \asymp_{\plus,\times} \dist(\w w_1,\w w_2) + \sum_{i = 1}^2 \dist(\w x_i,\w w_i) \geq \dist(\w x_1,\w x_2).
+\]
+Since the situation is symmetric, the reverse inequality holds as well.
+\end{proof}
+
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.674,-3.239) rectangle (3.698,3.586);
+\draw(0.0,0.0) circle (3.0cm);
+\draw(0.0,2.0) circle (1.0cm);
+\draw(-1.6765383941122631,-0.4770413063924982) circle (1.2569145430600153cm);
+\draw (-2.884984519391117,-0.8227176446835247)-- (-0.8537077377087111,-0.24806336779043003);
+\draw (0.0,3.0)-- (0.0,0.5410285663267452);
+\draw [shift={(-4.432995402589801,3.34299557285843)}] plot[domain=5.372236452220289:5.900827991552244,variable=\t]({1.0*4.778027883453108*cos(\t r)+-0.0*4.778027883453108*sin(\t r)},{0.0*4.778027883453108*cos(\t r)+1.0*4.778027883453108*sin(\t r)});
+\begin{scriptsize}
+\draw[color=black] (0.51,2.093) node {$H_{g_2(p_2)}$};
+\draw [fill=black] (-2.884984519391117,-0.8227176446835247) circle (1pt);
+\draw[color=black] (-3.3,-0.887) node {$g_1(p_1)$};
+\draw[color=black] (-2.0,0.305) node {$H_{g_1(p_1)}$};
+\draw [fill=black] (0.0,3.0) circle (1pt);
+\draw[color=black] (-0.013254332234670846,3.2) node {$g_2(p_2)$};
+\draw [fill=black] (-0.8537077377087111,-0.24806336779043003) circle (1pt);
+\draw[color=black] (-0.8250955547283336,-0.45) node {$x_1$};
+\draw [fill=black] (0.0,0.5410285663267452) circle (1pt);
+\draw[color=black] (0.30213211454936214,0.5204766261395189) node {$x_2$};
+\draw [fill=black] (-1.5040817556787958,-0.43205612268083204) circle (1pt);
+\draw[color=black] (-1.5209594597229017,-0.65) node {$y_1$};
+\draw [fill=black] (0.0,1.56027231456143) circle (1pt);
+\draw[color=black] (0.2855639263352058,1.5974088600596753) node {$y_2$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{The proof of Lemma \ref{lemmapsiquasi}. The distance between $y_1$ and $y_2$ is broken up into three segments, each of which is asymptotically preserved upon applying $\psi$.}
+\label{figurepsiquasi}
+\end{center}
+\end{figure}
+
+
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.331733658928572,0.17471897426577723) rectangle (3.5450834715133723,4.0257365673132615);
+\draw (-3.0,1.5)-- (3.0,1.5);
+\draw [shift={(0.26067583481434903,0.08708448064792945)}] plot[domain=0.5343314243396922:2.8507321995474353,variable=\t]({1.0*2.0675167655199447*cos(\t r)+-0.0*2.0675167655199447*sin(\t r)},{0.0*2.0675167655199447*cos(\t r)+1.0*2.0675167655199447*sin(\t r)});
+\draw (-1.06,1.36)-- (-1.06,3.6);
+\draw (1.64,1.34)-- (1.64,3.6);
+\draw (-1.2487264677147425,1.5)-- (-1.0637012613578571,1.3605243994346345);
+\draw (1.641128303962467,1.3391423475348692)-- (1.77007813734344,1.5);
+\begin{scriptsize}
+\draw [fill=black] (2.04,1.14) circle (1pt);
+\draw[color=black] (2.2055990913229415,1.0) node {$y_2$};
+\draw [fill=black] (-1.72,0.68) circle (1pt);
+\draw[color=black] (-1.8726524590782814,0.5933078430752864) node {$y_1$};
+\draw [fill=black] (-1.2487264677147425,1.5) circle (1pt);
+\draw[color=black] (-1.3823054984728558,1.7055582659119821) node {$z_1$};
+\draw [fill=black] (1.77007813734344,1.5) circle (1pt);
+\draw[color=black] (1.8826876782413198,1.7055582659119821) node {$z_2$};
+\draw [fill=black] (-1.0637012613578571,1.3605243994346345) circle (1pt);
+\draw[color=black] (-0.891,1.17) node {$w_1$};
+\draw [fill=black] (1.641128303962467,1.3391423475348692) circle (1pt);
+\draw[color=black] (1.511,1.16) node {$w_2$};
+%\draw [fill=black] (0.0,3.6) circle (1pt);
+\draw[color=black] (0.03,3.9) node {$g(p) = \infty$};
+\draw [fill=black] (-0.3562789079803063,2.0604046323337206) circle (1pt);
+\draw[color=black] (-0.27005507563615844,2.2317842724153647) node {$x$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{The proof of Lemma \ref{lemmaSCB}, in the upper half-space model. The thin triangles condition guarantees that $x$ is close to one of the geodesics $\geo{w_1}{g(p)}$, $\geo{w_2}{g(p)}$, both of which are contained in $S$.}
+\label{figureSCB}
+\end{center}
+\end{figure}
+
+
+\begin{lemma}
+\label{lemmaSCB}
+$S$ is cobounded in $C = \CC_\zero$.
+\end{lemma}
+\begin{proof}
+Fix $x\in\CC_\zero$. If $x\notin \bigcup\scrH$, then $\dist(x,S)\leq \dist(x,G(\zero))\asymp_\plus 0$. So suppose $x\in H = H_{g(\bp)}$ for some $g\in G$, $\bp\in P$. Write $x\in \geo{y_1}{y_2}$ for some $y_1,y_2\in G(\zero)$. Then there exist $z_1,z_2\in \geo{y_1}{y_2}\cap \del H$ such that $x\in \geo{z_1}{z_2}$. By Lemma \ref{lemmaboundedparabolic}, there exist $w_1,w_2\in g G_\bp(\zero)$ such that $\dist(z_i,w_i)\asymp_\plus 0$. It follows that $\lb w_1|w_2\rb_x\asymp_\plus 0$. By Proposition \ref{propositionrips}, we have
+\[
+\dist(x,S) \leq \dist(x,S_{g(\bp)}) \leq \dist(x,\geo{w_1}{g(\bp)}\cup\geo{w_2}{g(\bp)}) \asymp_\plus 0
+\]
+(cf. Figure \ref{figureSCB}). This completes the proof.
+\end{proof}
+
+
+
+
+
+Thus, the embedding map from $S$ to $C$ is an equivariant quasi-isometry. Thus $S$, $C$, $\w S$, and $\w C$ are all equivariantly quasi-isometric. By \cite[Theorem 6.5]{BonkSchramm}, the quasi-isometry between $C$ and $\w C$ extends to a quasisymmetric homeomorphism between $\del C = \Lambda$ and $\del\w C = \w\Lambda$. This completes the proof of Theorem \ref{theoremtukia}(ii).
+
+
+%Let $\Psi:C\to \w C$ be an equivariant quasi-isometry.
+%
+%\begin{lemma}
+%For all $x,y,z\in C$,
+%\[
+%\lb \Psi(x)|\Psi(y)\rb_{\Psi(z)} \asymp_{\plus,\times} \lb x|y\rb_z.
+%\]
+%\end{lemma}
+%\begin{proof}
+%By the Morse Lemma (e.g. \ref[Theorem 9.38]{DrutuKapovich}), there exists $C > 0$ such that for all $x,y\in C$, the Hausdorff distance between $\Psi(\geo xy)$ and $\geo{\Psi(x)}{\Psi(y)}$ is less than $C$. Combining with Proposition \ref{propositionrips}(i), we see that
+%\begin{align*}
+%\lb \w x|\w y\rb_{\w z} &\asymp_\plus \dist(\w z,\geo{\w x}{\w y})
+%&\asymp_\plus \dist(\w z,\Psi(\geo xy))
+%\asymp_{\plus,\times} \dist(z,\geo xy) \asymp_\plus \lb x|y\rb_z.
+%\end{align*}
+%\end{proof}
+%
+%It follows that $\Psi$ sends Gromov sequences to Gromov sequences, and thus it extends uniquely to a map $\del\Psi:\del C = \Lambda\to\del\w C = \w\Lambda$ which is continuous on $\Lambda$. To show that $\del\Psi$ is quasisymmetric, take $\bp,\eta_1,\eta_2\in \Lambda$, 
+
+
+
+
+
+\subsection{Completion of the proof assuming only \eqref{tukia}}
+We begin by recalling the Morse lemma:
+
+\begin{definition}
+\label{definitionquasigeodesic}
+A path $\gamma:[a,b]\to X$ is a \emph{$K$-quasigeodesic} if for all $a\leq t_1 < t_2 \leq b$,
+\[
+\frac1K (t_2 - t_1) - K \leq \dist(\gamma(t_1),\gamma(t_2)) \leq K(t_2 - t_1) + K.
+\]
+(In other words, $\gamma$ is a $K$-quasigeodesic if $\dist(\gamma(t_1),\gamma(t_2)) \asymp_{\plus,\times} t_2 - t_1$, and the implied constants are both equal to $K$.)
+\end{definition}
+
+\begin{lemma}[Morse Lemma, {\cite[Theorem 9.38]{DrutuKapovich}}]
+\label{lemmamorse}
+For every $K > 0$, there exists $K_2 > 0$ such that the Hausdorff distance between any $K$-quasigeodesic $\gamma$ and the geodesic $\geo{\gamma(a)}{\gamma(b)}$ is at most $K_2$.
+\end{lemma}
+
+\begin{lemma}
+\label{lemmaquasi}
+Fix $h_1,\ldots,h_n\in E\cup F$, let $g_k = h_1\cdots h_k$ and $x_k = g_k(\zero)$ for all $k = 0,\ldots,n$, and suppose that
+\begin{equation}
+\label{quasi}
+\dist(x_k,x_\ell) \asymp_\times \sum_{i = k + 1}^\ell \ell_0(h_i) \all 0\leq k < \ell \leq n.
+\end{equation}
+Then the path $\gamma = \bigcup_{k = 0}^{n - 1} \geo{x_k}{x_{k + 1}}$ is a $K$-quasigeodesic, where $K > 0$ is independent of $h_1,\ldots,h_n$.
+\end{lemma}
+\begin{proof}
+Fix $0 <  k \leq \ell < n$ and points $z\in\geo{x_{k - 1}}{x_k}$, $w\in\geo{x_\ell}{x_{\ell + 1}}$. To show that $\gamma$ is a quasigeodesic, it suffices to show that
+\begin{equation}
+\label{ETSquasi}
+\dist(z,w) \gtrsim_{\plus,\times} \dist(z,x_k) + \dist(x_k,x_\ell) + \dist(x_\ell,w).
+\end{equation}
+\begin{claim}
+\label{claimquasi}
+$\dist(z,w)\gtrsim_\plus \min(\dist(z,x_{k - 1}),\dist(z,x_k))$.
+\end{claim}
+\begin{subproof}
+If $h_k\in F$, then $\dist(z,x_k) \leq \dist(x_{k - 1},x_k) \asymp_\plus 0$, so $\dist(z,w)\gtrsim_\plus \dist(z,x_k)$. Thus, suppose that $h_k\in E$; then $h_k\in G_\bp$ for some $\bp\in P$. Let $g = g_{k - 1}$; since $g^{-1}(z) \in \geo\zero{h_k(\zero)}$, by Proposition \ref{propositionrips}(i) we have $\dist(g^{-1}(z),\geo y\bp) \asymp_\plus 0$, where either $y = \zero$ or $y = h_k(\zero)$.
+\begin{subclaim}
+\label{subclaimquasi}
+There exists $t > 0$ independent of $h_1,\ldots,h_n$ such that $g^{-1}(w)\notin H_{\bp,t}$.
+\end{subclaim}
+(Cf. Figure \ref{figurequasi}.)
+
+\begin{figure}
+\begin{center} 
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.8491074720597833,-2.1266876752711386) rectangle (3.5797459638630347,3.7907291690819807);
+\draw [shift={(0.0,-0.0)}] plot[domain=0.9045225827260511:3.1035675129286187,variable=\t]({1.0*3.6889564920177627*cos(\t r)+-0.0*3.6889564920177627*sin(\t r)},{0.0*3.6889564920177627*cos(\t r)+1.0*3.6889564920177627*sin(\t r)});
+\draw(-1.3068803163851197,1.1823748155886806) circle (1.9266288587793043cm);
+\draw [shift={(2.685346326431731,-2.9662333458959456)}] plot[domain=2.049120890160455:2.6001311772486844,variable=\t]({1.0*3.9319392309623806*cos(\t r)+-0.0*3.9319392309623806*sin(\t r)},{0.0*3.9319392309623806*cos(\t r)+1.0*3.9319392309623806*sin(\t r)});
+\draw [shift={(4.767483130446365,-0.6701022273279595)}] plot[domain=2.648334556608196:2.8438017124837423,variable=\t]({1.0*4.071162818980422*cos(\t r)+-0.0*4.071162818980422*sin(\t r)},{0.0*4.071162818980422*cos(\t r)+1.0*4.071162818980422*sin(\t r)});
+\draw [shift={(5.978973518661347,0.8697896686860462)}] plot[domain=2.9284471092129145:3.0609325657134683,variable=\t]({1.0*4.812997880472604*cos(\t r)+-0.0*4.812997880472604*sin(\t r)},{0.0*4.812997880472604*cos(\t r)+1.0*4.812997880472604*sin(\t r)});
+\draw [shift={(3.7794856280301645,2.426664585692047)}] plot[domain=3.0967788621557717:3.353471214637198,variable=\t]({1.0*2.5618834704300895*cos(\t r)+-0.0*2.5618834704300895*sin(\t r)},{0.0*2.5618834704300895*cos(\t r)+1.0*2.5618834704300895*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (-2.723168609785217,2.4885242057654264) circle (1pt);
+\draw[color=black] (-3.036353833196826,2.5787281286723056) node {$g(p)$};
+\draw[color=black] (-1.53,2.75) node {$g(H_{p,t})$};
+\draw [fill=black] (-0.6841540363190708,-0.9397552627666829) circle (1pt);
+\draw[color=black] (-0.45369,-1.18728) node {$x_{k-1}$};
+\draw [fill=black] (0.8755044855278509,0.524413961824313) circle (1pt);
+\draw[color=black] (1.127,0.397) node {$x_k$};
+\draw [fill=black] (1.181623953260003,1.257585677919404) circle (1pt);
+%\draw[color=black] (1.355367583817047,1.1528445517197468) node {$I$};
+\draw [fill=black] (1.2748920600343736,1.887908634247394) circle (1pt);
+\draw[color=black] (1.4994382699732513,1.81) node {$x_{l}$};
+\draw [fill=black] (1.2242241363497024,2.2425841000400935) circle (1pt);
+\draw[color=black] (1.398,2.27) node {$w$};
+\draw [fill=black] (1.2201742115269398,2.541433873479229) circle (1pt);
+\draw[color=black] (1.38,2.7) node {$x_{l+1}$};
+\draw [fill=black] (-0.17745538908965663,-0.2709573946084274) circle (1pt);
+\draw[color=black] (-0.3556927085260205,-0.10193299599850501) node {$z$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption{In Subclaim \ref{subclaimquasi}, the geodesics $\geo{x_{k - 1}}{x_k}$ and $\geo{x_\ell}{x_{\ell + 1}}$ cannot penetrate the same cusp, thus guaranteeing some distance between $z$ and $w$.}
+\label{figurequasi}
+\end{center}
+\end{figure}
+\begin{subproof}
+If $h_{\ell + 1}\in F$, then $\dist(g^{-1}(w),g^{-1}(x_{\ell + 1})) \asymp_\plus 0$, in which case the subclaim follows from the fact that $\bp$ is a bounded parabolic point. Thus suppose $h_{\ell + 1}\in E$; then $h_{\ell + 1}\in G_\eta$ for some $\eta\in P$. Let $k = g_\ell$; since $k^{-1}(w)\in \geo\zero{h_{\ell + 1}(\zero)}$, by Proposition \ref{propositionrips}(i) we have $\dist(k^{-1}(w),\geo p\eta) \asymp_\plus 0$, where either $p = \zero$ or $p = h_k(\zero)$. In particular $\busemann_\eta(\zero,k^{-1}(w))\gtrsim_\plus 0$, so by the disjointness of the family $\scrH$, there exists $t > 0$ such that $k^{-1}(w)\notin j(H_{\bq,t})$ for all $\bq\in P$ and $j\in G$ such that $j(\bq)\neq \eta$. In particular, letting $j = k^{-1} g = (h_k\cdots h_\ell)^{-1}$ and $\bq = \bp$, we have $g^{-1}(w)\notin H_{\bp,t}$ unless $j(\bp) = \eta$. But if $j(\bp) = \eta$, then $j = \id$ due to the minimality $P$, and this contradicts \eqref{quasi}.
+\end{subproof}
+It follows that
+\begin{align*}
+\dist(z,w) \geq \busemann_\bp(g^{-1}(w),g^{-1}(z))
+&= \busemann_\bp(\zero,g^{-1}(z)) - \busemann_\bp(\zero,g^{-1}(w))\\
+&= \dist(y,g^{-1}(z)) - \busemann_\bp(\zero,g^{-1}(w)) \gtrsim_\plus \dist(y,g^{-1}(z)) - t.
+\end{align*}
+Applying $g$ to both sides finishes the proof of Claim \ref{claimquasi}.
+\end{subproof}
+
+A similar argument shows that $\dist(z,w)\gtrsim_\plus \min(\dist(w,x_\ell),\dist(w,x_{\ell + 1}))$. Now let $y_1\in \{x_{k - 1},x_k\}$ and $y_2\in \{x_\ell,x_{\ell + 1}\}$ be such that
+\begin{equation}
+\label{zwzyzwwy}
+\dist(z,w) \gtrsim_\plus \dist(z,y_1) \text{ and } \dist(z,w) \gtrsim_\plus \dist(w,y_2).
+\end{equation}
+Then the triangle inequality gives $\dist(z,w)\gtrsim_{\plus,\times} \dist(y_1,y_2)$. On the other hand, \eqref{quasi} implies that $\dist(y_1,y_2) \gtrsim_{\plus,\times} \dist(y_1,x_k) + \dist(x_k,x_\ell) + \dist(x_\ell,y_2)$. Combining with \eqref{zwzyzwwy} and using the triangle inequality gives \eqref{ETSquasi}.
+\end{proof}
+
+\begin{lemma}
+\label{lemmagromovquasi}
+For all $x,y,z\in G(\zero)$,
+\[
+\lb \w x | \w y\rb_{\w z} \asymp_{\plus,\times} \lb x | y \rb_z.
+\]
+\end{lemma}
+\begin{proof}
+Fix $g_1,g_2\in G$, and we will show that
+\begin{equation}
+\label{ETSgromovquasi}
+\lb \w g_1(\zero) | \w g_2(\zero)\rb_\zero \lesssim_{\plus,\times} \lb g_1(\zero) | g_2(\zero)\rb_\zero.
+\end{equation}
+The reverse inequality will then follow by symmetry. By Theorem \ref{theoremGF}(ii), there exists a sequence $h_1,\ldots,h_n\in E\cup F$ such that $g_2 = g_1 h_1\cdots h_n$ and satisfying \eqref{quasi}. By Lemma \ref{lemmatukia1}, the sequence $\w h_1,\ldots,\w h_n\in \w E\cup \w F$ also satisfies \eqref{quasi}. Let $x_k = g_1 h_1 \cdots h_k(\zero)$. By Lemma \ref{lemmaquasi}, the paths
+\begin{align*}
+\gamma &= \bigcup_{k = 0}^{n - 1} \geo{x_k}{x_{k + 1}}\\
+\w\gamma &= \bigcup_{k = 0}^{n - 1} \geo{\w x_k}{\w x_{k + 1}}
+\end{align*}
+are quasigeodesics. So by Lemma \ref{lemmamorse}, $\gamma$ and $\w\gamma$ lie within a bounded Hausdorff distance of the geodesics they represent, namely $\geo{x_0}{x_n}$ and $\geo{\w x_0}{\w x_n}$. Combining with Proposition \ref{propositionrips}(i), we have
+\[
+\lb g_1(\zero) | g_2(\zero)\rb_\zero = \lb x_0 | x_n \rb_\zero \asymp_\plus \dist(\zero,\geo{x_0}{x_n}) \asymp_\plus \dist(\zero,\gamma),
+\]
+and similarly for $\w\gamma$. So to prove \eqref{ETSgromovquasi}, we need to show that $\dist(\zero,\w\gamma) \lesssim_{\plus,\times} \dist(\zero,\gamma)$.
+
+Fix $z\in\gamma$, and we will show that $\dox z \gtrsim_{\plus,\times} \dist(\zero,\w\gamma)$. Write $z\in \geo{x_{k - 1}}{x_k}$ for some $k = 1,\ldots,n$. By Proposition \ref{propositionrips}(i), we have
+\begin{align*}
+\dist(\zero,\w\gamma) &\leq \dist(\zero,\geo{\w x_{k - 1}}{\w x_k}) \asymp_\plus \lb \w x_{k - 1} | \w x_k \rb_\zero\\
+\dox z &\geq \dist(\zero,\geo{x_{k - 1}}{x_k}) \asymp_\plus \lb x_{k - 1} | x_k \rb_\zero,
+\end{align*}
+so to complete the proof of Lemma \ref{lemmagromovquasi} it suffices to show that
+\begin{equation}
+\label{gromovquasi}
+\lb \w x_{k - 1} | \w x_k \rb_\zero \lesssim_{\plus,\times} \lb x_{k - 1} | x_k \rb_\zero.
+\end{equation}
+Now, if $h_k\in F$, then $\dist(x_{k - 1},x_k) \asymp_\plus \dist(\w x_{k - 1},\w x_k) \asymp_\plus 0$, so \eqref{gromovquasi} follows from Theorem \ref{theoremGF}(ii). Thus, suppose that $h_k\in E$, and write $h_k\in G_\bp$ for some $\bp\in P$. Use the notations $g = g_1 h_1\cdots h_{k - 1}$ and $h = h_k$, so that $x_{k - 1} = g(\zero)$ and $x_k = gh(\zero)$. Then for $y = \zero,h(\zero)$, (h) of Proposition \ref{propositionbasicidentities} gives
+\[
+\lb y|\bp\rb_{g^{-1}(\zero)} \asymp_\plus \frac12[\dist(g^{-1}(\zero),y) - \busemann_\bp(g^{-1}(\zero),y)] \gtrsim_\plus \frac12\dist(g^{-1}(\zero),y) \asymp_\times \dox{g(y)},
+\]
+so by Gromov's inequality,
+\[
+\lb x_{k - 1} | x_k \rb_\zero = \lb g(\zero)|gh(\zero)\rb_\zero = \lb \zero|h(\zero)\rb_{g^{-1}(\zero)} \gtrsim_{\plus,\times} \dox{g(y)} \asymp_{\plus,\times} \dox{\w g(\w y)} \geq \lb \w x_{k - 1} | \w x_k \rb_\zero. 
+\]
+This demonstrates \eqref{gromovquasi} and completes the proof of Lemma \ref{lemmagromovquasi}.
+\end{proof}
+
+It follows that the map $\Phi$ sends Gromov sequences to Gromov sequences, so it induces an equivariant homeomorphism $\del\Phi:\Lambda\to \w\Lambda$. This completes the proof of Theorem \ref{theoremtukia}(i).
+
+
+\subsection{Applications to finite-dimensional \CROSSs}
+A particularly interesting case of Theorem \ref{theoremtukia} is when $X$ and $\w X$ are both finite-dimensional \CROSSs. In this case, \eqref{tukia} always holds, but \eqref{tukia2} does not; nevertheless, there is a reasonable sufficient condition for \eqref{tukia2} to hold. Specifically, we have the following:
+
+\begin{proposition}
+\label{propositionCROSSONCTquasi}
+Let $X$ and $\w X$ be finite-dimensional \CROSSs, let $G\leq\Isom(X)$ and $\w G\leq \Isom(\w X)$ be geometrically finite groups, and let $\Phi:G\to\w G$ be a type-preserving isomorphism. Fix $\bp\in P$, and let $\w\bp = \phi(\bp)\in \Lbp(\w G)$ be the unique point such that $\Phi(G_\bp) = \w G_{\w\bp}$. Then
+\begin{itemize}
+\item[(i)] \eqref{tukia} holds.
+\item[(ii)] Let $H\leq G_\bp$ be a nilpotent subgroup of finite index. If the underlying base fields of $X$ and $\w X$ are the same, say $\F$, and if $\rank([H,H]) = \dim_\R(\F) - 1$, then \eqref{tukia2} holds.
+\end{itemize}
+\end{proposition}
+
+Before we begin the proof of Proposition \ref{propositionCROSSONCTquasi}, it will be necessary to understand the structure of a parabolic subgroup of $\Isom(X)$.
+
+Let $X = \H = \H_\F^d$ be a finite-dimensional \CROSS, let $\bp = [(1,1,\0)]$, and let $J_\bp = \Stab(\Isom(X);\bp)$. Note that $J_\bp$ is a parabolic group in the sense of Lie theory, while it is a focal group according to the classification of Section \ref{sectionclassification}. To study the group $J_\bp$, we use the coordinate system generated by the basis
+\[
+\ff_0 = (\ee_0 + \ee_1)/2, \;\; \ff_1 = \ee_1 - \ee_0, \;\; \ff_i = \ee_i \;\;\; (i = 2,\ldots,d).
+\]
+In this coordinate system, the sesquilinear form $B_\QQ$ takes the form
+\[
+B_\QQ(\xx,\yy) = \wbar x_0 y_1 + \wbar x_1 y_0 + \sum_{i = 2}^d \wbar x_i y_i,
+\]
+the point $\bp$ takes the form $\bp = [\ff_0]$, and the group $J_\bp$ can be written (cf. Theorem \ref{theoremisometries}) as
+\[
+J_\bp = \left\{ h_{\lambda,a,\vv,\ww,m,\sigma} := \left[\begin{array}{lll}
+\lambda & a & \ww^\dag\\
+& \lambda^{-1} &\\
+& \vv & m
+\end{array}\right] \sigma^{d + 1} :
+\begin{split}
+\lambda > 0,\; a\in \F,\;  \vv,\ww\in \F^{d - 1},\\
+m\in \SO(\F^{d - 1};\EE),\; \sigma\in\Aut(\F)
+\end{split}\right\} \cap \Isom(X).
+\]
+Given $\lambda,a,\vv,\ww,m$, it is readily verified that $h_{\lambda,a,\vv,\ww,m}\in \Isom(X)$ if and only if
+\[
+2\lambda^{-1}\Re(a) + \|\vv\|^2 = 0 \text{ and } \lambda^{-1}\ww^\dag + \vv^\dag m = \0.
+\]
+Consequently, it makes sense to rewrite $J_\bp$ as
+\[
+J_\bp = \left\{ h_{\lambda,a,\vv,m,\sigma} := \left[\begin{array}{lll}
+\lambda & a - \lambda\|\vv\|^2/2 & -\lambda\vv^\dag m\\
+& \lambda^{-1} &\\
+& \vv & m
+\end{array}\right] \sigma^{d + 1} :
+\begin{split}
+\lambda > 0,\; a\in \Im(\F),\;  \vv\in \F^{d - 1},\\
+m\in \SO(\F^{d - 1};\EE),\; \sigma\in\Aut(\F)
+\end{split}\right\}.
+\]
+We can now define the \emph{Langlands decomposition} of $J_\bp$:
+\begin{align*}
+M_\bp &= \{h_{1,0,\0,m,\sigma} : m\in\SO(\F^{d - 1};\EE),\; \sigma\in \Aut(\F)\}\\
+A_\bp &= \{h_{\lambda,0,\0,I_{d - 1},e} : \lambda > 0\}\\
+N_\bp &= \{n(a,\vv) := h_{1,a,\vv,I_{d - 1},e} : a\in\Im(\F) ,\; \vv\in \F^{d - 1}\}\\
+J_\bp &= M_\bp A_\bp N_\bp.
+\end{align*}
+We observe the following facts about the Langlands decomposition: the groups $M_\bp$ and $A_\bp$ commute with each other and normalize $N_\bp$, which is nilpotent of order at most $2$. Moreover, the subgroup $M_\bp N_\bp$ is exactly the kernel of the homomorphism $J_\bp\ni h\mapsto h'(\bp)$, where $h'$ denotes the metric derivative. Equivalently, $M_\bp N_\bp$ is the largest parabolic subgroup of $J_\bp$, where ``parabolic'' is interpreted in the sense of Section \ref{sectionclassification}.
+
+Let's look a bit more closely at the internal structure of $N_\bp$. The composition law is given by
+\begin{equation}
+\label{compositionlaw}
+n(a_1,\vv_1) n(a_2,\vv_2) = n(a_1 + a_2 + \Im B_\EE(\vv_2,\vv_1),\vv_1 + \vv_2),
+\end{equation}
+confirming that $N_\bp$ is nilpotent of order at most two, and that its commutator is given by
+\[
+Z_\bp = \{n(a,\0) : a\in\Im(\F)\}.
+\]
+Moreover, the map $\pi:n(a,\vv)\mapsto \vv\in \F^{d - 1}$ is a homomorphism whose kernel is $Z_\bp$.
+
+Now let $H\leq M_\bp N_\bp$ be a discrete parabolic subgroup. By Margulis's lemma, $H$ is almost nilpotent, and so by \cite[Lemma 3.4]{CorletteIozzi}, there exist a finite index subgroup $H_2\subset H$ and a homomorphism $\psi:H_2\to N_\bp$ such that $\psi(h)(\zero) = h(\zero)$ for all $h\in H_2$. (Here $\zero = [\ee_0] = [2\ff_0 - \ff_1]$ as usual.) We then let $H_3 = \psi(H_2) \leq N_\bp$.
+\begin{definition}
+\label{definitionHregular}
+The group $H$ is \emph{regular} if $\pi(H_3)$ is a discrete subgroup of $\F^{d - 1}$. If $H$ is regular, we define its \emph{quasi-commutator} to be the subgroup
+\[
+Z = Z(H) = \psi^{-1}(Z_\bp) = \Ker(\pi\circ\psi) \leq H.
+\]
+Note that in general, the quasi-commutator of $H$ cannot be determined from its algebraic structure; cf. Example \ref{exampletukia}. Nevertheless, since $\F^{d - 1}$ is abelian, the quasi-commutator of $H$ always contains the commutator of $H_2$.
+\end{definition}
+
+In general, if $H\leq\Isom(X)$ is a discrete parabolic subgroup, we can conjugate the fixed point of $H$ to $[(1,1,\0)]$, apply the above construction, and then conjugate back to get a subgroup $Z(H)\leq H$.
+
+If $H$ is regular, then the quasi-commutator $Z\leq H$ can be used to give an algebraic description of the function $h\mapsto \dogo h$. Specifically, we have the following:
+
+
+\begin{lemma}
+\label{lemmaCROSSONCTquasi}
+Let $\dist_H$ and $\dist_Z$ be any Cayley metrics on $H$ and $Z$, respectively.
+\begin{itemize}
+\item[(i)]
+\begin{equation}
+\label{CROSSONCTquasi1}
+\dogo h \asymp_{\plus,\times} 0\vee \log\dist_H(e,h).
+\end{equation}
+\item[(ii)] If $H$ is regular, then
+\begin{equation}
+\label{CROSSONCTquasi2}
+\dogo h \asymp_\plus \min_{z\in Z} \big(0\vee 2\log\dist_H(z,h) \vee \log\dist_Z(e,z)\big)  \all h\in H.
+\end{equation}
+\end{itemize}
+\end{lemma}
+\begin{proof}
+Let $F\subset H$ be a finite set so that $H_2 F = H$, and let $H_3 = \psi(H_2)$. Then for all $h\in H$, we can write $h = h_2 f$ for some $h_2\in H_2$ and $f\in F$, and then
+\begin{align*}
+\dogo h &\asymp_\plus \dogo{h_2} = \dogo{\psi(h_2)}\\
+\dist_H(z,h) &\asymp_\plus \dist_H(z,h_2) \asymp_\times \dist_{H_2}(z,h_2) = \dist_{H_3}(\psi(z),\psi(h_2))\\
+\min_{z\in Z} \big(0\vee 2\log\dist_H(z,h) \vee \log\dist_Z(e,z)\big) & \asymp_\plus \min_{z\in \psi(Z)} \big(0\vee 2\log\dist_{H_3}(z,\psi(h_2)) \vee \log\dist_{\psi(Z)}(e,z)\big).
+\end{align*}
+Thus, we may without loss of generality assume that $H = H_3$, i.e. that $H\leq N_\bp$ and $Z_H = H\cap Z_\bp$. We can also without loss of generality assume that $\bp = [(1,1,\0)]$.
+
+The following formula regarding the function $n(a,\vv)$ can be verified by direct computation (cf. \cite[(3.5)]{CorletteIozzi}):
+\begin{equation}
+\label{corletteiozzi}
+\|n(a,\vv)\| \asymp_\plus 0\vee 2\log\|\vv\| \vee \log|a|
+\end{equation}
+On the other hand, iterating \eqref{compositionlaw} gives
+\begin{equation}
+\label{compositionlawbounds}
+\begin{split}
+\|\vv\| &\lesssim_\times \dist_H(e,n(a,\vv))\\
+|a| &\lesssim_\times \dist_H(e,n(a,\vv))^2\\
+|a| &\lesssim_\times \dist_Z(e,n(a,\0)).
+\end{split}
+\end{equation}
+These formulas make it easy to verify the $\lesssim$ direction of \eqref{CROSSONCTquasi2}: given $h = n(a,\vv)\in H$ and $z = n(b,\0)\in Z$, we have
+\begin{align*}
+0\vee 2\log\dist_H(z,h) \vee \log\dist_Z(e,z)
+&=_\pt 0\vee 2\log\dist_H(e,n(a - b,\vv)) \vee \log\dist_Z(e,n(b,\0))\\
+&\geq_\pt 0\vee 2\log\big(\|\vv\|\vee \sqrt{|a - b|}\big)\vee \log|b|\\
+&=_\pt 0\vee 2\log\|\vv\| \vee \log|a - b| \vee\log|b|\\
+&\gtrsim_\plus 0\vee 2\log\|\vv\| \vee \log|a| \asymp_\plus \dogo{n(a,\vv)} = \dogo h.
+\end{align*}
+Setting $z = e$ yields the $\lesssim$ direction of \eqref{CROSSONCTquasi1}.
+
+To prove the $\gtrsim$ directions, we will need the following easily verified fact:
+
+\begin{fact}
+\label{factFDVS}
+If $V$ is a finite-dimensional vector space, $\Lambda\leq V$ is a discrete subgroup, and $\dist_\Lambda$ is a Cayley metric on $\Lambda$, then $\dist_\Lambda(\0,\vv) \asymp_\times \|\vv\|$ for all $\vv\in\Lambda$. Here $\|\cdot\|$ denotes any norm on $V$.
+\end{fact}
+
+To prove the $\gtrsim$ direction of \eqref{CROSSONCTquasi2}, assume that $H$ is regular, fix $h = n(a,\vv)\in H$, and let $F$ be a finite generating set for $H$. Since $H$ is regular, the group $\Lambda = \pi(H) \leq \F^{d - 1}$ is discrete. Since $\F^{d - 1}$ is a finite-dimensional vector space, Fact \ref{factFDVS} guarantees the existence of a sequence $f_1,\ldots,f_n\in F$ such that $\pi(f_1\cdots f_n) = \pi(h)$ and $n \lesssim_\times \|\vv\|$. Let $f = f_1\cdots f_n$ and let $z = hf^{-1} \in \pi^{-1}(0) = Z$, say $z = n(b,\0)$. Applying \eqref{compositionlaw} and the second equation of \eqref{compositionlawbounds}, we see that $|b| \lesssim_\times |a| \vee \|\vv\|^2 \vee n^2 \lesssim_\times |a| \vee \|\vv\|^2$. On the other hand, applying Fact \ref{factFDVS} to $Z_\bp$ gives $\dist_Z(e,z) \lesssim_\times |b|$. Thus
+\begin{align*}
+0\vee 2\log\dist_H(z,h) \vee \log\dist_Z(e,z) &=_\pt 0\vee 2\log\dist_H(e,f) \vee \log\dist_Z(e,z)\\
+&\lesssim_\plus 0\vee 2\log(n)\vee \log|b|\\
+&\lesssim_\plus 0\vee 2\log\|\vv\| \vee \log(|a| \vee \|\vv\|^2)\\
+&=_\pt 0\vee 2\log\|\vv\| \vee \log|a| = \dogo h.
+\end{align*}
+This completes the proof of \eqref{CROSSONCTquasi2}.
+
+To prove the $\gtrsim$ direction of \eqref{CROSSONCTquasi1}, let $\cl H$ and $\cl Z$ be the Zariski closures of $H$ and $Z$ in $N_\bp$, respectively. Then $\cl H/\cl Z$ and $\cl Z$ are abelian Lie groups, and therefore isomorphic to finite-dimensional vector spaces. Let $\w\pi:\cl H\to\cl H/\cl Z$ be the projection map. Note that $\|\w\pi(n(a,\vv))\| \lesssim_\times |a| \vee \|\vv\|$ for all $n(a,\vv)\in H$. Here $\|\cdot\|$ denotes any norm on $\cl H/\cl Z$.
+
+Since $\cl Z$ is a vector space, the fact that $Z$ is Zariski dense in $\cl Z$ simply means that $Z$ is a lattice in $\cl Z$. In particular, $Z$ is cocompact in $\cl Z$, which implies that $\w\pi(H)$ is discrete. Fix $h = n(a,\vv)\in H$, and let $F$ be a finite generating set for $H$. Then by Fact \ref{factFDVS}, there exists a sequence $f_1,\ldots,f_n\in F$ such that $\w\pi(f_1)\cdots\w\pi(f_n) = \w\pi(h)$ and $n\lesssim_\times \|\w\pi(h)\|\lesssim_\times |a| \vee \|\vv\|$. Let $f = f_1\cdots f_n$ and let $z = h f^{-1} \in H\cap \w\pi^{-1}(0) = H\cap \cl Z = Z$, say $z = n(b,\0)$. Applying \eqref{compositionlaw} and the second equation of \eqref{compositionlawbounds}, we see that $|b| \lesssim_\times |a| \vee \|\vv\|^2 \vee n^2 \lesssim_\times |a|^2 \vee \|\vv\|^2$. On the other hand, applying Fact \ref{factFDVS} to $\cl Z$ gives $\dist_Z(e,z) \lesssim_\times |b|$. Thus
+\begin{align*}
+0\vee\log\dist_H(e,h) &\leq_\pt 0\vee \log\dist_H(e,f) \vee \log\dist_Z(e,z)\\
+&\lesssim_\plus 0\vee \log(n)\vee \log|b|\\
+&\lesssim_\plus 0\vee \log(|a|\vee \|\vv\|) \vee \log(|a|^2\vee \|\vv\|^2)\\
+&\asymp_\times 0\vee 2\log\|\vv\| \vee \log|a| = \dogo h.
+\end{align*}
+This completes the proof of \eqref{CROSSONCTquasi1}.
+\end{proof}
+
+
+%This representation naturally suggests the following homomorphisms:
+%\begin{align*}
+%\psi_1 &: h_{\lambda,a,\vv,m} \mapsto h_{\vv,m} := \left[\begin{array}{ll}
+%\lambda^{-1} &\\
+%\vv & m
+%\end{array}\right] \in D \subset \GL(\F^d)\\
+%\psi_2 &: h_{\lambda,a,\vv,m} \mapsto m\in \SO(\F^{d - 1};\EE)\\
+%\psi_3 &: h_{\lambda,a,\vv,m} \mapsto \lambda\in (0,\infty).
+%\end{align*}
+
+
+
+%Let $V$ be the tangent space of $\del X$ at $\bp$; then there is a natural homomorphism $\psi:J_\bp\to \GL(V)$ defined by
+%\[
+%\psi(h) = h'(\bp).
+%\]
+%Note that here $h'(\bp)$ is interpreted in the usual differential-geometric sense, rather than as a metric derivative as in Subsection \ref{subsectionderivative}, which we will denote by $|h'(\bp)|$ instead.
+%
+%It is natural to try to relate the differential-geometric derivative with the metric derivative. Specifically, one would like to define a group $D\leq \GL(V)$ and a homomorphism $\theta:D\to(0,\infty)$ such that $|h'(\bp)| = \theta(h'(\bp))$ for all $h\in J_\bp$. In the case where the base field of $X$ is $\R$, this can be accomplished by letting $D$ be the set of linear similarities of $V$ and letting $\theta$ be the map which sends a similarity to its dilatation constant. This construction depends on the existence of a quadratic form on $V$ which naturally expresses the local metric structure of $\del X$ at $\bp$. If the base field is not $\R$, then the metric structure of $\del X$ at $\bp$ is too complicated to be described accurately by a single quadratic form. Instead, two quadratic forms are needed: a positive semidefinite quadratic form $g_1$ on $V$, and a positive definite quadratic form $g_2$ on $\Ker(g_1)$. $D$ and $\theta$ can now be defined as follows: $D_0$ is the set of all transformations that preserve both $g_1$ and $g_2$, $A$ is a set of ``scale transformations'', $D = D_0 A$, and $\theta(D_0) = 1$.
+
+
+
+
+
+%If $H\leq J_\bp$ is a parabolic group, then $|h'(\bp)| = 1$ for all $h\in H$. 
+
+
+%Let $H\leq\Isom(X)$ be a parabolic subgroup with fixed point $\bp\in\del X$. Let $J_\bp = \Stab(\Isom(X);\bp)$; then $J_\bp$ is a Lie group containing $H$. 
+
+
+
+
+\begin{corollary}
+\label{corollaryCROSSONCTquasi}
+Let $X$ and $\w X$ be finite-dimensional \CROSSs, let $H\leq\Isom(X)$ and $\w H\leq \Isom(\w X)$ be parabolic groups with fixed points $\bp$ and $\w\bp$, respectively, and let $\Phi:H\to\w H$ be an isomorphism. Then
+\begin{itemize}
+\item[(i)] \eqref{tukia} holds.
+\item[(ii)] If $H$ and $\w H$ are regular, then \eqref{tukia2} holds if and only if $\Phi(Z)$ is commensurable to $\w Z$. Here $Z = Z(H)$ and $\w Z = Z(\w H)$.
+\end{itemize}
+\end{corollary}
+\begin{proof}
+\eqref{tukia} follows immediately from \eqref{CROSSONCTquasi1}. %, since
+%\[
+%0\vee \log\dist_H(e,h) \leq \min_{z\in Z} \big(0\vee 2\log\dist_H(z,h) \vee \log\dist_Z(e,z)\big) \leq 0\vee 2\log\dist_H(e,h).
+%\]
+Suppose that $H$ and $\w H$ are regular and that $\Phi(Z)$ is commensurable to $\w Z$. Since the right hand side of \eqref{CROSSONCTquasi2} depends on both $h$ and $Z$, let us write it as a function $R(h,Z)$. We then have
+\[
+\dogo h \asymp_\plus R(h,Z) = R(\w h, \Phi(Z)) \asymp_\plus R(\w h,\w Z) \asymp_\plus \|\w h\|.
+\]
+On the other hand, suppose that $\Phi(Z)$ and $\w Z$ are not commensurable. Without loss of generality, suppose that the index of $\Phi(Z)\cap \w Z$ in $\Phi(Z)$ is infinite. Since $\Phi(Z)$ is a finitely generated abelian group, it follows that there exists $\w h = \Phi(h)\in \Phi(Z)$ such that $\w h^n\notin \w Z$ for all $n\in\Z\butnot\{0\}$. Without loss of generality, suppose that $\w h\in \w H_2$; otherwise replace $h$ by an appropriate power. Then \eqref{corletteiozzi} implies that
+\[
+\|h^n\| \asymp_{\plus,h} \log(n) \text{ but } \|\w h^n\| \asymp_{\plus,h} 2\log(n).
+\]
+Thus \eqref{tukia2} fails along the sequence $(h_n)_1^\infty$.
+\end{proof}
+
+
+\begin{corollary}
+\label{corollaryrealROSSONCTquasi}
+In the context of Corollary \ref{corollaryCROSSONCTquasi}, if $X$ and $\w X$ are both real \ROSSs, then \eqref{tukia2} holds.
+\end{corollary}
+\begin{proof}
+Since $\Im(\R) = \{0\}$, the group $Z_\bp$ is trivial and thus $Z$ and $\w Z$ are trivial as well; moreover, every discrete parabolic group is regular.
+\end{proof}
+
+
+\begin{corollary}
+\label{corollarylatticequasi}
+In the context of Corollary \ref{corollaryCROSSONCTquasi}, if we assume both that
+\begin{itemize}
+\item[(I)] $H$ is a lattice in $M_\bp N_\bp$, and that
+\item[(II)] the underlying base fields of $X$ and $\w X$ are the same, or at least satisfy $\dim_\R(\F)\geq\dim_\R(\w\F)$,
+\end{itemize}
+then \eqref{tukia2} holds.
+\end{corollary}
+\begin{proof}
+Let $H_2$, $\psi$, $H_3$, and $Z = Z(H)$ be as on page \pageref{lemmaCROSSONCTquasi}. Without loss of generality, we may assume that $H = H_3$ and $\w H = \w H_3$. Then $H$ is a lattice in $N_\bp$ and $\w H\leq \w N_{\w\bp}$.
+
+Since $H$ is a lattice in $N_\bp$, $H$ is Zariski dense in $N_\bp$; this implies that $[H,H]$ is Zariski dense in $Z_\bp = [N_\bp,N_\bp]$. Thus, the rank of $[H,H]$ (and also of $\Phi([H,H]) = [\w H,\w H]$) is equal to $\dim_\R(\Im(\F)) = \dim_\R(\F) - 1$. Thus $\dim_\R(\w\F) - 1 = \rank([H,H]) \leq \dim(Z_\bp) = \dim_\R(\w\F) - 1$. Since by assumption $\dim_\R(\F)\geq\dim_\R(\w\F)$, equality holds. Thus $Z$ is a lattice in $Z_\bp$ and is commensurable to $[H,H]$. Similarly, $\w Z$ is a lattice in $\w Z_{\w\bp}$ and is commensurable to $[\w H,\w H]$. Thus, the groups $H$ and $\w H$ are regular. Finally, $\w Z$ is commensurable to $[\w H,\w H] = \Phi([H,H])$ which is commensurable to $\Phi(Z)$, so Corollary \ref{corollaryCROSSONCTquasi} finishes the proof.
+\end{proof}
+
+\begin{remark}
+If $G\leq\Isom(X)$ is a lattice, then every parabolic subgroup $G_\bp$ satisfies (I).
+\end{remark}
+
+As an application, we generalize a rigidity result due to X. Xie \cite[Theorem 3.1]{Xie}:
+
+\begin{corollary}
+\label{corollaryxie}
+Let $X$, $\w X$ be finite-dimensional \ROSSs\ over the same base field, with $X\neq\H_\R^2$. Let $G\leq\Isom(X)$ be a noncompact lattice, and let $\w G\leq\Isom(\w X)$ be a geometrically finite group, both torsion-free. Let $\Phi:G\to \w G$ be a type-preserving isomorphism. Then $\HD(\Lambda(\w G)) \geq \HD(\Lambda(G)) = \dim(\del X)$. Furthermore, equality holds if and only if $\w G$ stabilizes an isometric copy of $X$ in $\w X$.
+\end{corollary}
+\begin{proof}
+Xie has observed that the main result of his paper generalizes to \ROSSs\ once one verifies that Tukia's isomorphism theorem and the Global Measure Formula both generalize to that setting (cf. \cite[p.1]{Xie}). We have just shown that Tukia's isomorphism theorem generalizes (to the present setting at least), and the Global Measure Formula has been shown to generalize by B. Schapira \cite[Th\'eor\`eme 3.2]{Schapira}.
+
+Actually, we should mention a minor change that needs to be made to Xie's proof in the setting of \ROSSs: Since the Hausdorff and topological dimensions of the boundary of a nonreal \ROSS\ are not equal, \commariusz{Quite often both are equal to infinity. Does it cause a problem?} \comdavid{In the setting of this corollary, everything is finite-dimensional.} at the top of \cite[p.252]{Xie} one should use Pansu's lemma \cite[Proposition 6.5]{Pansu1}, \cite[Lemma 2.3(a)]{Xie} to deduce the lower bound on the Hausdorff dimension of $\Lambda(G_2)$ (i.e. \cite[p.252, line 4]{Xie}) rather than using Szpilrajn's inequality between Hausdorff and topological dimensions (cf. \cite[p.252, lines 2-3]{Xie}).
+\end{proof}
+
+Note that in Xie's proof, quasisymmetry is used in an essential way due to his use of Pansu's lemma \cite[Corollary 7.2]{Pansu1}, \cite[Lemma 2.3]{Xie}. Thus, the fact that the stronger asymptotic \eqref{tukia2} holds in the context of Corollary \ref{corollarylatticequasi} is essential to the proof of Corollary \ref{corollaryxie}. It remains to be answered whether Corollary \ref{corollaryxie} holds if we drop the assumption of identical base fields.
+
+We end this section by giving an example of groups for which \eqref{tukia2} fails.
+
+\begin{example}
+\label{exampletukia}
+Let $\H = \H_\C^3$, let $\bp = [(1,1,\0)]$, and define a homomorphism $\theta:\R^3\to N_\bp$ by $\theta(x,y,z) = n(xi ,(y,z))$, where $i = \sqrt{-1}$. Consider the parabolic groups $H,H',H''\leq N_\bp$ defined by
+\begin{align*}
+H &= \theta(\Z\times\Z\times\{0\})\\
+H' &= \theta(\Lambda\times\{0\})\\
+H'' &= \theta(\{0\}\times\Z\times\Z).
+\end{align*}
+In the middle equation, $\Lambda$ denotes a lattice in $\R^2$ which does not intersect the axes. Then the groups $H,H',H''$ are all isomorphic, but we will show below that \eqref{tukia2} cannot hold for any isomorphisms between them. This is accounted for in Corollary \ref{corollaryCROSSONCTquasi} as follows: The group $H'$ is irregular, so Corollary \ref{corollaryCROSSONCTquasi} does not apply; The groups $Z(H)$ and $Z(H'')$ are not almost isomorphic (the former is isomorphic to $\Z$ while the latter is isomorphic to $\{0\}$), so Corollary \ref{corollaryCROSSONCTquasi} does not apply.% The fact that \eqref{tukia2} does not hold for the isomorphisms between $H$, $H'$, and $H''$ is consistent with Corollary \ref{corollaryCROSSONCTquasi} for the following reasons:
+\end{example}
+\begin{proof}
+Note that the function $\dogo\cdot$ is described on $\theta(\R^3)$ by
+\[
+\dogo{\theta(x,y,z)} \asymp_\plus 0\vee \log|x|\vee 2\log(|y|\vee|z|)
+\]
+(cf. \eqref{corletteiozzi}). Now let $h_1 = \theta((1,0,0)) \in H$, $h_2 = \theta((0,1,0))\in H$. Then
+\[
+\|h_i^n\| \asymp_\plus i \log(n);
+\]
+but if $\Phi$ is an isomorphism from $H$ to either $H'$ or $H''$, then
+\[
+\|\Phi(h_i)^n\| \asymp_\plus 2 \log(n).
+\]
+This demonstrates the failure of \eqref{tukia2}, as setting $h = h_1^n$ gives $\alpha_\bp = 2$ while setting $h = h_2^n$ gives $\alpha_\bp = 1$.
+
+Next, let $\dist_{H'}$ and $\dist_{H''}$ be Cayley metrics on $H'$ and $H''$, respectively. Then for all $R\geq 1$,
+\[
+\sup_{\dist_{H'}(e,h') \leq R} \|h'\| \asymp_\plus 2\log(R) > \log(R) \asymp_\plus \inf_{\dist_{H'}(e,h') > R} \|h'\|.
+\]
+but
+\[
+\sup_{\dist_{H''}(e,h'') \leq R} \|h''\| \asymp_\plus \inf_{\dist_{H''}(e,h'') > R} \|h''\| \asymp_\plus 2\log(R)
+\]
+This demonstrates the failure of \eqref{tukia2} for any isomorphism between $H'$ and $H''$, as taking the supremum over a ball in the Cayley metric gives $\alpha_\bp = 1$, while taking the infimum over the complement of a ball in the Cayley metric gives $\alpha_\bp = 2$.
+%; it follows that
+%\[
+%\zeta(x,y,z) := \lim_{n\to\infty} \frac{1}{\log(n)}\|\theta(x,y,z)\| = \begin{cases}
+%1 & y = z = 0\\
+%2 & \text{otherwise}
+%\end{cases}.
+%\]
+%In particular, there exists $h_1,h_2\in H$ such that $\theta(h_i) = i$ (namely $h_1 = (1,0,0)$, $h_2 = (0,1,0)$). 
+%
+%
+%then
+%\begin{align*}
+%\frac{\sup_H \zeta}{\inf_H \zeta} &= 2 > 1 = \frac{\sup_{H'}\zeta}{\inf_{H'}\zeta} = \frac{\sup_{H''}\zeta}{\inf_{H''}\zeta}\\
+%\frac{\sup_{\R H} \zeta}{\inf_{\R H} \zeta} = \frac{\sup_{\R H''}\zeta}{\inf_{\R H''}\zeta} &= 2 > 1 = \frac{\sup_{\R H'}\zeta}{\inf_{\R H'}\zeta}\cdot
+%\end{align*}
+%But the quantities $\sup_\Lambda\zeta/\inf_\Lambda\zeta$ and $\sup_{\R\Lambda}\zeta/\inf_{\R\Lambda}\zeta$ are preserved under isomorphisms of lattices which satisfy \eqref{tukia2}.
+\end{proof}
+
+
+%\begin{proposition}
+%With notation as in Theorem \ref{theoremtukia}, 
+%
+%\end{proposition}
+
+%\begin{remark}
+%The above proof actually shows more; namely, it shows that the equivariant boundary extensions of the isomorphisms between $H$, $H'$, and $H''$ are not quasisymmetric. Indeed, if $\phi:\Lambda\to\w\Lambda$ is a quasisymmetric equivariant boundary extension of an isomorphism $\Phi:H\to \w H$, then there exists an increasing homeomorphism $f:(0,\infty)\to(0,\infty)$ such that
+%
+%\end{remark}
+
+
+\begin{remark}
+\label{remarktukia}
+The above proof actually shows more; namely, it shows that if $\Phi:G\to \w G$ is a type-preserving isomorphism so that for some $\bp\in\Lbp$, $G_\bp$ and $\w G_{\w\bp}$ are distinct elements of $\{H,H',H''\}$, then the equivariant boundary extension of $\Phi$ is not quasisymmetric.
+\end{remark}
+\begin{proof}
+By contradiction suppose that the equivariant boundary extension $\phi:\Lambda\to\w\Lambda$ is quasisymmetric. Fix $\zeta\in \Lambda\butnot\{\bp\}$, and let $\w\zeta = \phi(\zeta)$. Then by equivariance, for each $h\in G_\bp$ we have
+\[
+\phi(h(\zeta)) = \w h(\w\zeta).
+\]
+Let $f:(0,\infty)\to(0,\infty)$ be as in Definition \ref{definitionquasisymmetric}, so that for all $\xi,\eta_1,\eta_2\in \Lambda$,
+\[
+\frac{\w\Dist(\w\xi,\w\eta_2)}{\w\Dist(\w\xi,\w\eta_1)} \leq f\left(\frac{\Dist(\xi,\eta_2)}{\Dist(\xi,\eta_1)}\right).
+\]
+Letting $\xi = \bp$ and $\eta_i = h_i(\zeta)$ gives
+\[
+\frac{\w\Dist(\w\bp,\w h_2(\w\zeta))}{\w\Dist(\w\bp,\w h_1(\w\zeta))} \leq f\left(\frac{\Dist(\bp,h_2(\zeta))}{\Dist(\bp,h_1(\zeta))}\right).
+\]
+But $\Dist(\bp,h_i(\zeta)) \asymp_{\times,\zeta} \Dist(\bp,h_i(\zero)) = e^{(1/2)\dogo{h_i}}$; thus
+\[
+\exp\left(\frac12 \left[\|\w h_2\| - \|\w h_1\|\right]\right) \leq f_2\exp\left(\frac12 \Big[\dogo{h_2} - \dogo{h_1}\Big]\right),
+\]
+where $f_2(t) = Cf(Ct)$ for some constant $C > 0$. Letting $f_3(t) = 2\log f_2(e^{(1/2)t})$ gives
+\[
+\|\w h_2\| - \|\w h_1\| \leq f_3(\dogo{h_2} - \dogo{h_1}).
+\]
+But this is readily seen to contradict the proof of Example \ref{exampletukia}.
+\end{proof}
+
+
+}% end ignore

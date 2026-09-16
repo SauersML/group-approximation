@@ -1,0 +1,16 @@
+H1(P) free rank, torsion: (0, [4, 4])
+H1(honest double K *_T K_) free rank, torsion: (1, [2, 2])
+H1(twisted amalgam) free rank, torsion: (0, [4, 4])
+  gluing relator after substitution reduces to []
+  gluing relator after substitution reduces to []
+  Klein relator after substitution [('u', 1), ('u', 1), ('U', -1), ('U', -1), ('u', -1), ('U', -1), ('U', -1), ('u', -1)] matches a P relator: True
+  Klein relator after substitution [('U', 1), ('U', 1), ('u', -1), ('u', -1), ('U', -1), ('u', -1), ('u', -1), ('U', -1)] matches a P relator: True
+  honest relator [('u', 1), ('u', 1), ('v', -1), ('v', -1)] -> dicosm word [('u', 1), ('u', 1), ('s', -1), ('u', -1), ('s', -1), ('u', -1)] evaluates to ((1, 1, 1), (0, 0, 0))
+  honest relator [('U', 1), ('U', 1), ('V', -1), ('V', -1)] -> dicosm word [('u', 1), ('t', -1), ('u', 1), ('t', -1), ('s', -1), ('t', 1), ('u', -1), ('s', -1), ('t', 1), ('u', -1)] evaluates to ((1, 1, 1), (0, 0, 0))
+  honest relator [('u', 1), ('u', 1), ('U', -1), ('U', -1)] -> dicosm word [('u', 1), ('u', 1), ('t', 1), ('u', -1), ('t', 1), ('u', -1)] evaluates to ((1, 1, 1), (0, 0, 0))
+  honest relator [('u', -1), ('v', 1), ('V', -1), ('U', 1)] -> dicosm word [] evaluates to ((1, 1, 1), (0, 0, 0))
+  dicosm relator u^-1 s u s evaluates to ((1, 1, 1), (0, 0, 0))
+  dicosm relator u^-1 t u t evaluates to ((1, 1, 1), (0, 0, 0))
+  dicosm relator s t s^-1 t^-1 evaluates to ((1, 1, 1), (0, 0, 0))
+H1(Z^2 x|_{-I} Z) free rank, torsion: (1, [2, 2])
+ALLOK

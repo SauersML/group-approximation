@@ -1,0 +1,14 @@
+1. braid relations hold for rho_4: True
+2. rho(sigma_i)^T = D rho(sigma_i) D^-1: True
+3. rho_4((s1 s2)^6) = I at t=-1 and != I: True
+4. b = [A14,[A24,A34]]: length 36 ; forgetting any strand trivial: True ; nontrivial: True
+5. Phi0 = [T2, b]: length 96 ; rho_4(Phi0) != I: True ; rho_4(Phi0)(-1) = I: True
+   Phi0 Brunnian (control via Artin action): True
+   exponent range of rho_4(Phi0) entries: -14 14
+6. hand 1 order 0 : Fox Jacobian at -1 is I: True ; automorphism nontrivial: True
+6. hand 1 order 1 : Fox Jacobian at -1 is I: True ; automorphism nontrivial: True
+6. hand -1 order 0 : Fox Jacobian at -1 is I: True ; automorphism nontrivial: True
+6. hand -1 order 1 : Fox Jacobian at -1 is I: True ; automorphism nontrivial: True
+7. mirror and reversed word also = I at t=-1: True
+ALL CHECKS PASS: True
+Phi0 word: 1 2 1 2 1 2 1 2 1 2 1 2 3 2 1 1 -2 -3 3 2 2 -3 3 3 3 -2 -2 -3 -3 -3 3 2 -1 -1 -2 -3 3 3 3 2 2 -3 -3 -3 3 -2 -2 -3 -2 -1 -2 -1 -2 -1 -2 -1 -2 -1 -2 -1 3 2 2 -3 3 3 3 -2 -2 -3 -3 -3 3 2 1 1 -2 -3 3 3 3 2 2 -3 -3 -3 3 -2 -2 -3 3 2 -1 -1 -2 -3

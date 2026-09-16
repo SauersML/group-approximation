@@ -1,0 +1,1768 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Patterson--Sullivan theory}
+%%\section{Patterson--Sullivan theory}
+%\label{partahlforsthurston}
+%This part will be divided as follows: In Section \ref{sectionconformal} we recall the definition of quasiconformal measures, and we prove basic existence and non-existence results. In Section \ref{sectionahlforsthurston}, we prove Theorem \ref{theoremahlforsthurstongeneral} (Patterson--Sullivan theorem for groups of divergence type). In Section \ref{sectionGFmeasures}, we investigate the geometry of quasiconformal measures of geometrically finite groups, and we prove a generalization of the Global Measure Formula (Theorem \ref{theoremglobalmeasure}) as well as giving various necessary and/or sufficient conditions for the Patterson--Sullivan measure of a geometrically finite group to be doubling (\6\ref{subsectiondoubling}) or exact dimensional (\6\ref{subsectionexactdimensional}).
+%
+%Throughout the entire part, we fix $(X,\dist,\zero,b)$ as in \6\ref{standingassumptions2}, and a \emph{group} $G\leq\Isom(X)$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Quasiconformal measures of geometrically finite groups}
+\label{sectionGFmeasures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we investigate the $\delta$-quasiconformal measure or measures associated to a geometrically finite group. Note that since geometrically finite groups are of compact type (Theorem \ref{theoremGFcompact}), Theorem \ref{theorempattersonsullivangeneral} guarantees the existence of a $\delta$-quasiconformal measure $\mu$ on $\Lambda$. However, this measure is not necessarily unique (Corollary \ref{corollaryuniquenesscharacterization}); a sufficient condition for uniqueness is that $G$ is of divergence type (Theorem \ref{theoremahlforsthurstongeneral}). In Section \ref{subsectiondivergencetype}, we generalize a theorem of Dal'bo, Otal, and Peigne \cite[Th\'eor\`eme A]{DOP} which shows that ``most'' geometrically finite groups are of divergence type. In Sections \ref{subsectionglobalmeasure}-\ref{subsectionexactdimensional} we investigate the geometry of $\delta$-conformal measures; specifically, in Sections \ref{subsectionglobalmeasure}-\ref{subsectionglobalmeasureproof} we prove a generalization of the Global Measure Formula (Theorem \ref{theoremglobalmeasure}), in Sections \ref{subsectiondoubling} and \ref{subsectionexactdimensional} we investigate the questions of when the $\delta$-conformal measure of a geometrically finite group is doubling and exact dimensional, respectively.
+
+\begin{standingassumptions}
+\label{standingassumptionsGFmeasures}
+In this chapter, we assume that
+\begin{itemize}
+\item[(I)] $X$ is regularly geodesic and strongly hyperbolic,
+\item[(II)] $G\leq\Isom(X)$ is nonelementary and geometrically finite, and $\delta < \infty$.\Footnote{Note that by Corollary \ref{corollaryGF}(ii), we have $\delta < \infty$ if and only if $\delta_\bp < \infty$ for all $\bp\in P$.}
+%\item[(III)] $\mu$ is a $\delta$-conformal measure on $\Lambda$.
+\end{itemize}
+Moreover, we fix a complete set of inequivalent parabolic points $P\subset\Lbp$, and for each $\bp\in P$ we write $\delta_\bp = \delta(G_\bp)$, and let $S_\bp\subset\EE_\bp$ be a $\bp$-bounded set satisfying (A)-(C) of Lemma \ref{lemmaboundedparabolic}. Finally, we choose a number $t_0 > 0$ large enough so that if
+\begin{align*}
+H_\bp &= H_{\bp,t_0} = \{ x\in X : \busemann_\bp(\zero,x) > t_0 \}\\
+\scrH &= \{ g(H_\bp) : \bp\in P, g\in G\},
+\end{align*}
+then the collection $\scrH$ is disjoint (cf. Proof of Theorem \ref{theoremGFcompact}\text{(B3) \implies (A)}).
+\end{standingassumptions}
+
+
+%large number $t_0 > 0$ to be determined later (cf. Proposition \ref{propositionmetadecreasing}), and we let
+%\begin{align*}
+%H_\bp &= H_{\bp,t_0} = \{ x\in X : \busemann_\bp(\zero,x) > t_0 \}\\
+%\scrH &= \{ g(H_\bp) : \bp\in P, g\in G\}.
+%\end{align*}
+%Recall (Proof of Theorem \ref{theoremGFcompact}(B3) \implies (A)) that for $t_0$ large enough, the collection $\scrH$ defined in this way satisfies the requirements of Definition \ref{definitionGF}.
+
+
+\section{Sufficient conditions for divergence type}
+\label{subsectiondivergencetype}
+
+In the Standard Case, all geometrically finite groups are of divergence type \cite[Proposition 2]{Sullivan_entropy}; however, once one moves to the more general setting of pinched Hadamard manifolds, one has examples of geometrically finite groups of convergence type \cite[Th\'eor\`eme C]{DOP}. On the other hand, Proposition \ref{propositiondivtypedichotomy} shows that for every $\delta$-conformal measure $\mu$, $G$ is of divergence type if and only if $\mu(\Lambda\butnot\Lr) = 0$. Now by Theorem \ref{theoremGFcompact}, $\Lambda\butnot\Lr = \Lbp = G(P)$, so the condition $\mu(\Lambda\butnot\Lr) = 0$ is equivalent to the condition $\mu(P) = 0$. To summarize:
+
+\begin{observation}
+\label{observationnonatomic}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is of divergence type.
+\item[(B)] There exists a $\delta$-conformal measure $\mu$ on $\Lambda$ satisfying $\mu(P) = 0$.
+\item[(C)] Every $\delta$-conformal measure $\mu$ on $\Lambda$ satisfies $\mu(P) = 0$.
+\item[(D)] There exists a unique $\delta$-conformal measure $\mu$ on $\Lambda$, and it satisfies $\mu(P) = 0$.
+\end{itemize}
+In particular, every convex-cobounded group is of divergence type.
+\end{observation}
+
+It is of interest to ask for sufficient conditions which are not phrased in terms of measures. We have the following:
+
+\begin{theorem}[Cf. {\cite[Proposition 2]{Sullivan_entropy}}, {\cite[Th\'eor\`eme A]{DOP}}]
+\label{theoremGFdivergencetype}
+If $\delta > \delta_\bp$ for all $\bp\in P$, then $G$ is of divergence type.
+\end{theorem}
+\begin{proof}
+We will demonstrate (B) of Observation \ref{observationnonatomic}. Let $\mu$ be the measure constructed in the proof of Theorem \ref{theorempattersonsullivangeneral}, fix $\bp\in P$, and we will show that $\mu(\bp) = 0$. In what follows, we use the same notation as in the proof of Theorem \ref{theorempattersonsullivangeneral}. Since $G$ is strongly discrete, we can let $\rho$ be small enough so that $S_\rho = G(\zero)$. For any neighborhood $U$ of $\bp$, we have
+\begin{equation}
+\label{pattersonsullivanbound}
+\mu(\bp) \leq \liminf_{s\searrow\delta} \mu_s(U)
+= \liminf_{s\searrow\delta} \frac{1}{\Sigma_{s,k}} \sum_{x\in G(\zero)\cap U} k(x) e^{-s\dox x}.
+\end{equation}
+
+\begin{lemma}
+\label{lemmaSbpasymp}
+\[
+\lb h(\zero) | x\rb_\zero \asymp_\plus 0 \all x\in S_\bp.
+\]
+\end{lemma}
+\begin{subproof}
+Since $S_\bp$ is $\bp$-bounded, Gromov's inequality implies that
+\[
+\lb h(\zero) | x\rb_\zero \wedge \lb h(\zero)|\bp\rb_\zero \asymp_\plus 0
+\]
+for all $h\in G_\bp$ and $x\in S_\bp$. Denote the implied constant by $\sigma$. For all $h\in G_\bp$ such that $\lb h(\zero)|\bp\rb_\zero > \sigma$, we have $\lb h(\zero) | x\rb_\zero \leq \sigma \all x\in S_\bp$. Since this applies to all but finitely many $h\in G_\bp$, (c) of Proposition \ref{propositionbasicidentities} completes the proof.
+\end{subproof}
+
+Let $T$ be a transversal of $G_\bp\backslash G$ such that $T(\zero) \subset S_\bp$. Then by Lemma \ref{lemmaSbpasymp},
+\[
+\dox{h(x)} \asymp_\plus \dogo h + \dox x \all h\in G_\bp \all x\in T(\zero).
+\]
+Thus for all $s > \delta$ and $V\subset X$,
+\begin{equation}
+\label{SigmaVasymp}
+\begin{split}
+\sum_{x\in G(\zero)\cap U} k(x) e^{-s\dox x}
+&=_\pt \sum_{h\in G_\bp} \sum_{x\in hT(\zero)\cap U} k(e^{\dox x}) e^{-s\dox x}\\
+&\asymp_\times \sum_{h\in G_\bp} \sum_{x\in T(\zero)\cap h^{-1}(U)} k(e^{\dogo h + \dox x}) e^{-s[\dogo h + \dox x]}.
+\end{split}
+\end{equation}
+Now fix $0 < \epsilon < \delta - \delta_\bp$, and note that by \eqref{patterson},
+\[
+k(R) \leq k(\lambda R) \lesssim_{\times,\epsilon} \lambda^\epsilon k(R) \all \lambda > 1 \all R \geq 1.
+\]
+Thus setting $V = U$ in \eqref{SigmaVasymp} gives
+\[
+\sum_{x\in G(\zero)\cap U} k(x) e^{-s\dox x} \lesssim_{\times,\epsilon}  \sum_{\substack{h\in G_\bp \\ h(S_\bp)\cap U\neq\smallemptyset}} e^{-(s - \epsilon)\dogo h} \sum_{x\in T(\zero)} k(x)e^{-s\dox x},
+\]
+while setting $V = X$ gives
+\begin{align*}
+\Sigma_{s,k} = \sum_{x\in G(\zero)} k(x) e^{-s\dox x} \gtrsim_\times \sum_{h\in G_\bp} e^{-s\dogo h} \sum_{x\in T(\zero)} k(x)e^{-s\dox x}.
+\end{align*}
+Dividing these inequalities and combining with \eqref{pattersonsullivanbound} gives
+\[
+\mu(\bp)
+\lesssim_{\times,\epsilon} \liminf_{s\searrow\delta} \frac{1}{\Sigma_s(G_\bp)} \sum_{\substack{h\in G_\bp \\ h(S_\bp)\cap U \neq\smallemptyset}} e^{-(s - \epsilon)\dogo h}
+= \frac{1}{\Sigma_\delta(G_\bp)} \sum_{\substack{h\in G_\bp \\ h(S_\bp)\cap U \neq\smallemptyset}} e^{-(\delta - \epsilon)\dogo h} ~.
+\]
+Note that the right hand series converges since $\delta - \epsilon > \delta_\bp$ by construction. As the neighborhood $U$ shrinks, the series converges to zero. This completes the proof.
+\end{proof}
+
+Combining Theorem \ref{theoremGFdivergencetype} with Proposition \ref{propositiondeltagtrdeltap} gives the following immediate corollary:
+
+\begin{corollary}
+If for all $\bp\in P$, $G_\bp$ is of divergence type, then $G$ is of divergence type.
+\end{corollary}
+Thus in some sense divergence type can be ``checked locally'' just like the properties of finite generation and finite Poincar\'e exponent (cf. Corollary \ref{corollaryGF}).
+\begin{corollary}
+Every convex-cobounded group is of divergence type.
+\end{corollary}
+
+\begin{remark}
+It is somewhat awkward that it seems to be difficult or impossible to prove Theorem \ref{theoremGFdivergencetype} via any of the equivalent conditions of Observation \ref{observationnonatomic} other than (B). Specifically, the fact that the above argument works for the measure constructed in Theorem \ref{theorempattersonsullivangeneral} (the ``Patterson--Sullivan measure'') but not for other $\delta$-conformal measures seems rather asymmetric. However, after some thought one realizes that it would be impossible for a proof along similar lines to work for every $\delta$-conformal measure. This is because the above proof shows that the Patterson--Sullivan measure $\mu$ satisfies
+\begin{equation}
+\label{pattersonsullivanproperty}
+\text{$\mu(\bp) = 0$ for all $\bp\in P$ satisfying $\delta > \delta_\bp$},
+\end{equation}
+but there are geometrically finite groups for which \eqref{pattersonsullivanproperty} does not hold for all $\delta$-conformal measures $\mu$. Specifically, one may construct geometrically finite groups of convergence type (cf. \cite[Th\'eor\`eme C]{DOP}) such that $\delta_\bp < \delta$ for some $\bp\in P$; the following proposition shows that there exists a $\delta$-conformal measure for which \eqref{pattersonsullivanproperty} fails:
+\end{remark}
+
+\begin{proposition}
+\label{propositionGFconvergencetype}
+If $G$ is of convergence type, then for each $\bp\in P$ there exists a $\delta$-conformal measure supported on $G(\bp)$.
+\end{proposition}
+\begin{proof}
+Let
+\[
+\mu = \sum_{g(\bp)\in G(\bp)} [g'(\bp)]^\delta \delta_{g(\bp)};
+\]
+clearly $\mu$ is a $\delta$-conformal measure, but we may have $\mu(\del X) = \infty$. To prove that this is not the case, as before we let $T$ be a transversal of $G_\bp\backslash G$ such that $T(\zero)\subset S_\bp$. Then
+\[
+\mu(\del X) = \sum_{g(\bp)\in G(\bp)} [g'(\bp)]^\delta = \sum_{g\in T^{-1}} [g'(\bp)]^\delta \asymp_\times \sum_{g\in T^{-1}} e^{-\delta\dogo g} \leq \Sigma_\delta(G) < \infty.
+\]
+\end{proof}
+Proposition \ref{propositionGFconvergencetype} yields the following characterization of when there exists a unique $\delta$-conformal measure:
+\begin{corollary}
+\label{corollaryuniquenesscharacterization}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] There exists a unique $\delta$-conformal measure on $\Lambda$.
+\item[(B)] Either $G$ is of divergence type, or $\#(P) = 1$.
+\end{itemize}
+\end{corollary}
+
+\section{The global measure formula}
+\label{subsectionglobalmeasure}
+In this section and the next, we fix a $\delta$-quasiconformal measure $\mu$, and ask the following geometrical question: Given $\eta\in\Lambda$ and $r > 0$, can we estimate $\mu(B(\eta,r))$? If $G$ is convex-cobounded, then we can show that $\mu$ is Ahlfors $\delta$-regular (Corollary \ref{corollaryCCBregular}), but in general the measure $\mu(B(\eta,r))$ will depend on the point $\eta$, in a manner described by the \emph{global measure formula}. To describe the global measure formula, we need to introduce some notation:
+
+\begin{notation}
+\label{notationmetat}
+Given $\xi = g(\bp)\in\Lbp$, let $t_\xi > 0$ be the unique number such that
+\[
+H_\xi = H_{\xi,t_\xi} = g(H_\bp) = g(H_{\bp,t_0}),
+\]
+i.e. $t_\xi = t_0 + \busemann_\xi(\zero,g(\zero))$. (Note that $t_\bp = t_0$ for all $\bp\in P$.) Fix $\theta > 0$ large to be determined below (cf. Proposition \ref{propositionmetadecreasing}). For each $\eta\in\Lambda$ and $t > 0$, let $\eta_t = \geo\zero\eta_t$, and write
+\begin{equation}
+\label{metat}
+m(\eta,t) = \begin{cases}
+e^{-\delta t} & \eta_t\notin\bigcup(\scrH) \\
+e^{-\delta t_\xi} [\II_\bp(e^{t - t_\xi - \theta}) + \mu(\bp)] & \eta_t\in H_\xi \text{ and }t \leq \lb \xi|\eta\rb_\zero\\
+e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t - t_\xi - \theta}) & \eta_t\in H_\xi \text{ and } t > \lb \xi|\eta\rb_\zero
+\end{cases}
+\end{equation}
+(cf. Figure \ref{figuremetat}.) Here we use the notation
+\begin{align*}
+\II_\bp(R) &= \sum_{\substack{h\in G_\bp \\ \|h\|_\bp \geq R}} \|h\|_\bp^{-2\delta}\\
+\NN_\bp(R) &= \NN_{\EE_\bp,G_\bp}(R) = \#\{h\in G_\bp : \|h\|_\bp \leq R\}
+\end{align*}
+where
+\[
+\|h\|_\bp = \Dist_\bp(\zero,h(\zero)) = e^{(1/2)\dogo h}
+\all h\in G_\bp.
+\]
+\end{notation}
+
+
+
+\begin{figure}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.45]
+\clip(-0.8063966880341881,-10.0638437660102) rectangle (14.110082748891738,6.841499595839061);
+\draw (0.0,4.0)-- (1.0,4.0);
+\draw (2.0,5.0)-- (3.0,4.0);
+\draw (2.0,5.0)-- (1.0,4.0);
+\draw (3.0,4.0)-- (5.0,4.0);
+\draw (7.0,6.0)-- (5.0,4.0);
+\draw (7.0,6.0)-- (9.0,4.0);
+\draw (9.0,4.0)-- (12.0,4.0);
+\draw (0.0,3.0)-- (1.0,2.0);
+\draw [dash pattern=on 4pt off 4pt] (1.0,2.0)-- (2.0,1.0);
+\draw [dash pattern=on 4pt off 4pt] (2.0,1.0)-- (3.0,0.0);
+\draw (3.0,0.0)-- (5.0,-2.0);
+\draw [dash pattern=on 4pt off 4pt] (5.0,-2.0)-- (9.0,-6.0);
+\draw (9.0,-6.0)-- (12.0,-9.0);
+\draw (1.0,2.0)-- (2.009795868802983,1.4948904390904918);
+\draw (2.009795868802983,1.4948904390904918)-- (3.0,0.0);
+\draw (5.0,-2.0)-- (7.006776519282634,-4.79037428534092);
+\draw (7.006776519282634,-4.79037428534092)-- (9.0,-6.0);
+\draw (10.285344431731245,5.388099035318084) node[anchor=north west] {$b(\eta,t)$};
+\draw (10.0,-6.0) node[anchor=north west] {$\log m(\eta,t)$};
+\end{tikzpicture}
+\caption[Cusp excursion and ball measure functions]{A possible (approximate) graph of the functions $t\mapsto b(\eta,t)$ and $t\mapsto \log m(\eta,t)$ (cf. \eqref{metat} and \eqref{betat}). The graph indicates that there are at least two inequivalent parabolic points $\bp_1,\bp_2\in P$, which satisfy $\NN_{\bp_i}(R) \asymp_\times R^{2\delta} \II_{\bp_i}(R) \asymp_\times R^{k_i}$ for some $k_1 < 2\delta < k_2$. The dotted line in the second graph is just the line $y = -\delta t$.\newline
+Note the relation between the two graphs, which may be either direct or inverted depending on the functions $\NN_\bp$. Specifically, the relation is direct for the first cusp but inverted for the second cusp.}
+%The function $t\mapsto b(\eta,t)$ is piecewise linear, and its derivative takes values in $\{0,1,-1\}$. Intuitively, it tells you the ``distance penetrated into the cusp'' (cf. Observation \ref{observationbetatinterpretation}); when it is increasing, you are moving closer to the cusp, and when it is decreasing, you are moving farther away.\newline
+%The function $t\mapsto m(\eta,t)$ can behave somewhat erratically, but it is always (approximately) decreasing (Proposition \ref{propositionmetadecreasing}).
+\label{figuremetat}
+\end{figure}
+
+
+\begin{theorem}[Global measure formula; cf. {\cite[Theorem 2]{StratmannVelani}} and {\cite[Th\'eor\`eme 3.2]{Schapira}}]
+\label{theoremglobalmeasure}
+For all $\eta\in\Lambda$ and $t > 0$,
+\begin{equation}
+\label{globalmeasureformula}
+m(\eta,t + \sigma) \lesssim_\times \mu(B(\eta,e^{-t})) \lesssim_\times m(\eta,t - \sigma),
+\end{equation}
+where $\sigma > 0$ is independent of $\eta$ and $t$ (but may depend on $\theta$).
+\end{theorem}
+
+\begin{corollary}
+\label{corollaryCCBregular}
+If $G$ is convex-cobounded, then
+\begin{equation}
+\label{ahlforsregular}
+\mu(B(\eta,r)) \asymp_\times r^\delta \all \eta\in\Lambda \all 0 < r \leq 1,
+\end{equation}
+i.e. $\mu$ is Ahlfors $\delta$-regular.
+\end{corollary}
+\begin{proof}
+If $G$ is convex-cobounded then $\scrH = \emptyset$, so $m(\eta,t) = e^{-\delta t}\all\eta,t$, and thus \eqref{globalmeasureformula} reduces to \eqref{ahlforsregular}.
+\end{proof}
+
+\begin{remark}
+Corollary \ref{corollaryCCBregular} can be deduced directly from Lemma \ref{lemmaCCBglobalmeasure} below.
+\end{remark}
+
+We will prove Theorem \ref{theoremglobalmeasure} in the next section. For now, we investigate more closely the function $t\mapsto m(\eta,t)$ defined by \eqref{metat}. The main result of this section is the following proposition, which will be used in the proof of Theorem \ref{theoremglobalmeasure}:
+
+\begin{proposition}
+\label{propositionmetadecreasing}
+If $\theta$ is chosen sufficiently large, then for all $\eta\in\Lambda$ and $0 < t_1 < t_2$,
+\begin{equation}
+\label{metadecreasing}
+m(\eta,t_2) \lesssim_{\times,\theta} m(\eta,t_1).
+\end{equation}
+\end{proposition}
+
+The proof of Proposition \ref{propositionmetadecreasing} itself requires several lemmas.
+
+\begin{lemma}
+\label{lemmabetatinterpretation}
+Fix $\xi,\eta\in \del X$ and $t > 0$, and let $x = \eta_t$. Then
+\begin{equation}
+\label{betatinterpretation}
+\busemann_\xi(\zero,x) \asymp_\plus t \wedge (2\lb\xi|\eta\rb_\zero - t).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Since $\lb \zero|\eta\rb_x = 0$, Gromov's inequality gives $\lb \zero|\xi\rb_x \wedge \lb \xi|\eta\rb_x \asymp_\plus 0$.
+
+\begin{itemize}
+\item[Case 1:] $\lb \zero|\xi\rb_x \asymp_\plus \zero$. In this case, by (h) of Proposition \ref{propositionbasicidentities},
+\[
+\busemann_\xi(\zero,x) = - \busemann_\xi(x,\zero) = -[2\lb \zero|\xi\rb_x - \dox x] \asymp_\plus \dox x = t,
+\]
+while (g) of Proposition \ref{propositionbasicidentities} gives
+\[
+\lb \xi|\eta\rb_\zero = \lb \xi|\eta\rb_x + \frac12[\busemann_\xi(\zero,x) + \busemann_\eta(\zero,x)] \gtrsim_\plus \frac12[t + t] = t;
+\]
+thus $\busemann_\xi(\zero,x) \asymp_\plus t \asymp_\plus t\wedge(2\lb \xi|\eta\rb_\zero - t)$.
+\item[Case 2:] $\lb \xi|\eta\rb_x \asymp_\plus \zero$. In this case, (g) of Proposition \ref{propositionbasicidentities} gives
+\[
+\lb \xi|\eta\rb_\zero \asymp_\plus \frac12[\busemann_\xi(\zero,x) + \busemann_\eta(\zero,x)] = \frac12[\busemann_\xi(\zero,x) + t] \lesssim_\plus \frac12[t + t] = t;
+\]
+thus $\busemann_\xi(\zero,x) \asymp_\plus 2\lb \xi|\eta\rb_\zero - t \asymp_\plus t\wedge(2\lb \xi|\eta\rb_\zero - t)$.
+\end{itemize}
+\end{proof}
+
+\begin{corollary}
+\label{corollarybetat}
+The function
+\begin{equation}
+\label{betat}
+b(\eta,t) = \begin{cases}
+0 & \eta_t\notin\bigcup(\scrH) \\
+t\wedge(2\lb \xi|\eta\rb_\zero - t) - t_\xi & \eta_t\in H_\xi
+\end{cases}
+\end{equation}
+satisfies
+\begin{equation}
+\label{betatdoubling}
+b(\eta,t + \tau) \asymp_{\plus,\tau} b(\eta,t - \tau).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Indeed, by Lemma \ref{lemmabetatinterpretation},
+\begin{align*}
+b(\eta,t) &\asymp_\plus \begin{cases}
+0 & \eta_t\notin\bigcup(\scrH) \\
+\busemann_\xi(\zero,\eta_t) - t_\xi & \eta_t\in H_\xi
+\end{cases}\\
+&=_\pt 0\vee \max_{\xi\in\Lbp} (\busemann_\xi(\zero,\eta_t) - t_\xi).
+\end{align*}
+The right hand side is $1$-Lipschitz continuous with respect to $t$, which demonstrates \eqref{betatdoubling}.
+\end{proof}
+
+
+
+\begin{lemma}
+\label{lemmatop}
+For all $\xi\in G(\bp) \subset \Lbp$, $\bp\in P$, there exists $g\in G$ such that
+\begin{equation}
+\label{top}
+\text{$\xi = g(\bp)$, $\dogo g \asymp_\plus t_\xi$, and $\{\eta\in\del X  : \geo\zero\eta\cap H_\xi\neq\emptyset \} \subset \Shad(g(\zero),\sigma)$,}
+\end{equation}
+where $\sigma > 0$ is independent of $\xi$.
+\end{lemma}
+\begin{proof}
+Write $\xi = g(\bp)$ for some $g\in G$. Since $x := \xi_{t_\xi} \in \del H_\xi$, Lemma \ref{lemmaboundedparabolic}(D) shows that
+\[
+\dist(g^{-1}(x),h(\zero)) \asymp_\plus 0
+\]
+for some $h\in G_\bp$. We claim that $gh$ is the desired isometry. Clearly $\dogo{gh} \asymp_\plus \dox x = t_\xi$. Fix $\eta\in\del X$ such that $\geo\zero\eta\cap H_\xi\neq\emptyset$, say $\eta_t\in H_\xi$. By Lemma \ref{lemmabetatinterpretation}, we have
+\[
+\dox x = t_\xi < \busemann_\xi(\zero,\eta_t) \asymp_\plus t\wedge(2\lb \xi|\eta\rb_\zero - t) \leq \lb \xi|\eta\rb_\zero \leq \lb x|\eta\rb_\zero,
+\]
+i.e. $\eta\in \Shad(x,\sigma) \subset \Shad(g(\zero),\sigma + \tau)$ for some $\sigma,\tau > 0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{propositionmetadecreasing}]
+Fix $\eta\in\Lambda$ and $0 < t_1 < t_2$.
+\begin{itemize}
+\item[Case 1:] $\eta_{t_1},\eta_{t_2}\in H_\xi$ for some $\xi = g(\bp) \in \Lbp$, $g$ satisfying \eqref{top}. In this case, \eqref{metadecreasing} follows immediately from \eqref{metat} unless $t_1 \leq \lb \xi|\eta\rb_\zero < t_2$. If the latter holds, then
+\begin{align*}
+m(\eta,t_1) &\geq \lim_{t\nearrow\lb \xi|\eta\rb_\zero}m(\eta,t) = e^{-\delta t_\xi} [\II_\bp(e^{\lb \xi|\eta\rb_\zero - t_\xi - \theta}) + \mu(\bp)]\\
+m(\eta,t_2) &\leq \lim_{t\searrow\lb \xi|\eta\rb_\zero}m(\eta,t) = e^{-\delta(2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{\lb \xi|\eta\rb_\zero - t_\xi - \theta}).
+\end{align*}
+Consequently, to demonstrate \eqref{metadecreasing} it suffices to show that
+\begin{equation}
+\label{ETSmetadecreasing}
+\NN_\bp(e^t) \lesssim_{\times,\theta} e^{2\delta t}\II_\bp(e^t),
+\end{equation}
+where $t := \lb \xi|\eta\rb_\zero - t_\xi - \theta > 0$.
+
+To demonstrate \eqref{ETSmetadecreasing}, let $\zeta = g^{-1}(\eta)\in\Lambda$. We have
+\[
+\lb \bp|\zeta\rb_\zero = \lb \xi|\eta\rb_{g(\zero)} \asymp_\plus \lb \xi|\eta\rb_\zero - \dogo g \asymp_\plus \lb \xi|\eta\rb_\zero - t_\xi = t + \theta
+\]
+and thus
+\[
+\Dist_\bp(\zero,\zeta) \asymp_\times e^{t + \theta}.
+\]
+Since $\bp$ is a bounded parabolic point, there exists $h_\zeta\in G_\bp$ such that $\Dist_\bp(h_\zeta(\zero),\zeta) \lesssim_\times 1$. Denoting all implied constants by $C$, we have
+\begin{align*}
+C^{-1} e^{t + \theta} - C \leq \Dist_\bp(\zero,\zeta) - \Dist_\bp(h_\zeta(\zero),\zeta) 
+&\leq \|h_\zeta\|_\bp\\ 
+&\leq \Dist_\bp(\zero,\zeta) + \Dist_\bp(h_\zeta(\zero),\zeta) \leq C e^{t + \theta} + C.
+\end{align*}
+Choosing $\theta \geq \log(4C)$, we have
+\[
+2 e^t \leq \|h_\zeta\|_\bp \leq 2C e^{t + \theta} \text{ unless $e^{t + \theta} \leq 2C^2$}.
+\]
+If $2 e^t \leq \|h_\zeta\|_\bp \leq 2C e^{t + \theta}$, then for all $h\in G_\bp$ satisfying $\|h\|_\bp\leq e^t$ we have $e^t \leq \|h_\zeta h\|_\bp \lesssim_{\times,\theta} e^t$; it follows that
+\[
+\II_\bp(e^t) \geq \sum_{h\in G_\bp} \|h_\zeta h\|_\bp^{-2\delta} \asymp_{\times,\theta} e^{-2\delta t} \NN_\bp(e^t),
+\]
+thus demonstrating \eqref{ETSmetadecreasing}. On the other hand, if $e^{t + \theta} \leq 2C^2$, then both sides of \eqref{ETSmetadecreasing} are bounded from above and below independent of $t$.
+\item[Case 2:] No such $\xi$ exists. In this case, for each $i$ write $\eta_i\in H_{\xi_i}$ for some $\xi_i = g_i(\bp_i)\in\Lbp$ if such a $\xi_i$ exists. If $\xi_1$ exists, let $s_1 > t_1$ be the smallest number such that $\eta_{s_1}\in\del H_{\xi_1}$, and if $\xi_2$ exists, let $s_2 < t_2$ be the largest number such that $\eta_{s_2}\in \del H_{\xi_2}$. If $\xi_i$ does not exist, let $s_i = t_i$. Then $t_1 \leq s_1 \leq s_2 \leq t_2$. Since $m(\eta,s_i) = e^{-\delta s_i}$, we have $m(\eta,s_2) \leq m(\eta,s_1)$, so to complete the proof it suffices to show that
+\begin{align*}
+m(\eta,s_1) &\lesssim_{\times,\theta} m(\eta,t_1) \text{ and}\\
+m(\eta,s_2) &\gtrsim_{\times,\theta} m(\eta,t_2).
+\end{align*}
+By Case 1, it suffices to show that
+\begin{align*}
+m(\eta,s_1) &\lesssim_\times \lim_{t\nearrow s_1}m(\eta,t) \text{ if $\xi_1$ exists, and}\\
+m(\eta,s_2) &\gtrsim_\times \lim_{t\searrow s_2} m(\eta,t) \text{ if $\xi_2$ exists.}
+\end{align*}
+Comparing with \eqref{metat}, we see that the desired formulas are
+\begin{align*}
+e^{-\delta s_1} &\lesssim_\times e^{-\delta (2\lb \xi|\eta\rb_\zero - t_{\xi_1})} \NN_\bp(e^{2\lb \xi_1|\eta\rb_\zero - s_1 - t_{\xi_1}})\\
+e^{-\delta s_2} &\gtrsim_\times  e^{-\delta t_{\xi_2}}[\II_\bp(e^{s_2 - t_{\xi_2}}) + \mu(\bp)],
+\end{align*}
+which follow upon observing that the definitions of $s_1$ and $s_2$ imply that $s_1 \asymp_\plus 2\lb \xi|\eta\rb_\zero - t_{\xi_1}$ and $s_2 \asymp_\plus t_{\xi_2}$ (cf. Lemma \ref{lemmabetatinterpretation}).
+\end{itemize}
+\end{proof}
+
+%\section{Proof of Theorem \ref{theoremglobalmeasure}}
+\section{Proof of the global measure formula}
+\label{subsectionglobalmeasureproof}
+Although we have finished the proof of Proposition \ref{propositionmetadecreasing}, we still need a few lemmas before we can begin the proof of Theorem \ref{theoremglobalmeasure}. Throughout these lemmas, we fix $\bp\in P$, and let
+\[
+R_\bp = \sup_{x\in S_\bp} \Dist_\bp(\zero,x) < \infty.
+\]
+Here $S_\bp\subset\EE_\bp$ is a $\bp$-bounded set satisfying $\Lambda\butnot\{\bp\}\subset G_\bp(S_\bp)$, as in Standing Assumptions \ref{standingassumptionsGFmeasures}.
+
+\begin{lemma}
+\label{lemmaglobalmeasure1}
+For all $A\subset G_\bp$,
+\begin{equation}
+\label{ASmeasure}
+\mu\left(\bigcup_{h\in A}h(S_\bp)\right) \asymp_\times \sum_{h\in A} e^{-\delta\dogo h} = \sum_{h\in A} \|h\|_\bp^{-2\delta}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+As the equality follows from Observation \ref{observationeuclideanparabolicasymp}, we proceed to demonstrate the asymptotic. By Lemma \ref{lemmaSbpasymp}, there exists $\sigma > 0$ such that $S_\bp \subset \Shad_{h^{-1}(\zero)}(\zero,\sigma)$ for all $h\in G_\bp$. Then by the Bounded Distortion Lemma \ref{lemmaboundeddistortion},
+\[
+\mu(h(S_\bp)) = \int_{S_\bp} (\overline h')^\delta \;\dee \mu \asymp_{\times,\sigma} e^{-\delta\dogo h} \mu(S_\bp) \asymp_\times e^{-\delta\dogo h}.
+\]
+(In the last asymptotic, we have used the fact that $\mu(S_\bp) > 0$, which follows from the fact that $\Lambda\butnot\{\bp\} \subset G_\bp(S_\bp)$ together with the fact that $\mu$ is not a pointmass (Corollary \ref{corollaryquasiconformalpointmass}).) Combining with the subadditivity of $\mu$ gives the $\lesssim$ direction of the first asymptotic of \eqref{ASmeasure}. To get the $\gtrsim$ direction, we observe that since $S_\bp$ is $\bp$-bounded, the strong discreteness of $G_\bp$ implies that $S_\bp\cap h(S_\bp)\neq\emptyset$ for only finitely many $h\in G_\bp$; it follows that the function $\eta\mapsto\#\{h\in G_\bp : \eta\in h(S_\bp)\}$ is bounded, and thus
+\begin{align*}
+\mu\left(\bigcup_{h\in A}h(S_\bp)\right) 
+&\asymp_\times \int \#\{h\in G_\bp : \eta\in h(S_\bp)\} \;\dee\mu(\eta)\\
+&= \sum_{h\in A}\mu(h(S_\bp))\\
+&\asymp_\times \sum_{h\in A} e^{-\delta\dogo h} ~.
+\end{align*}
+\end{proof}
+
+
+\begin{corollary}
+\label{corollaryglobalmeasure11}
+For all $r > 0$,
+\begin{equation}
+\label{muBbprbounds}
+\II_\bp\left(\frac2r\right) \lesssim_\times \mu\big(B(\bp,r)\butnot\{\bp\}\big) \lesssim_\times \II_\bp\left(\frac1{2r}\right)
+\end{equation}
+\end{corollary}
+\begin{proof}
+Since
+\[
+\bigcup_{\substack{h\in G_\bp \\ \|h\|_\bp \geq R + R_\bp}} h(S_\bp)
+\subset B(\bp,1/R)\butnot\{\bp\} = \EE_\bp \butnot B_\bp(\zero,R)
+\subset \bigcup_{\substack{h\in G_\bp \\ \|h\|_\bp \geq R - R_\bp}} h(S_\bp),
+\]
+Lemma \ref{lemmaglobalmeasure1} gives
+\[
+\II_\bp\left(\frac1r + R_\bp\right) \lesssim_\times \mu(B(\bp,r)) \lesssim_\times \II_\bp\left(\frac1r - R_\bp\right),
+\]
+thus proving the lemma if $r \leq 1/(2R_\bp)$. But when $r > 1/(2 R_\bp)$, all terms of \eqref{muBbprbounds} are bounded from above and below independent of $r$.
+\end{proof}
+
+Adding $\mu(\bp)$ to all sides of \eqref{muBbprbounds} gives
+\begin{equation}
+\label{muBbprbounds2}
+\II_\bp\left(\frac2r\right) + \mu(\bp) \lesssim_\times \mu(B(\bp,r)) \lesssim_\times \II_\bp\left(\frac1{2r}\right) + \mu(\bp).
+\end{equation}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{ll}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.81]
+%\clip(-4.3527228989498425,-4.317699333578228) rectangle (4.5670505753079516,4.22893620649748);
+\clip(-2.7,-2.7) rectangle (4.3,4.3);
+\draw(0.0,0.0) circle (4.0cm);
+\draw(2.42888,0.1875) circle (1.551112790229163cm);
+\draw (0.0,0.0)-- (4.0,0.0);
+\draw(3.212205575454762,0.0) circle (0.3760152197599791cm);
+%\draw (0.0,0.0)-- (3.9725001940685334,0.4682330703030985);
+\draw [dash pattern=on 3pt off 3pt] (0.0,0.0)-- (3.9725001940685334,0.4682330703030985);
+%\draw (0.0,0.0)-- (3.9725001940685334,-0.4682330703030985);
+\draw [dash pattern=on 3pt off 3pt] (0.0,0.0)-- (3.9725001940685334,-0.4682330703030985);
+\draw [shift={(0.0,0.0)},line width=1.2000000000000002pt]  plot[domain=-0.11732726409329874:0.11732726409329915,variable=\t]({1.0*4.0*cos(\t r)+-0.0*4.0*sin(\t r)},{0.0*4.0*cos(\t r)+1.0*4.0*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,0.0) circle (1pt);
+\draw[color=black] (-0.2491340591615706,-0.0014223831473892945) node {$\zero$};
+\draw [fill=black] (4.0,0.0) circle (1pt);
+\draw[color=black] (4.211681114182143,0.0) node {$\eta$};
+\draw [fill=black] (3.98,0.3) circle (1pt);
+\draw[color=black] (4.17,0.4) node {$\xi$};
+\draw [fill=black] (3.384151714048233,0.0) circle (1pt);
+\draw[color=black] (3.2344150960861695,-0.1380274618110051) node {$\eta_t$};
+\end{scriptsize}
+\end{tikzpicture}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.85]
+\clip(-4.152066304477812,-0.497280356328431) rectangle (4.307443018392998,5.909099879057296);
+\draw (-3.5,0.0)-- (3.5,0.0);
+\draw (-3.5,1.5)-- (3.5,1.5);
+\draw [shift={(0.40000000000000036,0.0)}] plot[domain=0.3996780691889681:3.141592653589793,variable=\t]({1.0*2.518491612056709*cos(\t r)+-0.0*2.518491612056709*sin(\t r)},{0.0*2.518491612056709*cos(\t r)+1.0*2.518491612056709*sin(\t r)});
+\draw (2.4230669786242873,1.5)-- (2.1163456022508336,1.2434075389985795);
+\draw (-2.1184916120567086,0.0)-- (-2.12,5.4);
+\draw (2.1163456022508336,1.2434075389985795)-- (2.12,5.4);
+\begin{scriptsize}
+\draw [fill=black] (2.72,0.98) circle (1pt);
+\draw[color=black] (2.9026704848505824,1.0) node {$\zero$};
+\draw [fill=black] (-2.1184916120567086,0.0) circle (1pt);
+\draw[color=black] (-2.284181946690644,-0.1267908969326299) node {$\eta$};
+\draw [fill=black] (2.4230669786242873,1.5) circle (1pt);
+\draw[color=black] (2.58,1.68) node {$\eta_{t_\xi}$};
+\draw [fill=black] (2.1163456022508336,1.2434075389985795) circle (1pt);
+\draw[color=black] (1.8073209579773947,1.092736906911882) node {$g(\zero)$};
+%\draw [fill=black] (-0.13843049435662466,5.4459880548125446) circle (1pt);
+\draw[color=black] (-0.1,5.662106906126763) node {$\xi=\infty$};
+\draw [fill=black] (1.6640939374267694,2.1782714517159905) circle (1pt);
+\draw[color=black] (1.420712647267375,2.1424570418666518) node {$\eta_t$};
+\draw [dash pattern=on 1pt off 1pt] (1.6640939374267694,2.1782714517159905)-- (2.1173124637830534,2.3431371337242592);
+\draw[color=black] (-3.084181946690644,1.867908969326299) node {$H_{\xi}$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+\end{center}
+
+\caption[Estimating measures of balls via information ``at infinity'']{Cusp excursion in the ball model (left) and upper half-space model (right). Since $\xi = g(\bp)\in B(\eta,e^{-t})$, our estimate of $\mu(B(\eta,e^{-t}))$ is based on the function $\II_\bp$, which captures information ``at infinity'' about the cusp $\bp$. In the right-hand picture, the measure of $B(\eta,e^{-t})$ can be estimated by considering the measure from the perspective of $g(\zero)$ of a small ball around $\xi$.}
+\label{figurecuspright}
+\end{figure}
+
+
+\begin{corollary}[Cf. Figure \ref{figurecuspright}]
+\label{corollaryglobalmeasure12}
+Fix $\eta\in\Lambda$ and $t > 0$ such that $\eta_t\in H_\xi$ for some $\xi = g(\bp)\in\Lbp$ satisfying $t \leq \lb \xi|\eta\rb_\zero - \log(2)$. Then
+\[
+e^{-\delta t_\xi} [\II_\bp(e^{t - t_\xi + \sigma}) + \mu(\bp)] \lesssim_\times \mu\big(B(\eta,e^{-t})\big) \lesssim_\times e^{-\delta t_\xi} [\II_\bp(e^{t - t_\xi - \sigma}) + \mu(\bp)],
+\]
+where $\sigma > 0$ is independent of $\eta$ and $t$.
+\end{corollary}
+\begin{proof}
+The inequality $\lb \xi|\eta\rb_\zero \geq t + \log(2)$ implies that
+\[
+B(\xi,e^{-t}/2) \subset B(\eta,e^{-t}) \subset B(\xi,2e^{-t}).
+\]
+Without loss of generality suppose that $g$ satisfies \eqref{top}. Since $t > t_\xi$, \eqref{ShadcontainsB} guarantees that $B(\xi,2e^{-t}) \subset \Shad(g(\zero),\sigma_0)$ for some $\sigma_0 > 0$ independent of $\eta$ and $t$. Then by the Bounded Distortion Lemma \ref{lemmaboundeddistortion}, we have
+\begin{align*}
+B\left(\bp, e^{-(t - t_\xi)}/(2C)\right) &\subset g^{-1}(B(\xi,e^{-t}/2))\\ 
+&\subset g^{-1}(B(\eta,e^{-t}))\\
+&\subset g^{-1}(B(\xi,2e^{-t}))\\
+&\subset B\left(\bp,2C e^{-(t - t_\xi)}\right)
+\end{align*}
+for some $C > 0$, and thus
+\[
+e^{-\delta t_\xi} \mu\left(B\left(\bp, e^{-(t - t_\xi)}/(2C)\right)\right) \lesssim_\times  \mu(B(\eta,e^{-t})) \lesssim_\times e^{-\delta t_\xi} \mu\left(B\left(\bp,2C e^{-(t - t_\xi)}\right)\right).
+\]
+Combining with \eqref{muBbprbounds2} completes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemmaglobalmeasure2}
+For all $\eta\in \Lambda\butnot\{\bp\}$ and $3R_\bp \leq R\leq \Dist_\bp(\zero,\eta)/2$,
+\[
+\Dist_\bp(\zero,\eta)^{-2\delta} \NN_\bp(R/2) \lesssim_\times \mu(B_\bp(\eta,R)) \lesssim_\times \Dist_\bp(\zero,\eta)^{-2\delta} \NN_\bp(2R).
+\]
+\end{lemma}
+\begin{proof}
+Since $\eta\in \Lambda\butnot\{\bp\} \subset G_\bp(S_\bp)$, there exists $h_\eta\in G_\bp$ such that $\eta\in h_\eta(S_\bp)$. Since
+\[
+\bigcup_{\substack{h\in G_\bp \\ \|h\|_\bp \leq R - R_\bp}} h_\eta h(S_\bp) \subset B_\bp(\eta,R) \subset \bigcup_{\substack{h\in G_\bp \\ \|h\|_\bp \leq R + R_\bp}} h_\eta h(S_\bp),
+\]
+Lemma \ref{lemmaglobalmeasure1} gives
+\[
+\sum_{\substack{h\in G_\bp \\ \|h\|_\bp \leq R - R_\bp}} \|h_\eta h\|_\bp^{-2\delta} \lesssim_\times \mu(B_\bp(\eta,R)) \lesssim_\times \sum_{\substack{h\in G_\bp \\ \|h\|_\bp \leq R + R_\bp}} \|h_\eta h\|_\bp^{-2\delta}.
+\]
+The proof will be complete if we can show that for each $h\in G_\bp$ such that $\|h\|_\bp \leq R + R_\bp$, we have
+\begin{equation}
+\label{heta}
+\|h_\eta h\|_\bp \asymp_\times \Dist_\bp(\zero,\eta).
+\end{equation}
+And indeed,
+\[
+\Dist_\bp(\eta,h_\eta h(\zero)) \leq \Dist_\bp(\eta,h_\eta(\zero)) + \|h\|_\bp \leq R_\bp + (R + R_\bp) \leq \frac56 \Dist_\bp(\zero,\eta),
+\]
+demonstrating \eqref{heta} with an implied constant of $6$.
+\end{proof}
+
+
+
+\begin{corollary}
+\label{corollaryglobalmeasure21}
+For all $\eta\in\Lambda\butnot\{\bp\}$ and $6R_\bp \Dist(\bp,\eta)^2 \leq r \leq \Dist(\bp,\eta)/4$, we have
+\[
+\Dist(\bp,\eta)^{2\delta} \NN_\bp\left(\frac{r}{4\Dist(\bp,\eta)^2}\right)
+\lesssim_\times \mu(B(\eta,r))
+\lesssim_\times \Dist(\bp,\eta)^{2\delta} \NN_\bp\left(\frac{4r}{\Dist(\bp,\eta)^2}\right).
+\]
+\end{corollary}
+
+
+\begin{proof}
+By \eqref{GMVT2}, for every $\zeta\in B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)$ we have that
+\begin{align*}
+\Dist(\eta,\zeta) = \frac{\Dist_\bp(\eta,\zeta)}{\Dist_\bp(\zero,\eta)\Dist_\bp(\zero,\zeta)} 
+&\leq \frac{\Dist_\bp(\eta,\zeta)}{\Dist_\bp(\zero,\eta)(\Dist_\bp(\zero,\eta) - \Dist_\bp(\eta,\zeta))}\\
+&\leq \frac{\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}}{\Dist_\bp(\zero,\eta)\left(\Dist_\bp(\zero,\eta) - \frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)}\\ 
+&= r. 
+\end{align*}
+Analogously, \eqref{GMVT2} also implies that for every $\zeta \in B(\eta,r)$ we have 
+\begin{align*}
+\Dist_\bp(\eta,\zeta) 
+&= \frac{\Dist(\eta,\zeta)}{\Dist(\bp,\eta)\Dist(\bp,\zeta)}\\ 
+&\leq \frac{r}{\Dist(\bp,\eta) \left( \Dist(\bp,\eta) - r \right)} \cdot
+\end{align*}
+Combining these inequalities gives us that 
+\[
+B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)
+\subset B(\eta,r)
+\subset B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) - r)}\right)
+\]
+Now since $r\leq \Dist(\bp,\eta)/4$, we have
+\[
+B_\bp\left(\eta,\frac{r}{2\Dist(\bp,\eta)^2}\right)
+\subset B(\eta,r)
+\subset B_\bp\left(\eta,\frac{2r}{\Dist(\bp,\eta)^2}\right).
+\]
+On the other hand, since $6R_\bp \Dist(\bp,\eta)^2 \leq r \leq \Dist(\bp,\eta)/4$, we have
+\[
+3R_\bp \leq \frac{r}{2\Dist(\bp,\eta)^2} \leq \frac{2r}{\Dist(\bp,\eta)^2} \leq \frac{\Dist(\bp,\eta)}{2}
+\]
+whereupon Lemma \ref{lemmaglobalmeasure2} completes the proof.
+\end{proof}
+%\begin{proof}
+%By \eqref{GMVT2}, we have
+%\[
+%B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)
+%\subset B(\eta,r)
+%\subset B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) - r)}\right);\Footnote{If $\zeta\in B_\bp\left(\eta,\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)$, then 
+%\begin{align*}
+%\Dist(\eta,\zeta) = \frac{\Dist_\bp(\eta,\zeta)}{\Dist_\bp(\zero,\eta)\Dist_\bp(\zero,\zeta)} 
+%&\leq \frac{\Dist_\bp(\eta,\zeta)}{\Dist_\bp(\zero,\eta)(\Dist_\bp(\zero,\eta) - \Dist_\bp(\eta,\zeta))}\\
+%&\leq \frac{\frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}}{\Dist_\bp(\zero,\eta)\left(\Dist_\bp(\zero,\eta) - \frac{r}{\Dist(\bp,\eta)(\Dist(\bp,\eta) + r)}\right)} = r. 
+%\end{align*}
+%}
+%\]
+%since $r\leq \Dist(\bp,\eta)/4$, we have
+%\[
+%B_\bp\left(\eta,\frac{r}{2\Dist(\bp,\eta)^2}\right)
+%\subset B(\eta,r)
+%\subset B_\bp\left(\eta,\frac{2r}{\Dist(\bp,\eta)^2}\right).
+%\]
+%On the other hand, since $6R_\bp \Dist(\bp,\eta)^2 \leq r \leq \Dist(\bp,\eta)/4$, we have
+%\[
+%3R_\bp \leq \frac{r}{2\Dist(\bp,\eta)^2} \leq \frac{2r}{\Dist(\bp,\eta)^2} \leq \frac{\Dist(\bp,\eta)}{2},
+%\]
+%whereupon Lemma \ref{lemmaglobalmeasure2} completes the proof.
+%\end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tabular}{ll}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.81]
+%\clip(-4.3527228989498425,-4.317699333578228) rectangle (4.5670505753079516,4.22893620649748);
+\clip(-2.7,-2.7) rectangle (4.3,4.3);
+\draw(0.0,0.0) circle (4.0cm);
+\draw(2.342806400391098,0.712964401564811) circle (1.551112790229163cm);
+\draw (0.0,0.0)-- (4.0,0.0);
+\draw(3.212205575454762,0.0) circle (0.3760152197599791cm);
+%\draw (0.0,0.0)-- (3.9725001940685334,0.4682330703030985);
+\draw [dash pattern=on 3pt off 3pt] (0.0,0.0)-- (3.9725001940685334,0.4682330703030985);
+%\draw (0.0,0.0)-- (3.9725001940685334,-0.4682330703030985);
+\draw [dash pattern=on 3pt off 3pt] (0.0,0.0)-- (3.9725001940685334,-0.4682330703030985);
+\draw [shift={(0.0,0.0)},line width=1.2000000000000002pt]  plot[domain=-0.11732726409329874:0.11732726409329915,variable=\t]({1.0*4.0*cos(\t r)+-0.0*4.0*sin(\t r)},{0.0*4.0*cos(\t r)+1.0*4.0*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,0.0) circle (1pt);
+\draw[color=black] (-0.2491340591615706,-0.0014223831473892945) node {$\zero$};
+\draw [fill=black] (4.0,0.0) circle (1pt);
+\draw[color=black] (4.211681114182143,0.0) node {$\eta$};
+\draw [fill=black] (3.825718764158789,1.1678509911642618) circle (1pt);
+\draw[color=black] (4.057469971268139,1.2) node {$\xi$};
+\draw [fill=black] (3.384151714048233,0.0) circle (1pt);
+\draw[color=black] (3.2344150960861695,-0.1380274618110051) node {$\eta_t$};
+\end{scriptsize}
+\end{tikzpicture}
+
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=.85]
+\clip(-4.152066304477812,-0.497280356328431) rectangle (4.307443018392998,5.909099879057296);
+\draw (-3.5,0.0)-- (3.5,0.0);
+\draw (-3.5,1.5)-- (3.5,1.5);
+\draw [shift={(0.40000000000000036,0.0)}] plot[domain=0.3996780691889681:3.141592653589793,variable=\t]({1.0*2.518491612056709*cos(\t r)+-0.0*2.518491612056709*sin(\t r)},{0.0*2.518491612056709*cos(\t r)+1.0*2.518491612056709*sin(\t r)});
+\draw (2.4230669786242873,1.5)-- (2.1163456022508336,1.2434075389985795);
+\draw (-2.1184916120567086,0.0)-- (-2.12,5.4);
+\draw (2.1163456022508336,1.2434075389985795)-- (2.12,5.4);
+\draw [dash pattern=on 1pt off 1pt] (-1.5356104253500993,1.6112765998660834)-- (-2.1189952002490946,1.8028361012686287);
+\begin{scriptsize}
+\draw [fill=black] (2.72,0.98) circle (1pt);
+\draw[color=black] (2.9026704848505824,1.0) node {$\zero$};
+\draw [fill=black] (-2.1184916120567086,0.0) circle (1pt);
+\draw[color=black] (-2.284181946690644,-0.1267908969326299) node {$\eta$};
+\draw [fill=black] (2.4230669786242873,1.5) circle (1pt);
+\draw[color=black] (2.58,1.68) node {$\eta_{t_\xi}$};
+\draw [fill=black] (2.1163456022508336,1.2434075389985795) circle (1pt);
+\draw[color=black] (1.8073209579773947,1.092736906911882) node {$g(\zero)$};
+%\draw [fill=black] (-0.13843049435662466,5.4459880548125446) circle (1pt);
+\draw[color=black] (-0.1,5.662106906126763) node {$\xi=\infty$};
+\draw [fill=black] (-1.5356104253500993,1.6112765998660834) circle (1pt);
+\draw[color=black] (-1.2,1.65) node {$\eta_t$};
+\draw[color=black] (-3.084181946690644,1.867908969326299) node {$H_{\xi}$};
+\end{scriptsize}
+\end{tikzpicture}
+\end{tabular}
+
+\caption[Estimating measures of balls via ``local'' information]{Cusp excursions in the ball model (left) and upper half-space model (right). Since $\xi = g(\bp)\notin B(\eta,e^{-t})$, our estimate of $\mu(B(\eta,e^{-t}))$ is based on the function $\NN_\bp$, which captures ``local'' information about the cusp $\bp$. In the right-hand picture, the measure of $B(\eta,e^{-t})$ can be estimated by considering the measure from the perspective of $g(\zero)$ of a large ball around $\eta$ taken with respect to the $\Dist_\xi$-metametric.}
+\label{figurecuspleft}
+\end{center}
+\end{figure}
+
+
+
+\begin{corollary}[Cf. Figure \ref{figurecuspleft}]
+\label{corollaryglobalmeasure22}
+Fix $\eta\in\Lambda$ and $t > 0$ such that $\eta_t\in H_\xi$ for some $\xi = g(\bp)\in\Lbp$. If
+\begin{equation}
+\label{globalmeasure22hypothesis}
+\lb \xi|\eta\rb_\zero + \tau \leq t \leq 2\lb \xi|\eta\rb_\zero - t_\xi - \tau,
+\end{equation}
+then
+\begin{equation}
+\label{globalmeasure22}
+\begin{split}
+e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t_\xi - t - \sigma})
+&\lesssim_\times \mu\big(B(\eta,e^{-t})\big)\\ 
+&\lesssim_\times e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t_\xi - t + \sigma})
+\end{split}
+\end{equation}
+where $\sigma,\tau > 0$ are independent of $\eta$ and $t$.
+\end{corollary}
+\begin{proof}
+Without loss of generality suppose that $g$ satisfies \eqref{top}, and write $\zeta = g^{-1}(\eta)$. Since $t > t_\xi$, \eqref{ShadcontainsB} guarantees that $B(\eta,e^{-t}) \subset \Shad(g(\zero),\sigma_0)$ for some $\sigma_0 > 0$ independent of $\eta$ and $t$. Then by the Bounded Distortion Lemma \ref{lemmaboundeddistortion}, we have
+\[
+B(\zeta, e^{-(t - t_\xi)}/C) \subset g^{-1}(B(\eta,e^{-t})) \subset B(\zeta,C e^{-(t - t_\xi)})
+\]
+for some $C > 0$, and thus
+\[
+e^{-\delta t_\xi} \mu(B(\zeta, e^{-(t - t_\xi)}/C)) \lesssim_\times  \mu(B(\eta,e^{-t})) \lesssim_\times e^{-\delta t_\xi} \mu(B(\zeta,C e^{-(t - t_\xi)})).
+\]
+If
+\begin{equation}
+\label{globalmeasure22hypothesisinternal}
+6R_\bp \Dist(\bp,\eta)^2 \leq \frac{e^{-(t - t_\xi)}}{C} \leq C e^{-(t - t_\xi)} \leq \frac{\Dist(\bp,\zeta)}{4},
+\end{equation}
+then Corollary \ref{corollaryglobalmeasure21} guarantees that
+%\[
+%e^{-\delta t_\xi} \Dist(\bp,\zeta)^{2\delta} \NN_\bp \lesssim_\times  \mu(B(\eta,e^{-t})) \lesssim_\times e^{-\delta t_\xi} \mu(B(\zeta,C e^{-(t - t_\xi)})).
+%\]
+\begin{align*}
+e^{-\delta t_\xi} \Dist(\bp,\zeta)^{2\delta} \NN_\bp\left(\frac{e^{-(t - t_\xi)}}{4C\Dist(\bp,\zeta)^2}\right)
+&\lesssim_\times \mu(B(\eta,e^{-t}))\\
+&\lesssim_\times e^{-\delta t_\xi}\Dist(\bp,\zeta)^{2\delta} \NN_\bp\left(\frac{4C e^{-(t - t_\xi)}}{\Dist(\bp,\zeta)^2}\right).
+\end{align*}
+On the other hand, since $\xi,\eta\in\Shad(g(\zero),\sigma_0)$, the Bounded Distortion Lemma \ref{lemmaboundeddistortion} guarantees that
+\[
+\Dist(\bp,\zeta) \asymp_\times e^{t_\xi} \Dist(\xi,\eta) = e^{-(\lb \xi|\eta\rb_\zero - t_\xi)}.
+\]
+Denoting the implied constant by $K$, we deduce \eqref{globalmeasure22} with $\sigma = \log(4CK^2)$. The proof is completed upon observing that if $\tau = \log(4CK\vee 6R_\bp CK^2)$, then \eqref{globalmeasure22hypothesis} implies \eqref{globalmeasure22hypothesisinternal}.
+%\[
+%\lb \xi|\eta\rb_\zero + \tau \leq t \leq 2\lb \xi|\eta\rb_\zero - t_\xi - \tau \;\;\Rightarrow\;\; \eqref{}
+%\]
+%and thus
+%\[
+%e^{\delta t_\xi} \Dist(\xi,\eta)^{2\delta} \NN_\bp\left(\frac{e^{-(t - t_\xi)}}{4C C_2^2 \Dist(\xi,\eta)^2}\right)
+%\lesssim_\times \mu(B(\eta,e^{-t}))
+%\lesssim_\times e^{\delta t_\xi} \Dist(\xi,\eta)^{2\delta} \NN_\bp\left(\frac{4C C_2^2 e^{-(t - t_\xi)}}{\Dist(\xi,\eta)^2}\right).
+%\]
+%for some $C_2 > 0$.
+\end{proof}
+
+\begin{lemma}[Cf. Lemma \ref{lemmasullivanshadow}]
+\label{lemmaCCBglobalmeasure}
+Fix $\eta\in\Lambda$ and $t > 0$ such that $\eta_t\notin\bigcup(\scrH)$. Then
+\[
+\mu(B(\eta,e^{-t})) \asymp_\times e^{-\delta t}.
+\]
+\end{lemma}
+\begin{proof}
+By \eqref{sigmadef}, there exists $g\in G$ such that $\dist(g(\zero),\eta_t) \asymp_\plus 0$. By \eqref{ShadcontainsB}, we have $B(\eta,e^{-t}) \subset \Shad(g(\zero),\sigma)$ for some $\sigma > 0$ independent of $\eta,t$. It follows that
+\[
+\mu(B(\eta,e^{-t})) \asymp_\times e^{-\delta t} \mu(g^{-1}(B(\eta,e^{-t}))).
+\]
+To complete the proof it suffices to show that $\mu(g^{-1}(B(\eta,e^{-t})))$ is bounded from below. By the Bounded Distortion Lemma \ref{lemmaboundeddistortion},
+\[
+g^{-1}(B(\eta,e^{-t})) \supset B(g^{-1}(\eta),\epsilon)
+\]
+for some $\epsilon > 0$ independent of $\eta,t$. Now since $G$ is of compact type, we have
+\[
+\inf_{x\in\Lambda} \mu(B(x,\epsilon)) \geq \min_{x\in S_{\epsilon/2}} \mu(B(x,\epsilon/2)) > 0
+\]
+where $S_{\epsilon/2}$ is a maximal $\epsilon/2$-separated subset of $\Lambda$. This completes the proof.
+\end{proof}
+
+We are now ready to prove Theorem \ref{theoremglobalmeasure}:
+
+\begin{proof}[Proof of Theorem \ref{theoremglobalmeasure}]
+Let $\sigma_0$ denote the implied constant of \eqref{betatinterpretation}. Then by \eqref{metat}, for all $\eta\in\Lambda$, $t > 0$, and $\xi\in\Lbp$,
+\begin{equation}
+\label{metatsimple}
+m(\eta,t) = \begin{cases}
+e^{-\delta t_\xi} [\II_\bp(e^{t - t_\xi - \theta}) + \mu(\bp)] & t_\xi + \sigma_0 \leq t \leq \lb \xi|\eta\rb_\zero\\
+e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t - t_\xi - \theta}) & \lb \xi|\eta\rb_\zero < t \leq 2\lb \xi|\eta\rb_\zero - t_\xi - \sigma_0\\
+\text{unknown} & \text{otherwise}
+\end{cases}
+\end{equation}
+Applying this formula to Corollaries \ref{corollaryglobalmeasure12} and \ref{corollaryglobalmeasure22} yields the following:
+
+\begin{lemma}
+\label{lemmaglobalmeasureinternal}
+There exists $\tau\geq \sigma_0$ such that for all $\eta\in\Lambda$ and $t > 0$.
+\begin{itemize}
+\item[(i)] If for some $\xi$, $t_\xi + \tau \leq t \leq \lb \xi|\eta\rb_\zero - \tau$, then \eqref{globalmeasureformula} holds.
+\item[(ii)] If for some $\xi$, $\lb \xi|\eta\rb_\zero + \tau \leq t \leq 2\lb \xi|\eta\rb_\zero - t_\xi - \tau$, then \eqref{globalmeasureformula} holds.
+\end{itemize}
+\end{lemma}
+Now fix $\eta\in\Lambda$, and let
+\[
+A = \left\{t > 0 : \eta_t\notin\bigcup(\scrH)\right\} \cup \bigcup_{\xi\in\Lbp} [t_\xi + \tau,\lb \xi|\eta\rb_\zero - \tau]\cup \bigcup_{\xi\in\Lbp}  [\lb \xi|\eta\rb_\zero + \tau,2\lb \xi|\eta\rb_\zero - t_\xi - \tau].
+\]
+Then by Lemmas \ref{lemmaCCBglobalmeasure} and \ref{lemmaglobalmeasureinternal}, $\eqref{globalmeasureformula}_{\sigma = \tau}$ holds for all $t\in A$.
+\begin{claim}
+Every interval of length $2\tau$ intersects $A$.
+\end{claim}
+\begin{subproof}
+If $[s - \tau,s + \tau]$ does not intersect $A$, then by connectedness, there exists $\xi\in\Lbp$ such that $\eta_t\in H_\xi$ for all $t\in [s - \tau, s + \tau]$. By Lemma \ref{lemmabetatinterpretation}, the fact that $\eta_{s\pm\tau}\in H_\xi$ implies that $t_\xi \leq s \leq 2\lb \xi|\eta\rb_\zero - t_\xi$ (since $\tau\geq \sigma_0$). If $s \leq \lb \xi|\eta\rb_\zero$, then $[s - \tau,s + \tau]\cap [t_\xi + \tau,\lb \xi|\eta\rb_\zero - \tau] \neq \emptyset$, while if $s \geq \lb \xi|\eta\rb_\zero$, then $[s - \tau,s + \tau]\cap [\lb \xi|\eta\rb_\zero + \tau,2\lb \xi|\eta\rb_\zero - t_\xi - \tau] \neq \emptyset$.
+\end{subproof}
+Thus for all $t > 0$, there exist $t_\pm\in A$ such that $t - 2\tau \leq t_- \leq t \leq t_+ \leq t - 2\tau$; then
+\begin{align*}
+m(\eta,t + 3\tau)
+\lesssim_\times m(\eta,t_+ + \tau)
+&\lesssim_\times \mu\big(B(\eta,e^{-t_+})\big)\\
+&\leq_\pt \mu\big(B(\eta,e^{-t})\big)\\
+&\leq_\pt \mu\big(B(\eta,e^{-t_-})\big)
+\lesssim_\times m(\eta,t_- - \tau)
+\lesssim_\times m(\eta,t - 3\tau),
+\end{align*}
+i.e. $\eqref{globalmeasureformula}_{\sigma = 3\tau}$ holds.
+%Now let $\eta\in\Lambda$ and $t > 0$ be arbitrary. If $\eta_t\notin\bigcup(\scrH)$, then combining Lemma \ref{lemmaCCBglobalmeasure} with Proposition \ref{propositionmetadecreasing} demonstrates \eqref{globalmeasureformula}. So suppose $\eta_t\in H_\xi$ for some $\xi\in\Lbp$. If $\lb \xi|\eta\rb_\zero - \sigma < t < \lb \xi|\eta\rb_\zero + \sigma$, then
+%\[
+%m(\eta,\lb \xi|\eta\rb_\zero + 2\sigma)
+%\lesssim_\times \mu\big(B(\eta,e^{-(\lb \xi|\eta\rb_\zero + \sigma)})\big)
+%\leq \mu\big(B(\eta,e^{-t})\big)
+%\leq \mu\big(B(\eta,e^{-(\lb \xi|\eta\rb_\zero - \sigma)})\big)
+%\lesssim_\times m(\eta,\lb \xi|\eta\rb_\zero - 2\sigma),
+%\]
+%demonstrating $\eqref{globalmeasureformula}_{\sigma = 3\sigma}$. If $t\leq t_\xi + \sigma$, then
+%\[
+%m(\eta,t_\xi + 2\sigma)
+%\lesssim_\times \mu\big(B(\eta,e^{-(t_\xi + \sigma)})\big)
+%\leq \mu\big(B(\eta,e^{-t})\big)
+%\leq \mu\big(B(\eta,e^{-(\lb \xi|\eta\rb_\zero - \sigma)})\big)
+%\lesssim_\times m(\eta,\lb \xi|\eta\rb_\zero - 2\sigma),
+%\]
+%Let $\sigma,\tau$ be large enough so that Corollaries \ref{corollaryglobalmeasure12} and \ref{corollaryglobalmeasure22} hold. Fix $\eta\in\Lambda$ and $t > 0$. If $\eta_t\notin\bigcup(\scrH)$, then $\mu(B(\eta,e^{-t})) \asymp_\times m(\eta,t)$ by Lemma \ref{lemmaCCBglobalmeasure}, and Proposition \ref{propositionmetadecreasing} finishes the proof. So suppose $\eta_t\in H_\xi$ for some $\xi = g(\bp)\in\Lbp$.
+%\begin{itemize}
+%\item[Case 1:] $t\leq \lb \xi|\eta\rb_\zero - \max(\log(2),\theta + \sigma)$. In this case, let $t_\pm = t \pm \sigma + \theta$; by Corollary \ref{corollaryglobalmeasure12} we have
+%\begin{equation}
+%\label{globalmeasure12T}
+%e^{-\delta t_\xi} [\II_\bp(e^{t_+ - t_\xi - \theta}) + \mu(\bp)] \lesssim_\times \mu\big(B(\eta,e^{-t})\big) \lesssim_\times e^{-\delta t_\xi} [\II_\bp(e^{t_- - t_\xi - \theta}) + \mu(\bp)].
+%\end{equation}
+%On the other hand, since $t_\pm \leq \lb \xi|\eta\rb_\zero$, by \eqref{metat} and Lemma \ref{lemmabetatinterpretation} we have
+%\[
+%m(\eta,t_\pm) = e^{-\delta t_\xi} [\II_\bp(e^{t_\pm - t_\xi - \theta}) + \mu(\bp)] \text{ unless } t_\pm \leq t_\xi + \sigma_0,
+%\]
+%where $\sigma_0$ is the implied constant of \eqref{betatinterpretation}. But if $t_\pm \leq t_\xi + \sigma_0$, then
+%\[
+%e^{\delta t_\xi} m(\eta,t_\pm) \asymp_\times \II_\bp(e^{t_\pm - t_\xi - \theta}) + \mu(\bp)
+%\]
+%since both sides are bounded from above and below. Thus in any case we have
+%\[
+%m(\eta,t_\pm) \asymp_\times e^{-\delta t_\xi} [\II_\bp(e^{t_\pm - t_\xi - \theta}) + \mu(\bp)];
+%\]
+%plugging into \eqref{globalmeasure12T} and combining with Proposition \ref{propositionmetadecreasing} completes the proof.
+%\item[Case 2:] $t > \lb \xi|\eta\rb_\zero + \max(\tau,\sigma - \theta)$. In this case, let $t_\pm = t \pm \sigma + \theta$; by Corollary \ref{corollaryglobalmeasure22} we have
+%\begin{equation}
+%\label{globalmeasure22T}
+%e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t_\xi - t_+ + \theta})
+%\lesssim_\times \mu\big(B(\eta,e^{-t})\big)
+%\lesssim_\times e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t_\xi - t_- - \theta}) \text{ unless } t_- 
+%\end{equation}
+%On the other hand, since $t_\pm > \lb \xi|\eta\rb_\zero$, by \eqref{metat} and Lemma \ref{lemmabetatinterpretation}
+%
+%\item[Case 3:] $\lb \xi|\eta\rb_\zero - \max(\log(2),\theta + \sigma) < t \leq \lb \xi|\eta\rb_\zero + \max(\tau,\sigma - \theta)$.
+%
+%\end{itemize}
+\end{proof}
+
+
+
+
+%Suppose $\eta_t\in H_\xi$ for some $\xi = g(\bp)\in\Lbp$, $\bp\in P$, $g\in G$ satisfying \eqref{top}. Note that since $\eta_t\in H_\xi$, we have $t_\xi < \busemann_\xi(\zero,\eta_t) \leq t$. Let $\zeta = g^{-1}(\eta)$. Fix $\sigma > 0$ large enough so that $B(\eta,3 e^{-t}) \subset \Shad(g(\zero),\sigma)$ for all $\eta\in\del X$ and $t > 0$ (cf. \eqref{ShadcontainsB}, \eqref{top}\internal). Then by the Bounded Distortion Lemma \ref{lemmaboundeddistortion},\begin{equation}
+%\label{globalmeasureproof1}
+%\mu(B(\eta,e^{-t})) \asymp_\times e^{-\delta\dogo g} \mu(g^{-1}(B(\eta,e^{-t}))) \asymp_\times e^{-\delta t_\xi} \mu(g^{-1}(B(\eta,e^{-t}))).
+%\end{equation}
+%The Bounded Distortion Lemma also gives
+%\begin{equation}
+%\label{globalmeasureproof2}
+%B(\zeta,e^{-(t - t_\xi)}/C) \subset g^{-1}(B(\eta,e^{-t})) \subset B(\zeta,C e^{-(t - t_\xi)})
+%\end{equation}
+%and
+%\begin{equation}
+%\label{globalmeasureproof3}
+%\frac1C \leq \frac{\Dist(g(\bp),\eta)}{e^{-t_\xi}\Dist(\bp,\zeta)} \leq C
+%\end{equation}
+%for some constant $C \geq 1$.
+%
+%If $\Dist(g(\bp),\eta) \leq e^{-t}/2$, then
+%\begin{align*}
+%B(\bp,e^{-(t - t_\xi)}/(2C))
+%&\subset g^{-1}(B(g(\bp),e^{-t}/2))\\
+%&\subset g^{-1}(B(\eta,e^{-t}))\\
+%&\subset g^{-1}(B(g(\bp),2 e^{-t}))
+%\subset B(\bp,2C e^{-(t - t_\xi)}),
+%\end{align*}
+%and thus by Corollary \ref{corollaryglobalmeasure1},
+%\[
+%\II_\bp(4C e^{t - t_\xi})
+%\lesssim_\times \mu(g^{-1}(B(\eta,e^{-t})))
+%\lesssim_\times \II_\bp(e^{t - t_\xi}/(4C)).
+%\]
+%Combining with \eqref{betatasymp} completes the proof in this case.
+%
+%If
+%\begin{equation}
+%\label{farend}
+%4C e^{-(t - t_\xi)} \leq \Dist(\bp,\zeta) \leq \sqrt{e^{-(t - t_\xi)}/(6C R_\bp)},
+%\end{equation}
+%then by Corollary \ref{corollaryglobalmeasure2}, we have
+%\begin{align*}
+%\Dist(\bp,\zeta)^{2\delta} \NN_\bp\left(\frac{e^{-(t - t_\xi)}}{4C\Dist(\bp,\zeta)^2}\right)
+%&\lesssim_\times \mu(B(\zeta,e^{-(t - t_\xi)}/C))\\
+%&\lesssim_\times \mu(g^{-1}(B(\eta,e^{-t})))\\
+%&\lesssim_\times \mu(B(\zeta,C e^{-(t - t_\xi)}))\\
+%&\lesssim_\times \Dist(\bp,\zeta)^{2\delta} \NN_\bp\left(\frac{4C e^{-(t - t_\xi)}}{\Dist(\bp,\zeta)^2}\right).
+%\end{align*}
+%Combining with \eqref{betatasymp} completes the proof in this case.
+
+\section{Groups for which $\mu$ is doubling}
+\label{subsectiondoubling}
+
+Recall that a measure $\mu$ is said to be \emph{doubling} if for all $\eta\in\Supp(\mu)$ and $r > 0$, $\mu(B(\eta,2r)) \asymp_\times \mu(B(\eta,r))$. In the Standard Case, the Global Measure Formula implies that the $\delta$-conformal measure of a geometrically finite group is always doubling (Example \ref{exampledoubling}). However, in general there are geometrically finite groups whose $\delta$-conformal measures are not doubling (Example \ref{exampledoublingnondoubling}). It is therefore of interest to determine necessary and sufficient conditions on a geometrically finite group for its $\delta$-conformal measure to be doubling. The Global Measure Formula immediately yields the following criterion:% Abusing terminology, we will call a geometrically finite group $G$ ``doubling'' if and only if its $\delta$-conformal measure is doubling.
+
+
+\begin{lemma}
+$\mu$ is doubling if and only if the function $m$ satisfies
+\begin{equation}
+\label{mdoubling}
+m(\eta,t + \tau) \asymp_{\times,\tau} m(\eta,t - \tau) \all \eta\in\Lambda \all t,\tau > 0.
+\end{equation}
+\end{lemma}
+\begin{proof}
+If \eqref{mdoubling} holds, then \eqref{globalmeasureformula} reduces to
+\begin{equation}
+\label{globalmeasureformula2}
+\mu(B(\eta,e^{-t})) \asymp_\times m(\eta,t),
+\end{equation}
+and then \eqref{mdoubling} shows that $\mu$ is doubling. On the other hand, if $\mu$ is doubling, then \eqref{globalmeasureformula} implies that
+\[
+m(\eta,t - \tau) \lesssim_\times \mu(B(\eta,e^{-(t - \tau - \sigma)})) \asymp_\times \mu(B(\eta,e^{-(t + \tau + \sigma)})) \lesssim_\times m(\eta,t + \tau);
+\]
+combining with Proposition \ref{propositionmetadecreasing} shows that \eqref{mdoubling} holds.
+\end{proof}
+
+Of course, the criterion \eqref{mdoubling} is not very useful by itself, since it refers to the complicated function $m$. In what follows we find more elementary necessary and sufficient conditions for doubling. First we must introduce some terminology.
+
+\begin{definition}
+\label{definitiondoubling}
+A function $f:\CO 1\infty\to\CO 1\infty$ is called \emph{doubling} if there exists $\beta > 1$ such that
+\begin{equation}
+\label{dexp1}
+f(\beta R) \lesssim_{\times,\beta} f(R) \all R\geq 1,
+\end{equation}
+and \emph{codoubling} if there exists $\beta > 1$ such that
+\begin{equation}
+\label{dexp2}
+f(\beta R) - f(R) \gtrsim_{\times,\beta} f(R) \all R\geq 1.
+\end{equation}
+\end{definition}
+
+\begin{observation}
+\label{observationcodoubling}
+If there exists $\beta > 1$ such that
+\[
+\NN_\bp(\beta R) > \NN_\bp(R) \all R\geq 1,
+\]
+then $\NN_\bp$ is codoubling.
+\end{observation}
+\begin{proof}
+Fix $R\geq 1$; there exists $h\in G_\bp$ such that $2R < \|h\|_\bp \leq 2\beta R$. We have
+\[
+h\{j\in G_\bp : \|j\|_\bp \leq R\} \subset \{j\in G_\bp : R < \|j\|_\bp \leq (2\beta + 1) R\},
+\]
+and taking cardinalities gives
+\[
+\NN_\bp(R) \leq \NN_\bp\big((2\beta + 1) R\big) - \NN_\bp(R).
+\]
+\end{proof}
+
+We are now ready to state a more elementary characterization of when $\mu$ is doubling:
+
+%\begin{definition}
+%\label{definitionregular}
+%A parabolic group $H$ with fixed point $\bp$ is called \emph{regular} if there exists $\lambda > 1$ such that for all $R\geq 1$,
+%\[
+%\NN_\bp(\lambda R) > \NN_\bp(R).
+%\]
+%\end{definition}
+%
+%\begin{observation}
+%If $H$ has an element of infinite order, then $H$ is regular.
+%\end{observation}
+%\begin{proof}
+%If $h\in H$ has infinite order, let $n$ be minimal such that $\|h^n\|_\bp > R$; then $\|h^n\|\leq 2R$.
+%\end{proof}
+
+\begin{proposition}
+\label{propositiondoubling}
+$\mu$ is doubling if and only if all of the following hold:
+\begin{itemize}
+\item[(I)] For all $\bp\in P$, $\NN_\bp$ is both doubling and codoubling.
+\item[(II)] For all $\bp\in P$ and $R\geq 1$,
+\begin{equation}
+\label{INasymp2}
+\II_\bp(R) \asymp_\times R^{-2\delta} \NN_\bp(R).
+\end{equation}
+\item[(III)] $G$ is of divergence type.
+\end{itemize}
+Moreover, \text{(II)} can be replaced by
+\begin{itemize}
+\item[(II$'$)] For all $\bp\in P$ and $R\geq 1$,
+\begin{equation}
+\label{INasymp3}
+%\II_\bp(R) \lesssim_\times R^{-2\delta} \NN_\bp(R)
+\w\II_\bp(R) := \sum_{k = 0}^\infty e^{-2\delta k} \NN_\bp(e^k R) \asymp_\times \NN_\bp(R).
+\end{equation}
+\end{itemize}
+\end{proposition}
+
+\begin{proof}[Proof that \text{(I)-(III)} imply $\mu$ doubling]
+Fix $\eta\in\Lambda$ and $t,\tau > 0$, and we will demonstrate \eqref{mdoubling}. By (II), (III), and Observation \ref{observationnonatomic}, we have
+\begin{equation}
+\label{GMFdoubling1}
+\begin{split}
+m(\eta,t) &\asymp_\times \begin{cases}
+e^{-\delta t} & \eta_t\notin\bigcup(\scrH) \\
+e^{-\delta t_\xi} e^{-2\delta(t - t_\xi - \theta)}\NN_\bp(e^{t - t_\xi - \theta}) & \eta_t\in H_\xi \text{ and }t \leq \lb \xi|\eta\rb_\zero\\
+e^{-\delta (2\lb \xi|\eta\rb_\zero - t_\xi)} \NN_\bp(e^{2\lb \xi|\eta\rb_\zero - t - t_\xi - \theta}) & \eta_t\in H_\xi \text{ and } t > \lb \xi|\eta\rb_\zero
+\end{cases}\\
+&\asymp_\times e^{-\delta t} \begin{cases}
+1 & \eta_t\notin\bigcup(\scrH)\\
+e^{-\delta b(\eta,t)} \NN_\bp(e^{b(\eta,t) - \theta}) & \eta_t \in H_{g(\bp)}
+\end{cases}
+\end{split}
+\end{equation}
+where $b(\eta,t)$ is as in \eqref{betat}. Let $t_\pm = t \pm \tau$. We split into two cases:
+\begin{itemize}
+\item[Case 1:] $\eta_{t_+},\eta_{t_-}\in H_{g(\bp)}$ for some $g(\bp)\in \Lbp$. In this case, \eqref{mdoubling} follows from Corollary \ref{corollarybetat} together with the fact that $\NN_\bp$ is doubling.
+\item[Case 2:] $\eta_{t + s}\notin \bigcup(\scrH)$ for some $s\in [-\tau,\tau]$. In this case, Corollary \ref{corollarybetat} shows that $b(\eta,t_\pm) \asymp_{\plus,\tau} 0$ and thus
+\[
+m(\eta,t_+) \asymp_{\times,\tau} e^{-\delta t} \asymp_{\times,\tau} m(\eta,t_-).
+\]
+\end{itemize}
+\end{proof}
+\noindent Before continuing the proof of Proposition \ref{propositiondoubling}, we observe that
+\begin{equation*}
+%\label{wIasymp}
+\begin{split}
+\II_\bp(R) + R^{-2\delta}\NN_\bp(R) \asymp_\times \sum_{h\in G_\bp} (R\vee \|h\|_\bp)^{-2\delta}
+&\asymp_\times \sum_{h\in G_\bp} \sum_{k = 1}^\infty (e^k R)^{-2\delta} [e^k R \geq \|h\|_\bp]\\
+&=_\pt \sum_{k = 1}^\infty (e^k R)^{-2\delta} \NN_\bp(e^k R)\\
+&= R^{-2\delta} \w\II_\bp(R).
+\end{split}
+\end{equation*}
+In particular, it follows that \eqref{INasymp3} is equivalent to
+\begin{equation}
+\label{INasymp4}
+\II_\bp(R) \lesssim_\times R^{-2\delta} \NN_\bp(R).
+\end{equation}
+\begin{proof}[Proof that \text{(I) and (II$'$)} imply \text{(II)}]
+Since $\NN_\bp$ is codoubling, let $\beta > 1$ be as in \eqref{dexp2}. Then
+\[
+\II_\bp(R) \geq \sum_{\substack{h\in G_\bp \\ R < \|h\|_\bp \leq \beta R}} (\beta R)^{-2\delta} = (\beta R)^{-2\delta} (\NN_\bp(\beta R) - \NN_\bp(R)) \gtrsim_{\times,\beta} R^{-2\delta} \NN_\bp(R).
+\]
+Combining with \eqref{INasymp4} completes the proof.
+\end{proof}
+\begin{proof}[Proof that $\mu$ doubling implies \text{(I)-(III)} and \text{(II$'$)}]
+Since a doubling measure whose topological support is a perfect set cannot have an atomic part, we must have $\mu(P) = 0$ and thus by Observation \ref{observationnonatomic}, (III) holds. Since
+\[
+m(\bp,t) \asymp_{\times,\bp} \II_\bp(e^{t - t_0 - \theta}) + \mu(\bp) = \II_\bp(e^{t - t_0 - \theta})
+\]
+for all sufficiently large $t$, setting $\eta = \bp$ in \eqref{mdoubling} shows that the function $\II_\bp$ is doubling.
+
+Fix $\eta\in\Lambda\butnot\{\bp\}$. Let $\sigma_0 > 0$ denote the implied constant of \eqref{betatinterpretation}. For $s\in [t_0 + \sigma_0 + \tau, \lb \bp|\eta\rb_\zero - \tau]$, plugging $t = 2\lb \bp|\eta\rb_\zero - s$ into \eqref{mdoubling} and simplifying using $\eqref{metatsimple}_{\xi = \bp}$ shows that
+\begin{equation}
+\label{Nbps}
+\NN_\bp(e^{s - \tau - t_0 - \theta}) \asymp_{\times,\tau} \NN_\bp(e^{s + \tau - t_0 - \theta}).
+\end{equation}
+Since $\lb \bp|\eta\rb_\zero$ can be made arbitrarily large, \eqref{Nbps} holds for all $s\geq t_0 + \sigma_0 + \tau$. It follows that $\NN_\bp$ is doubling.
+
+Next, we compare the values of $m(\eta,\lb \bp|\eta\rb_\zero \pm\tau)$. This gives (assuming $\lb \bp|\eta\rb_\zero > t_0 + \sigma_0 + \tau$)
+\[
+e^{-\delta t_0} \II_\bp(e^{\lb \bp|\eta\rb_\zero - \tau - t_0 - \theta}) \asymp_\times e^{-\delta (2\lb \bp|\eta\rb_\zero - t_0)} \NN_\bp(e^{\lb \bp|\eta\rb_\zero - \tau - t_0 - \theta}).
+\]
+Letting $R_\eta = \exp(\lb \bp|\eta\rb_\zero - \tau - t_0 - \theta)$, we have
+\begin{equation}
+\label{INasymp6}
+\II_\bp(R_\eta) \asymp_\times R_\eta^{-2\delta} \NN_\bp(R_\eta).
+\end{equation}
+Now fix $\zeta\in\Lambda\butnot\{\bp\}$ and $h\in G_\bp$, and let $\eta = h(\zeta)$. Then $\Dist_\bp(h(\zero),\eta) \asymp_{\plus,\zeta} 0$, and thus the triangle inequality gives
+\[
+1 \leq \Dist_\bp(\zero,\eta) \asymp_{\plus,\zeta} \|h\|_\bp \geq 1,
+\]
+and so $R_\eta \asymp_\times \Dist_\bp(\zero,\eta) \asymp_{\times,\zeta} \|h\|_\bp$. Combining with \eqref{INasymp6} and the fact that the functions $\II_\bp$ and $\NN_\bp$ are doubling, we have
+\begin{equation}
+\label{INasymp7}
+\II_\bp(\|h\|_\bp) \asymp_\times \|h\|_\bp^{-2\delta} \NN_\bp(\|h\|_\bp)
+\end{equation}
+for all $h\in G_\bp$.
+
+Now fix $1\leq R_1 < R_2$ such that $\|h_i\|_\bp = R_i$ for some $h_1,h_2\in G_\bp$, but such that the formula $R_1 < \|h\|_\bp < R_2$ is not satisfied for any $h\in G_\bp$. Then
+\[
+\lim_{R\searrow R_1} \II_\bp(R) = \lim_{R\nearrow R_2} \II_\bp(R) \text{ and } \lim_{R\searrow R_1} \NN_\bp(R) = \lim_{R\nearrow R_2} \NN_\bp(R).
+%\II_\bp(2R_1) = \II_\bp(R_2/2) \text{ and } \NN_\bp(2R_1) = \NN_\bp(R_2/2).
+\]
+On the other hand, applying \eqref{INasymp7} with $h = h_1,h_2$ gives
+\[
+\II_\bp(R_i) \asymp_\times R_i^{-2\delta} \NN_\bp(R_i).
+\]
+Since $\II_\bp$ and $\NN_\bp$ are doubling, we have
+\begin{align*}
+%R_1^{-2\delta}
+%\asymp_\times \frac{\II_\bp(R_1)}{\NN_\bp(R_1)}
+%\asymp_\times \frac{\II_\bp(2R_1)}{\NN_\bp(2R_1)}
+%= \frac{\II_\bp(R_2/2)}{\NN_\bp(R_2/2)}
+%\asymp_\times \frac{\II_\bp(R_2)}{\NN_\bp(R_2)}
+%\asymp_\times R_2^{-2\delta}
+R_1^{-2\delta}
+\asymp_\times \frac{\II_\bp(R_1)}{\NN_\bp(R_1)}
+\asymp_\times \frac{\lim_{R\searrow R_1} \II_\bp(R)}{\lim_{R\searrow R_1} \NN_\bp(R)}
+&= \frac{\lim_{R\nearrow R_2} \II_\bp(R)}{\lim_{R\nearrow R_2} \NN_\bp(R)}\\
+&\asymp_\times \frac{\II_\bp(R_2)}{\NN_\bp(R_2)}
+\asymp_\times R_2^{-2\delta}
+\end{align*}
+and thus $R_1 \asymp_\times R_2$. Since $R_1,R_2$ were arbitrary, Observation \ref{observationcodoubling} shows that $\NN_\bp$ is codoubling. This completes the proof of (I).
+
+It remains to demonstrate (II) and (II$'$). Given any $R\geq 1$, since $\NN_\bp$ is codoubling, we may find $h\in G_\bp$ such that $\|h\|_\bp \asymp_\times R$; combining with \eqref{INasymp7} and the fact that $\II_\bp$ and $\NN_\bp$ are doubling gives \eqref{INasymp2} and \eqref{INasymp4}, demonstrating (II) and (II$'$).
+\end{proof}
+
+We note that the proof actually shows the following (cf. \eqref{GMFdoubling1}):
+
+\begin{corollary}
+\label{corollaryGMFdoubling}
+If $\mu$ is doubling, then
+\[
+\mu(B(\eta,e^{-t})) \asymp_\times e^{-\delta t} \begin{cases}
+1 & \eta_t\notin \bigcup(\scrH)\\
+e^{-\delta b(\eta,t)} \NN_\bp(e^{b(\eta,t)}) & \eta_t\in H_{g(\bp)}
+\end{cases}
+\]
+for all $\eta\in\Lambda$, $t > 0$. Here $b(\eta,t)$ is as in \eqref{betat}.
+\end{corollary}
+
+Although Proposition \ref{propositiondoubling} is the best necessary and sufficient condition we can give for doubling, in what follows we give necessary conditions and sufficient conditions which are more elementary (Proposition \ref{propositiondoubling2}), although the necessary conditions are not the same as the sufficient conditions. In practice these conditions are usually powerful enough to determine whether any given measure is doubling.
+
+To state the result, we need the concept of the \emph{polynomial growth rate} of a function:
+
+\begin{definition}[Cf. \eqref{growthrate}]
+\label{definitiongrowthrate}
+The \emph{(polynomial) growth rate} of a function $f:\CO 1\infty \to \CO 1\infty$ is the limit
+\[
+\dexp(f) := \lim_{\lambda,R\to\infty}\frac{\log f(\lambda R) - \log f(R)}{\log(\lambda)}
+\]
+if it exists. If the limit does not exist, then the numbers
+\begin{align*}
+\uexp(f) &:= \limsup_{\lambda,R\to\infty}\frac{\log f(\lambda R) - \log f(R)}{\log(\lambda)}\\
+\lexp(f) &:= \liminf_{\lambda,R\to\infty}\frac{\log f(\lambda R) - \log f(R)}{\log(\lambda)}
+\end{align*}
+are the \emph{upper} and \emph{lower polynomial growth rates} of $f$, respectively.
+\end{definition}
+
+%\begin{remark}
+%In general, $(\lexp(f),\uexp(f))$ can be any pair of numbers. However, it is not too unreasonable to look for functions for which $\dexp(f)$ exists; 
+%
+%\end{remark}
+
+\begin{lemma}
+\label{lemmadexp}
+Let $f:\CO 1\infty\to\CO 1\infty$.
+\begin{itemize}
+\item[(i)] $f$ is doubling if and only if $\uexp(f) < \infty$.
+\item[(ii)] $f$ is codoubling if and only if $\lexp(f) > 0$.
+\item[(iii)]
+\[
+\lexp(f) \leq \liminf_{\lambda\to\infty} \frac{\log f(\lambda)}{\log(\lambda)} \leq \limsup_{\lambda\to\infty} \frac{\log f(\lambda)}{\log(\lambda)} \leq \uexp(f).
+\]
+In particular, $\lexp(\NN_\bp) \leq 2\delta_\bp \leq \uexp(\NN_\bp)$.
+\end{itemize}
+\end{lemma}
+\begin{proof}[Proof of \text{(i)}]
+Suppose that $f$ is doubling, and let $C > 1$ denote the implied constant of \eqref{dexp1}. Iterating gives
+\[
+f(\beta^n R) \leq C^n f(R) \all n\in\N \all R\geq 1
+\]
+and thus
+\[
+f(\lambda R) \lesssim_\times \lambda^{\log_\beta(C)} f(R) \all \lambda > 1 \all R\geq 1.
+\]
+It follows that $\uexp(f) \leq \log_\beta(C) < \infty$. The converse direction is trivial.
+\end{proof}
+\begin{proof}[Proof of \text{(ii)}]
+Suppose that $f$ is codoubling, and let $C > 1$ denote the implied constant of \eqref{dexp2}. Then
+\[
+f(\beta R) \geq (1 + C^{-1}) f(R) \all R\geq 1.
+\]
+Iterating gives
+\[
+f(\beta^n R) \geq (1 + C^{-1})^n f(R) \all n\in\N \all R\geq 1
+\]
+and thus
+\[
+f(\lambda R) \gtrsim_\times \lambda^{\log_\beta(1 + C^{-1})} f(R) \all \lambda > 1 \all R\geq 1.
+\]
+It follows that $\lexp(f) \geq \log_\beta(1 + C^{-1}) > 0$. The converse direction is trivial.
+\end{proof}
+\begin{proof}[Proof of \text{(iii)}]
+Let $R_n\to\infty$. For each $n\in\N$,
+\[
+\limsup_{\lambda\to\infty} \frac{\log f(\lambda R_n) - \log f(R_n)}{\log(\lambda)} = \overline s := \limsup_{\lambda\to\infty} \frac{\log f(\lambda)}{\log(\lambda)}\cdot
+\]
+Thus given $s < \overline s$, we may find a large number $\lambda_n > 1$ such that 
+\[
+\frac{\log f(\lambda_n R_n) - \log f(R_n)}{\log(\lambda_n)}  > s.
+\] 
+Since $\lambda_n,R_n\to\infty$ as $n\to\infty$, it follows that $\uexp(f) \geq s$; since $s$ was arbitrary, $\uexp(f) \geq \overline s$. A similar argument shows that $\lexp(f) \leq \underline s$.
+
+Finally, when $f = \NN_\bp$, the equality $\overline s = \underline s = 2\delta_\bp$ is a consequence of \eqref{poincarealternate} and Observation \ref{observationeuclideanparabolicasymp}.
+\end{proof}
+
+We can now state our final result regarding criteria for doubling:
+
+\begin{proposition}
+\label{propositiondoubling2}
+In the following list, \text{(A) \implies (B) \implies (C):}
+\begin{itemize}
+\item[(A)] For all $\bp\in P$, $0 < \lexp(\NN_\bp) \leq \uexp(\NN_\bp) < 2\delta$.
+\item[(B)] $\mu$ is doubling.
+\item[(C)] For all $\bp\in P$, $0 < \lexp(\NN_\bp) \leq \uexp(\NN_\bp) \leq 2\delta$.
+\end{itemize}
+\end{proposition}
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+Suppose that (A) holds. Then by Lemma \ref{lemmadexp}, (I) of Proposition \ref{propositiondoubling} holds. Since $\delta_\bp \leq \uexp(\NN_\bp)/2 < \delta$ for all $\bp\in P$, Theorem \ref{theoremGFdivergencetype} implies that (III) of Proposition \ref{propositiondoubling} holds. To complete the proof, we need to show that (II$'$) of Proposition \ref{propositiondoubling} holds. Fix $s\in (\uexp(\NN_\bp),2\delta)$. Since $s > \uexp(\NN_\bp)$, we have
+\[
+\NN_\bp(\lambda R) \lesssim_{\times,s} \lambda^s \NN_\bp(R) \all \lambda > 1,\; R\geq 1
+\]
+and thus
+\[
+\NN_\bp(R) \leq \w\II_\bp(R) \lesssim_\times \sum_{k = 0}^\infty e^{-2\delta k} e^{sk} \NN_\bp(R) \asymp_\times \NN_\bp(R),
+\]
+demonstrating \eqref{INasymp3} and completing the proof.
+\end{proof}
+\begin{proof}[Proof of \text{(B) \implies (C)}]
+Suppose $\mu$ is doubling. By (I) of Proposition \ref{propositiondoubling}, $\lexp(\NN_\bp) > 0$. On the other hand, by \eqref{INasymp3} we have
+\[
+\lambda^{-2\delta} \NN_\bp(\lambda R) \lesssim_\times \NN_\bp(R) \all \lambda > 1,\; R\geq 1
+\]
+and thus $\uexp(\NN_\bp) \leq 2\delta$.
+\end{proof}
+
+Proposition \ref{propositiondoubling} shows that if $G$ is a geometrically finite group with $\delta$-conformal measure $\mu$, then the question of whether $\mu$ is doubling is determined entirely by its parabolic subgroups $(G_\bp)_{\bp\in P}$ and its Poincar\'e set $\Delta_G$. A natural question is when the second input can be removed, that is: if we are told what the parabolic subgroups $(G_\bp)_{\bp\in P}$ are, can we sometimes determine whether $\mu$ is doubling without looking at $\Delta_G$? A trivial example is that if $\lexp(\NN_\bp) = 0$ or $\uexp(\NN_\bp) = \infty$ for some $\bp\in P$, then we automatically know that $\mu$ is not doubling. Conversely, the following definition and proposition describe when we can deduce that $\mu$ is doubling:
+
+\begin{definition}
+\label{definitionpredoubling}
+A parabolic group $H\leq\Isom(X)$ with global fixed point $\bp\in\del X$ is \emph{pre-doubling} if
+\begin{equation}
+\label{predoubling}
+0 < \lexp(\NN_{\EE_\bp,H}) \leq \uexp(\NN_{\EE_\bp,H}) = 2\delta_H < \infty
+\end{equation}
+and $H$ is of divergence type.
+\end{definition}
+
+%\begin{observation}
+%\label{observationpredoubling}
+%If $G_\bp$ is pre-doubling for every $\bp\in P$, then $\mu$ is doubling.
+%\end{observation}
+%\begin{proof}
+%For all $\bp\in P$, the fact that $G_\bp$ is of divergence type implies that $\delta > \delta_\bp$ (Proposition \ref{propositiondeltagtrdeltap}); combining with \eqref{predoubling} gives $0 < \lexp(\NN_\bp) \leq \uexp(\NN_\bp) < 2\delta$. Proposition \ref{propositiondoubling2} completes the proof.
+%\end{proof}
+
+\begin{proposition}
+\label{propositionpredoubling}
+~
+\begin{itemize}
+\item[(i)] If $G_\bp$ is pre-doubling for every $\bp\in P$, then $\mu$ is doubling.
+\item[(ii)] Let $H\leq\Isom(X)$ be a parabolic subgroup, and let $g\in\Isom(X)$ be a loxodromic isometry such that $\lb g,H\rb$ is a strongly separated Schottky product. Then the following are equivalent:
+\begin{itemize}
+\item[(A)] $H$ is pre-doubling.
+\item[(B)] For every $n\in\N$, the $\delta_n$-quasiconformal measure $\mu_n$ of $G_n = \lb g^n,H\rb$ is doubling. Here we assume that $\delta_n := \delta(G_n) < \infty$.
+\end{itemize}
+\end{itemize}
+\end{proposition}
+\begin{proof}[Proof of \text{(i)}]
+For all $\bp\in P$, the fact that $G_\bp$ is of divergence type implies that $\delta > \delta_\bp$ (Proposition \ref{propositiondeltagtrdeltap}); combining with \eqref{predoubling} gives $0 < \lexp(\NN_\bp) \leq \uexp(\NN_\bp) < 2\delta$. Proposition \ref{propositiondoubling2} completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of \text{(ii)}]
+Since (up to equivalence) the only parabolic point of $G_n$ is the global fixed point of $H$ (Proposition \ref{propositionSproductGF}), the implication (A) \implies (B) follows from part (i). Conversely, suppose that (B) holds. Then by Proposition \ref{propositiondoubling2}, we have
+\[
+0 < \lexp(\NN_{\EE_\bp,H}) \leq \uexp(\NN_{\EE_\bp,H}) \leq 2\delta_n < \infty.
+\]
+Since $\delta_n\to \delta_H$ as $n\to\infty$ (Proposition \ref{propositionSproductexponent}(iv)), taking the limit and combining with the inequality $2\delta_H \leq \uexp(\NN_{\EE_\bp,H})$ yields \eqref{predoubling}. On the other hand, by Proposition \ref{propositiondoubling}, for each $n$, $G_n$ is of divergence type, so applying Proposition \ref{propositionSproductexponent}(iv) again, we see that $H$ is of divergence type.
+%Assume that (A) is false, and we will show that (B) is false. We divide into cases according to which of the two conditions of Definition \ref{definitionpredoubling} fails:
+%\begin{itemize}
+%\item[Case 1.] Suppose that the inequalities $0 < \lexp(\NN_{\EE_\bp,H}) \leq \uexp(\NN_{\EE_\bp,H}) = 2\delta_H < \infty$ do not all hold. Since $\lexp(\NN_{\EE_\bp,H}) \leq \uexp(\NN_{\EE_\bp,H}) \leq 2\delta_H$, we must have either:
+%\begin{itemize}
+%\item[Case 1a.] $\lexp(\NN_{\EE_\bp,H}) = 0$. In this case, 
+%\end{itemize}
+%
+%If $\lexp(\NN_{\EE_\bp,H}) = 0$, then by (I) of Proposition \ref{propositiondoubling}, none of the measures $\mu_n$ are doubling. Now the inequalities $\lexp(\NN_{\EE_\bp,H}) \leq 2\delta_H \leq \uexp(\NN_{\EE_\bp,H})$ and $\delta_H < \infty$ are automatic, so if (A) fails then we must have $\uexp(\NN_{\EE_\bp,H}) > 2\delta_H$. But then by choosing $n$ large enough, we may guarantee that $\delta_n < \uexp(\NN_{\EE_\bp,H})/2$ [more details needed\internal]. Then by Proposition \ref{propositiondoubling2}, $\mu_n$ is not doubling.
+%\item[(II)] If $\uexp(\NN_{\EE_\bp,H}) > 2\delta_H$, then 
+%\item[(III)] Suppose that $H$ is of convergence type. By choosing $n$ large enough, we may guarantee that $G_n$ is of convergence type [more details needed\internal]; then by (III) of Proposition \ref{propositiondoubling}, $\mu_n$ is not doubling.
+%\end{itemize}
+\end{proof}
+
+\begin{example}
+\label{exampledoubling}
+If
+\begin{equation}
+\label{Nbppowerlaw}
+\NN_\bp(R) \asymp_\times R^{2\delta_\bp} \all \bp\in P,
+\end{equation}
+then the groups $(G_\bp)_{\bp\in P}$ are pre-doubling, and thus by Proposition \ref{propositionpredoubling}(i), $\mu$ is doubling. Combining with Corollary \ref{corollaryGMFdoubling} gives
+\[
+\mu(B(\eta,e^{-t})) \asymp_\times e^{-\delta t} \begin{cases}
+1 & \eta_t\notin \bigcup(\scrH)\\
+e^{(2\delta_\xi - \delta) b(\eta,t)} & \eta_t\in H_\xi
+\end{cases}.
+\]
+This generalizes B. Schapira's global measure formula \cite[Th\'eor\`eme 3.2]{Schapira} to the setting of regularly geodesic strongly hyperbolic metric spaces.
+\end{example}
+
+We remark that the asymptotic \eqref{Nbppowerlaw} is satisfied whenever $X$ is a finite-dimensional algebraic hyperbolic space; see e.g. \cite[Lemma 3.5]{Newberger}. In particular, specializing Schapira's global measure formula to the settings of finite-dimensional algebraic hyperbolic spacess and finite-dimensional real hyperbolic spaces give the global measure formulas of Newberger \cite[Main Theorem]{Newberger} and Stratmann--Velani--Sullivan \cite[Theorem 2]{StratmannVelani}, \cite[Theorem on p.271]{Sullivan_entropy}, respectively.
+
+By contrast, when $X = \H = \H^\infty$, the asymptotic \eqref{Nbppowerlaw} is usually not satisfied. Let us summarize the various behaviors that we have seen for the orbital counting functions of parabolic groups acting on $\H^\infty$, and their implications for doubling:
+
+\begin{examples}[Examples of doubling and non-doubling Patterson--Sullivan measures of geometrically finite subgroups of $\Isom(\H^\infty)$]
+\label{exampledoublingnondoubling}
+~
+\begin{itemize}
+\item[1.] In the proof of Theorem \ref{theoremnilpotentembedding} (cf. Remark \ref{remarknilpotentembedding}), we saw that if $\Gamma$ is a finitely generated virtually nilpotent group and if $f:\CO 1\infty\to\CO 1\infty$ is a function satisfying
+\[
+\alpha_\Gamma < \lexp(f) \leq \uexp(f) < \infty,
+\]
+then there exists a parabolic group $H\leq\Isom(\H^\infty)$ isomorphic to $\Gamma$ whose orbital counting function is asymptotic to $f$. Now, a group $H$ constructed in this way may or may not be pre-doubling; it depends on the chosen function $f$. We note that by applying Proposition \ref{propositionpredoubling}(ii) to such a group, one can construct examples of geometrically finite subgroups of $\Isom(\H^\infty)$ whose Patterson--Sullivan measures are not doubling. On the other hand, for any parabolic group $H$ constructed in this way, if $H$ is embedded into a geometrically finite group $G$ with sufficiently large Poincar\'e exponent (namely $2\delta_G > \uexp(f)$), then the Patterson--Sullivan measure of $G$ may be doubling (assuming that no other parabolic subgroups of $G$ are causing problems).
+\item[2.] In Theorem \ref{theoremRtreeorbitalcounting}, we showed that if $f:\Rplus\to\N$ satisfies the condition
+\[
+\forall 0\leq R_1 \leq R_2 \; \text{$f(R_1)$ divides $f(R_2)$},
+\]
+then there exists a parabolic subgroup of $\Isom(\H^\infty)$ whose orbital counting function is equal to $f$. This provides even more examples of parabolic groups which are not pre-doubling. In particular, it provides examples of parabolic groups $H$ which satisfy either $\lexp(\NN_H) = 0$ or $\uexp(\NN_H) = \infty$ (cf. Example \ref{exampleparabolictorsion}); such groups cannot be embedded into any geometrically finite group with a doubling Patterson--Sullivan measure.
+\end{itemize}
+\end{examples}
+
+Note that example 2 can be used to construct a geometrically finite group acting isometrically on an $\R$-tree which does not have a doubling Patterson--Sullivan measure. On the other hand, example 1 has no analogue in $\R$-trees by Remark \ref{remarkparabolicRtree}.
+
+%Thus, there are a wealth of examples of both doubling and non-doubling Patterson--Sullivan measures of geometrically finite subgroups of $\Isom(\H^\infty)$.
+
+%These examples indicate that the boundary between doubling and non-doubling behavior is quite subtle.% We end this section by noting that the constructions of parabolic groups mentioned above can be used to create examples of doubling measures as well as examples of non-doubling ones.
+
+
+
+%\begin{observation}
+%\label{observationhardyfield}
+%Suppose that
+%\[
+%\NN_{\EE_\bp,H}(R) \asymp_\times \exp f \log(R)
+%\]
+%for some differentiable function $f:\Rplus\to\Rplus$ such that
+%\[
+%\lim_{t\to\infty} f'(t) \text{ exists.}
+%\]
+%Then $\dexp(\NN_{\EE_\bp,H}) = 2\delta_H = \lim_{t\to\infty} f'(t)$. In particular, $H$ is pre-doubling if and only if $H$ is of divergence type and $\delta_H > 0$.
+%\end{observation}
+%\begin{proof}
+%We have
+%\begin{align*}
+%\dexp(\NN_{\EE_\bp,H}) = \dexp(\exp f\log)
+%&= \lim_{\lambda,R\to\infty} \frac{f(\log(R) + \log(\lambda)) - f(\log(R))}{\log(\lambda)}\noreason\\
+%&= \lim_{x,h\to\infty} \frac{f(x + h) - f(x)}{h} \noreason\\
+%&= \lim_{t\to\infty} f'(t). \by{the fundamental theorem of calculus}
+%\end{align*}
+%Since $\dexp(\NN_{\EE_\bp,H})$ exists, $\dexp(\NN_{\EE_\bp,H}) = 2\delta_H$ by \eqref{poincarealternate}.
+%\end{proof}
+
+
+\section{Exact dimensionality of $\mu$}
+\label{subsectionexactdimensional}
+We now turn to the question of the fractal dimensions of the measure $\mu$. We recall that the \emph{Hausdorff dimension} and \emph{packing dimension} of a measure $\mu$ on $\del X$ are defined by the formulas
+\begin{align*}
+\HD(\mu) &= \inf\left\{\HD(A): \mu(\del X\butnot A) = 0\right\}\\
+\PD(\mu) &= \inf\left\{\PD(A): \mu(\del X\butnot A) = 0\right\}.
+\end{align*}
+If $G$ is of convergence type, then $\mu$ is atomic, so $\HD(\mu) = \PD(\mu) = 0$. Consequently, for the remainder of this chapter we make the
+\begin{standingassumption}
+\label{assumptiondivergencetype}
+$G$ is of divergence type.
+\end{standingassumption}
+Given this assumption, it is natural to expect that $\HD(\mu) = \PD(\mu) = \delta$. Indeed, the inequality $\HD(\mu)\leq\delta$ follows immediately from Theorems \ref{theorembishopjonesregular} and \ref{theoremGFcompact}, and in the Standard Case equality holds \cite[Proposiiton 4.10]{StratmannVelani}. Even stronger than the equalities $\HD(\mu) = \PD(\mu) = \delta$, it is natural to expect that $\mu$ is \emph{exact dimensional}:
+
+\begin{definition}
+\label{definitionexactdimensional}
+A measure $\mu$ on a metric space $(Z,\Dist)$ is called \emph{exact dimensional of dimension $s$} if the limit
+\begin{equation}
+\label{dmudef}
+d_\mu(\eta) := \lim_{t\to\infty} \frac1t \log\frac{1}{\mu(B(\eta,e^{-t}))}
+\end{equation}
+exists and equals $s$ for $\mu$-a.e. $\eta\in Z$.
+\end{definition}
+
+For example, every Ahlfors $s$-regular measure is exact dimensional of dimension $s$.
+
+If the limit in \eqref{dmudef} does not exist, then we denote the lim inf by $\underline d_\mu(\eta)$ and the lim sup by $\overline d_\mu(\eta)$.
+
+\begin{proposition}[{\cite[\68]{MSU}}]
+\label{propositionexactdimensional}
+For any measure $\mu$ on a metric space $(Z,\Dist)$,
+\begin{align*}
+\HD(\mu) &= \esssup_{\eta\in Z} \underline d_\mu(\eta)\\
+\PD(\mu) &= \esssup_{\eta\in Z} \overline d_\mu(\eta).
+\end{align*}
+In particular, if $\mu$ is exact dimensional of dimension $s$, then
+\[
+\HD(\mu) = \PD(\mu) = s.
+\]
+\end{proposition}
+
+Combining Proposition \ref{propositionexactdimensional} with Lemma \ref{lemmaCCBglobalmeasure} and Observation \ref{observationnonatomic} immediately yields the following:
+
+\begin{observation}
+\label{observationHDdeltaPD}
+If $\mu$ is the Patterson--Sullivan measure of a geometrically finite group of divergence type, then
+\[
+\HD(\mu) \leq \delta \leq \PD(\mu).
+\]
+In particular, if $\mu$ is exact dimensional, then $\mu$ is exact dimensional of dimension $\delta$.
+\end{observation}
+
+It turns out that $\mu$ is not necessarily exact dimensional (Example \ref{examplenotexactdim}), but counterexamples to exact dimensionality must fall within a very narrow window (Theorem \ref{theoremhlogseries}), and in particular if $\mu$ is doubling then $\mu$ is exact dimensional (Corollary \ref{corollarydoublingexactdim}). As a first step towards these results, we will show that exact dimensionality is equivalent to a certain Diophantine condition. For this, we need to recall some results from \cite{FSU4}.
+
+\subsection{Diophantine approximation on $\Lambda$}
+\label{subsubsectiondiophantineapproximation}
+Classically, Diophantine approximation is concerned with the approximation of a point $x\in\R\butnot\Q$ by a rational number $p/q\in\Q$. The two important quantities are the \emph{error term} $|x - p/q|$ and the \emph{height} $q$. Given a function $\Psi:\N\to\Rplus$, the point $x\in\R\butnot\Q$ is said to be \emph{$\Psi$-approximable} if
+\[
+\left|x - \frac pq\right| \leq \Psi(q) \text{ for infinitely many $p/q\in\Q$}.
+\]
+In the setting of a group acting on a hyperbolic metric space, we can instead talk about \emph{dynamical} Diophantine approximation, which is concerned with the approximation of a point $\eta\in\Lambda$ by points $g(\xi)\in G(\xi)$, where $\xi\in\Lambda$ is a distinguished point. For this to make sense, one needs a new definition of error and height: the error term is defined to be $\Dist(g(\xi),\eta)$, and the height is defined to be $b^{\dogo g}$. (If there is more than one possibility for $g$, it may be chosen so as to minimize the height.) Some motivation for these definitions comes from considering classical Diophantine approximation as a special case of dynamical Diophantine approximation which occurs when $X = \H^2$ and $G = \SL_2(\Z)$; see e.g. \cite[Observation 1.15]{FSU4} for more details. Given a function $\Phi:\Rplus\to (0,\infty)$, the point $\eta\in\Lambda$ is said to be \emph{$\Phi,\xi$-well approximable} if for every $K > 0$ there exists $g\in G$ such that
+\[
+\Dist(g(\xi),\eta) \leq \Phi(K b^{\dogo g}) \text{ for infinitely many $g\in G$}
+\]
+(cf. \cite[Definition 1.36]{FSU4}). Moreover, $\eta$ is said to be \emph{$\xi$-very well approximable} if
+\[
+\omega_\xi(\eta) := \limsup_{\substack{g\in G \\ g(\xi)\to\eta}} \frac{-\log_b \Dist(g(\xi),\eta)}{\dogo g} > 1
+\]
+%for every $\epsilon > 0$ we have
+%\[
+%\Dist(g(\xi),\eta) \leq b^{-(1 + \epsilon)\dogo g} \text{ for infinitely many $g\in G$}
+%\]
+(cf. \cite[p.9]{FSU4}). The set of $\Phi,\xi$-well approximable points is denoted $\WA_{\Phi,\xi}$, while the set of $\xi$-very well approximable points is denoted $\VWA_\xi$. Finally, a point $\eta$ is said to be \emph{Liouville} if $\omega_\xi(\eta) = \infty$; the set of Liouville points is denoted $\Liou_\xi$.
+
+In the following theorems, we return to the setting of Standing Assumptions \ref{standingassumptionsGFmeasures} and \ref{assumptiondivergencetype}.
+
+\begin{theorem}[Corollary of {\cite[Theorem 8.1]{FSU4}}]
+\label{theoremFSUkhinchin}
+Fix $\bp\in P$, and let $\Phi:\Rplus\to(0,\infty)$ be a function such that the function $t\mapsto t\Phi(t)$ is nonincreasing. Then
+\begin{itemize}
+\item[(i)] $\mu(\WA_{\Phi,\bp}) = 0\text{ or }1$ according to whether the series
+\begin{equation}
+\label{WAseries}
+\sum_{g\in G} e^{-\delta \dogo g} \II_\bp\left(\frac{1}{e^{\dogo g} \Phi(K e^{\dogo g})}\right)
+\end{equation}
+converges for some $K > 0$ or diverges for all $K > 0$, respectively.
+\item[(ii)] $\mu(\VWA_\bp) = 0\text{ or }1$ according to whether the series
+\begin{equation}
+\label{VWAseries}
+\SigmaVWA(\bp,\kappa) := \sum_{g\in G} e^{-\delta \dogo g} \II_\bp(e^{\kappa\dogo g})
+\end{equation}
+converges for all $\kappa > 0$ or diverges for some $\kappa > 0$, respectively.
+\item[(iii)] $\mu(\Liou_\bp) = 0\text{ or }1$ according to whether the series $\SigmaVWA(\bp,\kappa)$ converges for some $\kappa > 0$ or diverges for all $\kappa > 0$, respectively.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+Standing Assumption \ref{assumptiondivergencetype}, Theorem \ref{theoremahlforsthurstongeneral}, and Observation \ref{observationnonatomic} imply that $\mu$ is ergodic and that $\mu(\bp) = 0$, thus verifying the hypotheses of \cite[Theorem 8.1]{FSU4}. Theorem \ref{theoremglobalmeasure} shows that
+\[
+\II_\bp(C_1/r) \lesssim_{\times,\bp} \mu(B(\bp,r)) \lesssim_{\times,\bp} \II_\bp(C_2/r)
+\]
+for some constants $C_1 \geq 1 \geq C_2 > 0$. Thus for all $K > 0$,
+\begin{align*}
+&\sum_{g\in G} e^{-\delta\dogo g} \II_\bp\left(\frac{1}{e^{\dogo g} \Phi(K C_1 e^{\dogo g})}\right)\\
+&\leq_\pt \sum_{g\in G} e^{-\delta\dogo g} \II_\bp\left(\frac{C_1}{e^{\dogo g} \Phi(K e^{\dogo g})}\right)\\
+&\lesssim_\times \text{\cite[(8.1)]{FSU4}}\\
+&\lesssim_\times \sum_{g\in G} e^{-\delta\dogo g} \II_\bp\left(\frac{C_2}{e^{\dogo g} \Phi(K e^{\dogo g})}\right)\\
+&\leq_\pt \sum_{g\in G} e^{-\delta\dogo g} \II_\bp\left(\frac{1}{e^{\dogo g} \Phi((K/C_1) e^{\dogo g})}\right).
+\end{align*}
+Thus, \cite[(8.1)]{FSU4} diverges for all $K > 0$ if and only if \eqref{WAseries} diverges for all $K > 0$. This completes the proof of (i). To demonstrate (ii) and (iii), simply note that $\VWA_\bp = \bigcup_{c > 0} \WA_{\Phi_c,\bp}$ and $\Liou_\bp = \bigcap_{c > 0} \WA_{\Phi_c,\bp}$, where $\Phi_c(t) = t^{-(1 + c)}$, and apply (i). The constant $K$ may be absorbed by a slight change of $\kappa$.
+\end{proof}
+
+\begin{theorem}[Corollary of {\cite[Theorem 7.1]{FSU4}}]
+\label{theoremFSUjarnik}
+For all $\xi\in\Lambda$ and $c > 0$,
+\[
+\HD(\WA_{\Phi_c,\xi}) \leq \frac{\delta}{1 + c},
+\]
+where $\Phi_c(t) = t^{-(1 + c)}$ as above. In particular, $\HD(\Liou_\xi) = 0$, and $\VWA_\xi$ can be written as the countable union of sets of Hausdorff dimension strictly less than $\delta$.
+\end{theorem}
+\noindent (No proof is needed as this follows directly from \cite[Theorem 7.1]{FSU4}.)
+
+There is a relation between dynamical Diophantine approximation by the orbits of parabolic points and the lengths of cusp excursions along geodesics. A well-known example is that a point $\eta\in\Lambda$ is dynamically badly approximable with respect to every parabolic point if and only if the geodesic $\geo\zero\eta$ has bounded cusp excursion lengths \cite[Proposition 1.21]{FSU4}. The following observation is in a similar vein:
+
+\begin{observation}
+\label{observationVWAbetat}
+For $\eta\in\Lambda$, we have:
+\begin{align*}
+\eta\in\bigcup_{p\in P}\VWA_\bp
+&\;\;\Leftrightarrow\;\; \limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \frac{\lb\xi|\eta\rb - t_\xi}{t_\xi} > 0
+\;\;\Leftrightarrow\;\; \limsup_{t\to\infty} \frac{b(\eta,t)}{t} > 0\\
+\eta\in\bigcup_{p\in P}\Liou_\bp
+&\;\;\Leftrightarrow\;\; \limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \frac{\lb\xi|\eta\rb - t_\xi}{t_\xi} = \infty
+\;\;\Leftrightarrow\;\; \limsup_{t\to\infty} \frac{b(\eta,t)}{t} = 1.
+\end{align*}
+%\begin{align} \tag{A}
+%&\eta\notin\bigcup_{p\in P}\VWA_\bp\\ \tag{B}
+%&\limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \frac{\lb\xi|\eta\rb - t_\xi}{t_\xi} = 0 \\ \tag{C}
+%&\limsup_{t\to\infty} \frac{b(\eta,t)}{t} = 0.
+%\end{align}
+\end{observation}
+\begin{proof}
+If $\xi = g(\bp)\in\Lbp$, then $\dogo g \gtrsim_\plus t_\xi$, with $\asymp_\plus$ for at least one value of $g$ (Lemma \ref{lemmatop}). Thus
+\begin{align*}
+\max_{\bp\in P}\omega_\bp(\eta) = \max_{\bp\in P}\limsup_{\substack{g\in G \\ g(\bp)\to\eta}} \frac{\log\Dist(g(\bp),\eta)}{\dogo g}
+= \limsup_{\substack{\xi\in\Lbp \\ \xi\to\eta}} \frac{\lb \xi|\eta\rb}{t_\xi},
+\end{align*}
+so
+\begin{equation}
+\label{VWAbetat1}
+\limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \frac{\lb\xi|\eta\rb - t_\xi}{t_\xi} = \max_{\bp\in P}\omega_\bp(\eta) - 1.
+%\begin{cases}
+%= \infty & \eta\in\bigcup_{p\in P}\Liou_\bp\\
+%\in (0,\infty) & \eta\in\bigcup_{p\in P}\VWA_\bp\butnot \bigcup_{p\in P}\Liou_\bp\\
+%= 0 & \eta\notin\bigcup_{p\in P}\VWA_\bp
+%\end{cases}.
+\end{equation}
+On the other hand, it is readily verified that if $\geo\zero\eta$ intersects $H_\xi$, then the function $f(t) = b(\eta,t)/t$ attains its maximum at $t = \lb \xi|\eta\rb_\zero$, at which $f(t) = \lb \xi|\eta\rb_\zero - t_\xi$. Thus we have that
+\begin{equation}
+\label{VWAbetat2}
+\begin{split}
+\limsup_{t\to\infty} \frac{b(\eta,t)}{t}
+= \limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \sup_{\substack{t > 0 \\ \eta_t\in H_\xi}} \frac{b(\eta,t)}{t}
+&= \limsup_{\substack{\xi\in\Lbp \\ t_\xi\to\infty}} \frac{\lb \xi|\eta\rb_\zero - t_\xi}{\lb \xi|\eta\rb_\zero}\\
+&= 1 - \frac{1}{\max_{\bp\in P}\omega_\bp(\eta)}
+\end{split}
+%\begin{cases}
+%= 1 & \eta\in\bigcup_{p\in P}\Liou_\bp\\
+%\in (0,1) & \eta\in\bigcup_{p\in P}\VWA_\bp\butnot \bigcup_{p\in P}\Liou_\bp\\
+%= 0 & \eta\notin\bigcup_{p\in P}\VWA_\bp
+%\end{cases}.
+\end{equation}
+Since
+\[
+\max_{\bp\in P}\omega_\bp(\eta) \begin{cases}
+= \infty & \eta\in\bigcup_{p\in P}\Liou_\bp\\
+\in (1,\infty) & \eta\in\bigcup_{p\in P}\VWA_\bp\butnot \bigcup_{p\in P}\Liou_\bp\\
+= 1 & \eta\notin\bigcup_{p\in P}\VWA_\bp
+\end{cases}
+\]
+applying \eqref{VWAbetat1} and \eqref{VWAbetat2} completes the proof.
+\end{proof}
+
+We are now ready to state our main theorem regarding the relation between exact dimensionality and dynamical Diophantine approximation:
+
+\begin{theorem}
+\label{theoremequivalentVWA}
+The following are equivalent:
+\begin{itemize}
+\item[(A)] $\mu(\VWA_\bp) = 0\all \bp\in P$.
+\item[(B)] $\mu$ is exact dimensional.
+\item[(C)] $\HD(\mu) = \delta$.
+\item[(D)] $\mu(\VWA_\xi) = 0\all \xi\in\Lambda$.
+\end{itemize}
+\end{theorem}
+The implication (B) \implies (C) is part of Proposition \ref{propositionexactdimensional}, while (C) \implies (D) is an immediate consequence of Theorem \ref{theoremFSUjarnik}, and (D) \implies (A) is trivial. Thus we demonstrate (A) \implies (B):
+
+\begin{proof}[Proof of \text{(A) \implies (B)}]
+Fix $\eta\in\Lambda\butnot\bigcup_{\bp\in P}\VWA_\bp$ and $t > 0$. Suppose that $\eta_t\in H_\xi$ for some $\xi\in\Lbp$. Let $t_- < t < t_+$ satisfy
+\[
+t_- \asymp_\plus t_\xi, \; t_+ \asymp_\plus 2\lb \xi|\eta\rb_\zero - t_\xi, \text{ and } \eta_{t_\pm} \notin\bigcup(\scrH).
+\]
+Then by Lemma \ref{lemmaCCBglobalmeasure},
+\[
+\mu(B(\eta,e^{-t_\pm})) \asymp_\times e^{-\delta t_\pm}.
+\]
+In particular
+\begin{equation}
+\label{dt-dt+bounds}
+\delta t_- \lesssim_\plus \log\frac{1}{\mu(B(\eta,e^{-t}))} \lesssim_\plus \delta t_+.
+\end{equation}
+Now, by Observation \ref{observationVWAbetat}, we have
+\[
+\frac{t_+ - t_-}{t} \leq \frac{2(\lb \xi|\eta\rb_\zero - t_\xi + (\text{constant}))}{t_\xi} \to 0 \text{ as } t\to\infty.
+\]
+Since $t_- < t < t_+$, it follows that $t_-/t,t_+/t\to 1$ as $t\to \infty$. Combining with \eqref{dt-dt+bounds} gives $d_\mu(\eta) = \delta$ (cf. \eqref{dmudef}). But by assumption (A), this is true for $\mu$-a.e. $\eta\in\Lambda$. Thus $\mu$ is exact dimensional.
+%It follows that
+%\[
+%d_\mu(\eta) := \lim_{t\to\infty} \frac1t \log\frac{1}{\mu(B(\eta,e^{-t}))} = \delta,
+%\]
+%i.e. the pointwise dimension of $\mu$ at $\eta$ is equal to $\delta$.
+\end{proof}
+
+%old version:
+%\subsection{Examples of exact dimensional and non-exact dimensional measures}
+%new shortened version:
+\subsection{Examples and non-examples of exact dimensional measures}
+Combining Theorems \ref{theoremequivalentVWA} and \ref{theoremFSUkhinchin} gives a necessary and sufficient condition for $\mu$ to be exact dimensional in terms of the convergence or divergence of a family of series. We can ask how often this condition is satisfied. Our first result shows that it is almost always satisfied:
+
+\begin{theorem}
+\label{theoremhlogseries}
+If for all $\bp\in P$, the series
+\begin{equation}
+\label{hlogseries}
+\sum_{h\in G_\bp} e^{-\delta\dogo h} \dogo h
+\asymp_\times \sum_{h\in G_\bp} \|h\|_\bp^{-2\delta} \log\|h\|_\bp
+\asymp_\times \sum_{k = 0}^\infty e^{-2\delta k} k \NN_\bp(e^k)
+\end{equation}
+converges, then $\mu$ is exact dimensional.
+\end{theorem}
+\begin{proof}
+Fix $\bp\in P$ and $\kappa > 0$. We have
+\begin{align*}
+\SigmaVWA(\bp,\kappa)
+&=_\pt \sum_{g\in G} e^{-\delta\dogo g} \sum_{\substack{h\in G_\bp \\ \dogo h \geq \kappa\dogo g/2}} e^{-\delta\dogo h}\\
+&=_\pt \sum_{h\in G_\bp} e^{-\delta\dogo h} \sum_{\substack{g\in G \\ \dogo g \leq 2\dogo h/\kappa}} e^{-\delta\dogo g}\\
+&\asymp_\times \sum_{h\in G_\bp} e^{-\delta\dogo h} \sum_{k\leq 2\dogo h/\kappa + 1} e^{-\delta k} \#\{g\in G : k - 1 \leq \dogo g < k\} \noreason\\
+&\leq_\pt \sum_{h\in G_\bp} e^{-\delta\dogo h} \sum_{k\leq 2\dogo h/\kappa + 1} e^{-\delta k} \NN_{X,G}(k) \noreason\\
+&\lesssim_\times \sum_{h\in G_\bp} e^{-\delta\dogo h} \sum_{k\leq 2\dogo h/\kappa + 1} 1 \by{Corollary \ref{corollaryupperorbitalbound}}\\
+&\asymp_\times \sum_{h\in G_\bp} e^{-\delta\dogo h} \dogo h.
+\end{align*}
+% &\lesssim_\times \sum_{g\in G} e^{-\delta\dogo g} e^{-2\delta\kappa\dogo g} \w\II(e^{\kappa\dogo g})\\
+%&=_\pt \sum_{g\in G} \sum_{k = 1}^\infty e^{-\delta\dogo g} e^{-2\delta(\kappa\dogo g + k)} \NN_\bp(e^{\kappa\dogo g + k})\\
+So if \eqref{hlogseries} converges, so does $\SigmaVWA(\bp,\kappa)$, and thus by Theorems \ref{theoremFSUkhinchin} and \ref{theoremequivalentVWA}, $\mu$ is exact dimensional.
+\end{proof}
+
+\begin{corollary}
+\label{corollarydeltagtrdeltap}
+If for all $\bp\in P$, $\delta_\bp < \delta$, then $\mu$ is exact dimensional.
+\end{corollary}
+\begin{proof}
+In this case, the series \eqref{hlogseries} converges, as it is dominated by $\Sigma_s(G_\bp)$ for any $s\in (\delta_\bp,\delta)$.
+\end{proof}
+
+\begin{remark}
+\label{remarkdeltagtrdeltap}
+Combining with Proposition \ref{propositiondeltagtrdeltap} shows that if $\mu$ is not exact dimensional, then
+\[
+\sum_{h\in G_\bp} e^{-\delta\dogo h} < \infty = \sum_{h\in G_\bp} e^{-\delta\dogo h} \dogo h
+\]
+for some $\bp\in P$. Equivalently,
+\[
+\sum_{k = 0}^\infty e^{-2\delta k} \NN_\bp(e^k) < \infty = \sum_{k = 0}^\infty e^{-2\delta k} k \NN_\bp(e^k).
+\]
+This creates a very ``narrow window'' for the orbital counting function $\NN_\bp$.
+\end{remark}
+
+\begin{corollary}
+\label{corollarydoublingexactdim}
+If $\mu$ is doubling, then $\mu$ is exact dimensional.
+\end{corollary}
+\begin{proof}
+If $\mu$ is doubling, then
+\begin{align*}
+\sum_{k = 0}^\infty e^{-2\delta k} k \NN_\bp(e^k)
+&=_\pt \sum_{k = 1}^\infty \sum_{\ell = 0}^\infty e^{-2\delta (k + \ell)} \NN_\bp(e^{k + \ell})\\
+&=_\pt \sum_{k = 1}^\infty e^{-2\delta k} \w\II_\bp(e^k)\\
+&\asymp_\times \sum_{k = 1}^\infty e^{-2\delta k} \NN_\bp(e^k). \by{Proposition \ref{propositiondoubling}}
+\end{align*}
+Remark \ref{remarkdeltagtrdeltap} completes the proof.
+\end{proof}
+
+
+Our next theorem shows that in certain circumstances, the converse holds in Theorem \ref{theoremhlogseries}. Specifically:
+
+\begin{theorem}
+\label{theoremhlogseriesconverse}
+Suppose that $X$ is an $\R$-tree and that $G$ is the pure Schottky product (cf. Definition \ref{definitionschottkyproductRtree}) of a parabolic group $H$ with a lineal group $J$. Let $\bp$ be the global fixed point of $H$, so that $P = \{\bp\}$ is a complete set of inequivalent parabolic points for $G$ (Proposition \ref{propositionSproductGF}). Suppose that the series \eqref{hlogseries} diverges. Then $\mu$ is not exact dimensional; moreover, $\mu(\Liou_\bp) = 1$ and $\dim_H(\mu) = 0$.
+\end{theorem}
+\begin{example}
+\label{examplenotexactdim}
+To see that the hypotheses of this theorem are not vacuous, fix $\delta > 0$ and let
+\[
+f(R) = \frac{R^{2\delta}}{\log^2(R)},
+\]
+or more generally, let $f$ be any increasing function such that $\sum_1^\infty e^{-2\delta k} k f(e^k)$ diverges but $\sum_1^\infty e^{-2\delta k} f(e^k)$ converges. By Theorem \ref{theoremRtreeorbitalcounting}, there exists an $\R$-tree $X$ and a parabolic group $H\leq\Isom(X)$ such that $\NN_{\EE_\bp,H} \asymp_\times f$. Then the series \eqref{hlogseries} diverges, but $\Sigma_\delta(H) < \infty$. Thus, there exists a unique $r > 0$ such that
+\[
+2\sum_{n = 1}^\infty e^{-\delta r} = \frac{1}{\Sigma_\delta(H) - 1}\cdot
+\]
+Let $J = r\Z$, interpreted as a group acting by translations on the $\R$-tree $\R$, and let $G$ be the pure Schottky product of $H$ and $J$. Then $\Sigma_\delta(J) - 1 = 2\sum_{n = 1}^\infty e^{-\delta r}$, so $(\Sigma_\delta(H) - 1)(\Sigma_\delta(J) - 1) = 1$. Since the map $s\mapsto (\Sigma_s(H) - 1)(\Sigma_s(J) - 1)$ is decreasing, it follows from Proposition \ref{propositionschottkyproductRtree} that $\Delta(G) = [0,\delta]$. In particular, $G$ is of divergence type, so Standing Assumption \ref{assumptiondivergencetype} is satisfied.
+\end{example}
+\begin{remark}
+Applying a BIM embedding allows us to construct an example acting on $\H^\infty$.
+\end{remark}
+\begin{proof}[Proof of Theorem \ref{theoremhlogseriesconverse}]
+As in the proof of Proposition \ref{propositionschottkyproductRtree} we let
+\[
+E = (H\butnot\{\id\})(J\butnot\{\id\}),
+\]
+so that
+\[
+G = \bigcup_{n\geq 0} J E^n H.% = \bigcup_{n = 0}^\infty \bigcup_{j_0\in J} \bigcup_{\substack{h_1,\ldots,h_n\in H^* \\ j_1,\ldots,j_n \in J^*}} \bigcup_{h_{n + 1}\in H} \{j_0 h_1 j_1 \cdots h_n j_n h_{n + 1}\}.
+\]
+Define a measure $\theta$ on $E$ via the formula
+%Then by \eqref{schottkyproductRtree}, we have for all $s\geq 0$
+%\begin{align*}
+%\Sigma_s(G)
+%= \sum_{g\in G} e^{-s\dogo g}
+%&= \sum_{n = 0}^\infty \sum_{j_0\in J} \sum_{g_1,\ldots,g_n\in E} \sum_{h_{n + 1}\in H} e^{-s[\|j_0\| + \sum_1^n \|g_i\| + \|h_{n + 1}\|]}\\
+%&= \Sigma_s(J) \Sigma_s(H) \sum_{n = 0}^\infty \left(\sum_{g\in E} e^{-s\|g\|}\right)^n.
+%\end{align*}
+%Combining with the definition of $\delta$, the fact that $G$ is of divergence type (Standing Assumption \ref{assumptiondivergencetype}), and the fact that $\Sigma_\delta(J),\Sigma_\delta(H) < \infty$ (Proposition \ref{propositiondeltagtrdeltap}), we see that $\sum_{g\in E} e^{-\delta\|g\|} = 1$, so the measure $\mu$ on $E$ defined by the formula
+\[
+\theta = \sum_{g\in E} e^{-\delta\dogo g} \delta_g.
+\]
+By Proposition \ref{propositionschottkyproductRtree}, the fact that $G$ is of divergence type (Standing Assumption \ref{assumptiondivergencetype}), and the fact that $\Sigma_\delta(J),\Sigma_\delta(H) < \infty$ (Proposition \ref{propositiondeltagtrdeltap}), $\theta$ is a probability measure. The Patterson--Sullivan measure of $G$ is related to $\theta$ by the formula
+\[
+\mu = \frac{1}{\Sigma_\delta(J) - 1}\sum_{j\in J} e^{-\delta\dogo j} j_* \pi_*[\theta^\N],
+\]
+where $\pi:E^\N \to \Lambda_G$ is the coding map.
+
+Next, we use a theorem proven independently by H. Kesten and A. Raugi,\Footnote{We are grateful to ``cardinal'' of \url{http://mathoverflow.net} and J. P. Conze, respectively, for these references.} which we rephrase here in the language of measure theory:
+
+\begin{theorem}[\cite{Kesten}; see also \cite{Raugi}]
+\label{theoremkesten}
+Let $\theta$ be a probability measure on a set $E$, and let $f:E\to\R$ be a function such that
+\[
+\int |f(x)| \;\dee\theta(x) = \infty.
+\]
+Then for $\theta^\N$-a.e. $(x_n)_1^\infty \in \R^\N$,
+\[
+\limsup_{n\to\infty} \frac{|f(x_{n + 1})|}{|\sum_1^n f(x_i)|} = \infty.
+\]
+\end{theorem}
+
+Letting $f(g) = \dogo g$, the theorem applies to our measure $\theta$, because our assumption that \eqref{hlogseries} diverges is equivalent to the assertion that $\int f(x) \;\dee\theta(x) = \infty$. Now fix $j\in J$, and let $(g_n)_1^\infty \in E^\N$ be a $\theta^\N$-typical point. Then the limit point
+\[
+\eta = \lim_{n\to\infty} j g_1\cdots g_n(\zero)
+\]
+represents a typical point with respect to the Patterson--Sullivan measure $\mu$. By Theorem \ref{theoremkesten}, we have
+\[
+\limsup_{n\to\infty} \frac{\dogo{g_{n + 1}}}{\sum_1^n \dogo{g_i}} = \infty.
+\]
+Write $g_i = h_i j_i$ for each $i$. Then $\dogo{g_i} = \dogo{h_i} + \dogo{j_i}$. Since $\int \dogo{j}\dee\theta(hj) < \infty$, the law of large numbers implies that $\lim_{n \to \infty} \frac{\dogo{j_{n + 1}}}{\sum_1^n \dogo{j_i}} < \infty$, so
+\[
+\limsup_{n\to\infty} \frac{\dogo{h_{n + 1}}}{\sum_1^n \dogo{g_i}} = \infty.
+\]
+But $\dogo{h_{n + 1}}$ represents the length of the excursion of the geodesic $\geo\zero\eta$ into the cusp corresponding to the parabolic point $g_1\cdots g_n(\bp)$. Combining with Observation \ref{observationVWAbetat} shows that $\eta\in\Liou_\bp$. Since $\eta$ was a $\mu$-typical point, this shows that $\mu(\Liou_\bp) = 1$. By Theorem \ref{theoremFSUjarnik}, this implies that $\HD(\mu) = 0$. By Observation \ref{observationHDdeltaPD}, $\mu$ is not exact dimensional.
+\end{proof}
+
+\endinput

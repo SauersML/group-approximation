@@ -1,0 +1,9 @@
+c conjugate to c^-1: False
+sigma image of c: [2, 1, -2, -1] class sign: -1
+iota image of c: [-1, 2, 1, -2] class sign: -1
+tau image of c: [1, 2, -1, -2] class sign: 1
+sigma^-1 class sign: -1
+iota^-1 class sign: -1
+tau^-1 class sign: 1
+random products: 2000 failures: 0
+OK

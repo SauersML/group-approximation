@@ -1,0 +1,4 @@
+cap=20 level=1 visited=45 next_frontier=44 tested=1 t=0.2s
+cap=20 level=2 visited=108 next_frontier=63 tested=45 t=67.5s
+cap=20 level=3 visited=200 next_frontier=92 tested=108 t=143.1s
+CAP 20 RUN ABORTED MANUALLY (kill) DURING LEVEL 4 at about t=180s because it could not finish under timeout 600 on a loaded host: search INCOMPLETE; 108 states tested, no THICKENABLE line printed.

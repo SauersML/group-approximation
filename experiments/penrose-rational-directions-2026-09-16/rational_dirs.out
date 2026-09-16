@@ -1,0 +1,14 @@
+direction i*zeta^0: dim(Lat_Q  cap  line_Q) = 1
+   relation (coeffs of w1,w2,a,b): [-2, 0, -1, 1]
+direction i*zeta^1: dim(Lat_Q  cap  line_Q) = 1
+   relation (coeffs of w1,w2,a,b): [0, 2/5, 1, 1]
+direction i*zeta^2: dim(Lat_Q  cap  line_Q) = 0
+direction i*zeta^3: dim(Lat_Q  cap  line_Q) = 0
+direction i*zeta^4: dim(Lat_Q  cap  line_Q) = 0
+w1 = (1.1102230246251565e-16+1.1755705045849463j)  w2 = (14.635254915624213-4.755282581475768j)
+0 angle(deg) of i zeta^j: 90.0
+1 angle(deg) of i zeta^j: 162.0
+2 angle(deg) of i zeta^j: -126.0
+3 angle(deg) of i zeta^j: -54.0
+4 angle(deg) of i zeta^j: 18.0
+angle w2: -18.0

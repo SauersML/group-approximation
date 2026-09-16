@@ -81,3 +81,22 @@ artifacts:
     tame geometric `π_1(G_m)` has semisimple inertia, so `N = 0`. Contradiction.
   - Residual representations of `GL_4` (Mœglin–Waldspurger) have non-generic local components, never Steinberg.
   - So `H^6(Λ;Q) = 0`: `Λ` is `Q`-acyclic and Dadarlat's even-cohomology obstruction is void. Imports not read at source.
+- **Delocalized sectors are not void; reduction of the negation for `q ≥ 4` (swarm, 2026-09-16; artifact
+  `research/artifacts/laurent-sl4-delocalized-bott-2026-09-16.md`).**
+  - The two bullets above concern the identity sector only: `H_2(Λ;Z)` and `H^*(Λ;Q)`. Centralizers of torsion can
+    carry even rational cohomology. For `q ≥ 4`, `a ∈ F_q^*` with `a² ≠ 1` and `g = diag(a, a^{-1}, 1, 1)`, the torus
+    `s_1 = diag(t,1,t^{-1},1)`, `s_2 = diag(1,t,1,t^{-1})` gives `H^2(Z_Λ(g);Q) ≠ 0` via the retraction
+    `diag(x,y,h) ↦ (deg x, deg y)`.
+  - The delocalized Bott invariant `β_ω(g; s_1, s_2)` (Bott index of the compressions of `φ(s_1), φ(s_2)` to the
+    `ω`-spectral projection of `φ(g)`) vanishes on representations and survives `o(1)` perturbation. So a nonzero
+    value refutes stability. The toy group `(Z^2 × Z/3) ⋊ Z/2` has vanishing even rational cohomology but a model with
+    `β_ω = ±1`, so the sector phenomenon is strictly beyond Dadarlat's theorems.
+  - Reduction: `laurent-sl4-not-matricially-stable-for-q-at-least-4` (OPEN) follows by route
+    `laurent-sl4-instability-from-delocalized-dadarlat` from the OPEN delocalized form of Dadarlat's Corollary 1.3,
+    `weak-matricial-stability-kills-centralizer-even-cohomology`. That claim dies at the equivariant realization step
+    (its step P3).
+  - No explicit refuting model was found. `β_ω = −β_ω̄` by Weyl antisymmetry, and models induced from normal
+    finite-index subgroups avoiding `⟨g⟩` have `β_ω = 0` (artifact Lemmas 3.3, 4.1).
+  - `q = 2, 3` are not decided: `F_q^*` has no `a` with `a² ≠ 1`, and for `q = 3`, `g = diag(−1,−1,1,1)` the torus
+    class is zero.
+  - `refuted_by` is not wired, because the negation is OPEN and it covers only `q ≥ 4` while `q` here is free.

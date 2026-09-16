@@ -1,0 +1,1838 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Preliminaries}
+%%\section{Preliminaries}
+%\label{partpreliminaries}
+%This part will be divided as follows: In Section \ref{sectionROSSONCTs} we define the class of rank one symmetric spaces of noncompact type (\ROSSs). In Sections \ref{sectiongeometry1}-\ref{sectiongeometry2}, we define the class of hyperbolic metric spaces and study their geometry. In Section \ref{sectiondiscreteness}, we explore different notions of discreteness for groups of isometries of a metric space. In Section \ref{sectionclassification} we prove two classification theorems, one for isometries (Theorem \ref{classificationofisometries}) and one for semigroups of isometries (Theorem \ref{classificationofsemigroups}). Finally, in Section \ref{sectionlimitsets} we define and study the limit set of a semigroup of isometries.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{More about the geometry of hyperbolic metric spaces}\label{sectiongeometry2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we discuss various topics regarding the geometry of hyperbolic metric spaces, including metric derivatives, the Rips condition for hyperbolicity, construction of geodesic rays and lines in CAT(-1) spaces, ``shadows at infinity'', and some functions which we call ``generalized polar coordinates''. We start by introducing some conventions to apply in the remainder of the paper.
+
+%\setcounter{subsubsection}{0}
+\section{Gromov triples}
+%{\flushleft\textbf{Standing assumptions for Section \ref{sectiongeometry2}.}}
+\label{standingassumptions2}
+
+The following definition is made for convenience of notation:
+
+\begin{definition}
+\label{definitiongromovtriple}
+A \emph{Gromov triple} is a triple $(X,\zero,b)$, where $X$ is a hyperbolic metric space, $\zero\in X$, and $b > 1$ is close enough to $1$ to guarantee for every $\notzero\in X$ the existence of a visual metametric $\Dist_{b,\notzero}$ via Proposition \ref{propositionDist} above.
+\end{definition}
+
+\begin{notation}
+Let $(X,\zero,b)$ be a Gromov triple. Given $\notzero\in X$ and $\xi\in\del X$, we will let $\Dist_\notzero = \Dist_{b,\notzero}$ be the metametric defined in Proposition \ref{propositionDist}, we will let $\wbar\Dist_\notzero = \wbar\Dist_{b,\notzero}$ be the metric defined in Proposition \ref{propositionwbarDist}, and we will let $\Dist_{\xi,\notzero} = \Dist_{b,\xi,\notzero}$ be the metametric defined in Proposition \ref{propositioneuclideanmetametric}. If $\notzero = \zero$, then we use the further shorthand $\Dist = \Dist_\zero$, $\wbar\Dist = \wbar\Dist_\zero$, and $\Dist_\xi = \Dist_{\xi,\zero}$.
+
+We will denote the diameter of a set $S$ with respect to the metametric $\Dist$ by $\Diam(S)$.
+\end{notation}
+
+\begin{convention}
+\label{conventiontriples}
+For the remainder of the paper, with the exception of Chapter \ref{sectiondiscreteness}, all statements should be assumed to be universally quantified over Gromov triples $(X,\zero,b)$ unless context indicates otherwise.
+\end{convention}
+
+\begin{convention}
+For the remainder of the paper, whenever we make statements of the form ``Let $X = Y$'', where $Y$ is a hyperbolic metric space, we implicitly want to ``beef up'' $X$ into a Gromov triple $(X,\zero,b)$ whose underlying hyperbolic metric space is $Y$. For general $Y$, this may be done arbitrarily, but if $Y$ is strongly hyperbolic, we want to set $b = e$, and if $Y$ is an algebraic hyperbolic space, then we want to set $\zero = [(1,\0)]$, $\zero = \0$, or $\zero = (1,\0)$ depending on whether $Y$ is the hyperboloid model $\H$, the ball model $\B$, or the half-space model $\E$, respectively.
+
+For example, when saying ``Let $X = \H = \H^\infty$'', we really mean ``Let $X = \H = \H^\infty$, let $\zero = [(1,\0)]$, and let $b = e$.''
+\end{convention}
+
+\begin{convention}
+\label{conventionstandard}
+The term ``Standard Case'' will always refer to the finite-dimensional situation where $X = \H^d$ for some $2\leq d < \infty$.
+\end{convention}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Derivatives}\label{subsectionderivatives}% Dynamical and non-dynamical
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Derivatives of metametrics}
+
+Let $(Z,\scrT)$ be a perfect topological space, and let $\Dist_1$ and $\Dist_2$ be two metametrics on $Z$. The \emph{metric derivative} of $\Dist_1$ with respect to $\Dist_2$ is the function $\Dist_1/\Dist_2:Z\to[0,\infty]$ defined by
+\[
+\frac{\Dist_1}{\Dist_2}(z) := \lim_{w\to z}\frac{\Dist_1(z,w)}{\Dist_2(z,w)},
+\]
+assuming the limit exists. If the limit does not exist, then we can speak of the \emph{upper} and \emph{lower} derivatives; these will be denoted $(\Dist_1/\Dist_2)^*(z)$ and $(\Dist_1/\Dist_2)_*(z)$, respectively. Note that the chain rule for metric derivatives takes the following form:
+\[
+\frac{\Dist_1}{\Dist_3} = \frac{\Dist_1}{\Dist_2}\frac{\Dist_2}{\Dist_3},
+\]
+assuming all limits exist.
+
+We proceed to calculate the derivatives of the metametrics that were introduced in Section \ref{subsectionmetametrics}:
+
+\begin{observation}
+\label{observationGMVT}
+Fix $y_1,y_2\in\bord X$.
+\begin{itemize}
+\item[(i)] For all $\notzero_1,\notzero_2\in X$, we have
+\begin{equation}
+\label{GMVT1}
+\frac{\Dist_{\notzero_1}(y_1,y_2)}{\Dist_{\notzero_2}(y_1,y_2)} \asymp_\times b^{-\frac12[\busemann_{y_1}(\notzero_1,\notzero_2) + \busemann_{y_2}(\notzero_1,\notzero_2)]}.
+\end{equation}
+\item[(ii)] For all $\notzero\in X$ and $\xi\in\del X$, we have
+\begin{equation}
+\label{GMVT2}
+\frac{\Dist_{\xi,\notzero}(y_1,y_2)}{\Dist_\notzero(y_1,y_2)} \asymp_\times b^{-[\lb y_1|\xi\rb_\notzero + \lb y_2|\xi\rb_\notzero]}.
+\end{equation}
+\item[(iii)] For all $\notzero_1,\notzero_2\in X$ and $\xi\in\del X$, we have
+\begin{equation}
+\label{GMVT3}
+\frac{\Dist_{\xi,\notzero_1}(y_1,y_2)}{\Dist_{\xi,\notzero_2}(y_1,y_2)} \asymp_\times b^{\busemann_\xi(\notzero_1,\notzero_2)}.
+\end{equation}
+\end{itemize}
+In each case, equality holds if $X$ is strongly hyperbolic.
+\end{observation}
+\begin{proof}
+(i) follows from (g) of Proposition \ref{propositionbasicidentities}, while (ii) is immediate from \eqref{distanceasymptotic} and \eqref{euclideanmetametric}. (iii) follows from \eqref{euclideanmetrictendsasymp}.
+\end{proof}
+
+Combining with Lemma \ref{lemmanearcontinuity} yields the following:
+
+\begin{corollary}
+\label{corollarymetricderivative}
+Suppose that $\bord X$ is perfect. Fix $y\in\bord X$.
+\begin{itemize}
+\item[(i)] For all $\notzero_1,\notzero_2\in X$, we have
+\begin{equation}
+\label{derivative1}
+\left(\frac{\Dist_{\notzero_1}}{\Dist_{\notzero_2}}\right)^*(y) \asymp_\times \left(\frac{\Dist_{\notzero_1}}{\Dist_{\notzero_2}}\right)_*(y) \asymp_\times b^{-\busemann_y(\notzero_1,\notzero_2)}.
+\end{equation}
+\item[(ii)] For all $\notzero\in X$ and $\xi\in\del X$, we have
+\begin{equation}
+\label{derivative2}
+\left(\frac{\Dist_{\xi,\notzero}}{\Dist_\notzero}\right)^*(y) \asymp_\times \left(\frac{\Dist_{\xi,\notzero}}{\Dist_\notzero}\right)_*(y) \asymp_\times b^{-2\lb y|\xi\rb_\notzero}.
+\end{equation}
+\item[(iii)] For all $\notzero_1,\notzero_2\in X$ and $\xi\in\del X$, we have
+\begin{equation}
+\label{derivative3}
+\left(\frac{\Dist_{\xi,\notzero_1}}{\Dist_{\xi,\notzero_2}}\right)^*(y) \asymp_\times \left(\frac{\Dist_{\xi,\notzero_1}}{\Dist_{\xi,\notzero_2}}\right)_*(y) \asymp_\times b^{\busemann_\xi(\notzero_1,\notzero_2)}.
+\end{equation}
+\end{itemize}
+In each case, equality holds if $X$ is strongly hyperbolic.
+\end{corollary}
+\begin{remark}
+In case $\bord X$ is not perfect, \eqref{derivative1} - \eqref{derivative3} may be taken as definitions. We will ignore the issue henceforth.
+\end{remark}
+Combining Observation \ref{observationGMVT} with Corollary \ref{corollarymetricderivative} yields the following:
+\begin{proposition}[Geometric mean value theorem]
+\label{propositionGMVT}
+Fix $y_1,y_2\in\bord X$.
+\begin{itemize}
+\item[(i)] For all $\notzero_1,\notzero_2\in X$, we have
+\[
+\frac{\Dist_{\notzero_1}(y_1,y_2)}{\Dist_{\notzero_2}(y_1,y_2)} \asymp_\times \left(\frac{\Dist_{\notzero_1}}{\Dist_{\notzero_2}}(y_1)\frac{\Dist_{\notzero_1}}{\Dist_{\notzero_2}}(y_2)\right)^{1/2}.
+\]
+\item[(ii)] For all $\notzero\in X$ and $\xi\in\del X$, we have
+\[
+\frac{\Dist_{\xi,\notzero}(y_1,y_2)}{\Dist_\notzero(y_1,y_2)} \asymp_\times \left(\frac{\Dist_{\xi,\notzero}}{\Dist_\notzero}(y_1)\frac{\Dist_{\xi,\notzero}}{\Dist_\notzero}(y_2)\right)^{1/2}.
+\]
+\item[(iii)] For all $\notzero_1,\notzero_2\in X$ and $\xi\in\del X$, we have
+\[
+\frac{\Dist_{\xi,\notzero_1}(y_1,y_2)}{\Dist_{\xi,\notzero_2}(y_1,y_2)} \asymp_\times \left(\frac{\Dist_{\xi,\notzero_1}}{\Dist_{\xi,\notzero_2}}(y_1)\frac{\Dist_{\xi,\notzero_1}}{\Dist_{\xi,\notzero_2}}(y_2)\right)^{1/2}.
+\]
+\end{itemize}
+In each case, equality holds if $X$ is strongly hyperbolic.
+\end{proposition}
+
+\subsection{Derivatives of maps}
+\label{subsubsectionderivativemaps}
+As before, let $(Z,\scrT)$ be a perfect topological space, and now fix just one metametric $\Dist$ on $Z$. For any map $g:Z\to Z$, the \emph{metric derivative} of $G$ is the function $g':Z\to(0,\infty)$ defined by
+\[
+g'(z) := \frac{\Dist\circ g}{\Dist}(z) = \lim_{w\to z}\frac{\Dist(g(z),g(w))}{\Dist(z,w)}\cdot
+\]
+If the limit does not exist, the upper and lower metric derivatives will be denoted $\overline g'$ and $\underline g'$, respectively.
+
+\begin{remark}
+\label{remarkconfusion}
+To avoid confusion, in what follows $g'$ will always denote the derivative of an isometry $g\in\Isom(X)$ with respect to the metametric $\Dist = \Dist_{b,\zero}$, rather than with respect to any other metametric.
+\end{remark}
+
+
+\begin{proposition}
+\label{propositionderivativebusemann}
+For all $g\in\Isom(X)$,
+\begin{align*}
+\overline g'(y) \asymp_\times \underline g'(y) &\asymp_\times b^{-\busemann_y(g^{-1}(\zero),\zero)} \all y\in\bord X\\
+\frac{\Dist(g(y_1),g(y_2))}{\Dist(y_1,y_2)} &\asymp_\times \left(\overline g'(y_1) \overline g'(y_2)\right)^{1/2} \all y_1,y_2\in\bord X,
+\end{align*}
+with equality if $X$ is strongly hyperbolic.
+\end{proposition}
+\begin{proof}
+This follows from (i) of Corollary \ref{corollarymetricderivative}, (i) of Proposition \ref{propositionGMVT}, and the fact that $\Dist\circ g = \Dist_{g^{-1}(\zero)}$.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryproductoneorig}
+For any distinct $y_1,y_2\in\Fix(g)\cap\del X$ we have
+\[
+\overline g'(y_1) \overline g'(y_2) \asymp_\times 1,
+\]
+with equality if $X$ is strongly hyperbolic.
+\end{corollary}
+
+The next proposition shows the relation between the derivative of an isometry $g\in\Isom(X)$ at a point $\xi\in\Fix(g)$ and the action on the metametric space $(\EE_\xi,\Dist_\xi)$:
+
+
+
+\begin{proposition}
+\label{propositioneuclideansimilarity}
+Fix $g\in\Isom(X)$ and $\xi\in\Fix(g)$. Then for all $y_1,y_2\in\EE_\xi$,
+\[
+\frac{\Dist_\xi(g(y_1), g(y_2))}{\Dist_\xi(y_1,y_2)} \asymp_\times \frac{1}{g'(\xi)},
+\]
+with equality if $X$ is strongly hyperbolic.
+\end{proposition}
+\begin{proof}
+\begin{align*}
+\frac{\Dist_\xi(g(y_1), g(y_2))}{\Dist_\xi(y_1,y_2)} &=_\pt \frac{\Dist_{\xi,g^{-1}(\zero)}(y_1, y_2)}{\Dist_{\xi,\zero}(y_1,y_2)} \\
+&\asymp_\times b^{-\busemann_\xi(\zero,g^{-1}(\zero))} \by{\eqref{GMVT3}} \\
+&\asymp_\times 1/g'(\xi). \by{Proposition \ref{propositionderivativebusemann}}
+\end{align*}
+\end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.8,-0.36) rectangle(6.01,5.53);
+\draw (-5.0,0.0)-- (5.0,0.0);
+\draw [<->, dash pattern=on 4pt off 2pt] (1.35,1.12)-- (1.3452937374574478,0.0);
+\draw (0.0,5.0)-- (0.0,0.0);
+\draw (0.0,0.0)-- (4.246442867487024,3.5745642370946995);
+\begin{scriptsize}
+\draw[color=black] (0.057057757531416,-0.26212992254098266) node {$g_-$};
+\draw [fill=black] (0.0,5.0) circle (.75pt);
+\draw[color=black] (0.04808489249598222,5.322254959074134) node {$g_+ = \infty$};
+\draw [fill=black] (1.35,1.12) circle (.75pt);
+\draw[color=black] (1.17,1.53) node {$g^{-1}(x)$};
+\draw [fill=black] (0,0.47635850682121) circle (.75pt);
+\draw[color=black] (-0.5,0.47635850682121) node {$g^{-1}(\zero)$};
+\draw[color=black] (2.5272758356701829,0.7026278596223968) node {$\mathrm{height}(g^{-1}(x))$};
+\draw [fill=black] (0.0,0.0) circle (.75pt);
+%\draw[color=black] (-0.3070507823268488,-0.1848867062821242) node {$D$};
+\draw [fill=black] (4.246442867487024,3.5745642370946995) circle (.75pt);
+\draw[color=black] (4.4036034520894525,3.6885775833822156) node {$x$};
+\draw [fill=black] (0.0,2.0) circle (.75pt);
+\draw[color=black] (0.2618688112016899,2.2273323702788814) node {$\zero$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The derivative of $g$ at $\infty$]{The derivative of $g$ at $\infty$ is equal to the reciprocal of the dilatation ratio of $g$. In particular, $\infty$ is an attracting fixed point if and only if $g$ is expanding, and $\infty$ is a repelling fixed point if and only if $g$ is contracting.}
+\end{center}
+\end{figure}
+
+
+\begin{remark}
+Proposition \ref{propositioneuclideansimilarity} can be interpreted as a geometric mean value theorem for the action of $g$ on the metametric space $(\EE_\xi,\Dist_\xi)$. Specifically, it tells us that the derivative of $g$ on this metametric space is identically $1/g'(\xi)$.
+\end{remark}
+
+\begin{remark}
+If $g'(\xi) = 1$, then Proposition \ref{propositioneuclideansimilarity} tells us that the bi-Lipschitz constant of $g$ is independent of $g$, and that $g$ is an isometry if $X$ is strongly hyperbolic. This special case will be important in Chapter \ref{sectionparabolic}.
+\end{remark}
+
+\begin{example}
+\label{examplegprimeinfty}
+Suppose that $X = \E = \E^\alpha$ is the half-space model of a real hyperbolic space, let $\BB = \del\E\butnot\{\infty\}$, let $g(\xx) = \lambda T(\xx) + \bb$ be a similarity of $\BB$, and consider the Poincar\'e extension $\what g\in\Isom(\E)$ defined in Observation \ref{observationpoincareextension}. Clearly $\what g$ acts as a similarity on the metametric space $(\EE_\infty,\Dist_\infty)$ in the following sense: For all $y_1,y_2\in \EE_\infty$,
+\[
+\Dist_\infty(g(y_1),g(y_2)) = \lambda \Dist_\infty(y_1,y_2).
+\]
+Comparing with Proposition \ref{propositioneuclideansimilarity} shows that $g'(\infty) = 1/\lambda$.
+\end{example}
+
+
+
+
+\subsection{The dynamical derivative} \label{subsubsectiondynamicalderivative}
+We can interpret Corollary \ref{corollarymetricderivative} as saying that the metric derivative is well-defined only up to an asymptotic in a general hyperbolic metric space (although it is perfectly well defined in a strongly hyperbolic metric space). Nevertheless, if $\xi$ is a fixed point of the isometry $g$, then we can iterate in order to get arbitrary accuracy.
+
+\begin{proposition}
+\label{propositiondynamicalderivative}
+Fix $g\in\Isom(X)$ and $\xi\in\Fix(g)$. Then
+\[
+g'(\xi) := \lim_{n\to\infty} \big( (\overline{g^n})'(\xi) \bigr)^{1/n} = \lim_{n\to\infty} \bigl( (\underline{g^n})'(\xi) \bigr)^{1/n}.
+\]
+Furthermore
+\[
+\underline g'(\xi)\leq g'(\xi) \leq \overline g'(\xi).
+\]
+\end{proposition}
+The number $g'(\xi)$ will be called the \emph{dynamical derivative} of $g$ at $\xi$.
+\begin{proof}[Proof of Proposition \ref{propositiondynamicalderivative}]
+The limits converge due to the submultiplicativity and supermultiplicativity of the expressions inside the radicals, respectively. To see that they converge to the same number, note that by Corollary \ref{corollarymetricderivative}
+\[
+\lim_{n\to\infty} \left(\frac{(\overline{g^n})'(\xi) }{(\underline{g^n})'(\xi) }\right)^{1/n} \leq \lim_{n\to\infty} C^{1/n} = 1
+\]
+for some constant $C$ independent of $n$.
+\end{proof}
+\begin{remark}
+Let $\beta_\xi$ denote the \emph{Busemann quasicharacter} of \cite[p.14]{CCMT}. Then $\beta_\xi$ is related to the dynamical derivative via the following formula: $g'(\xi) = b^{-\beta_\xi(g)}$.
+\end{remark}
+Note that although the dynamical derivative is ``well-defined'', it is not necessarily the case that the chain rule holds for any two $g,h\in\Stab(\Isom(X);\xi)$ (although it must hold up to a multiplicative coarse asymptotic). For a counterexample see \cite[Example 3.12]{CCMT}. Note that this counterexample includes the possibility of two elementa $g,h\in\Stab(\Isom(X);\xi)$ such that $g'(\xi) = h'(\xi) = 1$ but $(gh)'(\xi)\neq 1$. A sufficient condition for the chain rule to hold exactly is given in \cite[Corollary 3.9]{CCMT}.
+
+Despite the failure of the chain rule, the following ``iteration'' version of the chain rule holds:
+
+\begin{proposition}
+\label{propositionderivativeiteration}
+Fix $g\in\Isom(X)$ and $\xi\in\Fix(g)$. Then
+\[
+(g^n)'(\xi) = [g'(\xi)]^n \all n\in\Z.
+\]
+In particular
+\begin{equation}
+\label{derivativeiteration2}
+(g^{-1})'(\xi) = \frac{1}{g'(\xi)}\cdot
+\end{equation}
+\end{proposition}
+\begin{proof}
+The only difficulty lies in establishing \eqref{derivativeiteration2}:
+\begin{align*}
+(g^{-1})'(\xi) = \lim_{n\to\infty} \big((\overline{g^{-n}})'(\xi)\big)^{1/n}
+&= \exp_{1/b} \lim_{n\to\infty} \frac{1}{n} \busemann_\xi(\zero,g^n(\zero))\\
+&= \exp_{1/b} \lim_{n\to\infty} \frac{1}{n} \busemann_\xi(g^{-n}(\zero),\zero)\\
+&= \exp_{1/b} \left( -\lim_{n\to\infty} \frac{1}{n} \busemann_\xi(\zero,g^{-n}(\zero)) \right) \\
+&= \frac 1{g'(\xi)}\cdot
+\end{align*}
+\end{proof}
+
+Combining with Corollary \ref{corollaryproductoneorig} yields the following:
+
+\begin{corollary}
+\label{corollaryproductone}
+For any distinct $y_1,y_2\in\Fix(g)\cap\del X$ we have
+\[
+g'(y_1) g'(y_2) = 1.
+\]
+\end{corollary}
+
+
+
+
+We end this section with the following result relating the dynamical derivative with the Busemann function:
+
+\begin{proposition}
+\label{propositionbusemannpreserved}
+Fix $g\in\Isom(X)$ and $\xi\in\Fix(g)$. Then for all $x\in X$ and $n\in\Z$,
+\[
+\busemann_\xi(x , g^{-n}(x)) \asymp_\plus n\log_b g'(\xi).
+\]
+with equality if $X$ is strongly hyperbolic.
+\end{proposition}
+\begin{proof}
+If $x = \zero$, then
+\begin{align*}
+b^{-\busemann_\xi(\zero , g^{-n}(\zero))}
+&\asymp_\times b^{\busemann_\xi(g^{-n}(\zero),\zero)}\\
+&\asymp_\times (\overline{g^n})'(\xi) \by{Proposition \ref{propositionderivativebusemann}}\\
+&\asymp_\times (g^n)'(\xi) = (g'(\xi))^n.
+\end{align*}
+For the general case, we note that
+\begin{align*}
+\busemann_\xi(x , g^{-n}(x))
+&\asymp_\plus \busemann_\xi(x,\zero) + \busemann_\xi(\zero , g^{-n}(\zero)) + \busemann_\xi(g^{-n}(\zero), g^{-n}(x))\\
+&\asymp_\plus \busemann_\xi(x,\zero) + n\log_b g'(\xi) + \busemann_\xi(\zero,x)\\
+&\asymp_\plus n\log_b g'(\xi).
+\end{align*}
+\end{proof}
+
+
+
+% Not clear whether it's used; also, needs a new proof.
+%\ignore{
+%\begin{proposition}
+%\label{propositionDistHasymp}
+%For all $\xx,\yy\in\bord\E\butnot\{\infty\}$,
+%\[
+%\Dist_{\infty,\ee_1}(\xx,\yy) \asymp_\times \max(x_1,y_1,\|\yy - \xx\|).
+%\]
+%\end{proposition}
+%\begin{proof}
+%Let $e_{\E,\B}:\E\to\B$ be the Cayley transform. For each $n\in\N$ let $z_n = n\ee_1$. Then
+%\begin{align*}
+%\Dist_{\infty,\ee_1}(\xx,\yy)
+%&\asymp_\times \limsup_{n\to\infty} e^{\dist_\E(\ee_1,n\ee_1)}\Dist_{n\ee_1}(\xx,\yy) \by{\eqref{euclideanmetrictendsasymp}} \\
+%&=_\pt \limsup_{n\to\infty} n \Dist_{\ee_1}(\xx/n,\yy/n) \\
+%&=_\pt \limsup_{n\to\infty} n \Dist_\0(e_{\E,\B}(\xx/n),e_{\E,\B}(\yy/n)) \\
+%&\asymp_\times \limsup_{n\to\infty} n \max\big(1 - \|e_{\E,\B}(\xx/n)\|, 1 - \|e_{\E,\B}(\yy/n)\|, \|e_{\E,\B}(\yy/n) - e_{\E,\B}(\xx/n)\|\big)\noreason\\
+%&\by{Proposition \ref{propositionDistBasymp}}\\
+%&\asymp_\times \limsup_{n\to\infty} n \max\big(x_1/n,y_1/n, \|\yy/n - \xx/n\|\big) \since{$e_{\E,\B}$ is locally bi-Lipschitz}\\
+%&=_\pt \max(x_1,y_1,\|\yy - \xx\|).
+%\end{align*}
+%\end{proof}
+%}% end ignore
+
+%\ignore{
+%\subsection{Sullivan's formula}
+%\selfnote{How does this compare with the main theorem of the Generalized Polar Coordinates section? In fact, that section might be a better fit for this theorem than where it was previously...}
+%
+%Consider two points $\xx = (0,z)$ and $\yy = (t,1)$ in the upper half plane $\E^2$. In \cite[Fig. 5]{Sullivan_entropy}, Sullivan gave the following asymptotic formula for the hyperbolic distance between $\xx$ and $\yy$:
+%\begin{equation}
+%\label{sullivansformula}
+%\dist_\E(\xx,\yy) \asymp_\plus \log\left(1 + \left(\frac{t}{z}\right)^2\right) + \log(z) \text{ if $z\geq 1$.}
+%\end{equation}
+%This formula can be generalized to the setting of hyperbolic metric spaces. Fix a distinguished point $\xi\in\del X$. For any two points $x,y\in X$, we define the \emph{height of $x$ relative to $y$} to be
+%\begin{equation}
+%\label{page37}
+%\height_y(x) := b^{\busemann_\xi(x,y)},
+%\end{equation}
+%and the \emph{relative displacement of $x$ relative to $y$} to be
+%\[
+%\text{disp}_y(x) := \Dist_{\xi,y}(x,y).
+%\]
+%If $X = \E^{d + 1}$, then $\height_\yy(\xx) = x_{d + 1}/y_{d + 1}$ and $\text{disp}_\yy(\xx) \asymp_\times \max(1,\|\yy - \xx\|/y_{d + 1})$. [Continue\internal]
+%
+%
+%
+%\begin{lemma}[Sullivan's formula\comtushar{ DSC04299}]
+%\label{lemmasullivansformula}
+%\[
+%b^{\dist(x,y)} \asymp_\times \frac{\max \Bigl[ 1,\text{disp}_y(x)^2, \height_y(x)^2 \Bigr]}{\height_y(x)} =\frac{\max \Bigl[ 1, \Dist_{\xi,y}(x, y)^2, b^{2 \busemann_\xi (x,y)} \Bigr]}{b^{\busemann_\xi (x,y)}}
+%\]
+%\end{lemma}
+%\begin{proof}
+%The logarithm of the right hand side base $b$ is coarsely asymptotic to
+%\begin{align*}
+%\max(-\busemann_\xi(x,y) , \busemann_\xi(x,y) , 2\lb x|\xi\rb_y - \busemann_\xi(x,y))
+% = \max(|\busemann_\xi(x,y)| , \dist(x,y)) = \dist(x,y).
+%\end{align*}
+%
+%
+%\end{proof}
+%
+%
+%
+%\begin{remark}
+%\eqref{sullivansformula} can be deduced from Lemma \ref{lemmasullivansformula} as follows: If $\xx = (0,z)$ and $\yy = (t,1)$, then $\text{disp}_\yy(\xx) = t$ and $\height_\yy(\xx) = z$, so
+%\[
+%b^{\dist_\E(\xx,\yy)} \asymp_\times \frac{\max \Bigl[ 1,t^2, z^2 \Bigr]}{z} = z \max\left(1, \left(\frac tz\right)^2, \left(\frac 1z\right)^2\right).
+%\]
+%If in addition $z\geq 1$, then
+%\[
+%\dist_\E(\xx,\yy) \asymp_\plus \log(z) + \log\max\left(1, \left(\frac tz\right)^2\right) \asymp_\plus \log(z) + \log\left(1 + \left(\frac tz\right)^2\right).
+%\]
+%\end{remark}
+%
+%}% end ignore
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{The Rips condition}\label{subsectionrips}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section, in addition to assuming that $X$ is a hyperbolic metric space (cf. \6\ref{standingassumptions2}), we assume that $X$ is geodesic. Recall (Section \ref{subsectionCAT}) that $\geo xy$ denotes the geodesic segment connecting two points $x,y\in X$.
+
+
+\begin{proposition}~
+\label{propositionrips}
+\begin{itemize}
+\item[(i)] For all $x,y,z\in X$,
+\[
+\dist(z,\geo xy) \asymp_\plus \lb x|y\rb_z.
+\]
+\item[(ii)] (Rips' thin triangles condition) For all $x,y_1,y_2\in X$ and for any $z\in\geo{y_1}{y_2}$, we have
+\[
+\min_{i = 1}^2 \dist(z,\geo x{y_i}) \asymp_\plus 0.
+\]
+\end{itemize}
+\end{proposition}
+
+\begin{figure}
+\begin{center}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.9]
+\clip(-6.66,-3.12) rectangle (6.24,3.31);
+\draw(0.0,0.0) circle (3.0cm);
+\draw [shift={(3.001597531764653,1.959673853196985)}] plot[domain=2.7288669538659853:3.9124414341882043,variable=\t]({1.0*2.037582193265268*cos(\t r)+-0.0*2.037582193265268*sin(\t r)},{0.0*2.037582193265268*cos(\t r)+1.0*2.037582193265268*sin(\t r)});
+\draw (0.0,-0.0)-- (1.309924961105806,0.823898739896739);
+\begin{scriptsize}
+\draw[color=black] (0.75,0.23) node {$\nwarrow$};
+\draw (.85,0.3) node[anchor=north west] {$\asymp_\plus \langle x,y \rangle_z$};
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.19452753572169953,-0.12825951916697592) node {$z$};
+\draw [fill=black] (1.135109224427748,2.7769636383321687) circle (.75pt);
+\draw[color=black] (1.252879052282513,3.0161065168421803) node {$x$};
+\draw [fill=black] (1.54,0.54) circle (.75pt);
+\draw[color=black] (1.7519847722839659,0.5372147741682952) node {$y$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The Rips condition]{An illustration of Proposition \ref{propositionrips}(i).}
+\end{center}
+\end{figure}
+
+
+\noindent In fact, the thin triangles condition is equivalent to hyperbolicity; see e.g. \cite[Proposition III.H.1.22]{BridsonHaefliger}.
+\begin{proof}~
+\begin{itemize}
+\item[(i)] By the intermediate value theorem, there exists $w\in\geo xy$ such that $\lb x|z\rb_w = \lb y|z\rb_w$. Applying Gromov's inequality gives $\lb x|z\rb_w = \lb y|z\rb_w \lesssim_\plus \lb x|y\rb_w = 0$. Now (k) of Proposition \ref{propositionbasicidentities} shows that 
+\[
+\dist(z,\geo xy) \leq \dist(z,w) \lesssim_\plus \lb x|y\rb_z.
+\] 
+The other direction is immediate, since for each $w\in\geo xy$, we have $\lb x|y\rb_w = 0$, and so (d) of Proposition \ref{propositionbasicidentities} gives $\lb x|y\rb_w \leq \dist(z,w)$.
+\item[(ii)] This is immediate from (i), Gromov's inequality, and the equation 
+\[
+\lb y_1|y_2\rb_z = 0.
+\]
+\end{itemize}
+\end{proof}
+
+The next lemma demonstrates the correctness of the intuitive notion that if two points are close to each other, then the geodesic connecting them should not be very large.
+
+\begin{lemma}
+\label{lemmageodesicdiameter}
+Fix $x_1,x_2\in \bord X$. We have
+\[
+\Diam(\geo{x_1}{x_2}) \asymp_\times \Dist(x_1,x_2).
+\]
+\end{lemma}
+\begin{proof}
+It suffices to show that if $y\in\geo{x_1}{x_2}$, then
+\[
+\Dist(y,\{x_1,x_2\}) \lesssim_\times \Dist(x_1,x_2).
+\]
+Indeed, by the thin triangles condition, we may without loss of generality suppose that $\dist(y, \geo{\zero}{x_1}) \asymp_\plus 0$. Write $\dist(y,z) \asymp_\plus 0$ for some $z\in \geo\zero{x_1}$. Then
+\begin{align*}
+\Dist(x_1,y) \asymp_\times \Dist(x_1,z) = e^{-\dox z} \asymp_\times e^{-\dox y} 
+&\leq e^{-\dist(\zero,\geo{x_1}{x_2})}\\ 
+&\asymp_\times e^{-\lb x_1|x_2\rb_\zero}\\
+&\asymp_\times \Dist(x_1,x_2).
+\end{align*}
+\end{proof}
+
+
+%\ignore{
+%
+%\comdavid{I don't remember what the point of the following lemma is... maybe it's a first step towards proving the ``finite sets roughly isometrically embed into $\R$-trees'' theorem?}
+%
+%\begin{lemma}
+%Suppose that four points $x_1,x_2,y_1,y_2$ satisfy
+%\[
+%\dist(x_1,y_i) \asymp_\plus \dist(x_2,y_i) \;\; i = 1,2
+%\]
+%and
+%\[
+%\dist(x_1,x_2) \asymp_\plus \dist(x_1,y_1) + \dist(x_2,y_1).
+%\]
+%Then $\dist(y_1,y_2) \asymp_\plus 0$.
+%\end{lemma}
+%}% end ignore
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Geodesics in CAT(-1) spaces} \label{subsectiongeodesicsCAT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{observation}
+Any isometric embedding $\pi:\CO t\infty\to X$ extends uniquely to a continuous map $\pi:[t,\infty]\to \bord X$. Similarly, any isometric embedding $\pi:(-\infty,+\infty)\to X$ extends uniquely to a continuous map $\pi:[-\infty,+\infty]\to \bord X$. Abusing terminology, we will also call the extended maps ``isometric embeddings''.
+\end{observation}
+
+
+
+\begin{definition}
+\label{definitiongeodesic}
+Fix $x\in X$ and $\xi,\eta\in\del X$.
+\begin{itemize}
+\item A \emph{geodesic ray} connecting $x$ and $\xi$ is the image of an isometric embedding $\pi:[0,\infty]\to X$ satisfying
+\[
+\pi(0) = x,\hspace{.5 in}\pi(\infty) = \xi.
+\]
+\item A \emph{geodesic line} or \emph{bi-infinite geodesic} connecting $\xi$ and $\eta$ is the image of an isometric embedding $\pi:[-\infty,+\infty]\to X$ satisfying
+\[
+\pi(-\infty) = \xi,\hspace{.5 in}\pi(+\infty) = \eta.
+\]
+\end{itemize}
+When we do not wish to distinguish between geodesic segments (cf. Section \ref{subsectionCAT}), geodesic rays, and geodesic lines, we shall simply call them geodesics. For $x,y\in\bord X$, any geodesic connecting $x$ and $y$ will be denoted $\geo xy$.
+\end{definition}
+
+\begin{notation}
+\label{notationgeopqt2}
+Extending Notation \ref{notationgeopqt}, if $\geo x\xi$ is the image of the isometric embedding $\pi:[0,\infty]\to X$, then for $t\in[0,\infty]$ we let $\geo x\xi_t = \pi(t)$, i.e. $\geo x\xi_t$ is the unique point on the geodesic ray $\geo x\xi$ such that $\dist(x,\geo x\xi_t) = t$.
+\end{notation}
+
+%\begin{definition}
+%A sequence of geodesics $(\geo{x_n}{y_n})_1^\infty$ \emph{converges} to a geodesic $\geo xy$ if
+%\begin{itemize}
+%\item[(I)] $x_n\to x$ and $y_n\to y$, and
+%\item[(II)] Suppose that $(n_k)_1^\infty$ and $(z_k)_1^\infty$ are sequences such that $z_k\in \geo{x_{n_k}}{y_{n_k}}$. Then there is a sequence $(k_\ell)_1^\infty$ and a point $z\in\geo xy$ so that $z_{n_{k_\ell}}\to z%$.
+%\end{itemize}
+%\end{definition}
+
+The main goal of this section is to prove the following:
+
+\begin{proposition}
+\label{propositiongeodesicconvergence}
+Suppose that $X$ is a complete CAT(-1) space. Then:
+\begin{itemize}
+\item[(i)] For any two distinct points $x,y\in\bord X$, there is a unique geodesic $\geo xy$ connecting them.
+\item[(ii)] Suppose that $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are sequences in $\bord X$ which converge to points $x_n\to x\in\bord X$ and $y_n\to y\in\bord X$, with $x\neq y$. Then $\geo{x_n}{y_n}\to\geo xy$ in the Hausdorff metric on $(\bord X,\wbar\Dist)$. If $x = y$, then $\geo{x_n}{y_n}\to \{x\}$ in the Hausdorff metric.% following sense: Suppose that $(z_n)_1^\infty$ is a sequence such that $z_n\in \geo{x_n}{y_n}$. Then there is an increasing sequence $(n_k)_1^\infty$ and a point $z\in\geo xy$ so that $z_{n_k}\tendsto k z$.
+\end{itemize}
+\end{proposition}
+
+\begin{definition}
+\label{definitionregularlygeodesic}
+A hyperbolic metric space $X$ satisfying the conclusion of Proposition \ref{propositiongeodesicconvergence} will be called \emph{regularly geodesic}.
+\end{definition}
+
+\begin{remark}
+The existence of a geodesic connecting any two points in $\bord X$ was proven in \cite[Proposition 0.2]{Buyalo} under the weaker hypothesis that $X$ is a Gromov hyperbolic complete CAT(0) space. However, this weaker hypothesis does not imply the uniqueness of such a geodesic, nor does it imply (ii) of Proposition \ref{propositiongeodesicconvergence}, as shown by the following example:
+\end{remark}
+
+\begin{example}[A proper and uniquely geodesic hyperbolic CAT(0) space which is not regularly geodesic]
+\label{examplestrip}
+Let
+\[
+X = \{\xx\in\R^2: x_2\in[0,1]\}
+\]
+be interpreted as a subspace of $\R^2$ with the usual metric. Then $X$ is hyperbolic, proper, and uniquely geodesic, but is not regularly geodesic.
+\end{example}
+\begin{proof}
+It is hyperbolic since it is roughly isometric to $\R$. It is uniquely geodesic since it is a convex subset of $\R^2$. It is proper because it is a closed subset of $\R^2$. It is not regularly geodesic because if we write $\del X = \{\xi_+,\xi_-\}$, then the two points $\xi_+$ and $\xi_-$ have infinitely many distinct geodesics connecting them: for each $t\in[0,1]$, $\R\times\{t\}$ is a geodesic connecting $\xi_+$ and $\xi_-$.
+\end{proof}
+
+
+% What follows is an attempted proof which uses the notion of standard parameterization from the start; there is an error though.
+
+%The proof of Proposition \ref{propositiongeodesicconvergence} will rely on the notion of the \emph{standard parameterization} of a geodesic. For any pair of distinct points $x,y\in\bord X$, the standard parameterization of %the geodesic $\geo xy$ is the unique isometry $\pi:[t,s]\to \geo xy$ satisfying
+%\[
+%r = \lb \pi(r) | y\rb_\zero - \lb \pi(r) | x\rb_\zero \text{ for all $r\in[t,s]$,}
+%\]
+%i.e. $\pi$ is the inverse of the isometric embedding $z\mapsto \lb z | y\rb_\zero - \lb z | x\rb_\zero : \geo xy\to [-\infty,+\infty]$. Note that if $x,y\in X$, then $\pi$ is uniquely determined by the requirements that $t = -\lb %\zero|y\rb_x$ and $s = \lb \zero|x\rb_y$ and $\pi(t) = x$, $\pi(s) = y$; nevertheless, if $x,y\in\bord X$, then $\pi$ still makes sense according to the above definition.
+%
+%If $\pi:[t,s]\to X$ is an isometric embedding, the \emph{natural extension} of $\pi$ is the map $\w\pi:[-\infty,+\infty]\to X$ defined by the equation
+%\[
+%\w\pi(r) = \pi(t\vee r\wedge s).\Footnote{Although the operators $\vee$ and $\wedge$ do not normally associate, they do here, because $t\leq s$.}
+%\]
+%\begin{lemma}
+%\label{lemmaxyz}
+%Fix $\epsilon > 0$. There exists $\delta = \delta_X(\epsilon) > 0$ such that if $\Delta = \Delta(x,y_1,y_2)$ is a geodesic triangle in $X$ satisfying
+%\begin{equation}
+%\label{y1y2delta}
+%\wbar\Dist(y_1,y_2) \leq \delta,
+%\end{equation}
+%and if $\w\pi_1,\w\pi_2:[-\infty,+\infty]\to X$ are the natural extensions of the standard parameterizations of the geodesics $\geo x{y_1}$ and $\geo x{y_2}$, respectively, then
+%\[
+%\wbar\Dist(\w\pi_1(r),\w\pi_2(r)) \leq \epsilon \all r\in [-\infty,+\infty].
+%\]
+%\end{lemma}
+%
+%\begin{proof}
+%We prove the assertion first for $X = \H^2$ and then in general:
+%\begin{itemize}
+%\item[If $X = \H^2$:] Let $\epsilon > 0$, and by contradiction, suppose that for each $\delta_n = \frac 1n > 0$ there exists a triple $(x^{(n)},y_1^{(n)},y_2^{(n)})$ satisfying the hypotheses but not the conclusion of the %lemma. Since $\bord\H^2$ is compact, there exists a convergent subsequence $(x^{(n_k)},y_1^{(n_k)},y_2^{(n_k)}) \to (x,y_1,y_2)\in\left(\bord\H^2\right)^3$.
+%
+%Since $\delta_n \to 0$, taking the limit of \eqref{y1y2delta} shows that $\wbar\Dist(y_1,y_2) = 0$, and thus $y_1 = y_2$. For each $k\in\N$ and $i = 1,2$, let $\pi_{k,i}$ be the standard parameterization of the geodesic $\geo {x^{(n_k)}}{y_i^{(n_k)}}$, and let $\w\pi_{k,i}$ be its natural extension. The continuity of the Gromov product implies that $\w\pi_{k,i}\to \w\pi_i$, where $\w\pi_i$ is the natural extension of the standard parameterization of the geodesic $\geo x{y_i}$. Moreover, this convergence is uniform since the family $(\w\pi_{k,i})_{k = 1}^\infty$ is equicontinuous. [More details needed?\internal] But since $y_1 = y_2$, we have $\w\pi_1 = \w\pi_2$. Thus the families $(\w\pi_{k,1})_1^\infty$ and $(\w\pi_{k,2})_1^\infty$ converge uniformly to the same function. For $k$ sufficiently large, this shows that the triple $(x^{(n_k)},y_1^{(n_k)},y_2^{(n_k)})$ satisfies the conclusion of Lemma \ref{lemmaxyz}, a contradiction.
+%
+%\item[In general:] Let $\epsilon > 0$, and fix $\w\epsilon > 0$ to be determined, depending on $\epsilon$. Let $\w\delta = \delta_{\H^2}(\w\epsilon)$, and fix $\delta > 0$ to be determined, depending on $\w\delta$. %Now suppose that $\Delta = \Delta(x,y_1,y_2)$ is a geodesic triangle in $X$ satisfying \eqref{y1y2delta}, and let $\pi_1,\pi_2$ be the standard parameterizations of $\geo x{y_1}$ and $\geo x{y_2}$, respectively. Fix $r%\in[-\infty,+\infty]$, and let $z_i = \w\pi_i(r)$. To complete the proof, we must show that $\wbar\Dist(z_1,z_2) \leq \epsilon$.
+%
+%By contradiction suppose not, i.e. suppose that $\wbar\Dist(z_1,z_2) > \epsilon$. Then $\Dist(x,z_i) > \epsilon/2$ for some $i = 1,2$; without loss of generality suppose $\Dist(x,z_1) > \epsilon/2$. By Rips' inequality this %implies $\dist(\zero,\w\pi_1(0)) \asymp_{\plus,\epsilon} 0$. Let $w_i = \w\pi_i(0)$. (See Figure \internalmissingref.\internalmakefigure) \comdavid{This figure should have the points $x,y_i,z_i,w_i,\zero$.}
+%
+%Now let $\wbar{\Delta} = \Delta(\wbar x,\wbar{y_1},\wbar{y_2})$ be a comparison triangle for $\Delta(x,y_1,y_2)$, and let $\wbar{z_1},\wbar{z_2},\wbar{w_1},\wbar{w_2}$ be the corresponding comparison points. %Without loss of generality, suppose that $\wbar{w_1} = \zero_\H$. It follows from this that $\wbar{z_i} = \wbar\pi_i(r)$ and $\wbar{w_i} = \wbar\pi_i(0)$, where $\wbar\pi_i$ is the natural extension of the standard %parameterization of $\geo{\wbar x}{\wbar{y_i}}$. \alert{ERROR: This is not true.} Moreover, $\dox{y_2} \leq \dox{w_1} + \dist(w_1,y_2) \asymp_{\plus,\epsilon} \dist(\zero_\H,\wbar{y_2})$, and so $\lb y_1|%y_2\rb_\zero \lesssim_{\plus,\epsilon} \lb \wbar{y_1}|\wbar{y_2}\rb_{\zero_\H}$, and thus
+%\[
+%\wbar\Dist(\wbar{y_1},\wbar{y_2}) \lesssim_{\times,\epsilon} \wbar\Dist(y_1,y_2) \leq \delta.
+%\]
+%Setting $\delta$ equal to $\w\delta$ divided by the implied constant, we have
+%\[
+%\wbar\Dist(\wbar{y_1},\wbar{y_2}) \leq \w\delta = \delta_\H(\w\epsilon).
+%\]
+%Thus $\wbar\Dist(\wbar{z_1},\wbar{z_2})\leq\w\epsilon$ and $\wbar\Dist(\wbar{w_1},\wbar{w_2})\leq\w\epsilon$.
+%\begin{itemize}
+%\item If $\dist(\wbar{z_1},\wbar{z_2})\leq\w\epsilon$, then the CAT(-1) inequality finishes the proof (as long as $\w\epsilon\leq \epsilon$). Thus, suppose that
+%\begin{equation}
+%\label{z1z2}
+%\Dist(\wbar{z_1},\wbar{z_2}) \leq \w\epsilon.
+%\end{equation}
+%\item If $\Dist(\wbar{w_1},\wbar{w_2})\leq\w\epsilon$, then $0 = \lb \wbar{w_1}|\wbar{w_2}\rb_{\zero_\H} \geq -\log(\w\epsilon)$, a contradiction for $\w\epsilon$ sufficiently small. Thus, suppose that
+%\begin{equation}
+%\label{w1w2}
+%\dist(\wbar{w_1},\wbar{w_2}) \leq\w\epsilon.
+%\end{equation}
+%\end{itemize}
+%By \eqref{z1z2}, we have $\dist(\zero_\H,\wbar{z_i}) \geq -\log(\w\epsilon)$. Applying \eqref{w1w2} gives
+%\[
+%\lb z_i|y_i\rb_{w_i} = \dist(w_i,z_i) = \dist(\wbar{w_i},\wbar{z_i}) \gtrsim_\plus -\log(\w\epsilon).
+%\]
+%Applying \eqref{w1w2}, the CAT(-1) inequality, and the asymptotic $\dox{w_1} \asymp_{\plus,\epsilon} 0$, we have
+%\[
+%\lb z_i|y_i\rb_\zero \gtrsim_{\plus,\epsilon} -\log(\w\epsilon),
+%\]
+%and thus $\wbar\Dist(z_i,y_i)\lesssim_{\times,\epsilon} \w\epsilon$. Using the triangle inequality together with the assumption $\wbar\Dist(y_1,y_2)\leq\delta$, we have
+%\[
+%\wbar\Dist(z_1,z_2) \lesssim_{\times,\epsilon} \max(\delta,\w\epsilon).
+%\]
+%Setting $\w\epsilon$ equal to $\epsilon$ divided by the implied constant, and decreasing $\delta$ if necessary, completes the proof.
+%\end{itemize}
+%\end{proof}
+%
+%
+%\begin{lemma}
+%\label{lemmageodesicconvergence}
+%Suppose that $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are sequences in $\bord X$ which converge to points $x_n\to x\in\bord X$ and $y_n\to y\in\bord X$, with $x\neq y$. For each $n$, let $\geo{x_n}{y_n}$ be a geodesic %connecting $x_n$ and $y_n$. Then there exists a geodesic $\geo xy$ connecting $x$ and $y$ such that $\geo{x_n}{y_n} \to \geo xy$ in the Hausdorff metric. If $x = y$, then $\geo{x_n}{y_n}\to \{x\}$ in the Hausdorff %metric.
+%\end{lemma}
+%\begin{proof}
+%For each $n$ let $\pi_n:[t_n,s_n]\to X$ be the standard parameterization of $\geo{x_n}{y_n}$, and for each $m,n\in\N$ let $\pi_{m,n}:[t_{m,n},s_{m,n}]\to X$ be the standard parameterization of $\geo{x_n}{y_m}$. Let $%\w\pi_n$ and $\w\pi_{m,n}$ denote their respective natural extensions. By Lemma \ref{lemmaxyz}, we have
+%\[
+%\wbar\Dist(\w\pi_n(r) , \w\pi_{m,n}(r)) \tendsto{m,n} 0 \text{ and } \wbar\Dist(\w\pi_{m,n}(r) , \w\pi_m(r)) \tendsto{m,n} 0
+%\]
+%uniformly for $r\in[-\infty,+\infty]$. The triangle inequality gives
+%\[
+%\wbar\Dist(\w\pi_n(r) , \w\pi_m(r)) \tendsto{m,n} 0,
+%\]
+%i.e. the sequence of functions $(\w\pi_n)_1^\infty$ is uniformly Cauchy. Since $(\bord X,\wbar\Dist)$ is complete, they converge uniformly to a function $\w\pi:[-\infty,+\infty]\to X$.
+%
+%Clearly, $\geo{x_n}{y_n} = \w\pi_n([-\infty,+\infty]) \to \w\pi([-\infty,+\infty])$ in the Hausdorff metric. We claim that $\w\pi([-\infty,+\infty])$ is a geodesic connecting $x$ and $y$. Indeed, note that
+%\[
+%t_n \tendsto n t := -\lb \zero|y\rb_x \text{ and } s_n \tendsto n s := \lb \zero |x\rb_y.
+%\]
+%For all $t < r_1 < r_2 < s$, we have $t_n < r_1 < r_2 < s_n$ for all sufficiently large $n$, which implies that
+%\[
+%\dist(\w\pi(r_1) , \w\pi(r_2)) = \lim_{n\to\infty} \dist(\w\pi_n(r_1) , \w\pi_n(r_2)) = \lim_{n\to\infty} (r_2 - r_1) = r_2 - r_1,
+%\]
+%i.e. $\w\pi\given(t,s)$ is an isometric embedding. Since $\w\pi$ is continuous (being the uniform limit of continuous functions), $\pi := \w\pi\given[t,s]$ is also an isometric embedding. A similar argument shows that $\w%\pi(r) = \pi(t)$ for all $r\leq t$, and $\w\pi(r) = \pi(s)$ for all $r\geq s$; thus $\w\pi([-\infty,+\infty]) = \pi([t,s])$ is a geodesic. To complete the proof, we must show that $\pi(t) = x$ and $\pi(s) = y$. Indeed,
+%\[
+%\pi(t) = \w\pi(-\infty) = \lim_{n\to\infty} \w\pi_n(-\infty) = \lim_{n\to\infty} x_n = x,
+%\]
+%and a similar argument shows that $\pi(s) = y$. Thus the geodesic $\pi([t,s])$ connects $x$ and $y$.
+%\end{proof}
+%
+%
+%Using Lemma \ref{lemmageodesicconvergence}, we prove Proposition \ref{propositiongeodesicconvergence}.
+%
+%\begin{proof}[Proof of Proposition \ref{propositiongeodesicconvergence}]~
+%\begin{itemize}
+%\item[(i)] For any $x,y\in\bord X$, we may find sequences $X\ni x_n\to x$ and $X\ni y_n\to y$. Applying Lemma \ref{lemmageodesicconvergence} proves the existence of a geodesic connecting $x$ and $y$. To show %uniqueness, suppose that $\geo xy_1$ and $\geo xy_2$ are two geodesics connecting $x$ and $y$. Fix sequences $\geo xy_1\ni x_n^{(1)}\to x$, $\geo xy_2\ni x_n^{(2)}\to x$, $\geo xy_1\ni y_n^{(1)}\to y$,and $\geo %xy_2\ni y_n^{(2)}\to y$. By considering the intertwined sequence, Lemma \ref{lemmageodesicconvergence} shows that the sequences $(\geo{x_n^{(1)}}{y_n^{(1)}})_1^\infty$ and $(\geo{x_n^{(2)}}{y_n^{(2)}})_1^\infty$ %converge in the Hausdorff metric to a common geodesic $\geo xy$. But clearly the former tend to $\geo xy_1$, and the latter tend to $\geo xy_2$; we must have $\geo xy_1 = \geo xy_2$.
+%
+%\item[(ii)] is now immediate from Lemma \ref{lemmageodesicconvergence}.
+%
+%\end{itemize}
+%\end{proof}
+
+The proof of Proposition \ref{propositiongeodesicconvergence} will proceed through several lemmas, the first of which is as follows:
+
+\begin{lemma}
+\label{lemmaxyz}
+Fix $\epsilon > 0$. There exists $\delta = \delta_X(\epsilon) > 0$ such that if $\Delta = \Delta(x,y_1,y_2)$ is a geodesic triangle in $X$ satisfying
+\begin{equation}
+\label{y1y2delta}
+\wbar\Dist(y_1,y_2) \leq \delta,
+\end{equation}
+then for all $t\in[0,\min_{i = 1}^2 \dist(x,y_i)]$, if $z_i = \geo x{y_i}_t$, then
+\begin{equation}
+\label{z1z2epsilon}
+\wbar\Dist(z_1,z_2) \leq \epsilon.
+\end{equation}
+\end{lemma}
+\begin{proof}
+We prove the assertion first for $X = \H^2$ and then in general:
+\begin{itemize}
+\item[If $X = \H^2$:] Let $\epsilon > 0$, and by contradiction, suppose that for each $\delta = \frac 1n > 0$ there exists a 5-tuple $(x^{(n)},y_1^{(n)},y_2^{(n)},z_1^{(n)},z_2^{(n)})$ satisfying the hypotheses but not the conclusion of the theorem. Since $\bord\H^2$ is compact, there exists a convergent subsequence
+\[
+(x^{(n_k)},y_1^{(n_k)},y_2^{(n_k)},z_1^{(n_k)},z_2^{(n_k)}) \to (x,y_1,y_2,z_1,z_2)\in\left(\bord\H^2\right)^5.
+\]
+Taking the limit of \eqref{y1y2delta} as $k\to\infty$ shows that $\wbar\Dist(y_1,y_2) = 0$, so $y_1 = y_2$. Conversely, taking the limit of \eqref{z1z2epsilon} shows that $\wbar\Dist(z_1,z_2) \geq \epsilon > 0$, so $z_1\neq z_2$. Write $y = y_1 = y_2$.
+
+We will take for granted that Proposition \ref{propositiongeodesicconvergence} holds when $X = \H^2$. (This can be proven using the explicit form of geodesics in this space.) It follows that $z_i\in \geo xy$ if $x\neq y$, and $z_i = x$ if $x = y$. The second case is clearly a contradiction, so we assume that $x\neq y$.
+
+Writing $z_i^{(n_k)} = \geo{x^{(n_k)}}{y_i^{(n_k)}}_{t_k}$, we observe that
+\begin{align*}
+t_k - \dox{x^{(n_k)}}
+&= \lb z_i^{(n_k)} | y_i^{(n_k)} \rb_\zero - \lb z_i^{(n_k)} | x^{(n_k)} \rb_\zero - \lb x^{(n_k)} | y_i^{(n_k)} \rb_\zero\\
+&\tendsto k \lb z_i | y \rb_\zero - \lb z_i | x \rb_\zero - \lb x |y\rb_\zero.
+\end{align*}
+Since the left hand side is independent of $i$, so is the right hand side. But the function
+\[
+z\mapsto \lb z | y \rb_\zero - \lb z | x \rb_\zero - \lb x | y \rb_\zero
+\]
+is an isometric embedding from $\geo xy$ to $[-\infty,+\infty]$; it is therefore injective. Thus $z_1 = z_2$, a contradiction.
+
+\item[In general:] Let $\epsilon > 0$, and fix $\w\epsilon > 0$ to be determined, depending on $\epsilon$. Let $\w\delta = \delta_{\H^2}(\w\epsilon)$, and fix $\delta > 0$ to be determined, depending on $\w\delta$. Now suppose that $\Delta = \Delta(x,y_1,y_2)$ is a geodesic triangle in $X$ satisfying \eqref{y1y2delta}, fix $t\geq 0$, and let $z_i = \geo x{y_i}_t$. To complete the proof, we must show that $\wbar\Dist(z_1,z_2) \leq \epsilon$.
+
+By contradiction suppose not, i.e. suppose that $\wbar\Dist(z_1,z_2) > \epsilon$. Then $\Dist(x,z_i) > \epsilon/2$ for some $i = 1,2$; without loss of generality suppose $\Dist(x,z_1) > \epsilon/2$. By Proposition \ref{propositionrips} this implies $\dist(\zero,\geo x{z_1}) \asymp_{\plus,\epsilon} 0$; fix $w_1\in\geo x{z_1}$ with $\dox{w_1}\asymp_{\plus,\epsilon} 0$. Let $s = \dist(x,w_1) \leq t$, and let $w_2 = \geo x{z_2}_s$. (See Figure \ref{figurexyz}.)
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-1.539,-1.576) rectangle (3.98,1.8);
+\draw [shift={(4.7207100633754004,-4.251144523671373)}] plot[domain=1.948435252123557:2.6141429865240005,variable=\t]({1.0*5.902960522581992*cos(\t r)+-0.0*5.902960522581992*sin(\t r)},{0.0*5.902960522581992*cos(\t r)+1.0*5.902960522581992*sin(\t r)});
+\draw [shift={(2.6440776402056905,-5.2367125169303135)}] plot[domain=1.5361702930450398:2.2233807737101374,variable=\t]({1.0*4.980022039672619*cos(\t r)+-0.0*4.980022039672619*sin(\t r)},{0.0*4.980022039672619*cos(\t r)+1.0*4.980022039672619*sin(\t r)});
+\draw (0.0,-0.0)-- (0.48334729355344397,-0.1414365427938682);
+\draw [shift={(2.802578610044664,0.5103691534918943)}] plot[domain=1.9130096151383342:4.730441794850227,variable=\t]({1.0*0.7701702590181908*cos(\t r)+-0.0*0.7701702590181908*sin(\t r)},{0.0*0.7701702590181908*cos(\t r)+1.0*0.7701702590181908*sin(\t r)});
+\draw [shift={(7.3783710087828664,2.3193354663807444)}] plot[domain=3.4843932225971725:3.560165863983011,variable=\t]({1.0*7.320980188110974*cos(\t r)+-0.0*7.320980188110974*sin(\t r)},{0.0*7.320980188110974*cos(\t r)+1.0*7.320980188110974*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (1pt);
+\draw[color=black] (-0.20573038068032204,-0.16484898217738642) node {$\zero$};
+\draw [fill=black] (-0.38,-1.28) circle (1pt);
+\draw[color=black] (-0.6011417551376018,-1.450757318050246) node {$x$};
+\draw [fill=black] (2.544130372359072,1.2358805154383208) circle (1pt);
+\draw[color=black] (2.8569090399799677,1.294830750435049) node {$y_1$};
+\draw [fill=black] (2.8164815956355223,-0.25967560810823964) circle (1pt);
+\draw[color=black] (3.13494327476329,-0.3038660995690469) node {$y_2$};
+\draw [fill=black] (0.48334729355344397,-0.1414365427938682) circle (1pt);
+\draw[color=black] (0.458863764973814,0.0892241456218923) node {$w_1$};
+\draw [fill=black] (0.6894125111628517,-0.6563300275601325) circle (1pt);
+\draw[color=black] (0.8759151171487972,-0.8641974071794341) node {$w_2$};
+\draw [fill=black] (1.4043001305961753,0.6321297967948407) circle (1pt);
+\draw[color=black] (1.3277207486716958,0.8430251189121523) node {$z_1$};
+\draw [fill=black] (1.7083588447287483,-0.34538858046728116) circle (1pt);
+\draw[color=black] (1.796903519868552,-0.6861631723961132) node {$z_2$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The triangle $\Delta(x,y_1,y_2)$]{The triangle $\Delta(x,y_1,y_2)$.}
+\label{figurexyz}
+\end{center}
+\end{figure}
+
+Now let $\wbar{\Delta} = \Delta(\wbar x,\wbar{y_1},\wbar{y_2})$ be a comparison triangle for $\Delta(x,y_1,y_2)$, and let $\wbar{z_1},\wbar{z_2},\wbar{w_1},\wbar{w_2}$ be the corresponding comparison points. Note that $\wbar{z_i} = \geo{\wbar x}{\wbar{y_i}}_t$ and $\wbar{w_i} = \geo{\wbar x}{\wbar{y_i}}_s$. Without loss of generality, suppose that $\wbar{w_1} = \zero_\H$. Then $\dox{y_2} \leq \dox{w_1} + \dist(w_1,y_2) \asymp_{\plus,\epsilon} \dist(\zero_\H,\wbar{y_2})$, and so $\lb y_1|y_2\rb_\zero \lesssim_{\plus,\epsilon} \lb \wbar{y_1}|\wbar{y_2}\rb_{\zero_\H}$, and thus
+\[
+\wbar\Dist(\wbar{y_1},\wbar{y_2}) \lesssim_{\times,\epsilon} \wbar\Dist(y_1,y_2) \leq \delta.
+\]
+Setting $\delta$ equal to $\w\delta$ divided by the implied constant, we have
+\[
+\wbar\Dist(\wbar{y_1},\wbar{y_2}) \leq \w\delta = \delta_\H(\w\epsilon).
+\]
+Thus $\wbar\Dist(\wbar{z_1},\wbar{z_2})\leq\w\epsilon$ and $\wbar\Dist(\wbar{w_1},\wbar{w_2})\leq\w\epsilon$.
+\begin{itemize}
+\item If $\dist(\wbar{z_1},\wbar{z_2})\leq\w\epsilon$, then the CAT(-1) inequality finishes the proof (as long as $\w\epsilon\leq \epsilon$). Thus, suppose that
+\begin{equation}
+\label{z1z2}
+\Dist(\wbar{z_1},\wbar{z_2}) \leq \w\epsilon.
+\end{equation}
+\item If $\Dist(\wbar{w_1},\wbar{w_2})\leq\w\epsilon$, then $0 = \lb \wbar{w_1}|\wbar{w_2}\rb_{\zero_\H} \geq -\log(\w\epsilon)$, a contradiction for $\w\epsilon$ sufficiently small. Thus, suppose that
+\begin{equation}
+\label{w1w2}
+\dist(\wbar{w_1},\wbar{w_2}) \leq\w\epsilon.
+\end{equation}
+\end{itemize}
+By \eqref{z1z2}, we have $\dist(\zero_\H,\wbar{z_i}) \geq -\log(\w\epsilon)$. Applying \eqref{w1w2} gives
+\[
+\lb z_i|y_i\rb_{w_i} = \dist(w_i,z_i) = \dist(\wbar{w_i},\wbar{z_i}) \gtrsim_\plus -\log(\w\epsilon).
+\]
+Applying \eqref{w1w2}, the coarse asymptotic $\dox{w_1} \asymp_{\plus,\epsilon} 0$, and the CAT(-1) inequality, we have
+\[
+\lb z_i|y_i\rb_\zero \gtrsim_{\plus,\epsilon} -\log(\w\epsilon),
+\]
+and thus $\wbar\Dist(z_i,y_i)\lesssim_{\times,\epsilon} \w\epsilon$. Using the triangle inequality together with the assumption $\wbar\Dist(y_1,y_2)\leq\delta$, we have
+\[
+\wbar\Dist(z_1,z_2) \lesssim_{\times,\epsilon} \max(\delta,\w\epsilon).
+\]
+Setting $\w\epsilon$ equal to $\epsilon$ divided by the implied constant, and decreasing $\delta$ if necessary, completes the proof.
+\end{itemize}
+
+%\ignore{
+%
+%We divide the proof into three cases:
+%
+%\begin{itemize}
+%\item[Case 1:] $\wbar\Dist(y_1,y_2) = \dist(y_1,y_2) \leq \delta$. In this case, by Lemma \ref{lemmaxzyeuclidean} and the CAT(-1) inequality, we have $\dist(z_1,z_2)\leq \dist(y_1,y_2)\leq\delta$. Thus letting $\delta\leq\epsilon$ completes the proof in this case.
+%
+%\item[Case 2:] $\wbar\Dist(y_1,y_2) = \Dist(y_1,y_2)\leq\delta$. Since $X$ is hyperbolic, by Proposition \internalmissingref\ there exists $y_3\in\geo{y_1}{y_2}$ such that
+%\[
+%\dist(y_3,\geo x{y_1}) \asymp_\plus \dist(y_3,\geo x{y_2}) \asymp_\plus 0.
+%\]
+%For $i = 1,2$, let $w_i\in\geo x{y_i}$ be such that $\dist(x,w_i) =\dist(x,y_3)$. Note that $\dist(w_1,w_2) \leq \dist(w_1,y_3) + \dist(w_2,y_3) \leq 2\dist(y_3,\geo x{y_1}) + 2\dist(y_3,\geo x{y_2}) \asymp_\plus 0$.
+%
+%\begin{itemize}
+%\item[Case 2A:] $\dist(x,z_1)\leq \dist(x,y_3)$. In this case, consider the comparison triangle $\Delta(\xx,\ww_1,\ww_2)$, and let $\zz_1,\zz_2$ be the corresponding points on the comparison triangles. Without loss of generality, suppose that $\xx = \0$. Then
+%\[
+%\|\zz_2 - \zz_1\| = \frac{\|\zz_1\|}{\|\ww_1\|}\|\ww_2 - \ww_1\| = \frac{\dist(x,z_1)}{\dist(x,y_3)} \dist(w_1,w_2).
+%\]
+%On the other hand, by (d) of Proposition \ref{propositionbasicidentities} we have
+%\[
+%\dist(x,y_3)\geq \lb y_1|y_2\rb_x - \lb y_1|y_2\rb_{y_3} = \lb y_1|y_2\rb_x
+%\]
+%and thus
+%\[
+%\dist(z_1,z_2) \lesssim_\times \frac{\dist(x,z_1)}{\lb y_1|y_2\rb_x}\cdot
+%\]
+%[Continue\internal]
+%\end{itemize}
+%\end{itemize}
+%}% end ignore
+\end{proof}
+
+%\ignore{
+%\begin{corollary}
+%If $\epsilon,\delta,\Delta(x,y_1,y_2)$ are as in Lemma \ref{lemmaxyz}, then the Hausdorff distance between $\geo x{y_1}$ and $\geo x{y_2}$ is at most $\epsilon$.
+%\end{corollary}
+%\begin{proof}
+%For every $z_1 = \geo x{y_1}_t\in\geo x{y_1}$, we can find $z_2 = \geo x{y_2}_{t\wedge\dist(x,y_2)}\in\geo x{y_2}$ such that $\wbar\Dist(z_1,z_2) \leq\epsilon$, and vice-versa.
+%\end{proof}
+%}% end ignore
+
+\begin{notation}
+\label{notationwpi}
+If the map $\pi:[t,s]\to X$ is an isometric embedding, then the map $\w\pi:[-\infty,+\infty]\to X$ is defined by the equation
+\[
+\w\pi(r) = \pi(t\vee r\wedge s).
+\]
+\end{notation}
+
+\begin{corollary}
+\label{corollaryxyz}
+If $\epsilon$, $\delta$, and $\Delta(x,y_1,y_2)$ are as in Lemma \ref{lemmaxyz}, and if $\pi_1:[t,s_1]\to \geo x{y_1}$ and $\pi_2:[t,s_2]\to\geo x{y_2}$ are isometric embeddings, then
+\[
+\wbar\Dist(\w\pi_1(r),\w\pi_2(r)) \lesssim_\times \epsilon \all r\in [-\infty,+\infty].
+\]
+\end{corollary}
+\begin{proof}
+If $r\leq t$, then $\w\pi_1(r) = x = \w\pi_2(r)$. If $t\leq r \leq \min_{i = 1}^2 s_i$, then $\w\pi_i(r) = \geo x{y_i}_{r - t}$, allowing us to apply Lemma \ref{lemmaxyz} directly. Finally, suppose $r\geq r_0 := \min_{i = 1}^2 s_i$. Without loss of generality suppose that $s_1 \leq s_2$, so that $r_0 = s_1$. Applying the previous case to $r_0$, we have
+\[
+\wbar\Dist(y_1,w_2) \leq \epsilon,
+\]
+where $w_2 = \pi_2(s_1)$. Now $\w\pi_1(r) = y_1$, and $\w\pi_2(r)\in\geo{w_2}{y_2}$, so Lemma \ref{lemmageodesicdiameter} completes the proof.
+\end{proof}
+
+\begin{lemma}
+\label{lemmageodesicconvergence}
+Suppose that $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are sequences in $X$ which converge to points $x_n\to x\in\bord X$ and $y_n\to y\in\bord X$, with $x\neq y$. Then there exists a geodesic $\geo xy$ connecting $x$ and $y$ such that $\geo{x_n}{y_n} \to \geo xy$ in the Hausdorff metric. If $x = y$, then $\geo{x_n}{y_n}\to \{x\}$ in the Hausdorff metric.
+\end{lemma}
+\begin{proof}
+We observe first that if $x = y$, then the conclusion follows immediately from Lemma \ref{lemmageodesicdiameter}. Thus we assume in what follows that $x\neq y$.
+
+For any pair $p,q\in X$, we define the \emph{standard parameterization} of the geodesic $\geo pq$ to be the unique isometry $\pi:[-\lb \zero|q\rb_p , \lb \zero|p\rb_q] \to \geo pq$ sending $-\lb \zero|q\rb_p$ to $p$ and $\lb \zero|p\rb_q$ to $q$. For each $n$ let $\pi_n:[t_n,s_n]\to \geo{x_n}{y_n}$ be the standard parameterization, and for each $m,n\in\N$ let $\pi_{m,n}:[t_{m,n},s_{m,n}]\to \geo{x_n}{y_m}$ be the standard parameterization. Let $\w\pi_n:[-\infty,+\infty]\to \geo{x_n}{y_n}$ and $\w\pi_{m,n}:[-\infty,+\infty]\to \geo{x_n}{y_m}$ be as in Notation \ref{notationwpi}. Note that
+\[
+t_n - t_{m,n} = \lb \zero|y_m\rb_{x_n} - \lb \zero|y_n\rb_{x_n} = \lb x_n|y_n\rb_\zero - \lb x_n|y_m\rb_\zero \tendsto{m,n} \lb x|y\rb_\zero - \lb x|y\rb_\zero = 0.
+\]
+(We have $\lb x|y\rb_\zero < \infty$ since $x\neq y$.) Thus
+\[
+\wbar\Dist(\w\pi_n(r), \w\pi_n(r - t_n + t_{m,n})) \leq \dist(\w\pi_n(r), \w\pi_n(r - t_n + t_{m,n})) \leq |t_n - t_{m,n}| \tendsto n 0.
+\]
+Here and below, the limit converges uniformly for $r\in[-\infty,+\infty]$. On the other hand, Corollary \ref{corollaryxyz} implies that
+\[
+\wbar\Dist(\w\pi_n(r - t_n + t_{m,n}) , \w\pi_{m,n}(r)) \tendsto{m,n} 0,
+\]
+so the triangle inequality gives
+\[
+\wbar\Dist(\w\pi_n(r) , \w\pi_{m,n}(r)) \tendsto{m,n} 0.
+\]
+A similar argument shows that
+\[
+\wbar\Dist(\w\pi_{m,n}(r) , \w\pi_m(r)) \tendsto{m,n} 0,
+\]
+so the triangle inequality gives
+\[
+\wbar\Dist(\w\pi_n(r) , \w\pi_m(r)) \tendsto{m,n} 0,
+\]
+i.e. the sequence of functions $(\w\pi_n)_1^\infty$ is uniformly Cauchy. Since $(\bord X,\wbar\Dist)$ is complete, they converge uniformly to a function $\w\pi:[-\infty,+\infty]\to X$.
+
+Clearly, $\geo{x_n}{y_n} = \w\pi_n([-\infty,+\infty]) \to \w\pi([-\infty,+\infty])$ in the Hausdorff metric. We claim that $\w\pi([-\infty,+\infty])$ is a geodesic connecting $x$ and $y$. Indeed,
+\[
+t_n \tendsto n t := \lb x|y\rb_\zero - \dox x \text{ and } s_n \tendsto n s := \dox y - \lb x|y\rb_\zero.
+\]
+For all $t < r_1 < r_2 < s$, we have $t_n < r_1 < r_2 < s_n$ for all sufficiently large $n$, which implies that
+\[
+\dist(\w\pi(r_1) , \w\pi(r_2)) = \lim_{n\to\infty} \dist(\w\pi_n(r_1) , \w\pi_n(r_2)) = \lim_{n\to\infty} (r_2 - r_1) = r_2 - r_1,
+\]
+i.e. $\w\pi\given(t,s)$ is an isometric embedding. Since $\w\pi$ is continuous (being the uniform limit of continuous functions), $\pi := \w\pi\given[t,s]$ is also an isometric embedding. A similar argument shows that $\w\pi(r) = \pi(t)$ for all $r\leq t$, and $\w\pi(r) = \pi(s)$ for all $r\geq s$; thus $\w\pi([-\infty,+\infty]) = \pi([t,s])$ is a geodesic. To complete the proof, we must show that $\pi(t) = x$ and $\pi(s) = y$. Indeed,
+\[
+\pi(t) = \w\pi(-\infty) = \lim_{n\to\infty} \w\pi_n(-\infty) = \lim_{n\to\infty} x_n = x,
+\]
+and a similar argument shows that $\pi(s) = y$. Thus the geodesic $\pi([t,s])$ connects $x$ and $y$.
+\end{proof}
+
+%\ignore{
+%In fact, we demonstrate the following stronger assertion:
+%
+%\begin{claim}
+%\label{claimpirkpir}
+%For any sequence $[t_k,s_k]\ni r_k \to r\in[t,s]$, we have $\pi_k(r_k) \to \pi(r)$.
+%\end{claim}
+%\begin{subproof}
+%Let $z_k = \pi_k(r_k)$ and let $z = \pi(r)$. If $r\neq\pm\infty$, then
+%\[
+%\dist(z_k,z) \leq \dist(z_k,\pi_k(r)) + \dist(\pi_k(r),z) = |r_k - r| + \dist(\pi_k(r),\pi(r)) \tendsto k 0.
+%\]
+%On the other hand, suppose $r = \pm\infty$; without loss of generality suppose $r = +\infty$. \comdavid{Question: Is it possible to use the stronger assertion of Lemma \ref{lemmaxyz} to prove this case? Consider $\w\pi(\pm\infty)$.} Fix $N\in\N$. For all $k$ sufficiently large, we have $r_k\geq N$ and therefore
+%\[
+%\lb \pi_k(N)|z_k\rb_{\pi_k(0)} = N.
+%\]
+%Moreover, since $\pi_k(N)\to\pi(N)$ and $\pi_k(0)\to\pi(0)$, we have
+%\[
+%\lb \pi(N)|z_k\rb_{\pi(0)} \geq N - 1
+%\]
+%for all $k$ sufficiently large. On the other hand
+%\[
+%\lb \pi(N)|z\rb_{\pi(0)} = N,
+%\]
+%so by Gromov's inequality we have
+%\[
+%\lb z_k|z\rb_{\pi(0)} \gtrsim_\plus N.
+%\]
+%Since $N$ was arbitrary, we have $z_k\to z$.
+%\end{subproof}
+%
+%Since $\pi_k(t_k) = x_k \to x$ and $\pi_k(s_k) = y_k \to y$, we have $\pi(t) = x$ and $\pi(s) = y$, i.e. $\pi$ connects $x$ and $y$.
+%}% end ignore
+
+
+
+%\ignore{
+%
+%[END]
+%
+%
+%
+%
+%For each $n$ let
+%\[
+%t_n = -\dox{x_n} , \;\; s_n = t_n + \dist(x_n,y_n) = \busemann_{x_n}(y_n,\zero),
+%\]
+%and let $\pi_n:[t_n,s_n]\to \geo{x_n}{y_n}$ be an isometry satisfying $\pi_n(t_n) = x_n$ and $\pi_n(s_n) = y_n$. We observe that
+%\[
+%t_n \tendsto n t := -\dox x , \;\; s_n \tendsto n s := \begin{cases}
+%\busemann_x(y,\zero) & y\in X\\
+%+\infty & y\in\del X
+%\end{cases}.
+%\]
+%(If $y\in\del X$, then
+%\[
+%\busemann_{x_n}(y_n,\zero) = \dox{y_n} - 2\lb x_n|y_n\rb_\zero \tendsto n (+\infty) - 2\lb x|y\rb_\zero = +\infty;
+%\]
+%$\lb x|y\rb_\zero$ is finite since $x\neq y$.) In particular, note that $t < s$. For each $n$, define $\w\pi_n:[-\infty,+\infty]\to \geo{x_n}{y_n}$ via the formula
+%\[
+%\w\pi_n(t) = \pi_n(t_n \vee t \wedge s_n).
+%\]
+%\begin{claim}
+%The sequence $(\w\pi_n)_1^\infty$ converges uniformly to a function $\w\pi:[-\infty,+\infty]\to X$.
+%\end{claim}
+%\begin{subproof}
+%Since $(\bord X,\wbar\Dist)$ is complete, it suffices to show that the sequence $(\w\pi_n)_1^\infty$ is uniformly Cauchy, i.e. that for every $\epsilon > 0$ there exists $N\in\N$ such that for all $m,n\geq N$ and $t\in[-\infty,+\infty]$,
+%\[
+%\wbar\Dist(\w\pi_n(t),\w\pi_m(t)) \leq \epsilon.
+%\]
+%Indeed, fix such an $\epsilon$, and let $\delta > 0$ be as in Lemma \ref{lemmaxyz}.
+%
+%\end{subproof}
+%
+%\end{proof}
+%
+%
+%\begin{proof}
+%Corollary \internalmissingref\ shows that the sequence $(\geo{x_n}{y_n})_1^\infty$ is Cauchy in the Hausdorff metric. Since the Hausdorff metric of a complete metric space is complete [ref?], we have $\geo{x_n}{y_n} \to K$ for some closed set $K\subset \bord X$.
+%\begin{itemize}
+%\item[Case 1:] $K\cap X\neq\emptyset$, say $w\in K\cap X$. There exists a sequence $\geo{x_n}{y_n}\ni w_n\to w$. For each $n$ let $t_n = -\dist(w_n,x_n)$ and $s_n = \dist(w_n,y_n)$, so that there exists a parameterization $\pi_n:[t_n,s_n]\to \geo{x_n}{y_n}$ sending $\zero$ to $w_n$.
+%
+%Fix $m,n\in\N$, and let's compare $\pi_m$ to $\pi_n$. Let
+%\[
+%\w t_m = s_n - \dist(x_m,y_n) , \;\; \w s_m = \w t_m + \dist(x_m,y_n),
+%\]
+%so that there exist parameterizations $\pi_{n,m}:[\w t_m,s_n]\to \geo{x_m}{y_n}$ and $\w\pi_m : [\w t_m,\w s_m]\to \geo{x_m}{y_m}$. Applying Lemma \ref{lemmaxyz} twice gives
+%\[
+%\wbar\Dist(\pi_n(t_n\vee t\wedge s_n), \w\pi_m(\w t_m\vee t\wedge \w s_m)) \leq 2\epsilon \all t\in\R,
+%\]
+%assuming that $m,n$ are large enough so that $\wbar\Dist(x_n,x_m),\wbar\Dist(y_n,y_m) \leq \delta$, where $\delta$ is as in Lemma \ref{lemmaxyz}.
+%
+%In particular, letting $t = 0$ gives
+%\[
+%\wbar\Dist(w_n,\w\pi_m(0)) \leq 2\epsilon,
+%\]
+%so $\w\pi_m(0)\to w$. [This is a very unusual calculation...]
+%
+%
+%\item[Case 2:]
+%\end{itemize}
+%\end{proof}
+%
+%
+%
+%
+%
+%
+%[Previous attempts:]
+%
+%\begin{corollary}
+%\label{corollaryxyz}
+%Fix $\epsilon > 0$. There exists $\delta > 0$ such that if $\pi_1:[t,s_1]\to X$ is a geodesic connecting $x,y_1\in X$, and $y_2\in X$ is a point satisfying
+%\[
+%\wbar\Dist(y_1,y_2) \leq \delta,
+%\]
+%then there exists a geodesic $\pi_2:[t,s_2]\to X$ connecting $x$ and $y_2$ satisfying
+%\[
+%\wbar\Dist(\pi_1(r),\pi_2(r)) \leq \epsilon \all r\in [t,\min(s_1,s_2)].
+%\]
+%\end{corollary}
+%\begin{proof}
+%Apply Lemma \ref{lemmaxyz} with $z_i = \pi_i(r)$.
+%\end{proof}
+%
+%[Attempting to ``start over'' again]
+%
+%[Note: The main problem with the ``Hausdorff metric'' presentation seems to be that it makes it less obvious that the limit of geodesics is a geodesic.]
+%\begin{corollary}
+%Fix $\epsilon > 0$. There exists $\delta > 0$ such that if $x,y_1,y_2\in X$ satisfy
+%\[
+%\wbar\Dist(y_1,y_2)\leq\delta,
+%\]
+%then the Hausdorff distance between $\geo x{y_1}$ and $\geo x{y_2}$ is at most $\epsilon$.
+%\end{corollary}
+%\begin{proof}
+%Let $\epsilon > 0$, and fix $\delta > 0$ to be determined.
+%
+%Fix $z_1\in\geo x{y_1}$, and write $z = \geo x{y_1}_t$ for some $0\leq t\leq \dist(x,y_1)$. If $t\leq \dist(x,y_2)$, then we let $z_2 = \geo x{y_2}_t\in\geo x{y_2}$, and then by Lemma \ref{lemmaxyz}, $\wbar\Dist(z_1,z_2)\leq\epsilon$. Otherwise, let $s = \dist(x,y_2)$, and for $i = 1,2$ let $w_i = \geo x{y_i}_s$. Then $w_2 = y_2$, $\wbar\Dist(w_1,w_2) \leq \epsilon$, and $z_1\in\geo{y_1}{w_1}$. By Lemma \ref{lemmageodesicdiameter},
+%\[
+%\wbar\Dist(z_1,y_1) \lesssim_\times \wbar\Dist(y_1,w_1) \leq \wbar\Dist(y_1,y_2) + \wbar\Dist(w_1,w_2) \leq \delta + \epsilon \lesssim_\times \epsilon,
+%\]
+%and thus $\wbar\Dist(z_1,y_2) \lesssim_\times\epsilon$. Choosing $\epsilon$ appropriately (and fixing horrible notation), we have $\wbar\Dist(z_1,y_2) \leq \epsilon$.
+%
+%Since $z_1$ was arbitrary, we have $\geo x{y_1} \subset \geo x{y_2}^{(\epsilon)}$. A symmetric argument shows that $\geo x{y_2}\subset \geo x{y_1}^{(\epsilon)}$.
+%\end{proof}
+%
+%\begin{proof}[Proof of Proposition \ref{propositiongeodesicconvergence}]
+%
+%\end{proof}
+%
+%
+%
+%
+%
+%
+%[Attempting to ``start over'']
+%
+%For any pair $x,y\in X$, we define the \emph{standard parameterization} of the geodesic $\geo xy$ to be the unique isometry $\pi:[-\lb \zero|y\rb_x , \lb \zero|x\rb_y] \to \geo xy$ sending $-\lb \zero|y\rb_x$ to $x$ and $\lb \zero|x\rb_y$ to $y$.
+%
+%\begin{corollary}
+%\label{corollaryxyz}
+%Fix $\epsilon > 0$. There exists $\delta > 0$ such that if $\geo x{y_1}$ and $\geo x{y_2}$ are geodesics satisfying
+%\[
+%\wbar\Dist(y_1,y_2) \leq \delta,
+%\]
+%and if $\pi_1:[t_1,s_1]\to\geo x{y_1}$ and $\pi_2:[t_2,s_2]\to\geo x{y_2}$ are their standard parameterizations, then
+%\[
+%\wbar\Dist(\pi_1(r),\pi_2(r)) \leq \epsilon \text{ for all applicable $r$.}
+%\]
+%\end{corollary}
+%\begin{proof}
+%It suffices to show that $|\lb \zero|y_1\rb_x - \lb \zero|y_2\rb_x| \leq \epsilon$. Let $d_i = \lb \zero|y_i\rb_x$; then
+%\[
+%|e^{-d_1} - e^{-d_2}| \leq e^{-\lb y_1|y_2\rb_x}.
+%\]
+%On the other hand, by (k) of Proposition \ref{propositionbasicidentities}
+%\[
+%\lb y_1|y_2\rb_x = \lb y_1|y_2\rb_\zero + \dox x - \lb x|y_1\rb_\zero - \lb x|y_2\rb_\zero \asymp_\plus \lb y_1|y_2\rb_\zero + \dox x
+%\]
+%and so
+%\[
+%|e^{-d_1} - e^{-d_2}| \lesssim_\times e^{-\dox x}\Dist(y_1,y_2).
+%\]
+%Since $d_1,d_2\leq \dox x$, this gives
+%\[
+%|d_1 - d_2| \lesssim_\times \Dist(y_1,y_2).
+%\]
+%On the other hand, it is clear that $|d_1 - d_2| \leq \dist(y_1,y_2)$.
+%\end{proof}
+%
+%
+%[END]
+%
+%\begin{lemma}
+%\label{lemmageodesicconvergence}
+%Fix points $x,y\in \bord X$ and sequences $(x_n)_1^\infty$ and $(y_n)_1^\infty$ in $X$ which converge to $x$ and $y$, respectively. There exists an increasing sequence $(n_k)_1^\infty$ and a geodesic $\geo xy$ connecting $x$ and $y$ such that $\geo{x_{n_k}}{y_{n_k}} \tendsto k \geo xy$ in the Hausdorff metric on $(\bord X,\wbar\Dist)$.% sense of Proposition \ref{propositiongeodesicconvergence}.
+%\end{lemma}
+%\begin{proof}
+%For each $k\in\N$ let $\epsilon_k = 2^{-k}$, and let $\delta_k > 0$ be given by Lemma \ref{lemmaxyz}.
+%\begin{observation}
+%There exists an increasing sequences $(n_k)_1^\infty$ satisfying:
+%\begin{align} \label{ynym}
+%\wbar\Dist(y_{n_k},y_{n_{k + 1}}) &\leq \min(\delta_k,2^{-k}) &\text{for all $k\in\N$} \\ \label{xnxm}
+%\wbar\Dist(x_{n_k},x_{n_{k + 1}}) &\leq \min(\delta_k,2^{-k}) &\text{for all $k\in\N$} \\ \label{xkyk1yk}
+%\dist(x_{n_k},y_{n_{k + 1}}) &\geq \dist(x_{n_k},y_{n_k}) &\text{if $y\in\del X$}\\
+%\dist(y_{n_{k + 1}},x_{n_{k + 1}}) &\geq \dist(y_{n_{k + 1}},x_{n_k}) &\text{if $x\in\del X$}
+%\end{align}
+%\end{observation}
+%\begin{subproof}
+%Since $x_n\to x$ and $y_n\to y$, \eqref{ynym} and \eqref{xnxm} can be guaranteed by choosing $n_k$ large enough. [CONTINUE]
+%
+%\end{subproof}
+%
+%For shorthand let us write $x_k = x_{n_k}$ and $y_k = y_{n_k}$. Let $\pi_1:[t_1,s_1]\to X$ be a geodesic connecting $x_1$ and $y_1$. Define the geodesics $\pi_k:[t_k,s_k]\to X$ and $\pi_k':[t_k,s_{k + 1}]\to X$ inductively using Corollary \ref{corollaryxyz}, so that
+%\begin{itemize}
+%\item[(i)] $\pi_k$ connects $x_k$ and $y_k$; $\pi_k'$ connects $x_k$ and $y_{k + 1}$
+%\item[(ii)]
+%\begin{equation}
+%\label{piinduction}
+%\begin{split}
+%\wbar\Dist(\pi_k(r),\pi_k'(r)) &\leq \epsilon_k = 2^{-k} \all r\in [t_k,\min(s_k,s_{k + 1})]\\
+%\wbar\Dist(\pi_k'(r),\pi_{k + 1}(r)) &\leq \epsilon_k = 2^{-k} \all r\in [\max(t_k,t_{k + 1}),s_{k + 1}].
+%\end{split}
+%\end{equation}
+%\end{itemize}
+%
+%\begin{claim}
+%The limits $t = \lim_{k\to\infty} t_k$ and $s = \lim_{k\to\infty} s_k$ both exist. The values $t = -\infty$ and $s = +\infty$ are possible, but $t\neq +\infty$ and $s\neq -\infty$.
+%\end{claim}
+%\begin{subproof}
+%If $y\in X$, then $|s_{k + 1} - s_k| = |\busemann_{x_k}(y_{k + 1},y_k)| \leq \dist(y_{k + 1},y_k) \leq 2^{-k}$ for all $k$, so the sequence $(s_k)_1^\infty$ is Cauchy. On the other hand, if $y\in\del X$, then \eqref{xkyk1yk} implies $s_{k + 1}\geq s_k$ for all $k$. Either way the sequence $(s_k)_1^\infty$ converges in $\OC{-\infty}{+\infty}$; a symmetric argument shows that the sequence $(t_k)_1^\infty$ converges in $\CO{-\infty}{+\infty}$.
+%\end{subproof}
+%
+%Now for all $r\in (t,s)$, we have $r\in[t_k,s_k]$ for all sufficiently large $k$, so by \eqref{piinduction} we have $\wbar\Dist(\pi_k(r),\pi_{k + 1}(r)) \leq 2^{-(k - 1)}$ for all sufficiently large $k$. Thus the sequence $(\pi_k(r))_1^\infty$ is Cauchy, and converges since $X$ is complete.
+%
+%Let $\pi:(t,s)\to X$ be the pointwise limit of the sequence $(\pi_k)_1^\infty$. By continuity, $\pi$ is an isometric embedding. Let $\pi:[t,s]\to X$ be the unique continuous extension.
+%
+%\begin{claim}
+%\label{claimpirkpir}
+%For any sequence $[t_k,s_k]\ni r_k \to r\in[t,s]$, we have $\pi_k(r_k) \to \pi(r)$.
+%\end{claim}
+%\begin{subproof}
+%Let $z_k = \pi_k(r_k)$ and let $z = \pi(r)$. If $r\neq\pm\infty$, then
+%\[
+%\dist(z_k,z) \leq \dist(z_k,\pi_k(r)) + \dist(\pi_k(r),z) = |r_k - r| + \dist(\pi_k(r),\pi(r)) \tendsto k 0.
+%\]
+%On the other hand, suppose $r = \pm\infty$; without loss of generality suppose $r = +\infty$. Fix $N\in\N$. For all $k$ sufficiently large, we have $r_k\geq N$ and therefore
+%\[
+%\lb \pi_k(N)|z_k\rb_{\pi_k(0)} = N.
+%\]
+%Moreover, since $\pi_k(N)\to\pi(N)$ and $\pi_k(0)\to\pi(0)$, we have
+%\[
+%\lb \pi(N)|z_k\rb_{\pi(0)} \geq N - 1
+%\]
+%for all $k$ sufficiently large. On the other hand
+%\[
+%\lb \pi(N)|z\rb_{\pi(0)} = N,
+%\]
+%so by Gromov's inequality we have
+%\[
+%\lb z_k|z\rb_{\pi(0)} \gtrsim_\plus N.
+%\]
+%Since $N$ was arbitrary, we have $z_k\to z$.
+%\end{subproof}
+%
+%Since $\pi_k(t_k) = x_k \to x$ and $\pi_k(s_k) = y_k \to y$, we have $\pi(t) = x$ and $\pi(s) = y$, i.e. $\pi$ connects $x$ and $y$.
+%
+%To show that $\geo{x_k}{y_k}\to \geo xy$, [A NEW ARGUMENT IS NEEDED] for each $k\in\N$ fix $z_k\in\geo{x_k}{y_k}$. Write $z_k = \pi_k(r_k)$ for some $r_k\in[t_k,s_k]$. Let $(k_\ell)_1^\infty$ be an increasing sequence such that $r_{k_\ell}\to r\in[-\infty,+\infty]$. Then by Claim \ref{claimpirkpir}, we have $z_{k_\ell}\to z := \pi(r)$.
+%\end{proof}
+%
+%}% end ignore
+
+Using Lemma \ref{lemmageodesicconvergence}, we prove Proposition \ref{propositiongeodesicconvergence}.
+
+\begin{proof}[Proof of Proposition \ref{propositiongeodesicconvergence}]~
+\begin{itemize}
+\item[(i)] Given distinct points $x,y\in\bord X$, we may find sequences $X\ni x_n\to x$ and $X\ni y_n\to y$. Applying Lemma \ref{lemmageodesicconvergence} proves the existence of a geodesic connecting $x$ and $y$. To show uniqueness, suppose that $\geo xy_1$ and $\geo xy_2$ are two geodesics connecting $x$ and $y$. Fix sequences $\geo xy_1\ni x_n^{(1)}\to x$, $\geo xy_2\ni x_n^{(2)}\to x$, $\geo xy_1\ni y_n^{(1)}\to y$,and $\geo xy_2\ni y_n^{(2)}\to y$. By considering the intertwined sequences 
+\[
+x_1^{(1)},x_1^{(2)},x_2^{(1)},x_2^{(2)},\ldots 
+\]
+and 
+\[
+y_1^{(1)},y_1^{(2)},y_2^{(1)},y_2^{(2)},\ldots
+\] 
+Lemma \ref{lemmageodesicconvergence} shows that both sequences $(\geo{x_n^{(1)}}{y_n^{(1)}})_1^\infty$ and $(\geo{x_n^{(2)}}{y_n^{(2)}})_1^\infty$ converge in the Hausdorff metric to a common geodesic $\geo xy$. But clearly the former tend to $\geo xy_1$, and the latter tend to $\geo xy_2$; we must have $\geo xy_1 = \geo xy_2$.
+
+
+\item[(ii)] Suppose that $\bord X\ni x_n\to x$ and $\bord X\ni y_n\to y$. For each $n$, choose $\what x_n,\what y_n\in \geo{x_n}{y_n}\cap X$ such that $\wbar\Dist(\what x_n,x_n) , \wbar\Dist(\what y_n,y_n) \leq 1/n$. Then $\what x_n\to x$ and $\what y_n\to y$, so by Lemma \ref{lemmageodesicconvergence} we have $\geo{\what x_n}{\what y_n}\to \geo xy$ in the Hausdorff metric, or $\geo{\what x_n}{\what y_n} \to \{x\}$ if $x = y$. To complete the proof it suffices to show that the Hausdorff distance between $\geo{x_n}{y_n}$ and $\geo{\what x_n}{\what y_n}$ tends to zero as $n$ tends to infinity. Indeed, $\geo{\what x_n}{\what y_n} \subset \geo{x_n}{y_n}$, and for each $z\in \geo{x_n}{y_n}$, either $z\in \geo{x_n}{\what x_n}$, $z\in \geo{\what x_n}{\what y_n}$, or $z\in \geo{\what y_n}{y_n}$. In the first case, Lemma \ref{lemmageodesicdiameter} shows that $\wbar\Dist(z,\geo{\what x_n}{\what y_n}) \leq \wbar\Dist(z,\what x_n) \lesssim_\times \wbar\Dist(x_n,\what x_n) \leq 1/n \to 0$; the third case is treated similarly.
+
+\end{itemize}
+\end{proof}
+
+
+Having completed the proof of Proposition \ref{propositiongeodesicconvergence}, in the remainder of this section we prove that a version of the CAT(-1) equality holds for ideal triangles.
+
+\begin{definition}
+\label{definitiontriangles}
+A \emph{geodesic triangle} $\Delta = \Delta(x,y,z)$ consists of three distinct points $x,y,z\in\bord X$ together with the geodesics $\geo xy$, $\geo yz$, and $\geo zx$.
+
+A geodesic triangle $\wbar{\Delta} = \Delta(\wbar x,\wbar y,\wbar z)$ is called a \emph{comparison triangle} for $\Delta$ if
+\[
+\lb \wbar x|\wbar y\rb_{\wbar z} = \lb x|y\rb_z, \text{ etc.}
+\]
+For any point $p\in\geo xy$, its \emph{comparison point} is defined to be the unique point $\wbar p\in\geo {\wbar x}{\wbar y}$ such that
+\[
+\lb x|z\rb_p - \lb y|z\rb_p = \lb \wbar x|\wbar z\rb_{\wbar p} - \lb \wbar y|\wbar z\rb_{\wbar p}.
+\]
+We say that the geodesic triangle $\Delta$ \emph{satisfies the CAT(-1) inequality} if for all points $p,q\in\Delta$ and for any comparison points $\wbar p,\wbar q\in\wbar\Delta$, we have $\dist(p,q) \leq \dist(\wbar p,\wbar q)$.
+\end{definition}
+
+It should be checked that these definitions are consistent with those given in Section \ref{subsectionCAT}.
+
+\begin{proposition}
+\label{propositionidealCAT}
+Any geodesic triangle (including ideal triangles) satisfies the CAT(-1) inequality.
+\end{proposition}
+\begin{proof}
+Let $\Delta = \Delta(x,y,z)$ be a geodesic triangle, and fix $p,q\in \Delta$. Choose sequences $x_n\to x$, $y_n\to y$, and $z_n\to z$. By Proposition \ref{propositiongeodesicconvergence}, we have $\Delta_n = \Delta(x_n,y_n,z_n) \to \Delta$ in the Hausdorff metric, so we may choose $p_n,q_n\in\Delta_n$ so that $p_n\to p$, $q_n\to q$. For each $n$, let $\wbar\Delta_n = \Delta(\wbar x_n,\wbar y_n,\wbar z_n)$ be a comparison triangle for $\Delta_n$. Without loss of generality, we may assume that
+\begin{equation}
+\label{zerocenter}
+\zero\in\geo{\wbar x_n}{\wbar y_n} \text{ and } \lb \wbar x_n|\wbar z_n \rb_\zero = \lb \wbar y_n | \wbar z_n \rb_\zero \asymp_\plus 0.
+\end{equation}
+By extracting a convergent subsequence, we may without loss of generality assume that $\wbar x_n\to \wbar x$, $\wbar y_n\to \wbar y$, and $\wbar z_n\to \wbar z$ for some points $\wbar x,\wbar y,\wbar z\in\bord \H^2$. By \eqref{zerocenter}, the points $\wbar x,\wbar y,\wbar z$ are distinct. Thus $\wbar\Delta = \Delta(\wbar x,\wbar y,\wbar z)$ is a geodesic triangle, and is in fact a comparison triangle for $\Delta$. If $\wbar p,\wbar q$ are comparison points for $p,q$, then $\wbar p_n\to \wbar p$ and $\wbar q_n\to q$. It follows that
+\[
+\dist(p,q) = \lim_{n\to\infty} \dist(p_n,q_n) \leq \lim_{n\to\infty} \dist(\wbar p_n,\wbar q_n) = \dist(\wbar p,\wbar q).
+\]
+\end{proof}
+
+
+%
+%\begin{definition}
+%Two embeddings $\pi_1:[t_1,s_1]\to X$ and $\pi_2:[t_2,s_2]\to X$ are \emph{left-aligned} if either
+%\begin{itemize}
+%\item $t_1 = t_2 \neq -\infty$ and $\pi_1(t_1) = \pi_2(t_2)$, or
+%\item $t_1 = t_2 = -\infty$, $\xi := \pi_1(t_1) = \pi_2(t_2)$, and
+%\[
+%\busemann_\xi(\pi_1(t),\pi_2(t)) = 0 \all t\leq \min(s_1,s_2).
+%\]
+%\end{itemize}
+%The notion of \emph{right-aligned} embeddings is defined similarly.
+%\end{definition}
+%
+%The key technical lemma in proving Propositions \ref{propositiongeodesicconvergence} and \ref{propositionidealCAT} is the following:
+%
+%
+%
+%\begin{lemma}
+%Suppose that $t_n\tendsto n +\infty$ and that for each $n$, $\pi_n:[0,t_n]\to X$ is an isometric embedding. If $\pi_n(0)\tendsto n x\in X$ and $\pi_n(t_n)\tendsto n\eta\in\del X$, then for each $t\in\Rplus$ the sequence $(\pi_n(t))_1^\infty$ is Cauchy (and therefore converges).
+%\end{lemma}
+%\begin{proof}
+%Fix $n,m\in\N$ and let $\wbar{\Delta} = \Delta(\wbar x,\wbar{y_n},\wbar{y_m})$ be a comparison triangle for the geodesic triangle $\Delta = \Delta(x,y_n,y_m)$. Let $z_n = \pi_n(t)$; then
+%\[
+%\dist(z_n,z_m) \leq \dist(\wbar{z_n},\wbar{z_m}).
+%\]
+%Now we note that
+%\[
+%\dist(x,z_n) = \dist(x,z_m) = t
+%\]
+%and that
+%\[
+%\lb \wbar{y_n}|\wbar{y_m}\rb_{\wbar x} \tendsto{n,m} +\infty \Rightarrow \angle_{\wbar x}(\wbar{y_n},\wbar{y_m}) \tendsto{n,m} 0.
+%\]
+%These two equations together with the law of cosines (Proposition \ref{lawofcosines}) imply that $\dist(\wbar{z_n},\wbar{z_m})\tendsto{n,m} 0$. This shows that $(z_n)_1^\infty$ is a Cauchy sequence. \comdavid{Use a compactness argument instead}
+%\end{proof}
+%
+%
+%\begin{proof}
+%
+%Let $x\in X$ and let $(y_n)_1^\infty$ be a sequence in $X$ which converges to a point $\eta\in\del X$. Then we have a sequence of isometric embeddings $\pi_n:[0,t_n]\to X$, where $t_n = \dist(x,y_n)$, satisfying $\pi_n(0) = x$ and $\pi_n(t_n) = y_n$. The idea now is to take a limit of the $\pi_n$s. Fix $t\geq 0$, and we claim that the sequence $(\pi_n(t))_1^\infty$ is Cauchy. Indeed, fix $n,m\in\N$ and let $\wbar{\Delta} = \Delta(\wbar x,\wbar{y_n},\wbar{y_m})$ be a comparison triangle for the geodesic triangle $\Delta = \Delta(x,y_n,y_m)$. Let $z_n = \pi_n(t)$; then
+%\[
+%\dist(z_n,z_m) \leq \dist(\wbar{z_n},\wbar{z_m}).
+%\]
+%Now we note that
+%\[
+%\dist(x,z_n) = \dist(x,z_m) = t
+%\]
+%and that
+%\[
+%\lb \wbar{y_n}|\wbar{y_m}\rb_{\wbar x} \tendsto{n,m} +\infty \Rightarrow \angle_{\wbar x}(\wbar{y_n},\wbar{y_m}) \tendsto{n,m} 0.
+%\]
+%These two equations together with the law of cosines (Proposition \ref{lawofcosines}) imply that $\dist(\wbar{z_n},\wbar{z_m})\tendsto{n,m} 0$. This shows that $(z_n)_1^\infty$ is a Cauchy sequence. \comdavid{Use a compactness argument instead}
+%
+%Let $\xi\in\del X$ and let $(y_n)_1^\infty$ be a sequence in $X$ which converges to a point $\eta\in\del X$. Then we have a sequence of isometric embeddings $\pi_n:[0,t_n]\to X$, where $t_n = \busemann_\xi(y_n,\zero)$, satisfying $\pi_n(t_n) = y_n$. The idea now is to take a limit of the $\pi_n$s. Fix $t\in\R$, and we claim that the sequence $(\pi_n(t))_1^\infty$ is Cauchy. Indeed, fix $n,m\in\N$ and let $\wbar{\Delta} = \Delta(\wbar{\xi},\wbar{y_n},\wbar{y_m})$ be a comparison triangle for the geodesic triangle $\Delta = \Delta(\xi,y_n,y_m)$. Let $z_n = \pi_n(t)$; then
+%\[
+%\dist(z_n,z_m) \leq \dist(\wbar{z_n},\wbar{z_m}).
+%\]
+%Now we note that
+%\[
+%\busemann_\xi(z_n,\zero) = \dist(z_m,\zero) = t
+%\]
+%and that
+%\[
+%\lb \wbar{y_n}|\wbar{y_m}\rb_{\wbar{\xi,\zero}} \tendsto{n,m} +\infty \Rightarrow \angle_{\wbar{\xi,\zero}}(\wbar{y_n},\wbar{y_m}) \tendsto{n,m} 0.
+%\]
+%These two equations together with the law of Busemann cosines imply that $\dist(\wbar{z_n},\wbar{z_m})\tendsto{n,m} 0$. This shows that $(z_n)_1^\infty$ is a Cauchy sequence.
+%
+%Law of Busemann cosines:
+%\[
+%\cosh(a) = \cosh(b - c) + \frac{e^{b + c}}{8}\alpha^2,
+%\]
+%where
+%\begin{align*}
+%a &= \dist(x,y)\\
+%b &= \busemann_\xi(x,\zero)\\
+%c &= \busemann_\xi(y,\zero)\\
+%\alpha &= \angle_{\xi,\zero}(x,y) :=\lim_{z\to\xi} \frac{\angle_z(x,y)}{\dox z}
+%\end{align*}
+%In $\H^{d + 1}$ we have
+%\begin{align*}
+%a &= \dist_\H(\xx,\yy)\\
+%b &= -\log(x_{d + 1})\\
+%c &= -\log(y_{d + 1})\\
+%\alpha &= \|\pi[\xx] - \pi[\yy]\|.
+%\end{align*}
+%Here $\pi[\xx] = \xx - x_{d + 1}\ee_{d + 1}$. Thus
+%\begin{align*}
+%\cosh\dist_\H(\xx,[\yy])
+%&= \cosh(\log(x_{d + 1}/y_{d + 1})) + \frac{1}{8x_{d + 1}y_{d + 1}}\|\pi[\xx] - \pi[\yy]\|^2\\
+%&= \frac{x}{2y} + \frac{y}{2x} + \frac{1}{8xy}\|\pi[\xx] - \pi[\yy]\|^2\\
+%&= \frac{1}{8xy}\left[4x^2 + 4y^2 + \|\pi[\xx] - \pi[\yy]\|^2\right]\\
+%\frac{\cosh + 1}{\cosh - 1} &= \frac{\|\pi[\xx] - \pi[\yy]\|^2 + 4(x + y)^2}{\|\pi[\xx] - \pi[\yy]\|^2 + 4(x - y)^2}\\
+%&= \frac{(e^d + 1)^2}{(e^d - 1)^2}
+%\end{align*}
+%
+%
+%\end{proof}
+
+
+
+
+
+%\ignore{
+%\begin{proposition}
+%Let $X$ be a proper hyperbolic metric space satisfying (i) of Proposition \ref{propositiongeodesicconvergence}. Then $X$ is regularly geodesic.
+%\end{proposition}
+%\begin{proof}
+%Suppose that $(x_n)_1^\infty$ and $(y_n)_1^\infty$ are sequences in $\bord X$ which converge to points $x_n\tendsto n x\in\bord X$ and $y_n\tendsto n y\in\bord X$. Suppose that $(z_n)_1^\infty$ is a bounded sequence such that $z_n\in \geo{x_n}{y_n}$.
+%
+%Since $X$ is proper, there is a sequence $(n_k)_1^\infty$ and a point $z\in X$ so that $z_{n_k}\tendsto k z$. To complete the proof, we need to show that $z\in\geo xy$.
+%
+%\end{proof}
+%}% end ignore
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{The geometry of shadows}\label{subsectionshadows}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Shadows in regularly geodesic hyperbolic metric spaces}
+Suppose that $X$ is regularly geodesic. For each $z\in X$ we consider the relation $\pi_z\subset X\times\del X$ defined by
+\[
+(x,\xi)\in \pi_z \Leftrightarrow x\in \geo z\xi
+\]
+(see Definition \ref{definitiongeodesic} for the definition of $\geo z\xi$). Note that if $X$ is an algebraic hyperbolic space, then the relation $\pi_z$ is a function when restricted to $X\butnot\{z\}$; in particular, for $\xx\in \B = \B_\F^\alpha$ with $\xx\neq\0$ we have
+\[
+\pi_\0(\xx) = \frac{\xx}{\|\xx\|}\cdot
+\]
+However, in general the relation $\pi_z$ is not necessarily a function; $\R$-trees provide a good counterexample. The reason is that in an $\R$-tree, there may be multiple ways to extend a geodesic segment to a geodesic ray.
+
+For any set $S$, we define its \emph{shadow} with respect to the light source $z$ to be the set
+\[
+\pi_z(S) := \{\xi\in\del X:\exists x\in S \;\; (x,\xi)\in \pi_z\}.
+\]
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.85,-3.03) rectangle (3.99,3.1);
+\draw(0,0) circle (3cm);
+\draw[line width=0.81pt](1.7,1.4) circle (0.44cm);
+\draw (0,0)-- (1.89,2.33);
+\draw (0,0)-- (2.65,1.4);
+\draw [shift={(0,0)},line width=1.2pt] plot[domain=0.49:0.89,variable=\t]({1*3*cos(\t r)+0*3*sin(\t r)},{0*3*cos(\t r)+1*3*sin(\t r)});
+\draw [shift={(1.83,2.51)}] plot[domain=4.19:4.78,variable=\t]({1*0.96*cos(\t r)+0*0.96*sin(\t r)},{0*0.96*cos(\t r)+1*0.96*sin(\t r)});
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1pt);
+\draw[color=black] (-0.1,-0.16) node {$z$};
+\draw[color=black] (0.72,1.66) node {$B(x,\sigma)$};
+\fill [color=black] (1.89,1.55) circle (1pt);
+\draw[color=black] (2,1.44) node {$x$};
+\draw[color=black] (1.59,1.46) node {$\sigma$};
+\draw[color=black] (3.2,1.98) node {$\pi_z\big(B(x,\sigma)\big)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Shadows in regularly geodesic hyperbolic metric spaces]{The set $\pi_z(B(x,\sigma))$. Although this set is not equal to $\Shad_z(x,\sigma)$, they are approximately the same in regularly geodesic spaces by Corollary \ref{corollaryshadowsrelation}. In our drawings, we will draw the set $\pi_z(B(x,\sigma))$ to indicate the set $\Shad_z(x,\sigma)$ (since the latter is hard to draw).}
+\label{figureshadow}
+\end{center}
+\end{figure}
+
+
+\subsection{Shadows in hyperbolic metric spaces}
+In regularly geodesic hyperbolic metric spaces, it is particularly useful to consider $\pi_z(B(x,\sigma))$ where $x\in X$ and $\sigma > 0$. We would like to have an analogue for this set in the Gromov hyperbolic setting.
+
+\begin{definition}
+\label{definitionshadow}
+For each $\sigma > 0$ and $x,z\in X$, let
+\[
+\Shad_z(x,\sigma) = \{\eta\in \del X:\lb z|\eta\rb_x\leq\sigma\}.
+\]
+We say that $\Shad_z(x,\sigma)$ is the \emph{shadow cast by $x$ from the light source $z$, with parameter $\sigma$}. For shorthand we will write $\Shad(x,\sigma) = \Shad_\zero(x,\sigma)$.
+\end{definition}
+The relation between $\pi_z(B(x,\sigma))$ and $\Shad_z(x,\sigma)$ in the case where $X$ is a regularly geodesic hyperbolic metric space will be made explicit in Corollary \ref{corollaryshadowsrelation} below.
+
+Let us establish up front some geometric properties of shadows.
+
+\begin{observation}
+\label{observationshadowsclosed}
+For each $x,z\in X$ and $\sigma > 0$ the set $\Shad_z(x,\sigma)$ is closed.
+\end{observation}
+\begin{proof}
+This follows directly from Lemma \ref{lemmalowersemicontinuous}.
+\end{proof}
+
+\begin{observation}\label{observationmetricshadow}
+If $\eta\in \Shad_z(x,\sigma)$, then
+\[
+\lb x|\eta\rb_z \asymp_{\plus,\sigma}%\Footnote{Here and from now on $\asymp_{\plus,\sigma}$ means that the implied constant may depend on $\sigma$.}
+ \dist(z,x).
+%\lb x|\eta\rb_\zero
+%\asymp_\plus \lb x|\eta\rb_\zero + \lb\zero|\eta\rb_x
+%\lesssim_\plus \lb x|\eta\rb_\zero + \sigma.
+\]
+\end{observation}
+\begin{proof}
+Follows directly from (b) of Proposition \ref{propositionbasicidentities} together with the definition of $\Shad_z(x,\sigma)$.
+\end{proof}
+
+
+
+
+
+\begin{lemma}[Intersecting Shadows Lemma]
+\label{lemmatau}
+For each $\sigma > 0$, there exists $\tau = \tau_\sigma > 0$ such that for all $x,y,z\in X$ satisfying $\dist(z,y)\geq \dist(z,x)$ and $\Shad_z(x,\sigma)\cap \Shad_z(y,\sigma)\neq\emptyset$, we have
+\begin{equation}
+\label{shadcontainment}
+\Shad_z(y,\sigma) \subset\Shad_z(x,\tau)
+\end{equation}
+and
+\begin{equation}
+\label{distbusemann}
+\dist(x,y) \asymp_{\plus,\sigma} \dist(z,y) - \dist(z,x).
+\end{equation}
+\end{lemma}
+
+\begin{figure}
+\begin{center}
+\definecolor{ttqqqq}{rgb}{0.2,0,0}
+\definecolor{ffttww}{rgb}{1,0.1,0.1}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-4.88,-4.1) rectangle (5.4,4.1);
+\draw(0,0) circle (4.03cm);
+\draw(1.84,2.21) circle (0.76cm);
+\draw(2.92,1.93) circle (0.25cm);
+\draw [shift={(0,0)},line width=2pt,color=ffttww] plot[domain=0.61:1.14,variable=\t]({1*4.03*cos(\t r)+0*4.03*sin(\t r)},{0*4.03*cos(\t r)+1*4.03*sin(\t r)});
+\draw [shift={(0,0)},line width=1.2pt,color=yellow] plot[domain=0.66:0.61,variable=\t]({1*4.03*cos(\t r)+0*4.03*sin(\t r)},{0*4.03*cos(\t r)+1*4.03*sin(\t r)});
+\draw [shift={(0,0)},dash pattern=on 1pt off 2pt,line width=1pt,color=blue] plot[domain=0.51:0.66,variable=\t]({1*4.03*cos(\t r)+0*4.03*sin(\t r)},{0*4.03*cos(\t r)+1*4.03*sin(\t r)});
+\draw (1.15,2.53)-- (1.67,3.67);
+\draw (2.28,1.59)-- (3.31,2.31);
+\draw (2.76,2.13)-- (3.19,2.47);
+\draw (3.04,1.71)-- (3.51,1.98);
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1pt);
+\draw[color=black] (-0.08,-0.34) node {$z$};
+\fill [color=black] (2.07,2.49) circle (1pt);
+\draw[color=black] (0.5,2.13) node {$B(x,\sigma)$};
+\fill [color=black] (3.01,1.99) circle (1pt);
+\draw[color=black] (3.1,1.4) node {$B(y,\sigma)$};
+\draw[color=ffttww] (3.22,3.36) node {$\Shad_z(x,\sigma)$};
+\draw[color=blue] (4.38,2.1) node {$\Shad_z(y,\sigma)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The Intersecting Shadows Lemma]{In this figure, $\dist(z,y)\geq \dist(z,x)$ and $\Shad_z(x,\sigma)\cap \Shad_z(y,\sigma)\neq\emptyset$. The Intersecting Shadows Lemma (Lemma \ref{lemmatau}) provides a $\tau_\sigma > 0$ such that the shadow cast from $z$ about $B(x,\tau_\sigma)$ will capture $\Shad_z(y,\sigma)$.}
+\label{figureintersectingshadows}
+\end{center}
+\end{figure}
+
+\begin{proof}
+Fix $\eta\in\Shad_z(x,\sigma)\cap \Shad_z(y,\sigma)$, so that by Observation \ref{observationmetricshadow}
+\[
+\lb x|\eta\rb_z \asymp_{\plus,\sigma} \dist(z,x)\ \text{ and } \
+\lb y|\eta\rb_z \asymp_{\plus,\sigma} \dist(z,y) \geq \dist(z,x).
+\]
+Gromov's inequality along with (c) of Proposition \ref{propositionbasicidentities} then gives
+\begin{equation}\label{distbusemann2}
+\lb x|y\rb_z \asymp_{\plus,\sigma} \dist(z,x).
+\end{equation}
+%\ignore{
+%We then successively deduce the following asymptotics:
+%\begin{align*}
+%\frac12(\dist(z,y) + \dist(z,x) - \dist(x,y)) &\asymp_{\plus,\sigma} \dist(z,x)\\
+%\frac12(\dist(z,y) - \dist(z,x) - \dist(x,y)) &\asymp_{\plus,\sigma} 0\\
+%\dist(z,y) - \dist(z,x) - \dist(x,y) &\asymp_{\plus,\sigma} 0\\
+%B_z(y,x) &\asymp_{\plus,\sigma} \dist(x,y).
+%\end{align*}
+%}% end ignore
+Rearranging yields \eqref{distbusemann}. In order to show \eqref{shadcontainment}, fix $\xi\in\Shad_z(y,\sigma)$, so that $\lb y|\xi\rb_z \asymp_{\plus,\sigma} \dist(z,y)\geq \dist(z,x)$. Gromov's inequality and \eqref{distbusemann2} then give
+\[
+\lb x|\xi\rb_z \asymp_{\plus,\sigma} \dist(z,x),
+\]
+i.e. $\xi\in\Shad_z(x,\tau)$ for some $\tau > 0$ sufficiently large (depending on $\sigma$).
+\end{proof}
+
+\begin{corollary}
+\label{corollaryshadowsrelation}
+Suppose that $X$ is regularly geodesic. For every $\sigma > 0$, there exists $\tau = \tau_\sigma > 0$ such that for any $x,z\in X$ we have
+\begin{equation}
+\label{shadowsrelation}
+\pi_z(B(x,\sigma)) \subset \Shad_z(x,\sigma) \subset \pi_z(B(x,\tau)).
+\end{equation}
+\end{corollary}
+\begin{proof}
+Suppose $\xi\in\pi_z(B(x,\sigma))$. Then there exists a point $y\in B(x,\sigma)\cap \geo z\xi$. By (d) of Proposition \ref{propositionbasicidentities}
+\begin{align*}
+\lb z|\xi\rb_x \leq \lb z|\xi\rb_y + \dist(x,y)
+\leq \lb z|\xi\rb_y + \sigma = \sigma,
+\end{align*}
+i.e. $\xi\in\Shad_z(x,\sigma)$. This demonstrates the first inclusion of \eqref{shadowsrelation}. On the other hand, suppose that $\xi\in\Shad_z(x,\sigma)$. Let $y\in\geo z\xi$ be the unique point so that $\dist(z,y) = \dist(z,x)$. Clearly $\xi\in\Shad_z(y,\sigma)$, so $\Shad_z(x,\sigma)\cap\Shad_z(y,\sigma)\neq\emptyset$; by the Intersecting Shadows Lemma \ref{lemmatau} we have
+\[
+\dist(x,y) \asymp_{\plus,\sigma} \busemann_\xi(y,x) = 0
+\]
+i.e. $\dist(x,y)\leq\tau$ for some $\tau = \tau_\sigma > 0$ depending only on $\sigma$. Then $y\in B(x,\tau)\cap\geo z\xi$, which implies that $\xi = \pi_z(y)\in \pi_z(B(x,\tau))$. This finishes the proof.
+\end{proof}
+
+\begin{lemma}[Bounded Distortion Lemma]
+\label{lemmaboundeddistortion}
+Fix $\sigma > 0$. Then for every $g\in\Isom(X)$ and for every $y\in\Shad_{g^{-1}(\zero)}(\zero,\sigma)$ we have
+\begin{equation}
+\label{boundeddistortion1}
+\overline g'(y) \asymp_{\times,\sigma} b^{-\dogo g}.
+\end{equation}
+Moreover, for every $y_1,y_2\in \Shad_{g^{-1}(\zero)}(\zero,\sigma)$, we have
+\begin{equation}
+\label{boundeddistortion2}
+\frac{\Dist (g(y_1),g(y_2) )}{\Dist(y_1,y_2)} \asymp_{\times,\sigma} b^{-\dogo g}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+We have $\overline g'(y) \asymp_\times b^{\busemann_y(\zero,g^{-1}(\zero))}
+\asymp_\times b^{2\lb g^{-1}(\zero)|y\rb_\zero - \dogo g}
+\asymp_{\times,\sigma} b^{-\dogo g}$, giving \eqref{boundeddistortion1}.
+%\begin{align*}
+%\frac{\Dist (g(y_1),g(y_2) )}{\Dist(y_1,y_2)} &\asymp_\times \frac{b^{- \lb g(y_1) | g(y_2) \rb_\zero}}{b^{- \lb y_1 | y_2 \rb_\zero}} \\
+%&= b^{-[\lb y_1 | y_2 \rb_{g^{-1}(\zero)} - \lb y_1 | y_2 \rb_\zero ]} \\
+%&\asymp_\times b^{\frac12 [\busemann_{y_1} (\zero, g^{-1}(\zero)) + \busemann_{y_2} (\zero, g^{-1}(\zero)) ]} \by{the change of veiwpoint formula} \\
+%&\asymp_{\times,\sigma} b^{- \dist (\zero, g(\zero))} \since{$\busemann_a(b,c) \asymp_\plus \dist(b,c) - 2 \lb a | b \rb_c$} . 
+%\end{align*}
+%Note that the last asymptotic is where we used the hypothesis that $y_1,y_2\in\Shad_{g^{-1}(\zero)}(\zero,\sigma)$. Also note that both asymptotics in $\lb a | b \rb_c - \lb a | b \rb_d \asymp_\plus \frac12 \Bigl[ \busemann_a (d,c) + \busemann_b (d,c) \Bigr]$ and $\busemann_a(b,c) \asymp_\plus \dist(b,c) - 2 \lb a | b \rb_c$ hold with equality in CAT(-1) spaces.
+Now \eqref{boundeddistortion2} follows from \eqref{boundeddistortion1} and the geometric mean value theorem (Proposition \ref{propositionGMVT}).
+\end{proof}
+
+\begin{lemma}[Big Shadows Lemma]
+\label{lemmabigshadow}
+For every $\epsilon > 0$, for every $\sigma > 0$ sufficiently large (depending on $\epsilon$), and for every $z\in X$, we have
+\begin{equation}
+\label{bigshadow}
+\Diam(\del X\butnot\Shad_z(\zero,\sigma)) \leq \epsilon.
+\end{equation}
+\end{lemma}
+
+\begin{figure}
+\begin{center}
+%\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,scale=0.85]
+\clip(-5.4,-4.4) rectangle (5.4,4.4);
+\draw(0,0) circle (4.12cm);
+\draw(0,0) circle (3.07cm);
+\draw [shift={(-3.49,-2.35)}] plot[domain=-0.28:1.95,variable=\t]({1*1.14*cos(\t r)+0*1.14*sin(\t r)},{0*1.14*cos(\t r)+1*1.14*sin(\t r)});
+\draw [shift={(-1.98,-3.76)}] plot[domain=-0.24:1.94,variable=\t]({1*1.18*cos(\t r)+0*1.18*sin(\t r)},{0*1.18*cos(\t r)+1*1.18*sin(\t r)});
+\draw [shift={(0,0)},line width=1.2pt] plot[domain=3.46:4.51,variable=\t]({1*4.12*cos(\t r)+0*4.12*sin(\t r)},{0*4.12*cos(\t r)+1*4.12*sin(\t r)});
+\draw (0,0)-- (2.56,1.7);
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1.0pt);
+\draw[color=black] (-0.23,0.12) node {$\zero$};
+\fill [color=black] (-2.4,-2.66) circle (1.0pt);
+\draw[color=black] (-2.19,-2.84) node {$z$};
+\draw[color=black] (-4.09,-3.21) node {$\del X\butnot\Shad_z(\zero,\sigma)$};
+\draw[color=black] (1.97,1.08) node {$\sigma$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The Big Shadows Lemma]{The Big Shadows Lemma \ref{lemmabigshadow} tells us that for any $\epsilon > 0$, we may choose $\sigma > 0$ sufficiently large so that $\Diam(\del X\butnot\Shad_z(\zero,\sigma)) \leq \epsilon$ for every $z\in X$.}
+\label{figurebigshadows}
+\end{center}
+\end{figure}
+
+\begin{proof}
+If $\xi, \eta\in\del X \setminus \Shad_z(\zero, \sigma)$, then $\lb z | \xi \rb_\zero > \sigma$ and $\lb z | \eta \rb_\zero > \sigma$. Thus by Gromov's inequality we have
+\[
+\lb \xi | \eta \rb_\zero \gtrsim_\plus \sigma.
+\]
+Exponentiating gives $\Dist(\xi,\eta) \lesssim_\times b^{-\sigma}$. Thus
+\[
+\Diam (\del X \setminus\Shad_z (\zero,\sigma)) \lesssim_\times b^{-\sigma} \tendsto\sigma 0,
+\]
+and the convergence is uniform in $z$.
+\end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-3.54,-3.1) rectangle (3.943,3.38);
+\draw(0.0,0.0) circle (3.0cm);
+\draw(1.5,1.5) circle (0.75cm);
+\draw (0.0,-0.0)-- (1.2343134832984426,2.7343134832984424);
+\draw (0.0,-0.0)-- (2.7343134832984424,1.2343134832984426);
+\draw (0.0,-0.0)-- (1.7415599609449397,1.7700977248889884);
+\draw [shift={(1.317194030436857,2.707806971266285)}] plot[domain=4.204270499810774:5.13736643041908,variable=\t]({1.0*1.0292643361729137*cos(\t r)+-0.0*1.0292643361729137*sin(\t r)},{0.0*1.0292643361729137*cos(\t r)+1.0*1.0292643361729137*sin(\t r)});
+\draw [shift={(0.0,0.0)},line width=1.2pt] plot[domain=0.4240310394907405:1.146765287304156,variable=\t]({1.0*3.0*cos(\t r)+-0.0*3.0*sin(\t r)},{0.0*3.0*cos(\t r)+1.0*3.0*sin(\t r)});
+\begin{scriptsize}
+\draw [fill=black] (0.0,-0.0) circle (.75pt);
+\draw[color=black] (-0.19797292010819517,-0.09284349186632893) node {$z$};
+%\draw[color=black] (1.378631811355094,0.9161835362701746) node {$e$};
+\draw [fill=black] (1.7415599609449397,1.7700977248889884) circle (.75pt);
+\draw[color=black] (1.8727829942209163,1.50) node {$g(\zero)$};
+
+\draw[color=black] (1.5727829942209163,0.71) node {$\Big\uparrow$};
+\draw[color=black] (1.9727829942209163,0.31) node {$B(g(\zero),\sigma)$};
+
+\draw[color=black] (1.2421411016356007,1.814123570799388) node {$\sigma$};
+\draw[color=black] (3.0115304609745355,2.3508938419017653) node {$\Shad_z(g(\zero),\sigma)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[The Diameter of Shadows Lemma]{The Diameter of Shadows Lemma \ref{lemmadiameterasymptotic} says that the diameter of $\Shad(g(\zero),\sigma)$ is coarsely asymptotic to $b^{-\dogo g}$.}
+\end{center}
+\end{figure}
+
+\begin{lemma}[Diameter of Shadows Lemma]
+\label{lemmadiameterasymptotic}
+For all $\sigma > 0$ sufficiently large, we have for all $g\in\Isom(X)$ and for all $z\in X$
+\begin{equation}
+\label{diameterasymptotic}
+\Diam_z(\Shad_z(g(\zero),\sigma)) \lesssim_{\times,\sigma} b^{-\dist(z,g(\zero))},
+\end{equation}
+with $\asymp$ if $\#(\del X)\geq 3$. Moreover, for every $C > 0$ there exists $\sigma > 0$ such that
+\begin{equation}
+\label{ShadcontainsB}
+B_z(x,C e^{-\dist(z,x)}) \subset \Shad_z(x,\sigma) \all x,z\in X.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $x = g(\zero)$. For any $\xi,\eta\in \Shad_z(x,\sigma)$, we have
+\begin{align*}
+\Dist_z(\xi,\eta) \asymp_\times b^{-\lb\xi|\eta\rb_z}
+\lesssim_{\times\phantom{,\sigma}} b^{-\min\left(\lb x|\xi\rb_z,\lb x|\eta\rb_z\right)}
+\lesssim_{\times,\sigma} b^{-\dist(z,x)}
+\end{align*}
+which demonstrates \eqref{diameterasymptotic}.
+
+Now let us prove the converse of \eqref{diameterasymptotic}, assuming $\#(\del X)\geq 3$. Fix $\xi_1,\xi_2,\xi_3\in\del X$, let $\epsilon = \min_{i\neq j}\Dist(\xi_i,\xi_j)/2$, and fix $\sigma > 0$ large enough so that \eqref{bigshadow} holds for every $z\in X$. By \eqref{bigshadow} we have
+\[
+\Diam(\del X\butnot \Shad_{g^{-1}(z)}(\zero,\sigma)) \leq \epsilon,
+\]
+and thus
+\[
+\#\big\{i = 1,2,3: \xi_i\in \Shad_{g^{-1}(z)}(\zero,\sigma)\big\}\geq 2.
+\]
+Without loss of generality suppose that $\xi_1,\xi_2\in \Shad_{g^{-1}(z)}(\zero,\sigma)$. By applying $g$, we have $g(\xi_1),g(\xi_2)\in \Shad_z(x,\sigma)$. Then
+\begin{align*}
+\Diam_z(\Shad_z(x,\sigma))
+&\geq_\pt \Dist_z(g(\xi_1),g(\xi_2))\\
+&\asymp_\times b^{-\lb g(\xi_1)|g(\xi_2)\rb_z}
+= b^{-\lb \xi_1|\xi_2\rb_{g^{-1}(z)}}\\
+&\gtrsim_\times b^{-\lb\xi_1|\xi_2\rb_\zero}b^{-\dox{g^{-1}(z)}}
+\asymp_{\times,\xi_1,\xi_2}b^{-\dist(z,x)}.
+\end{align*}
+Finally, given $y\in B_z(x,C b^{-\dist(z,x)})$, we have
+\[
+\lb x|y\rb_z \gtrsim_\plus -\log_b(C b^{-\dox x}) \asymp_\plus \dist(z,x)
+\]
+and thus $\lb z|y\rb_x \asymp_\plus 0$, demonstrating \eqref{ShadcontainsB}.
+\end{proof}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Generalized polar coordinates} \label{subsectionpolar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Suppose that $X = \E = \E^\alpha$ is the half-space model of a real hyperbolic space. Fix a point $\xx\in\E$, and consider the numbers $\|\xx\|$ and $\ang(\xx) := \cos^{-1}(x_1 / \|\xx\|)$, i.e. the radial and unsigned angular coordinates of $\xx$. (The angular coordinate is computed with respect to the ray $\{(t,\0) : t\in\Rplus\}$; cf. Figure \ref{figurepolarcoordinates}.) These ``polar coordinates'' of $\xx$ do not completely determine $\xx$, but they are enough to compute certain important quantities depending on $\xx$, e.g. $\dist_\E(\zero,\xx)$, $\busemann_\infty(\zero,\xx)$, and $\busemann_\0(\zero,\xx)$. (We omit the details.) In this section we consider a generalization, in a loose sense, of these coordinates to an arbitrary hyperbolic metric space.
+
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.2,-0.33) rectangle (5.38,5.43);
+\draw [shift={(0,0)},color=black,fill=black,fill opacity=0.1] (0,0) -- (42.62:0.79) arc (42.62:90:0.79) -- cycle;
+\draw (-4,0)-- (4,0);
+\draw (0,0)-- (0,5);
+\draw (0,0)-- (2.76,2.54);
+\draw [dash pattern=on 2pt off 2pt] (2.76,2.54)-- (2.78,0);
+\begin{scriptsize}
+\fill [color=black] (0,0) circle (1pt);
+\draw[color=black] (-0.1,-0.2) node {$\0$};
+\fill [color=black] (2.76,2.54) circle (1pt);
+\draw[color=black] (3,2.6) node {$\xx$};
+\draw[color=black] (1.44,1.82) node {$\|\xx\|$};
+\draw[color=black] (3.06,1.09) node {$x_1$};
+\draw[color=black] (0.43,0.9) node {$\ang(\xx)$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Polar coordinates in the half-space model]{The quantities $\|\xx\|$ and $\ang(\xx)$ can be interpreted as ``polar coordinates'' of $\xx$.}
+\label{figurepolarcoordinates}
+\end{center}
+\end{figure}
+
+Let us note that the isometries of $\E$ which preserve the polar coordinate functions defined above are exactly those of the form $\what T$ where $T\in\O(\EE)$. Equivalently, these are the members of $\Isom(\E)$ which preserve $\0$, $\zero = (1,\0)$, and $\infty$. This suggests that our ``coordinate system'' is fixed by choosing a point in $\E$ and two distinct points in $\del\E$.
+
+We now return to the general case of \6\ref{standingassumptions2}. Fix two distinct points $\xi_1,\xi_2\in\del X$.
+\begin{definition}
+\label{definitionpolarcoordinates}
+The \emph{generalized polar coordinate functions} are the functions $r = r_{\xi_1,\xi_2,\zero}$ and $\theta = \theta_{\xi_1,\xi_2,\zero}:X\to\R$ defined by
+\begin{align*}
+r(x) &= \frac12\left[\busemann_{\xi_1}(x,\zero) - \busemann_{\xi_2}(x,\zero)\right]\\
+\theta(x) &= \frac12\left[\busemann_{\xi_1}(x,\zero) + \busemann_{\xi_2}(x,\zero)\right] \asymp_\plus \lb \xi_1|\xi_2\rb_x - \lb \xi_1|\xi_2\rb_\zero.
+\end{align*}
+\end{definition}
+
+The connection between generalized polar coordinates and classical polar coordinates is given in Proposition \ref{propositionrtheta} below. For now, we list some geometrical facts about generalized polar coordinates. Our first lemma says that the hyperbolic distance from a point to the origin is essentially the sum of the ``radial'' distance and the ``angular'' distance.
+
+\begin{lemma}
+\label{lemmafabs}
+For all $x\in X$ we have
+\[
+\dox x \asymp_{\plus,\zero,\xi_1,\xi_2} \max_{i = 1}^2\busemann_{\xi_i}(x,\zero) = |r(x)| + \theta(x).
+\]
+\end{lemma}
+\begin{proof}
+The equality is trivial, so we concentrate on the asymptotic. The $\gtrsim$ direction follows directly from (f) of Proposition \ref{propositionbasicidentities}. On the other hand, by Gromov's inequality
+\begin{align*}
+\dox x - \max_{i = 1}^2\busemann_{\xi_i}(x,\zero)
+\asymp_\plus 2\min_{i = 1}^2 \lb x|\xi_i\rb_\zero
+\lesssim_\plus 2\lb \xi_1|\xi_2\rb_\zero \asymp_{\plus,\zero,\xi_1,\xi_2} 0.
+\end{align*}
+\end{proof}
+
+Our next lemma describes the effect of isometries on generalized polar coordinates.
+
+\begin{lemma}
+\label{lemmatranslationdistance}
+Fix $g\in \Isom(X)$ such that $\xi_1,\xi_2\in\Fix(g)$. For all $x\in X$ we have
+\begin{align} \label{rtranslation}
+r(g(x)) &\asymp_\plus r(x) + \log_b g'(\xi_1) = r(x) - \log_b g'(\xi_2)\\ \label{thetatranslation}
+\theta(g(x)) &\asymp_\plus \theta(x),
+\end{align}
+with equality if $X$ is strongly hyperbolic. The implied constants are independent of $g$, $\xi_1$, and $\xi_2$.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+2[r(g(x)) - r(x)]
+&=_\pt \big[\busemann_{\xi_1}(g(x),\zero) - \busemann_{\xi_2}(g(x),\zero)\big] - \big[\busemann_{\xi_1}(x,\zero) + \busemann_{\xi_2}(x,\zero)\big] \noreason\\
+&=_\pt \big[\busemann_{\xi_1}(x,g^{-1}(\zero)) - \busemann_{\xi_2}(x,g^{-1}(\zero))\big] - \big[\busemann_{\xi_1}(x,\zero) - \busemann_{\xi_2}(x,\zero)\big] \noreason\\
+&\asymp_\plus \busemann_{\xi_1}(\zero,g^{-1}(\zero)) - \busemann_{\xi_2}(\zero,g^{-1}(\zero))\\
+&\asymp_\plus \log_b g'(\xi_1) - \log_b g'(\xi_2). & \by{Proposition \ref{propositionbusemannpreserved}}
+\end{align*}
+Now \eqref{rtranslation} follows from Corollary \ref{corollaryproductone}.
+
+On the other hand, by (g) of Proposition \ref{propositionbasicidentities},
+\begin{align*}
+\theta(g(x)) - \theta(x) &\asymp_\plus \big[\lb \xi_1|\xi_2\rb_{g(x)} - \lb \xi_1|\xi_2\rb_\zero\big] - \big[\lb \xi_1|\xi_2\rb_x - \lb \xi_1|\xi_2\rb_\zero\big]\\
+&=_\pt \lb g^{-1}(\xi_1)|g^{-1}(\xi_2)\rb_x - \lb \xi_1|\xi_2\rb_x = 0,
+\end{align*}
+proving \eqref{thetatranslation}.
+\end{proof}
+
+%Combining with Lemma \ref{lemmafabs} yields the following:
+%
+%\begin{corollary}
+%\label{corollarytranslationdistance}
+%With $g,\xi_1,\xi_2$ as above,
+%\[
+%\dogo{g^n} \asymp_{\plus,\zero,\xi_1,\xi_2} |n\log_b g'(\xi_1)| = |n\log_b g'(\xi_2)|.
+%\]
+%\end{corollary}
+
+
+We end this chapter by describing the relation between generalized polar coordinates and classical polar coordinates.
+
+\begin{proposition}
+\label{propositionrtheta}
+If $X = \E$, $\zero = (1,\0)$, $\xi_1 = \0$, and $\xi_2 = \infty$, then
+\begin{align*}
+r(\xx) &= \log \|\xx\| \\
+\theta(\xx) &= -\log(x_1/\|\xx\|) = -\log \cos(\ang(\xx)).
+\end{align*}
+\end{proposition}
+Thus the notations $r$ and $\theta$ are slightly inaccurate as they really represent the logarithm of the radius and the negative logarithm of the cosine of the angle, respectively.
+\begin{proof}[Proof of Proposition \ref{propositionrtheta}]
+We consider first the case $\|\xx\| = 1$. Let us set $g(\yy) = \yy/\|\yy\|^2$, and note that $g\in\Isom(\E)$, $g(\zero) = \zero$, and $g(\xi_i) = \xi_{3 - i}$. On the other hand, since $\|\xx\| = 1$ we have $g(\xx) = \xx$, and so
+\[
+\busemann_{\xi_1}(\xx,\zero) = \busemann_{g(\xi_1)}(g(\xx),g(\zero)) = \busemann_{\xi_2}(\xx,\zero).
+\]
+It follows that $r(\xx) = 0$ and $\theta(\xx) = \busemann_{\xi_2}(\xx,\zero) = \busemann_\infty(\xx,\zero)$. By Proposition \ref{propositionbusemannE}, we have $\busemann_\infty(\xx,\zero) = -\log(x_1/\zero_1) = -\log(x_1/\|\xx\|) = -\log\cos(\ang(\xx))$.
+
+The general case follows upon applying Lemma \ref{lemmatranslationdistance} to maps of the form $g_\lambda(\xx) = \lambda\xx$, $\lambda > 0$.
+\end{proof}
+

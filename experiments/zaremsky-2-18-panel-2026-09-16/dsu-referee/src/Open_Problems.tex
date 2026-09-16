@@ -1,0 +1,51 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Appendices}
+%%\section{Appendices}
+%\label{partappendices}
+%\section{Open problems}
+\chapter{Open problems}
+\label{appendixopenproblems}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{problem}[Cf. Chapter \ref{sectionmodified}, Section \ref{subsectionpoincareirregular}]
+Do there exist a hyperbolic metric space $X$ and a group $G$ such that $\w\delta(G) < \delta(G) = \infty$, but $\w\delta(G)$ cannot be ``computed from'' the modified Poincar\'e exponent of a locally compact group via Definition \ref{definitionmodified1}? This question is vague because a more precise version might be contradicted by Example \ref{examplepoincareextension}, in which a group $G$ is constructed such that $\w\delta(G) < \delta(G) = \infty$ but the closure of $G$ (in the compact-open topology) is not locally compact. In this case, $\w\delta(G)$ cannot be computed from $\w\delta(\cl G)$, but there is still a locally compact group ``hidden'' in the argument, namely the closure of $G\given \H^d = \iota_1(\Gamma)$. Is there any Poincar\'e irregular group whose construction is not somehow ``based on'' a locally compact group?
+\end{problem}
+
+\begin{problem}[Cf. Theorem \ref{theorembishopjonesmodified}]
+If $G$ is a Poincar\'e irregular parabolic group, does the modified Poincar\'e exponent $\w\delta(G)$ have a geometric significance? Theorem \ref{theorembishopjonesmodified} does not apply directly since $G$ is elementary. It is tempting to claim that
+\begin{equation}
+\label{wdeltaparabolic} \tag{A.1}
+\w\delta(G) = \inf\{\HD(\Lr(H)) : H\geq G \text{ nonelementary}\}
+\end{equation}
+(under some reasonable hypotheses about the isometry group of the space in question), but it seems that the right hand side is equal to infinity in most cases due to Proposition \ref{propositionSproductexponent}(iii). Note that by contrast, \eqref{wdeltaparabolic} is usually true for Poincar\'e regular groups; for example, it holds in the Standard Case \cite{Beardon1}.
+\end{problem}
+
+\begin{problem}[Cf. Chapter \ref{sectionparabolic}, Remark \ref{remarknilpotentembedding}]
+Given a virtually nilpotent group $\Gamma$ which is not virtually abelian, determine whether there exists a homomorphism $\Phi:\Gamma\to \Isom(\BB)$ such that $\delta(\Phi(\Gamma)) = \alpha(\Gamma)/2$, where both quantities are defined in Section \ref{subsectionparabolicexponent}. Intuitively, this corresponds to the existence an equivariant embedding of $\Gamma$ into $\BB$ which approaches infinity ``as fast as possible''. It is known \cite[Theorem 1.3]{CTV1} that such an embedding cannot be quasi-isometric, but this by itself does not imply the non-existence of a homomorphism with the desired property.
+\end{problem}
+
+\begin{problem}[Cf. Chapter \ref{sectionparabolic}, Remark \ref{remarkheisenbergdeltainfty}]
+Does there exist a strongly discrete parabolic subgroup of $\Isom(\H^\infty)$ isomorphic to the Heisenberg group which has infinite Poincar\'e exponent?\Footnote{It has been pointed out to us by X. Xie that this question is answered affirmatively by \cite[Proposition 3.10]{CTV1}, letting the function $f$ in that proposition be any function whose growth is sublinear.}
+\end{problem}
+
+\begin{problem}[Cf. Chapter \ref{sectionGF}, Section \ref{subsectionCBCCB}]
+Is there any form of discreteness for which there exists a cobounded subgroup of $\Isom(\H)$ (for example, UOT discreteness)? If so, what is the strongest such form of discreteness?
+\end{problem}
+
+%\begin{problem}
+%Is Corollary \ref{corollaryxie} true if we drop the assumption $\dim_\R(\F)\geq \dim_\R(\w\F)$?
+%\end{problem}
+
+\begin{problem}[Cf. Chapter \ref{sectionGFmeasures}]
+Can Theorem \ref{theoremhlogseriesconverse} be improved as follows?
+\begin{conjecture*}
+Let $X$ be a hyperbolic metric space and let $G\leq\Isom(X)$ be a geometrically finite group such that for some $\bp\in\Lbp$, the series \eqref{hlogseries} diverges. Then the $\delta$-quasiconformal measure $\mu$ is not exact dimensional.
+\end{conjecture*}
+What if some of the hypotheses of this conjecture are strengthened, e.g. $X$ is strongly hyperbolic (e.g. $X = \H^\infty$), or $G$ is a Schottky product of a parabolic group with a lineal group?
+\end{problem}
+
+\endinput

@@ -1,0 +1,21 @@
+p=13 n=2196 sector=vector a=0 ctl=0 m=19 k=1000 lmax=3.5415965 lmin=-3.4640995 norm=3.5415965 excess=+0.0774949
+p=13 n=2196 sector=vector a=0 ctl=1 m=19 k=1000 lmax=3.5076087 lmin=-3.4959053 norm=3.5076087 excess=+0.0435071
+p=13 n=2196 sector=vector a=0 ctl=2 m=19 k=1000 lmax=3.4370875 lmin=-3.4424913 norm=3.4424913 excess=-0.0216104
+p=13 n=2196 sector=vector a=0 ctl=1 m=19 k=1000 lmax=3.5561709 lmin=-3.4863398 norm=3.5561709 excess=+0.0920693
+p=13 n=2196 sector=vector a=0 ctl=2 m=19 k=1000 lmax=3.4479256 lmin=-3.5168068 norm=3.5168068 excess=+0.0527052
+p=13 n=368928 sector=gelfand-graev a=1 ctl=0 m=19 k=1000 lmax=3.4772232 lmin=-3.4726200 norm=3.4772232 excess=+0.0131215
+p=13 n=368928 sector=gelfand-graev a=1 ctl=1 m=19 k=1000 lmax=3.4739997 lmin=-3.4709177 norm=3.4739997 excess=+0.0098981
+p=13 n=368928 sector=gelfand-graev a=1 ctl=2 m=19 k=1000 lmax=3.4719400 lmin=-3.4700965 norm=3.4719400 excess=+0.0078384
+p=13 n=368928 sector=gelfand-graev a=1 ctl=1 m=19 k=1000 lmax=3.4772278 lmin=-3.4790847 norm=3.4790847 excess=+0.0149831
+p=13 n=368928 sector=gelfand-graev a=1 ctl=2 m=19 k=1000 lmax=3.4662244 lmin=-3.4696562 norm=3.4696562 excess=+0.0055546
+p=13 n=368928 sector=gelfand-graev a=2 ctl=0 m=19 k=1000 lmax=3.4772232 lmin=-3.4726200 norm=3.4772232 excess=+0.0131215
+p=13 n=368928 sector=gelfand-graev a=2 ctl=1 m=19 k=1000 lmax=3.4739997 lmin=-3.4709177 norm=3.4739997 excess=+0.0098981
+p=13 n=368928 sector=gelfand-graev a=2 ctl=2 m=19 k=1000 lmax=3.4719400 lmin=-3.4700965 norm=3.4719400 excess=+0.0078384
+p=13 n=368928 sector=gelfand-graev a=2 ctl=1 m=19 k=1000 lmax=3.4772278 lmin=-3.4790847 norm=3.4790847 excess=+0.0149831
+p=13 n=368928 sector=gelfand-graev a=2 ctl=2 m=19 k=1000 lmax=3.4662339 lmin=-3.4696562 norm=3.4696562 excess=+0.0055546
+p=13 n=368928 sector=gelfand-graev a=4 ctl=0 m=19 k=1000 lmax=3.4772232 lmin=-3.4726200 norm=3.4772232 excess=+0.0131215
+p=13 n=368928 sector=gelfand-graev a=4 ctl=1 m=19 k=1000 lmax=3.4739997 lmin=-3.4709177 norm=3.4739997 excess=+0.0098981
+p=13 n=368928 sector=gelfand-graev a=4 ctl=2 m=19 k=1000 lmax=3.4719400 lmin=-3.4700965 norm=3.4719400 excess=+0.0078384
+p=13 n=368928 sector=gelfand-graev a=4 ctl=1 m=19 k=1000 lmax=3.4772278 lmin=-3.4790847 norm=3.4790847 excess=+0.0149831
+p=13 n=368928 sector=gelfand-graev a=4 ctl=2 m=19 k=1000 lmax=3.4662244 lmin=-3.4696562 norm=3.4696562 excess=+0.0055546
+DONE

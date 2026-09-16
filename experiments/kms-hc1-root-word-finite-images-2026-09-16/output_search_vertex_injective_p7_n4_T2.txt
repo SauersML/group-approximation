@@ -1,0 +1,12 @@
+p=7 n=4: U_B2-injective (a single term, c <=2 terms) pairs: 576
+  with a=I+E01: 24
+  a=((0, 1, 1),) b=((1, 2, 1),) c=((1, 2, 1), (2, 3, 1)): rho(w)=I:True nilindex(rs-1)=2
+  a=((0, 1, 1),) b=((1, 2, -1),) c=((1, 2, 1), (2, 3, 1)): rho(w)=I:True nilindex(rs-1)=2
+  a=((0, 1, 1),) b=((2, 0, 1),) c=((1, 2, 1), (2, 3, 1)): rho(w)=I:True nilindex(rs-1)=3
+  a=((0, 1, 1),) b=((2, 0, -1),) c=((1, 2, 1), (2, 3, 1)): rho(w)=I:True nilindex(rs-1)=3
+  a=((0, 1, 1),) b=((0, 2, 1), (1, 2, 1)) c=((1, 2, 1), (2, 3, 1)): rho(w)=I:True nilindex(rs-1)=2
+total vertex-injective triples: 672; (rho(w)=I, nilindex) counts: {(True, 2): 448, (True, 3): 192, (True, 1): 32}
+
+real	0m40.300s
+user	0m6.110s
+sys	0m0.035s

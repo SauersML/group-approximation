@@ -1,0 +1,185 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{BFM{\etalchar{+}}16}
+
+\bibitem[ABF{\etalchar{+}}21]{ABF+21}
+Javier Aramayona, Kai-Uwe Bux, Jonas Fleschig, Nansen Petrosyan, and Xiaolei
+  Wu.
+\newblock Generalized asymptotic mapping class groups and their finiteness
+  properties.
+\newblock 2021.
+\newblock Preprint. arxiv: 2110.05318.
+
+\bibitem[AC20]{AC20}
+Julio Aroca and Mar\'{i}a Cumplido.
+\newblock A new family of infinitely braided {T}hompson's groups.
+\newblock {\em J. Algebra}, 2020.
+\newblock To appear. arxiv: 2005.09593.
+
+\bibitem[AF17]{AF17}
+Javier Aramayona and Louis Funar.
+\newblock Asymptotic mapping class groups of closed surfaces punctured along
+  {C}antor sets.
+\newblock {\em Moscow Math. J.}, 2017.
+\newblock to appear. arXiv:1701.08132.
+
+\bibitem[AV20]{AV20}
+Javier Aramayona and Nicholas~G. Vlamis.
+\newblock Big mapping class groups: an overview.
+\newblock In Ken'ichi Ohshika and Athanase Papadopoulos, editors, {\em In the
+  Tradition of Thurston: Geometry and Topology}, pages 459--496. Springer,
+  2020.
+
+\bibitem[BDJ17]{BDJ17}
+Collin Bleak, Casey Donoven, and Julius Jonu\v{s}as.
+\newblock Some isomorphism results for {T}hompson-like groups {$V_n(G)$}.
+\newblock {\em Israel J. Math.}, 222(1):1--19, 2017.
+
+\bibitem[BFM{\etalchar{+}}16]{BFM+16}
+Kai-Uwe Bux, Martin~G. Fluch, Marco Marschler, Stefan Witzel, and Matthew C.~B.
+  Zaremsky.
+\newblock The braided {T}hompson's groups are of type {$\rm F_\infty$}.
+\newblock {\em J. Reine Angew. Math.}, 718:59--101, 2016.
+\newblock With an appendix by Zaremsky.
+
+\bibitem[BG84]{BG84}
+Kenneth~S. Brown and Ross Geoghegan.
+\newblock An infinite-dimensional torsion-free {${\rm FP}_{\infty }$} group.
+\newblock {\em Invent. Math.}, 77(2):367--381, 1984.
+
+\bibitem[Bro92]{Bro89}
+Kenneth~S. Brown.
+\newblock The geometry of finitely presented infinite simple groups.
+\newblock In {\em Algorithms and classification in combinatorial group theory
+  ({B}erkeley, {CA}, 1989)}, volume~23 of {\em Math. Sci. Res. Inst. Publ.},
+  pages 121--136. Springer, New York, 1992.
+
+\bibitem[Bro06]{Br06}
+Kenneth~S. Brown.
+\newblock The homology of {R}ichard {T}hompson's group {$F$}.
+\newblock In {\em Topological and asymptotic aspects of group theory}, volume
+  394 of {\em Contemp. Math.}, pages 47--59. Amer. Math. Soc., Providence, RI,
+  2006.
+
+\bibitem[BT12]{BT12}
+Carl-Friedrich B\"{o}digheimer and Ulrike Tillmann.
+\newblock Embeddings of braid groups into mapping class groups and their
+  homology.
+\newblock In {\em Configuration spaces}, volume~14 of {\em CRM Series}, pages
+  173--191. Ed. Norm., Pisa, 2012.
+
+\bibitem[BWZ21]{BWZ21}
+Kai-Uwe Bux, Stefan Witzel, and Matthew C.~B. Zaremsky.
+\newblock Erratum to: {T}he braided {T}hompson's groups are of type {$\rm
+  F_\infty$} ({J}. reine angew. {M}ath. 718 (2016), 59--101).
+\newblock {\em J. Reine Angew. Math.}, 778:219--221, 2021.
+
+\bibitem[Deh06]{Deh06}
+Patrick Dehornoy.
+\newblock The group of parenthesized braids.
+\newblock {\em Adv. Math.}, 205(2):354--409, 2006.
+
+\bibitem[FK04]{FK04}
+L.~Funar and C.~Kapoudjian.
+\newblock On a universal mapping class group of genus zero.
+\newblock {\em Geom. Funct. Anal.}, 14(5):965--1012, 2004.
+
+\bibitem[FK09]{FK09}
+Louis Funar and Christophe Kapoudjian.
+\newblock An infinite genus mapping class group and stable cohomology.
+\newblock {\em Comm. Math. Phys.}, 287(3):784--804, 2009.
+
+\bibitem[FM11]{FaMa11}
+Benson {Farb} and Dan {Margalit}.
+\newblock {\em {A primer on mapping class groups.}}
+\newblock Princeton, NJ: Princeton University Press, 2011.
+
+\bibitem[FN18]{FN18}
+Louis Funar and Yurii Neretin.
+\newblock Diffeomorphism groups of tame {C}antor sets and {T}hompson-like
+  groups.
+\newblock {\em Compos. Math.}, 154(5):1066--1110, 2018.
+
+\bibitem[GLU20]{GLU20}
+Anthony Genevois, Anne Lonjou, and Christian Urech.
+\newblock Asymptotically rigid mapping class groups {I}: Finiteness properties
+  of braided thompson’s and houghton’s groups.
+\newblock {\em Geom. Topol.}, 2020.
+\newblock To appear. arXiv:2010.07225.
+
+\bibitem[GRW18]{GRW18}
+S{\o}ren Galatius and Oscar Randal-Williams.
+\newblock Homological stability for moduli spaces of high dimensional
+  manifolds. {I}.
+\newblock {\em J. Amer. Math. Soc.}, 31(1):215--264, 2018.
+
+\bibitem[GS87]{GS87}
+\'{E}tienne Ghys and Vlad Sergiescu.
+\newblock Sur un groupe remarquable de diff\'{e}omorphismes du cercle.
+\newblock {\em Comment. Math. Helv.}, 62(2):185--239, 1987.
+
+\bibitem[Har85]{Har85}
+John~L. Harer.
+\newblock Stability of the homology of the mapping class groups of orientable
+  surfaces.
+\newblock {\em Ann. of Math. (2)}, 121(2):215--249, 1985.
+
+\bibitem[Hat91]{Hat91}
+Allen Hatcher.
+\newblock On triangulations of surfaces.
+\newblock {\em Topology Appl.}, 40(2):189--194, 1991.
+
+\bibitem[Hig74]{Hi74}
+Graham Higman.
+\newblock {\em Finitely presented infinite simple groups}.
+\newblock Department of Pure Mathematics, Department of Mathematics, I.A.S.
+  Australian National University, Canberra, 1974.
+\newblock Notes on Pure Mathematics, No. 8 (1974).
+
+\bibitem[HV17]{HV17}
+Allen Hatcher and Karen Vogtmann.
+\newblock Tethers and homology stability for surfaces.
+\newblock {\em Algebr. Geom. Topol.}, 17(3):1871--1916, 2017.
+
+\bibitem[HW10]{HW10}
+Allen Hatcher and Nathalie Wahl.
+\newblock Stabilization for mapping class groups of 3-manifolds.
+\newblock {\em Duke Math. J.}, 155(2):205--269, 2010.
+
+\bibitem[Nak61]{Nak61}
+Minoru Nakaoka.
+\newblock Homology of the infinite symmetric group.
+\newblock {\em Ann. of Math. (2)}, 73:229--257, 1961.
+
+\bibitem[PW22]{PalmerWu22}
+Martin Palmer and Xiaolei Wu.
+\newblock On the homology of big mapping class groups.
+\newblock 2022.
+\newblock Preprint. ArXiv:2211.07470.
+
+\bibitem[RWW17]{RWW17}
+Oscar Randal-Williams and Nathalie Wahl.
+\newblock Homological stability for automorphism groups.
+\newblock {\em Adv. Math.}, 318:534--626, 2017.
+
+\bibitem[SW]{SW21}
+Rachel Skipper and Xiaolei Wu.
+\newblock Finiteness properties for relatives of braided {H}igman--{T}hompson
+  groups.
+\newblock preprint.
+
+\bibitem[SW19]{SW19}
+Markus Szymik and Nathalie Wahl.
+\newblock The homology of the {H}igman--{T}hompson groups.
+\newblock {\em Invent. Math.}, 216(2):445--518, 2019.
+
+\bibitem[Thu17]{Th17}
+Werner Thumann.
+\newblock Operad groups and their finiteness properties.
+\newblock {\em Adv. Math.}, 307:417--487, 2017.
+
+\bibitem[vdK80]{vdK80}
+Wilberd van~der Kallen.
+\newblock Homology stability for linear groups.
+\newblock {\em Invent. Math.}, 60(3):269--295, 1980.
+
+\end{thebibliography}

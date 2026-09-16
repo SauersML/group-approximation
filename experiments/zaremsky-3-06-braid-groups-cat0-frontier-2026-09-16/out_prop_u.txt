@@ -1,0 +1,14 @@
+n =  4 | numerator == -(l-1)/(n-1) for all 8 universal vertices: True | at v={12}: 1.333333 pi
+n =  6 | numerator == -(l-1)/(n-1) for all 24 universal vertices: True | at v={12}: 1.075924 pi
+n =  8 | numerator == -(l-1)/(n-1) for all 48 universal vertices: True | at v={12}: 1.041226 pi
+n = 10 | numerator == -(l-1)/(n-1) for all 80 universal vertices: True | at v={12}: 1.026938 pi
+n = 12 | numerator == -(l-1)/(n-1) for all 120 universal vertices: True | at v={12}: 1.019385 pi
+n = 14 | numerator == -(l-1)/(n-1) for all 168 universal vertices: True | at v={12}: 1.014815 pi
+n =  3 | rotation-invariant noncrossing partitions have block counts [1, 3] (only 0 and 1 expected)
+n =  4 | rotation-invariant noncrossing partitions have block counts [1, 4] (only 0 and 1 expected)
+n =  5 | rotation-invariant noncrossing partitions have block counts [1, 5] (only 0 and 1 expected)
+n =  6 | rotation-invariant noncrossing partitions have block counts [1, 6] (only 0 and 1 expected)
+n =  7 | rotation-invariant noncrossing partitions have block counts [1, 7] (only 0 and 1 expected)
+n =  8 | rotation-invariant noncrossing partitions have block counts [1, 8] (only 0 and 1 expected)
+n =  9 | rotation-invariant noncrossing partitions have block counts [1, 9] (only 0 and 1 expected)
+n = 10 | rotation-invariant noncrossing partitions have block counts [1, 10] (only 0 and 1 expected)

@@ -1,0 +1,254 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{The Bishop--Jones theorem}
+%%\section{The Bishop--Jones theorem}
+%\label{partbishopjones}
+%This part will be divided as follows: In Section \ref{sectionmodified}, we motivate and define the \emph{modified} Poincar\'e exponent of a semigroup, which is used in the statement of Theorem \ref{theorembishopjonesmodified}. In Section \ref{sectionbishopjones} we prove Theorem \ref{theorembishopjonesmodified} and deduce Theorem \ref{theorembishopjonesregular} from Theorem \ref{theorembishopjonesmodified}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{The modified Poincar\'e exponent} \label{sectionmodified}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In this chapter we define the modified Poincar\'e exponent of a semigroup. We first recall the classical notion of the Poincar\'e exponent, introduced in the Standard Case by A. F. Beardon in \cite{Beardon1}. Although it is usually defined only for groups, the generalization to semigroups is trivial.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bigskip
+\section{The Poincar\'e exponent of a semigroup}
+\label{subsectionpoincare}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+\label{definitionpoincareexponent}
+Fix $G\prec\Isom(X)$. For each $s\geq 0$, the series
+\[
+\Sigma_s(G) := \sum_{g\in G}b^{-s\dogo g}
+\]
+is called the \emph{Poincar\'e series} of the semigroup $G$ in dimension $s$ (or ``evaluated at $s$'') relative to $b$. The number
+\[
+\delta_G = \delta(G) := \inf\{s\geq 0:\Sigma_s(G) < \infty\}
+\]
+is called the \emph{Poincar\'e exponent} of the semigroup $G$ relative to $b$. Here, we let $\inf\emptyset = \infty$.
+\end{definition}
+
+\begin{remark}
+The Poincar\'e series is usually defined with a summand of $e^{-s\dogo g}$ rather than $b^{-s\dogo g}$. The change of exponents here is important because it relates the Poincar\'e exponent to the metric $\Dist = \Dist_{b,\zero}$ defined in Proposition \ref{propositionDist}. In the Standard Case, and more generally for CAT(-1) spaces, we have made the convention that $b = e$ (see \6\ref{standingassumptions2}), so in this case our series reduces to the classical one.
+\end{remark}
+
+\begin{remark}
+\label{remarkorbitalcounting}
+Given $G\prec\Isom(X)$, we may define the \emph{orbital counting function} of $G$ to be the function
+\[
+\NN_{X,G}(\rho) = \#\{g\in G : \dogo g \leq \rho\}.
+\]
+The Poincar\'e series may be written as an integral over the orbital counting function as follows:
+\begin{equation}
+\label{poincareseriesalternate}
+\begin{split}
+\Sigma_s(G) &= \log(b^s) \sum_{g\in G} \int_{\dogo g}^\infty b^{-s\rho} \;\dee \rho\\
+&= \log(b^s) \int_0^\infty b^{-s\rho} \sum_{g\in G}[\dogo g\leq \rho] \;\dee \rho\\
+&= \log(b^s) \int_0^\infty b^{-s\rho} \NN_{X,G}(\rho) \;\dee \rho.
+\end{split}
+\end{equation}
+The Poincar\'e exponent is written in terms of the orbital counting function as
+\begin{equation}
+\label{poincarealternate}
+\delta_G = \limsup_{\rho\to \infty} \frac1\rho\log_b \NN_{X,G}(\rho)
+\end{equation}
+\end{remark}
+
+\begin{definition}
+\label{definitiondivergencetype}
+A semigroup $G\prec\Isom(X)$ with $\delta_G < \infty$ is said to be of \emph{convergence type} if $\Sigma_{\delta_G}(G) < \infty$. Otherwise, it is said to be of \emph{divergence type}. In the case where $\delta_G = \infty$, we say that the semigroup is neither of convergence type nor of divergence type.
+\end{definition}
+
+The most basic question about the Poincar\'e exponent is whether it is finite. For groups, the finiteness of the Poincar\'e exponent is related to strong discreteness:
+
+\begin{observation}\label{observationnotstronglydiscrete}
+Fix $G\leq\Isom(X)$. If $G$ is not strongly discrete, then $\delta_G = \infty$.
+\end{observation}
+\begin{proof}
+Fix $\rho > 0$ such that $\#\{g\in G : \dogo g \leq \rho\} = \infty$. Then for all $s\geq 0$ we have
+\[
+\Sigma_s(G) \geq \sum_{\substack{g\in G\\ \dogo g\leq \rho}} b^{-s \dogo g} \geq \sum_{\substack{g\in G\\ \dogo g\leq \rho}} b^{-s\rho} = \infty .
+\]
+Since $s$ was arbitrary, we have $\delta_G = \infty$.
+\end{proof}
+
+\begin{remark}
+Although the converse to Observation \ref{observationnotstronglydiscrete} holds in the Standard Case, it fails for infinite-dimensional algebraic hyperbolic spaces; see Example \ref{exampleinfinitepoincareBIM}.
+\end{remark}
+
+\begin{notation}
+\label{notationpoincareset}
+The Poincar\'e exponent and type can be conveniently combined into a single mathematical object, the \emph{Poincar\'e set}
+\[
+\Delta_G := \{s\geq 0 : \Sigma_s(G) = \infty\} = \begin{cases}
+[0,\delta_G] & \text{$G$ is of divergence type}\\
+\CO 0{\delta_G} & \text{$G$ is of convergence type}\\
+\Rplus & \delta_G = \infty
+\end{cases}.
+\]
+\end{notation}
+
+\section{The modified Poincar\'e exponent of a semigroup}
+\label{subsectionmodified}
+
+From a certain perspective, Observation \ref{observationnotstronglydiscrete} indicates a flaw in the Poincar\'e exponent: If $G\leq\Isom(X)$ is not strongly discrete, then the Poincar\'e exponent is always infinity even though there may be more geometric information to capture. In this section we introduce a modification of the Poincar\'e exponent which agrees with the Poincar\'e exponent in the case where $G$ is strongly discrete, but can be finite even if $G$ is not strongly discrete.
+
+We begin by defining the modified Poincar\'e exponent of a locally compact group $G\leq\Isom(X)$. Let $\mu$ be a Haar measure on $G$, and for each $s$ consider the \emph{Poincar\'e integral}
+\begin{equation}
+\label{IsG}
+I_s(G) := \int b^{-s\dogo g}\;\dee\mu(g).
+\end{equation}
+\begin{definition}
+\label{definitionmodified1}
+The \emph{modified Poincar\'e exponent} of a locally compact group $G\leq\Isom(X)$ is the number
+\[
+\w\delta_G = \w\delta(G) := \inf\{s\geq 0: I_s(G) < \infty\},
+\]
+where $I_s(G)$ is defined by \eqref{IsG}.
+\end{definition}
+\begin{example}
+\label{exampleLie}
+Let $X = \H^d$ for some $2\leq d < \infty$, and let $G\leq\Isom(X)$ be a positive-dimensional Lie subgroup. Then $G$ is locally compact, but not strongly discrete. Although the Poincar\'e series diverges for every $s$, the exponent of convergence of the Poincar\'e integral (or ``modified Poincar\'e exponent'') is equal to the Hausdorff dimension of the limit set of $G$ (Theorem \ref{theorembishopjonesmodified} below), and so in particular the Poincar\'e integral converges whenever $s > d - 1$.
+\end{example}
+
+We now proceed to generalize Definition \ref{definitionmodified1} to the case where $G\leq\Isom(X)$ is not necessarily locally compact. Fix $\rho > 0$, and consider a maximal $\rho$-separated\Footnote{Here, as usual, a \emph{$\rho$-separated} subset of a metric space $X$ is a set $S\subset X$ such that $\dist(x,y)\geq \rho$ for any distinct $x,y\in S$. The existence of a maximal $\rho$-separated subset of any metric space is guaranteed by Zorn's lemma.\label{footnoterhoseparated}} subset $S_\rho\subset G(\zero)$. Then we have
+\[
+\bigcup_{x\in S_\rho} B(x,\rho/2) \subset G(\zero) \subset \bigcup_{x\in S_\rho} B(x,\rho),
+\]
+and the former union is disjoint. Now suppose that $G$ is in fact locally compact, and let $\nu$ denote the image of Haar measure on $G$ under the map $g\mapsto g(\zero)$. Then if $f$ is a positive function on $X$ whose logarithm is uniformly continuous, we have
+\[
+\sum_{x\in S_\rho} f(x)
+\asymp_{\times,\rho,f} \sum_{x\in S_\rho} \int_{B(x,\rho/2)} f\;\dee\nu
+\leq \int f\;\dee\nu
+\leq \sum_{x\in S_\rho} \int_{B(x,\rho)} f\;\dee\nu
+\asymp_{\times,\rho,f} \sum_{x\in S_\rho} f(x).
+\]
+Thus in some sense, the counting measure on $S_\rho$ is a good approximation to the measure $\nu$. In particular, taking $f(x) = b^{-\dox x}$ gives
+\[
+I_s(G) \asymp_{\times,\rho} \sum_{x\in S_\rho} b^{-\dox x}.
+\]
+Thus the integral $I_s(G)$ converges if and only if the series $\sum_{x\in S_\rho} b^{-\dox x}$ converges. But the latter series is well-defined even if $G$ is not locally compact. This discussion shows that the definition of the ``modified Poincar\'e exponent'' given in Definition \ref{definitionmodified1} agrees with the following definition:
+
+\begin{definition}
+\label{definitionmodifiedexponent}
+Fix $G\prec\Isom(X)$.
+\begin{itemize}
+\item For each set $S\subset X$ and $s\geq 0$, let
+\begin{align*}
+\Sigma_s(S) &= \sum_{x\in S} b^{-s\dox x}\\
+\Delta(S) &= \{s\geq 0: \Sigma_s(S) = \infty\}\\
+\delta(S) &= \sup\Delta(S).
+\end{align*}
+\item Let
+\begin{equation}
+\label{modifiedpoincaredef}
+\w\Delta_G = \bigcap_{\rho > 0} \bigcap_{S_\rho} \Delta(S_\rho),
+\end{equation}
+where the second intersection is taken over all maximal $\rho$-separated sets $S_\rho$.
+\item The number $\w\delta_G = \sup\w\Delta_G$ is called the \emph{modified Poincar\'e exponent} of $G$. If $\w\delta_G\in\w\Delta_G$, we say that $G$ is of \emph{generalized divergence type},\Footnote{We use the adjective ``generalized'' rather than ``modified'' because all groups of convergence/divergence type are also of generalized convergence/divergence type; see Corollary \ref{corollarygeneralizedtypes} below.} while if $\w\delta_G\in\Rplus\butnot\Delta_G$, we say that $G$ is of \emph{generalized convergence type}. Note that if $\w\delta_G = \infty$, then $G$ is neither of generalized convergence type nor of generalized divergence type.
+\end{itemize}
+\end{definition}
+
+The basic properties of the modified Poincar\'e exponent are summarized as follows:
+
+\begin{proposition}
+\label{propositionbasicmodified}
+Fix $G\prec\Isom(X)$.
+\begin{itemize}
+\item[(i)] $\w\Delta_G \subset \Delta_G$. (In particular $\w\delta_G\leq\delta_G$.)
+\item[(ii)] If $G$ satisfies
+\begin{equation}
+\label{SD3}
+\sup_{x\in X} \#\{g\in G:\dist(g(\zero),x)\leq \rho\} < \infty \all \rho > 0,
+\end{equation}
+then $\w\Delta_G = \Delta_G$. (In particular $\w\delta_G = \delta_G$.)
+\item[(iii)] If $\w\delta_G < \infty$, then there exist $\rho > 0$ and a maximal $\rho$-separated set $S_\rho\subset G(\zero)$ such that $\#(S_\rho\cap B) < \infty$ for every bounded set $B$.
+\item[(iv)] For all $\rho > 0$ sufficiently large and for every maximal $\rho$-separated set $S_\rho\subset G(\zero)$, we have $\Delta(S_\rho) = \w\Delta_G$. (In particular $\delta(S_\rho) = \w\delta(G)$.)
+\end{itemize}
+\end{proposition}
+\begin{remark}
+\label{remarkstronglydiscrete}
+If $G$ is a group, then it is clear that \eqref{SD3} is equivalent to the assertion that $G$ is strongly discrete. If $G$ is not a group, then by analogy we will say that $G$ is \emph{strongly discrete} if \eqref{SD3} holds. (Recall that in Chapter \ref{sectiondiscreteness}, the various notions of discreteness are defined only for groups.)
+\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{propositionbasicmodified}]
+~
+\begin{itemize}
+\item[(i)] Indeed, for every $s\geq 0$, $\rho > 0$, and maximal $\rho$-separated set $S_\rho$ we have
+\[
+\Sigma_s(S_\rho) \leq \Sigma_s(G) \text{ and thus }\w\Delta(G) \subset \Delta(S_\rho) \subset \Delta(G).
+\]
+\item[(ii)] Fix $\rho > 0$, and let $S_\rho\subset G(\zero)$ be a maximal $\rho$-separated set. For every $x\in G(\zero)$ there exists $y_x\in S_\rho$ with $\dist(x,y_x) \leq \rho$. Then for each $y\in S_\rho$, we have
+\[
+\#\{ x\in G(\zero) : y_x = y \} \leq M_\rho,
+\]
+where $M_\rho$ is the value of the supremum \eqref{SD3}. Therefore for each $s\geq 0$ we have
+\[
+\Sigma_s(G)
+= \sum_{x\in G(\zero)} b^{-s \dox x}
+\asymp_\times \sum_{x\in G(\zero)} b^{-s\dox{y_x}}
+\leq M_\rho \sum_{y\in S_\rho} b^{-s \dox y}
+= M_\rho\Sigma_s(S_\rho).
+\]
+In particular, $\Sigma_s(G) < \infty$ if and only if $\Sigma_s(S_\rho) < \infty$, i.e. $\Delta(G) = \Delta(S_\rho)$. Intersecting over $\rho > 0$ and $S_\rho\subset G(\zero)$ yields $\Delta(G) = \w\Delta(G)$.
+\item[(iii)] Take $\rho$ and $S_\rho$ such that $\delta(S_\rho) < \infty$.
+\end{itemize}
+
+Before proving (iv), we need a lemma:
+\begin{lemma}
+\label{lemma2tau}
+Fix $\rho_1,\rho_2 > 0$ with $\rho_2\geq 2\rho_1$. Let $S_1\subset G(\zero)$ be a $\rho_1$-net,\Footnote{Here, as usual, a \emph{$\rho$-net} in a metric space $X$ is a subset $S\subset X$ such that $X = \thicken_\rho(S)$. Note that every maximal $\rho$-separated set is a $\rho$-net (but not conversely). \label{footnoterhonet}} and let $S_2\subset G(\zero)$ be a $\rho_2$-separated set. Then
+\begin{equation}
+\label{2tau}
+\Delta(S_2) \subset \Delta(S_1).
+\end{equation}
+\end{lemma}
+\begin{subproof}
+Since $S_1$ is a $\rho_1$-net, for every $y\in S_2$, there exists $x_y\in S_1$ with $\dist(y,x_y) < \rho_1$. If $x_y = x_z$ for some $y,z\in S_2$, then $\dist(y,z) < 2\rho_1 \leq \rho_2$ and since $S_2$ is $\rho_2$-separated we have $y = z$. Thus the map $y\mapsto x_y$ is injective. It follows that for every $s\geq 0$, we have
+\[
+\Sigma_s(S_2)
+= \sum_{y\in S_2} b^{-s \dox y}
+\asymp_\times \sum_{y\in S_2} b^{-s \dox{x_y}}
+\leq \sum_{x\in S_1} b^{-s \dox x}
+= \Sigma_s(S_1),
+\]
+demonstrating \eqref{2tau}.
+\end{subproof}
+
+\begin{itemize}
+\item[(iv)] The statement is trivial if $\w\delta_G = \infty$. So suppose that $\w\delta_G < \infty$, and let $\rho$, $S_\rho$ be as in (iii). Fix $\rho'\geq 2\rho$ and a maximal $\rho'$-separated set $S_{\rho'}\subset G(\zero)$, and we will show that $\Delta(S_{\rho'}) = \w\Delta_G$. The inclusion $\supset$ follows by definition. To prove the reverse direction, fix $\rho'' > 0$ and a maximal $\rho''$-separated set $S_{\rho''}$, and we will show that $\Delta(S_{\rho'})\subset \Delta(S_{\rho''})$.
+
+Let $F = S_\rho\cap B(\zero,\rho'' + \rho)$; then $\#(F) < \infty$. We then set 
+\[
+S_\rho' := \bigcup_{x\in S_{\rho''}} g_x(F)
+\] 
+where for each $x\in S_{\rho''}$, $x = g_x(\zero)$. Then for all $s\geq 0$,
+\begin{align*}
+\Sigma_s(S_{\rho''}) = \sum_{x\in S_{\rho''}} b^{-s\dox x} 
+&\asymp_\times \sum_{x\in S_{\rho''}} \sum_{y\in F} b^{-s\dox x}\\ 
+&\asymp_\times \sum_{x\in S_{\rho''}} \sum_{y\in F} b^{-s\dox{g_x(y)}}\\ 
+&= \Sigma_s(S_\rho')
+\end{align*}
+and therefore $\Delta(S_{\rho''}) = \Delta(S_\rho')$. But $S_\rho'$ is a $\rho$-net, so by Lemma \ref{lemma2tau}, we have $\Delta(S_{\rho'}) \subset \Delta(S_\rho')$. This completes the proof.
+\end{itemize}
+\end{proof}
+
+Combining with Observation \ref{observationnotstronglydiscrete} yields the following:
+\begin{corollary}
+\label{corollarydeltawdelta}
+Suppose that $G$ is a group. If $\Delta\neq\w\Delta$ then
+\[
+\w\delta < \delta = \infty.
+\]
+\end{corollary}
+
+\begin{corollary}
+\label{corollarygeneralizedtypes}
+If a group $G$ is of convergence or divergence type, then it is also of generalized convergence or divergence type, respectively.
+\end{corollary}
+
+We will call a group $G\leq\Isom(X)$ \emph{Poincar\'e regular} if $\w\Delta_G = \Delta_G$, and \emph{Poincar\'e irregular} otherwise. A list of sufficient conditions for Poincar\'e regularity is given in Proposition \ref{propositionpoincareregular} below. Conversely, several examples of Poincar\'e irregular groups may be found in Section \ref{subsectionpoincareirregular}.
+
+

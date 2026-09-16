@@ -1,0 +1,9 @@
+relator b^-1 a^2 b = a^-2 holds: True
+relator a^-1 b^2 a = b^-2 holds: True
+x=a^2    linear diag ['1', '1', '1'] translation ['1', '0', '0']
+y=b^2    linear diag ['1', '1', '1'] translation ['0', '1', '0']
+z=(ab)^2 linear diag ['1', '1', '1'] translation ['0', '0', '-1']
+conjugation by a on (x,y,z): +--
+conjugation by b on (x,y,z): -+-
+conjugation by ab on (x,y,z): --+
+ALL CHECKS PASS: True

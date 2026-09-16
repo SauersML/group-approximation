@@ -1,0 +1,523 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Examples}
+%%\section{Examples}
+%\label{partexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%This part will be divided as follows: In Section \ref{sectionschottky} we consider semigroups of isometries which can be written as the ``Schottky product'' of two subsemigroups. In Section \ref{sectionRtrees}, we consider methods of constructing $\R$-trees which admit natural group actions, including what we call the ``stapling method''. In Section \ref{sectionparabolic}, we analyze in detail the class of parabolic groups of isometries. In Section \ref{sectionexamples}, we give a list of examples whose main importance is that they are counterexamples to certain implications; however, these examples are often geometrically interesting in their own right. In Section \ref{sectionGF}, we define a subclass of the class of groups of isometries which we call \emph{geometrically finite}, generalizing known results from the Standard Case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Counterexamples}\label{sectionexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+In Chapter \ref{sectiondiscreteness} we defined various notions of discreteness and demonstrated some relations between them, and in Section \ref{subsectionpropositionpoincareregular} we related some of these notions to the modified Poincar\'e exponent $\w\delta$. In this chapter we give counterexamples to show that the relations which we did not prove are in fact false. Specifically, we prove that no more arrows can be added to Table \ref{figurediscreteness} (reproduced below as Table \ref{figurediscretenesscopy}), and that the discreteness hypotheses of Proposition \ref{propositionpoincareregular} cannot be weakened.
+
+\begin{table}[h!]
+\begin{tabular}{ | c | c c c c c c c | }
+ \hline
+ Finite dimensional			& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & WD && \\
+ Riemannian manifold 	& $\uparrow$ & & & & $\updownarrow$ && \\
+	 			& PrD & & & & COTD & $\leftrightarrow$ & UOTD\\
+ \hline
+	 		& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+ General metric space		& & $\nearrow$ & & $\searrow$ & && \\
+				& PrD & & & & COTD && \\
+ \hline
+ Infinite dimensional				& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+ algebraic hyperbolic space 	& & $\nearrow$ & & & $\downarrow$ && \\
+			& PrD & & & & COTD & $\rightarrow$ & UOTD \\
+ \hline
+	 		& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & COTD && \\
+ Proper metric  space 		& $\uparrow$ & & & & $\downarrow$ &&\\
+			& PrD & & & & WD && \\
+ \hline
+\end{tabular}
+\vskip0.12cm
+\caption{The relations between different notions of discreteness. COTD and UOTD stand for discrete with respect to the compact-open and uniform operator topologies respectively. All implications not listed have counterexamples, which are described below.}
+\label{figurediscretenesscopy}
+\end{table}
+
+%\begin{table}[h]
+%\begin{tabular}{ | c | c c c c c c c | }
+% \hline
+% Finite				& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & WD && \\
+% dimensional	& $\uparrow$ & & & & $\updownarrow$ && \\
+% manifold	 			& PrD & & & & COTD & $\leftrightarrow$ & UOTD\\
+% \hline
+% General		 		& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+% metric 		& & $\nearrow$ & & $\searrow$ & && \\
+% space				& PrD & & & & COTD && \\
+% \hline
+% Infinite				& SD & $\rightarrow$ & MD & $\rightarrow$ & WD && \\
+% dimensional	& & $\nearrow$ & & & $\downarrow$ && \\
+% \ROSS			& PrD & & & & COTD & $\rightarrow$ & UOTD \\
+% \hline
+% Proper		 		& SD & $\leftrightarrow$ & MD & $\leftrightarrow$ & COTD && \\
+% metric		& $\uparrow$ & & & & $\downarrow$ &&\\
+% space			& PrD & & & & WD && \\
+% \hline
+%\end{tabular}
+%\vskip0.12cm
+%\caption{The relations between different notions of discreteness. In this section, we prove that all implications not listed have counterexamples.}
+%\label{figurediscretenesscopy}
+%\end{table}
+
+The examples are arranged roughly in order of discreteness level; the most discrete examples are listed first.
+
+We note that many of the examples below are examples of elementary groups. In most cases, a nonelementary example can be achieved by taking the Schottky product with an approprate group; cf. Proposition \ref{propositionschottkyproduct}.
+
+The notations $\BB = \del\E^\infty\butnot\{\infty\}\equiv\ell^2(\N)$ and $\what\cdot:\Isom(\BB)\to \Isom(\H^\infty)$ will be used without comment; cf. Section \ref{subsectionparabolic}.
+
+%\ignore{
+%
+%\begin{definition}
+%Let $X$ be an $\R$-tree. We say that $X$ is a \emph{tree} if there exists a set $V\subset X$, the \emph{vertex set}, with the following properties:
+%\begin{itemize}
+%\item[(I)] $V$ is discrete.
+%\item[(II)] For any $x,y,z\in V$, the center $C(x,y,z)$ is also in $V$.
+%\item[(III)] $X = \Hull_1(V)$.
+%\end{itemize}
+%If in addition $\dist(x,y)\in\N$ for all $x,y\in V$, then $X$ will be called an \emph{$\N$-tree}.
+%\end{definition}
+%
+%\begin{remark}
+%If $X$ is an $\N$-tree with vertex set $V$, then the set
+%\[
+%\w V = V\cup \left\{\geo xy_n : x,y\in V : n\in\N\right\}
+%\]
+%is also a vertex set for $X$.
+%\end{remark}
+%}% end ignore
+
+\section{Embedding $\R$-trees into real hyperbolic spaces}
+Many of the examples in this chapter are groups acting on $\R$-trees, but it turns out that there is a natural way to convert such an action into an action on a real hyperbolic space. Specifically, we have the following:
+
+%\begin{theorem}[{\cite[Theorem 1.1]{BIM}}]
+%\label{theoremBIM}
+%Let $X$ be a tree, say $X = X(V,E,\ell)$ for some acyclic weighted undirected graph $(V,E,\ell)$. Let $\alpha = \#(V) - 1$. Then for every $\lambda > 1$ there is an embedding $\Psi_\lambda:X\to\H^\alpha$ and a homomorphism $\pi_\lambda : \Isom(X)\to \Isom(\H^\alpha)$ such that:
+%\begin{itemize}
+%\item[(i)] The map $\Psi_\lambda$ is $\pi_\lambda$-equivariant and extends equivariantly to a boundary map $\Psi_\lambda:\del X\to \del\H^\alpha$ which is a homeomorphism onto its image.
+%\item[(ii)] For any two vertices $x,y\in V$ we have
+%\[
+%\lambda^{\dist(x,y)} = \cosh \dist(\Psi_\lambda(x),\Psi_\lambda(y)).
+%\]
+%\item[(iii)] For some $\sigma > 0$,
+%\[
+%\Hull_\infty(\Psi_\lambda(\del X)) \subset B(\Psi_\lambda(V),\sigma).
+%\]
+%\end{itemize}
+%\end{theorem}
+\begin{theorem}[Generalization of {\cite[Theorem 1.1]{BIM}}]
+\label{theoremBIM}
+Let $X$ be a separable $\R$-tree. Then for every $\lambda > 1$ there is an embedding $\Psi_\lambda:X\to\H^\infty$ and a homomorphism $\pi_\lambda : \Isom(X)\to \Isom(\H^\infty)$ such that:
+\begin{itemize}
+\item[(i)] The map $\Psi_\lambda$ is $\pi_\lambda$-equivariant and extends equivariantly to a boundary map $\Psi_\lambda:\del X\to \del\H^\infty$ which is a homeomorphism onto its image.
+\item[(ii)] For all $x,y\in X$ we have
+\begin{equation}
+\label{BIM1}
+\lambda^{\dist(x,y)} = \cosh \dist(\Psi_\lambda(x),\Psi_\lambda(y)).
+\end{equation}
+\item[(iii)]
+\begin{equation}
+\label{BIM2}
+\Hull_1(\Psi_\lambda(\del X)) \subset B(\Psi_\lambda(X),\cosh^{-1}(\sqrt 2)).
+\end{equation}
+\item[(iv)] For any set $S\subset X$, the dimension of the smallest totally geodesic subspace $[V_S]\subset\H^\infty$ containing $\Psi_\lambda(S)$ is $\#(S) - 1$. Here cardinalities are interpreted in the weak sense: if $\#(S) = \infty$, then $\dim([V_S]) = \infty$ but $S$ may be uncountable even though $[V_S]$ is separable.
+\end{itemize}
+\end{theorem}
+\begin{proof}
+Let $\VV = \{\xx\in\R^X : x_v = 0 \text{ for all but finitely many $v\in X$}\}$, and define the bilinear form $B_\QQ$ on $\VV$ via the formula
+\begin{equation}
+\label{BIMdef}
+B_\QQ(\xx,\yy) = -\sum_{v,w\in X} \lambda^{\dist(v,w)} x_v y_w.
+\end{equation}
+\begin{claim}
+The associated quadratic form $\QQ(\xx) = B_\QQ(\xx,\xx)$ has signature $(\omega,1)$.
+\end{claim}
+\begin{subproof}
+It suffices to show that $\QQ\given \ee_{v_0}^\perp$ is positive definite, where $v_0\in X$ is fixed. Indeed, fix $\xx\in\ee_{v_0}^\perp\butnot\{\0\}$, and we will show that $\QQ(\xx) > 0$. Now, the set $X_0 = \{v\in X : x_v\neq 0\}\cup\{v_0\}$ is finite. It follows that the convex hull of $X_0$ can be written in the form $X(V,E,\ell)$ for some finite acyclic weighted undirected graph $(V,E,\ell)$. Consider the subspace
+\[
+\VV_0 = \{\xx\in\ee_{v_0}^\perp : x_v = 0 \text{ for all $v\in X\butnot V$}\} \subset \VV,
+\]
+which contains $\xx$. We will construct an orthogonal basis for $\VV_0$ as follows. For each edge $(v,w)\in E$, let
+\[
+\ff_{v,w} = \ee_v - \lambda^{\dist(v,w)} \ee_w
+\]
+if $w\in \geo{v_0}v$; otherwise let $\ff_{v,w} = \ff_{w,v}$. This vector has the following key property:
+\begin{equation}
+\label{fvw}
+\begin{split}
+\text{For all $v'\in X$, if $\geo vw$ intersects $\geo{v_0}{v'}$ in}\\ 
+\text{at most one point, then $B_\QQ(\ff_{v,w},\ee_{v'}) = 0$.}
+\end{split}
+\end{equation}
+(The hypothesis implies that $w\in \geo{v'}v$ and thus $\dist(v,v') = \dist(v,w) + \dist(w,v')$.) In particular, letting $v' = v_0$ we see that $\ff_{v,w}\in \ee_{v_0}^\perp$. Moreover, the tree structure of $(V,E)$ implies that for any two edges $(v_1,w_1)\not\sim (v_2,w_2)$, we have either $\#(\geo{v_1}{w_1}\cap\geo{v_0}{v_2}) \leq 1$ or $\#(\geo{v_2}{w_2}\cap\geo{v_0}{v_1}) \leq 1$; either way, \eqref{fvw} implies that $B_\QQ(\ff_{v_1,w_1},\ff_{v_2,w_2}) = 0$. Finally, $\QQ(\ff_{v,w}) = \lambda^{2\dist(v,w)} - 1 > 0$ for all $(v,w)\in E$, so $\QQ\given \VV_0$ is positive definite. Thus $\QQ(\xx) > 0$; since $\xx\in\ee_{v_0}^\perp$ was arbitrary, $\QQ\given \ee_{v_0}^\perp$ is positive definite. This concludes the proof of the claim.
+\end{subproof}
+It follows that for any $v\in X$, the quadratic form
+\[
+B_{\QQ_v}(\xx,\yy) = B_\QQ(\xx,\yy) + 2B_\QQ(\xx,\ee_v) B_\QQ(\ee_v,\yy)
+\]
+is positive definite. We leave it as an exercise to show that for any $v_1,v_2\in X$, the norms induced by $\QQ_{v_1}$ and $\QQ_{v_2}$ are comparable. Let $\LL$ be the completion of $\VV$ with respect to any of these norms, and (abusing notation) let $B_\QQ$ denote the unique continuous extension of $B_\QQ$ to $\LL$. Since the map $X\ni v\mapsto \ee_v\in \LL$ is continuous with respect to the norms in question, $\LL$ is separable. On the other hand, since these norms are nondegenerate, we have $\dim(\lb \ee_v : v\in S\rb) = \#(S)$ for all $S\subset X$, and in particular $\dim(\LL) = \infty$. Thus $\LL$ is isomorphic to $\LL^\infty$, so $\H := \{[\xx]\in \proj(\LL) : \QQ(\xx) < 0\}$ is isomorphic to $\H^\infty$.
+
+We define the embedding $\Psi_\lambda:X\to\H$ via the formula $\Psi_\lambda(v) = [\ee_v]$. \eqref{BIM1} now follows immediately from \eqref{BIMdef} and \eqref{distanceinL}. In particular, we have 
+\[
+\dist(\Psi_\lambda(v),\Psi_\lambda(w)) \asymp_\plus \log(\lambda) \dist(v,w), 
+\]
+which implies that $\Psi_\lambda$ extends naturally to a boundary map $\Psi_\lambda:\del X\to \del\H^\alpha$ which is a homeomorphism onto its image. Given any $g\in\Isom(X)$, we let $\pi_\lambda(g) = [T_g]\in\Isom(\H)$, where $T_g\in \O_\R(\LL;\QQ)$ is given by the formula $T_g(\ee_v) = \ee_{g(v)}$. Then $\Psi_\lambda$ and its extension are both $\pi_\lambda$-equivariant, demonstrating condition (i).
+
+For $S\subset X$, we have $\dim(V_S) = \dim(\lb \ee_v : v\in S\rb) = \#(S)$ as noted above, and thus $\dim([V_S]) = \dim(V_S) - 1 = \#(S) - 1$. This demonstrates (iv).
+
+It remains to show (iii). Fix $\xi,\eta\in\del X$ and $[\zz]\in\geo{\Psi_\lambda(\xi)}{\Psi_\lambda(\eta)}$. Write $\Psi_\lambda(\xi) = [\xx]$ and $\Psi_\lambda(\eta) = [\yy]$. Since $[\xx],[\yy]\in\del\H$ and $[\zz]\in\H$, we have $\QQ(\xx) = \QQ(\yy) = 0$, and we may choose $\xx$, $\yy$, and $\zz$ to satisfy $B_\QQ(\xx,\yy) = B_\QQ(\xx,\zz) = B_\QQ(\yy,\zz) = -1$. Since $[\zz]\in\geo{[\xx]}{[\yy]}$, we have $\zz = a\xx + b\yy$ for some $a,b \geq 0$; we must have $a = b = 1$ and thus $\QQ(\zz) = -2$.
+
+Now, since $\Psi_\lambda(w) = [\ee_w]\to \Psi_\lambda(\xi) = [\xx]$ as $w\to\xi$, there exists a function $f:X\to\R$ such that $f(w)\ee_w\to \xx$ as $w\to\xi$. Fixing $v\in\geo\xi\eta$, we have
+\[
+B_\QQ(\xx,\ee_v) = \lim_{w\to\xi} f(w)B_\QQ(\ee_w,\ee_v) = -\lim_{w\to\xi} f(w) \lambda^{\dist(v,w)}.
+\]
+In particular $B_\QQ(\xx,\ee_{v_2}) = B_\QQ(\xx,\ee_{v_1}) \lambda^{\busemann_\xi(v_2,v_1)}$, which implies that there exists $v\in\geo\xi\eta$ such that $B_\QQ(\xx,\ee_v) = 0$. Similarly, there exists a function $g:X\to\R$ such that $g(w')\ee_{w'}\to\yy$ as $w'\to\eta$; we have
+\begin{align*}
+B_\QQ(\yy,\ee_v) &= -\lim_{w'\to\eta} g(w') \lambda^{\dist(v,w')}\\
+-1 = B_\QQ(\xx,\yy) &= \lim_{\substack{w\to\xi \\ w'\to\eta}} f(w) g(w') B_\QQ(\ee_w,\ee_{w'})\\
+&= -\lim_{\substack{w\to\xi \\ w'\to\eta}} f(w) g(w') \lambda^{\dist(w,w')}
+= -B_\QQ(\xx,\ee_v) B_\QQ(\yy,\ee_v)\\
+B_\QQ(\xx,\ee_v) &= B_\QQ(\yy,\ee_v) = -1,
+\end{align*}
+so $\ee_v = \zz + \ww$ for some $\ww\in \xx^\perp\cap \yy^\perp$. Since $\QQ(\zz) = -2$ and $\QQ(\ee_v) = -1$, we have $\QQ(\ww) = 1$ and thus
+\[
+\cosh\dist([\ee_v],[\zz]) = \frac{|B_\QQ(\ee_v,\zz)|}{\sqrt{|\QQ(\ee_v)|\cdot|\QQ(\zz)|}} = \frac{2}{\sqrt{1\cdot 2}} = \sqrt 2.
+\]
+In particular $\dist([\zz],\Psi_\lambda(X)) \leq \cosh^{-1}(\sqrt 2)$. 
+\end{proof}
+
+\begin{definition}
+\label{definitionBIM}
+Given an $\R$-tree $X$ and a parameter $\lambda > 1$, the maps $\Psi_\lambda$ and $\pi_\lambda$ will be called the \emph{BIM embedding} and the \emph{BIM representation} with parameter $\lambda$, respectively. (Here BIM stands for M. Burger, A. Iozzi, and N. Monod, who proved the special case of Theorem \ref{theoremBIM} where $X$ is an unweighted simplicial tree.)
+\end{definition}
+
+\begin{remark}
+\label{remarkBIM}
+Let $X$, $\lambda$, $\Psi_\lambda$, and $\pi_\lambda$ be as in Theorem \ref{theoremBIM}. Fix $\Gamma\leq\Isom(X)$, and suppose that $\Lambda_\Gamma = \del X$. Let $G = \pi_\lambda(\Gamma)\leq\Isom(\H^\infty)$.
+\begin{itemize}
+\item[(i)] \eqref{BIM2} implies that if $\Gamma$ is convex-cobounded in the sense of Definition \ref{definitionCCB} below, then $G$ is convex-cobounded as well. Moreover, we have 
+\begin{equation*}
+\Lr(G) = \del\Psi_\lambda(\Lr(\Gamma)) ~\text{and}~ \Lur(G) = \del\Psi_\lambda(\Lur(\Gamma)).
+\end{equation*}
+\item[(ii)] Since $\cosh(t) \asymp_\times e^t$ for all $t\geq 0$, \eqref{BIM1} implies that
+\begin{align*}
+\Sigma_s(G) = \sum_{\gamma\in\Gamma} e^{-s\dogo{\pi_\lambda(\gamma)}} &\asymp_\times \sum_{\gamma\in\Gamma} \cosh^{-s}(\dogo{\pi_\lambda(\gamma)})\\ 
+&= \sum_{\gamma\in\Gamma} \lambda^{-s\dogo{\gamma}} = \Sigma_{s\log(\lambda)}(\Gamma)
+\end{align*}
+for all $s\geq 0$. In particular $\delta_G = \delta_\Gamma/\log(\lambda)$. A similar argument shows that $\w\delta_G = \w\delta_\Gamma/\log(\lambda)$, which implies that $G$ is Poincar\'e regular if and only if $\Gamma$ is.
+%\item[(iii)] The proof of Theorem \ref{theoremBIM} implies that $V_{\LambdaG}$ is infinite-dimensional as long as $\#(X) = \infty$; cf. \cite[(8.4)]{BIM}. In particular, we can restrict to $V_{\LambdaG}$ and by projection not lose any geometric information except up to an additive constant.
+\item[(iii)] $G$ is strongly discrete (resp. COT-discrete) if and only if $\Gamma$ is strongly discrete (resp. COT-discrete). However, this fails for weak discreteness; cf. Example \ref{exampleAutTBIM} below.
+\end{itemize}
+\end{remark}
+\begin{proof}[Proof of (iii)]
+The difficult part is showing that if $G$ is COT-discrete, then $\Gamma$ is as well. Suppose that $\Gamma$ is not COT-discrete. Then there exists a sequence $\Gamma\ni\gamma_n\to\id$ in the compact-open topology. Let $g_n = \pi_\lambda(\gamma_n)\in G \leq \Isom(\H^\infty) \equiv \O(\LL)$. Then the set
+\[
+\{\xx\in\LL : g_n(\xx)\to \xx\}
+\]
+contains $\Psi_\lambda(X)$. On the other hand, since the sequence $(g_n)_1^\infty$ is equicontinuous (Lemma \ref{lemmaoperatornorm}), this set is a closed linear subspace of $\LL$. Clearly, the only such subspace which contains $\Psi_\lambda(X)$ is $\LL$. Thus $g_n(x)\to x$ for all $x\in\H^\infty$, and so $g_n\to\id$ in the compact-open topology. Thus $G$ is not COT-discrete.
+\end{proof}
+
+We begin our list of examples with the following counterexample to an infinite-dimensional analogue of Margulis's lemma suggested in Remark \ref{remarkmargulislemma}:
+
+\begin{example}
+\label{examplemargulis}
+Let $\Gamma = \F_2(\Z) = \lb \gamma_1,\gamma_2\rb$, and let $X$ be the Cayley graph of $\Gamma$. Let $\Phi:\Gamma\to \Isom(X)$ be the natural action. Then $H := \Phi(\Gamma)$ is nonelementary and strongly discrete. For each $\lambda > 1$, the image of $H$ under the BIM representation $\pi_\lambda$ is a nonelementary strongly discrete subgroup $G = \pi_\lambda(H)\leq \Isom(\H^\infty)$ generated by the elements $g_1 = \pi_\lambda\Phi(\gamma_1)$, $g_2 = \pi_\lambda\Phi(\gamma_2)$. But
+\[
+\cosh\dogo{g_i} = \lambda^{\dist(e,\gamma_i)} = \lambda,
+\]
+so by an appropriate choice of $\lambda$, $\dogo{g_i}$ can be made arbitrarily small. So for arbitrarily small $\epsilon$, we can find a free group $G\leq\Isom(\H^\infty)$ such that $G_\epsilon(\zero) = G$ is nonelementary. This provides a counterexample to a hypothetical infinite-dimensional analogue of Margulis's lemma, namely, the claim that there exists $\epsilon > 0$ such that for every strongly discrete $G\leq\Isom(\H^\infty)$, $G_\epsilon(\zero)$ is elementary.
+\end{example}
+
+\begin{remark}
+\label{remarklengthspectrum}
+If $\H$ is a finite-dimensional algebraic hyperbolic space and $G\leq\Isom(\H)$ is nonelementary, then a theorem of I. Kim \cite{Kim} states that the \emph{length spectrum} of $G$
+\[
+\L = \{\log g'(g_-) : g\in G \text{ is loxodromic}\}
+\]
+is not contained in any discrete subgroup of $\R$. Example \ref{examplemargulis} shows that this result does not generalize to infinite-dimensional algebraic hyperbolic spaces. Indeed, if $G\leq\Isom(\H^\infty)$ is as in Example \ref{examplemargulis} and if $g = \pi_\lambda(\gamma)\in G$, then \eqref{BIM1} implies that
+\begin{align*}
+\log g'(g_-) = \lim_{n\to\infty} \frac1n \dogo{g^n} &= \lim_{n\to\infty}\cosh^{-1}\lambda^{\dogo{\gamma^n}}\\
+&= \log(\lambda)\lim_{n\to\infty}\frac1n \dogo{\gamma^n}\\ 
+&= \log(\lambda)\log \gamma'(\gamma_-),
+\end{align*}
+demonstrating that $\L$ is contained in the discrete subgroup $\log(\lambda)\Z \leq\R$.
+\end{remark}
+
+
+
+\section{Strongly discrete groups with infinite Poincar\'e exponent}
+We have already seen two examples of strongly discrete groups with infinite Poincar\'e exponent, namely the Edelstein-type Example \ref{exampleparabolicinfinite}, and the parabolic torsion Example \ref{exampleparabolictorsion}. We give three more examples here.
+%We give three examples of strongly discrete groups with infinite Poincar\'e exponent; two more examples were given in Section \ref{sectionparabolic} as Examples \ref{exampleparabolicinfinite} and \ref{exampleparabolictorsion}.% The first group acts on a proper $\R$-tree, the second acts convex-coboundedly on $\H^\infty$, and the last two act parabolically on $\H^\infty$.
+
+
+\begin{example}[A nonelementary strongly discrete group $G$ acting on a proper $\R$-tree $X$ and satisfying $\delta_G = \infty$]
+\label{exampleinfinitepoincare}
+%\ignore{
+%Let $V = \{(n,m)\in\N^2 : m \leq n\}$, and let $E$ be the symmetrization of the set
+%\[
+%\big\{((n,0),(n,m)) : 0 < m \leq n\big\} \cup \{\big((n,0),(n + 1,0)\big) : n\in\N\big\}.
+%\]
+%(Cf. Figure \internalmissingref).
+%}% end ignore
+%For each $n\in\N$ let $\Gamma_n = \Z/n!\Z$ (or more generally, let $\Gamma_n$ be any sufficiently large finite group), and let $\|\cdot\|_n:\Gamma_n\to\Rplus$ be defined by $\|\gamma\|_n = n$ ($\gamma\neq e$), $\|e\| = 0$. The functions $(\|\cdot\|_n)_{n\in\N}$ are clearly tree-geometric, so by Theorem \ref{theoremschottkyproductRtree} the function $\|\cdot\|:\Gamma\to\Rplus$ defined by \eqref{schottkyproductRtree} is also tree-geometric, where $\Gamma = \ast_{n\in\N}\Gamma_n$. So there exist an $\R$-tree $X$ and a homomorphism $\phi:\Gamma\to\Isom(X)$ such that $\dogo{\phi(\gamma)} = \|\gamma\|\all \gamma\in\Gamma$. 
+Let $Y = \Rplus$, let $P = \N$, and for each $p = n\in P$ let
+\[
+\Gamma_p = \Z/n!\Z
+\]
+(or more generally, let $\Gamma_p$ be any sufficiently large finite group). Let $(X,G)$ be the geometric product of $Y$ with $(\Gamma_p)_{p\in P}$, as defined below in Example \ref{examplegeometricproducts}. By Proposition \ref{propositionschottkyRtree}, $X$ is proper, and $G = \lb G_p\rb_{p\in P}$ is a global weakly separated Schottky product. So by Corollary \ref{corollaryschottkySD}, $G$ is strongly discrete. Clearly, $G$ is nonelementary. Finally, $\delta_G = \infty$ because for all $s\geq 0$,
+\[
+\Sigma_s(G) \geq \sum_{p\in P} \sum_{g\in \Gamma_p\butnot\{e\}} e^{-s\dogo g} = \sum_{p\in P} \#(\Gamma_p\butnot\{e\}) e^{-2s\dox p} = \sum_{n\in\N} (n! - 1) e^{-2ns} = \infty.
+\]
+\end{example}
+
+Applying a BIM representation gives:
+
+\begin{example}[A nonelementary strongly discrete convex-cobounded group acting on $\H^\infty$ and satisfying $\delta = \infty$]
+\label{exampleinfinitepoincareBIM}
+Cf. Remark \ref{remarkBIM} and the example above.
+%The example is the image of the group considered in Example \ref{exampleinfinitepoincare} under a BIM representation. The desired properties can be seen from Remark \ref{remarkBIM}.
+\end{example}
+
+\begin{example}[A parabolic strongly discrete group $G$ acting on $\H^\infty$ and satisfying $\delta_G = \infty$]
+\label{examplehaagerup}
+Since $\F_2(\Z)$ has the Haagerup property (Remark \ref{remarkhaagerup}), there is a homomorphism $\Phi:\F_2(\Z)\to\Isom(\BB)$ whose image $G = \Phi(\F_2(\Z))$ is strongly discrete. However, $\what G$ must have infinite Poincar\'e exponent by Corollary \ref{corollaryfiniteimpliesnilpotent}.
+\end{example}
+
+
+\section{Moderately discrete groups which are not strongly discrete}
+We have already seen one example of a moderately discrete group which is not strongly discrete, namely the Edelstein-type Example \ref{examplevalette} (parabolic acting on $\H^\infty$). We give three more examples here, and we will give one more example in Section \ref{subsectionpoincareirregular}, namely Example \ref{exampleAutTparttwo}. All five examples are are also examples of properly discontinuous actions, so they also demonstrate that proper discontinuity does not imply strong discreteness. (The fact that moderate discreteness (or even strong discreteness) does not imply proper discontinuity can be seen e.g. from Examples \ref{exampleparabolictorsion}, \ref{exampleinfinitepoincare}, and \ref{exampleinfinitepoincareBIM}, all of which are generated by torsion elements.)
+
+%The first example, a parabolic cyclic group, was already given as Example \ref{examplevalette}. The second example is an infinitely generated parabolic group and the third is a Schottky group. All three are also examples of properly discontinuous actions, so they also demonstrate that proper dicontinuity does not imply strong discreteness.
+
+\begin{example}[A parabolic group which acts properly discontinuously on $\H^\infty$ but is not strongly discrete]
+\label{exampletranslations}
+Let $\Z^\infty\subset\BB = \ell^2(\N)$ denote the set of all infinite sequences in $\Z$ with only finitely many nonzero entries. Let
+\[
+G := \{ \xx \mapsto \xx + \nn : \nn\in\Z^\infty \} \subset \Isom(\BB).
+\]
+Then $G$ acts properly discontinuously, since $\|(\xx + \nn) - \xx\| \geq 1$ for all $\xx\in\BB$ and $\nn\in\Z^\infty\butnot\{\0\}$. On the other hand, $G$ is not strongly discrete since $\|\nn\| = 1$ for infinitely many $\nn\in\Z^\infty$. By Observation \ref{observationisomE}, these properties also hold for the Poincar\'e extension $\what G\leq\Isom(\H^\infty)$.
+\end{example}
+
+\begin{example}[A nonelementary group $G$ which acts properly discontinuously on a separable $\R$-tree $X$ but is not strongly discrete]
+\label{examplenotstronglydiscrete}
+Let $X$ be the Cayley graph of $\Gamma = \F_\infty(\Z)$ with respect to its standard generators, and let $\Phi:\Gamma\to\Isom(X)$ be the natural action. Then $G = \Phi(\Gamma)$ acts properly discontinuously on $X$. On the other hand, since by definition each generator $g\in G$ satisfies $\dogo g = 1$, $G$ is not strongly discrete.
+\end{example}
+
+Applying a BIM representation gives:
+
+\begin{example}[A nonelementary group which acts properly discontinuously on $\H^\infty$ but is not strongly discrete]
+\label{examplenotstronglydiscreteBIM}
+Let $X$ and $G$ be as in Example \ref{examplenotstronglydiscrete}. Fix $\lambda > 1$ large to be determined, and let $\pi_\lambda:\Isom(X)\to \Isom(\H^\infty)$ be the corresponding BIM representation. By Remark \ref{remarkBIM}, the group $\pi_\lambda(G)$ is a nonelementary group which acts isometrically on $\H^\infty$ but is not strongly discrete. To complete the proof, we must show that $\pi_\lambda(G)$ acts properly discontinuously. By Proposition \ref{propositionSproductMDWDPD}, it suffices to show that $G = \prod_1^\infty \pi_\lambda(\gamma_i)^\Z$ is a global strongly separated Schottky group. And indeed, if we denote the generators of $\Gamma = \F_\infty(\Z)$ by $\gamma_i$ ($i\in\N$), and if we consider the balls $U_i^\pm = B(\Psi_\lambda((\gamma_i)_\pm),1/2)$ (taken with respect to the Euclidean metric), and if $\lambda$ is sufficiently large, then the sets $U_i = U_i^+\cup U_i^-$ form a global strongly separated Schottky system for $G$.
+\end{example}
+
+\begin{remark}
+\label{remarkMDuncountable}
+The groups of Examples \ref{examplenotstronglydiscrete}-\ref{examplenotstronglydiscreteBIM} can be easily modified to make the group $G$ uncountable at the cost of separability; let $X$ be the Cayley graph of $\F_{\#(\R)}(\Z)$ in Example \ref{examplenotstronglydiscrete}, and applying (a modification of) Theorem \ref{theoremBIM} gives an action on $\H^{\#(\R)}$.
+\end{remark}
+
+\begin{remark*}
+By Proposition \ref{propositionpoincareregular}, the groups of Examples \ref{examplenotstronglydiscrete}-\ref{examplenotstronglydiscreteBIM} are all Poincar\'e regular and therefore satisfy $\HD(\Lur) = \infty$.
+\end{remark*}
+
+\section{Poincar\'e irregular groups}
+\label{subsectionpoincareirregular}
+
+We give six examples of Poincar\'e irregular groups, providing counterexamples to many conceivable generalizations of Proposition \ref{propositionpoincareregular}.
+
+
+\begin{example}[A Poincar\'e irregular nonelementary group $G$ acting on a proper $\R$-tree $X$ which is weakly discrete but not COT-discrete]
+\label{exampleAutT}
+Let $X$ be the Cayley graph of $V = \F_2(\Z)$ (equivalently, let $X$ be the unique $3$-regular unweighted simplicial tree), and let $G = \Isom(X)$. Since $\#(\Stab(G;e)) = \infty$, $G$ is not strongly discrete, so by Proposition \ref{propositionparametricdiscreteness}, $G$ is also not COT-discrete. (The fact that $G$ is not COTD can also be deduced from Proposition \ref{propositionpoincareregular}, since we will soon show that $G$ is Poincar\'e irregular.)
+
+On the other hand, suppose $x\in X$. Then either $x\in V$, or $x = ((v_x,w_x),t_x)$ for some $(v_x,w_x)\in E$ and $t_x\in (0,1)$. In the first case, we observe that $G(x) = V$, while in the second we observe that
+\[
+G(x) = \{((v,w),t_x) : (v,w)\in E\}.
+\]
+In either case $x$ is not an accumulation point of $G(x)$. Thus $G$ is weakly discrete.
+
+To show that $G$ is Poincar\'e irregular, we first observe that $\delta = \infty$ since $G$ is not strongly discrete. On the other hand, Proposition \ref{propositionbasicmodified}(iv) can be used to compute that $\w\delta = \log_b(2)$. (Alternatively, one may use Theorem \ref{theorembishopjonesmodified} together with the fact that $\HD(\del X) = \log_b(2)$.)
+\end{example}
+
+%\begin{remark}
+%\label{remarkexampleAutT}
+%Example \ref{exampleAutT} shows that Proposition \ref{propositionpoincareregular} is not true for the class of weakly discrete actions on proper $\R$-trees.
+%\end{remark}
+
+\begin{remark*}
+The group $G$ in Example \ref{exampleAutT} is uncountable. However, if $G$ is replaced by a countable dense subgroup (cf. Remark \ref{remarkpolish}) then the conclusions stated above will not be affected. This remark applies also to Examples \ref{exampleAutTBIM} and \ref{exampleAutTparttwo} below.
+\end{remark*}
+
+Applying a BIM representation to the group of Example \ref{exampleAutT} yields:
+
+\begin{example}[A Poincar\'e irregular nonelementary group acting irreducibly on $\H^\infty$ which is UOT-discrete but not COT-discrete]
+\label{exampleAutTBIM}
+Let $G\leq\Isom(X)$ be as in Example \ref{exampleAutT} and let $\pi_\lambda:\Isom(X)\to \Isom(\H^\infty) \equiv \O(\LL)$ be a BIM representation. Remark \ref{remarkBIM} shows that the group $\pi_\lambda(G)$ is Poincar\'e irregular and is not COT-discrete. Note that it follows from either Proposition \ref{propositionparametricdiscreteness}(ii) or Proposition \ref{propositionpoincareregular} that $\pi_\lambda(G)$ is not weakly discrete, despite $G$ being weakly discrete.
+
+To complete the proof, we must show that $\pi_\lambda(G)$ is UOT-discrete. Let $\Psi_\lambda:X\to\H^\infty\subset\LL$ be the BIM embedding corresponding to the BIM representation $\pi_\lambda$, and write $\zz = \Psi_\lambda(\zero)$; without loss of generality we may assume $\zz = (1,\0)$, so that $\QQ(\xx) = \|\xx\|^2$ for all $\xx\in\zz^\perp$.
+
+Now fix $T = \pi_\lambda(g)\in \pi_\lambda(G)\butnot\{\id\}$, and we will show that $\|T - I\|\geq \min(\sqrt 2,\lambda - 1) > 0$. We consider two cases. If $g(\zero)\neq\zero$, then $\dogo g\geq 1$, which implies that $|B_\QQ(\zz,T\zz)| \geq \lambda$ and thus that $\|T\zz - \zz\| \geq |B_\QQ(\zz,T\zz - \zz)| \geq \lambda - 1$. So suppose $g(\zero) = \zero$. Since $g\neq\id$, we have $g(x) \neq x$ for some $x\in V$; choose such an $x$ so as to minimize $\dox x$. Letting $y = \geo\zero x_{\dox x - 1}$, the minimality of $\dox x$ implies that $g(y) = y$ (cf. Figure \ref{figureexampleAutTBIM}).
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-2.35,-0.03) rectangle (3.55,1.8);
+\draw (-1.16,0.24)-- (0,0.68);
+\draw (0,0.68)-- (0.88,0.42);
+\draw (0.88,0.42)-- (1.68,0.74);
+\draw (1.68,0.74)-- (2.26,1.48);
+\draw (1.68,0.74)-- (2.32,0.28);
+\begin{scriptsize}
+
+\fill [color=black] (1.68,0.74) circle (1pt);
+\draw[color=black] (1.48,0.94) node {$y$};
+
+\fill [color=black] (-1.16,0.24) circle (1pt);
+\draw[color=black] (-1.41,0.21) node {$\zero$};
+\fill [color=black] (2.26,1.48) circle (1pt);
+\draw[color=black] (2.64,1.63) node {$g(x)$};
+\fill [color=black] (2.32,0.28) circle (1pt);
+\draw[color=black] (2.55,0.27) node {$x$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[Geometry of automorphisms of a simplicial tree]{The point $y$ is the center of the triangle $\Delta(\zero,x,g(x))$. Both $\zero$ and $y$ are fixed by $g$. Intuitively, this means that $g$ (really, $\pi_\lambda(g)$) must have a significant rotational component in order to ``swing up'' the point $x$ to the point $g(x)$.}
+\label{figureexampleAutTBIM}
+\end{center}
+\end{figure}
+
+
+Let $\xx = \Phi_\lambda(x)$ and $\yy = \Phi_\lambda(y)$, so that $T\yy = \yy$ but $T\xx\neq \xx$. Let $\ww_1 = \xx - \lambda \yy$ and $\ww_2 = T\ww_1 = T\xx - \lambda\yy$. An easy computation based on \eqref{BIM1} and \eqref{distanceinL} gives $B_\QQ(\zz,\ww_1) = B_\QQ(\zz,\ww_2) = B_\QQ(\ww_1,\ww_2) = 0$ (cf. \eqref{fvw}). It follows that
+\begin{align*}
+\|(T - I)\ww_1\| = \|\ww_2 - \ww_1\| &= \sqrt{\QQ(\ww_2 - \ww_1)}\\ 
+&= \sqrt{\QQ(\ww_2) + \QQ(\ww_1)}\\ 
+&= \sqrt{2\QQ(\ww_1)} = \sqrt 2 \|\ww_1\|,
+\end{align*}
+and thus $\|T - I\| \geq \sqrt 2$.
+\end{example}
+
+\begin{remark}
+\label{remarkfocalfractal}
+Let $G,\pi_\lambda$ be as above and fix $\xi\in \del X$. Then $\pi_\lambda(G_\xi)$ is a focal group acting irreducibly on $\H^\infty$ whose limit set is totally disconnected. This contrasts with the finite-dimensional situation, where any nondiscrete group (and thus any focal group) acting irreducibly on $\H^d$ is of the first kind \cite[Theorem 2]{Greenberg}.
+\end{remark}
+
+%\begin{remark}
+%Example \ref{exampleAutTBIM} shows that Proposition \ref{propositionpoincareregular} is not true for the class of UOT-parametrically discrete groups acting on $\H^\infty$.
+%\end{remark}
+
+
+\begin{example}[A Poincar\'e irregular nonelementary group $G'$ acting properly discontinuously on a hyperbolic metric space $X'$]
+\label{exampleAutTparttwo}
+Let $G$ be the group described in Example \ref{exampleAutT}. Let $X' = G$ and let
+\[
+\dist'(g,h) := \begin{cases}
+1\vee\dist(g(\zero),h(\zero)) & g\neq h\\
+0 & g = h
+\end{cases}.
+\]
+Since the orbit map $X'\ni g\to g(\zero)\in X$ is a quasi-isometric embedding, $(X',\dist')$ is a hyperbolic metric space. The left action of $G$ on $X'$ is isometric and properly discontinuous. Denote its image in $\Isom(X')$ by $G'$. Clearly $\delta_{G'} = \delta_G$ and $\w\delta_{G'} = \w\delta_G$ (the Poincar\'e exponent and modified Poincar\'e exponent do not depend on whether $G$ is acting on $X$ or on $X'$), so $G'$ is Poincar\'e irregular.
+\end{example}
+
+The next set of examples have a somewhat different flavor.
+
+\begin{example}[A Poincar\'e irregular group $G$ acting on $\H^d$]
+\label{examplenondiscrete}
+Fix $2\leq d < \infty$, and let $G$ be any nondiscrete subgroup of $\Isom(\H^d)$. Then 
+\[
+\w\delta_G = \HD(\Lr) \leq \HD(\del\H^d) = d - 1.
+\] 
+On the other hand, since $G$ is not strongly discrete we have $\delta_G = \infty$. Thus $G$ is Poincar\'e irregular.
+\end{example}
+
+In Example \ref{examplenondiscrete}, $G$ could be a Lie subgroup with nontrivial connected component (e.g. $G = \Isom(\H^d)$, but this is not the only possibility - $G$ can even be finitely generated, as we now show:
+
+\begin{lemma}
+\label{lemmafreenotschottky}
+Let $H$ be a connected algebraic group which contains a copy of the free group $\F_2(\Z)$. Then there exist $g_1,g_2\in H$ such that $G := \lb g_1,g_2\rb$ is a nondiscrete group isomorphic to $\F_2(\Z)$.
+\end{lemma}
+By Lemma \ref{lemmapingpong}, the group $G$ cannot be a Schottky product - thus this lemma provides an example of a free product which is not a Schottky product.
+\begin{proof}
+An orders-of-magnitude argument shows that there exists $\epsilon > 0$ such that for any $h_1,h_2\in H$ with $\dist(\id,h_i)\leq \epsilon$, we have $$\dist(\id,[h_1,h_2]) \leq \frac12\max_i \dist(\id,h_i),$$ where $[h_1,h_2]$ denotes the commutator of $h_1$ and $h_2$. Thus for any $g_1,g_2\in H$ such that $\dist(\id,g_i)\leq \epsilon$, letting
+\[
+h_1 = g_1, \;\; h_2 = g_2, \;\; h_{n + 2} = [h_n,h_{n + 1}]
+\]
+gives $h_n\to\id$. But the elements $h_n$ are the images of nontrivial words in the free group $\F_2(\Z)$ under the natural homomorphism, so if this homomorphism is injective then $G$ is not discrete. For each element $\gg\in \F_2(\Z)$, the set of homomorphisms $\pi:\F_2(\Z)\to H$ such that $\pi(\gg) = \id$ is a proper algebraic subset of the set of all homomorphisms, and therefore has measure zero. Thus for typical $g_1,g_2$ satisfying $\dist(\id,g_i)\leq \epsilon$, $G$ is a nondiscrete free group.
+\end{proof}
+
+Instead of a Lie subgroup of $\Isom(\H^d)$, we could also take a locally compact subgroup of $\Isom(\H^\infty)$; there are many interesting examples of such subgroups. In particular, one such example is given by the following theorem:
+
+\begin{theorem}[Monod--Py representation theorem, {\cite[Theorems B and C]{MonodPy}}]
+\label{theoremmonodpy}
+For any $d\in\N$ and $0 < t < 1$, there exist an irreducible representation $\rho_t:\Isom(\H^d)\to\Isom(\H^\infty)$ and a $\rho_t$-equivariant embedding $f_t:\bord\H^d\to\bord\H^\infty$ such that
+\begin{equation}
+\label{monodpy}
+\dist(f_t(x),f_t(y)) \asymp_\plus t \dist(x,y) \text{ for all $x,y\in\H^d$.}
+\end{equation}
+%(Cf. Figure \ref{figuremonodpy}\makefigure.)
+The pair $(\rho_t,f_t)$ is unique up to conjugacy.
+\end{theorem}
+
+%\begin{figure}
+%\caption{In order for a squished version of $\H^2$ to fit into $\H^\infty$, it needs to curve along infinitely many dimensions. }
+%\label{figuremonodpy}
+%\end{figure}
+
+
+\begin{example}[A Poincar\'e irregular nonelementary group $G$ acting irreducibly on $\H^\infty$]
+\label{examplemonodpy}
+Fix $d\in\N$ and $0 < t < 1$, and let $\rho_t$, $f_t$ be as in Theorem \ref{theoremmonodpy}. Let $\Gamma = \Isom(\H^d)$, and let $G = \rho_t(\Gamma)$. As $G$ is locally compact, the modified Poincar\'e exponent of $G$ can be computed using Definition \ref{definitionmodified1}:
+\begin{align*}
+\w\delta_G &= \inf\left\{s\geq 0 : \int_G e^{-s\dogo g}\;\dee g < \infty \right\}\\
+&= \inf\left\{s\geq 0 : \int_\Gamma e^{-s\dogo{\rho_t(\gamma)}}\;\dee \gamma < \infty \right\}\\
+&= \inf\left\{s\geq 0 : \int_\Gamma e^{-st\dogo{\gamma}}\;\dee \gamma < \infty \right\}\\
+&= \frac{\w\delta_\Gamma}{t} = \frac{\HD(\Lambda_\Gamma)}{t} = \frac{d - 1}{t}\cdot
+\end{align*}
+On the other hand, since $G$ is convex-cobounded by \cite[Theorem D]{MonodPy}, Theorem \ref{theoremCCB} shows that $\Lambda_G = \Lr(G) = \Lur(G)$. (It may be verified that the strong discreteness assumption is not needed for those directions.) Combining with Theorem \ref{theorembishopjonesmodified}, we have
+\[
+\HD(\Lambda_G) = \HD(\Lr(G)) = \HD(\Lur(G)) = \frac{d - 1}{t} > d - 1 = \HD(\Lambda_\Gamma).
+\]
+In particular, it follows that the map $f_t:\Lambda_\Gamma\to\Lambda_G$ cannot be smooth or even Lipschitz. This contrasts with the smoothness of $f_t$ in the interior (see \cite[Theorem C(2)]{MonodPy}).
+\end{example}
+
+\begin{remark*}
+The Hausdorff dimension of $\Lambda_G$ may also be computed directly from the formulas \eqref{monodpy} and \eqref{distanceasymptotic}, which imply that the map $f_t\given\Lambda_\Gamma$ and its inverse are H\"older continuous of exponents $t$ and $1/t$, respectively. However, the computation above gives a nice application of the Poincar\'e irregular case of Theorem \ref{theorembishopjonesmodified}.
+\end{remark*}
+
+In Examples \ref{examplenondiscrete} and \ref{examplemonodpy}, the group $G$ does not satisfy any of the discreteness conditions discussed in Chapter \ref{sectiondiscreteness}. Our next example satisfies a weak discreteness condition:
+
+
+\begin{example}[A Poincar\'e irregular nonelementary COT-discrete group $G$ acting reducibly on $\H^\infty$ which is not weakly discrete]
+\label{examplepoincareextension}
+Let $\Gamma = \F_2(\Z)$ and let $\iota_1:\Gamma\to\Isom(\H^d) \equiv \O(\LL^{d + 1})$ be an injective homomorphism whose image is a nondiscrete group; this is possible by Lemma \ref{lemmafreenotschottky}. Define $\iota_2:\Gamma\to\O(\HH^\Gamma)$ by letting
+\[
+\iota_2(\gamma)[\ee_\delta] = \ee_{\gamma\delta}.
+\]
+Note that $\iota_2(\Gamma)$ is COT-discrete, since $\|\iota_2(\gamma)\ee_e - \ee_e\| = \sqrt 2$ for all $\gamma\in\Gamma\butnot\{e\}$.
+
+The direct sum $\iota := \iota_1\oplus\iota_2:\Gamma\to\O(\LL^{d + 1}\times\HH^\Gamma)$ is an isometric action of $\Gamma$ on $\H^{\Gamma\dot\cup\{1,\ldots,d\}} \equiv \H^\infty$. Let $G = \iota(\Gamma)$. Since $\iota_1(\Gamma)$ is the restriction of $G$ to the invariant totally geodesic subspace $\H^d$, we have $\delta_G = \delta_{\iota_1(\Gamma)} = \infty$ and $\w\delta_G = \w\delta_{\iota_1(\Gamma)} < \infty$, so $G$ is Poincar\'e irregular. On the other hand, $G$ is COT-discrete because $\iota_2(\Gamma)$ is. Finally, the fact that $G$ is not weakly discrete can be seen from either Observation \ref{observationrestrictions} or Proposition \ref{propositionpoincareregular}.
+\end{example}
+
+
+
+\section{Miscellaneous counterexamples}
+Our remaining examples include a COTD group which is not WD and a WD group which is not MD.
+
+\begin{example}[A nonelementary COT-discrete group $G$ which acts irreducibly on $\H^\infty$ and satisfies $\delta_G = \w\delta_G = \infty$ but which is not weakly discrete]
+\label{examplepoincareextensiontwo}
+Let $G_1\leq\Isom(\H^\infty)$ be as in Example \ref{examplepoincareextension}, and let $g$ be a loxodromic isometry whose fixed points are $g_\pm = [\ee_0 \pm \ee_e]\in\del\H^{\Gamma\dot\cup\{1,\ldots,d\}}\subset \proj\LL^{\Gamma\dot\cup\{0,\ldots,d\}}$. Then for $n$ sufficiently large, the product $G = \lb G_1,(g^n)^\Z\rb$ is a global strongly separated Schottky product. By Lemma \ref{lemmapingpong}, $G$ is COT-discrete. Since $G$ contains $G_1$, $G$ is not weakly discrete.
+
+The fact that $\w\delta_G = \infty$ follows from either Proposition \ref{propositionSproductexponent}(iii) or Proposition \ref{propositionpoincareregular}. So the only thing left to show is that $G$ acts irreducibly. We assume that the original group $\iota_1(\Gamma)$ acts irreducibly. Then if $[V]\subset\H^\infty$ is a $G$-invariant totally geodesic subspace containing the limit set of $G$, then $\LL^{d + 1}\subset V$ and so $V = \LL^{d + 1}\oplus V_2$ for some $V_2\subset \HH^\Gamma$. But $[\ee_0 + \ee_e]\in\Lambda_G$, so $\ee_e\in V_2$. The $G$-invariance of $[V]$ implies that $V_2$ is $\iota_2(\Gamma)$-invariant, and thus that $V_2 = \HH^\Gamma$ and so $[V] = \H^\infty$.
+\end{example}
+\begin{remark*}
+Example \ref{examplepoincareextensiontwo} gives a good example of how Theorem \ref{theorembishopjonesmodified} gives interesting information even when $\w\delta_G = \infty$. Namely, in this example Theorem \ref{theorembishopjonesmodified} tells us that $\HD(\Lr) = \HD(\Lur) = \infty$, which is not at all obvious simply from looking at the group.
+\end{remark*}
+
+\begin{example}[An elliptic group $G$ acting on $\H^\infty$ which is weakly discrete but not moderately discrete]
+\label{exampleMDWD}
+Let $\HH = \ell^2(\Z)$, and let $T\in\O(\HH)$ be the shift map $T(\xx) = (x_{n + 1})_{n = 1}^\infty$. Let $G$ be the cyclic group $G = T^\Z\leq\O(\HH) \leq \Isom(\B^\infty)$. Since $g(\0) = \0$ for all $g\in G$, $G$ is not moderately discrete. On the other hand, fix $\xx\in\HH\butnot\{\0\}$. Then $T^n(\xx) \to \0$ weakly as $n\to \pm \infty$, so $\#\{n\in\Z : \|T^n(\xx) - \xx\| \leq \|\xx\|/2\} < \infty$. Thus $G$ is weakly discrete.
+\end{example}

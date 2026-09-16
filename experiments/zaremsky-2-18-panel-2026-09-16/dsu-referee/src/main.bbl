@@ -1,0 +1,822 @@
+\providecommand{\bysame}{\leavevmode\hbox to3em{\hrulefill}\thinspace}
+\providecommand{\MR}{\relax\ifhmode\unskip\space\fi MR }
+% \MRhref is called by the amsart/book/proc definition of \MR.
+\providecommand{\MRhref}[2]{%
+  \href{http://www.ams.org/mathscinet-getitem?mr=#1}{#2}
+}
+\providecommand{\href}[2]{#2}
+\begin{thebibliography}{100}
+
+\bibitem{AdeboyeWei}
+I.~Adeboye and G.~Wei, \emph{On volumes of hyperbolic orbifolds}, Algebr. Geom.
+  Topol. \textbf{12} (2012), no. 1, 215--233.
+
+\bibitem{AdelmannGerbracht}
+Clemens Adelmann and Eberhard H.-A. Gerbracht, \emph{Letters from {W}illiam
+  {B}urnside to {R}obert {F}ricke: automorphic functions, and the emergence of
+  the {B}urnside problem}, Arch. Hist. Exact Sci. \textbf{63} (2009), no.~1,
+  33--50. \MR{2470902}
+
+\bibitem{Agol}
+I.~Agol, \emph{Tameness of hyperbolic 3-manifolds},
+  \url{http://arxiv.org/abs/math/0405568}, preprint 2004.
+
+\bibitem{Ahlfors}
+L.~V. Ahlfors, \emph{{M}\"obius transformations in several dimensions}, Ordway
+  Professorship Lectures in Mathematics, University of Minnesota, School of
+  Mathematics, Minneapolis, Minn., 1981.
+
+\bibitem{Akaza2}
+T.~Akaza, \emph{Poincar{\'e} theta series and singular sets of {S}chottky
+  groups}, Nagoya Math. J. \textbf{24} (1964), 43--65.
+
+\bibitem{Aleksandrov}
+A.~D. Aleksandrov, \emph{A theorem on triangles in a metric space and some of
+  its applications}, Trudy Mat. Inst. Steklov., v 38, Trudy Mat. Inst.
+  Steklov., v 38, Izdat. Akad. Nauk SSSR, Moscow, 1951, pp.~5--23.
+
+\bibitem{Allcock}
+D.~Allcock, \emph{Reflection groups on the octave hyperbolic plane}, J. Algebra
+  \textbf{213} (1999), no. 2, 467--498.
+
+\bibitem{Alperin}
+Roger~C. Alperin, \emph{An elementary account of {S}elberg's lemma}, Enseign.
+  Math. (2) \textbf{33} (1987), no.~3-4, 269--273. \MR{925989}
+
+\bibitem{Ancona}
+A.~Ancona, \emph{Convexity at infinity and {B}rownian motion on manifolds with
+  unbounded negative curvature}, Rev. Mat. Iberoamericana \textbf{10} (1994),
+  no. 1, 189--220.
+
+\bibitem{AFT}
+J.~W. Anderson, K.~Falk, and P.~Tukia, \emph{Conformal measures associated to
+  ends of hyperbolic {$n$}-manifolds}, Q. J. Math. \textbf{58} (2007), no. 1,
+  1--15.
+
+\bibitem{Anderson}
+M.~T. Anderson, \emph{The {D}irichlet problem at infinity for manifolds of
+  negative curvature}, J. Differential Geom. \textbf{18} (1983), no. 4,
+  701--721.
+
+\bibitem{Apanasov}
+B.~N. Apanasov, \emph{Discrete groups in space and uniformization problems.
+  {T}ranslated and revised from the 1983 {R}ussian original}, Mathematics and
+  its Applications (Soviet Series), 40, Kluwer Academic Publishers Group,
+  Dordrecht, 1991.
+
+\bibitem{Atkin}
+C.~J. Atkin, \emph{The {H}opf-{R}inow theorem is false in infinite dimensions},
+  Bull. Lond. Math. Soc. \textbf{7} (1975), no. 3, 261--266.
+
+\bibitem{Baez}
+J.~C. Baez, \emph{The octonions}, Bull. Amer. Math. Soc. (N.S.) \textbf{39}
+  (2002), no. 2, 145--205.
+
+\bibitem{BGS}
+W.~Ballmann, M.~Gromov, and V.~Schroeder, \emph{Manifolds of nonpositive
+  curvature}, Progress in Mathematics, 61, Birkh\"auser Boston, Inc., Boston,
+  MA, 1985.
+
+\bibitem{Bass}
+H.~Bass, \emph{The degree of polynomial growth of finitely generated nilpotent
+  groups}, Proc. London Math. Soc. (3) \textbf{25} (1972), 603--614.
+
+\bibitem{Beardon2}
+A.~F. Beardon, \emph{The {H}ausdorff dimension of singular sets of properly
+  discontinuous groups}, Amer. J. Math. \textbf{88} (1966), 722--736.
+
+\bibitem{Beardon1}
+\bysame, \emph{The exponent of convergence of {P}oincar\'e series}, Proc.
+  London Math. Soc. (3) \textbf{18} (1968), 461--483.
+
+\bibitem{Beardon3}
+\bysame, \emph{Inequalities for certain {F}uchsian groups}, Acta Math. (1971),
+  221--258.
+
+\bibitem{Beardon_book}
+\bysame, \emph{The geometry of discrete groups}, Graduate Texts in Mathematics,
+  vol.~91, Springer-Verlag, New York, 1983.
+
+\bibitem{BeardonMaskit}
+A.~F. Beardon and B.~Maskit, \emph{Limit points of {K}leinian groups and finite
+  sided fundamental polyhedra}, Acta Math. \textbf{132} (1974), 1--12.
+
+\bibitem{BHV}
+M.~E.~B. Bekka, P.~de~la Harpe, and A.~Valette, \emph{{K}azhdan's property
+  ({T})}, New Mathematical Monographs, 11, Cambridge University Press,
+  Cambridge, 2008.
+
+\bibitem{Belolipetsky_survey}
+M.~V. Belolipetsky, \emph{Hyberbolic orbifolds of small volume},
+  \url{http://arxiv.org/abs/1402.5394}, preprint 2014.
+
+\bibitem{BernikDodson}
+V.~I. Bernik and M.~M. Dodson, \emph{Metric {D}iophantine approximation on
+  manifolds}, Cambridge Tracts in Mathematics, vol. 137, Cambridge University
+  Press, Cambridge, 1999.
+
+\bibitem{Bers}
+L.~Bers, \emph{On boundaries of {T}eichm\"uller spaces and on {K}leinian
+  groups. {I}}, Ann. of Math. (2) \textbf{91} (1970), 570--600.
+
+\bibitem{Bestvina_survey}
+M.~Bestvina, \emph{The topology of {$\mathrm{Out}(F_n)$}}, Proceedings of the
+  International Congress of Mathematicians, Vol. II (Beijing, 2002), Higher Ed.
+  Press, Beijing, 2002, pp.~373--384.
+
+\bibitem{BestvinaFeighn}
+M.~Bestvina and M.~Feighn, \emph{Hyperbolicity of the complex of free factors},
+  Adv. Math. \textbf{256} (2014), 104--155.
+
+\bibitem{BishopJones}
+C.~J. Bishop and P.~W. Jones, \emph{{H}ausdorff dimension and {K}leinian
+  groups}, Acta Math. \textbf{179} (1997), no. 1, 1--39.
+
+\bibitem{BHM}
+S.~Blach\`ere, P.~Ha\"issinsky, and P.~Mathieu, \emph{Harmonic measures versus
+  quasiconformal measures for hyperbolic groups}, Ann. Sci. \'Ec. Norm.
+  Sup\'er. (4) \textbf{44} (2011), no. 4, 683--721.
+
+\bibitem{BlancCantat}
+J.~Blanc and S.~Cantat, \emph{Dynamical degrees of birational transformations
+  of projective surfaces}, \url{http://arxiv.org/abs/1307.0361}, preprint 2013.
+
+\bibitem{BonkSchramm}
+M.~Bonk and O.~Schramm, \emph{Embeddings of {G}romov hyperbolic spaces}, Geom.
+  Funct. Anal. \textbf{10} (2000), no. 2, 266--306.
+
+\bibitem{Borbely}
+A.~Borb\'ely, \emph{The nonsolvability of the {D}irichlet problem on negatively
+  curved manifolds}, Differential Geom. Appl. \textbf{8} (1998), no. 3,
+  217--237.
+
+\bibitem{Bourdon}
+M.~Bourdon, \emph{Structure conforme au bord et flot g\'eod\'esique d'un
+  {CAT}(-1)-espace ({C}onformal structure at the boundary and geodesic flow of
+  a {CAT}(-1)-space)}, Enseign. Math. (2) \textbf{41} (1995), no. 1--2, 63--102
+  (French).
+
+\bibitem{Bowditch_geometrical_finiteness}
+B.~H. Bowditch, \emph{Geometrical finiteness for hyperbolic groups}, J. Funct.
+  Anal. \textbf{113} (1993), no. 2, 245--317.
+
+\bibitem{Bowditch_convexity}
+\bysame, \emph{Some results on the geometry of convex hulls in manifolds of
+  pinched negative curvature}, Comment. Math. Helv. \textbf{69} (1994), no. 1,
+  49--81.
+
+\bibitem{Bowditch_geometrical_finiteness2}
+\bysame, \emph{Geometrical finiteness with variable negative curvature}, Duke
+  Math. J. \textbf{77} (1995), no. 1, 229--274.
+
+\bibitem{Bowditch_relatively_hyperbolic}
+\bysame, \emph{Relatively hyperbolic groups}, Internat. J. Algebra Comput.
+  \textbf{22} (2012), no. 3, 66 pp.
+
+\bibitem{BGT}
+E.~Breuillard, B.~Green, and T.~C. Tao, \emph{Approximate subgroups of linear
+  groups}, Geom. Funct. Anal. \textbf{21} (2011), no. 4, 774--819.
+
+\bibitem{BridsonHaefliger}
+M.~R. Bridson and A.~Haefliger, \emph{Metric spaces of non-positive curvature},
+  Grundlehren der Mathematischen Wissenschaften, vol. 319, Springer-Verlag,
+  Berlin, 1999.
+
+\bibitem{BIM}
+M.~Burger, A.~Iozzi, and N.~Monod, \emph{Equivariant embeddings of trees into
+  hyperbolic spaces}, Int. Math. Res. Not. (2005), no. 22, 1331--1369.
+
+\bibitem{BurgerMozes}
+M.~Burger and S.~Mozes, \emph{{CAT}(-1)-spaces, divergence groups and their
+  commensurators}, J. Amer. Math. Soc. \textbf{9} (1996), no. 1, 57--93.
+
+\bibitem{Buyalo}
+S.~Buyalo, \emph{Geodesics in {H}adamard spaces}, {{A}lgebra i {A}naliz {\bf
+  10} (1998), no. 2, 93--123 ({R}ussian), translation in St. Petersburg Math.
+  J.} \textbf{10} (1999), no. 2, 293--313.
+
+\bibitem{CalegariGabai}
+D.~Calegari and D.~Gabai, \emph{Shrinkwrapping and the taming of hyperbolic
+  3-manifold}, J. Amer. Math. Soc. \textbf{19} (2006), no. 2, 385--446.
+
+\bibitem{Cannon}
+J.~W. Cannon, \emph{The combinatorial structure of cocompact discrete
+  hyperbolic groups}, Geom. Dedicata \textbf{16} (1984), no. 2, 123--148.
+
+\bibitem{CFKP}
+J.~W. Cannon, W.~J. Floyd, R.~W. Kenyon, and W.~R. Parry, \emph{Hyperbolic
+  geometry}, Flavors of geometry, Math. Sci. Res. Inst. Publ., vol.~31,
+  Cambridge Univ. Press, Cambridge, 1997, pp.~59--115.
+
+\bibitem{Cantat_Cremona}
+S.~Cantat, \emph{The {C}remona group in two variables}, Proceedings of the
+  sixth European Congress of Math., pp. 211-225 (Europ. Math. Soc., 2013),
+  2013, available at
+  \url{http://perso.univ-rennes1.fr/serge.cantat/Articles/ecm.pdf}.
+
+\bibitem{CantatLamy}
+S.~Cantat and S.~Lamy, \emph{Normal subgroups in the {C}remona group, with an
+  appendix by {Y}ves de {C}ornulier}, Acta Math. \textbf{210} (2013), no. 1,
+  31--94.
+
+\bibitem{CCMT}
+P.-E. Caprace, Y.~de~Cornulier, N.~Monod, and R.~Tessera, \emph{Amenable
+  hyperbolic groups}, \url{http://arxiv.org/abs/1202.3585v1}, preprint 2012.
+
+\bibitem{Champetier}
+C.~Champetier, \emph{Propri\'et\'es statistiques des groupes de pr\'esentation
+  finie (statistical properties of finitely presented groups)}, Adv. Math.
+  \textbf{116} (1995), no. 2, 197--262 (French).
+
+\bibitem{CCJJV}
+P.-A. Cherix, M.~G. Cowling, P.~Jolissaint, P.~Julg, and A.~Valette,
+  \emph{Groups with the {H}aagerup property: {G}romov's a-{T}-menability},
+  Progress in Mathematics, vol. 197, Birkh\"auser Verlag, Basel, 2001.
+
+\bibitem{Chiswell}
+I.~M. Chiswell, \emph{Introduction to {$\Lambda$}-trees}, World Scientific
+  Publishing Co., Inc., River Edge, NJ, 2001.
+
+\bibitem{Choucroun}
+F.~Choucroun, \emph{Arbres, espaces ultram\'etriques et bases de structure
+  uniforme ({T}rees, ultrametric spaces and bases with uniform structure)},
+  Geom. Dedicata \textbf{53} (1994), no.~1, 69--74 (French).
+
+\bibitem{Coornaert}
+M.~Coornaert, \emph{Mesures de {P}atterson-{S}ullivan sur le bord d'un espace
+  hyperbolique au sens de {G}romov ({P}atterson-{S}ullivan measures on the
+  boundary of a hyperbolic space in the sense of {G}romov)}, Pacific J. Math.
+  \textbf{159} (1993), no. 2, 241--270 (French).
+
+\bibitem{CorletteIozzi}
+K.~Corlette and A.~Iozzi, \emph{Limit sets of discrete groups of isometries of
+  exotic hyperbolic spaces}, Trans. Amer. Math. Soc. \textbf{351} (1999), no.
+  4, 1507--1530.
+
+\bibitem{DOP}
+F.~Dal'bo, J.-P. Otal, and M.~Peign\'e, \emph{S\'eries de {P}oincar\'e des
+  groupes g\'eom\'etriquement finis. ({P}oincar\'e series of geometrically
+  finite groups)}, Israel J. Math. \textbf{118} (2000), 109--124 (French).
+
+\bibitem{DPPS}
+F.~Dal'bo, M.~Peign\'e, J.-C. Picaud, and A.~Sambusetti, \emph{On the growth of
+  quotients of {K}leinian groups}, Ergodic Theory Dynam. Systems \textbf{31}
+  (2011), no. 3, 835--851.
+
+\bibitem{DSU2}
+Tushar Das, David Simmons, and Mariusz Urba{\'n}ski, \emph{Geometry and
+  dynamics in {G}romov hyperbolic metric spaces {II}: {T}hermodynamic
+  formalism}, in preparation.
+
+\bibitem{DSU0}
+Tushar Das, Bernd~O. Stratmann, and Mariusz Urba{\'n}ski, \emph{The
+  {B}ishop--{J}ones relation and the {H}ausdorff geometry of convex-cobounded
+  limit sets in infinite-dimensional hyperbolic space},
+  \url{http://www.urbanskimath.com/wp-content/uploads/2014/07/DaStUrBishopJones_2014_07_23C.pdf},
+  preprint 2014, to appear in Stoch. Dyn.
+
+\bibitem{CTV1}
+Y.~de~Cornulier, R.~Tessera, and A.~Valette, \emph{Isometric group actions on
+  {H}ilbert spaces: growth of cocycles}, Geom. Funct. Anal. \textbf{17} (2007),
+  no. 3, 770--792.
+
+\bibitem{Harpe_thesis}
+P.~de~la Harpe, \emph{Classical {B}anach-{L}ie algebras and {B}anach-{L}ie
+  groups of operators in {H}ilbert space}, Lecture Notes in Mathematics, Vol.
+  285, Springer-Verlag, Berlin-New York, 1972.
+
+\bibitem{Harpe}
+\bysame, \emph{Topics in geometric group theory}, Chicago Lectures in
+  Mathematics, University of Chicago Press, Chicago, IL, 2000.
+
+\bibitem{HarpeValette}
+P.~de~la Harpe and A.~Valette, \emph{La propri\'et\'e ({T}) de {K}azhdan pour
+  les groupes localement compacts (avec un appendice de {M}arc {B}urger)
+  ({K}azhdan's property ({T}) for locally compact groups (with an appendix by
+  {M}arc {B}urger))}, Ast\'erisque \textbf{175} (1989), 158 (French).
+
+\bibitem{Saint-Gervais}
+H.~P. de~Saint-Gervais, \emph{Uniformisation des surfaces de {R}iemann.
+  {R}etour sur un th\'eor\`eme centenaire ({U}niformization of {R}iemann
+  surfaces. {A} look back at a 100-year-old theorem)}, ENS \'Editions, Lyon,
+  2010 (French), The name of Henri Paul de Saint-Gervais covers a group
+  composed of fifteen mathematicians : A. Alvarez, C. Bavard, F. B\'eguin, N.
+  Bergeron, M. Bourrigan, B. Deroin, S. Dumitrescu, C. Frances, \'E. Ghys, A.
+  Guilloux, F. Loray, P. Popescu-Pampu, P. Py, B. S\'evennec, and J.-C.
+  Sikorav.
+
+\bibitem{Dehn}
+M.~Dehn, \emph{{\"U}ber unendliche diskontinuierliche {G}ruppen}, Math. Ann.
+  \textbf{71} (1911), no. 1, 116--144 (German).
+
+\bibitem{DelzantPy}
+T.~Delzant and P.~Py, \emph{{K}\"ahler groups, real hyperbolic spaces and the
+  {C}remona group}, Compos. Math. \textbf{148} (2012), no. 1, 153--184.
+
+\bibitem{DHKK}
+G.~Dimitrov, F.~Haide, L.~Katzarkov, and M.~Kontsevich, \emph{Dynamical systems
+  and categories}, \url{http://arxiv.org/abs/1307.8418}, preprint 2013.
+
+\bibitem{Duchesne}
+B.~Duchesne, \emph{Infinite-dimensional nonpositively curved symmetric spaces
+  of finite rank}, Int. Math. Res. Not. IMRN (2013), no. 7, 1578--1627.
+
+\bibitem{Duchesne3}
+\bysame, \emph{Infinite dimensional riemannian symmetric spaces with fixed-sign
+  curvature operator}, \url{http://arxiv.org/abs/1109.0441}, preprint 2012.
+
+\bibitem{EberleinOneill}
+P.~B. Eberlein and B.~O'Neill, \emph{Visibility manifolds}, Pacific J. Math.
+  \textbf{46} (1973), 45--109.
+
+\bibitem{Edelstein}
+M.~Edelstein, \emph{On non-expansive mappings of {B}anach spaces}, Math. Proc.
+  Cambridge Philos. Soc. \textbf{60} (1964), 439--447.
+
+\bibitem{FalconerMarsh}
+K.~J. Falconer and D.~T. Marsh, \emph{On the {L}ipschitz equivalence of
+  {C}antor sets}, Mathematika \textbf{39} (1992), no. 2, 223--233.
+
+\bibitem{FernandezMelian}
+J.~L. Fern\'andez and M.~V. Meli\'an, \emph{Bounded geodesics of {R}iemann
+  surfaces and hyperbolic manifolds}, Trans. Amer. Math. Soc. \textbf{347}
+  (1995), no. 9, 3533--3549.
+
+\bibitem{FSU4}
+Lior Fishman, David Simmons, and Mariusz Urba{\'n}ski, \emph{{D}iophantine
+  approximation and the geometry of limit sets in {G}romov hyperbolic metric
+  spaces}, \url{http://arxiv.org/abs/1301.5630}, preprint 2013, to appear Mem.
+  Amer. Math. Soc.
+
+\bibitem{Folland}
+G.~B. Folland, \emph{Real analysis: {M}odern techniques and their
+  applications}, Pure and Applied Mathematics (New York), John Wiley \& Sons,
+  Inc., New York, 1984.
+
+\bibitem{FonfLindenstrauss}
+V.~P. Fonf and J.~Lindenstrauss, \emph{Some results on infinite-dimensional
+  convexity}, Israel J. Math. \textbf{108} (1998), 13--32.
+
+\bibitem{GJR}
+M.~I. Garrido{ }Carballo, J.~\'A. Jaramillo, and Y.~C. Rangel, \emph{Algebras
+  of differentiable functions on {R}iemannian manifolds}, Bull. Lond. Math.
+  Soc. \textbf{41} (2009), no. 6, 993--1001.
+
+\bibitem{GhysHarpe1}
+\'E Ghys and P.~de~la Harpe, \emph{Espaces m\'etriques hyperboliques
+  (hyperbolic metric spaces)}, Sur les groupes hyperboliques d'apr\'es
+  {M}ikhael {G}romov (Bern, 1988), Progr. Math., 83, Birkh\"auser Boston,
+  Boston, MA, 1990, pp.~27--45 (French).
+
+\bibitem{Goldman}
+W.~M. Goldman, \emph{Complex hyperbolic geometry}, Oxford Mathematical
+  Monographs. Oxford Science Publications, The Clarendon Press, Oxford
+  University Press, New York, 1999.
+
+\bibitem{Gray1}
+J.~J. Gray, \emph{Linear differential equations and group theory from {R}iemann
+  to {P}oincar\'e}, Modern Birkh\"auser Classics, Birkh\"auser Boston, Inc.,
+  Boston, MA, 2008.
+
+\bibitem{Gray2}
+\bysame, \emph{Henri {P}oincar\'e. {A} scientific biography}, Princeton
+  University Press, Princeton, NJ, 2013.
+
+\bibitem{Greenberg}
+L.~Greenberg, \emph{Discrete subgroups of the {L}orentz group}, Math. Scand.
+  \textbf{10} (1962), 85--107.
+
+\bibitem{GreschonigSchmidt}
+G.~Greschonig and K.~Schmidt, \emph{Ergodic decomposition of quasi-invariant
+  probability measures}, Colloq. Math. \textbf{84/85} (2000), part 2, 493--514.
+
+\bibitem{Gromov1}
+M.~Gromov, \emph{Hyperbolic manifolds, groups and actions}, {R}iemann surfaces
+  and related topics: {P}roceedings of the 1978 {S}tony {B}rook conference
+  ({S}tate {U}niv. {N}ew {Y}ork, {S}tony {B}rook, {N}.{Y}., 1978), Ann. of
+  Math. Stud., vol.~97, Princeton Univ. Press, Princeton, N.J., 1981,
+  pp.~183--213.
+
+\bibitem{Gromov2}
+\bysame, \emph{Infinite groups as geometric objects}, Proceedings of the
+  International Congress of Mathematicians, Vol. 1, 2 (Warsaw, 1983), PWN,
+  Warsaw, 1984, pp.~385--392.
+
+\bibitem{Gromov3}
+\bysame, \emph{Hyperbolic groups}, Essays in group theory, Math. Sci. Res.
+  Inst. Publ., vol.~8, Springer, New York, 1987, pp.~75--263.
+
+\bibitem{Gromov4}
+\bysame, \emph{Asymptotic invariants of infinite groups}, Geometric group
+  theory, Vol. 2 (Sussex, 1991), London Math. Soc. Lecture Note Ser., vol. 182,
+  Cambridge Univ. Press, Cambridge, 1993, pp.~1--295.
+
+\bibitem{Guivarch}
+Y.~Guivarc'h, \emph{Groupes de {L}ie \`a croissance polynomiale}, C. R. Acad.
+  Sci. Paris S\'er. A-B \textbf{271} (1970), A237--A239 (French).
+
+\bibitem{Hamann}
+M.~Hamann, \emph{Group actions on metric spaces: fixed points and free
+  subgroups}, \url{http://arxiv.org/abs/1301.6513}.
+
+\bibitem{HandelMosher}
+M.~Handel and L.~Mosher, \emph{The free splitting complex of a free group, {I}:
+  hyperbolicity}, Geom. Topol. \textbf{17} (2013), no. 3, 1581--1672.
+
+\bibitem{Hedlund}
+G.~A. Hedlund, \emph{Fuchsian groups and transitive horocycles}, Duke Math. J.
+  \textbf{2} (1936), no. 3, 530--542.
+
+\bibitem{Heinonen}
+J.~Heinonen, \emph{Lectures on analysis on metric spaces}, Universitext,
+  Springer-Verlag, New York, 2001.
+
+\bibitem{Heinonen2}
+\bysame, \emph{What is ... a quasiconformal mapping?}, Notices Amer. Math. Soc.
+  \textbf{53} (2006), no. 11, 1334--1335.
+
+\bibitem{Heintze}
+E.~Heintze, \emph{On homogeneous manifolds of negative curvature}, Math. Ann.
+  \textbf{211} (1974), 23--34.
+
+\bibitem{Helgason}
+S.~Helgason, \emph{Differential geometry, {L}ie groups, and symmetric spaces.},
+  Pure and Applied Mathematics, 80, Academic Press, Inc. (Harcourt Brace
+  Jovanovich, Publishers), New York-London, 1978.
+
+\bibitem{HPW}
+S.~W. Hensel, P.~Przytycki, and R.~C.~H. Webb, \emph{Slim unicorns and uniform
+  hyperbolicity for arc graphs and curve graphs},
+  \url{http://arxiv.org/abs/1301.5577}, preprint 2013.
+
+\bibitem{HilionHorbez}
+A.~Hilion and C.~Horbez, \emph{The hyperbolicity of the sphere complex via
+  surgery paths}, \url{http://arxiv.org/abs/1210.6183}, preprint 2012.
+
+\bibitem{Hong1}
+S.~Hong, \emph{{P}atterson-{S}ullivan measure and groups of divergence type},
+  Bull. Korean Math. Soc. \textbf{30} (1993), no. 2, 223--228.
+
+\bibitem{Hong2}
+\bysame, \emph{Conical limit points and groups of divergence type}, Trans.
+  Amer. Math. Soc. \textbf{346} (1994), no. 1, 341--357.
+
+\bibitem{Hopf_fuchsian}
+E.~Hopf, \emph{Fuchsian groups and ergodic theory}, Trans. Amer. Math. Soc.
+  \textbf{39} (1936), no. 2, 299--314.
+
+\bibitem{Hopf_statistik}
+\bysame, \emph{{S}tatistik der geod\"atischen {L}inien in {M}annigfaltigkeiten
+  negativer {K}r\"ummung}, Ber. Verh. S\"achs. Akad. Wiss. Leipzig \textbf{91}
+  (1939), 261--304 (German).
+
+\bibitem{Jolissaint}
+P.~Jolissaint, \emph{Borel cocycles, approximation properties and relative
+  property {T}.}, Ergodic Theory Dynam. Systems \textbf{20} (2000), no. 2,
+  483--499.
+
+\bibitem{Jorgensen}
+T.~J{\o}rgensen, \emph{Compact 3-manifolds of constant negative curvature
+  fibering over the circle}, Ann. of Math. (2) \textbf{106} (1977), no. 1,
+  61--72.
+
+\bibitem{Kaimanovich2}
+V.~A. Kaimanovich, \emph{Bowen-{M}argulis and {P}atterson measures on
+  negatively curved compact manifolds}, Dynamical systems and related topics
+  (Nagoya, 1990), Adv. Ser. Dynam. Systems, 9, World Sci. Publ., River Edge,
+  NJ, 1991, pp.~223--232.
+
+\bibitem{KapovichRafi}
+I.~Kapovich and K.~Rafi, \emph{On hyperbolicity of free splitting and free
+  factor complexes}, Groups Geom. Dyn. \textbf{8} (2014), no. 2, 391--414.
+
+\bibitem{Kapovich3}
+M.~Kapovich, \emph{On the absence of {S}ullivan's cusp finiteness theorem in
+  higher dimensions}, Algebra and analysis (Irkutsk, 1989), 77-89, Amer. Math.
+  Soc. Transl. Ser. 2, 163, Amer. Math. Soc., Providence, RI, 1995.
+
+\bibitem{Kapovich}
+\bysame, \emph{{K}leinian groups in higher dimensions}, Geometry and dynamics
+  of groups and spaces, Progr. Math., vol. 265, Birkh\"auser, Basel, 2008,
+  pp.~487--564.
+
+\bibitem{Karlsson}
+A.~Karlsson, \emph{Nonexpanding maps and {B}usemann functions}, Ergodic Theory
+  Dynam. Systems \textbf{21} (2001), 1447--1457.
+
+\bibitem{Katok_book}
+S.~R. Katok, \emph{Fuchsian groups}, Chicago Lectures in Mathematics,
+  University of Chicago Press, Chicago, IL, 1992.
+
+\bibitem{Kechris}
+A.~S. Kechris, \emph{Classical descriptive set theory}, Graduate Texts in
+  Mathematics, vol. 156, Springer-Verlag, New York, 1995.
+
+\bibitem{Kellerhalls}
+R.~Kellerhalls, \emph{Volumes of cusped hyperbolic manifolds}, Topology
+  \textbf{37} (1998), no. 4, 719--734.
+
+\bibitem{Kesten}
+H.~Kesten, \emph{Problems and solutions: Solutions of advanced problems: 5716},
+  Amer. Math. Monthly \textbf{78} (1971), no. 3, 305--308.
+
+\bibitem{Kim}
+I.~Kim, \emph{Length spectrum in rank one symmetric space is not arithmetic},
+  Proc. Amer. Math. Soc. \textbf{134} (2006), no. 12, 3691--3696.
+
+\bibitem{Klee1}
+V.~L. Klee, \emph{Dispersed {C}hebyshev sets and coverings by balls}, Math.
+  Ann. \textbf{257} (1981), no. 2, 251--260.
+
+\bibitem{Klee2}
+\bysame, \emph{Do infinite-dimensional {B}anach spaces admit nice tilings?},
+  Studia Sci. Math. Hungar. \textbf{21} (1986), no. 3--4, 415--427.
+
+\bibitem{Klein_combination_theorem}
+F.~Klein, \emph{Neue beitr\"age zur riemann'schen funktionentheorie}, Math.
+  Ann. \textbf{21} (1883), 141--214 (German).
+
+\bibitem{KleinbockWeiss1}
+D.~Y. Kleinbock and B.~Weiss, \emph{Badly approximable vectors on fractals},
+  Israel J. Math. \textbf{149} (2005), 137--170.
+
+\bibitem{Koebe}
+P.~Koebe, \emph{Riemannsche {M}annigfaltigkeiten und nichteuklidische
+  {R}aumformen}, Sitzungsberichte Akad. Berlin 1930 (1930), 304--364, 505--541
+  (German).
+
+\bibitem{Kurzweil}
+J.~Kurzweil, \emph{A contribution to the metric theory of diophantine
+  approximations}, Czechoslovak Math. J. \textbf{1(76)} (1951), 149--178.
+
+\bibitem{Lang_differential_geometry}
+S.~Lang, \emph{Fundamentals of differential geometry}, Graduate Texts in
+  Mathematics, vol. 191, Springer-Verlag, New York, 1999.
+
+\bibitem{Levitt}
+G.~Levitt, \emph{Graphs of actions on {$\mathbf R$}-trees}, Comment. Math.
+  Helv. \textbf{69} (1994), no.~1, 28--38.
+
+\bibitem{LOW}
+L.~Li, K.~Ohshika, and X.~T. Wang, \emph{On {K}lein-{M}askit combination
+  theorem in space {I}}, Osaka J. Math. \textbf{46} (2009), no. 4, 1097--1141.
+
+\bibitem{Lundh}
+T.~Lundh, \emph{Geodesics on quotient manifolds and their corresponding limit
+  points}, Michigan Math. J. \textbf{51} (2003), no. 2, 279--304.
+
+\bibitem{MackayTyson}
+J.~M. Mackay and J.~T. Tyson, \emph{Conformal dimension: Theory and
+  application}, University Lecture Series, 54, American Mathematical Society,
+  Providence, RI, 2010.
+
+\bibitem{Maddocks}
+J.~H. Maddocks, \emph{Restricted quadratic forms and their application to
+  bifurcation and stability in constrained variational principles}, SIAM J.
+  Math. Anal. \textbf{16} (1985), no. 1, 47--68.
+
+\bibitem{Manin}
+Y.~I. Manin, \emph{Cubic forms: algebra, geometry, arithmetic. {T}ranslated
+  from the {R}ussian by {M}. {H}azewinkel. {N}orth-{H}olland {M}athematical
+  library, vol. 4}, North-Holland Publishing Co., Amsterdam-London; American
+  Elsevier Publishing Co., New York, 1974.
+
+\bibitem{MasurSchleimer}
+H.~A. Masur and S.~Schleimer, \emph{The geometry of the disk complex}, J. Amer.
+  Math. Soc. \textbf{26} (2013), no. 1, 1--62.
+
+\bibitem{MSU}
+R.~D. Mauldin, T.~Szarek, and Mariusz Urba{\'n}ski, \emph{Graph directed
+  {M}arkov systems on {H}ilbert spaces}, Math. Proc. Cambridge Philos. Soc.
+  \textbf{147} (2009), 455--488.
+
+\bibitem{MauldinUrbanski1}
+R.~D. Mauldin and Mariusz Urba{\'n}ski, \emph{Dimensions and measures in
+  infinite iterated function systems}, Proc. London Math. Soc. (3) \textbf{73}
+  (1996), no. 1, 105--154.
+
+\bibitem{MauldinUrbanski2}
+\bysame, \emph{Graph directed {M}arkov systems: Geometry and dynamics of limit
+  sets}, Cambridge Tracts in Mathematics, vol. 148, Cambridge University Press,
+  Cambridge, 2003.
+
+\bibitem{Michal}
+A.~D. Michal, \emph{General differential geometries and related topics}, Bull.
+  Amer. Math. Soc. \textbf{45} (1939), 529--563.
+
+\bibitem{Michal2}
+\bysame, \emph{Infinite dimensional differential metrics with constant
+  curvature}, Proc. Nat. Acad. Sci. U. S. A. \textbf{34} (1948), 17--21.
+
+\bibitem{MonodPy}
+N.~Monod and P.~Py, \emph{An exotic deformation of the hyperbolic space}, Amer.
+  J. Math. \textbf{136} (2014), no.5, 1249--1299.
+
+\bibitem{Mostow}
+G.~D. Mostow, \emph{Strong rigidity of locally symmetric spaces}, Annals of
+  Mathematics Studies, No. 78, Princeton University Press, Princeton, N.J.;
+  University of Tokyo Press, Tokyo, 1973.
+
+\bibitem{MyersSteenrod}
+S.~B. Myers and N.~E. Steenrod, \emph{The group of isometries of a {R}iemannian
+  manifold}, Ann. of Math. (2) \textbf{40} (1939), no. 2, 400--416.
+
+\bibitem{Myrberg}
+P.~J. Myrberg, \emph{Die {K}apazit{\"a}t der singul{\"a}ren {M}enge der
+  linearen {G}ruppen}, Ann. Acad. Sci. Fennicae. Ser. A. I. Math.-Phys.
+  \textbf{1941} (1941), no.~10, 19 pp. (German).
+
+\bibitem{NaimpallyWarrack}
+S.~A. Naimpally and B.~D. Warrack, \emph{Proximity spaces}, Cambridge Tracts in
+  Mathematics and Mathematical Physics, No. 59, Cambridge University Press,
+  London-New York, 1970.
+
+\bibitem{Newberger}
+F.~Newberger, \emph{On the {P}atterson-{S}ullivan measure for geometrically
+  finite groups acting on complex or quaternionic hyperbolic space ({S}pecial
+  volume dedicated to the memory of {H}anna {M}iriam {S}andler (1960-1999))},
+  Geom. Dedicata \textbf{97} (2003), 215--249.
+
+\bibitem{Nicholls}
+P.~J. Nicholls, \emph{The ergodic theory of discrete groups}, London
+  Mathematical Society Lecture Note Series, vol. 143, Cambridge University
+  Press, Cambridge, 1989.
+
+\bibitem{Olshanskii}
+A.~Y. Ol'shanski\u\i, \emph{Almost every group is hyperbolic}, Internat. J.
+  Algebra Comput. \textbf{2} (1992), no. 1, 1--17.
+
+\bibitem{Osin}
+D.~V. Osin, \emph{Acylindrically hyperbolic groups},
+  \url{http://arxiv.org/abs/1304.1246}, preprint 2013.
+
+\bibitem{Pansu1}
+P.~Pansu, \emph{M\'etriques de {C}arnot-{C}arath\'eodory et quasiisom\'etries
+  des espaces sym\'etriques de rang un ({C}arnot-{C}arath\'eodory metrics and
+  quasi-isometries of rank one symmetric spaces)}, Ann. of Math. (2)
+  \textbf{129} (1989), no. 1, 1--60 (French).
+
+\bibitem{Patterson2}
+S.~J. Patterson, \emph{The limit set of a {F}uchsian group}, Acta Math.
+  \textbf{136} (1976), no. 3--4, 241--273.
+
+\bibitem{Patterson3}
+\bysame, \emph{Further remarks on the exponent of convergence of {P}oincar\'e
+  series}, Tohoku Math. J. (2) \textbf{35} (1983), no. 3, 357--373.
+
+\bibitem{Paulin}
+F.~Paulin, \emph{On the critical exponent of a discrete group of hyperbolic
+  isometries}, Differential Geom. Appl. \textbf{7} (1997), no. 3, 231--236.
+
+\bibitem{Pauls}
+S.~D. Pauls, \emph{The large scale geometry of nilpotent {L}ie groups}, Comm.
+  Anal. Geom. \textbf{9} (2001), no.~5, 951--982.
+
+\bibitem{Preiss}
+D.~Preiss, \emph{Tilings of {H}ilbert spaces}, Mathematika \textbf{56} (2010),
+  no. 2, 217--230.
+
+\bibitem{Quint}
+J.-F. Quint, \emph{An overview of {P}atterson--{S}ullivan theory},
+  \url{www.math.u-bordeaux1.fr/~jquint/publications/courszurich.pdf}.
+
+\bibitem{Ratcliffe}
+J.~G. Ratcliffe, \emph{Foundations of hyperbolic manifolds}, Graduate Texts in
+  Mathematics, vol. 149, Springer, New York, 2006.
+
+\bibitem{Raugi}
+A.~Raugi, \emph{D\'epassement des sommes partielles de v.a.r. ind\'ependantes
+  \'equidistribu{\'e}es sans moment d'ordre 1 ({E}xceedance of partial sums of
+  independent uniformly distributed real random variables with undefined
+  mean)}, Ann. Fac. Sci. Toulouse Math. (6) \textbf{9} (2000), no. 4, 723--734
+  (French).
+
+\bibitem{RiediMandelbrot}
+R.~H. Riedi and B.~B. Mandelbrot, \emph{Multifractal formalism for infinite
+  multinomial measures}, Adv. in Appl. Math. \textbf{16} (1995), no. 2,
+  132--150.
+
+\bibitem{Roblin1}
+T.~Roblin, \emph{Ergodicit\'e et \'equidistribution en courbure n\'egative
+  ({E}rgodicity and uniform distribution in negative curvature)}, M\'em. Soc.
+  Math. Fr. (N. S.) \textbf{95} (2003), vi+96 pp. (French).
+
+\bibitem{Roblin2}
+\bysame, \emph{Un th\'eor\'eme de {F}atou pour les densit\'es conformes avec
+  applications aux revetements galoisiens en courbure n\'egative ({A} {F}atou
+  theorem for conformal densities with applications to {G}alois coverings in
+  negative curvature)}, Israel J. Math. \textbf{147} (2005), 333--357 (French).
+
+\bibitem{Schapira}
+B.~Schapira, \emph{Lemme de l'ombre et non divergence des horosph\'eres d'une
+  vari\'et\'e g\'eom\'etriquement finie. ({T}he shadow lemma and nondivergence
+  of the horospheres of a geometrically finite manifold)}, Ann. Inst. Fourier
+  (Grenoble) \textbf{54} (2004), no. 4, 939--987 (French).
+
+\bibitem{Schroeder}
+V.~Schroeder, \emph{Quasi-metric and metric spaces}, Conform. Geom. Dyn.
+  \textbf{10} (2006), 355--360.
+
+\bibitem{ShalomTao}
+Y.~Shalom and T.~C. Tao, \emph{A finitary version of {G}romov's polynomial
+  growth theorem}, Geom. Funct. Anal. \textbf{20} (2010), no. 6, 1502--1547.
+
+\bibitem{SpringerVeldkamp}
+T.~A. Springer and F.~D. Veldkamp, \emph{Elliptic and hyperbolic octave planes.
+  {I}, {II}, {III}.}, Nederl. Akad. Wetensch. Proc. Ser. A 66=Indag. Math.
+  \textbf{25} (1963), 413--451.
+
+\bibitem{Starkov}
+A.~N. Starkov, \emph{Fuchsian groups from the dynamical viewpoint}, J. Dynam.
+  Control Systems \textbf{1} (1995), no. 3, 427--445.
+
+\bibitem{Stratmann1}
+B.~O. Stratmann, \emph{The {H}ausdorff dimension of bounded geodesics on
+  geometrically finite manifolds}, Ergodic Theory Dynam. Systems \textbf{17}
+  (1997), no. 1, 227--246.
+
+\bibitem{StratmannUrbanski3}
+B.~O. Stratmann and Mariusz Urba{\'n}ski, \emph{Pseudo-{M}arkov systems and
+  infinitely generated {S}chottky groups}, Amer. J. Math. \textbf{129} (2007),
+  1019--1062.
+
+\bibitem{StratmannVelani}
+B.~O. Stratmann and S.~L. Velani, \emph{The {P}atterson measure for
+  geometrically finite groups with parabolic elements, new and old}, Proc.
+  London Math. Soc. (3) \textbf{71} (1995), no. 1, 197--220.
+
+\bibitem{Sullivan_density_at_infinity}
+D.~P. Sullivan, \emph{The density at infinity of a discrete group of hyperbolic
+  motions}, Inst. Hautes \'Etudes Sci. Publ. Math. \textbf{50} (1979),
+  171--202.
+
+\bibitem{Sullivan_cusp_finiteness}
+\bysame, \emph{A finiteness theorem for cusps}, Acta Math. \textbf{147} (1981),
+  no. 3--4, 289--299.
+
+\bibitem{Sullivan_ergodic_theory_at_infinity}
+\bysame, \emph{On the ergodic theory at infinity of an arbitrary discrete group
+  of hyperbolic motions}, {R}iemann surfaces and related topics: {P}roceedings
+  of the 1978 {S}tony {B}rook conference ({S}tate {U}niv. {N}ew {Y}ork, {S}tony
+  {B}rook, {N}.{Y}., 1978), Ann. of Math. Stud., vol.~97, Princeton Univ.
+  Press, Princeton, N.J., 1981, pp.~465--496.
+
+\bibitem{Sullivan_seminar}
+\bysame, \emph{Seminar on conformal and hyperbolic geometry}, 1982, Notes by M.
+  Baker and J. Seade, IHES.
+
+\bibitem{Sullivan_entropy}
+\bysame, \emph{Entropy, {H}ausdorff measures old and new, and limit sets of
+  geometrically finite {K}leinian groups}, Acta Math. \textbf{153} (1984), no.
+  3--4, 259--277.
+
+\bibitem{Taylor}
+S.~J. Taylor, \emph{On the connexion between {H}ausdorff measures and
+  generalized capacity}, Proc. Cambridge Philos. Soc. \textbf{57} (1961),
+  524--531.
+
+\bibitem{Tits}
+J.~Tits, \emph{A ``theorem of {L}ie--{K}olchin'' for trees}, Contributions to
+  algebra (collection of papers dedicated to {E}llis {K}olchin), Academic
+  Press, New York, 1977, pp.~377--388.
+
+\bibitem{TrotsenkoVaisala}
+D.~A. Trotsenko and J.~V{\"a}is{\"a}l{\"a}, \emph{Upper sets and quasisymmetric
+  maps}, Ann. Acad. Sci. Fenn. Math. \textbf{24} (1999), no. 2, 465--488.
+
+\bibitem{Tsuji_multiply_connected}
+M.~Tsuji, \emph{Theory of conformal mapping of a multiply connected domain.
+  {III}}, Jap. J. Math. \textbf{19} (1944), 155--188.
+
+\bibitem{Tukia2}
+P.~Tukia, \emph{On isomorphisms of geometrically finite {M}\"obius groups},
+  Inst. Hautes \'Etudes Sci. Publ. Math. \textbf{61} (1985), 171--214.
+
+\bibitem{Tukia}
+\bysame, \emph{The {P}oincar\'e series and the conformal measure of conical and
+  {M}yrberg limit points}, J. Anal. Math. \textbf{62} (1994), 241--259.
+
+\bibitem{Vaisala}
+J.~V\"ais\"al\"a, \emph{{G}romov hyperbolic spaces}, Expo. Math. \textbf{23}
+  (2005), no. 3, 187--231.
+
+\bibitem{Vaisala2}
+\bysame, \emph{Hyperbolic and uniform domains in {B}anach spaces}, Ann. Acad.
+  Sci. Fenn. Math. \textbf{30} (2005), no. 2, 261--302.
+
+\bibitem{Valette}
+A.~Valette, \emph{Affine isometric actions on {H}ilbert spaces and
+  amenability},
+  \url{http://www2.unine.ch/files/content/sites/math/files/shared/documents/articles/ESIValette.pdf},
+  preprint.
+
+\bibitem{Yue}
+C.~B. Yue, \emph{The ergodic theory of discrete isometry groups on manifolds of
+  variable negative curvature}, Trans. Amer. Math. Soc. \textbf{348} (1996),
+  no. 12, 4965--5005.
+
+\bibitem{Yujobo}
+Z.~Y\^uj\^ob\^o, \emph{A theorem on {F}uchsian groups}, Math. Japonicae
+  \textbf{1} (1949), 168--169.
+
+\end{thebibliography}

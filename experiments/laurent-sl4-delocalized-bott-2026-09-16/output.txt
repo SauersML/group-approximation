@@ -1,0 +1,10 @@
+n=8 defects: {'[u,v]': np.float64(0.765367), '[u,w]': np.float64(0.0), '[v,w]': np.float64(0.0), 'w^3-1': np.float64(0.0), 'r^2-1': np.float64(0.0), 'rur-u': np.float64(0.0), 'rvr-v^-1': np.float64(0.0), 'rwr-w^-1': np.float64(0.0)}
+  beta_omega = -1.0  beta_conj = 1.0  total Bott = 0.0
+n=16 defects: {'[u,v]': np.float64(0.390181), '[u,w]': np.float64(0.0), '[v,w]': np.float64(0.0), 'w^3-1': np.float64(0.0), 'r^2-1': np.float64(0.0), 'rur-u': np.float64(0.0), 'rvr-v^-1': np.float64(0.0), 'rwr-w^-1': np.float64(0.0)}
+  beta_omega = -1.0  beta_conj = 1.0  total Bott = 0.0
+n=48 defects: {'[u,v]': np.float64(0.130806), '[u,w]': np.float64(0.0), '[v,w]': np.float64(0.0), 'w^3-1': np.float64(0.0), 'r^2-1': np.float64(0.0), 'rur-u': np.float64(0.0), 'rvr-v^-1': np.float64(0.0), 'rwr-w^-1': np.float64(0.0)}
+  beta_omega = -1.0  beta_conj = 1.0  total Bott = 0.0
+det w' = 1
+s1, s2 in SL_4 and commute with g: True True True True
+w' g w'^-1 == g^-1: True
+w' s1 w'^-1 == s2: True

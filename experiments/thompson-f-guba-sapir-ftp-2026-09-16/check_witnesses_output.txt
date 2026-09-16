@@ -1,0 +1,37 @@
+== part 0: convention
+part 0 done
+== part 1: witnesses
+part 1 done for L = 1..30
+== part 2: depth claims and distance bound
+  L, min_q LB(p^-1 q), proven (a-1)/2:
+  4:2/0.5 5:3/0.5 6:3/1.0 7:4/1.0 8:4/1.5 9:5/1.5 10:5/2.0 11:6/2.0 12:6/2.5 13:7/2.5 14:7/3.0 15:8/3.0 16:8/3.5 17:9/3.5 18:9/4.0 19:10/4.0 20:10/4.5 21:11/4.5 22:11/5.0 23:12/5.0 24:12/5.5 25:13/5.5 26:13/6.0 27:14/6.0 28:14/6.5 29:15/6.5 30:15/7.0
+part 2 done
+== part 3: Lemma A on the ball of radius 8
+  sphere sizes [1, 4, 12, 36, 108, 314, 906, 2576, 7280]  elements with |h| = D(h)-2: 1004
+part 3 done
+== part 4: exact distances inside the ball
+  L= 4 a=2  min exact distance among q within radius: 3 ; number of q outside the ball: 5
+  L= 5 a=2  min exact distance among q within radius: 3 ; number of q outside the ball: 9
+  L= 6 a=3  min exact distance among q within radius: 4 ; number of q outside the ball: 13
+  L= 7 a=3  min exact distance among q within radius: 4 ; number of q outside the ball: 17
+  L= 8 a=4  min exact distance among q within radius: 5 ; number of q outside the ball: 21
+  L= 9 a=4  min exact distance among q within radius: 5 ; number of q outside the ball: 25
+  L=10 a=5  min exact distance among q within radius: 6 ; number of q outside the ball: 29
+  L=11 a=5  min exact distance among q within radius: 6 ; number of q outside the ball: 33
+  L=12 a=6  min exact distance among q within radius: 7 ; number of q outside the ball: 37
+  L=13 a=6  min exact distance among q within radius: 7 ; number of q outside the ball: 41
+  L=14 a=7  min exact distance among q within radius: 8 ; number of q outside the ball: 45
+  L=15 a=7  min exact distance among q within radius: 8 ; number of q outside the ball: 49
+  L=16 a=8  min exact distance among q within radius: None ; number of q outside the ball: 53
+part 4 done
+== part 5: TSNF x1-example
+part 5 done
+== part 6: N-words of length <= 10 represent distinct elements
+  N-words checked: 48931  duplicates: 0
+part 6 done
+TOTAL FAILURES: 0
+
+real	5m11.974s
+user	0m43.090s
+sys	0m0.142s
+exit=0

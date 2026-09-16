@@ -1,0 +1,56 @@
+Wed Sep 16 03:50:35 UTC 2026
+PASS E1 d=1 Gram integral/alternating/unimodular t=0 N=1 G=[[0, 0, 0, 1], [0, 0, 1, 0], [0, -1, 0, 0], [-1, 0, 0, 0]] det=1
+PASS E1 d=1 generator U1 integral, det 1, preserves beta
+PASS E1 d=1 generator Uw integral, det 1, preserves beta
+PASS E1 d=1 generator S integral, det 1, preserves beta
+PASS E1 d=1 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=2 Gram integral/alternating/unimodular t=0 N=2 G=[[0, 0, 0, 1], [0, 0, 1, 0], [0, -1, 0, 0], [-1, 0, 0, 0]] det=1
+PASS E1 d=2 generator U1 integral, det 1, preserves beta
+PASS E1 d=2 generator Uw integral, det 1, preserves beta
+PASS E1 d=2 generator S integral, det 1, preserves beta
+PASS E1 d=2 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=3 Gram integral/alternating/unimodular t=1 N=1 G=[[0, 0, 0, 1], [0, 0, 1, 1], [0, -1, 0, 0], [-1, -1, 0, 0]] det=1
+PASS E1 d=3 generator U1 integral, det 1, preserves beta
+PASS E1 d=3 generator Uw integral, det 1, preserves beta
+PASS E1 d=3 generator S integral, det 1, preserves beta
+PASS E1 d=3 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=7 Gram integral/alternating/unimodular t=1 N=2 G=[[0, 0, 0, 1], [0, 0, 1, 1], [0, -1, 0, 0], [-1, -1, 0, 0]] det=1
+PASS E1 d=7 generator U1 integral, det 1, preserves beta
+PASS E1 d=7 generator Uw integral, det 1, preserves beta
+PASS E1 d=7 generator S integral, det 1, preserves beta
+PASS E1 d=7 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=11 Gram integral/alternating/unimodular t=1 N=3 G=[[0, 0, 0, 1], [0, 0, 1, 1], [0, -1, 0, 0], [-1, -1, 0, 0]] det=1
+PASS E1 d=11 generator U1 integral, det 1, preserves beta
+PASS E1 d=11 generator Uw integral, det 1, preserves beta
+PASS E1 d=11 generator S integral, det 1, preserves beta
+PASS E1 d=11 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=15 Gram integral/alternating/unimodular t=1 N=4 G=[[0, 0, 0, 1], [0, 0, 1, 1], [0, -1, 0, 0], [-1, -1, 0, 0]] det=1
+PASS E1 d=15 generator U1 integral, det 1, preserves beta
+PASS E1 d=15 generator Uw integral, det 1, preserves beta
+PASS E1 d=15 generator S integral, det 1, preserves beta
+PASS E1 d=15 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E1 d=19 Gram integral/alternating/unimodular t=1 N=5 G=[[0, 0, 0, 1], [0, 0, 1, 1], [0, -1, 0, 0], [-1, -1, 0, 0]] det=1
+PASS E1 d=19 generator U1 integral, det 1, preserves beta
+PASS E1 d=19 generator Uw integral, det 1, preserves beta
+PASS E1 d=19 generator S integral, det 1, preserves beta
+PASS E1 d=19 (e1, e2-t e1, e4, e3) is a symplectic Z-basis
+PASS E2 winding standard block SL_2 on (e1,f1) = 1.000000
+PASS E2 winding Klingen Levi SL_2 on (e2,f2) = 1.000000
+PASS E2 winding diagonal g+g in omega+omega = 2.000000
+PASS E2 winding diagonal g+g in omega+(-omega) = 0.000000
+PASS E2 winding Siegel Levi diag(A, A^-T), A = rot = 0.000000
+PASS E2 winding Siegel parabolic non-compact loop = -0.000000
+PASS E2 winding principal Sym^3 = -2.000000
+PASS E2 winding SL_2(C) torus diag(e^it, e^-it), form Im det = 0.000000
+PASS E2 winding quaternion D^1, mu = [[0,-1],[1,0]] (nrd>0) = -2.000000
+PASS E2 winding quaternion D^1, mu = diag(1,-1) (nrd<0) = 0.000000
+   n-basis a14: m(1,-I) acts by -1 (non-central)
+   n-basis a2: m(1,-I) acts by 1 (center)
+   n-basis a6: m(1,-I) acts by -1 (non-central)
+PASS E3 dim n = 3, center dim 1
+PASS E3 m(1,-I) acts by -1 on n/center and +1 on center
+PASS E3 n(a,b,c) is symplectic for all a,b,c
+PASS E3 [n(1,0,0), n(0,1,0)] = n(0,0,c) with c != 0 c=2
+PASS E3 n(a,b,c) n(a',b',c') = n(a+a', b+b', *) * = A*B2 - A2*B + C + C2
+PASS E3 m(1,-I) n(a,b,c) m(1,-I)^-1 = n(-a,-b,c)
+ALL PASS

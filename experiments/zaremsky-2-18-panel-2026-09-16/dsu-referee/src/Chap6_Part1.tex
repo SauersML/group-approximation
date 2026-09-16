@@ -1,0 +1,789 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\part{Preliminaries}
+%%\section{Preliminaries}
+%\label{partpreliminaries}
+%This part will be divided as follows: In Section \ref{sectionROSSONCTs} we define the class of rank one symmetric spaces of noncompact type (\ROSSs). In Sections \ref{sectiongeometry1}-\ref{sectiongeometry2}, we define the class of hyperbolic metric spaces and study their geometry. In Section \ref{sectiondiscreteness}, we explore different notions of discreteness for groups of isometries of a metric space. In Section \ref{sectionclassification} we prove two classification theorems, one for isometries (Theorem \ref{classificationofisometries}) and one for semigroups of isometries (Theorem \ref{classificationofsemigroups}). Finally, in Section \ref{sectionlimitsets} we define and study the limit set of a semigroup of isometries.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\draftnewpage
+\chapter{Classification of isometries and semigroups} \label{sectionclassification}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we classify subsemigroups $G\prec\Isom(X)$ into six categories, depending on the behavior of the orbit of the basepoint $\zero\in X$. We start by classifying individual isometries, although it will turn out that the category into which an isometry is classified is the same as the category of the cyclic group that it generates.
+
+We remark that if $X$ is geodesic and $G\leq\Isom(X)$ is a group, then the main results of this chapter were proven in \cite{Hamann}. Moreover, our terminology is based on \cite[\63.A]{CCMT}, where a similar classification was given based on \cite[\6 3.1]{Gromov3}.% In fact, the hypothesis that $X$ is geodesic can be removed by embedding $X$ into a geodesic hyperbolic metric space; see \cite[Theorem 4.1]{BonkSchramm} and \cite[Corollary A.10]{BHM}.
+
+\bigskip
+\section{Classification of isometries}
+Fix $g\in\Isom(X)$, and let
+\[
+\Fix(g) := \{x\in\bord X:g(x) = x\}.
+\]
+Consider $\xi\in\Fix(g)\cap\del X$. Recall that $g'(\xi)$ denotes the dynamical derivative of $g$ at $\xi$ (see \6\ref{subsubsectiondynamicalderivative}). 
+\begin{definition}
+\label{definitionderivativefixedpoint}
+$\xi$ is said to be
+\begin{itemize}
+\item a \emph{neutral} or \emph{indifferent} fixed point if $g'(\xi) = 1$,
+\item an \emph{attracting} fixed point if $g'(\xi) < 1$, and
+\item a \emph{repelling} fixed point if $g'(\xi) > 1$.
+\end{itemize}
+\end{definition}
+
+\begin{definition}
+\label{definitionclassification1}
+An isometry $g\in\Isom(X)$ is called
+\begin{itemize}
+\item \emph{elliptic} if the orbit $\{g^n(\zero):n\in\N\}$ is bounded,
+\item \emph{parabolic} if it is not elliptic and has a unique fixed point in $\del X$, which is neutral, and
+\item \emph{loxodromic} if it has exactly two fixed points in $\del X$, one of which is attracting and the other of which is repelling.
+\end{itemize}
+\end{definition}
+\begin{remark}
+We use the terminology ``loxodromic'' rather than the more common ``hyperbolic'' to avoid confusion with the many other meanings of the word ``hyperbolic''. In particular, when we get to classification of groups it would be a bad idea to call any group ``hyperbolic'' if it is not hyperbolic in the sense of Gromov.
+\end{remark}
+
+The categories of elliptic, parabolic, and loxodromic are clearly mutually exclusive.\Footnote{Proposition \ref{propositionbusemannpreserved} can be used to show that loxodromic isometries are not elliptic.} In the converse direction we have the following:
+\begin{theorem}
+\label{classificationofisometries}
+Any isometry is either elliptic, parabolic, or loxodromic.
+\end{theorem}
+
+The proof of Theorem \ref{classificationofisometries} will proceed through several lemmas.
+
+\begin{lemma}[A corollary of {\cite[Proposition 5.1]{Karlsson}}]
+\label{lemmakarlsson}
+If $g\in\Isom(X)$ is not elliptic, then $\Fix(g)\cap\del X\neq\emptyset$.
+\end{lemma}
+We include the proof for completeness.
+
+\begin{proof}
+For each $t\in\N$, let $n_t$ be the smallest integer such that
+\[
+\dogo{g^{n_t}} \geq n_t.
+\]
+The sequence $(n_t)_1^\infty$ is nondecreasing. Given $s,t\in\N$ with $s < t$, we have
+\[
+\dist(g^{n_s}(\zero) , g^{n_t}(\zero)) = \dogo{g^{n_t - n_s}} < n_t,
+\]
+and thus
+\[
+\lb g^{n_s}(\zero) | g^{n_t}(\zero)\rb_\zero > \frac12 [ n_s + n_t - n_t] = \frac12 n_s \tendsto{s,t} \infty,
+\]
+i.e. $(g^{n_t}(\zero))_t$ is a Gromov sequence. Let $\xi = [(g^{n_t}(\zero))_t]$, and note that
+\[
+\lb \xi|g(\xi)\rb_\zero = \lim_{t\to\infty} \lb g^{n_t}(\zero) | g^{n_t + 1}(\zero) \rb \geq \lim_{t\to\infty} \left[\dogo{g^{n_t}} - \dist(g^{n_t}(\zero), g^{n_t + 1}(\zero))\right] = \infty.
+\]
+Thus $g(\xi) = \xi$, i.e. $\xi\in\Fix(g)\cap\del X$.
+\end{proof}
+
+\begin{remark}[{\cite[Proposition 5.2]{Karlsson}}]
+If $g\in\Isom(X)$ is elliptic and if $X$ is CAT(0), then $\Fix(g)\cap X\neq\emptyset$ due to Cartan's lemma (Theorem \ref{Cartan's lemma} below). Thus if $X$ is a CAT(0) space, then any isometry of $X$ has a fixed point in $\bord X$.
+\end{remark}
+
+\begin{lemma}
+\label{lemmarepellingloxodromic}
+If $g\in\Isom(X)$ has an attracting or repelling periodic point, then $g$ is loxodromic.
+\end{lemma}
+\begin{proof}
+Suppose that $\xi\in\del X$ is a repelling fixed point for $g\in\Isom(X)$, i.e. $g'(\xi) > 1$. Recall from Proposition \ref{propositioneuclideansimilarity} that
+\[
+\Dist_\xi(g^n(y_1), g^n(y_2)) \leq C g'(\xi)^{-n} \Dist_\xi(y_1, y_2) \all y_1,y_2\in\EE_\xi\all n\in\Z
+\]
+for some constant $C > 0$. Now let $n$ be large enough so that $g'(\xi)^n > C$; then the above inequality shows that the map $g^n$ is a strict contraction of the complete metametric space $(\EE_\xi,\Dist_\xi)$ (cf. Proposition \ref{propositioneuclideanmetametric}). Then by Theorem \ref{banachcontractionprinciple}, $g$ has a unique fixed point $\eta\in(\EE_\xi)_\refl = \del X\butnot\{\xi\}$. By Corollary \ref{corollaryproductone}, $\eta$ is an attracting fixed point. Corollary \ref{corollaryproductone} also implies that $g$ cannot have a third fixed point. Thus $g$ is loxodromic.
+
+On the other hand, if $g$ has an attracting fixed point, then by Proposition \ref{propositionderivativeiteration}, $g^{-1}$ has a repelling fixed point. Thus $g^{-1}$ is loxodromic, so applying Proposition \ref{propositionderivativeiteration} again, we see that $g$ is loxodromic.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{classificationofisometries}]
+By contradiction suppose that $g$ is not elliptic or loxodromic, and we will show that it is parabolic. By Lemma \ref{lemmakarlsson}, we have $\Fix(g)\cap\del X\neq\emptyset$; on the other hand, by Lemma \ref{lemmarepellingloxodromic}, every fixed point of $g$ in $\del X$ is neutral. It remains to show that $\#(\Fix(g)) = 1$. By contradiction, suppose otherwise. Since $g$ is not elliptic, we clearly have $\Fix(g)\cap X = \emptyset$. Thus we may suppose that there are two distinct neutral fixed points $\xi_1,\xi_2\in\del X$.
+
+Now for each $n\in\N$, we have
+\[
+\busemann_{\xi_i}(\zero,g^n(\zero)) \asymp_\plus n\log_b(g'(\xi_i)) = 0, \hspace{.5 in} i = 1,2
+\]
+by Proposition \ref{propositionbusemannpreserved}. Let $r = r_{\xi_1,\xi_2,\zero}$ and $\theta = \theta_{\xi_1,\xi_2,\zero}$ be as in Section \ref{subsectionpolar}. Then by Lemma \ref{lemmatranslationdistance} we have $r(g^n(\zero))\asymp_\plus \theta(g^n(\zero)) \asymp_\plus 0$. Thus by Lemma \ref{lemmafabs} we have
+\[
+\dogo{g^n} \asymp_\plus |r(g^n(\zero))| + \theta(g^n(\zero)) \asymp_\plus 0,
+\]
+i.e. the sequence $\{g^n(\zero):n\in\N\}$ is bounded. Thus $g$ is elliptic, contradicting our hypothesis.
+\end{proof}
+
+
+\begin{remark}[Cf. {\cite[Chapter 3, Theorem 1.4]{Chiswell}}]
+\label{remarkparabolicRtree}
+For $\R$-trees, parabolic isometries are impossible, so Theorem \ref{classificationofisometries} shows that every isometry is elliptic or loxodromic.
+\end{remark}
+\begin{proof}
+By contradiction suppose that $X$ is an $\R$-tree and that $g\in\Isom(X)$ is a parabolic isometry with fixed point $\xi\in\del X$. Let $x = C(\zero,g(\zero),\xi)\in X$; then $x = \geo\zero\xi_t$ for some $t\geq 0$. Now,
+\[
+\dist(g(\zero),x) = \dox x + \busemann_\xi(g(\zero),\zero) = t + 0 = t.
+\]
+It follows that $g(x) = \geo{g(\zero)}{\xi}_t = x$. Thus $g$ is elliptic, a contradiction.
+\end{proof}
+
+
+
+\subsection{More on loxodromic isometries}
+
+\begin{notation}
+Suppose $g\in\Isom(X)$ is loxodromic. Then $g_+$ and $g_-$ denote the attracting and repelling fixed points of $g$, respectively.
+\end{notation}
+
+\begin{theorem}
+\label{theoremloxodromicextra}
+Let $g\in\Isom(X)$ be loxodromic. Then
+\begin{equation}
+\label{loxodromicinversederivative}
+g'(g_+) = \frac{1}{g'(g_-)}\cdot
+\end{equation}
+Furthermore, for every $x\in \bord X\butnot\{g_-\}$ and for every $n\in\N$ we have
+\begin{equation}
+\label{loxodromiccontracting}
+\Dist(g^n(x), g_+) \lesssim_\times \frac{[g'(g_+)]^n}{\Dist(g_-,g_+)\Dist(x, g_-)},
+\end{equation}
+with $\leq$ if $X$ is strongly hyperbolic. In particular
+\[
+x\neq g_- \;\;\Rightarrow\;\; g^n(x)\tendsto n g_+,
+\]
+and the convergence is uniform over any set whose closure does not contain $g_-$. Finally,
+\begin{equation}
+\label{dognoloxodromic}
+\dogo{g^n} \asymp_\plus |n| \log_b g'(g_-) = |n| \log_b \frac{1}{g'(g_+)}\cdot
+\end{equation}
+\end{theorem}
+\begin{proof}
+\eqref{loxodromicinversederivative} follows directly from Corollary \ref{corollaryproductone}.
+
+To demonstrate \eqref{loxodromiccontracting}, note that
+\begin{align*}
+&\lb x|g_-\rb_\zero + \lb g^n(x)|g_+\rb_\zero\\
+&\gtrsim_\plus \busemann_{g_-}(\zero,x) + \busemann_{g_+}(\zero,g^n(x)) \by{(j) of Proposition \ref{propositionbasicidentities}}\\
+&\asymp_\plus \busemann_{g_-}(\zero,x) + \busemann_{g_+}(\zero,x) - n \log_b g'(g_+) \by{Proposition \ref{propositionbusemannpreserved}}\\
+&\asymp_\plus \lb g_-|g_+\rb_x - \lb g_-|g_+\rb_\zero - n \log_b g'(g_+) \by{(g) of Proposition \ref{propositionbasicidentities}}\\
+&\geq_\pt -\lb g_-|g_+\rb_\zero - n\log_b g'(g_+).
+\end{align*}
+Exponentiating and rearranging yields \eqref{loxodromiccontracting}.
+
+Finally, \eqref{dognoloxodromic} follows directly from Lemmas \ref{lemmafabs} and \ref{lemmatranslationdistance}.
+\end{proof}
+
+%\comdavid{I commented out the subsection called ``Minimal displacement'' - it seemed like there was no point since we were just repeating the finite-dimensional theory, and the concepts do not seem to be useful for anything.}
+%\subsection{Minimal displacement}
+%\comtushar{what should we do with this remark?}
+%
+%\begin{remark}
+%The classification of isometries into these three classes may also be given the following elegant geometric interpretation in terms of \emph{minimal displacement}, see \cite{BridsonHaefliger}. The following definitions can be made %for a metric space $X$ and a mapping $f : X \to X$. The \emph{minimal displacement} of $f$ is defined as
+%\[
+%\ell(f) := \inf_{x\in X} \dist(x,f(x)).
+%\]
+%The \emph{minimal set} of $f$ is defined as
+%\[
+%\text{Min}(f) := \{ x\in X : \dist(x,f(x)) = \ell(f) \} . 
+%\]
+%Then given an isometry $g$ of hyperbolic space, exactly one of the following holds:
+%\begin{itemize}
+%\item $g$ is parabolic $\Leftrightarrow$ $\text{Min}(g) = \emptyset$.
+%\item $g$ is elliptic $\Leftrightarrow$ $\text{Min}(g) \neq \emptyset$ and $\ell(f)=0$.
+%\item $g$ is hyperbolic $\Leftrightarrow$ $\text{Min}(g) \neq \emptyset$ and $\ell(f)>0$.
+%\end{itemize}
+%\end{remark}
+%
+%[Define asymptotic displacement $\w{\ell}$; they agree in the CAT(-1) case but in general $\w{\ell}$ is more useful]
+
+\subsection{The story for real hyperbolic spaces}
+If $X$ is a real hyperbolic space, then we may conjugate each $g\in\Isom(X)$ to a ``normal form'' whose geometrical significance is clearer. The normal form will depend on the classification of $g$ as elliptic, parabolic, or hyperbolic.
+
+
+\begin{proposition}\label{class}
+Let $X$ be a real hyperbolic space, and fix $g\in\Isom(X)$.
+\begin{itemize}
+\item[(i)] If $g$ is elliptic, then $g$ is conjugate to a map of the form $T \given \B$ for some linear isometry $T\in\O^*(\HH)$.
+\item[(ii)] If $g$ is parabolic, then $g$ is conjugate to a map of the form $\xx\mapsto \what T \xx + \pp:\E\to\E$, where $T\in\O^*(\BB)$ and $\pp\in\BB$. Here $\BB = \del\E\butnot\{\infty\} = \HH^{\alpha - 1}$.
+\item[(iii)] If $g$ is hyperbolic, then $g$ is conjugate to a map of the form $\xx\mapsto \lambda \what T \xx: \E \to \E$, where $0< \lambda < 1$ and $T\in\O^*(\BB)$.
+\end{itemize}
+\end{proposition}
+\begin{proof}~
+\begin{itemize}
+\item[(i)] If $g$ is elliptic, then by Cartan's lemma (Theorem \ref{Cartan's lemma} below), $g$ has a fixed point $x\in X$. Since $\Isom(X)$ acts transitively on $X$ (Observation \ref{observationtransitivity}), we may conjugate to $\B$ in a way such that $g(\0) = \0$. But then by Proposition \ref{propositionIsomB}, $g$ is of the form (i).
+\item[(ii)] Let $\xi$ be the neutral fixed point of $g$. Since $\Isom(X)$ acts transitively on $\del X$ (Proposition \ref{propositiontransitivity}), we may conjugate to $\E$ in a way such $g(\infty) = \infty$. Then by Proposition \ref{propositionIsomE} and Example \ref{examplegprimeinfty}, $g$ is of the form (ii).
+\item[(iii)] Since $\Isom(X)$ acts doubly transitively on $\del X$ (Proposition \ref{propositiontransitivity}), we may conjugate to $\E$ in a way such that $g_+ = \0$ and $g_- = \infty$. Then by Proposition \ref{propositionIsomE} and Example \ref{examplegprimeinfty}, $g$ is of the form (iii). (We have $\pp = \0$ since $\0\in\Fix(g)$.)
+\end{itemize}
+\end{proof}
+
+
+%We may summarize our discussion in the following table:\comdavid{Whatever this table is doing, it does not appear to be ``summarizing the discussion'' above. Fix},\comdavid{Depending on the position on the page, the table may not be directly following the colon. We need to be careful.}
+%{\footnotesize
+%\begin{table}[h]
+%\begin{center}
+%{\renewcommand{\arraystretch}{1.2}
+%\begin{tabular}{clclclc}
+%Type & $\#(\Fix(g) \cap \del \H)$ & $\#(\Fix(g) \cap \H)$ & End behavior of $(g^n(x))_{-\infty}^\infty$ \\
+%\hline
+%Parabolic &$1$&$0$& Unbounded orbits: $(g^n(x))_{-\infty}^\infty$ either \\ 
+%&&& converges to or clusters at the fixed point \\
+%\hline
+%Hyperbolic &$2$&$0$& Unbounded orbits: \\
+%&&& $g^n(x) \to g_+$ as $n \to +\infty$ \\
+%&&& $g^n(x) \to g_-$ as $n \to -\infty$ \\
+%\hline
+%&$0$&$1$& \\
+%Elliptic &$2$&$\#(\R)$& Bounded orbits \\
+%&$\#(\R)$&$\#(\R)$& \\
+%\hline
+%\end{tabular}
+%}
+%\end{center}
+% \caption{Classification of an isometry $g\in\Isom(\H)$.}
+% \label{tab:classification}
+%\end{table}
+%}
+
+
+\begin{remark}
+If $g\in\Isom(X)$ is elliptic or loxodromic, then the orbit $(g^n(\zero))_1^\infty$ exhibits some ``regularity'' - either it remains bounded forever, or it diverges to the boundary. On the other hand, if $g$ is parabolic then the orbit can oscillate, both accumulating at infinity and returning infinitely often to a bounded region. This is in sharp contrast to finite dimensions, where such behavior is impossible. We discuss such examples in detail in \6\ref{subsubsectionedelstein}.
+\end{remark}
+%
+%\begin{proposition}
+%\label{propositionparabolicrecurrent}\comdavid{I am writing this subsubsection under the assumption that no one else has explicitly stated Proposition \ref{propositionparabolicrecurrent}. Is this correct?}
+%There exists a parabolic isometry $g\in\Stab(\Isom(\H);\infty)$ such that the orbit $(g^n(\zero))_1^\infty$ is unbounded but returns infinitely often to a bounded region and in fact accumulates at $\zero$.
+%\end{proposition}
+%It is not hard to see that this propostion is equivalent to the following one which was proven by M. Edelstein in 1964:
+%
+%\begin{proposition}[{\cite[Theorem 2.1]{Edelstein}}]
+%\label{propositionedelstein}
+%There exists a fixed-point-free isometry $g\in\Isom(\ell^2(\N;\C))$ and a sequence $(n_k)_1^\infty$ so that
+%\[
+%g^{n_k}(\0) \tendsto k \0.
+%\]
+%\end{proposition}
+%
+%\begin{proof}[Proof that Proposition \ref{propositionedelstein} implies Proposition \ref{propositionparabolicrecurrent}]\comdavid{Is there any reasonable way to simplify this argument?}
+%Since $\EE$ and $\ell^2(\N;\C)$ are both separable Hilbert spaces, we may without loss of generality suppose that $g\in\Isom(\EE)$. Let $\what g\in\Stab(\Isom(\H);\infty)$ be the Poincar\'e extension of $g$. Now note that $\what g$ has no fixed points in $\H$; if $\xx$ were such a point, then $(0,x_1,x_2,\ldots)\in\EE$ would be a fixed point of $g$, a contradiction. Thus by Theorem \ref{Cartan's lemma}, $\what g$ is not elliptic. (In particular, by definition the orbit $(g^n(\zero))_1^\infty$ is unbounded.) But $\what g'(\infty) = 1$, so $\what g$ is not loxodromic. Thus $\what g$ is parabolic.
+%
+%Recalling that $\zero(\H) = \uparrow$\comdavid{add somewhere}, we have
+%\[
+%\what g^{n_k}(\zero) = g^{n_k}(\0) + \uparrow \tendsto k \uparrow \;= \zero,
+%\]
+%i.e. the orbit $(g^n(\zero))_1^\infty$ accumulates at $\zero$.
+%\end{proof}
+%
+%For completeness we include Edelstein's proof of Proposition \ref{propositionedelstein}.
+%
+%\begin{proof}[Proof of Proposition \ref{propositionedelstein}]
+%
+%[Continue\internal]
+%\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+\section{Classification of semigroups}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{notation}
+\label{notationglobalfixedpoints}
+We denote the set of \emph{global fixed points} of a semigroup $G\prec\Isom(X)$ by
+\[
+\Fix(G) := \bigcap_{g\in G}\Fix(g).
+\]
+\end{notation}
+
+\begin{definition}
+\label{definitionclassification2}
+$G$ is
+\begin{itemize}
+\item \emph{elliptic} if $G(\zero)$ is a bounded set.
+\item \emph{parabolic} if $G$ is not elliptic and has a global fixed point $\xi\in \Fix(G)$ such that 
+\[
+g'(\xi) = 1 \all g\in G,
+\]
+i.e. $\xi$ is neutral with respect to every element of $G$.
+\item \emph{loxodromic} if it contains a loxodromic isometry.
+\end{itemize}
+\end{definition}
+
+Below we shall prove the following theorem:
+
+\begin{theorem}
+\label{classificationofsemigroups}
+Every semigroup of isometries of a hyperbolic metric space is either elliptic, parabolic, or loxodromic.
+\end{theorem}
+
+\begin{observation}
+An isometry $g$ is elliptic, parabolic, or loxodromic according to whether the cyclic group generated by it is elliptic, parabolic, or loxodromic. A similar statement holds if ``group'' is replaced by ``semigroup''. Thus, Theorem \ref{classificationofisometries} is a special case of Theorem \ref{classificationofsemigroups}.
+\end{observation}
+
+Before proving Theorem \ref{classificationofsemigroups}, let us say a bit about each of the different categories in this classification.
+
+\subsection{Elliptic semigroups}
+Elliptic semigroups are the least interesting of the semigroups we consider. Indeed, we observe that any strongly discrete elliptic semigroup is finite. We now consider the question of whether every elliptic semigroup has a global fixed point.
+
+\begin{theorem}[Cartan's lemma] \label{Cartan's lemma}
+If $X$ is a CAT(0) space (and in particular if $X$ is a CAT(-1) space), then every elliptic subsemigroup $G\prec\Isom(X)$ has a global fixed point.
+\end{theorem}
+We remark that if $G$ is a group, then this result may be found as \cite[Corollary II.2.8(1)]{BridsonHaefliger}.
+\begin{proof}
+Since $G(\zero)$ is a bounded set, it has a unique circumcenter \cite[Proposition II.2.7]{BridsonHaefliger}, i.e. the minimum
+\[
+\min_{x\in X}\sup_{g\in G}\dist(x,g(\zero))
+\]
+is achieved at a single point $x\in X$. We claim that $x$ is a global fixed point of $G$. Indeed, for each $h\in G$ we have
+\[
+\sup_{g\in G}\dist(h^{-1}(x),g(\zero)) = \sup_{g\in G}\dist(x,h g(\zero)) \leq \sup_{g\in G}\dist(x,g(\zero));
+\]
+since $x$ is the circumcenter we deduce that $h^{-1}(x) = x$, or equivalently that $h(x) = x$.
+\end{proof}
+
+On the other hand, if we do not restrict to CAT(0) spaces, then it is possible to have an elliptic group with no global fixed point. We have the following simple example:
+\begin{example}
+Let $X = \B\butnot B_\B(\0,1)$ and let $g(\xx) = -\xx$. Then $X$ is a hyperbolic metric space, $g$ is an isometry of $X$, and $G = \{\id,g\}$ is an elliptic group with no global fixed point.
+\end{example}
+
+\subsection{Parabolic semigroups}
+Parabolic semigroups will be important in Chapter \ref{sectionGF} when we consider geometrically finite semigroups. In particular, we make the following definition:
+\begin{definition}
+\label{definitionparabolic}
+Let $G\prec\Isom(X)$. A point $\xi\in\del X$ is a \emph{parabolic fixed point} of $G$ if the semigroup
+\[
+G_\xi := \Stab(G;\xi) = \{g\in G:g(\xi) = \xi\}
+\]
+is a parabolic semigroup.
+\end{definition}
+In particular, if $G$ is a parabolic semigroup then the unique global fixed point of $G$ is a parabolic fixed point.
+\begin{warning}
+A parabolic group does not necessarily contain a parabolic isometry; see Example \ref{exampleparabolictorsion}.
+\end{warning}
+
+Note that Proposition \ref{propositioneuclideansimilarity} yields the following observation:
+\begin{observation}
+\label{observationuniformlyLipschitz}
+Let $G\prec\Isom(X)$, and let $\xi$ be a parabolic fixed point of $G$. Then the action of $G_\xi$ on $(\EE_\xi,\Dist_\xi)$ is uniformly Lipschitz, i.e.
+\[
+\Dist_\xi(g(y_1),g(y_2)) \asymp_\times \Dist_\xi (y_1,y_2) \all y_1,y_2\in\EE_\xi\all g\in G,
+\]
+and the implied constant is independent of $g\in G$. Furthermore, if $X$ is strongly hyperbolic, then $G$ acts isometrically on $\EE_\xi$.
+\end{observation}
+
+\begin{observation}
+\label{observationeuclideanparabolicasymp}
+Let $G\prec\Isom(X)$, and let $\xi$ be a parabolic fixed point of $G$. Then for all $g\in G_\xi$,
+\begin{equation}
+\label{euclideanparabolicasymp}
+\Dist_\xi(\zero,g(\zero)) \asymp_\times b^{(1/2)\dogo g},
+\end{equation}
+with equality if $X$ is strongly hyperbolic.
+\end{observation}
+\begin{proof}
+This is a direct consequence of \eqref{euclideancomparison}, (h) of Proposition \ref{propositionbasicidentities}, and Proposition \ref{propositionbusemannpreserved}.
+\end{proof}
+
+As a corollary we have the following:
+\begin{observation}
+\label{observationparabolic}
+Let $G\prec\Isom(X)$, and let $\xi$ be a parabolic fixed point of $G$. Then for any sequence $(g_n)_1^\infty$ in $G_\xi$,
+\[
+\dogo{g_n}\tendsto n \infty \Leftrightarrow g_n(\zero)\tendsto n\xi.
+\]
+\end{observation}
+\begin{proof}
+Indeed,
+\[
+g_n(\zero)\tendsto n\xi \Leftrightarrow \Dist_\xi(\zero,g_n(\zero))\tendsto n \infty \Leftrightarrow \dogo{g_n}\tendsto n \infty.
+\]
+\end{proof}
+
+\begin{remark}
+\label{remarkparabolicRtree2}
+If $X$ is an $\R$-tree, then any parabolic group must be infinitely generated. This follows from a straightforward modification of the proof of Remark \ref{remarkparabolicRtree}.
+\end{remark}
+
+\subsection{Loxodromic semigroups}
+\label{subsubsectionloxodromic}
+We now come to loxodromic semigroups, which are the most diverse out of these classes. In fact, they are so diverse that we separate them into three subclasses.
+\begin{definition}[\cite{CCMT}]
+\label{definitionCCMT}
+Let $G\prec\Isom(X)$ be a loxodromic semigroup. $G$ is
+\begin{itemize}
+\item \emph{lineal} if $\Fix(g) = \Fix(h)$ for all loxodromic $g,h\in G$.
+\item \emph{of general type} if it has two loxodromic elements $g,h\in G$ with 
+\[
+\Fix(g)\cap\Fix(h) = \emptyset.
+\]
+\item \emph{focal} if $\#(\Fix(G)) = 1$.
+\end{itemize}
+(We remark that focal groups were called \emph{quasiparabolic} by Gromov \cite[\63, Case 4']{Gromov3}.
+\end{definition}
+We observe that any cyclic loxodromic group or semigroup is lineal, so this refined classification does not give any additional information for individual isometries.
+
+\begin{proposition}
+Any loxodromic semigroup is either lineal, focal, or of general type.
+\end{proposition}
+\begin{proof}
+Clearly, $\#(\Fix(G))\leq 2$ for any loxodromic semigroup $G$; moreover, $\#(\Fix(G)) = 2$ if and only if $G$ is lineal. So to complete the proof, it suffices to show that $\#(\Fix(G)) = 0$ if and only if $G$ is of general type. The backward direction is obvious. Suppose that $\#(\Fix(G)) = 0$, but that $G$ is not of general type. Combinatorial considerations show that there exist three points $\xi_1,\xi_2,\xi_3\in\del X$ such that $\Fix(g)\subset\{\xi_1,\xi_2,\xi_3\}$ for all $g\in G$. But then the set $\{\xi_1,\xi_2,\xi_3\}$ would have to be preserved by every element of $g$, which contradicts the definition of a loxodromic isometry.
+\end{proof}
+
+Let $G$ be a focal semigroup, and let $\xi$ be the global fixed point of $G$. The dynamics of $G$ will be different depending on whether or not $g'(\xi) > 1$ for any $g\in G$.
+\begin{definition}
+\label{definitionfocal}
+$G$ will be called \emph{outward focal} if $g'(\xi) > 1$ for some $g\in G$, and \emph{inward focal} otherwise.
+\end{definition}
+Note that an inward focal semigroup cannot be a group.
+
+
+\begin{proposition}
+\label{propositionfocalequivalent}
+For $G\leq\Isom(X)$, the following are equivalent:
+\begin{itemize}
+\item[(A)] $G$ is focal.
+\item[(B)] $G$ has a unique global fixed point $\xi\in\del X$, and $g'(\xi)\neq 1$ for some $g\in G$.
+\item[(C)] $G$ has a unique global fixed pont $\xi\in\del X$, and there are two loxodromic isometries $g,h\in G$ so that $g_+ = h_+ = \xi$, but $g_- \neq h_-$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+The implications (C) \implies (A) \iff (B) are straightforward. Suppose that $G$ is focal, and let $g\in G$ be a loxodromic isometry. Since $G$ is a group, we may without loss of generality suppose that $g'(\xi) < 1$, so that $g_+ = \xi$. Let $j\in G$ be such that $g_-\notin\Fix(j)$. By choosing $n$ sufficiently large, we may guarantee that $(jg^n)'(\xi) < 1$. Then if $h = jg^n$, then $h$ is loxodromic and $h_+ = \xi$. But $g_-\notin \Fix(h)$, so $g_-\neq h_-$.
+\end{proof}
+
+
+\bigskip
+%\section{Proof of Theorem \ref{classificationofsemigroups}}
+\section{Proof of the Classification Theorem}
+
+We begin by recalling the following definition from Section \ref{subsectionshadows}:
+\begin{repdefinition}{definitionshadow}
+For each $\sigma > 0$ and $x,y\in X$, let
+\[
+\Shad_y(x,\sigma) = \{\eta\in\del X:\lb y|\eta\rb_x\leq\sigma\}.
+\]
+We say that $\Shad_y(x,\sigma)$ is the \emph{shadow cast by $x$ from the light source $y$, with parameter $\sigma$}. For shorthand we will write $\Shad(x,\sigma) = \Shad_\zero(x,\sigma)$.
+\end{repdefinition}
+
+\begin{lemma}
+\label{lemmaloxodromic}
+For every $\sigma > 0$, there exists $r > 0$ such that for every $g\in\Isom(X)$ with $\dogo g \geq r$, if there exists a nonempty closed set
+\[
+Z \subset \Shad_{g^{-1}(\zero)}(\zero,\sigma)
+\]
+satisfying $g(Z) \subset Z$, then $g$ is loxodromic and $g_+\in Z$.
+\end{lemma}
+
+\begin{proof}
+%Let $Z = \Shad_{g^{-1}(\zero)}(\zero,\sigma)$, and recall that $Z$ is closed (Observation \ref{observationshadowsclosed}). Note that $Z\neq\emptyset$ since $\zero\in Z$. Our assumption states that
+%\[
+%g(Z)\subset Z.
+%\]
+Recall from the Bounded Distortion Lemma \ref{lemmaboundeddistortion} that
+\begin{equation}
+\label{equationloxodromic}
+\frac{\Dist(g(y_1),g(y_2))}{\Dist(y_1,y_2)} \leq C b^{-\dogo g} \all y_1,y_2\in Z
+\end{equation}
+for some $C > 0$ independent of $g$. Now choose $r > 0$ large enough so that $C b^{-r} < 1$. If $g\in\Isom(X)$ satisfies $\dogo g\geq r$, we can conclude that $g:Z\to Z$ is a strict contraction of the complete metametric space $(Z,\Dist)$. Then by Theorem \ref{banachcontractionprinciple}, $g$ has a unique fixed point $\xi\in Z_\refl = Z\cap \del X$.
+
+To complete the proof we must show that $g'(\xi) < 1$ to prove that $g$ is not parabolic and that $\xi = g_+$. Indeed, by the Bounded Distortion Lemma, we have $g'(\xi) \lesssim_\times b^{-\dogo g} \leq b^{-r}$, so choosing $r$ sufficiently large completes the proof.
+\end{proof}
+
+\begin{corollary}
+\label{corollaryloxodromic}
+For every $\sigma > 0$, there exists $r = r_\sigma > 0$ such that for every $g\in\Isom(X)$ with $\dogo g\geq r$, if $g$ is not loxodromic, then
+\begin{equation}
+\label{nonloxodromic}
+\lb g(\zero)|g^{-1}(\zero)\rb_\zero \geq \sigma.
+\end{equation}
+\end{corollary}
+\begin{proof}
+Fix $\sigma > 0$, and let $\sigma' = \sigma + \delta$, where $\delta$ is the implied constant in Gromov's inequality. Apply Lemma \ref{lemmaloxodromic} to get $r' > 0$. Let $r = \max(r',2\sigma')$. Now suppose that $g\in\Isom(X)$ satisfies $\dogo g\geq r\geq r'$ but is not loxodromic. Then by Lemma \ref{lemmaloxodromic}, we have
+\[
+\Shad(g(\zero),\sigma')\butnot \Shad_{g^{-1}(\zero)}(\zero,\sigma')\neq \emptyset.
+\]
+Let $x$ be a member of this set. By definition this means that
+\[
+\lb \zero|x\rb_{g(\zero)} \leq \sigma' < \lb g^{-1}(\zero)|x\rb_\zero.
+\]
+Since $\dogo g\geq r\geq 2\sigma'$, we have
+\[
+\lb g(\zero)|x\rb_\zero = \dogo g - \lb \zero|x\rb_{g(\zero)} \geq 2\sigma' - \sigma' = \sigma'.
+\]
+Now by Gromov's inequality we have
+\[
+\lb g(\zero)|g^{-1}(\zero)\rb_\zero \geq \min(\lb g(\zero)|x\rb_\zero,\lb g^{-1}(\zero)|x\rb_\zero) - \delta
+\geq \sigma' - \delta = \sigma.
+\]
+\end{proof}
+
+\begin{lemma}\label{keylemma}
+Let $G\prec\Isom(X)$ be a semigroup which is not loxodromic, and let $(g_n)_1^\infty$ be a sequence in $G$ such that $\dogo{g_n} \to \infty$. Then $(g_n(\zero))_1^\infty$ is a Gromov sequence.
+\end{lemma}
+\begin{proof}
+Fix $\sigma > 0$ large, and let $r = r_\sigma$ be as in Corollary \ref{corollaryloxodromic}. Since $G$ is not loxodromic, \eqref{nonloxodromic} holds for every $g\in G$ for which $\dogo g\geq r$.
+
+Fix $n,m\in\N$ with $\dogo{g_n},\dogo{g_m}\geq r$; Corollary \ref{corollaryloxodromic} gives
+\begin{align} \label{gngn1}
+\lb g_n(\zero)|g_n^{-1}(\zero)\rb_\zero &\geq \sigma\\ \label{gmgm1}
+\lb g_m(\zero)|g_m^{-1}(\zero)\rb_\zero &\geq \sigma.
+\end{align}
+By contradiction, suppose that $\lb g_n(\zero)|g_m(\zero)\rb_\zero \leq \sigma/2$; then Gromov's inequality together with \eqref{gngn1} gives
+\begin{equation}
+\label{gn1gm}
+\lb g_n^{-1}(\zero)|g_m(\zero)\rb_\zero \asymp_\plus 0.
+\end{equation}
+It follows that
+\[
+\dogo{g_n g_m} = \dist(g_n^{-1}(\zero),g_m(\zero)) \geq 2r - \lb g_n^{-1}(\zero)|g_m(\zero)\rb_\zero \asymp_\plus 2r.
+\]
+Choosing $r$ sufficiently large, we have $\dogo{g_n g_m} \geq r$. So by Corollary \ref{corollaryloxodromic},
+\begin{equation}
+\label{gngmgm1gn1}
+\lb g_n g_m(\zero)|g_m^{-1} g_n^{-1}(\zero)\rb_\zero \geq \sigma.
+\end{equation}
+Now
+\begin{align*}
+\lb g_n(\zero)|g_n g_m(\zero)\rb_\zero &=_\pt \lb \zero|g_m(\zero)\rb_{g_n^{-1}(\zero)}\\
+&=_\pt \dogo{g_n} - \lb g_n^{-1}(\zero)|g_m(\zero)\rb_\zero\\
+&\asymp_\plus \dogo{g_n} \by{\eqref{gn1gm}}\\
+&\geq_\pt r,
+\end{align*}
+i.e.
+\begin{equation}
+\label{gngngm}
+\lb g_n(\zero)|g_n g_m(\zero)\rb_\zero \gtrsim_\plus r.
+\end{equation}
+
+A similar argument yields
+\begin{equation}
+\label{gm1gm1gn1}
+\lb g_m^{-1}(\zero)|g_m^{-1} g_n^{-1}(\zero)\rb_\zero \gtrsim_\plus r.
+\end{equation}
+Combining \eqref{gmgm1}, \eqref{gm1gm1gn1}, \eqref{gngmgm1gn1}, and \eqref{gngngm}, together with Gromov's inequality, yields
+\[
+\lb g_n|g_m\rb_\zero \gtrsim_\plus \min(\sigma,r).
+\]
+This completes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{classificationofsemigroups}]%\comtushar{this was the first attempt. i'm putting the photos for second attempt on the next page}
+Suppose that $G$ is neither elliptic nor loxodromic, and we will show that it is parabolic. Since $G$ is not elliptic, there is a sequence $(g_n)_1^\infty$ in $G$ such that $\dogo{g_n} \to \infty$. By Lemma \ref{keylemma}, $(g_n(\zero))_1^\infty$ is a Gromov sequence; let $\xi\in\del X$ be the limit point.
+
+Note that $\xi$ is uniquely determined by $G$; if $(h_n(\zero))_1^\infty$ were another Gromov sequence, then we could let
+\[
+j_n := \begin{cases}
+g_{n/2} & n\text{ even}\\
+h_{(n - 1)/2} & n\text{ odd}
+\end{cases}.
+\]
+The sequence $(j_n(\zero))_1^\infty$ would tend to infinity, so by Lemma \ref{keylemma} it would be a Gromov sequence. But that exactly means that the Gromov sequences $(g_n(\zero))_1^\infty$ and $(h_n(\zero))_1^\infty$ are equivalent. Moreover, it is easy to see that $\xi$ does not depend on the choice of the basepoint $\zero\in X$.
+
+In particular, the fact that $\xi$ is canonically determined by $G$ implies that $\xi$ is a global fixed point of $G$. To complete the proof, we need to show that $g'(\xi) = 1$ for all $g\in G$. Suppose we have $g\in G$ such that $g'(\xi)\neq 1$. Then $g$ is loxodromic by Lemma \ref{lemmarepellingloxodromic}, a contradiction.
+\end{proof}
+%\ignore{
+%\noindent Thus $G(\xi) = \xi$. 
+%
+%\noindent $G$ is an isometry on $\EE_\xi$.
+%
+%\noindent Therefore $G$ is parabolic. 
+%
+%\noindent [Note this was left unfinished. See proof of Key Lemma - DSC04237.]
+%
+%\comtushar{There was also this observation, but I wasn't sure why we needed it. Also whether we should introduce cross ratios or not. 
+%\[
+%b^{[\xi,\eta_0,\eta_1,\eta_2]} = \frac{\Dist_x(\eta_0,\eta_2)}{\Dist_x(\eta_0,\eta_1)} \frac{\Dist_x(\xi,\eta_1)}{\Dist_x(\xi,\eta_0))} = \frac{\Dist_\xi(\eta_0,\eta_2)}{\Dist_\xi(\eta_0,\eta_1)} \cdot
+%\]
+%Maybe we needed it to show that $G$ is an isometry on $\EE_\xi$.}
+%}% end ignore
+
+
+%\comdavid{I am commenting out the ``classification diagram'' since it seems like too much of it depends on $X = \H$.}
+
+%\subsection{The classification diagram DSC03592}
+%
+%\begin{figure}
+%\centerline{\mbox{\includegraphics[scale=.12]{photos/DSC03592}}}
+%\caption{DSC03592}
+%\label{photoDSC03592}
+%\end{figure}
+%
+%\comtushar{DSC03592 and also 03582-91.}
+%Given a group $G\leq\Isom(X)$, we may summarize the classification via the following tree of cases:
+%\begin{enumerate}
+%\item~ [Case 1: $\sup_{g\in G} \dogo g < \infty .$]
+%\newline~~ In this case:
+%\begin{itemize}
+%\item There exists a global fixed point (GFP) in the interior $X$.
+%\item All elements of $G$ are elliptic.
+%\item $G$ embeds into $\Isom(\del \B)$.
+%\item $\Lambda(G) = \emptyset$ .
+%\end{itemize}
+%\item~ [Case 2: $\sup_{g\in G} \dogo g = \infty .$]
+%\begin{enumerate}
+%\item~ [Case 2.a: There are no hyperbolic elements in $G$.]
+%\newline~ \phantom{x} In this case: 
+%\begin{itemize}
+%\item The GFP is on the boundary $\del X$.
+%\item All elements of $G$ are elliptic or parabolic.
+%\item $G$ embeds into $\O^*(\HH)$.
+%\item The GFP is unique.
+%\item $\Lambda(G) = \{ \text{GFP} \}$.
+%\end{itemize}
+%\item~ [Case 2.b: There exists a hyperbolic element in $G$.]
+%\begin{enumerate}
+%\item~ [Case 2.b.ii: The nonelementary case.]
+%\newline~ \phantom{x} In this case: 
+%\begin{itemize}
+%\item There exists a Schottky subgroup $H \subset G$.
+%\item $\#(\LambdaG) = \#(\R)$.
+%\end{itemize}
+%\item~ [Case 2.b.i: The elementary case.]
+%\begin{enumerate}
+%\item~ [Case 2.b.i.A: Fixed point, but not fixed pair.]
+%\newline~ \phantom{x} In this case: 
+%\begin{itemize}
+%\item $G$ is not discrete.
+%\item $G$ embeds into $\Sim(\HH)$ 
+%\item The GFP is unique.
+%\end{itemize}
+%\item~ [Case 2.b.i.B: Fixed pair $F$.]
+%\newline~ \phantom{x} In this case we have 
+%\begin{itemize}
+%\item There are no other fixed points. In fact, $\Lambda(G) = F$.
+%\item All elements of $G$ are elliptic or hyperbolic.
+%\item $G$ embeds into $\Isom(\R) \oplus \Iso (\del \B)$.
+%\item If $G$ abelian, then the pair $F$ is fixed setwise. 
+%\end{itemize}
+%\end{enumerate}
+%\end{enumerate} 
+%\end{enumerate} 
+%\end{enumerate}
+
+\bigskip
+\section{Discreteness and focal groups}
+
+\begin{proposition}
+\label{propositionnonfocal}
+Fix $G\leq\Isom(X)$, and suppose that either
+\begin{itemize}
+\item[(1)] $G$ is strongly discrete,
+\item[(2)] $X$ is CAT(-1) and $G$ is moderately discrete, or
+\item[(3)] $X$ admits unique geodesic extensions (e.g. $X$ is an algebraic hyperbolic space) and $G$ is weakly discrete.
+\end{itemize}
+Then $G$ is not focal.
+\end{proposition}
+%\begin{remark}
+%The proposition fails for semigroups; see e.g. Example \internalmissingref.
+%\end{remark}
+\begin{proof}[Strongly discrete case]
+Suppose that $G$ is a focal group. Let $\xi\in\del X$ be its global fixed point, and let $g,h\in G$ be as in (C) of Proposition \ref{propositionfocalequivalent}. Since $h^{-n}(\zero)\to h_- \neq \xi$, we have
+\[
+\lb h^{-n}(\zero)|\xi\rb_\zero \asymp_{\plus,h} 0
+\]
+and thus
+\[
+\lb h^n(\zero)|\xi\rb_\zero \asymp_\plus \dogo{h^n} - \lb\zero|\xi\rb_{h^n(\zero)} \asymp_{\plus,h} \dogo{h^n}.
+\]
+Applying $g$ we have
+\[
+\lb gh^n(\zero)|\xi\rb_\zero
+= \lb h^n(\zero)|\xi\rb_{g^{-1}(\zero)}
+\asymp_{\plus,g} \lb h^n(\zero)|\xi\rb_\zero
+\asymp_{\plus,h} \dogo{h^n}
+\]
+and applying Gromov's inequality we have
+\[
+\lb h^n(\zero) | gh^n(\zero)\rb_\zero \asymp_{\plus,g,h} \dogo{h^n} \asymp_{\plus,g} \dogo{g h^n}.
+\]
+Now
+\begin{align*}
+\dogo{h^{-n} gh^n}
+&= \dist(h^n(\zero),gh^n(\zero))\\
+&= \dogo{h^n} + \dogo{g h^n} - 2\lb h^n(\zero),gh^n(\zero)\rb_\zero
+\asymp_{\plus,g,h} 0.
+\end{align*}
+Since $G$ is strongly discrete, this implies that the collection $\{h^{-n} gh^n:n\in\N\}$ is finite, and so for some $n_1 < n_2$ we have
+\[
+h^{-n_1} gh^{n_1} = h^{-n_2} gh^{n_2}
+\]
+or
+\[
+h^{n_2 - n_1} g = g h^{n_2 - n_1},
+\]
+i.e. $h^{n_2 - n_1}$ commutes with $g$. But then $h^{n_2 - n_1}(g_-) = g_-$, contradicting that $g_-\neq h_-$. This completes the proof of Proposition \ref{propositionnonfocal}$(1)$.
+\end{proof}
+
+\begin{proof}[Moderately discrete case]
+Suppose that $G$ is a focal group. Let $\xi\in\del X$ be its global fixed point, and let $g,h\in G$ be as in (C) of Proposition \ref{propositionfocalequivalent}. Let
+\[
+k = [g,h] = g^{-1} h^{-1} gh\in G.
+\]
+We observe first that
+\begin{equation}
+\label{kprimeequalsone}
+k'(\xi) = \frac{1}{g'(\xi)}\frac{1}{h'(\xi)}g'(\xi) h'(\xi) = 1.
+\end{equation}
+Note that strong hyperbolicity is necessary to deduce equality in \eqref{kprimeequalsone} rather than merely a coarse asymptotic.
+
+Next, we claim that $k(g_-)\neq g_-$. Indeed, $g_-\notin\Fix(h)$, so $h(g_-)\neq g_-$. This in turn implies that $h(g_-)\notin\Fix(g)$, so $gh(g_-)\neq h(g_-)$. Now applying $g^{-1} h^{-1}$ to both sides shows that $k(g_-)\neq g_-$.
+
+\begin{claim}
+\label{claimfocalMD}
+$g^{-n} k g^n(\zero)\to \zero$.
+\end{claim}
+\begin{subproof}
+Indeed,
+\[
+\dogo{g^{-n} k g^n} = \dist(g^n(\zero),k g^n(\zero)).
+\]
+Let
+\begin{align*}
+x &= \xi\\
+y &= \zero\\
+z &= k(\zero)\\
+p_n &= g^n(\zero)\\
+q_n &= k g^n(\zero).
+\end{align*}
+(See Figure \ref{figurexyzpq}.) Then $p_n,q_n\in\Delta := \Delta(x,y,z)$. By Proposition \ref{propositionidealCAT} $\dist(p_n,q_n) \leq \dist(\wbar p_n,\wbar q_n)$, where $\wbar p_n,\wbar q_n$ are comparison points for $p_n,q_n$ on the comparison triangle $\wbar \Delta = \Delta(\wbar x,\wbar y,\wbar z)$. Now notice that
+\[
+\busemann_{\wbar x}(\wbar p_n,\wbar q_n) = \busemann_\xi(g^n(\zero),k g^n(\zero)) = 0
+\]
+by Proposition \ref{propositionbusemannpreserved} and \eqref{kprimeequalsone}. On the other hand, $\wbar p_n,\wbar q_n\to \wbar x$. An easy calculation based on \eqref{distE} and Proposition \ref{propositionbusemannE} (letting $\wbar x = \infty$) shows that $\dist(\wbar p_n,\wbar q_n)\to 0$, and thus that $\dogo{g^{-n} k g^n}\to 0$ i.e. $g^{-n} k g^n(\zero)\to \zero$.
+\end{subproof}
+Since $G$ is moderately discrete, this implies that the collection $\{g^{-n} k g^n:n\in\N\}$ is finite. As before (in the proof of the strongly discrete case), this implies that $g^n$ and $k$ commute for some $n\in\N$. But $(g^n)_- = g_-$, and $k(g_-) \neq g_-$, which contradicts that $g^n$ and $k$ commute. This completes the proof of Proposition \ref{propositionnonfocal}$(2)$.
+\end{proof}
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\clip(-5.13,-0.16) rectangle (6.57,8.26);
+\draw (0,1.08)-- (0,6.6);
+\draw (2,1.1)-- (2,6.6);
+\draw [shift={(1,0.14)}] plot[domain=1.32:1.82,variable=\t]({1*3.98*cos(\t r)+0*3.98*sin(\t r)},{0*3.98*cos(\t r)+1*3.98*sin(\t r)});
+\draw [shift={(1,-0.03)}] plot[domain=0.84:2.31,variable=\t]({1*1.49*cos(\t r)+0*1.49*sin(\t r)},{0*1.49*cos(\t r)+1*1.49*sin(\t r)});
+\draw (-4,0)-- (6,0);
+\begin{scriptsize}
+\fill [color=black] (2,1.1) circle (1pt);
+\draw[color=black] (2.78,1.2) node {$z=k(\zero)$};
+\fill [color=black] (1.03,6.98) circle (1pt);
+\draw[color=black] (1.43,7.15) node {$x=\xi$};
+\fill [color=black] (0,4) circle (1pt);
+\draw[color=black] (-0.89,4.14) node {$p_n = g^n(\zero)$};
+\fill [color=black] (2,4) circle (1pt);
+\draw[color=black] (3.07,4.06) node {$q_n = kg^n(\zero)$};
+\fill [color=black] (0,1.08) circle (1pt);
+\draw[color=black] (-0.3,1.2) node {$\zero$};
+\end{scriptsize}
+\end{tikzpicture}
+\caption[High altitude implies small displacement in the half-space model]{The higher the point $g^n(\zero)$ is, the smaller its displacement under $k$ is.}
+\label{figurexyzpq}
+\end{center}
+\end{figure}
+
+
+
+\begin{proof}[Weakly discrete case]
+Suppose that $G$ is a focal group. Let $\xi$, $g$, $h$, and $k$ be as above. Without loss of generality, supposet that $\zero\in \geo{g_-}{\xi}$.
+
+\begin{claim}
+$g^{-n} k g^n(\zero)\neq \zero$ for all $n\in\N$.
+\end{claim}
+\begin{subproof}
+Fix $n\in\N$. As observed above, $k(g_-)\neq g_-$. On the other hand, $k(\xi) = \xi$, and $g^n(\zero)\in \geo{g_-}{\xi}$. Since $X$ admits unique geodesic extensions, it follows that $k(g^n(\zero))\neq g^n(\zero)$, or equivalently that $g^{-n} k g^n(\zero)\neq \zero$.
+\end{subproof}
+Together with Claim \ref{claimfocalMD}, this contradicts that $G$ is weakly discrete. This completes the proof of Proposition \ref{propositionnonfocal}$(3)$.
+\end{proof}

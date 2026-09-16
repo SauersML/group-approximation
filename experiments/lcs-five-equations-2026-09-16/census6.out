@@ -1,0 +1,7 @@
+('closure-complete', 'planar') 28416
+('closure-incomplete', 'nonplanar') 697
+('closure-incomplete', 'planar') 3655
+
+real	0m30.612s
+user	0m5.936s
+sys	0m0.034s

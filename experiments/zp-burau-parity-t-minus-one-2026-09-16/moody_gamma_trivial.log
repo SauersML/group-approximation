@@ -1,0 +1,17 @@
+w t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 24
+w t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 20
+w t->1/t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 20
+w t->1/t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 24
+rev t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 26
+rev t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 23
+rev t->1/t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 23
+rev t->1/t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 26
+mirror t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 28
+mirror t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 25
+mirror t->1/t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 25
+mirror t->1/t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 28
+rev-mirror t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 29
+rev-mirror t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 26
+rev-mirror t->1/t s 1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 26
+rev-mirror t->1/t s -1 : J31 - t^s J32 nonzero: True ; value at t=-1: 0 ; number of terms: 29
+ALL VARIANTS NONZERO AND VANISH AT -1: True

@@ -1,0 +1,873 @@
+\ProvidesPackage{macros}
+%\;~\newline------------------------------------------------------------------------------------------------------------------------
+%Notes:
+% arXiv does not work well with marvosym
+% or with non-10pt font
+% or with the following macros: \L OE \IJ \i \l \oe \AE \DH \DJ \O \TH \ss \ae \dh \o \th \ij \SS
+
+
+\newif\ifarxiv
+
+\IfFileExists{bibliography.bib}{\arxivfalse}{\arxivtrue}
+
+\newcommand {\ignore}[1]{}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Formatting settings
+\newcommand{\standardmargins}{
+\setlength{\topmargin}{0 in}
+\setlength{\oddsidemargin}{0 in}
+\setlength{\evensidemargin}{0 in}
+\setlength{\textwidth}{6.4 in}
+\setlength{\textheight}{8.6 in}
+}%
+\newcommand{\standardpackages}{
+\PassOptionsToPackage{hyphens}{url}
+\RequirePackage[breaklinks]{hyperref}
+\RequirePackage{color}
+\RequirePackage[usenames,dvipsnames]{xcolor}
+\RequirePackage{pgf, tikz}
+\usetikzlibrary{arrows, patterns}
+}%
+\newcommand{\standardrenews}{
+\renewcommand{\AA}{\mathcal A}% OK to overwrite since \AA = \r A
+\renewcommand{\H}{\mathbb H}% Hungarian accent moved to \doubleacute
+\renewcommand{\L}{\mathbb L}% Stricken L moved to \strickenL
+\renewcommand{\O}{\mathbb O}% Stricken O moved to \strickenO
+\renewcommand{\P}{\mathbb P}% Pilcrow moved to \pilcrow
+\renewcommand{\S}{\amsbb{S}}% Section symbol moved to \sectionsymbol and \6
+\renewcommand{\SS}{\mathcal S}% sharp S moved to \sharpS
+
+\renewcommand{\aa}{\mbf a}% OK to overwrite since \aa = \r a
+\renewcommand{\gg}{\mbf g}% $>>$ moved to \gtrgtr
+\renewcommand{\ll}{\mbf l}% $<<$ moved to $\lessless$
+\renewcommand{\ss}{\mbf s}% sharp s moved to \sharps
+\renewcommand{\tt}{\mbf t}% Typewriter text moved to \typewriter
+}%
+\newcommand{\standardmakes}{
+\let\definition\undefined
+\let\example\undefined
+\let\definitions\undefined
+\let\examples\undefined
+\makedefinitions{definition}{Definition}
+\makedefinitions{example}{Example}
+}%
+\newcommand{\standardlabeling}{
+\numberwithin{equation}{section}
+\numberwithin{theorem}{section}
+}%
+\newcommand{\standardsettings}{
+\standardmargins\standardpackages\standardrenews\standardmakes\standardlabeling
+}%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{tocdepth}{2}% How deep the table of contents goes; can always be reset
+
+
+\let\oldtocsection=\tocsection
+\let\oldtocsubsection=\tocsubsection
+\let\oldtocsubsubsection=\tocsubsubsection
+
+\let\tocsection\undefined
+\let\tocsubsection\undefined
+\let\tocsubsubsection\undefined
+
+\newcommand{\tocsection}[2]{\hspace{0em}\oldtocsection{#1}{#2}}
+\newcommand{\tocsubsection}[2]{\hspace{1em}\oldtocsubsection{#1}{#2}}
+\newcommand{\tocsubsubsection}[2]{\hspace{2em}\oldtocsubsubsection{#1}{#2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\let\oldlofsection=\lofsection
+\let\oldlofsubsection=\lofsubsection
+\let\oldlofsubsubsection=\lofsubsubsection
+
+\let\lofsection\undefined
+\let\lofsubsection\undefined
+\let\lofsubsubsection\undefined
+
+\newcommand{\lofsection}[2]{\hspace{0em}\oldlofsection{#1}{#2}}
+\newcommand{\lofsubsection}[2]{\hspace{1em}\oldlofsubsection{#1}{#2}}
+\newcommand{\lofsubsubsection}[2]{\hspace{2em}\oldlofsubsubsection{#1}{#2}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Packages
+\RequirePackage{amsmath, amssymb, amsthm, amscd, amsfonts, dsfont}
+\RequirePackage{mathrsfs}
+\RequirePackage{graphicx}
+\RequirePackage{verbatim}
+\RequirePackage{enumerate}
+\RequirePackage{url}
+%\newcommand\amsbb[1]{\ifarxiv{\use@mathgroup \M@U \symAMSb{#1}}\else{\mathbb{#1}}}
+\def\amsbb{\use@mathgroup \M@U \symAMSb}
+\RequirePackage{bbold}
+\RequirePackage{comment}
+\RequirePackage{multicol}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\RequirePackage{array}% for \newcolumntype macro
+
+
+\IfFileExists{marvosym.sty}{
+\RequirePackage{marvosym} \newcommand{\at}{\MVAt}
+}{
+\newcommand{\at}{@}
+}
+\let\origemptyset\emptyset
+\IfFileExists{wasysym.sty}{
+\RequirePackage{wasysym}\newcommand{\smallemptyset}{{\varnothing}}\renewcommand{\emptyset}{{\diameter}}
+}{
+%\newcommand{\emptyset}{\varnothing}
+\newcommand{\smallemptyset}{{\origemptyset}}
+}
+%%%%%
+
+% A note on our itemize conventions:
+% Use (I) if the items have an "And" relation (IA1)
+% Use (1) if the items have an "Or" relation (1Ai)
+% Use (i) if the items are different parts of a proposition (iA1)
+% Use (A) if the items are different equivalent (or inequivalent) conditions (A1i)
+% Use (a) if the items are equations (i.e. if you are in an align environment (a1i))
+% Use 1. if the items are the steps of a procedure; in this case, i. should be used for sub-steps
+% Otherwise, use bullet points (e.g. if you are writing out a list of definitions)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Everything pertaining to particular authors
+\newif\ifdraft\drafttrue
+
+\newif\ifcolorcomments
+
+\newcommand{\allowcomments}[4]{
+\newcommand{#1}[1]{\ifdraft{\ifcolorcomments{\textcolor{#4}{##1 --#3}}\else{\textsl{ ##1 \ --#3}}\fi}\else{}\fi}
+}
+
+% Allows us to make comments.
+% A list of colors is available at http://en.wikibooks.org/wiki/LaTeX/Colors - otherwise everyone defaults to blue
+\allowcomments{\comtushar}{TD}{Tushar}{blue}
+\allowcomments{\comlior}{LF}{Lior}{magenta}
+\allowcomments{\comtue}{TL}{Tue}{blue}
+\allowcomments{\comdmitry}{DK}{Dmitry}{red}
+\allowcomments{\comkeith}{KM}{Keith}{blue}
+\allowcomments{\comerez}{EN}{Erez}{blue}
+\allowcomments{\comdavid}{DS}{David}{Green}
+\allowcomments{\commariusz}{MU}{Mariusz}{red}
+\allowcomments{\comsteffen}{SW}{Steffen}{blue}
+\allowcomments{\combarak}{BW}{Barak}{blue}
+
+
+\newcommand{\selfnote}[1]{\ifdraft{\footnote{\textsl{#1}}}\else{\stopcompiling}\fi}
+\newcommand{\demanddraft}{\ifdraft{\ifarxiv{\stopcompiling}\else{\ignorespaces}\fi}\else{\stopcompiling}\fi}
+\newcommand{\ddr}{\demanddraft}% Short version
+\newcommand{\makefigure}{\ddr}
+\newcommand{\missingref}{\ref{}\ddr}
+\newcommand{\missingcite}{\cite{missing}\ddr}
+
+
+
+% Let me (David) know if your information is out of date.
+\newcommand{\authorvitaly}{\ifdraft{\author{VB}}\else{
+\author{Vitaly Bergelson}
+\address{Ohio State University, Department of Mathematics, 231 W. 18th Avenue, Columbus, OH 43210-1174, USA}
+\email{vitaly\at math.ohio-state.edu}
+}\fi}
+
+\newcommand{\authorryan}{\ifdraft{\author{RB}}\else{
+\author{Ryan Broderick}
+\address{340 Rowland Hall (Bldg.\# 400), University of California, Irvine, Irvine, CA 92697-3875, USA}
+\email{broderir\at uci.edu }
+}\fi}
+
+
+\newcommand{\authortushar}{\ifdraft{\author{TD}}\else{
+\author{Tushar Das}
+\address{University of Wisconsin -- La Crosse, Department of Mathematics \& Statistics, 1725 State Street, La Crosse, WI 54601, USA}
+\email{tdas\at uwlax.edu}
+\urladdr{\url{https://sites.google.com/a/uwlax.edu/tdas/}}
+}\fi}
+
+\newcommand{\authorlior}{\ifdraft{\author{LF}}\else{
+\author{Lior Fishman}
+\address{University of North Texas, Department of Mathematics, 1155 Union Circle \#311430, Denton, TX 76203-5017, USA}
+\email{lior.fishman\at unt.edu}
+}\fi}
+
+\newcommand{\authordmitry}{\ifdraft{\author{DK}}\else{
+\author{Dmitry Kleinbock}
+\address{Brandeis University, Department of Mathematics, 415 South Street, Waltham, MA 02454-9110, USA}
+\email{kleinboc\at brandeis.edu}
+}\fi}
+
+\newcommand{\authorhenna}{\ifdraft{\author{HK}}\else{
+\author{Henna Koivusalo}
+\address{University of York, Department of Mathematics, Heslington, York YO10 5DD, UK}
+\email{Henna.Koivusalo\at york.ac.uk}
+}\fi}
+
+\newcommand{\authortue}{\ifdraft{\author{TL}}\else{
+\author{Tue Ly}
+\address{Brandeis University, Department of Mathematics, 415 South Street, Waltham, MA 02454-9110, USA}
+\email{lntue\at brandeis.edu}
+}\fi}
+
+
+\newcommand{\authorkeith}{\ifdraft{\author{KM}}\else{
+\author{Keith Merrill}
+\address{Brandeis University, Department of Mathematics, 415 South Street, Waltham, MA 02454-9110, USA}
+\email{merrill2\at brandeis.edu}
+%\address{Tufts University, Department of Mathematics,  503 Boston Avenue, Medford, MA 02155, USA}
+%\email{keith.merrill\at tufts.edu}
+}\fi}
+
+\newcommand{\authorerez}{\ifdraft{\author{EN}}\else{
+\author{Erez Nesharim}
+\address{School of Mathematical Sciences, Tel Aviv University, Ramat Aviv, Tel Aviv 6997801, Israel}
+\email{ereznesharim\at post.tau.ac.il}
+}\fi}
+
+\newcommand{\authorvanessa}{\ifdraft{\author{VR}}\else{
+\author{Vanessa Reams}
+\address{University of North Texas, Department of Mathematics, 1155 Union Circle \#311430, Denton, TX 76203-5017, USA}
+\email{vanessareams\at my.unt.edu}
+}\fi}
+
+\newcommand{\authordavid}{\ifdraft{\author{DS}}\else{
+\author{David Simmons}
+\address{University of York, Department of Mathematics, Heslington, York YO10 5DD, UK}
+\email{David.Simmons\at york.ac.uk}
+\urladdr{\url{https://sites.google.com/site/davidsimmonsmath/}}
+}\fi}
+
+\newcommand{\authormariusz}{\ifdraft{\author{MU}}\else{
+\author{Mariusz Urba\'nski}
+\address{University of North Texas, Department of Mathematics, 1155 Union Circle \#311430, Denton, TX 76203-5017, USA}
+\email{urbanski\at unt.edu}
+\urladdr{\url{http://www.urbanskimath.com/}}
+}\fi}
+
+\newcommand{\authorsteffen}{\ifdraft{\author{SW}}\else{
+\author{Steffen Weil}
+\address{School of Mathematical Sciences, Tel Aviv University, Ramat Aviv, Tel Aviv 6997801, Israel}
+\email{steffen.weil\at math.uzh.ch}
+}\fi}
+
+\newcommand{\authorbarak}{\ifdraft{\author{BW}}\else{
+\author{Barak Weiss}
+\address{School of Mathematical Sciences, Tel Aviv University, Ramat Aviv, Tel Aviv 6997801, Israel}
+\email{barakw\at post.tau.ac.il}
+}\fi}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% New commands:
+
+% New Align formatting
+\newenvironment{equations}{\csname align*\endcsname}{\csname endalign*\endcsname}
+% Formatting
+\newcommand{\spc}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}% To have multiline entries in tables
+\renewcommand{\triangleleft}{\vartriangleleft}
+\newcommand{\sq}{\square}
+\newcommand{\QEDmod}{\renewcommand{\qedsymbol}{$\triangleleft$}}
+\newcommand{\varqedhere}{\QEDmod\qedhere}
+\newcommand{\what}{\widehat}
+\newcommand{\w}{\widetilde}
+\newcommand{\ew}{\hspace{.01 in}}
+\newcommand{\all}{\;\;\forall}% Appropriate amount of space
+\newcommand{\given}{\upharpoonleft}
+\newcommand{\divides}{\mid}
+\let\regtext\text
+\renewcommand{\text}{\textup}
+\newcommand{\upeqref}{\eqref}
+\let\note\undefined
+\newcommand{\note}[1]{ & \text{(#1)}}
+\newcommand{\by}[1]{ & \text{(by #1)}}
+\newcommand{\since}[1]{ & \text{(since #1)}}
+\newcommand{\justify}{ & \text{(Justify\ddr)}}
+\newcommand{\noreason}{\hspace{-20 in}}
+\newcommand{\pt}{{\phantom\times}}
+\newcommand{\ptsigma}{{\phantom{\times,\sigma}}}
+\newcommand{\draftnewpage}{\ifdraft{\newpage}\else{\ignorespaces}\fi}
+\newcommand{\NPC}[1]{\ignorespaces}
+\newcommand{\noproofs}{\excludecomment{proof} \renewcommand{\NPC}[1]{[##1]}}
+%\newcommand{\noproofs}{\renewenvironment{proof}[1]{
+%[##1]\begin{ignoreproof}
+%}{
+%\end{ignoreproof}
+%}}
+\excludecomment{ignoreproof}
+\newcommand{\tbs}{\textbackslash}
+\newcommand{\bs}{\backslash}
+
+\newcommand{\xihat}{\hspace{-.028 in}\what{\phantom{X}}\hspace{-.1 in}\xi}
+\newcommand{\fhat}{\hspace{-.013 in}\what{\phantom{X}}\hspace{-.115 in}f}
+\newcommand{\dhat}{\hspace{-.02 in}\what{\phantom{X}}\hspace{-.105 in}d}
+\newcommand{\rtilde}{\w r\hspace{.2 in}}
+\let\origepsilon\epsilon
+\renewcommand{\epsilon}{\varepsilon}
+
+
+\newcolumntype{L}{>{$\displaystyle}l<{$}} % math-mode version of "l" column type
+\newcolumntype{C}{>{$\displaystyle}c<{$}} % math-mode version of "c" column type
+\newcolumntype{R}{>{$\displaystyle}r<{$}} % math-mode version of "r" column type
+
+
+% Common footnotes
+\newcommand{\HDfootnote}{\footnote{Here and from now on $\HD(S)$ denotes the Hausdorff dimension of the set $S$.}}
+\newcommand{\geofootnote}{\footnote{Here and from now on $\geo xy$ denotes the geodesic segment connecting $x$ and $y$.}}
+\newcommand{\measuresfootnote}{\footnote{In this paper, all measures are assumed to be Borel and locally finite.}}
+
+% Set theory
+\newcommand{\df}{{\, \stackrel{\mathrm{def}}{=}\, }}
+\renewcommand{\implies}{$\Rightarrow\;$}% Only use in a non-math setting; otherwise use $\Rightarrow$.
+\renewcommand{\iff}{$\Leftrightarrow\;$}% Only use in a non-math setting; otherwise use $\Leftrightarrow$.
+\let\subsetnobar\subset
+\let\origsubset\subset
+\newcommand{\Kin}{\subsetnobar\subsetnobar}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\newcommand{\nsubset}{\nsubseteq}
+\newcommand{\nsupset}{\nsupseteq}
+\newcommand{\propersubset}{\subsetneqq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\newcommand{\propersupset}{\supsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+\let\precneq\prec
+\renewcommand{\prec}{\preceq}
+\let\succneq\succ
+\renewcommand{\succ}{\succeq}
+\newcommand{\butnot}{\setminus}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\one}{\mathds{1}}
+\newcommand{\powerset}{\mathbb P}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Perm}{Perm}
+% Arithmetic
+\newcommand{\CO}[2]{[#1,#2)}% half-closed half-open interval
+\newcommand{\OC}[2]{(#1,#2]}% half-closed half-open interval
+\newcommand{\COlr}[2]{\left[#1,#2\right)}% half-closed half-open interval
+\newcommand{\OClr}[2]{\left(#1,#2\right]}% half-closed half-open interval
+\newcommand{\Rplus}{{\CO 0\infty}}
+\newcommand{\plus}{+}
+\newcommand{\minus}{-}
+\let\macron\=
+\renewcommand{\=}{\asymp}
+\newcommand{\<}{\lesssim}
+\renewcommand{\>}{\gtrsim}
+\let\Re\undefined
+\let\Im\undefined
+\DeclareMathOperator{\Re}{Re}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Log}{Log}% $\Log(x) = \max(1,\log(x))$
+% Algebra
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\PSL}{PSL}
+
+\DeclareMathOperator{\GO}{O}
+\DeclareMathOperator{\PO}{PO}
+\DeclareMathOperator{\PGO}{PO}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\PSO}{PSO}
+
+\DeclareMathOperator{\GU}{U}
+\DeclareMathOperator{\SU}{SU}
+
+\DeclareMathOperator{\Sp}{Sp}
+
+\DeclareMathOperator{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\pgl}{\mathfrak{pgl}}
+\let\slash\sl
+\let\sl\undefined
+\DeclareMathOperator{\sl}{\mathfrak{sl}}
+\DeclareMathOperator{\psl}{\mathfrak{psl}}
+
+\DeclareMathOperator{\go}{\mathfrak{o}}
+\DeclareMathOperator{\po}{\mathfrak{po}}
+\DeclareMathOperator{\pgo}{\mathfrak{po}}
+\DeclareMathOperator{\so}{\mathfrak{so}}
+\DeclareMathOperator{\pso}{\mathfrak{pso}}
+
+\DeclareMathOperator{\gu}{\mathfrak{u}}
+\DeclareMathOperator{\su}{\mathfrak{su}}
+
+%\DeclareMathOperator{\sp}{\mathfrak{sp}}
+\DeclareMathOperator{\Sym}{Sym}
+\newcommand{\prim}{{\mathrm{pr}}}% Primitive vectors
+\newcommand{\proj}{\mathbb P}% Projectivization
+\DeclareMathOperator{\Adj}{Ad}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Center}{center}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\sgn}{sgn}
+% Metric/topological spaces
+\newcommand{\dist}{d}
+\newcommand{\Dist}{D}
+\newcommand{\euc}{{\text e}}
+\newcommand{\sph}{{\text s}}
+\newcommand{\hyp}{{\text h}}
+\newcommand{\radius}{r}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\codiam}{codiam}
+\DeclareMathOperator{\Diam}{Diam}
+\DeclareMathOperator{\Codiam}{Codiam}
+\newcommand{\del}{\partial}% boundary
+\newcommand{\cl}{\overline}% closure
+\DeclareMathOperator{\bord}{bord}
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\tendsto}[1]{\xrightarrow[#1]{}}
+\newcommand{\unifto}{\tendsto{\text{unif}}}% For my real analysis class
+\newcommand{\geo}[2]{[#1,#2]}% geodesic segment
+\newcommand{\thicksymbol}{\NN}
+\newcommand{\thick}[2]{\thicksymbol_{#2}(#1)}% metric thickenings
+\newcommand{\thickopen}[2]{\thicksymbol_{#2}^{\circ}(#1)}% open version
+\newcommand{\thickvar}[2]{\thicksymbol(#1,#2)}% if the thickening parameter is complicated
+\newcommand{\thickopenvar}[2]{\thicksymbol^{\circ}(#1,#2)}% open version
+\DeclareMathOperator{\Isom}{Isom}
+\newcommand{\Iso}{\Isom}
+\newcommand{\HD}{{\dim_H}}% changed 14 Sep 10
+\newcommand{\PD}{{\dim_P}}
+\newcommand{\BD}{{\dim_B}}
+\newcommand{\TD}{{\dim_T}}
+\newcommand{\AD}{\dim_A}
+\newcommand{\DynD}{{\dim_D}}
+\DeclareMathOperator{\dem}{dem}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\cost}{cost}
+
+
+% Kleinian groups
+\newcommand{\Lr}{\Lambda_{\mathrm r}}
+\newcommand{\Lrsigma}{\Lambda_{\mathrm r,\sigma}}
+\newcommand{\Lrtau}{\Lambda_{\mathrm r,\tau}}
+\newcommand{\Lur}{\Lambda_{\mathrm{ur}}}
+\newcommand{\Lursigma}{\Lambda_{\mathrm{ur},\sigma}}
+\newcommand{\Lurtau}{\Lambda_{\mathrm{ur},\tau}}
+\newcommand{\Lh}{\Lambda_{\mathrm h}}
+\newcommand{\Lbp}{\Lambda_{\mathrm{bp}}}
+\newcommand{\Jr}{\JJ_{\mathrm r}}
+\newcommand{\kmax}{k_{\max}}
+\newcommand{\kmin}{k_{\min}}
+\DeclareMathOperator{\Shad}{Shad}
+\DeclareMathOperator{\Sim}{Sim}
+\DeclareMathOperator{\Mob}{Mob}
+\DeclareMathOperator{\Conf}{Conf}
+\DeclareMathOperator{\Hull}{Hull}
+\newcommand{\wbar}{\overline}% comparison point
+\DeclareMathOperator{\height}{height}
+\DeclareMathOperator{\length}{length}
+
+\DeclareMathOperator{\busemann}{\mathcal B}
+\newcommand{\lb}{\langle}% For the Gromov product
+\newcommand{\rb}{\rangle}
+
+\newcommand{\zero}{o}
+
+\renewcommand{\angle}{\measuredangle}
+\newcommand{\ang}{\measuredangle}
+% Diophantine approximation
+\newcommand{\BA}{\mathrm{BA}}
+\newcommand{\WA}{\mathrm{WA}}
+\newcommand{\VWA}{\mathrm{VWA}}
+\newcommand{\VWMA}{\mathrm{VWMA}}
+\newcommand{\Liou}{\mathrm{Liouville}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\std}{\mathrm{std}}% ``standard'' height function
+% Functional analysis/measure theory
+\newcommand{\osc}{\mathrm{osc}}
+\newcommand{\dee}{\mathrm{d}}% moved to allow underdot
+\DeclareMathOperator*{\essinf}{ess\,inf}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Covol}{Covol}
+\DeclareMathOperator{\Area}{Area}
+\newcommand{\prob}{\scrP}
+\DeclareMathOperator{\Cost}{Cost}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Avg}{Avg}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Script letters:
+
+% Old commands that are being rewritten:
+\let\doubleacute\H
+\let\strickenL\L
+\let\strickenO\O
+\let\pilcrow\P
+\let\sectionsymbol\S
+\let\sharpS\SS
+\let\gtrgtr\gg
+\let\lessless\ll
+\let\sharps\ss
+\let\typewriter\tt
+
+\let\6\sectionsymbol
+
+% Capital letters
+% One letter = mathbb, two = mathscr or mathcal
+\newcommand{\A}{\mathbb A}
+\newcommand{\scrA}{\mathscr A}
+\newcommand{\bfA}{\mathbf A}
+\newcommand{\B}{\mathbb B}
+\newcommand{\BB}{\mathcal B}
+\newcommand{\bfB}{\mathbf B}
+\newcommand{\C}{\mathbb C}
+\newcommand{\CC}{\mathcal C}
+\newcommand{\scrC}{\mathscr C}
+\newcommand{\bfC}{\mathbf C}
+\newcommand{\D}{\mathbb D}
+\newcommand{\DD}{\mathcal D}
+\newcommand{\scrD}{\mathscr D}
+\newcommand{\bfD}{\mathbf D}
+\newcommand{\E}{\mathbb E}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\scrE}{\mathscr E}
+\newcommand{\bfE}{\mathbf E}
+\newcommand{\F}{\mathbb F}
+\newcommand{\FF}{\mathcal F}
+\newcommand{\scrF}{\mathscr F}
+\newcommand{\bfF}{\mathbf F}
+\newcommand{\G}{\mathbb G}
+\newcommand{\GG}{\mathpzc G}
+\newcommand{\scrG}{\mathscr G}
+\newcommand{\bfG}{\mathbf G}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\scrH}{\mathscr H}
+\newcommand{\bfH}{\mathbf H}
+\newcommand{\I}{\amsbb I}
+\newcommand{\II}{\mathcal I}
+\newcommand{\scrI}{\mathscr I}
+\newcommand{\bfI}{\mathbf I}
+\newcommand{\J}{\mathbb J}
+\newcommand{\JJ}{\mathcal J}
+\newcommand{\scrJ}{\mathscr J}
+\newcommand{\bfJ}{\mathbf J}
+\newcommand{\K}{\mathbb K}
+\newcommand{\KK}{\mathcal K}
+\newcommand{\scrK}{\mathscr K}
+\newcommand{\bfK}{\mathbf K}
+\newcommand{\LL}{\mathcal L}
+\newcommand{\scrL}{\mathscr L}
+\newcommand{\bfL}{\mathbf L}
+\newcommand{\M}{\mathbb M}
+\newcommand{\MM}{\mathcal M}
+\newcommand{\scrM}{\mathscr M}
+\newcommand{\bfM}{\mathbf M}
+\newcommand{\N}{\mathbb N}% by default, $\N$ is American naturals $\{1,2,\ldots\}$
+\newcommand{\Namer}{\N}% american
+\newcommand{\Neur}{{\N\cup\{0\}}}% european
+\newcommand{\NN}{\mathcal N}
+\newcommand{\scrN}{\mathscr N}
+\newcommand{\bfN}{\mathbf N}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\scrO}{\mathscr O}
+\newcommand{\bfO}{\mathbf O}
+\newcommand{\PP}{\mathcal P}
+\newcommand{\scrP}{\mathscr P}
+\newcommand{\bfP}{\mathbf P}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\QQ}{\mathcal Q}
+\newcommand{\scrQ}{\mathscr Q}
+\newcommand{\bfQ}{\mathbf Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\RR}{\mathcal R}
+\newcommand{\scrR}{\mathscr R}
+\newcommand{\bfR}{\mathbf R}
+\newcommand{\scrS}{\mathscr S}
+\newcommand{\bfS}{\mathbf S}
+\newcommand{\T}{\mathbb T}
+\newcommand{\TT}{\mathcal T}
+\newcommand{\scrT}{\mathscr T}
+\newcommand{\bfT}{\mathbf T}
+\newcommand{\U}{\mathbb U}
+\newcommand{\UU}{\mathcal U}
+\newcommand{\scrU}{\mathscr U}
+\newcommand{\bfU}{\mathbf U}
+\newcommand{\V}{\mathbb V}
+\newcommand{\VV}{\mathcal V}
+\newcommand{\scrV}{\mathscr V}
+\newcommand{\bfV}{\mathbf V}
+\newcommand{\W}{\mathbb W}
+\newcommand{\WW}{\mathcal W}
+\newcommand{\scrW}{\mathscr W}
+\newcommand{\bfW}{\mathbf W}
+\newcommand{\X}{\mathbb X}
+\newcommand{\XX}{\mathpzc X}
+\newcommand{\scrX}{\mathscr X}
+\newcommand{\bfX}{\mathbf X}
+\newcommand{\Y}{\mathbb Y}
+\newcommand{\YY}{\mathpzc Y}
+\newcommand{\scrY}{\mathscr Y}
+\newcommand{\bfY}{\mathbf Y}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\ZZ}{\mathcal Z}
+\newcommand{\scrZ}{\mathscr Z}
+\newcommand{\bfZ}{\mathbf Z}
+
+% Lowercase letters
+% Note: Using double letters since 13 regular letters are already taken: consistency is good.
+\newcommand{\mbf}{\mathbf}
+\newcommand{\0}{\mbf 0}% Moved since \00 is not a valid macro
+\newcommand{\bb}{\mbf b}
+\newcommand{\cc}{\mbf c}
+\newcommand{\dd}{\mbf d}
+\newcommand{\ee}{\mbf e}
+\newcommand{\ff}{\mbf f}
+\newcommand{\hh}{\mbf h}
+\newcommand{\ii}{\mbf i}
+\newcommand{\jj}{\mbf j}
+\newcommand{\kk}{\mbf k}
+\newcommand{\mm}{\mbf m}
+\newcommand{\nn}{\mbf n}
+\newcommand{\oo}{\mbf o}
+\newcommand{\pp}{\mbf p}
+\newcommand{\qq}{\mbf q}
+\newcommand{\rr}{\mbf r}
+\newcommand{\uu}{\mbf u}
+\newcommand{\vv}{\mbf v}
+\newcommand{\ww}{\mbf w}
+\newcommand{\xx}{\mbf x}
+\newcommand{\yy}{\mbf y}
+\newcommand{\zz}{\mbf z}
+
+% Mathfrak letters
+\newcommand{\mfa}{\mathfrak a}
+\newcommand{\mfb}{\mathfrak b}
+\newcommand{\mfc}{\mathfrak c}
+\newcommand{\mfd}{\mathfrak d}
+\newcommand{\mfe}{\mathfrak e}
+\newcommand{\mff}{\mathfrak f}
+\newcommand{\mfg}{\mathfrak g}
+\newcommand{\mfh}{\mathfrak h}
+\newcommand{\mfi}{\mathfrak i}
+\newcommand{\mfj}{\mathfrak j}
+\newcommand{\mfk}{\mathfrak k}
+\newcommand{\mfl}{\mathfrak l}
+\newcommand{\mfm}{\mathfrak m}
+\newcommand{\mfn}{\mathfrak n}
+\newcommand{\mfo}{\mathfrak o}
+\newcommand{\mfp}{\mathfrak p}
+\newcommand{\mfq}{\mathfrak q}
+\newcommand{\mfr}{\mathfrak r}
+\newcommand{\mfs}{\mathfrak s}
+\newcommand{\mft}{\mathfrak t}
+\newcommand{\mfu}{\mathfrak u}
+\newcommand{\mfv}{\mathfrak v}
+\newcommand{\mfw}{\mathfrak w}
+\newcommand{\mfx}{\mathfrak x}
+\newcommand{\mfy}{\mathfrak y}
+\newcommand{\mfz}{\mathfrak z}
+% The alphabet: \mfa\mfb\mfc\mfd\mfe\mff\mfg\mfh\mfi\mfj\mfk\mfl\mfm\mfn\mfo\mfp\mfq\mfr\mfs\mft\mfu\mfv\mfw\mfx\mfy\mfz
+%Note: D and R look strange; K, V, W, X, Y, Z are incomprehensible.
+
+
+
+% Bold greek letters
+\newcommand{\bfalpha}{{\boldsymbol\alpha}}
+\newcommand{\bfbeta}{{\boldsymbol\beta}}
+\newcommand{\bfgamma}{{\boldsymbol\gamma}}
+\newcommand{\bfdelta}{{\boldsymbol\delta}}
+\newcommand{\bfepsilon}{{\boldsymbol\epsilon}}
+\newcommand{\bfzeta}{{\boldsymbol\zeta}}
+\newcommand{\bfeta}{{\boldsymbol\eta}}
+\newcommand{\bftheta}{{\boldsymbol\theta}}
+\newcommand{\bfiota}{{\boldsymbol\iota}}
+\newcommand{\bfkappa}{{\boldsymbol\kappa}}
+\newcommand{\bflambda}{{\boldsymbol\lambda}}
+\newcommand{\bfmu}{{\boldsymbol\mu}}
+\newcommand{\bfnu}{{\boldsymbol\nu}}
+\newcommand{\bfxi}{{\boldsymbol\xi}}
+\newcommand{\bfomicron}{{\boldsymbol\omicron}}
+\newcommand{\bfpi}{{\boldsymbol\pi}}
+\newcommand{\bfrho}{{\boldsymbol\rho}}
+\newcommand{\bfsigma}{{\boldsymbol\sigma}}
+\newcommand{\bftau}{{\boldsymbol\tau}}
+\newcommand{\bfupsilon}{{\boldsymbol\upsilon}}
+\newcommand{\bfphi}{{\boldsymbol\phi}}
+\newcommand{\bfchi}{{\boldsymbol\chi}}
+\newcommand{\bfpsi}{{\boldsymbol\psi}}
+\newcommand{\bfomega}{{\boldsymbol\omega}}
+
+
+\newcommand{\bfGamma}{{\boldsymbol\Gamma}}
+\newcommand{\bfDelta}{{\boldsymbol\Delta}}
+\newcommand{\bfTheta}{{\boldsymbol\Theta}}
+\newcommand{\bfLambda}{{\boldsymbol\Lambda}}
+\newcommand{\bfXi}{{\boldsymbol\Xi}}
+\newcommand{\bfPi}{{\boldsymbol\Pi}}
+\newcommand{\bfSigma}{{\boldsymbol\Sigma}}
+\newcommand{\bfUpsilon}{{\boldsymbol\Upsilon}}
+\newcommand{\bfPhi}{{\boldsymbol\Phi}}
+\newcommand{\bfPsi}{{\boldsymbol\Psi}}
+\newcommand{\bfOmega}{{\boldsymbol\Omega}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Environments
+
+% Theorem-style environments
+
+%\makeatletter% not needed since this is a .sty file
+\newtheorem*{rep@theorem}{\rep@title}
+
+\newcommand{\newreptheorem}[2]{
+  \newenvironment{rep#1}[1]{
+  \def\rep@title{#2 \ref{##1}}
+  \begin{rep@theorem}
+  }{
+  \end{rep@theorem}
+  }
+}
+%\makeatother
+
+\newcommand{\maketheorem}[2]{
+\newtheorem{#1}[theorem]{#2}
+\newreptheorem{#1}{#2}
+\newtheorem*{#1*}{#2}
+}
+
+\newcommand{\maketheorems}[2]{
+\maketheorem{#1}{#2}
+\maketheorem{#1s}{#2s}
+}
+
+\let\theorem\undefined
+\let\c@theorem\undefined
+\let\lemma\undefined
+\let\proposition\undefined
+\let\corollary\undefined
+\let\problem\undefined
+\let\fact\undefined
+
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newreptheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+
+\newcommand{\theoremlevel}[1]{
+\theoremstyle{theorem}
+\makeatletter
+\let\theorem\undefined
+\let\c@theorem\undefined
+\newtheorem{theorem}{Theorem}[#1]
+\makeatother
+}
+
+\maketheorems{lemma}{Lemma}
+\maketheorems{sublemma}{Sublemma}
+\maketheorems{claim}{Claim}
+\maketheorems{subclaim}{Subclaim}
+\maketheorems{proposition}{Proposition}
+\maketheorems{corollary}{Corollary}
+\maketheorems{conjecture}{Conjecture}
+\maketheorems{metatheorem}{Meta-Theorem}
+
+
+\newenvironment{thmenv}[1]{
+\def\rep@title{#1}
+\begin{rep@theorem}
+}{
+\end{rep@theorem}
+}
+
+% Definition-style environments
+\theoremstyle{definition}
+
+%\makeatletter% not needed since this is a .sty file
+\newtheorem*{rep@definition}{\rep@title}
+
+\newcommand{\newrepdefinition}[2]{
+  \newenvironment{rep#1}[1]{
+  \def\rep@title{#2 \ref{##1}}\begin{rep@definition}
+  }{
+  \end{rep@definition}
+  }
+}
+%\makeatother
+
+\newcommand{\makedefinition}[2]{
+\newtheorem{#1}[theorem]{#2}
+\newrepdefinition{#1}{#2}
+\newtheorem*{#1*}{#2}
+}
+
+\newcommand{\makedefinitions}[2]{
+\makedefinition{#1}{#2}
+\makedefinition{#1s}{#2s}
+}
+
+\newtheorem{convention}{Convention}[]
+\newtheorem*{convention*}{Convention}
+
+
+
+
+\makedefinitions{remark}{Remark}
+\makedefinitions{notation}{Notation}
+\makedefinitions{observation}{Observation}
+\makedefinitions{nonexample}{Non-example}
+\makedefinitions{assumption}{Assumption}
+\makedefinitions{question}{Question}
+\makedefinitions{openquestion}{Open Question}
+\makedefinitions{answer}{Answer}
+\makedefinitions{problem}{Problem}
+\makedefinitions{warning}{Warning}
+\makedefinitions{fact}{Fact}
+
+\newenvironment{defenv}[1]{
+\def\rep@title{#1}
+\begin{rep@definition}
+}{
+\end{rep@definition}
+}
+
+
+
+% These last three have the common property that they should all be within a "quote" environment (or a similar environment with fewer bugs)
+\makedefinition{condition}{Condition}
+\makedefinition{event}{Event}
+\makedefinition{property}{Property}
+
+% Repequation environment
+\newenvironment{repequation}[1]{
+\begin{equation*}\tag{\ref{#1}}
+}{
+\end{equation*}\ignorespacesafterend
+}
+
+% Subproof environment
+\newenvironment{subproof}{
+\begin{proof}
+}{
+\QEDmod\end{proof}
+}
+
+
+% Footnote environment
+\let\buggyfootnote\footnote
+\renewcommand{\footnote}[1]{\text{$ $}\buggyfootnote{#1}}% Fixed footnotemark size bug
+
+
+% Small text for arXiv 
+\newenvironment{smalltext}{\IfFileExists{bibliography.bib}{}{\let\tempbb\mathbb\let\mathbb\amsbb}}{\IfFileExists{bibliography.bib}{}{\let\amsbb\mathbb\let\mathbb\tempbb}}
+\newenvironment{Abstract}{\begin{smalltext}\begin{abstract}}{\end{abstract}\end{smalltext}}
+\newcommand{\Footnote}[1]{\footnote{\begin{smalltext}#1\end{smalltext}}}
+\newcommand{\Footnotetext}[1]{\footnotetext{\begin{smalltext}#1\end{smalltext}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

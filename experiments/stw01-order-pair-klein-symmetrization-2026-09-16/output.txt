@@ -1,0 +1,7 @@
+trials=200 x 2 functionals, N=6
+min spectral margin of order relations (lambda=1/4, eps=1/20): 2.3342e-02
+max |direct - formula| over all identities: 9.847e-15
+lambda=1/2 eps=1e-01: |D_1+D_bg|=3.598e-03  |D_1|=3.311e-02  ratio/eps^2=0.360
+lambda=1/2 eps=1e-02: |D_1+D_bg|=3.210e-05  |D_1|=3.311e-03  ratio/eps^2=0.321
+lambda=1/2 eps=1e-03: |D_1+D_bg|=3.168e-07  |D_1|=3.311e-04  ratio/eps^2=0.317
+max error in limiting line identities: 6.217e-15

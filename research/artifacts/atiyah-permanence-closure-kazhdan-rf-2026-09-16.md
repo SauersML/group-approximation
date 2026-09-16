@@ -1,0 +1,350 @@
+# Kazhdan subgroups of the Strong Atiyah permanence closure are residually finite
+
+Artifact for `atiyah-permanence-closure-kazhdan-subgroups-are-rf`
+(route `atiyah-permanence-closure-kazhdan-rf-proof`) and for the test case
+`deligne-torsion-free-lattice-satisfies-strong-atiyah`.  Written 2026-09-16,
+lane `swarm-master-host-satisfies-algebrai`, unreviewed.
+
+All groups are discrete.  "Kazhdan group" means a discrete group with
+Kazhdan's property (T); such a group is finitely generated.
+
+## 0. Statement
+
+Call a group `Q` **T-finite** if every subgroup of `Q` with property (T) is
+finite.
+
+Let `T` be the class of groups `G` such that every finitely generated subgroup
+of `G` with property (T) is residually finite.
+
+**Theorem A.**  `T` contains every residually finite group and every T-finite
+group, and is closed under isomorphism and under:
+
+- (C1) subgroups;
+- (C2) directed unions: if `G` is the union of a directed family of subgroups
+  `G_i` in `T`, then `G` is in `T`;
+- (C3) fundamental groups of graphs of groups whose vertex groups lie in `T`,
+  for any graph, any edge groups and any edge monomorphisms;
+- (C4) extensions: if `N` is normal in `G`, `N` is in `T`, and `G/N` is
+  T-finite, then `G` is in `T`;
+- (C5) finite direct products;
+- (C6) residual systems: if `G` has a family of normal subgroups `N_i` with
+  trivial intersection and every `G/N_i` is in `T`, then `G` is in `T`.
+
+Consequently, for any class `Y` of groups contained in `T`, the smallest class
+`A(Y)` containing `Y` and closed under (C1)--(C6) is contained in `T`.
+
+**Theorem B.**  Let `n >= 2`, let `p: G~ -> Sp_2n(R)` be the universal cover,
+let `Gamma' = ker(Sp_2n(Z) -> Sp_2n(Z/3Z))`, and let `Lambda = p^-1(Gamma')`.
+Then `Lambda` is finitely presented, torsion-free, has property (T) and is not
+residually finite.  In particular `Lambda` is not in `T`.
+
+**Corollary C.**  Let `Omega` be any group containing an isomorphic copy of
+`Lambda`, for instance any group containing a copy of every finitely presented
+torsion-free group.  Then `Omega` is not in `T`, so `Omega` is not in `A(Y)`
+for any class `Y` contained in `T`.  This applies to the group `E` of
+`two-generator-fp-torsion-free-universal-whitehead-container`, which is the
+master host of `master-host-satisfies-algebraic-strong-atiyah`.
+
+## 1. Standard facts used
+
+All of these are textbook facts; the ones marked (graph) are established
+claims of this repository.
+
+- (F1) Property (T) passes to quotients, and to and from finite-index
+  subgroups (Bekka--de la Harpe--Valette, *Kazhdan's Property (T)*, CUP 2008,
+  Theorem 1.3.4 for quotients and Theorem 1.7.1 for finite index; section
+  numbers recalled, not re-read in this lane).  A discrete group with (T) is
+  finitely generated (same book, Theorem 1.3.1; recalled).
+- (F2) A group with property (T) has Serre's property FA
+  (graph: `property-t-implies-property-fa`, Watatani 1982).
+- (F3) Bass--Serre theory (Serre, *Trees*, Chapter I, Section 5.1,
+  Theorem 12, and Section 4, recalled).  If `G` is the fundamental group of a
+  graph of groups `(G_v, G_e)` on a connected graph `Y` (arbitrary, possibly
+  infinite), then `G` acts without inversion on a tree whose vertex stabilizers
+  are exactly the conjugates `g G_v g^-1`.
+- (F4) For an action without inversion, a fixed point of a subgroup in the
+  geometric realization of the tree gives a fixed vertex: a point interior to
+  an edge is fixed only if the edge is mapped to itself, and without inversion
+  its endpoints are then fixed.  So under (F2)--(F3), every subgroup `L` of `G`
+  with (T) satisfies `g^-1 L g <= G_v` for some vertex `v` and some `g` in `G`.
+- (F5) Subgroups of residually finite groups are residually finite; arbitrary
+  direct products of residually finite groups are residually finite (a
+  nontrivial element has a nontrivial coordinate, and one composes that
+  projection with a finite quotient of the coordinate group).
+- (F6) If `H` has finite index in `L` and `H` is residually finite, then `L`
+  is residually finite.  Proof: for `1 != g` in `L`, if `g` is not in `H` the
+  normal core `core_L(H) = cap_x x H x^-1` is a finite-index normal subgroup
+  missing `g`; if `g` is in `H`, pick a finite-index subgroup `K <= H` missing
+  `g`, so `K` has finite index in `L` and `core_L(K)` misses `g`.
+- (F7) Finite-index subgroups of finitely presented groups are finitely
+  presented (Reidemeister--Schreier).
+
+## 2. Proof of Theorem A
+
+Fix `G` and a finitely generated subgroup `L <= G` with property (T).  In
+each case we show that `L` is residually finite.
+
+**Base classes.**  If `G` is residually finite, `L` is residually finite by
+(F5).  If `G` is T-finite, `L` is finite, hence residually finite.
+
+**Isomorphism** is clear since the definition of `T` is invariant.
+
+**(C1) Subgroups.**  If `H <= G` and `G` is in `T`, then a finitely generated
+(T) subgroup of `H` is one of `G`.
+
+**(C2) Directed unions.**  `L` is generated by finitely many elements, each
+lying in some `G_i`; by directedness all lie in one `G_i`, so `L <= G_i`, and
+`L` is residually finite because `G_i` is in `T`.
+
+**(C3) Graphs of groups.**  By (F4) there are `g` in `G` and a vertex `v` with
+`g^-1 L g <= G_v`.  The conjugate `g^-1 L g` is isomorphic to `L`, so it is
+finitely generated with property (T), and it is residually finite because
+`G_v` is in `T`.  Hence `L` is residually finite.  No hypothesis on edge
+groups or edge monomorphisms is used, and the graph may be infinite.  This
+covers amalgams `A *_C B` over any edge `C`, including the infinite Kazhdan
+edges of `strong-atiyah-kazhdan-edge-amalgam-permanence`, HNN extensions and
+free products.
+
+**(C4) Extensions with T-finite quotient.**  Let `pi: G -> G/N`.  By (F1)
+`pi(L)` has property (T), and it is a subgroup of the T-finite group `G/N`, so
+`pi(L)` is finite.  Then `L cap N = ker(pi|_L)` has finite index in `L`, so it
+is finitely generated and has (T) by (F1).  It is a subgroup of `N`, which is
+in `T`, so `L cap N` is residually finite, and `L` is residually finite by
+(F6).
+
+**(C5) Finite direct products.**  For `G = A x B` with `A`, `B` in `T`, the
+projections `pi_A(L)`, `pi_B(L)` are finitely generated (T) subgroups of `A`
+and `B` by (F1), hence residually finite, and `L <= pi_A(L) x pi_B(L)` is
+residually finite by (F5).  (This is also the special case of (C6) with the
+two normal subgroups `A x 1` and `1 x B`.)
+
+**(C6) Residual systems.**  Let `pi_i: G -> G/N_i`.  Each `pi_i(L)` is a
+finitely generated (T) subgroup of `G/N_i`, which is in `T`, so it is
+residually finite.  Since the `N_i` intersect trivially, the diagonal map
+`L -> prod_i pi_i(L)` is injective, and `L` is residually finite by (F5).
+
+**The closure.**  The class `T` contains `Y` and is closed under (C1)--(C6),
+so it contains the smallest such class `A(Y)`.  `∎`
+
+**Derived closure properties.**  The following hold in `T` as consequences:
+
+- *Finite-index overgroups.*  If `H <= G` has finite index and `H` is in `T`,
+  then `core_G(H)` is in `T` by (C1) and `G/core_G(H)` is finite, hence
+  T-finite, so `G` is in `T` by (C4).
+- *Arbitrary direct products and inverse limits.*  `prod_i G_i` has the
+  normal subgroups `ker(prod G_j -> G_i)` with trivial intersection and
+  quotients `G_i`, so (C6) applies; an inverse limit is a subgroup of the
+  product, so (C1) applies.
+- *Residually T-finite groups* are in `T` by (C6) and the base class.
+
+## 3. Proof of Theorem B
+
+Write `Gamma = Sp_2n(Z)` and `Gamma~ = p^-1(Gamma)`.  By the established claim
+`deligne-universal-cover-lattice-is-non-rf-kazhdan` (items 1--4):
+`ker p = pi_1(Sp_2n(R))` is infinite cyclic and central,
+`1 -> Z -> Gamma~ -> Gamma -> 1` is exact, `Gamma` is finitely presented, and
+`Gamma~` has property (T) and is not residually finite.
+
+**Finite index.**  `Lambda = p^-1(Gamma')` contains `ker p`, so
+`[Gamma~ : Lambda] = [Gamma : Gamma'] <= |Sp_2n(Z/3Z)|` is finite.
+
+**Finitely presented.**  `Gamma'` has finite index in the finitely presented
+group `Gamma`, so it is finitely presented (F7), and `Lambda` is an extension
+of the finitely presented group `Z` by the finitely presented group `Gamma'`,
+hence finitely presented (generators of the kernel and lifts of generators of
+the quotient, with the relators of the kernel, lifted relators of the quotient
+corrected by kernel words, and the conjugation relations; P. Hall's lemma).
+
+**Property (T).**  `Lambda` has finite index in `Gamma~`, which has (T), so
+`Lambda` has (T) by (F1).
+
+**Not residually finite.**  If `Lambda` were residually finite, then so would
+be `Gamma~` by (F6), contradicting item 4.  More precisely, every finite-index
+subgroup of `Lambda` is a finite-index subgroup of `Gamma~`, so the finite
+residual of `Lambda` contains that of `Gamma~`, which contains `2Z` inside
+`ker p` by `deligne-covers-of-sp2g-z-have-finite-residual-2z`
+(used only through that inclusion).
+
+**Torsion-free.**  First, *Minkowski's lemma at level 3*: the kernel of
+`GL_m(Z) -> GL_m(Z/3Z)` is torsion-free (the same proof works in `GL_m(Z_3)`).
+Suppose `g = I` mod 3 has finite order and `g != I`.  Replacing `g` by a power
+we may assume `g` has prime order `l`.  Write `g = I + 3^a Y` with `a >= 1`
+and `Y` an integer matrix not divisible by 3.  Then
+
+```text
+0 = g^l - I = l 3^a Y + sum_{j=2}^{l} C(l,j) 3^(ja) Y^j.
+```
+
+- If `l != 3`: every term with `j >= 2` is divisible by `3^(2a)`, so
+  `l 3^a Y = 0` mod `3^(2a)`, hence `l Y = 0` mod `3^a`; as `l` is a unit mod
+  3, `Y = 0` mod 3, a contradiction.
+- If `l = 3`: `0 = 3^(a+1) Y + 3^(2a+1) Y^2 + 3^(3a) Y^3`.  Dividing by
+  `3^(a+1)` gives `Y = -3^a Y^2 - 3^(2a-1) Y^3`, and both terms on the right are
+  divisible by 3 because `a >= 1`.  So `Y = 0` mod 3, a contradiction.
+
+So `Gamma' <= ker(GL_2n(Z) -> GL_2n(Z/3Z))` is torsion-free.  Now let
+`x in Lambda` with `x^k = 1` for some `k >= 1`.  Then `p(x)^k = 1` in
+`Gamma'`, so `p(x) = 1`, so `x` lies in `ker p`, which is infinite cyclic, so
+`x = 1`.
+
+**Not in `T`.**  `Lambda` is itself a finitely generated subgroup of `Lambda`
+with property (T) that is not residually finite.  `∎`
+
+## 4. Proof of Corollary C, and which proved classes lie in `T`
+
+**Corollary C.**  If `Omega` contains a subgroup isomorphic to `Lambda` and
+`Omega` were in `T`, then `Lambda` would be in `T` by (C1) and isomorphism
+invariance, contradicting Theorem B.  `Lambda` is finitely presented and
+torsion-free, so it is a countably generated recursively presented
+torsion-free group, and it embeds in the group `E` of
+`two-generator-fp-torsion-free-universal-whitehead-container`.  So `E` is not
+in `T`, hence not in `A(Y)` for any `Y` contained in `T`.  `∎`
+
+The same holds for every universal host of
+`universal-torsion-free-hosts-not-sofic-or-locally-indicable`, and for every
+group containing any finite-index subgroup of any `Gamma~` with `n >= 2`.
+
+*Referee remark (2026-09-16).*  Corollary C does not need Theorem B.  The graph
+already records finitely presented torsion-free Kazhdan groups that are not
+residually finite: the Titz Mite--Witzel `C~_2`-lattices and their simple
+finite-index subgroups (`titz-witzel-simple-kazhdan-cat0-lattices-exist`), and
+the Fournier--Facio group, which is nonsofic and hence not residually finite,
+as used in `universal-torsion-free-host-obstruction-proof`.  Any of these
+embeds in `E`, so `E` is not in `T`.  Theorem B gives an independent witness
+whose kernel and quotient both satisfy Strong Atiyah (Section 5).
+
+**Base classes proved to lie in `T` in this artifact.**
+
+- *Residually finite groups.*  This includes every abstract subgroup of a
+  profinite group (the open normal subgroups of a profinite group intersect
+  trivially), hence every subgroup of a torsion-free compact `p`-adic analytic
+  group (`p-adic-analytic-torsion-free-groups-satisfy-strong-atiyah`), the
+  congruence Kazhdan groups of `congruence-kazhdan-groups-satisfy-strong-atiyah`
+  and the level-15 lattice of `level15-torsion-free-lattice-satisfies-strong-atiyah`.
+- *Amenable groups* are T-finite, since an amenable discrete group with (T) is
+  finite (BHV Theorem 1.1.6, recalled).  This includes elementary amenable
+  groups.
+- *Locally indicable groups* are T-finite: a (T) group has (T) abelianization,
+  which is amenable, hence finite, while a nontrivial finitely generated
+  subgroup of a locally indicable group maps onto `Z`.  So every (T) subgroup
+  is trivial.  This includes torsion-free one-relator groups
+  (`one-relator-groups-satisfy-strong-atiyah`, via Brodskii as quoted there).
+- *Residually torsion-free elementary amenable groups* are T-finite: the image
+  of a (T) subgroup `L` in each torsion-free elementary amenable quotient is an
+  amenable (T) group, hence finite, hence trivial, so `L` lies in every kernel
+  and `L = 1`.
+- *Linnell's class `C`* is contained in `A(RF)` and hence in `T`: free groups
+  are residually finite and elementary amenable quotients are T-finite, so
+  (C2) and (C4) apply.
+
+**Base classes lying in `T` by recalled standard facts (not re-read in this
+lane).**  Finitely generated linear groups are residually finite (Mal'cev);
+this covers virtually compact special groups, which embed in right-angled Artin
+groups, and braid groups (Bigelow, Krammer).  Mapping class groups and
+`Out(F_n)` are residually finite (Grossman), and so is `Out(A_Gamma)`
+(attributed to Minasyan and to Charney--Vogtmann; unverified here); this covers
+`raag-out-and-mapping-class-virtually-strong-atiyah`.  Finitely generated
+3-manifold groups are residually finite (Hempel with geometrization).  None of
+these is used in Theorems A--C.
+
+**Permanence operations of the graph that are instances of (C1)--(C6).**
+
+| permanence theorem or open permanence claim | operation |
+| --- | --- |
+| subgroups (Step 1 of `algebraic-atiyah-determinant-colimit-proof`) | (C1) |
+| directed unions (Linnell's class `C`) | (C2) |
+| graphs of groups with finite edge groups (Sanchez-Peralta, arXiv:2409.12268, Thm 1.1, as quoted in `nonsofic-group-satisfying-strong-atiyah`) | (C3) |
+| amalgams over an infinite Kazhdan edge (`strong-atiyah-kazhdan-edge-amalgam-permanence`, OPEN) | (C3) |
+| torsion-free elementary amenable quotient (`atiyah-passes-to-torsion-free-elementary-amenable-extensions`) | (C4) |
+| locally indicable quotient, arbitrary kernel (`strong-atiyah-passes-to-locally-indicable-extensions`) | (C4) |
+| finite-index overgroups | (C1) + (C4) |
+| approximation by quotients, residual chains, inverse limits | (C1) + (C6) |
+
+Even granting every OPEN permanence claim in this table, the closure of all
+proved base classes under all of these operations is contained in `T` and
+does not contain `E`.
+
+## 5. Sharpness, and the test case `Lambda`
+
+**The missing operation.**  `T` is not closed under extensions with residually
+finite quotient, even central ones with infinite cyclic kernel: in
+`1 -> ker p -> Lambda -> Gamma' -> 1` the kernel is `Z` and the quotient
+`Gamma'` is residually finite, so both lie in `T`, while `Lambda` does not.
+So hypothesis "T-finite quotient" in (C4) cannot be weakened to "residually
+finite quotient".  Any proof of Strong Atiyah for the master host that works
+by permanence must therefore use at least one operation under which `T` is
+not closed; for `Lambda` the natural candidate is a central `Z`-extension of a
+Kazhdan group satisfying Strong Atiyah.
+
+**Why `Lambda` is a useful test.**  It is one necessary test among several;
+the Titz Mite--Witzel lattices and the Fournier--Facio group are others.
+
+1. *It is a necessary consequence of the target.*  `Lambda` embeds in `E`
+   (Corollary C) and Strong Atiyah over `Qbar` passes to subgroups, since for
+   `H <= G` and a matrix `A` over `Qbar[H]` the von Neumann rank over `N(H)`
+   equals the rank of the induced operator over `N(G)` (Lueck, *L2-Invariants*,
+   Theorem 6.29, recalled; this is Step 1 of
+   `algebraic-atiyah-determinant-colimit-proof`).
+2. *No supergroup helps.*  By Corollary C no group containing `Lambda` lies in
+   `A(Y)` for `Y <= T`, so Strong Atiyah for `Lambda` cannot be obtained by
+   proving it for a larger group built by (C1)--(C6) and restricting.
+3. *Its quotient satisfies Strong Atiyah.*  `Gamma'` lies in
+   `CS(1,2n,3) = {A in Mat_2n(Z_3) : A = I mod 3}`, which is a compact
+   3-adic analytic group and is torsion-free by the Minkowski argument of
+   Section 3 run in `GL_2n(Z_3)`.  So `Gamma'` satisfies Strong Atiyah over
+   `C` by `p-adic-analytic-torsion-free-groups-satisfy-strong-atiyah`.  The
+   kernel `Z` does too.  So `Lambda` is a central `Z`-extension in which both
+   pieces satisfy Strong Atiyah, and it is torsion-free.
+4. *Its only decompositions are the forbidden ones.*  `Lambda` has (T), so
+   every T-finite quotient of `Lambda` is finite (its image is a (T) subgroup),
+   and by (F4) every splitting of `Lambda` as a graph of groups has `Lambda`
+   inside a conjugate of a vertex group.  Finite quotients do not separate
+   `2Z` (Section 3), so there is no residual chain of finite quotients.
+
+**Approaches to `Lambda` and where each stops (not theorems).**
+
+- *Central direct integral.*  Choosing a section with integer 2-cocycle `c`
+  on `Gamma'`, the group von Neumann algebra `L^inf(S^1)` of the central
+  kernel is central in `N(Lambda)` and decomposes it as a direct integral over
+  `t in S^1` of the
+  twisted algebras `N(Gamma', t^c)`, and `rk_Lambda(A) = int rk_t(A_t) dt`
+  for the specialisations `A_t`.  At `t = 1` the integrand is an integer by
+  item 3.  An integrality theorem for the twisted group algebras
+  `C^(t^c)[Gamma']` for almost every `t`, together with almost-everywhere
+  constancy of `t -> rk_t(A_t)`, would give Strong Atiyah for `Lambda`.
+  Neither statement is available in this graph.  The integer cocycle cannot
+  be removed on a finite-index subgroup: if `c` restricted to a finite-index
+  `Gamma'' <= Gamma'` were a coboundary, then `p^-1(Gamma'') = Z x Gamma''`
+  would be residually finite and of finite index in `Gamma~`, so `Gamma~`
+  would be residually finite by (F6).  This concerns the integer class of
+  `c`; an individual multiplier `t^c`, for instance at `t = 1`, can be
+  trivial.  Farkas--Linnell's argument is for
+  untwisted group algebras, and no twisted version is recorded here.  This
+  paragraph is a heuristic reformulation, not checked in detail.
+- *Approximation by quotients.*  Schick-type integrality proofs approximate a
+  group by a residual system of quotients satisfying Strong Atiyah.  If
+  `Lambda` had a residual system of quotients all lying in `T`, then `Lambda`
+  would be in `T` by (C6).  So every residual system of `Lambda` contains a
+  quotient outside `T`, in particular a non-residually-finite Kazhdan
+  quotient, and finite quotients alone do not separate `2Z`.
+
+**What Theorems A--C do not say.**  They say nothing about whether Strong
+Atiyah holds for `E` or `Lambda`.  They do not constrain proofs that are not
+permanence arguments: direct constructions of a division ring between
+`Qbar[E]` and `U(E)`, analytic arguments on `N(E)`, or permanence theorems for
+operations outside (C1)--(C6).  The base classes are illustrative; the
+theorem holds for any `Y <= T`.
+
+## 6. Literature checked (2026-09-16)
+
+arXiv API queries in this lane (strong Atiyah, Kazhdan, amalgam, central
+extension, Deligne, lattices) found no statement of Strong Atiyah for a
+non-residually-finite Kazhdan group and no permanence theorem for central
+extensions with non-amenable quotient.  Several queries were rate-limited
+(HTTP 503) and returned nothing, so this is not an exhaustive search.
+Sources consulted: Fisher--Ng arXiv:2606.19606v1; Jaikin-Zapirain--Kudlinska--
+Sanchez-Peralta arXiv:2606.31774v2; Sanchez-Peralta arXiv:2409.12268v2;
+Garg--Mineyev arXiv:2501.07646v2; Schick arXiv:math/0001101; Linnell--Schick
+arXiv:math/0403229 and arXiv:0711.3328; Wegner arXiv:0810.1365.  Watatani's
+and Deligne's theorems are used through the established citation claims named
+above.

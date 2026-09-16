@@ -1,0 +1,40 @@
+p=5 N=2976 identity-action failures: 0
+cocycle u(gh,x) = u(g,hx) u(h,x) failures: 0 of 400000
+identity         pred per a: (p^2-1)(p^3-1)       a=1: +2976.0000+0.0000i  sum: +2976.0000+0.0000i
+transvection     pred per a: -(p^2-1)             a=1: -24.0000+0.0000i  sum: -24.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: +1.0000+0.0000i  sum: +1.0000+0.0000i
+diag(1,2,1/2)    pred 0                           a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+(-1 Jordan)+(1)  pred 0                           a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+random           pred 0 (if not unipotent)        a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+predicted: identity 2976, transvection -24
+p=7 N=16416 identity-action failures: 0
+cocycle u(gh,x) = u(g,hx) u(h,x) failures: 0 of 400000
+identity         pred per a: (p^2-1)(p^3-1)       a=1: +16416.0000+0.0000i  a=3: +16416.0000+0.0000i  a=2: +16416.0000+0.0000i  sum: +49248.0000+0.0000i
+transvection     pred per a: -(p^2-1)             a=1: -48.0000-0.0000i  a=3: -48.0000-0.0000i  a=2: -48.0000-0.0000i  sum: -144.0000-0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: +15.0000+0.0000i  a=3: -6.0000-0.0000i  a=2: -6.0000+0.0000i  sum: +3.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: -6.0000-0.0000i  a=3: -6.0000+0.0000i  a=2: +15.0000+0.0000i  sum: +3.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: -6.0000+0.0000i  a=3: +15.0000+0.0000i  a=2: -6.0000-0.0000i  sum: +3.0000+0.0000i
+diag(1,2,1/2)    pred 0                           a=1: +0.0000+0.0000i  a=3: +0.0000+0.0000i  a=2: +0.0000+0.0000i  sum: +0.0000+0.0000i
+(-1 Jordan)+(1)  pred 0                           a=1: +0.0000+0.0000i  a=3: +0.0000+0.0000i  a=2: +0.0000+0.0000i  sum: +0.0000+0.0000i
+random           pred 0 (if not unipotent)        a=1: +0.0000+0.0000i  a=3: +0.0000+0.0000i  a=2: +0.0000+0.0000i  sum: +0.0000+0.0000i
+predicted: identity 16416, transvection -48
+p=11 N=159600 identity-action failures: 0
+cocycle u(gh,x) = u(g,hx) u(h,x) failures: 0 of 400000
+identity         pred per a: (p^2-1)(p^3-1)       a=1: +159600.0000+0.0000i  sum: +159600.0000+0.0000i
+transvection     pred per a: -(p^2-1)             a=1: -120.0000+0.0000i  sum: -120.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: +1.0000+0.0000i  sum: +1.0000+0.0000i
+diag(1,2,1/2)    pred 0                           a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+(-1 Jordan)+(1)  pred 0                           a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+random           pred 0 (if not unipotent)        a=1: +0.0000+0.0000i  sum: +0.0000+0.0000i
+predicted: identity 159600, transvection -120
+p=13 N=368928 identity-action failures: 0
+cocycle u(gh,x) = u(g,hx) u(h,x) failures: 0 of 400000
+identity         pred per a: (p^2-1)(p^3-1)       a=1: +368928.0000+0.0000i  a=2: +368928.0000+0.0000i  a=4: +368928.0000+0.0000i  sum: +1106784.0000+0.0000i
+transvection     pred per a: -(p^2-1)             a=1: -168.0000+0.0000i  a=2: -168.0000+0.0000i  a=4: -168.0000+0.0000i  sum: -504.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: +27.0000+0.0000i  a=2: -12.0000-0.0000i  a=4: -12.0000+0.0000i  sum: +3.0000-0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: -12.0000+0.0000i  a=2: -12.0000-0.0000i  a=4: +27.0000+0.0000i  sum: +3.0000+0.0000i
+regular unipotent pred sum over a: gcd(3,p-1)     a=1: -12.0000+0.0000i  a=2: +27.0000-0.0000i  a=4: -12.0000-0.0000i  sum: +3.0000-0.0000i
+diag(1,2,1/2)    pred 0                           a=1: +0.0000+0.0000i  a=2: +0.0000+0.0000i  a=4: +0.0000+0.0000i  sum: +0.0000+0.0000i
+(-1 Jordan)+(1)  pred 0                           a=1: +0.0000+0.0000i  a=2: +0.0000+0.0000i  a=4: +0.0000+0.0000i  sum: +0.0000+0.0000i
+random           pred 0 (if not unipotent)        a=1: +0.0000+0.0000i  a=2: +0.0000+0.0000i  a=4: +0.0000+0.0000i  sum: +0.0000+0.0000i
+predicted: identity 368928, transvection -168

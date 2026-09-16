@@ -1,0 +1,126 @@
+{"subset": [0, 1, 2, 3], "monomials": "0,0;0,1;0,2;0,3", "Dstar": 6, "searched": [3, 9], "L": 9, "U": 5005, "Y": 2880, "SY": 5552, "sha256": "21eebf3ee6e4bf927aec970b6330a5671f157c4626ec4bf10fd3fe58e4ed2b9b", "seconds": 0.35}
+{"subset": [0, 1, 2, 4], "monomials": "0,0;0,1;0,2;1,1", "Dstar": 8, "searched": [5, 9], "L": 10, "U": 43758, "Y": 3958, "SY": 7824, "sha256": "a50e812dd5af9f8589d077fb581da17413d349d8f79aa6fe7062828072dc2245", "seconds": 2.82}
+{"subset": [0, 1, 2, 5], "monomials": "0,0;0,1;0,2;1,2", "Dstar": 6, "searched": [4, 9], "L": 8, "U": 3003, "Y": 390, "SY": 753, "sha256": "807a12e8ec539e5b9b679f486cecf690835214fc487b697d257ce8a2e46041c3", "cert": "certs/k4_0125_D6.txt.gz", "seconds": 0.18}
+{"subset": [0, 1, 2, 6], "monomials": "0,0;0,1;0,2;1,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 32084, "SY": 63690, "sha256": "8a9869df2af43923ba393893c91508917f9007be8a9a3addbfd24173aecd386f", "seconds": 51.64}
+{"subset": [0, 1, 2, 7], "monomials": "0,0;0,1;0,2;2,2", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 23967, "SY": 47858, "sha256": "d2112db7e72037e46c4f6f4f866358a649491d503775c4064fe7b7477235d34c", "seconds": 38.59}
+{"subset": [0, 1, 2, 8], "monomials": "0,0;0,1;0,2;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 23967, "SY": 47858, "sha256": "685b5460d9ba5acb14bbda45970e0b5afaae3b015434f4536c78f72fc992ada9", "seconds": 38.95}
+{"subset": [0, 1, 3, 4], "monomials": "0,0;0,1;0,3;1,1", "Dstar": null, "searched": [6, 9], "seconds": 15.5}
+{"subset": [0, 1, 3, 5], "monomials": "0,0;0,1;0,3;1,2", "Dstar": null, "searched": [6, 9], "seconds": 13.3}
+{"subset": [0, 1, 3, 6], "monomials": "0,0;0,1;0,3;1,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "546a0dcb6c6c42bc22cfca49488bb80c506ad459b08751b417c9e24ffc088259", "seconds": 4.32}
+{"subset": [0, 1, 3, 7], "monomials": "0,0;0,1;0,3;2,2", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 22121, "SY": 43966, "sha256": "90c87ded85ae29eee2d6f88b39823f08f31c07d7cf00079bfcfa1a3249ef178b", "seconds": 35.0}
+{"subset": [0, 1, 3, 8], "monomials": "0,0;0,1;0,3;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "2c337a729d03f10abcc2e0d2fee5da683cf0cc1df7eea3ec38b1dd0072fecd56", "cert": "certs/k4_0138_D6.txt.gz", "seconds": 0.13}
+{"subset": [0, 1, 4, 5], "monomials": "0,0;0,1;1,1;1,2", "Dstar": null, "searched": [4, 9], "seconds": 7.09}
+{"subset": [0, 1, 4, 6], "monomials": "0,0;0,1;1,1;1,3", "Dstar": null, "searched": [5, 9], "seconds": 11.23}
+{"subset": [0, 1, 4, 7], "monomials": "0,0;0,1;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 12.39}
+{"subset": [0, 1, 4, 8], "monomials": "0,0;0,1;1,1;2,3", "Dstar": null, "searched": [6, 9], "seconds": 12.04}
+{"subset": [0, 1, 5, 6], "monomials": "0,0;0,1;1,2;1,3", "Dstar": null, "searched": [5, 9], "seconds": 11.81}
+{"subset": [0, 1, 5, 7], "monomials": "0,0;0,1;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 13.21}
+{"subset": [0, 1, 5, 8], "monomials": "0,0;0,1;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 13.1}
+{"subset": [0, 1, 6, 7], "monomials": "0,0;0,1;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 12.65}
+{"subset": [0, 1, 6, 8], "monomials": "0,0;0,1;1,3;2,3", "Dstar": null, "searched": [4, 9], "seconds": 15.35}
+{"subset": [0, 1, 7, 8], "monomials": "0,0;0,1;2,2;2,3", "Dstar": null, "searched": [4, 9], "seconds": 12.2}
+{"subset": [0, 2, 3, 4], "monomials": "0,0;0,2;0,3;1,1", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 27380, "SY": 53840, "sha256": "696eff41ae907293aace970480dce02c5eb5bbf416b6bd457391263cb0d17024", "seconds": 25.27}
+{"subset": [0, 2, 3, 5], "monomials": "0,0;0,2;0,3;1,2", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4618, "SY": 9144, "sha256": "656acdfe1e19096313a34c873cd738804d4567b17acca1ae1c54e0ec68e66e37", "seconds": 3.07}
+{"subset": [0, 2, 3, 6], "monomials": "0,0;0,2;0,3;1,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "06302e2d66aa3cfcccb8d2ee60e7e5aa6634ec8abc609ff3240354989e7aae07", "cert": "certs/k4_0236_D6.txt.gz", "seconds": 0.13}
+{"subset": [0, 2, 3, 7], "monomials": "0,0;0,2;0,3;2,2", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "951f06498ec2aa54e037df88831066f4381b1a87568fd9b24715ed64f5323079", "seconds": 3.56}
+{"subset": [0, 2, 3, 8], "monomials": "0,0;0,2;0,3;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "9168c4dfecaf4709a793bd4c70c25fbb53b86ef9793debe5df981f99ff449b26", "cert": "certs/k4_0238_D6.txt.gz", "seconds": 0.14}
+{"subset": [0, 2, 4, 5], "monomials": "0,0;0,2;1,1;1,2", "Dstar": 6, "searched": [4, 9], "L": 8, "U": 3003, "Y": 390, "SY": 753, "sha256": "ce1ae11cf9843de6c549079613cd1c684588d9b80705f6dd894858091c790e51", "cert": "certs/k4_0245_D6.txt.gz", "seconds": 0.12}
+{"subset": [0, 2, 4, 6], "monomials": "0,0;0,2;1,1;1,3", "Dstar": null, "searched": [5, 9], "seconds": 17.55}
+{"subset": [0, 2, 4, 7], "monomials": "0,0;0,2;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 11.35}
+{"subset": [0, 2, 4, 8], "monomials": "0,0;0,2;1,1;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.84}
+{"subset": [0, 2, 5, 6], "monomials": "0,0;0,2;1,2;1,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4707, "SY": 9322, "sha256": "96141bdb8eb610af1b168ab09069e063ad6bf45855543586dee0b470eb7b8878", "seconds": 4.1}
+{"subset": [0, 2, 5, 7], "monomials": "0,0;0,2;1,2;2,2", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 4515, "SY": 8933, "sha256": "cc31ed373a0003c252f935b674b34f5444398911c82fc5bc993fdef61a531d09", "seconds": 17.6}
+{"subset": [0, 2, 5, 8], "monomials": "0,0;0,2;1,2;2,3", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 4515, "SY": 8933, "sha256": "51a2854154859b81b1ba0bff4b872d56fbd9240e7653c0b4e7dc5e3c618a5616", "seconds": 19.68}
+{"subset": [0, 2, 6, 7], "monomials": "0,0;0,2;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 15.19}
+{"subset": [0, 2, 6, 8], "monomials": "0,0;0,2;1,3;2,3", "Dstar": 8, "searched": [4, 9], "L": 11, "U": 75582, "Y": 3620, "SY": 7164, "sha256": "2fd3d40d3c1890dd9f4794310ba4ea5a71c37010510faacd22d873800735aa9c", "seconds": 4.05}
+{"subset": [0, 2, 7, 8], "monomials": "0,0;0,2;2,2;2,3", "Dstar": null, "searched": [4, 9], "seconds": 12.1}
+{"subset": [0, 3, 4, 5], "monomials": "0,0;0,3;1,1;1,2", "Dstar": null, "searched": [6, 9], "seconds": 8.8}
+{"subset": [0, 3, 4, 6], "monomials": "0,0;0,3;1,1;1,3", "Dstar": null, "searched": [5, 9], "seconds": 10.24}
+{"subset": [0, 3, 4, 7], "monomials": "0,0;0,3;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 9.09}
+{"subset": [0, 3, 4, 8], "monomials": "0,0;0,3;1,1;2,3", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 600, "SY": 1172, "sha256": "711403466a793603cc05c7f523bca228edb7b8c72f8a0332cbb5f364e0efe47f", "seconds": 13.62}
+{"subset": [0, 3, 5, 6], "monomials": "0,0;0,3;1,2;1,3", "Dstar": null, "searched": [5, 9], "seconds": 14.02}
+{"subset": [0, 3, 5, 7], "monomials": "0,0;0,3;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 9.54}
+{"subset": [0, 3, 5, 8], "monomials": "0,0;0,3;1,2;2,3", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 600, "SY": 1172, "sha256": "d492fdbbdd6d42ffcb5bfbdac359d2e66c52e2521c733e187b753445c8fe98ca", "seconds": 12.43}
+{"subset": [0, 3, 6, 7], "monomials": "0,0;0,3;1,3;2,2", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 6833, "SY": 13596, "sha256": "e0ab1a601952e780f640d97c702676b75e206105ed8c6fb0ddbaccc611b936ed", "seconds": 7.61}
+{"subset": [0, 3, 6, 8], "monomials": "0,0;0,3;1,3;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "5a3209a40d884a5b9220d53c45c4eb15567b009231098734b3c49b5f71a45919", "cert": "certs/k4_0368_D6.txt.gz", "seconds": 0.23}
+{"subset": [0, 3, 7, 8], "monomials": "0,0;0,3;2,2;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "86936d60f41722004d53687ffb371335a9bfd0fdd9f06a7dfb513a0d282f061b", "cert": "certs/k4_0378_D6.txt.gz", "seconds": 0.15}
+{"subset": [0, 4, 5, 6], "monomials": "0,0;1,1;1,2;1,3", "Dstar": null, "searched": [5, 9], "seconds": 7.87}
+{"subset": [0, 4, 5, 7], "monomials": "0,0;1,1;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 7.96}
+{"subset": [0, 4, 5, 8], "monomials": "0,0;1,1;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 9.19}
+{"subset": [0, 4, 6, 7], "monomials": "0,0;1,1;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 10.83}
+{"subset": [0, 4, 6, 8], "monomials": "0,0;1,1;1,3;2,3", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 4515, "SY": 8933, "sha256": "6d111533edff2ed3e4eca9d14d3bd8625c68f7bd7e6b08792eaae536b35f2320", "seconds": 17.01}
+{"subset": [0, 4, 7, 8], "monomials": "0,0;1,1;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.0}
+{"subset": [0, 5, 6, 7], "monomials": "0,0;1,2;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 12.34}
+{"subset": [0, 5, 6, 8], "monomials": "0,0;1,2;1,3;2,3", "Dstar": null, "searched": [6, 9], "seconds": 12.42}
+{"subset": [0, 5, 7, 8], "monomials": "0,0;1,2;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.53}
+{"subset": [0, 6, 7, 8], "monomials": "0,0;1,3;2,2;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 23967, "SY": 47858, "sha256": "f0c3f47bea627b15aa2daaf9397d21b56906a207f95b9e97cf9dde27742a61cf", "seconds": 32.01}
+{"subset": [1, 2, 3, 4], "monomials": "0,1;0,2;0,3;1,1", "Dstar": null, "searched": [6, 9], "seconds": 14.5}
+{"subset": [1, 2, 3, 5], "monomials": "0,1;0,2;0,3;1,2", "Dstar": null, "searched": [6, 9], "seconds": 16.88}
+{"subset": [1, 2, 3, 6], "monomials": "0,1;0,2;0,3;1,3", "Dstar": null, "searched": [5, 9], "seconds": 21.2}
+{"subset": [1, 2, 3, 7], "monomials": "0,1;0,2;0,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 23.47}
+{"subset": [1, 2, 3, 8], "monomials": "0,1;0,2;0,3;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 6833, "SY": 13596, "sha256": "a8e5ced8d2ecb14fbabf9f3f5ad14ee7820dba108d48eabda83a9e0df64dcb82", "seconds": 8.3}
+{"subset": [1, 2, 4, 5], "monomials": "0,1;0,2;1,1;1,2", "Dstar": 8, "searched": [5, 9], "L": 10, "U": 43758, "Y": 3958, "SY": 7824, "sha256": "8a68e3e43897b5b7acff0a8f40d2bcd75b2e6f2a50651ec997d98223a37ee963", "seconds": 2.88}
+{"subset": [1, 2, 4, 6], "monomials": "0,1;0,2;1,1;1,3", "Dstar": null, "searched": [5, 9], "seconds": 17.17}
+{"subset": [1, 2, 4, 7], "monomials": "0,1;0,2;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 11.96}
+{"subset": [1, 2, 4, 8], "monomials": "0,1;0,2;1,1;2,3", "Dstar": null, "searched": [6, 9], "seconds": 12.12}
+{"subset": [1, 2, 5, 6], "monomials": "0,1;0,2;1,2;1,3", "Dstar": null, "searched": [5, 9], "seconds": 16.73}
+{"subset": [1, 2, 5, 7], "monomials": "0,1;0,2;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 14.96}
+{"subset": [1, 2, 5, 8], "monomials": "0,1;0,2;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 15.91}
+{"subset": [1, 2, 6, 7], "monomials": "0,1;0,2;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 13.79}
+{"subset": [1, 2, 6, 8], "monomials": "0,1;0,2;1,3;2,3", "Dstar": null, "searched": [5, 9], "seconds": 17.0}
+{"subset": [1, 2, 7, 8], "monomials": "0,1;0,2;2,2;2,3", "Dstar": null, "searched": [5, 9], "seconds": 12.41}
+{"subset": [1, 3, 4, 5], "monomials": "0,1;0,3;1,1;1,2", "Dstar": null, "searched": [6, 9], "seconds": 9.68}
+{"subset": [1, 3, 4, 6], "monomials": "0,1;0,3;1,1;1,3", "Dstar": null, "searched": [6, 9], "seconds": 9.24}
+{"subset": [1, 3, 4, 7], "monomials": "0,1;0,3;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 9.61}
+{"subset": [1, 3, 4, 8], "monomials": "0,1;0,3;1,1;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.93}
+{"subset": [1, 3, 5, 6], "monomials": "0,1;0,3;1,2;1,3", "Dstar": null, "searched": [6, 9], "seconds": 11.33}
+{"subset": [1, 3, 5, 7], "monomials": "0,1;0,3;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 9.11}
+{"subset": [1, 3, 5, 8], "monomials": "0,1;0,3;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 9.2}
+{"subset": [1, 3, 6, 7], "monomials": "0,1;0,3;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 18.72}
+{"subset": [1, 3, 6, 8], "monomials": "0,1;0,3;1,3;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "6829ff1132740ce0b748dbd3671a6df58c9273ece7b1c173ae9a55eb135e403f", "seconds": 4.97}
+{"subset": [1, 3, 7, 8], "monomials": "0,1;0,3;2,2;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 22121, "SY": 43966, "sha256": "d6bc97609db0c9aa54f00f608941a12a67c477623a2f096b5730986df56de863", "seconds": 39.78}
+{"subset": [1, 4, 5, 6], "monomials": "0,1;1,1;1,2;1,3", "Dstar": null, "searched": [5, 9], "seconds": 10.02}
+{"subset": [1, 4, 5, 7], "monomials": "0,1;1,1;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 10.13}
+{"subset": [1, 4, 5, 8], "monomials": "0,1;1,1;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 9.81}
+{"subset": [1, 4, 6, 7], "monomials": "0,1;1,1;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 10.65}
+{"subset": [1, 4, 6, 8], "monomials": "0,1;1,1;1,3;2,3", "Dstar": 9, "searched": [6, 9], "L": 12, "U": 293930, "Y": 4515, "SY": 8933, "sha256": "60a81205a442b4dc0604298640d26d596a4981d45b049613eddf589277fa3397", "seconds": 13.92}
+{"subset": [1, 4, 7, 8], "monomials": "0,1;1,1;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 9.05}
+{"subset": [1, 5, 6, 7], "monomials": "0,1;1,2;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 10.01}
+{"subset": [1, 5, 6, 8], "monomials": "0,1;1,2;1,3;2,3", "Dstar": null, "searched": [6, 9], "seconds": 10.05}
+{"subset": [1, 5, 7, 8], "monomials": "0,1;1,2;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 9.46}
+{"subset": [1, 6, 7, 8], "monomials": "0,1;1,3;2,2;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 23967, "SY": 47858, "sha256": "949684408f846ac8c89878e796453831477b1e620cd51716bbd5a49c082bc4c6", "seconds": 32.02}
+{"subset": [2, 3, 4, 5], "monomials": "0,2;0,3;1,1;1,2", "Dstar": null, "searched": [6, 9], "seconds": 9.9}
+{"subset": [2, 3, 4, 6], "monomials": "0,2;0,3;1,1;1,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4809, "SY": 9526, "sha256": "2e83978e9577c20dc5f7af600acf888479aed880c26990e10754a0bc9683fe19", "seconds": 3.62}
+{"subset": [2, 3, 4, 7], "monomials": "0,2;0,3;1,1;2,2", "Dstar": null, "searched": [6, 9], "seconds": 11.09}
+{"subset": [2, 3, 4, 8], "monomials": "0,2;0,3;1,1;2,3", "Dstar": null, "searched": [5, 9], "seconds": 15.15}
+{"subset": [2, 3, 5, 6], "monomials": "0,2;0,3;1,2;1,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4809, "SY": 9526, "sha256": "60691ecc7ecfc0fca68db3d209a9b6766bcdb0995f21085ed4d738e5a845914d", "seconds": 5.02}
+{"subset": [2, 3, 5, 7], "monomials": "0,2;0,3;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 12.13}
+{"subset": [2, 3, 5, 8], "monomials": "0,2;0,3;1,2;2,3", "Dstar": null, "searched": [5, 9], "seconds": 13.63}
+{"subset": [2, 3, 6, 7], "monomials": "0,2;0,3;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 17.64}
+{"subset": [2, 3, 6, 8], "monomials": "0,2;0,3;1,3;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "550ef13cab73ce94df5075526f30b99202f6e712a707becace6f9887004927d4", "cert": "certs/k4_2368_D6.txt.gz", "seconds": 0.15}
+{"subset": [2, 3, 7, 8], "monomials": "0,2;0,3;2,2;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "9270c0a080312827b36224d2bebfc8c44586ee26dc0ce9e9d752580fc636dfaf", "seconds": 3.43}
+{"subset": [2, 4, 5, 6], "monomials": "0,2;1,1;1,2;1,3", "Dstar": 6, "searched": [3, 9], "L": 9, "U": 5005, "Y": 2880, "SY": 5552, "sha256": "21eebf3ee6e4bf927aec970b6330a5671f157c4626ec4bf10fd3fe58e4ed2b9b", "seconds": 0.21}
+{"subset": [2, 4, 5, 7], "monomials": "0,2;1,1;1,2;2,2", "Dstar": null, "searched": [5, 9], "seconds": 9.25}
+{"subset": [2, 4, 5, 8], "monomials": "0,2;1,1;1,2;2,3", "Dstar": null, "searched": [5, 9], "seconds": 11.95}
+{"subset": [2, 4, 6, 7], "monomials": "0,2;1,1;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 12.69}
+{"subset": [2, 4, 6, 8], "monomials": "0,2;1,1;1,3;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4707, "SY": 9322, "sha256": "0d4ca331b1f46447ed640b226c421f7651827b37af8d2d5547f6305b9c21a8c5", "seconds": 3.78}
+{"subset": [2, 4, 7, 8], "monomials": "0,2;1,1;2,2;2,3", "Dstar": null, "searched": [5, 9], "seconds": 10.7}
+{"subset": [2, 5, 6, 7], "monomials": "0,2;1,2;1,3;2,2", "Dstar": null, "searched": [5, 9], "seconds": 14.22}
+{"subset": [2, 5, 6, 8], "monomials": "0,2;1,2;1,3;2,3", "Dstar": null, "searched": [5, 9], "seconds": 17.3}
+{"subset": [2, 5, 7, 8], "monomials": "0,2;1,2;2,2;2,3", "Dstar": null, "searched": [5, 9], "seconds": 13.9}
+{"subset": [2, 6, 7, 8], "monomials": "0,2;1,3;2,2;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 32084, "SY": 63690, "sha256": "1ca42849c36e6499f896eee1149b57d1260ad4519d1858dce05eaae8cb22bde5", "seconds": 52.84}
+{"subset": [3, 4, 5, 6], "monomials": "0,3;1,1;1,2;1,3", "Dstar": null, "searched": [6, 9], "seconds": 9.29}
+{"subset": [3, 4, 5, 7], "monomials": "0,3;1,1;1,2;2,2", "Dstar": null, "searched": [6, 9], "seconds": 9.19}
+{"subset": [3, 4, 5, 8], "monomials": "0,3;1,1;1,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 10.97}
+{"subset": [3, 4, 6, 7], "monomials": "0,3;1,1;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 13.46}
+{"subset": [3, 4, 6, 8], "monomials": "0,3;1,1;1,3;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 4618, "SY": 9144, "sha256": "397a81edc7ada193a7f50a4d27c8ec1de305a096545dcd6bf77e478ed7ed617a", "seconds": 4.3}
+{"subset": [3, 4, 7, 8], "monomials": "0,3;1,1;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.21}
+{"subset": [3, 5, 6, 7], "monomials": "0,3;1,2;1,3;2,2", "Dstar": null, "searched": [6, 9], "seconds": 11.71}
+{"subset": [3, 5, 6, 8], "monomials": "0,3;1,2;1,3;2,3", "Dstar": 9, "searched": [5, 9], "L": 12, "U": 293930, "Y": 27380, "SY": 53840, "sha256": "611bf4ad9a75774c95d0ae2d56cc81aec3c99317c5eb4d44b8a75a0008352d63", "seconds": 27.88}
+{"subset": [3, 5, 7, 8], "monomials": "0,3;1,2;2,2;2,3", "Dstar": null, "searched": [6, 9], "seconds": 11.23}
+{"subset": [3, 6, 7, 8], "monomials": "0,3;1,3;2,2;2,3", "Dstar": 6, "searched": [3, 9], "L": 9, "U": 5005, "Y": 2880, "SY": 5552, "sha256": "21eebf3ee6e4bf927aec970b6330a5671f157c4626ec4bf10fd3fe58e4ed2b9b", "seconds": 0.35}
+{"subset": [4, 5, 6, 7], "monomials": "1,1;1,2;1,3;2,2", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "fdb52f10a0ef321fa8de82e42a30197a71c66ed9bae3db42e12cf3b1277b3aba", "seconds": 3.91}
+{"subset": [4, 5, 6, 8], "monomials": "1,1;1,2;1,3;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "d550e1419e746d343b5c30f766bf32cd89f5360fd1faa43849a8a2fbf5b59fb3", "cert": "certs/k4_4568_D6.txt.gz", "seconds": 0.18}
+{"subset": [4, 5, 7, 8], "monomials": "1,1;1,2;2,2;2,3", "Dstar": null, "searched": [4, 9], "seconds": 14.91}
+{"subset": [4, 6, 7, 8], "monomials": "1,1;1,3;2,2;2,3", "Dstar": 6, "searched": [4, 9], "L": 9, "U": 5005, "Y": 390, "SY": 753, "sha256": "13d60613cb3a36f3d6fd399117750cff687a25253116a02caf1f5e089e521ddd", "cert": "certs/k4_4678_D6.txt.gz", "seconds": 0.17}
+{"subset": [5, 6, 7, 8], "monomials": "1,2;1,3;2,2;2,3", "Dstar": 8, "searched": [5, 9], "L": 11, "U": 75582, "Y": 3958, "SY": 7824, "sha256": "4dbb7143128210abe45e05014d97e7086ae76073aa2c65a2fba88a3decbd5b15", "seconds": 4.5}

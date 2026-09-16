@@ -1,0 +1,26 @@
+disc(p_k) = (2*k + 1)**2*(5*k**2 + 5*k - 19)**2*(k**4 + 2*k**3 - 5*k**2 - 6*k - 23)
+{'k': -12, 'disc': 3610066617841, 'irreducible': True, 'Z_in_Q[C]': (303783/14743, -25166831/14743, 1537/14743), 'log-embedding det': '23.6497694695', 'independent': True}
+{'k': -11, 'disc': 1419644593017, 'irreducible': True, 'Z_in_Q[C]': (66368/3717, -4366912/3717, 389/3717), 'log-embedding det': '21.8695097678', 'independent': True}
+{'k': -10, 'disc': 505429117177, 'irreducible': True, 'Z_in_Q[C]': (125335/8189, -6359341/8189, 861/8189), 'log-embedding det': '19.9802030387', 'independent': True}
+{'k': -9, 'disc': 158919033361, 'irreducible': True, 'Z_in_Q[C]': (75102/5797, -91238/187, 613/5797), 'log-embedding det': '17.9638127657', 'independent': True}
+{'k': -8, 'disc': 42563703825, 'irreducible': True, 'Z_in_Q[C]': (14101/1305, -74893/261, 139/1305), 'log-embedding det': '15.7961520652', 'independent': True}
+{'k': -7, 'disc': 9180115321, 'irreducible': True, 'Z_in_Q[C]': (21988/2483, -29452/191, 267/2483), 'log-embedding det': '13.4425741842', 'independent': True}
+{'k': -6, 'disc': 1447307257, 'irreducible': True, 'Z_in_Q[C]': (10239/1441, -104561/1441, 157/1441), 'log-embedding det': '10.8473986395', 'independent': True}
+{'k': -5, 'disc': 136580337, 'irreducible': True, 'Z_in_Q[C]': (50/9, -82/3, 1/9), 'log-embedding det': '7.89837548312', 'independent': True}
+{'k': -4, 'disc': 4036081, 'irreducible': True, 'Z_in_Q[C]': (1207/287, -1783/287, 33/287), 'log-embedding det': '4.20363745698', 'independent': True}
+{'k': -3, 'disc': -69575, 'irreducible': True, 'Z_in_Q[C]': (168/55, 8/11, 7/55), 'relation Z^m = sign*C^n': (3, -1, 1)}
+{'k': -2, 'disc': -22599, 'irreducible': True, 'Z_in_Q[C]': (19/9, 7/9, 1/9), 'relation Z^m = sign*C^n': (4, -1, 1)}
+{'k': -1, 'disc': -8303, 'irreducible': True, 'Z_in_Q[C]': (26/19, -14/19, 3/19), 'relation Z^m = sign*C^n': (10, -1, 1)}
+{'k': 0, 'disc': -8303, 'irreducible': True, 'Z_in_Q[C]': (15/19, -11/19, 1/19), 'relation Z^m = sign*C^n': (10, 1, 1)}
+{'k': 1, 'disc': -22599, 'irreducible': True, 'Z_in_Q[C]': (4/9, 4/9, 1/9), 'relation Z^m = sign*C^n': (4, 1, 1)}
+{'k': 2, 'disc': -69575, 'irreducible': True, 'Z_in_Q[C]': (17/55, 5/11, 3/55), 'relation Z^m = sign*C^n': (3, 1, 1)}
+{'k': 3, 'disc': 4036081, 'irreducible': True, 'Z_in_Q[C]': (102/287, -1234/287, 23/287), 'log-embedding det': '-4.20363745698', 'independent': True}
+{'k': 4, 'disc': 136580337, 'irreducible': True, 'Z_in_Q[C]': (49/81, -1721/81, 7/81), 'log-embedding det': '-7.89837548312', 'independent': True}
+{'k': 5, 'disc': 1447307257, 'irreducible': True, 'Z_in_Q[C]': (1520/1441, -85904/1441, 129/1441), 'log-embedding det': '-10.8473986395', 'independent': True}
+{'k': 6, 'disc': 9180115321, 'irreducible': True, 'Z_in_Q[C]': (4233/2483, -25039/191, 227/2483), 'log-embedding det': '-13.4425741842', 'independent': True}
+{'k': 7, 'disc': 42563703825, 'irreducible': True, 'Z_in_Q[C]': (3334/1305, -65194/261, 121/1305), 'log-embedding det': '-15.7961520652', 'independent': True}
+{'k': 8, 'disc': 158919033361, 'irreducible': True, 'Z_in_Q[C]': (20897/5797, -80819/187, 543/5797), 'log-embedding det': '-17.9638127657', 'independent': True}
+{'k': 9, 'disc': 505429117177, 'irreducible': True, 'Z_in_Q[C]': (39756/8189, -5709364/8189, 773/8189), 'log-embedding det': '-19.9802030387', 'independent': True}
+{'k': 10, 'disc': 1419644593017, 'irreducible': True, 'Z_in_Q[C]': (23435/3717, -3962773/3717, 353/3717), 'log-embedding det': '-21.8695097678', 'independent': True}
+{'k': 11, 'disc': 3610066617841, 'irreducible': True, 'Z_in_Q[C]': (117278/14743, -23038202/14743, 1407/14743), 'log-embedding det': '-23.6497694695', 'independent': True}
+{'k': 12, 'disc': 8461319760625, 'irreducible': True, 'Z_in_Q[C]': (186537/19025, -8420069/3805, 1823/19025), 'log-embedding det': '-25.3350090863', 'independent': True}

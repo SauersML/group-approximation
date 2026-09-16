@@ -1,0 +1,10 @@
+atataTAAT REFOK k=1 S=2 n=2 h0=1 h1=2 h2=0 OK
+taTAA FAIL V3 collapse [-1,1]
+taTAA FAIL V3 collapse [0,2]
+taaTAAA FAIL V3 collapse [0,2]
+atataTAAT FAIL V2 gcd 2
+atATatAT FAIL V0
+TTTATAAtaTatAATA FAIL V2 cocycle
+taTAA FAIL V2 gcd 2
+taTAA FAIL V1 relator
+COUNT 9

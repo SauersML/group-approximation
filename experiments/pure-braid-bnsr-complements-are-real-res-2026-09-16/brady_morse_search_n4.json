@@ -1,0 +1,61 @@
+{
+ "n": 4,
+ "seed": 20260916,
+ "budget_seconds_per_case": 20.0,
+ "results": [
+  {
+   "label": "generic zero sum (in Sigma^2 by Theorem M; calibration)",
+   "a": {
+    "12": 356,
+    "13": -913,
+    "14": 397,
+    "23": -217,
+    "24": 929,
+    "34": -552
+   },
+   "start_score": 18,
+   "final_score": 23,
+   "types": 24,
+   "moves": 1349,
+   "improving_moves": 5,
+   "min_abs_increment": 6.644178518371671,
+   "verdict": "23/24 types certified"
+  },
+  {
+   "label": "zero sum with c_12 = 0 (open case)",
+   "a": {
+    "12": 0,
+    "13": 318,
+    "14": -778,
+    "23": -244,
+    "24": 33,
+    "34": 671
+   },
+   "start_score": 16,
+   "final_score": 21,
+   "types": 24,
+   "moves": 1629,
+   "improving_moves": 4,
+   "min_abs_increment": 0.5129946666270851,
+   "verdict": "21/24 types certified"
+  },
+  {
+   "label": "zero sum with c_123 = 0 (open case)",
+   "a": {
+    "12": 774,
+    "13": 560,
+    "14": 208,
+    "23": -1334,
+    "24": 355,
+    "34": -563
+   },
+   "start_score": 19,
+   "final_score": 22,
+   "types": 24,
+   "moves": 1642,
+   "improving_moves": 3,
+   "min_abs_increment": 0.8619224260031446,
+   "verdict": "22/24 types certified"
+  }
+ ]
+}

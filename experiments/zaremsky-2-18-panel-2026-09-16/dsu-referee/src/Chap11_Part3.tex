@@ -1,0 +1,895 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%\newpage
+%\part{Examples}
+%%\section{Examples}
+%\label{partexamples}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%This part will be divided as follows: In Section \ref{sectionschottky} we consider semigroups of isometries which can be written as the ``Schottky product'' of two subsemigroups. In Section \ref{sectionRtrees}, we consider methods of constructing $\R$-trees which admit natural group actions, including what we call the ``stapling method''. In Section \ref{sectionparabolic}, we analyze in detail the class of parabolic groups of isometries. In Section \ref{sectionexamples}, we give a list of examples whose main importance is that they are counterexamples to certain implications; however, these examples are often geometrically interesting in their own right. In Section \ref{sectionGF}, we define a subclass of the class of groups of isometries which we call \emph{geometrically finite}, generalizing known results from the Standard Case.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\draftnewpage
+\chapter{Parabolic groups}\label{sectionparabolic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter we study parabolic groups. We begin with a list of several examples of parabolic groups acting on $\E^\infty$, the half-space model of infinite-dimensional real hyperbolic geometry. These examples include a counterexample to the infinite-dimensional analogue of Margulis's lemma, as well as a parabolic isometry that generates a cyclic group which is not discrete in the ambient isometry group. The latter example is the Poincar\'e extension of an example due to M. Edelstein. After giving these examples of parabolic groups, we prove a lower bound on the Poincar\'e exponent of a parabolic group in terms of its algebraic structure (Theorem \ref{theoremparaboliclowerbound}). We show that it is optimal by constructing explicit examples of parabolic groups acting on $\E^\infty$ which come arbitrarily close to this bound.
+
+\section{Examples of parabolic groups acting on $\E^\infty$}
+\label{subsectionparabolic}
+Let $X = \E = \E^\infty$ be the half-space model of infinite-dimensional real hyperbolic geometry (\6\ref{subsubsectionE}). Recall that $\BB = \del \E\butnot\{\infty\}$ is an infinite-dimensional Hilbert space, and that \emph{Poincar\'e extension} is the homomorphism $\what\cdot:\Isom(\BB) \to \Isom(\E)$ given by the formula
+\[
+\what\cdot \;(g)(t,\xx) = \what g(t,\xx) = (t,g(\xx))
+\]
+(Observation \ref{observationpoincareextension}). The image of $\what\cdot$ is the set $\{g\in\Stab(\Isom(\E);\infty) : g'(\infty) = 1\}$. Thus, Poincar\'e extension provides a bijection between the class of subgroups of $\Isom(\BB)$ and the class of subgroups of $\Isom(\E)$ for which $\infty$ is a neutral global fixed point. Given a group $G\leq\Isom(\BB)$, we will denote its image under $\what\cdot$ by $\what G$. We may summarize the relation between $\what G$ and $G$ as follows:
+
+\begin{observation}
+\label{observationisomE}
+~
+\begin{itemize}
+\item[(i)] $\what G$ is parabolic if and only if $G(\0)$ is unbounded; otherwise $\what G$ is elliptic.
+\item[(ii)] $\what G$ is strongly (resp. moderately, weakly, COT) discrete if and only if $G$ is. $\what G$ acts properly discontinuously if and only if $G$ does.
+\item[(iii)] Write $\Isom(\BB) = \O(\BB)\ltimes \BB$. Then the preimage of the uniform operator topology under $\what\cdot$ is equal to the product of the uniform operator topology on $\O(\BB)$ with the usual topology on $\BB$. Thus if we denote this topology by UOT*, then $\what G$ is UOT-discrete if and only if $G$ is UOT*-discrete.
+%\ignore{
+\item[(iv)]
+For all $g\in G$, we have
+%\[
+%\cosh\dogo{\what g} = 1 + \frac{\|(1,g(\0)) - (1,\0)\|^2}{2} = 1 + \frac{\|g(\0)\|^2}{2}
+%\]
+%(cf. \eqref{distE}); it follows that for all $\rho > 0$,
+%\[
+%\NN_{\E,\what G}(\rho) = \NN_{\BB,G}(\sqrt{2(\cosh(\rho) - 1)}) = \NN_{\BB,G}(2\sinh(\rho/2))
+%\]
+%(cf. Remark \ref{remarkorbitalcounting}). In particular,
+\[
+e^{\dogo{\what g}} \asymp_\times \cosh\dogo{\what g} = 1 + \frac{\|(1,g(\0)) - (1,\0)\|^2}{2} \asymp_\times 1 \vee \|g(\0)\|^2
+\]
+and thus for all $s\geq 0$,
+\begin{equation}
+\label{poincareextensionpoincareexponent}
+\Sigma_s(\what G) \asymp_\times \Sigma_s(G) := \sum_{g\in G} (1\vee \|g(\0)\|)^{-2s}.
+\end{equation}
+%}% end ignore
+\end{itemize}
+\end{observation}
+
+In what follows, we let $\delta(G) = \inf\{s : \Sigma_s(G) < \infty\} = \delta(\what G)$, and we say that $G$ is of convergence or divergence type if $\what G$ is.
+%\ignore{
+%\begin{remark}
+%Based on \eqref{poincareextensionpoincareexponent}, we may let
+%\[
+%\Sigma_s(G) = \sum_{g\in G} (1\vee \|g(\0)\|)^{-2s},
+%\]
+%and we may define $\delta_G$ as the exponent of convergence of this series. Then \eqref{poincareextensionpoincareexponent} says that $\delta_{\what G} = \delta_G$, and that $\what G$ is of divergence type if and only if $G$ is.
+%\end{remark}
+%}% end ignore
+
+%old version:
+%\subsection{The Haagerup property; a counterexample to an analogue of Margulis's lemma}
+%\label{subsubsectionhaagerup}
+%new shortened version:
+\subsection{The Haagerup property and the absence of a Margulis lemma}
+\label{subsubsectionhaagerup}
+One question which has been well studied in the literature is the following: For which abstract groups $\Gamma$ can $\Gamma$ be embedded as a strongly discrete subgroup of $\Isom(\BB)$? Such a group is said to have the \emph{Haagerup property}.\Footnote{The Haagerup property can also be defined for locally compact groups, by replacing ``finite'' with ``precompact'' in the definition of strong discreteness. However, in \thispaper\ we consider only discrete groups.} For a detailed account, see \cite{CCJJV}.
+
+\begin{remark}
+\label{remarkhaagerup}
+The following groups have the Haagerup property:
+\begin{itemize}
+\item \cite[pp.73-74]{HarpeValette} Groups which admit a cocompact action on a proper $\R$-tree. In particular this includes $\F_n(\Z)$ for every $n$.
+\item \cite{Jolissaint} Amenable groups. This includes solvable and nilpotent groups.
+\end{itemize}
+A class of examples of groups without the Haagerup property is the class of infinite groups with Kazdan's property (T). For example, if $n\geq 3$ then $\SL_n(\Z)$ does not have the Haagerup property \cite[\64.2]{BHV}.
+\end{remark}
+
+The example of (virtually) nilpotent groups will be considered in more detail in \6\ref{subsubsectiontheoremnilpotent}, since it turns out that every parabolic subgroup of $\Isom(\E)$ which has finite Poincar\'e exponent is virtually nilpotent.
+
+Recall that \emph{Margulis's lemma} is the following lemma:
+
+\begin{proposition}[Margulis's lemma, {\cite[p.126]{Harpe}} or {\cite[p.101]{BGS}}]
+\label{propositionmargulislemma}
+Let $X$ be a Hadamard manifold with curvature bounded away from $-\infty$. Then there exists $\epsilon = \epsilon_X > 0$ with the following property: For every discrete group $G\leq\Isom(X)$ and for every $x\in X$, the group
+\[
+G_\epsilon(x) := \lb g\in G : \dist(x,g(x)) \leq \epsilon\rb
+\]
+is virtually nilpotent.
+\end{proposition}
+For convenience, we will say that \emph{Margulis's lemma holds} on a metric space $X$ if the conclusion of Proposition \ref{propositionmargulislemma} holds, i.e. if there exists $\epsilon > 0$ such that for every strongly discrete group $G\leq\Isom(X)$ and for every $x\in X$, $G_\epsilon(x)$ is virtually nilpotent. It was proven recently by E. Breuillard, B. Green, and T. C. Tao \cite[Corollary 1.15]{BGT} that Margulis's lemma holds on all metric spaces with \emph{bounded packing} in the sense of \cite{BGT}. This result includes Proposition \ref{propositionmargulislemma} as a special case.
+
+By contrast, in infinite dimensions we have the following:
+\begin{observation}
+\label{observationmargulislemma}
+Margulis's lemma does not hold on the space $X = \E = \E^\infty$.
+\end{observation}
+\begin{proof}
+Since $\F_2(\Z)$ has the Haagerup property, there exists a strongly discrete group $G\leq\Isom(\BB)$ isomorphic to $\F_2(\Z)$, say $G = (g_1)^\Z\ast (g_2)^\Z$. Let $\what G$ be the Poincar\'e extension of $G$. Fix $\epsilon > 0$, and let
+\[
+x = (t,\0)\in\E
+\]
+for $t > 0$ large to be determined. Then by \eqref{distE},
+\[
+\dist(x,\what g_i(x)) = \dist\big((t,\0), (t,g_i(\0))\big) \asymp_\times \|g_i(\0)\|/t.
+\]
+So if $t$ is large enough, then $\dist(x,\what g_i(x)) \leq \epsilon$. It follows that $\what g_1,\what g_2\in \what G_\epsilon(x)$, and so $\what G_\epsilon(x) = \what G \equiv \F_2(\Z)$ is not virtually nilpotent.
+\end{proof}
+\begin{remark}
+In view of the fact that in the finite-dimensional Margulis's lemma, $\epsilon_{\E^d}$ depends on the dimension $d$ and tends to zero as $d\to\infty$ (see e.g. \cite[Proposition 5.2]{Belolipetsky_survey}), we should not be surprised that the lemma fails in infinite dimensions.
+\end{remark}
+\begin{remark}
+\label{remarkmargulislemma}
+In some references (e.g. \cite[Theorem 12.6.1]{Ratcliffe}), the conclusion of Margulis's lemma states that $G_\epsilon(x)$ is elementary rather than virtually nilpotent. The above example shows that the two statements should not be confused with each other. We will show (Example \ref{examplemargulis} below) that the alternative formulation of Margulis's lemma which states that $G_\epsilon(x)$ is elementary also fails in infinite dimensions.
+\end{remark}
+
+\begin{remark}
+Parabolic groups acting on proper CAT(-1) spaces must be amenable \cite[Proposition 1.6]{BurgerMozes}. Therefore the existence of a parabolic subgroup of $\Isom(\H^\infty)$ isomorphic to $\F_2(\Z)$ also distinguishes $\H^\infty$ from the class of proper CAT(-1) spaces.
+\end{remark}
+
+\subsection{Edelstein examples}
+\label{subsubsectionedelstein}
+One of the oldest results in the field of groups acting by isometries on Hilbert space is the following example due to M. Edelstein:
+
+\begin{proposition}[{\cite[Theorem 2.1]{Edelstein}}]
+\label{propositionedelstein}
+There exist an isometry $g$ belonging to $\Isom(\ell^2(\N;\C))$ and sequences $(n_k^{(1)})_1^\infty$, $(n_k^{(2)})_1^\infty$ such that
+\begin{equation}
+\label{edelstein}
+g^{n_k^{(1)}}(\0) \tendsto k \0 \text{ but } \|g^{n_k^{(2)}}(\0)\| \tendsto k \infty.
+\end{equation}
+\end{proposition}
+Since the specific form of Edelstein's example will be important to us, we recall the proof of Proposition \ref{propositionedelstein}, in a modified form suitable for generalization:
+\begin{proof}[Proof of Proposition \ref{propositionedelstein}]
+For each $k\in\N$ let $a_k = 1/k!$, let $b_k = 1$, and let
+\begin{equation}
+\label{edelsteindef1}
+c_k = e^{2\pi i a_k}, \;\; d_k = b_k (1 - c_k).
+\end{equation}
+Then
+\[
+\sum_{k\in\N}|d_k|^2 \lesssim_\times \sum_{k\in\N}|a_k b_k|^2 = \sum_{k\in\N} \left(\frac{1}{k!}\right)^2 < \infty,
+\]
+so $\dd = (d_k)_1^\infty\in\ell^2(\N;\C)$. Let $g\in\Isom(\ell^2(\N;\C))$ be given by the formula
+\begin{equation}
+\label{edelsteindef2}
+g(\xx)_k = c_k x_k + d_k.
+\end{equation}
+Then
+\begin{equation}
+\label{homomorphism}
+g^n(\xx)_k = c_k^n x_k + \sum_{i = 0}^{n - 1} c_k^i d_k = c_k^n x_k + \frac{1 - c_k^n}{1 - c_k} d_k = c_k^n x_k + b_k(1 - c_k^n).
+\end{equation}
+In particular, $g^n(\0)_k = b_k(1 - c_k^n)$. So
+\begin{equation}
+\label{gn0norm}
+\|g^n(\0)\|^2 = \sum_{k = 1}^\infty |b_k(1 - c_k^n)|^2
+= \sum_{k = 1}^\infty |b_k(1 - e^{2\pi i na_k})|^2
+\asymp_\times \sum_{k = 1}^\infty |b_k|^2\dist(n a_k,\Z)^2.
+\end{equation}
+Now for each $k\in\N$, let
+\begin{align*}
+n_k^{(1)} &= k! \\
+n_k^{(2)} &= \frac12\sum_{j = 1}^k j!
+\end{align*}
+Then
+\begin{align*}
+\|g^{n_k^{(1)}}(\0)\|^2 \asymp_\times \sum_{j = 1}^\infty \dist\left(\frac{k!}{j!},\Z\right)^2
+&=_\pt (k!)^2\sum_{j = k + 1}^\infty \left(\frac{1}{j!}\right)^2\\
+&\asymp_\times \left(\frac{k!}{(k+1)!}\right)^2\\ 
+&= \frac{1}{(k + 1)^2} \tendsto k 0,
+\end{align*}
+but on the other hand
+\begin{align*}
+\|g^{n_k^{(2)}}(\0)\|^2 \gtrsim_\times \sum_{j = 1}^k \dist\left(\frac{n_k^{(2)}}{(j + 1)!},\Z\right)^2
+&= \sum_{j = 1}^k \frac 14\left[1 - \sum_{i = 1}^j \frac{i!}{(j + 1)!}\right]^2\\
+&\geq \frac 14 \sum_{j = 1}^k \left[1 - \frac{2}{j + 1}\right]^2 \tendsto k \infty.
+\end{align*}
+This demonstrates \eqref{edelstein}.
+\end{proof}
+\begin{remark}
+\label{remarkedelsteinsignificance}
+Let us explain the significance of Edelstein's example from the point of view of hyperbolic geometry. Let $g\in\Isom(\BB)$ be as in Proposition \ref{propositionedelstein}, and let $\what g\in \Isom(\E^\infty)$ be its Poincar\'e extension. By Observation \ref{observationisomE}, $\what g$ is a parabolic isometry. But the orbit of $\zero = (1,\0)$ (cf. \6\ref{standingassumptions2}) is quite irregular; indeed,
+\[
+\what g^{\;n_{k}^{(1)}}(\zero) \tendsto k \zero \text{ but } \what g^{\;n_{k}^{(2)}}(\zero) \tendsto k \infty\in\del\E.
+\]
+So the orbit $(g^n(\zero))_1^\infty$ simultaneously tends to infinity on one subsequence while remaining bounded on another subsequence. Such a phenomenon cannot occur in proper metric spaces, as we demonstrate now:
+\end{remark}
+\begin{theorem}
+If $X$ is a proper metric space and if $G\leq\Isom(X)$ is cyclic, then either $G$ has bounded orbits or $G$ is strongly discrete.
+\end{theorem}
+\begin{proof}
+Write $G = g^\Z$ for some $g\in\Isom(X)$, and fix a point $\zero\in X$. For each $n\in\Z$ write $\|n\| = \dogo{g^n}$. Then $\|-n\| = \|n\|$, and $\|m + n\| \leq \|m\| + \|n\|$.
+
+Suppose that $G$ is not strongly discrete. Then there exists $R > 0$ such that
+\begin{equation}
+\label{Rdef}
+\#\{n\in\N : \|n\| \leq R\} = \infty.
+\end{equation}
+Now let $g^S(\zero) \subset g^\Z(\zero)\cap B(\zero,2R)$ be a maximal $R$-separated set. Since $X$ is proper, $S$ is finite. For each $k\in S$, choose $\ell_k > k$ such that $\|\ell_k\| \leq R$; such an $\ell_k$ exists by \eqref{Rdef}.
+
+Now let $n\in\N$ be arbitrary. Let $0\leq m \leq n$ be the largest number for which $\|m\| \leq 2R$. Since $g^S(\zero)$ is a maximal $R$-separated subset of $g^\Z(\zero)\cap B(\zero,2R)\ni g^m(\zero)$, there exists $k\in S$ for which $\|m - k\| \leq R$. Then
+\[
+\|m - k + \ell_k\| \leq R + R = 2R.
+\]
+On the other hand, $m - k + \ell_k > m$ since $\ell_k > k$ by construction. Thus by the maximality of $m$, we have $m - k + \ell_k > n$. So
+\[
+n - m < \ell_k - k \leq C := \max_{k\in S} (\ell_k - k).
+\]
+It follows that
+\[
+\|n\| \leq \|m\| + \|n - m\| \leq 2R + C\dogo g,
+\]
+i.e. $\|n\|$ is bounded independent of $n$. Thus $G$ has bounded orbits.
+\end{proof}
+
+At this point, we shall use the different notions of discreteness introduced in Chapter \ref{sectiondiscreteness} to distinguish between different variations of Edelstein's example. To this end, we make the following definition:
+
+\begin{definition}
+\label{definitionedelstein}
+An isometry $g\in\Isom(\ell^2(\N;\C))$ is said to be \emph{Edelstein-type} if it is of the form \eqref{edelsteindef2}, where the sequences $(c_k)_1^\infty$ and $(d_k)_1^\infty$ are of the form \eqref{edelsteindef1}, where $(a_k)_1^\infty$ and $(b_k)_1^\infty$ are sequences of positive real numbers satisfying
+\[
+\sum_{k = 1}^\infty |a_k b_k|^2 < \infty.
+\]
+\end{definition}
+
+Our proof of Proposition \ref{propositionedelstein} shows that the isometry $g$ is always well-defined and satisfies \eqref{gn0norm}. On the other hand, the conclusion of Proposition \ref{propositionedelstein} does not hold for all Edelstein-type isometries; it is possible that the cyclic group $G = g^\Z$ is strongly discrete, and it is also possible that this group has bounded orbits. (But the two cannot happen simultaneously unless $g$ is a torsion element.) In the sequel, we will be interested in Edelstein-type isometries for which $G$ has unbounded orbits but is not necessarily strongly discrete. We will be able to distinguish between the examples using our more refined notions of discreteness.
+
+\begin{edelsteinexample}
+\label{exampleedelstein}
+In our notation, Edelstein's original example can be described as the Edelstein-type isometry $g$ defined by the sequences $a_k = 1/k!$, $b_k = 1$. Edelstein's proof shows that $G = g^\Z$ has unbounded orbits and is not weakly discrete. However, we can show more:
+\end{edelsteinexample}
+\begin{proposition}
+\label{propositionedelsteinUOT}
+The cyclic group generated by the isometry in Edelstein's example is not UOT-discrete.
+\end{proposition}
+\begin{proof}
+As in the proof of Proposition \ref{propositionedelstein}, we let $n_k = k!$, so that $g^{n_k}(\0)\to \0$. But if $T^n$ denotes the linear part of $g^n$, then
+\[
+T^{n_k}(\xx) = (e^{2\pi i k!/j!} x_j)_{j = 1}^\infty
+\]
+and so
+\[
+\|T^{n_k} - I\| \leq \sum_{j = k + 1}^\infty |1 - e^{2\pi i k!/j!}| \asymp_\times \frac{1}{k + 1} \to 0.
+\]
+Thus $T^{n_k}\to I$ in the uniform operator topology, so by Observation \ref{observationisomE}(iii), $\what g^{n_k}\to\id$ in the uniform operator topology. Thus $\what g^\Z$ is not UOT-discrete.
+\end{proof}
+
+\begin{edelsteinexample}
+\label{examplevalette}
+The Edelstein-type isometry $g$ defined by the sequences $a_k = 1/2^k$, $b_k = 1$. This example was considered by A. Valette \cite[Proposition 1.7]{Valette}. It has unbounded orbits, and is moderately discrete (in fact properly discontinuous) but not strongly discrete.
+\end{edelsteinexample}
+\begin{proof}
+Letting $n_k^{(1)} = 2^k$, we have by \eqref{gn0norm}
+\[
+\|g^{n_k^{(1)}}(\0)\|^2 \asymp_\times \sum_{j = 1}^\infty \dist\left(\frac{2^k}{2^j},\Z\right)^2
+= \sum_{j = k + 1}^\infty (2^{k - j})^2 = \frac 13
+\]
+and so $g^\Z$ is not strongly discrete. Letting $n_k^{(2)} = \lfloor 2^k/3\rfloor$, we have
+\begin{align*}
+\|g^{n_k^{(2)}}(\0)\|^2 \asymp_\times \sum_{j = 1}^\infty \dist\left(\frac{\lfloor 2^k/3\rfloor}{2^j},\Z\right)^2
+&\geq \sum_{j = 1}^k \left[\dist\left(\frac{2^{k - j}}{3},\Z\right) - \frac{1}{2^j}\right]^2\\ 
+&\geq \sum_{j = 7}^k \frac{1}{100}\\ 
+&\asymp_{\plus,\times} k \tendsto k \infty
+\end{align*}
+and therefore $g^\Z$ has unbounded orbits.
+
+Finally, we show that $g^\Z$ acts properly discontinuously. To begin with, we observe that for all $n\in\Namer$, we may write $n = 2^k (2j + 1)$ for some $j,k\geq 0$; then
+\[
+\|g^n(\0)\|^2 \asymp_\times \sum_{i = 1}^\infty \dist\left(\frac{2^k (2j + 1)}{2^i},\Z\right)^2
+\geq \dist\left(\frac{2^k (2j + 1)}{2^{k + 1}},\Z\right)^2 = 1/4,
+\]
+i.e. $\0$ is an isolated point of $g^\Z(\0)$. So for some $\epsilon > 0$,
+\[
+\|g^n(\0)\| \geq \epsilon \all n\in\Namer.
+\]
+Now let $\xx\in\ell^2(\N;\C)$ be arbitrary, and let $N$ be large enough so that 
+\[
+\|(x_{N + 1},\ldots)\| \leq \epsilon/3.
+\] 
+Now for all $n\in\Namer$, we have 
+\begin{align*}
+\|g^{2^N n}(\xx) - \xx\| &= \|g^{2^N n}(0,\ldots,0,x_{N + 1},\ldots) - (0,\ldots,0,x_{N + 1},\ldots)\|\\ 
+&\geq \|g^{2^N n}(\0)\| - 2\epsilon/3 \geq \epsilon/3
+\end{align*}
+which implies that the set $g^{2N \Z}(\xx)$ is discrete. But $g^\Z(\xx)$ is the union of finitely many isometric images of $g^{2^N\Z}(\xx)$, so it must also be discrete.
+\end{proof}
+\begin{remark}
+It is not possible to differentiate further between unbounded Edelstein-type isometries by considering separately the conditions of weak discreteness, moderate discreteness, and proper discontinuity. Indeed, if $X$ is any metric space and if $G\leq\Isom(X)$ is any cyclic group with unbounded orbits, then the following are equivalent: $G$ is weakly discrete, $G$ is moderately discrete, $G$ acts properly discontinuously. This can be seen as follows: every nontrivial subgroup of $G$ is of finite index, and therefore also has unbounded orbits; it follows that no element of $G\butnot\{\id\}$ has a fixed point in $X$; it follows from this that the three notions of discreteness are equivalent.
+\end{remark}
+
+
+\begin{example}
+Let $g\in\Isom(\ell^2(\N;\C))$ be as in Proposition \ref{propositionedelstein}, let $\sigma:\ell^2(\Z;\C)\to\ell^2(\Z;\C)$ be the shift map $\sigma(\xx)_k = x_{k + 1}$, and let $T:\ell^2(\N;\C)\to\ell^2(\N;\C)$ be given by the formula
+\[
+T(\xx)_k = e^{2\pi i/k} x_k.
+\]
+Then $g_1 = g\oplus\sigma$ has unbounded orbits and is COT-discrete but not weakly discrete; $g_2 = g\oplus T$ has unbounded orbits and is UOT-discrete but not COT-discrete.
+\end{example}
+\begin{proof}
+Since $g$ has unbounded orbits and is not weakly discrete, the same is true for both $g_1$ and $g_2$. Since the sequence $(\sigma^n(\xx))_1^\infty$ diverges for every $\xx\in\ell^2(\Z;\C)$, the group generated by $\sigma$ is COT-discrete, which implies that $g_1$ is as well. Since the sequence $(\|T^n - I\|)_1^\infty$ is bounded from below, the group generated by $T$ is UOT-discrete, which implies that $g_2$ is as well. On the other hand, if we let $n_k = k!$, then $T^{n_k}(\xx)\to \xx$ for all $\xx\in\ell^2(\Z;\C)$. But we showed in Proposition \ref{propositionedelsteinUOT} that $g^{n_k}(\xx)\to \xx$ for all $\xx\in\ell^2(\N;\C)$; it follows that $g\oplus T$ is not COT-discrete.
+\end{proof}
+
+\begin{remark}
+One might object to the above examples on the grounds that the isometries $g_1$ and $g_2$ do not act irreducibly. However, Edelstein-type isometries never act irreducibly: if $g$ is defined by \eqref{edelsteindef1} and \eqref{edelsteindef2} for some sequences $(a_k)_1^\infty$ and $(b_k)_1^\infty$, then for every $k$ the affine hyperplane $H_k = \{\xx\in \ell^2(\N;\C) : x_k = b_k\}$ is invariant under $g$. In general, it is not even possible to find a minimal subspace on which the restricted action of $g$ is irreducible, since such a minimal subspace would be given by the formula
+\[
+\bigcap_k H_k = \begin{cases}
+\emptyset & \sum_1^\infty |b_k|^2 = \infty\\
+\{(b_k)_1^\infty\} & \sum_1^\infty |b_k|^2 < \infty
+\end{cases},
+\]
+and if $g$ has unbounded orbits (as in Examples \ref{exampleedelstein} and \ref{examplevalette}), the first case must hold.
+\end{remark}
+
+We conclude this section with one more Edelstein-type example:
+
+\begin{edelsteinexample}
+\label{exampleparabolicinfinite}
+The Edelstein-type isometry $g$ defined by the sequences $a_k = 1/2^k$, $b_k = \log(1 + k)$. In this example, $g^\Z$ is strongly discrete but has infinite Poincar\'e exponent.
+\end{edelsteinexample}
+\begin{proof}
+To show that $g^\Z$ is strongly discrete, fix $n\geq 1$, and let $k$ be such that $2^k\leq n < 2^{k + 1}$. Then $1/4 \leq n/2^{k + 2} < 1/2$, so by \eqref{gn0norm},
+\[
+\|g^n(\0)\|^2 \gtrsim_\times b_{k + 2} \,\dist\left(\frac{n}{2^{k + 2}},\Z\right)^2 \geq \frac{b_{k + 2}}{16} \tendsto n \infty.
+\]
+To show that $\delta(g^\Z) = \infty$, fix $\ell\geq 0$, and note that by \eqref{gn0norm},
+\[
+\|g^{2^\ell}(\0)\|^2 \asymp_\times \sum_{k = \ell + 1}^\infty \frac{4^\ell}{4^k} |b_k|^2 \asymp_\times |b_{\ell + 1}|^2 = \log^2(2 + \ell).
+\]
+It follows that
+\[
+\Sigma_s(g^\Z) \geq \sum_{\ell = 0}^\infty (1\vee \|g^{2^\ell}(\0)\|)^{-2s} \asymp_\times \sum_{\ell = 0}^\infty \log^{-2s}(2 + \ell) = \infty \all s \geq 0.
+\]
+\end{proof}
+
+%\begin{edelsteinexample}
+%This example is actually a class of examples. 
+%
+%
+%\end{edelsteinexample}
+
+%\ignore{
+%
+%\begin{example}
+%$a_k = 1/8^k$, $b_k = 2^k$. This example has unbounded orbits, and is UOT-parametrically discrete but not COT-parametrically discrete.
+%\end{example}
+%\begin{proof}
+%Letting $n_k^{(1)} = 8^k$, we have
+%\[
+%\|g^{n_k^{(1)}}(\0)\|^2 \asymp_\times \sum_{j = 1}^\infty \frac{1}{4^j} \dist\left(\frac{8^k}{8^j},\Z\right)^2
+%= \sum_{j = k + 1}^\infty (2^{k - j})^2 = \frac 13,
+%\]
+%
+%\end{proof}
+%}% end ignore
+
+%\ignore{
+%\subsection{Other parabolic examples}
+%
+%\begin{example}
+%Consider the cyclic parabolic group generated by $g(\xx) = T\xx + \ee_0$, where $T$ is rotation by the shift map on $\Z$. This is a parabolic group acting irreducibly on $\E^\infty$. (Hard to find!)
+%\end{example}
+%
+%\begin{proposition}
+%\label{propositionparabolicdiscrete}
+%Suppose that $G$ is a cyclic parabolic group acting irreducibly on $\BB$. If $G$ is COT-parametrically discrete, then $G$ acts properly discontinuously on $\EE_\xi$.
+%\end{proposition}
+%\begin{proof}
+%Let $G = g^\Z$, and by contradiction suppose that $g^{n_k}(x)\to x$ for some $x\in \EE_\xi$. Then $g^{n_k}(y)\to y$ for all $y\in G(x)$. The set
+%\[
+%V = \{z : g^{n_k}(z)\to z\}
+%\]
+%is a totally geodesic subspace of $X$ (Proposition \internalmissingref), and we have just seen that $G(x)\subset V$. Thus by Proposition \internalmissingref\ we have $V = X$, and so $g^{n_k}\to\id$ in the compact-open topology by Proposition \internalmissingref.
+%\end{proof}
+%}% end ignore
+
+
+
+
+
+\section{The Poincar\'e exponent of a finitely generated parabolic group}
+\label{subsectionparabolicexponent}
+In this section, we relate the Poincar\'e exponent $\delta_G$ of a parabolic group $G$ with its algebraic structure. We will show below that $\delta_G$ is infinite unless $G$ is virtually nilpotent (Theorem \ref{theoremparaboliclowerbound} below), so we begin with a digression on the coarse geometry of finitely generated virtually nilpotent groups.
+
+\subsection{Nilpotent and virtually nilpotent groups}
+\label{subsubsectionnilpotent}
+Recall that the \emph{lower central series} of an abstract group $\Gamma$ is the sequence $(\Gamma_i)_1^\infty$ defined recursively by the equations
+\[
+\Gamma_1 = \Gamma \text{ and } \Gamma_{i + 1} = [\Gamma,\Gamma_i].
+\]
+Here $[A,B]$ denotes the commutator of two sets $A,B\subset \Gamma$, i.e. $[A,B] = \lb aba^{-1}b^{-1} : a\in A, b\in B\rb$. The group $\Gamma$ is \emph{nilpotent} if its lower central series terminates, i.e. if $\Gamma_{k + 1} = \{\id\}$ for some $k\in\N$. The smallest integer $k$ for which this equality holds is called the \emph{nilpotency class} of $\Gamma$, and we will denote it by $k$.
+
+Note that a group is abelian if and only if it is nilpotent of class $1$. The fundamental theorem of finitely generated abelian groups says that if $\Gamma$ is a finitely generated abelian group, then $\Gamma \equiv \Z^d \times F$ for some $d\in\Neur$ and some finite abelian group $F$. The number $d$ will be called the \emph{rank} of $\Gamma$, denoted $\rank(\Gamma)$. Note that the large-scale structure of $\Gamma$ depends only on $d$ and not on the finite group $F$. Specifically, if $\dist_\Gamma$ is a Cayley metric on $\Gamma$ then
+\begin{equation}
+\label{bassguivarchabelian}
+\NN_\Gamma(R) \asymp_\times R^d \all R \geq 1.
+\end{equation}
+Here $\NN_\Gamma(R) = \#\{\gamma\in\Gamma : \dist(e,\gamma)\leq R\}$ is the orbital counting function of $\Gamma$ interpreted as acting on the metric space $(\Gamma,\dist_\Gamma)$ (cf. Remark \ref{remarkorbitalcounting}).
+
+The following analogue of \eqref{bassguivarchabelian} was proven by H. Bass and independently by Y. Guivarch:
+
+\begin{theorem}[\cite{Bass, Guivarch}]
+\label{theorembassguivarch}
+Let $\Gamma$ be a finitely generated nilpotent group with lower central series $(\Gamma_i)_1^\infty$ and nilpotency class $k$, and let
+\[
+\alpha_\Gamma = \sum_{i = 1}^k i\rank(\Gamma_i/\Gamma_{i + 1}).
+\]
+Let $\dist_\Gamma$ be a Cayley metric on $\Gamma$. Then for all $R\geq 1$,
+\begin{equation}
+\label{bassguivarch}
+\NN_\Gamma(R) \asymp_\times R^{\alpha_\Gamma}.
+\end{equation}
+\end{theorem}
+The number $\alpha_\Gamma$ will be called the \emph{(polynomial) growth rate} of $\NN_\Gamma$.
+
+A group is \emph{virtually nilpotent} if it has a nilpotent subgroup of finite index. The following is an immediate corollary of Theorem \ref{theorembassguivarch}:
+\begin{corollary}
+\label{corollarybassguivarch}
+Let $\Gamma$ be a finitely generated virtually nilpotent group. Let $\Gamma'\leq\Gamma$ be a nilpotent subgroup of finite index, and let $\dist_\Gamma$ be a Cayley metric. Let $\alpha_\Gamma = \alpha_{\Gamma'}$. Then for all $R\geq 1$,
+\begin{equation}
+\label{bassguivarch2}
+\NN_\Gamma(R) \asymp_\times R^{\alpha_\Gamma}.
+\end{equation}
+\end{corollary}
+
+\begin{example}
+If $\Gamma$ is abelian, then \eqref{bassguivarch} reduces to \eqref{bassguivarchabelian}.
+\end{example}
+
+\begin{example}
+\label{exampleheisenberg}
+Let $\Gamma$ be the discrete Heisenberg group, i.e.
+\[
+\Gamma = \left\{\left[\begin{array}{ccc}
+1 & a & c\\
+& 1 & b\\
+&& 1
+\end{array}\right] : a,b,c\in\Z\right\}.
+\]
+We compute the growth rate of $\NN_\Gamma$. Note that $\Gamma$ is nilpotent of class $2$, and its lower central series is given by $\Gamma_1 = \Gamma$,
+\[
+\Gamma_2 = \left\{\left[\begin{array}{ccc}
+1 & & c\\
+& 1 &\\
+&& 1
+\end{array}\right] : c\in\Z\right\}.
+\]
+Thus
+\[
+\alpha_\Gamma = \rank(\Gamma_1/\Gamma_2) + 2\rank(\Gamma_2) = 2 + 2\cdot 1 = 4.
+\]
+\end{example}
+
+%\begin{remark}
+%\label{remarkepsilonR}
+%Corollary \ref{corollarybassguivarch} implies that for some $\lambda > 1$,
+%\[
+%\#\{\gamma\in \Gamma: R < \dist_\Gamma(e,\gamma) \leq \lambda R\} = \NN_\Gamma(\lambda R) -  \NN_\Gamma(R) \asymp_\times R^{\alpha_\Gamma} \all R \geq 1.
+%\]
+%\end{remark}
+%\begin{proof}
+%Choose $\lambda$ so that $\lambda^{\alpha_\Gamma}$ exceeds the square of the implied constant of \eqref{bassguivarch2}.
+%\end{proof}
+
+Corollary \ref{corollarybassguivarch} implies that finitely generated virtually nilpotent groups have \emph{polynomial growth}, meaning that the growth rate
+\begin{equation}
+\label{growthrate}
+\alpha_\Gamma := \lim_{R\to\infty}\frac{\log \NN_\Gamma(R)}{\log(R)}
+\end{equation}
+exists and is finite. The converse assertion is a deep theorem of M. Gromov:
+
+\begin{theorem}[\cite{ShalomTao}]
+\label{theoremgromov}
+A finitely generated group $\Gamma$ has polynomial growth if and only if $\Gamma$ is virtually nilpotent. Moreover, if $\Gamma$ does not have polynomial growth then the limit \eqref{growthrate} exists and equals $\infty$.
+\end{theorem}
+
+Thus the limit \eqref{growthrate} exists in all circumstances, so we may refer to it unambiguously.
+
+\subsection{A universal lower bound on the Poincar\'e exponent}
+Now let $G\leq\Isom(X)$ be a parabolic group. Recall that in the Standard Case, if a group $G$ is discrete then it is virtually abelian. Moreover, in this case $\delta_G = \frac12\rank(G)$.
+
+If $G$ is virtually nilpotent, then it is natural to replace this formula by the formula $\delta_G = \frac12\alpha_G$. However, in general equality does not hold in this formula, as we will see below (Theorem \ref{theoremnilpotentembedding}). We show now that the $\geq$ direction always holds. Precisely:
+
+\begin{theorem}
+\label{theoremparaboliclowerbound}
+Let $G\leq\Isom(X)$ be a finitely generated parabolic group. Let $\alpha_G$ be as in \eqref{growthrate}. Then
+\begin{equation}
+\label{paraboliclowerbound}
+\delta_G \geq \frac{\alpha_G}{2}\cdot
+\end{equation}
+Moreover, if equality holds and $\delta_G < \infty$, then $G$ is of divergence type.
+\end{theorem}
+
+Before proving Theorem \ref{theoremparaboliclowerbound}, we make a few remarks:
+
+\begin{remark}
+In this theorem, it is crucial that $b > 1$ is chosen close enough to $1$ so that Proposition \ref{propositionDist} holds (cf. \6\ref{standingassumptions2}). Indeed, by varying the parameter $b$ one may vary the Poincar\'e exponent at will (cf. \eqref{poincarealternate}); in particular, by choosing $b$ large, one could make $\delta_G$ arbitrarily small. If $X$ is strongly hyperbolic, then of course we may let $b = e$.
+\end{remark}
+\begin{remark}
+Expanding on the above remark, we recall that if $X$ is an $\R$-tree, then any value of $b$ is permitted in Proposition \ref{propositionDist} (Remark \ref{remarkDistRtree}). This demonstrates that if a finitely generated parabolic group acting on an $\R$-tree has finite Poincar\'e exponent, then its growth rate is zero. This may also be seen more directly from Remark \ref{remarkparabolicRtree2}.
+\end{remark}
+\begin{remark}
+Let $G\leq\Isom(X)$ be a group of general type, and let $H\leq G$ be a finitely generated parabolic subgroup. Then combining Theorem \ref{theoremparaboliclowerbound} with Proposition \ref{propositiondeltagtrdeltap} shows that $\delta_G > \alpha_H/2$. This generalizes a well-known theorem of A. F. Beardon \cite[Theorem 7]{Beardon1}.
+\end{remark}
+
+Combining Theorems \ref{theoremgromov} and \ref{theoremparaboliclowerbound} gives the following corollary:
+
+\begin{corollary}
+\label{corollaryfiniteimpliesnilpotent}
+Any finitely generated parabolic group with finite Poincar\'e exponent is virtually nilpotent.
+\end{corollary}
+\noindent This corollary can be viewed very loosely as a generalization of Margulis's lemma (Proposition \ref{propositionmargulislemma}). As we have seen above (Observation \ref{observationmargulislemma}), a strict analogue of Margulis's lemma fails in infinite dimensions.
+\begin{proof}[Proof of Theorem \ref{theoremparaboliclowerbound}]
+Let $g_1,\ldots,g_n$ be a set of generators for $G$, and let $\dist_G$ denote the corresponding Cayley metric. Let $\xi\in\del X$ denote the unique fixed point of $G$. Fix $g\in G$, and write $g = g_{i_1}\cdots g_{i_m}$. By the universal property of path metrics (Remark \ref{remarkpathmetricuniversal}), we have
+%\begin{align*}
+%\Dist_\xi(\zero,g(\zero))
+%&\leq_\pt \sum_{j = 0}^{m - 1} \Dist_\xi(g_{i_1}\cdots g_{i_j}(\zero),g_{i_1}\cdots g_{i_{j + 1}}(\zero)) \by{the triangle inequality}\\
+%&\asymp_\times \sum_{j = 0}^{m - 1} \Dist_\xi(\zero,g_{i_{j + 1}}(\zero)) \by{Observation \ref{observationuniformlyLipschitz}}\\
+%&\leq_\pt m \max_{i = 1}^n(\Dist_\xi(\zero,g_i(\zero))) \asymp_\times m.
+%\end{align*}
+%Taking the infimum over all representations $g = g_{i_1}\cdots g_{i_m}$, we have
+\[
+\Dist_\xi(\zero,g(\zero)) \lesssim_\times \dist_G(\id,g).
+\]
+Now we apply Observation \ref{observationeuclideanparabolicasymp} to get
+\[
+b^{(1/2)\dogo g} \lesssim_\times \dist_G(\id,g).
+\]
+Letting $C > 0$ be the implied constant, we have
+\begin{equation}
+\label{NXGbound}
+\NN_{X,G}(\rho) \geq \NN_G(b^{\rho/2}/C) \all \rho > 0
+\end{equation}
+(cf. Remark \ref{remarkorbitalcounting}). In particular, by \eqref{poincarealternate}
+\[
+\delta_G = \lim_{\rho\to\infty}\frac{\log_b\NN_{X,G}(\rho)}{\rho} \geq \lim_{R\to\infty}\frac{\log_b\NN_G(R)}{2\log_b(R)} = \frac{\alpha_G}{2}\cdot
+\]
+To demonstrate the final assertion of Theorem \ref{theoremparaboliclowerbound}, suppose that equality holds in \eqref{paraboliclowerbound} and that $\delta_G < \infty$. Then by Theorem \ref{theoremgromov}, $G$ is virtually nilpotent. Combining \eqref{NXGbound} with \eqref{bassguivarch} and then plugging into \eqref{poincareseriesalternate} gives us that $\Sigma_\delta(G) = \infty$, completing the proof.
+%Recall (Remark \ref{remarkorbitalcounting}) that the \emph{orbital counting function} of a group $G$ acting on a metric space $X$ with a distinguished point $\zero$ is the function
+%\[
+%\NN_G(\rho) = \#\{g\in G : \dogo g \leq \rho\}.
+%\]
+%The orbital counting function is a rough indicator of the large-scale geometry of the group $G$. It can be used to compute the Poincar\'e series (Remark \ref{remarkorbitalcounting}); moreover, a group is strongly discrete if and only if its orbital counting function takes only finite values (Remark \ref{remarkdiscretenessequivalent}).% \comdavid{Also relevant in Global Measure Formula...}
+%
+%[Relation between $\Dist_\infty$ and Euclidean metric?\internal]
+%
+%\begin{definition}
+%\label{definitionparabolicorbitalcounting}
+%The \emph{parabolic orbital counting function} of a parabolic group $G\leq\Isom(X)$ with global fixed point $\xi\in\del X$ is the function
+%\[
+%\NN_G^{(\xi)}(R) := \#\{g\in G: \Dist_\xi(\zero,g(\zero)) \leq R\}.
+%\]
+%\end{definition}
+%
+%If $G\leq\Isom(\BB)$, then the orbital counting function of $G$ may be related to the orbital counting function of its Poincar\'e extension $\what G$ using \internalmissingref\ \comdavid{(an exact formula should be given here)}:
+%\[
+%\NN_{\what G}(R) = \NN_G(2\sinh(R/2)).
+%\]
+%It was shown in \cite[Appendix A]{FSU4} that there are essentially no restrictions on the orbital counting function of an infinitely generated parabolic group acting on $\E^\infty$. Specifically, if $f:(0,\infty)\to(0,\infty)$ is a nondecreasing function with $f\to\infty$, then there exists a parabolic group $G\leq\Isom(\BB)$ such that $\NN_G(2^n) \asymp_\times f(2^n)$ for all $n\in\N$ \cite[Corollary A.4]{FSU4}. The group $G$ in this construction is the abelian product of an infinite number of finite cyclic groups.
+\end{proof}
+
+\subsection{Examples with explicit Poincar\'e exponents}
+\label{subsubsectiontheoremnilpotent}
+Theorem \ref{theoremparaboliclowerbound} raises a natural question: do the exponents allowed by this theorem actually occur as the Poincar\'e exponent of some parabolic group? More precisely, given a finitely generated abstract group $\Gamma$ and a number $\delta \geq \alpha_\Gamma/2$, does there exist a hyperbolic metric space $X$ and an injective homomorphism $\Phi:\Gamma\to\Isom(X)$ such that $G = \Phi(\Gamma)$ is a parabolic group satisfying $\delta_G = \delta$? If $\delta = \alpha_\Gamma/2$, then the problem appears to be difficult; cf. Remark \ref{remarknilpotentembedding}. However, we can provide a complete answer when $\delta > \alpha_\Gamma/2$ by embedding $\Gamma$ into $\Isom(\BB)$ and then using Poincar\'e extension to get an embedding into $\Isom(\E^\infty)$. Specifically, we have the following:
+
+
+
+
+\begin{theorem}
+\label{theoremnilpotentembedding}
+Let $\Gamma$ be a virtually nilpotent group, and let $\alpha = \alpha_\Gamma$ be the growth rate of $\NN_\Gamma$. Then for all $\delta > \alpha_\Gamma/2$, there exists an injective homomorphism $\Phi:\Gamma\to\Isom(\BB)$ such that
+\[
+\delta(\Phi(\Gamma)) = \delta.
+\]
+Moreover, $\Phi(\Gamma)$ may be taken to be either of convergence type or of divergence type.
+\end{theorem}
+
+\begin{remark}
+\label{remarknilpotentembedding}
+Theorem \ref{theoremnilpotentembedding} raises the question of whether there exists an injective homomorphism $\Phi:\Gamma\to\Isom(\BB)$ such that
+\begin{equation}
+\label{nilpotentequality}
+\delta(\Phi(\Gamma)) = \alpha_\Gamma/2.
+\end{equation}
+It is readily computed that if the map $\gamma\mapsto \Phi(\gamma)(\0)$ is bi-Lipschitz, then \eqref{nilpotentequality} holds. In particular, if $\Gamma = \Z^d$ for some $d\in\N$, then such a $\Phi$ is given by $\Phi(\nn)(\xx) = \xx + (\nn,\0)$. By contrast, if $\Gamma$ is a virtually nilpotent group which is not virtually abelian, then it is known \cite[Theorem 1.3]{CTV1} that there is no quasi-isometric embedding $\iota:\Gamma\to\BB$ (see also \cite[Theorem A]{Pauls} for an earlier version of this result which applied to nilpotent Lie groups). In particular, there is no homomorphism $\Phi:\Gamma\to\Isom(\BB)$ such that $\gamma\mapsto \Phi(\gamma)(\0)$ is a bi-Lipschitz embedding. So this approach of constructing an injective homomorphism $\Phi$ satisfying \eqref{nilpotentequality} is doomed to failure. However, it is possible that another approach will work. We leave the question as an open problem.
+\end{remark}
+\begin{remark}
+\label{remarknilpotentembedding2}
+Letting $\Gamma = \Z$ in Theorem \ref{theoremnilpotentembedding}, we have the following corollary: For any $\delta > 1/2$, there exists an isometry $g_\delta\in\Isom(\BB)$ such that the cyclic group $G_\delta = (g_\delta)^\Z$ satisfies $\delta(G_\delta) = \delta$, and may be taken to be either of convergence type or of divergence type. The isometries $(g_\delta)_{\delta > 1/2}$ exhibit ``intermediate'' behavior between the isometry $g_{1/2}(\xx) = \xx + \ee_1$ (which has Poincar\'e exponent $1/2$ as noted above) and the isometries described in the Edelstein-type isometries \ref{exampleedelstein}, \ref{examplevalette}, and \ref{exampleparabolicinfinite}: since $\delta > 1/2$, the sequence $(g_\delta^n(\0))_1^\infty$ converges to infinity much more slowly than the sequence $(g_{1/2}^n(\0))_1^\infty$, but since $\delta < \infty$, the sequence converges faster than in Example \ref{exampleparabolicinfinite}, not to mention Examples \ref{exampleedelstein} and \ref{examplevalette} where the sequence $(g_\delta^n(\0))_1^\infty$ does not converge to infinity at all (although it converges along a subsequence).
+\end{remark}
+
+\begin{remark}
+\label{remarkheisenbergdeltainfty}
+Theorem \ref{theoremnilpotentembedding} leaves open the question of whether there is a homomorphism $\Phi:\Gamma\to\Isom(\BB)$ such that $\Phi(\Gamma)$ is strongly discrete but $\delta(\Phi(\Gamma)) = \infty$. If $\Gamma = \Z$, this is answered affirmatively by Example \ref{exampleparabolicinfinite}, and if $\Gamma$ contains $\Z$ as a direct summand, i.e. $\Gamma \equiv \Z\times\Gamma'$ for some $\Gamma'\leq\Gamma$, then the answer can be achieved by taking the direct sum of Example \ref{exampleparabolicinfinite} with an arbitrary strongly discrete homomorphism from $\Gamma'$ to $\Isom(\BB)$. However, the Heisenberg group does not contain $\Z$ as a direct summand. Thus, it is unclear whether or not there is a a homomorphism from the Heisenberg group to $\Isom(\BB)$ whose image is strongly discrete with infinite Poincar\'e exponent.
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{theoremnilpotentembedding}]
+We will need the following variant of the Assouad embedding theorem:
+
+
+
+
+% with the following property: There exist $0 < \epsilon_1 \leq \epsilon_2 < 1$ such that for all $0 < s < t$,
+%\begin{equation}
+%\label{assouadhypotheses}
+%\left(\frac ts\right)^{\epsilon_1} \lesssim_\times \frac{F(t)}{F(s)} \lesssim_\times \left(\frac ts\right)^{\epsilon_2}.
+%\end{equation}
+
+\begin{theorem}
+\label{theoremassouad}
+Let $X$ be a doubling metric space,\Footnote{Recall that a metric space $X$ is \emph{doubling} if there exists $M > 0$ such that for all $x\in X$ and $\rho > 0$, the ball $B(x,\rho)$ can be covered by $M$ balls of radius $\rho/2$.\label{footnotedoubling}} and let $F:(0,\infty)\to(0,\infty)$ be a nondecreasing function such that
+\begin{equation}
+\label{assouadhypotheses}
+0 < \lexp(F) \leq \uexp(F) < 1.
+\end{equation}
+Here
+\begin{align*}
+\lexp(F) &:= \liminf_{\lambda\to\infty} \inf_{R > 0} \frac{\log F(\lambda R) - \log F(R)}{\log(\lambda)}\\
+\uexp(F) &:= \limsup_{\lambda\to\infty} \sup_{R > 0} \frac{\log F(\lambda R) - \log F(R)}{\log(\lambda)}\cdot
+\end{align*}
+Then there exist $d\in\N$ and a map $\iota:X\to\R^d$ such that for all $x,y\in X$,
+\begin{equation}
+\label{assouad}
+\|\iota(y) - \iota(x)\| \asymp_\times F(\dist(x,y)).
+\end{equation}
+\end{theorem}
+\begin{subproof}
+The classical Assouad embedding theorem (see e.g. \cite[Theorem 12.2]{Heinonen}) gives the special case of Theorem \ref{theoremassouad} where $F(t) = t^\epsilon$ for some $0 < \epsilon < 1$. It is possible to modify the standard proof of the classical version in order to accomodate more general functions $F$ satisfying \eqref{assouadhypotheses}; however, we prefer to prove Theorem \ref{theoremassouad} directly as a consequence of the classical version.
+
+Fix $\epsilon \in (\uexp(F),1)$, and let
+\[
+\what F(t) = t^\epsilon \inf_{s \leq t} \frac{F(s)}{s^\epsilon}\cdot
+\]
+The inequality $\epsilon > \lexp(f)$ implies that $\what F\asymp_\times F$, so we may replace $F$ by $\what F$ without affecting either the hypotheses or the conclusion of the theorem. Thus, we may without loss of generality assume that the function $t\mapsto F(t)/t^\epsilon$ is nonincreasing.
+
+Let $G(t) = F(t)^{1/\epsilon}$, so that $t\mapsto G(t)/t$ is nonincreasing. It follows that
+\[
+G(t + s) \leq G(t) + G(s).
+\]
+Combining with the fact that $G$ is nondecreasing shows that $G\circ\dist$ is a metric on $X$. On the other hand, since $\lexp(G) = \lexp(F)/\epsilon > 0$, there exists $\lambda > 0$ such that $G(\lambda t) \geq 2G(t)$ for all $t > 0$. It follows that the metric $G\circ\dist$ is doubling. Thus we may apply the classical Assouad embedding theorem to the metric space $(X,G\circ\dist)$ and the function $t\mapsto t^\epsilon$, giving a map $\iota:X\to \R^d$ satisfying
+\[
+\|\iota(y) - \iota(x)\| \asymp_\times G^\epsilon \circ\dist(x,y) = F(\dist(x,y)).
+\]
+This completes the proof.
+\end{subproof}
+
+Now let $\Gamma$ be a virtually nilpotent group, and let $\dist_\Gamma$ be a Cayley metric on $\Gamma$.
+\begin{lemma}
+$(\Gamma,\dist_\Gamma)$ is a doubling metric space.
+\end{lemma}
+\begin{subproof}
+For all $\gamma\in\Gamma$ and $R > 0$, we have by Corollary \ref{corollarybassguivarch}
+\[
+\#(B(\gamma,R)) = \#(\gamma(B(e,R))) = \#(B(e,R)) \asymp_\times (1\vee R)^{\alpha_\Gamma}.
+\]
+Now let $S\subset B(\gamma,2R)$ be a maximal $R$-separated set. Then $\{B(\beta,R) : \beta\in S\}$ is a cover of $B(\gamma,2R)$. On the other hand, $\{B(\beta,R/2) : \beta\in S\}$ is a disjoint collection of subsets of $B(\gamma,3R)$, so
+\begin{align*}
+\sum_{\beta\in S}\#(B(\beta,R/2)) &\leq_\pt \#(B(\gamma,3R))\\
+\#(S) \leq \frac{\#(B(\gamma,3R))}{\min_{\beta\in S}\#(B(\beta,R/2))}
+&\asymp_\times \frac{(1\vee 3R)^{\alpha_\Gamma}}{(1\vee R/2)^{\alpha_\Gamma}} \asymp_\times 1,
+\end{align*}
+i.e. $\#(S) \leq M$ for some $M$ independent of $\gamma$ and $R$. But then $B(\gamma,2R)$ can be covered by $M$ balls of radius $R$, proving that $\Gamma$ is doubling.
+\end{subproof}
+%Let $f:\CO 1\infty\to \CO 1\infty$ be a function satisfying
+%\[
+%\alpha < \lexp(f) \leq \uexp(f) < \infty
+%\]
+%(cf. \internalmissingref). Then there exists an injective homomorphism $\Phi:\Gamma\to\Isom(\BB)$ such that
+%\[
+%\NN_{\Phi(\Gamma)}^{(\infty)} \asymp_\times f.
+%\]
+
+Now let $f:\CO 1\infty\to \CO 1\infty$ be a continuous increasing function satisfying
+\begin{equation}
+\label{fhypothesis}
+\alpha < \lexp(f) \leq \uexp(f) < \infty
+\end{equation}
+and $f(1) = 1$. Let
+\[
+F(R) = \begin{cases}
+f^{-1}(R^\alpha) & R \geq 1\\
+R^{1/2} & R \leq 1
+\end{cases}.
+\]
+Then
+\[
+0 < \lexp(F) = \min\left(\frac12,\frac{\alpha}{\uexp(f)}\right) \leq \uexp(F) = \max\left(\frac12,\frac{\alpha}{\lexp(f)}\right) < 1.
+\]
+Thus $F$ satisfies the hypotheses of Theorem \ref{theoremassouad}, so there exists an embedding $\iota:\Gamma\to\HH$ satisfying \eqref{assouad}. By \cite[Proposition 4.4]{CTV1}, we may without loss of generality assume that $\iota(\gamma) = \Phi(\gamma)(\0)$ for some homomorphism $\Phi:\Gamma\to\Isom(\BB)$. Now for all $R\geq 1$,
+\begin{align*}
+\NN_{\BB,\Phi(\Gamma)}(R) &= \#\{\gamma\in\Gamma : \Dist_\xi(\zero,\Phi(\gamma)(\zero)) \leq R\}\\
+&= \#\{\gamma\in\Gamma : F(\dist_\Gamma(e,\gamma)) \leq R\}\\
+&= \NN_\Gamma(F^{-1}(R)) \asymp_\times \big(F^{-1}(R)\big)^\alpha = f(R).
+\end{align*}
+In particular, given $\delta > \alpha_\Gamma/2$ and $k\in \{0,2\}$, we can let 
+\[
+f(R) = R^{2\delta} (1 + \log(R))^{-k}.
+\] 
+It is readily verified that $\alpha < \dexp(f) = 2\delta < \infty$, so in particular \eqref{fhypothesis} holds. By \eqref{poincarealternate}, $\delta(\Phi(\Gamma)) = \delta$ and by \eqref{poincareseriesalternate}, $\Phi(\Gamma)$ is of divergence type if and only if $k = 0$.
+\end{proof}
+\begin{remark}
+\label{remarknilpotentembedding3}
+The above proof shows a little more that what was promised; namely, it has been shown that
+\begin{itemize}
+\item[(i)] for every function $F:(0,\infty)\to(0,\infty)$ satisfying \eqref{assouadhypotheses}, there exists an injective homomorphism $\Phi:\Gamma\to \BB$ such that $\|\Phi(\gamma)(\0)\| \asymp_\times F(\dist(e,\gamma))$ for all $\gamma\in \Gamma$, and that
+\item[(ii)] for every function $f:\CO 1\infty\to \CO 1\infty$ satisfying \eqref{fhypothesis}, there exists a group $G\leq\Isom(\BB)$ isomorphic to $\Gamma$ such that $\NN_{\BB,G}(R) \asymp_\times f(R)$ for all $R\geq 1$.
+\end{itemize}
+The latter will be of particular interest in Chapter \ref{sectionGFmeasures}, in which the orbital counting function of a parabolic subgroup of a geometrically finite group is shown to have implications for the geometry of the Patterson--Sullivan measure via the Global Measure Formula (Theorem \ref{theoremglobalmeasure}).
+\end{remark}
+
+We conclude this chapter by giving two examples of how the Poincar\'e exponents of infinitely generated parabolic groups behave somewhat erratically.% The first example already appeared in \cite[Appendix A]{FSU4}.
+
+%[BEGIN -- Taken from Gromov Diophantine\internal]
+%
+%\begin{proposition}
+%\label{propositionorbitalcounting2}
+%For any nondecreasing function $f: 2^\N\to 2^\N$ with $f\to\infty$, there exists a parabolic group $G\leq\Stab(\Isom(\H^\infty);\infty)$ such that
+%\[
+%\NN_\infty(2^n) = f(2^n)
+%\]
+%for all $n\in\N$.
+%\end{proposition}
+%\begin{remark}
+%A similar statement holds for proper $\R$-trees.
+%\end{remark}
+%\begin{proof}
+%For each $n\in\N$, let
+%\[
+%m_n = \frac{f(2^{n + 1})}{f(2^n)} \in 2^\N
+%\]
+%and let $T_n:\R^{m_n}\to\R^{m_n}$ be an isometry of order $m_n$ such that any two points in the orbit of $\0$ have a distance of exactly $2^{n - 1/2}$. For example, we can let
+%\[
+%T_n(\xx) = \big(x_{k - 1}\big)_{k = 1}^{m_n} + 2^{n - 1}(\ee_2 - \ee_1).
+%\]
+%(Here by convention $x_0 = x_{m_n}$.) We will also denote by $T_n$ the extension of $T_n$ to the product
+%\[
+%\HH := \bigoplus_{n = 1}^\infty \R^{m_n}
+%\]
+%obtained by letting $T_n$ act as the identity in the other dimensions. By construction, the $T_n$s commute. Let $G = \lb T_n\rb_{n\in\N}$. Then each element of $G$ can be written in the form $T = \prod_{n = 1}^\infty T_n^{q_n}$, where $(q_n)_1^\infty$ is a sequence of integers satisfying $0\leq q_n < m_n$, only finitely many of which are nonzero. Such an isometry satisfies
+%\[
+%\|T(\0)\|^2 = \sum_{n = 1}^\infty \|T_n^{q_n}\|^2
+%= \sum_{\substack{n\in\N \\ q_n\neq 0}} 4^{n - 1/2}
+%\in \left[\frac{1}{2} 4^{n_{\max}}, 4^{n_{\max}}\right],
+%\]
+%where
+%\[
+%n_{\max} = \max\{n\in\N:q_n\neq 0\}.
+%\]
+%In particular, for all $N\in\N$
+%\[
+%\|T(\0)\| \leq 2^N \;\;\Leftrightarrow\;\; N \geq n_{\max},
+%\]
+%and thus
+%\[
+%\NN_\infty(2^N) = \#\{(q_n)_1^\infty: n_{\max} \leq N\} = \#\{(q_n)_1^N\} = \prod_{n = 1}^N m_n = f(2^N).
+%\]
+%\end{proof}
+%
+%\begin{corollary}
+%For any nondecreasing function $f: 2^\N\to 2^\N$ with $f\to\infty$, there exists a geometrically finite group $G\leq\Isom(\H^\infty)$ of general type such that $\infty$ is a parabolic fixed point satisfying
+%\[
+%\NN_\infty(2^n) = f(2^n)
+%\]
+%for all $n\in\N$.
+%\end{corollary}
+%\begin{proof}
+%Let $H$ be the parabolic group guaranteed by Proposition \ref{propositionorbitalcounting2}, and let $G$ be the Schottky product of $H$ with a loxodromic isometry. [More details needed, or a reference.\internal]
+%\end{proof}
+%
+%\begin{corollary}
+%For any nondecreasing function $f: (0,+\infty) \to (0,+\infty)$ with $f\to\infty$, there exists a parabolic group $G\leq\Stab(\Isom(\H^\infty);\infty)$ such that
+%\[
+%\NN_\infty(2^n) \asymp_\times f(2^n)
+%\]
+%for all $n\in\N$.
+%
+%If the function $f$ satisfies $f(2^{n + 1}) \asymp_\times f(2^n)$, then
+%\[
+%\NN_\infty(R) \asymp_\times f(R) \all R\geq 1.
+%\]
+%\end{corollary}
+%\begin{proof}
+%The first assertion is immediate upon applying the above example to the function $\w f(2^n) = 2^{\lfloor \log_2 f(2^n)\rfloor}$, and the second follows from the fact that the functions $f$ and $\NN_\infty$ are both nondecreasing.
+%\end{proof}
+%
+%[END -- Taken from Gromov Diophantine\internal]
+
+
+
+
+
+\begin{example}[A class of infinitely generated parabolic torsion groups]
+\label{exampleparabolictorsion}
+Let $(b_n)_1^\infty$ be an increasing sequence of positive real numbers, and for each $n\in\N$, let $g_n\in\Isom(\BB)$ be the reflection across the hyperplane $H_n := \{\xx : x_n = b_n\}$. Then $G := \lb g_n:n\in\N\rb$ is a strongly discrete subgroup of $\Isom(\BB)$ consisting of only torsion elements. It follows that its Poincar\'e extension $\what G$ is a strongly discrete parabolic subgroup of $\Isom(\H^\infty)$ with no parabolic element. 
+%To compute the orbital counting function of $G$, note that an arbitrary element of $G$ may be written as $g_S = \prod_{n\in S} g_n$ for some finite set $S\subset \N$. Since
+%\[
+%\|g_S(\0)\| = \sqrt{\sum_{n\in S}(2b_n)^2},
+%\]
+%the orbital counting function of $G$ is given by
+%\begin{equation}
+%\label{NGRparabolictorsion}
+%\NN_G(R) = \#\left\{S\subset \N \text{ finite}: \sum_{n\in S}(2b_n)^2 \leq R^2\right\}.
+%\end{equation}
+%In particular, if $\liminf_{n\to\infty} b_{n + 1}/b_n > 1$, then there exists a constant $C > 1$ such that
+%\[
+%b_{\max(S)}^2 \leq \sum_{n\in S}(2b_n)^2 \leq C^2 b_{\max(S)}^2 \all S\subset\N,
+%\]
+%which implies that
+%\begin{align*}
+%2^{n - 1} b_{\max\{n\in\N : b_n \leq R/C\}}
+%&\leq \sum_{\substack{n\in\N \\ b_n \leq R/C}} 2^{n - 1} b_n\\
+%&= \#\left\{S\subset \N \text{ finite}: b_{\max(S)} \leq R/C\right\}\\
+%&\leq \NN_G(R)\\
+%&\leq \#\left\{S\subset \N \text{ finite}: b_{\max(S)} \leq R\right\}\\
+%&= \sum_{\substack{n\in\N \\ b_n\leq R}} 2^{n - 1} b_n\\
+%&\leq 2^n b_{\max\{n\in\N : b_n \leq R\}}
+%\end{align*}
+To compute the Poincar\'e exponent of $\what G$, we use \eqref{poincareextensionpoincareexponent}:
+\begin{align*}
+\Sigma_s(G) = \sum_{g\in G} (1\vee \|g(\0)\|)^{-2s}
+&= \sum_{\substack{S\subset\N \\ \text{finite}}} \left(1\vee \left\|\left(\prod_{n\in S} g_n\right)(\0)\right\|\right)^{-2s}\\
+&= \sum_{\substack{S\subset\N \\ \text{finite}}} \left(1\vee \sum_{n\in S} (2b_n)^2\right)^{-s}.
+\end{align*}
+The special case $b_n = n$ gives
+\[
+\Sigma_s(G) \geq \sum_{S\subset \{1,\ldots,N\}} \left(\sum_{n = 1}^N (2n)^2\right)^{-s} \asymp_\times 2^N N^{-3s} \tendsto N \infty \all s \geq 0
+\]
+and thus $\delta = \infty$, while the special case $b_n = n^n$ gives
+\[
+\Sigma_s(G) \leq \sum_{n = 1}^\infty \sum_{\substack{S\subset\N \\ \max(S) = n}} (n^n)^{-2s}
+= \sum_{n = 1}^\infty 2^{n - 1} (n^n)^{-2s} < \infty \all s > 0
+\]
+and thus $\delta = 0$. Intermediate values of $\delta$ can be achieved either by setting $b_n = 2^{n/(2\delta)}$, which gives a group of divergence type:
+\begin{align*}
+\Sigma_s(G)
+\asymp_\times \sum_{\substack{S\subset\N \\ \text{finite}}} \left(1\vee \max_{n\in S} (2b_n)^2\right)^{-s}
+&\asymp_\times \sum_{n = 1}^\infty \sum_{\substack{S\subset\N \\ \max(S) = n}} b_n^{-2s}\\
+&= \sum_{n = 1}^\infty 2^{n - 1} 2^{-ns/\delta}
+\begin{cases}
+= \infty & \text{ for $s \leq \delta$}\\
+< \infty & \text{ for $s > \delta$}
+\end{cases}
+\end{align*}
+or by setting $b_n = 2^{n/(2\delta)} n^{1/\delta}$, which gives a group of convergence type:
+\[
+\Sigma_s(G)
+\asymp_\times \sum_{n = 1}^\infty \sum_{\substack{S\subset\N \\ \max(S) = n}} b_n^{-2s}
+= \sum_{n = 1}^\infty 2^{n - 1} 2^{-ns/\delta} n^{-2s/\delta}
+\begin{cases}
+= \infty & \text{ for $s < \delta$}\\
+< \infty & \text{ for $s \geq \delta$}
+\end{cases}
+\]
+\end{example}
+
+\begin{remark}
+\label{remarkparabolictorsion}
+In Example \ref{exampleparabolictorsion}, for each $n$ the hyperplane $H_n$ is a totally geodesic subset of $\E^\infty$ which is invariant under $G$. However, the intersection $\bigcap_n H_n$ is trivial, since no point $\xx\in\bord \E^\infty\butnot\{\infty\}$ can satisfy $x_n = b_n$ for all $n$. In particular, $G$ does not act irreducibly on any nontrivial totally geodesic set $S\subset \bord\H^\infty$.
+\end{remark}
+
+\begin{example}[A torsion-free infinitely generated parabolic group with finite Poincar\'e exponent]
+\label{exampleQparabolic}
+Let $\Gamma = \{n/2^k : n\in\Z, k\geq 0\}$. Then $\Gamma$ is an infinitely generated abelian group. For each $k\in\N$ let $B_k = k^k$, and define an action $\Phi:\Gamma\to\Isom(\ell^2(\N;\C))$ by the following formula:
+\[
+\Phi(q)(x_0,\xx) = \big(x_0 + q, \big(e^{2\pi i 2^k q}(x_k - B_k) + B_k\big)_k\big),
+\]
+i.e. $\Phi(q)$ is the direct sum of the Edelstein-type example (cf. Definition \ref{definitionedelstein}) defined by the sequences $a_k = 2^k q$, $b_k = B_k$ with the map $\R\ni x_0\mapsto x_0 + q$. It is readily verified that $\Phi$ is a homomorphism (cf. \eqref{homomorphism}). We have
+\begin{align*}
+\|\Phi(q)(\0)\|^2 &= |q|^2 + \sum_k B_k^2 |e^{2\pi i 2^k q} - 1|^2\\
+&\asymp_\times |q|^2 + \sum_k B_k^2 \dist(2^k q,\Z)\\
+&\asymp_\times \max(|q|^2, B_{k_q}^2),
+\end{align*}
+where $k_q$ is the largest integer such that $2^{k_q} q\notin\Z$. Equivalently, $k_q$ is the unique integer such that $q = n/2^{k_q + 1}$ for some $k$.
+
+To compute the Poincar\'e exponent of $G = \Phi(\Gamma)$, fix $s > 1/2$ and observe that
+\begin{align*}
+\Sigma_s(G) &=_\pt \sum_{g\in G} (1\vee \|g(\0)\|)^{-2s}\\
+&=_\pt \sum_{q\in \Gamma} (|q|\vee B_{k_q})^{-2s}\\
+&\leq_\pt \sum_{k\in\N} \sum_{n\in\Z} (|n|/2^{k + 1} \vee B_k)^{-2s}\\
+&\asymp_\times \sum_{k\in\N} \int_0^\infty \left(\frac{x}{2^{k + 1}} \vee B_k\right)^{-2s} \;\dee x\\
+&=_\pt \sum_{k\in\N} \left[\int_0^{2^{k + 1} B_k} B_k^{-2s} \;\dee x + \int_{2^{k + 1} B_k}^\infty \left(\frac{x}{2^{k + 1}}\right)^{-2s} \;\dee x\right]\\
+&=_\pt \sum_{k\in\N} \left[2^{k + 1} B_k^{1 - 2s} + \left.\left((2^{k + 1})^{2s}\frac{x^{1 - 2s}}{1 - 2s}\right)\right\vert_{x = 2^{k + 1} B_k}^\infty\right]\\
+&=_\pt \sum_{k\in\N} \left[2^{k + 1} B_k^{1 - 2s} + \frac{1}{2s - 1} 2^{k + 1} B_k^{1 - 2s}\right]\\
+&\asymp_\times \sum_{k\in\N} 2^k B_k^{1 - 2s}
+= \sum_{k\in\N} 2^k (k^k)^{1 - 2s} < \infty.
+\end{align*}
+Thus $\delta(G) \leq 1/2$, but Theorem \ref{theoremparaboliclowerbound} guarantees that $\delta(G) \geq \delta(\Phi(\Z)) \geq 1/2$. So $\delta(G) = 1/2$.
+\end{example}
