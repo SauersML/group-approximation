@@ -1,0 +1,122 @@
+labels in 2..5; isomorphism classes: 276
+  tag          diagram-reading  literal-reading
+  reducible          26               26
+  spherical           5                5
+  affine              3                3
+  no-A3/B3          159              146
+  cyclic-type         4                4
+  UNCOVERED          79               92
+irreducible spherical classes: 5 ['03:3,13:3,23:3', '03:3,12:3,23:3', '03:3,12:3,23:4', '03:3,12:4,23:3', '03:3,12:5,23:3']
+irreducible affine classes: 3 ['03:3,13:3,23:4', '03:4,12:4,23:3', '02:3,03:3,12:3,13:3']
+compact hyperbolic (all 3-subsets spherical, indefinite): 9
+    03:3,13:3,23:5  -> diagram: UNCOVERED; literal: UNCOVERED
+    03:3,12:3,23:5  -> diagram: no-A3/B3; literal: UNCOVERED
+    03:4,12:5,23:3  -> diagram: UNCOVERED; literal: UNCOVERED
+    03:5,12:5,23:3  -> diagram: no-A3/B3; literal: no-A3/B3
+    02:3,03:3,12:3,13:4  -> diagram: cyclic-type; literal: cyclic-type
+    02:3,03:3,12:3,13:5  -> diagram: cyclic-type; literal: cyclic-type
+    02:3,03:4,12:4,13:3  -> diagram: cyclic-type; literal: cyclic-type
+    02:3,03:4,12:5,13:3  -> diagram: cyclic-type; literal: cyclic-type
+    02:3,03:5,12:5,13:3  -> diagram: no-A3/B3; literal: no-A3/B3
+cyclic type classes: 6 ['02:3,03:3,12:3,13:3', '02:3,03:3,12:3,13:4', '02:3,03:3,12:3,13:5', '02:3,03:4,12:4,13:3', '02:3,03:4,12:5,13:3', '02:3,03:5,12:5,13:3']
+uncovered classes, diagram reading (Dynkin edges with labels >= 3; number of spherical 3-subsets):
+    03:3,13:3,23:5   spherical triples: 4
+    03:3,13:4,23:4   spherical triples: 3
+    03:3,13:4,23:5   spherical triples: 3
+    03:3,12:3,13:3,23:3   spherical triples: 3
+    03:3,12:3,13:3,23:4   spherical triples: 3
+    03:3,12:3,13:3,23:5   spherical triples: 3
+    03:3,12:3,13:4,23:4   spherical triples: 3
+    03:3,12:3,13:4,23:5   spherical triples: 3
+    03:3,12:4,23:4   spherical triples: 3
+    03:3,12:4,13:3,23:3   spherical triples: 3
+    03:3,12:4,13:3,23:4   spherical triples: 3
+    03:3,12:4,13:3,23:5   spherical triples: 3
+    03:3,12:4,13:4,23:4   spherical triples: 3
+    03:3,12:4,13:4,23:5   spherical triples: 3
+    03:3,12:5,23:4   spherical triples: 3
+    03:3,12:5,13:3,23:3   spherical triples: 3
+    03:3,12:5,13:3,23:4   spherical triples: 3
+    03:3,12:5,13:3,23:5   spherical triples: 3
+    03:3,12:5,13:4,23:4   spherical triples: 3
+    03:3,12:5,13:4,23:5   spherical triples: 3
+    03:4,12:3,13:3,23:3   spherical triples: 3
+    03:4,12:3,13:3,23:4   spherical triples: 2
+    03:4,12:3,13:3,23:5   spherical triples: 2
+    03:4,12:4,13:3,23:3   spherical triples: 3
+    03:4,12:4,13:3,23:4   spherical triples: 2
+    03:4,12:4,13:3,23:5   spherical triples: 2
+    03:4,12:5,23:3   spherical triples: 4
+    03:4,12:5,13:3,23:3   spherical triples: 3
+    03:4,12:5,13:3,23:4   spherical triples: 2
+    03:4,12:5,13:3,23:5   spherical triples: 2
+    02:3,03:3,12:3,13:3,23:3   spherical triples: 2
+    02:3,03:3,12:3,13:3,23:4   spherical triples: 2
+    02:3,03:3,12:3,13:3,23:5   spherical triples: 2
+    02:3,03:3,12:3,13:4,23:3   spherical triples: 2
+    02:3,03:3,12:3,13:4,23:4   spherical triples: 2
+    02:3,03:3,12:3,13:4,23:5   spherical triples: 2
+    02:3,03:3,12:3,13:5,23:3   spherical triples: 2
+    02:3,03:3,12:3,13:5,23:4   spherical triples: 2
+    02:3,03:3,12:3,13:5,23:5   spherical triples: 2
+    02:3,03:3,12:4,13:4   spherical triples: 3
+    02:3,03:3,12:4,13:4,23:3   spherical triples: 2
+    02:3,03:3,12:4,13:4,23:4   spherical triples: 2
+    02:3,03:3,12:4,13:4,23:5   spherical triples: 2
+    02:3,03:3,12:4,13:5   spherical triples: 3
+    02:3,03:3,12:4,13:5,23:3   spherical triples: 2
+    02:3,03:3,12:4,13:5,23:4   spherical triples: 2
+    02:3,03:3,12:4,13:5,23:5   spherical triples: 2
+    02:3,03:3,12:5,13:5   spherical triples: 3
+    02:3,03:4,12:3,13:4,23:3   spherical triples: 1
+    02:3,03:4,12:3,13:4,23:4   spherical triples: 1
+    02:3,03:4,12:3,13:4,23:5   spherical triples: 1
+    02:3,03:4,12:3,13:5,23:3   spherical triples: 1
+    02:3,03:4,12:3,13:5,23:4   spherical triples: 1
+    02:3,03:4,12:3,13:5,23:5   spherical triples: 1
+    02:3,03:4,12:4,13:3,23:3   spherical triples: 2
+    02:3,03:4,12:4,13:3,23:4   spherical triples: 2
+    02:3,03:4,12:4,13:3,23:5   spherical triples: 2
+    02:3,03:4,12:4,13:4   spherical triples: 2
+    02:3,03:4,12:4,13:4,23:3   spherical triples: 1
+    02:3,03:4,12:4,13:4,23:4   spherical triples: 1
+    02:3,03:4,12:4,13:4,23:5   spherical triples: 1
+    02:3,03:4,12:4,13:5   spherical triples: 2
+    02:3,03:4,12:4,13:5,23:3   spherical triples: 1
+    02:3,03:4,12:4,13:5,23:4   spherical triples: 1
+    02:3,03:4,12:4,13:5,23:5   spherical triples: 1
+    02:3,03:4,12:5,13:3,23:3   spherical triples: 2
+    02:3,03:4,12:5,13:3,23:4   spherical triples: 2
+    02:3,03:4,12:5,13:3,23:5   spherical triples: 2
+    02:3,03:4,12:5,13:4   spherical triples: 2
+    02:3,03:4,12:5,13:5   spherical triples: 2
+    02:3,03:5,12:3,13:5,23:3   spherical triples: 1
+    02:3,03:5,12:3,13:5,23:4   spherical triples: 1
+    02:3,03:5,12:3,13:5,23:5   spherical triples: 1
+    02:3,03:5,12:4,13:4,23:3   spherical triples: 1
+    02:3,03:5,12:4,13:4,23:4   spherical triples: 1
+    02:3,03:5,12:4,13:4,23:5   spherical triples: 1
+    02:3,03:5,12:4,13:5,23:3   spherical triples: 1
+    02:3,03:5,12:4,13:5,23:4   spherical triples: 1
+    02:3,03:5,12:4,13:5,23:5   spherical triples: 1
+covered under the diagram reading but UNCOVERED under the literal reading: 13
+    03:3,12:3,23:5
+    03:3,12:3,13:5,23:5
+    03:3,12:4,23:5
+    03:3,12:5,23:5
+    03:4,12:3,13:4,23:4
+    03:4,12:3,13:4,23:5
+    03:4,12:3,13:5,23:5
+    03:5,12:3,13:3,23:3
+    03:5,12:3,13:3,23:4
+    03:5,12:3,13:3,23:5
+    03:5,12:3,13:4,23:4
+    03:5,12:3,13:4,23:5
+    03:5,12:3,13:5,23:5
+rank 5 compact hyperbolic diagrams:
+    [5,3,3,3]        lanner=True  diagram: UNCOVERED; literal: UNCOVERED
+    [5,3,3,4]        lanner=True  diagram: UNCOVERED; literal: UNCOVERED
+    [5,3,3,5]        lanner=True  diagram: UNCOVERED; literal: UNCOVERED
+    [5,3,3^{1,1}]    lanner=True  diagram: UNCOVERED; literal: UNCOVERED
+    cycle 3-3-3-3-4  lanner=True  diagram: cyclic-type; literal: cyclic-type
+smallest nonzero |eigenvalue| seen: 5.478e-03 (tolerance 1e-09)
