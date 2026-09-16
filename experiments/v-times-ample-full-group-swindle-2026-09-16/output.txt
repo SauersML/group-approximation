@@ -1,0 +1,1 @@
+OK: 300 random normal-form elements, 200 points each; rho' h rho^-1 = h^(0) h^(1)
