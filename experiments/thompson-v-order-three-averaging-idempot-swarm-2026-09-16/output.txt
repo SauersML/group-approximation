@@ -1,0 +1,6 @@
+C1 ok: h and g have order three
+C2 ok: k h k^-1 = g
+C3 ok: <g, D(g)> ~ C_3^2 translates the nine cylinders freely
+C4 ok: theta_U is multiplicative on 80 random pairs and theta_U(h) is the 3-cycle (a b c)
+C5 ok: block identities hold; an inverse of f(1+D(g)) in the block is [(1, 0), (1, 2), (2, 0), (2, 2)]
+ALL CHECKS PASSED
