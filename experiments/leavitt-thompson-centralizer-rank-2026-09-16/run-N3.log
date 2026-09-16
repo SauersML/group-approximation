@@ -1,0 +1,6 @@
+Part A: {'finite': 194, 'infinite_undetected': 106, 'fin_with_germ': 0, 'inf_without_germ': 0, 'A0_ok': 994, 'A0_bad': 0, 'Ap': 472, 'B_ok': 34, 'B_bad': 0, 'max_P_a': 4}
+Part B N=3: unit=c dimR_N=176 dimC_cap_R_N=5 increments=[5, 1, 1, 1, 1, 1, 1, 1] bound=1 |P_a|=1 orbit_cocycles=[1]
+Part B N=3: unit=c^2 dimR_N=176 dimC_cap_R_N=5 increments=[5, 2, 2, 2, 2, 2, 2, 2] bound=2 |P_a|=1 orbit_cocycles=[2]
+Part B N=3: unit=phi(c) dimR_N=176 dimC_cap_R_N=12 increments=[12, 4, 4, 4, 4, 4, 4, 4] bound=4 |P_a|=2 orbit_cocycles=[1, 1]
+Part B N=3: unit=twocycle dimR_N=176 dimC_cap_R_N=5 increments=[5, 1, 1, 1, 1, 1, 1, 1] bound=2 |P_a|=2 orbit_cocycles=[1]
+Part B N=3: unit=c_on_[0] dimR_N=176 dimC_cap_R_N=43 increments=[43, 1, 1, 1, 1, 1, 1, 1] bound=1 |P_a|=1 orbit_cocycles=[1]
