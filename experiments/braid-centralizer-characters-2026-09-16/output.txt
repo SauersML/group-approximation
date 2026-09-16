@@ -1,0 +1,7 @@
+n=2: 1 maximal laminar families, all independent, private pairs ok
+n=3: 3 maximal laminar families, all independent, private pairs ok
+n=4: 15 maximal laminar families, all independent, private pairs ok
+n=5: 105 maximal laminar families, all independent, private pairs ok
+n=6: 945 maximal laminar families, all independent, private pairs ok
+n=7: 10395 maximal laminar families, all independent, private pairs ok
+lk check: 400 random conjugated full twists, all lk_ij = [{i,j} in S]
