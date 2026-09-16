@@ -12,7 +12,7 @@ distinct_from:
   f2-linear-sofic-groups-kill-rigid-compression-defects: that is the open F_2 rank row of the defect criterion; this removes one proof strategy for one pair and decides nothing about the row.
 artifacts:
   - research/artifacts/nls-rank-metric-witness-2026-09-12.md
-  - GroupApproximation/BowenChapman/ResiduallyFiniteSubstitution.lean
+  - ed6cf4b3e:GroupApproximation/BowenChapman/ResiduallyFiniteSubstitution.lean
 ---
 
 **ESTABLISHED.**

@@ -12,8 +12,8 @@ distinct_from:
 artifacts:
   - research/artifacts/q34-bc-witness-hyperlinear-2026-09-12.md
   - research/artifacts/bowen-chapman-lean-review-2026-09-12.md
-  - GroupApproximation/BowenChapman/Endpoint.lean
-  - GroupApproximation/BowenChapman/LaurentPair.lean
+  - ed6cf4b3e:GroupApproximation/BowenChapman/Endpoint.lean
+  - ed6cf4b3e:GroupApproximation/BowenChapman/LaurentPair.lean
 ---
 
 **ESTABLISHED.**

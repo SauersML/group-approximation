@@ -11,7 +11,7 @@ requires:
   - kt-wreath-models-never-round-on-the-vertex
 artifacts:
   - research/artifacts/q34-bc-witness-hyperlinear-2026-09-12.md
-  - GroupApproximation/BowenChapman/LaurentPair.lean
+  - ed6cf4b3e:GroupApproximation/BowenChapman/LaurentPair.lean
 ---
 
 The item numbers are those of the claim.
