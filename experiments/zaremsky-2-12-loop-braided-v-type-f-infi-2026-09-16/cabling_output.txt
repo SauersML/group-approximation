@@ -1,0 +1,7 @@
+Lemma A on 400 random (n<=6, |w|<=12, k) triples: True None
+cloning well defined on elements, LB_3, all words of length <= 5: (True, 3091, 6240)
+cloning well defined on elements, LB_4, all words of length <= 4: (True, 2878, 4503)
+McCool relators R1-R3 hold in left form, n = 4: (True, None)
+McCool relators R1-R3 hold in left form, n = 5: (True, None)
+McCool relators R1-R3 hold in left form, n = 6: (True, None)
+cabled McCool generators match the predicted formulas (n <= 7, all k, p, q), and e_{k,k+1} = e_{k+1,k} = 0 on them: (True, 350)

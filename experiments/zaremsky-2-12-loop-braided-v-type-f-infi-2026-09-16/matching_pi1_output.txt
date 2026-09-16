@@ -1,0 +1,18 @@
+OM(K_5): {'vertices': 20, 'edges': 60, 'triangles': 0, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 41}
+OM(K_6): {'vertices': 30, 'edges': 180, 'triangles': 120, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 46}
+OM(K_7): {'vertices': 42, 'edges': 420, 'triangles': 840, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 0}
+OM(K_8): {'vertices': 56, 'edges': 840, 'triangles': 3360, 'connected': True, 'pi1_trivial_certified': True}
+OM(K_9): {'vertices': 72, 'edges': 1512, 'triangles': 10080, 'connected': True, 'pi1_trivial_certified': True}
+M(K_5): {'vertices': 10, 'edges': 15, 'triangles': 0, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 6}
+M(K_6): {'vertices': 15, 'edges': 45, 'triangles': 15, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 16}
+M(K_7): {'vertices': 21, 'edges': 105, 'triangles': 105, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 0}
+M(K_8): {'vertices': 28, 'edges': 210, 'triangles': 420, 'connected': True, 'pi1_trivial_certified': True}
+M(K_9): {'vertices': 36, 'edges': 378, 'triangles': 1260, 'connected': True, 'pi1_trivial_certified': True}
+M(L_5): {'vertices': 4, 'edges': 3, 'triangles': 0, 'connected': True, 'pi1_trivial_certified': True}
+M(L_6): {'vertices': 5, 'edges': 6, 'triangles': 1, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 1}
+M(L_7): {'vertices': 6, 'edges': 10, 'triangles': 4, 'connected': True, 'pi1_trivial_certified': False, 'h1_rank_gf2': 1}
+M(L_8): {'vertices': 7, 'edges': 15, 'triangles': 10, 'connected': True, 'pi1_trivial_certified': True}
+M(L_9): {'vertices': 8, 'edges': 21, 'triangles': 20, 'connected': True, 'pi1_trivial_certified': True}
+M(L_10): {'vertices': 9, 'edges': 28, 'triangles': 35, 'connected': True, 'pi1_trivial_certified': True}
+M(L_11): {'vertices': 10, 'edges': 36, 'triangles': 56, 'connected': True, 'pi1_trivial_certified': True}
+M(L_12): {'vertices': 11, 'edges': 45, 'triangles': 84, 'connected': True, 'pi1_trivial_certified': True}
