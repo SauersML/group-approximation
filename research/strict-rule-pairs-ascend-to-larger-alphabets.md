@@ -7,12 +7,20 @@ distinct_from:
   strict-rule-pairs-pass-to-product-alphabets: that moves strictness from k symbols to multiples kl with the tables fixed; this asks for every n >= k, which multiples never reach when k has two distinct prime factors.
   equal-label-table-is-strict-at-three-symbols-not-two: that shows fixed tables do not descend; this asks whether fixed tables ascend, and that table admits every size n >= 3.
   surjunctivity-failure-descends-to-binary-alphabet: that is group-level descent to two symbols with the tables allowed to change; this is table-level ascent with the tables fixed, the other possible alphabet bridge.
+refuted_by:
+  - table-pair-strict-exactly-at-composite-alphabet-sizes
 artifacts:
   - research/artifacts/formalizability-prime-fields-and-alphabet-bridge-2026-09-12.md
   - research/artifacts/boolean-core-alphabets-and-network-coding-2026-09-12.md
 ---
 
-**OPEN.** Let `(T_f, T_r)` be a forward and a reverse product table. If some alphabet of size `k` admits
+**REFUTED (2026-09-16)** by `table-pair-strict-exactly-at-composite-alphabet-sizes`. With `S = {1,a}`, `M = {1,b,c}`,
+the forward table with the single coincidence `(1,1) ~ (1,b) ~ (a,c)` and its transpose as reverse table admit strict
+rules exactly over the composite alphabet sizes: 4 symbols but not 5. The tables are not realized in any group. The
+group-level consequence stays open as `nonsurjunctive-alphabet-sizes-are-upward-closed`. The original statement and
+the earlier attempts are kept below as history.
+
+Original statement. Let `(T_f, T_r)` be a forward and a reverse product table. If some alphabet of size `k` admits
 rules `(mu, nu)` strict for `(T_f, T_r)`, meaning the forward identity holds on `T_f` and the reverse
 identity fails on `T_r`, then every alphabet of size `n >= k` admits such rules.
 
@@ -71,3 +79,11 @@ Owned by lane gk-fz-alphabets, at gk-n-boolean's request.
   it is surjective once injective, for every radius and every rule near the stars. So a group-level ascent to
   `A ⊔ D` must write at `D`-sites, or write `D`-symbols at `A`-sites. Artifact
   `research/artifacts/gk3-alphabet-descent-2026-09-14.md`, Section 2.
+- **Counterexample: composite sizes only** (swarm, 2026-09-16; `table-pair-strict-exactly-at-composite-alphabet-sizes`).
+  - *Composite sizes.* A two-digit code over `B x C` is strict.
+  - *Prime sizes.* The diagonal relay map `D(x,z) = mu(x,x,z)` must let the sink recover `o` from `D(o,e)` and `D(f,o)`.
+    Equality in Shannon's inequalities then forces every fiber of `D` to be a rectangle of area `n`. At a prime `n` only
+    rows or columns remain. Then `(mu, nu)` agrees with a relabelled copy code on every input `Enc` reads, so `Enc` holds.
+  - *Census,* up to label symmetry. 121 of the 2 x 3 table pairs are strict at 4 symbols but not at 2 or 3, and 36 of
+    those are not strict at 5. No 2 x 2 pair has a gap up to `n = 5`.
+  - Artifact `research/artifacts/composite-size-strict-table-2026-09-16.md`.
