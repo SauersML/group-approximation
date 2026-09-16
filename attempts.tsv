@@ -344,3 +344,4 @@
 34990175512	2026-09-15T15:42:48Z	GroupApproximation/Sofic/ExplicitSuitableDefect.lean	exists_isAlgebraicallySuitable_le_defectNormal
 35012213608	2026-09-15T19:13:07Z	GroupApproximation/Sofic/ExplicitSuitableDefect.lean	unbounded_of_isSuitable
 35029814247	2026-09-15T22:13:40Z	GroupApproximation/Sofic/ExteriorMFProfile.lean	exteriorDegreeMatrix_mul
+35039531984	2026-09-16T00:20:35Z	GroupApproximation/Sofic/ExteriorMFProfile.lean	conjTranspose_mem_unitaryGroup
