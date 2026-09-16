@@ -1,0 +1,14 @@
+worst deviations (should be <= ~1e-9 for equalities, <= 1e-9 for inequalities):
+  AP0      4.441e-16 ok
+  AP1a     4.483e-15 ok
+  AP1b     3.331e-16 ok
+  AP2      4.699e-16 ok
+  AP3     -8.503e-14 ok
+  AP4     -2.269e-02 ok
+  AP5a     1.144e-16 ok
+  AP5b    -1.082e-14 ok
+  AP6     -8.731e-11 ok
+  tensor   9.770e-16 ok
+  AP8      4.663e-15 ok
+twisted clock/shift k=12: source commutator scalar=(0.866025+0.5j), trace-square energy=-4.44e-16, ||XY-YX||_2=0.5176, adjoint ||.||_2=4.84e-16
+ALL OK
