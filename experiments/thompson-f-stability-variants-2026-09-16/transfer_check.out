@@ -1,0 +1,9 @@
+exhaustive n=2 t=2: 16 quadruples, max ratio 0.0000, ratio 2 attained: False
+exhaustive n=2 t=3: 144 quadruples, max ratio 2.0000, ratio 2 attained: True
+exhaustive n=2 t=4: 2304 quadruples, max ratio 2.0000, ratio 2 attained: True
+exhaustive n=3 t=3: 1296 quadruples, max ratio 1.5000, ratio 2 attained: False
+exhaustive n=3 t=4: 20736 quadruples, max ratio 2.0000, ratio 2 attained: True
+exhaustive n=3 t=5: 518400 quadruples, max ratio 2.0000, ratio 2 attained: True
+exhaustive n=4 t=4: 331776 quadruples, max ratio 2.0000, ratio 2 attained: True
+random near-extensions (20000 trials, n<=60, t<=80): max ratio 2.0000
+no counterexample
