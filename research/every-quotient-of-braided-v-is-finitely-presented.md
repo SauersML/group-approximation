@@ -3,6 +3,8 @@ rg: 2
 id: every-quotient-of-braided-v-is-finitely-presented
 kind: claim
 title: Every quotient of the braided Thompson group bV is finitely presented (bV satisfies max-n)
+refuted_by:
+  - some-quotient-of-braided-v-is-not-finitely-presented
 ---
 
 For every normal subgroup `N` of `bV = V_br`, the quotient `bV/N` is finitely
