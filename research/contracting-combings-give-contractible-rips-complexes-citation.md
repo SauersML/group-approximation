@@ -13,9 +13,14 @@ discrete Morse theory and Vietoris–Rips complexes*, arXiv:1812.10976v3 (28 Mar
 ghostscript on MSI on 2026-09-13.
 
 - Definitions of path, combing, bounded combing and contracting combing (Section 6.1,
-  "Following [Alo92]"), as recorded in the claim. The extraction dropped primes in two
-  lines of the contracting condition; the reconstruction `n <= n'`, `s(h)(n')` matches
-  the surrounding text.
+  "Following [Alo92]"), as recorded in the claim. The ghostscript extraction dropped
+  primes in the contracting condition, and the reconstruction first recorded here
+  (`n <= n'`) was wrong. A second extraction of the v3 PDF with pypdf on 2026-09-16
+  keeps the primes and reads: "for all g, h ∈ G and n, n′ ∈ N0, with n′ ≤ n and
+  ⌊C/2⌋ ≤ n, if d(s(g)(n), s(h)(n′)) ≤ C then also d(s(g)(n − ⌊C/2⌋), s(h)(n′)) ≤ C".
+  The claim now records `n' <= n`. The reversed reading holds only for finite groups
+  (`research/artifacts/zaremsky-4-01-contracting-combings-2026-09-16.md`,
+  Proposition 1).
 - Citation 6.7, verbatim: "[Alo92, Theorem 1] If G admits a bounded combing then for
   all t there exists s ≥ t such that the inclusion VR_t(G) → VR_s(G) induces the
   trivial map in π_k for all k. If G admits a contracting combing then VR_t(G) is

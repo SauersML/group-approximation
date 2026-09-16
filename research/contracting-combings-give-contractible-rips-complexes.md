@@ -16,9 +16,13 @@ path `s(g)` from `1` to `g` for every `g`. It is:
 
 - *bounded* if there is a monotone `φ : N_0 → N` with `φ(n) >= n` and
   `d(s(g)(n), s(h)(n)) <= φ(d(g,h))` for all `g, h, n`;
-- *contracting* if there is `C >= 2` such that for all `g, h` and `n <= n'` with
+- *contracting* if there is `C >= 2` such that for all `g, h` and `n' <= n` with
   `⌊C/2⌋ <= n`, `d(s(g)(n), s(h)(n')) <= C` implies
   `d(s(g)(n − ⌊C/2⌋), s(h)(n')) <= C`.
+
+  (Corrected 2026-09-16 from `n <= n'`, which the source does not say and which only
+  finite groups satisfy; see
+  `research/artifacts/zaremsky-4-01-contracting-combings-2026-09-16.md`, Proposition 1.)
 
 Theorem (Alonso): if `G` admits a bounded combing, then for every `t` there is
 `s >= t` such that `VR_t(G) → VR_s(G)` is trivial on every `π_k`. If `G` admits a
