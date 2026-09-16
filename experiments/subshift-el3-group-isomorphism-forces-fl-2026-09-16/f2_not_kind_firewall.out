@@ -1,0 +1,8 @@
+M_2(F_2): symmetric idempotents 4, non-diagonal 0; orthogonal 2, non-monomial 0
+M_3(F_2): symmetric idempotents 10, non-diagonal 2; orthogonal 6, non-monomial 0
+M_4(F_2): symmetric idempotents 38, non-diagonal 22; orthogonal 48, non-monomial 24
+J_3 is a symmetric non-diagonal idempotent; J_4 - I is a symmetric non-monomial involution over F_2
+cylinder U = [101] at coordinates 0..2; return times in window 5..8
+w^2 = 1 fails on 0 basis vectors of the window
+w 1_U w is off-diagonal: delta_-3977 -> support [-3977, -3976, -3975]
+OK
