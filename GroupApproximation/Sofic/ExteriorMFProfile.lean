@@ -555,9 +555,7 @@ theorem conjTranspose_mem_unitaryGroup {A : Matrix Y Y ℂ}
     Aᴴ ∈ Matrix.unitaryGroup Y ℂ := by
   rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
     Matrix.conjTranspose_conjTranspose]
-  have h := hA
-  rw [Matrix.mem_unitaryGroup_iff', Matrix.star_eq_conjTranspose] at h
-  exact h
+  exact Unitary.star_mul_self_of_mem hA
 
 omit [LinearOrder Y] in
 /-- Right multiplication by the adjoint of a unitary identifies relative
