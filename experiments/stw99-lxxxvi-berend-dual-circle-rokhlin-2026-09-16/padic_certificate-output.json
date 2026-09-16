@@ -1,0 +1,366 @@
+{
+ "certificates": [
+  {
+   "p": 2,
+   "K": 40,
+   "exponent_e": 14,
+   "f_has_no_root_mod_p": true,
+   "eps1=a^e_and_eps2=(a+1)^e_in_1+p^m_O": true,
+   "m": 2,
+   "log_eps1_mod_p^K": [
+    825550089956,
+    417712771088,
+    687724128020
+   ],
+   "log_eps2_mod_p^K": [
+    145726323712,
+    687724128020,
+    270011356932
+   ],
+   "log_additivity_check": true,
+   "log_equals_(eps^(p^K)-1)/p^K_check": true,
+   "minors": {
+    "01": {
+     "value_mod_p^K": 315497883088,
+     "v_p": 4
+    },
+    "02": {
+     "value_mod_p^K": 502904227728,
+     "v_p": 4
+    },
+    "12": {
+     "value_mod_p^K": 409201055408,
+     "v_p": 4
+    }
+   },
+   "Zp_linearly_independent": true,
+   "stabilizers": [
+    {
+     "sign": "b_minus=a+1",
+     "first_j_with_stab_in_pZ2": 2,
+     "rows": [
+      {
+       "j": 1,
+       "N": 2,
+       "orders": [
+        7,
+        7
+       ],
+       "index": 7,
+       "stab_in_pZ2": false,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 2,
+       "N": 4,
+       "orders": [
+        14,
+        14
+       ],
+       "index": 28,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 3,
+       "N": 8,
+       "orders": [
+        28,
+        28
+       ],
+       "index": 112,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 4,
+       "N": 16,
+       "orders": [
+        56,
+        56
+       ],
+       "index": 448,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 5,
+       "N": 32,
+       "orders": [
+        112,
+        112
+       ],
+       "index": 1792,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 6,
+       "N": 64,
+       "orders": [
+        224,
+        224
+       ],
+       "index": 7168,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 7,
+       "N": 128,
+       "orders": [
+        448,
+        448
+       ],
+       "index": 28672,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 8,
+       "N": 256,
+       "orders": [
+        896,
+        896
+       ],
+       "index": 114688,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      }
+     ]
+    },
+    {
+     "sign": "b_plus=-(a+1)",
+     "first_j_with_stab_in_pZ2": 2,
+     "rows": [
+      {
+       "j": 1,
+       "N": 2,
+       "orders": [
+        7,
+        7
+       ],
+       "index": 7,
+       "stab_in_pZ2": false,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 2,
+       "N": 4,
+       "orders": [
+        14,
+        14
+       ],
+       "index": 28,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 3,
+       "N": 8,
+       "orders": [
+        28,
+        28
+       ],
+       "index": 112,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 4,
+       "N": 16,
+       "orders": [
+        56,
+        56
+       ],
+       "index": 448,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 5,
+       "N": 32,
+       "orders": [
+        112,
+        112
+       ],
+       "index": 1792,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 6,
+       "N": 64,
+       "orders": [
+        224,
+        224
+       ],
+       "index": 7168,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 7,
+       "N": 128,
+       "orders": [
+        448,
+        448
+       ],
+       "index": 28672,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 8,
+       "N": 256,
+       "orders": [
+        896,
+        896
+       ],
+       "index": 114688,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "p": 3,
+   "K": 40,
+   "exponent_e": 26,
+   "f_has_no_root_mod_p": true,
+   "eps1=a^e_and_eps2=(a+1)^e_in_1+p^m_O": true,
+   "m": 1,
+   "log_eps1_mod_p^K": [
+    8549362065164825496,
+    4242931307523858858,
+    7876634481462805275
+   ],
+   "log_eps2_mod_p^K": [
+    621928023608333997,
+    7876634481462805275,
+    3633703173938946417
+   ],
+   "log_additivity_check": true,
+   "log_equals_(eps^(p^K)-1)/p^K_check": true,
+   "minors": {
+    "01": {
+     "value_mod_p^K": 9308370603523696092,
+     "v_p": 2
+    },
+    "02": {
+     "value_mod_p^K": 9156273396138896499,
+     "v_p": 2
+    },
+    "12": {
+     "value_mod_p^K": 3153489270302831895,
+     "v_p": 3
+    }
+   },
+   "Zp_linearly_independent": true,
+   "stabilizers": [
+    {
+     "sign": "b_minus=a+1",
+     "first_j_with_stab_in_pZ2": 2,
+     "rows": [
+      {
+       "j": 1,
+       "N": 3,
+       "orders": [
+        13,
+        26
+       ],
+       "index": 26,
+       "stab_in_pZ2": false,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 2,
+       "N": 9,
+       "orders": [
+        39,
+        78
+       ],
+       "index": 234,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 3,
+       "N": 27,
+       "orders": [
+        117,
+        234
+       ],
+       "index": 2106,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 4,
+       "N": 81,
+       "orders": [
+        351,
+        702
+       ],
+       "index": 18954,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      }
+     ]
+    },
+    {
+     "sign": "b_plus=-(a+1)",
+     "first_j_with_stab_in_pZ2": 2,
+     "rows": [
+      {
+       "j": 1,
+       "N": 3,
+       "orders": [
+        13,
+        13
+       ],
+       "index": 13,
+       "stab_in_pZ2": false,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 2,
+       "N": 9,
+       "orders": [
+        39,
+        39
+       ],
+       "index": 117,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": true
+      },
+      {
+       "j": 3,
+       "N": 27,
+       "orders": [
+        117,
+        117
+       ],
+       "index": 1053,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      },
+      {
+       "j": 4,
+       "N": 81,
+       "orders": [
+        351,
+        351
+       ],
+       "index": 9477,
+       "stab_in_pZ2": true,
+       "equals_matrix_stabilizer_of_v001": null
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

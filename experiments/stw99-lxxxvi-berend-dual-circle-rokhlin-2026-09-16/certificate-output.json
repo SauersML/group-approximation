@@ -1,0 +1,486 @@
+{
+ "certificates": [
+  {
+   "sign": "b_minus=a+1",
+   "p": 2,
+   "N": 4,
+   "v": [
+    0,
+    0,
+    1
+   ],
+   "part_i": {
+    "L": 14,
+    "At^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "Bt^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "both_identity": true
+   },
+   "part_ii": [
+    {
+     "eps": [
+      0,
+      1
+     ],
+     "image": [
+      0,
+      2,
+      3
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      0
+     ],
+     "image": [
+      2,
+      0,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      1
+     ],
+     "image": [
+      2,
+      2,
+      3
+     ],
+     "differs_from_v": true
+    }
+   ],
+   "conclusion": "Stab(v) <= 2 Z^2"
+  },
+  {
+   "sign": "b_plus=-(a+1)",
+   "p": 2,
+   "N": 4,
+   "v": [
+    0,
+    0,
+    1
+   ],
+   "part_i": {
+    "L": 14,
+    "At^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "Bt^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "both_identity": true
+   },
+   "part_ii": [
+    {
+     "eps": [
+      0,
+      1
+     ],
+     "image": [
+      0,
+      2,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      0
+     ],
+     "image": [
+      2,
+      0,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      1
+     ],
+     "image": [
+      2,
+      2,
+      1
+     ],
+     "differs_from_v": true
+    }
+   ],
+   "conclusion": "Stab(v) <= 2 Z^2"
+  },
+  {
+   "sign": "b_minus=a+1",
+   "p": 3,
+   "N": 9,
+   "v": [
+    0,
+    0,
+    1
+   ],
+   "part_i": {
+    "L": 78,
+    "At^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "Bt^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "both_identity": true
+   },
+   "part_ii": [
+    {
+     "eps": [
+      0,
+      1
+     ],
+     "image": [
+      6,
+      6,
+      7
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      0,
+      2
+     ],
+     "image": [
+      3,
+      3,
+      4
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      0
+     ],
+     "image": [
+      3,
+      3,
+      7
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      1
+     ],
+     "image": [
+      0,
+      0,
+      4
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      2
+     ],
+     "image": [
+      6,
+      6,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      0
+     ],
+     "image": [
+      6,
+      6,
+      4
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      1
+     ],
+     "image": [
+      3,
+      3,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      2
+     ],
+     "image": [
+      0,
+      0,
+      7
+     ],
+     "differs_from_v": true
+    }
+   ],
+   "conclusion": "Stab(v) <= 3 Z^2"
+  },
+  {
+   "sign": "b_plus=-(a+1)",
+   "p": 3,
+   "N": 9,
+   "v": [
+    0,
+    0,
+    1
+   ],
+   "part_i": {
+    "L": 39,
+    "At^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "Bt^L_mod_N": [
+     [
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      1,
+      0
+     ],
+     [
+      0,
+      0,
+      1
+     ]
+    ],
+    "both_identity": true
+   },
+   "part_ii": [
+    {
+     "eps": [
+      0,
+      1
+     ],
+     "image": [
+      3,
+      3,
+      4
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      0,
+      2
+     ],
+     "image": [
+      6,
+      6,
+      7
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      0
+     ],
+     "image": [
+      6,
+      6,
+      4
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      1
+     ],
+     "image": [
+      0,
+      0,
+      7
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      1,
+      2
+     ],
+     "image": [
+      3,
+      3,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      0
+     ],
+     "image": [
+      3,
+      3,
+      7
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      1
+     ],
+     "image": [
+      6,
+      6,
+      1
+     ],
+     "differs_from_v": true
+    },
+    {
+     "eps": [
+      2,
+      2
+     ],
+     "image": [
+      0,
+      0,
+      4
+     ],
+     "differs_from_v": true
+    }
+   ],
+   "conclusion": "Stab(v) <= 3 Z^2"
+  }
+ ],
+ "preimage_windows": [
+  [
+   {
+    "j": 1,
+    "order": 8,
+    "window_checked": "0<=n,m<20"
+   },
+   {
+    "j": 2,
+    "order": 16,
+    "window_checked": "0<=n,m<20"
+   }
+  ]
+ ]
+}

@@ -1,0 +1,4 @@
+2 2 tested 40 mismatches 0 |stab residues| 7
+2 3 tested 40 mismatches 0 |stab residues| 7
+3 1 tested 26 mismatches 0 |stab residues| 26
+3 2 tested 40 mismatches 0 |stab residues| 26
