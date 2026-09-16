@@ -26,3 +26,10 @@ embedding sub-question of Zaremsky Problem 2.16.
   Lehnert's conjecture.
 - Bodart–D'Angeli–Perego–Rodaro (arXiv:2608.02111) report all currently known
   coCF groups embed in `V`, so no witness is known to this lane.
+- Status update (2026-09-16): the standing candidates `V_(G,θ)`, `θ ≠ id`, in
+  the first bullet are eliminated. They embed in `V` by BDPR (arXiv:2608.02111v1,
+  Theorem B / Theorem 3.2, PDF read 2026-09-16) and independently by
+  `twisted-power-cloning-groups-embed-in-v`, which also covers two-endomorphism
+  direct-power cloning systems. Any witness must come from a cloning system
+  outside that family, for example the non-local upper-triangular systems
+  `B_n(F_q)`.

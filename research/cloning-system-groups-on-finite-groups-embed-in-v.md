@@ -25,3 +25,12 @@ passes to finitely generated subgroups, this implies
   and Jaspars' pullback criterion (arXiv:2608.01168) are the tools to decide it;
   the former's abstract states all known coCF groups embed in `V`. Not settled
   by this lane.
+- Status update (2026-09-16): the case `θ ≠ id` above is settled. BDPR
+  (arXiv:2608.02111v1, Theorem B / Theorem 3.2, PDF read 2026-09-16) prove that
+  `V_(H,θ)` embeds in `V` for every finite `H` and every `θ ∈ End(H)`.
+  Independently, `twisted-power-cloning-groups-embed-in-v` covers the pure
+  direct-power systems with cloning `g ↦ (φ0 g, φ1 g)`,
+  `ker φ0 ∩ ker φ1 = 1`, which includes `φ0 = id`. Still open: general non-local
+  cloning systems, such as the Witzel–Zaremsky upper-triangular groups
+  `B_n(F_q)`, where cloning duplicates a row and a column (see
+  `notes/zaremsky-2-16-lehnert-conjecture-swarm-2026-09-16.md` §3, item 4).
