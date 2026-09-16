@@ -61,3 +61,16 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
     groups.
 
   Artifact `research/artifacts/gk3-alphabet-descent-2026-09-14.md`.
+- **Correction: codings cannot carry descent** (swarm, 2026-09-16).
+  - For `|A| >= 3` there is no equivariant injection `A^K -> {0,1}^K` at all, continuous or not. It would
+    map the `|A|` constant configurations injectively into the two binary ones
+    (`full-shifts-with-different-alphabets-are-not-conjugate`).
+  - So the coding `e` of the "Reformulation" bullet never exists. "Equivalent" there is wrong: descent
+    holds vacuously over every surjunctive group, where no coding exists either. The marker discussion is
+    moot, since block coding fails at the constants even where markers exist.
+  - The compression lemma of `research/artifacts/gk3-binary-descent-2-2026-09-14.md`, Section 2, is
+    vacuous for the same reason: its hypothesis is never met.
+  - Strictness does transfer through a factor map `r: {0,1}^K -> A^K` with an injective automaton `Phi`,
+    `r o Phi = tau o r`. Over `F_2` with the Ornstein–Weiss map, the automata with injective lifts are
+    exactly those induced by injective flip-commuting binary automata, and the coordinate swap has no lift by any
+    automaton. Notes `notes/surjunctivity-failure-descends-to-binary-swarm-2026-09-16.md`, Sections 1-2.
