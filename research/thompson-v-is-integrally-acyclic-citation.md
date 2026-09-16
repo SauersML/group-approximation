@@ -15,5 +15,11 @@ generally, we identify the homology of the Higman-Thompson groups $V_{n,r}$
 with the homology of the zeroth component of the infinite loop space of the
 mod $n-1$ Moore spectrum."
 
-The theorem number inside the paper was not checked; the statement above is
-the authors' own abstract.
+The statement inside the paper was checked on 2026-09-16 against the arXiv
+e-print source of 1411.5035, as fetched by the bV-acyclicity referee panel.
+The numbering is not recorded here, only the LaTeX label. Theorem
+`thm:Vacyclic` (file `section56.tex`) reads verbatim, up to macros: "For all
+$r\geqslant 1$, the Thompson group $V\cong V_{2,r}$ is integrally acyclic:
+$H_d(V)=H_d(V_{2,r})=0$ for all $d\not=0$." The introduction
+(`SzymikWahl_v2.tex`) restates it as a corollary citing that theorem:
+"Thompson's group $V=V_{2,1}$ is acyclic."

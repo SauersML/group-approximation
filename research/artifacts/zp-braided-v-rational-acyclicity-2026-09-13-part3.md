@@ -1,6 +1,9 @@
 # bV is rationally acyclic: part 3, configuration modules and assembly
 
-Lane z2-09-bv-acyclic, 2026-09-13. Unreviewed. Parts 1 and 2 hold Steps A and B.
+Lane z2-09-bv-acyclic, 2026-09-13. Parts 1 and 2 hold Steps A and B.
+Refereed 2026-09-16 by an agent panel. C1, C2, C4 and C6 were checked, and
+Step D was corrected to use the filtration of part 1, A5–A6. Human expert
+review is still recommended.
 
 **Notation.**
 
@@ -67,10 +70,13 @@ and the right term by C4. Apply the long exact sequence. ∎
 
 ## Step D: assembly
 
-Let `K = ker(bV → V)`. Step A (part 1) gives, for every `q ≥ 1`, a
-`V`-isomorphism
-`H_q(K; Q) ≅ ⊕_{m=q+1}^{2q} C_c(Conf_m(C), Q) ⊗_{Q[Σ_m]} W_{m,q}`,
-with `W_{m,q}` finite-dimensional. By C6 each `H_q(K; Q)` with `q ≥ 1` is V-acyclic.
+Let `K = ker(bV → V)`. Step A (part 1, A5) gives, for every `q ≥ 1`, a
+finite filtration of `H_q(K; Q)` by `V`-submodules with graded pieces
+`C_c(Conf_m(C), Q) ⊗_{Q[Σ_m]} W_{m,q}` for `q + 1 ≤ m ≤ 2q`, with `W_{m,q}`
+finite-dimensional. (An earlier version claimed a direct-sum decomposition;
+the 2026-09-16 referee panel showed that cabling does not preserve it, see
+part 1, A3.) By C6 each graded piece is V-acyclic. By part 1, A6, so is each
+`H_q(K; Q)` with `q ≥ 1`.
 
 In the Lyndon–Hochschild–Serre spectral sequence
 `E²_{p,q} = H_p(V; H_q(K; Q)) ⇒ H_{p+q}(bV; Q)`:
@@ -84,8 +90,8 @@ Hence `H_n(bV; Q) = 0` for all `n ≥ 1`. ∎
 
 ## What is missing for integral acyclicity
 
-- Step A is integral: Cohen's computation of `H_*(Conf_n(R^2); Z)` is
-  torsion-free, with the same basis.
+- Step A is integral. The Orlik–Solomon description of `H^*(Conf_n(C); Z)` is
+  torsion-free, and part 1, A2–A6, is written over `Z`.
 - C1, C2, C4 and C5 are integral once C3 is.
 - C6 is integral by a different argument. The lexicographic order on
   `{0,1}^N` gives a clopen fundamental domain for the free `Σ_m`-action, so

@@ -258,3 +258,116 @@ No mathematical content was changed.
 
 This result answers a listed open problem. Only one agent referee checked it, so it
 should get human expert review before anyone announces it.
+
+## Independent referee panel (2026-09-16)
+
+Three independent agent referees each examined the certificate through one lens.
+An adjudicator then checked every reported gap against the proof text and the
+source TeX and PDFs. The sources are stored under
+`experiments/bv-acyclic-panel-2026-09-16/`.
+
+**Lens verdicts.**
+
+1. **Crainic–Moerdijk comparison** (Lemma 3.3, Proposition 3.4). *Sound with
+   minor gaps.* The use of the Leray spectral sequence and the stalk formula
+   was accepted. The citations and side-conditions needed tightening.
+2. **Germ groupoid** (the identification of the germ groupoid with `G_2`, and
+   the imports). *Sound with minor gaps.*
+3. **Step A reduction** (part 1 Step A, the part 3 assembly, the route to
+   `zaremsky-2-09-by-yes`). *Serious gap*, confirmed and repaired.
+
+**Confirmed serious gap (lens 3), repaired.** Part 1, A3–A5, claimed two things:
+
+- cabling acts on the Gerstenhaber basis by
+  `w[i → i'] · x_{i''} + x_{i'} · w[i → i'']`;
+- `H_q(K) ≅ ⊕_m C_c(Conf_m(C)) ⊗_{Σ_m} W_{m,q}` as `V`-modules.
+
+Both are false for blocks of size `≥ 3`. Cabling a class supported on a block
+`B ∋ i` also produces classes supported on splittings of
+`B[i → i', i'']` into two blocks of size `≥ 2`, whose support is one larger.
+
+*Witness.* In `Conf_3(C)`, let `T` be the torus with `z_1 = 0`, `z_2 = e^{iθ}`
+and `z_3 = 2e^{iφ}`. Cabling strand 1 gives
+`⟨c_*T, w_{1''2} w_{1'3}⟩ = ⟨T, w_{12} w_{13}⟩ = 1`. The form
+`w_{1''2} w_{1'3}` lies in the Brieskorn summand of the partition
+`{1'',2}{1',3}`, which has support 4. The old formula only produces support 3.
+
+*Repair* (part 1, A2–A6, checked by the adjudicator, over `Z`):
+
+- `H^*(Conf_n(C); Z)` is the Orlik–Solomon algebra, graded by partitions
+  (Arnold 1969; Orlik–Solomon 1980; Brieskorn 1973).
+- Cabling kills `w_{i'i''}` and relabels the other generators.
+- Dually, a class of support size `m` goes to classes of support size `m` and
+  `m + 1`. So `F_{≥m}` (support size `≥ m`) is stable under cabling and
+  relabelling.
+- On the graded pieces the transition maps are exactly the relabelling sums
+  that the old A4 described.
+- Passing to the colimit, `H_q(K; Z)` has a finite `V`-filtration with
+  `gr_m ≅ C_c(Conf_m(C), Z) ⊗_{Z[Σ_m]} W_{m,q}` for `q + 1 ≤ m ≤ 2q`.
+- V-acyclicity (`H_p(V; −) = 0` for all `p ≥ 0`) passes to extensions by the
+  long exact sequence. So the rows `q ≥ 1` of the Lyndon–Hochschild–Serre
+  spectral sequence still vanish, rationally and integrally.
+- The downstream steps (C6 averaging over `Q`; the free `Z[Σ_m]`-module argument
+  over `Z`; Theorem 1 of the germ artifact) apply to the graded pieces unchanged.
+
+No other step used the direct sum.
+
+**Confirmed minor gaps, fixed in place.**
+
+- Lens 1:
+  - Proposition 3.4(iii) cited "CM 3.7(2)" for summation along fibres. Now it
+    cites the counit `Σ_f : f_!f^*A → A` from the CM Appendix (label `lset`).
+  - Lemma 3.3 argued discreteness by hand. Now it uses `(x/φ)^(n) = β_n^{-1}(x)`
+    (CM 4.1, 4.2) and that `β_n` is étale for étale `φ` (CM 4.5(2)).
+  - Proposition 3.4(iii) now states why `ε d_0 = ε d_1` holds with no twist: `Z`
+    has trivial action, so `k_1` acts as the identity on stalks.
+  - Proposition 3.4(i) now argues that every sheaf on these spaces is c-soft
+    (extension by zero through a compact open), not only the constant sheaf.
+    It also names all the nerve spaces covered by CM 1.8.
+- Lens 2:
+  - Lemma 1.1, well-definedness: the inference `vw = v'w ⇒ |v| = |v'|` was false
+    (`0·0^∞ = 00·0^∞`). It now uses agreement on a whole cone.
+  - The topology of `G_2` was attributed to "Matui's basis" with injectivity
+    conditions that the source does not contain. It is now quoted verbatim
+    from Matui 2016 (arXiv:1512.01724, groupoid `G_A` of a one-sided SFT; open
+    `P, Q` and `k, l ∈ N`), with both inclusions of topologies proved.
+  - `thompson-v-is-integrally-acyclic-citation` quoted only the abstract. It now
+    quotes Szymik–Wahl Theorem `thm:Vacyclic` verbatim from the e-print source.
+- Lens 3:
+  - Step A cited Cohen and Sinha for an operadic basis. It now cites Arnold,
+    Orlik–Solomon and Brieskorn for the integral cohomology ring and its
+    lattice grading, with no theorem numbers claimed.
+  - The "Unreviewed" headers of part 1, part 3 and the germ artifact were
+    updated.
+  - The problem wording was re-extracted from the Zaremsky PDF stream: "9.Is
+    braided V acyclic?", followed by "10.Is braided V Hopfian?". No change was
+    needed.
+
+**Rejected gaps.** None. Every reported gap was real. All except the Step A
+decomposition were presentation or citation issues.
+
+**Decision: stands with fixes.** The routes
+`braided-thompson-group-bv-is-acyclic-from-cantor-modules` and
+`braided-thompson-group-bv-is-rationally-acyclic-proof` keep their `requires:`
+lists, and no new open claim was created. Their Step 1 and assembly now use the
+filtration and extension closure. Files changed:
+
+- part 1 and part 3 of `zp-braided-v-rational-acyclicity-2026-09-13`;
+- `cantor-configuration-modules-v-acyclic-germ-groupoid-2026-09-16`;
+- the two routes;
+- `thompson-v-is-integrally-acyclic-citation`;
+- this note.
+
+**Human expert review is still recommended.** The panel consists of agent
+referees only. The certificate still rests on imported results:
+
+- Crainic–Moerdijk 4.3 and 4.4;
+- Matui 2012 and 2016;
+- `H_*(G_2) = 0`;
+- Szymik–Wahl;
+- Palmer–Wu, for the rational route;
+- the Orlik–Solomon grading.
+
+The repaired Step A is new text and has been checked only by the adjudicator.
+Nobody should announce the answer to Zaremsky Problem 2.9 before a human
+specialist has reviewed it.
