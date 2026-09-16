@@ -1,0 +1,23 @@
+relator w = s a s^-1 s^-1 a s a s^-1 a^-1 s a^-1
+PASS relator cyclically reduced of length 11
+PASS exponent sums s:0, a:1
+PASS first HNN relation becomes a free identity
+PASS second HNN relation becomes the relator of G0
+phi(x) = y ; phi(y) = y x y^-1 x^-1
+PASS [y,x]^-1 y = x y x^-1
+PASS {y, x y x^-1} is Nielsen reduced (rank-2 free basis)
+PASS image of phi dies when y is killed, so x is not in the image
+PASS H1 of F(x,y) *_(phi^1) is Z (relation matrix [[1, -1, 0], [0, 1, 0]])
+PASS H1 of F(x,y) *_(phi^2) is Z (relation matrix [[1, 0, 0], [0, 1, 0]])
+PASS H1 of F(x,y) *_(phi^3) is Z (relation matrix [[1, 0, 0], [0, 1, 0]])
+PASS H1 of F(x,y) *_(phi^4) is Z (relation matrix [[1, 0, 0], [0, 1, 0]])
+PASS H1 of F(x,y) *_(phi^5) is Z (relation matrix [[1, 0, 0], [0, 1, 0]])
+PASS H1 of F(x,y) *_(phi^6) is Z (relation matrix [[1, 0, 0], [0, 1, 0]])
+PASS Fox derivatives of u^1 nonzero: d/dp = [((0, 0), 1), ((0, 1), -1)]
+PASS Fox derivatives of u^2 nonzero: d/dp = [((0, 0), 2), ((0, 1), -2)]
+PASS Fox derivatives of u^3 nonzero: d/dp = [((0, 0), 3), ((0, 1), -3)]
+PASS Fox derivatives of u^4 nonzero: d/dp = [((0, 0), 4), ((0, 1), -4)]
+PASS Fox derivatives of u^5 nonzero: d/dp = [((0, 0), 5), ((0, 1), -5)]
+PASS Fox derivatives of u^6 nonzero: d/dp = [((0, 0), 6), ((0, 1), -6)]
+PASS a conjugate of u^2 is not in F''
+ALL PASS
