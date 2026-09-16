@@ -346,3 +346,4 @@
 35029814247	2026-09-15T22:13:40Z	GroupApproximation/Sofic/ExteriorMFProfile.lean	exteriorDegreeMatrix_mul
 35039531984	2026-09-16T00:20:35Z	GroupApproximation/Sofic/ExteriorMFProfile.lean	conjTranspose_mem_unitaryGroup
 35058857260	2026-09-16T05:17:21Z	GroupApproximation/Sofic/FermionicOptimality.lean	exists_sign_sum_norm_sq_ge
+35082505206	2026-09-16T10:00:36Z	GroupApproximation/Sofic/FiniteActionCharacter.lean	hammingDistance_one_eq_one_sub_fixedPointFraction
