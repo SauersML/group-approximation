@@ -1,0 +1,54 @@
+# relative_torsion_search.py runs, 2026-09-16 (python3, numpy); FLAG lines would list torsion certificates
+calibration ok
+mode basic seed 1 configs 3000 skipped(size) 0 time 9.7s
+disk           tested   870  nontrivial-relative-homology    76  torsion-flags 0
+halfplane      tested   582  nontrivial-relative-homology    92  torsion-flags 0
+hexcloud       tested   922  nontrivial-relative-homology   447  torsion-flags 0
+twohex         tested   313  nontrivial-relative-homology   247  torsion-flags 0
+twohex-both    tested   313  nontrivial-relative-homology   233  torsion-flags 0
+calibration ok
+mode basic seed 2 configs 3000 skipped(size) 0 time 8.0s
+disk           tested   864  nontrivial-relative-homology    87  torsion-flags 0
+halfplane      tested   648  nontrivial-relative-homology   125  torsion-flags 0
+hexcloud       tested   898  nontrivial-relative-homology   456  torsion-flags 0
+twohex         tested   295  nontrivial-relative-homology   214  torsion-flags 0
+twohex-both    tested   295  nontrivial-relative-homology   229  torsion-flags 0
+calibration ok
+mode basic seed 3 configs 3000 skipped(size) 0 time 8.0s
+disk           tested   984  nontrivial-relative-homology    98  torsion-flags 0
+halfplane      tested   580  nontrivial-relative-homology    97  torsion-flags 0
+hexcloud       tested   838  nontrivial-relative-homology   398  torsion-flags 0
+twohex         tested   299  nontrivial-relative-homology   236  torsion-flags 0
+twohex-both    tested   299  nontrivial-relative-homology   228  torsion-flags 0
+calibration ok
+mode basic seed 4 configs 3000 skipped(size) 0 time 7.6s
+disk           tested   921  nontrivial-relative-homology    81  torsion-flags 0
+halfplane      tested   608  nontrivial-relative-homology   121  torsion-flags 0
+hexcloud       tested   862  nontrivial-relative-homology   444  torsion-flags 0
+twohex         tested   305  nontrivial-relative-homology   222  torsion-flags 0
+twohex-both    tested   305  nontrivial-relative-homology   235  torsion-flags 0
+calibration ok
+mode dense seed 5 configs 4000 skipped(size) 0 time 26.6s
+chain          tested  1015  nontrivial-relative-homology   800  torsion-flags 0
+chain-both     tested  1015  nontrivial-relative-homology   956  torsion-flags 0
+hexdense       tested  1970  nontrivial-relative-homology  1420  torsion-flags 0
+calibration ok
+mode dense seed 6 configs 4000 skipped(size) 0 time 29.7s
+chain          tested  1028  nontrivial-relative-homology   805  torsion-flags 0
+chain-both     tested  1028  nontrivial-relative-homology   957  torsion-flags 0
+hexdense       tested  1944  nontrivial-relative-homology  1403  torsion-flags 0
+calibration ok
+mode dense seed 7 configs 4000 skipped(size) 0 time 30.6s
+chain          tested   985  nontrivial-relative-homology   791  torsion-flags 0
+chain-both     tested   985  nontrivial-relative-homology   926  torsion-flags 0
+hexdense       tested  2030  nontrivial-relative-homology  1442  torsion-flags 0
+
+== far_k2_k3_search.py (Lemma 4.6 sanity check), 2026-09-16 ==
+$ python3 far_k2_k3_search.py 1 1500
+calibration (square pattern, should be > 0): 0.171198
+seed 1 restarts 1500 best min-slack -7.6088e-05
+positive slack would be a counterexample: False
+$ python3 far_k2_k3_search.py 2 1500
+calibration (square pattern, should be > 0): 0.171272
+seed 2 restarts 1500 best min-slack -6.11265e-05
+positive slack would be a counterexample: False
