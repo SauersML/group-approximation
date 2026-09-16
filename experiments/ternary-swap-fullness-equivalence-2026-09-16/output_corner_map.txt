@@ -1,0 +1,44 @@
+     |Q| = 16
+PASS  p' idempotent
+PASS  p'' idempotent
+PASS  p' p'' = 0
+PASS  p' + p'' = eps_-
+PASS  Phi(1) = eps_-
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi well defined on gbar: Phi(g) = Phi(-g)
+PASS  Phi(g) Phi(h) = Phi(gh) for all 256 pairs
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Leavitt evaluation of Phi(g) is the identity
+PASS  Phi(e_w) = 2(eps_- + Phi(wbar)) idempotent
+PASS  Phi(e_w) below eps_-
+PASS  Phi(e_w) != eps_-
+PASS  evaluation of Phi(e_w) is the identity
+ALL CHECKS PASSED

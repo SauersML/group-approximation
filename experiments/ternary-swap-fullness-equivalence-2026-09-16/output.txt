@@ -1,0 +1,132 @@
+PASS  A: w^2 = 1
+PASS  A: d^2 = 1
+PASS  A: d w d = -w
+PASS  A: h^2 = -1
+PASS  A: h w h^-1 = d
+PASS  A: h d h^-1 = w
+     |Q| = 16
+PASS  A: eps_- idempotent
+PASS  A: eps_+ + eps_- = 1
+PASS  A: e_- idempotent
+PASS  A: [d] e_- [d] = eps_- - e_-
+PASS  A: e_- [d] e_- = 0
+PASS  A: c e_- [d] e_- b = 0 (random b, c)
+PASS  A: c e_- [d] e_- b = 0 (random b, c)
+PASS  A: c e_- [d] e_- b = 0 (random b, c)
+PASS  A: c e_- [d] e_- b = 0 (random b, c)
+PASS  A: c e_- [d] e_- b = 0 (random b, c)
+PASS  A: q(1, 1) q(1, 1) = delta q
+PASS  A: q(1, 1) q(1, -1) = delta q
+PASS  A: q(1, 1) q(-1, 1) = delta q
+PASS  A: q(1, 1) q(-1, -1) = delta q
+PASS  A: q(1, -1) q(1, 1) = delta q
+PASS  A: q(1, -1) q(1, -1) = delta q
+PASS  A: q(1, -1) q(-1, 1) = delta q
+PASS  A: q(1, -1) q(-1, -1) = delta q
+PASS  A: q(-1, 1) q(1, 1) = delta q
+PASS  A: q(-1, 1) q(1, -1) = delta q
+PASS  A: q(-1, 1) q(-1, 1) = delta q
+PASS  A: q(-1, 1) q(-1, -1) = delta q
+PASS  A: q(-1, -1) q(1, 1) = delta q
+PASS  A: q(-1, -1) q(1, -1) = delta q
+PASS  A: q(-1, -1) q(-1, 1) = delta q
+PASS  A: q(-1, -1) q(-1, -1) = delta q
+PASS  A: sum q_ab = 1
+PASS  A: e_w = q_++ + q_+-
+PASS  A: f = q_+- + q_--
+PASS  A: f e_w = q_+-
+PASS  A: 2 e_w = 1 + [wbar]
+PASS  A: H^2 = 1
+PASS  A: H q_(1,1) H = q_(1,1)
+PASS  A: H q_(1,-1) H = q_(-1,1)
+PASS  A: H q_(-1,1) H = q_(1,-1)
+PASS  A: H q_(-1,-1) H = q_(-1,-1)
+PASS  A: u = H q_-+ = q_+- H
+PASS  A: u in q_+- A q_-+
+PASS  A: v u = q_-+
+PASS  B: mu(1,1) = 1
+PASS  B: mu(-1,1) = -d
+PASS  B: mu(1,-1) = d
+PASS  B: depth-2 chart of w, d, h equals w (x) I, d (x) I, h (x) I
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: mu multiplicative
+PASS  B: w mu(g,h) w = mu(h,g)
+PASS  B: Psi_0(eps_- (x) 1) = f
+PASS  B: Psi_0(1 (x) eps_-) = f
+PASS  B: Psi_0(eps_- (x) eps_-) = f
+PASS  B: Psi_0(1 (x) 1) = 1
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: Psi_0 multiplicative on random tensors
+PASS  B: flip [wbar] Psi_0(x (x) y) [wbar] = Psi_0(y (x) x)
+PASS  B: H conjugates wbar to dbar at depth 2
+PASS  C: H W H = D
+PASS  C: W D = D W
+PASS  C: 2 e_w = 1 + W
+PASS  C: f = 2(1 - D)
+PASS  C: X1 in f A f
+PASS  C: X2 in f A f
+PASS  C: Y1 in f A f
+PASS  C: Y2 in f A f
+PASS  C: X in f A f
+PASS  C: Y in f A f
+PASS  C: Y1 X1 = f
+PASS  C: Y2 X2 = f
+PASS  C: Y1 X2 = 0
+PASS  C: Y2 X1 = 0
+PASS  C: Y X = f
+PASS  C: Y W X = 0
+PASS  C: e_w b = b
+PASS  C: c e_w = c
+PASS  C: c b = 1
+PASS  C: c e_w b = 1
+ALL CHECKS PASSED
