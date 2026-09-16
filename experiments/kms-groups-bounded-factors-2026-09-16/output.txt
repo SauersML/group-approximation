@@ -1,0 +1,32 @@
+chi_alpha(x) = x**3 - 2*x**2 + x + 1   equals x(x-1)^2+1: True
+-1 + x - 1/x + 1/(x-1) == chi(x)/(x(x-1)): True
+chi(0), chi(1) = 1 1 (nonzero for every p)
+alpha^-1 = [[0, 0, 1], [0, 1, -1], [1, 1, -2]]  E11*alpha^-1*E11 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+det(alpha-1) = -1  (alpha-1)^-1 = [[0, 1, 0], [-1, 1, -1], [0, 1, -1]]  E11*(alpha-1)^-1*E11 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+char poly of alpha+E11 (periodic-shift graded piece, notes only): x**3 - 3*x**2 + 2*x + 1
+p=2: chi mod p factors [(Poly(x**3 + x + 1, x, modulus=2), 1)], chi(x+1) factors [(Poly(x**3 + x**2 + 1, x, modulus=2), 1)], n_0=7 = {7: 1}
+p=3: chi mod p factors [(Poly(x + 1, x, modulus=3), 1), (Poly(x**2 + 1, x, modulus=3), 1)], chi(x+1) factors [(Poly(x - 1, x, modulus=3), 1), (Poly(x**2 - x - 1, x, modulus=3), 1)], n_0=8 = {2: 3}
+p=5: chi mod p factors [(Poly(x**3 - 2*x**2 + x + 1, x, modulus=5), 1)], chi(x+1) factors [(Poly(x**3 + x**2 + 1, x, modulus=5), 1)], n_0=62 = {2: 1, 31: 1}
+p=7: chi mod p factors [(Poly(x**3 - 2*x**2 + x + 1, x, modulus=7), 1)], chi(x+1) factors [(Poly(x**3 + x**2 + 1, x, modulus=7), 1)], n_0=114 = {2: 1, 3: 1, 19: 1}
+p=11: chi mod p factors [(Poly(x + 4, x, modulus=11), 1), (Poly(x**2 + 5*x + 3, x, modulus=11), 1)], chi(x+1) factors [(Poly(x + 5, x, modulus=11), 1), (Poly(x**2 - 4*x - 2, x, modulus=11), 1)], n_0=60 = {2: 2, 3: 1, 5: 1}
+p=13: chi mod p factors [(Poly(x - 3, x, modulus=13), 1), (Poly(x**2 + x + 4, x, modulus=13), 1)], chi(x+1) factors [(Poly(x - 2, x, modulus=13), 1), (Poly(x**2 + 3*x + 6, x, modulus=13), 1)], n_0=168 = {2: 3, 3: 1, 7: 1}
+K=1 n=5 p=2 dim=60: G2 True, H2 abelian True, H1 abelian exp p True, generators^224=I True, 25 random words^224=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 True
+   generator orders: {'a1': (56, {2: 3, 7: 1}), "a1'": (56, {2: 3, 7: 1}), '~a1': (56, {2: 3, 7: 1}), "~a1'": (56, {2: 3, 7: 1}), 'A1': (2, {2: 1}), 'A0': (2, {2: 1})}
+K=1 n=5 p=3 dim=60: G2 True, H2 abelian True, H1 abelian exp p True, generators^648=I True, 25 random words^648=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 True
+   generator orders: {'a1': (36, {2: 2, 3: 2}), "a1'": (72, {2: 3, 3: 2}), '~a1': (36, {2: 2, 3: 2}), "~a1'": (72, {2: 3, 3: 2}), 'A1': (3, {3: 1}), 'A0': (3, {3: 1})}
+K=1 n=4 p=5 dim=48: G2 True, H2 abelian True, H1 abelian exp p True, generators^7750=I True, 25 random words^7750=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 True
+   generator orders: {'a1': (310, {2: 1, 5: 1, 31: 1}), "a1'": (310, {2: 1, 5: 1, 31: 1}), '~a1': (310, {2: 1, 5: 1, 31: 1}), "~a1'": (310, {2: 1, 5: 1, 31: 1}), 'A1': (5, {5: 1}), 'A0': (5, {5: 1})}
+K=2 n=3 p=2 dim=432: G2 True, H2 abelian True, H1 abelian exp p True, generators^112=I True, 25 random words^112=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 n/a (dim>130)
+K=2 n=3 p=3 dim=432: G2 True, H2 abelian True, H1 abelian exp p True, generators^216=I True, 25 random words^216=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 n/a (dim>130)
+machine q1=q2*a1, K=1 n=5 p=2 dim=90: G2 True, H2 abelian True, H1 abelian exp p True, generators^224=I (so invertible) True, 25 random words^224=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 True
+   generator orders: {'a1': (56, {2: 3, 7: 1}), "a1'": (56, {2: 3, 7: 1}), '~a1': (56, {2: 3, 7: 1}), "~a1'": (56, {2: 3, 7: 1}), 'A1': (2, {2: 1}), 'A0': (2, {2: 1})}
+machine q1=q2*a1, K=1 n=5 p=3 dim=90: G2 True, H2 abelian True, H1 abelian exp p True, generators^648=I (so invertible) True, 25 random words^648=I True, 12 H2-conjugates of L1 letters commute with order p True, prime-to-p part of generator orders divides n_0 True
+   generator orders: {'a1': (36, {2: 2, 3: 2}), "a1'": (72, {2: 3, 3: 2}), '~a1': (36, {2: 2, 3: 2}), "~a1'": (72, {2: 3, 3: 2}), 'A1': (3, {3: 1}), 'A0': (3, {3: 1})}
+BR relations K=1 n=5 p=2: (right-action relation, mirrored control, [A^(a^±1),A]=1) {'G3 block 1': (True, False, True), 'G4 k=1': (True, False, True)} -> True
+BR relations K=1 n=5 p=3: (right-action relation, mirrored control, [A^(a^±1),A]=1) {'G3 block 1': (True, False, True), 'G4 k=1': (True, False, True)} -> True
+BR relations K=1 n=4 p=5: (right-action relation, mirrored control, [A^(a^±1),A]=1) {'G3 block 1': (True, False, True), 'G4 k=1': (True, False, True)} -> True
+BR relations K=2 n=3 p=2: (right-action relation, mirrored control, [A^(a^±1),A]=1) {'G3 block 1': (True, False, True), 'G4 k=1': (True, False, True), 'G3 block 2': (True, False, True), 'G4 k=2': (True, False, True)} -> True
+BR relations K=2 n=3 p=3: (right-action relation, mirrored control, [A^(a^±1),A]=1) {'G3 block 1': (True, False, True), 'G4 k=1': (True, False, True), 'G3 block 2': (True, False, True), 'G4 k=2': (True, False, True)} -> True
+BR relations machine q1=q2*a1 n=5 p=2: {'G3': (True, False, True), 'G4': (True, False, True)} -> True
+BR relations machine q1=q2*a1 n=5 p=3: {'G3': (True, False, True), 'G4': (True, False, True)} -> True
+ALL CHECKS PASS

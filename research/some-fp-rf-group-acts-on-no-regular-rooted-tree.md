@@ -57,3 +57,35 @@ because self-similar groups are subgroups of `Aut(T_d)`. The route
    finitely presented (`kassabov-nikolov-alternating-frames-are-not-fp`). The
    group `EL_3(R) <= prod_n SL_(3n)(F_p)` behind their construction has factors
    with trivial multiplier, and this obstruction does not reach it.
+3. **Hard solvable groups of Kharlampovich--Myasnikov--Sapir.** arXiv:1204.6506v5
+   gives finitely presented solvable groups `G(M)` in `A_p^2 A`, built from
+   Minsky machines `M`. They are residually finite for suitable `M`, and their
+   word problems are arbitrarily hard.
+   - Being in `A_p^2 A` gives no evident bound on the primes needed to separate
+     elements, so these groups were natural candidates.
+   - *Dies for finite-class machines (2026-09-16).* Take a machine whose nonzero
+     `q`-elements have finitely many representative words (hypothesis (FC)).
+     This includes the simple deterministic clocked universally halting
+     machines. For such `M`, the stop-relation groups `G_0(M)` are residually
+     finite solvable with primes in a finite set `pi(p)`. They act faithfully on
+     `T_(d(p))`: see `finite-class-kms-groups-act-on-regular-rooted-trees`, which
+     rests on the imported claims `kms-minsky-machine-groups-simulate-their-machines`
+     and `kms-group-with-stop-relations-simulates-all-words`, and on clause 1 of
+     `pumped-halting-clocked-minsky-group-is-residually-finite`.
+   - Mechanism: filter the basis group by `a`-weight. On the graded pieces every
+     `a`-letter acts through one fixed `3x3` block, so its order divides
+     `n_0(p) p^e`.
+   - Not reached:
+     - `G(M)` without the stop relations;
+     - the pumped groups `G_0(P(M))` of
+       `pumped-halting-clocked-minsky-group-is-residually-finite`, whose classes
+       are infinite, so the filtration does not exist;
+     - machines without (FC);
+     - the sym-universally halting machines behind KMS Theorems 4.17--4.19,
+       for which (FC) was not checked. Sym-universal halting alone does not
+       give (FC): clause 3 of the claim above has a 2-glass counterexample,
+       which also refutes KMS v5 Lemma 3.5(a) as stated. So these groups are
+       not resolved here.
+   - Heuristic, not checked: a witness inside this family would need semigroup
+     classes that are infinite and whose graded action has unboundedly many
+     eigenvalue primes.
