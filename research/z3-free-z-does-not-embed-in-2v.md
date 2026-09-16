@@ -5,6 +5,8 @@ kind: claim
 title: The right-angled Artin group Z^3 * Z does not embed in the Brin-Thompson group 2V
 distinct_from:
   z3-free-z-embeds-in-gl8z: that embeds Z^3 * Z in GL_8(Z); this excludes Z^3 * Z from 2V, and the two together exclude GL_8(Z) from 2V.
+refuted_by:
+  - z3-free-z-embeds-in-brin-thompson-group-2v
 ---
 
 `Z^3 * Z` is not isomorphic to any subgroup of `2V`.
@@ -48,3 +50,28 @@ Z^(n+1) * Z."
     `Z^3 → R^2` against a common invariant measure also has nontrivial kernel,
     but a kernel element with zero mean drift can still be nontrivial on every
     open set.
+- 2026-09-16 (lane swarm-zaremsky-2-19-embeddings-into-, unreviewed):
+  **refuted; the claim is false.**
+  - V. Salo, *Graph and wreath products in topological full groups of full
+    shifts*, arXiv:2103.06663v1 (11 Mar 2021), proves that every right-angled
+    Artin group embeds in the topological full group of a full shift, and that
+    this group embeds in `2V`. The abstract says this refutes the Belk–Bleak–
+    Matucci conjecture. The preprint predates this node, but the graph had not
+    recorded it.
+  - Refuter: `z3-free-z-embeds-in-brin-thompson-group-2v`, the graph
+    `K_3 ⊔ K_1`, through `every-raag-embeds-in-brin-thompson-group-2v`. Both
+    embeddings are reproved from scratch in
+    `research/artifacts/raags-in-2v-via-full-shift-full-group-2026-09-16.md`
+    (Parts A and B). The belt construction there is a simplified one, checked
+    exactly on this graph by
+    `experiments/raag-conveyor-belts-full-shift-2026-09-16/belts.py`.
+  - Where the 2026-09-13 germ count dies: in the belt embedding, the three
+    commuting generators have pairwise disjoint sets of moved points, because
+    no position is a cell of belts of two adjacent types. Elements of the `Z^3`
+    that act as the identity near a point are then the normal situation, not a
+    degeneracy. The kernel of `Z^3 → Z^2` gives no leverage against the free
+    letter.
+  - Consequence: `some-gl-n-z-not-in-2v-via-z3-free-z` is invalidated. Every
+    negative answer to Zaremsky 2.19(d) through a subgroup of `GL_N(Z)` that
+    virtually embeds in a finitely generated right-angled Artin group is dead
+    (`virtually-special-groups-embed-in-brin-thompson-group-2v`).

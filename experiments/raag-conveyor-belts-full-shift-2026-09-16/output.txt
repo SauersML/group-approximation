@@ -1,0 +1,13 @@
+[bijective+commuting] K2: 338922 periodic configs ok; 0 (config, nonadjacent pair) with noncommuting head maps
+[bijective+commuting] 2K1: 338922 periodic configs ok; 6333 (config, nonadjacent pair) with noncommuting head maps
+[bijective+commuting] P3: 302592 periodic configs ok; 3383 (config, nonadjacent pair) with noncommuting head maps
+[bijective+commuting] K3+K1 (Z^3*Z): 114110 periodic configs ok; 6485 (config, nonadjacent pair) with noncommuting head maps
+[bijective+commuting] P4: 114110 periodic configs ok; 6442 (config, nonadjacent pair) with noncommuting head maps
+[bijective+commuting] C4: 114110 periodic configs ok; 4334 (config, nonadjacent pair) with noncommuting head maps
+[faithful] K2: 84 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+[faithful] 2K1: 3108 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+[faithful] P3: 14922 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+[faithful] K3+K1 (Z^3*Z): 100248 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+[faithful] P4: 102840 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+[faithful] C4: 84264 reduced words (length<=4, |exp|<=3) displace the head; 4000 random words consistent with normal form
+ALL OK
