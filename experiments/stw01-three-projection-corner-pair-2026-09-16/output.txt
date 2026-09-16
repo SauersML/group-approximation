@@ -1,0 +1,16 @@
+projection                               max error 2.66e-15
+P1P2P1=a+0                               max error 3.00e-15
+P1P3P1=b+0                               max error 3.00e-15
+WaWa*=P2,Wa*Wa=P1                        max error 3.55e-15
+ZZ*=P2P3P2                               max error 5.55e-16
+Z*Z=w*w+0                                max error 1.89e-15
+w formula                                max error 3.51e-16
+beta word identity (trace)               max error 1.02e-14
+tau(a)=1/2                               max error 1.67e-16
+spectrum outside [1/2-eta,1/2+eta]       max error 0.00e+00
+||w0 - 1|| - 4 eta                       max error 0.00e+00
+||w_pi|| - 4 eta                         max error 0.00e+00
+||w0*w0 - 1|| - 17/64                    max error 0.00e+00
+min f(0)  = 0.999724  (bound 47/64 = 0.734375)
+max f(pi) = 0.000311  (bound 1/64 = 0.015625)
+IVT sign condition holds in all trials: True
