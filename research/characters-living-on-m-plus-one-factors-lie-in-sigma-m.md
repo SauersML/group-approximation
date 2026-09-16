@@ -5,7 +5,8 @@ kind: claim
 title: A character of a product of at least m+1 groups of type F_m that is nonzero on every factor lies in Sigma^m
 ---
 
-**OPEN (a consequence of Meinert's inequality; the source is still to be read).** Let `G_1, ..., G_k` be groups of
+**ESTABLISHED (citation route `characters-living-on-m-plus-one-factors-meinert-citation`: Meinert's inequality as
+stated in Bieri–Geoghegan arXiv:0808.0013v2 Theorem 1.2, plus an induction; refereed 2026-09-16).** Let `G_1, ..., G_k` be groups of
 type `F_m` with `k >= m+1`. Let `χ = (χ_1, ..., χ_k)` be a character of `G_1 × ... × G_k` with every `χ_i != 0`.
 Then `[χ] in Σ^m(G_1 × ... × G_k)`.
 
