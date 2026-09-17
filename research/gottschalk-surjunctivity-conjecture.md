@@ -16,6 +16,7 @@ refuted_by:
   - projective-ternary-leavitt-group-nonsurjunctive
   - ternary-leavitt-unit-group-nonsurjunctive
   - leavitt-unit-group-nonsurjunctive
+  - some-group-is-not-surjunctive
 distinct_from:
   gottschalk-surjunctivity-fixed-two-generator-tester: that establishes a reduction to one group; this is the universal conjecture itself, still unresolved here.
   leavitt-unit-group-nonsurjunctive: that seeks one counterexample and would refute this universal positive goal; it is not a positive proof prerequisite.
@@ -897,3 +898,46 @@ states. Each was denied in turn.
 The most promising continuation is the first solvable non-nilpotent alphabet, `S_3`. There the non-central
 `Z/3` layer is twisted by the sign automaton, and the fibre maps are linear over a twisted crossed product
 of `C(2^G, F_3)` rather than a group ring.
+
+**Homogeneity denied: invariant random subgroups (a-gs-heretic, 2026-09-17).** This was a heretic lane.
+Artifact `research/artifacts/irs-surjunctivity-heretic-2026-09-17.md`.
+
+The two hot families, entropy-measure and local designs, share three unstated assumptions.
+
+- **A1: invariant accounting.** Denying it is already calibrated dead.
+  `end-fixing-tree-symmetries-carry-strict-automata` gives a strict automaton on a non-unimodular space,
+  and the transport identity has ratio 2 there.
+- **A2: homogeneity.** Every site sees the same forward and reverse table.
+- **A3: exactness, forward error zero.** Denying it alone has no content, because on a vertex-transitive
+  index set the forward error is 0 or 1.
+
+Denying A2 while keeping A1 replaces groups by Schreier graphs of invariant random subgroups of `F_r`,
+with shape-dependent rules. Denying A3 on top of that gives a closed convex inequality.
+
+Proved:
+
+- `atomic-irs-strict-designs-are-nonsurjunctive-quotients`. An atomic ergodic IRS carries a strict design
+  iff `N(H)/H` is not surjunctive. So the goal is exactly the atomic case.
+- `co-sofic-irs-carry-no-strict-design`. On finite Schreier graphs
+  `delta <= (d_R + d_2r |A|^(d_r) ln|A|) eps`, and this inequality passes to weak-* limits.
+
+Open decomposition:
+
+- Route `gottschalk-via-irs-surjunctivity` needs the strengthening
+  `free-group-irs-carry-no-strict-design`. Its only hole is
+  `non-co-sofic-free-group-irs-carry-no-strict-design`.
+- Counterexample program `nonsurjunctive-group-via-irs-strict-design`, into the new program root
+  `some-group-is-not-surjunctive`, needs `some-free-group-irs-carries-a-strict-design` and
+  `irs-strict-designs-yield-nonsurjunctive-groups`.
+
+Where it dies so far:
+
+- **No finite search.** Any witness must be non-co-sofic, and nonatomic on infinitely generated
+  subgroups.
+- **No monotone transfer to groups.** iid intersection refines tables and can destroy forward
+  sufficiency. Joins coarsen them and can destroy reverse failure.
+- **IRS-rigid hosts add nothing.** On hosts such as the binary Leavitt unit group the IRS containing `N`
+  are trivial mixtures.
+
+Reach: any argument that uses only root-ball statistics and mass transport should prove the IRS
+strengthening. A witness for `some-free-group-irs-carries-a-strict-design` would kill that whole class.
