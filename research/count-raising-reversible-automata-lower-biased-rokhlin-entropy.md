@@ -2,42 +2,49 @@
 rg: 2
 id: count-raising-reversible-automata-lower-biased-rokhlin-entropy
 kind: claim
-title: A reversible binary automaton that never lowers and sometimes raises the number of zeros lowers biased Bernoulli Rokhlin entropy
+title: An injective automaton that never raises and sometimes lowers the number of non-rest sites forces Rokhlin supremum zero
 distinct_from:
-  passive-fixing-injective-automata-are-surjective: that proves surjectivity when reserved symbols stay in place, with no condition on the group; this lets the reserved set move under a reversible automaton and turns a gain in its complement into an entropy deficit of a biased Bernoulli shift.
-  strict-automaton-lowers-bernoulli-rokhlin-entropy: that starts from a strict automaton and bounds the Rokhlin entropy of amplified uniform shifts; this starts from a bijective automaton, which is not strict, and bounds the Rokhlin entropy of biased coin shifts at small bias.
-  bijective-ca-preserve-uniform-bernoulli-measure: that is invariance of the uniform product measure under reversible automata; this is a strict change in the zero density of product measures of small bias under the inverse of a count-raising reversible automaton.
-  bernoulli-rokhlin-entropy-maximal-for-every-group: that is the open maximality of uniform Bernoulli Rokhlin entropy; this proves that a count-raising reversible automaton refutes maximality for the biased coins `(p, 1 - p)` with `p` small.
+  passive-fixing-injective-automata-are-surjective: that proves surjectivity when reserved symbols stay in place, with no condition on the group; this lets the rest symbol move and turns a loss in its complement into a vanishing Rokhlin supremum.
+  strict-automaton-lowers-bernoulli-rokhlin-entropy: that starts from a strict automaton and bounds the Rokhlin entropy of amplified uniform shifts; this starts from a count condition, which bijective automata can satisfy, and bounds the Rokhlin entropy of small-bias shifts.
+  strict-automaton-bounds-rokhlin-supremum: that gets a finite supremum from a strict automaton; this gets supremum zero from a count-lowering injective automaton, with no hypothesis on self-copies or finite subgroups.
+  bijective-ca-preserve-uniform-bernoulli-measure: that is invariance of the uniform product measure under reversible automata; this is a strict drop in the non-rest density of product measures of small bias.
+  bernoulli-rokhlin-entropy-maximal-for-every-group: that is the open maximality of uniform Bernoulli Rokhlin entropy; this refutes maximality at every finite base over any group carrying a count-lowering injective automaton.
 ---
 
 **ESTABLISHED** by `count-raising-reversible-automata-rokhlin-deficit-proof`.
 
-Let `G` be a countably infinite group and `ψ` a bijective cellular automaton on `{0,1}^G` with `ψ(1) = 1`,
-where `1` is the all-ones configuration. For a configuration `x` with finitely many zeros write `|x|` for the
-number of zeros. Suppose that `|ψ(x)| >= |x|` for every such `x`, with strict inequality for at least one.
-Let `μ_p` be the product measure with `μ_p(x(g) = 0) = p`. Then there are `m >= 1`, `c > 0` and `p_0 > 0`
-such that for every `0 < p < p_0`:
+Let `G` be a countably infinite group, `A` a finite alphabet with `k = |A| >= 2`, and `a ∈ A` a *rest* symbol.
+For a configuration `x` with finitely many sites outside `a`, write `|x|` for the number of those sites. Let
+`Φ` be an injective cellular automaton on `A^G` with `Φ(a^G) = a^G`. Suppose that `|Φ(x)| <= |x|` for every such
+`x`, with strict inequality for at least one. Let `μ_p` be the product measure in which a site is `a` with
+probability `1 - p`, and otherwise a uniform symbol of `A \ {a}`. Then:
 
-- `μ_p(ψ^-1(x)(1_G) = 0) = p - c p^m + O(p^(m+1)) < p`;
-- `h^Rok_G({0,1}^G, μ_p) <= H(p - c p^m + O(p^(m+1))) < H(p)`, where `H` is binary Shannon entropy.
+1. There are `m >= 1` and `c > 0` such that `μ_p(Φ(x)(1_G) ≠ a) = p - c p^m + O(p^(m+1))`.
+2. For all small `p > 0`, `h^Rok_G(A^G, μ_p) < H(p) + p log(k - 1)`, the base entropy.
+3. `h^Rok_sup(G) = 0`. So every Bernoulli shift over `G` with finite base entropy has Rokhlin entropy `0`, and `G`
+   is not sofic.
+
+**Reversible form.** Let `ψ` be a bijective automaton on `A^G` fixing `a^G` with `|ψ(x)| >= |x|` for all
+finitely supported `x`, and strict inequality for some. Its inverse restricts to a bijection of the finitely
+supported configurations and satisfies the hypothesis, so `h^Rok_sup(G) = 0`. Over every group, a binary such `ψ`
+keeps the count whenever it is 1 or 2 (proof, part B).
 
 **Consequences.**
-- **Groups with maximal biased Bernoulli entropy.** If `h^Rok_G(μ_p) = H(p)` for arbitrarily small `p > 0`,
-  every bijective automaton on `{0,1}^G` fixing `1` that never lowers the number of zeros preserves it. This
-  holds for sofic groups, and for every group with an infinite Rokhlin entropy supremum
-  (`infinite-rokhlin-supremum-forces-surjunctivity`, item 1).
 - **Autonomous star designs.** Let `C = A ⊔ {*}` with `A` nonempty, and let `Φ` be an injective automaton on
   `C^G` whose output star set is `ψ(Z)` whenever the input star set is `Z`, for a bijective automaton `ψ` on
-  `{0,1}^G` fixing the all-stars configuration. Injectivity on the finite set of configurations with a given
-  finite non-star set `W` gives `|ψ(W)^c| >= |W^c|`. If the count is preserved, `Φ` maps those `|A|^|W|`
-  configurations injectively, hence onto, the configurations with non-star set `ψ(W)^c`. The image then
-  contains every configuration with finitely many non-star sites, which are dense, and it is closed. So `Φ`
-  is surjective. Hence a strict autonomous star design over `G` forces `h^Rok_G(μ_p) < H(p)` for all small
-  `p`. This settles item 15 of `notes/gottschalk-surjunctivity-conjecture-frontier-swarm-2026-09-16.md` up
-  to the entropy barrier: the class is no easier to realize than a biased Bernoulli entropy deficit.
-- **Unconditional low counts.** Over every group such a `ψ` keeps the number of zeros whenever it is 1 or 2
-  (proof, part B). The first count that can rise is at least 3.
+  `{0,1}^G` fixing the all-stars configuration.
+  - Injectivity on the finite set of configurations with a given finite non-star set `W` gives
+    `|ψ(W)^c| >= |W^c|`.
+  - If the count is preserved, `Φ` maps those `|A|^|W|` configurations injectively, hence onto, the configurations
+    with non-star set `ψ(W)^c`. The image then contains every configuration with finitely many non-star sites.
+    These are dense and the image is closed, so `Φ` is surjective.
+  - Otherwise the reversible form applies to `ψ`.
 
-**Scope.** No group is excluded unconditionally. The measure argument sees only the lowest order at which
-`ψ^-1` lowers counts, so it gives nothing about the uniform measure, where density is preserved
-(`bijective-ca-preserve-uniform-bernoulli-measure`).
+  So a strict autonomous star design over `G` forces `h^Rok_sup(G) = 0`. That is item 15 of
+  `notes/gottschalk-surjunctivity-conjecture-frontier-swarm-2026-09-16.md`, settled up to the Rokhlin barrier.
+- **Comparison with strictness.** A strict automaton only gives a finite supremum
+  (`strict-automaton-bounds-rokhlin-supremum`). The count condition gives supremum `0` directly. So on any group
+  with a free ergodic action of positive, finite Rokhlin entropy, no such `Φ` or `ψ` exists.
+
+**Scope.** No group is excluded unconditionally, because it is open whether `h^Rok_sup(G) > 0` for every group. The
+measure argument sees only the lowest order at which the count drops.

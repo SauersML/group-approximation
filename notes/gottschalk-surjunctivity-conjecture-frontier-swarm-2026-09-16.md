@@ -183,10 +183,11 @@ is a strict automaton on `(A ⊔ D)^G`, most often `D = {*}`.
     `{0, 1}^G` fixing all-stars. Injectivity on configurations with finitely many non-star sites forces
     `|ψ(Z)^c| >= |Z^c|`. Over nonamenable `G` I could not rule out a bijective `ψ` that never lowers and sometimes
     raises this count, so this class is neither excluded nor realized. The case `ψ = id` is the passive-fixing theorem.
-    *Update (solo follow-up, 2026-09-17):* `count-raising-reversible-automata-lower-biased-rokhlin-entropy` shows
-    that such a `ψ` forces `h^Rok_G(μ_p) < H(p)` for all small biases `p`. Such a `ψ` keeps counts 1 and 2 over
-    every group. So the class is dead wherever biased Bernoulli Rokhlin entropy is maximal, sofic groups included.
-    Realizing it is at least as hard as an entropy deficit.
+    *Update (solo follow-up, 2026-09-17):* `count-raising-reversible-automata-lower-biased-rokhlin-entropy` shows such a
+    `ψ` lowers the Rokhlin entropy of small-bias Bernoulli shifts. Through Seward's minimum formula it forces
+    `h^Rok_sup(G) = 0`, so `G` is nonsofic and every finite-base Bernoulli shift over it has Rokhlin entropy 0. It
+    also keeps counts 1 and 2 over every group. The class is dead on any group with a free ergodic action of positive
+    finite Rokhlin entropy.
 
 ## 6. What to try next
 

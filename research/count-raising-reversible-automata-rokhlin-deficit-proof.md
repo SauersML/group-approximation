@@ -2,49 +2,64 @@
 rg: 2
 id: count-raising-reversible-automata-rokhlin-deficit-proof
 kind: route
-title: Mobius-expand the local change in zeros; its lowest-order coefficient is the small-bias density change
+title: Mobius-expand the averaged local change in non-rest sites; its lowest coefficient is a small-bias entropy deficit, and Seward's minimum formula reads off supremum zero
 target: count-raising-reversible-automata-lower-biased-rokhlin-entropy
-requires: []
+requires:
+  - seward-per-group-rokhlin-entropy-of-bernoulli-shifts
 ---
 
-Complete direct proof. Notation as in the target. Automata act by `ψ(x)(h) = f((h^-1 x)|_S)` with
-`(h^-1 x)(s) = x(h s)`, for a finite memory set `S ∋ 1_G`. Take `S` large enough to be a memory set for both
-`ψ` and `φ = ψ^-1`, which is again a cellular automaton, fixing `1`. Identify a configuration with finitely
-many zeros with its zero set `Z`, a finite subset of `G`, and write `F` for the set of these. Both `ψ` and `φ`
-map `F` to `F`, so `ψ` restricts to a bijection of `F`.
+Complete proof, with Seward's Theorem 1.10 as the only import. Notation as in the target.
 
-## A. The density deficit
+**Conventions.**
+- Automata act by `Φ(x)(h) = f((h^-1 x)|_S)` with `(h^-1 x)(s) = x(h s)`, for a finite memory set `S ∋ 1_G`.
+- A configuration with finitely many non-rest sites is a pair `(Z, ℓ)`: a finite *support* `Z ⊆ G` and a labeling
+  `ℓ : Z → A \ {a}`. Write `F` for the set of these.
+- `Φ` maps `F` to `F`, since `f(a^S) = a`.
 
-1. **Local charge.** For `Z ∈ F` put `Q'(Z) = |φ(Z)| - |Z|`. Then `Q'(Z) = Σ_h f'(h^-1 Z ∩ S)`, where
-   `f'(T) = [φ-output at 1_G is 0 on zero pattern T] - [1_G ∈ T]` for `T ⊆ S`. Since `φ(1) = 1`,
-   `f'(∅) = 0`, so the sum over `h` is finite.
-2. **Sign.** For `Z ∈ F` let `x = φ(Z)`. Then `Q'(Z) = |x| - |ψ(x)| <= 0`. For the `x` with `|ψ(x)| > |x|`,
-   `Q'(ψ(x)) < 0`. So `Q' <= 0` and `Q' ≢ 0`.
-3. **Mobius expansion.** Let `g'(U) = Σ_{V ⊆ U} (-1)^{|U \ V|} f'(V)` for `U ⊆ S`, so that
-   `f'(T) = Σ_{U ⊆ T} g'(U)` and `g'(∅) = 0`. Substituting,
-   `Q'(Z) = Σ_{∅ ≠ V ⊆ Z} Γ(V)` with `Γ(V) = Σ_{h : h^-1 V ⊆ S} g'(h^-1 V)`.
-   `Γ` is invariant under left translation and vanishes on sets not contained in a translate of `S`.
-4. **Lowest order.** Let `m` be the least size of a set `Z` with `Q'(Z) ≠ 0`; it exists by step 2. By
-   induction on `|V|`, `Γ(V) = 0` for `|V| < m`, so `Γ(Z) = Q'(Z) <= 0` for `|Z| = m`, and some such value is
-   negative.
-5. **Density.** Let `x ~ μ_p`, with zero set `Z`. Then
-   `μ_p(φ(x)(1_G) = 0) - p = E f'(Z ∩ S) = Σ_{U ⊆ S} g'(U) p^{|U|}`, because `P(U ⊆ Z) = p^{|U|}`.
-   Group the sets `U ⊆ S` by translation class. A class `[V]` with `|V| = j` contributes `Γ(V) / |Stab(V)|`,
-   where `Stab(V) = {t : tV = V}` has at most `|V|` elements, since each `U` in the class arises from exactly
-   `|Stab(V)|` elements `h` in the sum defining `Γ(V)`. The coefficients of `p^j` vanish for `j < m`, and the
-   coefficient of `p^m` is `-c = Σ_{[V], |V| = m} Γ(V) / |Stab(V)|`. It is a finite sum of nonpositive terms, at
-   least one negative, so `c > 0`. The density is a polynomial in `p`, which gives the first bullet.
-6. **Entropy.** `φ` is a shift-commuting homeomorphism, so the partition `P = {x : φ(x)(1_G) = 0}` and its
-   complement form a generating partition for `μ_p`: its translates recover `φ(x)`, hence `x`. By the
-   definition of Rokhlin entropy as an infimum over generating partitions,
-   `h^Rok_G(μ_p) <= H(μ_p(P))`. For small `p`, `0 <= μ_p(P) < p <= 1/2`, and `H` is increasing on
-   `[0, 1/2]`. This gives the second bullet.
+## A. The density deficit and supremum zero
 
-No property of `G` beyond countability is used.
+1. **Averaged local charge.** For `(Z, ℓ) ∈ F` put `Q(Z, ℓ) = |Φ(Z, ℓ)| - |Z|`. Then
+   `Q(Z, ℓ) = Σ_h f_1((h^-1 x)|_S)`, where `f_1(y) = [f(y) ≠ a] - [y(1_G) ≠ a]`. This sum is finite because
+   `f_1(a^S) = 0`.
+   - Let `q(Z)` be the average of `Q(Z, ℓ)` over the `(k - 1)^|Z|` labelings.
+   - For `T ⊆ S` let `u(T)` be the average of `f_1` over the patterns on `S` with support exactly `T`.
+   - Averaging a labeling of `Z` restricts to averaging on each window, so `q(Z) = Σ_h u(h^-1 Z ∩ S)`, with
+     `u(∅) = 0`.
+2. **Sign.** By hypothesis `Q <= 0`, with some value negative. So `q <= 0` and `q ≢ 0`.
+3. **Mobius expansion.** Let `v(U) = Σ_{V ⊆ U} (-1)^{|U \ V|} u(V)` for `U ⊆ S`, so that `u(T) = Σ_{U ⊆ T} v(U)` and
+   `v(∅) = 0`. Substituting, `q(Z) = Σ_{∅ ≠ V ⊆ Z} Γ(V)` with `Γ(V) = Σ_{h : h^-1 V ⊆ S} v(h^-1 V)`. `Γ` is
+   invariant under left translation and vanishes on sets not contained in a translate of `S`.
+4. **Lowest order.** Let `m` be the least size of a set `Z` with `q(Z) ≠ 0`. It exists by step 2. By induction on
+   `|V|`, `Γ(V) = 0` for `|V| < m`. So `Γ(Z) = q(Z) <= 0` for `|Z| = m`, and some such value is negative.
+5. **Density.** Let `x ~ μ_p`, with support `Z`. Given `Z ∩ S = T`, the labels on `T` are uniform. So
+   `μ_p(Φ(x)(1_G) ≠ a) - p = E u(Z ∩ S) = Σ_{U ⊆ S} v(U) p^{|U|}`, because `P(U ⊆ Z) = p^{|U|}`.
+   - Group the sets `U ⊆ S` by translation class, with `Stab(V) = {t : tV = V}`.
+   - Each `U` in the class of `V` arises from exactly `|Stab(V)|` elements `h` in the sum defining `Γ(V)`. So a
+     class `[V]` with `|V| = j` contributes `Γ(V) / |Stab(V)|` to the coefficient of `p^j`.
+   - The coefficients of `p^j` vanish for `j < m`.
+   - The coefficient of `p^m` is `-c = Σ_{[V], |V| = m} Γ(V) / |Stab(V)|`. It is a finite sum of nonpositive terms,
+     at least one negative, so `c > 0`.
+   - The density is a polynomial in `p`, which gives item 1.
+6. **Entropy.**
+   - `Φ` is an injective continuous equivariant map. By the Lusin--Souslin theorem it is a Borel isomorphism onto its
+     image, so `(A^G, μ_p) ≅ (A^G, Φ_* μ_p)`.
+   - The partition by the value `Φ(x)(1_G)` generates: its translates determine `Φ(x)`, hence `x`. So
+     `h^Rok_G(μ_p) <= H(Φ(x)(1_G))`.
+   - If `p' = μ_p(Φ(x)(1_G) ≠ a)`, then `H(Φ(x)(1_G)) <= H(p') + p' log(k - 1)`.
+   - `t ↦ H(t) + t log(k - 1)` is strictly increasing on `[0, (k - 1)/k]`, and `p' < p` for small `p`. This gives
+     item 2.
+7. **Supremum zero.** By `seward-per-group-rokhlin-entropy-of-bernoulli-shifts` (Seward, Theorem 1.10),
+   `h^Rok_G(μ_p) = min{H(p) + p log(k - 1), h^Rok_sup(G)}`. By item 2 the minimum is not the base entropy, so
+   `h^Rok_sup(G) < H(p) + p log(k - 1)` for all small `p > 0`. Letting `p → 0` gives `h^Rok_sup(G) = 0`.
+   - Sofic groups have `h^Rok_sup = ∞` (item 4 of the same node), so `G` is not sofic.
+   - Seward's formula at any finite base then gives Rokhlin entropy `0`.
+8. **Reversible form.** If `ψ` is bijective, fixes `a^G`, and never lowers counts, then `Φ = ψ^-1` is an automaton
+   fixing `a^G`. It restricts to a bijection of `F`, and `|Φ(y)| = |x| <= |ψ(x)| = |y|` for `y = ψ(x)`. Strictness
+   transfers the same way.
 
 ## B. Counts 1 and 2 are kept over every group
 
-Here only `|ψ(x)| >= |x|` on `F` is assumed. Replacing `G` by the subgroup generated by `S` changes nothing, since
+Here `ψ` is a bijective automaton on `{0,1}^G` fixing `1`, and only `|ψ(x)| >= |x|` on `F` is assumed (rest symbol `1`, count = zeros). Replacing `G` by the subgroup generated by `S` changes nothing, since
 the automaton acts on cosets independently. Take `S` symmetric and let `d` be the word metric for `S`.
 
 1. **Count 1.** `ψ(∅) = ∅`. If `|ψ({1_G})| >= 2`, then by translation `ψ` sends no singleton to a singleton.
