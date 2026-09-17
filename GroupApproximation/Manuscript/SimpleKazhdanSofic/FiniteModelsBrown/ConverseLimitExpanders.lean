@@ -1,10 +1,11 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.SimpleKazhdanGeneralClosed
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.GeneralTheorem
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MarkedLimitLEF
-import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialMarkedLimitDegree
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialMarkedLimitWords
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.FreeAlgebraKazhdan
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.KazhdanQuotientExpanders
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.MatricialQuotientsExpanders
+import GroupApproximation.Leavitt.ElementaryGroup
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -44,7 +45,7 @@ Proof route:
 * Expanders: `hasKazhdanPropertyT_elementaryGroup_freeAlgebra` (the proved EJZ theorem),
   `isExpanderFamily_of_hasKazhdanPropertyT_quotients` (finite quotients of a Kazhdan group form
   expanders), the quotient maps `EL_n(ρ_k)` (`elementaryGroupMap_surjective_of_surjective`,
-  `rhoLetters_surjective`) and the compatibility of the markings.
+  `lift_surjective_of_closure`) and the compatibility of the markings.
 -/
 
 namespace GroupApproximation
@@ -274,7 +275,7 @@ theorem manuscriptSentence_relationTransfersToSpecialLinear (Λ : Type) [Group �
     exact unitRoot12_ne_one n hn (Matrix (Fin (N k)) (Fin (N k)) (ZMod 2))
   have hu : ∀ᶠ k in atTop,
       FreeGroup.lift (matricialMarking n S N φ k) (FreeGroup.of (index12 n hn S hS1)) ≠ 1 :=
-    Eventually.of_forall fun k => by
+    Filter.Eventually.of_forall fun k => by
       rw [hσ12 k]
       exact hne k
   obtain ⟨hrel, hwne⟩ := eventually_lift_ne_one_of_mem_normalClosure hlim hr
@@ -344,10 +345,11 @@ theorem manuscriptSentence_expanderLimitFromPropertyT (Λ : Type) [Group Λ] [Gr
           (∀ ℓ, Function.Surjective (π ℓ)) →
           Tendsto (fun ℓ => Nat.card (H ℓ)) atTop atTop →
           IsExpanderFamily (fun ℓ (i : {p : Fin n × Fin n // p.1 ≠ p.2} × Option ↥S) =>
-            π ℓ (freeMarking n ↥S i))) ∧
+            π ℓ (elementaryLetterMarking n ↥S i))) ∧
       (∀ k, Function.Surjective (elementaryGroupMap (ι := Fin n) (rhoLetters S N φ k))) ∧
       (∀ (k : ℕ) (p : MarkingIndex n S), matricialMarking n S N φ k p =
-        elementaryGroupMap (ι := Fin n) (rhoLetters S N φ k) (freeMarking n ↥S (p.1, some p.2))) ∧
+        elementaryGroupMap (ι := Fin n) (rhoLetters S N φ k)
+          (elementaryLetterMarking n ↥S (p.1, some p.2))) ∧
       IsExpanderFamily (matricialMarking n S N φ) ∧
       IsMarkedLimit (elementaryMarking n S) (matricialMarking n S N φ) ∧
       (∀ k,
@@ -358,11 +360,14 @@ theorem manuscriptSentence_expanderLimitFromPropertyT (Λ : Type) [Group Λ] [Gr
     printedSimpleKazhdanGeneral Λ Z hmin hfree S hS1 hS N φ hφ n hn
   obtain ⟨-, -, hgen, -⟩ := hφ
   have hT := hasKazhdanPropertyT_elementaryGroup_freeAlgebra ↥S n hn
-  refine ⟨hT, ?_, fun k => elementaryGroupMap_surjective_of_surjective _
-    (rhoLetters_surjective S N φ hgen k), ?_, hexp, hlim, hSL⟩
+  have hρ : ∀ k, Function.Surjective (rhoLetters S N φ k) := fun k y => by
+    obtain ⟨x, hx⟩ := lift_surjective_of_closure S (φ k) (hgen k) y
+    exact ⟨x, hx⟩
+  refine ⟨hT, ?_, fun k => elementaryGroupMap_surjective_of_surjective _ (hρ k), ?_, hexp, hlim,
+    hSL⟩
   · intro H _ _ π hπ hcard
-    exact isExpanderFamily_of_hasKazhdanPropertyT_quotients hT (freeMarking n ↥S)
-      (closure_range_freeMarking_eq_top hn) π hπ hcard
+    exact isExpanderFamily_of_hasKazhdanPropertyT_quotients hT (elementaryLetterMarking n ↥S)
+      (closure_range_elementaryLetterMarking n hn ↥S) π hπ hcard
   · intro k p
     apply Subtype.ext
     show elementaryUnit p.1.1.1 p.1.1.2 p.1.2

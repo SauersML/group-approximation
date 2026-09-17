@@ -107,6 +107,7 @@ theorem manuscriptSentence_jEmbedsElementaryIntoUnits (R : Type) [Ring R] [Count
         ¬ IsCDEOperatorMF (elementaryGroup (Fin 4) R) ∧
         (∀ (G M : Type) [Group G] [Group M] (φ : G →* M),
           Function.Injective φ → IsOperatorMF M → IsOperatorMF G) ∧
+        (∀ (M : Type) [Group M] (H : Subgroup M), IsOperatorMF M → IsOperatorMF H) ∧
         ¬ IsOperatorMF Rˣ := by
   obtain ⟨m, a, b, hab⟩ := hfull
   let Q : RankDescent.ProperlyInfiniteUnit R :=
@@ -120,8 +121,11 @@ theorem manuscriptSentence_jEmbedsElementaryIntoUnits (R : Type) [Ring R] [Count
       (RankDescent.wordS Q) (RankDescent.wordT Q) hTS,
     Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptElementaryGroupNotMFAllCharacteristics
       R s t hts ⟨m, a, b, hab⟩ 4 le_rfl,
-    fun _ _ _ _ φ hφ hM ↦
-      Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective φ hφ hM,
+    @Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective,
+    by
+      intro M _ H hM
+      exact Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective H.subtype
+        Subtype.val_injective hM,
     Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptUnitGroupNotMFAllCharacteristics
       R s t hts ⟨m, a, b, hab⟩⟩
 
