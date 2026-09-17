@@ -5433,6 +5433,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Retr
 import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Bridge
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TensorModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.FreeProductPropertyA
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Property
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
