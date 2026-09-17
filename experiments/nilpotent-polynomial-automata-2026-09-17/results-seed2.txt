@@ -1,0 +1,32 @@
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=2: agree=120 disagree=0 bijective=60
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=3: agree=120 disagree=0 bijective=59
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=4: agree=120 disagree=0 bijective=50
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=2: agree=120 disagree=0 bijective=60
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=3: agree=120 disagree=0 bijective=47
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=4: agree=120 disagree=0 bijective=60
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=2: agree=120 disagree=0 bijective=54
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=3: agree=120 disagree=0 bijective=56
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=4: agree=120 disagree=0 bijective=69
+Q=Q8     |Q|=8 nilpotent=True e_ab=2 n=2: agree=120 disagree=0 bijective=52
+Q=Q8     |Q|=8 nilpotent=True e_ab=2 n=3: agree=120 disagree=0 bijective=62
+Q=Q8     |Q|=8 nilpotent=True e_ab=2 n=4: agree=120 disagree=0 bijective=59
+Q=Heis3  |Q|=27 nilpotent=True e_ab=3 n=2: agree=120 disagree=0 bijective=70
+Q=Heis3  |Q|=27 nilpotent=True e_ab=3 n=3: agree=120 disagree=0 bijective=78
+Q=A4     |Q|=12 nilpotent=False e_ab=3 n=2: agree=92 disagree=28 bijective=40
+   example ([('c', 2), ('x', 1, 1), ('c', 10), ('c', 2), ('x', 0, 1), ('x', 0, 1), ('x', 1, -1), ('c', 0)], [0, 1], False, True)
+   example ([('x', 1, -1), ('x', 0, 1), ('c', 9), ('c', 6), ('x', 1, 1), ('c', 11), ('x', 1, 1), ('c', 7)], [1, 1], False, True)
+Q=A4     |Q|=12 nilpotent=False e_ab=3 n=3: agree=70 disagree=50 bijective=24
+   example ([('x', 0, 1), ('x', 2, -1), ('c', 10), ('x', 2, 1)], [2, 2, 1], False, True)
+   example ([('x', 2, -1), ('x', 0, -1), ('x', 2, 1), ('x', 0, -1), ('c', 11), ('x', 1, -1), ('x', 1, -1)], [0, 0, 1], False, True)
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=2: agree=94 disagree=26 bijective=39
+   example ([('x', 1, 1), ('x', 0, -1), ('x', 0, 1), ('x', 1, 1), ('x', 1, -1), ('x', 1, 1), ('x', 0, 1), ('c', 3)], [0, 1], False, True)
+   example ([('x', 0, -1), ('x', 0, -1), ('x', 1, 1)], [1, 0], False, True)
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=3: agree=101 disagree=19 bijective=49
+   example ([('x', 1, -1), ('c', 2), ('c', 3), ('x', 1, 1), ('x', 0, 1)], [1, 2], False, True)
+   example ([('x', 1, 1), ('x', 0, 1), ('c', 2), ('c', 5), ('x', 1, 1), ('c', 1), ('c', 3)], [2, 1], False, True)
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=4: agree=86 disagree=34 bijective=37
+   example ([('x', 2, 1), ('x', 1, 1), ('c', 5), ('x', 0, 1)], [2, 2, 1], False, True)
+   example ([('x', 0, 1), ('x', 0, -1), ('x', 1, -1), ('x', 1, -1), ('x', 1, 1), ('x', 0, 1), ('c', 5), ('x', 1, -1)], [3, 2], False, True)
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=2: agree=120 disagree=0 bijective=38
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=3: agree=120 disagree=0 bijective=48
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=4: agree=120 disagree=0 bijective=41
