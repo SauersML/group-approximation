@@ -129,7 +129,7 @@ def faithfulTracialStatePullback (t : FaithfulTracialState B) (Φ : A →⋆ₐ[
   toLinearMap := t.toLinearMap.comp Φ.toAlgHom.toLinearMap
   map_one := by
     change t.toLinearMap (Φ 1) = 1
-    rw [map_one]
+    rw [map_one Φ]
     exact t.map_one
   map_star_mul_self_nonneg x := by
     have h := t.map_star_mul_self_nonneg (Φ x)
@@ -158,7 +158,7 @@ theorem faithfulTracialStatePullback_apply (t : FaithfulTracialState B) (Φ : A 
 theorem nontrivial_of_starAlgHom [Nontrivial B] (Φ : A →⋆ₐ[ℂ] B) : Nontrivial A := by
   refine ⟨⟨1, 0, fun h ↦ ?_⟩⟩
   have h1 : Φ 1 = Φ 0 := congrArg (fun a ↦ Φ a) h
-  rw [map_one, map_zero] at h1
+  rw [map_one Φ, map_zero Φ] at h1
   exact one_ne_zero h1
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.nontrivial_of_starAlgHom
