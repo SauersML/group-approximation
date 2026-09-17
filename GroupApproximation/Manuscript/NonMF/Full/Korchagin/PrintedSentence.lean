@@ -92,6 +92,7 @@ noncomputable def unionEquiv (hcov : ∀ g : G, ∃ n, g ∈ K n) :
 
 /-- An increasing union of residually finite subgroups is a direct limit of
 residually finite groups. -/
+include hmono in
 theorem isDirectLimitOfResiduallyFinite_of_union (hcov : ∀ g : G, ∃ n, g ∈ K n)
     (hRF : ∀ n, Group.ResiduallyFinite (K n)) : IsDirectLimitOfResiduallyFinite G :=
   ⟨ℕ, inferInstance, inferInstance, inferInstance, fun n => ↥(K n), fun _ => inferInstance,
@@ -143,7 +144,9 @@ def PrintedKorchaginDirectLimitSentence : Prop :=
 two, as the manuscript's "Since" says. -/
 theorem manuscriptSentence_korchaginDirectLimit : PrintedKorchaginDirectLimitSentence :=
   ⟨shiftKernel_isDirectLimitOfResiduallyFinite,
-    fun _ _ _ hG => isOperatorMF_of_isDirectLimitOfResiduallyFinite hG,
+    by
+      intro _ _ _ hG
+      exact isOperatorMF_of_isDirectLimitOfResiduallyFinite hG,
     inferInstance,
     isOperatorMF_of_isDirectLimitOfResiduallyFinite shiftKernel_isDirectLimitOfResiduallyFinite⟩
 
