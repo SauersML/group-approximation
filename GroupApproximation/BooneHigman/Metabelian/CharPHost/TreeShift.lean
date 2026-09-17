@@ -33,10 +33,10 @@ namespace TreeHost
 open MvPolynomial
 open scoped Matrix
 
-variable {F : Type*} [Field F] {σ : Type*} [DecidableEq σ] (i₀ : σ)
-
 /-- The letters `F^m × F^{σ ∖ i₀}` of the tree. -/
 abbrev Letter (m F : Type*) {σ : Type*} (i₀ : σ) : Type _ := (m → F) × ({i : σ // i ≠ i₀} → F)
+
+variable {F : Type*} [Field F] {σ : Type*} [DecidableEq σ] (i₀ : σ)
 
 /-- A parameter `a ∈ F^{σ ∖ i₀}`, extended by `0` at the uniformizer index. -/
 def extParam (a : {i : σ // i ≠ i₀} → F) (i : σ) : F :=

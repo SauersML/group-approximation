@@ -131,3 +131,85 @@ theorem exists_mem_eqvGen_of_connected {M : CombMap.{v}} (hM : M.IsConnected)
   · exact ⟨x, hk, Or.inl hx⟩
   · refine ⟨M.alpha x, hk, Or.inr ?_⟩
     rwa [M.alpha_involutive x]
+
+/-- **The extremal-region core** (OPEN, PLAUSIBLE; the isolated planarity core of the rose step).
+`P10RoseExtremalTrim.RoseExtremalJunctionStatement` without the clause "some dart of the cycle, or
+its reverse, lies in the class of `r`", which `exists_mem_eqvGen_of_connected` proves. -/
+def RoseExtremalCoreStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart,
+          (∀ x, X.toCombMap.faceOf x = X.outerFace → ¬Relation.EqvGen
+            (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r x) ∧
+          ∃ (source kept : Fin X.rCellCount),
+            (cell X source).face ∉ flipFaces X.toCombMap K.faces
+              (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r) ∧
+            (cell X kept).face ∈ flipFaces X.toCombMap K.faces
+              (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r) ∧
+            ∃ (t₁ : CyclicArc (cellDarts X source)) (t₂ : CyclicArc (outerDarts X))
+              (s₁ s₂ : List X.toCombMap.Dart),
+              List.Perm (s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts)
+                (K.boundary.cycle.filter (movePred X.toCombMap
+                  (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r))) ∧
+              s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts ≠ [] ∧
+              (s₁.IsChain fun d e =>
+                X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e) ∧
+              (s₂.IsChain fun d e =>
+                X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e) ∧
+              (∀ a ∈ s₁.getLast?, ∀ b ∈ (invDarts X t₁.darts).head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              (∀ a ∈ (s₁ ++ invDarts X t₁.darts).getLast?, ∀ b ∈ s₂.head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              (∀ a ∈ (s₁ ++ invDarts X t₁.darts ++ s₂).getLast?, ∀ b ∈ t₂.darts.head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              s₁.length ≤ eps ∧ s₂.length ≤ eps ∧ lo ≤ t₂.start.1 ∧
+              t₂.start.1 + t₂.length ≤ hi ∧
+              t₁.length < (cellDarts X source).length ∧ t₂.length < (outerDarts X).length
+
+/-- **The junction witness from the core**: the dropped clause holds by connectedness. -/
+theorem extremalJunction_of_extremalCore (h : RoseExtremalCoreStatement.{u, w, v}) :
+    P10RoseExtremalTrim.RoseExtremalJunctionStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hrout, hrest⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hrout, exists_mem_eqvGen_of_connected
+    (CombMap.connected_of_planar X.toCombMap X.planar) K.boundary.cycle_nonempty r, hrest⟩
+
+/-- **The core is implied by the junction witness** (truth certificate of the residual). -/
+theorem extremalCore_of_extremalJunction
+    (h : P10RoseExtremalTrim.RoseExtremalJunctionStatement.{u, w, v}) :
+    RoseExtremalCoreStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hrout, -, hrest⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hrout, hrest⟩
+
+/-- **The rose step from the extremal-region core.** -/
+theorem rose_of_extremalCore (h : RoseExtremalCoreStatement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} :=
+  P10RoseExtremalTrim.rose_of_junction (extremalJunction_of_extremalCore h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+universe u w v
+
+/-- **The outer-pinch step from the extremal-region core.** -/
+theorem proof_of_extremalCore (h : P10RegionMove.RoseExtremalCoreStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  proof_of_extremalJunction (P10RegionMove.extremalJunction_of_extremalCore h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.exists_walkKeep_of_connected
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.exists_mem_eqvGen_of_connected
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.RoseExtremalCoreStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.extremalJunction_of_extremalCore
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.extremalCore_of_extremalJunction
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.rose_of_extremalCore
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof_of_extremalCore
