@@ -54,7 +54,7 @@ theorem aeval_carrySubst (i₀ : ι) (α : ι → R) (u : S) (a : ι → S) (P :
       rw [carrySubst_X_self]
       simp [withUniformizer]
     · rw [carrySubst_X_of_ne i₀ α hi]
-      simp [withUniformizer, shiftPoint, hi, MvPolynomial.aeval_C]
+      simp [withUniformizer, shiftPoint, hi]
   have hP := AlgHom.congr_fun h P
   rwa [AlgHom.comp_apply] at hP
 
@@ -96,17 +96,22 @@ noncomputable def carryDigits (i₀ : ι) : List (ι → R) → ι → MvPolynom
   | [], _ => 0
   | α :: w, i => C (α i) + X i₀ * carryDigits i₀ w i
 
+theorem carryDigits_nil (i₀ i : ι) : carryDigits i₀ ([] : List (ι → R)) i = 0 := rfl
+
+theorem carryDigits_cons (i₀ : ι) (α : ι → R) (w : List (ι → R)) (i : ι) :
+    carryDigits i₀ (α :: w) i = C (α i) + X i₀ * carryDigits i₀ w i := rfl
+
 /-- **Digit formula** for the composite substitution: for `i ≠ i₀`,
 `σ_w(s_i) = α_{1,i} + s_0 α_{2,i} + ⋯ + s_0^(j-1) α_{j,i} + s_0^j s_i`. -/
 theorem carrySubstList_X_of_ne (i₀ : ι) (w : List (ι → R)) {i : ι} (hi : i ≠ i₀) :
     carrySubstList i₀ w (X i) = carryDigits i₀ w i + X i₀ ^ w.length * X i := by
   induction w with
   | nil =>
-    rw [carrySubstList_nil, AlgHom.id_apply, carryDigits, List.length_nil, pow_zero, one_mul,
+    rw [carrySubstList_nil, AlgHom.id_apply, carryDigits_nil, List.length_nil, pow_zero, one_mul,
       zero_add]
   | cons α w ih =>
     rw [carrySubstList_cons, AlgHom.comp_apply, carrySubst_X_of_ne i₀ α hi, map_add, map_mul,
-      carrySubstList_X_self, ih, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, carryDigits,
+      carrySubstList_X_self, ih, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, carryDigits_cons,
       List.length_cons]
     ring
 
