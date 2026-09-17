@@ -116,3 +116,57 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
    `S`-unit when `Gamma` already contains a dilation whose inverse powers reach
    the needed roots.  A surviving `psi` must compress `R_0` in a direction
    that no unit of `R` compresses.
+7. **Twisted Clifford-lamp linearization (2026-09-17, group-rings, dead at
+   R1 for the affine-SL_3 class).**  Notation as in
+   `notes/COMMUTING_LAMP_QUOTIENT_STRUCTURE_AND_MF_FORK_2026-08-14.md`: `K =
+   ClLamp(X) semidirect T`, `psi` conjugation by `tau`, `c_x^2 = 1`,
+   `c_x c_y = zeta c_y c_x` for `x != y`.  Take `char k != 2` and
+   `R = k[K]/(zeta + 1)`, `R_0` the image of `Z[Gbar]`, `z = u_(c_o)`.
+   - *Attempt 3 is evaded.*  `R` has no nonzero commutative quotient: there
+     `c_x c_y = -c_y c_x` gives `2 c_x c_y = 0`, and `c_x c_y` is a unit.
+   - *(R2)-(R4) hold.*  `abar(Gbar) <= Gbar` and `[c_o, Gbar] = 1`.
+   - *(R5) holds.*  With `s = v_1` and `v = u_([c_(tau o), v_1])`, the defect is
+     `psi(z) u_s psi(z)^(-1) - u_s = (v - 1) u_s`.  Since `v_1 tau o != tau o`,
+     `v` is the image of `c_(tau o) c_(v_1 tau o)`, whose square is `zeta`, so
+     `v^2 = -1`.  Then `(v - 1)(v + 1) = -2` is a unit, so `v - 1` is a unit
+     and `I = R`.  This is the first candidate in which (R3), (R4) and (R5)
+     hold simultaneously.
+   - *Where it dies: (R1), finite generation.*  Every `psi`-stable subring
+     `R' <= R` containing `z` is not finitely generated.  Proof: a finite
+     generating set has finite supports in `K`, and the subgroup `H'` they
+     generate satisfies `R' <= k[H' <zeta>]/(zeta+1)`.  An element
+     `(lambda, g)` of `H'` has lamp support in `T . F` for a fixed finite `F`,
+     since `(lambda,g)(lambda',g') = (lambda . g lambda', g g')`.  But
+     `psi^n(z) = u_(c_(tau^n o))` lies in `R'` for all `n`, and `tau^n o` has
+     level `n`.  The `T`-orbits are exactly the level fibres, so `T . F` meets
+     only finitely many levels.
+   - *The whole affine-SL_3 class dies the same way.*  Let
+     `Gbar <= K_V <= Z[1/2]^3 semidirect SL_3(Z[1/2])` be `tau`-stable, where
+     `tau` dilates translations by `2`, and put `V' = K_V semidirect <tau>`.
+     Let `X` be any `V'`-set, and let `o` be fixed by `Gbar` with a nonzero
+     lamp defect, meaning some `s in Gbar` moves `tau o`.  **Lemma:** the
+     points `tau^n o` lie in pairwise distinct `K_V`-orbits.  Given the
+     Lemma, the support argument above shows that no `psi`-stable subring of
+     `k[ClLamp(X) semidirect K_V]/(zeta+1)` containing `u_(c_o)` is finitely
+     generated, even when `K_V` is.
+   - *Proof of the Lemma.*
+     - Suppose `tau^n o = k tau^(n') o` with `m = n' - n != 0`.  Then
+       `h = tau^(-n) k tau^(n') = k' tau^m` lies in `H = Stab(o)`, with
+       `k' = (w, A)` in `K_V` and `A in SL_3(Z[1/2])`.
+     - Put `M = H meet Z[1/2]^3`.  It is normal in `H`, hence normalized by
+       `h`.  It is `SL_3(Z)`-invariant and contains `Z^3`.
+     - Every such `M` is `2^(-j) Z^3` or `Z[1/2]^3`.  Indeed, if `M/Z^3`
+       contains an element `2^(-j) y` of order `2^j`, then `y` is unimodular
+       mod `2^j`.  `SL_3(Z) -> SL_3(Z/2^j)` is onto and transitive on
+       unimodular vectors, so `2^(-j) Z^3 <= M`.
+     - If `M = Z[1/2]^3`, then `tau^(-1) Gbar tau = 2^(-1)Z^3 semidirect SL_3(Z)`
+       lies in `H`.  So `Gbar` fixes `tau o`, and the defect vanishes.
+     - If `M = 2^(-j) Z^3`, then `h M h^(-1) = 2^m A M = M`.  So `2^m A` lies in
+       `GL_3(Z)`, and `2^(3m) = +-1`, so `m = 0`, a contradiction.
+   - *What survives.*  The ring `k[K]/(zeta+1)` meets (R2)-(R5), and only
+     finite generation fails.  A surviving lamp linearization needs a
+     nonzero-degree element in the stabilizer of `o`.  By the Lemma, that
+     forces linear parts outside `SL_3(Z[1/2])` with `2^m A in GL_3(Z)`.  If
+     `2^(-m) I` then lies in `K_V`, then `psi^m` on translations is inner.
+     A different root (not a lamp) is the other exit.  Exact matriciality of
+     `k[K]/(zeta+1)` was not checked, because the death at (R1) comes first.
