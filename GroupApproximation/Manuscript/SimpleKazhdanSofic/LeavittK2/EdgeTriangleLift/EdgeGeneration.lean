@@ -113,17 +113,17 @@ theorem unipotent_eq {M : Matrix (Fin 4) (Fin 4) R}
   have h01 : M 0 1 = 0 := (congrFun (congrFun hb 0) 1).trans (Matrix.one_apply_ne (by decide))
   have h10 : M 1 0 = 0 := (congrFun (congrFun hb 1) 0).trans (Matrix.one_apply_ne (by decide))
   have hAB : Matrix.single (2 : Fin 4) (0 : Fin 4) (M 2 0) * Matrix.single 2 1 (M 2 1) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have hAC : Matrix.single (2 : Fin 4) (0 : Fin 4) (M 2 0) * Matrix.single 3 0 (M 3 0) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have hAD : Matrix.single (2 : Fin 4) (0 : Fin 4) (M 2 0) * Matrix.single 3 1 (M 3 1) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have hBC : Matrix.single (2 : Fin 4) (1 : Fin 4) (M 2 1) * Matrix.single 3 0 (M 3 0) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have hBD : Matrix.single (2 : Fin 4) (1 : Fin 4) (M 2 1) * Matrix.single 3 1 (M 3 1) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have hCD : Matrix.single (3 : Fin 4) (0 : Fin 4) (M 3 0) * Matrix.single 3 1 (M 3 1) = 0 :=
-    Matrix.single_mul_single_of_ne _ _ _ (by decide) _
+    Matrix.single_mul_single_of_ne _ _ _ _ (by decide) _
   have e : (1 + Matrix.single (2 : Fin 4) (0 : Fin 4) (M 2 0)) * (1 + Matrix.single 2 1 (M 2 1)) *
       (1 + Matrix.single 3 0 (M 3 0)) * (1 + Matrix.single 3 1 (M 3 1)) =
       1 + Matrix.single 2 0 (M 2 0) + Matrix.single 2 1 (M 2 1) + Matrix.single 3 0 (M 3 0) +
