@@ -258,3 +258,5 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.ne_next_of_not_firstTurn
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.exists_step_at_turn
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.nonRose
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.sigma_pow_add_apply
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.sigma_pow_sub_apply
