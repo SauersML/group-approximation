@@ -46,8 +46,6 @@ namespace Manuscript
 namespace NonMF
 namespace AuditRelated
 
-open Filter
-
 universe u v
 
 noncomputable section
