@@ -23737,6 +23737,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · every-group-has-positive-rokhlin-entropy-action [OPEN] Every countably infinite group has a free ergodic p.m.p. action of positive Rokhlin entropy
 - 2026-09-17 · thompson-f-sandwich-splits-collapse-proof [COMPLETE] Prove the sandwich from JMBMdlS and the amenability transfer, sort kernels by Brin–Sapir type, and read mean-freeness off the stabilizer IRS dichotomy
 - 2026-09-17 · thompson-f-is-amenable [OPEN] Thompson's group F is amenable
 - 2026-09-17 · thompson-f-amenable-via-exotic-co-amenable-subgroup [OPEN] Find a co-amenable subgroup of F that is neither elementary amenable nor contains F, and prove that F-free subgroups of F are amenable
@@ -23744,7 +23745,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · f-has-a-co-amenable-subgroup-neither-ea-nor-containing-f [OPEN] Thompson's group F has a co-amenable subgroup that is neither elementary amenable nor contains a copy of F
 - 2026-09-17 · every-f-free-subgroup-of-thompson-f-is-amenable [OPEN] Every subgroup of Thompson's group F with no subgroup isomorphic to F is amenable
 - 2026-09-17 · radu-square-complex-flat-hitting-sparse-branched-covers [OPEN] Radu's square complex has flat-hitting branched covers of arbitrarily small branching mass
-- 2026-09-17 · flat-hitting-branched-covers-open-vertical-kernel-proof [COMPLETE] Closed vertical slabs propagate along B-free strips, form a forest by flat hitting, and their exits inject into branch data
 
 ## Active claims
 
