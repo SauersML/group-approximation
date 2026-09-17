@@ -1,0 +1,12 @@
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -1, -9, 1], "M^k>0 at k": 3, "darts": 60, "V": 22, "E": 30, "chi(X)": -8, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4], "gates": "abaABA", "f-corners": 4, "genus of S*_f(X)": 5}
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, -1, 1], "M^k>0 at k": 2, "darts": 56, "V": 24, "E": 28, "chi(X)": -4, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4], "gates": "abbABA", "f-corners": 4, "genus of S*_f(X)": 3}
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, -1, 1], "M^k>0 at k": 2, "darts": 56, "V": 24, "E": 28, "chi(X)": -4, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4], "gates": "abbABA", "f-corners": 4, "genus of S*_f(X)": 3}
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, -1, 1], "M^k>0 at k": 2, "darts": 40, "V": 16, "E": 20, "chi(X)": -4, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4], "gates": "aacABB", "f-corners": 4, "genus of S*_f(X)": 3}
+surfaces_m2_census/phi3075.json phi0={"a": "bab", "b": "aaca", "c": "bbab"} minus=bc,CB maxval=4 polygons=34114 vertices=22 chi=-8.0 feasible=True
+surfaces_m2_census/phi4011.json phi0={"a": "ab", "b": "babc", "c": "bab"} minus=bb,BB maxval=4 polygons=7551 vertices=24 chi=-4.0 feasible=True
+surfaces_m2_census/phi4017.json phi0={"a": "ab", "b": "bcba", "c": "bab"} minus=bb,BB maxval=4 polygons=10425 vertices=24 chi=-4.0 feasible=True
+surfaces_m2_census/phi4052.json phi0={"a": "bc", "b": "bca", "c": "cbca"} minus=bb,BB maxval=4 polygons=2976 vertices=16 chi=-4.0 feasible=True
+summary: 4 certificates, 0 failures
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -3, -1, -1], "M^k>0 at k": 2, "darts": 104, "V": 48, "E": 52, "chi(X)": -4, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4], "gates": "abbABA", "f-corners": 8, "genus of S*_f(X)": 3}
+surfaces_m2_census/phi3684.json phi0={"a": "abb", "b": "cabc", "c": "cab"} minus=aabb,BBAA maxval=4 polygons=7624 vertices=48 chi=-4.0 feasible=True
+summary: 1 certificates, 0 failures
