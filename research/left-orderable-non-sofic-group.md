@@ -115,3 +115,17 @@ neither behind Navas's Question 3.
 - *Untested: random complexes.*  `cocycle-stability-nonsofic-route` would give a
   nonsofic hyperbolic group from random Linial--Meshulam complexes.
   Orderability of those groups is not recorded in this graph.
+
+**A locally indicable witness played against a logic cell (2026-09-17).**  This route needs no Kazhdan subgroup and
+does not sit behind Navas's Question 3.
+
+- *Proposed established: the rope is locally indicable.*  `compiler-rope-is-locally-indicable` shows that the
+  finite-presentation compiler's positive rope `R_e` is locally indicable, hence left-orderable and
+  unique-product.  The proof uses the retraction `u |-> 1`, `H |-> 1` onto `Gamma_e`, whose kernel is a free
+  product of copies of `H <= F_2 x F_2`.
+- *Reduction, one direction: the dichotomy.*
+  `sofic-fp-pi2-complete-or-locally-indicable-nonsofic-group` shows that either `SOFIC_fp` is
+  `Pi^0_2`-complete, or some `R_e` is a finitely presented locally indicable nonsofic group.
+  - Route: `left-orderable-non-sofic-via-compiler-rope`.
+  - Open input: `compiler-positive-rope-is-not-sofic`.
+- *Obstacle.*  `R_e` is MF, so a nonsoficity proof must be invisible to operator-norm approximations.

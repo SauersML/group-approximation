@@ -1,0 +1,45 @@
+[
+  {
+    "p": 2,
+    "pauli_strings": 63,
+    "strings_passing_self_locality": 21,
+    "solutions": 18,
+    "wiring_solutions": 18,
+    "non_wiring_solutions": 0,
+    "solutions_per_slot": {
+      "1": 6,
+      "a": 6,
+      "b": 6
+    },
+    "on_site_cliffords_Sp2_Fp_order": 6
+  },
+  {
+    "p": 3,
+    "pauli_strings": 728,
+    "strings_passing_self_locality": 104,
+    "solutions": 72,
+    "wiring_solutions": 72,
+    "non_wiring_solutions": 0,
+    "solutions_per_slot": {
+      "1": 24,
+      "a": 24,
+      "b": 24
+    },
+    "on_site_cliffords_Sp2_Fp_order": 24
+  },
+  {
+    "p": 5,
+    "pauli_strings": 15624,
+    "strings_passing_self_locality": 744,
+    "solutions": 360,
+    "wiring_solutions": 360,
+    "non_wiring_solutions": 0,
+    "solutions_per_slot": {
+      "1": 120,
+      "a": 120,
+      "b": 120
+    },
+    "on_site_cliffords_Sp2_Fp_order": 120
+  }
+]
+VERDICT: every Clifford endomorphism with propagation {1,a,b} is a wiring (bijective)

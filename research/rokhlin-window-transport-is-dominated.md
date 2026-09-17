@@ -32,3 +32,23 @@ A bound `<= C H(y_1)` for one constant `C` gives `rho_q(G) >= log q / C`. On a h
   - On `T_3` fixing an end, a homogeneous pointer code has `Phi -> 0` but violates (R). Right-cancellative downward windows embed in the free monoid and are dominated.
 
   Artifact `research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md`.
+- **Pointer-gated linear codes: the linear part dies on directly finite group rings
+  (a-gs-window-transport, 2026-09-17).** This is `gated-diagonal-linear-deficits-force-kaplansky-failure`.
+  - **Exact split.** For `psi = (J(p), L_J(v))`, with pointer bits split from value bits,
+    `I(x(1); y_F) - H(y_1) = [I(p(1); J_F) - H(J_1)] + log q (E d - E r)` on every pattern.
+  - **The bound.** For monomial-diagonal gating (fixed `T_i ∈ F_q[G]` per coordinate), a recovering
+    combination is a left inverse of `T_i`. If `F_q[<E ∪ F>]` is directly finite it is the unique
+    `T_i^{-1}`, and stationarity gives `E d <= E r`.
+  - **What dies.** An abelian homomorphic pointer has `I(p(1); J_F) <= H(J_1)` by characters on
+    constants. So the star and parity-gadget recipes satisfy (D) on every pattern of every such host,
+    including linear sofic groups and Higman's group.
+  - **What survives.** A deficit in the class exhibits a one-sided unit in `F_q[G]`. By Seward
+    Corollary 4.1 that already gives `rho_{q'}(G) = 0`, so the class cannot give first evidence.
+  - **Calibration.** In the firewall loop the split gadget has `E d ≈ 3.87` against `E r = 1`, so
+    associativity enters exactly through uniqueness of inverses.
+  - **Where it stops.** Gating that mixes coordinates, several functionals per coordinate, or
+    non-monomial routing. There left inverses of columns are not unique and traces only give `dim` mod
+    `p`. This is the OPEN `pointer-gated-linear-codes-are-rank-dominated`, which holds over finite
+    groups by counting.
+
+  Artifact `research/artifacts/pointer-gated-linear-witness-direct-finiteness-2026-09-17.md`.

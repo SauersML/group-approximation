@@ -44,3 +44,19 @@ artifacts:
 - **Existentially closed groups.** `NS(K) = NS_all` for existentially closed `K`, so the claim for one such `K` says
   exactly that `NS_all` is upward closed. That universal form already suffices for the route to the conjecture. The
   per-group form is needed for per-group applications such as linear soficity.
+- **Moving one extra bit** (a-gs-upward-closed, 2026-09-17). The design: split one letter `a0` of a strict `τ` into
+  `|Q|` letters, and carry the extra data along a local matching of `a0`-sites, or by any injective map that copies
+  it by a translation away from the defects. It dies over every group, by
+  `translating-transport-split-lifts-are-surjective`.
+  - The step where it dies. The lift forces `τ(a0^G) = a0^G`. The cofinite translation makes the finite injection
+    `Q^{F \ E} -> Q^{Fs \ E'}` count `|E(τ u)| <= |E(u)|`. Charge noncreation then makes `τ` and the lift surjective.
+  - What survives among lifts.
+    - One-letter splits whose rest bit map `T_0` on `Q^G` is a bijective automaton that is not a relabelled
+      translation. If `T_0` is not surjective, then `|Q| ∈ NS(G)` already.
+    - Splits of two or more letters. The charge is then degenerate, and the product lifts giving the multiples sit
+      here.
+    - Ascents that commute with no letter collapse.
+  - By-product. `reversible-automata-that-never-lower-rest-counts-preserve-them` holds over every group, by
+    `rest-count-preservation-from-charge-noncreation`. So the count-raising hypothesis of
+    `count-raising-reversible-automata-lower-biased-rokhlin-entropy` is never met, and the autonomous star designs die
+    unconditionally.

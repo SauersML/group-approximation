@@ -53,3 +53,26 @@ transported conjugates of one nontrivial gauge may have trivial cyclic
 product.  The live requirement is therefore an EL20 coefficient-sensitive
 fixed-Hecke-frame lock (equivalently, asymptotic commutation with the
 reservoir holonomy), in addition to the moving boundary control.
+
+**Quantifier shift (swarm-0917).**  The arbitrary-profile quantifier is not
+needed for the EL20 MF endpoint.
+`surviving-mf-mark-diracizes-to-canonical-opnorm-profile` takes any surviving
+model and forms conjugate tensor powers.  Because `EL_20(R)` is simple and
+perfect, the scalar kernel of a nontrivial MF character is trivial.  The
+result is a DIFFERENT surviving operator-norm model with `tr -> delta_e`,
+Plancherel multiplicities on every finite packet, and negative carrier of `z`
+of trace `1/2+o(1)`.  Hence the specialization
+`binary-leavitt-el20-canonical-opnorm-native-cross-gram` `(CAP1)` suffices,
+via the new route `el20-canonical-opnorm-cross-gram-gives-full-mf-radical`.
+
+This repairs, for EL20, the missing premise found by
+`canonical-cross-gram-does-not-close-arbitrary-mf-active-profile`.  That node
+asked for an intrinsic argument forcing the finite-packet profile, and this is
+one.
+
+- **What it removes.** Fences whose countermodels use non-Plancherel packet
+  profiles are irrelevant to the endpoint.
+- **What it leaves.** The occurrence-typing and coboundary-gauge obstructions
+  remain, because regular packet models already realize them.
+
+`(EAP1)` itself is not proved, and this node stays OPEN.

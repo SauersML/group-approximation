@@ -51,3 +51,18 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
   ultrametric spaces. Brick maps scale the coordinates by independent powers of
   2, so they are not similarities of the max ultrametric on `C^n`. The theorem
   does not apply as stated (paper not read in full).
+- **Groupoid-generic proofs (dies; class-kill).** `nV ≤ [[G_2^n]]`, and `G_2^n` is
+  ample, topologically amenable, minimal, essentially principal and purely infinite.
+  `amenable-purely-infinite-groupoid-full-group-hosts-kazhdan` builds another groupoid
+  with all these properties, `(M ⋊ Γ) × G_2` with `Γ = Z^3 ⋊ SL_3(Z)` acting freely,
+  minimally and amenably on a Cantor set `M`. Its full group contains `Γ`.
+  - **Invariant:** property (T) of `Γ`.
+  - **Where every member dies:** the passage from groupoid hypotheses to a proper
+    conditionally negative definite function on `[[𝒢]]`, which would restrict to a
+    proper one on `Γ`.
+  - **Consequence:** a Haagerup proof, or even a proof that Kazhdan subgroups are finite,
+    must use structure beyond this class, such as the zipper, product-of-trees or
+    local-similarity combinatorics of `G_2^n`, or expansivity. Matui's SFT theorem
+    (`sft-topological-full-groups-have-the-haagerup-property`) uses such structure.
+  - **Not ruled out:** proofs that use compact generation or expansivity of the
+    groupoid. It is not known whether `(M ⋊ Γ) × G_2` is compactly generated.

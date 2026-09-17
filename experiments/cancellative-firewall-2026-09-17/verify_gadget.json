@@ -1,0 +1,212 @@
+{
+ "theorem_A": {
+  "4": {
+   "R": 12,
+   "n": 13,
+   "F": 36,
+   "E": 16,
+   "sites": 265,
+   "all_cells_filled": true,
+   "L": true,
+   "R_cancel": true,
+   "value_xor_is_o": true,
+   "pointer_sets_shared": true,
+   "full_window_delta_size_4": true,
+   "readers_of_o": 12,
+   "H_psi_exact": 3.0,
+   "H_psi_claimed": 3,
+   "residual_exact": 0.12670540809631348,
+   "Phi_exact": 0.7816763520240784,
+   "Phi_bound_theorem_A": 0.8125,
+   "Phi_below_1": true,
+   "quadrangle_violations_in_gadget_0": 6,
+   "violation_example": {
+    "pairs": [
+     "(('W1', 0), ('W2', 0))",
+     "(('W2', 0), ('W3', 0))"
+    ],
+    "common": "('P2', 'P1')",
+    "differs": "(('v', 4), ('v', 3))"
+   }
+  },
+  "8": {
+   "R": 34,
+   "n": 35,
+   "F": 102,
+   "E": 38,
+   "sites": 1871,
+   "all_cells_filled": true,
+   "L": true,
+   "R_cancel": true,
+   "value_xor_is_o": true,
+   "pointer_sets_shared": true,
+   "full_window_delta_size_4": true,
+   "readers_of_o": 34,
+   "H_psi_exact": 4.0,
+   "H_psi_claimed": 4,
+   "residual_exact": 0.0853815018558092,
+   "Phi_exact": 0.5106726877319762,
+   "Phi_bound_theorem_A": 0.515625,
+   "Phi_below_1": true,
+   "quadrangle_violations_in_gadget_0": 6,
+   "violation_example": {
+    "pairs": [
+     "(('W1', 0), ('W2', 0))",
+     "(('W2', 0), ('W3', 0))"
+    ],
+    "common": "('P1', 'P3')",
+    "differs": "(('v', 17), ('v', 34))"
+   }
+  },
+  "16": {
+   "R": 89,
+   "n": 89,
+   "F": 267,
+   "E": 92,
+   "sites": 12105,
+   "all_cells_filled": true,
+   "L": true,
+   "R_cancel": true,
+   "value_xor_is_o": true,
+   "pointer_sets_shared": true,
+   "full_window_delta_size_4": true,
+   "readers_of_o": 89,
+   "H_psi_exact": 5.0,
+   "H_psi_claimed": 5,
+   "residual_exact": 0.05123462740641705,
+   "Phi_exact": 0.3157021642129011,
+   "Phi_bound_theorem_A": 0.31640625,
+   "Phi_below_1": true,
+   "quadrangle_violations_in_gadget_0": 6,
+   "violation_example": {
+    "pairs": [
+     "(('W1', 0), ('W2', 0))",
+     "(('W2', 0), ('W3', 0))"
+    ],
+    "common": "('P1', 'P3')",
+    "differs": "(('v', 70), ('v', 25))"
+   }
+  },
+  "32": {
+   "R": 222,
+   "n": 223,
+   "F": 666,
+   "E": 226,
+   "sites": 74815,
+   "all_cells_filled": true,
+   "L": true,
+   "R_cancel": true,
+   "value_xor_is_o": true,
+   "pointer_sets_shared": true,
+   "full_window_delta_size_4": true,
+   "readers_of_o": 222,
+   "H_psi_exact": 6.0,
+   "H_psi_claimed": 6,
+   "residual_exact": 0.027806787788442276,
+   "Phi_exact": 0.18836896211838883,
+   "Phi_bound_theorem_A": 0.1884765625,
+   "Phi_below_1": true,
+   "quadrangle_violations_in_gadget_0": 6,
+   "violation_example": {
+    "pairs": [
+     "(('W1', 0), ('W2', 0))",
+     "(('W2', 0), ('W3', 0))"
+    ],
+    "common": "('P1', 'P3')",
+    "differs": "(('v', 162), ('v', 50))"
+   }
+  }
+ },
+ "exact_residual_small_instances": {
+  "k=2,R=1,n=3": {
+   "H_exact": 1.0,
+   "formula": 1.0,
+   "enumerated_bits": 13
+  },
+  "k=2,R=2,n=3": {
+   "H_exact": 0.5,
+   "formula": 0.5,
+   "enumerated_bits": 24
+  },
+  "k=4,R=1,n=3": {
+   "H_exact": 3.0,
+   "formula": 3.0,
+   "enumerated_bits": 26
+  }
+ },
+ "monte_carlo": {
+  "4": {
+   "trials": 4000,
+   "decoding_errors": 0,
+   "mean_unrevealed": 0.12725,
+   "formula": 0.12670540809631348
+  },
+  "8": {
+   "trials": 1000,
+   "decoding_errors": 0,
+   "mean_unrevealed": 0.087,
+   "formula": 0.0853815018558092
+  }
+ },
+ "loop_realization_k4": {
+  "order": 530,
+  "latin": true,
+  "embeds": true,
+  "loop_latin": true,
+  "o_is_identity": true,
+  "incidence_preserved": true,
+  "labels_distinct": true,
+  "nonassociative_triples_in_2000": 1982
+ },
+ "theorem_C_prime_exhaustive": {
+  "1": {
+   "patterns": 1,
+   "closed_coherent": 0,
+   "closed_coherent_nonzero_mod3": 0,
+   "coherent_open_sizes": [],
+   "closed_sizes": []
+  },
+  "2": {
+   "patterns": 18,
+   "closed_coherent": 2,
+   "closed_coherent_nonzero_mod3": 0,
+   "coherent_open_sizes": [],
+   "closed_sizes": [
+    0
+   ]
+  },
+  "3": {
+   "patterns": 588,
+   "closed_coherent": 8,
+   "closed_coherent_nonzero_mod3": 0,
+   "coherent_open_sizes": [
+    3
+   ],
+   "closed_sizes": [
+    3
+   ]
+  },
+  "4": {
+   "patterns": 30240,
+   "closed_coherent": 32,
+   "closed_coherent_nonzero_mod3": 0,
+   "coherent_open_sizes": [
+    2,
+    4,
+    6
+   ],
+   "closed_sizes": [
+    0,
+    6
+   ]
+  }
+ },
+ "theorem_C_prime_group_samples": {
+  "trials": 3000,
+  "all_closed": true,
+  "nonzero_mod3": 0,
+  "residues": [
+   0
+  ]
+ }
+}

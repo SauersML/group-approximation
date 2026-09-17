@@ -1,0 +1,4 @@
+Z/2 E={0,1} F={0} n=3 LP=1.000000
+Z/2 E={0,1} F={1} n=3 LP=1.000000
+Z/2 E={0,1} F={0,1} n=4 LP=1.000000
+SUMMARY Z/2: 3 configurations, 0 below 1, min None

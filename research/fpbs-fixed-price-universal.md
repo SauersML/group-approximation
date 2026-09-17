@@ -273,3 +273,32 @@ vocabulary rather than its content.
   approach it.
 * **Refuting the conjecture** is represented by
   `fpbs-fixed-price-counterexample-exists`, not by a route into this goal.
+* **Recast cost as a monotone invariant that every free action computes
+  (reframing lane, 2026-09-17).** Rank gradients of canonical towers do not do
+  this.
+  - Le Maitre's `t([R]) = floor(C(R)) + 1` makes `C - 1` a compression-tower
+    rank gradient.
+  - The profinite induction formula gives `C(a x P) - 1` as a Farber-chain
+    gradient of restrictions.
+  - Each of these is a cost-preserving recoding, so action-independence stays
+    exactly the flagship. The fractional (LP) version of cost is identically
+    `1`. The linear version `1 + beta_1^(2)` is action-independent, but the
+    transfer from it back to cost is the cost-versus-`beta_1` problem.
+
+  The monotone object that works is the weak-star closed class `W_b` of
+  processes weakly contained in Bernoulli. Cost moves the right way along it:
+  `beta ≺ b` implies `C(b) <= C(beta)`. Running the Hutchcroft--Pete
+  condensation inside `W_b` gives a dichotomy
+  (`fpbs-hp-condensation-bernoulli-exit`) for every nonamenable group:
+  - either exact cluster thinning leaves `W_b` exactly at the frequency stage,
+    and then `C(b) <= 1 + |S|p/2`;
+  - or it leaves at an ergodic stage with zero frequency and a non-hyperfinite
+    cluster relation.
+
+  Hyperfinite stages never exit, and nothing exits after the frequency stage.
+  For Kazhdan groups, fixed price one follows from the first alternative along
+  `p -> 0`; the converse is not proved. **Where it stops:** the scheme can be
+  stranded at a zero-frequency non-hyperfinite stage, and it must be for free
+  groups when `p < 1 - 1/r`. The open step is to control, for Kazhdan groups,
+  condensation with coins constant on hyperfinite subrelations. By part (C)
+  that modified scheme never leaves `W_b`.

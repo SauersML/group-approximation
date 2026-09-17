@@ -1,0 +1,21 @@
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=2: agree=150 disagree=0 bijective=73
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=3: agree=150 disagree=0 bijective=76
+Q=Z4     |Q|=4 nilpotent=True e_ab=4 n=4: agree=150 disagree=0 bijective=84
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=2: agree=150 disagree=0 bijective=77
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=3: agree=150 disagree=0 bijective=69
+Q=Z2xZ2  |Q|=4 nilpotent=True e_ab=2 n=4: agree=150 disagree=0 bijective=75
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=2: agree=150 disagree=0 bijective=80
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=3: agree=150 disagree=0 bijective=74
+Q=D4     |Q|=8 nilpotent=True e_ab=2 n=4: agree=150 disagree=0 bijective=81
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=2: agree=121 disagree=29 bijective=41
+   example ([('x', 0, 1), ('x', 0, -1), ('x', 1, -1), ('x', 0, 1), ('c', 5), ('x', 1, 1), ('c', 5)], [1, 0], False, True)
+   example ([('x', 0, 1), ('x', 0, 1), ('x', 1, -1)], [0, 1], False, True)
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=3: agree=131 disagree=19 bijective=49
+   example ([('c', 1), ('x', 0, 1), ('x', 1, 1), ('x', 0, 1)], [1, 0, 2], False, True)
+   example ([('x', 2, -1), ('x', 2, -1), ('x', 1, -1)], [1, 0, 2], False, True)
+Q=S3     |Q|=6 nilpotent=False e_ab=2 n=4: agree=108 disagree=42 bijective=30
+   example ([('c', 1), ('c', 0), ('x', 0, 1), ('x', 1, 1), ('x', 0, 1), ('x', 1, 1), ('x', 0, -1), ('c', 4)], [2, 1], False, True)
+   example ([('c', 1), ('x', 1, -1), ('x', 0, 1), ('x', 1, -1), ('x', 1, 1), ('x', 1, 1), ('x', 0, 1), ('x', 1, -1)], [2, 3], False, True)
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=2: agree=150 disagree=0 bijective=51
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=3: agree=150 disagree=0 bijective=55
+Q=Z6     |Q|=6 nilpotent=True e_ab=6 n=4: agree=150 disagree=0 bijective=45

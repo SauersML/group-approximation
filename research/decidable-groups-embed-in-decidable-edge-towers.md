@@ -36,3 +36,16 @@ such that `G <= K_n`.
    claim forces `G` into a conjugate of `B`. So this claim contains
    Boone--Higman for all decidable FA inputs, and a proof must supply bases
    covering those inputs by some other mechanism. *Deferred.*
+4. **Every decidable input has a decidable FA envelope, so this claim is
+   Boone--Higman.** Every decidable `G` lies in `W_G = S wr C_2`, where `S` is
+   an infinite decidable simple envelope. `W_G` is decidable and has property FA
+   (`decidable-groups-have-decidable-fa-envelopes`,
+   `fg-perfect-wreath-c2-has-property-fa`). Applying Attempt 3 to `W_G` puts `G`
+   inside `B`. By `decidable-edge-tower-premise-is-equivalent-to-boone-higman`,
+   this claim is equivalent to `boone-higman-conjecture`, with the converse
+   given by `B = G` and `n = 0`. No tower of positive length helps any input.
+   *Dies* as a reduction, pending referee (2026-09-17): the envelope and FA
+   inputs are drafted but not yet fully refereed, since one of three votes was
+   lost. If they survive, it upgrades Attempt 3 from "contains Boone--Higman for
+   FA inputs" to full equivalence, and the claim stays OPEN exactly as long as
+   the conjecture does.
