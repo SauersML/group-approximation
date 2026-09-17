@@ -89,6 +89,39 @@ would be a separate surprise.  The next falsifiable step is to decide whether
 `E_20(T_2)` has a hyperlinear quotient or model in which `x_13(1-s_2t_2)`
 survives.
 
+### Trace certificates collapse to hyperlinearity of EL_20(J) (swarm-0917-w4-pull-nh-3, obstruction)
+
+Approach tried: kill the Toeplitz survivor class with a *non-regular* embeddable trace.
+* A natural candidate: the Haar fixed-point character `phi_k(g) = mu(Fix_(Y^k) g)` of `EL_20(J)` acting on
+  `Y = F_2^(N x 20)`. It equals `2^(-k rank(g-1))` on the finitary kernel `L` and `0` off `L` (Skudlarek's character
+  extended by zero), so `phi_k(x_13(Q)) = 2^(-k)`.
+* Other candidates: IRS characters, rank characters, or sign characters with `tau(z)=-1`.
+
+Result (`leavitt-corner-trace-gate-collapses-to-jacobson-hyperlinearity`, established).
+
+1. **Trace gate.** `LNC3` on support `X` forces `tau(z)=1` for every Connes-embeddable character of `<X,z>`. This
+   includes the sign case, which the quotient gate does not see.
+2. **Dichotomy.** For `E=EL_n(J)`, `n>=2`, every CE character either is trivial on `L` (and factors through the
+   Laurent quotient) or has trivial scalar kernel, and then `E` is hyperlinear.
+3. **Consequence.**
+   * `phi_k` CE implies `EL_20(J)` hyperlinear.
+   * A hyperlinear quotient or model of `E_20(T_2)` in which `x_13(1-s_2t_2)` survives exists iff `EL_20(J)` is
+     hyperlinear.
+
+Where it dies: at the Diracization step `|tau|^(2k) -> 1_(K_tau)`.
+* In the non-sign case, `C_E(L)=1` forces `K_tau=1`.
+* In the sign case, `K_tau` contains `L`, and perfectness of `L` kills the scalar homomorphism on it.
+* Either way the certificate is no weaker than faithful hyperlinearity of `EL_20(J)`.
+
+So, for elementary Toeplitz supports:
+* the class is dead if `EL_20(J)` is hyperlinear;
+* a construction in the class makes `EL_20(J)` nonhyperlinear;
+* no trace certificate lies between these two alternatives.
+
+Next falsifiable step: decide hyperlinearity of `EL_20(J)` (Kazhdan, not LEF, not MF, amenable-by-linear). Soficity
+of `EL_3(J)` does not decide it. The case of non-elementary supports in `GL_20(T_2)` reduces to this by an index or
+permanence step that is not certified (see the proof route's Remark).
+
 ### Entropy-measure transplant on the Toeplitz survivor class (swarm-0917, transplanter)
 
 *Calibration (established).*
