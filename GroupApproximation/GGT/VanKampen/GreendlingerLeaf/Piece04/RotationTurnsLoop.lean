@@ -40,7 +40,8 @@ open GroupApproximation.GGT.VanKampen.FirstTurnEnclosure
 
 universe v
 
-/-- **A safe run**: `k` rotation steps from `u` reach `x`, every earlier dart off the edges of `c`. -/
+/-- **A safe run**: `k` rotation steps from `u` reach `x`, and every earlier dart is off the edges
+of `c`. -/
 structure SafeRun (M : CombMap.{v}) (c : List M.Dart) (u x : M.Dart) (k : ℕ) : Prop where
   pow_eq : (M.sigma ^ k) u = x
   safe : ∀ t, t < k → ¬ walkKeep M c ((M.sigma ^ t) u)
@@ -216,3 +217,16 @@ theorem loop_safeRun (hM : M.IsPlanar) {γ c : List M.Dart} (hnd : γ.Nodup)
   exact ⟨Nat.find hex, Nat.find_spec hex, fun t ht => hsafe _ (hinside t ht)⟩
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.SafeRun.one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.SafeRun.trans
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.firstTurn_of_safeRun
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.inside_alpha
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.facePerm_mem_of_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.facePerm_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.loop_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.alpha_not_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.loop_turnMem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RotationTurns.loop_safeRun
