@@ -84,6 +84,28 @@ subgroups have fixed price one by Corollary 2.40(a), free products are
 covered by Theorem 2.27, and amenable H falls under Corollaries 2.28 and
 2.32.
 
+Generalize the Section 8 routing to a hyperfinite spine (2026-09-17). The
+F_r x Z calculation uses one feature: the orbit relation T_0 of the central
+Z is aperiodic, hyperfinite and invariant under every generator. The measured
+form keeps only aperiodicity of T cap T^g, where T^g={(x,y):(gx,gy) in T}.
+`fpbs-q-normal-hyperfinite-chain-forces-cost-one` (OPEN: a written proof whose
+main lemma referees found sound, demoted over the import scope of its
+fixed-price consequence) shows that any countable
+chain of such q-normalizers from an aperiodic hyperfinite T_0 up to the orbit
+relation gives cost one. It pays for each generator only on a small complete
+section of T cap T^g. For the Bernoulli action this gives fixed price one,
+so beta_1^(2)=0 and z(Phi_n)->0 along near-minimizers, which is this claim for
+that group. **Where it dies:** the mechanism yields cost one directly and never
+a positive excess. It says nothing where beta_1^(2)>0, and there no chain
+exists in any free action. So it cannot supply tail compactness for any group
+with C(b)>1. Free products and the (F_m x F_n)*F_k rows above are known only
+through their published fixed price, not through a routing of this shape. Among
+beta_1^(2)=0 groups the hard remaining class is hyperbolic Kazhdan groups.
+`fpbs-hyperbolic-no-q-normal-hyperfinite-chain` records that normal spines,
+the literal Section 8 shape, cannot exist there, by Popa--Vaes Theorem 1.4
+together with standard facts. It leaves the one-sided q-normal case open at
+single-point boundary fields.
+
 Replace tail control by well-founded Borel Morse matchings
 (swarm-0917-w4-fp-cycle-tail; `fpbs-bernoulli-morse-collapse-criterion`).
 Match relator cells over the Bernoulli space injectively to boundary edges,
