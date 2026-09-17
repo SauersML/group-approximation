@@ -350,3 +350,4 @@
 35112090049	2026-09-16T14:58:39Z	GroupApproximation/Sofic/FiniteDimensionalResidual.lean	perm_eq_one_of_permMatrix_eq_one
 35137249937	2026-09-16T18:54:49Z	GroupApproximation/Sofic/FiniteGroupCoronaExactification.lean	le_double_sum
 35156227466	2026-09-16T22:10:25Z	GroupApproximation/Sofic/FiniteGroupUlamIteration.lean	defectScale_nonneg
+35166853282	2026-09-17T00:31:25Z	GroupApproximation/Sofic/FiniteGroupUlamStep.lean	multiplicationError_cocycle
