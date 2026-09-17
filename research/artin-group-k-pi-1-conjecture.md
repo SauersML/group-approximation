@@ -30,3 +30,11 @@ every Artin group is torsion-free and of type F (route
 - Reduction to free-of-infinity parabolic subgroups (Godelle–Paris, arXiv:1007.1365).
 - Frontier: dimension 4 diagrams outside the affine, FC and quasi-Lannér classes. Lane
   z1-05-artin-kpi1 is assembling the class the known results give and attacking dimension 4.
+- **Top degree reduced to four groups** (sw-043, group-rings transplant, 2026-09-17). The top
+  homology of the Artin complex is the ghost ideal `⋂_s ZA(1 − s)`, the kernel of the X-ray
+  transform along generator cosets. It slices along cosets of any standard parabolic subgroup
+  (`artin-ghost-ideal-localizes-to-standard-parabolics`). So the top-degree part of the
+  conjecture holds for every diagram with a minimal non-spherical subdiagram other than
+  `[5,3,3,3]`, `[4,3,3,5]`, `[5,3,3,5]`, `[5,3,3^{1,1}]`, and holds for all Artin groups iff
+  `H_4` of these four Artin complexes vanishes
+  (`artin-ghost-ideals-reduce-to-four-lanner-trees`). Lower degrees do not slice.
