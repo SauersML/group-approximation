@@ -19,9 +19,9 @@ In a least-area diagram, a disc region away from the exterior whose boundary wor
 `DiscDiagram.LeastArea.length_filter_mem_le` bounds the relator cells of the region by the
 number of relators of any filling of its boundary word.
 
-* `DiscDiagram.LeastArea.filter_mem_eq_nil_of_value_one`: the relator cells of the region form
+* `filter_mem_eq_nil_of_leastArea_of_value_one`: the relator cells of the region form
   the empty list.
-* `DiscDiagram.LeastArea.face_not_mem_of_value_one`: no relator cell has its face in the region.
+* `face_not_mem_of_leastArea_of_value_one`: no relator cell has its face in the region.
 
 ## Why this does not yet close the short petal
 
@@ -59,7 +59,7 @@ open scoped Classical in
 /-- **A trivial disc region of a least-area diagram holds no relator cell.**  If the boundary
 word of a disc region away from the exterior has value `1`, the relator cells with a face in
 the region form the empty list. -/
-theorem DiscDiagram.LeastArea.filter_mem_eq_nil_of_value_one
+theorem filter_mem_eq_nil_of_leastArea_of_value_one
     {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
     (hlea : Delta.LeastArea) (faces : Finset Delta.toCombMap.Face)
     (region : IsDiscRegion Delta.toCombMap faces) (hout : Delta.outerFace ∉ faces)
@@ -75,7 +75,7 @@ theorem DiscDiagram.LeastArea.filter_mem_eq_nil_of_value_one
 open scoped Classical in
 /-- **No relator face in a trivial disc region.**  In a least-area diagram, no relator cell has
 its face in a disc region away from the exterior whose boundary word has value `1`. -/
-theorem DiscDiagram.LeastArea.face_not_mem_of_value_one
+theorem face_not_mem_of_leastArea_of_value_one
     {W : Set (List (RelLetter G Lambda))} {Delta : DiscDiagram.{u, w, v} W}
     (hlea : Delta.LeastArea) (faces : Finset Delta.toCombMap.Face)
     (region : IsDiscRegion Delta.toCombMap faces) (hout : Delta.outerFace ∉ faces)
@@ -83,7 +83,7 @@ theorem DiscDiagram.LeastArea.face_not_mem_of_value_one
     {C : RelatorCell Delta.toCombMap Delta.outerFace W} (hC : C ∈ Delta.relatorCells) :
     C.face ∉ faces := by
   intro hf
-  have hnil := DiscDiagram.LeastArea.filter_mem_eq_nil_of_value_one hlea faces region hout h1
+  have hnil := filter_mem_eq_nil_of_leastArea_of_value_one hlea faces region hout h1
   have hmem : C ∈ Delta.relatorCells.filter (fun C => C.face ∈ faces) :=
     List.mem_filter.mpr ⟨hC, decide_eq_true hf⟩
   rw [hnil] at hmem
@@ -91,5 +91,5 @@ theorem DiscDiagram.LeastArea.face_not_mem_of_value_one
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.DiscDiagram.LeastArea.filter_mem_eq_nil_of_value_one
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.DiscDiagram.LeastArea.face_not_mem_of_value_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.filter_mem_eq_nil_of_leastArea_of_value_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.face_not_mem_of_leastArea_of_value_one
