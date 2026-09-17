@@ -75,13 +75,13 @@ def trivialKasparovTheory : KK.KasparovTheory.{u} where
 
 /-- In the degenerate model any two separable algebras are `KK`-equivalent. -/
 theorem trivialKasparovTheory_kkEquivalent (A B : KK.SepCStarAlgebra.{u}) :
-    trivialKasparovTheory.{u}.KKEquivalent A B :=
+    KK.KasparovTheory.KKEquivalent trivialKasparovTheory.{u} A B :=
   ⟨PUnit.unit, PUnit.unit, rfl, rfl⟩
 
 /-- In the degenerate model every separable algebra satisfies the UCT: it is
 `KK`-equivalent to the commutative algebra `ℂ`. -/
 theorem satisfiesUCT_trivialKasparovTheory (S : KK.SepCStarAlgebra.{0}) :
-    trivialKasparovTheory.{0}.SatisfiesUCT S :=
+    KK.KasparovTheory.SatisfiesUCT trivialKasparovTheory.{0} S :=
   ⟨KK.complexAlgebra, KK.complexAlgebra_isCommutative,
     trivialKasparovTheory_kkEquivalent S KK.complexAlgebra⟩
 
@@ -96,7 +96,9 @@ theorem tikuisisWhiteWinterStatement_trivialKasparovTheory_iff :
         ∀ τ : FaithfulTracialState S,
           Quasidiagonal.IsQuasidiagonalTrace (fun a : S ↦ τ a) :=
   ⟨fun h S hnuc τ ↦ h S hnuc (satisfiesUCT_trivialKasparovTheory S) τ,
-    fun h S hnuc _ τ ↦ h S hnuc τ⟩
+    fun h ↦ by
+      intro S hnuc _ τ
+      exact h S hnuc τ⟩
 
 /-- **The gap at every Kasparov theory is the UCT-free statement.** The degenerate
 model gives one direction; dropping the UCT hypothesis gives the other. -/
@@ -107,7 +109,9 @@ theorem forall_tikuisisWhiteWinterStatement_iff :
           Quasidiagonal.IsQuasidiagonalTrace (fun a : S ↦ τ a) :=
   ⟨fun h ↦ tikuisisWhiteWinterStatement_trivialKasparovTheory_iff.mp
       (h trivialKasparovTheory.{0}),
-    fun h _ S hnuc _ τ ↦ h S hnuc τ⟩
+    fun h _ ↦ by
+      intro S hnuc _ τ
+      exact h S hnuc τ⟩
 
 /-- **The restricted answer at the degenerate model** is the Blackadar--Kirchberg
 question on every separable nuclear stably finite algebra with a faithful
@@ -118,7 +122,9 @@ theorem blackadarKirchbergAnswer_trivialKasparovTheory_iff :
         IsStablyFiniteCStarAlgebra S → Nonempty (FaithfulTracialState S) →
           IsQuasidiagonalCStarAlgebra S :=
   ⟨fun h S hnuc hsf hτ ↦ h S hnuc hsf (satisfiesUCT_trivialKasparovTheory S) hτ,
-    fun h S hnuc hsf _ hτ ↦ h S hnuc hsf hτ⟩
+    fun h ↦ by
+      intro S hnuc hsf _ hτ
+      exact h S hnuc hsf hτ⟩
 
 end
 
