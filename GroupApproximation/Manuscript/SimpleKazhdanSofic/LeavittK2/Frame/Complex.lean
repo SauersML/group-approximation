@@ -22,9 +22,10 @@ invertible matrix.  This is equivalent to "the first `k` columns of some inverti
 `C ≅ A^{n-k}`.  Using embeddings makes faces free (compose with an embedding) and makes
 transitivity immediate (`IsFrame.exists_smul_eq`, all `k`, via a permutation unit).
 
-`frameComplex A n : OrderedTwoComplex (Fin n → A)` (lane `sk-leavitt-06` interface, on disk):
-edges are ordered 2-frames and triangles are ordered 3-frames.  `frameComplex_action`: the
-natural action of `GL_n(A)` preserves both.
+`frameVertex`, `frameEdge`, `frameTri` are the 1-, 2- and 3-frames, with their faces and their
+translates.  The complex itself (`Frame.VertexComplex`) lives on the frame vertices only: on the
+full vector type `Fin n → A` it would not be connected (the zero vector lies on no edge frame),
+so lane 10's `SimplyConnected` would be false there.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
@@ -131,37 +132,25 @@ theorem frameEdge.vertex1 {a b : Fin n → A} (h : frameEdge a b) : frameVertex 
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameEdge.vertex1
 
-/-- The ordered frame complex `X_n(A)`: vertices `A^n`, ordered edges the ordered 2-frames,
-ordered triangles the ordered 3-frames. -/
-def frameComplex (A : Type*) [Ring A] (n : ℕ) : OrderedTwoComplex (Fin n → A) where
-  edge := frameEdge
-  tri := frameTri
-  tri_edge01 := frameTri.edge01
-  tri_edge12 := frameTri.edge12
-  tri_edge02 := frameTri.edge02
+theorem frameVertex.smul {u : Fin n → A} (h : frameVertex u) (g : (Matrix (Fin n) (Fin n) A)ˣ) :
+    frameVertex (g • u) :=
+  IsFrame.of_embedding (IsFrame.smul h g) (Function.Embedding.refl _) _
+    (fun i => by fin_cases i; rfl)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameVertex.smul
 
-theorem frameComplex_edge (u v : Fin n → A) : (frameComplex A n).edge u v = frameEdge u v := rfl
+theorem frameEdge.smul {u v : Fin n → A} (h : frameEdge u v) (g : (Matrix (Fin n) (Fin n) A)ˣ) :
+    frameEdge (g • u) (g • v) :=
+  IsFrame.of_embedding (IsFrame.smul h g) (Function.Embedding.refl _) _
+    (fun i => by fin_cases i <;> rfl)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex_edge
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameEdge.smul
 
-theorem frameComplex_tri (u v w : Fin n → A) :
-    (frameComplex A n).tri u v w = frameTri u v w := rfl
+theorem frameTri.smul {u v w : Fin n → A} (h : frameTri u v w)
+    (g : (Matrix (Fin n) (Fin n) A)ˣ) : frameTri (g • u) (g • v) (g • w) :=
+  IsFrame.of_embedding (IsFrame.smul h g) (Function.Embedding.refl _) _
+    (fun i => by fin_cases i <;> rfl)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex_tri
-
-/-- `GL_n(A)` preserves ordered edges and ordered triangles of `X_n(A)`. -/
-theorem frameComplex_action : (frameComplex A n).Action (Matrix (Fin n) (Fin n) A)ˣ where
-  edge_smul g h := by
-    refine IsFrame.of_embedding (IsFrame.smul h g) (Function.Embedding.refl _) _ ?_
-    intro i
-    fin_cases i <;> rfl
-  tri_smul g h := by
-    refine IsFrame.of_embedding (IsFrame.smul h g) (Function.Embedding.refl _) _ ?_
-    intro i
-    fin_cases i <;> rfl
-
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex_action
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameTri.smul
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

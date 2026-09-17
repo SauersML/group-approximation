@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.WaistInterface
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.BinderFiveSection
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.WaistBinderFive
 import GroupApproximation.Meta.AxiomGuard
 
@@ -8,31 +8,14 @@ import GroupApproximation.Meta.AxiomGuard
 The five-residual Below waist `AsmWaist.relativeGreendlingerQuasiGeodesicLeastArea_of_fiveResidualsBelow`
 has binders `hbudget, hspan, hcellStep, hproper, hstep`.  Residuals 06 (`hcellStep`, circular in
 case (d), see `lanes/carto-gl-p06.md`) and 07 (`hproper`) enter only through binder 5 below the bound.
-With the refuted walk binder, binder 5 needs no pinch (lane gl-p06-02), so residuals 06 and 07 are
-replaced by the single refuted binder `hrefuted`.
+With the refuted walk binder (`CellPocketWalkRefutedBelowSectionStatement`, `RefutedDef.lean`),
+binder 5 needs no pinch (`osinMultipleEdgePocketRegionCopyBelowSection_of_refuted`,
+`BinderFiveSection.lean`).  So residuals 06 and 07 are replaced by the single binder `hrefuted`.
 
-* `relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow_of_binderFive`: the lane
-  endpoint `relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow (hbudget hspan hrefuted
-  hstep)`, with the lane gl-p06-02 theorem as the interface hypothesis `hfive`.
-
-## When lanes gl-p06-01 and gl-p06-02 land
-
-Their names were not on disk at authoring time.  The hypothesis-free-in-`hfive` endpoint is the
-one-liner
-
-```
-theorem relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow
-    (hbudget : OsinLemma94ClassEndLoopsBudgetInput.{u, w, v})
-    (hspan : OsinLemma94ClassCaseGapSpanStatement.{u, w, v})
-    (hrefuted : P06Bypass.CellPocketWalkRefutedBelowSectionStatement.{u, w, v})
-    (hstep : PocketOuterPinchStepSectionStatement.{u, w, v}) :
-    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
-  relativeGreendlingerQuasiGeodesicLeastArea_of_binderFiveBelow hbudget hspan
-    (P06Bypass.osinMultipleEdgePocketRegionCopyBelowSection_of_refuted hrefuted) hstep
-```
-
-(`Waist.CellPocketWalkRefutedBelowSectionStatement` is the lane gl-p06-01 shape verbatim, so the two
-refuted Statements agree definitionally.)
+* `relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow`: residual 01 (`hbudget`),
+  residual 04 (`hspan`), the refuted binder (`hrefuted`) and residual 10 (`hstep`) give
+  `RelativeGreendlingerQuasiGeodesicLeastAreaStatement`, through
+  `Waist.relativeGreendlingerQuasiGeodesicLeastArea_of_binderFiveBelow` (`WaistBinderFive.lean`).
 
 ## Manuscript status
 
@@ -40,23 +23,22 @@ Infrastructure for `thm:hull` (Osin's Lemma 4.4 at least-area diagrams); certifi
 sentence on its own.
 -/
 
-namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.Waist
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass
 
 universe u w v
 
 /-- **Osin's Lemma 4.4 at least-area diagrams from four residuals of the Below waist**: the class
 end-loop budget, the class-case gap span, the refuted cell pocket walk binder and the outer-pinch
-step of the section pocket.  Residual 06 is not used.  The hypothesis `hfive` is the lane gl-p06-02
-theorem (binder 5 from the refuted binder), stated as `BinderFiveOfRefutedStatement`. -/
-theorem relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow_of_binderFive
-    (hfive : BinderFiveOfRefutedStatement.{u, w, v})
+step of the section pocket.  Residuals 06 and 07 are not used. -/
+theorem relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow
     (hbudget : OsinLemma94ClassEndLoopsBudgetInput.{u, w, v})
     (hspan : OsinLemma94ClassCaseGapSpanStatement.{u, w, v})
     (hrefuted : CellPocketWalkRefutedBelowSectionStatement.{u, w, v})
     (hstep : PocketOuterPinchStepSectionStatement.{u, w, v}) :
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
-  relativeGreendlingerQuasiGeodesicLeastArea_of_binderFiveBelow hbudget hspan (hfive hrefuted) hstep
+  Waist.relativeGreendlingerQuasiGeodesicLeastArea_of_binderFiveBelow hbudget hspan
+    (osinMultipleEdgePocketRegionCopyBelowSection_of_refuted hrefuted) hstep
 
-end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.Waist
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.Waist.relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow_of_binderFive
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.relativeGreendlingerQuasiGeodesicLeastArea_of_fourResidualsBelow

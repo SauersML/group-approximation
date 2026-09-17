@@ -16,8 +16,8 @@ has a dart joined to `α d` by moves avoiding the edge of `d`, then `Δ` has a l
 
 Route (`sameCellPocketLoopCut`, `Estimating/OsinUnboundSameCellPocketLoopCut`, closed):
 
-* `SameCellPocketEnclosed.exists_enclosedPocket`: the far faces are enclosed, in successor form, by the
-  pocket walk of `d`, an arc of cell `i`, with the far relator cell inside and cell `i` outside.
+* `SameCellPocketEnclosed.exists_enclosedPocket`: the far faces are enclosed, in successor form,
+  by the pocket walk of `d`, an arc of cell `i`, with the far relator cell inside and cell `i` outside.
 * `EnclosedBridgeDoubling.arcDoublingOutput`: on an O-equivalent copy every bridge of the walk is
   doubled, keeping the walk an arc of the transported cell.
 * `EnclosedPocketRegion.enclosedPocketRegionSucc`: the enclosed face set is a pocket region whose
@@ -25,8 +25,8 @@ Route (`sameCellPocketLoopCut`, `Estimating/OsinUnboundSameCellPocketLoopCut`, c
 * `OsinLoopCut.ofPocketRegion` with the empty side and the arc read backwards; the arc is
   `(λ, c)`-quasi-geodesic by the `C`-condition, which also gives `0 ≤ c` for the empty side.
 
-This module exposes that closed theorem at the name the Greendlinger-leaf assembly consumes, with the
-same universe parameters `.{u, w, v}` as the producer's `hcut` argument.
+This module exposes that closed theorem at the name the Greendlinger-leaf assembly consumes, with
+the same universe parameters `.{u, w, v}` as the producer's `hcut` argument.
 
 ## Manuscript status
 

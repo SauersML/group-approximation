@@ -88,21 +88,27 @@ theorem cornerUnit_mul_sigma {σ ρ : A} (hρσ : ρ * σ = 1) (u : Aˣ) (c : A)
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameCone.cornerUnit_mul_sigma
 
+theorem shear_mul_left {w c : A} (hcw : c * w = 0) : (1 + w * c) * (1 - w * c) = 1 := by
+  calc
+    (1 + w * c) * (1 - w * c) = 1 - w * (c * w) * c := by noncomm_ring
+    _ = 1 := by
+      rw [hcw]
+      noncomm_ring
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameCone.shear_mul_left
+
+theorem shear_mul_right {w c : A} (hcw : c * w = 0) : (1 - w * c) * (1 + w * c) = 1 := by
+  calc
+    (1 - w * c) * (1 + w * c) = 1 - w * (c * w) * c := by noncomm_ring
+    _ = 1 := by
+      rw [hcw]
+      noncomm_ring
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameCone.shear_mul_right
+
 /-- The shear `1 + w c`, a unit when `c w = 0`. -/
 def shearUnit {w c : A} (hcw : c * w = 0) : Aˣ :=
-  ⟨1 + w * c, 1 - w * c,
-    by
-      calc
-        (1 + w * c) * (1 - w * c) = 1 - w * (c * w) * c := by noncomm_ring
-        _ = 1 := by
-          rw [hcw]
-          noncomm_ring,
-    by
-      calc
-        (1 - w * c) * (1 + w * c) = 1 - w * (c * w) * c := by noncomm_ring
-        _ = 1 := by
-          rw [hcw]
-          noncomm_ring⟩
+  ⟨1 + w * c, 1 - w * c, shear_mul_left hcw, shear_mul_right hcw⟩
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameCone.shearUnit
 

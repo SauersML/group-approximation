@@ -8,11 +8,11 @@ import GroupApproximation.Meta.AxiomGuard
 Osin, arXiv:math/0411039v3, Appendix, the assumption before Lemma 9.3: "inside every 2-gon of
 `Φ′_M`, there is a vertex of `Φ_M`".
 
-Let `T` carry the regions of `S` to those of `S'`, and let `ιc` embed the collapsed map of `S` into
-that of `S'` along the dart embedding of `T`.  The crossing darts of the component of `a₀` go exactly
-to the crossing darts of the carried component.  If the face rotations agree along `ιc`, up to a
-detour past one dart that is not a crossing, `phiMapO` is carried; with a way to name face-class paths
-back, `PhiTransportAt T a₀` holds.
+Let `T` carry the regions of `S` to those of `S'`, and let `ιc` embed the collapsed map of `S`
+into that of `S'` along the dart embedding of `T`.  The crossing darts of the component of `a₀`
+go exactly to the crossing darts of the carried component.  If the face rotations agree along
+`ιc`, up to a detour past one dart that is not a crossing, `phiMapO` is carried; with a way to
+name face-class paths back, `PhiTransportAt T a₀` holds.
 
 * `not_regionInternal_of_crossO`: a crossing dart is in the collapsed map.
 * `phiKeepO_map_iff`, `phiKeepO_range`.
@@ -37,13 +37,15 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
   {S S' : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
 
 /-- **A crossing dart is in the collapsed map.** -/
-theorem not_regionInternal_of_crossO (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+theorem not_regionInternal_of_crossO
+    (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
     {a : RegionCandidate D eps S.diagram} (ha : a ∈ S.family) {s o : Bool}
     {d : S.diagram.toCombMap.Dart} (hd : crossO a s o = some d) : ¬ RegionInternal S.family d := by
   cases o with
   | false => exact not_regionInternal_of_mem_cycle S.pairwise ha (mem_cycle_crossO_false a hd)
   | true =>
-    have h' : crossO a s false = some (S.diagram.toCombMap.alpha d) := (crossO_alpha a s true d).mpr hd
+    have h' : crossO a s false = some (S.diagram.toCombMap.alpha d) :=
+      (crossO_alpha a s true d).mpr hd
     rw [← regionInternal_alpha S.family d]
     exact not_regionInternal_of_mem_cycle S.pairwise ha (mem_cycle_crossO_false a h')
 

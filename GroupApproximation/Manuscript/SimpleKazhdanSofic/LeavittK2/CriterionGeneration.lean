@@ -44,7 +44,7 @@ theorem steinberg_eq_top_of_mem (S : Subgroup (St 4 BinL))
       group
     rw [heq]
     exact S.mul_mem (S.mul_mem (S.inv_mem hx32) hw) (S.inv_mem hx32)
-  have hi3 : ∀ (i : Fin 4) (hi2 : i ≠ 2) (hi3 : i ≠ 3) (a : BinL),
+  have hi3 : ∀ (i : Fin 4), i ≠ 2 → ∀ (hi3 : i ≠ 3) (a : BinL),
       GroupApproximation.SteinbergGroup.x i 3 hi3 a ∈ S := by
     intro i hi2 hi3 a
     have hc := GroupApproximation.SteinbergGroup.x_commutator i 2 3 hi2 lastIdx_ne.symm hi3 a
@@ -62,16 +62,18 @@ theorem steinberg_eq_top_of_mem (S : Subgroup (St 4 BinL))
     rw [mul_one] at hc
     rw [← hc]
     exact commutatorElement_mem S (hroot 2 0 h20 (by decide) a) (hi3 0 (by decide) h03 1)
-  refine top_unique fun g _ => PresentedGroup.generated_by _ S ?_ g
-  rintro ⟨i, j, hij, a⟩
-  show GroupApproximation.SteinbergGroup.x i j hij a ∈ S
-  by_cases hj : j = 3
-  · subst hj
-    by_cases hi : i = 2
-    · subst hi
-      exact h23a a
-    · exact hi3 i hi hij a
-  · exact hroot i j hij hj a
+  have hgen : ∀ s : GroupApproximation.SteinbergGenerator (Fin 4) BinL,
+      (PresentedGroup.of s : St 4 BinL) ∈ S := by
+    rintro ⟨i, j, hij, a⟩
+    show GroupApproximation.SteinbergGroup.x i j hij a ∈ S
+    by_cases hj : j = 3
+    · subst hj
+      by_cases hi : i = 2
+      · subst hi
+        exact h23a a
+      · exact hi3 i hi hij a
+    · exact hroot i j hij hj a
+  exact (Subgroup.eq_top_iff' S).mpr (PresentedGroup.generated_by _ S hgen)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.steinberg_eq_top_of_mem
 

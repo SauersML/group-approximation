@@ -71,7 +71,9 @@ theorem projection_liftGL (h : EndpointInterfaces.BinaryLeavittStabKernelThreeTr
   obtain ⟨g, hg⟩ := projection_surjective (I := Fin 3) (R := 𝓛) (toElementary3 M)
   have hM : ((projection g : elementaryGroup (Fin 3) 𝓛) : (Matrix (Fin 3) (Fin 3) 𝓛)ˣ) = M :=
     congrArg Subtype.val hg
-  rw [← hg, ← projection_stab, ← liftGL_projection h g, hM]
+  have hl : liftGL h M = stab 3 𝓛 g := by
+    rw [← hM, liftGL_projection]
+  rw [hl, projection_stab, hg]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift.projection_liftGL
 

@@ -11,8 +11,8 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf, piece 05: the clean copy of a two-gon section
 
 Osin, arXiv:math/0411039v3, Appendix (the two-gon decomposition of the Euler count).
-`OsinTwoGonCleanCopySectionStatement` (`Estimating/OsinAppendixEulerTwoGonCopyRoute`) is the `htwocopy`
-residual of `relativeGreendlingerQuasiGeodesicLeastArea_of_eightResiduals`
+`OsinTwoGonCleanCopySectionStatement` (`Estimating/OsinAppendixEulerTwoGonCopyRoute`) is the
+`htwocopy` residual of `relativeGreendlingerQuasiGeodesicLeastArea_of_eightResiduals`
 (`GreendlingerLeaf/Common/EightResidualWaist`).
 
 ## Route

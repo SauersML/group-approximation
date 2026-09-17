@@ -57,7 +57,8 @@ def rowVec (b : Fin 3 → R) : St 4 R :=
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift.rowVec
 
-private theorem mul_three_shuffle {G : Type*} [Monoid G] {a0 a1 a2 c0 c1 c2 : G}
+/-- Reordering `a₀c₀ · a₁c₁ · a₂c₂` into `a₀a₁a₂ · c₀c₁c₂`, given the needed commutations. -/
+theorem mul_three_shuffle {G : Type*} [Monoid G] {a0 a1 a2 c0 c1 c2 : G}
     (h10 : a1 * c0 = c0 * a1) (h20 : a2 * c0 = c0 * a2) (h21 : a2 * c1 = c1 * a2) :
     a0 * c0 * (a1 * c1) * (a2 * c2) = a0 * a1 * a2 * (c0 * c1 * c2) := by
   calc a0 * c0 * (a1 * c1) * (a2 * c2) = a0 * (c0 * a1) * (c1 * a2) * c2 := by
@@ -66,6 +67,8 @@ private theorem mul_three_shuffle {G : Type*} [Monoid G] {a0 a1 a2 c0 c1 c2 : G}
     _ = a0 * a1 * (c0 * a2) * c1 * c2 := by simp only [mul_assoc]
     _ = a0 * a1 * (a2 * c0) * c1 * c2 := by rw [h20]
     _ = a0 * a1 * a2 * (c0 * c1 * c2) := by simp only [mul_assoc]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift.mul_three_shuffle
 
 /-- `b ↦ x_1(b)` is additive. -/
 theorem rowVec_add (b c : Fin 3 → R) : rowVec (b + c) = rowVec b * rowVec c := by

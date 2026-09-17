@@ -13,8 +13,10 @@ the Below Greendlinger waist.  In `copyRegion_of_offSideWalkSectionPinchBelow`
 intro).  So binder 5 below the bound needs no pinch once that binder is refuted.
 
 The upstream lanes gl-p06-01 (the refuted binder, namespace `P06Bypass`) and gl-p06-02 (binder 5
-from it) run in parallel and were not on disk when this lane was authored.  Their interfaces are
-stated here, in the sub-namespace `P06Bypass.Waist` so that no name collides with theirs:
+from it) ran in parallel with this lane.  Their interfaces were stated here, in the sub-namespace
+`P06Bypass.Waist` so that no name collides with theirs.  The lane endpoints (`WaistFour.lean`,
+`WaistFrontier.lean`) now use the landed `RefutedDef`, `RefutedCore` and `BinderFiveSection`, not
+this module.  This module stays because `BinderFiveWaistBridge.lean` imports it:
 
 * `CellPocketWalkRefutedBelowInput`, `CellPocketWalkRefutedBelowSectionStatement`: the binder of
   `CellPocketWalkProperArcsBelowInput` (`Estimating/OsinPocketMultipleEdgeCopyBelow`, :55) with

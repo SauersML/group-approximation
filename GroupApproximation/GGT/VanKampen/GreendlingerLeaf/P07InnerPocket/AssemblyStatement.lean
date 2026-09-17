@@ -30,8 +30,11 @@ This is the route of the target docstring.  Take the part of the inner pocket
 * Its outside walk reads sub-lists of the far side of `b`, then of `Ḡ₁`, then of the far side of
   `a`, then of `Ḡ₂`, in cyclic order.
 * A pinch where a far side meets a gap, or where the far sides meet, cuts off pieces.  The piece
-  holding `C` still reads a cyclic sub-word in this order, so some run is empty exactly when a
-  chunk mixes the two far sides.
+  holding `C` still reads its segments in this cyclic order.
+* A pinch of `Π_i` or `Π_j` with itself cuts off a sub-pocket along its gap.  Adding those
+  sub-pockets to the witness keeps each gap read as one contiguous run.
+* Merging cyclically adjacent segments of one far side gives the chunks.  The mixed disjunct is
+  only slack.
 * `Π_i` and `Π_j` lie in `sideOutside K`, so they are not lakes of the pocket, which gives the
   last clause.
 
