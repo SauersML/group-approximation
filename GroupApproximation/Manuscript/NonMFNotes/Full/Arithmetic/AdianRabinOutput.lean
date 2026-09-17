@@ -186,8 +186,10 @@ theorem wordProblemCompl_manyOneReduces_nonMF_viaE :
   obtain ⟨delta, hdelta, hspec⟩ := notesAdianRabinMap
   exact ⟨delta, hdelta, fun p => not_congr (hspec p).2.2.symm⟩
 
-#audit_closed_axioms GroupApproximation.Full.NN11.reduction_output_free
-#audit_audit_placeholder
+#audit_axioms GroupApproximation.Full.NN11.output_free
+#audit_axioms GroupApproximation.Full.NN11.coprod_embeds
+#audit_axioms GroupApproximation.Full.NN11.forbidden_embeds
+#audit_axioms GroupApproximation.Full.NN11.reduction_output_free
 #audit_closed_axioms GroupApproximation.Full.NN11.notesAdianRabinMap
 #audit_closed_axioms GroupApproximation.Full.NN11.wordProblemCompl_manyOneReduces_nonMF_viaE
 #audit_axioms GroupApproximation.Full.NN11.not_isOperatorMF_literalCode
