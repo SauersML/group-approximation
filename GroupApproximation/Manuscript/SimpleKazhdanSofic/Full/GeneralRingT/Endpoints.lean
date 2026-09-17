@@ -52,7 +52,7 @@ def PrintedE12Infinite : Prop :=
     [Nonempty C] [MulAction Λ C] [ContinuousConstSMul Λ C] (n : ℕ) (hn : 2 ≤ n),
     Set.Infinite (Set.range fun f : LocallyConstant C (ZMod 2) =>
       elementaryUnit (⟨0, by omega⟩ : Fin n) ⟨1, by omega⟩
-        (fun h => absurd (Fin.mk.inj h) (by decide))
+        (Fin.ne_of_val_ne Nat.zero_ne_one)
         (ClopenGroupCrossedProduct.coeff Λ C (ZMod 2) f))
 
 theorem printedE12Infinite : PrintedE12Infinite := by

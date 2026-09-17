@@ -76,9 +76,11 @@ theorem disjoint_of_disjoint_zpow_images (T : X ≃ₜ X) {W : Set X} {m n : ℤ
     (h : Disjoint (⇑(T ^ m) '' W) (⇑(T ^ n) '' W)) : Disjoint W (⇑(T ^ (n - m)) '' W) := by
   refine Set.disjoint_left.2 ?_
   rintro _ hx ⟨c, hc, rfl⟩
-  refine Set.disjoint_left.1 h ⟨_, hx, rfl⟩ ⟨c, hc, ?_⟩
+  have hmem : (T ^ m) ((T ^ (n - m)) c) ∈ ⇑(T ^ m) '' W := ⟨(T ^ (n - m)) c, hx, rfl⟩
   have hexp : m + (n - m) = n := by omega
-  rw [GroupApproximation.Dynamics.zpow_apply_zpow_apply, hexp]
+  have hn : (T ^ n) c = (T ^ m) ((T ^ (n - m)) c) := by
+    rw [GroupApproximation.Dynamics.zpow_apply_zpow_apply, hexp]
+  exact Set.disjoint_left.1 h hmem ⟨c, hc, hn⟩
 
 end Window
 
@@ -126,13 +128,13 @@ theorem exists_isClopen_isWanderingOn_of_isCompact (T : X ≃ₜ X) (S : Finset 
         (disjoint_of_disjoint_zpow_images T (hw p.1 hp.1 p.2 hp.2.1 hp.2.2))
       exact ⟨V, hV, hCV, fun _ _ _ => hdisj⟩
     · exact ⟨Set.univ, isClopen_univ, Set.subset_univ C,
-        fun h1 h2 h3 => absurd ⟨h1, h2, h3⟩ hp⟩
+        fun h1 h2 h3 => (hp ⟨h1, h2, h3⟩).elim⟩
   choose V hV hCV hVd using hsel
   refine ⟨⋂ p ∈ S ×ˢ S, V p, isClopen_biInter_finset fun p _ => hV p,
     Set.subset_iInter₂ fun p _ => hCV p, ?_⟩
   intro m hm n hn hmn
   have hsub : (⋂ p ∈ S ×ˢ S, V p) ⊆ V (m, n) :=
-    Set.biInter_subset_of_mem (Finset.mem_coe.2 (Finset.mem_product.2 ⟨hm, hn⟩))
+    Set.iInter₂_subset (m, n) (Finset.mem_product.2 ⟨hm, hn⟩)
   exact disjoint_zpow_images_of_disjoint T
     ((hVd (m, n) hm hn hmn).mono hsub (Set.image_mono hsub))
 

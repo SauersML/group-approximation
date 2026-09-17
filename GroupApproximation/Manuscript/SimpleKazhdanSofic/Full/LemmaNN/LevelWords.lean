@@ -52,7 +52,7 @@ theorem levelwise_mul (p q : L → Perm Y) :
   Equiv.ext fun _ => rfl
 
 theorem levelwise_one : levelwise (fun _ => (1 : Perm Y)) = (1 : Perm (Y × L)) :=
-  Equiv.ext fun _ => rfl
+  Equiv.ext fun _ => Prod.ext rfl rfl
 
 /-- The commutator of two level permutations acts on each level by the commutator there. -/
 theorem levelwise_commutator (p q : L → Perm Y) :

@@ -229,8 +229,7 @@ ring `K` embeds in `R`, then `a ↦ e_12(φ a)` is injective, so `EL_n(R)` is in
 theorem infinite_elementaryGroup_of_injective {K R : Type*} [Ring K] [Infinite K] [Ring R]
     (φ : K →+* R) (hφ : Function.Injective φ) {n : ℕ} (hn : 2 ≤ n) :
     Infinite ↥(elementaryGroup (Fin n) R) := by
-  have h01 : (⟨0, by omega⟩ : Fin n) ≠ ⟨1, by omega⟩ := fun h =>
-    absurd (Fin.mk.inj h) (by decide)
+  have h01 : (⟨0, by omega⟩ : Fin n) ≠ ⟨1, by omega⟩ := Fin.ne_of_val_ne Nat.zero_ne_one
   refine Infinite.of_injective
     (fun a : K => (⟨elementaryUnit _ _ h01 (φ a), elementaryUnit_mem _ _ h01 (φ a)⟩ :
       ↥(elementaryGroup (Fin n) R))) ?_

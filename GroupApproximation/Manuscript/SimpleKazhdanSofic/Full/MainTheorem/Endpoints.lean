@@ -220,8 +220,9 @@ def PrintedTabPropsFirstRows : Prop :=
 theorem tabProps_first_rows : PrintedTabPropsFirstRows := by
   intro A _ _ _ S hinf hmin
   obtain ⟨hinfG, hfg, hsimple, hT, hlim, hLEF, hsofic, hhyp⟩ := main_printed_sk01 A S hinf hmin
-  exact ⟨hfg, hinfG, hsimple, hT, hlim, (isLEF_iff_textbook _).1 ((SK01.isLEFPrinted_iff_isLEF _).1 hLEF),
-    hsofic, hhyp⟩
+  have htext : IsTextbookLEF (SimpleKazhdanSofic.G S) :=
+    (isLEF_iff_textbook _).1 ((SK01.isLEFPrinted_iff_isLEF _).1 hLEF)
+  exact ⟨hfg, hinfG, hsimple, hT, hlim, htext, hsofic, hhyp⟩
 
 end GroupApproximation.Full.SK05
 
