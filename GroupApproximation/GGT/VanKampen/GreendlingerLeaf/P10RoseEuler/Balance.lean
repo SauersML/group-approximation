@@ -30,6 +30,8 @@ variable {α V : Type*} {s t : α → V}
 def IsBalanced [DecidableEq V] (s t : α → V) (l : List α) : Prop :=
   ∀ x : V, l.countP (fun d => decide (s d = x)) = l.countP (fun d => decide (t d = x))
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseEuler.IsBalanced
+
 /-- Balance is invariant under permutations. -/
 theorem IsBalanced.perm [DecidableEq V] {l l' : List α} (h : IsBalanced s t l)
     (hp : l.Perm l') : IsBalanced s t l' := by

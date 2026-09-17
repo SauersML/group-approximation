@@ -67,9 +67,10 @@ theorem exists_stage (h : MultimatrixTraceAmplificationStatement) (P : AFPresent
         ‖τ (P.embed n b) - normTrace Y (φ (P.embed n b))‖ ≤
           1 / ((n : ℝ) + 2) * ‖P.embed n b‖ := by
   classical
-  haveI : Nontrivial A := TensorSynchronization.nontrivial_of_tracialState τ
+  haveI : Nontrivial A := MFRecognition.TensorSynchronization.nontrivial_of_tracialState τ
   haveI : Nontrivial (Multimatrix (P.blocks n) (P.sizes n)) :=
-    TensorSynchronization.nontrivial_of_tracialState (τ.compStarAlgHom (P.embed n))
+    MFRecognition.TensorSynchronization.nontrivial_of_tracialState
+      (τ.compStarAlgHom (P.embed n))
   have hε : (0 : ℝ) < 1 / ((n : ℝ) + 2) := by positivity
   obtain ⟨N, π, hπ⟩ := h (P.blocks n) (P.sizes n) (τ.compStarAlgHom (P.embed n)) _ hε
   have hN : 0 < N := by

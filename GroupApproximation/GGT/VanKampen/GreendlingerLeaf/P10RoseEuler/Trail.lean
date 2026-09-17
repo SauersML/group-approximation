@@ -40,6 +40,8 @@ starts (label `s`), and the last entry ends where the first one starts. -/
 def IsClosedTrail (s t : α → V) (l : List α) : Prop :=
   ∃ hne : l ≠ [], l.IsChain (fun a b => t a = s b) ∧ t (l.getLast hne) = s (l.head hne)
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseEuler.IsClosedTrail
+
 /-- A closed trail is nonempty. -/
 theorem IsClosedTrail.ne_nil {l : List α} (h : IsClosedTrail s t l) : l ≠ [] := by
   obtain ⟨hne, _, _⟩ := h

@@ -186,6 +186,8 @@ end PocketNoncrossing
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossing.faceClass
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossing.pocketKeep
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossing.mem_faceClass_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossing.faceOf_mem_faceClass_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossing.faceOf_alpha_mem_faceClass
