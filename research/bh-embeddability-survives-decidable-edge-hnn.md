@@ -156,3 +156,45 @@ only through a proof that does not pass through the conjecture.
    edges, which also covers this input. Together the two leave, for this input, only
    engines whose host strictly contains `A*_phi` and is not a locally finite
    tree host.
+9. **Untwist the edge map into a mapping torus (2026-09-17).** *Partial:* this
+   is a decomposition, not a proof. By
+   `extendable-edge-hnn-embeds-in-identity-hnn-of-mapping-torus`, whenever
+   `phi = Phi|_C` for some `Phi in Aut(A')` with `A <= A'`, we have
+   `A*_phi <= (A' ⋊_Phi Z) *_C (C × Z)`, via `t |-> u s`. The claim for such an
+   input then follows from two prerequisites that can fail separately:
+   - **(P1)** the mapping torus `A' ⋊_Phi Z` embeds in a finitely presented
+     simple group;
+   - **(P2)** the identity-edge extension `G *_C (C × Z)` of `G = A' ⋊_Phi Z`
+     embeds in a finitely presented simple group.
+
+   (P1) is established for three kinds of `A'`: free groups, finitely presented
+   simple MIF groups, and `M * F_m` with `M` such a group. That is the mapping-torus
+   case which Attempts 4 and 7 had isolated. (P2) is the case `phi = id` of this
+   claim, and it is open. It is not easier in any known sense: the undecidability
+   witness of `bh-embeddability-forces-decidable-edge-membership` is an identity
+   edge.
+
+   **Clean free-base inputs.** If `C` and `D` are free factors of a free group
+   `F`, then `phi` extends inside `F`. So these inputs reduce to (P2) over
+   free-by-cyclic groups.
+
+   **Where the reduction stops over free overgroups.** Two invariants block any
+   free `F' >= F`: the maximal root exponent and the lower-central depth. They
+   apply to every unbalanced input, and also to balanced inputs such as
+   `t a t^-1 = [a, b]`.
+
+   **Literature check (2026-09-17).** Jankiewicz, arXiv:2503.16722 (abstract, as
+   fetched): "the fundamental group of a geometrically clean graph of finite rank
+   free groups does not need to be virtually compact special". So the route
+   through virtual specialness and `virtually-special-groups-embed-in-brin-thompson-group-2v`
+   cannot cover the clean free-base case in general. This does not exclude
+   embeddings into `2V` by other means.
+
+   **Also recorded.** For the free-base case, embedding `F*_phi` in `F*_psi`,
+   where `psi` extends `phi` to Hall completions `H_1, H_2 <= F` of finite index,
+   is never injective. Its kernel contains `t f t^-1 psi(f)^-1` for
+   `f in (F ∩ H_1) - C`. More generally, for any locally finite tree host in
+   which `F` fixes a vertex `v`, the set of `f in F` fixing `t^-1 v` has finite
+   index in `F`. That only kills maps sending `t` to a stable letter whose vertex
+   group contains `F`. It does not kill tree hosts for free bases; unlike
+   Attempt 8, no invariant was found there.
