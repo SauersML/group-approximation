@@ -65,6 +65,22 @@ Every such argument fails at `G` where it would conclude domination for the prof
     measure on `Emb(K_0, C)`.
   - For Möbius actions every such measure sits on algebraic fixed points of hyperbolic elements, which are not
     embeddings. In characteristic `p` there is no trace to use.
+- **Finite-field point models (sw-016, 2026-09-17). Three test-case regimes die; the node stays OPEN.**
+  See `finite-field-point-models-give-the-rank-condition`.
+  - Evaluate the coefficients at finite-field points along a finite or sofic permutation model. A one-sided
+    inverse then gives `d(1-ε)|V| <= rank <= r|V|` over a finite field.
+  - This kills, as witnesses:
+    - every action on `k(x)` by `k`-automorphisms, including the Möbius case `Q(x) ⋊ PSL_2(Z)`;
+    - projective linear actions on `k(x_1..x_n)`;
+    - Bernoulli fields `k(x_g) ⋊ G` over sofic `G` in every characteristic;
+    - via Malcev–Neumann, every crossed product with any twist over a bi-orderable group, such as `F_2`,
+      surface groups and RAAGs.
+  - Exact failing step for a witness: it must defeat (P2). No approximately equivariant assignment of
+    finite-field points may make the coefficients' denominators nonzero. So either `α ≠ 1`, or the coefficient
+    `G`-ring has no finite-field point models (for example a Bernoulli field over a nonsofic group). The group
+    must also be neither amenable nor bi-orderable.
+  - The ternary Leavitt route (`α = ±1`, `G = L_(F_3)(1,2)^x/<-1>`, which has torsion) survives, as do twisted
+    group algebras `K^α[G]` over non-bi-orderable groups. These are the named test cases still alive.
 - **Ternary Leavitt summand.** See the route above. Its necessary condition (the support is not `F_3`-linear
   sofic) is recorded at `ternary-anti-central-summand-has-cohn-family`.
 - **Finite-index division rings (swarm-0917-w4-gs-rokhlin-kazhdan, 2026-09-17). Kills the Möbius test case and the
