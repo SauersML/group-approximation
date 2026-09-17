@@ -5368,6 +5368,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralSimplicity.E
 import GroupApproximation.Manuscript.NonMF.Full.AmenableCountable.TraceCountable
 import GroupApproximation.Manuscript.NonMF.Full.RankTwoElementary.PrintedSentence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Resolvent
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.FlipInvariance
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Converse
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.HyperlinearPrinted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
