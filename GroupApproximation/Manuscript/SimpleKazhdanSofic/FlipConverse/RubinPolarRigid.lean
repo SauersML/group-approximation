@@ -118,7 +118,7 @@ theorem rubinRigid_dichotomy {T : X ≃ₜ X} (hT : IsMinimalHomeo T) {O W : Set
     rw [h2] at hx
     exact hx rfl
   · right
-    refine rubinRigidSubgroup_mono fun x hxW hxO => hne ⟨x, hxO, hxW⟩
+    exact rubinRigidSubgroup_mono (fun x hxW => Set.mem_compl fun hxO => hne ⟨x, hxO, hxW⟩)
 
 end RubinRigid
 

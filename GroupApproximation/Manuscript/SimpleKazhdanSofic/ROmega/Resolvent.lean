@@ -196,7 +196,7 @@ theorem map_polyEval {B C F : Type*} [Ring B] [Algebra ℂ B] [Ring C] [Algebra 
 theorem polyEval_mem {B S : Type*} [Ring B] [Algebra ℂ B] [SetLike S B] [SubsemiringClass S B]
     [SMulMemClass S ℂ B] {s : S} {x : B} (hx : x ∈ s) (c : ℕ → ℂ) (m : ℕ) :
     polyEval c m x ∈ s :=
-  Finset.sum_mem fun i _ ↦ SMulMemClass.smul_mem (c i) (pow_mem hx i)
+  sum_mem fun i _ ↦ SMulMemClass.smul_mem (c i) (pow_mem hx i)
 
 /-- A real polynomial `ε`-close to `q` on `[-R, R]` is `ε`-close to `q` in norm on self-adjoint
 elements of norm `≤ R`. -/
