@@ -24119,6 +24119,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · sofic-groups-are-qca-surjunctive [ESTABLISHED] A quantum cellular endomorphism splits off its relative commutant, is surjective over every sofic group, and its Clifford sector is exactly stable finiteness of F_p[G]
 - 2026-09-17 · kazhdan-host-route-imports-have-verbatim-sources [ESTABLISHED] The property-A-to-amenable-compact-model import and the (T)-plus-Haagerup finiteness import of the Kazhdan host route have verbatim sources matching their use
 - 2026-09-17 · kazhdan-host-route-imports-citation [COMPLETE] Import Higson-Roe via Willett's notes and Chatterji-Drutu-Haglund's kernel theorem, then metrize the amenable model by coordinates
 - 2026-09-17 · gapped-bernoulli-kernels-vanish-via-boundary-continuity [COMPLETE] Continuity of the diagonal of a gapped kernel projection carries delocalization to the tree boundary, faithfulness of the expectation kills the boundary restriction, and Theorem D kills the ranks
@@ -24126,7 +24127,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · brin-thompson-groups-nv-are-a-t-menable [OPEN] Every Brin-Thompson group nV (n >= 2) has the Haagerup property
 - 2026-09-17 · baum-connes-counterexample-group-exists [OPEN] Some countable group violates the Baum--Connes conjecture with trivial coefficients
 - 2026-09-17 · amenable-purely-infinite-groupoid-kazhdan-host-proof [COMPLETE] Take the product of a free minimal amenable Cantor model of the integral affine group with the full two-shift groupoid
-- 2026-09-17 · amenable-purely-infinite-groupoid-full-group-hosts-kazhdan [ESTABLISHED] Some amenable, minimal, effective, purely infinite ample groupoid has a topological full group containing an infinite Kazhdan group
 
 ## Active claims
 
