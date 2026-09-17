@@ -1,0 +1,7 @@
+H=trivial         |D_n| n=1..6: [1, 2, 4, 9, 23, 65]  tree pairs <= 7 leaves: 197 in H, 19218 not in H;  failures: 0
+H=F               |D_n| n=1..6: [1, 2, 3, 4, 5, 6]  tree pairs <= 7 leaves: 19415 in H, 0 not in H;  failures: 0
+H=slope1_at_0     |D_n| n=1..6: [1, 2, 4, 7, 11, 16]  tree pairs <= 7 leaves: 5097 in H, 14318 not in H;  failures: 0
+H=stab_1/3        |D_n| n=1..6: [1, 2, 4, 8, 14, 22]  tree pairs <= 7 leaves: 3127 in H, 16288 not in H;  failures: 0
+H=id_on_[1/2,1]   |D_n| n=1..6: [1, 2, 4, 8, 17, 40]  tree pairs <= 7 leaves: 2381 in H, 17034 not in H;  failures: 0
+x0^i(J_0) = [2^-(i+2), 2^-(i+1)] for i<6: ok
+ALL CHECKS PASSED
