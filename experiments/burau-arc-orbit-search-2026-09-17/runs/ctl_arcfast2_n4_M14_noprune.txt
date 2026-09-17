@@ -1,0 +1,15 @@
+m=1 leaves=0 hits=0
+m=2 leaves=16 hits=0
+m=3 leaves=30 hits=0
+m=4 leaves=74 hits=0
+m=5 leaves=116 hits=0
+m=6 leaves=178 hits=0
+m=7 leaves=294 hits=0
+m=8 leaves=442 hits=0
+m=9 leaves=530 hits=0
+m=10 leaves=794 hits=0
+m=11 leaves=1038 hits=0
+m=12 leaves=1226 hits=0
+m=13 leaves=1672 hits=0
+m=14 leaves=2074 hits=0
+n=4 M=14 shards=[0,28) of 28 nodes=188786 total_hits=0
