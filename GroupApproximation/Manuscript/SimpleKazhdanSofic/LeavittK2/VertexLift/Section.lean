@@ -15,8 +15,8 @@ index `last`.  For `g = [[H, 0], [b, 1]] ∈ J` put
 * `projection_comp_sectionJ`: `projection ∘ sectionJ = subtype`.  It follows from
   `projection ℓ(H) = [[H, 0], [0, 1]]`, `projection x(b) = [[1, 0], [b, 1]]` and
   `padHom_mul_rowMat`.
-* `sectionJ_eq_rowVec_mul_liftGL`: the lane's form `x_last(b') · ℓ(H)`.  Here `b' = b H⁻¹` is the
-  bottom row of `[[H, 0], [b', 1]]`-type coordinates `j(b', H) = [[1, 0], [b', 1]] · [[H, 0], [0, 1]]`.
+* `sectionJ_eq_rowVec_mul_liftGL`: the lane's form `x_last(b') · ℓ(H)` with `b' = b H⁻¹`, matching
+  the factorization `g = [[1, 0], [b', 1]] · [[H, 0], [0, 1]]`.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift
@@ -82,7 +82,7 @@ theorem projection_comp_sectionJ
     (h : EndpointInterfaces.BinaryLeavittStabKernelThreeTrivialStatement)
     (hrow : RowVecStabConjStatement) :
     ((elementaryGroup (Fin 4) 𝓛).subtype.comp (projection (I := Fin 4) (R := 𝓛))).comp
-        (sectionJ h hrow) = Criterion.vertexStab.subtype :=
+        (sectionJ h hrow) = (Criterion.vertexStab).subtype :=
   MonoidHom.ext fun g => projection_sectionJ h hrow g
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift.projection_comp_sectionJ
@@ -95,7 +95,7 @@ theorem exists_vertexSection_of_rowVecStabConj
     (hrow : RowVecStabConjStatement) :
     ∃ σ : Criterion.vertexStab →* St 4 𝓛,
       ((elementaryGroup (Fin 4) 𝓛).subtype.comp (projection (I := Fin 4) (R := 𝓛))).comp σ =
-          Criterion.vertexStab.subtype ∧
+          (Criterion.vertexStab).subtype ∧
         ∀ g, σ g = liftGL h (blockUnits g) * rowVec (bottomRow g) :=
   ⟨sectionJ h hrow, projection_comp_sectionJ h hrow, sectionJ_apply h hrow⟩
 

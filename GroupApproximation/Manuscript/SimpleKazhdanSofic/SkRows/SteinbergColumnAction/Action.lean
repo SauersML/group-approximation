@@ -26,6 +26,8 @@ open GroupApproximation.BooneHigman.SteinbergBasic
 open GroupApproximation.SimpleKazhdanSofic.SkRows.PaddedCentrality
 open scoped Matrix
 
+section Action
+
 variable {m : ℕ} {R : Type*} [Ring R]
 
 theorem colProd_eq_list (v : Fin m → R) :

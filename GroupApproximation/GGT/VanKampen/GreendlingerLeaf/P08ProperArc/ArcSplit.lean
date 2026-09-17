@@ -204,3 +204,18 @@ theorem alpha_mem_of_mem_invDarts {l : List X.toCombMap.Dart} {d : X.toCombMap.D
   exact List.mem_reverse.mp he
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.iff_of_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.darts_eq_drop_take
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.exists_prefix
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.exists_prefix_of_suffix
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.not_mem_of_nodup_mid
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.not_mem_of_nodup_snd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.not_mem_of_nodup_fst
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.isWalkFromTo_of_noncrossing
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.targetBoundaryDarts_none
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.closedWalk_of_isClosedDartWalk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem_invDarts_of_alpha_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.alpha_mem_of_mem_invDarts

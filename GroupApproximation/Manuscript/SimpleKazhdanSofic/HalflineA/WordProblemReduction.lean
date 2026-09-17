@@ -45,14 +45,20 @@ theorem allOnes_eq_true_iff (A : List ℕ) : allOnes A = true ↔ ∀ a ∈ A, a
     rw [show allOnes (a :: A) = (decide (a = 1) && allOnes A) from rfl, Bool.and_eq_true, decide_eq_true_eq, ih,
       List.forall_mem_cons]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.allOnes_eq_true_iff
+
 theorem primrec_allOnes : Primrec allOnes := by
   have hh : Primrec₂ fun (_ : List ℕ) (q : ℕ × Bool) => decide (q.1 = 1) && q.2 :=
     (Primrec.and.comp (PrimrecPred.decide (Primrec.eq.comp (Primrec.fst.comp Primrec.snd) (Primrec.const 1)))
       (Primrec.snd.comp Primrec.snd)).to₂
   exact (Primrec.list_foldr Primrec.id (Primrec.const true) hh).of_eq fun _ => rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.primrec_allOnes
+
 theorem allOk_eq_allOnes (o : ℕ → ℕ) (L : List ℕ) : allOk o L = allOnes (L.map o) :=
   Bool.eq_iff_iff.2 (by rw [allOk_iff, allOnes_eq_true_iff, List.forall_mem_map])
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.allOk_eq_allOnes
 
 variable (ι : Type*) [Primcodable ι]
 
@@ -69,6 +75,8 @@ theorem primrec_halflineQueries : Primrec (halflineQueries ι) :=
   (Primrec.option_casesOn (Primrec.decode (α := List (Option ι × Bool))) (Primrec.const ([] : List ℕ))
     (primrec_codes.comp Primrec.snd).to₂).of_eq fun _ => rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.primrec_halflineQueries
+
 theorem primrec_halflineDecide : Primrec₂ (halflineDecide ι) := by
   have h1 : Primrec fun p : ℕ × List ℕ => (decode p.1 : Option (List (Option ι × Bool))) :=
     Primrec.decode.comp Primrec.fst
@@ -80,6 +88,8 @@ theorem primrec_halflineDecide : Primrec₂ (halflineDecide ι) := by
       (primrec_allOnes.comp (Primrec.snd.comp Primrec.fst))).to₂
   exact (Primrec.cond (Primrec.option_casesOn h1 (Primrec.const false) hg) (Primrec.const 1)
     (Primrec.const 0)).of_eq fun _ => rfl
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.primrec_halflineDecide
 
 theorem decideCode_eq_halflineDecide (o : ℕ → ℕ) (n : ℕ) :
     decideCode ι o n = halflineDecide ι n ((halflineQueries ι n).map o) := by
