@@ -160,3 +160,20 @@ ergodic p.m.p. action) marks the same frontier from the other side.
   no `SL_3(Z)`-invariant symplectic form exists on `Z^4`.  Hence
   `SL_3(Z)` does not embed in `Sp_4(Z)`, and the ISW subgroup fence does
   not reach `g = 2`.
+
+- **Theorem C on the parabolics: toll gone, radical data dead (2026-09-17,
+  swarm-0917-w4-nh-sp2g-llp).**
+  `amenable-by-virtually-free-twisted-crossed-products-are-ce` proves that
+  every `L^infty(X) x|_{sigma,c} P` with `P` amenable-by-virtually-free is
+  Connes embeddable (averaging over the kernel, then Brown--Dykema--Jung
+  Cor. 4.5).  So on `P_S` and `P_K` the ISW Theorem C moreover clause is
+  automatic, and Theorem C data there would refute this node through subgroup
+  permanence alone.
+  `sp4-parabolic-radical-theorem-c-data-dies` proves that such data never lives
+  on a subgroup `Lambda` of either radical, for any action.  The stabilizer
+  field splits into three cases: free (CFW), central `mZ` (the commutator with
+  the central element is a 1-cocycle on `P`, and relative (T) trivializes it),
+  and finite index (Shapiro, then finitely many Levi-invariant characters of
+  `H_2`).  What survives on parabolics is only the torsion-Levi residue:
+  `Lambda` with finite nontrivial Levi image of order `d <= 12` and `d`-torsion
+  classes killed by restriction to `Lambda cap R`.  This node stays OPEN.
