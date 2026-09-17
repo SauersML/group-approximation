@@ -109,7 +109,8 @@ so a witness that also fails cost one would settle
     `p > L^(|R|/c)`, so the same holds for `d(N^ab) = max_p d_p(N)`.
   - **Survivors.**
     - A Farber chain with linear growth at one of finitely many primes that is
-      neither profinitely cofinal nor a rapidly descending abelian `p`-series,
+      not `p`-Frattini closed (each member containing a member inside its
+      mod-`p` Frattini subgroup) and not a rapidly descending abelian `p`-series,
       for example Lackenby's subnormal (tau) chains.
     - On cofinal chains, generators forced by non-central chief factors of
       finite quotients of `Gamma_n`. These are twisted `H^1(Gamma_n;M)` for

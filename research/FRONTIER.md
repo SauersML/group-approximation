@@ -22415,12 +22415,12 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes [ESTABLISHED] In a Kazhdan group mod-p homology growth tends to zero along the profinite topology
+- 2026-09-17 · fpbs-fixed-price-counterexample-exists [OPEN] Some countable group has two free probability-preserving actions of different cost
 - 2026-09-17 · fpbs-expander-approximant-giant-data-is-glued-proof [COMPLETE] Sandwich finite connections between local connections and giant membership
 - 2026-09-17 · fpbs-expander-approximant-giant-data-is-glued [ESTABLISHED] Giant-component data of expander approximants sees only the glued connectivity law
 - 2026-09-17 · fpbs-benjamini-schramm-universal [OPEN] Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuniqueness interval
 - 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes-proof [COMPLETE] Shrink cocycle support through Frattini covers and coprime descents until it violates the Kazhdan support bound
-- 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes [ESTABLISHED] In a Kazhdan group mod-p homology growth tends to zero along the profinite topology
-- 2026-09-17 · fpbs-fixed-price-counterexample-exists [OPEN] Some countable group has two free probability-preserving actions of different cost
 - 2026-09-17 · permanence-closure-fg-simple-groups-are-sofic-proof [COMPLETE] Show the sofic-quotient invariant contains the sofic groups and survives each permanence operation
 - 2026-09-17 · permanence-closure-fg-simple-groups-are-sofic [ESTABLISHED] Every finitely generated simple group in the surjunctivity permanence closure is sofic
 

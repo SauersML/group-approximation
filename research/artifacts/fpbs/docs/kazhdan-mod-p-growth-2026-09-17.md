@@ -134,14 +134,15 @@ each finite index subgroup contains a normal one. That set is such a family.
 - `d_p(pi A) >= c[G:A]`;
 - `[G:A] > (u^2+u)/|R|`;
 - `K_A` carries `u` cocycles representing independent classes in `H^1(K_A;F_p)`
-  whose union of supports is a fraction `sigma` of the 1-cells.
+  whose union of supports is a fraction `sigma` of the 1-cells;
+- `pi A` contains a member of `F`.
 
 The first good subgroup: pick `N` in `F` of index above `(u^2+u)/|R|` and above
 `u/c`.
 - Such `N` exists. For any member `N_0`, `d_p(N_0) >= c[Gamma:N_0] > 0`, so the
   Frattini subgroup `[N_0,N_0]N_0^p` is proper.
-- By cofinality it contains a member, of index at least `p[Gamma:N_0]`. So
-  member indices are unbounded.
+- By cofinality (or by Frattini closure, see below) it contains a member, of
+  index at least `p[Gamma:N_0]`. So member indices are unbounded.
 
 Put `A = pi^(-1)(N)`. Take any `u` independent classes (`d_p(N) >= c[G:A] > u`),
 with `sigma <= 1`.
@@ -163,7 +164,8 @@ most `theta sigma`.**
    inside `V` with support fraction at most `theta sigma`. A basis of `W`
    represents `u` independent classes on `K_B`.
 4. *Coprime descent.* By cofinality, pick `N` in `F` with `N` contained in
-   `Phi`. Let `P` be a Sylow `p`-subgroup of `Phi/N`, `A'_Gamma` its preimage in
+   `Phi`. (Frattini closure also suffices: `pi A` contains a member `N_0`, and
+   `Phi_p` is monotone, so `Phi` contains `Phi_p(N_0)`, which contains a member.) Let `P` be a Sylow `p`-subgroup of `Phi/N`, `A'_Gamma` its preimage in
    `Phi`, and `A' = pi^(-1)(A'_Gamma)`. Then `[B:A'] = [Phi:A'_Gamma]` is
    coprime to `p`. By (Tr), pulling `W` back to `K_(A')` gives `u` cocycles
    representing independent classes, with support fraction at most
@@ -172,7 +174,8 @@ most `theta sigma`.**
    `A'_Gamma`, with index `p^k = |P|`. So
    `d_p(A'_Gamma) >= 1 + (d_p(N)-1)/p^k >= 1 + (c[Gamma:N]-1)/p^k
    = c[Gamma:A'_Gamma] + 1 - p^(-k) >= c[G:A']`.
-   Also `[G:A'] >= [G:A]`, so `A'` is good.
+   Also `[G:A'] >= [G:A]`, and `A'_Gamma` contains the member `N`. So `A'` is
+   good.
 
 **Step 3: contradiction.** Iterate Step 2 `m` times, with `theta^m < eps`. This
 gives a finite index subgroup `A_m` of `G` and a nonzero class on `K_(A_m)`
@@ -181,6 +184,20 @@ represented by a cocycle whose support is at most `theta^m` times the number of
 
 Only finitely many steps are used, about `log(1/eps)/log(1/theta)`, which is of
 order `p^u log(4|X|/kappa^2)`.
+
+### Generalisation: Frattini-closed families
+
+The proof uses cofinality only to find a member inside `Phi_p(pi A)` for
+subgroups `pi A` that already contain a member. So Theorem B holds for any family
+`F` of finite index normal subgroups of `Gamma` that is *`p`-Frattini closed*:
+every `N` in `F` contains some `N'` in `F` with `N'` contained in `[N,N]N^p`.
+Profinitely cofinal families and pro-`p`-cofinal normal families are special
+cases. So is every normal chain with `Gamma_(n+1)` contained in
+`[Gamma_n,Gamma_n]Gamma_n^p`, whatever the non-`p` parts of its successive
+quotients.
+
+**Theorem B (general form).** A Kazhdan group has no `p`-Frattini closed family
+of finite index normal subgroups with `d_p(N) >= c[Gamma:N]` for all members.
 
 ### Calibration
 
@@ -198,7 +215,7 @@ order `p^u log(4|X|/kappa^2)`.
 - **Lackenby's (tau) paper** (arXiv:math/0509036, Theorems 1.1, 1.3, 1.7). It
   builds, in groups whose pro-`p` completion has exponential subgroup growth,
   nested subnormal `p`-chains with linear mod-`p` growth and (tau). Such chains
-  have index-`p` steps and are not closed under Frattini subgroups. Step 2.4
+  have index-`p` steps and are not `p`-Frattini closed. Step 2.4
   needs a member inside `Phi(pi A)`, so those chains are outside Theorem B's
   hypothesis, and outside Theorem A's too, since they are not abelian series
   with rapid descent. No contradiction.
@@ -241,9 +258,11 @@ of a Kazhdan group, linear growth of `d_p` can occur only for primes
 A homological certificate for `fpbs-kazhdan-positive-rank-gradient` must avoid
 Theorems A, B and Corollary B'. What remains is one of the following.
 
-1. **A non-cofinal Farber chain with linear growth at a fixed prime.** The
-   chain is neither profinitely cofinal (Theorem B) nor an abelian `p`-series
-   with rapid descent (Theorem A). An example would be a Farber chain inside a
+1. **A Farber chain with linear growth at one of finitely many primes that is
+   not `p`-Frattini closed.** Either the chain is not normal, or its members
+   form no `p`-Frattini closed family (Theorem B, general form). In addition it
+   is not an abelian `p`-series with rapid descent (Theorem A). The Hadamard bound of
+   Corollary B' leaves only primes `p <= L^(|R|/c)`. An example would be a Farber chain inside a
    pro-`p`-like quotient with index-`p` subnormal steps, as in Lackenby's (tau)
    chains. For `Gamma` Kazhdan such chains may exist, for example when the
    pro-`p` completion has exponential subgroup growth, as for Ershov's

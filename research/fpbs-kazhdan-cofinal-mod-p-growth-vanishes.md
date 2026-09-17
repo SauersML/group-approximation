@@ -20,6 +20,12 @@ Equivalently, no family of finite index normal subgroups with
 `d_p(Gamma_n)/[Gamma:Gamma_n] -> 0` along every nested normal chain whose
 boundary action is the profinite completion.
 
+**General form.** The same holds for every *`p`-Frattini closed* family `F` of
+finite index normal subgroups, meaning each `N` in `F` contains a member inside
+`[N,N]N^p`. No such family has `d_p(N) >= c[Gamma:N]` for all members.
+Profinitely cofinal families and normal chains with
+`Gamma_(n+1) <= [Gamma_n,Gamma_n]Gamma_n^p` are special cases.
+
 **All primes at once.** Also, for every `c > 0` there is a finite index `M` with
 `d(N^ab) < c[Gamma:N]` for every finite index normal `N` contained in `M`.
 Here `d(N^ab) = max_p d_p(N)` is the rank of the finite abelianization. The
@@ -34,5 +40,5 @@ abelianization count at any prime or combination of primes. The generators
 must be forced by non-central chief factors of finite quotients of `Gamma_n`:
 twisted `H^1(Gamma_n;M)` for nontrivial modules `M`, or non-abelian crowns.
 Otherwise they come from `d(Gamma_n)` exceeding the profinite rank. A chain-based homological certificate must use a
-Farber chain that is neither profinitely cofinal nor an abelian `p`-series with
-rapid descent.
+Farber chain that is not `p`-Frattini closed and is not an abelian `p`-series
+with rapid descent.
