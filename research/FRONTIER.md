@@ -22456,6 +22456,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · fpbs-benjamini-schramm-counterexample-exists [OPEN] Some nonamenable Cayley graph has coinciding percolation thresholds
 - 2026-09-17 · thompson-v-surjunctive [OPEN] Thompson's group V is surjunctive
 - 2026-09-17 · compressible-base-controlled-automata-are-strict-proof [COMPLETE] Transport configurations along the compression map and pad the uncovered clopen with zeros
 - 2026-09-17 · compressible-base-controlled-automata-are-strict [ESTABLISHED] Over a compressible Cantor base, point-controlled automata are strict, so a surjunctivity proof for V must use that the rule is constant along the Cantor coordinate
@@ -22463,7 +22464,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · higman-order-three-torsion-ratio-bound [ESTABLISHED] Higman tuples whose odd generators have order three obey a dimension-free linear word bound
 - 2026-09-17 · higman-hs-word-coefficient-exceeds-thirty-eight-proof [COMPLETE] Replay two committed integer Cayley witnesses in exact Q(i) arithmetic
 - 2026-09-17 · higman-hs-word-coefficient-exceeds-thirty-eight [ESTABLISHED] A rational six-dimensional Higman tuple rules out coefficient thirty-eight, while the trivial three-cycle already exceeds ten
-- 2026-09-17 · tits-independence-amalgams-force-self-product-edge-groups-proof [COMPLETE] Disjointly supported conjugates of the two independence factors nest inside each other
 
 ## Active claims
 
