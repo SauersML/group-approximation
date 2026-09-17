@@ -32,7 +32,7 @@ variable (k : Type*) [Field k]
 abbrev pIdeal : TwoSidedIdeal (CohnTwo k) := TwoSidedIdeal.span {cohnP k}
 
 theorem pIdeal_le_ker : pIdeal k ≤ TwoSidedIdeal.ker (toLeavitt k) := by
-  rw [TwoSidedIdeal.span_le]
+  refine TwoSidedIdeal.span_le.mpr ?_
   intro x hx
   rw [Set.mem_singleton_iff] at hx
   subst hx

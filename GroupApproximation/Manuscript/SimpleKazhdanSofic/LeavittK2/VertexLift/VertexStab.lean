@@ -104,7 +104,8 @@ theorem one_castSucc_castSucc (i j : Fin 3) :
     (1 : Matrix (Fin 4) (Fin 4) 𝓛) i.castSucc j.castSucc = (1 : Matrix (Fin 3) (Fin 3) 𝓛) i j := by
   by_cases hij : i = j
   · rw [hij, Matrix.one_apply_eq, Matrix.one_apply_eq]
-  · rw [Matrix.one_apply_ne (fun h => hij (Fin.castSucc_inj.mp h)), Matrix.one_apply_ne hij]
+  · have hne : i.castSucc ≠ j.castSucc := fun h => hij (Fin.castSucc_inj.mp h)
+    rw [Matrix.one_apply_ne hne, Matrix.one_apply_ne hij]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift.one_castSucc_castSucc
 
