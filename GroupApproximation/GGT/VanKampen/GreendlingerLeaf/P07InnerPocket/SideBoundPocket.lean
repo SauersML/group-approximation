@@ -39,8 +39,9 @@ theorem sideBound_invDarts_eq_nil_iff {k : Fin X.rCellCount} (A : CyclicArc (cel
   constructor
   · intro h
     have hlen := congrArg List.length h
-    simpa only [invDarts, List.length_map, List.length_reverse, A.darts_length,
-      List.length_nil] using hlen
+    simp only [invDarts, List.length_map, List.length_reverse, A.darts_length,
+      List.length_nil] at hlen
+    exact hlen
   · intro h
     exact List.eq_nil_of_length_eq_zero
       (by simp only [invDarts, List.length_map, List.length_reverse, A.darts_length, h])
