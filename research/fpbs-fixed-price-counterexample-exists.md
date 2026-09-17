@@ -118,3 +118,36 @@ so a witness that also fails cost one would settle
       with `log|Epi(Gamma_n,S)|` linear in the index. Neither is bounded by
       `d_p` of a subgroup of comparable index.
     - On cofinal chains, `d(Gamma_n)` exceeding the profinite rank.
+* **Candidate-class audit, and finite-cost normal subgroups with positive
+  rank gradient** (swarm-0917 w4 heretic, 2026-09-17). Note:
+  `research/artifacts/fpbs/normal-finite-cost-rank-gradient-2026-09-17.md`.
+  - *Groups with varying `l2` Betti numbers* die at the first step: Gaboriau's
+    `beta_n^(2)(R_alpha) = beta_n^(2)(G)` holds for every free action, so
+    every `l2` invariant gives the same bound for all actions.
+    *`SL_3(Z) x F`* dies because products of infinite groups have fixed price
+    one.
+    *Tarski monsters* are starved, not killed. They have no finite quotients
+    and no infinite normal or amenable subgroups, so no known action-dependent
+    lower bound on cost applies to them.
+  - The only separating machine is a cheap-action theorem against the
+    Abert--Nikolov profinite identity. New instance, ESTABLISHED
+    conditionally: `fpbs-normal-finite-cost-rankgradient-counterexample-reduction`.
+    A finitely generated `G` with an infinite normal `N` of infinite index and
+    `cost(N) < ∞`, together with a positive-gradient normal chain with trivial
+    intersection, refutes fixed price.
+  - Kill, ESTABLISHED: `fpbs-bounded-cost-normal-unbounded-chain-zero-rank-gradient`,
+    through `fpbs-quotient-split-larger-kernel-cost-one`. The quotient-split
+    cost-one theorem is extended to factor kernels `M ⊇ N`. As a result, if
+    `N` has bounded action cost and `[G:G_nN]` is unbounded, then `RG = 0`,
+    because the boundary action factors freely onto `lim G/G_nN`.
+  - Survivors:
+    - (S1) `N` has finite infimal cost but unbounded action costs, so `N`
+      itself is a counterexample.
+    - (S2) the chain has bounded image in `G/N`. Then the ergodic profinite
+      action of `N` along `(N∩G_n)` costs at least `1 + a·RG`. This is the
+      Abert--Nikolov fibred 3-manifold shape and the ergodic-restriction case
+      of `fpbs-normal-subgroup-bounded-cost-fixed-price-one`.
+    Next falsifiable step: decide whether `RG > 0` is possible for an
+    `N`-surjective normal chain. Congruence chains in a fibred arithmetic
+    3-manifold group are the test case. There the boundary action has no free
+    factor onto an infinite quotient, so Theorem A' gives nothing.
