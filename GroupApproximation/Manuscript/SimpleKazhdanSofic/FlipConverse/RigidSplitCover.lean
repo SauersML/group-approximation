@@ -6,21 +6,21 @@ import GroupApproximation.Meta.AxiomGuard
 
 Census row `2e7c7d9ab149` (tex: "for topological full groups the converse holds").
 
-Let `T`, `S` be minimal aperiodic homeomorphisms of Cantor spaces and `Φ : [[T]] ≃* [[S]]` such
-that `Φ` and `Φ⁻¹` carry pairs of elements with disjoint moved sets to pairs with disjoint moved
-sets.  For a clopen `U ⊆ X` there is a clopen `V ⊆ Y` with `Φ F_U ⊆ F_V`, `Φ F_{Uᶜ} ⊆ F_{Vᶜ}`
-(`exists_split_of_disjoint`):
+Let `T`, `S` be minimal aperiodic homeomorphisms of Cantor spaces and
+`Φ : [[T]] ≃* [[S]]` such that `Φ` and `Φ⁻¹` carry pairs of elements with disjoint moved sets
+to pairs with disjoint moved sets.  For a clopen `U ⊆ X` there is a clopen `V ⊆ Y` with
+`Φ F_U ⊆ F_V`, `Φ F_{Uᶜ} ⊆ F_{Vᶜ}` (`exists_split_of_disjoint`):
 
-1. *Cover.*  Each `x ∈ U` is moved by some `f ∈ F_U` (`exists_supportedIn_apply_ne`); moved sets
-   are open (`isClopen_movedSet`) and `U` is compact, so finitely many `f_i ∈ F_U` have moved sets
-   covering `U`.  Put `V = ⋃ movedSet (Φ f_i)`, clopen.
-2. `Φ F_{Uᶜ} ⊆ F_{Vᶜ}`: for `k ∈ F_{Uᶜ}`, `movedSet k` is disjoint from `movedSet f_i ⊆ U`, hence
-   `movedSet (Φ k)` is disjoint from every `movedSet (Φ f_i)`.
-3. `Φ F_U ⊆ F_V`: let `f ∈ F_U` and `N = movedSet (Φ f) \ V` (open).  If `σ ∈ [[S]]` is supported
-   in `N`, then `movedSet σ` is disjoint from each `movedSet (Φ f_i) ⊆ V`, so `g = Φ⁻¹ σ` has
-   moved set disjoint from each `movedSet f_i`, hence from `U`: `g ∈ F_{Uᶜ}` commutes with `f`,
-   and `σ` commutes with `Φ f`.  By `supportedIn_compl_of_forall_commute`, `Φ f` fixes `N`
-   pointwise; as `N ⊆ movedSet (Φ f)`, `N = ∅`.
+1. *Cover.*  Each `x ∈ U` is moved by some `f ∈ F_U` (`exists_supportedIn_apply_ne`); moved
+   sets are open (`isClopen_movedSet`) and `U` is compact, so finitely many `f_i ∈ F_U` have
+   moved sets covering `U`.  Put `V = ⋃ movedSet (Φ f_i)`, clopen.
+2. `Φ F_{Uᶜ} ⊆ F_{Vᶜ}`: for `k ∈ F_{Uᶜ}`, `movedSet k` is disjoint from `movedSet f_i ⊆ U`,
+   hence `movedSet (Φ k)` is disjoint from every `movedSet (Φ f_i)`.
+3. `Φ F_U ⊆ F_V`: let `f ∈ F_U` and `N = movedSet (Φ f) \ V` (open).  If `σ ∈ [[S]]` is
+   supported in `N`, then `movedSet σ` is disjoint from each `movedSet (Φ f_i) ⊆ V`, so
+   `g = Φ⁻¹ σ` has moved set disjoint from each `movedSet f_i`, hence from `U`: `g ∈ F_{Uᶜ}`
+   commutes with `f`, and `σ` commutes with `Φ f`.  By `supportedIn_compl_of_forall_commute`,
+   `Φ f` fixes `N` pointwise; as `N ⊆ movedSet (Φ f)`, `N = ∅`.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
@@ -66,10 +66,12 @@ theorem exists_split_of_disjoint {X Y : Type*} [TopologicalSpace X] [Topological
     have hfix : SupportedIn ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y)
         (movedSet ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y) ∩
           (⋃ i ∈ t, movedSet ((Φ i.1 : topologicalFullGroup S) : Y ≃ₜ Y))ᶜ)ᶜ := by
-      refine supportedIn_compl_of_forall_commute (h := ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y))
-        hS hN fun σ hσ hσN => ?_
-      have hgU : SupportedIn ((Φ.symm ⟨σ, hσ⟩ : topologicalFullGroup T) : X ≃ₜ X) Uᶜ := by
-        refine supportedIn_iff_movedSet_subset.2 fun x hx => (Set.mem_compl_iff _ _).2 fun hxU => ?_
+      refine supportedIn_compl_of_forall_commute
+        (h := ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y)) hS hN fun σ hσ hσN => ?_
+      have hgU :
+          SupportedIn ((Φ.symm ⟨σ, hσ⟩ : topologicalFullGroup T) : X ≃ₜ X) Uᶜ := by
+        refine supportedIn_iff_movedSet_subset.2 fun x hx =>
+          (Set.mem_compl_iff _ _).2 fun hxU => ?_
         obtain ⟨i, hi, hxi⟩ := Set.mem_iUnion₂.1 (ht hxU)
         have hd : Disjoint (movedSet ((Φ i.1 : topologicalFullGroup S) : Y ≃ₜ Y))
             (movedSet σ) := by
@@ -79,7 +81,8 @@ theorem exists_split_of_disjoint {X Y : Type*} [TopologicalSpace X] [Topological
         have hd' := hΦs (Φ i.1) ⟨σ, hσ⟩ hd
         rw [MulEquiv.symm_apply_apply] at hd'
         exact Set.disjoint_left.1 hd' hxi hx
-      have hsub : f * Φ.symm ⟨σ, hσ⟩ = Φ.symm ⟨σ, hσ⟩ * f := Subtype.ext (hf.commute_of_compl hgU)
+      have hsub : f * Φ.symm ⟨σ, hσ⟩ = Φ.symm ⟨σ, hσ⟩ * f :=
+        Subtype.ext (hf.commute_of_compl hgU)
       have hcomm' : Φ (f * Φ.symm ⟨σ, hσ⟩) = Φ (Φ.symm ⟨σ, hσ⟩ * f) := by
         rw [hsub]
       rw [map_mul, map_mul, MulEquiv.apply_symm_apply] at hcomm'
@@ -89,7 +92,8 @@ theorem exists_split_of_disjoint {X Y : Type*} [TopologicalSpace X] [Topological
     have hy' : ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y) y ≠ y := hy
     exact hy' (hfix y (Set.notMem_compl_iff.2 ⟨hy, hyV⟩))
   · intro k hk
-    refine supportedIn_iff_movedSet_subset.2 fun y hy => (Set.mem_compl_iff _ _).2 fun hyV => ?_
+    refine supportedIn_iff_movedSet_subset.2 fun y hy =>
+      (Set.mem_compl_iff _ _).2 fun hyV => ?_
     obtain ⟨i, -, hyi⟩ := Set.mem_iUnion₂.1 hyV
     have hd : Disjoint (movedSet ((i.1 : topologicalFullGroup T) : X ≃ₜ X))
         (movedSet (k : X ≃ₜ X)) := by

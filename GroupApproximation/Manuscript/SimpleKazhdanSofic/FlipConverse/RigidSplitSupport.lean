@@ -34,8 +34,8 @@ theorem supportedIn_iff_movedSet_subset {g : X ≃ₜ X} {U : Set X} :
     by_contra hne
     exact hxU (hsub hne)
 
-theorem isClopen_movedSet {T g : X ≃ₜ X} (hT : IsAperiodic T) (hg : g ∈ topologicalFullGroup T) :
-    IsClopen (movedSet g) := by
+theorem isClopen_movedSet {T g : X ≃ₜ X} (hT : IsAperiodic T)
+    (hg : g ∈ topologicalFullGroup T) : IsClopen (movedSet g) := by
   obtain ⟨n, hn, hgn⟩ := mem_topologicalFullGroup.1 hg
   have hset : movedSet g = n ⁻¹' ({0}ᶜ : Set ℤ) := by
     ext x
