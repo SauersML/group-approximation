@@ -120,3 +120,138 @@ argument.
    genuinely different proof has to produce a maximal kernel in R1, R2 or R3,
    and must therefore exploit a failure of one of the three properties for
    this specific non-quasi-finite ring.
+7. **Transplant stability to certify finite normal generation
+   (swarm-0917, stability-approximation).** *Dead as a class.*
+   By [[fp-simple-groups-are-isolated]] and Cornulier--Guyot--Pitsch, a
+   maximal `M` is finitely normally generated exactly when `Gamma/M` is
+   isolated. The transplant tries to pick `M` so that `Gamma/M` is stable
+   for a metric class `C`, and to read finitely many relators off the
+   stability. `C` is Hilbert--Schmidt unitaries, Hamming permutations or
+   operator norm. The obstruction is the stability invariant of the simple
+   quotient, and it dies at the step "`C`-stable, hence finitely normally
+   generated".
+
+   - *Invariant.* Let `L` be a finitely generated infinite simple group, for
+     example any `Gamma/M`. `L` has no nontrivial finite-dimensional unitary
+     representation: its image would be a finitely generated linear group,
+     hence residually finite (Malcev). So
+     [[infinite-simple-group-hs-stable-iff-nonhyperlinear]] and
+     [[infinite-simple-group-permutation-stable-iff-nonsofic]] apply with no
+     presentation hypothesis. `L` is HS-stable iff it is not hyperlinear,
+     and permutation-stable iff it is not sofic. The operator-norm case is
+     the same argument: an asymptotic representation that is not trivial in
+     the limit is injective on `L`, and stability would give a separating
+     family of genuine finite-dimensional representations. That contradicts
+     residual finiteness exactly as in
+     [[hyperlinear-flexibly-hs-stable-group-is-residually-finite]].
+     So `C`-stability of a simple quotient is a pure approximation invariant
+     of its isomorphism type and carries no presentation data.
+   - *Where every member dies.* Every finitely generated group is a quotient
+     of a finitely presented one, so the step would prove that every
+     finitely generated, infinite, simple, non-`C`-approximable group is
+     finitely presented. This fails whenever a non-`C`-approximable
+     countable group `N` exists. The groups `N x B` range over B. H.
+     Neumann's continuum of two-generator groups `B`. Each one sits in a
+     two-generator simple group by
+     [[countable-group-embeds-in-two-generator-simple-group]], and in a
+     Kazhdan one by [[countable-group-embeds-in-fg-simple-kazhdan-group]].
+     A finitely generated group has only countably many finitely generated
+     subgroups, so these envelopes have continuum many isomorphism types.
+     Only countably many of them are finitely presented. All are
+     non-`C`-approximable, since approximability passes to subgroups, and
+     hence all are `C`-stable. If no such `N` exists, no infinite simple
+     quotient is `C`-stable and the premise is never met. Adding property
+     (T) does not rescue the step, by the Kazhdan envelopes. On a
+     `C`-approximable quotient the premise fails outright.
+   - *What survives in regime R4.* The approximation type of a witness is
+     fixed by its ring type, not by a presentation. Let `R = U/I` be simple.
+     The sandwich gives `p (rq) = 1` with `r = 1-g`, and there are two cases.
+     - `(rq)p = 1`. Then `p` is a unit and `r` is right invertible, and
+       direct finiteness makes `r` a unit.
+     - `R` has the nonzero defect `1-rqp`. In positive characteristic,
+       [[finite-additive-order-one-sided-defects-are-mf-invisible]] puts
+       `e_12(1-rqp)` in `Rad_MF(E_4(R))`. Its image in the simple group
+       `PE_4(R)` is nontrivial because `e_12(x)` commutes with `e_21(1)`
+       only for `x = 0`. So `PE_4(R)` has no nontrivial homomorphism to a
+       norm matrix corona.
+
+     The same argument applies to any one-sided defect. So in positive
+     characteristic an MF witness `PE_4(R)` forces `R` to be directly finite,
+     with `1-g` and `p` units. In characteristic zero the analogous
+     conclusion needs MF of `E_N(R)` for every `N`, by
+     [[mf-elementary-groups-force-stably-finite-simple-rings]], which a
+     witness does not supply. That is a constraint on the ring host of
+     [[ck-maximal-kernel-four-regimes]], not a route to finite presentation.
+     The approximation family can only screen ring types, and cannot supply
+     the missing relators.
+8. **Certify the kernel by measure, entropy, genericity or a limit
+   (swarm-0917, entropy-measure).** *Dead as a class.*
+   The class covers four kinds of argument.
+   - Put a Borel probability measure on the proper normal subgroups of
+     `Gamma`. Candidates are invariant or stationary random subgroups pushed
+     to normal cores, Glasner--Weiss limits under property (T), laws of
+     random quotients, or limits of counting measures on finite
+     approximations. Then argue that a positive-measure or positive-entropy
+     set of maximal kernels has the property.
+   - Argue that a Baire-generic maximal kernel in some closed family has it.
+   - Build `M` as the Chabauty limit of a construction sequence, such as
+     iterated small-cancellation or random-quotient towers.
+   - Use conjugation dynamics on normal subgroups.
+
+   - *Invariant.* By [[fng-maximal-kernels-are-isolated-proper-normal-points]],
+     a maximal `M` is finitely normally generated exactly when `M` is an
+     isolated point of the Chabauty space `N(Gamma)`. The isolated points
+     form a countable set. Isolation is a topological property that no
+     measure detects.
+   - *Where every member dies.* The step is "positive measure, entropy or
+     genericity, or being a limit, implies finitely normally generated". A
+     finitely normally generated maximal kernel in the support of `mu` is
+     an atom of `mu`, so every non-atomic measure gives these kernels mass
+     zero. A maximal kernel that is a limit of other normal subgroups is not
+     finitely normally generated. A closed family with no isolated points
+     contains no such kernel. The dynamics carries no information:
+     conjugation acts trivially on `N(Gamma)`, every measure on it is
+     invariant and stationary, and the ergodic ones are Dirac masses. So an
+     ergodic IRS on normal subgroups names one kernel and certifies nothing
+     about it, and Glasner--Weiss closedness under (T) is vacuous here.
+   - *Why the atom branch is no survivor.* An atom certifies nothing by
+     itself. By [[kazhdan-hyperbolic-continuum-non-fng-maximal-kernels]], a
+     Dirac mass sits on a non-isolated maximal kernel just as easily. To
+     prove that an atom is isolated one must exhibit a finite `F` with
+     `<<F>>` maximal, which is this claim with no gain.
+   - *Consequence for method.* Any proof must name its kernel by finitely
+     many relators. In regime R4 of [[ck-maximal-kernel-four-regimes]] that
+     means finitely many ideal generators. Probabilistic or ergodic input can
+     only screen candidate relator sets, and screening must then be closed
+     by a deterministic maximality proof.
+
+9. **Realise regime R4 by a square-module ring host over an arbitrary base
+   (swarm-0917, linear-characteristic).** *Dead for every host whose centre is
+   infinite. What survives is a sharper decomposition.*
+   - *The class.* It covers every witness in the sufficient branch of
+     [[square-module-ring-hosts-are-sandwich-ring-quotients]]: a finitely
+     presented simple `R ≅ R^d` (`d >= 2`) with `S <= R^x` and `PE_4(R)`
+     finitely presented and simple, whose centre is an infinite field. This
+     includes every characteristic `0` host (the centre contains `Q`) and
+     Leavitt-tensor hosts `B ⊗ L_K(1,d)` over an infinite `K`.
+   - *Invariant.* The central scalar subgroup `(Z(R)^x)^(d-1) I_4`. By
+     [[square-module-elementary-centre-is-central-units]] it lies in
+     `E_4(R)`, because scalars are invisible to `K_1` on a square module:
+     `[c] = d[c]`.
+   - *Where every member dies.* Clause (c) of
+     [[ck-sandwich-ring-has-fp-projective-simple-quotient]], "`Z(E_4)`
+     finitely generated", equivalently clause 2 of
+     [[projective-elementary-fp-kernel-criterion]]. The subgroup
+     `(k^x)^(d-1)` is not finitely generated for an infinite field `k`.
+   - *Survivor.* Square-module witnesses must be `F_q`-algebras with finite
+     centre. For `d = 2` the centre of `E_4(R)` is exactly `Z(R)^x`. So finite
+     presentation of `PE_4(R)` splits into two independent prerequisites:
+     `ker(St_4 -> E_4)` finitely normally generated, and `Z(R)^x` finitely
+     generated.
+   - *Where the premise of the Leavitt lane comes from.* Requiring `E_n`
+     itself to be simple forces `Z(R) = F_2`, so the `F_2` premise there is
+     forced.
+   - *What escapes.* Rings that are not square-module escape, for example
+     Dedekind-defect witnesses of R4 whose `K_1` detects scalars. A route
+     through Ara--Goodearl--Pardo (purely infinite simple rings with `[1]`
+     torsion in `K_0` are square-module) is not imported.

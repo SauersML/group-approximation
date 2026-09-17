@@ -1,0 +1,6 @@
+BASE z3 maxE=3 maxF=3 maxn=10: {'FREE': 6, 'FORCED': 6}
+BASE k2 maxE=4 maxF=3 maxn=10: {'FORCED': 55, 'FREE': 12}
+BASE z4 maxE=4 maxF=3 maxn=10: {'FREE': 34, 'FORCED': 33}
+BASE z5 maxE=4 maxF=3 maxn=10: {'FREE': 188, 'FORCED': 70}
+BASE z6 maxE=3 maxF=3 maxn=10: {'FREE': 303, 'FORCED': 129, 'ONE-REL-TF': 3}
+BASE s3 maxE=3 maxF=3 maxn=10: {'FORCED': 258, 'FREE': 177}

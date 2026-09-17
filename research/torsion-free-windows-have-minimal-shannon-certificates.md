@@ -15,6 +15,7 @@ artifacts:
   - experiments/promislow-shannon-windows-2026-09-17/rs_hw_seed7.txt
   - experiments/shannon-window-certificates-2026-09-17/shannon_lp.py
   - experiments/shannon-window-certificates-2026-09-17/random_scan.py
+  - experiments/shannon-kemperman-2026-09-17/kemperman_census.py
 ---
 **OPEN.** Let `G` be torsion-free and `(k, E, F, psi)` a configuration. Put `X = FE ∪ {1}` and `k log q = 1`.
 Then the linear program of the artifact, Section 2, has value `>= 1`. The program minimises
@@ -63,3 +64,14 @@ So for each finite data set it is one LP.
   - *Order-2 torsion does kill the method.* There are exact fakes on `(Z/2)^2` (7/9), `D_inf` (7/8) and `Z/7` (5/6); see `shannon-window-fakes-on-klein-and-infinite-dihedral-hosts`. `D_inf` contains `Z` with index 2, and every tested `Z` window certifies. So a proof cannot use only virtual torsion-freeness; it has to use torsion-freeness of the whole group. (Referees flagged that the tested census does not show that `Z` certifies every window.)
   - *Sharper frontier.* Among groups with torsion, fakes are known in every group except where every finite order is `m` or `2m` with the prime factors of `m` at least 11, and any two distinct involutions have a product of odd order. `Z × Z/2` shows no fake in 418 configurations: 338 exhaustive in the box `[-1,1] × Z/2` with `n <= 11`, and 80 random. A partial `Z/11` shape scan also shows none: 21 of 56 classes (`cps_z11.txt`). So the correct statement might be broader than torsion-free, and `Z × Z/2` is the test case.
   - *Still open.* No mechanism is known. All hosts are sofic, and `n <= 14`.
+- **Rank-condition prerequisite (swarm-0917-w4-pull-gs-1, 2026-09-17).** `window-shannon-certificates-force-rank-condition` (ESTABLISHED):
+  - a twisted linear profile over any field crossed product `K*N`, restricted to a finite window, is a feasible point of this LP with the same `Phi`;
+  - rank-condition failure passes to finite-index subgroups through `K*H ⊂ M_n(K*N)`;
+  - so this claim implies **(RC-vtf)**: every field crossed product over a group whose finitely generated subgroups are virtually torsion-free has the rank condition. This includes all finitely generated linear groups in characteristic 0;
+  - any witness of `some-field-crossed-product-fails-the-rank-condition` over such a group refutes this claim. Next test cases: `Q(x,y) ⋊ SL_3(Z)`, `F_p(x_g) ⋊ Γ` for Kazhdan lattices;
+  - by `virtually-hughes-free-field-crossed-products-are-stably-finite`, (RC-vtf) can fail only on groups outside the virtual Hughes-free class. Every host in the census is inside that class, so the census never tests this failure mode.
+- **Sumset census (swarm-0917-w4-pull-gs-1).** `experiments/shannon-kemperman-2026-09-17/kemperman_census.py`, over the cyclic census files:
+  - every fake has `|FE| <= |E| + |F| - 1`, and none is above the Kemperman bound that torsion-free groups obey;
+  - fakes at equality occur in `Z/5` and `Z/7`;
+  - the invariant is not hereditary strict saturation: `Z/5`, `E = {0,1,2}`, `F = {0,2,4}` is a fake without a strictly saturated sub-pair;
+  - in `Z × Z/5`, adding a far element to `E` keeps a fake with `|FE| >= |E| + |F|`. So "large sumset forces certification" fails once torsion is present, and a Kemperman-type route would have to use torsion-freeness beyond the sumset size.

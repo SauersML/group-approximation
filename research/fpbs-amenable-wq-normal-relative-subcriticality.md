@@ -86,3 +86,24 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   * The remaining premise is a critical finite-volume L2-type estimate. It
     holds on the tree with `S = B_3`, and has not been checked on any group of
     the class.
+* **Is this hole weaker than critical L2? Power improvement plus square-root law
+  (2026-09-17, `research/artifacts/fpbs-fibre-power-improvement-2026-09-17.md`).**
+  * **General tool.** `fpbs-normal-coset-fibre-mass-power-improvement`, for every
+    normal `N` below `p_c(N;G)`:
+    * every coset moment is at most the subgroup moment;
+    * hence `sigma_p(q) <= C_r P_p(o <-> Gamma_q)^(1-1/r)`;
+    * Grimmett's thinning then gives `sigma_p <= C sigma_(p')^s` with
+      `s < log p/log p'`.
+  * **On tree-projected graphs.** `fpbs-tree-projected-pu-l2-iff-square-root-law`
+    shows that `p_{2->2} = p_u` (Question Q of the fibre-mass artifact §5.2) is
+    equivalent to the non-strict square-root law
+    `sum_q P_p(o <-> Gamma_q)^(2+eps) < infinity` below `p_u`. Unconditionally,
+    `p_{2->2} >= sup_(p'<p_u) (p')^(max(r*(p'),2)/2)`.
+  * **Consequence.** Wherever the square-root law holds, this hole is equivalent
+    to critical L2 graph by graph. On tree-projected graphs no weaker target
+    exists unless `fpbs-tree-projected-square-root-fibre-law-below-pu` fails.
+  * **Where it stops.** That law is Hutchcroft--Pan's backscattering
+    `beta* >= 1/2`. With a central kernel, pairs keep their separation exactly.
+    But one child per fibre loses the height spread (`max_h` versus `sum_h`), and
+    rigid decorations give no symmetric separation walk for Kesten's bound. The
+    missing input is a flat pair lemma, recorded in that node.

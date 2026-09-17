@@ -125,6 +125,31 @@ is a special case of that claim.
   whatever the per-move losses are. The final Remove steps therefore need a
   lower bound on `p_u` that is not spectral, and no import on main supplies
   one. This is a decomposition, not a proof.
+* **Lossless two-path comparison, calibrated (2026-09-17, swarm-0917 w5)**
+  (`fpbs-lossless-move-comparison-fails-marginal-transfer`). This sharpens the
+  second attempt above. Open a new edge `{x, xt}` iff one of the `N`
+  edge-disjoint `S`-paths `x -> xu_i -> xt` is open, with no splitting of old
+  edges. The process has the same clusters as the old configuration, and its
+  new-edge marginal is `m_N(p) = 1 - (1-p^2)^N`. A lossless argument would give
+  `(LL) p_c(S) <= max(p_c(T), m_N^{-1}(p_c(T)))`.
+
+  **Where it dies:**
+  - **(LL) is false in general.** On `Z^2 -> ` triangular lattice (`N = 2`) it
+    predicts `p_c(Z^2) <= 0.4383`. For `p ∈ (0.4383, 1/2)` the process has
+    marginals above `p_c(tri) = 0.3473` but no infinite cluster (Kesten,
+    Wierman). So marginals, invariance, finite-range dependence and monotonicity
+    together do not transfer percolation.
+  - **Even granted, (LL) keeps exponent 2.** Since `m_N <= N M^2 phi_M`, (LL)
+    certifies a Remove step only when `p_c(T) < N p_u(T)^2`. It gains at most
+    the constant factor `N M^2` over the power-map window, and it never reaches
+    the residual band `N p_u(T)^2 <= p_c(T) <= p_u(T)` where a counterexample
+    must live.
+
+  So any proof of the Remove half through comparison of length-2 paths needs an
+  input that is neither a marginal bound nor a threshold comparison. Whether
+  (LL) holds on all nonamenable groups is untested beyond the tree-like `F_2`
+  move, where it holds (`1/3 <= 0.4626`), and by the second point it would not
+  decide this claim.
 
 Details for the first three attempts are in Section 4 of
 `research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md`. Details for

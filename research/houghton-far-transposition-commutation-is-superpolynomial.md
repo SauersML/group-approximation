@@ -33,3 +33,14 @@ pushing ray `1` outward from ray `2`.
   scheme tried reduces to this family recursively, with branching factor `>= 2`
   (Tower-of-Hanoi recursion). See the Attempts on
   `houghton-transposition-commutation-area-is-polynomial`.
+- 2026-09-17 (swarm-0917-w4-pull-z-5, reframing): ruled out for `n >= 6`. There
+  `Area(w_k) ≼ k^2 log k`
+  (`houghton-far-commutation-has-quadratic-log-area-for-six-rays`,
+  `research/artifacts/zp-houghton-pours-2026-09-17.md` §3), and even
+  `δ_(H_n) ≼ x^8 log x` (`houghton-groups-with-six-or-more-rays-have-polynomial-dehn`).
+  The Hanoi recursion breaks once a pour `λ_ac^m λ_cb^m` may be rerouted through
+  rays outside the relation: with two auxiliary rays, route changes split in half
+  with only a quadratic overhead. So a superpolynomial family can only exist for
+  `n ∈ {3,4,5}`. For those `n`, a lower bound would have to use the shortage of
+  auxiliary rays. Any 2-cochain or corridor argument must fail when two more rays
+  are added.

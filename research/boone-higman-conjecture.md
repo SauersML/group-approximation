@@ -262,6 +262,27 @@ not computably presented, so Higman's theorem does not apply to it;
 but then Higman destroys simplicity.  That route rotates between the
 conjecture's two halves without narrowing either.
 
+10. **The hereditary separating property of Attempt 7, named** (heretic lane
+    swarm-0917-w4-bh-heretic, 2026-09-17).
+    - *Result.* `boone-higman-iff-isolated-hosts-and-local-boone-higman`
+      (ESTABLISHED): the conjecture holds iff both
+      `every-decidable-group-embeds-in-an-isolated-group` and
+      `local-boone-higman-conjecture` hold.
+    - *The lemma.* `isolated-embedding-is-one-existential-sentence`: an
+      isolated `H` embeds in `S` iff `S` satisfies one existential sentence
+      `Σ_H`, built from a finite presentation and a finite discriminating set.
+    - *Consequence.* A counterexample is either a decidable group with no
+      isolated overgroup, or a finite system `(E, N)` with a decidable model and
+      no model in any finitely presented simple group.
+    - *Kills.* The other invariant classes in the counterexample brief die as
+      forced properties at named steps (`local-boone-higman-conjecture`,
+      Attempt 2):
+      - torsion-problem undecidability, because `2V` has undecidable torsion
+        problem;
+      - Dehn functions, killed on main;
+      - input finiteness type, because finite groups and `Z ≀ Z` lie in `V`.
+    - *Route.* `boone-higman-via-isolated-overgroup-and-local-boone-higman`.
+
 ## A strictly easier subproblem, unsolved
 
 If a maximal proper normal `M <| Gamma` could be chosen *recursively

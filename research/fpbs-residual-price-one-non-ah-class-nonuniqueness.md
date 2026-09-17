@@ -123,3 +123,24 @@ and nonamenable, and their amenable subgroups are all finite
   `p_c(I;G) = p_c(G)` for every infinite `I`, and every relative-gap route
   dies at "choose `I`". A single monster, if it has fixed price one, needs a
   non-relative argument.
+* **Non-relative: transfer gaps from hyperbolic approximants (swarm-0917, 2026-09-17).**
+  The single torsion members `B(m,N)` are direct limits of non-elementary
+  hyperbolic groups (`free-burnside-is-a-limit-of-hyperbolic-groups`), and
+  every approximant has a strict L2 gap. Established
+  `fpbs-direct-limit-certificates-add-no-slack`:
+  * along any surjective chain, `p_c(H_i)` increases to `p_c(Gamma)`;
+  * spectral DT certificates are monotone along the chain;
+  * `Gamma` has a certificate iff one finite datum `(S, p, n, c)` certifies
+    infinitely many approximants uniformly;
+  * if the limit is amenable, no datum certifies infinitely many.
+
+  The lamplighter truncations calibrate this (recorded, not claimed). They are
+  virtually free groups with `p_c < p_(2->2)`, converging to `Z/2 wr Z` with
+  `p_c = p_u`.
+
+  **Where it dies:** at `i -> infinity`. Per-approximant theorems (Hutchcroft,
+  Choi–Seo, `p_u = 1`) give `i`-dependent data. The uniform datum they would
+  need is literally the certificate on the limit. The only uniform input
+  available for `B(m,N)` is `rho(G_k) <= rho(B(m,N)) < 1`, which certifies only
+  `S = {o}`, above `1/(d rho)`. The spark M3 (artifact Section 7) records the
+  uniform-margin statement that would suffice.

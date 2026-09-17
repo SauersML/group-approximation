@@ -51,3 +51,12 @@ an element of infinite order, independent of the generator itself. The attempt d
 including hyperbolic one-relator groups and hyperbolic Kazhdan groups. There centralizers are cyclic, so a commutator
 `[s, c]` with `c` of infinite order forces `c` to be a power of the root of `s`. The `c`-orbit chain then runs along
 the `s`-line itself, and the recovered edge reappears among its own descendants.
+
+**2026-09-17 (swarm-0917-w5-fp-cycle-tail): prove the limit through one finite list (Q1 or Q2).** This dies at an l2
+mass bound. `fpbs-morse-mass-bounded-by-relator-boundary-rank` proves `mu(M) <= rho(R) = dim cl im d2^R` for every
+finite list, so `m(R) = gap(R) + A(R)` with the relation gap `gap(R) = z - rho(R)`. The gap is not always zero:
+`fpbs-lamplighter-fixed-list-morse-attainment-fails` shows `gap(R) >= 2^-(K(R)+1)` for every finite list on
+`Z/2 wr Z`, while this claim holds there (`C_sub = 1`). So no fixed finite list can witness the limit in general. What
+survives: `gap(P_L) -> 0`, so this claim is equivalent to `lim_L A(P_L) = 0`, asymptotic attainment of the l2 rank by
+well-founded matchings. For finite presentations `gap = 0`, and there (Q1) is exactly `A(R) = 0`. Artifact:
+`research/artifacts/fpbs/docs/morse-l2-inequality-and-lamplighter-gap.md`.

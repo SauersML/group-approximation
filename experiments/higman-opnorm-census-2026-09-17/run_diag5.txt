@@ -1,0 +1,10 @@
+U_0 = primitive 5-th roots, L=4, ||U_0-1||=1.9021
+L=4 start rand0: max defect=0.5648 defects=[np.float64(0.5648), np.float64(0.5616), np.float64(0.5635), np.float64(0.5636)] ||U_i-1||=[np.float64(1.902), np.float64(1.754), np.float64(1.915), np.float64(1.909)]
+L=4 start rand1: max defect=0.5345 defects=[np.float64(0.5345), np.float64(0.5166), np.float64(0.5179), np.float64(0.5164)] ||U_i-1||=[np.float64(1.902), np.float64(1.727), np.float64(1.894), np.float64(1.888)]
+L=4 start rand2: max defect=0.5728 defects=[np.float64(0.5728), np.float64(0.5681), np.float64(0.5674), np.float64(0.568)] ||U_i-1||=[np.float64(1.902), np.float64(1.917), np.float64(1.772), np.float64(1.795)]
+L=4 start rand3: max defect=0.4933 defects=[np.float64(0.4933), np.float64(0.4929), np.float64(0.49), np.float64(0.4866)] ||U_i-1||=[np.float64(1.902), np.float64(1.883), np.float64(1.941), np.float64(1.89)]
+L=4 start rand4: max defect=0.5054 defects=[np.float64(0.5046), np.float64(0.5049), np.float64(0.5054), np.float64(0.5045)] ||U_i-1||=[np.float64(1.902), np.float64(1.879), np.float64(1.97), np.float64(1.923)]
+L=4 start rand5: max defect=0.5902 defects=[np.float64(0.588), np.float64(0.5892), np.float64(0.5902), np.float64(0.5876)] ||U_i-1||=[np.float64(1.902), np.float64(1.891), np.float64(1.928), np.float64(1.904)]
+L=4 start rand6: max defect=0.4975 defects=[np.float64(0.4975), np.float64(0.4933), np.float64(0.4904), np.float64(0.49)] ||U_i-1||=[np.float64(1.902), np.float64(1.881), np.float64(1.742), np.float64(1.886)]
+L=4 start rand7: max defect=0.4873 defects=[np.float64(0.4873), np.float64(0.4453), np.float64(0.4482), np.float64(0.447)] ||U_i-1||=[np.float64(1.902), np.float64(1.876), np.float64(1.96), np.float64(1.787)]
+BEST L=4 max defect 0.4873

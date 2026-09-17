@@ -65,3 +65,26 @@ prerequisites.
   10 three-letter certificates exist (`experiments/locally-free-finite-cost-2026-09-17/`),
   so no short redundancy forces absorption, while certificate counting gives no
   lower bound on relative cost either.
+
+**Measured absorption with arbitrary labels (September 17, 2026; worker
+swarm-0917-w5-fp-lf-finite-cost).** This asks whether zero-cost absorption by
+measurable partial isomorphisms can beat the group-element cap `W(H)`. It
+cannot. See `fpbs-malnormal-measured-absorption-cap` and
+`research/artifacts/fpbs-measured-absorption-cap-2026-09-17.md`.
+- **Theorem A.** For any Borel `S ⊆ E_{a|Lambda}` and any `phi ∈ [[E_a]]` with
+  label `gamma`, `gamma(x) ∈ Q(Lambda)` almost everywhere where `phi(S) ∩ S`
+  has infinite classes. The proof uses the coset cocycle
+  `c(x) = Lambda gamma(x)`, whose fibres meet a class in at most
+  `|Lambda ∩ gamma^{-1} Lambda gamma|` points.
+- **Cap.** Transfinite infinite-contact chains from `E_{a|H}` stop exactly at
+  `E_{a|W(H)}`. Normalizers, quasi-normalizers and window-trick maps of
+  `E_{a|M}`, for almost malnormal `M`, lie in `[[E_{a|M}]]`.
+- **Where it dies.** In the malnormally exhausted class every finitely
+  generated anchor has a proper hull. Zero-cost absorption of any kind cannot
+  leave a stage. Since `C(a) < ∞` iff `relC(E_a | E_{a|H_n}) -> 0`, a proof must
+  pay for finite-contact partial maps with total mass tending to 0.
+- **Still open.**
+  - mixed chains (pay a sparse finite-contact map, then absorb from the new,
+    non-subgroup relation);
+  - contact-free percolation repairs;
+  - a positive lower bound for `relC(E_{F_2} | E_{<a, bab^{-2}>})`.

@@ -7,6 +7,8 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-conditional-traffic.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/docs/fixed-price-countable-passage.md
+  - experiments/malnormal-stage-absorption-2026-09-17/absorb.py
+  - experiments/malnormal-stage-absorption-2026-09-17/results.txt
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price. Prove that every countably infinite group does. The original finite-routing arguments use finitely many generator demands. Section 9 of the conditional-traffic artifact now extends the variational identities to arbitrary countable groups when the base action has finite cost, by explicitly paying a generating graphing's unprocessed tail. It does not produce vanishing defect from the finitely generated Fixed Price hypothesis, or handle a finite-cost source over an infinite-cost base. No route establishes the passage.
@@ -108,3 +110,19 @@ The results:
     re-read from source.
 
 None of this derives (L) or (U) from the hypothesis. The node stays open.
+
+**i.i.d. stagewise absorption on the Gamma_mal stage (September 17, 2026).**
+Take `Delta_0 = <a, cac^{-2}> <= Delta_1 = <a,c>`. Put `a`- and `b`-edges
+everywhere and `c`-edges on an i.i.d. set `A` of density `eps`, with the root's
+own `c`-edge removed. Then test whether `e ~ c` inside the radius-`R` ball of
+`F(a,c)` (`absorb.py`, `results.txt`). Truncation makes this a lower bound.
+Estimated absorption probabilities, from 40 to 60 trials each:
+- `R=10`: 0 at `eps=0.05`, 0.03 at 0.08, 0.07 at 0.12, 0.17 at 0.16, 0.43 at 0.2, 0.93 at 0.25, 1.0 at 0.5.
+- `R=6, 8`: the same shape, with no growth at `eps=0.05`.
+Evidence only: absorption through local certificates jumps sharply at
+`eps ~ 0.2`. If that threshold is positive in the infinite graph, i.i.d.
+seeding with the same density at every stage of the tower gives total cost
+`sum eps_n = infinity`, so a summable budget would need non-i.i.d. (adapted)
+seed sets. This proves nothing: the infinite-radius threshold could be 0, and
+a Peierls bound fails because certificate out-degree is unbounded. The node
+stays open.

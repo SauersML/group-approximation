@@ -80,3 +80,26 @@ artifacts:
     non-injective `τ'`, or block-code factors instead of letter maps.
   - By-product (descent). A strict automaton on `n >= 3` symbols with one autonomously evolving letter, whose
     occurrence set moves by an injective binary automaton, gives `n - 1 ∈ NS(G)`.
+- **Dual background, smallest fiber** (swarm-0917-w5-gs-upward, 2026-09-17). This kills survivor (i) above whenever the
+  smallest fiber is unique, including the named example `(2,2,1)` from `3` to `5`. By
+  `smallest-fiber-collapse-lifts-are-surjective` (established, route `smallest-fiber-collapse-dual-background-proof`),
+  suppose `r ∘ Φ = τ ∘ r` with `τ` bijective, `Φ` injective, and a unique smallest fiber `Q0` of size `s`. Then
+  `s ∈ NS(G)` (only possible if `s >= 2`), or `Φ` is surjective.
+  - The step where the class dies. Replace `Φ` by a power fixing every constant. The rest map on `Q0^G` is then
+    bijective, or `s` already fails. The same window count as before gives `W'(u) <= W'(τ u)` with
+    `w'(a) = log(|Q_a| / s)`. That is the opposite sign, so it controls `τ^{-1}`, not `τ`. `τ^{-1}` is an automaton that
+    fixes `a0^G`, preserves finiteness and never creates `W'`. Charge noncreation gives equality, and the fiber
+    injections become bijections.
+  - Invariant. The fiber charge relative to the smallest fiber, `W'(u) = Σ_g log(|Q_{u(g)}| / s)`.
+  - Consequence for ascent. Suppose a strict collapse design sits over a bijective base, and neither extreme fiber size
+    already lies in `NS(G)`. Then it needs two letters of the largest size and two of the smallest (or equal
+    fibers). The first undecided profile is `(2,2,1,1)`.
+  - Autonomous region. Let `j < n/2` letters have an occurrence set that moves by an injective automaton. Then a strict
+    automaton on `n` letters gives `n - j ∈ NS(G)`, and `2 ∈ NS(G)` or `j ∈ NS(G)`. So over a group with
+    `2 ∉ NS(G)`, ascent `k -> k + j` by an autonomously moving region of `j < k` new letters needs `j ∈ NS(G)`.
+    The case `j = 1` recovers the dead star designs.
+  - What survives.
+    - Profiles with two letters of each extreme size.
+    - A base `τ` that is strict but on fewer letters (`|A| ∈ NS(G)`, which says nothing about `n`).
+    - Block-code factors.
+    - Coupled dynamics with no factor onto an injective automaton.

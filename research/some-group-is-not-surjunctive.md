@@ -25,3 +25,15 @@ as routes here. The route added with this node is `nonsurjunctive-group-via-irs-
   `some-free-group-irs-carries-a-strict-design` and `irs-strict-designs-yield-nonsurjunctive-groups`.
   The first can only be met by a non-co-sofic IRS. The second has no monotone mechanism. Artifact
   Sections 5 and 6.
+- **Data-routed transport (swarm-0917-w4-gs-heretic, 2026-09-17).**
+  - **Rejected host-class kills.** Kills of rigidity host classes (Kazhdan, simple, intermediate) cannot
+    work: non-surjunctivity passes to overgroups, so simple Kazhdan hosts carry the whole problem.
+  - **Killed mechanism class** (`data-routed-automata-defeat-transport-accounting`). Every automaton is a
+    data-routed copy rule. The Klein parity involution leaves 1/4 of its sites unread in every copy
+    presentation, so site-transport invariants (indegree balance, collision mass, "unread implies invisible")
+    say nothing beyond certificate-independent routing. This answers the site-mixing gate of
+    `marker-routed-paradoxical-transport-must-collide`.
+  - **Named candidate mechanism.** Blind copy automata (hypercube perfect matchings, including
+    multiplexers) contain no linear rule, so they avoid Kaplansky direct finiteness. They are surjunctive at
+    memory at most three. Their status at four or more addresses is open, and no construction step was
+    found there.

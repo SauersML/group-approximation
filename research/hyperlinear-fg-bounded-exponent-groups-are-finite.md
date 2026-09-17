@@ -219,3 +219,59 @@ factors through a finite quotient of `F_m`.
        `hyperlinear-radical-is-finitely-witnessed`: if every element survives
        some approximable character, tensor powers recover the regular trace.
      - No denial gave a new route.
+8. **Inverter: partial Burnside census at exponent 5** (swarm-0917 w4,
+   2026-09-17). Not solved. If `LRB(2,5)` fails, an infinite LEF, hence
+   hyperlinear, group of exponent 5 exists and refutes this claim at `N = 5`. So
+   the minimal counterexample's biography starts from finite quotients of
+   `Π_R(2,5)` that are not 5-groups, at every radius. Data in
+   `experiments/partial-burnside-census-2026-09-17/results.txt`.
+   - **Radius 2 is rich.** A low-index census finds `A_6`, `A_10`, `A_11`, `A_12`
+     and groups of orders 55, 80, 360, 660, 11520 among images of `Π_2(2,5)` in
+     degree `<= 12`.
+   - **Radius 3 looks empty but is not.** In degree `<= 20`, `Π_3(2,5)` has only
+     5-group images. Yet `partial-burnside-radius-four-virtually-abelian-quotient`
+     (ESTABLISHED, exact certificate over `Z[ζ_5]`) gives an infinite virtually
+     abelian quotient `Q ⊂ Z[ζ_5]^5 ⋊ H5` of `Π_4(2,5)`, with finite quotients
+     containing elements of every prime order `q != 5`. So `R*(2,5) >= 5`, and
+     low-index censuses at a fixed radius are not evidence for `LRB`.
+   - **Two-dimensional models die at once.** Irreducible `SL_2(C)` pairs fail at
+     radius 1. Over `F_p` (`p <= 59`) irreducible pairs reach radius 2 only for
+     `p = 3, 11`, never radius 3.
+   - **Where the abelian-by-5-group obstruction dies.** The law is linear in the
+     cocycle. For `H5` and all 2-generated subgroups of
+     `{sum-zero diagonals} ⋊ C5` on 5-dimensional monomial modules, no
+     non-coboundary solution survives radius 5 (`q = 11, 31, 41, 101`). By
+     clause 3 of `lef-burnside-approximants-are-nonlinear-and-nonsolvable`, every
+     solvable family dies at some radius. The step that fails is uniformity:
+     nothing here bounds the death radius over all modules and all 5-group tops.
+   - **Next.** Radius 5 with larger modules (degree 25 monomial over
+     `C5^2`-tops, or modules of quotients of `R(2,5)` of class `>= 3`), then
+     non-solvable tops.
+9. **Inverter: low-degree trace mass must escape** (swarm-0917 w5, 2026-09-17).
+   Not solved. This picks up the uniformity step where Attempt 8 stopped. Two
+   ESTABLISHED class kills; neither uses a restricted Burnside theorem.
+   - **Approximate side.** `approximate-burnside-models-low-degree-trace-mass-vanishes`.
+     The microstates of an infinite exponent-`N` group put trace mass tending
+     to 0 on irreducible pieces of dimension `<= c`, for every `c`. The same
+     holds for models Hilbert--Schmidt close to block-diagonal with blocks of
+     dimension `<= c`. Invariant: low-degree trace mass. Death step: the weak-*
+     limit of the small pieces lies on `Hom(B(m,N), U(<= c))`, which kills a
+     finite-index `K_c <= F_m` (Jordan and Schur, through clause 2 of
+     `bounded-degree-partial-burnside-reps-factor-through-burnside`).
+     Positive-definiteness on a sum of `s` distinct elements of `K_c` then caps
+     the mass by `1/s`. This strictly contains the bounded-dimension case
+     `bounded-dimension-microstates-bounded-exponent-group-is-finite`.
+   - **Exact side.** `partial-burnside-finite-quotients-low-degree-plancherel-bound`.
+     At the radius `R_c = max_(d <= c) R_0(m,N,d)`, a finite quotient `Q` of
+     `Π_(R_c)(m,N)` has Plancherel mass `<= C(m,N,c)/|Q|` on irreducibles of
+     dimension `<= c`. Every `m`-generated group with an abelian subgroup of index
+     `<= c` that satisfies the law on the `R_c`-ball is finite of exponent `N`.
+     So Attempt 8's missing uniformity over modules holds for tops of bounded
+     order, including every analogue of the `Z[ζ_5]^5 ⋊ H5` quotient at radius
+     `R_125(2,5)`.
+   - **What is left.** A counterexample, or an LEF refutation of `LRB`, needs
+     approximants whose trace or Plancherel mass escapes to irreducibles of
+     unbounded dimension that are not HS-almost reducible into bounded blocks.
+     For census work this means non-solvable tops or 5-group tops of unbounded
+     order with high-dimensional irreducibles. Nothing here bounds `R_c` or
+     `C(m,N,c)`.

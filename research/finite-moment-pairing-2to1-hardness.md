@@ -51,3 +51,16 @@ in this repository.
   design strength `t` and a bound `C(m,K,q)` independent of both `t`
   and the source error. The noise tail theorem fixes the later analytic
   cutoff and does not manufacture such a construction.
+* Structured label spaces fail (swarm-0917, 2026-09-17). Claim
+  `pair-swap-groups-of-smooth-pairing-designs-contain-alt` shows that at
+  every large `n`, an exactly 2-wise uniform law with
+  `||1_E D_mu||_q <= C` has its kernel swaps generating a group that
+  contains `A_(2n)`. So no witness preserves a subset, a partition, an
+  affine or projective geometry, or a code on the labels. Subsets and
+  partitions are ruled out by a degree-two moment identity together with a
+  switching lemma. Primitive geometries are ruled out by Maroti's order
+  bound set against the `m^n` entropy count. In the edge-transitive case
+  the law must be uniform on all pairings, which is circular. The route
+  `finite-moment-hardness-via-structured-label-groups` is dead. What
+  survives is exponentially large laws whose swaps generate `Alt(2n)` and
+  that are not one orbit of the vertex stabilizer.

@@ -2,6 +2,7 @@
 rg: 2
 id: sp4-schur-kernel-meets-the-deligne-triple-class
 kind: claim
+refuted_by: sp4-schur-kernels-miss-every-deligne-multiplier
 title: A nonsingular equation over Sp4(Z) kills a Schur class detected by Deligne's mod-three multiplier
 distinct_from:
   deligne-nontrivial-maslov-opnorm-sectors-are-empty: that is an operator-norm emptiness statement about the two nontrivial Maslov sectors; this asks for an algebraic one-variable equation over Sp4(Z) whose adjunction kills a second-homology class on which the mod-three multiplier is nonzero.
@@ -93,3 +94,16 @@ from the first homology of the relation module of the adjunction.
    - *At the layered theorem.* The exponent matrix of the square system is not
      unimodular over `Z[P]` in general. For example `2 - zeta_3` has norm 7, so
      Forester--Rourke's layered theorem does not apply.
+8. **Refuted (swarm-0917, w4-pull-deligne-1).** The claim is false, by
+   `sp4-schur-kernels-miss-every-deligne-multiplier`. The argument has two
+   steps.
+   - `schur-kernels-are-invisible-to-matricial-windings`: every Schur kernel
+     class has eventually zero Exel--Loring winding along every asymptotic
+     homomorphism. The route solves `w` exactly in `U(d)` by
+     Gerstenhaber--Rothaus and then uses a cancelling relator-commutator
+     expansion.
+   - Dadarlat's Theorem 3.2 (arXiv:2111.05755), for finitely generated linear
+     groups, detects every non-torsion class by a nonzero winding.
+
+   So `K_2(Sp_4(Z), w)` is torsion. The integral Maslov class `e`, and with it
+   every `e mod n` including `alpha`, vanishes on it. (MP1.2) can never hold.

@@ -149,3 +149,48 @@ freedom to `K=RH`, with one diagonal phase torus, and identifies the
 parity-corrected doubling cocycle of the matched diagonal.  The resulting
 phase optimization is explicit, but no analytic lower bound or vanishing
 construction is currently known; nearby-spectrum mixing is also not covered.
+
+## Attempts
+
+- 2026-09-17, swarm-0917-w4-pull-pt-3 (inverter, numerical microstate
+  census).  Result: `higman-opnorm-defect-profile-has-dim-twelve-witness`.
+  The collapse modulus `(HMF5)` is equivalent to `lim_L m_c(L)>0`, where
+  `m_c(L)` is a monotone profile (padding by `(+)1`).  An explicit tuple in
+  `U(12)` has every generator at distance `>=1.985` from `1` and defect
+  `0.3099`, so any threshold must satisfy `delta(1.98)<=0.31`.  Cycle-spectrum
+  seeds satisfy `def>=2 sin(pi/L)`.  Riemannian descent on Schatten-`2m`
+  surrogates plateaus at `def~0.31` for `L=12,28`.  At `L=36,54` it fails to
+  reach the padded twelve-dimensional value.  The order-four matcher optimum
+  (`q=81`) has actual defect `1.39`.  **Dead as a route:** local descent sees
+  no decay and cannot give a lower bound on `m_c(L)`, so the census neither
+  supports a countermodel nor proves collapse.
+- **Numerical scout of `(SPT7)` and of general matchers (2026-09-17,
+  census-computation).**  Script:
+  `experiments/higman-matcher-2026-09-17/sorted_torus_fourth_return.py`.
+  All numbers come from local optimization. They are upper bounds on the
+  relevant infima, never lower bounds, so this is evidence, not a proof.
+  - *Sorted torus.* I minimized the normalized-HS return
+    `||K^4P-PK^4||_2/sqrt(L)` over `K=RH`, from random starts and
+    quadratic-chirp starts. Best values found:
+    - `n=2`: `0.766`.
+    - `n=3`: `0.579`, operator norm `0.881`. Random starts and the best
+      chirp `theta_a=2pi(3a^2/4+a/3)/L` both reach this value, so it is
+      probably the global minimum.
+    - `n=4`: `1.271`, operator norm about `2`. Here no start, chirp starts
+      included, got below the value for a random unitary.
+
+    The trend does not look like vanishing, but the `n=4` value may be
+    local. The sorted torus does not visibly pay the fourth return.
+  - *General matchers.* I ran Riemannian descent over all of `U(L)` on
+    `lam*||KP-DK||_2^2+||K^4P-PK^4||_2^2`. At `lam=1` the return is almost
+    paid (HS `0.036`--`0.042`, op `0.06`--`0.07` for `n=2,3,4`), but the
+    optimizer gives up the matcher equation instead (`eps` op
+    `0.89, 0.61, 0.52`). At `lam=30` the matcher error falls to op
+    `0.28`/`0.32` and the return climbs back to op `0.47`/`1.23` at
+    `n=3,4`. In dimensions `L<=54`, no matcher came near having both small
+    `eps` and small `r` in operator norm. The trade-off does not visibly
+    improve with `n`.
+  - *Verdict.* No numerical sign of an operator-norm clock countermodel. The
+    refutation lane through `(HOM5)` gets no support at `q<=81`. What remains
+    open is an analytic lower bound on the `eps`/`r` trade-off, or larger-`q`
+    evidence.

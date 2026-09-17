@@ -1,0 +1,56 @@
+---
+rg: 2
+id: v-times-minimal-free-sft-alternating-full-groups-are-fp
+kind: claim
+title: For a finitely presented group with a minimal free subshift of finite type, the alternating full group of V times the transformation groupoid is finitely presented
+distinct_from:
+  v-times-shift-alternating-group-is-of-type-fp2: that asks for type FP_2 of one group, V times the full two-sided Z-shift, whose Z-action is neither free nor minimal and which is not simple; this asks for finite presentation of the simple groups built from minimal free SFTs over arbitrary finitely presented groups.
+  labbe-shift-derived-full-group-is-finitely-presented: that asks for finite presentation of the derived full group of one Z^2 SFT without the V factor; this multiplies by the groupoid of V, which kills the index map and makes the full group equal its alternating group.
+  fp-alternating-full-groups-of-free-subshifts-force-sft: that is a necessary condition (finite type) for finite presentation without the V factor; this is the sufficiency assertion with the V factor, restricted to minimal free SFTs over finitely presented groups.
+---
+
+**OPEN.** Premise (P2) of route
+`boone-higman-via-v-times-aperiodic-sft-full-groups`.
+
+**Statement.**
+- Let `Λ` be an infinite finitely presented group, `A` a finite alphabet, and
+  `X ⊆ A^Λ` a nonempty subshift of finite type on which `Λ` acts freely and
+  minimally.
+- Let `G_V` be the groupoid of germs of Thompson's group `V` on `C = {0,1}^N`, and
+  `T = G_V × (Λ ⋉ X)`.
+
+Then `A(T)`, which equals the topological full group `F(T)` by
+`v-times-ample-full-groups-are-generated-by-transpositions`, is finitely
+presented.
+
+**Status of the hypotheses.**
+- By the route, `A(T)` is simple and contains `Λ`, so a positive answer gives
+  finitely presented simple hosts for every subgroup of `Λ`.
+- The statement contains no computability hypothesis. Decidability enters only
+  through the existence of `X` (premise `decidable-groups-embed-in-fp-groups-with-minimal-free-sft`).
+- The restriction to shifts of finite type is forced in the analogous setting
+  without `V` (`fp-alternating-full-groups-of-free-subshifts-force-sft`).
+  Whether finite presentation of `A(T)` forces finite type of `X` was not checked.
+
+## Attempts
+
+**Attempt 1 (2026-09-17): look for obstructions already in the graph.** None
+applies.
+- *Kazhdan subgroups.* `A(T)` contains `Λ`, which may have property (T), so the
+  obstruction of `input-encoded-sft-groupoid-hosts-are-not-universal` does not
+  transfer.
+- *Mod-2 groupoid homology* (`derived-full-group-h2-filtered-by-mod-two-groupoid-homology`).
+  The groupoid homology of `G_V` vanishes in every degree, as the Thompson `V`
+  case there records. A Künneth formula for products of ample groupoids would then
+  make the homology of `T` vanish. This is heuristic: the Künneth import is not in
+  the graph.
+- *Index map.* `F(T) = A(T)`, so no abelian quotient of the full group obstructs.
+
+**Smallest test case.** `Λ = Z^2` and `X` a minimal free SFT, for example Labbé's
+Wang shift. Test the natural finiteness method there: a Stein--Farley complex of
+prefix trees in the `C` coordinate with clopen partitions of `X` labelled by
+translations, together with Brown's criterion. The needed input is connectivity of
+descending links, which is where finite type of `X` should enter. Not attempted.
+
+**What would kill it.** One pair `(Λ, X)` as above for which `A(T)` has a
+non-finitely-generated `H_2`, or a retract or quotient visibly not of type `FP_2`.

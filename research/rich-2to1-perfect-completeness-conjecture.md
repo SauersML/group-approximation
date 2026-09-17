@@ -1,0 +1,79 @@
+---
+rg: 2
+id: rich-2to1-perfect-completeness-conjecture
+kind: claim
+title: Rich 2-to-1 games are NP-hard to distinguish between satisfiable and near-zero value (Braverman--Khot--Minzer Conjecture 7)
+distinct_from:
+  rich-2to1-games-conjecture: that is Gap-Rich[1-eps, delta], equivalent to UGC; this is Gap-Rich[1, delta], strictly stronger than UGC, and its YES instances are satisfiable, which is exactly what the tractable-skeleton kill exploits.
+  rich-2to1-conjecture-is-equivalent-to-ugc: that equivalence is for the imperfect-completeness conjecture only; nothing converts this perfect-completeness version into UGC or back.
+---
+
+**OPEN.** Braverman, Khot and Minzer, *On Rich 2-to-1 Games*, ITCS 2021
+(LIPIcs vol. 185, Article 27, doi `10.4230/LIPIcs.ITCS.2021.27`),
+Conjecture 7, verbatim:
+
+> "Rich 2-to-1 Games Conjecture with Perfect Completeness. For every constant
+> δ>0, there is a sufficiently large integer n such that
+> Gap-Rich-2-to-1_n[1, δ] is NP-hard."
+
+Here a 2-to-1 game has left alphabet `[2n]` and right alphabet `[n]`. It is
+*rich* when, at every left vertex, the pairing induced by a uniformly random
+incident edge is uniform over all perfect pairings of `[2n]` (BKM
+Definition 5).
+
+**Relation to the rest of the graph.**
+
+* It implies `rich-2to1-games-conjecture`. The identity map reduces
+  Gap-Rich[1, delta] to Gap-Rich[1-eps, delta]. So it implies
+  `unique-games-conjecture` through `rich-2to1-conjecture-is-equivalent-to-ugc`.
+  The route is `rich-2to1-from-perfect-completeness`.
+* It is strictly stronger than UGC as a statement. Braverman, Khot, Lifshitz and
+  Minzer, *An invariance principle for the multi-slice, with applications*,
+  arXiv:2110.10725, state it as their Conjecture 1.17 and remark: "Conjecture
+  1.17 is strictly stronger than the Unique-Games Conjecture, and thus can be
+  thought of as a variant of it with perfect completeness."
+* It is the hypothesis that the perfect-completeness applications need. BKM
+  write that "the additional advantage of using the Rich 2-to-1 Games
+  Conjecture could be that this conjecture could hold even with perfect
+  completeness", and list coloring 3-colorable graphs with constantly many
+  colors and hardness of satisfiable CSPs. Under it, BKLM derive hardness of
+  telling 3-colorable graphs from graphs with no independent set of size
+  `o(1)`, and satisfiable `r`-CSPs from `(2r+1)/2^r + o(1)`-satisfiable ones.
+
+**What is known to fail.** By
+`perfect-completeness-rich-2to1-tractable-skeletons-are-in-p`, no NP-hardness
+proof can output YES instances that carry, computably from the reduction's run,
+any of the following with edge mass above `delta`:
+
+* a constant-seed forcing closure, which covers every BKM right merge
+  `Psi(U)` and partial merges with separating pairings;
+* a certified affine-local merge skeleton `U_W(G)`, when
+  `delta < 1 - alpha_k`;
+* an affine label-cover encoding, which covers an `F_lin`-stage start of the
+  BKM `F_j` enrichment chain.
+
+So Theorem 8's direction from UGC to Rich cannot be run with perfect
+completeness. The survivors are listed in that node.
+
+## Attempts
+
+* **Run the known rich-producing constructions with perfect completeness.** The
+  constructions are right merges `Psi(U)` or partial merges, certified
+  affine-local wrappers, and an affine `F_lin`-stage start of the `F_j` chain.
+  **Dead (2026-09-17)** -- route
+  `rich-2to1-perfect-completeness-via-tractable-skeletons`, killed by
+  `perfect-completeness-rich-2to1-tractable-skeletons-are-in-p`.
+  - Invariant: tractable skeleton mass.
+  - Step: completeness. It makes the skeleton satisfiable, and skeleton search
+    is polynomial.
+* **Deferred: re-encoding compositions (survivor P1).** A long-code or
+  dictatorship-test composition with `o(1)` constant-seed forcing closure and no
+  unique-game or affine skeleton is the only shape the kill leaves. Two open
+  questions:
+  - Which soundness analysis would handle it? The BKLM multi-slice invariance is
+    the analytic candidate.
+  - What hard satisfiable source would it start from?
+* **Evidence question (open).** Are the Guruswami--Khot--O'Donnell--Popat--
+  Tulsiani--Wu perfect-SDP 2-to-1 gap instances (ICALP 2010) rich, or can they
+  be enriched without a merge skeleton? A yes would mean Conjecture 7 survives
+  the basic SDP.

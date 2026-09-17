@@ -88,3 +88,138 @@ would give a nonhyperlinear locally-finite-by-residually-finite group, which
 would be a separate surprise.  The next falsifiable step is to decide whether
 `E_20(T_2)` has a hyperlinear quotient or model in which `x_13(1-s_2t_2)`
 survives.
+
+### Trace certificates collapse to hyperlinearity of EL_20(J) (swarm-0917-w4-pull-nh-3, obstruction)
+
+Approach tried: kill the Toeplitz survivor class with a *non-regular* embeddable trace.
+* A natural candidate: the Haar fixed-point character `phi_k(g) = mu(Fix_(Y^k) g)` of `EL_20(J)` acting on
+  `Y = F_2^(N x 20)`. It equals `2^(-k rank(g-1))` on the finitary kernel `L` and `0` off `L` (Skudlarek's character
+  extended by zero), so `phi_k(x_13(Q)) = 2^(-k)`.
+* Other candidates: IRS characters, rank characters, or sign characters with `tau(z)=-1`.
+
+Result (`leavitt-corner-trace-gate-collapses-to-jacobson-hyperlinearity`, established).
+
+1. **Trace gate.** `LNC3` on support `X` forces `tau(z)=1` for every Connes-embeddable character of `<X,z>`. This
+   includes the sign case, which the quotient gate does not see.
+2. **Dichotomy.** For `E=EL_n(J)`, `n>=2`, every CE character either is trivial on `L` (and factors through the
+   Laurent quotient) or has trivial scalar kernel, and then `E` is hyperlinear.
+3. **Consequence.**
+   * `phi_k` CE implies `EL_20(J)` hyperlinear.
+   * A hyperlinear quotient or model of `E_20(T_2)` in which `x_13(1-s_2t_2)` survives exists iff `EL_20(J)` is
+     hyperlinear.
+
+Where it dies: at the Diracization step `|tau|^(2k) -> 1_(K_tau)`.
+* In the non-sign case, `C_E(L)=1` forces `K_tau=1`.
+* In the sign case, `K_tau` contains `L`, and perfectness of `L` kills the scalar homomorphism on it.
+* Either way the certificate is no weaker than faithful hyperlinearity of `EL_20(J)`.
+
+So, for elementary Toeplitz supports:
+* the class is dead if `EL_20(J)` is hyperlinear;
+* a construction in the class makes `EL_20(J)` nonhyperlinear;
+* no trace certificate lies between these two alternatives.
+
+Next falsifiable step: decide hyperlinearity of `EL_20(J)` (Kazhdan, not LEF, not MF, amenable-by-linear). Soficity
+of `EL_3(J)` does not decide it. The case of non-elementary supports in `GL_20(T_2)` reduces to this by an index or
+permanence step that is not certified (see the proof route's Remark).
+
+### Entropy-measure transplant on the Toeplitz survivor class (swarm-0917, transplanter)
+
+*Calibration (established).*
+`toeplitz-supported-leavitt-corner-is-jacobson-hyperlinearity` settles the
+coefficient ring and the group.  The complementary Toeplitz algebra
+`F_2<s_2,t_2>` in `R` is isomorphic to the Jacobson algebra `J`, with `q`
+corresponding to `Q=1-ST`.  The mark `x_13(q)` lies in the simple finitary
+kernel `L_20`, whose centralizer is trivial.  Two consequences follow.
+First, "`E_20(T_2)` has a hyperlinear quotient or model seeing
+`x_13(1-s_2t_2)`" is equivalent to "`EL_20(J)` is hyperlinear".  Second, an
+`LNC3` diagram with `pi(X) <= EL_20(T_2)` would prove `EL_20(J)`
+nonhyperlinear.  So the step recorded above cannot be decided by a
+model-level test short of a hyperlinearity theorem for this Kazhdan, non-LEF
+group.
+
+*Transplant tried: the Haar fixed-point character.*  Let `G=EL_20(J)` act by
+dual automorphisms on the compact group `X=F_2^(N x 20)`, which is the
+Pontryagin dual of `F_2[N x 20]`, with Haar measure `mu`.  Put
+
+```text
+phi(g)=mu(Fix g) = 2^(-rank(g-1))   if g in L_20,
+                 = 0                if g notin L_20.
+```
+
+Off `L_20`, the symbol of `g-1` is nonzero, so `g-1` has infinite rank.  The
+fixed subgroup is then the annihilator of an infinite range and has Haar
+measure `0`.  `phi` is the trace of `u_g` in the orbit-relation algebra, so
+it is positive definite, and `phi^k -> delta_e` pointwise.  Hence
+Connes-embeddability of `M_phi` would imply hyperlinearity of `G`.  This
+character is natural here: the mark `z` has `phi(z)=1/2`.
+
+*Where the transplant dies.*  `M_phi` sits inside `L(R_orb)`, where `R_orb`
+is the orbit equivalence relation of `G` on `X`.  The action of the locally
+finite group `L_20` generates a hyperfinite subrelation which is normal in
+`R_orb`.  Its quotient is governed by `EL_20(F_2[z,z^(-1)])`, which is
+Kazhdan and non-amenable.  So the transplant needs an
+"amenable-kernel-by-sofic-quotient implies sofic or Connes-embeddable"
+permanence theorem for relations.  That is the open direction of the
+extension problem, and no Cairn node or imported theorem supplies it.
+
+Finite configuration models of the action (truncating `N` to a window) do
+not help.  They are permutation models of `G` and meet the same far-end
+orientation obstruction recorded in
+`binary-jacobson-el3-rank-radical-is-the-finitary-kernel`: the path
+permutation criterion dies at the non-extendable map `psi`.  A relation
+defect of rank `r` in such a model moves a `1-2^(-r)` fraction of
+configurations, so bounded-rank boundary errors are not small in Hamming
+distance.  The approach is recorded dead at the permanence step.  It is not
+a proof that the survivor class is empty.
+
+### Host fork and the monomial class (swarm-0917-w5-pt-leavitt-corner, inverter, 2026-09-17)
+
+*Host (established).*  By `leavitt-corner-host-is-the-simple-leavitt-unit-group`,
+`Delta ~= GL_20(R) ~= R^x` (Khanh `(KH2)` plus `R ~= R^20`).  This is the
+simple, finitely presented, nonsofic group of `openai-leavitt-unit-nonsofic`.
+
+- **Certificates.**  A CE character with `tau(z) != 1` exists iff `R^x` is
+  hyperlinear.  Simplicity makes the scalar kernel `1` or `Delta`, and
+  perfection rules out `Delta`.
+- **Mutual exclusion.**  `LNC3`, for any support, refutes
+  `binary-leavitt-unit-group-hyperlinear`.  Hyperlinearity of `R^x` kills
+  `LNC3` for every support, and implies the `EL_20(J)` decision point above.
+  So this hole and `hyperlinear-nonsofic-from-leavitt-unit-group` sit on
+  opposite branches of one question.  No trace-type refutation is weaker
+  than hyperlinearity of `R^x`.
+
+*Approach tried: solution-group / monomial images.*  Send each BCS involution
+to `c_x P_z g_x` with `g_x in C_Delta(z)`.  This includes:
+
+- group homomorphisms into `R^x` or Thompson's `V`, with a split mark;
+- root-sign and Weyl images;
+- the natural group-element realization of an LCS assignment `y_i -> q x_i`.
+
+*Where it dies* (`graded-corner-images-of-bloop-force-classical-solution`,
+established).
+
+- **Invariant.**  `P_z C[C_Delta(z)]` is graded by `C_Delta(z)/<z>`, and its
+  identity component is `C P_z`.  For homogeneous images, the nonzero atoms of
+  each context form a coset of `(ker d_c)^perp`, an affine set.
+- **Death step.**  In the exactly-one context, an affine set of one-hot
+  vectors has at most two points.  So every question has at most two active
+  answers, and the idempotent-order 2-SAT argument yields a classical perfect
+  strategy for `G_loop`.  The argument needs no trace.
+
+This holds over every group, every involution and every support.  It also
+covers twisted group algebras and central-sign solution groups.
+
+*What survives.*
+
+- Any `LNC3` diagram has a question with at least three active answers.
+- At least one answer involution must be inhomogeneous for every
+  `C1`-identity grading of the corner.  Such involutions are genuine sums over
+  several cosets of `<z>`, for example signed Hecke projections.
+
+*Next falsifiable step.*  A single three-answer packet is easy.  For example,
+the three isotypic projections of `C[S_3] P_z` work for any `S_3 <= C_Delta(z)`.
+The real content is a two-question packet.  Such a packet needs three-answer
+PVMs `P_(i,.)` and `P_(j,.)` in `P_z C[Delta] P_z` with
+`P_(i,a)P_(j,b)=0` on the losing pairs of `G_loop` between `i` and `j`, and
+with no common homogeneous grading.  The death step above only concerns
+supports, so it gives no obstruction to such a packet.

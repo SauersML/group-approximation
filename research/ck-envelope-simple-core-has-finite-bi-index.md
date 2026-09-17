@@ -7,6 +7,7 @@ distinct_from:
   finite-infranormal-subgroup-is-normal: that concerns finite subgroups and their normalizers; this concerns finiteness of a DOUBLE COSET SPACE of an infinite, non-normal subgroup, where neither the subgroup nor its index is finite.
   ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. The two are not the same statement. Correction 2026-09-17: this one implies that one for the same envelope, by bi-index-core-makes-normals-core-class-unions. No converse is known.
   kazhdan-boone-higman-conjecture: that asks for finitely presented simple Kazhdan hosts; this asks for a finite bi-index core in a Kazhdan envelope. By ck-finite-bi-index-hole-is-kazhdan-boone-higman they are equivalent when the core is free, and this one implies that one in every reading.
+  ring-elementary-bh-hosts-are-kazhdan: that is an established permanence lemma making ring-host Boone--Higman hosts Kazhdan; this is the open envelope statement, whose free-core reading those hosts would supply.
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
@@ -113,3 +114,33 @@ tools.
    presented. Open side question: ACC for the two-sided ideals of the
    universal sandwich ring. See
    `research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md`.
+8. **Price the Kazhdan surcharge along every recorded host route
+   (2026-09-17, swarm-0917 w5).** *Result: along the linear routes the
+   surcharge is zero. The free-core hole costs exactly one Boone--Higman ring
+   premise.* All three ring-host routes to Boone--Higman produce hosts that
+   are quotients of, or isomorphic to, `EL_n(R)` with `n >= 3` and `R`
+   finitely generated:
+   - `(B ⊗ L)^x ≅ E_3(B ⊗ L)`;
+   - `E_n(B ⊗ L)`;
+   - `PEL_4(L)`.
+   Ershov--Jaikin-Zapirain and quotient permanence of (T) make these hosts
+   Kazhdan (established: `ring-elementary-bh-hosts-are-kazhdan`). This gives
+   the new routes `kazhdan-boone-higman-via-central-simple-leavitt-tensor-host`,
+   `kazhdan-boone-higman-via-elementary-leavitt-hosts` and
+   `kazhdan-boone-higman-via-projective-ring-host`. Each has the same open
+   premise as its Boone--Higman counterpart. Composed with
+   `ck-finite-bi-index-hole-via-kazhdan-boone-higman`, each is a route to the
+   free-core reading of this hole.
+   *Where the surcharge is real:* only on Thompson-like hosts (twisted
+   Brin--Thompson, Rover--Nekrashevych, shell or full groups), which are
+   expected to be a-T-menable. So no dynamical host route to Boone--Higman
+   can be upgraded to this hole without new (T) input.
+   *Contrapositive:* a refutation of this hole in its free-core reading
+   refutes all three ring premises at once:
+   - `decidable-group-algebras-have-fp-central-simple-hosts`;
+   - `simple-inputs-have-fp-elementary-leavitt-tensor-hosts`;
+   - `decidable-group-ring-has-fp-projective-simple-host`.
+   *Untouched:* the fixed-core reading, where the core is the
+   Boone--Higman--Thompson envelope. A ring host `T` gives `S = Gamma = T`,
+   not the prescribed core. The hole stays OPEN. See
+   `research/artifacts/ring-hosts-are-kazhdan-2026-09-17.md`.

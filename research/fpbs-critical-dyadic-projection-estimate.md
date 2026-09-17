@@ -67,3 +67,28 @@ OPEN research hypothesis Q2 for every nonamenable Cayley graph. Q3 is a stronger
   side result, Q2 and Q3 with `eta=1/2` hold on every graph in the known
   critical-l2 classes. The hole stays OPEN, exactly as open as the l2
   conjecture.
+* **Split into a critical exponent half and a spectral half (2026-09-17,
+  swarm-0917-w5-bs-dyadic, decomposition).**
+  `fpbs-critical-l2-iff-volume-tail-and-spectral-spreading` proves the
+  following, graph by graph on transitive graphs:
+  * critical l2, and hence this hole (Q2 and Q3) on nonamenable Cayley
+    graphs, is equivalent to (V) together with (S), where
+    (V) is `P_{p_c}(|K|>=n) <= Cn^(-1/2)`, and
+    (S) is `s(p)=1-iota(T_p) -> 0`, or equivalently
+    `||T_p||_(2->2) = o(chi_p)`;
+  * under (V), (S) follows from a single sequence with `s(p_n)` below an
+    explicit threshold;
+  * `s(p)=1` on every amenable graph;
+  * on a Cayley graph, (S) forces `chi^H_p = o(chi_p)` for every amenable
+    subgroup `H`.
+
+  The proof inserts Hutchcroft's `gamma <= delta-1`
+  (`fpbs-critical-volume-tail-gives-mean-field-susceptibility`) into his l2
+  criterion (`fpbs-hutchcroft-l2-gap-criterion`). This replaces the
+  class-specific susceptibility estimate used for acylindrically hyperbolic
+  groups. The OPEN halves are
+  `fpbs-critical-volume-tail-mean-field-universal` and
+  `fpbs-normalized-two-point-spectral-radius-vanishes-universal`, joined by
+  the route `fpbs-critical-l2-via-volume-tail-and-spectral-spreading`. Each
+  half is necessary for the hole, so a counterexample to either refutes it.
+  All the nonamenability sits in (S). The hole stays OPEN.

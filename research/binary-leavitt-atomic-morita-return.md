@@ -106,3 +106,30 @@ stabilize, and only level-shifted orders `U^*P_(k')U<=P_k` remain, which
 stable finiteness does not force to equality.  A Property-`(T)`-free proof
 cannot import the transport/stable-finiteness step through a window-limit
 projection.  It must produce a same-class inequality by some other means.
+
+2026-09-17 (swarm-0917-w5-pt-morita, reframing).  The same-class inequality
+asked for above can come from a single projection instead of a window
+limit.  `kesten-spectral-gap-replaces-kazhdan-projection-per-model` shows
+that the manuscript transport and normal-subgroup theorems consume
+property `(T)` only through one per-model hypothesis `(MSG)`: `1` is not an
+accumulation point of `sp(rho(h_S))` for one Markov element `h_S` of the
+subgroup.  Under `(MSG)`, `chi_{1}(rho(h_S))` is the fixed-vector
+projection, it is a norm limit of group-algebra elements with coefficient
+sum near one, and it satisfies `U^*PU<=P`.  Stable finiteness then forces
+equality, with no Kazhdan hypothesis.  For `delta_e`-profile models, the
+subgroup algebra in the adjoint corona always surjects onto
+`C + C*_r(L)`, and the Kesten element supplies a positive `e` with
+`omega(e)=1` and `tau(e)=0`.  The Kazhdan-projection shape is therefore
+available without `(T)`, and only isolation of `1` is missing.
+
+The prerequisite can fail.  A free-group model with a vanishing-rank
+rotation block through `F_2->Z` has `sp=[-3/5,1]` in both the norm corona
+and the adjoint corona.  So `(MSG)` does not follow from nonamenability,
+the `delta_e` profile, coordinatewise exactness, or stable finiteness.  In
+that model the failure is carried by an amenable quotient on a
+vanishing-rank block.  A T-free proof of `(MSG)` for a subgroup of
+`EL_20(L_(F_2)(1,2))` must therefore use that the model extends to the
+simple group.  This does not prove `(BLAMR)`, and the claim stays OPEN.
+The live bypass is now `(MSG)` for the root subgroups the manuscript
+compresses, or injectivity of the adjoint splitting map, in every
+`delta_e`-profile model.

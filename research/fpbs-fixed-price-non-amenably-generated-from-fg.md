@@ -220,3 +220,28 @@ swarm-0917-w4-fp-nonamenably-gen, inverter).** Artifact
   relations dies by the finite-contact obstruction. A proof must build a
   graphing on `b` itself, by repair from subrelations that do not lie in
   any almost malnormal subgroup orbit relation. The claim stays OPEN.
+
+**Detour packing has a positive floor at malnormal free stages (September 17,
+2026, swarm-0917-w5-fp-nonamenably-gen, inverter).** Artifact
+`research/artifacts/fpbs-malnormal-coset-cycles-linear-perimeter-2026-09-17.md`.
+- **Result (ESTABLISHED, `fpbs-malnormal-coset-cycles-linear-perimeter`).**
+  Let `H <= F` be finitely generated and malnormal, and `t` outside `H`. A
+  simple coset cycle with `k` new edges has perimeter at most
+  `B (4k-3) max(D, |t|)`. This closes the linear-length step left open by
+  `fpbs-malnormal-coset-cycles-bounded-syllables`.
+  - **Proof.** The union tree of the polygon suppresses to at most `4k-3`
+    arcs. Each arc has at least two covering sides, so its length is `< D` or
+    `<= |t|`. Distinct cosets through an edge have distinct `D`-ball traces,
+    so multiplicities are bounded.
+  - **Consequences.** The packing growth `h` is finite, and every packing
+    certificate (small-cancellation-family (2.1), arbitrary detour words) is
+    at least `δ(F,H,t) > 0`.
+- **`Gamma_mal`.** The floor is one constant for all pairs `(H_m, H_n)` with
+  generator `b_m`, or any generator in `H_n b_m^{±1} H_n`. So stage-sum and
+  subsequence packing repairs are dead in every growth regime, not only the
+  bounded one. The invariant is the linear perimeter constant. The dying step
+  is the divergence step (2.3)–(2.5).
+- **Decomposition left.** The only single-generator packing route is long
+  generators `t_j`, with `|t_j| -> infinity`, whose floors tend to zero. It is
+  recorded as OPEN `fpbs-mal-long-generator-packing-growth`. If it holds,
+  every free cost of `Gamma_mal` is finite, hence 2. The claim stays OPEN.

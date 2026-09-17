@@ -177,3 +177,32 @@ ergodic p.m.p. action) marks the same frontier from the other side.
   `H_2`).  What survives on parabolics is only the torsion-Levi residue:
   `Lambda` with finite nontrivial Levi image of order `d <= 12` and `d`-torsion
   classes killed by restriction to `Lambda cap R`.  This node stays OPEN.
+
+- **Theorem C on the parabolics: torsion-Levi residue empty (2026-09-17,
+  swarm-0917-w5-nh-sp2g-llp).**  `sp4-parabolic-theorem-c-data-dies-for-every-lambda`
+  closes the residue above.  ISW Theorem C data `(P, Lambda, sigma, c_n)` does
+  not exist for any finite-index `P <= P_S` or `P <= P_K`, any `Lambda <= P`
+  with `(P, Lambda)` relative (T), and any action.  The new input is a
+  Levi-coset counting lemma.
+  - When the radical stabilizer is trivial or central, the full `P`-stabilizer
+    cannot contain an element whose Levi image acts nontrivially on `V`: its
+    `R`-conjugates index infinitely many a.e. disjoint fixed sets of equal
+    measure.  So the isotropy lies in `Z_R . {+-I_4}`, which is central.
+    Commutator 1-cocycles, relative (T) and CFW on `Lambda/W` then kill every
+    class.
+  - For finite orbits the restriction kernel to `Lambda_1 cap R` is finite (the
+    Levi image is finite).  Compactness of `B^2` makes coboundaries open, and
+    pointwise convergence finishes.
+
+  So Theorem C through a parabolic is dead as a class, and the Connes-embeddability
+  toll removed on parabolics buys nothing.  The only Theorem C mouth left is
+  `sp4-isw-theorem-c-embeddable-twist-data-exists`: `Lambda` whose relative (T)
+  in `Sp_4(Z)` is not relative (T) inside any containing parabolic, e.g.
+  `Lambda = Gamma`.  There the toll is not free.  Separately recorded, not
+  written as a node: the finite-dimensional block corona
+  `C^*(Gamma)/(+)_pi M_{d_pi}` of any infinite hyperlinear Kazhdan group has the
+  hyperlinear, non-amenable trace `tau_lambda` (Kazhdan HS argument plus Fell
+  isolation), so it fails the LLP.  But the block extension is min-inexact by
+  Wassermann's Kazhdan-projection element (as in
+  `kazhdan-fd-block-representation-algebras-are-not-exact`), so this failure
+  never descends to `C^*(Gamma)`.  This node stays OPEN.

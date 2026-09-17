@@ -9,7 +9,7 @@ distinct_from:
   thompson-f-point-orbits-are-transient: that proves transience of the F-sets whose stabilizers fix an interior point; this concerns all F-sets.
 ---
 
-**OPEN.** Let `H ≤ F` and let the Schreier graph of `F/H`, for a finite generating set, be
+**ESTABLISHED** by `thompson-f-recurrent-f-sets-abelian-proof` (not yet refereed). Let `H ≤ F` and let the Schreier graph of `F/H`, for a finite generating set, be
 recurrent. Then `H ⊇ F′`. Equivalently, there is no *exotic recurrent `F`-set* in the
 sense of `f-functor-cocycles-need-an-exotic-recurrent-action`.
 
@@ -51,3 +51,25 @@ Also, `H` is not normal: every nontrivial normal subgroup of `F` contains `F′`
   - *Where the natural proof stalls:* a rough embedding of a transient graph into `F/H`
     needs some point of `(0,1)` whose `H`-orbit data is finite. The constraints say `H`
     moves every interior point, and a general transfer is missing.
+- **2026-09-17 (swarm-0917-w4-pull-f-1).** Claimed proof of the full statement, in route
+  `thompson-f-recurrent-f-sets-abelian-proof`. Suppose `F/H` is recurrent
+  and `H ⊉ F′`.
+  - *Singular set.* Let `U` be the union of `int J` over the dyadic `J` with `F_J ⊆ H`. It is
+    `H`-invariant. If `U = (0,1)`, merging (Chaudkhari's fact (F3), imported as
+    `thompson-f-rigid-interval-subgroups-facts`) gives `F′ ⊆ H`. If `S = (0,1) ∖ U` is finite and
+    nonempty, `H` fixes a point. So `S` has three points `p_1 < p_2 < p_3`.
+  - *Displacements.* By item 3 of `thompson-f-point-orbits-are-transient`, transported by
+    `F′`-transitivity on dyadic pairs, some `n_i ∈ H ∩ F_(J_i)` moves `p_i`, and it displaces a small
+    dyadic `I_i ∋ p_i` off itself.
+  - *Commutator trick.* Let `W_i` be the projections of `H ∩ F_(I_1)F_(I_2)F_(I_3)`. Then
+    `[W_i,W_i] ⊆ H`.
+  - *Rank-three step.* The product `K`-set `∏ F_(I_i)/W_i` is a quotient of the recurrent `K·y`. If
+    all three factors were infinite, it would carry a rough image of `Z^3` (folding by absolute
+    values onto three geodesic rays), so it would be transient.
+  - *Contradiction.* So some `W_i` has finite index. Simplicity of `F′` then gives
+    `F(I_i) = [F(I_i),F(I_i)] ⊆ [W_i,W_i] ⊆ H`, so `p_i ∈ U`.
+  - This bypasses the stall above: no point with finite `H`-orbit data is needed. It was not refereed.
+  - *Corollary* `thompson-f-does-not-embed-in-wobbling-groups-of-recurrent-graphs` answers the
+    recurrent half of Chaudkhari's closing question. With item 2 of
+    `f-functor-cocycles-need-an-exotic-recurrent-action`, `F′` acts trivially in every recurrent
+    action of every group containing `F`.

@@ -187,3 +187,16 @@ finiteness conjecture over finite fields.
   `L(Z_q wr U)` Connes-embeddable, the multinomial bound, and a `log q` lower bound. These are four prerequisites that
   can fail separately, and the last two pull against each other. Artifact
   `research/artifacts/stability-approximation-transplant-to-bernoulli-rokhlin-2026-09-17.md`.
+- **Shared-pointer gadgets in groups: dead on every host (swarm-0917-w4-pull-gs-2, 2026-09-17).** This kills the
+  firewall's Section 8 lead (a partial XOR, or a large stabilizer `K` with a unit `sigma`) for split gated diagonal
+  codes. It holds on every group, including hosts whose group ring is not directly finite, such as Leavitt units.
+  - Codewords sharing one pointer set lie in one coset of a finite stabilizer. A decoder that uses only codewords of
+    one gadget therefore lives in `F_q[cK]`.
+  - Projecting `σ(T c) = 1` onto the `F_q[K]` component of the free module makes `T` a two-sided unit.
+  - So every gadget decodes through the same codewords, `supp T^{-1}`, and the coupon-collector amplification of
+    Theorem A vanishes. We get `P(d_i = 1) <= P(i ∈ I_{J_1})` without global direct finiteness.
+  - Invariant: unit-ness of the value functional. The step where it dies is the coset projection.
+  - Survivors need a non-unit left-invertible `T_i`. Both `T_i` and each decoder must generate, after translation, a
+    subgroup whose algebra is not directly finite, and decoders must mix codewords with different pointer sets.
+  - See [[coset-local-decoders-force-gated-domination]] and
+    `research/artifacts/coset-local-decoders-gated-domination-2026-09-17.md`.

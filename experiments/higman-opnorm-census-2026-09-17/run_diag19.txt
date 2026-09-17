@@ -1,0 +1,4 @@
+U_0 = primitive 19-th roots, L=18, ||U_0-1||=1.9932
+L=18 start rand0: max defect=0.4114 defects=[np.float64(0.4111), np.float64(0.4104), np.float64(0.4103), np.float64(0.4114)] ||U_i-1||=[np.float64(1.993), np.float64(1.983), np.float64(1.987), np.float64(1.997)]
+L=18 start rand1: max defect=0.3975 defects=[np.float64(0.3943), np.float64(0.3924), np.float64(0.3942), np.float64(0.3975)] ||U_i-1||=[np.float64(1.993), np.float64(1.982), np.float64(1.996), np.float64(1.997)]
+BEST L=18 max defect 0.3975

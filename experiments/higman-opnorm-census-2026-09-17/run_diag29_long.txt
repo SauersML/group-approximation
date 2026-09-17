@@ -1,0 +1,6 @@
+U_0 = primitive 29-th roots, L=28, ||U_0-1||=1.9971
+L=28 start rand0: max defect=0.3181 defects=[np.float64(0.317), np.float64(0.3174), np.float64(0.3172), np.float64(0.3181)] ||U_i-1||=[np.float64(1.997), np.float64(1.997), np.float64(2.0), np.float64(1.999)]
+L=28 start rand1: max defect=0.3100 defects=[np.float64(0.3095), np.float64(0.3095), np.float64(0.31), np.float64(0.3098)] ||U_i-1||=[np.float64(1.997), np.float64(1.999), np.float64(1.999), np.float64(2.0)]
+L=28 start rand2: max defect=0.3250 defects=[np.float64(0.325), np.float64(0.3244), np.float64(0.3247), np.float64(0.3249)] ||U_i-1||=[np.float64(1.997), np.float64(1.999), np.float64(1.997), np.float64(1.995)]
+L=28 start rand3: max defect=0.3109 defects=[np.float64(0.3109), np.float64(0.3107), np.float64(0.3101), np.float64(0.3109)] ||U_i-1||=[np.float64(1.997), np.float64(2.0), np.float64(1.997), np.float64(1.999)]
+BEST L=28 max defect 0.3100

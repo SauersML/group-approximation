@@ -1,0 +1,3 @@
+s4 E={0123,1203,2013} F={1203,2013,0231} n=9 LP=0.833333
+  host=ONE-REL-TOR gens=3 rels=['e2013^-1.f2013^-1.e2013^-1.f2013^-1.e2013^-1.f2013^-1'] cert=(e2013^-1.f2013^-1)^3
+SUMMARY s4 seed 11: 60 configurations, 1 fakes; host classes {'ONE-REL-TOR': 1}

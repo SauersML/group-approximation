@@ -143,3 +143,18 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     `h = g⁻¹` takes values in `Z^(D)`, and its kernel is trivial. So extensive
     amenability of `F ↷ D` already gives the flagship through the corollary, and this
     case is the flagship itself. (swarm-0917-w4-f-extensive.)
+- **Sandwich splits and their kernel trichotomy (swarm-0917-w5-f-decomp, 2026-09-17).** This covers splits
+  `A ⇐ P ∧ Amen(K)`. They come from twisted embeddings, with `P = EA(X)` and `K = ker c`, faithful or not, and
+  recurrent or not. They also come from co-amenable induction, with `P = Coam(K)`.
+  - `f-sandwich-splits-collapse-unless-kernel-is-brin-sapir-exotic` (ESTABLISHED) shows `A ⟺ P ∧ Amen(K)`.
+  - If `K` contains `F`, then `Amen(K) ⟺ A`.
+  - If `K` is amenable, then `P ⟺ A`.
+  - *Invariant:* the Brin–Sapir type of the kernel.
+  - *Where every member dies:* at the kernel step or the action step. It survives only when `K` is F-free and
+    not elementary amenable, which refutes the Brin–Sapir conjecture.
+  - In the co-amenable case such a `K` is unconfined, and its coset means are mean-free, so `F` is sofic.
+  - The one uncollapsed split is recorded as the route `thompson-f-amenable-via-exotic-co-amenable-subgroup`.
+    Its prerequisites fail independently: `f-has-a-co-amenable-subgroup-neither-ea-nor-containing-f` fails
+    under Brin–Sapir, and `every-f-free-subgroup-of-thompson-f-is-amenable` fails only if `F` is non-amenable.
+  - Attacks on both are recorded under their Attempts. P2 reduces to the Brin–Sapir germ-kernel descent with
+    "EA" replaced by "amenable", and dies at the same step.

@@ -88,3 +88,26 @@ occupancy almost base-measurable, and it cannot come from
 the forgotten factor's own near-optimal graphings. The retraction residual of
 Section 7 is not covered by this obstruction. The artifact is
 `research/artifacts/fpbs/docs/oblivious-occupancy-localization-obstruction.md`.
+
+2026-09-17, second pass: localize fully supported, non-oblivious
+certificates on nonamenable groups. This dies at the rounding rule of
+Theorem 6.1 (tree per block, retain all crossing edges), for every
+occupancy function. The established
+`fpbs-retained-boundary-rounding-isoperimetric-floor` shows the output
+cost is exactly 1 + eps_bd(H,E), with eps_bd the average over blocks of
+sum_C (|boundary_H C|/2 - 1)/|B|. If the conditional support contains
+a fully supported generating S_0, Mader's theorem and the Cheeger
+constant give c(H') >= F_0 = 1 + (1/2 - 1/d_0) h(Gamma,S_0). So
+(1+2dM^2)Tr(P_out K) >= F_0 - c(Phi) for all blocks. On F_2 x Z, which
+has fixed price 1, F_0 >= 5/3. The invariant is the excess boundary
+density of the conditional support. The M-free bound
+c(H') <= c(Phi) + (crossing absence) + (interior disconnection), proved
+there, fails in the same way. It escapes wave 4 on Z^2, but only by
+re-proving amenable cost one.
+
+Consequences. K is idle for this rounding: (14) implies the K-free (BF),
+inf_E c(H'(H_n,E)) <= c(Phi_n) + o(1), which is itself equivalent to
+preservation. A localizing sequence must make label occupancy vanish
+exactly on base-measurable sets of positive measure. The retraction of
+Section 7, which deletes crossing edges, is not covered. The artifact is
+`research/artifacts/fpbs/docs/retained-boundary-isoperimetric-floor-2026-09-17.md`.

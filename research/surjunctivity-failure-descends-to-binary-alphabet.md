@@ -94,3 +94,46 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
     otherwise.
   - Where it stops: no construction lowers the number of rest symbols. The naive reclassification dies at the
     relay condition.
+- **Self-relaying witnesses: the 2-adic condition drops out** (swarm-0917-w4-gs-binary-descent, 2026-09-17).
+  - Established `self-relaying-donor-covering-automata-reach-admissible-types` (route
+    `self-relaying-product-with-a-binary-identity`, check `experiments/self-relaying-parity-2026-09-17/check.py`).
+    Call a donor-covering automaton *self-relaying* if every active input site stays active and is its own donor.
+    For such a witness of type `(z, b)`, `τ × id_{0,1}` with rest symbols `Z × {0}` is self-relaying of type
+    `(z, 2b + z)`. So `z = 1` gives an odd active count, and `z = 2` gives `4 ∤ b'`.
+  - Every `β × id` witness of item 5 is self-relaying. So for the universal problem the open node
+    `donor-covering-few-rest-automata-reach-admissible-types` is not needed. The rest-symbol reduction becomes
+    `strict-automata-reduce-to-few-rest-self-relaying-ones` (OPEN, any active count), with route
+    `universal-binary-descent-via-death-free-rest-reduction`. The only remaining demand is geometric: merge rest
+    symbols while no active input site ever dies.
+  - Where it stops: the product fails for witnesses that are not self-relaying, because a birth site whose flag layer
+    is active must relay both itself and its old donor. Value-layer designs die at the per-site count of "was active"
+    against "is active" (heuristic record on the new node). Births marked by patterns outside the image of a coding
+    are untried.
+  - Literature check (web, 2026-09-17): no source relating surjunctivity over two symbols to other alphabet sizes was
+    found. arXiv 1312.7682 (surjunctive-by-locally-finite groups) says nothing about alphabet size.
+- **Every label lift needs a Hilbert hotel; affine relays replace donor matchings** (swarm-0917-w5-gs-binary-descent,
+  2026-09-17). Family: group-rings.
+  - Literature correction. The statement is printed as an open question: V. G. Pestov, *Hyperlinear and sofic groups:
+    a brief guide*, Bull. Symbolic Logic 14 (2008), arXiv 0804.3968, Section 6, verbatim: "It seems to be unclear
+    whether it suffices to set A = {0, 1}. Open question 6.2. Is the Gottschalk Surjunctivity Conjecture equivalent to
+    its particular case where A = {0, 1}?" This supersedes the "no source found" note above.
+  - Kill, ESTABLISHED: `free-orbit-label-lifts-need-count-raising-label-automata`. Consider any strict automaton on
+    `C^G` that commutes with a free fibre action with one fixed symbol and lifts a label automaton `τ`. This covers
+    every phase rule, and `τ` need not be injective. Then `τ` fixes `0^G`, never lowers the finite active count and
+    raises it somewhere. The invariant is the fibre size `|F|^|ℓ|` together with the charge theorem. Every phase
+    transport design dies at the first finite label configuration whose count drops, whatever it does at single sites.
+  - Transfer, ESTABLISHED: `affine-relay-label-lifts-descend-to-two-symbols`. Let the output phase be an integral
+    affine combination of the window phases (coefficients summing to `1`), with the sparse linear maps injective mod
+    every prime. Then a strict one-rest automaton of odd type descends to binary strict automata over `G × C_q` for
+    infinitely many `q`. This proof is self-contained and uses only the odd-fibre split. Donors are the unit relays.
+    Relays need no locally defined matching, only algebraic invertibility.
+  - Decomposition: route `universal-binary-descent-via-affine-relay-hotels`, with OPEN prerequisites
+    `strict-automata-yield-odd-one-rest-hilbert-hotels` (necessary for every label lift) and
+    `odd-one-rest-hilbert-hotels-carry-affine-relays`.
+  - Where it stops: no reduction from a strict `β` to an automaton whose count never drops is known. A power of `β`
+    gives a quiescent rest symbol, but deaths may outnumber births on finite configurations, and the parity fix
+    `τ × id_{0,1}` does not preserve monotonicity. What always holds is a weak relay. If `β` fixes `a0^G`
+    and `ν` is its inverse rule on the image with window `N`, every active input site `h` has an active output in
+    `hN`, since `ν(a0^N) = a0`. Upgrading this to (R3) needs multiplicities and control of infinite configurations.
+  - Checked: `experiments/affine-relay-lifts-2026-09-17/check.py`, exhaustive over `C_n`. Lifts commute with both
+    actions, and `θ` is injective exactly when every `A_ℓ` is injective mod `q`.

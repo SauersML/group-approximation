@@ -1,0 +1,61 @@
+Independent-conjugation first moment for (A_7, A_7, A_8) Z/7 triangles into S_n
+sw-056, wave flagship-2026-09-17. Related node: a7a7a8-triangle-candidate-without-finite-quotients.
+Family and configuration search: research/artifacts/hyperbolic-triangle-family-calibration-2026-09-13.md.
+
+WHAT IS COMPUTED
+- subgroup_data.g (GAP): for A_7, A_8 (7-element edge generators) and dihedral D_2, D_3, D_4, D_7
+  (reflection generators), one line per conjugacy class of subgroups U:
+  index, class length, and the number of p-cycles of each edge generator on H/U.
+- first_moment.py: exact marked counts H_v(n; c1, c2) = #{H_v -> S_n with c_i p-cycles on g_i},
+  from exp(sum_U x^[H:U] y^c(U) / [H:U]). Then
+    T(n) = sum H1 H2 H3 / (K(c12) K(c13))            (path amalgam, dropping edge e23: EXACT)
+    E(n) = sum H1 H2 H3 / (K(c12) K(c13) K(c23))     (triangle: the third edge identification
+                                                      treated as an independent class event)
+  where K_p(c) = n!/(p^c c! (n-pc)!). The c=0 term is the trivial homomorphism.
+  The asymptotic exponent of E(n) in n! is 1 - chi, chi the orbihedral Euler characteristic:
+  for the family, 1 - chi = 3/7 - 17/20160 > 0.
+- check_tree_exact.py: T(n) equals the brute-force count of homomorphisms of
+  D_2 *_<b> D_3 *_<a> D_7 into S_n for n <= 6 (tree_exact_check.txt, all True).
+- brute_coxeter.py: exact |Hom(W, S_n)| for Coxeter triangle groups W(2,3,7), W(3,3,4), n <= 8.
+
+CALIBRATION (hyperbolic Coxeter triangles, residually finite; log10 of nontrivial counts)
+  n   W(2,3,7) exact  E(n)-1      W(3,3,4) exact  E(n)-1
+  5   1.398           1.633       2.423           2.433
+  6   1.875           2.324       3.593           3.689
+  7   2.364           3.748       4.594           4.682
+  8   4.614           4.858       5.659           5.691
+The moment is within a factor 24 of the truth for n <= 8, and within a factor 2 at n = 8.
+
+FAMILY F (every member, every twist, every vertex pair: E(n) does not depend on them)
+  n    log10(E(n)-1)   log10(T(n)-1)
+  8    2.535           6.296
+  14   3.380           9.773
+  15   7.071           17.196
+  21   9.840           23.855
+  30   16.683          44.038
+  60   40.179          109.104
+(full table: moment_a7a7a8.txt)
+
+The complete configuration search on main finds no nontrivial homomorphism from any member of F to
+S_n for n <= 21. So at n = 21 the true nontrivial count is 0 while the first moment is 6.9e9.
+
+WHAT THIS RULES OUT (precisely)
+1. Euler-characteristic counting is not evidence either way for this family below degree 22. The
+   positive exponent 1 - chi > 0 predicts about 10^2.5 nontrivial actions already on 8 points and
+   about 10^9.8 on 21 points; the truth is zero for every member. So no bound of the form
+   |Hom(G, S_n)| - 1 >= c * (E(n) - 1) with c > 0 holds for any member at n = 21, and no argument
+   that turns this moment into existence of actions can work at degrees <= 21.
+2. E(n) depends only on the vertex groups and the edge orders, not on the edge embeddings or the
+   link girths (every row of A7.dat and A8.dat has c1 = c2, because any two 7-elements generate
+   conjugate cyclic subgroups up to powers, and fixed points of g equal those of <g>). So the
+   suppression by at least 10^9.8 is not visible to any statistic of the vertex groups alone: it
+   comes from the correlation between the three edge identifications, which the moment treats as
+   independent. On Coxeter triangles, whose vertex groups are dihedral, the same moment is accurate
+   to a factor 24 at n <= 8. So the small-degree zeros of the four candidates are explained by
+   the family's local structure, not by counting. This agrees with the family calibration: those
+   zeros are family-wide and say nothing about the candidates.
+3. Nothing here constrains large n. The first moment grows like (n!)^(3/7), so a probabilistic
+   existence proof of finite quotients for this family, if one exists, has to work in a regime where
+   the images are large, beyond the degrees any existing search has reached.
+
+Runtime: GAP a few seconds; first_moment.py a7a7a8 60 under a minute; brute_coxeter n<=8 about a minute.

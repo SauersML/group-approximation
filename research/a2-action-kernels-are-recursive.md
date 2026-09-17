@@ -137,3 +137,43 @@ kernel is recursive iff `<Γ, π>` has solvable word problem.
   - an actor in which some tuple stabilizer has infinitely many orbits;
   - an actor whose tuple-stabilizer data are not uniformly computable;
   - edge groups that are not tuple stabilizers.
+
+**Attempt 4 (2026-09-17, swarm-0917-w5, finite-models): automatic image actions and
+quotient-coefficient actors.**
+- **Automatic image actions die** (`automatic-image-actions-have-recursive-kernels`,
+  self-contained).
+  - Suppose the image action has an automatic presentation: a regular domain, a
+    synchronous rational point equality, and synchronous rational generator graphs.
+  - Then the graph `E_w` of any word is a composite of synchronous rational relations.
+    `w ∈ K` iff `L(E_w) \ L(~)` is empty, which is decidable and uniform in the automata.
+  - The invariant is automatic presentability of the image action. Every member dies
+    at the step where kernel membership becomes automaton emptiness.
+  - The class contains every bounded-delay prefix-replacement action: the tail classes
+    of `F, T, V, nV` and Houghton rays.
+  - For HNN realizations, the intertwiner `π` must be non-synchronous-rational in
+    every automatic presentation of the actor in which the actor acts synchronously.
+    This covers the eventually periodic intertwiners of Attempts 3 and 4 on
+    `type-a-hnn-realization-with-unsolvable-word-problem`.
+- **Quotient-coefficient Theorem C actors reduce to finitely presented coefficients**
+  (proved here).
+  - Setup: `H` is finitely presented, `M ⊴ H`, `Q = H/M`, and
+    `A = Aut_H(H * F_n)` acts on `Hom_H(H * F_n, Q) ≅ Q^n`.
+  - The stabilizer of the trivial representation is `{α : c(α)_i ∈ M}`, where
+    `c(α)_i = α(x_i)|_(x = 1)`.
+  - One checks `c(α β)_i = β(x_i)[x_j -> c(α)_j]|_(x=1) ≡ c(β)_i` modulo the normal
+    closure of the entries of `c(α)`.
+  - By induction on word length, the entries of `c` on a finite generating set of the
+    stabilizer normally generate a subgroup `M_0` containing every `c(α)_i`.
+  - The transvections `x_1 -> x_1 m`, `m ∈ M`, lie in the stabilizer, so `M = M_0`.
+  - Hence a finitely generated stabilizer forces `M` to be finitely normally generated
+    and `Q` finitely presented. Such actors are no more general than the finitely
+    presented coefficient case of `a2-kernel-removal-forces-recursive-kernel` (c).
+- **Fibre products in `G × G` die.** A stabilizer is finitely generated iff `N` is
+  finitely normally generated, so the image is finitely presented. This duplicates
+  Attempt 2 of `some-a2-action-has-a-nonrecursive-kernel`.
+- **Where it dies.** A counterexample needs an image action with no automatic
+  presentation. The one known hardness source, the Theorem C actor, multiplies group
+  coordinates. Next try either of:
+  - show that the Theorem C actor over a non-virtually-abelian `Γ` is non-automatic;
+  - find an orbit-finite `D_1 ≤ 2V` whose intertwiner graph encodes an undecidable
+    orbit relation (Belk-Bleak Turing-machine elements).

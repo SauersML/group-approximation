@@ -170,3 +170,19 @@ must build genuinely Hamming-approximate sofic models.
     `eps` in operator norm needs about `(C/eps)^{|S|d^2}` iterates, so the models
     must be accurate on balls that grow with `d`.  The wrap block has
     operator-norm weight `1`, not `1/N`.  Details are in the `(XMF)` node.
+12. **Elementary groups as quotients, through rational relation covers
+    (2026-09-17, group-rings).** Item 10 forbids elementary groups inside `K`,
+    not as quotients of `K`. `kazhdan-rational-relation-cover-reduction`
+    proves a criterion. Let `P ->> Q` be a finitely generated Kazhdan cover of
+    a quotientless Kazhdan `Q`, and put `K = P/R_sat`, with `R_sat` the rational
+    saturation of `[R,R]`. Then `K` is torsion-free exactly under (RLT): `l`-th
+    powers of lifts of `l`-torsion stay non-torsion in `R^ab`. `[K,K]` is always
+    a Kazhdan group with no finite quotient, and `K` embeds in
+    `V semidirect Q`, which is sofic via Hayes--Sale when `V` is induced. With
+    `Q = EL_3(LC(X,F_q) semidirect Z)`, the intrinsic clauses of this node
+    reduce to the two independent inputs of
+    `relation-cover-rational-lifting-over-quotientless-kazhdan`. The same note
+    kills Steinberg covers and every finite-index elementary cover in
+    characteristic `p`, via
+    `[e_13(pN), e_32(pNu)] = e_12(pu)^{pN^2}`. Hyperbolic Belegradek--Osin
+    covers remain untested. (EK1) is not addressed.
