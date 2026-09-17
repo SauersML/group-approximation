@@ -92,6 +92,39 @@ is a special case of that claim.
   **Where it dies:** no import on main bounds how far the uniqueness threshold
   moves between `s = 0` and `s = p`. The only lower bound for `p_u` in use is
   `1/||A||`, and it gives exactly the margin class.
+* **Remove half alone is equivalent to the goal; the Add half is redundant**
+  (`fpbs-removal-descendants-of-gapped-sets`, swarm-0917). For a nonamenable
+  `Gamma` and any `S`, there is a finite symmetric `T ⊇ S` with `e ∉ T`,
+  `m(T) > K`, and a chain of Remove moves from `T` to `S`. To build `T`:
+  - with `mu` uniform on `S`, let `W_l ⊆ W_{l-1}W_{l-1}` be the elements where
+    `mu^{*2^l} >= rho^{2^l} e^{-(h-2eta)2^r}`;
+  - add one dyadic band `V` of the typical level set of `mu^{*2^r}`;
+  - remove the layers from the top down.
+
+  The adjacency norms are bounded by `rho^n/threshold` through entrywise
+  domination, and `|V| ~ e^{hk}` by Shannon–McMillan–Breiman (Lyons–Peres
+  Theorem 14.10(ii), `fpbs-random-walk-shannon-and-avez-bounds`). So applying
+  the Remove half along that chain already gives `p_c(S) < p_u(S)`. Two
+  consequences:
+  - Proof attempts need only ever handle Remove moves.
+  - An Add-only chain from a gapped `S_0` reaches only supersets of `S_0`, so it
+    cannot reach every `S`. For example, the standard basis of `F_2` has no
+    proper generating subset. The mixed chain of
+    `fpbs-generating-sets-connected-by-product-moves` is therefore replaced by a
+    Remove-only chain.
+
+  A counterexample `S` is the end of a Remove chain from a gapped superset `T`
+  built from level sets of the walk on `S`, and exactly one step of that chain
+  deletes a product pair and closes the gap.
+
+  **Where it dies:** the margin of `T` is about `e^{(h-eta)k}/k`, but the chain
+  has about `|T|/2 ~ e^{hk}` moves. The loss of 2 per move in
+  `fpbs-spectral-margin-survives-product-generator-moves` item 3 is too large
+  to carry the gap down to `S`. Whenever `m(S) <= 0`, as for the standard
+  basis of `F_2`, any margin certificate must fail somewhere on the chain,
+  whatever the per-move losses are. The final Remove steps therefore need a
+  lower bound on `p_u` that is not spectral, and no import on main supplies
+  one. This is a decomposition, not a proof.
 
 Details for the first three attempts are in Section 4 of
 `research/artifacts/fpbs-choi-seo-q12-invariance-2026-09-12.md`. Details for
