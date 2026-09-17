@@ -165,3 +165,20 @@ theorem adj_word (i j k : Fin (d + 5)) (hij : i ≠ j) (hjk : j ≠ k) (hik : i 
 end
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootWords
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.closure_commute
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.RootGroup
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootElem
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum_add
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum_monomial
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_add
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_monomial
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_mem
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_commute
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_zero
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_neg
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.freeAlgebra_induction
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.adj_word
