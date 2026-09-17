@@ -45,10 +45,12 @@ theorem hasInvariantMean_closure_finset {A : Type} [Group A]
       (1 : Multiplicative ℤ →* Subgroup.closure ((∅ : Finset A) : Set A)) ?_
       Amenability.hasInvariantMean_int
     rintro ⟨x, hx⟩
-    rw [Finset.coe_empty, Subgroup.closure_empty, Subgroup.mem_bot] at hx
+    have hx1 : x = 1 := by
+      rw [Finset.coe_empty, Subgroup.closure_empty, Subgroup.mem_bot] at hx
+      exact hx
     refine ⟨1, Subtype.ext ?_⟩
     show (1 : A) = x
-    exact hx.symm
+    exact hx1.symm
   | insert g S _ ih =>
     have hmean : Amenability.HasInvariantMean
         (↥(Subgroup.closure (S : Set A)) ⋊[1] ↥(Subgroup.zpowers g)) :=
@@ -105,9 +107,11 @@ theorem hasInvariantMean_of_derivedSeries_eq_bot (n : ℕ) :
     refine Amenability.hasInvariantMean_of_surjective (1 : Multiplicative ℤ →* G) ?_
       Amenability.hasInvariantMean_int
     intro x
-    have hx : x ∈ derivedSeries G 0 := Subgroup.mem_top x
-    rw [h, Subgroup.mem_bot] at hx
-    exact ⟨1, (MonoidHom.one_apply (1 : Multiplicative ℤ)).trans hx.symm⟩
+    have hx : x ∈ (⊥ : Subgroup G) := by
+      rw [← h, derivedSeries_zero]
+      exact Subgroup.mem_top x
+    exact ⟨1, (MonoidHom.one_apply (M := Multiplicative ℤ) (N := G) 1).trans
+      (Subgroup.mem_bot.mp hx).symm⟩
   | succ n ih =>
     intro G _ h
     haveI : (derivedSeries G n).Normal := derivedSeries_normal G n
@@ -121,7 +125,7 @@ theorem hasInvariantMean_of_derivedSeries_eq_bot (n : ℕ) :
       exact Subtype.ext hab
     · refine ih (G ⧸ derivedSeries G n) ?_
       rw [← map_derivedSeries_eq (QuotientGroup.mk'_surjective (derivedSeries G n)) n]
-      exact Subgroup.map_eq_bot_iff.mpr (QuotientGroup.ker_mk' (derivedSeries G n)).ge
+      exact (Subgroup.map_eq_bot_iff _).mpr (QuotientGroup.ker_mk' (derivedSeries G n)).ge
 
 /-- **Solvable groups carry invariant means.** -/
 theorem hasInvariantMean_of_isSolvable (G : Type) [Group G] [IsSolvable G] :
