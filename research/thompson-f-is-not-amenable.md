@@ -121,6 +121,27 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   survives is the root itself. Calibration: the same vanishing holds for the non-amenable groups
   `F_2 × Z` and Monod's piecewise-projective groups, so none of it is evidence for amenability.
   (swarm-0917, obstruction-miner, cohomology-index.)
+- **Subgroup-pair certificates: interior rigid stabilizers, Hecke pairs, tdlc hulls, graph actions
+  (2026-09-17).** Certificates built from one subgroup `H` or one action: (S) a non-amenable `Sch(F/H)`;
+  (C) a non-amenable Schlichting completion of a commensurated `H`, or any non-amenable totally
+  disconnected locally compact group receiving `F` densely; (G) an action on a connected locally finite
+  graph. Claim: `thompson-f-subgroup-pair-certificates-collapse`.
+  - *Invariant:* rigid interval subgroups `F[a,b] ≅ F` with infinite simple commutants `F(a,b)`, whose
+    conjugates exhaust `F′`.
+  - *(S) dies at co-amenability:* every `H ⊇ F[a,b]`, for any interior interval, is co-amenable, because a
+    limit of conjugates contains `F′` and Følner sets of the abelian limit graph transfer back
+    (`thompson-f-rigid-stabilizer-schreier-graphs-are-amenable`). This upgrades the end-rigid kill above
+    to every stabilizer of a non-dense set, of a measure with a gap in its support, and to every confined
+    subgroup.
+  - *(C) and (G) die at the completion or stabilizer step:* every commensurated subgroup is `1` or contains
+    `F′` (`thompson-f-commensurated-subgroups-are-trivial-or-normal`, through a disjoint-support commutator
+    `[f₁⁻¹h^(m₁)f₁h^(−m₁), f₂⁻¹h^(m₂)f₂h^(−m₂)] = [f₁⁻¹, f₂⁻¹]`). So a tdlc hull is `F` itself, abelian or
+    compact-by-abelian, and a graph action is free or factors through `Z²`.
+  - *Survivors (exact):* Schreier certificates over nowhere-rigid `H`, i.e. `H` containing no `F[a,b]`,
+    equivalently whose conjugates never accumulate on a subgroup containing `F′`. These include `H = 1`,
+    so the surviving class is equivalent to the root. Calibration: `BS(1,2)` and Thompson's `T` have
+    commensurated non-normal subgroups, so the collapse uses both the simple commutants and torsion-freeness.
+  (swarm-0917-w5-f-nonamenable, obstruction-miner, host-geometry.)
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
