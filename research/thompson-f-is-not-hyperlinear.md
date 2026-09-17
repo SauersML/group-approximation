@@ -51,3 +51,16 @@ of the two relators of `F` almost commute, uniformly in the dimension.
   - **Calibration.** Spatial permutation models that follow `F` on `[0,1]` almost commute
     (`thompson-f-spatial-permutation-models-almost-commute`). So the natural geometric frame is
     degenerate, consistent with the dying step.
+- **Inverter biography: group-level permanence cannot reach `F`** (lane swarm-0917-w5-pull-nh-2,
+  2026-09-17). Recorded as `thompson-f-in-permanence-closure-only-via-base-copy`.
+  - **Invariant.** "Contains a subgroup isomorphic to `F`". It is preserved backwards by subgroups, directed
+    unions, unrestricted products, extensions, graphs of groups with arbitrary edge groups, local embeddability
+    and recurrent extensions.
+  - **Consequence.** `F` lies in the permanence closure of amenable, LEA and LEF groups only if `F` is amenable.
+    So if this claim is false and `F` is non-amenable, a hyperlinearity certificate must be a direct metric
+    construction for `F`, or for a new base group containing `F`. It cannot come from gluing witnesses along a
+    splitting, product or extension.
+  - **New tool.** Relative property FA for `F`: every action on a tree fixes a vertex unless an edge stabilizer
+    contains a copy of `F`.
+  - **Not killed.** Quotients and metric ultraproducts, action-level permanence, and direct almost-representations.
+    Those are where any refutation or proof of this claim must live.
