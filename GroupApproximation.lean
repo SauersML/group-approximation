@@ -5371,6 +5371,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Resolve
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.FlipInvariance
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Converse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.HyperlinearPrinted
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.Endpoints
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
