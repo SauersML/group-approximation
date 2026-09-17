@@ -1,0 +1,17 @@
+|G|=168 p=2 phi=fig8 d_p-1=31 nullF=31 nullB=
+40 nullB/|G|=0.2380952380952381 t=720ms
+|G|=168 p=3 phi=fig8 d_p-1=31 nullF=31 nullB=
+31 nullB/|G|=0.1845238095238095 t=741ms
+|G|=168 p=5 phi=fig8 d_p-1=31 nullF=31 nullB=
+31 nullB/|G|=0.1845238095238095 t=757ms
+|G|=168 p=7 phi=fig8 d_p-1=32 nullF=32 nullB=
+36 nullB/|G|=0.2142857142857143 t=771ms
+|G|=504 p=2 phi=fig8 d_p-1=63 nullF=63 nullB=
+70 nullB/|G|=0.1388888888888889 t=907ms
+|G|=504 p=3 phi=fig8 d_p-1=63 nullF=63 nullB=64 nullB/|G|=0.126984126984127 t=
+1007ms
+|G|=504 p=5 phi=fig8 d_p-1=62 nullF=62 nullB=62 nullB/|G|=0.123015873015873 t=
+1105ms
+|G|=504 p=7 phi=fig8 d_p-1=62 nullF=62 nullB=62 nullB/|G|=0.123015873015873 t=
+1238ms
+DONE
