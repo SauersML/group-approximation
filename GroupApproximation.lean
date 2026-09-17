@@ -5450,6 +5450,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.BlockCliffordProp
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.SolvableAmenable
 import GroupApproximation.Manuscript.NonMF.ChainCarto03Quotient
 import GroupApproximation.Manuscript.NonMF.IntroCarto02Local
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.Configuration
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
