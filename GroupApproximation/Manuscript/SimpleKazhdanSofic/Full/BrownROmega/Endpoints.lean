@@ -85,6 +85,7 @@ infinite, simple, sofic group has Brown's form. -/
 theorem isBrownROmegaForm {G : Type} [Group G] [Countable G] (hsimple : IsSimpleGroup G)
     (hinf : Infinite G) (hsofic : IsSofic G) : IsBrownROmegaForm G := by
   obtain ⟨hICC, hII, hMcDuff, hψL, hψ⟩ := printedBrownFactors.{0} G hsimple hinf
+  unfold IsBrownROmegaForm
   exact ⟨hICC, hII, hMcDuff, hψL, hψ, fun ω hω =>
     ⟨exists_groupVonNeumann_embedding hsofic ω hω, exists_tensorHyperfinite_embedding hsofic ω hω⟩⟩
 
