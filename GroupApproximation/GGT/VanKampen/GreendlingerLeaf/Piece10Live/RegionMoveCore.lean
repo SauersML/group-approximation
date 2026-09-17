@@ -112,8 +112,10 @@ theorem exists_walkKeep_of_connected {M : CombMap.{v}} (hM : M.IsConnected) {c :
       · refine ⟨halpha a, fun hb => ?_⟩
         have h2 := halpha _ hb
         rwa [M.alpha_involutive a] at h2
-      · refine ⟨fun ha => hstep _ _ (Or.inl (hsig a)) (halpha a ha), fun hb => ?_⟩
-        have h2 := halpha _ (hback _ _ (Or.inl (hsig a)) hb)
+      · have hfs : CombMap.FaceClassStep M (walkKeep M c) (M.alpha a) (M.sigma a) :=
+          Or.inl (hsig a)
+        refine ⟨fun ha => hstep (M.alpha a) (M.sigma a) hfs (halpha a ha), fun hb => ?_⟩
+        have h2 := halpha (M.alpha a) (hback (M.alpha a) (M.sigma a) hfs hb)
         rwa [M.alpha_involutive a] at h2
     | refl _ => exact Iff.rfl
     | symm _ _ _ ih => exact ih.symm
