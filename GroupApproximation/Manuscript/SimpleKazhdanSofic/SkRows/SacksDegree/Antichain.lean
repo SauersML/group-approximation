@@ -45,8 +45,7 @@ theorem charDegree_antichain_family :
     fun B hB C hC h => hanti B hB C hC ((turingDegreeOf_le_iff _ _).1 h)
   refine ⟨F, hF, ?_, hle⟩
   intro B hB C hC h
-  have e : charDegree B = charDegree C := h
-  exact hle B hB C hC e.le
+  exact hle B hB C hC h.le
 
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.charDegree_antichain_family
 

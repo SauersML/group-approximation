@@ -21,7 +21,7 @@ no freeness needed):
   of the nonnegative reals `‖xₙ Ω‖²`.
 * `ultratraceTracialState`: the ultratrace is a faithful tracial state (corpus
   `FaithfulTracialState`).
-* `pullbackTracialState`, `nontrivial_of_starAlgHom`: an injective unital `⋆`-homomorphism
+* `faithfulTracialStatePullback`, `nontrivial_of_starAlgHom`: an injective unital `⋆`-homomorphism
   `A → B` pulls a faithful tracial state of `B` back to one of `A`, and any unital
   `⋆`-homomorphism into a nontrivial algebra has a nontrivial (nonzero) domain.
 -/
@@ -124,7 +124,7 @@ section Pullback
 variable {A B : Type*} [Ring A] [StarRing A] [Algebra ℂ A] [Ring B] [StarRing B] [Algebra ℂ B]
 
 /-- **Pullback of a faithful tracial state** along an injective unital `⋆`-homomorphism. -/
-def pullbackTracialState (t : FaithfulTracialState B) (Φ : A →⋆ₐ[ℂ] B)
+def faithfulTracialStatePullback (t : FaithfulTracialState B) (Φ : A →⋆ₐ[ℂ] B)
     (hΦ : Function.Injective Φ) : FaithfulTracialState A where
   toLinearMap := t.toLinearMap.comp Φ.toAlgHom.toLinearMap
   map_one := by
@@ -146,13 +146,13 @@ def pullbackTracialState (t : FaithfulTracialState B) (Φ : A →⋆ₐ[ℂ] B)
     have h2 : Φ x = 0 := t.eq_zero_of_map_star_mul_self_eq_zero h
     exact hΦ (h2.trans (map_zero Φ).symm)
 
-#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.pullbackTracialState
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.faithfulTracialStatePullback
 
-theorem pullbackTracialState_apply (t : FaithfulTracialState B) (Φ : A →⋆ₐ[ℂ] B)
-    (hΦ : Function.Injective Φ) (a : A) : pullbackTracialState t Φ hΦ a = t (Φ a) :=
+theorem faithfulTracialStatePullback_apply (t : FaithfulTracialState B) (Φ : A →⋆ₐ[ℂ] B)
+    (hΦ : Function.Injective Φ) (a : A) : faithfulTracialStatePullback t Φ hΦ a = t (Φ a) :=
   rfl
 
-#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.pullbackTracialState_apply
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.faithfulTracialStatePullback_apply
 
 /-- A unital `⋆`-homomorphism into a nontrivial algebra has a nontrivial domain. -/
 theorem nontrivial_of_starAlgHom [Nontrivial B] (Φ : A →⋆ₐ[ℂ] B) : Nontrivial A := by

@@ -70,7 +70,7 @@ theorem manuscriptSentence_injectiveStarHomToROmegaTraceState {A : Type*} [Ring 
       ∃ t : FaithfulTracialState A, ∀ a : A, t a = Hyperfinite.hyperfiniteUltratrace ω (Φ a) := by
   haveI := hyperfiniteUltrapower_nontrivial ω
   exact ⟨nontrivial_of_starAlgHom Φ,
-    pullbackTracialState (hyperfiniteUltratraceState ω) Φ hΦ, fun _ ↦ rfl⟩
+    faithfulTracialStatePullback (hyperfiniteUltratraceState ω) Φ hΦ, fun _ ↦ rfl⟩
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.ROmegaSanity.manuscriptSentence_injectiveStarHomToROmegaTraceState
 

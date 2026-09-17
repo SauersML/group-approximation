@@ -48,7 +48,8 @@ of `J`, the edge relations `T k T⁻¹ η(k)⁻¹` for `k ∈ K`, and the triang
 def brownRels : Set (FreeGroup (↥J ⊕ Unit)) :=
   Set.range (fun ab : J × J => FreeGroup.of (Sum.inl ab.1) * FreeGroup.of (Sum.inl ab.2) *
       (FreeGroup.of (Sum.inl (ab.1 * ab.2)))⁻¹) ∪
-    Set.range (fun k : K => FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl (brownKIncl J K hKJ k)) *
+    Set.range (fun k : K => FreeGroup.of (Sum.inr ()) *
+      FreeGroup.of (Sum.inl (brownKIncl J K hKJ k)) *
       (FreeGroup.of (Sum.inr ()))⁻¹ * (FreeGroup.of (Sum.inl (brownKIncl J K hKJ (η k))))⁻¹) ∪
     {FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl h) * FreeGroup.of (Sum.inr ()) *
       (FreeGroup.of (Sum.inl h) * FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl h))⁻¹}
@@ -126,7 +127,7 @@ end Presentation
 
 /-- In any group, a braid relation `t y t = y t y` with `y² = 1` forces `t² = 1`, because
 `(y t) y (y t)⁻¹ = t`. -/
-theorem mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P} (hb : t * y * t = y * t * y)
+theorem brown_mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P} (hb : t * y * t = y * t * y)
     (hy : y * y = 1) : t * t = 1 := by
   have ht : t = y * t * y * t⁻¹ * y⁻¹ := by
     rw [← hb]
@@ -135,13 +136,13 @@ theorem mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P} (hb : t * y * t
     _ = y * t * (y * y) * t⁻¹ * y⁻¹ := by group
     _ = 1 := by rw [hy]; group
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.mul_self_eq_one_of_braid
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brown_mul_self_eq_one_of_braid
 
 /-- `T² = 1` in `Π` when `h² = 1` (tex: "The relation `T² = 1` follows from the displayed
 presentation"). -/
 theorem brownT_mul_self (J K : Subgroup G) (hKJ : K ≤ J) (η : K →* K) (h : J) (hh : h * h = 1) :
     brownT J K hKJ η h * brownT J K hKJ η h = 1 :=
-  mul_self_eq_one_of_braid (brownT_braid J K hKJ η h)
+  brown_mul_self_eq_one_of_braid (brownT_braid J K hKJ η h)
     (by rw [brownJ_mul, hh, brownJ_one])
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownT_mul_self
