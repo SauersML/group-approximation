@@ -5,6 +5,7 @@ kind: claim
 title: Well-founded Morse matchings over short trivial words almost exhaust the cycle dimension of every Bernoulli Cayley graphing
 artifacts:
   - research/artifacts/fpbs/docs/bernoulli-morse-collapse-criterion.md
+  - research/artifacts/fpbs/docs/dual-forest-morse-matching-one-relator.md
 distinct_from:
   fpbs-bernoulli-cycle-tail-compactness: that asks for compact near-minimizing sequences among arbitrary graphings; this restricts to subgraphings of one Cayley graphing organised by cell matchings, so it additionally contains subgraphing attainment (Q3 of the artifact) and can fail even if the cost-Betti equality holds
   fpbs-bernoulli-morse-collapse-criterion: that proves the criterion and the limit formula; this is the open assertion that the limit is zero
@@ -61,28 +62,19 @@ survives: `gap(P_L) -> 0`, so this claim is equivalent to `lim_L A(P_L) = 0`, as
 well-founded matchings. For finite presentations `gap = 0`, and there (Q1) is exactly `A(R) = 0`. Artifact:
 `research/artifacts/fpbs/docs/morse-l2-inequality-and-lamplighter-gap.md`.
 
-**2026-09-17 (swarm-0917-w5-pull-fp-3, transplanter, group-rings): split the premise, and fix the Q3 route by
-letting S grow.** The Q3 attempt above dies because it keeps the long edges as Cayley paths. Keep them as generators
-instead:
+**2026-09-17 (swarm-0917-w5-pull-fp-1): dual-forest matchings along a two-incidence edge class.** This proves (Q1),
+and hence this claim, fixed price and `C(b) = 1 + beta_1`, for every infinite `<S | w^m>` in which some generator is
+used exactly twice in `w`. See `fpbs-one-relator-twice-used-letter-fixed-price`.
 
-- Split each piece of a near-optimal `Psi` into translations `x -> gamma.x`.
-- Truncate to finitely many labels `F`.
-- Back up the `S_0`-edges that are not yet connected. They have vanishing measure by dominated convergence.
+- By Weinbaum the boundary cycles are embedded, so each `s`-edge lies on exactly two distinct cycles.
+- The dual graph on cycles has component `<w,t><w>`. The Freiheitssatz gives an element of infinite order in
+  `<w,t>`, so the components are infinite.
+- Matching each cycle to the `s`-edge toward its parent in a BFS forest around sparse iid markers gives mass
+  `(1 - eps)/m`. Mass transport makes the trees finite, and children of a matched edge are exactly its tree children.
+- This reaches the proper-power ceiling `1/m` with the single relator `w^m`.
 
-This gives `C(a) = lim_R C_sub^a(B_R) = inf_S C_sub^a(S)` for every free action. So
-`lim_R lim_L m_(B_R)(P_L) = C(b) - 1 - beta_1`, and at a fixed `S` this claim is exactly
-`C(b) = 1 + beta_1` plus `(Q3)(S)`, where `(Q3)(S)` is upward closed in `S`.
-
-Consequences:
-
-- The Morse form of the cost–Betti target is lossless once `S` may grow.
-- The only surplus of this claim over the target is attainment at small `S`, which no route to tail compactness needs.
-- A failure at one `S` does not refute the target.
-
-Group-rings transplant: `rho` is the von Neumann rank of `d2` over `Z Gamma`, so it does not depend on the action. All
-action dependence sits in `A`. Ring tools produce division-closure pivots, not `±1` acyclic Morse pivots, since
-`[[1,1],[1,-1]]` has rank 2 and no admissible pivot pair. So they stop at `A`.
-
-Still open here: `(Q3)(S)` at small `S` for nonamenable, non-treeable groups. Test cases are `<S | w^m>` and
-2-generator Kazhdan groups. Claim `fpbs-cost-is-limit-of-cayley-subgraphing-costs`; artifact
-`research/artifacts/fpbs/docs/adapted-generating-sets-make-morse-deficit-lossless.md`.
+It does not reach the general claim, and dies as a general method at the incidence count. If every letter is used at
+least three times, an `s`-edge has `k >= 3` incidences. A matched edge is then a child of the matched edges of all
+`k - 1` other incident cells, so well-foundedness needs a Borel peeling of the incidence hypergraph, which nothing
+here supplies. Kazhdan groups, and one-relator groups in which every letter repeats, are untouched. Artifact:
+`research/artifacts/fpbs/docs/dual-forest-morse-matching-one-relator.md`.
