@@ -197,3 +197,19 @@ part of the remaining hole.
   commutator is fenced by hyperlinear-by-amenable permanence.  Thus the
   first live two-cell must have genuinely nonamenable joint holonomy, or a
   proper-endomorphism cocycle outside every amenable telescope.
+- A positive-mass input cannot rule out the congruence exits: tensoring with
+  them keeps the mass.
+  `congruence-exit-tensoring-forces-total-packet-collapse` tensors any
+  tracial representation `pi` with the Toeplitz exits `rho_q`.  Packet mass
+  becomes at least `q/(2|B|)`, while `tau(p_<=K)` drops to at most
+  `N_K K^4/(N_q-1)^2`.  Hence, for every cell design whose relators hold on
+  these exits, the scalar placement form and the zero-energy density form of
+  `(PCD1)` are each *equivalent* to total collapse.  On the
+  finite-dimensional class that means `z` dies in every finite quotient.
+  On the Connes-embeddable class it means every embeddable trace kills `z`,
+  which is strictly stronger than non-hyperlinearity.  No compiler,
+  separator or covariance estimate valid in a tensor-closed class can be
+  weaker than total collapse.  A live cell must fail on every congruence
+  exit, or the target must be restated as collapse.  Positive-energy
+  microstate densities are not covered, because `mu_K` is not defined
+  there.
