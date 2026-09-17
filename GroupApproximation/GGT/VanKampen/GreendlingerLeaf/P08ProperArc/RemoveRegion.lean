@@ -217,3 +217,17 @@ theorem newCycle_closed (hw : IsNoncrossingClosedWalk X.toCombMap w)
 end Remove
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem4_1
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem4_2
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem4_3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem4_4
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem4_cases
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.boundaryStep_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.cycle_faces_mem
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.mem_of_isBoundaryDart_sdiff
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.isBoundaryDart_sdiff_of_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.newCycle_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.newCycle_closed

@@ -101,6 +101,8 @@ theorem decideCode_eq_halflineDecide (o : ℕ → ℕ) (n : ℕ) :
       cond (decide ((shiftPair w).1 = (shiftPair w).2) && allOnes ((codes w).map o)) 1 0
     rw [decideWord, allOk_eq_allOnes]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.decideCode_eq_halflineDecide
+
 variable {ι}
 
 /-- **The word problem of `Δ` is Turing reducible to that of `Γ`** (tex l.647–652): for any family `s : ι → Γ`, the word

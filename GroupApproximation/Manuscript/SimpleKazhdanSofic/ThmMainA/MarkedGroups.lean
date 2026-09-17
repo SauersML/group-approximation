@@ -228,5 +228,8 @@ end ThmMainA
 end SimpleKazhdanSofic
 end GroupApproximation
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.lift_comp_equiv_apply
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.ncard_leavingEdges_inv_le
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.expansion_transfer
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.isExpanderLimit_of_isMarkedLimit
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.manuscriptSentence_limitsOfFiniteGroupsAreLEF

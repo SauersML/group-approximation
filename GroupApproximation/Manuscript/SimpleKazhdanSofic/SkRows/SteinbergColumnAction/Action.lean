@@ -162,6 +162,8 @@ theorem rowAction_all (y : St m R) : RowAction y := by
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergColumnAction.rowAction_all
 
+end Action
+
 /-- **Endpoint of lane `sk-rows-13`.**  Lane `sk-rows-14`'s interface holds for every `m` and
 every ring `R`. -/
 theorem steinbergColumnActionStatement_holds (m : ℕ) (R : Type*) [Ring R] :

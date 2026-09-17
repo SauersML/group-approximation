@@ -290,4 +290,11 @@ theorem proof : OsinSectionPocketFaceSetProperSectionStatement.{u, w, v} := by
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.right_not_walkKeep
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.exists_pocketFaceSet_of_split
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.exists_split_arcs
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.source_not_mem_sideFaces
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.exists_proper_of_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.input
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.proof
