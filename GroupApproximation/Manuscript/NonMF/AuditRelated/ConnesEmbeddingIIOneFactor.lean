@@ -127,6 +127,7 @@ theorem cornerCorrectedUnitary_injective {A : Type u} {B : Type v}
   apply Subtype.ext
   apply he
   have h := congrArg Subtype.val hab
+  change e (a : A) + (1 - e 1) = e (b : A) + (1 - e 1) at h
   exact add_right_cancel h
 
 /-- **A group whose norm-MF residual is everything has a group von Neumann
@@ -187,6 +188,7 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.AuditRelated.cornerCorrectedUnitary
 #audit_axioms GroupApproximation.Manuscript.NonMF.AuditRelated.cornerCorrectedUnitary_injective
 #audit_axioms GroupApproximation.Manuscript.NonMF.AuditRelated.not_injective_groupVonNeumann_to_ultraproduct
 #audit_axioms GroupApproximation.Manuscript.NonMF.AuditRelated.manuscriptSentence_negativeMFProblemIIOneFactor

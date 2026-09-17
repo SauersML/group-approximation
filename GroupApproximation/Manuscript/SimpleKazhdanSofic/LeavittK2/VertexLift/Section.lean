@@ -32,7 +32,9 @@ noncomputable section
 def sectionJ (h : EndpointInterfaces.BinaryLeavittStabKernelThreeTrivialStatement)
     (hrow : RowVecStabConjStatement) : Criterion.vertexStab →* St 4 𝓛 :=
   MonoidHom.mk' (fun g => liftGL h (blockUnits g) * rowVec (bottomRow g)) fun g k => by
-    dsimp only
+    show liftGL h (blockUnits (g * k)) * rowVec (bottomRow (g * k)) =
+      liftGL h (blockUnits g) * rowVec (bottomRow g) *
+        (liftGL h (blockUnits k) * rowVec (bottomRow k))
     rw [map_mul, map_mul, bottomRow_mul, rowVec_add]
     have hk := liftGL_mul_rowVec h hrow (blockUnits k) (bottomRow g)
     rw [blockUnits_val] at hk

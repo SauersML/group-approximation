@@ -163,3 +163,10 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.noMultipleEdges
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.mem_linkedComponentO_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.extPhiData_of_leastArea
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.map_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.exists_map_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.sideCellO_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.noLoops
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.joinsCells_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.RegionTransport.sharesEndO_map

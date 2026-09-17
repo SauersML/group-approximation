@@ -62,7 +62,7 @@ theorem multimatrixTraceAmplificationStatement : AFQD.MultimatrixTraceAmplificat
   obtain ⟨L, hLpos, hLdvd⟩ : ∃ L : ℕ, 0 < L ∧ ∀ i, k i ≠ 0 → k i ∣ L := by
     refine ⟨∏ j, max (k j) 1,
       Finset.prod_pos fun j _ ↦ lt_of_lt_of_le Nat.one_pos (le_max_right _ _), fun i hk ↦ ?_⟩
-    have h1 : k i = max (k i) 1 := (max_eq_left (Nat.pos_of_ne_zero hk)).symm
+    have h1 : k i = max (k i) 1 := (max_eq_left (Nat.one_le_iff_ne_zero.mpr hk)).symm
     have h2 : max (k i) 1 ∣ ∏ j, max (k j) 1 :=
       Finset.dvd_prod_of_mem (fun j ↦ max (k j) 1) (Finset.mem_univ i)
     rw [h1]

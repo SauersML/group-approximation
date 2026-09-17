@@ -288,3 +288,17 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.eqvGen_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.faceOf_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.phiTransportAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.keepAlpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.keepEmbed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.collapsedEmbedding
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.wDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.sDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.collapsedEmbedding_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.sDart_not_mem_range
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.wDart_not_phiKeepO
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.facePerm_wDart_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.facePerm_collapsed_of_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.facePerm_sDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.backCollapsed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.backCollapsed_embedding
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellSide.faceOf_embed_of_cell
