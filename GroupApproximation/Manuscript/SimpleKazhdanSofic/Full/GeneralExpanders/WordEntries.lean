@@ -52,7 +52,7 @@ theorem eventually_map_sub
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r') (a b : R) :
     ∀ᶠ k in atTop, φ k (a - b) = φ k a - φ k b := by
   filter_upwards [hadd a (-b), eventually_map_neg φ hadd b] with k hk hn
-  rw [sub_eq_add_neg, hk, hn, ← sub_eq_add_neg]
+  rw [sub_eq_add_neg a b, hk, hn, ← sub_eq_add_neg]
 
 /-- An eventually additive map eventually commutes with a fixed finite sum. -/
 theorem eventually_map_sum
@@ -111,7 +111,8 @@ theorem eventually_entries_add
     (hB : ∀ᶠ k in atTop, ∀ i j : ι, φ k (B i j) = B' k i j) :
     ∀ᶠ k in atTop, ∀ i j : ι, φ k ((A + B) i j) = (A' k + B' k) i j := by
   filter_upwards [hA, hB,
-    Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j => hadd (A i j) (B i j)]
+    Filter.eventually_all.2 fun i : ι => Filter.eventually_all.2 fun j : ι =>
+      hadd (A i j) (B i j)]
     with k hAk hBk hk
   intro i j
   rw [Matrix.add_apply, Matrix.add_apply, hk i j, hAk i j, hBk i j]
@@ -124,7 +125,7 @@ theorem eventually_entries_sub
     (hB : ∀ᶠ k in atTop, ∀ i j : ι, φ k (B i j) = B' k i j) :
     ∀ᶠ k in atTop, ∀ i j : ι, φ k ((A - B) i j) = (A' k - B' k) i j := by
   filter_upwards [hA, hB,
-    Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j =>
+    Filter.eventually_all.2 fun i : ι => Filter.eventually_all.2 fun j : ι =>
       eventually_map_sub φ hadd (A i j) (B i j)]
     with k hAk hBk hk
   intro i j
@@ -140,16 +141,16 @@ theorem eventually_entries_mul
     (hB : ∀ᶠ k in atTop, ∀ i j : ι, φ k (B i j) = B' k i j) :
     ∀ᶠ k in atTop, ∀ i j : ι, φ k ((A * B) i j) = (A' k * B' k) i j := by
   filter_upwards [hA, hB,
-    Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun j =>
-      eventually_map_sum φ hadd (fun l => A i l * B l j) Finset.univ,
-    Filter.eventually_all.2 fun i => Filter.eventually_all.2 fun l =>
-      Filter.eventually_all.2 fun j => hmul (A i l) (B l j)]
+    Filter.eventually_all.2 fun i : ι => Filter.eventually_all.2 fun j : ι =>
+      eventually_map_sum φ hadd (fun l : ι => A i l * B l j) Finset.univ,
+    Filter.eventually_all.2 fun i : ι => Filter.eventually_all.2 fun l : ι =>
+      Filter.eventually_all.2 fun j : ι => hmul (A i l) (B l j)]
     with k hAk hBk hsum hprod
   intro i j
-  rw [Matrix.mul_apply, Matrix.mul_apply, hsum i j]
-  refine Finset.sum_congr rfl ?_
-  intro l _
-  rw [hprod i l j, hAk i l, hBk l j]
+  rw [Matrix.mul_apply, Matrix.mul_apply]
+  calc φ k (∑ l, A i l * B l j) = ∑ l, φ k (A i l * B l j) := hsum i j
+    _ = ∑ l, A' k i l * B' k l j :=
+      Finset.sum_congr rfl fun l _ => by rw [hprod i l j, hAk i l, hBk l j]
 
 /-- The elementary matrix `x_{ij}(a)` is entrywise approximated by the matrices
 `x_{ij}(φ_k(a))`. -/
@@ -159,7 +160,7 @@ theorem eventually_entries_elementaryUnit
     ∀ᶠ k in atTop, ∀ i j : ι,
       φ k (((elementaryUnit i₀ j₀ h a : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
         ((elementaryUnit i₀ j₀ h (φ k a) : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j := by
-  filter_upwards [eventually_entries_add φ hadd 1 (Matrix.single i₀ j₀ a)
+  filter_upwards [eventually_entries_add (ι := ι) φ hadd 1 (Matrix.single i₀ j₀ a)
     (fun _ => 1) (fun k => Matrix.single i₀ j₀ (φ k a))
     (eventually_entries_one φ hadd h1)
     (eventually_entries_single φ hadd i₀ j₀ a (fun k => φ k a)
@@ -175,7 +176,7 @@ theorem eventually_entries_elementaryUnit_inv
       φ k ((((elementaryUnit i₀ j₀ h a)⁻¹ : (Matrix ι ι R)ˣ) : Matrix ι ι R) i j) =
         (((elementaryUnit i₀ j₀ h (φ k a))⁻¹ : (Matrix ι ι (M k))ˣ) :
           Matrix ι ι (M k)) i j := by
-  filter_upwards [eventually_entries_sub φ hadd 1 (Matrix.single i₀ j₀ a)
+  filter_upwards [eventually_entries_sub (ι := ι) φ hadd 1 (Matrix.single i₀ j₀ a)
     (fun _ => 1) (fun k => Matrix.single i₀ j₀ (φ k a))
     (eventually_entries_one φ hadd h1)
     (eventually_entries_single φ hadd i₀ j₀ a (fun k => φ k a)
@@ -201,7 +202,7 @@ theorem eventually_entries_lift {α : Type*}
         ((FreeGroup.lift (t' k) w : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)) i j := by
   induction w using FreeGroup.induction_on with
   | C1 =>
-    filter_upwards [eventually_entries_one φ hadd h1] with k hk
+    filter_upwards [eventually_entries_one (ι := ι) φ hadd h1] with k hk
     intro i j
     rw [map_one, map_one]
     exact hk i j
@@ -216,7 +217,12 @@ theorem eventually_entries_lift {α : Type*}
     rw [map_inv, map_inv, FreeGroup.lift_apply_of, FreeGroup.lift_apply_of]
     exact hk i j
   | mul x y hx hy =>
-    filter_upwards [eventually_entries_mul φ hadd hmul _ _ _ _ hx hy] with k hk
+    filter_upwards [eventually_entries_mul φ hadd hmul
+      ((FreeGroup.lift t x : (Matrix ι ι R)ˣ) : Matrix ι ι R)
+      ((FreeGroup.lift t y : (Matrix ι ι R)ˣ) : Matrix ι ι R)
+      (fun k => ((FreeGroup.lift (t' k) x : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)))
+      (fun k => ((FreeGroup.lift (t' k) y : (Matrix ι ι (M k))ˣ) : Matrix ι ι (M k)))
+      hx hy] with k hk
     intro i j
     rw [map_mul, map_mul]
     exact hk i j
@@ -237,7 +243,7 @@ theorem eventually_lift_eq_one {α : Type*}
     (w : FreeGroup α) (hw : FreeGroup.lift t w = 1) :
     ∀ᶠ k in atTop, FreeGroup.lift (t' k) w = 1 := by
   filter_upwards [eventually_entries_lift φ hadd hmul h1 t t' hval hinv w,
-    eventually_entries_one φ hadd h1] with k hk h1k
+    eventually_entries_one (ι := ι) φ hadd h1] with k hk h1k
   apply Units.ext
   apply Matrix.ext
   intro i j
