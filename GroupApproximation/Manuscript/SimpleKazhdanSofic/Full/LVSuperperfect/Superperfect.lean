@@ -31,8 +31,6 @@ Every imported module is already reachable from `GroupApproximation.lean`.
 
 namespace GroupApproximation.Full.LVSuperperfect
 
-open scoped commutatorElement
-
 universe u v
 
 /-- A group `G` is **superperfect** (in central-extension form) if every central extension
@@ -151,7 +149,8 @@ theorem binaryLeavittUnits_isSuperperfect_of_steinbergToGL_injective {n : ℕ} (
     IsSuperperfect ((BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))ˣ) := by
   have hsurj : Function.Surjective (LVEGen.steinbergToGL (ZMod 2) n) :=
     LVEGen.steinbergToGL_surjective (ZMod 2) (by omega)
-  have hst : IsSuperperfect ((Matrix (Fin n) (Fin n) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))ˣ) :=
+  have hst :
+      IsSuperperfect ((Matrix (Fin n) (Fin n) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))ˣ) :=
     (isSuperperfect_steinberg (R := BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) hn).of_mulEquiv
       (MulEquiv.ofBijective (LVEGen.steinbergToGL (ZMod 2) n) ⟨hinj, hsurj⟩)
   exact binaryLeavittUnits_isSuperperfect_of_gl (r := n) (by omega) hst
