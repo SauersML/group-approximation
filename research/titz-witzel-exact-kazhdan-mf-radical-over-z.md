@@ -84,3 +84,28 @@ titz-witzel-exact-kazhdan-mf-radical-over-z-proof
   - So the open clause "`K` is not MF" is not reachable by any non-MF mechanism now established
     in the graph. A proof needs a mechanism that does not pass through a compression-centralizer
     commutator, a finite normal subgroup, or a finite-order central mark.
+
+- **Perturbative mechanisms (2026-09-17, swarm-0917-w5-tf-titz-radical). Dead for the whole class; the
+  open clause is reframed.** This starts where wave 4 stopped and does not reuse compression defects.
+  - *Result.* `simple-kazhdan-mf-lives-in-gap-near-representations` (ESTABLISHED):
+    - (A) every finitely presented group with `H_1(K;Q) = 0` has dimension-free operator-norm linear
+      rigidity `D(u) <= C d(u)` on `D(u) <= eps_0`, with constants read off the inverse of the
+      exponent-sum matrix;
+    - (B) for the residual `K` and `0 < t < kappa`, "`K` not MF" is equivalent to
+      `inf_k delta_t(k) > 0`, where `delta_t(k)` is the least relator defect of a tuple in `U(k)^S`
+      with `Delta(u) >= t`. It is also equivalent to the global linear inequality (GAP);
+    - (C) "`K` is MF" is a `Pi_2` sentence whose matrix is decidable by Tarski--Seidenberg.
+  - *Invariant.* `inf_k delta_t(k)`. The deciding models are compressions of an MF model to the complement
+    of the lifted Kazhdan projection. They satisfy `D >= sqrt(t/|S|)`.
+  - *Step where every member dies.* A perturbative method corrects a near-representation towards a
+    genuine one. The only genuine finite-dimensional representation of `K` is trivial (simple and
+    non-residually-finite, plus Malcev). So the method works in a neighbourhood of the trivial tuple, where
+    its output is (A). (A) holds for the MF group `SL_3(Z)` and says nothing about gap tuples. Padding with
+    trivial blocks leaves operator-norm `D` and `d` unchanged, so the Hilbert--Schmidt local-to-global
+    trick is unavailable. This class includes:
+    - linearization and adjoint-module cohomology at genuine representations;
+    - defect-diminishing started near a genuine representation;
+    - local rigidity near the trivial tuple.
+  - *What remains.* Lower-bound `delta_t(k)` uniformly in `k` for tuples with a uniform Laplacian gap: a
+    non-perturbative estimate. It must be operator-norm specific, because on this route `K` is also
+    required to be sofic, and simple Kazhdan MF groups are hyperlinear.
