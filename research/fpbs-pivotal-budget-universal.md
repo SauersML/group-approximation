@@ -128,3 +128,41 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
       genuinely linear counts.
     - The tree does not refute PB, which holds on `T_d` with `C=1`. It gives
       no transitive example where counts beat `n`.
+* **Transplant the operator-algebra dictionary (transplanter, swarm-0917 wave 5).**
+  * *Dictionary.* `tau_p(x,y)=P_p(x<->y)` is a positive definite kernel, since
+    `sum c_x conj(c_y) tau_p(x,y) = E sum_clusters |sum_{x in K} c_x|^2`. So
+    `T_p` is a positive element affiliated with the group von Neumann
+    algebra, and `a_n(p)=phi_p(P^n)` for the positive functional
+    `phi_p = tau(T_p . )`. Let `nu_p` be the spectral measure of `P` under
+    `phi_p`. Then `lambda(p)` is the top of `|supp nu_p|`. Russo–BK gives
+    `d tau_p/dp <= d (tau_p * mu_S * tau_p)` entrywise.
+  * *Easiest case (proved, not new).* If `||T_p||_(2->2)<infinity`, then
+    `a_2n = tau(T^(1/2) P^2n T^(1/2)) <= ||T_p|| p_2n(o,o) <= ||T_p|| rho^2n`,
+    so `lambda(p)=rho`. This is the proposition already recorded at
+    `research/artifacts/fpbs/docs/pivotal-exploration.md` line 399.
+  * *Break 1: the dictionary is not closed under the Russo–BK step.*
+    - `nu_p` sees only `phi_p` restricted to `W*(P)`, through the conditional
+      expectation `E(T_p)=f_p` on `L^infty(Kesten)`.
+    - The majorant term `tau(P^n T P T)` equals `int x^(n+1) f_p^2 dk` only
+      when `E` is multiplicative on `T_p`, that is when `tau_p` is a
+      function of the walk. This holds for radial functions on a Gelfand
+      pair, such as `T_d` with free generators.
+    - In that case the closure gives
+      `E[N|E] <= int x^(n+1) f^2 dk / int x^n f dk <= ||f||_infty <= ||T_p||`,
+      which is again `fpbs-l2-gap-gives-bounded-pivotal-counts`.
+    - For non-radial `tau_p`, the defect `tau(P^n T P T) - int x^(n+1) f^2 dk`
+      has no sign, and no inequality inside `W*(P)` survives.
+  * *Break 2: spectral sampling data cannot see the obstruction.*
+    - Take `phi=1_H` with `H=<a>` in `F_2`. It is positive definite, and
+      `p_2n(o,o) <= P(X_2n in H) <= (4n+1) rho^2n`, so it has sampling rate
+      `rho`. Its convolution operator is nevertheless unbounded.
+      Plateau data (`lambda=rho`) therefore never upgrades to critical L2.
+    - Moments converge (`a_n(q)->a_n(p_c)` by dominated convergence), so
+      `nu_q -> nu_(p_c)` weakly. That yields only *lower* semicontinuity of
+      the top of the support, which is the wrong direction for VIS.
+    - The jump is realised by `fpbs-soft-collapse-iff-invariant-sparse-spines`.
+  * *Verdict.* On the positive side the operator-algebra transplant reduces to
+    critical L2. On the negative side it is subsumed by the soft-collapse
+    family and by the state-class obstruction of the group-rings lease. No new
+    node was filed. Where it dies: the Russo–BK majorant is entrywise, not an
+    operator inequality in `W*(P)`.

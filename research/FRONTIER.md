@@ -23737,6 +23737,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · fpbs-pivotal-budget-universal [OPEN] Every nonamenable Cayley graph has a uniform near-critical linear pivotal budget
 - 2026-09-17 · uniform-gauge-transfer-proof [COMPLETE] Averaging a Can_comp labelling with uniform marginals turns puncture cost into oblivious rejection, and free functionals on DKKMS folding classes give such an average of value 1
 - 2026-09-17 · dkkms-affine-view-verifiers-any-sigma-sound-at-2c-1 [ESTABLISHED] A coarsening labelling distribution with uniform marginals absorbs every puncture, and folding-class functionals supply one on DKKMS instances, so affine-view unique verifiers over them have value at least 2c-1 for arbitrary bijections sigma
 - 2026-09-17 · every-group-has-positive-rokhlin-entropy-action [OPEN] Every countably infinite group has a free ergodic p.m.p. action of positive Rokhlin entropy
@@ -23744,7 +23745,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · thompson-f-is-amenable [OPEN] Thompson's group F is amenable
 - 2026-09-17 · thompson-f-amenable-via-exotic-co-amenable-subgroup [OPEN] Find a co-amenable subgroup of F that is neither elementary amenable nor contains F, and prove that F-free subgroups of F are amenable
 - 2026-09-17 · f-sandwich-splits-collapse-unless-kernel-is-brin-sapir-exotic [ESTABLISHED] Every twisted-embedding or co-amenable-induction split of amenability of F has a conjunct equivalent to amenability of F, unless its kernel is F-free and not elementary amenable; such a kernel refutes Brin–Sapir and makes F sofic
-- 2026-09-17 · f-has-a-co-amenable-subgroup-neither-ea-nor-containing-f [OPEN] Thompson's group F has a co-amenable subgroup that is neither elementary amenable nor contains a copy of F
 
 ## Active claims
 
