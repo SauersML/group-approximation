@@ -1,0 +1,20 @@
+== cap 21
+RANK 3 CAP 21 NPERM 48 NWA 90
+EXHAUSTED depth 35 states 23638 processed 23638
+t=46s
+== cap 22
+RANK 3 CAP 22 NPERM 48 NWA 90
+EXHAUSTED depth 35 states 42161 processed 42161
+t=100s
+== cap 23
+RANK 3 CAP 23 NPERM 48 NWA 90
+EXHAUSTED depth 35 states 146954 processed 146954
+t=369s
+== cap 24
+RANK 3 CAP 24 NPERM 48 NWA 90
+EXHAUSTED depth 37 states 280213 processed 280213
+t=733s
+== cap 25
+Terminated
+t=1200s
+== cap 26
