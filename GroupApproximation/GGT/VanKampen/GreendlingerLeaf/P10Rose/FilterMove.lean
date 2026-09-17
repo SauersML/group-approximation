@@ -219,7 +219,11 @@ open FilterMove
 the hypotheses of `RoseFilterStepStatement`, some dart colouring `z`, constant along the face-class
 steps of the boundary cycle, vanishes on the exterior face, the source cell, the kept cell and the
 darts of both arcs, never flips both sides of a dart of the cycle, and the darts of the cycle with
-neither side flipped form, in cycle order, a closed dart walk missing at least one dart. -/
+neither side flipped form, in cycle order, a closed dart walk missing at least one dart.
+
+**FALSE; do not use as a gap.**  The three-petal flower in the docstring of
+`RoseFilterStepStatement` forces `z` to vanish on every dart.  The open gap of `P10Rose` is
+`RoseInPlaceStepStatement`. -/
 def RoseRegionMoveStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →

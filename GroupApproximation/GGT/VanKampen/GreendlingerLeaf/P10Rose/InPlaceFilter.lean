@@ -138,7 +138,15 @@ hypotheses of `RoseInPlaceStepStatement`, some face set `F'` away from the exter
 source cell, containing a relator cell, has as boundary darts exactly the darts of the old cycle
 kept by a predicate `p` that keeps both arcs; the kept darts, in the order of the old cycle, form a
 closed walk, and some kept dart shares its vertex with a removed one.  The intended witness is a
-region-union move `F' = (F \ Fs) ∪ Ns` (module docstring). -/
+region-union move `F' = (F \ Fs) ∪ Ns` (module docstring).
+
+**FALSE; do not use as a gap.**  Counterexample (three-petal flower): vertices `w, a₁, a₂, a₃`;
+petals `P_j = {p_j, q_j}` (`p_j : w → a_j`, `q_j : a_j → w`), source cell `S = {q̄₃, r}`
+(`r : a₃ → w`), rotation at `w` equal to `(q̄₁ p₁ q̄₂ p₂ r̄ q̄₃ p₃)`; `G = Multiplicative ℤ`, relator
+cells `P₁` and `S` labelled `[g, g]`, `F = {P₁, P₂, P₃}` with kept cell `P₁` and cycle
+`[p₃] ++ [q₃] ++ [p₁, q₁, p₂] ++ [q₂]`.  Keeping `q₂` and `q₃` forces `P₂, P₃ ∈ F'`, so `F' = F` and
+no dart is removed.  The open gap of `P10Rose` is `RoseInPlaceStepStatement` (which this example
+does not refute: `F' = {P₁, P₃}` with `t₂` dropped). -/
 def RoseFilterStepStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
