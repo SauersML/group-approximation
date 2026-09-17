@@ -78,7 +78,7 @@ theorem exists_eq_sum_cylinderIndicators {A : Type} [TopologicalSpace A] [Discre
     ∃ (I : Finset ℤ) (c : (I → A) → ZMod 2),
       f = ∑ w : I → A, LocallyConstant.const S.carrier (c w) * ∏ t : I, coordIndicator S t (w t) := by
   classical
-  obtain ⟨r, hr⟩ := exists_radius S.isClosed f
+  obtain ⟨r, hr⟩ := WordGraph.exists_radius S.isClosed f
   obtain ⟨I, hIdef⟩ : ∃ I : Finset ℤ, I = Finset.Icc (-(r : ℤ)) r := ⟨_, rfl⟩
   obtain ⟨c, hcdef⟩ : ∃ c : (I → A) → ZMod 2, c = fun w =>
       if h : ∃ y : S.carrier, ∀ t : I, y.1 t = w t then f h.choose else 0 := ⟨_, rfl⟩
