@@ -5463,6 +5463,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.C
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Predicate
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Classification
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.MatrixArveson
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ArvesonStatement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
