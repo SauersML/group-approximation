@@ -135,7 +135,7 @@ theorem exists_isShiftPath_of_mem_reachableExponents {x : X} :
         · rw [if_neg hin]
           exact hdC
       · show (if n + 1 ≤ n then p (n + 1) else d) = d
-        rw [if_neg (by omega)]
+        rw [if_neg (by omega : ¬ n + 1 ≤ n)]
 
 /-- Erasing a loop gives a path again, with `j - i` fewer steps. -/
 theorem isShiftPath_eraseLoop {x : X} {n : ℕ} {p : ℕ → ℤ} (hp : IsShiftPath T C E x n p)
