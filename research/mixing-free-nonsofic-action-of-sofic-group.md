@@ -115,3 +115,24 @@ a Bernoulli shift.
   `kazhdan-bernoulli-product-seed-stabilizers-embed-in-host` narrows product seeds `Bernoulli × τ` of Kazhdan groups to
   `τ` whose stabilizers embed into the host modulo finite subgroups. Dies at: no containment construction is known
   for essentially free non-malleable seeds.
+* **Import through a compact extension (sw-110, 2026-09-17).** Dead. Soficity lifts along finite
+  extensions `X ×_α {1,...,k}`, so a nonsofic finite extension of a mixing `X` would make `X` nonsofic.
+  The Γ-fixed algebra of an extension can also be nontrivial when Γ acts ergodically on `X`. But
+  `compact-extension-kazhdan-fixed-algebras-are-blind` shows that for every compact-group or homogeneous
+  extension, every compression `gΓg^(-1) <= Γ` preserves `L^∞(Y)^Γ`, so Theorem C's conclusion holds
+  automatically. The fixed algebra is `L^∞(K/L)` for a Mackey range `L`, a compression conjugates `L`
+  into itself, and in a compact group that forces equality. A surviving extension design needs a
+  diffuse fixed algebra on which a compression acts like a one-sided shift, as the generalized Bernoulli
+  coordinate over `G/Γ` does. It also needs soficity to lift along it.
+* **Full-group Kazhdan pair through a Bernoulli extension over the Γ-orbit relation (sw-110, 2026-09-17).**
+  Reduction, one direction. `sparse-full-group-kazhdan-pair-gives-mixing-nonsofic-action`: suppose a Kazhdan
+  infranormal pair `Γ <= L` acts through the full group of a free mixing action of a sofic `G`, with sparse
+  `ρ(Γ)`-orbits (`μ{gx ∈ ρ(Γ)x} → 0`) and one conjugate leaving them. Then the Bernoulli extension over
+  `R_G/R_(ρ(Γ))` is free, mixing and nonsofic.
+  * *Obstructions.* `haagerup-hosts-blind-full-group-kazhdan-certificate` kills every Haagerup host, including
+    `F_2 × F_2`: Kazhdan groups acting through full groups have finite orbits, and their fixed algebras are
+    invariant. Designs with finite `ρ(Γ)`-orbits are dead. Diffuse Bernoulli (s-malleable) `ρ(Γ)` is dead by Popa
+    untwisting.
+  * *What survives.* `sparse-noninvariant-kazhdan-pair-in-non-haagerup-host`: an anti-concentrating cocycle
+    `β : L × X → M` over a non-malleable action, with `M` non-Haagerup and `L × M ↷ X` free and mixing. Plain
+    products `X_L × X_M` are not mixing for `L × M`.

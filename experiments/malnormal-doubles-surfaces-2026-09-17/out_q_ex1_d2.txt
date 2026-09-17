@@ -1,0 +1,16 @@
+C ['abaBB', 'BABaBBa'] V 11 rank 2 malnormal True K 5
+ no certificate with |w| <= 2
+ no certificate with |w| <= 3
+ no certificate with |w| <= 4
+ no certificate with |w| <= 5
+ no certificate with |w| <= 6
+ no certificate with |w| <= 7
+ no certificate with |w| <= 8
+ no certificate with |w| <= 9
+ no certificate with |w| <= 10
+ no certificate with |w| <= 11
+ no certificate with |w| <= 12
+ no certificate with |w| <= 13
+ no certificate with |w| <= 14
+ no certificate with |w| <= 15
+ no certificate with |w| <= 16

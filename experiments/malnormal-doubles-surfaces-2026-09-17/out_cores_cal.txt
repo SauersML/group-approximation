@@ -1,0 +1,21 @@
+C ['AAAbbb', 'AAAbba'] V 5 rank 2 malnormal True K 4
+ |w| = 2 : cyclic words 1 complete 1 certificates so far 0
+ |w| = 3 : cyclic words 0 complete 0 certificates so far 0
+  w BBaa c 1 partitions 5 maxrank 2 complete True  
+ |w| = 4 : cyclic words 1 complete 1 certificates so far 0
+ |w| = 5 : cyclic words 0 complete 0 certificates so far 0
+  w BBBaaa c 0 partitions 12 maxrank 3 complete True  
+  w BAAbba c 0 partitions 10 maxrank 3 complete True  
+ |w| = 6 : cyclic words 2 complete 2 certificates so far 0
+ |w| = 7 : cyclic words 0 complete 0 certificates so far 0
+  w BBBaaaBa c 0 partitions 37 maxrank 3 complete True  
+  w BAAbbaBa c 0 partitions 39 maxrank 4 complete True CERT ['BAAbbaBa', 'BABBaab', 'ab']
+ |w| = 8 : cyclic words 2 complete 2 certificates so far 1
+ |w| = 9 : cyclic words 0 complete 0 certificates so far 1
+  w BBBaaBBaaa c 0 partitions 180 maxrank 4 complete True  
+  w BBBaaaBaBa c 0 partitions 161 maxrank 4 complete True  
+  w BAAbbAAbba c 0 partitions 137 maxrank 4 complete True  
+  w BAAbbaBaBa c 0 partitions 141 maxrank 5 complete True  
+ |w| = 10 : cyclic words 4 complete 4 certificates so far 1
+ |w| = 11 : cyclic words 0 complete 0 certificates so far 1
+  w BBBaabABBaaa c 0 partitions 556 maxrank 6 complete True CERT ['BBBaabABBaaa', 'BBBaabAbaBAAbbb', 'BBAAbbb', 'bb']

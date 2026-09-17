@@ -65,3 +65,15 @@ gate (a), with no dependence on the open `wall-rigid-z2-sft-is-quantum-rigid`. B
     stretches of row `0`, but `110`-periodic rows survive, giving periodic points.
 - **No obstruction found.** Positively expansive automata have dense periodic points on full shifts (recalled,
   Boyle–Kitchens). That does not pass to non-sofic invariant subsets, which is where a free example would live.
+- **Exhaustive small-window search: every case is empty or periodic** (`small-window-quasigroup-sub-sfts-have-periodic-points`,
+  sw-109, 2026-09-17).
+  - Every sub-SFT with forbidden shapes inside the upward triangle `Δ_L` is `Ω(A)`: all length-`L` row words lie
+    in `A`.
+  - A complete branch and bound over essential `A` combines the periodic-cycle hypergraph `{W_C}`, level automata
+    for `Z_n(A)` and certification of long cycles. It found **zero** aperiodic candidates for Ledrappier with
+    `L <= 6`, all 5 order-3 quasigroups with `L <= 3`, and all 35 order-4 quasigroups with `L = 2`. Script and
+    logs: `experiments/triangle-permutive-sft-search-2026-09-17/`.
+  - So a free example needs windows beyond these, for instance boxes with `w + h >= 8` over `F_2`, or order `>= 5`.
+  - Emptiness certificates close within at most 8 levels, and alive leaves always had certifiable periodic rows,
+    some of period larger than 16. Both suggest the refutation form (every nonempty sub-SFT has a periodic point)
+    is the right conjecture to attack by proof.

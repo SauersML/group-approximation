@@ -80,3 +80,13 @@ notes on p. 3, so relative (T) alone is not an obstruction.
 
 **Locally indicable and bi-orderable groups.**  Dead.  Their nontrivial
 finitely generated subgroups map onto `Z`.
+
+**Vertex-regular Ã2 lattices of order 2 and 3, exotic ones included.**  Dead
+for these groups.  Every triangle presentation over `PG(2,2)` or `PG(2,3)` is
+covered: 11 and 133 `PGL(3,q)`-orbits, with a SAT completeness certificate.
+This includes the 65 exotic `q=3` classes, which are not linear over any field,
+and the `F_q((t))` ones.  For each of them the torsion-free index-3 Kazhdan type
+kernel `Γ_0` has no nontrivial action on the line, and neither does `Γ_T`.  The
+proof is a confluent rewriting system plus a left-preorder SAT certificate on
+the ball of radius 3 (`a2-triangle-type-kernels-q2-q3-act-trivially-on-the-line`).
+Other finite-index subgroups and `q ≥ 4` are unchecked.

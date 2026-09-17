@@ -68,3 +68,26 @@ not sofic. It then makes `V` nonsofic too.
     `max(m_1,m_2)/m_c = 4/21`, of derived length at most 3. So any `C` is at least `21/4`, and
     `N_3 ≥ 21/4 > N_2 = 3`. Iterated skew products and larger tori gave no further gain
     (`research/artifacts/hl-f-skew-product-rate-2026-09-14.md`).
+- **Algebraic permanence closure (2026-09-17): collapses to amenability.**
+  - **Primality.** If `F ≤ G` and `N ⊴ G`, then `F` embeds in `N` or in `G/N`. A homomorphism from `F`
+    that does not kill `[a,b]` is injective. Every action of `F` on a tree has a copy of `F` fixing a
+    vertex, by Brin--Squier and the Tits alternative for trees.
+  - **Obstruction.** F-free groups are closed under subgroups, directed unions, local embeddability,
+    arbitrary extensions, arbitrary direct products, graphs of groups with arbitrary edge groups, and
+    graph products. So `F` lies in the closure of the LEA groups under these operations only if `F` is
+    amenable (`thompson-f-lies-in-algebraic-lea-closure-only-if-amenable`).
+  - **Reading.** No sofic-by-amenable, amalgam, graph-product, wreath or Glebsky-type host gives
+    separating almost-solutions without proving amenability. The argument stops at the metric
+    ultraproduct, where lifts are almost-homomorphisms with no kernel.
+  - **Survivor.** Some free pmp action of `F` might have an orbit relation `R_1 *_(R_0) R_2` with sofic
+    pieces over a hyperfinite `R_0`. The measured Tits alternative gives no contradiction there, because
+    of Gaboriau--Lyons.
+- **Measured amalgam trees (2026-09-17): finite depth collapses to amenability.**
+  - **Invariant.** Chifan--Houdayer intertwining consumes one commuting non-amenable subalgebra per
+    amalgam over an amenable subalgebra. `L(F)` contains arbitrarily many, from disjoint dyadic intervals.
+  - **Obstruction.** A free pmp orbit relation of `F` is a finite iterated amalgam of hyperfinite
+    relations over hyperfinite subrelations only if `F` is amenable. Every splitting over a hyperfinite
+    subrelation pushes a copy of `L(F^k)` into one piece, for every `k`
+    (`thompson-f-relations-not-finite-hyperfinite-amalgam-trees`).
+  - **Survivors.** Directed unions of finite-depth relations, products of relations, and HNN-type
+    splittings. `⊕_N F_2` also has infinite commuting depth, so this excludes a mechanism, not soficity.

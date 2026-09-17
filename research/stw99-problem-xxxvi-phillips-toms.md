@@ -33,3 +33,13 @@ For a minimal action `α : Z ↷ X`, is
   dimension whose return-time combinatorics scramble every coordinate
   class (an entropy-style mixing killing Chern data) would give
   `rc < mdim/2`; no such construction exists, but nothing excludes it.
+* Obstruction (`rational-witnesses-miss-torsion-mean-dimension`). There are
+  minimal subshifts `X ⊂ ((Pi_p)^s)^Z`, with `Pi_p` the Pontryagin surface, such
+  that `mdim = 2s rho` (arbitrarily large) and the Hirshberg--Phillips rational
+  `mcid <= s rho = mdim/2`. More generally, `mcid(Q) <= mean window dim_Q`. So
+  both known general lower-bound mechanisms, which turn rational classes into
+  non-comparison through the Chern character (`mcid_k` and the symmetric
+  `mcid^gs_k`), certify at most `mdim/4` there, and at most `mdim/(2n)` over
+  Dranishnikov alphabets. The step that fails is the nonzero rational cup product
+  of translates. Consequence: `>=` needs torsion (mod-`p`) relative Euler classes,
+  or else these explicit systems refute the conjecture.

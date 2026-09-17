@@ -1,0 +1,133 @@
+T0 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T1 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T2 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T3 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T4 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T5 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T6 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T7 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=4
+T8 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T9 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=4
+T10 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T11 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T12 AbInv(G)=[ 2, 2, 3, 3 ] AbInv(G/torsion)=[ 2, 2, 3 ] |G/torsion|=48
+T13 AbInv(G)=[ 3, 8 ] AbInv(G/torsion)=[ 8 ] |G/torsion|=8
+T14 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T15 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T16 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T17 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T18 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T19 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T20 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T21 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T22 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T23 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T24 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T25 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T26 AbInv(G)=[ 2, 3, 13 ] AbInv(G/torsion)=[ 2, 13 ] |G/torsion|=26
+T27 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T28 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T29 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T30 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T31 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T32 AbInv(G)=[ 2, 3, 8 ] AbInv(G/torsion)=[ 2, 8 ] |G/torsion|=32
+T33 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T34 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T35 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T36 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T37 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=8
+T38 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T39 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T40 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T41 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T42 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=4
+T43 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T44 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T45 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T46 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T47 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T48 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T49 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T50 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T51 AbInv(G)=[ 3, 3, 9 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T52 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T53 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T54 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T55 AbInv(G)=[ 2, 3, 13 ] AbInv(G/torsion)=[ 2, 13 ] |G/torsion|=26
+T56 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T57 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T58 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T59 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T60 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T61 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T62 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T63 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T64 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=8
+T65 AbInv(G)=[ 2, 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2, 2 ] |G/torsion|=32
+T66 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T67 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T68 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T69 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T70 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T71 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T72 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T73 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T74 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T75 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T76 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T77 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T78 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T79 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T80 AbInv(G)=[ 3, 3, 13 ] AbInv(G/torsion)=[ 3, 13 ] |G/torsion|=39
+T81 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T82 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=4
+T83 AbInv(G)=[ 2, 3, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T84 AbInv(G)=[ 2, 3, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T85 AbInv(G)=[ 3, 7 ] AbInv(G/torsion)=[ 7 ] |G/torsion|=7
+T86 AbInv(G)=[ 3, 3, 13 ] AbInv(G/torsion)=[ 3, 13 ] |G/torsion|=39
+T87 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T88 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T89 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T90 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T91 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T92 AbInv(G)=[ 2, 3, 13 ] AbInv(G/torsion)=[ 2, 13 ] |G/torsion|=26
+T93 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T94 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T95 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T96 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T97 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T98 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T99 AbInv(G)=[ 2, 2, 3 ] AbInv(G/torsion)=[ 2, 2 ] |G/torsion|=4
+T100 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T101 AbInv(G)=[ 3, 3, 9 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T102 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T103 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T104 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T105 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T106 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T107 AbInv(G)=[ 2, 3, 8 ] AbInv(G/torsion)=[ 2, 8 ] |G/torsion|=32
+T108 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T109 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T110 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T111 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T112 AbInv(G)=[ 2, 3 ] AbInv(G/torsion)=[ 2 ] |G/torsion|=2
+T113 AbInv(G)=[ 3, 3, 9 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T114 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T115 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T116 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T117 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T118 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T119 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T120 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T121 AbInv(G)=[ 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T122 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T123 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T124 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T125 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T126 AbInv(G)=[ 3, 4 ] AbInv(G/torsion)=[ 4 ] |G/torsion|=4
+T127 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T128 AbInv(G)=[ 3, 13 ] AbInv(G/torsion)=[ 13 ] |G/torsion|=13
+T129 AbInv(G)=[ 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T130 AbInv(G)=[ 3, 3, 9 ] AbInv(G/torsion)=[ 3 ] |G/torsion|=3
+T131 AbInv(G)=[ 3, 3, 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1
+T132 AbInv(G)=[ 3, 3, 3, 3 ] AbInv(G/torsion)=[  ] |G/torsion|=1

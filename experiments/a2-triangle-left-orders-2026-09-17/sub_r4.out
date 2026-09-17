@@ -1,0 +1,7 @@
+4 3 {'index': 4, 'H_elements': 860, 'clauses': 62122, 'sat': False, 'secs': 0.48}
+4 5 {'index': 6, 'H_elements': 474, 'clauses': 22134, 'sat': False, 'secs': 0.19}
+4 6 {'index': 4, 'H_elements': 860, 'clauses': 62122, 'sat': False, 'secs': 0.43}
+4 7 {'index': 4, 'H_elements': 860, 'clauses': 62122, 'sat': False, 'secs': 0.43}
+7 1 {'index': 6, 'H_elements': 654, 'clauses': 34248, 'sat': False, 'secs': 0.16}
+8 0 {'index': 4, 'H_elements': 854, 'clauses': 60850, 'sat': False, 'secs': 0.29}
+8 2 {'index': 6, 'H_elements': 588, 'clauses': 29250, 'sat': False, 'secs': 0.15}
