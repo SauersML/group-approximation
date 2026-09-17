@@ -96,7 +96,9 @@ theorem midIdx_ne : (2 : Fin 4) ≠ 1 := by decide
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.midIdx_ne
 
 /-- **The Weyl element `w_{32}` of the base edge** (lane 01's `weyl 3 2`). -/
-def weylLast : St 4 BinL := GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.weyl (R := BinL) (3 : Fin 4) 2 lastIdx_ne
+def weylLast : St 4 BinL :=
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.weyl (R := BinL) (3 : Fin 4) 2
+    lastIdx_ne
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.weylLast
 

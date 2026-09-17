@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.LakesSurgery
-import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketLakeAbsorption
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.LakeDef
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -10,8 +10,8 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b), in the lake-filling form
 of the exterior face in the complement of `K.faces` (`ExteriorComponent.component`).
 
 * `AllCellsEnclosed K`: no relator cell lies in `E₀` (Osin's case (d), "every relator cell in `F'`").
-* `lakeOf K k`: the piece of the face of `Π_k` in the complement of `K.faces` (the lake holding
-  `Π_k` when `Π_k ∉ E₀`).
+* `P06LakeCell.lakeOf K k` (landed, lane gl-p06-10, `P06LakeCell/LakeDef`): the piece of the face
+  of `Π_k` in the complement of `K.faces` (the lake holding `Π_k` when `Π_k ∉ E₀`).
 * `SecondLakeCell K`: the lake of `Π_i` holds a relator cell other than `Π_i`, or the lake of `Π_j`
   holds a relator cell other than `Π_j`.
 * `LakeGOnly K k`: every relator cell in the lake of `Π_k` is `Π_k` itself.
@@ -20,9 +20,10 @@ of the exterior face in the complement of `K.faces` (`ExteriorComponent.componen
 are enclosed and some lake of `Π_i`, `Π_j` holds a second relator cell, or all are enclosed and both
 lakes are `G`-only.  It is pure classical logic, proved here.
 
-These are local copies of the interfaces of lanes gl-p06-10 (`lakeOf`), gl-p06-09 (`hall`),
-gl-p06-11 and gl-p06-12, kept in the sub-namespace `P06LakeCell.Assembly` so that they do not clash
-with those lanes' declarations.
+`AllCellsEnclosed K` unfolds to the hypothesis `hall` of lane gl-p06-09
+(`P06LakeCell.cells_mem_absorbed_of_all`, `P06LakeCell/Structure`).  The other predicates are local
+forms of the interfaces of lanes gl-p06-11 and gl-p06-12 (not on disk).  They sit in the
+sub-namespace `P06LakeCell.Assembly` so they cannot clash with those lanes' declarations.
 
 ## Manuscript status
 
@@ -40,12 +41,6 @@ section Predicates
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}
-
-/-- **The lake of a cell**: the piece of the face of `Π_k` in the complement of `K.faces`, faces
-joined by moves around a face and crossings of edges off the boundary of `K.faces`. -/
-noncomputable def lakeOf (K : CellPocketFaceSet D eps X i j) (k : Fin X.rCellCount) :
-    Finset X.toCombMap.Face :=
-  ExteriorComponent.component X.toCombMap K.faces (cell X k).face
 
 /-- **Case (d)**: no relator cell lies in the piece of the exterior face in the complement of
 `K.faces`. -/
@@ -86,7 +81,6 @@ end Predicates
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.Assembly
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.Assembly.lakeOf
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.Assembly.AllCellsEnclosed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.Assembly.SecondLakeCell
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.Assembly.LakeGOnly
