@@ -1,0 +1,12 @@
+Upper bounds for d_X(P, rho P) in the diagonal link X_n, P = {12,34,...}. Each path is valid (consecutive faces in a
+common noncrossing spanning tree), so its length bounds d_X from above. Numerical search, not certified lower bounds.
+
+python3 vertex_dijkstra.py 6                      -> 1.075924 pi
+python3 vertex_dijkstra.py 8                      -> 1.041226 pi   (path P -> {12} -> rho P)
+python3 face_dijkstra.py 6 1.5 3 4                -> 1.046306 pi
+python3 face_dijkstra.py 6 1.5 4 5                -> 1.043196 pi
+python3 face_dijkstra.py 8 1.1 2 4                -> 1.03478 pi    (P -> [{34,56}<{1278,34,56}] -> [{18}<{18,234567}] -> rho P)
+python3 refine.py 8 "{12,34,56,78}" "{34,56}<{1278,34,56}" "{18}<{18,234567}" "{18,23,45,67}"   -> 1.031205 pi
+python3 refine.py 6 "{12,34,56}" "{34}<{1256,34}" "{16,34}<{16,25,34}" "{16}<{16,2345}" "{16,23,45}" -> 1.043162 pi
+  (local minimum of the add/drop/delete/insert local search at n = 6; the n = 8 local search found no improvement in 1200 s)
+python3 gen_path.py n 6   (same two-face pattern), see out_gen_path.txt: n=8 1.031205, n=10 1.022491, n=12 1.016972 pi
