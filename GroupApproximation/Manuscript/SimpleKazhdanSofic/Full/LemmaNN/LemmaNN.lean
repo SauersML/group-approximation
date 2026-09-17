@@ -42,8 +42,7 @@ def LemmaNNStatement : Prop :=
 `Γ × ℤ`, take the finite models `μ_k`, the ultrafilter `ω` given by a free ultrafilter on `ℕ`, and `Δ = ⟨a, b⟩` in the
 algebraic ultraproduct of the symmetric groups of `Q_k × ℤ/m_k × ℤ/4^{k+1}`. -/
 theorem lemmaNN : LemmaNNStatement := by
-  intro Γ _ hc hΓ
-  haveI : Countable Γ := hc
+  intro Γ _ _ hΓ
   haveI : Countable (Multiplicative ℤ) := inferInstanceAs (Countable ℤ)
   have hΓ' : IsTextbookLEF (Γ × Multiplicative ℤ) :=
     isTextbookLEF_prod ((isLEF_iff_textbook Γ).1 hΓ) isTextbookLEF_multiplicative_int

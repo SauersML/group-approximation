@@ -113,7 +113,11 @@ theorem leftSplit_mk (c d : PresentationCode) (v : List (ℕ × Bool)) :
         (PresentedGroup.mk
           (coprodRels {x | x ∈ relatorListOf c} {x | x ∈ relatorListOf d})
           (FreeGroup.map Sum.inl (wordOf c v))) := by
-    rw [presCongrSet_mk, relabelHom_mk, wordOf_coprodCode c d v]
+    rw [presCongrSet_mk, relabelHom_mk]
+    exact congrArg
+      (PresentedGroup.mk (relabelRels (finSumFinEquiv (m := genCount c) (n := genCount d))
+        (coprodRels {x | x ∈ relatorListOf c} {x | x ∈ relatorListOf d})))
+      (wordOf_coprodCode c d v)
   have hsymm : relabelHomSymm (finSumFinEquiv (m := genCount c) (n := genCount d))
       (coprodRels {x | x ∈ relatorListOf c} {x | x ∈ relatorListOf d})
       (relabelHom (finSumFinEquiv (m := genCount c) (n := genCount d))
@@ -137,7 +141,7 @@ theorem leftSplit_mk (c d : PresentationCode) (v : List (ℕ × Bool)) :
   rw [hlist, hrel, hsymm, coprodEquiv_mk_map_inl]
 
 /-- Folding the free product onto its left factor. -/
-def leftFold (c d : PresentationCode) :
+noncomputable def leftFold (c d : PresentationCode) :
     Monoid.Coprod (PresentedGroup {x | x ∈ relatorListOf c})
         (PresentedGroup {x | x ∈ relatorListOf d}) →*
       PresentedGroup {x | x ∈ relatorListOf c} :=
