@@ -62,6 +62,7 @@ theorem exists_comap_subtype_eq {Y : Set X} (hYc : IsClosed Y) (f : LocallyConst
   have hval : ∀ a b : ZMod 2, (a = 1 ↔ b = 1) → a = b := by decide
   exact hval _ _ ((LocallyConstant.charFn_eq_one (Y := ZMod 2) (y : X) hC).trans key)
 
+omit [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X] in
 /-- A clopen set disjoint from `Y` restricts to `0` on `Y`. -/
 theorem comap_subtype_charFn_eq_zero {Y U : Set X} (hU : IsClopen U) (hUY : U ⊆ Yᶜ) :
     LocallyConstant.comap (⟨Subtype.val, continuous_subtype_val⟩ : C(Y, X))
@@ -95,6 +96,7 @@ theorem restrict_surjective {Y : Set X} (hYc : IsClosed Y) (hY : T '' Y = Y) :
       (ZMod 2) ⟨Subtype.val, continuous_subtype_val⟩ (fun _ => rfl) j
   rw [map_mul, ClopenCrossedProduct.restrict_coeff, hg j, hu]
 
+omit [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X] in
 /-- `e₁₂(1_U)` lies in the kernel of restriction when `U ⊆ X \ Y`. -/
 theorem e12_charFn_mem_ker {Y U : Set X} (hY : T '' Y = Y) (hU : IsClopen U) (hUY : U ⊆ Yᶜ) :
     e12 (ClopenCrossedProduct.coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hU)) ∈
@@ -102,6 +104,7 @@ theorem e12_charFn_mem_ker {Y U : Set X} (hY : T '' Y = Y) (hU : IsClopen U) (hU
   rw [MonoidHom.mem_ker, elementaryGroupMap_e12, ClopenCrossedProduct.restrict_coeff,
     comap_subtype_charFn_eq_zero hU hUY, map_zero, e12_eq_one_iff]
 
+omit [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X] in
 /-- `e₁₂(1_U) ≠ 1` for a nonempty clopen `U`. -/
 theorem e12_charFn_ne_one {U : Set X} (hU : IsClopen U) (hne : U.Nonempty) :
     e12 (ClopenCrossedProduct.coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hU)) ≠ 1 := by
@@ -116,6 +119,7 @@ theorem e12_charFn_ne_one {U : Set X} (hU : IsClopen U) (hne : U.Nonempty) :
   exact one_ne_zero
     (((LocallyConstant.charFn_eq_one (Y := ZMod 2) x0 hU).mpr hx0).symm.trans h1)
 
+omit [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X] in
 /-- `e₁₂(1)` is not in the kernel of restriction to a nonempty invariant set. -/
 theorem e12_one_not_mem_ker {Y : Set X} (hY : T '' Y = Y) (hne : Y.Nonempty) :
     e12 (1 : ClopenCrossedProduct T (ZMod 2)) ∉

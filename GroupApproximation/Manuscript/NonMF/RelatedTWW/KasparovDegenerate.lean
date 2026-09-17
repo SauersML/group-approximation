@@ -135,6 +135,7 @@ end GroupApproximation
 
 open GroupApproximation.Manuscript.NonMF.RelatedTWW
 
+#audit_axioms trivialKasparovTheory
 #audit_axioms trivialKasparovTheory_kkEquivalent
 #audit_axioms satisfiesUCT_trivialKasparovTheory
 #audit_axioms tikuisisWhiteWinterStatement_trivialKasparovTheory_iff
