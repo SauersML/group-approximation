@@ -1,0 +1,4 @@
+['abaBB', 'BABaBBa'] mal True K 5 genus1 []
+['abbbbaBa', 'aBaBA'] mal True K 4 genus1 []
+['BaBAAb', 'aBaBBB'] mal True K 5 genus1 []
+['ABBB', 'BAbabb'] mal True K 5 genus1 []
