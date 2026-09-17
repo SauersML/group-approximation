@@ -93,3 +93,16 @@ multiplicative case, over all generating sets, is the whole problem.
 - 2026-09-13 (lane z4-01-amen-auto-rips, Problem 4.1):
   `thompson-f-has-no-contractible-rips-complex` (proved) and the route
   `thompson-f-not-automatic-if-amenable-via-rips`.
+- 2026-09-17 (sw-104, compute-scout): the aim was to exclude the geodesic side of the
+  "yes" search over every natural generating set. Landed
+  `thompson-f-no-geodesic-combing-over-standard-generators`: over any finite `X`
+  with `x0 ∈ X ⊆ {x_i}`, no automatic structure contains a geodesic for every element,
+  so shortlex and geodesic structures are excluded. The proof is
+  geodesic combing ⇒ almost convex, plus Horak–Stein–Taback Theorem 4.4.
+  Finite SAT certificates are in `experiments/thompson-f-weighted-automatic-2026-09-17/`:
+  `K_min = 4, 6` on `B_5, B_6` over `X_1`, and `K_min = 2, 4` on `B_4, B_5` over `X_2`.
+  KBMAG shortlex over `X_1`, `X_2` and weighted orders timed out at 1200 s.
+  Positive reweighting of `x0, x1` creates no new geodesics up to length 10.
+  Dead: this route says nothing about additive excess `c > 0` off `X_1`, because the
+  lemma lets paths leave `B(n)` by `c/2`. The open step is a Hauze-type argument over
+  `X_n`, or a multiplicative-excess obstruction.

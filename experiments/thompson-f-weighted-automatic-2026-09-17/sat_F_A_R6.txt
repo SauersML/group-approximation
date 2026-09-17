@@ -1,0 +1,3 @@
+group=F R=6 K=5 |B_R|=1381 vars=9185 clauses=30205 -> UNSAT  (21.8s)
+exit 0
+group=F R=6 K=6 |B_R|=1381 vars=9185 clauses=30205 -> SAT  (60.3s)
