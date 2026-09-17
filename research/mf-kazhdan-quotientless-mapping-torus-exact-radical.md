@@ -63,3 +63,27 @@ nothing: the flagship then needs a torsion-free sofic Kazhdan kernel with
    properly, and a root `c` commuting with `L` whose transported defect
    `[t c t^{-1}, L]` normally generates `Q` inside the mapping torus.  No
    candidate `(Q,psi)` carrying these data is known.
+4. **Ring-theoretic instantiation of the recipe (2026-09-17, group-rings).**
+   `simple-ring-centralizer-compression-gives-xmf` (established) proves that
+   the gate of Attempt 3 is met by `E = EL_3(S) semidirectProduct_sigma Z`
+   whenever:
+   - `S` is a finitely generated, infinite, simple ring and `EL_3(S)` is MF;
+   - `sigma(R) <= R` for a finitely generated subring `R`;
+   - some `z in [S^x,S^x]` commutes with `R` but not with `sigma^{-1}(R)`.
+
+   The pieces:
+   - The source is `L = EL_3(R)`, Kazhdan by Ershov--Jaikin--Kassabov.
+   - The root is the scalar `zI`, which lies in `EL_3(S)` by the Whitehead
+     lemma.
+   - The transported defect contains a nonzero `x_12(r)`.  By the Steinberg
+     relations and simplicity it normally generates `EL_3(S)`, which then
+     has no finite quotients.
+
+   So `(XMF)` now reduces to the ring gate
+   `simple-ring-with-centralizer-compressing-automorphism`, recorded as the
+   route `xmf-via-simple-ring-centralizer-compression`.  That node records
+   the obstruction: no automorphism implemented in a locally matricial
+   overring works, because finite dimension forces the compression to be an
+   equality.  Kernels built this way contain Weyl torsion, so they serve
+   `(XMF)`, the quotient `Q`, and never the torsion-free flagship kernel
+   directly.
