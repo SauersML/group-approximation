@@ -5391,6 +5391,7 @@ import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Sharpness
 import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.BlockComparison
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LevelWords
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LevelAction
+import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.TransientMatricesCompact
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
