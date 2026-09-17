@@ -11,6 +11,8 @@ distinct_from:
   exact-kazhdan-radical-kernel-cannot-be-lef: That combines the no-finite-quotient condition with the Ozawa--Thom theorem to prove that the desired nontrivial Kazhdan kernel cannot be LEF.
   finite-outer-order-mapping-torus-is-virtually-product: That second no-go theorem shows the genuinely extrinsic route also needs an infinite-order outer action unless the kernel is already non-MF.
   steinberg-images-die-in-torsion-free-groups: That obstruction proves no nontrivial Steinberg image lies in a torsion-free group, which excludes every elementary-sourced kernel or compression source here; this is the positive construction problem that remains.
+  mapping-torus-mf-radical-descends-through-kernel-radical: That computes a mapping-torus radical as a pullback from the mapping torus of the kernel's MF quotient; this is the construction problem that the reduction splits.
+  mf-kazhdan-quotientless-mapping-torus-exact-radical: That is the purely extrinsic existence question for MF Kazhdan kernels, with no soficity or torsion-freeness; this needs a torsion-free sofic kernel with an explicit defect.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -153,3 +155,18 @@ must build genuinely Hamming-approximate sofic models.
     `(STF3)`), for which no imported theorem gives property `(T)`; or a
     torsion-free infinite-index Kazhdan subgroup; or a non-elementary Kazhdan
     mechanism (buildings, small cancellation).
+11. **Descent through the kernel radical (2026-09-17, operator-algebras).**
+    `mapping-torus-mf-radical-descends-through-kernel-radical` proves
+    `Rad_MF(K semidirectProduct_phi Z) = pi^{-1}(Rad_MF(Q semidirectProduct_psi Z))`
+    with `Q = K/Rad_MF(K)`.  So a witness has either `Rad_MF(K) = K` (DI:
+    intrinsic, and the automorphism is irrelevant), or yields `(XMF)`
+    (DX): a nontrivial MF Kazhdan `Q` with no finite quotients, `[psi]` of
+    infinite outer order, and `Rad_MF(Q semidirectProduct_psi Z) = Q`.  The
+    genuinely extrinsic part of this hole is exactly
+    `mf-kazhdan-quotientless-mapping-torus-exact-radical`, which needs neither
+    soficity nor torsion-freeness.  Every Kazhdan compression source has degree
+    `0`.  One attempt on `(XMF)` failed: periodizing corona almost-representations
+    along `psi`.  It dies at the wrap-around step.  Closing the cycle up to
+    `eps` in operator norm needs about `(C/eps)^{|S|d^2}` iterates, so the models
+    must be accurate on balls that grow with `d`.  The wrap block has
+    operator-norm weight `1`, not `1/N`.  Details are in the `(XMF)` node.
