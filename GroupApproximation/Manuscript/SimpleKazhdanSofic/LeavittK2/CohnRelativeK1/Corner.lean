@@ -170,7 +170,7 @@ theorem glMap_apply (B : Matrix (ι × S) (ι × S) (ZMod 2)) :
 
 theorem glMap_one_add (A : Matrix (ι × S) (ι × S) (ZMod 2)) :
     C.glMap S (1 + A) = 1 + C.block S A := by
-  rw [glMap_apply, block_add, sub_add_add_cancel]
+  rw [glMap_apply, block_add, ← add_assoc, sub_add_cancel]
 
 end CohnTwoData
 

@@ -42,9 +42,10 @@ derivable from the combinatorial-map facts on disk:
    it only speaks about membership, never about the order of the darts along
    `K.boundary.cycle = firstSide ++ t₁⁻¹ ++ secondSide ++ t₂`.  Relating the face classes of
    `FaceClassStep (walkKeep c)` to contiguous blocks of `c` needs the rotation-system planarity
-   of the rose (`NoncrossingClosedWalkEulerNoninterleaving.PassagesNoninterleaving` with a Jordan
-   curve argument on the plane Eulerian graph of the cycle), which the corpus has only for simple or
-   noncrossing walks, not for the rose configuration `AllNonFirstTurnsCrossed`.
+   of the rose (a Jordan curve argument on the plane Eulerian graph of the cycle; the corpus tool
+   `PassagesNoninterleaving`, module `NoncrossingClosedWalkEulerNoninterleaving`, is stated for
+   noninterleaving passages, whereas the rose configuration `AllNonFirstTurnsCrossed` is the case
+   where turns are crossed).
 2. *The kept darts outside the arcs can be ordered as two walks `s₁`, `s₂` of length at most `ε`
    meeting the arcs at their ends.*  After (1), the kept darts outside `t₁⁻¹`, `t₂` lie in
    `firstSide`, `secondSide` and the facial walk of the removed region; the length bound needs that

@@ -1,7 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeCell.AssemblyStatements
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.RoseBelow
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.LakesBelow
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Assembly.CellStep
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -15,11 +13,9 @@ import GroupApproximation.Meta.AxiomGuard
   * all cells enclosed, with a second relator cell in the lake of `Π_i` or of `Π_j`, goes to the
     exit statement, whose two exits are the first two disjuncts;
   * all cells enclosed, with both lakes `G`-only, goes to the `G`-only statement.
-* `cellStep_of_cases`: residual 06 (`CellPocketOuterPinchStepSectionDistinctBelowStatement`).  It
-  goes through `Piece06.proof_of_lakesSurgery` (LakesSurgery:156),
-  `Piece06.cellRoseUncutLakesBelow_of_unfiltered` (LakesBelow:98), `Piece06.proof_of_below_gaps`
-  (RoseBelow:136) and the landed `Piece06.MonogonCorner.badCornerRefinement`.  This is the chain of
-  gl-p06-04 (iii), written out here.
+* `cellStep_of_cases`: residual 06 (`CellPocketOuterPinchStepSectionDistinctBelowStatement`),
+  through the landed `P06Assembly.cellStep_of_surgery` (gl-p06-04 (iii): LakesSurgery:156,
+  LakesBelow:98, RoseBelow:136 and `Piece06.MonogonCorner.badCornerRefinement`).
 * `outsideCell_of_surgery`, `gOnly_of_surgery`: the target implies the first and third case
   statements at the same thresholds, so neither is stronger than the target.
 
@@ -81,10 +77,7 @@ theorem cellStep_of_cases (hout : CellRoseLakesOutsideCellStatement.{u, w, v})
     (hexit : CaseDLakeRelatorExitStatement.{u, w, v})
     (hgonly : CellRoseLakeGOnlyBelowStatement.{u, w, v}) :
     CellPocketOuterPinchStepSectionDistinctBelowStatement.{u, w, v} :=
-  Piece06.proof_of_below_gaps
-    (Piece06.cellRoseUncutLakesBelow_of_unfiltered
-      (Piece06.proof_of_lakesSurgery (lakesSurgery_of_cases hout hexit hgonly)))
-    Piece06.MonogonCorner.badCornerRefinement
+  P06Assembly.cellStep_of_surgery (lakesSurgery_of_cases hout hexit hgonly)
 
 /-- **The exterior case from the target**, at the same thresholds, ignoring the extra
 hypothesis. -/

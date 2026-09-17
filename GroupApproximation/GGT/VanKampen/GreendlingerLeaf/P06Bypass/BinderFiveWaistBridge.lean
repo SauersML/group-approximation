@@ -27,8 +27,8 @@ universe u w v
 
 /-- **The binder-5 interface of the bypass waist holds**: binder 5 below the bound from the refuted
 section binder (`osinMultipleEdgePocketRegionCopyBelowSection_of_refuted`). -/
-theorem binderFiveOfRefutedStatement_closed : Waist.BinderFiveOfRefutedStatement.{u, w, v} :=
-  by
+theorem binderFiveOfRefutedStatement_closed :
+    Waist.BinderFiveOfRefutedStatement.{u, w, v} := by
   intro h
   exact osinMultipleEdgePocketRegionCopyBelowSection_of_refuted h
 

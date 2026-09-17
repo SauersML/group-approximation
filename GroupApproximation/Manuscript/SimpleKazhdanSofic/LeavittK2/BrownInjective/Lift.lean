@@ -45,17 +45,30 @@ theorem sameCoset_trans {x y z : S.PiGroup} (h1 : S.SameCoset x y) (h2 : S.SameC
   obtain ⟨j2, rfl⟩ := h2
   exact ⟨j1 * j2, by rw [map_mul, mul_assoc]⟩
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.J_smul_v0
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.coe_hJ
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.SameCoset
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.sameCoset_refl
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.sameCoset_symm
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.sameCoset_trans
+
 theorem sameCoset_v0 {x y : S.PiGroup} (h : S.SameCoset x y) :
     S.p y • S.v0 = S.p x • S.v0 := by
   obtain ⟨j, rfl⟩ := h
   rw [map_mul, S.p_incl, mul_smul, S.J_smul_v0]
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.sameCoset_v0
+
 /-- One edge step from the transporter `x`. -/
 def Step (x y : S.PiGroup) : Prop := ∃ g j : S.J, y = x * S.incl g * S.T * S.incl j
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.Step
 
 theorem p_step_v0 (x : S.PiGroup) (g j : S.J) :
     S.p (x * S.incl g * S.T * S.incl j) • S.v0 = S.p x • ((g : G) • S.v1) := by
   simp only [map_mul, S.p_incl, S.p_T, mul_smul, S.J_smul_v0, S.tau_v0]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.p_step_v0
 
 theorem step_edge {x y : S.PiGroup} (hs : S.Step x y) :
     S.edge (S.p x • S.v0) (S.p y • S.v0) := by
@@ -63,6 +76,8 @@ theorem step_edge {x y : S.PiGroup} (hs : S.Step x y) :
   rw [S.p_step_v0]
   have h := S.edge_smul (S.p x * (g : G)) _ _ S.edge_base
   rwa [mul_smul, S.J_smul_v0, mul_smul] at h
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.step_edge
 
 theorem step_exists (x : S.PiGroup) (w : V) (he : S.edge (S.p x • S.v0) w) :
     ∃ y, S.Step x y ∧ S.p y • S.v0 = w := by
@@ -77,6 +92,11 @@ theorem step_exists (x : S.PiGroup) (w : V) (he : S.edge (S.p x • S.v0) w) :
   rw [hg1, smul_inv_smul]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.step_exists
+
+theorem T_mul_T_left (a : S.PiGroup) : S.T * (S.T * a) = a := by
+  rw [← mul_assoc, S.T_mul_T, one_mul]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.T_mul_T_left
 
 /-- `T k T = k'` for `k ∈ K`: the relation `T k T⁻¹ = τ k τ⁻¹` together with `T² = 1`. -/
 theorem T_conj_T (k : S.J) (hk : (k : G) • S.v1 = S.v1) :
