@@ -5374,6 +5374,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.Hyperli
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.Endpoints
 import GroupApproximation.Manuscript.NonMF.Full.Korchagin.DirectedUnion
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Model
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.Basic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
