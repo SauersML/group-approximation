@@ -5407,6 +5407,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.Ultraproduc
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.Models
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.AdianRabinOutput
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.CertificateNormalForm
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofRest
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
