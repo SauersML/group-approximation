@@ -48,7 +48,7 @@ theorem manuscriptSentence_intertwineOneEntry (P : OneSidedInverse R)
         compressorMatrix P + Matrix.single (coreIdx i) (coreIdx j) (P.s * a)) ∧
       P.s * a * (P.t * P.s) = P.s * a ∧
       ∀ k : ℕ, P.s * a * (P.t * P.e * P.t ^ k) = 0 := by
-  refine ⟨⟨?_, ?_⟩, by rw [P.t_mul_s, mul_one],
+  refine ⟨?_, ?_, by rw [P.t_mul_s, mul_one],
     fun k => by rw [P.t_mul_e, zero_mul, mul_zero]⟩
   all_goals
     ext r c
