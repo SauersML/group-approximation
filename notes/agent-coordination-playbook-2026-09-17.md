@@ -107,6 +107,13 @@ a remote. It commits the JSONL as a blob, retries on a lost race, and skips the 
 `--pull-only` only reads. **Pushing a sync ref to `origin` needs the user's permission.** Within one container no
 sync is needed. `export FILE` / `import FILE` do the same by hand.
 
+**Cloud sessions sync automatically.** Set `CAIRN_LIVE_SYNC=origin` (and optionally `CAIRN_LIVE_REF=refs/heads/<bus
+branch>`, `CAIRN_LIVE_PULL_EVERY=15`) in every session. Reads (`feed`, `board`, `approaches`, `card`, `atlas`) pull
+at most every 15s. Writes push right away. `claim` and `dispatch --take` pull first, push, then refold. The fold
+replays events in `(ts, id)` order and re-checks each claim against the leases before it. So two replicas that
+merge the same logs agree on one winner, and the loser is listed under `rejected`. A claim that lost a race exits 3;
+dispatch again.
+
 ## 3. The paradigm engine: making agents think differently
 
 The failure mode of the last swarms was not a lack of effort but a monoculture of method. The engine makes method

@@ -50,6 +50,8 @@ EXIT_OK, EXIT_BLOCKED, EXIT_USAGE = 0, 3, 64
 KINDS = ("claim", "heartbeat", "release", "dead", "lemma", "need", "spark",
          "question", "answer", "verdict", "landed", "transfer", "family", "note")
 DEFAULT_TTL = 4 * 3600
+SHORTHAND = ("lemma", "need", "spark", "dead", "release", "verdict", "landed", "question",
+             "answer", "note")
 PARADIGMS = os.path.join(HERE, "cairn_live_paradigms.json")
 STOP = {"the", "and", "for", "with", "from", "into", "via", "use", "using", "a",
         "an", "of", "on", "in", "to", "by", "as", "at", "is", "are", "be", "that",
@@ -163,13 +165,45 @@ def same_idea(a, b, threshold=0.6):
     return len(ta & tb) / len(ta | tb) >= threshold
 
 
+def claim_blockers(leases, dead, node, family, sig, reason=None, at=None):
+    """The diversity rule. `reason` is a --same-family or --revive reason;
+    `at` ignores leases that had expired by that time."""
+    out = []
+    for lease in leases.values():
+        if lease.get("node") != node:
+            continue
+        if at is not None and at > lease["last_beat"] + lease["ttl"]:
+            continue
+        if same_idea(lease.get("sig"), sig):
+            out.append(f"same idea active: {lease['agent']} '{lease['sig']}'")
+        elif lease.get("family") == family and not reason:
+            out.append(f"family {family} active: {lease['agent']} "
+                       f"'{lease['sig']}' (pass --same-family REASON to share)")
+    for d in dead:
+        if d.get("node") == node and same_idea(d.get("sig"), sig) and not reason:
+            out.append(f"recorded dead by {d['agent']}: '{d.get('sig')}' — "
+                       f"{d.get('text') or 'no reason given'} (pass --revive REASON)")
+    return out
+
+
 def fold(events, now=None):
+    """Replay the log. Events are replayed in (ts, id) order and every claim is
+    re-checked against the diversity rule at that point, so logs merged from
+    several containers fold to the same leases everywhere: of two claims on
+    the same idea made concurrently in different places, the earlier wins and
+    the later is listed under `rejected`."""
     now = time.time() if now is None else now
     leases, dead, done, needs, lemmas, sparks, families = {}, [], [], {}, [], {}, {}
+    rejected = {}
     closed_refs = set()
-    for e in events:
+    for e in sorted(events, key=lambda e: (e.get("ts", 0), e["id"])):
         k, node, ag = e["kind"], e.get("node"), e.get("agent")
         if k == "claim":
+            blockers = claim_blockers(leases, dead, node, e.get("family"), e.get("sig"),
+                                      e.get("note"), at=e["ts"])
+            if blockers:
+                rejected[e["id"]] = dict(e, blockers=blockers)
+                continue
             leases[e["id"]] = dict(e, last_beat=e["ts"],
                                    ttl=e.get("ttl", DEFAULT_TTL))
             if e.get("ref"):
@@ -205,7 +239,8 @@ def fold(events, now=None):
                if now > lease["last_beat"] + lease["ttl"]]
     for lease in expired:
         leases.pop(lease["id"], None)
-    return {"leases": leases, "expired": expired, "dead": dead, "done": done,
+    return {"leases": leases, "expired": expired, "rejected": rejected,
+            "dead": dead, "done": done,
             "needs": {i: n for i, n in needs.items() if i not in closed_refs},
             "lemmas": lemmas,
             "sparks": {i: s for i, s in sparks.items() if i not in closed_refs},
@@ -407,28 +442,19 @@ def cmd_claim(args):
         raise SystemExit(f"unknown family {args.family!r}; known: "
                          + ", ".join(paradigms["families"])
                          + ". Invent one with `cairn-live family add`.")
+    auto_pull(force=True)
     with _Locked("claim.lock"):
         state = fold(read_events())
-        blockers = []
-        for lease in state["leases"].values():
-            if lease.get("node") != args.node:
-                continue
-            if same_idea(lease.get("sig"), args.sig):
-                blockers.append(f"same idea active: {lease['agent']} '{lease['sig']}'")
-            elif lease.get("family") == args.family and not args.same_family:
-                blockers.append(f"family {args.family} active: {lease['agent']} "
-                                f"'{lease['sig']}' (pass --same-family REASON to share)")
-        for d in state["dead"]:
-            if d.get("node") == args.node and same_idea(d.get("sig"), args.sig) \
-                    and not args.revive:
-                blockers.append(f"recorded dead by {d['agent']}: '{d.get('sig')}' — "
-                                f"{d.get('text') or 'no reason given'} (pass --revive REASON)")
+        blockers = claim_blockers(state["leases"], state["dead"], args.node, args.family,
+                                  args.sig, args.same_family or args.revive)
         if blockers:
             print("BLOCKED\n  " + "\n  ".join(blockers), file=sys.stderr)
             return EXIT_BLOCKED
         e = append("claim", node=args.node, family=args.family, sig=args.sig,
                    text=args.intent, ttl=parse_ttl(args.ttl), ref=args.adopt,
                    note=args.same_family or args.revive)
+    if not confirm_claim(e):
+        return EXIT_BLOCKED
     print(f"claimed {args.node} [{args.family}] '{args.sig}' as {e['agent']} "
           f"(ttl {fmt_age(e['ttl'])}; heartbeat to keep it)")
     return EXIT_OK
@@ -858,6 +884,7 @@ def dispatch_slots(gid, slots, explore, events):
 
 
 def cmd_dispatch(args):
+    auto_pull(force=args.take)
     events = read_events()
     if args.take:
         require_agent()
@@ -873,6 +900,8 @@ def cmd_dispatch(args):
             e = append("claim", node=x["node"], family=x["family"], sig=x["sig"],
                        text="dispatched: " + "; ".join(x["reasons"]), ttl=DEFAULT_TTL,
                        role=x["role"])
+        if not confirm_claim(e):
+            return EXIT_BLOCKED
         x["lease"] = e["id"]
         if args.json:
             print(json.dumps(x, indent=1))
@@ -925,14 +954,66 @@ def _git(*a, input_=None):
                           text=True)
 
 
+def sync_target():
+    """CAIRN_LIVE_SYNC=REMOTE turns on replication for every command; the ref
+    is CAIRN_LIVE_REF, default refs/cairn-live/<wave>."""
+    remote = os.environ.get("CAIRN_LIVE_SYNC")
+    if not remote:
+        return None
+    return remote, os.environ.get("CAIRN_LIVE_REF") or f"refs/cairn-live/{wave_name()}"
+
+
+def auto_pull(force=False):
+    target = sync_target()
+    if not target:
+        return
+    stamp = os.path.join(live_dir(), "last-pull")
+    every = float(os.environ.get("CAIRN_LIVE_PULL_EVERY", "15"))
+    try:
+        if not force and time.time() - os.path.getmtime(stamp) < every:
+            return
+    except OSError:
+        pass
+    sync_once(*target, pull_only=True, quiet=True)
+    with open(stamp, "w"):
+        pass
+
+
+def auto_push():
+    target = sync_target()
+    if target and sync_once(*target, quiet=True) != 0:
+        print("warning: cairn-live sync failed; events are local until the next sync",
+              file=sys.stderr)
+
+
+def confirm_claim(e):
+    """After replication, keep the claim only if the merged log still admits it."""
+    if not sync_target():
+        return True
+    auto_push()
+    state = fold(read_events())
+    if e["id"] in state["leases"]:
+        return True
+    print("BLOCKED (lost a concurrent claim in another container)\n  "
+          + "\n  ".join(state["rejected"].get(e["id"], {}).get("blockers", [])),
+          file=sys.stderr)
+    return False
+
+
 def cmd_sync(args):
+    return sync_once(args.remote, args.ref or f"refs/cairn-live/{wave_name()}",
+                     args.pull_only, args.retries)
+
+
+def sync_once(remote, ref, pull_only=False, retries=8, quiet=False):
     """Replicate the log through a git ref, for agents in other containers.
     The ref holds one file, events.jsonl. Merge is a union by event id, so
     concurrent syncs never conflict; a rejected push just syncs again."""
-    ref = args.ref or f"refs/cairn-live/{wave_name()}"
+    say = (lambda *a: None) if quiet else print
     ref = ref if ref.startswith("refs/") else f"refs/heads/{ref}"
-    for attempt in range(args.retries):
-        fetched = _git("fetch", "-q", args.remote, f"+{ref}:refs/cairn-live/remote")
+    pushed = None
+    for attempt in range(retries):
+        fetched = _git("fetch", "-q", remote, f"+{ref}:refs/cairn-live/remote")
         parent = None
         if fetched.returncode == 0:
             parent = _git("rev-parse", "refs/cairn-live/remote").stdout.strip()
@@ -944,26 +1025,26 @@ def cmd_sync(args):
                         incoming.append(json.loads(line))
                     except json.JSONDecodeError:
                         pass
-                print(f"pulled {merge_events(incoming)} new events")
-        if args.pull_only:
+                say(f"pulled {merge_events(incoming)} new events")
+        if pull_only:
             return EXIT_OK
         with open(log_path(), encoding="utf-8") as f:
             data = f.read()
         sha = _git("hash-object", "-w", "--stdin", input_=data).stdout.strip()
         tree = _git("mktree", input_=f"100644 blob {sha}\tevents.jsonl\n").stdout.strip()
         if parent and _git("rev-parse", f"{parent}^{{tree}}").stdout.strip() == tree:
-            print("remote already up to date")
+            say("remote already up to date")
             return EXIT_OK
         cmd = ["commit-tree", tree, "-m", f"cairn-live sync by {agent_name()}"]
         if parent:
             cmd[2:2] = ["-p", parent]
         commit = _git(*cmd).stdout.strip()
-        pushed = _git("push", "-q", args.remote, f"{commit}:{ref}")
+        pushed = _git("push", "-q", remote, f"{commit}:{ref}")
         if pushed.returncode == 0:
-            print(f"pushed {len(read_events())} events to {args.remote} {ref}")
+            say(f"pushed {len(read_events())} events to {remote} {ref}")
             return EXIT_OK
         time.sleep(1 + attempt)
-    print(f"sync failed: {pushed.stderr.strip()}", file=sys.stderr)
+    print(f"sync failed: {pushed.stderr.strip() if pushed else 'no attempt'}", file=sys.stderr)
     return 1
 
 
@@ -1003,7 +1084,7 @@ def main(argv=None):
     po.add_argument("--keywords")
     po.set_defaults(fn=cmd_post)
 
-    for kind in ("lemma", "need", "spark", "dead", "release", "verdict", "landed", "question", "answer", "note"):
+    for kind in SHORTHAND:
         sp = sub.add_parser(kind, help=f"shorthand for post {kind}")
         sp.add_argument("node", nargs="?")
         sp.add_argument("--node", dest="node_opt", metavar="NODE")
@@ -1090,7 +1171,12 @@ def main(argv=None):
     sy.set_defaults(fn=cmd_sync)
 
     args = p.parse_args(argv)
-    return args.fn(args)
+    if args.cmd in ("feed", "board", "approaches", "card", "atlas"):
+        auto_pull()
+    code = args.fn(args)
+    if code == EXIT_OK and args.cmd in ("post", "heartbeat", "family") + SHORTHAND:
+        auto_push()
+    return code
 
 
 if __name__ == "__main__":

@@ -127,6 +127,47 @@ class LiveTest(unittest.TestCase):
         self.assertEqual(run("", "claim", NODE, "--new", "--family", "local-designs",
                              "--sig", "x y z")[0], live.EXIT_USAGE)
 
+    def test_concurrent_claims_in_two_containers_fold_to_one_winner(self):
+        a, b = os.path.join(self.tmp.name, "a"), os.path.join(self.tmp.name, "b")
+        os.environ["CAIRN_LIVE"] = a
+        self.claim("w1", "spare track annulus gadget")
+        os.environ["CAIRN_LIVE"] = b
+        self.claim("w2", "annulus gadget spare track")  # admitted locally: b has not seen a
+        first = live.read_events(os.path.join(a, "events.jsonl"))
+        second = live.read_events(os.path.join(b, "events.jsonl"))
+        live.merge_events(first)
+        os.environ["CAIRN_LIVE"] = a
+        live.merge_events(second)
+        for d in (a, b):
+            state = live.fold(live.read_events(os.path.join(d, "events.jsonl")))
+            self.assertEqual([x["agent"] for x in state["leases"].values()], ["w1"])
+            self.assertEqual([x["agent"] for x in state["rejected"].values()], ["w2"])
+
+    def test_auto_sync_through_a_git_ref(self):
+        import subprocess
+        bare, repo = os.path.join(self.tmp.name, "bare.git"), os.path.join(self.tmp.name, "repo")
+        subprocess.run(["git", "init", "-q", "--bare", bare], check=True)
+        subprocess.run(["git", "init", "-q", repo], check=True)
+        old_root = live.ROOT
+        live.ROOT = repo
+        os.environ.update(CAIRN_LIVE_SYNC=bare, CAIRN_LIVE_PULL_EVERY="0",
+                          GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t", GIT_COMMITTER_NAME="t",
+                          GIT_COMMITTER_EMAIL="t@t")
+        try:
+            os.environ["CAIRN_LIVE"] = os.path.join(self.tmp.name, "a")
+            self.assertEqual(self.claim("w1", "spare track annulus gadget")[0], 0)
+            os.environ["CAIRN_LIVE"] = os.path.join(self.tmp.name, "b")
+            code, text = self.claim("w2", "annulus gadget spare track")
+            self.assertEqual(code, live.EXIT_BLOCKED)
+            self.assertIn("same idea", text)
+            run("w2", "spark", "--text", "groupoid version")
+            os.environ["CAIRN_LIVE"] = os.path.join(self.tmp.name, "a")
+            self.assertIn("groupoid version", run("w1", "feed", "--new")[1])
+        finally:
+            live.ROOT = old_root
+            for k in ("CAIRN_LIVE_SYNC", "CAIRN_LIVE_PULL_EVERY"):
+                os.environ.pop(k, None)
+
     def test_concurrent_claims_admit_one(self):
         with multiprocessing.get_context("fork").Pool(8) as pool:
             codes = pool.map(_claim_worker, [(self.tmp.name, i) for i in range(16)])
