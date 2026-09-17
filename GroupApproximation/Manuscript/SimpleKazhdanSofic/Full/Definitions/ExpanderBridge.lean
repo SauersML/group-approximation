@@ -6,8 +6,8 @@ import Mathlib.Algebra.Group.Pointwise.Set.Card
 # Edge expansion gives the printed vertex expansion (`thm:main`, tex l.92–100)
 
 The corpus form of `thm:main` (`SimpleKazhdanSofic.MainAssembly`) has a finite index type `ι`, the
-convergence `IsMarkedLimit s σ`, and the *edge* expansion `IsExpanderFamily σ`: at least `ε |S|` pairs
-`(x, i)` with `x ∈ S` and `σ_i x ∉ S`.  The printed definition (tex l.92–98) counts *neighbours*
+convergence `IsMarkedLimit s σ`, and the *edge* expansion `IsExpanderFamily σ`: at least `ε |S|`
+pairs `(x, i)` with `x ∈ S` and `σ_i x ∉ S`.  The printed definition (tex l.92–98) counts *neighbours*
 `x q_i^{±1}` outside `S` (gap report, Lane 1, "M1 bridge").
 
 For `S ⊆ H` with `2|S| ≤ |H|`, apply the edge expansion to `S⁻¹`.  Every left edge `x ↦ σ_i x`
@@ -145,7 +145,7 @@ theorem isExpanderLimitOfClass_of_markedLimit_expanderFamily
     (hlim : SimpleKazhdanSofic.IsMarkedLimit s σ) (hexp : SimpleKazhdanSofic.IsExpanderFamily σ) :
     IsExpanderLimitOfClass C G := by
   haveI : Finite ι := hexp.1
-  exact ⟨Nat.card ι, fun j => s ((Finite.equivFin ι).symm j), H, inferInstance,
+  exact ⟨Nat.card ι, fun j => s ((Finite.equivFin ι).symm j), H, fun ℓ => inferInstance,
     fun ℓ j => σ ℓ ((Finite.equivFin ι).symm j), hC,
     expanderLimit_of_markedLimit_expanderFamily (Finite.equivFin ι) hlim hexp⟩
 

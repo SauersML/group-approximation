@@ -154,8 +154,9 @@ theorem limitsOfFiniteGroupsAreLEFPrinted {m : ℕ} {Q : ℕ → Type} [∀ k, G
 an expander limit are finite. -/
 theorem isLEF_of_isExpanderLimitOfClass {C : ∀ (Q : Type) [Group Q], Prop} {G : Type*} [Group G]
     (h : IsExpanderLimitOfClass C G) : IsLEF G := by
-  obtain ⟨m, g, Q, inst, q, _, hconv, hfin, _⟩ := h
-  exact SimpleKazhdanSofic.isLEF_of_isMarkedLimit hfin ((markedConverges_iff_isMarkedLimit q g).mp hconv)
+  obtain ⟨_, _, _, _, _, -, hconv, hfin, -⟩ := h
+  exact SimpleKazhdanSofic.isLEF_of_isMarkedLimit hfin
+    ((markedConverges_iff_isMarkedLimit _ _).mp hconv)
 
 /-- An expander limit of groups from any class is LEF in the printed sense. -/
 theorem isLEFPrinted_of_isExpanderLimitOfClass {C : ∀ (Q : Type) [Group Q], Prop} {G : Type*}

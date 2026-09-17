@@ -150,13 +150,13 @@ theorem subshiftHomeo_zpow_apply_ne_self (S : Subshift A ℤ) (hinf : Infinite S
   haveI := hinf
   exact zpow_apply_ne_self_of_dense (subshiftHomeo S) (minimalSubshift_dense_orbits S hmin) hj x
 
-/-- **`X` is a Cantor set** (tex l.361–362): an infinite minimal subshift over a finite alphabet is a
-nonempty compact Hausdorff totally disconnected space without isolated points. -/
+/-- **`X` is a Cantor set** (tex l.361–362): an infinite minimal subshift over a finite alphabet is
+a nonempty compact Hausdorff totally disconnected space without isolated points. -/
 theorem isCantorSpace_subshift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
     CompactSpace S.carrier ∧ T2Space S.carrier ∧ TotallyDisconnectedSpace S.carrier ∧
       PerfectSpace S.carrier ∧ Nonempty S.carrier :=
   ⟨compactSpace_subshift S, inferInstance, inferInstance, perfectSpace_subshift S hinf hmin,
-    @Infinite.nonempty S.carrier hinf⟩
+    (Set.infinite_coe_iff.1 hinf).nonempty.to_subtype⟩
 
 variable [DecidableEq A]
 
@@ -209,7 +209,8 @@ variable {A : Type} [TopologicalSpace A] [DiscreteTopology A] [Finite A]
 
 /-- **The forward orbit is dense** (tex l.369–370): by minimality, every point of `X` is a limit of
 forward shifts of `x`. -/
-theorem forwardOrbit_dense (S : Subshift A ℤ) (hmin : IsMinimal S) {x : ℤ → A} (hx : x ∈ S.carrier) :
+theorem forwardOrbit_dense (S : Subshift A ℤ) (hmin : IsMinimal S) {x : ℤ → A}
+    (hx : x ∈ S.carrier) :
     S.carrier ⊆ closure (Set.range fun n : ℕ => shift (n : ℤ) x) :=
   subset_closure_forwardOrbit_of_minimal S.isClosed S.mapsTo hmin hx
 
@@ -227,7 +228,8 @@ sequence `y : ℤ/m → A` of period `m ≥ m₀` with the same words of length 
 theorem exists_periodic_sameWords_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier)
     (hmin : IsMinimal S) (ℓ m₀ : ℕ) :
     ∃ (m : ℕ) (_ : NeZero m) (y : ZMod m → A), m₀ ≤ m ∧
-      (∀ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
+      (∀ n : ZMod m,
+        (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
       ∀ u ∈ language S.carrier (2 * ℓ + 1),
         ∃ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) = u :=
   exists_periodic_sameWords S.isClosed S.mapsTo (Set.infinite_coe_iff.1 hinf).nonempty hmin ℓ m₀
@@ -246,13 +248,16 @@ def PrintedMainProofOpening : Prop :=
     (∀ j : ℤ, j ≠ 0 → ∀ x : S.carrier, (subshiftHomeo S ^ j) x ≠ x) ∧
     Subring.closure (insert (1 : R S) (ringGenerators S)) = ⊤ ∧
     ∀ ℓ m₀ : ℕ, ∃ (m : ℕ) (_ : NeZero m) (y : ZMod m → A), m₀ ≤ m ∧
-      (∀ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
+      (∀ n : ZMod m,
+        (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
       ∀ u ∈ language S.carrier (2 * ℓ + 1),
         ∃ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) = u
 
 /-- **The opening of the proof of `thm:main`** (tex l.359–377), unconditionally. -/
-theorem printedMainProofOpening : PrintedMainProofOpening := fun _ _ _ _ _ S hinf hmin =>
-  ⟨isCantorSpace_subshift S hinf hmin, fun _ hj x => subshiftHomeo_zpow_apply_ne_self S hinf hmin hj x,
+theorem printedMainProofOpening : PrintedMainProofOpening := by
+  intro _ _ _ _ _ S hinf hmin
+  exact ⟨isCantorSpace_subshift S hinf hmin,
+    fun _ hj x => subshiftHomeo_zpow_apply_ne_self S hinf hmin hj x,
     subring_closure_printedGenerators_eq_top S, exists_periodic_sameWords_carrier S hinf hmin⟩
 
 end GroupApproximation.Full.SK05
