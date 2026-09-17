@@ -76,3 +76,39 @@ crossed products are traceless or non-simple/non-classifiable.)
   The unresolved lift is from this commutative amenable boundary model to a
   unital simple stably finite classifiable algebra while preserving full
   C-star amenability (tracial amenability alone is known not to suffice).
+* Commuting-minimal-action route (symbolic dynamics transplant).
+  `xl-commuting-minimal-action-gives-classifiable-witness`: if a compact
+  metrizable finite-dimensional amenable `G`-space `X` carries a commuting free
+  minimal action of `Z` (or of a locally finite group) `Gamma`, then `G` acts
+  amenably on the unital stably finite classifiable algebra `C(X) x Gamma`
+  (Følner-averaging the Reiter witnesses over `Gamma` gives the quasi-central
+  approximation property).  So XL for `G` reduces to the dynamical statement
+  (CMA_G).  `xl-commuting-minimal-action-forbids-proximal-factors`: any such
+  `X` has no nontrivial proximal `G`-factor, so shift, Toeplitz and skew-product
+  models built over boundaries (hyperbolic boundaries, tree ends, `G/P`) all
+  die at the minimality step.  The surviving models must be amenable `G`-spaces
+  without proximal factors.
+* Invariant-AF-relation generalization and its obstruction
+  (`xl-invariant-af-relation-gives-amenable-af-witness`).  If an amenable Cantor
+  `G`-space carries a minimal AF relation `R = union R_n` with every compact open
+  `R_n` preserved by `G` (classes may be permuted), then `G` acts amenably on the
+  simple AF algebra `C*(R)`: class-averaged Reiter witnesses are exactly central
+  in `C*(R_n)` and need no Følner averaging.  But such `X` admits no continuous
+  `G`-map into `P(B)` for any nontrivial boundary `B` (minimal subsets of
+  `P(B)^2` sit on the Dirac diagonal, and the `R`-saturation of a `G`-minimal set
+  is dense).  Both routes therefore need an amenable `G`-space that does not
+  map equivariantly into the measures of any boundary; whether such spaces
+  exist (e.g. for free or hyperbolic groups) is the decisive open question.
+* Groupoid equivalence behind both routes
+  (`xl-groupoid-action-amenable-iff-semidirect-amenable`).  If `G` acts
+  by automorphisms on an amenable étale groupoid `H`, the induced action on
+  `C*_r(H)` is amenable iff `H x| G` is amenable (push Reiter functions along the
+  cocycle `H x| G -> G`; nuclearity for the converse).  So XL for `G`, restricted
+  to witnesses with a `G`-invariant untwisted Cartan subalgebra, is exactly the
+  groupoid statement (GSA_G)
+  (`xl-exact-groups-admit-amenable-semidirect-groupoid-models`).  The commuting
+  and invariant-AF models are the cases where `G` commutes with `H` or preserves a
+  compact open exhaustion, which is precisely what the boundary kills use; for
+  automorphism actions that normalize `H` without such rigidity (for example
+  `Gamma x| G` acting on `X` with `Gamma` amenable and minimal) only
+  `H`-invariant boundary maps are excluded.
