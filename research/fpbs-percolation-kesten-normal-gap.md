@@ -98,3 +98,31 @@ direction is used here.
   dies:** the passage from the critical kernel to `p_c+delta`. The invariant
   is `||S_(p_c)||_(l2(Q)) >= ||T_(p_c)||`, and it is infinite for amenable
   `Q`. So Russo-BK proofs of (alpha) are at least as hard as critical l2.
+* **Relative l2 threshold (reframing, 2026-09-17, swarm-0917 w5).** Define
+  `p^Q_(2->2)(N;G) = sup{p : ||S_p||_(l2(Q)) < infinity}`.
+  `fpbs-quotient-l2-threshold-sandwich` (ESTABLISHED) proves the following.
+  - The sandwich
+    `p_c <= p^Q_(2->2)(N;G) <= min{p_(2->2), p_c(N;G)}`.
+  - The diagonal formula
+    `||S_p|| = limsup_m (sum_(y in N) T_p^m(o,y))^(1/m)`.
+  - Monotonicity in `N`, and invariance under amenable extensions `M/N`.
+  - Openness, with the bound `||S_p|| >= 1/(d(p^Q_(2->2) - p))`.
+  - The equivalence `p_c < p^Q_(2->2)` iff `||S_(p_c)|| < infinity`.
+
+  This extends the Russo-BK obstruction above to every method, conditionally,
+  through the open identity `fpbs-relative-threshold-is-quotient-l2-threshold`,
+  `p_c(N;G) = p^Q_(2->2)(N;G)`. Unconditionally, each pair `(G,N)` falls in
+  exactly one of three cases:
+  - (i) critical fibre l2;
+  - (ii) `p_c = p^Q_(2->2) < p_c(N;G)`;
+  - (iii) no gap.
+
+  **Where it dies:** on every pair where the weak form E' holds, a proof of
+  (alpha) must bound the multi-chain critical relative susceptibilities
+  `chi^(N,m)_(p_c)` exponentially in `m`, which is critical fibre l2. That
+  implies `p_c < p_(2->2)` and makes the split redundant. The invariant is
+  again `||S_(p_c)||_(l2(Q))`. The only escape is a type-(ii) pair: a window
+  above `p_c` where `chi^N_p < infinity` but `sum_q sigma_p(q)^2 = infinity`.
+  The natural test case is `F_2 x F_2` along one factor. The identity holds
+  for amenable quotients and on free-group trees, and it reduces to
+  `p_(2->2) = p_u` for amenable `N`.
