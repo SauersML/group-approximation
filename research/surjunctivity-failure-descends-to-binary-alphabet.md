@@ -74,3 +74,23 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
     `r o Phi = tau o r`. Over `F_2` with the Ornstein–Weiss map, the automata with injective lifts are
     exactly those induced by injective flip-commuting binary automata, and the coordinate swap has no lift by any
     automaton. Notes `notes/surjunctivity-failure-descends-to-binary-swarm-2026-09-16.md`, Sections 1-2.
+- **Label-level phase transport; the obstruction is the rest alphabet** (a-gs-binary-descent, 2026-09-17).
+  Split the alphabet into rest symbols `Z` and active symbols `B`. Call a strict automaton *donor-covering* if
+  every active output site reads a designated active input site in its memory window, and every active input
+  site is read by some active output site.
+  - Such an automaton of type `(|Z|, |B|) = (2, (2^p - 2)/p)`, or `(1, (2^(q-1) - 1)/q)`, gives a binary strict
+    automaton over `G × C_p`, resp. `G × C_q`. Label the free orbits of `{0,1}^(C_p)`, resp. of `I_(C_q)`, by `B`,
+    and let each output phase copy the phase of its donor
+    (`donor-covering-strict-automata-descend-to-two-symbols`, ESTABLISHED).
+  - `|B|` can be multiplied freely, so the types that work are `(1, odd)` and `(2, b)` with `4 ∤ b`.
+  - Every strict `β` gives type `(|A|, |A|)` as `β × id` with an activity bit. So universal descent is exactly
+    reducing the rest alphabet to two symbols (`strict-automata-reduce-to-two-rest-donor-covering-ones`, OPEN).
+    Orbit counting, where Section 4.3 of `research/artifacts/gk3-alphabet-descent-2026-09-14.md` died, is not the
+    obstruction.
+  - With one rest symbol the witness must raise the active count on some finite configuration
+    (`one-rest-donor-covering-strict-automata-raise-the-count`, via the charge theorem).
+  - For the same-group statement this changes the group to `G × C_p`. By
+    `ec-groups-share-the-nonsurjunctive-alphabet-sizes` that is harmless for existentially closed `G`, and not
+    otherwise.
+  - Where it stops: no construction lowers the number of rest symbols. The naive reclassification dies at the
+    relay condition.
