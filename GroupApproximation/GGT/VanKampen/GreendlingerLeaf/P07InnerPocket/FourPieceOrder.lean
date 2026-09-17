@@ -110,3 +110,79 @@ def PocketLabelNoninterleavingStatement : Prop :=
           (invDarts X outerWalk)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketLabelNoninterleavingStatement
+
+/-- **The four-piece cyclic order of the pocket outer walk** (lane `gl-p07-10`).  A rotation of
+the outer walk reads `R₁ ++ U₁ ++ R₂ ++ U₂` with gap runs `U₁ ⊆ Ḡ₁`, `U₂ ⊆ Ḡ₂` and the side
+hypothesis of `SideBound.PocketSideBoundStatement` on `R₁, R₂`. -/
+def PocketFourPieceOrderStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ L : List X.toCombMap.Dart,
+        PocketNoncrossing.PocketOrbit X.toCombMap
+          (PocketNoncrossing.pocketKeep X.toCombMap K.walk a.2.boundary.cycle b.2.boundary.cycle)
+          C.face L →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (absorbed X.toCombMap (sideFaces X.toCombMap L) X.outerFace)
+          outerWalk →
+        (∀ d : X.toCombMap.Dart, d ∈ outerWalk ↔ X.toCombMap.alpha d ∈ L ∧
+          X.toCombMap.faceOf d ∈ component X.toCombMap (sideFaces X.toCombMap L) X.outerFace) →
+        ∃ (n : ℕ) (R₁ U₁ R₂ U₂ : List X.toCombMap.Dart),
+          invDarts X (outerWalk.rotate n) = R₁ ++ U₁ ++ R₂ ++ U₂ ∧
+          (∀ d ∈ U₁, d ∈ invDarts X G₁.darts) ∧ (∀ d ∈ U₂, d ∈ invDarts X G₂.darts) ∧
+          ((((∀ r ∈ R₁, X.toCombMap.alpha r ∈ a.sideFrom j) ∨
+                ∀ r ∈ R₁, X.toCombMap.alpha r ∈ b.sideFrom i) ∧
+              ((∀ r ∈ R₂, X.toCombMap.alpha r ∈ a.sideFrom j) ∨
+                ∀ r ∈ R₂, X.toCombMap.alpha r ∈ b.sideFrom i)) ∨
+            ((∀ r ∈ R₁ ++ R₂,
+                X.toCombMap.alpha r ∈ a.sideFrom j ∨ X.toCombMap.alpha r ∈ b.sideFrom i) ∧
+              (U₁ = [] ∨ U₂ = [])))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOrderStatement
+
+/-- **Lane `gl-p07-10`, reduced to the residual.**  Labels from lane 08 (`pocketOrbitLabel`), the
+list combinatorics `FourPiece.exists_fourPiece`, and `SideBound.exists_rotate_invDarts`. -/
+theorem pocketFourPieceOrder_of_noninterleaving
+    (h : PocketLabelNoninterleavingStatement.{u, w, v}) :
+    PocketFourPieceOrderStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ h₁ G₂ h₂ hw
+    hoff hinner houter C hC hCf hCa hCb L hL outerWalk E hmem
+  obtain ⟨hn1, hn2, hnb, hna⟩ := h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ h₁
+    G₂ h₂ hw hoff hinner houter C hC hCf hCa hCb L hL outerWalk E hmem
+  have hlab := (pocketOrbitLabel.{u, w, v} D eps X a b K hij hai hbi hfirst hsecond G₁ h₁ G₂ h₂
+    hw C hC hCf hCa hCb L hL.nodup (fun d hd =>
+      ⟨((hL.mem_iff d).mp hd).1,
+        (PocketNoncrossing.mem_faceClass_iff X.toCombMap _ C.face _).mp
+          ((hL.mem_iff d).mp hd).2⟩)).1
+  have hlabW : ∀ e ∈ invDarts X outerWalk, e ∈ invDarts X G₁.darts ∨
+      e ∈ invDarts X G₂.darts ∨ X.toCombMap.alpha e ∈ a.sideFrom j ∨
+        X.toCombMap.alpha e ∈ b.sideFrom i := by
+    intro e he
+    obtain ⟨d, hd, rfl⟩ := List.mem_map.mp he
+    exact hlab _ ((hmem d).mp (List.mem_reverse.mp hd)).1
+  obtain ⟨m, R₁, U₁, R₂, U₂, hrot, hU₁, hU₂, hcase⟩ :=
+    FourPiece.exists_fourPiece (P1 := fun e => e ∈ invDarts X G₁.darts)
+      (P2 := fun e => e ∈ invDarts X G₂.darts)
+      (Pa := fun e => X.toCombMap.alpha e ∈ a.sideFrom j)
+      (Pb := fun e => X.toCombMap.alpha e ∈ b.sideFrom i) hlabW hn1 hn2 hnb hna
+  obtain ⟨k, hk⟩ := SideBound.exists_rotate_invDarts outerWalk m
+  exact ⟨k, R₁, U₁, R₂, U₂, hk.trans hrot, hU₁, hU₂, hcase⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pocketFourPieceOrder_of_noninterleaving
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

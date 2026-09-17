@@ -145,3 +145,9 @@ theorem lobe_separation (hM : M.IsPlanar) {p q p' : ℕ} (hp : p < B.darts.lengt
   exact hFout h4
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.turn_middle_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.turn_last_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_turnMem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.not_walkKeep_lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_separation

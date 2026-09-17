@@ -95,4 +95,11 @@ theorem proof : OsinLemma94SectionCornersInput.{u, w, v} := by
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.cornerSet
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.card_cornerSet
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.card_filter_cornerAt_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.card_cornerSet_le
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.sum_sectionCorners_le
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.proof

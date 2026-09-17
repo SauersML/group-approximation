@@ -230,7 +230,15 @@ end Family
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.mem_faceSet_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.mem_faceSet_of_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.faceOf_embed_mem_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.regionInternal_embed_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.dart_ne_second
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.sigma_alpha_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.dart_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.second_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.someNone_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.none_not_internal
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.not_phiKeepO_dart
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.cell_face_eq

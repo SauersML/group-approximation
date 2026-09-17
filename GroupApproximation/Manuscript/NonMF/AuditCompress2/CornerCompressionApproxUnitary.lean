@@ -51,13 +51,15 @@ universe u
 
 /-- A bounded matrix sequence with vanishing corona class has operator norms
 tending to `0` along `atTop`. -/
-theorem tendsto_coord_norm_of_mk_eq_zero (X : ℕ → FiniteModel)
+theorem tendsto_coord_norm_of_mk_eq_zero (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     (a : BoundedMatrixSequence (fun n ↦ X n))
     (h : normMatrixCStarCoronaMk (fun n ↦ X n) a = 0) :
     Tendsto (fun n ↦ ‖a n‖) atTop (nhds 0) := by
   have hnull := (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) a).mp h
   rw [IsNullMatrixSequence, Nat.cofinite_eq_atTop] at hnull
   exact hnull
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.AuditCompress2.tendsto_coord_norm_of_mk_eq_zero
 
 /-- In any star ring, if a projection `q` commutes with a unitary `r`, then
 `q r q` is a unitary of the corner `q A q`. -/
@@ -81,6 +83,8 @@ theorem corner_isUnitaryInCorner {A : Type*} [Ring A] [StarRing A] {q r : A}
     calc r * q * (star r * q) = r * (q * star r) * q := by noncomm_ring
       _ = r * star r * (q * q) := by rw [hcomm']; noncomm_ring
       _ = q := by rw [hr', one_mul, hidem]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.AuditCompress2.corner_isUnitaryInCorner
 
 /-- **tex 621–624.** Let `ρ` be a homomorphism from `G` into the unitaries of
 the norm matrix corona, and let `q` be a projection commuting with `ρ(G)`.

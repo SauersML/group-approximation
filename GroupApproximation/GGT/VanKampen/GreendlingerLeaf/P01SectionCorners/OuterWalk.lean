@@ -212,3 +212,34 @@ theorem lobe_last_rotations {p q : ℕ} (hq : q < B.darts.length)
     rwa [show q + B.darts.length - 1 + 1 = q + B.darts.length by omega, ell_add_length] at h
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.getElem_idx_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.length_pos
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell_eq_of_mod_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell_add_length
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell_of_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.faceOf_ell
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell_inj
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.facePerm_ell_succ_of_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.facePerm_ell_succ
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.sigma_alpha_ell
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.InOpen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.InHalfOpen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobeLen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_length
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_getElem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.mem_lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.faceOf_of_mem_lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobeLen_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.ell_mem_lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.inOpen_of_ell_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.sigma_pow_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.sigma_pow_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.sigma_pow_three
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_turn_middle
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.lobe_last_rotations

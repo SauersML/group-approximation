@@ -239,3 +239,16 @@ theorem eq_of_cornerAt (P : OsinLemma94RealizedPolygons S) (hpos : 0 < S.diagram
         hpmem h).elim
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.outer_length_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.outerArc_getElem?
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.boundary_ends
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.CornerAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.exists_cornerAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.exists_charge
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.charge
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.charge_spec
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.inOpen_of_inHalfOpen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.false_of_inOpen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.eq_of_cornerAt

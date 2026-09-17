@@ -65,7 +65,7 @@ theorem exists_injOn_of_card_le {α β : Type*} [Inhabited β] (m : ℕ) (R : α
     · rcases Finset.mem_insert.1 hb with hba | hbO
       · rw [hba, Function.update_self]
         exact hcR
-      · rw [Function.update_of_ne fun h => ha (h ▸ hbO)]
+      · rw [Function.update_of_ne (show b ≠ a from fun h => ha (h ▸ hbO))]
         exact hσR b hbO
     · have hb2 := Finset.mem_insert.1 (Finset.mem_coe.1 hb)
       have hb2' := Finset.mem_insert.1 (Finset.mem_coe.1 hb')
@@ -268,3 +268,7 @@ end GroupApproximation.Manuscript.NonMF.ChainB
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.manuscriptSentence_applyMatrixBlockConstructionRefinedByKC
 #audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.manuscriptSentence_matchingConstantOnRepresentativeCells
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.exists_injOn_of_card_le
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.firstReturns_congr
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.isLocallyConstant_zpow_mem
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.exists_refined_cells

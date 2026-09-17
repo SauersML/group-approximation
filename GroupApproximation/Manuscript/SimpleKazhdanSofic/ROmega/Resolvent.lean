@@ -168,7 +168,7 @@ theorem rfun_mul_sub_mul_rfun (a b : A) (ha : IsSelfAdjoint a) (hb : IsSelfAdjoi
 /-- `q(g(T)) = T` for a self-adjoint `T` with `‖T‖ ≤ 1/2`. -/
 theorem cfc_qfun_cfc_gfun (T : A) (hT : IsSelfAdjoint T) (hTn : ‖T‖ ≤ 1 / 2) :
     cfc qfun (cfc gfun T) = T := by
-  obtain hA | hA := subsingleton_or_nontrivial A
+  obtain _ | _ := subsingleton_or_nontrivial A
   · exact Subsingleton.elim _ _
   have hcongr : (spectrum ℝ T).EqOn (fun s ↦ qfun (gfun s)) (fun s ↦ s) := by
     intro s hs
@@ -204,7 +204,7 @@ theorem norm_polyEval_sub_cfc_qfun_le {A : Type*} [CStarAlgebra A] {R ε : ℝ} 
     (p : ℝ[X]) (hp : ∀ x ∈ Set.Icc (-R) R, |p.eval x - qfun x| < ε) (a : A)
     (ha : IsSelfAdjoint a) (haR : ‖a‖ ≤ R) :
     ‖polyEval (fun i ↦ ((p.coeff i : ℝ) : ℂ)) (p.natDegree + 1) a - cfc qfun a‖ ≤ ε := by
-  obtain hA | hA := subsingleton_or_nontrivial A
+  obtain _ | _ := subsingleton_or_nontrivial A
   · rw [Subsingleton.elim (polyEval (fun i ↦ ((p.coeff i : ℝ) : ℂ)) (p.natDegree + 1) a
       - cfc qfun a) 0, norm_zero]
     exact hε.le

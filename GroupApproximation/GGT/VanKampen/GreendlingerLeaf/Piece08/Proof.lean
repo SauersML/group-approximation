@@ -134,6 +134,8 @@ theorem proof_of_fullSourceLake (hlake : OsinFullSourceLakeStatement.{u, w, v}) 
   exact ⟨rho0, hrho0, fun rho hr W hW =>
     properInput_of_fullSourceLake D lambda c eps W (hrho rho hr W hW)⟩
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.FullSourceLakeInput
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.OsinFullSourceLakeStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.properInput_of_fullSourceLake
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.proof_of_fullSourceLake
 

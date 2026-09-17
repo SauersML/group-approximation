@@ -249,7 +249,11 @@ theorem phiTransportAt_of_bypass' (T : RegionTransport S S') (a₀ : S.family)
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.pow_apply_bypass'
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.isFirstReturn_bypass'
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.retainedEquiv_sigma_bypass'
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.not_regionInternal_of_crossO
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.phiKeepO_map_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.phiKeepO_range
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.mem_arcs_of_crossO_false
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.phiTransportAt_of_bypass'

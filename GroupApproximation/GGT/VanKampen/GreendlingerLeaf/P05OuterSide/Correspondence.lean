@@ -161,5 +161,10 @@ noncomputable def transport (S : GloballyDistinguishedSectionFamily D lambda c e
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.targetImage_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.sourceHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.targetHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.cross_regionCandidate_true
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.cross_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.crossO_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.transport

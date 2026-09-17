@@ -239,4 +239,10 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.bdl_half_one_sub_idempotent
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.bdl_half_one_sub_mul_self
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.bdl_mul_half_one_sub_comm
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.bdl_eq_one_of_half_one_sub_eq_zero
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.norm_unitaryReindexEquiv_sub_mul
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.norm_unitaryReindexEquiv_add_one
 #audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.exists_opAsymptoticRep_of_injective_coronaRep
