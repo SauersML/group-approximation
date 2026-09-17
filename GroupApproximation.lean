@@ -5349,6 +5349,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Ultrapo
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.PrintedHost
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LamplighterHost.HostLemma
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.FinitelyPresented.Basic
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Halfline.LamplighterHost
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
