@@ -67,3 +67,17 @@ Every such argument fails at `G` where it would conclude domination for the prof
     embeddings. In characteristic `p` there is no trace to use.
 - **Ternary Leavitt summand.** See the route above. Its necessary condition (the support is not `F_3`-linear
   sofic) is recorded at `ternary-anti-central-summand-has-cohn-family`.
+- **Finite-index division rings (swarm-0917-w4-gs-rokhlin-kazhdan, 2026-09-17). Kills the Möbius test case and the
+  whole ordered class.** `virtually-hughes-free-field-crossed-products-are-stably-finite` (ESTABLISHED):
+  - for faithful `σ`, `K*G` is simple, so a witness is exactly a faithful field crossed product that is not
+    stably finite (with a cocycle allowed);
+  - `K*G` is stably finite whenever every finitely generated subgroup has a finite-index subgroup that is
+    residually torsion-free nilpotent, locally indicable amenable, free-by-cyclic, or a graph of these. Proof:
+    right multiplication on a coset basis embeds `K*G` in `M_n(K*N)`, and `K*N` has a Hughes-free division ring
+    (`fsp-graph-of-rings-and-linnell-extension-imports`, items 2 and 6);
+  - so `Q(x) ⋊ PSL_2(Z)` (virtually free) has the rank condition, as does `F_p(x_g) ⋊ G` for such `G`.
+  - **Where the class stops.** Infinite finitely generated Kazhdan groups have no locally indicable finite-index
+    subgroup. A witness must contain a finitely generated subgroup outside the virtual Hughes-free class.
+  - **Next test case:** `Q(x, y) ⋊ SL_3(Z)` (or `Γ(3)`) by projective substitutions, which evades all four
+    regimes if `Emb(Q(x,y), C)` has no invariant probability measure (unchecked). Artifact
+    `research/artifacts/field-crossed-product-virtual-division-embedding-2026-09-17.md`.
