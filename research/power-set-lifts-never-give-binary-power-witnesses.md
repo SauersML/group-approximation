@@ -13,7 +13,9 @@ artifacts:
   - experiments/hyperspace-lift-2026-09-17/check-output.json
 ---
 
-**ESTABLISHED** by `power-set-lifts-binary-power-proof`.
+**OPEN.** A drafted direct proof is recorded as an attempt (see Attempts). It is not established because one
+referee lens refuted it on 2026-09-17: the numbered results were checked and hold, but part of the note is
+asserted and proved nowhere, and the step-7 citation does not say what is used.
 
 **Setting.**
 - `tau` is a strict (injective, non-surjective) automaton on `A^G`, with `k = |A| >= 2`.
@@ -67,3 +69,44 @@ claim 2: strictness is free once the lift is injective. Such families include pr
 (`A_1 × {translation-closed sets of A_2}` for skew-product rules), so they cannot be killed as a class by size.
 The unknown-symbol family `{singletons, A}`, when it is closed, has size `k + 1`. It dies by the same all-`A`
 collapse unless for every `a` some coordinate `s` has `f({y_s = a}) ≠ f(A^S)`.
+
+## Attempts
+
+1. **Point selection for non-surjectivity, one-site collapse against the all-`A` background for
+   non-injectivity (2026-09-17, refuted by referee).** Formerly route `power-set-lifts-binary-power-proof`,
+   `requires: []`. The proof is kept as the attempt artifact
+   `research/artifacts/power-set-lifts-binary-power-proof-2026-09-17.md`, together with
+   `experiments/hyperspace-lift-2026-09-17/check.py` and `check-output.json`. Referee lens 1 returned
+   *refuted*; lens 2 returned *survives* and found no gap in steps 1–7. Lens 1's reason, verbatim:
+
+   > Refuted under the default rule: part of the claim is asserted but proved nowhere. The numbered results themselves hold up.
+   >
+   > What I checked and found correct in route power-set-lifts-binary-power-proof:
+   > - Step 1 (|S| >= 2): a single-coordinate rule gives a bijection, so tau is onto.
+   > - Step 2 (non-surjectivity): pick one point from each set.
+   > - Step 3: the all-empty configuration and the one with X'(1)=A have the same lift, because every window has at least two sites.
+   > - Step 4 (readability): take the all-A configuration and delete a at one site.
+   > - Step 5 (balanced and readable gives one coordinate): each chosen preimage equals its cylinder, and cylinders on different coordinates meet.
+   > - Step 6 (linear rules): ker f is contained in ker proj_s and has the same dimension, so f factors through proj_s.
+   > - Step 7 arithmetic: nm, n^m and 2^n - 1 are not powers of two when n is not; the size 2^n comes only from Phi, which is never injective.
+   > - I reran experiments/hyperspace-lift-2026-09-17/check.py and its output matches check-output.json exactly.
+   > - I spot-checked the 36 two-coordinate injective ternary rules, e.g. (0,0,0,1,2,2,2,1,1). They are injective on periodic configurations up to period 6.
+   >
+   > First assertion with no proof (research/power-set-lifts-never-give-binary-power-witnesses.md, 'Families of sets' paragraph, around lines 64-70):
+   > - It states that product designs 'A_1 × {translation-closed sets of A_2}' for skew-product rules are tau-closed families containing the singletons, 'so they cannot be killed as a class by size'.
+   > - No step of the route proves this, and 'translation-closed' is defined nowhere in the repo.
+   > - Read literally (sets closed under every translation of A_2), those sets would be only A_2 itself. The family would then contain no singletons, so it would not be an instance of the setting it is offered for.
+   > - The same paragraph's criterion for the family {singletons, A} ('dies unless for every a some s has f({y_s=a}) ≠ f(A^S)') is correct by the same argument as step 4. It is also unproved in the route.
+   >
+   > Citation mismatch in step 7:
+   > - It says 'every other size change used in the graph is a multiple, a subgroup or overgroup change, or a regrouping' and cites ec-groups-share-the-nonsurjunctive-alphabet-sizes.
+   > - That claim states only NS(H) ⊆ NS(G) for H <= G and n -> nl. It contains no regrouping n -> n^m and no move to a subgroup.
+   > - The other source cited is the attempt list of the OPEN claim some-nonsurjunctive-group-gives-a-binary-power-one. That list also records other size changes (star-symbol and reserved-symbol padding, clone-uniform maps).
+   > - The route has requires: [] even though it imports these results.
+   > - The formal statement of claim 7 is limited to the listed moves, so this does not break it, but the citation does not say what is used.
+   >
+   > Suggested fix: delete or prove the 'Families of sets' paragraph and define 'translation-closed'. Correct the step-7 citation and add the prerequisites to requires.
+
+   - **To restore:** delete or prove the 'Families of sets' paragraph (defining 'translation-closed'), correct
+     the step-7 citation, list the imported results in `requires`, and restore the artifact as a route once a
+     full referee pass survives.

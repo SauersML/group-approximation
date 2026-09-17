@@ -1,13 +1,6 @@
----
-rg: 2
-id: power-set-lifts-binary-power-proof
-kind: route
-title: Select a point from each set for non-surjectivity, and collapse one site against the all-A background for non-injectivity
-target: power-set-lifts-never-give-binary-power-witnesses
-requires: []
-artifacts:
-  - experiments/hyperspace-lift-2026-09-17/check.py
----
+# Select a point from each set for non-surjectivity, and collapse one site against the all-A background for non-injectivity
+
+*Attempt artifact (2026-09-17), formerly route `power-set-lifts-binary-power-proof` into `power-set-lifts-never-give-binary-power-witnesses`, requires []. Demoted from the graph because referee lens 1 of two returned *refuted*: the numbered results hold, but the target's 'Families of sets' paragraph is asserted and proved nowhere ('translation-closed' is undefined), and the step-7 citation does not say what is used while `requires` is empty. Lens 2 returned *survives*. Restore it as a route once those are fixed and a full referee pass survives.*
 
 This is a complete direct proof. The notation is that of the target.
 
