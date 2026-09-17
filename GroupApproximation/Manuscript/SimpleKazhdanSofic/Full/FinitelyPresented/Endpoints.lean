@@ -89,12 +89,12 @@ theorem isSimpleGroup_elementaryGroup_R (S : Subshift A ℤ) (hinf : Infinite S.
     (hmin : IsMinimal S) {n : ℕ} (hn : 3 ≤ n) : IsSimpleGroup ↥(elementaryGroup (Fin n) (R S)) := by
   classical
   haveI := compactSpace_carrier S
-  haveI : Nonempty S.carrier := (Set.infinite_coe_iff.mp hinf).nonempty.to_subtype
+  haveI : Nonempty S.carrier := hinf.nonempty
   haveI := perfectSpace_carrier S hinf hmin
   haveI : Group.FG (Multiplicative ℤ) := fg_multiplicative_int
   have hsimple' := printedGeneralSimplicityStatement (Multiplicative ℤ) S.carrier
     (isMinimal_shift S hmin) (isTopologicallyFree_shift S hinf hmin) n hn
-  set eG := (elementaryGroupEquivOfRingEquiv n (ringEquiv S)).symm with heG
+  set eG := (elementaryGroupEquivOfRingEquiv n (ringEquiv S)).symm
   haveI := hsimple'
   haveI : Nontrivial ↥(elementaryGroup (Fin n) (R S)) := eG.injective.nontrivial
   exact IsSimpleGroup.isSimpleGroup_of_surjective eG.toMonoidHom eG.surjective
@@ -132,7 +132,7 @@ theorem printedGXNotResiduallyFiniteNotFinitelyPresented :
 theorem printedGXNotFinitelyPresentedClosed : PrintedGXNotFinitelyPresented := by
   intro A _ _ _ S hinf hmin
   exact (elementaryGroup_R_not_isResiduallyFinite_not_isFinitelyPresented S hinf hmin
-    (le_refl 3)).2
+    (n := 3) le_rfl).2
 
 /-- **No group in `thm:general`(b) is finitely presented** (tex l.730–732), as a closed proposition. -/
 def PrintedGeneralNotFinitelyPresented : Prop :=
