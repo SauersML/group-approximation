@@ -4,7 +4,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece05.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece07.Proof
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.Proof
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.Proof
 import GroupApproximation.Meta.AxiomGuard
@@ -55,7 +55,7 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea :
     GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece05.proof
     GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.proof
     GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece07.proof
-    GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.proof
+    GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.proof
     GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.proof
     GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof
 

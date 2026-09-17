@@ -78,8 +78,7 @@ theorem manuscriptSentence_composeWithImageEmbeddingSameKernel (G M : Type)
             (fun n ↦ naturalFiniteModel (d n))),
           Function.Injective iota ∧ (iota.comp f.rangeRestrict).ker = f.ker := by
   obtain ⟨d, hd, -, rho, hrho⟩ := hM
-  letI hcount : Countable f.range :=
-    Function.Surjective.countable f.rangeRestrict_surjective
+  letI hcount : Countable f.range := Subtype.countable
   letI : ∀ n, Nonempty (naturalFiniteModel (d n)) := fun n ↦
     Fintype.card_pos_iff.mp (by simpa using hd n)
   have hX : ∀ n, 0 < Fintype.card (naturalFiniteModel (d n)) := fun _ ↦
