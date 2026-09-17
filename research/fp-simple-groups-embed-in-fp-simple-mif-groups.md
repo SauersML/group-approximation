@@ -156,3 +156,35 @@ explicit hinge between the two conjectures.
      MIF relative to `S` but not known to be MIF.
    - **Not covered.** Orbits with no redundant tuple give only
      `D ⊇ ⟨⟨N ∩ (S * F(x_k : k ≠ i)) : i⟩⟩`.
+9. **A route through V times minimal free SFT full groups (2026-09-17, lane
+   `swarm-0917-w5-bh-mif`).** This is the first route in the graph with this claim
+   as target: `fp-simple-mif-embedding-via-permutational-boone-higman`. It fires
+   through `permutational-boone-higman-via-v-times-aperiodic-sft-full-groups`
+   once the two OPEN premises of the Boone--Higman route
+   `boone-higman-via-v-times-aperiodic-sft-full-groups` are proved:
+   - (P1) `decidable-groups-embed-in-fp-groups-with-minimal-free-sft`;
+   - (P2) `v-times-minimal-free-sft-alternating-full-groups-are-fp`.
+   - **New ESTABLISHED pieces (elementary, not independently reviewed).**
+     - `v-times-minimal-action-groupoid-clopens-are-equivalent`: all nonempty clopen
+       sets of `C × X` are equivalent under `G_V × (Λ ⋉ X)` for any minimal `Λ ⋉ X`.
+       Match fibres over atoms with `V`, then cover `X` by translates of the
+       projection, starting with the projection itself.
+     - `fp-clopen-transitive-full-cantor-groups-have-type-a-actions`: fullness,
+       clopen-transitive local maps and finite presentation give a type (A) clopen
+       action, with stabilizers `D × D` and at most 16 pair orbits. This removes the
+       standard-V hypothesis of `fp-full-binary-cantor-groups-have-type-a-actions`,
+       which is why the Boone--Higman route had left the type (A) corollary
+       unclaimed.
+     - `fp-v-times-minimal-action-full-groups-have-type-a-actions`: the case
+       `D = F(G_V × (Λ ⋉ X))`.
+   - **Chain.** `S` has solvable word problem (Kuznetsov). By (P1),
+     `S <= Λ <= F(T) = A(T)`, and (P2) makes this finitely presented. Its clopen
+     action is type (A), so `S ∈ B_A`. BFFHZ Theorem C, (i) implies (iv), gives the
+     MIF overgroup.
+   - **Where it can die.** Only at (P1) or (P2). The passage from (P2) to type (A)
+     uses only minimality. Neither premise mentions mixed identities or `S`.
+   - **Consequence for the graph.** Question 3.4 and both conjectures now share one
+     two-premise decomposition. A counterexample to Question 3.4 would refute (P1)
+     or (P2). With `q34-counterexample-necessary-conditions`, such a counterexample
+     `S` would be an f.p. simple group placed in no f.p. `Λ` with a minimal free SFT
+     for which `A(G_V × (Λ ⋉ X))` is finitely presented.
