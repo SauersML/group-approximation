@@ -1,0 +1,29 @@
+# Recorded outputs, 2026-09-17 (sw-008). Graph Cay(F_2 x Z, S_rig), S_rig={(a,0),(a,1),(a,3),(b,0),(b,1),(b,4),(1,1)}^+-
+
+## GW certificate (p_c side)
+$ ./star 91 1000 6 3 4 1e-6 > st91.txt   (165373 lines; not committed)
+sha256 st91.txt b0a83e6392921f9ddf699147b3ba0824cf48a02a3d67ef9cb9bbab25667e01b9
+$ python3 certgw.py st91.txt 91/1000 101/100
+W 6 K 3 A 4 eps 1e-06 p 91/1000 ntypes 16 | types 64 class size 64 float perron 1.0160473819787397
+exact min (Mv)_k/v_k over class = 1.0160473819779483 certifies rho(M) >= 101/100 : True
+
+## Schur certificate (p_{2->2} side)
+$ python3 certschur.py 5 1732/1000 300 1732/1000 1093/100
+float lam 10.918218657591925
+ell 5 u 1732 / 1000 states 29974 exact max ratio 10.918218666879094 <= lam 1093/100 : True
+$ python3 certschur.py 3 1732/1000 300 1732/1000 1107/100
+ell 3 ... exact max ratio 11.065438130 <= lam 1107/100 : True
+
+## Float Schur values (u = sqrt 3)
+ell 4 states 2342 u 1.7320508075688772 lam_cert 10.970568179607447 min 10.970568179607438 1/lam 0.09115298165311456
+ell 5 states 29974 u 1.7320508075688772 lam_cert 10.918219865996404 min 10.9182198659964 1/lam 0.09159002220814312
+ell 1 -> 12.3923 = 2+6 sqrt 3 = ||A|| ; ell 2 -> 11.2352 (root of lam + 13/lam = ||A||)
+
+## Monte Carlo (mc.c, 3000 clusters per p, seed 2)
+p=0.082 T=3000: P(>=10)=0.3313 P(>=100)=0.1180 P(>=1000)=0.0487 P(>=10000)=0.0237 P(>=100000)=0.0197
+p=0.085 T=3000: P(>=10)=0.3713 P(>=100)=0.1670 P(>=1000)=0.1150 P(>=10000)=0.1117 P(>=100000)=0.1117
+p=0.088 T=3000: P(>=10)=0.3973 P(>=100)=0.2273 P(>=1000)=0.2043 P(>=10000)=0.2043 P(>=100000)=0.2043
+p=0.091 T=3000: P(>=10)=0.4207 P(>=100)=0.2813 P(>=1000)=0.2670 P(>=10000)=0.2670 P(>=100000)=0.2670
+p=0.094 T=3000: P(>=10)=0.4547 P(>=100)=0.3287 P(>=1000)=0.3213 P(>=10000)=0.3213 P(>=100000)=0.3213
+
+[exited with code 0]

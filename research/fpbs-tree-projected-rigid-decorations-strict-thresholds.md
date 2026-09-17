@@ -54,6 +54,22 @@ established claims:
   `v + 2m sqrt(2n-1) < 2n-1`. Rigid sets have `m >= 3`, so this needs `n >= 19`
   (with `v = 0`) or `n >= 21` (with `v = 2`). **Where it stops:** rank two is far
   out of reach.
+* **Oriented second moment and non-backtracking resolvent (2026-09-17).**
+  `fpbs-tree-projected-oriented-second-moment-thresholds` replaces both crude bounds:
+  * `p_c <= [(2n-1)m - (m-1)^2/((2n-2)m^2+m-1)]^(-1)`, by Paley–Zygmund over paths
+    that follow reduced words with all `m` decorations. In a torsion-free fibre at most
+    `m-1` decoration pairs collide.
+  * `p_u >= p*`, the Ihara radius at `lam = v + 2m sqrt(2n-1)`.
+
+  This settles the claim in every rank `n >= 3` for uniform multiplicities and
+  vertical part empty or `{(1,±1)}`, e.g. `(a;0,1,3),(b;0,1,4),(c;0,1,5),(1,1)` with
+  `p_c <= 19/283 < 0.0711 <= p_u`. Mixed multiplicities are covered when
+  `p_o(m_lo) < p*(m_hi)`.
+  **Where it stops:** rank two. The oriented ensemble uses `3m` of the `4m` decorated
+  tree edges, so `p_o m -> 1/3 > 1/(2 sqrt 3) = lim p* m`. For `S_rig`,
+  `p_o = 5/44 > 0.0890 = p*`, while simulated `p_c ≈ 0.084`. A rank-two proof must
+  count paths that return to a fibre they have already visited, or improve `p*` by
+  using short cycles.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts
