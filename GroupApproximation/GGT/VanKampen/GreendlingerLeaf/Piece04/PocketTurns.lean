@@ -146,3 +146,138 @@ theorem mem_classWindow_of_mem_runWindow (Q : OsinLemma94ClassPolygons P) (k : F
   obtain ⟨t, ht₁, ht₂, ht⟩ := exists_getElem?_of_mem_window hd'
   obtain ⟨t', ht', hx, hy⟩ := getElem?_classDarts_of_sideRun Q k (Q.classSides k i) t d ht
   exact mem_window_of_getElem? ht' (hx x ht₁) (hy y (by omega))
+
+/-- The source run window of a connector pair with no endpoint inside a gap is nonempty. -/
+theorem runWindow_source_ne_nil (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps) (hnogap : ¬ Q.GapEndpoint k C) :
+    Q.runWindow k C.source C.a C.a' ≠ [] := by
+  have hngA : ¬ Q.InGap k C.source C.a := fun h => hnogap (Or.inl h)
+  have hngA' : ¬ Q.InGap k C.source C.a' := fun h => hnogap (Or.inr (Or.inl h))
+  have hvA := Q.vertex_eq_classWalk_take k C.source_lt hngA
+  have hvA' := Q.vertex_eq_classWalk_take k C.source_lt hngA'
+  have hmono := Q.runPos_mono k (Q.classSides k C.source) C.source_forward.le
+  have hlt : Q.runPos k (Q.classSides k C.source) C.a <
+      Q.runPos k (Q.classSides k C.source) C.a' := by
+    by_contra hge
+    have heq : Q.runPos k (Q.classSides k C.source) C.a' =
+        Q.runPos k (Q.classSides k C.source) C.a := by omega
+    have hlong := C.source_long
+    rw [hvA, hvA', heq, GroupApproximation.WordMetric.wordDist_self] at hlong
+    exact Nat.not_lt_zero _ hlong
+  intro hnil
+  have hle := Q.runPos_le_sideRun k C.source C.a'
+  have hlen := congrArg List.length hnil
+  simp only [OsinLemma94ClassPolygons.runWindow, List.length_take, List.length_drop,
+    List.length_nil] at hlen
+  omega
+
+/-- The target run window of a backwards connector pair with no endpoint inside a gap is
+nonempty. -/
+theorem runWindow_target_ne_nil (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps) (hback : C.b' < C.b)
+    (hnogap : ¬ Q.GapEndpoint k C) :
+    Q.runWindow k C.target C.b' C.b ≠ [] := by
+  have hngB : ¬ Q.InGap k C.target C.b := fun h => hnogap (Or.inr (Or.inr (Or.inl h)))
+  have hngB' : ¬ Q.InGap k C.target C.b' := fun h => hnogap (Or.inr (Or.inr (Or.inr h)))
+  have hvB := Q.vertex_eq_classWalk_take k C.target_lt hngB
+  have hvB' := Q.vertex_eq_classWalk_take k C.target_lt hngB'
+  have hmono := Q.runPos_mono k (Q.classSides k C.target) hback.le
+  have hlt : Q.runPos k (Q.classSides k C.target) C.b' <
+      Q.runPos k (Q.classSides k C.target) C.b := by
+    by_contra hge
+    have heq : Q.runPos k (Q.classSides k C.target) C.b =
+        Q.runPos k (Q.classSides k C.target) C.b' := by omega
+    have hlong := C.target_long
+    rw [hvB, hvB', heq, GroupApproximation.WordMetric.wordDist_self] at hlong
+    exact Nat.not_lt_zero _ hlong
+  intro hnil
+  have hle := Q.runPos_le_sideRun k C.target C.b
+  have hlen := congrArg List.length hnil
+  simp only [OsinLemma94ClassPolygons.runWindow, List.length_take, List.length_drop,
+    List.length_nil] at hlen
+  omega
+
+/-- **The source crossing dart.** -/
+theorem exists_source_cross (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps) (hnogap : ¬ Q.GapEndpoint k C)
+    {cycle : List S.diagram.toCombMap.Dart} (sourceArc : CyclicArc cycle)
+    (hsource : sourceArc.reverseDarts = Q.classWindow k C.source C.a C.a') :
+    ∃ d ∈ sourceArc.darts, S.diagram.toCombMap.alpha d ∈ Q.runWindow k C.source C.a C.a' :=
+  exists_cross_of_ne_nil sourceArc (runWindow_source_ne_nil Q k C hnogap) fun _ hs => by
+    rw [hsource]
+    exact mem_classWindow_of_mem_runWindow Q k C.source_forward.le hs
+
+/-- **The target crossing dart.** -/
+theorem exists_target_cross (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps) (hback : C.b' < C.b)
+    (hnogap : ¬ Q.GapEndpoint k C)
+    {cycle : List S.diagram.toCombMap.Dart} (targetArc : CyclicArc cycle)
+    (htarget : targetArc.reverseDarts = Q.classWindow k C.target C.b' C.b) :
+    ∃ e ∈ targetArc.darts, S.diagram.toCombMap.alpha e ∈ Q.runWindow k C.target C.b' C.b :=
+  exists_cross_of_ne_nil targetArc (runWindow_target_ne_nil Q k C hback hnogap) fun _ hs => by
+    rw [htarget]
+    exact mem_classWindow_of_mem_runWindow Q k hback.le hs
+
+end CrossingDarts
+
+/-- **The class pocket rotation and turns** (OPEN).  For a backwards class pair of one relator cell
+`Π`, with no endpoint inside a gap: `∂Π` rotates to `q B p A`, and both complement spellings `B X`,
+`A Y` are closed by first turns. -/
+def ClassPocketRotationTurnStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+    {cuts : SectionCuts D lambda c Delta.boundaryWord}
+    {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+    {P : OsinLemma94RealizedPolygons S} (Q : OsinLemma94ClassPolygons P) (k : Fin P.count)
+    (C : WordConnectorPair (symmetricLabelAlphabet D) (Q.corner k) (Q.word k) (Q.classCount k)
+      (Q.relatorClasses k) (Q.longClasses k) eps),
+    C.b' < C.b → ¬ Q.GapEndpoint k C →
+    ∀ (j : Fin S.diagram.rCellCount) (sourceArc targetArc : CyclicArc (cellDarts S.diagram j))
+      (X Y : List S.diagram.toCombMap.Dart) (r : ℕ),
+      Q.classKind k C.source = .cell j → Q.classKind k C.target = .cell j →
+      (S.diagram.faceBoundary (P.face k)).darts.rotate r =
+        X ++ Q.runWindow k C.target C.b' C.b ++ Y ++ Q.runWindow k C.source C.a C.a' →
+      sourceArc.reverseDarts = Q.classWindow k C.source C.a C.a' →
+      targetArc.reverseDarts = Q.classWindow k C.target C.b' C.b →
+      ∃ (n : ℕ) (B A : List S.diagram.toCombMap.Dart),
+        (cellDarts S.diagram j).rotate n = targetArc.darts ++ B ++ sourceArc.darts ++ A ∧
+        FirstTurnClosed S.diagram.toCombMap (B ++ X) ∧
+        FirstTurnClosed S.diagram.toCombMap (A ++ Y)
+
+/-- **The class pocket turns from the rotation and turns.** -/
+theorem classPocketTurns_of_rotationTurns (h : ClassPocketRotationTurnStatement.{u, w, v}) :
+    ClassPocketTurnStatement.{u, w, v} := by
+  intro G _ Lambda W D lambda c eps Delta cuts S P Q k C hback hnogap j sourceArc targetArc X Y r
+    hks hkt htrav hsource htarget
+  obtain ⟨n, B, A, hPi, hturn₁, hturn₂⟩ :=
+    h Q k C hback hnogap j sourceArc targetArc X Y r hks hkt htrav hsource htarget
+  exact ⟨n, B, A, hPi, exists_source_cross Q k C hnogap sourceArc hsource,
+    exists_target_cross Q k C hback hnogap targetArc htarget, hturn₁, hturn₂⟩
+
+/-- **The relator-cell branch of GapSpan from the class pocket rotation and turns.** -/
+theorem rCell_of_classPocketRotationTurns (h : ClassPocketRotationTurnStatement.{u, w, v}) :
+    OsinLemma94ClassCaseOneRCellStatement.{u, w, v} :=
+  rCell_of_classPocketTurns (classPocketTurns_of_rotationTurns h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.mem_window_of_getElem?
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.exists_getElem?_of_mem_window
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.exists_cross_of_ne_nil
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.getElem?_classDarts_of_sideRun
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.mem_classWindow_of_mem_runWindow
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.runWindow_source_ne_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.runWindow_target_ne_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.exists_source_cross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.exists_target_cross
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.classPocketTurns_of_rotationTurns
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.rCell_of_classPocketRotationTurns
