@@ -5451,6 +5451,10 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.SolvableAmena
 import GroupApproximation.Manuscript.NonMF.ChainCarto03Quotient
 import GroupApproximation.Manuscript.NonMF.IntroCarto02Local
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.Configuration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.NormalStructureCore
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.NormalStructure
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.PairDependence
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Stepanov
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
