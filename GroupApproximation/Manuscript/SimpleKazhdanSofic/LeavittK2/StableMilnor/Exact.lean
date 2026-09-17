@@ -85,7 +85,7 @@ variable {R : Type*} [Ring R]
 
 /-- **Milnor, Theorem 6.2, exactness at `K₁(R, I)`** for a two-sided ideal `I`:
 `ker (K₁(R, I) → K₁(R)) = ∂ (K₂(R ⧸ I))`, where `K₁(R, I)` is `relativeKOne` of the quotient
-map (whose kernel is `I`, `Ideal.mk_ker`). -/
+map `Ideal.Quotient.mk I`, whose kernel is `I`. -/
 theorem stableK2_map_quotient_exact_eq (I : Ideal R) [I.IsTwoSided] :
     (relativeKOneToKOne (Ideal.Quotient.mk I)).ker
       = (connecting (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective).range :=

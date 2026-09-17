@@ -65,12 +65,12 @@ theorem edges_edge : ∀ {a b : V} (p : X.EdgePath a b), ∀ x ∈ edges p, X.ed
   | _, _, nil _, _, hx => by
       rw [edges_nil] at hx
       simp at hx
-  | _, _, fwd (a := a) (b := b) e p, x, hx => by
+  | _, _, fwd e p, x, hx => by
       rw [edges_fwd] at hx
       rcases List.mem_cons.1 hx with rfl | hx
       · exact e
       · exact edges_edge p x hx
-  | _, _, bwd (a := a) (b := b) e p, x, hx => by
+  | _, _, bwd e p, x, hx => by
       rw [edges_bwd] at hx
       rcases List.mem_cons.1 hx with rfl | hx
       · exact e
