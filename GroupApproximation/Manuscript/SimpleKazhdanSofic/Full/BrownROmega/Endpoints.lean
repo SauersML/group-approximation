@@ -41,8 +41,8 @@ and `L(G) ⊗̄ 𝓡` embed in `𝓡^ω`.
   LEF (marked limit of finite groups), sofic, hyperlinear, and have Brown's form.
 * `brownForm_gx`, `brownForm_el`: sentence M2 for `G_X`, and for `EL_n(LC(X, F₂) ⋊_T ℤ)`, `n ≥ 3`.
 * `tabProps_T3`: row T3 for `G_X`.
-* `exists_gx_brownForm`: some `G_X`, with `X ⊆ Bool^ℤ` infinite and minimal, is an infinite, finitely
-  generated, simple Kazhdan group that is sofic and has Brown's form.
+* `exists_gx_brownForm`: some `G_X`, with `X ⊆ Bool^ℤ` infinite and minimal, is an infinite,
+  finitely generated, simple Kazhdan group that is sofic and has Brown's form.
 
 The embeddings are concrete: `𝓡` is the Pauli model and `𝓡^ω` is the tracial ultrapower of the
 Pauli model (`Hyperfinite.HyperfiniteUltrapower ω`). The isomorphism `(𝓡 ⊗̄ 𝓡)^ω ≅ 𝓡^ω` is not
@@ -121,8 +121,8 @@ theorem brownFormulation_general (Λ : Type) [Group Λ] [Group.FG Λ] (C : Type)
     GroupApproximation.countable_of_fg hfg
   exact ⟨hLEF, hsofic, isHyperlinear_of_isSofic hsofic, isBrownROmegaForm hsimple hinfG hsofic⟩
 
-/-- **Sentence M2** (tex l.82–84) for `EL_n`, `n ≥ 3`. Let `X` be an infinite minimal subshift over a
-finite alphabet. Then `EL_n(LC(X, F₂) ⋊_T ℤ)` has Brown's form. -/
+/-- **Sentence M2** (tex l.82–84) for `EL_n`, `n ≥ 3`. Let `X` be an infinite minimal subshift over
+a finite alphabet. Then `EL_n(LC(X, F₂) ⋊_T ℤ)` has Brown's form. -/
 theorem brownForm_el (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A]
     (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : SimpleKazhdanSofic.IsMinimal S)
     (n : ℕ) (hn : 3 ≤ n) : IsBrownROmegaForm (SK05.EL n S) := by
@@ -135,8 +135,8 @@ In Brown's form, `G_X` lies in the unitary group of the McDuff factor `L(G_X) �
 `𝓡^ω`. -/
 theorem brownForm_gx (A : Type) [TopologicalSpace A] [DiscreteTopology A] [Finite A]
     (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : SimpleKazhdanSofic.IsMinimal S) :
-    McDuff.IsMcDuffFactor
-        (McDuff.tensorHyperfinite (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))) ∧
+    McDuff.IsMcDuffFactor (McDuff.tensorHyperfinite
+        (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))) ∧
       (∃ φ : SimpleKazhdanSofic.G S →* unitary ↥(McDuff.tensorHyperfinite
           (GroupVonNeumann.groupVonNeumannAlgebra (SimpleKazhdanSofic.G S))).toStarSubalgebra,
         Function.Injective φ) ∧
