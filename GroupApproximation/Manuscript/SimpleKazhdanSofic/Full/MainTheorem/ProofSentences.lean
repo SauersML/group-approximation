@@ -24,9 +24,9 @@ This file uses only modules already compiled from the library root, and proves t
 for every infinite minimal subshift `X = S.carrier` over a finite discrete alphabet.
 
 * `covariance`: `u f u⁻¹ = f ∘ T⁻¹`;
-* `perfectSpace_carrier`: `X` has no isolated points;
-* `zpow_apply_ne_self`: `T` has no periodic points;
-* `cantorSet`: `X` is a nonempty compact Hausdorff totally disconnected perfect space;
+* `perfectSpace_subshift`: `X` has no isolated points;
+* `zpow_apply_ne_self_of_dense`: `T` has no periodic points;
+* `isCantorSpace_subshift`: `X` is a nonempty compact Hausdorff totally disconnected perfect space;
 * `subring_closure_printedGenerators_eq_top`: `S = {1, u, u⁻¹} ∪ {e_a}` generates `R`;
 * `unit_zpow_mul_letterIndicator_mul_inv`: the translate `u^j e_a u^{-j}` is `[x_{-j} = a]`;
 * `prod_coordIndicator_apply`: products of translates are the cylinder indicators;
@@ -49,7 +49,7 @@ section Periodic
 variable {Y : Type*} [TopologicalSpace Y] (T : Y ≃ₜ Y)
 
 /-- A fixed point of `T^j` is a fixed point of every `T^{jq}`. -/
-theorem zpow_mul_apply_eq_self {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (q : ℤ) :
+theorem periodicPt_zpow_mul {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (q : ℤ) :
     (T ^ (j * q)) y = y := by
   rw [zpow_mul]
   induction q using Int.induction_on with
@@ -62,14 +62,14 @@ theorem zpow_mul_apply_eq_self {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (q : ℤ) 
     rw [zpow_sub_one, Homeomorph.mul_apply, hinv, ih]
 
 /-- On a periodic point of period `j`, `T^i` only depends on `i % j`. -/
-theorem zpow_apply_eq_zpow_emod {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (i : ℤ) :
+theorem periodicPt_zpow_emod {j : ℤ} {y : Y} (hy : (T ^ j) y = y) (i : ℤ) :
     (T ^ i) y = (T ^ (i % j)) y := by
   conv_lhs => rw [← Int.emod_add_mul_ediv i j]
-  rw [zpow_add, Homeomorph.mul_apply, zpow_mul_apply_eq_self T hy]
+  rw [zpow_add, Homeomorph.mul_apply, periodicPt_zpow_mul T hy]
 
 /-- **No periodic points** (tex l.360–361): if every orbit of `T` is dense and `Y` is an infinite
 Hausdorff space, then `T^j y ≠ y` for `j ≠ 0`. A periodic orbit is finite, hence closed. -/
-theorem zpow_apply_ne_self [T2Space Y] [Infinite Y]
+theorem zpow_apply_ne_self_of_dense [T2Space Y] [Infinite Y]
     (hmin : ∀ y : Y, Dense (Set.range fun j : ℤ => (T ^ j) y)) {j : ℤ} (hj : j ≠ 0) (y : Y) :
     (T ^ j) y ≠ y := by
   intro hy
@@ -79,19 +79,20 @@ theorem zpow_apply_ne_self [T2Space Y] [Infinite Y]
   have hsub : Set.range (fun i : ℤ => (T ^ i) y) ⊆ (F : Set Y) := by
     rintro _ ⟨i, rfl⟩
     show (T ^ i) y ∈ (F : Set Y)
-    rw [zpow_apply_eq_zpow_emod T hy i, hFdef]
+    rw [periodicPt_zpow_emod T hy i, hFdef]
     have h0 : 0 ≤ i % j := Int.emod_nonneg i hj
     have h1 : i % j < |j| := Int.emod_lt_abs i hj
     rw [Int.abs_eq_natAbs] at h1
     obtain ⟨r, hr⟩ : ∃ r : ℤ, r = i % j := ⟨_, rfl⟩
     rw [← hr] at h0 h1 ⊢
-    refine Finset.mem_coe.2 (Finset.mem_image.2 ⟨r.toNat, Finset.mem_range.2 (by omega), ?_⟩)
-    show (T ^ ((r.toNat : ℕ) : ℤ)) y = (T ^ r) y
-    rw [Int.toNat_of_nonneg h0]
+    obtain ⟨n, hn⟩ : ∃ n : ℕ, (n : ℤ) = r := ⟨r.toNat, Int.toNat_of_nonneg h0⟩
+    refine Finset.mem_coe.2 (Finset.mem_image.2 ⟨n, Finset.mem_range.2 (by omega), ?_⟩)
+    show (T ^ ((n : ℕ) : ℤ)) y = (T ^ r) y
+    rw [hn]
   have huniv : (Set.univ : Set Y) ⊆ F := by
     rw [← (hmin y).closure_eq]
     exact closure_minimal hsub F.finite_toSet.isClosed
-  exact Set.infinite_univ (F.finite_toSet.subset huniv)
+  exact absurd (F.finite_toSet.subset huniv) Set.infinite_univ
 
 end Periodic
 
@@ -108,21 +109,25 @@ theorem covariance (S : Subshift A ℤ) (f : LocallyConstant S.carrier (ZMod 2))
   unit_mul_coeff_mul_inv (subshiftHomeo S) (ZMod 2) f
 
 /-- A subshift over a finite discrete alphabet is compact. -/
-theorem compactSpace_carrier (S : Subshift A ℤ) : CompactSpace S.carrier :=
+theorem compactSpace_subshift (S : Subshift A ℤ) : CompactSpace S.carrier :=
   isCompact_iff_compactSpace.mp S.isClosed.isCompact
 
 /-- **No isolated points** (tex l.360–361): an isolated point with a dense orbit would make every
 point isolated, so the compact space `X` would be discrete, hence finite. -/
-theorem perfectSpace_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+theorem perfectSpace_subshift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
     PerfectSpace S.carrier := by
   refine ⟨preperfect_iff_nhds.2 fun x _ U hU => ?_⟩
   by_contra hno
-  have hsub : U ⊆ {x} := fun y hy => Set.mem_singleton_iff.2 (by
+  have hsub : U ⊆ {x} := by
+    intro y hy
+    rw [Set.mem_singleton_iff]
     by_contra hne
-    exact hno ⟨y, ⟨hy, Set.mem_univ y⟩, hne⟩)
+    exact hno ⟨y, Set.mem_inter hy (Set.mem_univ y), hne⟩
   obtain ⟨t, htU, htopen, hxt⟩ := mem_nhds_iff.1 hU
   have heq : t = {x} := Set.Subset.antisymm (htU.trans hsub) (Set.singleton_subset_iff.2 hxt)
-  have hsingle : IsOpen ({x} : Set S.carrier) := heq ▸ htopen
+  have hsingle : IsOpen ({x} : Set S.carrier) := by
+    rw [← heq]
+    exact htopen
   haveI : DiscreteTopology S.carrier := discreteTopology_iff_isOpen_singleton.2 fun y => by
     obtain ⟨z, ⟨j, hjz⟩, hzx⟩ :=
       (minimalSubshift_dense_orbits S hmin y).exists_mem_open hsingle (Set.singleton_nonempty x)
@@ -133,7 +138,7 @@ theorem perfectSpace_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier) (h
       exact (subshiftHomeo S ^ j).injective.eq_iff
     rw [← hpre]
     exact hsingle.preimage (subshiftHomeo S ^ j).continuous
-  haveI := compactSpace_carrier S
+  haveI := compactSpace_subshift S
   haveI := hinf
   haveI : Finite S.carrier := finite_of_compact_of_discrete
   exact not_finite S.carrier
@@ -143,15 +148,15 @@ theorem perfectSpace_carrier (S : Subshift A ℤ) (hinf : Infinite S.carrier) (h
 theorem subshiftHomeo_zpow_apply_ne_self (S : Subshift A ℤ) (hinf : Infinite S.carrier)
     (hmin : IsMinimal S) {j : ℤ} (hj : j ≠ 0) (x : S.carrier) : (subshiftHomeo S ^ j) x ≠ x := by
   haveI := hinf
-  exact zpow_apply_ne_self (subshiftHomeo S) (minimalSubshift_dense_orbits S hmin) hj x
+  exact zpow_apply_ne_self_of_dense (subshiftHomeo S) (minimalSubshift_dense_orbits S hmin) hj x
 
 /-- **`X` is a Cantor set** (tex l.361–362): an infinite minimal subshift over a finite alphabet is a
 nonempty compact Hausdorff totally disconnected space without isolated points. -/
-theorem cantorSet (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
+theorem isCantorSpace_subshift (S : Subshift A ℤ) (hinf : Infinite S.carrier) (hmin : IsMinimal S) :
     CompactSpace S.carrier ∧ T2Space S.carrier ∧ TotallyDisconnectedSpace S.carrier ∧
       PerfectSpace S.carrier ∧ Nonempty S.carrier :=
-  ⟨compactSpace_carrier S, inferInstance, inferInstance, perfectSpace_carrier S hinf hmin,
-    Infinite.nonempty S.carrier⟩
+  ⟨compactSpace_subshift S, inferInstance, inferInstance, perfectSpace_subshift S hinf hmin,
+    @Infinite.nonempty S.carrier hinf⟩
 
 variable [DecidableEq A]
 
@@ -176,24 +181,25 @@ theorem prod_coordIndicator_apply (S : Subshift A ℤ) (I : Finset ℤ) (w : ℤ
     (∏ t ∈ I, coordIndicator S t (w t)) x = if ∀ t ∈ I, x.1 t = w t then 1 else 0 := by
   induction I using Finset.induction_on with
   | empty =>
-      rw [Finset.prod_empty, LocallyConstant.one_apply,
-        if_pos fun t ht => absurd ht (Finset.notMem_empty t)]
+      have hall : ∀ t ∈ (∅ : Finset ℤ), x.1 t = w t := fun t ht => absurd ht (Finset.notMem_empty t)
+      rw [Finset.prod_empty, LocallyConstant.one_apply, if_pos hall]
   | insert i s hi ih =>
       rw [Finset.prod_insert hi, LocallyConstant.mul_apply, ih, coordIndicator_apply]
       by_cases h1 : x.1 i = w i
       · by_cases h2 : ∀ t ∈ s, x.1 t = w t
-        · rw [if_pos h1, if_pos h2, one_mul, if_pos]
-          intro t ht
-          rcases Finset.mem_insert.1 ht with htі | ht'
-          · rw [htі]
-            exact h1
-          · exact h2 t ht'
-        · rw [if_neg h2, mul_zero, if_neg]
-          intro h
-          exact h2 fun t ht => h t (Finset.mem_insert_of_mem ht)
-      · rw [if_neg h1, zero_mul, if_neg]
-        intro h
-        exact h1 (h i (Finset.mem_insert_self i s))
+        · have hall : ∀ t ∈ insert i s, x.1 t = w t := by
+            intro t ht
+            rcases Finset.mem_insert.1 ht with hti | ht'
+            · rw [hti]
+              exact h1
+            · exact h2 t ht'
+          rw [if_pos h1, if_pos h2, if_pos hall, one_mul]
+        · have hnot : ¬ ∀ t ∈ insert i s, x.1 t = w t := fun h =>
+            h2 fun t ht => h t (Finset.mem_insert_of_mem ht)
+          rw [if_neg h2, if_neg hnot, mul_zero]
+      · have hnot : ¬ ∀ t ∈ insert i s, x.1 t = w t := fun h =>
+          h1 (h i (Finset.mem_insert_self i s))
+        rw [if_neg h1, if_neg hnot, zero_mul]
 
 end Subshift
 
@@ -246,14 +252,14 @@ def PrintedMainProofOpening : Prop :=
 
 /-- **The opening of the proof of `thm:main`** (tex l.359–377), unconditionally. -/
 theorem printedMainProofOpening : PrintedMainProofOpening := fun _ _ _ _ _ S hinf hmin =>
-  ⟨cantorSet S hinf hmin, fun _ hj x => subshiftHomeo_zpow_apply_ne_self S hinf hmin hj x,
+  ⟨isCantorSpace_subshift S hinf hmin, fun _ hj x => subshiftHomeo_zpow_apply_ne_self S hinf hmin hj x,
     subring_closure_printedGenerators_eq_top S, exists_periodic_sameWords_carrier S hinf hmin⟩
 
 end GroupApproximation.Full.SK05
 
 /-! ### Axiom audit -/
 
-#audit_axioms GroupApproximation.Full.SK05.perfectSpace_carrier
-#audit_axioms GroupApproximation.Full.SK05.zpow_apply_ne_self
+#audit_axioms GroupApproximation.Full.SK05.perfectSpace_subshift
+#audit_axioms GroupApproximation.Full.SK05.zpow_apply_ne_self_of_dense
 #audit_axioms GroupApproximation.Full.SK05.prod_coordIndicator_apply
 #audit_closed_axioms GroupApproximation.Full.SK05.printedMainProofOpening
