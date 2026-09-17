@@ -5412,6 +5412,7 @@ import GroupApproximation.Manuscript.NonMF.Full.Korchagin.PrintedSentence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.GeneralTheorem
 import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.FiniteNormalRemark
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Endpoints
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GroupModel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
