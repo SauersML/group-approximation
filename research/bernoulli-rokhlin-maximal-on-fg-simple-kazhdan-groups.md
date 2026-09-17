@@ -162,22 +162,40 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - **Where it dies:** a lower bound on `Phi` uniform in the read degree. It needs an averaging over codewords
     beyond subadditivity, and the only known averaging counts on finite models.
   - Artifact: `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
-- **Relation-level co-amenability collapse (a-gs-pull-5, 2026-09-17).** This proves the step that the percolation
-  treeings entry marks "not proved here". The result is `kazhdan-relations-coamenable-subrelations-locally-kazhdan`,
-  and the artifact is `research/artifacts/kazhdan-relation-coamenability-collapse-2026-09-17.md`.
-  - **Local finite index.** In an ergodic Kazhdan relation, a co-amenable subrelation `S` (Hilbert-bundle form, as
-    produced by Følner or Reiter data on `[x]_R/S`) is ergodic with finite index `k` on a positive `S`-invariant
-    piece `A`.
-  - **Locally Kazhdan.** `S|_A` has property (T). The proof uses reductions, choice functions in the full group,
-    and an induced cnd function with AD05 Thm 5.22.
-  - **Exclusion.** No Haagerup subrelation of `R_G` is co-amenable, by AD11 Thm 9.2. This covers treeable pieces,
-    Gaboriau--Lyons treeings, and orbit relations of free actions of free, amenable or Haagerup groups.
-  - **Only the local form holds.** Global finite index is false: `(R ∩ A x A) ∪ Delta` is co-amenable of infinite
-    index.
-  - **Where the class dies.** Every co-amenability ascent onto this host from a Haagerup source subrelation dies at
-    its input step. The Følner data give an invariant section, which forces (T) on a piece of the source, and (T)
-    contradicts (H). Condition 4 of Section 4 of the 2026-09-12 artifact is now proved for subrelations.
-  - **What survives.** Sources that are locally Kazhdan of finite index, so no easier theory is available on them,
-    and transfers that use no co-amenability.
-  - **Not proved.** An invariant-means form of co-amenability implying the Hilbert form, and entropy transfer
-    along the finite-index piece.
+- **Cluster functionals: total weight (a-gs-pull-8, 2026-09-17).** This replaces the unproved "Relations" item of the
+  tree-mechanism entry with a theorem, `cluster-entropy-lower-bounds-need-nonpositive-total-weight`.
+  - **Result.** Take a cluster functional `F(P) = sum_W c_W H(P^W)` with total weight
+    `kappa = sum_W c_W`. If `liminf F(P^(K_n)) <= H(Q)` for all generating `P`, `Q` on a class containing
+    the Bernoulli shift `B` with `beta > -infinity` and `B × (m points)`, then `kappa <= 0`.
+  - **Where every member dies.** The invariant fibre partition adds `kappa log m` to `F`, and a marker
+    generator costs only `h(eps) + eps log m` extra. So `beta + kappa log m <= log q`.
+  - **Euler weights.** For co-information functionals over a free cocompact complex, `kappa = chi(G\X)`.
+    Positive-Euler-characteristic generalizations of Bowen's functional are therefore dead:
+    - Witness: `F_2 × F_2`, product of trees, `kappa = 1`, normalized to `log q` on `B_n × B_n`.
+    - `Sp(n,1)` lattices, which are Kazhdan with `chi > 0` (mentioned).
+    Bowen's `kappa = 1 - r` passes.
+  - **Complementary result.** a-gs-pull-7's bus lemma `cluster-entropy-functionals-vanish-on-one-ended-bernoulli`
+    kills splitting-monotone functionals on one-ended groups at the normalization step.
+  - **Where it stops.** The host has no finite actions, so an ergodic-only mechanism escapes this test.
+    `kappa <= 0` functionals also escape. A surviving cluster mechanism must be non-monotone and either
+    have `kappa <= 0` or use ergodicity essentially.
+  - Artifact: `research/artifacts/cluster-entropy-total-weight-obstruction-2026-09-17.md`.
+- **Folding act models (a-gs-pull-2, 2026-09-17).** Transplant of finite-model counting to
+  two-layer acts whose letters are arbitrary maps, not permutations.
+  - **Claimed, refuted by referees 2026-09-17** (`folding-act-certificates-reduce-to-core-permutation-models`,
+    now OPEN: B(3) evaluates the reversed core word, and B1 is vacuous under Theorem A): for Garden-of-Eden
+    counting, such acts certify non-strictness, even with coarsened views. On the bijective core
+    `C(D,E)` of a design, every certificate is forced to be an almost-multiplicative permutation
+    model of the core table group `B(D,E)`. A core word in the sofic radical of `B(D,E)` kills
+    every exact act certificate and every density family of them.
+  - **For `Phi`:** the two-layer entropy count survives with slack `(|U|-|V_0|) H(psi)`, but only
+    with views injective on `FE ∪ {1}` at good points. For `q = 2`, merging inputs raises
+    `H(1[a=b=1])` from `h(1/4)` to `1`. The core closure applies to the marked relators `fe = 1`
+    of the deficit pattern's canonical host (artifact Section 4, not separately established).
+  - **Where it dies (as claimed; referees say misattributed, since Theorem A already excludes
+    certificates under the standing hypotheses):** Theorem B(3). The window-good density is forced
+    to 0 by core words invisible to permutation models. Property (T) and simplicity of the host never enter,
+    because the certificate sees only the canonical host of the pattern.
+  - **Open:** extending core permutation models to non-core folds
+    (`core-permutation-models-extend-to-folding-acts`).
+  - Artifact: `research/artifacts/folding-act-certificates-2026-09-17.md`.
