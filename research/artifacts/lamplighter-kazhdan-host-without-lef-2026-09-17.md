@@ -28,14 +28,23 @@ is proved there under the hypothesis that `Δ` is LEF. Reading the proof in
 So LEF enters only to prove that the host is LEF. The route
 `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts-proof` uses the half-line
 overgroup `C(Γ)` for two purposes: to keep LEF, and to put `Γ` inside a derived
-subgroup, because Theorem 5 embeds only `[L,L]`. Neither is needed for a simple
-Kazhdan host: the second is replaced by Whitehead's lemma below. This is the step
+subgroup, because Theorem 5 embeds only `[L,L]`. The first is not needed for a simple
+Kazhdan host. The second is, but it costs nothing: `WP(C(Γ)) ≡_T WP(Γ)` for every
+finitely generated `Γ`, by a levelwise normal form that never uses LEF. This is the step
 where Attempt 2 of `decidable-groups-embed-in-decidable-simple-fa-groups`
 ("its lamplighter host needs a LEF overgroup") stopped.
 
+**Referee correction (ref-01, 2026-09-17).** The first version of this artifact took `Δ = Γ × Z` and embedded `Γ`
+by `γ ↦ diag(u_γ, u_γ^(-1), 1)`, claiming Whitehead's lemma makes the derived-subgroup overgroup unnecessary. That map
+is not a homomorphism for non-abelian `Γ`: `diag(u_γ,u_γ^(-1),1)·diag(u_η,u_η^(-1),1)` has `(2,2)` entry
+`u_(γ^(-1)η^(-1))`, while `diag(u_(γη),u_(γη)^(-1),1)` has `u_(η^(-1)γ^(-1))`, and `ℓ ↦ u_ℓ` is injective. This is
+exactly the firewall recorded in `shift-unit-of-subshift-crossed-product-is-not-elementary`. The repair below keeps
+the half-line overgroup `Δ = C(Γ)` and drops only LEF. Steps 1-4 and 6 are unchanged except for the choice of `Δ`.
+
 ## Theorem
 
-Let `Γ` be a finitely generated group. Put `Δ = Γ × Z`. Then `H = H_Δ` is an
+Let `Γ` be a finitely generated group. Put `Δ = C(Γ)`, the half-line overgroup of
+`groups-embed-in-derived-subgroup-of-half-line-overgroup`. Then `H = H_Δ` is an
 infinite, finitely generated, simple group with property (T), `Γ` embeds in `H`,
 and
 
@@ -50,7 +59,8 @@ Serre's property FA.
 
 Notation of the 2026-09-13 artifact: `Δ` acts on `Z = 2^Δ` by `(δx)(h) = x(δ^(-1)h)`, `a` flips the coordinate at
 `e`, `L = ⟨Δ, a⟩ ≅ Z/2 ≀ Δ` consists of the affine maps `x ↦ δx + c` with `c ∈ ⊕_Δ Z/2`, and
-`R = LC(Z, F_2) ⋊ L`. `Δ = Γ × Z` is infinite and finitely generated, with finite generating set `S`.
+`R = LC(Z, F_2) ⋊ L`. `Δ = C(Γ) = ⟨σ, h_s⟩` is infinite (`σ` has infinite order) and finitely generated, with finite
+generating set `S`.
 
 **Step 1 (dynamics and the ring).** Lemma 1 and Lemma 2 of the 2026-09-13 artifact assume only that `Δ` is finitely
 generated and infinite. They give:
@@ -73,24 +83,25 @@ Hausdorff, with compact infinite unit space `Z`, minimal (Step 1) and effective 
 
 **Step 4 (property FA).** By `property-t-implies-property-fa`, `H` has property FA.
 
-**Step 5 (embedding, all of `Δ`).** `Δ` acts faithfully on `Z`: for `δ ≠ e`, `δ·1_{e} = 1_{δ} ≠ 1_{e}`. So
-`Γ ≤ Δ ≤ L ≤ Homeo(Z)`, and `ℓ ↦ u_ℓ` is an injective homomorphism `L -> GL_1(R)`, since `R` is a free left
-`LC(Z,F_2)`-module on the `u_ℓ`. For any unit `u` of any ring (Whitehead's lemma),
+**Step 5 (embedding through the derived subgroup).** `ℓ ↦ u_ℓ` is an injective homomorphism `L -> GL_1(R)`, since
+`R` is a free left `LC(Z,F_2)`-module on the `u_ℓ`. For units `a, b` of any ring, Whitehead's lemma gives
+`diag(a, a^(-1)) = w(a) w(-1) ∈ E_2(R)` with `w(a) = e_12(a) e_21(-a^(-1)) e_12(a)`, and
 
 ```text
-e_12(u) e_21(-u^(-1)) e_12(u) = [[0, u], [-u^(-1), 0]] =: w(u),     w(u) w(-1) = diag(u, u^(-1)).
+diag(a, a^(-1), 1) · diag(b, b^(-1), 1) · diag((ba)^(-1), ba, 1) = diag([a,b], 1, 1),
 ```
 
-Check: `e_12(u) e_21(-u^(-1)) = [[0, u], [-u^(-1), 1]]`, and right multiplication by `e_12(u)` gives
-`[[0, u], [-u^(-1), -u^(-1)u + 1]] = w(u)`; then `w(u) w(-1) = [[0,u],[-u^(-1),0]] [[0,-1],[1,0]] = diag(u, u^(-1))`.
-No commutativity is used. Hence
+using `a^(-1) b^(-1) (ba) = 1` in the second entry. So `diag(c,1,1) ∈ E_3(R)` for every product `c` of commutators of
+units (`perfect-groups-embed-in-crossed-product-elementary-groups`, item 3), and `ℓ ↦ diag(u_ℓ,1,1)` maps `[L,L]`
+injectively and homomorphically into `H`. By `groups-embed-in-derived-subgroup-of-half-line-overgroup` (item 1),
+`δ_0 : Γ -> Δ` is an injective homomorphism with `δ_0(s^(-1)) = [σ, h_s]`, so `δ_0(Γ) ≤ [Δ,Δ] ≤ [L,L]` and
 
 ```text
-ι : Γ -> H,   γ ↦ diag(u_γ, u_γ^(-1), 1)
+ι : Γ -> H,   γ ↦ diag(u_(δ_0(γ)), 1, 1)
 ```
 
-is a homomorphism into `E_2(R) ≤ EL_3(R) = H`, injective because its `(1,1)` entry is `u_γ`. This replaces the
-commutator embedding of Theorem 5 there, and makes the derived-subgroup overgroup unnecessary.
+is an embedding. The diagonal `γ ↦ diag(u_γ, u_γ^(-1), 1)` cannot replace it for non-abelian `Γ` (see the correction
+above), and `diag(u_γ,1,1)` is elementary only when `[u_γ] = 0` in `K_1(R)`.
 
 **Step 6 (word problem).** Generate `H` by `e_ij(u_t^(±1))`, `t ∈ S ∪ {a}`, and `e_ij(p)`.
 - `F_x(ℓ) = (ℓ^(-1)x)(e)` maps `Z` `L`-equivariantly, continuously and injectively (`F_x(δ) = x(δ)`) onto a subshift
@@ -102,7 +113,8 @@ commutator embedding of Theorem 5 there, and makes the derived-subgroup overgrou
 - `L(X) ≤_T WP(Δ)`: for `ℓ = (x ↦ δx + c)`, `ℓ^(-1)x = δ^(-1)(x + c)`, so `F_x(ℓ) = x(δ) + c(δ)`. A pattern `q` on a
   finite set `W` of words occurs in `X` iff the constraints `x(δ_w) = q(w) + c_w(δ_w)`, `w ∈ W`, agree whenever
   `δ_w = δ_(w')`. Every consistent family is realized because `Z` is the full shift. All tests use `WP(Δ)` only.
-- `WP(Δ) = WP(Γ × Z) ≡_T WP(Γ)`.
+- `WP(Δ) = WP(C(Γ)) ≡_T WP(Γ)` by `half-line-overgroup-keeps-lef-and-solvable-word-problem`, item 2: a word with
+  `σ`-exponent sum `k` is trivial iff `k = 0` and its levelwise products `f(j_i)` are trivial in `Γ`. LEF is not used.
 - `WP(Γ) ≤_m WP(H)`: substitute for each generator of `Γ` a fixed word for its image under `ι`.
 
 This is exactly Steps 3-5 of `lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts-proof`, which never use LEF.
@@ -125,6 +137,6 @@ This is exactly Steps 3-5 of `lef-wp-groups-have-decidable-simple-kazhdan-lef-ho
   host `H` is not a topological full group and is not claimed to be finitely presented.
 - No contradiction with `free-rf-actions-force-residually-finite-groups`: the action is not free (constant
   configurations are fixed by `Δ`), and no finite models are claimed.
-- Finite `Γ` is handled by `Δ = Γ × Z`, which is infinite. The hypothesis "infinite" in Lemma 1 is used to find fresh
+- Finite `Γ` is handled by `Δ = C(Γ)`, which is infinite. The hypothesis "infinite" in Lemma 1 is used to find fresh
   coordinates and to make `Z` a Cantor set.
 - The host is not claimed to be LEF, sofic or hyperlinear. For non-LEF `Γ` it is not LEF.

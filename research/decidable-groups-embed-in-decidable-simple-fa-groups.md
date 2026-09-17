@@ -13,9 +13,7 @@ distinct_from:
 artifacts: [research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md]
 ---
 
-**ESTABLISHED** by `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`,
-`decidable-simple-fa-host-via-self-twisted-brin-thompson` (literature import with a written
-check) and `decidable-simple-fa-envelope-via-self-twisted-brin-thompson`.
+**ESTABLISHED** through `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof` (Attempt 6).
 
 Let `G` be a finitely generated group with solvable word problem. Then `G`
 embeds in a finitely generated simple group `S` with solvable word problem in
@@ -80,41 +78,12 @@ tree steps with infinitary steps could do real work in a permanence reduction.
    finitely presented simple envelope. Those can split (Burger--Mozes
    lattices), so the conjecture does not obviously imply this claim. *Open.*
 6. **Kazhdan lamplighter host without LEF (2026-09-17).** *Settles the claim* through
-   `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`, so the "**OPEN.**" line above is superseded. The
-   refutation of Attempt 2 is at its first sentence: the lamplighter host
-   `EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` does not need a LEF overgroup. LEF is used there only to prove that the host is
+   `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`. The refutation of Attempt 2 is at its first
+   sentence: the lamplighter host `EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` does not need a LEF overgroup. LEF is used there only to prove that the host is
    LEF; minimality, topological freeness, ring and Steinberg simplicity, Ershov--Jaikin-Zapirain (T) and the word
-   problem reduction need only `Δ` infinite and finitely generated. The derived-subgroup overgroup is replaced by
-   Whitehead's lemma: `diag(u, u^(-1), 1) ∈ E_2(R)` for every unit, so all of `Δ = G × Z` embeds. See
+   problem reduction need only `Δ` infinite and finitely generated. The derived-subgroup overgroup is still needed
+   (the first version replaced it by `γ ↦ diag(u_γ, u_γ^(-1), 1)`, which is not a homomorphism for non-abelian `G`;
+   referee ref-01), but the half-line overgroup `Δ = C(G)` has `WP(Δ) ≡_T WP(G)` with no LEF hypothesis, and
+   `γ ↦ diag(u_(δ_0(γ)),1,1)` embeds `G ≤ [Δ,Δ]`. See
    `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` and
    `research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md`.
-7. **Import property NL for twisted Brin--Thompson groups (2026-09-17).**
-   Fournier-Facio--Wu--Zaremsky (arXiv:2603.24687v2, Theorem 6.4) prove that
-   every `SV_G` has property NL. With Serre's lemma, every finitely generated
-   `SV_G` has FA (`twisted-brin-thompson-groups-have-property-fa`). The host
-   `G.V_G` is finitely generated and simple, contains `G`, and has solvable
-   word problem when `G` does (`self-twisted-bt-group-fp-embedding-iff-solvable-wp`).
-   *Succeeds* (`decidable-simple-fa-host-via-self-twisted-brin-thompson`).
-   Here is how the imported proof avoids Attempt 3's pairwise-join obstacle:
-   - uniform perfectness bounds quasimorphisms, which excludes focal and
-     oriented lineal actions;
-   - relative simplicity excludes general-type actions.
-8. **Self-twisted Brin--Thompson host (2026-09-17).** This gets past the
-   obstruction in Attempt 3. We do not assume the cone-supported generators have
-   FA. Instead we prove that each rigid stabilizer `Γ_U` of a proper clopen set
-   acts by elliptic elements on every tree:
-   - `Γ_U` is a simple, hence perfect, copy of the host.
-   - It can be moved off its own support, so it commutes with one of its conjugates.
-   - An element with an axis would make the conjugate act on that line through `D_inf`,
-     which is solvable. So it cannot have an axis.
-
-   Three stabilizers, of the unions `P_3∪P_4`, `P_1∪P_4` and `P_2∪P_4` for a
-   partition of the cube into four bricks, generate the host by a join lemma
-   (proved from simplicity). Every pairwise union is still proper, so Helly gives
-   a global fixed point.
-
-   Sources: `displaced-perfect-subgroups-are-elliptic-in-tree-actions` and
-   `twisted-brin-thompson-fa-from-simplicity-by-tree-geometry`. So `G·V_G` has FA, and route
-   `decidable-simple-fa-envelope-via-self-twisted-brin-thompson` combines this with
-   Belk--Bleak--Matucci--Zaremsky Theorem 4.13. This route is independent of any
-   Kazhdan host.

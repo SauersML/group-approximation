@@ -11,5 +11,5 @@ artifacts: [research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.m
 Let `G` be finitely generated with solvable word problem. By
 `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree`, `G` embeds in an
 infinite finitely generated simple group `H = EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))`,
-`Δ = G × Z`, with property (T) and `WP(H) ≤_T WP(G)`, so `WP(H)` is solvable.
+`Δ = C(G)` the half-line overgroup, with property (T) and `WP(H) ≤_T WP(G)`, so `WP(H)` is solvable.
 By `property-t-implies-property-fa`, `H` has property FA.
