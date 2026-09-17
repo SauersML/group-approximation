@@ -235,6 +235,51 @@ anywhere refutes it.
     - If this held for all torsion-free groups, Bernoulli maximality would follow for every torsion-free group, including the torsion-free nonsofic hosts. By `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, their surjunctivity would follow too.
     - This root would not follow, since Theorem 1.11 passes through `P × G` with `P` locally finite, which has torsion.
   - **Not tried here.** Non-Shannon inequalities on the torsion fakes; a torsion-free pattern with LP `< 1`.
+- **Past-conditioned domination (swarm-0917-w5-pull-gs-4, 2026-09-17, OPEN, no class kill).** Scripts are in
+  `experiments/shannon-ordered-certificates-2026-09-17/`.
+  - **Reduction.** Let `G` be left-orderable. Suppose `D: I(x_1 ; y_F | x_{<1}) <= H(y_1)` holds for every finite
+    `F` and every code. Then `Phi = H(y_1) + H(x_1|y_F) >= I + (log q - I) = log q`, because
+    `H(x_1|y_F) >= H(x_1|x_{<1}) - I(x_1;y_F|x_{<1})`. So `D` would give Bernoulli maximality for every
+    left-orderable group.
+  - **The conditioning must be past-type.** Conditioning on all other coordinates fails. With AND codes and `m = 3`,
+    `I = 0.578 > h(1/8) = 0.544`.
+  - **Invariant fakes pass to overgroups.** A `H`-invariant fake extends to `G >= H` as the independent product over
+    left cosets. So the torsion kill above covers every group with an element of order 3, 4 or 5. Left-orderable
+    groups are torsion-free, so `D` is not touched by it.
+  - **Linear codes.** `D` holds on bi-orderable groups whenever the code block at `max E` has full row rank. The
+    unique maximal product `max S * max E` gives a triangular rank count. A violation needs
+    `beta < rank L < k`, where `beta` is the rank of the combined leading blocks.
+    - Script `left_order_linear_domination.py`: random and structured rank-deficient codes over `F_2` and `F_3`,
+      tested on `Z` and on `F_2` in the Magnus order.
+    - For `F_2` the windows were `E in {1ab, 1a(ab), 1a(Ab), 1ab(ab)}` with `F = ball(2)`.
+    - Worst gap was `I - H(y_1) = 0` in every case, with no violation.
+    - This case is not new. It follows from stable finiteness of `K[F_2]`, which is a fir.
+  - **Ordered termwise split.** The stronger inequality `I(x_1;y_F) <= sum_{readers f} I(x_1; y_f | x_{P_f})`
+    implies `D`.
+    - It has a hand proof on `Z` for interval `E` with `F = -E`: comparing total correlations after conditioning on
+      the past.
+    - It is Shannon-provable on the window for `F = -E` in every tested case.
+    - It is not provable for `E = {0,1,2}`, `F = {-1,0}`: window LP `-0.5`.
+    - It is false for codes that are not readers.
+    So it is not a general mechanism.
+  - **Wider `Z` census.** `scan_z_wide.txt`: `|E| in {3,4}`, `|F| <= 4`, at least two readers, `n <= 12`. Every
+    configuration completed so far has LP exactly `1`, and no torsion-free fake was found.
+  - **Where it stops.** The remaining case is nonlinear codes on `F_2` under a left order. The window has 35 or more
+    sites, so exhaustive `q = 2` evaluation is infeasible, and the window LP does not see the order. Neither a proof
+    nor a counterexample to `D` was obtained.
+- **Co-Hopfian conjugacy invariants are pre-empted (swarm-0917-w5-pull-gs-3, reframing, 2026-09-17).** Idea: replace entropy with a
+  conjugacy invariant of `G`-subshifts that is monotone under inclusion and strictly drops on a proper subshift of `A^G`. Candidates
+  were the clopen type semigroup and `K_0` of `C(X) ⋊ G`. The lane dies at its first step, and the death is already recorded in
+  `gottschalk-surjunctivity-conjecture`.
+  - An injective automaton `tau` induces the unital pullback endomorphism `f -> f o tau` of `C(X)`, which extends to the crossed
+    product. Its kernel is the ideal of functions that vanish on `tau X`. So a strict drop is exactly non-injectivity of this
+    endomorphism, and any "Hopfian crossed product" invariant restates the goal.
+  - The states on `K_0` (and on the type semigroup) are the invariant measures. Any finite additive dimension that is monotone
+    under `Phi_tau` is invariant: apply monotonicity to `1 - e`. That is the operator-algebraic dimension lane (sw-003). Its
+    diagonal sector is the goal-equivalent `injective-measure-preserving-ca-is-surjective`. Affine self-embeddings of the
+    Poulsen or Bauer simplex make index-type readings blind.
+  - What is not covered: non-additive, non-cancellative type-semigroup data that is not seen by states. No candidate was found
+    that is not a restatement of the lattice of closed invariant subsets, so nothing was landed.
 - **Torsion window fakes are entropic (swarm-0917-w5-pull-gs-1, 2026-09-17).** This follows up the non-Shannon gap above.
   - **Established** (`torsion-window-fakes-are-realized-by-f2-linear-codes`, exact integer verification). The `Z/3` fake
     `Phi = 5/6` is the entropy vector of two rank-5 `F_2`-linear maps on three independent uniform `F_2^6` sites. So no

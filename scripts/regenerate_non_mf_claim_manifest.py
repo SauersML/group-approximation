@@ -100,10 +100,12 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
         "manuscriptRankTwoNormalGeneration"),
+    # `thm:amenable-trace` retargeted 2026-09-17 to the countable form (W and
+    # W_0 countable, not MF both as IsOperatorMF and IsCDEOperatorMF).
     "thm:amenable-trace": (
-        "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
-        "GroupApproximation.AmenableTraceTheorem."
-        "manuscriptAmenableNonquasidiagonalTrace"),
+        "Manuscript/NonMF/Full/AmenableCountable/TraceCountable",
+        "GroupApproximation.Full.NM08."
+        "manuscriptAmenableNonquasidiagonalTraceCountable"),
     "prop:clifford-locally-rf": (
         "Sofic/CliffordWitnessSoficPrinted",
         "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
@@ -122,6 +124,45 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankFourCompressionCellPrinted",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell"),
+    # The torsion-defect proposition, the Leavitt corollary and the seven
+    # chain-core environments moved to EXACT_TARGETS 2026-09-17: each now
+    # prints a closed declaration stating the whole environment.
+    "prop:torsion-defect-ring": (
+        "Manuscript/OneSidedMFRadical/TorsionComplementaryIdempotents",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "TorsionComplementaryIdempotents."
+        "manuscriptTorsionComplementaryIdempotents"),
+    "cor:leavitt-mf-quotient": (
+        "Manuscript/NonMFSentences/LeavittKOneFormulaSentences",
+        "GroupApproximation.LeavittKOneFormulaSentences."
+        "manuscriptLeavittMFQuotientFull"),
+    "lem:chain-core-models": (
+        "Manuscript/NonMF/Full/ChainCoreModels/PrintedLemma",
+        "GroupApproximation.Full.NM12.printedChainCoreModels_closed"),
+    "lem:transient-matrices": (
+        "Manuscript/NonMFSentences/TransientMatricesClosed",
+        "GroupApproximation.Manuscript.NonMFSentences.TransientMatrices."
+        "printedTransientMatrices_closed"),
+    "thm:core-ring-reflection": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedCoreRingReflection_closed"),
+    "prop:bilateral-three": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedBilateralThree_closed"),
+    "thm:core-mf-radical": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedCoreMFRadical_closed"),
+    "lem:involution-localization": (
+        "Dynamics/TransientCellsClosed",
+        "GroupApproximation.ClopenCrossedProduct."
+        "printedInvolutionLocalization_closed"),
+    "cor:dynamic-rank-budget": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedDynamicRankBudget_closed"),
 }
 
 
@@ -145,22 +186,8 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # own single exact badge; both moved to EXACT_TARGETS.
     # `prop:torsion-defect-ring` is a new printed proposition as of
     # 2026-09-09 (the torsion-defect complement to `thm:full-defect-ring`);
-    # its proof is written out in the manuscript with no margin badge, so
-    # it is a paper-proof claim.  Its only literature input is property (T)
-    # of `EL_3(S)`; its internal dependencies
-    # (`thm:compression-criterion`, `lem:ring-compression-cell`) are
-    # recorded in DEPENDENCIES, not here.
-    "prop:torsion-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    # The dynamical core results have self-contained paper proofs.  Their
-    # analytic input is the existing torsion-defect proposition, recorded
-    # below as an internal dependency; no Lean counterpart is asserted.
-    "lem:chain-core-models": (),
-    "lem:transient-matrices": (),
-    "thm:core-ring-reflection": (),
-    "thm:core-mf-radical": (),
-    "prop:bilateral-three": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:involution-localization": (),
-    "cor:dynamic-rank-budget": (),
+    # it was a paper-proof claim until 2026-09-17, when it and the
+    # dynamical core results moved to EXACT_TARGETS (see the note there).
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -204,7 +231,6 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # MFQuotientCanonicalKOne.manuscriptMFQuotientUnitsKOneAtBaseRing), so the
     # AGP/Menal-Moncasi/Blackadar-Kirchberg inputs below are now internal to
     # those proofs rather than boundary citations.
-    "cor:leavitt-mf-quotient": ("Khanh--Thanh, proof of Theorem 7.2",),
 }
 
 
