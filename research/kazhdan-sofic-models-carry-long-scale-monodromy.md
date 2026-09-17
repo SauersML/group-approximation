@@ -9,7 +9,7 @@ distinct_from:
   titz-witzel-sofic-gate-two-generators-four-approximate-relators: that is the finite gate for the kernel; this says that any solution of such a gate must route its defects through words of large filling radius.
 ---
 
-**ESTABLISHED (unreviewed).** Let `G = <S | R>` be finitely presented, with `S` finite and
+**OPEN (demoted 2026-09-17 after referee audit; see Attempts).** Let `G = <S | R>` be finitely presented, with `S` finite and
 symmetric and `R` finite. Let `kappa` be a Kazhdan constant for `S` in the convention (KP) of
 `kazhdan-consistent-partial-models-round-to-finite-actions`, and assume `G` has no nontrivial
 finite quotient. Let `sigma : S -> Sym(n)` be arbitrary. Put `c_kappa = kappa^2/(2kappa^2+2)`, and
@@ -62,4 +62,19 @@ trivial word at any scale (Folner calibration in
 word length for `K` (as expected for a CAT(0) group) is not imported here, so the statement is
 kept in terms of `rho`.
 
-Proof in `kazhdan-sofic-models-carry-long-scale-monodromy-proof`.
+Drafted proof, now an attempt, in `kazhdan-sofic-models-carry-long-scale-monodromy-proof`.
+
+## Attempts
+
+### 2026-09-17: route `kazhdan-sofic-models-carry-long-scale-monodromy-proof` refuted by referee audit
+
+Proof artifacts kept as an attempt: `research/kazhdan-sofic-models-carry-long-scale-monodromy-proof.md`
+(van Kampen tree-cotree filling lemma, bad-set count, and the scale bound through CP1 of
+`kazhdan-consistent-partial-models-round-to-finite-actions`). Of the referee lenses, lens 1
+returned *refuted* and lens 2 returned *survives*. Both lenses found the bad-set count, the filling
+lemma and the scale bound sound. The route now requires the OPEN premise
+`titz-witzel-kernel-kazhdan-constant-and-no-finite-quotient`, so this claim derives OPEN.
+
+Refutation reason (lens 1, verbatim):
+
+> Items 1 and 2 hold up when checked step by step. The bad-set count |B| <= eps n is right: each rotation of r^(±1) is conjugate to sigma(r), so it fails at delta_r n points, and there are 2|r| rotations. The tree-cotree filling lemma is right: BFS tree of depth <= rho, non-bridge edges appear once on a face walk, faces handled in order of decreasing cotree depth, and rho is the same under either reading convention because reversing every word is an anti-automorphism taking <<R>> to <<rev R>>. The scale bound is right: a ball has at most 2(2|S|)^(R_0) points, so eta <= 2 eps (2|S|)^(R_0) < c_kappa m, and CP1 with eta/c_kappa = (2+2/kappa^2) eta gives the contradiction. CP1 in kazhdan-consistent-partial-models-round-to-finite-actions says exactly what is used: same (KP) convention, same Hamming count, same no-finite-quotient hypothesis. The first step that does not follow is (C2) and proof section 4, which apply the lemma to K = Gamma_1^2 and take finite presentation, property (T) and simplicity from the required prerequisite titz-witzel-simple-kazhdan-cat0-lattices-exist. That node says something different. There Gamma_i^q = pi_1(Y_i^q) are the lattices that are NOT residually finite, and simplicity is claimed only for their finite residuals Gamma^_i^q. It never says that Gamma_1^2 itself is simple or has no finite quotient. The route's own wording, "a finite-index subgroup of a finitely presented group", reads K as the residual, which contradicts the name it uses. K = Gamma_1^2 is simple only in the paper's other notation (Gamma = the finite residual of barGamma, Theorem 4.1: no finite-index subgroups). That appears in the artifact titz-witzel-sofic-structure-audit-2026-08-26 and the node radu-bmw-lattice-embeds-in-titz-witzel-kernel-citation, and the route requires neither. A second, smaller gap is also in (C2): nothing imported gives a positive Kazhdan constant for K in the distance form (KP); property (T) is only asserted. So the imported result does not state what (C2) uses, and the hypothesis 'no nontrivial finite quotient' for K = Gamma_1^2 is unsupported by what the route cites.

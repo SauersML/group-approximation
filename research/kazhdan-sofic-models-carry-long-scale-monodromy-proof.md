@@ -7,7 +7,15 @@ target: kazhdan-sofic-models-carry-long-scale-monodromy
 requires:
   - kazhdan-consistent-partial-models-round-to-finite-actions
   - titz-witzel-simple-kazhdan-cat0-lattices-exist
+  - titz-witzel-kernel-kazhdan-constant-and-no-finite-quotient
 ---
+
+**Demoted 2026-09-17 (referee audit).** One referee lens refuted this route at (C2) and proof
+section 4: the imported `titz-witzel-simple-kazhdan-cat0-lattices-exist` does not state that
+`K = Gamma_1^2` is simple or has no finite quotient, and gives no (KP) Kazhdan constant. The route
+now requires the OPEN premise `titz-witzel-kernel-kazhdan-constant-and-no-finite-quotient`, so it
+is incomplete and its target derives OPEN. Sections 1--3 are kept as an attempt; see `## Attempts`
+in the target.
 
 # Proof
 
