@@ -89,3 +89,37 @@ group.
      - The outer-extension route therefore needs unboundedly complex simple
        kernels, as the conjecture does
        (`complex-fp-simple-groups-from-outer-extensions`).
+4. **Locally moving hosts (2026-09-17, lane swarm-0917-w5-bh-heretic).** *New
+   decomposition, one half established, one half open.*
+   - **Established half.** `fp-groups-with-a-locally-moving-simple-subgroup-are-isolated`.
+     Let `Γ` act faithfully, and let `T ≤ Γ` be either a simple group of homeomorphisms of
+     a Hausdorff space whose rigid stabilizers of open sets are nonabelian, or
+     `Alt_fin(X)`. Then every nontrivial subgroup normalized by `T` contains `T`, and
+     `ncl_Γ(T)` is a simple monolith with trivial centralizer. So `Γ` is isolated as soon
+     as it is finitely presented. `T` need not be normal, finitely generated or finitely
+     presented, which is what separates this from Attempts 2–3 and from
+     `isolated-overgroup-via-outer-extensions`. Examples: every finitely presented
+     `Γ ≤ Homeo(C)` containing `V`, Thompson's `F` and `T`, and Houghton's `H_n` with
+     `n ≥ 3`.
+   - **Open half.** `decidable-groups-embed-in-fp-locally-moving-groups`, with route
+     `isolated-overgroup-via-locally-moving-hosts`. It is implied by
+     `permutational-boone-higman-conjecture` (hand remark via twisted Brin--Thompson
+     groups). On Cantor hosts it upgrades to Boone--Higman exactly when the full closure
+     `[[Γ]]` is finitely presented (landed type (A) criterion on origin/main).
+   - **Kills recorded there.**
+     - No infinite LEF group is isolated: a finitely presented LEF group is residually
+       finite, and residual finiteness plus a finite discriminating set forces
+       finiteness. So no approximation-built host works.
+     - Free lampshufflers `FSym(H) ⋊ H` satisfy (fin) but are never finitely presented
+       over infinite `H` (Genevois--Tessera, as recorded in
+       `lampshuffler-groups-are-not-fp2-over-q`). That would have given Question 4
+       outright from Clapham's decidable finitely presented overgroups. My own attempt
+       on `H = Z^2` stalled: local transposition relations do not visibly imply far
+       commutations, since the induction on distance stalls at radial edges of the grid.
+       This agrees with that theorem.
+     - The kernel-bounded complexity argument of Attempt 3 does not exclude one fixed
+       `T = V`, because `V` is not normal and `ncl_Γ(V)` need not be finitely generated.
+   - **Counterexample direction.** A decidable group defeating this route must have no
+     finitely presented overgroup with a faithful locally moving action. No invariant was
+     found that such hosts force beyond solvable word problem, non-LEF and non-residually
+     finite, and those constraints bind the host, not the input.
