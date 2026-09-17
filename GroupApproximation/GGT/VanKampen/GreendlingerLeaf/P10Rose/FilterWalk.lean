@@ -104,8 +104,8 @@ theorem exists_pair_of_getLast {α : Type*} (p : α → Bool) (a : α) (l : List
 
 /-- **The rotation of a split pair**: `P ++ x :: z :: Q` rotates to `(z :: Q) ++ (P ++ [x])`,
 which ends in `x` and starts with `z`. -/
-theorem exists_rotation_of_pair {α : Type*} (p : α → Bool) {l : List α} (P : List α) (x z : α)
-    (Q : List α) (hl : l = P ++ x :: z :: Q) (hx : p x = true) (hz : p z = false) :
+theorem exists_rotation_of_pair {α : Type*} (p : α → Bool) {l : List α} (P : List α)
+    (x z : α) (Q : List α) (hl : l = P ++ x :: z :: Q) (hx : p x = true) (hz : p z = false) :
     ∃ (A B : List α) (hne : B ++ A ≠ []), l = A ++ B ∧
       p ((B ++ A).getLast hne) = true ∧ p ((B ++ A).head hne) = false := by
   refine ⟨P ++ [x], z :: Q,
