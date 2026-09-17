@@ -170,18 +170,25 @@ theorem exists_switch (P : OsinLemma94RealizedPolygons S) (hS : S.DartMinimal)
         OsinLemma94RealizedPolygons.objectFace S o ∧ i < j ∧
       ∀ t : ℕ, i < t → t < j → S.diagram.toCombMap.faceOf
         (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ t) d)) ≠
-          OsinLemma94RealizedPolygons.objectFace S o :=
-    ⟨Nat.findGreatest (fun t => S.diagram.toCombMap.faceOf
+          OsinLemma94RealizedPolygons.objectFace S o := by
+    refine ⟨Nat.findGreatest (fun t => S.diagram.toCombMap.faceOf
         (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ t) d)) =
           OsinLemma94RealizedPolygons.objectFace S o) (j - 1),
-      Nat.findGreatest_spec (Nat.zero_le _)
-        (show S.diagram.toCombMap.faceOf
-          (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ 0) d)) =
-            OsinLemma94RealizedPolygons.objectFace S o by
-          rw [pow_zero, Equiv.Perm.one_apply]
-          exact h0),
-      (Nat.findGreatest_le (j - 1)).trans_lt (Nat.sub_lt hj0 Nat.one_pos),
-      fun t ht htj => Nat.findGreatest_is_greatest ht (by omega)⟩
+      Nat.findGreatest_spec (P := fun t => S.diagram.toCombMap.faceOf
+        (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ t) d)) =
+          OsinLemma94RealizedPolygons.objectFace S o) (Nat.zero_le (j - 1)) ?_,
+      (Nat.findGreatest_le (P := fun t => S.diagram.toCombMap.faceOf
+        (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ t) d)) =
+          OsinLemma94RealizedPolygons.objectFace S o) (j - 1)).trans_lt
+        (Nat.sub_lt hj0 Nat.zero_lt_one),
+      fun t ht htj => Nat.findGreatest_is_greatest (P := fun t => S.diagram.toCombMap.faceOf
+        (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ t) d)) =
+          OsinLemma94RealizedPolygons.objectFace S o) ht (by omega)⟩
+    show S.diagram.toCombMap.faceOf
+      (S.diagram.toCombMap.alpha ((S.diagram.toCombMap.facePerm ^ 0) d)) =
+        OsinLemma94RealizedPolygons.objectFace S o
+    rw [pow_zero, Equiv.Perm.one_apply]
+    exact h0
   refine ⟨i, j, hij, hio, hjo, fun t hit htj => ?_⟩
   have htm : t < m := lt_of_lt_of_le htj hjm
   have ht0 : 0 < t := lt_of_le_of_lt (Nat.zero_le i) hit

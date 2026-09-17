@@ -86,8 +86,7 @@ theorem emptyArc_darts {α : Type*} (l : List α) : (emptyArc l).darts = [] :=
 
 /-- The inverse of the empty arc reads no darts. -/
 theorem invDarts_emptyArc {X : DiscDiagram.{u, w, v} W} (k : Fin X.rCellCount) :
-    invDarts X (emptyArc (cellDarts X k)).darts = [] := by
-  rw [emptyArc_darts]
+    invDarts X (emptyArc (cellDarts X k)).darts = [] :=
   rfl
 
 /-- **The first half of a split side reads the first side.** -/
