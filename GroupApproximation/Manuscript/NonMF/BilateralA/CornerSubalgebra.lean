@@ -171,6 +171,9 @@ end GroupApproximation
 
 open GroupApproximation
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.kpCorner
+#audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.kpCorner_val
+#audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.kpCorner_mem_cellRing
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_cornerSubalgebraIdentities
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_finitelyGeneratedPropertyT
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_embedByIdentityOnComplement

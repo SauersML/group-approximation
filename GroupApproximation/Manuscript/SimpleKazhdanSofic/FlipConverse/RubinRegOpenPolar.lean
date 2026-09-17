@@ -75,8 +75,9 @@ theorem regOpen_centralizer_centralizer_rigid_open [CompactSpace X] [T2Space X]
         (Subgroup.centralizer {k : topologicalFullGroup T | SupportedIn (k : X ≃ₜ X) O} :
           Set (topologicalFullGroup T)) : Set (topologicalFullGroup T)) =
       {k : topologicalFullGroup T | SupportedIn (k : X ≃ₜ X) (interior (closure O))} := by
-  rw [regOpen_centralizer_rigid_open hT hO, regOpen_centralizer_rigid_open hT isOpen_interior,
-    ← closure_compl, compl_compl]
+  rw [regOpen_centralizer_rigid_open hT hO,
+    regOpen_centralizer_rigid_open hT (O := interior Oᶜ) isOpen_interior, ← closure_compl,
+    compl_compl]
 
 end RegOpenPolar
 

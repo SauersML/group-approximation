@@ -66,15 +66,15 @@ theorem coe_centralizer_rigidStabSet_of_isOpen [CompactSpace X] [T2Space X]
   · intro hg
     have hg' : g ∈ Subgroup.centralizer (rigidStabSet T O) := SetLike.mem_coe.1 hg
     refine mem_rigidStabSet.2 (supportedIn_compl_of_forall_commute hT hO fun σ hσ hσO => ?_)
-    have hmem : (⟨σ, hσ⟩ : topologicalFullGroup T) ∈ rigidStabSet T O :=
-      (mem_rigidStabSet (g := ⟨σ, hσ⟩)).2 hσO
+    have hmem : (⟨σ, hσ⟩ : topologicalFullGroup T) ∈ rigidStabSet T O := hσO
     have h1 : (⟨σ, hσ⟩ : topologicalFullGroup T) * g = g * ⟨σ, hσ⟩ :=
       Subgroup.mem_centralizer_iff.1 hg' ⟨σ, hσ⟩ hmem
     exact (congrArg Subtype.val h1).symm
   · intro hg
     refine SetLike.mem_coe.2 (Subgroup.mem_centralizer_iff.2 fun k hk => ?_)
-    exact Subtype.ext (SupportedIn.commute_of_compl (mem_rigidStabSet.1 hk)
-      (mem_rigidStabSet.1 hg))
+    have hkg : (k : X ≃ₜ X) * (g : X ≃ₜ X) = (g : X ≃ₜ X) * (k : X ≃ₜ X) :=
+      SupportedIn.commute_of_compl (mem_rigidStabSet.1 hk) (mem_rigidStabSet.1 hg)
+    exact Subtype.ext hkg
 
 /-- Lane endpoint: for clopen `U`, `C(F_U) = F_{Uᶜ}` in `[[T]]`. -/
 theorem centralizer_rigid_eq [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]

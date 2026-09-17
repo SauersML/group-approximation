@@ -1,3 +1,4 @@
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.InfraDisplace
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.InvolDomainStep
 import GroupApproximation.Meta.AxiomGuard
 
@@ -18,8 +19,8 @@ perfect Hausdorff space is aperiodic (`isAperiodic_of_isMinimalHomeo`, `infinite
 which gives `exists_fundamentalDomain_of_involution` for the Cantor minimal package.
 
 Route.
-1. A local copy of lane sk-flip-01 with `f = k = σ`: a moved point `x` has a clopen neighbourhood
-   `W` with `W ∩ σ W = ∅` (`exists_isClopen_displaced_of_apply_ne`).
+1. Lane sk-flip-01 with `f = k = σ` (`exists_isClopen_displaced`, FC/InfraDisplace.lean): a moved
+   point `x` has a clopen neighbourhood `W` with `W ∩ σ W = ∅`.
 2. `movedSet σ` is closed, hence compact. It is covered by finitely many such `W`.
 3. The greedy step (`exists_displaced_clopen_saturating_finset`) produces a displaced clopen `V`
    whose saturation `V ∪ σ⁻¹ V` contains the cover. Since `σ` is an involution, `σ '' V = σ⁻¹' V`.
@@ -28,23 +29,7 @@ Route.
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 
-open Topology
-
 variable {X : Type*} [TopologicalSpace X]
-
-/-- A point moved by a homeomorphism has a clopen neighbourhood displaced by it. -/
-theorem exists_isClopen_displaced_of_apply_ne [CompactSpace X] [T2Space X]
-    [TotallyDisconnectedSpace X] {σ : X ≃ₜ X} {x : X} (hx : σ x ≠ x) :
-    ∃ W : Set X, IsClopen W ∧ x ∈ W ∧ ∀ z ∈ W, σ z ∉ W := by
-  obtain ⟨A, B, hA, hB, hxA, hyB, hAB⟩ := t2_separation hx.symm
-  have hO : IsOpen (A ∩ σ ⁻¹' B) := hA.inter (hB.preimage σ.continuous)
-  have hxO : x ∈ A ∩ σ ⁻¹' B := ⟨hxA, hyB⟩
-  obtain ⟨W, hWc, hxW, hWO⟩ := isTopologicalBasis_isClopen.mem_nhds_iff.1 (hO.mem_nhds hxO)
-  have hW : IsClopen W := hWc
-  refine ⟨W, hW, hxW, fun z hz hz' => ?_⟩
-  have h1 : σ z ∈ A := (hWO hz').1
-  have h2 : σ z ∈ B := (hWO hz).2
-  exact Set.disjoint_left.1 hAB h1 h2
 
 /-- Clopen fundamental domain of an involutive homeomorphism with closed moved set. -/
 theorem exists_fundamentalDomain_of_isClosed_movedSet [CompactSpace X] [T2Space X]
@@ -64,8 +49,9 @@ theorem exists_fundamentalDomain_of_isClosed_movedSet [CompactSpace X] [T2Space 
     · refine ⟨∅, isClopen_empty, fun z hz => absurd hz (Set.notMem_empty z), fun hxm => ?_⟩
       have hxm' : σ x ≠ x := hxm
       exact absurd hx hxm'
-    · obtain ⟨W, hW, hxW, hWd⟩ := exists_isClopen_displaced_of_apply_ne hx
-      exact ⟨W, hW, hWd, fun _ => hxW⟩
+    · obtain ⟨W, hW, hxW, hWd⟩ := exists_isClopen_displaced hx
+      exact ⟨W, hW, fun z hz hz' => Set.disjoint_left.1 hWd hz' (Set.mem_image_of_mem σ hz),
+        fun _ => hxW⟩
   choose U hUc hUd hUx using hex
   obtain ⟨t, -, hcover⟩ := hclosed.isCompact.elim_nhds_subcover U
     (fun x hx => (hUc x).isOpen.mem_nhds (hUx x hx))
@@ -113,7 +99,6 @@ theorem exists_fundamentalDomain_of_involution [CompactSpace X] [T2Space X]
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_isClopen_displaced_of_apply_ne
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_fundamentalDomain_of_isClosed_movedSet
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_fundamentalDomain_of_involution_of_isAperiodic
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_fundamentalDomain_of_involution

@@ -98,7 +98,8 @@ theorem mem_normalClosure_of_isSimpleGroup {G : Type*} [Group G] (hG : IsSimpleG
     (hg : g ≠ 1) (x : G) : x ∈ Subgroup.normalClosure ({g} : Set G) := by
   haveI := hG
   have htop : Subgroup.normalClosure ({g} : Set G) = ⊤ := by
-    refine (IsSimpleGroup.eq_bot_or_eq_top_of_normal _ inferInstance).resolve_left fun hbot => hg ?_
+    refine (IsSimpleGroup.eq_bot_or_eq_top_of_normal (Subgroup.normalClosure ({g} : Set G))
+      inferInstance).resolve_left fun hbot => hg ?_
     have hmem : g ∈ Subgroup.normalClosure ({g} : Set G) :=
       Subgroup.subset_normalClosure (Set.mem_singleton g)
     rw [hbot] at hmem

@@ -131,4 +131,6 @@ open GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_takeCompressedClopen
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_wanderingMatrixUnits
+#audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.iterate_mem_of_mem
+#audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.iterate_symm_not_mem
 #audit_axioms GroupApproximation.Manuscript.NonMF.BilateralA.manuscriptSentence_negativeLevelsOutsideP

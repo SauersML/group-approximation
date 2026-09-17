@@ -53,6 +53,8 @@ theorem exists_finite_quotient_right_ne_one [Group.ResiduallyFinite G]
   exact hN (FiniteIndexNormalSubgroup.mem_toSubgroup_iff.mp
     ((QuotientGroup.eq_one_iff (N := N.toSubgroup) g.right).mp h))
 
+#audit_axioms exists_finite_quotient_right_ne_one
+
 /-- The kernel `J` of the action consists exactly of the elements acting
 trivially. -/
 theorem mem_ker_action_iff (h : G) : h ∈ φ.ker ↔ ∀ m : M, φ h m = m := by
@@ -62,6 +64,8 @@ theorem mem_ker_action_iff (h : G) : h ∈ φ.ker ↔ ∀ m : M, φ h m = m := b
   · intro hm
     exact MonoidHom.mem_ker.mpr
       (MulEquiv.ext fun m ↦ (hm m).trans (MulAut.one_apply m).symm)
+
+#audit_axioms mem_ker_action_iff
 
 /-- The reduction `M ⋊ G → M ⋊ (G ⧸ J)`. -/
 def reduceByKernel : M ⋊[φ] G →* M ⋊[QuotientGroup.kerLift φ] (G ⧸ φ.ker) :=
