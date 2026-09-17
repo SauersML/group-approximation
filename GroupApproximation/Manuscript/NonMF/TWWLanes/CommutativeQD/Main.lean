@@ -72,10 +72,8 @@ theorem isQuasidiagonalTrace_of_commCStarAlgebra_of_pointEvaluationAverage
     (F.image (gelfandStarTransform A)) ε hε
   refine ⟨N, fun i ↦ StarAlgHomClass.toStarAlgHom (x i), fun a ha ↦ ?_⟩
   have h := hx (gelfandStarTransform A a) (Finset.mem_image_of_mem _ ha)
-  have hsum : (N : ℂ)⁻¹ * ∑ i, (gelfandStarTransform A a) (x i) =
-      (N : ℂ)⁻¹ * ∑ i, (StarAlgHomClass.toStarAlgHom (x i) : A →⋆ₐ[ℂ] ℂ) a :=
-    rfl
-  rw [transportedCLM_gelfand, hsum] at h
+  rw [transportedCLM_gelfand] at h
+  -- `Γ a (xᵢ) = xᵢ a` holds by definition of the Gelfand transform.
   exact h
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.isQuasidiagonalTrace_of_commCStarAlgebra_of_pointEvaluationAverage

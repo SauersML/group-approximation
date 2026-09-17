@@ -66,7 +66,7 @@ theorem faceOf_mem_iff_of_faceClass {faces : Finset X.toCombMap.Face}
     (hkeep : ∀ z, walkKeep X.toCombMap B.cycle z → keep z) {x y : X.toCombMap.Dart}
     (h : Relation.EqvGen (CombMap.FaceClassStep X.toCombMap keep) x y) :
     X.toCombMap.faceOf x ∈ faces ↔ X.toCombMap.faceOf y ∈ faces := by
-  refine iff_of_faceClass (fun z => X.toCombMap.faceOf z ∈ faces) ?_ ?_ h
+  refine iff_of_faceClass (M := X.toCombMap) (fun z => X.toCombMap.faceOf z ∈ faces) ?_ ?_ h
   · intro z
     show X.toCombMap.faceOf (X.toCombMap.facePerm z) ∈ faces ↔ X.toCombMap.faceOf z ∈ faces
     rw [X.toCombMap.faceOf_facePerm z]

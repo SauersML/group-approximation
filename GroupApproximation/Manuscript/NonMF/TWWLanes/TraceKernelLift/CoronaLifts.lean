@@ -83,7 +83,7 @@ theorem exists_selfAdjoint_lift_norm_le (ω : Ultrafilter ℕ)
           ring
       _ ≤ ‖x‖ := hy0
   · rw [map_smul, map_add, map_star, hπ, hx.star_eq, ← two_smul ℂ x, smul_smul,
-      inv_mul_cancel₀ two_ne_zero, one_smul]
+      inv_mul_cancel₀ (two_ne_zero : (2 : ℂ) ≠ 0), one_smul]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.TraceKernelLift.exists_selfAdjoint_lift_norm_le
 

@@ -124,10 +124,12 @@ theorem move_isPath {a : V} {l l' : List V} (hm : S.Move a l l') :
   | back l₁ l₂ w hp =>
     refine ⟨hp, ?_⟩
     rw [isPath_append] at hp ⊢
+    simp only [IsPath] at hp
     exact ⟨hp.1, hp.2.2.2⟩
   | tri l₁ l₂ b c hp ht =>
     refine ⟨hp, ?_⟩
     rw [isPath_append] at hp ⊢
+    simp only [IsPath] at hp ⊢
     exact ⟨hp.1, S.tri_edge _ _ _ ht, hp.2.2.2⟩
 
 end BrownSetting
