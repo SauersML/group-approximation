@@ -198,20 +198,23 @@ anywhere refutes it.
   mechanism that is not a sofic approximation. The sources read here
   (arXiv:1501.03367, 1602.06680, 1804.05270, 1805.08279, 0812.2718) derive lower
   bounds only from sofic entropy or from amenability.
-- **In-group counting from per-site costs is dead on every nonamenable group (a-gs-pull-4, 2026-09-17).** This is
-  `per-site-code-counting-constant-is-the-folner-ratio`.
-  - **Class.** Every argument that bounds code entropy below from the per-site costs alone:
-    `c = sup_g H(y_g)` and `d = sup_t H(x(t) | y_(tF))`, for site-indexed window codes on iid input. That covers
-    decoding a finite `S <= G` from `y_(SF)`, subadditivity over finite index sets, per-term transport bounds, and the
-    four-step amenable count.
-  - **Best constant.** The best constant such an argument can certify is
-    `kappa(F) in [floor(lambda(F)), lambda(F)]`, where `lambda(F) = inf |SF|/|S|`. It is attained by Hall
-    reader-field codes, which divide every site into `m` pieces read at `m` distinct codewords, with `d = 0`.
-  - **Why no uniform constant.** Deficit witnesses can be enlarged to `lambda(F) >= 2^j`, so per-site counting gives
-    no uniform constant on any nonamenable host. It cannot prove domination, INF or POS there.
-  - **Invariant and dying step.** The invariant is `lambda(F)`, equivalently the largest `m` with an m-fold reader
-    field. Every member dies at `H(y_(SF)) <= |SF| c`, where the loss is attained for every index set `S`.
-  - **Gate.** Reader fields with `m >= 2` carry no invariant probability measure, by mass transport. So a lower bound
-    has to use joint translation invariance of the law of `(x, y)`, for example the random-order transport identity.
-    In-group counting cannot supply it. With the previous item: the counting mechanism must be neither a sofic
-    approximation nor per-site counting inside `G`.
+- **Profile-level counting is gated by a ring question (a-gs-pull-10, 2026-09-17).** Consider an argument for
+  maximal Bernoulli entropy (hence positive Rokhlin entropy) that uses only:
+  - entropy inequalities on finite families;
+  - independence of sites;
+  - window dependence of codewords;
+  - translation invariance of the entropy function.
+
+  Such an argument also applies to *twisted linear profiles* over any field crossed product `K*G`.
+  - Their codeword coefficients `σ_h(a) α(h,e)` vary with the site, so the constant-input proof for affine codes
+    does not apply.
+  - They have a deficit exactly when `K*G` fails the rank condition. The infimum of `Phi` over them is `1` or `0`
+    (`twisted-linear-profile-deficits-are-rank-condition-failures`).
+
+  So such a proof at `G` forces the rank condition for every `K*G`. It exists on amenable `G` (Følner chain rule).
+  - **Known survival regimes:** amenable quotient twists, algebraic coefficients, and characteristic 0 with an
+    invariant measure on complex points (`field-crossed-product-rank-condition-survival-cases`).
+  - **The open kill** is `some-field-crossed-product-fails-the-rank-condition`, with test case `Q(x) ⋊ PSL_2(Z)`.
+    It would end every count over entropy values alone, including polymatroid LP certificates, at that `G`.
+
+  Artifact: `research/artifacts/twisted-linear-entropy-profiles-2026-09-17.md`.
