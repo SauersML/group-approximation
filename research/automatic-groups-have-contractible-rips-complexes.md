@@ -59,3 +59,29 @@ a contractible Rips complex?") without the amenability hypothesis. It implies
   asynchronous combing is refuted. Any proof must use the synchronous fellow
   traveller property at the fixed-scale step, which is where the Rips attempt above
   dies.
+- 2026-09-17 (swarm-0917-w5-z-rips): **the torsion half is not independent; the
+  finite-extension torsion counterexamples are dead.** This is established as
+  `automatic-finite-vcd-groups-have-few-p-subgroup-classes`, using Brown's
+  Lemma IX.13.2, imported as `brown-finite-p-subgroup-classes-from-finite-mod-p-cohomology`.
+  An automatic group with a torsion-free finite-index subgroup of finite cd has finitely many
+  conjugacy classes of `p`-subgroups, all conjugate into one ball. The proof takes the normal
+  core `H`. `H` is `FP_∞`, so each `H^n(H;F_p)` is finite. Finite cd makes the total finite, and
+  Brown's lemma gives the count. Route `automatic-p-subgroup-ball-via-brown` then derives the
+  torsion condition from `automatic-groups-are-virtually-torsion-free` (new, OPEN, containing the
+  hyperbolic VTF root) together with the dimension condition.
+  **Obstruction to a class of approaches.** Take any refutation of this claim through the torsion
+  condition: an automatic `G` with infinitely many conjugacy classes of `p`-subgroups.
+  - The invariant is the total mod-p cohomology `⊕_n H^n(H;F_p)` of a finite-index torsion-free
+    normal subgroup `H`.
+  - Every candidate of the form "torsion-free `FP_∞` group of finite cd, extended by a finite
+    group" dies at the step "infinitely many `p`-classes", because that invariant is finite. This
+    covers the Leary–Nucinkis `H_L ⋊ Q` groups and Morse-kernel groups with a finite symmetry.
+  - The surviving torsion candidates are non-VTF automatic groups. Such a group would already
+    answer `automatic-groups-are-virtually-torsion-free` negatively. `T` has the same shape (infinite simple,
+    hence not VTF, with `Z/2^k ≤ T` for all `k`), but it is not known to be automatic.
+  - Every other torsion candidate already fails the dimension condition.
+  **Calibration.** `FP_∞` cannot be weakened to `F_n`. Leary–Nucinkis, Example 8, verbatim: "this
+  gives rise to a group ~H = HL ⋊ Cp which is of type Fn and contains infinitely many conjugacy
+  classes of elements of order p". Also, Brown's lemma cannot be extended from `p`-groups to all
+  finite groups (Leary, G&T 2005). So contractible Rips complexes, like Smith theory, constrain
+  only prime-power torsion. Still open.
