@@ -66,3 +66,24 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     (`sft-topological-full-groups-have-the-haagerup-property`) uses such structure.
   - **Not ruled out:** proofs that use compact generation or expansivity of the
     groupoid. It is not known whether `(M ⋊ Γ) × G_2` is compactly generated.
+- **Split along the triangular subgroup (2026-09-17, swarm-0917-w4-nv-cocycle; route tree
+  plus class-kill).**
+  - `haagerup-splits-as-coset-plus-subgroup-properness` (established): for any subgroup `H`,
+    the Haagerup property is equivalent to a cnd function proper modulo `H` plus a cnd function
+    proper on `H`. No normality is needed, so it applies to the simple group `nV`.
+  - Route `brin-thompson-nv-a-t-menable-via-triangular-split` with `H = T_n`, the elements
+    preserving the coordinate tower `C^n → ... → C`. R1: a cnd function proper modulo `T_n`. R2: a
+    cnd function on `nV` proper on `T_n`, which implies Problem B for `Γ = V, Z`. Both are
+    necessary, so this route is an equivalence.
+  - `brin-thompson-triangular-subgroup-is-undistorted` (established): every infinite-order
+    element of `T_n` grows linearly in the exponent cocycle, so it is undistorted in `nV`.
+  - **Class-kill.** `brin-thompson-nv-no-cubical-action-proper-mod-triangular` (established)
+    rules out "Farley-type walls for the cosets, plus Problem B for the fibres". No
+    commensurating action, CAT(0) cube complex or wall space is proper modulo `T_n`, or modulo
+    any undistorted subgroup.
+    - **Invariant:** growth along the distorted Callard–Salo cyclic subgroup `⟨f⟩`.
+    - **Where every member dies:** the bounded-or-linear dichotomy makes the wall count bounded
+      on `⟨f⟩`. The pigeonhole into finitely many cosets then forces a power of `f` into `H`,
+      where it would be undistorted
+      (`cubical-coset-proper-actions-capture-distorted-elements`).
+    - R1 must therefore be non-cubical, with `ψ_1(f^N) → ∞` and `ψ_1(f^N) = O(log^8 N)`.
