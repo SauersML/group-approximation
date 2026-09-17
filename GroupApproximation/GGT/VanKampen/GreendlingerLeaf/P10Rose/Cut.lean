@@ -25,7 +25,8 @@ from a closed lobe of the boundary cycle (module `P10Rose/Lobe`).
 
 ## The remaining gap
 
-The endpoint `rose : P10ChordLift.RoseStepStatement` is not provided here; it is
+This module was split off `P10Rose/Proof`, which now imports it (through `P10Rose/InPlace`) and
+holds the endpoint.  The endpoint `rose : P10ChordLift.RoseStepStatement` is
 `rose_of_combinatorialStep` applied to a proof of `RoseCombinatorialStepStatement`.  The intended
 argument for that statement, in the local model at a vertex `v` visited `k` times: the rotation
 reads `o_1 ī_1 o_2 ī_2 … o_k ī_k` (outgoing and reversed incoming darts of the cycle), a passage is

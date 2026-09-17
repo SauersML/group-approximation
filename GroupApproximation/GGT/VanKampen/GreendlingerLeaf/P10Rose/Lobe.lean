@@ -43,7 +43,7 @@ face-class relation `FaceClassStep M (walkKeep M c)`: move around a face, or cro
 6. *Walk order.*  A closed dart walk `P ++ Q` whose two parts start at one vertex splits into the
    closed dart walks `P` and `Q` (`closedDartWalk_split`).
 
-## The rose step from a separated lobe (module `P10Rose/Proof`)
+## The rose step from a separated lobe (module `P10Rose/Cut`)
 
 Let `K` be a pocket face set in walk order with cycle `s_1 t_1 s_2 t_2`, and suppose a sub-walk
 `B` of a side `s_i` is closed in the sense of (3) and starts at the vertex where it ends.  By (5)
