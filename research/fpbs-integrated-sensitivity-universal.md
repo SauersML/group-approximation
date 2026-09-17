@@ -64,3 +64,19 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   bubble that is infinite at every uniqueness parameter, so bounding it above
   `p_c` already proves nonuniqueness (Section 6 of
   `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).
+* **Integrate the Russo-BK inequality upward from `p_c` and close at the
+  critical kernel** (swarm-0917-w4-pull-bs-3, operator-algebras lane). This
+  avoids the supercritical bubble of the previous bullet: iterate
+  `d tau_p/dp <= d T_p P T_p` all the way, giving the tree-graph majorant
+  `a_n(p_c+delta) <= M_n(delta)=sum_k (d delta)^k E[(T_(p_c)(P T_(p_c))^k)(o,X_n)]`.
+  That majorant would permit spikes above `p_c`. **Where it dies:**
+  `fpbs-bk-majorant-integrated-sensitivity-is-critical-l2` (ESTABLISHED)
+  shows that `M_n(delta)<infinity` for some `n` and some `delta>0` forces
+  `||T_(p_c)||_(2->2) <= 1/(d delta p_c)`. The proof uses FKG insertion
+  `T(PT)^k >= p_c^k T^(k+1)` and even-trace bounds on finite sections.
+  Conversely, critical l2 makes the majorant finite. Every truncated iterate
+  keeps a block `T_s P T_(s')` with `s,s'>p_c`, and that block is `+infinity`
+  under collapse. So the whole Russo-BK class is no weaker than
+  `fpbs-nonamenability-bounds-critical-connectivity-operator`. The invariant
+  is `||T_(p_c)||_(2->2)`, and every member dies at the first step
+  `delta>0`.
