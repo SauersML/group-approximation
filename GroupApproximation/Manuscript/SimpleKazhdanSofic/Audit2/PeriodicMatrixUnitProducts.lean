@@ -49,9 +49,7 @@ theorem list_prod_map_diagonal {ι : Type*} (l : List ι) (d : ι → ZMod N →
 theorem toList_prod_map_diagonal {ι : Type*} (s : Finset ι) (d : ι → ZMod N → ZMod 2) :
     (s.toList.map fun i => diagonal (d i)).prod = diagonal fun t => ∏ i ∈ s, d i t := by
   rw [list_prod_map_diagonal]
-  congr 1
-  funext t
-  exact Finset.prod_map_toList s fun i => d i t
+  exact congrArg diagonal (funext fun t => Finset.prod_map_toList s fun i => d i t)
 
 end Products
 
