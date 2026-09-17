@@ -7,6 +7,7 @@ distinct_from:
   boone-higman-conjecture: that asks for an embedding of each decidable group into one finitely presented simple group; this asks only that each finite piece of it be realized in some finitely presented simple group, which may change with the piece. That implies this, and this together with every-decidable-group-embeds-in-an-isolated-group implies that.
   every-decidable-group-embeds-in-an-isolated-group: that asks for an isolated overgroup and says nothing about simple groups; this is a statement about the universal theory of finitely presented simple groups and says nothing about overgroups.
   isolated-embedding-is-one-existential-sentence: that is the elementary lemma turning embeddability of an isolated group into one existential sentence; this is the open universality statement about such sentences.
+  local-boone-higman-iff-boone-higman: that is the established theorem that this claim is equivalent to boone-higman-conjecture; this is the open statement itself.
   fp-simple-group-with-nonrecursive-mixed-identities: that concerns universal sentences with constants from one fixed finitely presented simple group; this concerns sentences without constants, satisfied in some member of the whole class.
 ---
 
@@ -112,3 +113,33 @@ following.
    *Open.* Local embeddability of `G` gives a host for each finite piece but no
    single finitely discriminable finitely presented overgroup. No argument in
    either direction was found.
+   *Answered by Attempt 4: yes.*
+4. **This claim is equivalent to `boone-higman-conjecture` (2026-09-17, lane
+   swarm-0917-w5-bh-local).** *Established reduction, claim stays OPEN.* See
+   `local-boone-higman-iff-boone-higman` and its proof route.
+   - **Collapse.** Let `G` be decidable. Thompson: `G × Z ≤ S`, with `S` finitely
+     generated, simple, decidable. Clapham: `S ≤ H = ⟨x | r⟩`, finitely
+     presented and decidable. Pick `1 ≠ g = w(x) ∈ S`. The one system
+     `r(y) = 1, w(y) ≠ 1` has the decidable model `H`. A model in a finitely
+     presented simple `K` is a homomorphism `φ : H → K` with `φ(g) ≠ 1`. Then
+     `ker φ ∩ S` is a proper normal subgroup of the simple group `S`, so it is
+     trivial and `G ≤ K`.
+   - **So the premise CGP Question 4 is redundant** in
+     `boone-higman-via-isolated-overgroup-and-local-boone-higman`. The
+     statement body's "the two halves can fail separately" is wrong in one
+     direction: a failure of Question 4 is a failure of this claim. The new
+     route `boone-higman-via-local-boone-higman` has this claim as its only
+     open premise.
+   - **What dies.** Every approach that attacks this claim by using a different
+     host per finite piece (limits of marked groups, ultraproducts, residual
+     properties) is no easier than Boone--Higman. The step where it would gain
+     freedom is a single piece: the relators of `H` plus `g ≠ 1`, and simplicity
+     of `S` turns its solution into a global embedding.
+   - **Sharper counterexample target.** One inequation suffices, and the
+     equations can be taken to present a decidable group. A counterexample is a
+     quasi-identity `∀y (r(y) = 1 → w(y) = 1)` true in all finitely presented
+     simple groups and false in a finitely presented decidable group. This
+     holds on every branch, not only when `G` has an isolated overgroup.
+   - The prior per-branch analysis of Attempts 1--2 is now analysis of
+     Boone--Higman itself: the sentence classes they exclude are excluded for
+     the conjecture.
