@@ -9,11 +9,10 @@ distinct_from:
   lef-wp-groups-have-decidable-simple-kazhdan-lef-hosts: that gives decidable simple Kazhdan, hence FA, hosts for LEF inputs only; this asks for FA, a weaker rigidity, but for every decidable input.
   countable-group-embeds-in-fg-simple-kazhdan-group: that gives simple Kazhdan envelopes with no control of the word problem; this asks for word problem control and only property FA.
   boone-higman-conjecture: that asks for a finitely presented simple envelope, which may split as an amalgam, as Burger--Mozes lattices do; this asks for a computably presented simple envelope that does not split, and neither statement is known to imply the other.
-  fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree: that gives every finitely generated input a simple Kazhdan host of the same word problem degree; this is its FA and decidable consequence, the form consumed by the permanence collapse and by boone-higman-from-simple-fa-inputs.
-artifacts: [research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md]
 ---
 
-**OPEN.**
+**ESTABLISHED** (literature import with a written check) by
+`decidable-simple-fa-host-via-self-twisted-brin-thompson`.
 
 Let `G` be a finitely generated group with solvable word problem. Then `G`
 embeds in a finitely generated simple group `S` with solvable word problem in
@@ -77,12 +76,14 @@ tree steps with infinitary steps could do real work in a permanence reduction.
 5. **From finitely presented simple envelopes.** Boone--Higman would give a
    finitely presented simple envelope. Those can split (Burger--Mozes
    lattices), so the conjecture does not obviously imply this claim. *Open.*
-6. **Kazhdan lamplighter host without LEF (2026-09-17).** *Settles the claim* through
-   `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`, so the "**OPEN.**" line above is superseded. The
-   refutation of Attempt 2 is at its first sentence: the lamplighter host
-   `EL_3(LC(2^Δ,F_2) ⋊ (Z/2 ≀ Δ))` does not need a LEF overgroup. LEF is used there only to prove that the host is
-   LEF; minimality, topological freeness, ring and Steinberg simplicity, Ershov--Jaikin-Zapirain (T) and the word
-   problem reduction need only `Δ` infinite and finitely generated. The derived-subgroup overgroup is replaced by
-   Whitehead's lemma: `diag(u, u^(-1), 1) ∈ E_2(R)` for every unit, so all of `Δ = G × Z` embeds. See
-   `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` and
-   `research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md`.
+6. **Import property NL for twisted Brin--Thompson groups (2026-09-17).**
+   Fournier-Facio--Wu--Zaremsky (arXiv:2603.24687v2, Theorem 6.4) prove that
+   every `SV_G` has property NL. With Serre's lemma, every finitely generated
+   `SV_G` has FA (`twisted-brin-thompson-groups-have-property-fa`). The host
+   `G.V_G` is finitely generated and simple, contains `G`, and has solvable
+   word problem when `G` does (`self-twisted-bt-group-fp-embedding-iff-solvable-wp`).
+   *Succeeds* (`decidable-simple-fa-host-via-self-twisted-brin-thompson`).
+   Here is how the imported proof avoids Attempt 3's pairwise-join obstacle:
+   - uniform perfectness bounds quasimorphisms, which excludes focal and
+     oriented lineal actions;
+   - relative simplicity excludes general-type actions.
