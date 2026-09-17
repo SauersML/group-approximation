@@ -56,6 +56,33 @@ constant along `Λ_0`-cosets whose `Z^2` shadow lies in `Y`.
   is not effective and `Λ_0` does not embed in the full group. Replacing the
   trivial factor by a free minimal SFT on `Λ_0` is the statement itself.
 
+**Attempt 3 (2026-09-17, swarm-0917-w5-bh-simple-fa): split into existence and
+minimal simulation.** Route `minimal-free-sft-via-plane-constant-minimal-simulation`.
+The implication is complete; two OPEN premises remain.
+- **(M2)** `decidable-fp-groups-have-effective-minimal-free-subshifts`. The
+  Clapham envelope `Λ_0 = Λ_1 x Z` carries an effectively closed minimal free
+  subshift `Y`.
+- **(M1)** `effective-minimal-subshifts-lift-to-plane-constant-minimal-sfts`.
+  `Y` is a `Z^2`-invariant, `Λ_0`-equivariant factor of a minimal SFT over
+  `Λ_0 x Z^2` with free `Z^2`-subaction. This is the group form of
+  Durand--Romashchenko (arXiv:1802.01461, abstract quoted at source).
+- **Freeness.** It passes from `Y` to `X` through plane invariance, which is
+  what Attempt 2 lacked.
+- **Established along the way.**
+  `plane-constant-minimal-sft-factors-are-effective-minimal` (unreviewed): every
+  plane-invariant equivariant factor of a minimal SFT over `Λ_0 x Z^2` is
+  effectively closed, minimal, and has decidable language. So every design with
+  a free plane-invariant `Λ_0`-factor must prove (M2) for `Λ_0` first.
+- **Dead sub-idea.** A minimal subsystem of the Aubrun--Barbieri--Thomassé
+  effective strongly aperiodic subshift gives (M2) only if that subsystem is
+  effectively closed, and Zorn gives no control.
+- **Where it stops.** Neither premise is proved.
+  - (M2) is known by hand for `Z^d` and products, but for no simple Kazhdan
+    envelope.
+  - (M1) is known only for `Λ_0 = Z^d`, in the DR form without plane invariance.
+    Its named risk is exponential reading pressure for `Λ_0` of exponential
+    growth.
+
 **What would kill (P1) outright.** A finitely presented group `Λ` with solvable
 word problem such that no finitely presented overgroup of `Λ` carries a minimal
 free SFT. No invariant separating minimal SFTs from strongly aperiodic SFTs over
