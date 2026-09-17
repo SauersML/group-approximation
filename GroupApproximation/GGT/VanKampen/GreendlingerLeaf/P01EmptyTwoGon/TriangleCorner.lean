@@ -239,4 +239,101 @@ theorem false_of_triangle_walk (P : OsinLemma94RealizedPolygons S) (k : Fin P.co
       (Option.some_ne_none i).symm
       s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
 
--- TRIANGLE_CORNER_PART_THREE
+/-- **The corner walk.**  A rotation `x, y, L` of the walk of a polygon face with different
+objects `o ≠ o′` across `x` and `y` contradicts the weight maximality of `S`, once `ε ≥ 2`. -/
+theorem false_of_corner_rotate (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    (heps : 2 ≤ eps) {x y : S.diagram.toCombMap.Dart} {L : List S.diagram.toCombMap.Dart} {r : ℕ}
+    (hr : r ≤ (S.diagram.faceBoundary (P.face k)).darts.length)
+    (htrav : (S.diagram.faceBoundary (P.face k)).darts.rotate r = x :: y :: L)
+    {o o' : Option (Fin S.diagram.rCellCount)} (hoo : o ≠ o')
+    (hx : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha x) =
+      OsinLemma94RealizedPolygons.objectFace S o)
+    (hy : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha y) =
+      OsinLemma94RealizedPolygons.objectFace S o') : False := by
+  have hlx : (symmetricLabelAlphabet D).IsLetter (S.diagram.label x) := S.label_admissible x
+  have hly : (symmetricLabelAlphabet D).IsLetter (S.diagram.label y) := S.label_admissible y
+  have hface : RelLetter.listVal (S.diagram.faceWord (P.face k)) = 1 := by
+    rcases S.diagram.inner_face (P.face k) (P.face_ne_outer k) with ⟨C, hC, hC'⟩ | h
+    · exact absurd hC' (relatorCell_face_ne P k C hC)
+    · exact h
+  have hlen : r ≤ (S.diagram.faceWord (P.face k)).length := by
+    rw [DiscDiagram.faceWord, List.length_map]
+    exact hr
+  have h0 := HullSC.RelWord.listVal_rotate _ hlen
+  rw [hface, mul_one, inv_mul_cancel, DiscDiagram.faceWord, ← List.map_rotate, htrav] at h0
+  have h1 : (S.diagram.label x).val * ((S.diagram.label y).val *
+      RelLetter.listVal (dartWord S.diagram L)) = 1 := by
+    first
+    | exact h0
+    | simpa only [dartWord, RelLetter.listVal, List.map_cons, List.prod_cons] using h0
+  have h2 : (S.diagram.label x).val * (S.diagram.label y).val *
+      RelLetter.listVal (dartWord S.diagram L) = 1 := by
+    rw [mul_assoc]
+    exact h1
+  have hL : RelLetter.listVal (dartWord S.diagram L) =
+      (S.diagram.label y).val⁻¹ * (S.diagram.label x).val⁻¹ := by
+    rw [← mul_inv_rev]
+    exact eq_inv_of_mul_eq_one_right h2
+  have hA : (S.diagram.faceBoundary (P.face k)).darts.rotate (r + 1) = y :: (L ++ [x]) :=
+    rotate_succ_of_rotate_eq htrav
+  have hB : (S.diagram.faceBoundary (P.face k)).darts.rotate (r + 1 + 1) = L ++ [x] ++ [y] :=
+    rotate_succ_of_rotate_eq hA
+  have hone : TriangleConnector D eps
+      (RelLetter.listVal (dartWord S.diagram ([] : List S.diagram.toCombMap.Dart))) :=
+    triangleConnector_one heps hlx
+  have hpair : TriangleConnector D eps (RelLetter.listVal (dartWord S.diagram L)) := by
+    rw [hL]
+    exact triangleConnector_inv heps hly hlx
+  cases o with
+  | some i =>
+    exact false_of_triangle_walk P k (s := x) (t := y) (X := []) (Y := L) (r := r + 1)
+      (hA.trans (by simp)) i hx o' (fun h => hoo h.symm) hy hone hpair
+  | none =>
+    cases o' with
+    | none => exact hoo rfl
+    | some j =>
+      exact false_of_triangle_walk P k (s := y) (t := x) (X := L) (Y := []) (r := r + 1 + 1)
+        (hB.trans (by simp)) j hy none (Option.some_ne_none j).symm hx hpair hone
+
+/-- **The triangle corner is excluded**: a dart `d` of a polygon face with different objects across
+`d` and `φ d` contradicts the weight maximality of `S`, once `ε ≥ 2`. -/
+theorem false_of_corner (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) (heps : 2 ≤ eps)
+    {o o' : Option (Fin S.diagram.rCellCount)} (hoo : o ≠ o') {d : S.diagram.toCombMap.Dart}
+    (hd : S.diagram.toCombMap.faceOf d = P.face k)
+    (hx : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha d) =
+      OsinLemma94RealizedPolygons.objectFace S o)
+    (hy : S.diagram.toCombMap.faceOf
+      (S.diagram.toCombMap.alpha (S.diagram.toCombMap.facePerm d)) =
+      OsinLemma94RealizedPolygons.objectFace S o') : False := by
+  have hfix : S.diagram.toCombMap.facePerm d ≠ d := by
+    intro h
+    rw [h] at hy
+    exact hoo (OsinLemma94RealizedPolygons.objectFace_injective S (hx.symm.trans hy))
+  obtain ⟨r, L, hr, htrav⟩ := exists_rotate_corner (S.diagram.faceBoundary (P.face k))
+    (((S.diagram.faceBoundary (P.face k)).mem_iff d).mpr hd) hfix
+  exact false_of_corner_rotate P k heps hr htrav hoo hx hy
+
+end TriangleCornerWalk
+
+/-- **The triangle corner exclusion** (`SwitchCornerOneStatement`), with `ε₀ = 2` and `ρ₀ = 1`. -/
+theorem switchCornerOne : SwitchCornerOneStatement.{u, w, v} := by
+  intro _ _ _ _ _ _ _ _ _ _ _ _ _
+  refine ⟨2, fun _ heps => ⟨1, Nat.one_pos, ?_⟩⟩
+  intro _ _ _ _ _ _ _ _ _ _ _ _ P _ k _ _ o o' hoo d hd hx hy _ _
+  exact false_of_corner P k heps hoo hd hx hy
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.exists_singleArc
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.reverseDarts_eq_singleton
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.rotate_succ_of_rotate_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.exists_section_of_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.exists_rotate_corner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.TriangleConnector
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.triangleConnector_pair
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.triangleConnector_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.triangleConnector_inv
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.false_of_triangle_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.false_of_corner_rotate
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.false_of_corner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.switchCornerOne
