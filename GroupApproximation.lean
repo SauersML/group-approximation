@@ -5421,6 +5421,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.FibreCollap
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TwistedModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathCongr
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathStar
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.PauliShift
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
