@@ -1,0 +1,8 @@
+s t c t s t^-1 : survive(c, s, sc, s^2 c, s^2) = 
+[ true, true, true, true, true ]
+s c t c t s t^-2 (sum 0) : survive(c, s, sc, s^2 c, s^2) = 
+[ true, true, true, true, true ]
+(s c) t s^-1 t^-1 : survive(c, s, sc, s^2 c, s^2) = 
+[ true, true, true, true, true ]
+s t c t c t s t^-1 : survive(c, s, sc, s^2 c, s^2) = 
+[ true, true, true, true, true ]

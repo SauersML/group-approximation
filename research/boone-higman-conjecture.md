@@ -249,10 +249,29 @@ The August audit and the September correction artifacts carry the arguments.
      hyperbolic, proper cocompact CAT(0), or of finite virtual cohomological
      dimension, and neither can any overgroup of `C`. That kills small-cancellation
      and Rips-type vertex groups, where hard membership problems are cheap.
-   - *What is left.* Edge groups with self-similar direct products, as in Thompson
-     groups or branch groups. It is open whether any finitely presented group acts
-     faithfully on a tree with (P), a nontrivial finitely generated edge group, and
-     not both indices 2.
+   - *Every independence engine, not only amalgams.* Take a faithful, minimal
+     general-type tree action with Tits' (P), or with Banks--Elder--Willis
+     `(P_k)`, and some nontrivial edge fixator. By
+     `micro-supported-tree-actions-self-embed-rigid-stabilizers`, every
+     half-tree rigid stabilizer `R` contains `⊕_N R`. So the same bounded-rank
+     classes are excluded for `Γ`, `Γ⁺` and `Γ^{+k}`.
+   - *Where the locally finite version reduces.* Take a locally finite tree with
+     (P). By `tits-independence-vertex-groups-are-branch-type`, each
+     ball fixator is the direct product of the level rigid stabilizers. So vertex
+     stabilizers are residually finite branch-type groups, and they are branch
+     groups when the local actions are 2-transitive. If `Γ` and its edge
+     stabilizers are finitely presented, the vertex stabilizers are finitely
+     presented too. The locally finite Tits route therefore needs a finitely
+     presented branch-type group. No finitely presented branch group is known
+     (Bartholdi--Grigorchuk--Šunić). The route also cannot contain an infinite
+     simple Kazhdan input.
+   - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
+     that are not finitely presented, or a positive answer to the finitely
+     presented branch-group question. The open first step is whether some
+     finitely presented group acts faithfully and minimally, with no fixed end,
+     on a tree of infinite valence with (P) and a nontrivial finitely generated
+     edge group. There the ball fixator only contains the restricted product of
+     rigid stabilizers, and the branch-type conclusion lapses.
 
 A ninth non-attempt, recorded because it looks tempting from inside this
 program: Schupp's envelope
@@ -261,27 +280,6 @@ not computably presented, so Higman's theorem does not apply to it;
 `boone-higman-thompson-simple-envelope` restores computable presentability
 but then Higman destroys simplicity.  That route rotates between the
 conjecture's two halves without narrowing either.
-
-10. **The hereditary separating property of Attempt 7, named** (heretic lane
-    swarm-0917-w4-bh-heretic, 2026-09-17).
-    - *Result.* `boone-higman-iff-isolated-hosts-and-local-boone-higman`
-      (ESTABLISHED): the conjecture holds iff both
-      `every-decidable-group-embeds-in-an-isolated-group` and
-      `local-boone-higman-conjecture` hold.
-    - *The lemma.* `isolated-embedding-is-one-existential-sentence`: an
-      isolated `H` embeds in `S` iff `S` satisfies one existential sentence
-      `Σ_H`, built from a finite presentation and a finite discriminating set.
-    - *Consequence.* A counterexample is either a decidable group with no
-      isolated overgroup, or a finite system `(E, N)` with a decidable model and
-      no model in any finitely presented simple group.
-    - *Kills.* The other invariant classes in the counterexample brief die as
-      forced properties at named steps (`local-boone-higman-conjecture`,
-      Attempt 2):
-      - torsion-problem undecidability, because `2V` has undecidable torsion
-        problem;
-      - Dehn functions, killed on main;
-      - input finiteness type, because finite groups and `Z ≀ Z` lie in `V`.
-    - *Route.* `boone-higman-via-isolated-overgroup-and-local-boone-higman`.
 
 ## A strictly easier subproblem, unsolved
 

@@ -64,52 +64,8 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     must use structure beyond this class, such as the zipper, product-of-trees or
     local-similarity combinatorics of `G_2^n`, or expansivity. Matui's SFT theorem
     (`sft-topological-full-groups-have-the-haagerup-property`) uses such structure.
-  - **Not ruled out:** proofs that use compact generation or expansivity of the
-    groupoid. It is not known whether `(M ⋊ Γ) × G_2` is compactly generated.
-- **Split along the triangular subgroup (2026-09-17, swarm-0917-w4-nv-cocycle; route tree
-  plus class-kill).**
-  - `haagerup-splits-as-coset-plus-subgroup-properness` (established): for any subgroup `H`,
-    the Haagerup property is equivalent to a cnd function proper modulo `H` plus a cnd function
-    proper on `H`. No normality is needed, so it applies to the simple group `nV`.
-  - Route `brin-thompson-nv-a-t-menable-via-triangular-split` with `H = T_n`, the elements
-    preserving the coordinate tower `C^n → ... → C`. R1: a cnd function proper modulo `T_n`. R2: a
-    cnd function on `nV` proper on `T_n`, which implies Problem B for `Γ = V, Z`. Both are
-    necessary, so this route is an equivalence.
-  - `brin-thompson-triangular-subgroup-is-undistorted` (established): every infinite-order
-    element of `T_n` grows linearly in the exponent cocycle, so it is undistorted in `nV`.
-  - **Class-kill.** `brin-thompson-nv-no-cubical-action-proper-mod-triangular` (established)
-    rules out "Farley-type walls for the cosets, plus Problem B for the fibres". No
-    commensurating action, CAT(0) cube complex or wall space is proper modulo `T_n`, or modulo
-    any undistorted subgroup.
-    - **Invariant:** growth along the distorted Callard–Salo cyclic subgroup `⟨f⟩`.
-    - **Where every member dies:** the bounded-or-linear dichotomy makes the wall count bounded
-      on `⟨f⟩`. The pigeonhole into finitely many cosets then forces a power of `f` into `H`,
-      where it would be undistorted
-      (`cubical-coset-proper-actions-capture-distorted-elements`).
-    - R1 must therefore be non-cubical, with `ψ_1(f^N) → ∞` and `ψ_1(f^N) = O(log^8 N)`.
-- **No cubical proof of the fibre half either (2026-09-17, swarm-0917-w4-pull-nv-1;
-  class-kill).**
-  - `commensurating-loxodromics-split-their-centralizers` (established): if `ℓ(z^N)` is
-    unbounded, the finitely many `⟨z⟩`-orbits with one-ended trace of `A` are permuted by
-    `C_G(z)`. A finite-index subgroup then translates along one of them, giving `φ : C' → Z`
-    with `φ(z) = 1`. So a central element of a perfect group with no finite quotients is
-    elliptic in every commensurating action.
-  - `brin-thompson-nv-fibre-elements-are-cubically-elliptic` (established): `C(C,Z) ⋊ V` is
-    perfect with no finite quotients, and `1_C` is central. Its copies in `nV` make every
-    element of the fibrewise subgroup `K_n`, of `V^n`, and of their conjugates and coordinate
-    permutations elliptic in every commensurating action of `nV`. So no commensurating action is
-    proper on `T_n` (R2), on `V × id`, or on `C(C,Γ) ⋊ V` for any `Γ` with an infinite-order
-    element (Problem B).
-    - **Invariant:** a central element of a perfect group without finite quotients. The
-      elements involved are undistorted, so the distortion kill above does not reach them.
-    - **Where every member dies:** the finite set of one-ended orbits of the central element,
-      whose translation character cannot be nonzero on it.
-    - **Consequence:** both halves R1 and R2 of the triangular split, and every approach to
-      Problem B through walls or charts, must be non-cubical. A proof needs a
-      non-commensurating cnd function, for example an infinite weighted sum of wall counts, or a
-      cocycle whose representation either has spectrum of `π(1_C)` accumulating at `1`, or has
-      a nonzero `1_C`-invariant component. If the spectrum stays away from `1` on the
-      orthogonal complement of the invariant vectors, the cocycle restricted to `⟨1_C⟩` is a
-      coboundary there.
-    - **Not ruled out:** uniform ellipticity of `V × id` (property FW for `nV`). Elementwise
-      ellipticity gives no uniform bound. Ellipticity of the baker's map is also open.
+  - **Also ruled out:** compact generation alone. `(M ⋊ Γ) × G_2` is compactly
+    generated, by `(M × S) × C ∪ M × (U_{0,∅} ∪ U_{1,∅} ∪ C)` for a finite generating
+    set `S` of `Γ` (referee ref-03, 2026-09-17; the argument is in the claim file).
+  - **Not ruled out:** proofs that use expansivity of the groupoid, or the SFT-type
+    combinatorics named above.

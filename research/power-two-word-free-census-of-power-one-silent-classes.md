@@ -1,0 +1,108 @@
+---
+rg: 2
+id: power-two-word-free-census-of-power-one-silent-classes
+kind: claim
+title: At power two, 411 of the 444 census classes silent at power one still have no legal folded fatgraph, while seven LP-negative classes are certified, including genus-three surfaces in groups with H_1 torsion of order two
+distinct_from:
+  legal-folded-certificates-at-power-one-census: that decides power one on the whole census; this decides power two on every class that power one leaves silent, and certifies seven of them.
+  power-two-legal-folded-certificates-reach-beyond-power-one: that certifies entry 300 and runs power two on 53 of the 444 classes; this finishes all 444 and certifies six more entries, with Alexander polynomials not reached before.
+  power-two-folded-fatgraphs-of-genus-k-plus-two-family: that is one closed-form family (it contains entries 300 and 672); this certifies entries outside that family, measures how much of the census power two reaches, and gives an exact obstruction on the rest.
+  legal-f-folded-fatgraphs-give-surface-subgroups: that is the criterion, with an arbitrary power m; this measures where its power-two certificates exist on an explicit census.
+  one-ended-hyperbolic-groups-contain-surface-subgroups: that asks for all one-ended hyperbolic groups; this adds explicit hyperbolic F_3 x| Z with new H_1 invariants and shows that powers one and two together are silent on most short positive automorphisms.
+artifacts:
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_allwords.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/census_allwords.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/m2_class_representatives.txt
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/census_allwords_m2_classes.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surface_batch.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surface_batch_lengths.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census_negatives.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_new_negatives.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_partial.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surfaces_m2_census.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/validate_certificates.py
+---
+
+**ESTABLISHED (computer-certified).** Proof in
+`power-two-word-free-census-of-power-one-silent-classes-proof`.
+
+Setting: `phi_scan4.json` is the census of 6420 short positive automorphisms of `F = F(a, b, c)` of
+`legal-folded-certificates-at-power-one-census`. Relabelling and reversal split it into 535
+classes. At power one, 444 classes have no legal `f`-folded fatgraph at all. Their representatives
+are listed in `m2_class_representatives.txt`. For each representative `phi`, with rose map `f`, the
+word-free LP of `lp_allwords.py` was run on `phi^2` (`census_allwords_m2_classes.log`, all 444
+entries, one per line).
+
+1. **Exact obstruction for 411 classes.** For 411 representatives an exact integer Farkas vector
+   makes the power-two LP infeasible. So these automorphisms have no legal `f^2`-folded
+   fatgraph over the rose, whatever the boundary. Together with power one: for 411 of the 535
+   classes, the criterion at powers 1 and 2 over the rose gives nothing.
+2. **Nine undecided in floating point.** Entries 333, 412, 1188, 1191, 1459, 1872, 2283, 2439 and
+   2735 are infeasible in floating point, but rounding gave no exact Farkas vector. They are not
+   claimed.
+3. **Seven certified classes.** 24 representatives are LP-negative. Seven of them have a legal
+   `f^2`-folded fatgraph that passes the independent checker `verify_surface.py`. By the criterion
+   applied to `f^2`, the mapping torus `G = F x|_phi Z` contains the surface group below, since
+   `F x|_{phi^2} Z` has index 2 in `G`.
+
+   | entry | `phi` | `chi_M` | `\|T\|` | `partial^-` | darts | genus |
+   |---|---|---|---|---|---|---|
+   | 300 | `a -> abb, b -> caaa, c -> babb` | `t^3 - t^2 - 9t + 1` | 8 | `bc, CB` | 60 | 5 |
+   | 672 | `a -> abb, b -> caa, c -> babb` | `t^3 - t^2 - 7t + 1` | 6 | `bc, CB` | 48 | 4 |
+   | 3075 | `a -> bab, b -> aaca, c -> bbab` | `t^3 - t^2 - 9t + 1` | 8 | `bc, CB` | 60 | 5 |
+   | 3684 | `a -> abb, b -> cabc, c -> cab` | `t^3 - 3t^2 - t - 1` | 4 | `aabb, BBAA` | 104 | 3 |
+   | 4011 | `a -> ab, b -> babc, c -> bab` | `t^3 - 3t^2 - t + 1` | 2 | `bb, BB` | 56 | 3 |
+   | 4017 | `a -> ab, b -> bcba, c -> bab` | `t^3 - 3t^2 - t + 1` | 2 | `bb, BB` | 56 | 3 |
+   | 4052 | `a -> bc, b -> bca, c -> cbca` | `t^3 - 3t^2 - t + 1` | 2 | `bb, BB` | 40 | 3 |
+
+   Here `T` is the torsion subgroup of `H_1(G)`. Entries 300 and 672 are `phi_3` and `phi_2` of
+   `power-two-folded-fatgraphs-of-genus-k-plus-two-family`, and entry 300 is the automorphism of
+   `power-two-legal-folded-certificates-reach-beyond-power-one`. The other five are new.
+   Every mapping torus in the table is one-ended and hyperbolic.
+4. **New groups.** The Alexander polynomials `t^3 - 3t^2 - t + 1` (entries 4011, 4017 and 4052)
+   and `t^3 - 3t^2 - t - 1` (entry 3684) do not occur among the groups certified before, even up to
+   `t <-> t^-1`: the power-one classes, the two-parameter rank-3 family, the power-two family and
+   the every-rank family. So the corresponding groups are new. Entries 4011, 4017 and 4052 give the
+   first certified hyperbolic `F_3 x| Z` whose `H_1` torsion has order 2. Every earlier rank-3
+   certificate has torsion of even order at least 4. Entry 3075 has the same Alexander polynomial
+   as entry 300, and whether their groups are isomorphic is not decided here.
+5. **Seventeen open classes.** The other 17 LP-negative representatives are 61, 108, 198, 228, 414,
+   464, 939, 1632, 1633, 1635, 1744, 2298, 2429, 4010, 4012, 4485 and 4887. None of them has a
+   certificate with `partial^- = {w, w^-1}` and `|w| <= 4`.
+
+## Why it matters
+
+- **Power two is sharp on part of the census.** Among the 33 classes not killed exactly at power
+  two, seven are certified. Every certificate has two boundary circles, genus at most 5, and at most
+  104 darts.
+- **Power two is still silent on most of the census.** The exact obstruction of part 1 covers 411
+  classes and every boundary. Raising the power helps, but it does not by itself cover all short
+  positive automorphisms. Any uniform argument has to go beyond small powers, or change the train
+  track representative.
+- **The certified set leaves the known families.** Part 4 gives the first group with torsion of
+  order 2 in `H_1`. It also gives an Alexander polynomial with constant term `-1` (`det M = +1`),
+  which no earlier rank-3 certificate has.
+
+## Evidence
+
+- `census_allwords_m2_classes.log`: 444 entry lines, whose `stats` lines add up to
+  `{infeasible-exact: 411, infeasible-float: 9, NEGATIVE: 24}`. The set of entries equals
+  `m2_class_representatives.txt`.
+- `surfaces_m2_partial.log`, `surfaces_m2_new_negatives.log` and `surfaces_m2_census_negatives.log`
+  record the boundary search on all 24 negative entries. Boundaries with `|w| <= 3` use
+  `surface_batch.py`, and `|w| = 4` uses `LENS=4 surface_batch_lengths.py`.
+- `verify_surfaces_m2_census.log`: `verify_surface.py` gives `CERTIFICATE OK` on the five new
+  certificates in `surfaces_m2_census/`. It checks an explicit inverse, `M^k > 0`, a cubic with no
+  rational root, (L), (2), (3), (4), connectivity and `chi(X)`. `validate_certificates.py`
+  projects each certificate to a feasible point of the power-two LP with the same `chi`.
+- Entries 300 and 672 are covered by the notes that certify them.
+
+## Scope
+
+- Only the rose representative of each class, and only powers 1 and 2. Part 1 does not say that
+  these groups lack surface subgroups, or that a higher power or another train track fails.
+- Parts 2 and 5 are open. A better rational Farkas search could settle part 2. Longer boundaries,
+  more boundary circles, or power 3 could settle part 5.
+- Part 4 compares Alexander polynomials only with the groups certified in this lane.

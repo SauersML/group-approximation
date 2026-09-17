@@ -1,0 +1,5 @@
+K44 p=3 class<=5 |P|=3^308 J nontrivial: false (8613ms)
+K44 p=3 class<=6 |P|=3^652 J nontrivial: false (248182ms)
+
+[exited with code 124]
+class<=7: not finished within timeout 1200 (exit 124)

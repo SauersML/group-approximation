@@ -1,0 +1,7 @@
+  A2 p=5 class<=50: killed or failed (exit 124)
+  A2 p=11 class<=40: killed or failed (exit 124)
+A2 p=11 class<=24 |Q|=p^64 time=22744ms ord w=1
+  increments: [ 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 
+  2, 3, 3, 2 ]
+A2 p=13 class<=20 |Q|=p^54 time=8866ms ord w=1
+  increments: [ 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3, 2, 3, 3 ]

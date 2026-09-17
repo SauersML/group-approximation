@@ -1,0 +1,9 @@
+m=1 leaves=0 hits=0
+m=2 leaves=1748 hits=0
+m=3 leaves=6794 hits=0
+m=4 leaves=25174 hits=0
+m=5 leaves=66748 hits=0
+m=6 leaves=162070 hits=0
+m=7 leaves=367434 hits=0
+m=8 leaves=759602 hits=60
+n=6 M=8 shards=[0,2572) of 2572 nodes=13518960 total_hits=60

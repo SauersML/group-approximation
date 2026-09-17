@@ -1,0 +1,30 @@
+# Lemma 7' (one_ended_multi.py) on the 8 doubles left undecided by Lemma 7; ranks 2,3 (1200 s timeout each)
+C ['AABa', 'aaba'] ranks [2, 3] verified certificates 144
+vertices of Gamma_H per round [1] => ONE-ENDED
+exit 0 ranks 2,3 AABa aaba
+C ['aaBBBBA', 'AbbabbA'] ranks [2, 3] verified certificates 216
+vertices of Gamma_H per round [2, 1] => ONE-ENDED
+exit 0 ranks 2,3 aaBBBBA AbbabbA
+C ['BAbA', 'ABAAAA'] ranks [2, 3] verified certificates 48
+vertices of Gamma_H per round [16, 1] => ONE-ENDED
+exit 0 ranks 2,3 BAbA ABAAAA
+C ['babABaa', 'AbaBBAA'] ranks [2, 3] verified certificates 80
+vertices of Gamma_H per round [1] => ONE-ENDED
+exit 0 ranks 2,3 babABaa AbaBBAA
+C ['ABBB', 'BAbabb'] ranks [2, 3] verified certificates 32
+vertices of Gamma_H per round [12] => undecided
+exit 0 ranks 2,3 ABBB BAbabb
+C ['BBBBBaBA', 'BBaa'] ranks [2, 3] verified certificates 16
+vertices of Gamma_H per round [10] => undecided
+exit 0 ranks 2,3 BBBBBaBA BBaa
+C ['BAABaaa', 'AbAA'] ranks [2, 3] verified certificates 72
+vertices of Gamma_H per round [1] => ONE-ENDED
+exit 0 ranks 2,3 BAABaaa AbAA
+# rank-4 certificates for the remaining rank-4 case: python3 one_ended_multi.py 4 aBAAb baBaaaba
+C ['aBAAb', 'baBaaaba'] ranks [4] verified certificates 96
+vertices of Gamma_H per round [14, 14] => undecided
+exit 0 4 aBAAb baBaaaba
+# ranks 2,3 with MAXLEN=4 for BBBBBaBA BBaa (same script, MAXLEN set to 4): (whole?, vertices per round)
+certs 16
+(False, [5, 5])
+exit 0

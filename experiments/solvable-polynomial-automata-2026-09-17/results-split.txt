@@ -1,0 +1,48 @@
+== Z/4 (order 4): 1 chief path(s); some path fully split: False
+    |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== Z/2^2 (order 4): 3 chief path(s); some path fully split: False
+    |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== Z/6 (order 6): 2 chief path(s); some path fully split: True
+    |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=6 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== Z/8 (order 8): 1 chief path(s); some path fully split: False
+    |Q|=8 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== D_6 (order 6): 1 chief path(s); some path fully split: True
+    |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== D_8 (order 8): 3 chief path(s); some path fully split: False
+    |Q|=8 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== D_10 (order 10): 1 chief path(s); some path fully split: True
+    |Q|=10 F_5^1 End=F_5 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== D_12 (order 12): 4 chief path(s); some path fully split: False
+    |Q|=12 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=12 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== Q_8 (order 8): 3 chief path(s); some path fully split: False
+    |Q|=8 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== A_4 (order 12): 1 chief path(s); some path fully split: True
+    |Q|=12 F_2^2 End=F_4 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== S_4 (order 24): 1 chief path(s); some path fully split: True
+    |Q|=24 F_2^2 End=F_2 e=2 split=True T1=True certificate_checked=True | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== F_5 x| <2> (order 20): 1 chief path(s); some path fully split: False
+    |Q|=20 F_5^1 End=F_5 e=1 split=True T1=True certificate_checked=True | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== F_7 x| <3> (order 42): 2 chief path(s); some path fully split: True
+    |Q|=42 F_7^1 End=F_7 e=1 split=True T1=True certificate_checked=True | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=42 F_7^1 End=F_7 e=1 split=True T1=True certificate_checked=True | |Q|=6 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== F_7 x| <2> (order 21): 1 chief path(s); some path fully split: True
+    |Q|=21 F_7^1 End=F_7 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== Z/3 x| Z/4 (order 12): 2 chief path(s); some path fully split: False
+    |Q|=12 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=12 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== S_3 x Z/2 (order 12): 4 chief path(s); some path fully split: False
+    |Q|=12 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=12 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== S_3 x Z/3 (order 18): 3 chief path(s); some path fully split: True
+    |Q|=18 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=6 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+    |Q|=18 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True | |Q|=6 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== SL(2,3) (order 24): 1 chief path(s); some path fully split: True
+    |Q|=24 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True | |Q|=12 F_2^2 End=F_4 e=1 split=True T1=True certificate_checked=True | |Q|=3 F_3^1 End=F_3 e=1 split=True T1=True certificate_checked=True
+== S_3 wr Z/2 (order 72) (order 72): 3 chief path(s); some path fully split: False
+    |Q|=72 F_3^2 End=F_3 e=2 split=True T1=True certificate_checked=True | |Q|=8 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=4 F_2^1 End=F_2 e=1 split=False T1=False certificate_checked=None | |Q|=2 F_2^1 End=F_2 e=1 split=True T1=True certificate_checked=True
+== A_5 (order 60): 1 chief path(s); some path fully split: False
+    residue 60
+== S_5 (order 120): 1 chief path(s); some path fully split: False
+    residue 120

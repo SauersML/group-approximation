@@ -37,3 +37,10 @@ identity. This is the No answer to Zaremsky Problem 3.5
   kernel, the unproved step G1 of Proposition 6.4 must fail, so the choice of
   `gamma''` there is the natural place to look for Moody-type arc pairs with
   vanishing pairing.
+- **2026-09-17, exhaustive Bigelow arc-pair search** (sw-094, flagship-2026-09-17, curve-pair-enumeration).
+  - The search enumerates every minimal-position arc `alpha` from `q_1` to `q_2` on `D_4` by its crossing sequence against the arc `beta_0` from `p_0` to `q_3`, then tests the exact pairing polynomial.
+  - No pair with `i <= 250` has vanishing pairing. This is established as `no-four-strand-bigelow-arc-pair-with-at-most-250-crossings`.
+  - By Bigelow's criterion, a kernel element must have a conjugate that pushes `alpha_0` across `beta_0` more than 250 times.
+  - Controls: two independent implementations agree on leaf counts; `n = 3` shows no cancellation for `m <= 40`; `n = 6` has hits at `m = 8`.
+  - Cost grows like `M^{5.3}`, so reaching Bigelow's asserted 500 would cost about 40 times this run.
+  - Near-miss families have `||p||_1 = 6`, with blocks divisible by `1 - t + t^2`, so no norm-growth obstruction is visible. The next lever is the Brunnian reduction: restrict to arcs that become trivial in `D_3` once `q_4` is filled. Those grow only like `m^2` per `m`, which makes a reverse search past 500 plausible.

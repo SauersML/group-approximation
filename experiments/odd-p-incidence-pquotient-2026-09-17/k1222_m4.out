@@ -1,0 +1,5 @@
+K1222 m=4 class<=1 |P|=2^12 order of J: 1
+K1222 m=4 class<=2 |P|=2^45 order of J: 2
+K1222 m=4 class<=3 |P|=2^141 order of J: 2
+K1222 m=4 class<=4 |P|=2^473 order of J: 2
+exit 124

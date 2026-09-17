@@ -32,3 +32,15 @@ equivariant.
   is the set of good points. Its relative commutant has dimension at most `d^(2 eps |V|)`.
 - That commutant nevertheless contains the tensor product of `(1 - eps)|V| / |N^-1 N|^2` disjoint copies of `F`.
   This forces `2^(c|V|) <= d^(2 eps |V|)`, which fails for small `eps`.
+
+**Referee (2026-09-17, ref-04): sound.**
+- Checked every step of `sofic-groups-are-quantum-surjunctive-proof`. The good-point identities `(v.g).h = v.(gh)`
+  and `w = v.h` with `h` in `N N^-1`, `W N^-1` or `W W^-1` use multiplicativity only on `K = (N u N^-1)^8`. The
+  chart identity `iota_w = iota_v o alpha_h` makes `Psi` a unital *-homomorphism, the commutant bound is exact
+  (`C = M_(d^(|V| - |V_1|))`), each `F_v` commutes with every `Psi_w(M_d)` by equivariance of the defect, and the
+  packing bound `|V_1| <= |P| |W|^2` together with `dim F >= 2` contradicts the choice of `eps`.
+- The route uses only items 2-3 of `quantum-endomorphisms-split-off-their-relative-commutant` (local defect and
+  criterion), which the audit found sound. That node's Step 4 gap is now filled, so the derivation is complete.
+- Literature: this is the quantum analogue of Gromov-Weiss (`sofic-groups-are-surjunctive`); for `G = Z` it is
+  contained in Schumacher-Werner (quant-ph/0405174). No source stating the sofic case for quantum automata was
+  found, and the claim does not assert more than the route proves.

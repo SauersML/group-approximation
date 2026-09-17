@@ -1,0 +1,2 @@
+(xyxYXY,xxxYYYY) LMAX=12 per=True aut=True target=both: EXHAUSTED, 7391 states, 212.3s
+(xyxYXY,xxxYYYY) LMAX=13 per=True aut=True target=both: not completed (python run hit the 1200s cap)

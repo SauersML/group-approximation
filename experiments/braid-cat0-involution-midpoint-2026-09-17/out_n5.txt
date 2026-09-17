@@ -1,0 +1,6 @@
+n 5 vertices 40 all-pairs vertex paths done 0.1 s
+isometry group order 20
+min d_X upper bound over period-2 vertices (any): (np.float64(0.3918265520306073), ('{1235}', '{12}', True))
+period-2 vertices far from Fix(g): 180 | min upper bound among them: (np.float64(1.0), ('{134}', '{245}', False, 8, 0))
+far period-2 pairs with d_B < pi (not antipodal): 0 | (vertex-path bound/pi, d_B/pi, z, gz, g order-reversing, #fixed vertices of g):
+VERDICT: no refutation from vertex paths | 0.1 s

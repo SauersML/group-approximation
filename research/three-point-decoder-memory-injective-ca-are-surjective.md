@@ -63,3 +63,15 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   `{e, s, t}` over any `G` gives one over `<s, t>`. So the remaining content is exactly the case of a nonsurjunctive
   (hence nonsofic) two-generated group `G = <s, t>`. Neither the host relations outside `<s, t>` nor the encoder
   windows there matter any more.
+- **Rule-free table-group proofs are as hard as the conjecture (sw-002, 2026-09-17).**
+  `three-point-memory-table-certificates-are-universal` studies a condition that ignores the rules: a homomorphism
+  from the table group `P(T)` to a surjunctive group that is injective on the reverse products. That condition
+  proves this claim for tables `T` with three decoder points. For any class `C`, it holds for every realizable
+  three-row table iff every group is locally embeddable into `C`. With `C` the surjunctive groups, that is
+  Gottschalk's conjecture. So a proof of this claim through the table group alone, in the style of the
+  finite-quotient census of `strict-pairs-need-a-memory-with-five-elements`, proves the full conjecture.
+  - The failing tables are the ball tables `{1, a, b} x B_K(2r)` of a two-generated `K = <a, b>`, which matches the
+    remaining case recorded in the previous entry.
+  - Finite quotients already fail at the `3 x 147` ball table of `BS(2,3)` (the pair `au`, `ua` with
+    `u = t^-1 a t`), and amenable targets fail too.
+  - A resolution must therefore use the rules `mu`, `nu`.

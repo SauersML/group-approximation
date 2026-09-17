@@ -140,3 +140,30 @@ from MF to weak quasidiagonality. Therefore
 not an established extension of this equivalence. The full audited proofs
 and the exact MF gap are in
 `research/artifacts/hyperbolic-four-statements-audit-2026-09-11.md`.
+
+**2026-09-17: Rips-type extensions carry no invisibility from their base.**
+[[hyperbolic-rf-kernel-confines-residual-to-centralizer]] proves
+that if a hyperbolic group has an infinite, finitely generated, residually
+finite normal subgroup `N`, then its finite residual lies in the finite
+normal subgroup `C_G(N)`. Consequences:
+
+- A torsion-free hyperbolic Rips extension, over any finitely presented
+  base, is a counterexample exactly when its kernel is not residually
+  finite. No choice of base changes this: quotientless, acyclic,
+  Deligne-type, with a nonzero Schur multiplier, or not residually finite.
+- Every counterexample with infinite residual has all such normal
+  subgroups not residually finite.
+- Any other counterexample falls under the finite-residual shape.
+
+This closes the Rips family as a route to a torsion-free counterexample.
+The cross-class question on
+[[torsion-free-non-residually-finite-hyperbolic-group]] stays open.
+
+A literature pointer on the same passage: Bridson--Wilton, *The triviality
+problem for profinite completions*, Invent. Math. 202 (2015), arXiv:1401.2273,
+the paper's final theorem (label `t:mainHyp` in the arXiv source, read
+2026-09-17). It proves that this root is
+equivalent to the undecidability of `Ĝ ≅ 1` for hyperbolic presentations.
+The equivalence holds within the torsion-free class as well. The proof
+feeds a quotientless hyperbolic input into Belegradek--Osin, so it gives no
+transfer from a counterexample with torsion to a torsion-free one.

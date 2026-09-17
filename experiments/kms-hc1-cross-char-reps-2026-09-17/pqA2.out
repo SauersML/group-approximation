@@ -1,0 +1,17 @@
+A2 p=3 class<=1 |Q|=p^3 ord[r,s]=1 ord w=1
+A2 p=3 class<=2 |Q|=p^6 ord[r,s]=1 ord w=1
+A2 p=3 class<=3 |Q|=p^8 ord[r,s]=1 ord w=1
+A2 p=3 class<=4 |Q|=p^11 ord[r,s]=3 ord w=1
+A2 p=3 class<=5 |Q|=p^14 ord[r,s]=3 ord w=1
+A2 p=3 class<=6 |Q|=p^22 ord[r,s]=3 ord w=3
+A2 p=3 class<=7 |Q|=p^30 ord[r,s]=3 ord w=3
+A2 p=5 class<=1 |Q|=p^3 ord[r,s]=1 ord w=1
+A2 p=5 class<=2 |Q|=p^6 ord[r,s]=1 ord w=1
+A2 p=5 class<=3 |Q|=p^8 ord[r,s]=1 ord w=1
+A2 p=5 class<=4 |Q|=p^11 ord[r,s]=5 ord w=1
+A2 p=5 class<=5 |Q|=p^14 ord[r,s]=5 ord w=1
+A2 p=5 class<=6 |Q|=p^16 ord[r,s]=5 ord w=1
+A2 p=5 class<=7 |Q|=p^19 ord[r,s]=5 ord w=1
+A2 p=5 class<=8 |Q|=p^22 ord[r,s]=5 ord w=1
+A2 p=5 class<=9 |Q|=p^24 ord[r,s]=5 ord w=1
+A2 p=5 class<=10 |Q|=p^27 ord[r,s]=5 ord w=1

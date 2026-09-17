@@ -1,0 +1,160 @@
+# Rank-5 bowtie shapes beyond rank-(1,3) in [1,c]_W, c = s_1 ... s_5 (sw-042, 2026-09-17)
+# Run from this directory: nice -n 10 timeout 1200 python3 rank24_bowties.py <group> <H>
+#   certificate: CERT_OUT=cert24-<group>.json python3 rank24_bowties.py <group> <H>; python3 verify_bowtie24.py cert24-<group>.json
+# 5333 = [5,3,3,3], 5335 = [5,3,3,5], 53311 = [5,3,3^{1,1}], A5 = spherical calibration.
+# Only lower bounds on [1,c]_W are used: a certificate is valid for any H; 0 certificates at a bound proves nothing.
+
+$ rank24_bowties.py A5 5
+[A5] n=5 H=5.0: 1296 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 15; rank-2 elements: 50 [3.5s]
+  rank-2 pairs below >= 2 coatoms: 420 [3.5s]
+  verdicts: {'det chi_c|U3 > 0': 420}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [14.4s]
+$ rank24_bowties.py 53311 6
+[53311] n=5 H=6.0: 1606 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 56; rank-2 elements: 122 [4.7s]
+  rank-2 pairs below >= 2 coatoms: 1519 [4.9s]
+  verdicts: {'det chi_c|U3 > 0': 1509, 'det chi_c|U3 <= 0': 10}
+  CERTIFIED RANK-(2,4) BOWTIES: 10 [50.1s]
+$ rank24_bowties.py 5333 6
+[5333] n=5 H=6.0: 1489 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 37; rank-2 elements: 97 [5.3s]
+  rank-2 pairs below >= 2 coatoms: 1102 [5.4s]
+  verdicts: {'det chi_c|U3 > 0': 1102}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [40.8s]
+$ rank24_bowties.py 5335 6
+[5335] n=5 H=6.0: 1467 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 44; rank-2 elements: 144 [5.0s]
+  rank-2 pairs below >= 2 coatoms: 1735 [5.1s]
+  verdicts: {'det chi_c|U3 > 0': 1735}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [53.4s]
+$ rank24_bowties.py 5333 7
+[5333] n=5 H=7.0: 1988 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 52; rank-2 elements: 124 [6.4s]
+  rank-2 pairs below >= 2 coatoms: 1560 [6.6s]
+  verdicts: {'det chi_c|U3 > 0': 1560}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [55.3s]
+$ rank24_bowties.py 5335 7
+[5335] n=5 H=7.0: 2592 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 85; rank-2 elements: 221 [9.3s]
+  rank-2 pairs below >= 2 coatoms: 3083 [9.7s]
+  verdicts: {'det chi_c|U3 > 0': 3083}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [106.2s]
+$ rank24_bowties.py 5333 8
+[5333] n=5 H=8.0: 2774 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 55; rank-2 elements: 159 [8.7s]
+  rank-2 pairs below >= 2 coatoms: 2146 [8.9s]
+  verdicts: {'det chi_c|U3 > 0': 2146}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [67.1s]
+$ rank24_bowties.py 5335 8
+[5335] n=5 H=8.0: 3348 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 87; rank-2 elements: 283 [9.9s]
+  rank-2 pairs below >= 2 coatoms: 4110 [10.2s]
+  verdicts: {'det chi_c|U3 > 0': 4110}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [126.7s]
+
+$ CERT_OUT=cert24-53311.json rank24_bowties.py 53311 6; verify_bowtie24.py cert24-53311.json
+  (search output as above; first certificate written to cert24-53311.json)
+[53311] witnesses verified: x, y <= u and x, y <= v in [1,c]_W, x != y, u != v, dim(Mov x + Mov y) = 3
+  det chi_c|(Mov x + Mov y) = -sqrt(5)/16 - 1/16 ~ -0.20225425
+  CERTIFIED: no rank-3 element above x, y (Lemma D); (x, y; u, v) is a bowtie; [1,c]_W is not a lattice
+
+## Negative control (spherical A5): an uncertified candidate must be rejected
+$ CONTROL=1 CERT_OUT=ctrl24-A5.json rank24_bowties.py A5 5; verify_bowtie24.py ctrl24-A5.json
+[A5] n=5 H=5.0: 1296 reduced reflection factorizations of c (bounded orbit closed: True)
+  coatoms: 15; rank-2 elements: 50 [3.9s]
+  rank-2 pairs below >= 2 coatoms: 420 [4.1s]
+  verdicts: {'det chi_c|U3 > 0': 420}
+  CERTIFIED RANK-(2,4) BOWTIES: 0 [15.6s]
+  first certificate written to ctrl24-A5.json
+[A5] witnesses verified: x, y <= u and x, y <= v in [1,c]_W, x != y, u != v, dim(Mov x + Mov y) = 3
+  det chi_c|(Mov x + Mov y) = 1/8 ~ 0.12500000
+  NOT CERTIFIED: det > 0
+verifier exit 1
+
+## Mixed (1; 3, 4) non-join search: det chi_c|U2 <= 0, a, b <= p (rank 3), a, b <= u (coatom), Mov(p) not in Mov(u)
+# (A5 H5 and 5333 H7 / H9 lines as run; per-pair diagnostic lines were added between the first and second batch)
+$ mixed_bowties.py A5 5
+[A5] n=5 H=5.0: 1296 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 50; coatoms: 15 [1.8s]
+  atom pairs below a rank-3 element, never in one factorization: 15 [1.8s]
+  verdicts: {'det > 0': 15}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [1.8s]
+$ mixed_bowties.py 53311 6
+[53311] n=5 H=6.0: 1606 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 162; coatoms: 56 [2.7s]
+  atom pairs below a rank-3 element, never in one factorization: 105 [2.7s]
+  verdicts: {'det > 0': 102, 'det <= 0': 3, 'det <= 0, >= 2 rank-3 above (rank-(1,3) bowtie)': 3}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 3 [3.3s]
+$ mixed_bowties.py 5333 7
+[5333] n=5 H=7.0: 1988 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 158; coatoms: 52 [3.6s]
+  atom pairs below a rank-3 element, never in one factorization: 122 [3.6s]
+  verdicts: {'det > 0': 122}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [4.2s]
+$ mixed_bowties.py 5335 7
+[5335] n=5 H=7.0: 2592 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 285; coatoms: 85 [4.6s]
+  atom pairs below a rank-3 element, never in one factorization: 298 [4.6s]
+  verdicts: {'det > 0': 293, 'det <= 0': 5}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [6.4s]
+$ mixed_bowties.py 5335 7
+[5335] n=5 H=7.0: 2592 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 285; coatoms: 85 [4.3s]
+  atom pairs below a rank-3 element, never in one factorization: 298 [4.3s]
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 5, containing Mov(p): 5
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 5, containing Mov(p): 5
+  verdicts: {'det > 0': 293, 'det <= 0': 5}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [5.8s]
+$ mixed_bowties.py 5335 9
+[5335] n=5 H=9.0: 5686 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 541; coatoms: 153 [10.4s]
+  atom pairs below a rank-3 element, never in one factorization: 669 [10.4s]
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 5, containing Mov(p): 5
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 5, containing Mov(p): 5
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 2, containing Mov(p): 2
+    det <= 0 pair with one rank-3 element above: coatoms above a, b: 3, containing Mov(p): 3
+  verdicts: {'det > 0': 636, 'det <= 0': 33}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [14.4s]
+$ mixed_bowties.py 5333 9
+[5333] n=5 H=9.0: 4015 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 280; coatoms: 83 [7.0s]
+  atom pairs below a rank-3 element, never in one factorization: 300 [7.0s]
+  verdicts: {'det > 0': 300}
+  CERTIFIED MIXED (1; 3, 4) NON-JOINS: 0 [8.5s]
+
+# Observation: for [5,3,3,5] at H = 9 there are 33 atom pairs with det chi_c|U2 <= 0 (so no rank-2 upper bound),
+# each below exactly one rank-3 element p in the bounded data, and every coatom found above a, b contains Mov(p).
+# This is what a lattice with rank-3 joins of such pairs looks like; it certifies nothing either way.

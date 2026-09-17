@@ -857,9 +857,24 @@ non-surjective ones. As stated it cannot exist.
   groups are QCA-surjunctive, by a dimension count on sofic approximations. Third, for every prime `p`,
   the Clifford sector is equivalent to stable finiteness of `F_p[G]`. A strict trace-preserving example
   exists on the end-stabilizer tree.
-- **What remains open.** No implication between QCA-surjunctivity and classical surjunctivity is known
-  in either direction. A classical strict pair yields only the non-unital `Ad V` of
-  `split-ca-quantization-has-sharp-defect`.
+- **Monomial dictionary (established, relaunch).** `monomial-quantum-automata-are-topological-bernoulli-absorptions`
+  proves an equivalence. On the one side, `(x)_G M_d` carries a strict monomial diagonal-preserving automaton: `Z`s
+  go to diagonal unitaries, and `X`s go to diagonal-times-permutation unitaries. On the other, there is a
+  shift-equivariant homeomorphism `A^G -> A^G x Y` with `|A| = d` and `Y` a nontrivial subshift, a *topological
+  Bernoulli absorption*.
+  - The diagonal part of the automaton is the decoder `sigma = pr_1 Psi`.
+  - Its permutation part is a translation lift `T_e` with `sigma o T_e = sigma + delta_e`.
+  - Every absorption yields a strict pair, so classical surjunctivity implies surjunctivity of the monomial quantum
+    sector over every group.
+  - The Clifford examples `diag(A, B^*)` and the tree rule are monomial.
+  - The known chain is: Kaplansky failure implies absorption, absorption is equivalent to a strict monomial automaton,
+    and either implies non-surjunctivity.
+- **What remains open.** Outside the monomial sector, no implication between QCA-surjunctivity and classical
+  surjunctivity is known. A classical strict pair yields only the non-unital `Ad V` of
+  `split-ca-quantization-has-sharp-defect`, unless its decoder has a translation lift. The sharp question is
+  whether every non-surjunctive group carries a topological Bernoulli absorption. A yes gives the full transfer
+  `strict-automata-yield-strict-quantum-endomorphisms`. A no would separate non-surjunctivity from Kaplansky-type
+  self-absorption.
 
 **Heretic lane: three unstated assumptions (sw-013, 2026-09-17).** The hot families (finite models,
 entropy/measure, group rings, host geometry, quantifier shift) share three assumptions that none of them

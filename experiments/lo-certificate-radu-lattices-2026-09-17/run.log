@@ -1,0 +1,58 @@
+++ nice -n 10 timeout 1200 python3 test_bmw.py
+ok
+++ nice -n 10 timeout 1200 python3 lo_search.py radu44 4 kernel 2
+group=radu44 L=4 kernel short=2 elements=384 vars=192 clauses=1528 build=0s
+RESULT SAT (no certificate in this ball) solve=0.0s
+++ nice -n 10 timeout 1200 python3 lo_search.py radu44 6 kernel 2 certificate-gamma44-kernel-L6.txt
+group=radu44 L=6 kernel short=2 elements=4920 vars=2460 clauses=30016 build=4s
+RESULT UNSAT (not left-orderable) solve=0.3s
+  core 88
+  core 84
+  core 84
+minimal certificate triples: 70 -> certificate-gamma44-kernel-L6.txt
+++ nice -n 10 timeout 1200 python3 lo_search.py radu66 4 kernel 2 certificate-gamma662-kernel-L4.txt
+group=radu66 L=4 kernel short=2 elements=2460 vars=1230 clauses=16572 build=4s
+RESULT UNSAT (not left-orderable) solve=0.1s
+  core 340
+  core 242
+  core 215
+  core 194
+  core 191
+minimal certificate triples: 169 -> certificate-gamma662-kernel-L4.txt
+++ nice -n 10 timeout 1200 python3 ab_search.py 6 2 derived
+radu44 mode=derived L=6 short=2 elements=1680 vars=840 clauses=2520 shorts=6 build=0s
+RESULT SAT
+++ nice -n 10 timeout 1200 python3 ab_search.py 6 4 derived certificate-gamma44-derived-L6.txt
+radu44 mode=derived L=6 short=4 elements=1680 vars=840 clauses=19828 shorts=120 build=9s
+RESULT UNSAT (not left-orderable)
+  core 147
+  core 126
+  core 126
+minimal certificate triples: 124 -> certificate-gamma44-derived-L6.txt
+++ nice -n 10 timeout 1200 python3 verify_certificate.py radu44 certificate-gamma44-kernel-L6.txt kernel
+triples verified: 70 variables: 43
+DPLL nodes: 15
+CNF satisfiable: False
+CERTIFICATE VALID
+++ nice -n 10 timeout 1200 python3 verify_certificate.py radu66 certificate-gamma662-kernel-L4.txt kernel
+triples verified: 169 variables: 109
+DPLL nodes: 359
+CNF satisfiable: False
+CERTIFICATE VALID
+++ nice -n 10 timeout 1200 python3 verify_certificate.py radu44 certificate-gamma44-derived-L6.txt kernel
+triples verified: 124 variables: 69
+DPLL nodes: 71
+CNF satisfiable: False
+CERTIFICATE VALID
+++ python3 derived_check.py radu44 certificate-gamma44-derived-L6.txt
+control a1 b2 in span: False | relator r1 in span: True
+words checked: 372 outside [G,G]: 0
+ALL WORDS IN COMMUTATOR SUBGROUP
+++ python3 derived_check.py radu44 certificate-gamma44-kernel-L6.txt
+++ tail -2
+words checked: 210 outside [G,G]: 159
+MEMBERSHIP FAILED
+++ nice -n 10 timeout 1200 python3 ncl_search.py radu44 2 2
+c = a1^-1 a1^-1 a1^-1 a2^-1 a2^-1 a2^-1 a2^-1 a1 a1 a1 a2 a2 a2 a2  d = a2^-1 a2^-1 a2^-1 a1^-1 a1^-1 a1^-1 a1^-1 a2 a2 a2 a1 a1 a1 a1
+group=radu44 R=2 levels=2 L1=140 elements=19492 vars=9746 clauses=19460 build=207s
+RESULT SAT (no certificate) solve=0.2s

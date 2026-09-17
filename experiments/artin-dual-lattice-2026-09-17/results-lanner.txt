@@ -1,0 +1,111 @@
+# Rank-(1,3) bowtie certificates for the compact hyperbolic tree groups with labels 4 and 5 (sw-042, 2026-09-17)
+# Each block: the command, then its output. Single-threaded; python3 3.11.15, mpmath 1.3.0, sympy 1.14.0.
+
+$ CERT_OUT=cert-5333.json python3 bowties_label4.py 5333 13 13
+[5333] n=5 H=13.0 mode=13: 8829 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 660; atom pairs below >= 2 rank-3 elements: 826 [34.5s]
+  verdicts: {'det > 0': 814, 'det <= 0 (candidate)': 12}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 12 [35.4s]
+  first candidate written to cert-5333.json
+$ python3 verify_bowtie_label4.py cert-5333.json
+[5333] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -sqrt(5)/2 - 1/2 ~ -1.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+exit=0
+
+$ CERT_OUT=cert-5334.json python3 bowties_label4.py 5334 12 13
+[5334] n=5 H=12.0 mode=13: 9388 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 782; atom pairs below >= 2 rank-3 elements: 976 [37.9s]
+  verdicts: {'det > 0': 975, 'det <= 0 (candidate)': 1}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 1 [39.0s]
+  first candidate written to cert-5334.json
+$ python3 verify_bowtie_label4.py cert-5334.json
+[5334] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -5/4 - sqrt(5)/4 ~ -1.8090170;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+exit=0
+
+$ CERT_OUT=cert-5335.json python3 bowties_label4.py 5335 13 13
+[5335] n=5 H=13.0 mode=13: 14296 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 1489; atom pairs below >= 2 rank-3 elements: 1633 [59.0s]
+  verdicts: {'det > 0': 1628, 'det <= 0 (candidate)': 5}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 5 [60.8s]
+  first candidate written to cert-5335.json
+$ python3 verify_bowtie_label4.py cert-5335.json
+[5335] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -3/2 - sqrt(5)/2 ~ -2.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/4 - 1/4 ~ -0.80901699
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+exit=0
+
+$ CERT_OUT=cert-435.json python3 bowties_label4.py 435 11 13
+[435] n=4 H=11.0 mode=13: 584 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 67; atom pairs below >= 2 rank-3 elements: 325 [2.1s]
+  verdicts: {'det > 0': 324, 'det <= 0 (candidate)': 1}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 1 [2.5s]
+  first candidate written to cert-435.json
+$ python3 verify_bowtie_label4.py cert-435.json
+[435] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -5/4 - sqrt(5)/4 ~ -1.8090170;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/8 - 1/8 ~ -0.40450850
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+exit=0
+
+$ CERT_OUT=cert-535.json python3 bowties_label4.py 535 13 13
+[535] n=4 H=13.0 mode=13: 841 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 116; atom pairs below >= 2 rank-3 elements: 513 [2.4s]
+  verdicts: {'det > 0': 511, 'det <= 0 (candidate)': 2}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 2 [2.9s]
+  first candidate written to cert-535.json
+$ python3 verify_bowtie_label4.py cert-535.json
+[535] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -3/2 - sqrt(5)/2 ~ -2.6180340;  det chi_c|span(alpha_a, alpha_b) = -sqrt(5)/4 - 1/4 ~ -0.80901699
+  CERTIFIED: no rank-2 element above a, b (Lemma D); (a, b; p, q) is a bowtie; [1,c]_W is not a lattice
+exit=0
+
+# Null runs at smaller height bounds (0 candidates proves nothing)
+$ python3 bowties_label4.py 5333 9 13
+[5333] n=5 H=9.0 mode=13: 4015 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 280; atom pairs below >= 2 rank-3 elements: 413 [15.1s]
+  verdicts: {'det > 0': 413}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [15.7s]
+$ python3 bowties_label4.py 5334 10 13
+[5334] n=5 H=10.0 mode=13: 6642 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 512; atom pairs below >= 2 rank-3 elements: 686 [25.1s]
+  verdicts: {'det > 0': 686}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [25.9s]
+$ python3 bowties_label4.py 5335 11 13
+[5335] n=5 H=11.0 mode=13: 9100 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 869; atom pairs below >= 2 rank-3 elements: 1063 [37.0s]
+  verdicts: {'det > 0': 1063}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [38.5s]
+$ python3 bowties_label4.py 435 8 13
+[435] n=4 H=8.0 mode=13: 396 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 46; atom pairs below >= 2 rank-3 elements: 214 [1.1s]
+  verdicts: {'det > 0': 214}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [1.3s]
+
+# Spherical controls: the criterion cannot fire (Section 3 remark of the proof), and the verifier rejects a dumped candidate
+$ python3 bowties_label4.py B4 8 13
+[B4] n=4 H=8.0 mode=13: 256 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 16; atom pairs below >= 2 rank-3 elements: 90 [0.7s]
+  verdicts: {'det > 0': 90}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [0.8s]
+$ python3 bowties_label4.py F4 8 13
+[F4] n=4 H=8.0 mode=13: 324 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 24; atom pairs below >= 2 rank-3 elements: 129 [0.9s]
+  verdicts: {'det > 0': 129}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [1.0s]
+$ python3 bowties_label4.py B5 6 13
+[B5] n=5 H=6.0 mode=13: 1655 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 86; atom pairs below >= 2 rank-3 elements: 146 [5.6s]
+  verdicts: {'det > 0': 146}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 0 [5.8s]
+$ CONTROL=1 CERT_OUT=ctrl-F4.json python3 bowties_label4.py F4 6 13 && python3 verify_bowtie_label4.py ctrl-F4.json
+[F4] n=4 H=6.0 mode=13: 276 reduced reflection factorizations of c (bounded orbit closed: True)
+  rank-3 elements: 24; atom pairs below >= 2 rank-3 elements: 113 [0.7s]
+  verdicts: {'det > 0': 113}
+  CANDIDATE RANK-(1,3) BOWTIES (det <= 0 numerically): 1 [0.9s]
+  first candidate written to ctrl-F4.json
+[F4] witnesses verified: a, b <= p and a, b <= q in [1,c]_W, p != q, rank(p) = rank(q) = 3
+  B(alpha_a, alpha_b) = -1/2 ~ -0.50000000;  det chi_c|span(alpha_a, alpha_b) = 1/4 ~ 0.25000000
+  NOT CERTIFIED: det > 0
+exit=1

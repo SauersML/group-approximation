@@ -129,3 +129,22 @@ fixed finitely presented torsion-free group `U`.
       (arXiv:2602.11819) give a finitely generated, residually finite,
       torsion-free group all of whose finite-index subgroups contain
       Promislow's group.
+* **Graphs of division rings (2026-09-17).** A zero-divisor host cannot be
+  built from tree actions with known blocks.
+  - **Loop-inclusive graph theorem.** The Fisher--Sanchez-Peralta graph-of-rings
+    theorem is re-proved including the HNN case omitted in the source
+    (`compatible-graphs-of-groups-with-loops-embed-in-division-rings`).
+  - **Product-of-trees lattices.** Every torsion-free lattice in a product of two
+    trees, and every graph of free groups, has `k[G]` inside a division ring over
+    every field (`product-of-trees-lattices-embed-in-division-rings`). This is an
+    instance of the source's graph corollary once the lattice is written as a graph
+    of free groups, and it includes the finitely presented simple Burger--Mozes
+    lattices. So `T x T` lattice censuses cannot produce hosts.
+  - **Amenable edge groups.** Division-ring embeddability is closed under graphs
+    of groups with amenable edge groups, whatever the vertex division rings
+    (`amenable-edge-graphs-of-groups-preserve-division-ring-embeddings`). This
+    gives a new class over every field, for example `Lambda *_Z P` with `Lambda`
+    Burger--Mozes and `P` Promislow. It is not locally embeddable into
+    unique-product, amenable or residually finite groups.
+  - **What a host must do.** A host that splits over amenable subgroups needs a
+    vertex group whose group ring embeds in no division ring.

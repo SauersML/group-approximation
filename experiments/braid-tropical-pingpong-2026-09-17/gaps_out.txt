@@ -1,0 +1,5 @@
+gap 1 uniform on rays (deg): []
+gap 2 uniform on rays (deg): []
+gap 3 uniform on rays (deg): []
+gap 4 uniform on rays (deg): []
+gap 5 uniform on rays (deg): []

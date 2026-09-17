@@ -1,0 +1,9 @@
+# python3 crosscheck_bfs.py CAP   (independent move code from verify_chain.py; rank 3, AK(3) start)
+CAP 14 states 1 goal False
+CAP 15 states 67 goal False
+CAP 16 states 146 goal False
+CAP 17 states 609 goal False
+CAP 18 states 1110 goal False
+# pzsearch 3 CAP 5000000 xxxYYYY xyxYXY, same caps (rerun 2026-09-17 after relaunch)
+# cap 17: EXHAUSTED depth 17 states 609 processed 609
+# cap 18: EXHAUSTED depth 19 states 1110 processed 1110

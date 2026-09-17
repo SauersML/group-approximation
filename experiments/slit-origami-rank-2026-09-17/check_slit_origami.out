@@ -1,0 +1,26 @@
+Part A: exact combinatorics
+  L=   2 s=  1 n=     8 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..1 swap sheets, disjoint: OK
+  L=   3 s=  1 n=    18 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..1 swap sheets, disjoint: OK
+  L=   4 s=  2 n=    32 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..2 swap sheets, disjoint: OK
+  L=   5 s=  2 n=    50 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..2 swap sheets, disjoint: OK
+  L=   6 s=  3 n=    72 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..3 swap sheets, disjoint: OK
+  L=   7 s=  3 n=    98 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..3 swap sheets, disjoint: OK
+  L=   8 s=  4 n=   128 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..4 swap sheets, disjoint: OK
+  L=   9 s=  4 n=   162 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..4 swap sheets, disjoint: OK
+  L=  10 s=  5 n=   200 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..5 swap sheets, disjoint: OK
+  L=  11 s=  5 n=   242 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..5 swap sheets, disjoint: OK
+  L=  12 s=  6 n=   288 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..6 swap sheets, disjoint: OK
+  L=  40 s= 20 n=  3200 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..20 swap sheets, disjoint: OK
+  L=  64 s= 32 n=  8192 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..32 swap sheets, disjoint: OK
+  L= 101 s= 50 n= 20402 |supp[sigma,tau]|=4 rank(bc-cb)=2 rings 1..50 swap sheets, disjoint: OK
+  all L in 2..40, 64, 101: OK
+Part B: dipole flat connection (HS upper bound) vs proven lower bound
+      L        n  commutator residual  HS^2 distance  HS^2/ln L  lower ln(L/2+1)/64
+      4       32             2.22e-16         5.4652     3.9423              0.0172
+      8      128             5.55e-16         7.7386     3.7215              0.0251
+     16      512             7.45e-16         9.9408     3.5854              0.0343
+     32     2048             1.90e-15        12.1232     3.4980              0.0443
+     64     8192             1.65e-15        14.3020     3.4389              0.0546
+    128    32768             1.60e-15        16.4799     3.3965              0.0652
+    256   131072             3.36e-15        18.6575     3.3646              0.0759
+    512   524288             2.99e-15        20.8351     3.3399              0.0867
