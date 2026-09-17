@@ -6,8 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  `Proof.lean` reduces the target
 `CellPocketWalkProperArcsBelowSectionStatement` to `LakeFillSuccStatement` and
-`AllCellsShortLoopStatement`.  The second is stated at the fixed thresholds `ε₀ = 0`, `ρ₀ = max 2 ρ₁`
-and for an arbitrary enclosed face set of any O-equivalent copy, with no region data in scope; it is
+`AllCellsShortLoopStatement`.  The second is stated at the fixed thresholds `ε₀ = 0`,
+`ρ₀ = max 2 ρ₁` and for an arbitrary enclosed face set of any O-equivalent copy, with no region data in scope; it is
 circular (it is Greendlinger's lemma at the same cell count) and may fail at small `ε`.  This module
 never meets the all-cells branch.
 
@@ -27,8 +27,8 @@ of step 2, closed in `Proof.lean`).
 
 ## Why the remaining statement is true
 
-`lakeFillOutside_of_target` proves `LakeFillOutsideStatement` from the target statement, with the same
-thresholds: under the target the full-arc hypothesis never holds.  So the gap is true exactly when
+`lakeFillOutside_of_target` proves `LakeFillOutsideStatement` from the target statement, with the
+same thresholds: under the target the full-arc hypothesis never holds.  So the gap is true exactly when
 the target is, and the target is a consequence of Osin's Lemma 9.7(b) at those thresholds (the arcs
 of a cell pocket walk of an optimal copy are proper).  Non-vacuously it is the lake filling of
 `Proof.lean` step 1 in the case where `Π_j` lies in the exterior component (`k = j`, `A = t_2`).
@@ -63,8 +63,8 @@ variable {G : Type u} [Group G] {Lambda : Type w}
 
 /-- **Lake filling with a cell outside, with the region data in scope.**  As the hypotheses of
 `CellPocketWalkProperArcsBelowInput`, together with a full arc, give an enclosed face set turning to
-its successors, holding a relator cell, with a relator cell `Π_k` outside, whose inverse outside walk
-reads two sides of length at most `ε` and then an arc of `Π_k`. -/
+its successors, holding a relator cell, with a relator cell `Π_k` outside, whose inverse outside
+walk reads two sides of length at most `ε` and then an arc of `Π_k`. -/
 def LakeFillOutsideInput (D : RelGenSet G Lambda) (lambda c mu : ℝ) (eps : ℕ)
     (W : Set (List (RelLetter G Lambda))) : Prop :=
   ∀ (Delta : DiscDiagram.{u, w, v} W) (cuts : SectionCuts D lambda c Delta.boundaryWord),
@@ -97,8 +97,8 @@ end Input
 /-- **Lake filling with a cell outside, beyond thresholds.**  The first branch of the lake filling
 (`LakeFillSuccStatement`), with all hypotheses of `CellPocketWalkProperArcsBelowSectionStatement` in
 scope and its threshold shape.  True: the target statement implies it with the same thresholds
-(`lakeFillOutside_of_target`), since there the full-arc hypothesis is never met; vacuous at one relator
-cell since `i ≠ j`. -/
+(`lakeFillOutside_of_target`), since there the full-arc hypothesis is never met; vacuous at one
+relator cell since `i ≠ j`. -/
 def LakeFillOutsideStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
     (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
