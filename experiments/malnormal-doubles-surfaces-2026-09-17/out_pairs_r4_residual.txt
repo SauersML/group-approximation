@@ -1,0 +1,23 @@
+# rank-4 search (search_pairs.py 4 g1 g2, each under timeout 1200) on the 8 C of out_pairs_r3.txt with no rank-3 certificate; exit 124 = timeout, undecided
+C ['aBAAb', 'baBaaaba'] V 12 malnormal True K 6 shapes up to iso 73
+certificates: [((2, 1), (5, ((0, 0), (0, 1), (0, 1), (1, 2), (2, 3), (2, 4), (3, 4), (3, 4)), ['AA', 'bAB', 'BAA', 'A', 'bABa', 'AAb', 'B', 'a'], [('AABAAAbABaBAAbaBAAbbaBaaabaBaabABaab', 1)], (((0, 0), (1, 0), (0, 1), (2, 0)), ((1, 1), (2, 1), (3, 0)), ((3, 1), (4, 0), (5, 0)), ((4, 1), (6, 0), (7, 0)), ((5, 1), (6, 1), (7, 1)))))]
+exit 0 aBAAb baBaaaba
+C ['baBBAbab', 'aaBaaaa'] V 14 malnormal True K 5 shapes up to iso 73
+exit 124 baBBAbab aaBaaaa
+C ['BBaaBBBA', 'bABBABA'] V 12 malnormal True K 4 shapes up to iso 73
+exit 124 BBaaBBBA bABBABA
+C ['bbaabAbb', 'aaBabA'] V 12 malnormal True K 7 shapes up to iso 73
+certificates: [((1, 3), (4, ((0, 1), (0, 1), (0, 2), (0, 3), (1, 2), (1, 3), (2, 3)), ['B', 'ba', 'A', 'a', 'B', 'aB', 'BBaBA'], [('BBBBaBAA', 2), ('bbaaBabAbbaabA', 6), ('ABAb', 9)], (((0, 0), (1, 0), (2, 0), (3, 0)), ((0, 1), (4, 0), (1, 1), (5, 0)), ((2, 1), (4, 1), (6, 0)), ((3, 1), (5, 1), (6, 1)))))]
+exit 0 bbaabAbb aaBabA
+C ['baBAA', 'BBaaBa'] V 10 malnormal True K 3 shapes up to iso 73
+certificates: [((1, 3), (4, ((0, 1), (0, 1), (0, 1), (0, 2), (1, 3), (2, 3), (2, 3)), ['b', 'a', 'BB', 'A', 'a', 'bA', 'AAb'], [('bABBBaaBaaa', 3), ('bbAbAA', 6), ('aBAAb', 1)], (((0, 0), (1, 0), (2, 0), (3, 0)), ((0, 1), (1, 1), (4, 0), (2, 1)), ((3, 1), (5, 0), (6, 0)), ((4, 1), (6, 1), (5, 1)))))]
+exit 0 baBAA BBaaBa
+C ['abAb', 'BababAB'] V 8 malnormal True K 4 shapes up to iso 73
+certificates: NONE (exhaustive for rank 4)
+exit 0 abAb BababAB
+C ['BBABaa', 'AbAbA'] V 9 malnormal True K 4 shapes up to iso 73
+certificates: [((1, 3), (4, ((0, 1), (0, 1), (0, 2), (0, 3), (1, 2), (2, 3), (2, 3)), ['a', 'B', 'A', 'b', 'B', 'A', 'BaaB'], [('abAbABBAB', 4), ('abbAAb', 3), ('aBaaB', 7)], (((0, 0), (1, 0), (2, 0), (3, 0)), ((0, 1), (1, 1), (4, 0)), ((2, 1), (4, 1), (5, 0), (6, 0)), ((3, 1), (6, 1), (5, 1)))))]
+exit 0 BBABaa AbAbA
+C ['ABBBaab', 'ABaBABBa'] V 11 malnormal True K 5 shapes up to iso 73
+certificates: [((2, 1), (3, ((0, 0), (0, 1), (0, 2), (1, 2), (1, 2), (1, 2)), ['B', 'ABB', 'aBA', 'a', 'Abb', 'B'], [('BaBABBaBAAbbbbbabABBaabA', 1)], (((0, 0), (1, 0), (0, 1), (2, 0)), ((1, 1), (3, 0), (4, 0), (5, 0)), ((2, 1), (4, 1), (5, 1), (3, 1)))))]
+exit 0 ABBBaab ABaBABBa
