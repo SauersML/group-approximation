@@ -82,6 +82,35 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
   subgroup of 2V. Abstract twisted Brin–Thompson groups have property FW_∞
   (Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687). This lane has not checked what
   that property excludes for classical nV.
+- 2026-09-17 (swarm-0917-w2-zar-pull-1, operator-algebras lane): **exact
+  reduction to orbit finiteness.**
+  - Established: `finitely-generated-subgroups-of-nv-are-finite-iff-germ-finite`.
+    A finitely generated `K ≤ nV` is finite iff offsets are bounded at each
+    point, iff it has finitely many germs at each point, iff all orbits are
+    finite and stabilizers act trivially near their fixed points.
+  - The proof is a brick induction over words plus compactness.
+  - For Kazhdan `K`, the finite-index stabilizers have finite abelianization.
+    This kills the germ characters `Stab_K(x) → Z^n`, so finite orbits alone
+    suffice.
+  - Route `kazhdan-subgroups-of-nv-finite-from-finite-orbits` reduces this claim,
+    with nothing lost, to `kazhdan-subgroups-of-nv-act-with-finite-orbits` (OPEN).
+    Equivalently, `ℓ^2(Kx)` has almost invariant vectors for every `x`.
+  - **Class removed.** Any construction of an infinite Kazhdan subgroup whose
+    orbit Schreier graphs are all amenable fails at the orbit step. Such
+    constructions include subgroups of the full-shift topological full group in
+    2V. For these, Attempt (b)'s bandwidth and spectral-gap count is unnecessary.
+  - **A counterexample needs** an orbit with a spectral gap on which the
+    offsets, or the Busemann heights at aperiodic points, are unbounded.
+  - **Dead end.** Invariant means on ambient nV-orbits (horocyclic-product
+    Følner sets) only give *some* finite K-orbit per ambient orbit, not every
+    orbit.
+  - Operator-algebra framing:
+    - `c|_K` is a class in `H^1(K, C(C^n, Z^n))`, with
+      `C(C^n, Z) = K_0(C(C^n))`.
+    - `K` is finite iff this class is a bounded coboundary.
+    - Groupoid-level amenability of the Cuntz product groupoid carries no
+      further information here, because it holds for every n and never enters
+      the criterion.
 - 2026-09-17 (lane swarm-0917-w2-zar-pull-2, transplanter via entropy-measure,
   unreviewed): **reduction to invariant measures on minimal sets.**
   - Established `kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures`: a
