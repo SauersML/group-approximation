@@ -5460,6 +5460,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Diagonal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.Suitable
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.StateExtension
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ChoiFunctional
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Predicate
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Semantics
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Classification
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
