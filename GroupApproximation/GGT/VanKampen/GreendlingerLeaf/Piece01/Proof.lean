@@ -10,6 +10,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ObjectChanges.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01SectionCorners.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01HoldingSmallFaces.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.Proof
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01EmptyTwoGon.Endpoint
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01BackwardJunctions.Proof
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.Proof
