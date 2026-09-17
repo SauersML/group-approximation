@@ -232,7 +232,7 @@ theorem faceOf_backCollapsed
     S.diagram.toCombMap.faceOf (backCollapsed S j hlen htgt x').1 =
       (cell S.diagram ((transport S j hlen htgt).cellIndex.symm i')).face := by
   have hcell := cell_face_eq S j hlen htgt i'
-  obtain ⟨d, hd⟩ := x'
+  obtain ⟨d, _hd⟩ := x'
   rcases d with _ | _ | z
   · exact (FaceEdgeDoubling.faceImage_ne_digon S.diagram S.diagram.outerFace j hlen _
       ((FaceEdgeDoubling.faceOf_none_digon S.diagram S.diagram.outerFace j hlen).symm.trans
