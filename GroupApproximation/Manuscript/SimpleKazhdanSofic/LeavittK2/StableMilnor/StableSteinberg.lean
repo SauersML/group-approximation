@@ -128,7 +128,8 @@ theorem stableProjectionComponent_transition {n m : ℕ} (h : n ≤ m)
 
 /-- The underlying function of `stableProjection`. -/
 noncomputable def stableProjectionFun : stableSteinberg R → ClassicalGLColim R :=
-  DirectLimit.lift (steinbergTransition R) (fun n t => stableProjectionComponent R n t)
+  DirectLimit.lift (steinbergTransition R)
+    (fun n (t : SteinbergGroup (Fin n) R) => stableProjectionComponent R n t)
     (fun _ _ h t => (stableProjectionComponent_transition R h t).symm)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.stableProjectionFun
@@ -176,8 +177,8 @@ noncomputable def stableProjectionToElementary : stableSteinberg R →* elementa
 
 /-- `stableK2 R = ker (St(R) → E(R))`, the lane's definition. -/
 theorem stableK2_eq_ker_toElementary :
-    stableK2 R = (stableProjectionToElementary R).ker :=
-  (MonoidHom.ker_codRestrict _ _ _).symm
+    stableK2 R = (stableProjectionToElementary R).ker := by
+  rw [stableK2, stableProjectionToElementary, MonoidHom.ker_codRestrict]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.stableK2_eq_ker_toElementary
 

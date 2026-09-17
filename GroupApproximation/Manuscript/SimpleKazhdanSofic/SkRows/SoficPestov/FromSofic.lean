@@ -42,7 +42,7 @@ theorem exists_normalized_model {G : Type*} [Group G] [DecidableEq G] (Y : Finit
     intro g
     by_cases hg : g = 1
     · subst hg
-      rw [if_pos rfl, hammingDistance_comm]
+      rw [if_pos (rfl : (1 : G) = 1), hammingDistance_comm]
       exact hone
     · rw [if_neg hg, hammingDistance_self]
       exact hδ
@@ -81,12 +81,12 @@ theorem exists_normalized_model {G : Type*} [Group G] [DecidableEq G] (Y : Finit
 theorem isSoficPestov_of_isSofic {G : Type*} [Group G] (hG : IsSofic G) : IsSoficPestov G := by
   classical
   intro F ε hε
-  obtain ⟨M⟩ := hG (insert 1 F) (ε / 8) (by positivity)
+  obtain ⟨M⟩ := hG (insert 1 F) (ε / 8) (by linarith)
   have e : M.carrier ≃ (finModel (Fintype.card M.carrier)).carrier :=
     Fintype.equivFin M.carrier
   obtain ⟨φ, hφ1, hφmul, hφsep⟩ := exists_normalized_model
     (finModel (Fintype.card M.carrier)) (fun g => e.permCongr (M.map g)) F
-    (δ := ε / 8) (by positivity)
+    (δ := ε / 8) (by linarith)
     (fun g hg h hh => by
       simp only [← permCongr_mul, hammingDistance_permCongr]
       exact M.multiplicative g hg h hh)
@@ -94,10 +94,14 @@ theorem isSoficPestov_of_isSofic {G : Type*} [Group G] (hG : IsSofic G) : IsSofi
       simp only [hammingDistance_permCongr]
       exact M.separated g hg h hh hgh)
   refine ⟨Fintype.card M.carrier, φ, fun g hg h hh => ?_, hφ1, fun g hg hg1 => ?_⟩
-  · exact (pestovHammingDist_eq_hammingDistance (φ (g * h)) (φ g * φ h)).trans_lt
-      (lt_of_le_of_lt (hφmul g hg h hh) (by linarith))
-  · exact (lt_of_lt_of_le (by linarith) (hφsep g hg hg1)).trans_eq
-      (pestovHammingDist_eq_hammingDistance (φ g) 1).symm
+  · have hm := hφmul g hg h hh
+    have hlt : hammingDistance (finModel (Fintype.card M.carrier)) (φ (g * h))
+        (φ g * φ h) < ε := by linarith
+    exact (pestovHammingDist_eq_hammingDistance (φ (g * h)) (φ g * φ h)).trans_lt hlt
+  · have hs := hφsep g hg hg1
+    have hlt : 1 - ε < hammingDistance (finModel (Fintype.card M.carrier)) (φ g) 1 := by
+      linarith
+    exact hlt.trans_eq (pestovHammingDist_eq_hammingDistance (φ g) 1).symm
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SoficPestov.isSoficPestov_of_isSofic
 
