@@ -76,8 +76,15 @@ equivalent to `H4` having some nontrivial sofic quotient
      (or derived-series images) are then eigenvectors with distinct eigenvalues, so `K + 1` is at most
      the Hirsch length. A Helly-type tree gate puts an opposite pair into an edge stabilizer of any
      tree action without a global fixed point.
-   - Amenable `A` of infinite Hirsch length (e.g. infinite-rank metabelian, as for the sofic
-     `Z wr Z` variation of Kassabov--Kuperberg--Riley) remains open. GAP could not decide the
+   - **Virtually metabelian `A` of any rank (including `Z wr Z` and the free metabelian group) is
+     also impossible, and so is any tree splitting over such edge groups (sw-053, 2026-09-17).** See
+     `virtually-metabelian-edge-images-collapse-higman-quotients`. With `alpha = a^m`,
+     `gamma = c^m`, `P = 2^m` and `z = [gamma, alpha]`, conjugation by `b^P` sends `z` to
+     `gamma^(2-2^P)` times a `gamma`-conjugate combination of `z`. So `z` is torsion under `gamma` on
+     `<alpha,gamma>' ⊗ Q`. The `d`-side relations make it torsion under `alpha` too. The commutator
+     module is then finite-dimensional, and the finite-Hirsch-length collapse applies.
+   - Open: amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
+     derived length at least 3), and non-elementary-amenable `A`. GAP could not decide the
      metabelian-type relators at `2*10^6` cosets.
 6. **Amenable quotients.** *Open.* Helfgott--Juschenko: "It is not known whether
    it has amenable quotients" (l.261–262). Item 2 excludes elementary amenable
