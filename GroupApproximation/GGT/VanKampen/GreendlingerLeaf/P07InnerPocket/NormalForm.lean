@@ -61,8 +61,7 @@ theorem invDarts_darts_eq_nil_of_length_eq_zero {X : DiscDiagram.{u, w, v} W}
     {k : Fin X.rCellCount} (A : CyclicArc (cellDarts X k)) (h : A.length = 0) :
     invDarts X A.darts = [] := by
   have hnil : A.darts = [] := List.eq_nil_of_length_eq_zero (by rw [CyclicArc.darts_length, h])
-  rw [hnil]
-  rfl
+  simp only [invDarts, hnil, List.reverse_nil, List.map_nil]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.invDarts_darts_eq_nil_of_length_eq_zero
 
@@ -77,10 +76,9 @@ theorem exists_offArc_of_arc (X : DiscDiagram.{u, w, v} W) (F : Finset X.toCombM
   · exact ⟨k, A, hA h, rfl, rfl⟩
   · have h0 : A.length = 0 := by omega
     refine ⟨k₀, P07LakeExclusion.emptyArc (cellDarts X k₀), hk₀, ?_, ?_⟩
-    · rw [invDarts_darts_eq_nil_of_length_eq_zero A h0]
-      exact P07LakeExclusion.invDarts_emptyArc k₀
-    · rw [h0]
-      rfl
+    · rw [invDarts_darts_eq_nil_of_length_eq_zero A h0, P07LakeExclusion.invDarts_emptyArc]
+    · show 0 = A.length
+      exact h0.symm
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.exists_offArc_of_arc
 

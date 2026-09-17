@@ -102,7 +102,9 @@ theorem faceClass_subset_sideFaces (M : CombMap.{u}) (keep : M.Dart → Prop) {K
     exact hc
   obtain ⟨d, hd, hdy⟩ := (mem_sideFaces_iff M K y).mp hy'
   exact (mem_sideFaces_iff M K z).mpr
-    ⟨d, hd, .trans _ _ _ hdy (faceClass_mono M (fun x hx hw => hx (hk x hw)) hyz)⟩
+    ⟨d, hd, .trans _ _ _ hdy
+      (faceClass_mono M (keep := keep) (keep' := walkKeep M K) (fun x hx hw => hx (hk x hw))
+        hyz)⟩
 
 /-- **The class avoids a face set whose boundary edges are retained.**  `cyc` is the list of
 boundary darts of `F`. -/
