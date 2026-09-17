@@ -259,3 +259,171 @@ theorem not_mem_Y_of_mem_X (hf : (cell Delta j).face ≠ f)
         (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ hX)))))
   · exact (SameCellPocketSides.nodup_append_four (nodup_walk htrav)).1 _
       (List.mem_append_left _ hX) _ hY rfl
+
+/-- **From a dart on `f` or on `Π`, a chain off the edges of `A ++ Y` reaches a dart of it**: around
+the face, and across the crossing dart `e ∈ q` when the other face holds the walk. -/
+theorem exists_reach_Y (hf : (cell Delta j).face ≠ f)
+    (htrav : (Delta.faceBoundary f).darts.rotate r = X ++ T ++ Y ++ U)
+    (hPi : (cellDarts Delta j).rotate n = q ++ B ++ p ++ A) {e : Delta.toCombMap.Dart}
+    (he : e ∈ q) (heT : Delta.toCombMap.alpha e ∈ T) (hne : Y ++ A ≠ [])
+    {z : Delta.toCombMap.Dart}
+    (hz : Delta.toCombMap.faceOf z = f ∨ Delta.toCombMap.faceOf z = (cell Delta j).face) :
+    ∃ d ∈ A ++ Y, Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y))) z d := by
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  have hkeep := not_walkKeep_of_cross hf htrav' hPi' he heT
+  have hqface : Delta.toCombMap.faceOf e = (cell Delta j).face :=
+    SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_left _ he)))
+  have hαface : Delta.toCombMap.faceOf (Delta.toCombMap.alpha e) = f :=
+    SameCellPocketSides.faceOf_of_mem_rotate htrav
+      (List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ heT)))
+  have hface : ∀ x y : Delta.toCombMap.Dart, Delta.toCombMap.faceOf x = Delta.toCombMap.faceOf y →
+      Relation.EqvGen
+        (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y))) x y :=
+    fun x y h =>
+      eqvGen_faceClass_of_sameCycle Delta.toCombMap _ ((Delta.toCombMap.faceOf_eq_iff x y).mp h)
+  have hcross : Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y)))
+      e (Delta.toCombMap.alpha e) :=
+    .rel _ _ (Or.inr ⟨hkeep, rfl⟩)
+  by_cases hY : Y = []
+  · have hA : A ≠ [] := by
+      rintro rfl
+      exact hne (by rw [hY]; rfl)
+    have hAface : Delta.toCombMap.faceOf (A.head hA) = (cell Delta j).face :=
+      SameCellPocketSides.faceOf_of_mem_cellDarts_rotate hPi
+        (List.mem_append_right _ (List.head_mem hA))
+    refine ⟨A.head hA, List.mem_append_left _ (List.head_mem hA), ?_⟩
+    rcases hz with hz | hz
+    · exact .trans _ _ _ (hface _ _ (hz.trans hαface.symm))
+        (.trans _ _ _ (.symm _ _ hcross) (hface _ _ (hqface.trans hAface.symm)))
+    · exact hface _ _ (hz.trans hAface.symm)
+  · have hYface : Delta.toCombMap.faceOf (Y.head hY) = f :=
+      SameCellPocketSides.faceOf_of_mem_rotate htrav
+        (List.mem_append_left _ (List.mem_append_right _ (List.head_mem hY)))
+    refine ⟨Y.head hY, List.mem_append_right _ (List.head_mem hY), ?_⟩
+    rcases hz with hz | hz
+    · exact hface _ _ (hz.trans hYface.symm)
+    · exact .trans _ _ _ (hface _ _ (hz.trans hqface.symm))
+        (.trans _ _ _ hcross (hface _ _ (hαface.trans hYface.symm)))
+
+/-- **Transport of face step chains.**  A chain for `c₁` started inside `enclosedFaces c₁` is a chain
+for `c₂`, when no dart on an enclosed face of `c₁` is a dart of `c₂`. -/
+theorem eqvGen_transport {M : CombMap.{v}} {c₁ c₂ : List M.Dart}
+    (hoff : ∀ y : M.Dart, M.faceOf y ∈ enclosedFaces M c₁ → y ∉ c₂) :
+    ∀ y z : M.Dart, Relation.EqvGen (CombMap.FaceClassStep M (walkKeep M c₁)) y z →
+      M.faceOf y ∈ enclosedFaces M c₁ →
+      Relation.EqvGen (CombMap.FaceClassStep M (walkKeep M c₂)) y z := by
+  have hclos : ∀ y z : M.Dart, M.faceOf y ∈ enclosedFaces M c₁ →
+      Relation.EqvGen (CombMap.FaceClassStep M (walkKeep M c₁)) y z →
+      M.faceOf z ∈ enclosedFaces M c₁ := fun y z hy h => by
+    obtain ⟨a, ha, hna, h'⟩ := (mem_enclosedFaces_iff _ _ y).mp hy
+    exact (mem_enclosedFaces_iff _ _ z).mpr ⟨a, ha, hna, .trans _ _ _ h' h⟩
+  intro y z h
+  induction h with
+  | rel y z hyz =>
+    intro hy
+    rcases hyz with hyz | ⟨hk, hyz⟩
+    · exact .rel _ _ (Or.inl hyz)
+    · refine .rel _ _ (Or.inr ⟨?_, hyz⟩)
+      rintro (hy₂ | hαy₂)
+      · exact hoff y hy hy₂
+      · exact hoff _ (faceOf_alpha_mem_enclosedFaces hk hy) hαy₂
+  | refl y => intro _; exact .refl _
+  | symm y z h ih => intro hz; exact .symm _ _ (ih (hclos z y hz (.symm _ _ h)))
+  | trans y z w hyz _ ih₁ ih₂ => intro hy; exact .trans _ _ _ (ih₁ hy) (ih₂ (hclos y z hy hyz))
+
+/-- **The two complement spellings enclose disjoint faces.** -/
+theorem disjoint_X_Y (hf : (cell Delta j).face ≠ f)
+    (htrav : (Delta.faceBoundary f).darts.rotate r = X ++ T ++ Y ++ U)
+    (hPi : (cellDarts Delta j).rotate n = q ++ B ++ p ++ A) {d e : Delta.toCombMap.Dart}
+    (hd : d ∈ p) (hdU : Delta.toCombMap.alpha d ∈ U) (he : e ∈ q)
+    (heT : Delta.toCombMap.alpha e ∈ T) (hne₁ : X ++ B ≠ [])
+    (hturn₁ : FirstTurnClosed Delta.toCombMap (B ++ X)) (hne₂ : Y ++ A ≠ [])
+    (hturn₂ : FirstTurnClosed Delta.toCombMap (A ++ Y)) {g : Delta.toCombMap.Face}
+    (hg₁ : g ∈ enclosedFaces Delta.toCombMap (B ++ X))
+    (hg₂ : g ∈ enclosedFaces Delta.toCombMap (A ++ Y)) : False := by
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  have hF₁ := face_not_mem_enclosedFaces_X hf htrav hPi hd hdU hne₁ hturn₁
+  have hc₂ : A ++ Y ≠ [] := ne_nil_swap hne₂
+  obtain ⟨hfchain₂, hclose₂⟩ := hturn₂ hc₂
+  have hchain₂ : (A ++ Y).IsChain fun a b =>
+      Delta.toCombMap.vertexOf (Delta.toCombMap.alpha a) = Delta.toCombMap.vertexOf b :=
+    hfchain₂.imp fun _ _ h => h.vertexOf_eq
+  have hturnMem₂ := turnMem_of_firstTurn hc₂ hfchain₂ hclose₂
+  have hoff : ∀ y : Delta.toCombMap.Dart,
+      Delta.toCombMap.faceOf y ∈ enclosedFaces Delta.toCombMap (B ++ X) → y ∉ A ++ Y := by
+    intro y hy hy₂
+    rcases faceOf_of_mem_X htrav' hPi' hy₂ with h | h
+    · exact hF₁.1 (by rw [← h]; exact hy)
+    · exact hF₁.2 (by rw [← h]; exact hy)
+  have htransport := eqvGen_transport hoff
+  obtain ⟨x, rfl⟩ := Quotient.exists_rep g
+  obtain ⟨a₁, ha₁, hna₁, hx₁⟩ := (mem_enclosedFaces_iff _ _ x).mp hg₁
+  obtain ⟨a₂, ha₂, hna₂, hx₂⟩ := (mem_enclosedFaces_iff _ _ x).mp hg₂
+  have hseed : Delta.toCombMap.faceOf (Delta.toCombMap.alpha a₁) ∈
+      enclosedFaces Delta.toCombMap (B ++ X) :=
+    (mem_enclosedFaces_iff _ _ _).mpr ⟨a₁, ha₁, hna₁, .refl _⟩
+  have h₂₁ := Relation.EqvGen.trans _ _ _ hx₂ (.symm _ _ (htransport _ _ hx₁ hseed))
+  obtain ⟨b, hb, hreach⟩ : ∃ b ∈ A ++ Y, Relation.EqvGen
+      (CombMap.FaceClassStep Delta.toCombMap (walkKeep Delta.toCombMap (A ++ Y)))
+      (Delta.toCombMap.alpha a₁) b := by
+    by_cases hα : Delta.toCombMap.alpha a₁ ∈ A ++ Y
+    · exact ⟨_, hα, .refl _⟩
+    · have hk : ¬ walkKeep Delta.toCombMap (A ++ Y) (Delta.toCombMap.alpha a₁) := by
+        rintro (h | h)
+        · exact hα h
+        · rw [Delta.toCombMap.alpha_involutive] at h
+          exact not_mem_Y_of_mem_X hf htrav hPi ha₁ h
+      obtain ⟨b, hb, hz⟩ := exists_reach_Y hf htrav hPi he heT hne₂
+        (faceOf_of_mem_X htrav hPi ha₁)
+      refine ⟨b, hb, .trans _ _ _ (.rel _ _ (Or.inr ⟨hk, ?_⟩)) hz⟩
+      rw [Delta.toCombMap.alpha_involutive]
+  exact hna₂ (alpha_mem_of_faceClass Delta.planar hc₂ hchain₂ hturnMem₂ hb ha₂
+    (.symm _ _ (.trans _ _ _ h₂₁ hreach)))
+
+/-- **The pocket enclosure.**  The exterior face is off one of the two disjoint enclosures, and that
+complement spelling encloses its faces with `Π` outside. -/
+theorem pocketEnclosure (hf : (cell Delta j).face ≠ f)
+    (htrav : (Delta.faceBoundary f).darts.rotate r = X ++ T ++ Y ++ U)
+    (hPi : (cellDarts Delta j).rotate n = q ++ B ++ p ++ A) {d e : Delta.toCombMap.Dart}
+    (hd : d ∈ p) (hdU : Delta.toCombMap.alpha d ∈ U) (he : e ∈ q)
+    (heT : Delta.toCombMap.alpha e ∈ T) (hne₁ : X ++ B ≠ []) (hne₂ : Y ++ A ≠ [])
+    (hturn₁ : FirstTurnClosed Delta.toCombMap (B ++ X))
+    (hturn₂ : FirstTurnClosed Delta.toCombMap (A ++ Y)) :
+    (∃ F : Finset Delta.toCombMap.Face,
+        EnclosedFaceSetSucc Delta F (B ++ X) ∧ (cell Delta j).face ∉ F) ∨
+      ∃ F : Finset Delta.toCombMap.Face,
+        EnclosedFaceSetSucc Delta F (A ++ Y) ∧ (cell Delta j).face ∉ F := by
+  obtain ⟨htrav', hPi'⟩ := rotate_Y htrav hPi
+  by_cases hout : Delta.outerFace ∈ enclosedFaces Delta.toCombMap (B ++ X)
+  · exact Or.inr ⟨_, enclosedFaceSetSucc_X hf htrav' hPi' hne₂ hturn₂
+      fun h => disjoint_X_Y hf htrav hPi hd hdU he heT hne₁ hturn₁ hne₂ hturn₂ hout h,
+      (face_not_mem_enclosedFaces_X hf htrav' hPi' he heT hne₂ hturn₂).2⟩
+  · exact Or.inl ⟨_, enclosedFaceSetSucc_X hf htrav hPi hne₁ hturn₁ hout,
+      (face_not_mem_enclosedFaces_X hf htrav hPi hd hdU hne₁ hturn₁).2⟩
+
+end RCellPocketWalk
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.ne_nil_swap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.nodup_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.nodup_carrier
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.rotate_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.nodup_X
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.faceOf_of_mem_X
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.not_walkKeep_of_cross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.enclosed_iff
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.face_not_mem_enclosedFaces_X
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.enclosedFaceSetSucc_X
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.not_mem_Y_of_mem_X
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.exists_reach_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.eqvGen_transport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.disjoint_X_Y
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.RCellPocketWalk.pocketEnclosure
