@@ -29,7 +29,8 @@ theorem frame_smul_single_apply (g : (Matrix (Fin n) (Fin n) A)ˣ) (j r : Fin n)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frame_smul_single_apply
 
-theorem frameFan_isFrameVertex_iff (u : Fin 4 → A) : FrameFan.IsFrameVertex A u ↔ frameVertex u := by
+theorem frameFan_isFrameVertex_iff (u : Fin 4 → A) :
+    FrameFan.IsFrameVertex A u ↔ frameVertex u := by
   rw [frameVertex, isFrame_iff_firstColumns (by decide : 1 ≤ 4)]
   constructor
   · rintro ⟨g, hg⟩
@@ -142,7 +143,8 @@ theorem frameVertexFourEquiv_smul (g : (Matrix (Fin 4) (Fin 4) A)ˣ) (u : FrameF
 theorem frameComplexFour_action :
     (FrameFan.frameComplexFour A).Action (Matrix (Fin 4) (Fin 4) A)ˣ where
   edge_smul := fun g {a b} h =>
-    (frameFan_isFrameEdge_iff (g • a.1) (g • b.1)).2 (((frameFan_isFrameEdge_iff a.1 b.1).1 h).smul g)
+    (frameFan_isFrameEdge_iff (g • a.1) (g • b.1)).2
+      (((frameFan_isFrameEdge_iff a.1 b.1).1 h).smul g)
   tri_smul := fun g {a b c} h =>
     (frameFan_isFrameTriangle_iff (g • a.1) (g • b.1) (g • c.1)).2
       (((frameFan_isFrameTriangle_iff a.1 b.1 c.1).1 h).smul g)

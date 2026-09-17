@@ -41,7 +41,8 @@ def IsFrame {k : ℕ} (v : Fin k → Fin n → A) : Prop :=
 
 /-- Sub-families (in any order) of frames are frames. -/
 theorem IsFrame.of_embedding {k k' : ℕ} {v : Fin k → Fin n → A} (hv : IsFrame v)
-    (σ : Fin k' ↪ Fin k) (w : Fin k' → Fin n → A) (hw : ∀ i, w i = v (σ i)) : IsFrame w := by
+    (σ : Fin k' ↪ Fin k) (w : Fin k' → Fin n → A) (hw : ∀ i, w i = v (σ i)) :
+    IsFrame w := by
   obtain ⟨g, e, he⟩ := hv
   exact ⟨g, σ.trans e, fun i => (hw i).trans (he (σ i))⟩
 

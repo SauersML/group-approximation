@@ -77,8 +77,8 @@ theorem frameComplex_action : (frameComplex A n).Action (Matrix (Fin n) (Fin n) 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex_action
 
 /-- `GL_n(A)` acts transitively on ordered `k`-frames (for every `k`, in particular `k ≤ 3`). -/
-theorem frame_transitive_k {k : ℕ} {v w : Fin k → Fin n → A} (hv : IsFrame v) (hw : IsFrame w) :
-    ∃ g : (Matrix (Fin n) (Fin n) A)ˣ, ∀ i, g • v i = w i :=
+theorem frame_transitive_k {k : ℕ} {v w : Fin k → Fin n → A} (hv : IsFrame v)
+    (hw : IsFrame w) : ∃ g : (Matrix (Fin n) (Fin n) A)ˣ, ∀ i, g • v i = w i :=
   hv.exists_smul_eq hw
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frame_transitive_k

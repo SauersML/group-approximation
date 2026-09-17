@@ -51,6 +51,8 @@ theorem flatUnitizeGL_apply {R : Type*} [Ring R] {N r : ℕ}
             τ.b (τ.lo b) :=
   rfl
 
+#audit_axioms flatUnitizeGL_apply
+
 /-- The flattened unitization, entrywise, with `Φ(1) = ∑_{l<r} a_l b_l`. -/
 theorem flatUnitizeGL_apply_sum {R : Type*} [Ring R] {N r : ℕ}
     (τ : GroupApproximation.ChainCore.ReturnTowerUnits R N r)
@@ -62,6 +64,8 @@ theorem flatUnitizeGL_apply_sum {R : Type*} [Ring R] {N r : ℕ}
           τ.a (τ.lo a) * ((g : Matrix (n × Fin r) (n × Fin r) τ.Base) (i, a) (j, b) : R) *
             τ.b (τ.lo b) :=
   (flatUnitizeGL_apply τ n g i j).trans (by rw [τ.phi_one])
+
+#audit_axioms flatUnitizeGL_apply_sum
 
 /-- **tex 1731–1732**, "Thus $R_X$ is a unital corner of $M_{2r-1}(P_C)$, via
 $x\mapsto(b_i x a_j)_{ij}$": there are an idempotent `E ∈ M_{2r-1}(P_C)` and a ring isomorphism

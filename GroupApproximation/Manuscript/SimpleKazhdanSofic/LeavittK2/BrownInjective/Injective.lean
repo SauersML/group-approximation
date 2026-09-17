@@ -109,7 +109,8 @@ theorem brownMap_injective (hsc : S.SimplyConnected) : Function.Injective S.brow
   intro x hx
   obtain ⟨l, z, hl, j, rfl⟩ := S.reach x
   have hpz : S.p z • S.v0 = S.v0 := by
-    have h1 : S.p (z * S.incl j) • S.v0 = S.p z • S.v0 := S.sameCoset_v0 (x := z) (y := z * S.incl j) ⟨j, rfl⟩
+    have h1 : S.p (z * S.incl j) • S.v0 = S.p z • S.v0 :=
+      S.sameCoset_v0 (x := z) (y := z * S.incl j) ⟨j, rfl⟩
     rw [← h1, hx, one_smul]
   have hp : S.IsPath S.v0 l := by
     have h := LiftEnd.isPath S hl

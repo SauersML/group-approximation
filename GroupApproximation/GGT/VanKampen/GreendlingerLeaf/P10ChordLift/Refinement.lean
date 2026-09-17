@@ -232,16 +232,16 @@ def comp (R₁ : RotationRefinement M M') (R₂ : RotationRefinement M' M'') :
 noncomputable def edgeInsertion {a b : M.Dart} (hab : a ≠ b) :
     RotationRefinement M (EdgeInsertion.toCombMap M a b) where
   map := EdgeInsertion.embed M
-  injective d e h := Option.some.inj (Option.some.inj h)
+  injective _ _ h := Option.some.inj (Option.some.inj h)
   alpha_map _ := rfl
   step z := by
     obtain ⟨m, hm, hmz, hmmid⟩ := EdgeInsertion.exists_sigma_step_lift hab z
     refine ⟨m, hm, hmz, fun t ht htm w hw => ?_⟩
     rcases hmmid t ht htm with h | h
     · rw [h] at hw
-      exact Option.noConfusion hw
+      simp [EdgeInsertion.embed] at hw
     · rw [h] at hw
-      exact Option.noConfusion (Option.some.inj hw)
+      simp [EdgeInsertion.embed] at hw
 
 end RotationRefinement
 
