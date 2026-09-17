@@ -38,3 +38,10 @@ every Artin group is torsion-free and of type F (route
   `[5,3,3,3]`, `[4,3,3,5]`, `[5,3,3,5]`, `[5,3,3^{1,1}]`, and holds for all Artin groups iff
   `H_4` of these four Artin complexes vanishes
   (`artin-ghost-ideals-reduce-to-four-lanner-trees`). Lower degrees do not slice.
+- **Four trees reduced to two elements** (sw-043, 2026-09-17). For spherical `T` the ghost ideal
+  of `A_T` is free principal, `ZA_T·y_T` (Deligne plus a nerve argument on the Salvetti
+  complex). Hence for an Artin group with spherical `A_{S−u}`, `A_{S−v}` the ghost ideal is
+  `ZA·y_{S−u} ∩ ZA·y_{S−v}`, and the remaining top-degree case is: for each of the four trees,
+  `y_{S−u}` and `y_{S−v}` have no nonzero common left multiple in `ZA`
+  (`artin-ghost-ideal-is-intersection-of-two-principal-ideals`). With `m_uv = ∞` they are
+  independent, so the question is whether the single relation `uv = vu` creates a relation.
