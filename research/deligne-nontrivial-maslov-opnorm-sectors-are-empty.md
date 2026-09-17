@@ -37,4 +37,23 @@ operator-norm asymptotic representations.
   this gate or to any finite-index model of it. A genus-two proof needs
   vanishing of the specific defect classes, or a non-cohomological route
   such as the Schur-kernel hole.
+- **2026-09-17, swarm-0917-w5-deligne-sp4-schur: eigenline certificates
+  (vector-state atoms, Magee--de la Salle invariant vectors, Kazhdan corners)
+  die at their state-level step.** The Schur-kernel hole was already refuted
+  (`sp4-schur-kernels-miss-every-deligne-multiplier`), so this lane pivoted to
+  the two survivors that `deligne-sector-siegel-spectrum-is-full-torus` names.
+  Established class-kill: `deligne-sector-eigenvector-certificates-die-at-induction`.
+  For every `K <= E_3` containing `z`, the certificate "(V1) models have
+  asymptotic `K`-eigenlines, and (V2) no state or corner of `A_omega` carries
+  a `K`-character" goes one of two ways:
+  - it is circular at (V1), since ultralimit eigenvalues form a character with
+    `z -> omega`;
+  - or it fails at (V2), since `Ind_K^(E_3) chi` lies in the fibre and has the
+    eigenvector.
+
+  Invariant: the class of `alpha|_(p(K))` in `H^2(p(K); T)`. The only survivor
+  is an argument that uses the finite dimension in the refutation step too.
+  Examples are the rank of the eigenspaces relative to `d_n`, or an
+  interaction between eigenspaces that no infinite-dimensional representation
+  reproduces.
 
