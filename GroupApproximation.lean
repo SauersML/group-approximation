@@ -5410,6 +5410,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.CertificateNorma
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofRest
 import GroupApproximation.Manuscript.NonMF.Full.Korchagin.PrintedSentence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.GeneralTheorem
+import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.FiniteNormalRemark
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
