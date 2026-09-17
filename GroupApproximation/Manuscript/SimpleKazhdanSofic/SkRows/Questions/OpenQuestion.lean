@@ -31,7 +31,7 @@ Before rekeying this clause was part of census key `460d289c5b0f`.
   closed here.  `FPSimpleKazhdanSoficQuestion` and `FPSimpleKazhdanHyperlinearQuestion` are the two
   existence questions, and the sofic one implies the hyperlinear one (`isHyperlinear_of_isSofic`).
   A sofic example is not LEF and answers Alekseev–Thom 6.1 (`alekseevThomWitness_of_soficQuestion`,
-  from `AlekseevThom.lean`).
+  which applies the endpoint of `AlekseevThom.lean`).
 -/
 
 namespace GroupApproximation.SimpleKazhdanSofic.SkRows.Questions

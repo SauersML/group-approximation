@@ -33,15 +33,15 @@ universe u
 variable {A : Type u} [CStarAlgebra A]
 
 /-- The finite model `Fin N`. -/
-abbrev finModel (N : ℕ) : FiniteModel := ⟨Fin N, inferInstance, inferInstance⟩
+abbrev avgModel (N : ℕ) : FiniteModel := ⟨Fin N, inferInstance, inferInstance⟩
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.finModel
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.avgModel
 
-theorem card_finModel (N : ℕ) : Fintype.card (finModel N) = N := by
+theorem card_avgModel (N : ℕ) : Fintype.card (avgModel N) = N := by
   show Fintype.card (Fin N) = N
   exact Fintype.card_fin N
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.card_finModel
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.card_avgModel
 
 /-- The diagonal `⋆`-homomorphism `a ↦ diag(χᵢ a)` built from a family of characters. -/
 def diagonalStarAlgHom (Y : FiniteModel) (χ : Y → (A →⋆ₐ[ℂ] ℂ)) :
@@ -90,14 +90,14 @@ theorem diagonalStarAlgHom_apply (Y : FiniteModel) (χ : Y → (A →⋆ₐ[ℂ]
 
 /-- The normalized trace of the diagonal model is the average of the characters. -/
 theorem normTrace_diagonalStarAlgHom (N : ℕ) (χ : Fin N → (A →⋆ₐ[ℂ] ℂ)) (a : A) :
-    normTrace (finModel N) (diagonalStarAlgHom (finModel N) χ a) =
+    normTrace (avgModel N) (diagonalStarAlgHom (avgModel N) χ a) =
       (N : ℂ)⁻¹ * ∑ i, χ i a := by
   have htr : Matrix.trace (Matrix.diagonal fun i : Fin N ↦ χ i a) = ∑ i, χ i a :=
     Matrix.trace_diagonal _
-  have hcard : (Fintype.card (finModel N) : ℂ) = N := by
-    rw [card_finModel]
+  have hcard : (Fintype.card (avgModel N) : ℂ) = N := by
+    rw [card_avgModel]
   show Matrix.trace (Matrix.diagonal fun i : Fin N ↦ χ i a) /
-      (Fintype.card (finModel N) : ℂ) = _
+      (Fintype.card (avgModel N) : ℂ) = _
   rw [htr, hcard, div_eq_inv_mul]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.normTrace_diagonalStarAlgHom
@@ -113,20 +113,20 @@ theorem isLocallyQuasidiagonalTrace_of_characterAverages {τ : A → ℂ}
     IsLocallyQuasidiagonalTrace τ := by
   intro F ε hε
   obtain ⟨N, χ, hχ⟩ := h F ε hε
-  refine ⟨finModel N,
-    (diagonalStarAlgHom (finModel N) χ : A →ₗ[ℂ] Matrix (finModel N) (finModel N) ℂ),
+  refine ⟨avgModel N,
+    (diagonalStarAlgHom (avgModel N) χ : A →ₗ[ℂ] Matrix (avgModel N) (avgModel N) ℂ),
     ?_, ?_, ?_, ?_⟩
-  · show diagonalStarAlgHom (finModel N) χ 1 = 1
+  · show diagonalStarAlgHom (avgModel N) χ 1 = 1
     rw [map_one]
-  · exact isCompletelyPositiveOnMatrices_starAlgHom (finModel N)
-      (diagonalStarAlgHom (finModel N) χ)
+  · exact isCompletelyPositiveOnMatrices_starAlgHom (avgModel N)
+      (diagonalStarAlgHom (avgModel N) χ)
   · intro x _ y _
-    show ‖diagonalStarAlgHom (finModel N) χ (x * y) -
-        diagonalStarAlgHom (finModel N) χ x * diagonalStarAlgHom (finModel N) χ y‖ ≤ ε
+    show ‖diagonalStarAlgHom (avgModel N) χ (x * y) -
+        diagonalStarAlgHom (avgModel N) χ x * diagonalStarAlgHom (avgModel N) χ y‖ ≤ ε
     rw [map_mul, sub_self, norm_zero]
     exact hε.le
   · intro x hx
-    show ‖τ x - normTrace (finModel N) (diagonalStarAlgHom (finModel N) χ x)‖ ≤ ε
+    show ‖τ x - normTrace (avgModel N) (diagonalStarAlgHom (avgModel N) χ x)‖ ≤ ε
     rw [normTrace_diagonalStarAlgHom]
     exact hχ x hx
 
