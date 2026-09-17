@@ -222,7 +222,7 @@ theorem cornerDigon_innerMonogon (hW : ∀ word ∈ W, 1 < word.length)
     (hfo : X.toCombMap.faceOf (X.toCombMap.alpha z) ≠ X.outerFace)
     (hmono : X.toCombMap.sigma z = X.toCombMap.alpha z) : CornerDigon K z := by
   refine ⟨X, K, RotationRefinement.refl X.toCombMap, ⟨OEquivalentDiscDiagram.refl X⟩, hinv, rfl,
-    (List.map_id _).symm, 1, 0, Nat.one_pos, ?_, fun t ht ht1 => absurd ht1 (by omega), ?_, ?_,
+    (List.map_id'' (fun _ => rfl) _).symm, 1, 0, Nat.one_pos, ?_, fun t ht ht1 => absurd ht1 (by omega), ?_, ?_,
     fun w hG _ => hG⟩
   · show (X.toCombMap.sigma ^ 1) z = X.toCombMap.sigma z
     rw [pow_one]
