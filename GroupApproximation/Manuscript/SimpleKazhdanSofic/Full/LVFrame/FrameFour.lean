@@ -19,7 +19,6 @@ Proposition 4.2, with complements forgotten."
   3-frame is a 2-frame.
 * `frameComplexFour A`: the ordered 2-complex whose edges are the 2-frames and whose triangles are
   the 3-frames.
-* `frameComplexFour_simplyConnected_of_hasFanApex`: the fan (`Fan.lean`) applied to `X₄(A)`.
 
 This is a port of the unwired foreign module `LeavittK2/FrameFan/FrameComplex.lean`.
 -/
@@ -115,10 +114,6 @@ def frameComplexFour : OrderedTwoComplex (FrameVertex A) where
   tri_edge12 h := IsFrameTriangle.edge12 h
   tri_edge02 h := IsFrameTriangle.edge02 h
 
-/-- The fan (Khanh, tex l.539) for `X₄(A)`: if every finite list of vertices and ordered edges of
-`X₄(A)` has a common apex, then `X₄(A)` is simply connected. -/
-theorem frameComplexFour_simplyConnected_of_hasFanApex (h : HasFanApex (frameComplexFour A)) :
-    (frameComplexFour A).SimplyConnected :=
-  simplyConnected_of_hasFanApex h
+#audit_axioms GroupApproximation.Full.LVFrame.frameComplexFour
 
 end GroupApproximation.Full.LVFrame

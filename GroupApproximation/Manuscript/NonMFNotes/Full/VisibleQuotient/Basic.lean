@@ -134,7 +134,7 @@ def PhiK : WK K →* PK K :=
     (wreathValueHom (K := K) (A := Abelianization K) (G := Gstar) (X := GstarCosets)
       Abelianization.of)
 
-theorem abelianization_of_surjective :
+theorem abelianizationOf_surjective :
     Function.Surjective (Abelianization.of : K →* Abelianization K) := by
   rintro ⟨x⟩
   exact ⟨x, rfl⟩
@@ -144,7 +144,7 @@ theorem phiK_surjective : Function.Surjective (PhiK K) := by
   intro p
   obtain ⟨f, hf⟩ := pushHom_surjective (A := Abelianization K) heightSite_surjective p.left
   obtain ⟨f', hf'⟩ :=
-    lampValueHom_surjective (X := GstarCosets) (abelianization_of_surjective K) f
+    lampValueHom_surjective (X := GstarCosets) (abelianizationOf_surjective K) f
   refine ⟨⟨f', p.right⟩, SemidirectProduct.ext ?_ rfl⟩
   show pushHom heightSite (lampValueHom Abelianization.of f') = p.left
   rw [hf', hf]
@@ -171,7 +171,9 @@ theorem lampDiff_mem_of_heightSite_eq [Finite K] (y y' : GstarCosets) (k : K)
     conjD conjD_injective CommutingLampCollapse.gammaBar_hasKazhdanPropertyT hm hk hheight
   rw [smul_rootCoset, smul_rootCoset] at hmod
   rw [mem_iff_of_map_eq (wreathCongr K gstarEquivVertical gstarCosetEquiv gstarCosetEquiv_smul)
-      (map_actualCoronaMFResidual_mulEquiv _), wreathCongr_inl, map_mul, map_inv,
+      (map_actualCoronaMFResidual_mulEquiv
+        (wreathCongr K gstarEquivVertical gstarCosetEquiv gstarCosetEquiv_smul)),
+    wreathCongr_inl, map_mul, map_inv,
     lampCongr_single, lampCongr_single, gstarCosetEquiv_mk, gstarCosetEquiv_mk]
   exact hmod
 

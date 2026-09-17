@@ -37,7 +37,7 @@ def literalDefectBound (n : ℕ) : ℝ := (2 : ℝ) ^ (-(n : ℤ) - 10)
 
 theorem literalDefectBound_eq (n : ℕ) :
     literalDefectBound n = ((2 : ℝ) ^ (n + 10))⁻¹ := by
-  rw [literalDefectBound, show -(n : ℤ) - 10 = -((n + 10 : ℕ) : ℤ) by push_cast; ring,
+  rw [literalDefectBound, show -(n : ℤ) - 10 = -((n + 10 : ℕ) : ℤ) by omega,
     zpow_neg, zpow_natCast]
 
 theorem literalDefectBound_pos (n : ℕ) : 0 < literalDefectBound n := by

@@ -211,4 +211,4 @@ end Full
 end GroupApproximation
 
 open GroupApproximation.Full.A2OperatorSystems in
-#audit_closed_axioms exists_positive_extension_of_system
+#audit_axioms exists_positive_extension_of_system
