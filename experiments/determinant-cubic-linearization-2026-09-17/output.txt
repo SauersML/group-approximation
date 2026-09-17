@@ -1,0 +1,41 @@
+== (1)-(2) linearization identity and exact 3-regularity over H x Z ==
+H=Z/2  n=1 trial=0: size L= 11 M1= 22 M'=  85 gadgets= 21  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/2  n=1 trial=1: size L= 11 M1= 22 M'=  85 gadgets= 21  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/2  n=2 trial=0: size L= 26 M1= 52 M'= 199 gadgets= 49  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/2  n=2 trial=1: size L= 26 M1= 52 M'= 199 gadgets= 49  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/3  n=1 trial=0: size L=  7 M1= 14 M'=  56 gadgets= 14  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/3  n=1 trial=1: size L= 11 M1= 22 M'=  85 gadgets= 21  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/3  n=2 trial=0: size L= 26 M1= 52 M'= 199 gadgets= 49  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/3  n=2 trial=1: size L= 34 M1= 68 M'= 257 gadgets= 63  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/5  n=1 trial=0: size L=  3 M1=  6 M'=  27 gadgets=  7  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/5  n=1 trial=1: size L= 11 M1= 22 M'=  85 gadgets= 21  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/5  n=2 trial=0: size L= 34 M1= 68 M'= 257 gadgets= 63  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=Z/5  n=2 trial=1: size L= 42 M1= 84 M'= 315 gadgets= 77  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=S_3  n=1 trial=0: size L=  3 M1=  6 M'=  27 gadgets=  7  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=S_3  n=1 trial=1: size L=  3 M1=  6 M'=  27 gadgets=  7  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=S_3  n=2 trial=0: size L= 38 M1= 76 M'= 286 gadgets= 70  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+H=S_3  n=2 trial=1: size L= 26 M1= 52 M'= 199 gadgets= 49  schur_err=0.0e+00  3-regular=True  det identity mod p=True
+
+== (3) Koenig split and det(1 + w1 + w2) on |z| = 1 ==
+z=e^i0.7: log|det(1+w1+w2)|=-219.03457323 log|det M'|=-219.03457323 log|det T| + 2g|H| log|1-z| = -219.03457323
+z=e^i2.3: log|det(1+w1+w2)|=358.08852507 log|det M'|=358.08852507 log|det T| + 2g|H| log|1-z| = 358.08852507
+B = [[0,M'],[M'*,0]]: size 398, self-adjoint=True, zero diagonal=True, row sums all 3=True
+
+== FK determinant over H x Z by quadrature (Mahler measure of the gadget factor is 0) ==
+H=Z/2, T = 2 - h s: log det T = 0.693147 (exact log 2 = 0.693147), log det M' = 0.700255, minus midpoint bias 2g log2/K = 0.693147 (M' size 85, 21 gadgets)
+
+== (4) negative controls ==
+gadget with adj(G)_00 = 1-s != 0: 3-regular=True, det identity mod p=False (expected False)
+T = 1+h over Z/2 (kernel): log det' T = 0.346574, log det' L = 1.242453, log det' M1 = 1.567274 (differ: unipotent similarity does not preserve det' with kernel)
+
+== (5) Theorem C(3) without ||r_B|| < 3: finite cubic graphs have atoms at +-3 ==
+q=2 |V|=216 L=2 m=1: norm=3.0000 atoms at +-3: 4  LHS=694.93086734 RHS=694.93086734
+q=2 |V|=216 L=2 m=2: norm=3.0000 atoms at +-3: 4  LHS=825.71366943 RHS=825.71366943
+q=2 |V|=216 L=3 m=1: norm=3.0000 atoms at +-3: 4  LHS=1042.39630102 RHS=1042.39630102
+q=2 |V|=216 L=3 m=2: norm=3.0000 atoms at +-3: 4  LHS=1238.57050415 RHS=1238.57050415
+q=3 |V|=324 L=2 m=1: norm=3.0000 atoms at +-3: 4  LHS=1100.49827967 RHS=1100.49827967
+q=3 |V|=324 L=2 m=2: norm=3.0000 atoms at +-3: 4  LHS=1276.69317386 RHS=1276.69317386
+q=3 |V|=324 L=3 m=1: norm=3.0000 atoms at +-3: 4  LHS=1650.74741950 RHS=1650.74741950
+q=3 |V|=324 L=3 m=2: norm=3.0000 atoms at +-3: 4  LHS=1915.03976080 RHS=1915.03976080
+
+ALL CHECKS PASSED
