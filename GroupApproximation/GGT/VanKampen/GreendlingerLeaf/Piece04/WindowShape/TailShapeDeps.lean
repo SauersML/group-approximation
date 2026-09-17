@@ -50,9 +50,9 @@ def WindowTailShapeStatement : Prop :=
     ¬ Q.InGap k i y → Q.runWindow k i x y ≠ [] → arc.reverseDarts = Q.classWindow k i x y →
     RotationTurns.WindowTailShape S.diagram.toCombMap (Q.runWindow k i x y) arc.darts
 
-/-- **Tail split of a run window** (lane gl-p04-05 target, not yet on disk).  A nonempty run window ending
-off a gap ends with `u`, and the class window is `rest ++ u :: γc` with `γc` empty or the whole gap
-after the side of `u`. -/
+/-- **Tail split of a run window** (lane gl-p04-05 target, not yet on disk).  A nonempty run
+window ending off a gap ends with `u`, and the class window is `rest ++ u :: γc` with `γc` empty or
+the whole gap after the side of `u`. -/
 def WindowTailSplitStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}

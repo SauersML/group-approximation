@@ -22,18 +22,19 @@ nonempty, and let `arc` be an arc of `∂Π` with `arc.reverseDarts = classWindo
    `γ = (γc.map α).reverse` and `p' = (rest.map α).reverse`.
 3. If `γc = []` then `γ = []` and there is nothing to prove.
 4. Otherwise `γ.head = α g0`.  By lane 02 (`ClassSidesSucc.succ`), `s < sideCount` and
-   `s' = (s + 1) % sideCount`.  By lane 03, `φ u = e`.  The class window has at least two darts and
-   length at most `y - x`, so `1 ≤ y` and `g0`, `e` sit at positions `y - 1`, `y` of the class.
-   By lane 01, `σ e = α g0`.  So `σ (φ u) = σ e = α g0 = γ.head`.
+   `s' = (s + 1) % sideCount`.  By lane 03 (`SideSuccFace.facePerm_last`), `φ u = e`.  The class
+   window has at least two darts and length at most `y - x`, so `1 ≤ y`, and `g0`, `e` sit at
+   positions `y - 1`, `y` of the class.  By lane 01 (`ClassStep.sigma_succ`), `σ e = α g0`.  So
+   `σ (φ u) = σ e = α g0 = γ.head`.
 
-*Endpoint.*  `windowTailShape_of_deps : ClassStepStatement → SideSuccFaceStatement →
-WindowTailSplitStatement → WindowTailShapeStatement`.  Lanes 01, 03 and 05 run in parallel and are
-not on disk; their targets are stated with the exact lane text in `WindowShape.TailShapeDeps`.
-Once they land, the unconditional endpoint is
+*Endpoint.*  `windowTailShape_of_windowTailSplit : WindowTailSplitStatement →
+WindowTailShapeStatement`.  Lanes 01, 02 and 03 are on disk and used directly.  Lane 05 runs in
+parallel and is not on disk; its target is stated with the exact lane text in
+`WindowShape.TailShapeDeps`.  Once it lands, the unconditional endpoint is
 
 ```
 theorem windowTailShape : WindowTailShapeStatement.{u, w, v} :=
-  windowTailShape_of_deps ClassStep.sigma_succ SideSuccFace.facePerm_last WindowTailSplit.split
+  windowTailShape_of_windowTailSplit WindowTailSplit.split
 ```
 
 ## Manuscript status
@@ -50,10 +51,9 @@ open GroupApproximation.GGT.VanKampen.Embedded
 open GroupApproximation.GGT.VanKampen.UnboundEstimate
 open GroupApproximation.GGT.OsinComponents
 
-/-- **The tail shape of a class window arc from the class step, side contiguity and the tail
-split** (lane gl-p04-07). -/
-theorem windowTailShape_of_deps (h1 : ClassStepStatement.{u, w, v})
-    (h3 : SideSuccFaceStatement.{u, w, v}) (h5 : WindowTailSplitStatement.{u, w, v}) :
+/-- **The tail shape of a class window arc from the tail split** (lane gl-p04-07).  The class step
+(lane 01), the successor sides (lane 02) and side contiguity (lane 03) are used unconditionally. -/
+theorem windowTailShape_of_windowTailSplit (h5 : WindowTailSplitStatement.{u, w, v}) :
     WindowTailShapeStatement.{u, w, v} := by
   intro G _ Lambda W D lambda c eps Delta cuts S P Q k i j x y arc hi hkind hxy hyw hng hne harc
   obtain ⟨u, U', γc, rest, hU, hW, hγ⟩ := h5 Q k i x y hi hxy hyw hng hne
@@ -69,16 +69,17 @@ theorem windowTailShape_of_deps (h1 : ClassStepStatement.{u, w, v})
     have hsm : s < P.sideCount k := hsides.1 s (List.mem_of_getElem? hs)
     have hss' : s' = (s + 1) % P.sideCount k := hsides.2 n s s' hs hs'
     rw [hss'] at he'
-    have hfu : S.diagram.toCombMap.facePerm u = e := h3 Q k s hsm u e hu he'
+    have hfu : S.diagram.toCombMap.facePerm u = e :=
+      SideSuccFace.facePerm_last Q k s hsm u e hu he'
     have hy : 1 ≤ y := one_le_of_classWindow Q k hW hlast
     have he1 : (Q.classDarts k i)[y - 1 + 1]? = some e := by
       rw [Nat.sub_add_cancel hy]
       exact he
     have hse : S.diagram.toCombMap.sigma e = S.diagram.toCombMap.alpha g0 :=
-      h1 Q k i j hi hkind (y - 1) g0 e hg0 he1
+      ClassStep.sigma_succ Q k i j hi hkind (y - 1) g0 e hg0 he1
     rw [hfu, hse]
     exact hg'
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.TailShape.windowTailShape_of_deps
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.TailShape.windowTailShape_of_windowTailSplit
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.WindowShape.TailShape
