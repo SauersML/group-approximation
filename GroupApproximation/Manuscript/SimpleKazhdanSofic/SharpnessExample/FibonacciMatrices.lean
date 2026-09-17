@@ -141,7 +141,7 @@ theorem fibonacciModel_single (j : ℤ) (f : ClopenCoeff (subshiftHomeo fibonacc
     fibonacciModel (SkewMonoidAlgebra.single (ofAdd j) f) =
       Matrix.diagonal (fibonacciWindowModel f) * shiftMatrix (ZMod 2) 5 j := by
   classical
-  rw [fibonacciModel_eq_of _ fun g _ => by
+  rw [fibonacciModel_eq_of (SkewMonoidAlgebra.single (ofAdd j) f) fun g _ => by
     rw [SkewMonoidAlgebra.coeff_single_apply]
     split_ifs
     · exact hf
@@ -278,7 +278,7 @@ theorem manuscriptSentence_fibonacciWindowsEqual :
         Matrix.diagonal (fibonacciWindowModel f) 1 1 =
           Matrix.diagonal (fibonacciWindowModel f) 4 4 := by
   refine ⟨by decide +kernel, by decide +kernel, fun f hf => ?_⟩
-  rw [diagonal_apply_eq, diagonal_apply_eq, fibonacciWindowModel_apply,
+  rw [Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, fibonacciWindowModel_apply,
     fibonacciWindowModel_apply]
   refine hf _ _ fun i hi => ?_
   rw [fibonacciPoint_spec 1 i hi, fibonacciPoint_spec 4 i hi]
@@ -306,7 +306,7 @@ theorem manuscriptSentence_fibonacciConjugateE44 :
         Matrix.single 4 4 1 := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · rw [fibonacciModel_unit, fibonacciModel_unit_zpow, show (3 : ℤ) = 1 + 1 + 1 by norm_num,
-      shiftMatrix_add, shiftMatrix_add, pow_three, mul_assoc]
+      shiftMatrix_add, shiftMatrix_add, pow_three']
   · rw [fibonacciModel_unit_zpow, fibonacciModel_unit_zpow, ← shiftMatrix_add, add_neg_cancel,
       shiftMatrix_zero]
   · rw [fibonacciModel_unit_zpow, fibonacciModel_unit_zpow, fibonacciModel_letter, letterDiagonal]
@@ -332,7 +332,9 @@ theorem periodicGenerators_subset_fibonacciModel_image :
   · rcases h with rfl | rfl
     · exact ⟨fibU, Set.mem_insert_of_mem _ (Set.mem_union_left _ (Set.mem_insert _ _)),
         fibonacciModel_unit⟩
-    · exact ⟨_, Set.mem_insert_of_mem _
+    · exact ⟨(((ClopenCrossedProduct.unit (subshiftHomeo fibonacciSubshift) (ZMod 2))⁻¹ :
+        (SimpleKazhdanSofic.R fibonacciSubshift)ˣ) : SimpleKazhdanSofic.R fibonacciSubshift),
+        Set.mem_insert_of_mem _
         (Set.mem_union_left _ (Set.mem_insert_of_mem _ (Set.mem_singleton _))),
         fibonacciModel_unit_inv⟩
   · exact ⟨fibLetter a, Set.mem_insert_of_mem _ (Set.mem_union_right _ ⟨a, rfl⟩),
@@ -383,7 +385,8 @@ theorem manuscriptSentence_fibonacciGeneratesMatrices :
       elementaryGroup (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)) =
         Subgroup.closure {z : (Matrix (Fin 3) (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)))ˣ |
           ∃ (i j : Fin 3) (h : i ≠ j) (s : SimpleKazhdanSofic.R fibonacciSubshift),
-            s ∈ printedGeneratorsSet fibonacciSubshift ∧ elementaryUnit i j h (fibonacciModel s) = z} ∧
+            s ∈ printedGeneratorsSet fibonacciSubshift ∧
+              elementaryUnit i j h (fibonacciModel s) = z} ∧
       Subgroup.closure {z : (Matrix (Fin 3) (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)))ˣ |
           ∃ (i j : Fin 3) (h : i ≠ j) (s : SimpleKazhdanSofic.R fibonacciSubshift),
             s ∈ printedGeneratorsSet fibonacciSubshift ∧
@@ -393,12 +396,12 @@ theorem manuscriptSentence_fibonacciGeneratesMatrices :
           ∃ (i j : Fin 3) (h : i ≠ j) (s : SimpleKazhdanSofic.R fibonacciSubshift),
             s ∈ printedGeneratorsSet fibonacciSubshift ∧
               elementaryUnit i j h (fibonacciModel s) = z}) = ⊤ ∧
-      Fintype.card (Fin 3 × ZMod 5) = 15 := by
+      Fintype.card (Fin 3 × ZMod 5) = 3 * 5 := by
   have htop := subring_closure_fibonacciModel_image_eq_top
   have h1 : (1 : Matrix (ZMod 5) (ZMod 5) (ZMod 2)) ∈
       fibonacciModel '' printedGeneratorsSet fibonacciSubshift :=
     ⟨1, Set.mem_insert _ _, fibonacciModel_one⟩
-  have hgen := printedElementaryGeneration _ _ htop
+  have hgen := printedElementaryGeneration (Matrix (ZMod 5) (ZMod 5) (ZMod 2)) _ htop
   rw [Set.insert_eq_of_mem h1] at hgen
   have hle : Subgroup.closure {z : (Matrix (Fin 3) (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)))ˣ |
       ∃ (i j : Fin 3) (h : i ≠ j) (s : Matrix (ZMod 5) (ZMod 5) (ZMod 2)),
@@ -417,7 +420,7 @@ theorem manuscriptSentence_fibonacciGeneratesMatrices :
       elementaryGroup (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)) := by
     refine (Subgroup.closure_le _).2 fun z hz => ?_
     obtain ⟨i, j, h, s, _, rfl⟩ := hz
-    exact Subgroup.subset_closure ⟨i, j, h, fibonacciModel s, rfl⟩
+    exact elementaryUnit_mem i j h (fibonacciModel s)
   have hEL : elementaryGroup (Fin 3) (Matrix (ZMod 5) (ZMod 5) (ZMod 2)) = ⊤ :=
     ChainRadical.elementaryGroup_matrix_zmodTwo_eq_top (ι := Fin 3) (ZMod 5)
   have hclosure : Subgroup.closure

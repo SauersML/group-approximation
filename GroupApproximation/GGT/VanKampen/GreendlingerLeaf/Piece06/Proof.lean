@@ -20,11 +20,14 @@ first-turn order, with both arcs proper:
 * otherwise some non-first turn `d₀ → next d₀` is uncrossed
   (`Piece06.exists_uncrossed_of_not_allCrossed`), and
   * with good corners the chord split performs the step (`Piece06.exists_step_of_goodCorners`);
-  * with bad corners: `Piece06.exists_step_of_badCorners` (OPEN, gap 5).
+  * with bad corners: `Piece06.exists_step_of_badCorners`, from the hypothesis
+    `BadCornerRefinementStatement` (OPEN, gap 5, module `Piece06/Doubling`).
 
-* `exists_step`: the step for a fixed pocket, from `CellRoseStepStatement`.
-* `proof_of_cellRoseStep`: the statement, from `CellRoseStepStatement`.  The unconditional `proof`
-  is `proof_of_cellRoseStep` applied to a proof of `CellRoseStepStatement`.
+* `exists_step`: the step for a fixed pocket, from `CellRoseStepStatement` and
+  `BadCornerRefinementStatement`.
+* `proof_of_cellRoseStep`: the statement, from both hypotheses.  The unconditional `proof` is
+  `proof_of_cellRoseStep` applied to proofs of `CellRoseStepStatement` and
+  `BadCornerRefinementStatement`.
 
 ## Manuscript status
 
@@ -40,7 +43,8 @@ open Embedded Surgery.MapCollapse SimpleClosedWalkSides OuterPinchIsolated
 open scoped Classical
 
 /-- **One step of the cell pinch at an outer pinch, for a fixed pocket between distinct cells.** -/
-theorem exists_step (hgap : CellRoseStepStatement.{u, w, v}) {G : Type u} [Group G]
+theorem exists_step (hgap : CellRoseStepStatement.{u, w, v})
+    (hcorner : BadCornerRefinementStatement.{u, w, v}) {G : Type u} [Group G]
     {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}
     (hij : i ≠ j) (hlea : X.LeastArea)
@@ -63,16 +67,18 @@ theorem exists_step (hgap : CellRoseStepStatement.{u, w, v}) {G : Type u} [Group
     by_cases hgood : GoodTurnCorners X d₀ (K.boundary.cycle.next d₀ hd₀)
     · exact exists_step_of_goodCorners hlabel K hK hij hfirst hsecond hd₀ rfl hnf
         (huncross_of_not_turnCrossed hnc) hgood
-    · exact exists_step_of_badCorners hlabel K hK hij hfirst hsecond hd₀ rfl hnf
+    · exact exists_step_of_badCorners hcorner hlabel K hK hij hfirst hsecond hd₀ rfl hnf
         (huncross_of_not_turnCrossed hnc) hgood
 
 /-- **Piece 06 of the Greendlinger leaf: `CellPocketOuterPinchStepSectionDistinctStatement`**, from
-the rose step `CellRoseStepStatement` (OPEN, gap 6). -/
-theorem proof_of_cellRoseStep (hgap : CellRoseStepStatement.{u, w, v}) :
+the rose step `CellRoseStepStatement` (OPEN, gap 6) and the corner doubling
+`BadCornerRefinementStatement` (OPEN, gap 5). -/
+theorem proof_of_cellRoseStep (hgap : CellRoseStepStatement.{u, w, v})
+    (hcorner : BadCornerRefinementStatement.{u, w, v}) :
     CellPocketOuterPinchStepSectionDistinctStatement.{u, w, v} := by
   intro G _ Lambda D _ _ _ _ _ _ _ _ _
   exact ⟨0, fun _ _ => ⟨1, Nat.one_pos, fun _ _ _ _ _ _ _ hij hlea hlabel K hK hnft hfirst hsecond
-    hpinch => exists_step hgap hij hlea hlabel K hK hnft hfirst hsecond hpinch⟩⟩
+    hpinch => exists_step hgap hcorner hij hlea hlabel K hK hnft hfirst hsecond hpinch⟩⟩
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.GoodCorners
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Doubling
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -7,15 +8,15 @@ import GroupApproximation.Meta.AxiomGuard
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Steps 5 and 6 of the plan in
 `Piece06/Predicate`.
 
-* `exists_step_of_badCorners` (OPEN, gap 5).  At an uncrossed non-first turn `d₀ → e₀` whose minimal
-  corners are bad (`¬ GoodTurnCorners X d₀ e₀`), the intended argument doubles an edge of the
-  offending corner face outside `K.faces` (`CellPocketFaceSet.faceEdgeDoubling`), which inserts a
-  G-digon, off the exterior and off the relator cells, into the corner, and keeps walk order, repeated
-  visits and proper arcs.  In the doubled diagram the corners are good and
-  `Piece06.exists_step_of_goodCorners` performs the step; O-equivalences compose.  The missing input
-  is the transport of `NonFirstTurn`, `¬ TurnCrossed` and the corner data across the doubling, which
-  is not in the library.  The attempt below reads off good corners from `hbad` and is expected to fail
-  at that point.
+* `exists_step_of_badCorners` (proved from `BadCornerRefinementStatement`, gap 5).  At an uncrossed
+  non-first turn `d₀ → e₀` whose minimal corners are bad (`¬ GoodTurnCorners X d₀ e₀`), double an
+  edge at each corner (`CellPocketFaceSet.faceEdgeDoubling`, `outerSpurThickening`), inserting a
+  G-digon into the corner.  Since the turn is not first, `σ e₀ ≠ α d₀`
+  (`sigma_ne_alpha_of_not_firstTurn`).  The doubled diagram is a rotation refinement
+  (`Piece06/Refinement`) carrying the pocket with boundary `c.map e`, and it has a good refined
+  sector.  This existence is the isolated hypothesis `BadCornerRefinementStatement` (`Piece06/Doubling`).
+  The transport of the non-first turn, the uncrossedness and the sector across the refinement, and
+  the step itself, are `exists_step_of_refinement` (proved).
 * Gap 6, the rose (every non-first turn is crossed), is isolated as `CellRoseStepStatement` in the
   module `Piece06/Rose`, with the reduction `exists_step_of_allCrossed_of_cellRoseStep`.
 
@@ -35,10 +36,10 @@ open scoped Classical
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}
 
-/-- **One step of the cell pinch at an uncrossed non-first turn with bad corners** (OPEN, gap 5 of
-`Piece06/Predicate`: the transport of the turn data across `faceEdgeDoubling` is missing).  Best
-attempt; expected not to elaborate. -/
-theorem exists_step_of_badCorners
+/-- **One step of the cell pinch at an uncrossed non-first turn with bad corners**, from the corner
+doubling `BadCornerRefinementStatement` (gap 5 of `Piece06/Predicate`), through
+`exists_step_of_refinement`. -/
+theorem exists_step_of_badCorners (hgap : BadCornerRefinementStatement.{u, w, v})
     (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
     (K : CellPocketFaceSet D eps X i j) (hK : K.ClosedWalk) (hij : i ≠ j)
     (hfirst : K.firstArc.length < (cellDarts X i).length)
@@ -51,7 +52,7 @@ theorem exists_step_of_badCorners
       X.toCombMap.sigma.SameCycle (X.toCombMap.alpha d₀) (X.toCombMap.alpha d) →
         (RotationBetween X.toCombMap (X.toCombMap.alpha d₀) e₀ (X.toCombMap.alpha d) ↔
           RotationBetween X.toCombMap (X.toCombMap.alpha d₀) e₀ (K.boundary.cycle.next d hd)))
-    (hbad : ¬ GoodTurnCorners X d₀ e₀) :
+    (_hbad : ¬ GoodTurnCorners X d₀ e₀) :
     ∃ (X' : DiscDiagram.{u, w, v} W) (i' j' : Fin X'.rCellCount)
       (K' : CellPocketFaceSet D eps X' i' j'),
       Nonempty (OEquivalentDiscDiagram X X') ∧
@@ -59,10 +60,10 @@ theorem exists_step_of_badCorners
         K'.ClosedWalk ∧ K'.firstArc.length < (cellDarts X' i').length ∧
         K'.secondArc.length < (cellDarts X' j').length ∧
         K'.repeatedVisits < K.repeatedVisits := by
-  -- OPEN (gap 5): in the doubled diagram the corners are good.  Expected elaboration failure: `hbad`
-  -- is `¬ GoodTurnCorners X d₀ e₀`, not its double negation.
-  have hgood : GoodTurnCorners X d₀ e₀ := not_not.mp hbad
-  exact exists_step_of_goodCorners hlabel K hK hij hfirst hsecond hd₀ hnext₀ hnot huncross hgood
+  obtain ⟨X', i', j', K', R, hE, hlabel', hij', hK', hfirst', hsecond', hvisits, hcycle, hsector⟩ :=
+    hgap K hlabel hK hij hfirst hsecond hd₀ hnext₀ (sigma_ne_alpha_of_not_firstTurn hnot)
+  exact exists_step_of_refinement K K' R hE hlabel' hij' hK' hfirst' hsecond' hvisits hcycle hd₀
+    hnext₀ hnot huncross hsector
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 
