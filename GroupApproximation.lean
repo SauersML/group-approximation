@@ -5448,6 +5448,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Resi
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.NearInvariant
 import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.BlockCliffordPropertyA
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.SolvableAmenable
+import GroupApproximation.Manuscript.NonMF.ChainCarto03Quotient
+import GroupApproximation.Manuscript.NonMF.IntroCarto02Local
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
