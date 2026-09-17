@@ -67,8 +67,8 @@ theorem monogon_length (X : DiscDiagram.{u, w, v} W) {z : X.toCombMap.Dart}
     change X.toCombMap.sigma (X.toCombMap.alpha (X.toCombMap.alpha z)) = X.toCombMap.alpha z
     rw [X.toCombMap.alpha_involutive z]
     exact hσα
-  refine length_eq_one_of_forall_eq (X.faceBoundary _).nonempty (X.faceBoundary _).nodup
-    (fun d hd => ?_)
+  refine length_eq_one_of_forall_eq (x := X.toCombMap.alpha z) (X.faceBoundary _).nonempty
+    (X.faceBoundary _).nodup (fun d hd => ?_)
   have hsame := (CombMap.faceOf_eq_iff X.toCombMap _ _).mp
     (((X.faceBoundary _).mem_iff d).mp hd).symm
   exact (hsame.eq_of_left hfix).symm
@@ -121,7 +121,8 @@ theorem inner_digon_isGFace :
     MonogonDoubling.digon_not_cell X f hf hlen⟩
 
 /-- The only old dart on the digon is the dart of the monogon. -/
-theorem eq_of_digon {z w : X.toCombMap.Dart} (hfz : X.toCombMap.faceOf (X.toCombMap.alpha z) = f)
+theorem eq_of_digon (hlen : (X.faceBoundary f).darts.length = 1) {z w : X.toCombMap.Dart}
+    (hfz : X.toCombMap.faceOf (X.toCombMap.alpha z) = f)
     (hw : (MonogonDoubling.map X f).faceOf (EdgeInsertion.embed X.toCombMap w) =
       MonogonDoubling.digon X f) : w = X.toCombMap.alpha z := by
   by_cases hwf : X.toCombMap.faceOf w = f
