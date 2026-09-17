@@ -197,3 +197,21 @@ do not provide either mechanism.
   interface must therefore exclude hyperlinearity of the base itself; exact
   finite-dimensional invisibility of the marked sector does not weaken that
   requirement.
+- **Use an actor that splits over amenable subgroups (free, virtually free,
+  `BS(m,n)`, free products of amenable groups, amenable actors), with any
+  module.**  `amenable-edge-actor-packets-have-hyperlinear-base` proves
+  `M rtimes pi_1(Gcal) ~= pi_1(Gcal_M)` with vertex groups `M rtimes G_v`
+  and amenable edge groups `M rtimes G_e`, so the base is hyperlinear by
+  amenable-edge Bass--Serre permanence whenever every `M rtimes G_v` is.
+  The interface is then false for every seed and every presentation: the
+  terminal estimate `(ICR2)` would put `J` in the radical, while the D8
+  radical transfer gives an ultraproduct model with `J=-1`.  This kills the
+  class with no hypothesis on characters, soficity or homoclinic structure.
+  Separately, for a permutation module `M <= sum_X F_2` over a hyperlinear
+  actor with a sofic coordinate action, `gkp-connes-embeddable-generalized-wreath-permanence`
+  makes the ambient wreath `F_2 wr_X A`, hence the base, hyperlinear; no
+  controller relation valid in the base can rescue such a packet.  A
+  surviving host needs a nonamenable edge in every splitting of the actor
+  (e.g. property (FA)) and, for permutation modules, a nonsofic coordinate
+  action or a nonhyperlinear actor; the `SL_3(Z[1/2])` and
+  Andre--Guirardel actors pass the first gate and still owe the second.
