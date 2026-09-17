@@ -5353,6 +5353,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Halfline.Lamplighte
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LamplighterHost.Models
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TwoNorm
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Itinerary
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.GeneralSubgroupsRemark
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
