@@ -1,0 +1,334 @@
+# run.log for experiments/lo-certificate-radu-six-four-n-2026-09-17 (GAP 4, Python 3; 2026-09-17)
+
+### Datum checks (RADU_TEX sha256 d25c2f5005704d1f17c428b61fd934d0593a5e30e5eeae021a532f6447948f38)
+## n=2
+$ python3 fig64n.py 2 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 12
+conv 1 first four = Gamma_44: False valid datum: False squares: 12
+conv 2 first four = Gamma_44: False valid datum: False squares: 12
+conv 3 first four = Gamma_44: False valid datum: False squares: 12
+$ python3 g64n.py 2
+n=2 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 2 corrected
+n=2 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 2
+corrected=False n=2 squares=12 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 2 corrected
+corrected=True n=2 squares=12 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=3
+$ python3 fig64n.py 3 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 18
+conv 1 first four = Gamma_44: False valid datum: False squares: 18
+conv 2 first four = Gamma_44: False valid datum: False squares: 18
+conv 3 first four = Gamma_44: False valid datum: False squares: 18
+$ python3 g64n.py 3
+n=3 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 3 corrected
+n=3 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 3
+corrected=False n=3 squares=18 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 3 corrected
+corrected=True n=3 squares=18 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=4
+$ python3 fig64n.py 4 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 24
+conv 1 first four = Gamma_44: False valid datum: False squares: 24
+conv 2 first four = Gamma_44: False valid datum: False squares: 24
+conv 3 first four = Gamma_44: False valid datum: False squares: 24
+$ python3 g64n.py 4
+n=4 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 4 corrected
+n=4 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 4
+corrected=False n=4 squares=24 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 4 corrected
+corrected=True n=4 squares=24 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=5
+$ python3 fig64n.py 5 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 30
+conv 1 first four = Gamma_44: False valid datum: False squares: 30
+conv 2 first four = Gamma_44: False valid datum: False squares: 30
+conv 3 first four = Gamma_44: False valid datum: False squares: 30
+$ python3 g64n.py 5
+n=5 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 5 corrected
+n=5 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 5
+corrected=False n=5 squares=30 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 5 corrected
+corrected=True n=5 squares=30 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=6
+$ python3 fig64n.py 6 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 36
+conv 1 first four = Gamma_44: False valid datum: False squares: 36
+conv 2 first four = Gamma_44: False valid datum: False squares: 36
+conv 3 first four = Gamma_44: False valid datum: False squares: 36
+$ python3 g64n.py 6
+n=6 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 6 corrected
+n=6 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 6
+corrected=False n=6 squares=36 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 6 corrected
+corrected=True n=6 squares=36 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=7
+$ python3 fig64n.py 7 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 42
+conv 1 first four = Gamma_44: False valid datum: False squares: 42
+conv 2 first four = Gamma_44: False valid datum: False squares: 42
+conv 3 first four = Gamma_44: False valid datum: False squares: 42
+$ python3 g64n.py 7
+n=7 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 7 corrected
+n=7 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 7
+corrected=False n=7 squares=42 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 7 corrected
+corrected=True n=7 squares=42 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+## n=8
+$ python3 fig64n.py 8 | grep conv
+conv 0 first four = Gamma_44: True valid datum: True squares: 48
+conv 1 first four = Gamma_44: False valid datum: False squares: 48
+conv 2 first four = Gamma_44: False valid datum: False squares: 48
+conv 3 first four = Gamma_44: False valid datum: False squares: 48
+$ python3 g64n.py 8
+n=8 conventions giving a valid datum containing Gamma_44: []
+distinct data: 0
+$ python3 g64n.py 8 corrected
+n=8 conventions giving a valid datum containing Gamma_44: [((0, 0), (0, 0, 1, 1)), ((0, 0), (0, 1, 0, 1)), ((0, 0), (1, 0, 1, 0)), ((0, 0), (1, 1, 0, 0))]
+distinct data: 1
+torsion-free (no square of form (xy)^2): True
+$ python3 xcheck64n.py 8
+corrected=False n=8 squares=48 b-readings matching all b_j: [] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+$ python3 xcheck64n.py 8 corrected
+corrected=True n=8 squares=48 b-readings matching all b_j: [(0, -1, 1, 0), (0, 1, 0, 0), (1, -1, 1, 1), (1, 1, 0, 1)] ; a-readings matching a1,a2,a3: [(0, -1, 0, 1), (0, 1, 1, 1), (1, -1, 0, 0), (1, 1, 1, 0)]
+
+### n = 2: Gamma_{6,8}/ncl(c) over the trivial subgroup
+$ python3 mktc.py 2 > t2.g && gap -q -o 2g t2.g
+n=2 squares=12 Gamma^ab=[ 2, 2 ]
+n=2 Q^ab=[ 2, 2 ]
+n=2 H=[ a1 ] index 2 1013ms
+n=2 H=[  ] index 4 34978ms
+
+### Collapse and perfectness, n = 2..24
+$ for n in $(seq 2 24); do python3 mkelim.py $n 12000000 cd > e$n.g; timeout 1200 gap -q -o 2g e$n.g < /dev/null | grep -E "n=|Error"; echo "EXIT n=$n $?"; done
+n=2 cd=True nrels=9 ab=[ 2, 2 ]
+n=2 cd=True H=[a1] index 2 319ms
+n=2 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=2 0
+n=3 cd=True nrels=13 ab=[ 2, 2 ]
+n=3 cd=True H=[a1] index 2 5688ms
+n=3 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=3 0
+n=4 cd=True nrels=17 ab=[ 2, 2 ]
+n=4 cd=True H=[a1] index 2 5563ms
+n=4 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=4 0
+n=5 cd=True nrels=21 ab=[ 2, 2 ]
+n=5 cd=True H=[a1] index 2 6604ms
+n=5 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=5 0
+n=6 cd=True nrels=25 ab=[ 2, 2 ]
+n=6 cd=True H=[a1] index 2 7998ms
+n=6 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=6 0
+n=7 cd=True nrels=29 ab=[ 2, 2 ]
+n=7 cd=True H=[a1] index 2 9598ms
+n=7 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=7 0
+n=8 cd=True nrels=33 ab=[ 2, 2 ]
+n=8 cd=True H=[a1] index 2 11267ms
+n=8 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=8 0
+n=9 cd=True nrels=37 ab=[ 2, 2 ]
+n=9 cd=True H=[a1] index 2 13260ms
+n=9 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=9 0
+n=10 cd=True nrels=41 ab=[ 2, 2 ]
+n=10 cd=True H=[a1] index 2 15955ms
+n=10 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=10 0
+n=11 cd=True nrels=45 ab=[ 2, 2 ]
+n=11 cd=True H=[a1] index 2 18572ms
+n=11 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=11 0
+n=12 cd=True nrels=49 ab=[ 2, 2 ]
+n=12 cd=True H=[a1] index 2 20794ms
+n=12 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=12 0
+n=13 cd=True nrels=53 ab=[ 2, 2 ]
+n=13 cd=True H=[a1] index 2 22986ms
+n=13 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=13 0
+n=14 cd=True nrels=57 ab=[ 2, 2 ]
+n=14 cd=True H=[a1] index 2 26352ms
+n=14 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=14 0
+n=15 cd=True nrels=61 ab=[ 2, 2 ]
+n=15 cd=True H=[a1] index 2 29159ms
+n=15 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=15 0
+n=16 cd=True nrels=65 ab=[ 2, 2 ]
+n=16 cd=True H=[a1] index 2 32667ms
+n=16 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=16 0
+n=17 cd=True nrels=69 ab=[ 2, 2 ]
+n=17 cd=True H=[a1] index 2 36193ms
+n=17 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=17 0
+n=18 cd=True nrels=73 ab=[ 2, 2 ]
+n=18 cd=True H=[a1] index 2 40068ms
+n=18 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=18 0
+n=19 cd=True nrels=77 ab=[ 2, 2 ]
+n=19 cd=True H=[a1] index 2 44835ms
+n=19 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=19 0
+n=20 cd=True nrels=81 ab=[ 2, 2 ]
+n=20 cd=True H=[a1] index 2 50433ms
+n=20 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=20 0
+n=21 cd=True nrels=85 ab=[ 2, 2 ]
+n=21 cd=True H=[a1] index 2 54709ms
+n=21 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=21 0
+n=22 cd=True nrels=89 ab=[ 2, 2 ]
+n=22 cd=True H=[a1] index 2 60687ms
+n=22 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=22 0
+n=23 cd=True nrels=93 ab=[ 2, 2 ]
+n=23 cd=True H=[a1] index 2 66799ms
+n=23 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=23 0
+n=24 cd=True nrels=97 ab=[ 2, 2 ]
+n=24 cd=True H=[a1] index 2 77691ms
+n=24 [Q:Q'] = 4 abelian invariants of Q': [  ]
+EXIT n=24 0
+
+### Negative: the n-free group D
+$ python3 mkelim.py 0 12000000 cd > e0.g && gap -q -o 2g e0.g
+n=0 cd=True nrels=10 ab=[ 2, 2 ]
+n=0 cd=True H=[a1] FAIL 19037ms
+
+### Uniform perfectness: windows valid for every n >= 2
+$ python3 mkwin.py 3 1 100000 > w.g && gap -q -o 2g w.g
+W(3,1) nrels=8 ab=[ 2, 2 ]
+W(3,1) H=[a1] FAIL 79ms
+W(3,1) [Q:Q'] = 4 abelian invariants of Q': [  ]
+$ python3 mkwin.py 4 0 100000 > w.g && gap -q -o 2g w.g
+W(4,0) nrels=8 ab=[ 2, 2 ]
+W(4,0) H=[a1] FAIL 80ms
+W(4,0) [Q:Q'] = 4 abelian invariants of Q': [  ]
+
+## window W(5,2): uniform collapse for every n >= 3
+$ python3 mkwin.py 5 2 12000000 > w52.g && gap -q -o 2g w52.g
+W(5,2) nrels=14 ab=[ 2, 2 ]
+W(5,2) H=[a1] index 2 26369ms
+W(5,2) [Q:Q'] = 4 abelian invariants of Q': [  ]
+
+## larger windows (same script, max 12000000)
+W(5,2) nrels=14 ab=[ 2, 2 ]
+W(5,2) H=[a1] index 2 26254ms
+W(5,2) [Q:Q'] = 4 abelian invariants of Q': [  ]
+W(7,3) nrels=20 ab=[ 2, 2 ]
+W(7,3) H=[a1] index 2 6066ms
+W(7,3) [Q:Q'] = 4 abelian invariants of Q': [  ]
+W(9,5) nrels=28 ab=[ 2, 2 ]
+W(9,5) H=[a1] index 2 8929ms
+W(9,5) [Q:Q'] = 4 abelian invariants of Q': [  ]
+W(11,7) nrels=36 ab=[ 2, 2 ]
+W(11,7) H=[a1] index 2 11881ms
+W(11,7) [Q:Q'] = 4 abelian invariants of Q': [  ]
+
+## windows are squares of every Gamma_{6,4n}
+$ python3 verwin.py 5 2 3 24
+W(5,2) n=3 window squares=21 all in datum: True
+W(5,2) n=4 window squares=21 all in datum: True
+W(5,2) n=5 window squares=21 all in datum: True
+W(5,2) n=6 window squares=21 all in datum: True
+W(5,2) n=7 window squares=21 all in datum: True
+W(5,2) n=8 window squares=21 all in datum: True
+W(5,2) n=9 window squares=21 all in datum: True
+W(5,2) n=10 window squares=21 all in datum: True
+W(5,2) n=11 window squares=21 all in datum: True
+W(5,2) n=12 window squares=21 all in datum: True
+W(5,2) n=13 window squares=21 all in datum: True
+W(5,2) n=14 window squares=21 all in datum: True
+W(5,2) n=15 window squares=21 all in datum: True
+W(5,2) n=16 window squares=21 all in datum: True
+W(5,2) n=17 window squares=21 all in datum: True
+W(5,2) n=18 window squares=21 all in datum: True
+W(5,2) n=19 window squares=21 all in datum: True
+W(5,2) n=20 window squares=21 all in datum: True
+W(5,2) n=21 window squares=21 all in datum: True
+W(5,2) n=22 window squares=21 all in datum: True
+W(5,2) n=23 window squares=21 all in datum: True
+W(5,2) n=24 window squares=21 all in datum: True
+$ python3 verwin.py 3 1 2 24
+W(3,1) n=2 window squares=12 all in datum: True
+W(3,1) n=3 window squares=12 all in datum: True
+W(3,1) n=4 window squares=12 all in datum: True
+W(3,1) n=5 window squares=12 all in datum: True
+W(3,1) n=6 window squares=12 all in datum: True
+W(3,1) n=7 window squares=12 all in datum: True
+W(3,1) n=8 window squares=12 all in datum: True
+W(3,1) n=9 window squares=12 all in datum: True
+W(3,1) n=10 window squares=12 all in datum: True
+W(3,1) n=11 window squares=12 all in datum: True
+W(3,1) n=12 window squares=12 all in datum: True
+W(3,1) n=13 window squares=12 all in datum: True
+W(3,1) n=14 window squares=12 all in datum: True
+W(3,1) n=15 window squares=12 all in datum: True
+W(3,1) n=16 window squares=12 all in datum: True
+W(3,1) n=17 window squares=12 all in datum: True
+W(3,1) n=18 window squares=12 all in datum: True
+W(3,1) n=19 window squares=12 all in datum: True
+W(3,1) n=20 window squares=12 all in datum: True
+W(3,1) n=21 window squares=12 all in datum: True
+W(3,1) n=22 window squares=12 all in datum: True
+W(3,1) n=23 window squares=12 all in datum: True
+W(3,1) n=24 window squares=12 all in datum: True
+$ python3 verwin.py 4 0 2 24
+W(4,0) n=2 window squares=12 all in datum: True
+W(4,0) n=3 window squares=12 all in datum: True
+W(4,0) n=4 window squares=12 all in datum: True
+W(4,0) n=5 window squares=12 all in datum: True
+W(4,0) n=6 window squares=12 all in datum: True
+W(4,0) n=7 window squares=12 all in datum: True
+W(4,0) n=8 window squares=12 all in datum: True
+W(4,0) n=9 window squares=12 all in datum: True
+W(4,0) n=10 window squares=12 all in datum: True
+W(4,0) n=11 window squares=12 all in datum: True
+W(4,0) n=12 window squares=12 all in datum: True
+W(4,0) n=13 window squares=12 all in datum: True
+W(4,0) n=14 window squares=12 all in datum: True
+W(4,0) n=15 window squares=12 all in datum: True
+W(4,0) n=16 window squares=12 all in datum: True
+W(4,0) n=17 window squares=12 all in datum: True
+W(4,0) n=18 window squares=12 all in datum: True
+W(4,0) n=19 window squares=12 all in datum: True
+W(4,0) n=20 window squares=12 all in datum: True
+W(4,0) n=21 window squares=12 all in datum: True
+W(4,0) n=22 window squares=12 all in datum: True
+W(4,0) n=23 window squares=12 all in datum: True
+W(4,0) n=24 window squares=12 all in datum: True
+$ python3 verwin.py 5 2 2 2   # expected False: K(2) and K(n-1) do not exist for n = 2
+W(5,2) n=2 window squares=21 all in datum: False missing [[(
