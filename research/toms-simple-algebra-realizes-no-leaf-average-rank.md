@@ -53,3 +53,19 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     are forced to vanish together, by Künneth.
   - A first sub-case to settle: carries of rank at most `sqrt(2) d_r` through one
     level-`r` node, where the swap theorem forces total degeneracy.
+- **Calibration and a transport obstruction (sw-113, 2026-09-17).**
+  - *Calibration.* `untwisted-doubling-tower-has-a-nonconstant-continuous-rank`
+    shows that with trivial twists every leaf average is a rank. The realizer is
+    averaged ramps, and its containments come from Robert's dimension-two
+    comparison over a square. So the firewalls above are sharp, and any proof has
+    to use the twists.
+  - *Obstruction.* `toms-constant-rank-twisted-transport-costs-double-rank` shows
+    that in `A` a containment whose target has constant rank on a swap family
+    `{(x(s), x(1 - s))} x CP^j` needs rank at least twice the swapped rank. The
+    proof counts roots of the total Chern class. Deep approximants of a realizer
+    therefore cannot rotate support between top copies at constant rank, which is
+    exactly the step the calibration uses. They must drop support on the swap
+    family and pick it up again.
+  - *Next.* Bound the drop loci. The same Chern count on a sub-slice where the rank
+    is constant should force the drop set to have large dimension. Then run the
+    argument in `B` with the point-evaluation blocks included.

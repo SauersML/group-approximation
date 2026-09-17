@@ -43,3 +43,10 @@ For a minimal action `α : Z ↷ X`, is
   Dranishnikov alphabets. The step that fails is the nonzero rational cup product
   of translates. Consequence: `>=` needs torsion (mod-`p`) relative Euler classes,
   or else these explicit systems refute the conjecture.
+* Within 1 on the obstruction systems (`torsion-chern-witnesses-within-one-of-phillips-toms`).
+  A split torsion variant of Hirshberg--Phillips' symmetric bound needs no
+  `Q` coefficients: `E = ⊕ L_j`, `c_1(L_j)^2 = 0`, and nonvanishing of
+  `e_{sr}` checked mod `p`. It gives `mdim/2 - 1 <= rc <= mdim/2` on the
+  minimal subshifts over `K_p^s` (quotients of Pontryagin surfaces) where
+  every rational witness caps at `mdim/4`. Open: Dranishnikov alphabets whose
+  mod-`p` witnesses do not come from `H^2`, and the `s = 1` case.

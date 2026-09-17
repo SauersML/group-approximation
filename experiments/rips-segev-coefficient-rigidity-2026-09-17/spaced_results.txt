@@ -1,0 +1,10 @@
+$ python3 spaced_gap_check.py --p 2 --trials 300 --adjacent 0
+F_2 trials=300 seed=7 maxK=3 maxC=12 adjacent<=0: {'graphs': 300, 'violations': 0, 'nonrank1_rows': 1800, 'nonrank1_nonzero_kernel': 0, 'rank1_rows': 2700, 'rank1_nonzero_kernel': 423, 'nonrank1_support_ge2': 0}
+$ python3 spaced_gap_check.py --p 3 --trials 300 --adjacent 0
+F_3 trials=300 seed=7 maxK=3 maxC=12 adjacent<=0: {'graphs': 300, 'violations': 0, 'nonrank1_rows': 14400, 'nonrank1_nonzero_kernel': 0, 'rank1_rows': 9600, 'rank1_nonzero_kernel': 1450, 'nonrank1_support_ge2': 0}
+$ python3 spaced_gap_check.py --p 3 --trials 300 --adjacent 1
+F_3 trials=300 seed=7 maxK=3 maxC=12 adjacent<=1: {'graphs': 300, 'violations': 0, 'nonrank1_rows': 14400, 'nonrank1_nonzero_kernel': 194, 'rank1_rows': 9600, 'rank1_nonzero_kernel': 1154, 'nonrank1_support_ge2': 0}
+$ python3 spaced_gap_check.py --p 5 --trials 100 --adjacent 1 --maxC 9
+F_5 trials=100 seed=7 maxK=3 maxC=9 adjacent<=1: {'graphs': 100, 'violations': 0, 'nonrank1_rows': 48000, 'nonrank1_nonzero_kernel': 144, 'rank1_rows': 14400, 'rank1_nonzero_kernel': 1196, 'nonrank1_support_ge2': 0}
+$ python3 spaced_gap_check.py --p 3 --trials 300 --adjacent 99 --maxC 6
+F_3 trials=300 seed=7 maxK=3 maxC=6 adjacent<=99: {'graphs': 300, 'violations': 0, 'nonrank1_rows': 14400, 'nonrank1_nonzero_kernel': 642, 'rank1_rows': 9600, 'rank1_nonzero_kernel': 1074, 'nonrank1_support_ge2': 308}

@@ -1,0 +1,3 @@
+C2 {'roots': 598, 'proper': 573, 'fox_ok': 598, 'bound_ok': 598, 'bound_attained': 61, 'units_in_F': 18, 'roots_in_F': 25} time 1.2
+C3 {'roots': 361, 'proper': 330, 'fox_ok': 361, 'bound_ok': 361, 'bound_attained': 93, 'units_in_F': 31, 'roots_in_F': 31} time 1.5
+S3 {'roots': 184, 'proper': 157, 'fox_ok': 184, 'bound_ok': 184, 'bound_attained': 25, 'units_in_F': 18, 'roots_in_F': 27} time 1.9

@@ -1,0 +1,37 @@
+[MC] torus 32x32, p=0.3, trials=300
+  stage 1: density 0.3002 (p=0.3); D MC 0.42035 +- 0.00082; predicted 0.42000; z=+0.43
+  stage 2: density 0.2996 (p=0.3); D MC 0.35648 +- 0.00119; predicted 0.35650; z=-0.02
+  stage 3: density 0.3019 (p=0.3); D MC 0.30739 +- 0.00153; predicted 0.30596; z=+0.93
+  stage 4: density 0.2969 (p=0.3); D MC 0.26185 +- 0.00225; predicted 0.26487; z=-1.34
+
+[recursion] D_i/p, ratio floor r(p), and exit bound i_0(p, rho)
+  p=0.2: D_1..D_6 / p = 1.6000, 1.4395, 1.3015, 1.1818, 1.0770, 0.9847; r(p)=0.89969; 1-p/2=0.90000
+      rho=0.5: i_0=6  (4/p) log(1/(1-rho)) = 13.9
+      rho=0.8: i_0=18  (4/p) log(1/(1-rho)) = 32.2
+      rho=0.95: i_0=40  (4/p) log(1/(1-rho)) = 59.9
+  p=0.1: D_1..D_6 / p = 1.8000, 1.7099, 1.6264, 1.5487, 1.4764, 1.4088; r(p)=0.94997; 1-p/2=0.95000
+      rho=0.5: i_0=14  (4/p) log(1/(1-rho)) = 27.7
+      rho=0.8: i_0=40  (4/p) log(1/(1-rho)) = 64.4
+      rho=0.95: i_0=87  (4/p) log(1/(1-rho)) = 119.8
+  p=0.05: D_1..D_6 / p = 1.9000, 1.8525, 1.8067, 1.7626, 1.7201, 1.6791; r(p)=0.97500; 1-p/2=0.97500
+      rho=0.5: i_0=31  (4/p) log(1/(1-rho)) = 55.5
+      rho=0.8: i_0=84  (4/p) log(1/(1-rho)) = 128.8
+      rho=0.95: i_0=181  (4/p) log(1/(1-rho)) = 239.7
+  p=0.01: D_1..D_6 / p = 1.9800, 1.9701, 1.9603, 1.9505, 1.9408, 1.9312; r(p)=0.99500; 1-p/2=0.99500
+      rho=0.5: i_0=160  (4/p) log(1/(1-rho)) = 277.3
+      rho=0.8: i_0=436  (4/p) log(1/(1-rho)) = 643.8
+      rho=0.95: i_0=934  (4/p) log(1/(1-rho)) = 1198.3
+
+[free group] rate of E p^{|X_n|} vs rho, n=4000 (log-slope over last 500 steps)
+  F_2: rho=0.86603, p_c=0.3333, 1/sqrt(2r-1)=0.5774, C(b)-1=1
+    p=0.3333: rate 0.86568; predicted rate 0.86603 (gamma(p)=1.00000); necessary condition violated: False
+    p=0.4553: rate 0.86568; predicted rate 0.86603 (gamma(p)=0.89054); necessary condition violated: False
+    p=0.7887: rate 0.90849; predicted rate 0.90849 (gamma(p)=0.90849); necessary condition violated: True
+    p=0.9000: rate 0.95278; predicted rate 0.95278 (gamma(p)=0.95278); necessary condition violated: True
+  F_3: rho=0.74536, p_c=0.2000, 1/sqrt(2r-1)=0.4472, C(b)-1=2
+    p=0.2000: rate 0.74506; predicted rate 0.74536 (gamma(p)=1.00000); necessary condition violated: False
+    p=0.3236: rate 0.74506; predicted rate 0.74536 (gamma(p)=0.78470); necessary condition violated: False
+    p=0.7236: rate 0.83333; predicted rate 0.83333 (gamma(p)=0.83333); necessary condition violated: True
+    p=0.9000: rate 0.93519; predicted rate 0.93519 (gamma(p)=0.93519); necessary condition violated: True
+
+ALL_OK
