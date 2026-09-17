@@ -122,7 +122,8 @@ theorem manuscriptSentence_jEmbedsElementaryIntoUnits (R : Type) [Ring R] [Count
       (RankDescent.wordS Q) (RankDescent.wordT Q) hTS,
     Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptElementaryGroupNotMFAllCharacteristics
       R s t hts ⟨m, a, b, hab⟩ 4 le_rfl,
-    @Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective,
+    fun _ _ _ _ φ hφ hM ↦
+      Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective φ hφ hM,
     by
       intro M _ H hM
       exact Manuscript.OneSidedMFRadical.FullDefectRankTwo.isOperatorMF_of_injective H.subtype

@@ -49,7 +49,7 @@ theorem component_mono {P Q : Finset M.Face} {o f : M.Face} (hPQ : P ⊆ Q) (ho 
         Relation.EqvGen (CombMap.FaceClassStep M (BoundaryEdge M P)) x y := by
     intro x y h
     induction h with
-    | rel x₁ x₂ hx =>
+    | rel x₁ _ hx =>
         intro hout
         rcases hx with rfl | ⟨hoff, rfl⟩
         · exact Relation.EqvGen.rel _ _ (Or.inl rfl)
@@ -66,10 +66,10 @@ theorem component_mono {P Q : Finset M.Face} {o f : M.Face} (hPQ : P ⊆ Q) (ho 
     | refl x₁ =>
         intro _
         exact Relation.EqvGen.refl x₁
-    | symm x₁ x₂ h₁ ih =>
+    | symm _ _ h₁ ih =>
         intro hout
-        exact Relation.EqvGen.symm _ _ (ih (by rwa [← faceOf_mem_iff_of_eqvGen h₁]))
-    | trans x₁ x₂ x₃ h₁ _ ih₁ ih₂ =>
+        exact Relation.EqvGen.symm _ _ (ih (by rwa [faceOf_mem_iff_of_eqvGen h₁]))
+    | trans _ _ _ h₁ _ ih₁ ih₂ =>
         intro hout
         exact Relation.EqvGen.trans _ _ _ (ih₁ hout)
           (ih₂ (by rwa [← faceOf_mem_iff_of_eqvGen h₁]))

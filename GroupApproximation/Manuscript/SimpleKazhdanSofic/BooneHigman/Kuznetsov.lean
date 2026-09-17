@@ -245,14 +245,22 @@ theorem wordProblemOracle_eq_wordAnswer (s : ι → Γ) (d : List (ι × Bool) �
   congr 1
   cases hn : (decode n : Option (List (ι × Bool))) with
   | none =>
-    rw [if_neg (by rintro ⟨w, hw, -⟩; cases hw)]
-    rfl
+    have hne : ¬ ∃ w : List (ι × Bool),
+        (none : Option (List (ι × Bool))) = some w ∧ wordValue s w = 1 := by
+      rintro ⟨w, hw, -⟩
+      cases hw
+    exact (if_neg hne).trans rfl
   | some w =>
     by_cases hw : wordValue s w = 1
-    · rw [if_pos ⟨w, rfl, hw⟩]
-      simp [(hd w).2 hw]
-    · rw [if_neg (by rintro ⟨w', hw', hv⟩; cases Option.some_injective _ hw'; exact hw hv)]
-      simp [Bool.eq_false_iff.2 fun h => hw ((hd w).1 h)]
+    · have hex : ∃ w' : List (ι × Bool), some w = some w' ∧ wordValue s w' = 1 :=
+        ⟨w, rfl, hw⟩
+      exact (if_pos hex).trans (congrArg (fun b : Bool => cond b 1 0) ((hd w).2 hw).symm)
+    · have hne : ¬ ∃ w' : List (ι × Bool), some w = some w' ∧ wordValue s w' = 1 := by
+        rintro ⟨w', hw', hv⟩
+        cases Option.some_injective _ hw'
+        exact hw hv
+      exact (if_neg hne).trans
+        (congrArg (fun b : Bool => cond b 1 0) (Bool.eq_false_iff.2 fun h => hw ((hd w).1 h)).symm)
 
 /-- A decidable word problem gives a partial recursive oracle. -/
 theorem partrec_wordProblemOracle_of_computablePred (s : ι → Γ)
@@ -277,8 +285,8 @@ def translateRaw (table : ι → RawWord) (w : List (ι × Bool)) : RawWord :=
 
 theorem translateRaw_cons (table : ι → RawWord) (p : ι × Bool) (w : List (ι × Bool)) :
     translateRaw table (p :: w) =
-      (bif p.2 then table p.1 else invRaw (table p.1)) ++ translateRaw table w := by
-  simp [translateRaw, List.flatMap_cons]
+      (bif p.2 then table p.1 else invRaw (table p.1)) ++ translateRaw table w :=
+  rfl
 
 theorem evalRaw_translateRaw {A : Type} [Group A] (x : ℕ → A) (table : ι → RawWord)
     (w : List (ι × Bool)) :
