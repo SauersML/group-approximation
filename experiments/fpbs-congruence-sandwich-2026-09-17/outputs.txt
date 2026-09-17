@@ -1,0 +1,62 @@
+# Outputs for fpbs-rigid-congruence-class-uniform-strict-thresholds (2026-09-17)
+
+## Star-stage GW certificates on F_2 x Z (identical mean matrix on F_2 x Z/N, N >= 14 + 2 max(z0,w0))
+# for spec in ...: ./starzw pn pd 6 3 4 1e-6 z0 w0 > gwtmp.txt; python3 certgw.py gwtmp.txt pn/pd 1/1
+# the exact min printed is the float value of an exact Fraction; > 1 certifies rho(M) > 1
+pattern (3,4) p=91/1000 sha256 b0a83e6392921f9d
+W 6 K 3 A 4 eps 1e-06 p 91/1000 ntypes 16 | types 64 class size 64 float perron 1.0160473819787397
+exact min (Mv)_k/v_k over class = 1.0160473819779483 certifies rho(M) >= 1 : True
+pattern (3,5) p=91/1000 sha256 ad69c74bb5ed7a59
+W 6 K 3 A 4 eps 1e-06 p 91/1000 ntypes 16 | types 64 class size 64 float perron 1.0085624783776268
+exact min (Mv)_k/v_k over class = 1.008562478376803 certifies rho(M) >= 1 : True
+pattern (4,5) p=91/1000 sha256 13618a582148e49d
+W 6 K 3 A 4 eps 1e-06 p 91/1000 ntypes 16 | types 64 class size 64 float perron 1.006422992020356
+exact min (Mv)_k/v_k over class = 1.0064229920197976 certifies rho(M) >= 1 : True
+pattern (3,6) p=92/1000 sha256 21867aba5c30f189
+W 6 K 3 A 4 eps 1e-06 p 92/1000 ntypes 16 | types 64 class size 64 float perron 1.0011652735318837
+exact min (Mv)_k/v_k over class = 1.001165273530842 certifies rho(M) >= 1 : True
+pattern (4,6) p=925/10000 sha256 7188571b90194ce4
+W 6 K 3 A 4 eps 1e-06 p 925/10000 ntypes 16 | types 64 class size 64 float perron 1.005773447350942
+exact min (Mv)_k/v_k over class = 1.0057734473505169 certifies rho(M) >= 1 : True
+pattern (5,6) p=925/10000 sha256 6f87819b77da38d4
+W 6 K 3 A 4 eps 1e-06 p 925/10000 ntypes 16 | types 64 class size 64 float perron 0.9963291175094563
+exact min (Mv)_k/v_k over class = 0.996329117508895 certifies rho(M) >= 1 : False
+pattern (3,7) p=925/10000 sha256 44577f6c59553eda
+W 6 K 3 A 4 eps 1e-06 p 925/10000 ntypes 16 | types 64 class size 64 float perron 0.9922237395265492
+exact min (Mv)_k/v_k over class = 0.9922237395258178 certifies rho(M) >= 1 : False
+pattern (4,7) p=925/10000 sha256 f2de51e079727aff
+W 6 K 3 A 4 eps 1e-06 p 925/10000 ntypes 16 | types 64 class size 64 float perron 0.9910326426326768
+exact min (Mv)_k/v_k over class = 0.9910326426318772 certifies rho(M) >= 1 : False
+pattern (3,4) p=89/1000 sha256 7ffefb0a479998d0
+W 6 K 3 A 4 eps 1e-06 p 89/1000 ntypes 16 | types 64 class size 64 float perron 0.9899293363205501
+exact min (Mv)_k/v_k over class = 0.9899293363196928 certifies rho(M) >= 1 : False
+
+## Exact chord-weighted Busemann-Schur checks on F_2 x Z^3 (mode tri)
+mode tri L 3 windows 2539 transitions 32568 max chords 3
+float certificate C = 0.9973085717199681
+p = 37/400 exact max (Tv)_s/v_s = 0.997308571720652 <= 998/1000 : True time 9.2
+mode tri L 4 windows 32569 transitions 417198 max chords 4
+float certificate C = 0.9998794576437678
+p = 93/1000 exact max (Tv)_s/v_s = 0.9998794576445719 <= 9999/10000 : True time 128.2
+# earlier run: python3 exactschur.py 3 tri 23 250 999 1000 -> exact max 0.99202 <= 999/1000 : True
+
+## Float runs (famschur.py; not certificates)
+tri L 4 windows 32569 16.700398683547974
+tri L 4 p 0.093 C 0.9998794576437678 83.82869243621826
+tri L 4 p 0.094 C 1.0104087810077966 144.8125536441803
+gen L 4 windows 33225 11.555363416671753
+gen L 4 p 0.0905 C 1.0072155698997451 82.63458847999573
+gen L 4 p 0.0915 C 1.01829087523367 145.20565843582153
+tri L 3 p 0.09  C 0.97087
+tri L 3 p 0.093 C 1.00259
+gen L 3 p 0.09  C 1.00258
+gen L 3 p 0.093 C 1.03586
+rig L 4 p 0.094 C 0.99673   (schur3.py, S_rig itself)
+
+## Monte Carlo (mcgen.c; heuristic): P(|C(o)| >= 20000), 1500 clusters
+#   p      S_rig (mode 0)   generic F_2 x Z^5 (mode 1)
+  0.078    0.0000           0.0140
+  0.080    0.0000           0.0747
+  0.082    0.0233           0.1233
+  0.084    0.0887           0.1827
+  0.086    0.1287           0.2280
