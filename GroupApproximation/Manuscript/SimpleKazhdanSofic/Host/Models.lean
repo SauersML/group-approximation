@@ -123,10 +123,11 @@ theorem manuscriptSentence_modelMapAsymptoticHom (hT : Subgroup.closure T = ⊤)
 /-- `φ_n(f u_e) = D_n(f)`. -/
 theorem modelMap_coeff_eq_modelDiag (M : BallModelSequence Δ T) (n : ℕ)
     (f : LocallyConstant (LampSpace Δ) (ZMod 2)) :
-    Lamplighter.modelMap M n (ClopenGroupCrossedProduct.coeff (LampAffine Δ) (LampSpace Δ) (ZMod 2) f) =
+    Lamplighter.modelMap M n
+        (ClopenGroupCrossedProduct.coeff (LampAffine Δ) (LampSpace Δ) (ZMod 2) f) =
       Lamplighter.modelDiag M n f := by
-  rw [ClopenGroupCrossedProduct.coeff_apply, Lamplighter.modelMap_single, RingEquiv.symm_apply_apply,
-    Lamplighter.modelPerm_one, mul_one]
+  rw [ClopenGroupCrossedProduct.coeff_apply, Lamplighter.modelMap_single,
+    RingEquiv.symm_apply_apply, Lamplighter.modelPerm_one, mul_one]
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.Host.modelMap_coeff_eq_modelDiag
 

@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Flip converse, part 2: topological full groups
@@ -246,3 +247,30 @@ theorem nonempty_mulEquiv_of_flipConjugate {T : X ≃ₜ X} {S : Y ≃ₜ Y}
 end Conjugacy
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.homeoPow_add
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.homeoPow_zero
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.homeoPow_one
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.homeoPow_neg_one
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsAperiodic
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsMinimalHomeo
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.zpow_apply_injective
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.zpow_apply_eq_self_of_apply_eq_self
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.isAperiodic_of_isMinimalHomeo
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.infinite_of_perfectSpace
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.continuous_hpow_apply
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.apply_hpow_of_semiconj
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsInFullGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.isInFullGroup_one
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsInFullGroup.mul
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsInFullGroup.inv
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.topologicalFullGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.mem_topologicalFullGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.self_mem_topologicalFullGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.isInFullGroup_inv_iff
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.topologicalFullGroup_inv
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.symm_semiconj
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsInFullGroup.conj
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.fullGroupMulEquiv
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.FlipConjugate
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.nonempty_mulEquiv_of_flipConjugate

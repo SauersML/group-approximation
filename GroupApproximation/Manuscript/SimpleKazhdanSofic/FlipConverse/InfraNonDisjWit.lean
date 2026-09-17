@@ -57,9 +57,11 @@ theorem exists_commutator_witness_of_not_disjoint_of_statements
   have kcd : ⁅⁅(c : X ≃ₜ X), (k : X ≃ₜ X)⁆, (d : X ≃ₜ X)⁆ = ⁅(c : X ≃ₜ X), (d : X ≃ₜ X)⁆ :=
     h02 X (c : X ≃ₜ X) (d : X ≃ₜ X) (k : X ≃ₜ X) W hc hd hWk
   have e1 : ⁅⁅a, f⁆, b⁆ = ⁅a, b⁆ :=
-    Subtype.ext (by simpa only [commutatorElement_def, Subgroup.coe_mul, Subgroup.coe_inv] using kab)
+    Subtype.ext (by
+      simpa only [commutatorElement_def, Subgroup.coe_mul, Subgroup.coe_inv] using kab)
   have e2 : ⁅⁅c, k⁆, d⁆ = ⁅c, d⁆ :=
-    Subtype.ext (by simpa only [commutatorElement_def, Subgroup.coe_mul, Subgroup.coe_inv] using kcd)
+    Subtype.ext (by
+      simpa only [commutatorElement_def, Subgroup.coe_mul, Subgroup.coe_inv] using kcd)
   refine ⟨a, b, c, d, fun h1 => hne ?_⟩
   rwa [e1, e2] at h1
 
@@ -73,7 +75,8 @@ theorem disjoint_movedSet_of_forall_commutator_eq_one_of_statements
     (hall : ∀ a b c d : topologicalFullGroup T, ⁅⁅⁅a, f⁆, b⁆, ⁅⁅c, k⁆, d⁆⁆ = 1) :
     Disjoint (movedSet (f : X ≃ₜ X)) (movedSet (k : X ≃ₜ X)) := by
   by_contra h
-  obtain ⟨a, b, c, d, hne⟩ := exists_commutator_witness_of_not_disjoint_of_statements h01 h02 h05 hT h
+  obtain ⟨a, b, c, d, hne⟩ :=
+    exists_commutator_witness_of_not_disjoint_of_statements h01 h02 h05 hT h
   exact hne (hall a b c d)
 
 /-- The universal `Statement` form of lane `sk-flip-07`, from the interfaces of lanes 01, 02

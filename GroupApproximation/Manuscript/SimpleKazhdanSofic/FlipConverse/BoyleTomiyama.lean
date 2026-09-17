@@ -129,3 +129,5 @@ theorem exists_flip_of_mem_fullGroup [CompactSpace X] [T2Space X] {T R : X ≃�
     exact ⟨φ, Or.inr fun x => by rw [hφ x, Homeomorph.inv_apply]⟩
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_flip_of_mem_fullGroup

@@ -177,3 +177,11 @@ theorem exists_conj_of_positiveWindow [CompactSpace X] [T2Space X] {T R : X ≃�
     hsemi⟩
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_bound_of_continuous
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.cocycle_add
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.cocycle_add'
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.cocycle_injective
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.cocycle_surjective
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.minimal_invariant_closed
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.exists_conj_of_positiveWindow

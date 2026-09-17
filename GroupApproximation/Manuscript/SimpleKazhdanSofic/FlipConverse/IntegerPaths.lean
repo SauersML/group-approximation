@@ -1,4 +1,5 @@
 import Mathlib
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Flip converse, part 1: integer paths with bounded steps
@@ -267,3 +268,16 @@ theorem orientation (hsurj : Function.Surjective σ) (hN : 0 ≤ N)
 end Orientation
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.above
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.windowCount
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.IsPositiveWindow
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.above_split
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.windowCount_step
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.windowCount_threshold
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.windowCount_shift
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.windowCount_cocycle
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.forward_sign
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.backward_sign
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.not_forall_preimage_window
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.orientation

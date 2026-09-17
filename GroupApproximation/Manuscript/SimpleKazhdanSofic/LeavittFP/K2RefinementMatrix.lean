@@ -15,6 +15,7 @@ This file checks that identity coordinate by coordinate.
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+open scoped Matrix
 open GroupApproximation.SteinbergGroup
 
 variable {R : Type*} [Ring R] (L : LeavittFamily R) {n : ℕ} (r : Fin n)

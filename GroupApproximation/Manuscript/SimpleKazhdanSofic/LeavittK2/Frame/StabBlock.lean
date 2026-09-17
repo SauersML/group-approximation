@@ -113,8 +113,8 @@ theorem frameVertexStab_eq (g : (Matrix (Fin (m + 1)) (Fin (m + 1)) A)ˣ) :
       (g : Matrix (Fin (m + 1)) (Fin (m + 1)) A) = frameJMat b H := by
   constructor
   · intro hg
-    refine ⟨frameVertexStabBlock ⟨g, hg⟩, fun j => (g : Matrix _ _ A) (Fin.last m) (Fin.castSucc j),
-      ?_⟩
+    refine ⟨frameVertexStabBlock ⟨g, hg⟩,
+      fun j => (g : Matrix (Fin (m + 1)) (Fin (m + 1)) A) (Fin.last m) (Fin.castSucc j), ?_⟩
     ext i j
     rcases Fin.eq_castSucc_or_eq_last i with ⟨i, rfl⟩ | rfl <;>
       rcases Fin.eq_castSucc_or_eq_last j with ⟨j, rfl⟩ | rfl

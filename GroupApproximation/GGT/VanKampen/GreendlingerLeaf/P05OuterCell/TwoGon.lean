@@ -123,11 +123,11 @@ theorem hasCleanTwoGon_of_transport (hlea : Delta.LeastArea) (T : RegionTranspor
       exact Option.map_eq_none_iff.mp hnone
     · rw [← hfp, ← hfp, (hreg y).1, (hreg _).1] at hgap
       obtain ⟨-, hs1, hl1, -⟩ := T.profile ⟨phiRegionO y, hmemF y⟩
-      obtain ⟨-, hs2, hl2, -⟩ := T.profile ⟨phiRegionO
+      obtain ⟨-, hs2, -, -⟩ := T.profile ⟨phiRegionO
         ((phiMapO S.family (linkedComponentO S.family a₀)).facePerm
           ((phiMapO S.family (linkedComponentO S.family a₀)).facePerm y)), hmemF _⟩
       simp only [GapHoldsCorner] at hgap ⊢
-      rw [hs1, hl1, hs2, hl2] at hgap
+      rw [hs1, hl1, hs2] at hgap
       exact hgap
   · rintro ⟨i', hi', d', hd'f, x', hpath, hx'face⟩
     obtain ⟨z, rfl⟩ := ι.surjective d'
