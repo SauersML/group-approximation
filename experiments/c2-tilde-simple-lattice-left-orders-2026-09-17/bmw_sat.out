@@ -1,0 +1,12 @@
+radu critical pairs resolved: 24
+{'group': 'radu', 'radius': 4, 'ball': 244, 'K_elements': 96, 'clauses': 1920, 'sat': True}
+{'group': 'radu', 'radius': 6, 'ball': 1540, 'K_elements': 576, 'clauses': 38784, 'sat': False}
+prod_radu critical pairs resolved: 24
+{'group': 'prod_radu', 'radius': 4, 'ball': 244, 'K_elements': 96, 'clauses': 1920, 'sat': True}
+{'group': 'prod_radu', 'radius': 6, 'ball': 1540, 'K_elements': 576, 'clauses': 38784, 'sat': True}
+jw critical pairs resolved: 40
+{'group': 'jw', 'radius': 2, 'ball': 49, 'K_elements': 24, 'clauses': 96, 'sat': True}
+{'group': 'jw', 'radius': 4, 'ball': 865, 'K_elements': 384, 'clauses': 15000, 'sat': False}
+prod_jw critical pairs resolved: 40
+{'group': 'prod_jw', 'radius': 2, 'ball': 49, 'K_elements': 24, 'clauses': 96, 'sat': True}
+{'group': 'prod_jw', 'radius': 4, 'ball': 865, 'K_elements': 384, 'clauses': 15000, 'sat': True}
