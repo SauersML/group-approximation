@@ -111,3 +111,10 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_three
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.RotationRefinement.sameCorner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_embed_of_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_embed_of_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_some_none
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_none
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.sameCorner_sigma_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.RotationRefinement.sameCorner_map

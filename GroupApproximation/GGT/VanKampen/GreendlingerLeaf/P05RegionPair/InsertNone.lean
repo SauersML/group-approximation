@@ -238,5 +238,9 @@ theorem eqvGen_backDart' (hab : a ≠ b) (ha : keep a) (hba : M.sigma (M.alpha a
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.run_none_of_lift
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.sigma_val_none_gen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.facePerm_val_some_none_gen
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.eqvGen_backDart_none
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.eqvGen_backDart_embed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.eqvGen_backDart'

@@ -24,15 +24,16 @@ open scoped commutatorElement
 
 /-- A double commutator of transpositions in `S_5` is nontrivial: `S_5` is not metabelian. -/
 theorem perm_fin_five_commutator_commutator_ne_one :
-    ⁅⁅(Equiv.swap 0 1 : Equiv.Perm (Fin 5)), Equiv.swap 1 2⁆,
-      ⁅(Equiv.swap 2 3 : Equiv.Perm (Fin 5)), Equiv.swap 3 4⁆⁆ ≠ 1 := by
+    ⁅⁅(Equiv.swap 0 1 : Equiv.Perm (Fin 5)), (Equiv.swap 1 2 : Equiv.Perm (Fin 5))⁆,
+      ⁅(Equiv.swap 2 3 : Equiv.Perm (Fin 5)), (Equiv.swap 3 4 : Equiv.Perm (Fin 5))⁆⁆ ≠
+        (1 : Equiv.Perm (Fin 5)) := by
   intro h
   exact absurd (DFunLike.congr_fun h 2) (by decide)
 
 /-- The transpositions `(0 1)` and `(1 2)` of `S_5` do not commute. -/
 theorem perm_fin_five_swap_mul_ne :
     (Equiv.swap 0 1 * Equiv.swap 1 2 : Equiv.Perm (Fin 5)) ≠
-      Equiv.swap 1 2 * Equiv.swap 0 1 := by
+      (Equiv.swap 1 2 * Equiv.swap 0 1 : Equiv.Perm (Fin 5)) := by
   intro h
   exact absurd (DFunLike.congr_fun h 0) (by decide)
 

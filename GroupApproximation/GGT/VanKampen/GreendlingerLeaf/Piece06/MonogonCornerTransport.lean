@@ -32,6 +32,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
   (hcell : ∀ k, (Embedded.cell X k).face ≠ f →
     (Embedded.cell X' (ix k)).face = E.faces (Embedded.cell X k).face)
 
+include hcell in
 theorem cellDarts_transport {k : Fin X.rCellCount} (hk : (Embedded.cell X k).face ≠ f) :
     cellDarts X' (ix k) = (cellDarts X k).map E.darts := by
   change (X'.faceBoundary (Embedded.cell X' (ix k)).face).darts =
@@ -163,3 +164,7 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.transport_closedWalk
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.transport_repeatedVisits
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.transport_first_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.transport_second_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.cellDarts_transport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.vertexOf_alpha_darts_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.MonogonCorner.transport_boundary_cycle

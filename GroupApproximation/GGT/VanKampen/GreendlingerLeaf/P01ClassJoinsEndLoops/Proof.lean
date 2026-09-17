@@ -22,6 +22,8 @@ universe u w v
 
 open GroupApproximation.GGT.VanKampen.Embedded
 
+open scoped Classical
+
 /-- `c < λ ρ` once `⌈c / λ⌉₊ + 1 ≤ ρ`. -/
 theorem endLoops_c_lt_lambda_mul {lambda c : ℝ} (hlambda : 0 < lambda) {rho : ℕ}
     (hrho : ⌈c / lambda⌉₊ + 1 ≤ rho) : c < lambda * rho := by

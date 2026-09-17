@@ -327,3 +327,35 @@ theorem lobe_disjoint (X : DiscDiagram.{u, w, v} W) {e₁ e₂ : X.toCombMap.Dar
     (.trans _ _ _ hsame (.trans _ _ _ hcross (.trans _ _ _ hpath (.symm _ _ hp₂)))))
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.firstTurn_three
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_walk_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walkKeep_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.not_walkKeep
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.not_walkKeep_of_faces
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.faceOf_of_mem_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_ne_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_getLast
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_head
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.firstTurn_close
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_firstTurnChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.walk_vertexChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.turnMem_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.outer_not_mem_lobe
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.enclosedFaceSetSucc_lobe
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.exists_cell_mem_lobe
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.faceOf_mem_lobe_of_mem_gap
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_gap_of_faceOf_mem_lobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.facePerm_mem_gap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.eqvGen_transport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap_disjoint
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.lobe_disjoint

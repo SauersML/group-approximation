@@ -1,6 +1,7 @@
 import Mathlib.Algebra.Group.Subgroup.Basic
 import Mathlib.Algebra.Group.Subgroup.Lattice
 import Mathlib.GroupTheory.QuotientGroup.Basic
+import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.Data.Countable.Basic
 import Mathlib.Order.Directed
 import GroupApproximation.Meta.AxiomGuard
