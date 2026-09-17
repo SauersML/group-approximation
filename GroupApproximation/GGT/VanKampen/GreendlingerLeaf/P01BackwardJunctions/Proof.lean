@@ -136,7 +136,8 @@ theorem not_reach_outside (hM : M.IsPlanar) {f : ℕ → M.Dart} {m : ℕ} {O : 
     (hout b (by omega)).trans (hout (a + 1) ham).symm
   have hpinch : M.sigma.SameCycle (M.alpha (M.alpha (f b))) (M.alpha (M.alpha (f (a + 1)))) := by
     rw [M.alpha_involutive (f b), M.alpha_involutive (f (a + 1)), ← hjun, ← hstep a ham]
-    exact (Equiv.Perm.SameCycle.rfl.apply_right.apply_right).symm
+    exact Equiv.Perm.SameCycle.symm (Equiv.Perm.SameCycle.apply_right
+      (Equiv.Perm.SameCycle.apply_right (Equiv.Perm.SameCycle.refl M.sigma (f (a + 1)))))
   have hA : Relation.EqvGen (FoldMap.joined M (M.alpha (f b)) (M.alpha (f (a + 1)))).Adjacent
       (M.facePerm (M.alpha (f (a + 1)))) (f a) := by
     have h : M.facePerm (M.alpha (f (a + 1))) = M.alpha (f a) := by
@@ -403,7 +404,8 @@ theorem junctionLabel_injOn (P : OsinLemma94RealizedPolygons S) {T : Finset (Fin
     · rw [if_neg hdx, if_pos hdy, hjx] at hxy
       cases hxy
     · rw [if_neg hdx, if_neg hdy, hjx, hjy] at hxy
-      have hexy : ex = ey := getLast_eq_of_cell P hjx (hxy ▸ hjy) hxsc hex hexw hex'w hfx hlex
+      obtain rfl : jx = jy := Option.some_inj.1 hxy
+      have hexy : ex = ey := getLast_eq_of_cell P hjx hjy hxsc hex hexw hex'w hfx hlex
         hdx hysc hey heyw hey'w hfy hley hdy
       refine sigma_eq_of_getLast P hxsc hysc hex ?_
       rw [hexy]
