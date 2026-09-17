@@ -29,6 +29,8 @@ namespace RelatedBK
 
 noncomputable section
 
+open scoped Matrix
+
 open scoped MatrixOrder ComplexOrder in
 /-- A matrix whose quadratic form has nonpositive real part gives a Gram matrix
 `-(H + Hᴴ) = star G * G`. -/

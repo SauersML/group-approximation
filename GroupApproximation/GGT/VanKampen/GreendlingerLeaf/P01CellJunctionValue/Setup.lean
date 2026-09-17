@@ -50,7 +50,8 @@ one class non-join, against the hypothesis.
 from `a` to `b`: with `K` least such that `σ^(K+1) (α a) = b`, every intermediate dart
 `σ^t (α a)`, `1 ≤ t ≤ K`, is reached from `facePerm a` in `J` (by induction, since it is neither
 `α a` — else `J.σ (α a) = facePerm p = b` is reached — nor `α p`, by minimality), while every dart
-of `c_h` is reached from `b` (face steps off `p`, `a`); a kept intermediate would join the two sides.
+of `c_h` is reached from `b` (face steps off `p`, `a`); a kept intermediate would join the two
+sides.
 Let `E_h` be its enclosed faces.  Then `f ∈ E_h` (the seed `α b = e`), `C ∉ E_h`, and the outer face
 is not in `E_h` (every dart on a face of `E_h` is reached from `b`, and `o₀` from `facePerm a`).
 
@@ -68,8 +69,8 @@ the edges of `c_h`, so `faceOf (α y) ∈ E_h`.  Going through the kinds of the 
   reverse on `C`.  For a dart `d` with `f` on both sides take `L` least with
   `facePerm^(L+1) d = α d` and the walk `A_d = seg (facePerm d) L`; it closes past `α d`.  `L = 0`
   is a leaf, against `DartMinimal`.  By strong induction on `L`, `A_d` holds a dart whose reverse is
-  on `C`: if `facePerm d` has `f` on both sides, planarity puts `α (facePerm d)` inside `A_d`, so the
-  walk of `facePerm d` is shorter and inside `A_d`.  Hence `C` is enclosed by `A_d`; the same for
+  on `C`: if `facePerm d` has `f` on both sides, planarity puts `α (facePerm d)` inside `A_d`, so
+  the walk of `facePerm d` is shorter and inside `A_d`.  Hence `C` is enclosed by `A_d`; the same for
   `α d`, with a dart `y₂ ∈ A_{α d}` whose reverse is on `C`.  If `y₂ ∉ A_d`, the reversal from the
   enclosed face `C` puts `f` in the enclosed faces of `A_d`, against `faceOf_not_mem_enclosedFaces`;
   and `A_d`, `A_{α d}` are disjoint by the minimality of both lengths.  Impossible.

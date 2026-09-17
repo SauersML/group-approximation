@@ -15,12 +15,14 @@ Step 3 of the route described in `ROmega/TwoNorm`.  Let `M` be a von Neumann alg
 separating tracial vector `ξ`, and let `Gr ⊆ M × N^ω` be a `⋆`-subalgebra (a *graph*) with
 `trω(p₂) = ⟪ξ, p₁ ξ⟫` for `p ∈ Gr`, whose first coordinates are `‖·ξ‖`-dense in `M`.
 
-* `Rel T v`: `(T, v)` is approximated by elements `p ∈ Gr` with `‖p₁‖` and a representative of `p₂`
-  uniformly bounded, `‖(p₁ − T) ξ‖` and `‖p₂ − v‖₂` small.  Traciality gives `‖p₂‖₂ = ‖p₁ ξ‖` on `Gr`,
-  so `Rel` is a function, and it is closed under `+`, `⋆`, scalars, and products (with `T ∈ M`).
+* `Rel T v`: `(T, v)` is approximated by elements `p ∈ Gr` with `‖p₁‖` and a representative of
+  `p₂` uniformly bounded, `‖(p₁ − T) ξ‖` and `‖p₂ − v‖₂` small.  Traciality gives
+  `‖p₂‖₂ = ‖p₁ ξ‖` on `Gr`, so `Rel` is a function, and it is closed under `+`, `⋆`, scalars,
+  and products (with `T ∈ M`).
 * Every self-adjoint `S = q(g(S))`, `‖S‖ ≤ 1/2`, is related to something: approximate `g(S)` by
-  self-adjoint `pₖ ∈ Gr`, pass to `q(pₖ)`, which is `2`-norm Cauchy with uniform bound `1/2`, take the
-  diagonal limit (`exists_limit`), and approximate `q` by polynomials to stay inside `Gr` with bounds.
+  self-adjoint `pₖ ∈ Gr`, pass to `q(pₖ)`, which is `2`-norm Cauchy with uniform bound `1/2`, take
+  the diagonal limit (`exists_limit`), and approximate `q` by polynomials to stay inside `Gr` with
+  bounds.
 * Scaling and `T = Re T + i Im T` give `Rel T (Φ T)` for every `T ∈ M`, and `Φ` is an injective
   trace-preserving `⋆`-homomorphism extending the graph.
 -/

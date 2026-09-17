@@ -13,8 +13,8 @@ import GroupApproximation.Meta.AxiomGuard
 >
 > (tex 350–355) Then $G$ lies in the unitary group of the McDuff factor
 > $L(G)\mathbin{\bar\otimes}\mathcal R$, which embeds in
-> $\mathcal R^\omega\mathbin{\bar\otimes}\mathcal R\subseteq(\mathcal R\mathbin{\bar\otimes}\mathcal R)^\omega
-> \cong\mathcal R^\omega$.
+> $\mathcal R^\omega\mathbin{\bar\otimes}\mathcal R\subseteq(\mathcal R\mathbin{\bar\otimes}
+> \mathcal R)^\omega\cong\mathcal R^\omega$.
 
 ## Proof route of the lane (modules `ROmega/*`)
 
@@ -26,8 +26,9 @@ import GroupApproximation.Meta.AxiomGuard
 2. `Resolvent`: for a self-adjoint operator `a`, `q(a) = a (1 + a²)⁻¹` via the continuous functional
    calculus.  It stays in a von Neumann algebra (bicommutant), `‖q(a)‖ ≤ 1/2`, it satisfies the
    algebraic identity `q(a) − q(b) = R_a (a − b) R_b − R_a a (a − b) b R_b`, hence
-   `‖(q(a) − q(b)) ξ‖ ≤ 2 ‖(a − b) ξ‖` for a tracial vector `ξ`.  It inverts `g(t) = 2t/(1 + √(1 − 4t²))`
-   on `‖T‖ ≤ 1/2`, and it is uniformly approximated on bounded spectra by polynomials.
+   `‖(q(a) − q(b)) ξ‖ ≤ 2 ‖(a − b) ξ‖` for a tracial vector `ξ`.  It inverts
+   `g(t) = 2t/(1 + √(1 − 4t²))` on `‖T‖ ≤ 1/2`, and it is uniformly approximated on bounded
+   spectra by polynomials.
 3. `Extension`: a trace-preserving `⋆`-homomorphism on a `‖·ξ‖`-dense `⋆`-subalgebra of a von
    Neumann algebra `M` with separating tracial vector `ξ` extends to an injective trace-preserving
    `⋆`-homomorphism `M → N^ω`.  The extension is the closure of the graph with uniform bounds
@@ -35,9 +36,10 @@ import GroupApproximation.Meta.AxiomGuard
 4. `TwistedModel`: for a sign cocycle `σ` on `Γ`, a map `W : Γ → N^ω` with `W 1 = 1`,
    `W g W h = (−1)^{σ(g,h)} W (gh)`, unitary values and `trω (W g) = 0` for `g ≠ 1` yields the graph
    algebra spanned by `(λ_σ(g), W g)`, so `L_σ(Γ)` embeds in `N^ω`.
-5. `SoficModel`, `TensorModel`: sofic approximations and the matrix-to-hyperfinite map of the corpus
-   give `v : G → R^ω`; Pauli operators on shifted coordinates give `w : P → R^ω` commuting with `v`, so
-   `W (p, g) = w p · v g` realizes the product cocycle, and `L(G) ⊗̄ R = L_{σ×0}(P × G)`.
+5. `GroupModel`, `PauliShift`, `TensorModel`: sofic approximations and the matrix-to-hyperfinite
+   map of the corpus give `v : G → R^ω`; Pauli operators on shifted coordinates give `w : P → R^ω`
+   commuting with `v`, so `W (p, g) = w p · v g` realizes the product cocycle, and
+   `L(G) ⊗̄ R = L_{σ×0}(P × G)`.
 6. `MainSentence`: the endpoints.
 -/
 

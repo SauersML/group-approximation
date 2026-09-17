@@ -38,7 +38,8 @@ theorem sameCorner_sigma_embed_of_eq {a z : M.Dart} (ha : M.sigma z = a) :
     (EdgeInsertion.toCombMap M a a).sigma (EdgeInsertion.embed M z) = some none := by
   classical
   change insertBefore (insertBefore M.sigma a) (some a) (some (some z)) = some none
-  simp only [insertBefore_some, if_pos ha, reduceCtorEq, if_false]
+  rw [insertBefore_some, insertBefore_some, ite_cond_eq_true _ _ (eq_true ha)]
+  exact ite_cond_eq_false _ _ (eq_false (Option.some_ne_none a).symm)
 
 theorem sameCorner_sigma_embed_of_ne {a z : M.Dart} (ha : M.sigma z ≠ a) :
     (EdgeInsertion.toCombMap M a a).sigma (EdgeInsertion.embed M z) =
@@ -46,13 +47,15 @@ theorem sameCorner_sigma_embed_of_ne {a z : M.Dart} (ha : M.sigma z ≠ a) :
   classical
   change insertBefore (insertBefore M.sigma a) (some a) (some (some z)) =
     some (some (M.sigma z))
-  simp only [insertBefore_some, if_neg ha, Option.some.injEq]
+  rw [insertBefore_some, insertBefore_some, ite_cond_eq_false _ _ (eq_false ha)]
+  exact ite_cond_eq_false _ _ (eq_false fun h => ha (Option.some.inj h))
 
 theorem sameCorner_sigma_some_none (a : M.Dart) :
     (EdgeInsertion.toCombMap M a a).sigma (some none) = none := by
   classical
   change insertBefore (insertBefore M.sigma a) (some a) (some none) = none
-  simp [insertBefore_some]
+  rw [insertBefore_some, insertBefore_none]
+  exact ite_cond_eq_true _ _ (eq_true rfl)
 
 theorem sameCorner_sigma_none (a : M.Dart) :
     (EdgeInsertion.toCombMap M a a).sigma none = EdgeInsertion.embed M a := by

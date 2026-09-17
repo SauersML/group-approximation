@@ -15,8 +15,8 @@ import GroupApproximation.Meta.AxiomGuard
 > $\mathcal R^\omega$.
 
 Route.  `printedSimpleKazhdanGeneral` makes `G = EL_n(LC(Z, F₂) ⋊ Λ)` finitely generated, hence
-countable (`countable_of_fg`), and `FiniteModelsBrown.manuscriptSentence_lefSoficHyperlinear` makes it
-sofic.  `exists_groupVonNeumann_embedding` then gives, for every free ultrafilter `ω` on `ℕ`, an
+countable (`countable_of_fg`), and `FiniteModelsBrown.manuscriptSentence_lefSoficHyperlinear` makes
+it sofic.  `exists_groupVonNeumann_embedding` then gives, for every free ultrafilter `ω` on `ℕ`, an
 injective trace-preserving `⋆`-homomorphism `L(G) → R^ω`.
 -/
 
@@ -57,9 +57,12 @@ theorem manuscriptSentence_groupVonNeumannEmbedsROmega (Λ : Type) [Group Λ] [G
           ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))).toStarSubalgebra,
         Hyperfinite.hyperfiniteUltratrace ω (Φ T)
           = ⟪deltaOne ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))),
-              (T : GroupHilbert ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
-                →L[ℂ] GroupHilbert ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))))
-              (deltaOne ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))))⟫_ℂ := by
+              (T : GroupHilbert
+                  ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2)))
+                →L[ℂ] GroupHilbert
+                  ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))))
+              (deltaOne
+                ↥(elementaryGroup (Fin n) (ClopenGroupCrossedProduct Λ Z (ZMod 2))))⟫_ℂ := by
   obtain ⟨-, hFG, -⟩ := printedSimpleKazhdanGeneral Λ Z hmin hfree S hS1 hS N φ hφ n hn
   obtain ⟨-, -, hsofic, -⟩ :=
     FiniteModelsBrown.manuscriptSentence_lefSoficHyperlinear Λ Z hmin hfree S hS1 hS N φ hφ n hn

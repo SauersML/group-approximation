@@ -7,6 +7,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.QuasiGeodesicValueOneGap
 import GroupApproximation.GGT.VanKampen.Estimating.OsinAppendixEulerPhi
 import GroupApproximation.GGT.VanKampen.Estimating.RegionPartition
 import GroupApproximation.GGT.VanKampen.GRegionBoundaryValue
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94JunctionPocket
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
