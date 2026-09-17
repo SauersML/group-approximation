@@ -228,10 +228,10 @@ theorem cornerExcluded_of_switch (P : OsinLemma94RealizedPolygons S) (hS : S.Dar
   obtain ⟨i, j, hij, hio, hjo, hmid⟩ := exists_switch P hS hm hd h0 hmo hint
   refine hswitch k k' hkk o o' hoo ((S.diagram.toCombMap.facePerm ^ i) d) (j - i)
     (Nat.sub_pos_of_lt hij) ((faceOf_pow_switch d i).trans hd) hio ?_ ?_ hw hw'
-  · rw [pow_apply_pow_switch, Nat.sub_add_cancel hij.le]
+  · rw [pow_apply_pow_switch d (j - i) i, Nat.sub_add_cancel hij.le]
     exact hjo
   · intro s hs hsji
-    rw [pow_apply_pow_switch]
+    rw [pow_apply_pow_switch d s i]
     exact hmid (s + i) (by omega) (by omega)
 
 end TouchCornerSwitch
