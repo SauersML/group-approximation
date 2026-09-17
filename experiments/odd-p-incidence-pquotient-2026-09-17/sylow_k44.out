@@ -1,0 +1,10 @@
+A4 |T|=12 U index 4, 11 gens
+   class<=1 |P|=3^10 J nontrivial: false (2ms)
+   class<=2 |P|=3^25 J nontrivial: false (5ms)
+   class<=3 |P|=3^68 J nontrivial: false (33ms)
+   class<=4 |P|=3^155 J nontrivial: false (1043ms)
+A5 |T|=60 U index 20, 27 gens
+   class<=1 |P|=3^16 J nontrivial: false (13ms)
+   class<=2 |P|=3^68 J nontrivial: false (37ms)
+   class<=3 |P|=3^357 J nontrivial: false (551ms)
+exit 0

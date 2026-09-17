@@ -1,0 +1,5 @@
+edges 18
+K1222 p=3 class<=1 |P|=3^12 J nontrivial: false
+K1222 p=3 class<=2 |P|=3^32 J nontrivial: false
+K1222 p=3 class<=3 |P|=3^109 J nontrivial: true
+exit 0

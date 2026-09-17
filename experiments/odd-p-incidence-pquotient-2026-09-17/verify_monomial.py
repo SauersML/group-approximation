@@ -35,7 +35,14 @@ def moebius_kantor():
     return n, E
 
 
-GRAPHS = {"heawood": heawood, "moebius-kantor": moebius_kantor}
+def k1222():
+    # K_{1,2,2,2}: apex 0, parts {1,2},{3,4},{5,6}; edges in lexicographic order (as in run_k1222_cert.g)
+    part = [0, 1, 1, 2, 2, 3, 3]
+    E = [(u, w) for u in range(7) for w in range(u + 1, 7) if part[u] != part[w]]
+    return 7, E
+
+
+GRAPHS = {"heawood": heawood, "moebius-kantor": moebius_kantor, "k1222": k1222}
 
 
 class Mono:

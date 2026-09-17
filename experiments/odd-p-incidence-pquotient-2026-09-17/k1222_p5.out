@@ -1,0 +1,5 @@
+K1222 p=5 class<=1 |P|=5^12 J nontrivial: false
+K1222 p=5 class<=2 |P|=5^32 J nontrivial: false
+K1222 p=5 class<=3 |P|=5^108 J nontrivial: false
+K1222 p=5 class<=4 |P|=5^384 J nontrivial: false
+exit 124
