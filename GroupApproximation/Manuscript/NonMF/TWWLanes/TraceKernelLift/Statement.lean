@@ -40,7 +40,7 @@ def TraceKernelSurjectionStatement : Prop :=
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.TraceKernelLift.TraceKernelSurjectionStatement
 
-/-- **The trace-kernel quotient map admits Kaplansky-type lifts.** -/
+/-- **The trace-kernel quotient map has Kaplansky-type lifts.** -/
 theorem manuscriptSentence_traceKernelSurjection : TraceKernelSurjectionStatement := by
   intro X _ ω hω
   refine ⟨traceKernel_surjective ω hω, fun x hx ↦ ?_, fun x hsa hx ↦ ?_,

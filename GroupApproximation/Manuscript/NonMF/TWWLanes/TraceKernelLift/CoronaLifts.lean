@@ -9,7 +9,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 Lane `nm-tww-07`.  The canonical ⋆-homomorphism
 `normMatrixCStarCoronaToTracialMatrixQuotient X ω hω` from the cofinite norm-matrix corona
-onto the tracial matrix quotient along a free ultrafilter admits Kaplansky-type lifts.
+onto the tracial matrix quotient along a free ultrafilter has Kaplansky-type lifts.
 
 * `traceKernel_surjective`: it is surjective.
 * `exists_lift_norm_le`: every `x` has a lift `y` with `‖y‖ ≤ ‖x‖`, via
