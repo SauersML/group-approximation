@@ -162,24 +162,21 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - **Where it dies:** a lower bound on `Phi` uniform in the read degree. It needs an averaging over codewords
     beyond subadditivity, and the only known averaging counts on finite models.
   - Artifact: `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
-- **Cluster-variation relatives of the f-invariant are dead (a-gs-pull-7, swarm-0917, 2026-09-17).**
-  This turns the "invariance needs a tree" mechanism note of *Tree mechanisms* into a theorem.
-  - **The class.** Any functional `F(Q) = sum_W c_W H(join_{w in W} w^-1 Q)` (Bethe or Kikuchi type;
-    any finite windows, any real weights) that is splitting-monotone, the property Bowen's route
-    uses to get `f <= F(P) <= H(P)`.
-  - **The result.** Every such functional has `lim sup_n F(Q_{B_n}) <= 0` on every Bernoulli shift
-    over every one-ended group (`cluster-entropy-functionals-vanish-on-one-ended-bernoulli`), hence
-    over every infinite Kazhdan group (`cluster-entropy-certificates-fail-on-kazhdan-groups`, via
-    Watatani and Stallings).
-  - **The invariant.** On Bernoulli coordinate partitions `F(Q_B) = H(p) psi(B)` with
-    `psi(B) = sum c_W |BW|`. `psi` satisfies exact inclusion–exclusion on pieces separated beyond
-    the window radius.
-  - **Where every member dies.** On an `R`-fat digon, built from a bi-infinite geodesic and a
-    detour outside a large ball, monotonicity gives `psi(B_i) <= psi(C_i)`, and inclusion–exclusion
-    then forces `psi(B_1 u B_2) <= 0`.
-  - **Calibration.** On `F_2`, `psi` is the Euler characteristic, equal to `1` on subtrees, and no
-    fat digon exists.
-  - **Gate left open.** A surviving local mechanism must be nonlinear in window entropies (breaking
-    inclusion–exclusion on separated pieces), have unbounded radius, or drop splitting monotonicity.
-  - Artifact: `research/artifacts/cluster-entropy-functionals-one-ended-obstruction-2026-09-17.md`.
-    Script: `experiments/cluster-entropy-functionals-2026-09-17/check_cluster_valuation.py`.
+- **Cluster functionals: total weight (a-gs-pull-8, 2026-09-17).** This replaces the unproved "Relations" item of the
+  tree-mechanism entry with a theorem, `cluster-entropy-lower-bounds-need-nonpositive-total-weight`.
+  - **Result.** Take a cluster functional `F(P) = sum_W c_W H(P^W)` with total weight
+    `kappa = sum_W c_W`. If `liminf F(P^(K_n)) <= H(Q)` for all generating `P`, `Q` on a class containing
+    the Bernoulli shift `B` with `beta > -infinity` and `B × (m points)`, then `kappa <= 0`.
+  - **Where every member dies.** The invariant fibre partition adds `kappa log m` to `F`, and a marker
+    generator costs only `h(eps) + eps log m` extra. So `beta + kappa log m <= log q`.
+  - **Euler weights.** For co-information functionals over a free cocompact complex, `kappa = chi(G\X)`.
+    Positive-Euler-characteristic generalizations of Bowen's functional are therefore dead:
+    - Witness: `F_2 × F_2`, product of trees, `kappa = 1`, normalized to `log q` on `B_n × B_n`.
+    - `Sp(n,1)` lattices, which are Kazhdan with `chi > 0` (mentioned).
+    Bowen's `kappa = 1 - r` passes.
+  - **Complementary result.** a-gs-pull-7's bus lemma `cluster-entropy-functionals-vanish-on-one-ended-bernoulli`
+    kills splitting-monotone functionals on one-ended groups at the normalization step.
+  - **Where it stops.** The host has no finite actions, so an ergodic-only mechanism escapes this test.
+    `kappa <= 0` functionals also escape. A surviving cluster mechanism must be non-monotone and either
+    have `kappa <= 0` or use ergodicity essentially.
+  - Artifact: `research/artifacts/cluster-entropy-total-weight-obstruction-2026-09-17.md`.
