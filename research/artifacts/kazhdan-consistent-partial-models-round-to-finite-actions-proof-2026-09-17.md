@@ -1,11 +1,6 @@
----
-rg: 2
-id: kazhdan-consistent-partial-models-round-to-finite-actions-proof
-kind: route
-title: A consistent set carries a partial action, globalize it to a G-set, project the indicator of the set onto finite orbits with property (T), and read off the finite action
-target: kazhdan-consistent-partial-models-round-to-finite-actions
-requires: []
----
+# A consistent set carries a partial action, globalize it to a G-set, project the indicator of the set onto finite orbits with property (T), and read off the finite action
+
+*Attempt artifact (2026-09-17), formerly route `kazhdan-consistent-partial-models-round-to-finite-actions-proof` into `kazhdan-consistent-partial-models-round-to-finite-actions`, requires []. Demoted from the graph because referee lens 1 of two returned *refuted* at the level of the statement (the item 3 cut-and-paste sentence and C3 claim arbitrary re-gluing, which is false); lens 2 returned *survives*, and both lenses found Sections 0--5 sound. Restore it as a route once the statement is corrected and a full referee pass survives.*
 
 # Proof
 
