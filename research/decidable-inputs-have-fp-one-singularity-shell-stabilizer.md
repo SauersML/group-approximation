@@ -61,3 +61,23 @@ quotient G/(ker x 1) is F_2, and the diagonal copy of F_2 maps onto it.
 Yet G is not finitely presented (classical Baumslag--Roseblade theorem
 on subgroups of products of free groups; not re-fetched here). No finite
 presentation of A_1 is known for any input that is not virtually cyclic.
+
+Brown's criterion over the germ map (2026-09-17, dies at the edge stabilizers). The attempt
+lets A_1 act through d: A_1 -> Q on a simply connected cocompact complex. Cell stabilizers
+are then A(Q_sigma) = d^-1(Q_sigma). The positive-control pieces are Q_v virtually <tau>, so
+that A(Q_v) is commensurable with Fix_V(p).
+
+The attempt dies at the edge clause.
+- Brown's criterion needs finitely generated edge pieces.
+- The kernel K = ker d is not finitely generated, so every Q_e must be infinite.
+- Infinite edge stabilizers make all vertex stabilizers commensurable, so Q commensurates <tau>.
+- The near index turns this into a central tau^a.
+- `shell-prefix-core-detects-finite-ray-enumerations` then forces P to be virtually cyclic.
+
+See `cyclic-germ-brown-complexes-force-virtually-cyclic-shell-input`. That claim also records
+two necessary conditions on the pieces of any surviving decomposition:
+- A(H) finitely generated forces H to have finitely many coarse orbits on N;
+- in particular A(rho(P)) is not finitely generated.
+
+So the vertex pieces must be groups A(H) with H not virtually <tau>, which are of the same
+nature as A_1.
