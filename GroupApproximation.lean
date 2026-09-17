@@ -5401,6 +5401,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphEx
 import GroupApproximation.Manuscript.NonMF.Full.Korchagin.DirectLimit
 import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.E0Kernel
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.SpanGraph
+import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.TorsionTelescope
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
