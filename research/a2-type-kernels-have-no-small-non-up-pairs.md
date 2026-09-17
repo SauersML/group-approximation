@@ -17,6 +17,7 @@ artifacts:
   - experiments/a2-non-up-2026-09-17/runs/control-q2-full-r11.jsonl
   - experiments/a2-non-up-2026-09-17/runs/q3-gamma0-r22.jsonl
   - experiments/a2-non-up-2026-09-17/runs/q2-gamma0-r33.jsonl
+  - experiments/a2-non-up-2026-09-17/runs/q3-gamma0-r23.jsonl
 ---
 
 **ESTABLISHED (exact computation)** by `a2-type-kernels-no-unique-product-census-proof`.
@@ -37,12 +38,15 @@ artifacts:
 **Statement.** Take `T` from `presentations_q3.json` (133 entries) or
 `presentations_q2_all.json` (11 entries). Then `Γ_0` has no pair `(A, B)` without unique
 products such that
-1. `q = 3` and `rad_L(A) ≤ 2`, `rad_R(B) ≤ 2`; or
-2. `q = 2` and `rad_L(A) ≤ 3`, `rad_R(B) ≤ 3`.
+1. `q = 3` and `rad_L(A) ≤ 2`, `rad_R(B) ≤ 3`; or
+2. `q = 3` and `rad_L(A) ≤ 3`, `rad_R(B) ≤ 2`; or
+3. `q = 2` and `rad_L(A) ≤ 3`, `rad_R(B) ≤ 3`.
 
 **Consequence, over every field.** If `k` is any field and `α, β ∈ k[Γ_0]` are nonzero with
-`αβ = 0`, then `rad_L(supp α) ≥ 3` or `rad_R(supp β) ≥ 3` when `q = 3`, and
-`rad_L(supp α) ≥ 4` or `rad_R(supp β) ≥ 4` when `q = 2`.
+`αβ = 0`, put `r_L = rad_L(supp α)` and `r_R = rad_R(supp β)`.
+- When `q = 3`: either `r_L ≥ 3` and `r_R ≥ 3`, or `max(r_L, r_R) ≥ 4`. (This is the complement
+  of items 1 and 2.)
+- When `q = 2`: `r_L ≥ 4` or `r_R ≥ 4`.
 
 **Scope of the lists.**
 - The lists are all `PGL(3,q)`-orbits of triangle presentations: 133 for `q = 3`, 11 for
@@ -94,22 +98,25 @@ on 4 cores; `python3 summarize.py`):
 | control: full `Γ_T`, `q = 3`, orbit 0, `(1,1)` | 1 | SAT, verified (`A = {1, a_11, a_11^{-1}}`) | 27, 27 | 729 | 603 | 2375 | 0.0 |
 | control: full `Γ_T`, `q = 2`, orbit 2, `(1,1)` | 1 | SAT, verified | 15, 15 | 225 | 229 | 821 | 0.0 |
 | `Γ_0`, `q = 3`, `(2,2)` | all 133 | UNSAT x133 | 157, 157 | 24649 | 19505 | 81753 | 2.2–6.1 |
+| `Γ_0`, `q = 3`, `(2,3)` | all 133 | UNSAT x133 | 157, 2263 | 355291 | 209045 | 968379 | 20–844 |
 | `Γ_0`, `q = 2`, `(3,3)` | all 11 | UNSAT x11 | 267, 267 | 71289 | 96129 | 355259 | 94–260 |
 
 Every product cell has the same statistics for every presentation at these radii:
 - `q = 3`, `(2,2)`: 14899 cells, 12636 singleton cells;
+- `q = 3`, `(2,3)`: 242347 cells, 227448 singleton cells, largest cell 157 pairs;
 - `q = 2`, `(3,3)`: 31403 cells, 14336 singleton cells.
 
 **What the negative results rule out.** For every listed `T`, over every field, a zero
-divisor on `Γ_0` needs a support pair of radii beyond those above. Inversion
-`(A,B) ↦ (B^{-1}, A^{-1})` keeps both statements symmetric in the two radii. Nothing is claimed about larger radii, other finite-index
-subgroups, non-vertex-regular Ã2 lattices, or `q ≥ 4`.
+divisor on `Γ_0` needs a support pair of radii beyond those above. Item 2 follows from item 1
+by inversion `(A,B) ↦ (B^{-1}, A^{-1})`, which swaps `rad_L` and `rad_R`. The `(2,3)` instance
+was run on all 133 orbits directly, so no reversal pairing is used. Nothing is claimed about
+larger radii, other finite-index subgroups, non-vertex-regular Ã2 lattices, or `q ≥ 4`.
 
 **Next instances.**
-- `q = 3`, `(2,3)` (equivalently `(3,2)`): `157 × 2263` pairs, about 209k variables and
-  968k clauses, about 8 minutes per presentation under load. It is running over one
-  representative of each of the 89 reversal classes, into `runs/q3-gamma0-r23.jsonl` (not an
-  artifact yet).
-- `q = 2`, `(3,4)`: `267 × 939` pairs.
+- `q = 3`, `(3,3)`: `2263 × 2263` pairs (about 5.1 million). `q = 3`, `(2,4)`: `157 × 14899`
+  pairs (about 2.3 million; `|B(4) ∩ Γ_0| = 14899`). Both are more than six times the `(2,3)`
+  instance, whose slowest presentation needed 844 s.
+- `q = 2`, `(3,4)`: `267 × 939` pairs. A run on orbits 0 and 1 hit the 1200 s cap under heavy
+  machine load and gave no answer, so nothing is claimed.
 - `q = 2`, full `Γ_T` at `(3,3)` for the torsion-free orbits 0, 1, 3, 5, 9: `673 × 673`
   pairs.

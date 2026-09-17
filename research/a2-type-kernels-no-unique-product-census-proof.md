@@ -143,7 +143,12 @@ nice -n 10 timeout 1200 python3 up_a2.py --file presentations_q3.json --index $(
     --host gamma0 --ra 2 --rb 2 --out runs/q3-gamma0-r22.jsonl
 nice -n 10 timeout 1200 python3 up_a2.py --file presentations_q2_all.json --index $(seq 0 10) \
     --host gamma0 --ra 3 --rb 3 --out runs/q2-gamma0-r33.jsonl
-nice -n 10 timeout 3600 python3 up_a2.py --file presentations_q2_all.json --index 0 1 3 5 7 9 10 \
-    --host full --ra 3 --rb 3 --out runs/q2-full-r33.jsonl
+for i in $(seq 0 132); do     # one presentation per process, each under the 1200 s cap
+  nice -n 10 timeout 1200 python3 up_a2.py --file presentations_q3.json --index $i \
+      --host gamma0 --ra 2 --rb 3 --out runs/q3-gamma0-r23.jsonl
+done
 python3 summarize.py    # tables; nonzero exit if a SAT model fails verification
 ```
+
+`runs/q3-gamma0-r23.jsonl` has one UNSAT record for each index `0..132`. The `(3,2)` case of
+the claim is the `(2,3)` instance transported by the inversion symmetry of Step 1.
