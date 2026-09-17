@@ -89,20 +89,32 @@ Steps (all inside the worktree; never touch the primary checkout's working tree)
 5. \`bin/cairn check; echo $?\` must be 0. If it fails, fix only problems in the files of this result (lint, missing distinct_from, artifact paths).
 6. Land: \`CAIRN_LAND_TRAILERS=${args.trailers} ${env} tools/cairn-land.sh -m "<subject: one plain sentence saying what was established, refuted or recorded for ${r.id}>" --node ${r.id} ${r.worktree} <every path of this result, relative>\`. Exit 0 means landed; 4 means a missing path or failed check (fix and retry); 1 means it gave up (retry once).
 7. Verify with \`git fetch -q origin main && git log origin/main --oneline -8\` and report the landed commit sha. Do not claim landed unless you see it on origin/main.
+8. Only if you saw the commit on origin/main: free the disk with \`git -C ${r.worktree} worktree remove --force ${r.worktree}\` (ignore failure). If it did not land, leave the worktree in place.
 Return landed, commit, final_status (the status that landed) and a one-line note. The commit subject must not name any model.`
 }
 
-return await pipeline(args.lanes,
-  l => agent(workerPrompt(l), { label: `work:${l.key}`, phase: 'Work', isolation: 'worktree', schema: RESULT }),
-  (r, l) => {
-    if (!r) return null
-    if (!REFEREE || !r.established.length) return { ...r, votes: [] }
-    return parallel(LENSES.map(lens => () => agent(refereePrompt(r, lens, l), { label: `referee:${l.key}`, phase: 'Referee', schema: VERDICT })))
-      .then(votes => ({ ...r, votes, survives: votes.length === LENSES.length && votes.every(v => v && !v.refuted) }))
-  },
-  (r, l) => {
-    if (!r || !r.files.length) return r ? { lane: l.key, id: r.id, status: r.status, landed: false, note: 'no files' } : null
-    return agent(landPrompt(r, l), { label: `land:${l.key}`, phase: 'Land', schema: LANDED })
-      .then(x => ({ lane: l.key, id: r.id, worker_status: r.status, established: r.established, survives: r.survives,
-                    votes: r.votes, sketch: r.sketch, impact: r.impact, ...(x || { landed: false, note: 'land agent lost' }) }))
-  })
+// maxWorkers bounds how many lanes hold a worktree at once (disk); a lane keeps its slot from work through landing.
+const MAX = args.maxWorkers || Infinity
+let active = 0
+const waiters = []
+async function slot(fn) {
+  while (active >= MAX) await new Promise(res => waiters.push(res))
+  active++
+  try { return await fn() } finally { active--; const w = waiters.shift(); if (w) w() }
+}
+
+async function lane(l) {
+  const r = await agent(workerPrompt(l), { label: `work:${l.key}`, phase: 'Work', isolation: 'worktree', schema: RESULT })
+  if (!r) return null
+  let rr = { ...r, votes: [] }
+  if (REFEREE && r.established.length) {
+    const votes = await parallel(LENSES.map(lens => () => agent(refereePrompt(r, lens, l), { label: `referee:${l.key}`, phase: 'Referee', schema: VERDICT })))
+    rr = { ...r, votes, survives: votes.length === LENSES.length && votes.every(v => v && !v.refuted) }
+  }
+  if (!rr.files.length) return { lane: l.key, id: rr.id, status: rr.status, landed: false, note: 'no files' }
+  const x = await agent(landPrompt(rr, l), { label: `land:${l.key}`, phase: 'Land', schema: LANDED })
+  return { lane: l.key, id: rr.id, worker_status: rr.status, established: rr.established, survives: rr.survives,
+           votes: rr.votes, sketch: rr.sketch, impact: rr.impact, ...(x || { landed: false, note: 'land agent lost' }) }
+}
+
+return await pipeline(args.lanes, l => slot(() => lane(l)))
