@@ -33,13 +33,13 @@ theorem gstar_residuallyFinite : IsResiduallyFinite Gstar :=
 
 /-- The vertical group `V(Γ̄, conjD)` is operator-MF (conjunct of
 `SpectralPaper.oneInvisibleRelationPackage`). -/
-theorem vertical_isOperatorMF : IsOperatorMF (Vertical conjD conjD_injective) :=
+theorem verticalConjD_isOperatorMF : IsOperatorMF (Vertical conjD conjD_injective) :=
   SpectralPaper.oneInvisibleRelationPackage.2.2.2.2.2.2.2.1
 
 /-- **`G_*` is MF**: it has a faithful representation into the corona `∏ M_n / ⊕ M_n`. -/
 theorem gstar_isOperatorMF : IsOperatorMF Gstar :=
   CommensurabilityInvariance.isOperatorMF_of_mulEquiv gstarEquivVertical.symm
-    vertical_isOperatorMF
+    verticalConjD_isOperatorMF
 
 #audit_axioms gstar_residuallyFinite
 #audit_axioms gstar_isOperatorMF
