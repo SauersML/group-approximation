@@ -56,7 +56,7 @@ abbrev AffineElementaryGroup (n : ℕ) (R : Type) [CommRing R] : Type :=
 commutative ring `R` and `n ≥ 4`, if `E_n(R)` is finitely presented then so is `R^n ⋊ E_n(R)`.
 Owned by lane `bh-met-05`; restated here because no such interface was on disk. -/
 def AffineExtensionFPStatement : Prop :=
-  ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] (n : ℕ), 4 ≤ n →
+  ∀ (R : Type) [CommRing R], Algebra.FiniteType ℤ R → ∀ n : ℕ, 4 ≤ n →
     Group.IsFinitelyPresented (elementaryGroup (Fin n) R) →
       Group.IsFinitelyPresented (AffineElementaryGroup n R)
 
