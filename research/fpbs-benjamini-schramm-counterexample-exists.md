@@ -119,3 +119,24 @@ so establishing this claim would refute that conjecture too.
   functional, one that sees `tau_p` outside the trivial isotypic component,
   such as the spectral mass of `phi_p` near but not at the trivial
   representation.
+* **Large amenable factor closes the gap (heretic lane, swarm-0917).**
+  **Candidate class.** Nonamenable `H` times an amenable `B` with a large
+  generating set. Here `p_u/p_c -> 1` as `d_B -> infinity`: for `B = Z^k`, use
+  `p_u <= p_c(Z^k)`, which follows from Lyons–Schramm and Harris, together with
+  `p_c >= 1/(d-1)`. So the gap plausibly closes in the limit.
+
+  **Obstruction** (`fpbs-nb-spectral-deficit-obstruction`, ESTABLISHED). Every
+  counterexample has percolation deficit `D(G) = d-1-1/p_c` at least the
+  nonbacktracking spectral deficit `d-1-sigma(max(||A||,2 sqrt(d-1)))`. On
+  `H □ B` this is at least `d_H - ||A_H||`, whatever `B` and `S_B` are. So the
+  gap closes only if `p_c` leaves mean-field by an order-one amount in the
+  reciprocal, fixed by `H`. The spectral side never closes it.
+
+  **Where the kill stops.** The missing `p_c` asymptotic is
+  `fpbs-product-amenable-factor-mean-field-deficit` (OPEN). The same criterion
+  gives new unconditional windows on groups with a free quotient and a few
+  kernel generators, for example `Z^2 ⋊ F_5`.
+
+  **Surviving class for a counterexample.** Graphs with order-one deficit
+  `D >= d(1-rho)(d-1)/(d-2)`, meaning dense short cycles relative to degree.
+  This is where "amenable-like local structure" must live.
