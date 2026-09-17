@@ -118,7 +118,9 @@ theorem manuscriptSentence_uctFaithfulTrace_stablyFinite_and_quasidiagonal_of_ti
     (huct : T.SatisfiesUCT S) (hτ : Nonempty (FaithfulTracialState S)) :
     IsStablyFiniteCStarAlgebra S ∧ IsQuasidiagonalCStarAlgebra S := by
   obtain ⟨τ⟩ := hτ
-  exact ⟨GroupApproximation.NinetyNineProblems.isStablyFiniteCStarAlgebra_of_faithfulTracialState τ,
+  exact
+    ⟨GroupApproximation.NinetyNineProblems.isStablyFiniteCStarAlgebra_of_faithfulTracialState
+      τ,
     isQuasidiagonalCStarAlgebra_of_faithful_quasidiagonalTrace
       inferInstance τ (htww S hnuc huct τ)⟩
 

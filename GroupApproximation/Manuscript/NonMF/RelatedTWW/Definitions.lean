@@ -49,8 +49,9 @@ This module fixes the vocabulary of the sentence.
 ## Proof route of the row
 
 The elementary content is in `RelatedTWW.Elementary`:
-quasidiagonal ⇒ MF ⇒ stably finite, a faithful trace ⇒ stably finite, and
-a faithful quasidiagonal trace ⇒ a quasidiagonal algebra. The last is Brown's
+quasidiagonal ⇒ MF ⇒ stably finite, and a faithful quasidiagonal trace ⇒ a
+quasidiagonal algebra. That a faithful trace forces stable finiteness is the
+corpus theorem `NinetyNineProblems.isStablyFiniteCStarAlgebra_of_faithfulTracialState`. The last is Brown's
 argument: the corona map of the trace models is injective because its kernel is
 killed by the faithful trace.
 
