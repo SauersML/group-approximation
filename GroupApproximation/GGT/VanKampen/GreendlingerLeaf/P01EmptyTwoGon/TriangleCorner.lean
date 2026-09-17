@@ -120,4 +120,121 @@ theorem exists_rotate_corner {M : CombMap} {f : M.Face} (B : FaceBoundary M f) {
 
 end TriangleCornerLists
 
--- TRIANGLE_CORNER_PART_TWO
+section TriangleCornerConnectors
+
+/-- A nonempty legal word of length and norm at most `ε` with value `g`, whose letters have legal
+inverses: the connector input of `RealizedSectionFamily.false_of_quadrilateral_face`. -/
+def TriangleConnector {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (eps : ℕ)
+    (g : G) : Prop :=
+  ∃ s : List (RelLetter G Lambda), s ≠ [] ∧
+    HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D) s ∧
+    (∀ l ∈ s, (symmetricLabelAlphabet D).IsLetter (HullSC.RelWord.inv l)) ∧
+    RelLetter.listVal s = g ∧ s.length ≤ eps ∧
+    WordMetric.wordNorm D.alphabet.carrier (RelLetter.listVal s) ≤ eps
+
+/-- Two legal letters give a connector for the product of their values. -/
+theorem triangleConnector_pair {G : Type u} [Group G] {Lambda : Type w} {D : RelGenSet G Lambda}
+    {eps : ℕ} (heps : 2 ≤ eps) {p q : RelLetter G Lambda}
+    (hp : (symmetricLabelAlphabet D).IsLetter p) (hq : (symmetricLabelAlphabet D).IsLetter q) :
+    TriangleConnector D eps (p.val * q.val) := by
+  have hsymm := symmetricLabelAlphabet.symmetric D
+  have hadm : HullSC.RelWord.IsAdmissible (symmetricLabelAlphabet D) [p, q] := by
+    intro l hl
+    rcases List.mem_cons.mp hl with rfl | hl'
+    · exact hp
+    · rcases List.mem_cons.mp hl' with rfl | hl''
+      · exact hq
+      · exact nomatch hl''
+  have hval : RelLetter.listVal [p, q] = p.val * q.val := by
+    simp only [RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
+      mul_one]
+  have hnorm := HullSC.RelativeBoundaryContiguity.wordNorm_listVal_le_length
+    (symmetricLabelAlphabet D) [p, q] hadm
+  rw [symmetricLabelAlphabet.wordNorm_eq] at hnorm
+  exact ⟨[p, q], List.cons_ne_nil _ _, hadm,
+    fun l hl => HullSC.isLetter_relWordInv _ hsymm (hadm l hl), hval, heps,
+    le_trans hnorm heps⟩
+
+/-- A legal letter and its inverse give a connector for `1`. -/
+theorem triangleConnector_one {G : Type u} [Group G] {Lambda : Type w} {D : RelGenSet G Lambda}
+    {eps : ℕ} (heps : 2 ≤ eps) {p : RelLetter G Lambda}
+    (hp : (symmetricLabelAlphabet D).IsLetter p) : TriangleConnector D eps 1 := by
+  have h := triangleConnector_pair heps hp
+    (HullSC.isLetter_relWordInv _ (symmetricLabelAlphabet.symmetric D) hp)
+  rwa [HullSC.RelWord.val_inv, mul_inv_cancel] at h
+
+/-- Two legal letters give a connector for the product of the inverses of their values. -/
+theorem triangleConnector_inv {G : Type u} [Group G] {Lambda : Type w} {D : RelGenSet G Lambda}
+    {eps : ℕ} (heps : 2 ≤ eps) {p q : RelLetter G Lambda}
+    (hp : (symmetricLabelAlphabet D).IsLetter p) (hq : (symmetricLabelAlphabet D).IsLetter q) :
+    TriangleConnector D eps (p.val⁻¹ * q.val⁻¹) := by
+  have hsymm := symmetricLabelAlphabet.symmetric D
+  have h := triangleConnector_pair heps (HullSC.isLetter_relWordInv _ hsymm hp)
+    (HullSC.isLetter_relWordInv _ hsymm hq)
+  rwa [HullSC.RelWord.val_inv, HullSC.RelWord.val_inv] at h
+
+end TriangleCornerConnectors
+
+section TriangleCornerWalk
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  {S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts}
+
+/-- **A quadrilateral walk with single-dart arcs.**  A rotation `X, t, Y, s` of the walk of a
+polygon face, with `α s` on cell `i`, `α t` on another object `o′`, and connectors for `X` and
+`Y`, contradicts the weight maximality of `S`. -/
+theorem false_of_triangle_walk (P : OsinLemma94RealizedPolygons S) (k : Fin P.count)
+    {s t : S.diagram.toCombMap.Dart} {X Y : List S.diagram.toCombMap.Dart} {r : ℕ}
+    (htrav : (S.diagram.faceBoundary (P.face k)).darts.rotate r = X ++ [t] ++ Y ++ [s])
+    (i : Fin S.diagram.rCellCount)
+    (hs : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha s) =
+      OsinLemma94RealizedPolygons.objectFace S (some i))
+    (o' : Option (Fin S.diagram.rCellCount)) (ho' : o' ≠ some i)
+    (ht : S.diagram.toCombMap.faceOf (S.diagram.toCombMap.alpha t) =
+      OsinLemma94RealizedPolygons.objectFace S o')
+    (hX : TriangleConnector D eps (RelLetter.listVal (dartWord S.diagram X)))
+    (hY : TriangleConnector D eps (RelLetter.listVal (dartWord S.diagram Y))) : False := by
+  obtain ⟨s1, hne1, hadm1, hinv1, hval1, hlen1, hnorm1⟩ := hX
+  obtain ⟨s2, hne2, hadm2, hinv2, hval2, hlen2, hnorm2⟩ := hY
+  have hsmem : S.diagram.toCombMap.alpha s ∈ cellDarts S.diagram i :=
+    ((S.diagram.faceBoundary (cell S.diagram i).face).mem_iff _).mpr hs
+  obtain ⟨sarc, hsd, hsl, -⟩ := exists_singleArc hsmem
+  have hsrev : sarc.reverseDarts = [s] := reverseDarts_eq_singleton sarc hsd
+  cases o' with
+  | some j =>
+    have htmem : S.diagram.toCombMap.alpha t ∈ targetDarts S.diagram (some j) :=
+      ((S.diagram.faceBoundary (cell S.diagram j).face).mem_iff _).mpr ht
+    obtain ⟨tarc, htd, htl, -⟩ := exists_singleArc htmem
+    have htrev : targetBoundaryDarts S.diagram (some j) tarc = [t] :=
+      reverseDarts_eq_singleton tarc htd
+    exact RealizedSectionFamily.false_of_quadrilateral_face S.toRealizedSectionFamily
+      S.label_admissible S.weight_maximal (P.face k) (P.face_ne_outer k) (relatorCell_face_ne P k)
+      (P.face_unselected k) i (some j) sarc tarc X Y r
+      (htrav.trans (congrArg₂ (fun A B => X ++ A ++ Y ++ B) htrev.symm hsrev.symm))
+      (by omega) (by omega) (fun h => absurd h (Option.some_ne_none j)) ho'
+      s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
+  | none =>
+    have htmem : t ∈ targetDarts S.diagram none := by
+      show t ∈ (S.diagram.faceBoundary S.diagram.outerFace).darts.reverse.map
+        S.diagram.toCombMap.alpha
+      exact List.mem_map.mpr ⟨S.diagram.toCombMap.alpha t,
+        List.mem_reverse.mpr (((S.diagram.faceBoundary S.diagram.outerFace).mem_iff _).mpr ht),
+        S.diagram.toCombMap.alpha_involutive t⟩
+    obtain ⟨tarc, htd, htl, hts⟩ := exists_singleArc htmem
+    have htb : targetBoundaryDarts S.diagram none tarc = [t] := htd
+    have hcyc : (targetDarts S.diagram none).length = Delta.boundaryWord.length := by
+      have e := congrArg List.length (dartWord_outerDarts S.diagram)
+      rw [S.equiv.boundaryWord_eq, dartWord, List.length_map] at e
+      exact e
+    obtain ⟨j, hj1, hj2⟩ := exists_section_of_lt cuts (lt_of_lt_of_eq hts hcyc)
+    exact RealizedSectionFamily.false_of_quadrilateral_face S.toRealizedSectionFamily
+      S.label_admissible S.weight_maximal (P.face k) (P.face_ne_outer k) (relatorCell_face_ne P k)
+      (P.face_unselected k) i none sarc tarc X Y r
+      (htrav.trans (congrArg₂ (fun A B => X ++ A ++ Y ++ B) htb.symm hsrev.symm))
+      (by omega) (by omega) (fun _ => ⟨j, hj1, by rw [htl]; exact hj2⟩)
+      (Option.some_ne_none i).symm
+      s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
+
+-- TRIANGLE_CORNER_PART_THREE
