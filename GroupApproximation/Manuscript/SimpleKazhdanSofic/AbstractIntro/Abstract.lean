@@ -35,7 +35,7 @@ Route.
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.AbstractIntro
 
-open GroupApproximation.SimpleKazhdanSofic
+open GroupApproximation.SimpleKazhdanSofic SymbolicDynamics.FullShift
 
 /-- **tex l.34–38**: for every infinite minimal subshift `X` over a finite alphabet, `G_X = EL₃(R_X)`
 is infinite, finitely generated, simple and Kazhdan, is a marked limit of the finite simple groups

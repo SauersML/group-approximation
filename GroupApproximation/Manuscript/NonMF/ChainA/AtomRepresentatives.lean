@@ -184,10 +184,11 @@ theorem exists_fin_fibers [CompactSpace X] {Z : Type*} {key : X → Z}
   haveI : Finite (Set.range key) := hkey.range_finite.to_subtype
   refine ⟨Nat.card (Set.range key),
     fun j => S ∩ {x | key x = ((Finite.equivFin (Set.range key)).symm j).1},
-    fun j => hS.inter (hkey.isClopen_fiber _), fun i j hij => ?_, ?_,
-    fun j x hx y hy => hy.2.trans hx.2.symm⟩
+    fun j => hS.inter (hkey.isClopen_fiber _), fun i j hij => ?_, ?_, fun j x hx y hy => ?_⟩
   · refine Set.disjoint_left.2 fun x hxi hxj => hij ?_
-    exact (Finite.equivFin (Set.range key)).symm.injective (Subtype.ext (hxi.2.symm.trans hxj.2))
+    have hi : key x = ((Finite.equivFin (Set.range key)).symm i).1 := hxi.2
+    have hj : key x = ((Finite.equivFin (Set.range key)).symm j).1 := hxj.2
+    exact (Finite.equivFin (Set.range key)).symm.injective (Subtype.ext (hi.symm.trans hj))
   · refine Set.ext fun x => ⟨fun hx => ?_, fun hx => ?_⟩
     · obtain ⟨j, hj⟩ := Set.mem_iUnion.1 hx
       exact hj.1
@@ -196,6 +197,9 @@ theorem exists_fin_fibers [CompactSpace X] {Z : Type*} {key : X → Z}
       have h := Equiv.symm_apply_apply (Finite.equivFin (Set.range key))
         ⟨key x, Set.mem_range_self x⟩
       exact (congrArg Subtype.val h).symm
+  · have hx' : key x = ((Finite.equivFin (Set.range key)).symm j).1 := hx.2
+    have hy' : key y = ((Finite.equivFin (Set.range key)).symm j).1 := hy.2
+    exact hy'.trans hx'.symm
 
 /-- **Refinement** (tex 1508–1510): finitely many clopen cells partition the representative set.
 On each cell the class exponents are constant, and so are the occupied atoms and the coefficient
