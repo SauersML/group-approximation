@@ -215,3 +215,18 @@ do not provide either mechanism.
   (e.g. property (FA)) and, for permutation modules, a nonsofic coordinate
   action or a nonhyperlinear actor; the `SL_3(Z[1/2])` and
   Andre--Guirardel actors pass the first gate and still owe the second.
+- **2026-09-17 (swarm-0917-w5, inverter).  Pass every actor-side gate and
+  expect the action-side gate to follow.**
+  `locally-finite-codense-stabilizer-kazhdan-packet-is-sofic` builds the
+  minimal counterexample to that expectation: `A=EL_3(F_2[t])` (Kazhdan,
+  residually finite), `C=e_12(ker lambda)` for a codimension-one functional
+  `lambda` that kills no nonzero ideal, and the two-point seed at
+  `a=e_12(t)`.  Every finite-index normal subgroup contains `e_12` of a
+  nonzero ideal, so `a in NC` for all such `N`; this gives `(ICA1)` for the
+  permutation and augmentation modules, finite-dimensional invisibility of
+  `J`, the Kazhdan gap `(ISC1)`, and a nonseparable stabilizer.  But `C` is
+  locally finite, so GKP Theorem 2.14 makes the coordinate action sofic, the
+  base `F_2 wr_X A` sofic, and the chart floor refutes `(ISC2)`/`(IWE6)`.
+  The two gates are logically independent; the invariant any proof must use
+  is a property of the stabilizer that fails for locally finite groups (the
+  `SL_3(Z)` and Andre--Guirardel stabilizers survive).
