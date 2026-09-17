@@ -224,3 +224,34 @@ argument.
      means finitely many ideal generators. Probabilistic or ergodic input can
      only screen candidate relator sets, and screening must then be closed
      by a deterministic maximality proof.
+
+9. **Realise regime R4 by a square-module ring host over an arbitrary base
+   (swarm-0917, linear-characteristic).** *Dead for every host whose centre is
+   infinite. What survives is a sharper decomposition.*
+   - *The class.* It covers every witness in the sufficient branch of
+     [[square-module-ring-hosts-are-sandwich-ring-quotients]]: a finitely
+     presented simple `R ≅ R^d` (`d >= 2`) with `S <= R^x` and `PE_4(R)`
+     finitely presented and simple, whose centre is an infinite field. This
+     includes every characteristic `0` host (the centre contains `Q`) and
+     Leavitt-tensor hosts `B ⊗ L_K(1,d)` over an infinite `K`.
+   - *Invariant.* The central scalar subgroup `(Z(R)^x)^(d-1) I_4`. By
+     [[square-module-elementary-centre-is-central-units]] it lies in
+     `E_4(R)`, because scalars are invisible to `K_1` on a square module:
+     `[c] = d[c]`.
+   - *Where every member dies.* Clause (c) of
+     [[ck-sandwich-ring-has-fp-projective-simple-quotient]], "`Z(E_4)`
+     finitely generated", equivalently clause 2 of
+     [[projective-elementary-fp-kernel-criterion]]. The subgroup
+     `(k^x)^(d-1)` is not finitely generated for an infinite field `k`.
+   - *Survivor.* Square-module witnesses must be `F_q`-algebras with finite
+     centre. For `d = 2` the centre of `E_4(R)` is exactly `Z(R)^x`. So finite
+     presentation of `PE_4(R)` splits into two independent prerequisites:
+     `ker(St_4 -> E_4)` finitely normally generated, and `Z(R)^x` finitely
+     generated.
+   - *Where the premise of the Leavitt lane comes from.* Requiring `E_n`
+     itself to be simple forces `Z(R) = F_2`, so the `F_2` premise there is
+     forced.
+   - *What escapes.* Rings that are not square-module escape, for example
+     Dedekind-defect witnesses of R4 whose `K_1` detects scalars. A route
+     through Ara--Goodearl--Pardo (purely infinite simple rings with `[1]`
+     torsion in `K_0` are square-module) is not imported.
