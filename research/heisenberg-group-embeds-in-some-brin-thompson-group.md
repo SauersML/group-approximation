@@ -36,3 +36,21 @@ A no here gives a no to Zaremsky 2.19(c), through
     whose commutator is a SMART-like counter commuting with both.
   - Callard and Salo (arXiv:2208.00685, p. 2) record that embedding `H_3(Z)` or
     `BS(1,2)` in the automorphism group of a full shift is open.
+- 2026-09-17 (swarm-0917-w5-pull-z-4, host-geometry, unreviewed): **all hosts with quadratic
+  orbit growth are dead.** See `heisenberg-not-in-wobbling-groups-of-quadratic-growth-graphs`.
+  - *Class.* Constructions in which `H_3(Z)` moves points by bounded jumps inside the orbits of a
+    group of quadratic growth. Members include topological full groups of `Z`- and
+    `Z^2`-subshifts, the product-shift full group `[[Z^2 ↷ ({0,1}^Z)^2]]`, which maps into `4V`
+    by baker's coding, and 2D-tape head motions with injective position.
+  - *Invariant.* Orbit ball growth `≤ C r^2`, against `|c^N| ≤ 12√N`.
+  - *Where every member dies.* The box `a^s c^u v`, `0 ≤ s ≤ ⌈169CK^2⌉`, `u < R^2`, does not fit
+    in `B(v, 13KR)`. So `a^σ c^μ` and `b^τ c^ν` with `σ, τ ≤ s_0` fix `v`. Their commutator
+    `c^(στ)` then fixes the whole orbit, and `c^M = 1` uniformly.
+  - The same count excludes `BS(1,k)`, and the Callard–Salo element, from wobbling groups of
+    every polynomial growth degree.
+  - *Sharp.* The faithful Schreier family `H_3 / ⟨a, b^L, c^L⟩` has local growth `≈ 0.72 r^3`
+    (`experiments/heisenberg-quadratic-growth-hosts-2026-09-17/output.txt`).
+  - *What remains.* Hosts with orbit growth at least `r^3`: the full group of the cubic product
+    shift `[[Z^3 ↷ ({0,1}^Z)^3]]`, which maps into `6V` by the same coding, and reversible Turing
+    machine groups, whose orbits change the tape and grow exponentially. Whether `H_3 ≤ W(Z^3)`
+    is the first falsifiable question.
