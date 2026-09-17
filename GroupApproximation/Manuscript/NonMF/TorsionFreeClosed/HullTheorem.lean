@@ -23,7 +23,7 @@ paragraph).
 
 Every endpoint applies the matching `TorsionFreeGreendlingerLeaf.*_of_greendlinger` theorem.  Those
 theorems already discharge the other walls with closed producers
-(`HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`), so the single remaining binder is
+(`HullSC.relativeIsoperimetricBridgeQuasiGeodesicEmbedded_closed`), so the one remaining binder is
 
   `hgreendlinger : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`,
 
@@ -72,14 +72,14 @@ theorem manuscriptSentence_hullTheorem_of_greendlinger
   TorsionFreeGreendlingerLeaf.printedHullTheorem_of_greendlinger hgreendlinger
 
 /-- **`thm:hull` at Osin's notion** (lines 2122–2127), over the Greendlinger leaf. -/
-theorem manuscriptSentence_hullTheoremOsin_of_greendlinger
+theorem manuscriptSentence_hullTheorem_osin_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     TorsionFreeOsinNotion.PrintedHullSmallCancellationOsin :=
   TorsionFreeGreendlingerLeaf.printedHullTheoremOsin_of_greendlinger hgreendlinger
 
 /-- **`thm:hull` at the limit-set notion** (lines 2122–2127), over the Greendlinger leaf. -/
-theorem manuscriptSentence_hullTheoremLimitSet_of_greendlinger
+theorem manuscriptSentence_hullTheorem_limitSet_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     TorsionFreeLimitSetNotion.PrintedHullSmallCancellationLimitSet :=
@@ -117,8 +117,8 @@ theorem hullTheoremRows_of_greendlinger
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     HullTheoremRows :=
   And.intro (manuscriptSentence_hullTheorem_of_greendlinger hgreendlinger)
-    (And.intro (manuscriptSentence_hullTheoremOsin_of_greendlinger hgreendlinger)
-      (And.intro (manuscriptSentence_hullTheoremLimitSet_of_greendlinger hgreendlinger)
+    (And.intro (manuscriptSentence_hullTheorem_osin_of_greendlinger hgreendlinger)
+      (And.intro (manuscriptSentence_hullTheorem_limitSet_of_greendlinger hgreendlinger)
         (And.intro (manuscriptSentence_hullTorsionFree_of_greendlinger hgreendlinger)
           (manuscriptSentence_hullProofParagraph_of_greendlinger hgreendlinger))))
 
@@ -128,8 +128,8 @@ end Manuscript
 end GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTheorem_of_greendlinger
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTheoremOsin_of_greendlinger
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTheoremLimitSet_of_greendlinger
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTheorem_osin_of_greendlinger
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTheorem_limitSet_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullTorsionFree_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_hullProofParagraph_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.hullTheoremRows_of_greendlinger

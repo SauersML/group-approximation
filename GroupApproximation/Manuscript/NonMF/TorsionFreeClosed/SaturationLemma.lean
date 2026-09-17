@@ -28,8 +28,8 @@ again applies" half carries the leaf.  The single remaining binder is
 
   `hgreendlinger : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}`,
 
-Osin's Lemma 4.4 at least-area diagrams.  `SaturationLemmaRows` bundles the five forms the three rows
-cite, and `saturationLemmaRows_of_greendlinger` is its reduction.
+Osin's Lemma 4.4 at least-area diagrams.  `SaturationLemmaRows` bundles the five forms the three
+rows cite, and `saturationLemmaRows_of_greendlinger` is its reduction.
 
 ## Closer that a later landing plugs in
 
@@ -68,14 +68,14 @@ theorem manuscriptSentence_saturation_of_greendlinger
   TorsionFreeGreendlingerLeaf.printedSaturation_of_greendlinger hgreendlinger
 
 /-- **`lem:saturation` at Osin's notion** (lines 2136–2141), over the Greendlinger leaf. -/
-theorem manuscriptSentence_saturationOsin_of_greendlinger
+theorem manuscriptSentence_saturation_osin_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     TorsionFreeOsinNotion.PrintedSaturationOsin :=
   TorsionFreeGreendlingerLeaf.printedSaturationOsin_of_greendlinger hgreendlinger
 
 /-- **`lem:saturation` at the limit-set notion** (lines 2136–2141), over the Greendlinger leaf. -/
-theorem manuscriptSentence_saturationLimitSet_of_greendlinger
+theorem manuscriptSentence_saturation_limitSet_of_greendlinger
     (hgreendlinger :
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     TorsionFreeLimitSetNotion.PrintedSaturationLimitSet :=
@@ -113,8 +113,8 @@ theorem saturationLemmaRows_of_greendlinger
       GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     SaturationLemmaRows :=
   And.intro (manuscriptSentence_saturation_of_greendlinger hgreendlinger)
-    (And.intro (manuscriptSentence_saturationOsin_of_greendlinger hgreendlinger)
-      (And.intro (manuscriptSentence_saturationLimitSet_of_greendlinger hgreendlinger)
+    (And.intro (manuscriptSentence_saturation_osin_of_greendlinger hgreendlinger)
+      (And.intro (manuscriptSentence_saturation_limitSet_of_greendlinger hgreendlinger)
         (And.intro (manuscriptSentence_saturationPairAndHullAgain_of_greendlinger hgreendlinger)
           (manuscriptSentence_saturationApplyHull_of_greendlinger hgreendlinger))))
 
@@ -124,8 +124,8 @@ end Manuscript
 end GroupApproximation
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_of_greendlinger
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationOsin_of_greendlinger
-#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationLimitSet_of_greendlinger
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_osin_of_greendlinger
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_limitSet_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationPairAndHullAgain_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationApplyHull_of_greendlinger
 #audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.saturationLemmaRows_of_greendlinger

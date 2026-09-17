@@ -1,5 +1,4 @@
 import GroupApproximation.Manuscript.NonMF.TorsionFreeCStar.RegularAlgebra
-import GroupApproximation.Manuscript.NonMF.AuditTorsionFree.AlgebraSentence
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
