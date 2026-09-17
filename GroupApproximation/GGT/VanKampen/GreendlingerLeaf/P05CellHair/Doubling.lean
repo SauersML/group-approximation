@@ -112,6 +112,96 @@ theorem regionInternal_embed_iff (family : Finset (RegionCandidate D eps X))
       (faceOf_embed_mem_faceSet X f j hlen hf (havoid a ha).1 z).mpr h1,
       (faceOf_embed_mem_faceSet X f j hlen hf (havoid a ha).1 (X.toCombMap.alpha z)).mpr h2⟩
 
+/-- The first dart of a carried source arc. -/
+theorem sourceHead (a : FaceEdgeDoubling.Avoiding X f j D eps) :
+    (FaceEdgeDoubling.regionCandidate X f j hlen hf a).2.sourceArc.darts.head? =
+      a.val.2.sourceArc.darts.head?.map (FaceEdgeDoubling.embedding X f j hlen hf).darts :=
+  (congrArg List.head? (FaceEdgeDoubling.mapTo_darts_of_avoid X f j hlen hf a.val.2.sourceArc
+    (FaceEdgeDoubling.carrierImage X f j hlen hf (Embedded.cell X a.val.2.source).face)
+    (fun _ hd => FaceEdgeDoubling.carrierImage_of_ne_dart X f j hlen hf _ hd)
+    (FaceEdgeDoubling.cellDarts_eq X f j hlen hf a.val.2.source)
+    (FaceEdgeDoubling.dart_not_mem_sourceArc X f j a.val.2 a.property.2))).trans List.head?_map
+
+/-- The first dart of a carried target arc. -/
+theorem targetHead (a : FaceEdgeDoubling.Avoiding X f j D eps) :
+    (FaceEdgeDoubling.regionCandidate X f j hlen hf a).2.targetArc.darts.head? =
+      a.val.2.targetArc.darts.head?.map (FaceEdgeDoubling.embedding X f j hlen hf).darts :=
+  (congrArg List.head? (FaceEdgeDoubling.mapTo_darts_of_avoid X f j hlen hf a.val.2.targetArc
+    (FaceEdgeDoubling.targetImage X f j hlen hf a.val.2.target)
+    (fun _ hd => FaceEdgeDoubling.targetImage_of_ne_dart X f j hlen hf _ hd)
+    (FaceEdgeDoubling.targetDarts_eq X f j hlen hf a.val.2.target)
+    (FaceEdgeDoubling.dart_not_mem_targetArc X f j a.val.2 a.property.1 a.property.2))).trans
+    List.head?_map
+
+theorem cross_regionCandidate_true (a : FaceEdgeDoubling.Avoiding X f j D eps) (s : Bool) :
+    cross (FaceEdgeDoubling.regionCandidate X f j hlen hf a) s true =
+      (cross a.val s true).map (FaceEdgeDoubling.embedding X f j hlen hf).darts := by
+  cases s with
+  | false => exact targetHead X f j hlen hf a
+  | true => exact sourceHead X f j hlen hf a
+
+theorem cross_regionCandidate (a : FaceEdgeDoubling.Avoiding X f j D eps) (s o : Bool) :
+    cross (FaceEdgeDoubling.regionCandidate X f j hlen hf a) s o =
+      (cross a.val s o).map (FaceEdgeDoubling.embedding X f j hlen hf).darts := by
+  cases o with
+  | true => exact cross_regionCandidate_true X f j hlen hf a s
+  | false =>
+    rw [cross_false, cross_false, cross_regionCandidate_true X f j hlen hf a s]
+    cases cross a.val s true with
+    | none => rfl
+    | some _ => rfl
+
+/-- **(A) The crossings of a carried region are the carried crossings.** -/
+theorem crossO_regionCandidate (a : FaceEdgeDoubling.Avoiding X f j D eps) (s o : Bool) :
+    crossO (FaceEdgeDoubling.regionCandidate X f j hlen hf a) s o =
+      (crossO a.val s o).map (FaceEdgeDoubling.embedding X f j hlen hf).darts := by
+  cases s with
+  | true => exact cross_regionCandidate X f j hlen hf a true o
+  | false =>
+    rcases Option.eq_none_or_eq_some a.val.2.target with ht | ⟨i, ht⟩
+    · have ht' : (FaceEdgeDoubling.regionCandidate X f j hlen hf a).2.target = none :=
+        congrArg (Option.map (FaceEdgeDoubling.cellMap X f j hlen hf).indexEquiv) ht
+      rw [crossO_false_of_eq_none _ ht', crossO_false_of_eq_none _ ht]
+      exact cross_regionCandidate X f j hlen hf a false (!o)
+    · have ht' : (FaceEdgeDoubling.regionCandidate X f j hlen hf a).2.target =
+          some ((FaceEdgeDoubling.cellMap X f j hlen hf).indexEquiv i) :=
+        congrArg (Option.map (FaceEdgeDoubling.cellMap X f j hlen hf).indexEquiv) ht
+      rw [crossO_false_of_eq_some _ ht', crossO_false_of_eq_some _ ht]
+      exact cross_regionCandidate X f j hlen hf a false o
+
 end Faces
 
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+
+/-- **The doubling of a hair edge transports the family.** -/
+noncomputable def transport (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+    (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+    (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
+      (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1) :
+    RegionTransport S (HairOpening.sectionFamily S f j hlen hf havoid) where
+  map := FaceEdgeDoubling.regionFamilyEmbedding S.diagram f j hlen hf S.family havoid
+  family_eq := rfl
+  cellIndex := (FaceEdgeDoubling.cellMap S.diagram f j hlen hf).indexEquiv
+  source _ := rfl
+  target _ := rfl
+  profile a := FaceEdgeDoubling.regionCandidate_profile S.diagram f j hlen hf ⟨a.1, havoid a.1 a.2⟩
+  darts := (FaceEdgeDoubling.embedding S.diagram f j hlen hf).darts
+  cross a s o := crossO_regionCandidate S.diagram f j hlen hf ⟨a.1, havoid a.1 a.2⟩ s o
+
+theorem transport_darts (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+    (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+    (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+    (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
+      (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1)
+    (z : S.diagram.toCombMap.Dart) :
+    (transport S f j hlen hf havoid).darts z = embed S.diagram.toCombMap z :=
+  rfl
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.regionInternal_embed_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.crossO_regionCandidate
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.transport

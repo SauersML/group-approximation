@@ -125,7 +125,7 @@ theorem project_pow (R : RotationRefinement M M') (K : ℕ) :
     · intro t ht htk
       rcases Nat.lt_or_ge t 2 with ht2 | ht2
       · obtain rfl : t = 1 := by omega
-        exact ⟨m, hm, by omega, by rw [pow_one, pow_one]; exact hmx⟩
+        exact ⟨m, hm, by omega, by rw [pow_one]; exact hmx⟩
       · obtain ⟨s, rfl⟩ : ∃ s, t = s + 1 := ⟨t - 1, by omega⟩
         obtain ⟨b, hb, hbK, hbs⟩ := hkmid s (by omega) (by omega)
         refine ⟨b + m, by omega, by omega, ?_⟩
@@ -213,7 +213,9 @@ def comp (R₁ : RotationRefinement M M') (R₂ : RotationRefinement M' M'') :
   step z := by
     obtain ⟨m, hm, hmz, hmmid⟩ := R₁.step z
     obtain ⟨K, hKpos, -, hK, hKmid⟩ := R₂.lift_pow (R₁.map z) m
-    refine ⟨K, hKpos hm, by rw [hK, hmz], fun t ht htK w hw => ?_⟩
+    refine ⟨K, hKpos hm, ?_, fun t ht htK w hw => ?_⟩
+    · show (M''.sigma ^ K) (R₂.map (R₁.map z)) = R₂.map (R₁.map (M.sigma z))
+      rw [hK, hmz]
     obtain ⟨s, hs, hsm, hsw⟩ := hKmid t ht htK (R₁.map w) hw
     exact hmmid s hs hsm w hsw
 

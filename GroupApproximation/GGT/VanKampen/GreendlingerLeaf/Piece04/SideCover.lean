@@ -12,9 +12,9 @@ single-side and has no endpoint strictly inside a gap.
 
 ## The proof
 
-The eps threshold is `max 3 (max eps₁ eps₂)`: `eps₁` is the Morse threshold
-`2κ + c ≤ λ ε` (`exists_morse_threshold_of_fourPoint`), and `eps₂` comes from the relator-cell
-branch. The `ρ` threshold is the one of the relator-cell branch. There are three cases.
+The eps threshold is `max 3 (max eps₁ (max eps₂ eps₃))`: `eps₁` is the Morse threshold
+`2κ + c ≤ λ ε` (`exists_morse_threshold_of_fourPoint`), and `eps₂`, `eps₃` come from the two
+residual branches (module `Piece04.Gap`). There are three cases (module `Piece04.Reduction`).
 
 1. **Cutting target class.** `osinLemma94ClassCaseTwo_false` applies, since it needs no
    single-side hypothesis.
@@ -22,7 +22,8 @@ branch. The `ρ` threshold is the one of the relator-cell branch. There are thre
    walk reads `X T Y S` (`OsinLemma94ClassPolygons.exists_sameCellWalk`).
    * If a rotation `q B p A` of the cell has `X B = 1` or `Y A = 1`, the value-one kills
      `false_of_classSameCell_value_one_X` and `_Y` refute the pair.
-   * Otherwise we are in `OsinLemma94ClassCaseOneRCellStatement` (module `Piece04.RCell`).
+   * Otherwise we are in `OsinLemma94ClassCaseOneRCellStatement` (OPEN, first half of
+     `GapSpanResidualStatement`).
 3. **Different kinds, non-cutting target** (module `Piece04.DiffKind`).
    * Every position of a class word that is not inside a gap has the same vertex as a position
      inside a side word (this module).
@@ -30,28 +31,25 @@ branch. The `ρ` threshold is the one of the relator-cell branch. There are thre
        of the next side. The gap has value one (`vertex_gap_end_eq`), and sides are nonempty.
      * `exists_backward_side`: moving backward, a position at the end of a gap moves to the end of
        its side.
-   * So `a` has the vertex of `x₀` with `[x₀, x₀ + 1]` inside a side `s` of the source class, and
-     `b` has the vertex of `y₀` with `[y₀ - 1, y₀]` inside a side `t` of the target class.
-   * The side-level short pair `(s, [x₀, x₀+1]; t, [y₀-1, y₀])` (`false_of_sideSteps`, module
-     `Piece04.StepPair`) is backwards. Its sides have the kinds of their classes, so the kinds
-     differ and the target is not cutting. `osinLemma94ShortCaseOne_false` refutes it once both
-     connectors are shorter than `ε`.
-   * The start connector has length `d = |C.startConnector| < ε`, because the vertices are those of
-     `C`. The end connector has length at most `d + 2` by the triangle inequality.
+   * A step pair `[x₀, x₀ + 1]` in a side `s` of the source class and `[y₀, y₀ + 1]` in a side `t`
+     of the target class, with both cross distances at most `ε`, is a side-level short pair at
+     parameter `ε + 1` (`false_of_sideSteps`, module `Piece04.StepPair`). Its sides have the kinds
+     of their classes, so the kinds differ and the target is not cutting. The region insertion only
+     needs connectors of length at most `ε` (`false_of_shortPair_succ`, module `Piece04.ShortSucc`).
+   * When both endpoints of the start or the end pair move in the same direction, the cross
+     distances grow by at most one, and `< ε` becomes `≤ ε`. This refutes every pair except a
+     full-word pair (`a = 0`, `a' = |w_s|`, `b' = 0`, `b = |w_t|`). There both pairs are mixed, and
+     they are refuted when a connector has length at most `ε - 2`.
 
 ## The remaining mathematical gap
 
-The step pair of case 3 needs `d + 2 < ε`, while `C` only gives `d < ε`. That is
-`startConnector_margin` in `Piece04.DiffKind`, the one flagged spot of that branch.
+`GapSpanResidualStatement` (module `Piece04.Gap`), with best attempts in `Piece04.Residual`.
 
-Splitting a spanning pair at a gap vertex needs a connector of length `< ε` from that vertex. The
-hyperbolic thinness of the quadrilateral bounds it only by `ε` plus a constant, as the docstring
-of `OsinLemma94ClassGapSpanModel` notes. The side-level short Case 1 is stated at the same `ε` as
-the section family, so there is no room.
-
-Case 2 needs the class analogue of the enclosed-subdiagram argument behind
-`osinLemma94CaseOneSameCell`. The flagged spot is `singleSidePair_of_noGap` in `Piece04.RCell`,
-which states exactly the failing claim: a pair with no gap endpoint does not span a gap.
+* `OsinLemma94ClassCaseOneRCellStatement`: case 2 with no value-one rotation. It needs the class
+  analogue of the enclosed-subdiagram argument behind `osinLemma94CaseOneSameCell`; the gap darts
+  are not on the face walk, so the side-level surgery does not transfer.
+* `ClassFullWordDiffKindStatement`: case 3 for full-word pairs with both connectors of length
+  `ε - 1`. The mixed step pair has one connector bounded only by `ε + 1`.
 
 ## Manuscript status
 

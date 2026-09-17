@@ -19,12 +19,36 @@ from a closed lobe of the boundary cycle (module `P10Rose/Lobe`).
   with the arcs of `K`).
 * `exists_step_of_firstSide_cut`, `exists_step_of_secondSide_cut`: the cut inside a side.
 
+* `RoseCombinatorialStepStatement`: the rose step without hyperbolicity, Osin's condition or
+  thresholds (OPEN).
+* `rose_of_combinatorialStep`: `P10ChordLift.RoseStepStatement` from it, at `eps0 = 0`, `rho0 = 1`.
+
 ## The remaining gap
 
-The endpoint `rose : P10ChordLift.RoseStepStatement` is not provided here.  The rose hypothesis
-`AllNonFirstTurnsCrossed K` does not produce a closed sub-walk of a side: see the lake-rose
-configuration in the docstring of `P10Rose/Lobe`.  The steps above need a closed cut `B`, which
-the lake absorption `PocketFaceSet.absorb` would supply once it is shown to keep walk order.
+The endpoint `rose : P10ChordLift.RoseStepStatement` is not provided here; it is
+`rose_of_combinatorialStep` applied to a proof of `RoseCombinatorialStepStatement`.  The intended
+argument for that statement, in the local model at a vertex `v` visited `k` times: the rotation
+reads `o_1 ī_1 o_2 ī_2 … o_k ī_k` (outgoing and reversed incoming darts of the cycle), a passage is
+`ī_a → o_{π a}`, a first turn is `π a = a`, and passage `a` is crossed iff `π` does not preserve the
+open cyclic interval `(a, π a)`.  In particular `π a = a + 1` is never crossed.
+
+1. **Lakes.**  If some boundary dart `d` has `face (α d)` outside the component of the exterior in
+   the complement of `K.faces`, absorb all such lakes (`PocketFaceSet.absorb`, with the lists filtered
+   to the boundary darts facing the exterior component).  The absorbed walk is the filtered cycle;
+   one must show it is still a closed walk (a lake is entered and left at the same vertex), which
+   keeps the arcs, and the repeated visits drop strictly by `length_sub_card_lt`, because a removed
+   dart `z` follows a kept dart `d` with `vertexOf (α d) = vertexOf z`.
+2. **Lake-free.**  Without lakes each sector of `K.faces` at `v` is a distinct class of the face
+   relation `FaceClassStep (walkKeep c)`, so the returns `o_b ⇝ ī_{ρ b}` are the identity on classes
+   and `π` must be a single cycle with every non-first passage crossed.  Taking a maximal contiguous
+   block of passages closed under the returns gives a sub-walk `B` of the cycle that starts where the
+   rest starts and is closed under the face relation; when `B` lies in a side this is
+   `exists_step_of_firstSide_cut` / `exists_step_of_secondSide_cut`.  When `B` straddles an arc, the
+   arc must be replaced by a sub-arc, which `exists_step_of_cut` does not yet allow.
+
+The rose hypothesis matters: a C-shaped pocket with the source cell in the hole and some uncrossed
+non-first turn has no step in the same diagram, and reordering the walk into a non-rose order can
+break the side bound `|s_i| ≤ ε`.
 
 ## Manuscript status
 
@@ -204,6 +228,35 @@ theorem exists_step_of_secondSide_cut (K : PocketFaceSet D eps X lo hi)
 
 end Steps
 
+/-- **The rose step, combinatorial form** (OPEN; the remaining gap of `P10Rose`).  For a pocket face
+set `K` of a least-area diagram with letter labels, in walk order, not in first-turn order, with
+proper arcs, pinched complement, and every non-first turn crossed, there is an O-equivalent copy with
+letter labels and a pocket face set in walk order with proper arcs and strictly fewer repeated
+visits.  No hyperbolicity, no Osin condition and no thresholds are involved. -/
+def RoseCombinatorialStepStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ (X' : DiscDiagram.{u, w, v} W) (K' : PocketFaceSet D eps X' lo hi),
+          Nonempty (OEquivalentDiscDiagram X X') ∧
+            (∀ d, (symmetricLabelAlphabet D).IsLetter (X'.label d)) ∧
+            K'.ClosedWalk ∧ K'.sourceArc.length < (cellDarts X' K'.source).length ∧
+            K'.targetArc.length < (outerDarts X').length ∧
+            K'.repeatedVisits < K.repeatedVisits
+
+/-- **The rose step from its combinatorial form**, with thresholds `eps0 = 0` and `rho0 = 1`: the
+hyperbolicity and Osin's condition are discarded. -/
+theorem rose_of_combinatorialStep (h : RoseCombinatorialStepStatement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} := by
+  intro G _ Lambda D _ _ _ _ _ _ _ _ _
+  exact ⟨0, fun eps _ => ⟨1, Nat.one_pos, fun _ _ _ _ X lo hi hlea hlabel K hK hnft hsrc htgt
+    hpinch hrose => h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose⟩⟩
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.zeroArc
@@ -212,3 +265,5 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.exists_step_of_cut
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.exists_step_of_firstSide_cut
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.exists_step_of_secondSide_cut
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.RoseCombinatorialStepStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.rose_of_combinatorialStep
