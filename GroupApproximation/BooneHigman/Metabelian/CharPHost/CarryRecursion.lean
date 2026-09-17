@@ -111,8 +111,8 @@ theorem carrySubstList_X_of_ne (i₀ : ι) (w : List (ι → R)) {i : ι} (hi : 
       zero_add]
   | cons α w ih =>
     rw [carrySubstList_cons, AlgHom.comp_apply, carrySubst_X_of_ne i₀ α hi, map_add, map_mul,
-      carrySubstList_X_self, ih, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, carryDigits_cons,
-      List.length_cons]
+      carrySubstList_X_self, ih, MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq,
+      carryDigits_cons, List.length_cons]
     ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubstList_X_of_ne
