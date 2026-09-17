@@ -94,3 +94,20 @@ two symbols (`gottschalk-via-binary-alphabet-descent`).
     otherwise.
   - Where it stops: no construction lowers the number of rest symbols. The naive reclassification dies at the
     relay condition.
+- **Self-relaying witnesses: the 2-adic condition drops out** (swarm-0917-w4-gs-binary-descent, 2026-09-17).
+  - Established `self-relaying-donor-covering-automata-reach-admissible-types` (route
+    `self-relaying-product-with-a-binary-identity`, check `experiments/self-relaying-parity-2026-09-17/check.py`).
+    Call a donor-covering automaton *self-relaying* if every active input site stays active and is its own donor.
+    For such a witness of type `(z, b)`, `τ × id_{0,1}` with rest symbols `Z × {0}` is self-relaying of type
+    `(z, 2b + z)`. So `z = 1` gives an odd active count, and `z = 2` gives `4 ∤ b'`.
+  - Every `β × id` witness of item 5 is self-relaying. So for the universal problem the open node
+    `donor-covering-few-rest-automata-reach-admissible-types` is not needed. The rest-symbol reduction becomes
+    `strict-automata-reduce-to-few-rest-self-relaying-ones` (OPEN, any active count), with route
+    `universal-binary-descent-via-death-free-rest-reduction`. The only remaining demand is geometric: merge rest
+    symbols while no active input site ever dies.
+  - Where it stops: the product fails for witnesses that are not self-relaying, because a birth site whose flag layer
+    is active must relay both itself and its old donor. Value-layer designs die at the per-site count of "was active"
+    against "is active" (heuristic record on the new node). Births marked by patterns outside the image of a coding
+    are untried.
+  - Literature check (web, 2026-09-17): no source relating surjunctivity over two symbols to other alphabet sizes was
+    found. arXiv 1312.7682 (surjunctive-by-locally-finite groups) says nothing about alphabet size.
