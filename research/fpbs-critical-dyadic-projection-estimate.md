@@ -92,3 +92,23 @@ OPEN research hypothesis Q2 for every nonamenable Cayley graph. Q3 is a stronger
   the route `fpbs-critical-l2-via-volume-tail-and-spectral-spreading`. Each
   half is necessary for the hole, so a counterexample to either refutes it.
   All the nonamenability sits in (S). The hole stays OPEN.
+* **Continuity along per-generator weights from a known anchor.** **Dead:**
+  `fpbs-dead-weighted-surface-continuity-l2`.
+  * **Openness is free.** `fpbs-one-edge-sprinkling-l2-lipschitz` splits at the
+    last sprinkled edge and applies BK, giving `T_{p'} <= T_p + T_{p'} R T_p`.
+    So `1/||T||` is Lipschitz in the weight field, with constant `p` on fresh
+    generators.
+  * **Where it dies:** closedness needs a positive floor of `1/||T||` along the
+    path. The floor always implies critical l2 at the endpoint, so it is never a
+    weaker prerequisite (`fpbs-weighted-surface-continuity-reduces-to-uniform-floor`).
+  * **Referee status (2026-09-17):** both claims are back to OPEN. All three
+    referees refuted the "every path" equivalence in item 1: a path through a
+    supercritical point has `inf phi = 0` but still ends at a certified point.
+    The equivalence holds only for monotone paths. The `{a,t}` and `{b,t}`
+    anchors are also untreated. The sprinkling lemma was checked as correct.
+  * **What survives** is a one-step certificate needing an explicit anchor norm.
+    The spherical-function tree anchor certifies `T_{2k} x Z` for `k >= 4`, but
+    `F_2 x Z` only if `p_c(T_4 x Z) < 0.21085`.
+  * **Consequence for this hole:** perturbative weight transport needs
+    quantitative critical norm bounds at anchors, and qualitative theorems give
+    none.
