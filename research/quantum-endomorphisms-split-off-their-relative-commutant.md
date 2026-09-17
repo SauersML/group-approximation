@@ -9,7 +9,9 @@ distinct_from:
   split-ca-quantization-has-sharp-defect: that measures how far the compression of a classical strict section is from multiplicative; this is about genuine *-endomorphisms, which exist abundantly, and locates their non-surjectivity in a local defect algebra.
 ---
 
-**ESTABLISHED** (route `quantum-endomorphisms-split-off-their-relative-commutant-proof`).
+**OPEN** (audit 2026-09-17: one of two referee lenses refuted the drafted route
+`quantum-endomorphisms-split-off-their-relative-commutant-proof`, which is kept as an attempt and now requires the
+open Step 4 limit node `quantum-automaton-multiplication-map-is-injective-globally`; see Attempts).
 
 **Setting.** Let `G` be a group and `d >= 2`.
 - `A = (x)_G M_d` is the quasi-local C*-algebra, with local algebras `A_F` for finite `F` and shift `alpha_g(A_h) = A_(gh)`.
@@ -36,3 +38,38 @@ invariant of `Phi` dies at the same step, the claim that a strict `Phi` has a fi
 - This kills the "index quantization" item of playbook lane (a). The surviving invariant is the *local* defect
   `F`, a nonzero finite-dimensional algebra whose translates are packed into `D`. That is what
   `sofic-groups-are-quantum-surjunctive` counts.
+
+## Attempts
+
+1. **Slice by matrix units, then mixing of the Bernoulli shift (2026-09-17, audit: refuted by one of two
+   referee lenses).** Route `quantum-endomorphisms-split-off-their-relative-commutant-proof`, kept as the proof
+   artifact. It now requires `quantum-automaton-multiplication-map-is-injective-globally`, so the status derives
+   OPEN. Lens 2 returned *survives*. The refuting reason from lens 1, verbatim:
+
+   > I checked every step of the route (requires: [], so there are no prerequisites to verify). Most of it holds.
+   > - Step 0 slicing identities: correct.
+   > - Step 1 splitting Phi(A_(G\L))' n A = Phi(A_L) (x) D: correct.
+   > - Step 2 local defect in D n A_(N^-1 N): correct.
+   > - Step 3 criterion, onto <=> D=C <=> F=C: correct.
+   > - Step 5, tau o Phi = tau, the normal extension, the commutation theorem and the index k^2: correct.
+   > - Step 6 mixing contradiction, 1/k vs 1/k^2: correct.
+   > - The experiment script (clifford_star_f2.py) belongs to a different claim.
+   >
+   > It still does not survive the lens, for two reasons.
+   >
+   > (1) The first place that does not follow is Step 4. It says: "On Phi(A_L) (.) D the multiplication map is injective by Step 0. Phi(A) is the inductive limit of these matrix algebras, so multiplication is injective on Phi(A) (.) D."
+   > - Elements of the algebraic tensor product Phi(A) (.) D use a_i that are not local, so injectivity on each Phi(A_L) (.) D does not pass to the union by itself.
+   > - The missing argument: the local maps are isometric for the min norm, so they extend isometrically to Phi(A) (x)_min D, and the multiplication map agrees with this extension by continuity. Equivalently, an ideal of an inductive limit is the closure of its intersections with the finite stages.
+   > - This is true and standard, but the step is not filled.
+   >
+   > (2) Quantifier mismatch in Statement item 4.
+   > - The Setting says "Let G be a group", with no restriction.
+   > - Item 4 says Phi "extends to a normal endomorphism of the hyperfinite II_1 factor R", with R = pi_tau(A)'' (Step 5).
+   > - For finite G, pi_tau(A)'' = M_(d^|G|), which is not a II_1 factor.
+   > - For uncountable G it is a non-separable injective II_1 factor, not "the" hyperfinite II_1 factor.
+   > - Step 5 never proves that pi_tau(A)'' is R; the proof just defines R that way.
+   >
+   > Fix: restrict item 4 to countably infinite G, and fill in the Step 4 limit argument. The downstream use in sofic-groups-are-quantum-surjunctive relies only on items 2-3, which are sound.
+
+   Where it stops: Step 4 (global injectivity of multiplication) and the quantifier of item 4. Downstream claims
+   that needed this node drop from ESTABLISHED until it is restored.

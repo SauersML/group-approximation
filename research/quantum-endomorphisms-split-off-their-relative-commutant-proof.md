@@ -4,8 +4,14 @@ id: quantum-endomorphisms-split-off-their-relative-commutant-proof
 kind: route
 title: Slice by matrix units of the image of a finite region, then use mixing of the Bernoulli shift
 target: quantum-endomorphisms-split-off-their-relative-commutant
-requires: []
+requires: [quantum-automaton-multiplication-map-is-injective-globally]
 ---
+
+*Attempt (2026-09-17), demoted after one of two referee lenses returned refuted: Step 4 passes injectivity of
+multiplication from each `Phi(A_L) (.) D` to `Phi(A) (.) D` without the limit argument, and item 4 of the target
+is stated for every group `G` although Step 5 only defines `R = pi_tau(A)''`. The route now requires the Step 4
+limit statement as an open node. See `## Attempts` of the target. Restore `requires: []` once Step 4 is filled,
+item 4 is restricted to countably infinite `G`, and a full referee pass survives.*
 
 This is a self-contained proof. The inputs are standard facts about UHF algebras: a unique trace, the
 tensor-splitting over a unital full matrix subalgebra, and mixing of Bernoulli shifts.
