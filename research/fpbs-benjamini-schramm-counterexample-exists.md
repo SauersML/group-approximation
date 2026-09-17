@@ -6,7 +6,6 @@ title: Some nonamenable Cayley graph has coinciding percolation thresholds
 root: true
 distinct_from:
   fpbs-fixed-price-one-percolation-kernel: that is the positive statement for nonamenable fixed-price-one groups, the last case of the cost route; this is the negation of the universal goal, and by Lyons any witness for it must lie inside that same class.
-  fpbs-product-fibre-collision-loss-vanishes: that is an asymptotic inequality on high-degree products whose truth would refute this claim for that class; this is the existence of a counterexample anywhere.
 artifacts:
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/spectral-spike.md
@@ -120,57 +119,16 @@ so establishing this claim would refute that conjecture too.
   functional, one that sees `tau_p` outside the trivial isotypic component,
   such as the spectral mass of `phi_p` near but not at the trivial
   representation.
-* **Large amenable factor closes the gap (heretic lane, swarm-0917).**
-  **Candidate class.** Nonamenable `H` times an amenable `B` with a large
-  generating set. Here `p_u/p_c -> 1` as `d_B -> infinity`: for `B = Z^k`, use
-  `p_u <= p_c(Z^k)`, which follows from Lyons–Schramm and Harris, together with
-  `p_c >= 1/(d-1)`. So the gap plausibly closes in the limit.
-
-  **Obstruction** (`fpbs-nb-spectral-deficit-obstruction`, ESTABLISHED). Every
-  counterexample has percolation deficit `D(G) = d-1-1/p_c` at least the
-  nonbacktracking spectral deficit `d-1-sigma(max(||A||,2 sqrt(d-1)))`. On
-  `H □ B` this is at least `d_H - ||A_H||`, whatever `B` and `S_B` are. So the
-  gap closes only if `p_c` leaves mean-field by an order-one amount in the
-  reciprocal, fixed by `H`. The spectral side never closes it.
-
-  **Where the kill stops.** The missing `p_c` asymptotic is
-  `fpbs-product-amenable-factor-mean-field-deficit` (OPEN). The same criterion
-  gives new unconditional windows on groups with a free quotient and a few
-  kernel generators, for example `Z^2 ⋊ F_5`.
-
-  **Surviving class for a counterexample.** Graphs with order-one deficit
-  `D >= d(1-rho)(d-1)/(d-2)`, meaning dense short cycles relative to degree.
-  This is where "amenable-like local structure" must live.
-* **Fibre-renormalized certificate: the factor's own cycles are harmless
-  (heretic lane, swarm-0917 w5, 2026-09-17).**
-
-  **What was wrong with the wave-4 route.** The deficit kill needs
-  `D(G_k) -> 0`, and the factor's own short cycles spoil it. For
-  `F_2 × Cay(Z,{±1..±k})`, an exact Collatz–Wielandt bound on
-  no-backtrack, no-triangle walks
-  (`experiments/fibre-renormalized-certificate-2026-09-17/saw_triangle_deficit.py`)
-  gives `D(G_k) >= 0.563, 0.619, 0.649, 0.681` for `k = 16, 24, 32, 48`. These
-  exceed both `delta_H = 0.536` and `Delta(G_k)`. So spread-out factors have
-  order-one deficit, and the unrenormalized criterion cannot certify them,
-  whatever `p_u` is.
-
-  **New invariant** (`fpbs-fibre-renormalized-nonbacktracking-certificate`,
-  ESTABLISHED). Contract the fibre clusters of an infinite normal `N` into
-  their susceptibility `chi_N` and weight quotient backtracks by
-  `(chi-1)/chi`. A Woodbury reduction on directed quotient edges, together
-  with Pringsheim, gives
-  `E|C(o) ∩ qN| < infinity` whenever `1 + gamma(d'-gamma)u^2 > u||A_X||` on
-  `[0, p chi]`, and hence `p <= p_u`. On `H □ B` the only data from `B` is
-  `chi_B`. A counterexample must then have **collision loss**
-  `L_p = d_H - 1/chi - 1/(p chi) >= delta_H - 1/chi + p(d_H - 1/chi)`, or
-  `p(d_H - gamma) > 1/(p chi)` with `||A_H||^2 >= 4 gamma(d_H - gamma)`, at
-  every `p ∈ (p_c(G), p_c(B))`.
-
-  **Surviving class.** Products in which fibre clusters, displaced by
-  `H`-steps, re-collide at a rate of at least `delta_H`. For high-degree
-  factors this means a near-critical fibre bubble (`p nabla_B` of order one),
-  whether or not `B` has triangles.
-
-  **Last missing prerequisite:** `fpbs-product-fibre-collision-loss-vanishes`
-  (OPEN). Its failure modes are a vanishing margin `p_c(B) - p_c(G)` and the
-  absence of a lace expansion on `G_k`.
+* **Soft arguments on groups with a commensurated subgroup** (sw-029,
+  2026-09-17, inverter lane). Aim: find a Lyons-admissible candidate on
+  which the soft collapse family of
+  `fpbs-soft-collapse-iff-invariant-sparse-spines` cannot exist, so that the
+  soft axioms themselves would have to decide `p_c` versus `p_u` there.
+  **Where it dies:** `fpbs-commensurated-subgroup-sparse-spines` builds
+  invariant sparse spines whenever `Gamma` has an infinite commensurated
+  subgroup of infinite index that is finitely generated or a union of finite
+  subgroups with summable tree cost. This covers `BS(m,n)` (`|m|,|n| >= 2`),
+  `A wr Q` with `A` finite, and splittings with finite-index edge groups.
+  All of these have cost one, so they are natural Lyons-admissible
+  candidates, and soft arguments are silent on them. Of the named test cases only torsion Tarski monsters, whose
+  proper subgroups are all finite, and free Burnside groups `B(m,n)` are left.
