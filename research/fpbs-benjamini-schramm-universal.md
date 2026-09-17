@@ -142,24 +142,6 @@ content in that region.
 
 ## Attempts
 
-* **Continue from `p_c` using Hutchcroft supercritical sharpness and ell2
-  (2026-09-17).** The decomposition was: under collapse (uniqueness for all
-  `t > p_c`), uniqueness at `t ↓ p_c` should force an anomaly in some quantity
-  that supercritical sharpness controls. The candidates were a lower bound on a
-  finite-cluster observable (the exponential tail, `chi^f`, `tau^f`), an
-  excess of `theta` over the mean-field order `t-p_c`, or a local-law anomaly.
-  A truncated-operator Fatou version (pass `||T^f_t||` to `t ↓ p_c`) only
-  restates the critical L2 conjecture. **Where it dies:**
-  `fpbs-sharp-dominating-collapse-over-sparse-spines`. On every graph with
-  invariant sparse spines (`T_3 x Z`, hyperbolic mapping tori, `F_2 x Z`),
-  there is an ergodic insertion-tolerant collapse family `omega_t ⊇ xi_t`. It
-  equals Bernoulli up to `p_c`, and every finite cluster is a Bernoulli cluster,
-  so all Hermon--Hutchcroft finite-cluster bounds transfer. Its `theta` and
-  ball laws match Bernoulli to any prescribed accuracy. A surviving proof must
-  use an upper bound on an increasing connection event at unbounded range for
-  some `t > p_c` (BK, Russo, sprinkling, decay of `tau_t`), or mixing, or
-  deletion tolerance.
-
 * **Derive nonuniqueness from the critical Bernoulli law plus soft
   supercritical axioms (2026-09-17).** The idea was to feed critical-phase
   information (sharpness, no critical percolation, the critical L2 bound) into
@@ -391,6 +373,22 @@ content in that region.
   increments (BK, Russo, sprinkling, differential inequalities), mixing,
   uniform finite energy, or FIID/cost structure. The last is useless on this
   fixed-price-one class.
+* **Mixing, uniform finite energy and FKG (2026-09-17).** This asks whether
+  the three remaining soft properties force a window. **Where it dies:**
+  `fpbs-fiid-uniform-finite-energy-fkg-collapse-family`. Every Cayley graph in
+  the same class carries a collapse family with all of these properties at
+  once:
+  * it is FIID, hence mixing of all orders;
+  * every edge has conditional probability in `[t, t+(1-t)q]`;
+  * it is Harris–FKG and contains `xi_t`.
+
+  The spine consists of iid thin planar sticks at infinitely many scales,
+  thinned by independent edge marks. The sticks are glued across scales by
+  Harris and across cosets by recurrence along the central direction.
+  Uniqueness comes from indistinguishability with marks. Of the four
+  ingredients listed above, only independent increments of the product law
+  above `p_c` remain: BK/Reimer, Russo, and upper-bound differential
+  inequalities.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
