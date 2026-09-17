@@ -416,11 +416,10 @@ theorem manuscriptSentence_projectionDefectLimsupBound {G : Type} [Group G]
       (boundedMatrixSequence_coord_norm_le (fun n ↦ sqModel (B.model n))
         Pseq n) ?_)
     refine (norm_sum_le _ _).trans (Finset.sum_le_sum fun s _ ↦ ?_)
-    rw [norm_smul]
     have h1 : ‖adMatrix (B.model n) (B.map n (L.subtype s))‖ = 1 :=
       CStarRing.norm_of_mem_unitary
         (adMatrix_mem_unitary (B.model n) (B.map n (L.subtype s)).2)
-    rw [h1, mul_one]
+    exact le_of_eq (by rw [norm_smul, h1, mul_one])
   have hev1 : ∀ᶠ n in atTop, ‖(Pseq : ∀ n, Matrix (sqModel (B.model n))
         (sqModel (B.model n)) ℂ) n
       - ∑ s ∈ F, alpha s • adMatrix (B.model n) (B.map n (L.subtype s))‖
