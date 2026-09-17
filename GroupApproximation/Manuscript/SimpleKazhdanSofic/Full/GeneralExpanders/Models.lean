@@ -43,7 +43,8 @@ theorem coe_unitsEquivSLZModTwo_apply {ι : Type*} [Fintype ι] [DecidableEq ι]
     (Matrix.SpecialLinearGroup.toGL (n := ι) (R := ZMod 2))
     ⟨Matrix.SpecialLinearGroup.toGL_injective,
       fun v => ⟨⟨(v : Matrix ι ι (ZMod 2)), SimpleKazhdanSofic.det_units_zmodTwo' v⟩, Units.ext rfl⟩⟩
-  exact congrArg Units.val h
+  have h2 := congrArg Units.val h
+  exact h2
 
 /-- **The block flattening** `EL_n(M_N(F₂)) ≃* SL_{n × N}(F₂)` sends a matrix of `N × N` blocks to the
 flattened `nN × nN` matrix (tex l.321–324). -/
