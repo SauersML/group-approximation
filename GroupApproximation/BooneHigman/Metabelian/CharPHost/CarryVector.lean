@@ -23,7 +23,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace CharPHost
 
-open MvPolynomial Matrix
+open MvPolynomial
+open scoped Matrix
 
 variable {R : Type*} [CommRing R] {ι : Type*} [DecidableEq ι]
 
@@ -59,7 +60,7 @@ theorem charPCarry_affine (p k n : ℕ) [NeZero k] (α : Fin k → ZMod p)
     (g : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) (ZMod p)))
     (b : Fin n → MvPolynomial (Fin k) (ZMod p)) (e : Fin n → ZMod p) :
     ∃ w : Fin n → MvPolynomial (Fin k) (ZMod p), ∀ j,
-      (g.map (charPSubst p k α) *ᵥ fun k => C (e k)) j + charPSubst p k α (b j) =
+      (g.map (charPSubst p k α) *ᵥ fun l => C (e l)) j + charPSubst p k α (b j) =
         C ((g.map (eval (carryBase (0 : Fin k) α)) *ᵥ e) j +
           eval (carryBase (0 : Fin k) α) (b j)) + X (0 : Fin k) * w j :=
   exists_carrySubst_mulVec_add (0 : Fin k) α g b e
