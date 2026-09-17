@@ -4,6 +4,7 @@ import GroupApproximation.KOne.FieldKOneDeterminant
 import GroupApproximation.Leavitt.ElementaryGroup
 import GroupApproximation.Algebra.FinitaryLinearBinarySimple
 import Mathlib.Algebra.Field.ZMod
+import Mathlib.Data.Nat.Prime.Defs
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.Meta.AxiomGuard
 
@@ -45,7 +46,7 @@ local notation "𝓑" => elementaryBlockUnitEquiv (ι := Fin 3) (κ := ZMod 5) (
 section Endpoints
 
 /-- The printed generators `e_ij(φ(s))`, `i ≠ j` in `{1, 2, 3}`, `s ∈ S` (tex l.439). -/
-def fibElementaryGenerators : Set (Matrix (Fin 3) (Fin 3) 𝓜)ˣ :=
+noncomputable def fibElementaryGenerators : Set (Matrix (Fin 3) (Fin 3) 𝓜)ˣ :=
   {z | ∃ (i j : Fin 3) (h : i ≠ j) (s : 𝓡), s ∈ fibGenerators ∧
     elementaryUnit i j h (fibonacciModel s) = z}
 
