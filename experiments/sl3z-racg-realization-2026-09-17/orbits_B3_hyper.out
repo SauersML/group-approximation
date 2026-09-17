@@ -1,0 +1,3 @@
+group hyper 48 B 3 antiflags 4941 orbits 233
+k 1 {'triangle': 3, 'bad': 49, 'R1': 56, 'nonpos': 92, 'R2': 27, 'R3': 6} best (-8, (76,), 12)
+k 2 {'triangle': 446, 'bad': 12067, 'R1': 8406, 'nonpos': 1389, 'R2': 4243, 'R3': 696, 'K23': 14} best (-8, (76,), 12)
