@@ -5405,6 +5405,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.TorsionTele
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.A5Relation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.Ultraproduct
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.Models
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.AdianRabinOutput
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.CertificateNormalForm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
