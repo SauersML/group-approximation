@@ -22487,14 +22487,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · reversible-automata-that-never-lower-rest-counts-preserve-them [ESTABLISHED] A reversible automaton fixing the rest configuration that never lowers the number of non-rest sites never raises it
+- 2026-09-17 · rest-count-preservation-from-charge-noncreation [COMPLETE] The inverse of a count-monotone reversible automaton never raises the count, so charge noncreation forces equality over every group
 - 2026-09-17 · torsion-free-windows-have-minimal-shannon-certificates [OPEN] In a torsion-free group every Bernoulli window configuration is certified by Shannon inequalities on its own window
 - 2026-09-17 · minimal-window-shannon-fake-on-a-cyclic-orbit [COMPLETE] Exhibit an exact translation-invariant polymatroid on the Z/3 window with Phi equal to five sixths
 - 2026-09-17 · minimal-window-shannon-derivations-miss-rokhlin-domination [ESTABLISHED] Shannon inequalities on a configuration's own window do not prove Rokhlin window domination in any group with an element of order 3, 4 or 5
 - 2026-09-17 · every-group-has-positive-rokhlin-entropy-action [OPEN] Every countably infinite group has a free ergodic p.m.p. action of positive Rokhlin entropy
 - 2026-09-17 · kazhdan-relations-coamenable-subrelations-locally-kazhdan-proof [COMPLETE] Invariant section maximizers, reductions, choice functions and induced cnd functions, then the (T)/(H) exclusion
 - 2026-09-17 · kazhdan-relations-coamenable-subrelations-locally-kazhdan [ESTABLISHED] A co-amenable subrelation of an ergodic Kazhdan relation is an ergodic finite-index Kazhdan subrelation on a positive piece, so no Haagerup or treeable subrelation is co-amenable
-- 2026-09-17 · kazhdan-groupoid-cnd-criterion-and-t-h-exclusion-citation [COMPLETE] Import Anantharaman-Delaroche's cnd criterion for groupoid property (T) and the (T)/(H) exclusion
-- 2026-09-17 · kazhdan-groupoid-cnd-criterion-and-t-h-exclusion [ESTABLISHED] Property (T) for ergodic measured groupoids is bounded-cnd-on-a-piece, passes to orbit relations, and excludes the Haagerup property
 
 ## Active claims
 
