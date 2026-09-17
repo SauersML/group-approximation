@@ -31,13 +31,18 @@ variable {X : Type*} [TopologicalSpace X]
 def rubinRigidSubgroup (T : X ≃ₜ X) (O : Set X) : Subgroup (topologicalFullGroup T) where
   carrier := rigidStabSet T O
   mul_mem' {a b} ha hb := by
+    show SupportedIn ((a * b : topologicalFullGroup T) : X ≃ₜ X) O
     intro x hx
     have hbx : (b : X ≃ₜ X) x = x := (mem_rigidStabSet.1 hb) x hx
     have hax : (a : X ≃ₜ X) x = x := (mem_rigidStabSet.1 ha) x hx
     show (a : X ≃ₜ X) ((b : X ≃ₜ X) x) = x
     rw [hbx, hax]
-  one_mem' := fun _ _ => rfl
+  one_mem' := by
+    show SupportedIn ((1 : topologicalFullGroup T) : X ≃ₜ X) O
+    intro x _
+    rfl
   inv_mem' {a} ha := by
+    show SupportedIn ((a⁻¹ : topologicalFullGroup T) : X ≃ₜ X) O
     intro x hx
     have h1 : (a : X ≃ₜ X).symm ((a : X ≃ₜ X) x) = x := (a : X ≃ₜ X).symm_apply_apply x
     rw [(mem_rigidStabSet.1 ha) x hx] at h1
@@ -71,7 +76,7 @@ theorem rubinConjSubgroup_rubinRigidSubgroup {T : X ≃ₜ X} (g : topologicalFu
 /-- Rigid stabilisers do not see the difference between a set and its interior. -/
 theorem rubinRigidSubgroup_interior [T2Space X] {T : X ≃ₜ X} {S : Set X} :
     rubinRigidSubgroup T (interior S) = rubinRigidSubgroup T S :=
-  SetLike.coe_injective rigidStabSet_interior_eq
+  SetLike.coe_injective (rigidStabSet_interior_eq (T := T) (S := S))
 
 /-- `F_O ⊓ F_{Oᶜ} = ⊥`. -/
 theorem rubinRigidSubgroup_inf_compl_eq_bot (T : X ≃ₜ X) (O : Set X) :
