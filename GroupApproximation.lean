@@ -5444,6 +5444,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Basic
 import GroupApproximation.Manuscript.NonMF.Full.TorsionFreeEndpoints.Reductions
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Superperfect
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Targets
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.ResiduallyFinite
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.NearInvariant
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
