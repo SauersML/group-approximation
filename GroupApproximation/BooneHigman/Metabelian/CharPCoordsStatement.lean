@@ -32,7 +32,7 @@ and finite, `R` a domain, `L = Frac P`.  Pick `r_1, ..., r_m ∈ R` forming an `
 `Module.FinitePresentation.exists_free_localizedModule_powers`, plus left multiplication.)
 
 **Why it is strictly smaller than the target.**  The reduction
-`charPPolynomialCoordinatesStatement_of_finiteDomainAwayEmbedding`
+`charPCoordinates_of_finiteDomainAway`
 (in `CharPCoordsAssembly.lean`) supplies everything else and is proved: the characteristic
 `p` bookkeeping, the finitely generated subring (`Coordinates.exists_finset_factor`), Noether
 normalization (`exists_finite_inj_algHom_of_fg`), the removal of the denominator

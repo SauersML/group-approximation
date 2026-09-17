@@ -131,9 +131,8 @@ theorem shift_comp_C (a : {i : σ // i ≠ i₀} → F) (c : m → F) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_comp_C
 
 /-- `M (u + s w) = M u + s M w`, entrywise. -/
-theorem mulVec_add_X_mul (M : Matrix m m (MvPolynomial σ F)) (u w : m → MvPolynomial σ F) :
-    (M *ᵥ fun j => u j + X i₀ * w j) = fun i => (M *ᵥ u) i + X i₀ * (M *ᵥ w) i := by
-  funext i
+theorem mulVec_add_X_mul (M : Matrix m m (MvPolynomial σ F)) (u w : m → MvPolynomial σ F)
+    (i : m) : (M *ᵥ fun j => u j + X i₀ * w j) i = (M *ᵥ u) i + X i₀ * (M *ᵥ w) i := by
   simp only [Matrix.mulVec, dotProduct]
   rw [Finset.mul_sum, ← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun k _ => by ring

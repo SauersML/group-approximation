@@ -41,23 +41,23 @@ def dcls (a : commutator G) : DerivedModule G := Additive.ofMul (Abelianization.
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls
 
-theorem dcls_mul (a b : commutator G) : dcls (a * b) = dcls a + dcls b := by
-  rw [dcls, dcls, dcls, map_mul, ofMul_mul]
+theorem dcls_mul (a b : commutator G) : dcls (a * b) = dcls a + dcls b :=
+  (congrArg Additive.ofMul (map_mul Abelianization.of a b)).trans (ofMul_mul _ _)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_mul
 
-theorem dcls_one : dcls (1 : commutator G) = 0 := by
-  rw [dcls, map_one, ofMul_one]
+theorem dcls_one : dcls (1 : commutator G) = 0 :=
+  (congrArg Additive.ofMul (map_one (Abelianization.of (G := commutator G)))).trans ofMul_one
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_one
 
-theorem dcls_inv (a : commutator G) : dcls a⁻¹ = -dcls a := by
-  rw [dcls, dcls, map_inv, ofMul_inv]
+theorem dcls_inv (a : commutator G) : dcls a⁻¹ = -dcls a :=
+  (congrArg Additive.ofMul (map_inv Abelianization.of a)).trans (ofMul_inv _)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_inv
 
-theorem dcls_pow (a : commutator G) (n : ℕ) : dcls (a ^ n) = n • dcls a := by
-  rw [dcls, dcls, map_pow, ofMul_pow]
+theorem dcls_pow (a : commutator G) (n : ℕ) : dcls (a ^ n) = n • dcls a :=
+  (congrArg Additive.ofMul (map_pow Abelianization.of a n)).trans (ofMul_pow n _)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_pow
 

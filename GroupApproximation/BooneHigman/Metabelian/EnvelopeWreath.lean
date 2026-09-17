@@ -87,7 +87,7 @@ def kkHom (s : G ⧸ N → G) (hs : ∀ q, (s q : G ⧸ N) = q) :
       show (s x)⁻¹ * 1 * s (((1 : G) : G ⧸ N)⁻¹ * x) = 1
       rw [QuotientGroup.mk_one, inv_one, one_mul, mul_one, inv_mul_cancel]
     · show ((1 : G) : G ⧸ N) = 1
-      exact QuotientGroup.mk_one
+      rfl
   map_mul' g h := by
     refine SemidirectProduct.ext ?_ ?_
     · funext x
@@ -100,7 +100,7 @@ def kkHom (s : G ⧸ N → G) (hs : ∀ q, (s q : G ⧸ N) = q) :
       rw [e]
       group
     · show ((g * h : G) : G ⧸ N) = (g : G ⧸ N) * (h : G ⧸ N)
-      exact QuotientGroup.mk_mul g h
+      rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.kkHom
 
