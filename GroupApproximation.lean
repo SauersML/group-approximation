@@ -5366,6 +5366,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.SoficPr
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.FinitelyPresented.Endpoints
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralSimplicity.Endpoints
 import GroupApproximation.Manuscript.NonMF.Full.AmenableCountable.TraceCountable
+import GroupApproximation.Manuscript.NonMF.Full.RankTwoElementary.PrintedSentence
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
