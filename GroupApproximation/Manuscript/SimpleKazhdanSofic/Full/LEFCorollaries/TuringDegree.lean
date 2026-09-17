@@ -52,6 +52,21 @@ theorem corLef_hostWithSameTuringDegree (Γ : Type) [Group Γ] (hfg : Group.FG �
 
 #audit_axioms GroupApproximation.Full.SK12.corLef_hostWithSameTuringDegree
 
+/-- **`cor:lef`, first and second statements in one equivalence** (tex l.454–458): a finitely
+generated group is LEF if and only if it is a subgroup of such a group whose word problem has the
+Turing degree of its own. -/
+theorem corLef_lefIffSubgroupOfSameTuringDegreeHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ) :
+    IsTextbookLEF Γ ↔
+      ∃ (E : Type) (_ : Group E), IsPrintedHost E ∧ ∃ f : Γ →* E, Function.Injective f ∧
+        ∀ (κ ι : Type) [Primcodable κ] [Primcodable ι] [Finite κ] [Finite ι] (t : κ → Γ)
+          (s : ι → E), Subgroup.closure (Set.range t) = ⊤ → Subgroup.closure (Set.range s) = ⊤ →
+            TuringEquivalent (wordProblemOracle t) (wordProblemOracle s) := by
+  refine ⟨corLef_hostWithSameTuringDegree Γ hfg, ?_⟩
+  rintro ⟨E, _, hE, f, hf, -⟩
+  exact isTextbookLEF_of_injective f hf (isTextbookLEF_of_isPrintedHost hE)
+
+#audit_axioms GroupApproximation.Full.SK12.corLef_lefIffSubgroupOfSameTuringDegreeHost
+
 /-- **`cor:lef`, third statement** (tex l.458–460): a finitely generated LEF group `Γ` has solvable
 word problem if and only if it is a subgroup of such a group with solvable word problem. -/
 theorem corLef_solvableWordProblemIffSubgroupOfHost (Γ : Type) [Group Γ] (hfg : Group.FG Γ)
