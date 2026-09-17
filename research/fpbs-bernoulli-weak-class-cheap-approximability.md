@@ -49,3 +49,16 @@ Shape of what is left. By the first two attempts, approximants have to be ergodi
 not weakly contained in s. They also need cheap generating graphings, so they are closer to
 a_∞,Γ in cost while being closer to s in statistics. No candidate family is known outside
 groups with fixed price, where the claim is trivial.
+
+2026-09-17 (swarm-0917 wave 5, inverter). Dilution by co-induction from finite-index subgroups.
+For a cheap free a and H ≤ Γ of finite index, D_H(a) = CIND_H^Γ(a|H) on X^{Γ/H} and
+E_H(a) = D_H(a) × Γ/H are free with C(E_H(a)) ≤ C(a). This is the natural way to keep a fixed
+cheap structure on most of the space while spreading it over independent coordinates. It dies at
+the Koopman representation: the normalized coset sum |Γ/H|^{−1/2} Σ_c ξ(y_c) reproduces every
+coefficient ⟨κ^a(γ)ξ,ξ⟩ and is bounded in L⁴ uniformly in H, so the coefficient survives into
+every ultraproduct. A limit s̃ forces κ^a_0 ≼ κ^s_0 ≅ ∞·λ_Γ, i.e. a tempered, for every sequence
+of finite-index subgroups. For non-amenable Γ every free a ≽ i_Γ × s, including a_∞,Γ, is not
+tempered. If the finite-index case of Burton–Kechris Problem 3.24 (a ≼ CIND_H^Γ(a|H)) holds, the
+only reachable a have ã = s̃. The surviving shape by dilution is (T) inf cost over free tempered
+actions = C(Γ), plus (K) E_{H_n}(a)~ → s̃ for such cheap tempered a, which contradicts
+Problem 3.24 at finite index whenever ã ≠ s̃. See `fpbs-coinduced-dilution-needs-tempered`.
