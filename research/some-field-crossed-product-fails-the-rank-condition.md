@@ -81,3 +81,19 @@ Every such argument fails at `G` where it would conclude domination for the prof
   - **Next test case:** `Q(x, y) ⋊ SL_3(Z)` (or `Γ(3)`) by projective substitutions, which evades all four
     regimes if `Emb(Q(x,y), C)` has no invariant probability measure (unchecked). Artifact
     `research/artifacts/field-crossed-product-virtual-division-embedding-2026-09-17.md`.
+- **Finite-field point models (swarm-0917-w4-pull-gs-3, 2026-09-17). Kills the `Q(x,y) ⋊ SL_3(Z)` test case and
+  every untwisted rational case.** `rational-function-field-crossed-products-have-the-rank-condition`
+  (ESTABLISHED, unreviewed):
+  - for any group `G` and any action on `k(x_1..x_n)` (`k` a prime field, `α = 1`), `K ⋊ G` has the rank
+    condition; for faithful actions it is stably finite;
+  - proof: reduce mod `p` and let `G` act by partial substitution on `F_q^n`. The model of `AB = I_d` is exact off
+    the zero set of one nonzero polynomial `D`, so `(d - r) q^n <= d deg(D) q^{n-1}` (Schwartz–Zippel);
+  - so every subgroup of `Bir(P^n_Q)` or `Bir(P^n_{F_p})`, Kazhdan or not, fails as a host of an untwisted
+    rational witness, including the Möbius case and `Q(x,y) ⋊ SL_3(Z)`;
+  - **Where the class stops.** A witness needs at least one of the following:
+    1. a cocycle that is not a coboundary on finite models (the ternary route lives here);
+    2. coefficient orbits in no finitely generated rational subfield closed under finitely many `σ_g`
+       (Bernoulli fields `F_p(x_g)`; for sofic `G` the same count over sofic models is expected to kill them, but
+       this is not recorded);
+    3. a non-rational finitely generated field. There the same proof needs Lang–Weil plus spreading out, which
+       is not imported.
