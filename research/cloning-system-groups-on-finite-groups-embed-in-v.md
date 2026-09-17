@@ -5,6 +5,8 @@ kind: claim
 title: "Every cloning system on finite groups has a Thompson-like group that embeds in V"
 artifacts:
   - research/artifacts/zp-lehnert-2-16-2026-09-13.md
+refuted_by:
+  - some-finite-cloning-system-group-does-not-embed-in-v
 ---
 
 For every cloning system on finite groups `G_n`, the Thompson-like group
@@ -34,3 +36,18 @@ passes to finitely generated subgroups, this implies
   cloning systems, such as the Witzel–Zaremsky upper-triangular groups
   `B_n(F_q)`, where cloning duplicates a row and a column (see
   `notes/zaremsky-2-16-lehnert-conjecture-swarm-2026-09-16.md` §3, item 4).
+- Status update (2026-09-17, swarm-0917-w5-pull-z-1).
+  - *Refuted.* This universal claim is REFUTED by the ESTABLISHED
+    `some-finite-cloning-system-group-does-not-embed-in-v`. The bit-register system on
+    `Sym({0,1}^n)` has doubly exponential period growth; see route
+    `finite-cloning-group-not-in-v-by-period-growth`.
+  - *Upper-triangular systems.* For `B_n(F_q)` the case is reduced rather than settled.
+    - `upper-triangular-cloning-groups-contain-lamp-wreath-z2` (ESTABLISHED, unreviewed) gives
+      `(R,+) ≀ Z^2 ≤ T(B_*(R))` for every nonzero ring `R`. The lamps are root-split unipotent
+      blocks, and `Z^2` comes from `F_L × F_R`. It is checked by computer over `F_3`.
+    - In characteristic 0 this gives `char-zero-upper-triangular-cloning-groups-do-not-embed-in-v`
+      via Corwin's theorem. Those groups are infinite, so they are outside this claim.
+    - Over `F_q` it reduces the question to the OPEN
+      `cyclic-p-wreath-z2-does-not-embed-in-thompson-v`, through route
+      `finite-field-upper-triangular-cloning-not-in-v-via-lamplighter`. Period growth fails for
+      `B_n(F_q)`, because element orders are linear in `n`.
