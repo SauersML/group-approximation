@@ -200,3 +200,19 @@ finiteness conjecture over finite fields.
     subgroup whose algebra is not directly finite, and decoders must mix codewords with different pointer sets.
   - See [[coset-local-decoders-force-gated-domination]] and
     `research/artifacts/coset-local-decoders-gated-domination-2026-09-17.md`.
+- **Inverter via minimal counterexample: Bernoulli-field point models (swarm-0917-w5-pull-gs-2, 2026-09-17).
+  Gives a decomposition, not a proof.**
+  - [[bernoulli-field-rank-failure-gives-rokhlin-deficit]] (ESTABLISHED, unreviewed) says: if some skew group ring
+    `K_0 ⋊ G` over an invariant subfield of `k(x_{g,i})` (shift action) has `AB = I_d` with `r < d`, then
+    `h^Rok_G((F_q^{m+d})^G) < (m+d) log q` for large `q`, so not INF(G).
+  - Mechanism: evaluate the variables at iid finite-field points. The matrices become equivariant local codes that
+    are exact off a defect set of density `<= C/q` (Schwartz–Zippel). Site labels `(ω(1), (Bξ)(1), ξ(1) on defects)`
+    generate, at cost `(m+r) log q + o(log q)`.
+  - Decomposition of this claim: INF(G) ⇒ every Bernoulli-field skew ring over `G` is stably finite ⇒ KAP(G).
+    - Inverting at the tester host: a Bernoulli-field rank-condition witness over `U = L_(F_2)(1,2)^×` refutes this
+      claim.
+    - Positive side: any proof must establish random-coefficient direct finiteness of `F_p(x_g) ⋊ G` in every
+      characteristic `p`.
+  - Where it dies as a counterexample search: no rank-condition failure over any Bernoulli field is known. The
+    method needs a trivial cocycle (the ternary summand `S_-` is twisted, so it is not covered) and a Bernoulli
+    point measure.
