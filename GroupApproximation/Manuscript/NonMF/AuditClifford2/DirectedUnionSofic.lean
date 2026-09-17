@@ -61,8 +61,12 @@ abbrev shiftQuotientHom : Ambient α hα →* Multiplicative ℤ :=
       ShiftKernelFor α hα ⋊[shiftActionFor α hα] Multiplicative ℤ →* Multiplicative ℤ).comp
     (ambientEquivShiftKernelForByInt α hα).toMonoidHom
 
+#audit_axioms shiftQuotientHom
+
 /-- `W_0` as a normal subgroup of `W`. -/
 abbrev shiftKernelSubgroup : Subgroup (Ambient α hα) := (shiftQuotientHom α hα).ker
+
+#audit_axioms shiftKernelSubgroup
 
 theorem shiftQuotientHom_surjective : Function.Surjective (shiftQuotientHom α hα) := by
   intro z
@@ -72,6 +76,8 @@ theorem shiftQuotientHom_surjective : Function.Surjective (shiftQuotientHom α h
     ((ambientEquivShiftKernelForByInt α hα).symm p)) = z
   rw [MulEquiv.apply_symm_apply]
   exact hp
+
+#audit_axioms shiftQuotientHom_surjective
 
 /-- tex 2048--2049:
 * `W_0` is the directed union of its finitely generated subgroups: every finite

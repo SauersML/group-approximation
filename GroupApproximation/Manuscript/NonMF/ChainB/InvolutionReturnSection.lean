@@ -327,3 +327,18 @@ theorem manuscriptSentence_classContainsOriginalAndReturnPoints
 end GroupApproximation.Manuscript.NonMF.ChainB
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.manuscriptSentence_classContainsOriginalAndReturnPoints
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.mem_returnTimes
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.returnTimes_mono
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.mem_firstReturns
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.isLocallyConstant_firstReturns
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.isClopen_setOf_mem_firstReturns
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.isClopen_arrowSection
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.subset_arrowSection
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.zpow_mem_arrowSection
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.exists_eq_of_le_succ
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.card_firstReturns
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.exponentBound_arrowSection
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.exists_origin_mem_class
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.add_mem_class_of_return
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.zpow_ne_self_of_mem
+#audit_axioms GroupApproximation.Manuscript.NonMF.ChainB.eq_of_zpow_eq_of_mem

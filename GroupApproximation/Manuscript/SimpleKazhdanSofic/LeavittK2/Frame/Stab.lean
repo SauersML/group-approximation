@@ -48,7 +48,8 @@ def frameEdgeStab (A : Type*) [Ring A] (m : ℕ) :
 
 theorem mem_frameEdgeStab_iff {g : (Matrix (Fin (m + 1 + 1)) (Fin (m + 1 + 1)) A)ˣ} :
     g ∈ frameEdgeStab A m ↔
-      g • (Pi.single (Fin.last (m + 1)) 1 : Fin (m + 1 + 1) → A) = Pi.single (Fin.last (m + 1)) 1 ∧
+      g • (Pi.single (Fin.last (m + 1)) 1 : Fin (m + 1 + 1) → A) =
+          Pi.single (Fin.last (m + 1)) 1 ∧
         g • (Pi.single (Fin.castSucc (Fin.last m)) 1 : Fin (m + 1 + 1) → A) =
           Pi.single (Fin.castSucc (Fin.last m)) 1 :=
   Iff.rfl
@@ -92,7 +93,8 @@ theorem frameTau_inv : (frameTau A m)⁻¹ = frameTau A m :=
 
 /-- `τ` normalizes `K`. -/
 theorem frameTau_conj_mem {k : (Matrix (Fin (m + 1 + 1)) (Fin (m + 1 + 1)) A)ˣ}
-    (hk : k ∈ frameEdgeStab A m) : frameTau A m * k * (frameTau A m)⁻¹ ∈ frameEdgeStab A m := by
+    (hk : k ∈ frameEdgeStab A m) :
+    frameTau A m * k * (frameTau A m)⁻¹ ∈ frameEdgeStab A m := by
   rw [mem_frameEdgeStab_iff] at hk ⊢
   rw [frameTau_inv, mul_smul, mul_smul, mul_smul, mul_smul, frameTau_smul_last, hk.2,
     frameTau_smul_castSucc, hk.1, frameTau_smul_last]

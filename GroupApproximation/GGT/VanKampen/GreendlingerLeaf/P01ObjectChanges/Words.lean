@@ -270,6 +270,7 @@ theorem getElem?_append_cons_add {β : Type*} (A t : List β) (x : β) (j : ℕ)
   rw [List.getElem?_append_right hle, show A.length + 1 + j - A.length = j + 1 by omega,
     List.getElem?_cons_succ]
 
+omit [DecidableEq α] in
 /-- **No `a b a b` among the letters**, from no four positions reading `a, b, a, b`. -/
 theorem noABAB_somes {l : List (Option α)}
     (H : ∀ (i1 i2 i3 i4 : ℕ) (a b : α), i1 < i2 → i2 < i3 → i3 < i4 → a ≠ b →

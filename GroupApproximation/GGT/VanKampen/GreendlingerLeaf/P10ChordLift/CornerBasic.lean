@@ -250,6 +250,10 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.next_ne_self_of_two_le
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.one_lt_length_of_mem_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.faceOf_sigma_eq_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.IsGFaceOf
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.isGFaceOf_congr
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.PocketInvariants
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.CornerDigon
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.exists_corner_dart_inner
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.exists_corner_dart_outer
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.hone_start

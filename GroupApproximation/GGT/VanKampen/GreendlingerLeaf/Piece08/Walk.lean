@@ -127,3 +127,16 @@ theorem nodup_skip (h : (l₁ ++ m ++ l₂ ++ l₃).Nodup) : (l₁ ++ l₂ ++ l�
 end FourParts
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.Walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_cons
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_append
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_append_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_cons_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.closed_iff_exists_walk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.not_mem_mid_of_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_of_mem_mid_append
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_mid
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_of_mem_skip
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.nodup_skip

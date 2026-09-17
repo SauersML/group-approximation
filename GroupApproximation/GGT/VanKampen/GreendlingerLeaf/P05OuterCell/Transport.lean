@@ -143,7 +143,7 @@ theorem mem_linkedComponentO_map (a₀ : S.family) {b : RegionCandidate D eps S'
       induction h with
       | refl => exact fun _ => Relation.ReflTransGen.refl
       | tail _ hstep ih =>
-        exact fun hx => (ih hstep.1).tail ((T.sharesEndO_map _ ⟨_, hx⟩).mpr hstep)
+        exact fun hx => (ih hstep.1).tail ((T.sharesEndO_map ⟨_, hstep.1⟩ ⟨_, hx⟩).mpr hstep)
     exact mem_linkedComponentO.mpr ⟨T.map_mem a, key a.1 hpath a.2⟩
 
 end RegionTransport
@@ -160,6 +160,13 @@ theorem extPhiData_of_leastArea (S : GloballyDistinguishedSectionFamily D lambda
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.map_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.exists_map_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.sideCellO_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.noLoops
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.joinsCells_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.noMultipleEdges
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.sharesEndO_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.RegionTransport.mem_linkedComponentO_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterCell.extPhiData_of_leastArea

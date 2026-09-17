@@ -273,7 +273,9 @@ theorem pocket_len_le {D : RelGenSet G Lambda} {eps rho : â„•} {mu lambda c : â„
     simp only [dartWord, List.length_map, length_seg]
   refine IsLambdaCQuasiGeodesicWord.le_ceil_of_listVal_eq_one hq hlambda (i := 0) (m := l)
     (by rw [hlen, Nat.zero_add]) ?_
-  rw [List.drop_zero, List.take_of_length_le (by rw [hlen])]
+  have htake : (dartWord X (seg X.toCombMap x l)).take l = dartWord X (seg X.toCombMap x l) :=
+    List.take_of_length_le (le_of_eq hlen)
+  rw [List.drop_zero, htake]
   exact hval
 
 /-- A reversed dart on the target side of a region. -/

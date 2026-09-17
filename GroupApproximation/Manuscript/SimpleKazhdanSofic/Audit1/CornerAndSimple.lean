@@ -197,7 +197,7 @@ theorem manuscriptSentence_copyInsideNormalSubgroup [DecidableEq Λ]
   have hcardd : 3 ≤ Fintype.card (ι × B) := by
     rw [Fintype.card_prod]
     calc 3 ≤ Fintype.card ι := hcard
-      _ ≤ Fintype.card ι * Fintype.card B := by nlinarith [hcardB]
+      _ ≤ Fintype.card ι * Fintype.card B := Nat.le_mul_of_pos_right _ hcardB
   haveI := FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo (ι × B) hcardd
   have hinj : Function.Injective (towerCopyEL hcov ι hdisj hV) := by
     intro a b hab
@@ -209,7 +209,7 @@ theorem manuscriptSentence_copyInsideNormalSubgroup [DecidableEq Λ]
   have hnormal : (K.comap (towerCopyEL hcov ι hdisj hV)).Normal :=
     (inferInstance : K.Normal).comap _
   have hbot : K.comap (towerCopyEL hcov ι hdisj hV) ≠ ⊥ :=
-    fun hb => hy1 (Subgroup.mem_bot.1 (hb ▸ hyK))
+    fun hb => hy1 (by rw [hb] at hyK; exact Subgroup.mem_bot.1 hyK)
   have htop : K.comap (towerCopyEL hcov ι hdisj hV) = ⊤ :=
     hnormal.eq_bot_or_eq_top.resolve_left hbot
   have hroot : ∀ (p q : ι) (hpq : p ≠ q),

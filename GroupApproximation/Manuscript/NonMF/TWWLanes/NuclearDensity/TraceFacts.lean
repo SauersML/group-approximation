@@ -39,7 +39,7 @@ theorem apply_star_of_nonneg {A : Type u} [CStarAlgebra A] (ω : A →ₗ[ℂ] �
     have h1 := hpos 1
     rw [star_one, one_mul] at h1
     exact (Complex.nonneg_iff.mp h1).2
-  have e1 : star (1 + y) * (1 + y) = 1 + y + (star y + star y * y) := by
+  have e1 : star (1 + y) * (1 + y) = 1 + y + star y + star y * y := by
     rw [star_add, star_one]
     simp only [add_mul, mul_add, one_mul, mul_one]
     abel

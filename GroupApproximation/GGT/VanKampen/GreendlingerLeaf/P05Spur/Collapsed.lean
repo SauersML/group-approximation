@@ -144,6 +144,8 @@ theorem phiTransportAt_of_semiconj (T : RegionTransport S S') (a₀ : S.family)
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.not_regionInternal_of_crossO
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.phiKeepO_map_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.phiKeepO_range
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.phiTransportAt_of_bypass
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.phiTransportAt_of_semiconj

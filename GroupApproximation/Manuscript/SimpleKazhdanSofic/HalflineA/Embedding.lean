@@ -76,7 +76,7 @@ theorem manuscriptSentence_halflineEmbedding (Γ : Type) [Group Γ] (ι : Type) 
     exact Subgroup.closure_closure_coe_preimage
   have hred0 : TuringReducible (wordProblemOracle t0) (wordProblemOracle s) := by
     have hcomp : (H.subtype ∘ t0) = levelGen s := funext fun _ => rfl
-    rw [← wordProblemOracle_comp_injective t0 H.subtype Subtype.val_injective, hcomp]
+    rw [← wordProblemOracle_comp_injective t0 H.subtype H.subtype_injective, hcomp]
     exact turingReducible_wordProblemOracle_levelGen s
   exact ⟨↥H, inferInstance, hinf, hfg, hlef, hemb, ⟨Option ι, inferInstance, inferInstance, t0, hgen⟩,
     fun κ _ _ t => TuringReducible.trans (turingReducible_wordProblemOracle_of_generates hgen t) hred0⟩
