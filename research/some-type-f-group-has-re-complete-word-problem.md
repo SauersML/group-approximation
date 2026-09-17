@@ -26,3 +26,36 @@ an invariant finer than the many-one degree of the word problem (for instance,
 the time complexity or Dehn function, or the degree of other decision problems).
 
 Proof: route `some-type-f-group-has-re-complete-word-problem-proof`.
+
+## Attempts
+
+- **The computability of the index map was already machine-checked; the proof
+  called it "by inspection".** (w3-117, 2026-09-17.) The map `m -> f(m)` is
+  `Computable` by `computable_index_map D M₁`. That is the conjunct `Computable f` of
+  `exists_modularMachine_universal_control` (`ModularMachineConfigHalting.lean`).
+  The words are computable by `exists_boone_words`. The only step not in Lean
+  is the r.e.-to-code composition:
+  - choose `c_L` with `(eval c_L x).Dom <-> (unpair x).1 ∈ L` (`Code.exists_code`);
+  - put `g(p) = encode (Code.curry c_L p)` (`Code.primrec₂_curry`, `Code.eval_curry`);
+  - reduce by `w ∘ f ∘ g`, with `mm, f` from `exists_modularMachine_universal_control 0`.
+
+  Step 0 of `type-f-group-receives-re-languages-by-pattern-reductions-proof`
+  gives the details. It also records the explicit form
+  `f(n) = (a_0, encList m (c_cons :: (trNat n).reverse.map code))`, read off
+  `encCfg_initQCfg`, `map_enc_trInit` and `trNat_eq_cons`.
+
+- **The finer invariant suggested above (time complexity of the reduction) is
+  dead too** (proposed-established, w3-117). The reduction `w ∘ f ∘ g` above has
+  exponential size.
+  - The fix is the type F group `H_M = <G_M, s | s^-1 y s = y^m>`. Its Horner
+    words compress `y^b`, and it receives every r.e. language by linear-size
+    patterns `v -> omega_L(phi(v), psi(v))`, with `phi` and `psi` free-monoid
+    homomorphisms.
+  - So every reducibility containing these patterns (linear-time, polynomial-time,
+    log-space) fails to separate type `F_n` from type `F_{n+1}` hosts at every `n`.
+  - Inverse-respecting substitution is exactly embedding (Lemma E), so there it is
+    Problem 1.1 itself.
+  - A word-problem-reduction obstruction must live strictly between the two, or
+    use a host invariant.
+
+  See `type-f-group-receives-re-languages-by-pattern-reductions`.
