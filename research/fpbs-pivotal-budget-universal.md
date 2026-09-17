@@ -101,3 +101,30 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
     - Like the bubble of Section 6, `A` is infinite at uniqueness, so VIS
       certifies nonuniqueness rather than deriving it.
     - RATE ⇒ VIS is not proved, and no converse is known.
+* **Calibrate the bounded-count route on the tree (entropy-measure, swarm-0917 wave 5).**
+  * *First idea, dropped.* Suppose a certificate sees the connection event only
+    through three facts: it is increasing, it is supported on `E(B_R)`, and its
+    probability is `P(E)`. Such a certificate cannot be uniform in `R`. Tribes
+    events, the connection events of theta graphs, have probability at least
+    `1-1/e` and conditional open-pivotal count at least
+    `e^(-2) floor(log_(1/p)|E(B_R)|/2)`. This adds nothing new:
+    `fpbs-hierarchical-pivotal-amplification` already defeats that class at
+    bounded degree.
+  * *Established* (`fpbs-tree-walk-pivotal-count-bounded-below-l2-threshold`).
+    On `T_d` the random-walk count is the mean of `|X_n|` tilted by `p^k`. An
+    `h`-transform of the radial chain by `(d-1)^(-k/2)` turns it into
+    `sum k x^k sigma_k / sum x^k sigma_k`, where `x = p sqrt(d-1)` and
+    `sigma_k <= d/(d-1)`. Ballot counts then show two regimes:
+    - for `p<p_(2->2)=1/sqrt(d-1)` the count is bounded in `n`;
+    - for `p_(2->2)<p<1` the count is at least `eps(p) n`, while
+      `p_u=1`. The case `p=p_(2->2)` is not proved; numerically the count grows
+      like `sqrt(n)`.
+  * *Where it stops.* The n-free conclusion of
+    `fpbs-l2-gap-gives-bounded-pivotal-counts` is sharp on `T_d`: it fails at
+    every `p>p_(2->2)`, even though nothing happens to uniqueness there.
+    - The budget is open only on graphs with `p_c=p_(2->2)`.
+    - On such a graph, no method that proves n-free counts on `(p_c,p0]` can
+      work unless that graph behaves unlike the tree. A proof must produce
+      genuinely linear counts.
+    - The tree does not refute PB, which holds on `T_d` with `C=1`. It gives
+      no transitive example where counts beat `n`.
