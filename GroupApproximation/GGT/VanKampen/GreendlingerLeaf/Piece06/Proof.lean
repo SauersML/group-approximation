@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Residual
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.Rose
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.RoseUncutOsin
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketCellPinchSectionDistinct
 import GroupApproximation.Meta.AxiomGuard
 
@@ -28,6 +29,12 @@ first-turn order, with both arcs proper:
 * `proof_of_cellRoseStep`: the statement, from both hypotheses.  The unconditional `proof` is
   `proof_of_cellRoseStep` applied to proofs of `CellRoseStepStatement` and
   `BadCornerRefinementStatement`.
+* Under Osin's condition the rose gap narrows: `Piece06.proof_of_cellRoseUncutOffSide`
+  (module `Piece06/RoseUncutOsin`) gives the statement from `CellRoseUncutOffSideStatement` (OPEN,
+  the uncut rose with no relator cell on the sides; side cells are excluded by the perimeter bound
+  `not_sideCell_of_osinCCondition` once `2ε < ρ`) and `BadCornerRefinementStatement`.  The
+  unconditional `proof` will be `proof_of_cellRoseUncutOffSide` applied to proofs of both; neither
+  is on main yet.
 
 ## Manuscript status
 
