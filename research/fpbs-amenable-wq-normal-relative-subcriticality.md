@@ -67,6 +67,27 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   Aizenman--Barsky BK step (orbits are `nu`-null), and the best-versus-worst
   comparison. A kernel satisfying the Harris--FKG distortion bounds has finite
   average and infinite supremum, and on `X_rig` nothing forces a radial profile.
+* **Calibration: critical finiteness plus openness, tested on Z^d (2026-09-17,
+  `research/artifacts/fpbs-lattice-critical-relative-finiteness-2026-09-17.md`).**
+  * **World.** `fpbs-lattice-amenable-subgroup-critical-finiteness-no-gap`: on
+    nearest-neighbour `Z^d` with `d >= 11`, along `H = Z^k` with codimension
+    `m >= 3`, three things hold:
+    * the critical fibre profile satisfies
+      `sigma_(p_c)(q) <= C(1+|q|)^(-(m-2))`, so `chi^H_(p_c) < infinity`;
+    * `sigma_(p_c)` is in `l^r` for `r > m/(m-2)` (square summable when `m >= 5`);
+    * `chi^H_p = infinity` for every `p > p_c`.
+  * **What it kills.**
+    * The Section 4.2 prediction holds with `rho(Q) = 1`. It measures
+      transience of the quotient, not nonamenability, so verifying it is no
+      evidence for the gap.
+    * Any route to openness (Section 4.4) that uses only critical finiteness,
+      `l^r` or bubble bounds on the fibre profile, or mean-field two-point
+      exponents dies in W1.
+  * **Where it dies.** At the passage from `p_c` to some `p > p_c`: W1 has all
+    these inputs and no gap. The only separating input in sight is the operator
+    norm of convolution by `sigma_(p_c)` on `l^2(Q)`, which is infinite in W1.
+    This is consistent with the Kesten barrier and the square-root-law
+    equivalence already recorded.
 * **Spectral DT certificates (`research/artifacts/fpbs-spectral-dt-certificate-2026-09-17.md`).**
   Replace the DT mass `phi_p(S)` by the spectral radius of the boundary measure
   `nu_{S,p}` acting on the Schreier space `l2(H\Gamma)`.
