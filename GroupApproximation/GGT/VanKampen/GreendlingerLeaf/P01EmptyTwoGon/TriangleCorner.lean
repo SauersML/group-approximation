@@ -144,7 +144,7 @@ theorem triangleConnector_pair {G : Type u} [Group G] {Lambda : Type w} {D : Rel
     · exact hp
     · rcases List.mem_cons.mp hl' with rfl | hl''
       · exact hq
-      · exact nomatch hl''
+      · simp at hl''
   have hval : RelLetter.listVal [p, q] = p.val * q.val := by
     simp only [RelLetter.listVal, List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
       mul_one]
@@ -213,7 +213,8 @@ theorem false_of_triangle_walk (P : OsinLemma94RealizedPolygons S) (k : Fin P.co
       S.label_admissible S.weight_maximal (P.face k) (P.face_ne_outer k) (relatorCell_face_ne P k)
       (P.face_unselected k) i (some j) sarc tarc X Y r
       (htrav.trans (congrArg₂ (fun A B => X ++ A ++ Y ++ B) htrev.symm hsrev.symm))
-      (by omega) (by omega) (fun h => absurd h (Option.some_ne_none j)) ho'
+      (by rw [hsl]; exact Nat.one_pos) (by rw [htl]; exact Nat.one_pos)
+      (fun h => absurd h (Option.some_ne_none j)) ho'
       s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
   | none =>
     have htmem : t ∈ targetDarts S.diagram none := by
@@ -233,7 +234,8 @@ theorem false_of_triangle_walk (P : OsinLemma94RealizedPolygons S) (k : Fin P.co
       S.label_admissible S.weight_maximal (P.face k) (P.face_ne_outer k) (relatorCell_face_ne P k)
       (P.face_unselected k) i none sarc tarc X Y r
       (htrav.trans (congrArg₂ (fun A B => X ++ A ++ Y ++ B) htb.symm hsrev.symm))
-      (by omega) (by omega) (fun _ => ⟨j, hj1, by rw [htl]; exact hj2⟩)
+      (by rw [hsl]; exact Nat.one_pos) (by rw [htl]; exact Nat.one_pos)
+      (fun _ => ⟨j, hj1, by rw [htl]; exact hj2⟩)
       (Option.some_ne_none i).symm
       s1 s2 hne1 hne2 hadm1 hinv1 hadm2 hinv2 hval1 hval2 hlen1 hlen2 hnorm1 hnorm2
 
