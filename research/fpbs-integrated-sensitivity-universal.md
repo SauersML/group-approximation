@@ -64,6 +64,27 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   bubble that is infinite at every uniqueness parameter, so bounding it above
   `p_c` already proves nonuniqueness (Section 6 of
   `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).
+* **Calibrate on a host with product structure but no transitivity (calibration,
+  swarm-0917).** `fpbs-walk-rate-holes-fail-on-unimodular-random-graphs` works on
+  the stretched Angel--Hutchcroft graph `H~(M)` (arXiv:1710.03003, Proposition
+  4.2). It is a bounded-degree unimodular random graph with `p_c=p_u=q`.
+  * *Proved there, accepted by referees (the node is still OPEN).*
+    - A deterministic Cheeger bound `Phi >= 1/(DM(D+1))`, so `rho_bar<1`.
+    - The annealed Schramm lemma by mass transport, `a_n(q) <= rho_bar^n`, without
+      critical finiteness.
+    - The uniqueness floor `a_n(p) >= (E_mu_hat theta_p)^2`, from positivity of
+      the lazy environment operator.
+    - Hence the annealed rate jumps: `lambda_hat(q) <= rho_bar < 1 = lambda_hat(p)`
+      for every `p>q`.
+  * *What fails on H~.* Annealed (IS), finiteness of green-visit, the root-uniform
+    pivotal budget and cheap certificates all fail on `H~` in annealed,
+    root-uniform form.
+  * *Refuted overreach (2026-09-17).* The class-kill does not follow. It claimed
+    that every argument using only product-measure, mass-transport and expansion
+    inputs would prove (IS) on `H~` "run with root averages". No translation
+    lemma was given, and root averaging does not commute with nonlinear steps
+    such as supermultiplicativity. So "product structure and transitivity are
+    jointly necessary" is unproven.
 * **Group-ring / spectral-measure transplant (swarm-0917).** Write
   `a^L_n(p) = <pi_p(mu_L)^n xi_o, xi_o>` in the cluster Koopman representation
   on `L2` of (configuration, cluster) pairs. Here `xi_o = 1{o in K}`, and
