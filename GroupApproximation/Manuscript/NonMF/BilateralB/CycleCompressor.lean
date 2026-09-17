@@ -179,6 +179,7 @@ section Clopen
 variable {X : Type} [TopologicalSpace X] (T : X ≃ₜ X) (k : Type) [Field k] [Finite k] {P : Set X}
   (hP : IsClopen P) (hTP : T '' P ⊆ P)
 
+omit [Finite k] in
 /-- **tex 1560**, "Let $r$ cycle the three negative levels $-1\mapsto-2\mapsto-3\mapsto-1$:
 $r=1-\sum_{j=1}^3 f_{-j,-j}+f_{-2,-1}+f_{-3,-2}+f_{-1,-3}$,
 $W=\operatorname{diag}(u,u,u)\operatorname{diag}(1,1,r)$."
@@ -261,6 +262,7 @@ theorem manuscriptSentence_bilateralThreeWConjugatesL :
     fun a ha => ⟨fun i j h => (bilateralCell T k hP hTP).W_conj_root (hS a ha) i j h,
       (bilateralCell T k hP hTP).unit_conj_eq_s_mul_t (hS a ha), hu a ha⟩⟩
 
+omit [Finite k] in
 /-- **tex 1566**, "On its third coordinate $W$ fixes the negative levels $-1$ and $-2$
 individually."  The third diagonal entry of `W` is `ur`, and it commutes with the level projections
 `f_{-1,-1}` and `f_{-2,-2}` and with the coefficient `f_{-1,-2}` joining them. -/
