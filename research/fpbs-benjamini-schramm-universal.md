@@ -142,6 +142,25 @@ content in that region.
 
 ## Attempts
 
+* **Derive nonuniqueness from the critical Bernoulli law plus soft
+  supercritical axioms (2026-09-17).** The idea was to feed critical-phase
+  information (sharpness, no critical percolation, the critical L2 bound) into
+  axioms that hold for every monotone invariant family: invariance,
+  ergodicity, insertion tolerance, and continuity of `theta` at `p_c`.
+  **Where it dies:** `fpbs-soft-collapse-iff-invariant-sparse-spines` builds
+  a monotone invariant ergodic insertion-tolerant family on the Cayley graph
+  itself. It equals Bernoulli for all `t <= p_c` and has a unique infinite
+  cluster for every `t > p_c`, with `theta -> 0`. The construction runs
+  whenever invariant sparse spines exist, for example over any surjection to
+  `Z` with finitely generated kernel. That includes `T_3 x Z`, hyperbolic
+  fibred 3-manifold groups and `F_2 x Z`, all of which have a genuine window.
+  On the hyperbolic ones `||T_{p_c}||_{2->2} < infinity`, yet the family has
+  `||T_t||_{2->2} = infinity` for every `t > p_c`. So the continuation step
+  from `p_c` to `p_c+eps` must use a supercritical Bernoulli property the
+  family lacks: product structure (Russo, BK), possibly Harris--FKG or deletion
+  tolerance. Extending the obstruction to every fixed-price-one group is
+  exactly the invariant-spine question.
+
 * **Quantify global pivotals before passing to finite balls (2026-09-12).**
   `fpbs-global-pivotal-tail-at-uniqueness` proves exponential global
   connection-pivotal tails, uniform in both endpoints at each fixed
@@ -327,6 +346,33 @@ content in that region.
   other; see `fpbs-fixed-price-one-percolation-kernel`, whose `## Attempts`
   records why the quantitative cost bound of response 1 degenerates to
   `0 <= 0` under threshold equality.
+* **Pass to finite expander approximants and read `p_u` off a giant-component
+  uniqueness window (2026-09-17).** The idea was to prove a finite-graph
+  statement on large-set expander graphs `G_n` converging locally to the
+  Cayley graph and take the limit. **Where it dies:**
+  `fpbs-expander-approximant-giant-data-is-glued`.
+  (A) By Alimohammadi--Borgs--Saberi Theorem 1.1, `|C_2|/n -> 0` at every `p`,
+  so the window is empty even for random regular graphs converging to `T_d`.
+  (B)/(C) Every bounded-separation connectivity or MST observable converges to
+  the glued/wired law, in which two infinite clusters count as connected.
+  (D) The only finite observable that sees `p_u` is the two-scale defect
+  `lim_R lim_n s_n(p,R)`. It equals the distinct-infinite-cluster integrand of
+  `fpbs-msf-excess-equals-nonuniqueness`, so the scale shift is an equivalence
+  with no new estimate.
+* **Close the sw-008 loophole with finite energy and FKG (2026-09-17).** The
+  idea was that a contradiction from `p_u = p_c` might still follow from the
+  soft supercritical toolbox once deletion tolerance and Harris–FKG are added
+  to (S1)–(S4). **Where it dies:**
+  `fpbs-finite-energy-fkg-collapse-over-central-z2-slabs`. Every Cayley graph
+  of a nonamenable group with a central `Z` inside a `Z^2` carries a
+  collapsing family with all of these properties. The spine is built from
+  thinned amenable slabs, each keeping only its Burton–Keane giant, joined by
+  all-or-nothing connectors that recur along the central direction.
+  `F_2 x Z` has a window for some generating set. So the continuation step
+  from `p_c` to `p_c + eps` must use one of four things: independent
+  increments (BK, Russo, sprinkling, differential inequalities), mixing,
+  uniform finite energy, or FIID/cost structure. The last is useless on this
+  fixed-price-one class.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.

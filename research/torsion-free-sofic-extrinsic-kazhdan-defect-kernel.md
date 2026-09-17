@@ -10,6 +10,7 @@ distinct_from:
   mapping-torus-mf-radical-lies-in-finite-residual: That sharper no-go proves the kernel sought here can have no nontrivial finite quotient at all.
   exact-kazhdan-radical-kernel-cannot-be-lef: That combines the no-finite-quotient condition with the Ozawa--Thom theorem to prove that the desired nontrivial Kazhdan kernel cannot be LEF.
   finite-outer-order-mapping-torus-is-virtually-product: That second no-go theorem shows the genuinely extrinsic route also needs an infinite-order outer action unless the kernel is already non-MF.
+  steinberg-images-die-in-torsion-free-groups: That obstruction proves no nontrivial Steinberg image lies in a torsion-free group, which excludes every elementary-sourced kernel or compression source here; this is the positive construction problem that remains.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -122,3 +123,33 @@ must build genuinely Hamming-approximate sofic models.
    finite quotients contradicts the Dadarlat--Ozawa--Thom quotient theorem.
    Hence the alternating-mother strategy cannot provide this kernel, even if
    its torsion and normal-generation gates could otherwise be controlled.
+   *Stale (2026-09-17):* the general quotient statement used here is (EKL2),
+   which `exact-kazhdan-radical-kernel-cannot-be-lef` records as false
+   (witness `lef-kazhdan-group-without-finite-quotients-exists`); only the
+   mapping-torus form (EKL1) remains, and it is open.  Item 9, and the
+   non-LEF sentence of the statement above, therefore do not currently exclude
+   LEF kernels.
+10. **Elementary-sourced kernels and compression sources die at the Weyl word
+    (2026-09-17, linear-characteristic).**
+    `steinberg-images-die-in-torsion-free-groups` proves, from the Steinberg
+    relations alone, that `w_12=x_12(1)x_21(-1)x_12(1)` has order dividing `8`
+    in `St_n(R)` for every unital ring `R` and `n>=3`, and that one trivial
+    Weyl word kills every root.  So every homomorphism from a normally
+    elementary group to a torsion-free group is trivial.  Since `G` is
+    torsion-free, the kernel `K` and the compression source `L` in `(EK1)`
+    contain no nontrivial image of any `St_n(R)`; for such a source in `G`
+    the defect `D_G(L)` is trivial.  If a normally elementary Kazhdan group has
+    no finite quotients, it has no proper finite-index subgroup either, so
+    neither quotients nor finite-index passage extract a torsion-free kernel.
+    This kills as kernels or sources: the LEF Kazhdan group
+    `EL_3(LC(X,F_q) semidirect Z)` (which revived LEF kernels after item 9
+    went stale), the simple Kazhdan non-MF `EL_N` families, the Leavitt and
+    Kun--Thom elementary sources, and the Kida--Tucker-Drob parabolic `H(R)`
+    together with all its quotients.  The seed of item 7 escaped only by
+    finite index in a group *with* finite quotients, which the mapping-torus
+    theorem then excludes.  What survives on the linear side is exactly a
+    relative group `EL_3(I)` over a finitely generated, noncommutative,
+    additively torsion-free, idempotent-free rng with `I=I^2` (forced by
+    `(STF3)`), for which no imported theorem gives property `(T)`; or a
+    torsion-free infinite-index Kazhdan subgroup; or a non-elementary Kazhdan
+    mechanism (buildings, small cancellation).

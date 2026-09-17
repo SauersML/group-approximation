@@ -229,7 +229,32 @@ The August audit and the September correction artifacts carry the arguments.
    either: the conjecture is existential, so incomputability of
    `presentation |-> simple envelope` is consistent with it.
 
-An eighth non-attempt, recorded because it looks tempting from inside this
+8. **Tits' independence property as the simplicity engine** (heretic lane,
+   2026-09-17).
+   - *The idea.* The families here share three unstated assumptions:
+     - simplicity comes from a Cantor full group, ring units or a maximal kernel;
+     - finite presentation is certified on one overgroup through pair-orbit
+       finiteness;
+     - hardness must be carried by the actor's own stabilizers.
+
+     Denying all three at once gives the following scheme. Take an amalgam
+     `A *_C B` of finitely presented groups over a finitely generated `C`. It is
+     finitely presented for free. Tits' property (P) on its Bass--Serre tree gives
+     simplicity when `C` normally generates `A` and `B`, and the word problem is
+     only as hard as membership of `C` in `A` and `B`.
+   - *Where the geometric version dies.* By
+     `tits-independence-amalgams-force-self-product-edge-groups`, a faithful
+     amalgam with (P) and `C ≠ 1` has `C = V × W` with `V ↪ V × V`. So `C`
+     contains `Z^k` or `(Z/p)^k` for every `k`. Therefore `C` cannot be finite,
+     hyperbolic, proper cocompact CAT(0), or of finite virtual cohomological
+     dimension, and neither can any overgroup of `C`. That kills small-cancellation
+     and Rips-type vertex groups, where hard membership problems are cheap.
+   - *What is left.* Edge groups with self-similar direct products, as in Thompson
+     groups or branch groups. It is open whether any finitely presented group acts
+     faithfully on a tree with (P), a nontrivial finitely generated edge group, and
+     not both indices 2.
+
+A ninth non-attempt, recorded because it looks tempting from inside this
 program: Schupp's envelope
 (`countable-group-embeds-in-two-generator-simple-group`) is two-generator but
 not computably presented, so Higman's theorem does not apply to it;

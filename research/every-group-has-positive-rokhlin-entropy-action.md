@@ -198,3 +198,22 @@ anywhere refutes it.
   mechanism that is not a sofic approximation. The sources read here
   (arXiv:1501.03367, 1602.06680, 1804.05270, 1805.08279, 0812.2718) derive lower
   bounds only from sofic entropy or from amenability.
+- **Minimal-window Shannon certificates die on torsion (a-gs-rokhlin-obstruction, 2026-09-17).** This was a census
+  of the proof method behind the window normal form `rokhlin-window-transport-is-dominated`, using the
+  polymatroid LP of `research/artifacts/shannon-window-certificates-2026-09-17.md`.
+  - **Class killed** (`minimal-window-shannon-derivations-miss-rokhlin-domination`, ESTABLISHED by exact rational
+    verification). Consider Shannon-type derivations of `Phi >= log q` that use only the configuration's own window: `x` on
+    `FE ∪ {1}` and `y` on `F`, with independence, functional dependence and translation invariance.
+    - They fail in every group with an element of order 3, 4 or 5.
+    - For `E = {1,t,t^2}`, `F = {1,t}` with `t^3 = 1`, a translation-invariant polymatroid on the five window variables
+      satisfies every premise and has `Phi = 5/6`. The values at orders 4 and 5 are `7/9` and `4/5`.
+    - The inequality is true there (`lambda(F) = 1`), and adding the missing codeword `y_(t^2)` restores LP value 1.
+    - Every member of the class dies at the final nonnegative combination of elemental inequalities.
+    - So any proof of domination must bring in codewords outside `F`, as the Følner count does, or use non-Shannon or
+      nonlinear information.
+  - **Torsion-free evidence** (`torsion-free-windows-have-minimal-shannon-certificates`, OPEN).
+    - All 140 tested torsion-free configurations (`F_2`, `Z`, `Z^2`, `H_3(Z)`, `|V| <= 13`) certify on their minimal window.
+    - The same windows read in `Z` certify where `Z/3`, `Z/4` and `Z/5` fail.
+    - If this held for all torsion-free groups, Bernoulli maximality would follow for every torsion-free group, including the torsion-free nonsofic hosts. By `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, their surjunctivity would follow too.
+    - This root would not follow, since Theorem 1.11 passes through `P × G` with `P` locally finite, which has torsion.
+  - **Not tried here.** Non-Shannon inequalities on the torsion fakes; a torsion-free pattern with LP `< 1`.

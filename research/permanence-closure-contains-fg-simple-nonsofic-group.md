@@ -4,6 +4,8 @@ id: permanence-closure-contains-fg-simple-nonsofic-group
 kind: claim
 title: Some infinite finitely generated simple nonsofic group lies in the surjunctivity permanence closure
 root: true
+refuted_by:
+  - permanence-closure-fg-simple-groups-are-sofic
 distinct_from:
   finitely-generated-simple-groups-are-surjunctive: that is the universal reduction of Gottschalk's conjecture; this asks for one simple nonsofic group that the landed permanence methods already make surjunctive.
   gottschalk-counterexamples-lie-outside-the-permanence-closure: that excludes finitely presented simple nonsofic groups from S*; this asks whether any finitely generated, necessarily infinitely presented, simple nonsofic group lies in S*.
@@ -80,3 +82,15 @@ closure `S*` of `gottschalk-counterexamples-lie-outside-the-permanence-closure`.
   - *Where the natural hosts die.* O4 wreaths with a marked-site assignment fail at overlapping
     windows. `H_fin semidirect G` misses varying base parts, and `S*` cannot reach it because
     `H_fin` is simple. Layered wreaths vary base parts only along layers.
+- **Refuted (sw-017, 2026-09-17; artifact `research/artifacts/sofic-indicable-closure-2026-09-17.md`).** No such `Q`
+  exists (`permanence-closure-fg-simple-groups-are-sofic`).
+  - *Invariant.* Say `H in LSI` if every nontrivial finitely generated subgroup of `H` has a nontrivial sofic quotient.
+    Sofic groups lie in `LSI`, and `LSI` is closed under O1--O7.
+  - *O4--O7.* They are extensions with `LSI` kernels (residually finite, free, or sofic).
+  - *O3.* Push the generators through the ultraproduct. A generator with a nontrivial image in `U`-almost every sofic
+    quotient gives a nontrivial sofic quotient of the ball group.
+  - *Conclusion.* A finitely generated simple group in `LSI` is sofic.
+  - *Where the stage induction stopped.* The earlier stage induction broke at O3, because it tracked subgroups. This
+    argument tracks quotients, which survive ultraproducts.
+  - *What remains.* A finitely generated simple nonsofic surjunctive group needs a permanence theorem that is not an
+    extension by an `LSI` kernel or a local embedding. Examples are unfolded amalgams or HNN extensions, or full groups.

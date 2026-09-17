@@ -55,3 +55,17 @@ quotients.
     So a certificate for this root is exactly a group that embeds in no rank-metric ultraproduct of groups `GL_n(F_q)`.
 - **Concrete candidate.** The binary Leavitt unit group (`binary-leavitt-unit-group-is-weakly-sofic`),
   finitely presented, simple, Kazhdan and nonsofic.
+- **Characteristic split (2026-09-17, lane `sw-024`, unreviewed).**
+  - *The split.* By `root-splits-into-large-and-fixed-characteristic-witnesses`, this claim holds iff both components
+    hold (route `non-weakly-sofic-via-large-and-fixed-characteristic-witnesses`):
+    - (a) `non-large-characteristic-linear-sofic-group-exists`: some group has no rank models in characteristic
+      tending to infinity;
+    - (b) `group-not-linear-sofic-in-any-positive-characteristic-exists`: some group is not `F_p`-linear sofic for
+      any prime `p`.
+  - *Assembly.* The witness is the free product. A group without large-characteristic models is `F_p`-linear sofic
+    for only finitely many `p`, by uniform `1/4` amplification and diagonalization over primes. So once (a) has a
+    witness, (b) is needed only at finitely many primes.
+    - Char-`p` stable-finiteness failures supply those components.
+  - *The large-characteristic component.* By `c-linear-sofic-iff-bounded-dimension-large-characteristic`, component
+    (a) has no Sylvester-rank or stable-finiteness certificate. For a group that is not complex-linear sofic, it is a
+    statement about wild models whose minimal dimension over `F_l` grows with `l`.

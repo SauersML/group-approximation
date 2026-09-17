@@ -49,6 +49,14 @@ contrapositively: if all hyperbolic groups are hyperlinear, this claim is false.
   Belegradek--Osin covers. Such an argument would therefore make the binary Leavitt
   unit group and the Caprace--Rémy simple lattices non-hyperlinear. A proof for the
   candidates has to use a feature that such covers lack.
+- **Class-wide stability is refuted, not only screened (2026-09-17).** By
+  `hyperbolic-kazhdan-b2-group-not-flexibly-hs-stable`, a Belegradek--Osin cover `G` of
+  `Z^(2g) ⋊ Sp_(2g)(Z)` is torsion-free, hyperbolic and Kazhdan, has `b_2(G;Q) >= 1`, and is
+  not flexibly HS-stable. So hyperbolicity, torsion-freeness, (T) and `b_2 >= 1` together
+  never force flexible rounding. Any stability proof for a candidate must use a
+  candidate-specific feature that this `G` lacks. The natural one is the absence of a
+  Kazhdan central `Z`-extension whose centre survives at unbounded orders. `G` has such an
+  extension, and its instability is exactly that central gate firing.
 - **Covers add nothing.** By `flexible-hs-stability-passes-to-kazhdan-kernel-quotients`,
   stability of a hyperbolic Kazhdan group passes to each of its quotients by Kazhdan
   normal subgroups. So a cover is never easier to stabilize than its quotient.

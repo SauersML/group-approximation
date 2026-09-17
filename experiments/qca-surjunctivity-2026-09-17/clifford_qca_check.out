@@ -1,0 +1,19 @@
+[S3, p=2, plain Weyl] relations and W(u)->W(uT) multiplicative: True; beta preserved: True
+[Z/4, p=2, plain Weyl] relations and W(u)->W(uT) multiplicative: True; beta preserved: True
+[S3, p=3, plain Weyl] relations and W(u)->W(uT) multiplicative: True; beta preserved: True
+[Z/4, p=3] symmetric Weyl relations: True
+[Z/4, p=3] A=[1, 1, 2, 0] B=[2, 1, 1, 0]: T J T^* == J: True; W(u)->W(uT) preserves relations: True
+[Z/4, p=3] teeth diag(A,B): symplectic=False, form preserved on samples=False
+[Z/4, p=3] teeth random T: symplectic=False
+[S3, p=3] symmetric Weyl relations: True
+[S3, p=3] A=[2, 1, 0, 1, 0, 0] B=[1, 0, 2, 0, 2, 2]: T J T^* == J: True; W(u)->W(uT) preserves relations: True
+[S3, p=3] teeth diag(A,B): symplectic=False, form preserved on samples=False
+[S3, p=3] teeth random T: symplectic=False
+[Z/3, p=5] symmetric Weyl relations: True
+[Z/3, p=5] A=[4, 2, 2] B=[1, 3, 3]: T J T^* == J: True; W(u)->W(uT) preserves relations: True
+[Z/3, p=5] teeth diag(A,B): symplectic=True, form preserved on samples=True
+[Z/3, p=5] teeth random T: symplectic=False
+[tree, p=3] p-th powers ok: True; phase zeta (target True): True; generated dim 9 (full 81); |proj of X_c onto image| = 0.00e+00; relative commutant dim 9; teeth Z_cZ_c' phase ok: False
+[tree, p=5] p-th powers ok: True; phase zeta (target True): True; generated dim 25 (full 625); |proj of X_c onto image| = 0.00e+00; relative commutant dim 25; teeth Z_cZ_c' phase ok: False
+[tree, p=7] p-th powers ok: True; phase zeta (target True): True; generated dim 49 (full 2401); |proj of X_c onto image| = 0.00e+00; relative commutant dim 49; teeth Z_cZ_c' phase ok: False
+ALL CHECKS PASS

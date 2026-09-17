@@ -89,3 +89,32 @@ so a witness that also fails cost one would settle
   sofic or not, have cost one. A witness must lie outside every group reached
   from an infinite amenable subgroup by a chain of infinite commensurations, as
   the Burnside branch does.
+* **Certify positive rank gradient of a Kazhdan group by mod-p homology**
+  (lane `sw-007`, 2026-09-17,
+  `docs/kazhdan-mod-p-growth-2026-09-17.md`). The Property (T) branch needs
+  `d(Gamma_n)` linear along a Farber chain, and every archived certificate
+  bounds `d` below by `d_p = dim H_1(-;F_p)`. **Dead for two classes of chains.**
+  - `fpbs-kazhdan-no-rapid-descent`: no Kazhdan group, finitely presented or
+    not, has an abelian `p`-series with rapid descent. So `RG_p = 0`, and
+    derived `p`-series, power `p`-deficiency and pro-`p`-cofinal certificates
+    all fail. The step where it dies: the pullback to Shalom's finitely
+    presented cover is `p`-large by Lackenby's Theorem 1.15.
+  - `fpbs-kazhdan-cofinal-mod-p-growth-vanishes`: for each fixed `p`,
+    `d_p(N)/[Gamma:N] -> 0` along the profinite topology. So no fixed-prime
+    count can make the profinite completion action cost more than one. The
+    step where it dies: iterated Frattini covers and coprime descents shrink
+    the support of `u` independent cocycles by Lackenby's Plotkin factor. That
+    drives the support below the Kazhdan support bound `kappa^2/(4|X|)`.
+    The Hadamard torsion bound on Shalom's cover rules out primes
+    `p > L^(|R|/c)`, so the same holds for `d(N^ab) = max_p d_p(N)`.
+  - **Survivors.**
+    - A Farber chain with linear growth at one of finitely many primes that is
+      not `p`-Frattini closed (each member containing a member inside its
+      mod-`p` Frattini subgroup) and not a rapidly descending abelian `p`-series,
+      for example Lackenby's subnormal (tau) chains.
+    - On cofinal chains, generators forced by non-central chief factors of
+      finite quotients of `Gamma_n`. These are twisted `H^1(Gamma_n;M)` for
+      nontrivial irreducible `F_p`-modules `M`, or non-abelian crowns `S^k`
+      with `log|Epi(Gamma_n,S)|` linear in the index. Neither is bounded by
+      `d_p` of a subgroup of comparable index.
+    - On cofinal chains, `d(Gamma_n)` exceeding the profinite rank.

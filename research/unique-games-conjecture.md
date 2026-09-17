@@ -115,6 +115,52 @@ it is supplied, and the exponential pairing-support obstruction persists.
   `eps log k -> infinity`, and the exponent hypothesis is needed (cyclic
   quotients lose `sqrt(eps)`). This is structure for integrality-gap and
   dictatorship-test design, not a route in either direction.
+* **Affine-view unique verifiers over 2-to-2 inputs.** This covers Hadamard,
+  Grassmann and subspace encodings read as unique tests. **Class-killing
+  obstruction and equivalence**:
+  `linear-view-unique-verifiers-collapse-to-quotient-coarsening`. The set of
+  inputs on which two affine views agree is a subspace. So above completeness
+  `1/p`, weight at least `(pc-1)/(p-1)` sits on exact triples, and the output
+  value is at least that weight times the value of a test-free, branch-blind
+  quotient coarsening `Can` of the outer game. Any such proof of near-1 UG
+  hardness is therefore a proof that `Can` is hard. No Grassmann expansion
+  theorem can enter, and crossing the `1/2` wall needs views that are not
+  affine in the outer label. Open: is `Can` of hard 2-to-2 instances hard?
+* **Bounded-degree views (Reed--Muller, short-code, quadratic encodings).**
+  **Candidate class-killing obstruction**: `low-degree-view-unique-verifiers-collapse`
+  (OPEN after refereeing on 2026-09-17). Its formal items hold, but the class it
+  kills is established only when the permutations `sigma` are affine. A
+  non-affine `sigma` (for instance a transposition) makes soft triples of degree
+  about `log_p(1/eps)` even for Grassmann views; that case is
+  `low-degree-view-collapse-survives-non-affine-sigma`.
+  The invariant is the algebraic degree `D` of the view differences on the outer
+  constraint spaces. A nonzero reduced polynomial of degree `D` is nonzero on a
+  `p^-D` fraction of points. So at completeness `1 - eps`, the exact triples
+  weigh at least `1 - eps p^D`. Exact triples induce bijections between
+  level-set partitions, and the output value is at least `w_ex` times the value
+  of the test-free, branch-blind partition coarsening `Can_part`. Every verifier
+  with `eps p^D -> 0` dies at this step, whatever expansion its encoding has.
+  **Remaining gap** for a composition proof over a linear outer game (such as the
+  2-to-2 instances) reaching completeness `1 - eps`, for affine `sigma`. P1 and P2
+  are alternatives (exact weight near 1 versus `Omega(1)` soft weight), and P3
+  applies only to proofs that use the long-code noise test:
+  1. **(P1) coarsening hardness.** Some branch-blind partition coarsening
+     `Can_part` of hard 2-to-2 families is itself hard at `1 - o(1)` versus
+     `o(1)`. This is the only door open to views of degree
+     `< (1 - gamma) log_p(1/eps)`.
+  2. **(P2) high-degree soft triples.** Otherwise, `Omega(1)` weight sits on
+     non-exact triples that reject honest labels with probability `O(eps)`. By
+     the density lemma these have degree `>= log_p(1/eps) - O(1)`, which is the
+     long-code regime. Their soundness must be proved in the 99% regime; the
+     imperfect-completeness 2-to-2 machinery works at completeness about `1/2`,
+     and no 99%-regime version of it is recorded here.
+  3. **(P3) no learnable collapse.** For the long-code noise test, the derived
+     unique game must have vanishing value on the learnable families of
+     `bkm-test-transparent-on-learnable-games`.
+
+  Perfect completeness is out in this form
+  (`unique-constraints-orient-at-most-half-of-a-fiber`, and UG with perfect
+  completeness is in P). So every prerequisite is stated at `1 - eps`.
 * **Refuting the conjecture.** The algorithmic negation is the open claim
   `unique-games-gap-admits-polynomial-time-algorithm`. Its Attempts record the
   algorithmic frontier: `affine-ug-easy-on-certifiably-hypercontractive-graphs`,

@@ -6,8 +6,12 @@ title: Two-sided cancellative incidence patterns in finite loops carry Bernoulli
 distinct_from:
   rokhlin-window-transport-is-dominated: that is domination over group patterns, which is equivalent to Rokhlin maximality; this refutes the same bound for abstract patterns that satisfy both cancellation laws but not associativity, and names associativity as the axiom a proof must use.
   bernoulli-witness-information-is-bounded-by-code-reads: that bounds the information about one site by m H(psi) on every group; this builds cancellative non-group patterns with read degree m = ceil(2 k ln k) and Phi -> 0, within a (log k)^2 factor of that bound.
+  quadrangle-closure-kills-shared-pointer-parity-gadgets: that proves the finite quadrangle closure alone forces |Delta_val| = 0 mod 3 for shared-pointer triples; this builds the gadget in loops where the closure fails.
 artifacts:
   - research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md
+  - research/artifacts/cancellative-firewall-reverification-2026-09-17.md
+  - experiments/cancellative-firewall-2026-09-17/verify_gadget.py
+  - experiments/cancellative-firewall-2026-09-17/verify_gadget.json
 ---
 
 An **abstract pattern** is a partial Latin rectangle: rows are codewords `F`, columns are positions
@@ -43,13 +47,24 @@ injective is right cancellation. `Phi = (1/k)[H(psi(iid)) + H(x(o) | y_F)]` is d
   violates right cancellation (the modular function). Right-cancellative downward tree windows are
   free-monoid patterns, so they are dominated.
 
-OPEN until independently re-derived: proof written in full in the artifact, verification requested
-from w4-vf-positive-b.
+Independently re-derived 2026-09-17 (see Attempts); three referees found no gap.
 
 ## Attempts
 - **Proof written, awaiting verification (w7-inf-cancellative, 2026-09-12).** Sections 2-4 of the
   artifact give the explicit position table, the cancellation check, the coupon-collector residual
   and the group-ring contradiction.
+- **Independently re-derived, PASS (a-gs-pull-12, 2026-09-17).** See the 2026-09-17 artifact and
+  `verify_gadget.py`.
+  - Theorem A is exact: `H(x0 | y_F) = k(1 - 1/k)^R`. Exact `Phi` is 0.7817, 0.5107, 0.3157 and
+    0.1884 at `k = 4, 8, 16, 32`. Checked by exact enumeration and by Monte Carlo with 0 decoding
+    errors.
+  - Theorem B: the Evans completion and loop isotope were built for `k = 4`, giving a loop of order
+    530 that realizes the pattern.
+  - Theorem C was re-derived.
+  - Route: [[cancellative-incidence-patterns-do-not-force-domination-proof]].
+  - Sharper obstruction, [[quadrangle-closure-kills-shared-pointer-parity-gadgets]]. Under (L), (R)
+    and quadrangle closure, shared-pointer triples have `|Delta_val| = 0 mod 3`. So the gadget dies
+    at (Q), before associativity.
 - **Not decided.** Mixed right-cancellative tree windows with cousin types (artifact 6.2).
 - **Next lead.** Shared-pointer gadgets inside groups. For the stabilizer `K` of the pointer set `P`,
   `sigma = sum_(K') kappa` must be a unit of `F_2[K]`, as for `Z/5` with `{1, s, s^2}`. A full value

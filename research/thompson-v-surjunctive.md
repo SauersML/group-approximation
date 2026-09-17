@@ -49,3 +49,21 @@ unit group, since `V <= R^x`.
   `thompson-v-surjunctive-via-self-similar-descent`, killed by
   `v-self-similar-rewrites-preserve-strict-pairs`. Conjugating the memory into `V_U ~= V`, or
   splitting it along disjoint clopens, keeps the rules and both tables, so nothing decreases.
+- **Cantor-local arguments (2026-09-17).** Obstruction:
+  `compressible-base-controlled-automata-are-strict`. Let the local rule read which
+  cell of a clopen partition contains the Cantor point of the site. The
+  compression `T(z) = 0z`, given piecewise by two elements of `V`, then yields
+  injective automata that are non-surjective on every fibre. So induction on
+  clopens with `V_U ~= V`, germ-wise peeling, transfers through the groupoid
+  `C x| V`, and quasi-invariant weighted counting all prove a false statement.
+  The same holds over `F_2` with its boundary, which is surjunctive. Amenable
+  minimal bases calibrate correctly. A proof must spend `tau_x = tau_(gx)` for
+  `g` moving `x`, not only commutation with stabilizers. This sharpens
+  "What is left" above.
+- **Coinvariant rank counting (2026-09-17).** Dead. A strict pair makes
+  `A^G` conjugate to a proper subshift `Y`, so `C(Y,Z)` is a proper
+  `Z[G]`-quotient of `C(A^G,Z)` isomorphic to it. A contradiction would need
+  `H_0(G; C(A^G,Z)) ⊗ Q` to be finite-dimensional, as it is for finite `G`
+  (pigeonhole). For every infinite `G` it is infinite-dimensional, because
+  Bernoulli marginals and pattern frequencies give infinitely many independent
+  invariant functionals. The rank comparison therefore carries no information.

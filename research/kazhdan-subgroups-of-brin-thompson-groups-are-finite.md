@@ -82,3 +82,55 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
   subgroup of 2V. Abstract twisted Brin–Thompson groups have property FW_∞
   (Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687). This lane has not checked what
   that property excludes for classical nV.
+- 2026-09-17 (swarm-0917-w2-zar-pull-1, operator-algebras lane): **exact
+  reduction to orbit finiteness.**
+  - Established: `finitely-generated-subgroups-of-nv-are-finite-iff-germ-finite`.
+    A finitely generated `K ≤ nV` is finite iff offsets are bounded at each
+    point, iff it has finitely many germs at each point, iff all orbits are
+    finite and stabilizers act trivially near their fixed points.
+  - The proof is a brick induction over words plus compactness.
+  - For Kazhdan `K`, the finite-index stabilizers have finite abelianization.
+    This kills the germ characters `Stab_K(x) → Z^n`, so finite orbits alone
+    suffice.
+  - Route `kazhdan-subgroups-of-nv-finite-from-finite-orbits` reduces this claim,
+    with nothing lost, to `kazhdan-subgroups-of-nv-act-with-finite-orbits` (OPEN).
+    Equivalently, `ℓ^2(Kx)` has almost invariant vectors for every `x`.
+  - **Class removed.** Any construction of an infinite Kazhdan subgroup whose
+    orbit Schreier graphs are all amenable fails at the orbit step. Such
+    constructions include subgroups of the full-shift topological full group in
+    2V. For these, Attempt (b)'s bandwidth and spectral-gap count is unnecessary.
+  - **A counterexample needs** an orbit with a spectral gap on which the
+    offsets, or the Busemann heights at aperiodic points, are unbounded.
+  - **Dead end.** Invariant means on ambient nV-orbits (horocyclic-product
+    Følner sets) only give *some* finite K-orbit per ambient orbit, not every
+    orbit.
+  - Operator-algebra framing:
+    - `c|_K` is a class in `H^1(K, C(C^n, Z^n))`, with
+      `C(C^n, Z) = K_0(C(C^n))`.
+    - `K` is finite iff this class is a bounded coboundary.
+    - Groupoid-level amenability of the Cuntz product groupoid carries no
+      further information here, because it holds for every n and never enters
+      the criterion.
+- 2026-09-17 (lane swarm-0917-w2-zar-pull-2, transplanter via entropy-measure,
+  unreviewed): **reduction to invariant measures on minimal sets.**
+  - Established `kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures`: a
+    Kazhdan `K <= nV` is finite iff every minimal closed `K`-invariant subset of `C^n`
+    carries an invariant probability measure. Unconditionally, every invariant
+    probability measure of `K` lives on the open set `U_K` of points with a clopen
+    neighbourhood fixed pointwise by a finite-index subgroup.
+  - Mechanism: for an invariant measure `ν`, the slope cocycle is a 1-cocycle in the
+    Koopman representation on `L^2(ν)^n`; (T) makes it an integer coboundary `F`;
+    bricks of shape `c·1 + F(x)` with canonical charts give almost invariant vectors
+    in `l^2` of the `K`-set of (clopen set, chart) pairs, and (T) forces finite orbits.
+    This is the missing potential that repairs the shape-weighted families above.
+  - New route `kazhdan-nv-finite-via-measured-minimal-sets` requires that criterion
+    and the open claim `minimal-sets-of-kazhdan-subgroups-of-nv-carry-invariant-measures`,
+    which is equivalent to this claim.
+  - Dead ends, with the exact step: the Lebesgue half-density representation breaks
+    the cocycle identity by the factor `2^{Σ s/2}`; the Navas-type current kernel
+    `Π_i 1/μ_i(x_i ∧ y_i)` is not square integrable near the partial diagonals
+    `{x_i = y_i}` for `n >= 2`; the skew product `C^n x Z^n` has only an infinite
+    invariant measure, and normalizing it needs an invariant measure on `C^n`.
+    Details in `research/artifacts/kazhdan-nv-measure-criterion-2026-09-17.md`.
+  - Any proof of the remaining claim must use nV-structure: `SL_3(Z[1/p])` acts
+    minimally on `P^2(Q_p)` with no invariant measure.
