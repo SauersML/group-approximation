@@ -5342,6 +5342,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Factors
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Words
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Halfline.HalflineA
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Entries
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LamplighterHost.Setting
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
