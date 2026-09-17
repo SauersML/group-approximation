@@ -5425,6 +5425,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.PauliSh
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Presented
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Realization
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.LamplighterRF
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.Embedding
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LemmaNN
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
