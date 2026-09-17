@@ -71,7 +71,8 @@ theorem radTensorMicrostate_len_le (c : PresentationCode) (Y : FiniteModel) (hY 
     (g : Fin (genCount c) → Matrix.unitaryGroup Y ℂ) (p : ℕ) (w : List (ℕ × Bool)) :
     (radTensorMicrostate c Y hY g p).len w ≤
       (p : ℝ) * opLength Y (FreeGroup.lift g (wordOf c w)) := by
-  have h := l2_opNorm_opTensorPow_sub_le hY (FreeGroup.lift g (wordOf c w)).property
+  have h := l2_opNorm_opTensorPow_sub_le (B := (1 : Matrix Y Y ℂ)) hY
+    (FreeGroup.lift g (wordOf c w)).property
     (one_mem (Matrix.unitaryGroup Y ℂ)) p
   rw [opTensorPow_one] at h
   rw [Microstate.len_def, radTensorMicrostate_hom]
