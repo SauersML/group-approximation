@@ -44,3 +44,22 @@ point s̃_s have representing measures concentrating near s̃_s. That would redu
 for (T) groups and in the stable topology, to ergodic approximants a_n. Missing input: the
 identification of the representing measure with the pushforward of the ergodic decomposition,
 imported verbatim, and the matching integral formula for cost.
+
+Ultraproduct reformulation (swarm-0917, stability-approximation). This turns the uniformisation
+attempt above into theorems, in `fpbs-bernoulli-class-cost-jump-is-cgdls-ultraproduct-gap`.
+
+- *Ultraproduct cost.* Let b_n be free with b̃_n → s̃ and u non-principal. By Burton–Kechris
+  Theorem 10.2, the ultraproduct b_u is ≃ s. It is essentially free by CGdlS Lemma 2.43, and
+  its free standard factor from CGdlS Theorem 3.28 is ≃ s. So C(b_u) = cC_u((b_n)n) = C(s).
+- *Fixed moduli.* For every fixed coarse modulus M, liminf C_M(b_n) ≥ C(s) holds for every
+  finitely generated Γ.
+- *Equivalence.* This claim is equivalent to the uniform coarse modulus (c3) of that node:
+  near-optimal graphings of b_n can be taken M-coarsely equivalent to S with M independent of n
+  along u. It is also equivalent to C(b_u) = lim_u C(b_n) for every s̃-convergent sequence,
+  which is the s̃ case of CGdlS Question 4.3.
+
+What dies. Every argument that transfers witnesses of a fixed window or fixed route length
+already gets only what (b) gives unconditionally. Where it stops: I found no mechanism that
+bounds the coarse modulus of near-optimal graphings of b_n uniformly in n. Lemma 3.6 of CGdlS
+gives a modulus depending on the action. A cost jump needs graphings whose S-route lengths
+diverge along u, and I could neither build such a sequence nor exclude one.
