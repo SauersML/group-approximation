@@ -29,8 +29,8 @@ sentence asks; `Endpoints.lean` specialises to `R = LC(C,F_2) ⋊ Λ`.
   subgroup form a subring (eq:elementary) containing `S`.
 * `closure_elementaryGenerators_eq_top`: the same, inside the group `EL_n(R)` itself.
 * `elementaryGroup_fg`: `EL_n(R)` is finitely generated, by these finitely many generators.
-* `elementaryGroup_hasKazhdanPropertyT`: property (T), by Ershov--Jaikin-Zapirain as proved in this
-  repository (`Pestov91.elementary_hasKazhdanPropertyT`).
+* `elementaryGroup_hasKazhdanPropertyT`: property (T), by Ershov--Jaikin-Zapirain as proved in
+  this repository (`Pestov91.elementary_hasKazhdanPropertyT`).
 * `infinite_elementaryGroup_of_injective`: `EL_n(R)` is infinite when an infinite ring embeds in `R`.
 -/
 
@@ -140,7 +140,8 @@ theorem elementaryGeneration {R : Type*} [Ring R] (S : Set R) (hS1 : (1 : R) ∈
     rintro _ ⟨i, j, h, s, -, rfl⟩
     exact elementaryUnit_mem i j h s
 
-/-- The closed form of `elementaryGeneration`, for every ring, generating set `S ∋ 1` and `n ≥ 3`. -/
+/-- The closed form of `elementaryGeneration`, for every ring, generating set `S ∋ 1` and
+`n ≥ 3`. -/
 def PrintedGeneralElementaryGeneration : Prop :=
   ∀ (R : Type) [Ring R] (S : Set R), (1 : R) ∈ S → Subring.closure S = ⊤ →
     ∀ n : ℕ, 3 ≤ n →
