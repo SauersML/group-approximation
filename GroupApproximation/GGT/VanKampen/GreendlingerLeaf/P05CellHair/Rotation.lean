@@ -153,7 +153,7 @@ theorem some_none_keep :
       (some none : (FaceEdgeDoubling.map S.diagram f j hlen).Dart) :=
   not_regionInternal_of_face_not_mem fun r hr h =>
     face_not_mem_regionFamily S.diagram f j hlen hf S.family havoid
-      (F := (FaceEdgeDoubling.diagram S.diagram f j hlen hf).toCombMap.faceOf some none)
+      (F := (FaceEdgeDoubling.diagram S.diagram f j hlen hf).toCombMap.faceOf (some none))
       (fun g hg e => FaceEdgeDoubling.keep_ne_cellFace S.diagram f j hlen hg
         (e.trans (faceOf_some_none S.diagram f j hlen hf))) hr h
 
