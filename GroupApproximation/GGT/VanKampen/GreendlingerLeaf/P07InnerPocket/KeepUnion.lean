@@ -14,8 +14,8 @@ pocket walk `K` and of the two region cycles (lane gl-p07-01).
 
 Let `c₁, c₂, c₃` be dart walks, each chained at vertices (every dart ends where the next starts),
 with `c₂` and `c₃` each starting a dart at a vertex where `c₁` starts a dart.  Let `N` be the map
-on the union of their edges (`CombMap.PredicateRestriction.toCombMap`), with vertex rotation the
-first return of the ambient rotation.
+on the union of their edges (`CombMap.PredicateRestriction.toCombMap`), whose vertex rotation is
+the first return of the ambient rotation.
 
 1. *Same ambient vertex ⇒ joined in `N`.*  The rotation of `N` is the first return of the ambient
    rotation, so its cycles are the ambient cycles meeting the kept set
@@ -23,12 +23,12 @@ first return of the ambient rotation.
    (`NoncrossingClosedWalkSides.eqvGen_adjacent_of_sameCycle`).
 2. *The edges of one walk are joined.*  By induction along the chain: from a walk dart `x` cross
    to `α x`, which starts at the vertex of the next walk dart, then use 1.  A dart whose reversal
-   is a walk dart is one crossing from that walk dart.
+   is a walk dart is one crossing away from that walk dart.
 3. *The union.*  Every kept dart is on an edge of some `c_k`; step 2 joins it to the touching dart
    of `c_k`, step 1 moves to the touching dart of `c₁`, and step 2 for `c₁` closes.
 
 Neither planarity nor nonemptiness is used (the touching hypotheses supply the darts), so
-`unionMap_connected` is stated without them; `keepUnion_connected` is the lane-shaped form.
+`unionMap_connected` is stated without them; `KeepUnionStatement.lean` has the lane-shaped form.
 
 ## Manuscript status
 
@@ -85,11 +85,18 @@ theorem eqvGen_adjacent_of_walk {c : List M.Dart} (hsub : ∀ x, walkKeep M c x 
         ⟨c.head hne, hsub _ (Or.inl (List.head_mem hne))⟩ ⟨z, hz⟩)
       c (List.IsChain.iff_mem.mp hch) ?_ ?_
     · rintro z w ⟨hzc, _, hzw⟩ hp hw
-      have hαz : keep (M.alpha z) := hsub _ (Or.inr (by rw [M.alpha_involutive z]; exact hzc))
-      refine Relation.EqvGen.trans _ _ _ (hp (hsub z (Or.inl hzc)))
-        (Relation.EqvGen.trans _ ⟨M.alpha z, hαz⟩ _ (Relation.EqvGen.rel _ _ (Or.inl rfl)) ?_)
-      exact eqvGen_adjacent_of_vertexOf_eq (x := ⟨M.alpha z, hαz⟩) (y := ⟨w, hw⟩) hzw
-    · intro lne hz
+      have hαz : keep (M.alpha z) := hsub _ (FirstTurnEnclosure.alpha_keep hzc)
+      have h1 : Relation.EqvGen (CombMap.PredicateRestriction.toCombMap M keep hkeep).Adjacent
+          ⟨c.head hne, hsub _ (Or.inl (List.head_mem hne))⟩ ⟨z, hsub z (Or.inl hzc)⟩ :=
+        hp (hsub z (Or.inl hzc))
+      have h2 : Relation.EqvGen (CombMap.PredicateRestriction.toCombMap M keep hkeep).Adjacent
+          ⟨z, hsub z (Or.inl hzc)⟩ ⟨M.alpha z, hαz⟩ :=
+        Relation.EqvGen.rel _ _ (Or.inl rfl)
+      have h3 : Relation.EqvGen (CombMap.PredicateRestriction.toCombMap M keep hkeep).Adjacent
+          ⟨M.alpha z, hαz⟩ ⟨w, hw⟩ :=
+        eqvGen_adjacent_of_vertexOf_eq hzw
+      exact Relation.EqvGen.trans _ _ _ h1 (Relation.EqvGen.trans _ _ _ h2 h3)
+    · intro _ _
       exact Relation.EqvGen.refl _
   have hall : ∀ z : (CombMap.PredicateRestriction.toCombMap M keep hkeep).Dart,
       walkKeep M c z.1 →
@@ -98,8 +105,9 @@ theorem eqvGen_adjacent_of_walk {c : List M.Dart} (hsub : ∀ x, walkKeep M c x 
     rintro ⟨z, hz⟩ hzk
     rcases hzk with h | h
     · exact hmem z h hz
-    · exact Relation.EqvGen.trans _ _ _ (hmem (M.alpha z) h (hsub _ (Or.inl h)))
-        (Relation.EqvGen.rel _ _ (Or.inl (Subtype.ext (M.alpha_involutive z))))
+    · have h1 := hmem (M.alpha z) h (hsub _ (Or.inl h))
+      refine Relation.EqvGen.trans _ _ _ h1 (Relation.EqvGen.rel _ _ (Or.inl ?_))
+      exact Subtype.ext (M.alpha_involutive z)
   exact Relation.EqvGen.trans _ _ _ (Relation.EqvGen.symm _ _ (hall x hx)) (hall y hy)
 
 end General
@@ -122,26 +130,35 @@ theorem unionMap_connected {M : CombMap.{u}} {c₁ c₂ c₃ : List M.Dart}
       (walkKeep M c₁ x ∨ walkKeep M c₂ x ∨ walkKeep M c₃ x) := fun _ h => Or.inr (Or.inl h)
   have k₃ : ∀ x, walkKeep M c₃ x →
       (walkKeep M c₁ x ∨ walkKeep M c₂ x ∨ walkKeep M c₃ x) := fun _ h => Or.inr (Or.inr h)
+  have V : ∀ {x y : (unionMap M c₁ c₂ c₃).Dart}, M.vertexOf x.1 = M.vertexOf y.1 →
+      Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent x y :=
+    fun h => eqvGen_adjacent_of_vertexOf_eq h
+  have W₁ : ∀ {x y : (unionMap M c₁ c₂ c₃).Dart}, walkKeep M c₁ x.1 → walkKeep M c₁ y.1 →
+      Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent x y :=
+    fun hx hy => eqvGen_adjacent_of_walk k₁ hch₁ hx hy
+  have W₂ : ∀ {x y : (unionMap M c₁ c₂ c₃).Dart}, walkKeep M c₂ x.1 → walkKeep M c₂ y.1 →
+      Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent x y :=
+    fun hx hy => eqvGen_adjacent_of_walk k₂ hch₂ hx hy
+  have W₃ : ∀ {x y : (unionMap M c₁ c₂ c₃).Dart}, walkKeep M c₃ x.1 → walkKeep M c₃ y.1 →
+      Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent x y :=
+    fun hx hy => eqvGen_adjacent_of_walk k₃ hch₃ hx hy
   have hall : ∀ x : (unionMap M c₁ c₂ c₃).Dart,
       Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent ⟨e₂, k₁ _ (Or.inl he₂)⟩ x := by
     rintro ⟨x, hx⟩
     rcases hx with hx | hx | hx
-    · exact eqvGen_adjacent_of_walk (hkeep := keepUnion_alpha M c₁ c₂ c₃) k₁ hch₁
-        (x := ⟨e₂, k₁ _ (Or.inl he₂)⟩) (y := ⟨x, k₁ _ hx⟩) (Or.inl he₂) hx
-    · exact Relation.EqvGen.trans _ ⟨d₂, k₂ _ (Or.inl hd₂)⟩ _
-        (eqvGen_adjacent_of_vertexOf_eq (hkeep := keepUnion_alpha M c₁ c₂ c₃)
-          (x := ⟨e₂, k₁ _ (Or.inl he₂)⟩) (y := ⟨d₂, k₂ _ (Or.inl hd₂)⟩) hv₂.symm)
-        (eqvGen_adjacent_of_walk (hkeep := keepUnion_alpha M c₁ c₂ c₃) k₂ hch₂
-          (x := ⟨d₂, k₂ _ (Or.inl hd₂)⟩) (y := ⟨x, k₂ _ hx⟩) (Or.inl hd₂) hx)
-    · exact Relation.EqvGen.trans _ ⟨e₃, k₁ _ (Or.inl he₃)⟩ _
-        (eqvGen_adjacent_of_walk (hkeep := keepUnion_alpha M c₁ c₂ c₃) k₁ hch₁
-          (x := ⟨e₂, k₁ _ (Or.inl he₂)⟩) (y := ⟨e₃, k₁ _ (Or.inl he₃)⟩) (Or.inl he₂)
-          (Or.inl he₃))
-        (Relation.EqvGen.trans _ ⟨d₃, k₃ _ (Or.inl hd₃)⟩ _
-          (eqvGen_adjacent_of_vertexOf_eq (hkeep := keepUnion_alpha M c₁ c₂ c₃)
-            (x := ⟨e₃, k₁ _ (Or.inl he₃)⟩) (y := ⟨d₃, k₃ _ (Or.inl hd₃)⟩) hv₃.symm)
-          (eqvGen_adjacent_of_walk (hkeep := keepUnion_alpha M c₁ c₂ c₃) k₃ hch₃
-            (x := ⟨d₃, k₃ _ (Or.inl hd₃)⟩) (y := ⟨x, k₃ _ hx⟩) (Or.inl hd₃) hx))
+    · exact W₁ (Or.inl he₂) hx
+    · have h1 : Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent
+          ⟨e₂, k₁ _ (Or.inl he₂)⟩ ⟨d₂, k₂ _ (Or.inl hd₂)⟩ := V hv₂.symm
+      have h2 : Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent
+          ⟨d₂, k₂ _ (Or.inl hd₂)⟩ ⟨x, k₂ _ hx⟩ := W₂ (Or.inl hd₂) hx
+      exact Relation.EqvGen.trans _ _ _ h1 h2
+    · have h1 : Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent
+          ⟨e₂, k₁ _ (Or.inl he₂)⟩ ⟨e₃, k₁ _ (Or.inl he₃)⟩ := W₁ (Or.inl he₂) (Or.inl he₃)
+      have h2 : Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent
+          ⟨e₃, k₁ _ (Or.inl he₃)⟩ ⟨d₃, k₃ _ (Or.inl hd₃)⟩ := V hv₃.symm
+      have h3 : Relation.EqvGen (unionMap M c₁ c₂ c₃).Adjacent
+          ⟨d₃, k₃ _ (Or.inl hd₃)⟩ ⟨x, k₃ _ hx⟩ := W₃ (Or.inl hd₃) hx
+      exact Relation.EqvGen.trans _ _ _ h1 (Relation.EqvGen.trans _ _ _ h2 h3)
   intro d e
   exact Relation.EqvGen.trans _ _ _ (Relation.EqvGen.symm _ _ (hall d)) (hall e)
 

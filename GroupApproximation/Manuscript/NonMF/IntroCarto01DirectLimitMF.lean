@@ -57,8 +57,10 @@ theorem manuscriptSentence_directLimitResiduallyFiniteMF {ι : Type} [Preorder �
   have hMF : ∀ i, IsOperatorMF (G i) := fun i => by
     haveI := hRF i
     exact GroupApproximation.isOperatorMF_of_residuallyFinite
-  obtain ⟨hcount, hlim⟩ := manuscriptSentence_directLimitMF G f hinj hMF
-  exact ⟨hcount, (IntroAmenable.literalMF_iff_isOperatorMF (DirectLimit G f)).mpr hlim, hlim⟩
+  have hlim := manuscriptSentence_directLimitMF G f hinj hMF
+  haveI : Countable (DirectLimit G f) := hlim.1
+  exact ⟨hlim.1,
+    (IntroAmenable.literalMF_iff_isOperatorMF (DirectLimit G f)).mpr hlim.2, hlim.2⟩
 
 end IntroCarto01
 end NonMF

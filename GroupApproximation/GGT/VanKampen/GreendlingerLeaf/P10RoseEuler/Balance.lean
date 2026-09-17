@@ -57,11 +57,12 @@ theorem chain_countP_cons [DecidableEq V] (x : V) :
         (b :: l).getLast (List.cons_ne_nil b l) := rfl
     have e1 : (a :: b :: l).countP (fun d => decide (s d = x)) =
         [a].countP (fun d => decide (s d = x)) + (b :: l).countP (fun d => decide (s d = x)) :=
-      List.countP_append
+      List.countP_append (l₁ := [a]) (l₂ := b :: l)
     have e2 : (a :: b :: l).countP (fun d => decide (t d = x)) =
         [a].countP (fun d => decide (t d = x)) + (b :: l).countP (fun d => decide (t d = x)) :=
-      List.countP_append
-    have hab' : [a].countP (fun d => decide (t d = x)) = [b].countP (fun d => decide (s d = x)) := by
+      List.countP_append (l₁ := [a]) (l₂ := b :: l)
+    have hab' :
+        [a].countP (fun d => decide (t d = x)) = [b].countP (fun d => decide (s d = x)) := by
       simp only [List.countP_singleton, hab]
     rw [e1, e2, hlast]
     omega
@@ -76,7 +77,7 @@ theorem chain_countP [DecidableEq V] (x : V) {l : List α} (hne : l ≠ [])
     l.countP (fun d => decide (s d = x)) + [l.getLast hne].countP (fun d => decide (t d = x)) =
       l.countP (fun d => decide (t d = x)) + [l.head hne].countP (fun d => decide (s d = x)) := by
   obtain ⟨a, rest, rfl⟩ := List.exists_cons_of_ne_nil hne
-  exact chain_countP_cons x a rest hl
+  exact chain_countP_cons (s := s) (t := t) x a rest hl
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseEuler.chain_countP
 

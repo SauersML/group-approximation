@@ -88,8 +88,7 @@ theorem floorWeights_bounds {n : ℕ} (t : Fin n → ℝ) (ht0 : ∀ i, 0 ≤ t 
         Finset.sum_le_sum fun i _ => by linarith [hgt i]
       _ = n := by
         rw [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul, mul_one]
-  have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
-  refine ⟨by linarith, fun i => ?_⟩
+  refine ⟨by linarith [hgapn], fun i => ?_⟩
   have ht1i : t i ≤ 1 := by
     rw [← ht1]
     exact Finset.single_le_sum (fun k _ => ht0 k) (Finset.mem_univ i)
@@ -103,8 +102,8 @@ theorem floorWeights_bounds {n : ℕ} (t : Fin n → ℝ) (ht0 : ∀ i, 0 ≤ t 
     ring
   rw [e, abs_le]
   constructor
-  · linarith [hle i]
-  · linarith [hgt i]
+  · linarith [hle i, p2]
+  · linarith [hgt i, p1, (Nat.cast_nonneg n : (0 : ℝ) ≤ n)]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeAverage.floorWeights_bounds
 
@@ -150,19 +149,20 @@ theorem exists_average_approx {X : Type*} {n : ℕ} (c : Fin n → X) (t : Fin n
   obtain ⟨hNlow, hcount⟩ := floorWeights_bounds t ht0 ht1 hM
   have hKpos : (0 : ℝ) < K := lt_of_le_of_lt (le_max_right _ _) hK
   have hCK : (n : ℝ) * (((n : ℝ) + 1) * B) / η < K := lt_of_le_of_lt (le_max_left _ _) hK
-  have hNreal : (K : ℝ) ≤ ((∑ i, floorWeights ((K : ℝ) + n) t i : ℕ) : ℝ) := by linarith
+  have hNreal : (K : ℝ) ≤ ((∑ i, floorWeights ((K : ℝ) + n) t i : ℕ) : ℝ) := by
+    linarith [hNlow]
   have hNpos : 0 < ∑ i, floorWeights ((K : ℝ) + n) t i :=
     Nat.cast_pos.1 (lt_of_lt_of_le hKpos hNreal)
   refine ⟨∑ i, floorWeights ((K : ℝ) + n) t i, hNpos,
     repeatPoints c (floorWeights ((K : ℝ) + n) t), fun φ hφ => ?_⟩
-  rw [sum_repeatPoints]
+  rw [sum_repeatPoints c (floorWeights ((K : ℝ) + n) t) φ]
   refine le_trans (norm_weighted_sub_average_le hNpos t (floorWeights ((K : ℝ) + n) t)
     (fun i => φ (c i)) hcount hφ (by positivity)) ?_
   rw [inv_mul_le_iff₀ (Nat.cast_pos.2 hNpos)]
   have h1 : (n : ℝ) * (((n : ℝ) + 1) * B) < K * η := (div_lt_iff₀ hη).1 hCK
   have h2 : (K : ℝ) * η ≤ ((∑ i, floorWeights ((K : ℝ) + n) t i : ℕ) : ℝ) * η :=
     mul_le_mul_of_nonneg_right hNreal hη.le
-  linarith
+  linarith [h1, h2]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeAverage.exists_average_approx
 

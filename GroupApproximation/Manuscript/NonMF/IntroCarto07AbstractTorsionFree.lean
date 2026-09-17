@@ -63,7 +63,9 @@ theorem manuscriptSentence_abstractTorsionFreeGroup_of_printedTorsionFreeTheorem
     by_contra hne
     exact IsPowerTorsionFree.not_isOfFinOrder htf hne hg
   · intro M _ hM f
-    exact MonoidHom.ext fun x => (hkill M _ hM f x).trans (MonoidHom.one_apply x).symm
+    refine MonoidHom.ext fun x => ?_
+    rw [MonoidHom.one_apply]
+    exact hkill M _ hM f x
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto07.manuscriptSentence_abstractTorsionFreeGroup_of_printedTorsionFreeTheorem
 

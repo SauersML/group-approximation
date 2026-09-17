@@ -117,7 +117,7 @@ theorem isAmenableTrace_of_isLocallyAmenableTrace
       rw [hzero, hτ1, sub_zero, norm_one] at h1
       have hlt : 1 / ((n : ℝ) + 2) < 1 := by
         have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
-        rw [div_lt_one (by linarith)]
+        rw [div_lt_one (show (0 : ℝ) < (n : ℝ) + 2 by linarith)]
         linarith
       linarith
     exact ⟨Y, φ, hone, hcp, hne, fun i hi j hj ↦ hmul _ (hmem i hi) _ (hmem j hj),

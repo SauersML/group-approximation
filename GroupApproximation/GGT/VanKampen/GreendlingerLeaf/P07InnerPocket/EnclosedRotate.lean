@@ -106,7 +106,7 @@ theorem EnclosedFaceSetSucc.rotate {X : DiscDiagram.{u, w, v} W} {F : Finset X.t
   toEnclosedFaceSet := EnclosedFaceSet.rotate E.toEnclosedFaceSet n
   turn_next := by
     intro i hi m hm hkeep hfirst
-    have hlen : 0 < L.length := List.length_pos_of_ne_nil E.ne_nil
+    have hlen : 0 < L.length := List.length_pos_iff.mpr E.ne_nil
     have hj : (i + n) % L.length < L.length := Nat.mod_lt _ hlen
     have hget : (L.rotate n)[i]'hi = L[(i + n) % L.length]'hj := List.getElem_rotate L n i hi
     rw [walkKeep_rotate_eq, hget] at hkeep

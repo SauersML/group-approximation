@@ -39,11 +39,14 @@ Conditional on `TorsionFreePrinted.PrintedTorsionFreeTheorem`; not an unconditio
 theorem manuscriptSentence_abstractSecondSentence_of_printedTorsionFreeTheorem
     (hthm : TorsionFreePrinted.PrintedTorsionFreeTheorem) :
     (∃ (W : Type) (_ : Group W) (_ : Countable W),
-      IsSofic W ∧ ¬ IntroAmenable.LiteralMF W ∧ ¬ IsOperatorMF W ∧
-        Quasidiagonal.IsAmenableTrace
-          (fun a : MaximalGroupCStar W ↦ canonicalMaximalTrace W a) ∧
-        ¬ Quasidiagonal.IsQuasidiagonalTrace
-          (fun a : MaximalGroupCStar W ↦ canonicalMaximalTrace W a)) ∧
+      GroupApproximation.IsSofic W ∧ ¬ IntroAmenable.LiteralMF W ∧
+        ¬ GroupApproximation.IsOperatorMF W ∧
+        GroupApproximation.Quasidiagonal.IsAmenableTrace
+          (fun a : GroupApproximation.MaximalGroupCStar W ↦
+            GroupApproximation.canonicalMaximalTrace W a) ∧
+        ¬ GroupApproximation.Quasidiagonal.IsQuasidiagonalTrace
+          (fun a : GroupApproximation.MaximalGroupCStar W ↦
+            GroupApproximation.canonicalMaximalTrace W a)) ∧
     (∃ (Q : Type) (_ : Group Q),
       Group.IsFinitelyPresented Q ∧ Infinite Q ∧ (∀ g : Q, IsOfFinOrder g → g = 1) ∧
         HasKazhdanPropertyT.{0, 0} Q ∧

@@ -12,9 +12,9 @@ import GroupApproximation.Meta.AxiomGuard
 Korchagin's Proposition 13 is proved in subgroup-range form in
 `Manuscript/NonMF/IntroAmenable/KorchaginDirectLimit.lean`
 (`IntroAmenable.isOperatorMF_of_injective_directLimit`).  This module supplies the interface
-needed to apply it to Mathlib's generic `DirectLimit G f` (`Mathlib/Order/DirectedInverseSystem.lean`,
-group instance in `Mathlib/Algebra/Colimit/DirectLimit.lean`), for a directed system of groups
-`f i j h : G i →* G j`:
+needed to apply it to Mathlib's generic `DirectLimit G f`
+(`Mathlib/Order/DirectedInverseSystem.lean`, group instance in
+`Mathlib/Algebra/Colimit/DirectLimit.lean`), for a directed system of groups `f i j h : G i →* G j`:
 
 * `of G f i : G i →* DirectLimit G f`, `x ↦ ⟦⟨i, x⟩⟧` (Mathlib has no group-level `of`);
 * `of_f`: compatibility with the connecting maps (`DirectLimit.mk_apply`);
@@ -102,6 +102,7 @@ end NonMF
 end Manuscript
 end GroupApproximation
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto01.of
 #audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto01.of_apply
 #audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto01.of_f
 #audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto01.of_injective
