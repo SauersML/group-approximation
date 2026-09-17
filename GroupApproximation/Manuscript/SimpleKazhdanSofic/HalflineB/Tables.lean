@@ -280,7 +280,7 @@ theorem hCyl_apply (s : ι → Δ) (P : List (LW ι)) (x : LampSpace Δ) :
 theorem smul_apply_right (c : Δ →₀ ZMod 2) (δ : Δ) (y : LampSpace Δ) :
     ((SemidirectProduct.inl (Multiplicative.ofAdd c) * SemidirectProduct.inr δ : LampAffine Δ) • y) δ =
       y 1 + c δ := by
-  rw [smul_apply, SemidirectProduct.mul_right, SemidirectProduct.right_inl, SemidirectProduct.right_inr, one_mul,
+  rw [Lamplighter.smul_apply, SemidirectProduct.mul_right, SemidirectProduct.right_inl, SemidirectProduct.right_inr, one_mul,
     inv_mul_cancel, SemidirectProduct.mul_left, SemidirectProduct.left_inl, SemidirectProduct.left_inr,
     SemidirectProduct.right_inl, map_one, mul_one, toAdd_ofAdd]
 

@@ -114,7 +114,8 @@ theorem manuscriptSentence_jEmbedsElementaryIntoUnits (R : Type) [Ring R] [Count
     RankDescent.ofFull (⟨s, t, hts⟩ : OneSidedCompressor.OneSidedInverse R) a b hab
   have hTS := RankDescent.wordT_mul_wordS Q
   exact ⟨RankDescent.wordS Q, RankDescent.wordT Q, hTS,
-    RankDescent.wordT_mul_jMap_mul_wordS (RankDescent.wordS Q) (RankDescent.wordT Q) hTS,
+    fun A i j ↦ RankDescent.wordT_mul_jMap_mul_wordS (RankDescent.wordS Q) (RankDescent.wordT Q)
+      hTS i j A,
     RankDescent.jMap_injective (RankDescent.wordS Q) (RankDescent.wordT Q) hTS,
     fun _ ↦ rfl,
     Manuscript.OneSidedMFRadical.FullDefectRankTwo.elementaryToUnits_injective

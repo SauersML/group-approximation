@@ -105,7 +105,7 @@ theorem hasCleanTwoGon_of_transport (hlea : Delta.LeastArea) (T : RegionTranspor
     exact ⟨n, by rw [zpow_natCast]; exact ι.injective hn⟩
   obtain ⟨d, hdcell, hdf, hd4, hdreg⟩ := hf
   refine ⟨T.noLoops hloops, T.noMultipleEdges hmulti, T.map ⟨a₀, ha₀⟩, T.map_mem _,
-    by rw [T.target, hat]; rfl, P',
+    by rw [T.target]; exact congrArg (Option.map T.cellIndex) hat, P',
     (phiMapO S'.family (linkedComponentO S'.family (T.map ⟨a₀, ha₀⟩))).faceOf (ι d),
     ⟨ι d, (hreg d).2.2.trans hdcell, rfl, by rw [← hfp, ← hfp, ← hfp, ← hfp, hd4], ?_⟩, ?_, ?_⟩
   · intro heq
