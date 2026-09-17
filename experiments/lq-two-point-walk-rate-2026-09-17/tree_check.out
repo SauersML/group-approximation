@@ -1,0 +1,18 @@
+T_3: rho=0.942809 p_c=0.500000 p_2=p_22=0.707107 p_q for q=2.5,3,4: [0.757858, 0.793701, 0.840896]
+  p=0.50000 q_c=1.0000 bound rate rho^(2/max(2,q_c))=0.942809 exact lambda=0.942809 a_N^(1/N)=0.930308 max_n a_n/bound^n=0.562500 OK
+  p=0.60355 q_c=1.3728 bound rate rho^(2/max(2,q_c))=0.942809 exact lambda=0.942809 a_N^(1/N)=0.932705 max_n a_n/bound^n=0.648208 OK
+  p=0.70711 q_c=2.0000 bound rate rho^(2/max(2,q_c))=0.942809 exact lambda=0.942809 a_N^(1/N)=0.937773 max_n a_n/bound^n=0.750000 OK
+  p=0.85355 q_c=4.3774 bound rate rho^(2/max(2,q_c))=0.973452 exact lambda=0.959560 a_N^(1/N)=0.958760 max_n a_n/bound^n=0.876832 OK
+  p=0.95000 q_c=13.5134 bound rate rho^(2/max(2,q_c))=0.991322 exact lambda=0.984211 a_N^(1/N)=0.984019 max_n a_n/bound^n=0.958316 OK
+T_4: rho=0.866025 p_c=0.333333 p_2=p_22=0.577350 p_q for q=2.5,3,4: [0.644394, 0.693361, 0.759836]
+  p=0.33333 q_c=1.0000 bound rate rho^(2/max(2,q_c))=0.866025 exact lambda=0.866025 a_N^(1/N)=0.852089 max_n a_n/bound^n=0.444444 OK
+  p=0.45534 q_c=1.3965 bound rate rho^(2/max(2,q_c))=0.866025 exact lambda=0.866025 a_N^(1/N)=0.854490 max_n a_n/bound^n=0.540669 OK
+  p=0.57735 q_c=2.0000 bound rate rho^(2/max(2,q_c))=0.866025 exact lambda=0.866025 a_N^(1/N)=0.860551 max_n a_n/bound^n=0.666667 OK
+  p=0.78868 q_c=4.6277 bound rate rho^(2/max(2,q_c))=0.939727 exact lambda=0.908494 a_N^(1/N)=0.907851 max_n a_n/bound^n=0.839260 OK
+  p=0.95000 q_c=21.4182 bound rate rho^(2/max(2,q_c))=0.986658 exact lambda=0.975658 a_N^(1/N)=0.975556 max_n a_n/bound^n=0.962846 OK
+T_6: rho=0.745356 p_c=0.200000 p_2=p_22=0.447214 p_q for q=2.5,3,4: [0.525306, 0.584804, 0.66874]
+  p=0.20000 q_c=1.0000 bound rate rho^(2/max(2,q_c))=0.745356 exact lambda=0.745356 a_N^(1/N)=0.731827 max_n a_n/bound^n=0.360000 OK
+  p=0.32361 q_c=1.4265 bound rate rho^(2/max(2,q_c))=0.745356 exact lambda=0.745356 a_N^(1/N)=0.733936 max_n a_n/bound^n=0.457082 OK
+  p=0.44721 q_c=2.0000 bound rate rho^(2/max(2,q_c))=0.745356 exact lambda=0.745356 a_N^(1/N)=0.740120 max_n a_n/bound^n=0.600000 OK
+  p=0.72361 q_c=4.9750 bound rate rho^(2/max(2,q_c))=0.888564 exact lambda=0.833333 a_N^(1/N)=0.832876 max_n a_n/bound^n=0.814355 OK
+  p=0.95000 q_c=31.3772 bound rate rho^(2/max(2,q_c))=0.981441 exact lambda=0.967105 a_N^(1/N)=0.967050 max_n a_n/bound^n=0.967964 OK
