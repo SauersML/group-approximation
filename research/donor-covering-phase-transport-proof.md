@@ -8,11 +8,18 @@ requires:
   - binary-shifts-over-odd-fibers-split-off-the-augmentation-shift
   - passive-fixing-injective-automata-are-surjective
   - ec-groups-share-the-nonsurjunctive-alphabet-sizes
+  - donor-covering-few-rest-automata-reach-admissible-types
 artifacts:
   - experiments/donor-covering-descent-2026-09-17/check.py
 ---
 
 Notation as in the target.
+
+**Scope (audit 2026-09-17).** Items 1-5 below prove the target only for types `(2, b)` with `4 ∤ b` and `(1, b)`
+with `b` odd. A referee refuted the target's "at most two rest symbols" scope. The last prerequisite,
+`donor-covering-few-rest-automata-reach-admissible-types`, supplies the reduction from every type
+`(z, b)` with `z <= 2` to those types on the same group. Then item 4 gives the first part of the title, and item 5
+together with it gives the equivalence with universal binary descent.
 
 **Imports, verbatim.**
 - `binary-shifts-over-odd-fibers-split-off-the-augmentation-shift`, item 2: "In particular a `P`-equivariant

@@ -13,7 +13,10 @@ artifacts:
   - experiments/donor-covering-descent-2026-09-17/check.py
 ---
 
-**ESTABLISHED** by `donor-covering-phase-transport-proof`. Elementary.
+**OPEN.** Audit 2026-09-17: a referee refuted the statement at its scope. Items 1-5 below were checked and found
+sound, but they reach only types `(2, b)` with `4 ∤ b` and `(1, b)` with `b` odd, not every automaton with at most two
+rest symbols. The route `donor-covering-phase-transport-proof` now also requires
+`donor-covering-few-rest-automata-reach-admissible-types`, which is open.
 
 **Setting.** `G` is a group. A finite alphabet is split as `L = Z ⊔ B`, with *rest* symbols `Z` and a nonempty set
 of *active* symbols `B`. An automaton `τ` on `L^G` has the form `τ(ℓ)(g) = μ((g^(-1)ℓ)|_M)`, with `M ∋ 1` finite
@@ -70,3 +73,16 @@ configurations and for 40 random donor-covering rules per fiber, `Φ` commutes w
 action, `σ∘Φ = τ∘σ`, `Φ` is injective whenever `τ` is, and `Φ` is not surjective whenever `τ` is not. Fibers:
 `R_5` (type `(1,3)`), `{0,1}^(C_3)` (type `(2,2)`), `{0,1}^(C_2)` (type `(2,1)`), and the tag fiber `{0} ⊔ C_3`.
 Orbit counts are checked for `p <= 13`, and item 4 for odd `c < 400`.
+
+## Attempts
+
+- **Phase transport along donors** (audit, 2026-09-17). Route `donor-covering-phase-transport-proof`, with check
+  `experiments/donor-covering-descent-2026-09-17/check.py`, was previously recorded as establishing this claim. Referee
+  lens 1 returned *survives*. Referee lens 2 returned *refuted*, with reason (verbatim):
+
+  > The math in the body holds up, but the title claims more than the proof delivers. I checked each step of research/donor-covering-phase-transport-proof.md. Item 1 is sound: Psi is well defined because D1 applies at the identity site, it commutes with F, sigma∘Phi = tau∘sigma, and injectivity follows from tau being injective, then D2 plus freeness. Non-surjectivity holds because sigma is onto, and D1/D2 carry over to Phi. Item 2 (tag multiplication with C_t) is sound. Item 3(a) is sound: {0,1}^(C_p) has exactly the two constant vectors as fixed points and is free elsewhere, and Curtis–Hedlund–Lyndon over G × C_p applies. Item 3(b) is sound: the only fixed vector of I_(C_q) is 0 because the all-ones vector has odd weight, and item 2 of binary-shifts-over-odd-fibers-split-off-the-augmentation-shift is quoted correctly. The item 4 lemma is correct: a prime r dividing Phi_d(m) but not d has ord_r(m) = d, and r > X >= c. The item 4 type bookkeeping and the item 5 reformulation with beta × id and d ≡ 1 are also correct. check.py passes, although over C_n every injective automaton is surjective, so its non-surjectivity check proves nothing. The failing step is the title, the scope check in my brief. It says a strict automaton of this kind "descends to a binary one over G × C_p once it has at most two rest symbols". The theorem only reaches type (2,b) with 4 ∤ b (items 3(a) and 4) and type (1,b) with b odd (items 3(b) and 4). With two rest symbols, (2^p - 2)/p is never divisible by 4, so types like (2,4) are not reached, and the claim's own Scope section says so. With one rest symbol, I_(C_q) always has an odd number of orbits, so types like (1,2) are not covered either, and nothing converts them. So "at most two rest symbols" is not established. The title should state the 2-adic conditions (4 ∤ b with two rest symbols, b odd with one), and then items 1-5 would stand as proved.
+
+  The proof artifacts are kept. The route stays in the graph as a reduction: it now requires
+  `donor-covering-few-rest-automata-reach-admissible-types`, the missing step from any type with at most
+  two rest symbols to an admissible 2-adic type on the same group. Items 1-5 as proved there are the statement with
+  the 2-adic conditions in place.
