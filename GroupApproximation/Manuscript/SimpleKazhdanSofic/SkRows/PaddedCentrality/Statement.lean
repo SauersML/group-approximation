@@ -71,7 +71,7 @@ theorem list_prod_map_eq_of_eq_one {G ι : Type*} [Monoid G] {l : List ι} (hl :
     {i : ι} (hi : i ∈ l) {f : ι → G} (hf : ∀ k, k ≠ i → f k = 1) :
     (l.map f).prod = f i := by
   induction l with
-  | nil => exact absurd hi List.not_mem_nil
+  | nil => cases hi
   | cons j t ih =>
     rw [List.nodup_cons] at hl
     rw [List.map_cons, List.prod_cons]
