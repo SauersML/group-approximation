@@ -71,3 +71,14 @@ Theorem 8.7): this conjecture or `whitehead-asphericity-conjecture` is false.
        (`continuous-free-chain-unions-have-gd-two`, Lemma 1), so the failure is in the method, not the statement.
      - So the `ℵ_2` step needs a countable *square* relative statement for subcomplexes that are not
        `π_1`-injective, which REG_ω does not supply.
+   - **Converse: REG_ω ⇔ EG up to `ℵ_1`** (w3-048, 2026-09-17). `aleph-one-eg-is-equivalent-to-relative-countable-eg`.
+     - **Swap: yes.** Extending a 2-dimensional `K(H,1)` depends only on the pair. Given `K' ⊆ X'` and any `K ≃ K'`,
+       the adjunction `X' ∪_g K` along a homotopy equivalence is a 2-dimensional `K(G,1)` containing `K`.
+     - **Engine.** For countable `H ≤ G`, some aspherical 2-complex pair realizes `H ≤ G` iff
+       `gd ⁎_H^{ω_1} G ≤ 2`. Slice a 2-dimensional `K(Γ_{ℵ_1},1)` by a countable elementary submodel, which gives a
+       `π_1`-injective subcomplex carrying `Γ_δ`. Then pass to the cover for the copy `G_δ`, where
+       `Γ_δ ∩ G_δ = H`: `relative-eg-pair-iff-aleph-one-star-amalgam-has-gd-two`.
+     - **Consequence.** An `ℵ_1`-sized counterexample can be taken to be `⁎_H^{ω_1} G` for one countable pair with
+       non-free `H`. Whether countable EG implies EG at `ℵ_1` is the same as whether `gd ≤ 2` passes from
+       `⁎_H^{ω} G` to `⁎_H^{ω_1} G`, and remains open. This is a `Π^1_2` statement (sketch), so forcing cannot
+       settle it.
