@@ -215,7 +215,7 @@ theorem manuscriptSentence_bilateralThreeCycleR :
     fun b => ⟨(bilateralCell T k hP hTP).r_mul_f_neg_one b, r_mul_f_neg_two _ b,
       r_mul_f_neg_three _ b⟩,
     r_conj_level_neg_one _, r_conj_level_neg_two _, r_conj_level_neg_three _,
-    W_eq_diag_mul_rDiag _⟩
+    W_eq_diag_mul_rDiag (bilateralCell T k hP hTP)⟩
   rw [Cell.r]
   abel
 

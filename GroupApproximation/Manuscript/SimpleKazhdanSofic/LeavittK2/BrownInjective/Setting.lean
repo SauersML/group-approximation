@@ -42,7 +42,7 @@ concrete, self-contained definitions under the sub-namespace `BrownInjective`:
 
 Lane sk-leavitt-14 needs only to instantiate `BrownSetting` with the frame complex.
 
-## Route (proved in `Lift`, `LiftPath`, `Injective`)
+## Route (proved in `Presentation`, `Lift`, `Triangle`, `LiftPath`, `Homotopy`, `Injective`)
 
 Put `J = Stab(v₀)`, `Π = ⟨J, T | J-multiplication, T a T⁻¹ = τ a τ⁻¹ (a ∈ K), ThT = hTh⟩`.
 A "transporter" `x ∈ Π` sits at vertex `p(x) v₀`; one step along an edge from it is
