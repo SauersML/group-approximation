@@ -115,8 +115,8 @@ def CellRoseUncutLakesBelowStatement : Prop :=
                         K'.secondArc.length < (cellDarts X' j').length ∧
                         K'.repeatedVisits < K.repeatedVisits
 
-/-- **The residual from the below outer-pinch step**: forget the rose hypotheses.  So the residual is
-no stronger than residual 06. -/
+/-- **The residual from the below outer-pinch step**: forget the rose hypotheses.  So the residual
+is no stronger than residual 06. -/
 theorem cellRoseUncutLakesBelow_of_step
     (h : CellPocketOuterPinchStepSectionDistinctBelowStatement.{u, w, v}) :
     CellRoseUncutLakesBelowStatement.{u, w, v} := by
@@ -128,10 +128,11 @@ theorem cellRoseUncutLakesBelow_of_step
     hpinch _ _ _ _ => hrho rho hrho' W hcond X i j hij hlea hbelow hlabel K hK hnft hfirst hsecond
       hpinch⟩
 
-/-- **Piece 06 below the inductive bound from the lakes residual and the corner doubling.**  A closed
-cut performs the rose step in the same diagram; an uncut rose uses `CellRoseUncutLakesBelowStatement`,
-with no side cell once `2ε < ρ` and no short petal by clause (b) below `X`; an uncrossed turn uses the
-good corners or `BadCornerRefinementStatement` (OPEN, gap 5). -/
+/-- **Piece 06 below the inductive bound from the lakes residual and the corner doubling.**  A
+closed cut performs the rose step in the same diagram; an uncut rose uses
+`CellRoseUncutLakesBelowStatement`, with no side cell once `2ε < ρ` and no short petal by
+clause (b) below `X`; an uncrossed turn uses the good corners or `BadCornerRefinementStatement`
+(OPEN, gap 5). -/
 theorem proof_of_below_gaps (h : CellRoseUncutLakesBelowStatement.{u, w, v})
     (hcorner : BadCornerRefinementStatement.{u, w, v}) :
     CellPocketOuterPinchStepSectionDistinctBelowStatement.{u, w, v} := by

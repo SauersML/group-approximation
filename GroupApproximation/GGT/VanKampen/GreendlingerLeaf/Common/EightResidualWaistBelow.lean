@@ -27,8 +27,8 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf
 
 universe u w v
 
-/-- **Osin's Lemma 4.4 at least-area diagrams from eight leaf residuals, with the cell step below the
-inductive bound**: as `relativeGreendlingerQuasiGeodesicLeastArea_of_eightResiduals`, with the
+/-- **Osin's Lemma 4.4 at least-area diagrams from eight leaf residuals, with the cell step below
+the inductive bound**: as `relativeGreendlingerQuasiGeodesicLeastArea_of_eightResiduals`, with the
 outer-pinch cell step assuming clause (b) of Lemma 9.7 below the number of relator cells. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea_of_eightResidualsBelow
     (hbudget : OsinLemma94ClassEndLoopsBudgetInput.{u, w, v})
