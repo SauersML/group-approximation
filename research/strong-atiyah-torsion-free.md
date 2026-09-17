@@ -154,21 +154,25 @@ point.  The audit artifact traces each.
      (`determinant-conjecture-gives-full-atiyah-base-change`). The route
      `strong-atiyah-torsion-free-via-master-host-determinant` assembles
      `SA(E)`, `Det(E)` and that crux.
-10. **Formal-torus chain and the characteristic-zero Kun--Thom double (2026-09-17).**
-    Proved, unreviewed; plus a reduction.
-    - The Kun--Thom actor's monomial substitutions fix `x = 1`. So after
-      `x_i -> 1 + u_i` they act on the formal torus `Z_p[[u_1..u_d]]`, and
-      truncation mod `(u)^n` is equivariant.
-    - This gives a residual chain of torsion-free compact `p`-adic analytic
-      quotients. So the torsion-free characteristic-zero actor `H` satisfies
-      Strong Atiyah over `C` for every `d`
-      ([[kun-thom-actor-strong-atiyah-via-formal-torus]]).
-    - For `r, d >= 3`, `H` has (T) and no locally indicable or elementary amenable
-      quotient, so attempt 8's route does not reach it.
-    - Kun--Thom Theorem A's hypotheses hold for the pair `EL_r(Z[x]) <= G_0`.
-      The preimage `D_H` of `H` in the double is torsion-free and nonsofic, and is a
-      graph of groups with Strong Atiyah vertex groups over infinite (T) edges
-      ([[char-zero-kun-thom-double-reduces-nonsofic-atiyah-to-edge]]).
-    - So Strong Atiyah for this one group decides between this root failing and
-      `nonsofic-group-satisfying-strong-atiyah`. The crux
-      `strong-atiyah-kazhdan-edge-amalgam-permanence` gives the second.
+10. **Reach the master host by permanence from proved classes (2026-09-17).**
+    *Dies* at a simple Kazhdan atom, by
+    `strong-atiyah-permanence-closure-omits-simple-kazhdan-groups`.
+    - Let `S` be a finitely presented simple FA group.  No group containing
+      `S` is built, from groups without `S`, by any combination of:
+      - subgroups;
+      - directed colimits;
+      - arbitrary extensions;
+      - graphs of groups;
+      - subdirect products;
+      - marked limits.
+    - The Titz Mite--Witzel simple lattices are such atoms.  They are not
+      amenable, residually finite or locally indicable, so no proved Strong
+      Atiyah class contains them, and `E` contains them.
+    - This closes the central-extension loophole of
+      `atiyah-permanence-closure-kazhdan-subgroups-are-rf`: the Deligne
+      lattice lies in the closure of the residually finite groups under
+      extensions.  It also rules out granting every open permanence theorem
+      at once, and changing the universal host.
+    - Any proof of attempt 7 must prove Strong Atiyah directly for a group
+      containing a torsion-free simple Kazhdan lattice.  The necessary gate is
+      `titz-witzel-simple-lattices-satisfy-strong-atiyah`.

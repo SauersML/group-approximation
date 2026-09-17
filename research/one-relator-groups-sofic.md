@@ -106,6 +106,28 @@ claim [[nonsofic-one-relator-group]].
    homological and ring finiteness are not finite symmetric-group
    approximation.  Treating them as a bridge would be exactly the error this
    graph exists to prevent.
+7. **Locally finite alphabet along the Magnus shift.**  *Closes a class and
+   gives a one-directional reduction; dies exactly at singular extremes.*
+   [[nonsingular-magnus-extremes-separable-piece-sofic]]:
+   - **Hypotheses.** Both extreme letters of the Magnus rewriting have
+     nonzero exponent sum, and the piece `B_0` is residually finite with
+     `F_-` and `F_+` separable.
+   - **Conclusion.** `G` is sofic.
+   - **Method.** A finite quotient of the piece is extended letter by letter
+     along the shift, by solving nonsingular equations in finite overgroups
+     (Gerstenhaber--Rothaus). The target is residually-locally-finite-by-`Z`,
+     so it is neither residually finite nor amenable.
+   - **Coset action.** It is sofic through an enlarged stabilizer that is
+     detected at coordinate `0`.
+   - **Free pieces.** Free Magnus pieces with nonsingular extremes are
+     therefore sofic.
+
+   The method fails at the first equation with zero exponent sum. For
+   Baumslag--Gersten the forward step `X^(-1) u X = u^2` is unsolvable
+   whenever `u` has even order. More strongly, every shift representation of
+   BG over a periodic alphabet is trivial on `a`: a descending-prime argument
+   rules it out. So a singular extreme needs letters of infinite order, and
+   those give up the local finiteness that the coset-action step uses.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

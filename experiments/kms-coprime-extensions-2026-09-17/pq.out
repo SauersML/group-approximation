@@ -1,0 +1,19 @@
+p=3 class<=1 |Q|=p^3 nilclass=1 w order 1
+p=3 class<=2 |Q|=p^6 nilclass=2 w order 1
+p=3 class<=3 |Q|=p^9 nilclass=3 w order 1
+p=3 class<=4 |Q|=p^13 nilclass=4 w order 1
+p=3 class<=5 |Q|=p^19 nilclass=5 w order 1
+p=3 class<=6 |Q|=p^31 nilclass=6 w order 3
+p=5 class<=1 |Q|=p^3 nilclass=1 w order 1
+p=5 class<=2 |Q|=p^6 nilclass=2 w order 1
+p=5 class<=3 |Q|=p^9 nilclass=3 w order 1
+p=5 class<=4 |Q|=p^13 nilclass=4 w order 1
+p=5 class<=5 |Q|=p^19 nilclass=5 w order 1
+p=5 class<=6 |Q|=p^26 nilclass=6 w order 1
+p=5 class<=7 |Q|=p^38 nilclass=7 w order 1
+p=5 class<=8 |Q|=p^55 nilclass=8 w order 1
+p=5 class<=9 |Q|=p^81 nilclass=9 w order 1
+p=5 class<=10 |Q|=p^122 nilclass=10 w order 1
+p=5 class<=11 |Q|=p^187 nilclass=11 w order 1
+p=5 class<=12 |Q|=p^286 nilclass=12 w order 1
+exit 0

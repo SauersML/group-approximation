@@ -44,3 +44,21 @@ the Kaplansky zero-divisor conjecture."
    reach the Kazhdan generalized examples, so it is only a candidate for the
    original Rips--Segev presentations, which are not known to have property
    (T).
+3. **Zero divisor on the encoded witness (killed; `rips-segev-witness-pairs-carry-no-zero-divisors`).**
+   The natural candidate supports are Steenbock's non-unique-product pair
+   `(A, {1,a,b,ab})`.
+   - Over `F_2` they carry no zero-divisor pair in any torsion-free group,
+     because `beta = (1+a)(1+b)` is a product of non-zero-divisors.
+   - Over any field they carry none once one interior `a`-line index is free
+     of the Step 1--2 gluings, assuming exact encoding (EE).
+   - A counterexample in `k[G(Gamma)]` must use other supports, saturate every
+     clean square with extra coincidences, or break (EE).
+4. **Every support inside the witness (killed; `rips-segev-witness-supports-carry-no-zero-divisors`).**
+   For small-cancellation graphs (`Gr'_*(1/8)`) with at most one pair of
+   distinguished positions at distance one, this includes Steenbock's explicit
+   families.
+   - (EE) holds: a hanging `v b` is never a vertex of `Gamma`, by a van Kampen
+     argument.
+   - Every pair with `supp alpha` inside `A` and `supp beta` inside
+     `{1,a,b,ab}` has `alpha beta != 0`, over any field.
+   - A counterexample must put `alpha` or `beta` outside the witness.

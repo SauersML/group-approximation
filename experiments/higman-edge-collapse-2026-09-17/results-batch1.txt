@@ -1,0 +1,12 @@
+== class2check
+class2check : index 1
+== class3
+class3 : FAIL(limit 2000000)
+== ac2
+ac2 : index 1
+== ac_c2
+ac_c2 : index 1
+== a2c2
+a2c2 : index 1
+== metab
+metab : FAIL(limit 2000000)

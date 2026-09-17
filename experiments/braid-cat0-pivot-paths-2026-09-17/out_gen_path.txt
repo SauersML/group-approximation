@@ -1,0 +1,3 @@
+n 8 one-pivot {12}: 1.041226 pi | two-face path: 1.031205 pi d_B(P,Q) 0.769947 pi
+n 10 one-pivot {12}: 1.026938 pi | two-face path: 1.022491 pi d_B(P,Q) 0.795167 pi
+n 12 one-pivot {12}: 1.019385 pi | two-face path: 1.016972 pi d_B(P,Q) 0.813571 pi

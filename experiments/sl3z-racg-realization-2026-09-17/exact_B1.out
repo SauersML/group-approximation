@@ -1,0 +1,15 @@
+B 1 antiflags 117 graph robertson
+root orbits 10
+root ((0, 0, 1), (-1, -1, 1), 1) cumulative nodes 108 solutions 0 0.0s
+root ((0, 0, 1), (-1, 0, 1), 1) cumulative nodes 686 solutions 0 0.1s
+root ((0, 0, 1), (0, 0, 1), 1) cumulative nodes 1005 solutions 0 0.1s
+root ((0, 1, -1), (-1, 0, -1), 1) cumulative nodes 1461 solutions 0 0.1s
+root ((0, 1, -1), (-1, 1, -1), 2) cumulative nodes 1575 solutions 0 0.1s
+root ((0, 1, -1), (0, 0, -1), 1) cumulative nodes 1909 solutions 0 0.2s
+root ((0, 1, -1), (0, 1, -1), 2) cumulative nodes 2002 solutions 0 0.2s
+root ((1, -1, -1), (-1, -1, -1), 1) cumulative nodes 2062 solutions 0 0.2s
+root ((1, -1, -1), (0, -1, -1), 2) cumulative nodes 2218 solutions 0 0.2s
+root ((1, -1, -1), (0, -1, 0), 1) cumulative nodes 2366 solutions 0 0.2s
+nodes 2366 solutions 0 max depth reached 6 depth profile [0, 10, 103, 454, 880, 433, 486, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] time 0.2s
+
+[exited with code 0]

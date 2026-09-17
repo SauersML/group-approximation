@@ -1,0 +1,29 @@
+== t1
+abelian ac: 1
+class2 ac: 1
+== run-class2check
+class2check : index 1
+== run-ac2
+ac2 : index 1
+== run-ac_c2
+ac_c2 : index 1
+== run-a2c2
+a2c2 : index 1
+== c2
+# 4 canonical cyclically reduced words of length <= 2
+Syntax warning: Unbound global variable in c2.g:48
+  res := CALL_WITH_CATCH(function() return Index(G, Subgroup(G, [G.1]) : max :\
+= lim, silent := true); end, []);
+                                                 ^
+Syntax warning: Unbound global variable in c2.g:48
+  res := CALL_WITH_CATCH(function() return Index(G, Subgroup(G, [G.1]) : max :\
+= lim, silent := true); end, []);
+                                                             ^
+Syntax warning: Unbound global variable in c2.g:48
+  res := CALL_WITH_CATCH(function() return Index(G, Subgroup(G, [G.1]) : max :\
+= lim, silent := true); end, []);
+                                                                 ^
+c^-1 : index(<a>) = 1
+c^-2 : index(<a>) = 1
+c^-1*a^-1 : index(<a>) = 1
+c^-1*a : index(<a>) = 1

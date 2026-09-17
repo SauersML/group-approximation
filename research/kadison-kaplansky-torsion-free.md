@@ -169,3 +169,29 @@ group `G * Z`.
     - the ultralimit trace on the congruence completion is just the reduced trace;
     - a Kazhdan gap isolates only the trivial representation.
     The limits compute candidate traces but cannot certify integrality or its failure.
+- **Marked-group compactness: an arithmetic form and a new class (2026-09-17, lane
+  `kk-marked-compactness`).**
+  - *Topology:* `kk-witness-counterexample-locus-is-marked-closed`. For a fixed spectral witness
+    `ω = (a, c, ε, δ)`, the marked groups whose reduced algebra has the gapped projection are a
+    closed `Π^0_1` set, because a gap is a norm inequality and reduced norms are suprema of
+    finite-radius moments. So the KK locus is a `G_δ`: generic limits and fast direct limits
+    inherit KK, and finitely presented covers do not inherit counterexamples. This is the reverse
+    of the soficity picture.
+  - *Strict reformulation (both directions):* the root ⇔ (ST) "a gapped witness forces a torsion
+    element of length and order `≤ N_ω`" (compactness). The root is a `Π^0_2` sentence, and a
+    counterexample, if any, can be taken with low word problem. `d = 1` is proved with
+    `N_ω ≤ πL/ε` and checked numerically.
+  - *New class:* `kazhdan-torsion-free-tarski-monster-satisfies-kk`. Interleaving the witness
+    radii into the relator lengths of the Olshanskii--Osin--Sapir construction gives torsion-free
+    Tarski monster quotients of every torsion-free non-elementary hyperbolic group with only
+    trivial projections. Over `Sp(n,1)` lattices these are Kazhdan, not hyperbolic, not linear, and
+    not covered by any known assembly theorem.
+  - *Matrix form and free products:* `kazhdan-tarski-monster-trace-conjecture-free-products-kk`.
+    With matrix witnesses and a non-integer trace window, the trace-conjecture locus is also a
+    `G_δ` closed under fast limits. So the interleaved monsters `Q` have `τ_*(K_0(C*_r Q)) ⊆ Z`, and
+    `Q * H` satisfies the root for every torsion-free `H` with integer traces. `Q * Z` is not
+    Kazhdan, not a-T-menable, not hyperbolic and not linear.
+  - *Where it stops:* isolated points of the torsion-free locus, e.g. `Γ(3)` (Margulis normal
+    subgroup theorem), get nothing. The radius `r(N, ω)` has no uniform bound, so arbitrary
+    lacunary hyperbolic limits are not covered. The missing input is a bound
+    `r(N, ω) ≤ R(d, δ, ω)` for torsion-free `δ`-hyperbolic groups.

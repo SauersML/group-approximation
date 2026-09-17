@@ -54,3 +54,15 @@ the Toms--Winter conjecture.  It remains open in this generality.
   two, a rank gap refuting Problem XXIII, no pureness, and a trace simplex
   outside condition (C). See
   `research/artifacts/stw18-k1-route-constraint-map-2026-09-11.md`.
+- **Dimension threshold for Bauer witnesses (2026-09-17, proposed established).**
+  - `rsh-multiplicity-count-sharp-rigidity-threshold`: a Bauer strict-comparison
+    counterexample with rigidity level `ε_0` has, in every unital RSH subalgebra, a block with
+    `ε_0 n < √(d+2)`. The source is von Neumann–Wigner codimension `k² − 1` plus relative general
+    position.
+  - A unital simple exact Bauer strict-comparison algebra with unital RSH subalgebras of arbitrarily small `√(d+2)/n` has a divisible unit
+    and is pure. For ASH limits it is `Z`-stable.
+  - At `d = k² − 1` the only certificates are `n`-primary torsion classes of projective bundles.
+    They vanish on `End(E)` blocks, and the bound is sharp on the Moore-space `SO(3)`-bundle and
+    on the Pauli tower. Tensored with `M_t`, the Pauli tower is `1/t`-rigid at the threshold, so
+    the inequality is attained at every level `1/t`.
+  - Linear-growth designs die at the first finite stage.

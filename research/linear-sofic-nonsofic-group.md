@@ -44,3 +44,18 @@ was known.  Now the candidates are the known nonsofic groups:
   - Property (T) forces no rank rounding over `C`
     ([[kazhdan-rank-rounding-fails-over-every-field]]), so such models are not ruled
     out.
+- **Rank-sofic lamp actions (2026-09-17, sw-068).**
+  - For the Kun--Thom coset wreath over any field of characteristic other than two, a rank
+    model of `W` is the same thing as a `G`-invariant measure on `2^(G/Gamma)` realized by
+    commuting equivariant idempotents, with rank as the measure. This defines the class of
+    rank-realized actions.
+  - The rank radical of `W` equals `K_even` iff every rank-realized action of `G` has a
+    `G`-invariant `Gamma`-fixed algebra, the rank row of Kun--Thom Theorem C. Otherwise an
+    explicit lamp quotient `W/N_mu` is linear sofic and nonsofic
+    ([[kt-wreath-rank-radical-is-rank-fixed-algebra-rigidity]]).
+  - `W` is linear sofic iff the generalized Bernoulli action is rank-sofic: lamp measures are
+    closed under averaging with `delta_0`, XOR convolution and weak-* limits.
+  - Over `C` the witness is [[kt-pair-c-rank-sofic-action-moves-fixed-algebra]], routed to the
+    defect node by [[c-rank-row-defect-via-rank-sofic-lamp-action]].
+  - Sofic and profinite actions never witness, so a witness is a nonsofic, non-profinite
+    rank-realized action.

@@ -69,7 +69,16 @@ equivalent to `H4` having some nontrivial sofic quotient
    - An abelian `A` is impossible: `[a,c] = 1` together with `b^a = b^2` and
      `c^b = c^2` forces `c = 1` (Steps 1–6 of
      `almost-commuting-higman-collapse-proof` with `delta = eta = 0`).
-   - Nilpotent and metabelian `A` were not tested.
+   - **Virtually nilpotent `A`, or virtually solvable `A` of finite Hirsch length, is impossible, and
+     so is any tree splitting of a nontrivial quotient over such edge groups (sw-053, 2026-09-17).** See
+     `nilpotent-edge-images-collapse-higman-quotients`. One conjugation by `b^(2^K)` scales the
+     a-conjugates `c^(a^k)`, `0 <= k <= K`, by pairwise distinct exponents. Their Mal'cev logarithms
+     (or derived-series images) are then eigenvectors with distinct eigenvalues, so `K + 1` is at most
+     the Hirsch length. A Helly-type tree gate puts an opposite pair into an edge stabilizer of any
+     tree action without a global fixed point.
+   - Amenable `A` of infinite Hirsch length (e.g. infinite-rank metabelian, as for the sofic
+     `Z wr Z` variation of Kassabov--Kuperberg--Riley) remains open. GAP could not decide the
+     metabelian-type relators at `2*10^6` cosets.
 6. **Amenable quotients.** *Open.* Helfgott--Juschenko: "It is not known whether
    it has amenable quotients" (l.261–262). Item 2 excludes elementary amenable
    ones.

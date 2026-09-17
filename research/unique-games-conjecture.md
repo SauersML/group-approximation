@@ -14,6 +14,8 @@ artifacts:
   - research/artifacts/unique-games-affine-test-soundness-2026-09-07.md
   - research/artifacts/ugc-state-of-the-art-2026-09-12.md
   - research/artifacts/ugc-galois-games-2026-09-12.md
+  - experiments/grassmann-can-holonomy-2026-09-17/can_holonomy.py
+  - experiments/grassmann-can-holonomy-2026-09-17/output.txt
 ---
 
 **OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an
@@ -76,18 +78,6 @@ it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
-- **Door P1 of the affine-view collapse, closed for the DKKMS family
-  (swarm-0917-w4, 2026-09-17).** `grassmann-composed-2to2-coarsenings-are-satisfiable`:
-  on every folded Dinur--Khot--Kindler--Minzer--Safra instance, and for every
-  agreement test on its vertex set, the coarsening `Can` has value 1, satisfied
-  by one gauge labelling. The labelling exists because folding offsets are
-  coboundaries against Lemma 4.1 representatives. So every affine-view unique
-  verifier composed on the 2-to-2 instances has `s >= 2c - 1`. Only these routes
-  survive:
-  - non-affine views (P2, `Can_part`);
-  - outer games whose constraints link two subspaces of one label space;
-  - verifiers without oblivious completeness.
-
 * **Direct affine soundness of the published folded noise test.**
   `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
   source family with vanishing value and folded output labelings with
@@ -138,6 +128,24 @@ it is supplied, and the exponential pairing-support obstruction persists.
   hardness is therefore a proof that `Can` is hard. No Grassmann expansion
   theorem can enter, and crossing the `1/2` wall needs views that are not
   affine in the outer label. Open: is `Can` of hard 2-to-2 instances hard?
+  *Dead end (sw-034, decisive computation):* "restriction coarsenings are
+  trivially satisfiable, so every affine-view verifier over folded 3LIN-derived
+  inputs is capped at `s >= 2c - 1`". The cap would be tight: mixing the split
+  (`c = 1/2`, `s ~ 0`) with trivial exact tests attains `s ~ 2c - 1`. It dies at
+  folding. Without right-hand sides, `Can` has only identity constraints and
+  value 1. With folding `f_u(s + e_u) = f_u(s) + b_u`, a chain of exact triples
+  can shift a point by equation vectors. Around a cycle, `Can` then reads the RHS
+  parity of an equation multiset summing to 0: the Hadamard restriction encoding
+  of an odd 3LIN dependency. For the maximal one-bit restriction verifier
+  (`experiments/grassmann-can-holonomy-2026-09-17/can_holonomy.py`):
+  * no consistent instance has a parity conflict;
+  * almost every inconsistent instance does (1388 of 1404 over n = 6..20);
+  * every conflict is certified as an odd dependency.
+  With one-variable overlaps `Can` is a matching of value 1. This rules out
+  proving the cap from `Can` structure alone. `Can` on these inputs is a genuine
+  Max-2Lin system over the RHS. So the open question is a gap question, whether
+  that Hadamard restriction system is hard at soundness near 0, not a
+  triviality. The toy has label dimension 1, not the KMS parameters.
 * **Bounded-degree views (Reed--Muller, short-code, quadratic encodings).**
   **Candidate class-killing obstruction**: `low-degree-view-unique-verifiers-collapse`
   (OPEN after refereeing on 2026-09-17). Its formal items hold, but the class it

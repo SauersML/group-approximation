@@ -1,0 +1,3 @@
+n=3: 1080 stabilizer states, 63 Paulis
+restart 0: ratio 0.482313 beta {'IXX': -0.291407, 'IYZ': -0.086693, 'IZY': -0.043589, 'YXX': 2.3e-05, 'ZIX': 0.046356, 'ZXY': -0.240382, 'ZZI': 0.29155}
+restart 1: ratio 0.707107 beta {'YZY': 0.368176, 'YZZ': -0.368176, 'ZZX': -0.263648}

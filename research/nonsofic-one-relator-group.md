@@ -17,6 +17,7 @@ distinct_from:
   one-relator-fox-magnus-descent-to-derived-linton-radical: that proves every element outside `R'` survives in a concrete sofic quotient and `E/R'` is residually finite; this asks for a witness whose obstruction must evade all those first-order quotients.
   magnus-staggered-chain-sofic: that is the positive amalgamation theorem in the Magnus picture; this is the negative existence claim. Attempt 6 here proposes breaking exactly that chain, so they meet, but as opposite answers.
   boone-base-group-two-generator-one-relator: that identifies a specific base group of the Boone tower as one-relator (on three generators) and is established; this asks for a one-relator group with a nonsoficity property that base group does not have and cannot acquire from the tower, since the tower adds relators.
+  nonsofic-hnn-sofic-radical-dichotomy: that lists the only two shapes a nonsofic HNN extension can take (sofic radical meeting the base, or free radical with coset inseparability); this asks for an actual one-relator group realizing one of them.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
   - research/artifacts/approximation-cs-root-audit-2026-08-31.md
@@ -126,3 +127,23 @@ generated subgroup surjecting onto `Z`.
    `k = 1`, `R = R'` is perfect, so every solvable quotient of the radical is
    trivial.  Any negative witness must therefore use genuinely nonabelian
    second-order information and its coupling to the free shell action.
+8. **Local fold by random piece labeling (inverter biography).**  *Reduction,
+   one direction.*  [[random-labeling-hnn-soficity-criterion]] shows that an HNN
+   extension is sofic once (I) some approximate models are free on the base, and
+   (II) some possibly different models carry partitions separating the
+   associated subgroups from base elements outside them. The stable letter is
+   labelled by independent random permutations per piece, and freeness is
+   counted by lazy revelation.
+
+   So a witness splitting as `HNN(B_0; F_- -> F_+)` with sofic `B_0` falls into
+   one of two cases ([[nonsofic-hnn-sofic-radical-dichotomy]]):
+   * **(i)** the sofic radical meets `B_0`;
+   * **(ii)** the sofic radical is a nontrivial free group acting freely on the
+     Bass--Serre tree, and some `h` in `B_0 \ F_∓` is asymptotically
+     coset-inseparable: at fine scales every partitioned permutation model
+     separates it on a vanishing fraction of points. This implies amenable
+     inseparability, and `G/Rad_sof` is a nonamenable sofic group containing
+     `B_0`.
+
+   A construction must pick one of these shapes. The step that is not proved
+   is whether soficity of `G` implies (II).

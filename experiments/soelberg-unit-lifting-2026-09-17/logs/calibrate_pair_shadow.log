@@ -1,0 +1,44 @@
+trivial unit A_1: violated equations 0 (perturbed: 3)
+trivial unit A_2: violated equations 0 (perturbed: 3)
+trivial unit A_3: violated equations 0 (perturbed: 3)
+trivial unit A_4: violated equations 0 (perturbed: 3)
+trivial unit A_5: violated equations 0 (perturbed: 3)
+trivial unit A_6: violated equations 0 (perturbed: 3)
+trivial unit A_7: violated equations 0 (perturbed: 3)
+trivial unit A_9: violated equations 0 (perturbed: 3)
+trivial unit A_12: violated equations 0 (perturbed: 3)
+trivial unit A_15: violated equations 0 (perturbed: 3)
+trivial unit A_17: violated equations 0 (perturbed: 3)
+trivial unit A_18: violated equations 0 (perturbed: 3)
+trivial unit A_19: violated equations 0 (perturbed: 3)
+trivial unit A_20: violated equations 0 (perturbed: 3)
+trivial unit A_21: violated equations 0 (perturbed: 3)
+trivial unit A_22: violated equations 0 (perturbed: 3)
+trivial unit A_25: violated equations 0 (perturbed: 3)
+trivial unit A_26: violated equations 0 (perturbed: 3)
+trivial unit A_27: violated equations 0 (perturbed: 3)
+trivial unit A_28: violated equations 0 (perturbed: 3)
+trivial unit A_29: violated equations 0 (perturbed: 3)
+calibration: 21 of 21 trivial units satisfy their shadow case exactly and fail when perturbed
+msolve calibration A_1: correct case solvable True ([0, [1, [[[1, 1], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_2: correct case solvable True ([0, [1, [[[0, 0], [1, 1], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_3: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [1, 1], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_4: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [-1, -...), wrong monomial inconsistent True
+msolve calibration A_5: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_6: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_7: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_9: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_12: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_15: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_17: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_18: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_19: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_20: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_21: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_22: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_25: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_26: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_27: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_28: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve calibration A_29: correct case solvable True ([0, [1, [[[0, 0], [0, 0], [0, 0], [0, 0]...), wrong monomial inconsistent True
+msolve pipeline calibration: 21 of 21 trivial units behave as expected

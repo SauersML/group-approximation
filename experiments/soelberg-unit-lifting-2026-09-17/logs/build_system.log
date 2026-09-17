@@ -1,0 +1,3 @@
+equations: 209
+cases total: 406  SAT-viable cases: 11
+viable (1-based): [(1, 2), (1, 3), (1, 4), (1, 5), (1, 7), (2, 3), (2, 4), (2, 5), (2, 9), (3, 4), (5, 6)]

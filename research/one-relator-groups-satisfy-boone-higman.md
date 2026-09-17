@@ -108,3 +108,35 @@ theorem cited here covers it.
    - Magnus steps over non-free bases, such as Baumslag--Gersten;
    - ascending steps whose endomorphism is not realized as a partial-conjugation
      mapping torus in the sense of that claim.
+7. **Locally finite geometric hosts (2026-09-17).** *Dies* for every
+   one-relator group containing the Baumslag--Gersten group.
+   `bg-pattern-groups-act-on-no-locally-finite-cat0-complex`: whenever
+   `b a b^-1 = a^2` and `t a t^-1 = b`, the element `a` acts trivially in every
+   action with finite `<a>`-orbits. The exact step is Step D of
+   `bg-pattern-groups-locally-finite-host-obstruction-proof`: the closure of `<a>`
+   is compact in `Sym(S)`, and the smallest-prime argument kills it.
+   - Conjugacy of `a` with `a^2` forces translation length 0, so `a` is elliptic
+     on any locally finite tree or locally finite CAT(0) complex with finitely
+     many shapes, and it then has finite orbits.
+   - So Bux--Llosa Isenrich--Wu Theorems B, 10.5 and 11.1, lattices in products
+     of trees, and locally finite cube complexes cannot host `BG`, whatever the
+     vertex groups. This closes the question left open in
+     `baumslag-gersten-base-is-elliptic-in-every-tree-action`.
+   - Any host for the Baumslag--Gersten step must give `a` an infinite orbit
+     on the permuted set, i.e. a non-compact cyclic closure.
+8. **Assembling an envelope from the known permanence calculus (2026-09-17).**
+   *Dies* for every one-relator group containing a nontrivial BG cycle, e.g. `BG`.
+   See `bg-cycle-triviality-is-closed-under-the-pbh-calculus`.
+   - The quasi-identities "`a_(i+1) a_i a_(i+1)^-1 = a_i^2` around a cycle closed by
+     a conjugation imply `a_0 = 1`" hold in:
+     - residually finite, linear, hyperbolic, proper CAT(0) and PL interval seeds;
+     - free products, retract amalgams, graph products, restricted wreath products;
+     - periodic extensions;
+     - partial-conjugation mapping tori (T) and RF relative holomorphs.
+   - `BG` violates them. The exact failing step is the HNN extension of
+     `BS(1,2) ∈ 𝒫` along `<a> → <b>`, i.e. the Magnus-subgroup HNN step itself.
+     So `bh-embeddability-survives-magnus-subgroup-hnn` cannot be derived from
+     those operations.
+   - A proof must use a seed that already carries a BG cycle (Thompson-like,
+     Leavitt or highly transitive actors, whose status is open), or a
+     permutation-realized HNN step along which `a` has infinite orbits.
