@@ -1,0 +1,342 @@
+0 {"a": "bbc", "b": "bbcb", "c": "cbba"} m=2 gates+2 gates-3 polys=42000 infeasible-exact
+stats m=2 [0,1) {"infeasible-exact": 1} time 94.2
+12 {"a": "abc", "b": "cbbb", "c": "babc"} m=2 gates+3 gates-2 polys=59891 infeasible-exact
+stats m=2 [12,13) {"infeasible-exact": 1} time 137.0
+14 {"a": "bbc", "b": "bbcb", "c": "cbca"} m=2 gates+2 gates-3 polys=38432 infeasible-exact
+stats m=2 [14,15) {"infeasible-exact": 1} time 59.0
+15 {"a": "bbc", "b": "bbcb", "c": "ccba"} m=2 gates+2 gates-3 polys=92884 infeasible-exact
+stats m=2 [15,16) {"infeasible-exact": 1} time 499.7
+48 {"a": "bbc", "b": "ccca", "c": "bbcb"} m=2 gates+2 gates-3 polys=88008 infeasible-exact
+stats m=2 [48,49) {"infeasible-exact": 1} time 335.9
+60 {"a": "bbc", "b": "cbca", "c": "bbcb"} m=2 gates+2 gates-3 polys=42871 infeasible-exact
+stats m=2 [60,61) {"infeasible-exact": 1} time 92.2
+61 {"a": "bbc", "b": "ccba", "c": "bbcb"} m=2 gates+2 gates-3 polys=86857 NEGATIVE -1.166667
+stats m=2 [61,62) {"NEGATIVE": 1} time 21.3
+84 {"a": "abb", "b": "cabb", "c": "bccc"} m=2 gates+3 gates-2 polys=40524 infeasible-exact
+stats m=2 [84,85) {"infeasible-exact": 1} time 64.4
+87 {"a": "bbc", "b": "bbcb", "c": "ccca"} m=2 gates+2 gates-3 polys=93698 infeasible-exact
+stats m=2 [87,88) {"infeasible-exact": 1} time 387.5
+108 {"a": "abb", "b": "bccc", "c": "cabb"} m=2 gates+3 gates-2 polys=54345 NEGATIVE -1.342466
+stats m=2 [108,109) {"NEGATIVE": 1} time 23.4
+111 {"a": "bbc", "b": "cbba", "c": "bbcb"} m=2 gates+2 gates-3 polys=49402 infeasible-exact
+stats m=2 [111,112) {"infeasible-exact": 1} time 118.7
+132 {"a": "abc", "b": "babc", "c": "cbbb"} m=2 gates+3 gates-2 polys=39811 infeasible-exact
+stats m=2 [132,133) {"infeasible-exact": 1} time 107.1
+144 {"a": "bcb", "b": "aabc", "c": "bcba"} m=2 gates+2 gates-3 polys=16656 infeasible-exact
+stats m=2 [144,145) {"infeasible-exact": 1} time 18.9
+156 {"a": "abc", "b": "bbab", "c": "bba"} m=2 gates+2 gates-3 polys=27079 infeasible-exact
+stats m=2 [156,157) {"infeasible-exact": 1} time 27.4
+157 {"a": "abc", "b": "bcab", "c": "abca"} m=2 gates+2 gates-3 polys=13766 infeasible-exact
+stats m=2 [157,158) {"infeasible-exact": 1} time 16.9
+180 {"a": "bac", "b": "acba", "c": "bacb"} m=2 gates+2 gates-3 polys=7207 infeasible-exact
+stats m=2 [180,181) {"infeasible-exact": 1} time 5.6
+193 {"a": "abb", "b": "cbaa", "c": "babb"} m=2 gates+3 gates-2 polys=69150 infeasible-exact
+stats m=2 [193,194) {"infeasible-exact": 1} time 168.0
+198 {"a": "bbc", "b": "aaab", "c": "bbca"} m=2 gates+2 gates-3 polys=50752 NEGATIVE -1.500000
+stats m=2 [198,199) {"NEGATIVE": 1} time 33.4
+228 {"a": "aab", "b": "aabc", "c": "ccca"} m=2 gates+2 gates-3 polys=38909 NEGATIVE -1.434783
+stats m=2 [228,229) {"NEGATIVE": 1} time 10.0
+240 {"a": "ab", "b": "bbbc", "c": "aba"} m=2 gates+2 gates-3 polys=19522 infeasible-exact
+stats m=2 [240,241) {"infeasible-exact": 1} time 27.3
+244 {"a": "aab", "b": "babc", "c": "aaba"} m=2 gates+2 gates-3 polys=46261 infeasible-exact
+stats m=2 [244,245) {"infeasible-exact": 1} time 119.1
+245 {"a": "aab", "b": "bbac", "c": "aaba"} m=2 gates+2 gates-3 polys=70879 infeasible-exact
+stats m=2 [245,246) {"infeasible-exact": 1} time 274.3
+248 {"a": "abb", "b": "bcba", "c": "cba"} m=2 gates+3 gates-2 polys=25728 infeasible-exact
+stats m=2 [248,249) {"infeasible-exact": 1} time 55.9
+250 {"a": "abc", "b": "bcba", "c": "bcb"} m=2 gates+2 gates-3 polys=8282 infeasible-exact
+stats m=2 [250,251) {"infeasible-exact": 1} time 11.6
+300 {"a": "abb", "b": "caaa", "c": "babb"} m=2 gates+3 gates-2 polys=62762 NEGATIVE -2.000000
+stats m=2 [300,301) {"NEGATIVE": 1} time 10.4
+312 {"a": "bac", "b": "aaab", "c": "baca"} m=2 gates+2 gates-3 polys=35362 infeasible-exact
+stats m=2 [312,313) {"infeasible-exact": 1} time 73.5
+324 {"a": "ab", "b": "cab", "c": "bccc"} m=2 gates+3 gates-2 polys=13682 infeasible-exact
+stats m=2 [324,325) {"infeasible-exact": 1} time 11.9
+327 {"a": "bc", "b": "bcb", "c": "ccca"} m=2 gates+2 gates-3 polys=23284 infeasible-exact
+stats m=2 [327,328) {"infeasible-exact": 1} time 23.3
+332 {"a": "aab", "b": "cca", "c": "ccac"} m=2 gates+2 gates-3 polys=54941 infeasible-exact
+stats m=2 [332,333) {"infeasible-exact": 1} time 77.0
+333 {"a": "aab", "b": "bbca", "c": "bbc"} m=2 gates+2 gates-3 polys=18038 infeasible-float
+stats m=2 [333,334) {"infeasible-float": 1} time 10.2
+336 {"a": "aba", "b": "abac", "c": "ccab"} m=2 gates+2 gates-3 polys=22959 infeasible-exact
+stats m=2 [336,337) {"infeasible-exact": 1} time 37.8
+384 {"a": "bbc", "b": "cca", "c": "bbcb"} m=2 gates+2 gates-3 polys=47685 infeasible-exact
+stats m=2 [384,385) {"infeasible-exact": 1} time 89.8
+396 {"a": "abc", "b": "cabc", "c": "bab"} m=2 gates+3 gates-2 polys=16402 infeasible-exact
+stats m=2 [396,397) {"infeasible-exact": 1} time 20.9
+408 {"a": "bc", "b": "cbc", "c": "accb"} m=2 gates+3 gates-2 polys=16574 infeasible-exact
+stats m=2 [408,409) {"infeasible-exact": 1} time 13.1
+412 {"a": "aab", "b": "baac", "c": "aaba"} m=2 gates+2 gates-3 polys=41984 infeasible-float
+stats m=2 [412,413) {"infeasible-float": 1} time 75.8
+414 {"a": "abb", "b": "bcc", "c": "cabb"} m=2 gates+3 gates-2 polys=33140 NEGATIVE -0.800000
+stats m=2 [414,415) {"NEGATIVE": 1} time 8.1
+444 {"a": "bc", "b": "cbc", "c": "abbb"} m=2 gates+3 gates-2 polys=25848 infeasible-exact
+stats m=2 [444,445) {"infeasible-exact": 1} time 28.4
+456 {"a": "ab", "b": "abc", "c": "ccca"} m=2 gates+2 gates-3 polys=15473 infeasible-exact
+stats m=2 [456,457) {"infeasible-exact": 1} time 19.6
+457 {"a": "ab", "b": "bcab", "c": "cbc"} m=2 gates+3 gates-2 polys=7501 infeasible-exact
+stats m=2 [457,458) {"infeasible-exact": 1} time 4.5
+464 {"a": "aab", "b": "bbc", "c": "bbca"} m=2 gates+2 gates-3 polys=19443 NEGATIVE -0.946058
+stats m=2 [464,465) {"NEGATIVE": 1} time 1.8
+468 {"a": "aba", "b": "bac", "c": "cbac"} m=2 gates+3 gates-2 polys=7121 infeasible-exact
+stats m=2 [468,469) {"infeasible-exact": 1} time 4.9
+504 {"a": "ab", "b": "cbc", "c": "bcab"} m=2 gates+3 gates-2 polys=1943 infeasible-exact
+stats m=2 [504,505) {"infeasible-exact": 1} time 1.0
+505 {"a": "ab", "b": "cbba", "c": "bab"} m=2 gates+3 gates-2 polys=19864 infeasible-exact
+stats m=2 [505,506) {"infeasible-exact": 1} time 25.2
+510 {"a": "bc", "b": "abc", "c": "cbca"} m=2 gates+3 gates-2 polys=12674 infeasible-exact
+stats m=2 [510,511) {"infeasible-exact": 1} time 10.4
+511 {"a": "bc", "b": "bcb", "c": "cbba"} m=2 gates+2 gates-3 polys=12074 infeasible-exact
+stats m=2 [511,512) {"infeasible-exact": 1} time 6.9
+512 {"a": "bc", "b": "cab", "c": "bcca"} m=2 gates+2 gates-3 polys=3976 infeasible-exact
+stats m=2 [512,513) {"infeasible-exact": 1} time 1.7
+526 {"a": "abb", "b": "cba", "c": "bcba"} m=2 gates+3 gates-2 polys=23616 infeasible-exact
+stats m=2 [526,527) {"infeasible-exact": 1} time 37.5
+532 {"a": "bab", "b": "abc", "c": "cbab"} m=2 gates+3 gates-2 polys=3083 infeasible-exact
+stats m=2 [532,533) {"infeasible-exact": 1} time 1.6
+588 {"a": "abb", "b": "caa", "c": "bcaa"} m=2 gates+3 gates-2 polys=31003 infeasible-exact
+stats m=2 [588,589) {"infeasible-exact": 1} time 39.6
+589 {"a": "abb", "b": "cba", "c": "babb"} m=2 gates+3 gates-2 polys=24152 infeasible-exact
+stats m=2 [589,590) {"infeasible-exact": 1} time 36.9
+612 {"a": "ab", "b": "bbc", "c": "bbca"} m=2 gates+2 gates-3 polys=5905 infeasible-exact
+stats m=2 [612,613) {"infeasible-exact": 1} time 2.6
+613 {"a": "ab", "b": "babc", "c": "cab"} m=2 gates+3 gates-2 polys=11861 infeasible-exact
+stats m=2 [613,614) {"infeasible-exact": 1} time 8.2
+614 {"a": "ab", "b": "bcba", "c": "cba"} m=2 gates+3 gates-2 polys=11305 infeasible-exact
+stats m=2 [614,615) {"infeasible-exact": 1} time 7.4
+624 {"a": "aab", "b": "bac", "c": "baca"} m=2 gates+2 gates-3 polys=28539 infeasible-exact
+stats m=2 [624,625) {"infeasible-exact": 1} time 23.4
+625 {"a": "aab", "b": "bbc", "c": "aaba"} m=2 gates+2 gates-3 polys=41587 infeasible-exact
+stats m=2 [625,626) {"infeasible-exact": 1} time 38.1
+672 {"a": "abb", "b": "caa", "c": "babb"} m=2 gates+3 gates-2 polys=35960 NEGATIVE -1.500000
+stats m=2 [672,673) {"NEGATIVE": 1} time 2.2
+684 {"a": "ab", "b": "babc", "c": "aba"} m=2 gates+2 gates-3 polys=8252 infeasible-exact
+stats m=2 [684,685) {"infeasible-exact": 1} time 2.7
+685 {"a": "ab", "b": "bbac", "c": "aba"} m=2 gates+2 gates-3 polys=16296 infeasible-exact
+stats m=2 [685,686) {"infeasible-exact": 1} time 12.4
+686 {"a": "ab", "b": "bccc", "c": "cab"} m=2 gates+3 gates-2 polys=12871 infeasible-exact
+stats m=2 [686,687) {"infeasible-exact": 1} time 9.3
+696 {"a": "aab", "b": "bac", "c": "aaba"} m=2 gates+2 gates-3 polys=27392 infeasible-exact
+stats m=2 [696,697) {"infeasible-exact": 1} time 21.5
+732 {"a": "bc", "b": "cab", "c": "abbc"} m=2 gates+3 gates-2 polys=11613 infeasible-exact
+stats m=2 [732,733) {"infeasible-exact": 1} time 9.3
+744 {"a": "ab", "b": "caba", "c": "bab"} m=2 gates+3 gates-2 polys=7477 infeasible-exact
+stats m=2 [744,745) {"infeasible-exact": 1} time 3.1
+745 {"a": "ab", "b": "cbaa", "c": "bab"} m=2 gates+3 gates-2 polys=11789 infeasible-exact
+stats m=2 [745,746) {"infeasible-exact": 1} time 4.7
+750 {"a": "bc", "b": "abc", "c": "caaa"} m=2 gates+3 gates-2 polys=12340 infeasible-exact
+stats m=2 [750,751) {"infeasible-exact": 1} time 6.8
+780 {"a": "ab", "b": "bca", "c": "abbc"} m=2 gates+2 gates-3 polys=8132 infeasible-exact
+stats m=2 [780,781) {"infeasible-exact": 1} time 4.1
+781 {"a": "ab", "b": "cab", "c": "babc"} m=2 gates+3 gates-2 polys=4084 infeasible-exact
+stats m=2 [781,782) {"infeasible-exact": 1} time 1.2
+782 {"a": "ab", "b": "cba", "c": "bcba"} m=2 gates+3 gates-2 polys=9824 infeasible-exact
+stats m=2 [782,783) {"infeasible-exact": 1} time 6.2
+783 {"a": "ab", "b": "baca", "c": "bac"} m=2 gates+2 gates-3 polys=10855 infeasible-exact
+stats m=2 [783,784) {"infeasible-exact": 1} time 4.7
+792 {"a": "bc", "b": "acb", "c": "cbc"} m=2 gates+3 gates-2 polys=3380 infeasible-exact
+stats m=2 [792,793) {"infeasible-exact": 1} time 1.8
+840 {"a": "bc", "b": "caa", "c": "acaa"} m=2 gates+3 gates-2 polys=13304 infeasible-exact
+stats m=2 [840,841) {"infeasible-exact": 1} time 7.6
+841 {"a": "bc", "b": "cbc", "c": "abb"} m=2 gates+3 gates-2 polys=13438 infeasible-exact
+stats m=2 [841,842) {"infeasible-exact": 1} time 6.4
+864 {"a": "ab", "b": "baac", "c": "aba"} m=2 gates+2 gates-3 polys=12500 infeasible-exact
+stats m=2 [864,865) {"infeasible-exact": 1} time 7.2
+867 {"a": "bc", "b": "aba", "c": "bcab"} m=2 gates+2 gates-3 polys=3432 infeasible-exact
+stats m=2 [867,868) {"infeasible-exact": 1} time 1.3
+868 {"a": "bc", "b": "cba", "c": "bcb"} m=2 gates+2 gates-3 polys=1068 infeasible-exact
+stats m=2 [868,869) {"infeasible-exact": 1} time 0.4
+900 {"a": "ab", "b": "cab", "c": "bcc"} m=2 gates+3 gates-2 polys=5902 infeasible-exact
+stats m=2 [900,901) {"infeasible-exact": 1} time 2.7
+901 {"a": "ab", "b": "abca", "c": "cac"} m=2 gates+2 gates-3 polys=4767 infeasible-exact
+stats m=2 [901,902) {"infeasible-exact": 1} time 2.0
+906 {"a": "bc", "b": "abb", "c": "cbc"} m=2 gates+3 gates-2 polys=10567 infeasible-exact
+stats m=2 [906,907) {"infeasible-exact": 1} time 4.7
+936 {"a": "ab", "b": "abc", "c": "caba"} m=2 gates+2 gates-3 polys=4515 infeasible-exact
+stats m=2 [936,937) {"infeasible-exact": 1} time 2.3
+937 {"a": "ab", "b": "bac", "c": "baca"} m=2 gates+2 gates-3 polys=7864 infeasible-exact
+stats m=2 [937,938) {"infeasible-exact": 1} time 3.0
+938 {"a": "ab", "b": "bbc", "c": "aba"} m=2 gates+2 gates-3 polys=9661 infeasible-exact
+stats m=2 [938,939) {"infeasible-exact": 1} time 5.7
+939 {"a": "ab", "b": "bca", "c": "caab"} m=2 gates+3 gates-2 polys=8054 NEGATIVE -1.000000
+stats m=2 [939,940) {"NEGATIVE": 1} time 1.0
+940 {"a": "ab", "b": "bcc", "c": "cab"} m=2 gates+3 gates-2 polys=8255 infeasible-exact
+stats m=2 [940,941) {"infeasible-exact": 1} time 4.3
+941 {"a": "ab", "b": "bcaa", "c": "caa"} m=2 gates+3 gates-2 polys=11901 infeasible-exact
+stats m=2 [941,942) {"infeasible-exact": 1} time 8.7
+942 {"a": "ab", "b": "ccac", "c": "cca"} m=2 gates+2 gates-3 polys=15034 infeasible-exact
+stats m=2 [942,943) {"infeasible-exact": 1} time 8.5
+1020 {"a": "ab", "b": "caaa", "c": "bab"} m=2 gates+3 gates-2 polys=11054 infeasible-exact
+stats m=2 [1020,1021) {"infeasible-exact": 1} time 5.0
+1044 {"a": "ab", "b": "bac", "c": "aba"} m=2 gates+2 gates-3 polys=4715 infeasible-exact
+stats m=2 [1044,1045) {"infeasible-exact": 1} time 1.3
+1056 {"a": "ab", "b": "caa", "c": "bab"} m=2 gates+3 gates-2 polys=6793 infeasible-exact
+stats m=2 [1056,1057) {"infeasible-exact": 1} time 2.2
+1068 {"a": "bbc", "b": "bbcb", "c": "bbba"} m=2 gates+1 gates-3 polys=1426 infeasible-exact
+stats m=2 [1068,1069) {"infeasible-exact": 1} time 0.6
+1080 {"a": "abb", "b": "bbbc", "c": "abbb"} m=2 gates+2 gates-2 polys=31322 infeasible-exact
+stats m=2 [1080,1081) {"infeasible-exact": 1} time 42.6
+1081 {"a": "abb", "b": "bbbc", "c": "babb"} m=2 gates+2 gates-2 polys=7865 infeasible-exact
+stats m=2 [1081,1082) {"infeasible-exact": 1} time 7.4
+1082 {"a": "abb", "b": "cbbb", "c": "babb"} m=2 gates+3 gates-1 polys=1319 infeasible-exact
+stats m=2 [1082,1083) {"infeasible-exact": 1} time 0.6
+1089 {"a": "bbc", "b": "bbbc", "c": "cabb"} m=2 gates+2 gates-2 polys=31346 infeasible-exact
+stats m=2 [1089,1090) {"infeasible-exact": 1} time 30.0
+1090 {"a": "bbc", "b": "bbbc", "c": "cbab"} m=2 gates+2 gates-2 polys=41258 infeasible-exact
+stats m=2 [1090,1091) {"infeasible-exact": 1} time 54.5
+1091 {"a": "bbc", "b": "bbbc", "c": "cbba"} m=2 gates+2 gates-2 polys=44218 infeasible-exact
+stats m=2 [1091,1092) {"infeasible-exact": 1} time 60.6
+1092 {"a": "bbc", "b": "bbcb", "c": "bbca"} m=2 gates+1 gates-3 polys=1320 infeasible-exact
+stats m=2 [1092,1093) {"infeasible-exact": 1} time 0.6
+1093 {"a": "bbc", "b": "bbcb", "c": "bcba"} m=2 gates+1 gates-3 polys=1272 infeasible-exact
+stats m=2 [1093,1094) {"infeasible-exact": 1} time 0.7
+1176 {"a": "abc", "b": "abcc", "c": "cccb"} m=2 gates+2 gates-2 polys=39707 infeasible-exact
+stats m=2 [1176,1177) {"infeasible-exact": 1} time 47.0
+1177 {"a": "abc", "b": "bbbc", "c": "abcb"} m=2 gates+2 gates-2 polys=29620 infeasible-exact
+stats m=2 [1177,1178) {"infeasible-exact": 1} time 12.5
+1178 {"a": "abc", "b": "bbcb", "c": "babc"} m=2 gates+2 gates-2 polys=11904 infeasible-exact
+stats m=2 [1178,1179) {"infeasible-exact": 1} time 5.8
+1179 {"a": "abc", "b": "bcbb", "c": "babc"} m=2 gates+2 gates-2 polys=10294 infeasible-exact
+stats m=2 [1179,1180) {"infeasible-exact": 1} time 5.0
+1180 {"a": "abc", "b": "cabc", "c": "bccc"} m=2 gates+3 gates-1 polys=1183 infeasible-exact
+stats m=2 [1180,1181) {"infeasible-exact": 1} time 0.4
+1181 {"a": "abc", "b": "cabc", "c": "cccb"} m=2 gates+2 gates-2 polys=14476 infeasible-exact
+stats m=2 [1181,1182) {"infeasible-exact": 1} time 11.1
+1188 {"a": "bac", "b": "bacc", "c": "cccb"} m=2 gates+2 gates-2 polys=28865 infeasible-float
+stats m=2 [1188,1189) {"infeasible-float": 1} time 29.7
+1190 {"a": "bbc", "b": "bbbc", "c": "cacb"} m=2 gates+2 gates-2 polys=49974 infeasible-exact
+stats m=2 [1190,1191) {"infeasible-exact": 1} time 37.7
+1191 {"a": "bbc", "b": "bbbc", "c": "cbca"} m=2 gates+2 gates-2 polys=48512 infeasible-float
+stats m=2 [1191,1192) {"infeasible-float": 1} time 29.7
+1192 {"a": "bbc", "b": "bbbc", "c": "ccab"} m=2 gates+2 gates-2 polys=49726 infeasible-exact
+stats m=2 [1192,1193) {"infeasible-exact": 1} time 45.6
+1193 {"a": "bbc", "b": "bbbc", "c": "ccba"} m=2 gates+2 gates-2 polys=69862 infeasible-exact
+stats m=2 [1193,1194) {"infeasible-exact": 1} time 117.5
+1194 {"a": "bbc", "b": "bbcb", "c": "bcca"} m=2 gates+1 gates-3 polys=1130 infeasible-exact
+stats m=2 [1194,1195) {"infeasible-exact": 1} time 0.4
+1195 {"a": "bbc", "b": "bbcb", "c": "cabc"} m=2 gates+2 gates-2 polys=35854 infeasible-exact
+stats m=2 [1195,1196) {"infeasible-exact": 1} time 29.3
+1196 {"a": "bbc", "b": "bbcb", "c": "cbac"} m=2 gates+2 gates-2 polys=39316 infeasible-exact
+stats m=2 [1196,1197) {"infeasible-exact": 1} time 54.2
+1203 {"a": "bcb", "b": "bbcb", "c": "cabc"} m=2 gates+2 gates-2 polys=30572 infeasible-exact
+stats m=2 [1203,1204) {"infeasible-exact": 1} time 21.4
+1204 {"a": "bcb", "b": "bbcb", "c": "cbac"} m=2 gates+2 gates-2 polys=25868 infeasible-exact
+stats m=2 [1204,1205) {"infeasible-exact": 1} time 18.4
+1368 {"a": "bbc", "b": "accc", "c": "bbcb"} m=2 gates+2 gates-2 polys=63682 infeasible-exact
+stats m=2 [1368,1369) {"infeasible-exact": 1} time 131.4
+1369 {"a": "bbc", "b": "cacc", "c": "bbcb"} m=2 gates+2 gates-2 polys=58187 infeasible-exact
+stats m=2 [1369,1370) {"infeasible-exact": 1} time 86.0
+1370 {"a": "bbc", "b": "ccac", "c": "bbcb"} m=2 gates+2 gates-2 polys=70611 infeasible-exact
+stats m=2 [1370,1371) {"infeasible-exact": 1} time 141.8
+1371 {"a": "bcb", "b": "accc", "c": "bbcb"} m=2 gates+2 gates-2 polys=59394 infeasible-exact
+stats m=2 [1371,1372) {"infeasible-exact": 1} time 115.7
+1372 {"a": "bcb", "b": "accc", "c": "bcbb"} m=2 gates+2 gates-2 polys=66618 infeasible-exact
+stats m=2 [1372,1373) {"infeasible-exact": 1} time 121.8
+1373 {"a": "bcb", "b": "cacc", "c": "bbcb"} m=2 gates+2 gates-2 polys=56530 infeasible-exact
+stats m=2 [1373,1374) {"infeasible-exact": 1} time 68.8
+1374 {"a": "bcb", "b": "cacc", "c": "bcbb"} m=2 gates+2 gates-2 polys=62290 infeasible-exact
+stats m=2 [1374,1375) {"infeasible-exact": 1} time 96.6
+1452 {"a": "bbc", "b": "abcc", "c": "bbcb"} m=2 gates+2 gates-2 polys=57577 infeasible-exact
+stats m=2 [1452,1453) {"infeasible-exact": 1} time 76.0
+1453 {"a": "bbc", "b": "acbc", "c": "bbcb"} m=2 gates+2 gates-2 polys=24156 infeasible-exact
+stats m=2 [1453,1454) {"infeasible-exact": 1} time 20.2
+1454 {"a": "bbc", "b": "accb", "c": "bbbc"} m=2 gates+2 gates-2 polys=65164 infeasible-exact
+stats m=2 [1454,1455) {"infeasible-exact": 1} time 87.9
+1455 {"a": "bbc", "b": "bcca", "c": "bbcb"} m=2 gates+1 gates-3 polys=1062 infeasible-exact
+stats m=2 [1455,1456) {"infeasible-exact": 1} time 0.4
+1456 {"a": "bbc", "b": "cabc", "c": "bbcb"} m=2 gates+2 gates-2 polys=46868 infeasible-exact
+stats m=2 [1456,1457) {"infeasible-exact": 1} time 43.8
+1457 {"a": "bbc", "b": "cacb", "c": "bbbc"} m=2 gates+2 gates-2 polys=44876 infeasible-exact
+stats m=2 [1457,1458) {"infeasible-exact": 1} time 52.9
+1458 {"a": "bbc", "b": "cbac", "c": "bbcb"} m=2 gates+2 gates-2 polys=31720 infeasible-exact
+stats m=2 [1458,1459) {"infeasible-exact": 1} time 22.2
+1459 {"a": "bbc", "b": "ccab", "c": "bbbc"} m=2 gates+2 gates-2 polys=46958 infeasible-float
+stats m=2 [1459,1460) {"infeasible-float": 1} time 58.6
+1460 {"a": "bcb", "b": "abcc", "c": "bbcb"} m=2 gates+2 gates-2 polys=49396 infeasible-exact
+stats m=2 [1460,1461) {"infeasible-exact": 1} time 48.1
+1461 {"a": "bcb", "b": "abcc", "c": "bcbb"} m=2 gates+2 gates-2 polys=62064 infeasible-exact
+stats m=2 [1461,1462) {"infeasible-exact": 1} time 58.4
+1462 {"a": "bcb", "b": "acbc", "c": "bbcb"} m=2 gates+2 gates-2 polys=25330 infeasible-exact
+stats m=2 [1462,1463) {"infeasible-exact": 1} time 24.8
+1463 {"a": "bcb", "b": "acbc", "c": "bcbb"} m=2 gates+2 gates-2 polys=29934 infeasible-exact
+stats m=2 [1463,1464) {"infeasible-exact": 1} time 15.9
+1464 {"a": "bcb", "b": "cabc", "c": "bbcb"} m=2 gates+2 gates-2 polys=34016 infeasible-exact
+stats m=2 [1464,1465) {"infeasible-exact": 1} time 24.0
+1465 {"a": "bcb", "b": "cabc", "c": "bcbb"} m=2 gates+2 gates-2 polys=28232 infeasible-exact
+stats m=2 [1465,1466) {"infeasible-exact": 1} time 20.8
+1620 {"a": "abb", "b": "abbc", "c": "cccb"} m=2 gates+2 gates-2 polys=51455 infeasible-exact
+stats m=2 [1620,1621) {"infeasible-exact": 1} time 61.4
+1621 {"a": "abb", "b": "cabb", "c": "cbcc"} m=2 gates+2 gates-2 polys=13921 infeasible-exact
+stats m=2 [1621,1622) {"infeasible-exact": 1} time 2.1
+1622 {"a": "abb", "b": "cabb", "c": "ccbc"} m=2 gates+2 gates-2 polys=12105 infeasible-exact
+stats m=2 [1622,1623) {"infeasible-exact": 1} time 1.9
+1626 {"a": "bab", "b": "babc", "c": "cccb"} m=2 gates+2 gates-2 polys=40095 infeasible-exact
+stats m=2 [1626,1627) {"infeasible-exact": 1} time 31.3
+1631 {"a": "bbc", "b": "bbbc", "c": "ccca"} m=2 gates+2 gates-2 polys=54586 infeasible-exact
+stats m=2 [1631,1632) {"infeasible-exact": 1} time 30.9
+1632 {"a": "bbc", "b": "bbcb", "c": "cacc"} m=2 gates+2 gates-2 polys=58153 NEGATIVE -1.181818
+stats m=2 [1632,1633) {"NEGATIVE": 1} time 6.7
+1633 {"a": "bbc", "b": "bbcb", "c": "ccac"} m=2 gates+2 gates-2 polys=60897 NEGATIVE -1.307692
+stats m=2 [1633,1634) {"NEGATIVE": 1} time 7.5
+1634 {"a": "bcb", "b": "bbcb", "c": "cacc"} m=2 gates+2 gates-2 polys=60090 infeasible-exact
+stats m=2 [1634,1635) {"infeasible-exact": 1} time 91.7
+1635 {"a": "bcb", "b": "bbcb", "c": "ccac"} m=2 gates+2 gates-2 polys=70434 NEGATIVE -0.800000
+stats m=2 [1635,1636) {"NEGATIVE": 1} time 2.7
+1728 {"a": "abb", "b": "cbcc", "c": "cabb"} m=2 gates+2 gates-2 polys=17818 infeasible-exact
+stats m=2 [1728,1729) {"infeasible-exact": 1} time 7.3
+1729 {"a": "abb", "b": "ccbc", "c": "cabb"} m=2 gates+2 gates-2 polys=15664 infeasible-exact
+stats m=2 [1729,1730) {"infeasible-exact": 1} time 7.3
+1732 {"a": "bab", "b": "bccc", "c": "cbab"} m=2 gates+2 gates-2 polys=45479 infeasible-exact
+stats m=2 [1732,1733) {"infeasible-exact": 1} time 33.8
+1736 {"a": "bbc", "b": "abbc", "c": "bbcb"} m=2 gates+2 gates-2 polys=29447 infeasible-exact
+stats m=2 [1736,1737) {"infeasible-exact": 1} time 13.6
+1737 {"a": "bbc", "b": "abcb", "c": "bbbc"} m=2 gates+2 gates-2 polys=41190 infeasible-exact
+stats m=2 [1737,1738) {"infeasible-exact": 1} time 51.1
+1738 {"a": "bbc", "b": "acbb", "c": "bbbc"} m=2 gates+2 gates-2 polys=38714 infeasible-exact
+stats m=2 [1738,1739) {"infeasible-exact": 1} time 43.2
+1739 {"a": "bbc", "b": "bbca", "c": "bbcb"} m=2 gates+1 gates-3 polys=1184 infeasible-exact
+stats m=2 [1739,1740) {"infeasible-exact": 1} time 0.1
+1740 {"a": "bbc", "b": "bcba", "c": "bbcb"} m=2 gates+1 gates-3 polys=1164 infeasible-exact
+stats m=2 [1740,1741) {"infeasible-exact": 1} time 0.1
+1741 {"a": "bbc", "b": "cabb", "c": "bbbc"} m=2 gates+2 gates-2 polys=23594 infeasible-exact
+stats m=2 [1741,1742) {"infeasible-exact": 1} time 13.5
+1742 {"a": "bbc", "b": "cbab", "c": "bbbc"} m=2 gates+2 gates-2 polys=47502 infeasible-exact
+stats m=2 [1742,1743) {"infeasible-exact": 1} time 49.3
+1743 {"a": "bcb", "b": "abbc", "c": "bbcb"} m=2 gates+2 gates-2 polys=37386 infeasible-exact
+stats m=2 [1743,1744) {"infeasible-exact": 1} time 25.8
+1744 {"a": "bcb", "b": "abbc", "c": "bcbb"} m=2 gates+2 gates-2 polys=40318 NEGATIVE -0.714286
+stats m=2 [1744,1745) {"NEGATIVE": 1} time 6.2
+1872 {"a": "abc", "b": "babc", "c": "bbcb"} m=2 gates+2 gates-2 polys=11642 infeasible-float
+stats m=2 [1872,1873) {"infeasible-float": 1} time 6.3
+1873 {"a": "abc", "b": "babc", "c": "bcbb"} m=2 gates+2 gates-2 polys=14216 infeasible-exact
+stats m=2 [1873,1874) {"infeasible-exact": 1} time 7.3
+1874 {"a": "abc", "b": "bccc", "c": "cabc"} m=2 gates+3 gates-1 polys=1153 infeasible-exact
+stats m=2 [1874,1875) {"infeasible-exact": 1} time 0.4
+1875 {"a": "abc", "b": "cccb", "c": "cabc"} m=2 gates+2 gates-2 polys=14329 infeasible-exact
+stats m=2 [1875,1876) {"infeasible-exact": 1} time 7.3
+1880 {"a": "bac", "b": "bbac", "c": "cbbb"} m=2 gates+2 gates-2 polys=8247 infeasible-exact
+stats m=2 [1880,1881) {"infeasible-exact": 1} time 1.8
+1882 {"a": "bbc", "b": "abbb", "c": "bbbc"} m=2 gates+2 gates-2 polys=32532 infeasible-exact
+stats m=2 [1882,1883) {"infeasible-exact": 1} time 33.7
+1883 {"a": "bbc", "b": "bbba", "c": "bbcb"} m=2 gates+1 gates-3 polys=1378 infeasible-exact
+stats m=2 [1883,1884) {"infeasible-exact": 1} time 0.3
+1956 {"a": "bbc", "b": "aabc", "c": "bbca"} m=2 gates+2 gates-2 polys=23530 infeasible-exact
+stats m=2 [1956,1957) {"infeasible-exact": 1} time 9.3
+1957 {"a": "bbc", "b": "abbc", "c": "aaab"} m=2 gates+2 gates-2 polys=9295 infeasible-exact
+stats m=2 [1957,1958) {"infeasible-exact": 1} time 2.0
+1958 {"a": "bbc", "b": "abbc", "c": "aaba"} m=2 gates+2 gates-2 polys=16185 infeasible-exact
+stats m=2 [1958,1959) {"infeasible-exact": 1} time 5.6
+1959 {"a": "bbc", "b": "abbc", "c": "abaa"} m=2 gates+2 gates-2 polys=13269 infeasible-exact
+stats m=2 [1959,1960) {"infeasible-exact": 1} time 5.8
+1960 {"a": "bbc", "b": "abbc", "c": "baaa"} m=2 gates+2 gates-2 polys=21022 infeasible-exact
+stats m=2 [1960,1961) {"infeasible-exact": 1} time 10.3
+1961 {"a": "bbc", "b": "abca", "c": "bbca"} m=2 gates+2 gates-2 polys=18584 infeasible-exact
+stats m=2 [1961,1962) {"infeasible-exact": 1} time 10.0
+1962 {"a": "bbc", "b": "bbca", "c": "aaab"} m=2 gates+1 gates-3 polys=983 infeasible-exact
+stats m=2 [1962,1963) {"infeasible-exact": 1} time 0.3
+1963 {"a": "bcb", "b": "aabc", "c": "abcb"} m=2 gates+2 gates-2 polys=13634 infeasible-exact
+stats m=2 [1963,1964) {"infeasible-exact": 1} time 2.1
+1964 {"a": "bcb", "b": "abca", "c": "abcb"} m=2 gates+2 gates-2 polys=13276 infeasible-exact
+stats m=2 [1964,1965) {"infeasible-exact": 1} time 4.3
+1965 {"a": "bcb", "b": "abca", "c": "bcba"} m=2 gates+2 gates-2 polys=18274 infeasible-exact
+stats m=2 [1965,1966) {"infeasible-exact": 1} time 4.6
