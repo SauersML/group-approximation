@@ -39,7 +39,7 @@ theorem halflineA (Γ : Type) [Group Γ] (hfg : Group.FG Γ) (hLEF : IsLEF Γ) :
   obtain ⟨n, s₀, hs₀⟩ := exists_fin_generators Γ hfg
   obtain ⟨Δ, instΔ, hinf, hfgΔ, hlefΔ, hemb, -, hred⟩ :=
     HalflineA.manuscriptSentence_halflineEmbedding Γ (Fin n) s₀ hs₀ hLEF
-  refine ⟨Δ, instΔ, hinf, hfgΔ, hlefΔ, hemb, fun ι κ _ _ _ _ s t hs => ?_⟩
+  refine ⟨Δ, instΔ, hinf, hfgΔ, hlefΔ, hemb, fun _ κ _ _ _ _ s t hs => ?_⟩
   exact TuringReducible.trans (hred κ t) (turingReducible_wordProblemOracle_of_generates hs s₀)
 
 #audit_axioms GroupApproximation.Full.SK11.halflineA
