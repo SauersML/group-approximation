@@ -32,7 +32,8 @@ gap of the last side is empty (`gap_last`).
    `classWindow = (B.take y).drop x = pre.drop x ++ u :: γc`, and the run window
    `(R.drop (ρ x)).take (ρ y - ρ x)` ends with `R[ρ y - 1] = u`.
 3. *The gap case.*  If `γc = gap_s ≠ []`, the last dart `g` of `γc` is the last dart of
-   `B.take y`, which is `B[y - 1]`, and `B[y] = e = side_s'.head`, with `s`, `s'` consecutive in `L`.
+   `B.take y`, which is `B[y - 1]`, and `B[y] = e = side_s'.head`, with `s`, `s'` consecutive in
+   `L`.
 
 ## This module
 

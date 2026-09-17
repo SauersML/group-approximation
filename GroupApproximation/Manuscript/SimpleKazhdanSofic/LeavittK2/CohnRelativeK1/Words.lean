@@ -157,7 +157,7 @@ theorem sandwich (β γ : List (Fin 2)) :
       by_cases hab : a = b
       · subst hab
         rw [if_pos rfl, mul_assoc, ih γ]
-        simp only [List.cons.injEq, true_and]
+        simp only [List.cons.injEq, eq_self_iff_true, true_and]
       · have hne : ¬ (a :: β = b :: γ) := fun hc ↦ hab (List.cons.inj hc).1
         rw [if_neg hab, zero_mul, mul_zero, if_neg hne]
 
@@ -172,7 +172,7 @@ theorem unit_mul_unit (α β γ δ : List (Fin 2)) :
     simp only [unit, mul_assoc]
   rw [h, sandwich]
   by_cases hβγ : β = γ
-  · rw [if_pos hβγ, if_pos hβγ]; rfl
+  · rw [if_pos hβγ, if_pos hβγ, unit]
   · rw [if_neg hβγ, if_neg hβγ, mul_zero, zero_mul]
 
 /-- **Coefficient extraction** `p α* u(α', β') β p = δ_{αα'} δ_{β'β} p`. -/

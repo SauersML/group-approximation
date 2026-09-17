@@ -10,8 +10,8 @@ The new index is `Fin.last n`, because `stab` pads along `Fin.castSucc`.
 * `colVec a = ∏ᵢ x_{castSucc i, last}(a i)` and `rowVec b = ∏ᵢ x_{last, castSucc i}(b i)`.
   In each product the factors commute pairwise (`x_commute_of_ne`), so both are `noncommProd`s.
 * `colVec_add` and `rowVec_add` show that both maps are additive.
-* `x_conj_colVec` and `x_conj_rowVec` give conjugation by one padded root `z = x_{ij}(c)`, where
-  `i ≠ j < n`.
+* `RowColumn/RootConj.lean` has `x_conj_colVec` and `x_conj_rowVec`: conjugation by one padded
+  root `z = x_{ij}(c)`, where `i ≠ j < n`.
 
 ## Truth check (on paper)
 
