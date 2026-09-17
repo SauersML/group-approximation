@@ -144,7 +144,9 @@ theorem exists_cut_of_split {M : CombMap.{u}} [DecidableEq M.Face] {Pf Rx : Fins
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.targetBoundaryDarts_of_none
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.region_cycle_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.region_mem_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.region_dartPath
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.darts_eq_append_drop
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.not_iff_iff_walkKeep

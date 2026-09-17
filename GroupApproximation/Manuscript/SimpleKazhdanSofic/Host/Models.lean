@@ -128,6 +128,8 @@ theorem modelMap_coeff_eq_modelDiag (M : BallModelSequence Δ T) (n : ℕ)
   rw [ClopenGroupCrossedProduct.coeff_apply, Lamplighter.modelMap_single, RingEquiv.symm_apply_apply,
     Lamplighter.modelPerm_one, mul_one]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Host.modelMap_coeff_eq_modelDiag
+
 /-- **The images of the generators generate `M_{2^{|Q'_n|}}(F_2)`** (tex l.573–577): every
 `p_q : y ↦ qy` is a product of the `p_δ` with `δ ∈ T` and their inverses; conjugating `D_n(e_U)`
 by its permutation matrix gives the coordinate function `y ↦ y(q)`, and conjugating `P_z` gives

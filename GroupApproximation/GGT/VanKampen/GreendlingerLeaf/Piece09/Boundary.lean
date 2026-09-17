@@ -152,8 +152,11 @@ end Cut
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.not_mem_mid_of_mem_left
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.not_mem_mid_of_mem_right
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.faceOf_not_mem_of_mem_walk
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.mem_cut_of_mem_inv
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.mem_cut_of_mem_walk
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.mem_of_mem_cut
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.cut_mem_iff
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.cut_nodup

@@ -34,9 +34,10 @@ walk, with the contact with `Π_i` a single arc at its end.  It asks for no leng
 
 **Why it is true (paper, `ExitStatement` truth check 1–2).**  Let `H` be the piece of the second
 relator cell in the complement of `K.faces ∪ {Π_i}`, with its lakes filled.  `H` holds that cell
-and misses `Π_i`.  Every dart `e` of its inverse outside walk has `α e` either on `s₁ ++ s₂` or on
-`Π_i`.  The contact with `Π_i` is one arc: `Π_i` and the filled `K`-side are discs meeting along
-`t₁`, and a region bounded alternately by two such discs meets each in a single arc.  This is
+and misses `Π_i`.  If `Π_j ∉ H`, every dart `e` of its inverse outside walk has `α e` either on
+`s₁ ++ s₂` or on `Π_i`.  If `Π_j ∈ H`, the second disjunct is the target's own two-arc disjunct,
+unchanged, with the truth risk of `ExitStatement` check 2.  The contact with `Π_i` is one arc:
+`Π_i` and the filled `K`-side are discs meeting along `t₁`, and a region bounded alternately by two such discs meets each in a single arc.  This is
 paper-level only; the walk order of absorbed boundary cycles is not in the corpus
 (`Estimating/OsinPocketLakeAbsorption`).  The disjunction with the two-arc exit only weakens it.
 

@@ -55,6 +55,9 @@ def deleteOp (i : Fin 2) : Module.End k (FockSpace k) where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+theorem deleteOp_apply (i : Fin 2) (f : FockSpace k) (w : List (Fin 2)) :
+    deleteOp k i f w = f (i :: w) := rfl
+
 theorem deleteOp_mul_shiftOp_self (i : Fin 2) : deleteOp k i * shiftOp k i = 1 := by
   apply LinearMap.ext
   intro f
@@ -134,11 +137,12 @@ theorem fock_coword (β : List (Fin 2)) (f : FockSpace k) (w : List (Fin 2)) :
   induction β generalizing f w with
   | nil => rw [CohnTwoData.coword_nil, map_one, Module.End.one_apply, List.nil_append]
   | cons a β ih =>
-    rw [CohnTwoData.coword_cons, map_mul, Module.End.mul_apply, ih, fock_gs, List.cons_append]
-    rfl
+    rw [CohnTwoData.coword_cons, map_mul, Module.End.mul_apply, ih, fock_gs, deleteOp_apply,
+      List.cons_append]
 
 theorem fock_p (f : FockSpace k) : fock k (data k).p f = pt k [] (f []) := by
-  have hp : (data k).p = 1 - (data k).gen 0 * (data k).gs 0 - (data k).gen 1 * (data k).gs 1 := by
+  have hp : (data k).p =
+      1 - (data k).gen 0 * (data k).gs 0 - (data k).gen 1 * (data k).gs 1 := by
     unfold CohnTwoData.p
     rw [CohnTwoData.gen_zero, CohnTwoData.gs_zero, CohnTwoData.gen_one, CohnTwoData.gs_one]
   rw [hp, map_sub, map_sub, map_one, map_mul, map_mul, fock_gen, fock_gen, fock_gs, fock_gs]

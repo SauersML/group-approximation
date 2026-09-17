@@ -194,8 +194,8 @@ theorem dartPath_of_isChain_closes (M : CombMap.{u}) (l : List M.Dart) (hne : l 
       ∀ a ∈ l.getLast?, ∀ b ∈ l.head?, M.vertexOf (M.alpha a) = M.vertexOf b) :
     DartPath M (M.vertexOf (l.head hne)) (M.vertexOf (l.head hne)) l := by
   have hp := dartPath_of_isChain M l hne h.1
-  have hc := h.2 (l.getLast hne) (by rw [List.getLast?_eq_getLast hne]; exact Option.mem_some_self _)
-    (l.head hne) (by rw [List.head?_eq_head hne]; exact Option.mem_some_self _)
+  have hc := h.2 (l.getLast hne) (by rw [List.getLast?_eq_some_getLast hne]; exact Option.mem_some_self _)
+    (l.head hne) (by rw [List.head?_eq_some_head hne]; exact Option.mem_some_self _)
   rw [hc] at hp
   exact hp
 
@@ -207,7 +207,15 @@ theorem dartPath_unique (M : CombMap.{u}) {l : List M.Dart} {a b a' b' : M.Verte
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.DartPath
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_cons
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_append
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_append3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_start
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_end
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_of_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.isChain_of_dartPath
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_reverse_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.closedWalk_of_dartPath
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09.dartPath_of_isChain_closes

@@ -54,7 +54,7 @@ theorem exists_ucp_cpc_finiteDimensional_approximation
   have hunit : ‖β (α₀ 1) - 1‖ ≤ δ := hrec 1 (Finset.mem_insert_self 1 S)
   have hD : Nontrivial D := by
     by_contra hnt
-    have hsub : Subsingleton D := not_nontrivial_iff_subsingleton.mp hnt
+    have : Subsingleton D := not_nontrivial_iff_subsingleton.mp hnt
     have hzero : α₀ (1 : A) = 0 := Subsingleton.elim _ _
     have h1 : ‖β (α₀ 1) - 1‖ ≤ δ := hunit
     rw [hzero, map_zero, zero_sub, norm_neg, norm_one] at h1

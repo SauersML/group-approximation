@@ -24,15 +24,21 @@ the exterior piece `E₀`).  `lakeOf K i` (lane gl-p06-10) is the piece of `Π_i
    as along `t₁` (`SideCell` only forbids a whole cell on the sides), so `Π_i ∪ K.faces` can cut
    the lake into several pieces, and the outside walk of `H'` is then not one closed walk.  The
    corrected route takes `H`, the piece of `Π_C` in the complement of `K.faces ∪ {Π_i}`, with its
-   lakes filled.  `Π_j` is never removed, so it never lies on the walk of `H`.  Hence the two-arc
-   subcase (where `Π_j` is also in the lake), and the norm bounds it would need, do not arise on
-   this route.
+   lakes filled.
 2. **Walk darts.**  Let `e` be a dart of the inverse outside walk of the filled `H`: its face is in
    `H` and the face of `α e` is off `H`.  An absorbed face cannot carry `e`, since it is in the same
    component of the complement of `H` as the face across `e`.  So the face across `e` is in
    `K.faces ∪ {Π_i}` (any other edge is crossed).  If it is in `K.faces`, `α e` is a boundary dart
-   of `K.faces` whose far face is not `Π_i` (it is the face of `e`, in `H`), so
-   `α e ∈ s₁ ++ s₂` (`lake_boundary_subset_cycle`).  Otherwise `α e` is a dart of `Π_i`.
+   of `K.faces` (`lake_boundary_subset_cycle`), and its far face is the face of `e`, in `H`.  That
+   face is not `Π_i`, so `α e ∉ t̄₁`.  **If `Π_j ∉ H`** (for instance `Π_j ∉ lakeOf K i`), also
+   `α e ∉ t̄₂`, so `α e ∈ s₁ ++ s₂`.  Otherwise `α e` is a dart of `Π_i`.
+   **If `Π_j ∈ H`**, the walk can carry darts of `t₂` of unbounded length.  Remove `Π_j` as well;
+   the walk then reads side runs between one arc of `Π_i` and one arc of `Π_j`, which is the shape
+   of `LakeFillTwoArcExit`.  **Truth risk (LOUD):** at crossed pinches, one run can collect pieces
+   of both `s₁` and `s₂`.  Their total length is at most `2ε`, but a single run of norm at most
+   `ε` is not established.  This is not a refutation, since the two-arc exit is existential.  At
+   the thresholds of `LakesSurgery` both exits are refuted, so there the statement holds only by
+   contradiction with the hypotheses.
 3. **Order of the side pieces (the lane's check).**  At crossed pinches
    (`AllNonFirstTurnsCrossed`) the pieces of `s₁` and `s₂` on the walk of `H` may interleave.  This
    is **harmless** for the one-arc exit: only lengths enter.  If the walk reads `P ++ Ā` with every
