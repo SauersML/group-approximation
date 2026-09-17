@@ -27,3 +27,24 @@ A positive answer also gives a hyperlinear nonsofic **group**, since `W_Δ` is n
 `kt-intermediate-coset-wreaths-are-nonsofic`. So, for this pair, the Theorem-C route to a
 hyperlinear nonsofic action costs exactly as much as the Pestov-level separation for the
 groups `W_Δ`; the action version brings no discount.
+
+## Progress (2026-09-17): the explicit candidates collapse to Δ = Γ
+
+* **Where Δ_hl can live.** `Δ_hl` is stable under `Mon = SL_d(Z) ∩ M_d(N) ⊆ P_Γ`. If this
+  node holds, `Δ_hl` meets every root subgroup exactly in its polynomial part,
+  `e_ij(f) ∈ Δ_hl ⇔ f ∈ A`, and `π(Δ_hl)` is `{1}`, `{±I}` or Zariski dense
+  (`kt-compressor-stable-overgroups-have-polynomial-content`). So no
+  hyperlinear floor below the normal closure can enlarge the elementary content, for
+  example to `F_q[M]` with `M` a proper monoid.
+* **HNN and monomial-split candidates give nothing new.** For any hyperlinear `W_Δ`
+  with `Δ ⊇ Γ`, the compressor core `∩_(P∈Mon) P^(-1)ΔP` is again hyperlinear. For
+  `Δ = E_r(F_q[M]) ⋊ Q` with `N^d ⊆ M ≠ Z^d`, that core is `Γ`. This covers every
+  one-compressor ascending HNN `⟨Γ,t⟩` (`t ∈ Mon`) and every half-space monoid. A
+  hyperlinear wreath over one of these forces `hyperlinear-wreath-model`
+  (`kt-monomial-split-coset-wreaths-collapse-to-gamma`).
+* **Residual gap.** Non-split `Mon`-stable overgroups of `Γ` with polynomial elementary
+  content remain. If there are none
+  (`kt-compressor-stable-polynomial-content-overgroups-are-gamma`), this node is
+  equivalent to `hyperlinear-wreath-model`
+  (`kt-pair-floor-reduces-to-wreath-model-via-compressor-sandwich`). Otherwise such
+  counterexamples are the only remaining candidates for Δ.

@@ -128,3 +128,27 @@ hyperlinear`, the finite-lamp expectation construction of relative
 embeddability, and their combination with the group embeddings. The cited
 sources support ingredients; they do not by themselves certify that
 combined theorem or produce a nonhyperlinear example.
+
+## Addendum 2026-09-17: the trivial pair `C = {e}`
+
+A second bounded search looked for the special case `Z/2 ≀ H` hyperlinear
+for every hyperlinear `H`, with no soficity hypothesis on `H`. We read the
+arXiv e-print sources of the following. None states that case.
+
+- Hayes--Sale, arXiv:1608.02610. Their wreath permanence results assume the
+  acting group is sofic.
+- Brude--Sasyk, arXiv:1909.07800. The hyperlinearity theorem for
+  permutational wreath products assumes the acting group `H` is sofic.
+- Gao--Kunnawalkam Elayavalli--Patchell, arXiv:2401.04945. The hyperlinear
+  wreath and crossed-product theorems assume a sofic action. The paper also
+  shows that the left action `G ↷ G` is sofic iff `G` is sofic, so `C = {e}`
+  with nonsofic `H` falls outside its scope.
+- Alekseev--Bradford, arXiv:2601.18742. Their permanence results are for
+  actions in sofic classes.
+- Kuperberg's tracial central limit theorem (math-ph/0202035) is an
+  ingredient only.
+
+Conclusion: the `C = {e}` instance of
+`binary-free-and-ordinary-coset-wreaths-share-hyperlinearity` was not found
+stated in these sources, nor in a web search. This is a bounded search, not a
+certificate of novelty.
