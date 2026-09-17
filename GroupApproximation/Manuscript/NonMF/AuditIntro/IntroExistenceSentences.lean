@@ -95,7 +95,7 @@ theorem manuscriptSentence_mfRadicalDefinition :
         ∀ (M : Type) [Group M], IsOperatorMF M → ∀ f : G →* M, f x = 1) ∧
     ∀ (G : Type) [Group G] [Countable G],
       MFQuotientUnits.mfHomKernel G = manuscriptCoronaMFResidual G := by
-  refine ⟨fun G _ x => MFQuotientUnits.mem_mfHomKernel_iff x, ?_⟩
+  refine ⟨fun _ _ x => MFQuotientUnits.mem_mfHomKernel_iff x, ?_⟩
   intro G _ _
   ext x
   refine (MFQuotientUnits.mem_mfHomKernel_iff x).trans ?_
@@ -103,7 +103,7 @@ theorem manuscriptSentence_mfRadicalDefinition :
   constructor
   · intro h M _ _ hM f
     exact h M ((isCDEOperatorMF_iff_isOperatorMF M).mp hM) f
-  · intro h M _ hM f
+  · intro h _ _ hM f
     exact map_eq_one_of_isOperatorMF_of_killsCountableCDE h hM f
 
 /-! ## The existence sentence -/
@@ -119,7 +119,7 @@ theorem manuscriptSentence_unitGroupKillsEveryMFHom :
     OneSidedMFRadical.UnitGroupHeadline.manuscriptUnitGroupHeadline
   haveI : Countable (UniversalLeavitt.BinaryLeavittAlgebra)ˣ := countable_of_fg hFG
   refine ⟨hnt, ?_⟩
-  intro M _ hM f x
+  intro _ _ hM f x
   exact map_eq_one_of_isOperatorMF_of_killsCountableCDE (x := x)
     (fun M' _ _ hM' f' => hkill M' hM' f' x) hM f
 
@@ -133,7 +133,7 @@ theorem manuscriptSentence_soficWitnessWithMFInvisibleElement :
           f CliffordWitnessHSRemark.witnessSign = 1 := by
   refine ⟨LiteralWitnessConsequences.witnessGroup_isSofic,
     CliffordWitnessHSRemark.witnessSign_ne_one, ?_⟩
-  intro M _ hM f
+  intro _ _ hM f
   exact CliffordWitnessDirectDefect.map_sign_eq_one_of_isOperatorMF_target
     LiteralNonMFLinearWitness.alpha ExplicitLinearModel.conjD_injective
     ExplicitLinearModel.v1G_not_mem_range

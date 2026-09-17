@@ -275,9 +275,10 @@ theorem manuscriptSentence_itineraryConjugacy {X : Type} [TopologicalSpace X] [C
       (∀ U : Set X, ∀ hU : IsClopen U, LocallyConstant.charFn (ZMod 2) hU ∈
         Subring.closure (translates T (F : Set (LocallyConstant X (ZMod 2))))) ∧
       ∃ φ : X ≃ₜ (atomSubshift T F).carrier,
-        (∀ x, φ x = atomItinerary T F x) ∧ ∀ x, φ (T x) = subshiftHomeo (atomSubshift T F) (φ x) := by
+        (∀ x, ((φ x : (atomSubshift T F).carrier) : ℤ → (↥F → ZMod 2)) = atomItinerary T F x) ∧
+        ∀ x, φ (T x) = subshiftHomeo (atomSubshift T F) (φ x) := by
   obtain ⟨F, hF, hgen⟩ := exists_finset_translates_generate T (ZMod 2) hs
-  refine ⟨F, hF, hgen, fun U hU => ?_, atomItineraryHomeo T F hgen, fun _ => rfl,
+  refine ⟨F, hF, hgen, fun _ _ => ?_, atomItineraryHomeo T F hgen, fun _ => rfl,
     atomItineraryHomeo_conj T F hgen⟩
   rw [hgen]
   exact Subring.mem_top _
