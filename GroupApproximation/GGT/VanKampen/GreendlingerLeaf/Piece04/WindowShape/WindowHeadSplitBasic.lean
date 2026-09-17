@@ -81,7 +81,8 @@ theorem runPos_cons_of_gt (Q : OsinLemma94ClassPolygons P) (k : Fin P.count) (s 
     (L : List ℕ) (x : ℕ)
     (h : ¬ x ≤ (P.word k s).length + (Embedded.dartWord S.diagram (Q.gap k s)).length) :
     Q.runPos k (s :: L) x = (P.word k s).length +
-      Q.runPos k L (x - (P.word k s).length - (Embedded.dartWord S.diagram (Q.gap k s)).length) := by
+      Q.runPos k L
+        (x - (P.word k s).length - (Embedded.dartWord S.diagram (Q.gap k s)).length) := by
   have h1 : ¬ x ≤ (P.word k s).length := by omega
   rw [OsinLemma94ClassPolygons.runPos, if_neg h1, if_neg h]
 
