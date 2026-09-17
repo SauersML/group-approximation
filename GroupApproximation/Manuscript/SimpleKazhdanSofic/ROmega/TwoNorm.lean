@@ -198,7 +198,7 @@ theorem exists_limit (hω : (ω : Filter ℕ) ≤ cofinite) (d : ℕ → bounded
       ‖((d j : ℕ → (K →L[ℂ] K)) n - (d i : ℕ → (K →L[ℂ] K)) n) σ.vec‖ < δ i
   let κ : ℕ → ℕ := fun n ↦ Nat.findGreatest (P n) n
   have hc : (fun n ↦ (d (κ n) : ℕ → (K →L[ℂ] K)) n) ∈ boundedSeq N :=
-    ⟨fun n ↦ coord_mem (d (κ n)) n, B, fun n ↦ hB (κ n) n⟩
+    mem_boundedSeq_iff.mpr ⟨fun n ↦ coord_mem (d (κ n)) n, B, fun n ↦ hB (κ n) n⟩
   refine ⟨⟨_, hc⟩, fun n ↦ hB (κ n) n, fun i ↦ ?_⟩
   have ht := tendsto_twoNorm_mk σ ω (⟨_, hc⟩ - d i)
   rw [map_sub] at ht

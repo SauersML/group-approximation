@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.InPlace
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.InPlaceFilter
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -14,6 +14,9 @@ and its side variants, `RoseCombinatorialStepStatement`, `rose_of_combinatorialS
 * `RoseInPlaceStepStatement` (OPEN): the rose step inside the same diagram.
 * `combinatorialStep_of_inPlaceStep`: `RoseCombinatorialStepStatement` from it, with `X' = X`.
 * `rose_of_inPlaceStep`: `P10ChordLift.RoseStepStatement` from it.
+* `inPlaceStep_of_filterStep`, `rose_of_filterStep`: both from `RoseFilterStepStatement` (module
+  `P10Rose/InPlaceFilter`), the isolated remaining claim: a face set whose boundary is the old cycle
+  filtered by a predicate keeping both arcs, in walk order, with a shared vertex.
 
 ## Plan for the gap
 
@@ -83,8 +86,23 @@ theorem rose_of_inPlaceStep (h : RoseInPlaceStepStatement.{u, w, v}) :
     P10ChordLift.RoseStepStatement.{u, w, v} :=
   rose_of_combinatorialStep (combinatorialStep_of_inPlaceStep h)
 
+/-- **The in-place rose step from the filter step**, by `step_of_filter`. -/
+theorem inPlaceStep_of_filterStep (h : RoseFilterStepStatement.{u, w, v}) :
+    RoseInPlaceStepStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨faces, kept, p, hout, hsource, hkept, hbd, ht₁, ht₂, hwalk, x, hx, y, hy, hpx, hpy,
+    hxy⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact step_of_filter K hlabel hsrc htgt hout hsource hkept p hbd ht₁ ht₂ hwalk hx hpx hy hpy hxy
+
+/-- **The rose step from the filter step.** -/
+theorem rose_of_filterStep (h : RoseFilterStepStatement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} :=
+  rose_of_inPlaceStep (inPlaceStep_of_filterStep h)
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.RoseInPlaceStepStatement
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.combinatorialStep_of_inPlaceStep
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.rose_of_inPlaceStep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.inPlaceStep_of_filterStep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.rose_of_filterStep

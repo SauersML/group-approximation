@@ -55,8 +55,8 @@ theorem faceOf_embed_mem_iff {s : Finset X.toCombMap.Face}
     {s' : Finset (FaceEdgeDoubling.diagram X f j hlen hf).toCombMap.Face}
     (hs : ∀ F, F ∈ s' ↔ ∃ g ∈ s, FaceEdgeDoubling.faceImage X f j hlen g = F)
     {z : X.toCombMap.Dart} (hz : z ≠ FaceEdgeDoubling.dart X f j) :
-    (FaceEdgeDoubling.diagram X f j hlen hf).toCombMap.faceOf (EdgeInsertion.embed X.toCombMap z) ∈
-        s' ↔ X.toCombMap.faceOf z ∈ s := by
+    (FaceEdgeDoubling.diagram X f j hlen hf).toCombMap.faceOf
+        (EdgeInsertion.embed X.toCombMap z) ∈ s' ↔ X.toCombMap.faceOf z ∈ s := by
   rw [hs, CellHairThickening.faceOf_embed X f j hlen hf hz]
   constructor
   · rintro ⟨g, hg, hgz⟩
@@ -152,7 +152,8 @@ theorem regionInternal_embed_iff_of_ne {z : S.diagram.toCombMap.Dart}
     exact ⟨b, hb, (faceOf_embed_mem_iff S.diagram f j hlen hf hfb hz).mp h1,
       (faceOf_embed_mem_iff S.diagram f j hlen hf hfb hza).mp h2⟩
   · rintro ⟨b, hb, h1, h2⟩
-    exact ⟨(stepTransport S f j hlen hf T).map ⟨b, hb⟩, (stepTransport S f j hlen hf T).map_mem _,
+    exact ⟨(stepTransport S f j hlen hf T).map ⟨b, hb⟩,
+      (stepTransport S f j hlen hf T).map_mem _,
       (faceOf_embed_mem_iff S.diagram f j hlen hf
         (mem_stepMap_faces S.diagram f j hlen hf T ⟨b, hb⟩) hz).mpr h1,
       (faceOf_embed_mem_iff S.diagram f j hlen hf
@@ -235,7 +236,8 @@ theorem not_phiKeepO_dart {E : Finset (RegionCandidate D eps S.diagram)} (hE : E
           (by rw [← hc]; exact hfh)
 
 /-- **(G) The relator cells of the new diagram have the face images of the old cell faces.** -/
-theorem cell_face_eq (i' : Fin (RegionPairThickening.sectionFamily S f j hlen hf T).diagram.rCellCount) :
+theorem cell_face_eq
+    (i' : Fin (RegionPairThickening.sectionFamily S f j hlen hf T).diagram.rCellCount) :
     (cell (RegionPairThickening.sectionFamily S f j hlen hf T).diagram i').face =
       FaceEdgeDoubling.faceImage S.diagram f j hlen
         (cell S.diagram ((stepTransport S f j hlen hf T).cellIndex.symm i')).face :=
