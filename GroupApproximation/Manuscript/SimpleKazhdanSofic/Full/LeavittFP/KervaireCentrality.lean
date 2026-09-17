@@ -117,7 +117,8 @@ theorem colRoot_apply (i : Fin m) (a : Multiplicative B) :
     colRoot i a = x i.castSucc (Fin.last m) (Fin.castSucc_ne_last i) a.toAdd := rfl
 
 theorem colRoot_commute :
-    Pairwise fun i j : Fin m => ∀ a b : Multiplicative B, Commute (colRoot i a) (colRoot j b) := by
+    Pairwise fun i j : Fin m =>
+      ∀ a b : Multiplicative B, Commute (colRoot i a) (colRoot j b) := by
   intro i j _ a b
   exact x_commute_of_ne i.castSucc (Fin.last m) j.castSucc (Fin.last m) (Fin.castSucc_ne_last i)
     (Fin.castSucc_ne_last j) (Fin.castSucc_ne_last j).symm (Fin.castSucc_ne_last i).symm
@@ -238,7 +239,8 @@ theorem rowRoot_apply (j : Fin m) (a : Multiplicative B) :
     rowRoot j a = x (Fin.last m) j.castSucc (Fin.castSucc_ne_last j).symm a.toAdd := rfl
 
 theorem rowRoot_commute :
-    Pairwise fun i j : Fin m => ∀ a b : Multiplicative B, Commute (rowRoot i a) (rowRoot j b) := by
+    Pairwise fun i j : Fin m =>
+      ∀ a b : Multiplicative B, Commute (rowRoot i a) (rowRoot j b) := by
   intro i j _ a b
   exact x_commute_of_ne (Fin.last m) i.castSucc (Fin.last m) j.castSucc
     (Fin.castSucc_ne_last i).symm (Fin.castSucc_ne_last j).symm (Fin.castSucc_ne_last i)

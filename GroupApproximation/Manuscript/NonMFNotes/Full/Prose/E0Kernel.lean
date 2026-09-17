@@ -36,8 +36,10 @@ noncomputable def e0KernelToInlRange :
     StableLetterLEFRoute.stableExponent.ker →*
       (SemidirectProduct.inl (φ := StableLetterLEFRoute.shiftAction)).range :=
   (StableLetterLEFRoute.markedGroupEquivKernelByInt.toMonoidHom.comp
-      StableLetterLEFRoute.stableExponent.ker.subtype).codRestrict _
-    (fun x => (StableLetterLEFRoute.mem_stableExponent_ker_iff (x : _)).mp x.2)
+      StableLetterLEFRoute.stableExponent.ker.subtype).codRestrict
+    (SemidirectProduct.inl (φ := StableLetterLEFRoute.shiftAction)).range
+    (fun x => (StableLetterLEFRoute.mem_stableExponent_ker_iff
+      (x : LiteralNonMFPresentation.MarkedGroup)).mp x.2)
 
 theorem e0KernelToInlRange_injective : Function.Injective e0KernelToInlRange := by
   intro a b hab
