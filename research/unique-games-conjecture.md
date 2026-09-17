@@ -76,37 +76,6 @@ it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
-- **NO-side spectral kill by the degree-2 SDP (swarm-0917-w5, 2026-09-17).**
-  `spectral-gap-no-outputs-cannot-prove-ugc` proves, at every alphabet and
-  without triangle inequalities, the bound
-  `val >= 1 - 768 eps/gamma - 14 eps - 18 r^(2/3) eps^(1/3)` for SDP deficit
-  `eps` and at most `r` constraint-walk eigenvalues above `1 - gamma`.
-  - *Method:* fourth-tensor embedding, projection onto the top eigenspaces, a
-    random grid, and root propagation through the `>1/2` matchings.
-  - *Consequence:* a reduction to `Gap-UG[1 - eps0, delta]` implies `P = NP`
-    whenever its NO outputs have fewer than
-    `(1-delta)^(3/2)/(216 sqrt(2 eps0))` eigenvalues above
-    `1 - 3072 eps0/(1 - delta - 56 eps0)`.
-  - *Combined with the YES-side kill:* with
-    `low-label-threshold-rank-reductions-cannot-prove-ugc`, a UGC reduction
-    needs high threshold rank on both sides.
-  - *Survivors:* long-code and noisy-cube compositions, and SSE graphs with
-    many near-1 eigenvalues.
-  - *Open follow-up:* raise `r` beyond `eps^(-1/2)` in polynomial time. That
-    needs a rounding whose cut cost does not scale with the grid dimension.
-
-- **Door P1 of the affine-view collapse, closed for the DKKMS family
-  (swarm-0917-w4, 2026-09-17).** `grassmann-composed-2to2-coarsenings-are-satisfiable`:
-  on every folded Dinur--Khot--Kindler--Minzer--Safra instance, and for every
-  agreement test on its vertex set, the coarsening `Can` has value 1, satisfied
-  by one gauge labelling. The labelling exists because folding offsets are
-  coboundaries against Lemma 4.1 representatives. So every affine-view unique
-  verifier composed on the 2-to-2 instances has `s >= 2c - 1`. Only these routes
-  survive:
-  - non-affine views (P2, `Can_part`);
-  - outer games whose constraints link two subspaces of one label space;
-  - verifiers without oblivious completeness.
-
 * **Direct affine soundness of the published folded noise test.**
   `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
   source family with vanishing value and folded output labelings with
@@ -162,8 +131,19 @@ it is supplied, and the exponential pairing-support obstruction persists.
   (OPEN after refereeing on 2026-09-17). Its formal items hold, but the class it
   kills is established only when the permutations `sigma` are affine. A
   non-affine `sigma` (for instance a transposition) makes soft triples of degree
-  about `log_p(1/eps)` even for Grassmann views; that case is
-  `low-degree-view-collapse-survives-non-affine-sigma`.
+  about `log_p(1/eps)` even for Grassmann views. The proposed repair
+  `low-degree-view-collapse-survives-non-affine-sigma` is **refuted** by
+  `non-affine-sigma-deletions-defeat-low-degree-collapse` (2026-09-17). With
+  identity views, swapping two labels per edge keeps completeness `1 - 2^(1-k)` but
+  drops the value from 1 (the coarsening's value) to `o(1)`. With arbitrary `sigma`,
+  affine-view verifiers collapse only to the **deletion coarsening** `Can_del`:
+  roundable triples (equal kernels, forced above completeness `1/p`) with sparse
+  deleted label sets of average density at most `(1-c)/w_r`, and
+  `val(V) >= w_r val(Can_del)`. The deletions are harmless when the homogeneous
+  symmetries of the outer game surject onto the view quotients. They are not harmless
+  for folded, over-determined inputs. So the soft triples of (P2) already occur
+  over degree-1 views, where the degree lives in `sigma`, not in the encoding. Open: is `Can_del` of hard 2-to-2 families sound, with deletions of
+  density `O(eps)` aimed at concentrated labellings?
   The invariant is the algebraic degree `D` of the view differences on the outer
   constraint spaces. A nonzero reduced polynomial of degree `D` is nonzero on a
   `p^-D` fraction of points. So at completeness `1 - eps`, the exact triples
