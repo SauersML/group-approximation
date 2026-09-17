@@ -95,8 +95,8 @@ theorem fibonacciGeneratesMatrices :
 /-- Every invertible matrix over `F₂` has determinant one. -/
 theorem fibDet_units_zmodTwo {n : Type*} [Fintype n] [DecidableEq n]
     (u : (Matrix n n (ZMod 2))ˣ) : (u : Matrix n n (ZMod 2)).det = 1 := by
-  have key : ∀ x : ZMod 2, x ≠ 0 → x = 1 := by decide
-  exact key _ (Matrix.isUnits_det_units u).ne_zero
+  rw [← IsUnit.unit_spec (Matrix.isUnits_det_units u)]
+  exact Units.val_eq_one.mpr (Subsingleton.elim _ _)
 
 /-- `GL_n(F₂) ≃* SL_n(F₂)`, the identity on underlying matrices. -/
 noncomputable def fibUnitsEquivSpecialLinear (n : Type*) [Fintype n] [DecidableEq n] :
