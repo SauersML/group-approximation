@@ -1,0 +1,3 @@
+free E={1,AB,AA} F={1,ba,aB} n=11 nv=2002 LP=1.000000
+free E={1,BA,a} F={1,A} n=7 nv=112 LP=1.000000
+free E={1,aa,AB} F={ba,AA,a} n=11 nv=2016 LP=1.000000

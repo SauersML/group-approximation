@@ -105,3 +105,27 @@ groups would refute it (`random-complex-cheeger-capped-by-triangle-count`).
   So the (T)-compression-plus-commuting-factor pattern has no hyperbolic
   instance. The only live mechanism recorded is the local-testability / Cheeger
   route `nonsofic-hyperbolic-via-cheeger-threshold`.
+- **Transfer a compression-certified witness through a local limit of
+  hyperbolic groups: dead by theorem.**
+  - The route to kill: build a nonsofic group `K` from a Kun--Thom defect or an
+    expander-matching pair. Then realize `K` as a marked limit of subgroups of
+    hyperbolic groups, for example by small cancellation, lacunary limits or
+    periodic quotients. Then use closedness to get a nonsofic hyperbolic group.
+  - The transfer step is sound. By
+    `nonsofic-hyperbolic-question-reduces-to-one-fixed-host`, a nonsofic group
+    that is locally embeddable into hyperbolic groups (LEH) gives a nonsofic
+    hyperbolic group.
+  - The route dies at the realization step. By
+    `hyperbolic-local-embedding-kills-compression-certificates`, every LEH
+    group has trivial compression defect for every finitely generated
+    subgroup, with no (T) needed. An LEH group also never contains two
+    commuting non-LEF subgroups, and never contains Thompson's `F`. So no
+    Kun--Thom, OpenAI, Fournier--Facio or Leavitt-unit-group witness is LEH.
+  - The failure is local. The approximating hyperbolic groups would have to
+    carry a compression that moves a centralizer. For finite and
+    non-elementary subgroups this is impossible by counting, and for infinite
+    elementary subgroups it is impossible inside `E(g)`.
+  - **Fixed host.** The same reduction shows that the flagship is equivalent to
+    one fixed torsion-free Kazhdan hyperbolic group having a nonsofic hyperbolic
+    quotient. Such a quotient can then be taken Kazhdan, finite-quotient-free,
+    and injective on any prescribed ball.

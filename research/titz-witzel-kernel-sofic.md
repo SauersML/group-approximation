@@ -41,3 +41,29 @@ sofic, it would also answer Cornulier's Question 5 positively.
   Radu's non-residually-finite BMW lattice, `radu-bmw-lattice-sofic`.  Its
   marked gate must keep `[y(xz)^2y, xz]` macroscopically nontrivial and must
   not factor through the horizontal tree quotient (artifact Sections 3--4).
+* **Biography of a minimal counterexample: partial-action rounding (swarm-0917, inverter).** The
+  one-sentence reason every cut-and-paste construction fails is ESTABLISHED in
+  `kazhdan-consistent-partial-models-round-to-finite-actions`. Suppose a permutation tuple has
+  consistent monodromy on a set of density `1 - eta`, meaning that every trivial word read inside
+  the set closes. Globalizing the partial action and projecting with property (T) forces every
+  generator to move at most `(2 + 2/kappa^2) eta n` points. This kills every model that agrees
+  with a genuine `K`-set (finite, a coset space, the building, a boundary) on all but `eta n`
+  points and is re-glued arbitrarily elsewhere. The invariant is the partial action on the
+  agreement set, and the dying step is its globalization. A sofic model of `K` therefore has
+  three forced properties.
+  * (i) Its consistency deficit is at least `c_kappa` times its mark (so it is not a sparse
+    re-gluing of any `K`-set).
+  * (ii) Its open trivial words sit far from every relator defect, at filling radius
+    `>~ log(c_kappa m/eps)/log(2|S|)` (`kazhdan-sofic-models-carry-long-scale-monodromy`), so
+    fixing relators on balls (Kun, Alekseev--Drigalla, radius-`r` rigidity) supplies no mark.
+  * (iii) Its commutant is non-ergodic (`kazhdan-ergodic-sofic-centralizer-forces-lef`).
+
+  The negative direction reduces to the purely combinatorial deletion-repair statement of
+  `titz-witzel-kernel-nonsofic-iff-consistent-deletion-repair`: nonsoficity holds iff every almost
+  solution becomes consistent after deleting `o(n)` points. Where this approach dies: neither
+  direction of (P2) is proved. A positive answer needs a model with logarithmic-scale monodromy
+  that is not confined to `o(n)` points, and no construction of such a model for `K` is known.
+  The unexplored recipes are non-normal (non-Galois) finite branched covers of the quotient
+  complex, with inhomogeneous branching data. Galois branched covers have the same local group at
+  every lift of a branch point. That suggests a linear defect, but this was checked only
+  heuristically and is not recorded as a claim.

@@ -61,3 +61,48 @@ quotient G/(ker x 1) is F_2, and the diagonal copy of F_2 maps onto it.
 Yet G is not finitely presented (classical Baumslag--Roseblade theorem
 on subgroups of products of free groups; not re-fetched here). No finite
 presentation of A_1 is known for any input that is not virtually cyclic.
+
+Window zero through the cofinal class P_0*Z (2026-09-17, dies). The route
+only needs a cofinal class of inputs. Every finitely presented decidable
+P_0 sits in P_0*Z, which is infinitely ended. The one-ended obstruction does
+not apply there. A shift-normalizing enumeration (window N=0) would make
+R_nu an ascending HNN extension of the regular copy, hence finitely
+presented, and would pass the gate, so Q would be finitely presented. This
+dies at the index count
+(`accessible-shell-inputs-admit-no-shift-normalizing-enumeration`). On each
+infinite component the shift is `y -> phi(y) c_i`. Pulling the pieces back
+coset by coset gives k=[P:phi(P)] near-partitions by right translates. An
+end Euler measure
+(`accessible-non-virtually-cyclic-groups-carry-end-euler-measures`, which
+exists for every accessible non-virtually-cyclic P) then forces
+(k^n - 1) mu(Pbar) = mn for all n, which is impossible. So N=0 is excluded
+for every finitely presented non-virtually-cyclic input, and any germ-level
+witness needs a window N >= 1 with a larger base B.
+
+Entropy-measure transplant (2026-09-17, dies). Density and local-statistics
+invariants of the enumeration cannot see the obstruction. The near index
+eta, and the finitary and density-zero supports of s^-eps lambda(P) s^eps
+versus W_N, are invisible to any shift-invariant density. The
+square-spiral limit already has its extra germ on density-zero lines. The
+invariant that does detect window zero is finitely additive and
+point-counting (the end Euler measure), not a density.
+
+Brown's criterion over the germ map (2026-09-17, dies at the edge stabilizers). The attempt
+lets A_1 act through d: A_1 -> Q on a simply connected cocompact complex. Cell stabilizers
+are then A(Q_sigma) = d^-1(Q_sigma). The positive-control pieces are Q_v virtually <tau>, so
+that A(Q_v) is commensurable with Fix_V(p).
+
+The attempt dies at the edge clause.
+- Brown's criterion needs finitely generated edge pieces.
+- The kernel K = ker d is not finitely generated, so every Q_e must be infinite.
+- Infinite edge stabilizers make all vertex stabilizers commensurable, so Q commensurates <tau>.
+- The near index turns this into a central tau^a.
+- `shell-prefix-core-detects-finite-ray-enumerations` then forces P to be virtually cyclic.
+
+See `cyclic-germ-brown-complexes-force-virtually-cyclic-shell-input`. That claim also records
+two necessary conditions on the pieces of any surviving decomposition:
+- A(H) finitely generated forces H to have finitely many coarse orbits on N;
+- in particular A(rho(P)) is not finitely generated.
+
+So the vertex pieces must be groups A(H) with H not virtually <tau>, which are of the same
+nature as A_1.

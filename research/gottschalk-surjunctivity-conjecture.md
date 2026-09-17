@@ -16,6 +16,7 @@ refuted_by:
   - projective-ternary-leavitt-group-nonsurjunctive
   - ternary-leavitt-unit-group-nonsurjunctive
   - leavitt-unit-group-nonsurjunctive
+  - some-group-is-not-surjunctive
 distinct_from:
   gottschalk-surjunctivity-fixed-two-generator-tester: that establishes a reduction to one group; this is the universal conjecture itself, still unresolved here.
   leavitt-unit-group-nonsurjunctive: that seeks one counterexample and would refute this universal positive goal; it is not a positive proof prerequisite.
@@ -859,3 +860,84 @@ non-surjective ones. As stated it cannot exist.
 - **What remains open.** No implication between QCA-surjunctivity and classical surjunctivity is known
   in either direction. A classical strict pair yields only the non-unital `Ad V` of
   `split-ca-quantization-has-sharp-defect`.
+
+**Heretic lane: three unstated assumptions (sw-013, 2026-09-17).** The hot families (finite models,
+entropy/measure, group rings, host geometry, quantifier shift) share three assumptions that none of them
+states. Each was denied in turn.
+- **A1. The alphabet carries at most a field structure.**
+  - **Denial.** Give the alphabet the structure of a finite nilpotent group `Q`, and let rules be words with
+    constants.
+  - **Result.** `nilpotent-polynomial-automata-reduce-to-kaplansky`. An injective `Q`-polynomial automaton
+    is bijective whenever `F_p[G]` is directly finite for all `p | |Q|`. Bijectivity is equivalent to the
+    exponent-sum vector `alpha` being a unit of `(Z/exp Q^ab)[G]`.
+  - **Method.** The automaton is pulled back to the polynomial function group `N`. A central character kills
+    the abelian layer, and the unipotent layers of the lower central series then terminate. Over a field
+    alphabet the corresponding m-adic filtration stabilizes instead (`x^q = x`).
+  - **Consequence.** Every strict automaton over Higman's group or Thompson's `F` is non-polynomial for every
+    nilpotent group structure on its alphabet.
+  - **Breaks.** For simple `Q`, Maurer–Rhodes makes every rule polynomial: this is the whole conjecture, and
+    the lower central series is stuck at a perfect layer. For `S_3` and `A_4` the criterion fails
+    computationally.
+- **A2. A proof must turn strictness into a size deficit on finite windows and amplify it.**
+  - **Denials traced.**
+    - Counting on finite `G`-sets or Schreier graphs only reproduces soficity.
+    - Counting along iteration time: the monoid `N` is amenable, but the spatial boundary of `S^n` remains.
+    - Stone-dual Hopficity is an exact reformulation only.
+    - Index and exactness counting die at the mismatch between thin sets and Radon–Nikodym weights.
+  - **Dead ends.** All of these.
+  - **Positive side.** The nilpotent theorem above is a filtration argument with no counting.
+- **A3. The group enters only through local tables plus finite approximation.**
+  - **Denial.** Let the rule read an invariant random environment.
+  - **Full-support environments.** Absorbing the environment into the alphabet, `sigma' tau' = id` is a
+    clopen condition, so it holds everywhere once it holds densely. This is equivalent to the conjecture
+    and gives nothing new.
+  - **IRS environments.** These give automata on unimodular Schreier networks. A strict one would certify
+    an explicit non-sofic unimodular network, which is not known to exist constructively.
+  - **Configuration-dependent 2-to-1 index maps.** Mass transport kills them.
+
+The most promising continuation is the first solvable non-nilpotent alphabet, `S_3`. There the non-central
+`Z/3` layer is twisted by the sign automaton, and the fibre maps are linear over a twisted crossed product
+of `C(2^G, F_3)` rather than a group ring.
+
+**Homogeneity denied: invariant random subgroups (a-gs-heretic, 2026-09-17).** This was a heretic lane.
+Artifact `research/artifacts/irs-surjunctivity-heretic-2026-09-17.md`.
+
+The two hot families, entropy-measure and local designs, share three unstated assumptions.
+
+- **A1: invariant accounting.** Denying it is already calibrated dead.
+  `end-fixing-tree-symmetries-carry-strict-automata` gives a strict automaton on a non-unimodular space,
+  and the transport identity has ratio 2 there.
+- **A2: homogeneity.** Every site sees the same forward and reverse table.
+- **A3: exactness, forward error zero.** Denying it alone has no content, because on a vertex-transitive
+  index set the forward error is 0 or 1.
+
+Denying A2 while keeping A1 replaces groups by Schreier graphs of invariant random subgroups of `F_r`,
+with shape-dependent rules. Denying A3 on top of that gives a closed convex inequality.
+
+Proved:
+
+- `atomic-irs-strict-designs-are-nonsurjunctive-quotients`. An atomic ergodic IRS carries a strict design
+  iff `N(H)/H` is not surjunctive. So the goal is exactly the atomic case.
+- `co-sofic-irs-carry-no-strict-design`. On finite Schreier graphs
+  `delta <= (d_R + d_2r |A|^(d_r) ln|A|) eps`, and this inequality passes to weak-* limits.
+
+Open decomposition:
+
+- Route `gottschalk-via-irs-surjunctivity` needs the strengthening
+  `free-group-irs-carry-no-strict-design`. Its only hole is
+  `non-co-sofic-free-group-irs-carry-no-strict-design`.
+- Counterexample program `nonsurjunctive-group-via-irs-strict-design`, into the new program root
+  `some-group-is-not-surjunctive`, needs `some-free-group-irs-carries-a-strict-design` and
+  `irs-strict-designs-yield-nonsurjunctive-groups`.
+
+Where it dies so far:
+
+- **No finite search.** Any witness must be non-co-sofic, and nonatomic on infinitely generated
+  subgroups.
+- **No monotone transfer to groups.** iid intersection refines tables and can destroy forward
+  sufficiency. Joins coarsen them and can destroy reverse failure.
+- **IRS-rigid hosts add nothing.** On hosts such as the binary Leavitt unit group the IRS containing `N`
+  are trivial mixtures.
+
+Reach: any argument that uses only root-ball statistics and mass transport should prove the IRS
+strengthening. A witness for `some-free-group-irs-carries-a-strict-design` would kill that whole class.

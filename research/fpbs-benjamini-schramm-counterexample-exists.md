@@ -88,3 +88,34 @@ so establishing this claim would refute that conjecture too.
   remain true when `p_c=p_u`. Section 8 of `spectral-spike.md` records this
   after a literature check: no implication about strictness may be inferred by
   combining them.
+* **Kazhdan projection applied to the two-point function** (sw-029,
+  2026-09-17, inverter lane). Assume a witness `Gamma` has property (T), with
+  Kazhdan constant `kappa` for `S`. Then `phi_p(x)=tau_p(o,x)` is a normalized
+  positive definite function on `Gamma`: its GNS vector is `e_{C(o)}` in
+  `L^2(P; l^2(clusters))`. Its invariant mean is
+  `W(p)=M(phi_p)=||P_inv xi||^2`. By ergodicity, indistinguishability of
+  infinite clusters and the Alaoglu--Birkhoff mean ergodic theorem,
+  `W(p)=theta(p)^2 1{uniqueness at p}`. Under (T), `W(p)=s_p(p_0)`, where `p_0`
+  is the Kazhdan projection in `C*(Gamma)` and `s_p` is the state defined by
+  `phi_p`. Since `phi_p` is pointwise left-continuous in `p`, `W` is
+  left-continuous. This yields two things. (a) Either `p_c=p_u`, or there is
+  no uniqueness at `p_u`. (b) The quantitative bound
+  `1-W(p) <= 2(1-p)/kappa^2`, so `p_u <= 1-kappa^2/2`. Calibration: planar
+  hyperbolic surface groups have uniqueness at `p_u`, and they lack (T), as
+  they must. **Where it dies:** (a) is the Lyons--Schramm conclusion for
+  Kazhdan groups, and `fpbs-pu-nonuniqueness-cannot-separate` already shows
+  that no endpoint statement of the form "no unique cluster at `p_u`" can force
+  strictness. The exact failing step is the continuity of `W` at `p_c` under
+  collapse. For a unimodular nonamenable transitive graph `theta(p_c)=0`
+  (BLPS), and `theta` is right-continuous, so `W(p)=theta(p)^2 -> 0 = W(p_c)`
+  as `p` decreases to `p_c`. Thus `W` is continuous at `p_c`, and the
+  one-sided continuity supplied by the Kazhdan projection has nothing to
+  contradict. The same computation gives `M=theta^2 1{U}` for the invariant
+  mean of any positive definite function `P(o ~ x)` built from an ergodic
+  invariant random partition with indistinguishable infinite classes, sprinkled
+  couplings `C_q(o)` included. So the whole class "invariant means,
+  equivalently Kazhdan projections, of cluster two-point functions" is silent
+  on collapse. A contradiction would have to come from a non-mean
+  functional, one that sees `tau_p` outside the trivial isotypic component,
+  such as the spectral mass of `phi_p` near but not at the trivial
+  representation.

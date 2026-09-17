@@ -89,3 +89,21 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   `a-t-menable-groups-have-no-rigid-compression-defect` `F` carries no rigid
   compression defect. Those tools decide soficity questions for Kazhdan pairs.
   Dead for amenability in both directions.
+- **Recurrence plus amenable stabilizers, and building F from F-free groups.**
+  The Juschenko–Nekrashevych–de la Salle route: find a recurrent action, which is
+  extensively amenable, and prove the stabilizers amenable.
+  - `thompson-f-recurrent-orbits-have-stabilizers-containing-f`: in any finitely
+    generated host `G ⊇ F` (F, T, V, full groups, automaton groups), every recurrent
+    orbit has `G_x ∩ F` containing a copy of `F`. The proof is a rank-three test
+    (`recurrent-orbits-force-every-z3-to-meet-the-stabilizer`: a free `Z^3`-orbit
+    roughly embeds, so it is transient) plus Brin ubiquity.
+  - `f-free-groups-are-closed-under-recurrent-extensions`: groups with no copy of `F`,
+    and groups with no section `F`, are closed under extensions, directed unions and
+    recurrent extensions (with quotients too, for section-closed bases). So `F` is not
+    in the closure of residually finite, LEF or locally subexponential groups under
+    these operations.
+  - *Invariant:* containing a copy of `F`.
+  - Dies: at the stabilizer step, whose input "`G_x` amenable" already includes
+    amenability of `F`. Not covered: extensive amenability proved without recurrence
+    (`f-dyadic-ea-iff-inverted-orbit-confinement`), germ-groupoid variants, and analytic
+    routes. (swarm-0917, obstructor.)

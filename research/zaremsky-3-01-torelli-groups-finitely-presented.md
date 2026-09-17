@@ -66,3 +66,14 @@ sources and the method map.
 - 2026-09-13 (lane z3-01-torelli): the question, the family decomposition, the
   equivalences and the status map land first. Attacks are recorded on the six
   answer claims.
+- 2026-09-17 (sw-096, transplanter, host-geometry): **Bieri–Geoghegan CAT(0)
+  Σ-invariants.** The non-abelian transplant of the Renz Σ² route reads finite
+  presentability of a point stabilizer off `Σ²(ρ)` for a cocompact, discrete-orbit
+  isometric action `ρ` of the (type `F_∞`) ambient group on a proper CAT(0) space.
+  Dead for all three families: `torelli-groups-are-not-cat0-cocompact-stabilizers`
+  shows no such action of a finite-index subgroup of `Out(F_n)`, `Aut(F_n)`
+  (`n >= 3`) or `Mod(S_g)` (`g >= 3`) has a stabilizer commensurable with the Torelli
+  group. Exact step: the action would make a finite-index subgroup of `GL_n(Z)` or
+  `Sp_{2g}(Z)` (modulo a finite group) a CAT(0) group, but it contains a Heisenberg
+  group, which the Solvable Subgroup Theorem forbids. Open residue: actions whose
+  stabilizers have infinite, virtually abelian image in `GL_n(Z)`.

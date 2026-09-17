@@ -28,6 +28,21 @@ form. It is kept because it isolates the conditionings as the whole difficulty a
 - **Tree calibration.** On `Aut(T, xi)` domination holds, but the transport identity fails with ratio `2`, the
   modular function (artifact 2.1). So a strict automaton off groups is paid for by imbalance, not by violating
   domination. Neither the tree nor inertness kills this form.
+- **Modular correction of the tree calibration (a-gs-modular-index, 2026-09-17).** The previous entry holds for `tau`
+  and needs correcting in general (`modular-transport-imbalance-is-not-a-strictness-index`, held OPEN on its candidate-4
+  step; the calibrations below were verified by all three referees).
+  - The tree satisfies the Delta-weighted identity `sum_u t(u, o) 2^(b-a) = log |A|` for every injective automaton.
+    The unweighted ratio `2` is only the mean of the modular function along `tau`'s decoder arrows. A strict product
+    automaton has ratio `1`, and bijective shears have ratios `4/5` and `6/5`.
+  - Unweighted domination fails on the tree for the bijective shear up, with `5/2 > 2`. So "domination holds" was a fact
+    about `tau`.
+  - Weighted domination, the form that matches the identity, fails at the skewed strict `kappa` of
+    `finite-left-inverse-identity-does-not-force-balance`: `2 > 1.9056` bits. Here the tree's strictness shows up
+    as a violation of domination.
+  - Calibration: any argument for domination that is valid on the modular mass-transport world `Aut(T, xi) ↷ V` is refuted. That
+    includes equivariance, the chain rule, Shannon inequalities, finite decoder memory and modular mass transport. A
+    proof must use `Delta = 1` (or freeness) inside the domination step, not only in the identity.
+  - Artifact `research/artifacts/modular-index-calibration-2026-09-17.md`, Sections 3 and 5.
 - **Amenable decoder memory.** Holds when `Gamma = <N>` is amenable. That includes two-point decoder memory.
   - For `B = A`: `amenable-decoder-memory-forces-surjectivity` gives bijectivity, hence a uniform site law.
   - For `B != A`: that theorem does not apply. Count inside `Gamma` instead: `|F| log |A| <= |FN| H(y(e))`, then take

@@ -50,3 +50,17 @@ subgroup.
   additional operator--HS stability condition and explicitly presents it as
   a potential approach to the MF question.  No theorem in that source proves
   this fixed triple cover non-MF.
+- **Siegel spectral separation is dead (swarm-0917, entropy-measure).**
+  `deligne-sector-siegel-spectrum-is-full-torus` proves that in every unital
+  representation of a nontrivial sector `A_omega` (exact, corona,
+  ultraproduct, regular) the Siegel radical `Sym_2(Z)` has joint spectrum
+  all of `T^3`, every long-root lift has spectrum `T`, and every trace
+  induces Haar measure.  Invariant: (Siegel spectrum, trace measure).  Every
+  congruence-torsion / Magee--de la Salle transplant, quasi-unipotent
+  eigenvalue bound, or invariant-measure rigidity argument dies at the step
+  "the model has non-full, atomic, or non-Haar Siegel data", which is false
+  for every representation.  The finite branch is empty because it would
+  give a finite quotient seeing `z` (Margulis NST plus the Deligne residual).
+  Survivors: vector-state atoms (the induced representation from
+  `s(NU) x <z>` has invariant vectors), relative-(T) corners, and the matrix
+  origin of models.  Artifact: `research/artifacts/deligne-sector-siegel-spectrum-2026-09-17.md`.

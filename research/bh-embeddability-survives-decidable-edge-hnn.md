@@ -94,3 +94,32 @@ only through a proof that does not pass through the conjecture.
    For `C_1 = C_2 = A` the claim's case (c) covers mapping tori `A ⋊_phi Z` in
    which `phi` is induced by a permutation normalizing an actor. This is the
    case Attempt 4 leaves open. *Partial.*
+7. **Tree and self-similar engines, in any host.** *Dies* for the general
+   statement (2026-09-17). By
+   `profinite-tree-hosts-make-fa-subgroups-residually-finite`, every subgroup
+   with property FA of a group acting faithfully on locally finite trees is
+   residually finite. So is every such subgroup of a group of automorphisms of a
+   locally finite rooted tree. The invariant is the finite residual of an FA
+   subgroup. Every engine that first places `A*_phi`, or any overgroup of it, in
+   one of these hosts dies at that placement whenever `A` contains an infinite FA
+   subgroup that is not residually finite. The engines covered are:
+   - Theorem B of Bux--Llosa Isenrich--Wu;
+   - their Theorems 10.5 and 11.1, with the faithful enlargement;
+   - Zaremsky's self-similar theorem;
+   - hosts on products of trees with finite stabilizers.
+
+   The Kazhdan group `S_q` of
+   `km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4` is such an `A`, with
+   admissible edges trivial or all of `S_q`. Enlarging the input first, as
+   Theorem 11.1 does, only produces another host of the same kind.
+
+   The obstruction stops the engines, not the claim. The same claim puts
+   `S_q * Z` and every mapping torus `S_q ⋊_phi Z` in `B_A`, through
+   `outer-extensions-of-fp-simple-mif-groups-satisfy-pbh`, using that `S_q` is
+   MIF. This settles, for finitely presented simple MIF bases, the mapping-torus
+   case that Attempt 4 (L2) leaves open. So a proof of the general claim must use
+   a type (A) or other non-profinite engine, as in Attempt 6. The free-base
+   route `oriented-artin-bh-via-free-group-hnn-permanence` is not affected,
+   because free groups have no nontrivial FA subgroups. Whether a one-relator
+   base can contain an infinite non-residually-finite FA subgroup is not
+   addressed.

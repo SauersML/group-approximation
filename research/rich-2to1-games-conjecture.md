@@ -64,3 +64,29 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
   **Dead** -- `unique-constraints-orient-at-most-half-of-a-fiber`.
 * **Hide a hard core inside a large randomly matched dummy alphabet.**
   **Dead** -- `dummy-padding-cannot-beat-the-random-guessing-floor`.
+* **Prove soundness by an operator-algebraic (entanglement-robust) analysis.**
+  Examples: matrix-valued hypercontractivity, quantum rigidity or low-degree
+  tests as the soundness engine, or an inner decoder that handles entangled
+  strategies. **Attempted, held OPEN (2026-09-17):** the kill below was drafted but
+  referees refuted it as written. Lens 1: B3 omits the outer completeness and
+  polynomial-time hypotheses on `O` that its proof uses. Lens 2: KRT Theorems 1.3
+  and 4.5 apply to unique games only, so an entanglement-sound outer PCP to rich
+  2-to-1 games followed by the classically sound noise test is not killed; the
+  kill can at most cover soundness conclusions about the output unique game.
+  The drafted content:
+  - `entanglement-sound-soundness-cannot-prove-ugc` (via the Kempe--Regev--Toner
+    import `unique-games-entangled-value-approximable-by-sdp`) shows such an
+    analysis puts the source language in P when `6 eps + delta < 1`.
+  - Under P != NP, every NP-hardness reduction to Gap-UG must produce infinitely
+    many NO instances of entangled value `>= 1 - 6 eps`.
+  - Composition with a classically sound outer PCP and an entangled-strategy
+    decoder `D_cl`, or with an entanglement-sound outer PCP and a decoder `D_q`,
+    also dies.
+  - Unconditionally, for the binary test,
+    `clifford-long-codes-realize-pairing-value-in-binary-noise-test`
+    gives fully rich 2-to-1 games of value `<= 4/k^eta` whose `R_(rho,2)` output
+    has entangled value `>= (1 + rho^3 (1 - 9 eta)^2)/2`.
+
+  (Drafted conclusion, not established: a proof of this conjecture whose soundness
+  conclusion is about the output unique game must use a step that is false for
+  entangled strategies.) Open: an explicit clock-and-shift witness for `m > 2`.

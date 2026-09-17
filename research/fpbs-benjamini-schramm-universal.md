@@ -359,6 +359,20 @@ content in that region.
   `lim_R lim_n s_n(p,R)`. It equals the distinct-infinite-cluster integrand of
   `fpbs-msf-excess-equals-nonuniqueness`, so the scale shift is an equivalence
   with no new estimate.
+* **Close the sw-008 loophole with finite energy and FKG (2026-09-17).** The
+  idea was that a contradiction from `p_u = p_c` might still follow from the
+  soft supercritical toolbox once deletion tolerance and Harris–FKG are added
+  to (S1)–(S4). **Where it dies:**
+  `fpbs-finite-energy-fkg-collapse-over-central-z2-slabs`. Every Cayley graph
+  of a nonamenable group with a central `Z` inside a `Z^2` carries a
+  collapsing family with all of these properties. The spine is built from
+  thinned amenable slabs, each keeping only its Burton–Keane giant, joined by
+  all-or-nothing connectors that recur along the central direction.
+  `F_2 x Z` has a window for some generating set. So the continuation step
+  from `p_c` to `p_c + eps` must use one of four things: independent
+  increments (BK, Russo, sprinkling, differential inequalities), mixing,
+  uniform finite energy, or FIID/cost structure. The last is useless on this
+  fixed-price-one class.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
