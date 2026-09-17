@@ -125,13 +125,18 @@ theorem exists_posPoly_mul_wordS (a : BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2
       ∃ S, a * (BinaryLeavitt.family (ZMod 2)).wordS γ = posPoly S := by
   obtain ⟨n, co, al, be, rfl⟩ := BinaryLeavitt.exists_monomial_representation (ZMod 2) a
   refine ⟨Finset.univ.sup fun i => (be i).length, fun γ hγ => ?_⟩
+  have key : ∀ i ∈ (Finset.univ : Finset (Fin n)), ∃ S,
+      co i • ((BinaryLeavitt.family (ZMod 2)).wordS (al i) *
+        (BinaryLeavitt.family (ZMod 2)).wordT (be i)) *
+        (BinaryLeavitt.family (ZMod 2)).wordS γ = posPoly S := by
+    intro i _
+    have hlen : (be i).length ≤ γ.length :=
+      le_trans (Finset.le_sup (f := fun i => (be i).length) (Finset.mem_univ i)) hγ
+    obtain ⟨S, hS⟩ := exists_posPoly_monomial_mul_wordS (al i) (be i) γ hlen
+    obtain ⟨T, hT⟩ := exists_posPoly_smul (co i) S
+    exact ⟨T, by rw [smul_mul_assoc, hS, hT]⟩
   rw [Finset.sum_mul]
-  refine exists_posPoly_sum _ _ fun i _ => ?_
-  have hlen : (be i).length ≤ γ.length :=
-    le_trans (Finset.le_sup (f := fun i => (be i).length) (Finset.mem_univ i)) hγ
-  obtain ⟨S, hS⟩ := exists_posPoly_monomial_mul_wordS (al i) (be i) γ hlen
-  obtain ⟨T, hT⟩ := exists_posPoly_smul (co i) S
-  exact ⟨T, by rw [smul_mul_assoc, hS, hT]⟩
+  exact exists_posPoly_sum _ _ key
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.exists_posPoly_mul_wordS
 

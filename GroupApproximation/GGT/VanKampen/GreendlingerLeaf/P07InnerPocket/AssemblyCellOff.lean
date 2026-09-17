@@ -28,7 +28,7 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.Assem
 
 universe u w v
 
-open Embedded SimpleClosedWalkSides
+open Embedded
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
 

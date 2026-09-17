@@ -132,6 +132,15 @@ theorem move_isPath {a : V} {l l' : List V} (hm : S.Move a l l') :
     simp only [IsPath] at hp ⊢
     exact ⟨hp.1, S.tri_edge _ _ _ ht, hp.2.2.2⟩
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.IsPath
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.endpoint
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.isPath_append
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.Move
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.Homotopic
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.SimplyConnected
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.move_isPath
+
 end BrownSetting
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective
