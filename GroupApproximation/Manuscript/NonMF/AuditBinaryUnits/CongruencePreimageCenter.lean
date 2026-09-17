@@ -65,7 +65,7 @@ variable {R : Type*} [Ring R]
 difference lies in the ideal. -/
 theorem mk'_eq_mk'_iff (I : TwoSidedIdeal R) (a b : R) :
     I.ringCon.mk' a = I.ringCon.mk' b ↔ a - b ∈ I :=
-  (RingCon.eq I.ringCon).trans (TwoSidedIdeal.rel_iff I a b)
+  (RingCon.eq (a := a) (b := b) I.ringCon).trans (TwoSidedIdeal.rel_iff I a b)
 
 end Reduction
 
@@ -151,7 +151,7 @@ variable {R : Type*} [Ring R]
 `GL_4(R/I)`."  The library's `congruenceSubgroup (Fin 4) I` is that preimage. -/
 theorem manuscriptSentence_congruenceSubgroupIsCenterPreimage (I : TwoSidedIdeal R) :
     congruenceSubgroup (Fin 4) I = quotientCenterPreimage (Fin 4) I :=
-  (quotientCenterPreimage_eq_congruenceSubgroup
+  (quotientCenterPreimage_eq_congruenceSubgroup (ι := Fin 4)
     (by rw [Fintype.card_fin]; decide) I).symm
 
 #audit_axioms manuscriptSentence_congruenceSubgroupIsCenterPreimage

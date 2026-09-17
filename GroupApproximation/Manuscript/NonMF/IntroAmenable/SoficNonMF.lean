@@ -46,7 +46,8 @@ theorem manuscriptSentence_soficNonMFSemidirect :
   exact ⟨GroupApproximation.LiteralNonMFLinearWitness.WitnessGroup,
     GroupApproximation.CliffordWitnessLocallyRFByInt.ShiftKernel, inferInstance, inferInstance,
     inferInstance, inferInstance, GroupApproximation.CliffordWitnessLocallyRFByInt.shiftAction,
-    he, hLRF, hSofic, fun hL => hNotMF ((literalMF_iff_isOperatorMF _).mp hL), hNotMF⟩
+    he, hLRF, hSofic, fun hL => hNotMF
+      ((literalMF_iff_isOperatorMF GroupApproximation.LiteralNonMFLinearWitness.WitnessGroup).mp hL), hNotMF⟩
 
 /-- **tex 66, first half.**  There is a sofic group that is not MF, whose canonical trace on the
 maximal group `C*`-algebra is amenable but not quasidiagonal. -/
@@ -62,7 +63,8 @@ theorem manuscriptSentence_soficNonMFAmenableNonQDTrace :
   obtain ⟨-, -, hSofic, hNotMF, hAmen, hNotQD⟩ :=
     GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTraceCore
   exact ⟨GroupApproximation.LiteralNonMFLinearWitness.WitnessGroup, inferInstance, inferInstance,
-    hSofic, fun hL => hNotMF ((literalMF_iff_isOperatorMF _).mp hL), hNotMF, hAmen, hNotQD⟩
+    hSofic, fun hL => hNotMF
+      ((literalMF_iff_isOperatorMF GroupApproximation.LiteralNonMFLinearWitness.WitnessGroup).mp hL), hNotMF, hAmen, hNotQD⟩
 
 end IntroAmenable
 end NonMF

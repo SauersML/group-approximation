@@ -107,11 +107,14 @@ theorem e12_charFn_ne_one {U : Set X} (hU : IsClopen U) (hne : U.Nonempty) :
     e12 (ClopenCrossedProduct.coeff T (ZMod 2) (LocallyConstant.charFn (ZMod 2) hU)) ≠ 1 := by
   intro h
   obtain ⟨x0, hx0⟩ := hne
-  rw [e12_eq_one_iff, ← map_zero (ClopenCrossedProduct.coeff T (ZMod 2))] at h
+  rw [e12_eq_one_iff] at h
+  have h0 : LocallyConstant.charFn (ZMod 2) hU = 0 :=
+    ClopenCrossedProduct.coeff_injective T (ZMod 2)
+      (h.trans (map_zero (ClopenCrossedProduct.coeff T (ZMod 2))).symm)
   have h1 : LocallyConstant.charFn (ZMod 2) hU x0 = 0 := by
-    rw [ClopenCrossedProduct.coeff_injective T (ZMod 2) h]
-    rfl
-  exact one_ne_zero (((LocallyConstant.charFn_eq_one (Y := ZMod 2) x0 hU).mpr hx0).symm.trans h1)
+    rw [h0, LocallyConstant.zero_apply]
+  exact one_ne_zero
+    (((LocallyConstant.charFn_eq_one (Y := ZMod 2) x0 hU).mpr hx0).symm.trans h1)
 
 /-- `e₁₂(1)` is not in the kernel of restriction to a nonempty invariant set. -/
 theorem e12_one_not_mem_ker {Y : Set X} (hY : T '' Y = Y) (hne : Y.Nonempty) :
@@ -119,11 +122,18 @@ theorem e12_one_not_mem_ker {Y : Set X} (hY : T '' Y = Y) (hne : Y.Nonempty) :
       (elementaryGroupMap (ι := Fin 3) (ClopenCrossedProduct.restrict T (ZMod 2) hY)).ker := by
   intro h
   obtain ⟨y0, hy0⟩ := hne
-  rw [MonoidHom.mem_ker, elementaryGroupMap_e12, map_one, e12_eq_one_iff,
-    ← map_one (ClopenCrossedProduct.coeff (ClopenCrossedProduct.restrictHomeo T hY) (ZMod 2)),
-    ← map_zero (ClopenCrossedProduct.coeff (ClopenCrossedProduct.restrictHomeo T hY) (ZMod 2))] at h
-  have h1 : (1 : LocallyConstant Y (ZMod 2)) ⟨y0, hy0⟩ = (0 : LocallyConstant Y (ZMod 2)) ⟨y0, hy0⟩ :=
-    by rw [ClopenCrossedProduct.coeff_injective _ (ZMod 2) h]
+  rw [MonoidHom.mem_ker, elementaryGroupMap_e12,
+    map_one (ClopenCrossedProduct.restrict T (ZMod 2) hY), e12_eq_one_iff] at h
+  have h0 : (1 : LocallyConstant Y (ZMod 2)) = 0 :=
+    ClopenCrossedProduct.coeff_injective (ClopenCrossedProduct.restrictHomeo T hY) (ZMod 2)
+      ((map_one
+          (ClopenCrossedProduct.coeff (ClopenCrossedProduct.restrictHomeo T hY) (ZMod 2))).trans
+        (h.trans
+          (map_zero (ClopenCrossedProduct.coeff (ClopenCrossedProduct.restrictHomeo T hY)
+            (ZMod 2))).symm))
+  have h1 : (1 : LocallyConstant Y (ZMod 2)) ⟨y0, hy0⟩ = 0 := by
+    rw [h0, LocallyConstant.zero_apply]
+  rw [LocallyConstant.one_apply] at h1
   exact one_ne_zero h1
 
 /-- **Sentence l.402 (tex l.402–406).** Let `X` be a profinite space with a homeomorphism `T`, and
