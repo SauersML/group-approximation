@@ -59,8 +59,7 @@ theorem inl_mem_ker_of_left (K : Type) [Group K]
     (inl f : WFin K) ∈ (heightAbelianization K).ker := by
   rw [MonoidHom.mem_ker]
   refine SemidirectProduct.ext ?_ rfl
-  rw [heightAbelianization_inl_left, hf]
-  rfl
+  exact (heightAbelianization_inl_left K f).trans hf
 
 #audit_axioms GroupApproximation.SpectralPaper.IntroCarto13.inl_mem_ker_of_left
 
@@ -85,8 +84,10 @@ theorem commutatorLamp_mem_ker (K : Type) [Group K] (y : Cosets conjD conjD_inje
     (a b : K) :
     (inl (Lamp.single y ⁅a, b⁆) : WFin K) ∈ (heightAbelianization K).ker := by
   refine inl_mem_ker_of_left K ?_
-  rw [MonoidHom.comp_apply, lampValueHom_single, map_commutatorElement,
-    commutatorElement_eq_one_iff_mul_comm.mpr (mul_comm _ _), Lamp.single_one, map_one]
+  have hcomm : (⁅Abelianization.of a, Abelianization.of b⁆ : Abelianization K) = 1 :=
+    commutatorElement_eq_one_iff_mul_comm.mpr (mul_comm _ _)
+  rw [MonoidHom.comp_apply, lampValueHom_single, map_commutatorElement, hcomm,
+    Lamp.single_one, map_one]
 
 #audit_axioms GroupApproximation.SpectralPaper.IntroCarto13.commutatorLamp_mem_ker
 
@@ -96,7 +97,8 @@ theorem ker_heightAbelianization (K : Type) [Group K] :
   refine le_antisymm ?_ ?_
   · exact ker_pushWreath_comp_le (Subgroup.normalClosure (heightDiffs K)) heightSite
       heightSite_smul
-      (fun y y' k h => Subgroup.subset_normalClosure ⟨y, y', k, h, rfl⟩)
+      (fun y y' k h =>
+        Subgroup.subset_normalClosure (s := heightDiffs K) ⟨y, y', k, h, rfl⟩)
       exists_second_site
   · refine Subgroup.normalClosure_le_normal ?_
     rintro _ ⟨y, y', k, h, rfl⟩

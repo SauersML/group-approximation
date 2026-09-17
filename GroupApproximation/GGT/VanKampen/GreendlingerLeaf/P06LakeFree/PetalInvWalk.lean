@@ -26,8 +26,8 @@ Let `E₀ : EnclosedFaceSetSucc X F W₀` and assume no dart of `W₀` has its r
    `x = σ^m (α d)` kept.  If `α x ∈ W₀` then `x ∈ L`.  Otherwise `x ∈ W₀`, say `x = W₀[j]`.
    Let `p` be the cyclic predecessor of `j` (`(p + 1) % |W₀| = j`) and `n > 0` the first index
    with `σ^n (α W₀[p])` kept.  `turn_next` gives `σ^n (α W₀[p]) = W₀[j] = x = σ^m (α d)`.
-   *First returns are injective* (`firstKeep_inj`): if `σ^m y = σ^n z` with both `y, z` kept and
-   `m`, `n` first returns, then `m = n` (if `m < n`, `σ^(n-m) z = y` is kept with `0 < n - m < n`),
+   *First returns are injective* (`petal_firstKeep_inj`): if `σ^m y = σ^n z` with both `y, z`
+   kept and `m`, `n` first returns, then `m = n` (if `m < n`, `σ^(n-m) z = y` is kept with `0 < n - m < n`),
    so `y = z`.  Hence `α d = α W₀[p]`, `d = W₀[p] ∈ W₀`, while `α d ∈ W₀`: a bridge, excluded.
 
 So `L` is a noncrossing closed walk (`isNoncrossingClosedWalk_invDarts`).
@@ -72,7 +72,7 @@ theorem petal_firstKeep_inj (M : CombMap.{v}) (w : List M.Dart) {y z : M.Dart}
 
 /-- Every position of a nonempty list has a cyclic predecessor. -/
 theorem petal_exists_pred_index {α : Type*} (l : List α) {j : ℕ} (hj : j < l.length) :
-    ∃ p, ∃ hp : p < l.length, (p + 1) % l.length = j := by
+    ∃ p, p < l.length ∧ (p + 1) % l.length = j := by
   have hpos : 0 < l.length := Nat.lt_of_le_of_lt (Nat.zero_le j) hj
   refine ⟨(j + l.length - 1) % l.length, Nat.mod_lt _ hpos, ?_⟩
   rw [Nat.mod_add_mod, show j + l.length - 1 + 1 = j + l.length by omega, Nat.add_mod_right,
@@ -121,8 +121,9 @@ variable {X : DiscDiagram.{u, w, v} W} {F : Finset X.toCombMap.Face} {W₀ : Lis
 theorem petal_chain_invDarts (E₀ : EnclosedFaceSet X F W₀) :
     (invDarts X W₀).IsChain fun d e =>
       X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e := by
-  have hc : W₀.IsChain fun a b => X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha b)) =
-      X.toCombMap.vertexOf (X.toCombMap.alpha a) :=
+  have hc : W₀.IsChain fun a b =>
+      X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha b)) =
+        X.toCombMap.vertexOf (X.toCombMap.alpha a) :=
     E₀.chain.imp fun a b h => by
       show X.toCombMap.vertexOf (X.toCombMap.alpha (X.toCombMap.alpha b)) =
         X.toCombMap.vertexOf (X.toCombMap.alpha a)
@@ -146,3 +147,60 @@ theorem petal_closes_invDarts (E₀ : EnclosedFaceSet X F W₀) (hne : invDarts 
   exact E₀.closes.symm
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.Petal.petal_closes_invDarts
+
+/-- **Turning on the inverse walk.**  The first kept dart after the reverse of a dart of the
+inverse walk is on the inverse walk, when the walk has no bridges. -/
+theorem petal_turn_mem_invDarts (E₀ : EnclosedFaceSetSucc X F W₀)
+    (hα : ∀ d ∈ W₀, X.toCombMap.alpha d ∉ W₀) :
+    ∀ d ∈ invDarts X W₀, ∀ m : ℕ, 0 < m →
+      walkKeep X.toCombMap (invDarts X W₀) ((X.toCombMap.sigma ^ m) (X.toCombMap.alpha d)) →
+      (∀ k, 0 < k → k < m → ¬ walkKeep X.toCombMap (invDarts X W₀)
+        ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d))) →
+      (X.toCombMap.sigma ^ m) (X.toCombMap.alpha d) ∈ invDarts X W₀ := by
+  intro d hd m hm hkeep hfirst
+  rw [petal_walkKeep_invDarts X W₀] at hkeep hfirst
+  have hd' : X.toCombMap.alpha d ∈ W₀ := (petal_mem_invDarts_iff X).mp hd
+  rw [petal_mem_invDarts_iff X]
+  rcases hkeep with hx | hx
+  · exfalso
+    obtain ⟨j, hj, hxj⟩ := List.getElem_of_mem hx
+    obtain ⟨p, hp, hidx⟩ := petal_exists_pred_index W₀ hj
+    have hpmem : W₀[p] ∈ W₀ := List.getElem_mem hp
+    obtain ⟨n, hn, hkeep', hfirst'⟩ := P07InnerPocket.PocketRun.exists_firstKeep W₀ hpmem
+    have hnext := E₀.turn_next p hp n hn hkeep' hfirst'
+    have hx' : (X.toCombMap.sigma ^ n) (X.toCombMap.alpha W₀[p]) =
+        (X.toCombMap.sigma ^ m) (X.toCombMap.alpha d) :=
+      (hnext.trans (P07InnerPocket.PocketRun.getElem_idx_congr W₀ hidx _ hj)).trans hxj
+    have hpkeep : walkKeep X.toCombMap W₀ (X.toCombMap.alpha W₀[p]) :=
+      Or.inr (by rw [X.toCombMap.alpha_involutive]; exact hpmem)
+    have heq : X.toCombMap.alpha d = X.toCombMap.alpha W₀[p] :=
+      petal_firstKeep_inj X.toCombMap W₀ (Or.inl hd') hpkeep hm hn hfirst hfirst' hx'.symm
+    have hdW : d ∈ W₀ := by
+      rw [X.toCombMap.alpha.injective heq]
+      exact hpmem
+    exact hα d hdW hd'
+  · exact hx
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.Petal.petal_turn_mem_invDarts
+
+/-- **The inverse of a successor walk without bridges is a noncrossing closed walk.** -/
+theorem isNoncrossingClosedWalk_invDarts (E₀ : EnclosedFaceSetSucc X F W₀)
+    (hα : ∀ d ∈ W₀, X.toCombMap.alpha d ∉ W₀) :
+    IsNoncrossingClosedWalk X.toCombMap (invDarts X W₀) where
+  ne_nil := by
+    intro h
+    unfold invDarts at h
+    exact E₀.ne_nil (List.reverse_eq_nil_iff.mp (List.map_eq_nil_iff.mp h))
+  nodup := List.Nodup.map X.toCombMap.alpha.injective (List.nodup_reverse.mpr E₀.nodup)
+  chain := petal_chain_invDarts E₀.toEnclosedFaceSet
+  closes := petal_closes_invDarts E₀.toEnclosedFaceSet _
+  alpha_not_mem := by
+    intro d hd had
+    rw [petal_mem_invDarts_iff X] at hd had
+    rw [X.toCombMap.alpha_involutive d] at had
+    exact hα d had hd
+  turn_mem := petal_turn_mem_invDarts E₀ hα
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.Petal.isNoncrossingClosedWalk_invDarts
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06LakeFree.Petal
