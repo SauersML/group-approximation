@@ -145,3 +145,33 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
      commutes with a power of `t`. Other differences drift to different cosets with growing word length.
      So one deterministic direction reduces only differences in `⋃_j C(t^j)`, and determinism from
      infinity makes the language easy, which Attempt 6 forbids.
+9. **Boundary determinism over every acting group (2026-09-17, lane swarm-0917-w5-pull2-boone-1).**
+   *Class kill, and new necessary shape.* Invariant: coarse connectivity of difference sets.
+   - `fp-crossed-products-force-connected-differences` (ESTABLISHED, unreviewed). A presentation
+     with relators of length `<= n` forces every `Δ(x, y)` to be `2n`-connected, over any finitely
+     generated `P` and any field. The proof uses a `k^2`-valued sitewise representation that
+     switches basis on one half of a split difference set. This is the `Z^2` wall certificate made
+     group-free.
+   - For a simple host (minimal, infinite) it gives two consequences.
+     - No finite asymptotic pairs.
+     - `F`-patterns are determined by the layer `∂F` of width `2r`, so `|L_F(X)| <= |A|^|∂F|`.
+   - **Killed classes.** Each dies at the step "glue two far copies of a local modification into one
+     point, then split the difference set":
+     - hosts with a locally flippable tile or free bits, over every `P`;
+     - positive-entropy minimal hosts over every amenable `P`, extending the `Z^2` entropy kill;
+     - every virtually cyclic `P`, independently of Attempts 1 and 4.
+   - **`Z^2` band collapses.** The band of Attempt 8 becomes `e^(cN) <= |L_(B_N)| <= e^(O(N))`. A
+     pure `Z^2` witness must have boundary-deterministic, exactly linear-exponential complexity.
+   - **Multi-ended `P`** (`fp-minimal-crossed-products-map-onto-ends`, ESTABLISHED, unreviewed).
+     - Each ball pattern is undetermined toward exactly one end.
+     - This gives a continuous equivariant map `X -> Ends(P)`, onto when the end action is minimal.
+     - Over `F_d` it gives linear pattern counts, which is a structural second proof of the shape of
+       Attempt 4's hosts.
+     - For torsion-free `P = Q_1 * Q_2`, every host extends the end action.
+   - **Where it does not reach.**
+     - One-ended non-amenable `P`, where `|∂B_N| ≍ |B_N|` and the bound is empty.
+     - Free products whose one-ended factors carry the free end inside a sheet.
+     - Hard languages are not excluded: boundary determinism is a rigidity condition, not a time
+       bound. So the Attempt 6 prerequisite now reads: minimal, topologically free SFTs with
+       finitely presented crossed products, *without finite asymptotic pairs*, and with no uniform
+       recursive bound on their ball languages.
