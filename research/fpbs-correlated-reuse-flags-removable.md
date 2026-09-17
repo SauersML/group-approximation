@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
   - research/artifacts/fpbs-perturbative-reuse-removal-fails-2026-09-17.md
+  - research/artifacts/fpbs-graph-perturbative-removal-fails-all-groups-2026-09-17.md
 ---
 
 **OPEN.** For a factor map pi from a free action Y onto a free action X of a finitely generated group, and in particular for the projection a x b -> b onto a Bernoulli action, prove that there are finite routing plans on Y with budget tending to C(Y) whose conditional traffic defect for pi tends to zero. Equivalently, prove that every free extension generated over its base by the orbit name of one binary observable preserves cost; equivalently, that the pushforwards of the unused-edge measures and of the repeated-use measures can be made asymptotically singular while the near-optimal edge budget is preserved.
@@ -176,3 +177,28 @@ Per-plan removal survives only with macroscopic rebuilds, at distance at least
 a fixed fraction of the budget; the direct plan lies at distance 2.
 This is not a counterexample to the claim. Whether perturbative removal fails
 for every infinite finitely generated group is open.
+
+**Vanishing graph edits, every infinite finitely generated group (September 17, 2026, swarm-0917 w5).**
+Status: dead approach. The obstruction is established as
+`fpbs-graph-perturbative-removal-fails-all-groups`
+(`research/artifacts/fpbs-graph-perturbative-removal-fails-all-groups-2026-09-17.md`).
+It answers the open question above. Let Y = Y_0 x [0,1]^Gamma, pi = pi_0 o pr,
+and let S have |S| > C(Y), which a redundant generator always gives. Measure
+edits in the graph metric d_G = sum_h integral |m_h - m'_h|, with m_h(z) the
+used multiplicity of the edge {z, z h} in either orientation. This metric
+ignores copy ownership, and d_G <= 2d. Relocate a near-optimal base graph
+inside Borel Voronoi cells by uniformly random permutations drawn from the
+noise. This gives plans D_n with B(D_n) -> C(Y) and every occupancy
+E[m_h | pi] <= 1/2. Every plan with B' <= C(Y)+beta and J' <= delta has
+d_G(D_n, D') >= (|S| - C(Y) - beta - (1+8|S|)delta)/(6|S|).
+The invariant is base-conditional edge occupancy. Every member dies at one
+step: by the high-occupancy lemma, all light traffic is at most B' - r' + J'.
+Every request needs one light first step or starts on a heavy occurrence, so
+B' >= |S| - J' - 2|S| eta'. Small defect near budget C therefore forces heavy
+mass about (|S| - C)/(2|S|), and D_n offers none within small d_G.
+Graph-perturbative removal is thus false in every group and in every factor
+family closed under noise extension. Recoding flags or re-owning copies
+cannot help, and any per-plan removal must move a constant fraction of the used
+graph. Untouched: cost preservation itself, macroscopic rebuilds, source plans
+chosen by the statement, factors not split by independent noise, and request
+sets with |S| = C (only wave 4's Z example there).
