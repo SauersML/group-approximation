@@ -207,8 +207,8 @@ theorem manuscriptSentence_matchingConstantOnRepresentativeCells
         (T ^ e) (y0 a) ∈ C ∧ (T ^ e) (y0 a) ∉ K ∧
           ∃ h ∈ firstReturns T C m (2 * m * H) ((T ^ d) (y0 a)), e = (h : ℤ) + d)
       ((S a).filter fun d => (T ^ d) (y0 a) ∈ K)
-      (exponentBound_of_wanderingCover (T := T) hWw hKW (y0 a) _
-        fun _ hd => (Finset.mem_filter.1 hd).2) ?_
+      (exponentBound_of_wanderingCover (T := T) hWw hKW (y0 a)
+        ((S a).filter fun d => (T ^ d) (y0 a) ∈ K) fun _ hd => (Finset.mem_filter.1 hd).2) ?_
     intro d hd
     obtain ⟨hdS, hdK⟩ := Finset.mem_filter.1 hd
     have hdreach : d ∈ reachableExponents T (arrowSection T K C m (2 * m * H))

@@ -134,14 +134,18 @@ theorem exists_step_of_cut (K : PocketFaceSet D eps X lo hi)
       show K.targetArc.start.1 + 0 ≤ hi
       omega
     refine ⟨ofLobe K hlabel B hLB hclosed hB hndB hkB (zeroArc K.sourceArc) (zeroArc K.targetArc)
-      B [] hdecB hBlen (Nat.zero_le _) K.lo_le hhi, closedWalk_of_isClosedDartWalk _ hwB,
+      B [] hdecB hBlen (Nat.zero_le _) K.lo_le hhi, ?_,
       Nat.lt_of_le_of_lt (Nat.zero_le _) hsrc, Nat.lt_of_le_of_lt (Nat.zero_le _) htgt, ?_⟩
+    · apply closedWalk_of_isClosedDartWalk
+      exact hwB
     unfold PocketFaceSet.repeatedVisits
     exact length_sub_card_lt X.toCombMap.vertexOf hperm (List.head_mem hB) hy hv
   · have hwL' : IsClosedDartWalk X.toCombMap (A ++ C) := hwR.append_comm
     refine ⟨ofLobe K hlabel (A ++ C) hL' (closed_right hperm K.boundary.cycle_nodup hclosed)
       (List.ne_nil_of_mem hy) hndL' hkL' K.sourceArc K.targetArc s₁ s₂ hdec hs₁ hs₂ K.lo_le
-      K.le_hi, closedWalk_of_isClosedDartWalk _ hwL', hsrc, htgt, ?_⟩
+      K.le_hi, ?_, hsrc, htgt, ?_⟩
+    · apply closedWalk_of_isClosedDartWalk
+      exact hwL'
     unfold PocketFaceSet.repeatedVisits
     exact length_sub_card_lt X.toCombMap.vertexOf (hperm.trans List.perm_append_comm) hy
       (List.head_mem hB) hv.symm

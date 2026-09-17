@@ -178,8 +178,8 @@ theorem exists_printedCutoffModels {A : Type} [TopologicalSpace A] [DiscreteTopo
     have hpt : ∀ t : ℤ, ∃ z : ↥S.carrier, ∀ i : ℤ, |i| ≤ ℓ → z.1 i = periodicExt x (m ℓ) (t + i) := by
       intro t
       obtain ⟨z0, hz0, hz0w⟩ := (hwords ℓ).2.2.2.subset
-        (⟨t - ℓ, rfl⟩ : ∃ s : ℤ, word (periodicExt x (m ℓ)) s (2 * ℓ + 1) =
-          word (periodicExt x (m ℓ)) (t - ℓ) (2 * ℓ + 1))
+        (⟨t - ℓ, rfl⟩ : word (periodicExt x (m ℓ)) (t - ℓ) (2 * ℓ + 1) ∈
+          {w | ∃ s : ℤ, word (periodicExt x (m ℓ)) s (2 * ℓ + 1) = w})
       refine ⟨⟨shift (ℓ : ℤ) z0, S.mapsTo ℓ hz0⟩, fun i hi => ?_⟩
       obtain ⟨hi1, hi2⟩ := abs_le.mp hi
       obtain ⟨j, hj⟩ : ∃ j : ℕ, (j : ℤ) = ℓ + i := ⟨(ℓ + i).toNat, Int.toNat_of_nonneg (by omega)⟩

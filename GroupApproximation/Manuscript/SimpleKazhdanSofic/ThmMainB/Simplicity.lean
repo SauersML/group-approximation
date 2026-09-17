@@ -169,8 +169,9 @@ theorem manuscriptSentence_containsCopyElementaryMatrixEveryElementary (A : Type
   have hx1 : x ≠ 1 := fun h => hg1 (by rw [h, map_one])
   have hxK : x ∈ K.comap (towerCopyG S hlev hV) := hgK
   have htop : K.comap (towerCopyG S hlev hV) = ⊤ :=
-    (hK.comap (towerCopyG S hlev hV)).eq_bot_or_eq_top.resolve_left fun hb =>
-      hx1 (Subgroup.mem_bot.1 (hb ▸ hxK))
+    (hK.comap (towerCopyG S hlev hV)).eq_bot_or_eq_top.resolve_left fun hb => by
+      rw [hb, Subgroup.mem_bot] at hxK
+      exact hx1 hxK
   have hall : ∀ y, towerCopyG S hlev hV y ∈ K := fun y => by
     have hy : y ∈ K.comap (towerCopyG S hlev hV) := by
       rw [htop]

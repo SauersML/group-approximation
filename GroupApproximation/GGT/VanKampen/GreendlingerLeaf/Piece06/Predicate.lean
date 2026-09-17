@@ -60,7 +60,7 @@ lives at the vertex of `α d₀`, since `c` is a closed walk.
    `exists_trimDoubleFirst` / `exists_trimDoubleSecond` for an arc corner), which puts a G-digon off
    the exterior into the corner and keeps walk order, repeated visits and proper arcs.  The transport of
    the turn data (`NonFirstTurn`, `¬ TurnCrossed`) across the doubling is not in the library, and an
-   exterior corner on both sides admits no split surgery.  This case is a best attempt.
+   exterior corner on both sides allows no split surgery.  This case is a best attempt.
 6. **The rose** (module `Piece06/Residual`).  Every non-first turn is crossed.  At a vertex visited
    three times with incoming and outgoing edges alternating as `i₁ o₁ i₂ o₂ i₃ o₃`, the turns
    `i₁ → o₂`, `i₂ → o₃`, `i₃ → o₁` pairwise cross.  No split of the vertex into two σ-intervals keeps
