@@ -65,3 +65,18 @@ negation says exactly that `N_V = V`, and that is compatible with `V` being sofi
   - **Where it dies.** The candidates are proper subgroups outside the downward closures of `𝓜`, `𝓒`
     and the confined subgroups. No candidate was produced, and no uniform isoperimetric bound over all
     proper `H` was proved.
+- **2026-09-17, sw-127 (scale-shifter, lane `thompson-v-surjunctive`).** The test candidate `Ω = V/T` is
+  dead. `T` is not co-amenable in `V`, so `φ_S(V/T) > 0`
+  (`thompson-v-finitary-structure-stabilizers-are-not-co-amenable`).
+  - **Chain check.** "`T` co-amenable ⇒ `V` sofic ⇒ surjunctive" is sound. It is item 1 of
+    `thompson-v-amenable-actions-are-free-off-fixed-points` followed by Gromov–Weiss. It dies at its hypothesis.
+  - **Where it dies.** `T = Stab_V(σ)`, where `σ` is the circle involution of the dyadic points
+    `Q = {w0^∞, w1^∞}`. A coset `gT` has a finite breakpoint set `D(gT) = {z : gσg^(-1)z ≠ σz}`, and
+    `|D(hgT) Δ hD(gT)| <= 2|D(hT)|`. An invariant mean on `V/T` gives mass zero to bounded breakpoint sets,
+    by disjoint translates. Averaging uniform measures on breakpoint sets then yields an invariant mean on `Q`,
+    which the halving map forbids.
+  - **Class killed.** Every subgroup of a conjugate of `Stab(σ)`, for any structure `σ` over a mean-free
+    `V`-set `Q` whose `V`-moves are finite perturbations with unbounded defect. This includes `F` and `T`.
+    The same holds over `Q = V/K` for any non-co-amenable `K`, so the class iterates.
+  - **What remains.** Candidates must avoid the downward closures of `𝓜`, `𝓒`, confined subgroups, and
+    finitary-structure stabilizers. The claim itself is not refuted.
