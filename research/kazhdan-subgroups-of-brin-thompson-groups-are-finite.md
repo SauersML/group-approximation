@@ -82,3 +82,26 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
   subgroup of 2V. Abstract twisted Brin–Thompson groups have property FW_∞
   (Fournier-Facio–Wu–Zaremsky, arXiv:2603.24687). This lane has not checked what
   that property excludes for classical nV.
+- 2026-09-17 (lane swarm-0917-w2-zar-pull-2, transplanter via entropy-measure,
+  unreviewed): **reduction to invariant measures on minimal sets.**
+  - Established `kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures`: a
+    Kazhdan `K <= nV` is finite iff every minimal closed `K`-invariant subset of `C^n`
+    carries an invariant probability measure. Unconditionally, every invariant
+    probability measure of `K` lives on the open set `U_K` of points with a clopen
+    neighbourhood fixed pointwise by a finite-index subgroup.
+  - Mechanism: for an invariant measure `ν`, the slope cocycle is a 1-cocycle in the
+    Koopman representation on `L^2(ν)^n`; (T) makes it an integer coboundary `F`;
+    bricks of shape `c·1 + F(x)` with canonical charts give almost invariant vectors
+    in `l^2` of the `K`-set of (clopen set, chart) pairs, and (T) forces finite orbits.
+    This is the missing potential that repairs the shape-weighted families above.
+  - New route `kazhdan-nv-finite-via-measured-minimal-sets` requires that criterion
+    and the open claim `minimal-sets-of-kazhdan-subgroups-of-nv-carry-invariant-measures`,
+    which is equivalent to this claim.
+  - Dead ends, with the exact step: the Lebesgue half-density representation breaks
+    the cocycle identity by the factor `2^{Σ s/2}`; the Navas-type current kernel
+    `Π_i 1/μ_i(x_i ∧ y_i)` is not square integrable near the partial diagonals
+    `{x_i = y_i}` for `n >= 2`; the skew product `C^n x Z^n` has only an infinite
+    invariant measure, and normalizing it needs an invariant measure on `C^n`.
+    Details in `research/artifacts/kazhdan-nv-measure-criterion-2026-09-17.md`.
+  - Any proof of the remaining claim must use nV-structure: `SL_3(Z[1/p])` acts
+    minimally on `P^2(Q_p)` with no invariant measure.
