@@ -25,7 +25,7 @@ Main declarations:
 namespace GroupApproximation.Full.NN05
 
 /-- The conjugate subgroup `t Γ_* t⁻¹ ≤ G_*`. -/
-def conjBase : Subgroup Gstar :=
+noncomputable def conjBase : Subgroup Gstar :=
   (ofGamma.range).map (MulAut.conj stableLetter).toMonoidHom
 
 /-- `t Γ_* t⁻¹` is the image of `α(Γ_*)` in `G_*`. -/
