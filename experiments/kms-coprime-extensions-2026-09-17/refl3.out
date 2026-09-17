@@ -1,0 +1,21 @@
+Syntax warning: Unbound global variable in refl3.g:11
+  Print("class<=",cl," p^",LogInt(Size(Q),p)," ", List(words, x->[x[1],Order(I\
+mage(epi,x[2]))]),"\n");
+                                                                              \
+     ^^^
+class<=3 p^9 [ [ "[r,s,r]", 1 ], [ "[r,s,s,r]", 1 ], [ "[r,s,s,s]", 1 ], 
+  [ "[s,r,s]", 1 ], [ "[s,r,r,s]", 1 ], [ "[s,r,r,r]", 1 ], [ "w", 1 ], 
+  [ "(rs)", 3 ] ]
+class<=4 p^13 [ [ "[r,s,r]", 1 ], [ "[r,s,s,r]", 1 ], [ "[r,s,s,s]", 1 ], 
+  [ "[s,r,s]", 1 ], [ "[s,r,r,s]", 1 ], [ "[s,r,r,r]", 1 ], [ "w", 1 ], 
+  [ "(rs)", 3 ] ]
+class<=5 p^19 [ [ "[r,s,r]", 1 ], [ "[r,s,s,r]", 1 ], [ "[r,s,s,s]", 1 ], 
+  [ "[s,r,s]", 1 ], [ "[s,r,r,s]", 1 ], [ "[s,r,r,r]", 1 ], [ "w", 1 ], 
+  [ "(rs)", 3 ] ]
+class<=6 p^31 [ [ "[r,s,r]", 3 ], [ "[r,s,s,r]", 1 ], [ "[r,s,s,s]", 1 ], 
+  [ "[s,r,s]", 3 ], [ "[s,r,r,s]", 1 ], [ "[s,r,r,r]", 1 ], [ "w", 3 ], 
+  [ "(rs)", 9 ] ]
+class<=7 p^50 [ [ "[r,s,r]", 3 ], [ "[r,s,s,r]", 1 ], [ "[r,s,s,s]", 1 ], 
+  [ "[s,r,s]", 3 ], [ "[s,r,r,s]", 1 ], [ "[s,r,r,r]", 1 ], [ "w", 3 ], 
+  [ "(rs)", 9 ] ]
+exit 0

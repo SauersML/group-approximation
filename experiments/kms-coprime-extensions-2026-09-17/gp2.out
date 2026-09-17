@@ -1,0 +1,13 @@
+Gamma' p=3 class<=1 |Q|=p^3 nilclass=1 w order 1 ord rs 1
+Gamma' p=3 class<=2 |Q|=p^5 nilclass=2 w order 1 ord rs 3
+Gamma' p=3 class<=3 |Q|=p^6 nilclass=3 w order 1 ord rs 3
+Gamma' p=3 class<=4 |Q|=p^6 nilclass=3 w order 1 ord rs 3
+Gamma' p=5 class<=1 |Q|=p^3 nilclass=1 w order 1 ord rs 1
+Gamma' p=5 class<=2 |Q|=p^5 nilclass=2 w order 1 ord rs 5
+Gamma' p=5 class<=3 |Q|=p^6 nilclass=3 w order 1 ord rs 5
+Gamma' p=5 class<=4 |Q|=p^6 nilclass=3 w order 1 ord rs 5
+Gamma' p=7 class<=1 |Q|=p^3 nilclass=1 w order 1 ord rs 1
+Gamma' p=7 class<=2 |Q|=p^5 nilclass=2 w order 1 ord rs 7
+Gamma' p=7 class<=3 |Q|=p^6 nilclass=3 w order 1 ord rs 7
+Gamma' p=7 class<=4 |Q|=p^6 nilclass=3 w order 1 ord rs 7
+exit 0

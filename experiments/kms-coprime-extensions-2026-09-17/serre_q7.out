@@ -1,0 +1,6 @@
+q=7 bidegree (x^1,y^1) multideg (1, 2, 1): words 12, ideal rank 4, Lie span dim mod ideal 1
+q=7 bidegree (x^1,y^2) multideg (1, 3, 2): words 60, ideal rank 40, Lie span dim mod ideal 1
+q=7 bidegree (x^2,y^1) multideg (2, 3, 1): words 60, ideal rank 44, Lie span dim mod ideal 0
+q=7 bidegree (x^1,y^3) multideg (1, 4, 3): words 280, ideal rank 245, Lie span dim mod ideal 0
+q=7 bidegree (x^2,y^2) multideg (2, 4, 2): words 420, ideal rank 362, Lie span dim mod ideal 0
+q=7 bidegree (x^3,y^1) multideg (3, 4, 1): words 280, ideal rank 256, Lie span dim mod ideal 0
