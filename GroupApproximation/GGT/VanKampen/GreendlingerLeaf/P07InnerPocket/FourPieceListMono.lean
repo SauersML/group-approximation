@@ -51,10 +51,11 @@ theorem mono_or {Pa Pb : α → Prop} {X : List α} (hs : ∀ x ∈ X, Pa x ∨ 
   by_cases hb : ∀ x ∈ X, Pb x
   · exact Or.inr hb
   · left
-    push_neg at hb
-    obtain ⟨x₁, hx₁, hnb⟩ := hb
+    obtain ⟨x₁, hx₁, hnb⟩ : ∃ x ∈ X, ¬ Pb x :=
+      Classical.byContradiction fun hc => hb fun x hx =>
+        Classical.byContradiction fun hx' => hc ⟨x, hx, hx'⟩
     intro x₂ hx₂
-    by_contra hna
+    refine Classical.byContradiction fun hna => ?_
     have hb₂ : Pb x₂ := (hs x₂ hx₂).resolve_left hna
     obtain ⟨X₁, X₂, hX⟩ := List.append_of_mem hx₁
     rw [hX] at hx₂ hab hba

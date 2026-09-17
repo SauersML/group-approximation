@@ -1,4 +1,6 @@
 import GroupApproximation.Leavitt.LeavittSimplicity
+import Mathlib.Data.ZMod.Defs
+import Mathlib.Data.Fintype.BigOperators
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

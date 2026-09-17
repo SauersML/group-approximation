@@ -160,6 +160,13 @@ theorem extPhiData_of_leastArea (S : GloballyDistinguishedSectionFamily D lambda
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.map_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.exists_map_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.sideCellO_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.noLoops
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.joinsCells_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.sharesEndO_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.noMultipleEdges
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.RegionTransport.mem_linkedComponentO_map
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.extPhiData_of_leastArea

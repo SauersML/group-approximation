@@ -16,15 +16,15 @@ Infrastructure for `thm:hull`; certifies no printed sentence on its own.
 
 Let `A` be the complement of `t₁ = K.firstArc` in the boundary of `Π_i`: `t₁` followed by `A` is
 the rotation of the boundary of `Π_i` that `t₁` starts (`IsComplementArc`).  Suppose the `G`-only
-lake of `Π_i` fills `A`: the value of `A` equals the value of a dart word `σ` with `|σ| ≤ 2ε` (in the
-model, `σ` is made of the `s`-parts of `K`).  Then
+lake of `Π_i` fills `A`: the value of `A` equals the value of a dart word `q` with `|q| ≤ 2ε` (in the
+model, `q` is made of the `s`-parts of `K`).  Then
 * `|A| ≤ λ⁻¹ (2ε + c)` (`cellArc_complement_short_of_gOnly`, first component);
 * `|∂Π_i| ≤ |t₁| + λ⁻¹ (2ε + c)` (second component).
 
 Proof: the rotation of `∂Π_i` is in `W` (`CyclicArc.cell_rotated_mem`) and is `(λ, c)`-quasi-geodesic
-(`OsinCCondition.quasiGeodesic`).  Its prefix `A` gives `λ |A| - c ≤ ‖value A‖`.  The labels of `σ`
+(`OsinCCondition.quasiGeodesic`).  Its prefix `A` gives `λ |A| - c ≤ ‖value A‖`.  The labels of `q`
 are letters of the symmetric alphabet (`hlabel`), which has the same word metric, so
-`‖value σ‖ ≤ |σ| ≤ 2ε`.
+`‖value q‖ ≤ |q| ≤ 2ε`.
 
 ## Why the filling is a hypothesis
 
@@ -89,37 +89,37 @@ theorem cellArc_length_le_of_norm_le (hcondition : OsinCCondition D W eps mu lam
   rw [inv_mul_eq_div, le_div_iff₀ hlambda]
   nlinarith
 
-/-- **Norm from a short filling**: if the value of `A` equals the value of a dart word `σ` with
-`|σ| ≤ 2ε`, all of whose labels are letters of the symmetric alphabet, then the value of `A` has
+/-- **Norm from a short filling**: if the value of `A` equals the value of a dart word `q` with
+`|q| ≤ 2ε`, all of whose labels are letters of the symmetric alphabet, then the value of `A` has
 norm at most `2ε`. -/
 theorem cellArc_norm_le_of_value_eq
     (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
-    (A : CyclicArc (cellDarts X i)) (σ : List X.toCombMap.Dart) (hσ : σ.length ≤ eps + eps)
-    (hval : RelLetter.listVal (dartWord X A.darts) = RelLetter.listVal (dartWord X σ)) :
+    (A : CyclicArc (cellDarts X i)) (q : List X.toCombMap.Dart) (hq : q.length ≤ eps + eps)
+    (hval : RelLetter.listVal (dartWord X A.darts) = RelLetter.listVal (dartWord X q)) :
     wordNorm D.alphabet.carrier (RelLetter.listVal (dartWord X A.darts)) ≤ eps + eps := by
-  have h := OsinComponents.wordNorm_listVal_le (symmetricLabelAlphabet D) (dartWord X σ) (by
+  have h := OsinComponents.wordNorm_listVal_le (symmetricLabelAlphabet D) (dartWord X q) (by
     intro a ha
     simp only [dartWord, List.mem_map] at ha
     obtain ⟨d, _, rfl⟩ := ha
     exact hlabel d)
   rw [symmetricLabelAlphabet.wordNorm_eq] at h
-  have hlen : (dartWord X σ).length = σ.length := by
+  have hlen : (dartWord X q).length = q.length := by
     simp only [dartWord, List.length_map]
   rw [hval]
   omega
 
 /-- **The complement arc of a `G`-only filled lake is short.**  Take the complement arc `A` of
-`K.firstArc` and a `G`-only filling of `A` by a dart word `σ` with `|σ| ≤ 2ε`.  Then
+`K.firstArc` and a `G`-only filling of `A` by a dart word `q` with `|q| ≤ 2ε`.  Then
 `|A| ≤ λ⁻¹ (2ε + c)`, and so `|∂Π_i| ≤ |t₁| + λ⁻¹ (2ε + c)`. -/
 theorem cellArc_complement_short_of_gOnly (hcondition : OsinCCondition D W eps mu lambda c rho)
     (hlambda : 0 < lambda) (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
     (K : CellPocketFaceSet D eps X i j) (A : CyclicArc (cellDarts X i)) (hA : IsComplementArc K A)
-    (σ : List X.toCombMap.Dart) (hσ : σ.length ≤ eps + eps)
-    (hval : RelLetter.listVal (dartWord X A.darts) = RelLetter.listVal (dartWord X σ)) :
+    (q : List X.toCombMap.Dart) (hq : q.length ≤ eps + eps)
+    (hval : RelLetter.listVal (dartWord X A.darts) = RelLetter.listVal (dartWord X q)) :
     (A.length : ℝ) ≤ lambda⁻¹ * (2 * (eps : ℝ) + c) ∧
       ((cellDarts X i).length : ℝ) ≤ (K.firstArc.length : ℝ) + lambda⁻¹ * (2 * (eps : ℝ) + c) := by
   have hshort := cellArc_length_le_of_norm_le hcondition hlambda A
-    (cellArc_norm_le_of_value_eq hlabel A σ hσ hval)
+    (cellArc_norm_le_of_value_eq hlabel A q hq hval)
   refine ⟨hshort, ?_⟩
   have hsum := length_add_of_isComplementArc K A hA
   have hcast : ((cellDarts X i).length : ℝ) = (K.firstArc.length : ℝ) + (A.length : ℝ) := by
