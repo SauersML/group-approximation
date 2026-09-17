@@ -61,7 +61,7 @@ theorem isResiduallyFinite_of_isFinitelyPresented_of_isLEF {Γ : Type u} [Group 
   printedFinitelyPresentedLEFResiduallyFinite.{u} Γ hfp hLEF
 
 /-- A residually finite group is LEF. -/
-theorem isLEF_of_isResiduallyFinite' {Γ : Type u} [Group Γ] (hrf : IsResiduallyFinite Γ) :
+theorem isLEF_of_isResiduallyFinite {Γ : Type u} [Group Γ] (hrf : IsResiduallyFinite Γ) :
     IsLEF Γ := by
   haveI : Group.ResiduallyFinite Γ := isResiduallyFinite_iff_group_residuallyFinite.mp hrf
   exact isLEF_of_residuallyFinite
@@ -69,7 +69,7 @@ theorem isLEF_of_isResiduallyFinite' {Γ : Type u} [Group Γ] (hrf : IsResiduall
 /-- **For finitely presented groups, LEF is residual finiteness** (tex l.729–730). -/
 theorem isLEF_iff_isResiduallyFinite_of_isFinitelyPresented {Γ : Type u} [Group Γ]
     (hfp : Group.IsFinitelyPresented Γ) : IsLEF Γ ↔ IsResiduallyFinite Γ :=
-  ⟨isResiduallyFinite_of_isFinitelyPresented_of_isLEF hfp, isLEF_of_isResiduallyFinite'⟩
+  ⟨isResiduallyFinite_of_isFinitelyPresented_of_isLEF hfp, isLEF_of_isResiduallyFinite⟩
 
 /-! ## Infinite simple groups -/
 
