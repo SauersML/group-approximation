@@ -114,7 +114,8 @@ theorem supportedIn_iff_of_split {X Y : Type*} [TopologicalSpace X] [Topological
   have hc : SupportedIn (g : X ≃ₜ X) Uᶜᶜ := by
     refine supportedIn_compl_of_forall_commute hT hU.isClosed.isOpen_compl fun σ hσ hσU => ?_
     have hΦ := hg.commute_of_compl (h2 ⟨σ, hσ⟩ hσU)
-    have hΦ' : Φ (g * ⟨σ, hσ⟩) = Φ (⟨σ, hσ⟩ * g) := by
+    have hΦ' : Φ (g * (⟨σ, hσ⟩ : topologicalFullGroup T)) =
+        Φ ((⟨σ, hσ⟩ : topologicalFullGroup T) * g) := by
       rw [map_mul, map_mul]
       exact Subtype.ext hΦ
     exact congrArg Subtype.val (Φ.injective hΦ')

@@ -83,9 +83,7 @@ theorem mem_window_iff {α : Type*} [BEq α] [LawfulBEq α] {l : List α} (hnodu
   constructor
   · intro hy
     obtain ⟨i, hi, hiy⟩ := List.getElem_of_mem hy
-    have hi' : i < b - (a + 1) := by
-      rw [List.length_take] at hi
-      omega
+    have hi' : i < b - (a + 1) := lt_of_lt_of_le hi (List.length_take_le _ _)
     have hget : l[a + 1 + i]? = some y := by
       rw [← List.getElem?_drop, ← List.getElem?_take_of_lt hi', List.getElem?_eq_getElem hi, hiy]
     obtain ⟨hlt, hyi⟩ := List.getElem?_eq_some_iff.mp hget
@@ -210,3 +208,28 @@ def IsValueFailure (X : DiscDiagram.{u, w, v} W) (e : X.toCombMap.Dart) : Prop :
       ∃ C ∈ X.relatorCells, X.toCombMap.faceOf (X.toCombMap.alpha x) = C.face
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_window_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.idx
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.outerDarts_nodup
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_outerDarts_iff
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.outerDarts_isChain
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.outerDarts_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.facePerm_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.idx_lt_length
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.getElem?_idx
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.eq_of_idx_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_gap_iff
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_outerDarts_of_mem_gap
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.faceOf_alpha_of_mem_gap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap_length
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap_getElem?
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.gap_ne_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.idx_add_one_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.IsValueFailure

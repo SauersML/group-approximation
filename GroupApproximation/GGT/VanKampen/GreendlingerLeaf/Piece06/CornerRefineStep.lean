@@ -162,6 +162,7 @@ theorem inner_second_proper (hprop : K.secondArc.length < (cellDarts X j).length
     (congrArg List.length (FaceEdgeDoubling.cellDarts_eq X f k hlen hf j)).trans (List.length_map _)
   exact lt_of_eq_of_lt h1 (lt_of_lt_of_eq hprop h2.symm)
 
+include hlen hf hs hfirst hsecond in
 /-- **The corner digon from an inner doubling.** -/
 theorem cornerDigon_faceEdgeDoubling (z : X.toCombMap.Dart) (hinv : PocketInvariants K)
     (hfz : X.toCombMap.faceOf (X.toCombMap.alpha z) = f)
@@ -222,6 +223,7 @@ theorem isGFace_transfer_outer (w : X.toCombMap.Dart) (hG : IsGFaceOf X (X.toCom
     exact hG.2 C₀ hC₀ (FaceEdgeDoubling.faceImage_injective X X.outerFace k hlen
       ((congrArg RelatorCell.face hCeq).trans h))
 
+include hlen in
 /-- **The corner digon from an outer thickening.** -/
 theorem cornerDigon_outerSpur {i j : Fin X.rCellCount} (K : CellPocketFaceSet D eps X i j)
     (z : X.toCombMap.Dart) (hinv : PocketInvariants K)
@@ -300,7 +302,18 @@ theorem cornerDigon_of_monogonCorner (hmono : MonogonCornerStatement.{u, w, v})
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.corners_ne'
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.faceOf_embed_of_ne'
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.eq_of_faceOf_embed_digon
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.exists_digon_sector
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.digon_isGFace_inner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.isGFace_transfer_inner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.inner_first_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.inner_second_proper
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.cornerDigon_faceEdgeDoubling
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.digon_isGFace_outer
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.isGFace_transfer_outer
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.cornerDigon_outerSpur
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.exists_corner_index
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.cornerDigon_of_nonMonogon
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.cornerDigon_of_monogonCorner

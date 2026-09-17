@@ -52,9 +52,13 @@ noncomputable section
 abbrev lampWindow {X : Type*} (S : Set X) : Subgroup (CliffordLamp X) :=
   Subgroup.closure (insert (CliffordLamp.sign X) (CliffordLamp.lamp X '' S))
 
+#audit_axioms lampWindow
+
 theorem lampWindow_mono {X : Type*} {S T : Set X} (h : S ⊆ T) :
     lampWindow S ≤ lampWindow T :=
   Subgroup.closure_mono (Set.insert_subset_insert (Set.image_mono h))
+
+#audit_axioms lampWindow_mono
 
 /-- Every Clifford lamp element involves only finitely many lamps. -/
 theorem exists_finset_mem_lampWindow {X : Type*} (c : CliffordLamp X) :
@@ -82,6 +86,8 @@ theorem exists_finset_mem_lampWindow {X : Type*} (c : CliffordLamp X) :
       obtain ⟨S, hS⟩ := ha
       exact ⟨S, Subgroup.inv_mem _ hS⟩
 
+#audit_axioms exists_finset_mem_lampWindow
+
 /-- A lamp window over a finite set of sites is finite. -/
 theorem finite_lampWindow {X : Type*} {Y : Set X} (hY : Y.Finite) :
     Finite (lampWindow Y) := by
@@ -97,6 +103,8 @@ theorem finite_lampWindow {X : Type*} {Y : Set X} (hY : Y.Finite) :
       exact Subgroup.one_mem _
     · rw [CliffordLamp.commutator_lamp_lamp X hxy]
       exact Subgroup.mem_zpowers _
+
+#audit_axioms finite_lampWindow
 
 /-- An invariant set of sites gives an invariant lamp window. -/
 theorem lampWindow_invariant {H X : Type*} [Group H] (ρ : H →* Equiv.Perm X)
@@ -116,6 +124,8 @@ theorem lampWindow_invariant {H X : Type*} [Group H] (ρ : H →* Equiv.Perm X)
   | one => rw [map_one]; exact Subgroup.one_mem _
   | mul _ _ _ _ ha hb => rw [map_mul]; exact Subgroup.mul_mem _ ha hb
   | inv _ _ ha => rw [map_inv]; exact Subgroup.inv_mem _ ha
+
+#audit_axioms lampWindow_invariant
 
 variable {Γ : Type} [Group Γ] (α : Γ →* Γ) (hα : Function.Injective α)
 
@@ -141,6 +151,8 @@ abbrev siteWindow (n : ℕ) (S : Finset (Cosets α hα)) : Set (Cosets α hα) :
   ⋃ x ∈ (S : Set (Cosets α hα)),
     Set.range fun τ : (level α hα n).range ↦ levelSiteAction α hα n τ x
 
+#audit_axioms siteWindow
+
 /-- tex 2034--2035 (definition): `Y` is the union of the `Γ_n`-orbits of the
 finitely many sites `x ∈ S`, where `Γ_n` acts on `X = V/Γ` through `T_α → V`. -/
 theorem manuscriptSentence_orbitUnionDefinition (n : ℕ) (S : Finset (Cosets α hα)) :
@@ -161,6 +173,8 @@ theorem finite_siteWindow [α.range.FiniteIndex] (n : ℕ) (S : Finset (Cosets �
     (siteWindow α hα n S).Finite :=
   Set.Finite.biUnion S.finite_toSet fun x _ ↦ finite_levelSiteAction_orbit α hα n x
 
+#audit_axioms finite_siteWindow
+
 theorem siteWindow_invariant (n : ℕ) (S : Finset (Cosets α hα)) :
     ∀ τ : (level α hα n).range, ∀ y ∈ siteWindow α hα n S,
       levelSiteAction α hα n τ y ∈ siteWindow α hα n S := by
@@ -171,6 +185,8 @@ theorem siteWindow_invariant (n : ℕ) (S : Finset (Cosets α hα)) :
     levelSiteAction α hα n τ (levelSiteAction α hα n σ x)
   rw [map_mul, Equiv.Perm.mul_apply]
 
+#audit_axioms siteWindow_invariant
+
 theorem subset_siteWindow (n : ℕ) (S : Finset (Cosets α hα)) :
     (S : Set (Cosets α hα)) ⊆ siteWindow α hα n S := by
   intro x hx
@@ -178,10 +194,14 @@ theorem subset_siteWindow (n : ℕ) (S : Finset (Cosets α hα)) :
   show levelSiteAction α hα n 1 x = x
   rw [map_one, Equiv.Perm.one_apply]
 
+#audit_axioms subset_siteWindow
+
 /-- The finite lamp subgroup `C_Y`. -/
 abbrev cliffordWindow (n : ℕ) (S : Finset (Cosets α hα)) :
     Subgroup (CliffordLamp (Cosets α hα)) :=
   lampWindow (siteWindow α hα n S)
+
+#audit_axioms cliffordWindow
 
 theorem cliffordWindow_invariant (n : ℕ) (S : Finset (Cosets α hα)) :
     ∀ h ∈ (level α hα n).range, ∀ c ∈ cliffordWindow α hα n S,
@@ -190,8 +210,11 @@ theorem cliffordWindow_invariant (n : ℕ) (S : Finset (Cosets α hα)) :
   intro h hh c hc
   have hact := lampWindow_invariant (levelSiteAction α hα n)
     (siteWindow_invariant α hα n S) ⟨h, hh⟩ hc
-  rw [level_action_eq_baseAction] at hact
+  -- the two actions are definitionally equal (`level_action_eq_baseAction` is `rfl`);
+  -- `rw` cannot see through the `MulAut` coercion, so close by defeq
   exact hact
+
+#audit_axioms cliffordWindow_invariant
 
 /-- tex 2035--2039: `Y` is finite and `Γ_n`-invariant, and the finite subset
 lies in `C_Y ⋊ Γ_n`, embedded in `W_0` by `inclSemidirect`. -/

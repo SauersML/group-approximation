@@ -83,6 +83,8 @@ theorem exists_strictKazhdanCompression_subtype {G : Type u} [Group G]
            compresses := hcomp
            strict := hstrict }, rfl, rfl⟩
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.AuditCompress2.exists_strictKazhdanCompression_subtype
+
 /-- The printed equations for `q = uPu^*` and `s = Pu^* + (1 - q)`, in any
 star ring. They follow from `P` being a projection, `u^*u = 1`, the absorption
 `Pq = qP = P`, and `q ≠ P`. -/
@@ -178,6 +180,8 @@ theorem putQ_algebra {A : Type*} [Ring A] [StarRing A] (P u : A)
       _ = 0 := by rw [h, sub_self]
   exact ⟨⟨hPq, hqP, hne⟩, ⟨hqPsa, hqPsq, hsub⟩, huP, ⟨hsplit, hzero⟩, ⟨hss, hq1⟩,
     ⟨hss', hP1, hne1⟩⟩
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.AuditCompress2.putQ_algebra
 
 /-- **tex 759–763.** Let `Γ ≤ G` have property (T), and let `tΓt⁻¹ ⊊ Γ`.
 Let `P` be the Kazhdan projection of `Γ` in `C*_max(G)`: a self-adjoint

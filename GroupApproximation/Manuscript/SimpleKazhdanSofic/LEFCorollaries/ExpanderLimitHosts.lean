@@ -111,6 +111,8 @@ theorem isNeighborExpanderFamily_of_isExpanderFamily {ι : Type*} {H : ℕ → T
   rw [div_mul_eq_mul_div, div_le_iff₀ hc]
   nlinarith
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.isNeighborExpanderFamily_of_isExpanderFamily
+
 /-- **The hosts of `cor:lef` and `cor:host`, as printed** (tex l.454–456): an infinite, finitely
 generated, simple Kazhdan group that is an expander limit of finite simple groups `SL_N(F₂)`. -/
 def IsExpanderLimitHost (E : Type) [Group E] : Prop :=
@@ -127,6 +129,8 @@ theorem isExpanderLimitHost_of_isLEFHost {E : Type} [Group E] (h : IsLEFHost E) 
   exact ⟨hinf, hfg, hsimple, hT, ι, s, κ, hκ, hdec, σ, hSL, hlim,
     isNeighborExpanderFamily_of_isExpanderFamily hexp⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.isExpanderLimitHost_of_isLEFHost
+
 /-- An expander limit of finite groups is LEF, being a limit of finite groups in the space of marked
 groups (tex l.104–105). -/
 theorem isLEF_of_isExpanderLimitHost {E : Type} [Group E] (h : IsExpanderLimitHost E) :
@@ -134,6 +138,8 @@ theorem isLEF_of_isExpanderLimitHost {E : Type} [Group E] (h : IsExpanderLimitHo
   obtain ⟨-, -, -, -, ι, s, κ, _, _, σ, -, hlim, hexp⟩ := h
   exact printedMarkedLimitLEFStatement ι E s (fun ℓ => Matrix.SpecialLinearGroup (κ ℓ) (ZMod 2))
     σ hexp.2.1 hlim
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LEFCorollaries.isLEF_of_isExpanderLimitHost
 
 /-! ## `cor:lef`, first statement -/
 

@@ -55,7 +55,11 @@ theorem hostGen_val (t : ι → Δ) (g : HGen ι) :
       elementaryUnit g.1.1.1 g.1.1.2 g.1.2 (coeffVal t g.2) :=
   rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.hostGen_val
+
 theorem third_index : ∀ i j : Fin 3, i ≠ j → ∃ k : Fin 3, i ≠ k ∧ k ≠ j := by decide
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.third_index
 
 /-- `e_ij(1)` lies in any subgroup containing all `e_ij(u_z)` and `e_ij(u_z⁻¹)`. -/
 theorem elementaryUnit_one_mem (t : ι → Δ) (H : Subgroup (Matrix (Fin 3) (Fin 3) (LampRing Δ))ˣ)
@@ -71,6 +75,8 @@ theorem elementaryUnit_one_mem (t : ι → Δ) (H : Subgroup (Matrix (Fin 3) (Fi
   rw [← e]
   exact H.mul_mem (H.mul_mem (H.mul_mem (hgen i k hik _) (hgen k j hkj _))
     (H.inv_mem (hgen i k hik _))) (H.inv_mem (hgen k j hkj _))
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.elementaryUnit_one_mem
 
 /-- **The generators `hostGen t` generate `G_Δ`.** -/
 theorem closure_range_hostGen (t : ι → Δ) (ht : Subgroup.closure (Set.range t) = ⊤) :

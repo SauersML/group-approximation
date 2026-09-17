@@ -129,7 +129,11 @@ theorem manuscriptSentence_oneCommutatorFinitelyPresentedNotMF :
           (ChosenMarkedPresentation.omittedWord *
             ChosenMarkedPresentation.displacedLampWord *
             ChosenMarkedPresentation.omittedWord⁻¹)⁆ :=
-    map_commutatorElement ChosenMarkedPresentation.wordInMarkedGroup _ _
+    map_commutatorElement ChosenMarkedPresentation.wordInMarkedGroup
+      (g₁ := ChosenMarkedPresentation.displacedLampWord)
+      (g₂ := ChosenMarkedPresentation.omittedWord *
+        ChosenMarkedPresentation.displacedLampWord *
+        ChosenMarkedPresentation.omittedWord⁻¹)
   rw [← hmark]
   exact ⟨ChosenNonMFTheorem.chosenFinitelyPresented_not_isOperatorMF.1,
     ChosenMarkedPresentation.mark_ne_one,
