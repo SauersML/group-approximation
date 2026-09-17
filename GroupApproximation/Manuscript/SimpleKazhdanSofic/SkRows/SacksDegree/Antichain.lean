@@ -35,6 +35,8 @@ namespace SacksDegree
 noncomputable def charDegree (B : Set ℕ) : TuringDegree :=
   turingDegreeOf (charOracle B)
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.charDegree
+
 /-- The characteristic degrees of the corpus Sacks family are pairwise incomparable, and the family
 is injective on degrees. -/
 theorem charDegree_antichain_family :
@@ -57,7 +59,7 @@ theorem manuscriptSentence_sacksAntichainTuringDegree :
   refine ⟨charDegree '' F, ?_, ?_⟩
   · rintro _ ⟨B, hB, rfl⟩ _ ⟨C, hC, rfl⟩ hne hBC
     have hBC' : charDegree B ≤ charDegree C := hBC
-    exact hne (by rw [hle B hB C hC hBC'])
+    exact hne (congrArg charDegree (hle B hB C hC hBC'))
   · rw [Cardinal.mk_image_eq_of_injOn _ _ hinj, hF]
 
 #audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.manuscriptSentence_sacksAntichainTuringDegree

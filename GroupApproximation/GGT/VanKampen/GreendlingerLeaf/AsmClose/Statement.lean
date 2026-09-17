@@ -65,8 +65,10 @@ theorem relativeGreendlingerQuasiGeodesicLeastAreaClosed :
 That module must import `Piece04/Final` (or its successor), the P06 endpoint module,
 `Piece07Below/Proof` and `P10RoseEndpoint/Proof`.  It must never import `GreendlingerLeaf/Assembly`,
 `Piece04/Proof`, `Piece07/Proof` or `Piece10/Proof`, because `P10RoseEndpoint/Proof` redeclares
-`Piece10.proof`.  `AsmClose/LiveFrontier` reduces this Statement further, to the live leaves of the
-four region chains.
+`Piece10.proof`.  It should import `AsmClose/Statement` but not `AsmClose/LiveFrontier`:
+`LiveFrontier` reaches `P10Rose/SubArc`, and `P10RoseEndpoint/Proof` reaches `P10Rose/Live/Reduction`,
+and both declare `P10Rose.RoseRegionMoveSubArcStatement`.  `AsmClose/LiveFrontier` reduces this
+Statement further, to the live leaves of the four region chains.
 
 ## Manuscript status
 

@@ -1,4 +1,5 @@
 import Mathlib.Data.Fintype.Card
+import Mathlib.GroupTheory.Commutator.Basic
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Weyl.Conjugation
 import GroupApproximation.Meta.AxiomGuard
 

@@ -37,6 +37,8 @@ noncomputable def wordProblemDegree {ι H : Type} [Group H] [Primcodable ι] (s 
     TuringDegree :=
   turingDegreeOf (wordProblemOracle s)
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.wordProblemDegree
+
 /-- The word problem degree does not depend on the finite generating family. -/
 theorem wordProblemDegree_eq_of_generating {H ι κ : Type} [Group H] [Primcodable ι]
     [Primcodable κ] [Finite ι] [Finite κ] (s : ι → H) (t : κ → H)
@@ -52,6 +54,8 @@ theorem wordProblemDegree_eq_of_generating {H ι κ : Type} [Group H] [Primcodab
 Sturmian subshift of slope `α`, for its standard generators. -/
 noncomputable def sturmianWordProblemDegree (α : ℝ) : TuringDegree :=
   wordProblemDegree (genValue (sturmianSubshift α))
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.sturmianWordProblemDegree
 
 /-- `sturmianWordProblemDegree α` is the word problem degree of every finite generating family of
 `G_{X_α}`. -/

@@ -37,6 +37,8 @@ namespace SacksDegree
 def turingDegreeOf (f : ℕ →. ℕ) : TuringDegree :=
   toAntisymmetrization TuringReducible f
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SacksDegree.turingDegreeOf
+
 /-- The order of Turing degrees is Turing reducibility of representatives. -/
 theorem turingDegreeOf_le_iff (f g : ℕ →. ℕ) :
     turingDegreeOf f ≤ turingDegreeOf g ↔ TuringReducible f g :=

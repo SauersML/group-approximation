@@ -21,6 +21,25 @@ universe u v
 
 variable {G : Type u} {V : Type v} [Group G] [MulAction G V]
 
+/-- In any group, `e² = 1` and `t e t = e t e` imply `t² = 1`. -/
+theorem sq_one_of_braid {Γ : Type*} [Group Γ] (t e : Γ) (hη : e * e = 1)
+    (hb : t * e * t = e * t * e) : t * t = 1 := by
+  have hA : e * t * e * t * e = t := by
+    calc e * t * e * t * e = e * (t * e * t) * e := by simp only [mul_assoc]
+      _ = e * (e * t * e) * e := by rw [hb]
+      _ = (e * e) * t * (e * e) := by simp only [mul_assoc]
+      _ = t := by rw [hη, one_mul, mul_one]
+  have hB : e * t * e * t⁻¹ * e = t := by
+    calc e * t * e * t⁻¹ * e = (e * t * e) * t⁻¹ * e := rfl
+      _ = (t * e * t) * t⁻¹ * e := by rw [← hb]
+      _ = t * (e * e) := by simp only [mul_assoc, mul_inv_cancel_left]
+      _ = t := by rw [hη, mul_one]
+  have hC : e * t * e * t * e = e * t * e * t⁻¹ * e := hA.trans hB.symm
+  have hD : t = t⁻¹ := mul_left_cancel (mul_right_cancel hC)
+  exact mul_eq_one_iff_eq_inv.mpr hD
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.sq_one_of_braid
+
 namespace BrownSetting
 
 variable (S : BrownSetting G V)
@@ -42,7 +61,7 @@ def rels : Set (FreeGroup (S.J ⊕ Unit)) :=
       (FreeGroup.of (Sum.inl S.hJ) * FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl S.hJ))⁻¹})
 
 /-- Brown's group `Π = ⟨J, T | ...⟩`. -/
-abbrev Pi : Type u := PresentedGroup S.rels
+abbrev PiGroup : Type u := PresentedGroup S.rels
 
 /-- The generator images in `G`: `j ↦ j`, `T ↦ τ`. -/
 def genMap : S.J ⊕ Unit → G := Sum.elim (fun a => (a : G)) (fun _ => S.tau)
@@ -63,41 +82,38 @@ theorem lift_rels : ∀ r ∈ S.rels, FreeGroup.lift S.genMap r = 1 := by
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.lift_rels
 
 /-- The projection `p : Π → G` (`brownMap`). -/
-def p : S.Pi →* G := PresentedGroup.toGroup S.lift_rels
+def p : S.PiGroup →* G := PresentedGroup.toGroup S.lift_rels
 
 theorem mem_rels_mul (a b : S.J) :
     FreeGroup.of (Sum.inl a) * FreeGroup.of (Sum.inl b) * (FreeGroup.of (Sum.inl (a * b)))⁻¹
       ∈ S.rels := by
-  simp only [rels, Set.mem_union, Set.mem_setOf_eq]
   exact Or.inl ⟨a, b, rfl⟩
 
 theorem mem_rels_conj (a b : S.J) (ha : (a : G) • S.v1 = S.v1)
     (hb : (b : G) = S.tau * a * S.tau⁻¹) :
     FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl a) * (FreeGroup.of (Sum.inr ()))⁻¹ *
       (FreeGroup.of (Sum.inl b))⁻¹ ∈ S.rels := by
-  simp only [rels, Set.mem_union, Set.mem_setOf_eq]
   exact Or.inr (Or.inl ⟨a, b, ha, hb, rfl⟩)
 
 theorem mem_rels_braid :
     FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl S.hJ) * FreeGroup.of (Sum.inr ()) *
       (FreeGroup.of (Sum.inl S.hJ) * FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl S.hJ))⁻¹
       ∈ S.rels := by
-  simp only [rels, Set.mem_union, Set.mem_setOf_eq]
   exact Or.inr (Or.inr rfl)
 
 theorem of_inl_mul (a b : S.J) :
-    (PresentedGroup.of (Sum.inl (a * b)) : S.Pi) =
+    (PresentedGroup.of (Sum.inl (a * b)) : S.PiGroup) =
       PresentedGroup.of (Sum.inl a) * PresentedGroup.of (Sum.inl b) := by
   have h := PresentedGroup.mk_eq_mk_of_mul_inv_mem (S.mem_rels_mul a b)
   rw [map_mul] at h
   exact h.symm
 
 /-- The inclusion `J → Π`. -/
-def incl : S.J →* S.Pi :=
+def incl : S.J →* S.PiGroup :=
   MonoidHom.mk' (fun a => PresentedGroup.of (Sum.inl a)) S.of_inl_mul
 
 /-- The generator `T`. -/
-def T : S.Pi := PresentedGroup.of (Sum.inr ())
+def T : S.PiGroup := PresentedGroup.of (Sum.inr ())
 
 theorem incl_apply (a : S.J) : S.incl a = PresentedGroup.of (Sum.inl a) := rfl
 
@@ -129,24 +145,8 @@ theorem incl_hJ_mul_self : S.incl S.hJ * S.incl S.hJ = 1 := by
   rw [← map_mul, h2, map_one]
 
 /-- `T² = 1` (tex l.460), derived from `h² = 1` and the braid relation. -/
-theorem T_mul_T : S.T * S.T = 1 := by
-  set t := S.T with ht
-  set e := S.incl S.hJ with he
-  have hη : e * e = 1 := S.incl_hJ_mul_self
-  have hb : t * e * t = e * t * e := S.rel_braid
-  have hA : e * t * e * t * e = t := by
-    calc e * t * e * t * e = e * (t * e * t) * e := by simp only [mul_assoc]
-      _ = e * (e * t * e) * e := by rw [hb]
-      _ = (e * e) * t * (e * e) := by simp only [mul_assoc]
-      _ = t := by rw [hη, one_mul, mul_one]
-  have hB : e * t * e * t⁻¹ * e = t := by
-    calc e * t * e * t⁻¹ * e = (e * t * e) * t⁻¹ * e := rfl
-      _ = (t * e * t) * t⁻¹ * e := by rw [hb]
-      _ = t * (e * e) := by simp only [mul_assoc, mul_inv_cancel_left]
-      _ = t := by rw [hη, mul_one]
-  have hC : e * t * e * t * e = e * t * e * t⁻¹ * e := hA.trans hB.symm
-  have hD : t = t⁻¹ := mul_left_cancel (mul_right_cancel hC)
-  exact mul_eq_one_iff_eq_inv.mpr hD
+theorem T_mul_T : S.T * S.T = 1 :=
+  sq_one_of_braid S.T (S.incl S.hJ) S.incl_hJ_mul_self S.rel_braid
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.T_mul_T
 
