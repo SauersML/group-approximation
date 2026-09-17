@@ -65,7 +65,7 @@ theorem two_le_opNorm_add_hsNorm_sub (Y : FiniteModel)
     unfold hsNorm
     rw [GroupApproximation.hsNormSq_one Y hY, Real.sqrt_one]
   have hsum : (V + 1) + (1 - V) = (2 : ℂ) • (1 : Matrix Y Y ℂ) := by
-    rw [two_smul]
+    rw [two_smul ℂ]
     abel
   have htwo : hsNorm Y ((2 : ℂ) • (1 : Matrix Y Y ℂ)) = 2 := by
     rw [OneSidedMFRadical.HilbertSchmidtOperatorAction.hsNorm_smul Y hY 2 1,

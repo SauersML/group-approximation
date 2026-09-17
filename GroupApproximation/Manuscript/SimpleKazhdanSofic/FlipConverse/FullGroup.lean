@@ -86,8 +86,11 @@ theorem isAperiodic_of_isMinimalHomeo [T2Space X] [Infinite X] {T : X ≃ₜ X}
     have h1 := Int.emod_nonneg n hp0
     have h2 := Int.emod_lt n hp0
     refine ⟨(n % p).toNat, ?_, ?_⟩
-    · simp only [Finset.coe_range, Set.mem_Iio]
-      omega
+    · have h3 : (((n % p).toNat : ℕ) : ℤ) < ((p.natAbs : ℕ) : ℤ) := by
+        rw [Int.toNat_of_nonneg h1]
+        exact h2
+      simp only [Finset.coe_range, Set.mem_Iio]
+      exact_mod_cast h3
     · have hfix := zpow_apply_eq_self_of_apply_eq_self hp (n / p)
       show (T ^ ((n % p).toNat : ℤ)) x = (T ^ n) x
       rw [Int.toNat_of_nonneg h1]
@@ -165,9 +168,10 @@ theorem IsInFullGroup.inv {T g : X ≃ₜ X} (hg : IsInFullGroup T g) : IsInFull
 /-- The topological full group `[[T]]`. -/
 def topologicalFullGroup (T : X ≃ₜ X) : Subgroup (X ≃ₜ X) where
   carrier := {g | IsInFullGroup T g}
-  mul_mem' ha hb := IsInFullGroup.mul ha hb
+  mul_mem' {a b} ha hb :=
+    IsInFullGroup.mul (show IsInFullGroup T a from ha) (show IsInFullGroup T b from hb)
   one_mem' := isInFullGroup_one T
-  inv_mem' ha := IsInFullGroup.inv ha
+  inv_mem' {a} ha := IsInFullGroup.inv (show IsInFullGroup T a from ha)
 
 theorem mem_topologicalFullGroup {T g : X ≃ₜ X} :
     g ∈ topologicalFullGroup T ↔ IsInFullGroup T g :=

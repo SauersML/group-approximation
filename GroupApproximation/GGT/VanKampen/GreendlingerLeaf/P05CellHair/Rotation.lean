@@ -174,3 +174,62 @@ theorem embed_keep_iff (z : S.diagram.toCombMap.Dart) :
   not_congr (regionInternal_embed_iff S.diagram f j hlen hf S.family havoid z)
 
 end Keep
+
+section Rotation
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+  (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+  (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+  (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
+    (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1)
+
+include havoid in
+/-- **(E') The old collapsed rotation at `w`** is the old rotation at `w`. -/
+theorem facePerm_dart :
+    ((collapsedMap S.family).facePerm
+        ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩).1 =
+      S.diagram.toCombMap.facePerm (FaceEdgeDoubling.dart S.diagram f j) :=
+  (facePerm_val_self (M := S.diagram.toCombMap) (a := FaceEdgeDoubling.dart S.diagram f j)
+      (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+        (FaceEdgeDoubling.second S.diagram f j hlen))
+      (keep := fun d => ¬ RegionInternal S.family d) (keep_alpha S.family)
+      (dart_keep S f j havoid) (sigma_alpha_dart S.diagram f j hlen)
+      (second_keep S f j hlen havoid)).trans
+    (FaceEdgeDoubling.Holding.secondCorner_eq_facePerm S.diagram f j hlen)
+
+include havoid in
+/-- **(E') The old collapsed rotation moves `w`.** -/
+theorem facePerm_w_ne :
+    (collapsedMap S.family).facePerm
+        ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩ ≠
+      ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩ := fun h =>
+  FaceEdgeDoubling.Holding.facePerm_dart_ne S.diagram f j hlen
+    ((facePerm_dart S f j hlen havoid).symm.trans (congrArg Subtype.val h))
+
+/-- **(C') The collapsed maps embed along `embed`.** -/
+noncomputable def collapsedEmbed :
+    (collapsedMap S.family).Dart ↪
+      (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart where
+  toFun x := ⟨embed S.diagram.toCombMap x.1,
+    fun h => x.2 ((regionInternal_embed_iff S.diagram f j hlen hf S.family havoid x.1).mp h)⟩
+  inj' x y h := Subtype.ext (EdgeInsertion.embed_injective _ (congrArg Subtype.val h))
+
+/-- **(C') The embedding commutes with reversal.** -/
+theorem collapsedEmbed_alpha (x : (collapsedMap S.family).Dart) :
+    collapsedEmbed S f j hlen hf havoid ((collapsedMap S.family).alpha x) =
+      (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).alpha
+        (collapsedEmbed S f j hlen hf havoid x) :=
+  Subtype.ext rfl
+
+/-- **(C') The new dart `some none` is not an old dart.** -/
+theorem some_none_not_mem_range :
+    (⟨some none, some_none_keep S f j hlen hf havoid⟩ :
+        (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart) ∉
+      Set.range (collapsedEmbed S f j hlen hf havoid) := by
+  rintro ⟨x, hx⟩
+  exact Option.some_ne_none _ (Option.some.inj (congrArg Subtype.val hx))
+
+end Rotation
