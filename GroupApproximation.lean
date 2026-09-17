@@ -5435,6 +5435,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TensorM
 import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.FreeProductPropertyA
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Property
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVEGen.GLEqElementary
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Endpoints
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
