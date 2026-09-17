@@ -57,7 +57,7 @@ theorem literalDefectBound_antitone {m n : ℕ} (hmn : m ≤ n) :
 theorem literalDefectBound_lt (k : ℕ) :
     literalDefectBound k < 1 / ((k : ℝ) + 1) := by
   have hnat : k + 1 < 2 ^ (k + 10) :=
-    lt_of_lt_of_le (@Nat.lt_two_pow_self (k + 1))
+    lt_of_lt_of_le (Nat.lt_two_pow_self : k + 1 < 2 ^ (k + 1))
       (Nat.pow_le_pow_right (by norm_num) (by omega))
   have hreal : ((k + 1 : ℕ) : ℝ) < ((2 ^ (k + 10) : ℕ) : ℝ) := by
     exact_mod_cast hnat
