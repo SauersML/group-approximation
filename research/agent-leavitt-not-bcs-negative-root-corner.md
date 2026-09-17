@@ -171,3 +171,55 @@ defect of rank `r` in such a model moves a `1-2^(-r)` fraction of
 configurations, so bounded-rank boundary errors are not small in Hamming
 distance.  The approach is recorded dead at the permanence step.  It is not
 a proof that the survivor class is empty.
+
+### Host fork and the monomial class (swarm-0917-w5-pt-leavitt-corner, inverter, 2026-09-17)
+
+*Host (established).*  By `leavitt-corner-host-is-the-simple-leavitt-unit-group`,
+`Delta ~= GL_20(R) ~= R^x` (Khanh `(KH2)` plus `R ~= R^20`).  This is the
+simple, finitely presented, nonsofic group of `openai-leavitt-unit-nonsofic`.
+
+- **Certificates.**  A CE character with `tau(z) != 1` exists iff `R^x` is
+  hyperlinear.  Simplicity makes the scalar kernel `1` or `Delta`, and
+  perfection rules out `Delta`.
+- **Mutual exclusion.**  `LNC3`, for any support, refutes
+  `binary-leavitt-unit-group-hyperlinear`.  Hyperlinearity of `R^x` kills
+  `LNC3` for every support, and implies the `EL_20(J)` decision point above.
+  So this hole and `hyperlinear-nonsofic-from-leavitt-unit-group` sit on
+  opposite branches of one question.  No trace-type refutation is weaker
+  than hyperlinearity of `R^x`.
+
+*Approach tried: solution-group / monomial images.*  Send each BCS involution
+to `c_x P_z g_x` with `g_x in C_Delta(z)`.  This includes:
+
+- group homomorphisms into `R^x` or Thompson's `V`, with a split mark;
+- root-sign and Weyl images;
+- the natural group-element realization of an LCS assignment `y_i -> q x_i`.
+
+*Where it dies* (`graded-corner-images-of-bloop-force-classical-solution`,
+established).
+
+- **Invariant.**  `P_z C[C_Delta(z)]` is graded by `C_Delta(z)/<z>`, and its
+  identity component is `C P_z`.  For homogeneous images, the nonzero atoms of
+  each context form a coset of `(ker d_c)^perp`, an affine set.
+- **Death step.**  In the exactly-one context, an affine set of one-hot
+  vectors has at most two points.  So every question has at most two active
+  answers, and the idempotent-order 2-SAT argument yields a classical perfect
+  strategy for `G_loop`.  The argument needs no trace.
+
+This holds over every group, every involution and every support.  It also
+covers twisted group algebras and central-sign solution groups.
+
+*What survives.*
+
+- Any `LNC3` diagram has a question with at least three active answers.
+- At least one answer involution must be inhomogeneous for every
+  `C1`-identity grading of the corner.  Such involutions are genuine sums over
+  several cosets of `<z>`, for example signed Hecke projections.
+
+*Next falsifiable step.*  A single three-answer packet is easy.  For example,
+the three isotypic projections of `C[S_3] P_z` work for any `S_3 <= C_Delta(z)`.
+The real content is a two-question packet.  Such a packet needs three-answer
+PVMs `P_(i,.)` and `P_(j,.)` in `P_z C[Delta] P_z` with
+`P_(i,a)P_(j,b)=0` on the losing pairs of `G_loop` between `i` and `j`, and
+with no common homogeneous grading.  The death step above only concerns
+supports, so it gives no obstruction to such a packet.
