@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseKeptBalance.Balance
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.FilterMove
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.Live.Move
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

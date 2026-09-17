@@ -18,13 +18,14 @@ is a unital ring endomorphism, and for every `P`
 
 so the state `(σ_α(g) e + σ_α(b) - c) / s_0` of the node is a polynomial.
 
-Everything is proved over an arbitrary commutative ring `R` and index type `ι` with a distinguished
-uniformizer index `i₀`; `charPSubst`/`charPCarry` specialize to `MvPolynomial (Fin k) (ZMod p)` with
-`i₀ = 0`.  The parameter `α : ι → R` is read only off `i₀`.
+Everything is proved over an arbitrary commutative ring `R` and index type `ι` with a
+distinguished uniformizer index `i₀`; `charPSubst`/`charPCarry` specialize to
+`MvPolynomial (Fin k) (ZMod p)` with `i₀ = 0`.  The parameter is `α : ι → R`, and `α i₀` is not
+used.  (Primality of `p` is not needed for the carry lemma.)
 
 **Route.** `exists_eq_C_eval_add_X_mul`: if an `R`-algebra endomorphism `φ` satisfies
-`φ(X_i) ≡ β_i (mod X_{i₀})` for every `i`, then `φ(P) ≡ P(β) (mod X_{i₀})` for every `P`; this is
-induction over `MvPolynomial.induction_on` (constants, sums, multiplication by a variable).  For
+`φ(X_i) ≡ β_i (mod X_{i₀})` for every `i`, then `φ(P) ≡ P(β) (mod X_{i₀})` for every `P`; this
+is induction over `MvPolynomial.induction_on` (constants, sums, multiplication by a variable).  For
 `σ_α` the hypothesis is immediate with `β = carryBase i₀ α = (0 at i₀, α elsewhere)`.
 
 Main declarations:
@@ -75,8 +76,9 @@ theorem exists_eq_C_eval_add_X_mul (i₀ : ι) (φ : MvPolynomial ι R →ₐ[R]
     ∃ Q, φ P = C (eval β P) + X i₀ * Q := by
   induction P using MvPolynomial.induction_on with
   | C a =>
-    exact ⟨0, by rw [MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, MvPolynomial.eval_C, mul_zero,
-      add_zero]⟩
+    refine ⟨0, ?_⟩
+    rw [MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, MvPolynomial.eval_C, mul_zero,
+      add_zero]
   | add p q hp hq =>
     obtain ⟨Q₁, hQ₁⟩ := hp
     obtain ⟨Q₂, hQ₂⟩ := hq
@@ -104,10 +106,12 @@ theorem carrySubst_X_exists (i₀ : ι) (α : ι → R) (i : ι) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_exists
 
-/-- **The carry lemma**, existence form: `σ_α(P) = P(0, α) + s_0 · Q` for some polynomial `Q`. -/
+/-- **The carry lemma**, existence form: `σ_α(P) = P(0, α) + s_0 · Q` for some polynomial
+`Q`. -/
 theorem carrySubst_exists (i₀ : ι) (α : ι → R) (P : MvPolynomial ι R) :
     ∃ Q, carrySubst i₀ α P = C (eval (carryBase i₀ α) P) + X i₀ * Q :=
-  exists_eq_C_eval_add_X_mul i₀ (carrySubst i₀ α) (carryBase i₀ α) (carrySubst_X_exists i₀ α) P
+  exists_eq_C_eval_add_X_mul i₀ (carrySubst i₀ α) (carryBase i₀ α)
+    (carrySubst_X_exists i₀ α) P
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_exists
 
@@ -120,7 +124,8 @@ theorem X_dvd_carrySubst_sub (i₀ : ι) (α : ι → R) (P : MvPolynomial ι R)
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.X_dvd_carrySubst_sub
 
 /-- The carry quotient `(σ_α(P) - P(0, α)) / s_0`. -/
-noncomputable def carryQuot (i₀ : ι) (α : ι → R) (P : MvPolynomial ι R) : MvPolynomial ι R :=
+noncomputable def carryQuot (i₀ : ι) (α : ι → R) (P : MvPolynomial ι R) :
+    MvPolynomial ι R :=
   Classical.choose (carrySubst_exists i₀ α P)
 
 theorem carrySubst_eq_add_carryQuot (i₀ : ι) (α : ι → R) (P : MvPolynomial ι R) :
@@ -140,29 +145,31 @@ theorem carryQuot_unique [IsDomain R] (i₀ : ι) (α : ι → R) (P Q : MvPolyn
 
 /-! ### The specialization to `F_p[s_0, ..., s_{k-1}]` -/
 
-/-- `σ_α` on `MvPolynomial (Fin k) (ZMod p)`: `s_0 ↦ s_0` and `s_i ↦ α_i + s_0 s_i` for `i ≠ 0`
-(the value `α 0` is not used). -/
+/-- `σ_α` on `MvPolynomial (Fin k) (ZMod p)`: `s_0 ↦ s_0` and `s_i ↦ α_i + s_0 s_i` for
+`i ≠ 0` (the value `α 0` is not used). -/
 noncomputable def charPSubst (p k : ℕ) [NeZero k] (α : Fin k → ZMod p) :
     MvPolynomial (Fin k) (ZMod p) →ₐ[ZMod p] MvPolynomial (Fin k) (ZMod p) :=
   carrySubst (0 : Fin k) α
 
 theorem charPSubst_X_zero (p k : ℕ) [NeZero k] (α : Fin k → ZMod p) :
-    charPSubst p k α (X 0) = X 0 :=
+    charPSubst p k α (X (0 : Fin k)) = X 0 :=
   carrySubst_X_self (0 : Fin k) α
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.charPSubst_X_zero
 
-theorem charPSubst_X_of_ne (p k : ℕ) [NeZero k] (α : Fin k → ZMod p) {i : Fin k} (hi : i ≠ 0) :
+theorem charPSubst_X_of_ne (p k : ℕ) [NeZero k] (α : Fin k → ZMod p) {i : Fin k}
+    (hi : i ≠ 0) :
     charPSubst p k α (X i) = C (α i) + X 0 * X i :=
   carrySubst_X_of_ne (0 : Fin k) α hi
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.charPSubst_X_of_ne
 
-/-- **Char-`p` carry lemma** (lane bh-met-01): `s_0 ∣ σ_α(P) - P(0, α)` in `F_p[s_0, ..., s_{k-1}]`,
-where `P(0, α)` is evaluation at the point with coordinate `0` at `s_0` and `α_i` at `s_i`. -/
+/-- **Char-`p` carry lemma** (lane bh-met-01): `s_0 ∣ σ_α(P) - P(0, α)` in
+`F_p[s_0, ..., s_{k-1}]`, where `P(0, α)` is evaluation at the point with coordinate `0` at `s_0`
+and `α_i` at `s_i`. -/
 theorem charPCarry (p k : ℕ) [NeZero k] (α : Fin k → ZMod p)
     (P : MvPolynomial (Fin k) (ZMod p)) :
-    X 0 ∣ charPSubst p k α P - C (eval (carryBase (0 : Fin k) α) P) :=
+    X (0 : Fin k) ∣ charPSubst p k α P - C (eval (carryBase (0 : Fin k) α) P) :=
   X_dvd_carrySubst_sub (0 : Fin k) α P
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.charPCarry

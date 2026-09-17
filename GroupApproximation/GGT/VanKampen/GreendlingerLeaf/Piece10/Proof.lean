@@ -1,7 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchOuterDispatch
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.Predicate
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.Proof
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.Proof
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.Live.Reduction.InPlace
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
