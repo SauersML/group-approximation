@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94BoundaryJunctionBudget
 import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94ClassJoinsBoundaryArc
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnWalk
+import GroupApproximation.GGT.VanKampen.Estimating.OsinLemma94PolygonLists
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -138,7 +139,7 @@ theorem outerDarts_isChain (X : DiscDiagram.{u, w, v} W) :
 theorem outerDarts_step (X : DiscDiagram.{u, w, v} W) {i : ℕ} {x y : X.toCombMap.Dart}
     (hx : (outerDarts X)[i]? = some x) (hy : (outerDarts X)[i + 1]? = some y) :
     X.toCombMap.facePerm (X.toCombMap.alpha y) = X.toCombMap.alpha x := by
-  obtain ⟨hi, hxi⟩ := List.getElem?_eq_some_iff.mp hx
+  obtain ⟨_, hxi⟩ := List.getElem?_eq_some_iff.mp hx
   obtain ⟨hi1, hyi⟩ := List.getElem?_eq_some_iff.mp hy
   subst hxi hyi
   exact (outerDarts_isChain X).getElem i hi1

@@ -192,7 +192,7 @@ theorem manuscriptSentence_matchingConstantOnRepresentativeCells
   have hK0 : ∀ a, ∀ y ∈ cell a, ∀ d ∈ S a, (T ^ d) y ∈ K → (T ^ d) (y0 a) ∈ K := by
     intro a y hy d hd hdK
     have h0 := (hconst a y hy (y0 a) (hy0 a) d hd 0 (Nat.zero_le _)).1
-    rw [Nat.cast_zero, add_zero] at h0
+    simp only [Nat.cast_zero, add_zero] at h0
     exact h0.1 hdK
   have hmatch : ∀ a : Fin M, ∃ σa : ℤ → ℤ,
       (∀ d ∈ (S a).filter (fun d => (T ^ d) (y0 a) ∈ K), σa d ∈ (S a).filter (fun e =>
