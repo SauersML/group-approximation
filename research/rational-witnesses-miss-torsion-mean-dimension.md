@@ -64,3 +64,8 @@ degree-`k` class forces
   for `>=` on these systems is to turn the relative torsion Euler classes of
   the Villadsen sums `⊕ pr_i^* L` into Cuntz non-comparison in the
   orbit-breaking subalgebra, with `O(1)` loss independent of `dim K`.
+* Loophole closed up to an additive 1 (`torsion-chern-witnesses-within-one-of-phillips-toms`).
+  On `X(K_p^s, rho, eta)`, where `K_p` is a quotient of `Pi_p`, split sums of
+  torsion line bundles with `x^2 = 0` stand in for the rational Chern character.
+  They give `rc >= mdim/2 - 1`, while the rational bounds here stay at most
+  `mdim/4`. So the obstruction kills the rational mechanism, not the conjecture.
