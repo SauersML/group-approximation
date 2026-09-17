@@ -203,10 +203,43 @@ order `p^u log(4|X|/kappa^2)`.
   hypothesis, and outside Theorem A's too, since they are not abelian series
   with rapid descent. No contradiction.
 
+## Corollary B' (all primes at once: the abelianization rank)
+
+**Corollary B'.** Let `Gamma` be a Kazhdan group and `c > 0`. There is a finite
+index `M` such that every finite index normal `N` of `Gamma` contained in `M`
+satisfies `d(N^ab) < c[Gamma:N]`. Here `N^ab` is finite, and `d(N^ab)` is its
+minimal number of generators.
+
+*Proof.* Take the finitely presented Kazhdan cover `pi: G -> Gamma` with
+presentation `<X|R>`, and put `L = max(2, max relator length)`.
+
+1. **Hadamard torsion bound.** Let `Q = pi^(-1)(N)`, of index `m = [Gamma:N]`.
+   The group `H_1(Q;Z)` is `ker d_1 / im d_2` in the covering complex `K_Q`.
+   - `C_1/ker d_1` embeds in the free group `C_0`, so `tors H_1(Q)` embeds in
+     `tors coker d_2`.
+   - The order of `tors coker d_2` is the product of the nonzero invariant
+     factors of `d_2`. That product divides every nonzero maximal-rank minor, so
+     by Hadamard it is at most the product of the column norms.
+   - `d_2` has `|R|m` columns, each of Euclidean norm at most its `l^1` norm,
+     which is at most `L`.
+   - Hence `|tors H_1(Q)| <= L^(|R|m)`.
+2. **The bound on `d_p`.** `Q` is Kazhdan, so `b_1(Q) = 0`, and `d_p(Q)` is the
+   `p`-rank of `tors H_1(Q)`. So `p^(d_p(Q)) <= L^(|R|m)`, and
+   `d_p(N) <= d_p(Q) <= |R| m log L / log p`.
+3. **Large primes.** If `p > P_0 := L^(|R|/c)`, then `d_p(N) < c[Gamma:N]` for
+   every finite index normal `N`, with no restriction on `N`.
+4. **Small primes.** For each of the finitely many primes `p <= P_0`, Theorem B
+   gives an `M_p`. Put `M` equal to the intersection of the `M_p`.
+5. `N^ab` is finite, so `d(N^ab) = max_p d_p(N)`. QED.
+
+The same torsion bound shows that along *any* family of finite index subgroups
+of a Kazhdan group, linear growth of `d_p` can occur only for primes
+`p <= L^(|R|/c)`.
+
 ## What survives, sharply
 
-A mod-`p` certificate for `fpbs-kazhdan-positive-rank-gradient` must avoid both
-theorems. It must be one of the following.
+A homological certificate for `fpbs-kazhdan-positive-rank-gradient` must avoid
+Theorems A, B and Corollary B'. What remains is one of the following.
 
 1. **A non-cofinal Farber chain with linear growth at a fixed prime.** The
    chain is neither profinitely cofinal (Theorem B) nor an abelian `p`-series
@@ -215,16 +248,21 @@ theorems. It must be one of the following.
    chains. For `Gamma` Kazhdan such chains may exist, for example when the
    pro-`p` completion has exponential subgroup growth, as for Ershov's
    Golod--Shafarevich Kazhdan groups.
-2. **A prime-varying abelian certificate on a cofinal chain.** Say
-   `d(H_1(Gamma_n;Z)) = max_p d_p(Gamma_n) >= c[Gamma:Gamma_n]` with the
-   maximizing prime `p_n -> infinity`. Theorem B fixes `p`. Its Plotkin factor
-   `theta_u -> 1` as `p` grows, and the classes carried through Step 2 live at
-   one prime. So the proof does not reach this case.
-3. **A non-abelian certificate.** Take `d(Gamma_n) >= c[Gamma:Gamma_n]` along a
-   cofinal chain while `max_p d_p(Gamma_n) = o([Gamma:Gamma_n])`. Then
-   generators are forced by non-abelian finite quotients of `Gamma_n`, not by
-   its abelianization.
+2. **A non-abelian certificate on a cofinal chain.** Take
+   `d(Gamma_n) >= c[Gamma:Gamma_n]` along a cofinal chain. By Corollary B', the
+   abelianization contributes `o([Gamma:Gamma_n])` generators, at every prime
+   simultaneously. Prime-varying abelian certificates are dead, by the
+   Hadamard torsion bound. So the generators must be forced by one of the
+   following. (By Dalla Volta--Lucchini, `d` of a finite group is governed by
+   crown-based powers of its chief factors.)
+   - Non-central abelian chief factors, which means large twisted
+     `H^1(Gamma_n;M)` for nontrivial irreducible `F_p[Gamma_n/K]`-modules `M`.
+     Inflation-restriction bounds this by `d_p(K)`. But `[Gamma:K]` can be far
+     larger than `[Gamma:Gamma_n]`, so Theorem B does not control it.
+   - Non-abelian crowns `S^k` with `k` exponential in the index, which means
+     `log|Epi(Gamma_n,S)| >= c'[Gamma:Gamma_n]`.
+   - The gap `d(Gamma_n) > d(Gamma_n-hat)`, which no finite quotient detects.
 
 Rank gradient along the full profinite completion is `Cost(Gamma-hat) - 1`.
-Theorem B therefore says that, for a Kazhdan group, the profinite completion
-action can have cost above one only through survivor 2 or 3.
+Theorem B and Corollary B' therefore say that, for a Kazhdan group, the profinite completion
+action can have cost above one only through survivor 2.

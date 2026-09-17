@@ -20,9 +20,19 @@ Equivalently, no family of finite index normal subgroups with
 `d_p(Gamma_n)/[Gamma:Gamma_n] -> 0` along every nested normal chain whose
 boundary action is the profinite completion.
 
+**All primes at once.** Also, for every `c > 0` there is a finite index `M` with
+`d(N^ab) < c[Gamma:N]` for every finite index normal `N` contained in `M`.
+Here `d(N^ab) = max_p d_p(N)` is the rank of the finite abelianization. The
+proof uses a Hadamard bound: on a finitely presented Kazhdan cover with
+relators of length at most `L`, `d_p(N) <= |R|[Gamma:N] log L/log p`. So only
+primes `p <= L^(|R|/c)` can carry linear growth, and the fixed-prime statement
+handles those finitely many.
+
 Consequence for `fpbs-fixed-price-counterexample-exists`: a proof that the
-profinite completion action of a Kazhdan group has cost above one cannot be a
-fixed-prime abelianization count. It must use primes `p_n -> infinity`, or
-non-abelian quotients of `Gamma_n`. A chain-based certificate at a fixed prime
-must use a Farber chain that is not profinitely cofinal and is not an abelian
-`p`-series with rapid descent.
+profinite completion action of a Kazhdan group has cost above one cannot be an
+abelianization count at any prime or combination of primes. The generators
+must be forced by non-central chief factors of finite quotients of `Gamma_n`:
+twisted `H^1(Gamma_n;M)` for nontrivial modules `M`, or non-abelian crowns.
+Otherwise they come from `d(Gamma_n)` exceeding the profinite rank. A chain-based homological certificate must use a
+Farber chain that is neither profinitely cofinal nor an abelian `p`-series with
+rapid descent.

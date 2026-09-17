@@ -22415,14 +22415,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes-proof [COMPLETE] Shrink cocycle support through Frattini covers and coprime descents until it violates the Kazhdan support bound
+- 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes [ESTABLISHED] In a Kazhdan group mod-p homology growth tends to zero along the profinite topology
+- 2026-09-17 · fpbs-fixed-price-counterexample-exists [OPEN] Some countable group has two free probability-preserving actions of different cost
 - 2026-09-17 · permanence-closure-fg-simple-groups-are-sofic-proof [COMPLETE] Show the sofic-quotient invariant contains the sofic groups and survives each permanence operation
 - 2026-09-17 · permanence-closure-fg-simple-groups-are-sofic [ESTABLISHED] Every finitely generated simple group in the surjunctivity permanence closure is sofic
 - 2026-09-17 · permanence-closure-contains-fg-simple-nonsofic-group [REFUTED] Some infinite finitely generated simple nonsofic group lies in the surjunctivity permanence closure
 - 2026-09-17 · hyperbolic-kazhdan-b2-group-not-flexibly-hs-stable-proof [COMPLETE] Belegradek--Osin cover of the affine symplectic group, instability pulled up through the Kazhdan kernel, b_2 through the five-term sequence
 - 2026-09-17 · hyperbolic-kazhdan-b2-group-not-flexibly-hs-stable [ESTABLISHED] A torsion-free hyperbolic Kazhdan group with positive second Betti number that is not flexibly HS-stable
-- 2026-09-17 · fpbs-lackenby-rapid-descent-p-large-citation [COMPLETE] Import Lackenby's rapid-descent characterisation of p-large groups
-- 2026-09-17 · fpbs-lackenby-rapid-descent-p-large [ESTABLISHED] A finitely presented group with an abelian p-series of rapid descent is p-large
-- 2026-09-17 · fpbs-lackenby-cocycle-support-toolkit-citation [COMPLETE] Import Lackenby's cocycle lifting, support shrinking and Schreier bound
 
 ## Active claims
 

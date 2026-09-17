@@ -35,6 +35,12 @@ Written deduction, lane `sw-007`, 2026-09-17. The full argument is Section
 6. **Contradiction.** After `m` steps with `theta_u^m < kappa^2/(4|X|)`, the
    bound in step 1 is violated.
 
+7. **All primes.** Write `H_1` of the cover as `ker d_1/im d_2`. Hadamard bounds
+   the torsion by `L^(|R|[Gamma:N])`, and `b_1 = 0` by (T). So
+   `d_p <= |R|[Gamma:N] log_p L`. Primes `p > L^(|R|/c)` never give growth `c`.
+   Intersecting the finitely many `M_p` for the other primes bounds
+   `d(N^ab) = max_p d_p(N)`. This is Section "Corollary B'" of the artifact.
+
 Calibration: with Lackenby's Theorem 4.1 in place of step 1, the same iteration
 shows that a finitely presented group with a profinitely cofinal normal family
 of linear mod-`p` growth is large. This agrees with Lackenby's Theorem 1.6

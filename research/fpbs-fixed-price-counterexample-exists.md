@@ -105,9 +105,15 @@ so a witness that also fails cost one would settle
     step where it dies: iterated Frattini covers and coprime descents shrink
     the support of `u` independent cocycles by Lackenby's Plotkin factor. That
     drives the support below the Kazhdan support bound `kappa^2/(4|X|)`.
+    The Hadamard torsion bound on Shalom's cover rules out primes
+    `p > L^(|R|/c)`, so the same holds for `d(N^ab) = max_p d_p(N)`.
   - **Survivors.**
-    - A Farber chain with fixed-prime linear growth that is neither
-      profinitely cofinal nor a rapidly descending abelian `p`-series, for
-      example Lackenby's subnormal (tau) chains.
-    - A cofinal chain whose maximizing prime `p_n -> infinity`.
-    - Generators forced by non-abelian quotients of `Gamma_n`.
+    - A Farber chain with linear growth at one of finitely many primes that is
+      neither profinitely cofinal nor a rapidly descending abelian `p`-series,
+      for example Lackenby's subnormal (tau) chains.
+    - On cofinal chains, generators forced by non-central chief factors of
+      finite quotients of `Gamma_n`. These are twisted `H^1(Gamma_n;M)` for
+      nontrivial irreducible `F_p`-modules `M`, or non-abelian crowns `S^k`
+      with `log|Epi(Gamma_n,S)|` linear in the index. Neither is bounded by
+      `d_p` of a subgroup of comparable index.
+    - On cofinal chains, `d(Gamma_n)` exceeding the profinite rank.
