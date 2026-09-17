@@ -142,6 +142,25 @@ content in that region.
 
 ## Attempts
 
+* **Derive nonuniqueness from the critical Bernoulli law plus soft
+  supercritical axioms (2026-09-17).** The idea was to feed critical-phase
+  information (sharpness, no critical percolation, the critical L2 bound) into
+  axioms that hold for every monotone invariant family: invariance,
+  ergodicity, insertion tolerance, and continuity of `theta` at `p_c`.
+  **Where it dies:** `fpbs-soft-collapse-iff-invariant-sparse-spines` builds
+  a monotone invariant ergodic insertion-tolerant family on the Cayley graph
+  itself. It equals Bernoulli for all `t <= p_c` and has a unique infinite
+  cluster for every `t > p_c`, with `theta -> 0`. The construction runs
+  whenever invariant sparse spines exist, for example over any surjection to
+  `Z` with finitely generated kernel. That includes `T_3 x Z`, hyperbolic
+  fibred 3-manifold groups and `F_2 x Z`, all of which have a genuine window.
+  On the hyperbolic ones `||T_{p_c}||_{2->2} < infinity`, yet the family has
+  `||T_t||_{2->2} = infinity` for every `t > p_c`. So the continuation step
+  from `p_c` to `p_c+eps` must use a supercritical Bernoulli property the
+  family lacks: product structure (Russo, BK), possibly Harris--FKG or deletion
+  tolerance. Extending the obstruction to every fixed-price-one group is
+  exactly the invariant-spine question.
+
 * **Quantify global pivotals before passing to finite balls (2026-09-12).**
   `fpbs-global-pivotal-tail-at-uniqueness` proves exponential global
   connection-pivotal tails, uniform in both endpoints at each fixed
