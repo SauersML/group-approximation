@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.AscendingHNNFullTelescopeRadical
 import GroupApproximation.Sofic.TorsionSpectralCollapse
-import GroupApproximation.Algebra.CountableInstances
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -83,11 +82,13 @@ theorem lampDiff_level_mem_actualCoronaMFResidual_of_pow
     (hk : k₀ ^ m = 1) (n : ℕ) (γ : Γ₀) :
     lampDiff β hβ (levelHom β hβ n γ • rootCoset β hβ) (rootCoset β hβ) k₀
       ∈ actualCoronaMFResidual (WreathV (K := K₀) β hβ) := by
-  have hinv := TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness
-    (levelSub_hasKazhdanPropertyT β hβ hΓ n)
-    (fun _ hw => wreathT_pow_compress β hβ hw)
-    (isTorsionCompressionWitness_rootLamp β hβ hm hk n)
-    ((mem_levelSub_iff β hβ).mpr ⟨γ, rfl⟩)
+  have hinv : ActualCoronaMFInvisible
+      ⁅(inr (levelHom β hβ n γ) : WreathV (K := K₀) β hβ), rootLamp β hβ k₀⁆ :=
+    TorsionSpectralCollapse.actualCoronaMFInvisible_of_torsionWitness
+      (levelSub_hasKazhdanPropertyT β hβ hΓ n)
+      (fun _ hw => wreathT_pow_compress β hβ hw)
+      (isTorsionCompressionWitness_rootLamp β hβ hm hk n)
+      ((mem_levelSub_iff β hβ).mpr ⟨γ, rfl⟩)
   rw [commutator_rootLamp_eq_lampDiff] at hinv
   exact mem_actualCoronaMFResidual_iff.mpr hinv
 
