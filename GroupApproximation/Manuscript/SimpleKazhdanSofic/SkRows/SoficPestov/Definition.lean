@@ -35,6 +35,8 @@ permutations disagree. -/
 noncomputable def pestovHammingDist {n : ℕ} (σ τ : Equiv.Perm (Fin n)) : ℝ :=
   ((Finset.univ.filter fun i => σ i ≠ τ i).card : ℝ) / n
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SoficPestov.pestovHammingDist
+
 /-- The printed normalization agrees with the corpus distance on the finite model `Fin n`. -/
 theorem pestovHammingDist_eq_hammingDistance {n : ℕ} (σ τ : Equiv.Perm (Fin n)) :
     pestovHammingDist σ τ = hammingDistance (finModel n) σ τ := by
@@ -87,6 +89,8 @@ def IsSoficPestov (G : Type*) [Group G] : Prop :=
       (∀ g ∈ F, ∀ h ∈ F, pestovHammingDist (φ (g * h)) (φ g * φ h) < ε) ∧
       φ 1 = 1 ∧
       ∀ g ∈ F, g ≠ 1 → 1 - ε < pestovHammingDist (φ g) 1
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SoficPestov.IsSoficPestov
 
 /-- The same notion with multiplicativity only tested when `g, h, gh ∈ F` (Pestov's
 `(F, ε)`-almost homomorphisms). -/

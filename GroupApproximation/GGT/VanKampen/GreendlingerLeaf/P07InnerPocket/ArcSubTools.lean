@@ -50,15 +50,15 @@ def ArcSubToolsStatement : Prop :=
 
 /-- **Lane gl-p07-12, proof.** -/
 theorem arcSubTools : ArcSubToolsStatement.{u, w, v} := by
-  intro G _ Lambda W D eps X
+  intro _ _ _ _ _ _ X
   refine ⟨?_, ?_, ?_, ?_⟩
-  · intro cyc A u₁ u₂ u₃ h
+  · intro _ A _ _ _ h
     exact CyclicArc.exists_subArc A h
-  · intro cyc A p q r h
+  · intro _ A _ _ _ h
     exact CyclicArc.exists_subArc_of_invDarts A h
   · intro a b
     exact arcSub_invDarts_append X a b
-  · intro a k l h
+  · intro a k _ h
     exact arcSub_sideFrom_sublist_length_le a k h
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.arcSubTools

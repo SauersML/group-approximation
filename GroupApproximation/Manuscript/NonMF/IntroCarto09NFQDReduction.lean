@@ -81,6 +81,8 @@ def CompletelyPositiveOnMatricesBridgeStatement : Prop :=
     (φ : A →ₗ[ℂ] Matrix Y Y ℂ),
     IsCompletelyPositive φ → Quasidiagonal.IsCompletelyPositiveOnMatrices Y ⇑φ
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto09.CompletelyPositiveOnMatricesBridgeStatement
+
 /-- **Norm recovery of the down maps.** Along an NF sequence model,
 `‖down n a‖ → ‖a‖`. The upper bound is the contraction of `down`. The lower
 bound is `‖a‖ - ‖up n (down n a) - a‖ ≤ ‖up n (down n a)‖ ≤ ‖down n a‖`. -/

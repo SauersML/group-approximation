@@ -87,7 +87,7 @@ theorem completelyPositiveOnMatricesBridge :
     CompletelyPositiveOnMatricesBridgeStatement.{u} :=
   fun _ _ Y _ φ hφ ↦ isCompletelyPositiveOnMatrices_of_isCompletelyPositive Y φ hφ
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.IntroCarto09.completelyPositiveOnMatricesBridge
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.IntroCarto09.completelyPositiveOnMatricesBridge
 
 end
 
