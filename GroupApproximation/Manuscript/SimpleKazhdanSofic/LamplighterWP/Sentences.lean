@@ -45,6 +45,8 @@ theorem exists_host_embedding {Γ Δ : Type} [Group Γ] [Group Δ] (f : Γ →* 
     ∃ e : Γ →* ↥(elementaryGroup (Fin 3) (LampRing Δ)), Function.Injective e :=
   ⟨g.comp (f.codRestrict (commutator Δ) hcomm), hg.comp fun _ _ hab => hf (congrArg Subtype.val hab)⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.exists_host_embedding
+
 /-- **`cor:lef`, second statement** (tex l.456–458): every finitely generated LEF group `Γ` is a subgroup of an
 infinite, finitely generated, simple Kazhdan expander limit of finite simple groups `SL_N(F₂)` whose word problem
 has the Turing degree of the word problem of `Γ`, for any finite generating families. -/

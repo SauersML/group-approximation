@@ -41,7 +41,7 @@ theorem manuscriptSentence_halflineHostWordProblemReduction (Δ : Type) [Group �
       TuringReducible (wordProblemOracle s) (wordProblemOracle t) := by
   refine ⟨⟨HGen ι, inferInstance, inferInstance, hostGen t, closure_range_hostGen t ht⟩, fun κ _ _ s => ?_⟩
   rw [← wordProblemOracle_comp_injective s (elementaryGroup (Fin 3) (LampRing Δ)).subtype
-    fun _ _ h => Subtype.ext h]
+    (elementaryGroup (Fin 3) (LampRing Δ)).subtype_injective]
   exact unitsReduction t ht _
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.manuscriptSentence_halflineHostWordProblemReduction

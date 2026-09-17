@@ -66,6 +66,8 @@ theorem wordValue_wordInv_append {ι H : Type} [Group H] (s : ι → H) (a b : L
     wordValue s (wordInv a ++ b) = 1 ↔ wordValue s a = wordValue s b := by
   rw [wordValue_append, wordValue_wordInv, inv_mul_eq_one]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.wordValue_wordInv_append
+
 /-- A looked-up answer is the recorded value of the oracle. -/
 theorem lookL_map_iff (Q : List ℕ) (g : ℕ → ℕ) {m : ℕ} (hm : m ∈ Q) :
     lookL Q (Q.map g) m = true ↔ g m = 1 := by
@@ -86,9 +88,13 @@ theorem lookL_map_iff (Q : List ℕ) (g : ℕ → ℕ) {m : ℕ} (hm : m ∈ Q) 
       Option.getD_some, Option.getD_some, hkm]
     exact ⟨rfl, h⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.lookL_map_iff
+
 theorem mem_pairCodes {ι : Type} [Primcodable ι] {W : List (LW ι)} {a b : LW ι} (ha : a ∈ W) (hb : b ∈ W) :
     encode (wordInv a ++ b) ∈ pairCodes W :=
   List.mem_flatMap.2 ⟨a, ha, List.mem_map.2 ⟨b, hb, rfl⟩⟩
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.mem_pairCodes
 
 variable {Δ : Type} [Group Δ] {ι : Type} [Primcodable ι] [Finite ι] {κ : Type} [Primcodable κ] [Finite κ]
 
@@ -115,6 +121,8 @@ theorem hostKey (t : ι → Δ) (v : κ → (Matrix (Fin 3) (Fin 3) (LampRing Δ
     · exact ⟨fun ⟨w', hw', h1⟩ => by rw [Option.some_inj.1 hw']; exact h1, fun h1 => ⟨w, rfl, h1⟩⟩
     · exact (lookL_map_iff _ (oracleVal (lampGen t)) (mem_pairCodes ha hb)).trans
         ((oracleVal_encode (lampGen t) (wordInv a ++ b)).trans (wordValue_wordInv_append (lampGen t) a b))
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.hostKey
 
 /-- **The word problem of a finite family of units of `M₃(R_Δ)` is Turing reducible to that of `Δ`.** -/
 theorem unitsReduction (t : ι → Δ) (ht : Subgroup.closure (Set.range t) = ⊤)

@@ -46,7 +46,7 @@ def firstAtomSet (T : X ≃ₜ X) (C : Set X) (E : Finset ℤ) (m : ℕ) {N : �
   C ∩ {x | ∀ d ∈ reachableExponents T C E (m - 1) x, atom x ≤ atom ((T ^ d) x)}
 
 /-- The class key of `x`: its class exponents, and the values of `f` along the class. -/
-def classKey (T : X ≃ₜ X) (C : Set X) (E : Finset ℤ) (m : ℕ) {W : Type*} (f : X → W) (x : X) :
+noncomputable def classKey (T : X ≃ₜ X) (C : Set X) (E : Finset ℤ) (m : ℕ) {W : Type*} (f : X → W) (x : X) :
     Finset ℤ × (ℤ → Option W) :=
   (reachableExponents T C E (m - 1) x,
     fun d => if d ∈ reachableExponents T C E (m - 1) x then some (f ((T ^ d) x)) else none)
