@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-amalgam-descent-amenably-generated-2026-09-16.md
   - research/artifacts/fpbs/docs/fixed-price-countable-passage.md
+  - research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price.
@@ -66,6 +67,37 @@ limited in this way. Neither artifact decides the implication for
 subgroup of infinite index (not re-derived) and is an HNN extension over a
 nonamenable subgroup. So neither Theorem 1 nor the HNN formula over amenable
 subgroups applies.
+
+**Locally free groups: shape (A) is impossible (September 17, 2026).**
+Artifact `research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md`.
+Two results are unconditional.
+- `locally-free-groups-first-l2-betti-equals-c-star-minus-one` (ESTABLISHED):
+  for every countable locally free `Γ`, `beta_1^(2)(Γ) = c*(Γ) − 1`.
+  - The minimal-rank exhaustion has compressed stages. These are
+    `L²`-independent by Jaikin-Zapirain, arXiv:2403.09515, so the colimit
+    loses no `L²`-homology.
+- `fpbs-locally-free-free-action-costs-are-c-star-or-infinite` (ESTABLISHED):
+  every free action has cost `c*` or `∞` and pseudocost at most `c*`. If any
+  free cost is finite, then `C(Γ) = c*` and all pseudocosts equal `c*`.
+
+For locally free groups, the chain `1 + beta_1 ≤ C(Γ) ≤ PC(s_Γ) ≤ c*` of
+Theorem G collapses. So:
+- (L) holds;
+- shape (A) cannot occur;
+- a locally free counterexample is exactly a group with free actions of costs
+  `c*` and `∞` (shape (B)).
+
+For `Γ_mal`, every free action has cost 2 or ∞.
+
+This does not decide the claim, even for `Γ_mal`. The remaining statement is
+`fpbs-locally-free-free-actions-have-finite-cost` (OPEN). It feeds
+`fpbs-locally-free-groups-have-fixed-price` (OPEN) through route
+`fpbs-locally-free-fixed-price-from-finite-cost`.
+
+The method is specific to locally free groups. It needs that a minimal-rank
+finitely generated supergroup exists and that its stages are
+`L²`-independent. For other groups in this class, no analogue of Theorem L
+(`beta_1 = c* − 1`) is available, and shape (A) is not excluded.
 
 **Exhaustion.** See the attempts on
 `fpbs-fixed-price-countable-from-finitely-generated`: exhausting `Gamma` by
