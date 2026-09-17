@@ -5383,6 +5383,22 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.PartA
 import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Shrink
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.Expanders
 import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordAmenable.RealizedQuotient
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Reduction
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.MFArithmetic
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Undecidable
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphRel
+import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Sharpness
+import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.BlockComparison
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LevelWords
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LevelAction
+import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.TransientMatricesCompact
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.VerticalCongr
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.VerticalEquiv
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.Approximation
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.IndexEight
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Generation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphExtension
+import GroupApproximation.Manuscript.NonMF.Full.Korchagin.DirectLimit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
