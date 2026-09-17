@@ -62,3 +62,19 @@ the Kaplansky zero-divisor conjecture."
    - Every pair with `supp alpha` inside `A` and `supp beta` inside
      `{1,a,b,ab}` has `alpha beta != 0`, over any field.
    - A counterexample must put `alpha` or `beta` outside the witness.
+5. **Support reduction to the witness (obstruction; `rips-segev-groups-embed-every-torsion-free-group`).**
+   The relators read only `a` and `b`.  So the group over `G_1 * G_2` is the
+   amalgam `G_1 *_{<a>} K_Gamma *_{<b>} G_2`, where `K_Gamma` is the core group
+   over `<a> * <b>`.
+   - Every finitely generated torsion-free `H` embeds in `H *_{<a>} K_Gamma`,
+     which is a torsion-free generalized Rips--Segev group without unique
+     products.  It is hyperbolic when `H` is.
+   - For the generalized groups, with arbitrary torsion-free factors, this
+     question is equivalent to the full conjecture.  One finitely presented
+     generalized group `U *_{<a>} K_Gamma` tests it.
+   - A support-reduction lemma that is uniform in the factors is equivalent to
+     the conjecture.  It fails at supports in one coset pair `(gH, Hh)`, whose
+     coincidences have faceless van Kampen diagrams.
+   - What remains is the core groups `K_Gamma` over `F_2`, which is Steenbock's
+     original question.  The domain-factor case follows from that together with
+     a domain-combination theorem over cyclic amalgams.
