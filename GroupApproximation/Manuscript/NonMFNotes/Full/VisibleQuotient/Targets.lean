@@ -36,8 +36,6 @@ namespace GroupApproximation.Full.NN04
 
 open MatricialStabilityRadical
 
-noncomputable section
-
 variable (K : Type) [Group K] [Finite K]
 
 /-- **Corona targets.**  Every genuine norm-matrix-corona representation of
@@ -103,14 +101,13 @@ theorem precomp_phiK_bijective_compact
   have hxrad : x ∈ PeterWeyl.bohrResidual (WK K) := by
     rw [(notesVisibleQuotient K).2.2.2.2.2.2]
     exact hx
-  let C : PeterWeyl.CompactTarget.{0} :=
+  exact PeterWeyl.mem_bohrResidual_iff.mp hxrad
     { carrier := T
       group := ‹Group T›
       topology := ‹TopologicalSpace T›
       topGroup := ‹IsTopologicalGroup T›
       compact := ‹CompactSpace T›
-      hausdorff := ‹T2Space T› }
-  exact PeterWeyl.mem_bohrResidual_iff.mp hxrad C ρ
+      hausdorff := ‹T2Space T› } ρ
 
 /-- **Profinite targets.**  These need no Peter--Weyl input. -/
 theorem precomp_phiK_bijective_profinite
@@ -138,13 +135,14 @@ theorem notesVisibleQuotient_precomp_bijective :
     (∀ (F : Type) [Field F] (d : ℕ),
       Function.Bijective (precomp (PhiK K) (Matrix.GeneralLinearGroup (Fin d) F))) ∧
     (∀ (T : Type) [Group T] [TopologicalSpace T] [IsTopologicalGroup T]
-      [CompactSpace T] [T2Space T], Function.Bijective (precomp (PhiK K) T)) :=
-  ⟨fun X hX => precomp_phiK_bijective_actualCorona K X hX,
-    fun T _ hT => precomp_phiK_bijective_residuallyFinite K T hT,
-    fun F _ d => precomp_phiK_bijective_generalLinearGroup K F d,
-    fun T _ _ _ _ _ => precomp_phiK_bijective_compact K T⟩
-
-end
+      [CompactSpace T] [T2Space T], Function.Bijective (precomp (PhiK K) T)) := by
+  refine ⟨fun X hX => precomp_phiK_bijective_actualCorona K X hX, ?_, ?_, ?_⟩
+  · intro T _ hT
+    exact precomp_phiK_bijective_residuallyFinite K T hT
+  · intro F _ d
+    exact precomp_phiK_bijective_generalLinearGroup K F d
+  · intro T _ _ _ _ _
+    exact precomp_phiK_bijective_compact K T
 
 #audit_axioms precomp_phiK_bijective_actualCorona
 #audit_axioms precomp_phiK_bijective_residuallyFinite
