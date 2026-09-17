@@ -23,6 +23,7 @@ Proved here:
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift
 
 open GroupApproximation.SteinbergGroup GroupApproximation.BooneHigman.SteinbergBasic
+open scoped Matrix
 
 local notation "𝓛" => GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
 

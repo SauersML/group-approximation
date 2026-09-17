@@ -5,6 +5,7 @@ import Mathlib.LinearAlgebra.Matrix.Trace
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NoncommRing
+import Mathlib.Tactic.NormNum
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -42,7 +43,7 @@ open scoped ComplexOrder
 
 noncomputable section
 
-variable {n : Type*} [Fintype n] [DecidableEq n]
+variable {n : Type*}
 
 /-- The sign pattern of a real vector: `1` where the entry is nonnegative, `-1` elsewhere. -/
 def signPattern (f : n → ℝ) (i : n) : ℝ :=
@@ -59,6 +60,22 @@ theorem signPattern_mul_self (f : n → ℝ) (i : n) :
     norm_num
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.PowersStormer.signPattern_mul_self
+
+/-- The scalar estimate: if `a b ≥ 0` and `a - b = t`, then `t ^ 2 ≤ t σ(t) (a + b)`. -/
+theorem sq_le_mul_signPattern_mul_add (f : n → ℝ) (i : n) {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
+    (hab : a - b = f i) :
+    f i * f i ≤ f i * signPattern f i * (a + b) := by
+  have e : f i * (a - b) = f i * f i := by rw [hab]
+  by_cases hpos : 0 ≤ f i
+  · rw [signPattern, if_pos hpos]
+    nlinarith [mul_nonneg hpos hb, e]
+  · rw [signPattern, if_neg hpos]
+    have hneg : f i < 0 := not_le.mp hpos
+    nlinarith [mul_nonneg (neg_nonneg.mpr hneg.le) ha, e]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.PowersStormer.sq_le_mul_signPattern_mul_add
+
+variable [Fintype n] [DecidableEq n]
 
 /-- If `h - k` is diagonal with real entries `f`, then the diagonal entries of `h h - k k` are
 `f i (h i i + k i i)`. The reason is `2 (h h - k k) = (h - k)(h + k) + (h + k)(h - k)`. -/
@@ -103,20 +120,6 @@ theorem re_trace_sq_sub_sq_mul_sign_of_sub_eq_diagonal {h k : Matrix n n ℂ} {f
   rw [hcast, Complex.re_ofReal_mul, Complex.add_re]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.PowersStormer.re_trace_sq_sub_sq_mul_sign_of_sub_eq_diagonal
-
-/-- The scalar estimate: if `a b ≥ 0` and `a - b = t`, then `t ^ 2 ≤ t σ(t) (a + b)`. -/
-theorem sq_le_mul_signPattern_mul_add (f : n → ℝ) (i : n) {a b : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b)
-    (hab : a - b = f i) :
-    f i * f i ≤ f i * signPattern f i * (a + b) := by
-  have e : f i * (a - b) = f i * f i := by rw [hab]
-  by_cases hpos : 0 ≤ f i
-  · rw [signPattern, if_pos hpos]
-    nlinarith [mul_nonneg hpos hb, e]
-  · rw [signPattern, if_neg hpos]
-    have hneg : f i < 0 := not_le.mp hpos
-    nlinarith [mul_nonneg (neg_nonneg.mpr hneg.le) ha, e]
-
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.PowersStormer.sq_le_mul_signPattern_mul_add
 
 /-- **Diagonal Powers–Størmer core.** Let `h, k` be positive semidefinite with `h - k = diag f`.
 Then `re tr((h - k)(h - k)) ≤ re tr((h h - k k) S)`, where `S = diag(sign f)`. -/

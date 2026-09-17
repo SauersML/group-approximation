@@ -40,7 +40,8 @@ theorem x_conj_colVec (i j : Fin n) (hij : i ≠ j) (c : R) (a : Fin n → R) :
   have hc : ⁅x i.castSucc j.castSucc hz c, colRoot j (a j)⁆ = colRoot i (c * a j) :=
     x_commutator i.castSucc j.castSucc (Fin.last n) hz (Fin.castSucc_ne_last j)
       (Fin.castSucc_ne_last i) c (a j)
-  have hconj : x i.castSucc j.castSucc hz c * colRoot j (a j) * (x i.castSucc j.castSucc hz c)⁻¹ =
+  have hconj :
+    x i.castSucc j.castSucc hz c * colRoot j (a j) * (x i.castSucc j.castSucc hz c)⁻¹ =
       colRoot i (c * a j) * colRoot j (a j) := by
     rw [← hc, commutatorElement_def, inv_mul_cancel_right]
   rw [conj_split _ _ _ _ _ (colVec_split a j) hconj hcomm, add_comm a, colVec_add,
@@ -69,7 +70,8 @@ theorem x_conj_rowVec (i j : Fin n) (hij : i ≠ j) (c : R) (b : Fin n → R) :
   have hneg : rowRoot j (b i * -c) = (rowRoot j (b i * c))⁻¹ := by
     rw [mul_neg]
     exact x_neg _ _ _ _
-  have hconj : x i.castSucc j.castSucc hz c * rowRoot i (b i) * (x i.castSucc j.castSucc hz c)⁻¹ =
+  have hconj :
+    x i.castSucc j.castSucc hz c * rowRoot i (b i) * (x i.castSucc j.castSucc hz c)⁻¹ =
       rowRoot j (b i * -c) * rowRoot i (b i) := by
     rw [hneg, ← hc, commutatorElement_def]
     group

@@ -19,9 +19,9 @@ The new index is `Fin.last n`, because `stab` pads along `Fin.castSucc`.
 commutes with `x_{k,last}` for `k ≠ j`.  So `colVec a ↦ colVec (a + c a_j e_i) =
 colVec ((1 + c E_ij) a)`.
 
-`⁅x_{last,i}(t), z⁆ = x_{last,j}(tc)`, so `z x_{last,i}(t) z⁻¹ = x_{last,j}(-tc) x_{last,i}(t)`.  Also,
-`z` commutes with `x_{last,k}` for `k ≠ i`.  So `rowVec b ↦ rowVec (b + b_i (-c) e_j) =
-rowVec (b (1 - c E_ij))`.
+`⁅x_{last,i}(t), z⁆ = x_{last,j}(tc)`, so
+`z x_{last,i}(t) z⁻¹ = x_{last,j}(-tc) x_{last,i}(t)`.  Also, `z` commutes with `x_{last,k}` for
+`k ≠ i`.  So `rowVec b ↦ rowVec (b + b_i (-c) e_j) = rowVec (b (1 - c E_ij))`.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

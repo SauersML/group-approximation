@@ -34,6 +34,7 @@ the whole group.  So the Statement is true.  It is strictly weaker than lane 02'
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.VertexLift
 
 open GroupApproximation.SteinbergGroup GroupApproximation.BooneHigman.SteinbergBasic
+open scoped Matrix
 
 local notation "𝓛" => GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
 
