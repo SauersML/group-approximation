@@ -140,3 +140,50 @@ finiteness conjecture over finite fields.
   Where it stops: in a group, a shared-pointer gadget needs `sum_(K') kappa` to be a unit of `F_2[K]` for the
   stabilizer `K` of the pointer set `P`. If the code XORs all value inputs, that forces `|E_val| <= |P|`. Artifact
   `research/artifacts/right-cancellative-pattern-firewall-2026-09-12.md`.
+* **Operator-algebra transplant of the localization count (a-gs-pull-6, 2026-09-17; DEAD).** The attempt was to run
+  Step 3 of `research/artifacts/bernoulli-deficit-witness-localization-2026-09-12.md` on tracial finite-dimensional
+  models `U_g in U(n)` instead of permutation models. Three dictionaries were tried, and each dies at a named step.
+  - *Classical field on a frame.* Step 3 needs the code variables `Z_u` to commute and to have the law of `psi(x|_E)`,
+    so the transported coordinate projections `U_g e_i U_g^*` must almost lie in one masa `D_n`. The exact identity
+    `sum_i ||U e_i U^* - E_D(U e_i U^*)||_2^2 = (1/n) sum_i (1 - sum_j |U_ji|^4)` (normalized trace) shows that the
+    total commutation defect is small only when the doubly stochastic matrix `|U_ji|^2` is near a permutation. By
+    `diagonal-normalizer-rigidity` the model is then a monomial model. By
+    `block-monomial-hs-models-sofic-mod-amenable-soft-kernel` it separates only what permutation models separate, so
+    the count sees exactly the sofic radical, as in Theorem 1. Getting such frames for every hyperlinear group is
+    `hyperlinear-groups-admit-masa-normalizing-microstates` (OPEN, equivalent to Q3.4). On the Kun–Thom wreath and on
+    the Leavitt units, no frames exist.
+  - *Fermionic (CAR) field.* For `q = 2`, letters become occupation numbers of modes `U_v delta_p`, and a Bogoliubov
+    transport gives von Neumann entropy `n log 2`. Second quantization is functorial only for the one-particle map,
+    which is linear. A witness `psi` must be nonlinear (linear codes are never witnesses). A nonlinear `psi` needs
+    occupation numbers of distinct transported modes to commute, which forces pairwise orthogonal or equal modes on the
+    chart. This returns to the monomial frame of the previous item.
+  - *Model-free W*-invariants on the reduced hosts.* By Proposition 5 of the localization artifact, the hosts are fg
+    simple Kazhdan groups, which are icc and w-rigid. There Popa's strong rigidity (Invent. Math. 165 (2006); statement
+    not re-read at source in this lane) turns an isomorphism `L^inf(q^G) x| G ~= L^inf(m^G) x| G` into a conjugacy of
+    the shifts up to a group automorphism. So W*-classification of Bernoulli crossed products over these hosts is
+    exactly `bernoulli-shift-entropy-classifies-for-every-group` restricted to them, and it provides no invariant beyond
+    conjugacy. The OE and 1-cohomology invariants (cost, L^2-Betti numbers, Koopman) are base-independent. Hayes
+    1-bounded entropy of the Cartan inclusion is `<= 0` (`cartan-algebras-are-strongly-one-bounded`). The conjugacy
+    half of this was already recorded in Section 2 of
+    `research/artifacts/popa-deformation-rigidity-and-bernoulli-preservation-2026-09-12.md`.
+
+  Where it dies: every tracial count that decodes a nonlinear code needs an approximately invariant full masa, and
+  frame existence is the open Q3.4 problem, not a new input. Every model-free W*-invariant over the reduced hosts is a
+  conjugacy invariant, which is the problem itself. No claim was landed.
+* **Stability-approximation transplant (a-gs-pull-9, 2026-09-17).** Goal: replace the permutation models of sofic
+  entropy by unitary models, so that the lower bound reaches hyperlinear nonsofic groups such as `U`. The microstates
+  are commuting projections whose translates commute, with Bernoulli moments, counted in normalized HS. There are
+  three species.
+  - *Counted.* The count is `+infinity` for every base along any amplified approximation `sigma (x) 1_m`, including
+    sofic approximations of `Z` (`hs-commutative-microstate-bernoulli-entropy-is-base-blind`, ESTABLISHED). The
+    mechanism rotates a swapped block microstate by the commutant `U(m)` and packs its operator-norm ball.
+  - *Quotiented by an `eta`-commutant, `eta` independent of `delta`.* This collapses to `0` on amenable groups, via
+    uniqueness of embeddings of `R` (not imported verbatim).
+  - *Diagonal.* This is sofic entropy, and it exists only if the Bernoulli action is sofic
+    (`coherent-bernoulli-actor-tables-are-cartan-soficity`).
+
+  Where it dies: the multinomial bound `h_Sigma <= H(P)`. The invariant responsible is the volume of the commutant of
+  `sigma(G)`. What survives is a tied-tolerance orbital count, `eta(delta) -> 0`, which needs `U` hyperlinear,
+  `L(Z_q wr U)` Connes-embeddable, the multinomial bound, and a `log q` lower bound. These are four prerequisites that
+  can fail separately, and the last two pull against each other. Artifact
+  `research/artifacts/stability-approximation-transplant-to-bernoulli-rokhlin-2026-09-17.md`.
