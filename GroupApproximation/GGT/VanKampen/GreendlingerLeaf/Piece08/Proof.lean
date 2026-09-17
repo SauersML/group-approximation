@@ -100,8 +100,8 @@ theorem properInput_of_fullSourceLake (D : RelGenSet G Lambda) (lambda c : ℝ) 
     (hlake : FullSourceLakeInput.{u, w, v} D lambda c eps W) :
     SectionPocketFaceSetProperInput.{u, w, v} D lambda c eps W := by
   intro Delta cuts hlea S i j a ha b hb hne hja hjb
-  obtain ⟨X', hE, hlabel, K, hK⟩ := sectionPocketFaceSetInput_of_keptCell sectionPocketKeptCell
-    D lambda c eps W Delta cuts hlea S i j a ha b hb hne hja hjb
+  obtain ⟨X', hE, hlabel, K, hK⟩ := sectionPocketFaceSetInput_of_keptCell.{u, w, v}
+    sectionPocketKeptCell.{u, w, v} D lambda c eps W Delta cuts hlea S i j a ha b hb hne hja hjb
   rcases Nat.lt_or_eq_of_le K.sourceArc.length_le with hlt | hfull
   · exact ⟨X', hE, hlabel, K, hK, hlt⟩
   · by_cases hall : ∀ k : Fin X'.rCellCount,

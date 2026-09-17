@@ -154,7 +154,8 @@ theorem manuscriptSentence_jacobsonRankTwoNoCompressionObstruction :
                 Set (GL (Fin 2) ToeplitzJacobson))) ∧
         Manuscript.OneSidedMFRadical.printedDefect L = ⊥ := by
   intro L hL
-  haveI hfin : Finite L := (printedPresentedJacobsonRankTwoKazhdanFiniteField.2.2.2.2 L hL).2.2.2
+  obtain ⟨-, -, -, -, hK⟩ := printedPresentedJacobsonRankTwoKazhdanFiniteField
+  haveI hfin : Finite L := (hK L hL).2.2.2
   exact ⟨hfin,
     Manuscript.OneSidedMFRadical.JacobsonRankTwo.manuscriptSentence_finiteSubgroupAdmitsNoProperCompression
       _ L⟩
