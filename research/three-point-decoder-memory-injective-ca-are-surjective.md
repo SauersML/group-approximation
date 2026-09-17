@@ -55,3 +55,11 @@ When `<s, t>` is amenable this is `amenable-decoder-memory-forces-surjectivity`.
   - the joint law of `y` at the seven sites depends on the encoder windows, so relations of `G` outside `<s,t>` enter.
 
   So the free-`Gamma` case should be treated as open. The amenable mechanism closes exactly the amenable-`<s,t>` cases.
+- **Sofic and free `<s,t>` closed (sw-001, 2026-09-17).** `surjunctive-decoder-subgroups-force-surjectivity`
+  proves the claim whenever `<s, t>` is surjunctive, so in particular for `<s, t> = F_2` and every sofic `<s, t>`.
+  This supersedes the caution above. The proof never needs pre-injectivity of the decoder. It freezes the input to
+  a constant off `<s, t>`, which gives an injective automaton over `<s, t>` with the three-point left inverse, and
+  applies surjunctivity of `<s, t>` to that encoder. Descent from the same route: a strict pair with decoder memory
+  `{e, s, t}` over any `G` gives one over `<s, t>`. So the remaining content is exactly the case of a nonsurjunctive
+  (hence nonsofic) two-generated group `G = <s, t>`. Neither the host relations outside `<s, t>` nor the encoder
+  windows there matter any more.
