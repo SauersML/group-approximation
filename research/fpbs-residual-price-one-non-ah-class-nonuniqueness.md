@@ -102,3 +102,24 @@ and nonamenable, and their amenable subgroups are all finite
 
   **Where it stops:** splittings over nonamenable subgroups remain, and this
   removes no known member.
+* **Split by normal subgroups with nonamenable quotient (swarm-0917).** Route
+  `fpbs-residual-class-via-percolation-kesten-split` divides the class into two
+  cases.
+  * **(α)** Some infinite normal `N` has nonamenable quotient. These members
+    need only `fpbs-percolation-kesten-normal-gap`,
+    `p_c(G) < p_c(N;G)`, together with the established separation criterion.
+    This covers every known member, the products `T x T'` and
+    `B(m,n) x B(m',n')`, with `N` a factor, and needs no amenable subgroup.
+  * **(β)** Every infinite normal subgroup is co-amenable. These members need
+    `fpbs-normally-coamenable-class-nonuniqueness`.
+
+  Established along the way:
+  * `fpbs-normal-fibre-second-moment-maximal`: below `p_c(N;G)` every fibre
+    carries at most the identity fibre's second moment, for any normal `N`;
+  * `fpbs-relative-threshold-commensurability-invariant`.
+
+  **Where it stops:** both premises are open. In (β), on a single torsion
+  Tarski monster, every infinite subgroup has finite index. So
+  `p_c(I;G) = p_c(G)` for every infinite `I`, and every relative-gap route
+  dies at "choose `I`". A single monster, if it has fixed price one, needs a
+  non-relative argument.

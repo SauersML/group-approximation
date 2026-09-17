@@ -1,0 +1,11 @@
+E={00,10,01,11} F={00,11,01} ground set 7: 679 elemental inequalities, 316 translation equalities checked: ALL EXACT
+  exact Phi of rationalised polymatroid = 7/9 (LP float 0.777777778)
+E={00,10,11} F={11,10,01} ground set 7: 679 elemental inequalities, 316 translation equalities checked: ALL EXACT
+  exact Phi of rationalised polymatroid = 11/12 (LP float 0.916666667)
+E={0,r0,r1,1} F={r1,-1,0,1} ground set 12: 67596 elemental inequalities, 6242 translation equalities checked: ALL EXACT
+  exact Phi of rationalised polymatroid = 7/8 (LP float 0.875000000)
+E={0,1,2,4} F={0,3,5,6} ground set 11: 28171 elemental inequalities, 5113 translation equalities checked: ALL EXACT
+  exact Phi of rationalised polymatroid = 5/6 (LP float 0.833333333)
+E={0,1,2,5} F={0,5,2,1} ground set 11: 28171 elemental inequalities, 5113 translation equalities checked: ALL EXACT
+  exact Phi of rationalised polymatroid = 1264/1469 (LP float 0.860449285)
+# all fakes verified

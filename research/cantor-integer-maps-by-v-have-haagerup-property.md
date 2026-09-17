@@ -70,6 +70,16 @@ Facts proved in the artifact, §3:
     transitivity forces `m = 0` on all proper clopens.
 - **Sup-norm length (not cnd).** `‖f‖_∞ ≤ |(f,h)|_S` gives linear growth along `A`.
   But `‖·‖_∞` is an ℓ^∞-type norm, and `√‖f‖_∞` is not shown to be Hilbertian.
+- **Congruence truncation (partial: positional half established, 2026-09-17).**
+  Pull Farley's function back along `C(C,Z) ⋊ V → C(C,Z/N) ⋊ V ≤ V` for every `N`,
+  glue with summable weights, and add any cnd `ψ_0` with `ψ_0(f) ≥ F(‖f‖_∞)`, `F → ∞`.
+  - The result is proper. So the target is equivalent to that sup-norm condition
+    (`brothier-problem-b-reduces-to-value-range-domination`, for every residually
+    finite `Γ`). What remains open is `cantor-integer-maps-sup-norm-is-cnd-dominated`.
+  - The truncations alone do not supply `ψ_0` (heuristic, not written to referee
+    standard). In the fibre-first coding, `h ∈ V` costs about `N·carets(h)` carets,
+    while `M·1_C` costs at most about `N`. Weights with `Σ_N w_N ψ_N(h)` finite for
+    every `h` keep `Σ_N w_N ψ_N(M·1_C)` bounded in `M`.
 - Not settled. A proof must use characters that are non-atomic, or have an
   unboundedly growing number of atoms. Measures on boundedly-atomic characters
   cannot be almost invariant (artifact §3(g)).

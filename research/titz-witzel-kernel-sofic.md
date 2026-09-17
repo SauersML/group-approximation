@@ -67,3 +67,28 @@ sofic, it would also answer Cornulier's Question 5 positively.
   complex, with inhomogeneous branching data. Galois branched covers have the same local group at
   every lift of a branch point. That suggests a linear defect, but this was checked only
   heuristically and is not recorded as a claim.
+- 2026-09-17 (swarm-0917-w4-titz-sofic, branched hyperbolization): took up the
+  branched-cover recipe above and turned it into an exact equivalence plus a
+  decomposition.
+  * Established `sparse-branched-covers-with-sofic-pi1-give-sofic-lattice`:
+    `pi_1(Y_1^2)` is sofic iff there are finite branched covers with branching
+    mass `beta -> 0` whose `pi_1` are sofic.  Branching is inhomogeneous in
+    general, and every such cover is locally CAT(0).
+  * Established `flat-hitting-branched-covers-have-hyperbolic-pi1`: if branch
+    links have angular girth `> 2pi` (G) and the branch set meets every
+    immersed `R`-flat disk (H), then `pi_1` is hyperbolic.  In the square case
+    it is also cubulated, hence residually finite.
+  * Route `titz-witzel-kernel-sofic-via-branched-hyperbolization` rests on two
+    independent open prerequisites.
+    - `titz-witzel-flat-hitting-sparse-branched-covers`: finite combinatorics.
+    - `titz-witzel-flat-hitting-branched-cover-groups-are-sofic`: soficity of
+      explicit hyperbolic groups.
+  * Contrapositive route
+    `nonsofic-hyperbolic-group-from-titz-witzel-flat-hitting-covers`: a
+    nonsofic kernel together with the first prerequisite gives a nonsofic
+    hyperbolic group.
+  * For Radu's sublattice, `radu-bmw-lattice-sofic-from-flat-hitting-branched-covers`
+    has a single open prerequisite, `radu-square-complex-flat-hitting-sparse-branched-covers`.
+  * Where this dies for now: no branch set meeting all flats sparsely has been
+    built.  Branch sets pulled back from product or height coordinates are
+    ruled out, heuristically, by irreducibility.  Target stays OPEN.

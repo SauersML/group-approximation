@@ -30,3 +30,16 @@ artifacts:
   excluded exactly where `F_2[G]` is stably finite.
 - **Where it stops.** Kaplansky stable finiteness over `F_2` is open for nonsofic groups, and every
   candidate counterexample host in the graph is nonsofic.
+- **Power-residue donor types** (swarm-0917-w4-gs-binary-power, 2026-09-17). A direct proof is out of reach, since
+  it implies Kaplansky stable finiteness over `F_2` for all groups. So the work went to the partner bridge of
+  `gottschalk-via-binary-power-nonsurjunctive-witness`.
+  - `donor-covering-types-give-nonsurjunctive-size-progressions` (established) shows that a strict donor-covering
+    automaton of type `(z, b)` puts `z + bt` in `NS(G)` for every `t >= 1`.
+  - By item 5 there, this claim forbids every strict donor-covering automaton of power-residue type (some
+    `z + bt = 2^j`). That includes one active symbol over any number of rest symbols. So a counterexample may be
+    sought as a strict automaton with a single moving, relayed particle, over any alphabet size.
+  - The bridge is equivalent to `strict-automata-reach-power-residue-donor-types` (open). Together with that claim,
+    this one gives the conjecture (`binary-power-witness-from-power-residue-donor-types`).
+  - `single-active-symbol-strict-donor-automata-give-every-size` (established, from the collapse-lift theorem) shows
+    that a one-particle witness would give `2 ∈ NS(G)`. So that recipe targets binary surjunctivity itself.
+  - Where it stops: every known move keeps the odd part of `gcd(z, b)`.

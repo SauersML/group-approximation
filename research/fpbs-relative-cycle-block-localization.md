@@ -71,3 +71,20 @@ edge groups, Corollaries 2.28 and 2.32 already give fixed price whenever
 the vertex groups have it. For a free product A*B, Theorem 2.27 gives
 C(a)=C(a|A)+C(a|B) for every free action, so the question reduces to A
 and B.
+
+Localize the obvious certificates: base-oblivious ones, including lifts
+of graphings of a to a x b -> b. This dies at the weighted boundary
+premise itself, for every partition and every block size. The
+established `fpbs-relative-cycle-diagonal-absence-split` shows
+<K delta_e,delta_e> >= (1-p_e) rho_H(e), where rho_H is the finite-cycle
+weight. When occupancy ignores the base, H is Cayley, and an
+infinite-order label crosses blocks on measure at least 1/M. The
+established `fpbs-oblivious-certificates-never-localize` then gives
+(1+2dM^2)Tr(P_out K) >= 2dM sum (1-p_s) rho_s. This is at least 2/3 for
+torsion-free non-cyclic groups with beta_1=0 at cost below 4/3, so already
+on Z^2, where fixed price holds. The invariant is the diffuse cycle
+weight. Any construction of this premise must make boundary-edge
+occupancy almost base-measurable, and it cannot come from
+the forgotten factor's own near-optimal graphings. The retraction residual of
+Section 7 is not covered by this obstruction. The artifact is
+`research/artifacts/fpbs/docs/oblivious-occupancy-localization-obstruction.md`.

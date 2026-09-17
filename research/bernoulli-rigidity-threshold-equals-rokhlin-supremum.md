@@ -60,3 +60,17 @@ such that the Bernoulli shifts over `G` with base entropies `h` and `h'` are iso
 - **Invariants (no obstruction either way).** Rokhlin entropy is `min(h, s)` and every semicontinuous invariant is
   constant above `s` (`semicontinuous-invariants-blind-above-rokhlin-supremum`). So no known invariant shows a
   level above `s` to be rigid, and none shows it to be non-rigid.
+- **Transfer calculus (dies at the excess invariant; swarm-0917-w4-gs-rokhlin-threshold, 2026-09-17).**
+  - This makes "Rescaling through other groups" quantitative and extends it to arbitrary mixed chains
+    (`rokhlin-excess-never-drops-under-bernoulli-transfers`).
+  - Invariant: the excess `min(a, b) − s(·)` of a nontrivial pair.
+  - Along products, chaining, co-induction and finite-index restriction, the excess grows by each step's defect,
+    and the defect is `≥ 0`. That rests on the proved inequalities `s(Γ) ≤ s(G)` for `G ≤ Γ` and `s(H) ≤ k s(G)`
+    at index `k`.
+  - Death step: the first transfer applied to any seed. A proof of the claim by transfers needs seeds of excess
+    `< ε` along paths of defect `< ε`, which is the claim up to `ε` at another group.
+  - Survivors: cancellation (dead above), or a primitive near-threshold isomorphism.
+  - By-products:
+    - permanence: H2 goes up to overgroups of equal supremum, and down to index-`k` subgroups of supremum `k s`;
+    - at `s = 0`, H2 is a commensurability invariant;
+    - failures propagate to subgroups of equal supremum.

@@ -175,3 +175,47 @@ factors through a finite quotient of `F_m`.
      non-nilpotent finite groups.
    - **Open instance.** `large-odd-exponent-local-restricted-burnside`, routed into
      `non-residually-finite-hyperbolic-group`.
+7. **Entropy-measure transplant: free entropy dimension, killed** (swarm-0917,
+   heretic lane, 2026-09-17). DEAD as a route to this claim, and to every
+   non-hyperlinearity hole.
+   - **The idea.** An exact-order-`N` element has an atomic spectral measure,
+     with mass `1/N` on each root of unity. Exponent laws should therefore
+     make microstate spaces small. The plan was to force `δ_0 < 1` against
+     Jung's floor `δ_0 >= 1` for diffuse embeddable algebras.
+   - **Where it dies.** `free-entropy-dimension-cannot-certify-non-hyperlinearity`.
+     (That node is OPEN: a referee refuted its universal Consequence on 2026-09-17. What
+     survived review is only that the Theorem-3 floor and the `δ*` ceiling never cross.)
+     - For every infinite f.g. group, the published floor is the dimension
+       of the algebraic cocycles (Shlyakhtenko, arXiv:0710.4111, Theorem 3).
+     - The published ceiling is `δ_0 <= δ* = β_1^(2) + 1` (Mineyev--Shlyakhtenko).
+     - The floor never exceeds the ceiling, because
+       `Z^1(Γ; CΓ) ⊂ Z^1(Γ; UΓ)` and Lück dimension is monotone. No
+       hyperlinearity is used.
+     - The exponent law contributes only `c(g) ∈ (1 - E_g) UΓ` for each
+       generator. That bounds the ceiling by `m(1 - 1/N)`, which is still
+       `>= 1`.
+     - So a `δ_0` proof needs a floor larger than `δ*`. That floor is false
+       on every hyperlinear group, and proving it already proves the
+       microstate spaces empty.
+   - **1-bounded entropy (not re-read at source).** Hayes's `h` is `>= 0` on
+     every embeddable algebra, because a nonempty orbit covering has log count
+     `>= 0`. The strong 1-boundedness criteria (Cartan, property (T), sofic
+     with `β_1^(2) = 0`) give only `h <= 0`, so the same range argument
+     applies.
+   - **Heretic audit: three unstated shared assumptions** of the HOT families
+     (linear-characteristic, host-geometry, logic-computability,
+     cohomology-index, stability-approximation), each denied in turn.
+     - **(A1) The obstruction is certified at a finite radius.** Denial: use a
+       genuinely global law such as the full exponent law. It breaks at
+       Attempt 5: each finite ball of `B(m,N)` is a ball of a hyperbolic stage
+       `G_k`, so any certificate reaches `G_k`.
+     - **(A2) The obstruction is computed from the algebra of `Γ`, not from
+       the volume of the model space.** Denial: this is the entropy-measure
+       family. It breaks at the cocycle inclusion above, because the volume
+       invariant is itself sandwiched between two algebraic cocycle
+       dimensions.
+     - **(A3) The trace to be approximated is the regular trace.** Denial:
+       aim at a non-regular character. It breaks at
+       `hyperlinear-radical-is-finitely-witnessed`: if every element survives
+       some approximable character, tensor powers recover the regular trace.
+     - No denial gave a new route.

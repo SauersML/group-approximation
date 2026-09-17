@@ -8,6 +8,7 @@ distinct_from:
   maslov-mod3-projective-defect-gap: that is a uniform analytic defect gap for alpha-projective almost representations; this is a finite algebraic certificate that implies the central collapse without estimating any defect.
 artifacts:
   - research/artifacts/kl-schur-kernel-central-extensions-2026-09-11.md
+  - research/artifacts/sp4-schur-li-packets-2026-09-17.md
 ---
 
 **OPEN.** Let `alpha` be the multiplier of Deligne's triple cover
@@ -75,3 +76,20 @@ from the first homology of the relation module of the adjunction.
    `kl-holds-over-central-extensions-of-torsion-free-groups`, the preimage of
    a torsion-free `B` in `E_3` satisfies Kervaire--Laudenbach at amenable
    shapes.
+6. **Locally indicable packets, at every shape (swarm-0917).** Dead by
+   `locally-indicable-packets-have-zero-schur-kernel`. By Howie's restriction
+   epimorphism `H^2(B_w; Q/Z) -> H^2(B; Q/Z)`, the Deligne multiplier
+   restricted to a locally indicable packet `B` extends over the adjunction,
+   so nothing dies. This kills surface, free-by-cyclic, torsion-free
+   one-relator and RAAG packets carrying a Maslov class. It also kills every
+   class that survives in `H_2` of some locally indicable image of `B`. A
+   torsion-free witness packet must therefore be non-locally-indicable, and
+   its shape must be non-amenable by Attempt 5.
+7. **Finite-cover transfer to a torsion-free square system (swarm-0917).**
+   Dead at two steps; see section 5 of
+   `research/artifacts/sp4-schur-li-packets-2026-09-17.md`.
+   - *At the prime 3.* When `B` has 3-torsion, every permutation extension with
+     torsion-free stabilizers has `3 | |X|`, so the transfer loses `alpha`.
+   - *At the layered theorem.* The exponent matrix of the square system is not
+     unimodular over `Z[P]` in general. For example `2 - zeta_3` has norm 7, so
+     Forester--Rourke's layered theorem does not apply.

@@ -78,3 +78,26 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   * *The direct budget transplant.* `E_p[N|E]` is ball-local, but PB begins
     at `p_c(G) <= liminf p_c(G_k)`. The approximants would need the budget
     below their own critical points.
+* **Sum over walk lengths first (reframing, swarm-0917).**
+  * *The kernel.* Summing (1.1) over `n<=R` gives
+    `d/dp log A_R = E^tilt[N]/p`, where `A_R = sum_(n<=R) a_(n,R)` increases
+    to `A(p) = sum_x g(x) tau_p(x)`. This is the expected number of visits of
+    the walk to `C(e)`.
+    - **GB** is a *bounded* Green-tilted pivotal count on `[p_c,p0]`.
+    - **VIS** says `A(p)<infinity` for some `p>p_c`.
+  * *Established* (`fpbs-green-visit-kernel-ordering`,
+    `fpbs-green-visit-criterion-implies-nonuniqueness`, Section 3 of
+    `research/artifacts/fpbs/docs/green-visit-kernel-2026-09-17.md`):
+    - PB ⇒ GB ⇒ VIS ⇒ BS.
+    - `p_c<p_(2->2)` ⇒ GB.
+    - NC ⇒ VIS.
+    - `tau_p in l2` ⇒ VIS.
+    - `A(p_c) <= 1/(1-rho)`, and `A=infinity` at uniqueness.
+  * *Consequence.* `fpbs-green-visit-criterion-universal` is the weakest
+    kernel on the tip. A graph where VIS fails would refute this claim, IS,
+    NC and the l2 gap there at once.
+  * *Where it stops.* The pivotal content disappears.
+    - GB and VIS have no pointwise-in-`n` control, so neither implies PB.
+    - Like the bubble of Section 6, `A` is infinite at uniqueness, so VIS
+      certifies nonuniqueness rather than deriving it.
+    - RATE ⇒ VIS is not proved, and no converse is known.

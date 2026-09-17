@@ -63,3 +63,24 @@ three-permutation, twelve-relator gate in
 
 DERIVATION
 titz-witzel-exact-kazhdan-mf-radical-over-z-proof
+
+## Attempts
+
+- **Compression-defect mechanisms (2026-09-17, swarm-0917-w4-tf-titz-radical). Dead, for every
+  member of the class.** `abelian-extensions-kill-kcf-compression-defects` proves: if `K` is a
+  Titz Mite--Witzel residual, `G` contains `K` normally with `G/K` torsion-free abelian (`K x Z`,
+  every mapping torus `K semidirectProduct_phi Z` with `phi` of any outer order, `K x| Z^d`), and
+  `L <= G` is Kazhdan, then `D_G(L) = 1`.
+  - *Invariant.* Centralizers in `K` of nontrivial Kazhdan subgroups are trivial
+    (`kazhdan-subgroups-of-cat0-cd-two-have-trivial-centralizers`).
+  - *Step where every member dies.* For a compressor `s` and `z in C_G(L)`, the commutator
+    `[s,z]` lies in `K` (abelian quotient) and centralizes `s L s^-1`, so it is `1`. Hence every
+    defect generator `[g z g^-1, l]` with `g in G_comp(L)` is trivial.
+  - *Consequences.* `normal-kazhdan-defect-non-mf`, `split-cyclic-kazhdan-defect-exact-mf-radical`
+    and `compression-defect-dies-in-mf-under-mark-stability` are all vacuous on these `G`. The
+    finite-normal and finite-order central-mark branches are vacuous in torsion-free groups.
+    Stability of the simple kernel at a point `w != 1` is equivalent to "`K` is not MF", so it is
+    a restatement.
+  - So the open clause "`K` is not MF" is not reachable by any non-MF mechanism now established
+    in the graph. A proof needs a mechanism that does not pass through a compression-centralizer
+    commutator, a finite normal subgroup, or a finite-order central mark.

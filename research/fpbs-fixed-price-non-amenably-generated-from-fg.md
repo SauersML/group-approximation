@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-countable-passage.md
   - research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
+  - research/artifacts/fpbs-extension-certificates-carry-no-cost-information-2026-09-17.md
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price.
@@ -187,3 +188,35 @@ subgroups (September 17, 2026).** Artifact
   Jaikin-Zapirain's `L²`-independence. With Gaboriau's inequality and
   Tucker-Drob Prop 6.7(1), every free cost is 2 or ∞, and the claim for
   `Gamma_mal` is the finiteness of free costs.
+
+**Extension certificates are circular for finite cost (September 17, 2026,
+swarm-0917-w4-fp-nonamenably-gen, inverter).** Artifact
+`research/artifacts/fpbs-extension-certificates-carry-no-cost-information-2026-09-17.md`.
+- **Result (`fpbs-extension-routes-to-finite-cost-are-circular`).** Let
+  `C(Gamma) < infinity` and let `b` be free. The minimum cost over free
+  extensions of `b` is exactly `C(Gamma)`, attained by `b x a_0`. So (U)
+  is equivalent to descent of finiteness along product projections.
+  Shape (B) holds iff `b x a_0 -> b` has cost `C(Gamma)` over an
+  infinite-cost base.
+- **What is killed.** This is every route that certifies a bound on the
+  cost of an extension `e -> b` and then descends to `b`:
+  - products or joinings with auxiliary or Bernoulli actions (`a_0` can be
+    taken mixing);
+  - coinduction through a finitely generated overgroup, then restriction;
+  - measure-equivalence transfer that keeps `b` as a factor.
+
+  The invariant is the cost of a free extension, which is constant at its
+  minimum. The dying step is descent along non-atomic fibres. Uniform
+  finite fibres do descend.
+- **`Gamma_mal`.** Coinduction to `M = F_2 *_phi`, which is finitely
+  generated and so has fixed price under the hypothesis, needs two
+  descents:
+  - (i) from `M`-cost to `Gamma_mal`-cost, which fails for finiteness in
+    general (`F_inf x Z` has cost 1);
+  - (ii) from the product of twists `(x)_k b o T^k` to `b`, which is (U).
+- **Where this leaves the claim.** Both known ways of certifying (U) are
+  now closed at `Gamma_mal`. Extension certificates die here, and
+  base-measurable repair anchored in almost malnormal subgroup orbit
+  relations dies by the finite-contact obstruction. A proof must build a
+  graphing on `b` itself, by repair from subrelations that do not lie in
+  any almost malnormal subgroup orbit relation. The claim stays OPEN.

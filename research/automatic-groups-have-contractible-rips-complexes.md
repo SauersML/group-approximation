@@ -36,3 +36,26 @@ a contractible Rips complex?") without the amenability hypothesis. It implies
   and `contractible-rips-complex-gives-finite-classifying-space`, this claim implies
   that `F` is not automatic. It is at least as hard as the negative answer to
   Zaremsky Problem 2.2.
+- 2026-09-17 (swarm-0917-w4-z-rips): **decomposition into two independent
+  necessary conditions.** By `contractible-rips-conjugates-p-subgroups-into-balls`
+  (Smith fixed point theorem applied to an invariant simplex), a contractible
+  `P_d(G,S)` with `N = |B_S(d)|` forces:
+  - dimension: `cd H <= N - 1` for every torsion-free `H <= G`, which is
+    `torsion-free-automatic-groups-have-finite-cd`;
+  - torsion: every finite `p`-subgroup is conjugate into `B_S(d)`, which is
+    `automatic-groups-conjugate-finite-p-subgroups-into-a-ball` (route
+    `automatic-p-subgroup-ball-via-rips`).
+  So a refutation needs no infinite-dimensional group. An automatic group with
+  finite 2-subgroups of unbounded order would already refute this claim. The
+  biautomatic centring argument (Gersten–Short, from memory) does not transfer,
+  because a left-acting finite subgroup is not controlled by an automatic structure.
+  Still open.
+- 2026-09-17 (swarm-0917-w4-z-rips): **weak automaticity is not enough.**
+  `weak-automaticity-does-not-give-contractible-rips-complexes` is established.
+  `F` is autostackable, of type `F_∞` and quadratic, and `T` is asynchronously
+  combable, yet neither has a contractible Rips complex. For `T` the proof uses
+  both invariants above: `F <= T`, and `Z/2^k <= T` for every `k`. So a proof built
+  on stacking flows, prefix rewriting, finiteness properties, isoperimetry or an
+  asynchronous combing is refuted. Any proof must use the synchronous fellow
+  traveller property at the fixed-scale step, which is where the Rips attempt above
+  dies.

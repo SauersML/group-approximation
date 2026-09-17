@@ -44,8 +44,21 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   amenability is equivalent to the existence of a non-degenerate symmetric
   measure with trivial Poisson boundary.
   `thompson-f-random-walks-are-not-liouville` excludes every strictly
-  non-degenerate finitely supported measure. Dies: only infinitely supported
-  measures remain, and none is known to be Liouville and non-degenerate.
+  non-degenerate finitely supported measure.
+  `thompson-f-finite-breakpoint-moment-walks-are-not-liouville` (swarm-0917,
+  obstruction-miner) extends the kill to every `µ` with `sgr supp µ = F` and
+  `E_µ|Br(h)| < ∞`, hence every finite-first-moment measure. This is the extension
+  Kaimanovich expected in 1602.02971 §7.A.
+  - *Invariant:* the breakpoint-cocycle lamp configuration `c(g_n) ∈ Z^D`.
+  - *Where every member dies:* the dyadic quotient walk is transient and doubly
+    stochastic (`thompson-f-dyadic-orbit-walks-are-transient`), so the expected flip
+    count is at most `G(z,z) E_µ|Br|`. The lamps stabilize, and an element fixing
+    `1/2` with a breakpoint there turns the law of the stabilized lamp into a
+    nonconstant harmonic function.
+  - Dies: surviving witnesses have infinite Green-weighted breakpoint count at every
+    dyadic point. The next rung, finite entropy, is open. Killing it would still not
+    decide the question, since by [Ers04b] some amenable groups have no
+    finite-entropy Liouville measure.
 - **Group-ring equations.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   amenability is the Ore condition for `K[F]`: every pair of nonzero `a, b` has a
   nonzero common multiple. Guba's survey (arXiv:2305.07113, §3, read in full) reduces
@@ -107,3 +120,26 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     amenability of `F`. Not covered: extensive amenability proved without recurrence
     (`f-dyadic-ea-iff-inverted-orbit-confinement`), germ-groupoid variants, and analytic
     routes. (swarm-0917, obstructor.)
+- **Juschenko–Monod twisted embeddings: extensive amenability plus a functor cocycle
+  with amenable kernel** (JMBMdlS arXiv:1503.04977, corollary and remark in §1).
+  - *Germ-groupoid variant with recurrence.* `thompson-f-point-orbits-are-transient`
+    shows that every orbit of `F` on `(0,1)` or on the Cantor set is transient. The proof
+    plants the deep part of the dyadic graph in each tail class. So the recurrence
+    criterion for extensive amenability never applies to singular sets of the
+    interval model.
+  - *Functor cocycles on unfaithful actions.* In
+    `f-functor-cocycles-need-an-exotic-recurrent-action`, suppose a nontrivial normal
+    subgroup of `F` acts trivially on `X`. On it the cocycle is a homomorphism whose
+    kernel is normal in `F`. By the normal-subgroup import, `F` then lies either in
+    `ker c` or in a quotient of some functor value `𝔉(A)`.
+  - *Invariant:* a section isomorphic to `F`.
+  - Dies: at the kernel step or at the functor step. With recurrence as the engine, a
+    surviving member needs an exotic recurrent `F`-set, one whose stabilizer does not
+    contain `F′`. Such a stabilizer contains no end-rigid subgroup and fixes no interior
+    point. Whether one exists is `thompson-f-recurrent-f-sets-factor-through-the-abelianization`
+    (OPEN).
+  - Not covered: faithful actions made extensively amenable by non-recurrent means. On
+    the dyadic orbit `D`, the breakpoint cocycle `c_g(t) = log_2 (h′(t⁺)/h′(t⁻))` with
+    `h = g⁻¹` takes values in `Z^(D)`, and its kernel is trivial. So extensive
+    amenability of `F ↷ D` already gives the flagship through the corollary, and this
+    case is the flagship itself. (swarm-0917-w4-f-extensive.)

@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
+  - research/artifacts/fpbs-perturbative-reuse-removal-fails-2026-09-17.md
 ---
 
 **OPEN.** For a factor map pi from a free action Y onto a free action X of a finitely generated group, and in particular for the projection a x b -> b onto a Bernoulli action, prove that there are finite routing plans on Y with budget tending to C(Y) whose conditional traffic defect for pi tends to zero. Equivalently, prove that every free extension generated over its base by the orbit name of one binary observable preserves cost; equivalently, that the pushforwards of the unused-edge measures and of the repeated-use measures can be made asymptotically singular while the near-optimal edge budget is preserved.
@@ -155,3 +156,23 @@ defect. Or it can be restricted to a family of factor maps or groups where
 an independent argument applies, which would give a new fixed-price class.
 Either hypothesis can fail without refuting fixed price. No statement of
 either kind is proved here.
+
+Remove the flags from a given plan by edits of vanishing measure (September
+17, 2026; perturbative-removal artifact). This class is dead. The proved
+`fpbs-perturbative-reuse-removal-fails` uses the factor Bernoulli Z x Z/2 onto
+Bernoulli Z, where both costs are one. Its plan D has label +2 on parity 0 and
++3 on parity 1, with B = 1 and J = 1. Every plan with B <= 1+beta and
+J <= delta differs from D in used-edge measure by at least
+(1-2beta-81delta)/65. So no statement "for every source-near-optimal plan
+sequence there are plans at vanishing edit distance with J -> 0" holds, for
+any family containing this factor. Flag deletion, sparse sprinkling, rare
+repairs and local recoding of a given plan all fall in this class. The
+invariant is base-conditional label occupancy, which edits move only in L1.
+The step where each member dies is
+`fpbs-small-defect-reuse-on-high-occupancy-edges`: small J confines reuse
+to copies of occupancy near one or to rare base regions. D has none, and on Z
+each request needs two single-use steps, which exceeds the single-use budget.
+Per-plan removal survives only with macroscopic rebuilds, at distance at least
+a fixed fraction of the budget; the direct plan lies at distance 2.
+This is not a counterexample to the claim. Whether perturbative removal fails
+for every infinite finitely generated group is open.

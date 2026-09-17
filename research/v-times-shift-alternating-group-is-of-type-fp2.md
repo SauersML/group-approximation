@@ -29,3 +29,25 @@ Finite presentability would be stronger than needed.
 - Dies if: some quotient or retract of `A(G)` is visibly not FP_2, for example a
   lamplighter-like `C(Σ, V) ⋊ Z` retract. None has been found; restricting to a
   periodic orbit gives Higman–Thompson-type quotients, which are of type F_∞.
+- 2026-09-17 (swarm-0917-w4-z-fp2-countable, symbolic-dynamics), **two established
+  results, node still OPEN.**
+  - **The Stein–Farley attempt above dies at cocompactness.** An ample groupoid
+    with `m` similarity types of basic clopens has at most `m` minimal closed
+    invariant sets (`finite-similarity-types-bound-minimal-invariant-sets`).
+    `G` has `2^aleph_0` of them, so it has no finite type system
+    (`v-times-shift-groupoid-has-no-finite-similarity-types`). Heuristically
+    the types are indexed by all tape words `w`. So the filtration by the number of
+    pieces is never cocompact. The same holds for every ambient groupoid that
+    can feed `uncountably-many-simple-fp2-via-v-times-shift-restrictions`. A
+    surviving proof needs a two-parameter filtration (number of pieces, maximal
+    word length) and connectivity across increasing word length.
+  - **Necessary conditions that can fail on their own.** The kernels proof
+    covers every closed invariant `Y`, so FP_2 of `A(G)` forces FP_2 of
+    `A(G|_{C×Y})` for all subshifts `Y`
+    (`v-times-shift-fp2-forces-fp2-of-every-subshift-restriction`).
+  - **Correction to the previous bullet.** The fixed point `0^Z` gives
+    `C(C, Z) ⋊ V`, not a Higman–Thompson group: the isotropy `Z` survives as
+    controlled shift exponents. Its FP_2 status is the cheapest open test.
+  - Where it stops: no obstruction and no proof. It is not checked whether
+    `C(C, Z) ⋊ V` is FP_2, and descending links for the two-parameter filtration
+    were not attempted.

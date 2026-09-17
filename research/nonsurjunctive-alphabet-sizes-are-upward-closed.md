@@ -60,3 +60,23 @@ artifacts:
     `rest-count-preservation-from-charge-noncreation`. So the count-raising hypothesis of
     `count-raising-reversible-automata-lower-biased-rokhlin-entropy` is never met, and the autonomous star designs die
     unconditionally.
+- **Any letter-collapse lift, any rest map** (swarm-0917-w4-gs-upward, 2026-09-17). The first survivor above is
+  dead too, and so is the whole collapse class for `k -> k+1`, unless `2 ∈ NS(G)`. By
+  `collapse-lifts-with-unique-largest-fiber-are-surjective`, if `Φ` is injective on `B^G`, `r ∘ Φ = τ ∘ r` for a
+  letter collapse `r : B -> A` and an injective `τ`, and the largest fiber `Q0` is unique, then either
+  `|Q0| ∈ NS(G)` or `τ` and `Φ` are both surjective.
+  - The step where the class dies. The rest map `T_0 = Φ|_{Q0^G}` is an injective automaton. If it is not
+    surjective, `|Q0|` already fails. If it is bijective, it preserves the uniform Bernoulli measure
+    (`bijective-ca-preserve-uniform-bernoulli-measure`). A window count over a finite defect then gives
+    `W(τ u) <= W(u)` for the charge `w(a) = log(|Q0| / |Q_a|)`, and charge noncreation makes `τ` and `Φ` surjective.
+    The translation of the earlier attempt is no longer needed.
+  - Invariant. The fiber charge `W(u) = Σ_g log(|Q0| / |Q_{u(g)}|)`: every collapse lift with a bijective rest map
+    conserves it.
+  - For `n = k + 1`. Every collapse `B -> A` has a unique fiber of size `2`. So over a group with `2 ∉ NS(G)`, an
+    ascent `k -> k+1` must not commute with any letter collapse onto an injective automaton. If `2 ∈ NS(G)`, the
+    step `k -> k+1` is needed only for even `k`, because odd `k` gives even `k+1` as a multiple of `2`.
+  - What survives. (i) Collapses with at least two largest fibers, for example `(2,2,1)` from `3` to `5`, and the
+    product lifts. (ii) Ascents with no collapse onto an injective automaton, for instance lifts over a
+    non-injective `τ'`, or block-code factors instead of letter maps.
+  - By-product (descent). A strict automaton on `n >= 3` symbols with one autonomously evolving letter, whose
+    occurrence set moves by an injective binary automaton, gives `n - 1 ∈ NS(G)`.

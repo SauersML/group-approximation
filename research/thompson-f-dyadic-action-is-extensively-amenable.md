@@ -4,7 +4,7 @@ id: thompson-f-dyadic-action-is-extensively-amenable
 kind: claim
 title: The action of Thompson's group F on the dyadic rationals is extensively amenable
 distinct_from:
-  thompson-f-is-amenable: that is amenability of F, which implies this claim (every action of an amenable group is extensively amenable); the converse is not known.
+  thompson-f-is-amenable: that is amenability of the group F; this is extensive amenability of one of its actions. The two are equivalent by thompson-f-amenable-iff-dyadic-action-extensively-amenable, but they are stated about different objects.
   thompson-f-end-rigid-schreier-graphs-are-amenable: that is amenability of certain Schreier graphs; extensive amenability of an action is strictly stronger than amenability of its Schreier graph in general.
 artifacts:
   - research/artifacts/ideas-wildcards-2026-09-14.md
@@ -45,3 +45,15 @@ finite set.
   inverted orbit is ballistic, `(1/n) E|O_n| → P(T = ∞) > 0`, from Mishchenko's transience. So the
   sufficient condition `(1/n) E|O_n| → 0` fails, and any proof must use the strictly weaker rare-event
   confinement. A genuine exponential upper bound on `E(2^{−|O_n|})` would instead prove `F` nonamenable.
+- **Collapse onto the root (2026-09-17, swarm-0917-w4-f-decomp).** This claim is *equivalent* to
+  `thompson-f-is-amenable`, by the ESTABLISHED `thompson-f-amenable-iff-dyadic-action-extensively-amenable`.
+  - *Mechanism.* The breakpoint cocycle `c_g = β(g⁻¹) ∈ Z^{(D)}` embeds `F` in `Z^{(D)} ⋊ F` with trivial
+    kernel. JMBMdlS Corollary "prop:functor:amenable:intro" then turns extensive amenability into
+    amenability of `F`.
+  - *Consequences.* The earlier distinct_from entry ("the converse is not known") was stale and is
+    corrected. A refutation proves `F` nonamenable, and a proof proves `F` amenable. So
+    `jones-subgroup-coamenable-if-dyadic-action-extensively-amenable` gains nothing beyond amenability of `F`.
+  - *Quantitative form.* `thompson-f-dyadic-ea-witnesses-need-tower-size`: a `Γ`-invariant witness at
+    level `C^{−n}` that covers the generators' breakpoints satisfies `|supp ν|·(4LC^n+3)^k ≥ exp_n(0)`. So
+    witnesses of fixed tower size are excluded by Moore's theorem.
+  - *Route into the root.* `thompson-f-amenable-via-dyadic-extensive-amenability`.
