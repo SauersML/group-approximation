@@ -50,3 +50,30 @@ infinite family of short parallel certificates, and the percolation heuristic
 length 2 and 3. This does not bound relative cost from below: each certificate
 type contributes at most `mu(A)` absorbed mass, and there are infinitely many
 types of growing length, so counting gives no obstruction either.
+
+**Bounded detour packing at malnormal free stages (September 17, 2026).** Target
+mechanism: the detour-packing lemma behind
+[[fpbs-first-return-torsion-detours]] and
+`research/artifacts/fpbs/small-cancellation-family.md` §2. It proves zero
+relative cost despite trivial conjugate intersections, and one could try to
+run it on each stage `(H_{n+1}, H_n)` to get `C <= 2 + sum_n relC_n`.
+
+Established: [[fpbs-malnormal-coset-cycles-bounded-syllables]]. For finitely
+generated malnormal `H <= F` free with `F = <H, t>`, the argument has three
+steps:
+- distinct coset hulls in the Cayley tree overlap in length `< m^2`, by
+  pigeonhole on the Stallings graph;
+- every simple coset-graph cycle with `k` `t`-edges then has syllables at most
+  `(k-1)m^2 + k|t|`;
+- hence there are only finitely many edge-disjoint detours with at most `R`
+  `t`-edges.
+
+Where it dies: the divergence step "`N(R)` infinite for some `R`" (artifact
+(2.4)) never occurs at any stage or composite stage of `Gamma_mal`. So the
+bounded-length torsion-style repair is dead there. Zero relative cost by
+packing would need superexponential packing growth.
+
+Still open: a linear tree-polygon bound (total cycle length `O(k)`) would give
+`h < infinity` and kill packing entirely. The current bound is `O(k^2)`.
+Artifact: `research/artifacts/fpbs-malnormal-coset-cycles-2026-09-17.md`.
+Check script: `experiments/locally-free-finite-cost-2026-09-17/coset_cycles.py`.
