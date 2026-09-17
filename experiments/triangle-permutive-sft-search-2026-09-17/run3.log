@@ -1,0 +1,52 @@
+k=2 L=6 P=16 nmax=60 squares=1
+    progress nodes=2000 {'nodes': 2000, 'empty_prune': 605, 'leaves': 0, 'maxlevel': 7, 'certified': 5, 'lang_prune': 1243}
+    progress nodes=4000 {'nodes': 4000, 'empty_prune': 1166, 'leaves': 0, 'maxlevel': 7, 'certified': 6, 'lang_prune': 2540}
+    progress nodes=6000 {'nodes': 6000, 'empty_prune': 1577, 'leaves': 0, 'maxlevel': 7, 'certified': 7, 'lang_prune': 3981}
+    progress nodes=8000 {'nodes': 8000, 'empty_prune': 2065, 'leaves': 0, 'maxlevel': 7, 'certified': 8, 'lang_prune': 5350}
+    progress nodes=10000 {'nodes': 10000, 'empty_prune': 2314, 'leaves': 0, 'maxlevel': 7, 'certified': 8, 'lang_prune': 6950}
+square ((0, 1), (1, 0)) edges=22 nodes=10725 emptyprune=2398 leaves=0 certified=8 maxlevel=7 candidates=0 t=571.6s
+TOTAL candidates: 0
+k=4 L=2 P=8 nmax=60 squares=35
+square ((0, 1, 2, 3), (1, 0, 3, 2), (2, 3, 0, 1), (3, 2, 1, 0)) edges=6 nodes=74 emptyprune=21 leaves=0 certified=0 maxlevel=2 candidates=0 t=1.4s
+square ((0, 1, 2, 3), (1, 0, 3, 2), (2, 3, 1, 0), (3, 2, 0, 1)) edges=8 nodes=168 emptyprune=92 leaves=0 certified=0 maxlevel=4 candidates=0 t=3.1s
+square ((0, 1, 2, 3), (1, 0, 3, 2), (3, 2, 0, 1), (2, 3, 1, 0)) edges=8 nodes=169 emptyprune=85 leaves=0 certified=0 maxlevel=4 candidates=0 t=4.8s
+square ((0, 1, 2, 3), (1, 0, 3, 2), (3, 2, 1, 0), (2, 3, 0, 1)) edges=12 nodes=182 emptyprune=91 leaves=0 certified=2 maxlevel=4 candidates=0 t=6.6s
+square ((0, 1, 2, 3), (1, 2, 3, 0), (3, 0, 1, 2), (2, 3, 0, 1)) edges=7 nodes=49 emptyprune=32 leaves=0 certified=2 maxlevel=6 candidates=0 t=8.2s
+square ((0, 1, 2, 3), (2, 0, 3, 1), (3, 2, 1, 0), (1, 3, 0, 2)) edges=7 nodes=64 emptyprune=44 leaves=0 certified=3 maxlevel=5 candidates=0 t=9.9s
+square ((0, 1, 2, 3), (2, 3, 0, 1), (3, 2, 1, 0), (1, 0, 3, 2)) edges=7 nodes=85 emptyprune=50 leaves=0 certified=0 maxlevel=4 candidates=0 t=12.4s
+square ((0, 1, 3, 2), (1, 0, 2, 3), (2, 3, 0, 1), (3, 2, 1, 0)) edges=8 nodes=184 emptyprune=89 leaves=0 certified=0 maxlevel=4 candidates=0 t=14.5s
+square ((0, 1, 3, 2), (1, 0, 2, 3), (2, 3, 1, 0), (3, 2, 0, 1)) edges=12 nodes=182 emptyprune=97 leaves=0 certified=2 maxlevel=4 candidates=0 t=16.3s
+square ((0, 1, 3, 2), (1, 0, 2, 3), (3, 2, 0, 1), (2, 3, 1, 0)) edges=12 nodes=192 emptyprune=104 leaves=0 certified=4 maxlevel=4 candidates=0 t=18.1s
+square ((0, 1, 3, 2), (1, 0, 2, 3), (3, 2, 1, 0), (2, 3, 0, 1)) edges=6 nodes=47 emptyprune=9 leaves=0 certified=0 maxlevel=2 candidates=0 t=19.9s
+square ((0, 1, 3, 2), (1, 2, 0, 3), (2, 3, 1, 0), (3, 0, 2, 1)) edges=7 nodes=51 emptyprune=35 leaves=0 certified=2 maxlevel=6 candidates=0 t=21.3s
+square ((0, 1, 3, 2), (1, 2, 0, 3), (3, 0, 2, 1), (2, 3, 1, 0)) edges=9 nodes=78 emptyprune=51 leaves=0 certified=1 maxlevel=4 candidates=0 t=22.7s
+square ((0, 1, 3, 2), (2, 0, 1, 3), (1, 3, 2, 0), (3, 2, 0, 1)) edges=9 nodes=77 emptyprune=48 leaves=0 certified=2 maxlevel=4 candidates=0 t=24.3s
+square ((0, 1, 3, 2), (2, 0, 1, 3), (3, 2, 0, 1), (1, 3, 2, 0)) edges=7 nodes=64 emptyprune=48 leaves=0 certified=1 maxlevel=5 candidates=0 t=25.8s
+square ((0, 1, 3, 2), (2, 3, 0, 1), (1, 0, 2, 3), (3, 2, 1, 0)) edges=9 nodes=64 emptyprune=40 leaves=0 certified=2 maxlevel=4 candidates=0 t=27.2s
+square ((0, 1, 3, 2), (2, 3, 1, 0), (1, 0, 2, 3), (3, 2, 0, 1)) edges=10 nodes=66 emptyprune=28 leaves=0 certified=0 maxlevel=2 candidates=0 t=29.0s
+square ((0, 1, 3, 2), (2, 3, 1, 0), (1, 2, 0, 3), (3, 0, 2, 1)) edges=11 nodes=79 emptyprune=49 leaves=0 certified=0 maxlevel=4 candidates=0 t=30.5s
+square ((0, 1, 3, 2), (2, 3, 1, 0), (3, 0, 2, 1), (1, 2, 0, 3)) edges=10 nodes=50 emptyprune=23 leaves=0 certified=0 maxlevel=2 candidates=0 t=31.9s
+square ((0, 1, 3, 2), (2, 3, 1, 0), (3, 2, 0, 1), (1, 0, 2, 3)) edges=10 nodes=58 emptyprune=27 leaves=0 certified=0 maxlevel=2 candidates=0 t=33.3s
+square ((0, 2, 3, 1), (1, 0, 2, 3), (2, 3, 1, 0), (3, 1, 0, 2)) edges=7 nodes=48 emptyprune=26 leaves=0 certified=3 maxlevel=5 candidates=0 t=34.6s
+square ((0, 2, 3, 1), (1, 0, 2, 3), (3, 1, 0, 2), (2, 3, 1, 0)) edges=7 nodes=65 emptyprune=41 leaves=0 certified=1 maxlevel=5 candidates=0 t=35.8s
+square ((0, 2, 3, 1), (1, 3, 2, 0), (2, 0, 1, 3), (3, 1, 0, 2)) edges=7 nodes=72 emptyprune=40 leaves=0 certified=0 maxlevel=4 candidates=0 t=37.6s
+square ((0, 2, 3, 1), (1, 3, 2, 0), (3, 1, 0, 2), (2, 0, 1, 3)) edges=10 nodes=66 emptyprune=25 leaves=0 certified=0 maxlevel=2 candidates=0 t=38.7s
+square ((0, 2, 3, 1), (2, 0, 1, 3), (3, 1, 0, 2), (1, 3, 2, 0)) edges=7 nodes=80 emptyprune=52 leaves=0 certified=0 maxlevel=3 candidates=0 t=40.3s
+square ((0, 2, 3, 1), (3, 1, 0, 2), (1, 3, 2, 0), (2, 0, 1, 3)) edges=11 nodes=58 emptyprune=9 leaves=0 certified=0 maxlevel=1 candidates=0 t=41.9s
+square ((1, 0, 2, 3), (0, 2, 3, 1), (2, 3, 1, 0), (3, 1, 0, 2)) edges=8 nodes=108 emptyprune=62 leaves=0 certified=2 maxlevel=5 candidates=0 t=44.0s
+square ((1, 0, 2, 3), (0, 2, 3, 1), (3, 1, 0, 2), (2, 3, 1, 0)) edges=8 nodes=100 emptyprune=53 leaves=0 certified=2 maxlevel=5 candidates=0 t=46.4s
+square ((1, 0, 2, 3), (2, 3, 0, 1), (0, 1, 3, 2), (3, 2, 1, 0)) edges=8 nodes=100 emptyprune=53 leaves=0 certified=2 maxlevel=5 candidates=0 t=48.9s
+square ((1, 0, 2, 3), (2, 3, 1, 0), (0, 1, 3, 2), (3, 2, 0, 1)) edges=12 nodes=177 emptyprune=117 leaves=0 certified=0 maxlevel=5 candidates=0 t=51.1s
+square ((1, 0, 2, 3), (2, 3, 1, 0), (0, 2, 3, 1), (3, 1, 0, 2)) edges=5 nodes=37 emptyprune=28 leaves=0 certified=0 maxlevel=7 candidates=0 t=53.2s
+square ((1, 0, 2, 3), (2, 3, 1, 0), (3, 1, 0, 2), (0, 2, 3, 1)) edges=5 nodes=37 emptyprune=28 leaves=0 certified=0 maxlevel=7 candidates=0 t=55.2s
+square ((1, 0, 2, 3), (2, 3, 1, 0), (3, 2, 0, 1), (0, 1, 3, 2)) edges=12 nodes=115 emptyprune=68 leaves=0 certified=0 maxlevel=6 candidates=0 t=57.3s
+square ((1, 2, 0, 3), (0, 3, 1, 2), (2, 1, 3, 0), (3, 0, 2, 1)) edges=12 nodes=179 emptyprune=118 leaves=0 certified=0 maxlevel=5 candidates=0 t=59.4s
+square ((1, 2, 0, 3), (3, 0, 2, 1), (2, 1, 3, 0), (0, 3, 1, 2)) edges=13 nodes=134 emptyprune=38 leaves=0 certified=0 maxlevel=2 candidates=0 t=62.0s
+TOTAL candidates: 0
+k=3 L=3 P=10 nmax=60 squares=5
+square ((0, 1, 2), (1, 2, 0), (2, 0, 1)) edges=15 nodes=634 emptyprune=288 leaves=0 certified=4 maxlevel=7 candidates=0 t=6.1s
+square ((0, 1, 2), (2, 0, 1), (1, 2, 0)) edges=15 nodes=604 emptyprune=279 leaves=0 certified=4 maxlevel=5 candidates=0 t=11.5s
+square ((0, 2, 1), (1, 0, 2), (2, 1, 0)) edges=15 nodes=642 emptyprune=295 leaves=0 certified=4 maxlevel=5 candidates=0 t=17.3s
+square ((0, 2, 1), (2, 1, 0), (1, 0, 2)) edges=16 nodes=326 emptyprune=32 leaves=0 certified=0 maxlevel=2 candidates=0 t=20.5s
+square ((1, 0, 2), (0, 2, 1), (2, 1, 0)) edges=16 nodes=559 emptyprune=198 leaves=0 certified=9 maxlevel=3 candidates=0 t=30.4s
+TOTAL candidates: 0
