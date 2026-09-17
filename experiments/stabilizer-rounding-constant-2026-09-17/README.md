@@ -14,3 +14,10 @@ not use these computations. All runs: `nice -n 10 timeout 1200`, single-threaded
 Dual formulation (proved by LP minimax, since (SR*) is increasing in `lambda`):
 (SR*) holds for all `K` iff every pure state lies in `(SP_n + c B_inf)/(1+c)`, where
 `SP_n` is the stabilizer polytope and `B_inf` the unit cube in Pauli coordinates.
+
+## Referee re-check (ref-04, 2026-09-17; independent code)
+
+| script | what it does | result |
+|---|---|---|
+| `referee_ref04_search.py n trials restarts seed` | stabilizer states by BFS closure under H, S, CNOT (6, 60, 1080, 36720); random dense/sparse/`+-1` sums, magic Pauli-vector powers, Nelder--Mead on sparse supports; checks (SR*) slack directly | max ratio 0.7071067812 at n=1,2,3,4, no violation (`ref04_n3.log`, `ref04_n4.log`; n=1,2 seed 11, n=3 seed 12, n=4 seed 13) |
+| `referee_ref04_steps.py trials seed` | first post-selection step: (F1), (1), (2), compression identity (3), `lambda'` bound, compressed commuting terms are signed non-identity Paulis; F2 on a grid | 4000 instances, n<=4, worst excess 7.6e-15; F2 grid minimum 1.6e-7 at M=0.7071065 (`ref04_steps.log`) |

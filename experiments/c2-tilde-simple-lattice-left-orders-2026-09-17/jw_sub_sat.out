@@ -1,0 +1,6 @@
+{'group': 'jw', 'j': 1, 'index_in_K': 2, 'radius': 4, 'ball': 865, 'N_elements': 232, 'clauses': 4808, 'sat': False, 'secs': 1.2}
+{'group': 'jw', 'j': 2, 'index_in_K': 4, 'radius': 4, 'ball': 865, 'N_elements': 200, 'clauses': 4456, 'sat': False, 'secs': 0.8}
+{'group': 'jw', 'j': 3, 'index_in_K': 8, 'radius': 4, 'ball': 865, 'N_elements': 200, 'clauses': 4456, 'sat': False, 'secs': 0.8}
+{'group': 'prod_jw', 'j': 3, 'index_in_K': 8, 'radius': 4, 'ball': 865, 'N_elements': 200, 'clauses': 4456, 'sat': True, 'secs': 1.0}
+{'group': 'prod_jw', 'j': 1, 'index_in_K': 2, 'radius': 4, 'ball': 865, 'N_elements': 384, 'clauses': 15000, 'sat': True, 'secs': 3.1}
+{'group': 'jw', 'j': 3, 'index_in_K': 8, 'radius': 6, 'ball': 11665, 'N_elements': 2152, 'clauses': 185552, 'sat': False, 'secs': 96.8}

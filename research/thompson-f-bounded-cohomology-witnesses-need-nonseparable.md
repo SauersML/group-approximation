@@ -7,6 +7,7 @@ distinct_from:
   thompson-f-finite-state-flows-cannot-prove-nonamenability: that kills transport flows read off a finite tree automaton; this kills cohomological witnesses whose coefficients are separable, by an ergodic argument with no combinatorics.
   thompson-f-moment-data-cannot-certify-nonamenability: that is about finitely many return probabilities; this is about bounded cocycles with values in Banach modules.
   thompson-f-end-rigid-schreier-graphs-are-amenable: that kills particular Schreier graphs; this computes the bounded cohomology of every l^1_0(F/H) and shows no separable dual module can carry the Johnson class of any F-set.
+  thompson-f-cohomology-certificates-cannot-prove-nonamenability: that records Monod's separable vanishing as one dead certificate class, next to l2, cost and an end-tail coefficient gate; this adds the witness-shape lemma (weak*-closed span of values is norm-non-separable and the value space is never weak*-closed), the computation H^1_b(F; l^1_0(X)) = R with H^n_b = 0 above for every F-set without finite orbits, and an explicit list of killed module families.
   amenable-normalish-kills-l2-betti-bounded-cohomology: that uses an amenable normalish subgroup and mixing coefficients; this uses Monod's lamplighter ergodicity and all separable dual coefficients.
 ---
 

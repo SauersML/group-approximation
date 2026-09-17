@@ -60,3 +60,39 @@ in `pauli-projector-hamiltonians-are-stabilizer-approximable` would become
   Consequences: factor `1+1/sqrt2` for Pauli-projector and code-space Hamiltonians,
   NP at `b > (1+1/sqrt2)a`, and the Natarajan--Nirkhe window becomes
   `1 < p/q <= 1+1/sqrt2`.
+
+**Referee check (2026-09-17, ref-04).** SOUND; no error found, no status change.
+Re-derived every step of `stabilizer-rounding-constant-is-one-over-sqrt2-proof`:
+(R1) `+wI` shifts both sides by `w`, and `-wI` shifts the right side by
+`-w-w/sqrt2`, against `-w` on the left, so it only
+weakens the claim; (R2) merging uses that the right side decreases in `W`; (F1) from
+`(aA+bB)^2=(a^2+b^2)I`, which also bounds negative `x_Q`; (F2) both branches, using
+`(1-t)/sqrt2=t` and `(1-t^2)/(1+t^2)=cos(pi/4)`. In Step 2, `(I+A_R)K(I+A_R)=2(I+A_R)K_c`
+checks termwise, `A_R K_A` is anti-Hermitian, and `<psi|A_R K|psi>=lambda M`, so (2)
+holds. In Step 3, `U A_Q U^*` for `Q` in `C` is `+-B_Q tensor I` or `+-B_Q tensor Z`,
+with `B_Q=I` excluded (it would give `A_Q=+-I` or `A_Q=+-A_R`; the proof names only the
+second, and (R1) excludes the first); `K'` has weight at most `sum_C w_Q`, and
+`U^*(phi' tensor |0>)` is a stabilizer state. The Step 4 algebra expands to
+`(1+c)lambda-cW+[cW_A-(1+c)a/(1+M)]`, and `(1+c)t=c`. `n=0` and `K'=0` are covered. The
+sharpness example `(X+Z)/2` gives `stab=1/2=(1+c)lambda-cW`. Consequences: Pauli
+projectors and code projectors have weight one (identity term included), so the factor
+`1+1/sqrt2` follows. The NP verifiers need only a rational threshold strictly between
+the two sides. For games inputs with `W<=1`, monotonicity in `W` gives `p>(1+1/sqrt2)q`.
+The root bound `a>=(2-sqrt2)(b-V)` and relative gap `<=sqrt2-1` are correct arithmetic.
+"Fail at or below" for witnesses is shown by one instance and its averaged copies; it
+is not a hardness claim, as the node says. Independent computations
+(`experiments/stabilizer-rounding-constant-2026-09-17/referee_ref04_*`, no shared code):
+exact stabilizer enumeration by Clifford-gate closure (6, 60, 1080, 36720 states), and a
+search over random dense, sparse and `+-1` sums, magic-state Pauli-vector families and
+Nelder--Mead restarts at `n=1..4` (3000/3000/3000/900 random, 200/200/300/60 restarts).
+The maximum ratio is `0.7071067812` at every `n`, with no violation, and is attained by
+several non-trivial supports. A step checker on 4000 random instances (`n<=4`) confirms
+(F1), (1), (2), (3), `lambda' >= lambda-a/(1+M)-w_R`, and that each compressed commuting
+term is a signed non-identity Pauli, to `1e-14`. Literature (bounded web search): product-state
+results (Bravyi--Gosset--König--Temme, JMP 60 (2019) 032203; Lieb's `lambda_max/9`;
+Gharibian--Parekh) are multiplicative bounds for traceless local Hamiltonians. Recent
+stabilizer-ground-state papers (arXiv:2403.08441, arXiv:2603.06286) and quantum norm
+designs (arXiv:2509.11979) state no additive 1-norm frustration bound. No prior
+statement of (SR*) or its constant was found; no priority claim. Remaining caveats: this
+is an ordinary proof with one referee and no Lean check, and the rounding is
+existential (it uses a top eigenvector), so no efficient algorithm is claimed.
