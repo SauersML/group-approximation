@@ -23143,14 +23143,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-17 · fpbs-sharp-dominating-collapse-over-sparse-spines-proof [COMPLETE] Take nested infinite clusters of an independent soft collapse family as spines, add harmonic-rate geodesic connectors from every vertex, and union with supercritical Bernoulli
-- 2026-09-17 · fpbs-sharp-dominating-collapse-over-sparse-spines [ESTABLISHED] Collapse families that contain Bernoulli, keep only Bernoulli finite clusters and match theta and local laws to any prescribed precision exist wherever invariant sparse spines exist
-- 2026-09-17 · fpbs-hermon-hutchcroft-supercritical-analyticity [ESTABLISHED] Truncated finite-cluster observables of Bernoulli percolation are analytic throughout the supercritical phase on nonamenable transitive graphs
-- 2026-09-17 · fpbs-hermon-hutchcroft-analyticity-citation [COMPLETE] Import Hermon--Hutchcroft's supercritical analyticity corollary
-- 2026-09-17 · fpbs-benjamini-schramm-universal [OPEN] Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuniqueness interval
+- 2026-09-17 · projective-commutant-transfer-for-arithmetic-pair [OPEN] Projective commutant transfer with a dimension-free trace-square modulus for the arithmetic pair
 - 2026-09-17 · cantor-integer-maps-sup-norm-is-cnd-dominated [OPEN] Some conditionally negative definite function on C(C,Z) ⋊ V tends to infinity with the sup-norm of the map
 - 2026-09-17 · cantor-integer-maps-haagerup-via-congruence-truncation [OPEN] Problem B for Z from sup-norm domination: congruence quotients supply properness in position, the open claim supplies properness in magnitude
 - 2026-09-17 · cantor-integer-maps-by-v-have-haagerup-property [OPEN] The group C(C,Z) ⋊ V of integer-valued locally constant maps by Thompson's V has the Haagerup property
+- 2026-09-17 · brothier-problem-b-value-range-domination-proof [COMPLETE] Pull Farley's function back through every congruence quotient C(C,Γ/Γ_N) ⋊ V ≤ V, glue with summable weights, and add the value-range function
+- 2026-09-17 · brothier-problem-b-reduces-to-value-range-domination [ESTABLISHED] For residually finite Γ, C(C,Γ) ⋊ V is a-T-menable iff some cnd function confines the values of low-energy maps to a finite subset of Γ
+- 2026-09-17 · fpbs-sharp-dominating-collapse-over-sparse-spines-proof [COMPLETE] Take nested infinite clusters of an independent soft collapse family as spines, add harmonic-rate geodesic connectors from every vertex, and union with supercritical Bernoulli
+- 2026-09-17 · fpbs-sharp-dominating-collapse-over-sparse-spines [ESTABLISHED] Collapse families that contain Bernoulli, keep only Bernoulli finite clusters and match theta and local laws to any prescribed precision exist wherever invariant sparse spines exist
 
 ## Active claims
 

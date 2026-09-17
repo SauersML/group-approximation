@@ -527,3 +527,56 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   sparse, but cannot kill its correlation with the selected inner vector.
   A completion must add selected-vector incidence or prove that inner
   automorphisms cannot concentrate in these arithmetic heat cutoffs.
+- **Product-lattice coupling gates add nothing at higher rank
+  (2026-09-17, operator-algebras, inverter).**  Refutation lane, `n >= 3`.
+  Put `H = SL_n(R) x SL_n(Q_p)`, `A = SL_n(Z[1/p])`, `Gamma'' = C' x Lambda''`
+  with `C' <= SL_n(Z)` torsion-free of finite index and `Lambda''` a torsion-free
+  cocompact lattice of `SL_n(Q_p)`.  The proof of
+  `f2xf2-on-dyadic-lattice-quotient-bounds-vertex-action-proof` (essential
+  freeness, lattice duality on `H`, `sofic-free-actions-are-soe-invariant`)
+  uses no rank-one input, so it runs verbatim.  With the Elek--Lippner
+  embedding (`hyperlinear-wreath-model`, verified citation), the conclusions
+  are: CE of `L^infinity(A\H) rtimes Gamma''` gives CE of
+  `M' = L^infinity(SL_n(R)/C' x X) rtimes A`, and soficity of `Gamma'' ~ A\H`
+  gives soficity of `A ~ X`.  Either refutes `(PRT1)` through
+  `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`.  Where
+  every member of this lane dies:
+  (i) *No gain in strength.*  `M = L^infinity(X) rtimes A <= M'`
+  trace-preservingly (the projection onto `X` is `A`-equivariant), and the
+  gate is equivalent to CE of `M'`.  So every coupling gate implies `(SH1)`
+  and is at least as hard.  Its restriction to `C` is again an amplified CE
+  algebra: `C ~ SL_n(R)/C' x K` is a profinite extension of the sofic
+  lattice-space action (`sl3z-lattice-space-action-is-sofic` for `n = 3`).
+  The only non-CE-known ingredient is the same single Hecke unitary as in
+  `sl3-homogeneous-ce-is-common-cocycle-spatialization`.
+  (ii) *Finite-orbit models die.*  A finite `Gamma''`-orbit of `Ah` needs
+  `h Gamma'' h^-1 cap A` to have finite index in `h Gamma'' h^-1`.  That would
+  make it a lattice of `H` inside `A`, of finite index in `A`, and therefore
+  both irreducible and virtually a product.  So there are no finite orbits
+  and `finite-equidistributed-orbits-give-sofic-action` is unavailable.
+  (iii) *The recorded permanence of Paunescu's class dies at property (T).*
+  For `n >= 3` both factors of `Gamma''` are Kazhdan.  An infinite Kazhdan
+  group has FA (Watatani), so it lies in a vertex group of any amalgam over
+  amenable subgroups; free ergodic actions of infinite Kazhdan groups are
+  not treeable (Adams--Spatzier); amenable extensions and finite index keep
+  an infinite Kazhdan subgroup inside the kernel.  So membership
+  `Gamma'' in S` (equivalently `A in S`) cannot come from amenable, free,
+  treeable or amenable-amalgam generators through those operations.  Measure
+  equivalence is the only recorded step not checked here.  At `n = 2` the
+  factors are free, which is why the rank-one gate is the genuinely smaller
+  `F_2 x F_2` question.
+  **Also dead: an N-internal free-Haar implementation of the rank-one
+  gate.**  For `N = L^infinity(SL_2(Z)\(SL_2(R) x K)) rtimes Gamma(3)` and
+  free `Lambda'`, approximate innerness of each `alpha_lambda` on `N` would
+  give CE by tensoring the implementers with free Haar unitaries.  But
+  `Gamma(3) ~ SL_2(Z)\(SL_2(R) x K)` has spectral gap: Kim--Sarnak gives
+  `s <= 7/64` uniformly over congruence covers, so `pi (x) conj(pi)` is
+  weakly contained in `lambda`, and restricting to the nonamenable lattice
+  gives the gap.  The action is therefore strongly ergodic, and free groups
+  are not inner amenable, so `N` is full (Choda).  For a full factor
+  approximately inner means inner (Connes).  An inner `alpha_lambda` fixing
+  `L(Gamma(3))` is implemented by a unitary in `L(Gamma(3))' cap N = C`
+  (icc, mixing action), so `alpha_lambda = id`, which contradicts essential
+  freeness.  The citations are recalled, not verbatim, so this is recorded as
+  an attempt only.  Any embedding of the gate must implement `Lambda'` with
+  unitaries asymptotically outside `N^omega`.
