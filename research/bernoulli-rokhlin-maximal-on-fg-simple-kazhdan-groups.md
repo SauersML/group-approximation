@@ -162,6 +162,46 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - **Where it dies:** a lower bound on `Phi` uniform in the read degree. It needs an averaging over codewords
     beyond subadditivity, and the only known averaging counts on finite models.
   - Artifact: `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
+- **Cluster-variation relatives of the f-invariant are dead (a-gs-pull-7, swarm-0917, 2026-09-17).**
+  This turns the "invariance needs a tree" mechanism note of *Tree mechanisms* into a theorem.
+  - **The class.** Any functional `F(Q) = sum_W c_W H(join_{w in W} w^-1 Q)` (Bethe or Kikuchi type;
+    any finite windows, any real weights) that is splitting-monotone, the property Bowen's route
+    uses to get `f <= F(P) <= H(P)`.
+  - **The result.** Every such functional has `lim sup_n F(Q_{B_n}) <= 0` on every Bernoulli shift
+    over every one-ended group (`cluster-entropy-functionals-vanish-on-one-ended-bernoulli`), hence
+    over every infinite Kazhdan group (`cluster-entropy-certificates-fail-on-kazhdan-groups`, via
+    Watatani and Stallings).
+  - **The invariant.** On Bernoulli coordinate partitions `F(Q_B) = H(p) psi(B)` with
+    `psi(B) = sum c_W |BW|`. `psi` satisfies exact inclusion–exclusion on pieces separated beyond
+    the window radius.
+  - **Where every member dies.** On an `R`-fat digon, built from a bi-infinite geodesic and a
+    detour outside a large ball, monotonicity gives `psi(B_i) <= psi(C_i)`, and inclusion–exclusion
+    then forces `psi(B_1 u B_2) <= 0`.
+  - **Calibration.** On `F_2`, `psi` is the Euler characteristic, equal to `1` on subtrees, and no
+    fat digon exists.
+  - **Gate left open.** A surviving local mechanism must be nonlinear in window entropies (breaking
+    inclusion–exclusion on separated pieces), have unbounded radius, or drop splitting monotonicity.
+  - Artifact: `research/artifacts/cluster-entropy-functionals-one-ended-obstruction-2026-09-17.md`.
+    Script: `experiments/cluster-entropy-functionals-2026-09-17/check_cluster_valuation.py`.
+- **Reading-model certificates (a-gs-pull-3, 2026-09-17).** This asks whether finite structures *weaker* than
+  sofic approximations could still certify `Phi >= log q` on a host containing `U`. Examples are non-bijective
+  reading maps, pattern-local charts with no global consistency, partial actions and large boundaries.
+  - **Answer: no.** The one inequality all counting arguments use is Lemma A:
+    `k Phi >= k log q - (mu - 1) H(Y)`, with `mu = |codes used| / |good sites|`. The quality parameter `mu` is
+    the only invariant.
+  - **Forcing.** For patterns with `B_r ⊆ E ∩ F`, `inf mu - 1` controls the `r`-sofic defect of the ball.
+    Hence the class works exactly on sofic groups.
+  - **Dies at** step 1 of Lemma B. A tight double count plus the unit incidences `f f^-1 = 1` make every code
+    full: each is read back to one site per slot. Full codes make the charts consistent, and consistent charts
+    make the reading maps near-permutations.
+  - On `EL_D(R) <= U`, every configuration containing `B_(r_0) x B_(r_0)` keeps a certified loss of
+    `eta_0 H(Y)/k`.
+  - **Gate left open:** lower bounds whose ambient count is not Shannon entropy of iid labels. Examples are
+    dimension (linear models), Hilbert--Schmidt volume, and non-product label measures. Two live lanes probe
+    these gates on 2026-09-17. a-gs-pull-10 finds that linear profile certificates tie to the rank condition. a-gs-pull-9
+    finds that an HS transplant dies at the multinomial bound.
+  - Established as `reading-model-entropy-certificates-are-soficity`. Artifact
+    `research/artifacts/reading-model-certificates-force-soficity-2026-09-17.md`.
 - **Cluster functionals: total weight (a-gs-pull-8, 2026-09-17).** This replaces the unproved "Relations" item of the
   tree-mechanism entry with a theorem, `cluster-entropy-lower-bounds-need-nonpositive-total-weight`.
   - **Result.** Take a cluster functional `F(P) = sum_W c_W H(P^W)` with total weight
@@ -180,3 +220,22 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
     `kappa <= 0` functionals also escape. A surviving cluster mechanism must be non-monotone and either
     have `kappa <= 0` or use ergodicity essentially.
   - Artifact: `research/artifacts/cluster-entropy-total-weight-obstruction-2026-09-17.md`.
+- **Height-graded germ models (a-gs-kazhdan-rokhlin, symbolic-dynamics, 2026-09-17).** This is a lower
+  bound that does not approximate any group.
+  - *Functional count.* The Gromov--Weiss count on a witness needs only a finite set with arbitrary,
+    non-injective self-maps on which most points see an injective chart of the pattern.
+  - *Germ models.* Letters restrict a translated coloring to a smaller region, graded by a
+    nonnegative height potential.
+  - **Proved.** `finite-core-height-potential-forbids-bernoulli-deficit`: if some height potential has
+    a finite zero-letter core, then `Phi >= log q` on every group. So every deficit witness has an
+    infinite core for every grading. This holds even when its positive letters generate a nonsofic
+    group, where sofic-radical localization says nothing.
+  - **Open.** `amenable-core-height-potential-forbids-bernoulli-deficit`. It needs a finitary Følner
+    tiling import and anchored frames.
+  - **Where it dies.** At a nonamenable core. Return pairs force regions to form a cocycle along core
+    moves, and that cocycle forces a Reiter measure on the core. Absolute Følner frames need
+    amenability of all of `<E ∪ F>`, and base-point frames break under mixed coincidences such as
+    `z e = f z'`.
+  - So on this host, germ-type counts can reach only witnesses in which every grading has a
+    nonamenable core.
+  - Artifact: `research/artifacts/height-graded-germ-models-2026-09-17.md`.
