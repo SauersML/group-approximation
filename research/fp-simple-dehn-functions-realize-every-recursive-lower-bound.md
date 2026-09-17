@@ -46,3 +46,29 @@ case is known.
    diagram-enumeration algorithm needs a Dehn bound at the length being decided,
    and a Dehn function that is small on a sparse infinite set of lengths yields no
    algorithm that is fast on all long inputs. *Dead as a route to this claim.*
+3. **2026-09-17 (swarm-0917-w5-pull-z-6, inverter): the verdict of Attempt 2 is
+   wrong.** Word-problem complexity does give this claim, conditionally on
+   Boone–Higman.
+   - *Where Attempt 2 fails.* Embed a *dual certificate*: a finitely generated
+     group with solvable word problem containing words `u_i`, `v_i` of length
+     `4i + 4`, where `u_i = 1` iff `i ∈ A` and `v_i = 1` iff `i ∉ A`, for an
+     almost-everywhere hard recursive `A`. In any finitely presented host, search
+     both certificates by increasing area. The search always halts, needs no Dehn
+     bound in advance, and is fast at every length where the host's Dehn function
+     is small. Almost-everywhere hardness forbids infinitely many fast inputs.
+   - Established: `almost-everywhere-hard-recursive-sets-exist` (Rabin 1960,
+     self-contained cancellation proof).
+   - Established: `dual-certificate-groups-force-large-host-dehn-functions`,
+     with `H_f = G_A * G_(N \ A)` and `G_B = <a, b, t | [t, b^i a b^(-i)], i ∈ B>`.
+     Every finitely presented overgroup `P` of `H_f` has `f ≼ delta_P` for `n >= 1`.
+   - New route `fp-simple-large-dehn-via-boone-higman`. This claim follows from
+     `boone-higman-conjecture`, and even from embedding the groups `H_f` alone.
+     Contrapositive: `a-recursive-function-is-no-fp-simple-dehn-lower-bound`
+     implies that Boone–Higman fails.
+   - *Convention.* At `n = 0` the defining inequality reads `f(0) <= 0` for every
+     group. So "for all `n`" in the statement should be read as `n >= 1`.
+   - The distinct_from note on `fp-simple-groups-with-arbitrarily-complex-word-problem`
+     says a hard word problem forces the Dehn function to be large only infinitely
+     often. The argument above shows that this does not hold for a dual certificate. For a single certificate no such lower bound is proved.
+   - *Still OPEN:* an unconditional proof needs a finitely presented simple host
+     for `H_f`, or for any dual-certificate group of an almost-everywhere hard set.

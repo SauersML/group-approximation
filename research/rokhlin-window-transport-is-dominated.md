@@ -52,3 +52,23 @@ A bound `<= C H(y_1)` for one constant `C` gives `rho_q(G) >= log q / C`. On a h
     groups by counting.
 
   Artifact `research/artifacts/pointer-gated-linear-witness-direct-finiteness-2026-09-17.md`.
+- **Quadrangle closure is not enough (swarm-0917-w5-pull2-gottschalk-1, 2026-09-17).** This is
+  `quadrangle-closed-patterns-do-not-force-domination`. It answers the open question of
+  `quadrangle-closure-kills-shared-pointer-parity-gadgets` negatively.
+  - **The gadget.** An abstract pattern with (L), (R) and (Q) has `Phi = (t + 1 + k(1-1/k)^R)/k -> 0`
+    (`0.7817` at `k = 4`).
+    - Each gadget has three codewords that rotate one pointer cycle `Z/L` by `a, a, -2a`. The rotation is
+      open, so there is no coherent 3-shift and the mod-3 invariant does not apply.
+    - The value table follows a Hamiltonian cycle `x -> x + c_rho` of `Z/n`, and `o` is the only site read
+      once.
+    - All translation types `±a_rho, ±2a_rho` and value differences `±c_rho` are distinct, which makes the
+      classes disjoint or equal.
+  - **What fails.** Only holonomy. The class word `(tau sigma)^m sigma` fixes a value position and
+    translates every pointer by `-(3m+2)a`. In a group, `g^L = g^(3m+2) = 1` forces `g = 1`.
+  - **Where it dies.** Any proof of this claim through finite incidence axioms of the pattern alone ((L),
+    (R), (Q), counting over the pattern) is killed. A proof must use class words of unbounded length, such as
+    (H): a class word with a fixed point is the identity on its domain.
+  - **Still open.** Do (L)+(R)+(Q)+(H) force domination?
+  - Artifact `research/artifacts/quadrangle-closed-pattern-firewall-2026-09-17.md`. Check
+    `experiments/quadrangle-firewall-2026-09-17/verify_rotation_gadget.py`: brute-force (Q), 0 violations;
+    decoding, 0 errors.

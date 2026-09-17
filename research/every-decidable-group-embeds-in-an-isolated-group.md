@@ -123,3 +123,34 @@ group.
      finitely presented overgroup with a faithful locally moving action. No invariant was
      found that such hosts force beyond solvable word problem, non-LEF and non-residually
      finite, and those constraints bind the host, not the input.
+5. **Finiteness of locally moving hosts (2026-09-17, lane swarm-0917-w5-bh-cgp-q4).**
+   *Class kill for branch (fin), reduction for the V-branch of (top).*
+   - **(fin) is exactly PBH.** `permutational-boone-higman-iff-finitary-alternating-hosts`.
+     - Every finitely presented `Γ ≤ Sym(X)` containing `Alt_fin(X)` acts with type (A)
+       (`fp-finitary-alternating-overgroups-have-type-a-actions`: correct generators by
+       finitary even permutations and glue alternating groups along overlaps).
+     - Conversely a type (A) actor `Γ_0` gives the finitely presented isolated host
+       `FSym(Ω) ⋊ SV_{Γ_0}` over the proper clopens `Ω`
+       (`finitary-symmetric-extensions-of-oligomorphic-actions-are-fp`, a Coxeter
+       presentation using finitely many orbits on 4-tuples).
+     - So branch (fin) of Attempt 4 proves Boone--Higman for its inputs. It carries no
+       content beyond `permutational-boone-higman-conjecture` and cannot answer this
+       question in a way weaker than Boone--Higman. Houghton's `H_n` and `FSym(Ω) ⋊ V`
+       are finitely presented isolated examples.
+   - **V-hosts reduce to one finiteness condition.**
+     `fp-cantor-groups-containing-v-type-a-iff-clopen-stabilizer-fg`. A finitely presented
+     `Γ ≤ Homeo(C)` containing `V` acts faithfully and transitively on clopens with at most
+     five orbits of pairs. So it is a type (A) actor iff one clopen stabilizer is finitely
+     generated.
+   - **Where the remaining room is.** A host-geometry answer to this question that is
+     strictly weaker than PBH must use one of:
+     - a finitely presented `Γ ≥ V` in `Homeo(C)` with a non-finitely-generated clopen
+       stabilizer;
+     - a (top) host on a non-Cantor space;
+     - an isolated host that is not locally moving at all.
+     None is known here. The attempt made no progress on the (top) stabilizer question.
+   - **Relevance to Boone--Higman.** The bus result `local-boone-higman-iff-boone-higman`
+     (other lane, same wave; not yet on this branch) makes Local Boone--Higman equivalent
+     to Boone--Higman. So this question is not needed as a half of
+     `boone-higman-iff-isolated-hosts-and-local-boone-higman`; it stays open as CGP's own
+     question.

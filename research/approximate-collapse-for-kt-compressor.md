@@ -495,3 +495,42 @@ counterexample to (AC) would automatically give a trace-faithful one.
 Canonical group traces and the large congruence carrier cannot constrain the
 positive-density multiplicity cocycle; only a source-specific theorem on the
 bare approximate actor can.
+
+## Attempts
+
+- **2026-09-17 (swarm-0917-w5-pull2-non-2, inverter / minimal counterexample): the minimal-counterexample
+  search reduces to the intermediate scalar-RE lattice.**  Searching for a
+  smallest (CCR) countermodel gives an exact classification of all of them,
+  recorded as the ESTABLISHED claim
+  `kt-ccr-iff-scalar-re-hull-contains-laurent-group`.
+  - (CCR) for `t` and every trace-faithful `sigma` holds iff
+    `t^(-1) Gamma t <= K_Gamma`, the least scalar-RE overgroup of `Gamma`.
+    This upgrades the one-directional lamp observation in item 1 of the
+    flexible-side vanguard to an equivalence: a countermodel exists iff some
+    wreath `W_K` with `Lambda_t <= K` and `Gamma` not in `K` is hyperlinear.
+  - The compressors that satisfy (CCR) are closed under products and powers.
+  - (CCR) for all compressors holds iff `E <= K_Gamma`.  It suffices to check
+    the `d(d-1)+1` compressors `I+E_ij` and `[[1,2],[1,3]] (+) I`.
+  - A proof of (AC) therefore proves non-hyperlinearity of every intermediate
+    coset wreath missing `E`.  By `kt-intermediate-coset-wreaths-are-nonsofic`
+    all of these are already nonsofic.  So (AC) is strictly stronger than the
+    flagship `K_Gamma != Gamma`.
+  - Conversely, a single hyperlinear intermediate wreath refutes (AC)
+    without deciding the flagship.  The cheapest candidates are cone subgroups
+    `EL_r(F_q[C]) rtimes Stab(C)` for `N^d <= C < Z^d` and ascending HNN
+    subgroups `<Gamma, t>`.
+  - Where the search stops: no intermediate `K` was shown to be scalar-RE or
+    non-RE.  Every obstruction recorded in
+    `kt-subgroup-is-a-ce-commutation-stabilizer` (Haagerup targets,
+    normalizing witnesses, Fell models) forces `E <= K` for any stabilizer
+    `K >= Gamma`, so none of those targets gives a countermodel.  The claim
+    stays OPEN.
+  - **Calibration (not recorded as a node).**  Take the dyadic world
+    `G = Z[1/2]^2 rtimes (SL_2(Z) x <2I>)`, `Gamma = Z^2 rtimes SL_2(Z)`,
+    `t = 2I`.  It satisfies the finite-dimensional invisibility identity
+    `rho(Lambda) = rho(E')` for every finite-dimensional unitary `rho`,
+    where `E' = Z[1/2]^2 rtimes SL_2(Z)` is normal and is the union of the
+    `t^(-k) Gamma t^k`.  It has a strict compressor and relative (T), yet its
+    wreath is sofic, so (CCR) fails there.  The finite-dimensional profile,
+    together with a compressor and relative (T), therefore cannot prove (AC).
+    Full (T) of `Gamma` has to be used.

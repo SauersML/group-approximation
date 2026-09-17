@@ -78,3 +78,18 @@ finite set.
     - For twisted embeddings, `ker c ⊇ F′ ⊇ F`.
   - *What remains.* This claim can only be proved by a non-algebraic analytic certificate, namely the
     rare-event inverted-orbit confinement above.
+- **Endpoint root gaps are inverse-square, and endpoint localization stalls (2026-09-17,
+  swarm-0917-w5-f-dyadic-extensive).** See `f-dyadic-endpoint-switch-walk-gaps-are-inverse-square` and
+  `f-ea-endpoint-localization-certificates-stall` (both ESTABLISHED, unrefereed).
+  - *Normal form.* Let `κ(m)` be the spectral gap of the switch-walk-switch operator rooted at `2^{−m}`. Then
+    `κ(m) ≤ π²/(5m²)` unconditionally (the slope walk confined to a strip near `0`), and `κ(1) ≤ 20(4m−1)²κ(m)`
+    (path comparison along `x_0^{−(m−1)}`). So this claim holds iff `liminf m²κ(m) = 0`, and fails iff the strip
+    strategy is optimal up to a constant at every depth.
+  - *Class killed.* A certificate that confines the walk to a linear endpoint zone of depth `W`, and then transports
+    the root to `1/2` by path comparison (even through a chain of stages of Schreier length at least `4`), outputs
+    `gap(1/2) ≤ c` with `c ≥ 8/225`. The confinement gain is `≍ W^{−2}`, and any comparison word for `δ_{1/2}` has
+    length `≥ 2(W+1)`, so the exponents cancel.
+  - *What remains.* A spectral proof must certify a rate at a root whose inverted orbit leaves both endpoint zones
+    (where `F` acts non-linearly), or transport by something finer than letter-counting path comparison. By the
+    Chabauty remark there, the endpoint zones are the only recurrent localizations, so no recurrence input is left
+    for this step.

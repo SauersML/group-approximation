@@ -82,3 +82,19 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   are equivalent to `p_c<p_u`, so (IS) is at least as strong as the
   separation itself on the whole (T) class, and it cannot be reached through a
   weaker intermediate kernel there.
+* **l^q two-point Hölder transplant (swarm-0917-w5).** Hölder against the heat
+  kernel and interpolation between l^1 and l^2 give `a_n(p) <= rho^(2n/q)`
+  with constant 1 whenever `tau_p(o,.)` is in l^q with `q >= 2`
+  (`fpbs-lq-two-point-bounds-walk-rate`, established). In particular
+  `lambda = rho` on `p <= p_2`, which extends Hutchcroft's `p <= p_{2->2}`.
+  This reduces (IS) to the vector-level hole [Q]: `p_c < p_q` for every
+  `q > 2` (`fpbs-two-point-lq-threshold-gap-universal`, route
+  `fpbs-integrated-sensitivity-via-lq-two-point`). [Q] is implied by the
+  operator gap `p_c < p_{2->2}`.
+  **Where it dies:** openness of `{Z_q < infinity}` through `p_c`. The
+  Russo-BK majorant is again a critical l^2-type quantity. No critical l^q
+  input is importable, because arXiv:1605.05301 bounds only the infimum
+  `kappa_{p_c}(n)`.
+  **Calibration:** the kernel `1_H` (H infinite amenable) has rate `rho` but is
+  in no l^q, so a failure of [Q] would not refute (IS). Artifact:
+  `research/artifacts/fpbs/docs/lq-two-point-walk-rate-2026-09-17.md`.

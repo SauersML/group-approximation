@@ -65,3 +65,19 @@ No construction is known beyond the Boone--Higman cases.
      of unbounded complexity, each with finitely presented outer extensions
      containing the input outside the kernel. That is at least as hard as the
      complexity root.
+3. **Non-MIF residue, word-automorphism half (2026-09-17, swarm-0917-w5-bh-outer).**
+   *Settled for circle kernels; the prerequisite that remains is BFFHZ Question 3.2.*
+   - `outer-extensions-of-fp-simple-mif-groups-satisfy-pbh` makes the MIF case
+     equivalent to pBH. For a non-MIF kernel it leaves two conditions (artifact
+     §8, Prop 9): (a) BFFHZ Q3.2 for `S`, and (b) finite normal generation of the
+     group `W` of word automorphisms in the enlarged actor's kernel image.
+   - `micro-supported-word-automorphisms-are-pointwise-inner` shows that for any
+     micro-supported kernel, a word automorphism `r` has
+     `Y = ∪_j { r = h_j }` for the coefficients `h_j` of its word. For
+     `[T_{n,r},T_{n,r}] <= S <= T_{n,r}`, `r ∈ T_{n,r}`, so (b) holds for every `B`.
+   - `thompson-circle-kernel-outer-extensions-reduce-to-bffhz-q32` follows: an
+     outer extension of such an `S` lies outside pBH only if Q3.2 fails for `S`.
+   - Open: non-PL micro-supported kernels (whether `L(S)/S` is finitely
+     generated) and kernels that are not micro-supported. Combined with
+     Attempt 1, a universal host family must use unboundedly complex non-MIF
+     kernels failing (a) or (b).

@@ -64,3 +64,26 @@ of the two relators of `F` almost commute, uniformly in the dimension.
     contains a copy of `F`.
   - **Not killed.** Quotients and metric ultraproducts, action-level permanence, and direct almost-representations.
     Those are where any refutation or proof of this claim must live.
+- **Operator-algebra split: compression models see only the factorization property** (lane
+  swarm-0917-w5-pull2-non-1, 2026-09-17). This is a decomposition, and the claim stays OPEN.
+  - **Established.** `thompson-f-factorization-iff-ucp-models-separate`. `F` has Kirchberg's
+    factorization property iff compressions `P pi(.) P` of honest representations of `F` by almost-invariant
+    finite-rank projections can stay non-commuting.
+  - **Proof ingredients.**
+    - The Stinespring defect is subadditive.
+    - Amenable traces form a face, because domination on `A (x)_max A^op` preserves vanishing on the
+      min-kernel.
+    - The character simplex turns any non-abelian amenable limit into amenability of `tau_reg`.
+  - **Route.** `thompson-f-not-hyperlinear-from-llp-and-no-factorization` splits this claim into two
+    independently failable premises: `thompson-f-full-c-star-algebra-has-llp` (lifting) and
+    `thompson-f-lacks-factorization-property` (uniform collapse of compressions). Amenability of `F` would
+    falsify the second. Hyperlinearity of `F` without the factorization property would falsify the first.
+  - **Class obstruction.** Every attack through ucp or compression models dies at the same step. This
+    includes Jones, Pythagorean, Cuntz `O_2`, Koopman and induced representations, and any ucp map on
+    `C*(F)`.
+    - A collapse theorem for the class proves exactly `thompson-f-lacks-factorization-property`.
+    - The invariant is the gap between Connes-embeddable and amenable traces on `C*(F)`.
+    - The dying step is lifting an arbitrary `R^omega`-valued homomorphism to ucp microstates. That step is
+      LLP of `C*(F)`, or at least the conclusion of `llp-makes-hyperlinear-traces-amenable` for `tau_reg`.
+    - Conversely, a compression-model proof that `F` is hyperlinear proves the factorization property. If
+      `F` is nonamenable, that makes `C*(F)` nonexact (`nonamenable-factorization-groups-have-nonexact-full-cstar`).
