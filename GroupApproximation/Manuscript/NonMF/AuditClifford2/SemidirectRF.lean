@@ -72,11 +72,15 @@ def reduceByKernel : M ⋊[φ] G →* M ⋊[QuotientGroup.kerLift φ] (G ⧸ φ.
   SemidirectProduct.map (MonoidHom.id M) (QuotientGroup.mk' φ.ker)
     fun _ ↦ MonoidHom.ext fun _ ↦ rfl
 
+#audit_axioms reduceByKernel
+
 /-- `G ⧸ J` is finite when `M` is finite. -/
 theorem finite_quotient_ker_action [Finite M] : Finite (G ⧸ φ.ker) := by
   haveI : Finite (MulAut M) :=
     Finite.of_injective (fun e : MulAut M ↦ (e : M → M)) DFunLike.coe_injective
   exact Finite.of_equiv φ.range (QuotientGroup.quotientKerEquivRange φ).symm.toEquiv
+
+#audit_axioms finite_quotient_ker_action
 
 theorem finite_reduceByKernel_target [Finite M] :
     Finite (M ⋊[QuotientGroup.kerLift φ] (G ⧸ φ.ker)) := by
@@ -84,9 +88,13 @@ theorem finite_reduceByKernel_target [Finite M] :
   exact Finite.of_equiv (M × (G ⧸ φ.ker))
     (SemidirectProduct.equivProd (φ := QuotientGroup.kerLift φ)).symm
 
+#audit_axioms finite_reduceByKernel_target
+
 theorem reduceByKernel_ne_one_of_left_ne_one {g : M ⋊[φ] G} (hg : g.left ≠ 1) :
     reduceByKernel φ g ≠ 1 :=
   fun h ↦ hg (congrArg SemidirectProduct.left h)
+
+#audit_axioms reduceByKernel_ne_one_of_left_ne_one
 
 /-- The printed argument: a finite group acted on by a residually finite group
 gives a residually finite semidirect product. -/
@@ -102,6 +110,8 @@ theorem residuallyFinite_printed [Finite M] [Group.ResiduallyFinite G] :
   · obtain ⟨Q, hQgrp, hQ, f, -, hf⟩ := exists_finite_quotient_right_ne_one φ hright
     exact ⟨Q, hQgrp, hQ, f.comp SemidirectProduct.rightHom, hf⟩
 
+#audit_axioms residuallyFinite_printed
+
 end Printed
 
 section Concrete
@@ -113,15 +123,21 @@ theorem levelRange_residuallyFinite [Group.ResiduallyFinite Γ] (n : ℕ) :
   GroupApproximation.residuallyFinite_of_mulEquiv
     (MonoidHom.ofInjective (level_injective α hα n)).symm
 
+#audit_axioms levelRange_residuallyFinite
+
 /-- The action `Γ_n → Aut(C_Y)`. -/
 abbrev windowAction (n : ℕ) (S : Finset (Cosets α hα)) :
     (level α hα n).range →* MulAut (cliffordWindow α hα n S) :=
   restrictAut (SemidirectAssoc.baseAction (shiftHom α hα) (lampAction α hα))
     (cliffordWindow α hα n S) (level α hα n).range (cliffordWindow_invariant α hα n S)
 
+#audit_axioms windowAction
+
 /-- The semidirect product `C_Y ⋊ Γ_n`. -/
 abbrev WindowSemidirect (n : ℕ) (S : Finset (Cosets α hα)) : Type :=
   cliffordWindow α hα n S ⋊[windowAction α hα n S] (level α hα n).range
+
+#audit_axioms WindowSemidirect
 
 /-- tex 2041--2042: `C_Y ⋊ Γ_n` is residually finite. -/
 theorem manuscriptSentence_windowSemidirectResiduallyFinite [Group.ResiduallyFinite Γ]
