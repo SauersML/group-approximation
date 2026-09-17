@@ -13,7 +13,9 @@ distinct_from:
 artifacts: [research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md]
 ---
 
-**ESTABLISHED** (route `decidable-simple-fa-envelope-via-self-twisted-brin-thompson`).
+**ESTABLISHED** by `decidable-simple-fa-hosts-via-kazhdan-lamplighter-proof`,
+`decidable-simple-fa-host-via-self-twisted-brin-thompson` (literature import with a written
+check) and `decidable-simple-fa-envelope-via-self-twisted-brin-thompson`.
 
 Let `G` be a finitely generated group with solvable word problem. Then `G`
 embeds in a finitely generated simple group `S` with solvable word problem in
@@ -86,7 +88,18 @@ tree steps with infinitary steps could do real work in a permanence reduction.
    Whitehead's lemma: `diag(u, u^(-1), 1) ∈ E_2(R)` for every unit, so all of `Δ = G × Z` embeds. See
    `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` and
    `research/artifacts/lamplighter-kazhdan-host-without-lef-2026-09-17.md`.
-7. **Self-twisted Brin--Thompson host (2026-09-17).** This gets past the
+7. **Import property NL for twisted Brin--Thompson groups (2026-09-17).**
+   Fournier-Facio--Wu--Zaremsky (arXiv:2603.24687v2, Theorem 6.4) prove that
+   every `SV_G` has property NL. With Serre's lemma, every finitely generated
+   `SV_G` has FA (`twisted-brin-thompson-groups-have-property-fa`). The host
+   `G.V_G` is finitely generated and simple, contains `G`, and has solvable
+   word problem when `G` does (`self-twisted-bt-group-fp-embedding-iff-solvable-wp`).
+   *Succeeds* (`decidable-simple-fa-host-via-self-twisted-brin-thompson`).
+   Here is how the imported proof avoids Attempt 3's pairwise-join obstacle:
+   - uniform perfectness bounds quasimorphisms, which excludes focal and
+     oriented lineal actions;
+   - relative simplicity excludes general-type actions.
+8. **Self-twisted Brin--Thompson host (2026-09-17).** This gets past the
    obstruction in Attempt 3. We do not assume the cone-supported generators have
    FA. Instead we prove that each rigid stabilizer `Γ_U` of a proper clopen set
    acts by elliptic elements on every tree:
