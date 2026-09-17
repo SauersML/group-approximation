@@ -90,3 +90,18 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
   (Drafted conclusion, not established: a proof of this conjecture whose soundness
   conclusion is about the output unique game must use a step that is false for
   entangled strategies.) Open: an explicit clock-and-shift witness for `m > 2`.
+* **Keep the left labels of a proved 2-to-1 instance and add locally complete
+  right vertices until the matchings are rich.** This covers right compression,
+  merging, auxiliary right vertices, and refining Grassmann-shaped instances.
+  **Dead (2026-09-17)** -- route
+  `rich-2to1-via-left-preserving-local-wrappers`, killed by
+  `left-preserving-local-richness-wrappers-are-affine-ug-merges`.
+  - Local completeness over affine intended classes `A_z` makes every constraint
+    at `z` absorb the agreement subgroup `B_z = sum ker dr_(uz)`.
+  - So `z` is either all `F_lin` translations or a right merge of an affine
+    unique-game clique.
+  - Pair-uniformity leaves translations at most `alpha_k ~ 1/k` of the mass.
+  - Hence `val(W(G)) >= (1 - alpha_k) val(U_W(G))`. With certified completeness,
+    `G -> U_W(G)` is already UG hardness.
+  - Open survivors: re-encoded left labels, completeness without local
+    certificates, non-affine intended classes, partial richness.
