@@ -79,3 +79,16 @@ the proof).
 - The proof's rounding, run on random instances, gives a worst ratio
   `F_phi/F_psi` of `1.577350` (`d=3`, `n=1,2`) and `1.447214` (`d=5`, `n=1`). There
   is no violation of `gamma_d` (see the README for the `d=5, n=2` and `d=7` runs).
+
+## Attempts
+
+1. *Most satisfied term plus a one-sided leak lemma* (the route
+   `qudit-code-rounding-factor-one-plus-inv-sqrt-d-proof`). This proves `1 + 1/sqrt d` for `d >= 5`.
+   It stops at `8/5` for `d = 3` and `2` for `d = 2`, because the per-term bound `h(r) = 1/4` for
+   `r > 1/4` is sharp for a lemma that bounds one leak at a time.
+2. *Superseded (w3-078, 2026-09-17): averaging over the post-selected term.*
+   `qudit-code-rounding-sharp-factor-all-primes` proves the sharp factor `1 + 1/sqrt d` for every
+   prime `d`, including `d = 3` (`1.5774`) and `d = 2` (`1.7071`). The proof averages the induction
+   inequality over `R` with weights `w_R`, and bounds each symmetric pair of leaks by the operator
+   inequality `PQ + QP - PQP - QPQ <= (sqrt r - r)(P + Q)`, which has no side condition. So the
+   `d = 3` gap recorded in this node is closed, and the `8/5` above is no longer the best known bound.

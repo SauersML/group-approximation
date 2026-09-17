@@ -1,0 +1,3 @@
+d=3 n=2 code projectors=480 kappa=0.366025 gamma=1.577350
+(a) pairs with 0<r<1 checked=16300, max eigenvalue of PQ+QP-PQP-QPQ-(sqrt r-r)(P+Q) = 2.99e-16
+(b) trials=400: max over steps of sum_R w_R(Leak_R - kappa M_R L_R) = 4.84e-15; max chosen Leak_R/M_R - kappa L_R = 3.22e-15; worst F(phi)/lambda_min = 1.577350 (gamma=1.577350)
