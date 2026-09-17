@@ -134,7 +134,8 @@ theorem tendsto_N_of_tendsto_card (n : ℕ) (N : ℕ → ℕ)
   have hNk : N k ≤ B := by omega
   have h1 := Nat.card_le_card_of_injective
     (fun A : Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2) =>
-      fun (i j : Fin n × Fin (N k)) => (A : Matrix (Fin n × Fin (N k)) (Fin n × Fin (N k)) (ZMod 2)) i j)
+      fun (i j : Fin n × Fin (N k)) =>
+        (A : Matrix (Fin n × Fin (N k)) (Fin n × Fin (N k)) (ZMod 2)) i j)
     (fun A A' hAA' => Subtype.ext hAA')
   have hcard : Nat.card (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2)) ≤
       2 ^ ((n * N k) * (n * N k)) := by
