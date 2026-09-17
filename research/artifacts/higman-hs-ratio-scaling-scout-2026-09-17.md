@@ -24,12 +24,13 @@ were single-threaded and at most 20 minutes each.
 | `C(4) > 38` (U(6), exact Q(i)) | exact finite computation | `higman-hs-word-coefficient-exceeds-thirty-eight` |
 | `C(3) > 10` for the trivial 3-cycle (U(6), exact Q(i)) | exact finite computation | same |
 | On `T3={g_1^3=g_3^3=1}`: `e(g_0) <= 17973 sum e(r_j)`; robustly `e(g_0) <= 25397(sum e(r_j)+e(g_1^3)+e(g_3^3))`, all dimensions, any tracial algebra | complete proof | `higman-order-three-torsion-ratio-bound` |
+| For every `m>=1` and generator `g_i`: `e(g_0) <= K_(m,i)(sum e(r_j)+e(g_i^m))`, finite tower-type `K`, any tracial algebra | complete proof | `higman-approximate-torsion-collapses-hs-word-ratio` |
 
 ## 2. Data: best ratio found per dimension
 
 Full-unitary Riemannian nonlinear CG (`ratio_search.py`) from Haar starts.
 There were 60 restarts per d (`ratio_sweep.jsonl`) and 1000 restarts for
-d=4..8 (`many_restarts.jsonl`). The table also includes basin hopping and
+d=4..9 (`many_restarts.jsonl`). The table also includes basin hopping and
 direct sums (`run_hop.py`, `hop_a.jsonl`), tensor seeds (`run_tensor.py`),
 and the order-q ansatz (`run_orderq.py`: odd generators isospectral to
 q-th roots, even generators free).
@@ -46,11 +47,18 @@ q-th roots, even generators free).
 | 10, 12 | 16.6, 15.5 (60 restarts) | no | 8.65, 9.69 |
 | 16 | 23.91 (tensor 4x4 + CG) | yes | ~6 |
 
-Non-T3 local maximizers do exist: 21.93 (d=7), 24.30 (d=8), and 21.16
+Non-T3 local maximizers do exist: 21.93 (d=7), 24.30 (d=8), 19.71 (d=9, best of
+1000 Haar restarts), and 21.16
 (hop from a padded non-T3 d6 tuple). None exceeds the T3 value 38.74. Basin
 hopping from the padded and direct-summed d4 T3 witness (perturbations off
 T3 with eps in {0.2, 0.5, 1, 2}) never improved on it. The order-q ansatz for q=5 and q=7 gives
 only 9.6 to 13.9.
+
+Growing torsion exponent (`offT3_roots.jsonl`: odd generators isospectral
+to all d-th roots of unity, q=d, 12 restarts). This is the one regime the
+torsion-collapse theorem leaves open. The ratios are 10.30 (d=9), 10.16 (d=11),
+10.41 (d=13) and 7.17 (d=16): flat, at the level of the trivial three-cycle,
+with no growth in d.
 
 ## 3. Anomalies
 
@@ -112,7 +120,10 @@ near-Higman tuples. Evidence: every global best for d ≤ 16 lies in T3, and
 non-T3 local maxima are strictly lower. Counter-pressure: non-T3 local maxima
 exist (24.3 at d=8), and the search is not exhaustive for d ≥ 7.
 
-A natural extension, not proved here: fixed odd orders `m,n` on
-`g_1,g_3` should give finite constants, via the same smallest-prime
-telescoping, whenever the quotient is trivial. The `q=5,7` ansatz data
-(ratio ≤ 14) is consistent with this.
+Extension, now proved (`higman-approximate-torsion-collapses-hs-word-ratio`):
+approximate torsion of any fixed exponent on any single generator already
+gives a finite constant. So the weak conjecture can be restated
+exponent-free: `C_d(4)` is approached, uniformly in d, by tuples in which some
+generator is within `O(sum e(r_j))` of a fixed finite order. What remains
+open is exactly the regime of torsion exponents growing with d. The q=d
+root-spectrum runs above (ratio ≈ 10, flat) show no growth there.
