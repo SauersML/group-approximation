@@ -91,13 +91,15 @@ variable (e : G ≃* H) (c : X ≃ Y) (hc : ∀ (g : G) (x : X), c (g • x) = e
 theorem wreathCongr_inl (f : Lamp K X) :
     wreathCongr K e c hc (SemidirectProduct.inl f) =
       SemidirectProduct.inl (lampCongr K c f) := by
-  refine SemidirectProduct.ext rfl ?_
-  exact map_one e
+  apply SemidirectProduct.ext
+  · rfl
+  · exact map_one e
 
 theorem wreathCongr_inr (g : G) :
     wreathCongr K e c hc (SemidirectProduct.inr g) = SemidirectProduct.inr (e g) := by
-  refine SemidirectProduct.ext ?_ rfl
-  exact map_one (lampCongr K c)
+  apply SemidirectProduct.ext
+  · exact map_one (lampCongr K c)
+  · rfl
 
 theorem wreathCongr_right (w : Wreath K G X) :
     (wreathCongr K e c hc w).right = e w.right := rfl

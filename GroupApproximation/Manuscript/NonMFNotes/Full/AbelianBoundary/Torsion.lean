@@ -129,7 +129,8 @@ theorem stableLamp_isTorsionCompressionWitness {a : A} {m : ℕ} (hm : 0 < m)
   · intro γ hγ
     obtain ⟨g, rfl⟩ := MonoidHom.mem_range.mp hγ
     show Commute ((inr stableLetter : AbelianLamp A) * inr (ofGamma g) *
-      (inr stableLetter)⁻¹) (WreathWitness.siteLamp stableSite (Multiplicative.ofAdd a))
+      (inr stableLetter)⁻¹)
+      (WreathWitness.siteLamp (G := Gstar) stableSite (Multiplicative.ofAdd a))
     rw [← map_inv, ← map_mul, ← map_mul, stableLetter_conj]
     exact WreathWitness.commute_inr_siteLamp (ofGamma (alphaStar g)) stableSite
       (Multiplicative.ofAdd a) (compressed_smul_stableSite g)
