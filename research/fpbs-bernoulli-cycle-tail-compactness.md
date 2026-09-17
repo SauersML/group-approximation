@@ -83,3 +83,19 @@ price one free factor. Amalgams of fixed price one groups over infinite
 subgroups have fixed price one by Corollary 2.40(a), free products are
 covered by Theorem 2.27, and amenable H falls under Corollaries 2.28 and
 2.32.
+
+Replace tail control by well-founded Borel Morse matchings
+(swarm-0917-w4-fp-cycle-tail; `fpbs-bernoulli-morse-collapse-criterion`).
+Match relator cells over the Bernoulli space injectively to boundary edges,
+with almost surely no infinite chain of removed edges, and delete the matched
+edges of the Cayley graphing. König's lemma keeps the relation generated.
+Hence C(b) <= |S| - mu(M), with no mass or length control. The Morse deficit
+m(R) = |S| - 1 - beta_1 - sup mu(M) is nonincreasing in R, and over the full
+lists P_L of trivial words it decreases to C_sub(S) - 1 - beta_1, the
+subgraphing cost excess. The target for Gamma follows from m(R)=0 for a
+single finite R, and conversely it gives m(R)=0 when combined with depth
+compactness and subgraphing attainment. Calibrations: Z^2, products of groups
+with infinite-order generators, and F_2 x F_2 all have deficit 0, with the
+unmatched density on F_2 x F_2 equal to beta_2 = 1. For <S | w^m> the
+proper-power ceiling 1/m equals z exactly. This is a reduction, not a proof:
+no case with open fixed price was reached. The target stays OPEN.
