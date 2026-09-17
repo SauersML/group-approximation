@@ -14,8 +14,7 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 exterior off one side, the Euler residual, the below pinch (residual 06) and the below proper arcs
 (residual 07).  With the refuted walk binder (`CellPocketWalkRefutedBelowInput`,
 `RefutedDef.lean`), binder 5 needs only the clean copy and the exterior off one side, and both are
-closed in the corpus
-(`cellPocketCopyCleanBothOrders`, `cellPocketWalkOuterOffSideSomeOrder`).
+closed in the corpus (`cellPocketCopyCleanBothOrders`, `cellPocketWalkOuterOffSideSomeOrder`).
 
 * `multipleEdgePocketRegionCopyBelowInput_of_refuted`: binder 5 below the bound at fixed parameters,
   from the two order residuals and the refuted binder.

@@ -31,12 +31,12 @@ open scoped Matrix
 noncomputable section
 
 /-- The binary Leavitt algebra `L = L_{𝔽₂}(1,2)`. -/
-abbrev BinL : Type := GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
+abbrev BinL := GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.BinL
 
 /-- `GL_4(L)`. -/
-abbrev GLFour : Type := (Matrix (Fin 4) (Fin 4) BinL)ˣ
+abbrev GLFour := (Matrix (Fin 4) (Fin 4) BinL)ˣ
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.GLFour
 
@@ -77,25 +77,30 @@ def vertexStab : Subgroup GLFour where
 theorem elementaryUnit_mem_vertexStab (i j : Fin 4) (hij : i ≠ j) (hj : j ≠ 3) (a : BinL) :
     GroupApproximation.elementaryUnit i j hij a ∈ vertexStab := by
   show (1 + Matrix.single i j a) *ᵥ lastCol = lastCol
-  have hj0 : lastCol j = 0 := Pi.single_eq_of_ne hj 1
+  have hj0 : lastCol j = 0 := by
+    show Pi.single (3 : Fin 4) (1 : BinL) j = 0
+    exact Pi.single_eq_of_ne hj 1
   rw [Matrix.add_mulVec, Matrix.one_mulVec, Matrix.single_mulVec_eq, hj0, mul_zero, zero_smul,
     add_zero]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.elementaryUnit_mem_vertexStab
 
+/-- The base-edge indices are distinct. -/
 theorem lastIdx_ne : (3 : Fin 4) ≠ 2 := by decide
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.lastIdx_ne
 
+/-- The indices of `h` are distinct. -/
 theorem midIdx_ne : (2 : Fin 4) ≠ 1 := by decide
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.midIdx_ne
 
 /-- **The Weyl element `w_{32}` of the base edge** (lane 01's `weyl 3 2`). -/
-def weylLast : St 4 BinL := weyl (R := BinL) (3 : Fin 4) 2 lastIdx_ne
+def weylLast : St 4 BinL := GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.weyl (R := BinL) (3 : Fin 4) 2 lastIdx_ne
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.weylLast
 
+/-- `w_{32}` unfolded. -/
 theorem weylLast_eq :
     weylLast = GroupApproximation.SteinbergGroup.x (3 : Fin 4) 2 lastIdx_ne (1 : BinL) *
       GroupApproximation.SteinbergGroup.x (2 : Fin 4) 3 lastIdx_ne.symm (1 : BinL) *
@@ -113,7 +118,9 @@ def swapLast : GLFour :=
 
 /-- **Brown's element `h`**: the image of `w_{21}` in `GL_4(L)`.  It lies in `J`. -/
 def swapMid : GLFour :=
-  ((GroupApproximation.SteinbergGroup.projection (weyl (R := BinL) (2 : Fin 4) 1 midIdx_ne) :
+  ((GroupApproximation.SteinbergGroup.projection
+      (GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.weyl (R := BinL) (2 : Fin 4) 1
+        midIdx_ne) :
       GroupApproximation.elementaryGroup (Fin 4) BinL) : GLFour)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.Criterion.swapMid
