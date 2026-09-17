@@ -203,7 +203,10 @@ theorem wordValue_eq_one_iff_hTab (s : ι → Δ) {κ : Type} (v : κ → (Matri
         Matrix (Fin 3) (Fin 3) (LampRing Δ)))
     (w : List (κ × Bool)) :
     wordValue v w = 1 ↔ ∀ i j : Fin 3, hTabEval s (hWordMat L w i j ++ hMatOne i j) = 0 := by
-  rw [← Units.val_eq_one, ← hMatEval_hWordMat s v L hL w, ← hMatEval_hMatOne s]
+  have key : wordValue v w = 1 ↔ hMatEval s (hWordMat L w) = hMatEval s hMatOne := by
+    rw [hMatEval_hWordMat s v L hL w, hMatEval_hMatOne s]
+    exact Units.val_eq_one.symm
+  rw [key]
   constructor
   · intro h i j
     rw [hTabEval_append, ← lampRing_eq_iff_add_eq_zero]

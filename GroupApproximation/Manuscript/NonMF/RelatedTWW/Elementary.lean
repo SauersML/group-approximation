@@ -153,10 +153,13 @@ theorem isQuasidiagonalCStarAlgebra_of_faithful_quasidiagonalTrace
               (norm_filterMatrixCorona_mk_eq_limsup
                 (fun n ↦ (quasidiagonalTraceTail M N).space n) cofinite
                 ((quasidiagonalTraceTail M N).seq a)).symm
-      _ = ‖(quasidiagonalTraceTail M N).coronaHom a‖ := rfl
+      _ = ‖(quasidiagonalTraceTail M N).coronaHom a‖ := by
+            rw [ShulmanTrace.MFTraceModel.coronaHom_apply,
+              ShulmanTrace.coronaQuotient_apply]
       _ = ‖a‖ := by
             simpa only [map_zero, dist_zero_right] using
-              (NonUnitalStarAlgHom.isometry _ hinj).dist_eq a 0
+              (NonUnitalStarAlgHom.isometry
+                (quasidiagonalTraceTail M N).coronaHom hinj).dist_eq a 0
   exact ⟨hsep, ⟨{
     space := fun n ↦ M.space (n + N)
     nonempty := hne
