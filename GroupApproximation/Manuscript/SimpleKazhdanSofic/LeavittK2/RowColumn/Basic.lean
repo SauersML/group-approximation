@@ -88,48 +88,50 @@ def rowVec (b : Fin n → R) : St (n + 1) R :=
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.rowVec
 
 theorem colVec_add (a b : Fin n → R) : colVec (a + b) = colVec a * colVec b :=
-  rootVecProd_add _ _ colRoot_add a b
+  rootVecProd_add (colRoot (n := n) (R := R)) colRoot_commute colRoot_add a b
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.colVec_add
 
 theorem rowVec_add (a b : Fin n → R) : rowVec (a + b) = rowVec a * rowVec b :=
-  rootVecProd_add _ _ rowRoot_add a b
+  rootVecProd_add (rowRoot (n := n) (R := R)) rowRoot_commute rowRoot_add a b
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.rowVec_add
 
 theorem colVec_update_zero (i : Fin n) (s : R) :
     colVec (Function.update (0 : Fin n → R) i s) = colRoot i s :=
-  rootVecProd_update_zero _ _ colRoot_zero i s
+  rootVecProd_update_zero (colRoot (n := n) (R := R)) colRoot_commute colRoot_zero i s
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.colVec_update_zero
 
 theorem rowVec_update_zero (i : Fin n) (s : R) :
     rowVec (Function.update (0 : Fin n → R) i s) = rowRoot i s :=
-  rootVecProd_update_zero _ _ rowRoot_zero i s
+  rootVecProd_update_zero (rowRoot (n := n) (R := R)) rowRoot_commute rowRoot_zero i s
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.rowVec_update_zero
 
 theorem colVec_split (a : Fin n → R) (j : Fin n) :
     colVec a = colRoot j (a j) * colVec (Function.update a j 0) :=
-  rootVecProd_split _ _ colRoot_add colRoot_zero a j
+  rootVecProd_split (colRoot (n := n) (R := R)) colRoot_commute colRoot_add
+    colRoot_zero a j
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.colVec_split
 
 theorem rowVec_split (b : Fin n → R) (j : Fin n) :
     rowVec b = rowRoot j (b j) * rowVec (Function.update b j 0) :=
-  rootVecProd_split _ _ rowRoot_add rowRoot_zero b j
+  rootVecProd_split (rowRoot (n := n) (R := R)) rowRoot_commute rowRoot_add
+    rowRoot_zero b j
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.rowVec_split
 
 theorem colVec_commute (y : St (n + 1) R) (a : Fin n → R)
     (h : ∀ i, Commute y (colRoot i (a i))) : Commute y (colVec a) :=
-  rootVecProd_commute _ _ y a h
+  rootVecProd_commute (colRoot (n := n) (R := R)) colRoot_commute y a h
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.colVec_commute
 
 theorem rowVec_commute (y : St (n + 1) R) (b : Fin n → R)
     (h : ∀ i, Commute y (rowRoot i (b i))) : Commute y (rowVec b) :=
-  rootVecProd_commute _ _ y b h
+  rootVecProd_commute (rowRoot (n := n) (R := R)) rowRoot_commute y b h
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.rowVec_commute
 

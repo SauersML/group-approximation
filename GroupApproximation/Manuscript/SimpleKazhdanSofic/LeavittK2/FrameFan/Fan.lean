@@ -116,7 +116,7 @@ theorem homotopic_fan (c : V) : ∀ {a b : V} (p : X.EdgePath a b) (hca : X.edge
 /-- Tex l.539: an ordered 2-complex with the cone property is simply connected. -/
 theorem simplyConnected_of_hasFanApex (hX : HasFanApex X) : X.SimplyConnected := by
   refine ⟨fun a b => ?_, fun v p => ?_⟩
-  · obtain ⟨c, hc, -⟩ := hX [a, b] [] (fun x hx => by simp at hx)
+  · obtain ⟨c, hc, -⟩ := hX [a, b] [] (fun _ hx => by simp at hx)
     exact ⟨bwd (hc a (List.mem_cons.2 (Or.inl rfl)))
       (fwd (hc b (List.mem_cons.2 (Or.inr (List.mem_cons.2 (Or.inl rfl))))) (nil b))⟩
   · obtain ⟨c, hc, ht⟩ := hX [v] (edges p) (edges_edge p)

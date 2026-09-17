@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketOrbitClass
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketNoncrossingWalk
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
