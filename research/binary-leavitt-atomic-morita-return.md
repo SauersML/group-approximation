@@ -91,3 +91,18 @@ Leavitt gauge degree on the prescribed atom (an uncancelled `s_i`, `t_i`, or
 unequal-length prefix coefficient), or use genuinely unbounded adaptive
 depth.  Noncommuting balanced matrix units alone do not cross the finite-model
 firewall.
+
+The natural analytic bypass, replacing the Kazhdan projection in the
+manuscript transport argument by finite-window averages over the locally
+finite coefficient root subgroup `X_12(R_0)`, is vacuous.
+`window-average-kazhdan-substitute-forces-trivial-corona-rep` proves that the
+window averaging projections in the adjoint corona are norm-Cauchy precisely
+when the corona representation is trivial.  Equal window commutants give
+equal bicommutants, so the root image is finite along every ultrafilter.  A
+finite-index coefficient kernel generates the unit ideal, so the normal
+closure is all of `Delta`.  The approach dies at the existence of the norm
+limit: in any surviving representation the window projections never
+stabilize, and only level-shifted orders `U^*P_(k')U<=P_k` remain, which
+stable finiteness does not force to equality.  A Property-`(T)`-free proof
+cannot import the transport/stable-finiteness step through a window-limit
+projection.  It must produce a same-class inequality by some other means.
