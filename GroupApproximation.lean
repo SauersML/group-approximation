@@ -5439,6 +5439,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Endpoin
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Complex
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Fan
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.FrameFour
+import GroupApproximation.Manuscript.NonMF.Full.ChainCoreModels.PrintedLemma
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
