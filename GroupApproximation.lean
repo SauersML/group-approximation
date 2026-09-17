@@ -5465,6 +5465,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Semantic
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Classification
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.MatrixArveson
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ArvesonStatement
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVH2GL3.RankFive
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
