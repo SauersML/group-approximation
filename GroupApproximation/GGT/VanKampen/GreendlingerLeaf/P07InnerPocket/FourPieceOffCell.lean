@@ -12,8 +12,8 @@ piece-07 residual of Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 
 Take a witness `faces ⊆ sideFaces K.walk`.  The walk `K.walk` holds `invDarts K.firstArc`, and
 `K.firstArc` is a nonempty arc of `Π_i`.  So `PocketClass.cell_face_not_mem_sideFaces` (lane
-gl-p07-03) puts `Π_i` off `sideFaces K.walk`: for `e ∈ K.firstArc`, the walk dart `α e` is a boundary
-dart of the side, so `faceOf e = Π_i` is off it.  Then `Π_i ∉ faces`, and `k₀ = i`.
+gl-p07-03) puts `Π_i` off `sideFaces K.walk`: for `e ∈ K.firstArc`, the walk dart `α e` is a
+boundary dart of the side, so `faceOf e = Π_i` is off it.  Then `Π_i ∉ faces`, and `k₀ = i`.
 
 This uses neither the reading nor the emptiness of the arcs.  Those hypotheses are there so that
 the statement is exactly the degenerate clause over inside witnesses.

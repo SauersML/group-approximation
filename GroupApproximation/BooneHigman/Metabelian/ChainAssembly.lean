@@ -80,7 +80,8 @@ theorem isQuasiLinear_of_coprimaryLinearQuotients (hcop : CoprimaryLinearQuotien
   choose K _ d f hf using hlin
   exact isQuasiLinear_of_quotients N hN K d f hf
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.isQuasiLinear_of_coprimaryLinearQuotients
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Chain.isQuasiLinear_of_coprimaryLinearQuotients
 
 /-- **Composition for `fp-metabelian-bh-via-quasi-linear-pbh`**: the pieces statement, with a
 single piece `G` itself. -/
@@ -91,7 +92,8 @@ theorem metabelianPiecesStatement_of_quasiLinear (hcop : CoprimaryLinearQuotient
     fun _ => hql G hG (isQuasiLinear_of_coprimaryLinearQuotients hcop hG hmet),
     MonoidHom.pi fun _ => MonoidHom.id G, fun x y h => congrFun h 0⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.metabelianPiecesStatement_of_quasiLinear
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Chain.metabelianPiecesStatement_of_quasiLinear
 
 /-- **The root from the leaves of the FRONTIER tree** (quasi-linear route). -/
 theorem finitelyPresentedMetabelianStatement_of_chain
@@ -109,7 +111,8 @@ theorem finitelyPresentedMetabelianStatement_of_chain
       (quasiLinearHostStatement_of_chain hcoordP habsP hfpP hssP hcoord0 habs0 hfp0 hss0 haff))
     henv
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.finitelyPresentedMetabelianStatement_of_chain
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Chain.finitelyPresentedMetabelianStatement_of_chain
 
 end Chain
 end Metabelian

@@ -92,7 +92,8 @@ end
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergPoly_isFinitelyPresented
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergPoly_isFinitelyPresented
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.PolynomialFpElementaryFPStatement
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.PolynomialFpK2VanishingStatement
 #audit_axioms

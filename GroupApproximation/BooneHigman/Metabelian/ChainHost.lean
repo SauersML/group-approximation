@@ -75,7 +75,8 @@ theorem embedsInFPSelfSimilarGroup_of_affineHost {R : Type} [CommRing R] {n : �
     (SemidirectProduct.inr_injective (φ := affineAction n R)).comp hf
   exact (Products.embedsInFPSelfSimilarGroup_of_rep ρ hρ).of_injective hι
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.embedsInFPSelfSimilarGroup_of_affineHost
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Chain.embedsInFPSelfSimilarGroup_of_affineHost
 
 /-- Finite generation as a `ℤ`-algebra does not depend on the `ℤ`-algebra instance: all of them
 coincide. -/

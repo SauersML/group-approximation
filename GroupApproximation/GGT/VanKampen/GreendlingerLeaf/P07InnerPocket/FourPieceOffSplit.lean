@@ -37,8 +37,8 @@ The route is that of `AssemblyStatement.lean`, with the witness kept on the side
   allows pinched walks.  Its outside walk reads the far side of `b`, the loop of `Π_i`, the far side
   of `a`, the loop of `Π_j`.  So `A₁`, `A₂` are the full arcs, and the clause holds.
 * **Self-pinch model** (`FourPieceOffStatement.lean`).  The sub-pocket `P'` cut off by a loop of
-  `G₁` lies on the side of `K`, because its faces are reached from darts of `K` across edges off `K`.
-  So the witness `Q ∪ P'` stays inside.
+  `G₁` lies on the side of `K`, because its faces are reached from darts of `K` across edges off
+  `K`.  So the witness `Q ∪ P'` stays inside.
 * **In general.**  Take the lake fill `absorbed P o` of the pocket piece `P ∋ C`, and intersect it
   with `sideFaces K`.  A lake `f ∈ sideOutside K` of `P` borders `P` only across edges of `K`: the
   side `sideFaces K` is closed under crossing edges off `K`.  So such a lake meets the rest of the

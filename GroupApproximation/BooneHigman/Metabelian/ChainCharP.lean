@@ -17,9 +17,9 @@ Research node `char-p-linear-groups-satisfy-permutational-boone-higman`, route
    `GL_M(R_k)`;
 2. (`CharPElementaryAbsorptionStatement`, no owning lane) `GL_M(R) ↪ E_N(R)` for `N ≥ 3`,
    `N ≥ 2M`, through `g ↦ diag(g, g⁻ᵀ, 1)`, which lies in `SL_N(R) = E_N(R)` (Suslin);
-3. (`CharPElementaryFPStatement`, research node `elementary-groups-over-polynomial-f-p-rings-are-fp`,
-   lane `bh-met-06`) `E_N(R_k)` is finitely presented for `N ≥ k + 4` (weaker than the node's
-   `N ≥ max(4, k + 3)`);
+3. (`CharPElementaryFPStatement`, research node
+   `elementary-groups-over-polynomial-f-p-rings-are-fp`, lane `bh-met-06`) `E_N(R_k)` is finitely
+   presented for `N ≥ k + 4` (weaker than the node's `N ≥ max(4, k + 3)`);
 4. (`AffineExtensionFPStatement`, lane `bh-met-05`, in `ChainHost.lean`) the affine host
    `R^N ⋊ E_N(R)` is finitely presented;
 5. (`CharPAffineSelfSimilarStatement`, research node
