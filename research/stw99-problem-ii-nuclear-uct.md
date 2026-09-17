@@ -109,3 +109,15 @@ Dead ends on the negative side (uct-problem lane, 2026-09-12; details in
   The refutation uses no UCT input.  Dies at exactness.  Details:
   `research/artifacts/uct-fresh-mf-tensor-route-2026-09-12.md` and
   `research/artifacts/uct-nuclear-proper-isometry-2026-09-12.md`.
+* **Baire category and zero-one laws** (sw-085, 2026-09-17; details in
+  `o2-zp-uct-witnesses-are-meager-and-perturbation-unstable`).  In the Polish
+  space of order-`p` automorphisms of `O_2`, the Rokhlin class is a dense G_δ
+  and a single conjugacy class.  So strong approximate innerness is generic,
+  and every witness set (non-UCT crossed product, no invariant Cartan, not
+  strongly approximately inner, undetected non-Rokhlin) is meager.  No
+  conjugation-invariant test with nonempty interior can name a witness.  The
+  quasi-free action `λ_ζ` (fixes `D_2`, `K_0 = Z/(2^p − 1)`) is a meager,
+  non-Rokhlin non-witness, so no category argument gives emptiness.  Dies at
+  meager ⇏ empty.  What survives: the prime half at `p` is equivalent to the
+  Cartan-fixing actions being closed in `S_p ∩ Out_p`, so a certificate that
+  passes to point-norm limits would settle it.
