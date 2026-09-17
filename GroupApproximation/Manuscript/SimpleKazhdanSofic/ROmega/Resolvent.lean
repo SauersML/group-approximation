@@ -278,7 +278,7 @@ theorem norm_qfun_sub_apply_le (τ : TracialVector M) {a b : H →L[ℂ] H} (haM
             (norm_nonneg _)
       _ = ‖(a - b) τ.vec‖ := one_mul _
   rw [cfc_qfun_eq_rfun_mul a ha, cfc_qfun_eq_mul_rfun b hb, rfun_mul_sub_mul_rfun a b ha hb,
-    ContinuousLinearMap.sub_apply]
+    _root_.sub_apply]
   refine (norm_sub_le _ _).trans ?_
   linarith
 

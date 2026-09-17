@@ -116,7 +116,7 @@ theorem twoNorm_smul (c : ℂ) (x : Ultrapower σ ω) :
   refine tendsto_nhds_unique (tendsto_twoNorm_mk σ ω (c • a)) ?_
   refine Tendsto.congr (fun n ↦ ?_) ((tendsto_twoNorm_mk σ ω a).const_mul ‖c‖)
   show ‖c‖ * ‖(a : ℕ → (K →L[ℂ] K)) n σ.vec‖ = ‖(c • (a : ℕ → (K →L[ℂ] K)) n) σ.vec‖
-  rw [ContinuousLinearMap.smul_apply, norm_smul]
+  rw [_root_.smul_apply, norm_smul]
 
 theorem eq_zero_of_twoNorm_eq_zero {x : Ultrapower σ ω} (h : twoNorm σ ω x = 0) : x = 0 := by
   obtain ⟨a, rfl⟩ := mk_surjective σ ω x
