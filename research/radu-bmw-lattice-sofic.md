@@ -74,3 +74,12 @@ finite residual.
   - *Status.* Genuine finite models are excluded (`radu-square-lamp-forces-reflections-in-finite-actions`),
     and treeing is excluded by `β_2^(2)(Q) = 1/24`. Models must be non-congruence, as in the dyadic
     fork.
+* **Congruence odometer towers for frame microstates: dead (sw-089, 2026-09-17; modulo the cited congruence gap).**
+  `radu-congruence-frame-odometers-cannot-be-glued`.
+  - *The claim.* Let `C_0 = Fix_Q(p)`, acting on a finite set through second-prime principal congruence
+    levels `C_0/N_M`. Every permutation modelling the inversion `x` then pays a uniform Hamming defect on
+    the relations `xsx = φ(s)`, `s ∈ Fix_Q(e')`.
+  - *Consequence.* Microstates for `Q ↷ PGL_2(Q_2)/Λ` have vertex-group restrictions `δ_*`-far from
+    every depth-`M` frame tower.
+  - *Why it dies.* No level `M ≥ 1` stabilizer coincides on the edge group, by nondiscreteness of `Q`
+    on `T'`. Lemma G of `expanding-matchings-need-a-shared-stabilizer` then charges every gluing.
