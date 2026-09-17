@@ -1,0 +1,25 @@
+m r N  deg  k  class_nonzero  dim_test (N-1)(r-1)<=m(r+1)  obstruction_on_J_slice (N-1)<=m or (N-1)(r-1)<=rm
+1 1 2 0 2 True True True
+1 1 3 0 2 True True True
+1 1 4 0 2 True True True
+1 2 2 1 3 True True True
+1 2 3 2 3 True True True
+1 2 4 3 3 True True False
+1 3 2 2 4 True True True
+1 3 3 4 4 True True False
+1 3 4 6 4 False False False
+1 4 2 3 5 True True True
+1 4 3 6 5 False False False
+1 4 4 9 5 False False False
+2 1 2 0 4 True True True
+2 1 3 0 4 True True True
+2 1 4 0 4 True True True
+2 2 2 1 6 True True True
+2 2 3 2 6 True True True
+2 2 4 3 6 True True True
+2 3 2 2 8 True True True
+2 3 3 4 8 True True True
+2 3 4 6 8 True True True
+2 4 2 3 10 True True True
+2 4 3 6 10 True True True
+2 4 4 9 10 True True False
