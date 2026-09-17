@@ -87,3 +87,14 @@ direction is used here.
   bounds all fibre masses by the identity fibre below `p_c(N;G)`. **Where it
   stops:** this is a consequence of the gap, not a route to it. It rules out
   single-fibre concentration in a gap window but does not create one.
+* **Russo-BK integration from p_c, fibre-summed (obstruction).** Integrate
+  `d tau/dp <= d T P T` upward from `p_c` and sum over `N`. By
+  `fpbs-bk-majorant-kesten-gap-is-quotient-critical-l2`, the critical
+  majorant `M^N(delta)=sum_k (d delta)^k [sigma*(mu_Q*sigma)^k](e)` is finite
+  for some `delta>0` iff `||S_(p_c)||_(l2(Q))<infinity`. When it is finite it
+  gives the gap. But it forces `||T_(p_c)||<infinity` on `G`, which already
+  gives `p_c<p_u` without the split. Under relative collapse, one
+  supercritical factor makes every Picard remainder `+infinity`. **Where it
+  dies:** the passage from the critical kernel to `p_c+delta`. The invariant
+  is `||S_(p_c)||_(l2(Q)) >= ||T_(p_c)||`, and it is infinite for amenable
+  `Q`. So Russo-BK proofs of (alpha) are at least as hard as critical l2.
