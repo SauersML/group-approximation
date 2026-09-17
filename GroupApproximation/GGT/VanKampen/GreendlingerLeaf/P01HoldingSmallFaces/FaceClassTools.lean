@@ -142,7 +142,8 @@ theorem facePerm_alpha (M : CombMap.{u}) (d : M.Dart) : M.facePerm (M.alpha d) =
 theorem faceClass_sigma {K : M.Dart → Prop} {d : M.Dart} (hd : ¬ K d) :
     Relation.EqvGen (CombMap.FaceClassStep M K) d (M.sigma d) :=
   Relation.EqvGen.trans _ _ _ (faceClass_alpha hd)
-    (Relation.EqvGen.trans _ _ _ (faceClass_facePerm (M.alpha d)) (eqvGen_of_eq (facePerm_alpha M d)))
+    (Relation.EqvGen.trans _ _ _ (faceClass_facePerm (M.alpha d))
+      (eqvGen_of_eq (facePerm_alpha M d)))
 
 /-- Sweeping around a vertex through darts off the set. -/
 theorem faceClass_pow {K : M.Dart → Prop} (y : M.Dart) (i : ℕ)

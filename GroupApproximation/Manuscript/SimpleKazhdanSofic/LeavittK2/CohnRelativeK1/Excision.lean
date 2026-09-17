@@ -30,8 +30,9 @@ variable {R : Type*} [Ring R] [Algebra (ZMod 2) R] (C : CohnTwoData R)
 def unitSpan : Submodule (ZMod 2) R :=
   Submodule.span (ZMod 2) (Set.range fun ab : List (Fin 2) × List (Fin 2) ↦ C.unit ab.1 ab.2)
 
-theorem unit_mem_unitSpan (α β : List (Fin 2)) : C.unit α β ∈ C.unitSpan :=
-  Submodule.subset_span ⟨(α, β), rfl⟩
+theorem unit_mem_unitSpan (α β : List (Fin 2)) : C.unit α β ∈ C.unitSpan := by
+  rw [unitSpan]
+  exact Submodule.subset_span ⟨(α, β), rfl⟩
 
 theorem corner_smul (S : Finset (List (Fin 2))) (c : ZMod 2) (N : Matrix S S (ZMod 2)) :
     C.corner S (c • N) = c • C.corner S N := by
@@ -42,6 +43,7 @@ enough finite sets of words. -/
 theorem exists_corner_of_mem {x : R} (hx : x ∈ C.unitSpan) :
     ∃ S₀ : Finset (List (Fin 2)), ∀ S : Finset (List (Fin 2)), S₀ ⊆ S →
       ∃ N : Matrix S S (ZMod 2), C.corner S N = x := by
+  rw [unitSpan] at hx
   induction hx using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨⟨a, b⟩, rfl⟩ := hx
