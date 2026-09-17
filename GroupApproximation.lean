@@ -5403,6 +5403,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.E0Kernel
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.SpanGraph
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.TorsionTelescope
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.A5Relation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.Ultraproduct
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
