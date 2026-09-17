@@ -71,4 +71,5 @@ theorem manuscriptSentence_groupVonNeumannEmbedsROmega (Λ : Type) [Group Λ] [G
 
 end GroupApproximation.SimpleKazhdanSofic.ROmega
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ROmega.countable_of_fg
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ROmega.manuscriptSentence_groupVonNeumannEmbedsROmega
