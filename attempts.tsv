@@ -351,3 +351,4 @@
 35137249937	2026-09-16T18:54:49Z	GroupApproximation/Sofic/FiniteGroupCoronaExactification.lean	le_double_sum
 35156227466	2026-09-16T22:10:25Z	GroupApproximation/Sofic/FiniteGroupUlamIteration.lean	defectScale_nonneg
 35166853282	2026-09-17T00:31:25Z	GroupApproximation/Sofic/FiniteGroupUlamStep.lean	multiplicationError_cocycle
+35185608651	2026-09-17T05:25:14Z	GroupApproximation/Sofic/FiniteGroupUlamStep.lean	norm_correctedTable_sub_le
