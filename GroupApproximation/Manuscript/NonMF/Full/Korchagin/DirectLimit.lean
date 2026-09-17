@@ -207,35 +207,30 @@ variable {ι : Type*} [Preorder ι] [IsDirectedOrder ι] [Nonempty ι]
   [DirectedSystem A (f · · ·)]
 
 /-- The canonical map from a stage to the Mathlib direct limit. -/
-noncomputable def directLimitOf (i : ι) : A i →* DirectLimit A f where
+noncomputable def stageToDirectLimit (i : ι) : A i →* DirectLimit A f where
   toFun x := ⟦⟨i, x⟩⟧
-  map_one' := (DirectLimit.one_def (f := f) i).symm
-  map_mul' x y := (DirectLimit.mul_def (f := f) i x y).symm
+  map_one' := (DirectLimit.one_def (G := A) (f := f) i).symm
+  map_mul' x y := (DirectLimit.mul_def (G := A) (f := f) i x y).symm
 
-theorem directLimitOf_apply (i : ι) (x : A i) :
-    directLimitOf f i x = (⟦⟨i, x⟩⟧ : DirectLimit A f) :=
+theorem stageToDirectLimit_apply (i : ι) (x : A i) :
+    stageToDirectLimit f i x = (⟦⟨i, x⟩⟧ : DirectLimit A f) :=
   rfl
 
 /-- The Mathlib direct limit of a directed system of groups is a directed
 colimit in the sense of `IsDirectedColimit`. -/
-theorem isDirectedColimit_directLimit : IsDirectedColimit f (directLimitOf f) where
+theorem isDirectedColimit_directLimit : IsDirectedColimit f (stageToDirectLimit f) where
   map_map hij hjk x := DirectedSystem.map_map' f hij hjk x
   compat h x := by
-    rw [directLimitOf_apply, directLimitOf_apply]
-    exact DirectLimit.mk_apply (f := f) _ _ x h
+    rw [stageToDirectLimit_apply, stageToDirectLimit_apply]
+    exact DirectLimit.mk_apply (F := A) (f := f) _ _ x h
   surj g := by
     obtain ⟨i, x, hx⟩ := DirectLimit.exists_eq_mk f g
     refine ⟨i, x, ?_⟩
-    rw [directLimitOf_apply]
+    rw [stageToDirectLimit_apply]
     exact hx.symm
   eventually_one x hx := by
-    rw [directLimitOf_apply] at hx
-    exact (DirectLimit.exists_eq_one (f := f) ⟨_, x⟩).mp hx
-
-/-- A direct limit of countably many countable groups is countable. -/
-theorem countable_directLimit [Countable ι] [∀ i, Countable (A i)] :
-    Countable (DirectLimit A f) :=
-  inferInstance
+    rw [stageToDirectLimit_apply] at hx
+    exact (DirectLimit.exists_eq_one (G := A) (f := f) ⟨_, x⟩).mp hx
 
 /-- A countable Mathlib direct limit of residually finite groups is MF. -/
 theorem isOperatorMF_directLimit_of_residuallyFinite [Countable (DirectLimit A f)]

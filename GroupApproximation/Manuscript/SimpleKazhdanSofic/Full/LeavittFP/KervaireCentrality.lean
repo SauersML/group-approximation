@@ -119,7 +119,9 @@ theorem colRoot_apply (i : Fin m) (a : Multiplicative B) :
 theorem colRoot_commute :
     Pairwise fun i j : Fin m => ∀ a b : Multiplicative B, Commute (colRoot i a) (colRoot j b) := by
   intro i j _ a b
-  exact x_commute_of_ne _ _ _ _ _ _ (Fin.castSucc_ne_last j).symm (Fin.castSucc_ne_last i).symm _ _
+  exact x_commute_of_ne i.castSucc (Fin.last m) j.castSucc (Fin.last m) (Fin.castSucc_ne_last i)
+    (Fin.castSucc_ne_last j) (Fin.castSucc_ne_last j).symm (Fin.castSucc_ne_last i).symm
+    a.toAdd b.toAdd
 
 /-- The column-vector homomorphism `v ↦ ∏ᵢ x_{i,m}(vᵢ)`. -/
 def colVec : (Fin m → Multiplicative B) →* SteinbergGroup (Fin (m + 1)) B :=
@@ -133,14 +135,15 @@ theorem elMat_projection_colVec (v : Fin m → Multiplicative B) :
     elMat (projection (colVec v)) = 1 + colMatrix (Fin.last m) (padVec v) := by
   induction v using Pi.mulSingle_induction with
   | one =>
-      rw [map_one, map_one, elMat_one_eq, padVec_one,
-        colMatrix_eq_zero _ _ (fun _ => rfl), add_zero]
+      have hz : colMatrix (Fin.last m) (0 : Fin (m + 1) → B) = 0 :=
+        colMatrix_eq_zero _ _ fun _ => rfl
+      rw [map_one, map_one, elMat_one_eq, padVec_one, hz, add_zero]
   | mul v w hv hw =>
       rw [map_mul, map_mul, elMat_mul, hv, hw, one_add_colMatrix_mul]
       refine congrArg
         (fun y => (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) B) + colMatrix (Fin.last m) y) ?_
       funext r
-      rw [padVec_mul_apply, padVec_last, mul_zero, add_zero]
+      simp only [padVec_mul_apply, padVec_last, mul_zero, add_zero]
   | mulSingle i a =>
       rw [colVec_mulSingle, projection_x, elMat_elementaryRoot, single_eq_colMatrix]
       refine congrArg
@@ -237,7 +240,9 @@ theorem rowRoot_apply (j : Fin m) (a : Multiplicative B) :
 theorem rowRoot_commute :
     Pairwise fun i j : Fin m => ∀ a b : Multiplicative B, Commute (rowRoot i a) (rowRoot j b) := by
   intro i j _ a b
-  exact x_commute_of_ne _ _ _ _ _ _ (Fin.castSucc_ne_last i) (Fin.castSucc_ne_last j) _ _
+  exact x_commute_of_ne (Fin.last m) i.castSucc (Fin.last m) j.castSucc
+    (Fin.castSucc_ne_last i).symm (Fin.castSucc_ne_last j).symm (Fin.castSucc_ne_last i)
+    (Fin.castSucc_ne_last j) a.toAdd b.toAdd
 
 /-- The row-vector homomorphism `v ↦ ∏ⱼ x_{m,j}(vⱼ)`. -/
 def rowVec : (Fin m → Multiplicative B) →* SteinbergGroup (Fin (m + 1)) B :=
@@ -251,14 +256,15 @@ theorem elMat_projection_rowVec (v : Fin m → Multiplicative B) :
     elMat (projection (rowVec v)) = 1 + rowMatrix (Fin.last m) (padVec v) := by
   induction v using Pi.mulSingle_induction with
   | one =>
-      rw [map_one, map_one, elMat_one_eq, padVec_one,
-        rowMatrix_eq_zero _ _ (fun _ => rfl), add_zero]
+      have hz : rowMatrix (Fin.last m) (0 : Fin (m + 1) → B) = 0 :=
+        rowMatrix_eq_zero _ _ fun _ => rfl
+      rw [map_one, map_one, elMat_one_eq, padVec_one, hz, add_zero]
   | mul v w hv hw =>
       rw [map_mul, map_mul, elMat_mul, hv, hw, one_add_rowMatrix_mul]
       refine congrArg
         (fun y => (1 : Matrix (Fin (m + 1)) (Fin (m + 1)) B) + rowMatrix (Fin.last m) y) ?_
       funext r
-      rw [padVec_mul_apply, padVec_last, zero_mul, add_zero]
+      simp only [padVec_mul_apply, padVec_last, zero_mul, add_zero]
   | mulSingle j a =>
       rw [rowVec_mulSingle, projection_x, elMat_elementaryRoot, single_eq_rowMatrix]
       refine congrArg
