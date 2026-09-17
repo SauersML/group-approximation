@@ -10,7 +10,10 @@ requires:
   - stw40-unital-nuclear-no-trace-iff-exact
   - elek-free-minimal-cantor-actions-with-invariant-measures
   - thompson-v-has-haagerup-property
+  - kazhdan-host-route-imports-have-verbatim-sources
 ---
+
+*Demoted 2026-09-17 (audit): referee lens 1 of two returned refuted=true on citation grounds (Step 1's exact-to-amenable-compact-model import and the Conclusion's (T)-plus-Haagerup finiteness import lack verbatim sources); lens 2 returned refuted=false. The route now requires the OPEN gap claim `kazhdan-host-route-imports-have-verbatim-sources`, so its target derives OPEN. The text below is kept as an attempt.*
 
 Throughout, `Γ = Z^3 ⋊ SL_3(Z)`, `C = {0,1}^N`, and `σ` is the one-sided shift on `C`.
 
