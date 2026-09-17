@@ -5420,6 +5420,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RadicalArithmetic.Arithmeti
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.FibreCollapse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TwistedModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathCongr
+import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathStar
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
