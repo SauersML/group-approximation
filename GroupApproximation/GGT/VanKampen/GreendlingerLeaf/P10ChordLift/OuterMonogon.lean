@@ -112,9 +112,9 @@ theorem sameCorner_mid {a z : M.Dart} (ha : M.sigma z = a) :
   intro t ht ht3 w hw
   rcases (by omega : t = 1 ∨ t = 2) with rfl | rfl
   · rw [sameCorner_sigma_one ha] at hw
-    exact Option.noConfusion (Option.some.inj hw)
+    simp [EdgeInsertion.embed] at hw
   · rw [sameCorner_sigma_two ha] at hw
-    exact Option.noConfusion hw
+    simp [EdgeInsertion.embed] at hw
 
 end SameCorner
 
@@ -126,7 +126,7 @@ variable {M : CombMap.{v}}
 noncomputable def sameCorner (a : M.Dart) :
     RotationRefinement M (EdgeInsertion.toCombMap M a a) where
   map := EdgeInsertion.embed M
-  injective d e h := Option.some.inj (Option.some.inj h)
+  injective _ _ h := Option.some.inj (Option.some.inj h)
   alpha_map _ := rfl
   step z := by
     by_cases ha : M.sigma z = a

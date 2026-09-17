@@ -49,7 +49,7 @@ theorem exists_fundamentalDomain_of_isClosed_movedSet [CompactSpace X] [T2Space 
     · refine ⟨∅, isClopen_empty, fun z hz => absurd hz (Set.notMem_empty z), fun hxm => ?_⟩
       have hxm' : σ x ≠ x := hxm
       exact absurd hx hxm'
-    · obtain ⟨W, hW, hxW, hWd⟩ := exists_isClopen_displaced hx
+    · obtain ⟨W, hW, hxW, hWd⟩ := exists_isClopen_displaced (f := σ) hx
       exact ⟨W, hW, fun z hz hz' => Set.disjoint_left.1 hWd hz' (Set.mem_image_of_mem σ hz),
         fun _ => hxW⟩
   choose U hUc hUd hUx using hex
