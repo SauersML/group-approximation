@@ -134,3 +134,27 @@ a positive answer must use self-similar groups with infinitely many states.
    - *What the split shows.* After requirement 1, no computability condition is
      left: the remaining difficulty is a Higman-type embedding theorem inside the
      self-similar category.
+6. **Torsion-free refutation mechanism through profinite completions
+   (2026-09-17). OPEN.**
+   - *Established obstruction.* `simple-product-completions-block-regular-tree-actions`.
+     Suppose a residually finite group has, in its completion, an open subgroup
+     `prod S_i` of nonabelian finite simple groups, with each order bound met by
+     only finitely many factors. Then it acts faithfully on no `T_d`.
+     - For every `m`, it has an infinite finite-index subgroup with no
+       nontrivial quotient whose composition factors have order at most `m`.
+     - This is a second way to fail (N1). It uses no torsion.
+   - *New decomposition.* Route `fp-rf-tree-obstruction-via-simple-product-completion`
+     into `some-fp-rf-group-acts-on-no-regular-rooted-tree`. Its one open
+     prerequisite is `fp-rf-group-with-simple-product-completion`. It is
+     independent of the torsion route.
+   - *Class kill.* `fp-groups-have-no-multiplier-product-completions`. No
+     finitely presented group has an open product of finite groups with a
+     non-split central extension by `Z/p` in infinitely many factors, for one
+     fixed prime `p`.
+     - The proof is elementary: a presentation with `r` relators allows at most
+       `r` independent non-split factor extensions.
+     - It excludes `prod Alt(n)` for every finitely presented group, not only
+       for Kassabov--Nikolov frames.
+   - *Where it stops.* Products of Lie-type factors whose multipliers are
+     eventually coprime to each prime, such as `SL_2(2^k)`, pass every test
+     here. No finitely presented candidate is known.
