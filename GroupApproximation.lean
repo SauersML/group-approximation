@@ -5362,6 +5362,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.MarkedG
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.ExpanderBridge
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Restriction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.WordProblems.Endpoints
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.SoficPrinted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
