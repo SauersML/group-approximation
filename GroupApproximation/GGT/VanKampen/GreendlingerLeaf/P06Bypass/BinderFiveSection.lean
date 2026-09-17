@@ -12,8 +12,9 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 `osinMultipleEdgePocketRegionCopyBelowSection_of_pinchBelowSectionOrderEuler`
 (`Common/CellStepBelow.lean`) build binder 5 below the bound from the clean copy in both orders, the
 exterior off one side, the Euler residual, the below pinch (residual 06) and the below proper arcs
-(residual 07).  With the refuted walk binder (`BinderFive.CellPocketWalkRefutedBelowInput`), binder
-5 needs only the clean copy and the exterior off one side, and both are closed in the corpus
+(residual 07).  With the refuted walk binder (`CellPocketWalkRefutedBelowInput`,
+`RefutedDef.lean`), binder 5 needs only the clean copy and the exterior off one side, and both are
+closed in the corpus
 (`cellPocketCopyCleanBothOrders`, `cellPocketWalkOuterOffSideSomeOrder`).
 
 * `multipleEdgePocketRegionCopyBelowInput_of_refuted`: binder 5 below the bound at fixed parameters,
@@ -45,7 +46,7 @@ theorem multipleEdgePocketRegionCopyBelowInput_of_refuted
     (hcopy : CellPocketCopyCleanBothOrdersStatement.{u, w, v})
     (hout : CellPocketWalkOuterOffSideSomeOrderStatement.{u, w, v})
     {D : RelGenSet G Lambda} {lambda c mu : ℝ} {eps : ℕ}
-    (hrefuted : BinderFive.CellPocketWalkRefutedBelowInput.{u, w, v} D lambda c mu eps W) :
+    (hrefuted : CellPocketWalkRefutedBelowInput.{u, w, v} D lambda c mu eps W) :
     MultipleEdgePocketRegionCopyBelowInput.{u, w, v} D lambda c mu eps W := by
   intro Delta cuts hlea hbelow S a ha b hb hab i j hij hai hbi
   obtain ⟨S', a', b', i', j', ha', hb', hab', hij', hai', hbi', hclean₁, hclean₂⟩ :=
@@ -74,7 +75,7 @@ end Order
 binder.**  The thresholds are those of the refuted binder; the clean copy in both orders and the
 exterior off one side are the closed corpus theorems.  No Euler residual and no pinch. -/
 theorem osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
-    (hrefuted : BinderFive.CellPocketWalkRefutedBelowSectionStatement.{u, w, v}) :
+    (hrefuted : CellPocketWalkRefutedBelowSectionStatement.{u, w, v}) :
     OsinMultipleEdgePocketRegionCopyBelowSectionStatement.{u, w, v} := by
   intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
   obtain ⟨eps0, heps0⟩ := hrefuted D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16

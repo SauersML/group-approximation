@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.BinderFiveInterface
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.RefutedDef
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -12,7 +12,8 @@ data from the Euler residual, the below pinch (residual 06) and the below proper
 Its `hproper` call is on exactly the walk binder refuted by P07 route 3.  This module keeps only the
 construction of the noncrossing walk (`CellPocketWalkColour.walk_orient`,
 `ClosedWalkFaceColouring.isNoncrossingClosedWalk_of_orient`) and closes the goal by the refuted
-binder, `BinderFive.CellPocketWalkRefutedBelowInput`.  No Euler residual, no pinch.
+binder, `CellPocketWalkRefutedBelowInput` (`RefutedDef.lean`, lane gl-p06-01).  No Euler residual,
+no pinch.
 
 * `copyRegion_of_offSideWalkSectionRefutedBelow`: the conclusion of
   `copyRegion_of_offSideWalkSectionPinchBelow`, from the refuted binder alone.
@@ -39,7 +40,7 @@ proper arcs replaced by the refuted walk binder: the walk is noncrossing by its 
 refuted binder applies and the goal holds vacuously. -/
 theorem copyRegion_of_offSideWalkSectionRefutedBelow
     {D : RelGenSet G Lambda} {eps : ℕ} {lambda c mu : ℝ}
-    (hrefuted : BinderFive.CellPocketWalkRefutedBelowInput.{u, w, v} D lambda c mu eps W)
+    (hrefuted : CellPocketWalkRefutedBelowInput.{u, w, v} D lambda c mu eps W)
     {Delta : DiscDiagram.{u, w, v} W} {cuts : SectionCuts D lambda c Delta.boundaryWord}
     (hlea : Delta.LeastArea)
     (hbelow : OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount)

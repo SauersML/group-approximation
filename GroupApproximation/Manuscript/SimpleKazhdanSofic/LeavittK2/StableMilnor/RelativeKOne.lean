@@ -41,16 +41,16 @@ instance relativeGL_normal (f : R →+* S) : (relativeGL f).Normal :=
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relativeGL_normal
 
 /-- The stabilized relative elementary units `e_{ij}(a)` with `f a = 0`. -/
-def relativeElementarySet (f : R →+* S) : Set (ClassicalGLColim R) :=
+def stableRelativeElementarySet (f : R →+* S) : Set (ClassicalGLColim R) :=
   {g | ∃ (n : ℕ) (i j : Fin n) (hij : i ≠ j) (a : R),
     f a = 0 ∧ g = glColimOf R n (elementaryUnit i j hij a)}
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relativeElementarySet
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.stableRelativeElementarySet
 
 /-- `E'(R, ker f)`: the `GL(R)`-normal closure of the relative elementary units (equal to
 Milnor's `E(R, I)` by his Lemma 4.3, not formalized here). -/
 noncomputable def relativeElementaryColim (f : R →+* S) : Subgroup (ClassicalGLColim R) :=
-  Subgroup.normalClosure (relativeElementarySet f)
+  Subgroup.normalClosure (stableRelativeElementarySet f)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relativeElementaryColim
 
@@ -95,7 +95,7 @@ instance relativeElementaryColim_subgroupOf_normal (f : R →+* S) :
 
 /-- **Relative `K₁`**: `K₁(R, ker f) = GL(R, ker f) ⧸ E'(R, ker f)`. -/
 noncomputable abbrev relativeKOne (f : R →+* S) : Type _ :=
-  relativeGL f ⧸ (relativeElementaryColim f).subgroupOf (relativeGL f)
+  ↥(relativeGL f) ⧸ (relativeElementaryColim f).subgroupOf (relativeGL f)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relativeKOne
 
