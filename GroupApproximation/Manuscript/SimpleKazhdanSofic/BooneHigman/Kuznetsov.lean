@@ -327,10 +327,11 @@ theorem hasSolvableWordProblem_of_simpleSubgroup {G H : Type} [Group G] [Group H
     rw [hval]
     constructor
     · intro h1
-      exact hφ (Subtype.ext (h1.trans (map_one φ).symm))
+      apply hφ
+      rw [map_one]
+      exact Subtype.ext h1
     · intro h1
-      rw [h1, map_one]
-      rfl
+      simp [h1]
   have hp : ComputablePred fun w : List (Fin n × Bool) => wordValue t w = 1 :=
     (computablePred_evalRaw_eq_one rp S (primrec_translateRaw table).to_comp hmem).of_eq hiff
   exact ⟨Fin n, inferInstance, inferInstance, t, ht, partrec_wordProblemOracle_of_computablePred t hp⟩
