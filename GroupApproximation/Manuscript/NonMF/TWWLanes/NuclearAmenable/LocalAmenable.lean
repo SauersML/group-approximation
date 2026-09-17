@@ -139,7 +139,7 @@ theorem isAmenableTrace_of_isLocallyAmenableTrace
   have hdiv : ∀ ε : ℝ, 0 < ε → ∀ᶠ n : ℕ in atTop, 1 / ((n : ℝ) + 2) < ε := by
     intro ε hε
     filter_upwards [TracialUltraproduct.eventually_lt_of_tendsto_zero
-      tendsto_one_div_add_atTop_nhds_zero_nat hε] with n hn
+      (tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ)) hε] with n hn
     have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     exact lt_of_le_of_lt (one_div_le_one_div_of_le (by linarith) (by linarith)) hn
   rw [← hfun]

@@ -114,6 +114,7 @@ theorem Move.append_left {a b c : V} {q q' : X.EdgePath b c} (h : Move q q')
 theorem Homotopic.append_right {a b c : V} {p p' : X.EdgePath a b} (h : Homotopic p p')
     (r : X.EdgePath b c) : Homotopic (p.append r) (p'.append r) := by
   have h' : Relation.EqvGen Move p p' := h
+  clear h
   induction h' with
   | rel _ _ hm => exact Relation.EqvGen.rel _ _ (hm.append_right r)
   | refl _ => exact Relation.EqvGen.refl _
@@ -125,6 +126,7 @@ theorem Homotopic.append_right {a b c : V} {p p' : X.EdgePath a b} (h : Homotopi
 theorem Homotopic.append_left {a b c : V} {q q' : X.EdgePath b c} (h : Homotopic q q')
     (s : X.EdgePath a b) : Homotopic (s.append q) (s.append q') := by
   have h' : Relation.EqvGen Move q q' := h
+  clear h
   induction h' with
   | rel _ _ hm => exact Relation.EqvGen.rel _ _ (hm.append_left s)
   | refl _ => exact Relation.EqvGen.refl _
