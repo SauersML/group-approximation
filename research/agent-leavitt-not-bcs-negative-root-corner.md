@@ -88,3 +88,53 @@ would give a nonhyperlinear locally-finite-by-residually-finite group, which
 would be a separate surprise.  The next falsifiable step is to decide whether
 `E_20(T_2)` has a hyperlinear quotient or model in which `x_13(1-s_2t_2)`
 survives.
+
+### Entropy-measure transplant on the Toeplitz survivor class (swarm-0917, transplanter)
+
+*Calibration (established).*
+`toeplitz-supported-leavitt-corner-is-jacobson-hyperlinearity` settles the
+coefficient ring and the group.  The complementary Toeplitz algebra
+`F_2<s_2,t_2>` in `R` is isomorphic to the Jacobson algebra `J`, with `q`
+corresponding to `Q=1-ST`.  The mark `x_13(q)` lies in the simple finitary
+kernel `L_20`, whose centralizer is trivial.  Two consequences follow.
+First, "`E_20(T_2)` has a hyperlinear quotient or model seeing
+`x_13(1-s_2t_2)`" is equivalent to "`EL_20(J)` is hyperlinear".  Second, an
+`LNC3` diagram with `pi(X) <= EL_20(T_2)` would prove `EL_20(J)`
+nonhyperlinear.  So the step recorded above cannot be decided by a
+model-level test short of a hyperlinearity theorem for this Kazhdan, non-LEF
+group.
+
+*Transplant tried: the Haar fixed-point character.*  Let `G=EL_20(J)` act by
+dual automorphisms on the compact group `X=F_2^(N x 20)`, which is the
+Pontryagin dual of `F_2[N x 20]`, with Haar measure `mu`.  Put
+
+```text
+phi(g)=mu(Fix g) = 2^(-rank(g-1))   if g in L_20,
+                 = 0                if g notin L_20.
+```
+
+Off `L_20`, the symbol of `g-1` is nonzero, so `g-1` has infinite rank.  The
+fixed subgroup is then the annihilator of an infinite range and has Haar
+measure `0`.  `phi` is the trace of `u_g` in the orbit-relation algebra, so
+it is positive definite, and `phi^k -> delta_e` pointwise.  Hence
+Connes-embeddability of `M_phi` would imply hyperlinearity of `G`.  This
+character is natural here: the mark `z` has `phi(z)=1/2`.
+
+*Where the transplant dies.*  `M_phi` sits inside `L(R_orb)`, where `R_orb`
+is the orbit equivalence relation of `G` on `X`.  The action of the locally
+finite group `L_20` generates a hyperfinite subrelation which is normal in
+`R_orb`.  Its quotient is governed by `EL_20(F_2[z,z^(-1)])`, which is
+Kazhdan and non-amenable.  So the transplant needs an
+"amenable-kernel-by-sofic-quotient implies sofic or Connes-embeddable"
+permanence theorem for relations.  That is the open direction of the
+extension problem, and no Cairn node or imported theorem supplies it.
+
+Finite configuration models of the action (truncating `N` to a window) do
+not help.  They are permutation models of `G` and meet the same far-end
+orientation obstruction recorded in
+`binary-jacobson-el3-rank-radical-is-the-finitary-kernel`: the path
+permutation criterion dies at the non-extendable map `psi`.  A relation
+defect of rank `r` in such a model moves a `1-2^(-r)` fraction of
+configurations, so bounded-rank boundary errors are not small in Hamming
+distance.  The approach is recorded dead at the permanence step.  It is not
+a proof that the survivor class is empty.
