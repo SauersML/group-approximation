@@ -1,0 +1,13 @@
+C0-C2: rank(bc-cb)=2, rank(W_rect - I) = 2 s^2, unslit c' commutes with rank(c-c') = s
+  L=  2 n=    8 s=  1  rank(bc-cb)=2  rank(W-I)=    2=2s^2  rank(c-c')=1=s  => min rank(b'-b)+rank(c'-c) = 1: OK
+  L=  3 n=   18 s=  1  rank(bc-cb)=2  rank(W-I)=    2=2s^2  rank(c-c')=1=s  => min rank(b'-b)+rank(c'-c) = 1: OK
+  L=  4 n=   32 s=  2  rank(bc-cb)=2  rank(W-I)=    8=2s^2  rank(c-c')=2=s  => min rank(b'-b)+rank(c'-c) = 2: OK
+  L=  5 n=   50 s=  2  rank(bc-cb)=2  rank(W-I)=    8=2s^2  rank(c-c')=2=s  => min rank(b'-b)+rank(c'-c) = 2: OK
+  L=  6 n=   72 s=  3  rank(bc-cb)=2  rank(W-I)=   18=2s^2  rank(c-c')=3=s  => min rank(b'-b)+rank(c'-c) = 3: OK
+  L=  7 n=   98 s=  3  rank(bc-cb)=2  rank(W-I)=   18=2s^2  rank(c-c')=3=s  => min rank(b'-b)+rank(c'-c) = 3: OK
+  L=  8 n=  128 s=  4  rank(bc-cb)=2  rank(W-I)=   32=2s^2  rank(c-c')=4=s  => min rank(b'-b)+rank(c'-c) = 4: OK
+  L= 40 n= 3200 s= 20  rank(bc-cb)=2  rank(W-I)=  800=2s^2  rank(c-c')=20=s  => min rank(b'-b)+rank(c'-c) = 20: OK
+  L= 64 n= 8192 s= 32  rank(bc-cb)=2  rank(W-I)= 2048=2s^2  rank(c-c')=32=s  => min rank(b'-b)+rank(c'-c) = 32: OK
+  all L in 2..40, 64: OK
+C3: rectangle counts 2ah for 1<=a<=s, 1<=h<=L-1
+  all L in 2..12: OK
