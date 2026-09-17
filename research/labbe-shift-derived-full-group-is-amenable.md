@@ -4,6 +4,7 @@ id: labbe-shift-derived-full-group-is-amenable
 kind: claim
 title: The derived subgroup of the topological full group of Labbé's minimal aperiodic Wang shift is amenable
 distinct_from:
+  jnds-criterion-is-inert-on-one-ended-principal-orbits: That proves a proof method (JNS th:amenhomeo1 with any H, and half-orbit stabilizers) is equivalent to this claim on Omega_U; this is the amenability question itself.
   elek-monod-near-hit-has-torsion-no-kazhdan-subgroup: That records a minimal Z^2 system (Elek--Monod edge colourings) whose alternating group is non-amenable; this asks whether the full group of Labbé's minimal aperiodic Wang shift is amenable.
 artifacts:
   - research/artifacts/fp-simple-amenable-z2-sft-2026-09-12.md
@@ -20,6 +21,11 @@ artifacts:
   - For `Omega_U` the walls are now proved, in Proposition 5 of the reductions artifact. On a singular orbit, two lifts of a point of the torus disagree only along finitely many lattice lines (directions `(1,0)`, `(0,1)`, `(1,-1)`) and strips `n_2 - φ^{-1} n_1 ∈ J`. These sets are not finite.
   - Taking `H = Z^2` makes clause (1) the question itself.
   - This explains why the theorem does not apply. It is not a proof of non-amenability.
+- **Any `H` at all (2026-09-17, `jnds-criterion-is-inert-on-one-ended-principal-orbits`).** Dead end, proved.
+  - On `Omega_U` the germs are principal and the orbits are one-ended and amenable. Clause (2) for *any* `H` forces `R_F̂ ≤ [[H]]`, where `R_F̂` is the group of full-group elements that are the identity near a finite set.
+  - `R_F̂` is co-amenable in `[[Omega_U]]`, so clause (1) is equivalent to this claim. Recurrence and germs never enter.
+  - Commensurated subsets of orbits are finite or cofinite, so the Juschenko–Monod half-orbit mechanism is inert too. This includes half-leaves of the linear flow `x + t(1,-φ)` that carries every `Z^2`-orbit.
+  - What remains open: a non-principal topology (torus or circle type, as in rank-2 interval exchanges), or a cocycle into a functor on a `G`-set that is not an orbit.
 - **Orbital recurrence (reductions artifact, Proposition 1, Corollary 2 and Remark 3).** Proved, and not sufficient.
   - Every f.g. subgroup of `[[Z^2 ~ X]]`, for any free action, has recurrent orbital Schreier graphs, by Rayleigh monotonicity and Nash-Williams on `Z^2`. So its orbit actions are extensively amenable (JMMdlS arXiv:1503.04977, `T: recurrent`, `lemma=JSbis`).
   - By JMMdlS `prop:functor:amenable:intro`, amenability follows from any cocycle into a functor `F: I -> Amen` with amenable kernel.
