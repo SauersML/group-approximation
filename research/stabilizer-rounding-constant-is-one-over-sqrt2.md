@@ -96,3 +96,43 @@ designs (arXiv:2509.11979) state no additive 1-norm frustration bound. No prior
 statement of (SR*) or its constant was found; no priority claim. Remaining caveats: this
 is an ordinary proof with one referee and no Lean check, and the rounding is
 existential (it uses a top eigenvector), so no efficient algorithm is claimed.
+
+**Referee check (2026-09-17, w3-stab).** SOUND; second independent referee, verdict
+written before reading the ref-04 paragraph or scripts; no error found, no status change.
+Attacked the two highest-risk steps. *Post-selection identity.* With `K = K_c + K_A`,
+`A_R K_c = K_c A_R` and `A_R K_A = -K_A A_R` give `A_R K A_R = K_c - K_A` and
+`A_R K + K A_R = 2 A_R K_c`, so `(I+A_R)K(I+A_R) = 2(I+A_R)K_c`. Dividing by
+`4||Pi psi||^2 = 2(1+M)` gives `<psi|(I+A_R)K_c|psi>/(1+M)`. The real part of
+`<psi|A_R K|psi> = lambda M` is `<A_R K_c>`, because `A_R K_A` is anti-Hermitian, so (2)
+reads `(lambda - a + lambda M)/(1+M) = lambda - a/(1+M)`. `M >= 0` keeps `Pi psi != 0`.
+*Weight bound.* `W = w_R + sum_C w_Q + W_A` exactly. The explicit sum `K' = sum_C w_Q eps_Q B_Q`
+has weight exactly `sum_C w_Q`. Two distinct `A_Q` can compress to the same `B_Q`, for
+example `B tensor I` and `B tensor Z`, and they may cancel. That only lowers the weight,
+and the induction hypothesis is stated for arbitrary decompositions. `B_Q = I` means
+`U A_Q U^*` is `+-I` or `+-Z_n`, that is, `A_Q = +-I` or `A_Q = +-A_R`. The text names
+only the second. The first is excluded by the standing assumption "distinct non-identity Paulis" (no
+identity terms, via (R1)). The gap is not load-bearing: an identity term in `K'` would
+still be covered by the hypothesis, with the same weight. `<v|K_A|v> = 0` on the code
+space follows from `<v|A_Q|v> = <v|A_Q A_R|v> = -<v|A_R A_Q|v> = -<v|A_Q|v>`. Step 4
+monotonicity is used in the right directions (`lambda'` from below, `W'` from above).
+Scalar core (exact sympy, not Lean): `t = c/(1+c) = sqrt2-1`, `(1+c)t = c`,
+`(1-t)/sqrt2 = t`, and `(1-t^2)/(1+t^2) = 1/sqrt2`. Both F2 branches reduce to an affine
+function vanishing at `M = 1/sqrt2`, via `t^2(1+M)^2-(1-M^2) = (1+M)(t^2(1+M)-(1-M))`.
+The Step 4 expansion and (2) are identities. *Lean:* the repo has a lakefile, but this
+container has no Lean toolchain, no `.lake`/Mathlib, and about 4 GB of free disk. Nothing
+was compiled and no Lean verification is claimed. *Independent computation*
+(`experiments/stabilizer-rounding-constant-2026-09-17/referee_w3stab_check.py`, log
+`referee_w3stab_check.log`, no shared code). It runs the proof's full recursion
+literally. At each level it synthesizes an explicit Clifford `U` (S^dag, H, SWAP, CNOT, X)
+with `U A_R U^* = Z_n` and restricts to the code space. It asserts (1), the operator
+identity, (2), (3), that every compressed commuting term is a signed non-identity Pauli,
+and the weight bound on the actual restricted operator. It then checks that the output
+is a stabilizer state (exactly `2^n` Paulis with `|<P>|=1`) whose energy certifies (SR*).
+There were 1130 random instances at `n<=4` (dense, sparse, repeated and identity terms,
+pairwise-anticommuting Jordan--Wigner Majoranas, perturbed products of `(X+Z)/2`),
+1745 recursion levels in all. The worst excesses were 1.7e-16 in (1), 1.2e-14 in (2),
+2.1e-14 in (3) and 8.9e-16 in the weight bound. No identity component appeared in any
+`K'`. Nelder--Mead maximization of the rounding's own ratio at `n<=3` peaks at
+`0.707106781`, with no violation. `referee_w3stab_sympy.py` holds the exact scalar checks.
+Scope: the proof of (SR*) and its sharpness. The consequence bullets are transcriptions
+with the constant replaced and were checked only for arithmetic.

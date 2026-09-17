@@ -24444,6 +24444,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · stabilizer-rounding-constant-is-one-over-sqrt2 [ESTABLISHED] The optimal constant in stabilizer rounding of Pauli sums is 1/sqrt2
 - 2026-09-17 · qudit-weyl-rounding-sharp-constant [OPEN] The sharp additive stabilizer rounding constant for prime-qudit Weyl sums is d/pi + O(1)
 - 2026-09-17 · qudit-weyl-rounding-constant-linear-upper-bound-proof [COMPLETE] A commutator pair bound makes the good set commute below sigma_d/2, and the averaging proof then gives 2/sin(pi/d)+3
 - 2026-09-17 · qudit-weyl-rounding-constant-linear-upper-bound [ESTABLISHED] The additive stabilizer rounding constant for prime-qudit Weyl sums is at most 2/sin(pi/d)+3, which is linear in d
@@ -24451,7 +24452,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · qudit-code-rounding-factor-one-plus-inv-sqrt-d-proof [COMPLETE] Post-select a ground state on its most satisfied code projector and bound the leak by equal principal angles
 - 2026-09-17 · qudit-code-rounding-factor-one-plus-inv-sqrt-d [ESTABLISHED] On prime qudits with d>=5, code-constraint Hamiltonians have stabilizer states within the sharp factor 1+1/sqrt(d) of the ground energy
 - 2026-09-17 · thompson-f-dyadic-action-is-extensively-amenable [OPEN] The action of Thompson's group F on the dyadic rationals is extensively amenable
-- 2026-09-17 · fpbs-two-point-lq-threshold-gap-universal [OPEN] On every nonamenable Cayley graph the two-point function stays l^q summable slightly above p_c for every q above 2
 
 ## Active claims
 
