@@ -25,8 +25,6 @@ The general, possibly non-injective, direct-limit form is in
 
 namespace GroupApproximation.Full.NM09
 
-open GroupApproximation
-
 variable {G : Type*} [Group G]
 
 /-- Every finite subset of a group covered by a directed family of subgroups
@@ -60,20 +58,19 @@ theorem locallyResiduallyFinite_of_directed {ι : Type*} [Nonempty ι] (H : ι �
     rw [← hS]
     exact (Subgroup.closure_le (H i)).mpr fun x hx => hi x hx
   haveI := hRF i
-  exact residuallyFinite_of_injective (Subgroup.inclusion hle) (Subgroup.inclusion_injective hle)
+  exact GroupApproximation.residuallyFinite_of_injective (Subgroup.inclusion hle) (Subgroup.inclusion_injective hle)
 
 /-- A directed union of residually finite subgroups is LEF. -/
 theorem isLEF_of_directed_residuallyFinite {ι : Type*} [Nonempty ι] (H : ι → Subgroup G)
     (hdir : Directed (· ≤ ·) H) (hcov : ∀ g : G, ∃ i, g ∈ H i)
     (hRF : ∀ i, Group.ResiduallyFinite (H i)) : IsLEF G :=
-  isLEF_of_locallyResiduallyFinite (locallyResiduallyFinite_of_directed H hdir hcov hRF)
+  GroupApproximation.isLEF_of_locallyResiduallyFinite (locallyResiduallyFinite_of_directed H hdir hcov hRF)
 
 /-- A countable directed union of residually finite subgroups is MF. -/
-theorem isOperatorMF_of_directed_residuallyFinite {G : Type} [Group G] [Countable G]
-    {ι : Type*} [Nonempty ι] (H : ι → Subgroup G)
+theorem isOperatorMF_of_directed_residuallyFinite [Countable G] {ι : Type*} [Nonempty ι] (H : ι → Subgroup G)
     (hdir : Directed (· ≤ ·) H) (hcov : ∀ g : G, ∃ i, g ∈ H i)
     (hRF : ∀ i, Group.ResiduallyFinite (H i)) : IsOperatorMF G :=
-  isOperatorMF_of_isLEF (isLEF_of_directed_residuallyFinite H hdir hcov hRF)
+  GroupApproximation.isOperatorMF_of_isLEF (isLEF_of_directed_residuallyFinite H hdir hcov hRF)
 
 /-- An increasing sequence of subgroups whose supremum is `⊤` covers the group
 elementwise. -/
@@ -94,10 +91,10 @@ theorem isLEF_of_directedUnion_residuallyFinite (H : ℕ → Subgroup G) (hmono 
 /-- **Korchagin, internal form** (`non_mf_groups_exist.tex`, tex lines 284--288,
 after `thm:amenable-trace`): a countable group that is an increasing union of
 residually finite subgroups is MF. -/
-theorem isOperatorMF_of_directedUnion_residuallyFinite {G : Type} [Group G] [Countable G]
+theorem isOperatorMF_of_directedUnion_residuallyFinite [Countable G]
     (H : ℕ → Subgroup G) (hmono : Monotone H) (hcov : ⨆ n, H n = ⊤)
     (hRF : ∀ n, Group.ResiduallyFinite (H n)) : IsOperatorMF G :=
-  isOperatorMF_of_isLEF (isLEF_of_directedUnion_residuallyFinite H hmono hcov hRF)
+  GroupApproximation.isOperatorMF_of_isLEF (isLEF_of_directedUnion_residuallyFinite H hmono hcov hRF)
 
 #audit_axioms isOperatorMF_of_directed_residuallyFinite
 #audit_axioms isOperatorMF_of_directedUnion_residuallyFinite
