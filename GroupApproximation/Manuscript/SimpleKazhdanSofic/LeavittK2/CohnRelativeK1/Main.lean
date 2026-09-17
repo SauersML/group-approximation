@@ -25,7 +25,8 @@ Route.
 4. Excision (`mem_relativeElementary_of_unitSpan`) puts `u` in a corner `M_N(F_2)`, and
    `GL_N(F_2) = E_N(F_2)` plus the commutator trick gives `u ∈ EL_ι(C_2, I)`.
 
-The stable form is in `Stable.lean`.
+Lane 18 (`CohnTwo.cohnRelativeKOneTrivial` in `CohnTwo/RelativeKOne.lean`) uses the same
+excision lemmas for the rank-`Fin n` form `CohnRelativeKOneTrivialStatement`.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1
@@ -79,7 +80,7 @@ theorem cohnTwo_mem_monomialSpan (r : CohnTwo (ZMod 2)) :
 theorem cohnTwo_p_ne_zero : (CohnTwo.data (ZMod 2)).p ≠ 0 := by
   intro h
   have h1 := CohnTwo.fock_p (ZMod 2) (CohnTwo.pt (ZMod 2) [] 1)
-  rw [h, map_zero] at h1
+  rw [h, map_zero, LinearMap.zero_apply] at h1
   have h2 := congr_fun h1 []
   have h3 : CohnTwo.pt (ZMod 2) [] (CohnTwo.pt (ZMod 2) [] (1 : ZMod 2) []) [] = 1 := by
     simp [CohnTwo.pt]

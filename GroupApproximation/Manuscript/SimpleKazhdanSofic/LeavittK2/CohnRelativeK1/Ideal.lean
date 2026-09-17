@@ -14,9 +14,9 @@ is closed under left and right multiplication by `R`
 * `β* (γ p δ*) ∈ {0} ∪ {γ' p δ*}` (`coword_mul_unit`), and `α (γ p δ*) = (αγ) p δ*`;
 * `(γ p δ*) α ∈ {0} ∪ {γ p δ'*}` (`unit_mul_word`), and `(γ p δ*) β* = γ p (βδ)*`.
 
-Hence the two-sided ideal `I = (p)` equals `M` (`mem_unitSpan_of_mem_span_p`), and
-excision gives the relative `K_1` statement `GL_ι(R, I) = EL_ι(R, I)` for
-`#ι ≥ 2` (`relativeK1_trivial_of_span`).
+Hence the two-sided ideal `I = (p)` is contained in `M` (`mem_unitSpan_of_mem_span_p`).
+Together with excision (`mem_relativeElementary_of_unitSpan`) this gives the relative
+`K_1` statement `GL_ι(R, I) = EL_ι(R, I)` for `#ι ≥ 2` (see `Main.lean`).
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1
@@ -189,3 +189,4 @@ end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.mul_mem_unitSpan
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.mul_mem_unitSpan'
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.mem_unitSpan_of_mem_span_p
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.monomialSpan

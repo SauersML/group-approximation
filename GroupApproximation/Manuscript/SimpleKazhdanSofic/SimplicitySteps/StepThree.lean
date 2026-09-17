@@ -72,6 +72,8 @@ theorem isCovariantPair_clopen :
     rw [ClopenGroupCrossedProduct.unitHom_apply, ClopenGroupCrossedProduct.unit_mul_coeff,
       ClopenGroupCrossedProduct.comap_smulMap_inv_charFn]⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SimplicitySteps.isCovariantPair_clopen
+
 /-- **tex l.241–242**: for `1 ≠ K ⊴ G = EL_n(LC(Z, F_2) ⋊ Λ)`, `n ≥ 3`, with `Λ` acting minimally
 and topologically freely on a compact totally separated space, `K = G`. -/
 theorem manuscriptSentence_normalSubgroupEqTop [CompactSpace Z] [TotallySeparatedSpace Z]

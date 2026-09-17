@@ -136,3 +136,4 @@ end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.exists_block_eq
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.glMap_injective
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.mem_relativeElementary_of_unitSpan
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.unitSpan

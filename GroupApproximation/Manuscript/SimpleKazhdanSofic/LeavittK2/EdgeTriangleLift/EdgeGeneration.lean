@@ -64,7 +64,7 @@ def edgeBlock (R : Type*) [Ring R] : edgeStab R →* (Matrix (Fin 2) (Fin 2) R)�
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.EdgeTriangleLift.edgeBlock
 
 /-- `[[A, 0], [0, I]]`, padding along `Fin.castLE`. -/
-def padBlock (R : Type*) [Ring R] (u : (Matrix (Fin 2) (Fin 2) R)ˣ) : (Matrix (Fin 4) (Fin 4) R)ˣ :=
+noncomputable def padBlock (R : Type*) [Ring R] (u : (Matrix (Fin 2) (Fin 2) R)ˣ) : (Matrix (Fin 4) (Fin 4) R)ˣ :=
   ElementaryPadding.padUnitHom (Fin.castLEEmb two_le_four) u
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.EdgeTriangleLift.padBlock
