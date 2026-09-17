@@ -5370,6 +5370,7 @@ import GroupApproximation.Manuscript.NonMF.Full.RankTwoElementary.PrintedSentenc
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Resolvent
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.FlipInvariance
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Converse
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.HyperlinearPrinted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
