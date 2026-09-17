@@ -12,6 +12,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs/creative-branches.md
   - research/artifacts/fpbs/fixed-price-percolation.md
+  - research/artifacts/fpbs/counterexample-heretic-w5-2026-09-17.md
 ---
 
 **OPEN; the negation of `fpbs-fixed-price-universal`.** There exist a
@@ -118,19 +119,69 @@ so a witness that also fails cost one would settle
       with `log|Epi(Gamma_n,S)|` linear in the index. Neither is bounded by
       `d_p` of a subgroup of comparable index.
     - On cofinal chains, `d(Gamma_n)` exceeding the profinite rank.
-  - **Survivor 1 killed for normal chains** (lane `sw-007`, relaunch):
-    `fpbs-kazhdan-chain-visible-mod-p-growth-vanishes`. Along *every*
-    descending chain of finite index normal subgroups of a Kazhdan group,
-    `sup_m d((Gamma_n/Gamma_m)^ab)/[Gamma:Gamma_n] -> 0`. This holds for each
-    prime and for all primes at once, with no cofinality, Frattini or descent
-    hypothesis. The step where it dies is the same iteration run through the
-    *visible* Frattini subgroup, the common kernel of the classes that factor
-    through some `Gamma/Gamma_m`. So no abelian count read off the chain's own
-    finite quotients certifies cost above one for the Abert--Nikolov action of
-    a Kazhdan group. **Survivors now.**
-    - Subnormal Farber chains, such as Lackenby's (tau) chains.
-    - Invisible classes of `Gamma_n`: kernels containing no chain member, so
-      they are detected only by finite quotients outside the chain.
-    - Non-central abelian or non-abelian crowns of `Gamma_n/Gamma_m` (lane
-      `sw-027` covers twisted modules on `M`-radical closed chains).
-    - The gap `d(Gamma_n) > sup_m d(Gamma_n/Gamma_m)`.
+* **Candidate-class audit, and finite-cost normal subgroups with positive
+  rank gradient** (swarm-0917 w4 heretic, 2026-09-17). Note:
+  `research/artifacts/fpbs/normal-finite-cost-rank-gradient-2026-09-17.md`.
+  - *Groups with varying `l2` Betti numbers* die at the first step: Gaboriau's
+    `beta_n^(2)(R_alpha) = beta_n^(2)(G)` holds for every free action, so
+    every `l2` invariant gives the same bound for all actions.
+    *`SL_3(Z) x F`* dies because products of infinite groups have fixed price
+    one.
+    *Tarski monsters* are starved, not killed. They have no finite quotients
+    and no infinite normal or amenable subgroups, so no known action-dependent
+    lower bound on cost applies to them.
+  - The only separating machine is a cheap-action theorem against the
+    Abert--Nikolov profinite identity. New instance, ESTABLISHED
+    conditionally: `fpbs-normal-finite-cost-rankgradient-counterexample-reduction`.
+    A finitely generated `G` with an infinite normal `N` of infinite index and
+    `cost(N) < ∞`, together with a positive-gradient normal chain with trivial
+    intersection, refutes fixed price.
+  - Kill, ESTABLISHED: `fpbs-bounded-cost-normal-unbounded-chain-zero-rank-gradient`,
+    through `fpbs-quotient-split-larger-kernel-cost-one`. The quotient-split
+    cost-one theorem is extended to factor kernels `M ⊇ N`. As a result, if
+    `N` has bounded action cost and `[G:G_nN]` is unbounded, then `RG = 0`,
+    because the boundary action factors freely onto `lim G/G_nN`.
+  - Survivors:
+    - (S1) `N` has finite infimal cost but unbounded action costs, so `N`
+      itself is a counterexample.
+    - (S2) the chain has bounded image in `G/N`. Then the ergodic profinite
+      action of `N` along `(N∩G_n)` costs at least `1 + a·RG`. This is the
+      Abert--Nikolov fibred 3-manifold shape and the ergodic-restriction case
+      of `fpbs-normal-subgroup-bounded-cost-fixed-price-one`.
+    Next falsifiable step: decide whether `RG > 0` is possible for an
+    `N`-surjective normal chain. Congruence chains in a fibred arithmetic
+    3-manifold group are the test case. There the boundary action has no free
+    factor onto an infinite quotient, so Theorem A' gives nothing.
+* **Profinite gaps without a cheap-action theorem, and the torsion cheap
+  side** (swarm-0917 w5 heretic, 2026-09-17). Note:
+  `research/artifacts/fpbs/counterexample-heretic-w5-2026-09-17.md`.
+  - *New gap machine, ESTABLISHED:*
+    `fpbs-isomorphic-unequal-index-subgroups-rescale-gradient`. If a finitely
+    generated `G` has isomorphic finite-index subgroups of indices
+    `k_1 != k_2`, a Farber chain of gradient `r` in one of them induces two
+    free boundary actions of `G` of costs `1+r/k_1` and `1+r/k_2`.
+    Route: `fpbs-self-commensuration-gradient-gap-route`, open prerequisite
+    `fpbs-self-commensurated-positive-farber-gradient`.
+    **Where it dies so far:** every known member (`Z^d`, `BS(1,n)`,
+    lamplighters, `Gamma(3) ltimes Z^3`) has an infinite normal amenable
+    subgroup, so its Farber gradients are zero. Multiplicativity forces all
+    `l2`-Betti numbers and the infimal rank gradient to vanish.
+    Forcing maximal cost one by restriction and induction is circular; it
+    needs the open finite-extension equality of `fpbs-finite-fiber-cost-bound`.
+  - *Kill, ESTABLISHED:* `fpbs-farber-excludes-bounded-exponent-certificates`.
+    A group with a Farber chain is residually finite. Its bounded-exponent
+    subgroups are then locally finite (restricted Burnside). So the
+    Donoso-Echenique--Silva bounded-centralizer finite-cost certificate dies
+    at its hypothesis "contains an infinite finitely generated subgroup". It
+    can never be played against Abert--Nikolov. Burnside lower bounds must come
+    from non-profinite actions such as Bernoulli `c_n`.
+  - *Expensive side unconditional for torsion groups, ESTABLISHED:*
+    `fpbs-power-deficiency-torsion-profinite-cost-gap`. The residual `p`-image
+    `Gamma'` of `<x,y | w_i^(p^(i+1))>` is infinite, residually finite,
+    `p`-torsion and not Kazhdan. Every Farber boundary action of it costs at
+    least `1 + 1 - 1/(p(p-1))`.
+    Open cheap side: `fpbs-positive-gradient-torsion-group-cheap-action`, via
+    `fpbs-torsion-profinite-gap-counterexample-route`.
+    Next falsifiable step: a free action of such a group of cost below
+    `1 + RG`. Alternatively, two Farber chains of `Gamma'` with provably
+    different gradients.
