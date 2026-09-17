@@ -198,13 +198,12 @@ theorem polyEval_mem {B S : Type*} [Ring B] [Algebra ℂ B] [SetLike S B] [Subse
     polyEval c m x ∈ s :=
   Finset.sum_mem fun i _ ↦ SMulMemClass.smul_mem (c i) (pow_mem hx i)
 
-/-- **Uniform polynomial approximation of `q`** on self-adjoint elements of norm `≤ R`. -/
-theorem exists_poly_approx {A : Type*} [CStarAlgebra A] (R ε : ℝ) (hε : 0 < ε) :
-    ∃ (c : ℕ → ℂ) (m : ℕ), ∀ a : A, IsSelfAdjoint a → ‖a‖ ≤ R →
-      ‖polyEval c m a - cfc qfun a‖ ≤ ε := by
-  obtain ⟨p, hp⟩ :=
-    exists_polynomial_near_of_continuousOn (-R) R qfun continuous_qfun.continuousOn ε hε
-  refine ⟨fun i ↦ ((p.coeff i : ℝ) : ℂ), p.natDegree + 1, fun a ha haR ↦ ?_⟩
+/-- A real polynomial `ε`-close to `q` on `[-R, R]` is `ε`-close to `q` in norm on self-adjoint
+elements of norm `≤ R`. -/
+theorem norm_polyEval_sub_cfc_qfun_le {A : Type*} [CStarAlgebra A] {R ε : ℝ} (hε : 0 < ε)
+    (p : ℝ[X]) (hp : ∀ x ∈ Set.Icc (-R) R, |p.eval x - qfun x| < ε) (a : A)
+    (ha : IsSelfAdjoint a) (haR : ‖a‖ ≤ R) :
+    ‖polyEval (fun i ↦ ((p.coeff i : ℝ) : ℂ)) (p.natDegree + 1) a - cfc qfun a‖ ≤ ε := by
   obtain hA | hA := subsingleton_or_nontrivial A
   · rw [Subsingleton.elim (polyEval (fun i ↦ ((p.coeff i : ℝ) : ℂ)) (p.natDegree + 1) a
       - cfc qfun a) 0, norm_zero]
@@ -219,6 +218,18 @@ theorem exists_poly_approx {A : Type*} [CStarAlgebra A] (R ε : ℝ) (hε : 0 < 
   rw [Real.norm_eq_abs] at h
   rw [Real.norm_eq_abs]
   exact (hp t ⟨by linarith [neg_abs_le t], by linarith [le_abs_self t]⟩).le
+
+/-- **Uniform polynomial approximation of `q`** on self-adjoint elements of norm `≤ R`, with the
+same polynomial in two C⋆-algebras. -/
+theorem exists_poly_approx {A B : Type*} [CStarAlgebra A] [CStarAlgebra B] (R ε : ℝ)
+    (hε : 0 < ε) :
+    ∃ (c : ℕ → ℂ) (m : ℕ), (∀ a : A, IsSelfAdjoint a → ‖a‖ ≤ R →
+      ‖polyEval c m a - cfc qfun a‖ ≤ ε) ∧ ∀ b : B, IsSelfAdjoint b → ‖b‖ ≤ R →
+      ‖polyEval c m b - cfc qfun b‖ ≤ ε := by
+  obtain ⟨p, hp⟩ :=
+    exists_polynomial_near_of_continuousOn (-R) R qfun continuous_qfun.continuousOn ε hε
+  exact ⟨fun i ↦ ((p.coeff i : ℝ) : ℂ), p.natDegree + 1, norm_polyEval_sub_cfc_qfun_le hε p hp,
+    norm_polyEval_sub_cfc_qfun_le hε p hp⟩
 
 end Poly
 
