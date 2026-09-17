@@ -104,28 +104,21 @@ gap has to be computed.
   - One-ended graphs have no block tree.
   - Transitive graphs with a cut vertex need a spectral bound, not proved here,
     for a matrix indexed by orbits of pairs (block, vertex).
-* **Produce the Schur weight invariantly (2026-09-17, obstruction).**
-  `fpbs-invariant-schur-weights-cannot-certify-critical-l2` proves the
-  following on every Cayley graph.
-  - The normalized Schur supersolutions `W_C(p)` of `T_p` form a compact
-    `Gamma`-space, compact by the Harnack bound `h(u)/h(v) <= C p^(-d(u,v))`.
-  - `||T_p|| = inf{C : W_C(p) nonempty}`, so this node is equivalent to: some
-    `W_C(p_c)` is nonempty.
-  - An invariant probability measure on `W_C(p)` forces `chi_p <= C`, by mass
-    transport and `r + 1/r >= 2`.
+* **Invert the finite-volume certificate route (2026-09-17).**
+  `fpbs-spectral-dt-threshold-equals-l2-threshold` proves
+  `p_sDT = p_{2->2}` on every Cayley graph. That settles the open converse in
+  Section 7 of `research/artifacts/fpbs-spectral-dt-certificate-2026-09-17.md`.
+  * If `||T_p|| = N < infinity`, the DT boundary measure of `B_R` has
+    convolution norm at most `p |D| e N exp(-R/(e N))`. The proof combines
+    sphere support with the trivial-kernel tail bootstrap.
+  * So the conjecture is equivalent, graph by graph, to one critical ball
+    boundary measure of mass at least 1 having convolution norm below 1. There
+    is a zero-one law: the critical ball norms either decay exponentially or
+    never go below 1.
+  * `fpbs-wq-normal-class-critical-spectral-dt-certificate` is therefore no
+    weaker than the conjecture on its class.
 
-  **Where it dies:** at `p_c`, `chi = infinity`, so no `W_C(p_c)` carries an
-  invariant measure, and every critical Schur weight has a non-coamenable
-  stabilizer. This kills in one step:
-  - constant weights, and weights that are factors of iid labels or of any
-    invariant random object;
-  - averages of weights over an invariant law;
-  - weights read off an amenable quotient.
-
-  **What survives:** a certificate must be boundary-type, a point of a compact
-  `Gamma`-space without invariant measure. Both known non-perturbative
-  certificates are of this type: `Delta^(1/2)`, fixed by a nonunimodular
-  subgroup, and the free-product Busemann weight, fixed by an end stabilizer.
-  Any general attack by Schur test has to construct such a boundary action for
-  an arbitrary nonamenable group, with the Schur inequality at `p_c`. This node
-  stays OPEN.
+  **Where it stops:** the characterisation is exact, so it moves no graph. On
+  `F_2 x Z`, `F_2 x F_2` and property (T) groups, deciding whether some critical
+  ball norm is below 1 still needs a Kesten-type bound for the explicit measure
+  `nu_{B_R,p_c}`. No such bound is proved.
