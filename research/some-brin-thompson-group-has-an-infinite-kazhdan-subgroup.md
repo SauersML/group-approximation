@@ -66,3 +66,38 @@ n = 1.
     3. Non-spatial embeddings.
     4. `q = 2^r` with `r ≥ 2`.
     5. Kazhdan groups not of Ã₂ type.
+- 2026-09-17 (lane swarm-0917-w5-z-nv-kazhdan-subgroups): brick codings die at connected
+  corners, for every `q`. Artifact:
+  `research/artifacts/nv-brick-coding-corner-kill-2026-09-17.md`.
+  - **Invariant.** The corner compatibility graph `B_1(a)`. It joins a colour-1 and a
+    colour-2 edge at `a` when they begin a common square.
+  - **Theorem (proof written; route requires only ESTABLISHED rigidity (b)).**
+    `two-graph-brick-codings-die-at-connected-corners`: (R1)–(R3) plus connected `B_1(a)`
+    at every vertex exclude brick codings in every dimension. Every coding dies at one
+    step:
+    - (B2) makes corner codes comparable;
+    - connectivity then gives one first letter per coordinate at each vertex, which
+      contradicts (B1);
+    - so each vertex has an edge with empty code, giving a zero-length cycle against
+      `α_j, β_j > 0`.
+  - **Geometry (proof written, self-contained).**
+    `triangle-presentation-tile-two-graphs-have-affine-corner-graphs`.
+    - For every triangle presentation over every `PG(2,q)`, `B_1(a)` is the incidence graph
+      of `PG(2,q) \ λ(u)` minus the parallel class of `w`, hence connected.
+    - The proof uses (A1)–(A3) and unique filling only.
+  - **Corollary.** `rank-two-h1-tile-two-graphs-admit-no-brick-coding`.
+    - For all `q` (including `q = 2^r`), (H1) + irreducibility + `dim H^1 = 2` + one
+      transport class per colour gives no brick coding.
+    - New SAT-free route `cmsz-pg22-no-brick-coding-by-corners` for the `PG(2,2)` claim.
+  - **Computations** (`experiments/nv-kazhdan-independence-2026-09-17/`).
+    - Only a `1/q` fraction of corner pairs complete (`corners.py`), so "every corner
+      completes" is false.
+    - Compatible `(k,0)/(0,k)` pairs have exactly `q^k` completions (`completions.py`).
+    - `B_k(a)` is connected for `k ≤ 2` at the tested vertices (`compat_graph.py`).
+  - **Still open after this entry.**
+    - (a) Survivor 4 above is now reduced to (R2)/(R3) for `q = 2^r` presentations (none
+      computed).
+    - (b) Survivor 1, block recodings, needs (C1) for `Λ^{[k]}`, that is, connectivity of
+      `B_k(a)` for all `k` (computed only for `k ≤ 2`), and (R2)/(R3) for `Λ^{[k]}`.
+    - (c) Survivors 2, 3 and 5 are untouched. Any surviving embedding of `[[Λ_T]]` into
+      `mV` must send some cylinder to a non-brick.
