@@ -8,6 +8,7 @@ distinct_from:
   two-rectangle-surjunctive-images-kill-all-designs: that is the separation lemma for the windows of one fixed ambient group; this applies the finite-quotient case of that lemma to the table group of every four-by-four forward table, so no ambient group is fixed.
   surjunctive-decoder-subgroups-force-surjectivity: that bounds nothing about memory sizes and needs the decoder memory group to be surjunctive; this assumes nothing about any subgroup and bounds both memory sizes.
   amenable-decoder-memory-forces-surjectivity: that needs an amenable decoder memory group; this covers decoder memories of four elements generating any group.
+  strict-automata-live-on-canonical-table-groups: that reduces one fixed rule pair to the canonical table groups of its minimal forward-sufficient partitions; this ignores the rules, runs over every four-by-four table, and decides each table group by finite quotients.
   three-point-decoder-memory-injective-ca-are-surjective: that open claim allows any encoder memory; this proves the case of an encoder memory with at most four elements, and also allows four decoder points.
 artifacts:
   - experiments/gottschalk-residual-gap-census-2026-09-17/RESULTS.md

@@ -22443,6 +22443,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · strict-pairs-need-a-memory-with-five-elements [ESTABLISHED] Over every group and alphabet, an injective automaton whose memory and left-inverse memory have at most four elements is surjective
 - 2026-09-17 · sofic-fp-pi2-complete-or-locally-indicable-nonsofic-group-proof [COMPLETE] The sofic Rice criterion splits on whether the locally indicable rope is sofic
 - 2026-09-17 · sofic-fp-pi2-complete-or-locally-indicable-nonsofic-group [ESTABLISHED] Either soficity of finite presentations is Pi-zero-two complete or a finitely presented locally indicable nonsofic group exists
 - 2026-09-17 · left-orderable-non-sofic-via-compiler-rope [OPEN] If some compiler rope R_e is not sofic, it is a finitely presented locally indicable nonsofic group
@@ -22450,7 +22451,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · compiler-rope-is-locally-indicable-proof [COMPLETE] The compiler's ropes retract onto locally indicable groups with free-product kernels
 - 2026-09-17 · compiler-rope-is-locally-indicable [ESTABLISHED] The compiler's positive rope R_e is locally indicable, hence left-orderable with unique products
 - 2026-09-17 · compiler-positive-rope-is-not-sofic [OPEN] Some positive-branch rope R_e of the finite-presentation compiler is not sofic
-- 2026-09-17 · strict-pairs-need-a-memory-with-five-elements-proof [COMPLETE] Enumerate every four-by-four forward table up to symmetry and separate its reverse table in finite quotients of its table group
 
 ## Active claims
 
