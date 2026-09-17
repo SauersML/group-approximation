@@ -5443,6 +5443,7 @@ import GroupApproximation.Manuscript.NonMF.Full.ChainCoreModels.PrintedLemma
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Basic
 import GroupApproximation.Manuscript.NonMF.Full.TorsionFreeEndpoints.Reductions
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Superperfect
+import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Targets
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
