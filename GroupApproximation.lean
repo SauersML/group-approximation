@@ -5424,6 +5424,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.WreathStar
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.PauliShift
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Presented
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Realization
+import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.LamplighterRF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
