@@ -1,0 +1,12 @@
+class 0: |T|=7 (x,x,x)-triples=0 |stab|=3
+class 1: |T|=7 (x,x,x)-triples=0 |stab|=1
+class 2: |T|=9 (x,x,x)-triples=3 |stab|=3
+class 3: |T|=7 (x,x,x)-triples=0 |stab|=3
+class 4: |T|=9 (x,x,x)-triples=3 |stab|=1
+class 5: |T|=7 (x,x,x)-triples=0 |stab|=3
+class 6: |T|=9 (x,x,x)-triples=3 |stab|=3
+class 7: |T|=7 (x,x,x)-triples=0 |stab|=3
+class 8: |T|=9 (x,x,x)-triples=3 |stab|=3
+class 9: |T|=7 (x,x,x)-triples=0 |stab|=21
+class 10: |T|=7 (x,x,x)-triples=0 |stab|=21
+COMPLETE: orbits under PGL(3,3): 11
