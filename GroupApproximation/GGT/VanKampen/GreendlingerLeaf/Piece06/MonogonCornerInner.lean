@@ -88,10 +88,10 @@ variable (X : DiscDiagram.{u, w, v} W) (f : X.toCombMap.Face) (hf : f ≠ X.oute
 theorem inner_hcell (k : Fin X.rCellCount) (hk : (Embedded.cell X k).face ≠ f) :
     (Embedded.cell (MonogonDoubling.diagram X f hf hlen)
         ((MonogonDoubling.cellMap X f hf hlen).indexEquiv k)).face =
-      (MonogonDoubling.embedding X f hf hlen).faces (Embedded.cell X k).face := by
-  rw [(MonogonDoubling.cellMap X f hf hlen).indexed_cell,
-    (MonogonDoubling.cellMap X f hf hlen).face_eq]
-  exact MonogonDoubling.faceImage_of_ne X f hk
+      (MonogonDoubling.embedding X f hf hlen).faces (Embedded.cell X k).face :=
+  (congrArg RelatorCell.face ((MonogonDoubling.cellMap X f hf hlen).indexed_cell k)).trans
+    (((MonogonDoubling.cellMap X f hf hlen).face_eq (Embedded.cell X k)).trans
+      (MonogonDoubling.faceImage_of_ne X f hk))
 
 theorem inner_hvert (x y : X.toCombMap.Dart) :
     (MonogonDoubling.diagram X f hf hlen).toCombMap.vertexOf

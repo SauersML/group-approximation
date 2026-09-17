@@ -35,7 +35,7 @@ section Operator
 
 variable {G : Type} [Group G]
 
-local instance : DecidableEq G := Classical.decEq G
+local instance romegaDecEqOperator : DecidableEq G := Classical.decEq G
 
 /-- `δ₁` as a tracial vector of `L(G)`. -/
 abbrev groupTracialVector (G : Type) [Group G] :
@@ -74,6 +74,8 @@ section Sofic
 
 variable {G : Type} [Group G] (S : SoficApproximation G) [∀ n, Nonempty (S.model n)]
 variable (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ cofinite)
+
+local instance romegaDecEqSofic : DecidableEq G := Classical.decEq G
 
 /-- The sofic representation `g ↦ [σₙ(g)]`, landed in `R^ω`. -/
 def soficHyperfinite (g : G) : Hyperfinite.HyperfiniteUltrapower ω :=
