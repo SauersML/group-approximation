@@ -120,6 +120,34 @@ theorem isExpanderFamily_slMarking {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
     (fun k => SimpleKazhdanSofic.elementaryBlockEquivSL n hn (N k) (hN k))
   exact h
 
+/-- If the orders of `SL_{n × N_k}(F₂)` tend to infinity, then so do the `N_k`, since
+`|SL_{n × N}(F₂)| ≤ 2^{(nN)²}`. -/
+theorem tendsto_N_of_tendsto_card (n : ℕ) (N : ℕ → ℕ)
+    (h : Tendsto (fun k => Nat.card (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2)))
+      atTop atTop) :
+    Tendsto N atTop atTop := by
+  rw [tendsto_atTop_atTop] at h ⊢
+  intro B
+  obtain ⟨K, hK⟩ := h (2 ^ ((n * B) * (n * B)) + 1)
+  refine ⟨K, fun k hk => ?_⟩
+  by_contra hlt
+  have hNk : N k ≤ B := by omega
+  have h1 := Nat.card_le_card_of_injective
+    (fun A : Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2) =>
+      fun (i j : Fin n × Fin (N k)) => (A : Matrix (Fin n × Fin (N k)) (Fin n × Fin (N k)) (ZMod 2)) i j)
+    (fun A A' hAA' => Subtype.ext hAA')
+  have hcard : Nat.card (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2)) ≤
+      2 ^ ((n * N k) * (n * N k)) := by
+    calc Nat.card (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2))
+        ≤ Nat.card (Fin n × Fin (N k) → Fin n × Fin (N k) → ZMod 2) := h1
+      _ = 2 ^ ((n * N k) * (n * N k)) := by
+        rw [Nat.card_fun, Nat.card_fun, Nat.card_zmod, Nat.card_eq_fintype_card, Fintype.card_prod,
+          Fintype.card_fin, Fintype.card_fin, Nat.pow_mul]
+  have hpow : 2 ^ ((n * N k) * (n * N k)) ≤ 2 ^ ((n * B) * (n * B)) :=
+    Nat.pow_le_pow_right (by omega)
+      (Nat.mul_le_mul (Nat.mul_le_mul (le_refl n) hNk) (Nat.mul_le_mul (le_refl n) hNk))
+  exact Nat.lt_irrefl _ (lt_of_lt_of_le (Nat.lt_succ_of_le (hcard.trans hpow)) (hK k hk))
+
 /-! ## `thm:general(b)` -/
 
 /-- **Theorem `thm:general`(b)** for a ring `R` with `EL_n(R)` infinite and simple (tex l.178–186,
@@ -145,7 +173,7 @@ theorem thm_general_b {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
       (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2)) := fun k =>
     SK05.isFiniteSimpleSLMultiple_blocks n (N k) (isSimpleGroup_sl n hn (N k) (hN k))
   refine ⟨hlim, hexp, hclass, ?_, ?_⟩
-  · exact tendsto_N_of_isMarkedLimit n hn S N hN φ hlim
+  · exact tendsto_N_of_tendsto_card n N (tendsto_card_of_isMarkedLimit hlim (fun _ => inferInstance))
   · obtain ⟨m, g, q, hq⟩ := SimpleKazhdanSofic.ThmMainA.isExpanderLimit_of_isMarkedLimit hlim hexp
     exact ⟨m, g, fun k => Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2),
       fun _ => inferInstance, q, hclass, hq⟩
