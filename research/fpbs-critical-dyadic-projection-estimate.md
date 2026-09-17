@@ -48,3 +48,22 @@ OPEN research hypothesis Q2 for every nonamenable Cayley graph. Q3 is a stronger
   `||Q_k|| <= C 2^(-(1+eta)k)` with `eta>0` would give summability
   immediately, and holds on trees with `eta=1/2`. It is unproved in general
   and is strictly stronger, so it inherits every obstruction above.
+  **Correction (2026-09-17):** it is not strictly stronger. See the next item.
+* **Equivalence with the critical l2 conjecture (swarm-0917, reframing).**
+  `fpbs-critical-l2-equivalent-to-dyadic-projection-estimate` proves, on every
+  transitive graph with finite critical clusters, Q2 <=> Q3 with `eta=1/2`
+  <=> `||T_{p_c}||_(2->2)<infinity`. The new direction is a ghost-field
+  tree-graph bound: a green vertex in `K_x` gives a third BK arm from the
+  meeting point `z` on an `x`-`y` path, so entrywise
+  `P(x<->y,|K_x|>=n) <= (e/(e-1)) M_(p_c,1/n) (T^2)(x,y)`. With a bounded `T`,
+  the triangle condition holds, `M_h <= C sqrt h` (Barsky-Aizenman, imported by
+  `fpbs-triangle-condition-gives-mean-field-magnetization`), and
+  `||Q_k|| <= C||T||^2 2^(-3k/2)`, the tree exponent. **Where the approach
+  class dies:** every approach to this hole proves Hutchcroft's l2 conjecture
+  `fpbs-nonamenability-bounds-critical-connectivity-operator` on the same
+  graph, and conversely that conjecture closes the hole
+  (`fpbs-dyadic-estimate-from-critical-l2-route`). So the shell decomposition
+  adds no independent failure point to `fpbs-universal-dyadic-route`. As a
+  side result, Q2 and Q3 with `eta=1/2` hold on every graph in the known
+  critical-l2 classes. The hole stays OPEN, exactly as open as the l2
+  conjecture.
