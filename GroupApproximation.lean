@@ -5431,6 +5431,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.Defects
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.ExactResidual
 import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Retraction
 import GroupApproximation.Manuscript.NonMFNotes.Full.FixedRadicalMembership.Bridge
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TensorModel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
