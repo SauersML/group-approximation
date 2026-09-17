@@ -29,7 +29,7 @@ def LimitsOfFiniteGroupsAreLEFStatement : Prop :=
     (G : Type u) [Group G] (g : Fin m → G), MarkedConverges q g → IsLEFPrinted G
 
 theorem limitsOfFiniteGroupsAreLEF_holds : LimitsOfFiniteGroupsAreLEFStatement.{u} := by
-  intro m Q _ _ q G _ g h
+  intro _ _ _ _ q _ _ g h
   exact limitsOfFiniteGroupsAreLEFPrinted q g h
 
 /-- `thm:main` ("So `G_X` is LEF"): an expander limit of groups from any class is LEF. -/
@@ -38,7 +38,7 @@ def ExpanderLimitsAreLEFStatement : Prop :=
     IsExpanderLimitOfClass C G → IsLEFPrinted G
 
 theorem expanderLimitsAreLEF_holds : ExpanderLimitsAreLEFStatement.{u} := by
-  intro C G _ h
+  intro _ _ _ h
   exact isLEFPrinted_of_isExpanderLimitOfClass h
 
 /-- **tex l.105–109, sofic.** The printed definition of sofic groups is `IsSofic`. -/
@@ -46,7 +46,7 @@ def PrintedSoficIffStatement : Prop :=
   ∀ (G : Type u) [Group G], PrintedIsSofic G ↔ IsSofic G
 
 theorem printedSoficIff_holds : PrintedSoficIffStatement.{u} := by
-  intro G _
+  intro _ _
   exact printedIsSofic_iff
 
 /-- **tex l.105–109, hyperlinear.** The printed definition of hyperlinear groups is
@@ -55,7 +55,7 @@ def PrintedHyperlinearIffStatement : Prop :=
   ∀ (G : Type u) [Group G], PrintedIsHyperlinear G ↔ IsHyperlinear G
 
 theorem printedHyperlinearIff_holds : PrintedHyperlinearIffStatement.{u} := by
-  intro G _
+  intro _ _
   exact printedIsHyperlinear_iff
 
 /-- **tex l.105–109.** Printed sofic groups are printed hyperlinear. -/
@@ -63,7 +63,7 @@ def PrintedSoficHyperlinearStatement : Prop :=
   ∀ (G : Type u) [Group G], PrintedIsSofic G → PrintedIsHyperlinear G
 
 theorem printedSoficHyperlinear_holds : PrintedSoficHyperlinearStatement.{u} := by
-  intro G _ h
+  intro _ _ h
   exact printedIsHyperlinear_of_printedIsSofic h
 
 /-- **M1 bridge (tex l.92–100).** A marked limit `(G, s)` of an edge-expanding family `(H ℓ, σ ℓ)`
@@ -75,7 +75,7 @@ def ExpanderFamilyBridgeStatement : Prop :=
     IsExpanderLimitOfClass C G
 
 theorem expanderFamilyBridge_holds : ExpanderFamilyBridgeStatement.{u} := by
-  intro C ι G _ s H _ σ hC hlim hexp
+  intro _ _ _ _ _ _ _ _ hC hlim hexp
   exact isExpanderLimitOfClass_of_markedLimit_expanderFamily hC hlim hexp
 
 end GroupApproximation.Full.SK01
