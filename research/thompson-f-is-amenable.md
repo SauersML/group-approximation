@@ -59,6 +59,14 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     dyadic point. The next rung, finite entropy, is open. Killing it would still not
     decide the question, since by [Ers04b] some amenable groups have no
     finite-entropy Liouville measure.
+  - *2026-09-17, finite-entropy rung (swarm-0917-w5-f-l2-proper).* The rung is now the OPEN claim
+    `thompson-f-finite-entropy-walks-are-not-liouville`, split into two parts that can each fail.
+    - Established, `thompson-f-interval-avoiding-walks-have-positive-entropy`: suppose the induced dyadic chain from
+      some `x` avoids some `[x,y]` with positive probability. Conjugated `x_0`-bumps inserted as `Δ`-letters are then
+      readable at uncovered support endpoints, so the entropy is positive.
+    - Open: avoidance itself. Its negation is forced on any finite-entropy Liouville witness, whose transient induced
+      chain must a.s. approach every dyadic from the right.
+    - Dies at: real-topology accumulation of the induced chain, which transience does not control.
 - **Group-ring equations.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   amenability is the Ore condition for `K[F]`: every pair of nonzero `a, b` has a
   nonzero common multiple. Guba's survey (arXiv:2305.07113, §3, read in full) reduces
@@ -143,25 +151,6 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     `h = g⁻¹` takes values in `Z^(D)`, and its kernel is trivial. So extensive
     amenability of `F ↷ D` already gives the flagship through the corollary, and this
     case is the flagship itself. (swarm-0917-w4-f-extensive.)
-- **Small-doubling witnesses for `P_(2,2)` in the positive monoid (2026-09-17,
-  swarm-0917-w5-f-folner-numerics).**
-  - *Bounded-width families.* `thompson-f-monomial-doubling-width-bounds-degree` covers every
-    homogeneous `Y ⊆ M` whose letters are `<= L`, of any degree and size. For such `Y`,
-    `|S Y| >= Λ_S(min(D, L-1)) |Y|`.
-    - *Invariant:* width `min(degree, largest letter - 1)`.
-    - *Where every member dies:* once the degree reaches `L`, splitting by the last letter
-      makes the images disjoint translates of degree-`(D-1)` images. So degree adds nothing.
-    - With the exact table `Λ_(S_(3,5))(n) > 2.66` for `n <= 12`, a certificate needs a
-      component of degree `>= 13` using a letter `>= 14`.
-    - The sharper threshold `L - 3` (letters `>= 16`) holds on all computed grids and is
-      open: `thompson-f-monomial-doubling-ratio-depends-only-on-width`.
-  - *One-letter reduction.* `thompson-f-guba-set-expansion-bounded-by-one-letter-set`
-    proves `|S_(3,5) Y| <= 3|X_3 Y| - 2|Y|`. So any `Y` with `|X_3 Y| < (4/3)|Y|` solves
-    `P_(2,2)`.
-    - Conversely, doubling of `S_(3,5)` forces the Cheeger bound `|X_3 Y| >= (4/3)|Y|`.
-    - For `P_(2,1)`, `Λ_(S_(2,4)) = 2Λ_(X_2) - 1` exactly in degrees `<= 10`.
-  - Not decided: whether the increments `0.113, 0.091, 0.074, 0.064, 0.055` of
-    `Λ_(S_(3,5))` in degrees 8–12 level off above 2. Geometric and power-law fits disagree.
 - **Sandwich splits and their kernel trichotomy (swarm-0917-w5-f-decomp, 2026-09-17).** This covers splits
   `A ⇐ P ∧ Amen(K)`. They come from twisted embeddings, with `P = EA(X)` and `K = ker c`, faithful or not, and
   recurrent or not. They also come from co-amenable induction, with `P = Coam(K)`.
@@ -177,3 +166,20 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     under Brin–Sapir, and `every-f-free-subgroup-of-thompson-f-is-amenable` fails only if `F` is non-amenable.
   - Attacks on both are recorded under their Attempts. P2 reduces to the Brin–Sapir germ-kernel descent with
     "EA" replaced by "amenable", and dies at the same step.
+- **Gaussian / cnd certificates, Haagerup-to-amenable (swarm-0917-w5-pull-f-1, 2026-09-17).** This covers
+  proving amenability through a conditionally negative definite `psi` on `F` with finite balls and
+  `log|{psi <= R}| = o(R)`. The deformation `e^{-t psi}` in `l^2` then gives amenability via
+  `cnd-ball-growth-bounds-return-probability-for-every-group`, and it is the natural transplant of
+  Farley's and Brothier–Jones' cocycles.
+  - *Invariant:* the ψ-ball growth profile.
+  - *Where every member dies:* `thompson-f-cnd-certificates-need-near-exponential-ball-growth` (ESTABLISHED,
+    unrefereed). The Markov-type-2 bound `E psi(X_n) <= n E_mu psi` gives `p_{2n} >= 1/(4|B_{2cn}|)`.
+    Følner level sets of the lazy walk plus Moore's theorem give
+    `p_{2N} <= exp(-N C^{-2(1+l(N log_2(|Γ|+1)))}/16|Γ|^2)`. Together they force
+    `log|B_R| >= κ R C^{-2 log* R} - log 4`.
+  - *Consequence:* every profile `R/g(R)` with `log g / log* R -> inf` is excluded. That includes polynomial,
+    `exp(R/log R)`, and `exp(R/log^{(k)} R)`.
+  - *Survivors:* profiles exponential up to a factor `C^{O(log* R)}` in the exponent. This is the same band
+    as the Følner tower.
+  - *Also:* Theorem A there is an unconditional upper bound on the return probabilities of `F`, of
+    exponential type at every computable length.
