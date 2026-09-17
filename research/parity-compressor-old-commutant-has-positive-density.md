@@ -213,3 +213,18 @@ part of the remaining hole.
   exit, or the target must be restated as collapse.  Positive-energy
   microstate densities are not covered, because `mu_K` is not defined
   there.
+- **Parity mark in the monolith closure (swarm-0917-w5-nh-parity-density, 2026-09-17).**
+  `parity-mark-lies-in-jacobson-monolith-closure` (ESTABLISHED) shows that the head swap `c=alpha(e)` is finitary.
+  It then derives:
+  - `J in <<c>>_(H_T)`, and `J` lies in the normal closure of every nontrivial element of `L`.
+  - Every `J`-seeing homomorphism is injective on `Lambda`. So `EL_4(T)` non-hyperlinear implies
+    `parity-compressor-hs-return`, and a `J`-seeing ultraproduct model proves `EL_4(T)` hyperlinear.
+  - Every character has `P_- e_inf=0`, and in every microstate sequence the Kazhdan low density supported on the
+    sector `J=-1` tends to zero.
+
+  So the amplifier cannot place positive density in the `J=-1` corner that the parity twist copies into. This
+  closes the escape "packet centre identified with `J_H`" from the scope of
+  `finitary-sign-sector-has-no-kazhdan-low-density`. It dies at the placement step, for every design that keeps
+  comparable letters and some odd `p` with `alpha(p) in <<L>>`, which includes every Toeplitz head swap
+  `c=s I_4` with `s in F_2+F`. A live design needs an odd element whose compressed image has nontrivial Laurent
+  symbol.
