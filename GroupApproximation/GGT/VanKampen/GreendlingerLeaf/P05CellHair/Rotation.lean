@@ -119,3 +119,58 @@ theorem cell_face_eq (i' : Fin (FaceEdgeDoubling.diagram X f j hlen hf).rCellCou
   exact (FaceEdgeDoubling.cellMap X f j hlen hf).face_eq _
 
 end Faces
+
+section Keep
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {lambda c : ℝ} {eps : ℕ} {Delta : DiscDiagram.{u, w, v} W}
+  {cuts : SectionCuts D lambda c Delta.boundaryWord}
+  (S : GloballyDistinguishedSectionFamily D lambda c eps Delta cuts)
+  (f : S.diagram.toCombMap.Face) (j : Fin (S.diagram.faceBoundary f).darts.length)
+  (hlen : 1 < (S.diagram.faceBoundary f).darts.length) (hf : f ≠ S.diagram.outerFace)
+  (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
+    (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1)
+
+include havoid in
+/-- **(C') The dart `w` is kept.** -/
+theorem dart_keep : ¬ RegionInternal S.family (FaceEdgeDoubling.dart S.diagram f j) :=
+  not_regionInternal_of_face_not_mem fun r hr h =>
+    (havoid r hr).1 (by rwa [FaceEdgeDoubling.dart_face] at h)
+
+include havoid in
+/-- **(C') The second corner is kept.** -/
+theorem second_keep :
+    ¬ RegionInternal S.family (secondCorner S.diagram.toCombMap
+      (FaceEdgeDoubling.rebased S.diagram f j) (FaceEdgeDoubling.second S.diagram f j hlen)) :=
+  not_regionInternal_of_face_not_mem fun r hr h =>
+    (havoid r hr).1 (by
+      rwa [FaceEdgeDoubling.Holding.secondCorner_eq_facePerm, CombMap.faceOf_facePerm,
+        FaceEdgeDoubling.dart_face] at h)
+
+/-- **(C') The new dart `some none` is kept.** -/
+theorem some_none_keep :
+    ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family
+      (some none : (FaceEdgeDoubling.map S.diagram f j hlen).Dart) :=
+  not_regionInternal_of_face_not_mem fun r hr h =>
+    face_not_mem_regionFamily S.diagram f j hlen hf S.family havoid
+      (F := (FaceEdgeDoubling.diagram S.diagram f j hlen hf).toCombMap.faceOf some none)
+      (fun g hg e => FaceEdgeDoubling.keep_ne_cellFace S.diagram f j hlen hg
+        (e.trans (faceOf_some_none S.diagram f j hlen hf))) hr h
+
+/-- **(C') The new dart `none` is kept.** -/
+theorem none_keep :
+    ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family
+      (none : (FaceEdgeDoubling.map S.diagram f j hlen).Dart) :=
+  not_regionInternal_of_face_not_mem fun r hr h =>
+    face_not_mem_regionFamily S.diagram f j hlen hf S.family havoid
+      (F := (FaceEdgeDoubling.diagram S.diagram f j hlen hf).toCombMap.faceOf none)
+      (fun g hg e => FaceEdgeDoubling.keep_ne_digon S.diagram f j hlen hg
+        (e.trans (CellHairThickening.faceOf_none S.diagram f j hlen hf))) hr h
+
+/-- **(C') Embedded darts are kept exactly when they were kept.** -/
+theorem embed_keep_iff (z : S.diagram.toCombMap.Dart) :
+    ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family
+        (embed S.diagram.toCombMap z) ↔ ¬ RegionInternal S.family z :=
+  not_congr (regionInternal_embed_iff S.diagram f j hlen hf S.family havoid z)
+
+end Keep
