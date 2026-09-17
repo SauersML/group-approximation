@@ -5343,6 +5343,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Words
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Halfline.HalflineA
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Entries
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LamplighterHost.Setting
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.WordEntries
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
