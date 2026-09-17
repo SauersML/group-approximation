@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.SkRows.PaddedCentrality.Roots
 import Mathlib.Algebra.BigOperators.Group.List.Basic
 import Mathlib.Data.Matrix.Diagonal
+import Batteries.Data.List.Lemmas
 
 /-!
 # Padded centrality: the target and the column/row action interface

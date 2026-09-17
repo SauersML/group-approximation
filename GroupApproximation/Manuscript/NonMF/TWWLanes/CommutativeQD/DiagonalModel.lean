@@ -71,14 +71,16 @@ def diagonalStarAlgHom (Y : FiniteModel) (χ : Y → (A →⋆ₐ[ℂ] ℂ)) :
       (Matrix.diagonal_add (fun i ↦ χ i a) (fun i ↦ χ i b)).symm
   commutes' c := by
     show Matrix.diagonal (fun i ↦ χ i (algebraMap ℂ A c)) = algebraMap ℂ (Matrix Y Y ℂ) c
-    rw [Matrix.algebraMap_eq_diagonal]
     have h : (fun i ↦ χ i (algebraMap ℂ A c)) = algebraMap ℂ (Y → ℂ) c :=
       funext fun i ↦ AlgHomClass.commutes (χ i) c
-    exact congrArg Matrix.diagonal h
+    exact (congrArg Matrix.diagonal h).trans (Matrix.algebraMap_eq_diagonal c).symm
   map_star' a := by
     show Matrix.diagonal (fun i ↦ χ i (star a)) = star (Matrix.diagonal fun i ↦ χ i a)
-    rw [Matrix.star_eq_conjTranspose, Matrix.diagonal_conjTranspose]
-    exact congrArg Matrix.diagonal (funext fun i ↦ map_star (χ i) a)
+    have h : (fun i ↦ χ i (star a)) = star (fun i ↦ χ i a) :=
+      funext fun i ↦ map_star (χ i) a
+    exact (congrArg Matrix.diagonal h).trans
+      ((Matrix.diagonal_conjTranspose (fun i ↦ χ i a)).symm.trans
+        (Matrix.star_eq_conjTranspose (Matrix.diagonal fun i ↦ χ i a)).symm)
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.CommutativeQD.diagonalStarAlgHom
 
