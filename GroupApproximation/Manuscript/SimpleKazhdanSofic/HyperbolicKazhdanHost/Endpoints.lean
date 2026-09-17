@@ -82,6 +82,8 @@ theorem exists_simple_quotient_embedding (hhull : HullSC.HullOneStepStatementGen
   obtain ⟨h, rfl⟩ := MonoidHom.mem_range.1 hp'
   exact ⟨h, QuotientGroup.eq.2 hpc⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HyperbolicKazhdanHost.exists_simple_quotient_embedding
+
 /-- **(b), from Hull's theorem and the residual geometry.** One infinite, finitely presented,
 torsion-free hyperbolic group with property (T) has, for every countable group `Γ`, a simple
 quotient containing `Γ`. -/
