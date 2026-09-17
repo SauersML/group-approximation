@@ -56,3 +56,25 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
   finite-radius bubbles are finite but increase to `W_n`, so a universal proof
   must control the pivotal event uniformly over `R>=n` (Section 6 of
   `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).
+* **Transplant the budget from approximating groups (finite-models).**
+  * *The route.* The operator form of the budget transplants along local or
+    marked limits exactly when the connectivity norms admit one common bound
+    `M` at one common margin `delta` above `p_c`.
+    - `||T_p||` is lower semicontinuous under local convergence.
+    - The uniform gap class `U_(M,delta)` is closed.
+    - Limits of `U_(M,delta)` satisfy `p_c<p_u` and the budget with count
+      `2dM^2` (`fpbs-l2-gap-class-closed-under-local-limits`).
+  * *Where it dies.* Proposition 4.1 of
+    `research/artifacts/fpbs-l2-gap-local-limits-2026-09-17.md`: for finite or
+    amenable approximants, `limsup Gamma_M(G_k) <= p_c(G)` for every `M`.
+    - On such graphs `||T_p|| >= chi_r(p)`.
+    - `chi_r` is ball-local.
+    - `chi_r(p) -> infinity` for every `p>p_c(G)`.
+  * *What remains.* Surviving approximants must be quantitatively gapped.
+    - Qualitative theorems such as Choi–Seo with Hutchcroft's criterion stop at
+      the common-margin step.
+    - Closed certificate classes, such as free products on union generating
+      sets, reach only themselves.
+  * *The direct budget transplant.* `E_p[N|E]` is ball-local, but PB begins
+    at `p_c(G) <= liminf p_c(G_k)`. The approximants would need the budget
+    below their own critical points.
