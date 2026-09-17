@@ -37,3 +37,20 @@ AGT 8 (2008), Zbl 1167.20026, records it as unknown.
   `S`-integers, `t ↦` an element of a finite field, or reduction mod `p`, the image
   ring has `SL_2 = E_2`. So an obstruction, if any, is genuinely two-dimensional (as
   for Cohn's and Grunewald–Mennicke–Vaserstein's rings `Z[x]`, `k[x,y]`).
+- **Torsion quotients, degree functions and discrete norms are blind (calibration,
+  2026-09-17).** [[sl2-laurent-torsion-quotients-and-cohn-norms-are-blind]] proves
+  three things.
+  - If `J ∩ Z != 0`, then `SL_2(R/J) = E_2(R/J)` for every such quotient, including
+    non-reduced ones. So `G = E_2(R) · SL_2(R,J)`, and a proper finite-index
+    subgroup containing `E_2` contains no congruence subgroup of finite level.
+  - Every nonnegative additive ultrametric degree function on `R` is `0`.
+  - No discrete norm exists.
+
+  Three proof strategies for `SL_2 != E_2` therefore die, each at a named step.
+  - A mod-`J` or finite census dies at "the image is not elementary mod `J`".
+  - A Cohn–Nagao degree argument dies at "`R_0` is a proper subring".
+  - A discrete-norm argument dies at its first step.
+
+  The case still uncovered is characteristic-zero one-dimensional quotients, where
+  Liehl's theorem for orders of arithmetic type would apply but its hypotheses were
+  not checked. The claim stays OPEN.
