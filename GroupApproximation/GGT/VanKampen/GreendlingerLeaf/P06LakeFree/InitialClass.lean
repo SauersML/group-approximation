@@ -58,7 +58,7 @@ theorem eqvGen_of_boundaryWalk {faces : Finset M.Face} {keep : M.Dart → Prop}
   unfold BoundaryWalk at h
   induction h with
   | refl => exact hstart
-  | @tail x y _ hxy ih =>
+  | @tail x _ _ hxy ih =>
       obtain ⟨hx, rfl⟩ := hxy
       refine Relation.EqvGen.trans _ _ _ ih
         (Relation.EqvGen.trans _ (M.alpha x) _
@@ -93,7 +93,8 @@ theorem eqvGen_of_mem_cycle {faces : Finset M.Face} {keep : M.Dart → Prop}
         rw [hrot, List.get_eq_getElem] at hval
         have hwalk : BoundaryWalk M faces (boundary.cycle[k]'hk') (boundary.cycle[k + 1]'hk) := by
           have hw := hfollow ⟨_, hb⟩
-          rwa [hval] at hw
+          rw [hval] at hw
+          exact hw
         exact Relation.EqvGen.trans _ _ _ (ih hk') (eqvGen_of_boundaryWalk hint hwalk)
   exact Relation.EqvGen.trans _ _ _ (Relation.EqvGen.symm _ _ (key i hi)) (key j hj)
 
@@ -148,10 +149,10 @@ theorem exists_alpha_mem_of_not_mem_sideFaces (hM : M.IsConnected) {w : List M.D
         Relation.EqvGen (CombMap.FaceClassStep M (walkKeep M w)) x b) := by
     intro a b hab
     induction hab with
-    | rel a b h => exact eqvGen_iff_of_adjacent hnk h
-    | refl a => exact Iff.rfl
-    | symm a b _ ih => exact ih.symm
-    | trans a b c _ _ ih₁ ih₂ => exact ih₁.trans ih₂
+    | rel _ _ h => exact eqvGen_iff_of_adjacent hnk h
+    | refl _ => exact Iff.rfl
+    | symm _ _ _ ih => exact ih.symm
+    | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans ih₂
   obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil w hne
   exact hnk d ((hiff x d (hM x d)).mp (Relation.EqvGen.refl x)) (Or.inl hd)
 

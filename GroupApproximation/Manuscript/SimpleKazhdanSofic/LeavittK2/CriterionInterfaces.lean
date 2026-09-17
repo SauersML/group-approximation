@@ -32,8 +32,9 @@ The gap is `RankFourCriterionInputsStatement`, their conjunction.
 * Lift.  `K₂(4, L) = ⊥` (Khanh Theorem 5.4) and `GL_4(L) = E_4(L)`, so `projection` is a
   bijection onto `GL_4(L)`.  Take `σ = projection⁻¹|_J`.  Then
   `projection x_{ij}(a) = 1 + E_{ij}(a)`, and the edge and triangle relations hold after
-  projection.  The edge relation is conjugation by `τ`.  The triangle relation `τhτ = hτh` is the braid relation of the transpositions `(32)` and
-  `(21)`, which are the images of `w_{32}` and `w_{21}` in characteristic two.
+  projection.  The edge relation is conjugation by `τ`.  The triangle relation `τhτ = hτh` is
+  the braid relation of the transpositions `(32)` and `(21)`, which are the images of `w_{32}`
+  and `w_{21}` in characteristic two.
 
 ## Why the gap is strictly smaller than the target
 

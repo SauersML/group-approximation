@@ -30,8 +30,8 @@ theorem LiftEnd.move {a : V} {l l' : List V} (hm : S.Move a l l') {x z z' : S.Pi
     S.SameCoset z z' := by
   cases hm with
   | back l₁ _ _ _ =>
-    obtain ⟨y, h1, h2⟩ := LiftEnd.split S l₁ h
-    obtain ⟨y', h1', h2'⟩ := LiftEnd.split S l₁ h'
+    obtain ⟨_, h1, h2⟩ := LiftEnd.split S l₁ h
+    obtain ⟨_, h1', h2'⟩ := LiftEnd.split S l₁ h'
     have hyy' := LiftEnd.unique S h1 h1' (S.sameCoset_refl x)
     cases h2 with
     | cons hs1 _ hl1 =>
@@ -40,8 +40,8 @@ theorem LiftEnd.move {a : V} {l l' : List V} (hm : S.Move a l l') {x z z' : S.Pi
         have hback := S.step_back hs1 hs2 (by rw [hw2, LiftEnd.target S h1, hx])
         exact LiftEnd.unique S hl2 h2' (S.sameCoset_trans (S.sameCoset_symm hback) hyy')
   | tri l₁ _ _ _ _ ht =>
-    obtain ⟨y, h1, h2⟩ := LiftEnd.split S l₁ h
-    obtain ⟨y', h1', h2'⟩ := LiftEnd.split S l₁ h'
+    obtain ⟨_, h1, h2⟩ := LiftEnd.split S l₁ h
+    obtain ⟨_, h1', h2'⟩ := LiftEnd.split S l₁ h'
     have hyy' := LiftEnd.unique S h1 h1' (S.sameCoset_refl x)
     cases h2 with
     | cons hs1 hw1 hl1 =>

@@ -60,30 +60,31 @@ theorem isCompleteModule_of_unitary {F : CStarModule.{v, w} B} {E : CStarModule.
     {G : CStarModule.{v, w''} B} (U : Adjointable (prod F E) G) (hU : U.IsUnitaryAdj)
     (hG : IsCompleteModule G) : IsCompleteModule E := by
   intro u hu
-  have hsub : ∀ m n : ℕ, (((0 : F.carrier), u m) - ((0 : F.carrier), u n) : (prod F E).carrier)
-      = ((0 : F.carrier), u m - u n) :=
+  let z : ℕ → (prod F E).carrier := fun n => ((0 : F.carrier), u n)
+  have hsub : ∀ m n : ℕ, z m - z n = ((0 : F.carrier), u m - u n) :=
     fun m n => Prod.ext (sub_self (0 : F.carrier)) rfl
-  have hv : IsCauchy G fun n => U.toFun ((0 : F.carrier), u n) := by
+  have hv : IsCauchy G fun n => U.toFun (z n) := by
     intro ε hε
     obtain ⟨N, hN⟩ := hu ε hε
     refine ⟨N, fun m n hm hn => ?_⟩
-    rw [← U.map_sub, hsub, hU.norm_map, Adjointable.norm_inr]
+    have h := hU.norm_map (z m - z n)
+    rw [hsub m n, Adjointable.norm_inr, U.map_sub] at h
+    show G.norm (U.toFun (z m) - U.toFun (z n)) ≤ ε
+    rw [h]
     exact hN m n hm hn
   obtain ⟨w, hw⟩ := hG _ hv
   refine ⟨(U.adj w).2, fun ε hε => ?_⟩
   obtain ⟨N, hN⟩ := hw ε hε
   refine ⟨N, fun n hn => ?_⟩
-  have hback : ((0 : F.carrier), u n) - U.adj w
-      = (Adjointable.adjoint U).toFun (U.toFun ((0 : F.carrier), u n) - w) := by
-    rw [Adjointable.map_sub, Adjointable.adjoint_toFun, Adjointable.adjoint_toFun,
-      hU.adj_toFun]
-  have hnorm : (prod F E).norm (((0 : F.carrier), u n) - U.adj w)
-      = G.norm (U.toFun ((0 : F.carrier), u n) - w) := by
-    rw [hback, hU.adjoint.norm_map]
-  calc E.norm (u n - (U.adj w).2)
-      = E.norm (((0 : F.carrier), u n) - U.adj w : (prod F E).carrier).2 := rfl
-    _ ≤ (prod F E).norm (((0 : F.carrier), u n) - U.adj w) := norm_snd_le _
-    _ = G.norm (U.toFun ((0 : F.carrier), u n) - w) := hnorm
+  have hback : (Adjointable.adjoint U).toFun (U.toFun (z n) - w) = z n - U.adj w := by
+    rw [Adjointable.map_sub]
+    exact congrArg (fun p : (prod F E).carrier => p - U.adj w) (hU.adj_toFun (z n))
+  have hnorm : (prod F E).norm (z n - U.adj w) = G.norm (U.toFun (z n) - w) := by
+    rw [← hback]
+    exact hU.adjoint.norm_map _
+  calc E.norm (u n - (U.adj w).2) = E.norm (z n - U.adj w).2 := rfl
+    _ ≤ (prod F E).norm (z n - U.adj w) := norm_snd_le _
+    _ = G.norm (U.toFun (z n) - w) := hnorm
     _ ≤ ε := hN n hn
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.isCompleteModule_of_unitary
