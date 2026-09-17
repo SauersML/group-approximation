@@ -87,3 +87,29 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
       where it would be undistorted
       (`cubical-coset-proper-actions-capture-distorted-elements`).
     - R1 must therefore be non-cubical, with `ψ_1(f^N) → ∞` and `ψ_1(f^N) = O(log^8 N)`.
+- **No cubical proof of the fibre half either (2026-09-17, swarm-0917-w4-pull-nv-1;
+  class-kill).**
+  - `commensurating-loxodromics-split-their-centralizers` (established): if `ℓ(z^N)` is
+    unbounded, the finitely many `⟨z⟩`-orbits with one-ended trace of `A` are permuted by
+    `C_G(z)`. A finite-index subgroup then translates along one of them, giving `φ : C' → Z`
+    with `φ(z) = 1`. So a central element of a perfect group with no finite quotients is
+    elliptic in every commensurating action.
+  - `brin-thompson-nv-fibre-elements-are-cubically-elliptic` (established): `C(C,Z) ⋊ V` is
+    perfect with no finite quotients, and `1_C` is central. Its copies in `nV` make every
+    element of the fibrewise subgroup `K_n`, of `V^n`, and of their conjugates and coordinate
+    permutations elliptic in every commensurating action of `nV`. So no commensurating action is
+    proper on `T_n` (R2), on `V × id`, or on `C(C,Γ) ⋊ V` for any `Γ` with an infinite-order
+    element (Problem B).
+    - **Invariant:** a central element of a perfect group without finite quotients. The
+      elements involved are undistorted, so the distortion kill above does not reach them.
+    - **Where every member dies:** the finite set of one-ended orbits of the central element,
+      whose translation character cannot be nonzero on it.
+    - **Consequence:** both halves R1 and R2 of the triangular split, and every approach to
+      Problem B through walls or charts, must be non-cubical. A proof needs a
+      non-commensurating cnd function, for example an infinite weighted sum of wall counts, or a
+      cocycle whose representation either has spectrum of `π(1_C)` accumulating at `1`, or has
+      a nonzero `1_C`-invariant component. If the spectrum stays away from `1` on the
+      orthogonal complement of the invariant vectors, the cocycle restricted to `⟨1_C⟩` is a
+      coboundary there.
+    - **Not ruled out:** uniform ellipticity of `V × id` (property FW for `nV`). Elementwise
+      ellipticity gives no uniform bound. Ellipticity of the baker's map is also open.
