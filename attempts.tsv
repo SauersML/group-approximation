@@ -355,3 +355,4 @@
 35210432508	2026-09-17T10:26:45Z	GroupApproximation/Sofic/FiniteIndexNonMF.lean	not_isOperatorMF_of_mem_coronaMFResidual
 35239373256	2026-09-17T15:19:29Z	GroupApproximation/Sofic/FiniteLinearHammingGap.lean	card_additiveAgreement_le_card_additiveDisagreement
 35263877991	2026-09-17T19:17:15Z	GroupApproximation/Sofic/FiniteNormalAverageCorner.lean	OpNormVanishing.reindex
+35280917960	2026-09-17T22:15:37Z	GroupApproximation/Manuscript/SimpleKazhdanSofic/ThompsonConstruction/Endpoints.lean	embedsInFGSimpleSolvable_of_hasSolvableWordProblem
