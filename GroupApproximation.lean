@@ -5443,6 +5443,19 @@ import GroupApproximation.Manuscript.NonMF.Full.ChainCoreModels.PrintedLemma
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Basic
 import GroupApproximation.Manuscript.NonMF.Full.TorsionFreeEndpoints.Reductions
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Superperfect
+import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.Targets
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.ResiduallyFinite
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.NearInvariant
+import GroupApproximation.Manuscript.NonMFNotes.Full.Exactness.BlockCliffordPropertyA
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.SolvableAmenable
+import GroupApproximation.Manuscript.NonMF.ChainCarto03Quotient
+import GroupApproximation.Manuscript.NonMF.IntroCarto02Local
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.Configuration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.NormalStructureCore
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.NormalStructure
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.PairDependence
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Stepanov
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofIngredients
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
