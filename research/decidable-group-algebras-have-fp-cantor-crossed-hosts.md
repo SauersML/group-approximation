@@ -99,3 +99,49 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
    topologically free SFTs with finitely presented crossed products whose ball
    languages have no uniform recursive time bound (artifact
    `fp-crossed-product-shape-free-group-kill-2026-09-17`, Section 7, sketch).
+8. **Growth counting: polynomial-growth `P` with slow spaces die at input `F_2`
+   (2026-09-17).** This attempt uses growth, not word-problem complexity.
+   - `crossed-product-growth-bounded-by-ball-patterns` (ESTABLISHED,
+     unreviewed): the degree-`n` span of a finite subset of `LC(X, k) ⋊ P` has dimension at most
+     `|B_P(mn)| · |L_(B_P(mn+r))(X)|`. The group elements of a hosted `k[G]` are linearly
+     independent, so `|B_G(n)|` obeys the same bound.
+   - `poly-growth-cantor-hosts-need-exponential-complexity` (ESTABLISHED, unreviewed):
+     - If `P` has polynomial growth and `log |L_(B_P(N))(X)| = o(N)` along a subsequence, only
+       subexponential-growth groups are hosted, so `F_2` is not.
+     - If the pattern count is polynomial, only virtually nilpotent groups are hosted.
+     - In particular Labbé's host `LC(Ω_U, k) ⋊ Z^2`, the one explicit candidate on the
+       quantum-rigidity lane, hosts no non-virtually-nilpotent group algebra, whatever
+       `labbe-wang-shift-crossed-product-is-finitely-presented` turns out to be.
+     - Invariant: the ball pattern count. Failing step: the embedding of `k[F_2]`, with no use of
+       finite presentation.
+   - Over `Z^2`, positive entropy already kills finite presentation
+     (`positive-entropy-sft-crossed-products-are-not-fp`). A pure `Z^2` witness must lie in the band
+     `e^(cN) <= |L_(B(N))| <= e^(o(N^2))`, for some `c > 0` along every sequence of radii. The natural
+     candidates are minimal SFTs simulating a positive-entropy effective row content (heuristic). Substitutive
+     or cut-and-project shifts do not qualify. This is a new prerequisite that
+     can fail on its own: a quantum rigid free minimal `Z^2`-SFT with linear-exponential complexity.
+   - **Product lanes cannot borrow finite presentation.**
+     `tensor-product-algebra-fp-iff-factors-fp` (ESTABLISHED, unreviewed) gives:
+     - `LC(Ω × Y) ⋊ (P × Q)` is finitely presented iff both factors are.
+     - So `B_Ω ⊗ L_∂` over `Z^2 × F_d` still needs a quantum rigid `Ω`. The boundary factor supplies
+       only growth, which does repair the obstruction above, e.g. for `Ω = Ω_U`.
+     - A Labbé-times-boundary host remains subject to the uniform language-bound kill of Attempt 6 if
+       that sketch is made rigorous, because `Ω_U` has a decidable substitutive language.
+   - **Separation from the units-only version.** Route step 1 of
+     `boone-higman-via-central-simple-leavitt-tensor-host` uses only `G ≤ B^x`, and there group
+     elements need not be linearly independent.
+     - Unit groups of polynomial-growth algebras can contain `F_2` (`GL_2(F_2[t])`, recalled).
+     - So the growth kill does not reach the units-only form. There an input must use non-permutational
+       units, or full-group elements with fat fixed-point sets: the growth-bound node, part 3, shows
+       meagre fixed sets make `k[G]` embed and so inherit the bound. That part of the node also
+       calibrates the hypothesis: disjoint supports give `(1 - u_g)(1 - u_h) = 0`.
+     - For permutational units over subexponential-growth `P`, Juschenko–de la Salle (as quoted in
+       `elek-monod-near-hit-has-torsion-no-kazhdan-subgroup-proof`) also excludes infinite Kazhdan
+       subgroups. So simple Kazhdan inputs (`boone-higman-iff-simple-kazhdan-decidable-inputs`) must use
+       non-permutational units there.
+   - **Dead side idea: renormalization rigidity over an ascending HNN acting group
+     `Z[1/2]^2 ⋊ Z`, with a determinism rule `x(g) = F(x|_(gtW))`.** It dies at the reduction step.
+     Conjugating a difference element by powers of `t` shrinks it into a finite set only when it
+     commutes with a power of `t`. Other differences drift to different cosets with growing word length.
+     So one deterministic direction reduces only differences in `⋃_j C(t^j)`, and determinism from
+     infinity makes the language easy, which Attempt 6 forbids.
