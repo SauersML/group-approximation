@@ -120,33 +120,107 @@ argument.
    genuinely different proof has to produce a maximal kernel in R1, R2 or R3,
    and must therefore exploit a failure of one of the three properties for
    this specific non-quasi-finite ring.
-7. **Confine the computability obstruction (swarm-0917-w4-pull-bh-3).**
-   *Established confinement; the hole survives in its clean form.*
+7. **Transplant stability to certify finite normal generation
+   (swarm-0917, stability-approximation).** *Dead as a class.*
+   By [[fp-simple-groups-are-isolated]] and Cornulier--Guyot--Pitsch, a
+   maximal `M` is finitely normally generated exactly when `Gamma/M` is
+   isolated. The transplant tries to pick `M` so that `Gamma/M` is stable
+   for a metric class `C`, and to read finitely many relators off the
+   stability. `C` is Hilbert--Schmidt unitaries, Hamming permutations or
+   operator norm. The obstruction is the stability invariant of the simple
+   quotient, and it dies at the step "`C`-stable, hence finitely normally
+   generated".
 
-   A bus lane (c-ckmax) refutes the universal reading. It glues a
-   word-problem poison into the input along `s`. That forces an undecidable
-   `T`.
+   - *Invariant.* Let `L` be a finitely generated infinite simple group, for
+     example any `Gamma/M`. `L` has no nontrivial finite-dimensional unitary
+     representation: its image would be a finitely generated linear group,
+     hence residually finite (Malcev). So
+     [[infinite-simple-group-hs-stable-iff-nonhyperlinear]] and
+     [[infinite-simple-group-permutation-stable-iff-nonsofic]] apply with no
+     presentation hypothesis. `L` is HS-stable iff it is not hyperlinear,
+     and permutation-stable iff it is not sofic. The operator-norm case is
+     the same argument: an asymptotic representation that is not trivial in
+     the limit is injective on `L`, and stability would give a separating
+     family of genuine finite-dimensional representations. That contradicts
+     residual finiteness exactly as in
+     [[hyperlinear-flexibly-hs-stable-group-is-residually-finite]].
+     So `C`-stability of a simple quotient is a pure approximation invariant
+     of its isomorphism type and carries no presentation data.
+   - *Where every member dies.* Every finitely generated group is a quotient
+     of a finitely presented one, so the step would prove that every
+     finitely generated, infinite, simple, non-`C`-approximable group is
+     finitely presented. This fails whenever a non-`C`-approximable
+     countable group `N` exists. The groups `N x B` range over B. H.
+     Neumann's continuum of two-generator groups `B`. Each one sits in a
+     two-generator simple group by
+     [[countable-group-embeds-in-two-generator-simple-group]], and in a
+     Kazhdan one by [[countable-group-embeds-in-fg-simple-kazhdan-group]].
+     A finitely generated group has only countably many finitely generated
+     subgroups, so these envelopes have continuum many isomorphism types.
+     Only countably many of them are finitely presented. All are
+     non-`C`-approximable, since approximability passes to subgroups, and
+     hence all are `C`-stable. If no such `N` exists, no infinite simple
+     quotient is `C`-stable and the premise is never met. Adding property
+     (T) does not rescue the step, by the Kazhdan envelopes. On a
+     `C`-approximable quotient the premise fails outright.
+   - *What survives in regime R4.* The approximation type of a witness is
+     fixed by its ring type, not by a presentation. Let `R = U/I` be simple.
+     The sandwich gives `p (rq) = 1` with `r = 1-g`, and there are two cases.
+     - `(rq)p = 1`. Then `p` is a unit and `r` is right invertible, and
+       direct finiteness makes `r` a unit.
+     - `R` has the nonzero defect `1-rqp`. In positive characteristic,
+       [[finite-additive-order-one-sided-defects-are-mf-invisible]] puts
+       `e_12(1-rqp)` in `Rad_MF(E_4(R))`. Its image in the simple group
+       `PE_4(R)` is nontrivial because `e_12(x)` commutes with `e_21(1)`
+       only for `x = 0`. So `PE_4(R)` has no nontrivial homomorphism to a
+       norm matrix corona.
 
-   [[clean-ck-cover-confines-poison-to-covering-kernel]] shows the following.
-   It overlaps pull-bh-1's bus lemma
-   `clean-ck-cover-separates-trivial-words-from-normal-generators`.
-   - **Clean markings exist.** Clapham, then a decidable simple host, then
-     Clapham again gives `S <= H <= [T,T]` with `T` decidable.
-   - **Decidable image.** By [[ck-sandwich-ring-diamond-normal-form]], `U`
-     and `EL_4(U)` are decidable, and `K` is recursive.
-   - **Where poison can live.** Every WP-poisoned element lies in `K`, and
-     `s` is not poisoned.
-   - **Regimes.** Poison can obstruct only regime R1, and not even R1 if `K`
-     has no nonabelian simple quotient.
+     The same argument applies to any one-sided defect. So in positive
+     characteristic an MF witness `PE_4(R)` forces `R` to be directly finite,
+     with `1-g` and `p` units. In characteristic zero the analogous
+     conclusion needs MF of `E_N(R)` for every `N`, by
+     [[mf-elementary-groups-force-stably-finite-simple-rings]], which a
+     witness does not supply. That is a constraint on the ring host of
+     [[ck-maximal-kernel-four-regimes]], not a route to finite presentation.
+     The approximation family can only screen ring types, and cannot supply
+     the missing relators.
+8. **Certify the kernel by measure, entropy, genericity or a limit
+   (swarm-0917, entropy-measure).** *Dead as a class.*
+   The class covers four kinds of argument.
+   - Put a Borel probability measure on the proper normal subgroups of
+     `Gamma`. Candidates are invariant or stationary random subgroups pushed
+     to normal cores, Glasner--Weiss limits under property (T), laws of
+     random quotients, or limits of counting measures on finite
+     approximations. Then argue that a positive-measure or positive-entropy
+     set of maximal kernels has the property.
+   - Argue that a Baire-generic maximal kernel in some closed family has it.
+   - Build `M` as the Chabauty limit of a construction sequence, such as
+     iterated small-cancellation or random-quotient towers.
+   - Use conjugation dynamics on normal subgroups.
 
-   So the tenable hole is the clean one: *for a clean marking, `Gamma` has a
-   finitely normally generated maximal kernel.* The residual computability
-   question is [[clean-ck-cover-has-solvable-word-problem]], which asks for
-   decidable triviality inside `K`.
-
-   *Dead ends recorded.* Transplanting poison through type `[A_2]` kernels
-   (FFWZ Q5.9) does not reach `Gamma`, for three reasons:
-   - `[A_2]` images are co-r.e.;
-   - HNN realizations have computable `π`;
-   - the Theorem C actor needs a finitely presented simple group with
-     non-recursive mixed identities, which is itself open.
+   - *Invariant.* By [[fng-maximal-kernels-are-isolated-proper-normal-points]],
+     a maximal `M` is finitely normally generated exactly when `M` is an
+     isolated point of the Chabauty space `N(Gamma)`. The isolated points
+     form a countable set. Isolation is a topological property that no
+     measure detects.
+   - *Where every member dies.* The step is "positive measure, entropy or
+     genericity, or being a limit, implies finitely normally generated". A
+     finitely normally generated maximal kernel in the support of `mu` is
+     an atom of `mu`, so every non-atomic measure gives these kernels mass
+     zero. A maximal kernel that is a limit of other normal subgroups is not
+     finitely normally generated. A closed family with no isolated points
+     contains no such kernel. The dynamics carries no information:
+     conjugation acts trivially on `N(Gamma)`, every measure on it is
+     invariant and stationary, and the ergodic ones are Dirac masses. So an
+     ergodic IRS on normal subgroups names one kernel and certifies nothing
+     about it, and Glasner--Weiss closedness under (T) is vacuous here.
+   - *Why the atom branch is no survivor.* An atom certifies nothing by
+     itself. By [[kazhdan-hyperbolic-continuum-non-fng-maximal-kernels]], a
+     Dirac mass sits on a non-isolated maximal kernel just as easily. To
+     prove that an atom is isolated one must exhibit a finite `F` with
+     `<<F>>` maximal, which is this claim with no gain.
+   - *Consequence for method.* Any proof must name its kernel by finitely
+     many relators. In regime R4 of [[ck-maximal-kernel-four-regimes]] that
+     means finitely many ideal generators. Probabilistic or ergodic input can
+     only screen candidate relator sets, and screening must then be closed
+     by a deterministic maximality proof.
