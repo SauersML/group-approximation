@@ -5471,6 +5471,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Comp
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowK.KZero
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.WeylBraid
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Univariate.Defs
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistence.BlockSum
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistence.LeavittSquare
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
