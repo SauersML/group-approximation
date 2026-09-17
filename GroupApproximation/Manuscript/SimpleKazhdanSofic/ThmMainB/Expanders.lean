@@ -35,7 +35,7 @@ namespace GroupApproximation
 namespace SimpleKazhdanSofic
 namespace ThmMainB
 
-open SymbolicDynamics.FullShift Filter
+open SymbolicDynamics.FullShift
 
 /-- An element of the image of a finset along a ring isomorphism pulls back into the finset. -/
 theorem symm_mem_of_mem_map {R₁ R₂ : Type*} [Ring R₁] [Ring R₂] (e : R₁ ≃+* R₂) {S : Finset R₁}
