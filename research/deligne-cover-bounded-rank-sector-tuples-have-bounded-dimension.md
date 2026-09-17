@@ -5,6 +5,7 @@ kind: claim
 title: Unitary sector tuples of a Deligne cover whose relator defects have rank at most k have dimension at most C(k)
 artifacts:
   - research/artifacts/deligne-bounded-rank-rung-anatomy-2026-09-17.md
+  - research/artifacts/deligne-bounded-rank-torsion-spectrum-2026-09-17.md
 distinct_from:
   deligne-sector-truncations-have-bounded-dimension: that bounds the dimension of bounded-boundary truncations of genuine unitary sector representations; this is the rung for all rank-k sector tuples, which that node shows is equivalent to every such tuple being a truncation.
   heisenberg-irrational-center-has-rank-one-sector-tuples: that shows the analogous rung is false for the integer Heisenberg group; this is the rung for the Kazhdan non-residually-finite Deligne covers, where it is open.
@@ -87,3 +88,33 @@ exist in every dimension, and (LOC) fails at exactly one step: `z^2` is not in t
   `z^2 in <<x~_alpha(1)>>` hold. The one quantitative handle not yet computed is the
   **Deligne cost** `(N_g, A_g)` of an identity `z^2 = prod_(i <= N) w_i g^(+-1) w_i^(-1) prod_(j <= A) u_j r_j^(+-1) u_j^(-1)`,
   which enters (LOC) linearly.
+- **D2 repaired at atom level; the real failing step is interlacing (2026-09-17, sw-124, scale-shifter).**
+  Details in `research/artifacts/deligne-bounded-rank-torsion-spectrum-2026-09-17.md`.
+  - **Proposed-established.** A finitely supported integer measure on `T^2` whose defect under the two
+    generators of `SL_2(Z)` is `K` equals a sum of torsion-orbit indicators plus `C_0 K` mass. The
+    proof uses amenable stabilizers of non-torsion points, the Kesten gap, the Selberg (tau) gap, and
+    coarea. So D2's single-generator orbit segments are not almost-invariant under `SL_2(Z)`.
+  - **Dead end.** Rank-`k` tuples do not supply atom-level almost invariance. A generic rank-one
+    perturbation moves all `d` eigenvalues, so rank controls only interlacing. And almost-commuting
+    long-root pairs have no joint spectrum without bounded-rank `Z^2` stability (open).
+  - **Barrier.** (LOC) along `x_alpha(1)^M` sees only exact `M`-torsion multiplicities, which rank
+    perturbations shift by up to `M r`. With an `eps`-rank variant, Dirichlet forces `M ~ N_M^d`, and
+    then the relator area must satisfy `A_M = o(log M)`. This is a heuristic barrier.
+  - **Surviving target.** Monomial-type tuples, where Part I applies directly. For general tuples,
+    unitary bounded-rank stability of `Z^2` is necessary but not sufficient. Even after the long-root
+    pair is made to commute, the `SL_2(Z)` conjugation relations match joint spectra only up to
+    interlacing, so a second, atom-level rigidity input is also needed.
+- **The `Z^2` stability input is false (2026-09-17, sw-124, relaunch).** See
+  `z2-commuting-pairs-are-not-bounded-rank-stable`.
+  - **Counterexample.** A dislocation dipole on the `n x n` torus gives permutation matrices with
+    `rank([A,B]) = 2` that are at rank distance `>= (n-4)/32 ~ sqrt(d)/32` from every commuting pair,
+    over any field.
+  - **Consequence.** The need posted above cannot be met. A joint-spectrum argument for the long-root
+    pair must exclude dislocation-type configurations through the `SL_2(Z)` or `Sp_(2g)(Z)`
+    conjugation relators.
+  - **Invariant.** The obstruction is the growth of `phi(L) = rank(w_L(rho) - I)` for
+    `w_L = [b^L, c^L]`, where `(b, c)` is a commuting root pair normalized by an `SL_2(Z)` in
+    `Sp_(2g)(Z)`, for instance `Z^2 x| SL_2(Z)` inside `SL_3(Z)` inside `Sp_6(Z)`. Pairs near
+    commuting have linear `phi`, and dislocations make it quadratic. The sharp open sub-question on
+    this route is whether the `SL_2(Z)` conjugation relators of a rank-`k` tuple force
+    `phi(L) <= C(k) L`.
