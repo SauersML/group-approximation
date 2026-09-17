@@ -67,8 +67,6 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece09
 
 universe u
 
-open GroupApproximation.GGT.VanKampen
-
 /-- **A dart path** from the vertex `a` to the vertex `b`: each dart starts where the previous one
 ends. -/
 def DartPath (M : CombMap.{u}) : M.Vertex → M.Vertex → List M.Dart → Prop
@@ -163,10 +161,11 @@ theorem dartPath_of_isChain (M : CombMap.{u}) :
     exact (dartPath_cons M _ _ d []).mpr ⟨rfl, (dartPath_nil M _ _).mpr rfl⟩
   | d :: e :: l, _, h => by
     rw [List.isChain_cons_cons] at h
+    have h1 : M.vertexOf (M.alpha d) = M.vertexOf e := h.1
     have ih := dartPath_of_isChain M (e :: l) (List.cons_ne_nil e l) h.2
     rw [List.getLast_cons_cons]
     refine (dartPath_cons M _ _ d (e :: l)).mpr ⟨rfl, ?_⟩
-    rw [h.1]
+    rw [h1]
     exact ih
 
 /-- A path is a chain of darts. -/
