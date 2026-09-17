@@ -250,5 +250,15 @@ end Family
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.faceOf_embed_mem_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.mem_stepMap_faces
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.dart_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.embed_dart_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.none_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.someNone_not_internal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.regionInternal_embed_iff_of_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.regionInternal_embed_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.dart_ne_second
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.sigma_alpha_dart
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.not_phiKeepO_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.cell_face_eq

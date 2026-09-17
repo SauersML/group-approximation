@@ -191,3 +191,7 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.first_newDarts
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.refinedGoodSector_of_twoDigons
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.badCornerRefinement_of_monogonCorner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.sigma_pow_add_apply
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.sigma_pow_sub_apply
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.notMem_faces_second
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.CornerRefine.corner_faces_ne

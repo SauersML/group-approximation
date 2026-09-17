@@ -94,8 +94,8 @@ theorem exists_digon_sector {z : X.toCombMap.Dart}
   · obtain ⟨p, hp, hpz, hpmid⟩ := EdgeInsertion.exists_sigma_step_lift (corners_ne' X f k hlen) z
     refine ⟨p, 0, hp, hpz, fun t ht htp w hw => ?_, ?_⟩
     · rcases hpmid t ht htp with h | h
-      · exact Option.noConfusion (h.symm.trans hw)
-      · exact Option.noConfusion (Option.some.inj (h.symm.trans hw))
+      · exact absurd (h.symm.trans hw) (by simp [EdgeInsertion.embed])
+      · exact absurd (h.symm.trans hw) (by simp [EdgeInsertion.embed])
     · rw [pow_zero, Equiv.Perm.one_apply]
       change (FaceEdgeDoubling.map X f k hlen).faceOf
         (EdgeInsertion.embed X.toCombMap (X.toCombMap.alpha z)) = _
@@ -112,7 +112,7 @@ theorem exists_digon_sector {z : X.toCombMap.Dart}
         (congrArg (EdgeInsertion.embed X.toCombMap) hσ'.symm)
     · obtain rfl : t = 1 := by omega
       rw [pow_one, h1] at hw
-      exact Option.noConfusion (Option.some.inj hw)
+      simp [EdgeInsertion.embed] at hw
     · rw [pow_one, h1]
       change (FaceEdgeDoubling.map X f k hlen).faceOf none = _
       exact FaceEdgeDoubling.faceOf_none_digon X f k hlen
@@ -321,6 +321,13 @@ theorem cornerDigon_of_nonMonogon (K : PocketFaceSet D eps X lo hi)
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.corners_ne'
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.faceOf_embed_of_ne'
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.eq_of_faceOf_embed_digon
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.isGFace_transfer_inner
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.inner_target_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.isGFace_transfer_outer
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.outer_source_proper
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.exists_corner_index
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.exists_digon_sector
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.digon_isGFace_inner
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.digon_isGFace_outer

@@ -406,4 +406,28 @@ end Rotation
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.keep_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.sigma_alpha_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.dart_ne_second
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.faceOf_some_none_image
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.faceOf_some_none
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.face_not_mem_regionFamily
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.cell_face_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.dart_keep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.second_keep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.some_none_keep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.none_keep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.embed_keep_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.facePerm_dart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.facePerm_w_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.collapsedEmbed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.collapsedEmbed_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.some_none_not_mem_range
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.rotation_away
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.rotation_into
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.rotation_out
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.dart_not_phiKeep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.backCollapsed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.backDart_sim
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.backCollapsed_cell
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.phiTransportAt_hair

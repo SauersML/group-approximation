@@ -53,15 +53,10 @@ theorem manuscriptSentence_lamplighterDiagonalEmbedding :
 
 /-- `R_Δ` is an `F_2`-algebra: `2 = 0` in it. -/
 theorem two_eq_zero_lampRing : (2 : LampRing Δ) = 0 := by
-  have h' : ((ClopenGroupCrossedProduct.coeff (LampAffine Δ) (LampSpace Δ) (ZMod 2)).comp
-      (LocallyConstant.constRingHom : ZMod 2 →+* LocallyConstant (LampSpace Δ) (ZMod 2)))
-        (2 : ZMod 2) = 0 := by
-    rw [show (2 : ZMod 2) = 0 from by decide, map_zero]
-  calc
-    (2 : LampRing Δ) = ((ClopenGroupCrossedProduct.coeff (LampAffine Δ) (LampSpace Δ) (ZMod 2)).comp
-      (LocallyConstant.constRingHom : ZMod 2 →+* LocallyConstant (LampSpace Δ) (ZMod 2)))
-        (2 : ZMod 2) := (map_ofNat _ 2).symm
-    _ = 0 := h'
+  have h := map_ofNat ((ClopenGroupCrossedProduct.coeff (LampAffine Δ) (LampSpace Δ) (ZMod 2)).comp
+      (LocallyConstant.constRingHom : ZMod 2 →+* LocallyConstant (LampSpace Δ) (ZMod 2))) 2
+  rw [show (2 : ZMod 2) = 0 from by decide, map_zero] at h
+  exact h.symm
 
 /-- **tex l.581–586.**  Four facts.
 

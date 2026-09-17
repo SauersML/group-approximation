@@ -52,7 +52,8 @@ def frameV1 (A : Type*) [Ring A] (m : ℕ) : FrameVertices A (m + 1 + 1 + 1) :=
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameV1
 
-theorem frameComplex_edge_base : (frameComplex A (m + 1 + 1 + 1)).edge (frameV0 A m) (frameV1 A m) :=
+theorem frameComplex_edge_base :
+    (frameComplex A (m + 1 + 1 + 1)).edge (frameV0 A m) (frameV1 A m) :=
   (frameTri_base (A := A) (m := m)).edge01
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.frameComplex_edge_base
@@ -105,8 +106,8 @@ def frameBrownSetting (A : Type*) [Ring A] (m : ℕ) :
       (FrameVertices A (m + 1 + 1 + 1)) where
   edge := (frameComplex A (m + 1 + 1 + 1)).edge
   tri := (frameComplex A (m + 1 + 1 + 1)).tri
-  edge_smul g _ _ h := frameEdge.smul h g
-  tri_edge _ _ _ h := frameTri.edge02 h
+  edge_smul := fun g _ _ h => frameEdge.smul h g
+  tri_edge := fun _ _ _ h => frameTri.edge02 h
   v0 := frameV0 A m
   v1 := frameV1 A m
   edge_base := frameComplex_edge_base

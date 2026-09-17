@@ -272,7 +272,20 @@ theorem phiTransportAt (a₀ : S.family) : PhiTransportAt (transport S j hlen ht
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.keepAlpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.keepEmbed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.collapsedEmbedding
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.wDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.sDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.collapsedEmbedding_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.sDart_not_mem_range
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.wDart_not_phiKeepO
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.facePerm_wDart_ne
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.facePerm_collapsed_of_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.facePerm_collapsed_of_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.facePerm_sDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.backCollapsed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.backCollapsed_embedding
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.eqvGen_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.faceOf_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05OuterSide.phiTransportAt

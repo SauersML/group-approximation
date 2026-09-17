@@ -20,8 +20,6 @@ The argument for `k` is the same.
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 
-open Topology
-
 variable {X : Type*} [TopologicalSpace X]
 
 /-- A point moved by two homeomorphisms has a clopen neighbourhood displaced by both. -/

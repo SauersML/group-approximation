@@ -233,6 +233,10 @@ end GroupApproximation
 
 /-! ### Axiom audit -/
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.exists_clopen_tower
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.card_tower_ge_three
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.towerCopyG_injective
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.towerCopyG_transvection
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_normalSubgroupContainsTowerCommutator
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_containsCopyElementaryMatrixEveryElementary
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_figureTowerMatrixUnits

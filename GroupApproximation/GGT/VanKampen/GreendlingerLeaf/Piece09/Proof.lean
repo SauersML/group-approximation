@@ -275,7 +275,9 @@ theorem exists_twoArc_of_pocket (S : RealizedSectionFamily D lambda c eps Delta 
   obtain ⟨Gap, hsrc⟩ := hgap
   have hxne : x.2.sourceArc.darts ≠ [] :=
     List.ne_nil_of_length_pos (by rw [CyclicArc.darts_length]; exact (S.nondegenerate x hxS).1)
-  obtain ⟨σ, hσd, hσl⟩ := exists_source_split K hxne (by rw [hsrc, List.append_assoc])
+  obtain ⟨σ, hσd, hσl⟩ := exists_source_split K hxne
+    (by rw [hsrc, List.append_assoc] :
+      K.sourceArc.darts = x.2.sourceArc.darts ++ (Gap.darts ++ y.2.sourceArc.darts))
   obtain ⟨β, htgt, hβpos, hβl, hβlo, hβhi⟩ := exists_target_split S hxS hyS hxy hjx hjy K hstart hend
   obtain ⟨s, hsface, hsin, hswalk⟩ := exists_sourceDart_walk S hx K Gap hsrc
   have hsub := region_subset_pocket K P hPw (walk_off_region S hx hdisj K hKi hfirst hsecond)
