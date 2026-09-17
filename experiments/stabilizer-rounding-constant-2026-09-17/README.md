@@ -21,3 +21,10 @@ Dual formulation (proved by LP minimax, since (SR*) is increasing in `lambda`):
 |---|---|---|
 | `referee_ref04_search.py n trials restarts seed` | stabilizer states by BFS closure under H, S, CNOT (6, 60, 1080, 36720); random dense/sparse/`+-1` sums, magic Pauli-vector powers, Nelder--Mead on sparse supports; checks (SR*) slack directly | max ratio 0.7071067812 at n=1,2,3,4, no violation (`ref04_n3.log`, `ref04_n4.log`; n=1,2 seed 11, n=3 seed 12, n=4 seed 13) |
 | `referee_ref04_steps.py trials seed` | first post-selection step: (F1), (1), (2), compression identity (3), `lambda'` bound, compressed commuting terms are signed non-identity Paulis; F2 on a grid | 4000 instances, n<=4, worst excess 7.6e-15; F2 grid minimum 1.6e-7 at M=0.7071065 (`ref04_steps.log`) |
+
+## Second referee re-check (w3-stab, 2026-09-17; independent code)
+
+| script | what it does | result |
+|---|---|---|
+| `referee_w3stab_check.py` | runs the full recursion of the proof with explicit Clifford synthesis `U A_R U^* = Z_n` at every level; asserts (1), `(I+A_R)K(I+A_R)=2(I+A_R)K_c`, (2), (3), non-identity compressed terms, the weight bound on the restricted operator, and that the output is a stabilizer state certifying (SR*); plus Nelder--Mead on the rounding ratio at n<=3 | 1130 instances n<=4, 1745 levels, worst step excess 2.1e-14, max ratio 0.707106781, no violation (`referee_w3stab_check.log`) |
+| `referee_w3stab_sympy.py` | exact symbolic checks of the scalar core: `(1+c)t=c`, both F2 branches, Step-4 expansion, energy formula (2), sharpness | all pass (`referee_w3stab_sympy.log`) |

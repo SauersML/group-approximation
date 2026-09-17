@@ -1,0 +1,4 @@
+A: 1130 random instances n<=4; min slack of rounded state -5.329e-15 at (3, 'repeats'); max ratio (lambda-E)/(W-lambda) = 0.707106781
+   per-step extremes: {'levels': 1745.0, 'min_slack1': -1.6653345369377348e-16, 'max_err2': 1.2434497875801753e-14, 'max_err_id': 5.329070518200751e-15, 'min_wslack': -8.881784197001252e-16, 'max_err3': 2.1316282072803006e-14, 'idcomp': 0.0}
+B: adversarial Nelder-Mead on the rounding ratio, n<=3: best ratio 0.707106781 (1/sqrt2 = 0.707106781)
+RESULT: no violation
