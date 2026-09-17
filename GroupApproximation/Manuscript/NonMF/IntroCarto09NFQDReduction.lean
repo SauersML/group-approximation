@@ -23,8 +23,8 @@ The down maps are the quasidiagonal models `QuasidiagonalModel.map`.
 * `map_star` is `OrderZero.map_star_of_cp`.
 * `tendsto_mul` is the sequence model's clause.
 * `limsup_norm` comes from `tendsto_norm_down`, a squeeze:
-  `‖a‖ - ‖up n (down n a) - a‖ ≤ ‖up n (down n a)‖ ≤ ‖down n a‖ ≤ ‖a‖`, where
-  the middle step is the contraction of `up`. So `‖down n a‖ → ‖a‖`, and the
+  `‖a‖ - ‖up n (down n a) - a‖ ≤ ‖up n (down n a)‖ ≤ ‖down n a‖ ≤ ‖a‖`,
+  where the middle step is the contraction of `up`. So `‖down n a‖ → ‖a‖`, and the
   limsup of a convergent sequence is its limit.
 * `completelyPositive` asks for the form-sense predicate
   `Quasidiagonal.IsCompletelyPositiveOnMatrices`. The model gives the

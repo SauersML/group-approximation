@@ -101,6 +101,8 @@ def IsSoficPestovRestricted (G : Type*) [Group G] : Prop :=
       φ 1 = 1 ∧
       ∀ g ∈ F, g ≠ 1 → 1 - ε < pestovHammingDist (φ g) 1
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SoficPestov.IsSoficPestovRestricted
+
 /-- Testing all pairs is at least as strong as testing the product-closed pairs. -/
 theorem isSoficPestovRestricted_of_isSoficPestov {G : Type*} [Group G]
     (h : IsSoficPestov G) : IsSoficPestovRestricted G := by
