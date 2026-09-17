@@ -1,0 +1,27 @@
+T0: lam=[0, 1, 2, 4, 6, 5, 3]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+T1: lam=[0, 1, 2, 5, 4, 6, 3]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+T2: lam=[0, 1, 2, 6, 4, 5, 3]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 4,4; dim H^1 = 2; one transport class per colour
+T3: lam=[0, 1, 3, 2, 4, 6, 5]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+T4: lam=[0, 1, 3, 5, 4, 2, 6]; 42 tiles, 168+168 edges, 672 squares; row sums 4; primitive exponents 5,5; dim H^1 = 2; one transport class per colour
+all certificates passed
+T0: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Cadical153]: UNSAT in 13.9s
+T0: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Glucose4]: UNSAT in 5.2s
+T1: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Cadical153]: UNSAT in 16.2s
+T1: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Glucose4]: UNSAT in 1.9s
+T2: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Cadical153]: UNSAT in 26.7s
+T2: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Glucose4]: UNSAT in 3.5s
+T3: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Cadical153]: UNSAT in 14.3s
+T3: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Glucose4]: UNSAT in 1.8s
+T4: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Cadical153]: UNSAT in 28.0s
+T4: m=2: 12 codes, 7 partitions, 128688 vars, 419412 clauses
+m=2 [Glucose4]: UNSAT in 3.0s
+uniform certificate passed: no brick coding in any dimension for T0..T4
