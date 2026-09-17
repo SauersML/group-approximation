@@ -89,3 +89,34 @@ argument.
    by assuming stable K_2 properties for the unstable kernel. Neither
    branch currently supplies finite normal generators for the maximal
    kernel upstairs.
+6. **Refine the matrix branch by level and congruence layer (swarm-0917).**
+   *Established classification, and one regime reduced exactly.*
+   [[ck-maximal-kernel-four-regimes]] places every maximal kernel `M` in
+   exactly one regime, where `I = lev(rho(M))`:
+   - R1: a quotient of the covering kernel;
+   - R2: a quotient of the congruence layer `C_I/E_4(U,I)`;
+   - R3: a level-zero normal subgroup of `PE_4(U/I)`;
+   - R4: `M` is the congruence kernel `rho^{-1}(C_I)`.
+
+   In R4, finite normal generation of `M` is **equivalent** to two
+   conditions: `I` is finitely generated, and `PE_4(U/I)` is finitely
+   presented and simple. The proof reads finite ideal generators off finite
+   normal generators, together with the centre of `E_n`. So the hole follows
+   from the open ring statement
+   [[ck-sandwich-ring-has-fp-projective-simple-quotient]], via route
+   [[ck-maximal-kernel-via-projective-quotient-ring]].
+
+   It is equivalent to that statement once three standard normal-structure
+   properties hold for `U`, each killing one regime:
+   - the covering kernel has no nonabelian simple quotient (R1);
+   - the relative commutator formula `[Q, C_I] <= E_4(U,I)` holds (R2);
+   - `PE_4` over quotients of `U` detects roots (R3).
+
+   *Where standard approaches die.* A proof by sandwich or congruence
+   methods cannot be cheaper than building a finitely presented simple
+   quotient ring of `U`, with `S` in its units and a finitely presented
+   simple rank-four projective elementary group. That is the projective
+   ring-host wall, and the kernel lane and the ring-host lane merge there. A
+   genuinely different proof has to produce a maximal kernel in R1, R2 or R3,
+   and must therefore exploit a failure of one of the three properties for
+   this specific non-quasi-finite ring.
