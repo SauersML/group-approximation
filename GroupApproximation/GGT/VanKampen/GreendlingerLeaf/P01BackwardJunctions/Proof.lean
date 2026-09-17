@@ -414,10 +414,10 @@ theorem junctionLabel_injOn (P : OsinLemma94RealizedPolygons S) {T : Finset (Fin
 theorem backward_count (P : OsinLemma94RealizedPolygons S) {T : Finset (Fin P.count)}
     (hT : T ⊆ P.relatorPolygons) :
     ∑ k ∈ T, (P.backwardJunctions k).card ≤ Delta.rCellCount + 1 := by
-  rw [← Finset.card_sigma]
+  rw [← Finset.card_sigma T fun k => P.backwardJunctions k]
   refine (Finset.card_le_card_of_injOn (junctionLabel P) (t := Finset.univ)
     (fun x _ => Finset.mem_coe.2 (Finset.mem_univ (junctionLabel P x)))
-    (junctionLabel_injOn P hT)).trans ?_
+    (junctionLabel_injOn P hT)).trans (le_of_eq ?_)
   rw [Finset.card_univ, Fintype.card_option, Fintype.card_fin, S.equiv.rCellCount_eq]
 
 end Diagram

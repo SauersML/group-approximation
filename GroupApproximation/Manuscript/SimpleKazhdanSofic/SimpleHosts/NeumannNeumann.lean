@@ -267,7 +267,8 @@ theorem exists_twoGenerated_commutator_embedding (Γ : Type) [Group Γ] [Countab
     Group.closure_finite_fg _,
     (embeddingΔ _ (fun j => e (j - 1)) hsurj).comp (MonoidHom.inl Γ (Multiplicative ℤ)),
     (embeddingΔ_injective _ (fun j => e (j - 1)) hsurj).comp fun _ _ h => congrArg Prod.fst h,
-    fun x => embeddingΔ_mem_commutator _ (fun j => e (j - 1)) hsurj _⟩
+    fun γ => embeddingΔ_mem_commutator _ (fun j => e (j - 1)) hsurj
+      (MonoidHom.inl Γ (Multiplicative ℤ) γ)⟩
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SimpleHosts.NeumannNeumann.exists_twoGenerated_commutator_embedding
 
