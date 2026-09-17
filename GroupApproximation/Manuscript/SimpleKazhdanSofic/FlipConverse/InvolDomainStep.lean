@@ -57,18 +57,21 @@ theorem exists_displaced_clopen_saturating_finset {σ : X ≃ₜ X} (hs : ∀ z,
         · exact hznot ((Set.mem_union _ _ _).2 (Or.inr hszV))
         · exact hUd a z hzUa ((Set.mem_diff _).1 hszN).1
     · intro x hx
-      rcases Finset.mem_insert.1 hx with rfl | hxt
-      · intro z hz
+      rcases Finset.mem_insert.1 hx with hxa | hxt
+      · rw [hxa]
+        intro z hz
         by_cases hzS : z ∈ V ∪ σ ⁻¹' V
         · rcases (Set.mem_union _ _ _).1 hzS with hzV | hszV
           · exact (Set.mem_union _ _ _).2 (Or.inl ((Set.mem_union _ _ _).2 (Or.inl hzV)))
-          · exact (Set.mem_union _ _ _).2 (Or.inr ((Set.mem_union _ _ _).2 (Or.inl hszV)))
+          · have h : σ z ∈ V ∪ (U a \ (V ∪ σ ⁻¹' V)) := (Set.mem_union _ _ _).2 (Or.inl hszV)
+            exact (Set.mem_union _ _ _).2 (Or.inr h)
         · exact (Set.mem_union _ _ _).2
             (Or.inl ((Set.mem_union _ _ _).2 (Or.inr ((Set.mem_diff _).2 ⟨hz, hzS⟩))))
       · intro z hz
         rcases (Set.mem_union _ _ _).1 (hVU x hxt hz) with hzV | hszV
         · exact (Set.mem_union _ _ _).2 (Or.inl ((Set.mem_union _ _ _).2 (Or.inl hzV)))
-        · exact (Set.mem_union _ _ _).2 (Or.inr ((Set.mem_union _ _ _).2 (Or.inl hszV)))
+        · have h : σ z ∈ V ∪ (U a \ (V ∪ σ ⁻¹' V)) := (Set.mem_union _ _ _).2 (Or.inl hszV)
+          exact (Set.mem_union _ _ _).2 (Or.inr h)
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 

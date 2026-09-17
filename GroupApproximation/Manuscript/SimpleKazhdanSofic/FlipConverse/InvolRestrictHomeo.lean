@@ -69,10 +69,12 @@ theorem image_eq_of_forall_apply_mem_iff (h : X ≃ₜ X) {U : Set X}
   · rintro ⟨x, hx, rfl⟩
     exact (hU x).2 hx
   · intro hy
-    refine ⟨h.symm y, ?_, h.apply_symm_apply y⟩
-    apply (hU (h.symm y)).1
-    rw [Homeomorph.apply_symm_apply]
-    exact hy
+    have hsy : h.symm y ∈ U := by
+      apply (hU (h.symm y)).1
+      rw [Homeomorph.apply_symm_apply]
+      exact hy
+    have himg : h (h.symm y) ∈ h '' U := Set.mem_image_of_mem h hsy
+    rwa [Homeomorph.apply_symm_apply] at himg
 
 open Classical in
 /-- `h` on `U`, the identity off `U`. -/
@@ -109,9 +111,8 @@ theorem restrictToClopenFun_apply_symm (h : X ≃ₜ X) {U : Set X} (hinv : h ''
   · rw [restrictToClopenFun_of_notMem h.symm hy, restrictToClopenFun_of_notMem h hy]
 
 theorem continuous_restrictToClopenFun {h : X ≃ₜ X} {U : Set X} (hU : IsClopen U)
-    (hh : Continuous h) : Continuous (restrictToClopenFun h U) := by
-  classical
-  exact continuous_ite_clopen (f := fun x => h x) (g := fun x => x) hU hh continuous_id
+    (hh : Continuous h) : Continuous (restrictToClopenFun h U) :=
+  continuous_ite_clopen (f := fun x => h x) (g := fun x => x) hU hh continuous_id
 
 /-- The restriction of `h` to an `h`-invariant clopen set `U`, extended by the identity. -/
 noncomputable def restrictToClopen (h : X ≃ₜ X) {U : Set X} (hU : IsClopen U)

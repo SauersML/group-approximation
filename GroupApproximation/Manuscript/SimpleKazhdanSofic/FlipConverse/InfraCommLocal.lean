@@ -58,7 +58,7 @@ theorem SupportedIn.inv_supportedIn {g : X ≃ₜ X} {U : Set X} (hg : Supported
 /-- Conjugating an element supported in `W` by `g` gives an element supported in `g '' W`. -/
 theorem supportedIn_conj_image {a g : X ≃ₜ X} {W : Set X} (ha : SupportedIn a W) :
     SupportedIn (g * a * g⁻¹) (g '' W) :=
-  (supportedIn_conj_iff g a (g '' W)).2 (ha.mono (Set.subset_preimage_image g W))
+  (supportedIn_conj_iff g a (g '' W)).2 (ha.mono (Set.subset_preimage_image (g : X → X) W))
 
 /-- The commutator of an element supported in `W` with `g` is supported in `W ∪ g '' W`. -/
 theorem supportedIn_commutator {a g : X ≃ₜ X} {W : Set X} (ha : SupportedIn a W) :
@@ -95,7 +95,8 @@ theorem commutator_commutator_eq_of_displaced {a b g : X ≃ₜ X} {W : Set X}
     rw [commutatorElement_def]
     simp only [mul_assoc]
   have hc : SupportedIn (g * a⁻¹ * g⁻¹) (g '' W) := supportedIn_conj_image ha.inv_supportedIn
-  have hsub : g '' W ⊆ Wᶜ := fun y hy hyW => Set.disjoint_left.1 hW hyW hy
+  have hsub : g '' W ⊆ Wᶜ := fun _ hy =>
+    Set.mem_compl fun hyW => Set.disjoint_left.1 hW hyW hy
   have hbc : b * (g * a⁻¹ * g⁻¹) = (g * a⁻¹ * g⁻¹) * b :=
     hb.commute_of_compl (hc.mono hsub)
   rw [e]
