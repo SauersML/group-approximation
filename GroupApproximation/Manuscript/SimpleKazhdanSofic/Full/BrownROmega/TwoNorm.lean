@@ -181,7 +181,7 @@ theorem exists_limit (hω : (ω : Filter ℕ) ≤ cofinite) (d : ℕ → bounded
   have hc : (fun n ↦ (d (κ n) : ℕ → (K →L[ℂ] K)) n) ∈ boundedSeq N :=
     mem_boundedSeq_iff.mpr ⟨fun n ↦ coord_mem (d (κ n)) n, B, fun n ↦ hB (κ n) n⟩
   refine ⟨⟨_, hc⟩, fun n ↦ hB (κ n) n, fun i ↦ ?_⟩
-  have ht := tendsto_twoNorm_mk σ ω (⟨_, hc⟩ - d i)
+  have ht := tendsto_twoNorm_mk σ ω ((⟨_, hc⟩ : boundedSeq N) - d i)
   rw [map_sub] at ht
   refine le_of_tendsto ht ?_
   have hcof : ∀ᶠ n in (ω : Filter ℕ), i ≤ n :=
