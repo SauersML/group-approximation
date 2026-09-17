@@ -6,6 +6,7 @@ title: Some nonamenable Cayley graph has coinciding percolation thresholds
 root: true
 distinct_from:
   fpbs-fixed-price-one-percolation-kernel: that is the positive statement for nonamenable fixed-price-one groups, the last case of the cost route; this is the negation of the universal goal, and by Lyons any witness for it must lie inside that same class.
+  fpbs-product-fibre-collision-loss-vanishes: that is an asymptotic inequality on high-degree products whose truth would refute this claim for that class; this is the existence of a counterexample anywhere.
 artifacts:
   - research/artifacts/fpbs/docs/priority-assessment-2026-09-09.md
   - research/artifacts/fpbs/spectral-spike.md
@@ -140,3 +141,36 @@ so establishing this claim would refute that conjecture too.
   **Surviving class for a counterexample.** Graphs with order-one deficit
   `D >= d(1-rho)(d-1)/(d-2)`, meaning dense short cycles relative to degree.
   This is where "amenable-like local structure" must live.
+* **Fibre-renormalized certificate: the factor's own cycles are harmless
+  (heretic lane, swarm-0917 w5, 2026-09-17).**
+
+  **What was wrong with the wave-4 route.** The deficit kill needs
+  `D(G_k) -> 0`, and the factor's own short cycles spoil it. For
+  `F_2 × Cay(Z,{±1..±k})`, an exact Collatz–Wielandt bound on
+  no-backtrack, no-triangle walks
+  (`experiments/fibre-renormalized-certificate-2026-09-17/saw_triangle_deficit.py`)
+  gives `D(G_k) >= 0.563, 0.619, 0.649, 0.681` for `k = 16, 24, 32, 48`. These
+  exceed both `delta_H = 0.536` and `Delta(G_k)`. So spread-out factors have
+  order-one deficit, and the unrenormalized criterion cannot certify them,
+  whatever `p_u` is.
+
+  **New invariant** (`fpbs-fibre-renormalized-nonbacktracking-certificate`,
+  ESTABLISHED). Contract the fibre clusters of an infinite normal `N` into
+  their susceptibility `chi_N` and weight quotient backtracks by
+  `(chi-1)/chi`. A Woodbury reduction on directed quotient edges, together
+  with Pringsheim, gives
+  `E|C(o) ∩ qN| < infinity` whenever `1 + gamma(d'-gamma)u^2 > u||A_X||` on
+  `[0, p chi]`, and hence `p <= p_u`. On `H □ B` the only data from `B` is
+  `chi_B`. A counterexample must then have **collision loss**
+  `L_p = d_H - 1/chi - 1/(p chi) >= delta_H - 1/chi + p(d_H - 1/chi)`, or
+  `p(d_H - gamma) > 1/(p chi)` with `||A_H||^2 >= 4 gamma(d_H - gamma)`, at
+  every `p ∈ (p_c(G), p_c(B))`.
+
+  **Surviving class.** Products in which fibre clusters, displaced by
+  `H`-steps, re-collide at a rate of at least `delta_H`. For high-degree
+  factors this means a near-critical fibre bubble (`p nabla_B` of order one),
+  whether or not `B` has triangles.
+
+  **Last missing prerequisite:** `fpbs-product-fibre-collision-loss-vanishes`
+  (OPEN). Its failure modes are a vanishing margin `p_c(B) - p_c(G)` and the
+  absence of a lace expansion on `G_k`.
