@@ -65,3 +65,24 @@ density `1/k`, restricted to transversals.
   - This is an informal argument, not a theorem. It is not evidence against
     `ugc-from-small-set-expansion-hypothesis`, which remains a valid one-way
     route.
+* **Gadget compositions over bounded-arity outer games (class kill, 2026-09-17).**
+  `sticky-cylinder-gadget-compositions-cannot-prove-sseh` (ESTABLISHED) turns the
+  RST remark (arXiv:1011.2586, p. 3) that gadget reductions "preserve ... lack of
+  expansion" into a theorem, and it covers the KMS counter-signal above.
+  - *Invariant.* The stickiness of the arity cylinders `X u N(X)` of the outer
+    game.
+  - *What survives the reduction.* Output graphs whose edges follow outer steps
+    (fibred graphs) inherit sticky sets at every scale. This holds under walk
+    powers, mixtures, parallel repetition and folding. So any projection outer
+    game of left arity `k` with walk length `t` outputs graphs with
+    `Phi(delta) <= 1 - k^(-ceil(t/2))` at every `delta` above the vertex-mass
+    scale.
+  - *Where it dies.* At the NO case of the output graph, for every
+    `eta < k^(-ceil(t/2))`, before any soundness analysis.
+  - *Survivors.*
+    - (G1) Outer chains that are already pointwise small-set expanders. RST's
+      H' gate is one; it consumes SSE hardness.
+    - (G2) Output graphs that are not fibred.
+    - (G3) Outer arity at least `eta^(-1/ceil(t/2))`, unbounded as `eta -> 0`.
+  - Where it stops: it refutes no route that avoids fixed-arity outer
+    composition.
