@@ -111,8 +111,7 @@ theorem not_phiKeepO_dart {E : Finset (RegionCandidate D eps S.diagram)} (hE : E
   cases o with
   | false =>
     exact OuterSpurThickening.outer_not_mem S.diagram a.2
-      (by rw [← FaceEdgeDoubling.dart_face S.diagram S.diagram.outerFace j]
-          exact faceOf_crossO_false a h)
+      (by rw [← FaceEdgeDoubling.dart_face S.diagram S.diagram.outerFace j]; exact faceOf_crossO_false a h)
   | true =>
     have h' : crossO a s false = some (S.diagram.toCombMap.alpha
         (FaceEdgeDoubling.dart S.diagram S.diagram.outerFace j)) := (crossO_alpha a s true _).mpr h
@@ -246,7 +245,7 @@ theorem facePerm_sDart :
         (second_not_internal S j hlen)).symm))
 
 /-- **The old dart named by a new collapsed dart.** -/
-def backCollapsed :
+noncomputable def backCollapsed :
     (collapsedMap (OuterCellThickening.sectionFamilyOfAvoid S j hlen havoid).family).Dart →
       (collapsedMap S.family).Dart :=
   backDart (M := S.diagram.toCombMap)
