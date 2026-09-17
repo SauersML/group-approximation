@@ -5339,6 +5339,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnsOfOuterFo
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketFirstTurnsProperArc
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.CrossedProductConjugacy
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Factors
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Words
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
