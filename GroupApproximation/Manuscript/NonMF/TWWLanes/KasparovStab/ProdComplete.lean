@@ -68,7 +68,7 @@ theorem isCompleteModule_of_unitary {F : CStarModule.{v, w} B} {E : CStarModule.
     obtain ⟨N, hN⟩ := hu ε hε
     refine ⟨N, fun m n hm hn => ?_⟩
     have h := hU.norm_map (z m - z n)
-    rw [hsub m n, Adjointable.norm_inr, U.map_sub] at h
+    rw [U.map_sub, hsub m n, Adjointable.norm_inr] at h
     show G.norm (U.toFun (z m) - U.toFun (z n)) ≤ ε
     rw [h]
     exact hN m n hm hn
