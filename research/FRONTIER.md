@@ -22415,6 +22415,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · kazhdan-hyperbolic-b2-group-flexibly-hs-stable [OPEN] Some hyperbolic Kazhdan group with positive second Betti number is flexibly Hilbert--Schmidt stable
 - 2026-09-17 · thompson-f-is-not-amenable [OPEN] Thompson's group F is not amenable
 - 2026-09-17 · thompson-f-finite-state-flows-cannot-prove-nonamenability-proof [COMPLETE] An idempotent state measure makes a random forest split-stationary for the automaton profile, and averaging the flow inequalities over it gives inflow at least outflow
 - 2026-09-17 · thompson-f-finite-state-flows-cannot-prove-nonamenability [ESTABLISHED] No expansion certificate for the positive monoid of Thompson's F can be computed from a finite tree automaton run on the forest, because every finite automaton carries an idempotent state measure
@@ -22422,7 +22423,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · fpbs-soft-collapse-iff-invariant-sparse-spines [ESTABLISHED] A monotone invariant family equal to Bernoulli up to p_c can collapse above p_c exactly when invariant sparse spines exist, and they exist over every Z-quotient with finitely generated kernel
 - 2026-09-17 · fpbs-benjamini-schramm-universal [OPEN] Every nonamenable locally finite Cayley graph has a Bernoulli bond nonuniqueness interval
 - 2026-09-17 · fpbs-kazhdan-cofinal-mod-p-growth-vanishes [ESTABLISHED] In a Kazhdan group mod-p homology growth tends to zero along the profinite topology
-- 2026-09-17 · fpbs-fixed-price-counterexample-exists [OPEN] Some countable group has two free probability-preserving actions of different cost
 
 ## Active claims
 
