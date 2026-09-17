@@ -5357,6 +5357,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.Gene
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.RecursiveHost
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.TuringDegree
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofSentences
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.MarkedLimit
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.MarkedGroups
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.ExpanderBridge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
