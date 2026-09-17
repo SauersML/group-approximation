@@ -132,4 +132,5 @@ end GroupApproximation.BooneHigman.Metabelian.ElemFP
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_psiRoot
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_comp_psi
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.kmEquiv
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergFreeAlgebra_isFinitelyPresented
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergFreeAlgebra_isFinitelyPresented

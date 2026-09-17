@@ -74,6 +74,7 @@ theorem shift_C (a : {i : σ // i ≠ i₀} → F) (r : F) : shift i₀ a (C r) 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_C
 
+omit [DecidableEq σ] in
 theorem eval_zero_C_add_X_mul (r : F) (Q : MvPolynomial σ F) :
     eval (0 : σ → F) (C r + X i₀ * Q) = r := by
   rw [map_add, map_mul, MvPolynomial.eval_C, MvPolynomial.eval_X, Pi.zero_apply, zero_mul,
@@ -124,12 +125,14 @@ theorem shift_image (g : Matrix m m (MvPolynomial σ F)) (b : m → MvPolynomial
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_image
 
+omit [Fintype m] in
 theorem shift_comp_C (a : {i : σ // i ≠ i₀} → F) (c : m → F) :
     (⇑(shift i₀ a) ∘ fun j => C (c j)) = fun j => C (c j) :=
   funext fun j => shift_C i₀ a (c j)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_comp_C
 
+omit [DecidableEq σ] in
 /-- `M (u + s w) = M u + s M w`, entrywise. -/
 theorem mulVec_add_X_mul (M : Matrix m m (MvPolynomial σ F)) (u w : m → MvPolynomial σ F)
     (i : m) : (M *ᵥ fun j => u j + X i₀ * w j) i = (M *ᵥ u) i + X i₀ * (M *ᵥ w) i := by

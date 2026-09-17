@@ -17,8 +17,9 @@ finite set `polyRelators p k = {p} ∪ {s t - t s}` (`ker_polyQuotientMap`).
 Proof of the hard inclusion: in `Q = ℤ⟨Fin k⟩ / (polyRelators)` the generators commute, so every
 element is central (`relQuotMk_mem_center`) and `p = 0`.  The universal properties of `ZMod p`
 and of `MvPolynomial` give `polyLift : (ZMod p)[Fin k] → Q` with
-`polyLift ∘ polyQuotientMap = relQuotMk` (`polyLift_comp`).  So `ker polyQuotientMap ⊆ ker relQuotMk`,
-which is the span.
+`polyLift ∘ polyQuotientMap = relQuotMk` (`polyLift_comp`).  So
+`ker polyQuotientMap ⊆ ker relQuotMk`, which is the span.  These last steps are in
+`ElemFPPolyKernel`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
