@@ -5383,6 +5383,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.PartA
 import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Shrink
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.Expanders
 import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordAmenable.RealizedQuotient
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Reduction
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.MFArithmetic
+import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Undecidable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
