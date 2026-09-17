@@ -82,8 +82,8 @@ theorem manuscriptSentence_halflineLambdaWordProblem {Δ : Type} [Group Δ] {ι 
     (∀ [DecidableEq Δ] (w : List (Option ι × Bool)) (a : Δ),
       lampSum t w a = (((lampPrefixes w).filter fun p => wordValue t p = a).length : ZMod 2)) ∧
       TuringReducible (wordProblemOracle (lampGen t)) (wordProblemOracle t) := by
-  classical
   refine ⟨wordValue_lampGen t, fun w a => lampSum_apply t w a, ?_⟩
+  classical
   exact OracleTruthTable.turingReducible_of_truthTable (gt := deltaAnswer t) (fun _ => rfl)
     primrec_affineQueries primrec_affineDecide (affineOracle_eq t)
 
