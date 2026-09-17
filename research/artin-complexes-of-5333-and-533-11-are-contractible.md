@@ -22,6 +22,15 @@ contractible.
 - **No total order for `[5,3,3^{1,1}]`.** The diagram is not a path, so the poset structure of
   structure lemma 3 is unavailable for `Λ' = Λ`. Possible substitutes: a `(s_4, s_5)`-subdivision in
   the style of Proposition `prop:ori link0` of arXiv:2405.12068, which is used for `B̃_n` cores.
+- **Split by diagram; the tree `[5,3,3^{1,1}]` reduced to `H_4`** (lane w3-042, 2026-09-17).
+  Route `artin-complexes-5333-and-533-11-by-cases` splits this claim into
+  `artin-complex-of-5-3-3-3-is-contractible` and `artin-complex-of-5-3-3-11-is-contractible`.
+  For the tree, the `(s_4, s_5)`-subdivision satisfies Haettel's criterion. The lower sets come
+  from `d4-subdivided-artin-complex-downward-flag`, and the upper sets need
+  `h4-deligne-complex-upward-flag-toward-5-edge`. Hypothesis 3 holds **iff** that `H_4` statement
+  does. See route `artin-complex-5-3-3-11-contractible-via-b4-subdivision`.
+  So `[4,3,3,5]`, `[5,3,3,5]` and `[5,3,3^{1,1}]` all hang on that single statement, and
+  `[5,3,3,3]` stays without a reduction.
 - **Huang's proposed strategy** (arXiv:2405.12068, Conjecture `conj:exceptional`, which names
   `[5,3,3,3]` as exceptional): give each simplex the shape of the compact hyperbolic simplex
   and prove CAT(1) vertex links. The links are spherical Deligne complexes of `H_4`, `A_4` and
