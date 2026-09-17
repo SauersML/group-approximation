@@ -57,3 +57,24 @@ finite set.
     level `C^{−n}` that covers the generators' breakpoints satisfies `|supp ν|·(4LC^n+3)^k ≥ exp_n(0)`. So
     witnesses of fixed tower size are excluded by Moore's theorem.
   - *Route into the root.* `thompson-f-amenable-via-dyadic-extensive-amenability`.
+- **Algebraic certificates are killed (2026-09-17, swarm-0917-w5-f-extensive).** See
+  `f-ea-calculus-certificates-force-f-prime-to-act-trivially` (ESTABLISHED, unrefereed).
+  - *Class.* Take the smallest class `𝓟` of actions that contains:
+    - recurrent actions;
+    - all actions of groups with no copy of `F`.
+
+    Require `𝓟` to be closed under:
+    - pullbacks, invariant subsets, images and local-to-global;
+    - the extension principle (JMBMdlS Proposition 2.4);
+    - functor extensions with `F`-free values (Theorem 1.3).
+
+    `𝓟` contains every certificate assembled from those JMBMdlS results.
+  - *Invariant.* Property P: the commutator subgroup of every copy of `F` fixes every point.
+  - *Where every member dies.* The base case is `thompson-f-recurrent-f-sets-factor-through-the-abelianization`.
+    - The extension principle preserves P because `Φ′ ≤ G_y` is exhausted by the commutants of the rigid
+      copies `ψ(F[a,b])`.
+    - Functor extensions preserve P because a nontrivial action of `Φ′` would embed `F′` in the functor value.
+    - `F ↷ D` has `F′` acting nontrivially, so it has no certificate in `𝓟`.
+    - For twisted embeddings, `ker c ⊇ F′ ⊇ F`.
+  - *What remains.* This claim can only be proved by a non-algebraic analytic certificate, namely the
+    rare-event inverted-orbit confinement above.
