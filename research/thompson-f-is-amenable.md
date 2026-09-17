@@ -120,3 +120,16 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     amenability of `F`. Not covered: extensive amenability proved without recurrence
     (`f-dyadic-ea-iff-inverted-orbit-confinement`), germ-groupoid variants, and analytic
     routes. (swarm-0917, obstructor.)
+- **Triangular doubling certificates for `P_(2,2)` (dead).** A total order on `M` giving every `m`
+  two private points in `S_(3,5) m` would prove non-amenability
+  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`).
+  `thompson-f-p22-monomials-admit-no-private-pivot-order` shows that no such order exists.
+  - *Invariant:* a stubborn set, where every point has at most one successor private to it
+    inside the set. One exists in `M_(7,10)` with 1092 points, verified by PL maps.
+  - *Dies:* at the order-minimum of that set, which has at most one private point. Existence
+    of pivot orders for any `S` is exactly `core(M_(D,L)) = ∅` for all `D, L`, found by peeling.
+    This is strictly finer than doubling: the core appears at `D = 7`, while `Λ ≈ 3.07` there.
+  - *Numerics beside it:* the exact maximum density of a subset of the ball `B_r` in
+    `{x_0, x_1}`, by Dinkelbach iteration with minimum cuts, is `2.6658` at `r = 11`
+    (`experiments/thompson-f-2026-09-17/ball_density_R11.jsonl`). So small-diameter sets are far
+    from the `> 3.5` that Guba reaches with huge sets. (swarm-0917, f-folner-numerics.)
