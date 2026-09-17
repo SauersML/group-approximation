@@ -77,3 +77,32 @@ This provides a necessary test for a candidate enumeration. A finitely
 presented germ quotient alone does not lift to a finite presentation
 of A_1 or either two-point stabilizer; control of the neighborhood
 kernel and the lifted relations is still missing.
+
+2026-09-17 (swarm-0917-w5-pull2-boone-2, inverter): the explicit
+perfect benchmark fails this hypothesis. By
+`arithmetic-a5-near-group-is-not-finitely-presented`, the bijective-base
+A_5*A_5 enumeration fails through its near group, and the three
+stabilizers cannot all be finitely presented for it.
+- Every generator of R_nu is an automorphism of the 60-regular tree
+  with boundary X. This includes s, which is an edge flip followed by
+  an odometer.
+- The vertex stabilizers are locally virtually abelian, since they are
+  unions of the level groups Z^(2h^D) ⋊ finite.
+- R_nu contains Z^infinity, built from localized odometer pairs
+  [lambda_x, s^118][lambda_y, s^118]^-1 transported down the tree.
+- A finitely presented amalgam of locally virtually abelian groups
+  lifts into a finite amalgam of virtually abelian groups, which has
+  bounded abelian rank.
+- So R_nu, Q and A_1 are not finitely presented, and R_nu has infinite
+  index in the finitely presented host B_0.
+
+Consequence for surviving enumerations. A successful nu must not make
+the near shift s an automorphism of an input tree with such
+stabilizers. Any near group acting cocompactly on a tree with locally
+virtually abelian vertex stabilizers dies at the lifting step once it
+contains Z^infinity.
+
+Side result, in reasoning only and not written as a claim. For
+one-ended P, a realization on N of c_k = s^k lambda(P) s^-k has one free
+infinite orbit plus exactly k extra points. So gate windows containing
+c_(-1), and ker(eta), are not realizable on N.
