@@ -105,3 +105,27 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
     `G -> U_W(G)` is already UG hardness.
   - Open survivors: re-encoded left labels, completeness without local
     certificates, non-affine intended classes, partial richness.
+* **Run the known rich-producing constructions with perfect completeness, aiming
+  at BKM Conjecture 7, which implies this claim.** The constructions are right
+  merges `Psi(U)`, certified affine-local wrappers and an affine `F_lin`-stage
+  start of the `F_j` chain.
+  **Dead (2026-09-17)** -- route
+  `rich-2to1-perfect-completeness-via-tractable-skeletons` toward the new OPEN
+  node `rich-2to1-perfect-completeness-conjecture`. That node feeds here through
+  `rich-2to1-from-perfect-completeness`. The route is killed by
+  `perfect-completeness-rich-2to1-tractable-skeletons-are-in-p`.
+  - Invariant: the tractable skeleton mass, meaning a sub-instance computable
+    from the reduction's run that is a constant-seed forcing closure, a unique
+    game or an affine system.
+  - Step: completeness. A satisfiable game has satisfiable skeletons, skeleton
+    search is polynomial, and soundness caps the value at `delta` below the
+    skeleton mass.
+  - `Psi_Sigma(U)` is satisfiable iff `U` is, and one seed forces a component.
+    Certified wrappers make `U_W(G)` satisfiable.
+  - The Grassmann skeleton has closure mass `0.0015` at `n = 6`, but Gaussian
+    elimination solves it (brute-force artifact).
+  - The kill is silent at completeness `1 - eps`, so it does not touch this
+    claim's own hardness. It shows that Conjecture 7 needs P1, a re-encoding
+    reduction with `o(1)` closure and no unique-game or affine skeleton.
+  - Open spark: are the GKOPTW perfect-SDP 2-to-1 gap instances (ICALP 2010)
+    rich, or can they be made rich without a merge skeleton?
