@@ -8,6 +8,7 @@ distinct_from:
   fpbs-correlated-reuse-flags-removable: that asks for vanishing conditional traffic defect; this asks for an explicit block-boundary estimate on relative cycle operators and uses a different connected rounding construction
 artifacts:
   - research/artifacts/fpbs/docs/relative-cycle-exchange.md
+  - research/artifacts/fpbs/docs/zimmer-tower-cost-split-2026-09-17.md
 ---
 
 **OPEN.** For every free p.m.p. factor pi:Y->X of an infinite finitely
@@ -111,3 +112,55 @@ preservation. A localizing sequence must make label occupancy vanish
 exactly on base-measurable sets of positive measure. The retraction of
 Section 7, which deletes crossing edges, is not covered. The artifact is
 `research/artifacts/fpbs/docs/retained-boundary-isoperimetric-floor-2026-09-17.md`.
+
+Reframe by the Furstenberg--Zimmer tower (b-t-block, September 17,
+2026; the same split was reached in parallel by b-t-reuse). Localization
+asks one rounding rule to work uniformly across the whole extension
+a x b -> b. Instead, climb the relative tower of that extension over b.
+
+Jamneshan's dichotomy (`relative-furstenberg-zimmer-dichotomy`) holds for any
+group, with no ergodicity hypothesis. Over b it gives a countable tower:
+relatively compact steps, inverse limits at limit ordinals, and a
+relatively weakly mixing top.
+
+Inverse limits cost nothing extra, by (10.1) of
+`fpbs-traffic-variational-cost-identities`. So for finitely generated
+groups the parent is equivalent to two premises:
+* `fpbs-compact-extensions-preserve-cost`;
+* `fpbs-relatively-weakly-mixing-extensions-preserve-cost`.
+
+The split is recorded in
+`fpbs-compact-weakly-mixing-tower-decomposes-cost-preservation`.
+
+**What the premises contain.** The compact premise contains
+discrete-spectrum a, so it forces the rank gradient of every normal
+chain with trivial intersection to equal C(b) - 1. The weakly mixing
+premise contains every free weakly mixing a. Weak-containment
+monotonicity only gives C(a x b) <= C(b) from b ≺ a x b, and the reverse
+would need a weakly equivalent to b.
+
+**Attempted, refuted by referee.**
+`fpbs-profinite-skew-products-reduce-to-finite-fibers` (OPEN) claims that
+homogeneous skew products with a totally disconnected fibre group
+preserve cost whenever uniform finite-fibre factors do. The proof filters
+the fibre by open normal subgroups and applies (10.1). Referees agreed
+with the conditional core: if finite-fibre preservation holds for Gamma,
+then C(Z) = C(W). Two of three refuted the surrounding claims; see that
+node's Attempts.
+
+**Where localization is still needed (corrected).** The earlier text
+said finite-fibre extensions are "the one regime that multiplicativity
+already captures". It also said the recorded rounding countermodels are
+all finite-fibre extensions, silent on the relatively weakly mixing top.
+Both statements are false:
+* `fpbs-finite-fiber-cost-bound` gives (F)<=>(I) only across a class of
+  groups, not for one fixed Gamma.
+* `fpbs-retained-boundary-rounding-isoperimetric-floor` holds for every
+  free factor, including a x b -> b with weakly mixing a.
+* `fpbs-oblivious-certificates-never-localize` covers lifts on a x b -> b
+  for any a.
+
+So the recorded obstructions already reach the relatively weakly mixing
+top for those rounding and certificate classes. This node stays OPEN.
+The artifact is
+`research/artifacts/fpbs/docs/zimmer-tower-cost-split-2026-09-17.md`.

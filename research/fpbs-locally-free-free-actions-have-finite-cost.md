@@ -8,6 +8,7 @@ distinct_from:
   fpbs-fixed-price-non-amenably-generated-from-fg: that is conditional on fixed price for finitely generated groups and concerns a different class; this is unconditional and only for locally free groups.
 artifacts:
   - research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md
+  - research/artifacts/fpbs-mal-stage-coset-nerve-2026-09-17.md
 ---
 
 **OPEN.** Let `Γ` be a countably infinite locally free group with
@@ -43,6 +44,39 @@ routes give nothing new:
 - **Weak containment.** Cost monotonicity under weak containment is imported
   only for finitely generated groups. For arbitrary groups only pseudocost is
   monotone, and pseudocost is already pinned to at most `c*`.
+
+**Stagewise sparse sprinkling on Bernoulli `Γ_mal` dies at a first-moment
+threshold (September 17, 2026, b-p-fp2, probability-random).** Claim
+`fpbs-mal-stage-block-sprinkling-threshold` (OPEN: a referee refuted the
+first statement for omitting `W` nonempty and a non-Dirac base; the amended
+route waits on a Bernoulli freeness import). Artifact `research/artifacts/fpbs-mal-stage-coset-nerve-2026-09-17.md`.
+Script `experiments/fpbs-mal-stage-coset-nerve-2026-09-17/coset_nerve.py`.
+
+The most direct attempt at finite Bernoulli cost is to telescope: take a
+cost-2 graphing of `E_{H_1}`, then at stage `n` add `b_{n+1}`-edges on a set
+`B_n` with `E_{H_n} v Theta_n ⊇ E_{H_{n+1}}` and `sum mu(B_n) < ∞`.
+- **Structure.** The class graph of a stage is the intersection graph of the
+  translates of the hull of `H_n` in the Cayley tree of `H_{n+1}`. Every tree
+  edge lies in 2 translates, and distinct translates share at most 3 vertices.
+- **Detour count.** So the number of detours of length `m` around an edge is
+  at most `2^{25m}`. Nerve vertex-path counts in a radius-10 ball are 3, 12,
+  60, 336, 2016 for `m = 2..6`, exact only for `m <= 3`.
+- **Threshold.** If `B_n` depends on coordinates in a window `W_n`, a first
+  moment over an independent subfamily of edges gives
+  `mu(B_n) > 2^{-27|W_n|^2}`.
+- **Where it dies.**
+  - iid or bounded-range sprinkles: the telescoped graphing has infinite cost.
+  - Summable cost: the windows must grow at least like
+    `sqrt(log 1/mu(B_n))`.
+
+**Survives:**
+- correlated repairs with growing windows;
+- non-Bernoulli actions;
+- non-stagewise unions, in which later `b_m`-edges reconnect earlier classes;
+- multi-label sprinkles.
+
+Unlike the finite-contact kill, this concerns connectivity through many
+classes, not contacts between two.
 
 **Malnormal-hull dichotomy (September 17, 2026; worker
 swarm-0917-w4-fp-lf-finite-cost).** Route

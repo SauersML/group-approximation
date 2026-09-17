@@ -204,3 +204,48 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
     family and by the state-class obstruction of the group-rings lease. No new
     node was filed. Where it dies: the Russo–BK majorant is entrywise, not an
     operator inequality in `W*(P)`.
+* **Wire the boundary (reframing via minimax labels, swarm-0917).**
+  * *Idea.* Read (P1) as a reverse-hazard identity: `a_(n,R)` is the
+    distribution function of the maximum label on the `MST(B_R)` path from
+    `o` to `X_n`, so (P2) says `f/F <= Cn/q`. Ask whether the budget depends
+    on the boundary condition by replacing `B_R` with the wired ball
+    `B_R/S_R`, or more generally with `E_(n,R)` united with
+    `{xi=1, o <-> S_R, X_n <-> S_R inside B_R}`, where `xi` is a
+    Bernoulli(`eps`) coin.
+  * *Result: established obstruction.* See
+    `fpbs-wired-pivotal-budget-fails-universally`, with its complete route
+    from (S) and `theta(p_c)=0`. On every nonamenable Cayley graph the wired
+    budget fails, and it still fails at weight `eps_n >= e^(-delta n)` for any
+    `delta < log(1/rho)`: `(1/n) sup_R sup_(q in [p_c,p0])` of the count tends
+    to `+infinity`. The quantitative bound is
+    `sup >= (n log(1/rho) + log eps + 2 log theta(p))/log(p/p_c)`.
+    * *Class killed.* This kills every *boundary-blind* argument, meaning any
+      argument whose steps (Russo, FKG/BK in `B_R`, uniformity in `R`,
+      interior geometry, Schramm, `theta(p_c)=0`, bounds on `tau_(p_c)`) all
+      survive the replacement. Such an argument dies at the integration step
+      from `p_c` to `q>p_c` taken uniformly in `R`. The invariant it cannot
+      see is the two-arm boundary probability, which is `0` at `p_c` and at
+      least `theta(q)^2` above it.
+    * *Gate.* A proof must use volume monotonicity
+      (`P(x <-> y inside B_R) <= tau`) or block-chain confinement of pivotal
+      edges at some `q>p_c`. Both known positive proofs (critical L2 and the
+      cactus bound) use one of them.
+    * *What the free boundary buys.* In the limit `R -> infinity` the
+      free/wired gap equals `D_n(q)`, the probability that `o` and `X_n` lie
+      in distinct infinite clusters. So (P2) forces
+      `D_n(p) >= theta(p)^2 - (rho (p/p_c)^C)^n`. This refines the
+      group-rings diagnosis "only finite ball truncation separates" to "only
+      *free* truncation separates".
+  * *Calibration on `T_3`.* The closed forms are checked by brute force. The
+    maximum count per step on `[1/2,0.6]` is shown below.
+
+    | `n` | free | wired, `R=10^5` |
+    |---|---|---|
+    | 10 | 0.211 | 1.008 |
+    | 40 | 0.100 | 1.580 |
+    | 60 | 0.078 | 2.462 |
+    | 100 | 0.056 | 6.601 |
+    | 140 | 0.044 | 18.901 |
+
+    The maximiser moves toward `p_c` (`1.8e-4` at `n=140`).
+  * *Verdict.* The target stays open. Any proof must enter through the gate.

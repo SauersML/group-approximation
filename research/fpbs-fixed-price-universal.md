@@ -303,6 +303,30 @@ vocabulary rather than its content.
   condensation with coins constant on hyperfinite subrelations. By part (C)
   that modified scheme never leaves `W_b`.
 
+* **Relocate the finitely generated case to one point of shift space
+  (heretic lane, symbolic dynamics, 2026-09-17).**
+  - `fpbs-finite-alphabet-models-suffice-for-fixed-price` shows that testing
+    free ergodic finite-alphabet shift measures is enough.
+  - `fpbs-fixed-price-iff-cost-lsc-at-bernoulli` uses Seward's approximate
+    Bernoulli models to show that fixed price for a finitely generated group
+    is equivalent to lower semicontinuity of cost at `lambda^G` along free
+    ergodic shift measures. Counterexamples then take a race normal form
+    against `fpbs-clopen-certificate-cost-transfer`.
+  - `fpbs-window-local-cost-lower-bounds-fail-at-bernoulli` kills every
+    window-local lower bound: measures that are iid and free on arbitrarily
+    large balls, ergodic, aperiodic, with cost 1, converge to `lambda^G`. For
+    `F_r` the jump is at least `r-1`.
+  - The open statement is `fpbs-cost-lsc-at-bernoulli-shift-measures`, which
+    is a restatement and not a weakening. Its route is
+    `fpbs-bernoulli-lower-bound-from-cost-lsc`.
+  - The finite-alphabet reduction, the semicontinuity equivalence, the
+    certificate transfer and the window-local kill are OPEN, with their proofs
+    kept as attempt artifacts: the referee vote of lens 1 was lost, while lenses 2 and 3
+    returned *survives* (2026-09-17).
+
+  **Where it stops:** freeness of the approximating models has to enter
+  globally, and no invariant known here detects it at `lambda^G`.
+
 * **Heretic audit: deny "cheap graphings are local structures on the Cayley host", and run the only nonlocal
   criterion (Bevilacqua--Bowen, arXiv:2510.05459, Theorem 8.1) on hyperbolic groups.**
   - **Shared unstated assumptions.** The hot families (finite models, entropy, host geometry, cohomology, quantifier

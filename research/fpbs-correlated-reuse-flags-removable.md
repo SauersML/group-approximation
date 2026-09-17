@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/fpbs/docs/fixed-price-reuse-localization.md
   - research/artifacts/fpbs/docs/fixed-price-reuse-compression.md
   - research/artifacts/fpbs/responses/55_0909-215618.md
+  - research/artifacts/fpbs-furstenberg-zimmer-cost-tower-2026-09-17.md
   - research/artifacts/fpbs-perturbative-reuse-removal-fails-2026-09-17.md
   - research/artifacts/fpbs-graph-perturbative-removal-fails-all-groups-2026-09-17.md
 ---
@@ -157,6 +158,35 @@ defect. Or it can be restricted to a family of factor maps or groups where
 an independent argument applies, which would give a new fixed-price class.
 Either hypothesis can fail without refuting fixed price. No statement of
 either kind is proved here.
+
+Split the extension along its Furstenberg-Zimmer tower (September 17, 2026,
+artifact `fpbs-furstenberg-zimmer-cost-tower-2026-09-17.md`). This is a
+restriction of the second kind, taken twice. Jamneshan's relative dichotomy
+needs no ergodicity and works for any group; it is imported as
+`relative-furstenberg-zimmer-dichotomy`. Start at B_X and climb a countable
+transfinite tower of intermediate free factors. Successor steps are
+relatively compact, limits are generated sigma-algebras, and Y is relatively
+weakly mixing over the top stage. Continuity along increasing factors, (10.1)
+of `fpbs-traffic-variational-cost-identities`, passes the limit stages. So
+`fpbs-compact-weakly-mixing-tower-decomposes-cost-preservation` is
+established: cost preservation along relatively compact extensions (P_c)
+together with cost preservation along relatively weakly mixing extensions
+(P_w) gives this claim, for every group separately. The route
+`fpbs-reuse-removal-from-compact-and-weakly-mixing-steps` records this with
+the two open halves `fpbs-compact-extensions-preserve-cost` and
+`fpbs-relatively-weakly-mixing-extensions-preserve-cost`.
+
+Census of the explicit removal countermodels. The finite-fiber switching
+obstruction on F_2 x C_2, the 2-adic odometer tail, determinantal deletion on
+T_{2r} x C_M, and independent unions on X x {0..M-1} are all relatively
+compact extensions. The column/layer marking law of shared-component-repair
+Section 7 is relatively weakly mixing, but it is a realization obstruction on
+a group of known fixed price, not a budget countermodel. So nothing recorded
+refutes a removal method on P_w. What remains open is still hard. P_w with
+`fpbs-bernoulli-noise-does-not-change-cost` gives C(a) = C(b) for every free
+weakly mixing a, via a x b -> b (artifact Section 4). P_c contains the
+finite-fiber and finite-index questions. Neither half is proved, and each can
+fail without the other failing. This attempt does not close the claim.
 
 Remove the flags from a given plan by edits of vanishing measure (September
 17, 2026; perturbative-removal artifact). This class is dead. The proved

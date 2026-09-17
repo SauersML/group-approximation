@@ -5463,6 +5463,17 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.C
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Predicate
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralCertificate.Classification
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.MatrixArveson
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ArvesonStatement
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVH2GL3.RankFive
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SolvableInduction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Compression
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowK.KZero
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.WeylBraid
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Univariate.Defs
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistence.BlockSum
+import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistence.LeavittSquare
+import GroupApproximation.Manuscript.NonMFNotes.Full.Root.NonMFNotesFull
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
