@@ -115,6 +115,17 @@ it is supplied, and the exponential pairing-support obstruction persists.
   `eps log k -> infinity`, and the exponent hypothesis is needed (cyclic
   quotients lose `sqrt(eps)`). This is structure for integrality-gap and
   dictatorship-test design, not a route in either direction.
+* **Affine-view unique verifiers over 2-to-2 inputs.** This covers Hadamard,
+  Grassmann and subspace encodings read as unique tests. **Class-killing
+  obstruction and equivalence**:
+  `linear-view-unique-verifiers-collapse-to-quotient-coarsening`. The set of
+  inputs on which two affine views agree is a subspace. So above completeness
+  `1/p`, weight at least `(pc-1)/(p-1)` sits on exact triples, and the output
+  value is at least that weight times the value of a test-free, branch-blind
+  quotient coarsening `Can` of the outer game. Any such proof of near-1 UG
+  hardness is therefore a proof that `Can` is hard. No Grassmann expansion
+  theorem can enter, and crossing the `1/2` wall needs views that are not
+  affine in the outer label. Open: is `Can` of hard 2-to-2 instances hard?
 * **Refuting the conjecture.** The algorithmic negation is the open claim
   `unique-games-gap-admits-polynomial-time-algorithm`. Its Attempts record the
   algorithmic frontier: `affine-ug-easy-on-certifiably-hypercontractive-graphs`,
