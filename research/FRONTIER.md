@@ -24311,6 +24311,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · power-two-word-free-census-of-power-one-silent-classes [ESTABLISHED] At power two, 411 of the 444 census classes silent at power one still have no legal folded fatgraph, while eight LP-negative classes are certified, including genus-three surfaces in groups with H_1 torsion of order two
 - 2026-09-17 · fpbs-nonamenability-bounds-critical-connectivity-operator [OPEN] Nonamenability makes the critical connectivity operator bounded on l2
 - 2026-09-17 · fpbs-invariant-schur-weights-transport-proof [COMPLETE] Harnack compactness of normalized Schur weights, then mass transport with r+1/r>=2 against an invariant measure
 - 2026-09-17 · fpbs-invariant-schur-weights-cannot-certify-critical-l2 [ESTABLISHED] Critical Schur weights form a compact space with no invariant measure, so no invariantly random or coamenably fixed weight certifies the critical L2 bound
@@ -24318,7 +24319,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · higman-solvable-by-metabelian-edge-collapse-proof [COMPLETE] Tracking finite-rank error terms through the two-sided module argument lets the metabelian collapse run over any finite-Hirsch-length solvable second derived subgroup
 - 2026-09-17 · higman-group-is-sofic [OPEN] Higman's four-generator group is sofic
 - 2026-09-17 · nv-cnd-linear-growth-along-fibre-elements-proof [COMPLETE] The imaginary part of an almost invariant vector state is a paradoxical measure; spectral shells of the centre turn this into linear growth
-- 2026-09-17 · nv-cnd-functions-grow-at-most-linearly-along-fibre-elements [ESTABLISHED] Every cnd function on nV grows at most linearly along every element that fixes one coordinate; on C(C,Z) ⋊ V, ψ(k·1_C) = O(k)
 
 ## Active claims
 

@@ -2,7 +2,7 @@
 rg: 2
 id: power-two-word-free-census-of-power-one-silent-classes
 kind: claim
-title: At power two, 411 of the 444 census classes silent at power one still have no legal folded fatgraph, while seven LP-negative classes are certified, including genus-three surfaces in groups with H_1 torsion of order two
+title: At power two, 411 of the 444 census classes silent at power one still have no legal folded fatgraph, while eight LP-negative classes are certified, including genus-three surfaces in groups with H_1 torsion of order two
 distinct_from:
   legal-folded-certificates-at-power-one-census: that decides power one on the whole census; this decides power two on every class that power one leaves silent, and certifies seven of them.
   power-two-legal-folded-certificates-reach-beyond-power-one: that certifies entry 300 and runs power two on 53 of the 444 classes; this finishes all 444 and certifies six more entries, with Alexander polynomials not reached before.
@@ -23,6 +23,9 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surfaces_m2_census.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface.py
   - experiments/legal-f-folded-fatgraphs-2026-09-17/validate_certificates.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census/phi414.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface_phi414_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_length5_partial.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -106,3 +109,23 @@ entries, one per line).
 - Parts 2 and 5 are open. A better rational Farkas search could settle part 2. Longer boundaries,
   more boundary circles, or power 3 could settle part 5.
 - Part 4 compares Alexander polynomials only with the groups certified in this lane.
+
+## Attempts
+
+- **Addendum: entry 414 is certified; 16 LP-negative entries stay open** (2026-09-17). Parts 3 and 5
+  above are superseded as follows.
+  - Entry 414, `phi : a -> abb, b -> bcc, c -> cabb`, has a legal `f^2`-folded fatgraph with
+    `partial^- = {abbac, CABBA}` (`|w| = 5`), 116 darts, `V = 50`, `E = 58`, `chi(X) = -8`, one
+    component, valences 2 and 4, 10 `f`-corners (`surfaces_m2_census/phi414.json`).
+  - It was found by `LENS=5 surface_batch_lengths.py` (`surfaces_m2_length5_partial.log`), and
+    `verify_surface.py` gives `CERTIFICATE OK` with an explicit inverse, `M^2 > 0` and
+    `chi_M = t^3 - 3t^2 - t - 1`, a cubic with no rational root. `validate_certificates.py` projects
+    it to a feasible point of the power-two LP with the same `chi` (`0 failures`). Both outputs are
+    in `verify_surface_phi414_m2.log`.
+  - By Step 4 and Step 5 of the proof, which use only these checker outputs, `G = F x|_phi Z` is
+    one-ended hyperbolic and contains a closed genus-5 surface group (`chi = -8`, genus
+    `1 - chi/2 = 5`). `|T| = |chi_M(1)| = 4`, and `chi_M` equals that of entry 3684.
+  - So eight classes are certified at power two, and 16 LP-negative representatives remain open:
+    61, 108, 198, 228, 464, 939, 1632, 1633, 1635, 1744, 2298, 2429, 4010, 4012, 4485 and 4887.
+  - The same length-5 search finished with no certificate for 108, 198, 228, 464 and 939, and hit
+    the 1200 s timeout on 61 and 1632. The other open entries were not run at length 5.
