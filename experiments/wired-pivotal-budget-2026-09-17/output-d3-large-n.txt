@@ -1,0 +1,4 @@
+T_3: p_c=0.5000  p0=0.6000  rho=0.942809
+columns: n | max_q free/n | max_q wired/n for R in [1000, 100000] | argmax q-p_c for largest R
+n=100 |  0.056 |      4.767      6.601 | 7.50e-04 | a_n(pc)=8.138e-05 a^w(pc,R=100000)=8.138e-05
+n=140 |  0.044 |      6.161     18.901 | 1.78e-04 | a_n(pc)=5.106e-06 a^w(pc,R=100000)=5.110e-06
