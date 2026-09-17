@@ -1,0 +1,18 @@
+cyclic_z3.txt (fake, UP) counts: {(False, True): 7, (False, False): 2, (True, False): 2}
+cyclic_z4.txt (fake, UP) counts: {(False, True): 36, (False, False): 8, (True, False): 12}
+cyclic_z5.txt (fake, UP) counts: {(False, True): 69, (True, True): 3, (True, False): 23}
+   UP-but-fake: Z/5 E={0,1,2} F={0,2,4} n=8 LP=0.916667  <<< BELOW 1
+   UP-but-fake: Z/5 E={0,1,2} F={1,3,4} n=8 LP=0.916667  <<< BELOW 1
+   UP-but-fake: Z/5 E={0,1,4} F={0,1,3} n=8 LP=0.916667  <<< BELOW 1
+rs_z5.txt (fake, UP) counts: {(False, True): 18, (True, False): 17, (True, True): 2, (False, False): 3}
+   UP-but-fake: z5 E={0,3,4} F={2,1,4} n=8 nv=136 LP=0.916667  <<< BELOW 1
+   UP-but-fake: z5 E={0,1,4} F={4,0,2} n=8 nv=136 LP=0.916667  <<< BELOW 1
+rs_z7.txt (fake, UP) counts: {(False, True): 34, (True, False): 4, (True, True): 2}
+   UP-but-fake: z7 E={0,1,2,5} F={0,5,2,1} n=11 nv=1172 LP=0.860449  <<< BELOW 1
+   UP-but-fake: z7 E={0,5,1,6} F={6,0,2,5} n=11 nv=1172 LP=0.873418  <<< BELOW 1
+rs_zz3.txt (fake, UP) counts: {(True, True): 6, (False, True): 34}
+   UP-but-fake: zz3 E={(0, 0),(0, 1),(0, 2),(-1, 0)} F={(0, 2),(0, 1)} n=7 nv=98 LP=0.833333  <<< BELOW 1
+   UP-but-fake: zz3 E={(0, 0),(0, 2),(0, 1)} F={(0, 2),(0, 1),(2, 0)} n=9 nv=397 LP=0.833333  <<< BELOW 1
+   UP-but-fake: zz3 E={(0, 0),(0, 2),(0, 1)} F={(0, 0),(0, 2),(2, 0)} n=9 nv=397 LP=0.833333  <<< BELOW 1
+   UP-but-fake: zz3 E={(0, 0),(0, 2),(1, 1),(0, 1)} F={(0, 2),(0, 1),(-1, 0)} n=11 nv=1749 LP=0.833333  <<< BELOW 1
+   UP-but-fake: zz3 E={(0, 0),(0, 2),(0, 1),(-1, 0)} F={(0, 2),(0, 1),(-1, 0)} n=10 nv=893 LP=0.833333  <<< BELOW 1
