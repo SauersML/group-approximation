@@ -5386,6 +5386,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordAmenable.RealizedQu
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Reduction
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.MFArithmetic
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Undecidable
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphRel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
