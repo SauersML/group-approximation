@@ -83,9 +83,23 @@ equivalent to `H4` having some nontrivial sofic quotient
      `gamma^(2-2^P)` times a `gamma`-conjugate combination of `z`. So `z` is torsion under `gamma` on
      `<alpha,gamma>' ⊗ Q`. The `d`-side relations make it torsion under `alpha` too. The commutator
      module is then finite-dimensional, and the finite-Hirsch-length collapse applies.
+   - **Virtually (finite-Hirsch-length solvable)-by-metabelian `A` is impossible, and so is any tree
+     splitting over such edge groups (sw-053b, 2026-09-17).** See
+     `solvable-by-metabelian-edge-images-collapse-higman-quotients`. If `<a^m,c^m>''` is solvable of
+     finite Hirsch length, the metabelian argument still runs. Every commutator error lies in
+     `A''` or in a conjugate of `phi(W')`, both of Hirsch length at most `h(A'')`. On a free cyclic
+     `Q[T^±1]`-module, `T^e - 1` is injective, so these errors cannot create infinite rank. This
+     kills derived-length-3 edge images of infinite Hirsch length whose second derived subgroup has
+     finite rank, e.g. the Heisenberg-type central extension of `Z wr Z` with `G''` infinite cyclic.
    - Open: amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
      derived length at least 3), and non-elementary-amenable `A`. GAP could not decide the
-     metabelian-type relators at `2*10^6` cosets.
+     metabelian-type relators at `2*10^6` cosets. After sw-053b, the solvable survivors are those
+     in which every finite-index subgroup `A_0` has `A_0''` of infinite Hirsch length. The two suggested
+     routes do not close this case. Route (i) is a Mal'cev/unipotent argument, and it fails because
+     `W` and `b^P`-conjugate `W` sit in different nilpotent subgroups. Route (ii) tracks
+     `h(W ∩ W^(b^P))`, and it closes exactly when `h(A'') < ∞`. The missing ingredient is an
+     element of `A''` with a genuine eigen-shift under `b^P`, analogous to `phi(z) = gamma^(2-2^P)(...)`
+     for `z`. A candidate is `[z, z^alpha]`, analysed over `A''/A''' ⊗ Q`.
 6. **Amenable quotients.** *Open.* Helfgott--Juschenko: "It is not known whether
    it has amenable quotients" (l.261–262). Item 2 excludes elementary amenable
    ones.
