@@ -72,7 +72,8 @@ theorem tendsto_twoNorm_mk (a : boundedSeq N) :
   have e : twoNorm σ ω (mk σ ω a) = Real.sqrt (seqUltratrace σ ω (star a * a)).re := by
     rw [twoNorm, star_mk, ← map_mul (mk σ ω), ultratrace_mk]
   rw [e]
-  exact Tendsto.congr (fun n ↦ Real.sqrt_sq (norm_nonneg _)) h2.sqrt
+  refine Tendsto.congr (fun n ↦ ?_) h2.sqrt
+  exact Real.sqrt_sq (norm_nonneg _)
 
 theorem twoNorm_mk_le {a : boundedSeq N} {f : ℕ → ℝ} {L : ℝ} (hf : Tendsto f (ω : Filter ℕ) (𝓝 L))
     (h : ∀ n, ‖(a : ℕ → (K →L[ℂ] K)) n σ.vec‖ ≤ f n) : twoNorm σ ω (mk σ ω a) ≤ L :=
