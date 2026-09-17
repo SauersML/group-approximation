@@ -46,6 +46,7 @@ Proof route.
 namespace GroupApproximation.Manuscript.NonMF.AuditCompress1
 
 open GroupApproximation.Manuscript.OneSidedMFRadical
+open GroupApproximation.Manuscript.NonMFSentences (manuscriptSentence_mfRadicalFormula)
 
 attribute [local instance] GroupApproximation.CountableInstances.quotientCountable
 
@@ -121,7 +122,7 @@ theorem manuscriptSentence_mfRadicalQuotientLargestMFQuotient (G : Type)
   refine ⟨manuscriptCoronaMFQuotient_isCDEOperatorMF, ?_, ?_⟩
   · intro N _ hN x hx
     have h : QuotientGroup.mk' N x = 1 :=
-      (NonMFSentences.manuscriptSentence_mfRadicalFormula G x).mp hx (G ⧸ N) hN
+      (manuscriptSentence_mfRadicalFormula G x).mp hx (G ⧸ N) hN
         (QuotientGroup.mk' N)
     rw [QuotientGroup.mk'_apply] at h
     exact (QuotientGroup.eq_one_iff (N := N) x).mp h
@@ -129,9 +130,9 @@ theorem manuscriptSentence_mfRadicalQuotientLargestMFQuotient (G : Type)
     have hle : manuscriptCoronaMFResidual G ≤ f.ker := by
       intro x hx
       exact MonoidHom.mem_ker.mpr
-        ((NonMFSentences.manuscriptSentence_mfRadicalFormula G x).mp hx M hM f)
+        ((manuscriptSentence_mfRadicalFormula G x).mp hx M hM f)
     refine ⟨QuotientGroup.lift (manuscriptCoronaMFResidual G) f hle,
-      QuotientGroup.lift_comp_mk' f hle, ?_⟩
+      QuotientGroup.lift_comp_mk' (manuscriptCoronaMFResidual G) f hle, ?_⟩
     intro g hg
     apply QuotientGroup.monoidHom_ext
     rw [hg, QuotientGroup.lift_comp_mk']

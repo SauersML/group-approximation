@@ -70,7 +70,6 @@ theorem faceOf_alpha_of_mem_sideDarts (P : OsinLemma94RealizedPolygons S) {k : F
     rw [hkind] at hobj
     exact absurd hobj (by simp [OsinLemma94RealizedPolygons.sideObject])
 
-omit [Group G] in
 theorem length_flatMap_range_le {β : Type*} (f : ℕ → List β) {i j : ℕ} (hij : i ≤ j) :
     ((List.range i).flatMap f).length ≤ ((List.range j).flatMap f).length := by
   induction j with
@@ -87,13 +86,12 @@ theorem length_flatMap_range_le {β : Type*} (f : ℕ → List β) {i j : ℕ} (
       subst hi
       exact le_refl _
 
-omit [Group G] in
 /-- Position `|f 0 ++ ⋯ ++ f (i-1)| + t` of `f 0 ++ ⋯ ++ f (n-1)` is position `t` of `f i`. -/
 theorem getElem?_flatMap_range {β : Type*} (f : ℕ → List β) {n i t : ℕ} (hi : i < n)
     (ht : t < (f i).length) :
     ((List.range n).flatMap f)[((List.range i).flatMap f).length + t]? = (f i)[t]? := by
   induction n with
-  | zero => omega
+  | zero => exact absurd hi (Nat.not_lt_zero _)
   | succ n ih =>
     rw [List.range_succ, List.flatMap_append]
     by_cases h : i < n
@@ -104,8 +102,10 @@ theorem getElem?_flatMap_range {β : Type*} (f : ℕ → List β) {n i t : ℕ} 
         omega
       rw [List.getElem?_append_left hlt, ih h]
     · have hin : i = n := by omega
-      subst hin
-      rw [List.getElem?_append_right (Nat.le_add_right _ _), Nat.add_sub_cancel_left,
+      rw [← hin]
+      have hle : ((List.range i).flatMap f).length ≤ ((List.range i).flatMap f).length + t :=
+        Nat.le_add_right _ _
+      rw [List.getElem?_append_right hle, Nat.add_sub_cancel_left,
         List.flatMap_cons, List.flatMap_nil, List.append_nil]
 
 /-- The position on the rotated walk of polygon `k` where side `i` starts. -/
@@ -152,7 +152,8 @@ theorem sideHead_eq_pow (P : OsinLemma94RealizedPolygons S) (k : Fin P.count) {i
     rcases Nat.lt_or_ge i1 i with h | h
     · exact (sidePos_lt_sidePos P k h hi.le).le
     · have he : i1 = i := by omega
-      rw [he]
+      subst he
+      exact le_refl _
   have hidx : (sidePos P k i + P.base k) % (S.diagram.faceBoundary (P.face k)).darts.length =
       ((sidePos P k i1 + P.base k) % (S.diagram.faceBoundary (P.face k)).darts.length +
         (sidePos P k i - sidePos P k i1)) % (S.diagram.faceBoundary (P.face k)).darts.length := by
