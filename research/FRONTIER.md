@@ -22422,6 +22422,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · gottschalk-surjunctivity-conjecture [OPEN] Every group is surjunctive on every finite-alphabet full shift
 - 2026-09-17 · three-point-decoder-memory-injective-ca-are-surjective [OPEN] An injective automaton with a three-point left-inverse memory is surjective, over every group
 - 2026-09-17 · surjunctive-decoder-subgroups-force-surjectivity-proof [COMPLETE] Translate the decoder memory into the subgroup, freeze the input off the subgroup, and apply surjunctivity to the frozen encoder
 - 2026-09-17 · surjunctive-decoder-subgroups-force-surjectivity [ESTABLISHED] An injective automaton with a left inverse whose memory differences generate a surjunctive subgroup is surjective
@@ -22429,7 +22430,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · reversible-automata-that-never-lower-rest-counts-preserve-them [OPEN] A reversible automaton fixing the rest configuration that never lowers the number of non-rest sites never raises it
 - 2026-09-17 · count-raising-reversible-automata-lower-biased-rokhlin-entropy [ESTABLISHED] An injective automaton that never raises and sometimes lowers the number of non-rest sites forces Rokhlin supremum zero
 - 2026-09-17 · some-nonsurjunctive-group-gives-a-binary-power-one [OPEN] If some group is not surjunctive over some finite alphabet, then some group is not surjunctive over an alphabet whose size is a power of two
-- 2026-09-17 · count-raising-reversible-automata-rokhlin-deficit-proof [COMPLETE] Mobius-expand the averaged local change in non-rest sites; its lowest coefficient is a small-bias entropy deficit, and Seward's minimum formula reads off supremum zero
 
 ## Active claims
 
