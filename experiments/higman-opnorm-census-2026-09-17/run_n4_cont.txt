@@ -1,0 +1,3 @@
+n=4 q=81 L=54 sorted matcher H: eps=0.0776 r=1.9999
+  start H: eps=0.3689 r=0.3600 bound 3eps+3r=2.1866 actual max defect=1.3917
+BEST n=4 L=54 max(eps,r)=0.3689

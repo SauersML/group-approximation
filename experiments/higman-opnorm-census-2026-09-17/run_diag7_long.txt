@@ -1,0 +1,12 @@
+U_0 = primitive 7-th roots, L=6, ||U_0-1||=1.9499
+L=6 start rand0: max defect=0.3412 defects=[np.float64(0.3412), np.float64(0.3329), np.float64(0.333), np.float64(0.3328)] ||U_i-1||=[np.float64(1.95), np.float64(1.951), np.float64(1.977), np.float64(1.972)]
+L=6 start rand1: max defect=0.3392 defects=[np.float64(0.3392), np.float64(0.3102), np.float64(0.3007), np.float64(0.3007)] ||U_i-1||=[np.float64(1.95), np.float64(1.949), np.float64(1.97), np.float64(1.986)]
+L=6 start rand2: max defect=0.4238 defects=[np.float64(0.4238), np.float64(0.4227), np.float64(0.4235), np.float64(0.4218)] ||U_i-1||=[np.float64(1.95), np.float64(1.962), np.float64(1.984), np.float64(1.948)]
+L=6 start rand3: max defect=0.4262 defects=[np.float64(0.4251), np.float64(0.4262), np.float64(0.4253), np.float64(0.4246)] ||U_i-1||=[np.float64(1.95), np.float64(1.976), np.float64(1.934), np.float64(1.9)]
+L=6 start rand4: max defect=0.3962 defects=[np.float64(0.3962), np.float64(0.3955), np.float64(0.3947), np.float64(0.3956)] ||U_i-1||=[np.float64(1.95), np.float64(1.966), np.float64(1.93), np.float64(1.943)]
+L=6 start rand5: max defect=0.3880 defects=[np.float64(0.3874), np.float64(0.388), np.float64(0.386), np.float64(0.3854)] ||U_i-1||=[np.float64(1.95), np.float64(1.964), np.float64(1.968), np.float64(1.973)]
+L=6 start rand6: max defect=0.3472 defects=[np.float64(0.3472), np.float64(0.3458), np.float64(0.346), np.float64(0.346)] ||U_i-1||=[np.float64(1.95), np.float64(1.972), np.float64(1.971), np.float64(1.813)]
+L=6 start rand7: max defect=0.4764 defects=[np.float64(0.4743), np.float64(0.4764), np.float64(0.4722), np.float64(0.4726)] ||U_i-1||=[np.float64(1.95), np.float64(1.935), np.float64(1.957), np.float64(1.978)]
+L=6 start rand8: max defect=0.3504 defects=[np.float64(0.3504), np.float64(0.3479), np.float64(0.3485), np.float64(0.3477)] ||U_i-1||=[np.float64(1.95), np.float64(1.976), np.float64(1.965), np.float64(1.977)]
+L=6 start rand9: max defect=0.3851 defects=[np.float64(0.3851), np.float64(0.3096), np.float64(0.3139), np.float64(0.3123)] ||U_i-1||=[np.float64(1.95), np.float64(1.73), np.float64(1.986), np.float64(1.968)]
+BEST L=6 max defect 0.3392

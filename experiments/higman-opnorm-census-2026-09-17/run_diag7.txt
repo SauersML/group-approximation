@@ -1,0 +1,5 @@
+U_0 = primitive 7-th roots, L=6, ||U_0-1||=1.9499
+L=6 start rand0: max defect=0.4013 defects=[np.float64(0.4013), np.float64(0.3954), np.float64(0.3962), np.float64(0.3967)] ||U_i-1||=[np.float64(1.95), np.float64(1.951), np.float64(1.973), np.float64(1.977)]
+L=6 start rand1: max defect=0.4190 defects=[np.float64(0.419), np.float64(0.4149), np.float64(0.4154), np.float64(0.4141)] ||U_i-1||=[np.float64(1.95), np.float64(1.934), np.float64(1.97), np.float64(1.93)]
+L=6 start rand2: max defect=0.4114 defects=[np.float64(0.4114), np.float64(0.407), np.float64(0.4094), np.float64(0.4092)] ||U_i-1||=[np.float64(1.95), np.float64(1.967), np.float64(1.963), np.float64(1.95)]
+BEST L=6 max defect 0.4013

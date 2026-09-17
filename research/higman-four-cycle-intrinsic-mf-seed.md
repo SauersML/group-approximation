@@ -152,6 +152,18 @@ construction is currently known; nearby-spectrum mixing is also not covered.
 
 ## Attempts
 
+- 2026-09-17, swarm-0917-w4-pull-pt-3 (inverter, numerical microstate
+  census).  Result: `higman-opnorm-defect-profile-has-dim-twelve-witness`.
+  The collapse modulus `(HMF5)` is equivalent to `lim_L m_c(L)>0`, where
+  `m_c(L)` is a monotone profile (padding by `(+)1`).  An explicit tuple in
+  `U(12)` has every generator at distance `>=1.985` from `1` and defect
+  `0.3099`, so any threshold must satisfy `delta(1.98)<=0.31`.  Cycle-spectrum
+  seeds satisfy `def>=2 sin(pi/L)`.  Riemannian descent on Schatten-`2m`
+  surrogates plateaus at `def~0.31` for `L=12,28`.  At `L=36,54` it fails to
+  reach the padded twelve-dimensional value.  The order-four matcher optimum
+  (`q=81`) has actual defect `1.39`.  **Dead as a route:** local descent sees
+  no decay and cannot give a lower bound on `m_c(L)`, so the census neither
+  supports a countermodel nor proves collapse.
 - **Numerical scout of `(SPT7)` and of general matchers (2026-09-17,
   census-computation).**  Script:
   `experiments/higman-matcher-2026-09-17/sorted_torus_fourth_return.py`.
