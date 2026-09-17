@@ -1,0 +1,3 @@
+dinf7 E={0,r0,r1,1} F={r1,-1,0,1} n=12 LP=0.875000
+  host=TORSION gens=3 rels=['f-1^-1.er0^-1.f-1^-1.er0^-1', 'er0.f0.er0.f0', 'f0.f-1^-1.er0^-1.f-1^-1.f0.f-1^-1.er0^-1.f-1^-1'] cert=(f-1^-1.er0^-1)^2
+SUMMARY dinf7: 1 fakes; host classes {'TORSION': 1}

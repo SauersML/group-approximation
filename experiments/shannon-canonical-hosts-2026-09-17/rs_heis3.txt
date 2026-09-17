@@ -1,0 +1,7 @@
+heis3 E={000,200,100} F={100,000,020} n=9 LP=0.833333
+  host=ONE-REL-TOR gens=3 rels=['f000.e100.f000.e100.f000.e100'] cert=(f000.e100)^3
+heis3 E={000,010,222,020} F={010,000} n=7 LP=0.833333
+  host=ONE-REL-TOR gens=3 rels=['f000.e010.f000.e010.f000.e010'] cert=(f000.e010)^3
+heis3 E={000,112,222,110} F={112,222} n=7 LP=0.833333
+  host=ONE-REL-TOR gens=3 rels=['e222^-1.f222^-1.e222^-1.f222^-1.e222^-1.f222^-1'] cert=(e222^-1.f222^-1)^3
+SUMMARY heis3 seed 12: 60 configurations, 3 fakes; host classes {'ONE-REL-TOR': 3}
