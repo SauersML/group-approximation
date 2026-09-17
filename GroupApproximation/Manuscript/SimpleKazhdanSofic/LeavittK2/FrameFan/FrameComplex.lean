@@ -160,7 +160,7 @@ def FrameConeFourStatement : Prop :=
 /-- The fan (tex l.539): the rank-four frame cone makes `X_4(A)` simply connected. -/
 theorem frameComplexFour_simplyConnected_of_frameConeFour (h : FrameConeFourStatement A) :
     (frameComplexFour A).SimplyConnected :=
-  simplyConnected_of_hasFanApex h
+  simplyConnected_of_hasFanApex (X := frameComplexFour A) h
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameFan.frameComplexFour_simplyConnected_of_frameConeFour
 
@@ -174,7 +174,8 @@ def BinaryLeavittFrameConeFourStatement : Prop :=
 over `L` (lane 09). -/
 theorem binaryLeavitt_frameComplexFour_simplyConnected_of_frameConeFour
     (h : BinaryLeavittFrameConeFourStatement) :
-    (frameComplexFour (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))).SimplyConnected :=
+    (frameComplexFour
+      (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))).SimplyConnected :=
   frameComplexFour_simplyConnected_of_frameConeFour _ h
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameFan.binaryLeavitt_frameComplexFour_simplyConnected_of_frameConeFour

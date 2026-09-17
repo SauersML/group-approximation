@@ -53,9 +53,10 @@ theorem wordT_sibling_mul_wordS_sibling (η : List (Fin 2)) (j ℓ : Fin η.leng
   · subst hjl
     rw [if_pos rfl, LeavittFamily.wordT_mul_wordS_self]
   · rw [if_neg hjl]
+    have h1 : (j : ℕ) ≠ (ℓ : ℕ) := fun h => hjl (Fin.ext h)
+    have h2 : (ℓ : ℕ) ≠ (j : ℕ) := fun h => hjl (Fin.ext h).symm
     exact LeavittFamily.wordT_mul_wordS_of_incomparable L _ _
-      (sibling_incomparable η (fun h => hjl (Fin.ext h)) j.isLt ℓ.isLt)
-      (sibling_incomparable η (fun h => hjl (Fin.ext h).symm) ℓ.isLt j.isLt)
+      (sibling_incomparable η h1 j.isLt ℓ.isLt) (sibling_incomparable η h2 ℓ.isLt j.isLt)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.wordT_sibling_mul_wordS_sibling
 
@@ -90,8 +91,7 @@ theorem wordT_sibling_mul_sum (η : List (Fin 2)) (r : Fin η.length → A) (j :
   rw [Finset.mul_sum, Finset.sum_eq_single_of_mem j (Finset.mem_univ j)]
   · rw [← mul_assoc, LeavittFamily.wordT_mul_wordS_self, one_mul]
   · intro ℓ _ hne
-    rw [← mul_assoc, wordT_sibling_mul_wordS_sibling L η j ℓ, if_neg (fun h => hne h.symm),
-      zero_mul]
+    rw [← mul_assoc, wordT_sibling_mul_wordS_sibling L η j ℓ, if_neg (Ne.symm hne), zero_mul]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.wordT_sibling_mul_sum
 
@@ -111,12 +111,12 @@ theorem wordT_mul_eq_zero_iff (η : List (Fin 2)) (z : A) :
 theorem exists_ne_zero_wordT_mul_eq_zero [Nontrivial A] (η : List (Fin 2)) (hη : η ≠ []) :
     ∃ z : A, z ≠ 0 ∧ L.wordT η * z = 0 := by
   have h0 : 0 < η.length := List.length_pos_iff.mpr hη
-  refine ⟨L.wordS (sibling η 0), fun hz => one_ne_zero ?_, ?_⟩
-  · have h1 := wordT_sibling_mul_wordS_sibling L η ⟨0, h0⟩ ⟨0, h0⟩
-    rw [if_pos rfl] at h1
-    rw [← h1]
-    exact (congrArg (fun w => L.wordT (sibling η 0) * w) hz).trans (mul_zero _)
-  · exact wordT_eta_mul_wordS_sibling L η ⟨0, h0⟩
+  let ℓ0 : Fin η.length := ⟨0, h0⟩
+  refine ⟨L.wordS (sibling η ℓ0), ?_, wordT_eta_mul_wordS_sibling L η ℓ0⟩
+  intro hz
+  have h1 := wordT_sibling_mul_wordS_sibling L η ℓ0 ℓ0
+  rw [if_pos rfl, hz, mul_zero] at h1
+  exact absurd h1 zero_ne_one
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.exists_ne_zero_wordT_mul_eq_zero
 

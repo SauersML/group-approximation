@@ -54,18 +54,19 @@ theorem eqvGen_mono_of_not_mem {faces faces' : Finset M.Face} (hsub : faces' ⊆
       rcases hx with hstep | ⟨hoff, hstep⟩
       · exact Relation.EqvGen.rel _ _
           (show CombMap.FaceClassStep M (BoundaryEdge M faces') x₁ x₂ from Or.inl hstep)
-      · refine Relation.EqvGen.rel _ _
-          (show CombMap.FaceClassStep M (BoundaryEdge M faces') x₁ x₂ from Or.inr ⟨?_, hstep⟩)
-        rintro (hb | hb)
-        · obtain ⟨hin, -⟩ := hb
-          exact hx₁ (hsub hin)
-        · obtain ⟨hin, -⟩ := hb
-          have hback : M.faceOf (M.alpha (M.alpha x₁)) ∉ faces := by
-            rw [M.alpha_involutive x₁]
-            exact hx₁
-          exact hoff (show IsBoundaryDart M faces x₁ ∨ IsBoundaryDart M faces (M.alpha x₁) from
-            Or.inr (show M.faceOf (M.alpha x₁) ∈ faces ∧
-              M.faceOf (M.alpha (M.alpha x₁)) ∉ faces from ⟨hsub hin, hback⟩))
+      · have hoff' : ¬ BoundaryEdge M faces' x₁ := by
+          rintro (hb | hb)
+          · obtain ⟨hin, -⟩ := hb
+            exact hx₁ (hsub hin)
+          · obtain ⟨hin, -⟩ := hb
+            have hback : M.faceOf (M.alpha (M.alpha x₁)) ∉ faces := by
+              rw [M.alpha_involutive x₁]
+              exact hx₁
+            exact hoff (show IsBoundaryDart M faces x₁ ∨ IsBoundaryDart M faces (M.alpha x₁) from
+              Or.inr (show M.faceOf (M.alpha x₁) ∈ faces ∧
+                M.faceOf (M.alpha (M.alpha x₁)) ∉ faces from ⟨hsub hin, hback⟩))
+        exact Relation.EqvGen.rel _ _
+          (show CombMap.FaceClassStep M (BoundaryEdge M faces') x₁ x₂ from Or.inr ⟨hoff', hstep⟩)
   | refl x₁ =>
       intro _
       exact Relation.EqvGen.refl x₁

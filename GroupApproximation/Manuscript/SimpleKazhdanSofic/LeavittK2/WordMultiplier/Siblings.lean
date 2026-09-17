@@ -129,7 +129,8 @@ def siblingCode (η : List (Fin 2)) : BinaryPrefixCode (Option (Fin η.length)) 
     · exact absurd rfl hij
     · exact eta_not_prefix_sibling η ℓ'.isLt
     · exact sibling_not_prefix_eta η ℓ.isLt
-    · exact sibling_incomparable η (fun h => hij (congrArg some (Fin.ext h))) ℓ.isLt ℓ'.isLt
+    · have hne : (ℓ : ℕ) ≠ (ℓ' : ℕ) := fun h => hij (congrArg some (Fin.ext h))
+      exact sibling_incomparable η hne ℓ.isLt ℓ'.isLt
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.siblingCode
 
