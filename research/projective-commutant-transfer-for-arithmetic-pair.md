@@ -580,3 +580,16 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   freeness.  The citations are recalled, not verbatim, so this is recorded as
   an attempt only.  Any embedding of the gate must implement `Lambda'` with
   unitaries asymptotically outside `N^omega`.
+- **Windows of genuine vertex-orbit-finite A-sets as random-lift sources (2026-09-17).** Dead at
+  every prime, for every stabilizer.
+  - **Where it dies.** By `vertex-orbit-finite-a-sets-are-rooted-trees-or-finite`, a subgroup of
+    `SL_2(Z[1/p])` that meets `SL_2(Z)` in finite index either fixes a tree vertex or has finite
+    index. The proof uses the Cartan decomposition and unipotent contraction, not the congruence
+    subgroup property.
+  - **Finite orbits.** The charts collapse: `C_0`-orbit = `C_1`-orbit = A-orbit.
+  - **Infinite orbits.** The quotient is a rooted tree whose parent edges carry `1/(p+1)` of the
+    child's mass. So any identity coupling of `C_0`- and `C_1`-orbit windows mismatches at least
+    `(p-1)/(p+1)` of the mass.
+  - **Consequence.** Non-congruence stabilizers do not escape the radial-shell firewall.
+  - **What survives for the soficity side of the rank-two fork.** Only couplings whose vertex
+    actions come from different A-sets, or from no A-set.
