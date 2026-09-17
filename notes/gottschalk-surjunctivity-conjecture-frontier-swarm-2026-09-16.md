@@ -199,6 +199,8 @@ is a strict automaton on `(A ⊔ D)^G`, most often `D = {*}`.
    decreases and sometimes increases the number of zeros of finitely supported configurations? If no such `ψ`
    exists over any group, the whole class of autonomous-star designs is dead, which is a clean obstruction worth a
    node. If one exists over a nonamenable group, it is the room the annulus needs.
+   *Recorded (2026-09-17):* open claim `reversible-automata-that-never-lower-rest-counts-preserve-them`, with route
+   `reversible-count-preservation-from-positive-rokhlin-entropy`. POS(`G`) already excludes such a `ψ` over `G`.
 3. **Closing the annulus with a spare track.** 4.4 gives reversible starred shears on `((A × A) ⊔ R)^G`. Over the
    larger alphabet `(A × A) ⊔ R`, the annulus residue fits in the second track. The question is whether some word in
    starred shears, swaps and star-moving gates keeps `(A × {0}) ⊔ R` invariant and strict. A positive answer gives
