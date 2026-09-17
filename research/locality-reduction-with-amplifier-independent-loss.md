@@ -69,3 +69,13 @@ constant relative distance (Bafna--Vyas, ECCC TR26-150).
   and NO energy at least `gamma_t`. `pauli-projector-hamiltonians-are-stabilizer-approximable`
   puts that promise problem in NP. A reducer needs non-stabilizer terms, at least
   on YES-hard outputs.
+- **Clausewise composition with private proofs and factorwise completeness**
+  (per-qubit or per-copy encodings, one private proof register per amplified
+  clause, completeness on every tuple of factorwise-satisfying copies; this
+  includes clause-by-clause clock encodings, per-clause assignment testers and
+  gadgets with completeness error `o(1/n)`). Excluded:
+  [[factorwise-complete-composition-returns-the-input-energy]] shows
+  `lambda_min(H')<=eta+rho k_0/r` on the window instances `W(n,r)`, so
+  `c=O(sqrt(log t/t))`. A reducer must make completeness depend on cross-copy
+  correlated data (consistency or swap tests), share proofs across clauses and
+  copies, or leave the clausewise form.
