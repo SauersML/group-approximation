@@ -74,3 +74,25 @@ such that the Bernoulli shifts over `G` with base entropies `h` and `h'` are iso
     - permanence: H2 goes up to overgroups of equal supremum, and down to index-`k` subgroups of supremum `k s`;
     - at `s = 0`, H2 is a commensurability invariant;
     - failures propagate to subgroups of equal supremum.
+- **Finite-kernel descent (proved on self-similar-kernel hosts, open in general; swarm-0917-w5-gs-rokhlin-threshold,
+  2026-09-17).**
+  - This is a transfer outside the class `T` of the previous attempt
+    (`bernoulli-collapse-descends-along-finite-normal-quotients`).
+    - Setting: `N ◁ Γ` finite with `n = |N|`, and `X_a ≅ X_b` over `Γ/N`.
+    - Result: `X_(c + a/n) ≅ X_(c + b/n)` over `Γ` for every `c > 0`. So `r(Γ) ≤ r(Γ/N)/n`.
+    - Mechanism: `L^(Γ/N)` is co-induced from `N` with trivial action, and Corollary D of
+      `coinduced-finite-subgroup-shifts-add-entropy-to-bernoulli` absorbs it.
+  - When `Γ/N ≅ Γ`, descent divides the excess by `n`, so `r(Γ) ∈ {0, ∞}`
+    (`self-similar-kernel-bernoulli-rigidity-zero-or-infinite`). On such hosts:
+    - this claim is equivalent to "`s = 0` and some collapse exists";
+    - it fails whenever `0 < s < ∞`.
+  - Every `P × G` with `P = ⊕ Z/n` is such a host. There, when `s(G) < ∞`:
+    - this claim is equivalent to `zero-rokhlin-supremum-forces-bernoulli-collapse`;
+    - T1 is equivalent to eventual total collapse;
+    - the formal threshold model of `bernoulli-collapse-is-null-or-eventually-total` is excluded.
+  - Where it stops:
+    - it gives no primitive collapse at all;
+    - it gives nothing at groups without a finite normal subgroup `N` with `Γ/N ≅ Γ`.
+  - H2 at `P × G` does not return to `G`. Restriction is available only at finite index, and `s(P × G) = 0 < s(G)`
+    breaks the permanence hypotheses of the previous attempt. So the claim at an arbitrary `G` with `0 < s(G) < ∞`
+    remains open.
