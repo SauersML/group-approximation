@@ -43,7 +43,7 @@ theorem x_conj_padRow (i j : Fin n) (hcs : i.castSucc ≠ j.castSucc) (b : R) (v
         (Fin.castSucc_lt_last i).ne (a * b) a
       have hXRj := x_commute_of_ne i.castSucc j.castSucc (Fin.last n) j.castSucc hcs
         (Fin.castSucc_lt_last j).ne' (Fin.castSucc_lt_last j).ne hcs.symm b (a * b)
-      rw [mul_assoc, inv_mul_eq_iff_eq_mul, ← hRjR.eq, ← mul_assoc, ← hXRj.eq, ← hcm,
+      rw [mul_assoc, inv_mul_eq_iff_eq_mul, ← hRjR.eq, ← mul_assoc, hXRj.eq, ← hcm,
         commutatorElement_def]
       group
     · have hpi' : p.castSucc ≠ i.castSucc := fun e => hpi (Fin.castSucc_inj.mp e)
@@ -102,7 +102,7 @@ theorem stab_commute_padRow {k : St n R} (hk : k ∈ K2 (Fin n) R) (v : Fin n �
     Commute (stab n R k) (padRow v) := by
   have e := stab_conj_padRow k v
   rw [padMat_of_mem_K2 hk, Matrix.vecMul_one, mul_assoc, inv_mul_eq_iff_eq_mul] at e
-  exact e
+  exact e.symm
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.stab_commute_padRow
 

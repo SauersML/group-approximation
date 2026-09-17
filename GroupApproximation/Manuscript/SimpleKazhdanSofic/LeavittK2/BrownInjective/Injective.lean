@@ -60,8 +60,8 @@ theorem mk_of_inl (j : S.J) :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.mk_of_inl
 
-theorem mk_of_inr (u : Unit) :
-    PresentedGroup.mk S.rels (FreeGroup.of (Sum.inr u)) = S.T := rfl
+theorem mk_of_inr :
+    PresentedGroup.mk S.rels (FreeGroup.of (Sum.inr ())) = S.T := rfl
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownInjective.BrownSetting.mk_of_inr
 
@@ -74,19 +74,19 @@ theorem reach_mul_mk (w : FreeGroup (S.J ⊕ Unit)) :
     exact hx
   | of a =>
     intro x hx
-    rcases a with j | u
+    rcases a with j | ⟨⟩
     · rw [S.mk_of_inl]
       exact S.reach_mul_incl hx j
     · rw [S.mk_of_inr]
       exact S.reach_mul_T hx
   | inv_of a _ =>
     intro x hx
-    rcases a with j | u
+    rcases a with j | ⟨⟩
     · rw [map_inv, S.mk_of_inl, ← map_inv]
       exact S.reach_mul_incl hx j⁻¹
     · rw [map_inv, S.mk_of_inr, S.T_inv]
       exact S.reach_mul_T hx
-  | mul a b ha hb =>
+  | mul _ _ ha hb =>
     intro x hx
     rw [map_mul, ← mul_assoc]
     exact hb _ (ha x hx)
@@ -109,7 +109,7 @@ theorem brownMap_injective (hsc : S.SimplyConnected) : Function.Injective S.brow
   intro x hx
   obtain ⟨l, z, hl, j, rfl⟩ := S.reach x
   have hpz : S.p z • S.v0 = S.v0 := by
-    have h1 : S.p (z * S.incl j) • S.v0 = S.p z • S.v0 := S.sameCoset_v0 ⟨j, rfl⟩
+    have h1 : S.p (z * S.incl j) • S.v0 = S.p z • S.v0 := S.sameCoset_v0 (x := z) (y := z * S.incl j) ⟨j, rfl⟩
     rw [← h1, hx, one_smul]
   have hp : S.IsPath S.v0 l := by
     have h := LiftEnd.isPath S hl
