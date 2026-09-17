@@ -176,7 +176,8 @@ theorem not_regionInternal_none (family : Finset (RegionCandidate D eps Delta))
   obtain ⟨c, -, rfl⟩ := Finset.mem_map.mp hb'
   obtain ⟨d, hd, -⟩ := ((OuterSpurThickening.embedding Delta j hlen).faceOf_mem_iff c.1.1
     (OuterSpurThickening.outer_not_mem Delta c.1.2) none).mp h
-  exact Option.some_ne_none _ hd
+  have hd' : (some (some d) : Option (Option Delta.toCombMap.Dart)) = none := hd
+  exact Option.some_ne_none _ hd'
 
 /-- **(C) The new dart `some none` is not internal.** -/
 theorem not_regionInternal_some_none (family : Finset (RegionCandidate D eps Delta))
@@ -190,7 +191,8 @@ theorem not_regionInternal_some_none (family : Finset (RegionCandidate D eps Del
   obtain ⟨c, -, rfl⟩ := Finset.mem_map.mp hb'
   obtain ⟨d, hd, -⟩ := ((OuterSpurThickening.embedding Delta j hlen).faceOf_mem_iff c.1.1
     (OuterSpurThickening.outer_not_mem Delta c.1.2) (some none)).mp h
-  exact Option.some_ne_none _ (Option.some.inj hd)
+  have hd' : (some (some d) : Option (Option Delta.toCombMap.Dart)) = some none := hd
+  exact Option.some_ne_none _ (Option.some.inj hd')
 
 end Crossings
 

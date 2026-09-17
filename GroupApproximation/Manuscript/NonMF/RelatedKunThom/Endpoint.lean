@@ -39,7 +39,8 @@ The configuration of [OAI, Prop. 2.3] is `CompressionSetup G Γ J`:
    decomposition on any finite symmetric generating set containing `1`. This
    is proved in `GroupApproximation/Kun/*`.
 2. **Kun--Thom rigidity and the LEF conclusion.**
-   `CriterionAssembly.isLEF_of_soficApproximation` and `isLEF_of_isSofic` prove
+   `isLEF_of_soficApproximation` and `isLEF_of_isSofic`
+   (`Criterion/CriterionAssembly.lean`) prove
    that a sofic ambient group of a compression setup with `(T)` forces `J` to be
    LEF. The route: Kun decompositions for `G` and `Γ`, then the conservative
    matching, then the Kun--Thom matching certificate
@@ -63,7 +64,7 @@ namespace RelatedKunThom
 
 /-- **Tex lines 339--342.** Closed form of the related-work sentence.
 
-1. *Kun's theorem.* Sofic approximations of infinite property-(T) groups admit
+1. *Kun's theorem.* Sofic approximations of infinite property-(T) groups have
    expander decompositions on finite symmetric generating sets.
 2. *Rigidity step.* In the compression configuration with `(T)` on `G` and `Γ`,
    a sofic approximation of `G` (in particular soficity of a countable `G`)

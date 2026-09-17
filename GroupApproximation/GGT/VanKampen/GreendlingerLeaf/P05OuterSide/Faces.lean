@@ -182,6 +182,7 @@ theorem none_not_internal :
     (FaceEdgeDoubling.faceOf_none_digon S.diagram S.diagram.outerFace j hlen))
   exact FaceEdgeDoubling.faceImage_ne_digon S.diagram S.diagram.outerFace j hlen g hgc
 
+include htgt in
 /-- **(D) The doubled dart is not a crossing dart.** -/
 theorem not_phiKeepO_dart {E : Finset (RegionCandidate D eps S.diagram)} (hE : E ⊆ S.family)
     (x : (collapsedMap S.family).Dart)
