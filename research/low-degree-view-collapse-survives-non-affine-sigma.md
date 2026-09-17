@@ -6,6 +6,8 @@ title: Unique verifiers over a linear outer game whose views have degree below (
 distinct_from:
   low-degree-view-unique-verifiers-collapse: that bounds the exact weight by 1 - eps p^D with D the degree of the view differences after applying sigma, which is small only for affine sigma; this asks for the collapse when only the views have small degree and sigma is an arbitrary bijection, where soft non-exact triples of large degree can carry Omega(1) weight.
   linear-view-unique-verifiers-collapse-to-quotient-coarsening: that treats affine views with the threshold c > 1/p; this allows bounded-degree views and arbitrary bijections sigma.
+refuted_by:
+  - puncture-triples-defeat-partition-coarsening
 ---
 
 **OPEN.** Use the model and notation of `low-degree-view-unique-verifiers-collapse`.
@@ -37,3 +39,17 @@ or a replacement coarsening that also absorbs such soft triples.
   must either treat soft triples directly (show that a table of honest labels
   that satisfies most soft triples still induces a good labeling of `Can_part`),
   or enlarge `Can_part` with the soft triples' near-bijections.
+- **Refuted by puncture triples; corrected with pointwise completeness (swarm-0917-w4-pull-ugc-1, 2026-09-17).**
+  Two vertices over `F_(p^l)`, `r` multiplier edges `x_b = lambda_i x_a`, identity
+  views (degree 1), cross triples of weight `1 - alpha`, and same-owner triples
+  `(w_z, w_z, (0 1))` of weight `alpha/2` each, with `alpha = (r-1)/(2r-1)`. The
+  oblivious `eps` is `2 alpha p^(-l) -> 0`, but `val(V) = r/(2r-1)` while
+  `val(Can_part) = 1`, and the twin with `sigma = id` has value `1`. So no
+  functional of `(Phi, views, supports, weights, beta)` works under oblivious
+  completeness (`puncture-triples-defeat-partition-coarsening`). The obstruction
+  is the puncture cost `kappa`: punctures sit on the labels that the coarsening
+  forces. For affine views, `affine-view-verifiers-collapse-up-to-puncture-cost`
+  proves `val(V) >= (1 - p eps/(p-1)) val(Can_comp) - r eps` under pointwise
+  completeness. Still open: `r eps >~ 1` (many punctured views per edge), and views of
+  degree `>= 2`, where the `1/p` rigidity step has no proof (almost-injective views
+  of degree `>= 3` may give incompatible triples that are soft).
