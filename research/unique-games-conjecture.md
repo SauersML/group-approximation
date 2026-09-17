@@ -76,6 +76,18 @@ it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
+- **Door P1 of the affine-view collapse, closed for the DKKMS family
+  (swarm-0917-w4, 2026-09-17).** `grassmann-composed-2to2-coarsenings-are-satisfiable`:
+  on every folded Dinur--Khot--Kindler--Minzer--Safra instance, and for every
+  agreement test on its vertex set, the coarsening `Can` has value 1, satisfied
+  by one gauge labelling. The labelling exists because folding offsets are
+  coboundaries against Lemma 4.1 representatives. So every affine-view unique
+  verifier composed on the 2-to-2 instances has `s >= 2c - 1`. Only these routes
+  survive:
+  - non-affine views (P2, `Can_part`);
+  - outer games whose constraints link two subspaces of one label space;
+  - verifiers without oblivious completeness.
+
 * **Direct affine soundness of the published folded noise test.**
   `affine-long-code-test-has-no-uniform-soundness` supplies an explicit
   source family with vanishing value and folded output labelings with
