@@ -119,9 +119,10 @@ theorem K2_eq_bot_succ (k : Fin n) (hk : k ≠ r)
   rw [Subgroup.mem_bot]
   obtain ⟨w, rfl⟩ := refineHom_surjective L r k hk z
   rw [BooneHigman.SteinbergBasic.mem_K2_iff] at hz
-  have hmat : stMat (n + 1) (refineHom L r w) = 1 :=
-    congrArg (fun e : elementaryGroup (Fin (n + 1)) R =>
+  have hmat : stMat (n + 1) (refineHom L r w) = 1 := by
+    have e := congrArg (fun e : elementaryGroup (Fin (n + 1)) R =>
       ((e : (Matrix (Fin (n + 1)) (Fin (n + 1)) R)ˣ) : Matrix (Fin (n + 1)) (Fin (n + 1)) R)) hz
+    exact e
   have hw : stMat n w = 1 := by
     rw [Matrix.ext_iff_mulVec]
     intro v
