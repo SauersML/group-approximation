@@ -58,13 +58,13 @@ def carryBase (i₀ : ι) (α : ι → R) (i : ι) : R :=
   if i = i₀ then 0 else α i
 
 theorem carrySubst_X_self (i₀ : ι) (α : ι → R) : carrySubst i₀ α (X i₀) = X i₀ := by
-  rw [carrySubst, aeval_X, carryImage, if_pos rfl]
+  rw [carrySubst, MvPolynomial.aeval_X, carryImage, if_pos rfl]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_self
 
 theorem carrySubst_X_of_ne (i₀ : ι) (α : ι → R) {i : ι} (hi : i ≠ i₀) :
     carrySubst i₀ α (X i) = C (α i) + X i₀ * X i := by
-  rw [carrySubst, aeval_X, carryImage, if_neg hi]
+  rw [carrySubst, MvPolynomial.aeval_X, carryImage, if_neg hi]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_of_ne
 
@@ -75,7 +75,7 @@ theorem exists_eq_C_eval_add_X_mul (i₀ : ι) (φ : MvPolynomial ι R →ₐ[R]
     ∃ Q, φ P = C (eval β P) + X i₀ * Q := by
   induction P using MvPolynomial.induction_on with
   | C a =>
-    exact ⟨0, by rw [MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, eval_C, mul_zero,
+    exact ⟨0, by rw [MvPolynomial.algHom_C, MvPolynomial.algebraMap_eq, MvPolynomial.eval_C, mul_zero,
       add_zero]⟩
   | add p q hp hq =>
     obtain ⟨Q₁, hQ₁⟩ := hp
@@ -87,7 +87,7 @@ theorem exists_eq_C_eval_add_X_mul (i₀ : ι) (φ : MvPolynomial ι R →ₐ[R]
     obtain ⟨Q, hQ⟩ := hp
     obtain ⟨Q', hQ'⟩ := hφ n
     refine ⟨C (eval β p) * Q' + Q * φ (X n), ?_⟩
-    simp only [map_mul, eval_X, hQ, hQ']
+    simp only [map_mul, MvPolynomial.eval_X, hQ, hQ']
     ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.exists_eq_C_eval_add_X_mul
@@ -133,7 +133,7 @@ theorem carrySubst_eq_add_carryQuot (i₀ : ι) (α : ι → R) (P : MvPolynomia
 theorem carryQuot_unique [IsDomain R] (i₀ : ι) (α : ι → R) (P Q : MvPolynomial ι R)
     (hQ : carrySubst i₀ α P = C (eval (carryBase i₀ α) P) + X i₀ * Q) :
     Q = carryQuot i₀ α P :=
-  mul_left_cancel₀ (X_ne_zero i₀) (add_left_cancel (hQ.symm.trans
+  mul_left_cancel₀ (MvPolynomial.X_ne_zero (R := R) i₀) (add_left_cancel (hQ.symm.trans
     (carrySubst_eq_add_carryQuot i₀ α P)))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carryQuot_unique
