@@ -5399,6 +5399,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.IndexEight
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Generation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphExtension
 import GroupApproximation.Manuscript.NonMF.Full.Korchagin.DirectLimit
+import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.E0Kernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
