@@ -4,10 +4,17 @@ id: accessible-end-euler-measure-proof
 kind: route
 title: Half-tree pieces of a Bass-Serre tree generate the clopen algebra, and the vertex equations form a weighted flow problem
 target: accessible-non-virtually-cyclic-groups-carry-end-euler-measures
-requires: []
+requires: [accessible-half-tree-pieces-generate-end-clopen-algebra]
 artifacts:
   - experiments/window-zero-enumerations-2026-09-17/end_measure_check.py
 ---
+
+**Audit note (2026-09-17).** Referee lenses 1 and 2 refuted step 2
+(coarse connectivity) when some vertex group is infinite. Steps 2(a) and 2(b)
+assume that the Bass-Serre tree is locally finite. Step 3 is therefore
+unsupported, and the route now takes step 3 as the open prerequisite
+`accessible-half-tree-pieces-generate-end-clopen-algebra`. Steps 0-2 below are
+kept as the attempt. The referees found steps 4-6 and the one-ended case sound.
 
 Standard facts used (not re-proved here):
 
