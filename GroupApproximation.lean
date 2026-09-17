@@ -5373,6 +5373,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Converse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.HyperlinearPrinted
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.Endpoints
 import GroupApproximation.Manuscript.NonMF.Full.Korchagin.DirectedUnion
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Model
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
