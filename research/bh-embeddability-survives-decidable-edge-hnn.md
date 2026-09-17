@@ -123,3 +123,36 @@ only through a proof that does not pass through the conjecture.
    because free groups have no nontrivial FA subgroups. Whether a one-relator
    base can contain an infinite non-residually-finite FA subgroup is not
    addressed.
+8. **Tree and self-similar engines over a linear base with cyclic edges.**
+   *Dies* for these engines (2026-09-17). This removes both hypotheses Attempt 7
+   needed, FA and non-residual-finiteness. Take `A = BS(1,2) = <a, b | b a b^-1 = a^2>`,
+   `C_1 = <a>`, `C_2 = <b>`, `phi(a) = b`. The input meets every hypothesis:
+   - `A` is residually finite, linear and one-relator;
+   - `A` embeds in a finitely presented simple group;
+   - both memberships are decidable in the affine representation on `Z[1/2]`.
+
+   Then `A*_phi` is the Baumslag--Gersten group. By
+   `gersten-pairs-lie-in-no-locally-finite-tree-host`, no group acting on a
+   locally finite tree, or factor by factor on finitely many such trees, with
+   torsion kernel contains it. That covers the hosts of Theorem B and of Theorems
+   10.5 and 11.1 of Bux--Llosa Isenrich--Wu, and every automorphism group of a
+   locally finite rooted tree.
+
+   The invariant is the set of primes dividing the orders of an elliptic element
+   on finite balls. The base `<a, b>` is elliptic in every tree action. Since
+   `a` and `b` are conjugate, their invariants agree. The relation
+   `b a b^-1 = a^2` then forces the smallest prime to have a smaller prime in
+   the same set, so `a` must act trivially. Every such engine dies when it places
+   the input in its host.
+
+   The same obstruction excludes every input in which some `a in C_1` of
+   infinite order satisfies `phi(a) a phi(a)^-1 = a^2`. It applies to the
+   Magnus-step permanence and to the one-relator route, which Attempt 7 had left
+   open. Free bases are unaffected, since there `b a b^-1 = a^2` forces `a = 1`.
+   A proof of the claim, even restricted to cyclic edges over residually finite
+   linear bases, must therefore use a type (A) actor or another host in which
+   `a` is not equicontinuous. A parallel attempt recorded on the live bus by
+   agent c-hnn kills type (A) self-actions of `A*_phi` over proper-power cyclic
+   edges, which also covers this input. Together the two leave, for this input, only
+   engines whose host strictly contains `A*_phi` and is not a locally finite
+   tree host.
