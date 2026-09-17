@@ -24118,14 +24118,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-17 · fp-self-similar-groups-with-arbitrarily-hard-word-problem [OPEN] For every recursive time bound some finitely presented self-similar group has a harder word problem
+- 2026-09-17 · stabilizer-rounding-constant-is-one-over-sqrt2 [ESTABLISHED] The optimal constant in stabilizer rounding of Pauli sums is 1/sqrt2
 - 2026-09-17 · amenable-fp-iff-affiliated-top-homology-vanishes-proof [COMPLETE] A contractible U(G)-complex kills cohomology with U(G)-coefficients, and over a regular ring only the top-but-one L2-homology can be nonzero without being f.g.
 - 2026-09-17 · amenable-fp-iff-affiliated-top-homology-vanishes [ESTABLISHED] An amenable group of cd n and type FP_{n-1} is of type FP iff H_{n-1}(G; U(G)) = 0; in dimension 2 Kropholler's question is exactly this vanishing
+- 2026-09-17 · fp-self-similar-groups-with-arbitrarily-hard-word-problem [OPEN] For every recursive time bound some finitely presented self-similar group has a harder word problem
 - 2026-09-17 · simple-tmw-kazhdan-groups-not-left-orderable-proof [COMPLETE] The finite residual meets the embedded Janzen–Wise lattice in a subgroup containing its unique index-8 cyclic-quotient kernel, which carries a positive-cone UNSAT certificate
 - 2026-09-17 · simple-titz-mite-witzel-kazhdan-groups-are-not-left-orderable [ESTABLISHED] None of the five simple CAT(0) Kazhdan groups of Titz Mite–Witzel is left-orderable
 - 2026-09-17 · thompson-f-is-not-amenable [OPEN] Thompson's group F is not amenable
 - 2026-09-17 · power-two-word-free-census-of-power-one-silent-classes-proof [COMPLETE] Run the word-free LP on the square of each power-one-silent class representative, with exact Farkas vectors, SAT boundary searches and the independent checker
-- 2026-09-17 · power-two-word-free-census-of-power-one-silent-classes [ESTABLISHED] At power two, 411 of the 444 census classes silent at power one still have no legal folded fatgraph, while seven LP-negative classes are certified, including genus-three surfaces in groups with H_1 torsion of order two
 
 ## Active claims
 

@@ -1,0 +1,8 @@
+F2 grid min of t(1+M)-min{M,sqrt(1-M^2)}: 1.647152662043183e-07 at M = 0.7071065
+worst excess over each claimed inequality (<= ~1e-12 means no violation):
+  F1: 3.775e-15
+  (1): 0.000e+00
+  (2): 7.105e-15
+  (3): 1.777e-15
+  (3b): 7.550e-15
+  (4): 0.000e+00
