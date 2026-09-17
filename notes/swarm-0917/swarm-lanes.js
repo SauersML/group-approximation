@@ -89,7 +89,7 @@ Steps (all inside the worktree; never touch the primary checkout's working tree)
 5. \`bin/cairn check; echo $?\` must be 0. If it fails, fix only problems in the files of this result (lint, missing distinct_from, artifact paths).
 6. Land: \`CAIRN_LAND_TRAILERS=${args.trailers} ${env} tools/cairn-land.sh -m "<subject: one plain sentence saying what was established, refuted or recorded for ${r.id}>" --node ${r.id} ${r.worktree} <every path of this result, relative>\`. Exit 0 means landed; 4 means a missing path or failed check (fix and retry); 1 means it gave up (retry once).
 7. Verify with \`git fetch -q origin main && git log origin/main --oneline -8\` and report the landed commit sha. Do not claim landed unless you see it on origin/main.
-8. Only if you saw the commit on origin/main: free the disk with \`git -C ${r.worktree} worktree remove --force ${r.worktree}\` (ignore failure). If it did not land, leave the worktree in place.
+8. Only if you saw the commit on origin/main: free the disk with \`cd /home/user/group-approximation && git worktree remove --force ${r.worktree}\` (ignore failure). If it did not land, leave the worktree in place.
 Return landed, commit, final_status (the status that landed) and a one-line note. The commit subject must not name any model.`
 }
 
