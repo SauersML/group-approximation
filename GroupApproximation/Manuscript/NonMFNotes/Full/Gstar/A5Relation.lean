@@ -20,8 +20,7 @@ Here `W_{A₅}` is the repository's wreath product
 with `Fin 5` labels) at one site, `A₅^(X)` is the lamp subgroup
 `FinitePerfectLamp.lampSub A₅`, and `Rad_MF` is the literal genuine-corona radical
 `actualCoronaMFResidual`.  The quotient is identified with the literal ascending HNN extension
-`Gstar` via `gstarEquivVertical`; `Full/Gstar/WreathStar.lean` identifies `W_{A₅}` itself with
-the wreath product `A₅^(G_*/Γ_*) ⋊ G_*` over the literal HNN extension.
+`Gstar` via `gstarEquivVertical`.
 
 Main declaration:
 
@@ -30,7 +29,6 @@ Main declaration:
 
 namespace GroupApproximation.Full.NN05
 
-open MarkedCompression ExplicitLinearModel
 open AlternatingLampLiteral (WA qA rA)
 
 /-- The kernel of the split projection `W_{A₅} → V` is the lamp subgroup `A₅^(X)`. -/

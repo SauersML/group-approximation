@@ -57,8 +57,8 @@ theorem mem_nullSubgroup {g : ∀ i, G i} :
 
 instance nullSubgroup_normal : (nullSubgroup ω G).Normal where
   conj_mem n hn g := by
-    have hn' : ∀ᶠ i in (ω : Filter ι), n i = 1 := hn
-    show ∀ᶠ i in (ω : Filter ι), (g * n * g⁻¹) i = 1
+    have hn' : ∀ᶠ i in (ω : Filter ι), n i = 1 := (mem_nullSubgroup ω G).1 hn
+    refine (mem_nullSubgroup ω G).2 ?_
     exact hn'.mono fun i h => by
       show (g * n * g⁻¹) i = 1
       rw [Pi.mul_apply, Pi.mul_apply, Pi.inv_apply, h, mul_one, mul_inv_cancel]
@@ -102,7 +102,7 @@ theorem isTextbookLEF_ultraproduct : IsTextbookLEF (Ultraproduct ω G) := by
   have hmul : ∀ x y : Ultraproduct ω G,
       ∀ᶠ i in (ω : Filter ι), out ω G (x * y) i = (out ω G x * out ω G y) i := by
     intro x y
-    refine (mk_eq_mk_iff ω G).1 ?_
+    refine (mk_eq_mk_iff ω G (g := out ω G (x * y)) (h := out ω G x * out ω G y)).1 ?_
     rw [mk_out, QuotientGroup.mk_mul, mk_out, mk_out]
   have hne : ∀ x y : Ultraproduct ω G, x ≠ y →
       ∀ᶠ i in (ω : Filter ι), ¬ out ω G x i = out ω G y i := by
@@ -120,8 +120,7 @@ theorem isTextbookLEF_ultraproduct : IsTextbookLEF (Ultraproduct ω G) := by
   obtain ⟨i, hi⟩ := hall.exists
   refine ⟨⟨G i, inferInstance, Fintype.ofFinite (G i), Classical.decEq (G i)⟩, fun x => out ω G x i, ?_, ?_⟩
   · intro x hx y hy hxy
-    by_contra hn
-    exact (hi x hx y hy).2 hn hxy
+    exact Classical.byContradiction fun hn => (hi x hx y hy).2 hn hxy
   · intro x hx y hy _
     exact (hi x hx y hy).1
 
@@ -132,7 +131,7 @@ theorem isLEF_ultraproduct : IsLEF (Ultraproduct ω G) :=
 /-- **Every subgroup of an algebraic ultraproduct of finite groups is LEF** (`lem:nn`, simple_kazhdan_sofic_group.tex
 l.523–524, applied to `Δ`). -/
 theorem isLEF_subgroup_ultraproduct (H : Subgroup (Ultraproduct ω G)) : IsLEF H :=
-  isLEF_of_injective H.subtype Subtype.val_injective (isLEF_ultraproduct ω G)
+  isLEF_of_injective H.subtype H.subtype_injective (isLEF_ultraproduct ω G)
 
 end Finite
 
