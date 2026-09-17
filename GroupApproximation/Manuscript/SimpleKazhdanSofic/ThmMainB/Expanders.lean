@@ -159,5 +159,7 @@ end GroupApproximation
 
 /-! ### Axiom audit -/
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.symm_mem_of_mem_map
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.elementaryGroupMap_freeLetterMarking
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_quotientsOfOneKazhdanGroupExpanderLimit
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_limitOfSpecialLinearGroups

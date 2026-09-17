@@ -52,6 +52,8 @@ def columnFixer (c : Fin 4) : Subgroup (Matrix (Fin 4) (Fin 4) R)ˣ where
           Matrix.mul_apply.symm
       _ = (1 : Matrix (Fin 4) (Fin 4) R) p c := by rw [Matrix.mul_one, ha' p]
   one_mem' := by
+    show ∀ p : Fin 4, ((1 : (Matrix (Fin 4) (Fin 4) R)ˣ) : Matrix (Fin 4) (Fin 4) R) p c =
+      (1 : Matrix (Fin 4) (Fin 4) R) p c
     intro p
     rfl
   inv_mem' {a} ha := by

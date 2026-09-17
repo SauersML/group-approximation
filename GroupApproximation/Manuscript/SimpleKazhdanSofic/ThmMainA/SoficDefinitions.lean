@@ -125,4 +125,5 @@ end SimpleKazhdanSofic
 end GroupApproximation
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.printedIsSofic_of_isSofic
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.printedIsHyperlinear_of_printedIsSofic
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainA.printedIsHyperlinear_of_isSofic

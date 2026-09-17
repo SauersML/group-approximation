@@ -230,10 +230,13 @@ end GroupApproximation
 open GroupApproximation.Manuscript.NonMF.RelatedBK
 
 #audit_axioms localization_exists_gram_of_quadForm_re_nonpos
+#audit_axioms localizationBlockEntry
 #audit_axioms localizationBlockEntry_apply
+#audit_axioms localizationColumnExtend
 #audit_axioms localizationBlockEntry_mulVec
 #audit_axioms sum_normSq_localizationColumnExtend
 #audit_axioms norm_localizationBlockEntry_le
+#audit_axioms localizationBlockInsert
 #audit_axioms localizationBlockInsert_mulVec
 #audit_axioms norm_localizationBlockInsert_le
 #audit_axioms localization_eq_sum_blockInsert

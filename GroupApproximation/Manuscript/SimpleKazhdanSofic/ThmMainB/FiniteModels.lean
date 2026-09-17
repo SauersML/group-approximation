@@ -111,4 +111,6 @@ end GroupApproximation
 
 /-! ### Axiom audit -/
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.periodicModel_unit_zpow_apply
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.periodicModel_coeff
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.ThmMainB.manuscriptSentence_periodicModelsShiftPermutationDiagonal
