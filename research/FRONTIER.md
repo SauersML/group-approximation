@@ -22614,6 +22614,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · titz-witzel-kernel-nonsofic-iff-consistent-deletion-repair [OPEN] The Titz--Witzel kernel is nonsofic exactly when every almost solution of its relators becomes monodromy-free after deleting o(n) points, and every almost solution has consistency deficit at least a fixed multiple of its mark
 - 2026-09-17 · fpbs-kazhdan-local-cost-formula-proof [COMPLETE] Project a cluster-counting field onto Kazhdan invariants, induce on the condensed clusters, and truncate a cheap graphing for the converse
 - 2026-09-17 · fpbs-kazhdan-local-cost-formula [ESTABLISHED] For a Kazhdan group the Bernoulli cost is an infimum of window-local statistics of finite-range iid subgraphs, so fixed price one is a finite-certificate statement
 - 2026-09-17 · zaremsky-1-02-by-no-via-boone-type-f [COMPLETE] Zaremsky Problem 1.2 answered no by the type F Aanderaa--Cohen--Boone group of a machine with non-computable halting set
@@ -22621,7 +22622,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-17 · boone-halting-lift-is-free-on-t-and-stable-letters [ESTABLISHED] In the Boone tower of a modular machine, t and the stable letters freely generate a free group
 - 2026-09-17 · boone-final-group-is-of-type-f-proof [COMPLETE] Proof: glue finite classifying spaces along the tower, with a wedge of circles as the last edge space
 - 2026-09-17 · boone-final-group-is-of-type-f [ESTABLISHED] The final Aanderaa--Cohen--Boone group of every modular machine is of type F
-- 2026-09-17 · power-set-lifts-never-give-binary-power-witnesses [OPEN] The power-set lift of a strict automaton is never injective at size 2^k, and at size 2^k - 1 it is strict only for an unbalanced readable rule
 
 ## Active claims
 
