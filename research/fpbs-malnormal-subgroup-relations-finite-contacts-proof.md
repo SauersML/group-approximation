@@ -9,6 +9,10 @@ artifacts:
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
 ---
 
+**Invalidated (audit, 2026-09-17)** by `fpbs-finite-subgroup-classes-escape-q-lambda-orbits`. A referee
+refuted step 5 as stated: for finite nontrivial `Lambda`, `Q(Lambda)` is empty, but a component contains the whole
+class `Lambda x`, so it does not lie in `<Q(Lambda)> x`. The target's `## Attempts` records the refutation.
+
 Artifact §1–§2. The proof is self-contained: it uses freeness, invariance of
 the measure and a coset count, and nothing is imported.
 

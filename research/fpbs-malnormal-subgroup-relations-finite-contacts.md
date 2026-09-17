@@ -10,7 +10,11 @@ artifacts:
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
 ---
 
-**ESTABLISHED.** Let `Gamma` be a countably infinite group with a free p.m.p.
+**OPEN.** A direct proof was attempted in
+[[fpbs-malnormal-subgroup-relations-finite-contacts-proof]], and one of two referees refuted it (2026-09-17):
+the component containment in item 3 fails for finite nontrivial `Lambda`. See Attempts.
+
+Let `Gamma` be a countably infinite group with a free p.m.p.
 action `a` on `(X, mu)`. Let `Lambda <= Gamma` be a subgroup and `Phi ⊆ E_a` a
 graphing of finite cost `c(Phi)`. Put
 
@@ -47,3 +51,22 @@ graphing of finite cost `c(Phi)`. Put
 
 This does not assert `relC(E_a; E_{a|Lambda}) > 0`. The `L²` relative
 cokernel bound gives no obstruction there.
+
+## Attempts
+
+- **Count edges by a coset of `I(gamma)`, then read components off `<Q(Lambda)>` (2026-09-17). Refuted by one of
+  two referees.** Route `fpbs-malnormal-subgroup-relations-finite-contacts-proof` (invalidated by
+  `fpbs-finite-subgroup-classes-escape-q-lambda-orbits`) and artifact `research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md` are kept as this attempt.
+  - **Refutation (lens 1), verbatim:**
+
+    > The first step that fails is route step 5 ("Paths in the class graph multiply elements of Q(Lambda), so a component lies in <Q(Lambda)> x"), which is repeated as a sentence in statement item 3: "the components of its infinite-contact class graph lie in <Q(Lambda)>-orbits". The claim puts no restriction on Lambda, and the sentence is false when Lambda is finite and nontrivial. Then I(gamma) is contained in Lambda, so it is finite, Q(Lambda) is empty, <Q(Lambda)> = {e}, and the <Q>-orbit of x is just {x}. But for S = E_{a|Lambda}, the S-class of x is Lambda x, which has at least 2 points. Its component (a single class, since Theorem 1 gives no infinite contacts) is not contained in {x}. The artifact (research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md, Corollary 2 proof step 3) handles this case separately and correctly: the component lies in Lambda x. The claim statement and route leave that case out. A simple fix is to say <Q(Lambda) ∪ Lambda>-orbits, or to assume Lambda is infinite, where Lambda ⊆ Q(Lambda). The conclusion that connectivity forces <Q(Lambda)> = Gamma still holds, because a finite Lambda cannot give connectivity in an infinite Gamma.
+
+  - **Checked by lens 1:** the Theorem 1 counting bound, incoming edges via `I(gamma^{-1}) = gamma I(gamma) gamma^{-1}`,
+    the invariant conull set, `Q(Lambda)` as a union of double cosets, the wq-normality and almost-malnormal steps,
+    and the `Gamma_mal` Stallings certificate (`malnormal_image.py`). Minor citation issue: the route says "nothing
+    is imported" with `requires: []`, but takes its hypothesis and definitions from
+    `fpbs-infinite-contact-zero-relative-cost`, `fpbs-wq-normal-hull-is-almost-malnormal` and §5.1 of the
+    amalgam-descent artifact.
+  - **Lens 2 survived:** it checked every step, treated finite `Lambda` separately (component in `Lambda x`), and
+    folded `<a, bab^-2>` by hand.
+  - **Repair:** state item 3 with `<Q(Lambda) ∪ Lambda>`-orbits, or assume `Lambda` infinite, then re-referee.
