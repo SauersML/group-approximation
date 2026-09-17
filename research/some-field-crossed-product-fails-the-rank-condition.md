@@ -65,21 +65,51 @@ Every such argument fails at `G` where it would conclude domination for the prof
     measure on `Emb(K_0, C)`.
   - For Möbius actions every such measure sits on algebraic fixed points of hyperbolic elements, which are not
     embeddings. In characteristic `p` there is no trace to use.
-- **Finite-field point models (sw-016, 2026-09-17). Three test-case regimes die; the node stays OPEN.**
-  See `finite-field-point-models-give-the-rank-condition`.
-  - Evaluate the coefficients at finite-field points along a finite or sofic permutation model. A one-sided
-    inverse then gives `d(1-ε)|V| <= rank <= r|V|` over a finite field.
-  - This kills, as witnesses:
-    - every action on `k(x)` by `k`-automorphisms, including the Möbius case `Q(x) ⋊ PSL_2(Z)`;
-    - projective linear actions on `k(x_1..x_n)`;
-    - Bernoulli fields `k(x_g) ⋊ G` over sofic `G` in every characteristic;
-    - via Malcev–Neumann, every crossed product with any twist over a bi-orderable group, such as `F_2`,
-      surface groups and RAAGs.
-  - Exact failing step for a witness: it must defeat (P2). No approximately equivariant assignment of
-    finite-field points may make the coefficients' denominators nonzero. So either `α ≠ 1`, or the coefficient
-    `G`-ring has no finite-field point models (for example a Bernoulli field over a nonsofic group). The group
-    must also be neither amenable nor bi-orderable.
-  - The ternary Leavitt route (`α = ±1`, `G = L_(F_3)(1,2)^x/<-1>`, which has torsion) survives, as do twisted
-    group algebras `K^α[G]` over non-bi-orderable groups. These are the named test cases still alive.
 - **Ternary Leavitt summand.** See the route above. Its necessary condition (the support is not `F_3`-linear
   sofic) is recorded at `ternary-anti-central-summand-has-cohn-family`.
+- **Finite-index division rings (swarm-0917-w4-gs-rokhlin-kazhdan, 2026-09-17). Kills the Möbius test case and the
+  whole ordered class.** `virtually-hughes-free-field-crossed-products-are-stably-finite` (ESTABLISHED):
+  - for faithful `σ`, `K*G` is simple, so a witness is exactly a faithful field crossed product that is not
+    stably finite (with a cocycle allowed);
+  - `K*G` is stably finite whenever every finitely generated subgroup has a finite-index subgroup that is
+    residually torsion-free nilpotent, locally indicable amenable, free-by-cyclic, or a graph of these. Proof:
+    right multiplication on a coset basis embeds `K*G` in `M_n(K*N)`, and `K*N` has a Hughes-free division ring
+    (`fsp-graph-of-rings-and-linnell-extension-imports`, items 2 and 6);
+  - so `Q(x) ⋊ PSL_2(Z)` (virtually free) has the rank condition, as does `F_p(x_g) ⋊ G` for such `G`.
+  - **Where the class stops.** Infinite finitely generated Kazhdan groups have no locally indicable finite-index
+    subgroup. A witness must contain a finitely generated subgroup outside the virtual Hughes-free class.
+  - **Next test case:** `Q(x, y) ⋊ SL_3(Z)` (or `Γ(3)`) by projective substitutions, which evades all four
+    regimes if `Emb(Q(x,y), C)` has no invariant probability measure (unchecked). Artifact
+    `research/artifacts/field-crossed-product-virtual-division-embedding-2026-09-17.md`.
+- **Finite-field point models (swarm-0917-w4-pull-gs-3, 2026-09-17). Kills the `Q(x,y) ⋊ SL_3(Z)` test case and
+  every untwisted rational case.** `rational-function-field-crossed-products-have-the-rank-condition`
+  (ESTABLISHED, unreviewed):
+  - for any group `G` and any action on `k(x_1..x_n)` (`k` a prime field, `α = 1`), `K ⋊ G` has the rank
+    condition; for faithful actions it is stably finite;
+  - proof: reduce mod `p` and let `G` act by partial substitution on `F_q^n`. The model of `AB = I_d` is exact off
+    the zero set of one nonzero polynomial `D`, so `(d - r) q^n <= d deg(D) q^{n-1}` (Schwartz–Zippel);
+  - so every subgroup of `Bir(P^n_Q)` or `Bir(P^n_{F_p})`, Kazhdan or not, fails as a host of an untwisted
+    rational witness, including the Möbius case and `Q(x,y) ⋊ SL_3(Z)`;
+  - **Where the class stops.** A witness needs at least one of the following:
+    1. a cocycle that is not a coboundary on finite models (the ternary route lives here);
+    2. coefficient orbits in no finitely generated rational subfield closed under finitely many `σ_g`
+       (Bernoulli fields `F_p(x_g)`; for sofic `G` the same count over sofic models is expected to kill them, but
+       this is not recorded);
+    3. a non-rational finitely generated field. There the same proof needs Lang–Weil plus spreading out, which
+       is not imported.
+- **Lang–Weil point models (swarm-0917-w5-pull-tf-2, group-rings, 2026-09-17). Kills witness class 3: every untwisted
+  finitely generated field.** `finitely-generated-field-crossed-products-have-rank-condition` (ESTABLISHED,
+  unreviewed, via `lang-weil-point-count`):
+  - for any group `G` and any action on a field finitely generated over its prime field, `K ⋊ G` has the rank
+    condition, and it is stably finite when the action is faithful. The local form covers every field in which
+    finite data lie in a finitely generated subfield stable under finitely many `σ_g`;
+  - **invariant:** the ratio of `F_q`-points `|V(D)(F_q)| / |Hom(R, F_q)|` for a spread-out model `R` of `K`;
+  - **dying step:** the model of `AB = I_d` by partial substitutions on `Hom(R, F_q)` is exact off `V(D)`. After
+    reducing modulo a prime chosen away from the minimal primes of `(D)` (Krull's principal ideal theorem), `V(D)`
+    has dimension below that of the model, so Lang–Weil gives `(d - r) <= d · O(q^{-1})`;
+  - so number fields, K3 and Calabi–Yau function fields, and subgroups of `Bir(V)` for any variety `V` over `Q` or
+    `F_p` all fail as hosts of an untwisted witness;
+  - **where the class stops.** A witness needs either (1) a cocycle that is not a coboundary on finite models (the
+    ternary route), or (2) coefficient orbits in no finitely generated `σ_T`-stable subfield. The basic case of (2)
+    is Bernoulli fields `F_p(x_g)` over a group `G` that is not known to be sofic; for sofic `G` a count over sofic
+    models is expected to kill it, but that is not recorded.
