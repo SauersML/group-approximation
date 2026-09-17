@@ -254,34 +254,31 @@ The August audit and the September correction artifacts carry the arguments.
      faithfully on a tree with (P), a nontrivial finitely generated edge group, and
      not both indices 2.
 
-A ninth non-attempt, recorded because it looks tempting from inside this
+9. **A universal host from rewriting-system dynamics** (reframer lane sw-010,
+   2026-09-17).
+   - *The idea.* Feed a hard finitely presented group into
+     `fp-self-similar-groups-embed-in-fp-simple-groups`. To do that, make it
+     self-similar by letting its tree action be read off a canonical
+     endomorphism: a generator substitution respecting the relations, or a
+     Frobenius-type scaling of the Kharlampovich--Myasnikov--Sapir groups.
+   - *Where it dies.* By `virtually-endomorphic-self-similar-actions-have-finite-image`,
+     suppose the sections agree, on a finite-index subgroup, with endomorphisms of
+     a finite-index normal subgroup `G'`. Then the fully invariant subgroup
+     `R_n(G')` is carried into itself by every section, so it acts trivially.
+     The action therefore has finite image.
+   - *What is left.* Only "division" sections escape: section maps that extend
+     to no endomorphism, like the adding machine or Cartier-type digit
+     contractions. Whether a Cartier-type virtual endomorphism of a
+     Kharlampovich--Myasnikov--Sapir group gives an infinite-state faithful
+     action is open.
+
+A tenth non-attempt, recorded because it looks tempting from inside this
 program: Schupp's envelope
 (`countable-group-embeds-in-two-generator-simple-group`) is two-generator but
 not computably presented, so Higman's theorem does not apply to it;
 `boone-higman-thompson-simple-envelope` restores computable presentability
 but then Higman destroys simplicity.  That route rotates between the
 conjecture's two halves without narrowing either.
-
-10. **The hereditary separating property of Attempt 7, named** (heretic lane
-    swarm-0917-w4-bh-heretic, 2026-09-17).
-    - *Result.* `boone-higman-iff-isolated-hosts-and-local-boone-higman`
-      (ESTABLISHED): the conjecture holds iff both
-      `every-decidable-group-embeds-in-an-isolated-group` and
-      `local-boone-higman-conjecture` hold.
-    - *The lemma.* `isolated-embedding-is-one-existential-sentence`: an
-      isolated `H` embeds in `S` iff `S` satisfies one existential sentence
-      `Σ_H`, built from a finite presentation and a finite discriminating set.
-    - *Consequence.* A counterexample is either a decidable group with no
-      isolated overgroup, or a finite system `(E, N)` with a decidable model and
-      no model in any finitely presented simple group.
-    - *Kills.* The other invariant classes in the counterexample brief die as
-      forced properties at named steps (`local-boone-higman-conjecture`,
-      Attempt 2):
-      - torsion-problem undecidability, because `2V` has undecidable torsion
-        problem;
-      - Dehn functions, killed on main;
-      - input finiteness type, because finite groups and `Z ≀ Z` lie in `V`.
-    - *Route.* `boone-higman-via-isolated-overgroup-and-local-boone-higman`.
 
 ## A strictly easier subproblem, unsolved
 
