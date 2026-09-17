@@ -86,3 +86,28 @@ density `1/k`, restricted to transversals.
     - (G3) Outer arity at least `eta^(-1/ceil(t/2))`, unbounded as `eta -> 0`.
   - Where it stops: it refutes no route that avoids fixed-arity outer
     composition.
+* **Spread support overlap (class kill, 2026-09-17, wave 5).**
+  `spread-support-overlap-forces-non-expanding-small-sets` (ESTABLISHED) removes
+  the fibration and arity hypotheses of the previous bullet.
+  - *Invariant.* The spread overlap profile. A support map `psi : V -> 2^U`
+    has overlap `theta` if neighbours share a `theta` fraction of their supports.
+    Its spread `rho` is the largest vertex fraction containing one atom.
+  - *Theorem.* Some set of measure in `[delta, 10 delta]` has
+    `1 - Phi >= theta - rho/delta`. The set is found by a p-biased zoom set
+    `{v : psi(v) meets X}` at `E mu = 3 delta`, using concavity of `1 - (1-p)^s`
+    and Efron--Stein.
+  - *Where it dies.* At the NO case of the output graph, for `eta < theta - rho/delta`.
+    - Grassmann-view graphs with codimension-one adjacency, the 2-to-2 test
+      adjacency, die for `eta < 0.49` at every arity. This covers survivor (G3)
+      over `F_2`.
+    - Agreement tests die for `eta` below the intersection fraction.
+    - Smooth `q`-query view graphs die for `eta < 1/q - rho/delta`, fibred or
+      not. This covers the view-sharing part of (G2).
+  - *Survivors.*
+    - (H1) Dense-atom graphs, such as the noisy cube, where every high-overlap
+      support map has an atom in at least a `delta (theta - eta)` fraction of
+      vertices.
+    - (H2) Graphs where neighbours share at most an `eta + rho/delta` fraction
+      of every spread support.
+  - Where it stops: the kill does not touch (H1) or (H2), and it proves nothing
+    toward the hypothesis itself.
