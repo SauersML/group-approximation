@@ -5388,6 +5388,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.MFArithmetic
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Undecidable
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GraphRel
 import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Sharpness
+import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.BlockComparison
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
