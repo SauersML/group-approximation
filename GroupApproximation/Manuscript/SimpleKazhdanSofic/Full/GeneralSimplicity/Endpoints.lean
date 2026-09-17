@@ -144,6 +144,201 @@ theorem stepOne_commutator
 
 end StepOne
 
+/-! ### Step 2: the commutator lies in a finite simple group over a tower -/
+
+section StepTwo
+
+open GroupApproximation.SimpleKazhdanSofic (epsilon epsilonSpan TranslatesDisjoint
+  GeneralCommutatorWitness)
+open GroupApproximation.SimpleKazhdanSofic.General (coeffHom unitHom)
+
+variable {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z]
+  [MulSemiringAction Λ (LocallyConstant Z (ZMod 2))]
+
+/-- **Step 2, tex l.278–283**: `ε_ab ε_a'b' = δ_ba' ε_ab'` for `ε_ab = e_{aV} u_{ab⁻¹}`, when the
+translates `aV`, `a ∈ B`, are pairwise disjoint. -/
+theorem stepTwo_epsilon_mul_epsilon
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    (hdisj : TranslatesDisjoint B V) {a b a' b' : Λ} (hb : b ∈ B) (ha' : a' ∈ B) :
+    epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b * epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a' b' =
+      if b = a' then epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b' else 0 :=
+  SimpleKazhdanSofic.General.epsilon_mul_epsilon (SimpleKazhdanSofic.General.isCovariantPair hact)
+    hV hdisj hb ha'
+
+/-- **Step 2, tex l.284**: as `V` is nonempty, `ε_ab ≠ 0`. -/
+theorem stepTwo_epsilon_ne_zero
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {V : Set Z} (hV : IsClopen V) (hne : V.Nonempty) (a b : Λ) :
+    epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b ≠ 0 :=
+  SimpleKazhdanSofic.General.epsilon_ne_zero (SimpleKazhdanSofic.General.isCovariantPair hact)
+    hV hne a b
+
+/-- **Step 2, tex l.284–285**: `A_V ≅ M_B(F₂)`: the matrix units `E_ab ↦ ε_ab` extend to an injective
+ring homomorphism `M_B(F₂) → R` whose range contains the span `A_V` of the `ε_ab`. -/
+theorem stepTwo_ringCopy
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    (hdisj : TranslatesDisjoint B V) (hne : V.Nonempty) :
+    ∃ ψ : Matrix B B (ZMod 2) →ₙ+* SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ,
+      Function.Injective ψ ∧
+      (∀ a b : B, ψ (Matrix.single a b 1) = epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b) ∧
+      ∀ x ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV, ∃ M, ψ M = x := by
+  have hcov := SimpleKazhdanSofic.General.isCovariantPair (Λ := Λ) (Z := Z) hact
+  exact ⟨SimpleKazhdanSofic.General.epsilonHom hcov hdisj hV,
+    SimpleKazhdanSofic.General.epsilonHom_injective hcov hdisj hV hne,
+    SimpleKazhdanSofic.General.epsilonHom_single hcov hdisj hV,
+    fun _ hx => SimpleKazhdanSofic.General.mem_range_epsilonHom_of_mem_epsilonSpan hcov hdisj hV hx⟩
+
+/-- **Step 2, tex l.280–281**: `A_V` is closed under products. -/
+theorem stepTwo_epsilonSpan_mul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {B : Finset Λ} {V : Set Z} (hV : IsClopen V) (hdisj : TranslatesDisjoint B V)
+    {x y : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hx : x ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV)
+    (hy : y ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) :
+    x * y ∈ epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV :=
+  SimpleKazhdanSofic.General.epsilonSpan_mul_mem (SimpleKazhdanSofic.General.isCovariantPair hact)
+    hV hdisj hx hy
+
+/-- **Step 2, tex l.285–289**: `y ↦ (1 - 1_V) I + y` embeds `GL_ι(A_V) ≅ GL_{ι × B}(F₂)` in
+`GL_ι(R)`; its image `H_V` lies in `G = EL_ι(R)`, the transvection between `(p, a)` and `(q, b)`,
+`p ≠ q`, maps to `e_pq(ε_ab)`, and (tex l.300–302) every `k` with `k - I` and `k⁻¹ - I` in
+`M_ι(A_V)` lies in `H_V`. -/
+theorem stepTwo_towerCopy
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    [DecidableEq Λ] {ι : Type*} [Fintype ι] [DecidableEq ι] [Nontrivial ι] {B : Finset Λ}
+    {V : Set Z} (hV : IsClopen V) (hdisj : TranslatesDisjoint B V) (hne : V.Nonempty) :
+    ∃ H : (Matrix (ι × B) (ι × B) (ZMod 2))ˣ →*
+        (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ,
+      Function.Injective H ∧
+      (∀ x, H x ∈ elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) ∧
+      (∀ (p q : ι) (hpq : p ≠ q) (a b : B) (h : ((p, a) : ι × B) ≠ (q, b)),
+        H (elementaryUnit (p, a) (q, b) h (1 : ZMod 2)) =
+          elementaryUnit p q hpq (epsilon (coeffHom Λ Z) (unitHom Λ Z) hV a b)) ∧
+      ∀ g : (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ,
+        (∀ p q, ((g : Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) - 1) p q ∈
+          epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) →
+        (∀ p q, (((g⁻¹ : (Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))ˣ) :
+            Matrix ι ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)) - 1) p q ∈
+          epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV) →
+        ∃ x, H x = g := by
+  have hcov := SimpleKazhdanSofic.General.isCovariantPair (Λ := Λ) (Z := Z) hact
+  exact ⟨SimpleKazhdanSofic.General.copyGL hcov ι hdisj hV,
+    SimpleKazhdanSofic.General.copyGL_injective hcov hdisj hV hne,
+    SimpleKazhdanSofic.General.copyGL_mem_elementaryGroup hcov hdisj hV,
+    fun _ _ hpq a b h => SimpleKazhdanSofic.General.copyGL_transvection hcov hdisj hV hpq a b h,
+    fun g hg hginv => SimpleKazhdanSofic.General.exists_copyGL_eq hcov hdisj hV hne g hg hginv⟩
+
+/-- **Step 2, tex l.303–305**: `GL_d(F₂) = PSL_d(F₂)` is simple for `d ≥ 3`. -/
+theorem stepTwo_glSimple (κ : Type*) [Fintype κ] [DecidableEq κ] (hcard : 3 ≤ Fintype.card κ) :
+    IsSimpleGroup (Matrix κ κ (ZMod 2))ˣ :=
+  FinitaryLinear.isSimpleGroup_units_matrix_zmodTwo κ hcard
+
+/-- **Step 2, the display of tex l.291–296**: if every `a` in the support of `c` lies in `B` with
+`c_a ∘ a` constant on `V`, and every `b` in the support of `c'` has `b⁻¹ ∈ B` with `c'_b` constant on
+`V`, then `c e_V c'` is a sum of products `f u_a e_V f' u_b ∈ {0, ε_{a,b⁻¹}}`, so it lies in `A_V`. -/
+theorem stepTwo_mul_charFn_mul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {B : Finset Λ} {V : Set Z} (hV : IsClopen V)
+    {c c' : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ}
+    (hc : ∀ a ∈ SkewMonoidAlgebra.support c, a ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c a (a • x) = SkewMonoidAlgebra.coeff c a (a • y))
+    (hc' : ∀ b ∈ SkewMonoidAlgebra.support c', b⁻¹ ∈ B ∧
+      ∀ x ∈ V, ∀ y ∈ V, SkewMonoidAlgebra.coeff c' b x = SkewMonoidAlgebra.coeff c' b y) :
+    c * SkewMonoidAlgebra.single (1 : Λ) (LocallyConstant.charFn (ZMod 2) hV) * c' ∈
+      epsilonSpan (coeffHom Λ Z) (unitHom Λ Z) B hV :=
+  SimpleKazhdanSofic.General.mul_charFn_mul_mem hact hV hc hc'
+
+/-- **Steps 1–2, as printed** (tex l.243–306): for a topologically free action on a totally separated
+space and `n ≥ 2`, every nontrivial normal subgroup `K` of `EL_n(R)` contains `x ≠ 1` such that, for
+some nonempty clopen `V` and finite `B ∋ e` with pairwise disjoint translates `aV`, `a ∈ B`, the
+matrices `x - I` and `x⁻¹ - I` lie in `M_n(A_V)`. -/
+theorem stepTwo_commutatorWitness [TotallySeparatedSpace Z]
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 2 ≤ n) :
+    GeneralCommutatorWitness (coeffHom Λ Z) (unitHom Λ Z) n :=
+  SimpleKazhdanSofic.General.generalCommutatorWitness hact hfree hn
+
+end StepTwo
+
+/-! ### Step 3: `K` contains every elementary matrix -/
+
+section StepThree
+
+open GroupApproximation.SimpleKazhdanSofic.General (coeffHom unitHom)
+
+/-- **Step 3, tex l.308–312**: `J = {r ∈ R : e_pq(r) ∈ K for all p ≠ q}` is a two-sided ideal. -/
+theorem stepThree_levelIdeal {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+    (hcard : 3 ≤ Fintype.card ι) (K : Subgroup (elementaryGroup ι R)) [K.Normal] (r : R) :
+    r ∈ levelIdeal hcard K ↔ ∀ (p q : ι) (hpq : p ≠ q), elGen p q hpq r ∈ K :=
+  mem_levelIdeal hcard K r
+
+/-- **Step 3, tex l.315**: if `1 ∈ J`, then `J = R` and `K = G`. -/
+theorem stepThree_eq_top_of_one_mem {ι R : Type*} [Fintype ι] [DecidableEq ι] [Ring R]
+    (hcard : 3 ≤ Fintype.card ι) (K : Subgroup (elementaryGroup ι R)) [K.Normal]
+    (h1 : (1 : R) ∈ levelIdeal hcard K) : K = ⊤ := by
+  rw [Subgroup.eq_top_iff']
+  intro y
+  have hy := elementaryGroup_hom_eq_one_of_gens (QuotientGroup.mk' K)
+    (fun l k hlk d => by
+      have hd := TwoSidedIdeal.mul_mem_left _ d 1 h1
+      rw [mul_one] at hd
+      rw [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff]
+      exact (mem_levelIdeal hcard K d).mp hd l k hlk) y
+  rwa [QuotientGroup.mk'_apply, QuotientGroup.eq_one_iff] at hy
+
+variable {Λ Z : Type*} [Group Λ] [TopologicalSpace Z] [MulAction Λ Z] [ContinuousConstSMul Λ Z]
+
+/-- **Step 3, tex l.313–314**: by minimality and compactness, finitely many translates `ξV` of a
+nonempty open set `V` cover `C`. -/
+theorem stepThree_finiteCover [CompactSpace Z] [MulAction.IsMinimal Λ Z] {V : Set Z}
+    (hV : IsOpen V) (hne : V.Nonempty) : ∃ s : Finset Λ, ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V :=
+  SimpleKazhdanSofic.General.exists_finset_smul_cover hV hne
+
+variable [MulSemiringAction Λ (LocallyConstant Z (ZMod 2))]
+
+/-- **Step 3, tex l.312–313**: if `e_V ∈ J`, then every `e_{ξV} = u_ξ e_V u_ξ⁻¹` lies in `J`. -/
+theorem stepThree_charFn_smul_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (hcard : 3 ≤ Fintype.card ι)
+    (K : Subgroup (elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))) [K.Normal]
+    {V : Set Z} (hV : IsClopen V)
+    (hmem : coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K) (ξ : Λ) :
+    coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) (SimpleKazhdanSofic.isClopen_smul ξ hV)) ∈
+      levelIdeal hcard K := by
+  rw [← SimpleKazhdanSofic.General.unit_mul_charFn_mul_inv
+    (SimpleKazhdanSofic.General.isCovariantPair hact) ξ hV]
+  exact TwoSidedIdeal.mul_mem_right _ _ _ (TwoSidedIdeal.mul_mem_left _ _ _ hmem)
+
+/-- **Step 3, tex l.312–315**: if `e_V ∈ J` and the translates `ξV`, `ξ ∈ s`, cover `C`, then
+`1 = 1 - ∏ᵢ (1 - e_{ξᵢV}) ∈ J`. -/
+theorem stepThree_one_mem
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (hcard : 3 ≤ Fintype.card ι) {V : Set Z}
+    (hV : IsClopen V) (s : Finset Λ) (hs : ∀ z : Z, ∃ ξ ∈ s, z ∈ ξ • V)
+    (K : Subgroup (elementaryGroup ι (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ))) [K.Normal]
+    (hmem : coeffHom Λ Z (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K) :
+    (1 : SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ) ∈ levelIdeal hcard K :=
+  SimpleKazhdanSofic.General.one_mem_levelIdeal_of_smul_cover
+    (SimpleKazhdanSofic.General.isCovariantPair hact) hcard hV s hs K hmem
+
+/-- **Steps 1–3, as printed** (tex l.241–315): for a minimal topologically free action on a nonempty
+compact totally separated space and `n ≥ 3`, every nontrivial normal subgroup `K` of `EL_n(R)` is
+`EL_n(R)`. -/
+theorem stepThree_normalSubgroupEqTop [TotallySeparatedSpace Z] [CompactSpace Z]
+    [MulAction.IsMinimal Λ Z]
+    (hact : ∀ (ξ : Λ) (f : LocallyConstant Z (ZMod 2)) (z : Z), (ξ • f) z = f (ξ⁻¹ • z))
+    (hfree : ∀ ξ : Λ, ξ ≠ 1 → interior {z : Z | ξ • z = z} = ∅) {n : ℕ} (hn : 3 ≤ n)
+    (K : Subgroup (elementaryGroup (Fin n) (SkewMonoidAlgebra (LocallyConstant Z (ZMod 2)) Λ)))
+    (hK : K.Normal) (hne : K ≠ ⊥) : K = ⊤ :=
+  SimpleKazhdanSofic.General.eq_top_of_generalCommutatorWitness
+    (SimpleKazhdanSofic.General.isCovariantPair hact) hn
+    (SimpleKazhdanSofic.General.generalCommutatorWitness hact hfree (by omega))
+    (fun _ hV hne' => SimpleKazhdanSofic.General.exists_finset_smul_cover hV.isOpen hne') K hK hne
+
+end StepThree
+
 #audit_axioms GroupApproximation.Full.SK02.generalSimple
 #audit_axioms GroupApproximation.Full.SK02.generalSimple_printed
 #audit_axioms GroupApproximation.Full.SK02.stepOne_movedPointsDense
@@ -151,5 +346,19 @@ end StepOne
 #audit_axioms GroupApproximation.Full.SK02.commutator_mem_ne_one
 #audit_axioms GroupApproximation.Full.SK02.stepOne_nonCommutingRoot
 #audit_axioms GroupApproximation.Full.SK02.stepOne_commutator
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_epsilon_mul_epsilon
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_epsilon_ne_zero
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_ringCopy
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_epsilonSpan_mul_mem
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_towerCopy
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_glSimple
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_mul_charFn_mul_mem
+#audit_axioms GroupApproximation.Full.SK02.stepTwo_commutatorWitness
+#audit_axioms GroupApproximation.Full.SK02.stepThree_levelIdeal
+#audit_axioms GroupApproximation.Full.SK02.stepThree_eq_top_of_one_mem
+#audit_axioms GroupApproximation.Full.SK02.stepThree_finiteCover
+#audit_axioms GroupApproximation.Full.SK02.stepThree_charFn_smul_mem
+#audit_axioms GroupApproximation.Full.SK02.stepThree_one_mem
+#audit_axioms GroupApproximation.Full.SK02.stepThree_normalSubgroupEqTop
 
 end GroupApproximation.Full.SK02

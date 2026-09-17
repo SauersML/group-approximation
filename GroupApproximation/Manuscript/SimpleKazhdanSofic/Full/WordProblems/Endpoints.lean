@@ -225,9 +225,9 @@ theorem every_degree (B : Set ℕ) :
 
 #audit_axioms every_degree
 
-/-- **`cor:wp`, second sentence (l.688–689), proof l.720–722.**  There is a family of continuum many infinite minimal
-subshifts `X` whose groups `G_X` do not embed in one another: `G_X` embeds in `G_{X'}` only when
-`X = X'`. -/
+/-- **`cor:wp`, second sentence (l.688–689), proof l.720–722.**  There is a family of continuum
+many infinite minimal subshifts `X` whose groups `G_X` do not embed in one another: `G_X` embeds
+in `G_{X'}` only when `X = X'`. -/
 theorem continuum_antichain :
     ∃ F : Set (Subshift Bool ℤ), Cardinal.mk F = Cardinal.continuum ∧
       (∀ S ∈ F, Infinite S.carrier ∧ IsMinimal S) ∧
