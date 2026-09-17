@@ -56,3 +56,14 @@ established negation.
   `galois-games-round-through-free-subgroups` rounds every Cayley-lift instance
   through free subgroups. It dies because hardness reductions do not output
   Cayley lifts.
+* **Eigen-free list rounding on the label-extended walk**
+  (`low-label-threshold-rank-reductions-cannot-prove-ugc`, 2026-09-17). Take
+  greedy Gram--Schmidt on the columns of `((I + A_L)/2)^t`, then a grid and
+  per-vertex argmax. It rounds every game of value `>= 1 - eps` to
+  `0.84 - eps`, deterministically in time
+  `poly(Z) exp(O(R log R))` with `R = rank_(1-800eps)(A_L)`. It dies on
+  instances with `R = omega(log Z / log log Z)`, such as long-code or
+  noisy-cube fibre compositions and SSE constraint graphs with many
+  eigenvalues near 1. As an obstruction it forces every UGC reduction to have
+  YES outputs of super-logarithmic label-extended threshold rank unless
+  `P = NP`.
