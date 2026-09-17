@@ -82,7 +82,8 @@ theorem contactClass_of_boundaryStep (P : OsinLemma94RealizedPolygons S)
     (contactClass_of_internal P h.2.2)
 
 /-- The base dart of a region: the head of its boundary cycle. -/
-abbrev regionBase (a : RegionCandidate D eps S.diagram) : S.diagram.toCombMap.Dart :=
+abbrev regionBase {Xi : DiscDiagram.{u, w, v} W} (a : RegionCandidate D eps Xi) :
+    Xi.toCombMap.Dart :=
   a.2.boundary.cycle.head a.2.boundary.cycle_nonempty
 
 /-- The boundary cycle of a selected region lies in the class of its base dart. -/

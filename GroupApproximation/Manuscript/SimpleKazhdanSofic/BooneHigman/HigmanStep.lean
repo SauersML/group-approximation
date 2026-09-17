@@ -57,7 +57,8 @@ theorem rePred_evalRaw_natGen_eq_one {ι : Type} [Primcodable ι] (s : ι → Γ
     ho.comp (Primrec.encode.comp primrec_rawToFamily).to_comp
   obtain ⟨inst, hprim⟩ := (Primrec.eq : PrimrecRel (@Eq ℕ))
   have hdec : Computable fun w : RawWord =>
-      @decide ((o (encode (rawToFamily (ι := ι) w)), 1).1 = (o (encode (rawToFamily (ι := ι) w)), 1).2)
+      @decide
+        ((o (encode (rawToFamily (ι := ι) w)), 1).1 = (o (encode (rawToFamily (ι := ι) w)), 1).2)
         (inst (o (encode (rawToFamily (ι := ι) w)), 1)) :=
     hprim.to_comp.comp (Computable.pair hc (Computable.const 1))
   have hp : ComputablePred fun w : RawWord => o (encode (rawToFamily (ι := ι) w)) = 1 :=

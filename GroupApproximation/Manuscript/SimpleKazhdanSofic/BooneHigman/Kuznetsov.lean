@@ -334,7 +334,8 @@ theorem hasSolvableWordProblem_of_simpleSubgroup {G H : Type} [Group G] [Group H
       simp [h1]
   have hp : ComputablePred fun w : List (Fin n × Bool) => wordValue t w = 1 :=
     (computablePred_evalRaw_eq_one rp S (primrec_translateRaw table).to_comp hmem).of_eq hiff
-  exact ⟨Fin n, inferInstance, inferInstance, t, ht, partrec_wordProblemOracle_of_computablePred t hp⟩
+  exact ⟨Fin n, inferInstance, inferInstance, t, ht,
+    partrec_wordProblemOracle_of_computablePred t hp⟩
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.BooneHigman.mem_normalClosure_iff_exists_conjRaw
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.BooneHigman.mem_normalClosure_iff_ne_one

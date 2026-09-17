@@ -255,3 +255,100 @@ theorem leastPeriod_fibonacciPeriodicWord : leastPeriod fibonacciPeriodicWord = 
   · exact h1
 
 end Periodic
+
+section NoSmallerPeriod
+
+theorem word_three_letters {z : ℤ → Bool} {k : ℤ} {w : Fin 3 → Bool}
+    (h : WordGraph.word z k 3 = w) : z k = w 0 ∧ z (k + 1) = w 1 ∧ z (k + 2) = w 2 := by
+  have h0 : z (k + 0) = w 0 := congrFun h 0
+  have h1 : z (k + 1) = w 1 := congrFun h 1
+  have h2 : z (k + 2) = w 2 := congrFun h 2
+  rw [add_zero] at h0
+  exact ⟨h0, h1, h2⟩
+
+/-- A window equal to one of `001`, `010`, `100`, `101` contains no `11` and is not `000`. -/
+theorem letters_of_word_mem {z : ℤ → Bool} {k : ℤ}
+    (h : WordGraph.word z k 3 = ![false, false, true] ∨
+      WordGraph.word z k 3 = ![false, true, false] ∨
+      WordGraph.word z k 3 = ![true, false, false] ∨ WordGraph.word z k 3 = ![true, false, true]) :
+    (z k = false ∨ z (k + 1) = false) ∧ (z (k + 1) = false ∨ z (k + 2) = false) ∧
+      (z k = true ∨ z (k + 1) = true ∨ z (k + 2) = true) := by
+  rcases h with h | h | h | h <;> obtain ⟨h0, h1, h2⟩ := word_three_letters h <;>
+    rw [h0, h1, h2] <;> decide +kernel
+
+/-- **No smaller period is possible** (tex l.411): a sequence with period `p > 0` whose words of
+length `3` are those of `X` has `p ≥ 5`. -/
+theorem five_le_of_periodic_words (z : ℤ → Bool) (p : ℕ) (hp : 0 < p)
+    (hper : ∀ n : ℤ, z (p + n) = z n)
+    (hwords : Set.range (fun i : ℤ => WordGraph.word z i 3) =
+      WordGraph.language fibonacciSubshift.carrier 3) :
+    5 ≤ p := by
+  rw [manuscriptSentence_fibonacciWordsLengthThree] at hwords
+  have hletters : ∀ k : ℤ, (z k = false ∨ z (k + 1) = false) ∧
+      (z (k + 1) = false ∨ z (k + 2) = false) ∧
+      (z k = true ∨ z (k + 1) = true ∨ z (k + 2) = true) := by
+    intro k
+    have hk : WordGraph.word z k 3 ∈ Set.range (fun i : ℤ => WordGraph.word z i 3) :=
+      Set.mem_range_self k
+    rw [hwords, Set.mem_insert_iff, Set.mem_insert_iff, Set.mem_insert_iff,
+      Set.mem_singleton_iff] at hk
+    exact letters_of_word_mem hk
+  have hz : ∀ a b : ℤ, a = b + p → z a = z b := by
+    intro a b hab
+    rw [hab, add_comm]
+    exact hper b
+  have h001 : ![false, false, true] ∈ Set.range (fun i : ℤ => WordGraph.word z i 3) := by
+    rw [hwords]
+    exact Set.mem_insert _ _
+  have h101 : ![true, false, true] ∈ Set.range (fun i : ℤ => WordGraph.word z i 3) := by
+    rw [hwords]
+    exact Set.mem_insert_of_mem _ (Set.mem_insert_of_mem _
+      (Set.mem_insert_of_mem _ (Set.mem_singleton _)))
+  obtain ⟨i, hi⟩ := h001
+  obtain ⟨j, hj⟩ := h101
+  have a0 : z i = false := (word_three_letters hi).1
+  have a1 : z (i + 1) = false := (word_three_letters hi).2.1
+  have a2 : z (i + 2) = true := (word_three_letters hi).2.2
+  have b0 : z j = true := (word_three_letters hj).1
+  have b2 : z (j + 2) = true := (word_three_letters hj).2.2
+  by_contra hlt
+  have hle : p ≤ 4 := by omega
+  interval_cases p
+  · exact absurd ((a2.symm.trans (hz (i + 2) (i + 1) (by omega))).trans a1) (by decide)
+  · exact absurd ((a2.symm.trans (hz (i + 2) i (by omega))).trans a0) (by decide)
+  · have e3 : z (j + 2 + 1) = true := (hz (j + 2 + 1) j (by omega)).trans b0
+    rcases (hletters (j + 2)).1 with h | h
+    · exact absurd (b2.symm.trans h) (by decide)
+    · exact absurd (e3.symm.trans h) (by decide)
+  · have e1 : z (i + 2 + 1) = false := by
+      rcases (hletters (i + 2)).1 with h | h
+      · exact absurd (a2.symm.trans h) (by decide)
+      · exact h
+    have e4 : z (i + 2 + 1 + 1) = false := (hz (i + 2 + 1 + 1) i (by omega)).trans a0
+    have e5 : z (i + 2 + 1 + 2) = false := (hz (i + 2 + 1 + 2) (i + 1) (by omega)).trans a1
+    rcases (hletters (i + 2 + 1)).2.2 with h | h | h
+    · exact absurd (e1.symm.trans h) (by decide)
+    · exact absurd (e4.symm.trans h) (by decide)
+    · exact absurd (e5.symm.trans h) (by decide)
+
+end NoSmallerPeriod
+
+/-- **Sentence l.411 (tex l.410–412).** The `5`-periodic sequence `y` with `y_{[0,5)} = 01001` has
+the same words of length `3` as the Fibonacci subshift, its least period is `5`, and no smaller
+period is possible for a sequence with these words. -/
+theorem manuscriptSentence_periodicWordsLengthThree :
+    WordGraph.word fibonacciPeriodicWord 0 5 = ![false, true, false, false, true] ∧
+      (∀ n : ℤ, fibonacciPeriodicWord ((5 : ℕ) + n) = fibonacciPeriodicWord n) ∧
+      Set.range (fun i : ℤ => WordGraph.word fibonacciPeriodicWord i 3) =
+        WordGraph.language fibonacciSubshift.carrier 3 ∧
+      leastPeriod fibonacciPeriodicWord = 5 ∧
+      ∀ (z : ℤ → Bool) (p : ℕ), 0 < p → (∀ n : ℤ, z (p + n) = z n) →
+        Set.range (fun i : ℤ => WordGraph.word z i 3) =
+          WordGraph.language fibonacciSubshift.carrier 3 → 5 ≤ p := by
+  refine ⟨word_fibonacciPeriodicWord_zero_five, fibonacciPeriodicWord_add_five, ?_,
+    leastPeriod_fibonacciPeriodicWord, five_le_of_periodic_words⟩
+  rw [range_word_fibonacciPeriodicWord, manuscriptSentence_fibonacciWordsLengthThree]
+
+#audit_axioms manuscriptSentence_periodicWordsLengthThree
+
+end GroupApproximation.SimpleKazhdanSofic.SharpnessExample
