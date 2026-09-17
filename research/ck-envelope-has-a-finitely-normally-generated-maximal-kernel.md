@@ -255,3 +255,36 @@ argument.
      Dedekind-defect witnesses of R4 whose `K_1` detects scalars. A route
      through Ara--Goodearl--Pardo (purely infinite simple rings with `[1]`
      torsion in `K_0` are square-module) is not imported.
+
+10. **Calibrate the clean restatement against second-level poison
+    (swarm-0917, calibration).** *Hypothesis-only counterexample not built.
+    The surviving obstruction is relocated, and it is not in the covering
+    kernel.*
+    - *The class tested.* Refute the clean restatement, as recorded in
+      [[clean-ck-cover-confines-poison-to-covering-kernel]], by a
+      computability invariant that survives decidability of `EL_4(U)`.
+    - *Invariant.* A **radical poison**: computable words `w_n`, lying in
+      `Rad(Gamma)` (the intersection of all maximal kernels) for `n ∈ A` and
+      normally generating for `n ∈ B`, with `A, B` recursively inseparable.
+      By [[maximal-kernel-needs-radical-separability]] this forbids every
+      finitely normally generated maximal kernel. It strictly contains level-one
+      poison.
+    - *What the landed separation misses.* The recursive kernel of `rho`
+      separates `Rad(Gamma)` from the normal generators iff
+      `Rad(EL_4(U)) = 1` (3(d) there). A radical poison contains no WP-poisoned
+      element. Under the R1 killer it lives entirely in `EL_4(U)` (3(c)), not
+      in `K`.
+    - *Sufficient ring form.* A computable `u_n` in the level radical `BM(U)`
+      for `n ∈ A`, with `U u_n U = U` for `n ∈ B`. This refutes regimes R2–R4
+      at once, and it refutes the clean hole outright under the R1 killer.
+    - *Where the construction stalls.* An element of `BM(U)` must be killed by
+      every maximal normal subgroup of `EL_4(U)`. The screen puts `S - 1` outside
+      every level ideal, and normal closures are ring ideals:
+      `<<diag(z, z^-1, 1, 1)>> ⊇ E_4(U, (1 - z))`. So a central-twist or
+      abelian radical in the input `H` does not reach `BM(U)`. No
+      Brown--McCoy-type element of the Diamond-normal-form sandwich ring, let
+      alone an inseparable family of them, was found.
+    - *Consequence for proofs.* Any proof of the clean hole through regimes
+      R2–R4 must produce a maximal normal subgroup of `EL_4(U)` that is a
+      recursive set of matrices. In particular it must show that `BM(U)` is
+      recursively separable from the unit ideal's generators.
