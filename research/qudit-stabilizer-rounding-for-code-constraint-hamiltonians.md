@@ -40,3 +40,18 @@ least `b sin^2(pi/d)/8`. With negligible YES energy it needs non-stabilizer term
 weight at least about `b`. This covers the code Hamiltonians of good qLDPC codes over
 prime fields, and any reducer on `qpcp-by-dinur-iteration` or
 `qpcp-from-global-walk-reduction` that outputs them.
+
+**Addendum (2026-09-17, sw-078b): both constants improved.**
+- (CC_d) is superseded by `qudit-code-rounding-factor-one-plus-inv-sqrt-d`. That node
+  proves the factor `1 + 1/sqrt(d)` for prime `d >= 5`, which is sharp on one qudit via
+  `(I - |0><0|) + (I - |+><+|)`, and `8/5` for `d = 3`, where the lower bound is `1 + 1/sqrt3`.
+  The proof post-selects on the most satisfied code projector. The NP threshold becomes
+  `b > (1 + 1/sqrt(d)) a`, and the bearing sentence above improves to YES energy at
+  least `b sqrt(d)/(sqrt(d)+1)`.
+- (SR_d) improves to `2/sin(pi/d) + 3`, which is linear rather than quadratic in `d`
+  (`qudit-weyl-rounding-constant-linear-upper-bound`), by a commutator pair bound. The
+  sharp constant is open. Harper sums force about `d/pi` numerically
+  (`qudit-weyl-rounding-sharp-constant`), so the additive constant for general Weyl
+  sums is unbounded in `d`, while the code-constraint factor tends to 1.
+- The model test's largest ratio `0.57` at `d = 3` is below the true constant. The antiparity
+  sum `-sum_(v != 0) D(v)` on one qutrit gives `3/4`.
