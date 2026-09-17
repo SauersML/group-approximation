@@ -60,23 +60,23 @@ theorem printedGeneralElementaryIdentities : PrintedGeneralElementaryIdentities 
 /-- In rank `n ≥ 3`, two indices leave a third one. -/
 theorem exists_third_index {n : ℕ} (hn : 3 ≤ n) (i j : Fin n) :
     ∃ l : Fin n, l ≠ i ∧ l ≠ j := by
-  by_cases h0 : i.val ≠ 0 ∧ j.val ≠ 0
-  · refine ⟨⟨0, by omega⟩, fun h => h0.1 ?_, fun h => h0.2 ?_⟩
-    · have h' : (0 : ℕ) = i.val := congrArg Fin.val h
-      exact h'.symm
-    · have h' : (0 : ℕ) = j.val := congrArg Fin.val h
-      exact h'.symm
-  · by_cases h1 : i.val ≠ 1 ∧ j.val ≠ 1
-    · refine ⟨⟨1, by omega⟩, fun h => h1.1 ?_, fun h => h1.2 ?_⟩
-      · have h' : (1 : ℕ) = i.val := congrArg Fin.val h
-        exact h'.symm
-      · have h' : (1 : ℕ) = j.val := congrArg Fin.val h
-        exact h'.symm
+  by_cases h0 : i.val = 0 ∨ j.val = 0
+  · by_cases h1 : i.val = 1 ∨ j.val = 1
     · refine ⟨⟨2, by omega⟩, fun h => ?_, fun h => ?_⟩
       · have h' : (2 : ℕ) = i.val := congrArg Fin.val h
         omega
       · have h' : (2 : ℕ) = j.val := congrArg Fin.val h
         omega
+    · refine ⟨⟨1, by omega⟩, fun h => h1 (Or.inl ?_), fun h => h1 (Or.inr ?_)⟩
+      · have h' : (1 : ℕ) = i.val := congrArg Fin.val h
+        exact h'.symm
+      · have h' : (1 : ℕ) = j.val := congrArg Fin.val h
+        exact h'.symm
+  · refine ⟨⟨0, by omega⟩, fun h => h0 (Or.inl ?_), fun h => h0 (Or.inr ?_)⟩
+    · have h' : (0 : ℕ) = i.val := congrArg Fin.val h
+      exact h'.symm
+    · have h' : (0 : ℕ) = j.val := congrArg Fin.val h
+      exact h'.symm
 
 /-- **The coefficient subring** in rank `n ≥ 3`: if a subgroup `H` contains every `e_ij(1)`, the
 coefficients `a` with `e_ij(a) ∈ H` for all `i ≠ j` form a subring, by eq:elementary (sums from

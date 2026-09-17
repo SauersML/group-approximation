@@ -86,7 +86,8 @@ separate distinct elements of `F` by `δ / 2`, and `isSofic_of_isSoficWeak` ampl
 theorem isSofic_of_printedIsSofic (hG : PrintedIsSofic G) : IsSofic G := by
   classical
   obtain ⟨δ, hδ, hmodels⟩ := hG
-  refine isSofic_of_isSoficWeak (half_pos hδ) (fun F ε hε => ?_)
+  refine isSofic_of_isSoficWeak (half_pos hδ) ?_
+  intro F ε hε
   have hF' : ∃ F' : Finset G, (1 : G) ∈ F' ∧ (∀ g ∈ F, g ∈ F') ∧ (∀ h ∈ F, h⁻¹ ∈ F') ∧
       ∀ g ∈ F, ∀ h ∈ F, h⁻¹ * g ∈ F' :=
     ⟨insert 1 (F ∪ F.image (fun a : G => a⁻¹) ∪ Finset.image₂ (fun a b : G => a⁻¹ * b) F F),
@@ -97,7 +98,7 @@ theorem isSofic_of_printedIsSofic (hG : PrintedIsSofic G) : IsSofic G := by
       fun g hg h hh => Finset.mem_insert_of_mem (Finset.mem_union_right _
         (Finset.mem_image₂_of_mem (f := fun a b : G => a⁻¹ * b) hh hg))⟩
   obtain ⟨F', h1F, hFF, hinvF, hdivF⟩ := hF'
-  have hη : 0 < min ε (δ / 8) := lt_min hε (by positivity)
+  have hη : 0 < min ε (δ / 8) := lt_min hε (div_pos hδ (by norm_num))
   have hη1 : min ε (δ / 8) ≤ ε := min_le_left _ _
   have hη2 : min ε (δ / 8) ≤ δ / 8 := min_le_right _ _
   obtain ⟨Y, φ, hY, hmul, hsep⟩ := hmodels F' (min ε (δ / 8)) hη
