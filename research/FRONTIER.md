@@ -22422,9 +22422,9 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · count-raising-reversible-automata-lower-biased-rokhlin-entropy [ESTABLISHED] An injective automaton that never raises and sometimes lowers the number of non-rest sites forces Rokhlin supremum zero
 - 2026-09-17 · some-nonsurjunctive-group-gives-a-binary-power-one [OPEN] If some group is not surjunctive over some finite alphabet, then some group is not surjunctive over an alphabet whose size is a power of two
 - 2026-09-17 · count-raising-reversible-automata-rokhlin-deficit-proof [COMPLETE] Mobius-expand the averaged local change in non-rest sites; its lowest coefficient is a small-bias entropy deficit, and Seward's minimum formula reads off supremum zero
-- 2026-09-17 · count-raising-reversible-automata-lower-biased-rokhlin-entropy [ESTABLISHED] An injective automaton that never raises and sometimes lowers the number of non-rest sites forces Rokhlin supremum zero
 - 2026-09-16 · z2-free-z-does-not-embed-in-thompson-v-citation [COMPLETE] Import Bleak--Salazar-Díaz Theorem 1.2 that Z^2 * Z does not embed in V
 - 2026-09-16 · z2-free-z-does-not-embed-in-thompson-v [ESTABLISHED] The free product of Z^2 and Z is not a subgroup of Thompson's group V
 - 2026-09-16 · z2-crossed-product-steinberg-kernel-is-nonzero-proof [COMPLETE] Detect the torus commutator by a Hochschild cocycle, lifted through the splitting of central extensions of St_n

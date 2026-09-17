@@ -9,6 +9,8 @@ distinct_from:
   strict-automaton-bounds-rokhlin-supremum: that gets a finite supremum from a strict automaton; this gets supremum zero from a count-lowering injective automaton, with no hypothesis on self-copies or finite subgroups.
   bijective-ca-preserve-uniform-bernoulli-measure: that is invariance of the uniform product measure under reversible automata; this is a strict drop in the non-rest density of product measures of small bias.
   bernoulli-rokhlin-entropy-maximal-for-every-group: that is the open maximality of uniform Bernoulli Rokhlin entropy; this refutes maximality at every finite base over any group carrying a count-lowering injective automaton.
+artifacts:
+  - experiments/count-charge-mobius-2026-09-17/check.py
 ---
 
 **ESTABLISHED** by `count-raising-reversible-automata-rokhlin-deficit-proof`.
