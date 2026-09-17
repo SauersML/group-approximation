@@ -1,0 +1,6 @@
+total=500 active=446 lhs=22 deferred=0
+total=1000 active=915 lhs=10 deferred=0
+total=1500 active=1347 lhs=18 deferred=2
+total=2000 active=1799 lhs=10 deferred=79
+total=2500 active=2280 lhs=30 deferred=127
+total=3000 active=2758 lhs=22 deferred=190
