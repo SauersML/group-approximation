@@ -29,7 +29,7 @@ Route.
 
 namespace GroupApproximation.Full.NN11
 
-open ArithmeticalHierarchy PresentationCodes MFRecognitionSecondLevel
+open ArithmeticalHierarchy MFRecognitionSecondLevel
 
 /-- **`thm:mf-arithmetic`, `MF_fp ∈ Π⁰₂ ∖ Π⁰₁`** (`non_mf_group_notes.tex`). -/
 theorem mfCode_pi02_not_pi01 : Pi02 MFCode ∧ ¬ Pi01 MFCode :=

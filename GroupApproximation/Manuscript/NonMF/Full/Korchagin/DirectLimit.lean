@@ -30,8 +30,6 @@ lifts to a single stage by a map that is multiplicative on that subset.
 
 namespace GroupApproximation.Full.NM09
 
-open GroupApproximation
-
 section Colimit
 
 variable {ι : Type*} [Preorder ι] {A : ι → Type*} [∀ i, Group (A i)]
@@ -101,7 +99,8 @@ theorem exists_stage_multiplicative [Nonempty ι] (hC : IsDirectedColimit f φ) 
   have hs : ∀ x ∈ s, φ k (ℓ x) = x := fun x hx => hℓ x (Finset.mem_union_left _ hx)
   have hp : ∀ x ∈ s, ∀ y ∈ s, φ k (ℓ (x * y)) = x * y := fun x hx y hy =>
     hℓ (x * y) (Finset.mem_union_right _
-      (Finset.mem_image_of_mem (fun p : G × G => p.1 * p.2) (Finset.mem_product.mpr ⟨hx, hy⟩)))
+      (Finset.mem_image_of_mem (fun p : G × G => p.1 * p.2)
+        (Finset.mem_product.mpr ⟨hx, hy⟩ : (x, y) ∈ s ×ˢ s)))
   obtain ⟨j, hkj, hj⟩ := exists_stage_kill hC
     ((s ×ˢ s).image fun p => ℓ p.1 * ℓ p.2 * (ℓ (p.1 * p.2))⁻¹) (by
       intro y hy
@@ -116,7 +115,7 @@ theorem exists_stage_multiplicative [Nonempty ι] (hC : IsDirectedColimit f φ) 
     rw [hC.compat, hs g hg]
   · have e := hj (ℓ x * ℓ y * (ℓ (x * y))⁻¹)
       (Finset.mem_image_of_mem (fun p : G × G => ℓ p.1 * ℓ p.2 * (ℓ (p.1 * p.2))⁻¹)
-        (Finset.mem_product.mpr ⟨hx, hy⟩))
+        (Finset.mem_product.mpr ⟨hx, hy⟩ : (x, y) ∈ s ×ˢ s))
     rw [map_mul, map_mul, map_inv, mul_inv_eq_one] at e
     show f k j hkj (ℓ (x * y)) = f k j hkj (ℓ x) * f k j hkj (ℓ y)
     exact e.symm
@@ -159,8 +158,7 @@ theorem isLEF_of_isDirectedColimit [Nonempty ι] (hC : IsDirectedColimit f φ)
 
 /-- **Korchagin, Corollary 10 + Proposition 13, residually finite form**: a
 countable directed colimit of residually finite groups is MF. -/
-theorem isOperatorMF_of_isDirectedColimit [Nonempty ι] {G : Type*} [Group G] [Countable G]
-    {φ : ∀ i, A i →* G} (hC : IsDirectedColimit f φ)
+theorem isOperatorMF_of_isDirectedColimit [Nonempty ι] [Countable G] (hC : IsDirectedColimit f φ)
     (hRF : ∀ i, Group.ResiduallyFinite (A i)) : IsOperatorMF G :=
   GroupApproximation.isOperatorMF_of_isLEF (isLEF_of_isDirectedColimit hC hRF)
 
@@ -181,17 +179,20 @@ theorem isNormApproximable_of_isDirectedColimit [Nonempty ι] (hC : IsDirectedCo
         (Finset.mem_image_of_mem m hh)
       rw [← hmul g hg h hh] at e
       exact e
-    separated := fun g hg h hh hne =>
-      M.separated (m g) (Finset.mem_image_of_mem m hg) (m h) (Finset.mem_image_of_mem m hh)
-        fun e => hne (calc g = φ j (m g) := (hm g hg).symm
-          _ = φ j (m h) := by rw [e]
-          _ = h := hm h hh) }⟩
+    separated := fun g hg h hh hne => by
+      refine M.separated (m g) (Finset.mem_image_of_mem m hg) (m h)
+        (Finset.mem_image_of_mem m hh) ?_
+      intro e
+      apply hne
+      calc g = φ j (m g) := (hm g hg).symm
+        _ = φ j (m h) := by rw [e]
+        _ = h := hm h hh }⟩
 
 /-- **Korchagin, Proposition 13**: a countable directed colimit of MF groups
 is MF.  The stages need not be countable and the connecting maps need not be
 injective. -/
-theorem isOperatorMF_of_isDirectedColimit_operatorMF [Nonempty ι] {G : Type*} [Group G]
-    [Countable G] {φ : ∀ i, A i →* G} (hC : IsDirectedColimit f φ)
+theorem isOperatorMF_of_isDirectedColimit_operatorMF [Nonempty ι] [Countable G]
+    (hC : IsDirectedColimit f φ)
     (hMF : ∀ i, IsOperatorMF (A i)) : IsOperatorMF G :=
   OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one.mpr
     (isNormApproximable_of_isDirectedColimit hC fun i =>
