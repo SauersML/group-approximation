@@ -18,15 +18,11 @@ nondegenerate small faces of `contactMap P` holding no object by `K n`.
 
 ## The gap (not closed here)
 
-The touch two-gons are **not** bounded by this argument.  Model: two relator cells `f`, `f′` touching
-at `m` points, with a pocket `G`-face `k_i` between consecutive touch points, each rich with
-neighbours `{f, f′}`.  The contact map has the `m - 1` two-gons `f – k_i – f′ – k_{i+1}`, nondegenerate,
-holding no object (their classes reach only corners of `f`, `f′`) and held by no region.  Nothing in
-the binders visibly bounds `m` by `n = 2`: bounding it needs the small cancellation condition
-(the touch points are pieces of `f` and `f′`) together with the choice of the family, an argument
-of ms-traces-1 (configuration C) that is not formalized.  So this module provides no
-`theorem proof : OsinLemma94ContactMapEmptyTwoGonInput`; `EmptyTouchTwoGonStatement` is the open
-residual.
+This module provides no `theorem proof : OsinLemma94ContactMapEmptyTwoGonInput`;
+`EmptyTouchTwoGonStatement` is reduced further in `P01EmptyTwoGon.TouchTwoGon`
+(`touchTwoGon_of_corner`, `proof_of_corner`) to `TouchCornerStatement`: for maximal `P`, no touch
+face exists (`CornerExcluded`).  An earlier pocket model (two cells touching at `m` points with rich
+pocket faces) is excluded by `false_of_twoCellSides`, so it is not a counterexample.
 
 ## Manuscript status
 

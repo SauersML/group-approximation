@@ -8,8 +8,8 @@ import GroupApproximation.Meta.AxiomGuard
 Target: `GroupApproximation.GGT.VanKampen.TwoGonCellHairStepStatement`.
 
 Notation as in `P05CellHair/Doubling`: `M := S.diagram.toCombMap`, `w := FaceEdgeDoubling.dart`,
-`b := secondCorner = M.facePerm w`, `M' := EdgeInsertion.toCombMap M w b`, `embed z = some (some z)`,
-`S'` the opened family and `T := transport S f j hlen hf havoid`.
+`b := secondCorner = M.facePerm w`, `M' := EdgeInsertion.toCombMap M w b`,
+`embed z = some (some z)`, `S'` the opened family and `T := transport S f j hlen hf havoid`.
 
 Mathematical proof.
 
@@ -229,8 +229,9 @@ theorem some_none_not_mem_range :
     (⟨some none, some_none_keep S f j hlen hf havoid⟩ :
         (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart) ∉
       Set.range (collapsedEmbed S f j hlen hf havoid) := by
-  rintro ⟨x, hx⟩
-  exact Option.some_ne_none _ (Option.some.inj (congrArg Subtype.val hx))
+  rintro ⟨_, hx⟩
+  have hv := congrArg Subtype.val hx
+  exact Option.some_ne_none _ (Option.some.inj hv)
 
 /-- **(E') Away from `w`, the rotations agree along the embedding.** -/
 theorem rotation_away (x : (collapsedMap S.family).Dart)
@@ -373,7 +374,7 @@ theorem backCollapsed_cell
     S.diagram.toCombMap.faceOf (backCollapsed S f j hlen hf havoid x').1 =
       (cell S.diagram ((transport S f j hlen hf havoid).cellIndex.symm i')).face := by
   have hcf := cell_face_eq S.diagram f j hlen hf i'
-  obtain ⟨d, hd⟩ := x'
+  obtain ⟨d, _hd⟩ := x'
   cases d with
   | none =>
     exact absurd ((CellHairThickening.faceOf_none S.diagram f j hlen hf).symm.trans
