@@ -111,9 +111,12 @@ theorem exists_posPoly_right_multiplier {ι : Type*} [Fintype ι]
       (Finset.univ.sigma (S i)), fun i => ⟨?_, ?_⟩⟩
   · exact mul_sum_wordS_mul_wordS_eq_posPoly _ (a i) (S i) (hS i)
   · obtain ⟨f, μ, hμ⟩ := exists_mem_of_mul_wordS_eq_posPoly _ (a i) (ha i) (S i) (hS i)
+    have hmem : (⟨f, μ⟩ : Σ _ : Fin (Finset.univ.sup N) → Fin 2, List (Fin 2)) ∈
+        Finset.univ.sigma (S i) :=
+      Finset.mem_sigma.mpr ⟨Finset.mem_univ f, hμ⟩
     exact ⟨μ ++ List.ofFn f, Finset.mem_image_of_mem
       (fun p : (Σ _ : Fin (Finset.univ.sup N) → Fin 2, List (Fin 2)) => p.2 ++ List.ofFn p.1)
-      (Finset.mem_sigma.mpr ⟨Finset.mem_univ f, hμ⟩)⟩
+      hmem⟩
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.exists_posPoly_right_multiplier
 

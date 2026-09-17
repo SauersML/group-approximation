@@ -81,7 +81,7 @@ theorem leavittToQuotient_respects :
         (FreeAlgebra.ι k BinaryLeavitt.s0 * FreeAlgebra.ι k BinaryLeavitt.t0 +
           FreeAlgebra.ι k BinaryLeavitt.s1 * FreeAlgebra.ι k BinaryLeavitt.t1) -
           quotientMap k 1 = -cohnP k := by
-      rw [cohnP_eq, map_add, map_mul, map_mul, map_one, neg_sub, sub_sub]
+      rw [cohnP_eq, sub_sub, neg_sub, map_add, map_mul, map_mul, map_one]
       rfl
     rw [heq]
     exact hneg
