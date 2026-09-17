@@ -10,6 +10,8 @@ distinct_from:
 artifacts:
   - research/kazhdan-rational-relation-cover-reduction.md
   - research/kazhdan-rational-relation-cover-reduction-proof.md
+  - research/kazhdan-subgroups-of-lamp-wreaths-meet-base-in-torsion.md
+  - research/relation-cover-sofic-envelope-forces-trivial-kernel.md
 ---
 
 **OPEN.** Notation is as in `kazhdan-rational-relation-cover-reduction`. The
@@ -97,3 +99,22 @@ module without creating torsion.
 
    No criterion is known. The alternative, soficity of abelian-by-sofic groups
    in general, is open; see `radu-lattice-is-limit-of-nilpotent-by-arithmetic-groups`.
+
+7. **The envelope is vacuous (swarm-0917, transplanter: Bernoulli dual measures; dead as a
+   mechanism).** Established in `kazhdan-subgroups-of-lamp-wreaths-meet-base-in-torsion`: a
+   Kazhdan subgroup of any lamp wreath product `W wr_X L` with `W` abelian meets the lamps only
+   in torsion. The proof uses the shrinking `L`-invariant product Haar densities on the dual lamp
+   group, where an invariant vector must live on the null annihilator of an infinite-order lamp.
+   Established consequence, `relation-cover-sofic-envelope-forces-trivial-kernel`:
+   - Clause 2 sends `A` into the lamps of `W wr Q`. `K` is Kazhdan, so `A = 0` and `K = Q`.
+   - So clauses 1 and 2 are jointly impossible whenever `Q` has an element of prime order. This
+     includes the suggested `EL_3(LC(X,F_q) semidirect Z)`.
+   - This claim is **equivalent** to the bare existence of a nontrivial torsion-free, sofic,
+     Kazhdan group with no nontrivial finite quotient (take `P = Q`).
+   - Saturation lemma: a normal `N <= R` with torsion `N^ab` lies in `R_sat` and changes neither
+     `K` nor (RLT). So Attempt 4's hyperbolic Rips cover `G ->> Q'` decides nothing that `Q'`
+     does not already decide, and "no root elements in `G`" is no escape.
+   Where it dies: at the last step of the lamp lemma, since the torsion-free `A` cannot sit in
+   the lamps of a Kazhdan subgroup. Any live version of the relation-cover route must keep
+   clause 1 and replace clause 2 by a soficity argument for `K` that never puts `A` in the base
+   of a lamp wreath product.
