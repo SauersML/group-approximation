@@ -9,7 +9,10 @@ distinct_from:
   every-injective-ca-has-uniform-single-site-output-law: that asks uniform input to give a uniform one-site law, and is equivalent to surjunctivity; this asks small-bias inputs not to lose non-rest density exactly, for count-monotone automata only, and no equivalence with surjunctivity is known.
 ---
 
-**OPEN.** Let `G` be a countably infinite group, `A` a finite alphabet, `a ∈ A`, and `ψ` a bijective cellular
+**ESTABLISHED** by `rest-count-preservation-from-charge-noncreation`, from
+`finite-injective-charge-noncreation-forces-surjectivity`, over every group.
+
+Let `G` be a countably infinite group, `A` a finite alphabet, `a ∈ A`, and `ψ` a bijective cellular
 automaton on `A^G` with `ψ(a^G) = a^G`. For `x` with finitely many sites outside `a`, write `|x|` for their number.
 If `|ψ(x)| >= |x|` for every such `x`, then `|ψ(x)| = |x|` for every such `x`.
 
