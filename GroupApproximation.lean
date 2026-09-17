@@ -5360,6 +5360,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofSe
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.MarkedLimit
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.MarkedGroups
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.ExpanderBridge
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Restriction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
