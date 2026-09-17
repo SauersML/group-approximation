@@ -5354,6 +5354,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LamplighterHost.Mod
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TwoNorm
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Itinerary
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.GeneralSubgroupsRemark
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.RecursiveHost
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
