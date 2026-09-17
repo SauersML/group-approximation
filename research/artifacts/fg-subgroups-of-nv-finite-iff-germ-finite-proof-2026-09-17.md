@@ -1,11 +1,6 @@
----
-rg: 2
-id: fg-subgroups-of-nv-finite-iff-germ-finite-proof
-kind: route
-title: "Brick induction over words: bounded offsets at one point make every element act brick-wise near it; compactness then bounds the whole group"
-target: finitely-generated-subgroups-of-nv-are-finite-iff-germ-finite
-requires: []
----
+# Brick induction over words: bounded offsets at one point make every element act brick-wise near it; compactness then bounds the whole group
+
+*Attempt artifact (2026-09-17), formerly route `fg-subgroups-of-nv-finite-iff-germ-finite-proof` into `finitely-generated-subgroups-of-nv-are-finite-iff-germ-finite`, requires []. Demoted from the graph because two of the referee lenses returned *refuted* at the level of the statement: the claim's title and Addendum state the orbits-alone criterion without the hypothesis that `K` is finitely generated, which Step 7 needs through Steps 1-3, and without it the statement is false (restricted direct sums of alternating groups inside `V`). Both lenses found Steps 0-6 sound. Restore it as a route once the statement is corrected and a full referee pass survives.*
 
 The notation is as in the target. `|·|` is the sup norm on `Z^n`. For `m ∈ Z`,
 "level `≥ m`" means every coordinate of the level is `≥ m`.

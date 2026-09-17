@@ -5,6 +5,7 @@ kind: claim
 title: Hilbert--Schmidt commutative microstate entropy of a Bernoulli shift is infinite along amplified approximations, for every base
 artifacts:
   - research/artifacts/stability-approximation-transplant-to-bernoulli-rokhlin-2026-09-17.md
+  - research/artifacts/hs-commutative-microstate-bernoulli-entropy-is-base-blind-proof-attempt-2026-09-17.md
 distinct_from:
   bernoulli-rokhlin-entropy-maximal-for-every-group: that is the open lower bound for Bernoulli Rokhlin entropy on every group; this is an established obstruction showing that the unitary (HS) transplant of sofic entropy violates the multinomial upper bound and cannot supply that lower bound.
   coherent-bernoulli-actor-tables-are-cartan-soficity: that says diagonal (Cartan) microstate tables exist exactly when the Bernoulli action is sofic; this concerns the non-diagonal commuting-projection count, which always has room and blows up.
@@ -15,7 +16,7 @@ distinct_from:
   borel-structurability-invariants-are-bernoulli-base-blind: that is base-blindness of measure-free Borel invariants; this is base-blindness at value infinity of a measured unitary microstate count.
 ---
 
-**ESTABLISHED.** Let `G` be countably infinite and `A` finite with `q=|A|>=2`. For
+**OPEN (referee lens 1 refuted Step 3 of the direct proof on 2026-09-17; see `## Attempts`).** Let `G` be countably infinite and `A` finite with `q=|A|>=2`. For
 `sigma: G -> U(n)` let `Mic(sigma,F,delta)` be the set of `A`-tuples of projections
 `(p_a)` with `sum_a p_a = 1`, such that:
 
@@ -56,9 +57,21 @@ with macroscopic exact commutant.
 
 The invariant responsible is the volume of the commutant of `sigma(G)`: `U(m)` for
 `sigma (x) 1_m`. Commuting (diagonal) rotations give only `O(m)` parameters and do not
-suffice. The proof is in `hs-commutative-microstate-amplification-proof`.
+suffice. A candidate proof, held OPEN, is in
+`research/artifacts/hs-commutative-microstate-bernoulli-entropy-is-base-blind-proof-attempt-2026-09-17.md`.
 
 ## Attempts
+
+* **2026-09-17: direct proof by commutant rotation and packing (route
+  `hs-commutative-microstate-amplification-proof`, requires: []), held OPEN.** The route was withdrawn to
+  `research/artifacts/hs-commutative-microstate-bernoulli-entropy-is-base-blind-proof-attempt-2026-09-17.md`.
+  - **Referee lens 1: refuted.** Verbatim: "First step that does not follow: Step 3 of hs-commutative-microstate-amplification-proof (Step 3 of Theorem K1 in the artifact), the sentence "The F={e} moments give s^2 >= 2/q-2delta >= 1/q". The pair a0 != a1 is fixed arbitrarily in Step 1, and (F,delta) is any window with delta<1/(2q). The single-letter moment tau(p_a) is a moment condition only when F={e}. For |F|>=2 you can only get it by summing q^(|F|-1) pattern moments, which gives |tau(p_a)-1/q| < q^(|F|-1)delta. That is not delta, and it can be vacuous. The inequality is actually false. Counterexample: q=10, F={e,g}, delta=0.049<1/(2q). Take p supported uniformly and roughly independently on 8 letters, with p_(a0)=p_(a1)=0, which is available along sofic approximations of Z. Every 2-pattern moment is either 0 or about 1/64, both within 0.049 of 1/100, so p is in Mic. But s^2=tau(p0+p1)=0. Then the separation (s/2)(r/48)=s^2/960 in Steps 4-6 is 0, and the (HSB2) count gives nothing. The claim can be repaired: choose a0,a1 as the two heaviest letters, so s^2>=2/q. But the step as written does not hold. Other gaps: (i) the statement says (HSB1) holds 'for any microstate space defined by joint *-moment conditions on (sigma,p)', but Step 7 only shows this for spaces that are closed under block averaging, invariant under the swap pi, and invariant under commutant conjugation. Non-convex or non-uniform moment conditions fail the first two. (ii) Step 7 uses h^Rok(A^Z)=log q (Rokhlin/Kolmogorov) and nonemptiness of Mic along sofic approximations of Z with no verbatim citation. It also asserts without support that 'every sofic lower bound passes through h<=H(P)'. The route has requires: [] and no experiment script. Steps 2, 4 (the telescoping bound 2(e^(2r)-1)), 5 (net, Ginibre small-ball and packing) and the scaling in 6 check out."
+  - **Referee lens 2: survives**, with caveats that Step 3 needs `e in F` or a heaviest-letter swap, that the
+    result covers uniform bases only, and that "any joint `*`-moment conditions" is justified only for conditions
+    stable under block averaging and letter swaps.
+  - **Fix.** In Step 1 swap the two heaviest letters, so `s^2 >= 2/q`, and adjust the constants in Step 6. Restrict
+    the "any moment conditions" sentence to conditions preserved by block averaging, the swap and commutant
+    conjugation. Cite `h^Rok(A^Z)=log q` and nonemptiness of `Mic` along sofic approximations of `Z` verbatim.
 
 * **Quotiented and diagonal species (a-gs-pull-9, 2026-09-17).**
   - Quotienting by the `eta`-approximate commutant with `eta` independent of `delta` gives

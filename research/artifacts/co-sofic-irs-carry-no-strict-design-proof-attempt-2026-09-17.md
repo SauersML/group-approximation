@@ -1,15 +1,10 @@
----
-rg: 2
-id: co-sofic-irs-carry-no-strict-design-proof
-kind: route
-title: Count image patterns on a finite Schreier graph with forward-bad and reverse-bad sites and pass to the limit
-target: co-sofic-irs-carry-no-strict-design
-requires: []
-artifacts:
-  - research/artifacts/irs-surjunctivity-heretic-2026-09-17.md
----
+# Count image patterns on a finite Schreier graph with forward-bad and reverse-bad sites and pass to the limit
 
-Complete direct proof: artifact Section 4. Take a finite `F_r`-set `X` with `|X| = N`, forward-bad
+*Attempt artifact (2026-09-17), formerly route `co-sofic-irs-carry-no-strict-design-proof` into `co-sofic-irs-carry-no-strict-design`, requires []. Demoted from the graph because referee lenses 1 and 2 returned *refuted* at the level of the statement: `r` names both the rank of `F_r` and `R_tau + R_sigma`, so `d_k` read literally counts balls in the `2(R_tau+R_sigma)`-regular tree and the stated constant is too small (counterexamples on `F_20` with `R_tau = 0`, `R_sigma = 1`). Both lenses found steps 1-5 sound once `d_k` is the ball size in the `2*rank`-regular tree. Restore it as a route once the statement uses a separate rank variable and a full referee pass survives.*
+
+Source: `research/artifacts/irs-surjunctivity-heretic-2026-09-17.md`, Section 4.
+
+Drafted direct proof: artifact Section 4. Take a finite `F_r`-set `X` with `|X| = N`, forward-bad
 fraction `eps`, reverse-bad fraction `delta`, and forward-good set `G`.
 
 1. **Lower bound.** `x|G = (sigma tau x)|G` is read from `tau x`, and `y -> (sigma y)|G` is onto
