@@ -31,8 +31,8 @@ Let `p' ∈ (p, q)` with `α (ℓ p')` based off `F`.  Let `x`, `x'` be darts wi
 
 1. `F` holds lobe darts, so `F` is not enclosed.
 2. A dart based off `F` whose reversal is also based off `F` is not kept by the lobe.
-3. `ℓ p'` is a lobe dart whose reversal is not a lobe dart, so `face (α (ℓ p'))` is enclosed, that is
-   `face x'` is enclosed.  Crossing the edge of `x'`, `face (α x') = face (α x)` is enclosed;
+3. `ℓ p'` is a lobe dart whose reversal is not a lobe dart, so `face (α (ℓ p'))` is enclosed, that
+   is `face x'` is enclosed.  Crossing the edge of `x'`, `face (α x') = face (α x)` is enclosed;
    crossing the edge of `α x`, `face x = face (α (ℓ p))` is enclosed.
 4. `α (ℓ p)` is not kept (`ℓ p` is not a lobe dart), so crossing it `face (ℓ p) = F` is enclosed,
    contradicting 1.

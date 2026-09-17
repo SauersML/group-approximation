@@ -17,8 +17,8 @@ oriented outer darts are `α (ℓ i)`.
   `φ (α (ℓ p)) = α (ℓ q)`.  If `j < j'` then `p < cut j' ≤ q`; if `j' < j` then `q < p` and
   `cut 0 ≤ q`.  So some cut position `t` lies in the half-open cyclic interval `(p, q]`
   (`CornerAt`).
-* `charge`: a polygon with a cell side `s` (kind `.cell j`) has a dart `x` on its face whose reversal
-  lies on the face of cell `j`; the polygon charges the cell `j`.
+* `charge`: a polygon with a cell side `s` (kind `.cell j`) has a dart `x` on its face whose
+  reversal lies on the face of cell `j`; the polygon charges the cell `j`.
 * `eq_of_cornerAt`: two corners at the same cut position `t` charging the same cell coincide.  If
   the two corner positions `p = p'` agree, the dart `α (ℓ p)` lies on both polygon faces and both
   sides, so the polygons (faces are injective) and sides (side darts are disjoint) coincide.

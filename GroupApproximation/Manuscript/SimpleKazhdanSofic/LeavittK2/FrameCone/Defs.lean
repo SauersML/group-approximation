@@ -21,9 +21,9 @@ Khanh, Lemma `lem:word-multiplier`:
 > Given finitely many nonzero `a_1,…,a_s ∈ R`, there are `x ∈ R` and nonempty positive words
 > `η_1,…,η_s` such that `η_i^* a_i x = 1` for every `i`.
 
-This is lane 08 (`exists_word_multiplier`), also not on disk; it is recorded here as
-`WordMultiplierStatement` and is the only external input of the frame-cone endpoint
-`frame_cone_four_of_wordMultiplier` (file `FrameCone/Endpoint.lean`).
+This is lane 08 (`LeavittK2.exists_word_multiplier`); it is recorded here as
+`WordMultiplierStatement`, the only external input of `frame_cone_four_of_wordMultiplier`
+(`FrameCone/Endpoint.lean`), and discharged by lane 08 in `FrameCone/Main.lean`.
 
 Route (Khanh Prop. `prop:frame-cone`, eq. `cone-coordinate-inverses`), scalarized through the
 left-comb self-similarity `M_4(L) ≅ L`, `d_j = s_{1^j0}` (`j < 3`), `d_3 = s_{111}`:

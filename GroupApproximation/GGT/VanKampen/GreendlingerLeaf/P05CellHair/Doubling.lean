@@ -202,6 +202,12 @@ theorem transport_darts (S : GloballyDistinguishedSectionFamily D lambda c eps D
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.faceOf_embed_mem_faceSet
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.regionInternal_embed_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.sourceHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.targetHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.cross_regionCandidate_true
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.cross_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.crossO_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.transport
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.transport_darts

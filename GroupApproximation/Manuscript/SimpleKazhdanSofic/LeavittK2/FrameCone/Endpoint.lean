@@ -15,8 +15,8 @@ Here `r = 4`, `L = L_{F_2}(1,2)`. Route: a frame `f_i` is a unit `U_i` with
 and `η_i ≠ []` with `η_i^* a_i x = 1`; `cone_core` gives `W_i` with `W_i d_0 = U_i⁻¹ x` and
 `W_i d_{j+1} = d_j`; then `U_i W_i` carries the leaves to `(Φ x, f_i)` (`frame_of_unit`).
 
-Remaining gap: `WordMultiplierStatement` (Khanh Lemma `lem:word-multiplier`), owned by lane 08
-and not on disk when this lane was authored; the endpoints are its `_of_` reductions.
+The endpoints here are `_of_` reductions to `WordMultiplierStatement` (Khanh Lemma
+`lem:word-multiplier`); lane 08 discharges it in `FrameCone/Main.lean` (`frame_cone_four`).
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FrameCone

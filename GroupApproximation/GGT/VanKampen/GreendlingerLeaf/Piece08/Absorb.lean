@@ -264,6 +264,17 @@ theorem absorbSource_sourceArc_lt (K : PocketFaceSet D eps X lo hi)
 
 end Absorb
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.emptyArc
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.emptyArc_darts
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.invDarts_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_invDarts_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_sourceArc_iff_of_full
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.exists_boundaryDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.nodup_absorbCycle
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.mem_absorbCycle_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.absorbCycle_ne_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.walk_invDarts_full
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.absorbSource
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.closedWalk_absorbSource
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece08.absorbSource_sourceArc_lt
 
