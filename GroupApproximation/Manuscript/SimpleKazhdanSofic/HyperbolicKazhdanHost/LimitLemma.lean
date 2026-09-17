@@ -101,20 +101,21 @@ theorem isSimpleGroup_quotient {E : Type u} [Group E] (K : Subgroup E) [K.Normal
     ⟨⟨(e : E ⧸ K), 1, fun h => he ((QuotientGroup.eq_one_iff e).1 h)⟩⟩
   refine ⟨fun N hN => ?_⟩
   by_cases hMK : N.comap (QuotientGroup.mk' K) ≤ K
-  · refine Or.inl ((Subgroup.eq_bot_iff_forall N).2 fun w hw => ?_)
+  · refine Or.inl ((Subgroup.eq_bot_iff_forall (H := N)).2 fun w hw => ?_)
     obtain ⟨z, rfl⟩ := QuotientGroup.mk_surjective w
-    exact (QuotientGroup.eq_one_iff z).2 (hMK hw)
-  · refine Or.inr ((Subgroup.eq_top_iff' N).2 fun w => ?_)
+    have hz : z ∈ N.comap (QuotientGroup.mk' K) := hw
+    exact (QuotientGroup.eq_one_iff z).2 (hMK hz)
+  · refine Or.inr ((Subgroup.eq_top_iff' (H := N)).2 fun w => ?_)
     obtain ⟨x, hxM, hxK⟩ := SetLike.not_le_iff_exists.1 hMK
     obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective w
-    haveI hM : (N.comap (QuotientGroup.mk' K)).Normal := hN.comap _
+    haveI : (N.comap (QuotientGroup.mk' K)).Normal := hN.comap _
     have hle : Subgroup.normalClosure {x} ⊔ K ≤ N.comap (QuotientGroup.mk' K) := by
       refine sup_le ?_ ?_
       · exact Subgroup.normalClosure_le_normal (Set.singleton_subset_iff.2 hxM)
       · intro z hz
         rw [Subgroup.mem_comap, QuotientGroup.mk'_apply, (QuotientGroup.eq_one_iff z).2 hz]
         exact N.one_mem
-    exact hle (hsimp x hxK y)
+    exact Subgroup.mem_comap.1 (hle (hsimp x hxK y))
 
 namespace LimitScheme
 
@@ -158,7 +159,7 @@ variable [Countable E]
 /-- The stages of the limit. -/
 noncomputable def seq : ℕ → L.Stage
   | 0 => ⟨⊥, L.adm_bot⟩
-  | n + 1 => L.step (L.seq n) (enum E n)
+  | n + 1 => L.step (seq n) (enum E n)
 
 theorem seq_succ (n : ℕ) : L.seq (n + 1) = L.step (L.seq n) (enum E n) := rfl
 
@@ -189,7 +190,7 @@ theorem limit_simp {x : E} (hx : x ∉ L.limit) (y : E) :
   have h' : y ∈ Subgroup.normalClosure {x} ⊔ (L.seq (n + 1)).1 := by
     rw [L.seq_succ n, hn]
     exact L.step_inl (L.seq n) x y hxn
-  exact sup_le_sup_left (L.le_limit (n + 1)) _ h'
+  exact sup_le_sup_left (L.le_limit (n + 1)) (Subgroup.normalClosure {x}) h'
 
 theorem limit_push (c : E) : ∃ p ∈ L.P, p⁻¹ * c ∈ L.limit := by
   obtain ⟨n, hn⟩ := enum_surjective E (Sum.inr c)
