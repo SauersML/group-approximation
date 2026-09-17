@@ -58,19 +58,23 @@ theorem locallyResiduallyFinite_of_directed {ι : Type*} [Nonempty ι] (H : ι �
     rw [← hS]
     exact (Subgroup.closure_le (H i)).mpr fun x hx => hi x hx
   haveI := hRF i
-  exact GroupApproximation.residuallyFinite_of_injective (Subgroup.inclusion hle) (Subgroup.inclusion_injective hle)
+  exact GroupApproximation.residuallyFinite_of_injective (Subgroup.inclusion hle)
+    (Subgroup.inclusion_injective hle)
 
 /-- A directed union of residually finite subgroups is LEF. -/
 theorem isLEF_of_directed_residuallyFinite {ι : Type*} [Nonempty ι] (H : ι → Subgroup G)
     (hdir : Directed (· ≤ ·) H) (hcov : ∀ g : G, ∃ i, g ∈ H i)
     (hRF : ∀ i, Group.ResiduallyFinite (H i)) : IsLEF G :=
-  GroupApproximation.isLEF_of_locallyResiduallyFinite (locallyResiduallyFinite_of_directed H hdir hcov hRF)
+  GroupApproximation.isLEF_of_locallyResiduallyFinite
+    (locallyResiduallyFinite_of_directed H hdir hcov hRF)
 
 /-- A countable directed union of residually finite subgroups is MF. -/
-theorem isOperatorMF_of_directed_residuallyFinite [Countable G] {ι : Type*} [Nonempty ι] (H : ι → Subgroup G)
+theorem isOperatorMF_of_directed_residuallyFinite [Countable G] {ι : Type*} [Nonempty ι]
+    (H : ι → Subgroup G)
     (hdir : Directed (· ≤ ·) H) (hcov : ∀ g : G, ∃ i, g ∈ H i)
     (hRF : ∀ i, Group.ResiduallyFinite (H i)) : IsOperatorMF G :=
-  GroupApproximation.isOperatorMF_of_isLEF (isLEF_of_directed_residuallyFinite H hdir hcov hRF)
+  GroupApproximation.isOperatorMF_of_isLEF
+    (isLEF_of_directed_residuallyFinite H hdir hcov hRF)
 
 /-- An increasing sequence of subgroups whose supremum is `⊤` covers the group
 elementwise. -/
@@ -94,7 +98,8 @@ residually finite subgroups is MF. -/
 theorem isOperatorMF_of_directedUnion_residuallyFinite [Countable G]
     (H : ℕ → Subgroup G) (hmono : Monotone H) (hcov : ⨆ n, H n = ⊤)
     (hRF : ∀ n, Group.ResiduallyFinite (H n)) : IsOperatorMF G :=
-  GroupApproximation.isOperatorMF_of_isLEF (isLEF_of_directedUnion_residuallyFinite H hmono hcov hRF)
+  GroupApproximation.isOperatorMF_of_isLEF
+    (isLEF_of_directedUnion_residuallyFinite H hmono hcov hRF)
 
 #audit_axioms isOperatorMF_of_directed_residuallyFinite
 #audit_axioms isOperatorMF_of_directedUnion_residuallyFinite
