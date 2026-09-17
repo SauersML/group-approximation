@@ -120,16 +120,26 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     amenability of `F`. Not covered: extensive amenability proved without recurrence
     (`f-dyadic-ea-iff-inverted-orbit-confinement`), germ-groupoid variants, and analytic
     routes. (swarm-0917, obstructor.)
-- **Triangular doubling certificates for `P_(2,2)` (dead).** A total order on `M` giving every `m`
-  two private points in `S_(3,5) m` would prove non-amenability
-  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`).
-  `thompson-f-p22-monomials-admit-no-private-pivot-order` shows that no such order exists.
-  - *Invariant:* a stubborn set, where every point has at most one successor private to it
-    inside the set. One exists in `M_(7,10)` with 1092 points, verified by PL maps.
-  - *Dies:* at the order-minimum of that set, which has at most one private point. Existence
-    of pivot orders for any `S` is exactly `core(M_(D,L)) = ∅` for all `D, L`, found by peeling.
-    This is strictly finer than doubling: the core appears at `D = 7`, while `Λ ≈ 3.07` there.
-  - *Numerics beside it:* the exact maximum density of a subset of the ball `B_r` in
-    `{x_0, x_1}`, by Dinkelbach iteration with minimum cuts, is `2.6658` at `r = 11`
-    (`experiments/thompson-f-2026-09-17/ball_density_R11.jsonl`). So small-diameter sets are far
-    from the `> 3.5` that Guba reaches with huge sets. (swarm-0917, f-folner-numerics.)
+- **Juschenko–Monod twisted embeddings: extensive amenability plus a functor cocycle
+  with amenable kernel** (JMBMdlS arXiv:1503.04977, corollary and remark in §1).
+  - *Germ-groupoid variant with recurrence.* `thompson-f-point-orbits-are-transient`
+    shows that every orbit of `F` on `(0,1)` or on the Cantor set is transient. The proof
+    plants the deep part of the dyadic graph in each tail class. So the recurrence
+    criterion for extensive amenability never applies to singular sets of the
+    interval model.
+  - *Functor cocycles on unfaithful actions.* In
+    `f-functor-cocycles-need-an-exotic-recurrent-action`, suppose a nontrivial normal
+    subgroup of `F` acts trivially on `X`. On it the cocycle is a homomorphism whose
+    kernel is normal in `F`. By the normal-subgroup import, `F` then lies either in
+    `ker c` or in a quotient of some functor value `𝔉(A)`.
+  - *Invariant:* a section isomorphic to `F`.
+  - Dies: at the kernel step or at the functor step. With recurrence as the engine, a
+    surviving member needs an exotic recurrent `F`-set, one whose stabilizer does not
+    contain `F′`. Such a stabilizer contains no end-rigid subgroup and fixes no interior
+    point. Whether one exists is `thompson-f-recurrent-f-sets-factor-through-the-abelianization`
+    (OPEN).
+  - Not covered: faithful actions made extensively amenable by non-recurrent means. On
+    the dyadic orbit `D`, the breakpoint cocycle `c_g(t) = log_2 (h′(t⁺)/h′(t⁻))` with
+    `h = g⁻¹` takes values in `Z^(D)`, and its kernel is trivial. So extensive
+    amenability of `F ↷ D` already gives the flagship through the corollary, and this
+    case is the flagship itself. (swarm-0917-w4-f-extensive.)
