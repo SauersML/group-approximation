@@ -38,3 +38,27 @@ so this says the transitivity degree of `F` is 1.
   - Candidates that Case II allows and that must be killed or realized:
     stabilizers of dense subsets or of partitions of an `F`-orbit
     (Golan–Sapir's maximal subgroups; Jones' subgroup).
+- 2026-09-17 (swarm-0917-w4-pull-z-4, reframing: hull endpoints as two
+  ultrametrics). **Partial; the node stays open.**
+  - Proved `thompson-f-two-transitive-hull-endpoints-are-separated`:
+    - `η` is an equivariant ultrametric (the largest value in a triple is
+      attained twice);
+    - `ξ` is an ultrametric for the reversed order (the smallest value is
+      attained twice);
+    - `ξ < η` strictly on every pair. If `ξ = η` held on one pair, it would hold
+      on all pairs, which forces a constant value and so an `F`-fixed point.
+  - Kills every model with a pair that disagrees at a single point of `(0,1)`.
+  - Proposed reduction of the kind-2 case of
+    `thompson-f-two-transitive-dyadic-branching-is-binary` (sketch only, not
+    written as claims):
+    - With `P_ω` the dyadic orbit, a stabilizer should be the stabilizer of a
+      subset `ψ` of the dyadics under the Jones affine action
+      `g⋆E = gE Δ J_L(g)` (`jones-subgroup-cosets-form-a-parity-lamplighter`).
+    - The differences `E_1 Δ E_2` push forward as a cocycle.
+    - If a difference is finite, or a finite union of intervals, the model dies
+      by counting: disjoint sets `A`, `B` and `A ∪ B` would all lie in one
+      orbit.
+    - Missing: kind 1, and kind 2 with differences that have infinitely many
+      components.
+  - Also found: twisted models defeat the T1-type antisymmetric tests of
+    `thompson-f-admits-a-faithful-2-transitive-action`.
