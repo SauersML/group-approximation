@@ -22,11 +22,12 @@ two class words. Put `A = v_s(0)`, `A' = v_s(|w_s|)`, `B' = v_t(0)` and `B = v_t
 
 ## Why the three local fixes fail
 
-* **(i) An interior step.** Moving `(0, |w_t|)` or `(|w_s|, 0)` one letter inward costs one letter on
-  the far connector, so it reaches `ε`, and the region insertion needs `≤ ε − 1` on one step and
-  `≤ ε` on the other. No local argument can do better. The four points `A, A', B, B'` of a tree
-  with `d(B,A) = ε−1`, `d(B,A') = ε`, `d(B',A) = ε`, `d(B',A') = ε+1` show this: every one-letter
-  move of the corner pairs keeps a connector at `ε + 1`.
+* **(i) An interior step.** The only step pair at the start corner is `[0, 1]` in the source and
+  `[|w_t| − 1, |w_t|]` in the target, a mixed pair. One of its two step connectors is
+  `C.startConnector`, of length `ε − 1`. The other (`v_t(|w_t| − 1)` to `v_s(1)`) is bounded only by
+  `ε + 1` through the triangle inequality, and the region insertion needs `≤ ε`. The end corner is
+  the same. A tree with those step distances `ε − 1` and `ε + 1` meets every constraint at the
+  corners, so no argument that looks only at the corners closes the case.
 * **(ii) The quadrilateral argument, applied directly.** The face walk of the class polygon does not
   carry the gap darts, so the whole class arcs do not bound a sub-disc to which
   `false_of_quadrilateral_face` applies. That surgery is `OsinLemma94PinchedQuadrilateralStatement`,
