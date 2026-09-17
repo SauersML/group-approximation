@@ -89,3 +89,25 @@ so a witness that also fails cost one would settle
   sofic or not, have cost one. A witness must lie outside every group reached
   from an infinite amenable subgroup by a chain of infinite commensurations, as
   the Burnside branch does.
+* **Certify positive rank gradient of a Kazhdan group by mod-p homology**
+  (lane `sw-007`, 2026-09-17,
+  `docs/kazhdan-mod-p-growth-2026-09-17.md`). The Property (T) branch needs
+  `d(Gamma_n)` linear along a Farber chain, and every archived certificate
+  bounds `d` below by `d_p = dim H_1(-;F_p)`. **Dead for two classes of chains.**
+  - `fpbs-kazhdan-no-rapid-descent`: no Kazhdan group, finitely presented or
+    not, has an abelian `p`-series with rapid descent. So `RG_p = 0`, and
+    derived `p`-series, power `p`-deficiency and pro-`p`-cofinal certificates
+    all fail. The step where it dies: the pullback to Shalom's finitely
+    presented cover is `p`-large by Lackenby's Theorem 1.15.
+  - `fpbs-kazhdan-cofinal-mod-p-growth-vanishes`: for each fixed `p`,
+    `d_p(N)/[Gamma:N] -> 0` along the profinite topology. So no fixed-prime
+    count can make the profinite completion action cost more than one. The
+    step where it dies: iterated Frattini covers and coprime descents shrink
+    the support of `u` independent cocycles by Lackenby's Plotkin factor. That
+    drives the support below the Kazhdan support bound `kappa^2/(4|X|)`.
+  - **Survivors.**
+    - A Farber chain with fixed-prime linear growth that is neither
+      profinitely cofinal nor a rapidly descending abelian `p`-series, for
+      example Lackenby's subnormal (tau) chains.
+    - A cofinal chain whose maximizing prime `p_n -> infinity`.
+    - Generators forced by non-abelian quotients of `Gamma_n`.
