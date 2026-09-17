@@ -1,0 +1,33 @@
+aut {'a': 'ab', 'b': 'a', 'c': 'c'} is_aut True m 1 all infeasible 324 None
+aut {'a': 'ab', 'b': 'a', 'c': 'c'} is_aut True m 2 all infeasible 324 None
+aut {'a': 'ab', 'b': 'a', 'c': 'c'} is_aut True m 3 all infeasible 324 None
+aut {'a': 'ab', 'b': 'b', 'c': 'c'} is_aut True m 1 chi0 3 BCbc
+aut {'a': 'ab', 'b': 'b', 'c': 'c'} is_aut True m 2 chi0 3 BCbc
+aut {'a': 'ab', 'b': 'b', 'c': 'c'} is_aut True m 3 chi0 3 BCbc
+aut {'a': 'abc', 'b': 'b', 'c': 'c'} is_aut True m 1 chi0 3 BCbc
+aut {'a': 'abc', 'b': 'b', 'c': 'c'} is_aut True m 2 chi0 3 BCbc
+aut {'a': 'abc', 'b': 'b', 'c': 'c'} is_aut True m 3 chi0 3 BCbc
+aut {'a': 'ab', 'b': 'bc', 'c': 'c'} is_aut True m 1 min-gates<=1 0 None
+aut {'a': 'ab', 'b': 'bc', 'c': 'c'} is_aut True m 2 min-gates<=1 0 None
+aut {'a': 'ab', 'b': 'bc', 'c': 'c'} is_aut True m 3 min-gates<=1 0 None
+aut {'a': 'b', 'b': 'c', 'c': 'ab'} is_aut True m 1 all infeasible 324 None
+aut {'a': 'b', 'b': 'c', 'c': 'ab'} is_aut True m 2 all infeasible 324 None
+aut {'a': 'b', 'b': 'c', 'c': 'ab'} is_aut True m 3 all infeasible 324 None
+aut {'a': 'ab', 'b': 'ac', 'c': 'a'} is_aut True m 1 min-gates<=1 0 None
+aut {'a': 'ab', 'b': 'ac', 'c': 'a'} is_aut True m 2 min-gates<=1 0 None
+aut {'a': 'ab', 'b': 'ac', 'c': 'a'} is_aut True m 3 min-gates<=1 0 None
+aut {'a': 'bbc', 'b': 'bbcb', 'c': 'cbba'} is_aut True m 1 all infeasible 324 None
+aut {'a': 'bbc', 'b': 'bbcb', 'c': 'cbba'} is_aut True m 2 all infeasible 2 None
+aut {'a': 'bbc', 'b': 'bbcb', 'c': 'cbba'} is_aut True m 3 all infeasible 0 None
+aut {'a': 'abb', 'b': 'ab', 'c': 'c'} is_aut True m 1 all infeasible 200 None
+aut {'a': 'abb', 'b': 'ab', 'c': 'c'} is_aut True m 2 all infeasible 200 None
+aut {'a': 'abb', 'b': 'ab', 'c': 'c'} is_aut True m 3 all infeasible 36 None
+end {'a': 'ab', 'b': 'ba', 'c': 'c'} is_aut False m 1 all infeasible 620 None
+end {'a': 'ab', 'b': 'ba', 'c': 'c'} is_aut False m 2 NEGATIVE 152 ('ABABabab', -4.0)
+end {'a': 'ab', 'b': 'ba', 'c': 'c'} is_aut False m 3 all infeasible 594 None
+end {'a': 'abb', 'b': 'ba', 'c': 'c'} is_aut False m 1 all infeasible 620 None
+end {'a': 'abb', 'b': 'ba', 'c': 'c'} is_aut False m 2 NEGATIVE 213 ('ABCbabcB', -4.0)
+end {'a': 'abb', 'b': 'ba', 'c': 'c'} is_aut False m 3 all infeasible 36 None
+end {'a': 'aab', 'b': 'bab', 'c': 'c'} is_aut False m 1 all infeasible 324 None
+end {'a': 'aab', 'b': 'bab', 'c': 'c'} is_aut False m 2 all infeasible 204 None
+end {'a': 'aab', 'b': 'bab', 'c': 'c'} is_aut False m 3 all infeasible 4 None
