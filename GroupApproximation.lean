@@ -5467,6 +5467,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.M
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ArvesonStatement
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVH2GL3.RankFive
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SolvableInduction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Compression
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
