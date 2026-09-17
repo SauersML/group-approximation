@@ -20,8 +20,6 @@ are supported on complementary blocks.
 
 namespace GroupApproximation.Full.NN08b
 
-open GroupApproximation
-
 noncomputable section
 
 variable {ι κ R : Type*} [Fintype ι] [DecidableEq ι]
@@ -69,7 +67,9 @@ theorem stabilization_commute (g : elementaryGroup ι R)
       Matrix.fromBlocks_multiply, Matrix.fromBlocks_multiply]
     simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add,
       Matrix.mul_one, Matrix.one_mul]
-  exact Subtype.ext (Units.ext hval)
+  apply Subtype.ext
+  apply Units.ext
+  exact hval
 
 /-- **Block-diagonal sum** `EL_ι(R) × EL_κ(R) →* EL_{ι ⊕ κ}(R)`,
 `(g, h) ↦ diag(g, h)`. -/

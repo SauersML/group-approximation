@@ -92,16 +92,16 @@ theorem opLength_diag_inv_mul_le {v w : Y → ℝ} {r : ℝ} (hr : 0 ≤ r)
 /-- A phase `π` at one point forces operator-norm length at least `2`. -/
 theorem two_le_opLength_diag {v : Y → ℝ} (y₀ : Y) (h : v y₀ = Real.pi) :
     2 ≤ opLength Y (diagUnitary Y v) := by
-  rw [opLength]
-  show 2 ≤ ‖Matrix.diagonal (fun y => ((Circle.exp (v y) : Circle) : ℂ)) - 1‖
-  rw [← Matrix.diagonal_one, Matrix.diagonal_sub, Matrix.l2_opNorm_diagonal]
+  show 2 ≤ ‖Matrix.diagonal (fun y => ((Circle.exp (v y) : Circle) : ℂ)) -
+    Matrix.diagonal (fun _ => (1 : ℂ))‖
+  rw [Matrix.diagonal_sub, Matrix.l2_opNorm_diagonal]
   refine le_trans ?_
     (norm_le_pi_norm (fun y => ((Circle.exp (v y) : Circle) : ℂ) - 1) y₀)
   show 2 ≤ ‖((Circle.exp (v y₀) : Circle) : ℂ) - 1‖
   have hval : ((Circle.exp (v y₀) : Circle) : ℂ) - 1 = -2 := by
     rw [h, Circle.coe_exp, Complex.exp_pi_mul_I]
     ring
-  rw [hval, norm_neg, Complex.norm_two]
+  exact le_of_eq (by rw [hval, norm_neg, Complex.norm_two])
 
 /-- Conjugating a diagonal unitary by a permutation unitary translates its phase:
 `Λ(σ) D(v) Λ(σ)* = D(v ∘ σ⁻¹)` (tex lines 2129--2133). -/

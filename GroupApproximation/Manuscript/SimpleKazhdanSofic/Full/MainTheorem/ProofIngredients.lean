@@ -24,7 +24,8 @@ of Figure `fig:models` (tex l.159–163).
   subgroup contains a nontrivial element of `M_n(A_V)` over a clopen tower; the tower gives an
   injective copy `GL_{n×B}(F₂) → EL_n(R)` sending transvections to elementary matrices `e_pq(ε_ab)`;
   a normal subgroup meeting the copy nontrivially contains the whole copy; and every nontrivial
-  normal subgroup is everything. For `G_X` itself, simplicity is part of `IngredientsBundle`.
+  normal subgroup is everything. For `G_X` itself, simplicity is the second conjunct of
+  `PrintedProofIngredients`.
 * **Finite models** (tex l.125–135): `IngredientsFiniteModels`. Periodic sequences with the words of
   `X`; the shift becomes the cyclic permutation matrix and letter indicators become diagonal matrices
   (`ProofRestModels`); marked limit of `SL_{3N}(F₂)` with expanding Cayley graphs; the `SL_{3N}(F₂)`
@@ -79,8 +80,8 @@ expander limit of the `SL_{3N}(F₂)` in the printed sense (tex l.134–135). -/
 abbrev IngredientsFiniteModels (S : Subshift A ℤ) : Prop :=
   (∀ ℓ m₀ : ℕ, ∃ (m : ℕ) (_ : NeZero m) (y : ZMod m → A), m₀ ≤ m ∧
     (∀ n : ZMod m,
-      (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ language S.carrier (2 * ℓ + 1)) ∧
-    ∀ u ∈ language S.carrier (2 * ℓ + 1),
+      (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) ∈ WordGraph.language S.carrier (2 * ℓ + 1)) ∧
+    ∀ u ∈ WordGraph.language S.carrier (2 * ℓ + 1),
       ∃ n : ZMod m, (fun j : Fin (2 * ℓ + 1) => y (n + (j : ℕ))) = u) ∧
   (∀ x ∈ S.carrier, ProofRestModels S x) ∧
   PrintedMarkedLimitExpanders S 3 ∧
@@ -102,14 +103,16 @@ theorem ingredients_finiteModels (S : Subshift A ℤ) (hinf : Infinite S.carrier
   obtain ⟨N, φ, hφ⟩ := periodicMatricial_printed A S hinf hmin
   haveI : IsSimpleGroup ↥(elementaryGroup (Fin 3) (R S)) := hsimple
   haveI : Infinite ↥(elementaryGroup (Fin 3) (R S)) := hinfG
-  refine ⟨exists_periodic_sameWords_carrier S hinf hmin, fun x hx => rest_models S hinf hmin hx,
-    hlimit, ⟨N, φ, hφ, hasKazhdanPropertyT_elementaryGroup_freeAlgebra ↥(printedGenerators S) 3 le_rfl,
+  refine ⟨exists_periodic_sameWords_carrier S hinf hmin, fun _ hx => rest_models S hinf hmin hx,
+    hlimit, ⟨N, φ, hφ,
+      hasKazhdanPropertyT_elementaryGroup_freeAlgebra ↥(printedGenerators S) 3 le_rfl,
       fun k => elementaryGroupMap_surjective_of_surjective (ι := Fin 3)
         (FreeAlgebra.lift (ZMod 2) fun s : ↥(printedGenerators S) => φ k s).toRingHom
         (SimpleKazhdanSofic.lift_surjective_of_closure (printedGenerators S) (φ k) (hφ.2.2.1 k)),
       fun k => ⟨elementaryBlockEquivSL 3 le_rfl (N k) (hφ.1 k)⟩,
       SK04.isExpanderFamily_matricial 3 le_rfl (printedGenerators S) (one_mem_printedGenerators S)
-        (closure_printedGenerators S) N hφ.1 φ ⟨hφ.2.1, hφ.2.2.1, hφ.2.2.2⟩⟩,
+        (closure_printedGenerators S) N hφ.1 φ
+        (by unfold SK04.IsPrintedMatricial; exact ⟨hφ.2.1, hφ.2.2.1, hφ.2.2.2⟩)⟩,
     (main_printed_sk01 A S hinf hmin).2.2.2.2.1⟩
 
 end Subshift
@@ -168,7 +171,8 @@ theorem printedIngredientsSimplicity : PrintedIngredientsSimplicity := by
   refine ⟨fun d hd => SK02.stepTwo_glSimple (Fin d) (by rw [Fintype.card_fin]; exact hd), ?_⟩
   intro Λ _ _ _ _ _ _ _ _ _ _ hact hfree n hn
   refine ⟨SK02.stepTwo_commutatorWitness hact hfree (by omega),
-    fun B V hV hdisj hne h1 => ?_, fun K hK hne => SK02.stepThree_normalSubgroupEqTop hact hfree hn K hK hne⟩
+    fun B V hV hdisj hne h1 => ?_,
+    fun K hK hne => SK02.stepThree_normalSubgroupEqTop hact hfree hn K hK hne⟩
   haveI : Nontrivial (Fin n) := Fin.nontrivial_iff_two_le.mpr (by omega)
   obtain ⟨H, hinj, hmem, htrans, -⟩ := SK02.stepTwo_towerCopy (ι := Fin n) hact hV hdisj hne
   have hcard : 3 ≤ Fintype.card (Fin n × B) := by

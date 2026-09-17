@@ -9,8 +9,8 @@ import Mathlib.GroupTheory.Subgroup.Simple
 `non_mf_group_notes.tex`, Theorem `thm:torsionfree` (l.2757-2812), and
 Remark `rem:ff-realization` (l.2814-2832).
 
-The printed proof works inside the Fournier-Facio--Fournier-Facio group `G_0`,
-which contains a Kazhdan subgroup `Γ`, a stable letter `t₁` and an embedded
+The printed proof works inside the group `G_0` of `[FFF, Section 2]`, which
+contains a Kazhdan subgroup `Γ`, a stable letter `t₁` and an embedded
 simple group `S' ≤ Γ` with
 
 `t₁ Γ t₁⁻¹ ⊆ Γ` and `t₁⁻¹ S' t₁ ⊆ C_{G_0}(Γ)`.

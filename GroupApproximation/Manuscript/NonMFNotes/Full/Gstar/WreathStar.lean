@@ -126,7 +126,8 @@ theorem wstar_radical : actualCoronaMFResidual WStar = lampStar := by
 theorem map_normalClosure_rStar :
     (Subgroup.normalClosure {rStar}).map wstarEquiv.toMonoidHom =
       Subgroup.normalClosure {rA} := by
-  rw [Subgroup.map_normalClosure _ _ wstarEquiv.surjective, Set.image_singleton]
+  rw [Subgroup.map_normalClosure _ wstarEquiv.toMonoidHom wstarEquiv.surjective,
+    Set.image_singleton]
   exact congrArg (fun r : WA => Subgroup.normalClosure {r}) wstarEquiv_rStar
 
 /-- `A₅^(X) = ⟨⟨r⟩⟩` for the printed group. -/
