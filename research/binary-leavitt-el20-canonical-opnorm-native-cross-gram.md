@@ -74,3 +74,14 @@ active-core reblocking is needed.
   `growing-multicut-el20-order-seven-inheritance`, specialized to canonical
   models.  Fences built from non-Plancherel finite-packet profiles do not
   apply unless their packet's regular representation reproduces them.
+- **Regular calibration (swarm-0917, calibration).**  The conclusion
+  `(CAP1)` together with its gauge clause is false in every exact tracial
+  model: `lambda` on `L(G)` and every tracial ultraproduct of models.  With
+  exact rows and positive overlap mass, `(TSG6)` forces `epsilon_g>=2/3`, so
+  the gauge lock cannot hold.  Every approximate model passes to such an
+  exact model.  So this claim holds only vacuously and is equivalent to
+  `(EMF1)` itself; see
+  `native-cross-gram-conclusions-fail-in-every-tracial-model`.  The only
+  alternative is that the recorded compiler has a step that is not valid in
+  finite von Neumann algebras.  Any direct estimate of mass plus lock dies at
+  the lock clause.
