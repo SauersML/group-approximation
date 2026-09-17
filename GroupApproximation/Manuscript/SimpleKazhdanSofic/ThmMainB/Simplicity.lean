@@ -144,7 +144,7 @@ theorem manuscriptSentence_normalSubgroupContainsTowerCommutator (A : Type) [Top
   · rw [htop]
     exact Subgroup.mem_top _
   · rw [← map_commutatorElement (towerCopyG S hlev hV)]
-    exact fun h => hxy (hinj (h.trans (map_one _).symm))
+    exact fun h => hxy (hinj (h.trans (map_one (towerCopyG S hlev hV)).symm))
 
 /-- **tex l.123–124.** If a normal subgroup `K` of `G_X` contains a nontrivial element of the copy of
 `GL_d(F₂)` over a clopen tower `V`, then it contains this group, with it the elementary matrices
@@ -169,7 +169,8 @@ theorem manuscriptSentence_containsCopyElementaryMatrixEveryElementary (A : Type
   have hx1 : x ≠ 1 := fun h => hg1 (by rw [h, map_one])
   have hxK : x ∈ K.comap (towerCopyG S hlev hV) := hgK
   have htop : K.comap (towerCopyG S hlev hV) = ⊤ :=
-    (hK.comap _).eq_bot_or_eq_top.resolve_left fun hb => hx1 (Subgroup.mem_bot.1 (hb ▸ hxK))
+    (hK.comap (towerCopyG S hlev hV)).eq_bot_or_eq_top.resolve_left fun hb =>
+      hx1 (Subgroup.mem_bot.1 (hb ▸ hxK))
   have hall : ∀ y, towerCopyG S hlev hV y ∈ K := fun y => by
     have hy : y ∈ K.comap (towerCopyG S hlev hV) := by
       rw [htop]
@@ -185,12 +186,13 @@ theorem manuscriptSentence_containsCopyElementaryMatrixEveryElementary (A : Type
     rw [← towerE_centre (T := subshiftHomeo S) w hV,
       ← towerCopyG_transvection S hlev hV hpq _ _ hne']
     exact hall _
-  have hcard : 3 ≤ Fintype.card (Fin 3) := (Fintype.card_fin 3).ge
+  have hcard : 3 ≤ Fintype.card (Fin 3) := le_of_eq (Fintype.card_fin 3).symm
   have hmemJ : ClopenCrossedProduct.coeff (subshiftHomeo S) (ZMod 2)
       (LocallyConstant.charFn (ZMod 2) hV) ∈ levelIdeal hcard K :=
     (mem_levelIdeal hcard K _).2 hroot
   obtain ⟨s, hs⟩ :=
-    exists_finset_cover_zpow_image (isMinimalSystem_subshiftHomeo S hmin) hV.isOpen hVne
+    exists_finset_cover_zpow_image (T := subshiftHomeo S) (isMinimalSystem_subshiftHomeo S hmin)
+      hV.isOpen hVne
   have h1 := one_mem_levelIdeal_of_cover hcard hV s hs K hmemJ
   refine ⟨hall, hroot, fun p q hpq r => ?_⟩
   have hd := TwoSidedIdeal.mul_mem_left _ r 1 h1

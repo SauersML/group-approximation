@@ -59,7 +59,7 @@ theorem singleSidePair_of_noGap (Q : OsinLemma94ClassPolygons P) (k : Fin P.coun
   have ha' := C.a'_le
   have hbl := C.b_le
   have hngB' : ¬ Q.InGap k C.target C.b' := fun h => hnogap (Or.inr (Or.inr (Or.inr h)))
-  obtain ⟨s, off, hs, h1, h2⟩ := exists_sideAt_block Q k C.source (x := C.a) (by omega)
+  obtain ⟨s, off, hs, h1, -⟩ := exists_sideAt_block Q k C.source (x := C.a) (by omega)
   obtain ⟨t, off', ht, h1', h2'⟩ := exists_sideAt_block Q k C.target (x := C.b') (by omega)
   have hB' : C.b' ≤ off' + (P.word k t).length := by
     by_contra hne
@@ -70,9 +70,9 @@ theorem singleSidePair_of_noGap (Q : OsinLemma94ClassPolygons P) (k : Fin P.coun
 
 /-- **The relator-cell branch** of the gap-spanning case. -/
 theorem rCell : OsinLemma94ClassCaseOneRCellStatement.{u, w, v} := by
-  intro G _ Lambda D _ lambda c mu _ _ _ _ _
-  refine ⟨3, fun eps _ => ⟨1, Nat.one_pos, fun rho _ => ?_⟩⟩
-  intro W _ Delta cuts _ _ _ S _ _ P _ Q k C hback hnogap hnotsingle
+  intro _ _ _ _ _ _ _ _ _ _ _ _ _
+  refine ⟨3, fun _ _ => ⟨1, Nat.one_pos, fun _ _ => ?_⟩⟩
+  intro _ _ _ _ _ _ _ _ _ _ _ _ Q k C hback hnogap hnotsingle
   exact absurd (singleSidePair_of_noGap Q k C hback hnogap) hnotsingle
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04
