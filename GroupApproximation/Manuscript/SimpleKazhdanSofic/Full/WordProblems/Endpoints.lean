@@ -6,7 +6,7 @@ import GroupApproximation.Meta.AxiomGuard
 # `cor:wp`: word problems of the groups `G_X`
 
 Endpoints of lane SK13 for `simple_kazhdan_sofic_group.tex`, section `sec:wp`, corollary `cor:wp`
-and its proof (l.683–721), and the row "word problem | has the Turing degree of `L(X)`" of the
+and its proof (l.683–722), and the row "word problem | has the Turing degree of `L(X)`" of the
 table `tab:props` (l.198–213).
 
 Corollary `cor:wp` (l.683–689):
@@ -101,7 +101,7 @@ theorem wp_solvable_iff_recursive (A : Type) [TopologicalSpace A] [DiscreteTopol
 
 /-! ## Sturmian subshifts (`cor:wp`, proof l.703–714) -/
 
-/-- **`cor:wp`, proof, l.703–704.**  For irrational `α ∈ (0,1)` the Sturmian subshift `X_α` is
+/-- **`cor:wp`, proof, l.703–708.**  For irrational `α ∈ (0,1)` the Sturmian subshift `X_α` is
 infinite and minimal. -/
 theorem sturmian_infinite_minimal (α : ℝ) (hα : Irrational α) (h0 : 0 < α) (h1 : α < 1) :
     (sturmianSubshift α).carrier.Infinite ∧ IsMinimal (sturmianSubshift α) :=
@@ -149,7 +149,7 @@ theorem fibonacci_wp_solvable :
 
 #audit_closed_axioms GroupApproximation.Full.SK13.fibonacci_wp_solvable
 
-/-! ## Every degree, and the antichain (`cor:wp`, second sentence, proof l.714–721) -/
+/-! ## Every degree, and the antichain (`cor:wp`, second sentence, proof l.714–722) -/
 
 open Classical in
 /-- **`cor:wp`, proof, l.714–716.**  Every `D ⊆ ℕ` has the degree of the irrational number
@@ -161,7 +161,7 @@ theorem continued_fraction_representative (B : Set ℕ) :
 
 #audit_axioms continued_fraction_representative
 
-/-- **`cor:wp`, proof, l.716–719.**  If a finitely generated group `H` embeds in a finitely
+/-- **`cor:wp`, proof, l.717–720.**  If a finitely generated group `H` embeds in a finitely
 generated group `G'`, the word problem of `H` reduces to that of `G'`. -/
 theorem wp_reduces_under_embedding (H G' : Type) [Group H] [Group G'] (ι κ : Type)
     [Primcodable ι] [Primcodable κ] [Finite ι] [Finite κ] (s : ι → G') (t : κ → H) (ψ : H →* G')
@@ -180,7 +180,7 @@ theorem generators_generate {A : Type} [TopologicalSpace A] [DiscreteTopology A]
 
 #audit_axioms generators_generate
 
-/-- **`cor:wp`, proof, l.719–721.**  By a construction of Sacks, the Turing degrees contain an
+/-- **`cor:wp`, proof, l.720–721.**  By a construction of Sacks, the Turing degrees contain an
 antichain of size continuum. -/
 theorem turing_antichain_continuum :
     ∃ F : Set (Set ℕ), Cardinal.mk F = Cardinal.continuum ∧
@@ -190,7 +190,7 @@ theorem turing_antichain_continuum :
 #audit_closed_axioms GroupApproximation.Full.SK13.turing_antichain_continuum
 
 open Classical in
-/-- **`cor:wp`, second sentence (l.687–688), with the representative of its proof (l.703–721).**
+/-- **`cor:wp`, second sentence (l.687–688), with the representative of its proof (l.703–722).**
 Every Turing degree, the degree of an arbitrary `B ⊆ ℕ`, is the degree of the word problem of
 `G_{X_α}` for the Sturmian subshift of `α = [0; 1+χ_B(0), 1+χ_B(1), …]`, which is irrational in
 `(0,1)`, so `X_α` is infinite and minimal. -/
@@ -225,7 +225,7 @@ theorem every_degree (B : Set ℕ) :
 
 #audit_axioms every_degree
 
-/-- **`cor:wp`, second sentence (l.688–689).**  There is a family of continuum many infinite minimal
+/-- **`cor:wp`, second sentence (l.688–689), proof l.720–722.**  There is a family of continuum many infinite minimal
 subshifts `X` whose groups `G_X` do not embed in one another: `G_X` embeds in `G_{X'}` only when
 `X = X'`. -/
 theorem continuum_antichain :
