@@ -1,20 +1,22 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.Reduction
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.Residual
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.FinalClosed
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Greendlinger leaf, piece 04: endpoint
 
-`OsinLemma94ClassCaseGapSpanStatement`, from the reduction `proof_of_gapSpanResidual` of
-`Piece04.Reduction` and the best attempt `gapSpanResidual_attempt` of `Piece04.Residual` at the
-remaining gap `GapSpanResidualStatement` of `Piece04.Gap`.
+`OsinLemma94ClassCaseGapSpanStatement`, with no hypotheses, as `Final.proof` of module
+`Piece04.FinalClosed`.
 
-* Cutting targets and equal kinds with a value-one rotation are closed by library lemmas.
-* Different kinds are closed in `Piece04.DiffKind`, except for full-word pairs with both connectors
-  of length `ε - 1` (OPEN, `ClassFullWordDiffKindStatement`).
-* Equal kinds with no value-one rotation are OPEN (`OsinLemma94ClassCaseOneRCellStatement`).
+The route, every arrow proved with no holes:
 
-The math proof is in the docstrings of `Piece04.SideCover` and `Piece04.DiffKind`.
+* `Final.proof_of_windowShape` (module `Piece04.Final`) reduces GapSpan to
+  `ClassPocketWindowShapeStatement`, through `proof_of_gapSpanResidual` (module
+  `Piece04.Reduction`), `rCell_of_windowShape` (module `Piece04.RotationTurns`) and `fullWordDiffKind` (module
+  `Piece04.FullWord`).
+* `WindowShape.Assembly.windowShape` (module `Piece04.WindowShape.AssemblyClosed`) proves
+  `ClassPocketWindowShapeStatement`.
+
+This module no longer imports the best attempts of `Piece04.Residual`.
 
 ## Manuscript status
 
@@ -28,8 +30,8 @@ universe u w v
 
 /-- **Lemma 9.4 on class words, spanning or split pairs.** -/
 theorem proof : OsinLemma94ClassCaseGapSpanStatement.{u, w, v} :=
-  proof_of_gapSpanResidual gapSpanResidual_attempt
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.Final.proof
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.proof
+#audit_closed_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.proof
