@@ -123,3 +123,21 @@ analogue.
 - A twist `chi o delta` whose image is infinite is not a torsion class.
 
 This is why the claim records the divisible case as open.
+
+**(P9) Finitely presented shadows have no gap.** If `Q` is finitely
+presented, its presentation complex is finite, so `H_2(Q)` is a quotient of
+the finitely generated group `H_2` of that complex. By (P1), `D(G)` is a
+quotient of `H_2(Q)`, so it is finitely generated. A nonzero finitely generated
+abelian group has a `Z/p` quotient, and (P4) applies.
+
+**Lifts do not help.** Let `S <= E = E(G)` map onto `Q`, and let `s_i` be
+lifts of the generators. Evaluating a relator `r in [F,F]` of `Q` on
+`s_i d_i`, with `d_i in D` central, gives `r(s)`, because the exponent sums
+vanish. So `S intersect D` contains the image of the transgression
+`delta : H_2(Q) = (M intersect [F,F])/[M,F] -> D`, and `delta` is onto by
+(P1). Since `E = S.D`, `E` is the quotient of `S x D` by the central subgroup
+`{(d,d^{-1}) : d in S intersect D}`. So `E` is hyperlinear iff `S` is:
+- if `S` is hyperlinear, so is `S x D`, and a central quotient of a
+  hyperlinear group is hyperlinear, by the fibre argument of (P8) at the
+  trivial character;
+- conversely `S <= E`.

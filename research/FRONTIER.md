@@ -22415,13 +22415,13 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-17 · hyperlinear-shadow-schur-cokernel-criterion-proof [COMPLETE] Five-term sequence for the residual, radical of the relative coinvariant quotient, then marked closedness along a flag
+- 2026-09-17 · hyperlinear-shadow-schur-cokernel-criterion [ESTABLISHED] A group compiles to a non-hyperlinear central extension of its hyperlinear shadow exactly when the shadow's Schur multiplier is not hit
 - 2026-09-17 · nonsofic-hyperbolic-question-reduces-to-one-fixed-host-proof [COMPLETE] Transfer tables through local embeddings and take a common Olshanskii quotient of the host, a bad group and a finite-quotient-free group
 - 2026-09-17 · nonsofic-hyperbolic-question-reduces-to-one-fixed-host [ESTABLISHED] A nonsofic hyperbolic group exists iff a nonsofic local limit of hyperbolic groups exists iff one fixed Kazhdan hyperbolic group has a nonsofic finite-quotient-free hyperbolic quotient
 - 2026-09-17 · nonsofic-hyperbolic-group [OPEN] A nonsofic hyperbolic group — the second nonsoficity mechanism
 - 2026-09-17 · hyperbolic-local-embedding-kills-compression-certificates-proof [COMPLETE] Push each finite compression pattern into a hyperbolic group and use the elementary-subgroup dichotomy
 - 2026-09-17 · hyperbolic-local-embedding-kills-compression-certificates [ESTABLISHED] Groups locally embeddable into hyperbolic groups kill every compression defect and never contain two commuting non-LEF subgroups
-- 2026-09-17 · hyperlinear-shadow-schur-cokernel-criterion-proof [COMPLETE] Five-term sequence for the residual, radical of the relative coinvariant quotient, then marked closedness along a flag
-- 2026-09-17 · hyperlinear-shadow-schur-cokernel-criterion [ESTABLISHED] A group compiles to a non-hyperlinear central extension of its hyperlinear shadow exactly when the shadow's Schur multiplier is not hit
 - 2026-09-17 · z3-heawood-incidence-system-has-a-finite-dimensional-solution [ESTABLISHED] The Heawood incidence system over Z_3 has a finite-dimensional operator solution and no classical solution, answering the p=3 case of Slofstra-Zhang Problem 2.9
 
 ## Active claims

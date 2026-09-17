@@ -59,6 +59,14 @@ characters of a divisible group of finite order are trivial, so the fiber
 twists `chi o delta` over `D(G)^` are never torsion classes. Item 4 and the
 torsion-density node therefore both stop here.
 
+The gap only occurs for shadows with a large Schur multiplier. If
+`H_2(Q;Z)` is finitely generated, for example if the shadow `Q` is finitely
+presented, then `D(G)` is finitely generated. It is then either `0` or not
+divisible, and item 4 applies. Choosing different lifts of the generators does
+not help either. Any subgroup `S <= E(G)` mapping onto `Q` satisfies
+`S intersect D = delta(H_2 Q) = D`, and `E(G)` is hyperlinear iff `S` is,
+because `E(G)` is a central quotient of `S x D`.
+
 **Why this is the right invariant.** The central compilers already in the
 graph (Schur kernel, HS stability, Deligne cover, torsion density) each start
 from a chosen hyperlinear base and try to make one Schur class die. This
