@@ -3,6 +3,7 @@ import GroupApproximation.Leavitt.UniversalLeavittOver
 import Mathlib.Algebra.Module.Projective
 import Mathlib.Algebra.Module.PUnit
 import Mathlib.LinearAlgebra.FreeModule.Basic
+import Mathlib.RingTheory.Finiteness.Basic
 import Mathlib.RingTheory.Finiteness.Prod
 import Mathlib.GroupTheory.MonoidLocalization.GrothendieckGroup
 
@@ -61,7 +62,7 @@ namespace FGProj
 variable {R : Type u} [Ring R]
 
 /-- Two bundled modules are related when they are isomorphic as left `R`-modules. -/
-def Iso (P Q : FGProj R) : Prop :=
+abbrev Iso (P Q : FGProj R) : Prop :=
   Nonempty (P.carrier ≃ₗ[R] Q.carrier)
 
 /-- The direct sum `P ⊕ Q`, realized as the product module. -/
@@ -69,7 +70,7 @@ def sum (P Q : FGProj R) : FGProj R :=
   ⟨P.carrier × Q.carrier⟩
 
 /-- The zero module. -/
-def zero : FGProj (R := R) :=
+def zero : FGProj R :=
   ⟨PUnit.{u + 1}⟩
 
 /-- The left regular module `R`. -/
@@ -106,7 +107,8 @@ private def addLeft (P : FGProj R) : AlgVMonoid R → AlgVMonoid R :=
   Quot.lift (fun Q : FGProj R => mk (P.sum Q)) (by
     intro Q Q' h
     obtain ⟨e⟩ := h
-    exact mk_eq_mk ((LinearEquiv.refl R P.carrier).prodCongr e))
+    show mk (P.sum Q) = mk (P.sum Q')
+    exact mk_eq_mk (P := P.sum Q) (Q := P.sum Q') ((LinearEquiv.refl R P.carrier).prodCongr e))
 
 /-- Addition on `V(R)`: the direct sum. -/
 private def add : AlgVMonoid R → AlgVMonoid R → AlgVMonoid R :=
@@ -115,7 +117,9 @@ private def add : AlgVMonoid R → AlgVMonoid R → AlgVMonoid R :=
     obtain ⟨e⟩ := h
     funext y
     induction y using Quot.ind with
-    | mk Q => exact mk_eq_mk (e.prodCongr (LinearEquiv.refl R Q.carrier)))
+    | mk Q =>
+      show mk (P.sum Q) = mk (P'.sum Q)
+      exact mk_eq_mk (P := P.sum Q) (Q := P'.sum Q) (e.prodCongr (LinearEquiv.refl R Q.carrier)))
 
 instance : Add (AlgVMonoid R) :=
   ⟨add⟩
@@ -130,17 +134,24 @@ theorem mk_zero : mk (FGProj.zero (R := R)) = 0 :=
   rfl
 
 theorem mk_add_assoc (P Q T : FGProj R) :
-    mk P + mk Q + mk T = mk P + (mk Q + mk T) :=
-  mk_eq_mk (LinearEquiv.prodAssoc R P.carrier Q.carrier T.carrier)
+    mk P + mk Q + mk T = mk P + (mk Q + mk T) := by
+  show mk ((P.sum Q).sum T) = mk (P.sum (Q.sum T))
+  exact mk_eq_mk (P := (P.sum Q).sum T) (Q := P.sum (Q.sum T))
+    (LinearEquiv.prodAssoc R P.carrier Q.carrier T.carrier)
 
-theorem zero_add_mk (P : FGProj R) : 0 + mk P = mk P :=
-  mk_eq_mk (LinearEquiv.uniqueProd (R := R) (M := P.carrier) (M₂ := PUnit.{u + 1}))
+theorem zero_add_mk (P : FGProj R) : 0 + mk P = mk P := by
+  show mk ((FGProj.zero (R := R)).sum P) = mk P
+  exact mk_eq_mk (P := (FGProj.zero (R := R)).sum P) (Q := P)
+    (LinearEquiv.uniqueProd (R := R) (M := P.carrier) (M₂ := PUnit.{u + 1}))
 
-theorem mk_add_zero (P : FGProj R) : mk P + 0 = mk P :=
-  mk_eq_mk (LinearEquiv.prodUnique (R := R) (M := P.carrier) (M₂ := PUnit.{u + 1}))
+theorem mk_add_zero (P : FGProj R) : mk P + 0 = mk P := by
+  show mk (P.sum (FGProj.zero (R := R))) = mk P
+  exact mk_eq_mk (P := P.sum (FGProj.zero (R := R))) (Q := P)
+    (LinearEquiv.prodUnique (R := R) (M := P.carrier) (M₂ := PUnit.{u + 1}))
 
-theorem mk_add_comm (P Q : FGProj R) : mk P + mk Q = mk Q + mk P :=
-  mk_eq_mk (LinearEquiv.prodComm R P.carrier Q.carrier)
+theorem mk_add_comm (P Q : FGProj R) : mk P + mk Q = mk Q + mk P := by
+  show mk (P.sum Q) = mk (Q.sum P)
+  exact mk_eq_mk (P := P.sum Q) (Q := Q.sum P) (LinearEquiv.prodComm R P.carrier Q.carrier)
 
 instance : AddCommMonoid (AlgVMonoid R) where
   add_assoc a b c := by
@@ -166,8 +177,10 @@ instance : AddCommMonoid (AlgVMonoid R) where
 /-- **`R ≅ R ⊕ R` in `V(R)`**: over a ring with a binary Leavitt family,
 `[R] + [R] = [R]` in the monoid `V(R)`. -/
 theorem mk_regular_add_mk_regular (L : LeavittFamily R) :
-    mk (FGProj.regular R) + mk (FGProj.regular R) = mk (FGProj.regular R) :=
-  mk_eq_mk L.linearEquivSquare.symm
+    mk (FGProj.regular R) + mk (FGProj.regular R) = mk (FGProj.regular R) := by
+  show mk ((FGProj.regular R).sum (FGProj.regular R)) = mk (FGProj.regular R)
+  exact mk_eq_mk (P := (FGProj.regular R).sum (FGProj.regular R)) (Q := FGProj.regular R)
+    L.linearEquivSquare.symm
 
 end AlgVMonoid
 
@@ -195,7 +208,7 @@ theorem cls_sum (P Q : FGProj R) : cls (P.sum Q) = cls P + cls Q := by
   show Algebra.GrothendieckAddGroup.of (AlgVMonoid.mk (P.sum Q)) =
     Algebra.GrothendieckAddGroup.of (AlgVMonoid.mk P) +
       Algebra.GrothendieckAddGroup.of (AlgVMonoid.mk Q)
-  rw [← map_add, AlgVMonoid.mk_add_mk]
+  exact map_add Algebra.GrothendieckAddGroup.of (AlgVMonoid.mk P) (AlgVMonoid.mk Q)
 
 /-- `[0] = 0`. -/
 theorem cls_zero : cls (FGProj.zero (R := R)) = 0 := by
@@ -204,20 +217,14 @@ theorem cls_zero : cls (FGProj.zero (R := R)) = 0 := by
 
 /-- Every element of `K₀(R)` is a difference of classes `[P] - [Q]`. -/
 theorem exists_eq_cls_sub_cls (z : AlgKZero R) : ∃ P Q : FGProj R, z = cls P - cls Q := by
-  have hz : z = Algebra.GrothendieckAddGroup.of
-      ((AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R))).sec z).1 -
-        Algebra.GrothendieckAddGroup.of
-          (((AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R))).sec z).2 :
-            AlgVMonoid R) :=
-    eq_sub_of_add_eq
-      (AddSubmonoid.LocalizationMap.sec_spec (f := AddLocalization.addMonoidOf ⊤) z)
-  obtain ⟨P, hP⟩ := Quot.exists_rep
-    ((AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R))).sec z).1
-  obtain ⟨Q, hQ⟩ := Quot.exists_rep
-    (((AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R))).sec z).2 : AlgVMonoid R)
-  refine ⟨P, Q, ?_⟩
-  rw [hz, ← hP, ← hQ]
-  rfl
+  obtain ⟨⟨a, b⟩, h⟩ := (AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R))).surj z
+  obtain ⟨P, rfl⟩ := Quot.exists_rep a
+  obtain ⟨Q, hQ⟩ := Quot.exists_rep (b : AlgVMonoid R)
+  refine ⟨P, Q, eq_sub_of_add_eq ?_⟩
+  show z + Algebra.GrothendieckAddGroup.of (Quot.mk FGProj.Iso Q) =
+    Algebra.GrothendieckAddGroup.of (Quot.mk FGProj.Iso P)
+  rw [hQ]
+  exact h
 
 /-- **`K₀(R) = 0` is equivalent to the vanishing of every class `[P]`.** -/
 theorem eq_zero_iff_forall_cls :
@@ -241,7 +248,8 @@ theorem cls_regular_eq_zero : cls (FGProj.regular R) = 0 := by
   have h : cls (FGProj.regular R) + cls (FGProj.regular R) =
       cls (FGProj.regular R) + 0 := by
     rw [← cls_sum, add_zero]
-    exact cls_eq_cls L.linearEquivSquare.symm
+    exact cls_eq_cls (P := (FGProj.regular R).sum (FGProj.regular R)) (Q := FGProj.regular R)
+      L.linearEquivSquare.symm
   exact add_left_cancel h
 
 include L in

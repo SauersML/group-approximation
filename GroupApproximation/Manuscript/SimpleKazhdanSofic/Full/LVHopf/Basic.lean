@@ -69,8 +69,9 @@ theorem commutatorElement_mul_mul_of_mem_center (a b c d : F) (hc : c ∈ Subgro
 
 /-- `⁅⊤, K⁆ ≤ [F, F]`. -/
 theorem commutator_top_le_commutator (K : Subgroup F) :
-    ⁅(⊤ : Subgroup F), K⁆ ≤ commutator F :=
-  Subgroup.commutator_mono (le_refl _) le_top
+    ⁅(⊤ : Subgroup F), K⁆ ≤ commutator F := by
+  rw [_root_.commutator_def]
+  exact Subgroup.commutator_mono (le_refl _) le_top
 
 end Quotients
 
