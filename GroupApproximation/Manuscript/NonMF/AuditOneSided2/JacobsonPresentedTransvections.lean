@@ -72,6 +72,8 @@ theorem jacobsonEquiv_presMatUnit (u v : ℕ) :
   rw [presMatUnit, matUnitJ, map_mul, map_mul, map_pow, map_pow, jacobsonEquiv_one_sub,
     jacobsonEquiv_presS, jacobsonEquiv_presT]
 
+#audit_axioms jacobsonEquiv_presMatUnit
+
 /-- `e_ij(f_uv)` acts on `V^n` as the basis transvection `τ_(i,u),(j,v)`. -/
 theorem presBlockAct_elGen_presMatUnit (n : ℕ) {i j : Fin n} (hij : i ≠ j) (u v : ℕ) :
     presBlockAct n (elGen i j hij (presMatUnit u v)) =
@@ -81,6 +83,8 @@ theorem presBlockAct_elGen_presMatUnit (n : ℕ) {i j : Fin n} (hij : i ≠ j) (
     (elGen i j hij (presMatUnit u v))) = _
   rw [elementaryCoefficientEquiv_elGen, jacobsonEquiv_presMatUnit]
   exact blockAct_elGen_matUnit n hij u v
+
+#audit_axioms presBlockAct_elGen_presMatUnit
 
 /-- `[e_ik(f_uv), e_ki(f_vv)]` acts on `V^n` as the basis transvection `τ_(i,u),(i,v)`. -/
 theorem presBlockAct_commutator_presMatUnit (n : ℕ) {i k : Fin n} (hik : i ≠ k) {u v : ℕ}
@@ -99,6 +103,8 @@ theorem presBlockAct_commutator_presMatUnit (n : ℕ) {i k : Fin n} (hik : i ≠
     ⁅elGen i k hik (presMatUnit u v), elGen k i (Ne.symm hik) (presMatUnit v v)⁆) = _
   rw [h]
   exact blockAct_commutator_matUnit n hik huv
+
+#audit_axioms presBlockAct_commutator_presMatUnit
 
 /-! ## The sentence -/
 

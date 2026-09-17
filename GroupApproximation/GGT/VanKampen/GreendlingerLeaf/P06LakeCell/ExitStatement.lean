@@ -25,8 +25,8 @@ the exterior piece `E₀`).  `lakeOf K i` (lane gl-p06-10) is the piece of `Π_i
    the lake into several pieces, and the outside walk of `H'` is then not one closed walk.  The
    corrected route takes `H`, the piece of `Π_C` in the complement of `K.faces ∪ {Π_i}`, with its
    lakes filled.  `Π_j` is never removed, so it never lies on the walk of `H`.  Hence the two-arc
-   subcase (where `Π_j` is also in the lake), and the norm bounds it would need, do not arise on this
-   route.
+   subcase (where `Π_j` is also in the lake), and the norm bounds it would need, do not arise on
+   this route.
 2. **Walk darts.**  Let `e` be a dart of the inverse outside walk of the filled `H`: its face is in
    `H` and the face of `α e` is off `H`.  An absorbed face cannot carry `e`, since it is in the same
    component of the complement of `H` as the face across `e`.  So the face across `e` is in
