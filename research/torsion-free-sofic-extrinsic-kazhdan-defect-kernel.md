@@ -12,6 +12,7 @@ distinct_from:
   finite-outer-order-mapping-torus-is-virtually-product: That second no-go theorem shows the genuinely extrinsic route also needs an infinite-order outer action unless the kernel is already non-MF.
   steinberg-images-die-in-torsion-free-groups: That obstruction proves no nontrivial Steinberg image lies in a torsion-free group, which excludes every elementary-sourced kernel or compression source here; this is the positive construction problem that remains.
   mapping-torus-mf-radical-descends-through-kernel-radical: That computes a mapping-torus radical as a pullback from the mapping torus of the kernel's MF quotient; this is the construction problem that the reduction splits.
+  filtered-torsion-certificates-die-on-perfect-kernels: That obstruction proves a perfect kernel is invisible to every separated-filtration or radical target, killing congruence, unipotent and radical torsion-freeness certificates; this is the construction problem, which must certify torsion-freeness by some other mechanism.
   mf-kazhdan-quotientless-mapping-torus-exact-radical: That is the purely extrinsic existence question for MF Kazhdan kernels, with no soficity or torsion-freeness; this needs a torsion-free sofic kernel with an explicit defect.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
@@ -186,3 +187,30 @@ must build genuinely Hamming-approximate sofic models.
     characteristic `p`, via
     `[e_13(pN), e_32(pNu)] = e_12(pu)^{pN^2}`. Hyperbolic Belegradek--Osin
     covers remain untested. (EK1) is not addressed.
+13. **Filtered torsion certificates (2026-09-17, linear-characteristic).**
+    Item 10 kills elementary sources. This kills the standard *certificates* of
+    torsion-freeness for any candidate, including the STF3 survivor `EL_3(I)`.
+    `filtered-torsion-certificates-die-on-perfect-kernels` proves:
+    - (PN1) a finitely generated perfect group maps trivially to every
+      ultraproduct `prod_omega G_n` of groups with separated filtrations
+      `[F^a,F^b] <= F^(a+b)`;
+    - (PN2) a finitely generated rng with `I = I^2` maps to zero in radicals,
+      separated ideal filtrations and norm-small Banach models;
+    - (PN3) the same holds for virtually filtered targets of bounded index.
+
+    The kernel here is perfect, because it is finitely generated and
+    quotientless. So torsion-freeness cannot be certified through level-`q`
+    congruence groups of unbounded rank (Minkowski coordinatewise), unipotent or
+    `1 + radical` groups, residually torsion-free nilpotent or bi-orderable
+    groups, or `I <= p M_N(Z)` for relative elementary groups, not even in
+    ultraproducts.
+    - *Invariant.* The minimal filtration depth of the generator images.
+    - *Step where every member dies.* The finitely many perfect relations
+      `s_i = prod [u,v]`, or `x = A x`, hold exactly in `omega`-most coordinates,
+      where the depth doubles, or `1 - A` is invertible by Nakayama or a Neumann
+      series.
+
+    Survivors: geometric torsion-freeness (CAT(0) lattices), small cancellation
+    or Dehn filling, extension-type certificates such as (RLT) of item 12,
+    left-orderability, and linear models avoiding every fixed congruence level.
+    This node stays OPEN.

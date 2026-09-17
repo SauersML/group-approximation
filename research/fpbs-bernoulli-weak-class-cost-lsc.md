@@ -63,3 +63,65 @@ already gets only what (b) gives unconditionally. Where it stops: I found no mec
 bounds the coarse modulus of near-optimal graphings of b_n uniformly in n. Lemma 3.6 of CGdlS
 gives a modulus depending on the action. A cost jump needs graphings whose S-route lengths
 diverge along u, and I could neither build such a sequence nor exclude one.
+
+Non-free calibration of the diverging modulus (swarm-0917 wave 5, calibration). Dead. The aim
+was to realise the anatomy (d) of `fpbs-bernoulli-class-cost-jump-is-cgdls-ultraproduct-gap` by
+actual actions, dropping freeness of the approximants.
+
+- *Construction.* Let Q_m = ⟨a,b | b a^m b^{-1} = a^m⟩, the HNN extension of ⟨a⟩ ≅ Z over
+  ⟨a^m⟩ with trivial twist, and let π_m : F_2 = F(a,b) → Q_m be the quotient map. Let c_m be
+  F_2 ↷ [0,1]^{Q_m} with product Lebesgue measure, acting through π_m by the Bernoulli shift.
+- *Marked convergence.* Let w be freely reduced with |w| ≤ m+1 and π_m(w) = 1. If w contains
+  b^{±1}, Britton's lemma gives a subword b^{±1} a^j b^{∓1} with m | j. Since w is freely
+  reduced, j ≠ 0, so |w| ≥ m+2, a contradiction. Otherwise w = a^j, and ⟨a⟩ embeds, so
+  j = 0. Hence ker π_m meets the ball of radius m+1 trivially, and Q_m → F_2 as marked groups.
+- *Orbit-relation cost 1.* ⟨a^m⟩ is an infinite subgroup of Q_m, so the Bernoulli shift of
+  Q_m restricted to it is mixing, hence ergodic. Fix a set A of measure ε. For a.e. x there is
+  j with a^{mj}x ∈ A, and b x = a^{-mj} b a^{mj} x because a^m and b commute in Q_m. So the
+  graphing {a, b|_A} generates R_{c_m}, and C(R_{c_m}) ≤ 1+ε. The b-edges are recovered only
+  through routes of length ≥ m|j(x)|, so the moduli diverge exactly as in (d).
+- *The limit is free and has cost 2.* Let γ ≠ 1. Once m ≥ |γ|, π_m(γ) ≠ 1 acts essentially
+  freely, because Q_m is infinite. By CGdlS Lemma 2.43, μ_u(Fix γ) = lim_u μ(Fix_m γ) = 0, so
+  c_u is essentially free. Its free standard factor from CGdlS Theorem 3.28 has the same cost.
+  By Gaboriau (lecture notes, Corollary 2.25: "C_*(F_n) = C^*(F_n) = n"), that cost is 2. So
+  lim_u C(R_{c_m}) = 1 < 2 = C(c_u) for the orbit-relation cost.
+- *Where it dies.* The CGdlS cost of a non-free action is the groupoid cost C(G_{Γ↷X}), not
+  the orbit-relation cost. Their Theorem 4.2 gives lim_u C(a_n) ≥ C_*(Γ) for every sequence of
+  p.m.p. actions. For F_2 this forces lim_u C(G_{F_2↷X_m}) = 2 = C(c_u): no jump. The drop to
+  1 comes only from forgetting the isotropy ker π_m, which a groupoid graphing must still
+  generate. In general, no p.m.p. sequence, free or not, can go below C_*(Γ) in groupoid
+  cost. A strict groupoid-cost jump at s̃ is a fixed-price counterexample, by the remark after
+  CGdlS Question 4.3. So non-free actions calibrate nothing beyond the free case. Off the free
+  locus, the orbit-relation cost is the wrong functional.
+  Gaboriau source: *Around the orbit equivalence theory, measure equivalence, cost and
+  L2-Betti numbers*, lecture notes, version of October 3, 2025,
+  <https://perso.ens-lyon.fr/gaboriau/Travaux-Publi/ME-Cost-L2-Lectures/ME-Cost-L2-lectures.pdf>.
+  Corollary 2.25 reads "The following groups are strongly treeable and have fixed price:
+  C_*(F_n) = C^*(F_n) = n for the free group of rank n." Definition 2.9 defines C_* and C^* as
+  the inf and the sup over free p.m.p. actions.
+- *What would remain.* Non-free groupoid-cheap approximants a_n → s̃ would transfer to free
+  ones via a_n × s, since C(a_n × s) ≤ C(G_{a_n}) by Abért–Weiss Theorem 9. That needs
+  (a_n × s)~ → s̃. Approximating a partition of X_n × Y by rectangle partitions takes a number
+  of pieces that is not uniform in n, so this continuity is not available, and I did not
+  prove it.
+
+Kazhdan local certificates (swarm-0917 wave 5). Dead at the same interchange. For Kazhdan Γ,
+`fpbs-kazhdan-local-cost-formula` Theorem 1 bounds cost by a window-local defect D_{R,W}, which
+is weak-star continuous only for a fixed window W. Suppose b_n → s̃ with C(b_n) ≤ C(s) − δ.
+Near-optimal graphings of b_n give subgraphs G_n whose defect certificates need windows W_n.
+If W_n stayed bounded along u, Corollary 2 applied to limit statistics would give C(s) ≤
+C(s) − δ/2. By (d) of the gap node, W_n → ∞ along u. Passing to the ultralimit subgraph G_u on
+b_u ≃ s only bounds the defect after the ultralimit, at unbounded windows. So the certificate
+again needs W → ∞ to commute with lim_u, which is (c3) restated.
+
+Soft-axiom obstruction (swarm-0917 wave 5). No proof from order-theoretic and topological
+properties alone. Let T = {0} ∪ {1/n : n ≥ 1} and K = P(T) with the weak-star topology. Order K
+by μ ≼ ν iff ν({t}) ≥ μ({t}) for every t ≠ 0. This order is closed, since each t ≠ 0 is
+isolated in T. Put f(μ) = c − δ·μ(T∖{0}) with δ > 0. Then f is affine, and f is upper
+semicontinuous because μ ↦ μ({0}) is upper semicontinuous. f is antitone for ≼, like cost
+under weak containment, and δ_0 is the ≼-minimum with the maximal value c. But δ_{1/n} → δ_0
+while f(δ_{1/n}) = c − δ. So a compact convex space with a closed order, a minimum, and an
+affine, antitone, upper semicontinuous functional can still jump at the minimum. Any proof of
+this claim must use an input specific to cost on F̃R, beyond compactness, affinity, Kechris
+monotonicity and upper semicontinuity. The obvious candidates are freeness of the approximants
+at every scale, or Γ-specific geometry.

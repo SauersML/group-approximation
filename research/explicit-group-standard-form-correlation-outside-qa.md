@@ -57,3 +57,37 @@ upper bounds on `C_qa` of this kind come from MIP* = RE soundness, as in
     separation theorem. Its proof has not been checked for whether the
     witnessing projections can be taken inside a prescribed non-embeddable
     host. No verbatim citation has been imported, so this remains unverified.
+- **Equivalence with the goal (2026-09-17, swarm-0917-w5-nh-decomp-new).**
+  - `standard-form-qa-witness-iff-nonhyperlinear-group` proves that this
+    claim, as an existence statement, is equivalent to the existence of a
+    finitely presented non-hyperlinear group.
+  - A witness can always be taken perfect synchronous: on the solution group
+    of a Paddock--Slofstra tracial/non-`R^U` linear system, in the central
+    corner `z = (1-lambda(J))/2`, with `xi = sqrt(2) z delta_e`.
+  - So as a matter of existence, the non-synchronous and imperfect witnesses
+    this claim was left open for add no leverage over
+    `lcs-tracial-ru-gap-equiv-nonhyperlinear`. What is left is explicitness,
+    together with the prescribed-host question below.
+- **Prescribed host, naive argument (2026-09-17, swarm-0917-w5-nh-decomp-new).
+  Dies at one step.**
+  - Question: for a *given* non-hyperlinear `Lambda`, is there a witness in
+    `L(Lambda)` itself?
+  - Take `xi = delta_e` and `Q = J P J`. Then `<P JQJ delta_e, delta_e> = tau(PQ)`.
+    Approximate the generating unitaries `lambda(s)` in norm by finite-spectrum
+    unitaries `sum_a omega_a E_(s,a)`.
+  - Non-hyperlinearity then forces some finite family `E` whose generated
+    algebra is not `R^U`-embeddable.
+  - **Where it dies.** The step "`W*(E)` is not embeddable, hence
+    `p_E(a,b|x,y) = tau(E_(x,a)E_(y,b))` is not in `C_qa`" is false as stated.
+    Membership of a synchronous `p` in `C_qa` needs only *some* amenable trace
+    on `C*(Z_A^(*X))` with the same degree-2 moments. `p_E` does not see
+    products of the `E`'s, and the relations among them are not perfect game
+    rules.
+  - **What would repair it.** An encoding of word moments into degree-2
+    moments by perfect synchronous rules, placed inside `M_k(L(Lambda))`,
+    which is a central summand of `L(Lambda x S_(k+1))`.
+    - For solution groups the encoding is available: the context rules of
+      Step 3 of `standard-form-qa-witness-iff-nonhyperlinear-group-proof`.
+    - For a general `Lambda` it would need a group-level analogue of the
+      linearization in the Kavruk--Paulsen--Todorov--Tomforde operator-system
+      reduction. That has not been imported or proved.

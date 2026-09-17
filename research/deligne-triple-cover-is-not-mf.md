@@ -64,3 +64,36 @@ subgroup.
   Survivors: vector-state atoms (the induced representation from
   `s(NU) x <z>` has invariant vectors), relative-(T) corners, and the matrix
   origin of models.  Artifact: `research/artifacts/deligne-sector-siegel-spectrum-2026-09-17.md`.
+- **Semiclassical counter-models from finite-orbit symplectic actions are
+  dead (swarm-0917, quantization).**  This is the natural source of
+  operator-norm asymptotic models with non-finite-dimensional multipliers,
+  aimed at refuting this claim.  The construction takes Berezin--Toeplitz
+  or Zelditch quantized contact transformations of a quantizable symplectic
+  action of `Sp_4(Z)` on a compact integral `(X, omega)`.  The leading
+  multiplier has the form `omega = (prequantum lift class)^k *
+  (Bargmann composition factor) * delta(f)`, with `f_g : X -> T` symbol
+  phases.
+  - *Invariant:* the class of the leading multiplier restricted to a
+    finite-index stabilizer.
+  - *Step where it dies:* suppose the action has a finite orbit, so a
+    finite-index `Gamma'` fixes some `x_0`.
+    - Evaluating the symbol identity at `x_0`, the prequantum lifts act on
+      `L^k_(x_0)` by a character, so they give a coboundary.
+    - The phases `f_g(x_0)` give a coboundary.
+    - The composition factor is the metaplectic cocycle of the isotropy map
+      `Gamma' -> Sp(T_(x_0) X)` in the Bargmann model, with values `+-1`.
+    - Hence `omega^2|Gamma'` is a coboundary.
+    - By `virtually-two-torsion-multipliers-miss-deligne-third` (VT2), no
+      such model, after any rephasing, is a `c_1`- or `c_2`-sector model.
+  - *Covered examples:* linear and affine actions on `T^4` (rational
+    points), nilmanifold and cat-map quantizations, Weil-type theta
+    representations (also finite-dimensional), and actions through finite or
+    compact quotients.
+  - *Hypothesis (not proved here):* that the leading symbol of
+    `T_g T_h T_(gh)^*` at a common fixed point is the product of the pointwise
+    symbols with the linearized Bargmann (metaplectic) composition factor.
+    This is standard Toeplitz/FIO symbol calculus (Zelditch 1997, Charles
+    2006), but no verbatim citation is recorded here.
+  - *Survivors:* only quantizable symplectic actions of finite-index
+    subgroups of `Sp_4(Z)` without finite orbits (Zimmer-exotic), or
+    constructions not governed by a stabilizer-evaluated symbol calculus.

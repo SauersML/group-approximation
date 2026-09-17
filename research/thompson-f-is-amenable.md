@@ -59,6 +59,14 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     dyadic point. The next rung, finite entropy, is open. Killing it would still not
     decide the question, since by [Ers04b] some amenable groups have no
     finite-entropy Liouville measure.
+  - *2026-09-17, finite-entropy rung (swarm-0917-w5-f-l2-proper).* The rung is now the OPEN claim
+    `thompson-f-finite-entropy-walks-are-not-liouville`, split into two parts that can each fail.
+    - Established, `thompson-f-interval-avoiding-walks-have-positive-entropy`: suppose the induced dyadic chain from
+      some `x` avoids some `[x,y]` with positive probability. Conjugated `x_0`-bumps inserted as `Δ`-letters are then
+      readable at uncovered support endpoints, so the entropy is positive.
+    - Open: avoidance itself. Its negation is forced on any finite-entropy Liouville witness, whose transient induced
+      chain must a.s. approach every dyadic from the right.
+    - Dies at: real-topology accumulation of the induced chain, which transience does not control.
 - **Group-ring equations.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   amenability is the Ore condition for `K[F]`: every pair of nonzero `a, b` has a
   nonzero common multiple. Guba's survey (arXiv:2305.07113, §3, read in full) reduces
