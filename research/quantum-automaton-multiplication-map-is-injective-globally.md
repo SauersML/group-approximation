@@ -8,7 +8,9 @@ distinct_from:
   projection-comparison-lifts-through-injective-limits: that lifts projection comparisons through injective inductive limits; this is injectivity of one multiplication map on a minimal tensor product built from an inductive limit.
 ---
 
-**OPEN** (gap node opened by the 2026-09-17 audit of `quantum-endomorphisms-split-off-their-relative-commutant`).
+**ESTABLISHED** (route `quantum-automaton-multiplication-injective-proof`). This gap node was opened by the
+2026-09-17 audit of `quantum-endomorphisms-split-off-their-relative-commutant`; referee ref-04 (2026-09-17) wrote out
+the min-norm isometry and density argument as a direct proof.
 
 **Setting.** As in `quantum-endomorphisms-split-off-their-relative-commutant`: `A = (x)_G M_d`, `Phi` a unital
 shift-equivariant *-endomorphism with `Phi(A_e) <= A_N` for a finite `N`, and `D = Phi(A)' n A`.
@@ -16,7 +18,7 @@ shift-equivariant *-endomorphism with `Phi(A_e) <= A_N` for a finite `N`, and `D
 **Statement.** The multiplication map `Phi(A) (.) D -> A`, `a (x) x |-> a x`, extends to an injective
 *-homomorphism `Phi(A) (x)_min D -> A`.
 
-**What is known.** For each finite `L`, multiplication `Phi(A_L) (x) (Phi(A_L)' n A) -> A` is a *-isomorphism
+**Background.** For each finite `L`, multiplication `Phi(A_L) (x) (Phi(A_L)' n A) -> A` is a *-isomorphism
 (matrix slicing, Step 0 of the drafted route), so it is injective on `Phi(A_L) (.) D`. The referee's suggested
 completion: the local maps are isometric for the min norm and extend isometrically to `Phi(A) (x)_min D`, and the
 multiplication map agrees with this extension by continuity; equivalently, an ideal of an inductive limit is the
@@ -28,4 +30,9 @@ closure of its intersections with the finite stages.
    `quantum-endomorphisms-split-off-their-relative-commutant-proof`).** Injectivity on each `Phi(A_L) (.) D` was
    asserted to pass to `Phi(A) (.) D` because `Phi(A)` is the inductive limit of the `Phi(A_L)`. Where it dies:
    elements of the algebraic tensor product use non-local `a_i`, so the passage needs the min-norm isometry and
-   continuity argument above, which was not written. The attack is deferred to whoever restores the parent route.
+   continuity argument above, which was not written. The attack was deferred to whoever restored the parent route.
+
+2. **Min-norm isometry plus density (2026-09-17, referee ref-04, succeeded).** Route
+   `quantum-automaton-multiplication-injective-proof`. The global multiplication map exists on
+   `Phi(A) (x)_max D = Phi(A) (x)_min D` because `Phi(A)` is UHF. It is isometric on each `Phi(A_L) (x) D` by local
+   matrix slicing, and the union of these pieces is dense, so it is isometric and hence injective.
