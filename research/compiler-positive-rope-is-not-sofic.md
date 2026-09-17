@@ -66,3 +66,14 @@ soficity from hyperlinearity, which is a further open problem.
   vanish, because free sofic models give trivial IRS limits. Strong Atiyah and l2-integrality
   obstructions vanish because `R_e` is locally indicable
   ([[compiler-rope-is-locally-indicable]]).
+- **The hub drops out: only the Higman host matters (sw-040, 2026-09-17; strict reduction, proposed-established).**
+  [[higman-host-coset-soficity-makes-compiler-rope-sofic]] builds (HC_e) from coset models of `H_e` alone.
+  Hypothesis (HQ): `H_e ↷ H_e/iota(J)` is sofic for every finite-index normal `J ◁ Q_e = B3(1)`. It
+  suffices along one chain `J_n = j^-1(ker r_n)`. Under (HQ), `H_e`, `Gamma_e`, the edge coset action and
+  `R_e` are all sofic. This supersedes the frame obstacle of the previous bullet. That bullet used the
+  twisted diagonal; the correct incidence set is the untwisted `Q'' = {(iota q, j q)}` (equivalent under
+  `x -> x^-1` on `P`). The permutation model then keeps `u'` and `p` as frames `s in Sym(D)`, `t in C`,
+  so there are no spurious incidences. So a nonsofic `R_e` requires, for some `e in INF`, a finite-index
+  `J ◁ B3(1)` with `H_e ↷ H_e/iota(J)` nonsofic. This is a statement about the explicit Higman host
+  ([[mikaelian-explicit-higman-embedding]]). Lamps, `K_e`, `M_e`, the graph witness and the twist all
+  drop out. Open: the converse, and whether `J = Q_e` alone suffices.
