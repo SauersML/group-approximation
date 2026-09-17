@@ -1,0 +1,11 @@
+$ python3 check_cloning_axioms.py
+cloning axioms (C1),(C2),(C3 trivial),Eq.(2): OK for n <= 3
+direct-power sanity: right-action reading of (C2) holds, left reading fails: OK
+
+$ python3 phi_and_counter_circuit.py      (3m01s)
+phi: expansion invariance and multiplicativity OK on 40 random cases
+placement maps f_ijk verified for all i<j<k <= 14
+s=2: wires=6 gates=18 word length=144 (<=248 s^3=1984) ord(P)=12 lcm(1..2^s-1)=6
+s=3: wires=9 gates=33 word length=631 (<=248 s^3=6696) ord(P)=840 lcm(1..2^s-1)=420
+s=4: wires=12 gates=50 word length=1544 (<=248 s^3=15872) ord(P)=720720 lcm(1..2^s-1)=360360
+s=5: wires=15 gates=69 word length=2853 (<=248 s^3=31000) ord(P)=144403552893600 lcm(1..2^s-1)=72201776446800
