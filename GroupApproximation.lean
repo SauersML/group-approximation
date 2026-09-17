@@ -5458,6 +5458,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Stepa
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofIngredients
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Diagonal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.Suitable
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.StateExtension
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2OperatorSystems.ChoiFunctional
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
