@@ -5396,6 +5396,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.VerticalCongr
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.VerticalEquiv
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.Approximation
 import GroupApproximation.Manuscript.NonMFNotes.Full.Gstar.IndexEight
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Generation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
