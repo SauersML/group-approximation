@@ -61,7 +61,7 @@ theorem exists_getElem?_of_mem_window {α : Type*} {l : List α} {m k : ℕ} {d 
   · rw [List.getElem?_take, if_neg hjk] at hj
     exact absurd hj (by simp)
 
-/-- A dart reversing a dart of `T` exists on an arc whose reversal contains the nonempty list `T`. -/
+/-- An arc whose reversal contains the nonempty list `T` has a dart reversing a dart of `T`. -/
 theorem exists_cross_of_ne_nil {M : CombMap.{v}} {cycle : List M.Dart} (arc : CyclicArc cycle)
     {T : List M.Dart} (hT : T ≠ []) (hsub : ∀ s ∈ T, s ∈ arc.reverseDarts) :
     ∃ d ∈ arc.darts, M.alpha d ∈ T := by
@@ -86,7 +86,7 @@ theorem getElem?_classDarts_of_sideRun (Q : OsinLemma94ClassPolygons P) (k : Fin
       (L.flatMap (P.sideDarts k))[t]? = some d →
       ∃ t', (L.flatMap fun s => P.sideDarts k s ++ Q.gap k s)[t']? = some d ∧
         (∀ x, Q.runPos k L x ≤ t → x ≤ t') ∧ (∀ y, t < Q.runPos k L y → t' < y)
-  | [], t, d, h => by simp at h
+  | [], _, _, h => by simp at h
   | s :: L, t, d, h => by
     have e1 : (P.word k s).length = (P.sideDarts k s).length := by
       simp only [OsinLemma94RealizedPolygons.word, Embedded.dartWord, List.length_map]
