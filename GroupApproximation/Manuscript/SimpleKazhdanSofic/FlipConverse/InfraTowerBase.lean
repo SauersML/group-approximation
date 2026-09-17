@@ -48,11 +48,13 @@ theorem not_exists_tower_of_disjoint_image {T : X ≃ₜ X} {W : Set X}
     ¬ ∃ V : Set X, V.Nonempty ∧ ∀ i < n, (T ^ (i : ℤ)) '' V ⊆ W := by
   rintro ⟨V, ⟨v, hv⟩, hVW⟩
   have h0 : v ∈ W := by
-    have h := hVW 0 (by omega) (Set.mem_image_of_mem _ hv)
-    rwa [Nat.cast_zero, homeoPow_zero] at h
+    have h := hVW 0 (by omega) (Set.mem_image_of_mem (T ^ ((0 : ℕ) : ℤ)) hv)
+    have e : ((0 : ℕ) : ℤ) = 0 := Nat.cast_zero
+    rwa [e, homeoPow_zero] at h
   have h1 : T v ∈ W := by
-    have h := hVW 1 (by omega) (Set.mem_image_of_mem _ hv)
-    rwa [Nat.cast_one, homeoPow_one] at h
+    have h := hVW 1 (by omega) (Set.mem_image_of_mem (T ^ ((1 : ℕ) : ℤ)) hv)
+    have e : ((1 : ℕ) : ℤ) = 1 := Nat.cast_one
+    rwa [e, homeoPow_one] at h
   exact Set.disjoint_left.1 hWT h1 (Set.mem_image_of_mem T h0)
 
 /-- A clopen neighbourhood of `x` whose images under finitely many homeomorphisms lie in `W`
@@ -111,7 +113,7 @@ theorem exists_isClopen_tower_of_mem [CompactSpace X] [T2Space X] [TotallyDiscon
       ∀ i < n, ∀ j < n, i ≠ j → Disjoint ((T ^ (i : ℤ)) '' V) ((T ^ (j : ℤ)) '' V) := by
   obtain ⟨V, hV, hxV, -, hVW, hdisj⟩ :=
     exists_isClopen_levels (fun i : Fin n => T ^ ((i : ℕ) : ℤ)) hW isOpen_univ
-      (Set.mem_univ x) (fun i => hx i i.2)
+      (Set.mem_univ x) (fun i => hx i.1 i.2)
       (fun i j hij h => hij (Fin.ext (by exact_mod_cast zpow_apply_injective hT h)))
   exact ⟨V, hV, ⟨x, hxV⟩, fun i hi => hVW ⟨i, hi⟩,
     fun i hi j hj hij => hdisj ⟨i, hi⟩ ⟨j, hj⟩ fun h => hij (congrArg Fin.val h)⟩

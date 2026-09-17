@@ -90,7 +90,8 @@ theorem single_self_eq_prod
     · obtain ⟨i, hi⟩ : ∃ i : ZMod N, c (t + i) ≠ c (t₀ + i) := by
         by_contra hcon
         exact ht (hdist t t₀ fun i => not_not.1 fun h => hcon ⟨i, h⟩)
-      rw [Pi.single_eq_of_ne ht, Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)]
+      rw [Pi.single_eq_of_ne ht]
+      exact Finset.prod_eq_zero (Finset.mem_univ i) (if_neg hi)
   simp only [conj_letterDiagonal c]
   rw [toList_prod_map_diagonal, hd, diagonal_single]
 
@@ -110,8 +111,9 @@ theorem shiftMatrix_mul_single_self (s t : ZMod N) :
     rw [add_sub_cancel_right]
     by_cases hbt : b = t
     · subst hbt
-      rw [Pi.single_eq_same, if_pos ⟨hj.symm, rfl⟩]
-    · rw [Pi.single_eq_of_ne hbt, if_neg fun h => hbt h.2.symm]
+      rw [Pi.single_eq_same, if_pos (And.intro hj.symm rfl)]
+    · rw [Pi.single_eq_of_ne hbt,
+        if_neg (show ¬(s = b + (j : ZMod N) ∧ t = b) from fun h => hbt h.2.symm)]
   · rw [if_neg hab, if_neg]
     rintro ⟨rfl, rfl⟩
     exact hab hj
@@ -142,6 +144,9 @@ end Audit2
 end SimpleKazhdanSofic
 end GroupApproximation
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.list_prod_map_diagonal
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.toList_prod_map_diagonal
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.conj_letterDiagonal
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.single_self_eq_prod
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.shiftMatrix_mul_single_self
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.Audit2.manuscriptSentence_distinctShiftsGiveMatrixUnits

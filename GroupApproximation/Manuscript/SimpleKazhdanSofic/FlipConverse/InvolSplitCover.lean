@@ -89,7 +89,8 @@ theorem supportedIn_of_involution_cover [CompactSpace Y] [T2Space Y]
 /-- Lane `sk-flip-09`: the split of rigid stabilizers from transport of disjointness of
 *involutions* only. -/
 theorem exists_split_of_involution_disjoint [CompactSpace X] [T2Space X]
-    [TotallyDisconnectedSpace X] [PerfectSpace X] [CompactSpace Y] [T2Space Y] [TotallyDisconnectedSpace Y] [PerfectSpace Y]
+    [TotallyDisconnectedSpace X] [PerfectSpace X] [CompactSpace Y] [T2Space Y]
+    [TotallyDisconnectedSpace Y] [PerfectSpace Y]
     {T : X ≃ₜ X} {S : Y ≃ₜ Y} (hT : IsMinimalHomeo T) (hS : IsMinimalHomeo S)
     (hTa : IsAperiodic T) (hSa : IsAperiodic S)
     (Φ : topologicalFullGroup T ≃* topologicalFullGroup S)

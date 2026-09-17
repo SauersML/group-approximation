@@ -55,7 +55,8 @@ theorem exists_involution_cover [CompactSpace X] [T2Space X] [TotallyDisconnecte
     (hU : IsClopen U) :
     ∃ t : Finset {f : topologicalFullGroup T // f * f = 1 ∧ SupportedIn (f : X ≃ₜ X) U},
       U ⊆ ⋃ i ∈ t, movedSet ((i.1 : topologicalFullGroup T) : X ≃ₜ X) := by
-  have hcov : U ⊆ ⋃ i : {f : topologicalFullGroup T // f * f = 1 ∧ SupportedIn (f : X ≃ₜ X) U},
+  have hcov : U ⊆
+      ⋃ i : {f : topologicalFullGroup T // f * f = 1 ∧ SupportedIn (f : X ≃ₜ X) U},
       movedSet ((i.1 : topologicalFullGroup T) : X ≃ₜ X) := by
     intro x hx
     obtain ⟨g, hg, hg2, hgU, hgx⟩ := exists_involution_supportedIn_apply_ne hT hU.isOpen hx

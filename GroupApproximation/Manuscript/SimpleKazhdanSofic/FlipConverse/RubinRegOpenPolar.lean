@@ -17,7 +17,8 @@ in `[[T]]`.
   `movedSet h ⊆ Oᶜ`; as `T` is aperiodic, `movedSet h` is clopen (`isClopen_movedSet`), hence open,
   hence contained in `interior Oᶜ`.
   `⊇`: `interior Oᶜ ⊆ Oᶜ` and `SupportedIn.commute_of_compl`.
-* `regOpen_centralizer_centralizer_rigid_open`: for `O` open, `C(C(F_O)) = F_{interior (closure O)}`.
+* `regOpen_centralizer_centralizer_rigid_open`: for `O` open,
+  `C(C(F_O)) = F_{interior (closure O)}`.
   Apply the formula twice (`interior Oᶜ` is open) and use `(interior Oᶜ)ᶜ = closure O`
   (`closure_compl`, `compl_compl`).
 
