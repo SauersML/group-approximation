@@ -65,3 +65,16 @@ Never write a `requires: []` route into this claim.
   action of an `FP_2` overgroup of the input gives a simple `FP_2` group
   containing it. The crux is producing such actors for inputs that are not
   recursively presented; see the answer claims.
+- 2026-09-17 (sw-118, transplanter, symbolic dynamics): dead envelope family.
+  Nekrashevych groups of V-times-subshift groupoids cannot contain every input.
+  `v-times-subshift-full-groups-locally-embed-in-v`
+  proves that every finitely generated subgroup of `[[G_V x (Z ⋉ Y)]]`, for
+  irreducible `Y` (full shift, SFTs, minimal), is locally embeddable into `V`.
+  So an infinite finitely presented simple Kazhdan group (the km-246 lattice) is
+  in no such host, and neither is any input containing it. The exact break:
+  periodic approximations of `Y` turn the generators' finite rules into
+  elements of `V_{2,N} ≅ V`, and `V` is Haagerup.
+  - The same holds with `Z` replaced by any acting group whose subshift has
+    finite approximations (PA*). This covers full shifts over residually finite
+    groups. So such hosts need a subshift with no periodic approximations, or an
+    acting group with few finite quotients.
