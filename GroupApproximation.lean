@@ -5355,6 +5355,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.TwoNorm
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Itinerary
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.GeneralSubgroupsRemark
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.RecursiveHost
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LEFCorollaries.TuringDegree
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
