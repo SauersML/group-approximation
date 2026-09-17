@@ -73,7 +73,31 @@ completeness. The survivors are listed in that node.
   - Which soundness analysis would handle it? The BKLM multi-slice invariance is
     the analytic candidate.
   - What hard satisfiable source would it start from?
-* **Evidence question (open).** Are the Guruswami--Khot--O'Donnell--Popat--
-  Tulsiani--Wu perfect-SDP 2-to-1 gap instances (ICALP 2010) rich, or can they
-  be enriched without a merge skeleton? A yes would mean Conjecture 7 survives
-  the basic SDP.
+* **Evidence question: answered no for the GKOPTW vector universe
+  (2026-09-17).** The question was whether the Guruswami--Khot--O'Donnell--
+  Popat--Tulsiani--Wu perfect-SDP 2-to-1 gap instances (ICALP 2010) are rich,
+  or can be enriched without a merge skeleton.
+  - **Not rich.** Every GKOPTW edge pairing is the coset pairing of one `<γ>`,
+    so only `K - 1` of the `(K-1)!!` pairings occur at a left vertex.
+  - **No enrichment.** By `walsh-frame-rich-2to1-games-have-value-near-one`,
+    every rich game whose perfect SDP solution uses Walsh frames
+    `f_u chi_c / K` (the GKOPTW universe, any graph, any bijections) has
+    `val >= 1 - B(K)`, with `B(512) < 0.011`. So no such game is a gap below
+    `delta < 1/128`.
+  - Invariant: forcing edge mass.
+  - Step: the pair-sum identity forces co-neighbours to share differences. A
+    forcing difference set (rich pairings are forcing with probability
+    `1 - B(K)`) makes the frame twist a character, and one common vector per
+    component labels every forcing edge.
+  - Survivor: a basic-SDP gap for Conjecture 7 must use left frames that are not
+    twisted Walsh bases in any common coordinate system. The natural candidate
+    is the *rotated-frame universe game*:
+    - left vertices are orthogonal `2n`-frames with squared norms `1/2n`;
+    - right vertices are the `n`-frames of their pair sums;
+    - neighbours of a right vertex `v` are the frames `(y_b +- R e'_b)/2`, for
+      `R` in the orthogonal group of `span(y)^perp`.
+
+    In the continuum version, label permutations act by Haar-preserving
+    orthogonal maps, which is the heuristic reason for richness, and the frames
+    themselves are a perfect SDP solution. A finite rich discretisation and its
+    integral value are **open**, and nothing here is established.

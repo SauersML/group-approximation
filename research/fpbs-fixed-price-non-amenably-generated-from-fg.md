@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/fpbs-locally-free-fixed-pseudocost-2026-09-17.md
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
   - research/artifacts/fpbs-extension-certificates-carry-no-cost-information-2026-09-17.md
+  - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price.
@@ -245,3 +246,37 @@ swarm-0917-w4-fp-nonamenably-gen, inverter).** Artifact
   generators `t_j`, with `|t_j| -> infinity`, whose floors tend to zero. It is
   recorded as OPEN `fpbs-mal-long-generator-packing-growth`. If it holds,
   every free cost of `Gamma_mal` is finite, hence 2. The claim stays OPEN.
+
+**Shifted stages: relative cost is 0 or infinity, uniformly (September 17,
+2026, swarm-0917-w5-pull-fp-2, inverter).** Artifact
+`research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md`.
+- **Result (ESTABLISHED, `fpbs-shifted-stage-relative-cost-zero-or-infinite`).**
+  Let `theta` be an automorphism with `theta(H_n) = H_{n+1}`, and let `a` be a
+  theta-invariant free action, for example any Bernoulli shift. Then
+  `relC(E_a; E_{a|H_n})` does not depend on `n`, and it is `0` if
+  `C(a) < infinity` and `infinity` otherwise.
+  - **Proof.** Transport the pairs by `T`, then truncate a finite-cost graphing
+    by labels.
+  - **For `Gamma_mal`.** The map `b_k -> b_{k+1}` is such a `theta`, so the
+    Bernoulli shift has `C = 2` iff `relC(E_beta; E_{beta|H_1}) = 0`.
+- **Decomposition left.** Shape (B) at the Bernoulli shift reduces to one
+  positive lower bound at one stage, recorded as OPEN
+  `fpbs-mal-bernoulli-single-stage-floor`. If it holds, it answers Gaboriau
+  Q 2.66 and the second part of Q 2.65, and it refutes
+  `fpbs-locally-free-free-actions-have-finite-cost`. The "slowly decaying
+  relative cost" regime does not exist for theta-invariant actions.
+- **Dead ends tried here, none written as nodes.**
+  - **`C*(Gamma_mal) < infinity` by treeability.** No construction: the free
+    `R`-tree limits of stage Cayley trees make `a` elliptic, because the
+    length of `b_1` in `H_m`, divided by the length of `a`, grows like
+    `4^(m-1)`.
+  - **Gaboriau's Th. 2.56 applied to `1 -> Gamma_mal -> M -> Z -> 1`.** No
+    obstruction: `C*(M) = 1` already follows from rank gradient, since normal
+    finite-index `K` with `psi(K) = mZ` have `rank(K) <= 2 + [M:K]/m`.
+  - **Linnell ranks.** `H_1(H_n, D) -> H_1(H_{n+1}, D)` is an isomorphism,
+    because the Fox derivative `∂w/∂b_{n+1}` of `w = b_{n+1} a b_{n+1}^{-2}` is
+    nonzero, hence invertible in `D`. This agrees with the
+    `L²`-independence used by Theorem L. So every relative `l2` obstruction
+    vanishes.
+
+  The claim stays OPEN.

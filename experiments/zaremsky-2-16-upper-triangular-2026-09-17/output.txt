@@ -1,0 +1,5 @@
+cloning axioms on B_n(F_3), n <= 5: ok
+block form and Phi invariant under 360 random expansions: ok
+x-orbit: ['1/32', '1/16', '1/8', '1/4', '3/8', '7/16', '15/32']
+y-orbit: ['17/32', '9/16', '5/8', '3/4', '7/8', '15/16', '31/32']
+F_3 wr Z^2 relations and free product orbit on window |i|,|j| <= 3: ok

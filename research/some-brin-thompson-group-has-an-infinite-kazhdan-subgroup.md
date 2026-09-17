@@ -66,6 +66,53 @@ n = 1.
     3. Non-spatial embeddings.
     4. `q = 2^r` with `r ≥ 2`.
     5. Kazhdan groups not of Ã₂ type.
+- 2026-09-17 (lane swarm-0917-w5-nv-rel-t): a class-kill for spatial realizations, and a
+  reduction of w4's open items 1, 2 and 4 to one OPEN rigidity statement. Artifact:
+  `research/artifacts/nv-bernoulli-conformal-class-kill-2026-09-17.md`.
+  - **Invariant.** The Bernoulli conformal class `p ↦ [D_p∘ι] ∈ H^1(G_Λ; R)`, which is the
+    Radon–Nikodym class of pulled-back Bernoulli measures `μ_p`, `p ∈ (0,1)^n`. It uses
+    the whole family, not only Lebesgue measure.
+  - **Theorem (ESTABLISHED).** `spatial-two-graph-realizations-in-g2n-leave-the-degree-plane`.
+    - Setting: any continuous homomorphism `ι : G_Λ -> G_2^n` that is a homeomorphism on
+      units onto a compact open set, with `ρ(M_1) > 1`.
+    - Conclusion: some letter-count class `[N^ε_i∘ι]` is not in `R d_1 + R d_2`.
+    - Where every member dies:
+      - Perron pinning makes the degree-plane part `-log ρ(M_j)` for all `p`.
+      - Differentiating in `p` (Step 3) kills every letter class.
+      - Lemma 2.1 (canonical bricks, bounded offset transfer) then bounds source fibres,
+        while column sums of `M_1^j` grow.
+    - No Kraft, integrality, SAT, or hypothesis on `q`.
+  - **Brick codings for every q (ESTABLISHED).**
+    `two-graph-brick-codings-die-when-square-complex-h1-has-rank-two`: `dim H^1(K(Λ)) = 2`
+    alone excludes brick codings of `Λ` and of `Λ^{[k]}` when `dim H^1(K(Λ^{[k]})) = 2`.
+    - This re-proves the PG(2,2) result without SAT and the PG(2,3) result without Kraft.
+    - It settles item 4 wherever the level-0 certificate `dim H^1 = 2` holds.
+  - **Computation (ESTABLISHED).** `cmsz-pg22-level-one-block-recodings-admit-no-brick-coding`.
+    - For T0–T4, `dim H^1(K(Λ_T^{[1]})) = 2` (672 vertices, 5376 edges, 10752 squares), so
+      the level-1 block recodings admit no brick coding.
+    - Control: the product of two full 4-shifts gives `26, 98, 386` at `k = 0, 1, 2`.
+    - Scripts: `experiments/nv-conformal-rigidity-2026-09-17/`.
+  - **Decomposition (OPEN).**
+    `robertson-steger-tile-groupoids-have-no-spatial-realization` (route
+    `robertson-steger-no-spatial-realization-via-rigidity`) needs only
+    `robertson-steger-two-graph-groupoids-are-cocycle-rigid`: locally constant cocycles are
+    in the degree plane, in the colimit over all block levels. That one statement kills
+    items 1, 2 and 4 together.
+    - It could fail only through a class appearing at level `k ≥ 2`.
+    - The level-2 computation for T0 (10752 vertices) did not finish in this lane.
+    - This corrects w4's item 2: rigidity is needed only for locally constant cocycles, and
+      the argument works for every `q`, not only for `q` not a power of 2.
+  - **Survivors.**
+    - (3) non-spatial embeddings `Γ_T ↪ mV` that do not come from a groupoid map;
+    - (5) Kazhdan groups not of Ã₂ type;
+    - spatial realizations of `G_{Λ_T}`, until the rigidity claim is settled.
+  - **Subgroup form** (remark, not a node). A finitely generated `K ≤ nV` is finite iff
+    `p ↦ [D_p|_K]` is constant. So an infinite Kazhdan `K` must carry a nonconstant
+    Bernoulli class family.
+  - **Overlap.** Lane `swarm-0917-w5-z-nv-kazhdan-subgroups` reported on the bus
+    "corner independence volume equality kills all brick codings". That concerns brick
+    codings only. The spatial-realization theorem and block-recoding certificate here are
+    separate.
 - 2026-09-17 (lane swarm-0917-w5-z-nv-kazhdan-subgroups): brick codings die at connected
   corners, for every `q`. Artifact:
   `research/artifacts/nv-brick-coding-corner-kill-2026-09-17.md`.

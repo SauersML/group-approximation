@@ -88,3 +88,77 @@ construction of minimal 2-colourings.
 - What must be checked is that the colouring built on these blueprints is a
   computable point with a computable recurrence modulus, and that it is
   hyperaperiodic.
+
+**Attempt 2 (2026-09-17, swarm-0917-w5-pull-bh-3): margin ball-copy
+hierarchy.** Stays OPEN. Convention: `(λ.y)(μ) = y(μλ)`, `d(x,z) = |xz^{-1}|`,
+copies are right translates `B(ρ)c`.
+
+*Construction.*
+- Set `P_0 = 0` on `B(ρ_0)`, and `P_{k+1} = F_k(B(ρ_{k+1}))`.
+- `F_j(A)` scans `A` in shortlex order from `1`. It greedily places copies of
+  `P_j` at every `c` with `B(ρ_j + m_j)c ⊆ A` and `B(ρ_j)c` disjoint from the
+  copies already placed.
+- It then runs `F_{j-1}` on the uncovered remainder. `F_{-1}` colours what is
+  left by a fixed computable rule that reads only the region's shape.
+- With `P_0 = 0` and a zero fill, `y` is constant. The construction is a
+  placement skeleton, and Step 3 is exactly where the colours have to come from.
+- Parameters: `m_{i+1} > 3(ρ_i + m_i)` and `ρ_{i+1} ≥ 2(ρ_i + m_i)`.
+- With a solvable word problem every `P_k` is computable, and `y = lim P_k` is a
+  computable point.
+
+*Step 1: central modulus (proved by hand, not written as a node).* Every
+`μ ∈ G` lies within `D_i = 2(ρ_i + m_i) + 2ρ_i` of a `P_i`-copy.
+- Take the innermost copy `E` of level `≥ i+1` that contains `μ`.
+- If `B(ρ_i + m_i)μ` lies in the level-`i` remainder of `E`, greedy maximality
+  puts a `P_i`-copy within `2ρ_i`.
+- Otherwise push `μ` along a geodesic by `ρ_i + m_i` into the containing copy or
+  the gap. The new ball stays within `3(ρ_i + m_i) < m_{i+1}` of that region's
+  boundary. Internal copies sit at least `m_{i+1}` inside, so the ball avoids
+  them, and maximality applies.
+- Consequently `q_r = y|B(r)` recurs in every `(D_i + ρ_i)`-ball once `ρ_i ≥ r`,
+  so the orbit closure `X` is minimal, with a *computable central* modulus.
+
+*Step 2: effective closedness. Stops here.*
+- (M2) needs `X` effectively closed, which here means the language of `X` is
+  decidable, i.e. a computable *global* modulus: every `r`-pattern of `y` occurs
+  in every `R(r)`-ball.
+- A pattern of `y` at `λ` sits inside `q_{r+|λ|}`, so the central modulus bounds
+  its recurrence only in terms of `|λ|`. The method gives no computable bound on
+  the `|λ|` by which every `r`-pattern has appeared.
+- The unseen patterns are the boundary ones: copies meeting the remainder and
+  gap fillings. Their shapes depend on the shapes of large spheres in `G`.
+- A sufficient condition is (R_k): every level-`k` patch occurring in `y` occurs
+  inside `P_{k+1}`. It is circular, because the boundary patches are created by
+  the greedy grouping at levels above `k`.
+- *Partial fallback.* `Y_T = {z : q_ρ occurs in every T(ρ)-ball of z, for all ρ}`
+  is effectively closed and `X` is its unique minimal subset. `Y_T` is not
+  minimal in general, so this does not give (M2).
+- No counterexample is claimed: the step is where the method stops, not a
+  proven impossibility.
+
+*Step 3: freeness. Not reached; retracted false start.*
+- Hyperaperiodicity asks: for `s ≠ 1` there is `R` such that for every `λ` some
+  `μ ∈ B(R)` has `y(μλ) ≠ y(μsλ)`.
+- *False start.* I first argued that a witness inside a copy `c = aλ` needs
+  `P_i(x) ≠ P_i(xt)` with `t = asa^{-1}` and `x = μa^{-1}`, so `|t| ≤ 2ρ_i`. I
+  then argued that long conjugators `|asa^{-1}| = 2|a| + |s|` in free groups
+  kill this.
+- *Why that is wrong.* `x = μa^{-1}` and `xt = μsa^{-1}` both lie within
+  `R + |s|` of `a^{-1}`. So `|t| ≤ 2ρ_i` holds automatically whenever `λ` is at
+  depth at least `R + |s|` inside the copy. The conjugator length is not an
+  invariant. Every `λ` is deep inside the level-`k` copy at `1` for large `k`.
+- *What is true.* Descending through the hierarchy, the witness at `λ` becomes a
+  local `s`-defect of some `P_j` at the position of `λ`, or at a boundary between
+  a level-`j` copy and its remainder.
+- So the colouring must give `P_j` local `s`-defects of radius `R(s)`,
+  independent of `j`. Near copy boundaries the witnesses must straddle the
+  boundary, as in GJS blueprints.
+- This is the same shape as the swarm-0917-w5-pull-bh-2 spark. No new
+  obstruction is claimed here.
+
+*Resulting decomposition.* (M2) follows from two prerequisites that can fail
+independently:
+- (a) a computable ball-copy hierarchy with a computable global modulus, i.e.
+  (R_k) enforced;
+- (b) boundary-straddling hyperaperiodic witnesses placed computably in the same
+  hierarchy, i.e. an effective GJS blueprint colouring.

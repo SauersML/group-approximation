@@ -1,0 +1,8 @@
+10 2 {"D":10,"L":2,"nS":9,"U":66,"SU":591,"min_ratio_num":15,"min_ratio_den":2,"min_ratio":7.500000,"iters":2,"seconds":0.0}
+10 3 {"D":10,"L":3,"nS":9,"U":286,"SU":2532,"min_ratio_num":39,"min_ratio_den":6,"min_ratio":6.500000,"iters":3,"seconds":0.0}
+10 4 {"D":10,"L":4,"nS":9,"U":1001,"SU":8692,"min_ratio_num":55,"min_ratio_den":10,"min_ratio":5.500000,"iters":5,"seconds":0.0}
+10 5 {"D":10,"L":5,"nS":9,"U":3003,"SU":25325,"min_ratio_num":90,"min_ratio_den":20,"min_ratio":4.500000,"iters":7,"seconds":0.1}
+10 6 {"D":10,"L":6,"nS":9,"U":8008,"SU":64803,"min_ratio_num":277,"min_ratio_den":70,"min_ratio":3.957143,"iters":7,"seconds":0.2}
+10 7 {"D":10,"L":7,"nS":9,"U":19448,"SU":148796,"min_ratio_num":835,"min_ratio_den":231,"min_ratio":3.614719,"iters":7,"seconds":0.7}
+10 9 {"D":10,"L":9,"nS":9,"U":92378,"SU":594306,"min_ratio_num":8356,"min_ratio_den":2614,"min_ratio":3.196634,"iters":7,"seconds":7.1}
+10 13 {"D":10,"L":13,"nS":9,"U":1144066,"SU":4049774,"min_ratio_num":963442,"min_ratio_den":345710,"min_ratio":2.786850,"iters":5,"seconds":154.6}

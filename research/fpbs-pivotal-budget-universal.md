@@ -128,6 +128,44 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
       genuinely linear counts.
     - The tree does not refute PB, which holds on `T_d` with `C=1`. It gives
       no transitive example where counts beat `n`.
+* **Transplant group-ring states and positive-definite functions (group-rings, swarm-0917 wave 5).**
+  * *The route.* Read `tau_p` as a normalised positive-definite function on
+    `Gamma`, a state on the group ring. Try to push the operator facts from
+    `p_c` to `p_c + eps`:
+    - GNS and Fell absorption put the critical state inside `lambda ⊗ 1`;
+    - Harris gives supermultiplicativity;
+    - the atom decomposition and the Kazhdan projection give walk bounds;
+    - weak* continuity links the parameters.
+    The goal was NC or VIS, which PB implies.
+  * *Established* (`fpbs-two-point-state-axioms-admit-collapse`). On every
+    nonamenable Cayley graph the family
+    `f_p = theta(p)^2 + (1-theta(p)^2) tau_(p_c)` (for `p > p_c`) equals
+    Bernoulli on `[0,p_c]` and satisfies eight state axioms (T1)–(T8):
+    - positive definiteness;
+    - mixed Harris supermultiplicativity, via a convexity identity with defect
+      `a(1-a)(1-t(x))(1-t(y))`;
+    - monotonicity;
+    - the atom-plus-remainder walk decomposition;
+    - Kazhdan decorrelation;
+    - right weak* continuity at `p_c`;
+    - the integrated infinite-volume Russo–BK inequality.
+
+    Yet `lambda(f_p) = 1`, `A(f_p) = infinity` and `||F_p|| = infinity` for
+    every `p > p_c`. This holds on `F_2` and on Kazhdan groups too.
+  * *Where it dies.* At the continuation `p_c -> p_c + eps`.
+    - The atom is upper semicontinuous under weak* limits, so it forces only
+      `theta(p_c+) = 0`.
+    - The rate, `A` and the operator norm are only lower semicontinuous and
+      may jump.
+    - The infinite-volume Russo–BK integrand is `+infinity` once
+      `theta > 0`.
+  * *What survives.* The non-state input that separates `f` from Bernoulli is
+    the finite-ball polynomial truncation (4b)–(4e) of
+    `fpbs-bk-majorant-integrated-sensitivity-is-critical-l2-proof`. On graphs
+    with `||T_(p_c)|| < infinity`, `f` admits no truncation system. A proof
+    of PB must use finite-radius events uniformly in `R`, as Section 6 of
+    the pivotal-kernel ordering already required. The group-ring dictionary
+    itself cannot supply that.
 * **Transplant the operator-algebra dictionary (transplanter, swarm-0917 wave 5).**
   * *Dictionary.* `tau_p(x,y)=P_p(x<->y)` is a positive definite kernel, since
     `sum c_x conj(c_y) tau_p(x,y) = E sum_clusters |sum_{x in K} c_x|^2`. So

@@ -64,36 +64,34 @@ subgroup.
   Survivors: vector-state atoms (the induced representation from
   `s(NU) x <z>` has invariant vectors), relative-(T) corners, and the matrix
   origin of models.  Artifact: `research/artifacts/deligne-sector-siegel-spectrum-2026-09-17.md`.
-- **Semiclassical counter-models from finite-orbit symplectic actions are
-  dead (swarm-0917, quantization).**  This is the natural source of
-  operator-norm asymptotic models with non-finite-dimensional multipliers,
-  aimed at refuting this claim.  The construction takes Berezin--Toeplitz
-  or Zelditch quantized contact transformations of a quantizable symplectic
-  action of `Sp_4(Z)` on a compact integral `(X, omega)`.  The leading
-  multiplier has the form `omega = (prequantum lift class)^k *
-  (Bargmann composition factor) * delta(f)`, with `f_g : X -> T` symbol
-  phases.
-  - *Invariant:* the class of the leading multiplier restricted to a
-    finite-index stabilizer.
-  - *Step where it dies:* suppose the action has a finite orbit, so a
-    finite-index `Gamma'` fixes some `x_0`.
-    - Evaluating the symbol identity at `x_0`, the prequantum lifts act on
-      `L^k_(x_0)` by a character, so they give a coboundary.
-    - The phases `f_g(x_0)` give a coboundary.
-    - The composition factor is the metaplectic cocycle of the isotropy map
-      `Gamma' -> Sp(T_(x_0) X)` in the Bargmann model, with values `+-1`.
-    - Hence `omega^2|Gamma'` is a coboundary.
-    - By `virtually-two-torsion-multipliers-miss-deligne-third` (VT2), no
-      such model, after any rephasing, is a `c_1`- or `c_2`-sector model.
-  - *Covered examples:* linear and affine actions on `T^4` (rational
-    points), nilmanifold and cat-map quantizations, Weil-type theta
-    representations (also finite-dimensional), and actions through finite or
-    compact quotients.
-  - *Hypothesis (not proved here):* that the leading symbol of
-    `T_g T_h T_(gh)^*` at a common fixed point is the product of the pointwise
-    symbols with the linearized Bargmann (metaplectic) composition factor.
-    This is standard Toeplitz/FIO symbol calculus (Zelditch 1997, Charles
-    2006), but no verbatim citation is recorded here.
-  - *Survivors:* only quantizable symplectic actions of finite-index
-    subgroups of `Sp_4(Z)` without finite orbits (Zimmer-exotic), or
-    constructions not governed by a stabilizer-evaluated symbol calculus.
+- **Linear-characteristic separation is dead (swarm-0917, transplanter).**
+  This covers determinants, trace-logs, Exel--Loring/Dadarlat winding
+  numbers and K_0/K_1 pairings of words filling `H_2` classes.
+  `deligne-sector-determinants-see-only-dimension-mod-three`
+  proves the following:
+  - **Twisted Dadarlat formula.**  The twisted form of Dadarlat's
+    Theorem 1.1 holds for the order-three mark.
+  - **Only surviving bound.**  Its whole output is
+    `dist(d theta k_r, Z) <= d L_r delta / 4`.
+  - **Exact data.**  The exact determinant data are consistent iff `3 | d`.
+  - **Normalized data.**  The normalized (de la Harpe--Skandalis) value
+    group in the corona is `R`.
+
+  Every member dies at "the determinant constraints are inconsistent":
+  - Unnormalized members die because `U_n tensor I_3` keeps the defect and
+    makes `3 | d_n`.
+  - Normalized members die because `tau(K_0(Q)) = R`.
+
+  A uniform-stability variant also dies:
+  - **The argument.**  Use the trace-log functional to show that an exact
+    `c_theta` representation in a tracial ultraproduct cannot be close to
+    a genuine representation.
+  - **Where it dies.**  `corona-defect-is-not-uniform` removes the uniform
+    input for coronas.  For tracial von Neumann targets, the twisted regular
+    representation is already a uniform `2 pi |theta| ||b||_inf` almost
+    representation, so the stability hypothesis itself is false.
+
+  Survivors are unchanged:
+  - non-multiplicative spectral-multiplicity data;
+  - vector-state and relative-(T) mechanisms;
+  - the matrix origin of models beyond determinants.

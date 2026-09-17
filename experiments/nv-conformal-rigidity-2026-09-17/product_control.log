@@ -1,0 +1,4 @@
+product k=0 {'V': 16, 'E': 128, 'F': 256, 'free_after_propagation': 26, 'remaining_relations': 0, 'h1_upper': 26} 0.0s (cross-checked)
+product k=1 {'V': 256, 'E': 2048, 'F': 4096, 'free_after_propagation': 98, 'remaining_relations': 0, 'h1_upper': 98} 0.4s
+product k=2 {'V': 4096, 'E': 32768, 'F': 65536, 'free_after_propagation': 386, 'remaining_relations': 0, 'h1_upper': 386} 7.3s
+product k=3 {'V': 65536, 'E': 524288, 'F': 1048576, 'free_after_propagation': 1538, 'remaining_relations': 0, 'h1_upper': 1538} 199.8s

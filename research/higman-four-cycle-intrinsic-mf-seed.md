@@ -194,3 +194,22 @@ construction is currently known; nearby-spectrum mixing is also not covered.
     refutation lane through `(HOM5)` gets no support at `q<=81`. What remains
     open is an analytic lower bound on the `eps`/`r` trade-off, or larger-`q`
     evidence.
+- **2026-09-17, swarm-0917-w5-pull-pt-1 (obstruction-miner, cohomology-index).**
+  Result: `higman-cohomological-countermodel-invariants-vanish` (established).
+  I tried to refute `(HMF3)` with an index-type countermodel, in the style of
+  Voiculescu, Exel--Loring, Dadarlat almost-flat K-theory, delocalized
+  Dadarlat, or the Dadarlat--Glebe obstruction class.
+  - **The lane is empty.**  The cellular boundary of every cycle
+    `H_k(BS(1,m))` is `(1-m)` times a cyclic permutation.  So
+    `H_2 = 0` by Hopf and `H^2(Gamma;V) = 0` for every vector space `V`.
+    For `Hig`, Baumslag--Dyer--Heller give a classifying 2-complex and
+    acyclicity, and the group is torsion-free.
+  - **Where it dies.**  Every member dies at the pairing step: the invariant
+    lives in a zero group, or in the rank summand of `K^0(BHig) = Z`.
+  - **Consequence for countermodels.**  Any operator-norm countermodel to
+    `(HMF3)` is cohomologically invisible.  The surviving refutation lanes
+    are non-index ones (amenable or MF-representable quotients, spectral
+    clocks).
+  - **Scope.**  This is not a proof of `(HMF3)`, since `H^2 = 0` supplies no
+    perturbation theorem.  The success of the same lane on
+    `SL_4(F_q[t^(+-1)])` depended on torsion, which `Hig` lacks.

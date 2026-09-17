@@ -389,6 +389,31 @@ content in that region.
   ingredients listed above, only independent increments of the product law
   above `p_c` remain: BK/Reimer, Russo, and upper-bound differential
   inequalities.
+* **Intrinsic-radius kernels: BK in the radius, not in the parameter
+  (2026-09-17).** Route `fpbs-universal-intrinsic-l2-rate-route`.
+  - **Established part** (`fpbs-intrinsic-l2-rate-closed-zero-set`). Define
+    `T^(R)_t(u,v) = P_t(d_omega(u,v) <= R)`. By BK,
+    `T^(R+R') <= T^(R) T^(R')` entrywise. So the rates
+    `Lambda(t) = inf_R R^(-1) log ||T^(R)_t||_(2->2)` and
+    `lambda_1(t) = inf_R R^(-1) log E_t|B^int_R|` are infima of continuous
+    functions. They are therefore upper semicontinuous and right-continuous.
+    Sharpness puts `[0,p_c)` in their zero sets, and the zero sets are closed,
+    so both rates vanish on `[0,p_c]` on every nonamenable Cayley graph, with
+    no critical `l2` input. A linear chemical stretch constant `K` at `t`
+    gives `Lambda(t) >= log(gr)/(2K)`. So the stretch constant diverges at
+    `p_c+` universally.
+  - **Open side.** A chain of sufficient conditions, each stated only for
+    `t > p_u`: (UCS) `fpbs-uniform-chemical-stretch-above-pu` implies (IL2)
+    `fpbs-intrinsic-l2-rate-bounded-below-above-pu`, which implies (IL1)
+    `fpbs-intrinsic-growth-rate-positive-at-pu`, which implies `p_c < p_u`.
+    (UCS) and (IL2) can fail on graphs that have a window.
+  - **Where it stops.** (UCS) needs linear chemical distance in the uniqueness
+    phase, which is not available on general nonamenable graphs (there is no
+    Antal--Pisztora renormalization). It also needs a merge-scale estimate at
+    `p_u+`.
+  - **Class killed.** Arguments that give uniform stretch above a threshold
+    `q` from inputs that `q = p_c` also satisfies die at item 6 of the
+    established claim.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.

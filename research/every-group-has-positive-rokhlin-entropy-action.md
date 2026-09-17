@@ -235,16 +235,15 @@ anywhere refutes it.
     - If this held for all torsion-free groups, Bernoulli maximality would follow for every torsion-free group, including the torsion-free nonsofic hosts. By `seward-per-group-rokhlin-entropy-of-bernoulli-shifts`, their surjunctivity would follow too.
     - This root would not follow, since Theorem 1.11 passes through `P × G` with `P` locally finite, which has torsion.
   - **Not tried here.** Non-Shannon inequalities on the torsion fakes; a torsion-free pattern with LP `< 1`.
-- **Co-Hopfian conjugacy invariants are pre-empted (swarm-0917-w5-pull-gs-3, reframing, 2026-09-17).** Idea: replace entropy with a
-  conjugacy invariant of `G`-subshifts that is monotone under inclusion and strictly drops on a proper subshift of `A^G`. Candidates
-  were the clopen type semigroup and `K_0` of `C(X) ⋊ G`. The lane dies at its first step, and the death is already recorded in
-  `gottschalk-surjunctivity-conjecture`.
-  - An injective automaton `tau` induces the unital pullback endomorphism `f -> f o tau` of `C(X)`, which extends to the crossed
-    product. Its kernel is the ideal of functions that vanish on `tau X`. So a strict drop is exactly non-injectivity of this
-    endomorphism, and any "Hopfian crossed product" invariant restates the goal.
-  - The states on `K_0` (and on the type semigroup) are the invariant measures. Any finite additive dimension that is monotone
-    under `Phi_tau` is invariant: apply monotonicity to `1 - e`. That is the operator-algebraic dimension lane (sw-003). Its
-    diagonal sector is the goal-equivalent `injective-measure-preserving-ca-is-surjective`. Affine self-embeddings of the
-    Poulsen or Bauer simplex make index-type readings blind.
-  - What is not covered: non-additive, non-cancellative type-semigroup data that is not seen by states. No candidate was found
-    that is not a restatement of the lattice of closed invariant subsets, so nothing was landed.
+- **Torsion window fakes are entropic (swarm-0917-w5-pull-gs-1, 2026-09-17).** This follows up the non-Shannon gap above.
+  - **Established** (`torsion-window-fakes-are-realized-by-f2-linear-codes`, exact integer verification). The `Z/3` fake
+    `Phi = 5/6` is the entropy vector of two rank-5 `F_2`-linear maps on three independent uniform `F_2^6` sites. So no
+    information inequality of any kind, Shannon or not, derives `Phi >= 1` from the entropy premises (I), (D), (T) in a group
+    with an element of order 3.
+  - **Computation.** Adding every Zhang–Yeung instance leaves the LP values at `5/6`, `7/9`, `4/5` for orders 3, 4, 5.
+  - **Where it dies.** (T) equates entropies of translates, not laws. The realization uses non-equivariant codewords
+    (`W_1 ≠ W_0 ∘ shift`). Invariance in law forces the orbit codeword `y_(t^2)`, and then the LP has value 1. A surviving
+    local proof must use invariance in distribution, or codewords outside `F`.
+  - **Open.** Whether the `Z/4`, `Z/5`, Klein and `D_inf` fakes are entropic. A simulated-annealing search for `F_2`-linear
+    realizations (`experiments/entropic-window-fakes-2026-09-17/linrep.c`) found `Z/3` quickly and had not found the
+    others at the time of writing.

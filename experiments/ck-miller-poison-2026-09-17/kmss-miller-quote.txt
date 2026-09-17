@@ -1,0 +1,30 @@
+Source excerpt, extracted 2026-09-17 with pypdf 6.19.0 from
+https://web.stevens.edu/algebraic/alexeim/Publications/All_files_new/generic_last_55.pdf
+I. Kapovich, A. Myasnikov, P. Schupp, V. Shpilrain, "Generic-case complexity,
+decision problems in group theory and random walks", J. Algebra 264 (2003)
+665-694; arXiv:math/0203239.
+
+Printed page 15, last paragraph of Section 4. Text layer, verbatim
+(line breaks and hyphenation as extracted):
+
+solvable. All our results in this paper are proved by the "quotient method" of
+finding an infinite quotient group in which the relevant problems have the de-
+sired complexity. Using the existence of two disjoint recursively enumerable
+sets which are not recursively separable and the Adian-Rabin construction,
+C. F. Miller III [48] constructed an example of a finitely presented group
+G all of whose nontrivial quotients have unsolvable word problem! This
+particular group G therefore completely defeats our method of proof but it
+may well be the case that the word problem has low generic-case complexity
+for some different reason.
+
+Reference entry, verbatim:
+
+[48] C. F. Miller III, Decision problems for groups - Survey and reflections, in: Algo-
+rithms and Classification in Combinatorial Group Theory, G. Bamuslag and C.F.
+Miller III, editors, (1992), Springer, 1-60.
+
+Not used as an import. The primary source, C. F. Miller III, "The word problem
+in quotients of a group", returned HTTP 503 on 2026-09-17. A search-engine
+summary of that paper states a stronger form: a finitely presented G and
+1 != w in G such that phi(w) = 1 forces H = 1, and phi(w) != 1 with H
+recursively presented forces H to have unsolvable word problem of degree 0'.
