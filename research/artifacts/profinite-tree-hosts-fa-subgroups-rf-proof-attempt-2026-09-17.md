@@ -1,11 +1,11 @@
----
-rg: 2
-id: profinite-tree-hosts-fa-subgroups-rf-proof
-kind: route
-title: Subdivide, fix a vertex, restrict to finite balls, and separate the Kac--Moody input from the tree hosts by its finite residual
-target: profinite-tree-hosts-make-fa-subgroups-residually-finite
-requires: [property-t-implies-property-fa, km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4, fp-simple-kac-moody-lattices-are-mif, fp-simple-highly-transitive-groups-satisfy-pbh, outer-extensions-of-fp-simple-mif-groups-satisfy-pbh, aut-free-groups-satisfy-permutational-boone-higman, boone-higman-type-a-class-closed-under-finite-extensions]
----
+# Proof attempt for profinite-tree-hosts-make-fa-subgroups-residually-finite (held OPEN)
+
+This was the route `profinite-tree-hosts-fa-subgroups-rf-proof`. It was withdrawn from the graph on 2026-09-17 because two referee lenses refuted Item 3, host (E4). That step claims (E4) covers the factor-preserving lattices of `product-of-trees-lattices-satisfy-permutational-boone-higman`. Those lattices have finite stabilizers of vertices of the product, not of a single factor, so the finite-stabilizer part of Item 2 does not apply to them. See `## Attempts` in the claim. Both referees checked Step 0, Items 1 and 2, (E1)--(E3), Item 4 and Item 5 and found them correct.
+
+Original title: Subdivide, fix a vertex, restrict to finite balls, and separate the Kac--Moody input from the tree hosts by its finite residual
+
+Original prerequisites: `property-t-implies-property-fa`, `km-246-lattice-fp-simple-kazhdan-irs-rigid-for-q-ge-4`, `fp-simple-kac-moody-lattices-are-mif`, `fp-simple-highly-transitive-groups-satisfy-pbh`, `outer-extensions-of-fp-simple-mif-groups-satisfy-pbh`, `aut-free-groups-satisfy-permutational-boone-higman`, `boone-higman-type-a-class-closed-under-finite-extensions`.
+
 
 Notation is as in the target. A tree is a connected graph without cycles and
 without multiple edges, so an automorphism is determined by its action on
