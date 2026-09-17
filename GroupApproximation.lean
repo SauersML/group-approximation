@@ -5415,6 +5415,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Fibonacci.Endpoints
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.GroupModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.RadicalArithmetic.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Torsion
+import GroupApproximation.Manuscript.NonMFNotes.Full.Prose.DeligneType
+import GroupApproximation.Manuscript.NonMFNotes.Full.RadicalArithmetic.Arithmetic
+import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.FibreCollapse
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
