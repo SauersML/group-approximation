@@ -1,0 +1,6 @@
+#!/bin/sh
+# Live coordination bus for agents working on the Cairn graph: approach
+# leases, a shared event feed, the approach atlas and role cards.
+# See tools/cairn_live.py and notes/agent-coordination-playbook-2026-09-17.md.
+root="$(cd "$(dirname "$0")/.." && pwd)"
+CAIRN_ROOT="$root" exec python3 "$root/tools/cairn_live.py" "$@"

@@ -1,0 +1,227 @@
+{
+  "about": "Approach families and role cards for tools/cairn_live.py. A family is a way of attacking a problem, recognised by keywords in node text. The atlas counts families around a goal, so saturated, dying and never-tried families are computed from the graph instead of guessed. Agents add families at run time with `cairn-live family add`; fold the useful ones back into this file.",
+  "families": {
+    "finite-models": {
+      "gist": "approximate the group by finite objects and count (sofic, LEF, residual finiteness, marked limits)",
+      "keywords": [
+        "sofic",
+        "\\blef\\b",
+        "residually finite",
+        "locally embeddable",
+        "finite quotient",
+        "marked limit",
+        "finite model",
+        "table group"
+      ]
+    },
+    "entropy-measure": {
+      "gist": "invariant measures, entropy, ergodic theory",
+      "keywords": [
+        "rokhlin",
+        "entropy",
+        "bernoulli",
+        "invariant measure",
+        "p\\.m\\.p",
+        "ergodic",
+        "measurabl"
+      ]
+    },
+    "operator-algebras": {
+      "gist": "C*- and von Neumann algebras, traces, K-theory, crossed products, type semigroups",
+      "keywords": [
+        "c\\*-algebra",
+        "crossed product",
+        "k-theory",
+        "\\bk_0\\b",
+        "von neumann",
+        "roe algebra",
+        "type semigroup",
+        "stably finite",
+        "purely infinite"
+      ]
+    },
+    "group-rings": {
+      "gist": "group algebras and rings: direct finiteness, zero divisors, units, idempotents",
+      "keywords": [
+        "group algebra",
+        "group ring",
+        "directly finite",
+        "zero divisor",
+        "kaplansky",
+        "leavitt",
+        "idempotent"
+      ]
+    },
+    "linear-characteristic": {
+      "gist": "linear automata, parity rules, characteristic arguments, matrices over finite fields",
+      "keywords": [
+        "linear (cellular )?automat",
+        "linear rule",
+        "parity",
+        "\\bf_[23p]\\b",
+        "over f_",
+        "characteristic [p23]",
+        "augmentation",
+        "polynomial automat"
+      ]
+    },
+    "local-designs": {
+      "gist": "hand-built local rules: markers, walls, bands, star symbols, tracks, swindles, shears",
+      "keywords": [
+        "marker",
+        "annulus",
+        "wall",
+        "band",
+        "star",
+        "track",
+        "swindle",
+        "shear",
+        "garden of eden",
+        "design"
+      ]
+    },
+    "census-computation": {
+      "gist": "exhaustive search, SAT, coset enumeration, word-problem solving over small cases",
+      "keywords": [
+        "census",
+        "exhaustive",
+        "\\bsat\\b",
+        "solver",
+        "enumerat",
+        "coset",
+        "knuth",
+        "computer search",
+        "certificate"
+      ]
+    },
+    "host-geometry": {
+      "gist": "special host groups: Kazhdan, hyperbolic, lattices, trees, Thompson, Higman, monsters, small cancellation",
+      "keywords": [
+        "kazhdan",
+        "property \\(t\\)",
+        "hyperbolic",
+        "lattice",
+        "\\btree",
+        "thompson",
+        "higman",
+        "monster",
+        "small cancellation",
+        "hnn",
+        "amalgam"
+      ]
+    },
+    "logic-computability": {
+      "gist": "model theory, ultraproducts, decidability, arithmetic complexity of the statement",
+      "keywords": [
+        "ultraproduct",
+        "model theor",
+        "undecidab",
+        "decidab",
+        "computab",
+        "recursive",
+        "first-order",
+        "sigma_1",
+        "pi_1"
+      ]
+    },
+    "cohomology-index": {
+      "gist": "cohomology, l2 invariants, cocycles, indices, Euler characteristics",
+      "keywords": [
+        "cohomolog",
+        "homolog",
+        "betti",
+        "\\bl2\\b",
+        "cocycle",
+        "index",
+        "euler characteristic"
+      ]
+    },
+    "symbolic-dynamics": {
+      "gist": "subshifts, SFTs, full groups, topological entropy, conjugacy invariants",
+      "keywords": [
+        "subshift",
+        "\\bsft\\b",
+        "full group",
+        "minimal",
+        "expansive",
+        "conjugacy invariant",
+        "topological entropy"
+      ]
+    },
+    "probability-random": {
+      "gist": "random structures: percolation, random walks, random groups, mass transport",
+      "keywords": [
+        "random",
+        "percolation",
+        "mass transport",
+        "unimodular",
+        "benjamini"
+      ]
+    },
+    "stability-approximation": {
+      "gist": "almost homomorphisms, stability, hyperlinearity, Connes embedding",
+      "keywords": [
+        "stabilit",
+        "almost homomorphism",
+        "hyperlinear",
+        "connes",
+        "flexible"
+      ]
+    },
+    "calibration": {
+      "gist": "counterexamples in neighbouring worlds (non-unimodular groups, semigroups, graphs) that every proof must fail on",
+      "keywords": [
+        "calibration off",
+        "off groups",
+        "non-unimodular",
+        "monoid",
+        "semigroup",
+        "every proof must fail"
+      ]
+    },
+    "minimal-counterexample": {
+      "gist": "assume the goal fails and derive the forced biography of a minimal counterexample",
+      "keywords": [
+        "minimal counterexample",
+        "counterexample must",
+        "forced propert",
+        "would have to be",
+        "any counterexample"
+      ]
+    },
+    "reframing": {
+      "gist": "change the objects: groupoids, partial actions, inverse semigroups, relations, channels, vector alphabets",
+      "keywords": [
+        "groupoid",
+        "partial action",
+        "inverse semigroup",
+        "equivalence relation",
+        "quantum channel",
+        "vector alphabet",
+        "compact alphabet"
+      ]
+    },
+    "quantifier-shift": {
+      "gist": "move the quantifier: one tester host, all large alphabets, generic groups, the arithmetic form of the statement",
+      "keywords": [
+        "tester host",
+        "universal",
+        "generic group",
+        "every large alphabet",
+        "upward closed",
+        "arithmetic complexity",
+        "test group"
+      ]
+    }
+  },
+  "roles": {
+    "inverter": "Assume the goal is false. Write the biography of a minimal counterexample: every property it is forced to have (use established nodes). Either derive a contradiction from the biography, or turn the biography into a construction recipe and build as far as you can. Record each forced property as a claim.",
+    "transplanter": "Take one COLD family below (established work elsewhere in the graph, almost none near this goal). Import its central tool. Write the dictionary: what each object of the goal becomes in that family, and what the goal becomes. Prove the translated statement in the easiest nontrivial case, or find exactly where the dictionary breaks.",
+    "obstruction-miner": "Read the DEAD approaches below. Find the single invariant that most of them hit. State it as a theorem that kills the whole class at once, or find the gate that changes it, which is then the loophole to build. A class-killing obstruction is a first-class result.",
+    "reframer": "Change the objects: groups to groupoids, partial actions or inverse semigroups; automata to relations, measurable codes or quantum channels; finite alphabets to vector spaces or compact groups. Prove the reframed statement where it is easier, then isolate the transfer principle that brings it back, and name the hypothesis the transfer uses.",
+    "scale-shifter": "Change the quantifier level: one universal tester host instead of all groups, every large alphabet instead of each alphabet, generic or random groups, ultraproducts, or the arithmetic complexity of the statement. Find the level where the problem becomes tractable and prove the bridge back.",
+    "compute-scout": "Generate data nobody has: an exhaustive or directed search in a region no census has covered (see the census nodes below and avoid them). Report anomalies and the conjectures they suggest, with runnable scripts under experiments/.",
+    "heretic": "List the three assumptions shared by the HOT families below that nobody states. Deny each one in turn, and follow the denial until it breaks or gives a new route.",
+    "calibrator": "For any proposed proof method, name the calibration counterexamples below. Show exactly which step fails on each. A method that never uses what separates groups from those worlds is dead on arrival; say so early and cheaply."
+  }
+}
