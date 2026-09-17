@@ -151,7 +151,7 @@ theorem isAdmissible_bot (A : HullGeneratingSet (Monoid.Coprod H Γ))
 /-- A nontrivial `Γ`-letter survives every admissible kernel. -/
 theorem inr_not_mem_of_isAdmissible {K : Subgroup (Monoid.Coprod H Γ)} (hK : IsAdmissible K)
     {γ : Γ} (hγ : γ ≠ 1) : (Monoid.Coprod.inr γ : Monoid.Coprod H Γ) ∉ K := by
-  obtain ⟨Q, _, q, _, rfl, _, _, hinj, _⟩ := hK
+  obtain ⟨_, _, q, _, rfl, _, _, hinj, _⟩ := hK
   intro h
   apply hγ
   apply hinj
@@ -163,7 +163,7 @@ theorem admissible_push_step (hhull : HullSC.HullOneStepStatementGeneral.{0})
     {K : Subgroup (Monoid.Coprod H Γ)} (hK : IsAdmissible K) (c : Monoid.Coprod H Γ) :
     ∃ K', IsAdmissible K' ∧ K ≤ K' ∧
       ∃ p ∈ (Monoid.Coprod.inl : H →* Monoid.Coprod H Γ).range, p⁻¹ * c ∈ K' := by
-  obtain ⟨Q, _, q, hq, rfl, A, halph, hinj, hsuit⟩ := hK
+  obtain ⟨_, _, q, hq, rfl, A, halph, hinj, hsuit⟩ := hK
   obtain ⟨T⟩ := hhull (k := 0) (S := fun j : Fin 0 => Fin.elim0 j) A hsuit
     (fun j : Fin 0 => Fin.elim0 j) (q c) 1
   have hm : T.step.q (q c) ∈
@@ -219,7 +219,7 @@ theorem injective_mk_inr {K : Subgroup (Monoid.Coprod H Γ)} [K.Normal]
   intro a b hab
   have hab' : ((Monoid.Coprod.inr a : Monoid.Coprod H Γ) : Monoid.Coprod H Γ ⧸ K) =
       ((Monoid.Coprod.inr b : Monoid.Coprod H Γ) : Monoid.Coprod H Γ ⧸ K) := hab
-  obtain ⟨_, ⟨Q, _, q, _, rfl, _, _, hinj, _⟩, hz⟩ := hK _ (QuotientGroup.eq.1 hab')
+  obtain ⟨_, ⟨_, _, q, _, rfl, _, _, hinj, _⟩, hz⟩ := hK _ (QuotientGroup.eq.1 hab')
   apply hinj
   have h : q ((Monoid.Coprod.inr a : Monoid.Coprod H Γ)⁻¹ * Monoid.Coprod.inr b) = 1 :=
     MonoidHom.mem_ker.1 hz
@@ -240,7 +240,7 @@ noncomputable def limitScheme (hhull : HullSC.HullOneStepStatementGeneral.{0})
     obtain ⟨A, halph, hsuit⟩ := And.left hgeom H Γ hinf htf hhyp hT
     exact isAdmissible_bot A halph hsuit
   normal := fun _ hK => by
-    obtain ⟨Q, _, q, _, rfl, _⟩ := hK
+    obtain ⟨_, _, q, _, rfl, _⟩ := hK
     exact q.normal_ker
   proper := ⟨Monoid.Coprod.inr γ₀, fun _ hK => inr_not_mem_of_isAdmissible hK hγ₀⟩
   simp_step := fun _ hK x y hx => admissible_simp_step hhull hgeom hK x y hx
@@ -252,4 +252,3 @@ end GroupApproximation
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.HyperbolicKazhdanHost.admissible_simp_step
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.HyperbolicKazhdanHost.admissible_push_step
-#audit_axioms GroupApproximation.SimpleKazhdanSofic.HyperbolicKazhdanHost.limitScheme
