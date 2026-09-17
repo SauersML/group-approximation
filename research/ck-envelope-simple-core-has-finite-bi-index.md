@@ -5,11 +5,13 @@ kind: claim
 title: The normal-generator envelope can be chosen so that the simple core has finitely many double cosets
 distinct_from:
   finite-infranormal-subgroup-is-normal: that concerns finite subgroups and their normalizers; this concerns finiteness of a DOUBLE COSET SPACE of an infinite, non-normal subgroup, where neither the subgroup nor its index is finite.
-  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. Neither implies the other by any argument found in this audit, and they feed different routes into the same target.
+  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. The two are not the same statement. Correction 2026-09-17: this one implies that one for the same envelope, by bi-index-core-makes-normals-core-class-unions. No converse is known.
+  kazhdan-boone-higman-conjecture: that asks for finitely presented simple Kazhdan hosts; this asks for a finite bi-index core in a Kazhdan envelope. By ck-finite-bi-index-hole-is-kazhdan-boone-higman they are equivalent when the core is free, and this one implies that one in every reading.
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/ck-quotient-and-cover-bi-index-obstruction-2026-09-08.md
+  - research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md
 ---
 
 The embedding of `chatterji-kassabov-normal-generator-embedding` can be
@@ -86,3 +88,28 @@ tools.
    be the image of the covering kernel. If that kernel were solvable or
    locally finite, no proper quotient could repair the canonical coset
    action. These kernel properties are not established for the construction.
+7. **Inverter biography: what a finite bi-index envelope is forced to be.**
+   *Result: the hole collapses onto Kazhdan Boone--Higman.* By
+   `bi-index-core-makes-normals-core-class-unions`, if
+   `n, n' in N` lie in one double coset `SgS` with `N` proper normal, then
+   `n' = a n b` forces `ab in N ∩ S = 1`. So `N` is a union of at most
+   `r = |S\Gamma/S|` core classes and is finitely normally generated.
+   Hence `Gamma` has Max-n, every proper quotient is finitely presented and
+   Kazhdan with bi-index at most `r`, and `Gamma/M` is a finitely presented
+   simple Kazhdan group containing `G`. By
+   `ck-finite-bi-index-hole-is-kazhdan-boone-higman` the free-core reading
+   of this hole is **equivalent** to `kazhdan-boone-higman-conjecture`. The
+   reading without (T) is Boone--Higman itself. Every reading implies the
+   conclusion of `ck-envelope-has-a-finitely-normally-generated-maximal-kernel`
+   for the envelope it produces. The twisted Brin--Thompson step is idle.
+   *Classes killed*, at clause 2 of the lemma:
+   - envelopes with an infinite central subgroup, for example a marked cover
+     with an infinite central covering kernel;
+   - covers of `EL_n(U)` for a ring `U` without ACC on proper two-sided
+     ideals;
+   - fp envelopes with a non-finitely-presented proper quotient.
+   In Attempt 6 the covering kernel of a finite bi-index cover must be
+   finitely normally generated, so the elementary image would be finitely
+   presented. Open side question: ACC for the two-sided ideals of the
+   universal sandwich ring. See
+   `research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md`.
