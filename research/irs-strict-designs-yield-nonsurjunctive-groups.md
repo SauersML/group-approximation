@@ -33,3 +33,18 @@ surjunctive.
 - **Finitely generated support.** If an ergodic IRS is supported on finitely generated subgroups, it has
   an atom and the atomic theorem applies. So only nonatomic, infinitely generated witnesses need a
   transfer.
+- **Atomic approximation with a uniform deficit (w5-gs-heretic, 2026-09-17).** Proves the transfer on the
+  atomic hull, up to UQS. Artifact `research/artifacts/atomic-hull-uqs-transfer-2026-09-17.md`.
+  - **Proved.** `hull-irs-strict-designs-force-nonsurjunctive-or-non-uqs-groups`: a strict design on an IRS
+    in the closed convex hull of atomic IRS yields a countable group that is non-surjunctive, or surjunctive
+    and not UQS.
+  - **Mechanism.** On each approximating atom, the forward-bad layers are recorded as a full track, which
+    gives an injective automaton over the deck group into proper subshift tracks. UQS bounds
+    `delta_D <= C eps_D`, and a free product of all deck groups makes `C` uniform.
+  - **New decomposition** (route `irs-strict-designs-yield-nonsurjunctive-groups-via-atomic-hull`). This
+    claim follows from `free-group-irs-lie-in-the-atomic-irs-hull`,
+    `surjunctive-groups-are-uniformly-quantitatively-surjunctive` and the proved lemma. The two open
+    prerequisites can each fail on their own.
+  - **Where it still dies.** A nonatomic IRS outside the hull carrying a strict design. Excluding all such
+    IRS through the hull claim needs a non-hyperlinear group, because an ergodic non-co-hyperlinear IRS in
+    the hull would force an atomic one (artifact Section 4).
