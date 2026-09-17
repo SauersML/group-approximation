@@ -162,3 +162,24 @@ may be attacked on a simple Kazhdan host, and any deficit that exists already oc
   - **Where it dies:** a lower bound on `Phi` uniform in the read degree. It needs an averaging over codewords
     beyond subadditivity, and the only known averaging counts on finite models.
   - Artifact: `research/artifacts/rokhlin-window-localization-and-read-bound-2026-09-12.md`.
+- **Cluster-variation relatives of the f-invariant are dead (a-gs-pull-7, swarm-0917, 2026-09-17).**
+  This turns the "invariance needs a tree" mechanism note of *Tree mechanisms* into a theorem.
+  - **The class.** Any functional `F(Q) = sum_W c_W H(join_{w in W} w^-1 Q)` (Bethe or Kikuchi type;
+    any finite windows, any real weights) that is splitting-monotone, the property Bowen's route
+    uses to get `f <= F(P) <= H(P)`.
+  - **The result.** Every such functional has `lim sup_n F(Q_{B_n}) <= 0` on every Bernoulli shift
+    over every one-ended group (`cluster-entropy-functionals-vanish-on-one-ended-bernoulli`), hence
+    over every infinite Kazhdan group (`cluster-entropy-certificates-fail-on-kazhdan-groups`, via
+    Watatani and Stallings).
+  - **The invariant.** On Bernoulli coordinate partitions `F(Q_B) = H(p) psi(B)` with
+    `psi(B) = sum c_W |BW|`. `psi` satisfies exact inclusion–exclusion on pieces separated beyond
+    the window radius.
+  - **Where every member dies.** On an `R`-fat digon, built from a bi-infinite geodesic and a
+    detour outside a large ball, monotonicity gives `psi(B_i) <= psi(C_i)`, and inclusion–exclusion
+    then forces `psi(B_1 u B_2) <= 0`.
+  - **Calibration.** On `F_2`, `psi` is the Euler characteristic, equal to `1` on subtrees, and no
+    fat digon exists.
+  - **Gate left open.** A surviving local mechanism must be nonlinear in window entropies (breaking
+    inclusion–exclusion on separated pieces), have unbounded radius, or drop splitting monotonicity.
+  - Artifact: `research/artifacts/cluster-entropy-functionals-one-ended-obstruction-2026-09-17.md`.
+    Script: `experiments/cluster-entropy-functionals-2026-09-17/check_cluster_valuation.py`.
