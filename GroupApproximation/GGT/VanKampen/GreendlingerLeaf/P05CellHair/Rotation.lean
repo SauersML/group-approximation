@@ -186,7 +186,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
   (havoid : ∀ a ∈ S.family, f ∉ a.1 ∧ S.diagram.toCombMap.faceOf
     (S.diagram.toCombMap.alpha (FaceEdgeDoubling.dart S.diagram f j)) ∉ a.1)
 
-include havoid in
+include hlen in
 /-- **(E') The old collapsed rotation at `w`** is the old rotation at `w`. -/
 theorem facePerm_dart :
     ((collapsedMap S.family).facePerm
@@ -200,7 +200,7 @@ theorem facePerm_dart :
       (second_keep S f j hlen havoid)).trans
     (FaceEdgeDoubling.Holding.secondCorner_eq_facePerm S.diagram f j hlen)
 
-include havoid in
+include hlen in
 /-- **(E') The old collapsed rotation moves `w`.** -/
 theorem facePerm_w_ne :
     (collapsedMap S.family).facePerm
@@ -232,4 +232,177 @@ theorem some_none_not_mem_range :
   rintro ⟨x, hx⟩
   exact Option.some_ne_none _ (Option.some.inj (congrArg Subtype.val hx))
 
+/-- **(E') Away from `w`, the rotations agree along the embedding.** -/
+theorem rotation_away (x : (collapsedMap S.family).Dart)
+    (hxw : x ≠ ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩)
+    (hfx : (collapsedMap S.family).facePerm x ≠
+      ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩) :
+    (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).facePerm
+        (collapsedEmbed S f j hlen hf havoid x) =
+      collapsedEmbed S f j hlen hf havoid ((collapsedMap S.family).facePerm x) := by
+  obtain ⟨z, hz⟩ := x
+  have h := facePerm_val_of_retained (M := S.diagram.toCombMap)
+    (a := FaceEdgeDoubling.dart S.diagram f j)
+    (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+      (FaceEdgeDoubling.second S.diagram f j hlen))
+    (keep := fun d => ¬ RegionInternal S.family d)
+    (keep' := fun d => ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family d)
+    (keep_alpha S.family) (keep_alpha (HairOpening.sectionFamily S f j hlen hf havoid).family)
+    (embed_keep_iff S f j hlen hf havoid) (dart_ne_second S.diagram f j hlen)
+    (dart_keep S f j havoid) (sigma_alpha_dart S.diagram f j hlen)
+    (some_none_keep S f j hlen hf havoid) hz (fun e => hxw (Subtype.ext e))
+  split_ifs at h with hc
+  · exact (hfx (Subtype.ext hc)).elim
+  · exact Subtype.ext h
+
+/-- **(E') Into `w`, the new rotation detours to `some none`.** -/
+theorem rotation_into (x : (collapsedMap S.family).Dart)
+    (hxw : x ≠ ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩)
+    (hfx : (collapsedMap S.family).facePerm x =
+      ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩) :
+    (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).facePerm
+        (collapsedEmbed S f j hlen hf havoid x) =
+      ⟨some none, some_none_keep S f j hlen hf havoid⟩ := by
+  obtain ⟨z, hz⟩ := x
+  have h := facePerm_val_of_retained (M := S.diagram.toCombMap)
+    (a := FaceEdgeDoubling.dart S.diagram f j)
+    (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+      (FaceEdgeDoubling.second S.diagram f j hlen))
+    (keep := fun d => ¬ RegionInternal S.family d)
+    (keep' := fun d => ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family d)
+    (keep_alpha S.family) (keep_alpha (HairOpening.sectionFamily S f j hlen hf havoid).family)
+    (embed_keep_iff S f j hlen hf havoid) (dart_ne_second S.diagram f j hlen)
+    (dart_keep S f j havoid) (sigma_alpha_dart S.diagram f j hlen)
+    (some_none_keep S f j hlen hf havoid) hz (fun e => hxw (Subtype.ext e))
+  split_ifs at h with hc
+  · exact Subtype.ext h
+  · exact (hc (congrArg Subtype.val hfx)).elim
+
+/-- **(E') From `some none`, the new rotation returns to the rotation of `w`.** -/
+theorem rotation_out :
+    (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).facePerm
+        ⟨some none, some_none_keep S f j hlen hf havoid⟩ =
+      collapsedEmbed S f j hlen hf havoid ((collapsedMap S.family).facePerm
+        ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩) :=
+  Subtype.ext ((facePerm_val_some_none (M := S.diagram.toCombMap)
+      (a := FaceEdgeDoubling.dart S.diagram f j)
+      (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+        (FaceEdgeDoubling.second S.diagram f j hlen))
+      (keep := fun d => ¬ RegionInternal S.family d)
+      (keep' := fun d => ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family d)
+      (keep_alpha (HairOpening.sectionFamily S f j hlen hf havoid).family)
+      (embed_keep_iff S f j hlen hf havoid) (second_keep S f j hlen havoid)
+      (some_none_keep S f j hlen hf havoid) (none_keep S f j hlen hf havoid)).trans
+    (congrArg (embed S.diagram.toCombMap)
+      (facePerm_val_self (M := S.diagram.toCombMap) (a := FaceEdgeDoubling.dart S.diagram f j)
+        (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+          (FaceEdgeDoubling.second S.diagram f j hlen))
+        (keep := fun d => ¬ RegionInternal S.family d) (keep_alpha S.family)
+        (dart_keep S f j havoid) (sigma_alpha_dart S.diagram f j hlen)
+        (second_keep S f j hlen havoid)).symm))
+
+include havoid in
+/-- **(D') The dart `w` is not a crossing.** -/
+theorem dart_not_phiKeep (a₀ : S.family) :
+    ¬ PhiKeepO S.family (linkedComponentO S.family a₀.1)
+      ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩ := by
+  rintro ⟨r, hr, s, o, h⟩
+  have hrF := linkedComponentO_subset _ _ hr
+  cases o with
+  | false =>
+    have h0 : crossO r s false = some (FaceEdgeDoubling.dart S.diagram f j) := h
+    have h1 := faceOf_crossO_false r h0
+    rw [FaceEdgeDoubling.dart_face] at h1
+    exact (havoid r hrF).1 h1
+  | true =>
+    have h0 : crossO r s true = some (FaceEdgeDoubling.dart S.diagram f j) := h
+    exact (havoid r hrF).2 (faceOf_crossO_false r ((crossO_alpha r s true _).mpr h0))
+
+/-- **(F') Naming back**: `embed z` names `z`, `some none` names `w`, `none` names `alpha w`. -/
+noncomputable def backCollapsed :
+    (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart →
+      (collapsedMap S.family).Dart :=
+  backDart (M := S.diagram.toCombMap) (a := FaceEdgeDoubling.dart S.diagram f j)
+    (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+      (FaceEdgeDoubling.second S.diagram f j hlen))
+    (keep := fun d => ¬ RegionInternal S.family d)
+    (keep' := fun d => ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family d)
+    (keep_alpha S.family) (keep_alpha (HairOpening.sectionFamily S f j hlen hf havoid).family)
+    (embed_keep_iff S f j hlen hf havoid) (dart_keep S f j havoid)
+
+/-- **(F') Face-class paths after the step name paths before it.** -/
+theorem backDart_sim (a₀ : S.family)
+    (x' y' : (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart)
+    (h : Relation.EqvGen (CombMap.FaceClassStep
+      (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).dual
+      (PhiKeepO (HairOpening.sectionFamily S f j hlen hf havoid).family
+        (linkedComponentO (HairOpening.sectionFamily S f j hlen hf havoid).family
+          ((transport S f j hlen hf havoid).map a₀)))) x' y') :
+    Relation.EqvGen (CombMap.FaceClassStep (collapsedMap S.family).dual
+        (PhiKeepO S.family (linkedComponentO S.family a₀.1)))
+      (backCollapsed S f j hlen hf havoid x') (backCollapsed S f j hlen hf havoid y') :=
+  eqvGen_backDart_of_retained (M := S.diagram.toCombMap)
+    (a := FaceEdgeDoubling.dart S.diagram f j)
+    (b := secondCorner S.diagram.toCombMap (FaceEdgeDoubling.rebased S.diagram f j)
+      (FaceEdgeDoubling.second S.diagram f j hlen))
+    (keep := fun d => ¬ RegionInternal S.family d)
+    (keep' := fun d => ¬ RegionInternal (HairOpening.sectionFamily S f j hlen hf havoid).family d)
+    (kp := PhiKeepO S.family (linkedComponentO S.family a₀.1))
+    (kp' := PhiKeepO (HairOpening.sectionFamily S f j hlen hf havoid).family
+      (linkedComponentO (HairOpening.sectionFamily S f j hlen hf havoid).family
+        ((transport S f j hlen hf havoid).map a₀)))
+    (keep_alpha S.family) (keep_alpha (HairOpening.sectionFamily S f j hlen hf havoid).family)
+    (embed_keep_iff S f j hlen hf havoid) (dart_ne_second S.diagram f j hlen)
+    (dart_keep S f j havoid) (sigma_alpha_dart S.diagram f j hlen)
+    (second_keep S f j hlen havoid) (some_none_keep S f j hlen hf havoid)
+    (none_keep S f j hlen hf havoid)
+    (fun z hz => phiKeepO_map_iff (transport S f j hlen hf havoid) a₀
+      (collapsedEmbed S f j hlen hf havoid) (fun _ => rfl) ⟨z, hz⟩)
+    (dart_not_phiKeep S f j havoid a₀)
+    (fun e => dart_not_phiKeep S f j havoid a₀
+      ((phiKeepO_alpha (family := S.family) (E := linkedComponentO S.family a₀.1)
+        ⟨FaceEdgeDoubling.dart S.diagram f j, dart_keep S f j havoid⟩).mp e))
+    h
+
+/-- **(F') A dart on a renumbered relator cell names a dart on the old relator cell.** -/
+theorem backCollapsed_cell
+    (x' : (collapsedMap (HairOpening.sectionFamily S f j hlen hf havoid).family).Dart)
+    (i' : Fin (HairOpening.sectionFamily S f j hlen hf havoid).diagram.rCellCount)
+    (hx : (HairOpening.sectionFamily S f j hlen hf havoid).diagram.toCombMap.faceOf x'.1 =
+      (cell (HairOpening.sectionFamily S f j hlen hf havoid).diagram i').face) :
+    S.diagram.toCombMap.faceOf (backCollapsed S f j hlen hf havoid x').1 =
+      (cell S.diagram ((transport S f j hlen hf havoid).cellIndex.symm i')).face := by
+  have hcf := cell_face_eq S.diagram f j hlen hf i'
+  obtain ⟨d, hd⟩ := x'
+  cases d with
+  | none =>
+    exact absurd ((CellHairThickening.faceOf_none S.diagram f j hlen hf).symm.trans
+      (hx.trans hcf)) (FaceEdgeDoubling.faceImage_ne_digon S.diagram f j hlen _).symm
+  | some d =>
+    cases d with
+    | none =>
+      exact FaceEdgeDoubling.faceImage_injective S.diagram f j hlen
+        ((faceOf_some_none_image S.diagram f j hlen hf).symm.trans (hx.trans hcf))
+    | some z =>
+      by_cases hz : z = FaceEdgeDoubling.dart S.diagram f j
+      · subst hz
+        exact absurd ((CellHairThickening.faceOf_embed_dart S.diagram f j hlen hf).symm.trans
+          (hx.trans hcf)) (FaceEdgeDoubling.faceImage_ne_digon S.diagram f j hlen _).symm
+      · exact FaceEdgeDoubling.faceImage_injective S.diagram f j hlen
+          ((CellHairThickening.faceOf_embed S.diagram f j hlen hf hz).symm.trans (hx.trans hcf))
+
+/-- **(G') `Φ'_M` is carried by opening a cell hair.** -/
+theorem phiTransportAt_hair (a₀ : S.family) : PhiTransportAt (transport S f j hlen hf havoid) a₀ :=
+  phiTransportAt_of_bypass (transport S f j hlen hf havoid) a₀
+    (collapsedEmbed S f j hlen hf havoid) (fun _ => rfl) (collapsedEmbed_alpha S f j hlen hf havoid)
+    (some_none_not_mem_range S f j hlen hf havoid) (dart_not_phiKeep S f j havoid a₀)
+    (facePerm_w_ne S f j hlen havoid) (rotation_away S f j hlen hf havoid)
+    (rotation_into S f j hlen hf havoid) (rotation_out S f j hlen hf havoid)
+    (backCollapsed S f j hlen hf havoid) (fun _ => Subtype.ext rfl)
+    (backDart_sim S f j hlen hf havoid a₀) (backCollapsed_cell S f j hlen hf havoid)
+
 end Rotation
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05CellHair.phiTransportAt_hair
