@@ -1,0 +1,12 @@
+$ python3 rs_witness_nullspace.py --p 2 --trials 150 --seed 1 --maxK 3 --maxC 7
+calibration (finite abelian, torsion): betas with nonzero annihilator: 20
+RS pattern model over F_2 (trials=150 seed=1 maxK=3 maxC=7): {'graphs': 150, 'free': 136, 'P1_violations': 0, 'nonfact_nonzero_kernel': 0, 'nonfact_rows': 0, 'fact_rows': 150, 'fact_nonzero_kernel': 38, 'fact_full': 3, 'nonfact_full_nofree': 0, 'full_undetermined': 0, 'fact_graphs_nonzero_kernel': 38}
+$ python3 rs_witness_nullspace.py --p 3 --trials 150 --seed 1 --maxK 3 --maxC 7
+calibration (finite abelian, torsion): betas with nonzero annihilator: 76
+RS pattern model over F_3 (trials=150 seed=1 maxK=3 maxC=7): {'graphs': 150, 'free': 136, 'P1_violations': 0, 'nonfact_nonzero_kernel': 0, 'nonfact_rows': 600, 'fact_rows': 600, 'fact_nonzero_kernel': 96, 'fact_full': 20, 'nonfact_full_nofree': 0, 'full_undetermined': 0, 'fact_graphs_nonzero_kernel': 42}
+$ python3 rs_witness_nullspace.py --p 5 --trials 150 --seed 1 --maxK 3 --maxC 7
+calibration (finite abelian, torsion): betas with nonzero annihilator: 274
+RS pattern model over F_5 (trials=150 seed=1 maxK=3 maxC=7): {'graphs': 150, 'free': 136, 'P1_violations': 0, 'nonfact_nonzero_kernel': 31, 'nonfact_rows': 7200, 'fact_rows': 2400, 'fact_nonzero_kernel': 155, 'fact_full': 38, 'nonfact_full_nofree': 12, 'full_undetermined': 0, 'fact_graphs_nonzero_kernel': 41}
+$ python3 rs_witness_nullspace.py --p 3 --trials 300 --seed 2 --maxK 3 --maxC 9
+calibration (finite abelian, torsion): betas with nonzero annihilator: 76
+RS pattern model over F_3 (trials=300 seed=2 maxK=3 maxC=9): {'graphs': 300, 'free': 278, 'P1_violations': 0, 'nonfact_nonzero_kernel': 1, 'nonfact_rows': 1200, 'fact_rows': 1200, 'fact_nonzero_kernel': 173, 'fact_full': 56, 'nonfact_full_nofree': 1, 'full_undetermined': 0, 'fact_graphs_nonzero_kernel': 84}
