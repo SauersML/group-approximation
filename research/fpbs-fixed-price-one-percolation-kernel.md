@@ -92,3 +92,34 @@ title: Every Cayley graph of a nonamenable fixed-price-one group has strict perc
   criterion never applies with a commensurated `K`. Remaining survivors:
   `BS(2,3)` (here `<a>` is commensurated), torsion Tarski monsters (no
   infinite `K` of infinite index), torsion-free Tarski monsters, and `B(m,n)`.
+* **Soft arguments over subgroups with infinite conjugate intersections
+  (2026-09-17).** **Dead** (swarm-0917, inverter; agent-verified only, no
+  referee yet). The claim
+  `fpbs-soft-collapse-over-conjugate-intersection-subgroups` proves the
+  following. Suppose `H <= Gamma` is infinite, finitely generated and of
+  infinite index, and every finite intersection of conjugates of `H` is
+  infinite (condition (C); it holds for every commensurated `H`). Then iid
+  Bernoulli(`eps`) selection of left cosets of `H`, with sheets joined by
+  random-walk excursions, gives invariant sparse spines on every Cayley graph.
+  The proof needs only Theorem A.
+
+  The new step: excursions launched from `z h` with
+  `h in H ∩ v_1 H v_1^{-1} ∩ ... ∩ v_d H v_d^{-1}` follow the same coset
+  itinerary as from `z`, and (C) makes these launch points infinite, so
+  Borel--Cantelli applies without normality.
+
+  **Invariant:** existence of invariant sparse spines. **Step where every
+  member dies:** `p_c -> p_c + eps`.
+
+  This kills the survivor `BS(2,3)`, and also every nonamenable `BS(m,n)`,
+  `SL_2(Z[1/p])` (via `SL_2(Z)`; this group lacks (T), and by Margulis'
+  normal subgroup theorem it has no infinite normal subgroup of infinite
+  index) and nonamenable graphs of groups with finite-index edge groups.
+  It recovers the normal-subgroup case independently of the open claim
+  `fpbs-soft-collapse-on-fg-normal-and-kazhdan-groups`. Remaining survivors:
+  torsion Tarski monsters (no infinite proper subgroup), torsion-free Tarski
+  monsters (maximal cyclic subgroups expected malnormal, so (C) should fail;
+  unchecked) and `B(m,n)` (no subgroup with (C) known). Any remaining test
+  case must have every infinite, finitely generated, infinite-index subgroup of
+  finite "height" in the sense that some finite intersection of its conjugates
+  is finite. This is where soft arguments might still live.
