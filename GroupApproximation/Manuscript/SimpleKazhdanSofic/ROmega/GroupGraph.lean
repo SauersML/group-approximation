@@ -159,6 +159,7 @@ theorem trace_of_mem_spanGraph
 compatible, and finite combinations of the first coordinates are `‖·ξ‖`-dense in `M`, then there is
 an injective trace-preserving `⋆`-homomorphism `M → N^ω` sending each first coordinate to the second
 one. -/
+include hone hmul hstar in
 theorem exists_injective_of_generators (hω : (ω : Filter ℕ) ≤ cofinite) (hUM : ∀ g, (U g).1 ∈ M)
     (hUtr : ∀ g, ultratrace σ ω (U g).2 = ⟪τ.vec, (U g).1 τ.vec⟫_ℂ)
     (hdense : ∀ T ∈ M, ∀ ε > 0, ∃ t : Finset Λ, ∃ c : Λ → ℂ,
