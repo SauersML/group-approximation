@@ -4,7 +4,9 @@ export const meta = {
   phases: [{ title: 'Work' }, { title: 'Referee' }, { title: 'Land' }],
 }
 
-// args = { prefix, wave, busRef, trailers, lanes: [{ key, goal, mode: 'pull'|'target'|'lane', node?, role?, text? }] }
+// args = { prefix, wave, busRef, trailers, referee?: false, lanes: [{ key, goal, mode: 'pull'|'target'|'lane', node?, role?, text? }] }
+// referee: false skips the referee stage: solve first, review after something is solved. Workers' statuses land as they are.
+const REFEREE = args.referee !== false
 const ENV = `CAIRN_AGENT=__AGENT__ CAIRN_WAVE=${args.wave} CAIRN_LIVE_SYNC=origin CAIRN_LIVE_REF=${args.busRef}`
 
 const RESULT = { type: 'object', properties: {
@@ -31,7 +33,8 @@ HIGH IMPACT ONLY. The user was explicit: no boring special cases. A result count
   (3) kills a whole class of approaches with a precise obstruction (name the invariant and the step where every member dies);
   (4) finds a counterexample or a computation that changes what is believed.
 Do not prove small instances that no route uses. If your assignment turns out to be a narrow special case, climb to the general statement it serves, or pivot to the nearest hole that matters and say why.
-Be rigorous and honest: a claim is ESTABLISHED only with a complete route whose prerequisites are established or imported with verbatim citations; otherwise keep it OPEN and record the work under ## Attempts. A recorded dead end with the exact step where it dies is a real result.`
+Be rigorous and honest: a claim is ESTABLISHED only with a complete route whose prerequisites are established or imported with verbatim citations; otherwise keep it OPEN and record the work under ## Attempts. A recorded dead end with the exact step where it dies is a real result.
+Aim to SOLVE: go for the full statement, not a report about it. Keep each single response short: write long proofs to files in several small Write/Edit calls rather than one huge message.`
 
 const CONTRACT = `CONTRACT. First read notes/agent-coordination-playbook-2026-09-17.md Sections 2, 3 and 6 (Section 6 is your contract; follow it exactly). Key points:
 - Bash environment variables do NOT persist between Bash calls. Prefix EVERY bin/cairn-live command with: __ENV__
@@ -74,13 +77,13 @@ function landPrompt(r, l) {
 Worktree: ${r.worktree}
 Target id: ${r.id}; worker status: ${r.status}; newly established: ${r.established.join(', ') || '(none)'}
 Files: ${r.files.join(', ')}
-Referee votes (only for established results):\n${votes || '  (none)'}
+Referee votes (only for established results):\n${votes || (REFEREE ? '  (none)' : '  (no referee stage in this wave)')}
 Survives referees: ${r.survives === undefined ? 'n/a' : r.survives}
 Sketch: ${r.sketch}
 
 Steps (all inside the worktree; never touch the primary checkout's working tree):
 1. \`cd ${r.worktree} && git status --short\`. Confirm the listed files exist; if the worker left out a file it created (new research/ or experiments/ files), include it. Never include research/FRONTIER.md or .cairn/.
-2. If any referee refuted, or votes were lost for an established result: set every newly established id back to OPEN in its frontmatter and add a dated entry under ## Attempts with the referee reason (keep the proof files; they are an attempt). If all referees survived, keep ESTABLISHED.
+2. ${REFEREE ? 'If any referee refuted, or votes were lost for an established result: set every newly established id back to OPEN in its frontmatter and add a dated entry under ## Attempts with the referee reason (keep the proof files; they are an attempt). If all referees survived, keep ESTABLISHED.' : 'No referee stage in this wave (review comes after solving): keep the worker status exactly as it is; do not demote anything.'}
 3. Commit locally in the worktree only (never push this branch): \`git add <files> && git commit -qm "local: ${l.key}"\`.
 4. \`git fetch -q origin main && git merge --no-edit origin/main\`. On conflict: for research/FRONTIER.md take origin's side (it is regenerated); for any other file keep BOTH sides' content (every attempt entry, every route, the stricter status when they disagree), then commit the merge.
 5. \`bin/cairn check; echo $?\` must be 0. If it fails, fix only problems in the files of this result (lint, missing distinct_from, artifact paths).
@@ -93,7 +96,7 @@ return await pipeline(args.lanes,
   l => agent(workerPrompt(l), { label: `work:${l.key}`, phase: 'Work', isolation: 'worktree', schema: RESULT }),
   (r, l) => {
     if (!r) return null
-    if (!r.established.length) return { ...r, votes: [] }
+    if (!REFEREE || !r.established.length) return { ...r, votes: [] }
     return parallel(LENSES.map(lens => () => agent(refereePrompt(r, lens, l), { label: `referee:${l.key}`, phase: 'Referee', schema: VERDICT })))
       .then(votes => ({ ...r, votes, survives: votes.length === LENSES.length && votes.every(v => v && !v.refuted) }))
   },
