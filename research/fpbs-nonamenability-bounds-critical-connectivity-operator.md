@@ -104,21 +104,28 @@ gap has to be computed.
   - One-ended graphs have no block tree.
   - Transitive graphs with a cut vertex need a spectral bound, not proved here,
     for a matrix indexed by orbits of pairs (block, vertex).
-* **Invert the finite-volume certificate route (2026-09-17).**
-  `fpbs-spectral-dt-threshold-equals-l2-threshold` proves
-  `p_sDT = p_{2->2}` on every Cayley graph. That settles the open converse in
-  Section 7 of `research/artifacts/fpbs-spectral-dt-certificate-2026-09-17.md`.
-  * If `||T_p|| = N < infinity`, the DT boundary measure of `B_R` has
-    convolution norm at most `p |D| e N exp(-R/(e N))`. The proof combines
-    sphere support with the trivial-kernel tail bootstrap.
-  * So the conjecture is equivalent, graph by graph, to one critical ball
-    boundary measure of mass at least 1 having convolution norm below 1. There
-    is a zero-one law: the critical ball norms either decay exponentially or
-    never go below 1.
-  * `fpbs-wq-normal-class-critical-spectral-dt-certificate` is therefore no
-    weaker than the conjecture on its class.
+* **Baire category on the compact space of marked groups (2026-09-17,
+  finite-models reframing).** Restrict to Cayley graphs, and let `X_{k,eta}`
+  be the compact space of `k`-marked groups with spectral radius at most
+  `1-eta`. `fpbs-l2-gap-baire-dichotomy` removes every open set contained in a
+  closed uniform class `U_{M,delta}`, iterates, and obtains a kernel
+  `K_{k,eta}`. The gap holds on all of `X_{k,eta}` if and only if `K_{k,eta}`
+  is empty. If `K_{k,eta}` is nonempty, failures are comeager in it.
+  `fpbs-high-girth-uniform-l2-patch` uses Benjamini–Nachmias–Peres and
+  Nachmias–Peres path counting to certify `M = 1+3/eta^2` and
+  `delta = eta/(4(2k-1))` on the clopen set of girth at least `L(eta)`. So the
+  kernel lies on finitely many relator cylinders `{w = e}`, `|w| < L(eta)`.
+  The uniform conjecture `fpbs-uniform-l2-gap-marked-groups` then splits into
+  the finitely many independently falsifiable pieces
+  `fpbs-uniform-l2-gap-short-relator-cylinders`. See
+  `research/artifacts/fpbs-l2-baire-kernel-2026-09-17.md`.
 
-  **Where it stops:** the characterisation is exact, so it moves no graph. On
-  `F_2 x Z`, `F_2 x F_2` and property (T) groups, deciding whether some critical
-  ball norm is below 1 still needs a Kesten-type bound for the explicit measure
-  `nu_{B_R,p_c}`. No such bound is proved.
+  **Where it dies:** Theorems 2.1–2.2 there are equivalences, and they do not
+  decide whether the kernel is empty. The only certificate supplied is girth,
+  which excludes every marking with a short relation, such as `Gamma x Z`,
+  surface groups and any group with torsion generators of small order.
+  Both claims are OPEN as of 2026-09-17: referee lenses 1 and 3 refuted the
+  dichotomy claim as written, because its sentence that a failure "is never
+  isolated in the marked-group topology" does not follow (an isolated marked
+  group outside `C_2` would be a singleton kernel). The proofs are kept as
+  attempt artifacts.
