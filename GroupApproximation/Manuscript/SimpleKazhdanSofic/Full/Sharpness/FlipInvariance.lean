@@ -56,7 +56,8 @@ theorem simpleKazhdan_iff_symm {X : Type} [TopologicalSpace X] (T : X ≃ₜ X) 
         HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin n) (ClopenCrossedProduct T k))) ↔
       (IsSimpleGroup (elementaryGroup (Fin n) (ClopenCrossedProduct T.symm k)) ∧
         HasKazhdanPropertyT.{0, 0} (elementaryGroup (Fin n) (ClopenCrossedProduct T.symm k))) :=
-  simpleKazhdan_iff_of_conj_or_flip k n (Homeomorph.refl X) (Or.inr fun _ => rfl)
+  simpleKazhdan_iff_of_conj_or_flip (T := T) (S := T.symm) k n (Homeomorph.refl X)
+    (Or.inr fun _ => rfl)
 
 #audit_axioms simpleKazhdan_iff_symm
 
