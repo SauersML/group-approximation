@@ -24,6 +24,14 @@ distinct_from:
 
 ## Attempts
 
+- **Moving stars by a reversible binary automaton** (solo follow-up, 2026-09-17). A design that changes an alphabet
+  size by adding a star symbol and moves star sets by a bijective `ψ` on `{0,1}^G` is surjective if `ψ`
+  preserves the number of non-star sites. Strictness needs a `ψ` that raises that count somewhere and never
+  lowers it. By `count-raising-reversible-automata-lower-biased-rokhlin-entropy`, such a `ψ` lowers the Rokhlin
+  entropy of every coin shift `(p, 1 - p)` with small `p`. Such a `ψ` also keeps counts 1 and 2. So this class of
+  alphabet changes meets the same entropy barrier as strictness itself. The class is not excluded
+  unconditionally.
+
 - **Equivalent odd-part form** (frontier swarm, 2026-09-16). `NS_all` is closed under multiples, so a witness at
   size `k = 2^i m`, `m` odd, gives witnesses at `2^(i') m` for every `i' >= i`. The claim says that the odd part
   `m` can be removed for some `i'`. It is automatic when `m = 1`.
