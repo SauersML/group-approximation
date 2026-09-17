@@ -88,7 +88,7 @@ theorem facePerm_ell_succ_of_lt {r : ℕ} (hr : r < B.darts.length) :
   rcases Nat.lt_or_ge (r + 1) B.darts.length with h | h
   · rw [ell_of_lt B h, ell_of_lt B hr, List.getElem_reverse, List.getElem_reverse]
     have hc := List.isChain_iff_getElem.mp B.chain (B.darts.length - 1 - (r + 1)) (by omega)
-    exact hc.trans (getElem_idx_eq _ (by omega))
+    exact Eq.trans hc (getElem_idx_eq _ (by omega))
   · have h0 : r + 1 = B.darts.length := by omega
     rw [ell_eq_of_mod_eq B (i := r + 1) (i' := 0) (by rw [h0, Nat.mod_self, Nat.zero_mod]),
       ell_of_lt B (length_pos B), ell_of_lt B hr, List.getElem_reverse, List.getElem_reverse]

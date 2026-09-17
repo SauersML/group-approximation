@@ -163,8 +163,9 @@ theorem card_firstReturns {H : ℕ} (hret : ∀ x, ∃ h : ℕ, 0 < h ∧ h ≤ 
       (firstReturns T C m (2 * m * H) x : Set ℕ) (Finset.Icc 1 (2 * m) : Set ℕ) := by
     intro h hh
     obtain ⟨⟨h1, -⟩, hCh, hle⟩ := (mem_firstReturns T C m _).1 (Finset.mem_coe.1 hh)
-    exact Finset.mem_coe.2 (Finset.mem_Icc.2
-      ⟨Finset.card_pos.2 ⟨h, (mem_returnTimes T C).2 ⟨⟨h1, le_rfl⟩, hCh⟩⟩, hle⟩)
+    have hpos : 0 < (returnTimes T C x h).card :=
+      Finset.card_pos.2 ⟨h, (mem_returnTimes T C).2 ⟨⟨h1, le_rfl⟩, hCh⟩⟩
+    exact Finset.mem_coe.2 (Finset.mem_Icc.2 ⟨hpos, hle⟩)
   have key : ∀ a b : ℕ, 1 ≤ b → (T ^ (b : ℤ)) x ∈ C → a < b →
       (returnTimes T C x a).card < (returnTimes T C x b).card := fun a b hb hbC hab =>
     Finset.card_lt_card (Finset.ssubset_iff_subset_ne.2
@@ -226,7 +227,7 @@ theorem exponentBound_arrowSection {W : Fin m → Set X}
     omega
   calc S.card ≤ (Finset.range m ×ˢ Finset.range (N + 1)).card :=
         Finset.card_le_card_of_injOn ι (fun n hn => Finset.mem_coe.2 (Finset.mem_product.2
-          ⟨Finset.mem_range.2 (hι n hn).1, Finset.mem_range.2 (hι n hn).2.1⟩)) hinj
+          ⟨Finset.mem_range.2 (hι n hn).fst, Finset.mem_range.2 (hι n hn).snd.1⟩)) hinj
     _ = m * (N + 1) := by rw [Finset.card_product, Finset.card_range, Finset.card_range]
 
 /-! ### Classes of the enlarged section -/
@@ -311,10 +312,11 @@ theorem manuscriptSentence_classContainsOriginalAndReturnPoints
   intro y hy
   have hbound := exponentBound_arrowSection T K C m (2 * m * H) hWw hKW
   obtain ⟨d, hd, hdK⟩ :=
-    exists_origin_mem_class T K C m (2 * m * H) Finset.subset_union_right hbound hy
+    exists_origin_mem_class T K C m (2 * m * H) (E := E0 ∪ arrowExponents (2 * m * H))
+      Finset.subset_union_right hbound hy
   refine ⟨d, hd, hdK, card_firstReturns T C m hret _, fun h hh =>
     ⟨add_mem_class_of_return T K C m _ Finset.subset_union_right hbound hd hdK hh, ?_⟩,
-    fun h hh h' _ heq => ?_⟩
+    fun h _ h' _ heq => ?_⟩
   · rw [← Dynamics.zpow_apply_zpow_apply]
     refine zpow_ne_self_of_mem T K m hWw hKW hdK ?_
     have h1 := ((mem_firstReturns T C m _).1 hh).1.1
