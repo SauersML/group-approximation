@@ -74,12 +74,16 @@ def HasApproxInvariantDensities {A : Type u} [CStarAlgebra A] (τ : A → ℂ) :
         (Matrix.trace (((φ (x * y) - φ x * φ y) * T)ᴴ *
           ((φ (x * y) - φ x * φ y) * T))).re ≤ ε)
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.HasApproxInvariantDensities
+
 /-- **Interface for lane nm-tww-11 (Connes' trick).**  Approximately invariant densities
 give a locally amenable trace.  This is an assumed Statement, not a result.  The module
 docstring sketches why it is true. -/
 def ConnesTrickStatement : Prop :=
   ∀ (A : Type u) (_ : CStarAlgebra A) (τ : A → ℂ),
     HasApproxInvariantDensities τ → IsLocallyAmenableTrace τ
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.ConnesTrickStatement
 
 /-- **Interface for lane nm-tww-12.**  On a separable nuclear C⋆-algebra, every faithful
 tracial state has approximately invariant densities.  This is an assumed Statement, not a
@@ -88,6 +92,8 @@ def NuclearTraceApproxDensityStatement : Prop :=
   ∀ (A : Type u) (_ : CStarAlgebra A), TopologicalSpace.SeparableSpace A →
     CStarExactness.IsNuclearCStarAlgebra A →
       ∀ τ : FaithfulTracialState A, HasApproxInvariantDensities (fun a : A ↦ τ a)
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.NuclearTraceApproxDensityStatement
 
 /-- **The single remaining gap, in local form.**  Every faithful tracial state on a
 separable nuclear C⋆-algebra is locally amenable.  It is strictly smaller in proof
@@ -99,12 +105,16 @@ def NuclearLocallyAmenableTraceStatement : Prop :=
     CStarExactness.IsNuclearCStarAlgebra A →
       ∀ τ : FaithfulTracialState A, IsLocallyAmenableTrace (fun a : A ↦ τ a)
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.NuclearLocallyAmenableTraceStatement
+
 /-- **The field of `NuclearAmenableTraceInput`, restricted to separable algebras.**  The
 module docstring explains why the unrestricted field is false. -/
 def NuclearAmenableTraceSeparableStatement : Prop :=
   ∀ (A : Type u) (_ : CStarAlgebra A), TopologicalSpace.SeparableSpace A →
     CStarExactness.IsNuclearCStarAlgebra A →
       ∀ τ : FaithfulTracialState A, IsAmenableTrace (fun a : A ↦ τ a)
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.NuclearAmenableTraceSeparableStatement
 
 /-- nm-tww-12 composed with nm-tww-11 gives the local gap. -/
 theorem nuclearLocallyAmenableTrace_of_connesTrick_of_nuclearDensity

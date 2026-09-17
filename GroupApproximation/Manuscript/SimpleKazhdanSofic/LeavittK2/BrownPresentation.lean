@@ -127,8 +127,8 @@ end Presentation
 
 /-- In any group, a braid relation `t y t = y t y` with `y² = 1` forces `t² = 1`, because
 `(y t) y (y t)⁻¹ = t`. -/
-theorem brown_mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P} (hb : t * y * t = y * t * y)
-    (hy : y * y = 1) : t * t = 1 := by
+theorem brown_mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P}
+    (hb : t * y * t = y * t * y) (hy : y * y = 1) : t * t = 1 := by
   have ht : t = y * t * y * t⁻¹ * y⁻¹ := by
     rw [← hb]
     group
@@ -140,7 +140,8 @@ theorem brown_mul_self_eq_one_of_braid {P : Type*} [Group P] {t y : P} (hb : t *
 
 /-- `T² = 1` in `Π` when `h² = 1` (tex: "The relation `T² = 1` follows from the displayed
 presentation"). -/
-theorem brownT_mul_self (J K : Subgroup G) (hKJ : K ≤ J) (η : K →* K) (h : J) (hh : h * h = 1) :
+theorem brownT_mul_self (J K : Subgroup G) (hKJ : K ≤ J) (η : K →* K) (h : J)
+    (hh : h * h = 1) :
     brownT J K hKJ η h * brownT J K hKJ η h = 1 :=
   brown_mul_self_eq_one_of_braid (brownT_braid J K hKJ η h)
     (by rw [brownJ_mul, hh, brownJ_one])
@@ -165,5 +166,56 @@ theorem conjEta_apply (K : Subgroup G) (τ : G) (hτ : ∀ k ∈ K, τ * k * τ�
   rfl
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.conjEta_apply
+
+section Projection
+
+variable (J K : Subgroup G) (hKJ : K ≤ J) (η : K →* K) (h : J) (τ : G)
+
+/-- The images of the generators: `j ↦ j` and `T ↦ τ`. -/
+def brownGenMap : (↥J ⊕ Unit) → G := Sum.elim (fun j => (j : G)) (fun _ => τ)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownGenMap
+
+/-- The relators of `Π` die in `G` when `η` is conjugation by `τ` and `τ h τ = h τ h`. -/
+theorem brownRels_die (hη : ∀ k : K, ((η k : K) : G) = τ * k * τ⁻¹)
+    (hτh : τ * h * τ = h * τ * h) :
+    ∀ r ∈ brownRels J K hKJ η h, FreeGroup.lift (brownGenMap J τ) r = 1 := by
+  unfold brownRels
+  rintro r ((⟨⟨a, b⟩, rfl⟩ | ⟨k, rfl⟩) | hr)
+  · simp only [map_mul, map_inv, FreeGroup.lift_apply_of, brownGenMap, Sum.elim_inl,
+      Subgroup.coe_mul]
+    group
+  · simp only [map_mul, map_inv, FreeGroup.lift_apply_of, brownGenMap, Sum.elim_inl,
+      Sum.elim_inr, brownKIncl, hη]
+    group
+  · rw [Set.mem_singleton_iff] at hr
+    subst hr
+    simp only [map_mul, map_inv, FreeGroup.lift_apply_of, brownGenMap, Sum.elim_inl,
+      Sum.elim_inr]
+    rw [hτh]
+    group
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownRels_die
+
+/-- Khanh's projection `p : Π →* G`, `p(j) = j`, `p(T) = τ`. -/
+def brownMap (hη : ∀ k : K, ((η k : K) : G) = τ * k * τ⁻¹) (hτh : τ * h * τ = h * τ * h) :
+    BrownPresentation J K hKJ η h →* G :=
+  PresentedGroup.toGroup (brownRels_die J K hKJ η h τ hη hτh)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownMap
+
+theorem brownMap_J (hη : ∀ k : K, ((η k : K) : G) = τ * k * τ⁻¹) (hτh : τ * h * τ = h * τ * h)
+    (j : J) : brownMap J K hKJ η h τ hη hτh (brownJ J K hKJ η h j) = j :=
+  PresentedGroup.toGroup.of _
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownMap_J
+
+theorem brownMap_T (hη : ∀ k : K, ((η k : K) : G) = τ * k * τ⁻¹) (hτh : τ * h * τ = h * τ * h) :
+    brownMap J K hKJ η h τ hη hτh (brownT J K hKJ η h) = τ :=
+  PresentedGroup.toGroup.of _
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownMap_T
+
+end Projection
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

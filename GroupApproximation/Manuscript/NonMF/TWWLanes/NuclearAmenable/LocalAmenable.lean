@@ -51,6 +51,8 @@ def IsLocallyAmenableTrace (τ : A → ℂ) : Prop :=
       (∀ x ∈ F, ∀ y ∈ F, hsNorm Y (φ (x * y) - φ x * φ y) ≤ ε) ∧
       (∀ x ∈ F, ‖τ x - normTrace Y (φ x)‖ ≤ ε)
 
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.IsLocallyAmenableTrace
+
 /-- **A locally amenable trace is `1`-Lipschitz.**  Only the trace clause at `{x, y}` and
 the contractivity of ucp maps are used, exactly as in
 `Quasidiagonal.lipschitz_of_isLocallyQuasidiagonalTrace`. -/

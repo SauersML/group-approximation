@@ -156,3 +156,53 @@ def RoseSingleRegionMoveStatement : Prop :=
               s₁.length ≤ eps ∧ s₂.length ≤ eps ∧ lo ≤ t₂.start.1 ∧
               t₂.start.1 + t₂.length ≤ hi ∧
               t₁.length < (cellDarts X source).length ∧ t₂.length < (outerDarts X).length
+
+/-- **The sub-arc region move from a single-region move**: flip the region of `r`. -/
+theorem regionMoveSubArc_of_singleRegionMove (h : RoseSingleRegionMoveStatement.{u, w, v}) :
+    RoseRegionMoveSubArcStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hrout, ⟨y, hy, hry⟩, source, kept, hsource, hkept, t₁, t₂, s₁, s₂, hperm, hwalk,
+    hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hz := regionColour_step X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r
+  exact ⟨regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r, hz,
+    regionColour_indep K.boundary.cycle_mem_iff r,
+    not_mem_flipFaces hz K.outerFace_not_mem
+      (fun x hx => regionColour_eq_false X.toCombMap _ (hrout x hx)),
+    ⟨y, hy, movePred_regionColour_eq_false hry⟩, source, kept, hsource, hkept, t₁, t₂, s₁, s₂,
+    hperm, hwalk, hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩
+
+/-- **The rose step from a single-region move.** -/
+theorem rose_of_singleRegionMove (h : RoseSingleRegionMoveStatement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} :=
+  rose_of_regionMoveSubArc (regionMoveSubArc_of_singleRegionMove h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+universe u w v
+
+/-- **The outer-pinch step from the sub-arc region move.** -/
+theorem proof_of_regionMoveSubArc (h : P10Rose.RoseRegionMoveSubArcStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  proof_of_rose (P10Rose.rose_of_regionMoveSubArc h)
+
+/-- **The outer-pinch step from a single-region move.** -/
+theorem proof_of_singleRegionMove (h : P10Rose.RoseSingleRegionMoveStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  proof_of_rose (P10Rose.rose_of_singleRegionMove h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.regionColour
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.regionColour_eq_true_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.bool_eq_of_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.regionColour_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.regionColour_eq_false
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.regionColour_indep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.SubArcMove.movePred_regionColour_eq_false
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.RoseSingleRegionMoveStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.regionMoveSubArc_of_singleRegionMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.rose_of_singleRegionMove
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof_of_regionMoveSubArc
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof_of_singleRegionMove
