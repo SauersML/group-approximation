@@ -64,3 +64,34 @@ only up to a homomorphism from `T` that is injective on `S`.
    The claim is therefore existential in the marking in an essential way. A
    witness must use a clean marking, for example `H` with solvable word problem
    relative to `S`.
+3. **Biography of a witness, turned into a recipe (swarm-0917, inverter).**
+   *Reduces the hole to a ring-host premise. The hole stays OPEN.*
+
+   **What any witness must have.** A witness `R = U/I` is a finitely presented
+   simple ring. It has `S -> R^x` injective, `p(1-g)q = 1` for one `g in S`, and
+   `PE_4(R)` finitely presented and simple. Here `PE_4(R)` already contains `S`.
+
+   **The recipe.** The marking data of the route can be taken from the host
+   itself. By [[square-module-ring-hosts-are-sandwich-ring-quotients]], any
+   finitely presented ring `R` with the following three properties is a
+   witness:
+   - `R_R ≅ R_R^2`;
+   - `S <= R^x`, with `S` perfect;
+   - `PE_4(R)` is finitely presented and simple.
+
+   Take `T = H = E_4(R)` and `g = e_12(1)`. Then `U ->> M_4(R) ≅ R` with a
+   finitely generated kernel. Leavitt tensor hosts `B ⊗ L_(F_2)(1,2)` have all
+   three properties, so route [[ck-sandwich-quotient-via-elementary-leavitt-hosts]]
+   derives this hole from
+   [[simple-inputs-have-fp-elementary-leavitt-tensor-hosts]].
+
+   **Where it stops.** The recipe does not give equivalence. The necessary side
+   does not force `R ≅ R^2`. A directly finite witness is not excluded: there,
+   `p(1-g)q = 1` only makes `1-g` a unit. The open step is to pass from a
+   witness ring to a square-module ring without losing finite presentation of
+   `PE_4`. Tensoring with `L_2` changes the Steinberg kernel, so it does not
+   work. This is posted as a live need.
+
+   **Consequence.** The sandwich ring `U`, and the Clapham and derived-subgroup
+   data, impose no obstruction of their own in the congruence regime. An attack
+   on this hole through features of `U` is an attack on the ring-host problem.
