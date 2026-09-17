@@ -44,8 +44,21 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   amenability is equivalent to the existence of a non-degenerate symmetric
   measure with trivial Poisson boundary.
   `thompson-f-random-walks-are-not-liouville` excludes every strictly
-  non-degenerate finitely supported measure. Dies: only infinitely supported
-  measures remain, and none is known to be Liouville and non-degenerate.
+  non-degenerate finitely supported measure.
+  `thompson-f-finite-breakpoint-moment-walks-are-not-liouville` (swarm-0917,
+  obstruction-miner) extends the kill to every `µ` with `sgr supp µ = F` and
+  `E_µ|Br(h)| < ∞`, hence every finite-first-moment measure. This is the extension
+  Kaimanovich expected in 1602.02971 §7.A.
+  - *Invariant:* the breakpoint-cocycle lamp configuration `c(g_n) ∈ Z^D`.
+  - *Where every member dies:* the dyadic quotient walk is transient and doubly
+    stochastic (`thompson-f-dyadic-orbit-walks-are-transient`), so the expected flip
+    count is at most `G(z,z) E_µ|Br|`. The lamps stabilize, and an element fixing
+    `1/2` with a breakpoint there turns the law of the stabilized lamp into a
+    nonconstant harmonic function.
+  - Dies: surviving witnesses have infinite Green-weighted breakpoint count at every
+    dyadic point. The next rung, finite entropy, is open. Killing it would still not
+    decide the question, since by [Ers04b] some amenable groups have no
+    finite-entropy Liouville measure.
 - **Group-ring equations.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   amenability is the Ore condition for `K[F]`: every pair of nonzero `a, b` has a
   nonzero common multiple. Guba's survey (arXiv:2305.07113, §3, read in full) reduces
