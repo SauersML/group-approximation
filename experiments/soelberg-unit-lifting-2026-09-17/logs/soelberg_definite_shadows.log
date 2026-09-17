@@ -1,0 +1,149 @@
+assignments satisfying both relators and generating D(Z) (|exponents| <= 3): 112
+x ->  t^-3 u    y ->  t^-1       shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-3 u    y ->  t^1        shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-3 u    y -> -1 t^-1     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-3 u    y -> -1 t^1      shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-2 u    y ->  t^-1       shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-2 u    y ->  t^1        shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-2 u    y -> -1 t^-1     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-2 u    y -> -1 t^1      shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^-3 u     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^-2 u     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^-1 u     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^0 u      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^1 u      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^2 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y ->  t^3 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^-3 u   shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^-2 u   shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^-1 u   shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^0 u    shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^1 u    shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^2 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1      y -> -1 t^3 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1 u    y ->  t^-1       shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1 u    y ->  t^1        shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1 u    y -> -1 t^-1     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^-1 u    y -> -1 t^1      shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^0 u     y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^0 u     y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^0 u     y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^0 u     y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^-3 u     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^-2 u     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^-1 u     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^0 u      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^1 u      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^2 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y ->  t^3 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^-3 u   shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^-2 u   shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^-1 u   shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^0 u    shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^1 u    shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^2 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1       y -> -1 t^3 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1 u     y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1 u     y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1 u     y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^1 u     y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^2 u     y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^2 u     y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^2 u     y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^2 u     y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^3 u     y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^3 u     y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^3 u     y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x ->  t^3 u     y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-3 u  y ->  t^-1       shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-3 u  y ->  t^1        shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-3 u  y -> -1 t^-1     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-3 u  y -> -1 t^1      shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-2 u  y ->  t^-1       shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-2 u  y ->  t^1        shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-2 u  y -> -1 t^-1     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-2 u  y -> -1 t^1      shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^-3 u     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^-2 u     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^-1 u     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^0 u      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^1 u      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^2 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y ->  t^3 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^-3 u   shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^-2 u   shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^-1 u   shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^0 u    shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^1 u    shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^2 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1    y -> -1 t^3 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1 u  y ->  t^-1       shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1 u  y ->  t^1        shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1 u  y -> -1 t^-1     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^-1 u  y -> -1 t^1      shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^0 u   y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^0 u   y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^0 u   y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^0 u   y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^-3 u     shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^-2 u     shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^-1 u     shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^0 u      shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^1 u      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^2 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y ->  t^3 u      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^-3 u   shadow(nu) mod 2 =  t^-5 u +  t^-2 +  t^-1 u +  t^0 +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^-2 u   shadow(nu) mod 2 =  t^-4 u +  t^-2 +  t^0 +  t^0 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^-1 u   shadow(nu) mod 2 =  t^-3 u +  t^-2 +  t^0 +  t^1 u +  t^2   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^0 u    shadow(nu) mod 2 =  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^1 u    shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^2 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1     y -> -1 t^3 u    shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1 u   y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1 u   y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1 u   y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^1 u   y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^-1 u +  t^0 +  t^2 +  t^3 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^2 u   y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^2 u   y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^2 u   y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^2 u   y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^0 u +  t^2 +  t^4 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^3 u   y ->  t^-1       shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^3 u   y ->  t^1        shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^3 u   y -> -1 t^-1     shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+x -> -1 t^3 u   y -> -1 t^1      shadow(nu) mod 2 =  t^-2 +  t^0 +  t^1 u +  t^2 +  t^5 u   [5 terms, monomial=False, product with shadow(nu^-1) = 1: True]
+shadows with non-monomial image of nu mod 2: 112 of 112
+
+normalized shadow rho: x -> t, y -> u.  Images of the 29 words of A over Z:
+  A_1  = x            ->  t^1
+  A_2  = X            ->  t^-1
+  A_3  = y            ->  t^0 u
+  A_4  = Y            -> -1 t^0 u
+  A_5  = x*y          ->  t^1 u
+  A_6  = X*Y          -> -1 t^-1 u
+  A_7  = y*X          ->  t^1 u
+  A_8  = y^2          -> -1 t^0
+  A_9  = Y*x          -> -1 t^-1 u
+  A_10 = Y^2          -> -1 t^0
+  A_11 = x^2*y        ->  t^2 u
+  A_12 = x*Y*x        -> -1 t^0 u
+  A_13 = x*Y^2        -> -1 t^1
+  A_14 = X^2*Y        -> -1 t^-2 u
+  A_15 = X*y*X        ->  t^0 u
+  A_16 = X*y^2        -> -1 t^-1
+  A_17 = y*x*y        -> -1 t^-1
+  A_18 = Y*X*Y        -> -1 t^1
+  A_19 = x^2*Y*x      -> -1 t^1 u
+  A_20 = x*y*x^2      ->  t^-1 u
+  A_21 = X^2*y*X      ->  t^-1 u
+  A_22 = X*Y*X^2      -> -1 t^1 u
+  A_23 = y*X^2*Y      ->  t^2
+  A_24 = Y*x^2*y      ->  t^-2
+  A_25 = x^2*y*x^2    ->  t^0 u
+  A_26 = x*Y*x^2*y    ->  t^-1
+  A_27 = X^2*Y*X^2    -> -1 t^0 u
+  A_28 = X*y*X^2*Y    ->  t^1
+  A_29 = x^2*Y*x^2*y  ->  t^0
+  sum over Z (integral lift with all coefficients +1):  t^-2 + -1 t^-2 u + -1 t^0 +  t^2 +  t^2 u
+  rho(nu) over F_2:  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u
+  rho(nu^-1) over F_2:  t^-2 +  t^-2 u +  t^0 +  t^2 +  t^2 u    rho(nu) rho(nu^-1) = 1 mod 2: True   rho(nu^-1) rho(nu) = 1 mod 2: True
+well-definedness on 3000 random words (same group element -> same shadow), mismatches: 0  distinct elements hit twice: 2290

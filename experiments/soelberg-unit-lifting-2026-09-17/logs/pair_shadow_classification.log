@@ -1,0 +1,34 @@
+$ python3 pair_shadow_classification.py cases/
+rho1 monomial classes of A: 10  rho2 monomial classes of A: 10
+systems written: 1100  cases with inverse monomial outside rho(B) (no unit, skipped): 0
+$ (cd cases && bash ../run_all_msolve.sh)   # msolve, char 0, -t 1, timeout 1200 s per system
+regenerated inputs identical to the run inputs: yes
+systems: 1100  outputs: 1100  failures/timeouts: 0
+output tally:
+   1100 [-1]
+per localization case (i,j):
+  01_02: 100 of 100 empty
+  01_03: 100 of 100 empty
+  01_04: 100 of 100 empty
+  01_05: 100 of 100 empty
+  01_07: 100 of 100 empty
+  02_03: 100 of 100 empty
+  02_04: 100 of 100 empty
+  02_05: 100 of 100 empty
+  02_09: 100 of 100 empty
+  03_04: 100 of 100 empty
+  05_06: 100 of 100 empty
+
+$ python3 pair_shadow_classification.py cases_p1000000007/ 1000000007 && (cd cases_p1000000007 && bash ../run_all_msolve.sh)   # msolve over F_p
+systems: 1100  outputs: 1100  failures/timeouts: 0
+char line of inputs: 1000000007 
+inputs differ from the char-0 inputs only in the characteristic line: yes
+output tally:
+   1100 [-1]
+
+$ python3 pair_shadow_classification.py cases_p1000000009/ 1000000009 && (cd cases_p1000000009 && bash ../run_all_msolve.sh)   # msolve over F_p
+systems: 1100  outputs: 1100  failures/timeouts: 0
+char line of inputs: 1000000009 
+inputs differ from the char-0 inputs only in the characteristic line: yes
+output tally:
+   1100 [-1]
