@@ -1,0 +1,21 @@
+[1] forest model: relations hold, 462 normal forms map injectively to forests
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 0, (1, 1): 0} leaf=0 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 0, (0, 1): 1, (1, 0): 1, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=2.2e-16 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=4.16e-16
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 0, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 0, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 1, (1, 1): 0} leaf=0 pi={0: 0.381966, 1: 0.618034} residual=5.6e-17 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=7.21e-15
+[3] magma |Q|=3 delta={(0, 0): 2, (0, 1): 2, (0, 2): 0, (1, 0): 2, (1, 1): 0, (1, 2): 1, (2, 0): 2, (2, 1): 0, (2, 2): 1} leaf=2 pi={0: 0.317672, 1: 0.276742, 2: 0.405586} residual=2.2e-16 N=4 H=1 |S|=3 max TV(split_s law, nu_(N+d))=2.79e-16
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 1, (1, 1): 0} leaf=1 pi={0: 0.381966, 1: 0.618034} residual=5.6e-17 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=7.21e-15
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 0, (1, 0): 0, (1, 1): 0} leaf=0 pi={0: 0.618034, 1: 0.381966} residual=5.6e-17 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=9.65e-15
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 0, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 1, (1, 0): 1, (1, 1): 0} leaf=0 pi={0: 0.381966, 1: 0.618034} residual=5.6e-17 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=7.21e-15
+[3] magma |Q|=3 delta={(0, 0): 1, (0, 1): 2, (0, 2): 2, (1, 0): 2, (1, 1): 0, (1, 2): 1, (2, 0): 2, (2, 1): 1, (2, 2): 0} leaf=2 pi={0: 0.268824, 1: 0.33806, 2: 0.393116} residual=3.9e-16 N=4 H=1 |S|=3 max TV(split_s law, nu_(N+d))=4.93e-16
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 0, (1, 0): 1, (1, 1): 0} leaf=1 pi={0: 0.5, 1: 0.5} residual=0.0e+00 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=0.00e+00
+[3] magma |Q|=2 delta={(0, 0): 1, (0, 1): 0, (1, 0): 0, (1, 1): 0} leaf=0 pi={0: 0.618034, 1: 0.381966} residual=5.6e-17 N=4 H=2 |S|=12 max TV(split_s law, nu_(N+d))=9.65e-15
+[3] magma |Q|=3 delta={(0, 0): 2, (0, 1): 1, (0, 2): 1, (1, 0): 2, (1, 1): 2, (1, 2): 1, (2, 0): 1, (2, 1): 0, (2, 2): 0} leaf=2 pi={0: 0.251795, 1: 0.411673, 2: 0.336532} residual=1.1e-16 N=4 H=1 |S|=3 max TV(split_s law, nu_(N+d))=1.79e-16
+[3] magma |Q|=3 delta={(0, 0): 2, (0, 1): 0, (0, 2): 1, (1, 0): 2, (1, 1): 0, (1, 2): 2, (2, 0): 0, (2, 1): 2, (2, 2): 0} leaf=2 pi={0: 0.432041, 1: 0.171351, 2: 0.396608} residual=3.1e-16 N=4 H=1 |S|=3 max TV(split_s law, nu_(N+d))=7.19e-16
+[3] 16 magmas tested (16 with support >= 2); worst idempotent residual 3.9e-16; worst TV 9.65e-15
+[3c] control (constant magma, uniform non-idempotent pi): max TV = 0.875 (must be > 0)
+[4] free monoid calibration: words in both aM and bM: 0 (method must fail there)
+[5] free magma has no idempotent probability measure: True

@@ -97,6 +97,15 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   shape is a free product `A * B` with a disjoint pair in `A`. Classical ping-pong is
   impossible there (`free-product-disjoint-pair-no-support-separating-element`), and no
   construction is known. Map: `research/artifacts/zp-thompson-f-nonamenability-certificates-2026-09-13-part2.md`.
+- **Finite-state expansion flows on the positive monoid.** A certificate for doubling is a flow
+  `w(s, y)` on `M`, with outflow `>= λ > 1` and inflow `<= 1`. Dies when `w` depends on the forest `y`
+  only through a finite tree automaton profile and the number of trees
+  (`thompson-f-finite-state-flows-cannot-prove-nonamenability`). The step where it
+  fails: every finite automaton has an idempotent state measure, which makes a random forest
+  split-stationary, and averaging then gives inflow `>=` outflow. A certificate must read invariants with
+  no idempotent measure (sizes, depths, exact shapes); this is the gate where Moore's idempotent-mean
+  route also died (arXiv:1807.05469). Open: rules that also see the total caret count, and flows on pairs
+  of forests.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
