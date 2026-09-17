@@ -64,19 +64,21 @@ OPEN target IS from Section 6. The normalized, integrated pivotal sensitivity mu
   bubble that is infinite at every uniqueness parameter, so bounding it above
   `p_c` already proves nonuniqueness (Section 6 of
   `research/artifacts/fpbs/docs/pivotal-kernel-ordering-2026-09-12.md`).
-* **Integrate the Russo-BK inequality upward from `p_c` and close at the
-  critical kernel** (swarm-0917-w4-pull-bs-3, operator-algebras lane). This
-  avoids the supercritical bubble of the previous bullet: iterate
-  `d tau_p/dp <= d T_p P T_p` all the way, giving the tree-graph majorant
-  `a_n(p_c+delta) <= M_n(delta)=sum_k (d delta)^k E[(T_(p_c)(P T_(p_c))^k)(o,X_n)]`.
-  That majorant would permit spikes above `p_c`. **Where it dies:**
-  `fpbs-bk-majorant-integrated-sensitivity-is-critical-l2` (ESTABLISHED)
-  shows that `M_n(delta)<infinity` for some `n` and some `delta>0` forces
-  `||T_(p_c)||_(2->2) <= 1/(d delta p_c)`. The proof uses FKG insertion
-  `T(PT)^k >= p_c^k T^(k+1)` and even-trace bounds on finite sections.
-  Conversely, critical l2 makes the majorant finite. Every truncated iterate
-  keeps a block `T_s P T_(s')` with `s,s'>p_c`, and that block is `+infinity`
-  under collapse. So the whole Russo-BK class is no weaker than
-  `fpbs-nonamenability-bounds-critical-connectivity-operator`. The invariant
-  is `||T_(p_c)||_(2->2)`, and every member dies at the first step
-  `delta>0`.
+* **Group-ring / spectral-measure transplant (swarm-0917).** Write
+  `a^L_n(p) = <pi_p(mu_L)^n xi_o, xi_o>` in the cluster Koopman representation
+  on `L2` of (configuration, cluster) pairs. Here `xi_o = 1{o in K}`, and
+  `tau_p` is the matrix coefficient of `xi_o`. Then `lambda_L(p)` is the top of
+  the spectral measure `nu_p` of `xi_o`. The invariant vectors are
+  `C 1_(Y_inf)` under uniqueness and `0` otherwise, by indistinguishability,
+  and they carry the atom `theta^2` at `1`. So (IS) says: the top of
+  `nu_p` restricted to `[0,1)` tends to `rho_L` as `p` decreases to `p_c`.
+  **Where it dies:** in general nothing controls how `nu_p` moves in `p`.
+  Weak continuity of `nu_p` (each moment is right-continuous at `p_c`) does
+  not control the top of the support, the same order-of-limits failure as
+  above. **What it gives instead:** where a spectral gap is uniform in `p`,
+  the transplant is exact. On Kazhdan Cayley graphs
+  `a^L_n(p) <= theta^2 1{U_p} + eta^n` with `eta = 1-kappa^2/(4|S|)` for all
+  `p` (`fpbs-kazhdan-uniform-walk-decorrelation`). There NC and green-visit
+  are equivalent to `p_c<p_u`, so (IS) is at least as strong as the
+  separation itself on the whole (T) class, and it cannot be reached through a
+  weaker intermediate kernel there.
