@@ -26,7 +26,7 @@ import Mathlib.GroupTheory.Finiteness
   after relabelling letters mod `N + 1` (`Higman.BridgeWP.lift_rawToFree`).
 * `nonempty_fpOvergroup_of_hasSolvableWordProblem`: Higman's embedding theorem
   (`Higman.fpOvergroup_of_fgRecursive`, `Higman.OmegaSharedProof.reBenign`).
-* `hasSolvableWordProblem_of_mulEquiv`-style transport along a bijective homomorphism, and
+* `hasSolvableWordProblem_of_bijective`: transport along a bijective homomorphism, and
   `embedsInThompsonSimpleSubgroup_of_embedsInFGSimpleSolvable`: the image of a finitely generated
   simple group with solvable word problem in its finitely presented overgroup is a subgroup as in
   Thompson's form.
@@ -88,11 +88,11 @@ theorem nonempty_fgRecursive_of_hasSolvableWordProblem (h : HasSolvableWordProbl
     Primrec.nat_mod.comp Primrec.id (Primrec.const (N + 1))
   have hcomp : Computable fun v : RawWord => relabel (fun k => k % (N + 1)) v :=
     (primrec_relabel hσ).to_comp
-  exact ⟨{ rank := N
-           π := FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ)
-           π_surjective := surjective_lift_natGen hs hN
-           re := (rePred_comp (rePred_evalRaw_natGen_eq_one s hpart) hcomp).of_eq fun v => by
-             rw [hmod] }⟩
+  have hre : REPred fun v : RawWord =>
+      (FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ)) (rawToFree N v) = 1 :=
+    (rePred_comp (rePred_evalRaw_natGen_eq_one s hpart) hcomp).of_eq fun v => by rw [hmod]
+  exact ⟨{ rank := N, π := FreeGroup.lift fun j : Fin (N + 1) => natGen s (j : ℕ),
+    π_surjective := surjective_lift_natGen hs hN, re := hre }⟩
 
 /-- **Higman.** A group with solvable word problem embeds in a finitely presented group. -/
 theorem nonempty_fpOvergroup_of_hasSolvableWordProblem (h : HasSolvableWordProblem Γ) :

@@ -63,7 +63,7 @@ theorem mem_language_001 :
   have h3 : (wordOnes ![false, false, true] 3 : ℝ) = 1 := by
     exact_mod_cast (by decide +kernel : wordOnes ![false, false, true] 3 = 1)
   intro k l hk hl
-  interval_cases k <;> interval_cases l <;> push_cast <;> linarith
+  interval_cases k <;> interval_cases l <;> push_cast <;> linarith [hlo, hhi, h0, h1, h2, h3]
 
 theorem mem_language_010 :
     ![false, true, false] ∈ WordGraph.language fibonacciSubshift.carrier 3 := by
@@ -78,7 +78,7 @@ theorem mem_language_010 :
   have h3 : (wordOnes ![false, true, false] 3 : ℝ) = 1 := by
     exact_mod_cast (by decide +kernel : wordOnes ![false, true, false] 3 = 1)
   intro k l hk hl
-  interval_cases k <;> interval_cases l <;> push_cast <;> linarith
+  interval_cases k <;> interval_cases l <;> push_cast <;> linarith [hlo, hhi, h0, h1, h2, h3]
 
 theorem mem_language_100 :
     ![true, false, false] ∈ WordGraph.language fibonacciSubshift.carrier 3 := by
@@ -93,7 +93,7 @@ theorem mem_language_100 :
   have h3 : (wordOnes ![true, false, false] 3 : ℝ) = 1 := by
     exact_mod_cast (by decide +kernel : wordOnes ![true, false, false] 3 = 1)
   intro k l hk hl
-  interval_cases k <;> interval_cases l <;> push_cast <;> linarith
+  interval_cases k <;> interval_cases l <;> push_cast <;> linarith [hlo, hhi, h0, h1, h2, h3]
 
 theorem mem_language_101 :
     ![true, false, true] ∈ WordGraph.language fibonacciSubshift.carrier 3 := by
@@ -108,6 +108,150 @@ theorem mem_language_101 :
   have h3 : (wordOnes ![true, false, true] 3 : ℝ) = 2 := by
     exact_mod_cast (by decide +kernel : wordOnes ![true, false, true] 3 = 2)
   intro k l hk hl
-  interval_cases k <;> interval_cases l <;> push_cast <;> linarith
+  interval_cases k <;> interval_cases l <;> push_cast <;> linarith [hlo, hhi, h0, h1, h2, h3]
 
 end Members
+
+section NonMembers
+
+/-- `000` would need `3α < 1`. -/
+theorem not_mem_language_000 :
+    ![false, false, false] ∉ WordGraph.language fibonacciSubshift.carrier 3 := by
+  obtain ⟨hlo, -, hpos, hlt1⟩ := fibonacciSlope_bounds
+  intro h
+  have hk := (mem_language_sturmianSubshift_iff_compare _ hpos hlt1 _).1 h 0 3 (by norm_num)
+    (by norm_num)
+  have h0 : (wordOnes ![false, false, false] 0 : ℝ) = 0 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![false, false, false] 0 = 0)
+  have h3 : (wordOnes ![false, false, false] 3 : ℝ) = 0 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![false, false, false] 3 = 0)
+  push_cast at hk
+  linarith [hlo, h0, h3, hk]
+
+/-- `011` would need `2α > 1`. -/
+theorem not_mem_language_011 :
+    ![false, true, true] ∉ WordGraph.language fibonacciSubshift.carrier 3 := by
+  obtain ⟨-, hhi, hpos, hlt1⟩ := fibonacciSlope_bounds
+  intro h
+  have hk := (mem_language_sturmianSubshift_iff_compare _ hpos hlt1 _).1 h 3 1 (by norm_num)
+    (by norm_num)
+  have h1 : (wordOnes ![false, true, true] 1 : ℝ) = 0 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![false, true, true] 1 = 0)
+  have h3 : (wordOnes ![false, true, true] 3 : ℝ) = 2 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![false, true, true] 3 = 2)
+  push_cast at hk
+  linarith [hhi, h1, h3, hk]
+
+/-- `110` would need `2α > 1`. -/
+theorem not_mem_language_110 :
+    ![true, true, false] ∉ WordGraph.language fibonacciSubshift.carrier 3 := by
+  obtain ⟨-, hhi, hpos, hlt1⟩ := fibonacciSlope_bounds
+  intro h
+  have hk := (mem_language_sturmianSubshift_iff_compare _ hpos hlt1 _).1 h 2 0 (by norm_num)
+    (by norm_num)
+  have h0 : (wordOnes ![true, true, false] 0 : ℝ) = 0 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![true, true, false] 0 = 0)
+  have h2 : (wordOnes ![true, true, false] 2 : ℝ) = 2 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![true, true, false] 2 = 2)
+  push_cast at hk
+  linarith [hhi, h0, h2, hk]
+
+/-- `111` would need `2α > 1`. -/
+theorem not_mem_language_111 :
+    ![true, true, true] ∉ WordGraph.language fibonacciSubshift.carrier 3 := by
+  obtain ⟨-, hhi, hpos, hlt1⟩ := fibonacciSlope_bounds
+  intro h
+  have hk := (mem_language_sturmianSubshift_iff_compare _ hpos hlt1 _).1 h 2 0 (by norm_num)
+    (by norm_num)
+  have h0 : (wordOnes ![true, true, true] 0 : ℝ) = 0 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![true, true, true] 0 = 0)
+  have h2 : (wordOnes ![true, true, true] 2 : ℝ) = 2 := by
+    exact_mod_cast (by decide +kernel : wordOnes ![true, true, true] 2 = 2)
+  push_cast at hk
+  linarith [hhi, h0, h2, hk]
+
+end NonMembers
+
+/-- **Sentence l.410 (tex l.409–410).** The words of length `3` of the Fibonacci subshift
+`X_{(3-√5)/2}` are `001`, `010`, `100` and `101`. -/
+theorem manuscriptSentence_fibonacciWordsLengthThree :
+    WordGraph.language fibonacciSubshift.carrier 3 =
+      {![false, false, true], ![false, true, false], ![true, false, false],
+        ![true, false, true]} := by
+  ext w
+  rw [Set.mem_insert_iff, Set.mem_insert_iff, Set.mem_insert_iff, Set.mem_singleton_iff]
+  obtain ⟨a, b, c, rfl⟩ : ∃ a b c : Bool, w = ![a, b, c] :=
+    ⟨w 0, w 1, w 2, by funext i; fin_cases i <;> rfl⟩
+  cases a <;> cases b <;> cases c
+  · exact iff_of_false not_mem_language_000 (by decide +kernel)
+  · exact iff_of_true mem_language_001 (Or.inl rfl)
+  · exact iff_of_true mem_language_010 (Or.inr (Or.inl rfl))
+  · exact iff_of_false not_mem_language_011 (by decide +kernel)
+  · exact iff_of_true mem_language_100 (Or.inr (Or.inr (Or.inl rfl)))
+  · exact iff_of_true mem_language_101 (Or.inr (Or.inr (Or.inr rfl)))
+  · exact iff_of_false not_mem_language_110 (by decide +kernel)
+  · exact iff_of_false not_mem_language_111 (by decide +kernel)
+
+#audit_axioms manuscriptSentence_fibonacciWordsLengthThree
+
+section Periodic
+
+/-- **The `5`-periodic sequence `y`** with `y_{[0,5)} = 01001` (tex l.411): `y_n = 1` iff
+`n ≡ 1` or `n ≡ 4 (mod 5)`. -/
+def fibonacciPeriodicWord (n : ℤ) : Bool :=
+  decide (n % 5 = 1 ∨ n % 5 = 4)
+
+theorem word_fibonacciPeriodicWord_zero_five :
+    WordGraph.word fibonacciPeriodicWord 0 5 = ![false, true, false, false, true] := by
+  decide +kernel
+
+theorem fibonacciPeriodicWord_add_five (n : ℤ) :
+    fibonacciPeriodicWord ((5 : ℕ) + n) = fibonacciPeriodicWord n := by
+  unfold fibonacciPeriodicWord
+  rw [decide_eq_decide]
+  omega
+
+theorem word_fibonacciPeriodicWord_emod (i : ℤ) :
+    WordGraph.word fibonacciPeriodicWord i 3 = WordGraph.word fibonacciPeriodicWord (i % 5) 3 := by
+  funext j
+  rw [WordGraph.word_apply, WordGraph.word_apply]
+  unfold fibonacciPeriodicWord
+  rw [decide_eq_decide]
+  omega
+
+/-- The windows of length `3` of `y` are `001`, `010`, `100`, `101`: those at `2`, `0` (and `3`),
+`1` and `4`. -/
+theorem range_word_fibonacciPeriodicWord :
+    Set.range (fun i : ℤ => WordGraph.word fibonacciPeriodicWord i 3) =
+      {![false, false, true], ![false, true, false], ![true, false, false],
+        ![true, false, true]} := by
+  ext w
+  rw [Set.mem_range, Set.mem_insert_iff, Set.mem_insert_iff, Set.mem_insert_iff,
+    Set.mem_singleton_iff]
+  constructor
+  · rintro ⟨i, rfl⟩
+    show WordGraph.word fibonacciPeriodicWord i 3 = _ ∨ _
+    rw [word_fibonacciPeriodicWord_emod]
+    have h0 : 0 ≤ i % 5 := Int.emod_nonneg i (by norm_num)
+    have h5 : i % 5 < 5 := Int.emod_lt_of_pos i (by norm_num)
+    obtain ⟨r, hr⟩ : ∃ r : ℤ, i % 5 = r := ⟨_, rfl⟩
+    rw [hr] at h0 h5 ⊢
+    interval_cases r <;> decide +kernel
+  · rintro (rfl | rfl | rfl | rfl)
+    · exact ⟨2, by decide +kernel⟩
+    · exact ⟨0, by decide +kernel⟩
+    · exact ⟨1, by decide +kernel⟩
+    · exact ⟨4, by decide +kernel⟩
+
+/-- The least period of `y` is `5`: it divides `5` and `y` is not constant. -/
+theorem leastPeriod_fibonacciPeriodicWord : leastPeriod fibonacciPeriodicWord = 5 := by
+  have hper : Function.IsPeriodicPt (shift (1 : ℤ)) 5 fibonacciPeriodicWord :=
+    (isPeriodicPt_shift_iff _ 5).2 fibonacciPeriodicWord_add_five
+  rcases Nat.prime_five.eq_one_or_self_of_dvd _ hper.minimalPeriod_dvd with h1 | h1
+  · have hp := (isPeriodicPt_shift_iff _ _).1
+      (Function.isPeriodicPt_minimalPeriod (shift (1 : ℤ)) fibonacciPeriodicWord) 0
+    rw [h1] at hp
+    exact absurd hp (by decide +kernel)
+  · exact h1
+
+end Periodic
