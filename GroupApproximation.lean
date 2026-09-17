@@ -5470,6 +5470,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SolvableInduction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSuperperfect.Compression
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowK.KZero
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.WeylBraid
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Univariate.Defs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
