@@ -5427,6 +5427,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.FFRealization.Realization
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.LamplighterRF
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.Embedding
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LemmaNN.LemmaNN
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.Defects
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidual.ExactResidual
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
