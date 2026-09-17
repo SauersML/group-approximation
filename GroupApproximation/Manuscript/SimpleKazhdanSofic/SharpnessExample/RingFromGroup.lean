@@ -27,8 +27,6 @@ import GroupApproximation.Meta.AxiomGuard
 
 namespace GroupApproximation.SimpleKazhdanSofic.SharpnessExample
 
-open Matrix
-
 section Entries
 
 variable {R : Type*} [Ring R]
@@ -87,7 +85,8 @@ theorem entries_finite {S : Set (elementaryGroup (Fin 3) R)} (hS : S.Finite) :
 theorem elementaryUnit_zero_one_apply (r : R) :
     ((elementaryUnit (0 : Fin 3) 1 (by decide) r : (Matrix (Fin 3) (Fin 3) R)ˣ) :
       Matrix (Fin 3) (Fin 3) R) 0 1 = r := by
-  change (1 + Matrix.single (0 : Fin 3) 1 r) 0 1 = r
+  change (1 + Matrix.single (0 : Fin 3) (1 : Fin 3) r : Matrix (Fin 3) (Fin 3) R)
+    (0 : Fin 3) (1 : Fin 3) = r
   rw [Matrix.add_apply, Matrix.one_apply_ne (show (0 : Fin 3) ≠ 1 by decide),
     Matrix.single_apply_same, zero_add]
 

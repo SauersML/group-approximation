@@ -13,9 +13,9 @@ is the `hstep` residual of `relativeGreendlingerQuasiGeodesicLeastArea_of_eightR
 This module replaces `GreendlingerLeaf/Piece10/Proof` (lane gl-p10-03).  It never imports
 `Piece10/Proof` or `P10Rose/Proof` (the dead filter route), and it does not define a second
 `NonRoseStepStatement`: the non-rose case is `P10ChordLift.NonRoseStepStatement`, closed
-unconditionally by `P10ChordLift.proof` (`GreendlingerLeaf/P10ChordLift/Proof`).  The declaration names
-`Piece10.proof_of_cases` and `Piece10.proof_of_rose` collide intentionally with the module
-`Piece10/Proof`; the two must never be imported together.
+unconditionally by `P10ChordLift.proof` (`GreendlingerLeaf/P10ChordLift/Proof`).  The duplicate
+`Piece10.proof_of_cases` of `Piece10/Proof` has been removed (lane gl-imports-02); that module now
+imports this one, so this module is the only declarer of `Piece10.proof_of_cases`.
 
 ## Route
 

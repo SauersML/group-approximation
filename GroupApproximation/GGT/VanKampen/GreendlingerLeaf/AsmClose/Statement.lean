@@ -18,9 +18,12 @@ A grep of `GreendlingerLeaf` for `theorem … : <residual type>` with no binders
 * residual 01 (`hbudget`, `OsinLemma94ClassEndLoopsBudgetInput`): `Piece01.proof`
   (`Piece01/Proof`), hypothesis-free now that `P01EmptyTwoGon/Endpoint` provides
   `P01EmptyTwoGon.proof`.  It is imported and used below.
-* residual 04 (`hspan`, `OsinLemma94ClassCaseGapSpanStatement`): only `Piece04.proof`
-  (`Piece04/Proof`), which cites the non-elaborating `Piece04/Residual` and must not be imported.
-  The region endpoint `Piece04.Final.proof` (lane gl-p04-14) is not on disk.
+* residual 04 (`hspan`, `OsinLemma94ClassCaseGapSpanStatement`): at authoring time only the old
+  `Piece04.proof`, which cited the non-elaborating `Piece04/Residual`.  Now closed: the region
+  endpoint `Piece04.Final.proof` (`Piece04/FinalClosed`, lane gl-p04-15) is hypothesis-free, and
+  `Piece04.proof` (`Piece04/Proof`) is defined from it without importing `Piece04/Residual`.  This
+  module still takes residual 04 as a conjunct of `RegionEndpointsStatement`; supply
+  `Piece04.proof` there.
 * residual 06 (`hcellStep`, `CellPocketOuterPinchStepSectionDistinctBelowStatement`): no producer.
 * residual 07 (`hproper`, `CellPocketWalkProperArcsBelowSectionStatement`): only `Piece07.proof`
   (`Piece07/Proof`), which cites the missing `P07LakeExclusion.proof` and must not be imported.  The

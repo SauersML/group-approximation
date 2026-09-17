@@ -25,15 +25,15 @@ Endpoints of this module:
 * `Final.proof_of_rotationTurns`: GapSpan from `ClassPocketRotationTurnStatement`.
 * `Final.proof_of_windowShape`: GapSpan from `ClassPocketWindowShapeStatement`.
 
-## Remaining gap
+## Closed downstream
 
-`ClassPocketWindowShapeStatement` (module `Piece04.RotationTurns`) is the only open Statement under
-this endpoint.  It is the target of the `WindowShape` lanes (assembly lane gl-p04-13, endpoint
-`Piece04.WindowShape.Assembly.windowShape`), which are not on disk yet.  Once that module lands, the
-unconditional endpoint is
-`theorem Final.proof : OsinLemma94ClassCaseGapSpanStatement.{u, w, v} :=
-  proof_of_windowShape WindowShape.Assembly.windowShape`,
-and `Piece04.proof` (module `Piece04.Proof`) should be rewired to it.
+`ClassPocketWindowShapeStatement` (module `Piece04.RotationTurns`) is proved with no hypotheses by
+`Piece04.WindowShape.Assembly.windowShape` (module `Piece04.WindowShape.AssemblyClosed`, lane
+gl-p04-13).  The unconditional endpoint
+`Final.proof : OsinLemma94ClassCaseGapSpanStatement.{u, w, v} :=
+  proof_of_windowShape WindowShape.Assembly.windowShape`
+lives in module `Piece04.FinalClosed`, and `Piece04.proof` (module `Piece04.Proof`) is defined from
+it.
 
 ## Manuscript status
 

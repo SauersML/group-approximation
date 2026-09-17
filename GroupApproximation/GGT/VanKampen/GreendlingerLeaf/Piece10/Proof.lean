@@ -1,7 +1,6 @@
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchOuterDispatch
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.Predicate
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ChordLift.Proof
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.Live.Reduction.InPlace
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.Cases
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -18,21 +17,27 @@ A case split on the rose configuration `P10ChordLift.AllNonFirstTurnsCrossed K`
 (`GreendlingerLeaf/P10ChordLift/Predicate`), at the larger of the two thresholds for `ε` and for `ρ`.
 
 * Some non-first turn is not crossed: the sub-leaf `P10ChordLift` splits the pocket at that turn.
-* Every non-first turn is crossed: the sub-leaf `P10Rose`.
+* Every non-first turn is crossed: the rose case `P10ChordLift.RoseStepStatement`.
 
 * `NonRoseStepStatement`: the step outside the rose configuration.
-* `proof_of_cases`: the step from the two cases.
-* `proof`: the step.
 
-## Assumed sub-leaf endpoints
+The case assembly is not declared here: this module imports the live case assembly
+`GreendlingerLeaf/Piece10Live/Cases`, which provides `Piece10.proof_of_cases` (over
+`P10ChordLift.NonRoseStepStatement`, definitionally equal to `NonRoseStepStatement` below) and
+`Piece10.proof_of_rose` (non-rose case closed by `P10ChordLift.proof`).  The former duplicate
+`proof_of_cases` of this module was removed (lane gl-imports-02).
 
-* `GreendlingerLeaf.P10ChordLift.proof : NonRoseStepStatement.{u, w, v}`, in the module
-  `GreendlingerLeaf/P10ChordLift/Proof`.  `NonRoseStepStatement` is `P10ChordLift.RoseStepStatement`
-  with the premise `AllNonFirstTurnsCrossed K` replaced by `¬ AllNonFirstTurnsCrossed K`, in the same
-  position (right after `¬Unpinched X.toCombMap K.faces`); any statement definitionally equal to it is
-  accepted.
-* `GreendlingerLeaf.P10Rose.rose : P10ChordLift.RoseStepStatement.{u, w, v}`, in the module
-  `GreendlingerLeaf/P10Rose/Proof`.
+## Status: no unconditional `Piece10.proof`
+
+The former endpoint `Piece10.proof := proof_of_cases P10ChordLift.proof P10Rose.rose` cited
+`P10Rose.rose`, declared nowhere on disk (its module `P10Rose/Proof` was the dead filter route and
+has been deleted), so it was removed rather than restated.  The rose case is still open.  The live
+conditional endpoints are
+
+* `Piece10.proof_of_extremalJunction` (`P10RoseExtremalTrim/Reduction`), from
+  `P10RoseExtremalTrim.RoseExtremalJunctionStatement`, used by `GreendlingerLeaf/AssemblyResidual`;
+* `Piece10.proof_of_extremalCore` (`Piece10Live/RegionMoveCore`), from
+  `P10RegionMove.RoseExtremalCoreStatement`.
 
 ## Manuscript status
 
@@ -71,33 +76,6 @@ def NonRoseStepStatement : Prop :=
                         K'.targetArc.length < (outerDarts X').length ∧
                         K'.repeatedVisits < K.repeatedVisits
 
-/-- **The outer-pinch step from its two cases**, at the larger of the two thresholds for `ε` and for
-`ρ`: split on whether every non-first turn of the boundary cycle is crossed. -/
-theorem proof_of_cases (hnon : NonRoseStepStatement.{u, w, v})
-    (hrose : P10ChordLift.RoseStepStatement.{u, w, v}) :
-    PocketOuterPinchStepSectionStatement.{u, w, v} := by
-  intro G _ Lambda D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨eps0, heps0⟩ := hnon D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
-  obtain ⟨eps1, heps1⟩ := hrose D hhyp lambda c mu hlambda hlambda1 hc hmu hmu16
-  refine ⟨max eps0 eps1, fun eps heps => ?_⟩
-  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps ((le_max_left eps0 eps1).trans heps)
-  obtain ⟨rho1, -, hrho1⟩ := heps1 eps ((le_max_right eps0 eps1).trans heps)
-  refine ⟨max rho0 rho1, lt_of_lt_of_le hrho0 (le_max_left rho0 rho1),
-    fun rho hrho' W hcondition => ?_⟩
-  intro X lo hi hlea hlabel K hK hturns hprop htgt hpinch
-  by_cases hall : P10ChordLift.AllNonFirstTurnsCrossed K
-  · exact hrho1 rho ((le_max_right rho0 rho1).trans hrho') W hcondition X lo hi hlea hlabel K hK
-      hturns hprop htgt hpinch hall
-  · exact hrho rho ((le_max_left rho0 rho1).trans hrho') W hcondition X lo hi hlea hlabel K hK
-      hturns hprop htgt hpinch hall
-
-/-- **Piece 10 of the Greendlinger leaf: `PocketOuterPinchStepSectionStatement` holds**, with no
-hypotheses: the chord lift outside the rose configuration and the rose case. -/
-theorem proof : PocketOuterPinchStepSectionStatement.{u, w, v} :=
-  proof_of_cases GreendlingerLeaf.P10ChordLift.proof GreendlingerLeaf.P10Rose.rose
-
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.NonRoseStepStatement
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof_of_cases
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10.proof
