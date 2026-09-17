@@ -44,7 +44,7 @@ theorem hsNormSq_map_sub_one_ge {G : Type*} [Group G] {F : Finset G} {t : ℝ}
     have hm := M.multiplicative 1 h1 1 h1
     rw [mul_one (1 : G)] at hm
     have hfac : M.map 1 - M.map 1 * M.map 1 = M.map 1 * (1 - M.map 1) := by
-      rw [mul_sub, mul_one]
+      rw [Matrix.mul_sub, Matrix.mul_one]
     have hm' : hsNormSq M.carrier (M.map 1 * (1 - M.map 1)) ≤ t ^ 2 := by
       rw [← hfac]
       exact hm
@@ -56,13 +56,13 @@ theorem hsNormSq_map_sub_one_ge {G : Type*} [Group G] {F : Finset G} {t : ℝ}
   have hc : hsNormSq M.carrier (M.map g - 1)
       = 2 - 2 * (normTrace M.carrier (M.map g)).re := by
     have h := hsDistSq_of_unitary M.carrier (B := 1) hUg (Submonoid.one_mem _) M.nonempty
-    rw [Matrix.conjTranspose_one, mul_one] at h
+    rw [Matrix.conjTranspose_one, Matrix.mul_one] at h
     exact h
   have hd : Complex.normSq (normTrace M.carrier (M.map g)
       - normTrace M.carrier (M.map g * (M.map 1)ᴴ)) ≤ t ^ 2 := by
     rw [← normTrace_sub]
     have hfac : M.map g - M.map g * (M.map 1)ᴴ = M.map g * (1 - M.map 1)ᴴ := by
-      rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_one, mul_sub, mul_one]
+      rw [Matrix.conjTranspose_sub, Matrix.conjTranspose_one, Matrix.mul_sub, Matrix.mul_one]
     calc Complex.normSq (normTrace M.carrier (M.map g - M.map g * (M.map 1)ᴴ))
         ≤ hsNormSq M.carrier (M.map g - M.map g * (M.map 1)ᴴ) :=
           normSq_normTrace_le_hsNormSq _ _
