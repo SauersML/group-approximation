@@ -106,8 +106,10 @@ theorem closure_range_elementaryLetterMarking (n : ℕ) (hn : 3 ≤ n) (X : Type
   have hmem : ∀ (i j : Fin n) (h : i ≠ j) (o : Option X),
       elementaryUnit i j h (letterCoeff X o) ∈ H' := by
     intro i j h o
-    exact ⟨elementaryLetterMarking n X (⟨(i, j), h⟩, o), Subgroup.subset_closure ⟨_, rfl⟩, rfl⟩
-  let C : Subalgebra (ZMod 2) (FreeAlgebra (ZMod 2) X) :=
+    exact Subgroup.mem_map.mpr
+      ⟨elementaryLetterMarking n X (⟨(i, j), h⟩, o),
+        Subgroup.subset_closure (Set.mem_range_self _), rfl⟩
+  set C : Subalgebra (ZMod 2) (FreeAlgebra (ZMod 2) X) :=
     elementaryCoefficientSubalgebra n (by omega) H' fun i j h ↦ hmem i j h none
   have hgen : Set.range (FreeAlgebra.ι (ZMod 2) : X → FreeAlgebra (ZMod 2) X) ⊆
       (C : Set (FreeAlgebra (ZMod 2) X)) := by
@@ -115,7 +117,7 @@ theorem closure_range_elementaryLetterMarking (n : ℕ) (hn : 3 ≤ n) (X : Type
     exact hmem i j h (some x)
   have hC : C = ⊤ := by
     apply top_unique
-    rw [← FreeAlgebra.adjoin_range_ι]
+    rw [← FreeAlgebra.adjoin_range_ι (ZMod 2) X]
     exact Algebra.adjoin_le hgen
   have hle : elementaryGroup (Fin n) (FreeAlgebra (ZMod 2) X) ≤ H' := by
     rw [elementaryGroup, Subgroup.closure_le]
@@ -124,9 +126,10 @@ theorem closure_range_elementaryLetterMarking (n : ℕ) (hn : 3 ≤ n) (X : Type
     exact ha i j h
   rw [eq_top_iff]
   intro g _
-  obtain ⟨x, hx, hxg⟩ := hle g.2
+  obtain ⟨x, hx, hxg⟩ := Subgroup.mem_map.mp (hle g.2)
   have hxg' : x = g := Subtype.ext hxg
-  exact hxg' ▸ hx
+  subst hxg'
+  exact hx
 
 /-- **Tex l.332–334**: `ρ_k : 𝒜 → M_{N_k}(𝔽₂)` with `ρ_k(τ_s) = φ_k(s)` is onto when `φ_k(S)`
 generates `M_{N_k}(𝔽₂)` as a ring. The letters are indexed by `Fin #S`. -/
@@ -139,15 +142,18 @@ theorem lift_surjective_of_closure {R : Type*} (S : Finset R) {N : ℕ}
       (FreeAlgebra.lift (ZMod 2) fun j : Fin S.card ↦ ψ (S.equivFin.symm j : R)).toRingHom.range := by
     rw [Subring.closure_le]
     rintro _ ⟨x, hx, rfl⟩
-    refine RingHom.mem_range.mpr
-      ⟨FreeAlgebra.ι (ZMod 2) (S.equivFin ⟨x, Finset.mem_coe.mp hx⟩), ?_⟩
+    refine SetLike.mem_coe.mpr (RingHom.mem_range.mpr
+      ⟨FreeAlgebra.ι (ZMod 2) (S.equivFin ⟨x, Finset.mem_coe.mp hx⟩), ?_⟩)
     show FreeAlgebra.lift (ZMod 2) (fun j : Fin S.card ↦ ψ (S.equivFin.symm j : R))
         (FreeAlgebra.ι (ZMod 2) (S.equivFin ⟨x, Finset.mem_coe.mp hx⟩)) = ψ x
     rw [FreeAlgebra.lift_ι_apply]
     exact congrArg (fun y : ↥S ↦ ψ (y : R))
       (Equiv.symm_apply_apply S.equivFin ⟨x, Finset.mem_coe.mp hx⟩)
   intro y
-  obtain ⟨x, hx⟩ := RingHom.mem_range.mp (hle (by rw [hgen]; exact Subring.mem_top y))
+  have hy : y ∈ Subring.closure (ψ '' (S : Set R)) := by
+    rw [hgen]
+    exact Subring.mem_top y
+  obtain ⟨x, hx⟩ := RingHom.mem_range.mp (hle hy)
   exact ⟨x, hx⟩
 
 /-- The finite models `EL_n(M_N(𝔽₂))` are finite. -/
@@ -159,7 +165,7 @@ theorem finite_elementaryGroup_matrix (n N : ℕ) :
     (fun g : elementaryGroup (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2)) ↦
       ((g : (Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2)))ˣ) :
         Matrix (Fin n) (Fin n) (Matrix (Fin N) (Fin N) (ZMod 2))))
-    (Units.val_injective.comp Subtype.val_injective)
+    fun a b h ↦ Subtype.ext (Units.ext h)
 
 /-- Every element of a marked limit is represented by a word in the marking. -/
 theorem exists_word_of_isMarkedLimit {ι G : Type*} [Group G] {s : ι → G} {H : ℕ → Type*}
@@ -222,7 +228,7 @@ theorem isExpanderFamily_matricialMarking {R : Type*} [Ring R] (n : ℕ) (hn : 3
   let ρ : ∀ k, FreeAlgebra (ZMod 2) (Fin S.card) →+* Matrix (Fin (N k)) (Fin (N k)) (ZMod 2) :=
     fun k ↦ (FreeAlgebra.lift (ZMod 2) fun j : Fin S.card ↦ φ k (S.equivFin.symm j : R)).toRingHom
   refine isExpanderFamily_of_hasKazhdanPropertyT_images
-    (hasKazhdanPropertyT_elementaryGroup_freeAlgebra (Fin S.card) n hn)
+    (SimpleKazhdanSofic.hasKazhdanPropertyT_elementaryGroup_freeAlgebra (Fin S.card) n hn)
     (elementaryLetterMarking n (Fin S.card))
     (closure_range_elementaryLetterMarking n hn (Fin S.card))
     (fun k ↦ elementaryGroupMap (ρ k))
@@ -239,7 +245,7 @@ theorem isExpanderFamily_matricialMarking {R : Type*} [Ring R] (n : ℕ) (hn : 3
   cases o with
   | none => exact (map_one (ρ k)).trans (hone k).symm
   | some j =>
-    show FreeAlgebra.lift (ZMod 2) (fun j : Fin S.card ↦ φ k (S.equivFin.symm j : R))
+    show FreeAlgebra.lift (ZMod 2) (fun i : Fin S.card ↦ φ k (S.equivFin.symm i : R))
         (FreeAlgebra.ι (ZMod 2) j) = φ k (S.equivFin.symm j : R)
     exact FreeAlgebra.lift_ι_apply _ _
 
@@ -253,10 +259,11 @@ theorem isExpanderFamily_matricial {R : Type*} [Ring R] (n : ℕ) (hn : 3 ≤ n)
     (S : Finset R) (hS1 : (1 : R) ∈ S) (hS : Subring.closure (S : Set R) = ⊤)
     (N : ℕ → ℕ) (hN : ∀ k, 0 < N k)
     (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)) (hφ : IsPrintedMatricial S N φ) :
-    SimpleKazhdanSofic.IsExpanderFamily (matricialMarking n S N φ) :=
-  isExpanderFamily_matricialMarking n hn S hS1 N φ hφ.1 hφ.2.1
-    (tendsto_card_of_isMarkedLimit (isMarkedLimit_matricial n hn S hS1 hS N hN φ hφ)
-      fun k ↦ finite_elementaryGroup_matrix n (N k))
+    SimpleKazhdanSofic.IsExpanderFamily (matricialMarking n S N φ) := by
+  have hlim := isMarkedLimit_matricial n hn S hS1 hS N hN φ hφ
+  obtain ⟨hone, hgen, -⟩ := hφ
+  exact isExpanderFamily_matricialMarking n hn S hS1 N φ hone hgen
+    (tendsto_card_of_isMarkedLimit hlim fun k ↦ finite_elementaryGroup_matrix n (N k))
 
 #audit_axioms isExpanderFamily_of_hasKazhdanPropertyT_images
 #audit_axioms closure_range_elementaryLetterMarking
