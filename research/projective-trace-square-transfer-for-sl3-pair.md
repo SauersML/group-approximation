@@ -669,3 +669,24 @@ target. These equivalent assertions remain OPEN.
   not collapse the remaining dyadic branch: a
   lattice correction of positive `2`-conductor need not extend to `A`, and
   excluding precisely that ambient-extension outlier remains open.
+
+- **Gaussian firewalls obey a zero-one law over their spherical covariance
+  (swarm-0917, obstruction-miner, host-geometry).**
+  `arithmetic-gaussian-leak-covariances-are-all-or-nothing` records the
+  following. Call a real positive-definite `psi` on `A` with `psi|_C = 1`
+  (equivalently, a `K`-biinvariant positive-definite function on
+  `SL_3(Q_2)`) CE when the Gaussian crossed product
+  `L^infinity(Omega_psi) rtimes A` is Connes embeddable. Then:
+  - the CE covariances form a convex, pointwise-closed set `CEcov`;
+  - every `C`-central observable of every CE crossed product Gaussianizes
+    into `CEcov`, by a tensor central limit;
+  - any `psi in CEcov \ {1}` gives the canonical leak `exp(i Y_e)`.
+
+  Consequently `(PTS1)` holds iff `CEcov = {1}`, and fails iff `CEcov`
+  contains the whole closed quasi-regular cone `P_lambda`. So every single
+  `psi_0 in P_lambda \ {1}` is a complete test for this node. Examples are
+  the coefficient of any normalized `C`-invariant building ball, and the
+  existing test `1_C`. Where it stops: this reorganizes the enemy but does
+  not decide any member. Covariances outside `P_lambda` (non-tempered, for
+  example the homogeneous-quotient firewall) remain one-directional. The
+  node stays OPEN.
