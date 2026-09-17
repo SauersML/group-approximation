@@ -1,0 +1,38 @@
+{
+ "linear_counterexample": {
+  "tau_injective_on_Z": true,
+  "image_of_diagonal_config": 15,
+  "image_of_full_config": 15,
+  "collision": true,
+  "readable": false,
+  "nonempty_lift_injective_on_Z": false
+ },
+ "census_binary_window3": {
+  "alphabet": 2,
+  "window": 3,
+  "rules": 256,
+  "injective": 6,
+  "injective_multi_coordinate": 0,
+  "readable_multi_coordinate": 0,
+  "lift_injective_multi_coordinate": 0,
+  "lift_injective_single_coordinate": 0,
+  "nonempty_lift_injective_multi_coordinate": 0,
+  "nonempty_lift_injective_single_coordinate": 6,
+  "injective_single_coordinate": 6,
+  "lift_injective_examples": []
+ },
+ "census_ternary_window2": {
+  "alphabet": 3,
+  "window": 2,
+  "rules": 19683,
+  "injective": 48,
+  "injective_multi_coordinate": 36,
+  "readable_multi_coordinate": 0,
+  "lift_injective_multi_coordinate": 0,
+  "lift_injective_single_coordinate": 0,
+  "nonempty_lift_injective_multi_coordinate": 0,
+  "nonempty_lift_injective_single_coordinate": 12,
+  "injective_single_coordinate": 12,
+  "lift_injective_examples": []
+ }
+}

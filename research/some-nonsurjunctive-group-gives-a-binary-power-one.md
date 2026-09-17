@@ -49,6 +49,20 @@ distinct_from:
 - **Reserved symbols.** `passive-fixing-injective-automata-are-surjective` applies to every design that pads a
   failing alphabet up to a power of two with reserved symbols. Such a design must write on reserved sites or write
   reserved symbols at unreserved ones.
+- **Uniform and power-set alphabet changes** (a-gs-binary-power, swarm-0917, 2026-09-17). Two classes are closed.
+  - *Clone-uniform changes.* These transport every local rule compatibly with composition (clone homomorphisms,
+    so regroupings, Boolean powers and variety-theoretic constructions). They reach only sizes `k^r`
+    (`clone-uniform-alphabet-changes-reach-only-boolean-powers`). The kill happens at the reconstruction identity
+    `x = R(chi_a(x))_a`, which identifies the new alphabet with the `k`-labelled partitions of unity of a finite
+    Boolean algebra.
+  - *Power-set lifts.* The lift `k -> 2^k` makes strictness free, since non-surjectivity lifts by selection. But
+    it is never injective, because `∅` is absorbing. The nonempty lift `k -> 2^k - 1` has odd size and needs a
+    readable unbalanced rule (`power-set-lifts-never-give-binary-power-witnesses`). It dies at the one extra
+    symbol `∅`.
+  - *What survives.* Rule-specific covers: a finite `M` of size `2^j` with operations `f^M`, `g^M` satisfying the
+    decoder identity of one strict pair, and a sitewise homomorphism `M -> A`. Any such cover is automatically
+    strict, because non-surjectivity lifts through the sitewise surjection. By the clone claim it cannot extend to a
+    full-clone structure when `k` is not a power of two.
 - **Where it stops.** No construction is known that removes an odd prime from a failing size, for any explicit
   strict table pair, over any group. The frontier notes
   `notes/gottschalk-surjunctivity-conjecture-frontier-swarm-2026-09-16.md` record the ascent designs tried on the
