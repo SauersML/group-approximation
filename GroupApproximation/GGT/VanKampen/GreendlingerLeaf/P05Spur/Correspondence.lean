@@ -163,6 +163,11 @@ noncomputable def spurTransport (S : GloballyDistinguishedSectionFamily D lambda
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.targetImage_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.sourceHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.targetHead
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.cross_regionCandidate_true
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.cross_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.crossO_regionCandidate
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.not_crossO_of_outer
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05Spur.spurTransport

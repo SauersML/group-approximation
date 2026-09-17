@@ -49,6 +49,8 @@ theorem oracleVal_encode {ι H : Type} [Group H] [Primcodable ι] (s : ι → H)
     exact ⟨fun _ => hw1, fun _ => rfl⟩
   · exact ⟨fun h0 => absurd h0 zero_ne_one, fun hx => absurd ⟨x, Encodable.encodek x, hx⟩ h⟩
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.oracleVal_encode
+
 open Classical in
 theorem wordProblemOracle_eq_cond {ι H : Type} [Group H] [Primcodable ι] (s : ι → H) (n : ℕ) (b : Bool)
     (h : (∃ w : List (ι × Bool), decode n = some w ∧ wordValue s w = 1) ↔ b = true) :
@@ -57,6 +59,8 @@ theorem wordProblemOracle_eq_cond {ι H : Type} [Group H] [Primcodable ι] (s : 
   · have hn : ¬ ∃ w : List (ι × Bool), decode n = some w ∧ wordValue s w = 1 := fun hw => nomatch h.1 hw
     exact congrArg Part.some (if_neg hn)
   · exact congrArg Part.some (if_pos (h.2 rfl))
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.LamplighterWP.wordProblemOracle_eq_cond
 
 theorem wordValue_wordInv_append {ι H : Type} [Group H] (s : ι → H) (a b : List (ι × Bool)) :
     wordValue s (wordInv a ++ b) = 1 ↔ wordValue s a = wordValue s b := by
