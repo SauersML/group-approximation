@@ -40,7 +40,7 @@ quantified over `m ≥ 2` and rings in universe `v`), and the lane target is pro
 `stab_K2_three_eq_bot_of_hopf_of_paddedCentrality`.  The sharper
 `stab_K2_three_eq_bot_of_hopf_of_center` assumes only the `m = 3` instance for the one ring `R`,
 which is strictly weaker than `PaddedCentralityStatement`.  Once lane 14 lands, the unconditional
-form is `stab_K2_three_eq_bot_of_hopf_of_center R h (stab_K2_le_center 3 (by norm_num) R)`.
+form is `stab_K2_three_eq_bot_of_hopf_of_center R h (stab_K2_le_center 3 (by omega) R)`.
 
 The input `HopfMultiplierTrivial (E₃ L)` for the binary Leavitt algebra `L` is Khanh's acyclicity
 theorem (research input; a documented gap, not a hypothesis of any manuscript sentence).
@@ -55,7 +55,7 @@ open GroupApproximation.SimpleKazhdanSofic.SkRows.HopfFiveTerm (HopfMultiplierTr
   le_commutator_of_hopfMultiplierTrivial)
 
 /-- Interface of lane `sk-rows-14` (Khanh's padded centrality), not yet on disk: for every
-`m ≥ 2` and every ring `R` in universe `v`, the stabilized `K₂(m, R)` is central in
+`m ≥ 2` and every ring `R` in universe `w`, the stabilized `K₂(m, R)` is central in
 `St_{m+1}(R)`. -/
 def PaddedCentralityStatement.{w} : Prop :=
   ∀ (m : ℕ), 2 ≤ m → ∀ (R : Type w) [Ring R],
@@ -90,7 +90,7 @@ theorem stab_K2_three_eq_bot_of_hopf_of_paddedCentrality
     (hPC : PaddedCentralityStatement.{v}) (R : Type v) [Ring R]
     (h : HopfMultiplierTrivial (elementaryGroup (Fin 3) R)) :
     (K2n 3 R).map (stab 3 R) = ⊥ :=
-  stab_K2_three_eq_bot_of_hopf_of_center R h (hPC 3 (by norm_num) R)
+  stab_K2_three_eq_bot_of_hopf_of_center R h (hPC 3 (by omega) R)
 
 #audit_axioms
   GroupApproximation.SimpleKazhdanSofic.SkRows.PaddedKill.stab_K2_three_eq_bot_of_hopf_of_paddedCentrality

@@ -40,6 +40,8 @@ variable (J K : Subgroup G) (hKJ : K ≤ J) (η : K →* K) (h : J)
 /-- The inclusion `K → J`. -/
 def brownKIncl (k : K) : J := ⟨k, hKJ k.2⟩
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownKIncl
+
 /-- The relators of Brown's presentation on the generators `J ⊕ {T}`: the multiplication table
 of `J`, the edge relations `T k T⁻¹ η(k)⁻¹` for `k ∈ K`, and the triangle relator
 `T h T (h T h)⁻¹`. -/
@@ -51,15 +53,23 @@ def brownRels : Set (FreeGroup (↥J ⊕ Unit)) :=
     {FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl h) * FreeGroup.of (Sum.inr ()) *
       (FreeGroup.of (Sum.inl h) * FreeGroup.of (Sum.inr ()) * FreeGroup.of (Sum.inl h))⁻¹}
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownRels
+
 /-- Brown's group `Π = ⟨J, T | T k T⁻¹ = η(k) (k ∈ K), T h T = h T h⟩`, including the
 multiplication relations of `J`. -/
 abbrev BrownPresentation : Type _ := PresentedGroup (brownRels J K hKJ η h)
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BrownPresentation
+
 /-- The generator of `Π` attached to `j ∈ J`. -/
 def brownJ (j : J) : BrownPresentation J K hKJ η h := PresentedGroup.of (Sum.inl j)
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownJ
+
 /-- The extra generator `T` of `Π`. -/
 def brownT : BrownPresentation J K hKJ η h := PresentedGroup.of (Sum.inr ())
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.brownT
 
 /-- The multiplication relations of `J` hold in `Π`. -/
 theorem brownJ_mul (a b : J) :
@@ -146,6 +156,8 @@ def conjEta (K : Subgroup G) (τ : G) (hτ : ∀ k ∈ K, τ * k * τ⁻¹ ∈ K
   map_mul' a b := by
     ext
     simp [mul_assoc]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.conjEta
 
 theorem conjEta_apply (K : Subgroup G) (τ : G) (hτ : ∀ k ∈ K, τ * k * τ⁻¹ ∈ K) (k : K) :
     ((conjEta K τ hτ k : K) : G) = τ * k * τ⁻¹ :=

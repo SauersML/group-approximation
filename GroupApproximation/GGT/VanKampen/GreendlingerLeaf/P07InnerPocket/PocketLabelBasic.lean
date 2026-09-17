@@ -26,7 +26,7 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.Pocke
 
 universe u w v
 
-open Embedded HullSC WordMetric SimpleClosedWalkSides
+open Embedded SimpleClosedWalkSides
 
 section Map
 
