@@ -1,0 +1,1 @@
+n=5 E=[0, 1, 2, 4] F=[1, 2, 3] ground=8  Shannon LP 0.800000   Shannon+ZY (70827 rows) LP 0.800000
