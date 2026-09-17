@@ -65,3 +65,17 @@ braid group with no proper action on a proper CAT(0) space would give a no
   (`lawrence-krammer-has-a-faithful-algebraic-unit-specialization`, attempt 3).
   No obstruction is known. All standard necessary conditions for subgroups of
   `GL_m(Z)` hold for braid groups (`some-braid-group-embeds-in-no-glnz`).
+- 2026-09-17 (sw-120, reframer; proximal ping-pong for Lawrence–Krammer): a class-killing obstruction.
+  - **Reframing.** Write `B_4 = F_2 ⋊ B_3` with `F_2 = <a, b>`, `a = s1 s3^-1`, `b = s2 a s2^-1`. A
+    representation faithful on `F_2` has central kernel, so a unit specialization of Lawrence–Krammer that is
+    faithful on `F_2`, or on a finite-index subgroup, is enough. The idea was to certify that by proximal
+    ping-pong (a P_Θ-Schottky certificate on a flag variety), which only needs a check on generators.
+  - **Result.** `lk-b4-never-proximal-on-finite-index-subgroups`: for every field with an
+    absolute value, every specialization `(q_0, t_0)` and every `k = 1..5`, some element of every finite-index
+    subgroup of `F_2` or `B_4` has `|λ_k| = |λ_(k+1)|`. The witnesses are powers of `a`, whose characteristic
+    polynomial has the factor `(x-1)^2` and an inversion-symmetric spectrum, and powers of `[a,b]^±1`, whose
+    eigenvalue multiplicities are `3, 2, 1`. So no proximal Schottky or Anosov certificate for `LK_4` exists at
+    any specialization, over any valued field.
+  - **Still open.** Non-proximal ping-pong (Jordan-block or reducible dynamics), other representations, and
+    non-ping-pong mechanisms.
+  - Scripts, including an exact no-sampling tropical check: `experiments/braid-tropical-pingpong-2026-09-17/README.md`.

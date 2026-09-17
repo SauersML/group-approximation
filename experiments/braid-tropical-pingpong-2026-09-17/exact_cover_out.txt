@@ -1,0 +1,7 @@
+type (a) critical rays: 262
+critical rays total: 394  test rays: 788
+gap 1 : test rays with a uniform gap: 0 [] ; longest witness needed: 4
+gap 2 : test rays with a uniform gap: 0 [] ; longest witness needed: 4
+gap 3 : test rays with a uniform gap: 0 [] ; longest witness needed: 1
+gap 4 : test rays with a uniform gap: 0 [] ; longest witness needed: 4
+gap 5 : test rays with a uniform gap: 0 [] ; longest witness needed: 4
