@@ -3,6 +3,7 @@ import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.Order.Filter.Ultrafilter.Defs
 import Mathlib.Order.Filter.Finite
 import Mathlib.Data.Fintype.EquivFin
+import Mathlib.Data.Fintype.Prod
 import Mathlib.Algebra.Group.Prod
 
 /-!
@@ -108,7 +109,7 @@ theorem isTextbookLEF_ultraproduct : IsTextbookLEF (Ultraproduct ω G) := by
       ∀ᶠ i in (ω : Filter ι), ¬ out ω G x i = out ω G y i := by
     intro x y hxy
     refine Ultrafilter.eventually_not.2 fun h => hxy ?_
-    exact ((mk_out ω G x).symm.trans ((mk_eq_mk_iff ω G).2 h)).trans (mk_out ω G y)
+    exact ((mk_out ω G x).symm.trans ((mk_eq_mk_iff ω G (g := out ω G x) (h := out ω G y)).2 h)).trans (mk_out ω G y)
   have hall : ∀ᶠ i in (ω : Filter ι), ∀ x ∈ s, ∀ y ∈ s,
       out ω G (x * y) i = (out ω G x * out ω G y) i ∧
         (x ≠ y → ¬ out ω G x i = out ω G y i) := by
