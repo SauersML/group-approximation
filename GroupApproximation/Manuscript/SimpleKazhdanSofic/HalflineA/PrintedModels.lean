@@ -270,7 +270,7 @@ theorem manuscriptSentence_halflinePrintedModel {Γ Q : Type*} [Group Γ] [Group
           printedModel ψ s (5 * (s + 1)) (g * g') =
             printedModel ψ s (5 * (s + 1)) g * printedModel ψ s (5 * (s + 1)) g') ∧
     Set.InjOn (printedModel ψ s (5 * (s + 1))) (wordBall (insert (levelShift Γ) (levelMul '' E)) (s + 1)) := by
-  refine ⟨fun g f ℓ hg => ?_, fun g hg g' hg' _ => ?_, fun g hg g' hg' h => ?_⟩
+  refine ⟨fun g f ℓ hg => ?_, fun g hg g' hg' _ => ?_, ?_⟩
   · have h1 : levelShiftOf g = ℓ := hg.levelShiftOf_eq
     have h2 : levelFunOf g = f := hg.levelFunOf_eq
     subst h1
@@ -279,7 +279,8 @@ theorem manuscriptSentence_halflinePrintedModel {Γ Q : Type*} [Group Γ] [Group
   · obtain ⟨f, ℓ, hf, hb⟩ := exists_levelForm_of_mem_wordBall hg
     obtain ⟨f', ℓ', hf', hb'⟩ := exists_levelForm_of_mem_wordBall hg'
     exact printedModel_mul ψ s (5 * (s + 1)) (map_one_of_mul_wordBall hψmul) hψmul hf hf' hb hb'
-  · obtain ⟨f, ℓ, hf, hb⟩ := exists_levelForm_of_mem_wordBall hg
+  · intro g hg g' hg' h
+    obtain ⟨f, ℓ, hf, hb⟩ := exists_levelForm_of_mem_wordBall hg
     obtain ⟨f', ℓ', hf', hb'⟩ := exists_levelForm_of_mem_wordBall hg'
     exact printedModel_injOn ψ s (5 * (s + 1)) hψinj (by omega) hf hf' hb hb' h
 
