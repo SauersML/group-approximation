@@ -263,7 +263,7 @@ theorem exists_proper_of_le (S : GloballyDistinguishedSectionFamily D lambda c e
 end Sections
 
 /-- **The proper face set producer** at fixed parameters. -/
-theorem input {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda) (lambda c : ℝ)
+theorem input (D : RelGenSet G Lambda) (lambda c : ℝ)
     (eps : ℕ) (W : Set (List (RelLetter G Lambda))) :
     SectionPocketFaceSetProperInput.{u, w, v} D lambda c eps W := by
   unfold SectionPocketFaceSetProperInput
