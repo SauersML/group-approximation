@@ -93,7 +93,7 @@ return await pipeline(args.lanes,
   l => agent(workerPrompt(l), { label: `work:${l.key}`, phase: 'Work', isolation: 'worktree', schema: RESULT }),
   (r, l) => {
     if (!r) return null
-    if (r.status !== 'ESTABLISHED' || !r.established.length) return { ...r, votes: [] }
+    if (!r.established.length) return { ...r, votes: [] }
     return parallel(LENSES.map(lens => () => agent(refereePrompt(r, lens, l), { label: `referee:${l.key}`, phase: 'Referee', schema: VERDICT })))
       .then(votes => ({ ...r, votes, survives: votes.length === LENSES.length && votes.every(v => v && !v.refuted) }))
   },
