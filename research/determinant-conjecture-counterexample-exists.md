@@ -72,3 +72,35 @@ artifacts:
   `integral-matrix-eigenvalue-exceeds-degree-bound`). Conversely the conjecture
   forces algebraic eigenvalues with that bound, and at the level of one
   spectral measure nothing more about atoms (`serre-class-atoms-obey-degree-bound`).
+- **Diagonally dominant matrices, through spanning forests (2026-09-17).**
+  Dead as a source of violations. Over every group, a self-adjoint symmetric
+  diagonally dominant `T in M_n(Z[G])`, with any signs, has `det >= 1`
+  (`diagonally-dominant-integral-matrices-obey-determinant`).
+  - **The proof.** Split off finite components, which contribute
+    `log det'` of integer matrices. Dominate the rest by the wired uniform
+    spanning forest term, which gauges to a forest Laplacian, and use Lyons'
+    `h >= 0`.
+  - **What it rules out.** Violations cannot be Laplacians, signed or signless
+    Laplacians, or M-matrices of Cayley or Schreier multigraphs, with any
+    nonnegative potential. Nor can they dominate such an injective operator.
+    Reductions of such violations to quotients or to simple groups are vacuous.
+    So are walk-count certificates `n log lambda - sum_k tau(A^k)/(k lambda^k)`
+    for `lambda - A` with nonnegative `A` of row sums at most `lambda`.
+  - **What is left.** Candidates must fail diagonal dominance, like the
+    polynomials `Q(A)` above or `Delta - c` with integer `c >= 1`. Whether any
+    positive `Delta - c` violates the conjecture is open.
+- **Domination by a sofic subrelation (2026-09-17).** Dead as a source of
+  violations, for a criterion that covers all self-adjoint integral matrices.
+  If `0 <= S <= T`, with `S` injective and integral on a sofic subgroup, or on
+  a sofic subrelation of an orbit relation of a free action of `G`, then
+  `det T >= 1` (`sofically-dominated-integral-matrices-obey-determinant`, via
+  log-monotonicity and Elek--Lippner).
+  - **What it rules out.** It reproves the infinite part of the diagonally
+    dominant case through a treeable relation. It kills the Laplacian-minus-
+    constant candidates `Delta_S - c` whenever an infinite sofic sub-multiset
+    of `S` (e.g. one element of infinite order) can be removed with the rest
+    keeping bottom of spectrum at least `c`. Example: `Delta_(a,b,c,g) - 1`
+    over any group with `<a,b,c>` free of rank 3 and `g` of infinite order.
+  - **What is left.** A violation `T` dominates no injective integral element
+    of any sofic subrelation. Keeping a random set of rows never produces one
+    for square `T = B^*B`, such as the cubic `1 + w_1 + w_2`.
