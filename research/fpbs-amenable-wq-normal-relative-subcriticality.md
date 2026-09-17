@@ -67,3 +67,22 @@ group, to `p_c < p_u` on every Cayley graph of `Gamma`.
   Aizenman--Barsky BK step (orbits are `nu`-null), and the best-versus-worst
   comparison. A kernel satisfying the Harris--FKG distortion bounds has finite
   average and infinite supremum, and on `X_rig` nothing forces a radial profile.
+* **Spectral DT certificates (`research/artifacts/fpbs-spectral-dt-certificate-2026-09-17.md`).**
+  Replace the DT mass `phi_p(S)` by the spectral radius of the boundary measure
+  `nu_{S,p}` acting on the Schreier space `l2(H\Gamma)`.
+  * A value below 1 bounds `E_p|K_o ∩ H|` by a Neumann series, and the condition
+    is open in `p`
+    (`fpbs-quotient-spectral-dt-certificates-are-subgroup-blind`). So the
+    openness death of Attempt 4.4 is bypassed, and the target follows from
+    `fpbs-wq-normal-class-critical-spectral-dt-certificate`, via
+    `fpbs-wq-normal-subcriticality-via-spectral-certificate`.
+  * **Where the relative leverage dies:** Proposition C proves
+    `sp_Gamma(nu) <= sp_{H\Gamma}(nu)` for every subgroup, with equality for
+    amenable `H`. The quotient never helps, and any certificate also gives
+    `||T_p|| < infinity`
+    (`fpbs-spectral-dt-certificate-bounds-connectivity-operator`). This is the
+    Kesten coincidence of "count open walks" (the level `S = {o}`), shown to
+    hold at every level `S`.
+  * The remaining premise is a critical finite-volume L2-type estimate. It
+    holds on the tree with `S = B_3`, and has not been checked on any group of
+    the class.
