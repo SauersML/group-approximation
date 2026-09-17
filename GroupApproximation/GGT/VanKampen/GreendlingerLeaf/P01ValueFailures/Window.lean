@@ -189,15 +189,15 @@ theorem gap_ne_nil (X : DiscDiagram.{u, w, v} W) {e : X.toCombMap.Dart}
     (hval : RelLetter.listVal (dartWord X (gap X e)) ≠ 1) : gap X e ≠ [] := by
   intro h0
   apply hval
-  rw [h0]
-  rfl
+  rw [h0, dartWord, List.map_nil, RelLetter.listVal_nil]
 
 theorem idx_add_one_lt (X : DiscDiagram.{u, w, v} W) {e : X.toCombMap.Dart}
     (hval : RelLetter.listVal (dartWord X (gap X e)) ≠ 1) :
     idx X e + 1 < idx X (X.toCombMap.facePerm e) := by
   by_contra hle
+  have hz : idx X (X.toCombMap.facePerm e) - (idx X e + 1) = 0 := by omega
   apply gap_ne_nil X hval
-  rw [gap_eq, Nat.sub_eq_zero_of_le (by omega), List.take_zero]
+  rw [gap_eq, hz, List.take_zero]
 
 /-- **A value failure dart**: an outer dart `e` off the outer face, whose face successor is an
 outer dart, whose gap reads a value other than `1`, and whose face is adjacent to a relator cell. -/
