@@ -810,7 +810,27 @@ def zeroInputEndpoints : List Name :=
    -- declaration, so nothing in the corpus asked.
    ``NinetyNineProblems.not_problemX1Statement,
    ``NinetyNineProblems.literalFactorizationProperty,
-   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal]
+   ``NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal,
+   -- The `Manuscript/NonMF/Full` sentence endpoints (`non_mf_groups_exist.tex`).
+   -- Each module already carries `#audit_closed_axioms`; listing them here adds
+   -- the literature quarantine below, which reads the statement through its
+   -- named `Prop`.  `thm:amenable-trace` and the remark after it, with the
+   -- countability of `W` and `W₀` displayed:
+   ``GroupApproximation.Full.NM08.manuscriptAmenableNonquasidiagonalTraceCountable,
+   ``GroupApproximation.Full.NM08.manuscriptMFNotClosedUnderIntSemidirectCountable,
+   -- "`W₀` is a direct limit of residually finite groups, so it is MF", with
+   -- Korchagin's Corollary 10 proved rather than assumed:
+   ``GroupApproximation.Full.NM09.manuscriptSentence_korchaginDirectLimit,
+   -- `cor:one-sided-ring-maximal` at every `n ≥ 2`.  The parameterized sentence
+   -- wrapper `manuscriptSentence_elementaryGroupCountableNontrivialNotMF` has a
+   -- leading input and is deliberately not listed.
+   ``GroupApproximation.Full.NM10.printedElementaryGroupNotMFRankTwo,
+   ``GroupApproximation.Full.NM10.printedElementaryGroupNotMF_of_rankTwo,
+   ``GroupApproximation.Full.NM10.printedOneSidedRingMaximalGroupClausesRankTwo,
+   -- `lem:transient-matrices` with the compact-subset sentence of its proof:
+   ``GroupApproximation.Full.NM11.printedCompactOrbitBound,
+   ``GroupApproximation.Full.NM11.printedClopenNhdsOrbitBound,
+   ``GroupApproximation.Full.NM11.printedTransientMatrices_compact_closed]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool
