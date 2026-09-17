@@ -5364,6 +5364,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Restricti
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.WordProblems.Endpoints
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Definitions.SoficPrinted
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.FinitelyPresented.Endpoints
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralSimplicity.Endpoints
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
