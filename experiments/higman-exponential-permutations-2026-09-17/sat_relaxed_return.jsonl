@@ -1,0 +1,14 @@
+{"n": 3, "exact_return": false, "defect": 2, "breakpoints": 2, "return_defect": 0, "f_order_divides_4": true, "f": [0, 1, 2], "seconds": 0.0}
+{"n": 5, "exact_return": false, "defect": 2, "breakpoints": 2, "return_defect": 0, "f_order_divides_4": true, "f": [1, 0, 2, 4, 3], "seconds": 0.0}
+{"n": 7, "exact_return": false, "defect": 3, "breakpoints": 3, "return_defect": 0, "f_order_divides_4": true, "f": [4, 1, 2, 0, 6, 5, 3], "seconds": 0.0}
+{"n": 9, "exact_return": false, "defect": 3, "breakpoints": 3, "return_defect": 0, "f_order_divides_4": true, "f": [3, 0, 1, 2, 4, 8, 7, 5, 6], "seconds": 0.1}
+{"n": 11, "exact_return": false, "defect": 2, "breakpoints": 2, "return_defect": 0, "f_order_divides_4": true, "f": [9, 0, 7, 3, 6, 1, 2, 4, 8, 5, 10], "seconds": 0.0}
+{"n": 13, "exact_return": false, "defect": 4, "breakpoints": 4, "return_defect": 0, "f_order_divides_4": true, "f": [7, 9, 5, 0, 1, 2, 4, 8, 3, 6, 12, 11, 10], "seconds": 0.7}
+{"n": 15, "exact_return": false, "defect": 5, "breakpoints": 5, "return_defect": 0, "f_order_divides_4": true, "f": [0, 1, 2, 4, 8, 5, 10, 12, 9, 3, 6, 7, 14, 13, 11], "seconds": 0.5}
+{"n": 17, "exact_return": false, "defect": 4, "breakpoints": 4, "return_defect": 0, "f_order_divides_4": true, "f": [2, 4, 8, 16, 15, 13, 9, 1, 11, 5, 10, 0, 3, 6, 12, 7, 14], "seconds": 2.1}
+{"n": 19, "exact_return": false, "defect": 4, "breakpoints": 4, "return_defect": 0, "f_order_divides_4": true, "f": [18, 17, 15, 11, 3, 6, 2, 4, 8, 16, 13, 7, 14, 9, 12, 5, 10, 1, 0], "seconds": 3.1}
+{"n": 21, "exact_return": false, "defect": 6, "breakpoints": 6, "return_defect": 0, "f_order_divides_4": true, "f": [4, 8, 18, 15, 9, 0, 3, 6, 12, 5, 10, 20, 19, 17, 13, 7, 14, 16, 11, 1, 2], "seconds": 10.0}
+{"n": 23, "exact_return": false, "defect": 5, "breakpoints": 5, "return_defect": 0, "f_order_divides_4": true, "f": [21, 19, 15, 7, 14, 5, 10, 20, 13, 3, 6, 12, 1, 2, 4, 8, 16, 0, 17, 11, 9, 18, 22], "seconds": 75.2}
+{"n": 25, "exact_return": false, "defect": 5, "breakpoints": 5, "return_defect": 0, "f_order_divides_4": true, "f": [21, 17, 9, 15, 5, 10, 20, 4, 8, 16, 7, 14, 3, 18, 11, 22, 19, 13, 1, 2, 0, 6, 12, 24, 23], "seconds": 30.7}
+{"n": 27, "exact_return": false, "defect": 6, "breakpoints": 6, "return_defect": 0, "f_order_divides_4": true, "f": [18, 9, 25, 23, 19, 11, 22, 17, 7, 21, 15, 0, 14, 1, 2, 4, 8, 16, 5, 10, 20, 13, 26, 3, 6, 12, 24], "seconds": 246.3}
+{"n": 29, "exact_return": false, "defect": 6, "breakpoints": 6, "return_defect": 0, "f_order_divides_4": true, "f": [21, 10, 20, 11, 22, 15, 1, 2, 4, 8, 16, 3, 0, 13, 26, 23, 6, 17, 5, 12, 24, 19, 9, 18, 7, 14, 28, 27, 25], "seconds": 362.2}
