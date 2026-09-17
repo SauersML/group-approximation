@@ -165,4 +165,14 @@ theorem proof : OsinLemma94BoundaryValueFailureCountInput.{u, w, v} := by
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.valueFailure_spec
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.mem_outerDarts_of_mem_boundarySide
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.cell_clause
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.exists_valueFailure
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.lastDart
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.image_isValueFailure
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.lastDart_injOn
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.valueFailure_count
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.proof

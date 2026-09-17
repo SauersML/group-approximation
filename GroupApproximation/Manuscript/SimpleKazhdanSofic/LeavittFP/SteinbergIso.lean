@@ -106,3 +106,12 @@ theorem steinbergFreeAlgebra_isFinitelyPresented [Finite X] :
 end
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiGen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psi_rels
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psi
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psi_x
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psi_comp_phi
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi_psiRoot
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi_comp_psi
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.kmEquiv

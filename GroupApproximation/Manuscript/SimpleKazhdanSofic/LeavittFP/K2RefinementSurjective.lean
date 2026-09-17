@@ -99,4 +99,10 @@ theorem refineHom_surjective (k : Fin n) (hk : k ≠ r) : Function.Surjective (r
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mem_range_cast_cast
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mem_range_last_cast
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mem_range_cast_last
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mem_range_last
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mem_range_to_last
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_x_mem_range
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineHom_surjective

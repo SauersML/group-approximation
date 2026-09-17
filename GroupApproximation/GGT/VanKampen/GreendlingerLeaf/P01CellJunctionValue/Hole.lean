@@ -169,10 +169,11 @@ theorem exists_holeRegion (X : DiscDiagram.{u, w, v} W) (hNo : NoCellInside X)
       ∧ ∀ t, 0 < t → t < K → (X.toCombMap.sigma ^ t) (X.toCombMap.alpha a) ≠ b :=
     ⟨Nat.find hexK, Nat.find_spec hexK, fun t ht htK h => Nat.find_min hexK htK ⟨ht, h⟩⟩
   have hc : seg X.toCombMap b (n + 1) ≠ [] := seg_ne_nil (M := X.toCombMap) (x := b)
-    (Nat.succ_ne_zero n)
+    (Nat.add_one_ne_zero n)
   have hclose : FirstTurn X.toCombMap (seg X.toCombMap b (n + 1))
       ((seg X.toCombMap b (n + 1)).getLast hc) ((seg X.toCombMap b (n + 1)).head hc) := by
-    rw [seg_getLast (Nat.succ_ne_zero n), Nat.add_sub_cancel, hn, seg_head (Nat.succ_ne_zero n)]
+    rw [seg_getLast (Nat.add_one_ne_zero n), Nat.add_sub_cancel, hn,
+      seg_head (Nat.add_one_ne_zero n)]
     exact hole_firstTurn X.planar hm hb hab hleast hnleast hK0 hK hKleast
   have hbmem : b ∈ seg X.toCombMap b (n + 1) :=
     mem_seg.mpr ⟨0, by omega, by rw [pow_zero, Perm.one_apply]⟩

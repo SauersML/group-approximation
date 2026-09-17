@@ -176,3 +176,18 @@ theorem word_append (u v : List X) (i j k : Fin 5) (hij : i ≠ j) (hjk : j ≠ 
 end
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.Cgw
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.Cww
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.A0
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.Ins
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.ins_of
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.cgw_cons
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.cww_cons
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.a0_cons
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_package
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_commute_gen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_commute_word
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen_none_word
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_cons_eq
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_append

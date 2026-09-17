@@ -69,6 +69,8 @@ theorem printedZeta_pow_conj (hψ : ψ 1 = 1) :
     push_cast
     ring
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_pow_conj
+
 /-- Conjugation by `ζ^{−n}` moves the window `n` levels down. -/
 theorem printedZeta_pow_conj_inv (hψ : ψ 1 = 1) :
     ∀ (n : ℕ) {F : ℤ → Γ} {lo hi : ℤ}, Tame F lo hi → -(3 * s + 3 : ℤ) + n ≤ lo → hi ≤ 3 * s + 3 →
@@ -98,6 +100,8 @@ theorem printedZeta_pow_conj_inv (hψ : ψ 1 = 1) :
     push_cast
     ring
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_pow_conj_inv
+
 /-- **`ζ^ℓ (ψ(f(m)))_m ζ^{−ℓ} = (ψ(f(m−ℓ)))_m` for `|ℓ| ≤ λ`**, for `F` trivial below `−λ` and constant from `λ`. -/
 theorem printedZeta_zpow_conj (hψ : ψ 1 = 1) {F : ℤ → Γ} {ℓ : ℤ}
     (hT : Tame F (-((s + 1 : ℕ) : ℤ)) (s + 1 : ℕ)) (hℓ : |ℓ| ≤ ((s + 1 : ℕ) : ℤ)) :
@@ -117,6 +121,8 @@ theorem printedZeta_zpow_conj (hψ : ψ 1 = 1) {F : ℤ → Γ} {ℓ : ℤ}
     show F (m + n) = F (m - -(n : ℤ))
     rw [sub_neg_eq_add]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_zpow_conj
+
 theorem printedZeta_inv_snd (z : (Fin (6 * s + 5 + 2) → Q) × ZMod L) :
     ((printedZeta Q (6 * s + 5) L)⁻¹ z).2 = z.2 - 1 := by
   have h := printedZeta_apply Q (6 * s + 5) L ((printedZeta Q (6 * s + 5) L)⁻¹ z)
@@ -125,6 +131,8 @@ theorem printedZeta_inv_snd (z : (Fin (6 * s + 5 + 2) → Q) × ZMod L) :
   rw [hz] at h
   rw [eq_sub_iff_add_eq]
   exact (congrArg Prod.snd h).symm
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_inv_snd
 
 /-- `ζ^n` adds `n` in the coordinate `ℤ/L`. -/
 theorem printedZeta_zpow_snd (n : ℤ) (z : (Fin (6 * s + 5 + 2) → Q) × ZMod L) :
@@ -139,6 +147,8 @@ theorem printedZeta_zpow_snd (n : ℤ) (z : (Fin (6 * s + 5 + 2) → Q) × ZMod 
     rw [zpow_sub_one, Perm.mul_apply, ih, printedZeta_inv_snd]
     push_cast
     ring
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_zpow_snd
 
 end Conjugation
 
@@ -168,6 +178,8 @@ theorem printedModel_mul (hψ1 : ψ 1 = 1) {E : Set Γ}
   congr 2
   funext k
   exact hball _ (hb.2.1 _) _ (hb'.2.1 _)
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedModel_mul
 
 /-- The model is injective on the ball of radius `λ`, as `L > 2λ` and `f` is determined by its values for
 `|m| ≤ 3λ`. -/
@@ -223,6 +235,8 @@ theorem printedModel_injOn {E : Set Γ} (hψinj : Set.InjOn ψ (wordBall E (2 * 
   subst hf
   exact IsLevelForm.ext hg hg'
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedModel_injOn
+
 end Models
 
 /-- A map preserving the products that stay in a ball maps `1` to `1`. -/
@@ -233,6 +247,8 @@ theorem map_one_of_mul_wordBall {Γ Q : Type*} [Group Γ] [Group Q] {ψ : Γ →
   have h := hψmul 1 hone 1 hone (by rw [one_mul]; exact hone)
   rw [one_mul] at h
   exact mul_left_cancel (h.symm.trans (mul_one _).symm)
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.map_one_of_mul_wordBall
 
 /-- **`ζ^ℓ (ψ(f(m)))_m ζ^{−ℓ} = (ψ(f(m−ℓ)))_m` for `|ℓ| ≤ λ`** (tex l.639–642), at `λ = s + 1` and `L = 5λ`. Here
 `ψ` preserves the products that stay in the ball of radius `2λ` (so `ψ(1) = 1`), `f` is trivial below `−λ` and constant

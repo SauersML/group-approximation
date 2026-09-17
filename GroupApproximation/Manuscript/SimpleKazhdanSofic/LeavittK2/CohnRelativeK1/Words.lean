@@ -157,7 +157,9 @@ theorem sandwich (β γ : List (Fin 2)) :
       by_cases hab : a = b
       · subst hab
         rw [if_pos rfl, mul_assoc, ih γ]
-        simp only [List.cons.injEq, eq_self_iff_true, true_and]
+        by_cases hβγ : β = γ
+        · rw [if_pos hβγ, if_pos (congrArg (List.cons a) hβγ)]
+        · rw [if_neg hβγ, if_neg (fun hc => hβγ (List.cons.inj hc).2)]
       · have hne : ¬ (a :: β = b :: γ) := fun hc ↦ hab (List.cons.inj hc).1
         rw [if_neg hab, zero_mul, mul_zero, if_neg hne]
 

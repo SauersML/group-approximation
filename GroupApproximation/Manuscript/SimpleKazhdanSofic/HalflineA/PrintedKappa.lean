@@ -60,6 +60,8 @@ noncomputable def thetaEquiv : dom Q M ≃* ran Q M :=
 theorem thetaEquiv_apply (v : dom Q M) : (thetaEquiv Q M v : Fin (M + 2) → Q) = theta Q M v :=
   rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.thetaEquiv_apply
+
 end Theta
 
 section Kappa
@@ -76,15 +78,21 @@ theorem printedKappaFun_zero (x : Fin (M + 2) → Q) :
     (fun k : Fin (M + 1) => x (Fin.castSucc k)) 0 = (x (Fin.castSucc (Fin.last M)))⁻¹ * x (Fin.last (M + 1))
   exact Fin.cons_zero _ _
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaFun_zero
+
 theorem printedKappaFun_succ (x : Fin (M + 2) → Q) (k : Fin (M + 1)) :
     printedKappaFun Q M x k.succ = x (Fin.castSucc k) := by
   show Fin.cons (α := fun _ : Fin (M + 2) => Q) ((x (Fin.castSucc (Fin.last M)))⁻¹ * x (Fin.last (M + 1)))
     (fun k : Fin (M + 1) => x (Fin.castSucc k)) k.succ = x (Fin.castSucc k)
   exact Fin.cons_succ _ _ _
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaFun_succ
+
 theorem printedKappaFun_last (x : Fin (M + 2) → Q) :
     printedKappaFun Q M x (Fin.last (M + 1)) = x (Fin.castSucc (Fin.last M)) :=
   printedKappaFun_succ Q M x (Fin.last M)
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaFun_last
 
 /-- The inverse of `κ`: `x_m = y_{m+1}` for `m < 3λ` and `x_{3λ} = y_{3λ} y_{−3λ}`. -/
 def printedKappaInv (y : Fin (M + 2) → Q) : Fin (M + 2) → Q :=
@@ -96,11 +104,15 @@ theorem printedKappaInv_last (y : Fin (M + 2) → Q) :
     (fun k : Fin (M + 1) => y k.succ) (Fin.last (M + 1)) = y (Fin.last (M + 1)) * y 0
   exact Fin.lastCases_last
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaInv_last
+
 theorem printedKappaInv_castSucc (y : Fin (M + 2) → Q) (k : Fin (M + 1)) :
     printedKappaInv Q M y (Fin.castSucc k) = y k.succ := by
   show Fin.lastCases (motive := fun _ : Fin (M + 2) => Q) (y (Fin.last (M + 1)) * y 0)
     (fun k : Fin (M + 1) => y k.succ) (Fin.castSucc k) = y k.succ
   exact Fin.lastCases_castSucc k
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaInv_castSucc
 
 theorem printedKappaInv_printedKappaFun (x : Fin (M + 2) → Q) :
     printedKappaInv Q M (printedKappaFun Q M x) = x := by
@@ -113,6 +125,8 @@ theorem printedKappaInv_printedKappaFun (x : Fin (M + 2) → Q) :
     rw [printedKappaInv_castSucc]
     exact printedKappaFun_succ Q M x k
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaInv_printedKappaFun
+
 theorem printedKappaFun_printedKappaInv (y : Fin (M + 2) → Q) :
     printedKappaFun Q M (printedKappaInv Q M y) = y := by
   funext i
@@ -124,6 +138,8 @@ theorem printedKappaFun_printedKappaInv (y : Fin (M + 2) → Q) :
     rw [printedKappaFun_succ]
     exact printedKappaInv_castSucc Q M y k
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaFun_printedKappaInv
+
 /-- **The bijection `κ`** of `Q^{[−3λ,3λ]}` (tex l.630–632). -/
 def printedKappa : Perm (Fin (M + 2) → Q) where
   toFun := printedKappaFun Q M
@@ -133,6 +149,8 @@ def printedKappa : Perm (Fin (M + 2) → Q) where
 
 theorem printedKappa_apply (x : Fin (M + 2) → Q) : printedKappa Q M x = printedKappaFun Q M x :=
   rfl
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappa_apply
 
 theorem printedKappaFun_mul_left {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) (x : Fin (M + 2) → Q) :
     printedKappaFun Q M (v * x) = theta Q M v * printedKappaFun Q M x := by
@@ -145,10 +163,14 @@ theorem printedKappaFun_mul_left {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) (x
   | succ k =>
     rw [Pi.mul_apply, printedKappaFun_succ, printedKappaFun_succ, theta_succ, Pi.mul_apply]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappaFun_mul_left
+
 /-- **`κ(vx) = θ(v)κ(x)` for `v` in the domain of `θ`** (tex l.632–635). -/
 theorem printedKappa_mul_left {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) (x : Fin (M + 2) → Q) :
     printedKappa Q M (v * x) = theta Q M v * printedKappa Q M x :=
   printedKappaFun_mul_left Q M hv x
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedKappa_mul_left
 
 end Kappa
 
@@ -164,6 +186,8 @@ theorem printedZeta_apply (z : (Fin (M + 2) → Q) × ZMod L) :
     printedZeta Q M L z = (printedKappa Q M z.1, z.2 + 1) :=
   rfl
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_apply
+
 /-- **`ζ v ζ⁻¹ = θ(v)` on the domain of `θ`** (tex l.638–639). -/
 theorem printedZeta_mul_lmul_mul_printedZeta_inv {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) :
     printedZeta Q M L * lmul Q M L v * (printedZeta Q M L)⁻¹ = lmul Q M L (theta Q M v) := by
@@ -171,10 +195,14 @@ theorem printedZeta_mul_lmul_mul_printedZeta_inv {v : Fin (M + 2) → Q} (hv : v
   refine Equiv.ext fun z => Prod.ext ?_ rfl
   simp only [Perm.mul_apply, printedZeta_apply, lmul_apply, printedKappa_mul_left Q M hv]
 
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_mul_lmul_mul_printedZeta_inv
+
 theorem printedZeta_inv_mul_lmul_theta_mul_printedZeta {v : Fin (M + 2) → Q} (hv : v ∈ dom Q M) :
     (printedZeta Q M L)⁻¹ * lmul Q M L (theta Q M v) * printedZeta Q M L = lmul Q M L v := by
   rw [← printedZeta_mul_lmul_mul_printedZeta_inv Q M L hv]
   group
+
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.HalflineA.printedZeta_inv_mul_lmul_theta_mul_printedZeta
 
 end Zeta
 

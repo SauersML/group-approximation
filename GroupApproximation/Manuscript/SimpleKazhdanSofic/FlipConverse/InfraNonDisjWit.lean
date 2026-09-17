@@ -28,6 +28,7 @@ The three upstream lanes are not yet on disk; they enter as the `Statement`s of
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 
 open Topology
+open scoped commutatorElement
 
 /-- Non-disjoint moved sets in `[[T]]` give a nonvanishing commutator witness, for a minimal
 homeomorphism of a Cantor space. -/

@@ -32,6 +32,7 @@ signatures, so that each is discharged by `fun X .. => <lane theorem> ..` once i
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 
 open Topology
+open scoped commutatorElement
 
 /-- Lane `sk-flip-01` interface: a common displaced clopen neighbourhood of a point moved by two
 homeomorphisms (see the module docstring for why it is true). -/

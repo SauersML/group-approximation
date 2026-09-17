@@ -165,3 +165,11 @@ theorem wrap_or_start {x y d : X.toCombMap.Dart} {J s a t l : ℕ} (hx : x ∈ c
 end Separation
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.Reach
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.head?_seg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.sep_not_reach
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.not_reach_pow
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.outside_index
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.reach_across
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.wrap_or_start

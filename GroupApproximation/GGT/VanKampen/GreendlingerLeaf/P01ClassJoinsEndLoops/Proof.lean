@@ -77,4 +77,5 @@ theorem proof : OsinLemma94ClassJoinsEndLoopsInput.{u, w, v} := by
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.endLoops_c_lt_lambda_mul
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.proof

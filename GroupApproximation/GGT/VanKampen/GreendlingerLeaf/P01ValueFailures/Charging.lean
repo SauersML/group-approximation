@@ -114,3 +114,10 @@ theorem card_le_rCellCount (X : DiscDiagram.{u, w, v} W) (E : Finset X.toCombMap
     _ = X.rCellCount := List.length_map _
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.span_lt_of_nested
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.exists_private_face
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.privateFace
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.privateFace_spec
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.privateFace_injOn
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ValueFailures.card_le_rCellCount

@@ -100,18 +100,22 @@ theorem generator_mul_mem (g : BinaryLeavitt.Generator) {m : CohnTwo (ZMod 2)}
   rcases g with ⟨_ | _ | _ | _ | n, hn⟩
   · have h : generator (ZMod 2) ⟨0, hn⟩ = (data (ZMod 2)).gen 0 :=
       ((data (ZMod 2)).gen_zero).symm
+    show generator (ZMod 2) ⟨0, hn⟩ * m ∈ _
     rw [h]
     exact gen_mul_mem 0 hm
   · have h : generator (ZMod 2) ⟨1, hn⟩ = (data (ZMod 2)).gen 1 :=
       ((data (ZMod 2)).gen_one).symm
+    show generator (ZMod 2) ⟨1, hn⟩ * m ∈ _
     rw [h]
     exact gen_mul_mem 1 hm
   · have h : generator (ZMod 2) ⟨2, hn⟩ = (data (ZMod 2)).gs 0 :=
       ((data (ZMod 2)).gs_zero).symm
+    show generator (ZMod 2) ⟨2, hn⟩ * m ∈ _
     rw [h]
     exact gs_mul_mem 0 hm
   · have h : generator (ZMod 2) ⟨3, hn⟩ = (data (ZMod 2)).gs 1 :=
       ((data (ZMod 2)).gs_one).symm
+    show generator (ZMod 2) ⟨3, hn⟩ * m ∈ _
     rw [h]
     exact gs_mul_mem 1 hm
   · exfalso

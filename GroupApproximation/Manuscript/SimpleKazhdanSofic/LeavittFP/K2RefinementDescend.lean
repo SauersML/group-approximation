@@ -97,4 +97,8 @@ theorem refineHom_x (i j : Fin n) (hij : i ≠ j) (a : R) :
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_adjacent
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineGen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineGen_kills_relations
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineHom
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineHom_x

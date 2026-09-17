@@ -141,4 +141,8 @@ theorem K2_eq_bot_succ (k : Fin n) (hk : k ≠ r)
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_row
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_col
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_x
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.K2_eq_bot_succ

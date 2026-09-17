@@ -142,3 +142,14 @@ theorem refineRoot_commute {i j k l : Fin n} (hij : i ≠ j) (hkl : k ≠ l) (hj
           exact refine_xc (by fin_ne) (by fin_ne)
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_of_row
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_of_col
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_of_plain
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_xc
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_xcomm
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_conj
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_conj_mid
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_add
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineRoot_commute

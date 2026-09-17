@@ -183,3 +183,21 @@ theorem psiRoot_adjacent (i j k : Fin 5) (hij : i ≠ j) (hjk : j ≠ k) (hik : 
 end
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rootWords
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.closure_commute
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.RootGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rootElem
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rootSum
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rootSum_add
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rootSum_monomial
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_add
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_monomial
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_mem
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_commute
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_zero
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_neg
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.freeAlgebra_induction
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.adj_word
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.psiRoot_adjacent

@@ -79,3 +79,10 @@ theorem commute_of_mem_closure {s t : Set G} (h : ∀ x ∈ s, ∀ y ∈ t, Comm
   exact ((Subgroup.mem_centralizer_iff.mp (hs hg)) k hk).symm
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_mul_left
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_mul_right
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_assoc
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_commutatorElement_right
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_commutatorElement_left
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_of_mem_closure

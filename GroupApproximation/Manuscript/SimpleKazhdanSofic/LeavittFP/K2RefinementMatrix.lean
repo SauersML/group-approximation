@@ -102,3 +102,16 @@ theorem refine_mulVec_plain {i j : Fin n} (hij : i ≠ j) (a : R) (hi : ¬ i = r
       refineVec_last L r _, refine_mulVec_apply_ne hri]
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.stMat
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.stMat_x
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineVec
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.contractVec
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineVec_last
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineVec_castSucc_of_eq
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refineVec_castSucc_of_ne
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.contractVec_refineVec
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_leavitt_split
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_apply_eq
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_apply_ne
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_plain

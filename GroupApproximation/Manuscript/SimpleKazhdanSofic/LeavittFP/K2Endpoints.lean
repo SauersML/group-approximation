@@ -100,3 +100,5 @@ theorem manuscriptSentence_finitelyPresentedCase_of_rankFour
 end
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.BinaryLeavittSteinbergRankFourInjectiveStatement

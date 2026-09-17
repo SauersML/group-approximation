@@ -223,3 +223,37 @@ theorem phi_word (u : List X) (i j : Fin 5) (h : i ≠ j) :
 end
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.Gen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.R1Dom
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.R2Dom
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.R3Dom
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.r0
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.r1
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.r2
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.r3
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rels
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.rels_finite
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.KMGroup
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.kmGroup_isFinitelyPresented
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen_diag
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen_commute
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen_adj_none
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.gen_adj_some
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.spare
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.spare_ne_left
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.spare_ne_right
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_nil
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.word_cons
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.coef
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.coef_none
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.coef_some
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phiGen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phiGen_diag
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phiGen_of_ne
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi_rels
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi_gen
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.phi_word

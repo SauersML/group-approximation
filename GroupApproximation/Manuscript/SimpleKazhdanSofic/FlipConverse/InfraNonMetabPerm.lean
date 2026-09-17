@@ -15,7 +15,7 @@ With Mathlib's conventions `⁅g, h⁆ = g h g⁻¹ h⁻¹` and `(σ τ) x = σ 
 * `((0 1) (1 2)) 0 = 1` and `((1 2) (0 1)) 0 = 2`, so `(0 1)` and `(1 2)` do not commute
   (`perm_fin_five_swap_mul_ne`).
 
-Both evaluations at a point are checked by `decide` (kernel-checkable, no `native_decide`).
+Both evaluations at a point are checked by `decide` (kernel-checkable evaluation).
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse

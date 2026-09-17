@@ -269,8 +269,20 @@ theorem phiTransportAt_step (a₀ : S.family) :
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.keepAlpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.keepEmbed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.collapsedEmbedding
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.wDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.sDart
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.collapsedEmbedding_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.sDart_not_mem_range
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.wDart_not_phiKeepO
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.facePerm_collapsed_of_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.facePerm_collapsed_of_eq
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.facePerm_sDart_of_ne
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.facePerm_sDart_of_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.backCollapsed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.backCollapsed_embedding
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.eqvGen_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.faceOf_backCollapsed
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P05RegionPair.phiTransportAt_step
