@@ -29,8 +29,8 @@ is an object face `objectFace p` then `p ∈ {o, o'}`.  The polygon `k'` touches
    So `S.DartMinimal.unselectedGFacesMerged` applies at `e` and gives
    `faceOf e = faceOf (α e)`, that is, `A t = P.face k`.
 2. *Choose a switch* (`exists_switch`).  Let `j` be the least `j > 0` with
-   `A j = objectFace o'` (`Nat.find`, witness `m`), so `j ≤ m`.  Let `i` be the greatest `i ≤ j - 1`
-   with `A i = objectFace o` (`Nat.findGreatest`, witness `0`), so `i < j`.  For `i < t < j`:
+   `A j = objectFace o'` (`Nat.find`, witness `m`), so `j ≤ m`.  Let `i` be the greatest
+   `i ≤ j - 1` with `A i = objectFace o` (`Nat.findGreatest`, witness `0`), so `i < j`.  For `i < t < j`:
    * `0 < t < m`;
    * `A t ≠ objectFace o` by maximality of `i`, and `A t ≠ objectFace o'` by minimality of `j`;
    * so, by the hypothesis on interior darts, `A t` is no object face at all.
