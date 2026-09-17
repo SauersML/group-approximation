@@ -203,7 +203,8 @@ theorem fibonacciModel_unit : fibonacciModel fibU = Pestov91.shiftMatrix (ZMod 2
   exact h
 
 /-- `φ(u⁻¹) = P⁻¹ = P^{-1}`. -/
-theorem fibonacciModel_unit_inv : fibonacciModel fibUInv = Pestov91.shiftMatrix (ZMod 2) 5 (-1) := by
+theorem fibonacciModel_unit_inv :
+    fibonacciModel fibUInv = Pestov91.shiftMatrix (ZMod 2) 5 (-1) := by
   have h := fibonacciModel_unit_zpow (-1)
   rw [zpow_neg, zpow_one] at h
   exact h
@@ -259,7 +260,7 @@ theorem fibonacciModelSetup :
     fibonacciWindowModel_apply_of_agree, fibonacciModel_eq_of, fibonacciModel_eq_zero,
     fibonacciModel_single, fibonacciModel_one, fibonacciModel_letter_false⟩
 
-#audit_axioms GroupApproximation.Full.SK08.fibonacciModelSetup
+#audit_closed_axioms GroupApproximation.Full.SK08.fibonacciModelSetup
 
 /-- The displayed matrix `P` (tex l.417–421), rows and columns indexed by `t = 0, …, 4`. -/
 def displayedP : Matrix (Fin 5) (Fin 5) (ZMod 2) :=
@@ -286,7 +287,7 @@ theorem shiftMatrix_mulVec_single (t : ZMod 5) :
   rw [Pestov91.shiftMatrix_apply, Int.cast_one, Pi.single_apply]
   by_cases h : a = t + 1
   · rw [if_pos h.symm, if_pos h]
-  · rw [if_neg fun h' => h h'.symm, if_neg h]
+  · rw [if_neg (Ne.symm h), if_neg h]
 
 /-- **Display l.415 (tex l.415–433).** `φ(u) = P` with `P δ_t = δ_{t+1}`, and
 `φ(e_1) = D_1(e_1)`; in rows and columns indexed by `t = 0, …, 4` they are the displayed
@@ -299,7 +300,8 @@ theorem fibonacciDisplay :
         displayedP a b) ∧
       fibonacciModel (fibLetter true) =
         Matrix.diagonal (fibonacciWindowModel
-          (ClopenCoeff.of 𝓣 (ZMod 2) (SimpleKazhdanSofic.letterIndicator fibonacciSubshift true))) ∧
+          (ClopenCoeff.of 𝓣 (ZMod 2)
+            (SimpleKazhdanSofic.letterIndicator fibonacciSubshift true))) ∧
       ∀ a b : Fin 5, fibonacciModel (fibLetter true) ((a : ℕ) : ZMod 5) ((b : ℕ) : ZMod 5) =
         displayedD a b := by
   refine ⟨fibonacciModel_unit, shiftMatrix_mulVec_single, ?_,
@@ -310,7 +312,7 @@ theorem fibonacciDisplay :
   · rw [fibonacciModel_letter]
     decide +kernel
 
-#audit_axioms GroupApproximation.Full.SK08.fibonacciDisplay
+#audit_closed_axioms GroupApproximation.Full.SK08.fibonacciDisplay
 
 /-- **Sentence l.434 (tex l.434–435).** The windows of `y` centered at `1` and at `4` are both
 `010`, so every `D_1(f)` (for `f` depending only on `[-1, 1]`) has equal entries at these
@@ -329,6 +331,6 @@ theorem fibonacciWindowsEqual :
   obtain ⟨hlo, hhi⟩ := abs_le.mp hi
   interval_cases i <;> decide +kernel
 
-#audit_axioms GroupApproximation.Full.SK08.fibonacciWindowsEqual
+#audit_closed_axioms GroupApproximation.Full.SK08.fibonacciWindowsEqual
 
 end GroupApproximation.Full.SK08
