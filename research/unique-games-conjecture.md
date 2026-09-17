@@ -223,6 +223,26 @@ it is supplied, and the exponential pairing-support obstruction persists.
   Perfect completeness is out in this form
   (`unique-constraints-orient-at-most-half-of-a-fiber`, and UG with perfect
   completeness is in P). So every prerequisite is stated at `1 - eps`.
+* **Real linear equations and the real code (Khot--Moshkovitz candidate, weak
+  UGC) (swarm-0917-w5, 2026-09-17).** This route is independent of 2-to-2. It
+  decomposes into four prerequisites:
+  - (P-a) hardness of random `kCSP(PHLin)` and the `kLin(R)` Lasserre gap;
+  - (P-b) completeness of the real code `interval(<sigma, x>)`;
+  - (P-c) KM Theorem 14, soundness for `(l, gamma)`-list decoding strategies;
+  - (P-d) near-complete folded strategies are list decodable.
+
+  **(P-d) is refuted** by `distorted-periodic-half-spaces-defeat-real-code-junta-decoding`.
+  The distorted codes `interval(sum_i sigma_i phi_a(x_i))`, with
+  `phi_a(t) = t + (a/2pi) sin 2pi t`, are folded and reject all three KM tests
+  within their completeness bounds. Yet they correlate at most `eta` with every
+  junta of `l` real code functions once `n >= n_0(a, l, eta)`.
+  - *Invariant:* the per-coordinate Fourier contraction `lambda_K(a) < 1`.
+  - *Where it dies:* the list-decoding step of Theorem 14.
+
+  This answers KM's Robust Gaussian Isoperimetry question negatively in junta
+  form. What survives is a reparametrization-invariant structure theorem
+  (decode the labels `sigma_i`, not the functions) together with soundness for it:
+  (P-d') and (P-c'), both OPEN.
 * **Refuting the conjecture.** The algorithmic negation is the open claim
   `unique-games-gap-admits-polynomial-time-algorithm`. Its Attempts record the
   algorithmic frontier: `affine-ug-easy-on-certifiably-hypercontractive-graphs`,
