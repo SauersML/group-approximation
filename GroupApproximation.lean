@@ -5381,6 +5381,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.Ring
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.Endpoints
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.PartA
 import GroupApproximation.Manuscript.NonMF.Full.ClopenShrink.Shrink
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.Expanders
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
