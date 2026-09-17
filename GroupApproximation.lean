@@ -5456,6 +5456,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Norma
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.PairDependence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Stepanov
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.ProofIngredients
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Diagonal
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
