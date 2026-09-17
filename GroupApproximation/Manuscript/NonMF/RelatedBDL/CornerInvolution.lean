@@ -159,7 +159,6 @@ theorem exists_opAsymptoticRep_of_injective_coronaRep
         Tendsto (fun n ↦
           ‖(V n J : Matrix (naturalFiniteModel (d n))
               (naturalFiniteModel (d n)) ℂ) + 1‖) atTop (𝓝 0) := by
-  classical
   -- Step 1: `u = ρ(J)` is a self-adjoint unitary and `q = ½(1 − u)` a
   -- projection.
   set u : NormMatrixCStarCorona (fun n ↦ X n) :=
@@ -198,7 +197,7 @@ theorem exists_opAsymptoticRep_of_injective_coronaRep
       rw [← map_mul, ← map_mul, hJcent g]
     exact bdl_mul_half_one_sub_comm (congrArg Subtype.val h1)
   -- Step 4: the printed central corona corner.
-  obtain ⟨φ, hφ, Q, r, Jm, W, amb, _, hQmk, _, hr, hJadd, _, _, hJnorm, hJone,
+  obtain ⟨φ, hφ, Q, r, _, W, amb, _, hQmk, _, hr, hJadd, _, _, hJnorm, hJone,
       _, _, _, hWdef, hamb, hambmk⟩ :=
     OneSidedMFRadical.CentralCoronaCornerPrintedRoute.manuscriptPrintedCentralCoronaCorner
       Γ X rho ((2 : ℂ)⁻¹ • (1 - u)) hsa hproj hqne hcomm
@@ -235,9 +234,9 @@ theorem exists_opAsymptoticRep_of_injective_coronaRep
 
 end
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.exists_opAsymptoticRep_of_injective_coronaRep
-
 end RelatedBDL
 end NonMF
 end Manuscript
 end GroupApproximation
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.RelatedBDL.exists_opAsymptoticRep_of_injective_coronaRep

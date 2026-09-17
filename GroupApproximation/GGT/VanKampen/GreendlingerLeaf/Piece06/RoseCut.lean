@@ -28,19 +28,20 @@ Let `K` be a cell pocket face set of `X` between the cells `i ≠ j`, with bound
 
    By `P10Rose.closed_right` the rest is closed, so by `P10Rose.lobeBoundary` it is the boundary
    cycle of its lobe, which lies in `K.faces` (`P10Rose.mem_faces_of_mem_lobeFaces`): the exterior
-   face is off it.  The rotated walk `B ++ (C ++ A)` is a closed dart walk, and its two parts start at
-   one vertex, so `C ++ A`, hence `A ++ C`, is a closed dart walk (`P10Rose.closedDartWalk_split`,
-   `IsClosedDartWalk.append_comm`).  So `CellPocketFaceSet.ofBoundaryCycle` builds a cell pocket `K'`
-   of the same diagram between the same cells, with the arcs of `K` (positive and proper), kept cell
-   `k`, in walk order.  With letter labels the side norms are at most the side lengths
+   face is off it.  The rotated walk `B ++ (C ++ A)` is a closed dart walk whose two parts start
+   at one vertex, so `C ++ A`, hence `A ++ C`, is a closed dart walk
+   (`P10Rose.closedDartWalk_split`, `IsClosedDartWalk.append_comm`).  So
+   `CellPocketFaceSet.ofBoundaryCycle` builds a cell pocket `K'` of the same diagram between the
+   same cells, with the arcs of `K` (positive and proper), kept cell `k`, in walk order.  With
+   letter labels the side norms are at most the side lengths
    (`PocketFaceSet.wordNorm_dartWord_le_length`).  The first dart of `B` and the first dart of the
    rest start at one vertex, so the repeated visits drop strictly (`P10Rose.length_sub_card_lt`).
    The step is then the identity O-equivalence (`exists_step_of_cellCut'`).
 3. **Why the lobe of `B` does not help.**  For outer pockets (`P10Rose.exists_step_of_cut`) the
-   relator cell may lie in the lobe of `B`, and `B` alone with empty arcs is a pocket.  A cell pocket
-   needs positive arcs (`firstArc_pos`, `secondArc_pos`): both cells must lie across darts of the
-   walk.  When `B` lies inside a side it carries no arc darts, so its lobe is not a cell pocket, and
-   the cut applies only when a relator cell lies in the lobe of the rest.
+   relator cell may lie in the lobe of `B`, and `B` alone with empty arcs is a pocket.  A cell
+   pocket needs positive arcs (`firstArc_pos`, `secondArc_pos`): both cells must lie across darts
+   of the walk.  When `B` lies inside a side it carries no arc darts, so its lobe is not a cell
+   pocket, and the cut applies only when a relator cell lies in the lobe of the rest.
 4. **The residual** (`CellRoseUncutStatement`).  The rose step with the extra hypothesis that no
    cut as in (2) exists.  `cellRoseStep_of_uncut` recovers `CellRoseStepStatement` by cases on
    `CellCut K`.
@@ -48,19 +49,20 @@ Let `K` be a cell pocket face set of `X` between the cells `i ≠ j`, with bound
 ## The configurations left in the residual
 
 * *Lakes.*  A component of the complement of `K.faces` away from the exterior touching `∂K`.  Each
-  lobe of the walk cut at the pinch vertex shares the face class of a lake edge with another lobe, so
-  no lobe is closed.  Filling the lakes (`PocketFaceSet.absorb` for outer pockets) has no cell
+  lobe of the walk cut at the pinch vertex shares the face class of a lake edge with another lobe,
+  so no lobe is closed.  Filling the lakes (`PocketFaceSet.absorb` for outer pockets) has no cell
   analogue yet, and walk order of the absorbed cycle is not proved.
 * *The three petals.*  Petals `P_1` (a G-cell carrying `t_1`), `P_2` (a G-cell carrying `t_2`) and
-  `P_k = {kept}` meet at one vertex `v`, with exterior corners between them, and the walk visits them
-  in rotation order reversed (`π a = a - 1` in the local model `o_1 ī_1 o_2 ī_2 o_3 ī_3`): every
-  passage at `v` is non-first and crossed, `repeatedVisits = 2`.  The only closed cuts are unions of
-  petals.  A lobe of a cut without both arcs is not a cell pocket; the lobe of the rest carries both
-  arcs only when the cut is `P_k`, and then it carries no relator cell.  So no step exists in the
-  same diagram, the exterior corners allow no split surgery, and the step must change the diagram.
+  `P_k = {kept}` meet at one vertex `v`, with exterior corners between them, and the walk visits
+  them in rotation order reversed (`π a = a - 1` in the local model `o_1 ī_1 o_2 ī_2 o_3 ī_3`):
+  every passage at `v` is non-first and crossed, `repeatedVisits = 2`.  The only closed cuts are
+  unions of petals.  A lobe of a cut without both arcs is not a cell pocket; the lobe of the rest
+  carries both arcs only when the cut is `P_k`, and then it carries no relator cell.  So no step
+  exists in the same diagram, the exterior corners allow no split surgery, and the step must change
+  the diagram.
   `OEquivalentDiscDiagram` only fixes the boundary word and the relator cell words, so this is not a
-  counterexample to `CellRoseStepStatement`; it is the reason the residual is stated over O-equivalent
-  copies.
+  counterexample to `CellRoseStepStatement`; it is the reason the residual is stated over
+  O-equivalent copies.
 
 ## Manuscript status
 

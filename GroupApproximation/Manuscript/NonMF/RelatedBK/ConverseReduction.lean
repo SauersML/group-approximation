@@ -46,7 +46,6 @@ namespace NonMF
 namespace RelatedBK
 
 open GroupApproximation.CStarExactness
-open Filter
 open scoped Matrix.Norms.L2Operator
 
 universe u
@@ -191,7 +190,7 @@ theorem hasLocalNFApproximation_of_nuclear_of_mf_of_localization
       (norm_mul_defect_le_of_approx a b (β (α a)) (β (α b)) (β (α (a * b)))
         hδ0.le hδ1 hC0 (hFC a ha) (hFC b hb) (happrox a ha) (happrox b hb) hw))
       hδε
-  have hev : ∀ᶠ n in atTop, ∀ p ∈ F ×ˢ F,
+  have hev : ∀ᶠ n in Filter.atTop, ∀ p ∈ F ×ˢ F,
       ‖(L (α (p.1 * p.2)) - L (α p.1) * L (α p.2)) n‖ < ε :=
     (Filter.eventually_all_finset (F ×ˢ F)
       (p := fun p n ↦ ‖(L (α (p.1 * p.2)) - L (α p.1) * L (α p.2)) n‖ < ε)).2
@@ -214,7 +213,6 @@ theorem hasLocalNFApproximation_of_nuclear_of_mf_of_localization
       (fun n _ ↦ boundedMatrixSequence_coord_norm_le (fun n ↦ X n) x n)
   -- Step 6: assemble.
   refine ⟨Y, hY, ?_⟩
-  letI : Nonempty Y := hY
   refine ⟨ρL.comp (L.comp α), β.comp θ, hρLCP.comp (hLCP.comp hαCP),
     hβCP.comp hθCP, ?_, ?_, ?_, ?_⟩
   · intro a
