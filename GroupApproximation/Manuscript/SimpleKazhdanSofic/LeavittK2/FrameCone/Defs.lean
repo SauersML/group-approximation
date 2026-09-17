@@ -13,8 +13,9 @@ Khanh (arXiv:2609.08428), Definition `def:ordered-frames`:
 
 Such a decomposition is the same as an invertible `r × r` matrix whose first `k` columns are
 `v_1, …, v_k` (the remaining columns are the image of a basis of `C`). `IsFrame f` below uses
-this matrix form, which is the lane-07 convention (carto `sk-leavitt`); lane 07 was not on
-disk when this lane was authored, so the predicate is local to `LeavittK2.FrameCone`.
+this first-columns matrix form, matching `FrameFan.IsFrameVertex/Edge/Triangle`; lane 07's
+`LeavittK2.IsFrame` (`Frame/Complex.lean`, columns along an embedding `Fin k ↪ Fin n`) is a
+different packaging, so this list predicate is local to `LeavittK2.FrameCone`.
 
 Khanh, Lemma `lem:word-multiplier`:
 

@@ -105,7 +105,7 @@ theorem unitary_hom_eq_one_of_forall_finite_quotient {Γ : Type} [Group Γ]
   have h := hJ (ρ.range ⧸ N.toSubgroup)
     ((QuotientGroup.mk' N.toSubgroup).comp ρ.rangeRestrict)
   apply hN
-  exact (QuotientGroup.eq_one_iff y).mp (by simpa [y] using h)
+  exact (QuotientGroup.eq_one_iff (N := N.toSubgroup) y).mp (by simpa [y] using h)
 
 /-- **[BDL, Proposition 1.5]**, `non_mf_groups_exist.tex` lines 351--353: for a
 group of Deligne type, operator--Hilbert--Schmidt stability implies that the
