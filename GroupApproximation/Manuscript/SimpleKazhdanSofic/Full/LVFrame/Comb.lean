@@ -14,10 +14,12 @@ Here `Φ` is the left-comb self-similarity `A ≅ A^4` with leaves `d_j = s_{1^j
 * `permUnit F π`: for a complete matrix family `F` and `π : Perm ι`, the unit
   `Σ_i left (π i) · right i`, with `permUnit F π · left j = left (π j)`;
 * comb facts: for `j < k`, `t_{1^k} · d_j = 0`, and for `k < 3`, `d_k = s_{1^k} s_0`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/Comb.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
-
 
 section Perm
 

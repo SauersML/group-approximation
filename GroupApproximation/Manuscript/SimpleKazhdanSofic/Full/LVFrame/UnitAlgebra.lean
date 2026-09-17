@@ -18,10 +18,12 @@ over an arbitrary ring:
   sends `σρp` to `p` when `bρp = 1` and fixes `ker ρ`);
 * `permUnit`: for a complete matrix family and a permutation `π`, `Σ_i left (π i) right i`
   is a unit sending `left j` to `left (π j)`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/UnitAlgebra.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
-
 
 variable {A : Type*} [Ring A]
 

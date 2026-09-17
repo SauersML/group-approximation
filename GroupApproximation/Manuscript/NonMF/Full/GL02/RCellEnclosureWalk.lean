@@ -29,33 +29,15 @@ included.
 
 ## The proof
 
-Let `c = B X`.  It is nonempty and repeats no dart: `B` and `X` each repeat none, and a common dart
-would lie on both `Π` and `f`.  The walk is chained by vertices and turns like a noncrossing walk
-(`FirstTurnEnclosure.turnMem_of_firstTurn`).  So `enclosedFaces c`, the faces reached from the
-non-walk reversals of `c` by face steps off the edges of `c`, satisfy the membership law of an
-enclosed face set (`FirstTurnEnclosure.mem_iff_enclosedFaces`).  The successor law is the uniqueness
-of first turns (`FirstTurnEnclosure.eq_of_firstTurn`).  This gives `EnclosedFaceSetSucc` as soon as the
-exterior face is off `enclosedFaces c`.
-
-1. *`d` is off the edges of `c`* (`not_walkKeep_of_cross`).  `d ∈ B` and `d ∈ p` contradict nodup of
-   the carrier.  `d ∈ X` puts `d` on `f`, but it lies on `Π`.  `α d ∈ B` puts `α d` on `Π`, but
-   `α d ∈ U` lies on `f`.  `α d ∈ X` and `α d ∈ U` contradict nodup of the face walk.
-2. *`f` and `Π` are off `enclosedFaces c`* (`face_not_mem_enclosedFaces_X`).  The face step across
-   `d` is allowed, so `f` is enclosed iff `Π` is (`enclosed_iff`).  One of them holds a dart of `c`:
-   `X.head` on `f` or `B.head` on `Π`.  Faces of walk darts are not enclosed.
-3. *The two enclosures are disjoint* (`disjoint_X_Y`).  A face step chain for `c₁ = B X`, started
-   inside `enclosedFaces c₁`, stays inside it.  Its darts are not darts of `c₂ = A Y`, whose darts
-   lie on `f` or `Π` (step 2).  So it is a face step chain for `c₂` too (`eqvGen_transport`).  A common
-   enclosed face `g` gives `a₁ ∈ c₁` and `a₂ ∈ c₂` with `α a₁ ~₁ g ~₂ α a₂`.  From `α a₁` a `c₂`-chain
-   reaches a dart of `c₂`: `α a₁` is off the edges of `c₂` (the walks share no dart,
-   `not_mem_Y_of_mem_X`), and `a₁` lies on `f` or `Π`.  The face `f` or `Π` holds a dart of `c₂`
-   directly, or across `e` (`exists_reach_Y`).  So a dart of `c₂` is `c₂`-related to `α a₂ ∉ c₂`,
-   against `FirstTurnEnclosure.alpha_mem_of_faceClass`.
-4. *Conclusion* (`pocketEnclosure`).  If the exterior face is off `enclosedFaces (B X)`, that walk
-   encloses its faces without `Π`.  Otherwise, by step 3, the exterior face is off
-   `enclosedFaces (A Y)`, and the rotated setting `Y U X T`, `p A q B` gives the second pocket.
-
-This is `SameCellSpurEnclosureProof`, with the crossing darts and the first turns as hypotheses.
+Let `c = B X`.  It is nonempty, repeats no dart, and is chained like a noncrossing walk, so
+`enclosedFaces c` is an enclosed face set as soon as the exterior face is off it
+(`FirstTurnEnclosure.mem_iff_enclosedFaces`, `FirstTurnEnclosure.eq_of_firstTurn`).  The crossing
+dart `d` is off the edges of `c` (`not_walkKeep_of_cross`), so `f` and `Π` are off
+`enclosedFaces c` (`face_not_mem_enclosedFaces_X`).  A face step chain for `B X` transports to one
+for `A Y` (`eqvGen_transport`), so the two enclosures are disjoint (`disjoint_X_Y`), against
+`FirstTurnEnclosure.alpha_mem_of_faceClass`.  One of the two walks misses the exterior face, which
+gives `pocketEnclosure`.  This is `SameCellSpurEnclosureProof`, with the crossing darts and the
+first turns as hypotheses.
 
 ## Manuscript status
 
@@ -413,22 +395,5 @@ end RCellPocketWalk
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.ne_nil_swap
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.nodup_walk
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.nodup_carrier
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.rotate_Y
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.nodup_X
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.faceOf_of_mem_X
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.not_walkKeep_of_cross
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.enclosed_iff
-#audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.face_not_mem_enclosedFaces_X
-#audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.enclosedFaceSetSucc_X
-#audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.not_mem_Y_of_mem_X
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.exists_reach_Y
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.eqvGen_transport
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.disjoint_X_Y
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.pocketEnclosure
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece04.GL02.RCellPocketWalk.pocketEnclosure

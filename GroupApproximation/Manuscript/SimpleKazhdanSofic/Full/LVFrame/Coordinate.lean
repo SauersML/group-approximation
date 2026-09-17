@@ -13,10 +13,12 @@ Khanh (arXiv:2609.08428), proof of Lemma `lem:word-multiplier`:
 from `complement_cons_zero/one` and `complement_nil_zero/one`). `exists_coordinate_unit`
 turns the displayed inverse pair into a unit `Z` of `A` with `Z s_0 = y`, whenever
 `η^* y = 1` and `η ≠ []`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/Coordinate.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
-
 
 variable {A : Type*} [Ring A] (L : LeavittFamily A)
 

@@ -22,6 +22,9 @@ With `R = L_{F_2}(1,2)`, `η^* = wordT η`, positive word `μ = wordS μ`.
   because all `γ` have the same length (`List.append_inj'`), so no cancellation over `F_2`.
 * Some `T_i γ` is nonempty since `a_i = ∑_γ (a_i s_γ) t_γ ≠ 0`.
 * `x = x_0 e^M f`, `η_i = μ_i e^M f` for `μ_i ∈ supp P_i`; conclude by eq:word-separation.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/WordMultiplier/Multiplier.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame

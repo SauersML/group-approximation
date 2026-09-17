@@ -18,10 +18,12 @@ sibling tree of `c :: a` is `c'` together with `c` followed by the siblings of `
 With `R ≅ R ⊕ R` via `(s_0, s_1)`, the map `(t, r) ↦ y t + s r` becomes the element
 `Z = y t_0 + s t_1`, and the inverse formula above becomes `Z' = s_0 b + s_1 s' (1 - y b)`
 (`exists_coordinate_unit`), with `Z s_0 = y`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/Complement.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
-
 
 variable {A : Type*} [Ring A] (L : LeavittFamily A)
 

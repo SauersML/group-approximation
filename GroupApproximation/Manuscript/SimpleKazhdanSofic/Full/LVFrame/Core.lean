@@ -21,10 +21,12 @@ if `k ≤ 2`, `η ≠ []` and `η^* t_{1^k} p = 1`, then some unit `W` sends `d_
 * `Ẑ` is the corner unit on `σ A` (`σ = s_{1^k}`, `ρ = t_{1^k}`) of the coordinate unit `Z`
   with `Z s_0 = ρ p` (`exists_coordinate_unit`), fixing `ker ρ ∋ d_j` (`j < k`);
 * `T = 1 + (1 - σρ) p η^* ρ` sends `σ ρ p ↦ p` and fixes `ker ρ`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/Core.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
-
 
 variable {A : Type*} [Ring A] (L : LeavittFamily A)
 

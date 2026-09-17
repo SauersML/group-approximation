@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.LeavittSimplicity
 import Mathlib.Data.ZMod.Defs
+import Mathlib.Algebra.Field.ZMod
 import Mathlib.Data.Fintype.BigOperators
 import GroupApproximation.Meta.AxiomGuard
 
@@ -23,6 +24,9 @@ Over `F_2 = ZMod 2`, a "polynomial in positive words with collected identical wo
 * `exists_posPoly_mul_wordS`: from `exists_monomial_representation`, with `N = max |β_i|`,
   every `a s_γ` with `N ≤ |γ|` is a positive polynomial (Khanh uses `|γ| = N`; any
   `|γ| ≥ N` works and is what the multiplier step needs).
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/WordMultiplier/Positive.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame

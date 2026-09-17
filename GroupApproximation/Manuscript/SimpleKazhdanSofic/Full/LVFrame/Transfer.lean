@@ -1,4 +1,3 @@
-import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Defs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFrame.Core
 import GroupApproximation.Meta.AxiomGuard
 
@@ -14,10 +13,22 @@ With the left-comb leaves `d_j`, `vecToScalar w = Σ_i d_i w_i` and
 `scalarToVec_vecToScalar`), and a list `f` of length `≤ 4` is a frame iff some unit `U` of `A`
 has `U d_j = vecToScalar f_j` for `j < f.length` (`unit_of_frame`, `frame_of_unit`), through
 `CompleteMatrixFamily.unitsEquiv`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/FrameCone/Transfer.lean (with `IsFrame` from FrameCone/Defs.lean)`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
 
+/-- A list `f` of vectors in `A^n` is an ordered frame when `f.length ≤ n` and its entries are
+the first `f.length` columns of an invertible `n × n` matrix (Khanh, Def. `def:ordered-frames`:
+"`A^r = v_1A ⊕ ⋯ ⊕ v_kA ⊕ C`, with `C ≅ A^{r-k}`"). -/
+def IsFrame {A : Type*} [Ring A] {n : ℕ} (f : List (Fin n → A)) : Prop :=
+  f.length ≤ n ∧ ∃ g : (Matrix (Fin n) (Fin n) A)ˣ,
+    ∀ (j : Fin n) (hj : j.val < f.length) (i : Fin n),
+      (g : Matrix (Fin n) (Fin n) A) i j = (f[j.val]'hj) i
+
+#audit_axioms GroupApproximation.Full.LVFrame.IsFrame
 
 variable {A : Type*} [Ring A] (L : LeavittFamily A)
 

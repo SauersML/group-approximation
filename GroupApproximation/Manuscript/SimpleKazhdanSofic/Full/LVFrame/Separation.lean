@@ -25,6 +25,9 @@ antichain. Choose $\eta_i$ in this support. Its coefficient is $1$, so $\eta_i^*
   and cancelling `μ` contradicts `killWord_not_prefix`; otherwise lengths forbid it.
 * `wordT_append_killWord_mul_wordS`: eq:word-separation, in any Leavitt family.
 * `wordT_append_killWord_mul_posPoly`: `(μ e^M f)^* P e^M f = 1` for `μ ∈ supp P`.
+
+Lane LVFrame (leaf T1c of the `K₂(4, L) = ⊥` tree, `simple_kazhdan_sofic_group.tex` l.733-735):
+port of the foreign module `LeavittK2/WordMultiplier/Separation.lean`, whose closure contains WIP commits.
 -/
 
 namespace GroupApproximation.Full.LVFrame
