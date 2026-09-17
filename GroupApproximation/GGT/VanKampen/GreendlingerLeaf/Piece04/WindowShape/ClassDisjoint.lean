@@ -97,7 +97,7 @@ theorem false_of_getElem? (hgap : GapOffFaceStatement.{u, w, v})
   intro m
   induction m with
   | zero =>
-    intro n n' x hlen hx _
+    intro n _ x hlen hx _
     obtain ⟨hn, -⟩ := List.getElem?_eq_some_iff.mp hx
     omega
   | succ m ih =>

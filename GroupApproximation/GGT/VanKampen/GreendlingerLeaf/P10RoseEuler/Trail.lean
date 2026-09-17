@@ -74,8 +74,8 @@ theorem IsClosedTrail.exists_rotation_head {l : List α} (h : IsClosedTrail s t 
     (hc : c ∈ l) :
     ∃ l' : List α, ∃ hne : l' ≠ [], l'.Perm l ∧ IsClosedTrail s t l' ∧ l'.head hne = c := by
   obtain ⟨P, Q, rfl⟩ := List.append_of_mem hc
-  exact ⟨c :: (Q ++ P), List.cons_ne_nil c (Q ++ P), List.perm_append_comm,
-    h.append_comm, rfl⟩
+  have hne : (c :: Q) ++ P ≠ [] := List.cons_ne_nil c (Q ++ P)
+  exact ⟨(c :: Q) ++ P, hne, List.perm_append_comm, h.append_comm, rfl⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseEuler.IsClosedTrail.exists_rotation_head
 
@@ -88,7 +88,8 @@ theorem IsClosedTrail.exists_start_eq_end {l : List α} (h : IsClosedTrail s t l
   cases Q with
   | nil =>
     refine ⟨(P ++ [d]).head hne, List.head_mem hne, ?_⟩
-    have h1 : (P ++ [d]).getLast hne = d := by simp
+    have h1 : (P ++ [d]).getLast hne = d :=
+      List.getLast_append_of_ne_nil hne (List.cons_ne_nil d [])
     rw [h1] at hclose
     exact hclose.symm
   | cons c Q =>

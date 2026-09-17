@@ -71,19 +71,19 @@ theorem steinberg_isPerfect (I R : Type*) [Fintype I] [DecidableEq I] [Ring R]
 /-- **Elementary groups are perfect in rank at least three.**  For every ring `R` and every
 finite index type `I` with `3 ≤ |I|`, `EL_I(R)` equals its commutator subgroup.  Proof: push
 `steinberg_commutator_eq_top` along the surjection `St_I(R) → EL_I(R)`. -/
-theorem elementaryGroup_commutator_eq_top (I R : Type*) [Fintype I] [DecidableEq I] [Ring R]
+theorem elementary_commutator_eq_top (I R : Type*) [Fintype I] [DecidableEq I] [Ring R]
     (h : 3 ≤ Fintype.card I) : commutator (elementaryGroup I R) = ⊤ :=
   GroupApproximation.commutator_eq_top_of_surjective
     (SteinbergGroup.projection (I := I) (R := R))
     SteinbergGroup.projection_surjective
     (steinberg_commutator_eq_top I R h)
 
-#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.elementaryGroup_commutator_eq_top
+#audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.elementary_commutator_eq_top
 
 /-- `EL_I(R)` is a perfect group (`Group.IsPerfect` form) when `3 ≤ |I|`. -/
 theorem elementaryGroup_isPerfect (I R : Type*) [Fintype I] [DecidableEq I] [Ring R]
     (h : 3 ≤ Fintype.card I) : Group.IsPerfect (elementaryGroup I R) :=
-  Group.isPerfect_def.mpr (elementaryGroup_commutator_eq_top I R h)
+  Group.isPerfect_def.mpr (elementary_commutator_eq_top I R h)
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.elementaryGroup_isPerfect
 
@@ -97,10 +97,12 @@ def SteinbergPerfectStatement.{u, v} : Prop :=
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.SteinbergPerfectStatement
 
 /-- `SteinbergPerfectStatement` holds at every pair of universes. -/
-theorem steinbergPerfectStatement.{u, v} : SteinbergPerfectStatement.{u, v} :=
-  fun I R _ _ _ h ↦ steinberg_commutator_eq_top I R h
+theorem steinbergPerfectStatement.{u, v} : SteinbergPerfectStatement.{u, v} := by
+  intro I R _ _ _ h
+  exact steinberg_commutator_eq_top I R h
 
 #audit_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.steinbergPerfectStatement
+#audit_closed_axioms GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergPerfect.steinbergPerfectStatement
 
 /-- The rank-three case `St_3(R)` used by the padded-kill step. -/
 theorem steinberg_fin_three_commutator_eq_top (R : Type*) [Ring R] :

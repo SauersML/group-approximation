@@ -59,7 +59,7 @@ theorem mem_side_of_getElem?_of_length_le (Q : OsinLemma94ClassPolygons P) (k : 
   have hdarts : Q.classDarts k i =
       (ys.flatMap fun s => P.sideDarts k s ++ Q.gap k s) ++ P.sideDarts k sl := by
     unfold OsinLemma94ClassPolygons.classDarts
-    rw [hys, List.flatMap_append, List.flatMap_singleton, hgap, List.append_nil]
+    simp only [hys, List.flatMap_append, List.flatMap_singleton, hgap, List.append_nil]
   have hlast : (Q.classDarts k i).getLast? = some x := by
     rw [List.getLast?_eq_getElem?, show (Q.classDarts k i).length - 1 = n by omega]
     exact hx
