@@ -327,6 +327,19 @@ content in that region.
   other; see `fpbs-fixed-price-one-percolation-kernel`, whose `## Attempts`
   records why the quantitative cost bound of response 1 degenerates to
   `0 <= 0` under threshold equality.
+* **Pass to finite expander approximants and read `p_u` off a giant-component
+  uniqueness window (2026-09-17).** The idea was to prove a finite-graph
+  statement on large-set expander graphs `G_n` converging locally to the
+  Cayley graph and take the limit. **Where it dies:**
+  `fpbs-expander-approximant-giant-data-is-glued`.
+  (A) By Alimohammadi--Borgs--Saberi Theorem 1.1, `|C_2|/n -> 0` at every `p`,
+  so the window is empty even for random regular graphs converging to `T_d`.
+  (B)/(C) Every bounded-separation connectivity or MST observable converges to
+  the glued/wired law, in which two infinite clusters count as connected.
+  (D) The only finite observable that sees `p_u` is the two-scale defect
+  `lim_R lim_n s_n(p,R)`. It equals the distinct-infinite-cluster integrand of
+  `fpbs-msf-excess-equals-nonuniqueness`, so the scale shift is an equivalence
+  with no new estimate.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
