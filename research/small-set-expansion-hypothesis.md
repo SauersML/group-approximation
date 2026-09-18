@@ -111,6 +111,54 @@ density `1/k`, restricted to transversals.
       of every spread support.
   - Where it stops: the kill does not touch (H1) or (H2), and it proves nothing
     toward the hypothesis itself.
+* **Two-sided threshold rank and certificates (attempted class kill, 2026-09-17,
+  swarm-0917; refuted 2026-09-18, node back to OPEN).**
+  `sse-reductions-need-high-threshold-rank-on-both-sides` is **OPEN**. Its
+  spectral half (Theorems 1--3) was re-derived by three referee lenses with no
+  failing step and its replay passes, but the gate's `(G-comb)` bullet imported
+  the two combinatorial kills above with the wrong quantifiers, so the claim as
+  stated does not hold. The attempt is kept at
+  `research/artifacts/sse-two-sided-rank-gate-attempt-2026-09-17.md`. What
+  follows is therefore an *attempt record*, not a kill in force.
+  - *Invariant.* `rank_(1-800 eta)(A)` of the output graph and, on the NO side,
+    the bit length of square certificates
+    `c d s - e(x) = SOS + ideal(x_u^2 - x_u, sum x - s)` with `c < 1 - eta`.
+  - *Step.* A non-expanding `s`-set `S` has `||(1_S)_lo||^2 <= s/100` on the
+    eigenspaces of `(I + A)/2` below `1 - 50 eta`. Greedy Gram--Schmidt on the columns of `((I + A)/2)^t` captures
+    the high part in dimension `2R`, and a grid thresholded at `1/2` recovers
+    `T` with `(1 - Phi(T)) kappa(|T|) >= 0.49`.
+  - *Why both sides.* A window lemma makes ACCEPT sound without any rank promise.
+    So the "rank above `R*`" answer goes to whichever side carries the promise.
+    The UG analogue `low-label-threshold-rank-reductions-cannot-prove-ugc` kills
+    only the YES side.
+  - *Where it dies.* In either case, `P = NP`, or `NP <= QP` for a polylog cutoff:
+    - (K1) every YES output has threshold rank `O(log Z / log log Z)`;
+    - (K2) every NO output has threshold rank `O(log Z / log log Z)`;
+    - (K3) every NO output has a poly-bit square certificate, which gives `NP = coNP`.
+
+    Under ETH with `Z <= n^A`, infinitely many YES outputs and infinitely many NO
+    outputs have rank `> Z^alpha` for every `alpha < 1/A`.
+  - *Gate (as proposed).* An SSEH reduction for `eta <= 1/800` on regular graphs
+    would have to pass:
+    - (G-spec) super-polylogarithmic threshold rank on both sides;
+    - (G-cert) no poly-bit square certificates on NO outputs;
+    - (G-comb) the unconditional spread-overlap and sticky-cylinder kills on NO
+      outputs. **This is the refuted bullet.** At exact volume the spread-overlap
+      kill needs `theta > 10 eta s/(s - 1) + rho/delta`, not `eta + rho/delta`
+      (the `(s-1)/(10 s)` window factor is not removable), and the sticky-cylinder
+      kill needs `eta + 2 varsigma'/delta < k^(-ceil(t/2))` and explicitly leaves
+      outer arity `>= eta^(-1/ceil(t/2))` alive, so "bounded arity" is not its
+      hypothesis. Restating (G-comb) with these quantifiers is the open repair.
+  - *Survivors.* The BGHMRS graphs pass (G-spec) at their threshold, and their
+    (G-cert) status was not settled. Abelian Cayley graphs pass (G-spec) only on
+    the YES side: the hypercube has rank `2^(Omega(N)) = n^(Omega(1))` but is
+    never a small-set expander, while the noisy hypercube is abelian Cayley with
+    polylogarithmic threshold rank and so is exactly what (K2) would kill as a NO
+    output.
+  - Where it stops: the node is OPEN, the kills are conditional even once
+    repaired, only regular exact-volume instances are covered, and the
+    algorithmic `n^(O(D))` SoS form needs an SoS bit-complexity bound on the
+    slice, which is not proved.
 * **Subgroup dominance on `F_2^k` Cayley graphs (census and decomposition, 2026-09-17, swarm-0917).**
   Both results below were drafted as ESTABLISHED, but this lane's referee stage
   returned no verdicts, so both land **OPEN** with their proofs kept as attempts

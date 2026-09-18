@@ -2,6 +2,7 @@
 rg: 2
 id: sl-n-q-lacks-property-fw-proof
 kind: route
+title: A countable group that is not finitely generated acts on the coset tree of an exhausting proper chain with unbounded orbit, so no invariant set is commensurate to the half-tree and FW and FA both fail; the denominator argument puts SL_n(Q), GL_n(Q) and their relatives in that class
 target: sl-n-q-lacks-property-fw
 requires: []
 ---
