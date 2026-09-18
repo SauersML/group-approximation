@@ -21,7 +21,8 @@ smallest open gap Statements on disk.
 * `CharPCoords.charPPolynomialCoordinates` (char-`p` polynomial coordinates);
 * `affineExtensionFPStatement_holds` (`ChainWiredAffine`, from lane `bh-met-05`);
 * `CharPHost.TreeHost.charPAffineSelfSimilarStatement_holds` (char-`p` self-similar host);
-* `CharZeroHost.charZeroAffineSelfSimilarStatement` (char-zero self-similar host).
+* `CharZeroHost.charZeroAffineSelfSimilarStatement` (char-zero self-similar host);
+* `Envelope.rnDisplace` (displacement clause of simplicity).
 
 **Reductions used:** positive characteristic through `charPLinearHostStatement_of_chain`,
 characteristic zero through `charZeroLinearHostStatement_of_chainFive` (the rank-at-least-five
@@ -30,7 +31,7 @@ chain, so `ElemFPCharZero.CharZeroRankFourFPStatement` is not needed), the piece
 needed; the pure-characteristic splitting `exists_pureCharacteristic_split` is proved), and the
 envelope through `fpSelfSimilarEnvelope_of_frontier` (`ChainWiredEnvelope`).
 
-**The frontier (15 open Statements):**
+**The frontier (14 open Statements):**
 1. `Coprimary.PureCharPrimeSplitStatement`: linearity in characteristic `p` of f.g. subgroups of
    split extensions `B ⋊ Q` (bh-met-26);
 2. `Coprimary.PureCharLinearityZeroStatement`: linearity of f.g. metabelian groups with torsion-free
@@ -45,14 +46,14 @@ envelope through `fpSelfSimilarEnvelope_of_frontier` (`ChainWiredEnvelope`).
 9. `Envelope.HigmanVFinSectionStatement` and 10. `Envelope.RNFreeSectionCoreStatement`: finite
    presentation of Röver–Nekrashevych groups;
 11. `Envelope.RNCommutatorFiniteIndexStatement`: `[V, V]` has finite index;
-12. `Envelope.RNDisplaceStatement`, 13. `Envelope.RNCompressStatement`,
-    14. `Envelope.RNFragmentsStatement`: simplicity of `[V, V]`;
-15. `Envelope.RNWreathEmbedStatement`: Zaremsky's wreath embedding.
+12. `Envelope.RNCompressStatement`, 13. `Envelope.RNFragmentsStatement`: simplicity of `[V, V]`
+    (the third clause, displacement, is `Envelope.rnDisplace`);
+14. `Envelope.RNWreathEmbedStatement`: Zaremsky's wreath embedding.
 
 Among equivalent alternatives the refined name is used: `PolyK2OneVarNilStatement` for
 `PolyK2NilPosStatement` (`ElemFP.polyK2NilPos_of_oneVar`), `PolyK2StabRangeDiagStatement` for
-`PolyK2NilStabilityPosStatement` (`ElemFP.polyK2NilStabilityPos_of_diag`), the three clauses for
-`RNDisplaceCompressStatement` (`Envelope.rnDisplaceCompress_of_clauses`).
+`PolyK2NilStabilityPosStatement` (`ElemFP.polyK2NilStabilityPos_of_diag`), compression and
+fragmentation for `RNDisplaceCompressStatement` (`Envelope.rnDisplaceCompress_of_compress_fragments`).
 -/
 
 namespace GroupApproximation
@@ -110,8 +111,8 @@ theorem metabelianPiecesStatement_of_frontier (hsplit : Coprimary.PureCharPrimeS
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.metabelianPiecesStatement_of_frontier
 
 /-- **The root from the open frontier**: finitely presented metabelian groups satisfy the
-Boone–Higman conjecture, given exactly the fifteen open gap Statements listed in the module
-docstring (items 1–2 linearity, 3–8 linear hosts, 9–15 the self-similar envelope). -/
+Boone–Higman conjecture, given exactly the fourteen open gap Statements listed in the module
+docstring (items 1–2 linearity, 3–8 linear hosts, 9–14 the self-similar envelope). -/
 theorem finitelyPresentedMetabelianStatement_of_frontier
     (hsplit : Coprimary.PureCharPrimeSplitStatement)
     (hzero : Coprimary.PureCharLinearityZeroStatement) (hS : Absorption.PolynomialSuslinStatement)
@@ -120,12 +121,12 @@ theorem finitelyPresentedMetabelianStatement_of_frontier
     (hfg : CharZeroHost.FGSubringCoordinatesStatement)
     (hK2 : ElemFPCharZero.CharZeroStableK2FGStatement)
     (hV : Envelope.HigmanVFinSectionStatement) (hcore : Envelope.RNFreeSectionCoreStatement)
-    (hfi : Envelope.RNCommutatorFiniteIndexStatement) (hD : Envelope.RNDisplaceStatement)
+    (hfi : Envelope.RNCommutatorFiniteIndexStatement)
     (hC : Envelope.RNCompressStatement) (hF : Envelope.RNFragmentsStatement)
     (hw : Envelope.RNWreathEmbedStatement) : FinitelyPresentedMetabelianStatement :=
   Products.finitelyPresentedMetabelianStatement_of_pieces
     (metabelianPiecesStatement_of_frontier hsplit hzero hS hdiag hone hfield hfg hK2)
-    (fpSelfSimilarEnvelope_of_frontier hV hcore hfi hD hC hF hw)
+    (fpSelfSimilarEnvelope_of_frontier hV hcore hfi hC hF hw)
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Chain.finitelyPresentedMetabelianStatement_of_frontier

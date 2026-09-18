@@ -51,10 +51,10 @@ theorem rootSpan_induction {p : I → I → Prop} {Q : SteinbergGroup I R → Pr
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.rootSpan_induction
 
-theorem rootSpan_mono {p q : I → I → Prop} (hpq : ∀ i j, p i j → q i j)
+theorem rootSpan_mono {p q : I → I → Prop} (hpq : ∀ i j, i ≠ j → p i j → q i j)
     {g : SteinbergGroup I R} (hg : g ∈ rootSpan (R := R) p) : g ∈ rootSpan (R := R) q :=
   rootSpan_induction (Q := fun g => g ∈ rootSpan (R := R) q)
-    (fun _ _ h a hp => x_mem_rootSpan h a (hpq _ _ hp)) (Subgroup.one_mem _)
+    (fun _ _ h a hp => x_mem_rootSpan h a (hpq _ _ h hp)) (Subgroup.one_mem _)
     (fun _ _ _ _ h1 h2 => Subgroup.mul_mem _ h1 h2) hg
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.rootSpan_mono
@@ -112,7 +112,7 @@ theorem commute_of_rootSpan {q : I → I → Prop} {c : SteinbergGroup I R}
 /-- Split the root `x_{i₀j₀}` off an element of `rootSpan p`, when every other generating
 root lies in `q` and commutes with `x_{i₀j₀}`. -/
 theorem exists_split {p q : I → I → Prop} {i₀ j₀ : I} (h₀ : i₀ ≠ j₀)
-    (hsplit : ∀ i j, p i j → (i = i₀ ∧ j = j₀) ∨ q i j)
+    (hsplit : ∀ i j, i ≠ j → p i j → (i = i₀ ∧ j = j₀) ∨ q i j)
     (hcomm : ∀ (i j : I) (h : i ≠ j) (a b : R), q i j →
       Commute (x i₀ j₀ h₀ b) (x i j h a))
     {g : SteinbergGroup I R} (hg : g ∈ rootSpan (R := R) p) :
@@ -120,7 +120,7 @@ theorem exists_split {p q : I → I → Prop} {i₀ j₀ : I} (h₀ : i₀ ≠ j
   refine rootSpan_induction
     (Q := fun g => ∃ d : R, ∃ g' ∈ rootSpan (R := R) q, g = x i₀ j₀ h₀ d * g') ?_ ?_ ?_ hg
   · intro i j h a hp
-    rcases hsplit i j hp with ⟨rfl, rfl⟩ | hq
+    rcases hsplit i j h hp with ⟨rfl, rfl⟩ | hq
     · exact ⟨a, 1, Subgroup.one_mem _, (mul_one _).symm⟩
     · exact ⟨0, x i j h a, x_mem_rootSpan h a hq, by rw [x_zero, one_mul]⟩
   · exact ⟨0, 1, Subgroup.one_mem _, by rw [x_zero, one_mul]⟩

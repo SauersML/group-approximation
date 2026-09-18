@@ -21,9 +21,10 @@ surjective (`freeToPoly_surjective`).  Pick a lift `liftRel n g` of each `g ∈ 
   `polyRelators n G = {lift g | g ∈ G} ∪ {ι i ι j - ι j ι i}`
 
 generates the kernel of `f ∘ freeToPoly n` as a two-sided ideal (`ker_comp_freeToPoly`, in
-`ElemFPCharZeroRingKernel`).  The proof is the one of `bh-met-06`.  In `Q = ℤ⟨Fin n⟩ / (polyRelators)`
-the generators commute, so every element of `Q` is central (`relQuotMk_mem_center`).  The universal
-property of `MvPolynomial` then gives `polyLiftC : ℤ[Fin n] → Z(Q)`, and this map kills `G`.
+`ElemFPCharZeroRingKernel`).  The proof is the one of `bh-met-06`.
+In `Q = ℤ⟨Fin n⟩ / (polyRelators)` the generators commute, so every element of `Q` is central
+(`relQuotMk_mem_center`).  The universal property of `MvPolynomial` then gives
+`polyLiftC : ℤ[Fin n] → Z(Q)`, and this map kills `G`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
@@ -38,7 +39,7 @@ def freeToPoly : FreeAlgebra ℤ (Fin n) →+* MvPolynomial (Fin n) ℤ :=
 
 theorem freeToPoly_ι (i : Fin n) :
     freeToPoly n (FreeAlgebra.ι ℤ i) = MvPolynomial.X i :=
-  FreeAlgebra.lift_ι_apply _ _
+  FreeAlgebra.lift_ι_apply (fun i => (MvPolynomial.X i : MvPolynomial (Fin n) ℤ)) i
 
 theorem freeToPoly_surjective : Function.Surjective (freeToPoly n) := by
   intro P

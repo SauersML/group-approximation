@@ -72,7 +72,9 @@ theorem K2Map_constantCoeff_injective_of_isEmpty [IsEmpty σ] :
     (MvPolynomial.constantCoeff : MvPolynomial σ R →+* R) MvPolynomial.C
     fun x ↦ (MvPolynomial.eq_C_of_isEmpty x).symm
   intro a b hab
-  exact Subtype.ext (hinj (congrArg Subtype.val hab))
+  have h2 := congrArg Subtype.val hab
+  rw [K2Map_apply, K2Map_apply] at h2
+  exact Subtype.ext (hinj h2)
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_constantCoeff_injective_of_isEmpty

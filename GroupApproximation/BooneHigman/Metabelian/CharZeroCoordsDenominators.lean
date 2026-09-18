@@ -104,7 +104,7 @@ theorem matrix_mem_range_mapMatrix {α β : Type*} [Ring α] [Ring β] {N : ℕ}
 theorem exists_den_dvd {ι σ : Type*} [Fintype ι] (F : ι → MvPolynomial σ ℚ) :
     ∃ m : ℕ, m ≠ 0 ∧ ∀ e, ∀ c ∈ (F e).coeffs, c.den ∣ m := by
   refine ⟨∏ e, ∏ c ∈ (F e).coeffs, c.den, ?_, fun e c hc => ?_⟩
-  · exact Finset.prod_ne_zero_iff.2 fun e _ =>
+  · exact Finset.prod_ne_zero_iff.2 fun _ _ =>
       Finset.prod_ne_zero_iff.2 fun c _ => Rat.den_ne_zero c
   · exact (Finset.dvd_prod_of_mem (fun c : ℚ => c.den) hc).trans
       (Finset.dvd_prod_of_mem (fun e => ∏ c ∈ (F e).coeffs, c.den) (Finset.mem_univ e))
@@ -144,9 +144,10 @@ theorem exists_matrixEmbedding_away_of_closure {K : Type*} [Ring K] (t : Finset 
     rw [← hb]
     exact Subring.mem_comap.1 hb'
   let e := RingEquiv.ofBijective Θ.rangeRestrict
-    ⟨fun a b h => hΘ (congrArg Subtype.val h), Θ.rangeRestrict_surjective⟩
-  exact ⟨m, N, e.symm.toRingHom.comp (F.codRestrict Θ.range hall),
-    e.symm.injective.comp fun a b h => hF (congrArg Subtype.val h)⟩
+    ⟨fun _ _ h => hΘ (congrArg Subtype.val h), Θ.rangeRestrict_surjective⟩
+  have hcod : Function.Injective (F.codRestrict Θ.range hall) :=
+    fun _ _ h => hF (congrArg Subtype.val h)
+  exact ⟨m, N, e.symm.toRingHom.comp (F.codRestrict Θ.range hall), e.symm.injective.comp hcod⟩
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_matrixEmbedding_away_of_closure

@@ -68,13 +68,14 @@ theorem roverNekrashevych_le_determinedSubgroup [Finite X] (H : Subgroup (TreeAu
   intro f hf
   rw [rnGenerators, Set.mem_union] at hf
   rcases hf with hf | ⟨w, h, _, rfl⟩
-  · obtain ⟨N, hN⟩ := mem_higmanThompsonV.mp hf
-    obtain ⟨M, hM⟩ := mem_higmanThompsonV.mp ((higmanThompsonV X).inv_mem hf)
-    exact mem_determinedSubgroup.mpr
+  · have hf' : f ∈ higmanThompsonV X := hf
+    obtain ⟨N, hN⟩ := mem_higmanThompsonV.mp hf'
+    obtain ⟨M, hM⟩ := mem_higmanThompsonV.mp ((higmanThompsonV X).inv_mem hf')
+    exact (mem_determinedSubgroup (σ := f)).mpr
       ⟨locallyDetermined_of_hasDepth hN, locallyDetermined_of_hasDepth hM⟩
   · have e : (localize w (cantorHom h))⁻¹ = localize w (cantorHom h⁻¹) := by
       rw [map_inv cantorHom h, map_inv (localize w) (cantorHom h)]
-    refine mem_determinedSubgroup.mpr
+    refine (mem_determinedSubgroup (σ := localize w (cantorHom h))).mpr
       ⟨locallyDetermined_localize (locallyDetermined_cantorHom h) w, ?_⟩
     rw [e]
     exact locallyDetermined_localize (locallyDetermined_cantorHom h⁻¹) w

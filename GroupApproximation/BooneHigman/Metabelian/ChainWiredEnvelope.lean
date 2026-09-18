@@ -4,6 +4,7 @@ import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSection
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleBridge
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleGap
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleDisplaceClauses
+import GroupApproximation.BooneHigman.Metabelian.EnvelopeSimpleDisplace
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -22,7 +23,8 @@ import GroupApproximation.Meta.AxiomGuard
 * simplicity: `RNCommutatorSimpleStatement` from `RNCommutatorSimpleStatement'`
   (`rnCommutatorSimple_of_prime`), from `RNDisplaceCompressStatement` (`rnCommutatorSimple_of_gap`),
   from `RNDisplaceStatement`, `RNCompressStatement`, `RNFragmentsStatement`
-  (`rnDisplaceCompress_of_clauses`).
+  (`rnDisplaceCompress_of_clauses`); displacement is proved (`Envelope.rnDisplace`), so
+  `rnDisplaceCompress_of_compress_fragments` needs only compression and fragmentation.
 
 The only missing link was the passage from the general-alphabet statement
 `RNFinitelyPresentedStatement'` to the envelope instance `RNFinitelyPresentedStatement`; it is
@@ -30,7 +32,7 @@ The only missing link was the passage from the general-alphabet statement
 finitely presented, `Envelope.isSelfSimilar_envelopeK`, `Envelope.isFinitelyPresented_envelopeK`,
 and `envelopeV X H` is by definition `roverNekrashevych (envelopeY X 2) (envelopeK 2 H)`).
 
-* `fpSelfSimilarEnvelope_of_frontier`: the envelope from the seven smallest open envelope gaps.
+* `fpSelfSimilarEnvelope_of_frontier`: the envelope from the six smallest open envelope gaps.
 -/
 
 namespace GroupApproximation
@@ -50,11 +52,11 @@ theorem rnFinitelyPresented_of_prime (h : Envelope.RNFinitelyPresentedStatement'
 /-- **The self-similar envelope from its smallest open gaps**:
 `Envelope.HigmanVFinSectionStatement`, `Envelope.RNFreeSectionCoreStatement` (finite
 presentation), `Envelope.RNCommutatorFiniteIndexStatement` (finite index),
-`Envelope.RNDisplaceStatement`, `Envelope.RNCompressStatement`, `Envelope.RNFragmentsStatement`
-(simplicity) and `Envelope.RNWreathEmbedStatement` (wreath embedding). -/
+`Envelope.RNCompressStatement`, `Envelope.RNFragmentsStatement` (simplicity; displacement is
+`Envelope.rnDisplace`) and `Envelope.RNWreathEmbedStatement` (wreath embedding). -/
 theorem fpSelfSimilarEnvelope_of_frontier (hV : Envelope.HigmanVFinSectionStatement)
     (hcore : Envelope.RNFreeSectionCoreStatement)
-    (hfi : Envelope.RNCommutatorFiniteIndexStatement) (hD : Envelope.RNDisplaceStatement)
+    (hfi : Envelope.RNCommutatorFiniteIndexStatement)
     (hC : Envelope.RNCompressStatement) (hF : Envelope.RNFragmentsStatement)
     (hw : Envelope.RNWreathEmbedStatement) : Products.FPSelfSimilarEnvelopeStatement :=
   Envelope.fpSelfSimilarEnvelope_of_rnEnvelope
@@ -64,7 +66,7 @@ theorem fpSelfSimilarEnvelope_of_frontier (hV : Envelope.HigmanVFinSectionStatem
           (Envelope.rnFreeSection_of_finSection_core hV hcore)))
       hfi
       (Envelope.rnCommutatorSimple_of_prime
-        (Envelope.rnCommutatorSimple_of_gap (Envelope.rnDisplaceCompress_of_clauses hD hC hF)))
+        (Envelope.rnCommutatorSimple_of_gap (Envelope.rnDisplaceCompress_of_compress_fragments hC hF)))
       hw)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.fpSelfSimilarEnvelope_of_frontier
