@@ -47,7 +47,7 @@ theorem fiveStability_refineLast_indexMap {n M : ℕ} (h : n ≤ M) :
     omega
   rw [LeavittFP.refineRoot_of_plain L (Fin.last M)
     ((Fin.castLEEmb (show n ≤ M + 1 by omega)).injective.ne hij) a hi hj]
-  exact usedRankFour_x_congr (Fin.ext rfl) (Fin.ext rfl)
+  apply usedRankFour_x_congr <;> exact Fin.ext rfl
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineLast_indexMap
 

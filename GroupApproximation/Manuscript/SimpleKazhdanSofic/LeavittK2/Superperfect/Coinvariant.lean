@@ -78,7 +78,8 @@ def BinaryLeavittKernelThreeCoinvariantStatement : Prop :=
     ⁅(⊤ : Subgroup (St 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))),
       K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))⁆
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittKernelThreeCoinvariantStatement
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittKernelThreeCoinvariantStatement
 
 /-- **Coinvariant kernel kills the padding.**  `K₂(3, L) ≤ ⁅St_3, K₂(3, L)⁆` gives
 `stab K₂(3, L) = ⊥` in `St_4(L)`.  Proof: `Subgroup.map_commutator` and the proved padded
@@ -111,7 +112,8 @@ theorem binaryLeavittStabKernelThreeTrivial_of_kernelThreeCoinvariant
   rw [hbot] at htop
   exact le_bot_iff.mp (hmap.trans htop)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittStabKernelThreeTrivial_of_kernelThreeCoinvariant
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittStabKernelThreeTrivial_of_kernelThreeCoinvariant
 
 /-- **Lane sk-leavitt-30 endpoint (`_of_` reduction).**  The rank-three coinvariant kernel
 statement implies that `Lˣ` is superperfect.  Route: padded kill
@@ -121,11 +123,12 @@ statement implies that `Lˣ` is superperfect.  Route: padded kill
 theorem binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant
     (hle : BinaryLeavittKernelThreeCoinvariantStatement) :
     EndpointInterfaces.BinaryLeavittUnitsSuperperfectStatement :=
-  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.EdgeTriangleLift.binaryLeavittRankFourInjective_iff_unitsSuperperfect.mp
-    (GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.EdgeTriangleLift.rankFourInjective_of_stabKernelThreeTrivial_holds
+  EdgeTriangleLift.binaryLeavittRankFourInjective_iff_unitsSuperperfect.mp
+    (EdgeTriangleLift.rankFourInjective_of_stabKernelThreeTrivial_holds
       (binaryLeavittStabKernelThreeTrivial_of_kernelThreeCoinvariant hle))
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant
 
 /-- **Truth check (converse).**  Superperfectness of `Lˣ` gives the coinvariant statement
 (`K2_three_le_commutator_of_superperfect`).  So Khanh Thm 2.2 (`Lˣ` acyclic) makes the isolated
@@ -135,7 +138,8 @@ theorem binaryLeavittKernelThreeCoinvariant_of_unitsSuperperfect
     BinaryLeavittKernelThreeCoinvariantStatement :=
   K2_three_le_commutator_of_superperfect hs
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_unitsSuperperfect
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_unitsSuperperfect
 
 /-- **LOUD: equivalence modulo the corpus.**  The isolated statement is equivalent to
 superperfectness of `Lˣ` once the on-disk theorems are available.  It is smaller only in proof
@@ -146,7 +150,8 @@ theorem binaryLeavittKernelThreeCoinvariant_iff_unitsSuperperfect :
   ⟨binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant,
     binaryLeavittKernelThreeCoinvariant_of_unitsSuperperfect⟩
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_iff_unitsSuperperfect
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_iff_unitsSuperperfect
 
 /-- **Hopf-formula route into the isolated statement.**  A trivial presentation-free Hopf
 multiplier of the one group `E_3(L)` gives the coinvariant statement.  This uses the proved
@@ -159,7 +164,8 @@ theorem binaryLeavittKernelThreeCoinvariant_of_hopf
   GroupApproximation.SimpleKazhdanSofic.SkRows.PaddedKill.K2_three_le_commutator_of_hopf
     (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) h
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_hopf
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_hopf
 
 /-- **Hopf-formula route to superperfect units.**  `H₂(E_3(L)) = 0` (presentation-free form)
 implies `EndpointInterfaces.BinaryLeavittUnitsSuperperfectStatement`. -/
@@ -171,6 +177,7 @@ theorem binaryLeavittUnitsSuperperfect_of_hopfElementaryThree
   binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant
     (binaryLeavittKernelThreeCoinvariant_of_hopf h)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_hopfElementaryThree
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_hopfElementaryThree
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

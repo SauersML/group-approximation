@@ -30,7 +30,7 @@ theorem exists_gl_of_exponent_prime_comm (h1 : PureCharPrimeEOneStatement) {B Q 
     ∃ (K : Type) (_ : Field K) (d : ℕ) (f : (B ⋊[φ] Q) →* GeneralLinearGroup (Fin d) K),
       ringChar K = p ∧ Function.Injective f := by
   haveI : Fact (1 < p) := ⟨hp.one_lt⟩
-  haveI hfin : Module.Finite (MonoidAlgebra (ZMod p) Q) (EOneMod φ p hexp) := eOne_finite hfg
+  haveI : Module.Finite (MonoidAlgebra (ZMod p) Q) (EOneMod φ p hexp) := eOne_finite hfg
   haveI hQfg : Group.FG Q := by
     haveI := hfg
     exact Group.fg_of_surjective (SemidirectProduct.rightHom_surjective (φ := φ))
@@ -42,15 +42,22 @@ theorem exists_gl_of_exponent_prime_comm (h1 : PureCharPrimeEOneStatement) {B Q 
     intro a b
     show ι (eOneOf (φ := φ) (hV := hexp) (a * b), 0) =
       ι (eOneOf (φ := φ) (hV := hexp) a, 0) + ι (eOneOf (φ := φ) (hV := hexp) b, 0)
-    rw [← map_add]
-    exact congrArg ι (Prod.ext rfl (add_zero (0 : MonoidAlgebra (ZMod p) Q)).symm)
+    have h2 : ((eOneOf (φ := φ) (hV := hexp) (a * b), (0 : MonoidAlgebra (ZMod p) Q)) :
+        EOneMod φ p hexp × MonoidAlgebra (ZMod p) Q) =
+        (eOneOf (φ := φ) (hV := hexp) a, 0) + (eOneOf (φ := φ) (hV := hexp) b, 0) :=
+      Prod.ext rfl (add_zero (0 : MonoidAlgebra (ZMod p) Q)).symm
+    exact (congrArg ι h2).trans (map_add ι _ _)
   have hκ : ∀ (q : Q) (b : B), κ (φ q b) = (ρ q : Matrix (Fin d) (Fin d) K) *ᵥ κ b := by
     intro q b
     show ι (eOneOf (φ := φ) (hV := hexp) (φ q b), 0) =
       (ρ q : Matrix (Fin d) (Fin d) K) *ᵥ ι (eOneOf (φ := φ) (hV := hexp) b, 0)
-    rw [← hequiv]
-    exact congrArg ι (Prod.ext (eOne_smul (φ := φ) (hV := hexp) q (eOneOf b)).symm
-      (smul_zero (MonoidAlgebra.of (ZMod p) Q q)).symm)
+    have h2 : ((eOneOf (φ := φ) (hV := hexp) (φ q b), (0 : MonoidAlgebra (ZMod p) Q)) :
+        EOneMod φ p hexp × MonoidAlgebra (ZMod p) Q) =
+        MonoidAlgebra.of (ZMod p) Q q •
+          ((eOneOf (φ := φ) (hV := hexp) b, 0) : EOneMod φ p hexp × MonoidAlgebra (ZMod p) Q) :=
+      Prod.ext (eOne_smul (φ := φ) (hV := hexp) q (eOneOf (φ := φ) (hV := hexp) b)).symm
+        (smul_zero (MonoidAlgebra.of (ZMod p) Q q)).symm
+    exact (congrArg ι h2).trans (hequiv q _)
   have hκi : Function.Injective κ := by
     intro a b hab
     have h2 : (eOneOf (φ := φ) (hV := hexp) a, (0 : MonoidAlgebra (ZMod p) Q)) =
