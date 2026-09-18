@@ -201,3 +201,12 @@ seconds and exits 0. It has four parts:
   conditional on DKKMS Lemma 5.4 at padded soundness `s′`. (Seed) with
   constant `gamma > 0.3075` is not refuted here. The limit model gives no
   rank-threshold labelling with `D > gamma/2` above value `0.8075`.
+* 2026-09-18 (swarm-0917-w13-w13-ugc-follow): the mixture `h` of Theorem M
+  escapes (Seed) and Corollary C', but not Theorem C itself. Against the
+  y-branch, the ev-form mass of Theorem C's hypothesis Str is exactly
+  `D_V(h, lambda_y) = b(1-c)/2`, which tends to `0.1444`. That is below
+  `gamma - gamma'` at lift values above about `0.645`. The seed-form bound of
+  item 3 above does not bound the ev form from below. With the reference read
+  off the B-branch, the star-list mass with `L = 2` is `<= 2^(1-l)`, so
+  Theorem CL also applies at every larger `gamma`. See
+  `list-star-coherent-selector-witnesses-put-np-in-rp` (Remark M1).
