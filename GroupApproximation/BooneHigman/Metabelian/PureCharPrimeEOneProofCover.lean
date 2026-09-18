@@ -32,7 +32,7 @@ theorem exists_finset_pow_cover {Q : Type} [CommGroup Q] [Group.FG Q] {n : ℕ} 
   let U : Subgroup Q := (powMonoidHom n : Q →* Q).range
   haveI : U.Normal := ⟨fun a ha g => by rwa [mul_comm g a, mul_inv_cancel_right]⟩
   haveI : Group.FG (Q ⧸ U) := Group.fg_of_surjective (QuotientGroup.mk'_surjective U)
-  haveI : Finite (Q ⧸ U) := CommGroup.finite_of_fg_torsion fun x => by
+  haveI : Finite (Q ⧸ U) := CommGroup.finite_of_fg_torsion _ fun x => by
     induction x using QuotientGroup.induction_on with
     | H z =>
       refine isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, ?_⟩
@@ -79,7 +79,7 @@ theorem twist_finite {k Q N D : Type} [CommRing k] [CommGroup Q] [Group.FG Q] [A
     rw [map_mul (MonoidAlgebra.of k Q), map_pow (MonoidAlgebra.of k Q),
       mul_comm (MonoidAlgebra.of k Q q₀), mul_smul]
     refine hpow _ _ ?_
-    rw [hW]
+    rw [hW, hX]
     exact Submodule.subset_span (Finset.mem_coe.mpr (Finset.mem_image₂_of_mem hq₀ hg))
   have hof : ∀ (q : Q) (y : N), y ∈ W → MonoidAlgebra.of k Q q • y ∈ W := by
     intro q y hy

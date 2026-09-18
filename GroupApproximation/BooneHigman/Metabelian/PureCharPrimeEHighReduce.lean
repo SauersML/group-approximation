@@ -41,7 +41,7 @@ section Inl
 variable {B Q : Type} [CommGroup B] [Group Q] {p e : ℕ}
 
 /-- `b ↦ (b, 0)`, as a hom `B →* Multiplicative (EOneMod × (ℤ/p^e)[Q])`. -/
-def eHighInl (φ : Q →* MulAut B) (hexp : ∀ b : B, b ^ (p ^ e) = 1) :
+noncomputable def eHighInl (φ : Q →* MulAut B) (hexp : ∀ b : B, b ^ (p ^ e) = 1) :
     B →* Multiplicative (EOneMod φ (p ^ e) hexp × MonoidAlgebra (ZMod (p ^ e)) Q) where
   toFun b := Multiplicative.ofAdd
     (eOneOf (φ := φ) (hV := hexp) b, (0 : MonoidAlgebra (ZMod (p ^ e)) Q))

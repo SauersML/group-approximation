@@ -95,7 +95,8 @@ theorem exists_charP_linearization_of_coprimary {p : ℕ} [hp : Fact p.Prime] {Q
   exact ⟨FractionRing (MonoidAlgebra (ZMod p) Q ⧸ P), inferInstance, d, ρ, ι, inferInstance,
     hinj, hequiv⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_charP_linearization_of_coprimary
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_charP_linearization_of_coprimary
 
 end Coprimary
 end Metabelian

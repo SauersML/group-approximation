@@ -43,12 +43,13 @@ theorem exists_matrix_of_domain_torsionFree {Q D N : Type} [Group Q] [CommRing D
     ?_ fun q x => ?_
   · intro x₁ x₂ hx
     obtain ⟨c, hc⟩ := (IsLocalizedModule.eq_iff_exists (nonZeroDivisors D)
-      (TensorProduct.mk D (FractionRing D) N 1)).mp hx
+      (TensorProduct.mk D (FractionRing D) N 1) (x₁ := x₁) (x₂ := x₂)).mp hx
     exact htf c (nonZeroDivisors.coe_ne_zero c) hc
   · show (1 : FractionRing D) ⊗ₜ[D] act q x = (T q).baseChange (FractionRing D) (1 ⊗ₜ[D] x)
     rw [LinearMap.baseChange_tmul, hT]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_matrix_of_domain_torsionFree
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_matrix_of_domain_torsionFree
 
 end Coprimary
 end Metabelian

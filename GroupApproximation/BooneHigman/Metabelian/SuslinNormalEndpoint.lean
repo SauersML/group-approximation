@@ -108,8 +108,9 @@ def SuslinNormalStatement : Prop :=
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinNormalStatement
 
-theorem suslinNormalStatement_holds : SuslinNormalStatement.{u} :=
-  fun A _ N hN => suslinNormal_elementaryGroup_normal_fin (A := A) N hN
+theorem suslinNormalStatement_holds : SuslinNormalStatement.{u} := by
+  intro A _ N hN
+  exact suslinNormal_elementaryGroup_normal_fin (A := A) N hN
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormalStatement_holds
 

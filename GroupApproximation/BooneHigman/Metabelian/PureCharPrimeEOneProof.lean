@@ -15,12 +15,12 @@ import GroupApproximation.Meta.AxiomGuard
 
 Proof.  `R = 𝔽_p[Q]` is Noetherian (Hilbert basis theorem), so the finitely generated module `M`
 has a coprimary decomposition `0 = S_1 ∩ ... ∩ S_n` (`Primary.exists_coprimary_decomposition`).
-Each `M ⧸ S_j` is coprimary, with prime `P_j` and exponent `e_j`.  It need not be an `R ⧸ P_j`-module, but
-the Frobenius twist `r ↦ r ^ (p ^ e_j)` makes it one, finite and torsion-free over the domain
-`R ⧸ P_j`.  So it embeds `Q`-equivariantly into `K_j^{d_j}` with `K_j = Frac(R ⧸ P_j)` of
-characteristic `p` (`exists_charP_linearization_of_coprimary`).  Embed all `K_j` into one field
-`L` of characteristic `p` (`exists_common_field_charP_finset`) and assemble the block-diagonal
-representation (`exists_linearization_of_field_pieces`).
+Each `M ⧸ S_j` is coprimary, with prime `P_j` and exponent `e_j`.  It need not be an
+`R ⧸ P_j`-module, but the Frobenius twist `r ↦ r ^ (p ^ e_j)` makes it one, finite and
+torsion-free over the domain `R ⧸ P_j`.  So it embeds `Q`-equivariantly into `K_j^{d_j}` with
+`K_j = Frac(R ⧸ P_j)` of characteristic `p` (`exists_charP_linearization_of_coprimary`).
+Embed all `K_j` into one field `L` of characteristic `p` (`exists_common_field_charP_finset`) and
+assemble the block-diagonal representation (`exists_linearization_of_field_pieces`).
 -/
 
 namespace GroupApproximation
