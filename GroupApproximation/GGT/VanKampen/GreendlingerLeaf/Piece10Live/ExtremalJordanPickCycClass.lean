@@ -82,6 +82,7 @@ theorem extremalJordanPickCyc_exists_of_outside (K : PocketFaceSet D eps X lo hi
     ∃ d ∈ K.boundary.cycle, Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
       (walkKeep X.toCombMap K.boundary.cycle)) r (X.toCombMap.alpha d) := by
   obtain ⟨w', hw', hrw⟩ := P01HoldingSmallFaces.exists_keep_of_connected
+    (M := X.toCombMap) (K := walkKeep X.toCombMap K.boundary.cycle)
     (walkKeep_alpha X.toCombMap K.boundary.cycle) X.planar.1
     (w₀ := K.boundary.cycle.head K.boundary.cycle_nonempty)
     (Or.inl (List.head_mem K.boundary.cycle_nonempty)) r

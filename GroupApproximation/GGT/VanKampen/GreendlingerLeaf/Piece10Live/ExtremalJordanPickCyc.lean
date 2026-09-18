@@ -10,9 +10,9 @@ length `L`), `R = FaceClassStep M (walkKeep M c)`, `f = extremalJordanPickCountP
 (`d ↦ α (σ_P d)` on `c`, the identity off `c`), and `O = extremalJordanPickCount_outside K`.
 
 **Theorem** (`extremalJordanPickCyc_cycles`, which closes
-`ExtremalJordanPickCountParityCyclesStatement`).  For a pocket face set `K` whose boundary is a closed walk,
-`#O = L - #(supp f) + #(cycleType f)`.  In particular the two sides agree mod 2.  Only the
-closed-walk hypothesis is used; the other premises of the Statement are not needed.
+`ExtremalJordanPickCountParityCyclesStatement`).  For a pocket face set `K` whose boundary is a
+closed walk, `#O = L - #(supp f) + #(cycleType f)`.  In particular the two sides agree mod 2.
+Only the closed-walk hypothesis is used; the other premises of the Statement are not needed.
 
 **Proof.**
 1. `O` is the image of `c` under `d ↦ [α d]` (`extremalJordanPickCyc_outside_eq`).  Being based

@@ -186,6 +186,101 @@ theorem extremalJordanPickCountBound_in_le (K : PocketFaceSet D eps X lo hi)
   unfold extremalJordanPickCount_linked
   exact extremalJordanPickCountBound_card_mono (extremalJordanPickCountBound_step_link K hK) _
 
+/-- **One fibre of the passages**: over a walk vertex `x`, the chosen passage, the added passages
+and all but one non-first passage fit into the passages through `x`. -/
+theorem extremalJordanPickCountBound_fiber (K : PocketFaceSet D eps X lo hi)
+    {x : X.toCombMap.Vertex}
+    (hx : x ∈ K.boundary.cycle.toFinset.image
+      (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d))) :
+    1 + ((extremalJordanPickCountBound_redSet K).filter
+        fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d) = x).card +
+      (extremalJordanPickCount_nonFirstAt K x - 1) ≤
+      (K.boundary.cycle.toFinset.filter
+        fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d) = x).card := by
+  obtain ⟨d₀, hd₀, hd₀x⟩ := Finset.mem_image.mp hx
+  obtain ⟨hpc, hpx⟩ :=
+    extremalJordanPickCountBound_pick_spec K ⟨d₀, List.mem_toFinset.mp hd₀, hd₀x⟩
+  unfold extremalJordanPickCount_nonFirstAt
+  refine extremalJordanPickCountBound_fiber_le _ _ _ (extremalJordanPickCountBound_pick K x)
+    ?_ ?_ ?_ ?_ ?_
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hpc, hpx⟩
+  · intro d hdS
+    obtain ⟨hdR, hdx⟩ := Finset.mem_filter.mp hdS
+    exact Finset.mem_filter.mpr
+      ⟨List.mem_toFinset.mpr ((extremalJordanPickCountBound_mem_redSet K d).mp hdR).1, hdx⟩
+  · intro d hdN
+    obtain ⟨hdT, -, hdx⟩ := Finset.mem_filter.mp hdN
+    exact Finset.mem_filter.mpr ⟨hdT, hdx⟩
+  · exact Finset.disjoint_left.mpr fun d hdS hdN =>
+      ((extremalJordanPickCountBound_mem_redSet K d).mp (Finset.mem_filter.mp hdS).1).2.1
+        (Finset.mem_filter.mp hdN).2.1
+  · intro h0 hpS
+    refine ((extremalJordanPickCountBound_mem_redSet K _).mp
+      (Finset.mem_filter.mp hpS).1).2.2 ⟨?_, ?_⟩
+    · rw [hpx]
+      exact h0
+    · rw [hpx]
+
+/-- **Passages against vertices**: `#Wv + #S + excess ≤ #T`. -/
+theorem extremalJordanPickCountBound_excess_le (K : PocketFaceSet D eps X lo hi) :
+    (K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d))).card +
+      (extremalJordanPickCountBound_redSet K).card + extremalJordanPickCount_excess K ≤
+      K.boundary.cycle.toFinset.card := by
+  unfold extremalJordanPickCount_excess
+  exact extremalJordanPickCountBound_sum_fiber K.boundary.cycle.toFinset
+    (extremalJordanPickCountBound_redSet K)
+    (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)) (extremalJordanPickCount_nonFirstAt K)
+    (fun d hd => List.mem_toFinset.mpr ((extremalJordanPickCountBound_mem_redSet K d).mp hd).1)
+    (fun x hx => extremalJordanPickCountBound_fiber K hx)
+
+/-- **Euler's bound** `2 + excess ≤ #L + #O`, for every pocket with a closed boundary walk. -/
+theorem extremalJordanPickCountBound_bound (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) : ExtremalJordanPickCountEulerBound K := by
+  have hE := extremalJordanPickCount_walkMap_euler K hK
+  have hD := extremalJordanPickCountBound_two_mul_card_le X.toCombMap K.boundary.cycle
+    K.boundary.cycle.toFinset (fun d => List.mem_toFinset)
+    (fun d hd => K.boundary_alpha_not_mem hd)
+  rw [CombMap.dartCount_eq_two_mul_edgeCount] at hD
+  have hV : (walkMap X.toCombMap K.boundary.cycle).vertexCount ≤
+      (K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d))).card :=
+    extremalJordanPickCountBound_vertexCount_le X.toCombMap K.boundary.cycle
+      K.boundary.cycle.toFinset (fun d hd => List.mem_toFinset.mpr hd) (fun d hd => by
+        refine ⟨K.boundary.cycle.prev d hd, List.prev_mem _ d hd, ?_⟩
+        have h := extremalJordanPickCountBound_vertex_next K hK (List.prev_mem _ d hd)
+        rw [List.next_prev _ K.boundary.cycle_nodup d hd] at h
+        exact h.symm)
+  have hF : (walkMap X.toCombMap K.boundary.cycle).faceCount ≤
+      (K.boundary.cycle.toFinset.image (Quot.mk (CombMap.FaceClassStep X.toCombMap
+        (walkKeep X.toCombMap K.boundary.cycle)))).card +
+        (extremalJordanPickCount_outside K).card :=
+    extremalJordanPickCountBound_faceCount_le X.toCombMap K.boundary.cycle X.planar
+      (FirstTurnEnclosure.walkMap_connected K.boundary.cycle_nonempty hK.1) K.faces
+      K.boundary.cycle_mem_iff K.boundary.cycle.toFinset
+      (Finset.univ.filter fun r => X.toCombMap.faceOf r ∉ K.faces)
+      (fun d hd => List.mem_toFinset.mpr hd)
+      (fun r hr => Finset.mem_filter.mpr ⟨Finset.mem_univ r, hr⟩)
+  have hI := extremalJordanPickCountBound_in_le K hK
+  have hX := extremalJordanPickCountBound_excess_le K
+  unfold ExtremalJordanPickCountEulerBound
+  omega
+
 end BoundArith
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_fiber_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_sum_fiber
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_pick
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_pick_spec
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_redSet
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_mem_redSet
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_nxt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_nxt_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_vertex_next
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_step_link
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_in_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_fiber
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_excess_le
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountBound_bound
