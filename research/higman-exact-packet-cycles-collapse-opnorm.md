@@ -129,3 +129,17 @@ step for order arithmetic).  `(CGC)` stays open.
   `(n+1)`-torus.  A uniform lower bound kills every clock-type countermodel
   of `(CGC)` built on these packets.  A regauge family with fourth `Delta`
   tending to `0` would refute `(CGC)`, and hence `(HMF5)`.
+- *Quotient-theoretic cost (2026-09-18, swarm-0917-w13-w13-ptm-follow,
+  reframing).*  See `hmf5-forces-higman-to-have-no-amenable-quotient`.
+  - `(HMF5)` is equivalent to "no nontrivial quotient of `Hig` is MF".
+  - So `(HMF5)` implies that `Hig` has no nontrivial amenable quotient
+    (NAQ). This is Helfgott--Juschenko's open question, and NAQ is equivalent
+    to having no infinite simple amenable quotient.
+  - With the wave-12 equivalence `(HMF5) <=> (PUU)+(CGC)`, the pair
+    `(PUU)+(CGC)` pays for NAQ. `(CGC)` alone is not known to imply NAQ.
+  - An amenable quotient gives only approximate MF models. Turning those into
+    the exact packets of `(CGC)` needs operator-norm `BS(1,2)` stability, which
+    is the open `(PUU)`/`(TPC)` side.
+  - Status: no progress on `(CGC)` itself. The split records that the NAQ
+    content of `(HMF5)` sits either in `(PUU)` or in `(CGC)`, and that a
+    nontrivial amenable quotient refutes at least one of them.
