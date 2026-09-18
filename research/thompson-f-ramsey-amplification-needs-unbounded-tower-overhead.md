@@ -52,3 +52,21 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
     so it need not be a product coloring, and nothing forces the trials to be independent with respect to `E`.
   - *A model group where AMP fails.* There is no candidate yet. Such a group needs a non-elementary Følner function
     (Known facts). No Ramsey function of such a group has been computed in the literature this lane read.
+- **2026-09-18 (swarm-0917-w8-w8-f-follow, operator-algebras).** The hole is reduced to a set-versus-measure gap.
+  It stays OPEN. The established parts are `coarse-ball-invariance-gives-fine-reiter-measures` and
+  `thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap`.
+  - *Precision amplification is free for measures.* Suppose one measure is moved by at most 1 in ℓ¹ by all of
+    `B_{2K}`. Then `K−1` lazy-walk steps applied to its square root give a Reiter measure with error `O(K^{−1/2})`.
+    The proof uses log-convexity of the even return moments. So `R̃(m, 1/u) ≤ F(m, 1/u) ≤ CR(exp_3(m+u)) + exp_3(m+u)`,
+    where `CR` is the coarse Reiter radius. Consequently, if `CR(N) ≤ exp_E(R(exp_E N))` for all `N`, then AMP(E+3)
+    holds and this claim is false. Every proof of ¬AMP must therefore show that `R_F` is non-elementarily below `CR_F`
+    (RGAP₁). Majority, product-trial and nested-Ramsey amplification are all attacks on the wrong step.
+  - *The converse direction is almost tight.* Towsner's Proposition 3.1 gives `CR(M) ≤ R̃(R̃(1, 1/4M), 1/4M)`.
+    Hence AMP(D) bounds `CR` by a bounded tower around two compositions of `R`. So RGAP₂ implies this claim. That is
+    the new route `thompson-f-costly-amplification-via-double-ramsey-reiter-gap`.
+  - *Translation coding dies.* The idea was to code many colorings into one set `E` by far-apart translates
+    `w_i ∈ B_M`, so that one Ramsey call balances all of them. It dies because the witness `ν` has support radius
+    about `n ≥ M`. The regions `w_i·B_m·supp ν` then overlap, and the codes interfere.
+  - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at precision 1/2. A minimax over coarse `B_M`-invariance
+    needs about `|B_M|` test functions, which means Towsner compositions of height about `5^M`. Nothing
+    F-specific was found that either separates `R` from `CR` or collapses them.
