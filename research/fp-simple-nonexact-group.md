@@ -70,3 +70,16 @@ artifacts:
    `baum-connes-with-coefficients-separates-boone-higman`). An unconditional witness of that strength
    would kill the exactness, coarse-embedding and BCC refutation routes at once. The Haagerup kill of
    Attempt 2 is exactly the obstruction for planting `M`.
+4. **Two unconditional sufficient conditions, and the F bottleneck (bh-free-13, 2026-09-18).**
+   - **If Thompson's `F` is not exact**, then `T` and `V` are witnesses (`thompson-group-f-is-exact`, OPEN).
+     Scarparo (arXiv:2109.01111, read at source) proves `F` exact ⟺ `T` exact, but settles neither.
+   - **If some non-exact group has a type (A) action** (`some-nonexact-group-has-a-type-a-action`, OPEN), its
+     twisted Brin–Thompson envelope is a witness (`fp-simple-nonexact-group-via-nonexact-type-a-actor`).
+   - The census of Attempt 2 then splits by `F`. Every host there containing `F` is exact only if `F` is:
+     `T`, `V`, `nV`, `SV_G`, Röver–Nekrashevych groups, Lodha's `S` and `L^x ⊇ V`. The hosts known to be exact
+     are the lattice-type families (products of trees, Kac–Moody).
+   - The synthesis diagnostic "are full groups of amenable ample groupoids exact?" is recorded as
+     `amenable-groupoid-full-groups-are-exact` (OPEN). It implies `F` exact.
+   - **Lesson for general BH:** exactness cannot be used against Boone–Higman without first proving Thompson's
+     `F` exact. On the proof side, the cheapest non-exact finitely presented simple group is an actor problem,
+     not a dynamics problem.

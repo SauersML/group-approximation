@@ -113,3 +113,28 @@ With G1--G4, `D` satisfies the hypotheses of
    - **Status.** The gate now reads: every mapping class supported on the frozen
      complement of a partial trace acts there by finitely many split and slide
      moves. That is the sharpest form of G1 found in this pass.
+2. **G1 on the generic set, and the LCM half of G4** (lane bh-major-mcg, 2026-09-18).
+   - **G1 holds generically.** Agol, arXiv:1008.1606, Corollary `spliteq`, read in the
+     TeX: if a minimal measured lamination `λ` is suited to two measured tracks, both
+     reach a common track by maximal splittings. The input is Penner–Harer Theorem 2.3.1,
+     quoted verbatim there.
+     - Consequence: at every trace converging to a minimal suited `λ`, each `f ∈ Mod(S)`
+       is locally a groupoid germ. The common descendant of `fτ_i` and `τ_j` toward `fλ`
+       gives the germ on a whole cylinder.
+     - So G1 is now open only at non-generic points (non-minimal or non-suited `λ`,
+       including the partial traces of Attempt 1). That set is also where G2 lives.
+   - **The LCM half of G4 is proved.** `train-track-split-cones-have-least-common-descendants`
+     shows that two split descendants of a complete track either have cones with
+     disjoint interiors, or have a least common descendant whose cone is the
+     intersection.
+     - Together with finitely many Mod-types and a finite family of multisplits, this
+       gives three of Li's standing hypotheses (arXiv:2110.04505): finitely many
+       objects, principal intersections and a finite Garside family.
+     - What is left for G4 is Li's (F) and (t<d). Agol's periodic maximal splittings,
+       which return to the same Mod-type along many different paths, are the natural
+       source of the multiplicity in (t<d).
+   - **The test from bh-free-51/61 applies.** At points fixed by perfect subsurface
+     groups, such as a curve `[d] ∈ PML`, the regularized germ groups must be nonabelian.
+     Any G2 regularization must be checked against this.
+   - **Status.** Gates G1(non-generic) together with G2, and G4's (F) and (t<d), are
+     what remain for this route.

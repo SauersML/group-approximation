@@ -98,7 +98,7 @@ theorem linearCombination_matrixUnit_injective :
 /-- The matrix units span a subspace of `(p)`. -/
 theorem matrixUnitSpan_le_pIdeal {x : CohnTwo k} (hx : x ∈ matrixUnitSpan k) :
     x ∈ pIdeal k := by
-  have hp : cohnP k ∈ pIdeal k := TwoSidedIdeal.subset_span (Set.mem_singleton _)
+  have hp : cohnP k ∈ pIdeal k := TwoSidedIdeal.subset_span (Set.mem_singleton (cohnP k))
   rw [matrixUnitSpan] at hx
   induction hx using Submodule.span_induction with
   | mem x hx =>

@@ -29,3 +29,12 @@ shape for the reduced inputs is a window N >= 1 with f.p. window group. Node:
 - exact-twisted-shell-actions-are-exact-factorizations: an exact twist (g^+ in G) is the same as an action of R = P*_phi on Z with t = +1 and P fixing the negatives, i.e. an exact factorization R = <t>H with P <= ∩ t^-k H t^k. Thompson F with the shift endomorphism has none.
 - Remark: the generalized shell only needs rho faithful, not infinite supports; the germ group is then the near image.
 **Needs:** an exotic exact factorization for a non-VA, non-FW f.p. P (candidates: free-by-cyclic / one-relator R = F_2 *_phi, e.g. phi(x)=y, phi(y)=xyx^-1); or the near-twist version of the F exclusion.
+**Round 3 (0c23673cd, e5c6f6949, 97228fe62, b644d87f6):**
+- shell-envelopes-depend-only-on-the-near-image: finitary perms give V elements, so E depends only on Gamma ≤ NearSym_0(N); realizability is never an issue.
+- thompson-v-binary-shell-action-passes-both-germ-gates: V on eventually-zero LSB binary N, odometer = s, near group = B = V_2(<a>) (F_inf, f.g. ker chi). BOTH GATES PASS: the first non-VA input to do so. No BH content (inputs lie in B).
+- shell-shift-admits-no-baumslag-solitar-conjugation: ray lemma (s Gamma s^-1 ≤ Gamma ⇒ near trivial, or cofinitely finitely many infinite orbits) + ends ⇒ no BS(1,m) twist.
+- OPEN v-binary-shell-envelope-is-finitely-presented: the first test of "germ gates ⇒ E f.p.". Obstacle: A_1 → Q does not split via cone permutations (index-1 germs need the C_0 split).
+**Needs now:** (a) the envelope test above; (b) f.p. R ≤ NearSym(N) with s ∈ R, ±chi ∈ Sigma^1, containing groups outside B (non-contracting).
+**Superseded:** the free-by-cyclic / F test cases (the gate milestone is reached by B).
+
+**From bh-free-35 (09-18, 1141e0820):** complexity along one-permutation HNN stages is conserved (hnn-stages-add-no-complexity-beyond-edge-distortion): hard actors need a regular orbit-finite edge with non-p.r. factorization distortion Γ = D·Γ_x; Mihailova edges are excluded by bicommutant closure. If your exact-factorization reformulation produces such D, it feeds 7.19 directly.
