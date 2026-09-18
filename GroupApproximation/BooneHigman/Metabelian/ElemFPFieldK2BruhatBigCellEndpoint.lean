@@ -111,7 +111,7 @@ theorem bruhatBigCell_of_data (σ : BruhatBigCellData I R) {g : SteinbergGroup I
 theorem bruhatBigCell : BruhatBigCellStatement := by
   intro p _ I _ _ hI K L m hLK hmK hmL g hg hact
   obtain ⟨k, hmk, hLk⟩ := bruhatBigCell_third hI m L
-  exact bruhatBigCell_of_data ⟨K, L, m, hmL, hLK, hmK, bruhatBigCell_third hI,
+  exact bruhatBigCell_of_data (R := ZMod p) ⟨K, L, m, hmL, hLK, hmK, bruhatBigCell_third hI,
     bruhatBigCell_h_mul_zmod m L k hmL hmk hLk⟩ hg hact
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhatBigCell
