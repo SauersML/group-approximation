@@ -102,10 +102,19 @@ hereditary sets `D` of morphisms `o → (z,σ)`.
   - So the gate vertex `p'` next to `J` lies in `I(o,ω)` and is adjacent to `J`.
   - Then `(p', Max(o,p') ∪ {J}) ∈ D_ω ⊆ D'` forbids `ω'` from crossing `J`, a
     contradiction.
-- **These are all the maximal points.** So the maximal characters are exactly the `D_ω`.
+- **The maximal points (corrected after bh-ref-q115-b).** A maximal `D` is either principal
+  or not. A principal maximal `D = ↓x` needs `x` to have no proper extension, which forces the
+  full label `adj(z)`, so `D` is an isolated sink point. A non-principal maximal `D` refines
+  `D_{ω_D}` with `ω_D` in the Roller boundary, so `D = D_{ω_D}`. The earlier version of this
+  step missed the sinks.
 - **Topology.** `ω ↦ D_ω` is continuous and injective, because membership of `(z,σ)` is a
   finite set of halfspace conditions. It is defined on the compact space `∂_R X`, so it is
-  a homeomorphism onto a closed set. That set is `∂Ω` ∩ base cone.
+  a homeomorphism onto a closed set. That set is `X_∞ = ∂Ω ∩ Ω_∞` intersected with the base
+  cone.
+- **Sinks.** The sinks accumulate only at points `D_ω`, which are limits of `↓(z_n, adj z_n)`
+  along rays. So `∂Ω = X_∞ ⊔ {sinks}`, with `X_∞` closed.
+- **Invariance.** Prefixing and un-prefixing preserve maximal infinite characters, so `X_∞`
+  is invariant. All of §3 takes place on `X_∞`, and there `𝒢⁺` means `I_l ⋉ X_∞`.
 - **Other cones.** The cone of `[(w,σ)]` is treated the same way inside `Q(w,σ)`.
 
 ## 3. Every element is a bisection (item 3)

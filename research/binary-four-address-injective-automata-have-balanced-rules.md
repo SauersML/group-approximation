@@ -43,3 +43,17 @@ refutes Gottschalk's conjecture.
   - **Next step.** Double flips and larger perturbations on those survivors (artifact Section 4),
     which a counterexample must also defeat.
   - Artifact: `research/artifacts/gk3-four-address-balance-census-2026-09-14.md`.
+- **Cyclic-coset collisions (2026-09-18, swarm-0917-w13-w13-gs-break, host-geometry).**
+  `four-address-cyclic-coset-collisions-exclude-89-survivors` (computer assisted, independent
+  finite-group control) excludes 89 of the 195 survivors over every group, 106 remain.
+  - **Mechanism.** For `U = <m_i^-1 m_j>` every pattern of `1_U` is `0000` or a block indicator of
+    the left-coset partition of `M`. If `mu` is constant on those, `tau(1_U) = tau(0)`. This is an
+    infinite-support collision that no finite perturbation sees.
+  - **Strongest candidate dies.** Rule `7913` (`P1094`, `{1, a, b, ba}` over `F_2`) collides via
+    `tau(1_<a>) = tau(0)`.
+  - With the 63 uncontrolled `dflip3.json` closures, 71 rules remain open.
+  - **Dead variant.** Invisible single flips on the coset background `1_U` (`coset.py ... flip`)
+    add no exclusion.
+  - **Where it stops.** The 106 remaining rules have a blocking partition on which, for every pair,
+    some non-full coarsening of the forced coset partition hits a block indicator with the other
+    output. They need non-cyclic subgroups, several cosets at once, or collisions of non-coset type.
