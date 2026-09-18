@@ -5854,6 +5854,11 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexAdditive
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexRotation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiDecomposeInduct
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Blocks
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Action
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiLocalStep
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparable
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonStep
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCPLimit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
