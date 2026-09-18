@@ -86,3 +86,40 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
      Z/n ∗ Z/(n+1).
    - So any use of Lackenby–Guo on AK(3) must first change the class of the torus
      relator.
+6. **Heretic lane: a solid-torus endpoint in rank three (2026-09-17).** The earlier routes
+   share three assumptions, and this lane denies each in turn.
+   - *Denial 1: the endpoint need not be algebraic* (a basis, or a primitive relator).
+     Take a topological endpoint instead: thickenability.
+   - *Denial 2: the thickening need not be a ball.* Work with Z-pairs in F_3 under
+     relator-pair AC moves and Aut(F_3). Their complexes thicken to solid tori, not to
+     balls.
+     - `one-stabilization-ac-trivial-from-thickenable-z-pair`, proposed established:
+       reaching an orientably thickenable Z-pair certifies AK(3)⁺ AC-trivial. A 2-handle
+       along a longitude of the solid torus gives a thickenable trivializing triple, and
+       Lackenby Thm 1.3 applies to it.
+     - This goal is not Aut-invariant and is strictly larger than the primitive goal. On
+       AK(2) at cap 13 the component has 9 thickenable pairs without a primitive entry.
+   - *Obstruction.* `thickenable-z-pairs-split-quotient-meridian-obstruction`, proposed
+     established: in such a pair, if F/⟨⟨r_i⟩⟩ splits freely (for instance when r_i is
+     separable), then r_j is a meridian of a knot-group free factor modulo r_i. This comes
+     from Kneser and Jaco's handle addition lemma.
+     - The hypothesis is needed. (x^{−1}y^{−1}, x^{−4}y^{−3}z^{−3}) is a thickenable Z-pair
+       whose second relator has a 6-cycle Whitehead graph, so it is not separable, and its
+       quotient is freely indecomposable (Shenitzer).
+     - So the unconditional form "each relator is a meridian" is false, and a
+       Stallings/Whitehead-graph filter on thickenable goals is unsound.
+     - Consequence: no route from AK(n) that changes only one relator (up to conjugation,
+       inversion and Aut(F_3)) reaches the goal.
+     - First-relator routes fail because x^n y^{−(n+1)} has syllable length 4n+2 in
+       Z/2 ∗ Z/3.
+     - The same computation kills first-relator routes in rank 2. Together with Attempt 5,
+       both one-relator families are closed.
+   - *Search.* `experiments/ak3-thick-z-pair-search-2026-09-17/thzsearch.c` tests the
+     primitive, thickenable and projection goals together. The AK(3) component in F_3
+     (total length ≤ 22, 42161 pairs, 84442 Neuwirth tests, none undecided) contains no
+     goal (`ak3-rank3-caps14-22.log`).
+   - *Denial 3: relator length need not be the search cost.* Guide the search by the genus
+     defect of the link-graph surface instead (`thzbest.c`, `thick2g.c`).
+   - **What is left.** A certificate must change both relators beyond conjugation, and in
+     this move graph it must pass through total length above 22.
+     - Endpoints with no separable relator are the only ones Theorem A′ does not constrain.
