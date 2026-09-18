@@ -3,4 +3,5 @@
 **Result:** every CAT(0) group on E^n x T in B_A; Y x T in B_A when BS_G (G = tree-vertex stabilizer) has a faithful member; faithful members for SL_n(Z) (n>=3) and definite-quaternion 2-prime lattices (commensurator + NST + countable-normalizer-is-discrete).
 **Needs:** referee a (proof gaps) + b (citations: Foertsch–Lytchak splitting, strong approx SL_1(D), Bader–Shalom hypotheses for G_i).
 **Open:** non-RF fibres (Wise/BM/Radu) in 3 trees; exotic Ã2; non-special cubulated.
-Status: idle.
+**Direction (free mode, 09-18):** remove the NST from the faithful-member lemma: for any lattice G in a connected semisimple Lie group with non-discrete commensurator (= arithmetic), a multi-letter Hecke HNN is faithful (Borel density + closed normalizer). Target consequences: BS_G ⊆ B_A for surface groups, arithmetic hyperbolic and higher-rank lattices; CAT(0) groups on H^2 x T. Then: non-RF fibres.
+Status: working.

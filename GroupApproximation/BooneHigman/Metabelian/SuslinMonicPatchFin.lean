@@ -99,8 +99,8 @@ theorem suslinMonicPatch_localGlobal_fin (hN : 2 < N)
       suslinLocalCase_away_of_loc (Localization.AtPrime 𝔪) 𝔪.primeCompl _ hm
     obtain ⟨k, hk⟩ := suslinDilAn_quillen_of_map hN (algebraMap A (Localization.Away a)) a
       (suslinDilAn_away_surj a) (suslinDilAn_away_ker a) _ hmem
-    exact ⟨a ^ k, fun hk𝔪 ↦ Ideal.mem_primeCompl_iff.1 ha (h𝔪.isPrime.mem_of_pow_mem k hk𝔪),
-      hk⟩
+    exact ⟨a ^ k,
+      fun hk𝔪 ↦ Ideal.mem_primeCompl_iff.1 ha (h𝔪.isPrime.mem_of_pow_mem k hk𝔪), hk⟩
   have h := mul_mem hσ hc
   rwa [inv_mul_cancel_right] at h
 

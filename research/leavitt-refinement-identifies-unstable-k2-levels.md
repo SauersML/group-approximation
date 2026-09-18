@@ -9,12 +9,15 @@ distinct_from:
 ---
 
 **ESTABLISHED by citation plus a short argument**, through `leavitt-refinement-identifies-unstable-k2-levels-proof`.
-Refereed: gq-referee-a PASS on items 2--4, proof-gap lens (report 2d373a8ea, N1 and N2 applied); item 1 is
-with gq-referee-b.
-- Item 1 is Voronetsky, arXiv:2004.08551, §4, Proposition 1, in the form applied by Huynh Viet Khanh,
-  arXiv:2609.08428, in the proof of Theorem `thm:steinberg-isomorphism` (TeX in `gq/src/on/2609.08428/`, read). Khanh
-  states that this application "requires no hypothesis on stable rank". Voronetsky's proposition itself was read
-  only through Khanh's account.
+Refereed: gq-referee-a PASS on items 2--4, proof-gap lens (report 2d373a8ea, N1 and N2 applied); gq-referee-b PASS on item 1,
+citation lens (report dcf202f7c, W1 applied).
+- Item 1 is Voronetsky, arXiv:2004.08551v2, read at source by gq-referee-b. §2, p. 3 covers any unital ring with a
+  complete family of Morita-equivalent orthogonal idempotents. The map `F_α` on p. 5 has exactly the formulas of
+  item 1. On p. 9, before Lemma 5: for `S = {1}`, `F_α : St(R, Φ/α) -> St(R, Φ)` "is a surjection for n >= 3 and a
+  bijection for n >= 4", and `St(R, Φ)` is perfect for `n >= 3`. Proposition 1 (p. 10) has no stable-rank,
+  commutativity or finiteness hypothesis. It is applied to `M_(r+1)(R)`, where `α_r` carries the standard family of
+  `M_r(R)` to `(E_11, ..., E_(r-1,r-1), E_rr + E_(r+1,r+1))`, as in Khanh, arXiv:2609.08428, proof of Theorem
+  `thm:steinberg-isomorphism`.
 - No priority is claimed.
 
 **Setting.** `R` is a unital ring with a Leavitt pair `e, f, e*, f*`: `e*e = f*f = 1`, `e*f = f*e = 0`,
