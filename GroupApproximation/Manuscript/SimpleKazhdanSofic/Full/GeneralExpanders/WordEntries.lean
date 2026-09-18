@@ -71,10 +71,10 @@ end Maps
 section Entries
 
 variable {R : Type*} [Ring R] {M : ℕ → Type*} [∀ k, Ring (M k)] (φ : ∀ k, R → M k)
-variable {ι : Type*} [Fintype ι] [DecidableEq ι]
+variable {ι : Type*}
 
 /-- The identity matrix is entrywise approximated by the identity matrices. -/
-theorem eventually_entries_one
+theorem eventually_entries_one [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (h1 : ∀ k, φ k 1 = 1) :
     ∀ᶠ k in atTop, ∀ i j : ι,
@@ -89,7 +89,7 @@ theorem eventually_entries_one
     exact h0
 
 /-- A matrix unit with an approximated coefficient is entrywise approximated. -/
-theorem eventually_entries_single
+theorem eventually_entries_single [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (i₀ j₀ : ι) (a : R) (a' : ∀ k, M k) (ha : ∀ᶠ k in atTop, φ k a = a' k) :
     ∀ᶠ k in atTop, ∀ i j : ι,
@@ -104,7 +104,7 @@ theorem eventually_entries_single
     exact h0
 
 /-- Entrywise approximation is preserved by sums. -/
-theorem eventually_entries_add
+theorem eventually_entries_add [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (A B : Matrix ι ι R) (A' B' : ∀ k, Matrix ι ι (M k))
     (hA : ∀ᶠ k in atTop, ∀ i j : ι, φ k (A i j) = A' k i j)
@@ -118,7 +118,7 @@ theorem eventually_entries_add
   rw [Matrix.add_apply, Matrix.add_apply, hk i j, hAk i j, hBk i j]
 
 /-- Entrywise approximation is preserved by differences. -/
-theorem eventually_entries_sub
+theorem eventually_entries_sub [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (A B : Matrix ι ι R) (A' B' : ∀ k, Matrix ι ι (M k))
     (hA : ∀ᶠ k in atTop, ∀ i j : ι, φ k (A i j) = A' k i j)
@@ -133,7 +133,7 @@ theorem eventually_entries_sub
 
 /-- Entrywise approximation is preserved by products: a product entry is a finite sum of
 products of entries. -/
-theorem eventually_entries_mul
+theorem eventually_entries_mul [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (hmul : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r * r') = φ k r * φ k r')
     (A B : Matrix ι ι R) (A' B' : ∀ k, Matrix ι ι (M k))
@@ -154,7 +154,7 @@ theorem eventually_entries_mul
 
 /-- The elementary matrix `x_{ij}(a)` is entrywise approximated by the matrices
 `x_{ij}(φ_k(a))`. -/
-theorem eventually_entries_elementaryUnit
+theorem eventually_entries_elementaryUnit [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (h1 : ∀ k, φ k 1 = 1) (i₀ j₀ : ι) (h : i₀ ≠ j₀) (a : R) :
     ∀ᶠ k in atTop, ∀ i j : ι,
@@ -169,7 +169,7 @@ theorem eventually_entries_elementaryUnit
 
 /-- The inverse `x_{ij}(-a) = I - a E_{ij}` of an elementary matrix is entrywise approximated by
 the inverses of the matrices `x_{ij}(φ_k(a))`. -/
-theorem eventually_entries_elementaryUnit_inv
+theorem eventually_entries_elementaryUnit_inv [Fintype ι] [DecidableEq ι]
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (h1 : ∀ k, φ k 1 = 1) (i₀ j₀ : ι) (h : i₀ ≠ j₀) (a : R) :
     ∀ᶠ k in atTop, ∀ i j : ι,
@@ -185,7 +185,7 @@ theorem eventually_entries_elementaryUnit_inv
 
 /-- **Words are entrywise approximated.** If every marker and its inverse is entrywise
 approximated, then so is the value of every word. -/
-theorem eventually_entries_lift {α : Type*}
+theorem eventually_entries_lift [Fintype ι] [DecidableEq ι] {α : Type*}
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (hmul : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r * r') = φ k r * φ k r')
     (h1 : ∀ k, φ k 1 = 1)
@@ -229,7 +229,7 @@ theorem eventually_entries_lift {α : Type*}
 
 /-- **The forward half of the printed marked-limit argument** (tex l.317–342): a word that is
 trivial in the source is eventually trivial in the approximating groups. -/
-theorem eventually_lift_eq_one {α : Type*}
+theorem eventually_lift_eq_one [Fintype ι] [DecidableEq ι] {α : Type*}
     (hadd : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r + r') = φ k r + φ k r')
     (hmul : ∀ r r' : R, ∀ᶠ k in atTop, φ k (r * r') = φ k r * φ k r')
     (h1 : ∀ k, φ k 1 = 1)
