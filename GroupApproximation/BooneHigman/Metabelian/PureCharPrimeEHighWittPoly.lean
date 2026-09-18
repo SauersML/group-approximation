@@ -107,7 +107,7 @@ theorem eHighWitt_isWH_bind₁ {τ υ : Type} {w : τ → ℕ} {w' : υ → ℕ}
   show IsWeightedHomogeneous w' (bind₁ ψ (monomial m (coeff m P))) d
   have hmd := (Finsupp.weight_apply w m).symm.trans (hP (mem_support_iff.mp hm))
   rw [bind₁_monomial, ← hmd]
-  exact (IsWeightedHomogeneous.prod m.support (fun i => ψ i ^ m i) (fun i => m i • w i)
+  exact (IsWeightedHomogeneous.prod m.support (fun i => ψ i ^ m i) _
     fun i _ => (hψ i).pow (m i)).C_mul _
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWitt_isWH_bind₁
