@@ -107,14 +107,15 @@ theorem suslinR2_mul_colFactors_mem (M : (Matrix ι ι R)ˣ) (W : Matrix ι ι R
 theorem suslinR2_map_mem_coordinateBlock {S : Type*} [Ring S] (f : R →+* S) {j : ι}
     {A : (Matrix ι ι R)ˣ} (hA : A ∈ coordinateBlock R j) :
     elementaryMatrixUnitMap f A ∈ coordinateBlock S j := by
+  have hA' : IsCoordinateBlock j A := hA
   constructor
   · intro c
     change f ((A : Matrix ι ι R) j c) = _
-    rw [hA.1 c]
+    rw [hA'.1 c]
     split_ifs <;> simp
   · intro i
     change f ((A : Matrix ι ι R) i j) = _
-    rw [hA.2 i]
+    rw [hA'.2 i]
     split_ifs <;> simp
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2_map_mem_coordinateBlock

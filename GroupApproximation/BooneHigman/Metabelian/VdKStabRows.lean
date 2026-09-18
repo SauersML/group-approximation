@@ -120,7 +120,7 @@ theorem vdkStab_stableRangeLE_of_ringEquiv {S : Type*} [CommRing S] (e : R ≃+*
     (h : vdkStab_StableRangeLE R r) : vdkStab_StableRangeLE S r := by
   intro n hn v hv
   obtain ⟨b, hb⟩ := h n hn (fun i ↦ e.symm (v i))
-    (vdkStab_isUnimodular_map (e.symm : S →+* R) (fun _ ↦ rfl) hv)
+    (vdkStab_isUnimodular_map (e.symm : S →+* R) (v := v) (fun _ ↦ rfl) hv)
   refine ⟨fun i ↦ e (b i), vdkStab_isUnimodular_map (e : R →+* S) (fun i ↦ ?_) hb⟩
   simp [vdkStab_reduceRow_apply]
 

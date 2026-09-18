@@ -1,5 +1,8 @@
 import GroupApproximation.BooneHigman.Metabelian.SuslinHorrocksReduce
 import Mathlib.RingTheory.IntegralClosure.Algebra.Basic
+import Mathlib.RingTheory.Ideal.Operations
+import Mathlib.RingTheory.Ideal.Quotient.Operations
+import Mathlib.Algebra.Polynomial.AlgebraMap
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -46,8 +49,8 @@ theorem suslinR1_mul_colSum_apply (M : Matrix ι ι R) (t : ι) (a : ι → R)
     have hs : (l.map fun k' : {k' : ι // k' ≠ t} ↦
         (M * ((elementaryUnit (k : ι) t k.property (a k) : (Matrix ι ι R)ˣ) :
           Matrix ι ι R)) r k' * a k') = l.map fun k' ↦ M r k' * a k' :=
-      List.map_congr_left fun k' _ ↦ by
-        rw [suslinR1_mul_elementaryUnit_ne M (k : ι) t k.property (a k) r k' k'.property]
+      List.map_congr_left fun k' _ ↦ congrArg (fun x : R ↦ x * a k')
+        (suslinR1_mul_elementaryUnit_ne M (k : ι) t k.property (a k) r k' k'.property)
     rw [hs]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_mul_colSum_apply
