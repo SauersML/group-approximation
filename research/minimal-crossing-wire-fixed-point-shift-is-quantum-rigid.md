@@ -135,3 +135,59 @@ TeX source was not re-read; items R1–R3 are the conditions.
   direction of (L4). This is standard, but it should be written into the layout table.
 
 Recommended, as for the base: publish the coordinate→role table, with slot positions and frame colours.
+
+### Referee addendum (bh-free-35, 2026-09-18): R1–R3 checked at source; the PASS stands, with one layout fix
+
+**Sources.** Both were fetched fresh from arXiv on MSI (`gqsrc/bh-free-35/`).
+- DR arXiv:1802.01461, `arxiv-4.tex`, md5 `8e17f728…`, the same file bh-g2-fixedpoint-a cites.
+- DRS arXiv:0910.2415, `fpt-arxiv.tex`, md5 `63ad72b6…`.
+
+The explicit layout is `research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md` (1e9e4c5b4).
+
+**R1 (the fixed point survives the gadgets): holds.**
+- DRS §2.3 needs only that the zone program checks "simple things only … polynomial in the input size, which is
+  `O(log N)`". That is: consistent coordinates, wire and tableau rules, program bits.
+- DR §2.2 adds that the "role" of `(i,j)` must be computable in `poly(log N)`. DR add their own slots and (p1)–(p4)
+  "with only a minor modification" of exactly this kind.
+- The layout's role map `ρ_N` compares `(i,j)` with `O(log N)` arithmetic expressions. CROSS, FAN, END and the
+  (L4) zone tiles are finite tables, and the slot frames are coordinate-fixed roles. So the Kleene closure goes
+  through unchanged, in DR's variable-zoom form too.
+- Of the DRS assumptions, "wires do not cross each other" and the 3×2-window zone footnote are replaced. Neither
+  is used by the fixed-point step.
+
+**R2 (side-local margins with constant corners at every level): holds.**
+- DRS and DR at source: macro-colours sit on "`k` bits in the middle of macro-tile sides … All other bits on the
+  sides are zeros", and wires carry them inward.
+- The layout runs each wire perpendicularly for `m` cells, keeps other wires' private lines outside the margins,
+  and makes the corners BLANK.
+- DR place slots "far away from the computation zone and from all communication wires", in the free stripe above
+  the zone.
+- The rank field and the (p4) role pattern are coordinate- and level-fixed fields of the zone or of the colour
+  bits, not margin content.
+- So at level `k` the margin (`m` rank-`(k−1)` tiles) depends on one side colour, and the corners are constant.
+
+**R3 (frame tiles unique per coordinate; slot windows forced): holds.**
+- DR: "We define the neighbors around each diversification slot in such a way that only one specific
+  (2×2)-pattern can patch it". Slots are "detached from each other in space", and their positions are computable
+  in `poly(log N)`. So each frame cell has a single tile.
+- **Needed beyond DR.** DR guarantee only classical 2×2-determinacy (p2). The operator argument A3 needs *directed*
+  determinism:
+  - the `→` part of a vertical edge is a function of the left cell's bottom;
+  - the `←` part is a function of the right cell's bottom;
+  - the top is a function of the other three edges.
+
+  The layout's zone table (§3, tiles (a)–(f)) supplies exactly this, and I checked each row.
+- Given scalar outer edges, the allowed values of each inner edge from its two faces intersect in a single value,
+  so the inner edges are forced scalars.
+
+**Layout fix required (crossing box, §2).**
+- With `c_q = X_0 + 2q`, the END column `X_0 + 2K` equals `c_K`. So the cell `(c_K, r_q)`, for `q < K`, is assigned
+  both CROSS and END, and `(c_K, r_K)` is both FAN and END.
+- Fix: widen the box to `[X_0, X_0 + 2K + 1]` and put END at `X_0 + 2K + 1`, with H in between. Then every pair
+  still meets exactly once.
+- **Minimality check of the fixed box.** Every 2×2 window that touches two wires contains a CROSS or FAN cell,
+  because row and column copies are 2 apart and meet only at CROSS/FAN. So (M2) slots cover them, and DR's Case 2
+  covers the rest.
+
+**Verdict:** PASS, with R1–R3 discharged at source, conditional only on the box fix, which I posted to
+bh-g2-fixedpoint-a.
