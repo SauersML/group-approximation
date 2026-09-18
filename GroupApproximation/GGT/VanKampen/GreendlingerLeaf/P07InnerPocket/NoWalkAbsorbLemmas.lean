@@ -120,3 +120,76 @@ theorem noWalkAbsorb_unique_of_closed (E : EnclosedFaceSetSucc X F ow) (k : Fin 
       (hjunc q hq hnq))
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noWalkAbsorb_unique_of_closed
+
+/-- **Arcs whose inverse lies on the walk are closed for an outer walk of `sideFaces w`.** -/
+theorem noWalkAbsorb_closed_of_sideFaces {w : List X.toCombMap.Dart}
+    (E : EnclosedFaceSetSucc X (sideFaces X.toCombMap w) ow) (l : List X.toCombMap.Dart)
+    (hsub : ∀ x ∈ invDarts X l, x ∈ w) :
+    ∀ g ∈ l, g ∈ ow → X.toCombMap.facePerm g ∈ l → X.toCombMap.facePerm g ∈ ow := by
+  intro g _ hg hf
+  refine (E.mem_iff (X.toCombMap.facePerm g)).mpr ⟨?_, Or.inl ?_⟩
+  · rw [X.toCombMap.faceOf_facePerm g]
+    exact ((E.mem_iff g).mp hg).1
+  · have hx : X.toCombMap.alpha (X.toCombMap.facePerm g) ∈ invDarts X l := by
+      rw [Embedded.mem_invDarts_iff, X.toCombMap.alpha_involutive (X.toCombMap.facePerm g)]
+      exact hf
+    exact (mem_sideFaces_iff X.toCombMap w (X.toCombMap.alpha (X.toCombMap.facePerm g))).mpr
+      ⟨_, hsub _ hx, Relation.EqvGen.refl _⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noWalkAbsorb_closed_of_sideFaces
+
+/-- **A walk dart with a `sideFaces w` face across keeps its reverse.** -/
+theorem noWalkAbsorb_walkKeep_alpha_of_sideFaces {w : List X.toCombMap.Dart}
+    (E : EnclosedFaceSetSucc X (sideFaces X.toCombMap w) ow) {d : X.toCombMap.Dart} (hd : d ∈ ow)
+    (hacross : X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ sideFaces X.toCombMap w) :
+    walkKeep X.toCombMap w (X.toCombMap.alpha d) := by
+  by_contra hk
+  obtain ⟨e, he, hrel⟩ := (mem_sideFaces_iff X.toCombMap w (X.toCombMap.alpha d)).mp hacross
+  exact ((E.mem_iff d).mp hd).1 ((mem_sideFaces_iff X.toCombMap w d).mpr
+    ⟨e, he, Relation.EqvGen.trans _ _ _ hrel
+      (Relation.EqvGen.rel _ _ (Or.inr ⟨hk, (X.toCombMap.alpha_involutive d).symm⟩))⟩)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noWalkAbsorb_walkKeep_alpha_of_sideFaces
+
+end Closed
+
+section Walk
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}
+
+/-- **The inverse of a middle piece of the first arc lies on the pocket walk.** -/
+theorem noWalkAbsorb_mem_walk_of_first (K : CellPocketWalk D eps X i j)
+    {pre l post : List X.toCombMap.Dart} (hG : K.firstArc.darts = pre ++ l ++ post)
+    {x : X.toCombMap.Dart} (hx : x ∈ invDarts X l) : x ∈ K.walk := by
+  have h1 : X.toCombMap.alpha x ∈ K.firstArc.darts := by
+    rw [hG]
+    exact List.mem_append_left _
+      (List.mem_append_right _ ((Embedded.mem_invDarts_iff l x).mp hx))
+  have h2 : x ∈ invDarts X K.firstArc.darts := (Embedded.mem_invDarts_iff _ x).mpr h1
+  show x ∈ K.firstSide ++ invDarts X K.firstArc.darts ++ K.secondSide ++
+    invDarts X K.secondArc.darts
+  exact List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ h2))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noWalkAbsorb_mem_walk_of_first
+
+/-- **The inverse of a middle piece of the second arc lies on the pocket walk.** -/
+theorem noWalkAbsorb_mem_walk_of_second (K : CellPocketWalk D eps X i j)
+    {pre l post : List X.toCombMap.Dart} (hG : K.secondArc.darts = pre ++ l ++ post)
+    {x : X.toCombMap.Dart} (hx : x ∈ invDarts X l) : x ∈ K.walk := by
+  have h1 : X.toCombMap.alpha x ∈ K.secondArc.darts := by
+    rw [hG]
+    exact List.mem_append_left _
+      (List.mem_append_right _ ((Embedded.mem_invDarts_iff l x).mp hx))
+  have h2 : x ∈ invDarts X K.secondArc.darts := (Embedded.mem_invDarts_iff _ x).mpr h1
+  show x ∈ K.firstSide ++ invDarts X K.firstArc.darts ++ K.secondSide ++
+    invDarts X K.secondArc.darts
+  exact List.mem_append_right _ h2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noWalkAbsorb_mem_walk_of_second
+
+end Walk
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
