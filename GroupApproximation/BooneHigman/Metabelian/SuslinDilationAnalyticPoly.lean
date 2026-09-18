@@ -57,8 +57,8 @@ theorem suslinDilAnDilate_constantCoeff (u : B) :
   apply Polynomial.ringHom_ext
   · intro b
     simp only [RingHom.comp_apply, suslinDilAnDilate_C]
-  · simp only [RingHom.comp_apply, suslinDilAnDilate_X, map_mul, Polynomial.constantCoeff_apply,
-      Polynomial.coeff_X_zero, mul_zero]
+  · simp only [RingHom.comp_apply, suslinDilAnDilate_X, Polynomial.constantCoeff_apply,
+      Polynomial.coeff_C_mul, Polynomial.coeff_X_zero, mul_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAnDilate_constantCoeff
 
