@@ -4,9 +4,12 @@ id: capacity-chain-presentation-is-not-simple-proof
 kind: route
 title: A module on words over a bi-infinite c-chain with non-integral capacity satisfies every relation but detects X_k
 target: capacity-chain-presentation-is-not-simple
-requires:
-  - capacity-chain-resolvent-ring-has-rational-k0
+requires: []
 ---
+
+*Wiring note (2026-09-18):* `capacity-chain-resolvent-ring-has-rational-k0` supplies notation only, namely the
+presentation (CK), (Avail), (Cov), (Pos). The argument never uses its truth, which this route's target
+refutes, so `requires` is empty.
 
 Lane proof, not independently reviewed. Notation as in
 `capacity-chain-resolvent-ring-has-rational-k0`. Fix an integer `k >= 1` and put

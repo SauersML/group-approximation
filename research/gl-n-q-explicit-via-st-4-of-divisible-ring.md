@@ -16,9 +16,12 @@ Let `D` be the ring of `finitely-presented-divisible-ring-engine`, with 6 genera
 1. **Finitely presented.** `D` is a finitely presented unital ring, so `Γ` is finitely
    presented (`steinberg-finite-presentation-and-kazhdan-theorem`, rank 4). By the same
    node it has property (T).
-2. **Contains GL_n(Q).** `Q ⊆ D` unitally, and `w, v, sw, vt` form a Leavitt pair (checked
-   in `one-steinberg-group-contains-every-gl-n-q`). By that claim, `SL_(4m)(Q)` embeds in
-   `Γ` for every `m`. So does `GL_n(Q) <= SL_(n+1)(Q) <= SL_(4m)(Q)`, via
+2. **Contains GL_n(Q).** `Q ⊆ D` unitally. Also `x_1 = w`, `y_1 = v`, `x_2 = sw`, `y_2 = vt` form a
+   Leavitt pair: `vw = 1`; `vt·sw = v(ts)w = 1`; `sw·vt = s(wv)t = 1 - wv`, so
+   `x_1y_1 + x_2y_2 = 1`; and `v·sw = v(1-wv)sw = 0`, `vt·w = vt(1-wv)w = 0`, using
+   `sw = (1-wv)sw` and `vt = vt(1-wv)`, which follow from `x_2y_2x_2 = x_2`, `y_2x_2y_2 = y_2`
+   (`gq-referee-a` checked this against R1–R3). By `one-steinberg-group-contains-every-gl-n-q`,
+   `SL_(4m)(Q)` embeds in `Γ` for every `m`. So does `GL_n(Q) <= SL_(n+1)(Q) <= SL_(4m)(Q)`, via
    `g -> diag(g, det(g)^(-1), 1, ..., 1)` for `4m >= n+1`.
 3. **Explicit and natural.** `Γ` is the Steinberg group of a named ring given by an explicit
    finite presentation. It is one group for all `n`, and it is not produced by running an

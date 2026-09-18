@@ -33,14 +33,9 @@ and (c).
 2. Hence `SL_k(Q)` and `GL_n(Q)` embed in `St_4(S)` for all `k, n >= 1`
    (`GL_n(Q) <= SL_(n+1)(Q) <= SL_(4m)(Q)` for `4m >= n+1`).
 3. If `S` is finitely presented, `St_4(S)` is **one** finitely presented group containing
-   every `GL_n(Q)` (`steinberg-finite-presentation-and-kazhdan-theorem`). For
-   `S = D` of `finitely-presented-divisible-ring-engine` (6 generators, 7 relations) this
-   is explicit.
-
-`D` has a Leavitt pair: `x_1 = w`, `y_1 = v`, `x_2 = s w`, `y_2 = v t`. Indeed `vw = 1`;
-`vt·sw = v(ts)w = 1`; `sw·vt = s(wv)t = 1 - wv`, so `x_1y_1 + x_2y_2 = 1`; and
-`v·sw = v(1 - wv)sw = 0`, `vt·w = vt(1 - wv)w = 0`, using `sw = (1-wv)sw` and
-`vt = vt(1-wv)`, which follow from `x_2 y_2 x_2 = x_2`, `y_2 x_2 y_2 = y_2`.
+   every `GL_n(Q)` (`steinberg-finite-presentation-and-kazhdan-theorem`). Explicit
+   instances: `S = R_L` (`gl-n-q-explicit-via-st-4-of-resolvent-ring`) and `S = D`
+   (`gl-n-q-explicit-via-st-4-of-divisible-ring`).
 
 **Credit and scope** (priority check, `research/artifacts/gq-gq-lit-arxiv-priority.md` §8).
 - **Existence is classical.** Some finitely presented group contains every `GL_n(Q)`:
