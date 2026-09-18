@@ -6104,6 +6104,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Hom
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Stage
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.StageHom
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductNorm
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraModuleComplete
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraComplete
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebra
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
