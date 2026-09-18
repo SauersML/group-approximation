@@ -8,12 +8,19 @@ distinct_from:
   fp-simple-ring-of-characteristic-zero-exists: that is the existence question; this is the explicit ring that answers it.
   leavitt-subalgebra-linear-groups-satisfy-boone-higman: that uses the characteristic-two ring L_(F_2)(1,2), whose finitely generated subrings never contain Q; this is a characteristic-zero ring containing Q.
   leavitt-nekrashevych-completion-simplicity-criterion: that is the general criterion; this applies it to one completion over a non-finitely-generated base.
+artifacts:
+  - research/artifacts/gq-gq-lit-arxiv-priority.md
 ---
 
 **ESTABLISHED** through `leavitt-resolvent-ring-is-fp-simple-of-char-zero-proof` (lane
 proof, not independently reviewed; referee requests sent). No priority is claimed beyond
 a bounded search: no source found states the existence of a finitely presented simple
-ring of characteristic zero.
+ring of characteristic zero (lane `gq-lit-arxiv`, artifact `gq-gq-lit-arxiv-priority.md`
+§6). The closest known results each give only part of it. `L_(F_p)(1,n)` is finitely
+presented and simple, but of characteristic `p`. Bokut (Algebra i Logika 15, 1976) gives
+finitely generated simple envelopes. Belyaev (Algebra i Logika 17, 1978) gives finitely
+presented envelopes that are not simple. The construction may be folklore among
+algebraic Cuntz--Pimsner rings (Carlsen--Ortega).
 
 **Statement.** Let
 
