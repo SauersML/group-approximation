@@ -96,3 +96,17 @@ The two lanes now face one concrete object.
 If it does, the master route's rigid dynamics exist over non-exact groups, and (RA′) is false. If it
 does not, the first genuinely higher-order rigidity obstruction appears exactly where property A
 fails.
+
+## Progress (bh-star-b, 2026-09-18, later)
+
+- **Proved for finite-dimensional cube complexes** (`roller-compactifications-of-cube-complexes-are-quantum-rigid`).
+  The full Roller compactification SFT is rigid at every scale, so all its closed invariant subsets
+  are rigid too. The proof uses three properties:
+  - walls are locally linked;
+  - crossing walls meet;
+  - adjacent parallel walls touch.
+- **The full compactification fails** when some wall's edges are not uniformly coarsely connected.
+  That is the expected case for small-cancellation walls through unboundedly long relators, and there
+  finite type fails as well.
+- **What remains open for (RA′)** is minimal subsets of such boundaries, where single-wall flips do
+  not exist.

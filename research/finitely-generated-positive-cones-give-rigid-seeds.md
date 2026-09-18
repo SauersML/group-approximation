@@ -57,7 +57,7 @@ dense (no least positive element, so (D) holds) or discrete.
   EXP) predicts that every finitely presented group with a finitely generated positive cone has its word problem
   in EXP. So one finitely presented group with a finitely generated positive cone and word problem outside EXP
   refutes CAP.
-- **Ito's amalgamation transports but does not create.**
+- **Ito's amalgamation transports but does not create** (a lane sketch, not a proof).
   - Ito's proof is constructive: `<_X` is computable from `<_G`, `<_H` and the reduced standard factorization
     (Ito, §2.7, as announced in §1).
   - The word problem of `X` reduces to those of `G` and `H` and to membership in `⟨z⟩`. Membership reduces to order
@@ -67,7 +67,8 @@ dense (no least positive element, so (D) holds) or discrete.
   - Starting from `Z`, braid groups and torus-knot groups (Garside-type, easy word problems), iteration gives no
     hard word problem that we can see.
 - **What an answer needs.** A *primary* construction of a finitely generated positive cone on a finitely presented
-  group with a hard word problem. Combining known isolated orders cannot supply one.
+  group with a hard word problem. By the sketch above, Ito amalgams of known examples do not supply
+  one.
   - The Bludov–Glass and Darbinyan–Steenbock embeddings produce computable orders, but not finitely generated
     cones.
   - Question (O) stays **open**.

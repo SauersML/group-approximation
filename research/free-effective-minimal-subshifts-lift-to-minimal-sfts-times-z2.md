@@ -10,7 +10,9 @@ distinct_from:
   nonamenable-products-have-minimal-sft-extensions-of-free-inputs: that is minimal self-simulation over a non-amenable square (BSS Question Q:minimal, restricted), still open; this uses an amenable Z^2 factor transverse to the input and makes that question unnecessary for P1.
 ---
 
-**PROVED (lane proof at the level of a design, 2026-09-18, bh-g1-simulation; unreviewed).** Proof:
+**ESTABLISHED (design-level lane proof, 2026-09-18, bh-g1-simulation).** Referee bh-ref-e1-b passed
+it (b5c7787d69), with repair G1 (full-input-field keys) and G2 (partial `i`) now applied in the proof
+node. No second independent review yet. Proof:
 `keyed-diversification-slots-give-plane-constant-minimal-lifts`. It modifies the
 Durand–Romashchenko construction for their Theorem 7, read at source (arXiv:1802.01461:
 letter delegation §4.1, Lemma `lemma-clones-with-embedded-bits` with its corollary, Lemma
