@@ -74,7 +74,7 @@ theorem mem_sideAWord {a b : RegionCandidate D eps X} {G₁ : CyclicArc (cellDar
     {G₂ : CyclicArc (cellDarts X j)} {e : X.toCombMap.Dart} (he : e ∈ sideAWord a b G₁ G₂) :
     e ∉ invDarts X G₁.darts ∧ e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∉ b.sideFrom i := by
   unfold sideAWord at he
-  exact @of_decide_eq_true _ _ (List.mem_filter.mp he).2
+  exact @of_decide_eq_true _ (_) (List.mem_filter.mp he).2
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlock.mem_sideAWord
 
@@ -83,7 +83,7 @@ theorem mem_cellG2Word {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cel
     {e : X.toCombMap.Dart} (he : e ∈ cellG2Word G₁ G₂) :
     e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts := by
   unfold cellG2Word at he
-  exact @of_decide_eq_true _ _ (List.mem_filter.mp he).2
+  exact @of_decide_eq_true _ (_) (List.mem_filter.mp he).2
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlock.mem_cellG2Word
 
@@ -92,7 +92,7 @@ theorem mem_sideBWord {b : RegionCandidate D eps X} {G₁ : CyclicArc (cellDarts
     {G₂ : CyclicArc (cellDarts X j)} {e : X.toCombMap.Dart} (he : e ∈ sideBWord b G₁ G₂) :
     e ∉ invDarts X G₁.darts ∧ e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∈ b.sideFrom i := by
   unfold sideBWord at he
-  exact @of_decide_eq_true _ _ (List.mem_filter.mp he).2
+  exact @of_decide_eq_true _ (_) (List.mem_filter.mp he).2
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlock.mem_sideBWord
 

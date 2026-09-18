@@ -93,3 +93,76 @@ theorem czCubeResField_dies_of_overStatement
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_dies_of_overStatement
+
+/-- **The gap gives the full residue statement over `A`.**  Pad `u` once to rank `N + 1`, cone it
+up to `N - 3` variables (so rank `N + 1` is minimal), kill it there by the gap and patching, and
+carry the death back; then `s = 1 ∉ 𝔪` works. -/
+theorem czCubeResField_residueOver_of_over
+    (hres : ∀ k : ℕ, ∀ P : Ideal (MvPolynomial (Fin k) A), P.IsMaximal →
+      ∃ p : ℕ, p.Prime ∧ (p : MvPolynomial (Fin k) A) ∈ P)
+    (h : CZCubeResFieldOverStatement A) : CZCubeLocalResidueOverStatement A := by
+  intro k N hkN u hu _ _ P hP _
+  refine ⟨1, (Ideal.ne_top_iff_one _).mp hP.ne_top, ?_⟩
+  refine diesAfterPadding_quillenDiff_of_diesAfterPadding
+    (diesAfterPadding_K2Map (MvPolynomial.finSuccEquiv A k).toRingEquiv.toRingHom ?_) 1
+  obtain ⟨r, hr⟩ : ∃ r : ℕ, N + 1 = k + r + 5 := ⟨N - 4 - k, by omega⟩
+  have hpad : ∀ i : Fin (k + 1), K2Map (cubeKill A i)
+      (K2IndexMap (Fin.castLEEmb (Nat.le_add_right N 1)) u) = 1 := fun i ↦ by
+    rw [← K2IndexMap_K2Map (Fin.castLEEmb (Nat.le_add_right N 1)) (cubeKill A i) u, hu i,
+      map_one]
+  exact diesAfterPadding_of_diesAfterPadding_castLEEmb (Nat.le_add_right N 1)
+    (czCubeResField_dies_of_cone_iter (R := A) (N := N + 1) k r
+      (fun v hv ↦ czCubeResField_dies_of_overStatement A hres h (k := k + r) (N := N + 1)
+        (by omega) hr v hv)
+      (K2IndexMap (Fin.castLEEmb (Nat.le_add_right N 1)) u) hpad)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_residueOver_of_over
+
+/-- Conversely (trivially), the residue statement over `A` gives the gap: it is a sub-family. -/
+theorem czCubeResField_over_of_residueOver (h : CZCubeLocalResidueOverStatement A) :
+    CZCubeResFieldOverStatement A :=
+  fun k N _ hN ↦ h k N (by omega)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_over_of_residueOver
+
+end Over
+
+/-- **The isolated gap** (lane `bh-met-81`): over every `ℤ[1/m]` with `m ≥ 1`, the local cube
+condition at the maximal ideals of `ℤ[1/m][s_1..s_k]` that contain a rational prime, only for
+`k ≥ 1` and only at the minimal rank `N = k + 5`.  LOUD: logically equivalent to
+`CZCubeLocalResidueStatement`, strictly smaller in proof content (see the module docstring). -/
+def CZCubeResFieldStatement : Prop :=
+  ∀ m : ℕ, 0 < m → CZCubeResFieldOverStatement (Localization.Away (m : ℤ))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CZCubeResFieldStatement
+
+/-- **Endpoint (lane `bh-met-81`).**  The minimal-rank gap gives `CZCubeLocalResidueStatement`. -/
+theorem czCubeResField_residue_of_resField (h : CZCubeResFieldStatement) :
+    CZCubeLocalResidueStatement :=
+  fun m hm ↦ czCubeResField_residueOver_of_over _
+    (fun _ P hP ↦ czCubeLocal_exists_prime_mem (m : ℤ) P hP) (h m hm)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_residue_of_resField
+
+/-- Conversely, `CZCubeLocalResidueStatement` gives the minimal-rank gap. -/
+theorem czCubeResField_resField_of_residue (h : CZCubeLocalResidueStatement) :
+    CZCubeResFieldStatement :=
+  fun m hm ↦ czCubeResField_over_of_residueOver _ (h m hm)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_resField_of_residue
+
+/-- The minimal-rank gap and the diagonal half give the root hypothesis
+`CharZeroK2CubeGapPosStatement`. -/
+theorem czCubeResField_charZeroK2CubeGapPos_of_resField (h : CZCubeResFieldStatement)
+    (hdiag : ∀ m : ℕ, 0 < m → PolyK2StabRangeDiagStatementOver (Localization.Away (m : ℤ)) 4) :
+    CharZeroK2CubeGapPosStatement :=
+  czCubeLocal_charZeroK2CubeGapPos_of_residue (czCubeResField_residue_of_resField h) hdiag
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_charZeroK2CubeGapPos_of_resField
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

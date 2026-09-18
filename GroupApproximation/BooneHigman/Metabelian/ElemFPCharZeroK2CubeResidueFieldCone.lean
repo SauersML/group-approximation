@@ -68,13 +68,13 @@ theorem czCubeResFieldCone_X {n : ℕ} (i : Fin (n + 1)) :
 theorem czCubeResFieldCone_X_zero {n : ℕ} :
     czCubeResFieldCone R n (MvPolynomial.X 0) =
       MvPolynomial.X (Fin.castSucc 0) * MvPolynomial.X (Fin.last (n + 1)) :=
-  (czCubeResFieldCone_X (0 : Fin (n + 1))).trans (if_pos rfl)
+  (czCubeResFieldCone_X (R := R) (0 : Fin (n + 1))).trans (if_pos rfl)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResFieldCone_X_zero
 
 theorem czCubeResFieldCone_X_of_ne {n : ℕ} {i : Fin (n + 1)} (h : i ≠ 0) :
     czCubeResFieldCone R n (MvPolynomial.X i) = MvPolynomial.X (Fin.castSucc i) :=
-  (czCubeResFieldCone_X i).trans (if_neg h)
+  (czCubeResFieldCone_X (R := R) i).trans (if_neg h)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResFieldCone_X_of_ne
 
@@ -94,7 +94,7 @@ theorem czCubeResFieldConeRetract_X {n : ℕ} (l : Fin (n + 1 + 1)) :
 theorem czCubeResFieldConeRetract_X_castSucc {n : ℕ} (i : Fin (n + 1)) :
     czCubeResFieldConeRetract R n (MvPolynomial.X (Fin.castSucc i)) = MvPolynomial.X i := by
   rw [czCubeResFieldConeRetract_X]
-  exact dif_pos (show ((Fin.castSucc i : Fin (n + 1 + 1)) : ℕ) < n + 1 from i.is_lt)
+  exact dif_pos (show ((Fin.castSucc i : Fin (n + 1 + 1)) : ℕ) < n + 1 from i.isLt)
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResFieldConeRetract_X_castSucc

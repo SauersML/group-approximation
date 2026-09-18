@@ -75,7 +75,8 @@ theorem vPerfect_coneSwap_mem [Nonempty X] (heven : Even (Nat.card X)) (hvw : ¬
   have hc : (Abelianization.of : ↥(higmanThompsonV X) →* Abelianization ↥(higmanThompsonV X))
       (vPerfectChain hvw hwv (Finset.univ : Finset X).toList) = 1 := by
     obtain ⟨k, hk⟩ := heven
-    rw [vPerfectChain_cls hvw hwv y₀, hlen, hk, ← two_mul, pow_mul, vPerfectCls_sq, one_pow]
+    have hk2 : Nat.card X = 2 * k := by omega
+    rw [vPerfectChain_cls hvw hwv y₀, hlen, hk2, pow_mul, vPerfectCls_sq, one_pow]
   have hmem : vPerfectChain hvw hwv (Finset.univ : Finset X).toList ∈
       commutator ↥(higmanThompsonV X) :=
     (Abelianization.ker_of ↥(higmanThompsonV X)).le (MonoidHom.mem_ker.mpr hc)

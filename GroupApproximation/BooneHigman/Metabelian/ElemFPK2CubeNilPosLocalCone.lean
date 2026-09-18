@@ -154,7 +154,8 @@ theorem cubeNilPosLocal_cubeKill_castSucc_comp_cone (k : ℕ) (i : Fin (k + 1)) 
           rw [cubeKill_X_of_ne (R := R) hi', cubeKill_X_of_ne (R := R) hi,
             cubeNilPosLocalCone_X_of_ne hl]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_castSucc_comp_cone
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_castSucc_comp_cone
 
 /-- `π_{k+1} ∘ j = j ∘ π_0`: both send `s_0` to `0`. -/
 theorem cubeNilPosLocal_cubeKill_last_comp_cone (k : ℕ) :
@@ -173,7 +174,8 @@ theorem cubeNilPosLocal_cubeKill_last_comp_cone (k : ℕ) :
           cubeKill_X_of_ne (R := R) (Fin.ne_of_lt (Fin.castSucc_lt_last l)),
           cubeKill_X_of_ne (R := R) hl, cubeNilPosLocalCone_X_of_ne hl]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_last_comp_cone
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_last_comp_cone
 
 /-- If `u ∈ K₂(N, R[s_0..s_k])` is killed by every `π_i`, so is `j u ∈ K₂(N, R[s_0..s_{k+1}])`. -/
 theorem cubeNilPosLocal_cubeKill_cone {k N : ℕ} {u : K2n N (MvPolynomial (Fin (k + 1)) R)}
