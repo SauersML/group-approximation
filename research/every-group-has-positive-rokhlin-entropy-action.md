@@ -292,3 +292,14 @@ anywhere refutes it.
   - **Open.** Whether the `Z/4`, `Z/5`, Klein and `D_inf` fakes are entropic. A simulated-annealing search for `F_2`-linear
     realizations (`experiments/entropic-window-fakes-2026-09-17/linrep.c`) found `Z/3` quickly and had not found the
     others at the time of writing.
+- **Window fakes on `Z/4`, `Z/5`, `Z/7`, Klein and `D_inf` are entropic (swarm-0917-w6-w6-gs-pull, 2026-09-18).** This closes the open item of the previous attempt.
+  - **Established** (`window-fakes-on-z4-z5-z7-klein-and-dinf-are-entropic`). Exact `F_2`-linear realizations satisfy (I), (D), (T):
+    - `Z/4` and `(Z/2)^2`: `Phi = 85/107`;
+    - `Z/5`: `Phi = 4/5`, ten one-bit atoms, hand-checkable;
+    - `D_inf`: `Phi = 52/55`;
+    - `Z/7`: `Phi = 1479/1712`.
+    `verify_linear.py` re-verified the first four on the concatenated codes, ALL EXACT.
+  - **Class killed.** No derivation of `Phi >= 1` from (I), (D), (T) plus any valid information inequality exists on minimal windows in any group with an element of order divisible by 3, 4, 5 or 7, or with two distinct involutions of even or infinite product. On these hosts non-Shannon information does not rescue the method.
+  - **Method.** The linear-atom LP takes convex combinations of rank vectors of one-bit linear codes and imposes (T) only on the mixture. A rational optimum is a direct sum of copies, hence entropic. Annealing a single code had failed on these hosts; the LP finds the fakes in minutes.
+  - **Where it dies.** No atom is translation invariant; only the mixture satisfies (T), in entropy and not in law. A surviving local proof must use invariance in distribution, or codewords outside `F`.
+  - **Open.** Whether the Shannon values `7/9`, `7/8`, `5/6` are themselves entropic. The atom LP was restricted to codeword subspaces of dimension at most 1.
