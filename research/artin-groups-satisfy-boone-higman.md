@@ -62,6 +62,9 @@ Per the attached artifact:
   `triangle-free-all-3-artin-groups-satisfy-pbh`, e.g. the
   all-3 four-cycle, which is not virtually cocompactly cubulated. Method: the hub-cone
   reduction `artin-hub-cones-reduce-pbh-to-coned-cliques`.
+- **Reduction to free-of-infinity Artin groups** (2026-09-18, lane proof, not reviewed):
+  every Artin group lies in `B_A` iff every Artin group with complete defining graph
+  does (`artin-pbh-reduces-to-free-of-infinity-artin-groups`).
 
 ## Attempts
 
@@ -119,3 +122,12 @@ Per the attached artifact:
    - With `k ≡ 3`, triangle-free all-3 graphs reduce to the Euclidean triangle Ã_2.
    - *Stops* where no hub labelling exists (a vertex meeting coprime labels), and at
      complete pieces such as `K_4` with all labels 3 or the hyperbolic triangles.
+7. **Clone doubles** (lane bh-artin, 2026-09-18). *Works* at the class level.
+   - Add a clone `û` for every vertex, with the labels of `u` to all other vertices,
+     `∞` replaced by a fixed finite `L` among clones and between a vertex and the clones
+     of its non-neighbours. Along each original non-edge `u|w` the clone double splits
+     over a common retract (fold `u ↦ û`, `w ↦ ŵ`), so it reduces to complete pieces
+     (`artin-pbh-reduces-to-free-of-infinity-artin-groups`).
+   - So the permutational form of this root for all Artin groups is equivalent to its
+     free-of-infinity case. The pieces for a single graph are larger than the graph,
+     so this gives no new single group by itself.
