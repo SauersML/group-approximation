@@ -44,8 +44,9 @@ theorem mvEval_append (ρ : ℕ → ℝ) (q : MvP) : ∀ p : MvP,
       show mvEval ρ q = mvEval ρ [] + mvEval ρ q
       rw [mvEval_nil, zero_add]
   | m :: p => by
-      show mvEval ρ (m :: (p ++ q)) = mvEval ρ (m :: p) + mvEval ρ q
-      rw [mvEval_cons, mvEval_cons, mvEval_append ρ q p]
+      show (m.1 : ℝ) * monoEval ρ m.2 + mvEval ρ (p ++ q)
+        = ((m.1 : ℝ) * monoEval ρ m.2 + mvEval ρ p) + mvEval ρ q
+      rw [mvEval_append ρ q p]
       ring
 
 /-! ## Exponent arithmetic -/
@@ -98,9 +99,9 @@ theorem mvEval_mulMono (ρ : ℕ → ℝ) (c : ℤ) (e : List ℕ) : ∀ p : MvP
       show mvEval ρ [] = (c : ℝ) * monoEval ρ e * mvEval ρ []
       rw [mvEval_nil, mul_zero]
   | m :: p => by
-      show mvEval ρ ((c * m.1, addExp e m.2) :: mvMulMono c e p)
-        = (c : ℝ) * monoEval ρ e * mvEval ρ (m :: p)
-      rw [mvEval_cons, mvEval_cons, mvEval_mulMono ρ c e p, monoEval_addExp, Int.cast_mul]
+      show ((c * m.1 : ℤ) : ℝ) * monoEval ρ (addExp e m.2) + mvEval ρ (mvMulMono c e p)
+        = (c : ℝ) * monoEval ρ e * ((m.1 : ℝ) * monoEval ρ m.2 + mvEval ρ p)
+      rw [mvEval_mulMono ρ c e p, monoEval_addExp, Int.cast_mul]
       ring
 
 /-- Product of polynomials. -/
@@ -114,8 +115,9 @@ theorem mvEval_mul (ρ : ℕ → ℝ) (q : MvP) : ∀ p : MvP,
       show mvEval ρ [] = mvEval ρ [] * mvEval ρ q
       rw [mvEval_nil, zero_mul]
   | m :: p => by
-      show mvEval ρ (mvMulMono m.1 m.2 q ++ mvMul p q) = mvEval ρ (m :: p) * mvEval ρ q
-      rw [mvEval_append, mvEval_mulMono, mvEval_mul ρ q p, mvEval_cons]
+      show mvEval ρ (mvMulMono m.1 m.2 q ++ mvMul p q)
+        = ((m.1 : ℝ) * monoEval ρ m.2 + mvEval ρ p) * mvEval ρ q
+      rw [mvEval_append, mvEval_mulMono, mvEval_mul ρ q p]
       ring
 
 /-- Negation of a polynomial. -/
@@ -128,8 +130,9 @@ theorem mvEval_neg (ρ : ℕ → ℝ) : ∀ p : MvP, mvEval ρ (mvNeg p) = -mvEv
       show mvEval ρ [] = -mvEval ρ []
       rw [mvEval_nil, neg_zero]
   | m :: p => by
-      show mvEval ρ ((-m.1, m.2) :: mvNeg p) = -mvEval ρ (m :: p)
-      rw [mvEval_cons, mvEval_cons, mvEval_neg ρ p, Int.cast_neg]
+      show ((-m.1 : ℤ) : ℝ) * monoEval ρ m.2 + mvEval ρ (mvNeg p)
+        = -((m.1 : ℝ) * monoEval ρ m.2 + mvEval ρ p)
+      rw [mvEval_neg ρ p, Int.cast_neg]
       ring
 
 /-- The constant polynomial `c`. -/
@@ -157,6 +160,7 @@ theorem shift_update_succ (ρ : ℕ → ℝ) (i : ℕ) (r : ℝ) :
     (fun j => Function.update ρ (i + 1) r (j + 1))
       = Function.update (fun j => ρ (j + 1)) i r := by
   funext j
+  show Function.update ρ (i + 1) r (j + 1) = Function.update (fun j => ρ (j + 1)) i r j
   by_cases h : j = i
   · subst h
     rw [Function.update_self, Function.update_self]
@@ -166,13 +170,16 @@ theorem shift_update_succ (ρ : ℕ → ℝ) (i : ℕ) (r : ℝ) :
 /-- Splitting the power of `x_i` off a monomial. -/
 theorem monoEval_update : ∀ (e : List ℕ) (i : ℕ) (ρ : ℕ → ℝ) (r : ℝ),
     monoEval (Function.update ρ i r) e = r ^ (e.getD i 0) * monoEval ρ (e.set i 0)
-  | [], i, ρ, r => by rw [List.getD_nil, List.set_nil, monoEval_nil, pow_zero, mul_one]
+  | [], i, ρ, r => by
+      rw [List.getD_nil, List.set_nil, monoEval_nil, monoEval_nil, pow_zero, mul_one]
   | k :: e, 0, ρ, r => by
       have hs := shift_update_zero ρ r
       calc monoEval (Function.update ρ 0 r) (k :: e)
           = Function.update ρ 0 r 0 ^ k
               * monoEval (fun j => Function.update ρ 0 r (j + 1)) e := rfl
-        _ = r ^ k * monoEval (fun j => ρ (j + 1)) e := by rw [Function.update_self, hs]
+        _ = r ^ k * monoEval (fun j => ρ (j + 1)) e := by
+              rw [Function.update_self]
+              exact congrArg (fun t => r ^ k * monoEval t e) hs
         _ = r ^ ((k :: e).getD 0 0) * monoEval ρ ((k :: e).set 0 0) := by
               rw [List.getD_cons_zero, List.set_cons_zero, monoEval_cons, pow_zero, one_mul]
   | k :: e, i + 1, ρ, r => by
@@ -183,7 +190,8 @@ theorem monoEval_update : ∀ (e : List ℕ) (i : ℕ) (ρ : ℕ → ℝ) (r : �
           = Function.update ρ (i + 1) r 0 ^ k
               * monoEval (fun j => Function.update ρ (i + 1) r (j + 1)) e := rfl
         _ = ρ 0 ^ k * monoEval (Function.update (fun j => ρ (j + 1)) i r) e := by
-              rw [h0, hs]
+              rw [h0]
+              exact congrArg (fun t => ρ 0 ^ k * monoEval t e) hs
         _ = ρ 0 ^ k * (r ^ (e.getD i 0) * monoEval (fun j => ρ (j + 1)) (e.set i 0)) := by
               rw [monoEval_update e i]
         _ = r ^ ((k :: e).getD (i + 1) 0) * monoEval ρ ((k :: e).set (i + 1) 0) := by

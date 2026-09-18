@@ -91,19 +91,14 @@ theorem isAbstractHost_of_isPrintedHost {E : Type} [Group E] (h : SK12.IsPrinted
 
 /-- **tex l.38** (*so it is LEF, sofic and hyperlinear*): a limit of finite groups whose Cayley graphs
 form expanders is LEF, sofic and hyperlinear. -/
-theorem lef_sofic_hyperlinear_of_expanderLimit {C : ∀ (Q : Type) [Group Q], Prop}
-    (hC : ∀ (Q : Type) [Group Q], C Q → Finite Q) {E : Type} [Group E]
-    (h : ThmMainA.IsExpanderLimitOfClass C E) :
+theorem lef_sofic_hyperlinear_of_expanderLimit {C : ∀ (Q : Type) [Group Q], Prop} {E : Type}
+    [Group E] (h : ThmMainA.IsExpanderLimitOfClass C E) :
     IsTextbookLEF E ∧ IsLEF E ∧ IsSofic E ∧ IsHyperlinear E := by
-  obtain ⟨_, g, Q, _, q, hQ, hlim⟩ := h
+  obtain ⟨_, g, _, _, q, -, hlim⟩ := h
   have hT : IsTextbookLEF E :=
-    ThmMainA.manuscriptSentence_limitsOfFiniteGroupsAreLEF q g (fun k => hC (Q k) (hQ k)) hlim.1
+    ThmMainA.manuscriptSentence_limitsOfFiniteGroupsAreLEF q g hlim.2.1 hlim.1
   have hL : IsLEF E := (isLEF_iff_textbook E).2 hT
   exact ⟨hT, hL, isSofic_of_isLEF hL, Pestov91.isHyperlinear_of_isLEF hL⟩
-
-/-- The class `IsFiniteSimpleClass` consists of finite groups. -/
-theorem finite_of_isFiniteSimpleClass (Q : Type) [Group Q] (h : IsFiniteSimpleClass Q) : Finite Q :=
-  h.1
 
 /-! ## Claim 1 (tex l.33–34) -/
 
@@ -131,7 +126,7 @@ def AbstractSoConsequence : Prop :=
 /-- **Abstract, tex l.38**, closed. -/
 theorem abstractSoConsequence : AbstractSoConsequence := by
   intro E _ h
-  exact lef_sofic_hyperlinear_of_expanderLimit finite_of_isFiniteSimpleClass h
+  exact lef_sofic_hyperlinear_of_expanderLimit h
 
 /-- **Abstract, tex l.34–38.** *For every infinite minimal subshift `X`, `G_X` is an infinite, finitely
 generated, simple group with property (T) and a limit of finite simple groups `SL_{3N}(F₂)` whose
@@ -159,10 +154,13 @@ def AbstractBrownOzawaPestov : Prop :=
 
 /-- **Abstract, tex l.39–40**, closed. -/
 theorem abstractBrownOzawaPestov : AbstractBrownOzawaPestov := by
-  have hGX : PrintedGXAnswersBrownOzawaPestov := printedGXAnswersBrownOzawaPestov_of_main main
+  have hGX : PrintedGXAnswersBrownOzawaPestov := printedGXAnswersBrownOzawaPestov_of_main
+    SimpleKazhdanSofic.printedSimpleKazhdanSoficMain
   obtain ⟨S, -, -, hinf, hsimple, hT, hsofic, hhyp⟩ := hGX
-  exact ⟨⟨G S, inferInstance, hinf, hsimple, hT, hhyp⟩, ⟨G S, inferInstance, hinf, hsimple, hT, hsofic⟩,
-    printedGXAnswersBrownOzawaPestov_of_main main⟩
+  exact ⟨⟨SimpleKazhdanSofic.G S, inferInstance, hinf, hsimple, hT, hhyp⟩,
+    ⟨SimpleKazhdanSofic.G S, inferInstance, hinf, hsimple, hT, hsofic⟩,
+    printedGXAnswersBrownOzawaPestov_of_main
+    SimpleKazhdanSofic.printedSimpleKazhdanSoficMain⟩
 
 /-! ## Claim 4 (tex l.41–43) -/
 
@@ -184,7 +182,7 @@ theorem abstractLEFIffSubgroup : AbstractLEFIffSubgroup := by
     exact ⟨E, inferInstance, isAbstractHost_of_isPrintedHost hE, f, hf⟩
   · rintro ⟨E, _, hE, f, hf⟩
     exact SK12.isTextbookLEF_of_injective f hf
-      (lef_sofic_hyperlinear_of_expanderLimit finite_of_isFiniteSimpleClass hE.2.2.2.2).1
+      (lef_sofic_hyperlinear_of_expanderLimit hE.2.2.2.2).1
 
 /-! ## Claim 5 (tex l.43–45) -/
 

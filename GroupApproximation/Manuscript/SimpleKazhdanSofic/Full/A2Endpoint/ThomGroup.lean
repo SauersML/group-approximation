@@ -3,6 +3,7 @@ import Mathlib.LinearAlgebra.Matrix.Transvection
 import Mathlib.Algebra.Polynomial.Laurent
 import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.GroupTheory.Subgroup.Simple
+import Mathlib.Algebra.Field.ZMod
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -133,7 +134,7 @@ theorem transvection_comm_of_isThomShape {M : Matrix (Fin 5) (Fin 5) R} (hM : Is
         Matrix.one_apply_eq, Matrix.one_apply_eq]
     · rw [Matrix.transvection_mul_apply_same,
         Matrix.mul_transvection_apply_of_ne (0 : Fin 5) 4 (0 : Fin 5) b hb, hM.row,
-        Matrix.one_apply_ne (fun h => hb h.symm), mul_zero, add_zero]
+        Matrix.one_apply_ne (Ne.symm hb), mul_zero, add_zero]
   · by_cases hb : b = 4
     · subst hb
       rw [Matrix.transvection_mul_apply_of_ne (0 : Fin 5) 4 a (4 : Fin 5) ha,
@@ -229,7 +230,8 @@ def thomC : Subgroup (thomG0 (LaurentPolynomial K)) :=
 theorem thomC_le_range : thomC K ≤ (thomCentral (LaurentPolynomial K)).range := by
   intro g hg
   obtain ⟨x, rfl⟩ := MonoidHom.mem_range.1 hg
-  exact MonoidHom.mem_range.2 ⟨_, rfl⟩
+  exact MonoidHom.mem_range.2
+    ⟨AddMonoidHom.toMultiplicative (Polynomial.toLaurent (R := K)).toAddMonoidHom x, rfl⟩
 
 instance thomC_normal : (thomC K).Normal :=
   normal_of_le_range (LaurentPolynomial K) (thomC_le_range K)
@@ -265,7 +267,7 @@ theorem thomCentreImage_ne_bot [Nontrivial K] : thomCentreImage K ≠ ⊥ := by
     apply Polynomial.toLaurent_injective
     rw [map_mul, Polynomial.toLaurent_X, h04, ← LaurentPolynomial.T_add, add_neg_cancel,
       LaurentPolynomial.T_zero, Polynomial.toLaurent_one]
-  exact Polynomial.not_isUnit_X
+  exact Polynomial.not_isUnit_X (R := K)
     ⟨⟨Polynomial.X, Multiplicative.toAdd p, hXq, (mul_comm _ _).trans hXq⟩, rfl⟩
 
 /-- The class of `e_12(1)` is not in `Z(G_0)/C`, so `Z(G_0)/C` is proper. -/
