@@ -79,4 +79,52 @@ corrected as recorded below.
 
 ## Attempts
 
-None beyond the hypothesis check in the artifact.
+0. The hypothesis check is in the artifact `research/artifacts/gq-gq-typea-design-u2-germ-implant.md`.
+
+1. **Gate 2, the germ group, 2026-09-18 (lane gq-typeA-design): neither an enumeration nor an
+   obstruction.**
+   - *The reduction.* `Q_nu` is finitely presented exactly when two conditions hold
+     (`shell-germ-fp-is-an-ascending-hnn-gate`, `shell-ascending-gate-is-a-finite-window-inclusion`):
+     - `R_nu = <λ(P), s>` is finitely presented;
+     - for some sign `ε` and window `N`, `s^-ε λ(P) s^ε <= <s^(εj) λ(P) s^(-εj) : 0 <= j <= N>`.
+   - *Forced.* An infinite group with property (T) has one end: it is not virtually
+     cyclic, and it does not split over a finite subgroup. So window `N = 0` fails for
+     every enumeration (`one-ended-shell-inputs-admit-no-shift-normalizing-enumeration`),
+     and any witness has `N >= 1`.
+   - *The free-shift obstruction is avoidable.* By
+     `infinite-order-inputs-admit-mixed-near-relations`, with `t = x_12(1)`, some `nu` has
+     `λ_t` equal to the route-form permutation `λ'`. This gives the mixed near relation
+     `[λ_t s^4 λ_t^-1, s^8] = 1`, so `P * <s> -> R_nu` is not injective, and
+     `free-shift-shell-envelopes-are-not-finitely-presented` does not apply. The relation
+     constrains only `λ_t`. It says nothing about the window condition or about finite
+     presentation of `R_nu`.
+   - *The A5*A5 positive device is closed.* The fixed-base odometer hosts
+     (`fixed-base-shell-inputs-embed-in-odometer-rn-groups`, item 3) admit no enumeration
+     of an input with an infinite Kazhdan subgroup. So embedding `E_nu` in a finitely
+     presented simple group without presenting `E_nu`, as
+     `a5-arithmetic-shell-envelope-embeds-in-fp-simple-group` does for `A_5 * A_5`, is not
+     available through them.
+   - *The attempt at (b), a Kazhdan obstruction, and where it dies.*
+     - (i) Bass–Serre. If the window condition holds, then `s^-ε W_N s^ε <= W_N`, and
+       `R_nu` is an ascending HNN extension of the finitely generated group
+       `W_N = <s^(εj) λ(P) s^(-εj) : 0 <= j <= N>`. Each Kazhdan copy
+       `s^j λ(P) s^-j` then lies in a conjugate of the vertex group `W_N`, which is what
+       property (FA) demands. No contradiction arises.
+     - (ii) Ends and near actions. `λ(P)` is one-ended, so the near action of `R_nu` on
+       `N` is one-ended and of finite type. Cornulier's decomposition for finitely
+       presented groups gives no information on a near action of finite type. That
+       decomposition splits every near action into a realizable part and a part of finite
+       type: arXiv:1901.05065, Theorem `nafpi`, read from the source LaTeX.
+     - (iii) Abelianization. `P` is perfect, so `R_nu^ab ≅ Z` through `η`, and the gate
+       says `±η ∈ Σ^1(R_nu)` for one sign. That is consistent with finite presentation.
+     - The attempt dies here: it found no invariant of Kazhdan inputs that the window
+       condition or finite presentation of `R_nu` violates.
+   - *The attempt at (a), where it stands.* No input that is not virtually cyclic has a
+     known enumeration with finitely presented `Q_nu`.
+     - The square spiral on `Z^2` passes the window gate with `N = 2`, but its `R_nu` is
+       metabelian and not finitely presented
+       (`square-spiral-z2-near-shift-group-is-not-finitely-presented`).
+     - The arithmetic `A_5 * A_5` enumeration fails at `R_nu`
+       (`arithmetic-a5-near-group-is-not-finitely-presented`).
+     - An explicit `nu` for `St_4(R_L)` would be the first one-ended success.
+   - *Status.* Gate 2 is OPEN, with neither verdict.
