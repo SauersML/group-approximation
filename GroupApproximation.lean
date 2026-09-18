@@ -5507,6 +5507,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Macbeath
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.ProductExample
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Poly
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.UPoly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStableK2.Reduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
