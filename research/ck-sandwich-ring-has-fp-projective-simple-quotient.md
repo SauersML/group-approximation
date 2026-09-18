@@ -129,3 +129,14 @@ only up to a homomorphism from `T` that is injective on `S`.
    when `[1_R]` has infinite order in `K_0(R)`, because then `K_1` detects
    scalars. So the non-directly-finite branch is not confined to finite centre
    fields by that argument.
+5. **One explicit square-module host, and clause (b) versus stable K_2 (bh-ck-kernel,
+   09-18).** [[ck-hole-holds-for-perfect-binary-leavitt-unit-subgroups]]:
+   - *Positive instance.* `L = L_(F_2)(1,2)` satisfies the Attempt 3 recipe, since
+     `PE_4(L) = GL_4(L) ≅ L^x` is finitely presented (Khanh) and simple. So the hole
+     holds for every perfect `S <= L^x`. That gives no new Boone--Higman case.
+   - *Transfer lemma.* If `St_4(R)` is finitely presented and the image of
+     `K_2(4,R) -> K_2(R)` is not finitely generated, then (b) fails. So (b) is at least as
+     strong as the stable `K_2` budget, and every stable symbol obstruction applies to
+     witnesses in any characteristic. Clause (c) is unstable, so stable `K_1` obstructions
+     do not transfer.
+   The hole stays OPEN for simple cores outside `L^x`.

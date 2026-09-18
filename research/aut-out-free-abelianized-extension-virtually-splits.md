@@ -39,9 +39,15 @@ Let `n ≥ 2`, `H = H_1(F_n; Z)`, `π: Aut(F_n) → Out(F_n)`, and let
   does. So neither rational nor integral cohomology of the abelianized extension
   can exclude a virtual section of `Aut(F_n) → Out(F_n)`.
 - It does **not** give a virtual section. `K_n` is an extension of `Γ_n` by the
-  infinitely generated free group `Inn([F_n,F_n]) ≅ [F_n,F_n]`, and a virtual
-  section exists exactly when this extension splits over a finite-index
-  subgroup of `Γ_n`. That is the nonabelian part of the question, which is where
-  Chen--Salter's argument for surfaces lives, and it stays OPEN here.
+  infinitely generated free group `Inn([F_n,F_n]) ≅ [F_n,F_n]`. A splitting of
+  this extension over a finite-index subgroup of `Γ_n` gives a virtual section.
+  Conversely, a virtual section `s` gives such a splitting when `k∘s` vanishes on
+  a finite-index subgroup, or lifts from `H` to a crossed homomorphism into
+  `F_n` (gq-referee-a, W1). The converse is not claimed in general. The
+  nonabelian part of the question, which is where Chen--Salter's argument for
+  surfaces lives, stays OPEN here.
+- **Review.** gq-referee-a: PASS for items 1–3, with the W1 wording fix above
+  (`research/artifacts/gq-referee-a-aut-out-free-abelianized-extension-virtually-splits.md`,
+  329ff16a3).
 - It does not touch Boone--Higman for `Out(F_n)` directly
   (`out-free-groups-satisfy-boone-higman`, OPEN).

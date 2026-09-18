@@ -10,8 +10,10 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `leavitt-resolvent-k-theory-is-shifted-rational-k-theory-proof`. Refereed: gq-referee-a PASS, proof-gap lens
-(report 7f76d93e1, N1--N3 applied); one referee so far. It applies the refereed `register-completion-pimsner-from-supercoherence`, together with
-Quillen's localization sequence for a Dedekind domain and excision for `⊕_N Q`, neither read at source. It makes
+(report 7f76d93e1, N1--N3 applied); gq-referee-b PASS, citation lens (report 298991936, W1--W4 applied). It applies the
+refereed `register-completion-pimsner-from-supercoherence`, together with Quillen's localization sequence and
+excision, pinned by gq-referee-b in Weibel's K-book (V App. 6.1, (6.6), Cor. 6.7.1, Ex. 6.1.3, Thm 6.3, Cor. 6.3.1; IV
+1.11.2, Ex. 1.10.1). It makes
 §3 of `research/artifacts/gq-steinberg-q-e-n-of-resolvent-ring-status.md` a theorem. No priority is claimed.
 
 **Setting.** `R_L` is the ring of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`. `B = Q[N][(N+c)^(-1) : c >= 1]`
@@ -49,6 +51,8 @@ is its diagonal ring, and `q_k = s_1^k s_2 t_2 t_1^k` for `k >= 0`.
   compute its value in `Q^x`.
 - The isomorphism is explicit on generators, `{λ, N + c} -> λ`, but it is defined through the Pimsner sequence.
   Whether it is computable on arbitrary words is **OPEN**.
-- A computable detector would be a ring-level "total residue along the resolvent orbit". By Weil reciprocity in
+- (Superseded by `leavitt-resolvent-stable-k2-class-is-computable`, which proves (ii) by search.) A closed-form
+  detector would be a ring-level "total residue along the resolvent orbit". Heuristically, and unpinned (gq-referee-b,
+  W4), by Weil reciprocity in
   `K_2(Q(N))`, this is the tame symbol at `N = ∞` of the base part. Constructing it on all of `R_L` is the remaining
   step.
