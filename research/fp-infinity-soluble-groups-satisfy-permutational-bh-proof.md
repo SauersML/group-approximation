@@ -6,6 +6,7 @@ title: Kropholler's Theorem B gives finite rank and virtual torsion-freeness mod
 target: fp-infinity-soluble-groups-satisfy-permutational-bh
 requires:
   - rf-soluble-minimax-groups-satisfy-permutational-bh
+  - elementary-amenable-fp-infinity-groups-virtually-soluble
   - boone-higman-type-a-class-closed-under-finite-extensions
 ---
 
@@ -43,5 +44,11 @@ Lane `bh-solvable`, 2026-09-18.
    - if `G` is torsion-free, the locally finite `T` is trivial;
    - if `G` is metanilpotent, Kropholler's Theorem C makes `G` itself constructible-by-finite;
    - if `G` is constructible-by-finite, apply step 3 with `T = 1`.
-5. **Envelope.** Groups in `B_A` embed in finitely presented simple groups (part 3 of
+5. **(c).** Type `FP_∞` passes to finite-index subgroups, by restricting a resolution. So
+   the soluble subgroup `H` of finite index given by
+   `elementary-amenable-fp-infinity-groups-virtually-soluble` satisfies the hypotheses of (b)
+   whenever `T_H` is finite. That holds if `G` is virtually torsion-free, since then `H` is too.
+   Then `H ∈ B_A`, and `G ∈ B_A` by part 2 of
+   `boone-higman-type-a-class-closed-under-finite-extensions` (finite-index overgroups).
+6. **Envelope.** Groups in `B_A` embed in finitely presented simple groups (part 3 of
    `boone-higman-type-a-class-closed-under-finite-extensions`). ∎
