@@ -39,7 +39,11 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   exact closed-walk counts are always matched by a symmetric measure reaching
   `+-1`. So no finite cogrowth computation, however exact, proves `||P|| < 1`.
   Such data certify only lower bounds on `||P||`, via orthogonal-polynomial zeros
-  (`experiments/thompson-f/cogrowth_exact.py`).
+  (`experiments/thompson-f/cogrowth_exact.py`). The best certified value on the 32 published terms
+  (Elvey Price–Guttmann, arXiv:1706.07571) is `||P|| > 0.910677`
+  (`thompson-f-norm-bound-from-epg-32-term-moments`). Exact extension past word length 62 and
+  Dirichlet-eigenvalue test vectors on marked-forest window sets were both scouted there and do not
+  beat it within reach.
 - **Non-Ore certificate.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   non-amenability is equivalent to a pair `a, b` in `K[F]` with no nonzero common
   multiple. A finite search can propose candidate pairs, but ruling out every
@@ -183,6 +187,18 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     example `{x_a x_b x_c : a <= 2, b <= 3, c <= 4}`, where none appears through `D = 10`. Degree-one sets
     with gaps have cores at `D = |J| − 1` (computed), but the block construction does not cover them.
   (c-pz0, obstruction-miner, host-geometry.)
+- **Invariant pivot orders.** A pivot-order certificate
+  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`) is killed when the order is
+  left- or right-invariant on `F`, for every finite set
+  (`thompson-f-invariant-pivot-orders-cannot-certify-doubling`). The step where it fails: two private
+  points at `m` force a two-sided descent `g m ≺ m ≻ g^-1 m` with `g ∈ S^-1 S \ {1}`. Invariance turns
+  this into `c ≺ 1` and `c^-1 ≺ 1`. The failure occurs at any deep `m`, where all competitors are
+  positive, and deep elements exist by common right multiples.
+  - An order that first compares a bi-ordered quotient only certifies one fiber of `S`, which must
+    itself double and have at least four elements.
+  - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
+    maximum.
+  - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

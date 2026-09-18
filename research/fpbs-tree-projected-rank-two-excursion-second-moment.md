@@ -14,6 +14,7 @@ artifacts:
   - experiments/tree-projected-excursion-second-moment-2026-09-17/blockcheck.py
   - experiments/tree-projected-excursion-second-moment-2026-09-17/pathcheck.py
   - experiments/tree-projected-excursion-second-moment-2026-09-17/scan.py
+  - experiments/tree-projected-excursion-second-moment-2026-09-17/firstmoment.py
   - experiments/tree-projected-excursion-second-moment-2026-09-17/output.txt
 ---
 
@@ -74,5 +75,20 @@ example `S_rig` (`m = 3`, `v = 2`).
 * For large `m` the ensemble's own limit `0.27258` is the barrier. Lowering it needs a
   richer ensemble, e.g. several excursions per slot, which gives first-moment limit
   `(sqrt 21 - 3)/6 = 0.2638`.
+
+**Obstruction at `S_rig` (proved, `firstmoment.py`, section 7 of the proof).** Let class
+`X` be the trails with `N` tree steps that make any finite sequence of depth-one
+excursions, along any of the 4 letters, in each slot, with no vertical steps. Then
+`E Z_N <= 4 * 3^(N-1) (mp)^N (1-q)^(-(N+1))` with `q = 4m(m-1)p^2`. So `E Z_N -> 0`
+whenever `4m(m-1)p^2 + 3mp < 1`.
+* For `m = 3`, `v = 2` the root is `0.089669`, which is above
+  `p*(3,2) in [0.089003, 0.089008]`.
+* So **no second-moment argument over depth-one excursion trails can reach `p* <= p_u`
+  for any decoration with `m = 3`, `v = 2`**, `S_rig` included.
+* This is not a limitation of the counting bound: the first moment already vanishes.
+* A small-`m` route needs vertical steps or deeper excursions. With vertical steps the
+  first-moment root drops to `0.0777 < p*`.
+* The lumped counting bound with vertical steps in the slots is worse at every `m`
+  checked, from `m = 3` to `m = 18`. It is not recorded as an artifact.
 
 `S_rig` itself is certified separately in `fpbs-rigid-f2xz-certified-strict-thresholds`.
