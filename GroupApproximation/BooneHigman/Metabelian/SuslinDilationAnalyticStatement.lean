@@ -123,7 +123,8 @@ theorem suslinDilAn_away_surj (a : A) :
 theorem suslinDilAn_away_ker (a : A) :
     ∀ b : A, algebraMap A (Localization.Away a) b = 0 → ∃ n : ℕ, a ^ n * b = 0 := by
   intro b hb
-  obtain ⟨⟨x, hx⟩, h⟩ := (IsLocalization.map_eq_zero_iff (Submonoid.powers a) _ b).1 hb
+  obtain ⟨⟨x, hx⟩, h⟩ :=
+    (IsLocalization.map_eq_zero_iff (Submonoid.powers a) (Localization.Away a) b).1 hb
   obtain ⟨n, rfl⟩ := (Submonoid.mem_powers_iff _ _).1 hx
   exact ⟨n, h⟩
 
