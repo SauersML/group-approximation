@@ -6088,6 +6088,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Quot
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecWords
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecPoly
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecFormula
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Swap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
