@@ -585,3 +585,25 @@ Landed as `mf-null-corner-criterion-needs-faithful-ce-trace` (established, unrev
 - *Where it stops (hole stays OPEN).* For hyperlinear `Delta`, the only surviving certificates are operator-norm-only
   rigidities of `P_z C[Delta] P_z`, which are invisible to traces and to K-zero rank arithmetic. This hole is
   unchanged, and it is flagship-hard.
+### Configuration models reduce to point models (swarm-0917-w11-w11-nh-pull, finite-models, 2026-09-18)
+
+Answers the next step above. Recorded in `configuration-product-models-reduce-to-point-models`.
+- *Approach.* Test the head in permutation models through `S_m wr S_l`, acting in product action on `l`-tuples of
+  `k`-subsets. These are the product-action alternating sections of branch (M).
+- *Invariant.* The head-to-defect ratio `h/δ` in the normalized Hamming metric.
+- *Death step.* The `k`-subset fixed fraction is squeezed between `1 - 2kb` and `1 - b/2` when `m >= 8k^2`
+  (route Step 1, checked exactly in `experiments/configuration-point-models-2026-09-17/`).
+  - Hence `h/δ` of a configuration model is at most `(e/(e-1)) max(1, 4k h_pt/δ_pt)` for the point action of the same
+    wreath elements, with `l` arbitrary.
+  - Nontrivial tops cost defect `>= 1 - 1/m`. Exact tops are homomorphisms of `St_4(J)` into `S_l`, which kill the head.
+- *Hamming dichotomy.* The head dies in every Hamming limit iff `h <= C δ_(R_j)` on some window, proved with `K`-tuple
+  powers.
+- *Kills.* The configuration test for `k <= sqrt(m/8)` and `k δ -> 0`, including bounded `k` with unbounded `l`. It is
+  equivalent to Hamming point models and adds nothing.
+- *Where it stops (hole stays OPEN).*
+  - Subset sizes `sqrt(m/8) < k = o(m)`.
+  - Branch (P), primitive irreducible representations.
+  - Non-permutation unitary models.
+- **Next falsifiable step.** Decide whether the Hamming ratio `h(x_13(Q))/δ_(R_j)` is unbounded on every window, over
+  all permutation models of the `St_4(J)` presentation. By Theorem HD this is exactly whether the head is visible in
+  sofic-type limits.
