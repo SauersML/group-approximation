@@ -86,3 +86,35 @@ analogue of (UCS) at `p_c` is false on every nonamenable Cayley graph.
    - **Averaged form.** The averaged hypothesis recorded in
      `fpbs-intrinsic-l2-rate-via-uniform-stretch` removes the worst-case pairs
      but not (i) or (ii).
+3. **Planar winding obstruction (2026-09-17, swarm-0917-w6-w6-bs-last2).**
+   Test case: surface-group tilings `{4g,4g}`, where `p_c < p_u` is known.
+   - **Established inequality**
+     (`fpbs-planar-stretch-bounded-below-by-dual-piece-mass`):
+     `sup_(t>p_u) K_*(t) >= h mu(p_u) - 1`. Here `h` is the dual edge
+     isoperimetric constant, and `mu(p_u)` is the critical mean of
+     `min(|P_+|/m_+, |P_-|/m_-)`, where `P_±` are the dual pieces on the two
+     sides of the axis of a generator, attached to a closed axis edge.
+   - **Mechanism.** A shortest open path from `o` to `a^n`, closed up by the
+     axis, has a winding function. Every closed axis edge forces it to be
+     nonzero on a whole piece on one side, and the dual Cheeger inequality
+     turns that area into path length. Birkhoff along `a` and Fatou as
+     `t ↓ p_u` finish.
+   - **Invariant and step.** Any proof of (UCS) that covers these graphs must
+     prove `mu(p_u) < infinity`, a two-sided half-plane estimate for critical
+     dual percolation. The proof dies at the step that bounds the per-edge
+     detour cost uniformly as `t ↓ p_u`. One-sided or whole-plane inputs
+     (subcritical exponential decay with correlation-length constants, or
+     mean-field upper tails `s^(-1/2)`) bound `mu(t)` only by about
+     `log xi(t)`, which is unbounded. So they cannot give (UCS).
+   - **Prediction, not a refutation.** Mean-field heuristics give
+     `mu(p_u) = infinity` with logarithmic divergence, so (UCS) is expected to
+     be FALSE, with `K_*(t) ≳ log(1/(t-p_u))`. The divergence is marginal, and
+     it is recorded as the OPEN
+     `fpbs-planar-critical-two-sided-dual-piece-mass-infinite`, with the two
+     inputs that would settle it.
+   - **Consequence for the route.** The worst-case form of
+     `fpbs-intrinsic-l2-rate-via-uniform-stretch` is expected dead. Its
+     averaged ball form is the surviving variant. Typical pairs in `B_m` are at
+     distance about `2m`, and the same winding bound should apply along their
+     geodesics, so that form is probably affected as well. This is not proved,
+     since geodesic segments are not invariant lines.

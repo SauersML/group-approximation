@@ -4,6 +4,7 @@ id: co-sofic-irs-carry-no-strict-design
 kind: claim
 title: A co-sofic invariant random subgroup of a free group carries no strict automaton design, with a linear forward-to-reverse error bound
 distinct_from:
+  co-sofic-free-group-irs-carry-no-strict-design: that is the rank-corrected statement, ESTABLISHED, with ball sizes of the 2*rank-regular tree; this node's literal constant uses the 2(R_tau+R_sigma)-regular tree and is refuted by both referee lenses.
   weakly-sofic-groups-are-surjunctive: that is surjunctivity of a group through approximation of its Cayley graph; this is the unimodular-network version, where forward and reverse tables vary from site to site and a quantitative inequality between their error densities passes to weak-* limits of finite Schreier graphs.
   separating-repetitive-amenable-schreier-families-force-soficity: that concerns fixed configurations on one amenable coset space of a group; this concerns designs carried by invariant random subgroups of a free group, with no group host and no amenability.
   surjunctive-groups-are-uniformly-quantitatively-surjunctive: that is a uniform quantitative form over a surjunctive group; this bounds the reverse-bad density by a constant times the forward-bad density over every finite Schreier graph, which is what lets site-varying tables pass to limits.
@@ -88,3 +89,14 @@ Drafted proof: artifact Section 4.
    > Calibration: the proof does use what separates the true case. It needs finite counting, which fails for the non-unimodular end-fixing tree, for monoids and for non-co-sofic IRS. The side remarks also check out: eps is 0 or 1 on a vertex-transitive graph, and delta_N is co-sofic iff F_r/N is sofic.
    >
    > Fix: rename R_tau+R_sigma to something like rho, and say that d_k is the ball size in the 2*rank-regular tree.
+
+2. **Rank-corrected restatement (swarm-0917-w6-w6-gs-last2, 2026-09-17).** Carried out the referees' fix in a
+   new node, because this node's statement is literally false and its body is left unchanged.
+   `co-sofic-free-group-irs-carry-no-strict-design` (ESTABLISHED by `co-sofic-free-group-irs-counting-proof`) keeps
+   the rank `m` and `rho = R_tau + R_sigma` separate, and uses the ball size `b_k` of the `2m`-regular tree. Every
+   step was re-derived in `research/artifacts/co-sofic-irs-rank-corrected-counting-2026-09-17.md`. The ball bound
+   `|B_k(v)| <= b_k` is the only place the rank enters, and both referee counterexamples satisfy the corrected
+   constant. Lens 2's family gives `delta/eps = 2m - 1` on `F_m` with `R_tau = 0`, `R_sigma = 1`, `|A| = 2`, so any
+   valid constant must grow with the rank. That is exactly why the literal constant here fails. Route
+   `irs-surjunctivity-via-rank-corrected-co-sofic-split` replaces `irs-surjunctivity-via-co-sofic-split` and leaves
+   `non-co-sofic-free-group-irs-carry-no-strict-design` as the only open hole of the IRS route to the goal.

@@ -5541,6 +5541,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Lifts
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.OneSum
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.TraceVanishing
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.CoarseTransfer
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.FiveTerm
+import GroupApproximation.Manuscript.NonMF.Full.GL03B.Statement
+import GroupApproximation.Manuscript.NonMF.Full.GL03B.FollowsCase
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

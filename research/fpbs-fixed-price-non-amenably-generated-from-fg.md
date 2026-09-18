@@ -13,6 +13,8 @@ artifacts:
   - research/artifacts/fpbs-finite-contact-obstruction-2026-09-17.md
   - research/artifacts/fpbs-sandwich-cost-quantifier-shift-2026-09-17.md
   - research/artifacts/fpbs-extension-certificates-carry-no-cost-information-2026-09-17.md
+  - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
+  - research/artifacts/fpbs-relative-fixed-price-decomposition-2026-09-17.md
 ---
 
 **OPEN.** Assume every infinite finitely generated group has fixed price.
@@ -291,3 +293,73 @@ swarm-0917-w4-fp-nonamenably-gen, inverter).** Artifact
   generators `t_j`, with `|t_j| -> infinity`, whose floors tend to zero. It is
   recorded as OPEN `fpbs-mal-long-generator-packing-growth`. If it holds,
   every free cost of `Gamma_mal` is finite, hence 2. The claim stays OPEN.
+
+**Shifted stages: relative cost is 0 or infinity, uniformly (September 17,
+2026, swarm-0917-w5-pull-fp-2, inverter).** Artifact
+`research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md`.
+- **Result (ESTABLISHED, `fpbs-shifted-stage-relative-cost-zero-or-infinite`).**
+  Let `theta` be an automorphism with `theta(H_n) = H_{n+1}`, and let `a` be a
+  theta-invariant free action, for example any Bernoulli shift. Then
+  `relC(E_a; E_{a|H_n})` does not depend on `n`, and it is `0` if
+  `C(a) < infinity` and `infinity` otherwise.
+  - **Proof.** Transport the pairs by `T`, then truncate a finite-cost graphing
+    by labels.
+  - **For `Gamma_mal`.** The map `b_k -> b_{k+1}` is such a `theta`, so the
+    Bernoulli shift has `C = 2` iff `relC(E_beta; E_{beta|H_1}) = 0`.
+- **Decomposition left.** Shape (B) at the Bernoulli shift reduces to one
+  positive lower bound at one stage, recorded as OPEN
+  `fpbs-mal-bernoulli-single-stage-floor`. If it holds, it answers Gaboriau
+  Q 2.66 and the second part of Q 2.65, and it refutes
+  `fpbs-locally-free-free-actions-have-finite-cost`. The "slowly decaying
+  relative cost" regime does not exist for theta-invariant actions.
+- **Dead ends tried here, none written as nodes.**
+  - **`C*(Gamma_mal) < infinity` by treeability.** No construction: the free
+    `R`-tree limits of stage Cayley trees make `a` elliptic, because the
+    length of `b_1` in `H_m`, divided by the length of `a`, grows like
+    `4^(m-1)`.
+  - **Gaboriau's Th. 2.56 applied to `1 -> Gamma_mal -> M -> Z -> 1`.** No
+    obstruction: `C*(M) = 1` already follows from rank gradient, since normal
+    finite-index `K` with `psi(K) = mZ` have `rank(K) <= 2 + [M:K]/m`.
+  - **Linnell ranks.** `H_1(H_n, D) -> H_1(H_{n+1}, D)` is an isomorphism,
+    because the Fox derivative `∂w/∂b_{n+1}` of `w = b_{n+1} a b_{n+1}^{-2}` is
+    nonzero, hence invertible in `D`. This agrees with the
+    `L²`-independence used by Theorem L. So every relative `l2` obstruction
+    vanishes.
+
+  The claim stays OPEN.
+
+- **Relative fixed price decomposition (swarm-0917-w6-w6-fp-last1, September 17, 2026; artifact `research/artifacts/fpbs-relative-fixed-price-decomposition-2026-09-17.md`).**
+  - **ESTABLISHED lemma** `fpbs-relative-stage-costs-bound-cost-by-stage-liminf`.
+    Along a finitely generated subgroup chain, suppose
+    `relC(R_m;R_n) <= (C(R_m) - C(R_n))^+`. Then `C(E_a) <= liminf C(R_n)`.
+    The proof is self-contained and uses no fixed price input.
+  - **OPEN prerequisite** `fpbs-relative-fixed-price-fg-pairs` (RFP). For an
+    infinite finitely generated `K <= L` and a free action of `L`, the relative
+    cost is at most the positive part of the cost difference. It holds for:
+    - amenable `K` (Ershov–Golan–Sapir Lemma 5.7);
+    - cost-1 `L`;
+    - normal, commensurated or finite-index `K`;
+    - free factors.
+
+    The content is in finite-contact (malnormal) pairs.
+  - **Under H and RFP**, every free action of every countable group that is
+    not locally finite has `C(a) <= c*`. So shape (B) of Theorem G occurs only
+    with `c* = infinity`. The target splits into three prerequisites, each of
+    which can fail on its own:
+    1. RFP;
+    2. fixed pseudocost, the shape (A) half;
+    3. `C(Gamma) < infinity => c* < infinity` under H.
+  - **Locally free groups.** The free-pair case
+    `fpbs-relative-fixed-price-free-pairs` gives
+    `fpbs-locally-free-free-actions-have-finite-cost` through the new route
+    `fpbs-locally-free-finite-cost-from-relative-free-pairs`. This is
+    unconditional.
+  - **Γ_mal.** At the pair `(F_2, <a, bab^-2>)`, RFP_free at the Bernoulli
+    stage action implies `C(beta) = 2`, and the single-stage floor refutes
+    RFP_free.
+  - **Dead derivations of RFP from H:**
+    - the double `L *_K L`;
+    - the HNN extension centralizing `K`, which is circular;
+    - relative rank gradient, which vanishes.
+
+  The claim stays OPEN.
