@@ -5887,6 +5887,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDiagonalMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDiagonalize
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesLayerModel
+import GroupApproximation.Manuscript.NonMF.Full.GL06d.CornerStep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
