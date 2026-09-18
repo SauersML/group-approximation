@@ -6082,6 +6082,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabMatEmbed
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseDilationAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseLiftForm
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Closure
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Transfer
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Canonical
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
