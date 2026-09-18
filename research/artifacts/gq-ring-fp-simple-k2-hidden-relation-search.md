@@ -616,3 +616,371 @@ TABULATION over 185 near misses (words in N_0 fixing both axes and (1,-1))
   r on (1, -2) -> ('-49', '-46') line kept False scalar None content ratio 1
 total time 55.1
 ```
+
+## Rational-shear search (second round): blindness pre-check, done before any run
+
+Searched subgroup: `G = <σ_2^j x_12(q) σ_2^-j, σ_2^j x_21(q) σ_2^-j, W, D>` with `|j| <= 1`. There are two
+choices of `q`:
+- `q in Q_2 = {±1, ±2, ±1/2}`;
+- `q in Q_23 = Q_2 ∪ {±3, ±1/3}`.
+
+`G ⊆ N` by Attempt 5. Put `S = {σ^j(p) : p | q, |j| <= 1}`, where `p | q` means `p` divides the numerator or
+the denominator of `q`. So `S = {2, 3, 5}` for `Q_2` and `S = {2, 3, 5, 7}` for `Q_23`.
+
+Every invariant known to be preserved by all generators of `G`, and whether `r` violates it:
+
+| invariant | preserved by `G` | `r` |
+|---|---|---|
+| degree 0 (commutes with scalars) | yes | yes |
+| maps lines through 0 to lines, linearly on each | yes | yes |
+| `v_p(content)` for primes `p ∉ S`: `σ_2^j x(q) σ_2^-j` changes content only at primes `σ^j(p)`, `p \| q` | yes | yes: `r` changes content only at 2, which is in `S` |
+| the set `Z[1/S]^2` | yes | yes: its factors lie in `GL_2(Z[1/2])` or are `σ_2`-conjugates of `GL_2(Z)` |
+| full content | no (`x_12(1/2)`) | — |
+| pair determinants | no (`σ_2 x_21(1) x_12(1) σ_2^-1` doubles the axis-pair determinant, Attempt 1) | — |
+| axis character `χ`, three-line scalar `χ_3` | not known to be invariant | `χ(r) = χ_3(r) = 1`, so no violation either way |
+| scalars on `ℓ_x, ℓ_y, ℓ_-` | not an invariant | `(1,1,1)`, as for the identity |
+
+`r` violates none of these, so the search is not blind by any known invariant.
+- *Test 1 is not blind.* The quotient `V_1 V_2^-1 = L` must preserve `p`-content for `p ∉ S`, so
+  `L in GL_2(Z[1/S])`. Then `|det L|` is an `S`-unit and may be 2.
+- *Test 2 is not blind.* `L r in G` forces only `L in GL_2(Z_(p))` for `p ∉ S`.
+
+**Calibration inside `G`.** Take the planted target `P = X(-1) ∘ σ_2^-1 X(1) σ_2`, word `s-1X(1) s0X(-1)`.
+It lies in `G` and fixes both axes and `(1,-1)`.
+- Run `qcal` (`Q_2`, length <= 3, 38,619 elements) found all 39 of 39 translated words with `|det L| = 1`.
+- It counted 902 words equal on the probes to a linear map of determinant ±1 other than `±I`, for example
+  `x_12(1/2)` itself.
+- It found no linear hit with `|det L| != 1`, as is necessary unless a hidden relation exists.
+
+### Results (runs `qrunA`, `qrunB`, `qrunC`; MSI, single core, each run under 9 minutes; this round used about 25 minutes)
+
+| run | `q` set | `J` | generators | levels complete | ball | overflow | linear hits, `\|det L\| != 1` | linear, `\|det\| = 1`, not `±I` | `r`-translated (length <= 2) | `r` hits |
+|---|---|---|---|---|---|---|---|---|---|---|
+| qcal (planted) | `Q_2` | 1 | 38 | 3 | 38,619 | 4 | 0 | 902 | 39 (planted target) | 39, all `\|det L\| = 1` |
+| qrunA | `Q_2` | 1 | 38 | 3, and 448,115 of length 4 | 486,734 | 1,806 | 0 | 1,794 | 1,162 | 0 |
+| qrunB | `Q_23` | 1 | 62 | 3, and 342,052 of length 4 | 518,003 | 3,418 | 0 | 3,884 | 3,039 | 0 |
+| qrunC | `Q_2` | 2 | 62 | 3, and 246,641 of length 4 | 437,130 | 64,413 | 0 | 912 | 2,656 | 0 |
+
+**Reading.** Within the searched words, every hit would be sound. No known invariant makes the search
+blind, and the calibration planted inside `G` is found.
+- Among these words, no product of rational-shear conjugates of length <= 3 is a linear map with
+  `|det| != 1`. The same holds for part of length 4.
+- No pair of such words differs by such a map.
+- No short word `V'` has `L r V'` in the ball for any `L`.
+- This is bounded evidence, consistent with `r ∉ N`, that is with `2 ∉ I_2`. It is not a proof: the lengths
+  are short, since each rational-shear generator costs a lot of fraction arithmetic, and only `|j| <= 2` is
+  covered.
+
+### qcal.out
+
+```text
+generators 38 J 1 QSET two MAXLEN 3 RLEN 1 target planted s-1X(1) s0X(-1)
+level 1 new 38 time 0.4 overflow 0
+level 2 new 1202 time 1.4 overflow 0
+level 3 new 37378 time 32.4 overflow 4
+ball 38619 overflow 4 stopped_early False
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 902
+near misses (fix both axes and (1,-1)): 16
+target-translated words checked 39 overflow 0 matches 39
+total time 32.5
+  THIT |det L| = 1 planted | s-1X(1) | = L target | 
+  THIT |det L| = 1 planted | s-1X(2) | = L target | s-1X(1)
+  THIT |det L| = 1 planted | s-1X(1) s-1Y(-2) | = L target | s-1Y(1)
+  THIT |det L| = 1 planted |  | = L target | s-1X(-1)
+  THIT |det L| = 1 planted | s-1X(-1) | = L target | s-1Y(-1)
+```
+
+### qrunA.out
+
+```text
+generators 38 J 1 QSET two MAXLEN 4 RLEN 2 target r
+level 1 new 38 time 0.4 overflow 0
+level 2 new 1202 time 1.4 overflow 0
+level 3 new 37378 time 33.5 overflow 4
+level 4 new 448115 time 470.0 overflow 1806
+ball 486734 overflow 1806 stopped_early True
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 1794
+near misses (fix both axes and (1,-1)): 144
+target-translated words checked 1162 overflow 79 matches 0
+total time 473.1
+```
+
+### qrunB.out
+
+```text
+generators 62 J 1 QSET twothree MAXLEN 4 RLEN 2 target r
+level 1 new 62 time 0.4 overflow 0
+level 2 new 3290 time 3.2 overflow 0
+level 3 new 172598 time 154.8 overflow 180
+level 4 new 342052 time 470.0 overflow 3418
+ball 518003 overflow 3418 stopped_early True
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 3884
+near misses (fix both axes and (1,-1)): 89
+target-translated words checked 3039 overflow 314 matches 0
+total time 480.1
+```
+
+### qrunC.out
+
+```text
+generators 62 J 2 QSET two MAXLEN 4 RLEN 2 target r
+level 1 new 62 time 0.4 overflow 0
+level 2 new 3440 time 3.4 overflow 2
+level 3 new 186986 time 173.2 overflow 2830
+level 4 new 246641 time 470.0 overflow 64413
+ball 437130 overflow 64413 stopped_early True
+linear hits |det L| != 1: 0
+calibration B: words equal to a linear map of |det| 1 other than +-I: 912
+near misses (fix both axes and (1,-1)): 327
+target-translated words checked 2656 overflow 847 matches 0
+total time 483.6
+```
+
+### Script `k2searchq.py`
+
+```python
+#!/usr/bin/env python3
+"""Informative search for a hidden relation in K_2, with RATIONAL shears.
+
+N = <sigma_2^j SL_2(Q) sigma_2^-j, D> (Attempt 5). Generators here:
+sigma_2^j x_12(q) sigma_2^-j and sigma_2^j x_21(q) sigma_2^-j, |j| <= J, q in QSET, plus W and D.
+Same two tests as k2search.py (left-linear key; r-translated key). Planted calibration:
+the target r is replaced by an element PLANTED of the searched subgroup, which must be found
+with |det L| = 1; and linear collisions with |det L| = 1 and L != +-I are counted.
+Usage: k2searchq.py BUDGET MAXLEN J QSET RLEN MAXELTS [planted]
+  QSET: 'two' = {+-1, +-2, +-1/2}, 'twothree' = {+-1, +-2, +-1/2, +-3, +-1/3}
+"""
+import sys, time, bisect
+from fractions import Fraction as Fr
+
+T0 = time.time()
+BUDGET = float(sys.argv[1]); MAXLEN = int(sys.argv[2]); J = int(sys.argv[3])
+QSET = sys.argv[4]; RLEN = int(sys.argv[5]); MAXELTS = int(sys.argv[6])
+PLANT = len(sys.argv) > 7 and sys.argv[7] == 'planted'
+
+LIMIT = 5_000_000
+sieve = bytearray([1]) * (LIMIT + 1)
+sieve[0] = sieve[1] = 0
+for i in range(2, int(LIMIT ** 0.5) + 1):
+    if sieve[i]:
+        sieve[i * i::i] = bytearray(len(range(i * i, LIMIT + 1, i)))
+PR = [i for i in range(LIMIT + 1) if sieve[i]]
+del sieve
+
+
+class Overflow(Exception):
+    pass
+
+
+def idx_to_k(n):
+    return n // 2 if n % 2 == 0 else (1 - n) // 2
+
+
+def k_to_idx(k):
+    return 2 * k if k > 0 else 1 - 2 * k
+
+
+FCACHE = {}
+
+
+def factor(m):
+    if m in FCACHE:
+        return FCACHE[m]
+    orig, out = m, []
+    for p in PR:
+        if p * p > m:
+            break
+        if m % p == 0:
+            e = 0
+            while m % p == 0:
+                m //= p
+                e += 1
+            out.append((p, e))
+    if m > 1:
+        if m > LIMIT:
+            raise Overflow()
+        out.append((m, 1))
+    res = tuple(out)
+    if len(FCACHE) < 2_000_000:
+        FCACHE[orig] = res
+    return res
+
+
+def sig_int(m, j):
+    if m == 0 or j == 0:
+        return m
+    s, a = (1, m) if m > 0 else (-1, -m)
+    r = 1
+    for p, e in factor(a):
+        n2 = k_to_idx(idx_to_k(bisect.bisect_left(PR, p) + 1) + j)
+        if n2 > len(PR):
+            raise Overflow()
+        r *= PR[n2 - 1] ** e
+        if r > 10 ** 15:
+            raise Overflow()
+    return s * r
+
+
+def sig(q, j):
+    if j == 0:
+        return q
+    q = Fr(q)
+    return Fr(sig_int(q.numerator, j), sig_int(q.denominator, j))
+
+
+def mat_apply(M, v):
+    return (M[0][0] * v[0] + M[0][1] * v[1], M[1][0] * v[0] + M[1][1] * v[1])
+
+
+def gen_apply(g, v):
+    j, M = g
+    if j == 0:
+        return mat_apply(M, v)
+    w = mat_apply(M, (sig(v[0], -j), sig(v[1], -j)))
+    return (sig(w[0], j), sig(w[1], j))
+
+
+QS = [Fr(1), Fr(-1), Fr(2), Fr(-2), Fr(1, 2), Fr(-1, 2)]
+if QSET == 'twothree':
+    QS += [Fr(3), Fr(-3), Fr(1, 3), Fr(-1, 3)]
+GENS, NAMES = [], []
+for j in range(-J, J + 1):
+    for q in QS:
+        GENS.append((j, ((Fr(1), q), (Fr(0), Fr(1))))); NAMES.append('s%dX(%s)' % (j, q))
+        GENS.append((j, ((Fr(1), Fr(0)), (q, Fr(1))))); NAMES.append('s%dY(%s)' % (j, q))
+Wm = ((0, 1), (1, 0)); Dm = ((-1, 0), (0, 1))
+GENS += [(0, Wm), (0, Dm)]; NAMES += ['W', 'D']
+INV = []
+for g in GENS:
+    j, M = g
+    if M in (Wm, Dm):
+        INV.append(GENS.index(g))
+    else:
+        Mi = ((M[0][0], -M[0][1]), (-M[1][0], M[1][1]))
+        INV.append(GENS.index((j, Mi)))
+NG = len(GENS)
+PROBES = [(1, 0), (0, 1), (1, 1), (1, -1), (2, 1), (1, 2), (3, 5), (5, -3), (7, 2), (2, 9)]
+PROBES = [(Fr(a), Fr(b)) for a, b in PROBES]
+
+
+def normkey(imgs):
+    (a, c), (b, d) = imgs[0], imgs[1]
+    det = a * d - b * c
+    if det == 0:
+        return None, None, None
+    key = tuple(((d * x - b * y) / det, (-c * x + a * y) / det) for (x, y) in imgs[2:])
+    return key, abs(det), (a, b, c, d)
+
+
+def wstr(w):
+    return ' '.join(NAMES[i] for i in w)
+
+
+# ---- target r (Attempt 3) ----
+G2 = ((2, 1), (1, 1)); SG2inv = ((Fr(1, 2), Fr(-1, 2)), (Fr(-1, 2), Fr(3, 2)))
+Mm = ((1, 0), (-1, -1))
+assert sig(2, 1) == 3 and sig(5, 1) == 2
+
+
+def k_apply(v):
+    w = mat_apply(G2, (sig(v[0], -1), sig(v[1], -1)))
+    return mat_apply(SG2inv, (sig(w[0], 1), sig(w[1], 1)))
+
+
+def r_apply(v):
+    v = (2 * v[0], 2 * v[1])
+    v = mat_apply(Wm, mat_apply(Mm, k_apply(mat_apply(Mm, mat_apply(Wm, v)))))
+    v = mat_apply(Mm, k_apply(mat_apply(Mm, v)))
+    return k_apply(v)
+
+
+for v in ((1, 0), (0, 1), (1, -1), (3, -3)):
+    assert r_apply((Fr(v[0]), Fr(v[1]))) == (v[0], v[1])
+
+TARGET, TNAME = r_apply, 'r'
+if PLANT:
+    # planted target inside the searched subgroup: the near miss X(-1) o (sigma_2^-1 X(1) sigma_2)
+    PW = [NAMES.index('s-1X(1)'), NAMES.index('s0X(-1)')]
+
+    def planted(v):
+        for gi in PW:
+            v = gen_apply(GENS[gi], v)
+        return v
+    TARGET, TNAME = planted, 'planted ' + wstr(PW)
+print('generators', NG, 'J', J, 'QSET', QSET, 'MAXLEN', MAXLEN, 'RLEN', RLEN, 'target', TNAME, flush=True)
+
+ident = tuple(PROBES)
+seen = {ident: ()}
+frontier = [(ident, ())]
+k0, d0, _ = normkey(ident)
+table = {k0: {d0: ()}}
+hits, det1_nontriv, near, overflow = [], 0, 0, 0
+stopped = False
+for L in range(1, MAXLEN + 1):
+    nxt = []
+    for imgs, w in frontier:
+        if time.time() - T0 > BUDGET or len(seen) > MAXELTS:
+            stopped = True
+            break
+        last = w[-1] if w else None
+        for gi in range(NG):
+            if last is not None and gi == INV[last]:
+                continue
+            try:
+                new = tuple(gen_apply(GENS[gi], v) for v in imgs)
+            except Overflow:
+                overflow += 1
+                continue
+            if new in seen:
+                continue
+            nw = w + (gi,)
+            seen[new] = nw
+            nxt.append((new, nw))
+            key, dt, ab = normkey(new)
+            if key is None:
+                continue
+            ent = table.setdefault(key, {})
+            for d2, w2 in ent.items():
+                if d2 != dt:
+                    hits.append((nw, w2, dt / d2))
+            if key == k0 and dt == 1 and ab not in ((1, 0, 0, 1), (-1, 0, 0, -1)):
+                det1_nontriv += 1
+            ent.setdefault(dt, nw)
+            if new[0] == (1, 0) and new[1] == (0, 1) and new[3] == (1, -1):
+                near += 1
+    print('level', L, 'new', len(nxt), 'time', round(time.time() - T0, 1), 'overflow', overflow, flush=True)
+    frontier = nxt
+    if stopped:
+        break
+
+rhits, rchecked, rover = [], 0, 0
+for imgs, w in list(seen.items()):
+    if len(w) > RLEN or time.time() - T0 > BUDGET + 60:
+        continue
+    try:
+        rim = [TARGET(v) for v in imgs]
+    except Overflow:
+        rover += 1
+        continue
+    rchecked += 1
+    key, dt, _ = normkey(rim)
+    if key in table:
+        for d2, w2 in table[key].items():
+            rhits.append((d2 / dt, w2, w))
+
+print('ball', len(seen), 'overflow', overflow, 'stopped_early', stopped)
+print('linear hits |det L| != 1:', len(hits))
+for a, b, ratio in hits[:20]:
+    print('  HIT |det L| =', ratio, '|', wstr(a), '| = L |', wstr(b))
+print('calibration B: words equal to a linear map of |det| 1 other than +-I:', det1_nontriv)
+print('near misses (fix both axes and (1,-1)):', near)
+print('target-translated words checked', rchecked, 'overflow', rover, 'matches', len(rhits))
+informative = [h for h in rhits if h[0] != 2] if not PLANT else rhits
+for ratio, w2, w in rhits[:20]:
+    tag = ('uninformative' if ratio == 2 else ('E-IN-N' if ratio == 1 else 'NEW')) if not PLANT else 'planted'
+    print('  THIT |det L| =', ratio, tag, '|', wstr(w2), '| = L target |', wstr(w))
+print('total time', round(time.time() - T0, 1))
+```
