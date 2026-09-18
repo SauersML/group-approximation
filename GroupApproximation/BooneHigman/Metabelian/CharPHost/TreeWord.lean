@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeShift
 import GroupApproximation.BooneHigman.Trees.TreeAut
+import Mathlib.Tactic.Abel
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -114,7 +115,6 @@ theorem act_one [DecidableEq m] (v : List (Letter m F i₀)) :
 
 /-! ### Products -/
 
-omit [DecidableEq σ] in
 /-- The first-level image of a product pair `(g g', b + g b')`. -/
 theorem image_mul (g g' : Matrix m m (MvPolynomial σ F)) (b b' : m → MvPolynomial σ F)
     (e : m → F) : image (g * g') (b + g *ᵥ b') e = g *ᵥ image g' b' e + b := by
