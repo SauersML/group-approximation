@@ -6,11 +6,12 @@ title: Uniform clique inequality - a Hermitian matrix with zero diagonal and all
 artifacts:
   - experiments/hermitian-edge-trace-norm-2026-09-18/README.md
   - experiments/hermitian-edge-trace-norm-clique-energy-2026-09-18/README.md
+  - experiments/hermitian-edge-trace-norm-clique-small-m-2026-09-18/README.md
 distinct_from:
   hermitian-edge-trace-norm-vs-independence: that is (**) for every graph and weight; this is the single case G = K_m, w = 1, which by the facet reduction is equivalent to (**) for all h-perfect graphs (all perfect graphs) and is the only open case there.
 ---
 
-**OPEN only for m = 4 and m = 5 (proved for m <= 3 and, by `hermitian-edge-trace-norm-clique-inequality-large-m`, for every m >= 6; numerics for m <= 10).** For every `m >= 2` and every Hermitian
+**OPEN only for m = 5.** It is proved for `m <= 3`, for `m = 4` by `hermitian-edge-trace-norm-clique-inequality-k4` (computer-assisted flux-torus branch-and-bound), and for every `m >= 6` by `hermitian-edge-trace-norm-clique-inequality-large-m`. Numerics cover `m <= 10`. For every `m >= 2` and every Hermitian
 `m x m` matrix `C` with `C_ii = 0` and `|C_ij| >= 1` for all `i != j`,
 
 ```text
@@ -20,7 +21,7 @@ distinct_from:
 **Why it matters.** By `hermitian-edge-trace-norm-k4-free-h-perfect` (Theorem C), (UCI) for all `m`
 is equivalent to (**) for all perfect graphs and all h-perfect graphs, and it is one of the two
 holes of `hermitian-edge-trace-norm-via-stab-facets`. (UCI) with `m <= 3` is what gives the proved
-class (K4-free h-perfect graphs). `K_4` is the smallest open instance, and `K_4`, `K_5` are the only ones.
+class (K4-free h-perfect graphs). `K_5` is now the only open instance (`K_4` is done).
 
 **Equivalent forms.**
 - *Dual.* (UCI) iff `sum_i Q_ii >= sqrt3 (m-1)` whenever `Q +- C >= 0`. With `A = (Q+C)/2`,
@@ -49,6 +50,13 @@ certificate on the complex sphere. What is left:
 - *Obstruction.* Any bound through `sum d >= E(G)/(m-1)`, with `E = sum_{i != j} r_ij`, fails at
   `m = 4, 5`. The 4th and 5th roots of unity give `E = 2 + 4 sqrt2 = 7.657` and `E = 13.764`,
   below the needed `(sqrt3/2)(m-1)^2 = 7.794` and `13.856`. So `m = 4, 5` need the matching (non-averaged) structure.
+
+- *`m = 4` and the route for `m = 5`.* `hermitian-edge-trace-norm-clique-inequality-k4` proves `m = 4`
+  directly. After gauging, only the flux torus `T^3` is free. For fixed phases the problem is an SDP,
+  whose dual `Z` gives the separable lower bound `sum t_ij 2Re(Z_ji e^{i theta_ij})`. This covers `T^3`
+  with 584 boxes carrying exactly checked rational certificates. The same script runs `m = 5` on `T^6`
+  (with a 4-fold symmetry reduction). About 41,000 SDP solves cover one sixteenth of the reduced
+  domain, and the run is in progress.
 
 **Known.** `m = 2`: `||C||_1 = 2|C_12|`. `m = 3`: `tr C = 0` gives `||C||_1 >= sqrt2 ||C||_F >= 2 sqrt3`,
 tight at flux `pi/2`. Frobenius alone gives `sqrt(2m(m-1))`, which is below `sqrt3 (m-1)` for `m >= 4`.

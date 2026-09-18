@@ -64,3 +64,12 @@ odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ
     `one-mod-k-partition-posets-are-highly-connected` (Björner–Wachs, imported verbatim from Wachs's notes).
   - Characters live on every factor, so `characters-living-on-m-plus-one-factors-lie-in-sigma-m` and Meinert's
     criterion close the argument.
+- **2026-09-18 (w6-101): both items for every `r`, for `V_{d,r}(G)`: ESTABLISHED** as
+  `rover-nekrashevych-vdr-sigma-full-for-every-r` via `rover-nekrashevych-vdr-sigma-full-via-type-r-partitions`
+  (unreviewed).
+  - Item 1 holds for `V_{d,r}G`: characters restrict to the sum-invariant characters, and they live on every nonempty
+    clopen set.
+  - Item 2 holds for every self-similar `G` and every `r`, whenever `V_{d,r}G` has type `F_m`.
+  - For `gcd(r, d−1) > 1` the type-`r` partitions are not directed. Contractibility then comes from the new node
+    `r-mod-k-partition-posets-truncations-highly-connected` (Wachs 1999, nonpure shellability), used as a directed
+    union of finite layers.

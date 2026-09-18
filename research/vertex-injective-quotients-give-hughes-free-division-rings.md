@@ -8,7 +8,7 @@ distinct_from:
   fsp-graph-of-rings-and-linnell-extension-imports: that imports the embedding of a graph of Hughes-free vertex rings into a division ring; this shows that for the graphs of groups above that division ring is Hughes-free.
   universal-division-rings-do-not-iterate-over-graphs-of-groups: that shows universality does not iterate over graphs of groups and identifies the Linnell iteration with q:HF; this answers q:HF positively on an explicit class, without any universality statement.
   higman-bs-amalgam-has-hughes-free-division-rings: that gives Hughes-free rings for the BS(1,2) amalgams inside Higman's group; this is a general closure theorem, and its free-product and fold cases do not need Baumslag-Solitar vertex groups.
-  kaplansky-zero-divisor-conjecture: that is the conjecture; this enlarges, in every characteristic, the class of groups known to have Hughes-free division rings, and so to satisfy the embedding form of the zero-divisor conjecture.
+  kaplansky-zero-divisor-conjecture: that is the conjecture; this adds no case of it or of its division-ring embedding form for one-relator groups, since H consists of locally indicable groups (Higman, Burns-Hale; Lewin-Lewin for one-relator groups), and it enlarges only the class with Hughes-free division rings in positive characteristic and for crossed products.
 ---
 
 **ESTABLISHED** (new class and strict reduction) by [[vertex-injective-quotients-give-hughes-free-division-rings-proof]].

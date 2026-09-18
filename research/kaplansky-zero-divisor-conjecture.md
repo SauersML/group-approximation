@@ -195,3 +195,17 @@ fixed finitely presented torsion-free group `U`.
       (`edge-injective-quotients-give-hughes-free-division-rings`). Still
       open: rank-2 Magnus HNNs in which both extreme letters occur in two or
       more syllables.
+    - **Novelty audit: the `𝓗` line adds no case of this conjecture
+      (w8-059).** Every group in `𝓗` is locally indicable by definition.
+      Locally indicable groups are right-orderable (Burns–Hale), hence
+      unique-product, and Higman (1940) already proved their group rings over
+      domains have no zero divisors. So nothing proved about `𝓗`, or about any
+      Hughes-free division ring, can give a new case or a counterexample host.
+      For one-relator groups even the division-ring embedding is classical
+      (Lewin–Lewin 1978, every division ring). The `𝓗` results are new only
+      for *Hughes-free existence* in characteristic `p` (open for one-relator
+      groups of primitivity rank 2, FSP Question 7.13) and for crossed
+      products. That is input to char-`p` coherence and approximation, not
+      to this conjecture. The division-ring embeddings on this node that
+      *do* bear on it are the ones for groups that are not locally indicable,
+      such as `Lambda *_Z P` above.

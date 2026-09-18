@@ -7,7 +7,7 @@ distinct_from:
   vertex-injective-quotients-give-hughes-free-division-rings: that needs a map to H injective on every vertex group and handles Magnus HNNs only when the base retracts onto an edge group; this needs injectivity only on edge groups (vertex groups assumed in H), and so certifies non-retractive Magnus HNNs such as <a,b | a^2 b a b a^2 b^-2>, whose edge groups are rank-two non-retracts.
   baumslag-gersten-group-is-hughes-free-embeddable: that treats one ascending HNN of BS(1,2) by a directed union of retract segments; this treats Magnus towers whose segments are root adjunctions, not retractions.
   higman-bs-amalgam-has-hughes-free-division-rings: that proves the four Baumslag-Solitar amalgams inside Higman's group are Hughes-free embeddable; this uses them, with Higman's perfectness, to show H is not closed under amalgamation along F_2.
-  kaplansky-zero-divisor-conjecture: that is the conjecture; this enlarges, over every division ring and every crossed product, the class of groups known to have Hughes-free division rings, and so to satisfy the zero-divisor conjecture.
+  kaplansky-zero-divisor-conjecture: that is the conjecture; this adds no case of it, since every group in H is locally indicable and so already satisfies it (Higman 1940; Burns-Hale), and it enlarges only the class with Hughes-free division rings in positive characteristic and for crossed products.
 artifacts:
   - experiments/magnus-hnn-vertex-quotients-2026-09-17/hierarchy_certify.py
   - experiments/magnus-hnn-vertex-quotients-2026-09-17/census.py
@@ -79,6 +79,36 @@ linear-recurrence statement about `H_1`.
   letters occur in at least two syllables. Their Nielsen orbits, searched up to length 14 by `orbit_certify.py`,
   contain no certified relator.
 - For these relators, no edge-injective map from the Magnus HNN to a free group was found (images of length ≤ 4).
-- I have not checked whether Jaikin-Zapirain and Linton's work on group algebras of one-relator groups already
-  gives HFE, over arbitrary division rings and crossed products, for all torsion-free one-relator groups. If it
-  does, items 2–5 and 7 are special cases of it, and items 1 and 6 still stand.
+- The literature status of items 2–5 and 7 is settled in the next section. They are not special cases of
+  Jaikin-Zapirain–Linton.
+
+## Novelty against the literature (audit of 2026-09-18)
+
+Sources read: Linton–Nyberg-Brodda, arXiv:2501.18306 v1, §2.4.4–2.4.5 and §1.7.5; the abstracts of
+Jaikin-Zapirain–López-Álvarez (arXiv:1810.12135), Jaikin-Zapirain–Linton (arXiv:2303.05976 v4, Annals 2025),
+Fisher–Sánchez-Peralta (arXiv:2303.08165) and Jaikin-Zapirain, *The universality of Hughes-free division rings*
+(Selecta 2021).
+
+- **Zero divisors: nothing new.** Every group in `𝓗` is locally indicable. Locally indicable groups are
+  right-orderable (Burns–Hale), hence unique-product, so every crossed product over a division ring has no zero
+  divisors. Higman (1940) had this for group rings over domains. Torsion-free one-relator groups are locally
+  indicable (Brodskii, Howie). So no theorem about `𝓗` gives a new case of the zero-divisor conjecture, and no
+  group in `𝓗` can be a counterexample host.
+- **Embedding in a division ring: nothing new for one-relator groups.** Lewin–Lewin (1978) embed `kG` in a
+  division ring for every torsion-free one-relator `G` and every division ring `k`.
+- **Hughes-free existence, characteristic 0, group algebras: nothing new.** For every locally indicable `G` and
+  every field `K` of characteristic `0`, `K[G]` has a Hughes-free division ring (Jaikin-Zapirain–López-Álvarez
+  with Gräter; survey Theorem 2.4.14).
+- **Hughes-free existence, characteristic `p`: new outside known classes.** For torsion-free one-relator
+  groups, existence is known in characteristic `p` only when `G` is virtually compact special (FSP). That covers
+  primitivity rank at least 3, and FSP Question 7.13 leaves primitivity rank 2 open. The 2025 survey states that
+  a Hughes-free `K[G]`-ring "is only known to exist when `K` has characteristic 0" (§2.4.5). It adds that
+  Jaikin-Zapirain–Linton's coherence theorem for `K[G]` would extend to every field once it does. Items 2–5 and 7 therefore give
+  new characteristic-`p` cases for every certified group that is not virtually compact special and not
+  residually (locally indicable amenable). [[baumslag-gersten-group-is-hughes-free-embeddable]] checks such an
+  example. I have not decided whether `<a,b | a^2 b a b a^2 b^{-2}>` itself, or `BS(p,q)` with `|p|, |q| ≥ 2`, is
+  covered by one of those classes.
+- **Crossed products over division rings: new in every characteristic** outside Jaikin-Zapirain's
+  residually-(locally indicable amenable) class. The characteristic-0 theorem above is for group algebras over
+  fields only.
+- **Items 1 and 6** are closure and obstruction statements that I have not found in the literature.
