@@ -51,6 +51,61 @@ invariant probability measure of `K` is carried by `U_K`.
   hole to this claim; no progress on the claim itself. The shape-weighted brick
   families and the twisted Koopman representation of the Lebesgue measure both fail to
   give almost invariant vectors without an invariant measure (artifact Section 6).
+- 2026-09-17 (lane swarm-0917 e-nv-kazhdan, minimal-counterexample): a biography of an
+  infinite Kazhdan `K <= nV` and a split of this claim into two halves.
+  - **Established.** `nv-point-germ-groups-embed-in-zn-by-slope`.
+    - At a fixed point the slope decides the germ, so point germ groups of any
+      subsystem are abelian of rank at most `n`.
+    - This names the nV input the Constraints section asks for: `SL_3(Z[1/p])` on
+      `P^2(Q_p)` has the non-abelian germ group `SL_2(Z[1/p])` at `[1:0:0]`, so it is
+      not an nV subsystem.
+    - A canonical brick self-compression meeting a closed invariant set forces a
+      fixed point in that set with slope `-|u| ≠ 0`.
+    - Stabilizers with property (T) are locally trivial. So finite orbits of `K`
+      are slope-principal.
+  - **Biography of a minimal `Z ⊆ Z_K`.**
+    - `Z` is infinite and perfect, with no invariant measure.
+    - Every orbit in `Z` has unbounded slopes. With bounded slopes, bricks of shape
+      `c·1 + F(y)` are transported canonically along the orbit, giving a finite
+      orbit of marked pieces and putting the point in `U_K`.
+    - Point germs lie in `Z^n`.
+    - Either `Z` is slope-principal, or some `g ∈ K` has a compressing fixed point
+      (constant-sign slope) or a saddle (mixed signs, `n >= 2` only) in `Z`.
+  - **Split, both halves OPEN.**
+    - `minimal-sets-of-kazhdan-subgroups-of-nv-are-slope-principal`: all of (T) goes
+      here. It is implied by finiteness.
+    - `slope-principal-minimal-sets-of-nv-subgroups-carry-measures`: no (T), so it can
+      fail on its own.
+    - Route: `kazhdan-nv-measured-minimal-sets-via-slope-principality`.
+  - **Where the direct argument dies.** Suppose the orbit height `F` is bounded
+    below.
+    - The bricks `B_y` of shape `c·1 + F(y)` are then canonically transported and
+      level sets are finite.
+    - A nested pair `B_y ⊊ B_x` gives a compression, hence a nonzero-slope fixed point
+      in `Z`. For `n = 1` with a principal `Z` this is a contradiction once a nested
+      pair exists.
+    - But infinitely many bricks of increasing shape can form an antichain (`[1], [01], [001], …`),
+      and for `n >= 2` Dickson's lemma orders shapes but not positions. Heights
+      unbounded below break the canonical transport. The argument does not close.
+  - **Class killed.** Any proof whose only nV-specific input is the shape of point germ
+    groups (abelian of rank at most `n`), together with (T), minimality and
+    measure-freeness, fails.
+    - Torsion-free cocompact lattices in `Sp(k,1)`, `k >= 2`, have (T) and act on a
+      minimal subset of the horofunction boundary of a Cayley graph. That subset is a
+      totally disconnected infinite compact set mapping onto the Gromov boundary.
+    - Its point stabilizers are cyclic and it has no invariant measure.
+    - The imports are Kazhdan for `Sp(k,1)` and the map from the horofunction boundary
+      onto the Gromov boundary. Both are standard and were not re-read at source.
+    - Such a proof must use the slope values themselves, as the principal/compressing/saddle
+      trichotomy does.
+  - **Construction recipe.** For a counterexample, realize such a Cantor model inside
+    `C^n` with generators acting by finite prefix replacement. Loxodromic fixed points
+    must then carry nonzero slopes, compressing or saddle.
+    - First finite step: take the rational (transducer) boundary action of a
+      hyperbolic group from Belk–Bleak–Matucci, calibrating on a surface group, and
+      test whether its states can be made trivial on deep cones after recoding
+      coordinates into `n` binary streams.
+    - Nontrivial tail states are the obstruction to lying in `nV`.
 - 2026-09-17 (lane swarm-0917-w6-w6-re-pull-z-2, group-rings / transplanter). Three
   routes, none closing the claim; details in
   `research/artifacts/kazhdan-nv-slope-distortion-and-tail-gate-2026-09-17.md`.
