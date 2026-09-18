@@ -1,13 +1,26 @@
 ---
 rg: 2
 id: ct-p1-and-ct-p2-always-generate-ct-p1-union-p2
-kind: claim
-title: For all sets P1, P2 of odd primes, CT_P1(Z) and CT_P2(Z) generate CT_(P1 ∪ P2)(Z); Kourovka Problem 21.75 has a negative answer
+kind: route
+title: A second, independent proof that CT_P1(Z) and CT_P2(Z) generate CT_(P1 ∪ P2)(Z) (Kourovka 21.75), by routing through a modulus-4 box, with at most 60 letters per class transposition
+target: ct-p1-and-ct-p2-generate-ct-of-the-union
 artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). The proof is elementary and self-contained: it
+**Duplicate result, independent proof.** Lane bh-artin landed the same theorem 48 seconds
+before this node: `ct-p1-and-ct-p2-generate-ct-of-the-union` with its proof
+`ct-p1-and-ct-p2-generate-ct-of-the-union-proof`, commit 311b5a0f3. The two lanes worked
+without contact, and the proofs differ.
+- bh-artin's proof normalizes by `CT_∅(Z)`, then transports `0(4)` and `2(4)` onto the
+  target pair in two steps, one in each group.
+- The proof below routes each factor through a modulus-4 box `E`, then transports the
+  `P1`-part by a two-transposition element of `CT_P2(Z)` that fixes `E`.
+
+This lane read bh-artin's proof step by step and found no gap. Two independent proofs serve
+as a cross-check until a referee reads either one.
+
+**Status**: lane proof, not reviewed. The proof is elementary and self-contained: it
 uses only the definition of a class transposition, with no groupoid theory and no cited
 theorem. Every step is an identity between explicit permutations of `Z`, which can be
 checked by hand or in Kohl's RCWA package.

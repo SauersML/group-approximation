@@ -80,3 +80,4 @@ See `q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding` for proofs.
 - **What remains.** Q ⋊ ⟨2⟩ ≤ 2V_τ follows from one binary tree 𝒯 on X′ under which the odd rotations and doubling are local similarities.
 - **Ruled out.** On the odd mixed-radix odometer L-space (circle blown up at Q_odd/Z), no continuous σ′ satisfies σ′R_a = R_{2a}σ′. So that shape cannot work.
 - **A necessary condition.** 𝒯 needs infinitely many split ratios.
+- **Update, Attempt 3b.** bh-free-16's `rational-rotations-and-doubling-have-no-common-tree-coding` rules out the tree 𝒯 needed above: a local 𝒯-similarity is exactly an almost-automorphism, and doubling forces only finitely many primes among the rotations that are almost-automorphic. So the canonical solenoid route is dead. What survives is the case of exotic free Q_odd/Z-actions (C, ρ, σ∘g) that are not conjugate to the rational rotations of the Cantorized circle.

@@ -10,10 +10,13 @@ requires: [commensurator-rigid-groups-have-no-faithful-bs-members, char-zero-lin
 **Step 1 (the kernel).** Let `v` be a vertex.
 - By `commensurator-rigid-groups-have-no-faithful-bs-members`, some finite-index
   subgroup of `G_v` acts trivially on the tree, so it lies in `K`.
-- `K ⊆ G_x` for every vertex `x`, so `K` has finite index in `G_v`. It is normal in
-  `H` and commensurable with `G`. That is item 1.
+- `K ⊆ G_x` for every vertex `x`, so `K` has finite index in `G_v`. Every vertex
+  stabilizer `G_x` is a conjugate of one of the finitely many vertex groups, and `K`
+  is normal in `H`, so `[G_x : K] < ∞` at every vertex of the tree. `K` is
+  commensurable with `G`. That is item 1.
 - `K` is finitely generated, like `G_v`.
-- `H/K` acts on the tree with finite vertex stabilizers and finitely many orbits.
+- `H/K` acts on the tree with vertex stabilizers `G_x / K`, finite by the previous
+  point, and finitely many orbits.
   So it is the fundamental group of a finite graph of finite groups, finitely
   generated and virtually free.
 

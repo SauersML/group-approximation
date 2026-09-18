@@ -12,7 +12,7 @@ distinct_from:
 **ESTABLISHED** by `loop-retraction-forces-fp-eventual-section-groups-proof` (lane proof, elementary; it uses
 only the necessity half of Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation`, which is not yet
 refereed; no priority claimed: the argument is a variant of the retraction in Skipper–Witzel–Zaremsky
-arXiv:1712.05361 §5). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
+arXiv:1712.05361 §5). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`. Referee b (citations, scope) PASS: `research/artifacts/gq-referee-b-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## Setting
 
@@ -34,8 +34,11 @@ with `σ^p` idempotent on `S` (a finite self-map has one). Put
 
 ## Consequences
 
-1. **SWZ's `F_2` case.** If `S` is persistent at `x` (`s|_x = s`), then `S_∞ = S`, `G_∞ = G`, and this is the
-   "only if" half of `persistent-automata-rn-group-fp-iff-group-fp`.
+1. **SWZ's `F_2` case, for actions fixing the letter.** If every state fixes `x` and `s|_x = s`, then
+   `S_∞ = S`, `G_∞ = G`, and this is the "only if" half of `persistent-automata-rn-group-fp-iff-group-fp`.
+   SWZ Definition 5.1 (arXiv:1712.05361) asks only `s|_x = s`, not `s(x) = x`, so this recovers SWZ Theorem 5.8
+   (`n = 2`) only for persistent actions that fix the letter. Those include every action of SWZ Lemma 5.3
+   (their `ι` fixes the letter `d`), hence their Theorem 7.1 and Example 7.2.
 2. **Partial persistence is enough to kill finite presentation.** Only the letter has to be common; the
    states outside `S_∞` may be arbitrary. This gives
    `linear-activity-automata-can-have-non-fp-nekrashevych-groups`: a linear-activity automaton, with
