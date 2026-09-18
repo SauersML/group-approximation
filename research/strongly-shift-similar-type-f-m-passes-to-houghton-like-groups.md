@@ -81,3 +81,14 @@ presented and `n >= 3`, then is `H_n(G)` finitely presented? If `G` is of type `
 **For Boone--Higman.** Nothing new for inputs whose envelope `G` is already finitely presented. The open room on the
 Houghton-like route is still an enumeration with `E_nu(P)` not finitely presented but some `H_n(E_nu(P))` finitely
 presented. See `fp-strongly-shift-similar-groups-have-fp-houghton-like-groups`.
+
+**Lesson for general BH.** For permutation groups containing `FSym`, finiteness is controlled by the tower of
+finite-set stabilizers, not by the germ group.
+- For strongly shift-similar `G` the stabilizers are copies of `G`. So `H_n(G)` is at least as finite as `G`, and
+  the proof shows why: `H_n(G)` is `Z^(n-1)` over a finitary mixing of copies of `G`.
+- The converse fails (`H_2(H_2) = H_4`), but only through the Houghton part. Extra finiteness of `H_n(G)` must come
+  from `FSym` and its interaction with the rays, never from the germ group. The refuted germ-lifting claim
+  (`free-shift-houghton-like-envelopes-are-not-fp`) is the same lesson from the other side.
+- For BH along permutation envelopes: build finite presentability into the envelope `E_nu(P)` (rigid near
+  relations), or find a mechanism by which the rays repair a non-finitely-presented `G`. Nothing here supplies the
+  latter.
