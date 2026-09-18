@@ -32,3 +32,15 @@ periodic group, inside `nV`. That separates `nV` from `V`, which is torsion loca
    - A SMART-like recursive machine whose zero-block recursion carries a period-3 grading is the natural
      next design.
    - Handed to lane bh-free-50, which owns `nV` torsion from 2026-09-18.
+2. **Attempt 2 (2026-09-18, bh-free-50): SMART is ruled out for every renormalization, not only the landed
+   one.**
+   - `smart-level-zero-return-map-has-free-divergence` (ESTABLISHED, lane proof):
+     - SMART's induced map has free divergence at every point, and its phase is open off two Z-orbits.
+     - So neither it nor any finite skew product of it factors onto `T_3`, by any factor map.
+     - This proves the openness heuristic recorded in `smart-renormalization-admits-no-graded-basins`.
+   - Design constraint for any witness:
+     - The fresh cell that each level of a SMART-like hierarchy adds must not be free near the holes.
+     - Equivalently, the odometer phase must be non-open there, with the level class mod 3 fixed by a
+       bounded window.
+     - A machine that accepts every tape as a valid configuration has free fresh cells unless its
+       recursion reads them only in a level-graded way.
