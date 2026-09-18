@@ -179,3 +179,9 @@ It supersedes the OPEN line at the top of this node.
     modification clouds of a minimal point.
   - A counterexample must live over a one-ended non-exact piece, with rigidity from a source other
     than boundaries and other than the Cornulier regime with (IS).
+- **The decisive test case for (RA′)** (`wall-orientation-subshifts-are-quantum-rigid`, OPEN).
+  - Code the Roller boundary of a wall structure as a subshift. It is rigid for trees and for `Z^2`.
+  - If it is rigid for a non-exact group with walls (Arzhantseva–Osajda Haagerup non-exact groups;
+    Osajda's residually finite group is built the same way), then (RA′) is false.
+  - Modification clouds give only 1-Lipschitz depth functions, which are Haagerup-type data. So
+    "property A from clouds" cannot prove (RA′) if that test case is rigid.

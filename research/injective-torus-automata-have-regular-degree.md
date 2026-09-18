@@ -8,6 +8,7 @@ distinct_from:
   gottschalk-surjunctivity-conjecture: the dead co-Hopfian lease on that node used homology of pattern permutation modules of finite shifts, where every automaton acts as the identity; here the alphabet is connected, first cohomology is the free module Z[G]^d, and automata act by a nontrivial degree matrix.
 artifacts:
   - research/artifacts/torus-alphabet-degree-2026-09-17.md
+  - research/artifacts/torus-degree-locally-indicable-and-fox-witness-2026-09-18.md
 ---
 
 For every countable group `G`, every `d >= 1`, and every injective continuous
@@ -135,3 +136,27 @@ independently of Gottschalk's conjecture.
     `flat-weak-bass-holds-exactly-for-locally-indicable-groups` item 1(ii) cites JZ21
     universality for every locally indicable `G`. The JZ21 abstract claims it only for RLA
     groups, so the dependent items are supported only on that class.
+- 2026-09-18 (swarm-0917-w13-w13-gs-last1): the locally indicable case and the Fox witness
+  (artifact `research/artifacts/torus-degree-locally-indicable-and-fox-witness-2026-09-18.md`).
+  - **Positive** (`locally-indicable-groups-are-torus-surjunctive`, ESTABLISHED).
+    - *Proof.* If `<supp D>` is locally indicable, `epsilon(D) in GL_d(Z)` already forces
+      regularity at every `d`, by Strebel's `D(Z)` property
+      (`strebel-class-dz-is-locally-indicable`, imported via Cochran–Harvey).
+    - *What else follows.* Then `tau` is a homeomorphism and `D(tau) in GL_d(Z[G])`.
+    - *New hosts.* The new non-RF host is `BS(2,3)` at every `d`. This answers the first test
+      of need 7c18e718.
+    - *Corrects w9.* Augmentation-only proofs do not work "exactly on RPP support". They also
+      work on locally indicable support.
+  - **Obstruction** (`fox-witness-kills-augmentation-torus-degree-proofs`, ESTABLISHED).
+    - *The witness.* On any group with a nontrivial f.g. perfect subgroup, `(P J)^*` has
+      `epsilon = I` and the nonzero left kernel row `(x_i^{-1} - 1)`. Here `J` is a Fox Jacobian
+      and `P epsilon(J) = I`.
+    - *Where augmentation-only proofs now die.* A second class, which contains torsion-free
+      groups. Higman's group carries an explicit `4 x 4` witness.
+  - **Open region for C2.** Support groups that are neither RPP nor locally indicable (nor LEF
+    or abelian, by w10 results on another branch).
+    - Every torsion-free group in this region has a nontrivial f.g. subgroup with finite
+      abelianization. Where that subgroup is perfect, the Fox witness applies.
+    - **Sharpest test.** Construct, or rule out, an injective `tau` on `(T^4)^H`, `H` Higman's
+      group, with `D(tau)` the Fox witness. It would refute TS at `H`. The periodic tori give
+      nothing there, since `H` has no finite quotients. C2 stays OPEN.
