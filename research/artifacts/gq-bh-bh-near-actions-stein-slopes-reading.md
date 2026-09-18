@@ -56,3 +56,19 @@ numbers refer to those TeX files.
 ## Process note
 One stray `python3 -` with empty stdin ran locally while editing a file. It was a no-op and no output was
 used. It is reported to team-lead as a rule slip.
+
+## Addendum: type (A) for Stein V-groups (node `stein-v-groups-act-with-type-a-on-breakpoints`)
+- **Gap closed.** `circle-pl-groups-act-with-type-a-on-breakpoint-orbits` explicitly left the V-versions open
+  ("A point stabilizer in a V-type group is not an interval group"). The new node closes that gap:
+  - A point stabilizer is `⟨K_0, g_μ, germ lifts⟩`.
+  - `K_0` is the pointwise stabilizer of a small right neighbourhood. After gluing it is a copy of
+    `V(Γ,Λ,ℓ−δ_0)`.
+  - `g_μ` is an explicit two-piece contraction fixing the point.
+- **Pair orbits.** They come from interval exchanges, which are 2-transitive on `Γ ∩ [0,ℓ)`. The circle
+  node's hypothesis (H3), `A/(IP·A)` finite, is not needed.
+- **Finiteness inputs.** Cleary's `F_∞`, via Matui l. 859, for quadratic algebraic-integer slopes, and
+  Zaremsky's Corollary B, already on main.
+- **Consequence.** Every Sturmian Juschenko--Monod group with a real quadratic angle satisfies Boone--Higman,
+  in every real quadratic field. This supersedes the norm −1 restriction of
+  `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`. That node remains true and gives a smaller host:
+  the finite-index derived subgroup itself.
