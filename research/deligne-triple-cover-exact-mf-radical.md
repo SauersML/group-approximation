@@ -42,3 +42,36 @@ z in Rad_MF(E_3).                                      (DER2)
   result: the radical is either `1` or the order-three covering kernel
   `C_3`.  The nontrivial branch is equivalently the open point-norm sector
   exclusion `deligne-nontrivial-maslov-opnorm-sectors-are-empty`.
+- **2026-09-18, swarm-0917-w7-w7-deligne-break: Dadarlat's windings do not refute the flagship; new split.**
+  `sp4-quasirep-windings-budget-and-saturation` (established) shows that normalized Maslov windings of
+  `Sp_4(Z)` quasi-representations are at most `(6g-1) eps/4`, and that `P_op = R/Z` forces them to reach linear
+  order. Dadarlat's nonzero windings only give `S_W > 0`, so they are compatible with both branches. The flagship
+  follows from the open `sp4-quasirep-windings-are-sublinear` (which gives `P_op = (1/m)Z/Z`) together with the
+  open `deligne-finite-parameter-group-has-period-prime-to-three` (`3 not | m`). This is route
+  `deligne-triple-cover-via-sublinear-windings`.
+- **2026-09-18, swarm-0917-w7-w7-deligne-last1 (calibration): the last
+  mile is blocked, and the manuscript's own mechanism is provably silent.**
+  - *Blocked routes.* Both shortest routes end in one open leaf, and each
+    leaf is at least flagship-hard:
+    - LLP route: `sp4-mod3-twisted-fibres-have-llp` implies the HS gap,
+      hence non-hyperlinearity of `E_3`. It also implies the open LLP of
+      `C*(F2 x F2)` (`mod3-twisted-fibre-llp-forces-f2xf2-llp`).
+    - MH1 route: `maslov-diverging-positive-lifts-have-vanishing-high-degree-mass`
+      is equivalent to the HS gap
+      (`high-degree-range-mass-is-exactly-tracial-ucp-liftability`).
+  - *Class killed.* `deligne-cover-compression-defects-are-trivial`
+    (ESTABLISHED) proves `D(Delta, L) = 1` for every subgroup `Delta` of
+    every Deligne cover `Gamma_n` of `Sp_(2g)(Z)` and every `L <= Delta`.
+    The same holds for every central quotient of `E_3` that keeps `z`.
+    - Every compression-defect non-MF criterion therefore dies at "exhibit
+      `1 != w in D(E_3, L)`". This covers normal-Kazhdan, finite-normal,
+      central-defect-element, locally-finite, mark-stability and the
+      manuscript's compression criterion.
+    - The kill holds for Kazhdan or non-Kazhdan `L`, thin or arithmetic.
+    - The invariant is the Guichardet--Wigner quasimorphism
+      (`sp2g-central-commutators-of-universal-lifts-are-torsion`).
+  - *Consequence for decomposition.* A thin rigid subgroup
+    (`sp4-deligne-rigid-infinite-index-subgroup-exists`) cannot be exploited
+    through compression. Any proof of `(DER2)` must use operator-norm data
+    that no source-side commutator identity encodes, or pass through an
+    overgroup with an extension theorem.

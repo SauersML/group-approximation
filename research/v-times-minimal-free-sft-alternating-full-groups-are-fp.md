@@ -92,3 +92,29 @@ the connected-difference necessary condition (worker bh-break, need 65f52e90).
   (torsion suffices, as with `(1 + t)(1 - t) = 0`), or a minimal free SFT whose infinite
   difference sets split into two far parts. Over unique-product `Λ`, including `Z^2` and every
   Durand--Romashchenko hierarchy, only the second remains.
+
+**Attempt (2026-09-18, swarm-0917-w7-w7-bh-last1): operator-valued fibres over the V-orbit.**
+*Obstruction strengthened to every operator family; P2 not refuted.*
+- *The theorem.* `fp-v-times-subshift-full-groups-force-quantum-rigidity`. If `A(T) = F(T)` is
+  finitely presented and `Λ` acts freely on the subshift `X`, then:
+  - `X` is of finite type, which settles the question in the status above;
+  - `X` is `D`-quantum rigid over every field, for all large `D`.
+- *The mechanism.* Put an arbitrary locally commuting, locally admissible idempotent family `E_a(q)`
+  into the fibre of the orbit representation on `k[C_0] ⊗ k[Λ] ⊗ W_0`.
+  - The window idempotents `P_α` split `W_0` into pieces on which the family is the scalar family of a
+    point of `X`, so every short relator holds.
+  - The one relation `[g_1, g_2] = 1`, for two translated site-conditioned 3-cycles, becomes
+    `(H - 1)^2 ⊗ [E_a(p), E_b(q)] = 0`.
+  - For finite type, the scalar family of a point of `X_N \ X` violates an iterated commutator of
+    `V`-conjugated conditioned 3-cycles, which reads a forbidden pattern.
+- *What P2 now needs.* Every minimal free SFT over every infinite finitely presented `Λ` must be
+  quantum rigid over every field. Over `Z^2`, P2 at Labbé's shift implies
+  `labbe-wang-shift-crossed-product-is-finitely-presented` over every field (route
+  `labbe-crossed-product-fp-via-v-full-group-fp`), and hence `free-minimal-z2-sft-is-quantum-rigid`.
+- *Where a refutation should now look.* One noncommuting quantum family at every scale, over any
+  field, for one minimal free SFT. The walls and finite asymptotic pairs of the earlier attempts are
+  the two-dimensional case. The remaining candidates are genuinely contextual families, for example a
+  periodic quantum tiling of Labbé's tiles at every scale (`labbe-tiles-admit-periodic-quantum-tilings-at-every-scale`),
+  or an exactly matricial crossed product (`matricial-aperiodic-sft-rings-are-not-quantum-rigid`).
+- *Not attempted.* The converse: whether quantum rigidity of `X` makes `F(T)` finitely presented. It
+  would reduce P2 to rigidity plus finite type.

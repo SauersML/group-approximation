@@ -72,3 +72,21 @@ element of `G`—for example, if `G` is simple—then every nontrivial corona
 homomorphism reblocks to a faithful hyperlinear embedding.  If the normal
 generation lengths `N_g` are uniformly bounded, the resulting embedding has
 a uniform Hilbert--Schmidt separation constant on `G\{1}`.
+
+## Attempts
+
+**Independent audit of the reducing core (2026-09-18, swarm-0917-w7-w7-ptm-break).**
+The suspected gap was that `(TNC5)` might need an approximate reducing
+subspace, so that correcting it to an exact block would cost a spectral gap.
+The audit finds no such gap: the reduction is exact at every coordinate.
+Each factor `F=U A^(eps) U^*` of `(TNC3)` is a unitary that preserves
+`W=U E_n` and fixes `W^perp` pointwise.  For `v in K_n`, write `v=v_1+v_2`
+with `v_1 in W` and `v_2 in W^perp`.  Then `v_2=v-v_1 in K_n`, so
+`Fv=Fv_1+v_2 in K_n`.  Hence `F` and `F^*` preserve `K_n`, and `F` fixes
+`K_n^perp`.  No operator-norm leakage occurs; only `(TNC1)` and `(TNC4)`
+carry `o(1)` errors.  The bound `k_n<=L r_n` counts dimensions and uses
+no gap.  The claim therefore survives as stated.  Its hypothesis that every
+generator is a finite product of conjugates of `a` is essential.  For
+example, the Jacobson head normally generates only a locally finite kernel,
+and a stable letter does not preserve the span, which is why
+`jacobson-shift-surviving-head-has-a-tracial-core` loses operator-norm control.
