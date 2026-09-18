@@ -201,3 +201,40 @@ theorem czK2FngStabOne_sigma_mem (i k : Fin 3) (hki : k ≠ i) {y : St (2 + 1) R
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sigma_mem
+
+/-- The `St_3`-supported rank-two words of `St_4(ℤ[1/1])` lie in `H X Y X Y H`. -/
+theorem czK2FngStabOne_tri : czK2FngStabOne_TriStatement := by
+  intro i k hki α δ ζ η β γ
+  obtain ⟨y₀, hy₀⟩ : ∃ y₀ : St (2 + 1) R₁, y₀ =
+      padRow (Pi.single 0 α + Pi.single 1 δ : Fin 2 → R₁) *
+        padCol (Pi.single 0 ζ + Pi.single 1 η : Fin 2 → R₁) *
+        padRow (Pi.single 0 β : Fin 2 → R₁) * padCol (Pi.single 0 γ : Fin 2 → R₁) :=
+    ⟨_, rfl⟩
+  obtain ⟨y', hy', hpad⟩ := czK2FngStabOne_mat y₀
+  have hK : y'⁻¹ * y₀ ∈ K2 (Fin (2 + 1)) R₁ := by
+    apply surjStab_mem_K2_of_padMat_eq_one
+    rw [map_mul, ← hpad, ← map_mul padMat, inv_mul_cancel, map_one]
+  have hN := Subgroup.mem_comap.mp (czK2FngStabOne_closure_le_comap i k hki
+    (czK2FngStabOne_k2_le_normalClosure hK))
+  obtain ⟨h₀, -, hh₀⟩ := Subgroup.mem_map.mp hN
+  have hmem := czK2FngStabOne_sigma_mem i k hki hy'
+  have hsplit : indexMap (czK2FngStabOne_sigma i k hki) y₀ =
+      indexMap (czK2FngStabOne_sigma i k hki) y' * stab 3 R₁ h₀ := by
+    rw [hh₀, ← map_mul (indexMap (czK2FngStabOne_sigma i k hki)), mul_inv_cancel_left]
+  have hfin : SurjStabLengthMem (indexMap (czK2FngStabOne_sigma i k hki) y₀) := by
+    rw [hsplit]
+    exact surjStabLength_mem_mul_stab hmem h₀
+  rw [hy₀, map_mul, map_mul, map_mul, czK2FngStabOne_sigma_padRow2,
+    czK2FngStabOne_sigma_padCol2, czK2FngStabOne_sigma_padRow1,
+    czK2FngStabOne_sigma_padCol1] at hfin
+  exact hfin
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_tri
+
+/-- **`czK2FngTorus_StabOneStatement`, outright.** -/
+theorem czK2FngStabOne_stabOne : czK2FngTorus_StabOneStatement :=
+  czK2FngStabOne_stabOne_of_tri czK2FngStabOne_tri
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_stabOne
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

@@ -103,3 +103,5 @@ theorem pinchCut_mem_sideFaces_of_boundary {a b : RegionCandidate D eps X}
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchCut_mem_sideFaces_of_boundary
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
