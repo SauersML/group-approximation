@@ -90,3 +90,30 @@ for Brin–Thompson compilers (`compiled-hnn-stages-are-capped-inside-brin-thomp
 - **The open question for CAP and SEED.** Can a seed with super-polynomial forcing radius also be
   quantum rigid, satisfy (S3), and have a finitely presented full group? Non-local forcing is what
   hardness needs, and it is also what finite presentation, as local rigidity, is suspicious of.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS for items 1–4; scope claims need care
+
+Internal referee lane, not an external review.
+
+**Checked.**
+- **Item 1.** The sets `P_N` decrease, restrictions of admissible patterns are admissible, and a
+  compactness limit of admissible patterns lies in `Y ∩ [π] = {y_*}`. The search is effective given
+  the word problem.
+- **Item 2.** This is the cost of that search.
+- **Item 3.** `E_s` at word length `n` needs `y_*` only on `B_(n+2)`. The link to the orbit problem is
+  item 3 of `seed-full-groups-act-oligomorphically-on-the-seed-orbit`, which reduces `E_s`, not the full
+  evaluation; see the Referee section there.
+- **Item 4.** Under its hypothesis, every deduction for `B_n` is valid for admissible patterns on
+  `B_(n+c)`.
+
+**Scope.**
+1. **Exponential growth.** Over exponential-growth groups, the recorded seeds need windows in
+   `B_(Cn+c)` rather than `B_(n+c)`. For example, forcing `a^m` along the `a`-chain in `BS(1,n)` passes
+   through `a^j` with `|a^j|` up to about `2|a^m|`. The same proof then gives `R(n) = O(n)`. The claim
+   "covers every finite-state seed recorded" was not checked seed by seed.
+2. **Two notions of "locally forced".** This node's rule-based notion implies the language-based one of
+   `quantum-rigidity-is-decided-on-the-derived-subshift`, but not conversely. So the Lesson's "locally
+   forced seeds, which include every recorded rigid seed, are capped" needs the rule-based form to be
+   checked for each seed.
+
+The "design rule for (S3)" is correctly labeled a lane observation.

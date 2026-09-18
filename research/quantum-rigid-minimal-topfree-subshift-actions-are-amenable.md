@@ -141,3 +141,21 @@ gives the first non-amenable rigid dynamics.
     `finite-double-coset-space-with-free-minimal-coset-sft` whose action is not amenable.
   - That would need, for instance, a non-exact group in the Cornulier regime.
   - Conversely, (RA) implies that every positive answer to that question lives over an exact group.
+- **Ends reduce everything to one-ended groups** (`rigid-subshifts-without-isolated-points-factor-onto-the-ends`).
+  - A rigid subshift without isolated points factors continuously and equivariantly onto `Ends(Λ)`.
+  - So (RA) holds for every virtually free group.
+  - Over multi-ended groups, non-amenable isotropy sits only over the ends of one-ended vertex groups.
+- **The decisive weaker form (RA′).** If a finitely generated `Λ` carries a minimal, topologically
+  free, quantum-rigid subshift, is `Λ` exact?
+  - (RA) implies (RA′), and (RA′) at Osajda's group is exactly what the master route needs.
+  - A proof of (RA′) cannot go through a boundary map, since non-exact groups have no amenable actions
+    at all. It must be a non-existence theorem, for example producing property A from the
+    modification clouds of a minimal point.
+  - A counterexample must live over a one-ended non-exact piece, with rigidity from a source other
+    than boundaries and other than the Cornulier regime with (IS).
+- **The decisive test case for (RA′)** (`wall-orientation-subshifts-are-quantum-rigid`, OPEN).
+  - Code the Roller boundary of a wall structure as a subshift. It is rigid for trees and for `Z^2`.
+  - If it is rigid for a non-exact group with walls (Arzhantseva–Osajda Haagerup non-exact groups;
+    Osajda's residually finite group is built the same way), then (RA′) is false.
+  - Modification clouds give only 1-Lipschitz depth functions, which are Haagerup-type data. So
+    "property A from clouds" cannot prove (RA′) if that test case is rigid.
