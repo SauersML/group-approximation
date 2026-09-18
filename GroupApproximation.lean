@@ -5759,6 +5759,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplit
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExt
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFInterface
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurDilation
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurMultiplier
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
