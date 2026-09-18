@@ -1,0 +1,102 @@
+self-test: verifier rejected all 4 invalid steps
+route function c = {1: 2, 2: 1, 3: 1}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 2, 2: 1, 3: 2}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 2, 2: 3, 3: 1}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 2, 2: 3, 3: 2}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 3, 2: 1, 3: 1}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 3, 2: 1, 3: 2}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 3, 2: 3, 3: 1}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+route function c = {1: 3, 2: 3, 3: 2}
+  E1       :    60 relations, max Q-steps/depth =  3.00, max macros per relation = 0, families used = []
+  E2i      :   918 relations, max Q-steps/depth =  7.60, max macros per relation = 1, families used = ['F3']
+  E2ii     :  2166 relations, max Q-steps/depth =  7.40, max macros per relation = 1, families used = ['B3']
+  E2iii/iv :   330 relations, max Q-steps/depth =  5.33, max macros per relation = 1, families used = ['C3']
+  E2v      : 0 instances (none possible for n = 3)
+  E3       :   126 relations, max Q-steps/depth = 10.00, max macros per relation = 0, families used = []
+  D3       :   114 relations, max Q-steps/depth =  7.55, max macros per relation = 1, families used = ['D3']
+  free     :   108 relations, max Q-steps/depth =  1.00, max macros per relation = 0, families used = []
+  reroute  :   108 relations, max Q-steps/depth =  7.75, max macros per relation = 2, families used = ['R3']
+  short    :    24 relations, max Q-steps/depth =  5.00, max macros per relation = 0, families used = []
+  second   :     6 relations, max Q-steps/depth =  7.00, max macros per relation = 0, families used = []
+
+ALL CHECKS PASSED: 31680 relations derived, depth <= 20, 8 route functions.
+Worst Q-steps per unit depth by class: {'E1': 3.0, 'E2i': 7.6, 'E2ii': 7.4, 'E2iii/iv': 5.33, 'E3': 10.0, 'D3': 7.55, 'free': 1.0, 'reroute': 7.75, 'short': 5.0, 'second': 7.0}
+max over relations of (Q-steps - 8*depth) by class: {'E1': -5, 'E2i': -8, 'E2ii': -12, 'E2iii/iv': -8, 'E3': 2, 'D3': -9, 'free': -21, 'reroute': -5, 'short': -3, 'second': -1}
+=> every relation: Q-steps <= 8R + 2, plus at most one family relator (two R_3 for reroutes).
