@@ -56,7 +56,7 @@ variable {p : ℕ} [Fact p.Prime]
 theorem k2PolyNagaoWide_Q_le_Qr (K : Finset I) (L : I) :
     k2PolyNF_Q p K L ≤ k2PolyNagaoWide_Qr p K L := by
   show k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L ≤ k2PolyNagaoWide_Qr p K L
-  refine sup_le (fun g hg => ?_) (fun g hg => ?_)
+  refine sup_le (fun _ hg => ?_) (fun _ hg => ?_)
   · exact rootSpan_mono (p := fun i j => i ∈ K ∧ j ∈ K)
       (q := fun i j => i ∈ insert L K ∧ j ∈ K)
       (fun _ _ _ hij => ⟨Finset.mem_insert_of_mem hij.1, hij.2⟩) hg
@@ -69,7 +69,7 @@ theorem k2PolyNagaoWide_Q_le_Qr (K : Finset I) (L : I) :
 /-- `Q_r ≤ Q`. -/
 theorem k2PolyNagaoWide_Qr_le_Q (K : Finset I) (L : I) :
     k2PolyNagaoWide_Qr p K L ≤ k2PolyNF_Q p K L := by
-  intro g hg
+  intro _ hg
   refine rootSpan_induction (p := fun i j => i ∈ insert L K ∧ j ∈ K)
     (Q := fun g => g ∈ k2PolyNF_Q p K L) ?_ (Subgroup.one_mem _)
     (fun _ _ _ _ h1 h2 => Subgroup.mul_mem _ h1 h2) hg
@@ -86,10 +86,8 @@ theorem k2PolyNagaoWide_Qr_le_Q (K : Finset I) (L : I) :
 
 /-- `Q^m ≤ Q`. -/
 theorem k2PolyNagaoWide_Qm_le_Q (K : Finset I) (m L : I) :
-    k2PolyNagaoWide_Qm p K m L ≤ k2PolyNF_Q p K L := by
-  intro g hg
-  refine k2PolyNagaoWide_Qr_le_Q K L ?_
-  exact rootSpan_mono (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m)
+    k2PolyNagaoWide_Qm p K m L ≤ k2PolyNF_Q p K L := fun _ hg =>
+  k2PolyNagaoWide_Qr_le_Q K L <| rootSpan_mono (p := fun i j => i ∈ insert L K ∧ j ∈ K.erase m)
     (q := fun i j => i ∈ insert L K ∧ j ∈ K)
     (fun _ _ _ hij => ⟨hij.1, Finset.mem_of_mem_erase hij.2⟩) hg
 
@@ -128,7 +126,7 @@ theorem k2PolyNagaoWide_h_mem (u : (Polynomial (ZMod p))ˣ) :
 theorem k2PolyNagaoWide_tau_mem (b : Polynomial (ZMod p)) :
     k2PolyNagaoSigma_tau p m L hmL b ∈ k2PolyNagaoWide_Gml p m L := by
   unfold k2PolyNagaoSigma_tau
-  split_ifs with h1 hu
+  split_ifs
   · exact Subgroup.one_mem _
   · exact Subgroup.inv_mem _ (k2PolyNagaoWide_h_mem hmL _)
   · exact Subgroup.one_mem _
