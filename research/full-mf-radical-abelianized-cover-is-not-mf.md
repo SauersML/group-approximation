@@ -349,3 +349,35 @@ claimed.
   `m` growing with `L`, in which a word of `[F,F] \ [R,R]` survives, or an
   argument that controls permutation-type quotients of unbounded degree.
   `(DF)` remains OPEN.
+
+- **Fixed-point localization of the kernel spectrum is blind (2026-09-18,
+  swarm-0917-w10-w10-ptm-last1, stability-approximation).**  ESTABLISHED
+  class kill and stripping lemma:
+  `abelianized-cover-isolated-fixed-spectral-point-is-scalar`.
+
+  **Result.**  In any corona model `W` of `E`, let `chi` be an isolated,
+  `G`-fixed point of the kernel spectrum `X` that factors through the
+  exponent-sum map.  Then its indicator `p in C*(W(M))` commutes with
+  `W(E)`, and `W(e) p = lambda(e) p` for one character `lambda` of
+  `E^ab = Z^n`.
+
+  **Proof.**  Untwist by a character of the free group; the corner is then
+  a model of `G`, and the full radical kills it.
+
+  **Consequences.**  Scalar padding at such points (for example `1_N` with
+  isolated trivial character) can be stripped without changing what the
+  model detects on `E'`.  For superperfect `G` every fixed point is
+  liftable.
+
+  **Where it dies.**  `M` is free abelian, so `hat M` is connected.  The
+  regular models that `(REG)` must defeat have `X = hat M`, which has no
+  isolated points and no nontrivial clopen invariant sets.  Fixed-point
+  localization in the norm algebra is therefore vacuous against `(REG)`,
+  and wherever it succeeds it yields only a character, which is consistent
+  with MF.  Making it work at a non-isolated point needs a norm-level
+  invariant neighborhood projection, which is the spectral-gap step of
+  `commutant-projection-extraction`.
+
+  **Residual.**  Isolated fixed points that are not liftable give
+  projective corona models of `G` with cocycle class `chi|H_2(G)`.  These
+  are not decided.
