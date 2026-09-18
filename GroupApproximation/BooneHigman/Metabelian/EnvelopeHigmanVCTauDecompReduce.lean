@@ -91,3 +91,57 @@ theorem higmanVCTauDecomp_cross_decomp {d n : ℕ} (hd : 1 < d) {p q x y x' y' :
     · exact higmanVCTauDecomp_crossNeS hd u v' hαβ hpq hqp hx hs
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauDecomp_cross_decomp
+
+/-- **Remaining gap.**  `higmanVCTauEqTwo_DecompStatement` off the cross family: the same
+statement with the extra hypothesis `¬ higmanVCTauDecomp_Cross p q x y`.  Weaker or equal in
+logical strength (one more hypothesis); formally equivalent to the decomposition statement
+by `higmanVCTauDecomp_decomp_of_rest`.  Strictly smaller in proof content: the cross family
+is proved outright (`higmanVCTauDecomp_cross_decomp`).  Not proved here. -/
+def higmanVCTauDecomp_RestStatement : Prop :=
+  ∀ d : ℕ, d = 2 → ∀ n : ℕ,
+    ∀ (p q x y x' y' : List (Fin d)) (hpq : ¬ p <+: q) (hqp : ¬ q <+: p),
+      ¬ higmanVCTauDecomp_Cross p q x y →
+      p.length ≤ 3 → q.length ≤ 3 →
+      x.length + y.length = n → x'.length + y'.length = n →
+      ¬ (x.length ≤ 3 ∧ y.length ≤ 3 ∧ x'.length ≤ 3 ∧ y'.length ≤ 3) →
+      ¬ higmanVCTauShort_OptionA d p q x y hpq hqp →
+      ¬ higmanVCTauShort_OptionE d p q x y →
+      ¬ higmanVCTauComm_OptionR d p q x y →
+      ¬ higmanVCTauComm_FlexA d p q x y hpq hqp → ¬ higmanVCTauComm_FlexB d p q x y x' y' →
+      ¬ higmanVCTauComm_FlexA d p q x' y' hpq hqp → ¬ higmanVCTauComm_FlexB d p q x' y' x y →
+      MapsCone (coneSwap p q hpq hqp) x x' → MapsCone (coneSwap p q hpq hqp) y y' →
+      ¬ x <+: y → ¬ y <+: x → ¬ x' <+: y' → ¬ y' <+: x' →
+      higmanVCTauEqTwo_Decomp d n p q x y x' y' hpq hqp
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauDecomp_RestStatement
+
+/-- **Reduction.**  The decomposition statement off the cross family gives the full
+decomposition statement. -/
+theorem higmanVCTauDecomp_decomp_of_rest (h : higmanVCTauDecomp_RestStatement) :
+    higmanVCTauEqTwo_DecompStatement := by
+  intro d hd n p q x y x' y' hpq hqp hp hq hx hx' hs hOA hOE hOR hFA hFB hFA' hFB' hmx hmy
+    hxy hyx hxy' hyx'
+  by_cases hC : higmanVCTauDecomp_Cross p q x y
+  · exact higmanVCTauDecomp_cross_decomp (by omega) hpq hqp hC hx hs hmx hmy
+  · exact h d hd n p q x y x' y' hpq hqp hC hp hq hx hx' hs hOA hOE hOR hFA hFB hFA' hFB' hmx
+      hmy hxy hyx hxy' hyx'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauDecomp_decomp_of_rest
+
+/-- **The `d = 2` equal-level residual** from the decomposition statement off the cross
+family. -/
+theorem higmanVCTauDecomp_d2Residual_of_rest (h : higmanVCTauDecomp_RestStatement) :
+    higmanVCTauEqLvl_D2Residual :=
+  higmanVCTauEqTwo_d2Residual_of_decomp (higmanVCTauDecomp_decomp_of_rest h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauDecomp_d2Residual_of_rest
+
+/-- **`τ`** from the decomposition statement off the cross family. -/
+theorem higmanVCTauDecomp_tau_of_rest (h : higmanVCTauDecomp_RestStatement) :
+    HigmanVCTauStatement :=
+  higmanVCTauEqTwo_tau_of_decomp (higmanVCTauDecomp_decomp_of_rest h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauDecomp_tau_of_rest
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

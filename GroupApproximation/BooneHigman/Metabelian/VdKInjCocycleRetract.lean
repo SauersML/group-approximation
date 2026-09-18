@@ -187,3 +187,77 @@ def vdkInjCocycle_ParRetractAt : Prop :=
     ∀ g : St n R, φ ⟨stab n R g, vdkInjCocycle_stab_mem_par g⟩ = g
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_ParRetractAt
+
+/-- A retraction on `P` makes `stab` injective. -/
+theorem vdkInjCocycle_stab_injective_of_parRetract (h : vdkInjCocycle_ParRetractAt n R) :
+    Function.Injective (stab n R) := by
+  obtain ⟨φ, hφ⟩ := h
+  intro g g' hgg
+  have h1 : φ ⟨stab n R g, vdkInjCocycle_stab_mem_par g⟩ =
+      φ ⟨stab n R g', vdkInjCocycle_stab_mem_par g'⟩ :=
+    congrArg φ (Subtype.ext hgg)
+  rwa [hφ, hφ] at h1
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_stab_injective_of_parRetract
+
+theorem vdkInjCocycle_injective_of_parRetract (h : vdkInjCocycle_ParRetractAt n R) :
+    Function.Injective (K2Stab n R) := by
+  intro u v huv
+  refine Subtype.ext (vdkInjCocycle_stab_injective_of_parRetract h ?_)
+  exact congrArg Subtype.val huv
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_injective_of_parRetract
+
+/-- Injectivity of `K2Stab n R` gives the retraction on `P`: the `St_n(R)`-component of the
+unique `vdkRowPar` preimage. -/
+theorem vdkInjCocycle_parRetract_of_injective (hK : Function.Injective (K2Stab n R)) :
+    vdkInjCocycle_ParRetractAt n R := by
+  have hinj := vdkRowParInjective_of_K2Stab_injective hK
+  refine ⟨MonoidHom.mk' (fun h ↦ (vdkInjAct_pre h.1).2)
+    (fun a b ↦ vdkInjAct_pre_mul hinj a.2 b.2), ?_⟩
+  intro g
+  have h := vdkInjAct_pre_rowPar hinj ((0 : Fin n → R), g)
+  rw [vdkInjCocycle_rowPar_zero] at h
+  exact congrArg Prod.snd h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_parRetract_of_injective
+
+/-- **Unconditional**: a retraction on `P` is the same as injectivity of `K2Stab n R`. -/
+theorem vdkInjCocycle_parRetract_iff_injective :
+    vdkInjCocycle_ParRetractAt n R ↔ Function.Injective (K2Stab n R) :=
+  ⟨vdkInjCocycle_injective_of_parRetract, vdkInjCocycle_parRetract_of_injective⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_parRetract_iff_injective
+
+/-- Restriction from `H` to `P ≤ H`. -/
+theorem vdkInjCocycle_parRetract_of_retract (h : vdkInjCocycle_RetractAt n R) :
+    vdkInjCocycle_ParRetractAt n R := by
+  obtain ⟨φ, hφ⟩ := h
+  refine ⟨φ.comp (Subgroup.inclusion (vdkInjCoset_rowPar_le (n := n) (R := R))), fun g ↦ ?_⟩
+  exact hφ g
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_parRetract_of_retract
+
+/-- Under Step A (`H ≤ P`), a retraction on `P` restricts to one on `H`. -/
+theorem vdkInjCocycle_retract_of_parRetract (hA : vdkInjCoset_RowStabAt n R)
+    (h : vdkInjCocycle_ParRetractAt n R) : vdkInjCocycle_RetractAt n R := by
+  have hA' : vdkInjCoset_rowStab n R ≤ vdkRowParSubgroup n R := hA
+  obtain ⟨φ, hφ⟩ := h
+  refine ⟨φ.comp (Subgroup.inclusion hA'), fun g ↦ ?_⟩
+  exact hφ g
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_retract_of_parRetract
+
+/-- **Strength (LOUD).**  Under Step A, a based cocycle, a retraction on `H` and injectivity of
+`K2Stab n R` are all equivalent. -/
+theorem vdkInjCocycle_retract_iff_injective_of_rowStab (hA : vdkInjCoset_RowStabAt n R) :
+    vdkInjCocycle_RetractAt n R ↔ Function.Injective (K2Stab n R) :=
+  ⟨vdkInjCocycle_injective_of_retract,
+    fun hK ↦ vdkInjCocycle_retract_of_parRetract hA (vdkInjCocycle_parRetract_of_injective hK)⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_retract_iff_injective_of_rowStab
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

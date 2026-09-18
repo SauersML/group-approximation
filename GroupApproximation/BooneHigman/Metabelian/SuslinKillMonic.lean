@@ -38,7 +38,7 @@ theorem suslinKill_monic_eval₂ {A B : Type*} [CommRing A] [CommRing B] [Nontri
       (f g.leadingCoeff).natDegree + g.natDegree * N := by
     rw [hlc.natDegree_mul (hT.pow g.natDegree), hT.natDegree_pow, hTd]
   rw [htopd]
-  have hEN : 1 * 1 ≤ g.natDegree * N := 
+  have hEN : 1 * 1 ≤ g.natDegree * N :=
     Nat.mul_le_mul (by omega : 1 ≤ g.natDegree) (by omega : 1 ≤ N)
   have hle : (∑ i ∈ Finset.range g.natDegree,
       f (g.coeff i) * (X ^ N + Polynomial.C b) ^ i).natDegree ≤ g.natDegree * N - 1 := by
