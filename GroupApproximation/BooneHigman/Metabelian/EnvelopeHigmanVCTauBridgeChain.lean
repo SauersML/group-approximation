@@ -112,4 +112,46 @@ theorem higmanVCTauBridge_core {d : ℕ} (hd : 1 < d) {m o p q m' o' F : List (F
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBridge_core
 
+/-- **Chains from a fresh bridge.**  A lower-level instance `s = (p, q)` at a long pair
+`(x, y)` with a fresh `F` has the descent chain `(pP, pQ) — (F, pQ) — s`. -/
+theorem higmanVCTauBridge_chain_of_fresh {d : ℕ} (hd : 1 < d) {p q x y x' y' F : List (Fin d)}
+    (hlong : ¬ (x.length ≤ 3 ∧ y.length ≤ 3)) (hxy : ¬ x <+: y) (hyx : ¬ y <+: x)
+    (hpq : ¬ p <+: q) (hqp : ¬ q <+: p) (hp : p.length ≤ 3) (hq : q.length ≤ 3)
+    (hmx : MapsCone (coneSwap p q hpq hqp) x x') (hmy : MapsCone (coneSwap p q hpq hqp) y y')
+    (hlt : x'.length + y'.length < x.length + y.length)
+    (hFr : higmanVCTauBridge_Fresh d p q x y F) : higmanVCTauTight_Chain d p q x y x' y' := by
+  unfold higmanVCTauTight_Chain higmanVCTauTight_Link
+  refine ⟨hlong, ?_⟩
+  by_cases hl : y.length ≤ x.length
+  · have e1 : higmanVCTau_pP (x, y) = higmanVCTau_descP x y := if_pos hl
+    have e2 : higmanVCTau_pQ (x, y) = x.take 3 := if_pos hl
+    have hx4 : 4 ≤ x.length := by
+      by_contra h
+      exact hlong ⟨by omega, by omega⟩
+    obtain ⟨hF, ⟨hFP, hPF⟩, ⟨hFQ, hQF⟩, -, ⟨hFy, hyF⟩, ⟨hFp, hpF⟩, ⟨hFq, hqF⟩⟩ := hFr
+    rw [e1] at hFP hPF
+    rw [e2] at hFQ hQF
+    obtain ⟨X0, Y0, X1, Y1, h0, h1, h2, h3⟩ := higmanVCTauBridge_core hd hx4 hyx hpq hqp hp hq
+      hmx hmy hlt hF hFP hPF hFQ hQF hFy hyF hFp hpF hFq hqF
+    exact ⟨higmanVCTau_descP x y, x.take 3, X0, Y0, F, x.take 3, X1, Y1,
+      Or.inl ⟨e1.symm, e2.symm⟩, h0, h1, Or.inr (Or.inr h2), Or.inr (Or.inr h3)⟩
+  · have e1 : higmanVCTau_pP (x, y) = higmanVCTau_descP y x := if_neg hl
+    have e2 : higmanVCTau_pQ (x, y) = y.take 3 := if_neg hl
+    have hy4 : 4 ≤ y.length := by
+      by_contra h
+      exact hlong ⟨by omega, by omega⟩
+    obtain ⟨hF, ⟨hFP, hPF⟩, ⟨hFQ, hQF⟩, ⟨hFx, hxF⟩, -, ⟨hFp, hpF⟩, ⟨hFq, hqF⟩⟩ := hFr
+    rw [e1] at hFP hPF
+    rw [e2] at hFQ hQF
+    obtain ⟨X0, Y0, X1, Y1, h0, h1, h2, h3⟩ := higmanVCTauBridge_core hd hy4 hxy hpq hqp hp hq
+      hmy hmx (by omega) hF hFP hPF hFQ hQF hFx hxF hFp hpF hFq hqF
+    have h2' := higmanVCTauBridge_edge_swap h2
+    have h3' := higmanVCTauBridge_edge_swap h3
+    rw [Nat.add_comm y.length x.length] at h2' h3'
+    exact ⟨higmanVCTau_descP y x, y.take 3, Y0, X0, F, y.take 3, Y1, X1,
+      Or.inl ⟨e1.symm, e2.symm⟩, higmanVCTauBridge_node_swap h0, higmanVCTauBridge_node_swap h1,
+      Or.inr (Or.inr h2'), Or.inr (Or.inr h3')⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBridge_chain_of_fresh
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
