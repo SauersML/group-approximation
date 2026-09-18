@@ -5859,6 +5859,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparable
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonStep
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCPLimit
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Reduced
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
