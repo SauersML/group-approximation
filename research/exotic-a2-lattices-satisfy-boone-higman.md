@@ -9,7 +9,12 @@ distinct_from:
   char-zero-linear-groups-satisfy-permutational-boone-higman: that settles linear inputs; these lattices have no infinite linear image over any commutative ring.
 ---
 
-**OPEN.** Let `X` be a locally finite Ã₂-building that isn't the building of
+**ESTABLISHED** (2026-09-18, bh-groupoid; lane proof, not independently reviewed): a special case of
+`a2-lattices-embed-in-fp-simple-groups`, which covers every discrete cocompact group on a locally
+finite thick Ã₂ building, torsion included. The route via Robertson–Steger-type boundary groupoids
+is the "boundary dynamics on the chamber space at infinity" candidate listed below.
+
+**Statement.** Let `X` be a locally finite Ã₂-building that isn't the building of
 `PGL_3(D)`, and let `Gamma < Aut(X)` be discrete and cocompact. Then `Gamma`
 embeds in a finitely presented simple group.
 
@@ -96,3 +101,12 @@ proofs, unreviewed).
   (`vertex-free-type-rotating-a2-groups-satisfy-boone-higman`, ESTABLISHED as lane proofs).
 - **Still open.** Lattices with torsion, that is, with nontrivial vertex stabilizers. The
   gap is exactly the non-free case.
+
+**Final (2026-09-18, bh-groupoid).** The torsion gap is closed by
+`a2-lattices-embed-in-fp-simple-groups` (lane proof).
+- **Method.** The Robertson–Steger 2-graph is replaced by the orbit category of
+  parallelograms, whose unit groups are the finite tile stabilizers. `F_∞` comes from Li's
+  `thm:deg` for categories with invertibles, and aperiodic sectors are shown dense by a Baire
+  and branching argument.
+- **Consequence.** Every cocompact lattice of every locally finite thick Ã₂ building embeds
+  in a finitely presented simple group.

@@ -230,3 +230,62 @@ building, exotic buildings included. For exotic lattices the only remaining gap 
    generalized 3-gons, and should adapt to generalized 4-gons and 6-gons.
 3. **Products of trees**, as Ã₁ × Ã₁, via RS §7's second example. On main this is already
    PBH through type (A); it would serve as a cross-check.
+
+## 9. Torsion closed; C̃₂ / G̃₂ / products of trees (2026-09-18, later)
+
+**Torsion.** `a2-lattices-embed-in-fp-simple-groups` (lane proof): every discrete cocompact
+`Γ ≤ Aut(B)`, on every locally finite thick Ã₂ building, embeds in a finitely presented
+simple group of type `F_∞`. That settles `exotic-a2-lattices-satisfy-boone-higman` in full.
+- **Orbit category.** Objects are the tile classes. Morphisms are `(p, γ)` with
+  `o(p) = i_a` and `γi_b = t(p)`. It is cancellative and finitely aligned, satisfies
+  (UFP\*), and its unit groups are the finite `K_a`.
+- **Its groupoid.** The quadruples `(S', n, g, S)` with `S'(l+n) = gS(l)` for large `l`.
+  This is Li's `I_l ⋉ ∂Ω`; it is Hausdorff by Li's `lem:HdOmega` and right cancellation.
+- **F_∞.** Li's `thm:deg`, which allows invertibles; condition (F) holds by right
+  cancellation.
+- **Irreducibility.** The tile-level link argument, together with weighted complete
+  reducibility (`w_a = 1/|K_a|`).
+- **Effectiveness.** Aperiodic sectors are dense (Baire plus branching). The `n = 0` case
+  uses a uniform `R_0` with `Fix(Ball_{R_0}) = 1` and RS Lemma `c3`.
+- **Finite extensions.** Non-type-rotating `Γ` are handled by `S ≀ Sym(r) ↪ S` for
+  purely infinite minimal hosts.
+
+**Products of trees: a negative observation for the naive route.** For `Γ` acting freely,
+cocompactly and factor-preservingly on `T_1 × T_2`, take the Robertson–Steger Ã₁×Ã₁ tiles
+(squares `e_1 × e_2`).
+- Colour-1 moves keep the `T_2`-edge `e_2` fixed. So the `Γ`-orbit of `e_2` is an invariant
+  of `M_1`-components, and `M_1` is reducible whenever `Γ` has at least two orbits on
+  oriented `T_2`-edges. The same holds for `M_2`.
+- So the link argument fails for reducible buildings. The horizontal tile graph is
+  disconnected, and the per-colour primitivity route needs restriction to components.
+- Boone–Higman for these lattices is already on main through PBH
+  (`product-of-two-trees-lattices-satisfy-permutational-boone-higman`).
+- Moral: the method is intrinsically for **irreducible** 2-dimensional buildings.
+
+**C̃₂ (plan, not claimed).** Take the apartment to be the square lattice cut by the lines
+`x, y, x ± y ∈ Z`. Special vertices are the integer points (two types), and non-special
+vertices are the square centres, whose links are complete bipartite.
+- Sectors at a special vertex are 45° cones. They tile by the parallelograms spanned by
+  `(1,0)` and `(1,1)`, each made of 4 chambers. Each tile is a pair `(L, R)` of
+  half-rosettes around two consecutive centres, sharing a middle panel.
+- Colour-1 successors depend only on `R`: the complementary half-rosette around `c_R`, then
+  a new `R'`. Colour-1 predecessors depend only on `L`. Colour 2 crosses the top panel,
+  which is a single edge.
+- The analogues of (m1) and (m2) give closure over middle panels. The pencil argument in the
+  complete bipartite links of the centres, plus connectivity of the centre–panel incidence
+  graph, gives weak connectivity of the colour-1 tile graph. The period divides 2 (type swap
+  0↔2), and it equals 2 iff `Γ` preserves special types.
+- Still needed:
+  - the C̃₂ analogues of RS Lemmas `oalpha`, `c1`–`c3` and `9B` (sector geometry);
+  - (H1) and (H3) for these tiles;
+  - the colour-2 bookkeeping.
+  Then the Li–Matui chain applies unchanged.
+- Target lattices: Kantor's and Essert's C̃₂ lattices, and the Titz Mite–Witzel non-RF
+  Kazhdan lattices (`titz-witzel-simple-kazhdan-cat0-lattices-exist`).
+
+**G̃₂ (plan).** The same scheme with coweight parallelograms at the special vertices; tiles
+now contain several chambers. The links are generalized hexagons (type 0), generalized
+2-gons (type 1) and projective planes (type 2). Pencil closure works in any connected
+generalized n-gon: closure under "all lines through a point of a member line" reaches every
+line through the connected incidence graph. The bookkeeping is heavier and has not been
+attempted.
