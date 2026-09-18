@@ -5820,6 +5820,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Inde
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiExponents
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Fock
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Defs
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaUnits
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
