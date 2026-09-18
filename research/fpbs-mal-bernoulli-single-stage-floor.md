@@ -369,5 +369,41 @@ census-computation).** Artifact
   for
   two-chord circuits. Charge `h_2 h_1^{-1}` to the pair and bound how often
   one chord instance is reused across circuits.
+**Full triples instead of slots: `σ_b ≥ 2/25` on `W_b` (September 18, 2026,
+swarm-0917-w13-w13-fp-break, probability-random).** Artifact
+`research/artifacts/fpbs-full-triple-fold-seed-floor-2026-09-17.md`.
+Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
+- **Result.** [[fpbs-bernoulli-fold-seeds-have-density-at-least-2-25]] is
+  ESTABLISHED through its route. For every action of `F(a, b)` weakly
+  contained in Bernoulli, `σ_b ≥ 2/25`. The optimum of the method is about
+  `0.0819`. So `σ_b(Bernoulli) ∈ [2/25, 5/32]`, which replaces
+  `[1/80, 5/32]`.
+- **Invariant.** The number `F(I)` of full triples of an `n/2`-set in a
+  random Schreier graph of `F_2`. An index `v` is a full triple of `I` when
+  `v`, `σ_a v` and `σ_b v` all lie in `I`.
+  - The sequential 2-of-3 closure from `S` passes through an `n/2`-set with
+    `F(I) ≥ n/2 − |S|`, one firing index per step.
+  - With high probability, no `n/2`-set has `21n/50` full triples. The
+    first moment is `C(n,m) C(m,f)^3 / C(n,f)^2`, with exponent
+    `J(1/2, 21/50) = −0.0079`.
+
+  The w8 slot count splits each firing index into two independent slots and
+  loses a factor of about 6.
+- **Effect.** Every `1/80` in this cone improves to `2/25` by the same
+  proofs:
+  - the stage floor;
+  - the single-double-coset `relC`;
+  - the `b`-length-weighted floor, now `Σ |h| μ(D_h) ≥ 2/25`;
+  - the finite-piece bridge floor and the bootstrap-certified chord floor,
+    both on the live bus.
+
+  Evidence: greedy contagious sets on random Schreier graphs with `n` up to
+  `4·10^4` have density `≈ 0.116`, and `F(I)/n ≈ 0.385 < 0.42` at the
+  crossing.
+- **Where the method dies.** The sharp first moment of the same statistic
+  caps at `≈ 0.0822`. The count sees only one double coset: a chord of
+  `b`-length `r` unfolds into `r` seeds, and the count is blind to how those
+  seeds are shared. So it says nothing about P2 (long, shared chords) or D1.
+  This is a sharpening of the single-coset obstruction, not a decision.
 
   The claim stays OPEN.

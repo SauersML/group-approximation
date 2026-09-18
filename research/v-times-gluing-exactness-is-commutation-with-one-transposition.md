@@ -137,3 +137,21 @@ never in homology.
 
 So `g` is the image of a product of elements of `C_(Γ~)(τ_0)`. The inclusion
 `π(C_(Γ~)(τ_0)) ⊆ C_(F(T))(τ_0)` is clear. ∎
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS for items 1–2 (items 3–4 read, not needed for K = 1)
+
+- **Item 1.**
+  - The label swindle `λ|_[u] ≡ λ|_[u0] ≡ λ|_[u1]` gives `λ|_[u] ≡ λ|_[u]^2 ≡ 1` in
+    `M/⟨⟨V⟩⟩`.
+  - `[a^[P], b] = [a,b]^[P]` holds pointwise, and `V` is perfect. So `N_X ⊆ ⟨⟨V⟩⟩`.
+  - Simplicity of `V` (Higman) finishes.
+- **Item 2.**
+  - If `[K, v_0] ⊆ R`, then `K̄` centralizes `⟨⟨v̄_0⟩⟩ = Γ̄`.
+  - Relative perfectness (`v-times-sft-gluing-kernel-is-relatively-perfect`, referee-a PASS)
+    then kills it.
+  - That node is stated for free subshifts and finitely generated `Λ`. I checked that neither
+    hypothesis is used: tables and product partitions only need clopen `P` and `λ` mapping
+    clopens to clopens.
+- **Items 3–4.** They are correct as far as read. Item 4 is not used by
+  `v-times-gluing-presentations-are-exact`.
+- The monodromy form is a faithful restatement of item 2.
