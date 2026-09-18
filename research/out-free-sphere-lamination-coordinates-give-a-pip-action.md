@@ -6,6 +6,8 @@ title: For n at least three, the closure of projectivized weighted sphere system
 distinct_from:
   out-free-pip-actions-need-dimension-two-and-genuine-pieces: that rules out circles, graphs, single linear pieces and finite length coordinates; this proposes the one remaining natural candidate, coordinates by splittings (spheres) instead of conjugacy classes.
   out-free-acts-on-boundary-by-piecewise-representatives: that is the band route's missing lemma (PR); this would bypass the band entirely, as PML does for closed mapping class groups.
+artifacts:
+  - research/artifacts/gq-bh-outfn-2-sphere-normal-coordinates.md
 ---
 
 **OPEN** (proposed by bh-outfn-2, 2026-09-18). Setting: `M_n = #^n S^1 × S^2`,
@@ -80,3 +82,19 @@ Settle (O1) in rank 3.
 - Test whether their projective closure is a rational subfan, and find its dimension (6, 10,
   or in between). A clean negative, a non-polyhedral closure, would close this route. A
   positive would be the first integral piecewise-linear model of `Out(F_3)`.
+
+## Computation (2026-09-18, `research/artifacts/gq-bh-outfn-2-sphere-normal-coordinates.md`)
+
+One Slurm job computed normal coordinates of 3000 spheres of `M_2` and 8001 of `M_3`. It used boundary cuts:
+the crossed edges of `T_Σ` form a core subtree, and its vertex degrees give the piece types. All matching,
+Euler and compatibility checks passed.
+- **Rank 2 (calibration).** 15 support classes, stable from BFS depth 5, each spanning its whole matching
+  cone. This is the finite piecewise-linear Farey structure.
+- **Rank 3.**
+  - Support classes do not close up by depth 9: 2, 7, 14, 30, 55, 98, 180, 333, 612, 990, growing about 1.7×
+    per level.
+  - One class spans 8 dimensions, affine span 7, against `3n − 3 = 6` for Outer space. This supports (O1):
+    normal coordinates see more than trees.
+  - The 25 largest classes each span their matching cone.
+- Polyhedrality is **not decided**: zero patterns are finitely many a priori. The decisive next test is the
+  density of spheres among admissible integral points inside one filled class, via the tree condition.
