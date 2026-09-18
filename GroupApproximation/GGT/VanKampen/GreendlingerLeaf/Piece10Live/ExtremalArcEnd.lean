@@ -46,7 +46,8 @@ source region and exterior region, and every candidate class (scripts in the scr
 * A linked choice class exists in every instance (228756 instances at most 5 darts, 6717858 at
   most 6 darts).
 * Every linked choice class of fewest removed arc darts satisfies both arc-end clauses: 0
-  failures in all those instances.  So the descent clause holds in the model.
+  failures in all those instances.  So the descent clause holds in the model.  Partial run at
+  exactly 7 darts: the first 40000 configurations (52677912 instances), 0 failures of either.
 * The descent clause is not vacuous: at most 5 darts, 980 linked choice classes fail an arc-end
   clause (patterns kept/removed/kept and removed/kept/removed on one arc).
 * Rules that FAIL: most removed arc darts (790 instances at 5 darts), most or fewest removed

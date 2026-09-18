@@ -115,7 +115,8 @@ theorem eHighArtinHasse_conj_mul (act : Q → M → M)
     (V : Submodule L (M → L)) (hact : ∀ q : Q, ∀ f ∈ V, (fun x => f (act q x)) ∈ V)
     (q r : Q) (X : Module.End L V) :
     eHighArtinHasse_conj act hmul hone V hact (q * r) X =
-      eHighArtinHasse_conj act hmul hone V hact q (eHighArtinHasse_conj act hmul hone V hact r X) := by
+      eHighArtinHasse_conj act hmul hone V hact q
+        (eHighArtinHasse_conj act hmul hone V hact r X) := by
   refine LinearMap.ext fun f => ?_
   have hs : (eHighArtinHasse_psi act hmul hone V hact (q * r)).symm f =
       (eHighArtinHasse_psi act hmul hone V hact r).symm
