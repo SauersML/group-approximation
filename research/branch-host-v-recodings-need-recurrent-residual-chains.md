@@ -15,7 +15,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `branch-host-v-recoding-proof` (lane proof, elementary given the two annular
-nodes of bh-free-22; not reviewed; no priority claimed). Item 5 is the OPEN part, recorded in
+nodes of bh-free-22; not reviewed; no priority claimed). Items 1–5 are established; the open continuation (multi-depth recurrences and sufficiency) is
 `residual-chains-with-finite-recurrences-give-fp-branch-hosts`.
 
 **Setting.** `G`, `(N_n)`, `Q_n`, `X_n`, `φ_n`, `ψ_n`, `H = G × A` with `A = Alt(6)`, and
