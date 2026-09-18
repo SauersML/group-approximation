@@ -1,5 +1,4 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Multiplier
-import Mathlib.Tactic.Group
 
 /-!
 # Hopf formula versus `groupHomology.H2`: the central extension `F ⧸ [F,R]` (lane LVHopfH2)
@@ -42,7 +41,7 @@ theorem hopfExtProj_ker_le_center : (hopfExtProj f).ker ≤ Subgroup.center (Hop
   exact mk'_mem_center_of_mem f.ker (MonoidHom.mem_ker.mpr h)
 
 /-- The central kernel `K = R ⧸ [F,R]` of `E → G`. -/
-abbrev HopfExtK : Type := (hopfExtProj f).ker
+abbrev HopfExtK : Type := ↥(hopfExtProj f).ker
 
 /-- `K` is abelian, being central. -/
 instance hopfExtKCommGroup : CommGroup (HopfExtK f) :=
@@ -73,9 +72,11 @@ theorem hopfExtRc_mem (hf : Function.Surjective f) (g h : G) :
 theorem hopfExt_cocycle_aux {E : Type} [Group E] (a b c d e p : E)
     (hX : a * (b * c * d⁻¹) = b * c * d⁻¹ * a) :
     b * c * d⁻¹ * (a * d * p⁻¹) = a * b * e⁻¹ * (e * c * p⁻¹) := by
-  calc b * c * d⁻¹ * (a * d * p⁻¹) = b * c * d⁻¹ * a * d * p⁻¹ := by group
+  calc b * c * d⁻¹ * (a * d * p⁻¹) = b * c * d⁻¹ * a * d * p⁻¹ := by
+        simp only [mul_assoc]
     _ = a * (b * c * d⁻¹) * d * p⁻¹ := by rw [hX]
-    _ = a * b * e⁻¹ * (e * c * p⁻¹) := by group
+    _ = a * b * e⁻¹ * (e * c * p⁻¹) := by
+        simp only [mul_assoc, inv_mul_cancel_left]
 
 /-- Cocycle identity of the factor set (it is central). -/
 theorem hopfExtRc_cocycle (hf : Function.Surjective f) (g h k : G) :

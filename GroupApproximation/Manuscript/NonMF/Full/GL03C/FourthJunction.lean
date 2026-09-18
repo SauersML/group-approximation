@@ -52,8 +52,8 @@ theorem chain_countP_cons [DecidableEq V] (x : V) :
   | nil => intro _; exact Nat.add_comm _ _
   | cons b l ih =>
     intro hchain
-    obtain ⟨hab, hbl⟩ := List.isChain_cons_cons.mp hchain
-    have hih := ih b hbl
+    have hab : t a = s b := (List.isChain_cons_cons.mp hchain).1
+    have hih := ih b (List.isChain_cons_cons.mp hchain).2
     have hlast : (a :: b :: l).getLast (List.cons_ne_nil a (b :: l)) =
         (b :: l).getLast (List.cons_ne_nil b l) := rfl
     have e1 : (a :: b :: l).countP (fun d => decide (s d = x)) =
@@ -89,7 +89,7 @@ infrastructure for `thm:hull`, `non_mf_groups_exist.tex`).  A duplicate-free lis
 boundary darts of `F` has as many darts starting at `x` as darts ending at `x`: the boundary
 successor `FaceSetCircuits.boundaryPerm` starts where its argument ends. -/
 theorem boundary_countP_balanced (M : CombMap.{v}) [DecidableEq M.Vertex] (F : Finset M.Face)
-    (c : List M.Dart) (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ IsBoundaryDart M F d)
+    (c : List M.Dart) (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d)
     (x : M.Vertex) :
     c.countP (fun d => decide (M.vertexOf d = x)) =
       c.countP (fun d => decide (M.vertexOf (M.alpha d) = x)) := by
@@ -113,7 +113,7 @@ theorem boundary_countP_balanced (M : CombMap.{v}) [DecidableEq M.Vertex] (F : F
     exact congrArg Subtype.val h'
   · intro b hb
     have hb' := List.mem_filter.mp (List.mem_toFinset.mp hb)
-    have hbd : IsBoundaryDart M F b := (hc b).mp hb'.1
+    have hbd : Surgery.MapCollapse.IsBoundaryDart M F b := (hc b).mp hb'.1
     have hwalk := vertexOf_eq_of_boundaryWalk
       (FaceSetCircuits.boundaryPerm_walk M F
         ((FaceSetCircuits.boundaryPerm M F).symm ⟨b, hbd⟩))
@@ -130,7 +130,7 @@ infrastructure for `thm:hull`, `non_mf_groups_exist.tex`).  They are the boundar
 moved face set `GL06f.flipFaces faces z`. -/
 theorem filter_movePred_countP_balanced {M : CombMap.{v}} [DecidableEq M.Vertex]
     {faces : Finset M.Face} {c : List M.Dart} (hnodup : c.Nodup)
-    (hc : ∀ d, d ∈ c ↔ IsBoundaryDart M faces d) {z : M.Dart → Bool}
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d) {z : M.Dart → Bool}
     (hz : ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y → z x = z y)
     (hind : ∀ d ∈ c, z d = false ∨ z (M.alpha d) = false) (x : M.Vertex) :
     (c.filter (GL05b.movePred M z)).countP (fun d => decide (M.vertexOf d = x)) =
@@ -146,7 +146,7 @@ closes up: its last dart ends where its first dart starts.  The kept darts start
 the first dart as often as they end there, and a walk that does not close up would start there
 once more than it ends there. -/
 theorem isClosedDartWalk_of_perm_filter {M : CombMap.{v}} {faces : Finset M.Face}
-    {c : List M.Dart} (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ IsBoundaryDart M faces d)
+    {c : List M.Dart} (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
     {z : M.Dart → Bool}
     (hz : ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y → z x = z y)
     (hind : ∀ d ∈ c, z d = false ∨ z (M.alpha d) = false) {L : List M.Dart}
