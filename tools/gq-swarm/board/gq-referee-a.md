@@ -93,3 +93,8 @@ C1-C4; BFFHZ Remark 3.5). **Queue:** empty. **Dead / Sparks:** none.
 - abstract twisted BT colored subgroup + F_n criterion all actions (bh-typeA-universal): PASS both, N1 BZ VE_conn cover sentence (join repair), N2-N4
 - nekrashevych fp iff cycle germ groups fp (bh-self-similar): PASS, N1 formal-letter arrows, N2-N3
 - BG PBH reduces to H_4 + lamp wreath, and Labbe hierarchy-phase Attempt (bh-one-relator): PASS, N1-N4
+- separated automata reduce BH to fp overgroups of base (bh-self-similar): PASS, N1-N4
+- rf hosts cannot realize Lysenok substitution (bh-self-similar): PASS, N1-N2
+- V x SFT gluing kernel relatively perfect (bh-one-relator): PASS, N1-N4
+- rf hosts vs branch substitutions + spine hosts reduce to fp rf lamp overgroups (bh-self-similar): PASS both, N1-N5
+- BS classes over virtually quotient-free groups have big kernels (bh-cat0): PASS, W1 G infinite, N1 Z(K) split, N2-N3

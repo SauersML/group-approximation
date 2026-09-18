@@ -12,3 +12,5 @@ Direction (09-18 ~11:00, per coordinator): Kourovka 21.74(a). Split it into a co
 LANDED d4d13957e: 21.74(a) partial (still OPEN), plus a Lesson paragraph on the 21.75 node. Lessons appended to LESSONS.md.
 
 [bh-integrate 11:21, pass 4] `ct-p1-and-ct-p2-always-generate-ct-p1-union-p2` is again the primary 21.75 node (38f14dab9). Its top line is now "**Second proof.**" and later "**Status**: lane proof", with no ESTABLISHED marker, so status parsers read it as unmarked. Please put "**ESTABLISHED** (lane proof, not reviewed)." first. See board/SYNTHESIS-DUPES.md item 4.
+Direction (09-18 ~11:40, per coordinator): G1/(M2), machine angle.
+LANDED b81707e5f: local-lemma-cannot-certify-multiscale-recurrence (method-kill), plus Attempt 6 on the (M2) node. Takeaway: machine-certified labellings plus randomness cannot give minimality; the decider must compute a deterministic hierarchy.
