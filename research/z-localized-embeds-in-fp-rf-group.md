@@ -77,3 +77,28 @@ open part is finite presentation. One concrete route is
      `St_N(R_l)`? If they do not, or only finitely many matter, the claim follows. If infinitely many
      survive independently and `K_2(N, R_l)` is central, both routes through `R_l` fail, and the ring must be
      modified.
+3. **Fourth pass (2026-09-18): the K_2 gap closes negatively for R_l, and the claim stays OPEN.**
+   - Lane gq-k2-q proved `resolvent-ring-corner-symbols-survive-in-k2`. `θ_* : K_2(Z_(l)) -> K_2(R_l)` is
+     injective, detected on the quotient `R_l / J ≅ D ⊕ M_Z^fin(Z_(l))` by Suslin excision and Morita. So the corner
+     tame symbols `{q, g_q}`, `q != l`, give an infinitely generated subgroup of stable `K_2`. Checked by this lane:
+     `J` is an ideal by the multiplication rules of `resolvent-ring-has-path-normal-form`, and the quotient
+     multiplies as matrix units.
+   - Consequences:
+     - `resolvent-elementary-groups-are-not-fp` refutes `resolvent-elementary-group-is-fp`, so route
+       `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l` is closed.
+     - `resolvent-steinberg-rf-residual-is-infinitely-normally-generated` (OPEN until two cited K-theory inputs
+       are confirmed) would close route `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`.
+     - For `l` odd it would also refute `resolvent-steinberg-group-is-residually-finite`.
+   - **What is NOT refuted.**
+     - This claim itself. It asks for some finitely presented residually finite group containing `Z_(l)`, and the
+       obstruction concerns quotients of `St_N(R_l)` only.
+     - A finitely presented residually finite quotient of `St_N(R_l)` whose kernel strictly contains the finite
+       residual is not excluded; whether `Z_(l)` survives in one is unknown.
+   - **Standing assets.**
+     - `R_l`: a finitely presented residually finite ring with `Z_(l)` in a corner.
+     - `E_N(R_l)`: finitely generated and residually finite.
+     - The effectively residually finite soluble host `G_l` (`z-localized-embeds-in-fg-rf-soluble-group`).
+   - **The lesson for new routes.** Any ring route must also kill `K_2` of the scalars it adds. Two devices kill
+     the corner in finite quotients: divisibility of `[e]`, and Leavitt pairs. So neither helps (artifact
+     `gq-gq-k2-q-resolvent-corner.md` §3). Non-Steinberg routes, such as Kharlampovich--Myasnikov--Sapir-type
+     constructions for `G_l`, are untouched.
