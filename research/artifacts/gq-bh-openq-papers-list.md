@@ -254,3 +254,14 @@ review covers main theorems; this pass records printed questions only.
   for the Goursat quotients in disguise. Such combination problems are no easier than PBH for
   finitely presented groups, and a failure would refute PBH.
 - "Lesson for general BH" paragraphs were added to this lane's earlier claim nodes.
+
+## H. More printed questions (2026-09-18)
+
+- arXiv:2512.24266v3 (l.123–128): does decidable word problem characterize subgroups of
+  finitely presented just-infinite groups? This is equivalent to BH on main
+  (`boone-higman-iff-fp-just-infinite-hosts`, which now carries the printed source and a per-input
+  refinement: inputs that are not residually finite gain nothing from the relaxation).
+- Fournier-Facio–Zaremsky arXiv:2607.21727 (rope trick), questions `quest:higher_F`
+  (l.188: every f.g. recursively presented group into a group of type F_3 / F_∞?) and
+  `quest:higher_FP` (l.192: every f.g. group into FP_3 / FP_∞?). Main already cites the paper
+  33 times. Compare BBMZ survey Q5.6 (`every-finitely-presented-group-embeds-in-an-f-infinity-group`).
