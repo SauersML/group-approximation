@@ -85,7 +85,7 @@ def BinaryLeavittK2FiveStabilityStatement : Prop :=
 theorem binaryLeavittSteinbergInjective_of_stable
     (hS : BinaryLeavittStableK2TrivialStatement)
     (hT : BinaryLeavittK2FiveStabilityStatement) :
-    GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.BinaryLeavittSteinbergInjectiveStatement := by
+    LeavittFP.BinaryLeavittSteinbergInjectiveStatement := by
   show GroupApproximation.BooneHigman.SteinbergBasic.K2 (Fin 5)
       (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) = ⊥
   refine (Subgroup.eq_bot_iff_forall _).mpr ?_
@@ -99,7 +99,7 @@ theorem binaryLeavittSteinbergInjective_of_stable
 stability trivially.  This records the carto's warning that the stability statement is of the
 depth of the gap. -/
 theorem binaryLeavittK2FiveStability_of_binaryLeavittSteinbergInjective
-    (h : GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.BinaryLeavittSteinbergInjectiveStatement) :
+    (h : LeavittFP.BinaryLeavittSteinbergInjectiveStatement) :
     BinaryLeavittK2FiveStabilityStatement := by
   have h' : GroupApproximation.BooneHigman.SteinbergBasic.K2 (Fin 5)
       (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) = ⊥ := h
