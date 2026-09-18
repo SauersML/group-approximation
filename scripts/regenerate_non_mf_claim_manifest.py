@@ -490,6 +490,9 @@ NOTES_EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Sofic/LiteralUniversalHorn",
         "GroupApproximation.LiteralUniversalHorn."
         "manuscriptLiteralUniversalHorn"),
+    "thm:notes-abelian-boundary": (
+        "Manuscript/NonMFNotes/Full/AbelianBoundary/Boundary",
+        "GroupApproximation.Full.NN06.notesAbelianBoundary"),
     "cor:undecidable": (
         "Computability/BooneWordProblemUndecidable",
         "GroupApproximation.Computability.not_computablePred_wordProblemPred"),
@@ -517,10 +520,6 @@ NOTES_PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "cor:notes-a5-relation": (
         "elementary structure of A_5 and the printed telescope-window "
         "approximation",
-    ),
-    "thm:notes-abelian-boundary": (
-        "character separation for torsion-free abelian groups and the printed "
-        "telescope-window approximation",
     ),
     "thm:mf-arithmetic": (
         "Adian--Rabin theorem; decidability of fixed-dimensional unitary "
