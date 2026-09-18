@@ -165,20 +165,12 @@ theorem nk2Slice_dies_of_dies_succ {n : ℕ} (h : nk2Slice_DiesStatement A (n + 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Slice_dies_of_dies_succ
 
-/-- Death at level `n + k` gives death at level `n`. -/
-theorem nk2Slice_dies_of_dies_add (n k : ℕ) :
-    nk2Slice_DiesStatement A (n + k) → nk2Slice_DiesStatement A n := by
-  induction k with
-  | zero => exact fun h ↦ h
-  | succ k ih => exact fun h ↦ ih (nk2Slice_dies_of_dies_succ A (n := n + k) h)
-
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Slice_dies_of_dies_add
-
-/-- Death at any level `n' ≥ n` gives death at level `n`. -/
+/-- Death at any level `n' ≥ n` gives death at level `n` (induction on `n'` from `n`). -/
 theorem nk2Slice_dies_of_dies_le {n n' : ℕ} (hle : n ≤ n') (h : nk2Slice_DiesStatement A n') :
-    nk2Slice_DiesStatement A n := by
-  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hle
-  exact nk2Slice_dies_of_dies_add A n k h
+    nk2Slice_DiesStatement A n :=
+  Nat.le_induction (m := n)
+    (P := fun k _ ↦ nk2Slice_DiesStatement A k → nk2Slice_DiesStatement A n)
+    (fun h ↦ h) (fun _ _ ih h ↦ ih (nk2Slice_dies_of_dies_succ A h)) n' hle h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.nk2Slice_dies_of_dies_le
 

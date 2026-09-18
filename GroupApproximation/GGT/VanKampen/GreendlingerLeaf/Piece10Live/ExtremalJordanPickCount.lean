@@ -95,3 +95,137 @@ reversals.
 Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
 no manuscript citation of its own.
 -/
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+universe u w v
+
+open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
+open scoped Classical
+
+section CountDefs
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **The linked classes of walk darts**: the classes, under `ExtremalJordanPickThreeLinked`, of
+the darts of the boundary cycle. -/
+noncomputable def extremalJordanPickCount_linked (K : PocketFaceSet D eps X lo hi) :
+    Finset (Quot (ExtremalJordanPickThreeStep K)) :=
+  K.boundary.cycle.toFinset.image (Quot.mk (ExtremalJordanPickThreeStep K))
+
+/-- **The outside classes**: the face classes, off the walk, of the darts based outside
+`K.faces`. -/
+noncomputable def extremalJordanPickCount_outside (K : PocketFaceSet D eps X lo hi) :
+    Finset (Quot (CombMap.FaceClassStep X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle))) :=
+  (Finset.univ.filter fun r => X.toCombMap.faceOf r ∉ K.faces).image
+    (Quot.mk (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)))
+
+/-- **The non-first passages at a vertex** `x`: the walk darts `d` whose passage `d → next d` is
+not a first turn and runs through `x = vertexOf (α d)`. -/
+noncomputable def extremalJordanPickCount_nonFirstAt (K : PocketFaceSet D eps X lo hi)
+    (x : X.toCombMap.Vertex) : ℕ :=
+  (K.boundary.cycle.toFinset.filter fun d =>
+    (∃ hd : d ∈ K.boundary.cycle, P10ChordLift.NonFirstTurn K d hd) ∧
+      X.toCombMap.vertexOf (X.toCombMap.alpha d) = x).card
+
+/-- **The excess** `Σ_x (n_x - 1)`, with truncated subtraction, over the vertices of the walk. -/
+noncomputable def extremalJordanPickCount_excess (K : PocketFaceSet D eps X lo hi) : ℕ :=
+  ∑ x ∈ K.boundary.cycle.toFinset.image (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+    (extremalJordanPickCount_nonFirstAt K x - 1)
+
+/-- **Euler's bound** `2 + excess ≤ #L + #O`.  On every model instance it holds with equality. -/
+def ExtremalJordanPickCountEulerBound (K : PocketFaceSet D eps X lo hi) : Prop :=
+  2 + extremalJordanPickCount_excess K ≤
+    (extremalJordanPickCount_linked K).card + (extremalJordanPickCount_outside K).card
+
+/-- **The parity clause**: when the excess is exactly two, there are not exactly two outside
+classes.  This is the case `excess = 2` of the parity law `#O ≡ 1 + Σ_x (n_x - c_x)`. -/
+def ExtremalJordanPickCountParity (K : PocketFaceSet D eps X lo hi) : Prop :=
+  extremalJordanPickCount_excess K = 2 → (extremalJordanPickCount_outside K).card ≠ 2
+
+end CountDefs
+
+section CountProofs
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **Genus 0**: the walk map of a closed walk is planar.  It is a connected restriction of the
+planar diagram map. -/
+theorem extremalJordanPickCount_walkMap_planar (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) : (walkMap X.toCombMap K.boundary.cycle).IsPlanar :=
+  (walkMap_isRestriction X.toCombMap K.boundary.cycle).planar X.planar
+    (FirstTurnEnclosure.walkMap_connected K.boundary.cycle_nonempty hK.1)
+    ⟨K.boundary.cycle.head K.boundary.cycle_nonempty,
+      Or.inl (List.head_mem K.boundary.cycle_nonempty)⟩
+
+/-- **Euler's formula on the walk map**: `V - E + F = 2`. -/
+theorem extremalJordanPickCount_walkMap_euler (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) :
+    ((walkMap X.toCombMap K.boundary.cycle).vertexCount : ℤ) -
+        ((walkMap X.toCombMap K.boundary.cycle).edgeCount : ℤ) +
+      ((walkMap X.toCombMap K.boundary.cycle).faceCount : ℤ) = 2 :=
+  (walkMap X.toCombMap K.boundary.cycle).euler_eq_two
+    (extremalJordanPickCount_walkMap_planar K hK)
+
+/-- **At most two outside classes**: every outside class is the class of `o` or of `s`. -/
+theorem extremalJordanPickCount_outside_le_two (K : PocketFaceSet D eps X lo hi)
+    (h : ExtremalJordanPickThreeTwoOutside K) :
+    (extremalJordanPickCount_outside K).card ≤ 2 := by
+  obtain ⟨o, s, hos⟩ := h
+  have hsub : extremalJordanPickCount_outside K ⊆
+      {Quot.mk _ o, Quot.mk _ s} := by
+    intro q hq
+    unfold extremalJordanPickCount_outside at hq
+    obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hq
+    rcases hos r (Finset.mem_filter.mp hr).2 with h' | h'
+    · exact Finset.mem_insert.mpr (Or.inl (Quot.eqvGen_sound h'))
+    · exact Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton.mpr (Quot.eqvGen_sound h')))
+  exact (Finset.card_le_card hsub).trans Finset.card_le_two
+
+/-- **Three non-first passages at a vertex**: a non-first passage through `x` gives `n_x ≥ 3`. -/
+theorem extremalJordanPickCount_two_lt_nonFirstAt (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K) {d₀ : X.toCombMap.Dart}
+    (hd₀ : d₀ ∈ K.boundary.cycle) (hnf : P10ChordLift.NonFirstTurn K d₀ hd₀) :
+    2 < extremalJordanPickCount_nonFirstAt K
+      (X.toCombMap.vertexOf (X.toCombMap.alpha d₀)) := by
+  obtain ⟨d₁, hd₁, d₂, hd₂, hnf₁, hnf₂, h10, h20, h12, hv₁, hv₂⟩ := h3 d₀ hd₀ hnf
+  unfold extremalJordanPickCount_nonFirstAt
+  refine Finset.two_lt_card.mpr ⟨d₀, ?_, d₁, ?_, d₂, ?_, Ne.symm h10, Ne.symm h20, h12⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₀, ⟨hd₀, hnf⟩, rfl⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₁, ⟨hd₁, hnf₁⟩, hv₁⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₂, ⟨hd₂, hnf₂⟩, hv₂⟩
+
+/-- **`excess ≥ 2`**: a pocket not in first-turn order has a vertex with `n_x ≥ 3`. -/
+theorem extremalJordanPickCount_two_le_excess (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K) (hft : ¬ K.FirstTurns) :
+    2 ≤ extremalJordanPickCount_excess K := by
+  obtain ⟨d₀, hd₀, hnf⟩ := K.exists_not_firstTurn hft
+  have hlt := extremalJordanPickCount_two_lt_nonFirstAt K h3 hd₀ hnf
+  have hmem : X.toCombMap.vertexOf (X.toCombMap.alpha d₀) ∈
+      K.boundary.cycle.toFinset.image (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)) :=
+    Finset.mem_image.mpr ⟨d₀, List.mem_toFinset.mpr hd₀, rfl⟩
+  have hle : extremalJordanPickCount_nonFirstAt K
+      (X.toCombMap.vertexOf (X.toCombMap.alpha d₀)) - 1 ≤ extremalJordanPickCount_excess K :=
+    Finset.single_le_sum (f := fun x => extremalJordanPickCount_nonFirstAt K x - 1)
+      (fun _ _ => Nat.zero_le _) hmem
+  omega
+
+/-- **Extraction**: three linked classes give three pairwise unlinked walk darts. -/
+theorem extremalJordanPickCount_three_of_two_lt (K : PocketFaceSet D eps X lo hi)
+    (h : 2 < (extremalJordanPickCount_linked K).card) :
+    ∃ r₁ ∈ K.boundary.cycle, ∃ r₂ ∈ K.boundary.cycle, ∃ r₃ ∈ K.boundary.cycle,
+      ¬ExtremalJordanPickThreeLinked K r₁ r₂ ∧ ¬ExtremalJordanPickThreeLinked K r₁ r₃ ∧
+        ¬ExtremalJordanPickThreeLinked K r₂ r₃ := by
+  obtain ⟨a, ha, b, hb, c, hc, hab, hac, hbc⟩ := Finset.two_lt_card.mp h
+  unfold extremalJordanPickCount_linked at ha hb hc
+  obtain ⟨r₁, h₁, rfl⟩ := Finset.mem_image.mp ha
+  obtain ⟨r₂, h₂, rfl⟩ := Finset.mem_image.mp hb
+  obtain ⟨r₃, h₃, rfl⟩ := Finset.mem_image.mp hc
+  exact ⟨r₁, List.mem_toFinset.mp h₁, r₂, List.mem_toFinset.mp h₂, r₃,
+    List.mem_toFinset.mp h₃, fun h' => hab (Quot.eqvGen_sound h'),
+    fun h' => hac (Quot.eqvGen_sound h'), fun h' => hbc (Quot.eqvGen_sound h')⟩
+
+end CountProofs
