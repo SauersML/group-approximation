@@ -10,10 +10,15 @@ distinct_from:
   st-n-of-ring-quotient-adds-one-relator-per-ideal-generator: that makes finite presentations of Steinberg groups explicit; this shows the rings here admit none.
 artifacts:
   - research/artifacts/gq-steinberg-q-harmonic-truncation.md
+  - research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md
+  - research/artifacts/gq-referee-b-bounded-harmonic-rings-are-not-finitely-presented.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `bounded-harmonic-rings-are-not-finitely-presented-proof`.
-Lane proof (`gq-steinberg-q`), elementary, not independently reviewed; referee requests sent.
+Lane proof (`gq-steinberg-q`), elementary.
+- `gq-referee-a` PASS, proof-gap lens (`research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md`).
+- Informally checked by `gq-deep-adelic-1`, the lane that built `R_T`.
+- `gq-referee-b` PASS, citation and hypothesis lens (`research/artifacts/gq-referee-b-bounded-harmonic-rings-are-not-finitely-presented.md`).
 
 ## Setting
 
