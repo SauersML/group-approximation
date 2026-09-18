@@ -61,6 +61,24 @@ kind would refute the claim on that group.
   post-surjective, non-pre-injective maps onto full shifts, but they are not strongly irreducible. The open
   question is whether a strongly irreducible SFT, for instance a strongly irreducible factor or cover of an
   arrow SFT, can keep the post-surjective map. That question was not attacked.
+- **2026-09-17, swarm-0917-w8-w8-gs-last1 [finite-models]: fixed-point and microstate counts; bypass by
+  constant-point domains. OPEN here; sofic case now proved for the domains the route uses.** Artifact:
+  `research/artifacts/constant-point-domain-count-2026-09-17.md`.
+  - *Established (`proper-sft-covers-exclude-finite-orbits-and-sofic-constants`).* A proper SFT that strongly
+    post-surjects onto `A^G` has no `H`-fixed point for finite-index `H ⊴ G` avoiding an explicit finite set,
+    so it has no finite orbit if `G` is residually finite. Over a sofic group it has no constant point. No SI
+    and no non-pre-injectivity is used. The method is to lift one coset, or one separated color class, at a
+    time, then count words that avoid a forbidden pattern.
+  - *Where this attack on the claim as stated dies.* Over residually finite `G`, a counterexample must be an SI
+    SFT without periodic points. On free groups, whether one exists is open (arXiv 2401.16774). The
+    microstate count needs one point of `X` with sofic microstates, and a general SI SFT on a sofic group is
+    not known to have one. This is the same gap as the entropy sketch above.
+  - *Bypass.* The domains the route uses always contain the constant `τ(a^G)`. New route
+    `gottschalk-via-constant-point-domains` needs only
+    `constant-point-sft-domains-admit-no-post-surjective-covers` (OPEN in general, proved for amenable and
+    sofic groups).
+  - *Side result.* The branching-orientation compression SFT on `F_2` is not SI (cap obstruction, artifact
+    §5).
 - **2026-09-18, swarm-0917-w8-w8-gs-break [group-rings]: linear sector settled. The claim stays OPEN.** See
   `linear-proper-domain-duality-is-stable-finiteness` (ESTABLISHED, elementary).
   - **Result.** For group subshifts over `F_q^k` with linear automata, the claim holds for `G` exactly when

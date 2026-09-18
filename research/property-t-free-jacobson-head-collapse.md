@@ -113,3 +113,34 @@ instead of `4`) changes no conclusion.
   *What is left.* A (T)-free proof on this column must place `P_N` in `B`
   from outside every such `A_K`, and must still pass from HS to operator norm.
   The claim stays OPEN.
+
+- **host-geometry, swarm-0917 (swarm-0917-w8-w8-ptl-pull): rank-two
+  (T)-free collapse, dies because `EL_2(J)` is LEF.**
+
+  *Proposal.* The rank-two block has no Kazhdan subgroup. Its relations still
+  carry the whole Toeplitz structure: the Whitehead involution
+  `w = e_12(S) e_21(T) e_12(S) = [[Q,S],[T,0]]` with `w^2 = 1`, the braid
+  identity `w = e_21(T) e_12(S) e_21(T)`, and the non-amenable symbol extension
+  `L_2 -> EL_2(J) -> SL_2(F_2[z^(+-1)])`. The plan was to kill `e_12(Q)`
+  (conjugate to `x_13(Q)`) in corona representations of this block alone.
+
+  *Result.* `binary-jacobson-el2-is-lef`, established unreviewed.
+  - `psi(g) = K tau(g)^(-t) K^(-1)` is an automorphism of `EL_2(J)` that
+    inverts the symbol. Here `tau` is the anti-automorphism `S <-> T` and
+    `K = [[0,1],[-1,0]]`.
+  - Composed with `S -> T'`, `T -> S'`, it gives a symbol-preserving lift to
+    the mirror end.
+  - Gluing the Toeplitz end at `0` to this mirror end at `M` embeds every ball
+    of `EL_2(J)` in `GL_(2(M+1))(F_2)`.
+  - So `EL_2(J)` is LEF and MF, `Rad_MF(EL_2(J)) = 1`, and the head survives.
+
+  *Invariant.* The mirror lift `psi`. It exists because transpose-inverse is
+  inner in `SL_2` and outer in `SL_n` for `n >= 3`.
+
+  *Where every member dies.* Any argument that uses only relations among
+  `x_ij(J)` and `x_ji(J)` for one index pair. This includes Toeplitz index and
+  direct finiteness, the Whitehead involution, and the rank-two symbol cocycle.
+
+  *What is left.* A (T)-free proof must use a Steinberg commutator in three
+  distinct indices. The target stays OPEN. This is the first non-amenable
+  calibration, strengthening the `SL_fin ⋊ <u>` calibration above.

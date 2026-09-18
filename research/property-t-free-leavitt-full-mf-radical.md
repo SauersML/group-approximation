@@ -81,6 +81,7 @@ artifacts:
   - research/binary-leavitt-single-root-character-orbit-has-zero-gap.md
   - research/properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group.md
   - research/group-algebra-corners-exclude-traceless-leavitt-inputs.md
+  - research/binary-jacobson-rank-two-elementary-group-is-lef.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -1015,3 +1016,54 @@ the two-tail model persists through both native crossings, while the first
 raw forward prefix jumps directly to the existing Jacobson head-root MF
 problem.  It supplies no smaller marked finite model and no new proof of MF
 collapse.
+
+## Attempts
+
+- **Rank-two Jacobson restriction route (swarm-0917-w8-w8-ptl-break,
+  2026-09-18). Dead as a class.**
+  - `binary-jacobson-rank-two-elementary-group-is-lef` proves that
+    `T_C = π^(-1) SL_2(C[z,z^(-1)]) <= GL_2(J_C)` is LEF, for `C = Z` or
+    `C = Z/m`.
+    - The models are exact twisted mirror folds,
+      `θ_N(g)[i,j] = g[i,j]` for `i + j <= N-1` and
+      `φ(g)[N-1-i, N-1-j]` otherwise, with
+      `φ(g) = w^(-1) (g^T)^(-1) w`.
+    - They retain the head: `θ_N(x_12(Q)) - I` has rank 2.
+  - So `EL_2(J)` is MF, and `Rad_MF(EL_2(J)) = 1`. This decides the first
+    branch of `(JR3)` at `n = 2`.
+  - **Invariant.** More generally, `π^(-1) O_c` is LEF for every constant
+    nondegenerate form `c`, in every rank.
+  - **What dies.** Every head-collapse argument for the Jacobson head-root
+    input (`property-t-free-leavitt-via-jacobson-head-root`, through
+    `property-t-free-jacobson-head-collapse`) whose relations all hold in a
+    subgroup with form-preserving symbols. This includes all rank-two
+    arguments.
+    - The exact step where each of them dies is where the argument has to
+      exclude a representation retaining the head. The folds are such
+      representations, finite and exact.
+  - **What survives.** A proof must use a configuration whose symbol group
+    preserves no constant form. From rank 3 on, the constant
+    `SL_3(F_2)`, which is not self-dual, already provides one.
+  - **Side payoff.** `five-transvection-image-sofic-via-rank-two-lef` settles
+    `jacobson-image-of-five-transvection-group-is-sofic`.
+**2026-09-18 (swarm-0917 w8, operator-algebras): regular pullback.**
+`leavitt-mf-survivor-yields-jacobson-regular-character` (ESTABLISHED,
+no property `(T)`) shows that any failure of the full radical produces the
+regular MF character of `EL_5(J)`.  The argument has four steps:
+1. The torsion criterion gives a nontrivial MF character.
+2. Diracizing it gives `1_K` with `K` a proper normal subgroup.
+3. The mark survives modulo `K`, because it normally generates.
+4. The head-faithfulness of `EL_5(J)` makes `iota^(-1)(K)` trivial.
+
+The new route `property-t-free-leavitt-via-jacobson-regular-character`
+therefore has the single open hole
+`jacobson-regular-character-not-mf-without-property-t`.  That hole is
+implied by `property-t-free-jacobson-head-collapse`, so this route is never
+harder than the older Jacobson route.  The hole also implies the `EL_n(R)`
+regular hole for `n>=5`.
+
+Two consequences hold unconditionally: either the goal holds, or `EL_5(J)`
+is MF with a regular trace and hence hyperlinear.  In particular,
+non-hyperlinearity of `EL_5(J)` would already prove the goal.
+
+The hole itself is not closed here.
