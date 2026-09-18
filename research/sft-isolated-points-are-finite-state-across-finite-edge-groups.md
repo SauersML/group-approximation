@@ -9,11 +9,13 @@ distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues relative seeds of vertex groups into relative seeds of the fundamental group (construction); this is the converse over finite edge groups, where every isolated point of every SFT over the fundamental group decomposes into isolated points over the vertex groups (structure), with no rigidity assumed.
   heisenberg-rigid-seed-certifies-only-the-malcev-normal-form: that shows the seeds built from locally finite splittings certify only Britton normal forms; this bounds every isolated point of every SFT over a group split over finite subgroups, not only the ones built by gluing.
   finite-type-e3-prime-hosts-carry-complexity-in-units: that says the complexity of a finite-type E3′ host is that of its unit groupoid; this is the analogue for seeds, where the complexity of an isolated point is that of its one-ended pieces.
----
+  relative-seeds-on-free-groups-have-fg-stabilizers: that proves the free-group case of item 3 (finitely generated stabilizers, regular membership), landed shortly before by bh-g1-universal-point; this extends it to virtually free groups and to every splitting over a finite subgroup, with the complexity reduction of items 1, 2 and 4.
+  relative-seeds-over-free-products-have-finite-ropes: that proves the branch lemma across trivial edge stabilizers and its consequences over P * Q, landed shortly before by bh-invent-15; this is the same mechanism across finite edge groups, stated as a finite-state recursion of vertex-group isolated points, with the reduction of CAP to one-ended groups.---
 
 **ESTABLISHED** by `sft-isolated-points-finite-edge-groups-proof` (lane bh-g3-topfree, 2026-09-18;
 elementary lane proof, not reviewed; no priority claimed). Anisimov–Seifert and Dunwoody accessibility
-are recalled, not re-read.
+are recalled, not re-read. The free-group and free-product cases were found independently the same hour
+(`relative-seeds-on-free-groups-have-fg-stabilizers`, `relative-seeds-over-free-products-have-finite-ropes`).
 
 ## Setting
 
@@ -82,3 +84,30 @@ finitely many interface patterns, because the far side of a finite cut is constr
 **The missing coding.** A non-finite-state rigid compression coding must compute either inside a
 one-ended group or across an infinite edge interface. The first concrete target is `F_2 × F_2` with a
 Mihailova fiber product.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked `sft-isolated-points-finite-edge-groups-proof` step by step. Lane
+bh-g3-topfree's "finite cuts are finite-state" is a clean and useful structure theorem.
+- **§0.** The higher-block recoding is correct. Paths inside `B_r` transport the overlap
+  consistency.
+- **§1.** Both cut properties are correct:
+  - amalgam: both pieces of a point off `I(f)` lie on one side;
+  - HNN: by Britton, the `t`-edges realizing `f` are exactly `gk — gkt`.
+- **§2.** (BI) and (UE) are correct. One wording note: in the amalgam case the outside neighbours of
+  `A_f^+` lie in the parent piece, not in `I(f) ∖ A_f^+`, which is empty. The proof does not use that
+  sentence; "keep `y_*` elsewhere" suffices.
+- **§3.** The piece SFTs `Y_v^L`, the uniqueness in (P1) via (UE), and the completion in (P2) are
+  correct. Each point lies in one interface per piece, so every edge constraint is accounted for.
+  There are finitely many types `(v, τ, p)`.
+- **§4.** Checked:
+  - the recursion along normal forms;
+  - `C = {h : y_*(hw) = y_*(w) for all w ∈ W}`;
+  - over `Z`, eventual periodicity (by (UE) at cut points);
+  - the automaton composition on reduced words;
+  - the regular language, then Anisimov–Seifert, then `C ∩ F` finitely generated of finite index.
+
+  Item 4 uses Dunwoody accessibility for finitely presented groups.
+- **§5.** The cap recursion `D_ρ(a_{ρ+m}(v))` is correct.
+- **Consistency.** Item 3 agrees with, and extends to virtually free groups, the free case of
+  `relative-seeds-on-free-groups-have-fg-stabilizers` (bh-g1-universal-point), refereed alongside.

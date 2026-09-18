@@ -91,3 +91,26 @@ Items 3 and 4 use standard facts, recalled and not re-read.
 - There, finite cuts give nothing, and Kazhdan groups have no walls either. A proof must find
   boundary structure without splittings, as the Ã₂ example does. A counterexample must live in a
   one-ended non-exact piece.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS
+
+This is an internal lane review. It uses Lemma 1′ of `rigid-subshifts-over-free-factors-are-tight-almost-everywhere` as a black box.
+Lemma 1′ needs only colourings whose `B_D`-patterns occur in `X`, so non-SFT subshifts are fine. The underlying wall family, Lemma 1 of
+the clustering node, was not reviewed here.
+- **Item 1.**
+  - Points of one `r`-cylinder agree on `B_(r+w)`, so they differ only in deep parts.
+  - Points of different deep parts are at distance `> 2w ≥ 4D`.
+  - A `D`-ball near `C_i^w` avoids `B_r` (distance `> w − 2D ≥ 0`), so it lies in `C_i`, where `z = y′`, using `y = y′` on
+    `C_i ∖ C_i^w ⊆ B_(r+w)`.
+  - Hence `z` is locally legal and `Δ(y,z)` has two pieces at distance `> 2D`. Correct.
+- **Item 2.**
+  - If a cylinder has at least two points, its index is unique.
+  - A finite index component `C_i ⊆ B_(r′)` forces the `r′`-cylinder to be `{x}`.
+  - Nesting holds because `C′_j^w` at level `r+1` lies in `C_i^w`.
+  - Continuity holds because the index is locally constant.
+  - Equivariance follows from the ball sandwich. Correct.
+- **Item 3.** It uses three standard facts, recalled and not re-read: Adams, that boundary actions of hyperbolic groups are
+  topologically amenable; that topological amenability pulls back along continuous equivariant maps; and that `Ends(Λ) = ∂T` for
+  virtually free `Λ`. Correct.
+- **Item 4.** It uses Dunwoody accessibility for finitely presented groups, and that stabilizers of tree ends, for finite edge groups,
+  are (locally finite)-by-(Z or 1). Correct.

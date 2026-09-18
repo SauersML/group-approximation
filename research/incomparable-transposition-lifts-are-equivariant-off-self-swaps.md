@@ -161,3 +161,39 @@ contraction phenomenon seen elsewhere: finitely coded compression has fixed poin
 recurse toward the fixed point of the partner map. So exactness of P2′b, over every group and every subshift, is
 one coherence statement (CL) about comparable-cone transpositions: the self-swap definition must not depend on
 the auxiliary cone. A proof of (CL) settles the group route of the master route for all fp overgroups at once.
+
+## Referee (bh-ref-ffwz, 2026-09-18): items 1–4 PASS (full check, including the Δ-case)
+
+- **Item 1.** Correct: `λ|_[u]λ|_[u'] = λ|_U`, and (R2) gives `λ|_U (u u')^[P] λ|_U^{-1} = (u u')^[λP]`.
+- **Item 2.**
+  - *First part.* It is correct. After splitting, a spare cone `e` exists, and
+    `(c d) = (c e)(d e)(c e)`. Each case (`x` misses both, `x ⊆ [u']`, `x ⊆ [u]`) uses (R1)
+    or disjoint `X`-support in `N`.
+  - *Second part.* Conjugating by `λ_1|_[u_1']^{-1}` moves the support of `t_2` inside `[u_1']`
+    from `X ∖ λ_1P_1` to `X ∖ P_1`. That is disjoint from `(u_1u_1')^[P_1]`.
+- **Item 3.** Correct.
+  - `g = v`: the decomposition into prefix swaps `(c_i d_i)`, and (R1) for `λ|_{d_j}`, `j ≠ i`.
+  - `g = μ|_U`: all four cases. The labels come out as `μλμ^{-1}` and `λμ^{-1}` with the right
+    `X`-sets.
+- **Item 4, straddle cases.** Checked pointwise in `N`. For `x ∈ P∩Q`,
+  `(a b)(a T)(a b) = (b T)` with prefix maps, and (R1) moves `f` past the label on the other
+  cone.
+- **Item 4, the Δ-case, in full.** Write `a = uα` and `b = u'β`; `Δ ≥ 0` means `|β| ≥ |α|`.
+  - If `α` is a prefix of `β`, this is the excluded self-swap.
+  - Otherwise `α ⊥ β`. Splitting `t` along the code of all words of length `|α|` makes `a` a
+    source cone, and `b` lies in the target `u'β_{|α|}` of a different piece.
+  - Refining that piece so that `b` is its target gives two straddles, one on the source side
+    and one on the target side. `f` misses every other piece.
+  - Splitting `f` into factors `(aw bw)` keeps `αw ⊥ βw`, so no factor is a self-swap.
+  - Conjugating by one factor leaves `t` unchanged near the cones of the other factors and
+    their partners, since `uβw ∉ [uαw']` and `u'αw ∉ [u'βw']`. So "one factor at a time" is
+    legitimate.
+- **The independent proof** (`gq-bh-one-relator-independent-proof-of-gluing-exactness`,
+  9752ecd5d) uses these same items 1–4. So it does **not** cover a gap in them. Its checks
+  above are therefore load-bearing for both `K = 1` proofs.
+  - It does give a second route to comparable-lift independence: straddles plus disjoint
+    commutation, with no Coxeter argument.
+  - It also gives equivariance under every conditioned swap (its Step 7). So the `K = 1`
+    conclusion does not depend on the generation step of 22a3770d9, item 5.
+  - Its Step 2 check is correct: the supports `([d]∪[e'])×P` and `[e]×P ∪ [d']×λP` are
+    disjoint.

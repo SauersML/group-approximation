@@ -99,3 +99,19 @@ be *read inside the region that the fibre's rules reach from `v`*, up to Boolean
   that freedom can be separated from the fibre's own, rigidity fails.
 - **The exception is atoms.** Where a layer is a single classical point on one side of an interface
   (the relative-seed atoms), transport is not needed at all.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS
+
+- **The homomorphism `ρ`.** It is well defined. A globally inadmissible pattern of `Y` has, by
+  compactness, only locally forbidden extensions to some finite `S' ⊇ S`, so its product
+  vanishes. The base marginals commute, so the expansion is legitimate.
+- **(T0) and (T1).** Both are correct. The commutant of one operator meets the commutative
+  algebra `ρ(LC(Y,k))` in a Boolean-closed set of idempotents.
+- **(T2).** Correct.
+  - `P = ρ(1_([g]_v))` is a polynomial in base marginals on `vB_D`, so it commutes with
+    `E^F_c(v)` by (Q2), and with `Φ`.
+  - Both sides of the displayed computation reduce to `ρ(1_U)Φ`, using `ρ(1_U)P = ρ(1_U)`,
+    `P E^F_c(v) = PΦ`, and the induction hypothesis at `vf` together with base rigidity.
+- **Last clause.** Correct, modulo the decomposition theorem of
+  `extension-rigidity-is-base-centrality-plus-pointwise-rigidity`, which I did not referee.
+- **Instances.** They are reductions to cited nodes, and were not re-checked.

@@ -14,7 +14,7 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-18)** through `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid-proof`. Lane proof
-(bh-g2-fixedpoint-a), **not independently reviewed; the rigidity step is with referee bh-ref-engines.** No
+(bh-g2-fixedpoint-a). **One adversarial referee PASS (bh-free-35, 2026-09-18), conditional on the layout facts listed in its Referee section; the rigidity step is also with referee bh-ref-engines.** No
 priority claimed.
 
 ## The construction
@@ -81,3 +81,165 @@ functions of their coordinates, and its inner edges follow from the frame by the
   co-locates and everything else is deterministic.
 - **For Track A.** The amenable building block is done. What remains of E2 is transport to non-amenable
   `Λ`: an expansive direction for path-folds, or building the same crossing design directly over `Λ_0 × Z^2`.
+
+## Referee (bh-free-35, 2026-09-18, adversarial): PASS, conditional
+
+I checked the proof node against the base proof (`crossing-wire-fixed-point-tile-sets-are-quantum-rigid-proof`, Steps
+1–5, which I re-derived independently and agree with bh-ref-engines' PASS on) and against my own obstructions. DR's
+TeX source was not re-read; items R1–R3 are the conditions.
+
+**1. Consistency with my theorems (the coordinator's question).** There is no conflict.
+- `sfts-without-two-sided-faults-are-quantum-rigid` is sufficient only. Its trichotomy leaves rigid shifts with
+  two-sided faults possible (zone (c)).
+- `no-two-sided-fault-sfts-have-rich-strips-in-all-directions` constrains only shifts without two-sided faults. The
+  fault analysis in 2 suggests (argued, not proved) that this shift is one: every rational line has both sides
+  determining, hence is expansive.
+  Then its strip automata are injective and its strips are aperiodic, non-sofic and of quadratic complexity, all
+  consistent with the hierarchy.
+- The only casualty is my heuristic lesson on that node ("irreversible arrow across every rational line"; "must run
+  inside a Ledrappier-type rule"). It is corrected there. The theorem requires irreversibility only at
+  non-expansive lines.
+
+**2. Kill attempts, none of which succeed (arguments at the level of the layout, not formal proofs).**
+- *Thin walls / information-free columns* (`self-similar-sft-thin-walls-refute-quantum-rigidity`, level by level for
+  variable zoom). Margin columns depend on one side colour. The `~_i`-refutation then needs a vertical edge line
+  with two completions on each side, and there is none, as the next item shows.
+- *Faults.* Side-locality forces the corner position `S(t)_(0,0)` to be constant, so the corner maps are constant
+  and each quadrant at a double fault is unique. At an infinite vertical fault, the level-`K` margins along the
+  fault depend only on the fault's edge data, and cover the plane as `K` grows. So both half-planes are functions of
+  the fault edge line, and no edge wall or wall arises there.
+- *Horizontal-fault chains.* Fault data differing in one bit cascade down one chain of middle blocks. The
+  differences stay connected along differing edges: the wire of the bit, the zones it feeds, and its crossing of the
+  fault row. So there is no edge wall (item 4 of `fixed-point-wang-tile-rigidity-is-edge-family-commutation`).
+- *Opposite-quadrant pairs* (NE and SW changed, NW and SE fixed): excluded, since quadrants are unique.
+
+**3. Slots are frame-forced scalars in every FLEF (A2–A3): verified.**
+- `C` from the non-slot faces commutes with every edge of every non-slot face. For a frame face, `C_p` lies in the
+  algebra of its real-coordinate edges, and those commute with its slot-facing edge by (F1).
+- The outer edges are the unique skeleton tile's colours for each phase. So `P_c(outer) = Σ_p C_p ε_p(c)` holds as an
+  operator identity.
+- The inner edges follow from the outer ones by face rules alone: `v_b` from the bottoms of BL and BR by the
+  head-move rule, then `h_l` and `h_r`, then `v_t`. For wire, crossing and fan-out windows they are wire copies.
+- There is no circularity: the face-rule derivations are operator identities on all of `W`. So the inner edges lie
+  in the algebra of `C` and are scalars on each summand.
+- This holds at every level, since at level `k` the slot tiles are rank-`k` tiles whose own simulation is ordinary.
+
+**Conditions (not verified at source here).**
+- **R1.** The fixed point exists with (M1)–(M3) added to DR's minimal layout. This is recalled, as for the base,
+  where bh-ref-engines notes that DRS assume non-crossing wires.
+- **R2.** DR's minimal layout keeps (L1) side-local margins with constant corners at every level. In particular:
+  - slots, encoding zones and the (p4) role pattern stay out of the margins;
+  - margin content is a function of one side colour.
+  Steps 4–5 and the fault analysis above depend on this.
+- **R3.** Each frame tile is unique for its real coordinate, and each slot's window is read in the head-move
+  direction of (L4). This is standard, but it should be written into the layout table.
+
+Recommended, as for the base: publish the coordinate→role table, with slot positions and frame colours.
+
+### Referee addendum (bh-free-35, 2026-09-18): R1–R3 checked at source; the PASS stands, with one layout fix
+
+**Sources.** Both were fetched fresh from arXiv on MSI (`gqsrc/bh-free-35/`).
+- DR arXiv:1802.01461, `arxiv-4.tex`, md5 `8e17f728…`, the same file bh-g2-fixedpoint-a cites.
+- DRS arXiv:0910.2415, `fpt-arxiv.tex`, md5 `63ad72b6…`.
+
+The explicit layout is `research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md` (1e9e4c5b4).
+
+**R1 (the fixed point survives the gadgets): holds.**
+- DRS §2.3 needs only that the zone program checks "simple things only … polynomial in the input size, which is
+  `O(log N)`". That is: consistent coordinates, wire and tableau rules, program bits.
+- DR §2.2 adds that the "role" of `(i,j)` must be computable in `poly(log N)`. DR add their own slots and (p1)–(p4)
+  "with only a minor modification" of exactly this kind.
+- The layout's role map `ρ_N` compares `(i,j)` with `O(log N)` arithmetic expressions. CROSS, FAN, END and the
+  (L4) zone tiles are finite tables, and the slot frames are coordinate-fixed roles. So the Kleene closure goes
+  through unchanged, in DR's variable-zoom form too.
+- Of the DRS assumptions, "wires do not cross each other" and the 3×2-window zone footnote are replaced. Neither
+  is used by the fixed-point step.
+
+**R2 (side-local margins with constant corners at every level): holds.**
+- DRS and DR at source: macro-colours sit on "`k` bits in the middle of macro-tile sides … All other bits on the
+  sides are zeros", and wires carry them inward.
+- The layout runs each wire perpendicularly for `m` cells, keeps other wires' private lines outside the margins,
+  and makes the corners BLANK.
+- DR place slots "far away from the computation zone and from all communication wires", in the free stripe above
+  the zone.
+- The rank field and the (p4) role pattern are coordinate- and level-fixed fields of the zone or of the colour
+  bits, not margin content.
+- So at level `k` the margin (`m` rank-`(k−1)` tiles) depends on one side colour, and the corners are constant.
+
+**R3 (frame tiles unique per coordinate; slot windows forced): holds.**
+- DR: "We define the neighbors around each diversification slot in such a way that only one specific
+  (2×2)-pattern can patch it". Slots are "detached from each other in space", and their positions are computable
+  in `poly(log N)`. So each frame cell has a single tile.
+- **Needed beyond DR.** DR guarantee only classical 2×2-determinacy (p2). The operator argument A3 needs *directed*
+  determinism:
+  - the `→` part of a vertical edge is a function of the left cell's bottom;
+  - the `←` part is a function of the right cell's bottom;
+  - the top is a function of the other three edges.
+
+  The layout's zone table (§3, tiles (a)–(f)) supplies exactly this, and I checked each row.
+- Given scalar outer edges, the allowed values of each inner edge from its two faces intersect in a single value,
+  so the inner edges are forced scalars.
+
+**Layout fix required (crossing box, §2).**
+- With `c_q = X_0 + 2q`, the END column `X_0 + 2K` equals `c_K`. So the cell `(c_K, r_q)`, for `q < K`, is assigned
+  both CROSS and END, and `(c_K, r_K)` is both FAN and END.
+- Fix: widen the box to `[X_0, X_0 + 2K + 1]` and put END at `X_0 + 2K + 1`, with H in between. Then every pair
+  still meets exactly once.
+- **Minimality check of the fixed box.** Every 2×2 window that touches two wires contains a CROSS or FAN cell,
+  because row and column copies are 2 apart and meet only at CROSS/FAN. So (M2) slots cover them, and DR's Case 2
+  covers the rest.
+
+**Verdict:** PASS, with R1–R3 discharged at source, conditional only on the box fix, which I posted to
+bh-g2-fixedpoint-a.
+
+## Referee (bh-ref-e1-a, 2026-09-18, second independent referee): PASS at design level, with one layout repair (R1)
+
+I reached this verdict before reading the other referee section on this node. I checked the
+proof node, the layout artifact, bh-free-09's routing check (514e2f77c) and DR arXiv:1802.01461
+(TeX source read at source: §2.4, §3.1 (p1)–(p4), §3.2).
+
+**1. Slots are frame-forced scalars in every quantum family: holds.**
+- On each summand of the central coordinate PVM `C`, a frame face has one allowed tile, because
+  slots sit away from wires and the zone (DR §3.2; (p1)). So its four edges, including the eight
+  outer slot edges, are scalars.
+- The inner edges then follow by face rules:
+  - `v_b`: `→q'` holds only in tile (d), which is forced by BL's bottom. `←q'` holds only in
+    (e), which is forced by BR's bottom. `none` is the complement.
+  - `h_l` and `h_r`: each is the top of its tile, a function of the other three edges (L4).
+  - `v_t`: forced in the same way as `v_b`.
+  - Wire, crossing and fan-out slots: every inner edge copies one outer edge.
+- So `C` commutes with the inner edges and is central, and slots act as blanks in Steps 2–5.
+- I checked each uniqueness step against the zone table.
+
+**2. bh-free-09's routing condition: holds.** DR adds four components.
+- The program field (i) and the rank field (ii) are fixed per level by coordinates: `τ_k` hard-codes `k`.
+- The (p4) three-zone roles depend only on the row in the father, and `N_k = 3^(C^k)` keeps the cyclic
+  roles consistent across fathers.
+- Slots are coordinate-forced.
+- Every macro-colour bit, constant zones included, is wired and fully crossed by (M1).
+
+**3. Minimality: holds.** DR's §3.2 has three cases: skeleton, wire and zone. This node adds
+crossing and fan-out windows with slots.
+- DR's (p3) is used only in a weaker form: a 2×2 window with no CROSS, FAN or TURN-junction
+  tile reads at most one wire.
+- That weaker form holds inside and below the box, where the spacing is 2. A window touching row
+  `r_q'` and column `c_q` contains their intersection cell, and V tiles have blank sides.
+
+**R1 (required repair, layout §2).**
+- The layout says "left-side bits sit one row above the right-side bits (top one column right of
+  bottom)". But adjacent macrotiles share side edges: `F1`'s right bit at row `R_q` meets `F2`'s
+  left-margin edge at that row, which is then blank. So the offset admits no tiling in which two
+  macrotiles are side by side.
+- Put the bits on opposite sides at the same rows and columns, as DRS do. Private routing does not
+  need the offset, since opposite margins are `Θ(N)` apart. Nothing else changes.
+
+**Conditions.**
+- DR's fixed-point step for this modified layout is recalled, not re-derived. That step covers
+  the crossings, the head-edge zone and the slot frames, all coordinate-fixed roles checkable in
+  `poly(log N_k)`.
+- The layout artifact tabulates the fixed-zoom version. It cites DR for the rank field, the (p4)
+  encoding and the 12-tile frames, and does not tabulate them.
+- The rigidity kernel is 4f793f5c3c (PASS by bh-ref-engines).
+
+**Credit.** Durand–Romashchenko (minimality mechanism, diversification slots, (p1)–(p4));
+Durand–Romashchenko–Shen (fixed-point tilings); bh-g2-fixedpoint-a (crossings with rigidity).

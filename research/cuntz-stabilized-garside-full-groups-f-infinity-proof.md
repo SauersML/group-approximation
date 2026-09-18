@@ -8,6 +8,7 @@ requires:
   - perron-weights-do-not-give-li-finiteness
   - perron-weights-do-not-give-li-finiteness-proof
   - thin-cycles-decide-li-packing
+  - cuntz-pure-hole-datum-satisfies-li-st-and-lcm
 ---
 
 **Lane proof, not independently reviewed.** Labels are Li's (arXiv:2110.04505v2). Notation:
@@ -133,12 +134,39 @@ are the `𝔠`-parts.
 
 ## 5. Conclusion
 
-Item 3 of `perron-weights-do-not-give-li-finiteness` (with §4 of its proof) runs Witzel's
-`thm:Wit` with `ρ_h`.
-- Li's `lem:link:n-conn_1`, `_2` and `_3` and `cor:link:n-conn` are used as stated.
-- Lemma 3's hypothesis `ρ'(x) ≥ R` holds whenever `ρ_h(x) ≥ (2K+1)R`: then `|x| ≥ R`,
-  and `ρ'(x) ≥ |x|` by §3.
-- `lem:Stab` holds with trivial unit groups, which are `F_∞`.
+*(Revised 2026-09-18 to integrate referee bh-ref-q115-a, 9580d05636.)* We run Witzel's
+`thm:Wit` with the height `ρ_h` of §4, following Li's proof of `thm:Fn` with these inputs:
+- **`lem:link:n-conn_1`** (down-links), used as stated. It uses only gcds in `Div(Δ)`,
+  which exist since `𝒞` has lcms (§2).
+- **Lemma L, in place of `lem:link:n-conn_3`.** Fix `n, L, m`. There is `R` such that for
+  every `x ∈ 𝐗(*)` with `|x| ≥ R`, every `[μ] ∈ E(x)` with fewer than `n+1` components in
+  `μ_+ ⊔ μ_a`, and all `m`-simplices `σ_1, …, σ_L` of `𝓜_μ`, some vertex `[α]` makes every
+  `σ_l ∪ {[α]}` a simplex.
+
+  *Proof* (bh-ref-q115-a). Let `𝐑` be the set of multisets of objects of `𝐗(*)`.
+  - Membership in `𝐗(*)` depends only on the multiset, since units are trivial.
+  - `𝐑` is closed under `𝐦 ↦ 𝐦 + e_τ` whenever `𝐦(τ) ≥ 1`, by applying `δ_τ` (§3).
+  - By Dickson's lemma, each support class of `𝐑` has finitely many minimal elements.
+    Let `C` be 2 plus their largest coordinate. Then `𝐦 ∈ 𝐑` and `𝐦(τ) ≥ C` imply
+    `𝐦 − e_τ ∈ 𝐑`.
+  - The simplices and `μ_+ ⊔ μ_a` touch at most `(n + Lm)B` pieces. Take
+    `R = (n+Lm)B + |𝔛(*)|(C+2)`. Then some type `τ` has at least `C+2` untouched pieces.
+  - Let `α` be the doubling atom `δ_τ` on two untouched `τ`-pieces. It is an atom of `𝒮`:
+    its only coarsening with pure pieces is the whole piece.
+  - Each `O_l = 𝐭(ν_l)` has `𝐦_{O_l}(τ) ≥ C+2`. Applying `α` gives multiset
+    `𝐦_{O_l} − e_τ ∈ 𝐑`, which is an object of `𝐗(*)`. So every `σ_l ∪ {[α]}` is a
+    simplex. ∎
+
+  The full text is in the Referee A section below.
+- **`lem:link:n-conn_2`** follows from Lemma L by Li's deduction (Matui, Lemma 6.18;
+  Brown, Lemma 4.20). Its hypothesis only concerns the `y`-part of `x`, and the argument
+  above already takes that into account.
+- **`cor:link:n-conn`**, with `ρ_h` in the Morse function. §4 gives `|x| ≥ R` whenever
+  `ρ_h(x) ≥ (2K+1)R`.
+- **`lem:Stab`** holds with trivial unit groups, which are `F_∞`.
+
+The packing number `ρ'` and item 3 of `perron-weights-do-not-give-li-finiteness` are no
+longer used.
 
 So `𝒬(*,*) ≅ F((𝒢 × G_2)_Y^Y)` is of type `F_n` for every `n`. ∎
 
@@ -173,8 +201,25 @@ add to `𝔛` the type `X(a; {a→a})`, together with its forced expansion to `(
 - But now `ρ'(x_N) ≥ N`.
 - The 1-simplex `{A(1,1), B(2,2)}` of `M_{x_N}` has no extension, for every `N`.
 
-So `ρ'` must range over `Γ(*)`, and it does in all our uses. Li's own theorems are
-unaffected: his (`t<d`) quantifies over `Γ(*)`.
+So the literal reading fails, and `ρ'` would have to range over `Γ(*)`.
+
+**What Li's written proof supplies (neutral record, following bh-ref-q115-a).** Li's framework
+for finiteness of full groups is the basis of this whole route:
+- the bisection category;
+- Garside maps;
+- the complexes `E(x)` and `𝓜_μ`;
+- the use of Witzel's criterion.
+
+Two points of the written text matter here.
+- **The proof of `lem:link:n-conn_3`** (arXiv:2110.04505v2, l.1733–1759) uses `ρ'` only to
+  choose a sequence with `ρ'(x_p) → ∞`. Its key step asserts, without further argument, an
+  element `θ ∈ 𝒞` with `𝐝(θ) ⊆ z_{p+2,l}` and a prescribed multiplicity change.
+- **Nothing in it distinguishes `Γ` from `Γ(*)`.** So the example above shows that the step
+  needs an argument that the text does not give.
+
+We have not checked whether the step can be supplied under Li's (`t<d`), so nothing here is
+claimed about Li's theorems. What this route supplies instead is Lemma L (§5), a direct
+proof of the instance needed for pure-hole Cuntz data, by Dickson's lemma and doubling.
 
 ## Lesson for general BH
 
@@ -182,3 +227,47 @@ The Cuntz colour is a universal packing device. It makes every cylinder mergeabl
 copy of itself, so only order-theoretic hypotheses remain: a height and Li's lattice
 hypotheses. The one thing to avoid is letting the datum contain cylinders the Cuntz move
 cannot double.
+
+## Referee A (bh-ref-q115-a, 2026-09-18): the Γ(*) reading of §8 is not supplied by Li; a direct proof for pure-hole data
+
+**The gap.** Li's proof of `lem:link:n-conn_3` (arXiv:2110.04505v2, l.1733–1759, read at
+source) uses `ρ'` only to choose a sequence with `ρ'(x_p) → ∞`. The key step, "there exists
+`θ ∈ C`, independent of `l`, with `𝐝(θ) ⊆ z_{p+2,l}` and `𝐦_θ = 𝐦_{ξ_{p+1,l}} − 𝐦_{ξ_{p,l}}`",
+is asserted without argument, and nothing in the proof distinguishes `Γ` from `Γ(*)`. So if §8's
+counterexample to the literal reading is right (I find it convincing), Li's written proof has a
+gap at that step, and the `Γ(*)` reading is not proved by Li's text either. The weakest link is a
+missing proof, not a reading question.
+
+**Repair for this node's setting** (pure-hole datum on `𝔠 × M`, trivial units). Replace the
+hypothesis `ρ'(x) ≥ R` by `|x| ≥ R` (piece count). §5 gives `|x| ≥ R` whenever
+`ρ_h(x) ≥ (2K+1)R`. Let `𝐑 = {𝐦_x : x ∈ 𝐗(*)}`.
+1. **Membership is a multiset property.** Objects with equal multisets are unit-isomorphic; Li
+   uses this himself at l.1758.
+2. **Doubling closure.** If `𝐦 ∈ 𝐑` and `𝐦(τ) ≥ 1`, then `𝐦 + e_τ ∈ 𝐑`. Expanding one
+   `τ`-piece by `δ_τ ∈ Γ(*)` gives `x'` with a morphism `x' → x → *`.
+3. **Eventual downward closure (Dickson).**
+   - For each support `S ⊆ 𝔛(*)`, the set `𝐑_S = 𝐑 ∩ {supp = S}` is upward closed inside
+     support `S`, by 2.
+   - So `𝐑_S` is the union of the cones above its finitely many minimal elements.
+   - Let `C` be 2 plus the largest coordinate of any minimal element, over all `S`.
+   - If `𝐦 ∈ 𝐑` and `𝐦(τ) ≥ C`, then `𝐦 − e_τ ∈ 𝐑`: it dominates the same minimal element and
+     keeps support `S`.
+4. **The extension.**
+   - Let `B` bound the number of domain pieces of any element of `𝓛` and of any atom of `𝒮`.
+     This is finite: `𝔖₂` is locally finite and there are finitely many types.
+   - Take `[μ]` with fewer than `n+1` components in `μ_+ ∐ μ_a`, and `m`-simplices
+     `σ_1, …, σ_L` of `𝓜_μ`. They touch at most `(n + Lm)B` pieces of `x`.
+   - If `|x| ≥ R := (n+Lm)B + |𝔛(*)|·(C+2)`, some pure type `τ` has at least `C+2` untouched
+     pieces in `y`.
+   - Let `α` be the first atom factor of `δ_τ`, acting on two untouched `τ`-pieces. It lies in
+     `𝒮 = Div(Δ)`, since `δ_τ` does.
+   - For each `l`, the object `O_l = 𝐭(ν_l) ∈ 𝐗(*)` contains every untouched piece. So
+     `𝐦_{O_l}(τ) ≥ C+2`, and `𝐦_{O_l} − e_τ ∈ 𝐑` by 3.
+   - Applying `α` to `O_l` gives an object with a morphism to that `(𝐦_{O_l} − e_τ)`-object,
+     so it lies in `𝐗(*)`. Hence `σ_l ∪ {[α]}` is an `(m+1)`-simplex for every `l`.
+
+So the instance of `lem:link:n-conn_3` that §5 uses holds, with `R = R(n,L,m)`, and Li's deduction
+of `lem:link:n-conn_2` (via Matui Lemma 6.18 and Brown Lemma 4.20) goes through as stated. The rest
+of §5 is unchanged, and this fix needs no packing number at all.
+
+Not re-checked here: §2, i.e. that the pure-hole datum satisfies (St) and has lcms.

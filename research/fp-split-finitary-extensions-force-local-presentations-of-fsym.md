@@ -76,6 +76,17 @@ Let a finitely generated group `G` act on a set `X` with finitely many orbits. F
 - **Free and levelled actions.** These fail by `levelled-actions-make-finitary-extensions-not-fp2`
   (after Genevois–Tessera, arXiv:2401.13520, Theorem 1.5, for lampshufflers).
 
+- **Item 2 is vacuous for finitely presented `G` with finitely generated point stabilizers**
+  (added 2026-09-18). Let `X = G/H` with `G` finitely presented and `H` finitely generated, and
+  take `F` a large ball `{g x_0 : |g| <= L}`.
+  - Every edge of `K_F` lies in a simplex that also contains a Schreier-graph path between its
+    ends, so edge loops reduce to Schreier loops.
+  - A Schreier loop at `x_0` reads a word in `H`. It differs from a product of generators of `H`
+    by relators of `G`.
+  - Both kinds of bounded closed paths lie in translates of `F`, so they are null-homotopic.
+  - So `π_1(K_F) = 1`, and any obstruction for such actions must be of the line (Coxeter) type or
+    homological, as in `levelled-actions-make-finitary-extensions-not-fp2`.
+
 ## Application to gate (b)
 
 For `P = A_p/C` acting on `Ω' = P/T`, finite presentation of `Alt_fin(Ω') ⋊ P` needs a finite
@@ -86,6 +97,16 @@ For `P = A_p/C` acting on `Ω' = P/T`, finite presentation of `Alt_fin(Ω') ⋊ 
   configuration, and the Houghton-type induction on distance is unavailable.
 
 Whether the Coxeter-type (line) obstruction or a derivation wins is the open content of gate (b).
+
+**Partial-torus hosts (bh-free-60, `partial-torus-abels-quotients-are-finitely-presented-with-max-n`).**
+- The torus-coset action of `P_Δ/e_1n(L)` passes the stabilizer law. Every root space has a
+  nontrivial torus weight, and the corner `R/L` is torsion when `L ≠ 0`, so characters of finite-index
+  subgroups are carried by the torus, which fixes the base point.
+- They meet the same open point. The order of the difference of two points in one fibre of the
+  Prüfer radical is invariant under the action, even when the radical is scaled (as by `t = 2` in
+  `G_2`). So pair types are unbounded, and far fibre pairs never share a translate of `F`.
+- These hosts therefore change nothing for gate (b). The fallback is a near action or a germ host,
+  whose elements can shorten far configurations.
 
 ## Lesson for general BH
 
