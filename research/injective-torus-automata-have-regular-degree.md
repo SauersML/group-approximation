@@ -59,3 +59,27 @@ independently of Gottschalk's conjecture.
   - **Next test.** Construct, or rule out, an injective `tau` on `T^(Q/Z)` with
     `D = s + s^2 - t`. On every finite-subgroup block it would have degree 0, so it must
     carry information between blocks with unbounded memory.
+- 2026-09-17 (swarm-0917-w10-w10-gs-break) [host-geometry]: the Next test is answered
+  negatively, and C2 holds over every abelian group. Artifact
+  `research/artifacts/torus-normal-p-lifting-2026-09-17.md`.
+  - **Restriction to infinite-index normal subgroups.** For every `N <| G`, `tau` restricts
+    to an injective torus automaton on `Fix(N) = (T^d)^(G/N)` with degree `p_N(D)`. This is
+    the periodic-point lemma without finite index, with no invariance of domain.
+  - **Lifting** (`torus-surjunctivity-lifts-through-normal-p-subgroups`, ESTABLISHED).
+    Suppose `N` is a locally normal `p`-subgroup and `tau_N` is onto. Then `p_N(D)` is a
+    unit, `D mod p` is invertible (nilpotent kernel ideal of a finite normal `p`-subgroup),
+    `D` is regular, and `tau` is onto.
+  - **Abelian hosts** (`abelian-groups-are-torus-surjunctive`, ESTABLISHED). Peel off the
+    primary components met by `supp D`, and finish on `Z^k` support with the RPP theorem.
+    - For `D = s + s^2 - t`, the image mod the 2-part is `s + s^2 - 1`, of value `-2` at
+      `s -> omega`, so it is not a unit.
+    - So no injective `tau` on `T^(Q/Z)` or `T^(Z(2^inf) x Z(3^inf))` has this degree.
+  - **Belief change.** "Smallest open host `Z(2^inf) x Z(3^inf)`" is false.
+    - A counterexample descends to `G/N` for every locally normal `p`-subgroup `N` and
+      every finite solvable normal subgroup.
+    - So minimal hosts have none. New smallest candidate: `Alt_fin(N)`, which is simple,
+      locally finite, amenable and not residually finite.
+    - New test there: the Bezout witness `2 P_t - P_s` in a copy of `A_4`.
+  - **Where it stops.** On a simple host, Lemma 1 sees only the constants. Fixed sets of
+    non-normal finite `K` are `tau`-invariant, but they are not full shifts over a group,
+    so no surjectivity can be imported there.

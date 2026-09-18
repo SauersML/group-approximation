@@ -9,11 +9,13 @@ requires: [cat0-groups-with-a-tree-factor-lie-in-type-a-class, arithmetic-lie-la
 
 **Item 1.**
 - **Degenerate `T`.** If every vertex of `T` has degree `<= 2`, `T` is a line or a
-  finite path. Then `Γ` acts geometrically on `H^2 × R`, and is virtually `S × Z` for a closed
+  finite path (a ray has no cocompact isometry group). Then `Γ` acts geometrically on `H^2 × R`, and is virtually `S × Z` for a closed
   surface group `S` (Scott, *The geometries of 3-manifolds*, for `H^2 × R`;
   cited, not re-read). Or `Γ` preserves one fibre `H^2` (over the center of the
   path, possibly a midpoint) and acts on it geometrically, and the fibre argument
-  below shows it is virtually a surface group. Either way `Γ` is linear over `Z`, and
+  below shows it is virtually a surface group. Either way `Γ` is linear in characteristic 0 (a surface group, and `S × Z`, embed in
+  `PSL_2(R)`-type matrix groups; linearity passes to finite-index overgroups by
+  induction), and
   `char-zero-linear-groups-satisfy-permutational-boone-higman` applies.
 - **Product preservation.** Otherwise `T` has a branch point, so `H^2 × T` has no
   Euclidean factor and its two factors are non-isometric irreducibles. Every
@@ -22,8 +24,9 @@ requires: [cat0-groups-with-a-tree-factor-lie-in-type-a-class, arithmetic-lie-la
 - **The fibre group.** By item 1 of `cat0-groups-with-a-tree-factor-lie-in-type-a-class`,
   `Γ ∈ BS_G`, where `G = Γ_v` acts properly and cocompactly on
   `H^2 × {v}` (it preserves this fibre because `γ_T v = v`).
-  - The image `Q` of `G` in `Isom(H^2)` is a cocompact Fuchsian group, and the
-    kernel `F` is finite.
+  - The image of `G` in `Isom(H^2)` is a cocompact NEC group, and the kernel `F` is
+    finite. Its orientation-preserving part `Q` has index `<= 2` and is a cocompact
+    Fuchsian group; replace `G` by the preimage of `Q`, of index `<= 2`.
   - `Q` has a torsion-free finite-index surface subgroup `S` (Selberg); let `E` be
     its preimage.
   - The centralizer `C = C_E(F)` has finite index in `E`, and `C ∩ F = Z(F)`. So

@@ -9,6 +9,8 @@ distinct_from:
   finite-index-edge-hnn-embeds-in-fp-simple-group: that is the finite-index-edge HNN theorem, and its (L3) records that infinite-index edges need a different injectivity argument; this supplies that argument in the ascending case, via an embedding into a finite-index-edge HNN extension of F * Z.
   one-relator-groups-satisfy-boone-higman: that is the open problem for all one-relator groups; this covers only those one-relator groups that are ascending HNN extensions of finitely generated free groups.
   bh-embeddability-survives-decidable-edge-hnn: that is the open HNN permanence for arbitrary finitely generated decidable edges; this settles only ascending HNN extensions of free groups.
+  mif-free-product-automorphism-ascending-hnn-is-pbh: that covers ascending HNN extensions along automorphisms of M * F_m for a finitely presented simple MIF group M; this covers arbitrary injective endomorphisms of free groups, by a different mechanism.
+  drutu-sapir-group-satisfies-boone-higman: that is one member of this family, already established by power maps; this is the whole family, and it gives a second route to that claim.
 artifacts:
   - research/artifacts/gq-bh-bh-free-05-ascending-hnn.md
 ---

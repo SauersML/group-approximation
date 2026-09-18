@@ -9,8 +9,9 @@ distinct_from:
   cat0-groups-satisfy-boone-higman: that is survey item (10) for all CAT(0) groups; this is a subclass containing many non-linear, possibly non-residually-finite groups.
 ---
 
-**ESTABLISHED** through `cat0-hyperbolic-plane-tree-type-a-proof` (lane proof; not
-independently reviewed; no priority claimed).
+**ESTABLISHED** through `cat0-hyperbolic-plane-tree-type-a-proof` (lane proof; referee a PASS,
+`research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
+no priority claimed).
 
 1. Let `Γ` act properly and cocompactly by isometries on `H^2 × T`, with `T` a
    locally finite tree. Then `Γ ∈ B_A`. So every subgroup of `Γ` embeds in a

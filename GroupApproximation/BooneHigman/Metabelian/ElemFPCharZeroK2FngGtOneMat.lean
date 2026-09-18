@@ -50,9 +50,8 @@ theorem czK2FngGtOne_mat {R : Type*} [CommRing R] [IsDomain R] [IsPrincipalIdeal
   obtain ⟨b, u, hu⟩ := ElemFP.vdkStab_stableRangeLE_two_of_pid R 2 le_rfl _ hU
   have hred : ∀ i, ElemFP.vdkStab_reduceRow (surjStabVec r t) b i = (r + t • b) i := by
     intro i
-    rw [ElemFP.vdkStab_reduceRow_apply, surjStabVec_castSucc, surjStabVec_last,
-      mul_comm (b i) t]
-    rfl
+    show surjStabVec r t (Fin.castSucc i) + b i * surjStabVec r t (Fin.last 2) = r i + t * b i
+    rw [surjStabVec_castSucc, surjStabVec_last, mul_comm (b i) t]
   have hw : (r + t • b) ⬝ᵥ u = 1 := by
     rw [← hu, dotProduct]
     exact Finset.sum_congr rfl fun i _ => by rw [hred i]
