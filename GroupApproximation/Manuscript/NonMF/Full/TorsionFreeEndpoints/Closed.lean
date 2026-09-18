@@ -490,3 +490,120 @@ theorem forms_manuscriptRegularNonMFAlgebraLimitSet_closed_of_greendlinger
 
 end Forms
 
+/-! ## `TorsionFreeGreendlingerSentences`, CONDITIONAL on `hG`
+
+Six of these theorems carry further binders or a long `∀`-statement.  Each is stated at
+`type_of%` of the applied theorem at `hG`, so its statement is literally that conclusion. -/
+
+section Sentences
+
+open GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences
+
+/-- "Hull's proof treats `m = 1` by passing to `G/⟨⟨r⟩⟩`" (tex 1644), **CONDITIONAL on `hG`**
+(not proved in the repository). -/
+theorem manuscriptSentence_hullOneTargetOneRelatorGeneral_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_hullOneTargetOneRelatorGeneral_of_greendlinger hG) :=
+  @manuscriptSentence_hullOneTargetOneRelatorGeneral_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_hullOneTargetOneRelatorGeneral_closed_of_greendlinger
+
+/-- "and the general case by induction on `m`" (tex 1644), **CONDITIONAL on `hG`** (not proved in
+the repository). -/
+theorem manuscriptSentence_hullInductionOnTargetsGeneral_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_hullInductionOnTargetsGeneral_of_greendlinger hG) :=
+  @manuscriptSentence_hullInductionOnTargetsGeneral_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_hullInductionOnTargetsGeneral_closed_of_greendlinger
+
+/-- `thm:hull` at Osin's notion over a torsion-free ambient group (tex 1636), **CONDITIONAL on
+`hG`** (not proved in the repository). -/
+theorem manuscriptSentence_hullTheoremTorsionFreeOsin_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_hullTheoremTorsionFreeOsin_of_greendlinger hG) :=
+  @manuscriptSentence_hullTheoremTorsionFreeOsin_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_hullTheoremTorsionFreeOsin_closed_of_greendlinger
+
+/-- The pair-and-Hull-again sentence of the proof of `lem:saturation` (tex 1662), **CONDITIONAL
+on `hG`** (not proved in the repository). -/
+theorem manuscriptSentence_saturationPairAndHullAgain_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_saturationPairAndHullAgain_of_greendlinger hG) :=
+  @manuscriptSentence_saturationPairAndHullAgain_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_saturationPairAndHullAgain_closed_of_greendlinger
+
+/-- The apply-`thm:hull` sentence of the proof of `lem:saturation` (tex 1665), **CONDITIONAL on
+`hG`** (not proved in the repository). -/
+theorem manuscriptSentence_saturationApplyHullNoOmega_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_saturationApplyHullNoOmega_of_greendlinger hG) :=
+  @manuscriptSentence_saturationApplyHullNoOmega_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_saturationApplyHullNoOmega_closed_of_greendlinger
+
+/-- The apply-`lem:saturation` sentence of the proof of `thm:torsion-free` (tex 1698),
+**CONDITIONAL on `hG`** (not proved in the repository). -/
+theorem manuscriptSentence_theoremApplySaturationNoOmega_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    type_of% (@manuscriptSentence_theoremApplySaturationNoOmega_of_greendlinger hG) :=
+  @manuscriptSentence_theoremApplySaturationNoOmega_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_theoremApplySaturationNoOmega_closed_of_greendlinger
+
+/-- Hull's common quotient as cited in the Fournier-Facio paragraph (tex 1680–1683),
+**CONDITIONAL on `hG`** (not proved in the repository). -/
+theorem manuscriptSentence_hullCommonQuotient_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreePrinted.HullCommonQuotientPrinted :=
+  manuscriptSentence_hullCommonQuotient_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.manuscriptSentence_hullCommonQuotient_closed_of_greendlinger
+
+end Sentences
+
+/-! ## The top endpoints over the two open residuals
+
+Each theorem below takes the two residuals `hall` and `hcore`, **neither proved in the
+repository**, and feeds `Full.GL06.relativeGreendlinger_zero_of_allCells_of_core hall hcore`
+to the `hG`-endpoint above.  They are still CONDITIONAL. -/
+
+/-- **Every zero-parameter torsion-free endpoint, CONDITIONAL on the two open residuals** `hall`
+(binder 5) and `hcore` (residual 10), neither proved in the repository. -/
+theorem torsionFreeEndpoints_of_allCells_of_core
+    (hall : GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0})
+    (hcore : GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0}) :
+    TorsionFreeEndpoints :=
+  torsionFreeEndpoints_closed_of_greendlinger
+    (GL06.relativeGreendlinger_zero_of_allCells_of_core hall hcore)
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.torsionFreeEndpoints_of_allCells_of_core
+
+/-- Abstract, tex 78–79, **CONDITIONAL on the two open residuals** `hall` and `hcore`, neither
+proved in the repository. -/
+theorem abstractTorsionFreeClause_of_allCells_of_core
+    (hall : GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0})
+    (hcore : GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0}) :
+    AbstractTorsionFreeClause :=
+  abstractTorsionFreeClause_closed_of_greendlinger
+    (GL06.relativeGreendlinger_zero_of_allCells_of_core hall hcore)
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.abstractTorsionFreeClause_of_allCells_of_core
+
+/-- `thm:torsion-free` as printed, **CONDITIONAL on the two open residuals** `hall` and `hcore`,
+neither proved in the repository. -/
+theorem printedTorsionFreeTheorem_of_allCells_of_core
+    (hall : GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0})
+    (hcore : GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreePrinted.PrintedTorsionFreeTheorem :=
+  leaf_printedTorsionFreeTheorem_closed_of_greendlinger
+    (GL06.relativeGreendlinger_zero_of_allCells_of_core hall hcore)
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.printedTorsionFreeTheorem_of_allCells_of_core
+
+end TorsionFreeEndpoints
+end Full
+end GroupApproximation
+
