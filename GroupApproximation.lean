@@ -5733,6 +5733,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectWords
 import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectGeometry
 import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectChanges
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Surjective
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.States
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
