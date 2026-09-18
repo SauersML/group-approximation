@@ -12,6 +12,12 @@ distinct_from:
 **ESTABLISHED** by `aut-out-free-abelianized-extension-virtually-splits-proof`
 (lane proof, elementary; gq-referee-a PASS; no novelty claimed).
 
+**Review.** gq-referee-b PASS
+(`research/artifacts/gq-referee-b-aut-out-free-abelianized-extension-virtually-splits.md`,
+e2559641e). The cocycle is also Kawazumi's: the contraction of the first
+Johnson crossed homomorphism (arXiv:math/0505497, §2, (2.5) and (2.11)) equals
+`(1 − n)[γ]` on `Inn`. No printed statement of the virtual splitting was found.
+
 **Priority.** This is the integral, finite-index form of the finite-coefficient
 splitting that Bogopolski--Puga use. They split
 `F_n/H → Aut(F_n)/H → Out(F_n)` for a characteristic abelian cover `H`, with
