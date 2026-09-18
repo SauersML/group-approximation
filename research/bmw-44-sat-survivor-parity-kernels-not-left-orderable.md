@@ -212,3 +212,25 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
   - The dichotomy is thus proved by hand, independently of the DRUP certificate.
   - **Remaining open for these classes:** irreducibility of #332 and #193 (the dual-orbit parity of
     `bmw-40-40-332-irreducible-if-dual-orbit-parity`). It no longer matters for orderability.
+- (w6-107c, 2026-09-18) **The Klein-chain method covers the census
+  (`bmw-census-sat-free-klein-chain-certificates`).**
+  - **Scan.** `kpure.py` searches the pure-word inverting graph of every census class that is not
+    certified reducible: 2 classes of `30_30`, 27 of `40_30`, 190 of `50_30` and 301 of `40_40`.
+    Words have length at most 6, or at most 8 for the `50_30` #470 and `40_40` #176 reruns.
+  - **Result.** 33 classes get a four-element cycle, with a SAT-free rewriting check
+    (`verify_census_X.log`). They include all five `40_40` classes that stay satisfiable through
+    `R8s2` (#176, #193, #256, #281 and #332) and the `50_30` survivor #258.
+  - **No cycle found.** `50_30` #470 has no cycle up to length 8 (366952 inverting pairs, acyclic).
+    Patterns with transposed letters (`pA` or `pB` > 0) are not handled.
+- (w6-107c, 2026-09-18) **Level-transitivity of `⟨B⟩` (for #332 irreducibility): bounded search, nothing
+  found.**
+  - **Setting.** The stabilizer of `0` in `⟨B⟩` has Schreier generators
+    `b1'b0, b1'b2, b1³, b2b1, b0b1, b1b2b1', b1b0b1'`. Its section group at `0` contains `b1'b0`,
+    `b1'b2` and `b0b1` exactly, by word identities checked with the automaton word problem.
+  - **No letter.** No letter `b_i`, and none of the other four generators, was found in that section
+    group. The test compared level-4 permutations over a ball of 2·10⁵ elements.
+  - **No self-replicating subgroup.** There is no 2-generated self-replicating subgroup `⟨x, y⟩`
+    transitive on level 1 with `|x|, |y| ≤ 3` and stabilizer words of length `≤ 5`.
+  - GAP computes the level-3 group of order 1632586752 and runs out of memory at level 4.
+  - This is consistent with the index-3 non-congruence obstruction above. Level-transitivity stays open
+    and needs a non-self-replicating argument.
