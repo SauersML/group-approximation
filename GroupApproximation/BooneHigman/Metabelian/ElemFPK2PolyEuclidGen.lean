@@ -128,3 +128,5 @@ theorem k2PolyEuclid_good_comm {K : Finset I} {L : I}
     (k2PolyEuclid_good_inv hg)) (k2PolyEuclid_good_inv hk)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyEuclid_good_comm
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
