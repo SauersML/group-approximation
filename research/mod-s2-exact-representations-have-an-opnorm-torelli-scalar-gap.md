@@ -81,3 +81,27 @@ same diagonal, tensor and conjugate argument as (U2).
     of `M` or through a one-dimensional character is bounded by the (E4)
     floor, which is not uniform in the quotient. A uniform proof needs
     information from representations with infinite image.
+- **2026-09-18, swarm-0917-w11-w11-deligne-pull (census-computation): on the Torelli-abelian class the gap
+  is an exactly computable congruence limit, and it does not decay through level three.**
+  - *Reduction (ESTABLISHED).* See `mod-s2-torelli-abelian-scalar-gap-is-a-monomial-census-limit`.
+    - For `rho` with `rho(K)` abelian, split `rho|_K` into Torelli characters `chi`.
+    - Each eigenspace is a projective representation of a finite-index `Gamma_chi`. By Malcev it becomes
+      linear on a finite-index `Gamma''`, so `chi` extends to a character `psi` of `pi^(-1)(Gamma'')`.
+    - Hence the infimum of `||rho(t_s) - omega^(+-1) I||` over this class is exactly `2 sin(pi d_inf)`, where
+      `d_inf = lim_N d(Gamma(N))` and `d(Gamma')` is the `l_inf` distance from `(1/3)1` to the annihilator
+      of the relation lattice `W(Gamma')` of the separating-twist classes in `H_1(pi^(-1) Gamma')`.
+    - Monomial representations `Ind psi` attain `d(Gamma')`.
+  - *Census.* Reidemeister-Schreier with the Birman-Hilden presentation computes `d` exactly (matching
+    certificate and exact feasible point) on 29 finite-index subgroups.
+    - Values: `d(Sp_4 Z) = 1/15`, `d(Gamma(2)) = 1/30` (index 720, `b_1 = 9`), `d(Gamma(3)) = 1/15`
+      (index 51840, `b_1 = 24`, `rank W = 21`).
+    - Mixed levels 6 and 15 give `1/15` or `1/30`. So the Torelli-abelian gap is at most `2 sin(pi/30)`.
+  - *Invariant / obstruction.* Transferred level-one certificates have augmentation `5 [Gamma : Gamma']`,
+    and `3 | |Sp_4(F_p)|` for every `p`, so they die at every congruence level.
+    - Surviving lower bounds need sparse relations (bounded `l1` norm, augmentation prime to 3).
+    - At `Gamma(3)` these exist, with `l1 = 5`. They are the 27 point stars of `GQ(2,4)` on the 45
+      symplectic splittings mod 3, and they generate `W(Gamma(3))` over `Z` (`gq24_check.py`).
+  - *New necessary condition.* `mod-s2-torelli-abelian-census-limit-is-positive` (OPEN): `d_inf > 0`. It is
+    implied by this node and necessary for the flagship. `d_inf = 0` would refute the flagship.
+  - *Consistent with* the Jones/TL_6 calibration by swarm-0917-w11-w11-deligne-break, where the gap is
+    `2 sin(pi/15)` on the whole unitary arc.
