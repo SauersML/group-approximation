@@ -5,6 +5,8 @@ kind: claim
 title: The Durand–Romashchenko minimal self-simulating tile set, rebuilt with complete crossing and with diversification slots for crossing windows, is a free minimal Z^2 SFT that is quantum rigid over every field
 requires:
   - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
+artifacts:
+  - research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md
 distinct_from:
   crossing-wire-fixed-point-tile-sets-are-quantum-rigid: that proves rigidity for a literal self-similar tile set, which has fault patterns and need not be minimal; this runs the same proof on the Durand–Romashchenko variable-zoom minimal construction, whose extra gadgets are classical.
   minimal-aperiodic-wang-shift-exists: that imports existence of a minimal aperiodic Wang shift; this constructs one that is in addition quantum rigid.
@@ -36,6 +38,8 @@ priority claimed.
 - **Existence.** The fixed-point argument of DR §2.3–2.4 is unaffected, since all new gadgets have
   `poly(log N_k)`-computable geometry and there is room by (p1). This step is recalled, not re-verified line
   by line.
+- **Layout.** Written out in `research/artifacts/gq-bh-g2-fixedpoint-a-crossing-layout.md`: tiles, crossing box, zone encoding and
+  `poly(log N_k)` checkability, including the slot roles.
 
 ## Theorem
 
