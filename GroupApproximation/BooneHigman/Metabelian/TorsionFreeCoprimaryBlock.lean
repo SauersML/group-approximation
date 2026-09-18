@@ -56,7 +56,7 @@ theorem exists_matrix_of_end {Q W V L : Type} [Group Q] [AddCommGroup W] [Field 
   · exact b.equivFun.injective.comp hinj
   · change b.equivFun (ι (act q w)) = LinearMap.toMatrix b b (ρ q) *ᵥ b.equivFun (ι w)
     rw [hequiv]
-    simp only [Basis.equivFun_apply]
+    simp only [Module.Basis.equivFun_apply]
     exact (LinearMap.toMatrix_mulVec_repr b b (ρ q) (ι w)).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_matrix_of_end

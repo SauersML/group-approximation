@@ -42,7 +42,7 @@ theorem torsionFreeModuleLinearity_of_coprimary (h : CoprimaryTorsionFreeLineari
   obtain ⟨L, _, _, hL⟩ := exists_common_field_finset K Finset.univ
   have f : ∀ j, K j →+* L := fun j => Classical.choice (hL j (Finset.mem_univ j))
   obtain ⟨d', ρ', ι', hinj', hequiv'⟩ :=
-    exists_linearization_of_field_pieces (fun q w => MonoidAlgebra.of ℤ Q q • w) K f d ρ
+    exists_linearization_of_field_pieces (fun q (w : W) => MonoidAlgebra.of ℤ Q q • w) K f d ρ
       (fun j => (ι j).comp (S j.1).mkQ.toAddMonoidHom)
       (fun w hw => eq_zero_of_mem_torsionFree_pieces S hS hP w fun i hi => by
         have h0 : ι ⟨i, hi⟩ (Submodule.Quotient.mk w) = ι ⟨i, hi⟩ 0 :=
