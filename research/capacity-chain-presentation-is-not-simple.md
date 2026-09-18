@@ -6,10 +6,12 @@ title: The finite presentation of the capacity-chain ring has a bi-infinite chai
 distinct_from:
   capacity-chain-resolvent-ring-has-rational-k0: that is the candidate, claiming the presented ring is simple; this refutes it.
   resolvent-vacuum-rings-have-no-k0-state: that is an obstruction on K_0 for any resolvent-vacuum ring; this is an obstruction on one finite presentation, from hidden positivity identities.
+artifacts:
+  - research/artifacts/gq-referee-a-capacity-chain-presentation-is-not-simple.md
 ---
 
-**ESTABLISHED** through `capacity-chain-presentation-is-not-simple-proof` (lane proof, not
-independently reviewed; referee requests sent).
+**ESTABLISHED** through `capacity-chain-presentation-is-not-simple-proof` (lane proof; refereed PASS by `gq-referee-a`, proof gaps,
+`gq-referee-a-capacity-chain-presentation-is-not-simple.md`, b7958da79).
 
 **Statement.** Let `R_abs` be the ring presented by the finitely many relations (CK),
 (Avail), (Cov), (Pos) of `capacity-chain-resolvent-ring-has-rational-k0`, with or without
@@ -23,7 +25,7 @@ The same holds for the variant without `a_u`. The letter `a_u` transports (Pos) 
 the `a_u`-part of each level. On the `c`-part the defect satisfies `X_k = s_c X_k t_c`, and
 nothing in the relations forces a `c`-invariant element of `B` to vanish.
 
-**Lesson.** The multiplicity `k+1` needs a comparison `j <= L` between two unbounded
+**Lesson (heuristic, for relations of this shape).** The multiplicity `k+1` needs a comparison `j <= L` between two unbounded
 registers. In the concrete base this creates hidden positivity identities: products of
 level idempotents with capacity idempotents that vanish on the reachable set but not
 generically.
