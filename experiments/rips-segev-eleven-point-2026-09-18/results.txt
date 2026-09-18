@@ -1,0 +1,12 @@
+== seed 1
+super-increasing rows and RS condition: ok for rows 1..40
+random sets: 20000, max of |L_S| - (|S|-1) = 0 (<= 0 required)
+sharpness: |S| = 12, |L_S| = 11
+== seed 2
+super-increasing rows and RS condition: ok for rows 1..40
+random sets: 20000, max of |L_S| - (|S|-1) = 0 (<= 0 required)
+sharpness: |S| = 12, |L_S| = 11
+== seed 3
+super-increasing rows and RS condition: ok for rows 1..40
+random sets: 20000, max of |L_S| - (|S|-1) = 0 (<= 0 required)
+sharpness: |S| = 12, |L_S| = 11

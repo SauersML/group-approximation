@@ -77,3 +77,24 @@ of type `F` benign subgroups.
   - Still open: root ⇒ normalized witness. The Boone-tower witness is not
     normalized.
   - See `normalized-benign-witnesses-give-the-semidirect-join`.
+- **The Weyl class is closed under free products and liftable HNN
+  extensions; the lift is benignness again** (proposed-established, w8-117,
+  2026-09-18).
+  - `G_1 * G_2` is Weyl via `(Λ_1 × Σ_2) *_{Σ_1 × Σ_2} (Σ_1 × Λ_2)`. In
+    particular `G` Weyl ⇒ `G * Z` Weyl.
+  - HNN extensions and amalgams are Weyl when the identification lifts to a
+    `Σ`-preserving isomorphism of type `F_m` extensions `A/Σ -> B/Σ`.
+  - Lifting forces type `F_m` associated subgroups (Higman's construction
+    then needs type `F_m` benign witnesses, so it is circular) and matching
+    outer actions on `Σ`.
+  - See `weyl-class-closes-under-free-products-and-liftable-hnn`.
+- **Obstruction: a normalized witness for `N_U` needs an `Out`-universal
+  `Σ`** (proposed-established, w8-117).
+  - With `Λ` torsion-free, the outer action of the Weyl group on `Σ` has
+    abelian kernel on every finite subgroup (Schur).
+  - So `U`'s alternating groups embed in the homologically trivial part of
+    `Out(Σ)`.
+  - This kills `Σ` free, free abelian, surface, RAAG or with finite `Out`.
+  - The Weyl route survives only if some type `F` group has `A_n` in its
+    Torelli `Out` for infinitely many `n`.
+  - See `u-weyl-pairs-need-out-sigma-to-contain-all-finite-simples`.
