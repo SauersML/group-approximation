@@ -7,8 +7,9 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf P07, lane gl-p07-21a: the cut-down witness of the reading residual
 
 This lane sits above `PocketFourPieceInputProofResidualStatement`
-(`FourPieceInputProofStatement.lean`, lane gl-p07-20b), from Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  This module defines
-the witness face set.  It certifies no printed sentence on its own.
+(`FourPieceInputProofStatement.lean`, lane gl-p07-20b), from Osin, arXiv:math/0411039v3, §9,
+proof of Lemma 9.7(b).  This module defines the witness face set.  It certifies no printed
+sentence on its own.
 
 ## Notation
 
