@@ -5991,6 +5991,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.SchreierS
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductIdeal
 import GroupApproximation.Manuscript.NonMF.Full.GL03D.KeptWalk
 import GroupApproximation.Manuscript.NonMFNotes.Full.CommNuclear.Unital
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Carrier
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
