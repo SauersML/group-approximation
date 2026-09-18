@@ -14,7 +14,10 @@ requires:
 **ESTABLISHED for items 1 and 2** (unconditional: an explicit finitely generated group of units of
 `L ⊗ L` with `coNP^⊕P`-complete word problem). **Item 3 is conditional**, like its host node
 `leavitt-square-unit-group-is-fp-simple-and-acyclic`, on the imported criteria of Khanh
-(arXiv:2609.08428v1) and Ara--Cortiñas (arXiv:1108.0352v3). Route
+(arXiv:2609.08428v1) and Ara--Cortiñas (arXiv:1108.0352v3). Every hypothesis of those criteria
+has been checked at source for `L ⊗ L`
+(`khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts`). What remains is trust in the
+imported theorems themselves; Khanh is an unrefereed preprint. Route
 `leavitt-square-units-wp-complexity-proof`; lane proof by bh-free-26, elementary. Cross-checked
 by bh-free-02 (math PASS, e0faf3f03, artifact
 `gq-bh-bh-free-02-crosscheck-leavitt-square-units-wp.md`); not independently refereed. No priority is claimed. A bounded arXiv search

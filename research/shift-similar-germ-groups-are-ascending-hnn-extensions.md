@@ -60,8 +60,10 @@ Put `Ĝ = < Germs(G), s̄ > <= NearSym(N)`, `η` = near index, and `Q_n(Ĝ) = {(
 
 **Reading.**
 - The threshold `n >= m+1` in sentence 2 of Mallery--Zaremsky Question 5.13 is, at germ level, exactly the Meinert
-  count for a one-sided index character. For `G = 1`, where `Germs = 1` and `Ĝ = Z`, item 3 gives
-  `Q_n = Z^(n-1)`, and the true obstruction for `H_n` lives in `FSym`, not in germs.
+  count for a one-sided index character. For `G = FSym(N)`, where `Germs = 1` and `Ĝ = Z`, item 3 gives
+  `Q_n = Z^(n-1)`, of type `F_infinity`, while `H_n(FSym) = H_n` is only `F_(n-1)`. That obstruction lives in `FSym`
+  (`G` is not finitely generated), not in germs. (Correction: the first landing said `G = 1`, which is finite and
+  outside this node.)
 - For strongly shift-similar `G` the character is two-sided and the threshold disappears. This matches
   `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups`.
 - A prototype of (b) is Thompson's `F`. It is an ascending HNN extension of itself with `[χ_0]` one-sided in

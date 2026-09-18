@@ -100,3 +100,30 @@ starting small and ending with closed `Mod(S_g)`.
   the natural replacement.
 - **A cap on the whole method.** bh-free-08's cap (d), a proof sketch there, says that everything BHM certifies
   over `V` has bounded word-problem complexity.
+
+## 5. Where the product-region obstruction comes from (insight; elementary)
+
+- **The observation.** `F_2 × F_2 = A × A'` acts faithfully on `∂A ⊔ ∂A'`. Each factor acts
+  on its own free-group boundary by the usual prepend-or-cancel prefix replacements, and
+  trivially on the other copy. Every element is then a prefix replacement everywhere: no
+  singular points, and the image lies in `V`.
+- **What produces this boundary.** It is the boundary of the "longest factor first" normal
+  form. That normal form is neither regular nor continuous in the BBCMP sense: at a length
+  tie, left multiplication flips the order.
+- **Reading.** The phase singularities of §2 and of product forms are created by BBCMP
+  continuity, not by the groups.
+  - A continuous normal form makes `L ∪ ∂L` a `G`-compactification of the Cayley graph.
+  - The lockstep and product forms examined here then see the commuting factors'
+    boundaries meet in mixed points, where a relative phase shift acts. It is not proved
+    that every continuous normal form must do this.
+  - A BH host needs only a faithful Cantor action in a good germ extension, and there
+    commuting directions can be kept disjoint.
+- **Lesson for general BH.** For inputs with product regions, stop looking for better
+  continuous normal forms. Look instead for **exploded** Cantor actions, which keep the
+  boundaries of commuting pieces disjoint.
+  - For closed `Mod(S_g)`, the natural candidate keeps disjoint the Gromov boundaries of the
+    curve graphs of subsurfaces. This is where the HHS boundary instead forms joins.
+  - The constraint to meet at the singular points is bh-free-08's
+    `bhm-corollary-hosts-over-v-are-cover-centralizer-groups` (b)--(c): each germ group
+    must lie in `C(C,Z) ⋊ V` with a central shift.
+  - This is a direction, not a result.

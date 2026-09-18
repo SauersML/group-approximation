@@ -138,3 +138,20 @@ The following are dead:
 Kazhdan groups are one-ended. The coset argument of item 5 does not extend to finite-index `Q`: an equivariant `psi`
 fixing a point of every coset is the identity. So an answer needs a genuinely new flexibility mechanism, or a
 rigid construction.
+
+**Partial answer.** `square-spiral-z2-enumeration-is-ball-rigid` shows that, for `P = Z^2`, the transplant form of
+item 2 cannot move a polyhedral enumeration. A kill for all one-ended `P` would therefore have to realize foreign
+closing patterns far out, or come from the germ gate.
+
+## Lesson for general BH
+
+For envelopes of the form `<FSym, ρ(P)>`, finite presentation has two separate parts:
+- a **germ gate**: the near shift group `R_nu` is finitely presented;
+- a **pinning gate**: `nu` is the unique solution of finitely many far-out near relators together with a finite
+  seed. Equivalently, the Schreier structure `Cayley(P) ∪ successor ray` self-assembles from local rules.
+
+The two gates call for different tools:
+- The pinning gate kills designs that are generic, free, or supported on an infinite-index subgroup.
+- For one-ended inputs its transplant form is passed by polyhedral designs (the square spiral). Relator-pinning
+  itself is not proved there, but in practice the germ gate carries the weight.
+- Any universal construction of `nu` should be designed as a deterministic local-rule tiling of `P` by a ray.

@@ -81,3 +81,19 @@ in `research/artifacts/gq-bh-openq-lists.md`).
      - Caprace–Rémy Kac–Moody lattices;
      - groups of homeomorphisms of the line;
      - non-vigorous Cantor groups.
+4. **The L² route is Osin's problem (2026-09-18, lane bh-free-13).**
+   - *Families closed.* The bound `d ≥ 1 + β_1^(2)` gives nothing for:
+     - every simple group with a fixed-point-free tree action with a finitely generated edge stabilizer, which
+       includes all simple product-of-trees lattices (`simple-groups-on-trees-with-fg-edge-groups-have-b1-zero`);
+     - every locally moving simple group (`locally-moving-groups-have-vanishing-first-l2-betti-number`);
+     - every Kazhdan group.
+   - *In general.* A finitely presented simple group with `β_1^(2) > 0`
+     (`fp-simple-group-with-positive-first-l2-betti-number`, OPEN) would refute Osin's printed problem
+     `fp-positive-l2-betti-groups-are-acylindrically-hyperbolic`. So the L² route to this question requires a
+     negative answer to Osin's problem, with a Betti number above 1.
+   - *Precedent.* Osin–Thom (arXiv:1108.2411, TeX l.84) have finitely generated simple groups with
+     `β_1^(2) ≥ n − 1 − ε`. Their groups are limits of hyperbolic groups, not finitely presented.
+   - *Lesson.* Every known finitely presented simple group has an infinite, finitely generated, ws-normal
+     subgroup of infinite index, which forces `β_1^(2) = 0` (Peterson–Thom). A three-generator answer through
+     L² needs a finitely presented simple group with none: a "hyperbolic-like" finitely presented simple
+     group. Otherwise it needs a rank invariant that is not L², and none is known for simple groups.

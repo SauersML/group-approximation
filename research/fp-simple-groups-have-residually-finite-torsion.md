@@ -70,6 +70,19 @@ These are exactly the finitely presented simple families where the principle bre
    inside the sofic, and for `N = 1` LEF, world, and LEF torsion need not be residually finite: Nekrashevych's simple
    periodic groups are LEF. So (RT) there is a genuinely new question.
 
+**Where the general Boone–Higman routes put their torsion.** Every general route on main must violate (RT) on some
+Burnside input, and each does so through a specific mechanism:
+6. **Shell route (finite germ extensions of `V`, `boone-higman-via-shell-germ-stabilizers`).** The envelope
+   `E_ν` contains the input `P`, so for `P ⊇ B(2,665)` it violates (RT) by construction. Away from the singular
+   orbit its elements are prefix replacements, where the pumping of `almost-automorphism-torsion-subgroups-are-rf`
+   applies. So non-residually-finite torsion can live only in the **singular germs**. The Burnside test gives the
+   shell route no obstruction beyond its finite-presentation gate, but it says where the gate must carry torsion.
+7. **Type (A) and shift-compiler routes (twisted Brin–Thompson `SV_G` over a finitely presented strongly
+   shift-similar or type (A) actor `G ⊇ P`).** The actor `G` itself contains `P`. So these routes need finitely
+   presented actors with non-residually-finite torsion, for instance a finitely presented strongly shift-similar
+   group containing `B(2,665)`. (RT) for finitely presented type (A) actors would block both routes for Burnside
+   inputs.
+
 ## Lesson for general BH
 
 The Burnside test turns Boone–Higman into a statement about **host dynamics**: a universal host must make some
