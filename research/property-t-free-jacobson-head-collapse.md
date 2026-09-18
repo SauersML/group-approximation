@@ -377,3 +377,53 @@ instead of `4`) changes no conclusion.
   kills the head in this family. These relations are true in `P`. The next
   finitely presented non-LEF candidate is therefore
   `Gamma_trap + EXTRA_RELS + (C) at depth <= 1`, and it is open.
+- **symbolic-dynamics, swarm-0917 (swarm-0917-w11-w11-ptl-break), 2026-09-17:
+  residually-finite-action certificates for the MF side of `P_{2,2}(J)` die.**
+
+  *Proposal.* Attack the MF survivor of the w9/w10 entries through dynamics.
+  Put `M = M_2(J)` (an elementary abelian 2-group) and `L = EL_2(J) x EL_2(J)`.
+  Then `C*(P_{2,2}(J)) = C(M^) x| L`, where `M^ = Hom(M, F_2) = M_2(J^*)` and
+  `(A,B).f(Y) = f(A^(-1) Y B)`. A norm-corona representation keeps the head
+  `h = E_11 (x) Q` exactly when the spectrum `Omega` of `rho(M)` is a closed
+  `L`-invariant set that meets the clopen `A_h = {f : f(h) = 1}`. The plan was
+  a Kerr--Nowak style certificate: finite sets `E` with exact partial
+  `L`-actions on balls, and maps `zeta : E -> M^` that are exactly equivariant
+  on a finite window `F` of `M` and hit `A_h`.
+
+  The candidate `Omega` was the rank-one bimodule characters
+  `omega_(phi,psi)(Y) = phi(Y psi)`, with `phi` in `V_+^*` and `psi` in `V_+`.
+  These form an equivariant image of `V_+^* x V_+` under the product action,
+  and `omega_(phi,psi)(h) = phi_1(e_0) psi_1(e_0)` can be 1. Each half is a
+  residually finite action. `EL_2(J)` acts on `V_+` and on `V_+^*` through the
+  mirror-glued models `Phi_M` of `binary-jacobson-el2-is-lef` and their
+  transposes, and every cylinder near `e_0` is realised exactly.
+
+  *Step where it dies.* Any such certificate linearises to an exact two-step
+  model on `F_2^E (+) F_2`, with `rho(Y)(u, c) = (u + c zeta_Y, c)` and the Levi
+  acting by permutations. So
+  `jacobson-double-parabolic-two-step-models-kill-head` forces
+  `zeta(e)(h) = 0` for every `e`. The product of the two halves therefore
+  cannot be made equivariant for `M`, and the failure is not small. The naive
+  pull-back `zeta(xi, w)(Y) = xi_near(Y_near w)` fails at every `(xi, w)` whose
+  support meets the seam band or the far half, which is a proportion at least
+  `1 - 2^(-4r)` of `E`. So it gives no HS model either.
+
+  The precise gap is the seam. Gluing needs a lift `P_{2,2}(J) -> P_{2,2}(J')`
+  with the identity Laurent symbol. The mirror candidates `beta`,
+  `g -> w (g^tau)^(-1) w^(-1)` (with `w` the block swap), and their composite
+  have symbols `iota`, `S o iota` and `S`. Here `S` is the Levi-swapping
+  automorphism
+  `(a, b, y) -> (b, a, K^(-1) y^t K)` of `P_{2,2}(A)`, and it is outer, because
+  inner automorphisms preserve the two Levi factors. For `EL_2` the same maps
+  give `iota` and the identity, which is why the rank-two gluing works. This
+  excludes only this family of lifts, not every lift.
+
+  *Consequence (class-kill).* Kerr--Nowak's free-group equivalence
+  "MF crossed product iff residually finite action" does not transfer to
+  `P_{2,2}(J)`. Any MF model that keeps the head must restrict on `M` to
+  spectral data that is not approximately pointwise: Levi unitaries have to
+  mix joint eigenspaces of finite subgroups of `M` that agree on the tested
+  window. The rank-marginal data of such models puts no restriction on the
+  head, because Haar measure on `M^` is `L`-invariant and gives `A_h` mass
+  `1/2`. So the MF question for `P_{2,2}(J)` has no pointwise-dynamical or
+  rank-profile shadow. The claim stays OPEN.
