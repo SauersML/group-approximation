@@ -44,8 +44,8 @@ the random configurations the residual shrinks from `5634` to `29` (below).
 Planar existence of a region when every region meets `c` in at least three darts or in badly
 placed one or two darts.  In the truth check the surviving configurations are witnessed only by
 lakes whose class meets `c` in THREE cyclically consecutive darts (infix or wrapping) and, once,
-by a lobe of two classes meeting `c` in four consecutive darts; at `maxeps 10` also by one-class
-lobes meeting `c` in four consecutive darts.  Not proved.
+by a lobe of two classes meeting `c` in four consecutive darts; in larger runs also by one-class
+lobes meeting `c` in three or four consecutive darts.  Not proved.
 
 ## Truth check (Python, not formalised)
 
@@ -59,6 +59,9 @@ it (`0` assertion failures), counts the residual and checks the region conclusio
   gl-p10-63 residual `5634`, new residual `29` (`0.028%`; seeds `0`, `1`, `5`: `12`, `2`, `15`),
   region conclusion failures `0`.  Applicable cases (overlapping): lake pair `4234`, lake wrap
   `1240`, inside pair `342`, inside wrap `35`, kept pair `160`.
+* Random seeds `0`-`7`, `N = 300`, `maxeps 2`: `494752` configurations, gl-p10-63 residual
+  `23921`, new residual `173` (`0.035%`), failures `0`; the survivors are witnessed by lakes
+  meeting `c` in three consecutive darts and a few lobes meeting it in three or four.
 * Seed `0`, `N = 30`, `maxeps 10`: `53834` configurations, gl-p10-63 residual `3780`, new
   residual `48`, failures `0`.
 
