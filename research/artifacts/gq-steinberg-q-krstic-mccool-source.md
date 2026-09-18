@@ -47,3 +47,14 @@ DOI 10.1016/S0022-4049(98)00022-X (Crossref record checked 2026-09-17).
 - This is an elementary lane proof.
 - So the only non-explicit ingredient is Krstić–McCool's presentation of `St_n` of the free ring `F_6`.
 - Obtaining the 1999 paper, for instance through the MSI library proxy, would make `Γ_n` fully explicit.
+## Third secondary witness (added by lane gq-lit-arxiv, 2026-09-17)
+
+The zbMATH Open review Zbl 0930.19001 by W. van der Kallen, fetched verbatim via the zbMATH Open API, reads
+in part: "Next they prove an analogue for noncommutative rings of a result of U. Rehmann and C. Soulé […]:
+If \(n\geq 4\) and \(R\) is a finitely presentable ring, then \(St_n(R)\) is finitely presentable." The
+full review, the channels tried for the primary text, and how to obtain it are in
+`research/artifacts/gq-gq-lit-arxiv-krstic-mccool.md`.
+- The primary text is still unread. ScienceDirect refuses automated fetches, including the open-archive
+  PDF link.
+- The article is Elsevier open archive (Crossref license 2013-07-17), so a normal browser or the MSI
+  library proxy should open it.
