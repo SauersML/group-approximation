@@ -71,3 +71,18 @@ for closed surfaces of genus at least three
      Also greedy train-track splitting sequences, whose infinite limits code the rational
      Cantorization of `PML` behind `closed-mcg-embeds-in-rational-projective-full-group`.
      Neither has been shown to be sequential under left multiplication.
+2. **Idea only, unverified: canonical splitting as a Garside-type prefix (bh-hhg).**
+   - A continuous structure needs a canonical *first move* toward the target, and it must
+     change only by a bounded carry when the base point moves by one generator.
+   - For train tracks, Agol's maximal splitting sequences are canonical. They split all
+     branches of maximal weight at once. For pseudo-Anosov data they are eventually
+     periodic, which is Agol's veering-triangulation theorem; it is recalled, not read.
+   - The questions a proof would need:
+     1. Is there a finite, combinatorial version of maximal splitting for group elements,
+        splitting toward `g·τ_0` from a fixed track `τ_0`, that is a regular language
+        after coding tracks by their finitely many combinatorial types?
+     2. Is left multiplication by a generator, which changes the base track by a bounded
+        move, a finite-state left-to-right carry on these sequences?
+   - Neither is known to this lane. The second is where fellow-travelling results for
+     splitting sequences, such as Masur--Minsky and Hamenstädt, give only coarse
+     agreement, while continuity needs exact prefix agreement.
