@@ -165,3 +165,83 @@ def pinchAbsPinchCorr_PinchPart : Prop :=
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_PinchPart
+
+/-- **The four-piece reading, widened by the corrected conclusion.**  The statement is
+`PocketFourPieceOffStatement` (false, gl-p07-81), with `GL03BPinch.TwoArcConclusion eps X` as an
+extra disjunct.  It is EQUIVALENT to `GL03BPinch.InnerPocketEnclosedTwoArcCorrected`
+(`PinchAbsPinchCorrBridge.lean`). -/
+def pinchAbsPinchCorr_OffStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    (∃ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i) →
+    (∃ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j) →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+        (∃ (faces : Finset X.toCombMap.Face) (outerWalk : List X.toCombMap.Dart) (n : ℕ)
+          (R₁ R₂ : List X.toCombMap.Dart) (A₁ : CyclicArc (cellDarts X i))
+          (A₂ : CyclicArc (cellDarts X j)),
+          EnclosedFaceSetSucc X faces outerWalk ∧ C.face ∈ faces ∧
+            invDarts X (outerWalk.rotate n) =
+              R₁ ++ invDarts X A₁.darts ++ R₂ ++ invDarts X A₂.darts ∧
+            ((((∀ r ∈ R₁, X.toCombMap.alpha r ∈ a.sideFrom j) ∨
+                  (∀ r ∈ R₁, X.toCombMap.alpha r ∈ b.sideFrom i)) ∧
+                ((∀ r ∈ R₂, X.toCombMap.alpha r ∈ a.sideFrom j) ∨
+                  (∀ r ∈ R₂, X.toCombMap.alpha r ∈ b.sideFrom i))) ∨
+              ((∀ r ∈ R₁ ++ R₂,
+                  X.toCombMap.alpha r ∈ a.sideFrom j ∨ X.toCombMap.alpha r ∈ b.sideFrom i) ∧
+                (A₁.length = 0 ∨ A₂.length = 0))) ∧
+            (A₁.length = 0 → A₂.length = 0 →
+              ∃ k₀ : Fin X.rCellCount, (cell X k₀).face ∉ faces)) ∨
+          GroupApproximation.Full.GL03BPinch.TwoArcConclusion eps X
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_OffStatement
+
+/-- The literal all-cells widening implies the corrected widening. -/
+theorem pinchAbsPinchCorr_pinchPart_of_allCells (h : pinchAbsPinchCorr_PinchPartAllCells.{u, w, v}) :
+    pinchAbsPinchCorr_PinchPart.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
+    hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
+  rcases h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hfo hout
+    hinner houter C hC hCf hCa hCb hcase hP with hc | hc
+  · exact Or.inl hc
+  · exact Or.inr (pinchAbsPinchCorr_twoArc_of_allCells hc)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_allCells
+
+/-- The old (false) pinched half implies the corrected one, which is therefore weaker. -/
+theorem pinchAbsPinchCorr_pinchPart_of_pinchPart (h : pinchAbsFol_PinchPart.{u, w, v}) :
+    pinchAbsPinchCorr_PinchPart.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
+    hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
+  exact Or.inl (h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hfo
+    hout hinner houter C hC hCf hCa hCb hcase hP)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_pinchPart_of_pinchPart
+
+/-- The old (false) four-piece reading implies the widened one. -/
+theorem pinchAbsPinchCorr_off_of_off (h : PocketFourPieceOffStatement.{u, w, v}) :
+    pinchAbsPinchCorr_OffStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond h₁ h₂ hw hoff
+    hinner houter C hC hCf hCa hCb
+  exact Or.inl (h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond h₁ h₂ hw hoff hinner
+    houter C hC hCf hCa hCb)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsPinchCorr_off_of_off
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
