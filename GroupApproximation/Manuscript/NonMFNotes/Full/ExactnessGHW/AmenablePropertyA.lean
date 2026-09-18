@@ -98,10 +98,11 @@ theorem hasAlmostInvariantWeights_of_isAmenable {G : Type u} [Group G]
         (AmenableActionSofic.boundary A r).card := by
       refine Finset.card_le_card_of_injOn (fun x ↦ r⁻¹ * x) ?_ ?_
       · intro x hx
-        obtain ⟨-, hxA, hx'⟩ := Finset.mem_filter.mp hx
-        refine AmenableActionSofic.mem_boundary.mpr ⟨hxA, ?_⟩
+        obtain ⟨-, hxA, hx'⟩ := Finset.mem_filter.mp (Finset.mem_coe.mp hx)
+        refine Finset.mem_coe.mpr (AmenableActionSofic.mem_boundary.mpr ⟨hxA, ?_⟩)
         show r * (r⁻¹ * x) ∉ A
-        rwa [mul_inv_cancel_left]
+        rw [mul_inv_cancel_left]
+        exact hx'
       · intro a _ b _ hab
         exact mul_left_cancel hab
     have hr1 : r⁻¹ ∈ R ∪ R.image fun r ↦ r⁻¹ :=
