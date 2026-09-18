@@ -303,3 +303,13 @@ anywhere refutes it.
   - **Method.** The linear-atom LP takes convex combinations of rank vectors of one-bit linear codes and imposes (T) only on the mixture. A rational optimum is a direct sum of copies, hence entropic. Annealing a single code had failed on these hosts; the LP finds the fakes in minutes.
   - **Where it dies.** No atom is translation invariant; only the mixture satisfies (T), in entropy and not in law. A surviving local proof must use invariance in distribution, or codewords outside `F`.
   - **Open.** Whether the Shannon values `7/9`, `7/8`, `5/6` are themselves entropic. The atom LP was restricted to codeword subspaces of dimension at most 1.
+- **Distribution-level certificates die at Bowen and Seward realisations (swarm-0917-w7-w7-gs-pull, stability-approximation, 2026-09-18).** This transplants the Hilbert--Schmidt (hyperlinear) microstate idea at the level of its leading-order dimension.
+  - **Established** (`distribution-certificates-are-shannon-monotone`, with the new import `bowen-every-countably-infinite-group-is-almost-ornstein`). Over every countably infinite `G`, let `f` be a functional on generator distributions with `f(dist α) >= f(p)` for every generating partition `α` of `B(p)`. Then `f(q) >= f(p)` whenever `H(q) > H(p)`, by Seward's prescribed-distribution generators. And `f(q) = f(p)` on each Shannon level set of vectors with at least three atoms, by Bowen's almost-Ornstein theorem. If `f` is non-constant, then `h^Rok(B(p)) >= H(q) > 0` for some `p`, `q`, which is POS for `G`.
+  - **Class killed.** On every group, including a hypothetical zero-supremum group, the following certify nothing:
+    - the HS commuting-projection dimension `1 - Σ q_i^2`, which is the collision functional;
+    - all Rényi entropies `H_α` for `α ≠ 1`, including the support count and the min-entropy;
+    - all Tsallis entropies `S_α` for `α ≠ 1`.
+
+    Explicit witness: the base `(a, a, 1-2a)` with `H = 1.5` bits has a generator of distribution `(1/2, 1/4, 1/4)`, and its value `1 - Σ^2` drops from `0.631` to `0.625`.
+  - **Invariant, and where it dies.** The invariant is the one-site distribution of the generator. Every member dies at the realisation step, where the time-zero partition of an equal-entropy (or larger-entropy) base is transported into `B(p)`. Together with `hs-commutative-microstate-bernoulli-entropy-is-base-blind` (the volume is `+∞`), both natural HS quantities fail.
+  - **What survives.** Statistics of joint windows (see the cluster and minimal-window kills), and counts whose exponent is Shannon entropy itself, i.e. multinomial or diagonal (sofic-type) counts. For these, soundness is at least as strong as the lower bound they give.
