@@ -69,7 +69,8 @@ theorem exists_doublingStep {D : RelGenSet G Lambda} {X : DiscDiagram.{u, w, v} 
     rw [← hj] at hd had
     refine ⟨OuterSpurThickening.diagram X j hlen', newFaces X X.outerFace j hlen' faces,
       image X.toCombMap (FaceEdgeDoubling.dart X X.outerFace j),
-      ⟨OuterSpurThickening.oEquivalent X j hlen'⟩, OuterSpurThickening.label_letter X j hlen' hlabel,
+      ⟨OuterSpurThickening.oEquivalent X j hlen'⟩,
+      OuterSpurThickening.label_letter X j hlen' hlabel,
       enclosedFaceSetSucc_spurDiagram X j hlen' E hd had,
       bridgeCount_image_lt X X.outerFace j hlen' hd had, ?_, ?_,
       dartWord_invDarts_spurDiagram X j hlen'⟩
