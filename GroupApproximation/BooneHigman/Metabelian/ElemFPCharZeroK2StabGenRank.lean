@@ -47,7 +47,7 @@ theorem czStabGen_base (hfn : (K2 (Fin (n + 1)) R).IsFinitelyNormallyGenerated)
     obtain ⟨k, hk, hky⟩ := Subgroup.mem_map.mp (hsurj hyK)
     exact ⟨k, hk, hky⟩
   obtain ⟨s, hsK, hsfin, hst⟩ :=
-    (Set.exists_subset_image_finite_and (f := stab n R)
+    (Set.exists_subset_image_finite_and (f := ⇑(stab n R))
       (s := (K2 (Fin n) R : Set (St n R))) (p := fun u ↦ u = t)).mp ⟨t, htsub, htfin, rfl⟩
   have hst' : stab n R '' s = t := hst
   exact ⟨s, hsfin, hsK, (ht.symm.trans (congrArg Subgroup.normalClosure hst'.symm)).le⟩
