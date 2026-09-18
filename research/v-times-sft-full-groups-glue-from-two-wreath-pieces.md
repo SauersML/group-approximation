@@ -38,6 +38,12 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
      - These facts alone do not give centrality: `[φ_0(k), φ_0(y)] = φ_0([k, y])` need not vanish.
      - A proof must push kernel elements into proper cones, using the swindle `ρ' h ρ^-1 = φ_0(h) φ_1(h)` of the
        transposition node inside `Γ~` with `ρ, ρ' ∈ N_X`, and then let pieces on disjoint cones commute.
+   - **Update (bh-one-relator, 2026-09-18): centrality is equivalent to exactness.**
+     `v-times-sft-gluing-kernel-is-relatively-perfect` lifts the swindle to `Γ~`:
+     `φ_0(k) φ_1(k) = ρ k ρ^-1` with `ρ ∈ N_X`, for every `k ∈ K`. With the V-conjugacy of copies
+     this gives `K = [K, Γ~]`. So "`K` central" already forces `K = 1`, and the `H_2` input and the
+     retract are superfluous. Attempt 1 therefore comes down to Attempt 2: the gluing presentation
+     must be exact. A nonzero kernel, if one exists, is non-central.
 2. **Coset complex.** *Equivalent, not easier.*
    - `F(T)` acts on the coset graph of `(M, N_X; V × Λ)`. Finite normal generation of `K` is simple connectivity
      of that graph after attaching finitely many orbits of 2-cells.
