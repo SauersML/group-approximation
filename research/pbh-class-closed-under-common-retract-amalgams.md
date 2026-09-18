@@ -9,11 +9,11 @@ distinct_from:
   boone-higman-type-a-class-closed-under-finite-extensions: that is closure under subgroups, finite direct products and finite-index overgroups; this is closure under amalgamated products over common retracts and over trees of such amalgams, which are infinite extensions.
   bh-embeddability-survives-decidable-edge-hnn: that is the open permanence of plain Boone--Higman embeddability under HNN extensions over decidable edge groups; this is a proved permanence of the permutational class, only for amalgams whose edge group is a retract on both sides.
 artifacts:
+  - research/artifacts/gq-bh-bh-free-11-graph-product-verification.md
   - research/artifacts/bh-common-retract-amalgams-even-artin-2026-09-16.md
 ---
 
-Proved by the route `pbh-common-retract-amalgam-closure-proof`. It has not been
-independently reviewed. The priority search is bounded: see §8 of the artifact.
+Proved by the route `pbh-common-retract-amalgam-closure-proof`. It has not been externally reviewed; lane bh-free-11 re-checked it step by step on 2026-09-18 and found no gap (`research/artifacts/gq-bh-bh-free-11-graph-product-verification.md`). The priority search is bounded: see §8 of the artifact.
 
 Write `B_A` for the class of groups that embed in a group admitting an action of type
 (A) (`boone-higman-type-a-class-closed-under-finite-extensions`). Every member embeds in
@@ -55,3 +55,5 @@ a finitely presented simple group and, if finitely generated, has solvable word 
   covered.
 - In general amalgams the word problem involves membership in `C` (BFFHZ, as quoted
   in `pbh-class-closed-under-graph-products`).
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS (Steps 0--4 re-derived; Steps 5--6 checked). The claim rests on BFFHZ Theorems C, (i) ⟹ (iv), and E, as quoted on their import nodes. I did not re-read them. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.

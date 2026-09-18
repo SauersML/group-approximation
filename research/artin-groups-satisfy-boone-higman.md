@@ -53,6 +53,11 @@ Per the attached artifact:
     that quotation (see the artifact, §5.5).
 - **Stated open** (BFFHZ, survey Remark 5.4): the exceptional spherical types,
   and the Euclidean types other than Ã_n and the triangle cases.
+- **Forest defining graphs, now in the permutational form** (2026-09-18, lane proof,
+  not reviewed): `forest-artin-groups-satisfy-permutational-boone-higman`, by the
+  block reduction `artin-pbh-reduces-along-folding-separators`. It uses no 3-manifold
+  theory, so the secondary-source caveat above no longer matters for this class.
+- **Even graphs** of FC type and more: `even-fc-artin-groups-satisfy-permutational-boone-higman`.
 
 ## Attempts
 
@@ -89,3 +94,13 @@ Per the attached artifact:
 4. **Decidable-edge HNN permanence.** The Jankiewicz splittings over finite-rank
    free groups reduce the admissibly oriented 2-dimensional Artin groups to
    `bh-embeddability-survives-decidable-edge-hnn`, which is open.
+5. **Folding retractions and cut vertices** (lane bh-artin, 2026-09-18). *Works* for
+   every graph whose separations fold on both sides.
+   - Sending generators outside a parabolic `Λ` to generators of `Λ` or to `1`, edge by
+     edge compatibly (`artin-ordinary-foldings-are-retractions`), gives homomorphic
+     retractions even across odd edges; the length map onto `<v>` is one for every `v`.
+   - With common-retract amalgams this reduces the permutational form to the blocks of
+     `Γ` and, further, to pieces without foldable separators
+     (`artin-pbh-reduces-along-folding-separators`). Forests follow at once.
+   - *Stops* at 2-connected graphs with no foldable separator, e.g. the all-3 four-cycle
+     and the hyperbolic triangles.

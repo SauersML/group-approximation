@@ -669,3 +669,24 @@ Next step: (MUI-C). Are `Gamma`-invariant, non-flat MUI vectors of the
 canonical equivariant part `N`-invariant? Or, more strongly: are the cyclic
 representations `K_x` with `x ∈ sigma(Gamma)' ∩ M` weakly contained in sofic
 Koopman representations? The claim stays OPEN.
+
+- **(MUI-C) tested against its measure shadow (lane w11-121, 2026-09-18).**
+  Result: `mui-commutant-reduces-to-internal-joining-invariance`
+  (reduction + obstruction).
+  - *Reduction.* Entrywise positive parts commute with the pair permutations,
+    so (MUI-C) is equivalent to (MUI-J): MUI pair probability measures
+    `lambda_n` on `Y_n × Y_n` that are internally (total-variation)
+    `Gamma`-invariant are internally `N`-invariant.
+  - *What dies.* The standard-part shadow of (MUI-J) is false. On the exact
+    Bernoulli models `Y_n = {0,1}^(Q_n)` over finite quotients (coordinatewise
+    genuine, where (MUI-C) holds for all of `H`), the relative product of the
+    Loeb space over the Bernoulli coordinates indexed by `Gamma` is a
+    `Gamma`-invariant, non-`N`-invariant self-joining with marginals `mu`.
+    So "Theorem C for joinings / factors / Koopman intertwiners" is false,
+    and any proof of (MUI-C) through the Loeb joining `st(|xi|^2)` dies. That
+    joining has no internally invariant lift.
+
+Next step: (MUI-J) itself. Run a Kun-type expander decomposition of
+`(W_n, lambda_n, psi_n(Gamma))` and compare it with its `psi_n(t)`-conjugate,
+using UI marginals to make the Hamming defects of the lift cost `o(1)`
+`lambda_n`-mass. The claim stays OPEN.
