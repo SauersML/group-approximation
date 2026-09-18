@@ -79,7 +79,7 @@ theorem fg_ker_K2Map_of_split (p : R →+* R') (s : R' →+* R)
     Group.FG (K2Map (I := I) c).ker := by
   rw [Group.fg_iff_subgroup_fg] at h' hp ⊢
   rw [ker_K2Map_eq_map_sup_ker p s hps c c' hc]
-  exact (subgroup_fg_map _ h').sup hp
+  exact (subgroup_fg_map (K2Map (I := I) s) h').sup hp
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPNilFGPosTele.fg_ker_K2Map_of_split
 
@@ -114,7 +114,7 @@ theorem fg_ker_K2Map_of_retract (κ₁ : R₁ →+* S₁) (κ₂ : R₂ →+* S�
     (h : Group.FG (K2Map (I := I) κ₂).ker) : Group.FG (K2Map (I := I) κ₁).ker := by
   rw [Group.fg_iff_subgroup_fg] at h ⊢
   rw [ker_K2Map_eq_map_of_retract κ₁ κ₂ P Q P' Q' hPQ hP hQ]
-  exact subgroup_fg_map _ h
+  exact subgroup_fg_map (K2Map (I := I) P) h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPNilFGPosTele.fg_ker_K2Map_of_retract
 
