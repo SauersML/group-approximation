@@ -11,12 +11,18 @@ distinct_from:
   boone-higman-closed-under-finite-direct-products: that is the open product closure of the Boone--Higman class itself; this is a theorem about the permutational class B_A only.
 artifacts:
   - research/artifacts/ideas-bh-round2-2026-09-14.md
+  - research/artifacts/gq-bh-bh-free-10-verify-graph-products.md
 ---
 
-**ESTABLISHED** through `pbh-graph-product-closure-proof`. Not independently
-reviewed. Priority search is partial: FFWZ arXiv:2603.24687 (extracted text on
-MSI) never mentions graph products, no node here treats them, and an arXiv API
-query of 2026-09-14 returned no entries.
+**ESTABLISHED** through `pbh-graph-product-closure-proof`. Re-verified end to
+end on 2026-09-18 by lane bh-free-10 (`gq-bh-bh-free-10-verify-graph-products`):
+every step of the route checks. BFFHZ Theorem C, Theorem E, the proof of
+Corollary F, and Question 3.1 were re-read in the arXiv:2503.21882v2 TeX source,
+and they match what the route uses. This is an internal verification, not an
+external review. Priority search is partial: FFWZ arXiv:2603.24687 (extracted
+text on MSI) never mentions graph products, no node here treats them, and arXiv
+API queries of 2026-09-14 and 2026-09-18 ("graph product" AND "Boone") returned
+no entries.
 
 Write `B_A` for the class of groups that embed in a group admitting an action of
 type (A) (`boone-higman-type-a-class-closed-under-finite-extensions`); in the
