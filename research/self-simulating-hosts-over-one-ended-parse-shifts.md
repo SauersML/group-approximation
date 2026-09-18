@@ -71,3 +71,38 @@ wrapper∘actor picture. The actor is `Λ` acting on a locally uniquely parsable
 self-similarity that makes the wrapper finitely presented is realized by telescope fixed points
 whose singular set is the infinite-level set. The test is whether "unique parse" gives finite
 presentation over one-ended `Λ` as it does along one chain.
+
+## Attempts
+
+**Attempt 1 (bh-invent-06b, 09-18): T1 settled; what it says about T2 and T3.**
+- **T1 is settled**, by `finite-seed-telescope-hosts-are-full-contracting-rsgs`.
+  - *Finite seed group.* For finite `⟨S⟩`, the one-chain host `⟨V, θ_S⟩` and its full closure lie
+    in a full contracting RSG `𝕋_H`, so both are finitely presented (BBMZ `thrm:fin_pres`), and
+    `𝕋_H` is a type (A) actor.
+  - *Infinite seed group.* For infinite `⟨S⟩`, no contracting RSG contains `⟨V, θ_S⟩`.
+  - *The Matui/KEP prediction.* It is replaced by a sharper one: the host is a contracting RSG,
+    with finite nucleus `{id} ∪ {θ_h, φ_h} ∪ {h|_β}`.
+- **What the seeds can and cannot do.** In the Λ-indexed version, suppose the parse of `X` is a
+  one-sided SFT of (supertile type, position) sequences, as for fixed-point tilings. Then finite
+  seeds are handled by the same finite-nucleus mechanism, so they are not where item 2 is hard.
+- **Where the input cannot sit.** Λ acts on the parse through the finite sets of level-`k`
+  positions, an inverse limit of finite Λ-sets. An infinite subgroup `G ≤ Λ` without finite
+  quotients (every reduced BH input) acts trivially on such a factor
+  (`simple-subgroups-act-trivially-on-equicontinuous-factors`).
+  - If the parse were injective off the fault set `Y_∞`, `G` would fix a dense set of points, so it
+    would act trivially, contradicting freeness.
+  - So the hierarchy cannot be locally uniquely parsable in the directions that contain the input.
+- **Consequence for the design.**
+  - Take `Λ = Λ₀ × H`, with the hierarchy, the parse and the seeds on the `H` factor, where the
+    contracting mechanism applies, and the input inside `Λ₀`, acting along parse fibres.
+  - Item 2 then splits into three parts:
+    - the seed part, which is automatic by the contracting-RSG theorem;
+    - finite presentation of the `Λ₀`-part, which is P2′ (`bh-g3-tfc`);
+    - compatibility between the two.
+  - Seeds contribute nothing to the second part. This matches SYNTHESIS design rules 1–5 and
+    bh-g1-simulation's "no odometer parse for simple inputs".
+- **Not done.**
+  - An explicit T2 computation of `Y_∞` for a DRS tile set.
+  - T3.
+  - Whether the compatibility part can be stated as a single theorem, a contracting RSG over the
+    `H`-parse "fibred" over a P2′ group for `Λ₀`. That is the natural next test.

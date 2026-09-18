@@ -98,6 +98,31 @@ theorem (Theorem `41762` of the source, read in the LaTeX), 1 and 2 would make
    - **What it does not show.** This does not refute 1. It shows that a proof of 1
      must use the non-tree structure and cannot come from a free or tree-like
      suboperad.
+4. **Ore's condition reduced to one local rearrangement; the payoff made
+   group-free** (lane bh-free-54, 2026-09-18).
+   - **Plane lemma, proved for `m = 2`**
+     (`edge-splits-resolve-every-rational-plane`). Edge splits resolve every
+     rational plane, with a strictly decreasing crossing-complexity potential. So
+     edge-split dissections are cofinal among all dissections. Greedy evidence
+     supports ranks 4 to 6.
+   - **Ore's condition reduces to LD_atom** (route
+     `edge-split-ore-via-atom-plane-restriction`). LD_atom says that an edge-split
+     dissection respecting a first-split plane can be rearranged to split there
+     first (`edge-split-dissections-respecting-an-atom-plane-split-there`).
+     - It holds with 0 violations in 106830 instances up to 7 pieces.
+     - Its stronger form, restriction to any node that is a union of pieces, holds
+       with 0 violations in 45075 instances up to 6 pieces.
+     - The proof is done except for the far-edge sub-case, which closes on the
+       family of unit-corner lines.
+     - So the brute-force failures of Attempt 2 were artefacts of the size window.
+   - **The payoff needs only Ore's condition and finite type**
+     (`ore-operad-groups-contain-the-derived-full-group`,
+     `ore-operad-groups-have-type-a-clopen-actions`,
+     `closed-mcg-bh-via-edge-split-operad`).
+     - Ore's condition puts `D(𝒯_m)` inside `G_E` (Matui's normal-subgroup theorem,
+       recalled). So `Mod(S_g)` and `SL_{m+1}(Z)` lie in `G_E` because they are
+       perfect.
+     - `G_E` acts with type (A) on accessible clopens without being full.
 
 ## Lesson for general BH
 
