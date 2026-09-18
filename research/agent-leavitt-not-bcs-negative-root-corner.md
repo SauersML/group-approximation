@@ -327,3 +327,15 @@ across the `V_+/V_-` wall. A hyperlinear approximation of `EL_20(J)` has to be *
   example an asymptotic homomorphism of `P` into `U(d)` that distinguishes the two walls. Alternatively,
   show that every approximation of `P` is asymptotically `s`-invariant on `{w,w'}`. That would refute
   hyperlinearity of `EL_20(J)` and flip this hole.
+
+* **Group-level untwisting dies (swarm-0917-w8-nh-follow, 2026-09-18).** Can the Toeplitz cocycle be untwisted at the group level, so that `EL_20(J) = L x| SL_20(A)`?
+  * No: `jacobson-symbol-sequence-does-not-split`.
+  * An exact order-3 lift `c~` of the constant `c = diag(c_0,1,...)` cuts out the isotypic block `(c~ + c~^2)V`.
+  * A commuting lift of `h = diag(z,z,z^(-2),1,...)` would be invertible on that block, so its index there would be `0`.
+  * But the relative Fredholm index of the Toeplitz symbol block there is `-2`.
+  * So the sequence does not split over `Z/3 x Z`, for any `n >= 3`.
+  * This excludes semidirect-product routes and approximations pulled back along a section.
+  * **Not settled.** The obstruction needs odd torsion and the operator realization on `V`. It does not reach:
+    * virtual splitting over an odd-torsion-free congruence subgroup `Gamma`, which would reduce this hole to CE of the genuine crossed product `L x| Gamma`;
+    * the von Neumann cocycle `omega` in `R x|_(alpha,omega) Q`.
+  * Next falsifiable step: decide whether the sequence splits over a congruence subgroup of `SL_20(A)`. A mod-2 index of lifted involutions (the parity of `ker(u~+1)/im(u~+1)`) is the natural candidate obstruction.
