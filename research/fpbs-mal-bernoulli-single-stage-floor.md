@@ -123,3 +123,47 @@ swarm-0917-w8-w8-fp-break, finite-models).**
   The cost is taken with extra edges of word length `≤ T`. Lemmas 1 to 3 of
   the artifact transfer any such bound to `W_b`. The missing count is the
   multi-coset analogue of slot sparsity. The claim stays OPEN.
+
+**Chord unfolding: a `b`-length weighted floor for all double cosets
+(September 18, 2026, swarm-0917-w9-w9-fp-break, reframing).** Artifact
+`research/artifacts/fpbs-chord-unfolding-length-floor-2026-09-18.md`.
+Scripts in `experiments/fpbs-chord-unfolding-2026-09-17/`.
+- **Result.** [[fpbs-mal-graphing-b-length-weighted-floor]] is ESTABLISHED,
+  from the w8 floor and [[fpbs-mal-fold-closure-exactness]] (which I
+  re-verified and recorded as its own node). Let `Φ = ⊔ h|_{D_h}` be a
+  graphing with `E_{H_1} ∨ Φ = E_{H_2}` on `β|H_2`, or on any free action
+  weakly contained in Bernoulli. Then
+  `Σ_h |h|_{H_1, b_2} μ(D_h) ≥ 1/80`, where `|h|` is the number of
+  letters `b_2^{±1}` in a shortest expression in
+  `H_1 b_2^{±1} H_1 ⋯ H_1`.
+- **Invariant, and the step where members die.** Each chord unfolds into
+  `|h|` translates of `D_h`, used as `b`-seeds. Fold exactness makes their
+  union a seed set with conull 2-of-3 closure. Every graphing with bounded
+  `b_2`-length `r` dies there, with mass `≥ 1/(80 r)`. This is uniform in:
+  - the number of double cosets;
+  - the `H_1`-letters;
+  - the word length.
+
+  Every stagewise scheme with `Σ 1/r_n = ∞` has infinite mass. This settles
+  the survivor "graphings that mix several double cosets" whenever the
+  `b`-length is bounded. It is stronger than the uniform-in-`T` count asked
+  for above, because only `b`-letters modulo `H_1` on both sides are
+  counted. At `r = 1`, `relC_{≤1} = σ_b` exactly.
+- **Evidence.** Exact double-coset lengths are computed in
+  `coset_b_length.py`: `b^2 = c^{-1} b a` has length 1, `bab` has length 2,
+  `babab` has length 3. In iid chord experiments, labels of length 2 or 3
+  do worse per unit mass than `b`.
+- **What survives.**
+  - Per stage, graphings with average `b_2`-length `≥ 1/(80 ε)` at mass `ε`
+    whose unfolded seeds are heavily shared.
+  - Non-stagewise graphings with deep labels.
+- **Next decomposition, each part able to fail on its own** (artifact §5.5).
+  - (P1) Geodesic bundling: `μ(A) ≤ C · mass(Φ)` for some choice of
+    unfoldings. This would prove this claim with floor `1/(80 C)`.
+  - (P2) Refutation form: a factor-of-iid chord graphing of mass `ε` with
+    `b`-length about `1/ε` and shared seeds. By Theorem B this is the only
+    possible shape of a single-stage counterexample.
+  - (P3) Pushing deep-label graphings into stagewise form at a constant-factor
+    loss.
+
+  The claim stays OPEN.
