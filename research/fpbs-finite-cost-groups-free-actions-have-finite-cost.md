@@ -52,3 +52,27 @@ some free p.m.p. action of finite cost. Prove that every free p.m.p. action of
   `E_a`. For a group that is not finitely generated, that needs infinitely
   many group elements carried on sets of summable measure in `b`, and nothing
   in `a` controls where `b` can place them.
+
+**Stagewise tail transfer along weak containment (September 18, 2026,
+swarm-0917-w8-w8-fp-follow, quantifier-shift).**
+- **Result.** [[fpbs-finite-cost-transfers-up-weak-containment]] (route
+  `fpbs-finite-cost-transfers-up-weak-containment-proof`, artifact
+  `research/artifacts/fpbs-finite-cost-transfers-up-weak-containment-2026-09-18.md`).
+  For every countable `Γ`, if `a` is free and `a ≼ b`, then `C(b) ≤ C(a)`,
+  also relative to any subgroup. This answers Burton–Kechris Problem 7.4.
+- **How the obstruction above is met.** Exhaust `Γ` by `H_n`. The pieces of a
+  finite-cost graphing of `E_a` with labels outside `H_n` have mass tending to
+  0. Each stage transfers only its tail, with its own conjugator, relative to
+  the relation `E_{b|H_{n_k}}` already built in `b`. No single transfer of the
+  infinite graphing is needed.
+- **Reduction.** With Abért–Weiss, `C(a) ≤ C(s_Γ)` for every free `a`. So this
+  node is **equivalent** to: `C(Γ) < ∞` implies `C(s_Γ) < ∞`, for the Bernoulli
+  shift alone. A counterexample is exactly a group of finite cost whose
+  Bernoulli shift (equivalently, every free action weakly contained in it) has
+  infinite cost.
+- **Test case.** For `Gamma_mal`, this node and fixed price are both
+  equivalent to the failure of `fpbs-mal-bernoulli-single-stage-floor`
+  ([[fpbs-mal-fixed-price-iff-bernoulli-finite-cost]]).
+- **What stays open.** Finiteness of Bernoulli cost itself. Weak containment
+  now carries finite cost upward only, from `s_Γ` to all free actions, and
+  nothing here gives `C(s_Γ) < ∞`. The node stays OPEN.
