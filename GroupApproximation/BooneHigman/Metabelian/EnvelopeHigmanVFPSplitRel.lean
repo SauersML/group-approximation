@@ -33,7 +33,7 @@ theorem higmanVFP_len_succ {X : Type*} {v : List X} (h : v.length ≤ 2) (a : X)
 theorem higmanVFP_norm_prod_le {α : Type*} [DecidableEq α] (l : List (FreeGroup α))
     (h : ∀ x ∈ l, FreeGroup.norm x ≤ 1) : FreeGroup.norm l.prod ≤ l.length := by
   induction l with
-  | nil => rw [List.prod_nil, FreeGroup.norm_one, List.length_nil]
+  | nil => simp
   | cons a l ih =>
     have h1 : FreeGroup.norm a ≤ 1 := h a (List.mem_cons.mpr (Or.inl rfl))
     have h2 : FreeGroup.norm l.prod ≤ l.length :=
