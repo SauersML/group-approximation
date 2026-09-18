@@ -440,5 +440,30 @@ Scripts in `experiments/fpbs-full-triple-floor-2026-09-17/`.
 - **Dead (artifact §4.5).** Z/3 * Z/3 overgroup normalizer.
   `search_alpha.py` found no conjugate of the triangle rotation, over
   conjugators with at most 5 Nielsen moves, mapping `K` to a conjugate of `K`.
+### swarm-0917-w13 (fp-follow): mod-p homological certificates for (D0) are Fox annihilators
+
+- **Result.** New node
+  `fpbs-mal-modp-promotion-certificates-are-fox-annihilators`, ESTABLISHED,
+  with proof in `...-proof.md`. It gives three things.
+  - An exact finite-level identity. For every field `F`, the `H_1(-;F)` lower
+    bound on extra generating edges for `R_K v Phi = R_L` on a level `V` is
+    `k_u(V) = dim {y : y u = 0}`, with `u = 1 - c - cb = dc/db`. This is
+    checked by brute force on 900 pairs with 0 mismatches.
+  - The witness floor `Q_0(X) >= limsup k_u(V_m)/|V_m|`.
+  - Vanishing in characteristic `p` on `p`-towers, since `u` has
+    augmentation `-1`.
+- **Where the class dies.**
+  - Any proof of (D0) by mod-`p` or rational first homology of the finite
+    levels of a profinite witness equals the Sylvester rank deficit of `u`.
+  - A positive such bound contradicts Jaikin-Zapirain's Conjecture 2.4 (1)–(2),
+    which is open for non-amenable groups, over `F_p` for `F_2` at
+    `u = 1 - x - y`.
+  - Characteristic 0 is dead unconditionally (Linnell).
+  - The census has random Schreier levels up to `n = 6400`, `SL_2(Z/3^k)`, and
+    `PSL_2(F_q)` for `q <= 23`. No nested tower has `k_u/n` bounded away
+    from 0.
+- **What survives.**
+  - Non-abelian certificates `d(N_m / <<K ∩ N_m>>^L)`.
+  - (D1) deep-label arguments.
 
   The claim stays OPEN.

@@ -1,0 +1,15 @@
+# check B_direct == k_u on random transitive levels
+checked (level, prime) pairs: 900  with k_u > 0: 360
+mismatches: 0
+cyclic n=4 a=+1 b=+2 p=2: t=1 B_direct=0 k_u=0
+cyclic n=4 a=+1 b=+2 p=3: t=1 B_direct=1 k_u=1
+cyclic n=4 a=+1 b=+2 p=5: t=1 B_direct=0 k_u=0
+cyclic n=6 a=+1 b=+2 p=2: t=1 B_direct=2 k_u=2
+cyclic n=6 a=+1 b=+2 p=3: t=1 B_direct=2 k_u=2
+cyclic n=6 a=+1 b=+2 p=5: t=1 B_direct=2 k_u=2
+cyclic n=9 a=+1 b=+2 p=2: t=1 B_direct=2 k_u=2
+cyclic n=9 a=+1 b=+2 p=3: t=1 B_direct=0 k_u=0
+cyclic n=9 a=+1 b=+2 p=5: t=1 B_direct=0 k_u=0
+cyclic n=12 a=+1 b=+2 p=2: t=1 B_direct=2 k_u=2
+cyclic n=12 a=+1 b=+2 p=3: t=1 B_direct=2 k_u=2
+cyclic n=12 a=+1 b=+2 p=5: t=1 B_direct=2 k_u=2
