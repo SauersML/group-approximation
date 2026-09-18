@@ -168,3 +168,13 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
        embeds in it.
      - *What is left.* Sections whose linear parts differ from the parent (non-Toeplitz
        causal linear maps), or nonlinear transducers.
+     - *Non-Toeplitz linear corners too (bh-free-25).*
+       `two-counter-kms-top-has-no-affine-self-similar-action`: for `K ≥ 2` the KMS top
+       factor `B_0` has no faithful self-similar affine action with its lamps as
+       translations, on any `p^d`-ary tree and with arbitrary causal linear corners,
+       infinite-state included.
+       - The corners give an injective ring endomorphism `ψ̃`. A unit-equation lemma makes
+         it a product of one-variable maps.
+       - For `K ≥ 2` the shift is then `g·ψ̃` with `g ∈ R` on a finite-codimension ideal.
+         A `σ`-stable nonzero ideal then has all digits zero.
+       - So any self-similar KMS realization must be nonlinear on digits.
