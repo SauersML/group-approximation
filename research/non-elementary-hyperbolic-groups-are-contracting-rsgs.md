@@ -9,6 +9,7 @@ distinct_from:
   free-products-of-hyperbolic-groups-are-contracting-rsgs: that is the freely decomposable case, established; this is the whole question.
   virtually-free-product-hyperbolic-groups-are-contracting-rsgs: that is the virtually freely decomposable case, established; this is the whole question.
   sft-irreducible-core-iff-unique-recurrent-component: that is the graph-theoretic form of obstacle (ii), established; this is the whole question.
+  surface-group-atoms-are-wall-arrangement-cells: that computes the atoms of closed surface groups and verifies every BBMZ hypothesis except the irreducible core; this is the whole question.
   virtually-free-groups-are-contracting-rsgs: that is a second proof of the virtually free case, with trivial nucleus; this is the whole question.
   contracting-rsgs-closed-under-products-with-finite-groups: that is a closure lemma used for the known cases; this is the question itself.
 artifacts:
@@ -134,3 +135,16 @@ remains:
      normal-form coding would need an infinite alphabet at the infinite vertex groups. The
      gate approach needs the incoming profiles to recur, together with a separate faithful
      treatment of the finite radical.
+5. **2026-09-18 (lane `bh-free-23`), closed surface groups made explicit.**
+   - **Landed (`surface-group-atoms-are-wall-arrangement-cells`).** With the regular `4g`-gon
+     generators:
+     - word length counts the separating tiling walls;
+     - the atoms of `B_n` are the unbounded cells of the finite arrangement `𝒲_n`;
+     - `∂_h` has no isolated points, so the BBMZ image is an RSG with finite nucleus;
+     - half-plane cells are gated.
+   - **Remaining.** A single recurrent type component. Walls that cross a boundary wall can have
+     their wall distance attained on the near side, and control of that effect is the one open
+     step.
+   - **Comparison with Attempt 4.** The coset gates of Attempt 4 and the half-plane gates here are
+     the same device. Both give a separating set together with an incoming profile. What fails in
+     each case is recurrence of the base profile.
