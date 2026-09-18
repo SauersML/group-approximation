@@ -114,7 +114,10 @@ Let `Y` be the seed of the parent theorem for `Λ = π_1(𝔾)`, with sink type 
 - mapping tori and polycyclic groups;
 - finite-index overgroups.
 
-In each case the certified complexity is that of the normal form of the splitting.
+In each case the vertex groups are commensurable with the sink (edge groups have finite index), so the
+certified complexity is `WP(A)` plus Britton reduction with finite coset tables. A ¬CAP witness from this
+construction would need that reduction itself to be hard over a tame sink, and no known locally finite
+splitting does that (GBS groups and polycyclic groups have polynomial-time word problems).
 
 ## Lesson for general BH
 
@@ -123,7 +126,7 @@ generators.
 - **H₃.** The forcing radius is linear, but forcing length is quadratic, the distortion of `⟨z⟩`. Evaluation needs
   exactly the Mal'cev counters.
 - **Locally finite splittings.** Their seeds are pointers plus one sink, so they certify only Britton normal forms
-  and can never witness ¬CAP.
+  over the sink. The seed layer itself never adds complexity.
 - **Where a CAP test must live.** A real test (rung 1c) needs relative seeds over infinite-index associated
   subgroups whose distortion encodes a computation. The right quantity to bound is forcing length, not forcing
   radius.
