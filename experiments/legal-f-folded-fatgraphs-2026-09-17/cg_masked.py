@@ -3,7 +3,7 @@ boundary letters: windows outside the mask are fixed to 0, then exact support pr
 every slot / window that is zero in all feasible points.  A feasible point of the restricted LP is feasible
 for the full LP of lp_memory.py, so a negative restricted optimum proves the full optimum is negative;
 restricted infeasibility / optimum >= 0 is a statement about boundaries over the mask only.
-usage: python3 cg_masked.py '<phi0 json>' m r <letters, e.g. acAC> [--noprop] [--kcol N] [--tl SEC] [--dual out.json]
+usage: python3 cg_masked.py '<phi0 json>' m r <letters, e.g. acAC> [--noprop | --live w1,w2,... | --propwin] [--kcol N] [--tl SEC] [--dual out.json]
 """
 import sys, json, time, itertools
 import numpy as np
@@ -79,7 +79,24 @@ def main():
     phi = LA.power(phi0, m); g = LA.gates(phi)
     TY = LM.MTypes(phi, g, r)
     mask = [set(v) <= allowed for v in TY.windows]
-    if "--noprop" in args:      # plain masked LP (dual is then a Farkas vector of the masked LP itself)
+    live = None
+    if "--live" in args:
+        # windows left by an exact support propagation (sp_mask_sweep.py log): every feasible point of the masked
+        # LP vanishes on the other windows, so a Farkas vector of the LP on these windows alone rules it out
+        i = args.index("--live"); live = args[i + 1].split(","); del args[i:i + 2]
+    if "--propwin" in args:
+        # the same, with the surviving windows computed here (slots are not restricted beyond their windows)
+        wp, _ = SP.propagate(TY, g, 4, log=lambda *a, **k: None, wmask=mask)
+        live = ["".join(v) for j, v in enumerate(TY.windows) if wp[j]]
+        print("propagation: surviving windows", live, flush=True)
+        if not live:
+            print("RESULT empty"); return
+    if live is not None:
+        walive = np.array([m and "".join(v) in live for m, v in zip(mask, TY.windows)], dtype=bool)
+        assert int(walive.sum()) == len(set(live))
+        tl = walive[np.array(TY.cw)]
+        S = tl[:, None] & tl[None, :]
+    elif "--noprop" in args:      # plain masked LP (dual is then a Farkas vector of the masked LP itself)
         walive = np.array(mask, dtype=bool)
         tl = walive[np.array(TY.cw)]
         S = tl[:, None] & tl[None, :]
@@ -97,7 +114,7 @@ def main():
         flow = {"".join(v): round(float(res.x[j]), 6) for j, v in enumerate(TY.windows) if res.x[j] > 1e-9}
         print("window flow", flow, flush=True)
     if out:
-        json.dump({"phi0": phi0, "power": m, "r": r, "mask": args[3], "val": str(val),
+        json.dump({"phi0": phi0, "power": m, "r": r, "mask": args[3], "val": str(val), "live": live,
                    "columns": [[[int(d), int(q)] for d, q in P] for P in cg.cols],
                    "phase": cg.phase, "obj": float(res.fun) if res is not None else None,
                    "x": [float(v) for v in res.x] if res is not None else None,
