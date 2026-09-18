@@ -92,6 +92,29 @@ sofic, it would also answer Cornulier's Question 5 positively.
   * Where this dies for now: no branch set meeting all flats sparsely has been
     built.  Branch sets pulled back from product or height coordinates are
     ruled out, heuristically, by irreducibility.  Target stays OPEN.
+- 2026-09-17 (d-tw-obs, obstruction-miner, host-geometry): **Cremona hosts are dead.**
+  The live spark "Cremona host for K" proposed embedding `K` in `Bir(P^n)`,
+  `n >= 3`. Cremona groups are sofic (Cornulier), and Cantat--Cornulier kill
+  only dimension 2.
+  * Established `kazhdan-subgroups-of-cremona-groups-are-residually-finite`
+    (route `kazhdan-subgroups-of-cremona-groups-rf-proof`, requires []): over
+    any field and in any dimension, finitely generated Kazhdan subgroups of
+    `Bir(P^n_k)` are residually finite. So neither `Gamma_1^2` nor `K` embeds in
+    any Cremona group.
+  * Invariant: reducing the generators modulo a large finite residue field
+    gives partial actions on `P^n(F_q)` that are consistent along *every*
+    trivial word (the identity principle for rational maps). They have density
+    `1 - O(1/q)`.
+  * Dying step: globalize the partial action and project `1_Omega` onto
+    invariant vectors with property (T). Almost all points lie in finite orbits,
+    where a non-trivial element must move all but `O(q^(n-1))` points. That
+    yields finite quotients, which `K` does not have.
+  * The same argument kills every algebraic host whose reductions are exact
+    partial actions. It is a clean special case of the partial-action rounding
+    above that avoids the refuted re-gluing sentence. A sofic certificate for
+    `K` must come from approximations whose monodromy is inconsistent on a
+    macroscopic set, not from specializing any faithful birational action.
+    Target stays OPEN.
 - 2026-09-17 (d-tw-ref, reframer, symmetric branched covers): turned the
   Galois heuristic above into a theorem and killed a whole construction class.
   * Established `branched-cover-branching-mass-is-quantized-by-deck-group`.
