@@ -41,8 +41,9 @@ The Schreier 2-complex, with a 2-cell for each relator at each vertex, has funda
   to a composite of `G_V`-arrows. That composite is the actual germ of `r` at `x`, which is
   trivial because `r = 1` in `E`.
 - For each relator and each position of a letter `z^±` in it, the starting points `x` from
-  which that letter lands on one of its finitely many singular points form a finite set, since
-  `x ↦` (current point) is a bijection. So only finitely many relator loops are exceptional.
+  which that letter lands on one of its finitely many singular points form a finite set: the
+  prefix of the relator before that letter acts as a permutation of `C`, and the singular set
+  is finite. So only finitely many relator loops are exceptional.
 
 Transport each exceptional loop to `p` along the image of a path in the Schreier graph. Let
 `W_R ⊆ Π_p` be the resulting finite set. Different paths give conjugates by elements of
