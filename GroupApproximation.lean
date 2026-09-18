@@ -5912,6 +5912,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKV
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.KZero
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Intro
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.ChainOps
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAlgebraDef
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
