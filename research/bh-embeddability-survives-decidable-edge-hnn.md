@@ -228,3 +228,20 @@ only through a proof that does not pass through the conjecture.
    a proof reaching BG must use an actor in which the restricted action of BG
    has infinitely many orbits of pairs or an infinitely generated stabilizer. So
    pair-orbit finiteness can never be inherited by restriction to BG.
+
+## Attempt (bh-free-05, 2026-09-18): Hall-type hosts for free bases
+
+- **Setting.** Take `G = F*_{φ : A -> B}` with `F` finitely generated free and `A, B`
+  finitely generated. With `Y = F * <b>`, M. Hall plus equal-index adjustment extends `φ` to
+  `Φ = φ * α : C_1 = A * R -> C_2 = B * L` between finite-index subgroups of `Y`, for any
+  choice of `α`. Then `H = Y*_Φ ∈ BS_{F_2}`, which satisfies BH by BLIW §12.5.
+- **The ascending case.** `A = F` is `ascending-hnn-of-free-groups-satisfy-boone-higman`: the
+  map `G -> H` is injective even though the subgroup criterion fails.
+- **A necessary condition in general.** Put `Ā = F ∩ C_1` and `B̄ = F ∩ C_2`. The words
+  `y x y'`, with `y, y'` in `tFt^-1`, show that injectivity requires
+  `B̄ ∩ Φ(Ā) = B`. So no element of `Ā \ A` may be sent into `F`.
+- **One-sided case.** It holds automatically when `A` has finite index in `F`, since then
+  `C_1` can be chosen with `Ā = A`. So the one-sided case, `A` of finite index and `B`
+  arbitrary, passes this first test. Full injectivity there is OPEN.
+- **Two-sided case.** When both `A` and `B` have infinite index, the condition constrains the
+  choice of `α`. Whether a generic `α` gives an injective map is OPEN.
