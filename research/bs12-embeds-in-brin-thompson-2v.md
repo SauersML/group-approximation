@@ -226,3 +226,12 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   - The phase is often local on these machines; one has returns `≡ 0 mod 2^14` at radius 10. So what fails
     is the bounded return time needed by `brin-thompson-first-return-maps-lie-in-kv`, not recognizability.
   - Not a proof: one orbit per machine, finitely many levels.
+- **2026-09-18 (lane gq-affq): Jacobsthal machines exist, but none found is globally 2-adic.**
+  `research/artifacts/gq-affq-even-branching-search.md`.
+  - *Found.* In the non-mirror two-shape, 3-symbol class, 140 tables have exact Jacobsthal first-arrival times,
+    `T(L+1) = 2T(L) ± 1`. The smallest has 4 states and 2 letters. For it, 976 local inducing sets give exactly
+    doubling counts with bounded gaps along the hierarchy.
+  - *Fails.* On random tapes none of the 8 fully defined candidates with such a `Y` has a readable eigenvalue
+    `−1` or `i` at radius ≤ 5. The harness is calibrated on SMART. Most other tables are periodic on random tapes.
+  - *So.* The binary obstruction is global: a hierarchy exists on special tapes, but the machines are not
+    aperiodic odometer-like systems.
