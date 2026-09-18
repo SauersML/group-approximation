@@ -78,7 +78,7 @@ theorem fibonacciPoint_spec (t : ZMod 5) (i : ℤ) (hi : |i| ≤ ((1 : ℕ) : �
 /-- The diagonal of `D_1`: `f ↦ (f(T^t y))_{t ∈ Z/5}`, evaluated at `fibonacciPoint t`. -/
 noncomputable def fibonacciWindowModel :
     ClopenCoeff (subshiftHomeo fibonacciSubshift) (ZMod 2) →+* (ZMod 5 → ZMod 2) :=
-  Pi.ringHom fun t => (LocallyConstant.evalRingHom (fibonacciPoint t)).comp
+  RingHom.pi fun t => (LocallyConstant.evalRingHom (fibonacciPoint t)).comp
     (ClopenCoeff.of (subshiftHomeo fibonacciSubshift) (ZMod 2)).symm.toRingHom
 
 theorem fibonacciWindowModel_apply (f : ClopenCoeff (subshiftHomeo fibonacciSubshift) (ZMod 2))

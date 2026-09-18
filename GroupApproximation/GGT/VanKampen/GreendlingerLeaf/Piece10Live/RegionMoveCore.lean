@@ -8,8 +8,8 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b): the subdiagram `Γ_1` wi
 `∂Γ_1 = s_1 t_1 s_2 t_2`.  Lane gl-p10-10.
 
 The endpoint `Piece10.proof_of_regionMoveSubArc : P10Rose.RoseRegionMoveSubArcStatement →
-PocketOuterPinchStepSectionStatement` already exists (module `P10RoseEndpoint/SingleRegion`), so this
-module does not state it again.  It works on the gap below it.
+PocketOuterPinchStepSectionStatement` already exists (module `P10RoseEndpoint/SingleRegion`), so
+this module does not state it again.  It works on the gap below it.
 
 ## Route
 
@@ -28,7 +28,8 @@ module does not state it again.  It works on the gap below it.
   `c.head ∈ S`, and `c.head ∈ c`.  This is a contradiction.
 * `exists_mem_eqvGen_of_connected` (proved): the second clause of the junction statement,
   `∃ y ∈ c, r ~ y ∨ r ~ α y`, holds for EVERY dart `r`.
-* `RoseExtremalCoreStatement` (OPEN, PLAUSIBLE): `RoseExtremalJunctionStatement` without that clause.
+* `RoseExtremalCoreStatement` (OPEN, PLAUSIBLE): `RoseExtremalJunctionStatement` without that
+  clause.
 * `extremalCore_of_extremalJunction` (proved): the converse, so the residual is exactly as plausible
   as the old gap (truth certificate).
 
@@ -49,8 +50,8 @@ Let `c` be the rose boundary cycle, seen as a plane Eulerian graph of walk darts
    passage.  A crossed non-first turn needs at least three passages at one vertex.
 2. *Corners of the arcs.*  A passage inside `t₂` (inside `t₁⁻¹`) runs through a corner of the
    exterior face (of the source cell).  That side contains no walk dart, so the passage is not
-   crossed.  Crossed turns occur only at side or junction passages.  With `ε = 0` the sides are empty
-   and `AllNonFirstTurnsCrossed K` together with `¬ K.FirstTurns` is contradictory, so the
+   crossed.  Crossed turns occur only at side or junction passages.  With `ε = 0` the sides are
+   empty and `AllNonFirstTurnsCrossed K` together with `¬ K.FirstTurns` is contradictory, so the
    statement holds vacuously.
 3. *Three-petal flower.*  `c = p₁ q₁ | t₁⁻¹ | p₃ | t₂`, with the petals meeting at one vertex of
    `c`-degree `6`.  The class of the petal region is the witness `r`: `s₁ = [p₃]`, `t₁' = t₁`,
