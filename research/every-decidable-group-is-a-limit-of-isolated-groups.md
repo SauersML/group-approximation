@@ -69,3 +69,9 @@ isolated) is not checked here.
      with a highly transitive action. Its rigidity half shows that faithful actions of the torsion-free
      `BS(2,3)` are useless, so a proper quotient `P` with a type (A)-like action is required. None is
      known.
+3. **Thompson-type hosts are excluded at `BS(2,3)`.** `coprime-baumslag-solitar-images-in-va-are-metabelian`:
+   every image of `BS(2,3)` in `VA` (so in `F`, `T`, `V`, `T̄`) is cyclic-by-cyclic, so the
+   commutator `[tat^{-1}, a]` dies there. The isolated finitely presented subgroups of `V` with a
+   locally moving simple subgroup therefore never approximate `BS(2,3)`. More generally, in any
+   quotient of `BS(2,3)` in which `a` has finite order that commutator dies, so every isolated quotient
+   near `BS(2,3)` keeps `a` of infinite order and is not a subgroup of `VA`.
