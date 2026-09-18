@@ -126,3 +126,116 @@ theorem regionMoveLoose_not_looseCross_of_sides_nil (K : PocketFaceSet D eps X l
       | exact hne (e₁.trans e₀.symm)
       | exact hed₀ (e₂.trans e₀.symm)
       | exact hed (e₂.trans e₁.symm)
+
+/-- **A pocket with `ε = 0` has no loose crossing**: both sides are empty. -/
+theorem regionMoveLoose_not_looseCross_of_eps_zero (K : PocketFaceSet D 0 X lo hi)
+    (hK : K.ClosedWalk) : ¬RegionMoveCoreCloseLooseCross K :=
+  regionMoveLoose_not_looseCross_of_sides_nil K hK
+    (List.eq_nil_of_length_eq_zero (by have := K.firstSide_length_le; omega))
+    (List.eq_nil_of_length_eq_zero (by have := K.secondSide_length_le; omega))
+
+/-- **At most one loose passage leaves no loose crossing.** -/
+theorem regionMoveLoose_not_looseCross_of_subsingleton (K : PocketFaceSet D eps X lo hi)
+    (h : ∀ (e : X.toCombMap.Dart) (he : e ∈ K.boundary.cycle) (e' : X.toCombMap.Dart)
+      (he' : e' ∈ K.boundary.cycle), ¬RegionMoveCoreCloseTight K e he →
+        ¬RegionMoveCoreCloseTight K e' he' → e = e') :
+    ¬RegionMoveCoreCloseLooseCross K := by
+  rintro ⟨d₀, hd₀, d, hd, -, hnt₀, hne, hnt, -⟩
+  exact hne (h d hd d₀ hd₀ hnt hnt₀)
+
+/-- **A loose crossing forces `ε > 0` and a nonempty side.** -/
+theorem regionMoveLoose_side_of_looseCross (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) (hlc : RegionMoveCoreCloseLooseCross K) :
+    0 < eps ∧ (K.firstSide ≠ [] ∨ K.secondSide ≠ []) := by
+  have hs : K.firstSide ≠ [] ∨ K.secondSide ≠ [] := by
+    by_cases h₁ : K.firstSide = []
+    · by_cases h₂ : K.secondSide = []
+      · exact absurd hlc (regionMoveLoose_not_looseCross_of_sides_nil K hK h₁ h₂)
+      · exact Or.inr h₂
+    · exact Or.inl h₁
+  refine ⟨?_, hs⟩
+  rcases hs with h | h
+  · have hl : K.firstSide.length ≠ 0 := fun h0 => h (List.eq_nil_of_length_eq_zero h0)
+    have := K.firstSide_length_le
+    omega
+  · have hl : K.secondSide.length ≠ 0 := fun h0 => h (List.eq_nil_of_length_eq_zero h0)
+    have := K.secondSide_length_le
+    omega
+
+end Pocket
+
+/-- **The core at a loose crossing with a third loose passage** (OPEN, PLAUSIBLE; LOUD: logically
+equivalent to `RegionMoveCoreCloseStatement`, strictly smaller in proof content):
+`RegionMoveCoreCloseStatement` with the extra premises `0 < ε`, a nonempty side, and
+`RegionMoveLooseThree K`. -/
+def RegionMoveLooseResidualStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      RegionMoveCoreCloseLooseCross K →
+      0 < eps → (K.firstSide ≠ [] ∨ K.secondSide ≠ []) → RegionMoveLooseThree K →
+        ∃ r : X.toCombMap.Dart,
+          (∀ x, X.toCombMap.faceOf x = X.outerFace → ¬Relation.EqvGen
+            (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r x) ∧
+          ∃ (source kept : Fin X.rCellCount),
+            (cell X source).face ∉ flipFaces X.toCombMap K.faces
+              (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r) ∧
+            (cell X kept).face ∈ flipFaces X.toCombMap K.faces
+              (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r) ∧
+            ∃ (t₁ : CyclicArc (cellDarts X source)) (t₂ : CyclicArc (outerDarts X))
+              (s₁ s₂ : List X.toCombMap.Dart),
+              List.Perm (s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts)
+                (K.boundary.cycle.filter (movePred X.toCombMap
+                  (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) r))) ∧
+              s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts ≠ [] ∧
+              (s₁.IsChain fun d e =>
+                X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e) ∧
+              (s₂.IsChain fun d e =>
+                X.toCombMap.vertexOf (X.toCombMap.alpha d) = X.toCombMap.vertexOf e) ∧
+              (∀ a ∈ s₁.getLast?, ∀ b ∈ (invDarts X t₁.darts).head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              (∀ a ∈ (s₁ ++ invDarts X t₁.darts).getLast?, ∀ b ∈ s₂.head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              (∀ a ∈ (s₁ ++ invDarts X t₁.darts ++ s₂).getLast?, ∀ b ∈ t₂.darts.head?,
+                X.toCombMap.vertexOf (X.toCombMap.alpha a) = X.toCombMap.vertexOf b) ∧
+              s₁.length ≤ eps ∧ s₂.length ≤ eps ∧ lo ≤ t₂.start.1 ∧
+              t₂.start.1 + t₂.length ≤ hi ∧
+              t₁.length < (cellDarts X source).length ∧ t₂.length < (outerDarts X).length
+
+/-- **Close from the residual**: the extra premises follow from the loose crossing. -/
+theorem regionMoveLoose_close_of_residual (h : RegionMoveLooseResidualStatement.{u, w, v}) :
+    RegionMoveCoreCloseStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hloose
+  obtain ⟨hε, hs⟩ := regionMoveLoose_side_of_looseCross K hK hloose
+  exact h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hloose hε hs
+    (regionMoveLoose_three_of_looseCross K hK hloose)
+
+/-- **The residual from Close** (truth certificate). -/
+theorem regionMoveLoose_residual_of_close (h : RegionMoveCoreCloseStatement.{u, w, v}) :
+    RegionMoveLooseResidualStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hloose _ _ _
+  exact h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hloose
+
+/-- **The extremal-region core from the residual.** -/
+theorem regionMoveLoose_extremalCore_of_residual
+    (h : RegionMoveLooseResidualStatement.{u, w, v}) : RoseExtremalCoreStatement.{u, w, v} :=
+  regionMoveCoreClose_extremalCore_of_close (regionMoveLoose_close_of_residual h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.RegionMoveLooseThree
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_three_of_looseCross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_junction_of_loose
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_not_looseCross_of_sides_nil
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_not_looseCross_of_eps_zero
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_not_looseCross_of_subsingleton
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_side_of_looseCross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.RegionMoveLooseResidualStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_close_of_residual
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_residual_of_close
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveLoose_extremalCore_of_residual
