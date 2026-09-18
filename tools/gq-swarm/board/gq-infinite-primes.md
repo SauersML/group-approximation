@@ -1,4 +1,4 @@
-# gq-infinite-primes board (pass 25: route to condition (i) down to one sign step)
+# gq-infinite-primes board (pass 26: CONDITION (i) PROVED — K_2(N,R_L) = Q^x central, St_N(R_L) WP solvable; gate 1 closed pending review)
 **KMS reading** (source: arXiv:1204.6506v5 e-print, gq/src/kms/KMS-322.tex; section/theorem numbers from the tex counters)
 - NO embedding theorem. §1.1.7 "What next?" only POSES the RF Higman question (unrestricted form: "whether every f.g.
   RF group with solvable WP embeds into a f.p. RF group").
@@ -220,3 +220,38 @@ via t_2 t_1^k f s_1^k s_2 = f(k)); K_1-instability at rank N with [1] of infinit
   Khanh cone+fan ⇒ X_r(R_L) (r−3)-acyclic, simply connected (r ≥ 4); E_r transitive on frames of size ≤ r−1 ⇒ (F).
 - Sign step: P_12 ∈ E_n(R_L) (since [−1] = 0 in K_1 and GL/E ↪ K_1); exact lift ω = w_12 D^{-1}(h_12(−1)). Left: ω² (central in
   K_2(n)) ∈ j(K_2(n−1)) and braid relation mod C. Then (i) ⇒ WP of St_N(R_L) ⇒ gate 1. **For bh-shell-universal.**
+**Pass 26 — gate 1 closed (pending referees a+b)**
+- eecdc0a2f EST (lane): `leavitt-resolvent-k2-stability-holds`. Relative Khanh comparison for E_n(R_L), n ≥ 5, mod C = j(K_2(n−1))
+  (central): P_12 ∈ E_n ([−1] = 0); exact Weyl lift ω_12 = w_12 d_1, d_1 = h_12(a)h_12(W)h_12(aW), −1 = [a,W] (a = ee*−ff*,
+  W = ef*+fe*); leftover K_2 words on coords {1,2,3} ⊆ C. ⇒ K_2(n) = j(K_2(n−1)) (n ≥ 5) ⇒ U_N = 1 ∀N ≥ 3 ⇒ K_2(N,R_L) = Q^x
+  central; + search detector ⇒ **WP(St_N(R_L)) solvable (N = 4, 10)**. Centrality node settled.
+- **For bh-shell-universal:** gate 1 closed; remaining for the fp simple host = gate 2 (fp germ group Q_ν: R_ν, R_ν ×_Z R_ν, ascending
+  HNN) and gate 3 (computable ν).
+- Trust surface: Menal–Moncasi GE (via Khanh), Brown presentation (as used by Khanh), standard Steinberg w/h identities.
+**Pass 27 (gate 2 / trivial-core test)**
+- Bypass (fp Leavitt-pair ring with fg K_2): dead on main (leavitt-scalar-commutators-block-fp-central-quotients; also 5ff76dde9 +
+  rational-scalars-obstruct part 2): scalars, not K_2, block PE_N.
+- `steinberg-groups-of-r-l-are-not-co-hopfian` EST: Σ^(s_1) injective (U_N = 1), not surjective ⇒ St_N(R_L) FW but not co-Hopfian;
+  co-Hopfian window-zero exclusions don't apply as stated. Twist/corner endomorphisms fix central K_2 = Q^x ⇒ nontrivial core.
+- Attempt: ring-induced endomorphisms act on K_2 by λ ↦ λ^d (heuristic), cannot give trivial core; need non-ring ψ (prime shift on
+  the central Q^x). Stalled. Awaiting coordinator.
+**Pass 28 (coordinator: gate 2 construction arm, window N ≥ 1 for St_N(R_L); split with gq-typeA-design)**
+- `st-n-of-r-l-is-generated-by-two-copies-of-itself` EST: Σ^(e)(P) = H_(ee*), Σ^(f)(P) = H_(ff*) (R e* = R ee*), both ≅ P, generate
+  P (Cuntz), meet in St_(N−1)-copy + central K_2; binary tree of copies H_(s_w s_w*) by cylinders. Design input for enumerations.
+- Split proposed to gq-typeA-design (they: FW/obstruction theory; me: construction). Awaiting reply. Referee b resumed on eecdc0a2f.
+- gq-typeA-design accepted the split. Binding constraints on my construction: window 0 dead both ways; commuting windows dead for ε=+1
+  (872c2039c); ε=−1 commuting open (s^m HT lemma unproved); central K_2 must act with infinite support. Candidate shapes: non-commuting
+  sibling-copy (twist-tree) enumerations; genuine actions of P via E_N(R_L) on unimodular vectors with a Leavitt-refinement shift.
+  No candidate ν yet.
+- gq-typeA-design (367dcde56): actions factoring through E_N(R_L) kill the central K_2 ⇒ not faithful ⇒ not shell actions. The
+  unimodular-vector plan must use a K_2-cover (vector, K_2-torsor label); the twist-tree (regular) design is unaffected. Plan: twist tree first.
+  K_2-stability chain: referee b PASS 740389fd9 (Brown not needed; GE pinned in AGP 1.6+2.4; Weibel III Ex 5.10.1/5.8); referee a pending.
+- **K_2-stability chain fully refereed:** a PASS b8e762b33 (all four nodes; nits applied) + b PASS 740389fd9.
+- gq-typeA-design e851421ae: descending shift-power windows force torsion centre ⇒ for St_N(R_L) commuting windows fail both ways, and
+  window 0 fails for every s^m. Only NON-commuting windows N ≥ 1 remain (twist tree admissible).
+- bh-free-33 5fc28a7f2 (trivial-core endomorphisms for L_{F_2}(1,2)): for R_L, (a) ∩ s_1^j R t_1^j = 0 holds (model); (b) Φ injective
+  on St_N (U_N = 1); but core ⊇ central K_2 = Q^x. Replied.
+**Pass 29 (after 10:30–10:47 outage; INSIGHT FIRST order)**
+- Nothing lost (last landing f65202ed8 10:10). LESSONS.md line appended. Lesson paragraphs on k2-stability and two-copies nodes.
+- Re-scoped target (general): St_N(R) ⋊ V (V ⊆ L(1,2)^x acting by last-coordinate twists) as a general BH host shape; test gates.
+  Follow SYNTHESIS.md when it appears.

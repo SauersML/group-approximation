@@ -87,16 +87,16 @@ theorem gs_mul_gen (a b : Fin 2) : C.gs a * C.gen b = if a = b then 1 else 0 := 
   · rw [gs_one, gen_one, C.fs_f, if_pos rfl]
 
 theorem p_mul_e : C.p * C.e = 0 := by
-  simp only [p, sub_mul, one_mul, mul_assoc, C.es_e, C.fs_e, mul_one, mul_zero, sub_self,
-    sub_zero]
+  rw [p, sub_mul, sub_mul, one_mul, mul_assoc, C.es_e, mul_one, mul_assoc, C.fs_e, mul_zero,
+    sub_self, sub_zero]
 
 theorem p_mul_f : C.p * C.f = 0 := by
   simp only [p, sub_mul, one_mul, mul_assoc, C.es_f, C.fs_f, mul_one, mul_zero, sub_self,
     sub_zero]
 
 theorem es_mul_p : C.es * C.p = 0 := by
-  simp only [p, mul_sub, mul_one, ← mul_assoc, C.es_e, C.es_f, one_mul, zero_mul, sub_self,
-    sub_zero]
+  rw [p, mul_sub, mul_sub, mul_one, ← mul_assoc, C.es_e, one_mul, ← mul_assoc, C.es_f, zero_mul,
+    sub_self, sub_zero]
 
 theorem fs_mul_p : C.fs * C.p = 0 := by
   simp only [p, mul_sub, mul_one, ← mul_assoc, C.fs_e, C.fs_f, one_mul, zero_mul, sub_self,
@@ -155,11 +155,11 @@ theorem sandwich (β γ : List (Fin 2)) :
     | cons b γ =>
       rw [← mul_assoc (C.coword (a :: β)), coword_cons_mul_word_cons]
       by_cases hab : a = b
-      · subst hab
+      · subst b
         rw [if_pos rfl, mul_assoc, ih γ]
         by_cases hβγ : β = γ
         · rw [if_pos hβγ, if_pos (congrArg (List.cons a) hβγ)]
-        · rw [if_neg hβγ, if_neg (fun hc => hβγ (List.cons.inj hc).2)]
+        · rw [if_neg hβγ, if_neg (fun hc : a :: β = a :: γ => hβγ (List.cons.inj hc).2)]
       · have hne : ¬ (a :: β = b :: γ) := fun hc ↦ hab (List.cons.inj hc).1
         rw [if_neg hab, zero_mul, mul_zero, if_neg hne]
 
@@ -190,14 +190,15 @@ theorem extract (α α' β' β : List (Fin 2)) :
   rw [h, sandwich, sandwich]
   by_cases h1 : α = α'
   · by_cases h2 : β' = β
-    · rw [if_pos h1, if_pos h2, if_pos ⟨h1, h2⟩, C.p_mul_p]
-    · rw [if_pos h1, if_neg h2, if_neg (fun h ↦ h2 h.2), mul_zero]
-  · rw [if_neg h1, if_neg (fun h ↦ h1 h.1), zero_mul]
+    · rw [if_pos h1, if_pos h2, if_pos (And.intro h1 h2), C.p_mul_p]
+    · rw [if_pos h1, if_neg h2, if_neg (fun h : α = α' ∧ β' = β ↦ h2 h.2), mul_zero]
+  · rw [if_neg h1, if_neg (fun h : α = α' ∧ β' = β ↦ h1 h.1), zero_mul]
 
 end CohnTwoData
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.sandwich
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.unit_mul_unit
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.CohnRelativeK1.CohnTwoData.extract

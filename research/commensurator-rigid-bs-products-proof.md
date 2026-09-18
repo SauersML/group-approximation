@@ -68,5 +68,7 @@ finite index.
 - `G` is linear in characteristic zero, through the adjoint representation and
   induction.
 
-**Trust surface.** Cited and not re-read: Mostow--Prasad rigidity, Borel density,
-and the Bass--Serre structure theorem.
+**Trust surface.** Pinned by referee b in Witte Morris, *Introduction to Arithmetic Groups*,
+math/0106063v6: Mostow rigidity (15.1.2), pp. 309--310, whose hypotheses hold for
+`Isom(X)^0` with `X` irreducible and `X ≠ H^2`; Borel density, Cor. 4.5.3
+(`C_G(Γ) = Z(G)`), which gives `VZ = 1`. Cited and not re-read: the Bass--Serre structure theorem.

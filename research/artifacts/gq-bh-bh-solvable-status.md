@@ -90,3 +90,29 @@ directly.
   - The elementary amenable case adds Kropholler--Martínez-Pérez--Nucinkis (secondary on main).
   - The earlier "finite `T`" proviso is superseded: the question Kropholler left open in
     BLMS 1993 is answered by his JPAA 1993 paper, as MPN record.
+- **Why compact Cantor bundles cannot reach Hall or Abels quotients**
+  (`compact-skew-products-cannot-carry-divisible-fiber-subgroups`).
+  - For a finitely generated group acting by skew products over a compact base with locally
+    constant cocycles, every fiber cocycle takes values in one finitely generated subgroup of
+    the fiber group.
+  - So the fiberwise subgroup contains no `Z[1/p]` and no `C_(p^∞)`.
+  - Two realizations of Hall's `B/C` do exist: unbounded locally constant skew products on
+    `Q_p × F_S`, and continuous affine maps of the compact group `S_p × R/Z`.
+  - The design gap is therefore hosts with ends, or hosts with a circle coordinate sheared
+    against the base.
+
+## 6. Soluble Boone–Higman, the general picture (09-18)
+
+1. Everything quasi-linear is in `B_A`. This includes:
+   - finitely generated metabelian groups;
+   - residually finite finite-rank groups (Pyber–Segal);
+   - virtually soluble and elementary amenable `FP_∞` groups (Kropholler, MPN).
+2. Two mechanisms of failure of quasi-linearity are known here. Whether they exhaust the
+   non-quasi-linear finitely generated soluble groups with solvable word problem is not
+   known:
+   - **(D) divisible torsion.** These are non-RF; the test cases are Hall's `B/C` and Abels'
+     `A_p/C`.
+   - **(P) power-map commutators on torsion-free sections.** These are RF; the test case is
+     the `q`-difference lamplighter `K_q`.
+3. **Host requirements.** (D) needs ends or connected sheared fibers. (P) needs self-similar
+   dilation of parameters, or noncommutative coefficients.

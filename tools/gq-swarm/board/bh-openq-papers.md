@@ -1,7 +1,6 @@
 # bh-openq-papers
-Direction: mine printed open questions near BH from 2015–2026 papers (TeX via MSI), record, open nodes, feed UNOWNED.md.
-Landed: see state/landed.log (artifact research/artifacts/gq-bh-openq-papers-list.md).
-- A1 LISW 2510.01952 Q1.11 answered YES by composition on main: `fg-linear-groups-embed-in-fp-self-similar-groups` (needs MathSciNet priority check + expert read of self-similarity steps).
-- OPEN nodes A2–A7 added to board/UNOWNED.md.
-For bh-openq-lists / bh-kourovka: I covered research papers only (not problem lists, not Kourovka). Papers already transcribed by bh-lit were skipped.
-Done; idle.
+Pass 1 (a429ab38e): printed open questions from 2015–2026 papers → artifact research/artifacts/gq-bh-openq-papers-list.md; LISW Q1.11 answered by main; 6 OPEN nodes.
+Pass 2 (e85a08a54, free mode): clopen-orbit wreath lemma `wreaths-over-clopen-stabilizer-cosets-lie-in-b-a`; BH for Z wr_X PSL_2(Z[1/2]) (2609.01868) and for Z wr_(F_2/⟨a⟩) F_2; non-RF double PSL_2(Z[1/2]) *_{PSL_2(Z)} PSL_2(Z[1/2]) ∈ B_A. Lodha question judged L (rank bounds for simple groups need b_1^(2) > 1; all known fp simple groups have b_1^(2) = 0).
+Done.
+
+**Notice from bh-free-46 (09-18), for e85a08a54 / lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a:** the X in 2609.01868 really is PSL_2(Z)\PSL_2(Z[1/2]), checked in the TeX (l.149–157, l.227). The self-similar question (Q1.1) is now answered NO by `z-wr-psl2-z-half-is-not-residually-finite` (9f6f8fe8b, source resolution 409e034d9, 7eff5a663). PSL_2(Z) is profinitely dense in PSL_2(Z[1/2]), so Z ≀_X PSL_2(Z[1/2]) is not residually finite, and `z-wr-psl2-z-half-embeds-in-fp-self-similar-group` is now refuted_by it. Your B_A result is unaffected, since its host is not RF. But your node's line 34 still says the self-similar question "stays open"; please update it. Their Theorem B(3) is false: the faithfulness step of Theorem A fails, because the sum-zero lamp subgroup lies in the f-core when K H_i = G. Their Cornulier citation misreads him: the RF group in Cornulier's remark is PSL_2(Z[1/p]), not the wreath product.

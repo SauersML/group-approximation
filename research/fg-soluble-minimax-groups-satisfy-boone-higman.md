@@ -89,11 +89,27 @@ Either:
        `A`-valued cocycle on all of `Γ`.
      - Hence `H(Z[1/p])/<e_13(1)>` acts faithfully by finite-piece maps on the five Cantor
        colours `F_a, I_a, F_b, I_b, S`, with odometers on `I_a` and `I_b`.
-   - **The gap: Hall's `t` (heuristic, not proved).** `t` acts by `÷p` on `X_a` and `×p` on
-     `X_b` (baker shifts). It must change `Ψ` by a coboundary. The gauge above is `Σ` over
-     digit pairs `(a-depth l, b-depth i)` with `i < l`. Row and column finiteness force every
-     admissible digit-pair gauge to cut each weight line `l + i = n` at one point. `t` slides
-     each weight line by one step, so the defect is one digit pair per `n`, over all `n`,
-     which is not locally constant. By Hochschild–Serre, the obstruction lies in
-     `H^1(<t>, H^1(Γ, C(Y,A)))`, since the restriction to `Γ` vanishes. Neither vanishing nor
-     nonvanishing is proved.
+   - **The gap is now a theorem** (`compact-skew-products-cannot-carry-divisible-fiber-subgroups`,
+     lane proof). Once `t` is added the group is finitely generated. Then every fiber cocycle
+     takes values in the finitely generated subgroup of `A` spanned by the generators' values,
+     which is finite, while the center `A` is infinite. So no compact base and no gauge works;
+     the "one digit pair per weight" defect was a symptom of this. Earlier text of this bullet:
+     a heuristic weight-line count and a Hochschild–Serre location of the obstruction.
+   - **What does work.** `B/C` acts faithfully by locally constant but unbounded skew products
+     on `Q_p × F_S`, and by continuous affine maps on the compact group `S_p × R/Z` (solenoid
+     times circle). Both are in the node above. Neither is known to sit in a type (A) actor.
+
+## Lesson for general BH
+
+In a soluble minimax group, failure of residual finiteness comes from an infinite Chernikov
+torsion radical. Its divisible part is a finite product of quasi-cyclic groups (standard;
+not re-read here), and in the test cases it is central. A finitely generated group cannot carry such a center in the
+fiber of any compact bundle with locally constant cocycles, because its cocycles see only a
+finitely generated coefficient group. So Boone–Higman for these groups needs one of three
+things:
+- a host with ends, where the center lives at infinity;
+- a host with a connected circle coordinate sheared against the base;
+- an embedding in which the center moves on the base.
+
+This is the same design question as for Deligne-type central extensions, with "finite
+generation" replacing "stabilizers" as the obstruction.

@@ -73,3 +73,18 @@ computable within primitive recursive time.
    - **The lesson.** Ackermann-type schedules need non-commuting germs. For example, several machines whose step
      counts depend on each other's outputs, or a hard finitely presented group as the singular germ group; the
      latter is the shell route run on one explicit hard input.
+4. **HNN stages over a tame actor (2026-09-18, lane bh-free-35).** *Conservation law, no witness.*
+   - **The design.** Inject hardness into a type (A) actor with one extra permutation: an injective
+     one-permutation HNN stage over a primitive recursive base (`stable-permutation-hnn-of-type-a-actor-is-type-a`).
+     Such a stage is finitely presented and of type (A) for free.
+   - **Why it cannot work alone.** `hnn-stages-add-no-complexity-beyond-edge-distortion`: the stable
+     letter is pinned by finitely many values, so the new orbit problem is primitive recursive relative to the
+     orbit and subgroup distortion of the orbit-finite edges.
+     - Identity edges must be closed under the permutation bicommutant. This excludes orbit-finite Mihailova fiber
+       products, the natural source of hard membership (for example `Γ(2) ×_Q Γ(2) ≤ T × T`).
+     - Over `V`, orbit distortion is tame (pushdown reachability).
+   - **What is left.** A regular orbit-finite edge with non-primitive-recursive factorization distortion
+     `Γ = D · Γ_x` inside a finitely presented type (A) actor.
+   - **Also:** `twisted-brin-thompson-global-twists-are-conjugacy-closed`. Global twists in `SV_G` add no
+     conjugacies to the actor. This matches the iteration clause of
+     `twisted-brin-thompson-wp-equals-actor-orbit-problem`: towers of `SV` over a bounded actor stay elementary.

@@ -47,6 +47,16 @@ and "what does it use that Q has and Z[1/m] lacks". Verdict artifacts: research/
 - 418581fee resolvent-presentation-ring-is-residually-finite and resolvent-ring-has-path-normal-form: PASS for
   every prime l, with a wording nit on the copy index.
 
+- b74ee10f0 twisted-brin-thompson-type-fn-criterion and the grid-sphere lemma: PASS, second proof-gap pass on
+  BZ Conjecture H in the faithful case. The ⇒ half of the Lesson-paragraph "iff" is flagged as unsupported.
+
+- 72d2941ac PASS, second proof-gap pass, on three nodes:
+  - abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one;
+  - abstract-twisted-bt-type-fn-criterion (FFWZ §1.2 conjecture, for any action);
+  - interval-spherical-brown-criterion.
+
+  Nit: "length ≥ 2" in the criterion's hypothesis 4.
+
 **Needs (for the Problem 2.7 routes).** C1, the centrality of K_2(r, M_k(Q)), which gq-referee-b is checking.
 **Dead.** —
 **Status.** Idle; waiting for review requests.
