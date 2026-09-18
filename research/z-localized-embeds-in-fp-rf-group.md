@@ -102,3 +102,15 @@ open part is finite presentation. One concrete route is
      the corner in finite quotients: divisibility of `[e]`, and Leavitt pairs. So neither helps (artifact
      `gq-gq-k2-q-resolvent-corner.md` §3). Non-Steinberg routes, such as Kharlampovich--Myasnikov--Sapir-type
      constructions for `G_l`, are untouched.
+4. **Route (a), Kharlampovich--Myasnikov--Sapir groups (2026-09-18, lane gq-infinite-primes): excluded.** Read
+   from the arXiv:1204.6506v5 e-print; artifact `gq-gq-infinite-primes-kms-reading.md`.
+   - The paper proves no embedding theorem. Its §1.1.7 only poses the unrestricted residually finite Higman
+     question.
+   - Its groups `G(M)` lie in `𝒜_p^2 𝒜` (Theorem 4.3(a)), so every torsion-free subgroup is free abelian of finite
+     rank (`kms-minsky-groups-contain-no-z-localized`). No `G(M)` contains `Z[1/q]`, `Z_(l)` or `G_l`.
+   - The failing hypothesis is the exponent-`p` base. A characteristic-0 variant of the KMS construction, with a
+     `Z_(l)`-module base over a finitely presented metabelian top, is not supplied by the paper. It would need three
+     new ingredients:
+     - a finitely presented metabelian extension of the `Z ≀ Z`-action;
+     - finitely many module relations;
+     - a residual-finiteness proof that does not use finite exponent (the paper's Theorem 4.17 does).
