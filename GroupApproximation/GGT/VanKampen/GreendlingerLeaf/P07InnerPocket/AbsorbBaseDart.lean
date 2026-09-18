@@ -125,7 +125,8 @@ theorem absorbBase_dart_clause {a b : RegionCandidate D eps X}
 /-- **The lake-filled case**: the lake-filled witness stays inside the pocket and has a bridge-free
 enclosed successor walk satisfying the four noninterleave clauses. -/
 abbrev AbsorbBaseCase (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j)
-    (G₁ : CyclicArc (cellDarts X i)) (G₂ : CyclicArc (cellDarts X j)) (c : X.toCombMap.Face) : Prop :=
+    (G₁ : CyclicArc (cellDarts X i)) (G₂ : CyclicArc (cellDarts X j))
+    (c : X.toCombMap.Face) : Prop :=
   absorbBaseFaces a b K c ⊆ sideFaces X.toCombMap K.walk ∧
     ∃ ow : List X.toCombMap.Dart, EnclosedFaceSetSucc X (absorbBaseFaces a b K c) ow ∧
       (∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ absorbBaseFaces a b K c) ∧
