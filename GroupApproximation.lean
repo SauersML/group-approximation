@@ -6050,6 +6050,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductIdealAction
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnHalf.FreeRep
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbAmplifyPos
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
