@@ -56,3 +56,22 @@ are honest `rho_n : M -> U(d_n)` with `||V_n(t_s) - rho_n(t_s)||_op -> 0`.
   a group containing `Z^2` with no splitting over finite groups. A direct attack
   must control Voiculescu-type pairs on commuting twists using the relations
   of `M` alone (lantern and chain relations), and that is not attempted here.
+- **2026-09-18, swarm-0917-w10-w10-deligne-last1 (cohomology-index): stability is reduced to one
+  statement about honest representations, and the obstruction classes are located.** See
+  `mod-s2-stability-forces-honest-torelli-windings` (ESTABLISHED).
+  - *Theorem.* If `M` is stable, then pulling back a Dadarlat asymptotic homomorphism `V_n` of `Sp_4(Z)`
+    gives honest `rho_n : M -> U(d_n)` with `||rho_n(t_s) - 1|| -> 0` and
+    `(1/2 pi i) Tr log rho_n(t_s) = -a kappa_n/(10k) != 0`. The invariant is Dadarlat's winding: it cannot
+    vanish on `M` because `H_2(M;Q) = 0`, so it lands on the Torelli generator through
+    `sigma(w) = -10k/a` (real untwisting).
+  - *New split of the negation.* `mod-s2-is-not-point-norm-matricially-stable` follows from the open
+    `mod-s2-near-identity-torelli-windings-vanish` (route
+    `mod-s2-instability-via-vanishing-torelli-windings`). So this node holds only if honest
+    `M`-representations are flexible near the identity (nonzero near-identity trace-logs), while the
+    companion prerequisite `mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap` needs them
+    rigid near `omega`.
+  - *Classes killed (remarks, using additivity of Dadarlat's pairing).* Bott-index tests on commuting
+    twists and windings induced from finite-index subgroups both factor through `H_2(M;Q) = 0`, so the
+    "natural test" suggested above cannot refute this node.
+  - *Not touched.* The weaker downstream form (maps with `V_n(t_s) -> omega I`) is not addressed; the
+    witnesses here send `t_s` to `1`.
