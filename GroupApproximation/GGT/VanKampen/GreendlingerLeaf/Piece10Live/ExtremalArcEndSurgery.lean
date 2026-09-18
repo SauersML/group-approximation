@@ -140,3 +140,249 @@ def ExtremalArcEndSurgeryRule (K : PocketFaceSet D eps X lo hi) : Prop :=
           ExtremalClassChoice K y ∧ ExtremalArcEndRemoved K y = 0) ∧
         ∀ y ∈ K.firstSide ++ K.secondSide, ExtremalClassChoice K y →
           ExtremalArcEndRemoved K y = 0 → ExtremalMinimalLinkedRuns K y)
+
+/-- **A face class lies on one side of `K.faces`.**  A face step keeps the face; crossing an edge
+off the walk keeps the side, since a dart with its face in `K.faces` and the far face outside is
+a boundary dart, hence on the walk. -/
+theorem extremalArcEndSurgery_mem_faces_iff (K : PocketFaceSet D eps X lo hi)
+    {x y : X.toCombMap.Dart}
+    (h : Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) x y) :
+    X.toCombMap.faceOf x ∈ K.faces ↔ X.toCombMap.faceOf y ∈ K.faces := by
+  induction h with
+  | rel a _ hab =>
+      rcases hab with rfl | ⟨hnk, rfl⟩
+      · rw [X.toCombMap.faceOf_facePerm]
+      · constructor
+        · intro ha
+          by_contra hb
+          exact hnk (Or.inl ((K.boundary.cycle_mem_iff a).mpr ⟨ha, hb⟩))
+        · intro hb
+          by_contra ha
+          refine hnk (Or.inr ((K.boundary.cycle_mem_iff (X.toCombMap.alpha a)).mpr ⟨hb, ?_⟩))
+          rw [X.toCombMap.alpha_involutive a]
+          exact ha
+  | refl _ => exact Iff.rfl
+  | symm _ _ _ ih => exact ih.symm
+  | trans _ _ _ _ _ ih₁ ih₂ => exact ih₁.trans ih₂
+
+/-- **A dart outside the class, with its reverse outside, is kept.** -/
+theorem extremalArcEndSurgery_kept_of_not (K : PocketFaceSet D eps X lo hi)
+    (z x : X.toCombMap.Dart)
+    (h₁ : ¬Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) z x)
+    (h₂ : ¬Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) z
+        (X.toCombMap.alpha x)) :
+    P10ExtremalResidual.keptPred K z x = true := by
+  have hc : ∀ y, ¬Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) z y →
+      regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) z y = false := by
+    intro y hy
+    cases hcy : regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) z y with
+    | false => rfl
+    | true =>
+        exact absurd ((regionColour_eq_true_iff X.toCombMap
+          (walkKeep X.toCombMap K.boundary.cycle) z y).mp hcy) hy
+  exact (movePred_eq_true_iff X.toCombMap
+    (regionColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) z) x).mpr
+    ⟨hc x h₁, hc (X.toCombMap.alpha x) h₂⟩
+
+/-- **An extra exterior class keeps every target dart.** -/
+theorem extremalArcEndSurgery_target_kept (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart} (hz : ExtremalArcEndSurgeryExtraOut K z) {x : X.toCombMap.Dart}
+    (hx : x ∈ K.targetArc.darts) : P10ExtremalResidual.keptPred K z x = true := by
+  obtain ⟨hzf, hO, -⟩ := hz
+  have hxc : x ∈ K.boundary.cycle := by
+    rw [K.decomposition]
+    exact List.mem_append.mpr (Or.inr hx)
+  refine extremalArcEndSurgery_kept_of_not K z x (fun hzx => hzf ?_)
+    (hO _ (P10Rose.FilterMove.faceOf_alpha_of_mem_targetArc K hx))
+  exact (extremalArcEndSurgery_mem_faces_iff K hzx).mpr ((K.boundary.cycle_mem_iff x).mp hxc).1
+
+/-- **An extra exterior class keeps every dart of the reversed source arc.** -/
+theorem extremalArcEndSurgery_source_kept (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart} (hz : ExtremalArcEndSurgeryExtraOut K z) {x : X.toCombMap.Dart}
+    (hx : x ∈ invDarts X K.sourceArc.darts) : P10ExtremalResidual.keptPred K z x = true := by
+  obtain ⟨hzf, -, hS⟩ := hz
+  have hxc : x ∈ K.boundary.cycle := by
+    rw [K.decomposition]
+    exact List.mem_append.mpr (Or.inl (List.mem_append.mpr (Or.inl
+      (List.mem_append.mpr (Or.inr hx)))))
+  have ha : X.toCombMap.alpha x ∈ K.sourceArc.darts := by
+    have hx' := hx
+    unfold invDarts at hx'
+    obtain ⟨e, he, rfl⟩ := List.mem_map.mp hx'
+    rw [X.toCombMap.alpha_involutive e]
+    exact List.mem_reverse.mp he
+  have hfa : X.toCombMap.faceOf (X.toCombMap.alpha x) = (cell X K.source).face :=
+    ((X.faceBoundary (cell X K.source).face).mem_iff (X.toCombMap.alpha x)).mp
+      (K.sourceArc.mem_cycle_of_mem_darts ha)
+  refine extremalArcEndSurgery_kept_of_not K z x (fun hzx => hzf ?_) (hS _ hfa)
+  exact (extremalArcEndSurgery_mem_faces_iff K hzx).mpr ((K.boundary.cycle_mem_iff x).mp hxc).1
+
+/-- **An extra exterior class removes no arc dart.** -/
+theorem extremalArcEndSurgery_removed_eq_zero (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart} (hz : ExtremalArcEndSurgeryExtraOut K z) :
+    ExtremalArcEndRemoved K z = 0 := by
+  unfold ExtremalArcEndRemoved
+  refine Nat.add_eq_zero_iff.mpr ⟨List.countP_eq_zero.mpr ?_, List.countP_eq_zero.mpr ?_⟩
+  · intro x hx
+    simp [extremalArcEndSurgery_target_kept K hz hx]
+  · intro x hx
+    simp [extremalArcEndSurgery_source_kept K hz hx]
+
+/-- **An extra exterior class is a choice class**: it avoids the exterior and source faces by
+definition, and the face of `K.kept`, which lies in `K.faces`. -/
+theorem extremalArcEndSurgery_choice (K : PocketFaceSet D eps X lo hi)
+    {z : X.toCombMap.Dart} (hz : ExtremalArcEndSurgeryExtraOut K z) :
+    ExtremalClassChoice K z := by
+  obtain ⟨hzf, hO, hS⟩ := hz
+  refine ⟨Or.inr hO, Or.inr hS, K.kept, K.kept_mem, ?_⟩
+  intro x hx hzx
+  apply hzf
+  rw [extremalArcEndSurgery_mem_faces_iff K hzx, hx]
+  exact K.kept_mem
+
+/-- **A removed arc dart makes the count positive.** -/
+theorem extremalArcEndSurgery_removed_pos (K : PocketFaceSet D eps X lo hi)
+    (r : X.toCombMap.Dart)
+    (h : (∃ x ∈ K.targetArc.darts, P10ExtremalResidual.keptPred K r x = false) ∨
+      ∃ x ∈ invDarts X K.sourceArc.darts, P10ExtremalResidual.keptPred K r x = false) :
+    0 < ExtremalArcEndRemoved K r := by
+  apply Nat.pos_of_ne_zero
+  intro h0
+  unfold ExtremalArcEndRemoved at h0
+  obtain ⟨hT, hS⟩ := Nat.add_eq_zero_iff.mp h0
+  rcases h with ⟨x, hx, hf⟩ | ⟨x, hx, hf⟩
+  · have hk := extremalArcEnd_kept_of_countP_eq_zero K r hT x hx
+    rw [hf] at hk
+    exact absurd hk (by decide)
+  · have hk := extremalArcEnd_kept_of_countP_eq_zero K r hS x hx
+    rw [hf] at hk
+    exact absurd hk (by decide)
+
+/-- **Kept / removed / kept on an arc makes the count positive.** -/
+theorem extremalArcEndSurgery_removed_pos_of_krk (K : PocketFaceSet D eps X lo hi)
+    (r : X.toCombMap.Dart)
+    (h : ExtremalArcEndDescentKRK K r K.targetArc.darts ∨
+      ExtremalArcEndDescentKRK K r (invDarts X K.sourceArc.darts)) :
+    0 < ExtremalArcEndRemoved K r := by
+  apply extremalArcEndSurgery_removed_pos K r
+  rcases h with h | h
+  · exact Or.inl
+      (extremalArcEndSurgery_false_of_krkList (p := P10ExtremalResidual.keptPred K r) h)
+  · exact Or.inr
+      (extremalArcEndSurgery_false_of_krkList (p := P10ExtremalResidual.keptPred K r) h)
+
+/-- **Removed / kept / removed on an arc makes the count positive.** -/
+theorem extremalArcEndSurgery_removed_pos_of_rkr (K : PocketFaceSet D eps X lo hi)
+    (r : X.toCombMap.Dart)
+    (h : ExtremalArcEndDescentRKR K r K.targetArc.darts ∨
+      ExtremalArcEndDescentRKR K r (invDarts X K.sourceArc.darts)) :
+    0 < ExtremalArcEndRemoved K r := by
+  apply extremalArcEndSurgery_removed_pos K r
+  rcases h with h | h
+  · exact Or.inl
+      (extremalArcEndSurgery_false_of_rkrList (p := P10ExtremalResidual.keptPred K r) h)
+  · exact Or.inr
+      (extremalArcEndSurgery_false_of_rkrList (p := P10ExtremalResidual.keptPred K r) h)
+
+/-- **The descent step from the rule**: at a positive count, the rule gives a linked choice class
+of count `0` (an extra exterior class in case (A), a side class in case (B)). -/
+theorem extremalArcEndSurgery_descent (K : PocketFaceSet D eps X lo hi) (r : X.toCombMap.Dart)
+    (hrule : ExtremalArcEndSurgeryRule K) (hpos : 0 < ExtremalArcEndRemoved K r) :
+    ∃ r' : X.toCombMap.Dart, ExtremalArcEndLinked K r' ∧
+      ExtremalArcEndRemoved K r' < ExtremalArcEndRemoved K r := by
+  obtain ⟨hA, hB⟩ := hrule
+  by_cases hex : ∃ z, ExtremalArcEndSurgeryExtraOut K z
+  · obtain ⟨z, hz⟩ := hex
+    refine ⟨z, ⟨extremalArcEndSurgery_choice K hz, hA z hz⟩, ?_⟩
+    rw [extremalArcEndSurgery_removed_eq_zero K hz]
+    exact hpos
+  · obtain ⟨⟨y, hy, hyc, hy0⟩, hlink⟩ := hB (fun z hz => hex ⟨z, hz⟩)
+    refine ⟨y, ⟨hyc, hlink y hy hyc hy0⟩, ?_⟩
+    rw [hy0]
+    exact hpos
+
+end Surgery
+
+/-- **OPEN (lane gl-p10-26), the one remaining planar fact.**  Under the premises of
+`ExtremalArcEndDescentKRKStatement`, if a linked choice class meets the target arc or the
+reversed source arc in the pattern kept / removed / kept or removed / kept / removed, the surgery
+rule `ExtremalArcEndSurgeryRule K` holds.  Logically STRONGER than both pattern Statements
+(`extremalArcEndSurgery_krk_of_surgery`, `extremalArcEndSurgery_rkr_of_surgery`), strictly
+smaller in proof content.  0 failures in 35610 + 1610 model hypotheses up to 6 darts. -/
+def ExtremalArcEndSurgeryStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∀ r : X.toCombMap.Dart, ExtremalArcEndLinked K r →
+          ((ExtremalArcEndDescentKRK K r K.targetArc.darts ∨
+              ExtremalArcEndDescentKRK K r (invDarts X K.sourceArc.darts)) ∨
+            (ExtremalArcEndDescentRKR K r K.targetArc.darts ∨
+              ExtremalArcEndDescentRKR K r (invDarts X K.sourceArc.darts))) →
+          ExtremalArcEndSurgeryRule K
+
+/-- **Endpoint, kept / removed / kept**: the surgery statement gives the pattern statement. -/
+theorem extremalArcEndSurgery_krk_of_surgery
+    (h : ExtremalArcEndSurgeryStatement.{u, w, v}) :
+    ExtremalArcEndDescentKRKStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose r hr hp
+  exact extremalArcEndSurgery_descent K r
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose r hr (Or.inl hp))
+    (extremalArcEndSurgery_removed_pos_of_krk K r hp)
+
+/-- **Endpoint, removed / kept / removed**: the surgery statement gives the pattern
+statement. -/
+theorem extremalArcEndSurgery_rkr_of_surgery
+    (h : ExtremalArcEndSurgeryStatement.{u, w, v}) :
+    ExtremalArcEndDescentRKRStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose r hr hp
+  exact extremalArcEndSurgery_descent K r
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose r hr (Or.inr hp))
+    (extremalArcEndSurgery_removed_pos_of_rkr K r hp)
+
+/-- **Chain consequence**: existence and the surgery statement give the descent statement. -/
+theorem extremalArcEndSurgery_descent_of_surgery
+    (hE : ExtremalArcEndDescentExistsStatement.{u, w, v})
+    (h : ExtremalArcEndSurgeryStatement.{u, w, v}) :
+    ExtremalArcEndDescentStatement.{u, w, v} :=
+  extremalArcEndDescent_of_patterns hE (extremalArcEndSurgery_krk_of_surgery h)
+    (extremalArcEndSurgery_rkr_of_surgery h)
+
+/-- **Chain consequence**: existence and the surgery statement give the Jordan arc-end
+statement. -/
+theorem extremalArcEndSurgery_extremalJordan_of_surgery
+    (hE : ExtremalArcEndDescentExistsStatement.{u, w, v})
+    (h : ExtremalArcEndSurgeryStatement.{u, w, v}) :
+    ExtremalJordanStatement.{u, w, v} :=
+  extremalArcEnd_extremalJordan_of_descent (extremalArcEndSurgery_descent_of_surgery hE h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_false_of_krkList
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_false_of_rkrList
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndSurgeryExtraOut
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndSurgeryRule
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_mem_faces_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_kept_of_not
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_target_kept
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_source_kept
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_removed_eq_zero
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_choice
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_removed_pos
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_removed_pos_of_krk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_removed_pos_of_rkr
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_descent
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndSurgeryStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_krk_of_surgery
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_rkr_of_surgery
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_descent_of_surgery
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndSurgery_extremalJordan_of_surgery
