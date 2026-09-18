@@ -214,3 +214,18 @@ None recorded before 2026-09-17.
    of Monod's `H(A)`, and the Stein and irrational-slope PL groups. These hosts can contain `BS(1,2)`, so O4 does
    not reach them, and `T-bar` contains `(Q,+)`, so divisibility alone is not excluded. Not covered: `RP^(n-1)` for
    `n >= 3`, infinitely many breakpoints, and Cantor-set hosts.
+
+11. **Brin--Thompson groups `nV` and twisted Brin--Thompson registers, 2026-09-17: gated, not dead.**
+   (lane gq-bt-kojima; `research/artifacts/gq-bt-kojima-mechanism.md`)
+   - `rational-stepping-stones-in-nv-need-bs12-or-heisenberg`: `Aff(Q)`, `B_2(Q)`, `SL_2(Q)` and `GL_n(Q)`
+     (`n >= 2`) embed in some `nV` only if `BS(1,2)` does (`bs12-embeds-in-brin-thompson-2v`, OPEN). `U_3(Q)` and
+     `GL_n(Q)` (`n >= 3`) need `H_3(Z) <= nV` (OPEN), and `n >= 3` would give an infinite Kazhdan subgroup of `nV`.
+     Unlike `VA`, `nV` has distorted cyclic subgroups (Callard--Salo), so O4 does not apply; `BS(1,2)` needs
+     logarithmic distortion.
+   - `countable-virtually-abelian-groups-embed-in-2v`: all abelian and virtually abelian pieces (`Q^n`, tori,
+     finite extensions) lie in the finitely presented simple group `2V`.
+   - `twisted-bt-point-fixing-actor-elements-are-divisible`: the Kojima--Sheng register works in every `SV_G`, and
+     type (A) survives adding fixed points. So in a finitely presented simple `SV_G`, actor elements fixing a point
+     become infinitely divisible. The register roots give rational hulls of abelian subgroups only: commutators with
+     non-commuting elements are localized on the overflow slab, and a dilation coprime to the radices acts on the
+     register tower by a carry-from-below transducer (heuristic).
