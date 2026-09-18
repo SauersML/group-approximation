@@ -47,9 +47,32 @@ and an isomorphism `φ: C_1 -> C_2` such that
 
 ## Attempts
 
-None yet. Natural candidates for `Λ`:
+Natural candidates for `Λ`:
 - finitely presented self-similar groups containing `Aff_2(Z_(l))`
   (`aff-n-z-localized-lies-in-fp-self-similar-group`), where (H3) is then an
   extra requirement;
 - residually finite groups built by HNN extensions over finite-index subgroups,
   in the style of the Burger--Mozes and BLIW constructions.
+
+1. **The bottleneck (2026-09-17, lane gq-infinite-primes).** This hypothesis implies
+   `z-localized-embeds-in-fp-rf-group` (route `z-localized-fp-rf-from-hecke-overgroup`):
+   `Λ` is a finitely presented residually finite group containing `Z_(l)`. The two
+   self-similar host hypotheses reduce to the same claim, so it is the common first
+   step.
+2. **Finitely presented metabelian Λ: dead.** No finitely generated metabelian group
+   contains `Z_(l)` (`fg-metabelian-groups-have-roots-at-finitely-many-primes`). So the
+   Baumslag--Remeslennikov finitely presented metabelian envelopes, which are
+   residually finite, cannot serve as `Λ`.
+3. **Leavitt- or Cuntz-type rings: excluded.** `Λ` is residually finite. The resolvent
+   rings of `leavitt-resolvent-ring-is-fp-simple-of-char-zero` get their scalars from
+   Leavitt isometries, and in a finite ring every one-sided inverse is two-sided.
+   Their unit and Steinberg groups are therefore not residually finite hosts.
+4. **Finitely generated level: solved.** A residually finite version of the resolvent
+   trick replaces the isometry by an invertible shift `x` with `x u x^-1 = u + l`
+   (`rf-resolvent-ring-has-z-localized-corner`). It gives explicit finitely generated
+   residually finite groups `E_3(R̄_l) ⊇ SL_2(Z_(l))`
+   (`sl-n-z-localized-embeds-in-fg-rf-elementary-group`). Two parts are still missing:
+   - *finite presentation* (`rf-resolvent-elementary-group-is-fp`);
+   - *the Hecke extension (H1)–(H3).* The naive congruence version inside
+     `E_2(R̄_l)` fails: `R̄_l / l R̄_l` is infinite, so the subgroup with `(1,2)`-entry
+     in `l R̄_l` has infinite index.
