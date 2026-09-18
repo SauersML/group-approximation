@@ -61,3 +61,32 @@ latter.
       every nontrivial countable group.  So any proof must use the exact twist
       in `U(C*(rho(M)))`.
   - The hole is not closed.
+- **Intrinsic seed without the internal router (2026-09-18, reframing).**
+  - `property-t-free-seed-via-intrinsic-seed` reads this seed off
+    `torsion-free-fp-ah-mf-radical-seed` by forgetting acylindricity.  With
+    `property-t-free-torsion-free-via-embedding-router`, whose other four
+    inputs are established, the torsion-free endpoint no longer needs the
+    open `internal-torsion-free-single-word-router`.
+  - The torsion-free leg now has two disjoint open cones.  One is
+    {Leavitt collapse, `full-mf-radical-abelianized-cover-is-not-mf`}.  The
+    other is the Higman cone, which reduces through
+    `higman-collapse-via-trivially-padded-bs-correction` to
+    {`bs12-trivially-padded-opnorm-correction`,
+    `higman-exact-packet-cycles-collapse-opnorm`}.  Each can fail on its own.
+  - A sharpening of the second hole, recorded here and not proved elsewhere
+    in this form: in any exact packet cycle with seams `eta < sqrt(2)-1`,
+    either every `Z_i=1`, and then `||C_i-1|| <= eta`, or every
+    `||C_i-1|| >= sqrt(2)`.
+    - Proof.  If `Z_(i+1) != 1`, it has an eigenvalue `mu != 1` of odd order.
+      `C_i` maps `E_mu(Z_(i+1))` onto `E_(sqrt mu)(Z_(i+1))`, the unique odd
+      square root.  So `C_i` cyclically permutes the eigenspaces along the
+      squaring orbit of `mu`, which has length `l >= 2`.
+    - On the sum of those eigenspaces, `C_i` is a block cyclic shift.  Its
+      spectrum is invariant under rotation by `e^(2 pi i/l)`, so it contains
+      a point at distance `>= sqrt(2)` from `1`.  Hence `||C_i-1|| >= sqrt(2)`.
+    - Then `||Z_i-1|| >= sqrt(2)-eta > 1-eta`, so `Z_i != 1`, and the argument
+      propagates around `Z/4`.
+  - So `(CGC)` is exactly the nonexistence of fully far exact cycles with
+    small seams.  This matches the `sqrt(2)` basin of
+    `one-small-higman-generator-collapses-the-four-cycle`.
+  - Neither hole is closed here.
