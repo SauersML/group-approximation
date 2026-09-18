@@ -45,7 +45,9 @@ theorem closure_split {S : Set G} {K : Subgroup G} (s : G) (hs : s * s = 1)
   | mem x hx => exact hS x hx
   | one => exact ⟨1, K.one_mem, Or.inl rfl⟩
   | mul a b _ _ iha ihb =>
-    obtain ⟨k, hk, rfl | rfl⟩ := iha <;> obtain ⟨l, hl, rfl | rfl⟩ := ihb
+    obtain ⟨k, hk, hak⟩ := iha
+    obtain ⟨l, hl, hbl⟩ := ihb
+    rcases hak with hak | hak <;> rcases hbl with hbl | hbl <;> rw [hak, hbl]
     · exact ⟨k * l, K.mul_mem hk hl, Or.inl rfl⟩
     · refine ⟨s * k * s * l, K.mul_mem (hK k hk) hl, Or.inr ?_⟩
       rw [show s * (s * k * s * l) = (s * s) * (k * (s * l)) by simp only [mul_assoc], hs,
@@ -53,7 +55,8 @@ theorem closure_split {S : Set G} {K : Subgroup G} (s : G) (hs : s * s = 1)
     · exact ⟨k * l, K.mul_mem hk hl, Or.inr (mul_assoc s k l)⟩
     · exact ⟨s * k * s * l, K.mul_mem (hK k hk) hl, Or.inl (mul_assoc (s * k) s l).symm⟩
   | inv a _ iha =>
-    obtain ⟨k, hk, rfl | rfl⟩ := iha
+    obtain ⟨k, hk, hak⟩ := iha
+    rcases hak with hak | hak <;> rw [hak]
     · exact ⟨k⁻¹, K.inv_mem hk, Or.inl rfl⟩
     · refine ⟨s * k⁻¹ * s, hK _ (K.inv_mem hk), Or.inr ?_⟩
       rw [mul_inv_rev, inv_eq_of_mul_eq_one_right hs,
