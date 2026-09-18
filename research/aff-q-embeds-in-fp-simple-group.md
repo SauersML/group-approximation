@@ -99,10 +99,10 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
    - *Why the earlier obstructions miss it.* `σ` is continuous for no real or
      `p`-adic topology, so H3 does not apply.
 6. **The `p = 3` dilation in a Brin–Thompson group (2026-09-18, lanes gq-nv-obstruct and gq-affq).**
-   - *The piece.* `bs13-embeds-in-brin-thompson-3v`, through
-     `smart-induced-map-has-brick-local-height-3-renormalization`. Both referees passed it
-     (gq-referee-a 12b5beb4a, gq-referee-b b6d33ae8e), and it was validated numerically (cba5854a6).
-     The status flip waits on a priority check. It gives `s, u ∈ 3V` with `u s u^-1 = s^3`, where
+   - *The piece, ESTABLISHED (d4064ce79).* `bs13-embeds-in-brin-thompson-3v`, through
+     `smart-induced-map-has-brick-local-height-3-renormalization`. Referees: gq-referee-a
+     12b5beb4a, gq-referee-b b6d33ae8e, gq-referee-c 894d10d19. Numerical validation: cba5854a6.
+     Priority check (bounded, no MathSciNet): e78b09c00. It gives `s, u ∈ 3V` with `u s u^-1 = s^3`, where
      `s = U × id` and `U` is SMART induced on its level-0 moves.
    - *What is still missing for `Aff(Q)` through an `nV` host.*
      - One copy of `Q` must contain a nontrivial `h` with a conjugate `f_p h f_p^-1 = h^p` for
@@ -110,4 +110,7 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      - The `f_p` must commute and act on that copy compatibly.
      - The root tower `Q_T` of `three-v-contains-aperiodic-rationals` and the element `s` above
        both sit over SMART-type bases. Whether one element can serve as base for both, and
-       whether a height-`p` renormalization exists for primes `p ≠ 3`, is open.
+       whether a height-`p` renormalization exists for primes `p ≠ 3`, is open. `Aff(Q)` contains
+       `BS(1,2)` (the dilation `x ↦ 2x`), so an `nV` host needs `BS(1,2) ≤ nV`
+       (`bs12-embeds-in-brin-thompson-2v`, still OPEN). That calls for a binary analogue of SMART's
+       ternary hierarchy.

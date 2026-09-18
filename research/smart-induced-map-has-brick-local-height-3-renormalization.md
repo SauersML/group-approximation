@@ -66,6 +66,8 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
 - gq-referee-a (proof-gap lens): **PASS**, report 12b5beb4a. It re-derived the first-`Y`-point table, the
   level-independence of the extra-cell side and of `β`, the identity, the density argument (a failure is
   exactly an all-`p` or all-`q` chain), and the brick-locality of `φ` after transport by `ψ`.
+- gq-referee-c (independent re-derivation): **PASS**, report 894d10d19. Its remark: any height-`m`
+  renormalization with `m >= 2` already forces infinite order.
 - Priority check (gq-lit-arxiv, e78b09c00, `gq-gq-lit-arxiv-priority.md` §10): no paper embeds or
   excludes `BS(1,n)`, `|n| >= 2`, in any `nV` or reversible-Turing-machine group, and no element of `nV`
   with `O(log N)` distortion is known. The search was bounded, with no MathSciNet. Callard–Salo's
