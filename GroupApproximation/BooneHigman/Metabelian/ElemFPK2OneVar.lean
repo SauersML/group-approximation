@@ -62,7 +62,8 @@ theorem nil_of_factor {A B P Z : Type*} [Ring A] [Ring B] [Ring P] [Ring Z] {N :
       ∃ M : ℕ, ∃ hNM : N ≤ M, K2IndexMap (R := A) (Fin.castLEEmb hNM) w = 1)
     (u : K2n N B) (hu : K2Map ccB u = 1) :
     ∃ M : ℕ, ∃ hNM : N ≤ M, K2IndexMap (R := B) (Fin.castLEEmb hNM) u = 1 := by
-  obtain ⟨M₂, h₂, hM₂⟩ := hih (K2Map ev (K2Map ψ u)) (by rw [K2Map_K2Map, K2Map_K2Map, hcc, hu])
+  obtain ⟨M₂, h₂, hM₂⟩ := hih (K2Map ev (K2Map ψ u))
+    (by rw [K2Map_K2Map, K2Map_K2Map, hcc, hu])
   obtain ⟨M₁, h₁, hM₁⟩ := hone (K2Map ψ u * (K2Map C (K2Map ev (K2Map ψ u)))⁻¹)
     (by rw [map_mul, map_inv, K2Map_K2Map_of_comp_eq_id ev C hev, mul_inv_cancel])
   have hN : N ≤ max M₁ M₂ := h₁.trans (le_max_left M₁ M₂)
@@ -111,7 +112,7 @@ theorem polyK2OneVarNil_of_nilPos (h : PolyK2NilPosStatement) : PolyK2OneVarNilS
   obtain ⟨M, hNM, hM⟩ := h p hp (k + 1) N (Nat.succ_pos k) (by omega) (by omega)
     (K2Map (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv.symm.toRingHom u)
     (by
-      rw [← constantCoeff_comp_finSuccEquiv k, ← K2Map_K2Map, ← K2Map_K2Map,
+      rw [← constantCoeff_comp_finSuccEquiv (R := ZMod p) k, ← K2Map_K2Map, ← K2Map_K2Map,
         K2Map_K2Map_of_comp_eq_id _ _
           (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv.toRingHom_comp_symm_toRingHom,
         hu, map_one])

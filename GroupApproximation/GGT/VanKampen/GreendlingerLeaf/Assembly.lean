@@ -40,9 +40,9 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf
 
 universe u w v
 
-/-- **Osin's Lemma 4.4 at least-area diagrams, over the two open residuals**: the labelled four-piece
-reading of an enclosed inner pocket (piece 07) and the extremal-region junction witness of the rose
-step (piece 10).  This delegates to `AssemblyResidual.relativeGreendlinger_of_residuals`; it is NOT
+/-- **Osin's Lemma 4.4 at least-area diagrams, over the two open residuals**: the labelled
+four-piece reading of an enclosed inner pocket (piece 07) and the extremal-region junction witness
+of the rose step (piece 10).  This delegates to `AssemblyResidual.relativeGreendlinger_of_residuals`; it is NOT
 binder-free. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
     (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})

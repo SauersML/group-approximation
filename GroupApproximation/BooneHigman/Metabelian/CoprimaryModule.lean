@@ -34,6 +34,8 @@ variable (G : Type*) [Group G]
 /-- The derived subgroup made abelian and written additively. -/
 abbrev DerivedModule : Type _ := Additive (Abelianization (commutator G))
 
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.DerivedModule
+
 variable {G}
 
 /-- The class of an element of the derived subgroup in the derived module. -/
@@ -72,7 +74,7 @@ theorem endHom_ext {φ ψ : AddMonoid.End (DerivedModule G)} (h : ∀ a, φ (dcl
 
 /-- Conjugation by `g`, on the derived module. -/
 def conjEnd (g : G) : AddMonoid.End (DerivedModule G) :=
-  MonoidHom.toAdditive (Abelianization.map (MulAut.conjNormal g).toMonoidHom)
+  MonoidHom.toAdditive (Abelianization.map (MulAut.conjNormal (H := commutator G) g).toMonoidHom)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.conjEnd
 

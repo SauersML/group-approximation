@@ -6,8 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf P07, lane gl-p07-21a: the planar part for the cut-down witness
 
 This module isolates the planar part of `PocketFourPieceInputProofResidualStatement`
-(`FourPieceInputProofStatement.lean`) for the witness `F = FourPieceWitness.witnessFaces a b K C.face`
-(`FourPieceWitnessDef.lean`).  The context is Osin, arXiv:math/0411039v3, §9, proof of Lemma
+(`FourPieceInputProofStatement.lean`) for the witness
+`F = FourPieceWitness.witnessFaces a b K C.face` (`FourPieceWitnessDef.lean`).  The context is Osin, arXiv:math/0411039v3, §9, proof of Lemma
 9.7(b).
 
 ## The statement

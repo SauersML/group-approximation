@@ -47,6 +47,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+open scoped commutatorElement
+
 /-- **Split prime case.**  A finitely generated subgroup `H` of a semidirect product `B ⋊ Q` of
 commutative groups, with `B` killed by `p ^ e` and `Q ≤ H`, is linear in characteristic `p`. -/
 def PureCharPrimeSplitStatement : Prop :=
@@ -97,7 +99,9 @@ theorem pureCharLinearityPrime_of_split (h : PureCharPrimeSplitStatement) :
   obtain ⟨K, _, d, ρ, hK, hρ⟩ := h _ _ (Envelope.shiftHom ↥(commutator Γ) (Γ ⧸ commutator Γ))
     hB quotient_commutator_mul_comm p hp e hexp H hH hQH
   refine ⟨K, inferInstance, d, ρ.comp (κ.codRestrict H hκH), hK, ?_⟩
-  exact hρ.comp fun a b hab => hκ (congrArg Subtype.val hab)
+  intro a b hab
+  have hab' : ρ (κ.codRestrict H hκH a) = ρ (κ.codRestrict H hκH b) := hab
+  exact hκ (congrArg Subtype.val (hρ hab'))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.pureCharLinearityPrime_of_split
 

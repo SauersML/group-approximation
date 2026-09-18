@@ -50,9 +50,9 @@ theorem isAdj_add {E : CStarModule.{v, v} B} {f g : E.carrier →L[ℂ] E.carrie
 
 theorem isAdj_algebraMap (E : CStarModule.{v, v} B) (c : ℂ) :
     IsAdj E (algebraMap ℂ (E.carrier →L[ℂ] E.carrier) c) := by
-  refine ⟨fun y => (starRingEnd ℂ c) • y, fun x y => ?_⟩
+  refine ⟨fun y => (starRingEnd ℂ) c • y, fun x y => ?_⟩
   rw [Algebra.algebraMap_eq_smul_one]
-  change E.inner (c • x) y = E.inner x ((starRingEnd ℂ c) • y)
+  change E.inner (c • x) y = E.inner x ((starRingEnd ℂ) c • y)
   rw [E.inner_smul_left, E.inner_smul_right]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.isAdj_algebraMap
@@ -100,7 +100,9 @@ noncomputable def toAdj {f : E.carrier →L[ℂ] E.carrier} (hf : f ∈ adjSub E
 
 theorem toAdj_isBoundedBy {f : E.carrier →L[ℂ] E.carrier} (hf : f ∈ adjSub E) :
     (toAdj hf).IsBoundedBy ‖f‖ :=
-  fun x => f.le_opNorm x
+  by
+    intro x
+    exact f.le_opNorm x
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.toAdj_isBoundedBy
 

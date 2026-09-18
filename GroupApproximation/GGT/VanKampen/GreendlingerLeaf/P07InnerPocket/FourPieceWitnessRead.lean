@@ -5,8 +5,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Greendlinger leaf P07, lane gl-p07-21a: the reading clauses for the cut-down witness
 
-Clauses 3 and 4 of `PocketFourPieceInputProofResidualStatement` (`FourPieceInputProofStatement.lean`)
-for `F = FourPieceWitness.witnessFaces a b K C.face` (`FourPieceWitnessDef.lean`).  The context is
+Clauses 3 and 4 of `PocketFourPieceInputProofResidualStatement`
+(`FourPieceInputProofStatement.lean`) for `F = FourPieceWitness.witnessFaces a b K C.face` (`FourPieceWitnessDef.lean`).  The context is
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Both statements keep the whole premise
 block.  They quantify over every bridge-free outside walk of `F` that turns to its successor.  Such
 a walk is one orbit of the restricted face permutation, so it is unique up to rotation.  Both

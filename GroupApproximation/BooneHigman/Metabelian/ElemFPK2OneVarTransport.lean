@@ -61,7 +61,8 @@ section Padding
 variable {R : Type*} [Ring R]
 
 /-- Padding `Fin n ↪ Fin m ↪ Fin M` in two steps is padding in one step, on `K₂`. -/
-theorem K2IndexMap_castLEEmb_castLEEmb {n m M : ℕ} (h₁ : n ≤ m) (h₂ : m ≤ M) (u : K2n n R) :
+theorem K2IndexMap_castLEEmb_castLEEmb {n m M : ℕ} (h₁ : n ≤ m) (h₂ : m ≤ M)
+    (u : K2n n R) :
     K2IndexMap (Fin.castLEEmb h₂) (K2IndexMap (Fin.castLEEmb h₁) u) =
       K2IndexMap (Fin.castLEEmb (h₁.trans h₂)) u :=
   Subtype.ext

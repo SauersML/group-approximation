@@ -90,7 +90,8 @@ theorem exists_sigma_eq (a : Fin k → ℕ) (P : MvPolynomial (Fin k) A) :
     obtain ⟨q, hq⟩ := hP
     refine ⟨q * (((a i : ℕ) : MvPolynomial (Fin k) A) + (p : MvPolynomial (Fin k) A) * X i) +
       C (evalN a P) * X i, ?_⟩
-    rw [map_mul, map_mul, map_mul, sigma_X, evalN_X, map_natCast C (a i)]
+    rw [map_mul, map_mul, map_mul, sigma_X, evalN_X,
+      map_natCast (C : A →+* MvPolynomial (Fin k) A) (a i)]
     linear_combination
       (((a i : ℕ) : MvPolynomial (Fin k) A) + (p : MvPolynomial (Fin k) A) * X i) * hq
 
@@ -132,7 +133,7 @@ theorem exists_sigmaZ_eq_mul (D : DigitData A p) (a : Fin k → ZMod p)
   obtain ⟨y, hy⟩ := D.exists_eq_mul (evalN (fun i => (a i).val) P) hP
   refine ⟨C y + q, ?_⟩
   show sigma p (fun i => (a i).val) P = _
-  rw [hq, hy, map_mul, map_natCast C p, mul_add]
+  rw [hq, hy, map_mul, map_natCast (C : A →+* MvPolynomial (Fin k) A) p, mul_add]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_sigmaZ_eq_mul
 
