@@ -56,7 +56,7 @@ theorem k2KarInjAt_pow_regular (hreg : ∀ a : A, s * a = 0 → a = 0) :
     ∀ (k : ℕ) (a : A), s ^ k * a = 0 → a = 0
   | 0, a, h => by rwa [pow_zero, one_mul] at h
   | k + 1, a, h =>
-    k2KarInjAt_pow_regular hreg k a (hreg _ (by rwa [pow_succ', mul_assoc] at h))
+    k2KarInjAt_pow_regular hreg k a (hreg (s ^ k * a) (by rwa [pow_succ', mul_assoc] at h))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarInjAt_pow_regular
 
