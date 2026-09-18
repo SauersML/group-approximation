@@ -5692,6 +5692,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridCoarse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerPerm
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InducedMat
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.FiniteIndex
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSpectral
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
