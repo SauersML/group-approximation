@@ -11,8 +11,9 @@ distinct_from:
   three-v-contains-aperiodic-rationals: that uses SMART's moving-tape map only for its lack of periodic points; this induces it on a clopen set to remove the per-level overhead.
 ---
 
-**ESTABLISHED** through `smart-induced-on-genuine-moves-has-exact-tripling-proof`. Lane proof,
-not independently reviewed. It rests on Callard–Salo's Proposition 3.2 and the 8-state SMART
+**ESTABLISHED** through `smart-induced-on-genuine-moves-has-exact-tripling-proof`. Lane proof.
+Reviewed: gq-referee-c PASS
+(`research/artifacts/gq-referee-c-smart-induced-on-genuine-moves-has-exact-tripling.md`, 282b018d4). It rests on Callard–Salo's Proposition 3.2 and the 8-state SMART
 table (arXiv:2208.00685v3, `distortion-1-smart.tex`, read from the e-print source; transcription
 checked reversible in `experiments/nv-measured-walls-2026-09-17/smart_belt_periods.py`).
 
