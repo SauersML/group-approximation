@@ -5595,6 +5595,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SturmTarski
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.Shift
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Corona
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.VerticalAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Algo
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
