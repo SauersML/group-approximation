@@ -7,6 +7,7 @@ distinct_from:
   bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets: that is the constraint on one element conjugate to a proper power; this claim applies it to every element of a scaled copy of Q and rules out the known copy.
   rational-stepping-stones-in-nv-need-bs12-or-heisenberg: that reduces the stepping stones to BS(1,2) in nV; this claim says which copies of Q can serve as their unipotent part.
   rationals-embed-in-brin-thompson-group-2v: that constructs the odometer copy; this claim shows no element of any nV normalizes it by a nontrivial scaling.
+  nv-rational-subgroups-with-power-conjugacy-are-flat: that is the same exponent obstruction, landed independently, stated for a copy of Q with one element conjugate to a proper power; this is the form for a copy normalized by a scaling a = p/q, including non-integer a, and adds logarithmic table length for integer a.
 artifacts:
   - research/artifacts/gq-bt-kojima-mechanism.md
 ---

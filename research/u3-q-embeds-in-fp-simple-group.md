@@ -121,3 +121,16 @@ exclude `mV`.
    Attempt 1 shows that `Γ` cannot be a circle group, and (a) is untested for
    `VA`. `V` itself contains `H_3(Z)/⟨z^k⟩`: a finite Heisenberg "clock and
    shift" pair on `k` cones, times two commuting infinite-order elements.
+4. **One-coordinate cocycle towers (2026-09-17, lane gq-typeA-alt; not
+   independently reviewed).** Dead.
+   - `U_3(Q)` does have a three-step normal tower with Q-free factors,
+     `U_3(Q) >= U(Z,Z,Q) >= e_13(Z) >= 1` (`q-free-normal-towers-omit-aff-q`).
+   - Its middle level `U(Z,Z,Q)` embeds in twisted Brin--Thompson groups
+     (remark in that node).
+   - But the last step cannot be a continuous wreath: `U_3(Q)` embeds in no
+     `LC(C,H) ⋊ Γ` with `Γ` Q-free (e.g. `V`), when the divisible subgroups
+     of `H` are torsion-free and meet `[H,H]` in finitely generated groups.
+     This includes `H = U(Z,Z,Q)` (`u3-q-not-in-q-free-cantor-wreaths`).
+   - So rationalizing `H_3(Z)` level by level over a single `V`-coordinate
+     stops at `U(Z,Z,Q)`. A host must entangle `V`-coordinates, or use fibres
+     that already carry rational commutators.
