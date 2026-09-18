@@ -118,3 +118,34 @@ theorem czStFourFP_XP_conj_t (m : ℕ) (hm : 0 < m) (α : czStFourFP_Root) (r : 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_XP_conj_t
 
+/-- **Scaling.**  For `χ = χ_s(α) ≥ 0`, `T s XP_α(r) T s⁻¹ = XP_α(m ^ χ r)`. -/
+theorem czStFourFP_XP_conj_T (m : ℕ) (hm : 0 < m) (s α : czStFourFP_Root)
+    (h : 0 ≤ czStFourFP_chi s.1.1 s.1.2 α.1.1 α.1.2) (r : czStFourFP_R m) :
+    czStFourFP_T m s * czStFourFP_XP m α r * (czStFourFP_T m s)⁻¹ =
+      czStFourFP_XP m α (((m : ℤ) : czStFourFP_R m) ^
+        (czStFourFP_chi s.1.1 s.1.2 α.1.1 α.1.2).toNat * r) := by
+  refine czStFourFP_X_conj_of (czStFourFP_ht m α) (czStFourFP_hq m)
+    (czStFourFP_intCast_injective m hm) (czStFourFP_surj m)
+    (ρ := ((m : ℤ) : czStFourFP_R m) ^ (czStFourFP_chi s.1.1 s.1.2 α.1.1 α.1.2).toNat) ?_
+    (czStFourFP_T_conj_swap m s α) r
+  have e := czStFourFP_X_int (czStFourFP_ht m α) (czStFourFP_hq m)
+    (czStFourFP_intCast_injective m hm) (czStFourFP_surj m)
+    ((m : ℤ) ^ (czStFourFP_chi s.1.1 s.1.2 α.1.1 α.1.2).toNat)
+  rw [Int.cast_pow] at e
+  rw [czStFourFP_T_conj_Y m s α h]
+  exact e.symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_XP_conj_T
+
+/-- The case `χ_s(α) = 1`. -/
+theorem czStFourFP_XP_conj_T_one (m : ℕ) (hm : 0 < m) (s α : czStFourFP_Root)
+    (he : czStFourFP_chi s.1.1 s.1.2 α.1.1 α.1.2 = 1) (r : czStFourFP_R m) :
+    czStFourFP_T m s * czStFourFP_XP m α r * (czStFourFP_T m s)⁻¹ =
+      czStFourFP_XP m α (((m : ℤ) : czStFourFP_R m) * r) := by
+  have h := czStFourFP_XP_conj_T m hm s α (by rw [he]; norm_num) r
+  rw [he, show (1 : ℤ).toNat = 1 from rfl, pow_one] at h
+  exact h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_XP_conj_T_one
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
