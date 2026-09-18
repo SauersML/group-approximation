@@ -39,3 +39,12 @@ action), so it is no harder than that claim.
 1. (bh-shell-universal, 09-18) Generalized the shell to genuine actions and found the
    virtually abelian positive family, including one-ended `Z^k`. No mechanism beyond
    eventual periodicity was found; the step past virtually abelian inputs is the whole content.
+2. (bh-shell-universal, 09-18) Both germ gates pass for an input that is not virtually abelian:
+   `thompson-v-binary-shell-action-passes-both-germ-gates` (V with its binary action; near group the
+   odometer Röver–Nekrashevych group). So the gates are not the obstruction. What remains:
+   - (a) finite presentation of an envelope whose germ group is finitely presented but has no central
+     shift power; the first test is `v-binary-shell-envelope-is-finitely-presented`;
+   - (b) near groups outside `B`, since inputs in `B` already embed in finitely presented simple groups.
+   `shell-envelopes-depend-only-on-the-near-image` reduces (b) to: embed `G` in a finitely presented
+   `R <= NearSym(N)` containing `s`, with `±chi` in `Sigma^1(R)`. `shell-shift-admits-no-baumslag-solitar-conjugation`
+   excludes cyclic ascending bases.
