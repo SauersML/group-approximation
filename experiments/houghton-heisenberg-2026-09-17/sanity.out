@@ -1,0 +1,5 @@
+relators trivial: ok
+w_m trivial: ok
+soundness on products of relator conjugates: ok, max sum_inv per relator 1.0
+m 1 dp 1 exhaustive 1
+m 2 dp 12 exhaustive 12
