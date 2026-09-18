@@ -644,3 +644,28 @@ to an HS-almost representation of `G`. The claim stays OPEN.
 Next step: decide whether the Gaussian suspension of `Ad sigma`, for a sofic
 `sigma` of `G`, admits a Păunescu model. The natural row-Poisson model sees
 only pair scales. The claim stays OPEN.
+
+- **Gaussian of a sofic representation, tested (lane w10-121, 2026-09-18).**
+  Result: `planted-lifts-defeat-hilbert-level-gaussian-soficity`
+  (obstruction).
+  - *Planting.* Change any lift on `o(|Y_n|)` points. This leaves `sigma`,
+    `M` and `Ad sigma` unchanged, but puts `ℓ^2(G/Gamma)` equivariantly into
+    the Hilbert ultraproduct of the pair spaces. Its Gaussian is
+    `N(0,1)^(G/Gamma)`, which fails Theorem C.
+  - *What dies.* Every proof of "Gaussian of `Ad sigma` is sofic" that uses
+    only asymptotic equivariance of the lifted vectors, including
+    Gaussian-of-sofic-representation and Hayes-type Gaussian microstates, is
+    refuted at every sofic `sigma`.
+  - *Enemy side.* The compressor dynamics with positive entropy on a
+    `Gamma`-fixed Gaussian factor exists at every `sigma`. It is always
+    orthogonal to `L^2(M)`, because planted vectors are orthogonal to
+    marginally uniformly integrable (MUI) ones. Positive-density planting is
+    forbidden by Theorem C. So planting gives no enemy in either regime.
+  - *Reformulation.* The Gaussian of `K` is sofic iff `K` is weakly contained
+    in a sofic Koopman representation. Theorem C holds for such
+    representations. Flat vectors pass.
+
+Next step: (MUI-C). Are `Gamma`-invariant, non-flat MUI vectors of the
+canonical equivariant part `N`-invariant? Or, more strongly: are the cyclic
+representations `K_x` with `x ∈ sigma(Gamma)' ∩ M` weakly contained in sofic
+Koopman representations? The claim stays OPEN.
