@@ -1,0 +1,3 @@
+progress {'tuples': 20, 'determined': 20, 'pc-in-R': 20, 'P3-found': 20}
+exit 124
+# run cut off by 'timeout 1200' (exit 124) under load ~33 on 4 cores; stats above are for the first 20 of 180 exact L1 tuples
