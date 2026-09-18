@@ -55,8 +55,9 @@ theorem lt_length_rotate {α : Type*} {ow u v : List α} {s t : ℕ} (hs : ow.ro
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.ArcClose.lt_length_rotate
 
 /-- **A rotated position of a block entry lies in the block.** -/
-theorem mem_of_rotate {α : Type*} {ow u v : List α} {s : ℕ} (hs : ow.rotate s = u ++ v) (t : ℕ)
-    (ht : t < u.length) (hp : (t + s) % ow.length < ow.length) : ow[(t + s) % ow.length]'hp ∈ u := by
+theorem mem_of_rotate {α : Type*} {ow u v : List α} {s : ℕ} (hs : ow.rotate s = u ++ v)
+    (t : ℕ) (ht : t < u.length) (hp : (t + s) % ow.length < ow.length) :
+    ow[(t + s) % ow.length]'hp ∈ u := by
   have h0 := lt_length_rotate hs ht
   have e : ow[(t + s) % ow.length]'hp = u[t] :=
     (List.getElem_rotate ow s t h0).symm.trans

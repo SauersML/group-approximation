@@ -35,7 +35,8 @@ theorem hasWellFoundedDivision_of_euclideanDomain (R : Type*) [EuclideanDomain R
     rw [← eq_sub_of_add_eq' (EuclideanDomain.div_add_mod a b)]
     exact EuclideanDomain.mod_lt a hb⟩⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.hasWellFoundedDivision_of_euclideanDomain
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.hasWellFoundedDivision_of_euclideanDomain
 
 /-- `SL_N(F_p[X]) = E_N(F_p[X])` at every positive rank. -/
 theorem specialLinearInElementary_zmodPolynomial (p : ℕ) [Fact p.Prime] {N : ℕ} (hN : 0 < N) :
@@ -43,7 +44,8 @@ theorem specialLinearInElementary_zmodPolynomial (p : ℕ) [Fact p.Prime] {N : �
   specialLinearInElementary_of_hasWellFoundedDivision
     (hasWellFoundedDivision_of_euclideanDomain (Polynomial (ZMod p))) hN
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_zmodPolynomial
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_zmodPolynomial
 
 /-- The size of `z ∈ ℤ[1/m]`: the least `|c|` with `z · m^i = c` for some `i`. -/
 noncomputable def suslinAwaySize (m : ℕ) (z : Localization.Away (m : ℤ)) : ℕ :=

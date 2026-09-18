@@ -124,7 +124,8 @@ theorem suslin_det_eq_one_of_mem_elementaryGroup {u : (Matrix ι ι R)ˣ}
     rw [Matrix.det_transvection_of_ne i j hij a, Units.val_one]
   exact congrArg Units.val (MonoidHom.mem_ker.mp (hle hu))
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_det_eq_one_of_mem_elementaryGroup
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_det_eq_one_of_mem_elementaryGroup
 
 /-- The determinant of `diagAt l u` is `u`. -/
 theorem suslin_det_diagAt (l : ι) (u : Rˣ) :
@@ -164,7 +165,8 @@ theorem specialLinearInElementary_of_hasWellFoundedDivision (hR : HasWellFounded
   rw [huv, hv, suslin_diagAt_one, mul_one]
   exact mul_mem hE hF
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_hasWellFoundedDivision
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_hasWellFoundedDivision
 
 end Absorption
 end Metabelian

@@ -1,4 +1,5 @@
 import Mathlib.Algebra.MonoidAlgebra.Basic
+import Mathlib.Algebra.CharP.Defs
 import Mathlib.GroupTheory.SemidirectProduct
 import Mathlib.GroupTheory.Finiteness
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs

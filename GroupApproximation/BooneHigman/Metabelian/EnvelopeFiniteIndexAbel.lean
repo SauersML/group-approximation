@@ -13,7 +13,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 Let `V ≤ G` be contained in the closure of a set `S`.  Suppose a finite set `T ⊆ V` generates
 every element of `S` modulo `⁅V, V⁆`, and every `t ∈ T` has `t ^ m ∈ [V, V]` for one `m > 0`.
-Then `[V, V]` has finite index in `V` (`commutator_finiteIndex_of_generators`).
+Then `[V, V]` has finite index in `V` (`commutator_finiteIndex_of_gens`).
 
 Route: `closure T ⊔ [V, V] = ⊤` in `V` (push through `V.subtype`, `Subgroup.map_sup`,
 `Subgroup.map_closure`, `Subgroup.map_subtype_commutator`); mapping to the abelianisation kills
@@ -49,7 +49,7 @@ theorem closure_sup_commutator_eq_top {S : Set G} (hVS : V ≤ Subgroup.closure 
 theorem closure_image_of_eq_top {T : Set ↥V} (htop : Subgroup.closure T ⊔ commutator ↥V = ⊤) :
     Subgroup.closure ((Abelianization.of : ↥V →* Abelianization ↥V) '' T) = ⊤ := by
   have hsurj : Function.Surjective (Abelianization.of : ↥V →* Abelianization ↥V) :=
-    QuotientGroup.mk_surjective
+    QuotientGroup.mk_surjective (s := commutator ↥V)
   have hbot : (commutator ↥V).map (Abelianization.of : ↥V →* Abelianization ↥V) = ⊥ :=
     (Subgroup.map_eq_bot_iff _).mpr (Abelianization.ker_of ↥V).ge
   have h1 := congrArg (Subgroup.map (Abelianization.of : ↥V →* Abelianization ↥V)) htop
@@ -67,8 +67,11 @@ theorem isTorsion_abelianization {T : Set ↥V}
       (powMonoidHom m : Abelianization ↥V →* Abelianization ↥V).ker := by
     refine Subgroup.closure_le.mpr ?_
     rintro _ ⟨t, ht, rfl⟩
-    exact MonoidHom.mem_ker.mpr ((map_pow Abelianization.of t m).symm.trans
-      (MonoidHom.mem_ker.mp ((Abelianization.ker_of ↥V).ge (hTpow t ht))))
+    have hk : (Abelianization.of : ↥V →* Abelianization ↥V) t ^ m = 1 :=
+      (map_pow (Abelianization.of : ↥V →* Abelianization ↥V) t m).symm.trans
+        (MonoidHom.mem_ker.mp ((Abelianization.ker_of ↥V).ge (hTpow t ht)))
+    exact (MonoidHom.mem_ker (f := powMonoidHom m)
+      (x := (Abelianization.of : ↥V →* Abelianization ↥V) t)).mpr hk
   intro a
   have ha : a ∈ Subgroup.closure ((Abelianization.of : ↥V →* Abelianization ↥V) '' T) := by
     rw [h1]
@@ -80,7 +83,7 @@ theorem isTorsion_abelianization {T : Set ↥V}
 /-- `[V, V]` has finite index in `V` when finitely many elements of `V`, each torsion modulo
 `[V, V]` with one exponent `m`, generate every element of a generating set `S` modulo
 `[V, V]`. -/
-theorem commutator_finiteIndex_of_generators {S : Set G} (hVS : V ≤ Subgroup.closure S)
+theorem commutator_finiteIndex_of_gens {S : Set G} (hVS : V ≤ Subgroup.closure S)
     {T : Set ↥V} (hT : T.Finite)
     (hgen : ∀ g ∈ S, g ∈ Subgroup.closure (Subtype.val '' T) ⊔ ⁅V, V⁆) {m : ℕ} (hm : 0 < m)
     (hTpow : ∀ t ∈ T, t ^ m ∈ commutator ↥V) : (commutator ↥V).FiniteIndex := by
@@ -90,6 +93,6 @@ theorem commutator_finiteIndex_of_generators {S : Set G} (hVS : V ≤ Subgroup.c
     CommGroup.finite_of_fg_torsion (Abelianization ↥V) (isTorsion_abelianization h1 hm hTpow)
   exact Subgroup.finiteIndex_of_finite_quotient
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_finiteIndex_of_generators
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_finiteIndex_of_gens
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope

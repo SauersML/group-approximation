@@ -71,7 +71,7 @@ section Cocycle
 variable {Γ : Type*} [Group Γ]
 
 theorem abOf_surjective : Function.Surjective (Abelianization.of : Γ → Abelianization Γ) :=
-  fun y => QuotientGroup.induction_on y fun a => ⟨a, rfl⟩
+  fun y => QuotientGroup.mk'_surjective (commutator Γ) y
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.abOf_surjective
 

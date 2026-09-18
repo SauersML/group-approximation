@@ -45,7 +45,8 @@ theorem specialLinearInElementary_of_ringEquiv {R S : Type*} [CommRing R] [CommR
   rw [hback] at hmem
   exact hmem
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_ringEquiv
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_ringEquiv
 
 /-- Transport along a ring isomorphism, as an equivalence. -/
 theorem specialLinearInElementary_congr {R S : Type*} [CommRing R] [CommRing S]
@@ -62,7 +63,8 @@ theorem specialLinearInElementary_of_subsingleton (R : Type*) [CommRing R] [Subs
   rw [hu]
   exact one_mem _
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_subsingleton
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_subsingleton
 
 /-- **Fields.**  Over a field, `SL_N = E_N` at every positive rank (Gaussian elimination). -/
 theorem specialLinearInElementary_of_field (K : Type*) [Field K] {N : ℕ} (hN : 0 < N) :
@@ -74,7 +76,8 @@ theorem specialLinearInElementary_of_field (K : Type*) [Field K] {N : ℕ} (hN :
   rw [AlgebraicK.detUnits_val, Units.val_one]
   exact hu
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_field
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.specialLinearInElementary_of_field
 
 end Absorption
 end Metabelian

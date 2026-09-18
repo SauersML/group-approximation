@@ -33,7 +33,7 @@ theorem kkCocycle_one : kkCocycle (1 : Γ) = 0 :=
 
 variable (Γ) in
 /-- The `ℤ[Γᵃᵇ]`-submodule spanned by the cocycles. -/
-def kkSpan : Submodule (MonoidAlgebra ℤ (Abelianization Γ)) (KKSpace Γ) :=
+noncomputable def kkSpan : Submodule (MonoidAlgebra ℤ (Abelianization Γ)) (KKSpace Γ) :=
   Submodule.span _ (Set.range kkCocycle)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.kkSpan

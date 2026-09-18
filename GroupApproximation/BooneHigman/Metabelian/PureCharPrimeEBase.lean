@@ -1,4 +1,5 @@
 import Mathlib.GroupTheory.SemidirectProduct
+import Mathlib.Algebra.CharP.Defs
 import Mathlib.GroupTheory.Finiteness
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.Meta.AxiomGuard

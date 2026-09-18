@@ -15,7 +15,8 @@ See the module docstring of `FourPieceNoPlanarStatement.lean`.  This module prov
   and than the planar statement (`FourPieceWitness.noPlanarDegenerate_of_planar`);
 * the target from the residual, clause 3 and clause 4
   (`FourPieceWitness.arcAuditResidual_of_noPlanarDegenerate_noninterleave_arcsAudit`), and the same
-  with the four-block reading (`FourPieceWitness.arcAuditResidual_of_noPlanarDegenerate_fourBlock_arcsAudit`).
+  with the four-block reading
+  (`FourPieceWitness.arcAuditResidual_of_noPlanarDegenerate_fourBlock_arcsAudit`).
 
 None of these theorems takes `PocketFourPieceWitnessPlanarStatement` as a hypothesis, except
 `noPlanarDegenerate_of_planar`, which only records that the residual is weaker.

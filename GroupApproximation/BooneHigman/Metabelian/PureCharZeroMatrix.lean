@@ -40,7 +40,7 @@ theorem kkAffMat_mul
   simp only [kkAffMat, Matrix.fromBlocks_multiply, Matrix.mul_zero, Matrix.zero_mul, add_zero,
     zero_add, Matrix.mul_one]
   refine Matrix.fromBlocks_inj.mpr ⟨?_, ?_, rfl, rfl⟩
-  · rw [SemidirectProduct.mul_right, map_mul, Units.val_mul]
+  · exact congrArg Units.val (map_mul ρ x.right y.right)
   · ext i j
     show ι (Multiplicative.toAdd (x * y).left) i =
       ((ρ x.right : Matrix (Fin n) (Fin n) K) *

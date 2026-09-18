@@ -60,8 +60,9 @@ theorem suslin_exists_kill_entry (hR : HasWellFoundedDivision R) (S : Finset ι)
   obtain ⟨rel, hwf, hdiv⟩ := hR
   have hjt : j ≠ t := Ne.symm htj
   suffices H : ∀ s : R, ∀ A : (Matrix ι ι R)ˣ, ClearedOn S A →
-      (A : Matrix ι ι R) t j = s → ∃ M : (Matrix ι ι R)ˣ, Reaches A M ∧ ClearedOn S M ∧ (M : Matrix ι ι R) t j = 0 ∧
-        ∀ c : ι, c ≠ t → c ≠ j → (M : Matrix ι ι R) t c = (A : Matrix ι ι R) t c from
+      (A : Matrix ι ι R) t j = s → ∃ M : (Matrix ι ι R)ˣ, Reaches A M ∧ ClearedOn S M ∧
+        (M : Matrix ι ι R) t j = 0 ∧
+          ∀ c : ι, c ≠ t → c ≠ j → (M : Matrix ι ι R) t c = (A : Matrix ι ι R) t c from
     H _ A hA rfl
   intro s
   induction s using hwf.induction with
