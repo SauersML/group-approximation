@@ -5834,6 +5834,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.KTwoVan
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFModelLift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureBasic
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.MatrixCorner
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridRounding
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridLDL
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridApproximation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
