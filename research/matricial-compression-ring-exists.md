@@ -170,3 +170,18 @@ ring problem is a sufficient decomposition of the purely extrinsic half of
      `2^(-m) I` then lies in `K_V`, then `psi^m` on translations is inner.
      A different root (not a lamp) is the other exit.  Exact matriciality of
      `k[K]/(zeta+1)` was not checked, because the death at (R1) comes first.
+8. **Rings with a finite-dimensional representation (2026-09-18, reframing, dead class).**
+   `compression-rings-have-no-finite-dim-representations` (ESTABLISHED) shows the following.
+   - *No finite quotients.* `ψ` permutes the finitely many ideals of a given finite index. So a finite quotient
+     has a `ψ`-stable finite refinement. There the compression `ψ(R_0) ⊆ R_0` is an equality, and `I` dies.
+   - *No PI quotients, no finite-dimensional representations.* Kaplansky and Artin–Tate turn any nonzero PI
+     quotient of a finitely generated ring into a finite one. So (R5) forbids every nonzero PI quotient, and
+     every nonzero map `R → M_n(K)` over any field.
+   - *Unbounded models.* Under (R1), matrix sizes are unbounded along `ω`. The coordinate algebras of
+     `R_0 ⊋ ψ(R_0) ⊋ ψ^2(R_0) ⊋ …` strictly drop in dimension at each step.
+   - *Scope of the kill.* Every `ψ` fails on: matrix rings over commutative rings (monomial automorphisms of
+     Laurent rings included), quantum tori at roots of unity, the Weyl algebra in positive characteristic,
+     residually finite rings, and bounded-degree (R1) models. This contains Attempt 3.
+   - *What survives.* Rings without finite-dimensional representations, such as the infinite simple rings of
+     `simple-ring-with-centralizer-compressing-automorphism`. (R2)-(R5) pass to `ψ`-stable quotients, so a
+     `ψ`-stable maximal ideal would reduce any witness to a simple ring. (R1) may not survive that step.
