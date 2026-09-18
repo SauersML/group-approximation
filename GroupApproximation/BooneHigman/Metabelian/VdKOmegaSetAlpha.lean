@@ -90,17 +90,21 @@ theorem vdkOmegaSet_compatAt_all
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_compatAt_all
 
-variable (ρ : Multiplicative (Fin n → R) →* Equiv.Perm (vdkParPres_Tilde n R × X))
-  (hall : ∀ g : St n R,
-    vdkOmegaSet_CompatAt vdkOmega_rowAct ρ ((vdkOmegaSet_alpha X).comp vdkParPres_inr) g)
-
 /-- **The `β`.**  The action of the opposite parabolic `P̃⁻` glued from `ρ` and from `α`
 restricted to `St_n(R)`. -/
-def vdkOmegaSet_beta : vdkOmega_TildeMinus n R →* Equiv.Perm (vdkParPres_Tilde n R × X) :=
+def vdkOmegaSet_beta
+    (ρ : Multiplicative (Fin n → R) →* Equiv.Perm (vdkParPres_Tilde n R × X))
+    (hall : ∀ g : St n R,
+      vdkOmegaSet_CompatAt vdkOmega_rowAct ρ ((vdkOmegaSet_alpha X).comp vdkParPres_inr) g) :
+    vdkOmega_TildeMinus n R →* Equiv.Perm (vdkParPres_Tilde n R × X) :=
   SemidirectProduct.lift ρ ((vdkOmegaSet_alpha X).comp vdkParPres_inr)
     (vdkOmegaSet_lift_of_compatAt vdkOmega_rowAct ρ _ hall)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_beta
+
+variable (ρ : Multiplicative (Fin n → R) →* Equiv.Perm (vdkParPres_Tilde n R × X))
+  (hall : ∀ g : St n R,
+    vdkOmegaSet_CompatAt vdkOmega_rowAct ρ ((vdkOmegaSet_alpha X).comp vdkParPres_inr) g)
 
 theorem vdkOmegaSet_beta_inr (g : St n R) :
     vdkOmegaSet_beta X ρ hall (vdkOmega_inrMinus g) = vdkOmegaSet_alpha X (vdkParPres_inr g) :=
@@ -110,7 +114,8 @@ theorem vdkOmegaSet_beta_inr (g : St n R) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_beta_inr
 
 /-- **`Agree`, for free.**  `α` and `β` agree on `St_n(R)`. -/
-theorem vdkOmegaSet_agree : vdkOmega_Agree (vdkOmegaSet_alpha X) (vdkOmegaSet_beta X ρ hall) := by
+theorem vdkOmegaSet_agree :
+    vdkOmega_Agree (vdkOmegaSet_alpha X) (vdkOmegaSet_beta X ρ hall) := by
   intro g
   exact (vdkOmegaSet_beta_inr X ρ hall g).symm
 
