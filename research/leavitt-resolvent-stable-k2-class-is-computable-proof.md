@@ -15,8 +15,9 @@ requires:
 - **(K)** `ι : K_2(R_L) -> Q^x` is an isomorphism, and `ι{λ, N+1} = λ`
   (`leavitt-resolvent-k-theory-is-shifted-rational-k-theory`, items 3--4).
 - **(Colim)** `St(R_L) = colim_M St_M(R_L)`, and `K_2(R_L) = ker(St(R_L) -> E(R_L))`, the colimit of the
-  `K_2(M, R_L)`. So two elements of `St_N(R_L)` with the same stable class in `K_2(R_L)` become equal in `St_M(R_L)`
-  for some finite `M >= N`.
+  `K_2(M, R_L)`. So two elements of `St_N(R_L)` with the same stable class in `K_2(R_L)` are the same element of
+  `St(R_L)`, since `K_2(R_L) ⊆ St(R_L)`, and so they become equal in `St_M(R_L)` for some finite `M >= N`
+  (gq-referee-a, N2).
 
 **Recursive enumerability of equalities.**
 - `St_M(R_L)` is presented by generators `x_ij(a)`, one for each `a in R_L`, and the relations
