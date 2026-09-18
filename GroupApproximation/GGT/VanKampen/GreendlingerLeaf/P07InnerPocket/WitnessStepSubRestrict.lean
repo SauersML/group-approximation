@@ -75,7 +75,8 @@ theorem witnessStepSub_lift_length (M : CombMap.{u}) (L l : List M.Dart)
 theorem witnessStepSub_lift_nodup (M : CombMap.{u}) (L l : List M.Dart)
     (hl : ∀ e ∈ l, walkKeep M L e) (hnd : l.Nodup) :
     (witnessStepSub_lift M L l hl).Nodup :=
-  List.Nodup.of_map Subtype.val (by rw [witnessStepSub_lift_map]; exact hnd)
+  List.Nodup.of_map Subtype.val
+    (Eq.mpr (congrArg List.Nodup (witnessStepSub_lift_map M L l hl)) hnd)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_lift_nodup
 
@@ -102,3 +103,88 @@ theorem witnessStepSub_succ_lift (M : CombMap.{u}) (L l : List M.Dart)
     exact Eq.mp (congrArg (fun z => M.alpha z ∈ l) hval) h3
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_succ_lift
+
+/-- **A successor step relative to a covering list is one face step.**  If every dart or its
+reverse is on `Γ`, a successor step relative to `Γ` has no intermediate dart. -/
+theorem witnessStepSub_facePerm_of_succ (N : CombMap.{u}) (Γ : List N.Dart)
+    (hcov : ∀ z, z ∈ Γ ∨ N.alpha z ∈ Γ) {c d : N.Dart}
+    (h : WitnessStepGenusSucc N Γ c d) : N.facePerm c = d := by
+  obtain ⟨m, hm, hmd, hmid⟩ := h
+  rcases Nat.lt_or_ge 1 m with h1 | h1
+  · obtain ⟨ha, hb⟩ := hmid 1 Nat.one_pos h1
+    rcases hcov ((N.sigma ^ 1) (N.alpha c)) with hz | hz
+    · exact absurd hz ha
+    · exact absurd hz hb
+  · obtain rfl : m = 1 := by omega
+    rw [pow_one] at hmd
+    rw [CombMap.facePerm, Equiv.Perm.mul_apply]
+    exact hmd
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_facePerm_of_succ
+
+/-- In the restriction to `L`, every dart or its reverse is on the lift of `L`. -/
+theorem witnessStepSub_cover (M : CombMap.{u}) (L : List M.Dart) (z : (walkMap M L).Dart) :
+    z ∈ witnessStepSub_lift M L L (witnessStepSub_keepSelf M L) ∨
+      (walkMap M L).alpha z ∈ witnessStepSub_lift M L L (witnessStepSub_keepSelf M L) := by
+  have h2 : z.1 ∈ L ∨ M.alpha z.1 ∈ L := z.2
+  rcases h2 with hz | hz
+  · exact Or.inl ((witnessStepSub_mem_lift M L L (witnessStepSub_keepSelf M L) z).mpr hz)
+  · exact Or.inr ((witnessStepSub_mem_lift M L L (witnessStepSub_keepSelf M L)
+      ((walkMap M L).alpha z)).mpr hz)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_cover
+
+/-- A list with two distinct entries has length at least two. -/
+theorem witnessStepSub_two_le_length {α : Type*} {L : List α} {x y : α} (hx : x ∈ L)
+    (hy : y ∈ L) (hxy : x ≠ y) : 2 ≤ L.length := by
+  rcases L with _ | ⟨a, _ | ⟨b, r⟩⟩
+  · simp at hx
+  · rw [List.mem_singleton] at hx hy
+    exact absurd (hx.trans hy.symm) hxy
+  · simp only [List.length_cons]
+    omega
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_two_le_length
+
+/-- **A duplicate-free list whose cyclic steps are face steps is a face cycle.** -/
+theorem witnessStepSub_isFaceCycle_of_steps (N : CombMap.{u}) {Γ : List N.Dart}
+    (hlen : 2 ≤ Γ.length) (hnd : Γ.Nodup)
+    (h : ∀ (n : ℕ) (s t : List N.Dart) (x y : N.Dart), Γ.rotate n = s ++ x :: y :: t →
+      N.facePerm x = y) : N.IsFaceCycle Γ := by
+  rcases Γ with _ | ⟨x, r⟩
+  · simp at hlen
+  have hr : r ≠ [] := by
+    rintro rfl
+    simp at hlen
+  refine ⟨List.cons_ne_nil x r, hnd, ?_, ?_⟩
+  · exact List.isChain_iff_forall_rel_of_append_cons_cons.mpr fun a b l₁ l₂ he =>
+      h 0 l₁ l₂ a b (by rw [List.rotate_zero]; exact he)
+  · have e : x :: r = (x :: r.dropLast) ++ [r.getLast hr] := by
+      rw [List.cons_append, List.dropLast_append_getLast hr]
+    have hrot : (x :: r).rotate (x :: r.dropLast).length =
+        r.getLast hr :: (x :: r.dropLast) := by
+      rw [e, List.rotate_append_length_eq, List.singleton_append]
+    rw [List.getLast_cons hr, List.head_cons]
+    exact h (x :: r.dropLast).length [] r.dropLast (r.getLast hr) x
+      (by rw [List.nil_append]; exact hrot)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_isFaceCycle_of_steps
+
+/-- **A map covered by one face cycle and its reverse is connected.** -/
+theorem witnessStepSub_connected (N : CombMap.{u}) {Γ : List N.Dart} (hΓ : N.IsFaceCycle Γ)
+    (hcov : ∀ z, z ∈ Γ ∨ N.alpha z ∈ Γ) : N.IsConnected := by
+  have hface : ∀ z, z ∈ Γ → Relation.EqvGen N.Adjacent z (Γ.head hΓ.ne_nil) := fun z hz =>
+    PinchSplit.eqvGen_of_sameCycle_facePerm N ((N.faceOf_eq_iff _ _).mp ((hΓ.mem_iff z).mp hz))
+  have hall : ∀ z, Relation.EqvGen N.Adjacent z (Γ.head hΓ.ne_nil) := by
+    intro z
+    rcases hcov z with hz | hz
+    · exact hface z hz
+    · exact Relation.EqvGen.trans _ _ _ (Relation.EqvGen.rel _ _ (Or.inl rfl)) (hface _ hz)
+  intro d e
+  exact Relation.EqvGen.trans _ _ _ (hall d) (Relation.EqvGen.symm _ _ (hall e))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_connected
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
