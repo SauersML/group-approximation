@@ -173,8 +173,8 @@ end Lobes
 
 /-- **The explicit statement with nested wraps** (OPEN; logically WEAKER than
 `gfaceWindTwelve_Statement`, and STRONGER than `gfaceWindNine_Statement`; like Nine, FALSE on the
-model with `0`-cells; see the module docstring).  Under the premises of `gfaceWindSix_Statement`, an explicit witness with nested
-wraps exists. -/
+model with `0`-cells; see the module docstring).  Under the premises of
+`gfaceWindSix_Statement`, an explicit witness with nested wraps exists. -/
 def gfaceWindThirteen_Statement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
