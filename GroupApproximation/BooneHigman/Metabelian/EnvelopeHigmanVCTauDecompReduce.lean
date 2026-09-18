@@ -32,9 +32,10 @@ gives `higmanVCTauEqTwo_DecompStatement`.  Then `higmanVCTauDecomp_d2Residual_of
   AllAntichain; no witness `X = Q`, `c = id`; no Higman presentation; no `Q ≅ V_d`.
 
 **Truth check (scratch `bh-met-91w/r7.cpp`, exhaustive).**  The explicit decompositions of
-`EnvelopeHigmanVCTauDecompCross` were checked on every residual instance of the cross family
-over `{0, 1}` (`d = 2`): `L = 7`: 1248 checked, 0 bad; `L = 9`: 7136 checked, 0 bad.  Over
-`{0, 1, 2}` (`d = 3`), `L = 5`: 2268 checked, 0 bad.
+`EnvelopeHigmanVCTauDecompCross` were checked on every not-all-short instance of the cross
+family with `p <+: x`, residual or not.  Over `{0, 1}` (`d = 2`): `L = 7`: 1248 checked,
+0 bad; `L = 9`: 7136 checked, 0 bad.  Over `{0, 1, 2}` (`d = 3`), `L = 5`: 2268 checked,
+0 bad.  The swapped orientation (`EnvelopeHigmanVCTauDecompCrossS`) is its mirror image.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
