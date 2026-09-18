@@ -37,3 +37,14 @@ stabilizers in `Γ` of finite subsets of `S` are F_∞. Conversely, `SV_Γ` of t
 **Scope.** Finite hyperbolic groups are trivial cases. The lemmas used are
 `full-group-label-length-bounds-distortion` and
 `g-free-z-acts-locally-faithfully-on-horofunction-boundary`, plus the BBMZ imports listed in the route.
+
+## Lesson for general BH
+
+Every step of a permutational Boone–Higman embedding is undistorted under a checkable local condition:
+- the free factor, by retraction;
+- the full closure, by local faithfulness (which adding a free `Z` factor supplies);
+- the twisted Brin–Thompson envelope, by the Belk–Zaremsky quasi-retraction.
+
+So for full-group hosts the "(quasi-isometrically?)" refinement is not an independent difficulty. Any
+future Boone–Higman solution through a full group of a locally faithful action is automatically
+quasi-isometric.
