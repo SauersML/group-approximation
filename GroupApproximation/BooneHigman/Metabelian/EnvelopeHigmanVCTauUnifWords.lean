@@ -96,4 +96,57 @@ theorem higmanVCTauUnif_len_qa (a e : X) : ([a] ++ [e]).length = 2 := rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_len_qa
 
+/-- The word `a e` against `u c`, when `u` does not start with `a`. -/
+theorem higmanVCTauUnif_qaL {a e : X} {u : List X} (c : X) (h : higmanVCTauUnif_Inc [a] u) :
+    higmanVCTauUnif_Inc ([a] ++ [e]) (u ++ [c]) :=
+  higmanVCTauUnif_incB [e] [c] h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_qaL
+
+/-- The word `u b` against `a e`, when `u` does not start with `a`. -/
+theorem higmanVCTauUnif_qaR {a e : X} {u : List X} (b : X) (h : higmanVCTauUnif_Inc [a] u) :
+    higmanVCTauUnif_Inc (u ++ [b]) ([a] ++ [e]) :=
+  higmanVCTauUnif_incB [b] [e] (higmanVCTauUnif_incS h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_qaR
+
+/-- The word `a t0'` (with `t0' ≠ t0`) against `a t0 t1`. -/
+theorem higmanVCTauUnif_qaT {d : ℕ} (hd : 1 < d) (a t0 : Fin d) (t1 : List (Fin d)) :
+    higmanVCTauUnif_Inc ([a] ++ [higmanVCTau_other t0]) ([a] ++ (t0 :: t1)) :=
+  higmanVCTauUnif_inc_pre [a] (higmanVCTauUnif_inc_cons (higmanVCTauConj_other_ne hd t0) [] t1)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_qaT
+
+/-- Facts on a shape pair `{z, zo} = {p0, q0}`. -/
+theorem higmanVCTauUnif_pair {a : X} {z zo p0 q0 : List X} (hz : z.length = 2)
+    (hzo : zo.length = 2) (hzz : higmanVCTauUnif_Inc z zo) (haz : higmanVCTauUnif_Inc [a] z)
+    (hazo : higmanVCTauUnif_Inc [a] zo) (hw : (z = p0 ∧ zo = q0) ∨ (z = q0 ∧ zo = p0)) :
+    higmanVCTauUnif_Inc p0 q0 ∧ higmanVCTauUnif_Inc [a] p0 ∧ higmanVCTauUnif_Inc [a] q0 ∧
+      p0.length = 2 ∧ q0.length = 2 := by
+  rcases hw with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · exact ⟨hzz, haz, hazo, hz, hzo⟩
+  · exact ⟨higmanVCTauUnif_incS hzz, hazo, haz, hzo, hz⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_pair
+
+/-- The swap of a shape pair exchanges `z` and `zo`. -/
+theorem higmanVCTauUnif_maps_pair {z zo p0 q0 : List X} (h0 : ¬ p0 <+: q0) (h0' : ¬ q0 <+: p0)
+    (hw : (z = p0 ∧ zo = q0) ∨ (z = q0 ∧ zo = p0)) :
+    MapsCone (coneSwap p0 q0 h0 h0') z zo ∧ MapsCone (coneSwap p0 q0 h0 h0') zo z := by
+  rcases hw with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · exact ⟨mapsCone_coneSwap_left h0 h0', mapsCone_coneSwap_right h0 h0'⟩
+  · exact ⟨mapsCone_coneSwap_right h0 h0', mapsCone_coneSwap_left h0 h0'⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_maps_pair
+
+/-- A marked word `z c` is incomparable with both sibling words `p0 b`, `q0 b` (`b ≠ c`). -/
+theorem higmanVCTauUnif_sib {b c : X} {z zo p0 q0 : List X} (hcb : c ≠ b)
+    (hzz : higmanVCTauUnif_Inc z zo) (hw : (z = p0 ∧ zo = q0) ∨ (z = q0 ∧ zo = p0)) :
+    higmanVCTauUnif_Inc (z ++ [c]) (p0 ++ [b]) ∧ higmanVCTauUnif_Inc (z ++ [c]) (q0 ++ [b]) := by
+  rcases hw with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · exact ⟨higmanVCTauUnif_inc_letter _ hcb, higmanVCTauUnif_incB [c] [b] hzz⟩
+  · exact ⟨higmanVCTauUnif_incB [c] [b] hzz, higmanVCTauUnif_inc_letter _ hcb⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauUnif_sib
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
