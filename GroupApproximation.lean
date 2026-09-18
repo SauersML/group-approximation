@@ -6012,6 +6012,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexIndexAlg
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryProjection
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeMilnor
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeLadder
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Assembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
