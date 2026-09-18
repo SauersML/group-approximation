@@ -2,6 +2,7 @@
 rg: 2
 id: gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof
 kind: route
+title: Extend the corner embedding of Q to GL_n(Q) inside E_(n+1)(R_T)
 target: gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring
 requires:
   - q-embeds-in-a-corner-of-a-fp-toeplitz-ring

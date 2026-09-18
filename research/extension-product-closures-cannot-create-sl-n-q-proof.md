@@ -2,6 +2,7 @@
 rg: 2
 id: extension-product-closures-cannot-create-sl-n-q-proof
 kind: route
+title: Direct proof by tracking the nontrivial images of SL_n(Q)
 target: extension-product-closures-cannot-create-sl-n-q
 requires: []
 ---

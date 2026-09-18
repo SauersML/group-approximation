@@ -2,6 +2,7 @@
 rg: 2
 id: bffhz-closures-cannot-create-gl-n-q-proof
 kind: route
+title: Deduce the closure statements from the vertex-fixing property in free splittings
 target: bffhz-closures-cannot-create-gl-n-q
 requires:
   - gl-n-q-fixes-a-vertex-in-free-splittings

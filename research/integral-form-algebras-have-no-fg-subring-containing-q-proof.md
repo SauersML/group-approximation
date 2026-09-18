@@ -2,6 +2,7 @@
 rg: 2
 id: integral-form-algebras-have-no-fg-subring-containing-q-proof
 kind: route
+title: Direct proof through a Z-basis of the integral form
 target: integral-form-algebras-have-no-fg-subring-containing-q
 requires: []
 ---

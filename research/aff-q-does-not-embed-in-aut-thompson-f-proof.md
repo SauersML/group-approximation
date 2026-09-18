@@ -2,6 +2,7 @@
 rg: 2
 id: aff-q-does-not-embed-in-aut-thompson-f-proof
 kind: route
+title: Direct proof from cited structure theorems for T-bar and Aut(F)
 target: aff-q-does-not-embed-in-aut-thompson-f
 requires: []
 artifacts:

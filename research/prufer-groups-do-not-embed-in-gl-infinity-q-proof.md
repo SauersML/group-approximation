@@ -2,6 +2,7 @@
 rg: 2
 id: prufer-groups-do-not-embed-in-gl-infinity-q-proof
 kind: route
+title: Bound from below the dimension an element of order p must move
 target: prufer-groups-do-not-embed-in-gl-infinity-q
 requires: []
 ---
