@@ -89,7 +89,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 /-- **The empty prefix never wraps**: the target arc starts at or before the base point. -/
 theorem extremalBlock_targetBlockNoWrap_nil (K : PocketFaceSet D eps X lo hi) :
     TargetBlockNoWrap K [] := by
-  have h := K.targetArc.start.isLt
+  have := K.targetArc.start.isLt
   show K.targetArc.start.1 + 0 ≤ (outerDarts X).length
   omega
 

@@ -221,6 +221,10 @@ None recorded before 2026-09-17.
    of Monod's `H(A)`, and the Stein and irrational-slope PL groups. These hosts can contain `BS(1,2)`, so O4 does
    not reach them, and `T-bar` contains `(Q,+)`, so divisibility alone is not excluded. Not covered: `RP^(n-1)` for
    `n >= 3`, infinitely many breakpoints, and Cantor-set hosts.
+   - *Germ-local form* (lane gq-deep-pp-1): `circle-groups-with-divisible-free-germs-omit-gl-n-q` assumes only
+     that the germ groups of point stabilizers are divisible-free. So it also covers breakpoints accumulating at
+     finitely many singular points with divisible-free germ groups, i.e. finite germ extensions of these circle
+     hosts, and index-2 overgroups with orientation-reversing elements.
 
 11. **Brin--Thompson groups `nV` and twisted Brin--Thompson registers, 2026-09-17: gated, not dead.**
    (lane gq-bt-kojima; `research/artifacts/gq-bt-kojima-mechanism.md`)
@@ -236,6 +240,17 @@ None recorded before 2026-09-17.
      become infinitely divisible. The register roots give rational hulls of abelian subgroups only: commutators with
      non-commuting elements are localized on the overflow slab, and a dilation coprime to the radices acts on the
      register tower by a carry-from-below transducer (heuristic).
+   - (lane gq-nv-obstruct; `research/artifacts/gq-gq-nv-obstruct-verdict.md`)
+     - `fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups`: every finitely generated subgroup of
+       `GL_n(Q)` lies in a finitely presented simple `SV_Γ`, and `SV_Γ ⊇ kV` for `k <= |S|`, so `Q <= SV_Γ`.
+       So O2–O4 and every finitary obstruction fail for twisted hosts. Only the whole group can obstruct; the
+       question there is `gl-n-q-in-permutational-boone-higman-class`.
+     - `gl-3-z-in-no-nv-via-cnd-transversal`: the transversal function of
+       `brin-thompson-nv-cnd-proper-modulo-triangular-subgroup` alone (no properness on `T_n`) puts every Kazhdan
+       subgroup of `nV` virtually in `T_n`, so `GL_3(Z)` lies in no `nV`. That would kill plain `nV` for `n >= 3`.
+     - `BS(1,2) <= nV` needs a drift-free infinite-order base, since `D(a) = kD(a)` when `a ~ a^k`. Kojima–Sheng
+       root towers over elements of `V` therefore never give its translation subgroup. Sheng's Baumslag–Solitar
+       exclusions (arXiv:2209.11982) were withdrawn.
 
 12. **Unions of the chain `GL_n(Z[1/m!])` and tree hosts, 2026-09-17: constraints, one kill (lane
     gq-union-obstruct).** Summary in `research/artifacts/gq-gq-union-obstruct.md`.
@@ -266,3 +281,14 @@ None recorded before 2026-09-17.
      contain all rational scalars.
    - `leavitt-units-over-s-integers-are-finitely-presented` (OPEN): the Khanh route fails as stated over `Z[1/m]`,
      because GE via Menal–Moncasi needs a simple ring.
+
+14. **Every almost-V host, 2026-09-17: for n >= 3 the problem moves into one germ group (lane
+    gq-germ-necessary).** `gl-n-q-almost-v-hosts-need-lattice-germs`, via the general FW germ reduction
+    `almost-v-fw-subgroups-act-through-finitely-many-germs`. Let `E` be any finitely generated group of Cantor
+    homeomorphisms that are locally in `V` off finite sets; this covers every finite germ extension of `V`,
+    with no hypothesis on the germs. If `E >= GL_n(Q)` with `n >= 3`, then one singular germ group `(E)_p`
+    contains a finite-index subgroup of every `SL_3(Z[1/m])`. The inputs are Kazhdan, the normal subgroup
+    theorem, trivial centre, and the finiteness of FW subgroups of `V`. So `(E)_p` is neither amenable nor
+    a-T-menable, and it lies in no `nV`. This generalizes Attempt 6's Theorem A from `SL_3(Z)` to all
+    S-arithmetic `SL_3(Z[1/m])`, and to all almost-V groups. The method says nothing for `n = 2`, since every
+    FW subgroup of `GL_2(Q)` is finite.

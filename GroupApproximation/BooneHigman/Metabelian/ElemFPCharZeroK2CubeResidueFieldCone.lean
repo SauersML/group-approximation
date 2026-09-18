@@ -12,7 +12,8 @@ commutative ring `R` and any `n`, write `j = czCubeResFieldCone R n`:
 
 * `czCubeResField_retract_comp_cone`: `r ∘ j = id`.
 * `czCubeResField_cubeKill_castSucc_comp_cone`: `π_i ∘ j = j ∘ π_i` for `i ≤ n`.
-* `czCubeResField_cubeKill_last_comp_cone`: `π_{n+1} ∘ j = j ∘ π_0`, since `π_{n+1}(s_0 s_{n+1}) = 0`.
+* `czCubeResField_cubeKill_last_comp_cone`: `π_{n+1} ∘ j = j ∘ π_0`, since
+  `π_{n+1}(s_0 s_{n+1}) = 0`.
 * `czCubeResField_K2Map_cubeKill_cone`: if `u ∈ K₂(N, R[s_0..s_n])` is killed by every `π_i`,
   then `j u` is killed by every `π_i`, `i ≤ n + 1`.
 * `czCubeResField_dies_of_cone_step`: if every element of `K₂(N, R[s_0..s_{n+1}])` killed by every

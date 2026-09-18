@@ -5,6 +5,7 @@ kind: claim
 title: A central or covering lift of a group without (Q,+) contains none of GL_n(Q), SL_n(Q), PGL_n(Q), PSL_n(Q), Aff(Q), B_2(Q), U_3(Q)
 distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this rules out one family of routes to it, the T-bar-style lifts, and says where their divisibility would have to come from.
+  q-free-lifts-reach-only-lattice-affine-q-groups: that allows every finite normal series with Q-free or central factors and excludes Aff(Q), B_2(Q) and the linear groups there, but not U_3(Q); this fixes the three-step shape Q-free, central, Q-free, which also excludes U_3(Q).
 ---
 
 **ESTABLISHED** through `lifts-add-no-unipotent-divisibility-proof`. Not
@@ -61,3 +62,8 @@ elements.
 
 Covers whose deck group contains `Q` are not covered. An example is the adelic
 presentation of the solenoid, `(R x A_f)/Q`.
+
+**Scope.** The three-step shape matters for `U_3(Q)`: it has a normal series with
+factors `Z`, `Q/Z`, `Z^2`, `(Q/Z)^2`, all Q-free, so iterated towers of covers
+and central extensions can contain it. For towers of any length, the exclusions
+that survive are those of `q-free-lifts-reach-only-lattice-affine-q-groups`.

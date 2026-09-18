@@ -78,4 +78,18 @@ The following suffice:
 
 ## Attempts
 
-None yet. The construction lanes of the gq swarm aim at forms (a)–(c).
+The construction lanes of the gq swarm aim at forms (a)–(c).
+
+1. **Houghton-type hosts for form (a) (2026-09-17, lane gq-houghton-q).**
+   Dead for every host whose near image is residually finite or free of
+   `(Q,+)`: Houghton groups `H_n`, and all groups of permutations that are
+   eventually affine or isometric on `Z^k`, eventually tree-automorphic, or
+   eventually in any residually finite permutation group without finitary
+   elements (`rf-near-image-permutation-groups-omit-rationals`). The general
+   reason is `fp-alt-fin-hosts-have-fp-near-images`: a finitely presented
+   host `Γ ⊇ Alt_fin(X)` has a finitely presented near image `Γ*`, and
+   `GL_n(Q)/K`, `K <= {±I}`, embeds in `Γ*`. So form (a) first needs a
+   finitely presented overgroup of `GL_n(Q)` with a faithful near action, at
+   least as hard as the non-natural form of Problem 2.7. What remains open in
+   this form: a Houghton-like mechanism, a near action that is not induced by
+   a type (A) action, for a finitely presented overgroup of `GL_n(Q)`.

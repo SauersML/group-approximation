@@ -2,8 +2,10 @@
 rg: 2
 id: circle-groups-with-divisible-free-germs-omit-gl-n-q
 kind: claim
-title: A group of circle homeomorphisms whose point-germ groups have no divisible subgroup normalizes each divisible abelian subgroup only by centralizing it, so it contains no copy of GL_n(Q), Aff(Q) or U_3(Q)
+title: Germ-local form - if every point-germ group of a circle or interval group has no divisible subgroup, divisible abelian subgroups have N = C, so GL_n(Q), Aff(Q), U_3(Q) do not embed, even with breakpoints accumulating at singular points
 distinct_from:
+  pp-circle-divisible-subgroups-act-freely: that assumes every element is Lambda-piecewise with finitely many breakpoints for a divisible-free Lambda; this assumes only that the point-germ groups are divisible-free, so elements may have infinitely many breakpoints accumulating at points with divisible-free germ groups (finite germ extensions of those hosts). The argument is the same.
+  pp-circle-and-lift-hosts-miss-gl-n-q: that also covers the lifts to R through the translation number (T-bar) and the [A,A] criterion, which this does not; this adds germ extensions of the circle hosts and index-2 overgroups with orientation-reversing elements.
   germ-extensions-omit-standard-gl-n-q: that excludes only the standard (analytic) copy of GL_n(Q) in piecewise-projective and piecewise-affine groups, and leaves nonstandard copies open; this excludes every copy, standard or not, from circle and interval hosts.
   lifts-add-no-unipotent-divisibility: that excludes central and covering lifts of Q-free groups, such as T-bar; this excludes circle groups with divisible-free germs, whether or not they contain (Q,+).
   piecewise-analytic-circle-square-conjugate-has-parabolic-ends: that describes the fixed points of an element conjugate to its square in PA(S^1); this uses rotation numbers and germ groups to exclude divisible subgroups normalized non-centrally.
@@ -14,6 +16,16 @@ distinct_from:
 
 **ESTABLISHED** through `circle-groups-with-divisible-free-germs-omit-gl-n-q-proof`. Elementary; not
 independently reviewed; no priority is claimed for the rotation-number and germ arguments themselves.
+
+**Relation to `pp-circle-divisible-subgroups-act-freely`.** That claim (lane gq-pp-psl2q) proves the same
+conclusions for groups whose elements are piecewise, with finitely many breakpoints, in a group without
+divisible abelian subgroups, and `pp-circle-and-lift-hosts-miss-gl-n-q` extends them to lifts to `R`. This
+claim is the germ-local form of the argument. Its hypothesis (DF) concerns only the germ groups of point
+stabilizers. So it also covers groups whose elements have infinitely many breakpoints accumulating at finitely
+many singular points, provided the germ groups at those points are divisible-free. This is the case "infinitely
+many breakpoints" that attempt 10 of the root lists as not covered, in the form that arises for finite germ
+extensions. It also allows orientation-reversing elements (Item 3). It does not cover `T-bar`, which fails (DF)
+at `±∞`; that case is `pp-circle-and-lift-hosts-miss-gl-n-q` (a), or `lifts-add-no-unipotent-divisibility`.
 
 ## Statement
 
@@ -71,9 +83,10 @@ Then:
 - **Distortion (root O4) does not reach these hosts.** They have distorted cyclic subgroups: Lodha's `S`
   contains `BS(1,2)` (`piecewise-analytic-circle-square-conjugate-has-parabolic-ends`, Sharpness), and Monod's
   `H(Z[1/2])` contains `x -> x+1` and `x -> 4x`, hence `BS(1,4)`. So the distortion obstruction, which kills
-  `VA`, says nothing about them. This claim excludes `GL_2(Q)` from all of them, for every embedding, and
-  likewise every `n >= 2`. It does not touch the Cantor-set germ extensions for which attempt 6 of the root
-  leaves `n = 2` open outside `VA`.
+  `VA`, says nothing about them. For the finitely-breakpoint hosts, `pp-circle-and-lift-hosts-miss-gl-n-q`
+  already excludes `GL_n(Q)` for every `n >= 2` and every embedding. This claim extends that to their finite
+  germ extensions with divisible-free singular germ groups. It does not touch the Cantor-set germ extensions
+  for which attempt 6 of the root leaves `n = 2` open outside `VA`.
 - **Standard copies.** `germ-extensions-omit-standard-gl-n-q` excludes the analytic copy. This claim excludes
   nonstandard copies too, as in Belk--Hyde--Matucci's `Q <= T-bar`, where the element for `1/k` is a lift of
   torsion, not a translation.
