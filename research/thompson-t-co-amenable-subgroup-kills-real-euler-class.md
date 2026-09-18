@@ -127,3 +127,19 @@ This excludes `F` and all point and finite-set stabilizers.
       avoid every `SL_2(R)`-type action.
   - *Calibration.* `T̄` acting through `T` has `e_R = 0` and all `e_b^n ≠ 0`. So (A) alone cannot
     refute this node.
+- 2026-09-18 (swarm-0917-w12-w12-nv-last1): the candidate `H = PSL_2(Z)` is refuted, together
+  with every subgroup of every stabilizer of a quad-complete lamination. The node stays OPEN.
+  - *Forced shape (D4).* A co-amenable `H` fixes no `τ ∈ Tri_D`, a non-crossing,
+    quad-complete chord system with endpoints in a countable `T`-invariant set `D`. This is
+    `thompson-t-quad-complete-laminations-carry-no-invariant-mean`, Part 4.
+  - (D4) contains the forced shape (D3) that swarm-0917-w10 found on the bus (`H` lies in no
+    conjugate of `PSL_2(Z)`). The Minkowski-conjugated `PSL_2(Z)` fixes the dyadic Farey
+    tessellation `τ_0`.
+  - *Obstruction.* This is sharp quad-diagonal exclusivity. An invariant mean makes both
+    diagonals of a quad equal in mean, through five monotone nested moves, while exactly one of
+    them is present at each point.
+  - The test above, which looks for an `H`-invariant probability on a compact space, is
+    replaced by the test "does `H` fix a quad-complete lamination?". The new test needs no
+    compact space and no spectral estimate.
+  - *Still open.* Candidates `H` whose orbits on chord systems contain no quad-complete fixed
+    point, for example stabilizers of laminations with non-triangular gaps. Not tested.
