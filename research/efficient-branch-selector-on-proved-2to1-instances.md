@@ -220,3 +220,25 @@ sees.
     orientation laws whose mean history bias is `>= 2(gamma - t)` in *every*
     exposure order. High entropy alone does not exclude a law, since a law can
     be deterministic on part of the edges.
+* **2026-09-18, swarm-0917-w12-w12-ugc-pull (transplanter via finite-models):
+  the intermediate window was decomposed by patch count. OPEN.** Recorded in
+  `few-patch-witnesses-above-half-decode-outer-labels` (OPEN).
+  - **Seed identity (proved there).** On lift-satisfied edges from a B-seed,
+    the branch bit equals the witness's A-label at `x_e`. Theorem-1 decoding at
+    that seed therefore needs a single form that agrees on more than half of
+    the whole seed star, and junk bits attain the bound.
+  - **Vacuity (proved there).** Pointwise explanation by good forms carries no
+    information: `m + 1` forms explain every predictor, including bent ones.
+  - **Seed-class uniqueness.** A witness with at most `P` global linear
+    patches per outer vertex decodes at every seed outside the pair kernels,
+    which have mass at most `P^2 2^(1-l)` plus the smoothness defect. Hence
+    NP is in RP whenever `P^2 2^(1-l) << gamma`. This is conditional on one
+    unchecked DKKMS step, (Q2): patch consistency across `U -> V` with folding.
+  - **Where the finite-models transplant dies.** At `m <= 6` and `l <= 3` every
+    patchwork beats `1/2` only through the trivial floor `2^(1-l)` and
+    zoom-in mass `1/9`, so small models cannot see the window.
+  - **Survivors.** Witnesses with `>= sqrt(gamma/8) 2^((l-1)/2)` patches per
+    outer vertex, or kernel-aligned patch families (such as `lambda + D` with
+    `dim D >= l`), in which the witness can match the selector at kernel
+    seeds.
+  - Not a solution.
