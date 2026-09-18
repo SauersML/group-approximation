@@ -6091,6 +6091,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Primre
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Swap
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeFormal
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Theta
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabReindex
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexStabRankDef
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
