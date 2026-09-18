@@ -172,8 +172,8 @@ theorem extremalArcEndExists_parity (M : CombMap.{v}) {faces : Finset M.Face}
     intro a ha hat
     obtain ⟨b, hb, rfl⟩ := Finset.mem_image.mp hat
     exact ((hc b).mp (List.mem_toFinset.mp hb)).2 ((hc _).mp (List.mem_toFinset.mp ha)).1
-  have hcover : ∑ x ∈ c.toFinset ∪ c.toFinset.image M.alpha, extremalArcEndExists_term M z δ x =
-      ∑ x, extremalArcEndExists_term M z δ x := by
+  have hcover : ∑ x ∈ c.toFinset ∪ c.toFinset.image M.alpha,
+      extremalArcEndExists_term M z δ x = ∑ x, extremalArcEndExists_term M z δ x := by
     refine Finset.sum_subset (Finset.subset_univ _) ?_
     intro x _ hx
     exact hoff x (fun h => hx (Finset.mem_union_left _ (List.mem_toFinset.mpr h)))

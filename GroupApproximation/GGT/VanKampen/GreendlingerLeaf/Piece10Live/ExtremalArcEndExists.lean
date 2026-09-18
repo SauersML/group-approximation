@@ -214,3 +214,71 @@ theorem extremalArcEndExists_linked_of_oneRun (K : PocketFaceSet D eps X lo hi)
     exact absurd ((hB b (hseg b (by simp))).symm.trans (hB0 b (by simp))) (by decide)
 
 end ExistsRuns
+
+/-- **OPEN (lane gl-p10-25).**  Under the premises of `ExtremalJordanStatement`, a choice class
+exists whose removed darts form one run or change kind only at one vertex.  Logically STRONGER
+than `ExtremalArcEndDescentExistsStatement`; true in the model up to 6 darts (the one-run
+alternative alone fails at 6 darts). -/
+def ExtremalArcEndExistsPinnedStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, ExtremalClassChoice K r ∧
+          (ExtremalArcEndExistsOneRun K r ∨ ExtremalArcEndExistsPinned K r)
+
+/-- **The existence statement from a one-run or pinned choice class.** -/
+theorem extremalArcEndExists_exists_of_pinned
+    (h : ExtremalArcEndExistsPinnedStatement.{u, w, v}) :
+    ExtremalArcEndDescentExistsStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hc, hp⟩ := h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  rcases hp with hp | hp
+  · exact ⟨r, ⟨hc, extremalArcEndExists_linked_of_oneRun K hK r hp⟩⟩
+  · exact ⟨r, ⟨hc, extremalArcEndExists_linked_of_pinned K hK r hp⟩⟩
+
+/-- **Chain consequence**: the arc-end descent statement. -/
+theorem extremalArcEndExists_descent_of_pinned
+    (h : ExtremalArcEndExistsPinnedStatement.{u, w, v})
+    (hKRK : ExtremalArcEndDescentKRKStatement.{u, w, v})
+    (hRKR : ExtremalArcEndDescentRKRStatement.{u, w, v}) :
+    ExtremalArcEndDescentStatement.{u, w, v} :=
+  extremalArcEndDescent_of_patterns (extremalArcEndExists_exists_of_pinned h) hKRK hRKR
+
+/-- **Chain consequence**: the Jordan arc-end statement. -/
+theorem extremalArcEndExists_extremalJordan_of_pinned
+    (h : ExtremalArcEndExistsPinnedStatement.{u, w, v})
+    (hKRK : ExtremalArcEndDescentKRKStatement.{u, w, v})
+    (hRKR : ExtremalArcEndDescentRKRStatement.{u, w, v}) :
+    ExtremalJordanStatement.{u, w, v} :=
+  extremalArcEndDescent_extremalJordan_of_patterns (extremalArcEndExists_exists_of_pinned h)
+    hKRK hRKR
+
+/-- **Chain consequence**: the relative Greendlinger statement from the four-piece-off
+statement, the pinned existence statement and the two pattern statements. -/
+theorem extremalArcEndExists_relativeGreendlinger
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : ExtremalArcEndExistsPinnedStatement.{u, w, v})
+    (hKRK : ExtremalArcEndDescentKRKStatement.{u, w, v})
+    (hRKR : ExtremalArcEndDescentRKRStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  extremalArcEndDescent_relativeGreendlinger hoff (extremalArcEndExists_exists_of_pinned h)
+    hKRK hRKR
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndExistsOneRun
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndExistsPinned
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_closed_run_pocket
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_linked_of_pinned
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_linked_of_oneRun
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndExistsPinnedStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_exists_of_pinned
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_descent_of_pinned
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_extremalJordan_of_pinned
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_relativeGreendlinger
