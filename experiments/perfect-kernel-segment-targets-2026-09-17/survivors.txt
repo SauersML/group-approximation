@@ -1,0 +1,23 @@
+# python3 retract_segment_certify.py survivors
+calibration: e=(0,1,0) chain [[[1, 0], [0, 1]], [[0, 1]]] | e=(2,-3) stabilizes: False | OK
+A A B a b a B A A b b      | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B B A A b a B a b      | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A B B a b A b a a B    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A B a a b b b a a B    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A B a a b A b a B B    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A b b a B A B a a b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A b a a B B B a a b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A b a a B A B a b b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B A B A A b a B a b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B a B A A b a B a b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B a b a B A A b A b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B a b a B A A b a b    | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A A A B B A b A B B      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A A A b b A B A b b      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A B a b a B B a a b      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A B a B A b b a B B      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A B a a b b a B a b      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A B a b a B A A b b      | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+A A B a a b A B A b b      | landed rules + rule 1: True  | + rule R: True  nielsen(root-tower) []
+A A B B A A b a B a b      | landed rules + rule 1: False | + rule R: True  nielsen(root-tower) ['top:retract-hnn(al=1,be=1,stab=1)']
+ALL CERTIFIED
