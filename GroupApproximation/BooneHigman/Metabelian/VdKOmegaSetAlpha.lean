@@ -81,7 +81,7 @@ theorem vdkOmegaSet_compatAt_all
     (hrel : vdkOmegaSet_RowRel X ρ) (g : St n R) :
     vdkOmegaSet_CompatAt vdkOmega_rowAct ρ ((vdkOmegaSet_alpha X).comp vdkParPres_inr) g := by
   have hgen : ∀ gen : SteinbergGenerator (Fin n) R,
-      PresentedGroup.of gen ∈ vdkOmegaSet_compatSubgroup vdkOmega_rowAct ρ
+      (PresentedGroup.of gen : St n R) ∈ vdkOmegaSet_compatSubgroup vdkOmega_rowAct ρ
         ((vdkOmegaSet_alpha X).comp vdkParPres_inr) := by
     rintro ⟨i, j, hij, c⟩
     exact vdkOmegaSet_compatAt_of_single vdkOmega_rowAct ρ
