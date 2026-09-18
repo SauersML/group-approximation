@@ -92,4 +92,72 @@ theorem higmanVCTree_exists_small {d : ℕ} (hd : 1 < d)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTree_exists_small
 
+/-- **Gap (defect-`≤ 1` form of the balanced gap).**  A central kernel word all of whose letters
+have defect `≤ 1` is congruent modulo the relators to a product of balanced letters.  It is
+equivalent to the target as a Prop; see the module docstring. -/
+def HigmanVCTreeDefectStatement : Prop :=
+  ∀ d : ℕ, 1 < d → ∀ r : FreeGroup (higmanVCTree_Small d),
+    higmanVCTree_iota d r ∈ (higmanVC_evalAll d).ker →
+    (∀ z : FreeGroup (List (Fin d) × List (Fin d)),
+      higmanVCTree_iota d r * z * (higmanVCTree_iota d r)⁻¹ * z⁻¹ ∈
+        Subgroup.normalClosure (higmanVC_rels d fun _ => True)) →
+    ∃ L : List (List (Fin d) × List (Fin d)), (∀ p ∈ L, p.1.length = p.2.length) ∧
+      higmanVCTree_iota d r * ((L.map FreeGroup.of).prod)⁻¹ ∈
+        Subgroup.normalClosure (higmanVC_rels d fun _ => True)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCTreeDefectStatement
+
+/-- **The balanced gap of lane bh-met-77h from the defect gap.** -/
+theorem higmanVCTree_balanced_of_defect (h : HigmanVCTreeDefectStatement) :
+    HigmanVCCentralBalancedStatement := by
+  intro d hd r hr hc
+  obtain ⟨r', hr'⟩ := higmanVCTree_exists_small hd r
+  have hK : Subgroup.normalClosure (higmanVC_rels d fun _ => True) ≤
+      (higmanVC_evalAll d).ker :=
+    Subgroup.normalClosure_le_normal (higmanVC_rels_subset_ker d _)
+  have h1 : higmanVCTree_iota d r' * r⁻¹ ∈
+      Subgroup.normalClosure (higmanVC_rels d fun _ => True) := by
+    refine higmanVCCommon_mk_eq_one_iff.mp ?_
+    rw [map_mul, map_inv, hr', mul_inv_cancel]
+  have hker : higmanVCTree_iota d r' ∈ (higmanVC_evalAll d).ker := by
+    have h2 := MonoidHom.mem_ker.mp (hK h1)
+    rw [map_mul, map_inv, MonoidHom.mem_ker.mp hr, inv_one, mul_one] at h2
+    exact MonoidHom.mem_ker.mpr h2
+  have hc' : ∀ z : FreeGroup (List (Fin d) × List (Fin d)),
+      higmanVCTree_iota d r' * z * (higmanVCTree_iota d r')⁻¹ * z⁻¹ ∈
+        Subgroup.normalClosure (higmanVC_rels d fun _ => True) := by
+    intro z
+    refine higmanVCCommon_mk_eq_one_iff.mp ?_
+    have h3 := higmanVCCommon_mk_eq_one_iff.mpr (hc z)
+    rw [map_mul, map_mul, map_mul, map_inv, map_inv] at h3 ⊢
+    rw [hr']
+    exact h3
+  obtain ⟨L, hL, hrL⟩ := h d hd r' hker hc'
+  refine ⟨L, hL, higmanVCCommon_mk_eq_one_iff.mp ?_⟩
+  have h4 := higmanVCCommon_mk_eq_one_iff.mpr hrL
+  rw [map_mul, map_inv, hr'] at h4
+  rw [map_mul, map_inv]
+  exact h4
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTree_balanced_of_defect
+
+/-- **(1) from the defect gap**: the standard relators present `V_d` on all ordered pairs. -/
+theorem higmanVCTree_ker_le_of_defect (h : HigmanVCTreeDefectStatement) (d : ℕ) (hd : 1 < d) :
+    (higmanVC_evalAll d).ker ≤ Subgroup.normalClosure (higmanVC_rels d fun _ => True) :=
+  higmanVCCentral_ker_le_of_balanced (higmanVCTree_balanced_of_defect h) d hd
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTree_ker_le_of_defect
+
+/-- **The defect gap from (1)** (the empty product): the gap is equivalent to (1), not weaker. -/
+theorem higmanVCTree_defect_of_ker_le
+    (h : ∀ d : ℕ, 1 < d →
+      (higmanVC_evalAll d).ker ≤ Subgroup.normalClosure (higmanVC_rels d fun _ => True)) :
+    HigmanVCTreeDefectStatement := by
+  intro d hd r hr _
+  refine ⟨[], fun p hp => absurd hp List.not_mem_nil, ?_⟩
+  rw [List.map_nil, List.prod_nil, inv_one, mul_one]
+  exact h d hd hr
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTree_defect_of_ker_le
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
