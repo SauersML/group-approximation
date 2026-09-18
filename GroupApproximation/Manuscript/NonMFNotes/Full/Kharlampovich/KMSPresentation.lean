@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.Data.Finset.Basic
+import Mathlib.Logic.Function.Iterate
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Minsky
 
 /-!

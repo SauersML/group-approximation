@@ -292,6 +292,6 @@ theorem hasPropertyA_coprodI : ExactnessPermanence.HasPropertyA (CoprodI M) := b
 
 end FreeProduct
 
-#audit_closed_axioms GroupApproximation.Full.NN09.hasPropertyA_coprodI
+#audit_axioms GroupApproximation.Full.NN09.hasPropertyA_coprodI
 
 end GroupApproximation.Full.NN09

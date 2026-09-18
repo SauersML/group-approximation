@@ -29,6 +29,8 @@ namespace Full
 namespace StepanovMatui
 namespace Matui
 
+open scoped commutatorElement
+
 variable {X : Type*}
 
 /-! ## Powers of a homeomorphism -/

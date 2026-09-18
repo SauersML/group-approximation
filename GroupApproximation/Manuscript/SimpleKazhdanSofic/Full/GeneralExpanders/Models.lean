@@ -150,6 +150,36 @@ theorem tendsto_N_of_tendsto_card (n : ℕ) (N : ℕ → ℕ)
       (Nat.mul_le_mul (Nat.mul_le_mul (le_refl n) hNk) (Nat.mul_le_mul (le_refl n) hNk))
   exact Nat.lt_irrefl _ (lt_of_lt_of_le (Nat.lt_succ_of_le (hcard.trans hpow)) (hK k hk))
 
+/-! ## The hypothesis `0 < N k` is necessary -/
+
+/-- The zero maps `φ_k = 0 : R → M_0(F₂)` satisfy every printed condition on the `φ_k`
+(`simple_kazhdan_sofic_group.tex`, `thm:general`(b), tex l.180–184). -/
+theorem isPrintedMatricial_zero {R : Type*} [Ring R] (S : Finset R) :
+    IsPrintedMatricial S (fun _ => 0) (fun _ _ => 0) := by
+  have hsub : ∀ A B : Matrix (Fin 0) (Fin 0) (ZMod 2), A = B := fun _ _ =>
+    Matrix.ext fun i _ => Fin.elim0 i
+  refine ⟨fun _ => hsub _ _, fun _ => eq_top_iff.mpr fun x _ => ?_, fun _ _ =>
+    Filter.Eventually.of_forall fun _ => ⟨hsub _ _, hsub _ _⟩⟩
+  rw [hsub x 0]
+  exact Subring.zero_mem _
+
+/-- `SL_{n × 0}(F₂)` is trivial, hence not simple. -/
+theorem not_isSimpleGroup_sl_zero (n : ℕ) :
+    ¬ IsSimpleGroup (Matrix.SpecialLinearGroup (Fin n × Fin 0) (ZMod 2)) := by
+  intro hsimple
+  haveI := hsimple
+  obtain ⟨x, y, hxy⟩ := exists_pair_ne (Matrix.SpecialLinearGroup (Fin n × Fin 0) (ZMod 2))
+  exact hxy (Matrix.SpecialLinearGroup.ext x y fun i _ => Fin.elim0 i.2)
+
+/-- **The correction `0 < N k` is necessary** (tex l.180–186): without it the printed conditions on the
+`φ_k` are satisfied by `N_k = 0` and the zero maps, and then none of the groups `SL_{nN_k}(F₂)` is
+simple, so the printed conclusion ("the finite simple groups `SL_{nN_k}(F₂)`") fails. -/
+theorem exists_printedMatricial_not_simple (n : ℕ) {R : Type*} [Ring R] (S : Finset R) :
+    ∃ (N : ℕ → ℕ) (φ : ∀ k, R → Matrix (Fin (N k)) (Fin (N k)) (ZMod 2)),
+      IsPrintedMatricial S N φ ∧
+        ∀ k, ¬ IsSimpleGroup (Matrix.SpecialLinearGroup (Fin n × Fin (N k)) (ZMod 2)) :=
+  ⟨fun _ => 0, fun _ _ => 0, isPrintedMatricial_zero S, fun _ => not_isSimpleGroup_sl_zero n⟩
+
 /-! ## `thm:general(b)` -/
 
 /-- **Theorem `thm:general`(b)** for a ring `R` with `EL_n(R)` infinite and simple (tex l.178–186,
@@ -214,6 +244,7 @@ theorem thm_general_b_printed (Λ : Type) [Group Λ] [Group.FG Λ] (C : Type) [T
 #audit_axioms coe_elementaryBlockEquivSL_apply
 #audit_axioms isSimpleGroup_sl
 #audit_axioms tendsto_N_of_tendsto_card
+#audit_axioms exists_printedMatricial_not_simple
 #audit_axioms thm_general_b
 #audit_axioms thm_general_b_printed
 
