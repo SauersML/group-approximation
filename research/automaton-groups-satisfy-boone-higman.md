@@ -48,7 +48,10 @@ Tools on main for finding a good action or certifying one:
   `linear-activity-odometer-automaton-has-fp-nekrashevych-group` is a non-contracting instance.
 
 So for subexponential activity the open case is sharp: cycling relators along a periodic ray whose letter some
-state moves, so that compression does not apply, and which are not finitely generated. The same group may still be covered through another action (Grigorchuk's group on `T_2`). No automaton group
+recurrent state moves, so that compression does not apply, and which are not finitely generated. Transient
+states never matter: `lift-presentable-groups-closed-under-products-and-wreaths` (LP-embeddable groups are
+closed under finite direct products and finite extensions, and an automaton group is LP-embeddable iff the
+group of its recurrent states is). The same group may still be covered through another action (Grigorchuk's group on `T_2`). No automaton group
 is known that fails the hypothesis for every finite-state action. The route
 `automaton-groups-bh-via-lift-presented-overgroups` reduces the claim to finding such an action or overgroup.
 Whether this is a named problem in the literature was not checked here.
