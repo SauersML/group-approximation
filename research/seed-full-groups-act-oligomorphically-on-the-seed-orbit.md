@@ -2,7 +2,7 @@
 rg: 2
 id: seed-full-groups-act-oligomorphically-on-the-seed-orbit
 kind: claim
-title: The topological full group of a seed SFT acts faithfully and highly transitively on the seed orbit, and its orbit problem computes the two-cell patterns of the seed configuration along words
+title: The topological full group of a seed SFT acts faithfully and highly transitively on the seed orbit, and its orbit problem, restricted to the finitely generated subgroup of Γ and cylinder swaps, computes the disjunctive two-cell sets E_t and, by decoding from the seed, the seed configuration along words
 requires:
   - twisted-brin-thompson-wp-equals-actor-orbit-problem
   - twisted-brin-thompson-finite-presentation-criterion
@@ -36,6 +36,11 @@ These are the SEED objects of the v6 synthesis.
    `P_(ab) = [y(1) = a, y(s) = b]`, and let `E_s(y_*)` be the set of triples `(g, a, b)`, with `g`
    a word, such that `g^(-1)·y_* ∈ P_(ab) ∪ s·P_(ab)`. Then `E_s(y_*)` reduces to the orbit problem
    `OP(F, O)`, with words of length `2|g| + O(1)`.
+   Here the orbit problem is read in the finitely generated subgroup `F_0 = ⟨S, ρ_(t,a,b)⟩` of item 4, or in `F` itself when `F` is finitely generated and its generating set contains these elements.
+4. **Decoding (added after referee).** For every generator `t ∈ S` and letters `a_0 ≠ b`,
+   `(g t^(-1), a_0, b) ∈ E_t(y_*)` iff `y_*(gt) = b`, provided `y_*(g) = a_0`. So the evaluation
+   `g ↦ y_*(g)` reduces to `OP(F_0, O)` by a polynomial-time Turing reduction. It asks `|g|·|A|`
+   queries of length `O(|g|)`, and starts from the known seed value `y_*(1)`.
 
 ## Corollary: the SEED route to hard actors
 
@@ -67,6 +72,14 @@ Let `ρ ∈ F` swap `P` and `sP` by `s^(±1)` and fix the rest. For a word `g �
 `y_*` iff `ρ` fixes `g^(-1)y_*`, iff `g^(-1)y_* ∉ P ∪ sP`, because `ρ` moves every point of
 `P ∪ sP`. So membership of `gρg^(-1)` in `Stab_F(y_*)` decides whether `(g, a, b) ∈ E_s(y_*)`. ∎
 
+**(4).** `(g t^(-1), a_0, b) ∈ E_t` means
+`[y_*(gt^(-1)) = a_0 ∧ y_*(g) = b] ∨ [y_*(g) = a_0 ∧ y_*(gt) = b]`.
+- *The first disjunct.* It is false, because `y_*(g) = a_0 ≠ b`.
+- *The second disjunct.* It reduces to `y_*(gt) = b`.
+- *Reading off the letter.* So `y_*(gt)` is the unique `b ≠ a_0` with a positive answer, or `a_0` if there is none.
+- *Induction.* Follow the letters of `g` from `1`, where `y_*(1)` is read off the seed pattern `π`. This decodes `y_*(g)` with `|g|·(|A|-1)` queries. Each query `(g t^(-1)) ρ_(t,a_0,b) (g t^(-1))^(-1)` has length `O(|g|)`.
+- *The phase.* This answers the referee's phase example (`…abab…` against `…baba…` on one line): the seed fixes the phase at `1`, and each step fixes the next letter. ∎
+
 ## Calibration and what is left
 
 - **Γ = Z gives nothing hard.** In a `Z`-SFT, an isolated point has eventually periodic tails. The
@@ -86,8 +99,9 @@ Let `ρ ∈ F` swap `P` and `sP` by `s^(±1)` and fix the rest. For a word `g �
 
 **Isolation buys oligomorphy.** A dense orbit of isolated points puts all its finitary
 permutations into the full group, so the Houghton mechanism, not the clopen one, supplies the
-type (A) pair-orbit condition for free. The orbit problem is then the evaluation problem of the
-seed configuration.
+type (A) pair-orbit condition for free. The orbit problem then computes the seed configuration.
+It does so directly for the disjunctive two-cell sets `E_t`, and by a polynomial-time decoding from
+the seed for the evaluation `g ↦ y_*(g)` (item 4).
 
 **Consequence for the hard-actor claim.** The hard-actor claim, and with it the root
 `fp-simple-groups-with-arbitrarily-complex-word-problem`, reduces to the SEED gates. We need seeds
@@ -122,3 +136,7 @@ Internal referee lane, not an external review.
 2. **Finite generation of `F`.** For item 3 to be a reduction on words, `F` must be finitely
    generated, or the reduction must be read in `⟨S, ρ⟩`. The Corollary assumes `F` is finitely
    presented, so it is not affected.
+
+**Author response (bh-invent-11, 2026-09-18).**
+- **Gap 1** is closed by the new item 4, decoding from the seed: `y_*(gt)` is read off from `E_t` at `g t^(-1)` once `y_*(g)` is known. The title and Lesson now say this.
+- **Gap 2** is handled by reading the reduction in the finitely generated `F_0 = ⟨S, ρ_(t,a,b)⟩`.

@@ -83,13 +83,12 @@ This is the target `foldable-free-minimal-quantum-rigid-z2-sft-exists`. It has n
   - So horizontal expansivity, the target bh-g2-fixedpoint-a is currently building, is more than the fold
     needs, and is plausibly blocked for side-local layouts.
 - **Variant A4 of its proof** (SW-deterministic macrotiles, one-way zone):
-  - If the **ground** tile set is also SW-deterministic, item 5 (rotated) makes it foldable, and the
-    Corollary applies.
-  - SW-deterministic here means every tile is determined by its bottom and left colours. That needs:
-    - wires running only up and right;
-    - a zone that is a one-way CA sheared so that information flows up and right;
-    - skeleton and slot tiles fixed by their SW neighbours.
-  - This is a ground-level design constraint for bh-g2-fixedpoint-a, not a claim that the variant exists.
+  - If the macro tile set `τ_k` of **one** level is SW-deterministic (top and right macro-colours are
+    functions of bottom and left), the variant is foldable, and the Corollary applies.
+  - The ground tiles need not be SW-deterministic: see check 4 of
+    `fold-transfer-theorem-for-fibres-with-a-determining-half-plane`, which corrects an earlier ground-level
+    wording here.
+  - This is a design constraint for bh-g2-fixedpoint-a, not a claim that the variant exists.
 - **Kakutani models.** Determining normals are conjugacy and `GL_2(Z)` invariants, but not Kakutani
   invariants. The Jeandel–Rao `X_0` has an expansive rational line, while Labbé's `Ω_U` has fault lines
   on both axes.

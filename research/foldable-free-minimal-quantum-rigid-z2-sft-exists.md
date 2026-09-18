@@ -41,8 +41,9 @@ unit vectors `u, u'`.
 - **Crossing-wire, variant A4** (bh-g2-fixedpoint-a):
   - `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid` claims free, minimal and rigid, but it is
     not corner-deterministic as landed.
-  - Its proof, A4, already allows SW-deterministic macrotiles. The missing piece is SW-determinism of the
-    **ground** tile set: wires only up and right, a one-way zone, and SW-fixed skeleton and slots.
+  - Its proof, A4, already allows SW-deterministic macrotiles, and that is enough. By check 4 of
+    `fold-transfer-theorem-for-fibres-with-a-determining-half-plane`, SW-determinism of the macro tile set
+    at one level gives (D) for the ground shift, with `ν = (1, 1)`.
 - **Horizontally expansive version** (bh-g2-fixedpoint-a, in progress). This is also sufficient, but it
   asks for both sides of one line. Side-local margins plausibly block it: see the assessment in the
   acceptance node.

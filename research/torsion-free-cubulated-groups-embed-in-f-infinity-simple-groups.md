@@ -228,3 +228,23 @@ torsion-free cubulated group admit an embedding into a finitely presented simple
   criterion, Li's Corollary D, and Matui's `simple2` and Künneth formula.
 
 Keep the node OPEN until (a) is done. With (a), both referees give conditional PASS.
+
+## Integration of both referees' repairs (bh-major-cube-b, 2026-09-18)
+
+1. **Link lemma.** Referee A's direct proof (Dickson plus doubling) is now Lemma L, in §5 of
+   `cuntz-stabilized-garside-full-groups-f-infinity-proof`. The Cuntz theorem no longer uses
+   Li's `lem:link:n-conn_3` or the packing number. §8 there records neutrally that Li's
+   written proof of that lemma asserts its key step without argument, and credits Li's
+   framework.
+2. **Lemma E′.** Referee A's repair replaces Lemma E in
+   `torsion-free-cubulated-f-infinity-simple-host-proof`. The vertex `q` lies beyond the
+   crossings of `adj(p)` walls and all witness walls, and it is entered by a non-`c` edge.
+   This also covers referee B's case where the first cube is a `c`-edge. (TF), (Acyc) and the
+   minimality walk now use `q`.
+3. **§2 in full.** `cuntz-pure-hole-datum-satisfies-li-st-and-lcm` writes out (St), (LCM),
+   lcms, the identification of the isotropy with the full group, and the atomicity of
+   `δ_τ`.
+4. **Garside part in full.** This is `flagged-pointed-cube-garside-verification`, from the
+   earlier round.
+
+Status stays **OPEN** until bh-ref-q115-b cross-checks items 1–3.
