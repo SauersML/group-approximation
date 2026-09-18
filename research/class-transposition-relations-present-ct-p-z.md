@@ -82,3 +82,15 @@ is presented by the class transpositions `t(A,B)` subject to:
      of colours in `P'`.
    - **Proposed kill.** The {2,p,q}-cube relation, the elementary shadow of `N_2 = 1` in FKPS. It is
      not carried out.
+4. **bh-pal-kourovka61, 09-18 (pass 4): reduced to Thompson's V.** Artifact §5 and
+   `ct-p-z-has-the-ore-tree-presentation` (Fact O, now a lane proof).
+   - **Forced lifts.** Only `Y_p` is free: compression at positions `≥ 2`, and (d)-transport to
+     position 1.
+   - **`ψ` is idempotent on `K`.** It is `φ_A|_K` for any proper box `A`.
+   - **Far commutation.** The far-commutation defects lie in `K ∩ Γ_∅`.
+   - **The {2,p,q}-cube hexagon.** Together with the change rule `D_{2p} ↦ D_{2p} + 2ψ(z) − z`
+     (the colour with two edges), it shows first that `K = ψ(K)`, hence `ψ = id`, and then that
+     every colour-exchange defect vanishes.
+   - **Result.** If (R1)–(R3) present Thompson's `V` (Bleak–Quick 1511.02123, proved there via
+     Cannon–Floyd–Parry), then (R1)–(R3) present `CT_P(Z)` for every finite `P`.
+   - **Still open.** An elementary proof of the `V` case, and a review of the cube bookkeeping.
