@@ -86,9 +86,11 @@ open part is finite presentation. One concrete route is
    - Consequences:
      - `resolvent-elementary-groups-are-not-fp` refutes `resolvent-elementary-group-is-fp`, so route
        `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l` is closed.
-     - `resolvent-steinberg-rf-residual-is-infinitely-normally-generated` (OPEN until two cited K-theory inputs
-       are confirmed) would close route `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`.
-     - For `l` odd it would also refute `resolvent-steinberg-group-is-residually-finite`.
+     - `resolvent-steinberg-rf-residual-is-infinitely-normally-generated` is ESTABLISHED, with both K-theory
+       inputs read at source (69ed7e51a; confirmed by gq-referee-b, 7a9be50ac). It closes route
+       `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`.
+     - For `l` odd the surviving corner symbols lie in the finite residual, so `St_N(R_l)` is not residually
+       finite. `resolvent-steinberg-group-is-residually-finite` stays open only at `l = 2`.
    - **What is NOT refuted.**
      - This claim itself. It asks for some finitely presented residually finite group containing `Z_(l)`, and the
        obstruction concerns quotients of `St_N(R_l)` only.

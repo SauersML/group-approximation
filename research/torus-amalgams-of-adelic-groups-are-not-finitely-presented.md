@@ -80,13 +80,14 @@ Let `B` be a finitely generated group and `C -> B` an injective homomorphism. Pu
   and `[x_ij(a), x_jk(b)] = x_ik(ab)` hold for all entries, and for a finitely presented ring `R` containing
   `Q` they follow from finitely many (`steinberg-groups-of-fp-rings-are-fp-in-rank-five`). Compare
   `z-localized-embeds-in-fp-kazhdan-steinberg-group` and `char-zero-representable-rings-embed-in-fp-simple-rings`.
-- **The candidate `K_2^T`.** With `H = T` as in item 4, `K_2^T` contains `GL_2(Q)` and is 2-transitive on
+- **The candidate prime-shift group `K_2^T`.** With `H = T` as in item 4, the prime-shift group `K_2^T` (not algebraic
+  `K_2`) contains `GL_2(Q)` and is 2-transitive on
   `P^1(Q)`. As in `prime-shift-kn-fp-reduces-to-a-metabelian-quotient`, item 1, `k(tw) = σ_(φ(k))(t) k(w)`
   defines a homomorphism `φ` of `K_2^T` onto `T` that splits. The metabelian test only asks that the
   kernel `J` of `Z ≀_P T -> K_2^T / <<GL_2(Z)>>`, which lies in the base `Z[P]`, be finitely generated as a
   `Z[T]`-module. `J = 0` satisfies that. By item 5,
-  `K_2^T` can still be finitely presented only through a hidden relation. It is not recorded as a separate claim.
-- **Calibration (MT-C).** `K_2^T` acts on `Q^2`, not on a restricted product of thickenings of the
+  the prime-shift group `K_2^T` can still be finitely presented only through a hidden relation. It is not recorded as a separate claim.
+- **Calibration (MT-C).** The prime-shift group `K_2^T` acts on `Q^2`, not on a restricted product of thickenings of the
   `T_p`, so neither bound of `fg-restricted-product-actions-have-finite-support` or
   `sl-2-q-root-group-is-parabolic-in-every-prime-factor` constrains it. Its `u(1/m!)` is
   `diag(m!,1)^-1 u(1) diag(m!,1)`, with `diag(m!,1)` in the subgroup `<e, σ_T> ≅ Z ≀_P T`.
