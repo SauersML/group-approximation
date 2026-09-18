@@ -178,16 +178,17 @@ theorem no_class (r : diagram.toCombMap.Dart)
     (hch : GreendlingerLeaf.P10ExtremalRegion.ExtremalClassChoice pK r)
     (hst : GreendlingerLeaf.P10ExtremalRegion.ExtremalClassStretches pK r) : False := by
   obtain ⟨hT, -, kept, hkf, hkx⟩ := hch
-  rcases (by decide : ∀ c : Fin 6, c = 0 ∨ c = 1 ∨ c = 2 ∨ c = 3 ∨ c = 4 ∨ c = 5) (cid r) with
-    hc | hc | hc | hc | hc | hc
+  have hsix : ∀ c : Fin 6, c = 0 ∨ c = 1 ∨ c = 2 ∨ c = 3 ∨ c = 4 ∨ c = 5 := by decide
+  rcases hsix (cid r) with hc | hc | hc | hc | hc | hc
   · rcases cell_cases kept with rfl | rfl
     · exact absurd ((face_mem_iff 1).mp hkf) (by decide)
     · exact hkx 0 ((faceOf_eq_face 0 0).mpr (by decide))
         ((eqvGen_iff r 0).mpr (hc.trans (by decide)))
   · rcases hT with ⟨e, he, hke⟩ | hT
     · rw [pK_target] at he
-      exact (by decide : ∀ e ∈ ([8, 10, 12] : List diagram.toCombMap.Dart), keptTab 1 e ≠ true)
-        e he ((kept_at r e 1 hc).symm.trans hke)
+      have hno : ∀ e ∈ ([8, 10, 12] : List diagram.toCombMap.Dart), keptTab 1 e ≠ true := by
+        decide
+      exact hno e he ((kept_at r e 1 hc).symm.trans hke)
     · exact hT 9 ((faceOf_eq_face 9 5).mpr (by decide))
         ((eqvGen_iff r 9).mpr (hc.trans (by decide)))
   · have h := hst [] 0 [2] 4 [6, 8, 10, 12] (by decide) ((kept_at r 0 2 hc).trans (by decide))

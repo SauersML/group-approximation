@@ -74,7 +74,7 @@ theorem suslinBase3Core_map_C {A K ι : Type*} [CommRing A] [CommRing K] [Fintyp
         (elementaryMatrixUnitMap (Polynomial.C (R := A)) u) =
       elementaryMatrixUnitMap (Polynomial.C (R := K)) (elementaryMatrixUnitMap π u) := by
   apply Units.ext
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   change Polynomial.map π (Polynomial.C ((u : Matrix ι ι A) i j)) =
     Polynomial.C (π ((u : Matrix ι ι A) i j))
   exact Polynomial.map_C π
