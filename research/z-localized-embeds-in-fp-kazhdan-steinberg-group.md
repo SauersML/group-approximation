@@ -2,6 +2,8 @@
 rg: 2
 id: z-localized-embeds-in-fp-kazhdan-steinberg-group
 kind: claim
+artifacts:
+  - research/artifacts/gq-referee-b-z-localized-embeds-in-fp-kazhdan-steinberg-group.md
 title: For every prime l and N >= 4, Z_(l) embeds in the finitely presented Kazhdan group St_N(R_l) of the eight-relator resolvent ring
 distinct_from:
   z-localized-embeds-in-fp-rf-group: that asks for a finitely presented residually finite overgroup; this gives a finitely presented overgroup whose residual finiteness is open (resolvent-steinberg-group-is-residually-finite).
@@ -10,8 +12,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `z-localized-embeds-in-fp-kazhdan-steinberg-group-proof`.
-The lane assembly is not independently reviewed. The finite presentation and
-property (T) are imported.
+The lane assembly passed citation review (gq-referee-b, artifact above). The finite
+presentation and property (T) are imported.
 
 **Statement.** Let `l` be a prime, `R_l` the finitely presented ring of
 `resolvent-ring-presentation-is-not-faithful-on-r-bar`, and `N >= 4`.
@@ -21,7 +23,11 @@ property (T) are imported.
 3. `St_N(R_l)` is finitely presented and has property (T)
    (`steinberg-finite-presentation-and-kazhdan-theorem`: Krstić--McCool Theorem 3,
    and Ershov--Jaikin-Zapirain).
-
+   **Rank.** Every use downstream works with any `N >= 4`, so `N >= 5` may be assumed.
+   For `N >= 5` finite presentation also follows, with no literature input, from
+   `steinberg-groups-of-fp-rings-are-fp-in-rank-five`. At `N = 4` it rests on
+   Krstić--McCool Theorem 3, read only in secondary sources. Property (T) is imported in
+   every rank.
 **Position.** This proves the finitely presented half of
 `z-localized-embeds-in-fp-rf-group`. What remains is residual finiteness:
 `resolvent-steinberg-group-is-residually-finite` would finish it, through route
