@@ -5823,6 +5823,12 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Defs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaUnits
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnital
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.ChainsLowDegree
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.OpsAlg
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.PolyOps
+import GroupApproximation.Manuscript.NonMF.Full.GL06h1.DoublingLabels
+import GroupApproximation.Manuscript.NonMF.Full.GL06h1.SubdiagramLabels
+import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Progress
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDefs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
