@@ -41,3 +41,23 @@ latter.
   is not in the MF radical.  Any successful Higman-type seed must spend the
   genuinely cyclic multi-seam return rather than a single Baumslag--Solitar
   closure.
+- **Merging the two goal halves (2026-09-18).**
+  - The Leavitt absorber dies in torsion-free targets.  Its full MF radical
+    can still be spent on an upward cover:
+    `property-t-free-seed-via-leavitt-abelianized-cover` builds the seed from
+    `property-t-free-leavitt-full-mf-radical`, the finitely presented
+    full-radical cover, the free abelianized cover, and Chiodo's torsion-free
+    Higman embedding.  This supplies the recursively presented seed that the
+    second attempt above lacked.
+  - The only new input is the hole `full-mf-radical-abelianized-cover-is-not-mf`,
+    which is weaker than `free-abelianized-cover-reflects-mf`.  So the goal's
+    distinct deep inputs are now {Leavitt collapse, that hole} instead of
+    {Leavitt collapse, an independent torsion-free non-MF mechanism}.
+  - Two proved lemmas mark where the hole stands.
+    - `abelianized-cover-injective-corona-model-carries-nonzero-twist`: an
+      injective model must carry a nonzero pushed relation-module class.
+    - `implemented-corona-actions-of-countable-groups-are-unconstrained`:
+      rigidity of the implemented action on the kernel algebra is false for
+      every nontrivial countable group.  So any proof must use the exact twist
+      in `U(C*(rho(M)))`.
+  - The hole is not closed.
