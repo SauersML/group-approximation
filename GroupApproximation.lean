@@ -5751,6 +5751,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFi
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.LakeFillWalk
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiLocal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.LetterDisc
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Clearing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
