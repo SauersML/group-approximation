@@ -78,3 +78,22 @@ section is a nontrivial power map.
   (TeX read at `$GQ/src/bh-free-20/bart/lpres.tex`).
 - `G*_σ` need not be finitely presented for BH to apply; finite presentation matters only
   for naming the famous instances.
+
+## Update (2026-09-18, later): subsumed, and the exclusions lifted
+
+`f-infinity-tail-ascending-hnns-satisfy-boone-higman` drops condition (E)
+and replaces (F) by "the tail group `E(G)` is `F_∞`". It uses a one-point finite germ
+extension of `V_d S` as host instead of a contracting Röver–Nekrashevych group. So:
+- this criterion is a special case (finite tail group);
+- the Basilica exclusion above is lifted: `basilica-fp-amenable-hnn-satisfies-boone-higman`,
+  tail group `Z²`.
+
+The Brunner–Sidki–Vieira case needs a convention check: in Bartholdi's convention its
+substitution appears to have first-section rather than last-section form.
+
+## Lesson for general BH
+
+Whether an ascending HNN extension fits a contracting host is decided by one invariant, the
+tail group `E(G)`, the image of `G` along the sequence of first sections `ψσ^k`:
+- finite tail: a contracting Röver–Nekrashevych host suffices;
+- infinite `F_∞` tail: a finite germ extension is needed, and suffices.
