@@ -97,8 +97,8 @@ cyclic. Proof, with `G = Z^n` and `I ⊂ R` the augmentation ideal:
 6. So `Ker` is an extension of a subgroup of `Λ^3 Z^n` by a quotient of `Λ^4 Z^n`. For
    `n = 2` both vanish, which recovers `K_2 = 0`. For `n = 3`, `Ker ↪ Z`, so `K_3` is cyclic. ∎
 
-**Reading.** The `Λ^4` part is where Gupta's 2-torsion can live: its rank `C(n,4)` matches
-the torsion rank reported for `F''/[F'',F]` in the literature, which was not read. The
+**Reading.** The `Λ^4` part is the natural home for Gupta's 2-torsion. Whether its rank `C(n,4)`
+matches the rank of Gupta's `H_n` was not checked (the paper was not read). The
 `Λ^3` part is a single class for `n = 3`. So `C_3` is linear, via this construction, iff
 that one class dies in `F''/[F'', F]`. A Hall–Witt-type identity is the natural candidate
 to kill it. **Not decided here.**
