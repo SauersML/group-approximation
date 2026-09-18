@@ -3,6 +3,8 @@ rg: 2
 id: fpbs-mal-long-generator-packing-growth
 kind: claim
 title: For Gamma_mal, long single generators of a stage pair have packing floors tending to zero
+refuted_by:
+  - fpbs-mal-single-generator-packing-floor-uniform
 distinct_from:
   fpbs-malnormal-coset-cycles-linear-perimeter: that proves every fixed generator has finite packing growth and a positive floor; this asks whether the floors of varying generators have infimum zero.
   fpbs-locally-free-malnormally-exhausted-finite-cost: that is the finite-cost goal for the whole malnormally exhausted class; this is one packing certificate for one test group, and it implies only fixed price of Gamma_mal.
@@ -46,3 +48,22 @@ That is only a lower bound, and nothing yet produces rich detour families for
 long generators.
 
 ## Attempts
+
+- **2026-09-17, swarm-0917-w6-w6-fp-last2: REFUTED.** The claim is false,
+  because the generators it needs do not exist. By
+  [[fpbs-mal-stage-generators-lie-in-b-double-coset]], every `t` with
+  `<H_n, t> = H_m` lies in `H_n b_m^{±1} H_n`. Item 4 of
+  [[fpbs-malnormal-coset-cycles-linear-perimeter]] then gives floor `δ_mal` for
+  every such `t`. So `inf_j exp(-h_{t_j}) >= δ_mal > 0`; see
+  [[fpbs-mal-single-generator-packing-floor-uniform]].
+  - **Invariant.** The vertex pairs of the dumbbell Stallings graph `Δ_d` of
+    `H_n` in `F(a, b_m)` whose identification folds to the rose. For `d >= 2`,
+    these are only `(0, 0b), (0, 0ba)` and their reverses.
+  - **Proof of the invariant.** Base case `d <= 5` by exact census. Induction by
+    descent along `Δ_{d+1} -> Δ_d`: the 16 non-target lifts close locally.
+  - **Dying step.** Choosing `t_j` outside `H_n b_{m_j}^{±1} H_n`.
+  - **Brute-force confirmation.** 2850 generators for `d = 1` (`|t| <= 9`) and
+    226 for `d = 2` (`|t| <= 8`), with none outside.
+  - **Survivors.** Correlated multi-generator repairs, repairs that are not
+    Bernoulli, and direct lower bounds on `relC`.
+  - **Artifact.** `research/artifacts/fpbs-mal-stage-generator-rigidity-2026-09-17.md`.
