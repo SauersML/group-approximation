@@ -95,8 +95,15 @@ combinatorics.
     group-theoretic finiteness is concentrated in `C^*`.
   - Ax+b monoids of PIDs solve the representation problem for every RCWA group at once.
 - **Where it stops: matrix monoids.**
-  - For `n ≥ 2`, the monoid of affine maps `x ↦ Ax + b` with `A` nonsingular integral fails
-    (M1): a lattice of index `p²` lies in `p + 1` lattices of index `p`.
+  - For `n ≥ 2`, the monoid `C_n = Z^n ⋊ M_n^{(p)}(Z)` of affine maps `x ↦ Ax + b`, with `A`
+    integral of `p`-power determinant, admits **no** degree map to any `N^k` satisfying
+    (UFP*).
+    - The units `C_n^* = Z^n ⋊ GL_n(Z)` act transitively on the index-`p` lattices by
+      `A ↦ uAv`. So every degree map gives all index-`p` elements the same degree `e`.
+    - `pI = A_1 B_1 = A_2 B_2` with `A_1 Z^n ≠ A_2 Z^n` of index `p`, since `pZ^n` lies in
+      `(p^n − 1)/(p − 1) ≥ 3` such lattices.
+    - (UFP*) would force `A_2 = A_1 u` with `u` a unit, hence `A_2 Z^n = A_1 Z^n`, a
+      contradiction.
   - This Hecke branching is the precise obstruction to lattice-coset hosts. That matters
     for Kohl's `RCWA(Z^n)`, and for `GL_n(Q)`-type piecewise actions on `Ẑ^n`.
   - The central Garside element `pI` suggests replacing (M1) by Li's general Garside
