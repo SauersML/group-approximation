@@ -164,13 +164,19 @@ The density falls like `M^{-5/48}`.
 | 40 | 0.65 | 0.374 / 0.329 | 0.197 | 0.81 / 0.88 |
 | 160 | 0.56 | 0.438 / 0.385 | 0.213 | 0.70 / 0.81 |
 | 640 | 0.49 | 0.491 / 0.421 | 0.206 | 0.63 / 0.70 |
+| 2560 | 0.43 | 0.516 ± 0.038 / — | 0.180 | 0.60 / — |
+
+The `M = 2560` row uses 150 environments at `r = 0.3` only, for
+`n in {8, 32, 128}`. The measured density is `0.44 ± 0.04`, which matches
+`0.49 · 4^{-5/48} ≈ 0.43`.
 
 As the spine thins, `gamma` is flat (0.20 ± 0.01). `D_n` falls below the
 geometric value, and `K2` rises to 1.5-1.7. So all of the growth of the ratio
 goes through the covariance term `D_n`, as Corollary 2 says it must. The
 effective exponent of the ratio in `1/theta` over this window is
-`0.78 ± 0.13` (`r = 0.3`) and about `0.7` (`r = 0.6`). This is consistent with
-the heuristic `48/53 ≈ 0.91`. It is also compatible with `1`, at 1.7 sigma.
+`0.77 ± 0.11` (`r = 0.3`, weighted fit over all five rows) and about `0.7`
+(`r = 0.6`). This is consistent with the heuristic `48/53 ≈ 0.91`. It is
+also compatible with `1`, at 2 sigma.
 
 **Two parallel routes** (the boundary of an `n x h` rectangle; `u`, `v` are
 the bottom corners). For `n in {8,32,128}` and `h in {2,8,32}`, the ratio
@@ -185,7 +191,9 @@ The second route adds no bridging mechanism beyond the path criterion.
 
 **What this rules out.** In the whole accessible window
 (`theta >= 0.45`, `r in {0.3, 0.6}`, paths of length up to `256`, and
-two-route volumes), `Br <= C TJT` holds with `C = 0.5`. For each fixed
+two-route volumes), `Br <= C TJT` holds with `C = 0.5`. At `theta ≈ 0.43`
+(`M = 2560`) the ratio is already `0.52 ± 0.04`, so the best constant keeps
+rising as the spine thins. For each fixed
 supercritical spine it holds uniformly in `n`.
 
 So there is no bridge-driven failure of the Br route at bounded density. The
