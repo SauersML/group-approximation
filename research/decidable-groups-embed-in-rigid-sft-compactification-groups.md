@@ -26,6 +26,11 @@ the class `𝒞` of `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sf
 
 - **Consequence.** (★𝒞) implies `decidable-groups-lie-in-fp-groups-with-rigid-topfree-sfts` via
   `Λ = Λ_0 * Z` (the route). The overgroup obtained there is `Λ_0 * Z`.
+- **What it upgrades.** Without finite type or rigidity the object is free: the one-point
+  compactification `O_A` glued along `A * Z` is a minimal, topologically free, effectively closed
+  subshift for every decidable `A` (`free-products-with-z-carry-minimal-topfree-effective-subshifts`).
+  (★𝒞) asks exactly for a rigid SFT cover of it, injective over the seed. It needs premise (D) of
+  bh-g1-universal-point only if freeness is wanted.
 - **Canonical inputs suffice.** By `decidable-host-classes-reduce-to-canonical-kazhdan-groups`, applied
   to the class of finitely presented members of `𝒞`, (★𝒞) is equivalent to the same statement for the
   groups `H_Γ = EL_3(R_Γ)`. These are infinite, finitely generated, simple and Kazhdan.
