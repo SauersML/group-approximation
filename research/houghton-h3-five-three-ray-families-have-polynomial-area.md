@@ -39,3 +39,14 @@ presentation `P` of `research/artifacts/zp-houghton-pours-2026-09-17.md` §0 wit
     commuting parts have intersecting ray supports, since two subsets of size `>= 2`
     of three rays always meet. So "reroute to disjoint ray supports, then commute
     letter by letter" dies at the commute step for `n = 3`.
+- 2026-09-18 (swarm-0917-w12-w12-z-last1). This is a reframing, recorded in
+  `research/artifacts/zp-houghton-h3-families-via-reroute-2026-09-18.md`. It gives the
+  route `houghton-h3-five-families-reduce-to-reroute`.
+  - **R_3.** The middle of `D^u_x(k) D^v_x(k)^(-1)` is one pour from `u` to `v`. Its
+    two-ray normal form `N_k` (Proposition 5 of the doubling note) misses ray `x`. So
+    `R_3(k) <= 2A(k) + |N_k| + 4k + 2`. This is the claim
+    `houghton-h3-reroute-family-has-polynomial-area`.
+  - **The other four.** Conjugating the whole relation by a pull turns one part into a
+    single `τ`. This escapes Lemma C.1, which constrains only the given parts. The
+    bounds are `F_3, D_3, C_3 <= 6R̄(k) + O(k)` and `B_3 <= 6R̄(2k) + O(k)`. Every
+    derivation is machine-checked, 4986 in all.
