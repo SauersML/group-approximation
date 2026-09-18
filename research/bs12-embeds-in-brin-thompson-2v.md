@@ -197,7 +197,10 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   like recognizability, not counting.** See `gq-gq-nv-obstruct-binary-smart-search.md` §3d.
   - Machines with exact 2-adic `Y`-counts and bounded returns exist. An example is mask 21 with 6+6 states
     and 3 symbols: block sizes `29·2^m`, gap 87.
-  - But their 2-adic phase is not locally readable beyond `mod 2`. The `mod 8` phase has about 10^6
-    conflicts at radius 12–15.
+  - **Corrected (§3e):** the earlier conflict counts came from a hash bug. `mod 2` and `mod 4` are
+    consistent at radius 9. The obstruction is in the return times: the first configuration `y` of the
+    orbit returns with `n = 29·2^m + 4 ≡ 4 mod 8` (certified to radius 18). By
+    `renormalization-return-times-tend-to-zero-adically`, convergence of these returns would exclude a
+    height-2 renormalization.
   - So no height-2 renormalization appears. This agrees with gq-affq's growing-control-information
     conjecture.
