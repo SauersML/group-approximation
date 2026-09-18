@@ -36,14 +36,15 @@ variable {M : CombMap.{u}} {w : List M.Dart}
 theorem wd_succ (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar) (i : ℕ)
     (hi : i < w.length) (hi1 : i + 1 < w.length) :
     (ordRing hw hM).facePerm (wd hw hM i hi) = wd hw hM (i + 1) hi1 :=
-  ordRing_ext hw hM ((ordRing_facePerm_val_of_getElem hw hM _ i hi rfl).trans
+  ordRing_ext hw hM ((ordRing_facePerm_val_of_getElem hw hM (wd hw hM i hi) i hi rfl).trans
     (getElem_idx_congr w (Nat.mod_eq_of_lt hi1) (Nat.mod_lt _ (by omega)) hi1))
 
 /-- The face successor of the last walk dart in the ring map is the first walk dart. -/
 theorem wd_last (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
     (hn : w.length - 1 < w.length) (h0 : 0 < w.length) :
     (ordRing hw hM).facePerm (wd hw hM (w.length - 1) hn) = wd hw hM 0 h0 :=
-  ordRing_ext hw hM ((ordRing_facePerm_val_of_getElem hw hM _ _ hn rfl).trans
+  ordRing_ext hw hM ((ordRing_facePerm_val_of_getElem hw hM
+    (wd hw hM (w.length - 1) hn) (w.length - 1) hn rfl).trans
     (getElem_idx_congr w (by rw [Nat.sub_add_cancel (by omega : 1 ≤ w.length), Nat.mod_self])
       (Nat.mod_lt _ (by omega)) h0))
 
@@ -110,9 +111,15 @@ theorem lake_orbit (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
       M.alpha (((walkMap M w).facePerm ^ i) x₀).1 ∈ w := by
   induction i with
   | zero =>
+    have e1 : ((ordRing hw hM).facePerm ^ 0) (lakeStart hw hM x₀) = lakeStart hw hM x₀ := by
+      rw [pow_zero, Perm.one_apply]
+    have e2 : ((walkMap M w).facePerm ^ 0) x₀ = x₀ := by
+      rw [pow_zero, Perm.one_apply]
     refine ⟨?_, ?_⟩
-    · simp only [pow_zero, Perm.one_apply] <;> rfl
-    · simp only [pow_zero, Perm.one_apply] <;> exact hx₀
+    · exact (congrArg (fun z : (ordRing hw hM).Dart => z.1.1) e1).trans
+        (congrArg Subtype.val e2).symm
+    · rw [e2]
+      exact hx₀
   | succ i ih =>
     obtain ⟨ih1, ih2⟩ := ih
     have hXa : M.alpha (((ordRing hw hM).facePerm ^ i) (lakeStart hw hM x₀)).1.1 ∈ w := by
