@@ -112,10 +112,8 @@ theorem p10QM_move_FF (M : CombMap.{v}) (F : Finset M.Face) (c : BoundaryCycle M
     exact Bool.false_ne_true (h.mp hk)
   · obtain ⟨y, hy⟩ := List.exists_mem_of_ne_nil B hB.ne_nil
     exact ⟨y, hBc y hy, Bool.eq_false_iff.mpr fun h => (hkeep y (hBc y hy)).mp h hy⟩
-  · rw [hfa]
-    exact List.infix_refl _
-  · rw [hfb]
-    exact List.prefix_refl _
+  · exact (congrArg (· <:+: a.darts.reverse.map M.alpha) hfa).mpr (List.infix_refl _)
+  · exact (congrArg (· <+: b.darts) hfb).mpr (List.prefix_refl _)
   · exact p10QM_closed_filter_remove hc c.cycle_nodup hblk hB.isClosedDartWalk hP hkeep
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QM_move_FF
@@ -165,10 +163,8 @@ theorem p10QM_move_TF (M : CombMap.{v}) (F : Finset M.Face) (c : BoundaryCycle M
     exact Bool.false_ne_true (h.mp hk)
   · obtain ⟨y, hy, hyB⟩ := hP
     exact ⟨y, hy, Bool.eq_false_iff.mpr fun h => hyB ((hkeep y hy).mp h)⟩
-  · rw [hfa]
-    exact List.infix_refl _
-  · rw [hfb]
-    exact List.prefix_refl _
+  · exact (congrArg (· <:+: a.darts.reverse.map M.alpha) hfa).mpr (List.infix_refl _)
+  · exact (congrArg (· <+: b.darts) hfb).mpr (List.prefix_refl _)
   · exact p10QM_closed_filter_keep c.cycle_nodup hblk hB.isClosedDartWalk hkeep
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QM_move_TF
