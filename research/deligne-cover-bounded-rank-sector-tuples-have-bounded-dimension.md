@@ -150,3 +150,24 @@ exist in every dimension, and (LOC) fails at exactly one step: `z^2` is not in t
     - Long-root pairs: this needs a polynomial Dehn function for `Sp_(2g)(Z)`.
     - Linear `phi` does not give closeness to commuting pairs (see the slit origami). The next
       step is a sublinear conversion defect `rank(rho(u)^L - rho(W_L(u))) = o(L)`.
+- **The sublinear conversion defect is false; linear order is the near-exact noise floor
+  (2026-09-18, w6-124, transplanter).** See `near-exact-tuples-saturate-linear-conversion-defect`.
+  - **Counterexample.** In the permutation representation of `SL_n(Z)` on `C[F_p^n]`, twist one
+    basis vector by a phase `lambda` in `rho(e_12)`. The result is a rank-`k` tuple at rank distance
+    one from an exact representation, with `k = max_r |r|_u`. Its conversion defect is exactly `L`
+    for the Steinberg word `[e_13^a, e_32^b]`, `ab = L`, and it is `>= L - |W|_u` for every `W = u^L`.
+    Also `phi(L) = 2L`. So the `C_n k L` bounds of `sln-relators-force-linear-commutator-growth` are
+    sharp, and the sublinear step proposed above dies. The spectrum of `rho(u)` itself moves on a
+    whole `p`-cycle, so atom-level rigidity must be stated for a rounded pair, never for `rho(u)`.
+  - **Noise floor.** A tuple at rank distance `r` from an exact representation has
+    `rank(rho(w) - I) <= r |w|` for all trivial `w`. Word-growth invariants detect distance only through
+    superlinear growth. Conversely, distance to commuting pairs is at least
+    `sup_w rank(w - I) / |w|`.
+  - **Correction.** The slit origami does not have linear `phi`: `phi(m) = 2 m^2` for `m <= L/2`.
+    The dislocation dipole is quadratic too. For `g >= 5` both are excluded as root-pair summands
+    beyond scale `O(k)`. No bounded-profile pair far from commuting is known.
+  - **What survives.** A B-invariant question,
+    `z2-bounded-rectangle-profile-forces-near-commuting`: does
+    `rank([b^s, c^t] - I) <= K (s + t)` force rank distance `F(K)` from commuting pairs? For `g >= 5`
+    it would supply the commuting rounding of the root pair. The interlacing step is still needed
+    after that. The first check is the square-tiled (permutation) case.
