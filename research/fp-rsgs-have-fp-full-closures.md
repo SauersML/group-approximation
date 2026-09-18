@@ -71,3 +71,63 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
      with `H_*(O_2) = 0`, would give `H_*(G_t) = 0`. That sequence was not checked at source.
    - **Next.** Either (a) a Garside or Stein–Farley complex for `[[Γ_t]]` built from the lag grading
      (Lipschitz case), or (b) an obstruction for non-Lipschitz `t`, where no Z-grading exists.
+2. **A Scott-type presentation (bh-higman-classic, 2026-09-18).** *One step missing.*
+   - **Setting.** Let `V ≤ G ≤ N(V)`, which covers every `Γ_t`. By
+     [[v-by-normalizer-groups-are-self-similar]], `G` is self-similar up to `V`,
+     `[[G]] = ⟨V, ι_0(G)⟩`, every element has a cone-partition normal form `w · ∏ ι_{u_i}(g_i)`, and a
+     normal form is trivial iff its pieces cancel against `V`.
+   - **The candidate presentation.** Take a finite presentation `G = ⟨S | R⟩` with `S ⊇ S_V`, and
+     adjoin hatted letters `Ŝ` (intended `ι_0(s)`), with these relations:
+     - `R` and its hatted copy `R̂`;
+     - `[ŝ, y] = 1` for `y` in a finite generating set of `V_{C_1}`;
+     - `v̂ = ι_0(v)` for `v ∈ S_V`, the right side written as a `V`-word;
+     - disjoint-support commutators `[ŝ, c t̂ c^{-1}]` and `[ŝ, d t̂ d^{-1}]`, where `c, d ∈ V` send `C_0`
+       prefix-wise onto `C_1` and onto `C_{10}`;
+     - for each `s ∈ S`, the one-level expansions `s = w_s · ι_0(s_0) ι_1(s_1)` and
+       `ŝ = ι_0(w_s) · ι_{00}(s_0) ι_{01}(s_1)`, where `w_s ∈ V` matches `{C_0, C_1}` with
+       `{s(C_0), s(C_1)}` and `s_a ∈ G` are the normalized restrictions.
+     All of these are finite in number.
+   - **What is proved.** The natural map onto `[[G]]` is surjective. It is injective on every element
+     that the relations bring to normal form (item 4 of the self-similarity node, plus faithfulness of
+     the copies of `G` and `V`).
+   - **The missing step: normalization.** Moving a `V`-element `w` past a cone copy `ι_y(g)` needs an
+     expansion of `ι_y(g)` to a depth fixed by `w`.
+     - For asynchronous `g` the images of depth-`d` cones are clopens described only at depth
+       `d + ℓ`. So the `V`-parts created by an expansion must be moved past the other factor, which
+       has to be expanded `ℓ` deeper. That creates new `V`-parts, and so on.
+     - For Scott's synchronous groups `ℓ = 0`: the `V`-parts are level permutations, and the descent
+       stops. That is why Scott needs only finite presentation of `G`.
+     - For contracting groups (Theorem B) the finite nucleus bounds the descent.
+     - For `Γ_t`, `ℓ` is the delay of `t`: bounded per step when `t` is Lipschitz, growing with the
+       word when it is not.
+   - So Question 1.4 for this family comes down to whether the descent terminates, or can be avoided
+     by a cleverer normal form. A proof that no finite set of relations stops it would give a
+     negative answer.
+3. **Narrowing the gap with restriction-closed generators (bh-higman-classic, 2026-09-18).**
+   *Progress, still one step missing.*
+   - **The generating set.** For `V ≤ G ≤ N(V)`, take generators `S = S_V ∪ {h_1, …, h_m}`. Each
+     normalized restriction of `h_i` lies in `h_i V = V h_i` (item 1 of
+     [[v-by-normalizer-groups-are-self-similar]]). So every generator restricts to a single generator,
+     up to `V` on either side (the case "K = 1").
+   - **Pure one-sided expansions.** Add, for each `h_i`, one left and one right one-level expansion
+     relation:
+     - left: `ĥ_i = ι_0(W_i) · ι_{00}(v_0 h_i) ι_{01}(v_1 h_i)`;
+     - right: `ĥ_i = ι_{00}(h_i v'_0) ι_{01}(h_i v'_1) · ι_0(E_i)`.
+     Then every cone copy of a generator has a pure left expansion (`V` only on the left) and a pure
+     right expansion to every finer partition. The derivation is a recursion that strictly lowers
+     the depth, because restrictions of generators are generators times `V`.
+   - **Layered normal forms.** Pushing each `V`-element to the right end uses only pure right
+     expansions of generator copies. So every word of the candidate presentation equals
+     `L · Λ_1 ⋯ Λ_m · R`, where `L, R ∈ V` and each layer `Λ_k` is a product of generator copies over a
+     cone partition.
+   - **What remains.** Collapse the layers to one partition, so that the triviality test of item 4
+     applies.
+     - Two layers collapse: left-expand the first, right-expand the second, and combine the pieces.
+     - The combined pieces are products of two generators, whose derived expansions are two-sided.
+     - Pure one-sided expansions of products such as `t^n`, `n ≥ 2`, are not obtained this way. Every
+       recursion tried produces a `V`-part between two layers, because the `V`-parts of asynchronous
+       expansions send cones to non-cones.
+   - **Where it now stands.** Question 1.4 for every finitely presented `V ≤ G ≤ N(V)` (in particular
+     every `Γ_t`) reduces to deriving pure one-sided expansions of `ι_u(h^n)` from the finitely many
+     relations. Equivalently, it reduces to a normal form that never has to multiply pieces. A
+     Stein–Farley complex whose cells are layered normal forms is the natural next tool.

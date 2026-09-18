@@ -40,6 +40,8 @@ groups, where they are the sharpest open part:
    - `Γ <= SV_Γ` because the coordinate-permutation label is locally determined.
 
    So every hyperbolic group quasi-isometrically embeds in a finitely presented simple group. What remains
-   open here is only the type F_∞ requirement on the host. For this host it is tied to two open questions: BBMZ Question
-   `quest:F_infty` (is `Γ` of type F_∞?) and the Belk–Zaremsky type F_n criterion for `SV_G` at n ≥ 3, which
-   is a conjecture (arXiv:2001.04579). Any other undistorted host of type F_∞ would also do.
+   open here is only the type F_∞ requirement on the host. For this host it comes down to BBMZ Question `quest:F_infty` (is `Γ`
+   of type F_∞?): Belk–Zaremsky, arXiv:2001.04579, Theorem 1.4 (proved) makes `SV_Γ` of type F_∞ once `Γ` and its
+   finite-set stabilizers on `S` are F_∞, and their Theorem 1.2 with Alonso shows `Γ` must be F_∞. (Correction
+   09-18: an earlier version of this entry called their F_n criterion a conjecture; only the sharper
+   characterization is conjectural.) Any other undistorted host of type F_∞ would also do.

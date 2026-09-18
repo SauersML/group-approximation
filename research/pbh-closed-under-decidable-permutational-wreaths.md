@@ -41,7 +41,10 @@ solvable exactly when membership in `C` is decidable
 
 The test cases recorded on the refuted node all have decidable stabilizers, so they
 are test cases of this claim:
-- `Z wr_(F_2/⟨a⟩) F_2`, with infinite cyclic stabilizers;
+- `Z wr_(F_2/⟨a⟩) F_2`, with infinite cyclic stabilizers. **Settled (2026-09-18):** `⟨a⟩ = C_(F_2)(a)`, so
+  case 2 of `pbh-coset-wreaths-iff-identity-edge-hnns` applies. More generally, every
+  finitely generated stabilizer in a free top group is covered by
+  `free-group-coset-wreaths-satisfy-pbh`;
 - `Z wr_X PSL_2(Z[1/2])` over `X = PSL_2(Z)\PSL_2(Z[1/2])`
   (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`).
 

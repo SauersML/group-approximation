@@ -5,8 +5,10 @@ kind: claim
 title: Every hyperbolic group embeds in some Brin-Thompson group nV
 ---
 
+**OPEN.** Only the cases below are known; the Attempts section records why the known method cannot reach hyperbolic Kazhdan groups.
+
 For every finitely generated word-hyperbolic group `G` there is `n ≥ 1` and an
-injective homomorphism `G → nV`. This is the affirmative answer to Zaremsky
+injective homomorphism `G → nV`. If true, this is the affirmative answer to Zaremsky
 Problem 2.19(a) (`zaremsky-2-19a-every-hyperbolic-group-in-some-nv-resolved`).
 
 ## Known cases
@@ -137,7 +139,10 @@ Problem 2.7.
     an amenable graph, and they need not be amenable.
   - **Side remark on host classes (unrefereed import).** Kojima–Sheng,
     arXiv:2603.18410, abstract: "We prove that the Brin-Thompson group $nV$ is
-    torsion locally finite for $ n \geq 1$". If this is correct, no host group
+    torsion locally finite for $ n \geq 1$". For `n >= 2` this is a claimed theorem
+    whose proof is invalid: its two-generator criterion fails already in `V`
+    (`kojima-sheng-two-generator-torsion-criterion-fails-in-v`, a22c90a4a), and the
+    statement is open (`brin-thompson-2v-is-torsion-locally-finite`, `brin-thompson-groups-contain-infinite-periodic-groups`). If the statement is true, no host group
     containing a finitely generated infinite torsion group embeds in any `nV`.
     So a route "hyperbolic group -> universal host class -> nV" must use the
     specific host of each `G`, not a class closed under adding groups such as
