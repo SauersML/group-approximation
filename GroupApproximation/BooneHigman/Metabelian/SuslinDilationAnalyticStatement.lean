@@ -131,3 +131,113 @@ theorem suslinDilAn_away_ker (a : A) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_away_ker
 
 end Substitution
+
+section Quillen
+
+variable {A S : Type*} [CommRing A] [CommRing S] {N : ℕ}
+
+/-- **The analytic half** (`N ≥ 3`): if `f : A → S` satisfies `hsurj`, `hker` (e.g.
+`A → A_a`) and `f(τ) ∈ E_N(S[X])`, then `a^k ∈ Q(τ)` for some `k`.  No normalization of `τ`
+is needed: the Quillen matrix `τ(X + Y) τ(X)⁻¹` always has value `1` at `Y = 0`. -/
+theorem suslinDilAn_quillen_of_map (hN : 2 < N) (f : A →+* S) (a : A)
+    (hsurj : ∀ c : S, ∃ (t : ℕ) (b : A), c * f a ^ t = f b)
+    (hker : ∀ b : A, f b = 0 → ∃ n : ℕ, a ^ n * b = 0)
+    (τ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A))
+    (hτ : elementaryMatrixUnitMap (ι := Fin N) (Polynomial.mapRingHom f) τ ∈
+      elementaryGroup (Fin N) (Polynomial S)) :
+    ∃ k : ℕ, SuslinLocalGlobalQuillen τ (a ^ k) := by
+  have hσ0 : elementaryMatrixUnitMap (ι := Fin N) (Polynomial.constantCoeff (R := Polynomial A))
+      (elementaryMatrixUnitMap (ι := Fin N) (suslinLocalGlobalShift (1 : A)) τ *
+        (elementaryMatrixUnitMap (ι := Fin N)
+          (Polynomial.C : Polynomial A →+* Polynomial (Polynomial A)) τ)⁻¹) = 1 := by
+    rw [map_mul, map_inv, suslinLocalGlobal_map_map, suslinLocalGlobal_map_map,
+      suslinDilAn_constantCoeff_comp_shift, mul_inv_cancel]
+  have hsh := suslinDilAn_mapMap_comp_shift f (1 : A)
+  rw [map_one f] at hsh
+  have h1 := elementaryGroup_map_le (ι := Fin N) (suslinLocalGlobalShift (1 : S))
+    (Subgroup.mem_map_of_mem _ hτ)
+  rw [suslinLocalGlobal_map_map, ← hsh, ← suslinLocalGlobal_map_map] at h1
+  have h2 := elementaryGroup_map_le (ι := Fin N)
+    (Polynomial.C : Polynomial S →+* Polynomial (Polynomial S)) (Subgroup.mem_map_of_mem _ hτ)
+  rw [suslinLocalGlobal_map_map, ← Polynomial.mapRingHom_comp_C,
+    ← suslinLocalGlobal_map_map] at h2
+  have hσ : elementaryMatrixUnitMap (ι := Fin N)
+      (Polynomial.mapRingHom (Polynomial.mapRingHom f))
+      (elementaryMatrixUnitMap (ι := Fin N) (suslinLocalGlobalShift (1 : A)) τ *
+        (elementaryMatrixUnitMap (ι := Fin N)
+          (Polynomial.C : Polynomial A →+* Polynomial (Polynomial A)) τ)⁻¹) ∈
+      elementaryGroup (Fin N) (Polynomial (Polynomial S)) := by
+    rw [map_mul, map_inv]
+    exact mul_mem h1 (inv_mem h2)
+  obtain ⟨k, hk⟩ := suslinDilAn_dilation (Polynomial.mapRingHom f) (Polynomial.C a) hN
+    (suslinDilAn_surj_poly f a hsurj) (suslinDilAn_ker_poly f a hker) _ hσ0 hσ
+  refine ⟨k, ?_⟩
+  rw [map_mul, map_inv, suslinLocalGlobal_map_map, suslinLocalGlobal_map_map, ← Polynomial.C_pow,
+    suslinDilAn_dilate_C, suslinLocalGlobalDilate_comp_shift, mul_one,
+    suslinLocalGlobalDilate_comp_C] at hk
+  exact hk
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_quillen_of_map
+
+/-- Conversely, if `f(a) v = 1`, `τ(0) = 1` and `a ∈ Q(τ)`, then `f(τ) ∈ E_N(S[X])`
+(substitute `Y ↦ -vX`). -/
+theorem suslinDilAn_map_mem_of_quillen (f : A →+* S) {a : A} {v : S} (hv : f a * v = 1)
+    {τ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A)}
+    (hτ0 : elementaryMatrixUnitMap (ι := Fin N) (Polynomial.constantCoeff (R := A)) τ = 1)
+    (hQ : SuslinLocalGlobalQuillen τ a) :
+    elementaryMatrixUnitMap (ι := Fin N) (Polynomial.mapRingHom f) τ ∈
+      elementaryGroup (Fin N) (Polynomial S) := by
+  unfold SuslinLocalGlobalQuillen at hQ
+  have h := elementaryGroup_map_le (ι := Fin N)
+    (Polynomial.eval₂RingHom (Polynomial.mapRingHom f) (Polynomial.C (-v) * Polynomial.X))
+    (Subgroup.mem_map_of_mem _ hQ)
+  rw [map_mul, map_inv, suslinLocalGlobal_map_map, suslinLocalGlobal_map_map,
+    suslinDilAn_eval_comp_shift f hv, suslinDilAn_eval_comp_C, ← suslinLocalGlobal_map_map, hτ0,
+    map_one, one_mul] at h
+  exact inv_mem_iff.1 h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_map_mem_of_quillen
+
+end Quillen
+
+/-- For every normalized `τ ∈ SL_N(A[X])` and maximal ideal `𝔪`, some `a ∉ 𝔪` makes the image
+of `τ` in `GL_N(A_a[X])` elementary. -/
+def SuslinDilationAnalyticLocallyElementary (A : Type*) [CommRing A] (N : ℕ) : Prop :=
+  ∀ τ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A),
+    Matrix.det (τ : Matrix (Fin N) (Fin N) (Polynomial A)) = 1 →
+      elementaryMatrixUnitMap (ι := Fin N) (Polynomial.constantCoeff (R := A)) τ = 1 →
+        ∀ 𝔪 : Ideal A, 𝔪.IsMaximal → ∃ a ∉ 𝔪,
+          elementaryMatrixUnitMap (ι := Fin N)
+              (Polynomial.mapRingHom (algebraMap A (Localization.Away a))) τ ∈
+            elementaryGroup (Fin N) (Polynomial (Localization.Away a))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinDilationAnalyticLocallyElementary
+
+theorem suslinDilAn_generated_of_locallyElementary {A : Type*} [CommRing A] {N : ℕ}
+    (hN : 3 ≤ N) (h : SuslinDilationAnalyticLocallyElementary A N) :
+    SuslinDilationGeneratedQuillen A N := by
+  intro τ hdet h0 𝔪 h𝔪
+  obtain ⟨a, ha𝔪, ha⟩ := h τ hdet h0 𝔪 h𝔪
+  obtain ⟨k, hk⟩ := suslinDilAn_quillen_of_map (by omega) (algebraMap A (Localization.Away a)) a
+    (suslinDilAn_away_surj a) (suslinDilAn_away_ker a) τ ha
+  have hmem : τ ∈ {σ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A) |
+      ∃ a ∉ 𝔪, SuslinLocalGlobalQuillen σ a} :=
+    ⟨a ^ k, fun hk𝔪 ↦ ha𝔪 (h𝔪.isPrime.mem_of_pow_mem k hk𝔪), hk⟩
+  exact Subgroup.subset_closure hmem
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_generated_of_locallyElementary
+
+theorem suslinDilAn_locallyElementary_of_generated {A : Type*} [CommRing A] {N : ℕ}
+    (hN : 3 ≤ N) (h : SuslinDilationGeneratedQuillen A N) :
+    SuslinDilationAnalyticLocallyElementary A N := by
+  intro τ hdet h0 𝔪 h𝔪
+  obtain ⟨a, ha𝔪, ha⟩ :=
+    suslinDilation_quillen_of_mem_closure (by omega) h𝔪.isPrime (h τ hdet h0 𝔪 h𝔪)
+  obtain ⟨v, hv⟩ :=
+    (IsLocalization.Away.algebraMap_isUnit (S := Localization.Away a) a).exists_right_inv
+  exact ⟨a, ha𝔪, suslinDilAn_map_mem_of_quillen (algebraMap A (Localization.Away a)) hv h0 ha⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinDilAn_locallyElementary_of_generated

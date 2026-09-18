@@ -2,6 +2,7 @@
 rg: 2
 id: q-x2-z-in-t-check-has-a-doubling-semiconjugacy-proof
 kind: route
+title: Direct proof of the doubling semiconjugacy structure theorem for Q x|_2 Z in T-check
 target: q-x2-z-in-t-check-has-a-doubling-semiconjugacy
 requires: []
 ---

@@ -30,8 +30,8 @@ special case of `EHighCoprimaryMixedStatement`.  That statement is a special cas
 `PureCharPrimeEHighDevissageStatement`.  Hence the residual is true.
 
 **LOUD: why the target was not proved by dévissage along `M ⊇ pM ⊇ … ⊇ p^(e-1) M`.**  The
-natural route would glue the proved exponent-`p` layers (`eHighCoprimary_exists_gl_of_nsmul_eq_zero`)
-along the finite `p`-power filtration.  That gluing step is not valid as a reduction.
+natural route would glue the proved exponent-`p` layers
+(`eHighCoprimary_exists_gl_of_nsmul_eq_zero`) along the finite `p`-power filtration.  That gluing step is not valid as a reduction.
 Faithful conjugation representations of `pM` and `M ⧸ pM` do not assemble into one of `M`.
 `ℤ/p²` and `(ℤ/p)²` have the same graded pieces, so the pieces do not determine the extension,
 and the off-diagonal cocycle realising the extension class `Q`-equivariantly is the whole
