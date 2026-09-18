@@ -121,3 +121,75 @@ theorem higmanVCTauFix3_bothFixed_decomp {d n : ℕ} (hd : 1 < d)
     hxy hyx)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_bothFixed_decomp
+
+/-- **Remaining gap.**  `higmanVCTauRest_RestStatement` off the both-fixed family.
+**Formally equivalent** to it (`higmanVCTauFix3_fix3_of_rest`, `higmanVCTauFix3_rest_of_fix3`);
+strictly fewer instances (none for words of length `≤ 6`, `d = 2`, in the brute force).
+Not proved here. -/
+def higmanVCTauFix3_RestStatement : Prop :=
+  ∀ d : ℕ, d = 2 → ∀ n : ℕ,
+    ∀ (p q x y x' y' : List (Fin d)) (hpq : ¬ p <+: q) (hqp : ¬ q <+: p),
+      ¬ higmanVCTauDecomp_Cross p q x y → ¬ higmanVCTauDecomp_Cross q p x y →
+      ¬ higmanVCTauRest_OneFixed p q x y → ¬ higmanVCTauRest_OneFixed q p x y →
+      ¬ higmanVCTauFix3_BothFixed p q x y →
+      p.length ≤ 3 → q.length ≤ 3 →
+      x.length + y.length = n → x'.length + y'.length = n →
+      ¬ (x.length ≤ 3 ∧ y.length ≤ 3 ∧ x'.length ≤ 3 ∧ y'.length ≤ 3) →
+      ¬ higmanVCTauShort_OptionA d p q x y hpq hqp →
+      ¬ higmanVCTauShort_OptionE d p q x y →
+      ¬ higmanVCTauComm_OptionR d p q x y →
+      ¬ higmanVCTauComm_FlexA d p q x y hpq hqp → ¬ higmanVCTauComm_FlexB d p q x y x' y' →
+      ¬ higmanVCTauComm_FlexA d p q x' y' hpq hqp → ¬ higmanVCTauComm_FlexB d p q x' y' x y →
+      MapsCone (coneSwap p q hpq hqp) x x' → MapsCone (coneSwap p q hpq hqp) y y' →
+      ¬ x <+: y → ¬ y <+: x → ¬ x' <+: y' → ¬ y' <+: x' →
+      higmanVCTauEqTwo_Decomp d n p q x y x' y' hpq hqp
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_RestStatement
+
+/-- **Reduction.**  The statement off the both-fixed family gives the statement off the four
+families of lane 92e. -/
+theorem higmanVCTauFix3_rest_of_fix3 (h : higmanVCTauFix3_RestStatement) :
+    higmanVCTauRest_RestStatement := by
+  intro d hd n p q x y x' y' hpq hqp hC hC' hF hF' hp hq hx hx' hs hOA hOE hOR hFA hFB hFA'
+    hFB' hmx hmy hxy hyx hxy' hyx'
+  by_cases hB : higmanVCTauFix3_BothFixed p q x y
+  · exact higmanVCTauFix3_bothFixed_decomp (by omega) hpq hqp hB hx hs hmx hmy hxy hyx
+  exact h d hd n p q x y x' y' hpq hqp hC hC' hF hF' hB hp hq hx hx' hs hOA hOE hOR hFA hFB
+    hFA' hFB' hmx hmy hxy hyx hxy' hyx'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_rest_of_fix3
+
+/-- **Converse (equivalence, loud).**  The statement off the four families gives the
+statement off the both-fixed family (it only drops a hypothesis). -/
+theorem higmanVCTauFix3_fix3_of_rest (h : higmanVCTauRest_RestStatement) :
+    higmanVCTauFix3_RestStatement := by
+  intro d hd n p q x y x' y' hpq hqp hC hC' hF hF' _ hp hq hx hx' hs hOA hOE hOR hFA hFB hFA'
+    hFB' hmx hmy hxy hyx hxy' hyx'
+  exact h d hd n p q x y x' y' hpq hqp hC hC' hF hF' hp hq hx hx' hs hOA hOE hOR hFA hFB hFA'
+    hFB' hmx hmy hxy hyx hxy' hyx'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_fix3_of_rest
+
+/-- **The decomposition statement** from the statement off the both-fixed family. -/
+theorem higmanVCTauFix3_decomp_of_fix3 (h : higmanVCTauFix3_RestStatement) :
+    higmanVCTauEqTwo_DecompStatement :=
+  higmanVCTauRest_decomp_of_rest (higmanVCTauFix3_rest_of_fix3 h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_decomp_of_fix3
+
+/-- **The `d = 2` equal-level residual** from the statement off the both-fixed family. -/
+theorem higmanVCTauFix3_d2Residual_of_fix3 (h : higmanVCTauFix3_RestStatement) :
+    higmanVCTauEqLvl_D2Residual :=
+  higmanVCTauRest_d2Residual_of_rest (higmanVCTauFix3_rest_of_fix3 h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_d2Residual_of_fix3
+
+/-- **`τ`** from the statement off the both-fixed family. -/
+theorem higmanVCTauFix3_tau_of_fix3 (h : higmanVCTauFix3_RestStatement) :
+    HigmanVCTauStatement :=
+  higmanVCTauRest_tau_of_rest (higmanVCTauFix3_rest_of_fix3 h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_tau_of_fix3
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
