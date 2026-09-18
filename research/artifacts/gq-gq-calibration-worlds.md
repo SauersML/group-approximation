@@ -92,6 +92,19 @@ A method should reproduce these, or say why it does not need to.
     exponent `(1,0)`, cannot be scaled. A scaled copy has to be built from new elements.
 - **Pass:** exhibit an element of the host that is conjugate to its own square, or cite a subgroup that
   contains `BS(1,2)`.
+- **Germ extensions of V: the question needs a regime.** "Does some finite germ extension of `V` contain an
+  element conjugate to its own square?" is trivially YES. By `shell-cantor-embeddings-are-finite-germ-extensions`
+  *(node)* every countable group, `GL_2(Q)` included, embeds in a f.g. finite germ extension `E_nu` of `V`.
+  So T3 bites only with finite presentation or in a germ regime:
+  - **Regular regime:** (E) + (H3) + (T), meaning BHM Cor. 2.10 plus V-orbit preservation. `VA` is
+    regular. `regular-germ-extension-attractors-are-undistorted` *(node)*, 8fc27465a: an element with an
+    attracting or repelling periodic point, or with a non-V total germ along a wandering singular orbit,
+    is undistorted and is never conjugate to `a^k` with `|k| >= 2`.
+  - **Open remainder:** `regular-germ-extensions-have-no-bs-relations` *(node, OPEN)*, the germs of zero
+    depth gain that commute with the dilation. The node gives an explicit example. Proving it would
+    exclude `Aff(Q)`, `SL_2(Q)` and `GL_2(Q)` from every regular germ extension.
+  - **Outside the regular regime** (for example shell envelopes) the test reduces to finite presentation
+    (T12 and M4).
 
 ## T4. Roots of every order
 
