@@ -96,7 +96,7 @@ theorem isBoundaryDart_flipFaces_iff {M : CombMap.{v}} {faces : Finset M.Face} {
           · exact absurd h hza
           · rwa [M.alpha_involutive d] at h
         exact absurd (hl.mpr hzd) h2
-      · have hoff : ¬walkKeep M c d := fun h => h.elim hd ha
+      · have hoff : ¬walkKeep M c d := fun h => Or.elim h hd ha
         have hstep : CombMap.FaceClassStep M (walkKeep M c) d (M.alpha d) := Or.inr ⟨hoff, rfl⟩
         have hzeq : z d = z (M.alpha d) := hz d (M.alpha d) hstep
         have hFeq : M.faceOf d ∈ faces ↔ M.faceOf (M.alpha d) ∈ faces :=
@@ -111,9 +111,9 @@ theorem isBoundaryDart_flipFaces_iff {M : CombMap.{v}} {faces : Finset M.Face} {
 theorem exists_succ_or_eq_getLast {α : Type*} {R : α → α → Prop} :
     ∀ {L : List α}, L.IsChain R → ∀ (hne : L ≠ []) {e : α}, e ∈ L →
       (∃ x ∈ L, R e x) ∨ e = L.getLast hne
-  | [], _, hne, _, _ => absurd rfl hne
+  | [], _, hne, _, _ => (hne rfl).elim
   | [_], _, _, _, he => Or.inr (by rw [List.getLast_singleton]; exact List.mem_singleton.mp he)
-  | a :: b :: l, hL, _, e, he => by
+  | a :: b :: l, hL, _, _, he => by
       rw [List.isChain_cons_cons] at hL
       rcases List.mem_cons.mp he with h | he'
       · rw [h]
@@ -127,7 +127,7 @@ entry to a `p`-false entry. -/
 theorem exists_transition_of_getLast {α : Type*} {R : α → α → Prop} {p : α → Bool} :
     ∀ {L : List α} (hne : L ≠ []), L.IsChain R → ∀ {a : α}, a ∈ L → p a = true →
       p (L.getLast hne) = false → ∃ e ∈ L, ∃ f ∈ L, p e = true ∧ p f = false ∧ R e f
-  | [], hne, _, _, _, _, _ => absurd rfl hne
+  | [], hne, _, _, _, _, _ => (hne rfl).elim
   | [_], _, _, _, ha, hpa, hlast => by
       rw [List.getLast_singleton] at hlast
       rw [List.mem_singleton.mp ha, hlast] at hpa
@@ -160,7 +160,7 @@ theorem exists_transition_of_getLast {α : Type*} {R : α → α → Prop} {p : 
 theorem exists_transition_of_head {α : Type*} {R : α → α → Prop} {p : α → Bool} :
     ∀ {L : List α} (hne : L ≠ []), L.IsChain R → p (L.head hne) = true → ∀ {b : α}, b ∈ L →
       p b = false → ∃ e ∈ L, ∃ f ∈ L, p e = true ∧ p f = false ∧ R e f
-  | [], hne, _, _, _, _, _ => absurd rfl hne
+  | [], hne, _, _, _, _, _ => (hne rfl).elim
   | [_], _, _, hhead, _, hb, hpb => by
       rw [List.head_cons] at hhead
       rw [List.mem_singleton.mp hb, hhead] at hpb
@@ -240,6 +240,7 @@ theorem rose_of_regionMoveSubArc (hsub : RoseRegionMoveSubArcStatement.{u, w, v}
     hwalk, hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩ :=
     hsub D eps X lo hi hLA hlabel K hK hFT hsrc htgt hpinch hcross
   obtain ⟨hne, hchain, hclose⟩ := hwalk
+  obtain ⟨hKchain, hKclose⟩ := hK
   have hnodup : (s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts).Nodup :=
     List.Nodup.perm (List.Nodup.sublist List.filter_sublist K.boundary.cycle_nodup) hperm.symm
   have hbd := isBoundaryDart_flipFaces_iff K.boundary.cycle_mem_iff hz hind
@@ -268,7 +269,7 @@ theorem rose_of_regionMoveSubArc (hsub : RoseRegionMoveSubArcStatement.{u, w, v}
     ⟨OEquivalentDiscDiagram.refl X⟩, hlabel, ⟨hchain, hclose⟩, ht₁, ht₂, ?_⟩
   obtain ⟨ha, hpa⟩ := List.mem_filter.mp (hperm.mem_iff.mp (List.head_mem hne))
   obtain ⟨e, he, f, hf, hpe, hpf, hef⟩ :=
-    exists_transition (p := GL05b.movePred X.toCombMap z) K.boundary.cycle_nonempty hK.1 hK.2
+    exists_transition (p := GL05b.movePred X.toCombMap z) K.boundary.cycle_nonempty hKchain hKclose
       ha hpa hy hpy
   have hef' : X.toCombMap.vertexOf (X.toCombMap.alpha e) = X.toCombMap.vertexOf f := hef
   have heL : e ∈ s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts :=
