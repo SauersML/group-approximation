@@ -3,6 +3,7 @@ rg: 2
 id: steinberg-rf-forces-ring-rf
 kind: claim
 artifacts:
+  - research/artifacts/gq-referee-a-steinberg-rf-forces-ring-rf.md
   - research/artifacts/gq-referee-b-z-localized-embeds-in-fp-kazhdan-steinberg-group.md
 title: For N >= 3 every finite quotient of St_N(R) factors through St_N(F) for a finite quotient ring F of R, so St_N(R) residually finite forces R residually finite
 distinct_from:
@@ -10,7 +11,8 @@ distinct_from:
   resolvent-steinberg-group-is-residually-finite: that asks whether St_N(R_l) is residually finite; this gives the necessary condition that R_l be residually finite.
 ---
 
-**ESTABLISHED** through `steinberg-rf-forces-ring-rf-proof`. Lane proof; citation review PASS by gq-referee-b (artifact above). Elementary; no
+**ESTABLISHED** through `steinberg-rf-forces-ring-rf-proof`. Lane proof; proof-gap review PASS by gq-referee-a and citation review PASS by
+gq-referee-b (reports in `artifacts`). Elementary; no
 priority is claimed.
 
 **Statement.** Let `R` be a unital ring, `N >= 3` and `ρ : St_N(R) -> Φ` a

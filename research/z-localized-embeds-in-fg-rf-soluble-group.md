@@ -2,6 +2,8 @@
 rg: 2
 id: z-localized-embeds-in-fg-rf-soluble-group
 kind: claim
+artifacts:
+  - research/artifacts/gq-referee-a-z-localized-embeds-in-fg-rf-soluble-group.md
 title: Z_(l) embeds in an explicit three-generated residually finite soluble group of derived length at most 3 with solvable word problem that is effectively residually finite
 distinct_from:
   sl-n-z-localized-embeds-in-fg-rf-elementary-group: that gives the non-soluble hosts E_N(R̄_l), which also contain SL_n(Z_(l)); this is a soluble host for Z_(l) alone, with its word problem and effective residual finiteness verified.
@@ -9,8 +11,9 @@ distinct_from:
   rf-higman-embedding-for-decidable-groups: that general statement was refuted by Rauzy with a group that is not effectively residually finite; this host is effectively residually finite, so that obstruction does not apply.
 ---
 
-**ESTABLISHED** through `z-localized-embeds-in-fg-rf-soluble-group-proof`. Lane proof,
-not independently reviewed. No priority is claimed.
+**ESTABLISHED** through `z-localized-embeds-in-fg-rf-soluble-group-proof`. Lane proof; proof-gap review PASS by gq-referee-a (report in `artifacts`), which
+covers items 1, 2 and 4--5 and the upper bound in 3. The lower bound "at least 3" rests
+on the metabelian roots node. No priority is claimed.
 
 **Construction (the Euler lamplighter).** Let `l` be a prime and
 `M = Z_(l)[y, y^(-1)]`, with basis `f_j = y^j`. Let `x` be multiplication by
