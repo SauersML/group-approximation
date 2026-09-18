@@ -110,7 +110,8 @@ Under `[A_2]`:
 
 By Brown's presentation theorem (K. S. Brown, J. Pure Appl. Algebra 32 (1984); the form used
 by Zaremsky, quoted as FFWZ Citation 4.11; not re-read at source), `Σ ≅ SV_G` is finitely
-presented.
+presented. Referee b (W3) adds Khanh, arXiv:2609.08428, lines 458–460, as a second citation.
+There the two-dimensional Borel-construction presentation argument is written out.
 
 ## Step 4. F_n (item 3)
 

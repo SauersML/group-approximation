@@ -9,7 +9,9 @@ distinct_from:
   neumann-alternating-product-group-embeds-in-fp-rf-group: that is Minasyan's open question; a finite presentation of this candidate would answer it affirmatively.
 ---
 
-**ESTABLISHED** for items (1)–(3). Finite presentability is **OPEN**. Lane bh-free-59,
+**ESTABLISHED** for items (1)–(3). **REFUTED as a host:** `Γ_P` is not finitely presented, by the
+Schur multiplier obstruction in `schur-multiplier-obstruction-kills-thickening-hosts`
+(infinitely many coordinate Schur classes survive in `H_2(N)_Γ`). Lane bh-free-59,
 written inline, not independently reviewed. The Margulis normal subgroup theorem and the
 congruence subgroup property for `SL_d(Z[1/2])` are cited as textbook inputs, not
 re-read.
@@ -58,7 +60,7 @@ unipotent radical `Hom(⟨e_3,…,e_d⟩, ⟨e_1,e_2⟩)`, whose orbits off the 
 No sparse invariant configuration is visible. This paragraph is a heuristic, not a
 theorem about all fakes.
 
-## Exactly what is open
+## What was open (now decided: not finitely presented)
 
 With `H_K = ⟨qαq^{-1} : q ∈ B_K(Q)⟩`, Step 2 of `affine-thickening-hosts-are-never-fp`
 applies verbatim: `Q` is finitely presented for `d ≥ 3`, and the normal closure of `α` is

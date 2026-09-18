@@ -77,7 +77,7 @@ theorem p06RoseUncut_move_of_cellCut {K : CellPocketFaceSet D eps X i j} (hij : 
     hk, hperm, hmem, hdec, K.firstArc_pos, K.secondArc_pos, hfirst, hsecond, hs₁, hs₂, hwL',
     (C ++ A).head hrest, hy, B.head hB, List.head_mem hB, hv.symm⟩
 
-#audit_axioms p06RoseUncut_move_of_cellCut
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_move_of_cellCut
 
 /-- **No in-place sub-walk move leaves no closed cut**, for a cell pocket in walk order between
 distinct cells with proper arcs. -/
@@ -87,7 +87,7 @@ theorem p06RoseUncut_not_cellCut_of_not_move {K : CellPocketFaceSet D eps X i j}
     ¬ CellCut K := fun hcut =>
   hmove (p06RoseUncut_move_of_cellCut hij hK hfirst hsecond hcut)
 
-#audit_axioms p06RoseUncut_not_cellCut_of_not_move
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece06.p06RoseUncut_not_cellCut_of_not_move
 
 end Embed
 
