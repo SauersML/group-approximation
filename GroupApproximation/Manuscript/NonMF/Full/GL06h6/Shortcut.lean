@@ -165,7 +165,7 @@ theorem gl06h6_descends_of_collarShortcut (D : RelGenSet G Lambda) {eps : ℕ}
     intro hs
     rw [hs] at hne
     exact (hne (by simp only [Embedded.dartWord, List.map_nil, RelLetter.listVal_nil])).elim
-  obtain ⟨Delta'', E, P'', collar, ι, hlet'', -, -, hcyc, hcollar, -, -, -, -, hstay⟩ :=
+  obtain ⟨Delta'', E, P'', _collar, _ι, hlet'', -, -, hcyc, hcollar, -, -, -, -, hstay⟩ :=
     GeodesicCollar.StripStep.geodesicCollarStatement_holds (symmetricLabelAlphabet D)
       (symmetricLabelAlphabet.symmetric D) Delta hletters P hin hout
       (Embedded.invDarts Delta P.outer.cycle) [] (List.append_nil _).symm g hg hval hs
