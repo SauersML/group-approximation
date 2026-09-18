@@ -151,8 +151,18 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      parameters live in a number field, where the word problem is arithmetic of bounded
      complexity. This also shows that the necessary conditions of Bieri--Strebel D13.3 are not
      sufficient, e.g. for `G(R; Z[1/2] + Z[1/2]τ, gp(2))` with any irrational `τ`.
-   - *Still open:* hard parameters in non-PL families (piecewise projective, germs), where the
-     same deformation argument should apply but is not written out. Notes:
+   - *Update (bh-free-32): every definable-parameter host dies.*
+     `definable-parameter-hosts-cap-simple-subgroups-at-pspace` covers two kinds of host: groups
+     acting by semialgebraic bijections in any dimension, and groups acting on Cantor space by
+     ω-automatic bijections (`V`, `nV`, Röver--Nekrashevych, extended along arbitrary addresses).
+     In both, the parameters may be arbitrary real numbers or arbitrary addresses. If such a group
+     is finitely presented, it specializes to tame parameters on every finite set. So its finitely
+     generated simple subgroups, and every input they contain, have word problem in PSPACE. This
+     family therefore shares one bound for this root.
+     `fp-piecewise-projective-groups-rigidity-criterion` gives the matching test for finite
+     presentation, e.g. `⟨F, F^λ⟩` is not finitely presented for transcendental `λ`.
+   - *Lesson.* Hardness has to sit in the combinatorial rule of the host, not in its constants,
+     and its generators must not be definable in a decidable tame structure. Notes:
      `research/artifacts/gq-bh-bh-free-32-order-rigidity.md`.
 9. **Transcendental-slope Thompson groups as inputs** (bh-free-19, 2026-09-18; lane proof, not
    reviewed). Route `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`.

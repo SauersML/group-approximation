@@ -101,3 +101,15 @@ artifacts:
   `pbh-class-closed-under-graph-products` and clause (T) of
   `pbh-class-closed-under-relative-holomorphs` all fail at their hypotheses here.
   This is a method-kill and not an obstruction: `B_A` is closed under subgroups.
+- **The vertex group reduces to one local configuration** (2026-09-18,
+  `higman-chain-group-pbh-iff-chain-configuration`, lane proof, unreviewed).
+  `G_1 = <a, b, c>` lies in `B_A` iff some `B_A` group, equivalently some finitely presented
+  twisted Brin--Thompson group, contains `a, b, c` with `a^-1 b a = b^2`, `b^-1 c b = c^2`
+  and `c` of infinite order. Faithfulness is free: by
+  `pbh-amalgams-over-centralizer-separated-edges`, a vertex-faithful image plus a separating
+  subgroup realized as a centralizer embeds the amalgam. The edge input is
+  `bs12-base-generator-is-a-centralizer-in-b-a`. So `H4 ∈ B_A` needs such a configuration.
+  No linear, quasi-linear or metabelian group has one, and the closure theorems never create
+  one. For `H4` itself the same engine applies to `H4 = G_1 *_(F_ac) G_2` given a `B_A` group
+  containing both vertex groups along `F_ac` and a centralizer-realized separator. That
+  hypothesis is a 4-cycle configuration and is not reduced further here.

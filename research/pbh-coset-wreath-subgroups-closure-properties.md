@@ -43,3 +43,18 @@ Let `G ∈ B_A`.
   `C ≤ G'` finitely generated, `C ∩ G` is finitely generated and lies in `CR(G)`, hence in
   `CR(G')` by part 2, and then `C ∈ CR(G')` by part 1.
 - **Fibre products:** `fibre-products-over-b-a-quotients-lie-in-cr`.
+
+## Lesson for general BH
+
+`CR(G)` is closed under:
+- finite-index enlargement;
+- finite-index change of the ambient group;
+- preimages;
+- finite intersections;
+
+and it contains retracts, centralizers and finite subgroups. So it is a "commensurability-stable,
+definable" class of subgroups. Identity-edge combination problems for `B_A` (coset wreaths,
+centralizing HNN extensions, doubles, free permutational products) therefore depend only on the
+commensurability class of the ambient group and on the subgroup up to these operations. What
+they leave hard is twisted edge maps and subgroups that are not virtually definable from
+retracts.

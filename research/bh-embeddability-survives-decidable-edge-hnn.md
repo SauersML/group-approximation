@@ -267,3 +267,30 @@ only through a proof that does not pass through the conjecture.
   by `g_w K g_w^(-1)`, with `g_w = y δ_(wC) y` built from a lamp `δ_(wC)`. The base `A`
   acts by twisted conjugations. The lamp's centralizer in `A` is exactly `C`, which is
   what makes the copies free.
+
+## Attempt (bh-one-relator, 2026-09-18): fatten the edge to the vertex group
+
+*Reduction, not a proof.* By `hnn-extensions-split-over-their-vertex-group-via-the-double`,
+`A*_phi` is also the HNN extension of the double `D = A *_(C_2) tAt^-1` along the whole vertex
+group, `A -> tAt^-1`.
+
+- **What it removes.** In the stable-permutation engine (Attempt 6), clause 2 asked for enlarged
+  edges `D_i` with finitely many orbits that meet `A` exactly in `C_i`. With the fat splitting,
+  `D_1 = A` itself, and clause 2 only asks that `A` be orbit-finite. This is automatic whenever
+  `A` acts transitively.
+  - The orbit-finiteness necessity of Attempt 10 (`type-a-actors-split-only-over-orbit-finite-edges`)
+    then constrains the fat edge `A`, not the thin `C_1`.
+  - So proper-power or infinite-index edges are no longer obstructions in themselves.
+- **What remains.**
+  - (i) An actor containing the twisted double `D` in which `A` and `tAt^-1` act
+    permutation-isomorphically through `c_t`. That is a symmetric-amalgam permanence problem.
+  - (ii) Faithfulness of `Gamma*_(c_t)` on the actor's set (clause 3).
+- **Where (i) is hard.** For the Baumslag--Gersten input (Attempt 8), `D` is the height-two tower
+  `K` (`baumslag-gersten-splits-over-bs12-edges`), which is not residually finite
+  (`height-two-bs-tower-is-not-residually-finite`). In any finite-entropy brick host its middle
+  generator must have unbounded exponent sums
+  (`equicontinuous-square-conjugators-are-trivial-in-brick-hosts`).
+
+**Lesson.** Thin-edge obstructions are artifacts of the presentation. The real cost of HNN
+permanence is a symmetry condition on the double, which permutation actors can in principle meet
+and finite-entropy Cantor hosts cannot.

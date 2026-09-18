@@ -47,3 +47,13 @@ So for every finitely generated subgroup `C` of any of these groups `G`,
 - `Z ≀_{F_2/⟨[a,b]⟩} F_2` is already covered by `free-group-coset-wreaths-satisfy-pbh`. It
   is also covered by case 2 (centralizers) of `pbh-coset-wreaths-iff-identity-edge-hnns`,
   since `⟨[a,b]⟩ = C_{F_2}([a,b])`.
+
+## Lesson for general BH
+
+Every group with property (LR) that lies in `B_A` (free, limit, surface groups), and every
+finite-index overgroup of one, has all identity-edge combinations over finitely generated
+subgroups in `B_A`.
+- The monomial embedding makes (LR) unnecessary for the overgroup, even though (LR) itself is
+  not commensurability invariant (Minasyan).
+- So these closure properties are properties of commensurability classes. Hosts never need
+  more than a virtual retraction.

@@ -39,6 +39,19 @@ finite-edge closure (`finite-edge-closure-via-free-torsion-full-hosts`).
      it is finitely presented. This is a twisted Brin–Thompson group over a *nontrivial
      bundle*. No finite-presentation criterion for it is known here; Zaremsky's criterion
      covers the trivial bundle.
+3. **Padding: adds strata, never removes them.** Acting on a proper clopen and trivially
+   elsewhere adds the whole-group stratum to every finite subgroup
+   (`finite-subgroups-of-full-cantor-groups-conjugacy-criterion`, Part 4). That already
+   settles edge groups whose stabilizers are trivial or everything, for example prime
+   order. Removing an intermediate stratum is exactly what freeness does, and no natural
+   host tried here does it.
+4. **Bridge to the synthesis master route (S1, `gq-bh-synthesis-master-route`).** Suppose
+   `Λ ⊇ G` carries a free minimal subshift `X` whose full group `[[Λ ⋉ X]]`, or the
+   master route's host built from it, is finitely presented, full and clopen transitive.
+   Then every finite subgroup of `G` acts freely there, since `Λ ↷ X` is free. So a success
+   of the master route's crux G3g also settles this node for `G`, and with it finite-edge
+   closure. The two targets ask for the same object: a *free* Cantor action inside a
+   finitely presented full group.
 
 ## Lesson for general BH
 

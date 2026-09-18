@@ -46,3 +46,10 @@ groups of PL maps of `[0,1)` containing `D(V_λ)`. ∎
 - For slopes with cheap digits, such as `1/e` or `π − 3`, the specialization theorem still says:
   `D(V_λ)` lies in a finitely presented PP group only if it embeds in `PP_K` over a real number field.
   Whether that can happen for transcendental `λ` is open.
+
+## Lesson for general BH
+
+An input family indexed by a real parameter cannot be hosted by carrying the parameter along: in a
+finitely presented tame host the parameter is specialized away, and the input would have to embed
+over a number field. The parameter's information has to be converted into computation. That is the
+same demand the Birget root makes, seen from the input side.

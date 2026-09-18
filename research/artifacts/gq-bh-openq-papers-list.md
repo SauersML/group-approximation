@@ -244,3 +244,13 @@ review covers main theorems; this pass records printed questions only.
 - **Bodirsky et al., mixed identities, arXiv:2606.24741** (l.43): Conjecture 1 of their earlier
   paper, that every oligomorphic group action has only singular mixed identities. This bears on
   MIF hosts (BFFHZ Q3.4).
+
+## G. Insight pass (2026-09-18, after the INSIGHT FIRST order)
+
+- `product-subgroups-lie-in-cr-when-goursat-quotient-in-b-a`. Let `H ≤ G_1 × G_2` with G_i LR groups
+  in B_A and finitely generated projections. If the Goursat quotient Q_H is in B_A, then H is in CR.
+  For F_m × F_n the chain is: Q_H ∈ B_A ⇒ H ∈ CR ⇒ Q_H has solvable word problem.
+- **Lesson.** Over products of free groups, the decidable-wreath (identity-edge HNN) closure is PBH
+  for the Goursat quotients in disguise. Such combination problems are no easier than PBH for
+  finitely presented groups, and a failure would refute PBH.
+- "Lesson for general BH" paragraphs were added to this lane's earlier claim nodes.

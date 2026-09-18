@@ -146,3 +146,15 @@ constant). This contradicts item 2. So `G` is not `T^+`-bounded, hence not `T`-b
 - **Specific slopes.** Items 2–3 say nothing about `λ = 1/e` or `λ = π − 3`, whose digits are cheap.
   There the question remains a clean test of whether transcendental PL data can sit inside a
   finitely presented simple group.
+
+## Lesson for general BH
+
+- **Transferable tool.** Any group containing a rotation of an interval and two bumps reads off the
+  Sturmian word of the rotation angle with length-linear commutators. So the order type of a
+  breakpoint module is visible to the word problem at linear cost.
+- **Consequence.** Natural one-parameter families of Thompson-like inputs (`D(V_λ)`, `λ` computable)
+  already realize every recursive complexity. Their Boone--Higman question, uniformly in `λ`, is at
+  least as strong as the Birget root.
+- **What a solution must do.** It must convert the digits of `λ` into host combinatorics by
+  simulating `λ`'s algorithm. By `fp-simple-real-box-map-groups-are-not-universal-hosts`,
+  real-geometric hosts cannot do that.

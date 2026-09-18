@@ -102,3 +102,10 @@ Fix `t` in both comeager sets and `U ∈ Ω`.
   `U` proper, is abelian (indeed cyclic), as the relation of
   `v-and-a-homeomorphism-never-generate-a-free-product` predicts for any group without
   such relations.
+
+## Lesson for general BH
+
+In the dense-Cantor normal form of PBH, density and finite presentation are free: a mixing shift
+and one generic homeomorphism already give a dense `F_2`. All the content is in finite generation
+of clopen stabilizers. So the right invariant for a universal PBH host is the finiteness type of
+its clopen stabilizers, not transitivity, density or oligomorphy.
