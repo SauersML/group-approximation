@@ -6,10 +6,18 @@ title: Hard Kharlampovich-Myasnikov-Sapir groups have a self-similar top whose c
 distinct_from:
   kms-arbitrarily-hard-fp-rf-groups: that imports the hardness theorem for the finitely presented residually finite solvable groups G(M); this asks for extra structure on those groups (a self-similar top and a self-similar configuration module) which would make them self-similar.
   fp-self-similar-groups-with-arbitrarily-hard-word-problem: that is the target existence statement; this is one concrete premise that implies it, through the lamp-digit criterion.
-  lamp-digit-modules-give-self-similar-semidirect-products: that is the general criterion; this is the open instance for the KMS groups.
+  lamp-digit-modules-give-self-similar-semidirect-products: that is the general criterion; this is the (refuted) instance for the KMS groups.
+refuted_by:
+  - kms-configuration-modules-have-trivial-coinvariants
 ---
 
-**OPEN.** Notation of Kharlampovich--Myasnikov--Sapir, arXiv:1204.6506v5, §4.1, read in
+**REFUTED** (09-18, bh-free-25, the author of this node) by
+`kms-configuration-modules-have-trivial-coinvariants`. Relations G5a and G5b put every `x_u`
+in `I_Q·T`, so the invariant functional `λ` of any self-similar module structure is zero,
+and then the whole embedding is zero. Clause (ii) below fails for every machine with
+`K ≥ 1`. The text below is kept as the record.
+
+**Was OPEN.** Notation of Kharlampovich--Myasnikov--Sapir, arXiv:1204.6506v5, §4.1, read in
 the TeX (`gq/src/kms/KMS-322.tex`, lines 922–1075). There `G(M) = T ⋊ Q`:
 - `T` is the normal closure of the configuration letters `x_u`, abelian of exponent `p`
   (Lemma lT);

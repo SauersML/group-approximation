@@ -45,3 +45,18 @@ groups, where they are the sharpest open part:
    finite-set stabilizers on `S` are F_∞, and their Theorem 1.2 with Alonso shows `Γ` must be F_∞. (Correction
    09-18: an earlier version of this entry called their F_n criterion a conjecture; only the sharper
    characterization is conjectural.) Any other undistorted host of type F_∞ would also do.
+
+2. **(bh-free-44, 09-18) The other listed classes, through the BFFHZ host.**
+   - The Belk–Zaremsky quasi-retraction is now its own node,
+     `twisted-brin-thompson-groups-quasi-retract-onto-acting-group`. In any permutational Boone–Higman
+     embedding, only the step from the group into the acting group needs work.
+   - `aut-free-groups-quasi-isometrically-embed-in-fp-simple-groups` (ESTABLISHED, lane proof):
+     `Aut(F_n)` is a retract of the BFFHZ acting group `Aut_V(V*F_n)`; killing the normal closure of `V`
+     gives the retraction. So `Aut(F_n)` is undistorted in the finitely presented simple group `SV_Γ`, and
+     every finitely generated `H <= Aut(F_n)` is distorted in `SV_Γ` exactly as it is in `Aut(F_n)`.
+   - Braid groups and mapping class groups of non-closed surfaces reach Boone–Higman through `Aut(F_m)`
+     (BFFHZ Corollary B). For this host, the "(quasi-isometrically?)" question for them is therefore exactly
+     undistortion in `Aut(F_m)`, which is not settled on main.
+     - For braid groups, undistortion of `B_n` in `Out(F_{n+1})` would suffice. Hamenstädt–Hensel
+       (arXiv:1109.2687) prove only a one-puncture case: `Map(S_{g,1})` in `Out(F_{2g})`.
+     - For `Out(F_n)`, closed-surface mapping class groups and CAT(0) groups, the plain embedding is itself open.

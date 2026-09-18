@@ -22,16 +22,29 @@ counterexamples because clause 5 is existential.  That holds only if every inner
 relator cell.  With the other inner faces `0`-cells, the existential ranges over `{kept,
 source}` only, and the failure is genuine.
 
-Residual: the corrected, TRUE-on-the-model statement `gfaceWindThirteen_Statement`, whose
-conclusion adds the fifth shape
+**LOUD: with `0`-cells even `gfaceWindNine_Statement` is FALSE on the model**, so every
+residual that implies it is false there too, including this one.  The instance is
+`sig = [6,14,0,19,9,4,18,1,5,7,12,2,13,11,16,15,3,17,10,8]`, base face `3`, `K = {1,2,4}`,
+walk `[1,10,6,5,19,2,9]`, inverse source arc `[10]`, empty target arc, and relator cells `4`
+(kept) and `6` (source).  There `¬ gfaceChoose_Loop K` holds, yet none of the 33 reachable
+states passes (`gl-p10-73/nine_none.py`, a literal breadth-first search of `gfaceWind_Step`).
+With EVERY inner face a relator cell, the literal check found no failure of Twelve at all.
+
+Residual: `gfaceWindThirteen_Statement`, whose conclusion adds two shapes to Twelve's:
 
 * `WW` : `∂K = z₁ ++ y₁ ++ m ++ y₂ ++ z₂`, with state
   `(m, 1_K - wind (z₂ ++ z₁) - wind (y₂ ++ y₁))`: a wrap step, then a wrap step of the remainder.
+* `WWL` : `∂K = z₁ ++ y₁ ++ v₁ ++ A ++ v₂ ++ y₂ ++ z₂`, with state
+  `(v₁ ++ v₂, 1_K - wind (z₂ ++ z₁) - wind (y₂ ++ y₁) - wind A)`: `WW`, then an inner step.  Some
+  model cases need depth 3: in `sig = [7,0,14,6,18,4,21,2,15,12,16,10,11,8,13,1,9,17,19,20,3,5]`,
+  base face `8`, `K = {2,4,5}`, walk `[12,2,5,20,18,6,8]`, kept `5`, the shortest passing
+  sequence is inner `[20]`, wrap `[8,12]`, wrap `[6,2]` (depth 3; middle states not `0/1`).
 
 Declarations:
 
-* `gfaceWindThirteen_wrap_wrap` (proved): the two-step excision sequence of `WW`.
-* `gfaceWindThirteen_Lobes K` (definition): `gfaceWindTwelve_Lobes K ∨ WW`.
+* `gfaceWindThirteen_wrap_wrap`, `gfaceWindThirteen_wrap_wrap_inner` (proved): the excision
+  sequences of `WW` and `WWL`.
+* `gfaceWindThirteen_Lobes K` (definition): `gfaceWindTwelve_Lobes K ∨ WW ∨ WWL`.
 * `gfaceWindThirteen_arcs_of_lobes` and `gfaceWindThirteen_lobes_of_twelve` (proved).
 * `gfaceWindThirteen_Statement` (OPEN).
 * Proved: `gfaceWindThirteen_of_twelve`, `gfaceWindThirteen_nine_of_statement`,
@@ -40,20 +53,22 @@ Declarations:
 **Strength.**  `gfaceWindThirteen_Statement` is logically WEAKER than
 `gfaceWindTwelve_Statement`; `gfaceWindThirteen_of_twelve` proves this.  It is STRICTLY weaker on
 the model: the counterexample above violates Twelve but not Thirteen.  It is still STRONGER than
-`gfaceWindNine_Statement`, since it bounds the sequence by two explicit steps.  Its proof content
-is the same as Twelve's: choose at most two stretches, prove them simple, and prove the passing
-clauses at the explicit state.
+`gfaceWindNine_Statement`, since it bounds the sequence by three explicit steps.  On every model
+case tested, Thirteen holds exactly when Nine does.  Its proof content is the same as Twelve's:
+choose at most three stretches, prove them simple, and prove the passing clauses at the explicit
+state.  **LOUD: the needed depth is not bounded a priori**, so a fixed shape list may fail on
+larger maps.
 
 ## Truth check
 
-Scratchpad `gl-p10-73/leanexact.py` (literal Lean loop and passing clauses; relator cells all
-inner faces (`exists`) or only `{kept, source}` (`cell`)).  The counts are in the lane report.
-`gl-p10-73/thirteen.py` checks the same shapes against the stronger model clauses of
-`gl-p10-55/wind.py`.  **LOUD: typing each stretch as a hole or an outer lobe of the current face
-set is FALSE as a complete strategy.**  Some needed witnesses have a middle state that is not
-`0/1`.  So the residual keeps the explicit winding formula and does not type the stretches.
-Other depth-2 shapes (a wrap inside an inner stretch, or nested inner stretches) are not
-included; no model case needed them.
+Scratchpad `gl-p10-73/leanexact.py` computes the loop and the passing clauses literally.  The
+relator cells are either all inner faces (`exists`) or only `{kept, source}` (`cell`).  The
+counts are in the lane report.  `gl-p10-73/thirteen.py` checks the shapes against the stronger
+model clauses of `gl-p10-55/wind.py`.  **LOUD: those model clauses (`sep`, `bdoff`, `same`,
+`chain`) are stronger than Lean**, both in the loop test and in the pass test.  **LOUD: typing
+each stretch as a hole or an outer lobe of the current face set is FALSE as a complete
+strategy.**  So the residual keeps the explicit winding formula and does not type the
+stretches.
 
 ## Manuscript status
 
@@ -157,9 +172,9 @@ theorem gfaceWindThirteen_lobes_of_twelve (K : PocketFaceSet D eps X lo hi)
 end Lobes
 
 /-- **The explicit statement with nested wraps** (OPEN; logically WEAKER than
-`gfaceWindTwelve_Statement`, and STRONGER than `gfaceWindNine_Statement`; see the module
-docstring).  Under the premises of `gfaceWindSix_Statement`, an explicit witness with nested
-wraps exists. -/
+`gfaceWindTwelve_Statement`, and STRONGER than `gfaceWindNine_Statement`; like Nine, FALSE on the
+model with `0`-cells; see the module docstring).  Under the premises of
+`gfaceWindSix_Statement`, an explicit witness with nested wraps exists. -/
 def gfaceWindThirteen_Statement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),

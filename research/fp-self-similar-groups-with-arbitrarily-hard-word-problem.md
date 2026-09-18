@@ -157,3 +157,14 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
      nothing about finite presentation.
    - *Design lesson.* A finitely presented PSPACE-hard automaton group cannot read a
      finite conjunction group off below a virtually cyclic checking group.
+   - **Verdict (bh-free-25, later on 09-18): dead in both shapes.**
+     - *Lamp-digit shape.* `kms-configuration-modules-have-trivial-coinvariants`: G5a and
+       G5b give `T = I_Q·T`, so every invariant `λ` vanishes and the premise is false.
+     - *Affine shape, any block size.* Scalar, 2×2 and larger matrices over `F_p[[X]]`
+       all fall to `affine-self-similar-groups-are-function-field-linear`:
+       a finitely generated self-similar group of affine maps of `F_p[[X]]^d` is linear
+       over a finite separable extension of `F_p(X)`, by a Jacobian argument on the
+       section equations. So its word problem is polynomial time, and no hard group
+       embeds in it.
+     - *What is left.* Sections whose linear parts differ from the parent (non-Toeplitz
+       causal linear maps), or nonlinear transducers.
