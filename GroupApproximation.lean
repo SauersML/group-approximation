@@ -5753,6 +5753,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.LetterDisc
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Clearing
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPullback
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.YaoReduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
