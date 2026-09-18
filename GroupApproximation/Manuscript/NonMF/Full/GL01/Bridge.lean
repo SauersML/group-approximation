@@ -161,7 +161,7 @@ theorem false_of_bridge_stretch {M : CombMap} (hM : M.IsPlanar) {F A B F' : M.Fa
   have hmb : (M.facePerm ^ m) d ≠ M.alpha ((M.facePerm ^ 1) d) := by
     intro h
     apply hBF
-    rw [← hB, h, M.alpha_involutive]
+    rw [← hB, h, M.alpha_involutive ((M.facePerm ^ 1) d)]
     exact hb
   have h1 : Relation.EqvGen (AvoidEdgeStep M ((M.facePerm ^ 1) d))
       (M.alpha ((M.facePerm ^ 1) d)) ((M.facePerm ^ (1 + 1)) d) :=

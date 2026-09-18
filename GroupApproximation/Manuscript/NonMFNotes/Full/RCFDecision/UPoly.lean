@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Poly
 import Mathlib.Algebra.Polynomial.Derivative
 import Mathlib.Algebra.Polynomial.Degree.Operations
+import Mathlib.Algebra.Polynomial.Degree.Lemmas
 
 /-!
 # Univariate polynomials with multivariate coefficients
@@ -118,9 +119,8 @@ theorem toPoly_upDerivAux (ρ : ℕ → ℝ) : ∀ (u : List MvP) (k : ℕ),
   | c :: u, k => by
       have h1 : C (((k + 1 : ℕ) : ℝ)) = C (k : ℝ) + 1 := by
         rw [Nat.cast_succ, C_add, C_1]
-      have h2 : mvEval ρ (mvConst (k : ℤ)) = (k : ℝ) := by
-        rw [mvEval_const]
-        exact Int.cast_natCast k
+      have h2 : mvEval ρ (mvConst (k : ℤ)) = (k : ℝ) :=
+        (mvEval_const ρ (k : ℤ)).trans (Int.cast_natCast k)
       show C (mvEval ρ (mvMul (mvConst (k : ℤ)) c)) + X * toPoly ρ (upDerivAux (k + 1) u)
         = C (k : ℝ) * (C (mvEval ρ c) + X * toPoly ρ u)
           + X * derivative (C (mvEval ρ c) + X * toPoly ρ u)
@@ -200,14 +200,16 @@ theorem eval_toPoly_coeffX (ρ : ℕ → ℝ) (i : ℕ) (r : ℝ) : ∀ p : MvP,
 theorem getD_of_length_le {α : Type*} (d : α) : ∀ (u : List α) (N : ℕ), u.length ≤ N →
     u.getD N d = d
   | [], _, _ => List.getD_nil
-  | _ :: u, 0, h => absurd h (by rw [List.length_cons]; omega)
+  | _ :: _, 0, h => absurd h (by rw [List.length_cons]; omega)
   | _ :: u, N + 1, h => by
       rw [List.getD_cons_succ]
       exact getD_of_length_le d u N (by rw [List.length_cons] at h; omega)
 
 theorem getD_append_single_length {α : Type*} (d c : α) : ∀ u : List α,
     (u ++ [c]).getD u.length d = c
-  | [] => List.getD_cons_zero
+  | [] => by
+      show [c].getD 0 d = c
+      exact List.getD_cons_zero
   | a :: u => by
       show (a :: (u ++ [c])).getD (u.length + 1) d = c
       rw [List.getD_cons_succ]
@@ -220,7 +222,7 @@ theorem coeff_toPoly (ρ : ℕ → ℝ) : ∀ (u : List MvP) (k : ℕ),
   | c :: u, 0 => by
       rw [toPoly_cons, coeff_add, coeff_C_zero, coeff_X_mul_zero, add_zero, List.getD_cons_zero]
   | c :: u, k + 1 => by
-      rw [toPoly_cons, coeff_add, coeff_C, if_neg (Nat.succ_ne_zero k), coeff_X_mul, zero_add,
+      rw [toPoly_cons, coeff_add, coeff_C, if_neg (by omega : ¬(k + 1 = 0)), coeff_X_mul, zero_add,
         List.getD_cons_succ]
       exact coeff_toPoly ρ u k
 

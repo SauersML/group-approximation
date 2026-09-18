@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.WaistFrontier
 import GroupApproximation.Manuscript.NonMF.Full.GL03A.RotationTurn
--- GL03B endpoint module per fk/status/GL03B.md; GL03C module PROVISIONAL until fk/status/GL03C.md names it.
+-- GL03B and GL03C endpoint modules as named in fk/status/GL03B.md and fk/status/GL03C.md.
 import GroupApproximation.Manuscript.NonMF.Full.GL03B.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL03C.Endpoint
 import GroupApproximation.Meta.AxiomGuard

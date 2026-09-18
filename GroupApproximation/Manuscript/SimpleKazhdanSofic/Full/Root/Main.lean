@@ -3,6 +3,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralSimplicity.E
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralRingT.PartA
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.GeneralExpanders.GeneralTheorem
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.Endpoints
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.MainTheorem.Abstract
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.BrownROmega.Endpoints
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Sharpness.Converse
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.FinitelyPresented.Endpoints
@@ -18,6 +19,7 @@ Each printed label of the introduction is restated as one closed theorem, a conj
 `type_of% @Full.SKxx.name`, so the statement here is by construction the statement proved there, and
 the proof is the tuple of those endpoints.
 
+* `abstract_claims` (tex l.32–47, the abstract);
 * `thm_main` (tex l.69–80, `thm:main`), `thm_main_brown_form` (tex l.82–84),
   `thm_main_definitions` (tex l.86–109);
 * `thm_general` (tex l.172–187, `thm:general`), `general_remark` (tex l.191–195);
@@ -30,6 +32,25 @@ collects all of them.
 universe u v
 
 namespace GroupApproximation.Full.SKRoot
+
+/-- **The abstract** (tex l.32–47), claim by claim: infinite simple Kazhdan groups can be limits of
+finite simple groups; for every infinite minimal subshift `X`, `G_X` is an infinite, finitely
+generated, simple Kazhdan group and an expander limit of the `SL_{3N}(F₂)`, so LEF, sofic and
+hyperlinear; this answers the question of Brown and Ozawa and Pestov's sofic version; a finitely
+generated group is LEF if and only if it is a subgroup of such a host; the host can be chosen with a
+word problem of the same Turing degree; and one host contains every recursively presented finitely
+generated LEF group.  Conjuncts: the closed `SK05.printedAbstract` and its six claims. -/
+theorem abstract_claims :
+    type_of% @Full.SK05.printedAbstract ∧
+    type_of% @Full.SK05.abstractSimpleKazhdanLimits ∧
+    type_of% @Full.SK05.abstractGX ∧
+    type_of% @Full.SK05.abstractBrownOzawaPestov ∧
+    type_of% @Full.SK05.abstractLEFIffSubgroup ∧
+    type_of% @Full.SK05.abstractSameTuringDegreeHost ∧
+    type_of% @Full.SK05.abstractRecursivelyPresentedHost :=
+  ⟨@Full.SK05.printedAbstract, @Full.SK05.abstractSimpleKazhdanLimits, @Full.SK05.abstractGX,
+    @Full.SK05.abstractBrownOzawaPestov, @Full.SK05.abstractLEFIffSubgroup,
+    @Full.SK05.abstractSameTuringDegreeHost, @Full.SK05.abstractRecursivelyPresentedHost⟩
 
 /-- **`thm:main`** (tex l.69–80): for an infinite minimal subshift `X ⊆ A^ℤ` over a finite alphabet,
 `G_X = EL_3(LC(X, F₂) ⋊_T ℤ)` is an infinite, finitely generated, simple group with property (T), an
@@ -118,6 +139,7 @@ theorem tab_props :
 
 end GroupApproximation.Full.SKRoot
 
+#audit_closed_axioms GroupApproximation.Full.SKRoot.abstract_claims
 #audit_closed_axioms GroupApproximation.Full.SKRoot.thm_main
 #audit_closed_axioms GroupApproximation.Full.SKRoot.thm_main_brown_form
 #audit_closed_axioms GroupApproximation.Full.SKRoot.thm_main_definitions
