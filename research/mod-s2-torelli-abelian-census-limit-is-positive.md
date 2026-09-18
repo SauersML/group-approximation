@@ -1,0 +1,84 @@
+---
+rg: 2
+id: mod-s2-torelli-abelian-census-limit-is-positive
+kind: claim
+title: The monomial census limit d_inf of Mod(S_2) is positive, so representations with abelian Torelli image keep a separating twist uniformly away from the cube-root scalars
+distinct_from:
+  mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap: that is the uniform operator-norm gap for all finite-dimensional representations; this is its restriction to representations of M/[K,K], which by (TA1) is the arithmetic statement d_inf > 0 about abelianizations of finite-index subgroups. That claim implies this one; the converse is not known.
+  mod-s2-torelli-abelian-scalar-gap-is-a-monomial-census-limit: that proves the reduction to d_inf and computes d at finitely many levels (all values 1/15 or 1/30); this asks for positivity of the limit over all levels.
+  deligne-torelli-character-counts-separating-twists: its exact exclusion (ST5) is the statement d(Gamma') > 0 for each single level; this asks for a bound uniform in the level.
+---
+
+**OPEN.** Notation as in `mod-s2-torelli-abelian-scalar-gap-is-a-monomial-census-limit`. The claim is
+
+```text
+d_inf = inf_N d(Gamma(N)) > 0 .                                          (TAP)
+```
+
+By (TA1) there, (TAP) says the following. There is `delta > 0` such that every finite-dimensional unitary
+representation `rho` of `M = Mod(S_2)` with `rho(K)` abelian satisfies
+`||rho(t_s) - omega^(+-1) I||_op >= delta`. The sharp constant is `2 sin(pi d_inf)`.
+
+Arithmetic form: there is `eps > 0` such that for every `N` and every character `psi` of
+`M_N = pi^(-1)(Gamma(N))`, some separating twist `T` has `||arg psi(T)/(2 pi) - 1/3|| >= eps`.
+
+**Conjecture (sharp form).** `d_inf = 1/30`, attained already at `Gamma(2)`.
+
+## Position in the graph
+
+- **Implied by** `mod-s2-exact-representations-have-an-opnorm-torelli-scalar-gap`, by restriction to
+  Torelli-abelian representations. That implication is not filed as a route, so no cycle forms.
+- **Necessary for the flagship.** If (TAP) fails, that gap claim fails. Then `1/3 in P_op`, and
+  `deligne-triple-cover-exact-mf-radical` is refuted (see the gap claim's "Position in the graph"). So a
+  single family of characters of congruence subgroups of `M` with all separating-twist values near `1/3`
+  would refute the flagship.
+- **What it is not.** (TAP) does not suffice for the gap claim. Representations with nonabelian Torelli
+  image are not covered. Quantum and Jones representations are examples.
+
+## Known partial information
+
+- *Each level.* `d(Gamma') > 0` for every single `Gamma'`, by Deligne (ST5): `d = 0` at one level would
+  give an exact cube-root scalar.
+- *Upper bound.* `d_inf <= d(Gamma(2)) = 1/30` (TA4, TA5).
+- *No decay through level three.* All 29 subgroups in the census have `d in {1/15, 1/30}`. These include
+  `Gamma(2)`, `Gamma(3)` and 7 intersections of stabilizers at levels 6 and 15.
+- *Augmentation constraint.* Push-forward to level one maps `W(Gamma')` into `W(Sp_4 Z) = 5Z` and preserves
+  augmentation. So every relation has augmentation divisible by `5`, and `3` never divides the gcd `g(Gamma')`
+  of the augmentations (by ST5). In the census `g in {5, 10}`, and the optimal `theta` is constant, equal to
+  the nearest point of `(1/g)Z` to `1/3`.
+
+## Why the obvious certificates die (transfer obstruction)
+
+- The level-one relation `5 [t_s] = 0` transfers to `W(Gamma')` as `5 m`, where `m` is the vector of class
+  sizes. Its augmentation is `5 [Gamma : Gamma']`.
+- `|Sp_4(F_p)| = p^4 (p^2 - 1)(p^4 - 1)` is divisible by `3` for every prime `p`. So `3` divides
+  `[Gamma : Gamma(N)]` for every `N > 1`, and the transferred certificate is useless at every principal
+  congruence level.
+- A proof of (TAP) through (TA3) therefore needs **sparse** relations: `w in W(Gamma(N))` with
+  `3 not | aug(w)` and `||w||_1` bounded independently of `N`.
+- By Kronecker duality, bounded-`l1` certificates suffice but are not known to be necessary, since the
+  number of classes grows with `N`.
+- At `Gamma(3)` sparse certificates exist, with `||w||_1 = 5`, even though the transfer dies there.
+
+## Attempts
+
+### 2026-09-18, swarm-0917-w11-w11-deligne-pull (census-computation): sparse certificates at level three are GQ(2,4) point stars
+
+- **What was computed** (`gq24_check.py`). At `Gamma(3)` the 45 classes are the 45 symplectic splittings
+  `F_3^4 = P + P^perp`. Transversality (all four plane intersections zero) makes a 12-regular graph with 27
+  five-cliques, each splitting in 3 of them. These are the lines and points of `GQ(2,4)`. The 27 point-star
+  vectors generate `W(Gamma(3))` over `Z` (rank 21, index 1). Each has `l1 = aug = 5`.
+- **Reading.** The level-one relation `5 [t_s] = 0` does not survive the transfer to level three; it only
+  survives in the sparse form of a star. A star is five pairwise transverse splittings, i.e. five
+  separating twists whose reducing curves have pairwise transverse homology splittings mod 3.
+- **Candidate route to (TAP)** (not carried out). Find, for every `N`, a relation among the classes of
+  separating twists attached to 5 (or 10) pairwise mod-`N`-transverse splittings, lifting the star
+  relation. This would need a geometric relation in `M`, a lantern or chain type relation among
+  separating twists, whose image in `H_1(M_N)` is supported on a bounded number of classes. (TA3) would
+  then give `d(Gamma(N)) >= 1/15` or `1/30` uniformly.
+- **Where it stops.**
+  - No such relation in `M` is known to me.
+  - The level-two case already differs: `W(Gamma(2))` has rank 1 with `l1 = 10`.
+  - `Gamma(9)`, `Gamma(4)` and `Gamma(5)` are out of reach of the enumeration: indices `3^10 * 51840`,
+    `2^10 * 720` and `9360000`.
+- **Status.** OPEN.
