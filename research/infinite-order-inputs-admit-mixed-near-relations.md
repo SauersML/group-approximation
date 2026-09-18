@@ -39,6 +39,10 @@ Let `P` be a countable group and `t ∈ P` an element of infinite order with
   `steinberg-resolvent-shell-envelope-is-finitely-presented`.
 - Item 3 needs the word problem of `St_4(R_L)`, which is gate 1 of that node, and the
   power problem for `x_12(1)`. Neither is known.
+- **Other ranks.** The same holds for `St_N(R_L)` with `N >= 5`, for example
+  `St_10(R_L)`, the other admissible input of that node. Nothing here uses the rank
+  or property (T): `x_12(1)` has infinite order for the same reason, and its index is
+  infinite because `P ⊇ GL_2(Q) ⊇ Z^2` is not virtually cyclic.
 
 ## Scope
 
