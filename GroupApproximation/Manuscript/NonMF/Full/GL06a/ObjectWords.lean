@@ -1,7 +1,7 @@
 import Mathlib.Data.List.Destutter
 import Mathlib.Data.List.ReduceOption
 import Mathlib.Data.Finset.Card
-import GroupApproximation.GGT.VanKampen.ListNoABABLength
+import Mathlib.Data.Finset.Lattice.Lemmas
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -17,13 +17,18 @@ side along no object.
 * `changePositions l`: the positions `i` where `l` reads `some a, some b` at `i, i + 1`, `a ≠ b`.
 * `reducedWord l`: drop the `none` letters, then merge equal neighbours (`List.destutter`).
 * `card_changePositions_le`: `#changePositions l ≤ |reducedWord l| - 1`.
+* `NoABAB`, `length_add_one_le_two_mul_card`: a word with no equal neighbours and no subsequence
+  `a b a b` (`a ≠ b`) on `d` letters has at most `2 d - 1` letters (Davenport–Schinzel of order two).
 * `noABAB_filterMap_range`: if no four increasing positions read `a, b, a, b` with `a ≠ b`, the
   word `(range n).filterMap g` has no subsequence `a b a b`.
+
+Model tests (hand).
+* `[some a, none, some b, some b, some a]`: one change position (`3`); reduced word `a b a`,
+  length `3`, and `1 ≤ 3 - 1`.
+* `a b a`: `3 + 1 ≤ 2 * 2`, sharp; `a b a b` has `4 + 1 > 2 * 2`, so `NoABAB` is needed.
 -/
 
 namespace GroupApproximation.Full.GL06a
-
-open GroupApproximation.GGT.VanKampen
 
 variable {α β : Type*}
 
@@ -86,7 +91,7 @@ theorem changePositions_cons [DecidableEq α] (x : Option α) (t : List (Option 
 theorem mem_changePositions [DecidableEq α] {a b : α} (hab : a ≠ b) :
     ∀ (l : List (Option α)) (i : ℕ), l[i]? = some (some a) → l[i + 1]? = some (some b) →
       i ∈ changePositions l
-  | [], i, h1, _ => by
+  | [], _, h1, _ => by
     rw [List.getElem?_nil] at h1
     cases h1
   | x :: t, 0, h1, h2 => by
@@ -123,7 +128,10 @@ def reducedWord [DecidableEq α] (l : List (Option α)) : List α :=
 /-- **At most `|reducedWord l| - 1` change positions.** -/
 theorem card_changePositions_le [DecidableEq α] :
     ∀ l : List (Option α), (changePositions l).card ≤ (reducedWord l).length - 1
-  | [] => (Finset.card_eq_zero.mpr changePositions_nil).trans_le (Nat.zero_le _)
+  | [] => by
+    have h0 : (changePositions ([] : List (Option α))).card = 0 := by
+      rw [changePositions_nil, Finset.card_empty]
+    omega
   | x :: t => by
     have ih := card_changePositions_le t
     rw [changePositions_cons]
@@ -132,8 +140,8 @@ theorem card_changePositions_le [DecidableEq α] :
       obtain ⟨a, b, t', rfl, rfl, hab⟩ := exists_of_headChange hc
       have hlen : (reducedWord (some a :: some b :: t')).length =
           (reducedWord (some b :: t')).length + 1 := by
-        simp only [reducedWord, List.reduceOption_cons_of_some]
-        rw [List.destutter_cons_cons, if_pos hab, List.length_cons, List.destutter_cons']
+        simp only [reducedWord, List.reduceOption_cons_of_some, List.destutter_cons',
+          List.destutter'_cons, if_pos hab, List.length_cons]
       have hpos : 0 < (reducedWord (some b :: t')).length := by
         rw [reducedWord, List.reduceOption_cons_of_some, List.destutter_cons']
         exact List.length_pos_iff.mpr (List.destutter'_ne_nil _ _)
@@ -154,9 +162,95 @@ theorem some_mem_of_mem_reducedWord [DecidableEq α] {l : List (Option α)} {a :
     (h : a ∈ reducedWord l) : some a ∈ l := by
   have h1 : a ∈ l.reduceOption := (List.destutter_sublist _ _).subset h
   obtain ⟨x, hx, hxa⟩ := List.mem_filterMap.mp h1
-  rw [id] at hxa
-  rw [← hxa]
+  have hxa' : x = some a := hxa
+  subst hxa'
   exact hx
+
+/-- **No `a b a b`**: no subsequence `a, b, a, b` with `a ≠ b`. -/
+def NoABAB (w : List α) : Prop :=
+  ∀ a b : α, a ≠ b → ¬ [a, b, a, b] <+ w
+
+theorem NoABAB.sublist {w w' : List α} (h : NoABAB w) (hs : w' <+ w) : NoABAB w' :=
+  fun a b hab habab => h a b hab (habab.trans hs)
+
+/-- The first occurrence of a letter. -/
+theorem exists_split_first {a : α} : ∀ {l : List α}, a ∈ l → ∃ u v, l = u ++ a :: v ∧ a ∉ u
+  | [], h => nomatch h
+  | x :: l, h => by
+    by_cases hx : x = a
+    · subst hx
+      exact ⟨[], l, rfl, fun h' => nomatch h'⟩
+    · rcases List.mem_cons.mp h with h' | h'
+      · exact absurd h'.symm hx
+      · obtain ⟨u, v, huv, hu⟩ := exists_split_first h'
+        refine ⟨x :: u, v, ?_, ?_⟩
+        · rw [huv, List.cons_append]
+        · intro hm
+          rcases List.mem_cons.mp hm with h'' | h''
+          · exact hx h''.symm
+          · exact hu h''
+
+/-- **A word with no equal neighbours and no `a b a b` on `d` letters has at most `2 d - 1`
+letters.**  Split at the next occurrence of the first letter `a`: `w = a :: (u ++ a :: v)`.  The
+word `u` is not empty and shares no letter with `a :: v`, and both bounds add up. -/
+theorem length_add_one_le_two_mul_card [DecidableEq α] :
+    ∀ (n : ℕ) (w : List α), w.length ≤ n → w ≠ [] → w.IsChain (· ≠ ·) → NoABAB w →
+      w.length + 1 ≤ 2 * w.toFinset.card
+  | 0, w, hn, hne, _, _ => by
+    have hw : w = [] := List.eq_nil_of_length_eq_zero (by omega)
+    exact absurd hw hne
+  | _ + 1, [], _, hne, _, _ => (hne rfl).elim
+  | n + 1, a :: rest, hn, _, hchain, hno => by
+    have hrest_chain : rest.IsChain (· ≠ ·) := List.IsChain.of_cons hchain
+    by_cases ha : a ∈ rest
+    · obtain ⟨u, v, rfl, hau⟩ := exists_split_first ha
+      have hu_chain : u.IsChain (· ≠ ·) := List.IsChain.left_of_append hrest_chain
+      have hv_chain : (a :: v).IsChain (· ≠ ·) := List.IsChain.right_of_append hrest_chain
+      have hune : u ≠ [] := by
+        intro hu0
+        subst hu0
+        exact List.rel_of_isChain_cons_cons hchain rfl
+      have hdisj : Disjoint u.toFinset (a :: v).toFinset := by
+        refine Finset.disjoint_left.mpr fun b hbu hbv => ?_
+        have hbu' : b ∈ u := List.mem_toFinset.mp hbu
+        have hbv' : b ∈ a :: v := List.mem_toFinset.mp hbv
+        rcases List.mem_cons.mp hbv' with hba | hbv''
+        · subst hba
+          exact hau hbu'
+        · refine hno a b (fun hab => hau (by rw [hab]; exact hbu')) ?_
+          refine List.Sublist.cons_cons a ?_
+          show [b] ++ [a, b] <+ u ++ a :: v
+          exact List.Sublist.append (List.singleton_sublist.mpr hbu')
+            (List.Sublist.cons_cons a (List.singleton_sublist.mpr hbv''))
+      have hmem : a ∈ u.toFinset ∪ (a :: v).toFinset :=
+        Finset.mem_union_right _ (List.mem_toFinset.mpr List.mem_cons_self)
+      have hset : (a :: (u ++ a :: v)).toFinset = u.toFinset ∪ (a :: v).toFinset := by
+        rw [List.toFinset_cons (a := a) (l := u ++ a :: v), List.toFinset_append,
+          Finset.insert_eq_of_mem hmem]
+      have hcard : (a :: (u ++ a :: v)).toFinset.card =
+          u.toFinset.card + (a :: v).toFinset.card := by
+        rw [hset, Finset.card_union_of_disjoint hdisj]
+      have hlen : (a :: (u ++ a :: v)).length = u.length + (a :: v).length + 1 := by
+        rw [List.length_cons (a := a) (as := u ++ a :: v), List.length_append]
+      have hupos : 0 < u.length := List.length_pos_iff.mpr hune
+      have hu := length_add_one_le_two_mul_card n u (by omega) hune hu_chain
+        (hno.sublist ((List.sublist_append_left u (a :: v)).cons a))
+      have hv := length_add_one_le_two_mul_card n (a :: v) (by omega) (List.cons_ne_nil a v)
+        hv_chain (hno.sublist ((List.sublist_append_right u (a :: v)).cons a))
+      omega
+    · have hl : (a :: rest).length = rest.length + 1 := List.length_cons
+      have hcard : (a :: rest).toFinset.card = rest.toFinset.card + 1 := by
+        rw [List.toFinset_cons,
+          Finset.card_insert_of_notMem (fun h => ha (List.mem_toFinset.mp h))]
+      by_cases hrest : rest = []
+      · subst hrest
+        have h0 : ([] : List α).toFinset.card = 0 := by
+          rw [List.toFinset_nil, Finset.card_empty]
+        have h1 : ([] : List α).length = 0 := List.length_nil
+        omega
+      · have hr := length_add_one_le_two_mul_card n rest (by omega) hrest hrest_chain
+          (hno.sublist (List.Sublist.cons a (List.Sublist.refl rest)))
+        omega
 
 /-- A subsequence of `L.filterMap g` lifts to a subsequence of `L`. -/
 theorem exists_sublist_map_eq_of_sublist_filterMap (g : β → Option α) :
@@ -183,10 +277,10 @@ theorem exists_sublist_map_eq_of_sublist_filterMap (g : β → Option α) :
 
 /-- **No `a b a b` in a filtered range word**, from the absence of four increasing positions
 reading `a, b, a, b`. -/
-theorem noABAB_filterMap_range [DecidableEq α] {g : ℕ → Option α} {n : ℕ}
+theorem noABAB_filterMap_range {g : ℕ → Option α} {n : ℕ}
     (h : ∀ (i1 i2 i3 i4 : ℕ) (a b : α), i1 < i2 → i2 < i3 → i3 < i4 → i4 < n → a ≠ b →
       g i1 = some a → g i2 = some b → g i3 = some a → g i4 = some b → False) :
-    ListNoABAB.NoABAB ((List.range n).filterMap g) := by
+    NoABAB ((List.range n).filterMap g) := by
   intro a b hab habab
   obtain ⟨idx, hidx, hmap⟩ :=
     exists_sublist_map_eq_of_sublist_filterMap g (List.range n) [a, b, a, b] habab
@@ -215,3 +309,4 @@ end GroupApproximation.Full.GL06a
 
 #audit_axioms GroupApproximation.Full.GL06a.card_changePositions_le
 #audit_axioms GroupApproximation.Full.GL06a.noABAB_filterMap_range
+#audit_axioms GroupApproximation.Full.GL06a.length_add_one_le_two_mul_card

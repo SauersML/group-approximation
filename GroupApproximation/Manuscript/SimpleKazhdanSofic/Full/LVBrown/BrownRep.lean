@@ -174,10 +174,12 @@ theorem unique_bb {v0 v1 : V} {τ : G} (hτ1 : τ • v1 = v0) (f : MulAction.st
       _ = (k' : G)⁻¹ * ((k' : G) * τ * (j' : G)) * (j : G)⁻¹ * τ⁻¹ := by rw [heq]
       _ = τ * ((j' : G) * (j : G)⁻¹) * τ⁻¹ := by group
   have ha0 : ((k' : G)⁻¹ * (k : G)) • v0 = v0 := smul_stab (k'⁻¹ * k)
+  have hjj : (j' : G) * (j : G)⁻¹ = τ⁻¹ * ((k' : G)⁻¹ * (k : G)) * τ := by
+    rw [ha']
+    group
   have hb1 : ((j' * j⁻¹ : MulAction.stabilizer G v0) : G) • v1 = v1 := by
     show ((j' : G) * (j : G)⁻¹) • v1 = v1
-    rw [show (j' : G) * (j : G)⁻¹ = τ⁻¹ * ((k' : G)⁻¹ * (k : G)) * τ by rw [ha']; group,
-      mul_smul, mul_smul, hτ1, ha0, hτinv0]
+    rw [hjj, mul_smul, mul_smul, hτ1, ha0, hτinv0]
   have he := hedge (j' * j⁻¹) (k'⁻¹ * k) hb1 ha'
   refine alg_bb ?_ ?_ he
   · rw [← map_mul, mul_inv_cancel_left]

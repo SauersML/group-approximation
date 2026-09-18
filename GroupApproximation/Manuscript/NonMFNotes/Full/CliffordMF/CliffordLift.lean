@@ -169,7 +169,8 @@ theorem lamp_mul_lampWord [DecidableEq X] (y : X) (l : List X) :
         _ = -(lamp X x * ((-1) ^ (l.length + l.count y) * (lampWord X l * lamp X y))) := by
             rw [ih]
         _ = -((-1) ^ (l.length + l.count y) * (lamp X x * lampWord X l * lamp X y)) := by
-            rw [← mul_assoc (lamp X x), mul_neg_one_pow_comm, mul_assoc, mul_assoc]
+            rw [← mul_assoc (lamp X x), mul_neg_one_pow_comm X (l.length + l.count y) (lamp X x),
+              mul_assoc, mul_assoc]
         _ = (-1) ^ ((x :: l).length + (x :: l).count y) *
               (lamp X x * lampWord X l * lamp X y) := by
             rw [List.length_cons, List.count_cons_of_ne hxy, ← neg_mul, ← neg_one_mul,
