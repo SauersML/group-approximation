@@ -65,39 +65,55 @@ theorem cubeScale_C (i : σ) (r : R) : cubeScale R i (MvPolynomial.C r) = MvPoly
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_C
 
+theorem cubeKill_X (i l : σ) :
+    cubeKill R i (MvPolynomial.X l) = if l = i then 0 else MvPolynomial.X l :=
+  MvPolynomial.eval₂Hom_X' _ _ l
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X
+
+theorem cubeUnit_X (i l : σ) :
+    cubeUnit R i (MvPolynomial.X l) = if l = i then 1 else MvPolynomial.X l :=
+  MvPolynomial.eval₂Hom_X' _ _ l
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X
+
+theorem cubeScale_X (i l : σ) : cubeScale R i (MvPolynomial.X l) =
+    if l = i then MvPolynomial.X l else MvPolynomial.X l * MvPolynomial.X i :=
+  MvPolynomial.eval₂Hom_X' _ _ l
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X
+
 theorem cubeKill_X_of_eq {i l : σ} (h : l = i) : cubeKill R i (MvPolynomial.X l) = 0 := by
-  subst h
-  exact (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_pos rfl)
+  rw [cubeKill_X, if_pos h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X_of_eq
 
 theorem cubeKill_X_of_ne {i l : σ} (h : l ≠ i) :
-    cubeKill R i (MvPolynomial.X l) = MvPolynomial.X l :=
-  (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_neg h)
+    cubeKill R i (MvPolynomial.X l) = MvPolynomial.X l := by
+  rw [cubeKill_X, if_neg h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X_of_ne
 
 theorem cubeUnit_X_of_eq {i l : σ} (h : l = i) : cubeUnit R i (MvPolynomial.X l) = 1 := by
-  subst h
-  exact (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_pos rfl)
+  rw [cubeUnit_X, if_pos h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X_of_eq
 
 theorem cubeUnit_X_of_ne {i l : σ} (h : l ≠ i) :
-    cubeUnit R i (MvPolynomial.X l) = MvPolynomial.X l :=
-  (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_neg h)
+    cubeUnit R i (MvPolynomial.X l) = MvPolynomial.X l := by
+  rw [cubeUnit_X, if_neg h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X_of_ne
 
 theorem cubeScale_X_of_eq {i l : σ} (h : l = i) :
-    cubeScale R i (MvPolynomial.X l) = MvPolynomial.X l :=
-  (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_pos h)
+    cubeScale R i (MvPolynomial.X l) = MvPolynomial.X l := by
+  rw [cubeScale_X, if_pos h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X_of_eq
 
 theorem cubeScale_X_of_ne {i l : σ} (h : l ≠ i) :
-    cubeScale R i (MvPolynomial.X l) = MvPolynomial.X l * MvPolynomial.X i :=
-  (MvPolynomial.eval₂Hom_X' _ _ l).trans (if_neg h)
+    cubeScale R i (MvPolynomial.X l) = MvPolynomial.X l * MvPolynomial.X i := by
+  rw [cubeScale_X, if_neg h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X_of_ne
 
@@ -145,7 +161,7 @@ theorem cubeKill_comp_cubeScale (i : σ) :
       · simp only [RingHom.comp_apply, cubeScale_X_of_eq h, cubeKill_X_of_eq h,
           MvPolynomial.constantCoeff_X, map_zero]
       · simp only [RingHom.comp_apply, cubeScale_X_of_ne h, map_mul, cubeKill_X_of_ne h,
-          cubeKill_X_of_eq (rfl : i = i), mul_zero, MvPolynomial.constantCoeff_X, map_zero]
+          cubeKill_X_of_eq (R := R) (rfl : i = i), mul_zero, MvPolynomial.constantCoeff_X, map_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_comp_cubeScale
 
@@ -158,7 +174,7 @@ theorem cubeUnit_comp_cubeScale_comp_cubeKill (i : σ) :
       by_cases h : l = i
       · simp only [RingHom.comp_apply, cubeKill_X_of_eq h, map_zero]
       · simp only [RingHom.comp_apply, cubeKill_X_of_ne h, cubeScale_X_of_ne h, map_mul,
-          cubeUnit_X_of_ne h, cubeUnit_X_of_eq (rfl : i = i), mul_one]
+          cubeUnit_X_of_ne h, cubeUnit_X_of_eq (R := R) (rfl : i = i), mul_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_comp_cubeScale_comp_cubeKill
 
