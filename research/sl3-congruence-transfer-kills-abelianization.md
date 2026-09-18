@@ -7,10 +7,11 @@ distinct_from:
   matrix-corner-laurent-rings-block-fp-elementary-groups: that kills crossed products whose chain contains an indicable subgroup; this computes the torsion abelianizations along the congruence chain of SL_n(Z), n >= 3, where no subgroup is indicable, and shows their classes die under transfer.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
+  - research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md
 ---
 
-**ESTABLISHED** by `sl3-congruence-transfer-kills-abelianization-proof` (lane proof, not
-independently reviewed). Its one external input is Lee–Szczarba, quoted below.
+**ESTABLISHED** by `sl3-congruence-transfer-kills-abelianization-proof` (lane proof; referee
+gq-referee-b PASS, citation lens and every proof step, `research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md`). Its one external input is Lee–Szczarba, quoted below.
 
 ## Input (Lee–Szczarba)
 
@@ -21,14 +22,13 @@ Invent. Math. 33 (1976), 15–53. As fetched (the HTML rendering; the primary wa
 > "For n≥3 and d≥1, the abelianization of Γd(n) is isomorphic to (ℤ/dℤ)^{n²−1}."
 
 The sentence before it records that Lee–Szczarba "constructed an epimorphism
-Γd(n)→(ℤ/dℤ)^{n²−1} whose kernel is Γ_{d²}(n)".
+Γd(n)→(ℤ/dℤ)^{n²−1} whose kernel is Γ_{d²}(n)". The same text states that they showed "Γ_{d²}(n) is equal
+to [Γ_d(n),Γ_d(n)] for d≥2 and n≥3".
 
 **What is used.** `θ_d(I + dA) = A mod d` is a homomorphism `Γ_d -> M_n(Z/d)` with kernel `Γ_(d^2)`,
 by `(I+dA)(I+dB) = I + d(A+B) + d^2 AB`. Its image lies in the trace-zero matrices `sl_n(Z/d)`, since
-`det(I + dA) ≡ 1 + d·tr(A) mod d^2`. The quoted order `d^(n²-1)` of the abelianization, together with
-the abelian quotient `Γ_d/Γ_(d^2)`, gives:
-- `[Γ_d, Γ_d] = Γ_(d^2)`;
-- `θ_d` induces `Γ_d^ab ≅ sl_n(Z/d)`.
+`det(I + dA) ≡ 1 + d·tr(A) mod d^2`. So `[Γ_d, Γ_d] = Γ_(d^2)` (quoted), and `θ_d` induces `Γ_d^ab ≅ sl_n(Z/d)` by comparing orders with
+the quoted `d^(n²-1)`.
 
 ## Statement
 

@@ -80,7 +80,8 @@ surjects onto `Z`.
    `[v] = ε·[χ_(C')]`.
 5. **Symbols.** Loday: the product `K_1(Q) ⊗ K_1(R_T) -> K_2(Q ⊗ R_T) = K_2(R_T)` sends
    `[λ] ⊗ [v]` to `±{λ, v}`, and the products are natural and associative (Weibel, *The K-book*,
-   IV.1.10; not re-read). So `{λ, v} = ±x·[χ_(C')]` with `x = {λ, ε} ∈ K_2(Q)`, which is the image of
+   IV.1.10, number unconfirmed; the noncommutative form `[a] ⊗ [b] ↦ {a⊗1, 1⊗b}` is Loday's, unread:
+   trust surface T3). So `{λ, v} = ±x·[χ_(C')]` with `x = {λ, ε} ∈ K_2(Q)`, which is the image of
    `x` under `K_2(Q) -> K_2(χ_(C') R_T χ_(C')) ≅ K_2(R_T)`. The corner `χ_(C') R_T χ_(C')` is itself
    matricially divisible: the blocks of level `e` inside `C'`, for `d^2 | e`, give
    `χ_(C') R_T χ_(C') ≅ M_([Γ(d^2):Γ(e)])(...)`, and these indices are divisible by every integer. So
