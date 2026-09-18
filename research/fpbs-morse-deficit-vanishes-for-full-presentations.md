@@ -6,6 +6,7 @@ title: Well-founded Morse matchings over short trivial words almost exhaust the 
 artifacts:
   - research/artifacts/fpbs/docs/bernoulli-morse-collapse-criterion.md
   - research/artifacts/fpbs/docs/dual-forest-morse-matching-one-relator.md
+  - research/artifacts/fpbs-relative-cayley-cost-letter-saturation-2026-09-18.md
 distinct_from:
   fpbs-bernoulli-cycle-tail-compactness: that asks for compact near-minimizing sequences among arbitrary graphings; this restricts to subgraphings of one Cayley graphing organised by cell matchings, so it additionally contains subgraphing attainment (Q3 of the artifact) and can fail even if the cost-Betti equality holds
   fpbs-bernoulli-morse-collapse-criterion: that proves the criterion and the limit formula; this is the open assertion that the limit is zero
@@ -274,4 +275,44 @@ Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, 
   - Q3 (`C_sub = C`) for treeable actions, via a measured exchange lemma: swaps with pairwise edge-disjoint
     fundamental cycles keep a treeing a treeing. This is low impact.
   - Voronoi coarsening of a near-optimal graphing. This hits isoperimetry: a constant fraction of edges cross cells.
+### 2026-09-18 — swarm-0917-w11-w11-fp-follow (follow-through, symbolic-dynamics): relative Cayley cost of the amalgamated line
+
+- *Approach.* Bypass Morse matchings and attack `C_sub(S)` directly for `G = F_n *_{u=v} F(c,d)`. The `A`-side
+  letters generate `R_A`, which contains the `v`-lines. So `C_sub(S) <= n + RC(v)`, where `RC(v)` is the cheapest
+  subgraphing of `Phi_c cup Phi_d` that generates the `F(c,d)`-orbits once the `v`-lines are free. This is the w10
+  need: decide `RC(cdcDcd) = 1`.
+- *Result (positive, ESTABLISHED).* `fpbs-letter-contact-words-have-relative-cayley-cost-one`.
+  - Suppose `H_s = <s, v>` meets `t^{-1} H_s t` nontrivially. Then `Phi_s` plus the `t`-edges out of a small complete
+    section of the contact subgroup generate, so `RC(v) = 1` on **every** free action.
+  - Hence `C_sub^a(S) = C(a) = n + 1 = 1 + beta_1` for every free action of these `G`. So this node's `C_sub` form
+    holds for them. The Morse form follows via Theorem B of the collapse criterion, which is PROPOSED ESTABLISHED.
+  - This covers relators with every letter used at least 3 times, for example `abaBab = cccddd` or `cdcdcD`. That is
+    outside the twice-used-letter node, and outside every Morse class killed in w6–w9. The census finds 55 such
+    contact classes of length at most 9.
+- *Result (coupling, ESTABLISHED).* `fpbs-saturated-cayley-repair-couples-to-ascending-union`.
+  - Sandwich: `max(1, rho_d(H_c) + rho_c(H_d)) <= RC(v) <= 1 + min rho`, where `rho_t(H)` is the one-letter repair
+    cost.
+  - `rho_t(H)` is relative cost with labels in `H t^{±1} H`.
+  - `rho_d(<c, v>) = 0` on Bernoulli forces cost 2 for the Bernoulli shift of the ascending union
+    `Gamma_v = lim(c -> c, d -> v)`.
+  - For `v = ccdcDD` that union is the `Gamma_mal` chain. So the `c`-saturated route to `RC(ccdcDD) = 1` would refute
+    `fpbs-mal-bernoulli-single-stage-floor`.
+- *Where it dies (class kill).* Letter-saturated contact repair.
+  - *Invariant.* `rank(H_s cap t^{-1} H_s t)`.
+  - *Step.* The small complete section of `E_{a|I}`. At `I = 1` it is the whole space, and adjacent classes share
+    exactly one `t`-edge.
+  - *Words killed.* The sharp test `cdcDcd`, where both `H_c` and `H_d` are malnormal, and 1484 of the 1539 classes of
+    length at most 9 in which every letter is used at least 3 times.
+  - *What is left.* Cycle deletion across malnormal pairs, where packings are floored.
+- *Changes belief.*
+  - `abaBab = cdcDcd` is hard at the `A`/`B`-split level, not only at the Morse level.
+  - Each saturated half of the split route is at least as hard as Bernoulli finite cost for a malnormally exhausted
+    locally free group.
+- *Not ruled out.*
+  - Mixed families, whose `c`-edges create cycles in the `d`-class graph and conversely. The lower bound
+    `rho_d + rho_c` may lie below 1.
+  - Generating subgraphings of `Phi_S` that do not split along `A` and `B`.
+- *Next step.* Decide whether `rho_d(H_c) + rho_c(H_d) > 1` for `cdcDcd` on Bernoulli. If it is, the split route dies.
+- *Artifact.* `research/artifacts/fpbs-relative-cayley-cost-letter-saturation-2026-09-18.md`. Scripts are in
+  `experiments/fpbs-relative-cayley-cost-2026-09-17/`.
 - *Status.* The node stays OPEN.
