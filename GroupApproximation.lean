@@ -5701,6 +5701,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TraceMo
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TensorSquare
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Frame
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Theorem
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.WellFormed.Decide
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
