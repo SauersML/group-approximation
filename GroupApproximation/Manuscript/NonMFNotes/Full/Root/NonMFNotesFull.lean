@@ -1,8 +1,8 @@
-import GroupApproximation.Computability.AdianRabinVariantTransform
 import GroupApproximation.Computability.BooneWordProblemUndecidable
 import GroupApproximation.Computability.MFRadicalComputer
 import GroupApproximation.Computability.WordProblemRE
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Torsion
+import GroupApproximation.Manuscript.NonMFNotes.Full.AdianRabin.Unconditional
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.AdianRabinOutput
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.MFArithmetic
 import GroupApproximation.Manuscript.NonMFNotes.Full.Arithmetic.Undecidable
@@ -590,16 +590,16 @@ alias notes_cor_undecidable_wordProblem_re := GroupApproximation.WordProblemRE.r
 `GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re`. -/
 alias notes_cor_undecidable_negative_not_re := GroupApproximation.WordProblemRE.operatorMF_negative_side_not_re
 
-/-- `cor:undecidable` (`non_mf_group_notes.tex` l.2562): the conditional transfer step of the
-proof; its premise is discharged by `Computability.not_computablePred_wordProblemPred`.
-Alias of
-`GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem`. -/
-alias notes_cor_undecidable_transfer := GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem
+/-- `cor:undecidable` (`non_mf_group_notes.tex` l.2562): the unconditional endpoint of the
+transfer step: MF recognition on presentation codes is undecidable, with the word-problem
+premise discharged inside the proof. Alias of
+`GroupApproximation.Full.NN13AR.operatorMF_recognition_undecidable`. -/
+alias notes_cor_undecidable_transfer := GroupApproximation.Full.NN13AR.operatorMF_recognition_undecidable
 
-/-- `cor:undecidable` (`non_mf_group_notes.tex` l.2562): the conditional transfer step for the
-negative side; its premise is discharged unconditionally in `WordProblemRE`. Alias of
-`GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem`. -/
-alias notes_cor_undecidable_negative_transfer := GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem
+/-- `cor:undecidable` (`non_mf_group_notes.tex` l.2562): the unconditional endpoint of the
+transfer step for the negative side: the non-MF codes are not recursively enumerable.
+Alias of `GroupApproximation.Full.NN13AR.operatorMF_negative_side_not_re`. -/
+alias notes_cor_undecidable_negative_side_not_re := GroupApproximation.Full.NN13AR.operatorMF_negative_side_not_re
 
 /-- `cor:undecidable` (`non_mf_group_notes.tex` l.2562): the printed corollary. Alias of
 `GroupApproximation.Full.NN11.notesUndecidable`. -/

@@ -32,26 +32,26 @@ inductive CohnRel : Free (ZMod 2) → Free (ZMod 2) → Prop
 abbrev CohnTwoF2 : Type := RingQuot CohnRel
 
 /-- The quotient map from the free algebra onto the Cohn algebra. -/
-def mk : Free (ZMod 2) →ₐ[ZMod 2] CohnTwoF2 := RingQuot.mkAlgHom (ZMod 2) CohnRel
+def cmk : Free (ZMod 2) →ₐ[ZMod 2] CohnTwoF2 := RingQuot.mkAlgHom (ZMod 2) CohnRel
 
-theorem mk_surjective : Function.Surjective mk :=
+theorem mk_surjective : Function.Surjective cmk :=
   RingQuot.mkAlgHom_surjective (ZMod 2) CohnRel
 
-theorem mk_rel {a b : Free (ZMod 2)} (h : CohnRel a b) : mk a = mk b :=
+theorem mk_rel {a b : Free (ZMod 2)} (h : CohnRel a b) : cmk a = cmk b :=
   RingQuot.mkAlgHom_rel (ZMod 2) h
 
 /-- A named generator of the Cohn algebra. -/
-def gen (g : Generator) : CohnTwoF2 := mk (FreeAlgebra.ι (ZMod 2) g)
+def cgen (g : Generator) : CohnTwoF2 := cmk (FreeAlgebra.ι (ZMod 2) g)
 
 /-- The generators `x₀, x₁`. -/
 def cx : Bool → CohnTwoF2
-  | false => gen s0
-  | true => gen s1
+  | false => cgen s0
+  | true => cgen s1
 
 /-- The generators `y₀, y₁`. -/
 def cy : Bool → CohnTwoF2
-  | false => gen t0
-  | true => gen t1
+  | false => cgen t0
+  | true => cgen t1
 
 theorem y0_x0 : cy false * cx false = 1 := by
   have h := mk_rel CohnRel.t0_s0
@@ -77,11 +77,16 @@ theorem cy_cx_self : ∀ i : Bool, cy i * cx i = 1
   | false => y0_x0
   | true => y1_x1
 
-theorem cy_cx_ne : ∀ {i j : Bool}, i ≠ j → cy i * cx j = 0
-  | false, false, h => absurd rfl h
-  | false, true, _ => y0_x1
-  | true, false, _ => y1_x0
-  | true, true, h => absurd rfl h
+theorem cy_cx_ne {i j : Bool} (h : i ≠ j) : cy i * cx j = 0 := by
+  cases i with
+  | false =>
+    cases j with
+    | false => exact (h rfl).elim
+    | true => exact y0_x1
+  | true =>
+    cases j with
+    | false => exact y1_x0
+    | true => exact (h rfl).elim
 
 /-- The unit map `𝔽₂ → C₂(𝔽₂)` (`simple_kazhdan_sofic_group.tex` l.733-735). -/
 def cohnUnit : ZMod 2 →+* CohnTwoF2 := algebraMap (ZMod 2) CohnTwoF2
@@ -104,7 +109,7 @@ def toLeavittAlg : CohnTwoF2 →ₐ[ZMod 2] BinaryLeavittAlgebra (ZMod 2) :=
 (`simple_kazhdan_sofic_group.tex` l.733-735). -/
 def toLeavitt : CohnTwoF2 →+* BinaryLeavittAlgebra (ZMod 2) := toLeavittAlg.toRingHom
 
-theorem toLeavitt_mk (a : Free (ZMod 2)) : toLeavitt (mk a) = quotientMap (ZMod 2) a :=
+theorem toLeavitt_mk (a : Free (ZMod 2)) : toLeavitt (cmk a) = quotientMap (ZMod 2) a :=
   RingQuot.liftAlgHom_mkAlgHom_apply (ZMod 2) (quotientMap (ZMod 2)) toLeavitt_respects a
 
 theorem toLeavitt_smul (c : ZMod 2) (z : CohnTwoF2) : toLeavitt (c • z) = c • toLeavitt z :=
@@ -114,7 +119,7 @@ theorem toLeavitt_smul (c : ZMod 2) (z : CohnTwoF2) : toLeavitt (c • z) = c �
 theorem toLeavitt_surjective : Function.Surjective toLeavitt := by
   intro z
   obtain ⟨a, rfl⟩ := RingQuot.mkAlgHom_surjective (ZMod 2) (Relation (ZMod 2)) z
-  exact ⟨mk a, toLeavitt_mk a⟩
+  exact ⟨cmk a, toLeavitt_mk a⟩
 
 end
 

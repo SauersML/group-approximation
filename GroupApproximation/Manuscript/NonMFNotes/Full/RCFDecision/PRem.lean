@@ -21,7 +21,7 @@ open Polynomial
 
 theorem length_upSmul (c : MvP) : ∀ u : List MvP, (upSmul c u).length = u.length
   | [] => rfl
-  | a :: u => by
+  | _ :: u => by
       show (upSmul c u).length + 1 = u.length + 1
       rw [length_upSmul c u]
 
@@ -65,8 +65,7 @@ theorem toPoly_premStep (ρ : ℕ → ℝ) (bl : MvP) (b : List MvP) (an : MvP) 
 
 theorem degree_toPoly_lt (ρ : ℕ → ℝ) (u : List MvP) :
     (toPoly ρ u).degree < (u.length : WithBot ℕ) := by
-  rw [degree_lt_iff_coeff_zero]
-  intro m hm
+  refine (degree_lt_iff_coeff_zero (toPoly ρ u) u.length).2 fun m hm => ?_
   rw [coeff_toPoly, getD_of_length_le [] u m hm, mvEval_nil]
 
 /-! ## The loop -/
@@ -89,7 +88,7 @@ theorem premLoop_spec (ρ : ℕ → ℝ) (bl : MvP) (b : List MvP) (hbl : mvEval
   | 0, v, hv => by
       show PRemOK ρ bl b v v
       exact pRemOK_self ρ bl b v (by omega)
-  | t + 1, [], _ => by
+  | _ + 1, [], _ => by
       show PRemOK ρ bl b [] []
       exact pRemOK_self ρ bl b [] (Nat.zero_le _)
   | t + 1, an :: w, hv => by
