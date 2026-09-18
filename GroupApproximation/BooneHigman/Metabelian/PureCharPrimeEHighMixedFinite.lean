@@ -109,7 +109,8 @@ theorem eHighMixed_permMatrixUnits_injective (K : Type*) [Field K] (n : ℕ) :
     exact h4
   exact inv_eq_one.mp h3
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighMixed_permMatrixUnits_injective
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighMixed_permMatrixUnits_injective
 
 /-- The permutation representation of `Perm M` for a finite `M`, indexed by `Fin (Nat.card M)`. -/
 noncomputable def eHighMixed_permRep (K : Type*) [Field K] (M : Type*) [Finite M] :
