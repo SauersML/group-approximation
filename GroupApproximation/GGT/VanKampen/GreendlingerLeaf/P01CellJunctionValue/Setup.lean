@@ -70,7 +70,7 @@ the edges of `c_h`, so `faceOf (α y) ∈ E_h`.  Going through the kinds of the 
   `facePerm^(L+1) d = α d` and the walk `A_d = seg (facePerm d) L`; it closes past `α d`.  `L = 0`
   is a leaf, against `DartMinimal`.  By strong induction on `L`, `A_d` holds a dart whose reverse is
   on `C`: if `facePerm d` has `f` on both sides, planarity puts `α (facePerm d)` inside `A_d`, so
-  the walk of `facePerm d` is shorter and inside `A_d`.  Hence `C` is enclosed by `A_d`; the same for
+  the walk of `facePerm d` is shorter, inside `A_d`.  Hence `C` is enclosed by `A_d`; the same for
   `α d`, with a dart `y₂ ∈ A_{α d}` whose reverse is on `C`.  If `y₂ ∉ A_d`, the reversal from the
   enclosed face `C` puts `f` in the enclosed faces of `A_d`, against `faceOf_not_mem_enclosedFaces`;
   and `A_d`, `A_{α d}` are disjoint by the minimality of both lengths.  Impossible.
