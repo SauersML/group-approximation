@@ -57,8 +57,8 @@ theorem eHighWitt_mul_carry {R : Type*} [CommRing R] {p : ℕ} (hp : p.Prime) (a
     ring
   have hsum : ∑ i ∈ Finset.range (p + 1), ((p.choose i % p : ℕ) : R) * a ^ i * b ^ (p - i) =
       b ^ p + a ^ p := by
-    rw [Finset.sum_eq_add_of_mem 0 p (Finset.mem_range.mpr (Nat.succ_pos p))
-      (Finset.mem_range.mpr (Nat.lt_succ_self p)) hp.ne_zero.symm]
+    rw [Finset.sum_eq_add_of_mem 0 p (Finset.mem_range.mpr (Nat.add_one_pos p))
+      (Finset.mem_range.mpr (Nat.lt_add_one p)) hp.ne_zero.symm]
     · simp only [Nat.choose_zero_right, Nat.choose_self, Nat.mod_eq_of_lt hp.one_lt,
         Nat.sub_zero, Nat.sub_self, pow_zero, Nat.cast_one, one_mul, mul_one]
     · intro c hc hc'

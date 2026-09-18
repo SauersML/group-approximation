@@ -105,10 +105,10 @@ theorem eHighWitt_isWH_bind₁ {τ υ : Type} {w : τ → ℕ} {w' : υ → ℕ}
   rw [P.as_sum, map_sum]
   refine IsWeightedHomogeneous.sum _ _ _ fun m hm => ?_
   show IsWeightedHomogeneous w' (bind₁ ψ (monomial m (coeff m P))) d
-  have hmd := (Finsupp.weight_apply w m).symm.trans (hP (mem_support_iff.mp hm))
-  rw [bind₁_monomial, ← hmd]
-  exact (IsWeightedHomogeneous.prod m.support (fun i => ψ i ^ m i) _
-    fun i _ => (hψ i).pow (m i)).C_mul _
+  rw [bind₁_monomial]
+  refine eHighWitt_isWH_of_eq ((IsWeightedHomogeneous.prod m.support (fun i => ψ i ^ m i) _
+    fun i _ => (hψ i).pow (m i)).C_mul _) ?_
+  exact (Finsupp.weight_apply w m).symm.trans (hP (mem_support_iff.mp hm))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWitt_isWH_bind₁
 
