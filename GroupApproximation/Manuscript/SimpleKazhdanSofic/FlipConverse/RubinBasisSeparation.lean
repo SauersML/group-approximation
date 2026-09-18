@@ -114,3 +114,80 @@ theorem rubinTransport_rigid_eq_of_le_compl (hT : IsMinimalHomeo T) (hS : IsMini
   exact (Subgroup.mem_centralizer_iff.1 hqC k hk).symm
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinTransport_rigid_eq_of_le_compl
+
+/-- Generator separation gives open transport of `F_V`, with
+`O = ⋃_{f ∈ G₁} movedSet (Φ f)`. -/
+theorem rubinTransport_rigid_of_generatorSeparation (hT : IsMinimalHomeo T)
+    (hS : IsMinimalHomeo S) (Φ : topologicalFullGroup T ≃* topologicalFullGroup S) {V : Set X}
+    (hV : IsClopen V) {G₁ G₂ : Set (topologicalFullGroup T)}
+    (hG₁ : rubinRigidSubgroup T V ≤ Subgroup.closure G₁)
+    (hG₂ : rubinRigidSubgroup T Vᶜ ≤ Subgroup.closure G₂)
+    (hsep : ∀ f ∈ G₁, ∀ k ∈ G₂,
+      Disjoint (movedSet ((Φ f : topologicalFullGroup S) : Y ≃ₜ Y))
+        (movedSet ((Φ k : topologicalFullGroup S) : Y ≃ₜ Y))) :
+    ∃ O : Set Y, IsOpen O ∧
+      rubinTransport Φ (rubinRigidSubgroup T V) = rubinRigidSubgroup S O := by
+  have hO : IsOpen (⋃ f : G₁, movedSet ((Φ (f : topologicalFullGroup T) :
+      topologicalFullGroup S) : Y ≃ₜ Y)) :=
+    isOpen_iUnion fun _ => isOpen_movedSet_of_t2Space _
+  refine ⟨_, hO, rubinTransport_rigid_eq_of_le_compl hT hS Φ hV hO
+    (rubinTransport_le_rigid_of_closure Φ hG₁ fun f hf => ?_)
+    (rubinTransport_le_rigid_of_closure Φ hG₂ fun k hk => ?_)⟩
+  · exact supportedIn_iff_movedSet_subset.2 fun y hy => Set.mem_iUnion.2 ⟨⟨f, hf⟩, hy⟩
+  · refine supportedIn_iff_movedSet_subset.2 fun y hy => Set.mem_compl fun hyO => ?_
+    obtain ⟨f, hfy⟩ := Set.mem_iUnion.1 hyO
+    exact Set.disjoint_left.1 (hsep f f.2 k hk) hfy hy
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinTransport_rigid_of_generatorSeparation
+
+end RubinBasisSeparation
+
+/-- The reduction: generator support separation on a clopen basis gives basis open transport. -/
+theorem rigidPolarBasisOpenTransport_of_rubinBasisGeneratorSeparation
+    (h : RubinBasisGeneratorSeparationStatement) : RigidPolarBasisOpenTransportStatement :=
+  fun X Y _ _ _ _ _ _ _ _ _ _ _ _ _ _ T S hT hS Φ x W hW hxW => by
+    obtain ⟨V, hVc, hxV, hVW, G₁, G₂, hG₁, hG₂, hsep⟩ := h X Y T S hT hS Φ x W hW hxW
+    exact ⟨V, hVc, hxV, hVW,
+      rubinTransport_rigid_of_generatorSeparation hT hS Φ hVc hG₁ hG₂ hsep⟩
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rigidPolarBasisOpenTransport_of_rubinBasisGeneratorSeparation
+
+/-- Truth check: basis open transport gives generator separation, with `G₁ = F_V` and
+`G₂ = F_{Vᶜ}`.  If `Φ F_V = F_O`, then `Φ F_{Vᶜ} = Φ C(F_V) = C(F_O) = F_{Oᶜ}`. -/
+theorem rubinBasisGeneratorSeparation_of_rigidPolarBasisOpenTransport
+    (h : RigidPolarBasisOpenTransportStatement) : RubinBasisGeneratorSeparationStatement :=
+  fun X Y _ _ _ _ _ _ _ _ _ _ _ _ _ _ T S hT hS Φ x W hW hxW => by
+    obtain ⟨V, hVc, hxV, hVW, O, hO, hPO⟩ := h X Y T S hT hS Φ x W hW hxW
+    refine ⟨V, hVc, hxV, hVW, (rubinRigidSubgroup T V : Set (topologicalFullGroup T)),
+      (rubinRigidSubgroup T Vᶜ : Set (topologicalFullGroup T)),
+      fun g hg => Subgroup.subset_closure hg, fun g hg => Subgroup.subset_closure hg,
+      fun f hf k hk => ?_⟩
+    have hΦf : Φ f ∈ rubinRigidSubgroup S O := by
+      rw [← hPO, mem_rubinTransport, MulEquiv.symm_apply_apply]
+      exact hf
+    have hΦk : Φ k ∈ rubinRigidSubgroup S Oᶜ := by
+      rw [← centralizer_rubinRigidSubgroup hS hO, ← hPO, rubinTransport_centralizer,
+        mem_rubinTransport, MulEquiv.symm_apply_apply, centralizer_rubinRigidSubgroup hT hVc.isOpen]
+      exact hk
+    refine Set.disjoint_left.2 fun y hy1 hy2 => ?_
+    exact (Set.mem_compl_iff _ _).1
+      (supportedIn_iff_movedSet_subset.1 (mem_rubinRigidSubgroup.1 hΦk) hy2)
+      (supportedIn_iff_movedSet_subset.1 (mem_rubinRigidSubgroup.1 hΦf) hy1)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rubinBasisGeneratorSeparation_of_rigidPolarBasisOpenTransport
+
+/-- The printed converse for topological full groups, reduced to generator separation. -/
+theorem manuscriptSentence_flipConjugateConverse_of_rubinBasisGeneratorSeparation
+    (h : RubinBasisGeneratorSeparationStatement) {X Y : Type} [TopologicalSpace X]
+    [TopologicalSpace Y] [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]
+    [PerfectSpace X] [Nonempty X] [TopologicalSpace.MetrizableSpace X] [CompactSpace Y]
+    [T2Space Y] [TotallyDisconnectedSpace Y] [PerfectSpace Y] [Nonempty Y]
+    [TopologicalSpace.MetrizableSpace Y] {T : X ≃ₜ X} {S : Y ≃ₜ Y}
+    (hT : IsMinimalHomeo T) (hS : IsMinimalHomeo S) :
+    Nonempty (topologicalFullGroup T ≃* topologicalFullGroup S) ↔ FlipConjugate T S :=
+  manuscriptSentence_flipConjugateConverse_of_rigidPolarBasisOpenTransport
+    (rigidPolarBasisOpenTransport_of_rubinBasisGeneratorSeparation h) hT hS
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.manuscriptSentence_flipConjugateConverse_of_rubinBasisGeneratorSeparation
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
