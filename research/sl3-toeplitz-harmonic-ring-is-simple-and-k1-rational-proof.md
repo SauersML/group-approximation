@@ -51,7 +51,9 @@ Lane proof (gq-deep-adelic-1), not independently reviewed. Notation as in the ta
 **Part 4.**
 - **Matrix units.** Let `C_d = π^(-1)(closure of Γ(d))`. It is clopen, since `Γ(d) ⊇ Γ_n` for large `n`.
   Its translates `tC_d`, `t ∈ Γ/Γ(d)`, partition `X`, and translates are equal or disjoint.
-  - So `e_(ts) = u_t χ_(C_d) u_s^(-1) ∈ R_T` are matrix units with `Σ_t e_(tt) = 1`, as in step 6 of
+  - Fix a set `T_d ⊆ Γ` of coset representatives of `Γ/Γ(d)` containing `e`. For `t, s ∈ T_d`,
+    `e_(ts) = u_t χ_(C_d) u_s^(-1) ∈ R_T` are matrix units (exactly, because the representatives are fixed;
+    referee-b W1) with `Σ_t e_(tt) = 1`, as in step 6 of
     `matrix-corner-laurent-rings-block-fp-elementary-groups-proof`.
   - This gives `R_T ≅ M_(n_d)(χ_(C_d) R_T χ_(C_d))`.
 - **Divisibility.** `SL_3(Z) -> SL_3(Z/d)` is onto (strong approximation), so
