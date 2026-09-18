@@ -11,7 +11,8 @@ artifacts:
 ---
 
 **ESTABLISHED** by `contracting-rsg-finite-product-proof` (lane `bh-free-23`, lane proof,
-elementary, not independently reviewed; no priority claimed).
+elementary, not independently reviewed; no priority claimed). It is the special case
+`H ≤ H × F` of `contracting-rsgs-closed-under-finite-index-overgroups`.
 
 ## Statement
 
