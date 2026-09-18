@@ -288,3 +288,20 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
       action of `F ≀ Z` on `Z` with the top generator as shift and no point stabilizer of the base factor containing
       a copy of `F`.
     - Proved constraints on a counterexample: the base factor acts faithfully, and the base group does not act freely.
+- **Juschenko–Zheng Question 5 through T = F·R_D (swarm-0917-w8-w8-f-last1, 2026-09-18, reframing).**
+  - *Established:* `jz-question-5-for-thompson-t-implies-f-nonamenable`. Every `g ∈ T` is uniquely
+    `g = fρ` with `f ∈ F` and `ρ` the dyadic rotation `ρ_{−g⁻¹(0)}`. So `F` acts simply transitively on
+    `X = T/R_D`, whose stabilizers are conjugates of the Prüfer 2-group `R_D`. If `F` is amenable, `T ↷ X` is
+    LAT, hence symmetric-Liouville, and `T` (finitely presented, nonamenable) answers Question 5 negatively.
+  - *Invariant:* the exact factorization `T = F·R_D` with `R_D` abelian.
+  - *Dies at:* the w7 survivor's step "assume Question 5 for finitely generated groups". Applied to `T` it
+    already proves `F` nonamenable, so that hypothesis contradicts the conclusion it was meant to serve. The same
+    holds for any "Liouville + stabilizers in `𝒮` ⟹ amenable" criterion for finitely generated groups with
+    `𝒮 ∋ R_D`, and for amenable stabilizers directly via `T ↷ D/Z`. No Liouville-action route to this root
+    survives.
+  - *Consequence:* this root implies that Question 5 fails for finitely presented groups, as Juschenko and
+    Zheng expect.
+  - *Spawned:* `thompson-f-not-amenable-via-rotation-cosets-of-thompson-t`, which targets the negation, with the OPEN
+    prerequisite `thompson-t-dyadic-rotation-cosets-are-not-amenably-transitive` (some finite `S ⊆ F` has no
+    dyadic-rotation twist generating an amenable subgroup of `T`). If that fails, Question 5 fails for `T`
+    unconditionally.
