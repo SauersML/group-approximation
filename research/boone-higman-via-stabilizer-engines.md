@@ -23,7 +23,11 @@ Let `G` be finitely generated with solvable word problem.
    `simple-inputs-have-finitely-presented-stabilizer-engines`. So
    `G ≤ S ≤ D(F_S)`, a finitely presented simple group. `∎`
 
-**Status.** Open exactly at step 3.
+**Status. CIRCULAR (2026-09-18).** Step 3 is refuted as stated
+(`stabilizer-engines-of-non-fp-simple-groups-are-not-fp`). It can hold for an envelope `S` only if
+`S` is already finitely presented (`fp-stabilizer-engines-need-fp-vertex-groups`), and then `S` itself
+is the finitely presented simple overgroup. The live route is `boone-higman-via-fp-stabilizer-engines`.
+Historical notes:
 - The necessary side is proved: a finitely presented engine forces a decidable vertex
   group (`fp-stabilizer-engines-need-decidable-vertex-groups`).
 - The first test case, `B = Z` (Reid's group), is itself open.
