@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.PolyOps
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemDefs
 
 /-!
 # Formulas and guarded case trees are primitive recursive
