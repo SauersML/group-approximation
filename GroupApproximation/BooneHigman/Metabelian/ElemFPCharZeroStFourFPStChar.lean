@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroStFourFPStTorus
+import Mathlib.Tactic.NormNum
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -21,30 +22,9 @@ theorem czStFourFP_conj_commutator {G : Type*} [Group G] (g a b : G) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_conj_commutator
 
-variable {I : Type*} [Fintype I] [DecidableEq I] {R : Type*} [CommRing R]
+section Character
 
-theorem czStFourFP_H_ab (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
-    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x a b hab r *
-      (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x a b hab ((v : R) * r * (v : R)) := by
-  have e := SteinbergGroup.x_commutator a k b hak hbk.symm hab r 1
-  rw [mul_one] at e
-  rw [← e, czStFourFP_conj_commutator, czStFourFP_H_ak a b k hab hak hbk,
-    czStFourFP_H_kb a b k hab hak hbk, SteinbergGroup.x_commutator a k b hak hbk.symm hab,
-    one_mul]
-
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ab
-
-theorem czStFourFP_H_ba (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
-    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x b a hab.symm r *
-      (czStFourFP_H a b hab v)⁻¹ =
-        SteinbergGroup.x b a hab.symm (((v⁻¹ : Rˣ) : R) * r * ((v⁻¹ : Rˣ) : R)) := by
-  have e := SteinbergGroup.x_commutator b k a hbk hak.symm hab.symm r 1
-  rw [mul_one] at e
-  rw [← e, czStFourFP_conj_commutator, czStFourFP_H_bk a b k hab hak hbk,
-    czStFourFP_H_ka a b k hab hak hbk, SteinbergGroup.x_commutator b k a hbk hak.symm hab.symm,
-    one_mul]
-
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ba
+variable {I : Type*} [DecidableEq I]
 
 /-- The character: `H_ab(v)` scales `x_ij` by `v ^ czStFourFP_chi a b i j`. -/
 def czStFourFP_chi (a b i j : I) : ℤ :=
@@ -52,8 +32,6 @@ def czStFourFP_chi (a b i j : I) : ℤ :=
     (if j = b then 1 else 0)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_chi
-
-section Values
 
 variable {a b k l : I}
 
@@ -104,6 +82,35 @@ theorem czStFourFP_chi_kl (hka : k ≠ a) (hkb : k ≠ b) (hla : l ≠ a) (hlb :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_chi_kl
 
-end Values
+end Character
+
+section Torus
+
+variable {I : Type*} [Fintype I] [DecidableEq I] {R : Type*} [CommRing R]
+
+theorem czStFourFP_H_ab (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x a b hab r *
+      (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x a b hab ((v : R) * r * (v : R)) := by
+  have e := SteinbergGroup.x_commutator a k b hak hbk.symm hab r 1
+  rw [mul_one] at e
+  rw [← e, czStFourFP_conj_commutator, czStFourFP_H_ak a b k hab hak hbk,
+    czStFourFP_H_kb a b k hab hak hbk, SteinbergGroup.x_commutator a k b hak hbk.symm hab,
+    one_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ab
+
+theorem czStFourFP_H_ba (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x b a hab.symm r *
+      (czStFourFP_H a b hab v)⁻¹ =
+        SteinbergGroup.x b a hab.symm (((v⁻¹ : Rˣ) : R) * r * ((v⁻¹ : Rˣ) : R)) := by
+  have e := SteinbergGroup.x_commutator b k a hbk hak.symm hab.symm r 1
+  rw [mul_one] at e
+  rw [← e, czStFourFP_conj_commutator, czStFourFP_H_bk a b k hab hak hbk,
+    czStFourFP_H_ka a b k hab hak hbk, SteinbergGroup.x_commutator b k a hbk hak.symm hab.symm,
+    one_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ba
+
+end Torus
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
