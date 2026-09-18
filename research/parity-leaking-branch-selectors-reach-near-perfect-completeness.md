@@ -56,3 +56,18 @@ a cycle of equations through the window.
   bit is exactly uniform given the view, so honest completeness is at most
   `1/2 + w_bad/2` over subexponential equivariant menus. Only global views,
   unclustered menus or non-honest certificates survive.
+* **Spectral-gap gate on the host (2026-09-18).** **Conditional kill, OPEN.**
+  - *What is proved.* Gate (G) of
+    `akkstv-rounding-holds-on-all-loop-free-constraint-graphs` is
+    ESTABLISHED. On any YES host family with `λ_2 >= X(δ) η'`, a polynomial-time
+    selector with lift value `1 − η'` puts the source in P. This holds whatever
+    the views or certificates are.
+  - *Where the gate lands on DKKMS.* The unfolded DKKMS host has gap `Θ(β)`,
+    and `β −> 0`. But the folded host measured in
+    `folded-dkkms-hosts-keep-spectral-gap-as-smoothing-vanishes` keeps a gap
+    near `1 − sqrt(1 − 4^(−l))` even at `β = 0`, because folding resamples the
+    free blocks.
+  - *What this gives.* If that OPEN claim holds, this node is false on the
+    DKKMS shape under P != NP alone: `η' >= c(l)/X(δ)` with `l = l(δ)`.
+  - *Where H1 can still live.* Only on reductions whose folded YES host gap
+    tends to 0, or through a failure of (P1)–(P5) there.
