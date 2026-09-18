@@ -87,7 +87,7 @@ theorem vdkInjCoset_rowOf_unimodular (g : St (n + 1) R) :
 def vdkInjCoset_rowMap : VdKRowCoset n R → Fin (n + 1) → R :=
   Quotient.lift vdkInjCoset_rowOf fun a b hab =>
     (vdkInjCoset_rowOf_eq_iff a b).mpr
-      (vdkInjCoset_rowPar_le (QuotientGroup.rightRel_apply.mp hab))
+      (vdkInjCoset_rowPar_le (n := n) (R := R) (QuotientGroup.rightRel_apply.mp hab))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCoset_rowMap
 
@@ -133,7 +133,8 @@ theorem vdkInjCoset_rowMap_injective_iff :
     obtain ⟨a, rfl⟩ := Quotient.exists_rep ξ
     obtain ⟨b, rfl⟩ := Quotient.exists_rep ξ'
     rw [vdkInjCoset_rowMap_mk, vdkInjCoset_rowMap_mk] at hξ
-    exact Quotient.eq.mpr (QuotientGroup.rightRel_apply.mpr (h ((vdkInjCoset_rowOf_eq_iff a b).mp hξ)))
+    exact Quotient.eq.mpr
+      (QuotientGroup.rightRel_apply.mpr (h ((vdkInjCoset_rowOf_eq_iff a b).mp hξ)))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCoset_rowMap_injective_iff
 

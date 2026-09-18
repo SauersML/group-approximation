@@ -63,7 +63,8 @@ theorem vdkInjCoset_mem_K2_of_stab_mem {g : St n R} (hg : stab n R g ∈ K2n (n 
 theorem vdkInjCoset_K2_le_map_of_rowStabAt (h : vdkInjCoset_RowStabAt n R) :
     K2n (n + 1) R ≤ (K2n n R).map (stab n R) := by
   intro y hy
-  obtain ⟨⟨v, g⟩, hp⟩ := (mem_vdkRowParSubgroup y).mp (h (vdkInjCoset_K2_le_rowStab hy))
+  have hy₁ : y ∈ vdkInjCoset_rowStab n R := vdkInjCoset_K2_le_rowStab (n := n) (R := R) hy
+  obtain ⟨⟨v, g⟩, hp⟩ := (mem_vdkRowParSubgroup y).mp (h hy₁)
   have hv := vdkRowParInj_padMat_mulVec v g
   rw [hp, padMat_of_mem_K2 hy, Matrix.one_mulVec] at hv
   have hv0 : v = 0 := (surjStabVec_inj hv).symm

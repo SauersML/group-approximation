@@ -127,11 +127,115 @@ theorem eqvGen_iff (r x : diagram.toCombMap.Dart) :
   · intro h
     induction h with
     | rel a b hab => exact step_cid a b hab
-    | refl a => rfl
-    | symm a b _ ih => exact ih.symm
-    | trans a b c _ _ ih1 ih2 => exact ih1.trans ih2
+    | refl _ => rfl
+    | symm _ _ _ ih => exact ih.symm
+    | trans _ _ _ _ _ ih1 ih2 => exact ih1.trans ih2
   · intro h
     have h1 := from_rep r
     have h2 := from_rep x
     rw [h] at h1
     exact .trans _ _ _ (.symm _ _ h1) h2
+
+/-! ## Colours and kept darts -/
+
+theorem colour_eq (r x : diagram.toCombMap.Dart) :
+    GreendlingerLeaf.P10Rose.SubArcMove.regionColour diagram.toCombMap
+      (SimpleClosedWalkSides.walkKeep diagram.toCombMap pK.boundary.cycle) r x =
+      decide (cid r = cid x) :=
+  GreendlingerLeaf.P10Rose.SubArcMove.bool_eq_of_iff
+    ((GreendlingerLeaf.P10Rose.SubArcMove.regionColour_eq_true_iff diagram.toCombMap
+      (SimpleClosedWalkSides.walkKeep diagram.toCombMap pK.boundary.cycle) r x).trans
+      ((eqvGen_iff r x).trans decide_eq_true_iff.symm))
+
+theorem kept_eq (r e : diagram.toCombMap.Dart) :
+    GreendlingerLeaf.P10ExtremalResidual.keptPred pK r e =
+      (!decide (cid r = cid e) && !decide (cid r = cid (diagram.toCombMap.alpha e))) := by
+  unfold GreendlingerLeaf.P10ExtremalResidual.keptPred
+  unfold GreendlingerLeaf.P10Rose.FilterMove.movePred
+  rw [colour_eq, colour_eq]
+
+theorem kept_at (r e : diagram.toCombMap.Dart) (c : Fin 6) (hc : cid r = c) :
+    GreendlingerLeaf.P10ExtremalResidual.keptPred pK r e = keptTab c e := by
+  subst hc
+  exact kept_eq r e
+
+theorem kept_single (r x b : diagram.toCombMap.Dart) (c : Fin 6) (hc : cid r = c)
+    (hb : keptTab c b = false) (hx : x ∈ [b]) :
+    GreendlingerLeaf.P10ExtremalResidual.keptPred pK r x = false := by
+  rw [List.mem_singleton] at hx
+  subst hx
+  exact (kept_at r _ c hc).trans hb
+
+theorem cell_cases : ∀ i : Fin diagram.rCellCount, i = iS ∨ i = iK0
+  | ⟨0, _⟩ => Or.inl rfl
+  | ⟨1, _⟩ => Or.inr rfl
+  | ⟨k + 2, hk⟩ => absurd hk (Nat.not_lt.mpr (Nat.le_add_left 2 k))
+
+/-! ## No class is extremal -/
+
+/-- **No dart spans an extremal class** of the pocket `pK`. -/
+theorem no_class (r : diagram.toCombMap.Dart)
+    (hch : GreendlingerLeaf.P10ExtremalRegion.ExtremalClassChoice pK r)
+    (hst : GreendlingerLeaf.P10ExtremalRegion.ExtremalClassStretches pK r) : False := by
+  obtain ⟨hT, -, kept, hkf, hkx⟩ := hch
+  rcases (by decide : ∀ c : Fin 6, c = 0 ∨ c = 1 ∨ c = 2 ∨ c = 3 ∨ c = 4 ∨ c = 5) (cid r) with
+    hc | hc | hc | hc | hc | hc
+  · rcases cell_cases kept with rfl | rfl
+    · exact absurd ((face_mem_iff 1).mp hkf) (by decide)
+    · exact hkx 0 ((faceOf_eq_face 0 0).mpr (by decide))
+        ((eqvGen_iff r 0).mpr (hc.trans (by decide)))
+  · rcases hT with ⟨e, he, hke⟩ | hT
+    · rw [pK_target] at he
+      exact (by decide : ∀ e ∈ ([8, 10, 12] : List diagram.toCombMap.Dart), keptTab 1 e ≠ true)
+        e he ((kept_at r e 1 hc).symm.trans hke)
+    · exact hT 9 ((faceOf_eq_face 9 5).mpr (by decide))
+        ((eqvGen_iff r 9).mpr (hc.trans (by decide)))
+  · have h := hst [] 0 [2] 4 [6, 8, 10, 12] (by decide) ((kept_at r 0 2 hc).trans (by decide))
+      ((kept_at r 4 2 hc).trans (by decide)) (fun x hx => kept_single r x 2 2 hc (by decide) hx)
+      (List.cons_ne_nil _ _)
+    exact absurd ((vClass_iff _ _).mp h.1) (by decide)
+  · have h := hst [0] 2 [4] 6 [8, 10, 12] (by decide) ((kept_at r 2 3 hc).trans (by decide))
+      ((kept_at r 6 3 hc).trans (by decide)) (fun x hx => kept_single r x 4 3 hc (by decide) hx)
+      (List.cons_ne_nil _ _)
+    exact h.2.2 (by rw [pK_invSrc]; decide)
+  · have h := hst [0, 2, 4] 6 [8] 10 [12] (by decide) ((kept_at r 6 4 hc).trans (by decide))
+      ((kept_at r 10 4 hc).trans (by decide)) (fun x hx => kept_single r x 8 4 hc (by decide) hx)
+      (List.cons_ne_nil _ _)
+    exact absurd ((vClass_iff _ _).mp h.1) (by decide)
+  · have h := hst [0, 2, 4, 6] 8 [10] 12 [] (by decide) ((kept_at r 8 5 hc).trans (by decide))
+      ((kept_at r 12 5 hc).trans (by decide))
+      (fun x hx => kept_single r x 10 5 hc (by decide) hx) (List.cons_ne_nil _ _)
+    exact h.2.1 (by rw [pK_target]; decide)
+
+/-- **The walk class of `2` holds no relator cell.** -/
+theorem class_two (h : GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCellsClass pK) :
+    False := by
+  obtain ⟨i, hi, x, hx, hrx⟩ := h 2 (by decide)
+  have hc := (eqvGen_iff 2 x).mp hrx
+  rcases cell_cases i with rfl | rfl
+  · exact absurd ((face_mem_iff 1).mp hi) (by decide)
+  · exact (by decide : ∀ y : Fin 16, faceClass y = 0 → cid 2 ≠ cid y) x
+      ((faceOf_eq_face x 0).mp hx) hc
+
+end GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel
+
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cid
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.rep
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.keepB
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.keptTab
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.stepRel
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.keep_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.notKeep14
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cid_facePerm
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cid_alpha_aux
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cid_alpha_of_not_keep
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.step_cid
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.from_rep
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.eqvGen_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.colour_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.kept_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.kept_at
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.kept_single
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.cell_cases
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.no_class
+#audit_axioms GroupApproximation.GGT.VanKampen.ExtremalJordanPickClsModel.class_two
