@@ -25,8 +25,6 @@ namespace BooneHigman
 namespace Metabelian
 namespace Absorption
 
-open Polynomial
-
 /-- The unipotent units `1 + N`, `N * N = 0`, of `M₂(S)`. -/
 def suslinCongDecide_unipSet (S : Type*) [CommRing S] : Set (Matrix (Fin 2) (Fin 2) S)ˣ :=
   {σ | ∃ N : Matrix (Fin 2) (Fin 2) S, N * N = 0 ∧ (σ : Matrix (Fin 2) (Fin 2) S) = 1 + N}
@@ -75,7 +73,7 @@ theorem suslinCongDecide_unipGen_eq (S : Type*) [CommRing S] :
   intro x hx
   obtain ⟨a, ha, hax⟩ := Group.mem_conjugatesOfSet_iff.mp hx
   obtain ⟨c, rfl⟩ := isConj_iff.mp hax
-  exact Subgroup.subset_closure (s := suslinCongDecide_unipSet S)
+  exact Subgroup.subset_closure (k := suslinCongDecide_unipSet S)
     (suslinCongDecide_unipSet_conj c a ha)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongDecide_unipGen_eq
@@ -93,7 +91,7 @@ theorem suslinCongDecide_elementary_le (S : Type*) [CommRing S] :
     elementaryGroup (Fin 2) S ≤ suslinCongDecide_unipGen S := by
   rw [elementaryGroup, Subgroup.closure_le]
   rintro _ ⟨i, j, h, a, rfl⟩
-  exact Subgroup.subset_closure (s := suslinCongDecide_unipSet S)
+  exact Subgroup.subset_closure (k := suslinCongDecide_unipSet S)
     ⟨Matrix.single i j a, single_mul_self_eq_zero i j h a, rfl⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongDecide_elementary_le
@@ -116,7 +114,7 @@ theorem suslinCongDecide_locGen_le {A S : Type*} [CommRing A] [CommRing S]
   rintro σ ((hσ | ⟨x, y, hyx, hσ⟩) | ⟨ψ, τ, hτ, rfl⟩)
   · have hσ' : σ ∈ elementaryGroup (Fin 2) S := hσ
     exact suslinCongDecide_elementary_le S hσ'
-  · refine Subgroup.subset_closure (s := suslinCongDecide_unipSet S)
+  · refine Subgroup.subset_closure (k := suslinCongDecide_unipSet S)
       ⟨Matrix.vecMulVec x y, ?_, hσ⟩
     rw [Matrix.vecMulVec_mul_vecMulVec, hyx, zero_smul, Matrix.vecMulVec_zero]
   · exact suslinCongDecide_elementary_le S

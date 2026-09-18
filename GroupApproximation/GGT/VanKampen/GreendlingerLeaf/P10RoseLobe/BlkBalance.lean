@@ -198,3 +198,103 @@ theorem roseLobeBlk_balanced_boundary_rev {keep : M.Dart → Prop} {z : M.Dart �
   cases z x <;> cases z (M.alpha x) <;> simp
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_boundary_rev
+
+theorem roseLobeBlk_outL_append (L L' : List M.Dart) (o : M.Vertex) :
+    roseLobeBlk_outL M (L ++ L') o = roseLobeBlk_outL M L o + roseLobeBlk_outL M L' o := by
+  unfold roseLobeBlk_outL
+  exact List.countP_append
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outL_append
+
+theorem roseLobeBlk_inL_append (L L' : List M.Dart) (o : M.Vertex) :
+    roseLobeBlk_inL M (L ++ L') o = roseLobeBlk_inL M L o + roseLobeBlk_inL M L' o := by
+  unfold roseLobeBlk_inL
+  exact List.countP_append
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_append
+
+theorem roseLobeBlk_outL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
+    roseLobeBlk_outL M (x :: L) o = roseLobeBlk_outL M [x] o + roseLobeBlk_outL M L o := by
+  unfold roseLobeBlk_outL
+  rw [List.countP_cons, List.countP_singleton]
+  exact Nat.add_comm _ _
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outL_cons
+
+theorem roseLobeBlk_inL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
+    roseLobeBlk_inL M (x :: L) o = roseLobeBlk_inL M [x] o + roseLobeBlk_inL M L o := by
+  unfold roseLobeBlk_inL
+  rw [List.countP_cons, List.countP_singleton]
+  exact Nat.add_comm _ _
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_cons
+
+/-- One chain step: a dart arrives where the next one leaves. -/
+theorem roseLobeBlk_inL_singleton_eq_outL {a b : M.Dart}
+    (h : M.vertexOf (M.alpha a) = M.vertexOf b) (o : M.Vertex) :
+    roseLobeBlk_inL M [a] o = roseLobeBlk_outL M [b] o := by
+  simp only [roseLobeBlk_inL, roseLobeBlk_outL, List.countP_singleton, h]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_singleton_eq_outL
+
+theorem roseLobeBlk_outL_singleton_self (x : M.Dart) :
+    roseLobeBlk_outL M [x] (M.vertexOf x) = 1 := by
+  simp [roseLobeBlk_outL]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outL_singleton_self
+
+theorem roseLobeBlk_eq_of_inL_singleton {y : M.Dart} {o : M.Vertex}
+    (h : roseLobeBlk_inL M [y] o = 1) : M.vertexOf (M.alpha y) = o := by
+  by_contra hne
+  simp [roseLobeBlk_inL, hne] at h
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_eq_of_inL_singleton
+
+/-- **Counting along a dart chain**: arrivals plus the first departure equal departures plus the
+last arrival. -/
+theorem roseLobeBlk_chain_count (o : M.Vertex) (x : M.Dart) (t : List M.Dart)
+    (hch : (x :: t).IsChain fun d e => M.vertexOf (M.alpha d) = M.vertexOf e) :
+    roseLobeBlk_inL M (x :: t) o + roseLobeBlk_outL M [x] o =
+      roseLobeBlk_outL M (x :: t) o +
+        roseLobeBlk_inL M [(x :: t).getLast (List.cons_ne_nil x t)] o := by
+  induction t generalizing x with
+  | nil => exact Nat.add_comm _ _
+  | cons y t ih =>
+    rw [List.isChain_cons_cons] at hch
+    have hs := roseLobeBlk_inL_singleton_eq_outL hch.1 o
+    have hi := ih y hch.2
+    have hl : (x :: y :: t).getLast (List.cons_ne_nil x (y :: t)) =
+        (y :: t).getLast (List.cons_ne_nil y t) := rfl
+    rw [hl, roseLobeBlk_inL_cons x (y :: t), roseLobeBlk_outL_cons x (y :: t)]
+    omega
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_chain_count
+
+/-- **A balanced dart chain closes up.** -/
+theorem roseLobeBlk_closes {L : List M.Dart} (hne : L ≠ [])
+    (hch : L.IsChain fun d e => M.vertexOf (M.alpha d) = M.vertexOf e)
+    (hbal : ∀ o, roseLobeBlk_outL M L o = roseLobeBlk_inL M L o) : IsClosedDartWalk M L := by
+  obtain ⟨x, t, rfl⟩ := List.exists_cons_of_ne_nil hne
+  refine ⟨hne, hch, ?_⟩
+  show M.vertexOf (M.alpha ((x :: t).getLast (List.cons_ne_nil x t))) = M.vertexOf x
+  have h1 := roseLobeBlk_chain_count (M.vertexOf x) x t hch
+  have h2 := hbal (M.vertexOf x)
+  have h3 := roseLobeBlk_outL_singleton_self (M := M) x
+  have h4 : roseLobeBlk_inL M [(x :: t).getLast (List.cons_ne_nil x t)] (M.vertexOf x) = 1 := by
+    omega
+  exact roseLobeBlk_eq_of_inL_singleton h4
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_closes
+
+/-- **A closed dart walk is balanced.** -/
+theorem roseLobeBlk_balanced_of_closed {L : List M.Dart} (hw : IsClosedDartWalk M L)
+    (o : M.Vertex) : roseLobeBlk_outL M L o = roseLobeBlk_inL M L o := by
+  obtain ⟨hne, hch, hcl⟩ := hw
+  obtain ⟨x, t, rfl⟩ := List.exists_cons_of_ne_nil hne
+  have hcl' : M.vertexOf (M.alpha ((x :: t).getLast (List.cons_ne_nil x t))) =
+      M.vertexOf x := hcl
+  have h1 := roseLobeBlk_chain_count o x t hch
+  have h2 := roseLobeBlk_inL_singleton_eq_outL hcl' o
+  omega
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_of_closed
