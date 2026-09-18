@@ -118,3 +118,19 @@ the connected-difference necessary condition (worker bh-break, need 65f52e90).
   or an exactly matricial crossed product (`matricial-aperiodic-sft-rings-are-not-quantum-rigid`).
 - *Not attempted.* The converse: whether quantum rigidity of `X` makes `F(T)` finitely presented. It
   would reduce P2 to rigidity plus finite type.
+
+**Attempt (2026-09-18, swarm-0917-w7-w7-bh-follow): bypass P2 on the ring side.** *P2 not settled;
+it is removed from one route to Boone--Higman.*
+- *The lemma.* `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products`: over any finitely
+  presented `Λ`, a quantum rigid SFT has a finitely presented crossed product `LC(X, F_2) ⋊ Λ`. The
+  proof is the universal algebra with the relators of `Λ` added, acting on itself by left
+  multiplication.
+- *Consequence.* With the necessity theorem of the previous attempt, P1 ∧ P2 gives
+  `decidable-groups-lie-in-fp-free-minimal-crossed-products` (E).
+- *The bypass.* Route `boone-higman-via-leavitt-units-of-rigid-sft-overgroups` has
+  `G <= Λ <= B^x <= (B ⊗ L)^x`, with `B` central simple
+  (`free-minimal-cantor-crossed-products-are-central-simple`). It needs (E), the K-theory premise
+  `free-action-leavitt-tensor-hosts-have-trivial-k1-k2`, and the Khanh transfer. Neither P2 nor the
+  unattempted converse above is on it.
+- *What this says about P2.* For Boone--Higman, P2 matters only through the quantum rigidity of one
+  shift. Group-side finite presentation of `A(T)` is needed only on the V-times route.
