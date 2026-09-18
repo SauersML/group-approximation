@@ -42,7 +42,8 @@ classes of four or more changes).  A logically weaker Statement with a proved re
 equivalent to the target, so no weaker form is possible.  It is strictly smaller in proof
 content: the shape conclusion (b2) is proved, and what is left of (b) is the numerical rerouting
 step (b1) alone.  Given (a), (b1) is equivalent to "some pool class has at most two changes"
-(`extremalJordanPickRun_descent_of_exists_le_two`, `extremalJordanPickRun_exists_le_two_of_descent`).
+(`extremalJordanPickRun_descent_of_exists_le_two`,
+`extremalJordanPickRun_exists_le_two_of_descent`).
 
 `2 < ExtremalJordanPickChanges K r` is used rather than `4 ≤`: in the model the measure is always
 even, so the two agree there, and no parity proof is needed here.

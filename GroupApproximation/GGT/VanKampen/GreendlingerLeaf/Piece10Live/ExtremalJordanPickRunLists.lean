@@ -65,10 +65,9 @@ theorem extremalJordanPickRun_wild {b : Bool} {p : Prop} {inst : Decidable p}
   rw [Bool.or_eq_false_iff] at h
   refine ⟨h.1, ?_⟩
   have h2 : decide p = true := by
-    cases hd : decide p
-    · rw [hd] at h
-      exact absurd h.2 (by decide)
-    · rfl
+    have h3 := h.2
+    revert h3
+    cases decide p <;> decide
   exact of_decide_eq_true h2
 
 end PickRunBool
