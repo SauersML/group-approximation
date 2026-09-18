@@ -50,3 +50,16 @@ distinct_from:
      acting faithfully on `X` has `QZ(L_i) ≠ 1` for every `i`.
    - **Not examined.** Whether an irreducible lattice in three or more trees
      with non-trivial kernel on every factor exists at all.
+4. **Discrete factor images (bh-lattices, 2026-09-18).** *Works for three
+   factors.* `discrete-factor-tree-lattices-are-virtually-products`:
+   if some `pr_i(Gamma_0)` is discrete, then `K_i` is a lattice on the other
+   factors and `Gamma_0` is virtually `K_i x F` with `F` free. For `n = 3` this
+   puts `Gamma` in `B_A` via the two-tree node. So a three-tree counterexample
+   must have, for every `i`: `pr_i(Gamma_0)` non-discrete, `K_i` infinite, and
+   `K_i` an infinite normal subgroup of infinite index in the two-tree fibre
+   lattice `H_i`, which therefore fails every normal subgroup theorem.
+   - **Refines "Not examined".** A lattice with non-trivial kernel on every
+     factor and some discrete factor image is always virtually a product. The
+     question is now only about totally non-discrete lattices whose fibres
+     violate the normal subgroup property. No example of either kind is known
+     to this lane.

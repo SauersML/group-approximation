@@ -91,3 +91,5 @@ open.
      - So `A(E_8) <= GL_480(Z[s_1, s_2])`.
    - **Host.** The polynomial theorem with `k = 2` and `N = 480` gives the host
      `Z[s_1,s_2]^960 x| E_960(Z[s_1,s_2])`.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. The linearity import checks. The claim is carried entirely by `polynomial-linear-groups-satisfy-boone-higman` with m = 1 and k = 2, since A(E_8) <= GL_480(Z[s_1,s_2]); the full characteristic-zero reduction is not needed. That theorem rests on `elementary-groups-over-polynomial-s-integers-are-fp` and Zaremsky's Theorem 1.1. Both are internal lane proofs with internal review only. BFFHZ and survey Remark 5.4 list the exceptional types as open. So this status is exactly as strong as the polynomial theorem, which is the external-verification target. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.
