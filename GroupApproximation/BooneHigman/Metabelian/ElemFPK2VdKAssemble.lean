@@ -88,7 +88,8 @@ theorem vdkT_castSucc_castSucc_of_ne (i j : Fin n) (hij : i ≠ j) (a : R) :
     D.vdkT i.castSucc j.castSucc a = vdkAct X (x i j hij a) := by
   simp only [vdkT, Fin.lastCases_castSucc, dif_neg hij]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.vdkT_castSucc_castSucc_of_ne
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.vdkT_castSucc_castSucc_of_ne
 
 /-- Additivity of `vdkT` for roots with a last index. -/
 theorem vdkT_add (i j : Fin (n + 1)) (hij : i ≠ j) (a b : R)

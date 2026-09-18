@@ -25,7 +25,7 @@ theorem vgen_split_last {v : List X} {n : ℕ} (hv : v.length = n + 1) :
     ∃ p x, v = p ++ [x] ∧ p.length = n := by
   rcases List.eq_nil_or_concat v with h | ⟨p, x, h⟩
   · subst h
-    simp only [List.length_nil] at hv
+    rw [List.length_nil] at hv
     omega
   · rw [List.concat_eq_append] at h
     subst h

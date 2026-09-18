@@ -52,7 +52,8 @@ theorem noether_exists_fd_embedding {A W : Type} [CommRing A] [AddCommGroup W] [
   obtain ⟨φ, hφ⟩ : ∃ φ : FractionRing (MvPolynomial ι ℤ) →+* Localization S, ∀ d,
       φ (algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ)) d) =
         algebraMap A (Localization S) (g d) :=
-    ⟨IsLocalization.map (Localization S) g (fun d hd => hgS d hd),
+    ⟨IsLocalization.map (M := nonZeroDivisors (MvPolynomial ι ℤ)) (Localization S) g
+      (fun d hd => hgS d hd),
       fun d => IsLocalization.map_eq _ d⟩
   letI : Algebra (FractionRing (MvPolynomial ι ℤ)) (Localization S) := φ.toAlgebra
   letI instKM : Module (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W) :=
@@ -72,11 +73,12 @@ theorem noether_exists_fd_embedding {A W : Type} [CommRing A] [AddCommGroup W] [
     intro a
     have hle : Subring.closure t ≤ (Algebra.adjoin (FractionRing (MvPolynomial ι ℤ))
         (algebraMap A (Localization S) '' t)).toSubring.comap (algebraMap A (Localization S)) :=
-      Subring.closure_le.2 fun x hx => Algebra.subset_adjoin ⟨x, hx, rfl⟩
+      Subring.closure_le.2 fun x hx => Subring.mem_comap.2 (Subalgebra.mem_toSubring.2
+        (Algebra.subset_adjoin (Set.mem_image_of_mem (algebraMap A (Localization S)) hx)))
     have ha : a ∈ Subring.closure t := by
       rw [hcl]
       exact Subring.mem_top a
-    exact hle ha
+    exact Subalgebra.mem_toSubring.1 (Subring.mem_comap.1 (hle ha))
   have hadj : Algebra.adjoin (FractionRing (MvPolynomial ι ℤ))
       (algebraMap A (Localization S) '' t) = ⊤ := by
     refine eq_top_iff.2 fun b _ => ?_
