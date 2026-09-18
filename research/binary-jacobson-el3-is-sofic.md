@@ -111,3 +111,21 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - **Step where it dies.** `tr -> 1` on `L_-`, transported by `c` to the head.
   - **Survivors.** Approximations of `P` with trace `1_(L_-)` that are not restrictions from `<P,c>`. In linear form,
     the two boundary heads must have unequal rank.
+* **Haar relation as a restricted affine Laurent action (swarm-0917-w10-w10-nh-follow, 2026-09-18). New sufficient
+  condition; the claim stays OPEN.**
+  - `jacobson-haar-relation-is-laurent-affine-restriction` (ESTABLISHED). Under the residue pairing,
+    `X_+ = V_+^* ≅ D = x^(-1)F_2[[x^(-1)]]^n`. Off a null set, the Haar orbit relation of `EL_n(J)` is `R_Γ|_D`, where
+    `Γ_n = A^n x| EL_n(A)` acts freely and affinely on `F_2((1/x))^n`.
+  - So `EL_3(J)` is sofic as soon as this one free action of a residually finite linear group has a sofic restricted
+    relation. The proof goes through the full-group embedding `E -> [R_E]` and the bound `mu(Fix g) <= 1/2`.
+  - This is a group-free reformulation. The quotient step `P -> P/L_-` of the mirror route disappears, because the
+    tails `L` become translations by `D ∩ A^n`.
+  - **Where the natural approximations stop.** Two halves each approximate on their own:
+    - `A^n x| EL_n(F_2[x])` through invariant cocompact lattices (periodic points, the truncation side);
+    - `D_fin x| EL_n(F_2[x^(-1)])` through invariant balls (profinite, the corona side).
+
+    No ball is `EL_n(F_2[x])`-invariant, and `EL_n(A)` has property (FA). This is the relation-level form of the mirror
+    barrier.
+  - **Next.** Build sofic approximations of `Γ_n ↷ F_2((1/x))^n` that are not periodic-point models of either half,
+    for example through lattice duality with `G_∞ x G_0 / Γ_n`. Alternatively, show that the relation is not sofic,
+    which would give a non-sofic restricted free action of a residually finite linear group.
