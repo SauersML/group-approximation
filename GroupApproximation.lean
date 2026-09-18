@@ -6044,6 +6044,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFreeAlgK2.ZModTwo
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMapOps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetActionPiNatural
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
