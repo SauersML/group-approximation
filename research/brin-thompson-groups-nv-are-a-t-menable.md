@@ -166,3 +166,23 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     independent prerequisites.
   - **Does not transfer:** to `K = ker c` or the diagonal subgroup, because small-support
     elements survive finite conjugation.
+- **Integrated measured walls on `C^n` (2026-09-17, e-nv-walls; dies; class-kill, OPEN only
+  through one input).** Plan: build R1 as a non-cubical measured-wall function with an invariant
+  measure, e.g. the anisotropy wall `ψ(g) = ∫|α(g,x)| dx` on `C^2 × Z`, which is cnd on the
+  area-preserving subgroup.
+  - **Input.** `callard-salo-element-is-ae-locally-periodic` (OPEN; the argument is complete except
+    for a written-out transport through Callard–Salo's block embeddings). The Callard–Salo element
+    acts inside the head's conveyor belt, so it is Lebesgue-a.e. locally periodic, and its germ size
+    is `≤ C(L(x)+1)` uniformly in the power, where `λ(L ≥ ℓ) ≲ ℓ q^ℓ`.
+  - **Kill.** `nv-local-density-walls-bounded-on-callard-salo-element`: every wall function
+    dominated by `∫ Φ(germ size) h dλ`, with `h` bounded and `Φ` subexponential, is bounded on
+    `⟨f⟩`. So none is proper modulo `T_n`. This covers the anisotropy wall, cocycle integrals and
+    Lebesgue-integrated wall counts.
+  - **Invariant:** the belt-length tail, set against the uniform germ bound.
+  - **Where every member dies:** `sup_N ψ(f^N) ≤ A + ‖h‖_∞ Σ_ℓ λ(L=ℓ) Φ(C(ℓ+1)) < ∞`.
+  - **Computation that changes belief.** The expected `O(log N)` head-displacement growth does not
+    occur: displacement is bounded by the belt length. SMART on a cyclic tape of length `c` has
+    4 cycles of length `2c·3^c` (`experiments/nv-measured-walls-2026-09-17/smart_belt_periods.py`).
+  - **Forced shape for R1:** weights exponential in germ size on the rare regions `{L = ℓ}`, i.e.
+    infinite-measure Maharam walls in `C^n × Z^n`. They must not be fibre-constant and must sit at
+    fibre height `≍ L`, which gives odometer-type growth `≍ log N`.
