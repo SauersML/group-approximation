@@ -10,6 +10,7 @@ distinct_from:
   permutational-boone-higman-closed-under-wreath-products: that is closure under restricted permutational wreath products over G-sets with finite point stabilizers; this is closure under graph products, whose retract decomposition is a free, not direct, base with infinite stabilizers.
   boone-higman-closed-under-finite-direct-products: that is the open product closure of the Boone--Higman class itself; this is a theorem about the permutational class B_A only.
 artifacts:
+  - research/artifacts/gq-bh-bh-free-11-graph-product-verification.md
   - research/artifacts/ideas-bh-round2-2026-09-14.md
   - research/artifacts/gq-bh-bh-free-10-verify-graph-products.md
 ---
@@ -18,8 +19,9 @@ artifacts:
 end on 2026-09-18 by lane bh-free-10 (`gq-bh-bh-free-10-verify-graph-products`):
 every step of the route checks. BFFHZ Theorem C, Theorem E, the proof of
 Corollary F, and Question 3.1 were re-read in the arXiv:2503.21882v2 TeX source,
-and they match what the route uses. This is an internal verification, not an
-external review. Priority search is partial: FFWZ arXiv:2603.24687 (extracted
+and they match what the route uses. A second, independent step-by-step re-check on 2026-09-18 by lane bh-free-11
+(`gq-bh-bh-free-11-graph-product-verification`) also found no gap. Both are internal
+verifications, not an external review. Priority search is partial: FFWZ arXiv:2603.24687 (extracted
 text on MSI) never mentions graph products, no node here treats them, and arXiv
 API queries of 2026-09-14 and 2026-09-18 ("graph product" AND "Boone") returned
 no entries.
