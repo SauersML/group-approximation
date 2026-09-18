@@ -10,24 +10,27 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `bs-quotient-free-big-kernel-proof` (lane proof,
-elementary; referee b PASS on citations and scope,
-`research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
-proof-gap review pending; no priority claimed).
+elementary; referee a PASS,
+`research/artifacts/gq-referee-a-bs-classes-over-virtually-quotient-free-groups-have-big-kernels.md`;
+referee b PASS, `research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
+no priority claimed).
 
 **Notation.** `R(V)` is the finite residual of a group `V`: the intersection of all
 finite-index subgroups.
 
-**Theorem.** Let `G` be a group with `[G : R(G)] < ∞`, for example virtually an
+**Theorem.** Let `G` be an infinite group with `[G : R(G)] < ∞`, for example virtually an
 infinite simple group or virtually a group with no nontrivial finite quotients. Let
 `H ∈ BS_G`, with tree kernel `K`. Then:
 1. `R(V_x)` has finite index in each vertex group `V_x`. The subgroups `R(V_x)`,
    taken in `H`, are all equal, so `K ⊇ R(V_x)` has finite index in each `V_x`. In
-   particular no member of `BS_G` is faithful.
+   particular, since `G` is infinite, no member of `BS_G` is faithful. (For finite
+   `G`, `R(G) = 1`, and a free group acting on its tree is a faithful member.)
 2. `H/K` is finitely generated and virtually free, and `H` has a finite-index
    subgroup `K ⋊ F_m` with `F_m` free.
 3. If the conjugation action of `H` on `K` has finite image in `Out(K)`, then `H` is
-   virtually `K × F_m`. For example, this happens when `Out(R(G))` is finite and
-   `R(G)` has trivial center. If moreover a finite-index subgroup of `G` lies in
+   virtually `K × F`, with `F` free of finite rank. Separately, if `Out(R(G))` is
+   finite and `R(G)` has trivial center, then `H` is virtually `R(G) × F` with `F`
+   finitely generated and virtually free. If moreover a finite-index subgroup of `G` lies in
    `B_A`, then `H ∈ B_A`.
 
 **Application to three trees.** Let `Γ` be a lattice in `T_1 × T_2 × T_3`
