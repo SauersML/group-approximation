@@ -5,7 +5,7 @@ kind: claim
 title: The normal-generator envelope can be chosen so that the simple core has finitely many double cosets
 distinct_from:
   finite-infranormal-subgroup-is-normal: that concerns finite subgroups and their normalizers; this concerns finiteness of a DOUBLE COSET SPACE of an infinite, non-normal subgroup, where neither the subgroup nor its index is finite.
-  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. The two are not the same statement. Correction 2026-09-17: this one implies that one for the same envelope, by bi-index-core-makes-normals-core-class-unions. No converse is known.
+  ck-envelope-has-a-finitely-normally-generated-maximal-kernel: that asks for a compactness property of the normal lattice of the envelope; this asks for a finiteness property of the double coset space of one subgroup pair. The two are not the same statement. Correction 2026-09-17: this one implies that one for the same envelope, by bi-index-core-makes-normals-core-class-unions and by normally-generating-core-bi-index-bounds-normal-height. No converse is known.
   kazhdan-boone-higman-conjecture: that asks for finitely presented simple Kazhdan hosts; this asks for a finite bi-index core in a Kazhdan envelope. By ck-finite-bi-index-hole-is-kazhdan-boone-higman they are equivalent when the core is free, and this one implies that one in every reading.
   ring-elementary-bh-hosts-are-kazhdan: that is an established permanence lemma making ring-host Boone--Higman hosts Kazhdan; this is the open envelope statement, whose free-core reading those hosts would supply.
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
@@ -144,3 +144,21 @@ tools.
    Boone--Higman--Thompson envelope. A ring host `T` gives `S = Gamma = T`,
    not the prescribed core. The hole stays OPEN. See
    `research/artifacts/ring-hosts-are-kazhdan-2026-09-17.md`.
+9. **Any universal-sandwich envelope, any marking, any core.** *Killed as a
+   class* by [[sandwich-ring-envelopes-have-infinite-core-bi-index]] (c-ckbi,
+   2026-09-17), adopting bus spark 0e1cd89b. The invariant is the normal
+   height. By [[normally-generating-core-bi-index-bounds-normal-height]], if
+   `N ∩ S = 1` for all proper normal `N` and `|S \ Gamma / S| = r`, then
+   `N |-> NS` is strictly monotone along chains, by the modular law, into the
+   intermediate subgroups. So every chain of proper normal subgroups has at
+   most `r` members. Every envelope mapping onto `EL_n(R)` with `R` of infinite
+   ideal length therefore has infinite core bi-index. `U` qualifies because
+   `U/lU != 0` for every prime `l`, which gives the congruence chain
+   `C(l_1 ... l_k U)`. This covers every marked cover from
+   [[ck-steinberg-marked-cover]] and `EL_4(U)` itself, whatever core is used.
+   It also corrects Attempt 2: finite bi-index does imply finite normal
+   height, finitely normally generated proper normals, a finitely presented
+   simple Kazhdan quotient containing `S`, and finite center. Survivors must
+   avoid all ring quotients of infinite ideal length. Not covered are
+   quotients where the covering kernel `K` has `KN = Gamma`, and the original
+   CK subring `L`.
