@@ -190,7 +190,7 @@ theorem ambientMap_mem_closed (f : A →⋆ₙₐ[ℂ] A') (g : C →⋆ₙₐ[�
 def map (f : A →⋆ₙₐ[ℂ] A') (g : C →⋆ₙₐ[ℂ] C') : closed A C →⋆ₙₐ[ℂ] closed A' C' :=
   NonUnitalStarAlgHom.codRestrict
     ((ambientMap f g).toNonUnitalStarAlgHom.comp
-      (NonUnitalStarSubalgebraClass.subtype (closed A C)))
+      (NonUnitalStarSubalgebraClass.subtype (R := ℂ) (closed A C)))
     (closed A' C') (fun x => ambientMap_mem_closed f g x.2)
 
 theorem coe_map (f : A →⋆ₙₐ[ℂ] A') (g : C →⋆ₙₐ[ℂ] C') (x : closed A C) :
@@ -231,7 +231,8 @@ theorem map_id :
     = StarAlgHom.id ℂ (Ambient A C) x
   exact ext_closed (Φ := ambientMap (NonUnitalStarAlgHom.id ℂ A) (NonUnitalStarAlgHom.id ℂ C))
     (Ψ := StarAlgHom.id ℂ (Ambient A C)) (continuous_ambientMap _ _)
-    (continuous_id.congr fun _ => rfl) (fun a c => (ambientMap_gen _ _ a c).trans rfl) x.2
+    (continuous_id.congr fun _ => rfl) (fun a c => (ambientMap_gen (NonUnitalStarAlgHom.id ℂ A)
+      (NonUnitalStarAlgHom.id ℂ C) a c).trans rfl) x.2
 
 /-- **Composites go to composites.** -/
 theorem map_comp (f : A →⋆ₙₐ[ℂ] A') (f' : A' →⋆ₙₐ[ℂ] A'') (g : C →⋆ₙₐ[ℂ] C')
@@ -293,7 +294,10 @@ theorem continuous_ambientMap_path (p : ℝ → A →⋆ₙₐ[ℂ] A') (q : ℝ
 theorem continuous_map_path (p : ℝ → A →⋆ₙₐ[ℂ] A') (q : ℝ → C →⋆ₙₐ[ℂ] C')
     (hp : ∀ a : A, Continuous fun t : ℝ => p t a) (hq : ∀ c : C, Continuous fun t : ℝ => q t c)
     (x : closed A C) : Continuous fun t : ℝ => map (p t) (q t) x :=
-  continuous_induced_rng.2 (continuous_ambientMap_path p q hp hq x.2)
+  (Continuous.subtype_mk (p := fun y : Ambient A' C' => y ∈ closed A' C')
+    (continuous_ambientMap_path p q hp hq x.2)
+    fun t => ambientMap_mem_closed (p t) (q t) x.2).congr
+    fun t => Subtype.ext (coe_map (p t) (q t) x).symm
 
 /-- **Homotopy invariance**: homotopic pairs of `⋆`-homomorphisms give homotopic maps of
 minimal tensor products. -/

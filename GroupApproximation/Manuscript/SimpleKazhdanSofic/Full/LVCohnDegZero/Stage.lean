@@ -215,8 +215,8 @@ theorem stageUnit_isFamily (n : ℕ) : ChainCore.IsMatrixUnitFamily (stageUnit n
       · exfalso
         apply hij
         apply Fin.ext
-        have hi' := i.isLt
-        have hj' := j.isLt
+        have := i.isLt
+        have := j.isLt
         omega
 
 theorem stageUnit_diag_ne_zero (n : ℕ) (j : Fin (n + 1)) (a : Fin (2 ^ j.val)) :

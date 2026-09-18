@@ -86,8 +86,8 @@ theorem unitaryClass_mk_eq_of_norm_sub_lt_two {E : Type*} [CStarAlgebra E] {u v 
   rw [QuotientGroup.eq]
   apply mem_unitaryComponentOne_of_norm_sub_one_lt_two
   have hc : ((u⁻¹ * v : unitary E) : E) - 1 = star (u : E) * ((v : E) - u) := by
+    show star (u : E) * (v : E) - 1 = star (u : E) * ((v : E) - u)
     rw [mul_sub, Unitary.star_mul_self_of_mem u.prop]
-    rfl
   have hn : ‖star (u : E) * ((v : E) - u)‖ = ‖(v : E) - u‖ :=
     CStarRing.norm_coe_unitary_mul (star u) _
   rw [hc, hn]
@@ -103,31 +103,46 @@ theorem exists_unitary_matMap_near (ψ : A' →⋆ₐ[ℂ] A) (hψ : Function.In
     ∃ w : unitary (CStarMat n A'),
       (QuotientGroup.mk (matMapUnitary ψ n w) : UnitaryClass (CStarMat n A)) =
         QuotientGroup.mk v := by
-  set Φ := CStarMatrix.mapₙₐ (n := Fin n) (ψ : A' →⋆ₙₐ[ℂ] A) with hΦdef
-  have hΦ : ∀ M, Φ M = matMapHom ψ n M := matMapHom_eq_mapₙₐ ψ n
+  obtain ⟨Φ, hΦ⟩ : ∃ Φ : CStarMat n A' →⋆ₙₐ[ℂ] CStarMat n A, ∀ M, Φ M = matMapHom ψ n M :=
+    ⟨_, matMapHom_eq_mapₙₐ ψ n⟩
   have hΦ1 : Φ 1 = 1 := (hΦ 1).trans (map_one _)
-  have hiso : ∀ M, ‖Φ M‖ = ‖M‖ := fun M => (hΦ M).symm ▸ norm_matMapHom_of_injective ψ hψ n M
-  set V : CStarMat n A := v with hVdef
-  set e := ‖V - Φ y‖ with hedef
+  have hiso : ∀ M, ‖Φ M‖ = ‖M‖ := by
+    intro M
+    rw [hΦ]
+    exact norm_matMapHom_of_injective ψ hψ n M
+  obtain ⟨V, hVdef⟩ : ∃ V : CStarMat n A, V = v := ⟨_, rfl⟩
+  have hVs : star V * V = 1 := by
+    rw [hVdef]
+    exact Unitary.star_mul_self_of_mem v.prop
+  have hVs' : V * star V = 1 := by
+    rw [hVdef]
+    exact Unitary.mul_star_self_of_mem v.prop
+  obtain ⟨e, hedef⟩ : ∃ e : ℝ, e = ‖V - Φ y‖ := ⟨_, rfl⟩
   have he : e ≤ 1 / 10 := by
-    rw [hedef, hΦ]
+    rw [hedef, hΦ, hVdef]
     exact hy
-  have he0 : 0 ≤ e := norm_nonneg _
-  have hV : ‖V‖ ≤ 1 := norm_unitary_coe_le_one v
+  have he0 : 0 ≤ e := by
+    rw [hedef]
+    exact norm_nonneg _
+  have hV : ‖V‖ ≤ 1 := by
+    rw [hVdef]
+    exact norm_unitary_coe_le_one v
   have hY : ‖Φ y‖ ≤ 1 + e := by
     have h1 : Φ y = V - (V - Φ y) := (sub_sub_cancel V (Φ y)).symm
     calc ‖Φ y‖ = ‖V - (V - Φ y)‖ := by rw [← h1]
       _ ≤ ‖V‖ + ‖V - Φ y‖ := norm_sub_le _ _
       _ ≤ 1 + e := by linarith
   have hYs : ‖star (Φ y) - star V‖ = e := by
-    rw [← star_sub, norm_star, norm_sub_rev]
+    rw [← star_sub, norm_star, norm_sub_rev, hedef]
+  have hYV : ‖Φ y - V‖ = e := by
+    rw [norm_sub_rev, hedef]
   have hy1 : ‖y‖ ≤ 1 + e := by
     rw [← hiso y]
     exact hY
   -- the two Gram defects of `y`
   have hg1 : ‖star y * y - 1‖ ≤ (1 + e) * e + e := by
     have hmap : Φ (star y * y - 1) = star (Φ y) * Φ y - star V * V := by
-      rw [map_sub, map_mul, map_star, hΦ1, Unitary.star_mul_self_of_mem v.prop]
+      rw [map_sub, map_mul, map_star, hΦ1, hVs]
     have hsplit : star (Φ y) * Φ y - star V * V =
         star (Φ y) * (Φ y - V) + (star (Φ y) - star V) * V := by
       noncomm_ring
@@ -135,12 +150,13 @@ theorem exists_unitary_matMap_near (ψ : A' →⋆ₐ[ℂ] A) (hψ : Function.In
     calc ‖star (Φ y) * (Φ y - V) + (star (Φ y) - star V) * V‖
         ≤ ‖star (Φ y)‖ * ‖Φ y - V‖ + ‖star (Φ y) - star V‖ * ‖V‖ :=
           (norm_add_le _ _).trans (add_le_add (norm_mul_le _ _) (norm_mul_le _ _))
-      _ = ‖Φ y‖ * e + e * ‖V‖ := by rw [norm_star, hYs, norm_sub_rev]
-      _ ≤ (1 + e) * e + e * 1 := by gcongr
+      _ = ‖Φ y‖ * e + e * ‖V‖ := by rw [norm_star, hYs, hYV]
+      _ ≤ (1 + e) * e + e * 1 :=
+          add_le_add (mul_le_mul_of_nonneg_right hY he0) (mul_le_mul_of_nonneg_left hV he0)
       _ = (1 + e) * e + e := by ring
   have hg2 : ‖y * star y - 1‖ ≤ (1 + e) * e + e := by
     have hmap : Φ (y * star y - 1) = Φ y * star (Φ y) - V * star V := by
-      rw [map_sub, map_mul, map_star, hΦ1, Unitary.mul_star_self_of_mem v.prop]
+      rw [map_sub, map_mul, map_star, hΦ1, hVs']
     have hsplit : Φ y * star (Φ y) - V * star V =
         (Φ y - V) * star (Φ y) + V * (star (Φ y) - star V) := by
       noncomm_ring
@@ -148,10 +164,12 @@ theorem exists_unitary_matMap_near (ψ : A' →⋆ₐ[ℂ] A) (hψ : Function.In
     calc ‖(Φ y - V) * star (Φ y) + V * (star (Φ y) - star V)‖
         ≤ ‖Φ y - V‖ * ‖star (Φ y)‖ + ‖V‖ * ‖star (Φ y) - star V‖ :=
           (norm_add_le _ _).trans (add_le_add (norm_mul_le _ _) (norm_mul_le _ _))
-      _ = e * ‖Φ y‖ + ‖V‖ * e := by rw [norm_star, hYs, norm_sub_rev]
-      _ ≤ e * (1 + e) + 1 * e := by gcongr
+      _ = e * ‖Φ y‖ + ‖V‖ * e := by rw [norm_star, hYs, hYV]
+      _ ≤ e * (1 + e) + 1 * e :=
+          add_le_add (mul_le_mul_of_nonneg_left hY he0) (mul_le_mul_of_nonneg_right hV he0)
       _ = (1 + e) * e + e := by ring
-  have hsmall : (1 + e) * e + e ≤ 21 / 100 := by nlinarith
+  have hsmall : (1 + e) * e + e ≤ 21 / 100 := by
+    nlinarith [mul_nonneg he0 (sub_nonneg.mpr he)]
   have hg1' : ‖star y * y - 1‖ ≤ 1 / 2 := by linarith
   have hg2' : ‖y * star y - 1‖ ≤ 1 / 2 := by linarith
   have hw := PolarLiftingGeneralCStar.polarUnitary_mem_unitary hg1' hg2'
@@ -161,7 +179,7 @@ theorem exists_unitary_matMap_near (ψ : A' →⋆ₐ[ℂ] A) (hψ : Function.In
   have hcoe : ((matMapUnitary ψ n ⟨PolarLiftingGeneralCStar.polarUnitary y, hw⟩ :
       unitary (CStarMat n A)) : CStarMat n A) = Φ (PolarLiftingGeneralCStar.polarUnitary y) :=
     (hΦ _).symm
-  rw [hcoe]
+  rw [hcoe, ← hVdef]
   have hprod : ‖y‖ * ‖star y * y - 1‖ ≤ 11 / 10 * (21 / 100) :=
     mul_le_mul (by linarith) (by linarith) (norm_nonneg _) (by norm_num)
   have hdiff : ‖Φ y - Φ (PolarLiftingGeneralCStar.polarUnitary y)‖ ≤ 1 / 2 := by
@@ -200,6 +218,17 @@ theorem sepIncl_comp (J : NonUnitalStarSubalgebra ℂ B) {D D' D'' : StarSubalge
     (sepIncl J h').comp (sepIncl J h) = sepIncl J (h.trans h') :=
   NonUnitalStarAlgHom.ext fun _ => rfl
 
+/-- Subtracting `inl x.fst + b` from `x ∈ S⁺` leaves the ideal element `x.snd - b`. -/
+theorem sub_inl_fst_add_inr {S : Type*} [NonUnitalCStarAlgebra S] (x : Unitization ℂ S)
+    (b : S) :
+    x - (Unitization.inl x.fst + (b : Unitization ℂ S)) = ((x.snd - b : S) : Unitization ℂ S) := by
+  calc x - (Unitization.inl x.fst + (b : Unitization ℂ S))
+      = (Unitization.inl x.fst + (x.snd : Unitization ℂ S)) -
+          (Unitization.inl x.fst + (b : Unitization ℂ S)) := by
+        rw [Unitization.inl_fst_add_inr_snd_eq]
+    _ = (x.snd : Unitization ℂ S) - (b : Unitization ℂ S) := add_sub_add_left_eq_sub _ _ _
+    _ = ((x.snd - b : S) : Unitization ℂ S) := (Unitization.inr_sub (R := ℂ) _ _).symm
+
 /-- **Continuity of `K₁` along the chain** (RLL 8.1 with 2.1.8). Every class of
 `K₁(D_∞ ∩ J)`, `D_∞ = closure (⋃ₖ Dₖ)`, is the image of a class of `K₁(Dₖ ∩ J)` for some `k`.
 
@@ -215,7 +244,7 @@ theorem exists_kOneN_map_eq_of_chain {J : NonUnitalStarSubalgebra ℂ B}
     (x : KOneN (sepIdeal (chainClosure D) J)) :
     ∃ k, ∃ z : KOneN (sepIdeal (D k) J), KOneN.map (sepIncl J (le_chainClosure D k)) z = x := by
   obtain ⟨n, v, rfl⟩ := KOneN.exists_mk x
-  set ε : ℝ := 1 / (10 * ((n : ℝ) * n + 1)) with hεdef
+  obtain ⟨ε, hεdef⟩ : ∃ ε : ℝ, ε = 1 / (10 * ((n : ℝ) * n + 1)) := ⟨_, rfl⟩
   have hpos : 0 < 10 * ((n : ℝ) * n + 1) := by positivity
   have hε : 0 < ε := by
     rw [hεdef]
@@ -223,31 +252,41 @@ theorem exists_kOneN_map_eq_of_chain {J : NonUnitalStarSubalgebra ℂ B}
   obtain ⟨k, z, hz, hzn⟩ := exists_sepIdeal_chain_near_fintype hJ hideal hmono hD
     (fun p : Fin n × Fin n => (((v : CStarMat n _) p.1 p.2).snd : B))
     (fun p => ((v : CStarMat n _) p.1 p.2).snd.2) hε
-  set ι := sepIncl J (le_chainClosure D k) with hιdef
-  set ψ := Unitization.starMap ι with hψdef
-  have hψ : Function.Injective ψ := Unitization.starMap_injective (sepIncl_injective J _)
-  let y : CStarMat n (Unitization ℂ (sepIdeal (D k) J)) := fun i j =>
-    Unitization.inl ((v : CStarMat n _) i j).fst +
-      ((⟨z (i, j), hz (i, j)⟩ : sepIdeal (D k) J) : Unitization ℂ (sepIdeal (D k) J))
-  have hentry : ∀ i j, ‖((v : CStarMat n _) - matMapHom ψ n y) i j‖ < ε := by
+  have hψ : Function.Injective (Unitization.starMap (sepIncl J (le_chainClosure D k))) :=
+    Unitization.starMap_injective (sepIncl_injective J _)
+  obtain ⟨y, hy⟩ : ∃ y : CStarMat n (Unitization ℂ (sepIdeal (D k) J)), ∀ i j,
+      y i j = Unitization.inl ((v : CStarMat n _) i j).fst +
+        ((⟨z (i, j), hz (i, j)⟩ : sepIdeal (D k) J) : Unitization ℂ (sepIdeal (D k) J)) :=
+    ⟨fun i j => Unitization.inl ((v : CStarMat n _) i j).fst +
+      ((⟨z (i, j), hz (i, j)⟩ : sepIdeal (D k) J) : Unitization ℂ (sepIdeal (D k) J)),
+      fun _ _ => rfl⟩
+  have hψy : ∀ i j,
+      matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y i j =
+        Unitization.inl ((v : CStarMat n _) i j).fst +
+          ((sepIncl J (le_chainClosure D k) ⟨z (i, j), hz (i, j)⟩ :
+            sepIdeal (chainClosure D) J) : Unitization ℂ (sepIdeal (chainClosure D) J)) := by
     intro i j
-    have hψy : matMapHom ψ n y i j = Unitization.inl ((v : CStarMat n _) i j).fst +
-        ((ι ⟨z (i, j), hz (i, j)⟩ : sepIdeal (chainClosure D) J) :
-          Unitization ℂ (sepIdeal (chainClosure D) J)) := by
-      rw [matMapHom_apply, map_add, Unitization.starMap_inr, Unitization.starMap_inl,
-        Unitization.algebraMap_eq_inl]
-    have hsub : ((v : CStarMat n _) - matMapHom ψ n y) i j =
-        (((((v : CStarMat n _) i j).snd - ι ⟨z (i, j), hz (i, j)⟩ :
+    rw [matMapHom_apply, hy i j, map_add, Unitization.starMap_inr, Unitization.starMap_inl,
+      Unitization.algebraMap_eq_inl]
+  have hentry : ∀ i j, ‖((v : CStarMat n _) -
+      matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y) i j‖ < ε := by
+    intro i j
+    have hsub : ((v : CStarMat n _) -
+        matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y) i j =
+        (((((v : CStarMat n _) i j).snd - sepIncl J (le_chainClosure D k) ⟨z (i, j), hz (i, j)⟩ :
           sepIdeal (chainClosure D) J)) : Unitization ℂ (sepIdeal (chainClosure D) J)) := by
-      show (v : CStarMat n _) i j - matMapHom ψ n y i j = _
-      rw [hψy, Unitization.inr_sub]
-      conv_lhs => rw [← Unitization.inl_fst_add_inr_snd_eq ((v : CStarMat n _) i j)]
-      exact add_sub_add_left_eq_sub _ _ _
+      show (v : CStarMat n _) i j -
+        matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y i j = _
+      rw [hψy i j]
+      exact sub_inl_fst_add_inr _ _
     rw [hsub, Unitization.norm_inr]
     exact hzn (i, j)
-  have hnorm : ‖(v : CStarMat n _) - matMapHom ψ n y‖ ≤ 1 / 10 := by
-    calc ‖(v : CStarMat n _) - matMapHom ψ n y‖
-        ≤ ∑ j, ∑ i, ‖((v : CStarMat n _) - matMapHom ψ n y) i j‖ :=
+  have hnorm : ‖(v : CStarMat n _) -
+      matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y‖ ≤ 1 / 10 := by
+    calc ‖(v : CStarMat n _) -
+          matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y‖
+        ≤ ∑ j, ∑ i, ‖((v : CStarMat n _) -
+          matMapHom (Unitization.starMap (sepIncl J (le_chainClosure D k))) n y) i j‖ :=
           cStarMat_norm_le_sum_norm _
       _ ≤ ∑ _j : Fin n, ∑ _i : Fin n, ε :=
           Finset.sum_le_sum fun j _ => Finset.sum_le_sum fun i _ => (hentry i j).le
@@ -260,12 +299,11 @@ theorem exists_kOneN_map_eq_of_chain {J : NonUnitalStarSubalgebra ℂ B}
       _ ≤ 1 / 10 := by
           rw [div_le_iff₀ hpos]
           linarith
-  obtain ⟨w, hw⟩ := exists_unitary_matMap_near ψ hψ v y hnorm
+  obtain ⟨w, hw⟩ := exists_unitary_matMap_near _ hψ v y hnorm
   refine ⟨k, KOneN.mk n w, ?_⟩
   rw [KOneN.map_mk]
-  show KOneN.ofMul (kOneIota _ n (QuotientGroup.mk (matMapUnitary ψ n w))) =
-    KOneN.ofMul (kOneIota _ n (QuotientGroup.mk v))
-  rw [hw]
+  exact congrArg
+    (fun c => KOneN.ofMul (kOneIota (Unitization ℂ (sepIdeal (chainClosure D) J)) n c)) hw
 
 end Chain
 

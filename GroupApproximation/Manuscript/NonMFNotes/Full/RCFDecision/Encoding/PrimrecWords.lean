@@ -16,7 +16,7 @@ Reducedness is decided through `wf_isReducedRaw_iff` and `wf_primrec_reduce` of
 
 namespace GroupApproximation.Full.NN11b
 
-open PresentationCodes Manuscript.MFRecognition.Certificates
+open PresentationCodes AdianRabinWordProblem Manuscript.MFRecognition.Certificates
 
 /-- The signed letters of a code form a primitive recursive list. -/
 theorem enc_primrec_signedLetters : Primrec signedLetters := by

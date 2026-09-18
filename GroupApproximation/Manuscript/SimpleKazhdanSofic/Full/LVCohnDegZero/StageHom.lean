@@ -163,7 +163,7 @@ theorem stage_mono (n : ℕ) : stage n ≤ stage (n + 1) := by
   refine stage_le n _ fun j a b => ?_
   have hab : (vw j.val a).length = (vw j.val b).length :=
     (vw_length _ a).trans (vw_length _ b).symm
-  have hjle := j.isLt
+  have := j.isLt
   by_cases hj : j.val < n
   · rw [stageUnit_of_lt hj]
     exact unitE_mem_stage (n + 1) _ _ hab (by rw [vw_length]; omega)

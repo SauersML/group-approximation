@@ -35,16 +35,19 @@ section DilationAssembly
 variable {J : Type} [NonUnitalCStarAlgebra J] [PartialOrder J] [StarOrderedRing J]
 variable {F : CStarModule.{0, u₁} J} {E : CStarModule.{0, u₂} J} {G : CStarModule.{0, u₃} J}
 
+omit [PartialOrder J] [StarOrderedRing J] in
 /-- The adjoint map of an adjointable operator is additive. -/
 theorem adj_map_add (V : Adjointable F E) (x y : E.carrier) :
     V.adj (x + y) = V.adj x + V.adj y :=
   (Adjointable.adjoint V).map_add x y
 
+omit [PartialOrder J] [StarOrderedRing J] in
 /-- The adjoint map of an adjointable operator respects differences. -/
 theorem adj_map_sub (V : Adjointable F E) (x y : E.carrier) :
     V.adj (x - y) = V.adj x - V.adj y :=
   (Adjointable.adjoint V).map_sub x y
 
+omit [PartialOrder J] [StarOrderedRing J] in
 /-- The adjoint map of an adjointable operator kills `0`. -/
 theorem adj_map_zero (V : Adjointable F E) : V.adj 0 = 0 :=
   (Adjointable.adjoint V).map_zero
@@ -58,7 +61,7 @@ def kerAdjSubmodule (V : Adjointable F E) : Submodule ℂ E.carrier where
     show V.adj (x + y) = 0
     rw [adj_map_add, hx', hy', add_zero]
   zero_mem' := adj_map_zero V
-  smul_mem' c x hx := by
+  smul_mem' c {x} hx := by
     have hx' : V.adj x = 0 := hx
     show V.adj (c • x) = 0
     have h : V.adj (c • x) = c • V.adj x := (Adjointable.adjoint V).map_smul c x
@@ -72,7 +75,7 @@ def kerAdj (V : Adjointable F E) : CStarModule.{0, u₂} J where
     have hx : V.adj x.1 = 0 := x.2
     show V.adj (E.act x.1 b) = 0
     have h : V.adj (E.act x.1 b) = F.act (V.adj x.1) b := (Adjointable.adjoint V).map_act x.1 b
-    rw [h, hx, CStarModule.act_zero_left]⟩
+    rw [h, hx, F.act_zero_left]⟩
   inner x y := E.inner x.1 y.1
   act_add_left x y b := Subtype.ext (E.act_add_left x.1 y.1 b)
   act_add_right x b c := Subtype.ext (E.act_add_right x.1 b c)
@@ -85,9 +88,11 @@ def kerAdj (V : Adjointable F E) : CStarModule.{0, u₂} J where
   inner_self_isPositive x := E.inner_self_isPositive x.1
   inner_self_eq_zero x hx := Subtype.ext (E.inner_self_eq_zero x.1 hx)
 
+omit [PartialOrder J] [StarOrderedRing J] in
 theorem kerAdj_inner (V : Adjointable F E) (x y : (kerAdj V).carrier) :
     (kerAdj V).inner x y = E.inner x.1 y.1 := rfl
 
+omit [PartialOrder J] [StarOrderedRing J] in
 /-- A vector of `ker V⋆` is killed by `V⋆`. -/
 theorem adj_kerAdj (V : Adjointable F E) (x : (kerAdj V).carrier) : V.adj x.1 = 0 := x.2
 
@@ -101,7 +106,7 @@ def kerProj (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ) (e : E.
 /-- **`F ⊕ ker V⋆ ≅ E`** for an isometry `V : F → E`: `(ξ, c) ↦ V ξ + c`, with adjoint
 `e ↦ (V⋆ e, e - V V⋆ e)`. -/
 def joinKer (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ) :
-    Adjointable (prod F (kerAdj V)) E where
+    Adjointable (HilbertModule.prod F (kerAdj V)) E where
   toFun p := V.toFun p.1 + p.2.1
   adj e := (V.adj e, kerProj V hV e)
   inner_adj p e := by
@@ -111,7 +116,8 @@ def joinKer (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ) :
       adj_kerAdj V p.2, F.inner_zero_left, sub_zero]
 
 theorem joinKer_toFun (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
-    (p : (prod F (kerAdj V)).carrier) : (joinKer V hV).toFun p = V.toFun p.1 + p.2.1 := rfl
+    (p : (HilbertModule.prod F (kerAdj V)).carrier) :
+    (joinKer V hV).toFun p = V.toFun p.1 + p.2.1 := rfl
 
 theorem isUnitaryAdj_joinKer (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ) :
     (joinKer V hV).IsUnitaryAdj where
@@ -129,7 +135,8 @@ theorem isUnitaryAdj_joinKer (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun 
 /-- **The dilation unitary** `W : F ⊕ G ≅ E ⊕ G` built from an isometry `V : F → E` and a
 unitary `U : G ⊕ ker V⋆ ≅ G`: `W (ξ, η) = (V ξ + (U⋆η)₂, (U⋆η)₁)`. -/
 def dilationUnitary (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
-    (U : Adjointable (prod G (kerAdj V)) G) : Adjointable (prod F G) (prod E G) where
+    (U : Adjointable (HilbertModule.prod G (kerAdj V)) G) :
+    Adjointable (HilbertModule.prod F G) (HilbertModule.prod E G) where
   toFun p := ((joinKer V hV).toFun (p.1, (U.adj p.2).2), (U.adj p.2).1)
   adj q := (((joinKer V hV).adj q.1).1, U.toFun (q.2, ((joinKer V hV).adj q.1).2))
   inner_adj p q := by
@@ -146,7 +153,7 @@ def dilationUnitary (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
     abel
 
 theorem isUnitaryAdj_dilationUnitary (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
-    {U : Adjointable (prod G (kerAdj V)) G} (hU : U.IsUnitaryAdj) :
+    {U : Adjointable (HilbertModule.prod G (kerAdj V)) G} (hU : U.IsUnitaryAdj) :
     (dilationUnitary V hV U).IsUnitaryAdj where
   adj_toFun p := by
     have hJ := (isUnitaryAdj_joinKer V hV).adj_toFun (p.1, (U.adj p.2).2)
@@ -164,31 +171,33 @@ theorem isUnitaryAdj_dilationUnitary (V : Adjointable F E) (hV : ∀ ξ, V.adj (
 
 /-- `W (ξ, 0) = (V ξ, 0)`: the dilation unitary extends `V` on the first summand. -/
 theorem dilationUnitary_toFun_inl (V : Adjointable F E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
-    (U : Adjointable (prod G (kerAdj V)) G) (ξ : F.carrier) :
+    (U : Adjointable (HilbertModule.prod G (kerAdj V)) G) (ξ : F.carrier) :
     (dilationUnitary V hV U).toFun (ξ, 0) = (V.toFun ξ, 0) := by
   show (V.toFun ξ + (U.adj 0).2.1, (U.adj 0).1) = (V.toFun ξ, 0)
   rw [adj_map_zero U]
-  show (V.toFun ξ + 0, 0) = (V.toFun ξ, 0)
-  rw [add_zero]
+  exact Prod.ext (add_zero (V.toFun ξ)) rfl
 
+omit [PartialOrder J] [StarOrderedRing J] in
 /-- The zero operator is bounded. -/
 theorem isBounded_zeroOp : (Adjointable.zero F E).IsBounded := by
-  refine ⟨0, le_rfl, fun x => ?_⟩
+  refine ⟨0, le_rfl, ?_⟩
+  intro x
   show E.norm (0 : E.carrier) ≤ 0 * F.norm x
-  rw [E.norm_zero_vector, zero_mul]
+  exact (E.norm_zero_vector.trans (zero_mul (F.norm x)).symm).le
 
 variable {S : Type} [NonUnitalCStarAlgebra S]
 
 /-- **`π ⊕ 0` is a representation** on `E ⊕ G`. -/
 theorem isRepresentation_prodMap_zero {π : S → Adjointable E E} (hπ : IsRepresentation E π) :
-    IsRepresentation (prod E G) (fun a => Adjointable.prodMap (π a) (Adjointable.zero G G)) where
+    IsRepresentation (HilbertModule.prod E G)
+      (fun a => Adjointable.prodMap (π a) (Adjointable.zero G G)) where
   bounded a := (hπ.bounded a).prodMap isBounded_zeroOp
   map_add a a' p := by
     show ((π (a + a')).toFun p.1, (0 : G.carrier))
-      = ((π a).toFun p.1 + (π a').toFun p.1, 0 + 0)
+      = ((π a).toFun p.1 + (π a').toFun p.1, (0 : G.carrier) + 0)
     rw [hπ.map_add, add_zero]
   map_smul c a p := by
-    show ((π (c • a)).toFun p.1, (0 : G.carrier)) = (c • (π a).toFun p.1, c • 0)
+    show ((π (c • a)).toFun p.1, (0 : G.carrier)) = (c • (π a).toFun p.1, c • (0 : G.carrier))
     rw [hπ.map_smul, smul_zero]
   map_mul a a' p := by
     show ((π (a * a')).toFun p.1, (0 : G.carrier)) = ((π a).toFun ((π a').toFun p.1), 0)
@@ -225,11 +234,11 @@ Lance, *Hilbert C⋆-modules*, Ch. 5–6), for `thm:fixed-radical-membership`. A
 of `S` on `E`, an isometry `V : H_J → E` compressing `π` to `ψ`, and a unitary
 `U : H_J ⊕ ker V⋆ ≅ H_J` (Kasparov stabilization of the complement) give a representation `ρ`
 of `S` on `H_J ⊕ H_J` whose `(1,1)` corner is exactly `ψ`. -/
-theorem exists_dilation_of_stinespring {ψ : S → StdOp J} {E : CStarModule.{0, u₂} J}
+theorem exists_dilation_of_stinespring {ψ : S → StdOp J}
     {π : S → Adjointable E E} (hπ : IsRepresentation E π)
     (V : Adjointable (standardModule ℕ J) E) (hV : ∀ ξ, V.adj (V.toFun ξ) = ξ)
     (hcomp : ∀ a ξ, V.adj ((π a).toFun (V.toFun ξ)) = (ψ a).toFun ξ)
-    (U : Adjointable (prod (standardModule ℕ J) (kerAdj V)) (standardModule ℕ J))
+    (U : Adjointable (HilbertModule.prod (standardModule ℕ J) (kerAdj V)) (standardModule ℕ J))
     (hU : U.IsUnitaryAdj) :
     ∃ ρ : S → StdSumOp J, IsRepresentation (StdSum J) ρ ∧
       ∀ a ξ, (corner11 (ρ a)).toFun ξ = (ψ a).toFun ξ := by
@@ -239,9 +248,9 @@ theorem exists_dilation_of_stinespring {ψ : S → StdOp J} {E : CStarModule.{0,
         (dilationUnitary V hV U)),
     isRepresentation_unitaryConj (isRepresentation_prodMap_zero hπ)
       (isUnitaryAdj_dilationUnitary V hV hU), fun a ξ => ?_⟩
-  rw [corner11_toFun]
   show ((dilationUnitary V hV U).adj
-      ((Adjointable.prodMap (π a) (Adjointable.zero (standardModule ℕ J) (standardModule ℕ J))).toFun
+      ((Adjointable.prodMap (π a)
+          (Adjointable.zero (standardModule ℕ J) (standardModule ℕ J))).toFun
         ((dilationUnitary V hV U).toFun (ξ, 0)))).1 = (ψ a).toFun ξ
   rw [dilationUnitary_toFun_inl]
   show V.adj ((π a).toFun (V.toFun ξ)) = (ψ a).toFun ξ

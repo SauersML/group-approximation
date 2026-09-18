@@ -39,10 +39,11 @@ def IsStrongLimit (T : ℕ → Adjointable E F) (L : Adjointable E F) : Prop :=
   ∀ x : E.carrier, ∀ ε : ℝ, 0 < ε → ∃ N : ℕ, ∀ n : ℕ, N ≤ n →
     F.norm (L.toFun x - (T n).toFun x) ≤ ε
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- A constant sequence converges strongly to its value. -/
 theorem isStrongLimit_const (L : Adjointable E F) : IsStrongLimit (fun _ => L) L := by
   intro x ε hε
-  refine ⟨0, fun n _ => ?_⟩
+  refine ⟨0, fun _ _ => ?_⟩
   show F.norm (L.toFun x - L.toFun x) ≤ ε
   rw [sub_self, F.norm_zero_vector]
   exact hε.le
@@ -68,6 +69,7 @@ theorem IsStrongLimit.isBoundedBy {T : ℕ → Adjointable E F} {L : Adjointable
           F.norm_add_le _ _
   linarith
 
+omit [PartialOrder B] [StarOrderedRing B] in
 /-- Subtracting a fixed operator commutes with strong limits. -/
 theorem IsStrongLimit.sub_const {T : ℕ → Adjointable E F} {L : Adjointable E F}
     (hL : IsStrongLimit T L) (U : Adjointable E F) :

@@ -13,7 +13,7 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Infrastructure for `thm
 
 In a planar map, take three pairwise distinct darts `a, b, c`.  Let `S` be the set of the six
 darts `a, b, c, α a, α b, α c`.  Suppose that, going around faces, the first dart of `S` after
-`a` is `b`, after `b` is `c`, after `c` is `a`, and also the first dart of `S` after `α a` is
+`a` is `b` and after `b` is `c`, and also the first dart of `S` after `α a` is
 `α b`, after `α b` is `α c`, after `α c` is `α a`.  Then the two triangles `a b c` and
 `α a α b α c` are read in the same cyclic order, which is impossible on a sphere
 (`false_of_theta`).
@@ -67,7 +67,7 @@ theorem predRestr_sigma_val_of_firstHit (M : CombMap.{u}) (keep : M.Dart → Pro
   have heq' : (M.sigma ^ m') x.1 =
       ((CombMap.PredicateRestriction.toCombMap M keep hkeep).sigma x).1 := heq
   rcases lt_trichotomy m m' with h | h | h
-  · exact absurd ⟨⟨y, hy⟩, hxy.symm⟩ (hskip' m hm h)
+  · exact (hskip' m hm h ⟨⟨y, hy⟩, hxy.symm⟩).elim
   · subst h
     exact heq'.symm.trans hxy
   · have hk : keep ((M.sigma ^ m') x.1) := by
@@ -113,31 +113,31 @@ theorem vertexCount_le_two_of (R : CombMap.{u}) (p q : R.Dart)
   exact hle.trans hb.le
 
 /-- **Two triangles read in the same order contradict planarity.**  A map on at most six darts
-`A₀ B₀ C₀ A₁ B₁ C₁`, with `α A₀ = A₁`, `α B₀ = B₁`, `α C₀ = C₁`, rotation cycles `A₀ B₀ C₀` and
-`A₁ B₁ C₁`, and `A₀ B₀ C₀` pairwise distinct, has one face, at most two vertices and at least two
-edges, so it is not planar; if every connected such map is planar, this is a contradiction.
-(Osin, proof of Lemma 9.7(b); `thm:hull`.) -/
+`A₀ B₀ C₀ A₁ B₁ C₁`, with `α A₀ = A₁`, `α B₀ = B₁`, `α C₀ = C₁`, rotation steps
+`A₀ ↦ B₀ ↦ C₀` and `A₁ ↦ B₁ ↦ C₁ ↦ A₁`, and `A₀ B₀ C₀` pairwise distinct, has one face, at
+most two vertices and at least two edges, so it is not planar; if every connected such map is
+planar, this is a contradiction.  (Osin, proof of Lemma 9.7(b); `thm:hull`.) -/
 theorem false_of_sixDarts (R : CombMap.{u}) (hplanar : R.IsConnected → R.IsPlanar)
     (A0 B0 C0 A1 B1 C1 : R.Dart)
     (hall : ∀ d, d = A0 ∨ d = B0 ∨ d = C0 ∨ d = A1 ∨ d = B1 ∨ d = C1)
     (hab : A0 ≠ B0) (hbc : B0 ≠ C0) (hac : A0 ≠ C0)
     (hαA : R.alpha A0 = A1) (hαB : R.alpha B0 = B1) (hαC : R.alpha C0 = C1)
-    (hA0 : R.sigma A0 = B0) (hB0 : R.sigma B0 = C0) (hC0 : R.sigma C0 = A0)
+    (hA0 : R.sigma A0 = B0) (hB0 : R.sigma B0 = C0)
     (hA1 : R.sigma A1 = B1) (hB1 : R.sigma B1 = C1) (hC1 : R.sigma C1 = A1) : False := by
   have e1 : R.facePerm A0 = B1 := by
-    show R.sigma (R.alpha A0) = B1
+    change R.sigma (R.alpha A0) = B1
     rw [hαA, hA1]
   have e2 : R.facePerm B1 = C0 := by
-    show R.sigma (R.alpha B1) = C0
+    change R.sigma (R.alpha B1) = C0
     rw [← hαB, R.alpha_involutive B0, hB0]
   have e3 : R.facePerm C0 = A1 := by
-    show R.sigma (R.alpha C0) = A1
+    change R.sigma (R.alpha C0) = A1
     rw [hαC, hC1]
   have e4 : R.facePerm A1 = B0 := by
-    show R.sigma (R.alpha A1) = B0
+    change R.sigma (R.alpha A1) = B0
     rw [← hαA, R.alpha_involutive A0, hA0]
   have e5 : R.facePerm B0 = C1 := by
-    show R.sigma (R.alpha B0) = C1
+    change R.sigma (R.alpha B0) = C1
     rw [hαB, hB1]
   have f1 : R.facePerm.SameCycle A0 B1 := sameCycle_step Equiv.Perm.SameCycle.rfl e1
   have f2 : R.facePerm.SameCycle A0 C0 := sameCycle_step f1 e2
@@ -178,9 +178,6 @@ theorem false_of_sixDarts (R : CombMap.{u}) (hplanar : R.IsConnected → R.IsPla
   have h3 : [A0, B0, C0].length ≤ Nat.card R.Dart := hnd.length_le_natCard
   have hlen : [A0, B0, C0].length = 3 := rfl
   have hdc : R.dartCount = Nat.card R.Dart := rfl
-  have hC0' : R.sigma C0 = A0 := hC0
-  have hC1' : R.sigma C1 = A1 := hC1
-  clear hC0' hC1'
   omega
 
 /-- The first dart of `S` strictly after `x` in the `p`-orbit of `x` is `y`. -/
@@ -222,24 +219,23 @@ theorem walkKeep_dual_of_sixDart (M : CombMap.{u}) {a b c z : M.Dart}
     rw [h]
     simp
   · right
-    rw [h, M.alpha_involutive]
+    rw [h, M.alpha_involutive a]
     simp
   · right
-    rw [h, M.alpha_involutive]
+    rw [h, M.alpha_involutive b]
     simp
   · right
-    rw [h, M.alpha_involutive]
+    rw [h, M.alpha_involutive c]
     simp
 
 /-- **The theta obstruction.**  In a planar map, three pairwise distinct darts `a, b, c` and their
 reversals cannot be met by the face permutation, among these six darts, in the orders
-`a → b → c → a` and `α a → α b → α c → α a` at the same time.  (Osin, proof of Lemma 9.7(b);
+`a → b → c` and `α a → α b → α c → α a` at the same time.  (Osin, proof of Lemma 9.7(b);
 `thm:hull`, non_mf_groups_exist.tex 2134.) -/
 theorem false_of_theta (M : CombMap.{u}) (hM : M.IsPlanar) {a b c : M.Dart}
     (hab : a ≠ b) (hbc : b ≠ c) (hac : a ≠ c)
     (h1 : FirstHit M.facePerm (SixDart M a b c) a b)
     (h2 : FirstHit M.facePerm (SixDart M a b c) b c)
-    (h3 : FirstHit M.facePerm (SixDart M a b c) c a)
     (h4 : FirstHit M.facePerm (SixDart M a b c) (M.alpha a) (M.alpha b))
     (h5 : FirstHit M.facePerm (SixDart M a b c) (M.alpha b) (M.alpha c))
     (h6 : FirstHit M.facePerm (SixDart M a b c) (M.alpha c) (M.alpha a)) : False := by
@@ -278,7 +274,7 @@ theorem false_of_theta (M : CombMap.{u}) (hM : M.IsPlanar) {a b c : M.Dart}
     ⟨a, ka⟩ ⟨b, kb⟩ ⟨c, kc⟩ ⟨M.alpha a, ka'⟩ ⟨M.alpha b, kb'⟩ ⟨M.alpha c, kc'⟩ hall
     (fun h => hab (congrArg Subtype.val h)) (fun h => hbc (congrArg Subtype.val h))
     (fun h => hac (congrArg Subtype.val h)) rfl rfl rfl
-    (hσ a b ka kb h1) (hσ b c kb kc h2) (hσ c a kc ka h3)
+    (hσ a b ka kb h1) (hσ b c kb kc h2)
     (hσ _ _ ka' kb' h4) (hσ _ _ kb' kc' h5) (hσ _ _ kc' ka' h6)
 
 end GroupApproximation.Full.GL03BPinchOrder
