@@ -82,3 +82,18 @@ Gate E1 splits into three independent resources, each bought with one cheap fact
 None of them needs anything from the input beyond a solvable word problem. So the existence
 side of the master route is now closed modulo review, and all remaining weight sits on the
 rigidity gate E2 and the combinatorial gate E3.
+
+## Referee (bh-ref-e1-a, 2026-09-18): Steps 1–3 PASS; Step 4 not refereed here
+
+- **Step 1.** Clapham 1967 is the standard import. Its Theorem 6 construction was read at
+  source by bh-invent-14 (0d6bf2845). `K x F_2` is finitely generated with solvable word
+  problem.
+- **Step 2.** (D) holds for `Λ_1 x Z` by `decidable-groups-times-z-have-decidable-free-subshifts`
+  (PASS). The conjugation of conventions is correct.
+- **Step 3.** `free-products-with-z-inherit-m2-from-decidable-free-subshifts` holds (PASS),
+  with the B-top Sturmian-window repair recorded there.
+- **Step 4** rests on `free-effective-minimal-subshifts-lift-to-minimal-sfts-times-z2`
+  (695a89096). That proof is design-level and was not refereed here. So gate E1 is
+  established **conditional on that lift**. The (D) → (M2) half of E1 is now referee-checked.
+- **The second (D) route is not needed.** It is `identifier-markers-give-decidable-free-subshifts`
+  (f9ae89eb9), and its Lemma (E) is not established. This route suffices without it.
