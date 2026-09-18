@@ -1,0 +1,1 @@
+- bh-free-60: correcting AimPL 3.1(c) node (answered by Caprace–Fujiwara 0809.0470 Cor cor:KM:simple, Kourovka 14.13); then choosing a construction target

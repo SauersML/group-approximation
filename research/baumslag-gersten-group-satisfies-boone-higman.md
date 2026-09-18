@@ -118,6 +118,73 @@ group contains it.
     `bs12-embeds-in-brin-thompson-2v`, with a zero-entropy conjugator that is itself
     conjugate to the base. *Open.*
 
+- **Free-product mapping tori, the relative-holomorph engine (dies, 2026-09-18).**
+  This is the engine that put the Druţu--Sapir group, the power-map mapping tori and the
+  ascending HNN extensions of `pbh-class-closed-under-relative-holomorphs` (T) in `B_A`.
+  It cannot produce `BG` unless `M × Z` already contains it. Lane argument, elementary:
+  - **Setting.** `Q = M * F` with `F` free and `M ≠ 1`, and `β ∈ Aut(Q)` with `β(M)`
+    conjugate to `M`. Suppose `ψ : BG → Q ⋊_β Z` is injective. Write `N = ⟨⟨a⟩⟩ ⊴ BG`,
+    `a_i = t^i a t^{-i}`, and `s = ψ(t)`.
+  - **Step 1.** `ψ(a) ~ ψ(a)^2` forces `χ(ψ(a)) = 0` for `χ : Q ⋊ Z → Z`, so every `ψ(a_i)`
+    lies in `Q`. The element `ψ(a_{i+1}) ∈ Q` conjugates `ψ(a_i)` to its square, so
+    `ψ(a_i)` is elliptic on the Bass--Serre tree `T` of `Q`, whose edge stabilizers are
+    trivial.
+  - **Step 2.** A nontrivial elliptic element of `T` fixes exactly one vertex, and
+    `Fix(ψ(a_i)^2) = Fix(ψ(a_i))`. So `ψ(a_{i+1})` fixes the vertex `v_i` of `ψ(a_i)`, and
+    all `ψ(a_i)` fix one vertex `v`. Hence `ψ(N) ≤ Stab(v)`, a conjugate of `M`.
+  - **Step 3.** Conjugation by `s` maps `Stab(v)` to another conjugate of `M`, which still
+    contains `ψ(N)`, so it is `Stab(v)` again. Let `θ` be its restriction. Then
+    `n t^j ↦ (ψ(n), j)` embeds `BG = N ⋊ ⟨t⟩` in `Stab(v) ⋊_θ Z ≅ M ⋊_θ Z`.
+  - **Step 4.** When `β|_M` is conjugation by an element of `Q`, as in (T), `θ` is
+    conjugation by an element of `Q` that normalizes `Stab(v)`. That element lies in
+    `Stab(v)`, so `θ` is inner and `BG ≤ M × Z`. Every (T)-group `J*_β` lies in
+    `Q ⋊_β Z`.
+  - This refines part B5 of `bg-cycle-triviality-is-closed-under-the-pbh-calculus`, which
+    is the corresponding statement for BG-cycle triviality, from `𝒫`-membership to
+    embeddings.
+- **Twisted Brin--Thompson hosts over `𝒫` actors (open, 2026-09-18).** There is no
+  reduction to `bs12-embeds-in-brin-thompson-2v` through a global twist.
+  - In Zaremsky's definition (arXiv:2405.18354v2, TeX Definition "Twisted Brin--Thompson
+    group"), each dyadic brick is moved by a twist homeomorphism with its own `γ_i ∈ G`.
+    So `SV_G` has no homomorphism onto `G`, only a locally constant twist cocycle.
+  - The tempting argument "`G ∈ 𝒫` kills the `G`-part of `a`, so `⟨a, b⟩ ≤ nV`" needs
+    such a homomorphism, and fails.
+  - The cocycle is multiplicative only on stabilizers of points. A `BG` image with a
+    common fixed point of `a` and `t` does push forward to a `BG` image in `G`.
+
+- **Germ extensions, designed on the line (constrained, 2026-09-18).** This is a from-scratch
+  design, and it dies at the germs. Write `a_i = t^i a t^{-i}`, so `a_{i+1} a_i a_{i+1}^{-1} = a_i^2`.
+  - **Germ-chain lemma** (lane argument, elementary). Let `G` act on a space `X` and
+    `ψ : BG → G`. Let `p` be a common fixed point of `ψ(a_0)`, `ψ(a_1)` and `ψ(a_2)`.
+    - The germs `x_i = [ψ(a_i)]_p ∈ Stab_G(p)/Fix^0_G(p)` satisfy
+      `x_1 x_0 x_1^{-1} = x_0^2` and `x_2 x_1 x_2^{-1} = x_1^2`.
+    - If the germ group at `p` is torsion-free and linear over a field of characteristic
+      `0`, then `x_0 = 1`, so `ψ(a)` is the identity near `p`.
+    - *Why.* Inside a finitely generated subfield of `C`, `x_1 ~ x_1^2` forces every
+      eigenvalue of `x_1` to be a root of unity, so `Ad(x_1)` has no eigenvalue `2`.
+      Then `x_1 x_0 x_1^{-1} = x_0^2` kills the logarithm of the unipotent part of `x_0`.
+      So `x_0` is semisimple, and since `x_0 ~ x_0^2` its eigenvalues are roots of unity,
+      so it has finite order. Torsion-freeness gives `x_0 = 1`.
+    - This covers the germ groups of `V`, `F` and `T` at dyadic points (`Z` or `Z^2`), and the
+      log-affine germ group `BS(1,2) = ⟨L ↦ L+1, L ↦ 2L⟩`. The latter is what a
+      "squaring" singular point `x ↦ x|x|` contributes, and it is finitely presented, so
+      Theorem 2.1 of Belk--Hyde--Matucci does not exclude it (`bhm-singfix-condition-forces-fp-germ-groups`).
+  - **The design.**
+    - In `Homeo_+(R)` the image of `a` has fixed points: a fixed-point-free `a` is
+      conjugate to `x ↦ x + 1`, and then `b(x) − 2x` is `1`-periodic, so `b` has a fixed
+      point and `b ≁ a`.
+    - The natural next choice is `Fix(a) = Z`, with `a` moving right on `(2k, 2k+1)` and
+      left on `(2k+1, 2k+2)`, the affine `t(x) = (x+1)/2`, and `b := t a t^{-1}`. The fixed
+      points and directions then match, as `t a t^{-1} = b` requires, and `b a b^{-1} = a^2`
+      reduces to a functional equation for `a|_[0,1]`. That equation was not solved.
+    - But `t^{-1}(Z) ⊆ Z`, so every integer is a common fixed point of `a_0, a_1, a_2`. By
+      the lemma, with PL or log-affine germs at the integers, `a` would be the identity
+      near every integer, contradicting the design.
+  - **What a surviving design needs.** At common fixed points of `a_0, a_1, a_2`, the germ
+    groups must carry nontrivial 2-chains. Finite groups do: in `Sym(7)`, `x ↦ x+1`,
+    `x ↦ 2x` and a conjugator of `x ↦ 2x` to `x ↦ 4x` form one. So one loophole is germs
+    of finite odd order at those points. The other is non-linear germ groups.
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),

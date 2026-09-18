@@ -165,11 +165,49 @@ admissible `P`:
      - The attempt dies here: it found no invariant of Kazhdan inputs that the window
        condition or finite presentation of `R_nu` violates.
    - *The attempt at (a), where it stands.* No input that is not virtually cyclic has a
-     known enumeration with finitely presented `Q_nu`.
+     known **regular** enumeration with finitely presented `Q_nu`. For **genuine** actions,
+     `eventually-periodic-genuine-shell-actions-give-fp-envelopes` handles every virtually
+     abelian input, including the one-ended `Z^2`. No input that is not virtually abelian
+     has a known genuine action with finitely presented `Q_rho`.
      - The square spiral on `Z^2` passes the window gate with `N = 2`, but its `R_nu` is
        metabelian and not finitely presented
        (`square-spiral-z2-near-shift-group-is-not-finitely-presented`).
      - The arithmetic `A_5 * A_5` enumeration fails at `R_nu`
        (`arithmetic-a5-near-group-is-not-finitely-presented`).
-     - An explicit `nu` for `St_4(R_L)` would be the first one-ended success.
+     - An explicit `nu`, or a genuine action, for `St_N(R_L)` would be the first success for
+       an input that is not virtually abelian.
    - *Status.* Gate 2 is OPEN, with neither verdict.
+
+2. **Genuine actions at window zero, 2026-09-18 (lane gq-typeA-design, free mode): dead for
+   every admissible `P`.**
+   - The genuine-action shell (`genuine-action-shell-envelopes-generalize-the-regular-shell`)
+     allows any action `ρ` of `P` on `N` with infinite supports. At window `N = 0` it would
+     need `s^-ε ρ(P) s^ε <= ρ(P)`. With an infinite-order twist this would give
+     `R_ρ = P *_φ`, finitely presented, which is what the bh-shell-universal board asked for.
+   - `fw-inputs-admit-no-twisted-shell-normalization` kills this for every input with
+     property FW, hence for every admissible `St_N(R_L)`, which has property (T).
+     - For `ε = 1`, any endomorphism twist forces every `ρ_g` to have finite support.
+     - For `ε = -1`, the same holds when the inclusion is an equality.
+     - The proof transfixes the graph of the shift, a commensurated subset of `N × N`, and
+       follows the unique infinite forward ray.
+   - So for `St_N(R_L)` every route to gate 2, regular or genuine, needs a window `N >= 1`
+     or an inclusion `s ρ(P) s^-1 <= ρ(P)` in the other direction.
+   - *The other direction* (`fw-shell-inputs-at-window-zero-are-highly-transitive`).
+     - Such an inclusion makes `P` act highly transitively on finitely many cofinite
+       orbits, so `Z(P) = 1`.
+     - For `P = St_N(R_L)` this forces `K_2(N,R_L)` to be non-central. If `K_2` were central,
+       the centre would contain `π^-1(Q^x I_N)`.
+     - `E_N(R_L)` fails outright, because its centre contains `Q^x I_N`.
+     - So window zero for `St_N(R_L)` is dead if `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`
+       holds. Otherwise it needs a self-similar highly transitive action in which `K_2` acts
+       transitively on some orbit.
+
+## Attempts (gate 1)
+
+- **2026-09-18 (lane gq-infinite-primes): gate 1 closed, subject to review.** `leavitt-resolvent-k2-stability-holds`.
+  - For every `N >= 3`, `K_2(N, R_L) -> K_2(R_L) ≅ Q^x` is an isomorphism and `K_2(N, R_L)` is central.
+  - With the halting-search detector (`leavitt-resolvent-stable-k2-class-is-computable`), `St_N(R_L)` has solvable
+    word problem, for `N = 4` and `N = 10` alike.
+  - The proof runs Khanh's frame-complex comparison for `E_n(R_L)` modulo the central `j(K_2(n-1))`.
+  - What remains for this claim is gates 2--3: finite presentation of the germ group `Q_ν` for some enumeration `ν`,
+    which needs `R_ν`, `R_ν ×_Z R_ν` and the ascending HNN condition, and a computable `ν`.

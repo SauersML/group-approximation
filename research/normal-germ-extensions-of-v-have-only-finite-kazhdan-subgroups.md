@@ -9,8 +9,8 @@ distinct_from:
   kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf: that proves Kazhdan subgroups of Rover--Nekrashevych groups residually finite; for bounded automata groups, which lie in this regime, this upgrades residually finite to finite.
 ---
 
-**ESTABLISHED** by `normal-germ-extensions-finite-kazhdan-proof` (lane proof, short, from
-landed nodes; not independently reviewed; no novelty claimed beyond the generalization of
+**ESTABLISHED** by `normal-germ-extensions-finite-kazhdan-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-germ-extensions.md, bdc9e959c; lane proof, short, from
+landed nodes; citation review by referee-b pending; no novelty claimed beyond the generalization of
 Theorem B of `normal-germ-extensions-of-thompson-v-contain-no-sl3z`).
 
 **Setting.** `V` acts on `C = {0,1}^N`, and `V <= G <= Homeo(C)` is a finite germ
@@ -27,6 +27,16 @@ restricted to periodic points, as in Theorem B of
 
 ## Consequences
 
+**Named hosts in the regime.** By Corollary 2 of
+`normal-germ-extensions-of-thompson-v-contain-no-sl3z`, the hypotheses hold for:
+- `VA`, and so for its subgroup `T̄` containing `Q`;
+- every binary Rover--Nekrashevych group `V_2(G)` of a bounded automata group `G`, such as
+  Rover's group over the Grigorchuk group.
+
+So every Kazhdan subgroup of these groups is finite. For the Rover--Nekrashevych case this
+upgrades `kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf` from residually finite to
+finite, for bounded automata.
+
 Each of the following contains an infinite Kazhdan subgroup, so none embeds in such a `G`:
 - `SL_n(Z)` for `n >= 3` and every group containing a finite-index subgroup of one,
   including `GL_n(Q)`, `n >= 3` (this recovers Theorem B there);
@@ -38,11 +48,19 @@ Each of the following contains an infinite Kazhdan subgroup, so none embeds in s
 - every infinite simple Kazhdan group. By `boone-higman-iff-simple-kazhdan-decidable-inputs`,
   a proof of `boone-higman-conjecture` through finite germ extensions of `V` must, for every
   such input, leave the Corollary 2.10 regime at some singular point. That means an
-  aperiodic singular point with infinite germ group, or germs that do not normalize the
-  local dilation. There, finite presentation has to go through the `SingFix` clause of
-  Theorem 2.1, which by `bhm-singfix-condition-forces-fp-germ-groups` and
-  `simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group` means one finitely
-  presented singular germ group containing the input.
+  aperiodic singular point with infinite germ group, or germs at a periodic point that do
+  not normalize the local dilation.
+  - An aperiodic singular point already defeats Theorem 2.1. There
+    `SingFix(∅,{p}) = Fix_V(p)` is a strictly increasing union of pointwise stabilizers of
+    shrinking cones, so it is not finitely generated
+    (`orbit-preserving-germ-corollary-extensions-of-v-are-rational`, intermediate fact 1).
+  - So a Theorem-2.1-certified host of an infinite simple Kazhdan input `S` has all its
+    singular points eventually periodic. By `bhm-singfix-condition-forces-fp-germ-groups`
+    and `simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group`, it carries `S` in
+    one finitely presented germ group `(G)_y` at a periodic point. By Step 1 of the proof
+    route, the normalizer there of the `V`-dilation contains no infinite Kazhdan subgroup,
+    so no finite-index subgroup of `S` normalizes it. Shell envelopes have exactly this
+    shape.
 
 ## Scope
 

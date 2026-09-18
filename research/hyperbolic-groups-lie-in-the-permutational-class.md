@@ -14,8 +14,11 @@ artifacts:
 ---
 
 **ESTABLISHED** by `hyperbolic-groups-in-b-a-proof` (lane proof: a read-off from a literature
-proof plus landed closure nodes; not independently reviewed). No priority claimed; see
-"Priority" below.
+proof plus landed closure nodes). Referee a (proof gaps): PASS,
+`research/artifacts/gq-referee-a-hyperbolic-groups-lie-in-the-permutational-class.md` (2bdad9399),
+nit N1 applied. Referee b (citations): PASS,
+`research/artifacts/gq-referee-b-hyperbolic-groups-lie-in-the-permutational-class.md`
+(9ec4a1a7c), warning W1 applied below. No priority claimed; see "Priority" below.
 
 Write `B_A` for the class of groups that embed in a group admitting an action of type (A)
 (faithful, finitely presented acting group, finitely generated point stabilizers, finitely
@@ -34,21 +37,32 @@ many orbits of two-element subsets), as in
    - every subgroup of a full contracting RSG.
 3. **Products.** By the closure properties of `B_A` on main, every group built from groups in
    `B_A` by finite direct products, free products, graph products over finite graphs,
-   subgroups and finite-index overgroups satisfies the Boone--Higman conjecture. In particular:
+   restricted wreath products over sets with finite point stabilizers, subgroups and
+   finite-index overgroups satisfies the Boone--Higman conjecture. In particular:
    - every finite direct product `H_1 × ... × H_k` of hyperbolic groups embeds in a finitely
      presented simple group;
    - every graph product of hyperbolic groups over a finite graph does too;
+   - every restricted wreath product `H_1 wr H_2` of hyperbolic groups, and more generally
+     `A wr_X H` with `A` hyperbolic and `H` hyperbolic acting on `X` with finite point
+     stabilizers, does too (`permutational-boone-higman-closed-under-wreath-products`);
    - so do mixed products with other members of `B_A`, for example `H × Aut(F_n)`,
      `H × GL_m(Z)`, `H × A` for `A` a spherical Artin group, or `H × Z^m`.
 
-## Why it is not a formality
+## What is new and what is formal
 
-`boone-higman-closed-under-finite-direct-products` is open: two finitely presented simple
-groups `S_1`, `S_2` give a finitely presented group `S_1 × S_2`, but no finitely presented
-simple group containing it is known in general. Product closure is available only inside
-`B_A`. Before this node, main placed hyperbolic groups only in the Boone--Higman class, so even
-`H_1 × H_2` for two hyperbolic groups with property (T) that are not known to be linear (such
-groups are never cocompactly cubulated) had no finitely presented simple overgroup here.
+Items 1 and 2 follow in two lines from print (referee b, W1). Belk--Fournier-Facio--Hyde--Zaremsky,
+arXiv:2503.21882, Theorem C (label `thrm:mif_pbhc`, TeX l.206), gives: a group satisfies PBH iff it
+embeds in a finitely presented twisted Brin--Thompson group; their l.185 adds that `SV_Γ` is
+finitely presented iff the action of `Γ` on `S` is of type (A). The BBMZ proof of Proposition 5.1
+shows `SV_G` is finitely presented for every full contracting RSG `G`. The route below gives the
+direct verification instead.
+
+The content worth having is item 3. `boone-higman-closed-under-finite-direct-products` is open:
+no finitely presented simple group containing `S_1 × S_2` is known for general finitely presented
+simple `S_1`, `S_2`, and product closure is available only inside `B_A`. Before this node main
+placed hyperbolic groups only in the Boone--Higman class, so `H_1 × H_2` had no finitely presented
+simple overgroup here when both factors have property (T) and are not known to be linear (such
+groups are never cocompactly cubulated). The combination itself is formal.
 
 ## Named-problem bearing (BBMZ survey arXiv:2306.16356, Problem 5.3)
 
@@ -67,6 +81,8 @@ The type (A) action is exactly the one BBMZ use in the proof of their Propositio
 `prop:contr_to_simple`), where they verify the hypotheses of Zaremsky's oligomorphic criterion.
 They do not state the permutational conclusion, and Belk--Fournier-Facio--Hyde--Zaremsky,
 arXiv:2503.21882 (TeX l.141), list hyperbolic groups among groups known to satisfy Boone--Higman,
-not PBH. The consequence for products is a formal combination of that proof with Zaremsky's
-product closure. It may well be known to the authors; no statement of it was found in the
-three sources read. A MathSciNet-level search was not done.
+not PBH. The conclusion is nevertheless two lines from print: BFFHZ Theorem C (PBH iff embedding
+in a finitely presented twisted Brin--Thompson group) together with the BBMZ proof of Proposition
+5.1. The consequence for products is a formal combination with Zaremsky's product closure. It may
+well be known to the authors; no statement of it was found in the three sources read. A
+MathSciNet-level search was not done.

@@ -1,0 +1,1 @@
+- bh-free-29 (09-18): direction = Mallery–Zaremsky Q5.13 sentence 1: G fp strongly shift-similar ⇒ H_n(G) fp for all n (explicit presentation, no Morse theory). Then the redirect (rigid enumerations).

@@ -108,7 +108,14 @@ Candidate levers recorded when the node was opened:
      finite, of unbounded exponent.
    - The argument fails for Brin–Thompson `nV`, `n >= 2`. There the depth cocycle is a vector, and the pumping step
      breaks. So `nV` and twisted Brin–Thompson groups remain the natural finitely presented simple candidates.
-   - The first necessary step is now a separate claim,
-     `fp-simple-groups-can-contain-infinite-finite-exponent-groups`: does some finitely presented simple group
-     contain an infinite finitely generated group of finite exponent? BH implies it, via `B(2,665)`, and a negative
-     answer would refute BH.
+   - The first necessary step is the separate claim
+     `some-fp-simple-group-has-an-infinite-bounded-exponent-subgroup` (bh-free-06; the duplicate
+     `fp-simple-groups-can-contain-infinite-finite-exponent-groups` points to it): does some finitely presented
+     simple group contain an infinite finitely generated group of finite exponent? BH implies it, via `B(2,665)`, and
+     a negative answer would refute BH.
+   - Also excluded: finitely presented simple Kac–Moody lattices with 2-dimensional buildings, e.g. `Λ_(2,4,6)(q)`,
+     and every group acting with finite point stabilizers on a finite product of 2-dimensional CAT(0) triangle
+     complexes and trees (`two-dim-cat0-product-groups-are-torsion-locally-finite`, from Norin–Osajda–Przytycki).
+     Kac–Moody lattices with Weyl group containing no `Z^2` (word-hyperbolic `W`, any building dimension) are
+     excluded too (`hyperbolic-kac-moody-lattices-are-torsion-locally-finite`, from Haettel–Osajda and
+     Caprace–Haglund). Open: Kac–Moody lattices with `Z^2 ≤ W` and a spherical triple.
