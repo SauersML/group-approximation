@@ -71,7 +71,9 @@ surjective for `i = n`.
 Proposition `prop:E_hi_conn` (descending links `E_m` are at least
 `min(ν(m/2)−2, log_2(m/2)−2)`-connected), BZ Proposition `prop:cible` (`X` contractible) and
 Bestvina--Brady Morse theory. It uses no hypothesis on `G ↷ S` beyond faithfulness. Fix such
-an `m`.
+an `m`. (Referee a noted that BZ's proof of `lem:VE_conn` misdescribes `VE_m^{i,j}`: it also
+contains vertices matching neither `i` nor `j`. The lemma survives, since `VE_m^{i,j}` is a
+join `|A| * |VE_{m−2}|`; see `abstract-twisted-bt-type-fn-colored-stein-proof`, Step 1.)
 
 ## Step 2. The interval filtration
 

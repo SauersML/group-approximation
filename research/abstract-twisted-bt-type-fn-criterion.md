@@ -9,8 +9,10 @@ distinct_from:
   twisted-brin-thompson-type-fn-implies-type-an: that is the necessity half for all n, proved by FFWZ through a quasi-retraction; this adds sufficiency for every action.
 ---
 
-**ESTABLISHED** by `abstract-twisted-bt-type-fn-colored-stein-proof` (lane proof, 2026-09-18,
-not reviewed). No priority claimed.
+**ESTABLISHED** by `abstract-twisted-bt-type-fn-colored-stein-proof` (lane proof, 2026-09-18).
+Referee a (proof gaps): **PASS**,
+`research/artifacts/gq-referee-a-abstract-twisted-bt-type-fn-criterion.md` (efa4f3b5c), nits
+applied. Second pass (gq-referee-c) and citation pass (gq-referee-b) requested. No priority claimed.
 
 ## Statement
 

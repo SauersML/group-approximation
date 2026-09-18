@@ -8,8 +8,10 @@ distinct_from:
   ffwz-nonfaithful-stein-stabilizers-contain-canonical-kernel: that shows the quotient action on the Stein complex of SV_(G/K) has the wrong stabilizers; this supplies a faithful ambient groupoid whose S-colored Stein complex has the right ones.
 ---
 
-**ESTABLISHED** by `abstract-twisted-bt-colored-subgroup-proof` (lane proof, elementary, not
-reviewed). No priority claimed.
+**ESTABLISHED** by `abstract-twisted-bt-colored-subgroup-proof` (lane proof, elementary).
+Referee a (proof gaps): **PASS**,
+`research/artifacts/gq-referee-a-abstract-twisted-bt-type-fn-criterion.md` (efa4f3b5c), nits
+applied. Second pass (gq-referee-c) and citation pass (gq-referee-b) requested. No priority claimed.
 
 ## Statement
 

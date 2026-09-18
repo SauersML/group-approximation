@@ -44,9 +44,15 @@ None of them uses that the split colors exhaust the coordinates, or that `G` act
 on the split colors. `Stab_G(C)` for `C ⊆ S` is the same group for `G ↷ S'` and for
 `G ↷ S`.
 
-**Risk.** This transfer is a claim about BZ's proofs, read at the level of their §§5–7. An
-adversarial referee should check it line by line, especially the stars-and-nerves
-arguments in `lem:VE_conn` and `lem:all_big`.
+**Checked.** Referee a checked the transfer line by line and passed it. Its nit N1 is a
+correction to BZ `lem:VE_conn`, affecting this route and the faithful case equally, and not
+the truth of the lemma.
+- BZ's sentence "VE_m^{i,j} is the union of the stars of its rank-(m−1) vertices that match
+  i and j" misses the vertices matching neither `i` nor `j`. For `m = 4`, a merge of
+  leaves 3, 4 is incomparable with every merge of leaves 1, 2.
+- The lemma still holds. `VE_m^{i,j}` is the join `|A| * |VE_{m−2}|`, with `A` the set of
+  merges of `i` and `j`. It is therefore `(ν(m)−1)`-connected, and the intersections are
+  joins too.
 
 With Bestvina--Brady Morse theory, as in FFWZ Proposition 4.8(ii): for every `n` there is
 `M` with `X^S_m` `(n−1)`-connected for `m ≥ M`.
@@ -67,7 +73,9 @@ Faithfulness of `G ↷ S` is not used. So `[HA_n] ⇒ FP_n`.
 ## Step 3. Finite presentation from [A_2] (item 2)
 
 Fix `m` with `X^S_m` simply connected. Filter by interval length, `F_1 ⊆ F_2 ⊆ ...`. Every
-`∂I` with `d ≥ 2` is connected and non-empty, so attaching does not merge components.
+`∂I` with `d ≥ 2` is connected and non-empty, so attaching does not merge components. For
+`d ≥ 2`, `(v, w) ≠ ∅` because the partition of `w` refines some atom `z_i^s < w`, the root
+split of a nontrivial tree (N2).
 Since `X^S_m` is connected, `F_1` is connected too.
 - `F_1` is the graph `Γ_sh` of short edges (intervals of length one).
 - For `d ≥ 2`, the realization `|I|` of an interval of length `d` is attached to `F_{d−1}`
@@ -88,7 +96,8 @@ Such loops exist:
 
 So `π_1(X^S_m) = π_1(Γ_sh) / ⟨⟨ ℓ ⟩⟩`, over all `e = 2` grid intervals and such loops.
 
-Let `Y` be `Γ_sh` with a 2-cell attached along every such oriented based loop. Then `Y` is a
+Let `Y` be `Γ_sh` with a 2-cell attached along every such oriented based loop. For a hexagon
+interval these are all four choices of half in each leg, in both orientations (N3). Then `Y` is a
 simply connected `Σ`-CW complex. Edges are oriented by rank, and an element stabilizing a
 based oriented loop fixes all its vertices, so the action is rigid.
 
