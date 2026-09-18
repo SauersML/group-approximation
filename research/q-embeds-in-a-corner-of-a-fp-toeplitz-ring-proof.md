@@ -7,7 +7,7 @@ target: q-embeds-in-a-corner-of-a-fp-toeplitz-ring
 requires: []
 ---
 
-Direct proof. Lane proof, not independently reviewed. Write `R = R_T` and `E = 1 - ST`.
+Direct proof. Lane proof, not independently reviewed. Write `R = R_Toep` and `E = 1 - ST`.
 
 1. **`E` is idempotent.** `E^2 = 1 - 2ST + S(TS)T = 1 - ST = E`.
 2. **Shift rule.** For every integer `c`, `(N+c)S = S(N+c+1)`: this is `NS = S(N+1)` plus

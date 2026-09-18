@@ -156,3 +156,27 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   - A partial search of mirror-symmetric 8+8 states with 2 symbols found machines with binary frontier
     timing `t_{j+1} = 2t_j + {0,-2}`, for example mask 169. Their cyclic periods and per-type counts count
     against a clean 2-adic hierarchy. Open.
+- 2026-09-18 (lane gq-nv-obstruct, after critic pass 2). **Still open. The forms not covered by the parity lemma.**
+  - *Scope of `crossing-move-hierarchies-have-odd-branching`.* It does **not** exclude one-head binary
+    hierarchies. It forces each crossing to split as (crossing, return). Prefix consistency then selects
+    the Jacobsthal scheme `C→ ↦ C→ R_R`, `R_R ↦ C← C→`, with durations `C(k+1) = C(k) + 2C(k-1)`, which
+    is `2^k` up to bounded terms.
+  - *Structural fact about that scheme.* Every return turns one cell short of its move's anchor. So the
+    anchor cell is visited only at the move's first step. As a result:
+    - the turning cell needs a mark that the move cannot erase itself (the head never returns there);
+    - the parent's return re-reaches exactly that cell, so the mark can be reused and erased one level up.
+    - Whether a finite mark alphabet makes this consistent at every level is the whole design problem.
+      By hand it did not close in the direct attempt: the backward crossing's own leftover mark lands in
+      the forward crossing's block.
+  - *(a) Two heads, or an even-arity odometer code built directly in `kV`.* Not constructed.
+    - A direct binary brick code `(e_0, e_1)` with `T e_0 = e_1`, `T e_1 = e_0 T` gives
+      `T(x) = e_0^r e_1 e_0^{-1} e_1^{-r} x` on `e_1^r X_0`. That is brick-local only if these maps
+      stabilize near the limit set `⋂ e_1^r X`.
+    - For prefix-insertion codes in one or two coordinates, including coordinate swaps, the recursion
+      depth is unbounded there. This is the odometer defect of item 4 of
+      `renormalizable-thompson-elements-are-odometer-codes`.
+    - So the finiteness has to come from a machine's dynamics, as it does for SMART, and not from a
+      formula for the code.
+  - *(b) Joint `BS(1,2)` and `BS(1,3)`.* This contains `BS(1,2)`, so it waits on it.
+    `renormalization-heights-force-eigenvalue-roots` (gq-affq) and the Durand–Cobham conjecture there
+    suggest that one base will not carry heights 2 and 3.
