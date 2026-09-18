@@ -243,3 +243,41 @@ instead of `4`) changes no conclusion.
   inside `EL_4(J)` LEF? `ev_d` is not right equivariant for nonconstant right
   multiplication. If this group is not LEF, it is the smallest four-index
   witness. The claim stays OPEN.
+
+- **finite-models, swarm-0917 (swarm-0917-w9-w9-ptl-follow): the double
+  parabolic traps every two-step model.**
+
+  *Proposal.* Extend the w9 column-evaluation LEF models to the w9 spark
+  `P_{2,2} = M_2(J) x| (EL_2(J) x EL_2(J)) <= EL_4(J)`. The candidates are
+  block-affine models `[[Phi(A), X(Y)], [0, Psi(B)]]`, and more generally any
+  finite-dimensional partial model with a Levi-stable filtration.
+
+  *Result (established class kill).*
+  `jacobson-double-parabolic-two-step-models-kill-head`: for a partial model
+  on one explicit finite ball, and any Levi-stable filtration on which the
+  unipotent radical has uniform degree `d`, the degree-`d` symbol of the head
+  `x_13(Q)` vanishes. In the two-step case the head maps to `1`.
+
+  *Mechanism.* Write `v` for the symbol of `x_13(1)`. Then:
+  - the left Levi gives `Lambda(T) Lambda(S) v = v`, from `TS = 1`;
+  - the right Levi gives a commuting algebra with `M(b) v = Lambda(b) v`;
+  - so the finite-dimensional space `𝓜 v` traps the one-sided inverse, and
+    `Lambda(S) Lambda(T) v = v`.
+
+  The same holds for every parabolic of `EL_n(R)` with `ts = 1` in which the
+  root carrying the head has both Levi blocks of size at least 2. The
+  one-sided `P_{2,1}` escapes, and the artifact computes the defect `ev_d(Q)`
+  there. So the w9 LEF mechanism has no four-index extension.
+
+  *Step where it dies.* The method only controls the leading symbol. Some
+  models remain possible:
+  - models where the unipotent radical has Loewy length at least 3 on every
+    Levi-stable flag, such as permutation or regular-type models;
+  - norm-approximate (MF) models.
+
+  Neither kind is excluded, and LEF-ness of `P_{2,2}(J)` stays open.
+
+  Open spark: either build a Loewy-length-3 model that keeps the head in
+  higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
+  pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
+  OPEN.
