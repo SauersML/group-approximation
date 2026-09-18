@@ -5786,6 +5786,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Ste
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.YaoGeneration
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Units
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionFiniteTrace
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiMoveTower
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
