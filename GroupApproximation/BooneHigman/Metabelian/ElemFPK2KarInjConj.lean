@@ -80,7 +80,7 @@ section KarInjConj
 variable {A : Type*} [CommRing A] {s : A} {M : ℕ}
 
 /-- `S = snd (ker fst) ⊆ St(M, L[X])`. -/
-def k2KarInj_sndKer (s : A) (M : ℕ) :
+noncomputable def k2KarInj_sndKer (s : A) (M : ℕ) :
     Subgroup (SteinbergGroup (Fin M) (Polynomial (Localization.Away s))) :=
   (k2PullRel_ker s M).map (ringMap (k2PullRel_snd s))
 
