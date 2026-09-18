@@ -66,10 +66,15 @@ theory. Item 5 names an open gate.
    - its stabilizers are of type `F_2`;
    - its word problem is not solvable in time `f`.
 
-   **OPEN.** It is not known to this lane even for `k = 1`. All examples on main (finite `𝔊`,
-   `Z^d`, the Katsura odometers, `BS(m,k)`) have at most polynomial-time isotropy word problems.
-   Fp residually finite groups of arbitrarily high complexity exist (Kharlampovich–Myasnikov–Sapir,
-   2017, recalled, not re-read). What is missing is the self-similar structure.
+   **OPEN**, also for `k = 1`. In HNN form, `k = 1` is equivalent to the open attempt 5 of
+   `fp-simple-groups-with-arbitrarily-complex-word-problem`: a hard group of type `F_2` with a
+   faithful HNN extension over finite-index subgroups (`faithful-finite-index-hnn-upgrades-to-half-tree-free`).
+   Its self-similar form is `fp-self-similar-groups-with-arbitrarily-hard-word-problem`.
+   - All examples on main (finite `𝔊`, `Z^d`, the Katsura odometers, `BS(m,k)`) have isotropy word
+     problems in polynomial time.
+   - Hard finitely presented residually finite groups exist (`kms-arbitrarily-hard-fp-rf-groups`).
+     What is missing is the commensuration: for the KMS groups, every available shape is dead (see
+     the upgrade node).
 6. **Emitter lemma (tree hosts).** Let `Γ` act faithfully on a tree `T` without inversions. Let
    `1 ≠ G <= Γ` have property FA and no nontrivial finite quotient. Then `G` fixes a vertex `w` of
    infinite valence at which it has an infinite orbit of edges. So some edge stabilizer at `w` meets

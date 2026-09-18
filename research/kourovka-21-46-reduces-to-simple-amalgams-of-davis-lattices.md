@@ -105,7 +105,12 @@ problem for Davis complexes, and isolates one extension gate (EXT). The cited th
    - a second covering map `Y' → Y` whose restriction to `Z'` is the covering induced by `h`.
 
    The first covering exists because `W_L` is hyperbolic and virtually special, so its hyperplane
-   subgroups are virtual retracts (Haglund–Wise). The second is the open step.
+   subgroups are virtual retracts (Haglund–Wise). The second was the open step.
+
+   **Update (09-18): EXT is proved** by `hyperplane-extensions-into-davis-lattices-are-split`. The
+   Coxeter retraction onto `W_{st(D)}` gives a homomorphic section from the carrier automorphisms to
+   `Aut(X)`. The resulting `Λ` is split, `K_0 ⋊ Γ`, so it is never just-infinite. The open gate is
+   therefore **(IRR)**: `A` must contain no nontrivial subgroup that is normal in both `W_i`.
    - AL solved the analogous extension for *involutive* BMW seeds through their interlacing pairs.
    - EXT asks the same for free, torsion-free seeds, with no simple-transitivity requirement.
 

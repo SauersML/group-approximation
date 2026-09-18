@@ -52,3 +52,18 @@ vertex stabilizer of a tree or building on which lamps are already known to work
 coset-wreath closure over "arithmetic" stabilizers propagates to every subgroup pair that
 is cut out by them, which is the shape `pbh-closed-under-decidable-permutational-wreaths`
 needs.
+
+## Referee (bh-ref-bs12, 2026-09-18): PASS, conditional on two lane nodes
+
+Every step of `bs12-base-generator-centralizer-proof` checks, given
+`lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` and `pbh-coset-wreaths-iff-identity-edge-hnns`, neither
+of which has an independent review yet.
+- *Step 0.* A normal subgroup meeting the base trivially commutes with it, so it lies in the base.
+- *Step 1.* `w^(-1) u w = u^4`, and `b^q a^(2k) ↦ ±[[2^(-k), 2^k q], [0, 2^k]]`. So `ε^(-1)(PSL_2(Z)) = ⟨b⟩`.
+- *Step 3.* Coordinates `ε(γ), ε(a^(-1)γa)`, or `ε(δ), ε(aδa)` for `γ = aδ`. Both coordinates must lie
+  in `H`, and the parity of the `a`-exponent then gives `C_A(m) = ⟨b⟩`.
+- *Step 5.* The eigenvalue argument, and the Zariski-closure argument in characteristic 0, are correct.
+
+**Scope note, relevant downstream.** Item 2 places the **restricted** coset lamplighter `Λ wr_(A/⟨b⟩) A`
+in `B_A`. It says nothing about unrestricted products, or about twisted lamplighters such as `M_1`; see
+the Referee section of `higman-chain-group-lies-in-b-a`.

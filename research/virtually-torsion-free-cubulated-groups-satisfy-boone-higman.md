@@ -195,3 +195,31 @@ matters is **resynchronization**: a coded host sees `g` as a bisection only wher
 from `o` and `go` agree after a finite prefix. For wall-based geodesic codings that is the
 set of tails that eventually leave every wall, so a closed carrier needs "no tail stays
 beside a wall" in the limit.
+
+9. **(bh-major-cube-b, 09-18) Proof claimed: YES, for every virtually torsion-free
+   cubulated group (not independently reviewed).**
+   `torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups`. Three repairs, one per
+   gate:
+   - **(G1) resynchronization.** `flagged-pointed-cube-category-resynchronizes-cubulated-actions`:
+     states may also forbid adjacent walls that the future will not cross. The category
+     stays Li-Garside with trivial units, its boundary is the whole Roller boundary, and
+     every element acts by a global bisection. The mismatch of Attempt 8 is absorbed by
+     one flag on each side.
+   - **(G2) (Acyc), and dynamics.** Replace `G` by `G * F_r`, with a free loop at every
+     vertex of `X/G`. Fresh `c`-exits give (TF), faithfulness, (Acyc) and minimality.
+   - **(G3) host.**
+     - Cuntz stabilization gives type `F_∞` (`cuntz-stabilized-garside-full-groups-are-f-infinity`).
+     - Li's Corollary D gives perfect and acyclic, since the homology vanishes by Künneth.
+     - Matui gives `D(S)` simple.
+     - So `S` is `F_∞` and simple.
+   - **Finite extensions.** Krasner–Kaloujnine plus Cuntz subcones.
+
+   Status stays **OPEN** until independent review. The referee checklist is in
+   `torsion-free-cubulated-f-infinity-simple-host-proof`.
+
+**Lesson for general BH (Attempt 9).** Each gate had a local, generator-level repair:
+- a promise move for resynchronization;
+- a Cuntz letter for packing;
+- a free loop for dynamics.
+
+The resulting template needs no specialness, hyperbolicity or residual finiteness.

@@ -4,8 +4,10 @@ kind: route
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle: failed to compile definition, consider marking it as 'noncomputable' b (1 errors on main 3c8b417428)"
 target: fp-metabelian-groups-satisfy-boone-higman
-status: OPEN
+status: SUPERSEDED
 ---
+
+**SUPERSEDED by `fix-bhmet-pure-char-zero-cocycle`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-pure-char-zero-cocycle`.
 
 **Module.** `GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean`. It is red on origin/main at 3c8b417428 with 1 hard errors, from bh-pal-integrate's trusted MSI build
 (error index kept by that lane; see `research/artifacts/gq-bh-pal-integrate-metabelian-chain-map.md`). The file is unchanged on main since then.
