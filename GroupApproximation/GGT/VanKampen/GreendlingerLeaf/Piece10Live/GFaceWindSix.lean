@@ -24,7 +24,7 @@ clauses 8, 9.  Three of these are discharged from the reached walk `c` itself:
 
 * `gfaceWindSix_Choice K` (hypothesis): `gfaceWindClause_Choice K` with these three weakenings.
 * `gfaceWindSix_choice` (proved): it gives `gfaceWindClause_Choice K`; the converse
-  `gfaceWindSix_of_clause_choice` is proved too.
+  `gfaceWindSix_of_clause` is proved too.
 * `gfaceWindSix_Statement` (OPEN): `gfaceWindFive_Statement` with conclusion
   `gfaceWindSix_Choice K`.
 * `gfaceWindSix_five_of_six`, `gfaceWindSix_six_of_five` (proved): the two directions;
@@ -138,3 +138,81 @@ theorem gfaceWindSix_choice (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk
       rw [gfaceWind_mem_faces, ← gfaceWindClause_const (C := c) (fun _ hy => hy) hcob hreach]
       exact (gfaceWindSix_walk_val hcob h01' hx (hne x hx)).1
     · exact hs
+
+/-- **The converse**: a winding choice with walk-discharged clauses is one with
+region-discharged clauses (`SrcOut` is a `C`-walk region condition, hence a `c`-walk one). -/
+theorem gfaceWindSix_of_clause (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (h : gfaceWindClause_Choice K) : gfaceWindSix_Choice K := by
+  obtain ⟨c, g, hr, h01, h4, h5, h8, h9⟩ := h
+  have hc := K.boundary.cycle_mem_iff
+  have h0 : gfaceWind_Inv X.toCombMap K.boundary.cycle X.outerFace K.boundary.cycle
+      (gfaceWind_ind K.faces) :=
+    gfaceWind_inv_start (fun d => (hc d).symm) hK.1 K.outerFace_not_mem
+  obtain ⟨⟨hfil, -, -, -⟩, -⟩ :=
+    gfaceWind_reach_pair X.planar K.boundary.cycle_nodup hr h0
+  have hsub : ∀ x ∈ c, x ∈ K.boundary.cycle := by
+    intro x hx
+    have hx' : x ∈ K.boundary.cycle.filter (gfaceWind_mem c) := by
+      rw [hfil]
+      exact hx
+    exact (List.mem_filter.mp hx').1
+  have hmono : ∀ {a b : X.toCombMap.Face},
+      Relation.ReflTransGen (gfaceWindClause_Adj X.toCombMap K.boundary.cycle) a b →
+        Relation.ReflTransGen (gfaceWindClause_Adj X.toCombMap c) a b := by
+    intro a b hab
+    induction hab with
+    | refl => exact Relation.ReflTransGen.refl
+    | tail _ hst ih =>
+      obtain ⟨x, hx1, hx2, h1, h2⟩ := hst
+      exact ih.tail ⟨x, fun hx => hx1 (hsub x hx), fun hx => hx2 (hsub _ hx), h1, h2⟩
+  refine ⟨c, g, hr, Or.inl h01, ?_, Or.inr h5, h8, h9⟩
+  rcases h4 with hs | hs
+  · exact Or.inl ⟨X.outerFace, Or.inl rfl, hmono hs⟩
+  · exact Or.inr hs
+
+end Six
+
+/-- **The winding flip statement off the loop pockets, region-discharged** (OPEN; EQUIVALENT to
+`gfaceWindFive_Statement`, both directions proved, strictly smaller in proof content, see the
+module docstring).  Under the premises of `extremalGFaceProve_Statement` and when no loop choice
+exists, a winding choice of `F'` with region-discharged clauses exists. -/
+def gfaceWindSix_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K → ¬ gfaceChoose_Loop K →
+        gfaceWindSix_Choice K
+
+/-- **The residual `gfaceWindFive_Statement` from its region-discharged form.** -/
+theorem gfaceWindSix_five_of_six (h : gfaceWindSix_Statement.{u, w, v}) :
+    gfaceWindFive_Statement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL
+  exact gfaceWindSix_choice K hK
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL)
+
+/-- **The converse**: `gfaceWindFive_Statement` gives its region-discharged form. -/
+theorem gfaceWindSix_six_of_five (h : gfaceWindFive_Statement.{u, w, v}) :
+    gfaceWindSix_Statement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL
+  exact gfaceWindSix_of_clause K hK
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL)
+
+/-- **The face-set flip statement from the region-discharged form.** -/
+theorem gfaceWindSix_extremal (h : gfaceWindSix_Statement.{u, w, v}) :
+    extremalGFaceProve_Statement.{u, w, v} :=
+  gfaceWindFive_extremal (gfaceWindSix_five_of_six h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_Choice
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_choice
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_of_clause
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_Statement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_five_of_six
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_six_of_five
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSix_extremal
