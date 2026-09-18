@@ -32,7 +32,8 @@ namespace FourPieceWitness
 /-- A rotation step of a mapped list lifts to a rotation step of the list. -/
 theorem witnessStepGenus_rotate_lift {α β : Type*} (f : α → β) (l' : List α) {n : ℕ}
     {s t : List β} {x y : β} (h : (l'.map f).rotate n = s ++ x :: y :: t) :
-    ∃ (s' t' : List α) (x' y' : α), l'.rotate n = s' ++ x' :: y' :: t' ∧ f x' = x ∧ f y' = y := by
+    ∃ (s' t' : List α) (x' y' : α),
+      l'.rotate n = s' ++ x' :: y' :: t' ∧ f x' = x ∧ f y' = y := by
   rw [← List.map_rotate] at h
   obtain ⟨l₁, l₂, h₁, -, h₃⟩ := List.map_eq_append_iff.mp h
   obtain ⟨x', r, rfl, hx, hr⟩ := List.map_eq_cons_iff.mp h₃

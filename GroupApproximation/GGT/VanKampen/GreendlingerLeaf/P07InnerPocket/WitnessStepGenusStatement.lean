@@ -91,12 +91,14 @@ def WitnessStepGenusBridgeStatement : Prop :=
           (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
       (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
           (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
-      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 →
+      C.face ∉ b.1 →
       ∀ outerWalk : List X.toCombMap.Dart,
         EnclosedFaceSetSucc X (witnessFaces a b K C.face) outerWalk →
         (∀ d ∈ outerWalk,
           X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face) →
-        (∀ e ∈ invDarts X outerWalk, e ∈ invDarts X G₁.darts ∨ e ∈ invDarts X G₂.darts ∨
+        (∀ e ∈ invDarts X outerWalk,
+          e ∈ invDarts X G₁.darts ∨ e ∈ invDarts X G₂.darts ∨
           X.toCombMap.alpha e ∈ a.sideFrom j ∨ X.toCombMap.alpha e ∈ b.sideFrom i) →
         (∃ (n : ℕ) (s t : List X.toCombMap.Dart) (x y : X.toCombMap.Dart),
           (invDarts X outerWalk).rotate n = s ++ x :: y :: t ∧

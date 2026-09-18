@@ -87,14 +87,12 @@ theorem higmanVCTauDeep_prod_conj {G ι : Type*} [Group G] (f : ι → G) (T : G
     have hnd' := List.nodup_cons.mp hnd
     rw [List.map_cons, List.prod_cons, higmanVCTauDeep_conj_mul]
     by_cases hba : b = a
-    · subst hba
-      have hcomm : Commute (l.map f).prod T := by
+    · have hcomm : Commute (l.map f).prod T := by
         refine Commute.list_prod_left _ _ (fun z hz => ?_)
         obtain ⟨c, hc', rfl⟩ := List.mem_map.mp hz
-        refine (hc c (List.mem_cons_of_mem _ hc') (fun h => hnd'.1 ?_)).1
-        rw [← h]
-        exact hc'
-      rw [higmanVCTauDeep_conj_of_commute hcomm]
+        have hca : c ≠ a := fun h => hnd'.1 (by rw [hba, ← h]; exact hc')
+        exact (hc c (List.mem_cons_of_mem _ hc') hca).1
+      rw [higmanVCTauDeep_conj_of_commute hcomm, hba]
     · have ha' : a ∈ l := by
         rcases List.mem_cons.mp ha with h | h
         · exact absurd h.symm hba
