@@ -155,12 +155,13 @@ overgroup.
    - **The group.** `Γ = St_10(R_L)`, the rank-10 Steinberg group of the six-generator, nine-relator Leavitt
      resolvent ring `R_L` (`leavitt-resolvent-ring-is-fp-and-contains-q`).
    - **Why it is finitely presented.** Krstić–McCool Theorem 3 (`steinberg-finite-presentation-and-kazhdan-theorem`).
-     The presentation is Krstić–McCool's presentation of `St_10(Z⟨6⟩)` plus nine relator words
+     The presentation is Krstić–McCool's presentation of `St_10(Z⟨6⟩)`, whose relators no lane has read, plus nine
+     relator words
      (`st-n-of-ring-quotient-adds-one-relator-per-ideal-generator`).
    - **Why it contains GL_n(Q).** A Leavitt pair kills every Tate symbol at a finite rank
      (`leavitt-pairs-embed-sl-n-q-in-steinberg-groups`, three referee PASS reports: `SL_N(Q) ≤ St_(6N+1)`).
-     The sharpening `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1`, under review, puts all `GL_n(Q)` in
-     the one group `St_10(R_L)`.
+     The sharpening `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1` (PASS from referees a and b) puts
+     every `GL_n(Q)` in the one group `St_10(R_L)`.
    - **Further properties.** `Γ` has property (T). It is not simple.
    - **Naturality, compared with Mikaelian's announcement.** Mikaelian (arXiv:2507.04347v8 §1.4) announces an
      explicit, even 2-generator, finitely presented `Γ_n ⊇ GL_n(Q)`. It comes from running his explicit Higman

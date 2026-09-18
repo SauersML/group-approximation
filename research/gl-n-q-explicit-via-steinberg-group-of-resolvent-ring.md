@@ -35,8 +35,9 @@ Let `n >= 2`, and let `R_L` be the six-generator, nine-relator ring of
 - `c(N,s_1) c(s_1,N)^(-1) x_12(-s_1)`, `c(N,s_2)`;
 - `c(A,N) x_12(A) x_12(-1)`, `c(N,A) x_12(A) x_12(-1)`.
 
-The finite presentation of `St_m(F_6)` itself is Krstić–McCool's. Its primary text was not
-accessible (paywall), so it is not written out here.
+So `Γ_n` has finitely many relators added to Krstić–McCool's presentation of
+`St_(6n+7)(F_6)`. Their primary text was not accessible (paywall), so that presentation, and hence
+`Γ_n`, is explicit only relative to their construction. It is not written out here.
 
 **Remark on naturality.** `Γ_n` is the Steinberg group of a named ring with an explicit
 presentation. It is not obtained by running an embedding algorithm on a presentation of

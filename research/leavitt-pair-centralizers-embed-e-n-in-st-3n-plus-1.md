@@ -8,14 +8,16 @@ distinct_from:
   one-steinberg-group-contains-every-gl-n-q: that puts every GL_n(Q) in St_4(S) through K_2 centrality for stable rank one and compatible refinements, with cited inputs; this reaches St_10(S) by the elementary swindle alone.
 artifacts:
   - research/artifacts/gq-referee-a-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md
+  - research/artifacts/gq-referee-b-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md
   - research/artifacts/gq-gq-lit-arxiv-priority.md
 ---
 
-**OPEN (proof claimed by lane `gq-steinberg-q`, 2026-09-17, under review).**
+**ESTABLISHED (2026-09-17)** through `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1-proof`
+(lane `gq-steinberg-q`; Attempt 1 below).
 
 **Review status.**
 - `gq-referee-a` PASS, on the proof-gap lens (`research/artifacts/gq-referee-a-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md`).
-- `gq-referee-b` pending.
+- `gq-referee-b` PASS, on the citation and hypothesis lens (`research/artifacts/gq-referee-b-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md`).
 - Priority: `research/artifacts/gq-gq-lit-arxiv-priority.md` §7 found no finite-rank unstable Leavitt swindle and no finitely presented Steinberg-group overgroup of `GL_n(Q)`.
 
 **Statement.** Let `S` be a unital ring with a Leavitt pair `x_1, x_2, y_1, y_2`
@@ -28,7 +30,7 @@ commute with every `x_i` and `y_i`, let `N >= 3`, and let `τ : [N] -> [3N+1]` b
 
 ## Attempts
 
-1. **Proof claimed, not independently reviewed.** This is the proof of
+1. **Proof (referee PASS a, b).** This is the proof of
    `leavitt-pairs-embed-sl-n-q-in-steinberg-groups` (steps (a)–(f)) with two changes.
 
    **Change 1: `W` is elementary, so no Whitehead doubling.** Let `𝒴, 𝒳, W` be as in step (c)

@@ -19,7 +19,8 @@ Put `Γ = St_10(R_L)`, where `R_L` is the ring of
   (`steinberg-finite-presentation-and-kazhdan-theorem`).
 - **Contains every GL_n(Q).** `Q ⊆ R_L`, and `R_L` carries a Leavitt pair. So part 2 of
   `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1` puts every `GL_n(Q)` into `Γ`.
-- **Explicit presentation.** As in `gl-n-q-explicit-via-steinberg-group-of-resolvent-ring`:
+- **Presentation.** This is explicit only relative to Krstić–McCool's presentation of `St_10(F_6)`, whose
+  relators no lane has read. As in `gl-n-q-explicit-via-steinberg-group-of-resolvent-ring`:
   `Γ = St_10(F_6)/⟨⟨x_12(ρ_1), …, x_12(ρ_9)⟩⟩`, with the nine relator words written there
   (`st-n-of-ring-quotient-adds-one-relator-per-ideal-generator`).
 
