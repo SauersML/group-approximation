@@ -151,3 +151,21 @@ the Kaplansky zero-divisor conjecture."
    - Next: `S - S` meeting `Dist(Gamma)`, e.g. `1 + a^{10} + b`.  Use the long
      exterior arc (many consecutive flanked blocks in `(S - S) ∩ Dist`) or
      the coefficients along the walk.
+10. **Few-line a-supports in Steenbock's graphs (proposed established; `rips-segev-steenbock-few-line-a-supports-are-regular`).**
+   - Steenbock's explicit gluing (arXiv:1307.0981) is reconstructed there.
+     The `b`-edges are in bijection with the edges of a girth-`> 41`
+     covering `Phi` of the bouquet of four circles.  Every vertex has at most
+     one `b`-edge in and one out, and `b`-runs have at most 2 edges.
+   - Both inputs of the chain-criterion example of attempt 9 hold.
+     `gamma >= girth(Phi) >= 42`, and `v_{1,0} -> v_{1,10}` would be a loop of
+     `Phi`.  So `1 + a^{10} + b` and every two-layer element of span
+     `<= 89` are regular.
+   - Stronger: a backtrack-free path projects to a non-backtracking walk in
+     `Phi`.  So the `q(42) = 11` hops of a chain lie on pairwise distinct
+     lines of `L_S = {i : (S - S) ∩ Dist_i != ∅}`.
+   - Hence `beta in k[a^S <b>]` is regular whenever `|L_S| <= 10`, for any
+     number of layers.  In particular this holds for every `a`-span
+     `< 10^{51}`.
+   - Next: `|L_S| >= 11`, e.g. contiguous `S` of span `>= 10^{51}`.  Chains
+     through 11 distinct lines exist, so the coefficients of `alpha beta = 0`
+     must be tracked along the walk.
