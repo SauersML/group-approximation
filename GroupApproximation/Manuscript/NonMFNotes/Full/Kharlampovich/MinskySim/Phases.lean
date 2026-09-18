@@ -161,7 +161,8 @@ theorem leads_right {u v c : ℕ} (hc : c ≤ mm.size ^ 2) {g : Fin 5 → ℕ} (
   have hz2 : g2 4 = 0 := (ho2 4 ne04.symm).trans hz1
   have hv2 : g2 3 = v := (ho2 3 ne03.symm).trans ((ho1 3 ne23.symm ne03.symm).trans hg.h3)
   have hB' : ∀ g : Fin 5 → ℕ, g 4 = 0 → ∃ g' : Fin 5 → ℕ,
-      (tm mm).Leads (St.trR', g) (St.trR, g') ∧ g' 1 = g 1 + 1 ∧ ∀ i, i ≠ 1 → g' i = g i :=
+      (tm mm).Leads (St.trR', g) (St.trR, g') ∧ g' 1 = g 1 + 1 ∧
+        ∀ i, i ≠ 1 → g' i = g i :=
     fun g _ ↦ ⟨Function.update g 1 (g 1 + 1),
       (tm mm).leads_of_leads1 ((tm mm).leads1_add (delta_trR' mm) g),
       Function.update_self _ _ _, fun i hi ↦ Function.update_of_ne hi _ _⟩
