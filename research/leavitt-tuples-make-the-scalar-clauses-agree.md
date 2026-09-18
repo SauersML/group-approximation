@@ -8,8 +8,8 @@ distinct_from:
   leavitt-refinement-identifies-unstable-k2-levels: that uses Voronetsky refinement for Steinberg groups and K_2; this uses it for elementary groups and scalars.
 ---
 
-**ESTABLISHED** through `leavitt-tuples-make-the-scalar-clauses-agree-proof`. Lane proof, not independently reviewed.
-It is elementary given Voronetsky refinement (arXiv:2004.08551v2, §4, Prop. 1, read at source by gq-referee-b, report
+**ESTABLISHED** through `leavitt-tuples-make-the-scalar-clauses-agree-proof`. Refereed: gq-referee-b PASS, citation lens
+(report bd0d11d05, C1 and C2 applied). It is elementary given Voronetsky refinement (arXiv:2004.08551v2, §4, Prop. 1, read at source by gq-referee-b, report
 dcf202f7c). No priority is claimed.
 
 **Setting.** `R` is a unital ring with a unital map `Q -> R` and a Leavitt `(1, d)`-tuple, `d >= 2`: isometries

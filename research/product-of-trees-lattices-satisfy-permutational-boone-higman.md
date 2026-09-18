@@ -78,3 +78,16 @@ distinct_from:
      is outside `B_A` must be irreducible, with some non-discrete factor closure
      that is not just-non-compact. For locally quasiprimitive closures this means
      `QZ(Ḡ_i) ≠ 1` (Burger--Mozes).
+6. **Kernel commutation, no normal subgroup theorem (bh-lattices, 2026-09-18).**
+   *Sharpens Attempt 5 for three trees.*
+   `three-tree-lattices-escape-only-via-discrete-normal-subgroups`: kernels on
+   different factors commute modulo their intersection, and commuting normal
+   subgroups cannot both act nontrivially on a thick tree. So a three-tree
+   lattice outside `B_A` is irreducible, has no faithful factor, and has a
+   nontrivial, infinitely generated normal subgroup `N_ij = K_i ∩ K_j` acting only
+   on `T_k`. Its image is a nontrivial discrete normal subgroup of `Ḡ_k`, inside
+   `QZ(Ḡ_k)`.
+   - **Criterion.** Trivial quasi-centres of the three factor closures (for
+     example locally `∞`-transitive closures) force a faithful factor, hence `B_A`.
+   - **Exact gap.** Irreducible three-tree lattices with such an `N_ij`. Existence
+     unknown.

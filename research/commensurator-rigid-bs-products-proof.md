@@ -2,63 +2,68 @@
 rg: 2
 id: commensurator-rigid-bs-products-proof
 kind: route
-title: The tree-fixing normal subgroup N has finite outer automorphism group, so a finite-index subgroup splits as N times its centralizer
+title: The tree kernel has finite outer automorphism group, so a finite-index subgroup is the kernel times a free subgroup of its centralizer
 target: commensurator-rigid-bs-classes-are-virtual-products
-requires: [commensurator-rigid-groups-lack-faithful-bs-members, char-zero-linear-groups-satisfy-permutational-boone-higman, boone-higman-type-a-class-closed-under-finite-extensions]
+requires: [commensurator-rigid-groups-have-no-faithful-bs-members, char-zero-linear-groups-satisfy-permutational-boone-higman, boone-higman-type-a-class-closed-under-finite-extensions]
 ---
 
-**Step 0 (reduce to torsion-free vertex groups).** Let `H_1 ≤ H` be torsion-free of
-finite index. `H_1` acts on the barycentric subdivision `T'` of the Bass--Serre tree
-of `H` without inversions, with finitely many orbits.
-- Its vertex stabilizers are finite-index subgroups of vertex or edge groups of `H`,
-  so they are commensurable with `G` and torsion-free.
-- Its edge inclusions have finite index.
-- So `H_1 ∈ BS_G`, with Bass--Serre tree `T'` and torsion-free vertex groups.
+**Step 1 (the kernel).** Let `v` be a vertex.
+- By `commensurator-rigid-groups-have-no-faithful-bs-members`, some finite-index
+  subgroup of `G_v` acts trivially on the tree, so it lies in `K`.
+- `K ⊆ G_x` for every vertex `x`, so `K` has finite index in `G_v`. It is normal in
+  `H` and commensurable with `G`. That is item 1.
+- `K` is finitely generated, like `G_v`.
+- `H/K` acts on the tree with finite vertex stabilizers and finitely many orbits.
+  So it is the fundamental group of a finite graph of finite groups, finitely
+  generated and virtually free.
 
-**Step 1 (the normal subgroup).** Apply Steps 1--6 of
-`commensurator-finite-no-faithful-bs-proof` to `H_1`. They give a nontrivial
-`N ⊴ H_1` that equals `P_x ⊆ V_x` for every vertex group `V_x` of `H_1`, and has
-finite index in each.
-- `N` fixes `T'` pointwise, so `H` is not faithful. That is item 2.
-- `H_1/N` acts on `T'` with finite vertex stabilizers `V_x/N` and finitely many
-  orbits. So it is the fundamental group of a finite graph of finite groups, hence
-  finitely generated and virtually free.
+**Step 2 (VZ(K) is finite).** Choose a finite-index `U ≤ K` isomorphic to a
+finite-index subgroup `U'` of `G`.
+- `VZ(K) ∩ U = VZ(U) ≅ VZ(U') ⊆ VZ(G) = 1`. Here an element of `U` centralizes a
+  finite-index subgroup of `K` if and only if it centralizes one of `U`.
+- So `VZ(K)` injects into `K/U` and is finite.
 
-**Step 2 (finite outer action).** `N` is torsion-free and commensurable with `G`, so
-`VZ(N) = 1` by Step 1 of the obstruction proof.
-- **Aut(N) embeds in Comm(N).** Suppose an automorphism `α` of `N` agrees with the
-  identity on a finite-index `N_0 ≤ N`. For `n ∈ N` and
-  `x ∈ N_0 ∩ n^{-1} N_0 n`, applying `α` to `n x n^{-1}` gives
-  `α(n) x α(n)^{-1} = n x n^{-1}`. So `n^{-1} α(n)` centralizes a finite-index
-  subgroup, and `α(n) = n`.
-- **Finite index.** `Comm(N) ≅ Comm(G)`. The image of `N` there is commensurable
-  with the image of `G`, which has finite index. So
-  `[Aut(N) : Inn(N)] <= [Comm(N) : im N] < ∞`, and `Out(N)` is finite.
+**Step 3 (Out(K) is finite).** Consider `κ : Aut(K) → Comm(K)`.
+- **Finite kernel.** Suppose `α` agrees with the identity on a finite-index
+  `K_0 ≤ K`. For `n ∈ K` and `x ∈ K_0 ∩ n^{-1} K_0 n`, applying `α` to `n x n^{-1}`
+  gives `α(n) x α(n)^{-1} = n x n^{-1}`. So `n^{-1} α(n) ∈ VZ(K)`. Hence `α` is
+  determined by the values `n^{-1}α(n) ∈ VZ(K)` on a finite generating set, and
+  `ker κ` is finite.
+- **Finite-index image of `Inn(K)`.** `κ(Inn(K))` is the image of `K` in
+  `Comm(K) ≅ Comm(G)`. It is commensurable with the image of `G`, which has finite
+  index. So `κ(Inn(K))` has finite index in `Comm(K)`.
+- So `[Aut(K) : Inn(K)] <= |ker κ| · [Comm(K) : κ(Inn(K))] < ∞`.
 
-**Step 3 (splitting).** Let `H_2` be the kernel of `H_1 → Out(N)`, a subgroup of
+**Step 4 (splitting).** Let `H_2` be the kernel of `H → Out(K)`, a subgroup of
 finite index.
-- For `h ∈ H_2`, `conj_h|_N = conj_n` for a unique `n ∈ N`, and `h n^{-1}`
-  centralizes `N`. So `H_2 = N · C_(H_2)(N)`.
-- `N ∩ C_(H_2)(N) = Z(N) = 1`, and both factors are normal in `H_2`. So
-  `H_2 ≅ N × C_(H_2)(N)`.
-- `C_(H_2)(N) ≅ H_2/N ≤ H_1/N` is finitely generated and virtually free. That is
-  item 1.
+- For `h ∈ H_2`, `conj_h|_K = conj_k` for some `k ∈ K`, and `h k^{-1}` centralizes
+  `K`. So `H_2 = K · C` with `C = C_(H_2)(K)`, and `K ∩ C = Z(K) ⊆ VZ(K)`, which is
+  finite.
+- `C/Z(K) ≅ H_2/K` is finitely generated and virtually free. Let `Φ ≤ C/Z(K)` be
+  free of finite index, and let `C_1` be its preimage.
+- The central extension `1 → Z(K) → C_1 → Φ → 1` splits because `Φ` is free. Let
+  `F ≤ C_1` be the image of a splitting.
+- `F` is free, commutes with `K`, and `F ∩ K ⊆ F ∩ Z(K) = 1`. So `K × F ≅ KF ≤ H_2`,
+  and `[H_2 : KF] <= [C : F] < ∞`. That is item 2.
 
-**Step 4 (item 3).** Suppose `G_0 ≤ G` has finite index and lies in `B_A`.
-- `N` is commensurable with `G`, so a finite-index `N_0 ≤ N` embeds in `G_0`, and
-  `N_0 ∈ B_A`.
-- A finitely generated virtually free group is linear over `Z`, so `F ∈ B_A` by
+**Step 5 (item 3).** `K` is commensurable with `G`.
+- If `G_0 ≤ G` has finite index and lies in `B_A`, then some finite-index `K_0 ≤ K`
+  embeds in `G_0`, so `K_0 ∈ B_A`.
+- `F` is linear over `Z`, so `F ∈ B_A` by
   `char-zero-linear-groups-satisfy-permutational-boone-higman`.
 - By items 1--2 of `boone-higman-type-a-class-closed-under-finite-extensions`,
-  `N_0 × F ∈ B_A`, and so is its finite-index overgroup `H`.
+  `K_0 × F ∈ B_A`, and so is its finite-index overgroup `H`.
 
-**Instances.** Let `G` be a torsion-free lattice in `Isom(X)`, with `X` irreducible
-and `X ≠ H^2`.
-- Every isomorphism between finite-index subgroups of `G` is conjugation by an
-  isometry of `X` (Mostow--Prasad; cited, not re-read). That isometry is unique,
-  since a lattice has trivial centralizer. So `Comm(G) ≅ Comm_(Isom(X))(G)`.
-- If `Comm_(Isom(X)^0)(G ∩ Isom(X)^0)` is discrete, then `Comm_(Isom(X))(G)` is
-  discrete too. A discrete group containing a lattice contains it with finite index.
+**Instances.** Let `X` be irreducible, `X ≠ H^2`, and `G` a torsion-free lattice in
+`Isom(X)`.
+- By Mostow--Prasad, every isomorphism between finite-index subgroups is
+  conjugation by a unique isometry, possibly orientation-reversing; the
+  centralizer of a lattice is trivial.
+- So `Comm(G) ≅ Comm_(Isom(X))(G)`. If the commensurator in `Isom(X)^0` is
+  discrete, so is this finite extension, and it contains `G` with finite index.
 - `VZ(G) = 1` by Borel density.
-- Lattices in `Isom(X)` are linear in characteristic zero, through the adjoint
-  representation of `Isom(X)^0` and induction.
+- `G` is linear in characteristic zero, through the adjoint representation and
+  induction.
+
+**Trust surface.** Cited and not re-read: Mostow--Prasad rigidity, Borel density,
+and the Bass--Serre structure theorem.

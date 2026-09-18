@@ -122,3 +122,5 @@ explicit criteria `thm1` and `lm4`, and for Brown's two-generator criterion (`lm
 SS; Brown's paper not read). BBMZ 5.3(9) in full stays open. The two-generator generic case is
 only numerically suggested (~94%, per Borisov–Sapir and Dunfield–Thurston as quoted by SS), and
 it is not almost sure.
+
+**Correction to §6 (same day).** Generic one-relator groups (k ≥ 2 generators) are C'(1/6), hence hyperbolic, with probability → 1. Dunfield–Thurston state this for k = 2 (Gromov, Ol'shanskii), TeX read via MSI. So the generic BH statement already follows from BBMZ's hyperbolic theorem and is not new. The new content is the explicit ascending criteria, which include non-hyperbolic groups such as Druţu–Sapir. Dunfield–Thurston's Theorem (label `thm-random-group`) also gives 0.0006 < p_r < 0.975 for 2-generator groups to *fiber* (free-by-cyclic, already BLIW), which is irrelevant here.
