@@ -145,3 +145,35 @@ theorem k2KarQuadSt_datumCheap_of_pair23 (hs : s ≠ 0) {M : ℕ}
   group
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_pair23
+
+/-- **Pair `(1,3)`** (new): with `b = z₁ z₂ z₁⁻¹`, `z₁ z₂ z₃ z₄ = b z₁ z₃ z₄`, so
+`b⁻¹ (z₁ z₂ z₃ z₄) b = z₁ z₃ z₄ b`. -/
+theorem k2KarQuadSt_datumCheap_of_pair13 (hs : s ≠ 0) {M : ℕ}
+    {z₁ z₂ z₃ z₄ : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (h₁ : z₁ ∈ k2KarRel_gens s M) (h₂ : z₂ ∈ k2KarRel_gens s M)
+    (h₃ : z₃ ∈ k2KarRel_gens s M) (h₄ : z₄ ∈ k2KarRel_gens s M)
+    (hp : k2KarQuad_PairRankOne (z₁ * z₃)) : k2KarQuadSt_DatumCheap (z₁ * z₂ * z₃ * z₄) := by
+  refine k2KarQuadSt_datumCheap_of_factor hs (le_refl M) (z₁ * z₂ * z₁⁻¹)⁻¹ h₁ h₃ h₄
+    (k2KarQuadRel_gens_conj z₁ h₂) ?_ hp
+  rw [k2KarQuadSt_indexMap_refl]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_pair13
+
+/-- **Pair `(2,4)`** (new): with `c' = z₂ z₃ z₂⁻¹`, `z₁ z₂ z₃ z₄ = z₁ c' z₂ z₄`, so
+`(z₁ c')⁻¹ (z₁ z₂ z₃ z₄) (z₁ c') = z₂ z₄ z₁ c'`. -/
+theorem k2KarQuadSt_datumCheap_of_pair24 (hs : s ≠ 0) {M : ℕ}
+    {z₁ z₂ z₃ z₄ : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (h₁ : z₁ ∈ k2KarRel_gens s M) (h₂ : z₂ ∈ k2KarRel_gens s M)
+    (h₃ : z₃ ∈ k2KarRel_gens s M) (h₄ : z₄ ∈ k2KarRel_gens s M)
+    (hp : k2KarQuad_PairRankOne (z₂ * z₄)) : k2KarQuadSt_DatumCheap (z₁ * z₂ * z₃ * z₄) := by
+  refine k2KarQuadSt_datumCheap_of_factor hs (le_refl M) (z₁ * (z₂ * z₃ * z₂⁻¹))⁻¹ h₂ h₄ h₁
+    (k2KarQuadRel_gens_conj z₂ h₃) ?_ hp
+  rw [k2KarQuadSt_indexMap_refl]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_pair24
+
+end KarQuadStCheap
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
