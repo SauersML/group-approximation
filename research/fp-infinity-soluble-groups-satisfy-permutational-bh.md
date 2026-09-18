@@ -26,6 +26,12 @@ subgroup `T` with `G/T` constructible-by-finite.
   - `G` is torsion-free, since then `T = 1`;
   - `G` is metanilpotent, by Theorem C;
   - `G` is constructible-by-finite.
+- **(c) Elementary amenable groups.** Let `G` be elementary amenable of type `FP_∞` over `Z`. By
+  `elementary-amenable-fp-infinity-groups-virtually-soluble`, `G` has a soluble subgroup `H` of
+  finite index, and `H` is again of type `FP_∞`. If `H`'s Kropholler subgroup `T_H` is finite
+  (for example, if `G` is virtually torsion-free), then `G ∈ B_A`. The virtual solubility
+  input is Kropholler--Martínez-Pérez--Nucinkis (Crelle 637, 2009). Main carries it through a
+  secondary citation and it was not read here.
 
 ## Source (read at source)
 
