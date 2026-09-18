@@ -52,3 +52,11 @@ the kernel of `St_N(R_L) -> E_N(R_L)`. Items 1–3 hold for every such `N`. They
   elements of `K_2(N,R_L)`. They bear on centrality, not on this membership question.
 - Nothing here gives undecidability. An obstruction (b) would need a non-recursive `K_2(N,R_L)`-membership built
   from the ring's finitely many relations. No mechanism for that is known.
+## Attempts
+1. **Stable `K_2(R_L)` computed, 2026-09-18 (lane gq-infinite-primes).**
+   `leavitt-resolvent-k-theory-is-shifted-rational-k-theory`. With the vacuum projections `q_k` in the base, `R_L`
+   satisfies the hypotheses of `register-completion-pimsner-from-supercoherence`. So the heuristic of item 4 is a
+   theorem: `K_n(R_L) ≅ K_(n-1)(Q)` for every `n`, and `K_2(R_L) ≅ Q^x` through `{λ, N+1} -> λ`.
+   - `K_2(N, R_L) -> K_2(R_L)` is onto for every `N >= 3`, and `E_N(R_L)` is not finitely presented.
+   - The shortcut "(i) and `K_2 = 0`" is closed.
+   - Under (i), (ii) asks for a computable form of `K_2(N, R_L) -> Q^x`. That is open.
