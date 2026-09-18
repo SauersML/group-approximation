@@ -118,3 +118,23 @@ sees.
   sound `b0`. Tree-like reads are capped at `eta + w_cyc`. Need `207b4529` is
   reduced, not refuted: any class labelling realising it must encode
   cross-member parity cycles on its class read sets. Not a solution.
+* **Regime closure (2026-09-17).** This attempt is recorded in
+  `dkkms-certified-parameters-lie-in-the-selector-kill-regime`, which is
+  ESTABLISHED. The inequalities that the DKKMS Lemma 5.3 soundness proof
+  imposes on its own parameter point are:
+  - smooth-advice mass `sqrt(beta sqrt k) <= alpha(l)/2`, with
+    `alpha(l) = delta1 2^(-l^2-2)`;
+  - outer margin `eps_k < delta alpha(l)/4`;
+  - soundness `delta >= 2^(1-l)`.
+
+  Together these force the Theorem S regime (R)+(A) at every certified point
+  with soundness below `1/16`, for every advice dimension `q`. Corollary S1 of
+  Theorem S therefore holds with no parameter window: this claim implies
+  `NP in RP`, with `R_eta` read as the DKKMS TR16-198 family as defined above.
+  The claim stays OPEN, and is conditionally refuted under `NP not in RP`.
+  Two things survive:
+  - lift completeness in `(1/2, 1 - 10^(-5))`;
+  - other instance families, including the TR16-124 A-A Grassmann reduction if
+    that is what the 2-to-2 theorem actually uses.
+
+  Not a solution.
