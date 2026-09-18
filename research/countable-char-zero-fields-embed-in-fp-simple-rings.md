@@ -121,3 +121,30 @@ in a finitely presented simple `Q`-algebra.
        one-pass restriction.
      - Which relation family cannot be finite is therefore identified, but not proved
        infinite: register-copy commutation, or the translation functional.
+5. **Why twisted tapes are one-pass, and what one pass cannot invert (2026-09-18, lane
+   `gq-ring-fp-simple`).** Two lemmas behind the death in Attempt 3.
+   - **Single twist forces one pass (rigorous).** Let a group `G` of units act on the tape
+     positions without a global fixed point. Let a letter satisfy `h s = s φ(h)` for an
+     injective `φ : G -> G`, relabel positions by an injective `θ` with
+     `θ(hp) = φ(h) θ(p)`, and read only positions in `Fix(φ(G))`.
+     - If `θ(p) ∈ Fix(φ(G))`, then `θ(hp) = θ(p)`, so `hp = p` for all `h`.
+     - Hence after the letter no old variable is readable. Every variable is read at
+       exactly one letter.
+     - A bounded register file then evaluates a one-pass streaming program.
+   - **One pass cannot reach generic irreducibles (proved for the algebraic streaming
+     model).** Let the value be `F(R_1(x), ..., R_W(x), y)`, with `x = (x_1..x_k)` the
+     variables read before `y`, `R_i` polynomials, and `F` a polynomial. Let
+     `q(x, y) = Σ_α c_α(x) y^α` be irreducible, with `x -> [c_α(x)]` generically finite,
+     as it is for generic `q` of `y`-degree `>= k`. If `q` divides the value, then `W >= k`.
+     - *Proof.* For generic `y` the hypersurface `{q(·, y) = 0}` is a component of the
+       `R`-saturated set `{F(R(x), y) = 0}`. So generic fiber components of `R` lie in
+       it.
+     - As `y` varies, they lie in the fibers of `x -> [c_α(x)]`, which are finite. But
+       the fibers of `R : A^k -> A^W` have dimension `>= k - W`.
+     - Since a prime dividing a product of values divides one value, inverses of such
+       `q` are unreachable with `W < k` registers. This makes the bounded-rank heuristic
+       of Attempt 3 rigorous for the streaming model.
+   - **Consequence for designs.** A host for `K_∞` of register type needs re-readable
+     variables, hence several twists, or an untwisted group of units. Attempt 4 shows the
+     untwisted version runs into the register-copy relations. Whether several twists can
+     be finitely presented is open.
