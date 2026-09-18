@@ -42,6 +42,13 @@ z in Rad_MF(E_3).                                      (DER2)
   result: the radical is either `1` or the order-three covering kernel
   `C_3`.  The nontrivial branch is equivalently the open point-norm sector
   exclusion `deligne-nontrivial-maslov-opnorm-sectors-are-empty`.
+- **2026-09-18, swarm-0917-w7-w7-deligne-break: Dadarlat's windings do not refute the flagship; new split.**
+  `sp4-quasirep-windings-budget-and-saturation` (established) shows that normalized Maslov windings of
+  `Sp_4(Z)` quasi-representations are at most `(6g-1) eps/4`, and that `P_op = R/Z` forces them to reach linear
+  order. Dadarlat's nonzero windings only give `S_W > 0`, so they are compatible with both branches. The flagship
+  follows from the open `sp4-quasirep-windings-are-sublinear` (which gives `P_op = (1/m)Z/Z`) together with the
+  open `deligne-finite-parameter-group-has-period-prime-to-three` (`3 not | m`). This is route
+  `deligne-triple-cover-via-sublinear-windings`.
 - **2026-09-18, swarm-0917-w7-w7-deligne-last1 (calibration): the last
   mile is blocked, and the manuscript's own mechanism is provably silent.**
   - *Blocked routes.* Both shortest routes end in one open leaf, and each
