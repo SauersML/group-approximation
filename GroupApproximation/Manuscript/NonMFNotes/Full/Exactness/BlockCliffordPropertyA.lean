@@ -189,7 +189,7 @@ theorem hasPropertyA_lampFactor :
     (hasPropertyA_blockClifford LiteralBlockNormalForm.Block
       LiteralSoficAssembly.BlockSites)
 
-#audit_closed_axioms GroupApproximation.Full.NN09.hasPropertyA_blockClifford
+#audit_axioms GroupApproximation.Full.NN09.hasPropertyA_blockClifford
 #audit_closed_axioms GroupApproximation.Full.NN09.hasPropertyA_lampFactor
 
 end GroupApproximation.Full.NN09
