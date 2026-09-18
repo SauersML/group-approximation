@@ -285,6 +285,20 @@ The August audit and the September correction artifacts carry the arguments.
      - *What is left.* A host with that property needs elements that are
        infinitely singular over every such core, of automaton or branch type,
        as in `tits-independence-vertex-groups-are-branch-type`.
+   - *The section-closed locally finite route dies* (prover lane w6-030,
+     2026-09-18). `fully-self-replicating-tree-groups-give-fg-tits-hosts` builds a
+     finitely generated simple host `(R ≀ A_{d+1}) *_{R×R} (R ≀ A_{d+1})` from a fully
+     self-replicating `R ≅ R ≀_X A_d`. It is finitely presented iff `R` is. By
+     `self-wreathing-groups-are-not-fp-infinity`, every iterated wreath product of `P`
+     is a retract of any `R ≅ R ≀_X P`. So `H_k(R)` contains `H_k(P)^n` for every `n`,
+     where `k` is the first nonzero degree of `P`.
+     - *Where it fails.* For `d = 3, 4`, `k = 1`, and `R` is not finitely generated.
+       For `d ≥ 5`, `k = 2` (Schur multiplier `Z/2`), and `R` is not finitely presented.
+       This holds with or without contraction. No `R ≅ R ≀ P` with `P ≠ 1` finite is
+       `FP_∞`.
+     - *What is left.* Hosts whose point-stabilizer local action is superperfect, such
+       as `M_12 ⊃ M_11` or `M_24 ⊃ M_23`, where the argument only rules out `FP_3`.
+       Also left are non-split self-branching groups, where `R^X ⊴ R` has no complement.
    - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
      that are not finitely presented, or a positive answer to the finitely
      presented branch-group question. The open first step is whether some
