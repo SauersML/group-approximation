@@ -5890,6 +5890,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.CornerStep
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbRepeat
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Bridge
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtRing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
