@@ -129,6 +129,37 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
     reduction with `o(1)` closure and no unique-game or affine skeleton.
   - Open spark: are the GKOPTW perfect-SDP 2-to-1 gap instances (ICALP 2010)
     rich, or can they be made rich without a merge skeleton?
+* **Reframe richness away: treat it as free and isolate completeness (2026-09-17,
+  reframing).** **Decomposition, hole stays OPEN.** Tool:
+  `orientation-lifts-sandwich-2to1-game-values` (ESTABLISHED).
+  - An orientation `o` picks one "upper" element in each kernel pair.
+  - The lift `U_o` is a unique game with right alphabet `[k] x {0,1}`, and every
+    lift has `val(G)/2 <= val(U_o) <= val(G)`.
+  - `Psi(U_o)` is fully rich, with value in `[val(G)/2, 2 val(G)]`.
+  - Conversely, `Psi(U)` carries a canonical orientation recovering `val(U)`.
+
+  Consequences:
+  - Richness is free at the one-half wall: `rich-2to1-hard-at-completeness-one-half`
+    (ESTABLISHED) proves `Gap-Rich-2-to-1[(1-eps)/2, eps]` NP-hard. So the
+    sentence "the whole difficulty is concentrated in supplying richness" is
+    false at completeness one half.
+  - New route `rich-2to1-via-branch-selector-on-proved-2to1-instances` requires
+    `two-to-two-games-theorem`, the sandwich, and the single OPEN hole
+    `efficient-branch-selector-on-proved-2to1-instances`. That hole asks for a
+    polynomial-time orientation of the proved Grassmann 2-to-1 instances with
+    YES lift value `1 - eta'`. Every orientation has the form
+    `s(x_e) xor g_e(s|_(L'))`, so it must predict assignment values on the new
+    direction of each neighbouring subspace.
+  - The same hole feeds `smooth-design-rich-2to1-hardness`, and through it
+    `finite-moment-pairing-2to1-hardness` (route
+    `smooth-design-rich-2to1-via-branch-selector`). So the pairing-law ladder
+    (entropy, `t`-wise uniformity, smoothness, finite moments) adds no
+    prerequisite on this route.
+  - Graded milestone: any constant bias `c > 1/2` gives `Gap-UG[c, eta]` on these
+    instances.
+  - Where it could die: the family is pinned, so the hole can fail while UGC
+    holds. For assignments uniform on the unseen directions, the honest branch
+    bias is 0 for every `g_e` (heuristic warning, no kill).
 * **Close the orientation-lift completeness hole with an efficient branch
   selector whose completeness witness is the honest encoding.** In the
   orientation-lift decomposition posted on the live bus, richness and soundness
