@@ -58,7 +58,7 @@ theorem eHighWittLin_isWH_carry {τ : Type} {w : τ → ℕ} {Φ Ψ : MvPolynomi
     IsWeightedHomogeneous w (eHighWitt_carry p Φ Ψ) p := by
   rw [eHighWitt_carry]
   refine IsWeightedHomogeneous.sum _ _ _ fun i hi => ?_
-  have hip : i ≤ p := Nat.lt_succ_iff.mp (Finset.mem_range.mp hi)
+  have hip : i ≤ p := Nat.lt_add_one_iff.mp (Finset.mem_range.mp hi)
   have hc : ((p.choose i / p : ℕ) : MvPolynomial τ L) =
       C ((p.choose i / p : ℕ) : L) :=
     (map_natCast (C : L →+* MvPolynomial τ L) (p.choose i / p)).symm

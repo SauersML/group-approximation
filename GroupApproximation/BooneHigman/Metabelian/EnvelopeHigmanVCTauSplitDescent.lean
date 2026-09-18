@@ -29,9 +29,10 @@ theorem higmanVCTauSplit_tau_short (d : ℕ) (p : List (Fin d) × List (Fin d))
 theorem higmanVCTauSplit_psi_of (d : ℕ) (p : List (Fin d) × List (Fin d)) :
     higmanVC_psi d (higmanVCTau_tau d) (FreeGroup.of p) = higmanVCTau_tau d p := by
   rw [higmanVC_psi, FreeGroup.lift_apply_of, higmanVC_psiGen]
-  split_ifs with h
-  · rw [higmanVCTauSplit_tau_short d p h, higmanVCTau_letter, higmanVC_psiGen, dif_pos h]
-  · rfl
+  by_cases h : p.1.length ≤ 3 ∧ p.2.length ≤ 3
+  · rw [dif_pos h, higmanVCTauSplit_tau_short d p h, higmanVCTau_letter, higmanVC_psiGen,
+      dif_pos h]
+  · exact dif_neg h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_psi_of
 
