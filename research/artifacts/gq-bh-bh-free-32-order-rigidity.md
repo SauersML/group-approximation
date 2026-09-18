@@ -51,3 +51,46 @@ mechanism of this kind can beat the known bounds**.
   thesis (quadratic slopes, tree pairs); Molyneux--Nucinkis--Santos Rego (Σ-invariants of `F_τ`;
   arXiv:2309.12213, 2602.08748); Gonçalves--Sankaran--Strebel (arXiv:1511.07088). None states a
   deformation or rigidity obstruction. The search was bounded, so no priority is claimed.
+
+## Update 2 (2026-09-18, after the coordinator's follow-up)
+
+**Prior-art check for `G(R; Z[1/2] + Z[1/2]τ, gp(2))`.** The full monograph text
+(arXiv:1411.2868v3, via pdftotext) was grepped for irrational, transcendental and `√` examples.
+- Every finitely presented example there has `A = Z[P]`: examples 13.3c.1 and 13.3c.2, and N3.3b.
+- The irrational examples have `A ⊆ Q(P)`: Cleary's `A = Z[u^{±1}]` with `P = gp(u)`, and the
+  `ω = √2 + 1` example of N3.
+- The only non-finitely-presented examples named fail D13.3 itself, e.g.
+  `G(R; Z[1/6], gp(3/2))` in the preface.
+- N3.3b says only necessary and far more demanding sufficient conditions are known. N3.4 says that
+  for compact intervals the known necessary conditions for finite generation and for finite
+  presentation coincide.
+- Cleary, Burillo--Nucinkis--Reeves and Winstone use `A = Z[τ]`, `P = gp(τ)` (so `A ⊆ Q(P)`).
+- Related but different: Golan--Sapir (arXiv:1605.05387) show that stabilizers in `F` of finite
+  sets containing an irrational are not finitely generated. Those are subgroups of `F` with dyadic
+  data.
+
+No appearance of the example was found. D13.5(ii) of the monograph shows that `G/[B,B]` is finitely
+presented for it, while `G` is not.
+
+**Generalization.** Two claims generalize this.
+- `fp-piecewise-projective-groups-rigidity-criterion` gives a non-finite-presentation test for
+  piecewise projective groups (any data field, the line and the circle, Lodha--Moore-type rigid
+  subgroups).
+- `definable-parameter-hosts-cap-simple-subgroups-at-pspace` gives the general collapse. The proof
+  is definable choice (Tarski transfer; Büchi's lasso theorem) instead of deformation. It covers
+  semialgebraic actions in any dimension and ω-automatic actions on Cantor space with arbitrary
+  addresses, which is the germ-group case the coordinator asked about.
+
+The dictionary is:
+
+| real (Tarski) | Cantor (Büchi) |
+|---|---|
+| algebraic point | ultimately periodic address |
+| `R_alg ≺ R` | nonempty ω-regular sets contain lassos |
+| Zariski-generic point | normal (finite-state random) address |
+| existential theory of the reals in PSPACE | Büchi nonemptiness on the fly in linear space |
+
+**Lesson.** What finite presentation can see of a host is a first-order condition. Hosts whose
+generators are tamely definable therefore collapse to tame members, and all of them are capped at
+PSPACE. A Birget or BH host must put the input's algorithm into generators that are not definable
+in a decidable tame structure.

@@ -36,3 +36,8 @@ object has at least two loops of every colour and condition (F) holds, for examp
 when `ℭ` is right cancellative (Li, l.1456). Rescaling degrees by a multiple of the
 periods supplies the loops, as in `tree-lattice-kgraph-power-phase-proof` and
 `primitive-two-graph-fp-simple-embedding-proof`.
+
+**Lesson for general BH.** Refinement plus duplication is a finite, combinatorial
+substitute for Matui's comparison theorems. It needs only (UFP*) and strong
+connectivity. The general form, with arbitrary unit groups, is
+`finitely-coded-cantor-actions-give-type-a-hosts`.

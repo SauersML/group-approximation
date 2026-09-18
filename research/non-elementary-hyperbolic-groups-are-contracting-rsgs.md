@@ -9,6 +9,7 @@ distinct_from:
   free-products-of-hyperbolic-groups-are-contracting-rsgs: that is the freely decomposable case, established; this is the whole question.
   virtually-free-product-hyperbolic-groups-are-contracting-rsgs: that is the virtually freely decomposable case, established; this is the whole question.
   sft-irreducible-core-iff-unique-recurrent-component: that is the graph-theoretic form of obstacle (ii), established; this is the whole question.
+  surface-group-atoms-are-wall-arrangement-cells: that computes the atoms of closed surface groups and verifies every BBMZ hypothesis except the irreducible core; this is the whole question.
   virtually-free-groups-are-contracting-rsgs: that is a second proof of the virtually free case, with trivial nucleus; this is the whole question.
   contracting-rsgs-closed-under-products-with-finite-groups: that is a closure lemma used for the known cases; this is the question itself.
 artifacts:
@@ -134,3 +135,16 @@ remains:
      normal-form coding would need an infinite alphabet at the infinite vertex groups. The
      gate approach needs the incoming profiles to recur, together with a separate faithful
      treatment of the finite radical.
+5. **2026-09-18 (lane `bh-free-23`), closed surface groups made explicit.**
+   - **Landed (`surface-group-atoms-are-wall-arrangement-cells`).** With the regular `4g`-gon
+     generators:
+     - word length counts the separating tiling walls;
+     - the atoms of `B_n` are the unbounded cells of the finite arrangement `𝒲_n`;
+     - `∂_h` has no isolated points, so the BBMZ image is an RSG with finite nucleus;
+     - no cell is a half-plane, because every wall of `𝒲_n` is crossed by another wall of `𝒲_n`
+       (corrected: the first landing stated a gate lemma that turned out to be vacuous).
+   - **Remaining.** A single recurrent type component. Atoms near the ideal boundary are bounded
+     by at least two crossing walls, so the open step concerns sector cells at tiling vertices.
+   - **Comparison with Attempt 4.** The coset gates of Attempt 4 need a separating finite set.
+     One-ended groups have none, and here that shows up concretely: no cell is cut off by a single
+     wall.

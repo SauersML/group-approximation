@@ -13,8 +13,11 @@ distinct_from:
 **ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18).
 Referee a (proof gaps): **PASS**,
 `research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md` (16bd2d9b5),
-with nits N1–N6 applied. Referee a recommends a second independent proof-gap pass (requested
-from gq-referee-c) and a citation pass (gq-referee-b, pending) before downstream use. No priority claimed beyond the literature check below.
+with nits N1–N6 applied. Referee c (independent second proof-gap pass): **PASS**,
+`research/artifacts/gq-referee-c-twisted-brin-thompson-type-fn-criterion.md` (b74ee10f0), at
+version 329a4461c. Referee b (citations and priority): **PASS**,
+`research/artifacts/gq-referee-b-twisted-brin-thompson-type-fn-criterion.md` (68ed8a399). No priority claimed beyond the bounded literature search
+below.
 
 ## The conjecture, and what BZ proved
 
@@ -57,9 +60,11 @@ Let `G` act faithfully on a countable set `S`, and let `n ∈ N`.
 3. **(BZ's form)** Conditions (1)–(3) of the conjecture are equivalent to type `(A_n)`, so the
    conjecture holds.
    - Type `(A_n)` gives (1)–(3) directly.
-   - Conversely, (1) gives finitely many orbits on `k`-subsets for every `k ≤ n`, by
-     Cameron's monotonicity theorem for infinite permutation groups (P. J. Cameron,
-     Math. Z. 148 (1976); not read at source). For finite `S` this is automatic.
+   - Conversely, (1) gives finitely many orbits on `k`-subsets for every `k ≤ n`. When
+     `|S| ≥ n`, every `k`-subset lies in some `n`-subset. So the orbits of pairs
+     `(T ⊆ U)`, with `|T| = k` and `|U| = n`, surject onto the orbits of `k`-subsets, and
+     each orbit of `U` contributes at most `C(n,k)` of them. For `|S| < n` everything is
+     finite. (This replaces an appeal to Cameron's monotonicity theorem, referee b W1.)
    - Hence (1) gives finitely many orbits on `S^n`.
 4. **(Exact length)** `SV_G` is of type `F_n` but not `F_{n+1}` iff `G ↷ S` is of type
    `(A_n)` but not `(A_{n+1})`.
@@ -103,6 +108,13 @@ the last step by de Cornulier and Bartholdi--de Cornulier--Kochloukova.
 - For every `n` this gives an `F_n` form of permutational Boone--Higman with the same shape:
   `H` embeds in an `F_n` simple twisted Brin--Thompson group iff `H` embeds in an
   `(A_n)`-actor.
+  - `⇐` is this node.
+  - `⇒` (referee c asked for an argument): if `SV_G` is `F_n`, then `SV_G` is itself an
+    `(A_n)`-actor, through its clopen action on the proper nonempty clopen subsets of `C^S`
+    (`twisted-btb-clopen-action-is-type-a`). That action is faithful and oligomorphic.
+  - The pointwise stabilizer of a finite set of clopens is the product of the copies of
+    `SV_G` supported on its Boolean atoms, by fullness (`bbmz-oligomorphic-twisted-questions-proof`,
+    Step 1). So it is `F_n`, and so is the finite-index setwise stabilizer.
 - **Method.** A Brown-criterion obstruction coming from bad simplex stabilizers can be an
   artifact of the cell structure. Filter by intervals, compute which intervals are
   homologically essential and in which degree, and ask for finiteness only of their
@@ -111,10 +123,21 @@ the last step by de Cornulier and Bartholdi--de Cornulier--Kochloukova.
 
 ## Scope
 
-- **Non-faithful actions stay open.** FFWZ conjecture the same characterization for
-  abstract twisted Brin--Thompson groups. The proof uses the connectivity of the Stein
-  complex sublevel sets (FFWZ Proposition 4.8(ii)), which is proved only for faithful
-  actions.
-- **Literature check (2026-09-18).** FFWZ v2 records the problem as open. One web search
-  ("twisted Brin–Thompson type F_n ... 2026") found no later resolution. No MathSciNet
-  search was done.
+- **Non-faithful actions.** FFWZ conjecture the same characterization for abstract twisted
+  Brin--Thompson groups. It is proved in `abstract-twisted-bt-type-fn-criterion` (lane proof,
+  unreviewed), by running this argument on the `S`-colored Stein complex of the faithful
+  `(S ⊔ G)V_G`.
+- **Literature check (bounded search, 2026-09-18).**
+  - FFWZ v2 (revised 2026-04-02) records the problem as open.
+  - One web search found no resolution. Neither did referee b's arXiv API listing for
+    "twisted Brin", which returned 11 papers through 2026-09-18; the newest relevant are
+    FFKLZ arXiv:2506.02319v2 (a not-`FP_∞` obstruction only) and Palmer--Wu
+    arXiv:2510.16879 (acyclicity).
+  - No MathSciNet or zbMATH search was done.
+- **A test question in the literature.** Per referee b, FFKLZ arXiv:2506.02319v2, Corollary
+  1.6, asks whether `SV_G` is of type `FP_3` for the BFFHZ action
+  `Aut_Γ(Γ ∗ F_n) ↷ Hom_Γ(Γ ∗ F_n, Γ)` with `Γ` a finitely presented simple Burger--Mozes
+  group. That action is faithful, since `Γ` is MIF. So by item 2 the question is equivalent
+  to the action being of type `(HA_3)`: finitely many orbits on triples, `FP_2` point
+  stabilizers, and finitely generated stabilizers of pairs. It was not attempted here, and
+  the corollary was not read at source by this lane.

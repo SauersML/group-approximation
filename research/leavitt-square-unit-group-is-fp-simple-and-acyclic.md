@@ -16,6 +16,13 @@ and on Ara--Cortiñas arXiv:1108.0352v3).** Let `L = L_(F_2)(1,2)`.
   acyclic.
 - For every `r >= 3`, `St_r(L ⊗ L) -> GL_r(L ⊗ L)` is an isomorphism.
 
+**Source audit (bh-free-26, 2026-09-18).** Every hypothesis of the imported Khanh and
+Ara--Cortiñas statements was checked against the source texts for `B = L_p`, for every prime
+`p`, including the odd-`p` modifications. The audit is
+`khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts`. The condition above now means
+only trust in those theorems (Khanh is an unrefereed preprint) and in the unreviewed repository
+steps listed there.
+
 It is a second finitely presented simple group of Leavitt type. Its point is
 the Boone--Higman class in `char-two-surface-linear-groups-satisfy-boone-higman`:
 `L ⊗ L` contains `F_2[t_1, t_2][1/h]` for every nonzero `h`.

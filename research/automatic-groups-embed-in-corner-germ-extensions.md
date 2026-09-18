@@ -121,3 +121,53 @@ proofs, elementary, not independently reviewed.
   (E4') does hold whenever `(Γ)_p` is finitely generated abelian, which covers the flat germs of
   the `Z^2 * Z` instance. Expanding germs with unboundedly many prime rates therefore refute
   (E4') at that point.
+
+## Garside and Mosher tests (bh-free-51, 2026-09-18, second landing)
+
+- **Garside structures fail (E1').** `deligne-forms-are-singular-on-commuting-parabolic-diagonals`
+  concerns BBCMP's Deligne normal form and bh-hhg's central-quotient language. Both process
+  commuting parabolics in lockstep. So for braid groups `B_n`, `n ≥ 5`, and every
+  finite-type Artin group with an edge plus a node commuting with it, every power of a
+  generator has a Cantor set of singular points, over the automaton's base and over `V`
+  after any recoding. This includes the structures used on `Mod(S_{0,n})`, `n ≥ 6`, and on
+  `Mod(S_2)`.
+- **`B_3 = Mod(S_1^1)`: thin, and repairable.** See
+  `b3-center-first-normal-form-passes-the-germ-condition`.
+  - The Deligne language is thin, but (E4') fails in both branches: `⟨Δ⟩` is not normal in
+    the germ group `B_3`.
+  - Writing `Δ^2` first repairs it, with germ group `B_3` over its center and quotient
+    `PSL_2(Z)`.
+  - So a central commuting factor is not an obstruction. The "Seifert piece" worry above
+    applies only to non-central commuting factors.
+- **Mosher.**
+  - At source (arXiv:math/9409209, introduction), Mosher's closed-surface structure is
+    non-constructive, so it cannot be tested.
+  - The once-punctured structure is explicit: uncombing blocks, followed by an infinite
+    `L`/`R` parity tail inside one level. Its continuity is BBCMP Q1.16 (bh-hhg).
+  - See `research/artifacts/gq-bh-bh-free-51-garside-and-mosher-thinness.md`.
+- **Lesson for general BH.** This premise asks for a rank-one host (a germ extension of the
+  automaton's base or of `V`). Such hosts absorb only virtually central cyclic commuting
+  directions (`bhm-corollary-hosts-over-v-are-cover-centralizer-groups` (b)).
+  - Every automatic group containing `F_2 × F_2` with no central side needs a structure that
+    avoids both the lockstep and the sequential phase shift. That includes closed `Mod(S_g)`
+    for `g ≥ 2`, and RAAGs with an induced square.
+  - Whether one exists is open.
+  - Otherwise the premise should move to a higher-rank host, as in
+    `cubulated-groups-act-by-bisections-of-a-pointed-cube-category`.
+
+## Lesson for general BH
+
+*Added 2026-09-18.*
+
+**Where the obstruction is.** For automatic groups there is no complexity obstruction, since the
+word problem is quadratic. The obstruction is the *carry*.
+- A central element of a vertex group, such as a Seifert fiber, commutes with the whole vertex
+  group.
+- In any normal form it passes through every letter of that vertex group.
+- By the centralizer lemma of the artifact (§7), in a germ extension its finite singular set is
+  almost invariant under its centralizer.
+
+**So the right hosts are the ones where fibers can be commutators.** Svetlov's charge
+obstruction kills hosts with characters on fibers (`fiber-detecting-block-characters-force-npc-graph-manifolds`).
+In the spiral group `C(C_2,Z) ⋊ V`, the period shift is a product of two commutators
+(artifact §7). So germ extensions of `V`, and `2V`, are not ruled out by charge.

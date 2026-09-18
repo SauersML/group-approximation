@@ -8,7 +8,7 @@ distinct_from:
   bs13-in-3v-via-smart-renormalization: that uses SMART's ternary renormalization for BS(1,3); this is about involutions and dihedral actions, not renormalization.
 ---
 
-**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed).
+**ESTABLISHED** by `minimal-dihedral-actions-in-brin-thompson-groups-are-free-proof` (lane proof, elementary, not reviewed; no novelty claimed).
 
 ## Statement
 
@@ -76,3 +76,13 @@ conjugate to `τ` or `τσ`, which are fixed-point free because `θ` and `θμ` 
   groups (Burnside-type test cases, BBMZ 5.3(6)) inside Brin–Thompson hosts.
 - Open, and not settled here: whether any `nV` contains an infinite finitely generated
   torsion group.
+
+## Lesson for general BH
+
+- **Torsion in `nV` is locally rigid.** A finite-order element is the identity near each of its fixed
+  points, so its fixed set is clopen.
+- **Consequence for periodic constructions.** Any construction of periodic groups that needs
+  involutions with "thin" fixed sets cannot be carried out by elements of `nV`. This includes
+  Nekrashevych's fragmentations of non-free dihedral actions.
+- **What a periodic subgroup of a Brin--Thompson host would need.** It would need torsion created by
+  fragmentation of an action that lives outside the host, not by reflections inside it.

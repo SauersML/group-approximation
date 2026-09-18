@@ -15,7 +15,8 @@ requires:
 
 **ESTABLISHED for items 2 and 3** (unconditional). **Items 1 and 4 are conditional**, like
 `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`, on the imported criteria of Khanh
-(arXiv:2609.08428v1). Route `prime-field-leavitt-square-units-mod-p-proof`; lane proof by
+(arXiv:2609.08428v1). Their hypotheses, including the odd-`p` modifications, have been checked
+at source for `L_p ⊗ L_p` (`khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts`). Route `prime-field-leavitt-square-units-mod-p-proof`; lane proof by
 bh-free-26, elementary, not independently reviewed. No priority is claimed.
 
 ## Statement

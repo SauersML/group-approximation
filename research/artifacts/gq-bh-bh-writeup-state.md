@@ -1,309 +1,425 @@
-# Boone–Higman swarm: state of the attack (09-18, first full summary)
+# Boone–Higman swarm: general lessons (09-18, second summary)
 
-Lane `bh-writeup`, 2026-09-18, written from the node texts on main at `f2fbbe643`
-(09:44 CDT). About 226 BH-lane landings are covered. Each entry's status is quoted
-from the node's own first status line.
+Lane `bh-writeup`, 2026-09-18, written from the node texts on main at `b2b4b26f6`
+(10:51 CDT).
+- This pass covers the 268 landings since `27bee4278` (09:46–10:51): 285 new or edited
+  nodes, of which 222 are ESTABLISHED, 38 OPEN and 5 REFUTED or DEAD.
+- Following the 10:48 user order, it is organized by mechanism: what each cluster
+  teaches about proving BH in general.
+- The case ledger for the first 226 landings is the previous version of this file
+  (`27bee4278`). §3 updates its table of named problems.
 
-**How to read the statuses.**
-- *Lane proof* means that the lane that wrote the proof is the only one that has
-  checked it.
-- *Internal check* means another swarm lane re-derived it (bh-verify-*, bh-free-10/11,
-  bh-referee-c).
-- *Referee a/b* means the swarm's gq-referee-a (proof gaps) or gq-referee-b
-  (citations) passed it.
-- None of this is external review. The user waived referee passes as a landing gate
-  on 09-18, so **most entries below are unreviewed lane proofs**.
-- **Priority checks were arXiv-only** (API, listings, HTML). MathSciNet and Google
-  Scholar were not reachable, so no entry claims novelty. An expert read is needed
-  before any external claim.
+**Status tags.**
+- **[LP]** lane proof, checked only by the lane that wrote it.
+- **[IC]** internal adversarial check by another lane (bh-refute, bh-free-43, bh-free-48,
+  bh-verify-W).
+- **[RA] / [RB] / [RC]** passed by gq-referee-a (proof gaps), gq-referee-b (citations) or
+  bh-referee-c (end to end).
 
-The root `boone-higman-conjecture` stays **OPEN**. No route to it has every
-requirement established.
+None of these is an external review. Priority checks were arXiv-only, and no entry claims
+novelty. **Most entries are [LP].** The root `boone-higman-conjecture` stays OPEN.
 
-## 1. Named or printed open problems answered on main
+## 1. The picture
 
-| Problem (source) | Answer | Node | Status |
+Every positive result on main now factors through two layers.
+
+1. **A wrapper** turns an actor into a finitely presented simple group. Examples are
+   twisted Brin–Thompson groups SV_G, Cuntz-stabilized full groups, and finite germ
+   extensions of V. This layer is now essentially understood (L1).
+2. **An actor**: a finitely presented group with a type (A) action that contains the
+   input. All the difficulty sits here, and this pass shows why:
+   - rigid inputs are never their own actors (L4);
+   - finite presentation forces every piece of local dynamical data into a regular form
+     (L3);
+   - every host family built from fixed finite data has a uniform ceiling on
+     word-problem complexity (L2).
+
+So general BH needs a **compiler**. That is an actor built from the input, whose finitely
+many local rules are regular but whose global dynamics carry the input's word problem. §5
+gives the precise forms of this question that are on main.
+
+## 2. Lessons by mechanism
+
+### L1. The wrapper layer is solved: simplicity and type (A) come free from a finite model
+
+**Mechanism.**
+- (i) SV_G is of type F_n exactly when G ↷ S is of type (A_n).
+- (ii) Crossing a full group with the Cuntz groupoid O_2 gives comparison of clopen sets.
+  The action on clopens is then of type (A).
+- (iii) Li's F_∞ theorem applies to finite left-cancellative categories with a degree
+  map: k-graphs, Zappa–Szép products, and orbit categories of lattices.
+
+**Evidence.**
+- `twisted-brin-thompson-type-fn-criterion` [RA] proves the conjecture of Belk–Zaremsky,
+  2001.04579, l.218. With it, `stein-complex-elementary-intervals-are-grid-spheres` [RA].
+- `stabilized-kgraph-full-groups-have-type-a-actions` [LP] and
+  `degree-category-full-groups-stabilized-have-type-a-actions` [LP].
+- **Payoffs.**
+  - Every cocompact Ã₂ lattice, exotic or not, torsion allowed:
+    `exotic-a2-lattices-satisfy-boone-higman`, `a2-lattices-lie-in-permutational-bh-class`,
+    `a2-lattices-embed-in-fp-simple-groups` (an F_∞ simple host) [LP].
+  - Every cocompact lattice on a product of trees, torsion allowed:
+    `cocompact-tree-product-lattices-lie-in-type-a-class` [IC]; also
+    `tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh` (Amir–Lazarovich) [LP].
+  - RCWA groups over Z, over class-number-one number rings, over F_q[t] and over Z_(π):
+    `rcwa-groups-satisfy-permutational-boone-higman` [RA][IC].
+  - CT_P(Z) acts on N_0 with type (A) [LP].
+
+**Lesson for general BH.** A group has a finite combinatorial model of an effective
+boundary action (a finite category with a degree map) ⇒ the group lies in B_A. Building
+the model is the whole task; the wrapper supplies simplicity and finite presentation.
+Kohl's problems (§3) show the same thing from the other side: identifying CT(Z) as a full
+group imported Matui's rigidity and Li's finiteness at once.
+
+**Where it stops.**
+- **Effectiveness.** The decorated Garside groupoid is not effective. The Artin group
+  lands in isotropy, and no simple subgroup contains it
+  (`garside-decorated-groupoids-hide-artin-groups-in-isotropy` [LP]; that route is DEAD).
+- **Coefficients.** As proved, the stabilization theorem needs finite unit groups, so
+  infinite coefficient groups are not yet covered.
+- **Complexity** (L2).
+
+### L2. Complexity ceilings: hosts built from fixed finite data cannot be universal
+
+**Evidence.**
+- Finitely generated subgroups of finite k-graph full groups, nV included, have at most
+  exponential word problems (earlier node).
+- Units of Leavitt tensor algebras have word problems in ∀·Mod_pP or C_=P
+  (`leavitt-tensor-unit-word-problems-have-one-counting-quantifier` [LP]).
+  (L ⊗ L)^× is coNP^⊕P-complete (`leavitt-square-units-have-conp-parity-p-complete-word-problem`
+  [LP], mathematics cross-checked by bh-free-02). The C_=P-complete group Γ_Z has no
+  Leavitt-linear simple host [LP].
+- Finitely presented piecewise-projective groups with arbitrary real data specialize to
+  algebraic data, so they have solvable word problem
+  (`fp-piecewise-projective-groups-specialize-to-algebraic-data` [LP]). Hard-slope D(V_λ)
+  embed in no finitely presented piecewise-projective group [LP].
+- Self-similar affine groups are linear over function fields
+  (`affine-self-similar-groups-are-function-field-linear` [LP]). KMS configuration modules
+  have trivial coinvariants [LP], so KMS tops get no self-similar affine host.
+- **Hard inputs are cheap.**
+  - `transcendental-slope-thompson-groups-have-hard-word-problems` [LP]: 2-generated
+    simple groups D(V_λ) whose solvable word problem exceeds any recursive bound.
+  - F.p. residually finite groups with a non-primitive-recursive word problem exist (KMS,
+    literature; Kourovka 5.15).
+
+**Lesson for general BH.** Boone–Rogers already rules out a single universal host. The
+ceilings rule out more: any host family defined by fixed finite algebraic data (a ring, a
+k-graph, a field of definition, an automaton) specializes, so its finitely generated
+subgroups have word problems in a fixed class. A proof of BH must use data that grow with
+the input. Three sources are in view:
+- an input-dependent coefficient group (L1, "Coefficients");
+- an input-dependent enumeration (the shells, L6);
+- an input-dependent type (A) actor.
+
+Kourovka 7.19 is the concrete test. Routes `kourovka-7-19-via-small-cancellation-bh` and
+`kourovka-7-19-via-hard-type-a-actor` are open.
+
+### L3. Finite presentation forces regular local data; complexity must come from composition
+
+**Evidence: local data get pinned.**
+- **Enumerations:** `houghton-like-envelope-fp-pins-the-enumeration-by-near-relators` [LP].
+- **Germ schedules satisfy linear recurrences:**
+  `block-power-germ-schedules-with-fp-germ-group-are-exponential` [LP].
+- **Germ rates:** `germ-rate-homomorphism-tests-germ-extension-finiteness` [LP].
+- **Normalizers are Cobham-regular:** `ct-z-normalizers-are-2-and-3-regular` [LP]. This
+  gives Out(CT(Z)) = C_2.
+- **Slopes are algebraic:** `fp-bieri-strebel-line-groups-are-deformation-rigid` and
+  `fp-pl-groups-with-f-have-no-transcendental-support-endpoints` [LP].
+- **Freeness is the tempting shortcut, and it fails in both frameworks.**
+  - Free-shift enumerations pass the Houghton germ gate, but no envelope is finitely
+    presented (`free-shift-houghton-like-envelopes-are-not-fp` [RA][IC]).
+  - Residually finite groups get free-product germs G ∗ Z over V
+    (`rf-groups-have-free-product-germs-over-v` [LP]). This passes the germ gate even for
+    KMS groups, but then the one-point SingFix group is not finitely presented
+    (`annular-free-factor-germ-extensions-fail-bhm-singfix` [LP]).
+- **Regular enumerations reach only virtually cyclic or virtually abelian inputs:**
+  `strand-map-bases-lift-only-bounded-displacement-letters`,
+  `lampshuffler-bases-lift-no-shift-for-one-ended-inputs`,
+  `piecewise-translation-z2-enumerations-are-not-fp`, and
+  `zigzag-houghton-like-envelopes-are-virtually-houghton` [LP].
+
+**Lesson for general BH.** An input's complexity cannot be stored in local data. It has
+to emerge from composing finitely many regular rules, as in Higman's embedding. The only
+mechanism on main that does this inside a fixed finitely presented host is reversible
+machine dynamics.
+- SMART-type machines give height-m renormalizations in 2V, hence BS(1, ±m) ≤ 3V for
+  every odd m (`bs1m-embeds-in-3v-for-every-odd-m` [IC]; an exhaustive certificate covers
+  m = 3, …, 11).
+- The SMART trace full group, a Juschenko–Monod group, lies in 2V.
+- A compiler for BH is therefore more likely to be machine-like than data-like.
+
+**Where it stops.**
+- BS(1, 2) ≤ nV (even m) is OPEN.
+- In brick hosts, images of Higman's group satisfy E(N) = O(log N · (log log N)²), while
+  every aperiodic element of nV has lim sup E(N)/log N ≥ 1/(2n) [LP]. A growth-gap theorem
+  between these bounds would exclude Higman's group from every brick host.
+
+### L4. Rigid inputs are never their own actors; the actor is always a Thompson-like overgroup
+
+**Evidence.**
+- Infinite locally quasiconvex hyperbolic groups, surface groups and closed hyperbolic
+  3-manifold groups have no type (A) action
+  (`locally-quasiconvex-hyperbolic-groups-have-no-type-a-actions` [LP]).
+- Virtually cyclic subgroups of Out(F_n) have infinitely many double cosets. Subgroups
+  with finitely many double cosets have dense limit sets [LP].
+- Building-open subgroups of Kac–Moody lattices have infinite bi-index [LP].
+- St_N(R_L) has no type (A) action [LP].
+- The Baumslag–Gersten group is highly transitive and MIF, yet every action of it with
+  finitely many orbits of pairs has an infinitely generated stabilizer [LP].
+- For S × T, a type (A) action comes from one of the factors [LP].
+- **The general tool:** `escaping-invariant-sets-force-infinitely-many-double-cosets` and
+  `limit-set-escaping-forces-infinitely-many-double-cosets` [LP].
+- **Geometry is no obstruction.**
+  - Hyperbolic groups, Aut(F_n) and their finite products embed quasi-isometrically in
+    finitely presented simple groups [LP].
+  - Virtually compact special groups and RAAGs are undistorted in 2V [LP].
+  - SV_G quasi-retracts onto G (literature).
+
+**Lesson for general BH.** Type (A) needs finitely generated infinite-index subgroups with
+finitely many double cosets. Negative curvature, building rigidity and the structure of
+St_N(R_L) forbid them. So the actor is never the input. Since hosts can be undistorted,
+only finiteness and complexity obstruct BH, not coarse geometry.
+
+### L5. Permanence reduces to one notion: good, centralizer-realizable subgroups
+
+**Evidence.** `pbh-coset-wreaths-iff-identity-edge-hnns` [LP] shows that for G ∈ B_A and
+C ≤ G the following are equivalent:
+- the lamplighter over G/C lies in B_A;
+- the identity-edge HNN over C lies in B_A;
+- C is a centralizer C_G(m) for some m in a B_A-overgroup.
+
+Applications:
+- `pbh-graphs-of-groups-over-realized-good-edges` [LP];
+- centralizer amalgams [LP]. Through Kharlampovich–Myasnikov's iterated extensions of
+  centralizers, these give limit groups over torsion-free hyperbolic groups [LP];
+- virtual retracts are good (`virtual-retracts-satisfy-pbh-coset-wreath-closure` [LP]),
+  which gives wreaths over cosets of f.g. subgroups of limit groups and of free, virtually
+  free and Fuchsian groups;
+- `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` [LP], so Z wr_X PSL_2(Z[1/2]) embeds
+  in a finitely presented simple group;
+- the non-RF double of PSL_2(Z[1/2]) along PSL_2(Z) [LP];
+- cusp extensions of relatively hyperbolic groups [LP].
+
+**The Mihailova test.** In `fibre-products-over-b-a-quotients-lie-in-cr` [LP], the fibre
+product P ≤ F × F over Q is good when Q ∈ B_A and is not good when Q has unsolvable word
+problem. The logic lane's hypothesis MH (`fp-embeddability-index-set-is-sigma-3-complete`)
+concerns the same Mihailova HNN extensions H(Q). One object is the test case in both
+lanes.
+
+**Lesson for general BH.** Permanence under HNN extensions and amalgams, the engine of
+Higman-style embeddings, is the problem of realizing edge groups as centralizers inside
+one B_A group. The open core is subgroups with decidable membership that are neither
+centralizers nor retracts. `pbh-closed-under-decidable-permutational-wreaths` (OPEN)
+states it, and its hypothesis is shown necessary.
+
+**Where it stops.** Higman's group. Retracts inherit proper-power conjugacy, so its
+splittings have no retract edges, and the closure theorems cannot reach it
+(`retracts-inherit-proper-power-conjugacy` [LP]).
+
+### L6. The shell compiler: the FW window theorem says exactly what a Kazhdan input must have
+
+Recall that BH is equivalent to BH for simple Kazhdan decidable inputs.
+
+**Evidence.**
+- For FW inputs, shell window zero holds only with sign −1, through an injective
+  endomorphism ψ of infinite index (`fw-inputs-pass-window-zero-only-via-proper-self-embeddings` [LP]).
+- Moreover:
+  - the core of ψ is trivial [LP];
+  - C_P(ψ(P)) has finite exponent [LP];
+  - co-Hopfian FW inputs fail, and so do automorphism twists (referee-a PASS with a scope
+    fix) and every window with pairwise commuting copies [LP].
+- `shell-envelopes-depend-only-on-the-near-image` [LP]: the shell route is a question
+  about finitely generated subgroups of NearSym_0(N), and realizability is never the
+  obstruction.
+- **Diagnostics on the natural inputs.**
+  - EL_n(L_2) is simple Kazhdan with a trivial-core corner endomorphism, but corner
+    endomorphisms have large centralizers [LP].
+  - The twists of St_N(R_L) fix its central K_2 ≅ Q^×, so their cores are nontrivial, and
+    a torsion-free center fails commuting windows [LP].
+- **Algebra gate.**
+  - Shell germ Steinberg algebras are never simple, but modulo the singular ideal J they
+    are central simple [LP].
+  - J is generated at the singular point, as the annihilator of the shell module at
+    infinity [LP]. For the zigzag shell of Z, J is finitely generated [LP].
+- **Calibration.** V's binary shell passes both germ gates [LP]. Whether its envelope is
+  finitely presented is OPEN.
+- bh-shell-kazhdan found no obstruction specific to (T): every constraint found depends
+  only on one-endedness, and Z² passes.
+
+**Lesson for general BH.** For the inputs that carry BH, a window-zero shell needs an
+injective endomorphism ψ with:
+- infinite index;
+- trivial core;
+- an image with a finite-exponent centralizer.
+
+That is a self-similar but not corner-type endomorphism. It is a single algebraic target:
+find one infinite simple Kazhdan decidable group with such a ψ, or prove none exists
+(which would kill window-zero shells for BH). Wider windows remain only in non-commuting
+form.
+
+### L7. Central extensions: the class must die on the germ groupoid while the center survives
+
+**Evidence.**
+- Odometer and shear lifts: T_m → T_(m+2) [LP].
+- The untwisting criterion (finite kernels): the class must die on every point
+  stabilizer, and Cuntz stabilization cannot remove this [LP].
+- Deligne's class dies on Lagrangian Cantor covers. It survives on every linear rational
+  projective host, by Margulis superrigidity [LP].
+- A Leavitt swindle kills Deligne's center in every ring-induced host [LP].
+- Deligne's lattice lies in the f.g. simple commutator subgroup of the Lagrangian
+  Brin–Thompson group [LP]. Its finite presentation is OPEN.
+- For n = 2, unimodular Maslov cells do not dissect mixed atoms, so tree-pair
+  presentations do not transfer [LP].
+- Torelli lower-central quotients are non-RF Kazhdan groups with solvable word problem
+  and contain Deligne-type lattices [LP].
+
+**Lesson for general BH.** The non-RF Kazhdan test groups are central extensions, and the
+mechanism is cohomological. The host action must kill the class in H² of its groupoid
+while the extension stays injective.
+- Linear, rigid actions never kill the class.
+- Ring-induced hosts kill the center itself.
+- So the host must be piecewise (Maslov cells), and one finite-presentation question is
+  the gate.
+
+### L8. Linear groups: finitely many primes go through Thompson-type hosts; all primes need the Leavitt ring
+
+**Evidence.**
+- The twisted integral-affine Brin–Thompson group W is finitely presented, simple and
+  contains every GL_n(Z). Its S-integral version W_(P,l) has a simple finitely presented
+  commutator subgroup containing every GL_n(Z[1/P]) [IC: bh-verify-W PASS].
+- For infinitely many primes:
+  - no homeomorphism shifts ℓ-adic scalar actions along a chain of six primes (conditional
+    on Serre's six exponentials) [LP];
+  - no free Q_odd action has a doubling intertwiner [LP];
+  - Q ⋊ ⟨2⟩ in 2V_τ reduces to one circle coding [LP].
+- **Leavitt resolvent.**
+  - K_2-stability holds [RA][RB], so St_N(R_L) has solvable word problem.
+  - St_N(R_L) is quasisimple and contains every GL_n(Q) [LP]. PE_10(R_L) is simple but not
+    finitely presented, since its H_2 is not finitely generated.
+  - St_N(R_L) is generated by two copies of itself [LP].
+
+**Lesson for general BH.** Uniform word problem gives a common host, and here it is
+realized concretely: one finitely presented simple group for all GL_n(Z[1/P]). A Leavitt
+pair makes unstable K-theory equal to stable K-theory (the gq-infinite-primes line in
+LESSONS.md). That turns Steinberg groups over purely infinite rings into decidable
+finitely presented hosts for all of GL_n(Q). What remains is the wrapper for St_N(R_L),
+which is exactly the L6 shell gate.
+
+### L9. Arithmetic dynamics: one unit condition governs the Stein and IET hosts
+
+**Evidence.**
+- Stein groups with slope an algebraic unit β with property (F):
+  - they are contracting RSGs [RC, PASS with fixes];
+  - they are finitely presented, with a finitely presented simple derived subgroup [LP].
+- IET and box-exchange groups over Q(β) satisfy BH [LP].
+- (F)-unit fields are characterized by isolated-sign units, which excludes Q(√3) [LP].
+- Computable modules are necessary (earlier).
+
+**Lesson for general BH.** Finiteness of a symbolic-coding host is an arithmetic
+condition on the expanding unit: finite β-expansions. Contracting-RSG structure is the
+uniform device that turns such a coding into a type (A) actor. The norm +1 quadratic case
+is open.
+
+## 3. Named problems answered or corrected in this pass
+
+| Problem (source) | Result | Node | Status |
 |---|---|---|---|
-| Kourovka 17.59 (Kohl): is CT(Z) the group of RCWA permutations of Z fixing N_0 setwise? | **Yes** | `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers` | lane proof; the 21st issue (2026) lists it unsolved |
-| Kourovka 17.60 (Kohl): are the CT_P(Z) pairwise non-isomorphic? | **Yes**, for all sets P of odd primes, finite or infinite | `ct-p-z-groups-are-pairwise-nonisomorphic` (supersedes the \|P\| = \|Q\| partial node) | lane proof; a second proof with a different invariant is in `gq-bh-bh-free-11-ct-p-z-second-proof.md` |
-| Kourovka 17.61 (Kohl): is CT_P(Z) finitely presented for finite P? | **Yes**: CT_P(Z) is the full group of an explicit one-vertex (\|P\|+1)-graph, simple and of type F_∞ | `ct-p-z-is-a-one-vertex-k-graph-full-group` | lane proof; Li, Matui and FKPS inputs read at source |
-| BFFHZ (2503.21882) Q3.1: graph products of PBH groups are PBH? | **Yes**, over finite graphs, plus retract amalgams X *_C (C × K) | `pbh-class-closed-under-graph-products` | lane proof; two internal re-checks (bh-free-10, bh-free-11) found no gap |
-| BFFHZ Q3.3: is (G ∗ F_n)/J_G finitely presented for f.p. simple G? | **No**: Thompson's T fails at every rank n | `thompson-t-mixed-identities-are-not-finitely-normally-generated`, with the reformulation `bffhz-q33-is-normal-finite-generation-of-mixed-identities` | lane proofs |
-| Zaremsky 2405.18354 Q5.13(i) and BFFHZ Q3.4, instance: Lodha's f.p. simple circle group S | **Positive instance**: S acts on P^1(Q) with type (A), transitively on ordered pairs, so SV_S is f.p. simple and S is PBH | `lodha-simple-circle-group-has-a-type-a-action` | lane proof. Also new Q3.4 census lines for circle PL groups T(l;A,P), V-type PL groups V(l;A,P), Stein V-groups |
-| LISW (2510.01952) Q1.11: every f.g. linear group into a f.g. self-similar group? | **Yes, even a f.p. one**, over any field | `fg-linear-groups-embed-in-fp-self-similar-groups` | lane composition of main's linear chain, not reviewed as a composition. LISW Q1.10 (quasi-retracts) stays OPEN |
-| Zaremsky, Oberwolfach Report 26/2018 Q110: Higman's group into Lodha–Moore groups or Monod's H(R)? | **No**: every homomorphism is trivial | `higman-group-embeds-in-no-lodha-moore-or-monod-group` | corollary of the 09-13 node `higman-group-embeds-in-no-piecewise-analytic-circle-group`; lane proof |
-| BBMZ-hyperbolic (2309.06224) Q1.4, contracting case | **Yes** for contracting RSGs | `contracting-rsgs-have-fp-full-closures` | lane proof. The general Q1.4 (`fp-rsgs-have-fp-full-closures`) stays OPEN |
-| BBMZ-hyperbolic Q1.1, freely decomposable case | **Yes** for free products of hyperbolic groups and for virtually freely decomposable hyperbolic groups | `free-products-of-hyperbolic-groups-are-contracting-rsgs`, `virtually-free-product-hyperbolic-groups-are-contracting-rsgs` | lane proofs. The general Q1.1 stays OPEN |
-| BBMZ-hyperbolic Q1.5 and Q1.6 | **Reformulated**: Q1.5 ⇔ PBH; Q1.6 ⇔ BFFHZ Q3.4 | `bbmz-oligomorphic-and-twisted-questions-are-pbh-forms` | referee a PASS |
+| Kourovka 17.57 (Kohl): Out(CT(Z)) = C_2? | **Yes**; also Out(CT_P(Z)) = C_2 for every nonempty P | `out-ct-z-is-c2`, `out-ct-p-z-is-c2` | [LP][IC] (bh-free-43 PASS) |
+| Kourovka 21.74(b)(c) (Kohl): decide finite cycles in CT(Z) | **Undecidable** | `ct-z-finite-cycle-problems-are-undecidable` | [LP]; Kari–Ollinger, which prints proof sketches only |
+| Kourovka 21.75 (Kohl) | **Negative**: CT_P1 and CT_P2 generate CT_(P1∪P2) | `ct-p1-and-ct-p2-always-generate-ct-p1-union-p2` | [LP], two independent proofs |
+| Kohl's factorization conjecture for RCWA(Z) | **Yes** | `rcwa-z-generated-by-class-shifts-reflections-transpositions` | [LP] |
+| Belk–Zaremsky conjecture (2001.04579, l.218) | **Yes**: SV_G is F_n iff the action is (A_n) | `twisted-brin-thompson-type-fn-criterion` | [RA] |
+| Mallery–Zaremsky Q5.13 | **Yes** for finitely presented, and for F_m, strongly shift-similar G | `fp-strongly-shift-similar-groups-have-fp-houghton-like-groups`, `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups` | [RA], [LP] |
+| Mallery–Zaremsky Q3.18, as stated | **No** (a non-f.g. example); the f.g. form is OPEN | `infinite-shift-similar-groups-need-not-be-strongly-shift-similar` | [LP] |
+| MathOverflow 412219 | **No**: a f.p. decidable G whose E(G) is not recursively presented | `fp-decidable-group-whose-e-is-not-recursively-presented` | [LP][IC] |
+| Tarocchi: is [G_3, G_3] simple? | **Yes**, hence for every G_n, n ≥ 3 | `dendrite-rearrangement-group-g3-has-simple-commutator-subgroup` | [LP] |
+| Lodha: is S 2-generated? | **Yes**, and so is every f.g. simple circle group containing T | `lodha-simple-group-s-is-two-generated`, `fg-simple-circle-groups-with-t-are-two-generated` | [LP] |
+| Tanner (2312.07375), for (F)-unit slopes | **Yes** | `pisot-unit-slope-stein-groups-are-finitely-presented` | [LP] |
+| Matui: free minimal Z^N derived full groups never f.p.? | **Yes for residually finite actions**; the rest is OPEN | `rf-free-minimal-zn-actions-have-non-fp-derived-full-groups` | [LP] |
+| Almeida–Dantas–de Oliveira-Tosti (2609.01868): Z wr_X PSL_2(Z[1/2]) into a f.p. self-similar group? | **No**: the group is not RF. It does satisfy BH (L5) | `z-wr-psl2-z-half-is-not-residually-finite` | [LP][IC] |
+| BBMZ-hyperbolic Q1.1, virtually free case | **Yes**, with trivial nucleus | `virtually-free-groups-are-contracting-rsgs` | [LP] |
+| Survey 5.3(10), exotic Ã₂ lattices | **BH holds** | `exotic-a2-lattices-satisfy-boone-higman` | [LP] |
+| Survey 5.3(13), Artin-adjacent cases | Complex braid groups except G_24, G_27, G_29, G_33, G_34; B(e,e,n); supersolvable arrangements | `complex-braid-groups-in-pbh-except-g24-g27-g29-g33-g34` et al. | [LP] |
+| Solvable cases | Every free centre-by-metabelian group is linear; FP_∞ soluble groups are PBH | `free-centre-by-metabelian-groups-are-linear`, `fp-infinity-soluble-groups-satisfy-permutational-bh` | [LP], priority not checked beyond a bounded search |
+| BBCMP Q1.16, first part | Partial: low-complexity MCGs are continuous automatic; once-punctured MCGs are asynchronously so | `low-complexity-mapping-class-groups-are-continuous-automatic` et al. | [LP] |
 
-**Literature lists these as open; main marks them ESTABLISHED.** Each is either a new
-theorem or an error, and each has had only internal checks.
-- **BBMZ survey Problem 5.3(7), f.p. metabelian groups** (`fp-metabelian-groups-satisfy-boone-higman`).
-  - Reviewed internally on 09-13 (`review-metabelian-bh-2026-09-13.md`).
-  - On 09-18 bh-verify-metabelian re-derived the chain end to end: PASS modulo standard
-    inputs.
-  - BHM 2407.03149 (l.272) and arXiv through 2609.01868 still list it as open.
-- **Every f.g. linear group over any field** (`finitely-generated-linear-groups-satisfy-boone-higman`,
-  a new union node at ff3174b2a).
-  - bh-verify-linear: PASS for both characteristics.
-  - The literature reaches only f.g. subgroups of GL_n(Q) (Zaremsky 2405.09722 Thm 1.2).
-  - The one idea not found in the literature is the parameter-coordinate self-similar
-    action of R^N ⋊ E_N(R), over R = Z[1/m][s] and F_p[s].
-- **Spherical Artin groups of exceptional type** (`spherical-artin-groups-satisfy-boone-higman`).
-  - This is part of 5.3(13). BFFHZ say it "remains open for the exceptional type
-    spherical Artin groups".
-  - bh-verify-artin gives PASS, *conditional on* the linear chain.
-- **Euclidean types B̃_n and C̃_n** (PBH form).
-  - BFFHZ list Euclidean types other than Ã_n as open.
-  - bh-verify-artin gives PASS. These rest on published theorems (BFFHZ Thm A,
-    Charney–Crisp, Li–Roushon) plus short arguments.
+**Possible errors found in the literature** (all lane proofs, for expert confirmation):
+- FFWZ 2603.24687 Lemma 4.9(i) fails for non-faithful actions, which leaves a gap in
+  their non-faithful finiteness proofs. Their answer to Q5.8 does not use it.
+- The two-generator torsion criterion in Kojima–Sheng 2603.18410 is false in V [RA].
+- In the self-similar representation of 2609.01868, Theorem A, every lamp acts the same
+  way, so the representation is not faithful.
 
-## 2. New host constructions and classes embedded
+## 4. Corrections and refutations in this pass
 
-All entries below are lane proofs, not reviewed, unless marked otherwise.
+**Refuted or dead.**
+- `garside-odometer-groups-have-simple-finite-index-commutator` is REFUTED, so the
+  spherical-Artin Garside route is DEAD (L1).
+- `every-real-number-field-lies-in-an-f-unit-field` is REFUTED: Q(√3).
+- `kms-configuration-modules-carry-self-similar-structures` is REFUTED.
+- `lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map` is REFUTED as a full
+  target.
+- `e-of-finitely-presented-group-is-recursively-presented` is REFUTED (MO 412219).
+- `z-wr-psl2-z-half-embeds-in-fp-self-similar-group` is REFUTED.
 
-**Hosts.**
-- `cantor-cover-germ-extension-of-v-is-fp-simple`: the full germ extension of V by all
-  germs commuting with its dyadic germs is f.p. simple and contains the lamplighter
-  C(C,Z) ⋊ V and Q. It is a Cantor analogue of Belk–Hyde–Matucci's VA, and may
-  coincide with a known group.
-- `one-fp-simple-group-contains-every-brin-thompson-subgroup`: the group DV_F contains
-  every subgroup of every nV. The host is Belk–Zaremsky's, and no priority is claimed.
-  `circulant-graph-wreath-products-satisfy-boone-higman` puts Z wr_Γ Z, for cofinite
-  connection sets, into DV_F.
-- `periodic-germ-extensions-of-v-are-virtually-simple` (F_∞, with a simple commutator
-  subgroup), `two-radix-odometer-host-is-f-infinity-with-fg-charge-kernel`, and
-  `odometer-2v-orbit-action-is-type-a`. The last makes the twisted Brin–Thompson group
-  of 2V_τ f.p. simple, with BS(1,2) having a base of infinite entropy.
-- `odometer-lift-central-extensions-of-v-subgroups-into-2v-tau`: central Z-extensions of
-  subgroups of V, when the class dies on the action groupoid, embed in the F_∞ simple
-  group 2V_τ.
-- Non-simple overgroups, for context:
-  - `elementary-shift-group-contains-every-integral-linear-group`: E(Z) ⋊ Z, a
-    three-generated group containing every integral linear group.
-  - `finitary-steinberg-extensions-by-oligomorphic-actions-are-fp`: a f.p. group
-    containing every GL_n(Z).
-  - A single f.p. *simple* host for all integral linear groups remains OPEN
-    (`one-fp-simple-group-contains-every-integral-linear-group`).
+**Withdrawn or narrowed.**
+- The quadratic IET full-group claim now covers only norm −1 fields, after Cleary was
+  read at source. Norm +1 is open.
+- `stein-v-groups-act-with-type-a-on-breakpoints` is corrected in the same way.
+- The stabilization node's citation of Matui's comparison theorem was replaced by a
+  direct proof.
+- `ct-p1-and-ct-p2-generate-ct-of-the-union` is marked DUPLICATE.
 
-**Classes (embed in a f.p. simple group, or lie in B_A).**
-- *Free-group extensions.* Ascending HNN extensions of f.g. free groups:
-  `ascending-hnn-of-free-groups-satisfy-boone-higman`, which is F_∞ simple.
-  - One-relator groups meeting the Sapir–Špakulová or Brown criteria follow:
-    `almost-all-one-relator-groups-satisfy-boone-higman`. The generic statement is not
-    new.
-  - Free-by-virtually-free groups follow from Bux–Llosa Isenrich–Wu:
-    `free-by-virtually-free-groups-satisfy-boone-higman`.
-  - Generalized BS groups over closed surface groups:
-    `surface-generalized-bs-groups-satisfy-boone-higman`.
-  - Free-by-B_A and surface-by-B_A extensions:
-    `free-by-pbh-and-surface-by-pbh-groups-lie-in-type-a-class`,
-    `free-kernel-extensions-stay-in-the-permutational-class`.
-- *CAT(0) and lattices.* Groups acting geometrically on (hyperbolic plane) × tree
-  (referee a PASS), (symmetric space) × tree, and products with a tree factor
-  (referee a+b PASS). Irreducible tree lattices with just-non-compact closures, via
-  Bader–Shalom. Arithmetic Lie lattices have faithful Hecke members in their BS class
-  (referee a PASS). Tree lattices split into irreducible blocks.
-- *Artin groups.*
-  - Forest Artin groups, and triangle-free all-3 Artin groups.
-  - Reductions: to free-of-infinity groups, along folding separators, through hub cones.
-  - `euclidean-artin-toric-commensurability`: A(X̃) ∈ B_A iff the toric Weyl complement
-    group of X is.
-  - `weyl-toric-arrangements-b-d-e-f-are-not-fiber-type` shows toric bundles cannot
-    reach D̃_n, Ẽ_{6,7,8} or F̃_4.
-- *Automaton and self-similar groups.*
-  - `lift-presented-automaton-groups-satisfy-boone-higman` (referee a+b PASS), with
-    spinal and finitary extensions.
-  - Eventually periodic Grigorchuk groups G_ω. All G_ω lie in one-point germ
-    extensions of V.
-  - Grigorchuk's f.p. amenable group, and a bounded action for the spine-Grigorchuk
-    group.
-  - Linear-activity automata can have Nekrashevych groups that are not f.p.
-- *Amenable and dynamical.*
-  - Topological full groups of primitive aperiodic substitution subshifts, and of
-    their products.
-  - The SMART trace full group, a Juschenko–Monod group, inside 2V.
-  - Sturmian Juschenko–Monod groups when the quadratic field has a unit of norm −1.
-  - Quadratic-irrational interval exchange groups and rectangle exchange groups.
-- *Piecewise groups.*
-  - Dyadic-slope PL groups with rational breakpoints.
-  - Piecewise PSL_2(Z) groups with rational and quadratic breakpoints.
-  - Lodha–Moore groups, inside Lodha's S.
-  - Houghton groups, inside V (standard).
-- *Other.*
-  - The free center-by-metabelian group of rank 2 (PBH, via a new 4×4 linear
-    representation). Rank ≥ 4 is linear iff residually finite.
-  - F.g. residually finite soluble groups of finite rank (PBH).
-  - Fiber-type toric and elliptic arrangement groups.
-  - Relatively hyperbolic groups re-embedded with f.p. simple peripherals.
+**Status upgrades.** `exotic-a2-lattices-satisfy-boone-higman`,
+`one-fp-simple-group-contains-every-integral-linear-group`,
+`twisted-integral-affine-full-group-is-finitely-presented`,
+`free-centre-by-metabelian-groups-satisfy-boone-higman`,
+`piecewise-canonical-permutations-are-transposition-products` and
+`k2-central-in-steinberg-groups-of-leavitt-resolvent-ring` went from OPEN to ESTABLISHED.
 
-## 3. Reductions of Boone–Higman
+**Hygiene.** The 27bee4278 flag on the Kourovka artifact ("automatic" listed as a BH
+class) is fixed on main.
 
-**Houghton-like envelopes (Mallery–Zaremsky).**
-- `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`: for n ≥ 2 the germ
-  group of H_n(E_ν(P)) is f.p. exactly when the near-shift group R_ν is. Referee a PASS
-  for items 1–4.
-- `free-shift-houghton-like-envelopes-are-not-fp`: free-shift enumerations pass the
-  germ gate but never give f.p. envelopes. This **refutes** the lifting claim
-  `houghton-like-envelopes-lift-finite-presentation-from-germs`.
-- The route `decidable-inputs-have-fp-houghton-like-shift-envelopes` stays OPEN; a
-  witness ν must carry near relations.
+## 5. The compiler question: its sharpest forms on main
 
-**Shell gates.**
-- `genuine-action-shell-envelopes-generalize-the-regular-shell`: shells work for any
-  action with infinite supports.
-- `eventually-periodic-genuine-shell-actions-give-fp-envelopes`: these give f.p.
-  envelopes, and exist **exactly for virtually abelian inputs**, including one-ended Z^2
-  with window 0. This is a calibration and a ceiling, not new BH.
-- Nodes that pass the germ gate:
-  - `twisted-genuine-shell-actions-pass-both-germ-gates` (endomorphism twists);
-  - `fp-window-group-makes-shell-germ-group-fp`;
-  - `finite-index-odometer-near-shift-groups-pass-the-germ-gate`;
-  - `finite-index-in-a-kernel-fg-near-host-passes-both-germ-gates`.
-- Obstructions for one-ended and rigid inputs:
-  - `one-ended-near-regular-actions-have-a-realization-defect`;
-  - `one-ended-schreier-orbits-force-index-zero`;
-  - `fw-inputs-admit-no-twisted-normalizing-genuine-shell-action`.
-- The St_N(R_L) shell instance (gq lanes), which contains every GL_n(Q):
-  - K_2(R_L) ≅ Q^×, and this isomorphism is computable on Steinberg words.
-  - So the word-problem gate reduces to injectivity of K_2(N,R_L) → K_2(R_L), i.e.
-    vanishing of the stabilization kernel. That is OPEN.
+Each item below is stated on main or follows from the nodes cited. None is a printed
+problem unless marked.
 
-**Index sets (bh-logic, lane proofs).**
-- `boone-higman-is-equality-of-two-sigma-3-index-sets`: BH holds iff EMB = DEC, and DEC
-  is Σ_3-complete.
-- `embedding-in-fp-simple-groups-is-sigma-3-complete`: unconditionally, EMB is
-  Σ_3-complete, already for embedding in the single group DV_F.
-- `common-decidable-hosts-iff-uniform-word-problem`: a class has a common decidable
-  host iff its word problem is uniform.
-- `simplicity-of-finite-presentations-arithmetical-position`: simplicity of finite
-  presentations lies in Π^0_2 and is Σ^0_1-hard.
-- OPEN: `boone-higman-uniform-in-word-problem-algorithms`, and
-  `fp-embeddability-index-set-is-sigma-3-complete` (proved under the weaker hypothesis
-  MH).
-
-**Algebra gate.**
-- `germ-steinberg-algebras-over-v-are-fg-central-simple`, used by the route
-  `boone-higman-via-germ-steinberg-algebra-presentation`.
-- `shell-germ-algebra-fp-forces-bounded-germ-presentation`.
-- OPEN: `shell-germ-steinberg-algebra-is-finitely-presented` and
-  `shell-germ-algebra-fp-forces-fp-germ-group`.
-- `field-representable-algebras-have-fp-simple-envelopes`, and char-p rational function
-  fields in f.p. simple algebras.
-
-**Permanence.**
-- `bh-class-free-products-iff-joint-embedding-and-free-z`: the BH class is closed under
-  free products iff f.p. simple groups have the joint embedding property (OPEN) and
-  U ∗ Z embeds.
-- `bh-class-decidable-amalgams-from-free-products-and-hnn`.
-- `bh-class-finite-extensions-reduce-to-finite-simple-wreaths`.
-- `rel-hyperbolic-bh-permanence-implies-free-product-closure`.
-- PBH is equivalent to embedding in f.p. dense Cantor actors, or in full Cantor hosts.
-- The countable-input form is equivalent to BH (referee-c PASS).
-
-## 4. Separators and red-team results
-
-A disproof of BH is exactly a subgroup-closed class containing every f.p. simple group
-but missing some decidable f.g. group.
-- `bh-separators-must-omit-nested-decidable-hosts` (referee a+b PASS):
-  - every separator must omit a simple Kazhdan FA decidable group lying inside a f.p.
-    decidable group;
-  - hereditary decision-problem separators are dead.
-- `coarse-embeddability-separates-boone-higman` (referee a PASS): BH fails if every f.p.
-  simple group coarsely embeds in Hilbert space. Its witness is
-  `decidable-group-with-coarsely-embedded-expanders-exists` (referee a PASS).
-- `baum-connes-with-coefficients-separates-boone-higman`: the same shape, for BCC. The
-  heredity input is cited, not re-read.
-- `decidable-graphical-non-exact-groups-exist`: Osajda's constructions with solvable
-  word problem.
-- Complexity:
-  - `small-cancellation-groups-realize-every-wp-complexity`: no single decidable group
-    contains them all;
-  - `finite-k-graph-full-groups-have-exponential-word-problem`: finite k-graph full
-    groups are not universal hosts;
-  - `bhm-corollary-hosts-over-v-are-cover-centralizer-groups`: BHM Cor. 2.10 cannot
-    carry BH.
-- Rigidity inside germ extensions of V:
-  - `normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`;
-  - `simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group`;
-  - `kazhdan-subgroups-of-almost-v-have-no-central-v-elements`;
-  - `deligne-lattice-in-almost-v-sits-in-one-germ-group` (referee a PASS).
-- Torsion (the Burnside side of 5.3(6)), none bounded-exponent:
-  - the full-shift topological full group is torsion locally finite and residually
-    finite;
-  - torsion subgroups of almost-automorphism groups are residually finite;
-  - periodic subgroups of circle and tree-product groups are finite;
-  - 2-dimensional CAT(0) product groups are torsion locally finite.
-- `bg-in-isometric-brick-hosts-needs-unbounded-exponents` (referee a+b PASS):
-  Baumslag–Gersten in nV-type hosts.
-- `lamplighters-in-v-show-near-action-neatness-is-no-bh-obstruction`.
-- `relative-finite-discrimination-forces-solvable-word-problem`.
-- **Prediction** (`gq-bh-bh-refute-frontier.md`): if BH holds, a single f.p. simple
-  group exists that is non-exact, not coarsely embeddable, fails BCC, contains an
-  infinite f.g. bounded-exponent group, and has word problem beyond any given recursive
-  bound. Each property is a separate OPEN node.
-
-## 5. Corrections and refutations
-
-**Refuted by swarm nodes.**
-- `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic` is **REFUTED as stated**:
-  type-preserving groups never give primitive matrices. It is repaired by
-  `rs-strip-tail-transitivity-forces-primitive-transition-matrices` and a certificate
-  for seven explicit CMSZ groups.
-- `houghton-like-envelopes-lift-finite-presentation-from-germs` is **REFUTED** (§3).
-- `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` is **REFUTED** by
-  `v-and-a-homeomorphism-never-generate-a-free-product`: ⟨V, t⟩ is never V ∗ ⟨t⟩.
-
-**Superseded or duplicate.**
-- `ct-p-z-isomorphism-type-remembers-the-number-of-primes` is superseded by the full
-  Kourovka 17.60 answer.
-- `fp-simple-groups-can-contain-infinite-finite-exponent-groups` is marked DUPLICATE.
-
-**Literature status corrected.**
-- `fp-simple-group-with-commutator-width-at-least-two` was answered by Caprace–Fujiwara
-  (2010) before the AIM list recorded it.
-- bh-lit flag F3 is resolved: FWZ 2603.24687 does not answer BBMZ-hyperbolic Q1.6.
-
-**Wording and status fixes.**
-- referee-c, char-two linear node: its conditionality belongs in the status line, and
-  two nodes misstate Zaremsky.
-- referee-c, GL_n(Q)-in-twisted-BT node: the title holds only for infinite H.
-- Stale "not reviewed" lines on the char-p PBH and self-similarity nodes were fixed
-  (ff3174b2a).
-- Trust notes now say that every elementary-group host can take N ≥ 5, where the
-  refereed rank-five proof replaces the unread Krstić–McCool import.
-
-**Hygiene, open.** `gq-bh-bh-kourovka-problems.md` (item 7.19) lists "automatic" among
-the BH classes on main, but `automatic-groups-satisfy-boone-higman` is OPEN. The
-artifact's owner should fix it.
-
-## 6. Sharpest open questions (from the nodes; ranked by reach × impact)
-
-1. **External verification** of §1's "literature lists open" block, and of the Kourovka
-   and BFFHZ answers. This check is in reach, and it decides whether main already holds
-   answers to several printed problems.
-2. **One-ended shell success**: a one-ended input that is not virtually abelian, with
-   f.p. E_ν. SL_3(Z) is the calibration input (critic U1). Also St_N(R_L)'s gate:
-   vanishing of the stabilization kernel.
-3. **Joint embedding for f.p. simple groups** (`fp-simple-groups-have-the-joint-embedding-property`),
-   which by §3 is equivalent to free-product closure of the BH class.
-4. **Single test groups**, each with most host families already dead:
-   - Higman's H4 (`higman-group-satisfies-boone-higman`);
-   - Baumslag–Gersten;
-   - B(2,665), for 5.3(6);
-   - Deligne's lattice;
-   - Osajda's decidable non-exact group.
-5. **Named classes still open**:
-   - Out(F_n), 5.3(3): `out-free-groups-virtually-embed-in-aut-free-groups`. The
-     abelian level virtually splits; the class-2 obstruction is one quadratic equation;
-     class ≥ 2 is open.
-   - Closed MCG, 5.3(2): `closed-mcg-virtually-embeds-in-fp-full-cantor-group`. Any
-     nV host must also contain braid groups.
-   - One-relator groups, 5.3(9).
-   - CAT(0) groups, 5.3(10).
-   - Automatic groups, 5.3(11).
-   - F.p. residually finite groups, 5.3(12).
-   - Euclidean Artin groups D̃_n, Ẽ_{6,7,8} and F̃_4, now a question about toric complement
-     groups.
-6. **Kourovka 17.57**, reduced to local rigidity of normalizers of CT(Z).
-7. **BFFHZ Q3.2 for T**, and **Q3.6**: high transitivity of Kac–Moody lattices.
+1. **Groupoid Higman embedding** (`gq-bh-bh-groupoid-frontier.md`).
+   - The question: does every f.g. decidable group embed in [[G ⋉ Λ^∞]] for some
+     finitely presented G acting pseudo-freely and self-similarly on a finite k-graph (Li,
+     case III)?
+   - With L1, this would give PBH once the stabilization theorem is extended to infinite
+     coefficient groups. That extension is the first concrete step.
+2. **The Kazhdan shell endomorphism** (L6): an infinite simple Kazhdan decidable group
+   with an injective endomorphism of infinite index, trivial core and a finite-exponent
+   centralizer of its image. The calibration is finite presentation of
+   `v-binary-shell-envelope-is-finitely-presented`.
+3. **Finitely presented shift-similar overgroups.**
+   - The f.g. form of Mallery–Zaremsky Q3.18 (printed) is
+     `fg-infinite-shift-similar-groups-are-strongly-shift-similar`.
+   - With Q5.13 settled for finitely presented G, a finitely presented strongly
+     shift-similar overgroup of an input gives that input a type (A) actor.
+4. **Good subgroups** (L5): decidable permutational wreaths. Mihailova subgroups are the
+   universal test, and Higman's group is the natural hard instance.
+5. **Central-extension gate** (L7): finite presentation of the Lagrangian Brin–Thompson
+   group, or `deligne-class-dies-on-some-rational-projective-host`.
+6. **The complexity test** (L2): Kourovka 7.19 (printed), and
+   `fp-simple-groups-with-arbitrarily-complex-word-problem`.
+7. **Out(F_n)** (`fox-rational-section-fails-class-two-virtually`): whether
+   H¹(Γ′; H_Q) = 0 for every finite-index Γ′ ≤ Out(F_n). A yes shows that
+   Aut(F_n) → Out(F_n) never virtually splits for n ≥ 4, which would kill the
+   virtual-section route.
+8. **Brin–Thompson rigidity.**
+   - `kazhdan-subgroups-of-brin-thompson-groups-are-finite` for n ≥ 2 would answer
+     Zaremsky 2.19(a) (printed) negatively.
+   - `bs12-embeds-in-brin-thompson-2v`, and the growth gap of L3.
+9. **Test groups where every current host dies:**
+   - Higman's group;
+   - Baumslag–Gersten, now reduced to the height-two BS tower over BS(1,2) edges;
+   - the q-difference lamplighter, which is solvable but not quasi-linear;
+   - Torelli lower-central quotients;
+   - B(2,665);
+   - D̃_n, Ẽ_{6,7,8} and F̃_4.
+10. **Permanence under products**: `boone-higman-closed-under-finite-direct-products`
+    (OPEN).

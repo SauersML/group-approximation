@@ -18,6 +18,7 @@ unless it is marked "archive". Wording is paraphrased; numbers are exact.
 | 17.57 (Kohl) | Is Out(CT(Z)) = ⟨n ↦ −n−1⟩ ≅ C_2? | **Yes.** Matui makes automorphisms spatial. Normalizers preserve Z and preserve or swap N_0. After the flip, a normalizer restricts to a bijection of N_0 that is 2- and 3-regular (conjugates of z ↦ bz+e have finitely many canonical pieces). Bell 54A B54Ap Thm 1.4, or independently Adamczewski–Bell 1303.2019 Thm main, then gives a quasi-polynomial, so some class is affine. By minimality the normalizer is then RCWA^+ = CT(Z). | `out-ct-z-is-c2`, `ct-z-normalizers-are-2-and-3-regular`, `out-ct-z-is-c2-iff-normalizers-are-somewhere-affine` |
 | (17.57 for CT_P) | Out(CT_P(Z)) for nonempty P? | **C_2 for every nonempty P** (finite or infinite). The integers are located intrinsically among the rational points (via the count of minimal sets of the shell rotation on the 2-axis). The dilation bases are 2 and p in P. The image moduli are forced to be P'-smooth. For P = ∅ (V), Out is infinite. | `out-ct-p-z-is-c2` |
 | 5.15 (Cannonito) | Do fp residually finite groups with recursive but not primitive recursive word problem exist? | **Yes, in the literature** (Kharlampovich–Myasnikov–Sapir, arXiv:1204.6506, Thm t:rfg with Z recursive and not PR; the reduction is PR by inspection). Not marked in the 2026 notebook. | `fp-rf-groups-with-non-primitive-recursive-word-problem` |
+| 19.46, 17.58 (Kohl) | f.g. infinite periodic subgroups, and intermediate-growth subgroups, of CT(Z)? | **Partial (negative).** Every f.g. periodic subgroup of CT(Z) whose slopes lie in γ^Z (integer γ ≥ 2) is finite: one-stack pumping along a ray of the carry-rule k-graph degree lattice. So candidates need rank ≥ 2 slopes or a non-integral ratio such as 3/2. The same theorem holds for nV (level cocycle on a ray). | `periodic-k-graph-subgroups-with-ray-cocycle-are-finite` |
 
 **The mechanism.** Residue classes with P'-smooth moduli are the cylinders of a
 one-vertex k-graph whose infinite-path space is the profinite completion
@@ -66,3 +67,21 @@ of the boundary groupoid with the k-graph groupoid [Li21a].
     WP.
   - So the obstruction is the tension between "finite data" and "hard WP". Recorded
     for whoever takes 7.19.
+- **17.58 via a Grigorchuk group (the coordinator's suggestion: code the binary tree by 2-adic boxes).**
+  - *Dies twice.*
+  - First, the natural coding uses only 2-power slopes, and
+    `periodic-k-graph-subgroups-with-ray-cocycle-are-finite` makes every f.g. periodic subgroup with
+    slopes in `2^Z`, or in any `γ^Z`, finite.
+  - Second, the standard action has germ group `(Z/2)^2` at the orbit of `1^∞`. The germ groups of
+    `CT(Z)` at points of `Ẑ` are torsion-free subgroups of `Q_{>0}`, so every torsion element of `CT(Z)`
+    is the identity near each of its fixed points.
+  - So a copy of a Grigorchuk group in `CT(Z)` would have to be a non-standard action with trivial
+    fixed-point germs, and with slopes of rank `≥ 2` or on a mixed-sign ray such as `(3/2)^Z`.
+
+**Lesson for general BH (from the CT(Z) cluster).**
+- Arithmetic piecewise-affine groups are k-graph full groups: residues are cylinders and moduli are
+  degrees.
+- So their finiteness, simplicity, automorphisms and torsion are read off from the degree lattice.
+- One base or one ray is tame: `V`, `Out(V)` infinite, and torsion locally finite.
+- Two independent bases carry both the rigidity (`Out = C_2`) and the open complexity (periodic
+  subgroups, undecidable torsion).

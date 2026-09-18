@@ -109,3 +109,15 @@ that of `φ(H)` by a length-linear substitution. ∎
 - **Dimension one matters.** In `nV`, piecewise affine on `[0,1)^n`, the pieces of a product can
   multiply, and the word problem is coNP-complete (Birget). The polynomial bound above uses the
   linear growth of breakpoints on a line.
+
+## Lesson for general BH
+
+- **The mechanism.** Finite presentation plus a tame (semialgebraic, bounded-dimension) action gives
+  specialization to algebraic data, the real-closed-field analogue of Mal'cev's argument for
+  residually finite groups. Continuous parameters in a host therefore never raise the complexity of
+  its simple subgroups.
+- **Host complexity.** The complexity comes only from combinatorial growth of pieces: linear on a
+  line, exponential for boxes (`fp-simple-real-box-map-groups-are-not-universal-hosts`).
+- **Consequence.** Every finite-dimensional real-geometric host class is capped. A universal BH
+  construction must be symbolic and infinite-dimensional, with the input's algorithm simulated in
+  its dynamics.

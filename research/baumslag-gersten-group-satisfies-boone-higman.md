@@ -221,6 +221,22 @@ group contains it.
   - `a_2 ∉ 2V_τ`, by entropy. The actor `Γ*_ψ ⊋ BG` is consistent with the global-twist
     constraint above: it contains `BG` itself, not only a quotient.
 
+- **The base `K` reduces to one local configuration (reduction, 2026-09-18).**
+  `higman-chain-group-pbh-iff-chain-configuration` (lane proof, unreviewed): `K ≅ G_1`, the
+  vertex group of Higman's group, and `K ∈ B_A` iff some `B_A` group (equivalently some
+  finitely presented twisted Brin--Thompson group) contains `a, b, c` with `a^-1 b a = b^2`,
+  `b^-1 c b = c^2` and `c` of infinite order. So `BG ∈ B_A` needs such a configuration. None
+  exists in a linear, quasi-linear or metabelian group, and the amalgam and identity-edge
+  closure steps never create one (`pbh-amalgams-over-centralizer-separated-edges`, item 4).
+  The HNN step `K -> K*_ψ` is covered by item 2 of that node once a `B_A` group contains `K`
+  with the edge map realized by conjugation and a centralizer-realized separator.
+
+- **Conjugating overgroup: `BG` reduces to Higman's group (reduction, 2026-09-18).**
+  `baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath` untwists `BG` along
+  `t ↦ τ u` into the identity-edge extension `Γ *_(⟨a_0⟩)(⟨a_0⟩ × Z)`, for any `Γ ∈ B_A`
+  containing `H_4 ⋊ C_4`. So `H_4 ∈ B_A` plus the lamplighter `Z/2 wr_(Γ/⟨a_0⟩) Γ ∈ B_A` gives
+  `BG ∈ B_A`. Every conjugating overgroup contains such a Higman-type quotient.
+
 **Literature (checked 2026-09-13).** BBMZ arXiv:2306.16356v3 (Problem 5.3, text
 lines 823–849) does not name `BG`. It lies in item (9), one-relator groups
 without torsion. Remark 5.4 records that Bux--Llosa Isenrich--Wu settled items (4),

@@ -81,3 +81,14 @@ hyperbolic groups, not both of order 2.
   - each recurrent component carries loxodromics that act as canonical shifts on a cone;
   - uniqueness reduces to an exact distance-germ gate property, which cut vertices supply in
     free products and which is open for one-ended groups.
+
+## Update (fifth landing): surface groups via tiling walls
+`surface-group-atoms-are-wall-arrangement-cells` (+ proof): for `π_1(Σ_g)` with the regular
+`4g`-gon generators:
+- the atoms are the cells of wall arrangements;
+- every BBMZ hypothesis holds except the irreducible core;
+- no cell is a half-plane (correction: the first landing's gate lemma was vacuous);
+- the remaining obstacle concerns sector cells at crossing vertices.
+
+I used the geodesic walls of the tiling, the alternative route suggested by the coordinator,
+instead of reading Bowen–Series at source.

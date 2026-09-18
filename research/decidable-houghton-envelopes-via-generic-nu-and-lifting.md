@@ -23,7 +23,7 @@ Let `P` be an infinite finitely presented group with solvable word problem.
    `half-finite-generators-with-e2-are-strongly-shift-similar`).
 3. By `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group` item 3, with `n = 3`, the germ group
    `H_3(G)/FSym([3] x N)` is finitely presented.
-4. By `houghton-like-envelopes-lift-finite-presentation-from-germs` (OPEN) with `n = 3`, `H_3(G)` is finitely
+4. By `houghton-like-envelopes-lift-finite-presentation-from-germs` (REFUTED; see the DEAD note above) with `n = 3`, `H_3(G)` is finitely
    presented. ∎
 
 Only step 4 is open. Steps 1–3 are established, and they hold for every infinite finitely presented `P`. Solvable

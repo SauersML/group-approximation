@@ -49,3 +49,16 @@ permutational wreath product `L ≀_{G/H} G = L^(G/H) ⋊ G` lies in `B_A`. If `
   case of `pbh-closed-under-decidable-permutational-wreaths`.
 - `double-of-psl2-z-half-along-psl2-z-lies-in-b-a`: with `free-permutational-products-preserve-pbh`,
   the non-residually-finite double `PSL_2(Z[1/2]) *_{PSL_2(Z)} PSL_2(Z[1/2])` lies in `B_A`.
+
+## Lesson for general BH
+
+A coset space `G/H` can be given the geometry of a type (A) actor without the top group itself
+having type (A).
+- It suffices that `G/H` sits, with finite fibres, inside the clopen sets of a finitely
+  presented full host.
+- `G` may have infinitely many pair orbits, non-finitely-generated stabilizers, and no finite
+  presentation.
+- So the finiteness demands of type (A) can be *outsourced* to the host.
+
+This is a special case of centralizer realization. The lamp at the clopen orbit is the
+realizing element (see `pbh-coset-wreath-subgroups-closure-properties`).

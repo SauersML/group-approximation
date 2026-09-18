@@ -110,3 +110,10 @@ proofs, unreviewed).
   and branching argument.
 - **Consequence.** Every cocompact lattice of every locally finite thick Ã₂ building embeds
   in a finitely presented simple group.
+
+**Covered (pointers, 2026-09-18).**
+- `a2-lattices-embed-in-fp-simple-groups` embeds these lattices in finitely presented simple
+  groups.
+- `a2-lattices-satisfy-permutational-boone-higman` (bh-lattices) puts them in `B_A`.
+- `euclidean-building-lattices-lie-in-permutational-bh-class` covers all types and dimensions,
+  including exotic C̃₂ and G̃₂.

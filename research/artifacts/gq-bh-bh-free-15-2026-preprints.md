@@ -68,6 +68,9 @@ them for the swarm.
   via the Deligne normal form Δ^{-j} x_1 ⋯ x_n over X = (1,Δ] ∪ {Δ^{-1}}.
   - ∂L is a shift of finite type.
   - A acts faithfully on ∂L when it has at least two generators.
+  - **Gap in the printed proof (bh-free-15).** The proof on p. 12 shows only that each
+    Artin generator acts nontrivially. Faithfulness, and topological freeness for
+    irreducible A, are proved in `artin-deligne-boundary-actions-are-topologically-free`.
 - **Theorem 1.13.** Every virtually torsion-free cubulated group is continuous
   automatic, via the Niblo–Reeves structure.
 - **Theorem 1.14.** The boundary of the normal diagonal tree is the Roller boundary.

@@ -244,3 +244,44 @@ review covers main theorems; this pass records printed questions only.
 - **Bodirsky et al., mixed identities, arXiv:2606.24741** (l.43): Conjecture 1 of their earlier
   paper, that every oligomorphic group action has only singular mixed identities. This bears on
   MIF hosts (BFFHZ Q3.4).
+
+## G. Insight pass (2026-09-18, after the INSIGHT FIRST order)
+
+- `product-subgroups-lie-in-cr-when-goursat-quotient-in-b-a`. Let `H ≤ G_1 × G_2` with G_i LR groups
+  in B_A and finitely generated projections. If the Goursat quotient Q_H is in B_A, then H is in CR.
+  For F_m × F_n the chain is: Q_H ∈ B_A ⇒ H ∈ CR ⇒ Q_H has solvable word problem.
+- **Lesson.** Over products of free groups, the decidable-wreath (identity-edge HNN) closure is PBH
+  for the Goursat quotients in disguise. Such combination problems are no easier than PBH for
+  finitely presented groups, and a failure would refute PBH.
+- "Lesson for general BH" paragraphs were added to this lane's earlier claim nodes.
+
+## H. More printed questions (2026-09-18)
+
+- arXiv:2512.24266v3 (l.123–128): does decidable word problem characterize subgroups of
+  finitely presented just-infinite groups? This is equivalent to BH on main
+  (`boone-higman-iff-fp-just-infinite-hosts`, which now carries the printed source and a per-input
+  refinement: inputs that are not residually finite gain nothing from the relaxation).
+- Fournier-Facio–Zaremsky arXiv:2607.21727 (rope trick), questions `quest:higher_F`
+  (l.188: every f.g. recursively presented group into a group of type F_3 / F_∞?) and
+  `quest:higher_FP` (l.192: every f.g. group into FP_3 / FP_∞?). Main already cites the paper
+  33 times. Compare BBMZ survey Q5.6 (`every-finitely-presented-group-embeds-in-an-f-infinity-group`).
+
+## I. Gate M2 of the synthesis: literature pass (2026-09-18)
+
+Read at source:
+- ABT 1507.03369 (effective strongly aperiodic subshifts);
+- Barbieri–Carrasco-Vargas 2406.12777 (Medvedev degrees);
+- Carrasco-Vargas 2505.14247 (minimal SFTs have decidable language) and 2303.14820 (computable
+  translation-like actions);
+- Aubrun–Bitar–Huriot-Tattegrain 2204.11492 (minimal strongly aperiodic SFT on F_n × Z; new node
+  `free-times-z-carries-a-minimal-free-sft`);
+- Álvarez López 1807.09256 (strongly aperiodic, strongly repetitive colorings with explicit
+  constants; central modulus only).
+
+Recorded as Attempt 7 on `decidable-fp-groups-have-effective-minimal-free-subshifts`. Printed
+open items met on the way:
+- Ballier–Stein conjecture (2204.11492 l.142): a f.g. group admits a strongly aperiodic SFT iff
+  it is one-ended with decidable word problem;
+- 2309.02620 l.1769: can these strongly aperiodic SFTs be made minimal, mixing or uniquely
+  ergodic?
+- Barbieri–Carrasco-Vargas Problem (2406.12777 l.130): the class of Medvedev degrees of G-SFTs.

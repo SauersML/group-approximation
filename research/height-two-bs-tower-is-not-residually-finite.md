@@ -31,6 +31,18 @@ group, the vertex group of `baumslag-gersten-splits-over-bs12-edges`.
   finitely presented simple group is not settled on this graph. It is a smaller test case than
   `BG`: three generators, two relators, and no stable letter.
 
+## Lesson for general BH
+
+An amalgam `A *_C B` loses residual finiteness as soon as `C` is profinitely dense in a larger
+subgroup of `B` (here `Z` inside `Z[1/2]`) while `C` is a separable retract of `A`. Conjugating an
+`A`-element by a profinite "root" of `C` then collapses in every finite image.
+
+This is the amalgam form of the dense-coset mechanism recorded for permutational wreaths
+(`z-wr-psl2-z-half-is-not-residually-finite`). So any class of inputs closed under amalgams over
+cyclic subgroups contains non-residually-finite groups built from linear pieces. The host engines
+for such closure theorems must therefore be non-profinite from the start. This is why no
+residually finite, linear or self-similar route can prove amalgam or HNN permanence for Boone--Higman.
+
 ## Proof
 
 `K = B_0 *_C B_1` with `B_0 = ⟨a_0, a_1⟩`, `B_1 = ⟨a_1, a_2⟩`, both `≅ BS(1,2)`, and

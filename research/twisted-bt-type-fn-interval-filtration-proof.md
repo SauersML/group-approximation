@@ -73,6 +73,35 @@ Proposition `prop:E_hi_conn` (descending links `E_m` are at least
 Bestvina--Brady Morse theory. It uses no hypothesis on `G ↷ S` beyond faithfulness. Fix such
 an `m`.
 
+**BZ `lem:VE_conn` is true, but its published proof has two errors.** Referee c (W1,
+`research/artifacts/gq-bh-referee-c-conjecture-h-and-ffwz.md`, 488bd5ce1) gives the corrected
+proof used here.
+- *The errors.*
+  - `VE_m^{i,j}` also contains vertices that avoid `i` and `j` (referee a).
+  - For `m ≥ 5` the covering sets meet for non-disjoint pairs as well: the merge of leaves
+    4, 5 lies in both `VE_5^{1,2}` and `VE_5^{1,3}`. So BZ's nerve is larger than the
+    matching complex, and the Nerve-Lemma computation does not go through.
+  - The join description `|A_{ij}| * |VE_{m−2}|` recorded earlier is correct for one pair,
+    but intersections for non-disjoint families are not joins.
+- *Correct argument.* A vertex of `VE_m` is a nonempty set of disjoint merged pairs of the `m`
+  leaves. Each pair carries a label, the class of (color, twist, twist) modulo the left
+  twisted permutations. The order is reverse inclusion of labelled matchings, since
+  un-merging pairs expands. So `VE_m` is the order complex of the face poset of the labelled
+  matching complex `M_L(K_m)` of the complete multigraph, and is homeomorphic to it. Every
+  label set is nonempty, because `S ≠ ∅`.
+  - The projection `M_L(K_m) → M(K_m)` is a complete join complex in the sense of
+    Hatcher--Wahl: surjective, injective on simplices, and with preimage of each simplex the
+    join of the label sets.
+  - `M(K_m)` is `(ν(m)−1)`-connected, with `ν(m) = ⌊(m−2)/3⌋` (Björner--Lovász--Vrećica--
+    Živaljević, J. London Math. Soc. 49 (1994), Thm 4.1, as BZ cite). The link of a
+    `p`-simplex is `M(K_{m−2p−2})`, and `ν(m) − ν(m−2p−2) ≤ ⌈(2p+2)/3⌉ ≤ p+1`. So `M(K_m)`
+    is weakly Cohen--Macaulay of dimension `ν(m)`.
+  - By Hatcher--Wahl, Duke Math. J. 155 (2010), Proposition 3.5 (recalled by referee c, not
+    re-read at source), `M_L(K_m)` is weakly Cohen--Macaulay of dimension `ν(m)`, hence
+    `(ν(m)−1)`-connected.
+  - The rest of `prop:E_hi_conn` stands: the merge link is `≅ VE_{μ_1}`, and the split-link
+    lemmas are reproved by `stein-complex-elementary-intervals-are-grid-spheres`.
+
 ## Step 2. The interval filtration
 
 - For an elementary interval `I = [v, w]`, the length is `rank(w) − rank(v)`. Every chain in
@@ -110,7 +139,8 @@ Induction is exact, so by Step 0(b),(c) `C_*(F_d)/C_*(F_{d−1})` is quasi-isomo
 - `N = ker χ` has index `≤ 2`, so it is also `FP_{n−e}`. `Z_χ` has a resolution by finitely
   generated free `Z[Γ_I/N]`-modules, and `Z[Γ_I/N] = Ind_N^{Γ_I} Z` is `FP_{n−e}` over
   `ZΓ_I`. So `Z_χ` is `FP_{n−e}` over `ZΓ_I` (dimension shifting), and so is
-  `Ind_{Γ_I}^{Γ} Z_χ` over `ZΓ`.
+  `Ind_{Γ_I}^{Γ} Z_χ` over `ZΓ`. (A shorter argument, from referee c: the ring automorphism
+  `g ↦ χ(g) g` of `ZΓ_I` carries `Z` to `Z_χ`.)
 - By Step 0(a), `Ind Z_χ[e]` is n-finite for every grid `I`. For `e > n` no hypothesis is
   needed.
 
@@ -120,7 +150,8 @@ Induction is exact, so by Step 0(b),(c) `C_*(F_d)/C_*(F_{d−1})` is quasi-isomo
   stabilizer `𝒢(r) ≅ G ≀ Σ_r` (BZ Lemma `lem:vtx_stab`).
 - Grid intervals with bottom `[id_r]` correspond to tuples `(C_1, ..., C_r)` of finite color
   sets. A twist `γ` at root `i` sends the full `C_i`-split to the full `γC_i`-split (BZ Lemma
-  `lem:Relations`(7), N5; compare `lem:stab_spectrum`), and permutations permute roots.
+  `lem:Relations`(7), `x_{γs} τ_γ = (τ_γ ⊕ τ_γ) x_s`, N5 and referee b W2), and permutations
+  permute roots.
 - So `Γ`-orbits of grid intervals with `e ≤ n` and bottom of rank `r` correspond to multisets
   of `G`-orbits of subsets of size `≤ n`. There are finitely many, because finitely many
   orbits on `S^n` give finitely many orbits on `S^k` for `k ≤ n` (embed `S^k` in `S^n` by

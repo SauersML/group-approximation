@@ -57,9 +57,64 @@ Theorem 1.4 construction retracts only onto the split extension of `H` over `Q`.
      `b ↦ (Ax + b − x')/p`. Once `H` has transcendental entries this forces infinite rank: the
      degree in `τ` grows under the `H`-action.
    - So no analogue of the rank-`n` solenoid `Z[1/N]^n` with one dilation is available. The
-     split extension can stay finitely generated, but it typically loses finiteness properties:
-     compare `Z[t] ⋊ ⟨t⟩ = Z ≀ Z`, which is not finitely presented, and LISW Remark
+     split extension can stay finitely generated, but it typically loses finiteness properties.
+     *(Correction, 09-18, bh-free-17: for a rigid `R` it cannot stay finitely generated. By
+     `rigid-affine-hosts-are-linear-over-number-fields`, a finitely generated `R^M ⋊ Q` forces `R` to
+     be a finitely generated ring, hence algebraic. The ascending union above is not finitely
+     generated.)* Compare
+     `Z[t] ⋊ ⟨t⟩ = Z ≀ Z`, which is not finitely presented, and LISW Remark
      `rem:loosing-Fn`. Condition (1) of the question then fails.
    - A proof along these lines needs a finitely generated, finiteness-preserving substitute for
      `K_{n,N}` that is invariant under both the digit shift of `τ` and the `H`-action. None
      is known.
+
+## Status by finiteness length (09-18, lane bh-free-17)
+
+- **Settled: groups of type `FP_2` over no field.** This covers every finitely generated `H` that is
+  not of type `FP_2(k)` for any field `k`, and needs no linearity. By
+  `non-fp2-groups-are-quasi-retracts-of-simple-groups`, Belk--Zaremsky's `SV_H`
+  of the regular action works. It is finitely generated and simple, contains `H`, and quasi-retracts
+  onto `H`. Alonso's theorem (LISW Theorem 4.1) then forces it to have exactly the finiteness
+  properties of `H`. This includes `Z wr Z ≤ GL_2(C)`, which is not linear over `Q-bar` and so lies
+  outside LISW Theorem 1.4 and Remark 1.5.
+- **Open: every group of type `FP_2` over some field.** For example, the finitely presented metabelian
+  group `Z[t^{±1}, (1+t)^{-1}] ⋊ Z^2` with `t` transcendental. It has infinite torsion-free rank, so
+  it is not linear over `Q-bar`.
+- **Every persistent host with finite-rank carries stops before infinite-rank inputs.** By
+  `persistent-hosts-build-the-input-from-its-carries`, the part of the input that centralizes the carry
+  kernel `K` embeds virtually in a finite power of `K`, and the rest acts faithfully on `K`. So carry
+  kernels like LISW's `Z[1/N]^n ⋊ ⟨N⟩` never reach `Z wr Z` or the metabelian example above, whatever
+  the self-similar structure.
+- **Why LISW's own method stops at `Q-bar`.** `rigid-affine-hosts-are-linear-over-number-fields`:
+  - if `R ⊆ Z_p` is rigid and `R^n ⋊ Q` is finitely generated, then `Q` is linear over a number
+    field;
+  - so the §6 host (`lem:rigid-self-similar-and-retract`) never exists for `H` not linear over
+    `Q-bar`;
+  - the parameter-coordinate hosts of `fg-linear-groups-embed-in-fp-self-similar-groups` lose the
+    persistent retraction.
+- **Where a twisted Brin--Thompson host would need input.** Suppose `H` is finitely presented but of
+  type `FP_3` over no field. Then any faithful type `(A_2)` action of a group `Γ ⊇ H` that
+  quasi-retracts onto `H` would settle `H`:
+  - `SV_Γ` is finitely presented and simple (`twisted-brin-thompson-finite-presentation-criterion`);
+  - it quasi-retracts onto `Γ`, hence onto `H`;
+  - Alonso's theorem then caps its finiteness at that of `H`.
+
+  The natural candidates are `Γ = H wr_D F`, where `F` acts on the dyadic rationals `D`, and
+  `C(Cantor, H) ⋊ V`.
+  - Both quasi-retract onto `H` through the evaluation cocycle at a point.
+  - `H wr_D F` is finitely presented when `H` is (Cornulier's criterion).
+  - They fail in the same way. On a faithful `Γ`-set where `H` acts on a fibre `Y`, the pairs inside
+    one fibre fall into orbits indexed by `H`-orbits on pairs of `Y`. So `H` itself would need an
+    action with finitely many orbits on pairs.
+
+  This is a hand remark, not a theorem.
+
+**Lesson for general BH.**
+- **Question 1.10 is purely a finiteness question.** Germ cocycles make quasi-retractions onto the
+  acting group automatic, and Alonso's theorem then caps the host's finiteness at the input's.
+- **Where the known methods stop.**
+  - Twisted Brin--Thompson hosts need actions of the input itself with finitely many orbits on
+    pairs.
+  - Rigid self-similar hosts need an algebraic coordinate ring.
+- **So a solution for transcendental `H` of type `FP_2`** must put the transcendence into the host's
+  dynamics while keeping a finitely presented germ group.
