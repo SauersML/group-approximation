@@ -5953,6 +5953,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryMa
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Stabilizer
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabEntry
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.Decide
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineMap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
