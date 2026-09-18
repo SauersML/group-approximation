@@ -79,6 +79,9 @@ the identity.
 - **Right lcms.** Two one-step morphisms with a common multiple have cube walls that are
   pairwise crossing walls adjacent to `w`. Two disjoint walls adjacent to `w` have disjoint
   far halfspaces, so no vertex lies beyond both. So the lcm is again one step.
+- **Full write-up.** The complete verification for referees, using Dehornoy's mcm criterion, an explicit
+  normal form and the norm, is `flagged-pointed-cube-garside-verification`. The two bullets below are
+  the original sketch.
 - **Heads.** The `𝔖⁺`-left-divisors of `a` form a finite set closed under lcm, so `a` has a
   head: the first Niblo–Reeves cube, labelled by every wall that is adjacent there, not
   crossed later, and in `τ` if still adjacent at `u`. Iterating heads gives normal forms

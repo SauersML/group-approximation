@@ -13,6 +13,20 @@ distinct_from:
 
 **OPEN** (stated by bh-free-60, 2026-09-18).
 
+**Update (2026-09-18): the max-n formulation is not the operative one.**
+- **Max-n is too strong.** Finitely presented soluble minimax groups need not have max-n:
+  Abels' `A_4(Z[1/p])` has a centre that is not finitely normally generated (LNM 1261, 0.2.17).
+  A host with a normal Prüfer subgroup never has max-n.
+- **The operative open question** is Question 4 on this class: a homomorphism from `G` to an
+  *isolated* group that is injective on `τ(G)`. That suffices by item 2 of
+  `isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts`.
+- **Both named test cases are settled** in that form by
+  `partial-torus-abels-quotients-are-isolated`: `G_2` (radical scaled by `2`) and `G_λ`
+  (radical twisted by an irrational 11-adic unit).
+- **This max-n statement stays OPEN.** It is implied by Boone–Higman for soluble minimax groups,
+  since finitely presented simple groups have max-n.
+
+
 **Statement.** Every finitely generated soluble minimax group `G` embeds in a finitely presented
 group with max-n.
 
@@ -111,3 +125,18 @@ Let `G` be finitely generated, soluble, minimax and finitely discriminable.
 - **Why it matters.** Every such host is finitely presented and max-n, hence residually
   isolated. So the remaining problem is arithmetic: finite presentation of partial-torus
   S-arithmetic groups. It is not a word-problem problem.
+
+## Attempts (continued)
+
+2. **Isolated partial-torus hosts over number fields (bh-free-60, 2026-09-18).**
+   `partial-torus-abels-quotients-are-isolated` settles `G_λ`.
+   - **Inputs.** Kneser's criterion (Abels LNM 1261, 0.2.8, read at source) and compact
+     presentability of `𝐀_4(Q_q)` (0.2.17).
+   - **How it works.** Restriction of scalars to `Q` makes `𝐀_4(O_K[1/m])` finitely presented
+     at split primes. Commutator descent to the corner makes the quotient finitely
+     discriminable.
+   - **Next tests (open).**
+     - (a) Primes that do not split completely, where `𝐀_n(K_v)` for a proper extension
+       `K_v/Q_p` needs Abels' criterion 0.2.18 over `K_v`.
+     - (b) Radicals of rank at least 2 with non-semisimple (Jordan-block) actions.
+     - (c) Chernikov radicals whose finite part acts non-trivially.

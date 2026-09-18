@@ -10,9 +10,22 @@ distinct_from:
   hall-type-prufer-quotients-embed-in-isolated-abels-groups: that uses A_n(Z[1/p]) and central quotients, where the host acts trivially on the Prüfer radical; this adds several primes and an outer torus, so the Prüfer radical can be non-central and acted on with infinite order.
   isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts: that reduces Question 4 for soluble minimax groups to finitely presented max-n overgroups; this supplies a new family of such overgroups.
   fg-soluble-minimax-groups-embed-in-fp-max-n-groups: that is the OPEN gate for all finitely generated soluble minimax groups; this settles the part of it realized by partial-torus Abels quotients.
+refuted_by:
+  - partial-torus-abels-quotients-are-isolated
 ---
 
-**ESTABLISHED** (lane proof, bh-free-60, 2026-09-18; elementary given the imports; not
+**REFUTED IN PART (2026-09-18)** by `partial-torus-abels-quotients-are-isolated`.
+- **False: the max-n clause.** `A_4(Z[1/p])` itself fails max-n, because its centre `≅ Z[1/p]`
+  is not finitely normally generated (Abels, LNM 1261, 0.2.17). Its quotients with a normal
+  Prüfer subgroup fail it too. The "Hall criterion" invoked below does not give max-n for
+  nilpotent-by-abelian groups.
+- **True and re-proved there, without max-n:** finite presentation of the hosts, the embedding
+  of `G_2`, and the conclusion that `G_2` embeds in an isolated group. The hosts are shown to be
+  finitely discriminable, hence isolated, directly.
+
+The original text is kept below as a record.
+
+Originally stated as established (lane proof, bh-free-60, 2026-09-18; elementary given the imports; not
 reviewed). No priority is claimed.
 
 **Imports, read at source.**
