@@ -39,3 +39,30 @@ finite cd would answer this question negatively; see
 - 2026-09-13 (lane z1-12-amen-nonea): deferred. It is recorded here to wire
   Zaremsky 1.12 to it. Degrijse's paper relates the question to the zero
   divisor conjecture; this lane has not read those results.
+- 2026-09-17 (lane w3-112, inverter, family minimal-counterexample): attacked the dimension-2 step
+  "`H_1(G; U(G)) = 0` for every fg amenable cd-2 `G`". Not resolved.
+  - **Landed, forced structure of a counterexample.**
+    `amenable-cd-two-nonsolvable-groups-have-trivial-ea-radical`: a fg amenable cd-2 group with a
+    nontrivial EA normal subgroup, or with a commensurated infinite cyclic subgroup, is `BS(1,m)`
+    (Kropholler 1990 / Margolis splitting plus the amenable tree alternative). A two-dimensional
+    counterexample is EA-radical-free. It has no commensurated `Z`, and every nontrivial normal
+    subgroup is non-EA of cd 2.
+  - **Dead, Σ¹ descent.** If a counterexample is an ascending HNN extension `K*_φ` with fg base,
+    then `K` is again a counterexample. With `U(G)` coefficients, Mayer--Vietoris gives
+    `H_1(G; U(G)) ≅ coker(1 − tφ_*)` on `U(G) ⊗_{U(K)} H_1(K; U(K))`, where `1 − tφ_*` is
+    injective and the module has dimension 0. Nothing makes this cokernel vanish, and nothing
+    makes the descent terminate. Worse, the splitting itself is not available. The dichotomy
+    `Σ¹ ∪ −Σ¹ = S(G)` for groups without `F_2` goes through the Bieri--Strebel splitting, which
+    needs finite presentability, and it fails for amenable fg non-fp groups (`Z≀Z`). A
+    counterexample is not `FP_2`.
+  - **Dead, dimension shift along a character.** Descent through `N = ker χ` using
+    `hd N = hd G − 1` fails for fg non-FP_2 kernels: `SB_2 = ker(F_2×F_2 → Z)` has cd 2, equal
+    to its ambient group. Any descent must use amenability at exactly this step.
+  - **Følner / rank remark.** The truncated Jacobian ranks `rk J_k` increase to `d − 1`. In a
+    counterexample they never attain it, so the `Z`-rank spectrum of `Z[G]` accumulates at an
+    integer from below. This is a strictly weaker failure than the strong Atiyah conjecture, but
+    no Følner argument gives a gap below an integer for general amenable groups (lamplighter rank
+    spectra are dense), so this route needs a torsion-free-specific input.
+  - **Next.** Rule out a counterexample with a nontrivial normal subgroup `N` of infinite index
+    that is finitely generated (Bieri 1976 handles `FP` normal subgroups). Then combine with the
+    EA-radical-free constraint to force a just-infinite-type counterexample.
