@@ -6039,6 +6039,17 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.UnitalModelFormal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalStabMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTDecay
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.FieldK2
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKEndpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrtLeafNorms
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFreeAlgK2.ZModTwo
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMapOps
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetActionPiNatural
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFBlockAvg
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductMatrix
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductIdealAction
+import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnHalf.FreeRep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
