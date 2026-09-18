@@ -1,0 +1,11 @@
+# python3 search.py 3 4   (seed 20260917, L-BFGS-B, penalty mu=1e4, 4 restarts, run 2026-09-18)
+# qubit chain d=2; defect = sqrt(dA^2 + dB^2) in normalised HS norm; best found, not certified minima
+L  c     min_defect(A,B)  achieved_commutator  proved_lower_bound
+2  0.1   0.4470           0.0999               0.0250
+2  0.3   0.7745           0.2999               0.0750
+2  0.6   1.0954           0.5999               0.1500
+3  0.1   0.3789           0.0999               0.0042
+3  0.3   0.7034           0.2999               0.0125
+3  0.6   0.9428           0.6003               0.0250
+# observed: best defect ~ sqrt(2c) at L=2 and ~ sqrt(1.5c) at L=3, so commutator ~ defect^2 / 2 to defect^2 / 1.5,
+# far below the proved linear ceiling ||[a, sigma a]||_2 <= (5^(L-1) - 1) * defect.

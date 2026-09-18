@@ -12,6 +12,7 @@ artifacts:
   - research/implemented-corona-actions-of-countable-groups-are-unconstrained.md
   - research/dummy-abelianized-cover-df-splits-regular-trace-and-shadow.md
   - research/relation-lamp-wreath-is-mf-with-nontrivial-fd-radical.md
+  - research/stable-abelianized-cover-is-subgroup-monotone.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -124,3 +125,32 @@ claimed.
   Open need: finite quotients of `Gamma_L` with `diam(P_L)` growing linearly
   in `L`, in which `[w, r_1]` survives, or a proof that none exist.  For the
   St_20 presentation that would decide `(DF)` within exact permutation models.
+- **Presentation-free reduction and subgroup monotonicity (2026-09-18).**
+  `stable-abelianized-cover-is-subgroup-monotone` (ESTABLISHED, pure group
+  theory) proves the following.
+  - `E_(G,X,k) = ZG^k x| E_(G,X)`.
+  - Tietze invariance: `E_(G,X,|Y|) = E_(G,Y,|X|)`.  So "stably DF", meaning
+    some dummy cover is not MF, does not depend on the presentation.
+  - For a finitely generated `H <= G` of infinite index, `P^(-1)(H)` is `H`
+    plus `aleph_0` dummies after a basis slide.  So every dummy cover of `H`
+    embeds in `E_(G,X)` for EVERY `X`.
+  - Stable DF is a commensurability invariant.
+  - `E` splits over `H <= G` iff `H` is free.  This uses the Fox projection
+    and Stallings--Swan.
+  - Amenable and free `H` are never stably DF.
+
+  What the route uses from `(DF)` is exactly "the finitely presented cover
+  `G~` of `St_20(L)` is stably DF".  That now follows from stable DF of any
+  one finitely generated subgroup of `G~`, of any index, which need not have
+  full radical.  If the index is infinite, it gives `(DF)` for every
+  presentation with no dummies.
+
+  **Dead as a class.**  Approaches that lift a non-MF subgroup of `G` into
+  `E` die at Step 5: nothing non-free lifts.
+
+  **Remaining gap between the invariant and a fixed presentation.**  Can one
+  dummy lamp destroy MF?  That is, is `ZG x| E` non-MF while `E` is MF?
+
+  **Not done.**  Stable DF is not proved for any group.  The contrapositive
+  says a DF counterexample at `G` makes the stable cover of every finitely
+  generated infinite-index subgroup of `G` MF.

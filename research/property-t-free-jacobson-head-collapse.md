@@ -80,3 +80,36 @@ noncommuting coefficient packet or the Laurent symbol relations), not finer
 rank bookkeeping on the locally finite certificate.  No new node was
 created; the refinement `rank(1-T_m)=2p(1-2^(1-m))` (row constant `2`
 instead of `4`) changes no conclusion.
+
+- **operator-algebras, swarm-0917 (swarm-0917-w7-w7-ptl-follow): root-column
+  transport through relative (T) of `EL_2(J) x| J^2` -- dies at `P_N in A_K`.**
+
+  *Proposal.* Run `thm:transport` and `cor:defect-hs` with `L` replaced by
+  the amenable root column `N=X_13(J)X_23(J)`. This column already carries the
+  cell certificate: `uNu^(-1)<=N`, `c in C_G(N)`, and
+  `[ucu^(-1),x_23(1)]=x_13(Q)`. Obtain the missing projection `P_N` onto
+  `Fix sigma~(N)` from relative (T) of the pair
+  `(K,N)=(<X_12,X_21,N>, N)`.
+
+  *Result.* Recorded in `root-column-fixed-projection-is-not-in-root-pair-cstar`.
+  1. If `P_N in B`, transport goes through with no (T), and gives the HS head
+     collapse.
+  2. But in every `delta_e`-profile model, `P_N notin C*(sigma~(K))`.
+
+  *Invariant.* The tempered quasi-regular representation
+  `lambda_(K/C_K(y))` for `y=x_14(1)`.
+  - It is realized exactly on `Fix(N)` by the centralizing root vectors
+    `[V_n(y)]`.
+  - It is realized weakly on `Fix(N)^perp` through the trace.
+  - `C_K(y)` is amenable because `U(J)` is locally finite.
+
+  *Step where it dies.* A central projection of `A_K` splitting two
+  summands that share a weak quotient.
+
+  *Consequence.* Relative (T), Markov functional calculus and window averages
+  all land in `A_K`. So none can close this route. No relative Kazhdan
+  projection exists in `C*_max(K)` at all.
+
+  *What is left.* A (T)-free proof on this column must place `P_N` in `B`
+  from outside every such `A_K`, and must still pass from HS to operator norm.
+  The claim stays OPEN.
