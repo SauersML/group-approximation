@@ -71,7 +71,8 @@ theorem higmanVCTau_psi_comparable (d : ℕ) {v w : List (Fin d)}
   by_cases h : v.length ≤ 3 ∧ w.length ≤ 3
   · rw [higmanVC_psi_of_short (higmanVCTau_tau d) h.1 h.2]
     exact higmanVC_mk_rel (higmanVFP_letter_comparable_mem h.1 h.2 hc)
-  · rw [higmanVCTau_psi_of_long d h, higmanVCTau_tau, higmanVCTau_val_succ, if_neg h, if_neg hc]
+  · rw [higmanVCTau_psi_of_long d h, higmanVCTau_tau, higmanVCTau_val_succ]
+    exact (if_neg h).trans (if_neg hc)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTau_psi_comparable
 
