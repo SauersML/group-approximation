@@ -6004,6 +6004,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrt
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.KhRel
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTLaurent
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientRels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
