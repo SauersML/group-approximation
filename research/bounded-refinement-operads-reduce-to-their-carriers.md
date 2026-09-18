@@ -114,3 +114,17 @@ transformations.
 
   An input with no Zaremsky actor can be carried only this way. It is also the point where the
   closed-MCG hosts (the non-LCM gate) and the universal route meet.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review.
+- **Part 1.** Divisibility is equivariant, so `e_i ∣ μ = μ_j·h` gives `e_i·h^{-1} ∣ μ_j`, and every
+  orbit meets the finite set `⋃_j Div(μ_j)²`.
+- **Part 2.** The four conditions of Zaremsky's type (A) are exactly the listed hypotheses.
+- **Part 3.** This is definitional.
+- **The twisted Brin–Thompson instance.** The degree-3 common multiple of `θ_s` and `θ_t` is right:
+  splitting along `t` then `s` gives the same brick partition.
+
+**Scope.** The lemma is a reduction, not a construction. It shows that bounded-refinement operads
+certify nothing beyond their carrier, so the content that remains is the unbounded-refinement regime
+it names.
