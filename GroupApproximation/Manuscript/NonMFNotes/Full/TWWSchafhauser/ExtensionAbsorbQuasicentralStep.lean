@@ -168,6 +168,122 @@ theorem quasiUnit_eventually_good {a : A} (ha : 0 ≤ a) (ha1 : ‖a‖ ≤ 1) {
   have he2' : ‖x * e - x‖ ≤ ε := he2
   exact ⟨by rw [norm_sub_rev]; exact he1', by rw [norm_sub_rev]; exact he2'⟩
 
+/-- **One averaging step** (the quasicentral average of `arvesonPair_exists_average`, along
+`CStarAlgebra.approximateUnit A`).  There is a positive contraction `b` above `ρ • a`, with
+`‖[ι b, y]‖ ≤ ε` for `y ∈ Y`, absorbing every `x ∈ X` from both sides to within `ε`. -/
+theorem quasiUnit_exists_step (ι : A →⋆ₙₐ[ℂ] B)
+    (hL : ∀ (a : A) (y : B), ∃ c : A, ι c = ι a * y)
+    (hR : ∀ (a : A) (y : B), ∃ c : A, ι c = y * ι a) {a : A} (ha : 0 ≤ a) (ha1 : ‖a‖ ≤ 1)
+    {ρ : ℝ} (hρ0 : 0 ≤ ρ) (hρ1 : ρ < 1) (Y : Finset B) (X : Finset A) {ε : ℝ} (hε : 0 < ε) :
+    ∃ b : A, 0 ≤ b ∧ ‖b‖ ≤ 1 ∧ ρ • a ≤ b ∧ (∀ y ∈ Y, ‖ι b * y - y * ι b‖ ≤ ε) ∧
+      ∀ x ∈ X, ‖x - b * x‖ ≤ ε ∧ ‖x - x * b‖ ≤ ε := by
+  -- a single bound for all the defects
+  obtain ⟨M, hMdef⟩ : ∃ M : ℝ, M = 2 * ∑ z ∈ Y, ‖z‖ := ⟨_, rfl⟩
+  -- how many members to average
+  obtain ⟨N, hN0, hNbig⟩ : ∃ N : ℕ, 0 < N ∧ 2 * M ^ 2 / ε ^ 2 ≤ (N : ℝ) := by
+    refine ⟨⌈2 * M ^ 2 / ε ^ 2⌉₊ + 1, Nat.succ_pos _, ?_⟩
+    have h := Nat.le_ceil (2 * M ^ 2 / ε ^ 2)
+    push_cast
+    linarith
+  have hNR : (0 : ℝ) < (N : ℝ) := by exact_mod_cast hN0
+  have hNne : ((N : ℝ)) ≠ 0 := ne_of_gt hNR
+  -- how small the cross terms must be
+  obtain ⟨δ, hδpos, hsize⟩ : ∃ δ : ℝ, 0 < δ ∧
+      (N : ℝ) * M ^ 2 + (N : ℝ) ^ 2 * δ ≤ ((N : ℝ) * ε) ^ 2 := by
+    have hε2 : (0 : ℝ) < ε ^ 2 := pow_pos hε 2
+    refine ⟨ε ^ 2 / 2, div_pos hε2 (by norm_num), ?_⟩
+    rw [div_le_iff₀ hε2] at hNbig
+    nlinarith [mul_le_mul_of_nonneg_left hNbig hNR.le]
+  -- the cross condition, eventually along the unit
+  have hQ : ∀ a' : A, ∀ᶠ e in CStarAlgebra.approximateUnit A, ∀ y ∈ Y,
+      ‖(ι a' * y - y * ι a') * star (ι e * y - y * ι e)‖ ≤ δ := by
+    intro a'
+    rw [Filter.eventually_all_finset]
+    intro y _
+    obtain ⟨c, hc⟩ := quasiUnit_defect_mem ι hL hR a' y
+    rw [← hc]
+    exact quasiUnit_eventually_cross ι hL c y hδpos
+  -- the selection
+  obtain ⟨s, hs, hscross⟩ := quasiUnit_exists_selection (CStarAlgebra.approximateUnit A)
+    (fun e ↦ 0 ≤ e ∧ ‖e‖ ≤ 1 ∧ ρ • a ≤ e ∧ ∀ x ∈ X, ‖x - e * x‖ ≤ ε ∧ ‖x - x * e‖ ≤ ε)
+    (fun a' e ↦ ∀ y ∈ Y, ‖(ι a' * y - y * ι a') * star (ι e * y - y * ι e)‖ ≤ δ)
+    (quasiUnit_eventually_good ha ha1 hρ0 hρ1 X hε) hQ N
+  obtain ⟨b, hbdef⟩ : ∃ b : A, b = (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, s i := ⟨_, rfl⟩
+  have hNinv : (0 : ℝ) ≤ (N : ℝ)⁻¹ := inv_nonneg.2 hNR.le
+  -- positivity and norm
+  have hpos : 0 ≤ b := by
+    rw [hbdef]
+    exact smul_nonneg hNinv (Finset.sum_nonneg fun i _ ↦ (hs i).1)
+  have hnorm : ‖b‖ ≤ 1 := by
+    rw [hbdef]
+    exact quasiUnit_norm_avg_le hN0 s fun i ↦ (hs i).2.1
+  -- domination
+  have hdom : ρ • a ≤ b := by
+    have hexp : (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (s i - ρ • a) = b - ρ • a := by
+      rw [hbdef, Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range, smul_sub,
+        ← Nat.cast_smul_eq_nsmul (R := ℝ), inv_smul_smul₀ hNne]
+    have h0 : 0 ≤ (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (s i - ρ • a) :=
+      smul_nonneg hNinv (Finset.sum_nonneg fun i _ ↦ sub_nonneg.2 (hs i).2.2.1)
+    rw [hexp] at h0
+    exact sub_nonneg.1 h0
+  -- absorption from the left and from the right
+  have habsL : ∀ (T : A) (d : ℝ), (∀ i, ‖T - s i * T‖ ≤ d) → ‖T - b * T‖ ≤ d := by
+    intro T d hT
+    have hexp : (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (T - s i * T) = T - b * T := by
+      rw [hbdef, Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range,
+        ← Finset.sum_mul, smul_sub, ← smul_mul_assoc, ← Nat.cast_smul_eq_nsmul (R := ℝ),
+        inv_smul_smul₀ hNne]
+    rw [← hexp]
+    exact quasiUnit_norm_avg_le hN0 (fun i ↦ T - s i * T) hT
+  have habsR : ∀ (T : A) (d : ℝ), (∀ i, ‖T - T * s i‖ ≤ d) → ‖T - T * b‖ ≤ d := by
+    intro T d hT
+    have hexp : (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (T - T * s i) = T - T * b := by
+      rw [hbdef, Finset.sum_sub_distrib, Finset.sum_const, Finset.card_range,
+        ← Finset.mul_sum, smul_sub, ← mul_smul_comm, ← Nat.cast_smul_eq_nsmul (R := ℝ),
+        inv_smul_smul₀ hNne]
+    rw [← hexp]
+    exact quasiUnit_norm_avg_le hN0 (fun i ↦ T - T * s i) hT
+  -- the commutator clause
+  have hιb : ι b = (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, ι (s i) := by
+    rw [hbdef, quasiUnit_map_real_smul, map_sum]
+  have hcomm : ∀ y ∈ Y, ‖ι b * y - y * ι b‖ ≤ ε := by
+    intro y hy
+    have hyS : ‖y‖ ≤ ∑ z ∈ Y, ‖z‖ := Finset.single_le_sum (fun z _ ↦ norm_nonneg z) hy
+    have hexp : ι b * y - y * ι b =
+        (N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (ι (s i) * y - y * ι (s i)) := by
+      rw [hιb, smul_mul_assoc, mul_smul_comm, ← smul_sub, Finset.sum_mul, Finset.mul_sum,
+        ← Finset.sum_sub_distrib]
+    have hAO : ‖∑ i ∈ Finset.range N, (ι (s i) * y - y * ι (s i))‖ ≤ (N : ℝ) * ε := by
+      refine ShulmanFill.norm_sum_le_of_almostOrthogonal
+        (fun i ↦ ι (s i) * y - y * ι (s i)) N M δ ε hδpos.le hε.le ?_ ?_ hsize
+      · intro i _
+        show ‖ι (s i) * y - y * ι (s i)‖ ≤ M
+        have hn : ‖ι (s i)‖ ≤ 1 := (NonUnitalStarAlgHom.norm_apply_le ι _).trans (hs i).2.1
+        have hy1 : ‖ι (s i)‖ * ‖y‖ ≤ ‖y‖ := by
+          have h := mul_le_mul_of_nonneg_right hn (norm_nonneg y)
+          rwa [one_mul] at h
+        calc ‖ι (s i) * y - y * ι (s i)‖ ≤ ‖ι (s i) * y‖ + ‖y * ι (s i)‖ := norm_sub_le _ _
+          _ ≤ ‖ι (s i)‖ * ‖y‖ + ‖y‖ * ‖ι (s i)‖ :=
+              add_le_add (norm_mul_le _ _) (norm_mul_le _ _)
+          _ = 2 * (‖ι (s i)‖ * ‖y‖) := by ring
+          _ ≤ M := by linarith
+      · intro i hi j hj hij
+        show ‖(ι (s i) * y - y * ι (s i)) * star (ι (s j) * y - y * ι (s j))‖ ≤ δ
+        rcases lt_or_gt_of_ne hij with hlt | hgt
+        · exact hscross i j hlt hj y hy
+        · have h2 : ‖(ι (s j) * y - y * ι (s j)) * star (ι (s i) * y - y * ι (s i))‖ ≤ δ :=
+            hscross j i hgt hi y hy
+          rw [← norm_star, star_mul, star_star]
+          exact h2
+    rw [hexp]
+    calc ‖(N : ℝ)⁻¹ • ∑ i ∈ Finset.range N, (ι (s i) * y - y * ι (s i))‖
+        = ((N : ℝ))⁻¹ * ‖∑ i ∈ Finset.range N, (ι (s i) * y - y * ι (s i))‖ := by
+          rw [norm_smul, Real.norm_of_nonneg hNinv]
+      _ ≤ ((N : ℝ))⁻¹ * ((N : ℝ) * ε) := mul_le_mul_of_nonneg_left hAO hNinv
+      _ = ε := by rw [← mul_assoc, inv_mul_cancel₀ hNne, one_mul]
+  exact ⟨b, hpos, hnorm, hdom, hcomm, fun x hx ↦
+    ⟨habsL x ε fun i ↦ ((hs i).2.2.2 x hx).1, habsR x ε fun i ↦ ((hs i).2.2.2 x hx).2⟩⟩
+
 end Step
 
 end
