@@ -1,0 +1,14 @@
+== A_3 model (B_4: q,a,b,t)
+hexagon relation a1 b1 a2 b2 a3 b3 = 1: True | prod a = 1: True | prod b = 1: True
+6-cycle x1y1x2y2x3y3 intersection numbers (all 0 = cycle): [0, 0, 0, 0, 0, 0]
+x pairwise distinct: True | y pairwise distinct: True | y_i against other x (nonzero = not a centre): 2 2 0
+Y2 form: i(y2, x1) = 2
+TW form: i(D^j.y1, x3) for |j| <= 8 : [50, 44, 38, 32, 26, 20, 14, 8, 2, 4, 10, 16, 22, 28, 34, 40, 46]
+  (twist bound: every |j| > i(y1,x3) = 2 is excluded once growth is linear; min over table = 2 )
+== A_6 V0 shadow via iota (B_7)
+hexagon relation a1 b1 a2 b2 a3 b3 = 1: True | prod a = 1: True | prod b = 1: True
+6-cycle x1y1x2y2x3y3 intersection numbers (all 0 = cycle): [0, 0, 0, 0, 0, 0]
+x pairwise distinct: True | y pairwise distinct: True | y_i against other x (nonzero = not a centre): 6 6 0
+Y2 form: i(y2, x1) = 6
+TW form: i(D^j.y1, x3) for |j| <= 8 : [150, 132, 114, 96, 78, 60, 42, 24, 6, 12, 30, 48, 66, 84, 102, 120, 138]
+  (twist bound: every |j| > i(y1,x3) = 6 is excluded once growth is linear; min over table = 6 )

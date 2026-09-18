@@ -1,0 +1,6 @@
+  y2~x1 False twist j [-1] : 32
+  y2~x1 False twist j [0] : 32
+  y2~x1 True twist j [-6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6] : 144
+  y2~x1 True twist j [-1] : 12
+  y2~x1 True twist j [1] : 4
+nondegenerate tuples 224 with no centre of form y2 or A12^j.y1 0
