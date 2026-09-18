@@ -116,3 +116,14 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    `<=59` (`p=5`), `<=62` (`p=7`) and `<=65` (`p=11`). Open: prove `D_p={3}+3pN` for all `p>=5`, and that each
    Kassel direction dies in `Gamma^`. See
    `kms-hc1-a2-iwahori-towers-deviate-only-at-kassel-degrees`.
+2. **Integral Lie homology, all primes at once.** The Chevalley `Z`-form
+   `L_Z` of `L_p` is generated in degree 1, so `H_2(L_p)=H_2(L_Z)(x)F_p`.
+   Exact Smith normal forms through degree 90 give
+   `H_2(L_Z) = Z^6 + sum_n Z/n (at n delta) + sum_n (Z/3)^6 + (Z/2)^3`.
+   Hence `D_p={3}+3pN` through degree 90 for every `p>=5`, and condition 3
+   holds for `k<=min(3p,91)` for every `p>=5`: p-images of class `<=90`
+   kill `w_p` for all `p>=31`, with no group computation. The `(Z/3)^6`
+   family is the `p=3` failure at class 6. Open 1 becomes one statement over
+   `Z` (the p-torsion of `H_2(L_Z)`, or of the Serre-presented `A~2` Lie
+   ring, is `Z/n` at `n delta` away from 6). Open 2 (Kassel directions die
+   in `Gamma^`) is untouched. See `kms-hc1-iwahori-integral-h2-serre-plus-hc1`.
