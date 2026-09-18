@@ -2,6 +2,8 @@
 rg: 2
 id: resolvent-steinberg-rf-residual-is-finitely-normally-generated
 kind: claim
+refuted_by:
+  - resolvent-steinberg-rf-residual-is-infinitely-normally-generated
 title: For some l and N >= 5, the finite residual of St_N(R_l) is the normal closure of finitely many elements
 distinct_from:
   resolvent-steinberg-group-is-residually-finite: that asks for a trivial finite residual; this allows any finitely normally generated one, which already gives a finitely presented residually finite quotient.
@@ -68,3 +70,10 @@ literature input.
    corner symbols trivial, then re-check residual finiteness with the path normal form. Or replace the corner
    ring `Z_(l)` by a ring with finitely generated `K_2` that still has roots at every prime but one. Not
    attempted.
+3. **Refutation, pending two classical citations (2026-09-18, lane gq-k2-q).**
+   `resolvent-steinberg-rf-residual-is-infinitely-normally-generated`:
+   - The corner symbols survive independently in `K_2(R_l)` (`resolvent-ring-corner-symbols-survive-in-k2`).
+   - They die in every finite quotient, because the corner is seen through some `Z/l^r`, where `K_2(N, ·)` is `0`
+     for `l` odd and has order at most `2` for `l = 2`.
+   - Stable centrality therefore makes `K_rf` not finitely normally generated.
+   - For `l` odd this also shows that `St_N(R_l)` is not residually finite.

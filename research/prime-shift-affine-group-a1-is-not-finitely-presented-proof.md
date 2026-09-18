@@ -22,7 +22,7 @@ Let `x` be `(C,V)`-deep with `π(x) = (j, v)`.
   valuations: it is `(C,V)`-deep with `π = (j, v)`. The value `0` never occurs, since
   `x ± 1 = 0` forces `x = ∓1`, which is not deep.
 - **`ι`.** `v_k(−x) = v_k(x)`, so `π` is unchanged.
-- **`δ^(±1)`.** Only `v_0` moves, by `±1`. So `δ^(±1) x` is `(C+1, V+1)`-deep with
+- **`δ^(±1)`.** Only `v_0` moves, by `±1`. So `δ^(±1) x` is `(C+1, V−1)`-deep (referee a) with
   `π = (j, v ± [j = 0])`.
 - **`σ^(±1)`.** `σ` is multiplicative with `v_(k+1)(σ x) = v_k(x)`, so `σ^(±1) x` is
   `(C,V)`-deep with `π = (j ± 1, v)`.

@@ -379,3 +379,20 @@ None recorded before 2026-09-17.
     `D/Z(D)` to be finitely presented and simple (`leavitt-resolvent-derived-units-mod-centre-fp-simple`).
     `leavitt-resolvent-derived-units-mod-centre-not-fp` refutes the finite presentation, so the route can never
     fire.
+
+20. **Complexes of groups over the adelic median graph `∏'_p T_p`, 2026-09-18: the development and its coordinatewise
+    thickenings are dead as hosts (lanes gq-sl2q and gq-union-obstruct; critic pass 2, family 1).**
+    - gq-sl2q: the action is not cocompact (`cocompact-fg-stabilizer-actions-force-finite-generation`), and no finitely
+      generated subgroup of `Aut(∏'_p T_p)` contains the standard `SL_2(Q)`
+      (`adelic-median-graph-automorphisms-are-restricted-products`). The permanence form is the OPEN
+      `sl2-q-in-permutational-boone-higman-class`.
+    - `sl-2-q-root-group-is-parabolic-in-every-prime-factor`: `U(Q)` fixes one end in every factor and no vertex. It is
+      the kernel of the infinite-rank Busemann map `B(Q) -> ⊕_p Z`. `u(1/m!)` displaces the base vertex by
+      `2Ω(m!) >= 2(m-1)`, so a host acting isometrically on a space containing the graph has
+      `|u(1/m!)| >= 2Ω(m!)/C`.
+    - `fg-restricted-product-actions-have-finite-support`: a finitely generated coordinatewise group of bijections of
+      any restricted product fixes almost all base coordinates. So no coordinatewise thickening, and no product of
+      per-prime hosts, contains the adelic `SL_2(Q)`, `GL_n(Q)` or `Aff(Q)`. A factor-permuting host must put all
+      primes into finitely many orbits, and then `|u(1/m!)| >= π(m)/s`.
+    - One end per factor kills nothing by itself: `SL_2(Q)` realizes it with residually finite vertex groups. Hosts must
+      mix the primes, as the prime shift of item 18 does. See `research/artifacts/gq-gq-union-obstruct.md` §7.

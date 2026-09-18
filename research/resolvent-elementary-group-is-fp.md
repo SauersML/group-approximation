@@ -2,6 +2,8 @@
 rg: 2
 id: resolvent-elementary-group-is-fp
 kind: claim
+refuted_by:
+  - resolvent-elementary-groups-are-not-fp
 title: For some l and N >= 5, the elementary group E_N(R_l) of the finitely presented residually finite resolvent ring is finitely presented
 distinct_from:
   rf-resolvent-elementary-group-is-fp: that asks the same for E_N(R̄_l) over the smaller model ring, whose presentation is not the eight relations; this is over the finitely presented ring R_l itself, now known to be residually finite.
@@ -26,3 +28,8 @@ infinitely generated central subgroup and refute this claim.
 ## Attempts
 
 None yet (2026-09-18, lane gq-infinite-primes).
+
+- **Refuted (2026-09-18, lane gq-k2-q).** `resolvent-elementary-groups-are-not-fp`: for every `l` and `N >= 3`,
+  `E_N(R_l)` is not finitely presented. The corner symbols are independent in `K_2(R_l)`, as detected in
+  `R_l/J = D ⋉ M_Z^fin(Z_(l))` (`resolvent-ring-corner-symbols-survive-in-k2`). The symbol lemma then applies, with no
+  centrality hypothesis on `K_2(N, R_l)`.
