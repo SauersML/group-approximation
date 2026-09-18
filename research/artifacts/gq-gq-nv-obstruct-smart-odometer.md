@@ -106,3 +106,16 @@ neither is changed during the sub-move. The figure's cases, which I re-derived f
   `renormalizable-thompson-elements-give-baumslag-solitar` needs for `BS(1,3) <= 3V`. The level-`k` to
   level-`(k+1)` recodings of Callard–Salo have pattern lengths growing with `k`, so they are not one
   brick-local `φ`.
+
+## 5. Revisions after review (2026-09-18)
+
+Both referees passed the proof. Changes, all reflected in
+`smart-level-zero-return-map-factors-onto-3-adic-odometer-proof`:
+- **Bounded returns, proved directly.** In a finite chain at most 4 specials are consecutive, since no
+  `b/d` move is a last sub-move and no `p/q` move is a first sub-move. Every configuration of infinite level
+  enters `Y` within 5 steps (all eight cases checked). So every return time is at most 10, and SMART's
+  minimality is no longer needed.
+- **Coding into 2V** uses the 8-state machine with a size-24 complete prefix code for (state, head cell).
+  The 4-state coding of `three-v-contains-aperiodic-rationals` is not used.
+- **Radius.** `pos_k` depends on the cells within distance `k+1` of the head.
+- The "at most 4" count in §3 is now proved, as above.
