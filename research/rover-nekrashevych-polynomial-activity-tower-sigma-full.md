@@ -59,6 +59,13 @@ The route gives a complete argument.
   with the stronger relative statement `Φ_∞(Γ_0, rational points)`.
 - **Not covered.** Self-similar `G` that is not contracting, or has super-polynomial activity. The route uses
   contraction twice: for finitely many tails of singular points, and for finite germ index.
+- **Relation to the partition-complex route.** `rover-nekrashevych-bnsr-full-via-type-one-partitions` (landed in
+  parallel) gives `Σ^m(V_d G) = S` whenever `V_d G` has type `F_m`, for every self-similar `G`. Together with item 1
+  that recovers item 2 for `r = 1`. What this node adds:
+  - item 1 itself, which is the Belk–Hyde–Matucci remark with a full proof;
+  - item 3;
+  - every `r >= 1`;
+  - the relative statements `Φ_∞(Γ_i, rational points)` at every level of the tower.
 - **Examples of degree `>= 1`.** Contracting groups of activity degree `>= 1` that carry a nonzero sum-invariant
   character are not exhibited here; see Attempts.
 
