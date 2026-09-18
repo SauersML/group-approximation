@@ -464,3 +464,33 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+### The inert class is weak*-closed; a finitary gap for hyperlinearity (swarm-0917-w10-w10-nh-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+Landed as `jacobson-inert-trace-class-is-weak-star-closed` (established, unreviewed). It closes the "pointwise
+limits" survivor of `jacobson-mirror-exact-trace-part-is-multiplicative` unconditionally, using the now-imported
+Skudlarek list (`gl-infinity-f2-extreme-characters-are-rank-powers`) through the Bauer simplex of
+`gl-infinity-f2-trace-simplex-is-extended-naturals`.
+- *Statement.*
+  - For every trace `tau` of `P` and every `g`: `|avg_(F_j) tau(y g) - tau^flat(g)| <= (12 * 2^(-nj))^(1/2)`,
+    uniformly in `tau`.
+  - `m(tau)` is the weight of the trivial character in `tau|_(L_-)`.
+  - Hence `tau -> tau^flat` is weak*-continuous and `N` is weak*-closed.
+  - The closed hull of `delta_P`, the traces with `m = 0`, finite-dimensional traces and finitary-site ambient
+    restrictions, under products, mixtures and limits, is head-blind.
+- *Death step.* Burnside: `avg_(GL_M(F_2)) 2^(-k rank(g-1)) <= 12 * 2^(-M)` for all `k >= 1`. No invariant mass can
+  hide at large `k` and reappear in the limit, because `0` is isolated in the extended naturals.
+- *New decomposition (finitary gap).* Let `h_1 = avg_(y in GL_20(F_2)) (y - (y w + w y^(-1))/2)`, where the average
+  runs over the mirror sites `{-1} x {1..20}`. Then `sup_(CE(P)) tau(h_1)` is `>= 1` if `EL_20(J)` is hyperlinear
+  (attained at `delta_E o q`) and `<= 0.0035` otherwise.
+  - Refutation side: bound `tau(h_1) <= 0.0035` over CE traces of the LEF group `P`. That is a quantitative estimate,
+    not an exact identity.
+  - Positive side: find matrix approximate representations of `P`, converging to a trace of `P`, in which the head
+    moves a macroscopic part of the vectors invariant under all of `L_-`.
+- *Where it stops (hole stays OPEN).* CE traces of `P` that are limits of genuinely approximate, non-exact matrix
+  models not built from the four generating families are untouched. No invariant here separates them from `N`.
+- **Next falsifiable step.** Decide whether every CE trace of `P` lies in the weak*-closed convex product-closed hull
+  of restrictions from `H_bi` and traces with `m = 0`.
+  - If it does, `EL_20(J)` is not hyperlinear and the hole closes negatively.
+  - A test case is the Haar character `phi_1` pulled back to `P`: whether it is CE decides the positive side
+    (`gl-infinity-f2-trace-simplex-is-extended-naturals`, Part 4).
