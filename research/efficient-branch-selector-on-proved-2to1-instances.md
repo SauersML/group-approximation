@@ -202,3 +202,21 @@ sees.
   `view-local-branch-selectors-are-gauge-blind`, whose faithful views may have
   rank `Theta(m)`: the two kills are incomparable, so neither closes the other's
   survivors.
+* **Entropic and independent-rounding selectors, all witnesses (2026-09-18).**
+  This attempt is recorded in
+  `entropic-selectors-cap-every-lift-labelling-near-one-half` (ESTABLISHED,
+  unconditional, any running time). Take any random orientation and any edge
+  exposure order. With probability `1 - 2^(-k)`, **every** lift labelling, honest
+  or not, has value at most
+  `val_G/2 + beta_bar/2 + sqrt((l ln 2 / 2)(1/D_A + 1/D_B) + k ln 2/(2M))`,
+  where `beta_bar` is the mean history-conditional fiber bias.
+  - Fresh-coin and SDP-style rounding selectors cannot beat one half except
+    through the part of the rounding that is already `2 gamma`-biased. This
+    makes the first bullet above rigorous for non-honest witnesses as well.
+  - The class dies exactly at orientation entropy `o(M)`, since
+    `E[beta_bar] >= 1 - H(c)/M`.
+  - Survivors: only sequentially predictable orientations, i.e. deterministic,
+    seeded or gauge-randomised ones. That is the H2 cell, now confined to
+    orientation laws whose mean history bias is `>= 2(gamma - t)` in *every*
+    exposure order. High entropy alone does not exclude a law, since a law can
+    be deterministic on part of the edges.
