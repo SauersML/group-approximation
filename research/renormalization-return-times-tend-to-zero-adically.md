@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-18)** through `renormalization-return-times-tend-to-zero-adically-proof`.
-Lane proof (gq-nv-obstruct). Not independently reviewed.
+Lane proof (gq-nv-obstruct). Reviewed PASS by gq-referee-b, citation and scope lens (fba51b1a0).
 
 **Setting.** Let `T` be a homeomorphism of `X = C^k` with a height-`m` renormalization `(A, φ)` in the
 sense of `renormalizable-thompson-elements-give-baumslag-solitar`:
@@ -37,5 +37,6 @@ is proved.
 - Its phase `mod 3^j` is read at radius `j + 2`, which is item 2 with `b = 1`.
 - On MSI, the returns of its first genuine configuration (radius 6, `4·10^7` steps) have `n ≡ 0 mod 729`,
   as item 3 requires.
-- For binary-timing machines the test fails. See
+- For the binary-timing machine `M°`, the returns found up to radius 18 violate item 3's condition:
+  `n ≡ 4 mod 8`. Item 3 applies only if these returns converge at all radii, which is OPEN. See
   `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md` §3e.
