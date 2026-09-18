@@ -108,3 +108,47 @@ theorem surjStabGauss_factorDisj_of_single [NoZeroDivisors R] {x : St (n + 1) R}
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabGauss_factorDisj_of_single
+
+/-- **Remaining gap**: every `K₂` element over `ℤ[1/m]` (`m > 0`, `n ≥ 4`) has some
+`P V U V H` conjugate, with no constraint on the supports. -/
+def SurjStabGaussFormStatement : Prop :=
+  ∀ m n : ℕ, 0 < m → 4 ≤ n → ∀ x ∈ K2 (Fin (n + 1)) (Localization.Away (m : ℤ)),
+    ∃ w : Fin n → Localization.Away (m : ℤ), SurjStabGaussForm x w
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.SurjStabGaussFormStatement
+
+/-- **Endpoint**: the disjoint factorization statement from the unconstrained form statement. -/
+theorem surjStabFactorDisj_of_surjStabGaussForm (h : SurjStabGaussFormStatement) :
+    SurjStabFactorDisjStatement := by
+  intro m n hm hn x hx
+  haveI : IsDomain (Localization.Away (m : ℤ)) :=
+    IsLocalization.isDomain_localization
+      (powers_le_nonZeroDivisors_of_noZeroDivisors (Nat.cast_ne_zero.2 hm.ne'))
+  obtain ⟨w, hF⟩ := h m n hm hn x hx
+  obtain ⟨i, β, hr⟩ := surjStabGauss_away_reach_single (m := m) (by omega : 0 < n) w
+  exact surjStabGauss_factorDisj_of_single hx (surjStabGauss_form_of_reach hF hr)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabFactorDisj_of_surjStabGaussForm
+
+/-- **Composite endpoint**: the `P Q P` statement from the unconstrained form statement. -/
+theorem surjStabConjTriple_of_surjStabGaussForm (h : SurjStabGaussFormStatement) :
+    SurjStabConjTripleStatement :=
+  surjStabConjTriple_of_surjStabFactorDisj (surjStabFactorDisj_of_surjStabGaussForm h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabConjTriple_of_surjStabGaussForm
+
+/-- LOUD equivalence: the gap follows back from `SurjStabFactorDisjStatement` by dropping the
+disjointness clause. -/
+theorem surjStabGaussForm_of_surjStabFactorDisj (h : SurjStabFactorDisjStatement) :
+    SurjStabGaussFormStatement := by
+  intro m n hm hn x hx
+  obtain ⟨z, g₁, g₂, v, w, c, w', _, hz⟩ := h m n hm hn x hx
+  exact ⟨w, z, g₁, g₂, v, c, w', hz⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabGaussForm_of_surjStabFactorDisj
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

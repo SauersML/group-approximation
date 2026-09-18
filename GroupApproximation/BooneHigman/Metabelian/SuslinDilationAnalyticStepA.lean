@@ -98,7 +98,9 @@ theorem suslinDilAn_estimate_mul (hN : 2 < N)
   have hκ : elementaryMatrixUnitMap (ι := Fin N)
       ((Polynomial.C : S →+* Polynomial S).comp (Polynomial.constantCoeff (R := S))) α₁ ∈
         elementaryGroup (Fin N) (Polynomial S) :=
-    elementaryGroup_map_le _ (Subgroup.mem_map_of_mem _ hα₁)
+    elementaryGroup_map_le (ι := Fin N)
+      ((Polynomial.C : S →+* Polynomial S).comp (Polynomial.constantCoeff (R := S)))
+      (Subgroup.mem_map_of_mem _ hα₁)
   obtain ⟨K, hK⟩ := suslinDilAn_conjBound_of_mem (Polynomial.mapRingHom φ) (Polynomial.C s) hN
     (suslinDilAn_surj_poly φ s hsurj) hκ K'
   obtain ⟨k₁, hk₁⟩ := h₁ K'
