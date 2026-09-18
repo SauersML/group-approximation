@@ -5808,6 +5808,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionU
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHF
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.WordVec
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.Stab
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Corner
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
