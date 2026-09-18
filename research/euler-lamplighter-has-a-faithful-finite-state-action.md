@@ -57,3 +57,17 @@ element is finite-state.
    `1 + lj`, which appear to give infinitely many sections. An action that makes `β` finite-state has to encode the
    arithmetic progression `j ↦ 1 + lj` by a transducer on the index, as the lamplighter `Z/p ≀ Z ⊂ Aut(F_p[[t]])`
    encodes translation.
+2. **Necessary conditions from the l-adic closure (gq-ring-fp-simple, 2026-09-18).** Take any faithful action of
+   `G_l` on `T_d`.
+   - The image of `Z_(l) f_0` in each level group is a finite quotient of `Z_(l)`, hence a cyclic `l`-group. So
+     `l <= d`, and the closure of `<f_0>` is `≅ Z_l`.
+   - A root `ρ_q` with `ρ_q^q = f_0`, `q != l`, equals a power of `f_0` on every level. So `Z_(l) f_0` is exactly
+     the set of `l`-adic powers `f_0^r`, `r in Z_(l)`, inside that closure.
+   - For primes `q > d` the `q`-th power map is bijective on every level group, so these roots are the unique
+     `q`-th roots in `Aut(T_d)`.
+   - Consequence: a finite-state action needs a finite-state `f_0` all of whose powers `f_0^r`, `r in Z_(l)`, are
+     finite-state. The `l`-adic odometer has this property, since rational translations of `Z_l` are finite-state.
+     So this condition excludes nothing yet.
+   - The new obstruction nodes (`finite-state-mobius-pieces-see-finitely-many-primes`,
+     `p-adic-dilation-normalizers-act-by-power-maps`) do not apply to `G_l`: its action is not by Möbius maps, and
+     it contains no dilations. The question stays OPEN.
