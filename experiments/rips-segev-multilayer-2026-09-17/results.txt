@@ -1,0 +1,3 @@
+seed 1 {'configs': 60, 'sparse_configs': 15, 'betas': 1009, 'betas_with_kernel': 726, 'vectors': 10416, 'empty_V': 159, 'lemma_fail': 0, 'walk_fail': 0, 'dep1_betas': 353, 'dep1_vectors': 8671, 'dep1_xs_fail': 5407}
+seed 2 {'configs': 60, 'sparse_configs': 14, 'betas': 1057, 'betas_with_kernel': 783, 'vectors': 12748, 'empty_V': 291, 'lemma_fail': 0, 'walk_fail': 0, 'dep1_betas': 332, 'dep1_vectors': 10196, 'dep1_xs_fail': 6425}
+seed 3 {'configs': 60, 'sparse_configs': 11, 'betas': 1065, 'betas_with_kernel': 761, 'vectors': 11601, 'empty_V': 134, 'lemma_fail': 0, 'walk_fail': 0, 'dep1_betas': 331, 'dep1_vectors': 7733, 'dep1_xs_fail': 4694}

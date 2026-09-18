@@ -5,13 +5,16 @@ kind: claim
 title: An ascending HNN extension of a finitely generated free group along an endomorphism injective on rational homology contains no Z_(l), and in general Z_(l) forces iterates sinking through the lower central series
 distinct_from:
   z-localized-fixes-a-vertex-or-end-of-every-tree: that is the general tree lemma; this applies it to mapping tori of free group endomorphisms and adds a lower-central-series count.
-  fg-linear-groups-have-roots-at-finitely-many-primes: that excludes linear hosts; mapping tori of free groups are finitely presented and residually finite (Borisov–Sapir) but not linear in general, so this is a separate class.
+  fg-linear-groups-have-roots-at-finitely-many-primes: that excludes linear hosts; mapping tori of free groups are finitely presented and residually finite (Borisov–Sapir), and their linearity is not used or claimed, so this is treated as a separate class.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md
+  - research/artifacts/gq-referee-b-z-localized-tree-and-free-mapping-tori.md
 ---
 
-**ESTABLISHED (2026-09-18)** through `free-group-mapping-tori-contain-no-z-localized-proof`. Lane proof (gq-k2-q), not
-independently reviewed. Inputs: `z-localized-fixes-a-vertex-or-end-of-every-tree`; Nielsen–Schreier; the
+**ESTABLISHED (2026-09-18)** through `free-group-mapping-tori-contain-no-z-localized-proof`. Lane proof (gq-k2-q).
+*Reviewed:* PASS by `gq-referee-a` (`research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md`) and by
+`gq-referee-b` (`research/artifacts/gq-referee-b-z-localized-tree-and-free-mapping-tori.md`). Inputs: `z-localized-fixes-a-vertex-or-end-of-every-tree`; Nielsen–Schreier; the
 Magnus–Witt description of the lower central quotients of free groups. No novelty is claimed.
 
 ## Setting
@@ -37,5 +40,6 @@ Let `A ≤ (Q,+)` contain an element divisible by infinitely many primes, for ex
 ## Scope
 
 Part 4 covers every free-by-cyclic group and every mapping torus whose endomorphism is injective on `H_1(F;Q)`. The
-remaining mapping tori are those whose endomorphism kills some rational homology class. There part 3 is the only
-constraint recorded, and whether a sinking element can have an infinite root set is OPEN.
+remaining case, an endomorphism killing some rational homology class, is now settled by
+`ascending-hnn-extensions-of-free-groups-contain-no-z-localized`, which excludes `Z[1/P]` for every injective `φ` through
+Stallings graphs.

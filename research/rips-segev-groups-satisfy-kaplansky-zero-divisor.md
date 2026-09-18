@@ -133,3 +133,21 @@ the Kaplansky zero-divisor conjecture."
    - Next: a three-layer neighbour lemma for `u + w b + z b^2`.  Lemma 5 of
      the route already allows arbitrary `b`-exponents.  Two-layer elements
      with span `>= m_Gamma` and balanced offsets also remain.
+9. **Any number of b-layers, sparse a-supports (proposed established; `rips-segev-sparse-a-support-elements-are-regular`).**
+   - Let `beta = sum c_ij a^i b^j` with `a`-exponents in `S` and any
+     `b`-exponents.  If `alpha beta = 0` and the coefficient matrix has rank
+     `>= 2`, then every point of `union_j supp(alpha u_j(a))` has a
+     `b^e`-neighbour (the layers must cancel) and an `a^n`-neighbour with
+     `n in S - S`, `n != 0`.  Rank one factors.
+   - The walk reads a relation whose `a`-syllables lie in `S - S`.  The proof
+     of Lemma 5 of attempt 8 gives one syllable that is a difference of two
+     distinguished positions of a line.  Right annihilators follow by `*`
+     with `a` and `b` exchanged.
+   - So `beta` is a non-zero-divisor whenever `S - S` misses `Dist(Gamma)`.
+     This covers every short-span element with three or more layers.  For
+     Steenbock's graphs it covers every `S` whose elements are pairwise
+     incongruent mod 10, of any span, including balanced two-layer elements
+     beyond `m_Gamma`.
+   - Next: `S - S` meeting `Dist(Gamma)`, e.g. `1 + a^{10} + b`.  Use the long
+     exterior arc (many consecutive flanked blocks in `(S - S) ∩ Dist`) or
+     the coefficients along the walk.

@@ -16,8 +16,8 @@ requires:
 **The tree.**
 - `t^(-1) F t = φ(F) ⊆ F`, so `F ⊆ tFt^(-1) ⊆ t^2 F t^(-2) ⊆ ...`.
 - In the Bass–Serre tree, `hF ↦ htF` is the unique *up* neighbour of a vertex: `htF = h'tF` for all
-  `h, h' ∈ F`, since `F ⊆ tFt^(-1)`. The down neighbours are the `h t^(-1) F`, with stabilizers
-  `h φ(F) h^(-1) ⊆ F`.
+  `h, h' ∈ F`, since `F ⊆ tFt^(-1)`. The down neighbours are the `h t^(-1) F`, indexed by `F/φ(F)`
+  (`h t^(-1) F = h' t^(-1) F` if and only if `h'^(-1) h ∈ t^(-1) F t = φ(F)`), with stabilizers `h φ(F) h^(-1) ⊆ F`.
 - A ray without backtracking therefore goes up finitely often and then down forever, or up forever. Along a
   down-going tail every stabilizer lies in one conjugate of `F`.
 
