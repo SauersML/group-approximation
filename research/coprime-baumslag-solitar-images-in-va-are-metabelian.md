@@ -42,4 +42,5 @@ needs at `BS(2,3)`.
    `τ⟨α⟩τ^{-1} = ⟨τ α^m τ^{-1}⟩ = ⟨α^n⟩ = ⟨α⟩`. So `⟨α⟩` is normal in `Γ = ⟨α, τ⟩`, `Γ/⟨α⟩` is cyclic,
    and `τατ^{-1} ∈ ⟨α⟩` commutes with `α`.
 3. Combine 1 and 2. `c ≠ 1` in `BS(2,3)` by Britton's lemma: `c = t a t^{-1} a t a^{-1} t^{-1} a^{-1}`
-   contains no pinch `t a^{2k} t^{-1}` or `t^{-1} a^{3k} t`, since `a ∉ ⟨a^2⟩` and `a^{-1} ∉ ⟨a^2⟩`.
+   contains no pinch `t a^{2k} t^{-1}` or `t^{-1} a^{3k} t`: its three `t`-segments are `t a t^{-1}`,
+   `t^{-1} a t` and `t a^{-1} t^{-1}`, and `a^{±1} ∉ ⟨a^2⟩`, `a ∉ ⟨a^3⟩`.
