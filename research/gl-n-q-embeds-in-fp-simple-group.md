@@ -69,6 +69,13 @@ open. That paper's Theorem 1.2 covers only the finitely generated subgroups
   cyclic subgroups. By contrast Kojima--Sheng, arXiv:2603.18410v3 (Prop. 4.1,
   Thm. 4.2), embed `(Q,+)` in the Brin--Thompson groups `nV` for `n >= 2`, and
   distortion there is not settled here.
+- **O5, one-manifolds (n >= 3, any copy).** `gl-n-q-hosts-cannot-act-on-one-manifolds` (5a140f21e,
+  Witte via Parwani): no group acting faithfully on a one-manifold with finitely many components contains
+  `GL_n(Q)` for `n >= 3`, and none acting on the line or an interval contains `SL_2(Q)`.
+- **O6, scaled rational lines.** `pl-quasi-similarity-groups-scale-rational-lines-by-ratio` and
+  `fg-pl-quasi-similarity-groups-contain-no-gl-2-q` (c8e0b926e): in a periodic PL quasi-similarity group of the
+  line an element normalizing a copy of `(Q,+)` scales it by its own similarity ratio, so no finitely generated
+  such group contains `Aff(Q)`, `B_2(Q)`, `SL_n(Q)` or `GL_n(Q)`.
 
 ## Attempts
 
@@ -229,3 +236,33 @@ None recorded before 2026-09-17.
      become infinitely divisible. The register roots give rational hulls of abelian subgroups only: commutators with
      non-commuting elements are localized on the overflow slab, and a dilation coprime to the radices acts on the
      register tower by a carry-from-below transducer (heuristic).
+
+12. **Unions of the chain `GL_n(Z[1/m!])` and tree hosts, 2026-09-17: constraints, one kill (lane
+    gq-union-obstruct).** Summary in `research/artifacts/gq-gq-union-obstruct.md`.
+    - `sl-n-q-lies-in-finite-residual-of-every-overgroup`: every finite-index subgroup of every overgroup
+      contains `SL_n(Q)`, which is the exact form of O1. Finite-quotient certificates of the stages never pass
+      to the union.
+    - `divisible-elements-act-elliptically-on-trees`: in every tree action of every overgroup, the root groups
+      fix a vertex or exactly one end; with residually finite vertex stabilizers they are parabolic.
+    - `gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings`: that parabolic case occurs, faithfully, on one
+      `p`-adic building. O1's tree clause is sharp (rooted trees only), and one prime carries all
+      divisibility.
+    - `no-q-in-tree-product-actions-with-finite-stabilizers`: kill. No `(Q,+)` in any group acting on a product
+      of trees with finite vertex stabilizers.
+
+13. **Leavitt unit groups over commutative coefficients, 2026-09-17: a natural countable simple host, but no
+   finitely presented one from them.** (lane gq-leavitt-units)
+   - `leavitt-unit-groups-over-every-field-are-simple-mod-scalars`: over every field `k`, `L_k(1,2)^x / k^x` is
+     simple. So `Λ = L_Q(1,2)^x / Q^x` is a countable simple group containing `GL_∞(Q)`, `V` and `SL_3(Z)`.
+     Route `gl-n-q-bh-via-rational-leavitt-simple-group` reduces every `n` at once to the OPEN
+     `rational-leavitt-simple-group-embeds-in-fp-simple-group`.
+   - `infinite-field-leavitt-units-are-not-finitely-generated`: `Λ` is not finitely generated, and in
+     characteristic zero no finitely generated subring of any `L_k(1,n)` contains `Q`. So `Q` cannot enter a
+     Leavitt host through commutative coefficients.
+   - `q-coefficient-leavitt-tensor-unit-groups-are-fp` (OPEN, one gap: `H_2(GL_3) = 0` in characteristic zero):
+     noncommutative coefficients `B ⊇ Q` give at best a finitely presented overgroup of `GL_∞(Q)`, which serves
+     `gl-n-q-explicit-natural-fp-overgroup`. Its simple scalar quotient is never finitely presented, because
+     `Q^x` is central and not finitely generated. The same holds for any `Q`-algebra whose elementary groups
+     contain all rational scalars.
+   - `leavitt-units-over-s-integers-are-finitely-presented` (OPEN): the Khanh route fails as stated over `Z[1/m]`,
+     because GE via Menal–Moncasi needs a simple ring.

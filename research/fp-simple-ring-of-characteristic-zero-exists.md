@@ -11,8 +11,13 @@ artifacts:
   - research/artifacts/gq-gq-ring-fp-simple-notes.md
 ---
 
-**OPEN.** There is a unital ring `R`, finitely presented as a ring (a finitely presented
-`Z`-algebra), that is simple and of characteristic `0`.
+**ESTABLISHED** through `fp-simple-ring-of-char-zero-via-leavitt-resolvent-ring`
+(lane proof, not independently reviewed; referee requests sent). The ring is
+`R_L = Z<s_1,s_2,t_1,t_2,N,A | Leavitt (1,2), N s_1 = s_1(N+1), N s_2 = 0, A(N+1) = 1 = (N+1)A>`
+(`leavitt-resolvent-ring-is-fp-simple-of-char-zero`).
+
+**Statement.** There is a unital ring `R`, finitely presented as a ring (a finitely
+presented `Z`-algebra), that is simple and of characteristic `0`.
 
 **Equivalent forms.** The following are equivalent:
 - (a) the statement above;
@@ -46,7 +51,8 @@ Proof of the equivalence:
    Steinberg algebra over any field, and of Leavitt--Nekrashevych completions with
    integral data. In a completion `O_ψ` of a finitely presented `B`, the scalars of the
    core `colim M_(d^k)(B)` are the scalars of `B`. So such completions create no new
-   denominators.
+   denominators. Attempt 6 escapes this: its base `B` is not finitely generated, yet the
+   completion is finitely presented.
 2. **Vacuum and resolvent (finitely presented, not simple).**
    `q-embeds-in-a-corner-of-a-fp-toeplitz-ring` gets all of `Q` from four relations. Its
    mechanism has two parts:
@@ -59,7 +65,7 @@ Proof of the equivalence:
    ideal of the model contains `E`, and no simple quotient contains `Q`. *Dies* for
    simplicity. It locates the requirement: a purely infinite version needs an operator
    that acts as the integer `m` on a non-minimal idempotent, for every `m`, with finitely
-   many relations.
+   many relations. Attempt 6 achieves this.
 3. **Weyl algebra with resolvents (same death).** In `End_Q(Q[x])`:
    - the Euler operator `θ = x∂` acts as a number operator, and `x(θ+1)^(-1)∂ = 1 - E_0`,
      with `E_0` the projection onto constants;
@@ -84,3 +90,10 @@ Proof of the equivalence:
 
    None of these, as recorded, gives finite presentation and simplicity together. The
    Cairn root `algebra-boone-higman-conjecture` records the same wall.
+6. **Glue the vacuum to a Leavitt isometry (works, 2026-09-17).** Replace the Toeplitz
+   pair by a Leavitt `(1,2)` pair, with vacuum `E = s_2 t_2`, so that `N s_2 = 0`. Then
+   `E` is full, `E R E ≅ R` via `s_2`, and `1/m = t_2 t_1^(m-1) A s_1^(m-1) s_2`. The
+   resulting ring `R_L` is the Leavitt--Nekrashevych completion of
+   `B = Q[N][(N+c)^(-1)]` with `ψ(f) = diag(f(N+1), f(0))`. `B` is ψ-minimal and the pair
+   is aperiodic, so `R_L` is simple by `leavitt-nekrashevych-completion-simplicity-criterion`.
+   See `leavitt-resolvent-ring-is-fp-simple-of-char-zero`.

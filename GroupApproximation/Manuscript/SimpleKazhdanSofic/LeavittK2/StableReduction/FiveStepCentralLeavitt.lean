@@ -58,7 +58,8 @@ commutes with `x_{01}(s₀ t₀)` in `St_5(L)`.
 `fiveStepCentralLeavittCorner_of_binaryLeavittSteinbergInjective`.  Not proved in Lean.
 *Why it is smaller.*  The coefficient `1 = p₀ + p₁` becomes the corner idempotent `p₀`.  The
 image of the lower corner `ψ₁` is handled unconditionally.  LOUD: it is logically equivalent to
-`FiveStepCentralRootStatement` (see `fiveStepCentralLeavittCorner_of_binaryLeavittK2FiveCentral`). -/
+`FiveStepCentralRootStatement` (see
+`fiveStepCentralLeavittCorner_of_binaryLeavittK2FiveCentral`). -/
 def FiveStepCentralLeavittCornerStatement : Prop :=
   ∀ k ∈ BooneHigman.SteinbergBasic.K2 (Fin 5) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)),
     Commute k (x (0 : Fin 5) 1 fiveStepCentral_zero_ne_one

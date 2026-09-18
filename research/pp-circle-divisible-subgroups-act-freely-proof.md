@@ -42,10 +42,14 @@ the case where the arc is `S^1` minus one point.
 *Germ homomorphism.* Let `a` be an endpoint of a gap `J`, with `J` lying on the
 positive side of `a`. For `d ∈ D`, `d(a) = a`, and there are `ε_d > 0` and a
 unique `ρ(d) ∈ Λ` with `d = ρ(d)` on `[a, a + ε_d)`. In case (L) this holds for
-the lift of `d` that fixes a chosen lift `a~` of `a`. Existence holds because
-`B_d` is finite, and uniqueness by (U). Since `d'` fixes `a` and preserves
-orientation, it maps a small `[a, a + ε)` into `[a, a + ε_d)`, so
-`ρ(d d') = ρ(d) ρ(d')`. So `ρ : D -> Stab_Λ(a)` is a homomorphism.
+the lift of `d` that fixes a chosen lift `a~` of `a`. The definition asks only
+that some lift be Λ-piecewise, but any two lifts differ by an integer translation,
+which lies in `Λ`, so the lift fixing `a~` is Λ-piecewise too. Existence holds
+because `B_d` is finite, and uniqueness by (U). For multiplicativity, `d'` fixes
+`a` and preserves orientation. So there is `ε ≤ ε_{d'}` with
+`d'([a, a + ε)) ⊆ [a, a + ε_d)`, and on `[a, a + ε)` we get
+`d d' = ρ(d) ρ(d')`. Hence `ρ(d d') = ρ(d) ρ(d')` by (U), and
+`ρ : D -> Stab_Λ(a)` is a homomorphism.
 
 *Conclusion.* `ρ(D)` is a divisible abelian subgroup of `Λ`, so `ρ(D) = 1` by
 (D). In particular `g` is the identity on some `[a, a + ε)`, so `g` has fixed

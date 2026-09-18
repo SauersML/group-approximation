@@ -1,0 +1,74 @@
+---
+rg: 2
+id: integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields
+kind: claim
+title: Finitely generated unit groups of integral-form algebras over any field are residually finite-field, so their copies of PSL_n(Q) and (Q,+) already live over a finite field
+distinct_from:
+  integral-form-algebras-have-no-fg-subring-containing-q: that excludes Q as a SUBRING of a finitely generated subring; this concerns abstract GROUP copies of PSL_n(Q), GL_n(Q) and (Q,+) in finitely generated unit groups, where no ring copy of Q is assumed, and reduces them to finite fields.
+  infinite-field-leavitt-units-are-not-finitely-generated: that shows finitely generated pieces of L_k(1,2)^x live over finitely generated domains and that the whole group is not finitely generated; this proves every finitely generated piece embeds in a product of finite-field unit groups and transfers PSL_n(Q) and (Q,+) to one finite field.
+  char-zero-leavitt-unit-groups-have-congruence-kernels: that exhibits a proper normal subgroup of L_A(1,2)^x; this is the residual embedding of every finitely generated subgroup, for every integral-form algebra, with the scalar quotient included.
+  leavitt-unit-centralizers-have-finite-rank: that is the open finite-rank question for units of L_(F_2)(1,2); this shows that the question over finite fields decides the whole Leavitt route over every field, and turns (Q,+) into the group algebra F[Q].
+---
+
+**ESTABLISHED** by `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields-proof`
+(lane proof, not independently reviewed; elementary, no novelty claimed).
+
+**Setting.** `A` is a unital ring whose additive group is free abelian, `K` is any
+field, `m >= 1`, and `A_K = A ⊗_Z K`. Examples: the Leavitt algebras
+`L_Z(1,d)`, `d >= 2` (so `A_K = L_K(1,d)`), integral group rings `Z[Γ]`, Leavitt
+path and Steinberg algebras with their integral forms, the Toeplitz ring
+`Z<S,T | TS = 1>`, the integral Weyl algebra.
+
+**Statement.**
+1. **Residually finite-field.** Every finitely generated subgroup `S` of
+   `GL_m(A_K)` embeds in a product `∏_i GL_m(A ⊗ F_i)` of groups over finite fields
+   `F_i`, through reduction maps that are ring homomorphisms.
+2. **Transfer of SL_n(Q) and PSL_n(Q).** Let `n >= 2`.
+   - (a) If `S` contains a copy of `SL_n(Q)`, for instance a copy of `GL_n(Q)`,
+     then for some finite field `F` a copy of `SL_n(Q)` or of `PSL_n(Q)` embeds in
+     `GL_m(A ⊗ F)`. If `S` contains a copy of `PSL_n(Q)`, then so does
+     `GL_m(A ⊗ F)` for some finite `F`.
+   - (b) Suppose `Z·1` is a direct summand of `(A,+)`, as for all the examples
+     above. If the image of `S` in `GL_m(A_K)/K^x` contains a copy of `PSL_n(Q)`,
+     for instance a copy of `PGL_n(Q)`, then `PSL_n(Q)` embeds in
+     `GL_m(A ⊗ F)/F^x` for some finite field `F`.
+   - (c) In both cases, `(Q,+)` embeds in `GL_m(A ⊗ F)` itself.
+3. **(Q,+) is the group algebra.** For an algebra `R` over a finite field `F`,
+   `(Q,+)` embeds in `R^x` if and only if the group algebra `F[Q]` embeds unitally
+   in `R`. Moreover `F[Q]` embeds unitally in `M_(∞!)(F) ⊗_F F[t^(±1)]`, where
+   `M_(∞!)(F) = lim_k M_(k!)(F)` along `a -> diag(a, ..., a)`. So a unital copy of
+   `M_(∞!)(F)` in `R` whose relative commutant contains a unit of infinite order
+   suffices.
+4. **Not a corner.** For `F` finite and `d >= 2`, `F[Q]` is not isomorphic to a
+   corner `p M_m(L_F(1,d)) p`, `p ≠ 0`, because `K_1` of such a corner is finite
+   and `K_1(F[Q])` contains `Q`. Any copy of `F[Q]` in a finite-field Leavitt
+   algebra is therefore a non-corner subalgebra.
+
+## Consequences for `gl-n-q-embeds-in-fp-simple-group`
+
+- **Every Leavitt host reduces to finite fields.** Suppose a finitely generated
+  subgroup of `GL_m(L_K(1,d))`, over any field `K`, contains `GL_n(Q)`. Then a copy
+  of `SL_n(Q)` or `PSL_n(Q)`, and a copy of `(Q,+)`, embed in `GL_m(L_F(1,d))` for
+  one finite field `F`. For `d = 2`, `M_m(L_F(1,2)) ≅ L_F(1,2)`, so they sit in
+  `L_F(1,2)^x`, and `F[Q]` sits in `L_F(1,2)`.
+- **The scalar quotient too.** This covers `Λ = L_Q(1,2)^x / Q^x`: every finitely
+  generated subgroup of `Λ` containing `PGL_n(Q)` forces `PSL_n(Q)` into
+  `L_(F_p)(1,2)^x / F_p^x`, and `(Q,+)` into `L_(F_p)(1,2)^x`, for some prime `p`.
+  (Here `D ⊆ Q` has the form `Z[1/N]`, so its residue fields are prime fields.)
+- **The characteristic-zero Leavitt route adds nothing.** Coefficients of
+  characteristic zero never help a Leavitt(1,d) host. The whole route is the
+  question whether `(Q,+)` and `SL_n(Q)` or `PSL_n(Q)`, and then `GL_n(Q)`, embed
+  in finite-field Leavitt unit groups. Over `F_2` with `d = 2` this is the question
+  lane `gq-ring-alt` records for the finitely presented simple group
+  `L_(F_2)(1,2)^x`.
+- **One conjecture closes the route everywhere.** Suppose the finite-rank
+  statement of `leavitt-unit-centralizers-have-finite-rank` held for
+  `M_m(L_F(1,d))` for every finite field `F`, every `d` and every `m`. A copy of
+  `F[Q]` generated by `u = t` would give `ρ(u) = ∞` (part 3; see the proof route).
+  So no finitely generated subgroup of any `GL_m(L_K(1,d))` would contain
+  `SL_n(Q)` or `PSL_n(Q)`, and no finitely generated subgroup of its scalar
+  quotient would contain `PSL_n(Q)`.
+- **Rings that could still help** lie outside part 1: finitely generated rings
+  whose additive group is not free abelian, for example rings containing `Q` in a
+  corner (`q-embeds-in-a-corner-of-a-fp-toeplitz-ring`). Their unit groups are
+  not residually finite-field in this sense.
