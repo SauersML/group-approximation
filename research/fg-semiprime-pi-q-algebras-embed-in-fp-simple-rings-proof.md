@@ -20,8 +20,10 @@ Lane proof from classical PI theory, not independently reviewed. Let `A` be gene
      whose nonzero elements are regular. The central localization
      `Q_P = (A/P) ⊗_(Z_P) F_P`, with `F_P = Frac(Z_P)`, is a central simple `F_P`-algebra of
      dimension `n_P^2`, and `A/P -> Q_P` is injective.
-   - By the Amitsur--Levitzki and Kaplansky bound, a central simple algebra satisfying an
-     identity of degree `2m` has `n_P <= m`.
+   - Replace the identity by a multilinear one of degree `<= 2m` (multilinearization).
+     Multilinear identities pass to central localizations and to scalar extensions, so
+     `Q_P ⊗ F̄_P = M_(n_P)(F̄_P)` satisfies it. By Amitsur--Levitzki, `2 n_P <= 2m`, so
+     `n_P <= m` (referee b, W1).
    - Over an algebraic closure, `Q_P ⊗ F̄_P ≅ M_(n_P)(F̄_P)`. So `A/P` embeds unitally in
      `M_(n_P)(F̄_P)`.
 3. **One matrix size.** Let `N = m!`. Each `n_P` divides `N`, and `x ↦ diag(x, ..., x)`, with
@@ -35,6 +37,8 @@ Lane proof from classical PI theory, not independently reviewed. Let `A` be gene
    `D = N` and `m = 1` (via `M_N(C_0) ⊆ M_N(C_0 ⊗ Q<x_1>)`), `A` embeds in a simple ring finitely presented over `Z`. That is
    part 2.
 
-**GK dimension at most one.** A finitely generated algebra of GK dimension `1` is PI by
-Small--Stafford--Warfield (1985). GK dimension `0` means finite dimension over `Q`, and the
+**GK dimension at most one.** By Bergman's gap theorem, GK dimension at most `1` means GK
+dimension `0` or `1`. A finitely generated algebra of GK dimension `1` is PI by
+Small--Stafford--Warfield (1985). The semiprime case used here is also stated in the
+abstract of Pappacena--Small--Wald, arXiv:math/0211330. GK dimension `0` means finite dimension over `Q`, and the
 regular representation embeds such an algebra in `M_e(Q)`. ∎
