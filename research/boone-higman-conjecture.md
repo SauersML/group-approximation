@@ -269,6 +269,22 @@ The August audit and the September correction artifacts carry the arguments.
      groups or branch groups. It is open whether any finitely presented group acts
      faithfully on a tree with (P), a nontrivial finitely generated edge group, and
      not both indices 2.
+   - *The finitary infinite-valence route dies* (heretic lane w3-030,
+     2026-09-17). By `finitely-singular-tree-hosts-have-no-fg-stabilizers`, fix
+     a core `G ≤ Aut(T)` in which only `1` fixes an edge, and a radius `ρ`. Any
+     group of automorphisms that agree with elements of `G` on `ρ`-balls off
+     finitely many singular vertices, and that acts minimally without fixed end
+     with some nontrivial rigid stabilizer, has no finitely generated vertex,
+     edge or rigid stabilizer. This holds in every valence.
+     - *Where it fails.* The singular depth `D` is ultrametric on each
+       stabilizer, so a finitely generated stabilizer subgroup has bounded
+       depth. But every nontrivial deep rigid element has a deep singularity.
+     - *What it kills.* Le Boudec-type local-rule groups, their countable-colour
+       analogues, and the finitary (P)-closures of free products. None of these
+       can host (P) with a nontrivial finitely generated edge group.
+     - *What is left.* A host with that property needs elements that are
+       infinitely singular over every such core, of automaton or branch type,
+       as in `tits-independence-vertex-groups-are-branch-type`.
    - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
      that are not finitely presented, or a positive answer to the finitely
      presented branch-group question. The open first step is whether some
