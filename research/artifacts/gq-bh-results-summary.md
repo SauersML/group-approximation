@@ -7,7 +7,16 @@ Lane `bh-writeup`, written from node texts on origin/main at `ddeea47ea` (14:25 
 - `5821ec240`: 17.60 and 21.73.
 
 The update also covers the LISW Q1.11 row, the Matui reduction (`f2350f8a4`) and the new general
-mechanisms (§7a). It supersedes §3 of `gq-bh-bh-writeup-state.md` (10:51), which remains the
+mechanisms (§7a).
+
+Updated again at `e8df48ee6` (16:21 CDT):
+- the credits section (§0);
+- FFWZ Q5.9 (`25056ab91`);
+- the wider Tanner result (`fd9f710c0`);
+- Reid's group not finitely presented (`5d7507af3`, `bb487abce`, `58db3f3f9`);
+- Kourovka 21.74(a) (`d61d20b6b`) and 17.58 (`ad962750f`), both still open.
+
+It supersedes §3 of `gq-bh-bh-writeup-state.md` (10:51), which remains the
 lessons-by-mechanism summary.
 
 **What this is.**
@@ -33,13 +42,67 @@ lessons-by-mechanism summary.
 
 | | Refereed [R] | Checked [IC] | Lane only [LP] | Total |
 |---|---|---|---|---|
-| Printed problems answered in full (§2) | 9 | 12 | 0 | **21** |
+| Printed problems answered in full (§2) | 9 | 12 | 1 | **22** |
 | Printed problems answered in part (§3) | 0 | 2 | 8 | **10** |
 
-**Kourovka rows: priority check pending.** Morrison, arXiv:2607.17477, claims answers to eight
-Kourovka problems. Until bh-openq-lists reports on it, the seven Kourovka rows of §2 and the 21.74(a)
-row of §3 are held as "priority check pending". This does not change the counts, which count review
-status only.
+Counting conventions:
+- MO 339541 is counted as [R] for its refereed homology answer. The later non-finite-presentation
+  result on the same row is [LP], and referee bh-ref-engines is running on it.
+- FFWZ Q5.9 is [LP], and referee bh-ref-ffwz is running.
+- Worked-on problems that stay OPEN, such as Kourovka 17.58, are listed but not counted.
+
+Prior and parallel work is credited in §0.
+
+## 0. Credits: prior and parallel work
+
+We want to credit others generously. The answers below stand on the following work, and several
+were found in parallel.
+
+**Parallel work on the Kourovka Notebook.**
+- van Doorn, Judin, Monticone and Morrison, arXiv:2607.17477 (v1 20 July 2026, v2 26 July 2026),
+  answer eight Kourovka problems: 3.46, 18.50, 19.25, 20.125, 21.8, 21.24, 21.147 and 21.150.
+- There is no overlap with the problems listed here (bh-openq-lists, `gq-bh-openq-lists.md`).
+- Their 21.8, on class transpositions of bounded modulus generating S_{lcm(2..k)}, is the closest
+  neighbor of our CT_P(Z) work. Pan proved it independently. Our 21.75 node cites the paper.
+
+**Prior work that answers or contains our statements.**
+- Kochloukova and de Sousa Luiz, arXiv:2509.05798 (September 2025), Examples item 2, show that
+  Baumslag's group is not self-similar. This predates main's
+  `baumslag-char-zero-metabelian-group-is-not-self-similar` (09-12).
+- They also conjecture NO for Kourovka 21.41.
+- Garrido and Reid, arXiv:2501.00908v1, Corollary `cor:group_expansive_iff_alternating_compactly_gen`,
+  already contains the minimal case of the Matui reduction step "finitely generated alternating full
+  group ⇒ expansive" (`free-action-fg-alternating-full-groups-force-expansivity`).
+- Rungtanapirom, Stix and Vdovina, arXiv:1808.03290, Corollary cor:pi1ofdouble: our RSV-doubles
+  answer is immediate from it.
+- Kharlampovich, Myasnikov and Sapir answered Kourovka 5.15. We only record that answer.
+- Hyde and Lodha constructed the finitely presented infinite simple group behind lean-eval
+  `higman_infinite_simple`. Our part is a formalization.
+
+**Work our proofs rest on, read at source by the lanes.**
+- Kohl problems:
+  - Matui 1210.5800 (`simple2`, `iso2`) and Li 2110.04505 (Cor. `OneVertex`);
+  - Li 2209.08087 (`AHConj`) and FKPS 1808.07807;
+  - Adamczewski–Bell 1303.2019 and Bell's generalized Cobham theorem (17.57);
+  - Kari–Ollinger, MFCS 2008, Theorems 3 and 6 (21.74), and Morita, TCS 168 (1996) (21.73);
+  - Rubin–Matui, as read in Matte Bon 1801.10133v2 (17.58-adjacent);
+  - Kohl's own RCWA theory and package.
+- Twisted Brin–Thompson groups:
+  - Belk–Zaremsky 2001.04579, including its Stein complex and `lem:VE_conn`;
+  - FFWZ 2603.24687 (Def. 1.3, Prop. 4.17, Cor. 4.18);
+  - BFFHZ 2503.21882 (Theorems C and E, Cor. F), and Zaremsky 2405.18354 (Prop. 5.5 and the
+    product and wreath constructions).
+- FFWZ Q5.9: Scott's finite presentation theorem for Röver–Nekrashevych groups, and
+  Bartholdi–Mitrofanov arXiv:1710.10109, Theorem A''.
+- RSGs and Stein groups: BBMZ 2309.06224 (Theorem A and the RSG machinery), and Tanner 2312.07375
+  (simplicity, and the AH sequence as he states it).
+- Matui's question: Matui 1602.00383, Ma 2209.00580, Gordon–Vershik, and Kerr–Nowak.
+- Reid's group: Cornulier–Guyot–Pitsch math/0511714, Prop. 2.2.
+- Tarocchi 2310.14660 for G_3. Our node adds the one missing step to results imported from his
+  paper.
+- Mallery–Zaremsky 2202.00822 and P. Hall's extension lemma for Q5.13 and Q3.18.
+- Euclidean buildings: Ciobotaru–Le Bars 2601.13092.
+- Others: Clapham's embedding theorem (MO 412219), and Salo's conveyor-belt embedding (RAAGs in 2V).
 
 Not counted:
 - literature answers we recorded (Kourovka 5.15, via Kharlampovich–Myasnikov–Sapir);
@@ -49,18 +112,24 @@ Not counted:
 
 ## 2. Printed problems answered in full
 
-**Kohl's class-transposition problems (Kourovka Notebook, 21st issue, source `gq/src/kourovka/21tkt.tex`).** One mechanism answers all of them: CT_P(Z) is identified as the topological full group of an explicit one-vertex (|P|+1)-graph. That import brings in Matui's isomorphism rigidity and Li's finiteness at once. **Every row in this
-table is held as "priority check pending"** against Morrison, arXiv:2607.17477 (§1).
+**Kohl's class-transposition problems (Kourovka Notebook, 21st issue, source `gq/src/kourovka/21tkt.tex`).** One mechanism answers all of them: CT_P(Z) is identified as the topological full group of an explicit one-vertex (|P|+1)-graph. That import brings in Matui's isomorphism rigidity and Li's finiteness at once.
 
 | Problem | Our answer | Node | Review |
 |---|---|---|---|
-| 17.57: is Out(CT(Z)) = C_2? | **Yes**, generated by n ↦ −n−1. Also Out(CT_P(Z)) = C_2 for every nonempty P (`out-ct-p-z-is-c2`, [LP]) | `out-ct-z-is-c2` | [IC] bh-free-43 PASS; priority check pending |
-| 17.59: is CT(Z) the group of RCWA permutations fixing N_0? | **Yes**; an elementary proof of the key step is `piecewise-canonical-permutations-are-transposition-products` | `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers` | [IC] bh-free-43 full-group check PASS; priority check pending |
-| 17.60: are the CT_P(Z) pairwise non-isomorphic? | **Yes**, for finite and infinite P. A second, independent proof for finite P: `gq-bh-bh-free-11-ct-p-z-second-proof.md` | `ct-p-z-groups-are-pairwise-nonisomorphic` | [R] bh-ref-kourovka-a PASS with minor gaps (5821ec240); priority check pending |
-| 17.61: is CT_P(Z) finitely presented for finite P? | **Yes**, and it is simple and F_∞. An explicit class-transposition presentation (`ct-p-z-has-a-finite-class-transposition-presentation`) is still OPEN | `ct-p-z-is-a-one-vertex-k-graph-full-group` | [IC] bh-free-43 PASS; priority check pending |
-| 21.73: is conjugacy in CT(Z) decidable? | **No**, already in CT_{3,5,7,11,13,17}(Z), even with conjugators from RCWA(Z). The node's smaller set {3,…,13} needs Morita's theorem for 2-counter machines from an initial configuration, which the referee could not confirm | `ct-z-conjugacy-problem-is-undecidable` | [R] bh-ref-kourovka-a PASS with minor gaps (5821ec240), conditional on Morita (TCS 168, 1996), which was not read at source; priority check pending |
-| 21.74(b),(c): decide "only finite cycles" and "no finite cycles" | **Both are undecidable** | `ct-z-finite-cycle-problems-are-undecidable` | [R] PASS (fac0259d6), conditional on Kari–Ollinger's Theorems 3 and 6, used as printed. Their MFCS 2008 paper gives proof sketches only. Priority check pending |
-| 21.75 | **Negative**: CT_P1 and CT_P2 always generate CT_(P1∪P2) | `ct-p1-and-ct-p2-always-generate-ct-p1-union-p2` | [R] bh-ref-kourovka-b PASS (fac0259d6), with two independent proofs; priority check pending |
+| 17.57: is Out(CT(Z)) = C_2? | **Yes**, generated by n ↦ −n−1. Also Out(CT_P(Z)) = C_2 for every nonempty P (`out-ct-p-z-is-c2`, [LP]) | `out-ct-z-is-c2` | [IC] bh-free-43 PASS |
+| 17.59: is CT(Z) the group of RCWA permutations fixing N_0? | **Yes**; an elementary proof of the key step is `piecewise-canonical-permutations-are-transposition-products` | `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers` | [IC] bh-free-43 full-group check PASS |
+| 17.60: are the CT_P(Z) pairwise non-isomorphic? | **Yes**, for finite and infinite P. A second, independent proof for finite P: `gq-bh-bh-free-11-ct-p-z-second-proof.md` | `ct-p-z-groups-are-pairwise-nonisomorphic` | [R] bh-ref-kourovka-a PASS with minor gaps (5821ec240) |
+| 17.61: is CT_P(Z) finitely presented for finite P? | **Yes**, and it is simple and F_∞. An explicit class-transposition presentation (`ct-p-z-has-a-finite-class-transposition-presentation`) is still OPEN | `ct-p-z-is-a-one-vertex-k-graph-full-group` | [IC] bh-free-43 PASS |
+| 21.73: is conjugacy in CT(Z) decidable? | **No**, already in CT_{3,5,7,11,13,17}(Z), even with conjugators from RCWA(Z). The node's smaller set {3,…,13} needs Morita's theorem for 2-counter machines from an initial configuration, which the referee could not confirm | `ct-z-conjugacy-problem-is-undecidable` | [R] bh-ref-kourovka-a PASS with minor gaps (5821ec240), conditional on Morita (TCS 168, 1996), which was not read at source |
+| 21.74(b),(c): decide "only finite cycles" and "no finite cycles" | **Both are undecidable** | `ct-z-finite-cycle-problems-are-undecidable` | [R] PASS (fac0259d6), conditional on Kari–Ollinger's Theorems 3 and 6, used as printed. Their MFCS 2008 paper gives proof sketches only. |
+| 21.75 | **Negative**: CT_P1 and CT_P2 always generate CT_(P1∪P2) | `ct-p1-and-ct-p2-always-generate-ct-p1-union-p2` | [R] bh-ref-kourovka-b PASS (fac0259d6), with two independent proofs |
+
+**Kohl problems worked on and still OPEN (not counted).**
+
+| Problem | What was found | Node | Review |
+|---|---|---|---|
+| 17.58: does CT(Z) have subgroups of intermediate growth? | Not settled. CT(Z) and every CT_P(Z) have nontrivial isotropy only at rational points, so none is isomorphic to nV (n ≥ 2) or to any full group of a product of SFTs (by Rubin–Matui). The full-group route needs an embedding of 2V (or of [[X]] for a minimal subshift X) into CT(Z), which is undecided | `ct-p-z-is-not-a-product-shift-full-group` (ad962750f) | [LP] |
+| 21.74(a) | See §3 | | |
 
 **Other printed problems.**
 
@@ -71,8 +140,9 @@ table is held as "priority check pending"** against Morrison, arXiv:2607.17477 (
 | BFFHZ Q3.1 (arXiv:2503.21882v2): is PBH closed under graph products? | **Yes.** Proved 09-14 and re-verified end to end today | `pbh-class-closed-under-graph-products` | [IC] bh-free-10 PASS |
 | BFFHZ Q3.3 (same paper) | **No**: the mixed identities of Thompson's T are not finitely normally generated. The reformulation is `bffhz-q33-is-normal-finite-generation-of-mixed-identities` | `thompson-t-mixed-identities-are-not-finitely-normally-generated` | [IC] bh-refute PASS |
 | Zaremsky, Oberwolfach Report 26/2018, Question 110 | **No**: every homomorphism from Higman's group to Monod's H(R) or to a Lodha–Moore group is trivial | `higman-group-embeds-in-no-lodha-moore-or-monod-group` | [IC] bh-refute PASS |
-| MathOverflow 412219: is E(G) recursively presented for fp decidable G? | **No** | `fp-decidable-group-whose-e-is-not-recursively-presented` | [IC] bh-refute PASS |
-| MathOverflow 339541 (C. Reid, 2019): basic properties of the d = 0 Higman–Thompson variant | Abelianization Z ⊕ Z/2, and groupoid homology Z, Z, 0, 0, … | `reid-higman-thompson-variant-d-zero-abelianization` | [R] bh-ref-misc PASS (6a0a3642f), covering the parent homology node too; two cosmetic gaps recorded |
+| MathOverflow 412219: is E(G) recursively presented for fp decidable G? | **No.** A second route now follows from the FFWZ Q5.9 witness through the implication `nonrecursive-a2-kernel-makes-e-of-wreath-not-rec-presented` ([LP]) | `fp-decidable-group-whose-e-is-not-recursively-presented` | [IC] bh-refute PASS |
+| FFWZ Q5.9 (arXiv:2603.24687v2): can every type [A_2] pair (G, K) be sharply embedded in one whose kernel is finitely normally generated? And the analogous question for fp relatively simple pairs | **No to both parts.** Scott's theorem needs no faithfulness, so the abstract Röver–Nekrashevych group of a free group with a Bartholdi–Mitrofanov recursion is fp. Its clopen action is of type [A_2] with a non-recursive kernel, so the kernel cannot be removed. Its simple quotient has unsolvable word problem. This refutes `a2-action-kernels-are-recursive` and shows that kernel removal cannot carry (relPBH) ⇒ (PBH) | `a2-pair-with-non-removable-kernel-exists`, `fp-relatively-simple-pair-with-unsolvable-simple-quotient`, `some-a2-action-has-a-nonrecursive-kernel` (25056ab91) | [LP]; referee bh-ref-ffwz running |
+| MathOverflow 339541 (C. Reid, 2019): basic properties of the d = 0 Higman–Thompson variant | Abelianization Z ⊕ Z/2, and groupoid homology Z, Z, 0, 0, …. **Also, Reid's group and its derived group are not finitely presented:** a finitely presented emitter full group forces an isolated vertex group, and Z is not isolated | `reid-higman-thompson-variant-d-zero-abelianization`; non-fp: `free-product-emitter-full-groups-need-isolated-vertex-groups`, `stabilizer-engines-are-fp-only-over-isolated-groups` (5d7507af3, bb487abce) | Homology: [R] bh-ref-misc PASS (6a0a3642f), covering the parent homology node; two cosmetic gaps recorded. Non-fp: [LP], referee bh-ref-engines running |
 | Tarocchi (arXiv:2310.14660v3, l.1604–1605): is [G_3, G_3] simple? | **Yes**, and so is [G_n, G_n] for every n ≥ 3 | `dendrite-rearrangement-group-g3-has-simple-commutator-subgroup` | [IC] bh-refute PASS |
 | Lodha (arXiv:1710.06220v2, l.1700–1702): is S 2-generated? | **Yes**, as is every f.g. simple circle group containing T. His second question, the minimal number of relations, is not addressed | `lodha-simple-group-s-is-two-generated` | [IC] bh-refute PASS |
 | Kohl's factorization conjecture (RCWA package manual, ch. 2) | **Yes**: every RCWA permutation of Z is a product of class shifts, class reflections and class transpositions | `rcwa-z-generated-by-class-shifts-reflections-transpositions` | [R] bh-ref-misc PASS for the deduction (6a0a3642f). It is immediate from 17.59 and the elementary piecewise-canonical node, so the credit is "observed", not a new theorem |
@@ -85,10 +155,10 @@ table is held as "priority check pending"** against Morrison, arXiv:2607.17477 (
 
 | Problem (source) | What is settled | Node | Review | What stays open |
 |---|---|---|---|---|
-| Kourovka 21.74(a) (Kohl) | Permuting a residue partition is r.e. and holds for all torsion, but it is not a conjugacy invariant; thin invariant sets cannot be carved | `ct-z-invariant-residue-partitions-are-not-conjugacy-invariant`, `ct-z-residue-partitions-cannot-carve-thin-invariant-sets` | [LP]; priority check pending | the question itself |
+| Kourovka 21.74(a) (Kohl) | Permuting a residue partition is r.e., holds for all torsion, and is not a conjugacy invariant; thin invariant sets cannot be carved. **New (d61d20b6b):** every instance of our (b), (c) and 21.73 reductions is a yes-instance, so those reductions are blind to (a). τ_{1(2),0(4)}τ_{0(2),1(2)} is a no-instance for finite and infinite partitions. Kohl's mixer ψ is a no-instance only under the finite reading | `ct-z-invariant-residue-partitions-are-not-conjugacy-invariant`, `ct-z-residue-partitions-cannot-carve-thin-invariant-sets`, `ct-z-residue-partition-question-finite-vs-infinite-reading` | [LP] | the question itself, under its intended finite reading; the node states the missing steps both ways |
 | Mallery–Zaremsky Q5.13 | Yes for fp and for F_m strongly shift-similar G | `fp-strongly-shift-similar-groups-have-fp-houghton-like-groups`, `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups` | [IC] bh-refute PASS | the general case, which is tied to the f.g. form of Q3.18 |
 | Zaremsky (arXiv:2201.00711v1, l.495–497): QI embeddings, even into F_∞ hosts? | QI embeddings into fp simple groups for: hyperbolic groups; braid groups and MCGs of surfaces with boundary; Aut(F_n); finite products of these. Cubulated hyperbolic groups go QI into 2V, which is F_∞ | `hyperbolic-groups-undistortedly-embed-in-fp-simple-groups` [IC]; `braid-groups-quasi-isometrically-embed-in-fp-simple-groups`, `aut-free-groups-quasi-isometrically-embed-in-fp-simple-groups`, `products-of-hyperbolic-groups-qi-embed-in-fp-simple-groups`, `virtually-compact-special-groups-undistorted-in-2v` [LP] | [IC] + [LP] | an F_∞ host for every hyperbolic group (`hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups` is OPEN); Out(F_n); closed MCGs; CAT(0) |
-| Tanner (arXiv:2312.07375): when is D(V(Γ,Λ,ℓ)) fp? | Sufficient condition: slope an (F) unit, in every degree | `pisot-unit-slope-stein-groups-are-finitely-presented` | [LP] | a characterization; the necessary side is a computable module (`stein-derived-groups-need-computable-modules`) |
+| Tanner (arXiv:2312.07375): when is D(V(Γ,Λ,ℓ)) fp? | Sufficient condition: slope an (F) unit, in every degree. **Widened (fd9f710c0):** it is enough that β ∈ Z[c] with β^b = c^a for an (F) unit c, via a block recoding of the c-shift. Example: β = θ + 1 = θ³ with θ plastic, whose β-shift is not of finite type, yet D(V(Z[θ], ⟨θ+1⟩, ℓ)) is fp simple | `pisot-unit-slope-stein-groups-are-finitely-presented`, `pisot-stein-groups-with-commensurable-f-unit-slopes-are-fp` | [LP] | a characterization; the necessary side is a computable module (`stein-derived-groups-need-computable-modules`) |
 | Matui (arXiv:1602.00383v2, l.1402–1406): are derived full groups of free minimal Z^N actions never fp? | Yes for residually finite actions. **Exact reduction** (f2350f8a4): D([[φ]]) is f.g. iff φ is expansive, i.e. a subshift, and if D([[φ]]) is fp then φ is a minimal SFT | `rf-free-minimal-zn-actions-have-non-fp-derived-full-groups`, `free-minimal-zn-fp-derived-full-groups-live-only-on-sfts` | [LP] | exactly the minimal free Z^N SFTs (N ≥ 2). The first test is Labbé's shift (`labbe-shift-derived-full-group-is-finitely-presented`, OPEN) |
 | LISW Q1.10 (arXiv:2510.01952v1) | Yes for f.g. subgroups of GL_n(C) of type FP_2 over no field, e.g. Z wr Z | `non-fp2-groups-are-quasi-retracts-of-simple-groups` | [LP] | the general case (`fg-complex-linear-groups-are-quasi-retracts-of-simple-groups`) |
 | BBMZ-hyperbolic Q1.1 (arXiv:2309.06224v3) | Yes for every non-elementary hyperbolic group with a finite-index nontrivial free product, including virtually free groups (trivial nucleus) | `virtually-free-product-hyperbolic-groups-are-contracting-rsgs`, `virtually-free-groups-are-contracting-rsgs` | [LP] | one-ended hyperbolic groups |
@@ -313,7 +383,7 @@ All four are lane proofs [LP] unless marked.
 - the quadratic IET claim is restricted to norm −1 fields.
 
 **Still OPEN, though easy to misread as settled:**
-- Kourovka 7.19, 21.46 and 21.74(a);
+- Kourovka 7.19, 17.58, 21.46 and 21.74(a);
 - BBCMP Q1.15 (cubulated);
 - BBMZ-hyperbolic Q1.1 (one-ended case) and Q1.2;
 - Zaremsky 2.19(a) and (c);
