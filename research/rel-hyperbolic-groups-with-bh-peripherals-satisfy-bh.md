@@ -121,6 +121,26 @@ acylindrical graphs of groups whose edge maps are realized in this way (Dahmani,
 graph of groups over its peripheral structure, so the claim stays OPEN. What is missing
 is a way to build, from `G` alone, an ambient `B_A`-group in which `G` is visible.
 
+**Attempt 4 (bh-relhyp, 2026-09-18): Dehn filling. Not constructed.** Let `P` be residually
+finite, and let `N ⊴ P` have finite index and avoid the finite set in
+`relatively-hyperbolic-dehn-filling`. Then `Ḡ = G/<<N>>` is hyperbolic relative to the
+finite group `P̄ = P/N`, so `Ḡ` is hyperbolic and lies in `B_A`. The group
+`W = Ḡ *_{P̄} (P̄ × P)` is a free permutational product over a finite stabilizer, so it
+lies in `B_A` (`free-permutational-products-preserve-pbh`).
+
+If `G` embedded in `W` by `p ↦ (p̄, p)` on `P`, extended over the other generators, then
+the B_A form of this claim would follow for residually finite peripherals. With the
+naive extension `x ↦ x̄` the map is not a homomorphism. Take
+`G = Z^2 *_{a = w} F(y, z)`, with `Z^2 = <a, b>` and `w = y z y^(-1) z`. The relator
+`a = w` would force the lamp `a_{ω_0}` to be trivial. Correcting the images of `y` and
+`z` by elements of the kernel `*_{Ḡ/P̄} P` leads to an equation in that free product,
+and no solution was found.
+
+The map cannot be a splitting in general. For `G = Z^2 * Z` and `N = (kZ)^2`, the group
+`G` is torsion-free while `Ḡ` has torsion, so `G` is a non-split extension of `Ḡ`
+(although this `G` does embed in `W`). The example `G` above is in `B_A` anyway, by
+`pbh-graphs-of-groups-over-realized-good-edges` with `D = F_2 × Z`.
+
 ## Scope
 
 Nothing here embeds any new group in a finitely presented simple group.

@@ -41,3 +41,5 @@ For a group `G` and `c, d ∈ G`, write `N_c` and `N_d` for their normal closure
 natural candidates are groups of homeomorphisms or permutations in which `[N_c, N_d] = 1` holds exactly when no
 group element carries `supp(c)` onto a set that meets `supp(d)`, and in which that reachability simulates a
 universal machine while the word problem stays solvable. No such group is constructed here.
+
+**Status note (2026-09-18).** MathOverflow 412219 in the finitely presented case is now answered negatively outright by `fp-decidable-group-whose-e-is-not-recursively-presented` (bh-free-08, 1c6cfe928). That construction is consistent with this node: in its group, normal-closure commutation is undecidable. This node remains a separate reduction and is no longer needed for the answer.

@@ -50,3 +50,5 @@ generated point stabilizers, finitely many orbits on `S × S`), with kernel `K` 
   orbits that partition a set are each recursive. So the undecidability has to sit in a Π_1 condition such as an
   orbit kernel, which is exactly what this node uses. This applies, for example, to the elementary reversible
   Turing machine groups suggested by team-lead.
+
+**Status note (2026-09-18).** MathOverflow 412219 in the finitely presented case is now answered negatively outright by `fp-decidable-group-whose-e-is-not-recursively-presented` (bh-free-08, 1c6cfe928). That construction is consistent with this node: in its group, normal-closure commutation is undecidable. This node remains a separate reduction and is no longer needed for the answer.
