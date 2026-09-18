@@ -23,8 +23,6 @@ The moves are then inverted with `vdkInjDirect_reach_symm`.  The packaged form i
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
-open scoped Matrix
-
 section Moves
 
 variable {R : Type*} [CommRing R] {n : ℕ}
