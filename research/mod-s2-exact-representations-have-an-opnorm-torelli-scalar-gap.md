@@ -119,3 +119,33 @@ same diagonal, tensor and conjugate argument as (U2).
   - *Invariant.* The quotient `H^2(Gamma'; Q/Z) / (beta(Q) + H^2_fin)` is
     nonzero. Any proof of (B) must control all of it.
   - *By-product.* `a | 20`.
+- **2026-09-18, swarm-0917-w11-w11-deligne-break (calibration): the Jones
+  rectangular family, which has infinite image, is computed. It kills
+  spectral-spread arguments and proves the gap on the family's tensor
+  closure. The node stays OPEN.** See
+  `mod-s2-jones-rectangular-separating-twist-spectrum`, ESTABLISHED.
+  - *Closed-form spectrum.* In Jones' 5-dimensional TL_6 representations
+    `rho_x` (`|x| < pi/8`), the eigenvalues of `rho_x(t_s)` are
+    `zeta e^(96ix/5)` (multiplicity 1) and `zeta e^(-24ix/5)` (multiplicity 4),
+    with `zeta` in `mu_5`.
+  - *Near-scalar with infinite image.* The distance from `rho_x(t_s)` to the
+    scalars is `2 sin(gamma/4)`, where `gamma` is the distance from `24x` to
+    `2 pi Z`. So infinite-image honest representations put `t_s` arbitrarily
+    close to a scalar: near `x = 0` (the `S_6` point) and near `x = pi/12`.
+    - The "quantum representations" evidence above holds only for the SU(2)
+      level-k family.
+    - *Class kill.* Any proof that lower-bounds `dist(rho(t_s), T I)` on
+      infinite-image representations dies at that step.
+  - *Sharp gap on the family.* `||rho_x(t_s) - omega^(+-1)|| >= 2 sin(pi/15)`,
+    which is the distance from `mu_5` to the cube roots. On all direct sums of
+    tensor words in the family, its conjugates and the characters, the bound is
+    `2 sin(pi/24)`, uniform in dimension `5^n`, where the w9 determinant test is
+    void. The mechanism is scalar-locus attraction: the drift of the nearest
+    scalar from `mu_5` is at most `0.3` times the angular spread.
+  - *Proposed invariant.* The attraction constant `C(rho)`. The gap node
+    follows from `sup C < infinity` on honest representations whose `t_s` is
+    near-scalar, together with (ST5).
+  - *Where a counterexample must live.* Assume the closure of `rho_x(M)`
+    contains `SU(5)` (sketch, not cited). Then Schur modules also satisfy
+    `C <= 0.6`, so a counterexample must mix unrelated families whose `t_s`
+    eigenvalue steps are incommensurable.
