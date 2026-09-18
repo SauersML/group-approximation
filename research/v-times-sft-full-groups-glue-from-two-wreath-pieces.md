@@ -60,6 +60,16 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
    - Conjugacy with overlapping supports is the open part. It is combinatorics in `Γ~`, with no
      dynamics.
 
+4. **Descent from the full shift (bh-p2b-exact, 2026-09-18).** *Reduction, proved.*
+   `gluing-kernels-descend-from-the-full-shift` shows that `K_X = q(K_Y)` for every closed invariant `X ⊆ Y` on
+   which `Λ` acts topologically freely. Here `q : Γ~_Y → Γ~_X` is restriction. So this node, for every
+   topologically free subshift over the alphabet `A`, follows from one statement, FSG(Λ, A): the gluing kernel of
+   the full shift `A^Λ` is finitely normally generated. Exactness descends in the same way.
+   - For an SFT, `Γ~_X` and `F(T_X)` are the full-shift objects modulo one conditioned relator `v_0^[Z(F, p_i)]`
+     per forbidden pattern.
+   - "Plausible for every X" is therefore now a theorem-level reduction. The subshift enters only through
+     `N_X`, that is, through P2′a.
+
 **Lesson for general BH.**
 - The gluing half of P2′ is a statement about Thompson-type self-similarity, not about dynamics. If the target
   `F(T)` is superperfect, as Li's theorem is expected to give (recalled, not read), it is enough to prove that the kernel of a finitely presented self-similar model is
