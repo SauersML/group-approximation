@@ -130,7 +130,8 @@ theorem rcore_image_eq [Nontrivial X] (H : Subgroup (TreeAut X)) (N : Subgroup (
     (k : X → ↥H) {l' : List X} (hl' : l'.Nodup) (hall' : ∀ x, x ∈ l')
     (hk : ∀ x, (k x : TreeAut X) = TreeAut.state (h : TreeAut X) [x])
     (hc : ∀ x, MapsCone (c x : Equiv.Perm (Cantor X)) [x₀] (u ++ [x]))
-    (ha : (a : Equiv.Perm (Cantor X)) = localize u (nfRootShift (TreeAut.rootPerm (h : TreeAut X)))) :
+    (ha : (a : Equiv.Perm (Cantor X)) =
+      localize u (nfRootShift (TreeAut.rootPerm (h : TreeAut X)))) :
     rfV H N a * (l'.map fun x => rfConjL H N (c x) (k x)).prod = rcoreW H N hH x₀ u l h := by
   have ha' : a = rcoreShift u (TreeAut.rootPerm (h : TreeAut X)) := Subtype.ext ha
   have hk' : k = rcoreSt H hH h := funext fun x => Subtype.ext (hk x)
@@ -155,7 +156,8 @@ theorem rcore_relator_mem [Nontrivial X] (H : Subgroup (TreeAut X)) (N : Subgrou
     (c : X → ↥(higmanThompsonV X)) (k : X → ↥H) {l' : List X} (hl' : l'.Nodup)
     (hall' : ∀ x, x ∈ l') (hk : ∀ x, (k x : TreeAut X) = TreeAut.state (h : TreeAut X) [x])
     (hc : ∀ x, MapsCone (c x : Equiv.Perm (Cantor X)) [x₀] (u ++ [x]))
-    (ha : (a : Equiv.Perm (Cantor X)) = localize u (nfRootShift (TreeAut.rootPerm (h : TreeAut X)))) :
+    (ha : (a : Equiv.Perm (Cantor X)) =
+      localize u (nfRootShift (TreeAut.rootPerm (h : TreeAut X)))) :
     y⁻¹ * nfV H a * (l'.map fun x => nfV H (c x) * nfL H (k x) * (nfV H (c x))⁻¹).prod ∈ N := by
   refine (QuotientGroup.eq_one_iff (N := N) _).mp ?_
   rw [rcore_mk_relator H N y a c k l', mul_assoc,
