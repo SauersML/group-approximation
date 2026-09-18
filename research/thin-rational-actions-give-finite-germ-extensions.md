@@ -49,10 +49,19 @@ Then:
   admits a thin structure; the product normal form on `F_2 × F_2` is thin for neither factor's
   generators.
 
-## Calibration
+## Calibration and where (E5) really comes from
 
-For `Z^2 * Z` with the Belk--Bleak--Chatterji--Matucci--Perego normal form, (T) holds by
-`z2-free-z-normal-form-boundary-has-corner-singular-orbits`: the four corners are the only
-singular points of the generators. So (E1) for that structure is now a consequence of (E5)
-alone, which is the open `K_0`-type condition recorded on
-`automatic-groups-embed-in-corner-germ-extensions`.
+- **(E5) is not available for the automaton's own base.** For `Z^2 * Z` the boundary Thompson
+  group of the BBCMP normal form has `K_0 ≅ Z^5` and is not clopen transitive
+  (`z2-free-z-normal-form-boundary-has-corner-singular-orbits`, second landing). So the
+  hypothesis (E5) of this claim fails for that `B`, and the claim says nothing there directly.
+- **After recoding it is automatic.** By `prefix-replacement-actions-recode-into-germ-extensions-of-v`
+  the base may be replaced by Thompson's `V`, for which any two nonempty clopen sets are
+  `V`-equivalent, so (E5) holds. The intended use of this claim is therefore with `B = V` after
+  recoding, where it supplies axiom (3) for free and reduces (E1) to the thinness check.
+- **Thinness is the decidable form of (E1').** With `B = V`, hypothesis (T) is exactly the first
+  clause of the condition (E1') recorded on `automatic-groups-embed-in-corner-germ-extensions`,
+  and by item 3 of `rational-germ-singular-sets-are-finite-graph-path-spaces` the second clause
+  of (E1') is redundant: finiteness of the singular sets already forces every singular point to
+  be eventually periodic, and `sing_B(g^{-1}) = g(sing_B(g))` forces the images to be singular
+  points too.
