@@ -17,8 +17,8 @@ Endpoints: `pinchAbsFol_statement_of_parts` (the two halves give the residual) a
 `pinchAbsFol_followPart_of_tail`: gl-p07-75's `pinchAbsTouch_TailStatement` gives the follows half
 (it is the same conclusion without the `FollowsBoundary` premise), and `pinchAbsFol_off_of_tail`.
 
-**LOUD: logical strength.**  The residual gives each half (`pinchAbsFol_followPart_of_statement`,
-`pinchAbsFol_pinchPart_of_statement`), so the conjunction of the halves is EQUIVALENT as a Prop to
+**LOUD: logical strength.**  The residual gives each half (`pinchAbsFol_followPart_of_res`,
+`pinchAbsFol_pinchPart_of_res`), so the conjunction of the halves is EQUIVALENT as a Prop to
 `pinchAbsFol_ResidualStatement` (and to the earlier residuals).  Each half on its own is strictly
 smaller in proof content: it covers only one side of the `FollowsBoundary` split.
 -/
@@ -167,7 +167,7 @@ theorem pinchAbsFol_off_of_tail (hT : pinchAbsTouch_TailStatement.{u, w, v})
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_off_of_tail
 
 /-- **LOUD: the residual gives the follows half.** -/
-theorem pinchAbsFol_followPart_of_statement (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
+theorem pinchAbsFol_followPart_of_res (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
     pinchAbsFol_FollowPart.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
     hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
@@ -177,10 +177,10 @@ theorem pinchAbsFol_followPart_of_statement (h : pinchAbsFol_ResidualStatement.{
   · exact Or.inr (ht hfo)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_followPart_of_statement
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_followPart_of_res
 
 /-- **LOUD: the residual gives the pinched half.** -/
-theorem pinchAbsFol_pinchPart_of_statement (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
+theorem pinchAbsFol_pinchPart_of_res (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
     pinchAbsFol_PinchPart.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
     hw hfo hout hinner houter C hC hCf hCa hCb hcase hP
@@ -190,6 +190,6 @@ theorem pinchAbsFol_pinchPart_of_statement (h : pinchAbsFol_ResidualStatement.{u
   · exact Or.inr (hcut hfo)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_pinchPart_of_statement
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_pinchPart_of_res
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
