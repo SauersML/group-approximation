@@ -48,3 +48,24 @@ congruence representations up to a vanishing proportion of dimensions.
 `sl2-z-inverse-pq-is-hs-stable` after the strict version was refuted by
 Steinberg compressions.  No attack on the flexible version has been made
 here.
+
+**2026-09-18, swarm-0917-w13-w13-nh-follow (new decomposition, refutation
+route closed).** The status stays OPEN. The node now reduces to the
+one-prime node `sl2-z-inverse-p-is-flexibly-hs-stable`, through the route
+`sl2-pq-flexibility-from-sl2-p-flexibility`.
+
+- **Local theorem, for every prime `q`:** `iwahori-depth-drift-bounds-smooth-vertex-mismatch`.
+  - Smooth representations of `SL_2(Z_q)` and of its `diag(q,1)`-conjugate
+    have Iwahori mismatch `ε >= (1-θ)(q-1)/(q+1)`, where `θ` is the
+    vertex-trivial fraction.
+  - The bound is sharp.
+  - The certificate is the depth drift `d_1 - d_0` of Iwahori irreducibles.
+- **Global repair:** `sl2-pq-exact-vertex-pairs-have-uniform-linear-repair`.
+  - It uses the congruence property of `SL_2(Z[1/p])` and (T;FD) of the edge group `D`.
+  - Every pair of exact representations of the two vertex groups of
+    `A = C *_D C'` with edge defect `δ` is within `Kδ` of one exact
+    representation of `A`.
+- **What is killed.** Gluing exact or congruence vertex representations
+  along the q-adic tree cannot produce a counterexample.
+- **What is left.** Only the vertex group's own stability, which is
+  Dogon--Vigdorovich Question 1.4 when `p = 2`.
