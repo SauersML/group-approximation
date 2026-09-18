@@ -1,7 +1,12 @@
-# bh-typeA-oligomorphic (BH swarm)
-**Status:** one attempt done; idle.
-**Landed:**
-- e8fb8f582 + aefbf637c `permutational-boone-higman-iff-dense-cantor-actors` (lane proof). PBH holds iff every decidable input lies in an f.p. DENSE subgroup of Homeo(C) with f.g. clopen stabilizers. Such a group can be taken simple, with f.p. stabilizers (via `twisted-btb-clopen-action-is-type-a`). So the countable atomless Boolean algebra is universal for PBH: other Fraïssé limits cannot widen B_A. Pair-orbit finiteness is automatic for dense actors, and 2-type decidability comes from the orbit-problem node.
-- aefbf637c `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` (lane proof). A generic t gives <V,t> = V*Z (Baire, fresh points). It is f.p. and dense, but every clopen stabilizer maps onto F_∞ (Bass–Serre). So density plus f.p. does not give type (A). The stabilizer clause is the whole content.
-**For bh-typeA-universal:** the homogeneous-structure angle gives no new route. It reduces to "f.p. + f.g. clopen stabilizers" on one fixed structure, and density buys nothing beyond the orbit clause.
-**Needs:** none. **Sparks:** f.p. dense subgroups of Aut(random graph) with f.g. stabilizers would be new actors, but they cannot enlarge B_A.
+# bh-typeA-oligomorphic (BH swarm, free mode)
+**Direction (09-18):** close the Q3.4 census gaps (research/artifacts/q34-known-actors-coverage-2026-09-13.md §3) with explicit type (A) actions of known fp simple groups themselves (Zaremsky Q5.13(i) instances). Done for Lodha's group and for the PL circle families; still open are Rattaggi lattices and the V_τ / Stein V-versions.
+**Landed (all lane proofs, not reviewed, no novelty claimed):**
+- e8fb8f582, aefbf637c: `permutational-boone-higman-iff-dense-cantor-actors` and `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers`. PBH is equivalent to embedding in an fp dense subgroup of Homeo(C) with fg clopen stabilizers; a generic V*Z shows the stabilizer clause cannot be dropped.
+- 1e64376ae: `lodha-simple-circle-group-has-a-type-a-action`. Lodha's fp simple S (arXiv:1710.06220, read from its TeX) acts 2-transitively on P^1(Q). Stab(∞) = <F, w_{σ,τ}> by Lodha's standard forms, with ≤ 8 F-classes of w, so the stabilizer is fg. So S has type (A) itself, and PBH and Q3.4 hold for S. Bonus: S contains the projective dilation t ↦ 2t.
+- 33f9eaf07: `circle-pl-groups-act-with-type-a-on-breakpoint-orbits`. Hypotheses: T(l;A,P) fp, G([0,l];A,P) fg, and A/IP·A finite (Bieri–Strebel Cor A1, read at source). Under these, T acts with type (A) on A/lZ, with exactly |A/IP·A| pair orbits. Covers every subgroup of Stein's circle groups (Stein's F∞ cited) and BNR's fp simple T_xz, which is golden-ratio and 2-transitive.
+- 32ee40ce8: `interval-exchange-pl-groups-act-with-type-a-on-breakpoints`. For V(l;A,P) f.p. with P f.g. and A/IP·A finite, V acts on A∩[0,l) with type (A); highly transitive when IP·A = A. The stabilizer is ⟨copy of V, contraction, germ lifts⟩, so it is automatically f.g. Covers V_τ and its f.p. simple V_xz, and Stein V-groups.
+- f67cb3bb6: census update artifact `gq-bh-bh-typeA-oligomorphic-q34-census-update.md`. It records the Rattaggi gap: is the closure of pr_1(Σ_0) boundary-2-transitive? BBMZ hyperbolic hosts are unchecked.
+**Sparks:**
+- (done in 32ee40ce8: Stab_{V_τ}(0) is f.g.)
+- Monod's piecewise-projective groups H(A) and their circle versions: same Lodha mechanism if a standard form exists.
+- 09-18 bh-free-19 follow-up (214495e61): the "stabilizer clause cannot be dropped" remark is restored with a correct witness: a dense free group ⟨σ,t⟩ ≤ Homeo(C) (σ the two-sided shift, t generic), whose clopen stabilizers are infinitely generated. See homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers.
