@@ -113,3 +113,42 @@ gq-explicit-fp, gq-explicit-2, gq-heis-q, gq-infinite-primes, gq-integrate, gq-i
 gq-pp-fp, gq-pp-lift, gq-pp-simple, gq-ring-alt, gq-rn-varying-degree, gq-scott-union, gq-sl2q, gq-solenoid,
 gq-steinberg-q, gq-tbar-lift-n, gq-typeA-alt, gq-typeA-projective, gq-union-alt, gq-union-obstruct, and the
 twelve gq-deep-* lanes.
+
+## Snapshot 2 (2026-09-17 23:50 local, origin/main 52b3743aa)
+
+Compiled from `$GQ/state/landed.log` (237 gq landings) and the status lines of the 194 gq-landed claim nodes:
+146 ESTABLISHED, 43 OPEN, 1 REFUTED, 4 not parsed. It makes no claims of its own.
+
+**G′ (Problem 2.7 / Kourovka 14.10(c)): ESTABLISHED as an explicit construction.** Root
+`gl-n-q-explicit-natural-fp-overgroup` (168fb13a2, 5ff74da95, 52b3743aa). The finitely presented group
+`St_10(R_L)` contains every `GL_n(Q)`. Here `R_L` is the Leavitt resolvent ring, with 6 generators and 9
+relations. Whether it is "natural" is left to experts. The group is not simple. Write-up skeleton:
+`research/artifacts/gq-gq-problem-2-7-writeup.md`.
+
+**G (simple host): OPEN.** Root `gl-n-q-embeds-in-fp-simple-group`, with 18 numbered Attempts recorded.
+- **Established around G:**
+  - `fp-simple-ring-of-characteristic-zero-exists`, via `leavitt-resolvent-ring-is-fp-simple-of-char-zero`
+    (three referee PASSes);
+  - `gl-n-q-embeds-in-fg-simple-and-fp-decidable-groups`;
+  - `gl-n-q-embeds-in-ultraproduct-of-fp-simple-groups` (the local form of G);
+  - `permutational-host-forms-agree-for-countable-inputs`;
+  - `sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially`;
+  - `fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups`.
+- **The natural simple candidates fail.**
+  - `leavitt-resolvent-derived-units-mod-centre-fp-simple` is REFUTED, through
+    `leavitt-resolvent-derived-units-mod-centre-not-fp`.
+  - `harmonic-cuntz-simple-group-is-not-finitely-presented` is ESTABLISHED.
+- **Host classes killed (root Attempts and the table in the G′ root):**
+  - residually finite groups;
+  - VA and its subgroups for n >= 2;
+  - central and covering lifts (`lifts-add-no-unipotent-divisibility`);
+  - commutative-linear piecewise hosts;
+  - split finitary SL(Q) extensions;
+  - automorphism groups of f.g. residually finite groups (`fg-automorphism-hosts-contain-no-divisible-subgroup`);
+  - finitely generated Cremona subgroups for the linear GL_n(Q);
+  - proper semisimple CAT(0) actions (`proper-semisimple-cat0-groups-contain-no-gl-2-q`);
+  - VA-pattern germ extensions of Higman–Thompson groups for n >= 3.
+- **Gated, not dead:** Brin–Thompson nV and twisted Brin–Thompson registers; almost-V hosts, where for n >= 3
+  the problem moves into a single germ group.
+- **Stepping stones still OPEN:** Aff(Q), U_3(Q), SL_2(Q), PSL_2(Q), GL_2(Q),
+  `gl-n-q-in-permutational-boone-higman-class`, and `countable-decidable-groups-embed-in-fp-simple-groups`.
