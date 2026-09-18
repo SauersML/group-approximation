@@ -98,3 +98,59 @@ theorem noether_exists_fd_embedding {A W : Type} [CommRing A] [AddCommGroup W] [
       (algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ))) =
         (algebraMap A (Localization S)).comp g :=
     RingHom.ext fun d => hφ d
+  -- each generator of `B` is killed on `M` by a nonzero polynomial over `K`
+  have hkill : ∀ b ∈ algebraMap A (Localization S) '' t,
+      ∃ p : Polynomial (FractionRing (MvPolynomial ι ℤ)), p ≠ 0 ∧
+        ∀ m : LocalizedModule S W, Polynomial.aeval b p • m = 0 := by
+    rintro _ ⟨a, -, rfl⟩
+    obtain ⟨p, hp0, hpa⟩ := halg a
+    refine ⟨(p ^ e).map (algebraMap (MvPolynomial ι ℤ) (FractionRing (MvPolynomial ι ℤ))),
+      (Polynomial.map_ne_zero_iff (IsFractionRing.injective (MvPolynomial ι ℤ)
+        (FractionRing (MvPolynomial ι ℤ)))).2 (pow_ne_zero e hp0), fun m => ?_⟩
+    rw [Polynomial.aeval_def, Polynomial.eval₂_map, hcompφ, ← Polynomial.hom_eval₂,
+      Polynomial.eval₂_pow]
+    refine LocalizedModule.induction_on (fun w s => ?_) m
+    rw [hmk, hW.smul_eq_zero_of_mem_pow _ (Ideal.pow_mem_pow hpa e) w, LocalizedModule.zero_mk]
+  have hfd : FiniteDimensional (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W) :=
+    noether_finiteDimensional_of_adjoin (algebraMap A (Localization S) '' t) (ht.image _) hadj
+      hkill
+  -- `A` acts on `M` by `K`-linear maps
+  obtain ⟨τ, hτ⟩ : ∃ τ : A →* Module.End (FractionRing (MvPolynomial ι ℤ)) (LocalizedModule S W),
+      ∀ (a : A) (m : LocalizedModule S W), τ a m = algebraMap A (Localization S) a • m :=
+    ⟨{ toFun := fun a =>
+          { toFun := fun m => algebraMap A (Localization S) a • m
+            map_add' := fun m m' => smul_add _ m m'
+            map_smul' := fun k m => by
+              show algebraMap A (Localization S) a •
+                  (algebraMap (FractionRing (MvPolynomial ι ℤ)) (Localization S) k • m) =
+                algebraMap (FractionRing (MvPolynomial ι ℤ)) (Localization S) k •
+                  (algebraMap A (Localization S) a • m)
+              rw [smul_smul, smul_smul, mul_comm] }
+        map_one' := LinearMap.ext fun m => by
+          show algebraMap A (Localization S) 1 • m = m
+          rw [map_one, one_smul]
+        map_mul' := fun a a' => LinearMap.ext fun m => by
+          show algebraMap A (Localization S) (a * a') • m =
+            algebraMap A (Localization S) a • (algebraMap A (Localization S) a' • m)
+          rw [map_mul, mul_smul] }, fun _ _ => rfl⟩
+  -- `W → M` is injective
+  have hinj : Function.Injective (LocalizedModule.mkLinearMap S W) := by
+    intro w w' h
+    rw [LocalizedModule.mkLinearMap_apply, LocalizedModule.mkLinearMap_apply,
+      LocalizedModule.mk_eq] at h
+    obtain ⟨u, hu⟩ := h
+    rw [one_smul, one_smul, Submonoid.smul_def, Submonoid.smul_def] at hu
+    exact hW.smul_injective_of_notMem u (hSP u u.2) hu
+  refine ⟨FractionRing (MvPolynomial ι ℤ), inferInstance, LocalizedModule S W, inferInstance,
+    instKM, ringChar.eq_zero, hfd, τ, (LocalizedModule.mkLinearMap S W).toAddMonoidHom, hinj,
+    fun a w => ?_⟩
+  rw [hτ]
+  show LocalizedModule.mk (a • w) 1 = algebraMap A (Localization S) a • LocalizedModule.mk w 1
+  rw [hmk]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.noether_exists_fd_embedding
+
+end Coprimary
+end Metabelian
+end BooneHigman
+end GroupApproximation
