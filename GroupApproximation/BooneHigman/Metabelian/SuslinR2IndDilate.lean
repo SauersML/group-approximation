@@ -66,7 +66,7 @@ theorem suslinR2Ind_mem_of_dilate {ι : Type*} [Fintype ι] [DecidableEq ι] {b 
   have he : elementaryMatrixUnitMap (compRingHom (C c * X))
       (elementaryMatrixUnitMap (compRingHom (C b * X)) σ) = σ := by
     apply Units.ext
-    ext i j
+    refine Matrix.ext fun i j ↦ ?_
     change (((σ : Matrix ι ι S[X]) i j).comp (C b * X)).comp (C c * X) =
       (σ : Matrix ι ι S[X]) i j
     exact suslinR2Ind_comp_dilate hbc _

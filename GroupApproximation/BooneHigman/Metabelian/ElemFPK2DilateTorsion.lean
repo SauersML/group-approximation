@@ -108,7 +108,7 @@ theorem k2Dilate_scale_mapMatrix_eq_one (s : A) (P : Matrix n n (Polynomial A))
     exact k2Dilate_scale_eq_zero s _ (by rw [Polynomial.coeff_zero_eq_eval_zero]; exact e0) es
   choose m hm using hf
   refine ⟨Finset.univ.sup fun ij : n × n ↦ m ij.1 ij.2, ?_⟩
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   have h1 := hm i j _ (Finset.le_sup (f := fun ij : n × n ↦ m ij.1 ij.2) (Finset.mem_univ (i, j)))
   rw [map_sub, sub_eq_zero, k2Dilate_map_one_apply] at h1
   rw [RingHom.mapMatrix_apply, Matrix.map_apply]

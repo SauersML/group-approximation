@@ -79,7 +79,7 @@ theorem suslinMonic_T_leadingCoeff_eq_C (fne : f ≠ 0) :
     replace h2 : (finSuccEquiv R n ((suslinMonic_T f) (h v))) ≠ 0 := fun eq ↦ h2 <|
       by simpa only [map_eq_zero_iff _ (AlgEquiv.injective _)] using eq
     exact (Finset.sup_lt_iff <| Ne.bot_lt (fun x ↦ h2 <| degree_eq_bot.mp x)).mpr vs
-  refine ⟨coeff v f, mem_support_iff.mp vin, ?_⟩
+  refine ⟨MvPolynomial.coeff v f, mem_support_iff.mp vin, ?_⟩
   nth_rw 2 [← f.support_sum_monomial_coeff]
   rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem vin h]
   rw [suslinMonic_leadingCoeff_finSuccEquiv_t] at coeff

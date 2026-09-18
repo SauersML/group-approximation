@@ -32,6 +32,7 @@ set_option maxSynthPendingDepth 3
 /-- `up` is defined as `2 + f.totalDegree`. Any big enough number would work. -/
 local notation3 "up" => 2 + f.totalDegree
 
+omit [IsDomain R] in
 variable {f v} in
 theorem suslinMonic_lt_up (vlt : ∀ i, v i < up) : ∀ l ∈ ofFn v, l < up := by
   grind
@@ -49,6 +50,7 @@ noncomputable abbrev suslinMonic_T1 (c : R) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonic_T1
 
+omit [IsDomain R] in
 theorem suslinMonic_t1_comp_t1_neg (c : R) :
     (suslinMonic_T1 f c).comp (suslinMonic_T1 f (-c)) = AlgHom.id _ _ := by
   rw [comp_aeval, ← MvPolynomial.aeval_X_left]
@@ -64,6 +66,7 @@ noncomputable abbrev suslinMonic_T :=
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonic_T
 
+omit [IsDomain R] in
 theorem suslinMonic_sum_r_mul_ne (vlt : ∀ i, v i < up) (wlt : ∀ i, w i < up) (ne : v ≠ w) :
     ∑ x : Fin (n + 1), r x * v x ≠ ∑ x : Fin (n + 1), r x * w x := by
   intro h

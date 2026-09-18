@@ -73,10 +73,10 @@ theorem witnessStepLobe_sublist_of_before {α : Type*} {l : List α} :
         hord x (by simp) y (by simp [hy]) (witnessStepLobe_before_cons hy)
       have hyw : y ∈ u ++ x :: v := hmem y (by simp [hy])
       rcases List.mem_append.mp hyw with hyu | hyxv
-      · exact absurd (witnessStepLobe_before_of_mem_prefix hyu)
-          (witnessStepOrder_before_asymm hw hb)
+      · exact (witnessStepOrder_before_asymm hw hb
+          (witnessStepLobe_before_of_mem_prefix hyu)).elim
       · rcases List.mem_cons.mp hyxv with hyx | hyv
-        · exact absurd (hyx ▸ hy) hx
+        · exact (hx (by rw [← hyx]; exact hy)).elim
         · exact hyv
     have hsub : l <+ v := by
       refine ih hl' (hvw.nodup hw) hv ?_
