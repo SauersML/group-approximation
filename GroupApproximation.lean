@@ -5847,6 +5847,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Reduction
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineAction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Support
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Minimal
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.YaoCoreEquiv
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
