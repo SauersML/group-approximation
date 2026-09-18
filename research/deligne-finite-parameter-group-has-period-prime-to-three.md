@@ -71,3 +71,23 @@ arithmetic half of that split, and it involves no winding estimate.
     `kappa_r(V) = 0`.
   - *Class killed.* Arguments that pass through the untwisted cube (or `U (x) U-bar`) and use only its winding or
     congruence data. What survives is stability restricted to cubes, which is as hard as the flagship.
+- **2026-09-18, swarm-0917-w11-w11-deligne-last1 (group-rings): tensor induction from the full multiplier torus of
+  finite-index subgroups is killed, and the hole stays OPEN.** See
+  `deligne-parameter-tori-corestrict-only-through-maslov-line`, ESTABLISHED.
+  - *The idea.* Unlike additive induction (w8), tensor induction `TI` corestricts every multiplier class of a
+    finite-index `H`, including the non-Maslov (Mess) directions of `H^2(H,R)`. The norm-model set `P(H)` is a closed
+    subgroup of the torus `H^2(H,T)` and could contain subtori there. `TI` maps them into `P(Gamma)`.
+  - *Proved.* Tensor induction realizes the transfer: `TI o res = [Gamma:H]`, and for normal `H`,
+    `res o TI = sum_(G) g^*`. This is shown with exact twisted regular representations.
+    - Consequence: `P_op = R/Z` iff `res[b] in Lie P(H)^0` iff (for normal `H`) `(Lie P(H)^0)^G != 0`.
+    - On the finite branch, `TI` kills `P(H)^0`, `Lie P(H)^0` lies in the nontrivial `G`-isotypic part, and `TI`
+      factors through the finite group `P(H)/P(H)^0`.
+    - Exact (profinite) points corestrict into `{0, e(b/2)}` on the Maslov circle, by Mal'cev plus Deligne.
+  - *Where it dies.*
+    - Continuous families of norm models of `H` in any non-Maslov direction, moved by deformation, Hecke operators
+      or tensor induction, die at "apply `tau = d TI`". The invariant is `W(H)^G`, which is nonzero only when the
+      conclusion `P_op = R/Z` already holds.
+    - Exactly realizable torsion points die at (T4).
+  - *Survivor.* Tensor-inducing a `1/3` needs a class `y in P(H) \ (P(H)^0 + R(H))`. That is a class in a
+    non-identity component of `P(H)`, with norm models, not in `P(H)^0 + R(H)`, and with `TI(y) = e(b/3)`. Only its
+    component in the finite group `P(H)/P(H)^0` matters.
