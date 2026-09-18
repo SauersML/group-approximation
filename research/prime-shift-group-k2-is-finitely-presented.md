@@ -62,3 +62,20 @@ Notation as in `gl-n-q-lies-in-prime-shift-permutation-group`.
   - **Presentation side.** No relation of the one-sided shape was found. Any such
     relation shows `Π_2 -> K_2` is not injective. Deciding that is a Dickson-type
     prime-pattern problem, as for `prime-shift-hnn-map-to-a1-is-injective`.
+- **Attempt 2 (2026-09-18, gq-infinite-primes): one explicit element decides whether `e` is in `N`.
+  Not decided.**
+  - *Axis agreement.* Let `g = [[a,b],[c,d]] in GL_2(Z)`, `j in Z`, and `σ^j(g) = [[σ^j a, σ^j b],[σ^j c, σ^j d]]`.
+    Since `σ` is multiplicative with `σ(0) = 0`, `h = σ_2^j g σ_2^-j in N` agrees with the matrix `σ^j(g)` on
+    both coordinate axes. Its determinant `D = σ^j(ad) - σ^j(bc)` is nonzero, because `σ^j` is injective
+    and `ad != bc`.
+  - So `k = σ^j(g)^-1 h` fixes both axes pointwise, and `σ^j(g) ≡ diag(D,1)` modulo `SL_2(Q) ⊆ N`. Hence
+    `diag(D,1) · k in N`. Every pair `A - B = ±1` occurs as `(ad, bc)`, for `g = [[A,B],[1,1]]`. This
+    generalizes the `p_1 - 1` example of Attempt 1 to all `g` and `j`.
+  - *The reformulation.* With the example indexing `p_1 = 3`, take `j = 1` and `g = [[2,1],[1,1]]`. Then
+    `σ(g) = [[3,1],[1,1]]`, `D = 2`, and `e ≡ k^-1` modulo `N` for the explicit element
+    `k = σ(g)^-1 σ_2 g σ_2^-1`, which fixes both axes pointwise. So `e in N` if and only if `k in N`. In
+    that case `I_2 = Q_>0` and `K_2/N ≅ Z`, and item 4 of the reduction is met with the empty product.
+  - *The axis character does not decide it.* On the stabilizer of the `x`-axis, `k'(t,0) = (σ^(d(k'))(t) χ(k'), 0)`
+    defines `χ`, a homomorphism to `Q^x` on the degree-0 part with `χ(diag(r,1)) = r`. It vanishes on
+    pointwise axis-fixers. By the axis agreement, `χ(N ∩ Stab)` contains every `D` above, among them `2`.
+    So `χ` cannot separate `e` from `N`. A decision needs an invariant of the pointwise axis-fixers.
