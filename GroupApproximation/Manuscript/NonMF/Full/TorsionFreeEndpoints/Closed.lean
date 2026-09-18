@@ -131,3 +131,98 @@ theorem leaf_hullSmallCancellationTorsionFreePrinted_closed_of_greendlinger
 
 #audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_hullSmallCancellationTorsionFreePrinted_closed_of_greendlinger
 
+/-- `lem:saturation` as printed, with no finite set, **CONDITIONAL on `hG`** (not proved in the
+repository).  `TorsionFreeGreendlingerLeaf.printedSaturation_of_greendlinger` applied to `hG`. -/
+theorem leaf_printedSaturation_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreePrinted.PrintedSaturationNoOmega.{0} :=
+  printedSaturation_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_printedSaturation_closed_of_greendlinger
+
+/-- `lem:saturation` at Osin's notion, **CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.printedSaturationOsin_of_greendlinger` applied to `hG`. -/
+theorem leaf_printedSaturationOsin_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreeOsinNotion.PrintedSaturationOsin :=
+  printedSaturationOsin_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_printedSaturationOsin_closed_of_greendlinger
+
+/-- `lem:saturation` at the limit-set notion, **CONDITIONAL on `hG`** (not proved in the
+repository).  `TorsionFreeGreendlingerLeaf.printedSaturationLimitSet_of_greendlinger` applied to
+`hG`. -/
+theorem leaf_printedSaturationLimitSet_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreeLimitSetNotion.PrintedSaturationLimitSet :=
+  printedSaturationLimitSet_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_printedSaturationLimitSet_closed_of_greendlinger
+
+/-- Hull's common quotient (Hull, Corollary 7.4, as used in the Fournier-Facio paragraph),
+**CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.hullCommonQuotient_of_greendlinger` applied to `hG`. -/
+theorem leaf_hullCommonQuotient_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
+  hullCommonQuotient_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_hullCommonQuotient_closed_of_greendlinger
+
+/-- The Fournier-Facio quotient statement, **CONDITIONAL on `hG`** (not proved in the
+repository).  `TorsionFreeGreendlingerLeaf.fournierFacioQuotient_of_greendlinger` applied to
+`hG`. -/
+theorem leaf_fournierFacioQuotient_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TheoremC.FournierFacioQuotientStatement :=
+  fournierFacioQuotient_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_fournierFacioQuotient_closed_of_greendlinger
+
+/-- The bundle `TheoremC.LiteratureInputs`, **derived** here (it is the conclusion, not a
+hypothesis), **CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.literatureInputs_of_greendlinger` applied to `hG`. -/
+theorem leaf_literatureInputs_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TheoremC.LiteratureInputs :=
+  literatureInputs_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_literatureInputs_closed_of_greendlinger
+
+/-- A configuration of `TheoremC`, **CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.configuration_of_greendlinger` applied to `hG`. -/
+theorem leaf_configuration_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Nonempty Manuscript.NonMF.TheoremC.Configuration :=
+  configuration_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_configuration_closed_of_greendlinger
+
+/-- The Fournier-Facio paragraph, **CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.fournierFacioParagraph_of_greendlinger` applied to `hG`. -/
+theorem leaf_fournierFacioParagraph_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreePrinted.FournierFacioParagraph :=
+  fournierFacioParagraph_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_fournierFacioParagraph_closed_of_greendlinger
+
+/-- `thm:torsion-free` as printed, **CONDITIONAL on `hG`** (not proved in the repository).
+`TorsionFreeGreendlingerLeaf.printedTorsionFreeTheorem_of_greendlinger` applied to `hG`. -/
+theorem leaf_printedTorsionFreeTheorem_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TorsionFreePrinted.PrintedTorsionFreeTheorem :=
+  printedTorsionFreeTheorem_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_printedTorsionFreeTheorem_closed_of_greendlinger
+
+/-- `thm:torsion-free` with the full MF radical, **CONDITIONAL on `hG`** (not proved in the
+repository).  `TorsionFreeGreendlingerLeaf.printedTorsionFreeFullMFRadical_of_greendlinger`
+applied to `hG`. -/
+theorem leaf_printedTorsionFreeFullMFRadical_closed_of_greendlinger
+    (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
+    Manuscript.NonMF.TheoremC.PrintedTorsionFreeFullMFRadical :=
+  printedTorsionFreeFullMFRadical_of_greendlinger hG
+
+#audit_axioms GroupApproximation.Full.TorsionFreeEndpoints.leaf_printedTorsionFreeFullMFRadical_closed_of_greendlinger
+
