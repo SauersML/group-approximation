@@ -298,3 +298,32 @@ can close this, and a proof has to use the specific Laurent-symbol action. Next 
 whether the Thoma--Skudlarek action of `EL_20(F_2[x,x^(-1)])` on `R` has vanishing cohomology (in Popa's sense) in
 `R' ∩ R^omega`. Alternatively, find a sofic approximation of the orbit relation that is compatible with
 the corner filtration.
+
+### Mirror-head swap kills ambient approximations (swarm-0917-w8-w8-nh-last1, finite-models, 2026-09-18)
+
+*Approach tried.*  Decide the `EL_20(J)` decision point from the positive side. By
+`jacobson-toeplitz-extension-is-a-mirror-quotient-of-a-lef-group`, `EL_n(J) = P/L_-` with `P` inside the
+LEF group `H_bi`. So try to approximate `EL_n(J)` by approximations of `H_bi` (or of its periodic finite
+models `GL_(nm)(F_2)`, composed with arbitrary representations) that are trivial on `L_-`.
+
+*Result* (`jacobson-mirror-head-swap-kills-ambient-approximations`, established). The whole class dies.
+- One finitary involution `s` in `GL_fin(W) <= H_bi` swaps the two wall layers `e_(0,*)` and `e_(-1,*)`. It
+  conjugates the mirror head `w' = (1, x_13(Q))`, which lies in `L_-`, to the head `w = (x_13(Q), 1)`.
+- Unitary invariance of `||.||_2` then gives `||gamma(w)-1||_2 <= ||gamma(w')-1||_2 + 3 eps` for every
+  `eps`-multiplicative `gamma` of any overgroup of `P` containing such an `s`.
+- Hence every such model that is trivial on `L_-` is trivial at the head. This holds in the unitary,
+  permutation and rank metrics, and in particular for every representation of the periodic finite models.
+- In `H_bi` the normal closure of `L_-` is `GL_fin(W)`. So such models factor through the symbol group
+  `SL_n(A)`.
+
+*Where it stops (hole stays OPEN).*  (HS) only kills models that are asymptotically invariant under a swap
+across the `V_+/V_-` wall. A hyperlinear approximation of `EL_20(J)` has to be **wall-rigid** on `P`.
+- Every approximation of `P` now in the graph is inherited from `H_bi`, so none of them qualifies.
+- In the language of the entry above, the Toeplitz cocycle action on `R = L_+''` is the corner compression
+  of the genuine untwisted action of `SL_n(A)` on `GL_fin(W)''`. (HS) says that CE of the compressed
+  crossed product cannot be read off from CE of the uncompressed one by restriction.
+- So the Popa vanishing-cohomology test has to be run on the corner action itself.
+- Next falsifiable step: construct an approximation of `P` that is not asymptotically `s`-invariant, for
+  example an asymptotic homomorphism of `P` into `U(d)` that distinguishes the two walls. Alternatively,
+  show that every approximation of `P` is asymptotically `s`-invariant on `{w,w'}`. That would refute
+  hyperlinearity of `EL_20(J)` and flip this hole.

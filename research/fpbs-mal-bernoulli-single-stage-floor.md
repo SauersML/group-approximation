@@ -89,3 +89,37 @@ certificate must use labels outside every fixed stage, with mass tending to 0.
 - **Next decomposition that can fail.** Show that no `phi` has a non-null set
   of kappa-escaping infinite contact classes joining distinct clusters of a
   sparse block sprinkle. This does not decide the claim, which stays OPEN.
+
+**Sofic sparsity floor for fold seeds (September 18, 2026,
+swarm-0917-w8-w8-fp-break, finite-models).**
+- **Result.** [[fpbs-weakly-bernoulli-fold-seeds-have-density-floor]]
+  (route `fpbs-weakly-bernoulli-fold-seeds-have-density-floor-proof`,
+  artifact
+  `research/artifacts/fpbs-weakly-bernoulli-fold-seed-floor-2026-09-17.md`).
+  For every action of `F(a, b)` weakly contained in Bernoulli, `σ_b ≥ 1/80`.
+  So `σ_b(Bernoulli) ∈ [1/80, 5/32]`. The fold artifact had recorded that no
+  positive lower bound was known for any free action.
+- **Invariant.** Small-set slot sparsity of random Schreier graphs of `F_2`
+  at the crossing size `α n`. With high probability, no `m`-set spans
+  `(1+η) m` slots when `H(α) + 2αH((1+η)/2) + (1+η)α ln α < 0`. Every
+  closure from `S` that crosses size `m` produces `2(m − |S|)` slots.
+  Weak containment and the local structure of random permutation models carry
+  this to all of `W_b`.
+- **What it kills (with Theorem 1.2 of the fold artifact).** On `W_b`, every
+  graphing with labels in one double coset `K b^{±1} K` has mass `≥ 1/80`
+  at each stage `H_n ≤ H_{n+1}`, uniformly in `n`. So every stagewise
+  telescoping scheme `E_{H_n} ∨ b_{n+1}|_{A_n} = E_{H_{n+1}}` has infinite
+  total mass. This covers iid, block and factor-of-iid seeds. The odometer
+  mechanism of `fpbs-mal-odometer-product-actions-have-cost-two` therefore
+  cannot be transported to the Bernoulli shift, and `σ_b` separates the
+  odometer products (`0`) from `W_b` (`≥ 1/80`).
+- **What survives.**
+  - graphings that mix several double cosets `K g K`;
+  - labels from deeper stages `b_{n+2}, …`;
+  - graphings that do not factor stagewise.
+- **Next decomposition that can fail.** A finite-model reduction. Prove that
+  the local relative combinatorial cost of random Schreier graphs of `L` over
+  the `K`-components is bounded below uniformly in the witness length `T`.
+  The cost is taken with extra edges of word length `≤ T`. Lemmas 1 to 3 of
+  the artifact transfer any such bound to `W_b`. The missing count is the
+  multi-coset analogue of slot sparsity. The claim stays OPEN.

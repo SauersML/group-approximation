@@ -191,3 +191,20 @@ routing tail inequality.
 - *Status.* The node stays OPEN.
 
 Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, written deduction).
+
+### 2026-09-18 — swarm-0917-w8-w8-fp-pull (transplanter, stability-approximation): single-letter variable-position matchings die on Bernoulli
+
+- *Approach.* Extend the dual-forest matching of `fpbs-one-relator-twice-used-letter-fixed-price` to a letter `s`
+  used `k >= 3` times, by any Borel peeling of the incidence hypergraph (a variable position in each cell).
+- *Result (negative, ESTABLISHED).* `fpbs-single-letter-morse-matchings-die-on-bernoulli`. Every such matching on
+  Bernoulli has deficit `>= (k - 1)(1 - rho)/(6 k^2)`, where `rho` is the Kesten radius of the transport group
+  `Lambda_s = <h_a h_b^{-1}>`.
+- *Where it dies.* (M3). Height sublevels are `2k delta`-almost `Lambda_s`-invariant, the gap forces one thick level,
+  and the top property bounds that level's mass by the unmatched mass.
+- *Changes belief.* `abaBabcdcDcd` has all four `Lambda_s` nonamenable, yet the group (`F_2 *_Z F_2`) has fixed price.
+  So one-relator single-letter routes are closed even where the node holds.
+- *Not ruled out.*
+  - Multi-letter matchings.
+  - `m >= 2` cell types.
+  - Growing word lists `P_L`. This is where the node lives.
+- *Status.* The node stays OPEN.

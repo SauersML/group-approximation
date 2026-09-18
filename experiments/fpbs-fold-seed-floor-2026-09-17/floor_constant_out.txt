@@ -1,0 +1,8 @@
+optimal eta=0.8250 alpha=0.160675  c0=(1-eta)alpha/2=0.014059
+rate at 0.99*alpha: -1.176e-03
+n=10000 exact log first moment at 0.99 alpha: -21.51
+n=100000 exact log first moment at 0.99 alpha: -130.97
+n=1000000 exact log first moment at 0.99 alpha: -1188.10
+alpha=0.020 eta=0.50 rate=0.00317 floor=0.005000
+alpha=0.010 eta=0.50 rate=-0.00183 floor=0.002500
+alpha=0.001 eta=0.50 rate=-0.00133 floor=0.000250
