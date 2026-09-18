@@ -5998,6 +5998,10 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.OuterMonogonDiagram
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.OuterMonogon
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeChain
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesTraceFacts
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDensity
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesCPAP
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrt
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
