@@ -66,3 +66,14 @@ crossed-homomorphism property on `K_n` nor the value `m_2` is computed.
 Euler-class computation that uses the invariant symplectic form in `Λ²H`.
 `GL_n(Z)` fixes no nonzero vector of `Λ²H`, so a free-group obstruction at class 2,
 if there is one, cannot come from the same invariant.
+
+## Attempts
+
+1. **Abelian subgroups (09-18).** `class-two-aut-out-obstruction-on-commuting-pairs`:
+   on a commuting pair in `IA_n`, class-two virtual splitting forces a rational
+   solution of one quadratic equation. Only the traceless Johnson parts matter.
+   Pairs that are inner at level one, lie in `A(2)`, or lift to commuting
+   automorphisms never obstruct. No obstructing pair is known. If every rank-two
+   abelian subgroup of `IA_n` virtually lifts to `Aut(F_n)`, which this lane has
+   not checked against Feighn--Handel, the test is empty, and an obstruction must
+   be global, as in Chen--Salter.
