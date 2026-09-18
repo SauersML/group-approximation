@@ -33,3 +33,10 @@ induced map `K_2(Q) -> K_2(R)` is zero. In particular every rational Steinberg s
   crossed products with a full odometer factor satisfy
   `rational-eigenvalue-iff-subshift-ring-is-matrix-ring`. What is missing is a finitely
   generated one containing `Q` with no Laurent-type unit.
+- **Candidate (2026-09-18, lane `gq-deep-adelic-1`, unrefereed).**
+  `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`: a ring over an `SL_3(Z)` Toeplitz
+  subshift that is finitely generated and simple, with centre `Q` and `Λ_N ⊆ {±1}`. It is
+  matricially divisible along the congruence blocks, so this claim kills `K_2(Q)` at its unit.
+  Whether it meets the whole budget is `sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`,
+  which is open: every full corner has to pass `full-corners-must-kill-rational-k2-symbols`,
+  and every unit has to be checked.
