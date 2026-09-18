@@ -117,3 +117,44 @@ theorem roseLobeOsinPiece_relProd_sub_two {G : Type u} [Group G] {Lambda : Type 
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_relProd_sub_two
+
+/-- **Least area forbids a trivial merged word.**  In a least-area disc diagram, two distinct
+relator cells `i ≠ j` whose faces share the edge `{a, α a}` (face cycles `a :: xs` on cell `i`,
+`α a :: ys` on cell `j`) have merged word `xs ++ ys` of value different from `1`. -/
+theorem roseLobeOsinPiece_merge_ne_one {G : Type u} [Group G] {Lambda : Type w}
+    {W : Set (List (RelLetter G Lambda))} {X : DiscDiagram.{u, w, v} W} (hlea : X.LeastArea)
+    {i j : Fin X.rCellCount} (hij : i ≠ j) {a : X.toCombMap.Dart}
+    {xs ys : List X.toCombMap.Dart} (cycP : X.toCombMap.IsFaceCycle (a :: xs))
+    (hPface : X.toCombMap.faceOf a = (cell X i).face)
+    (cycS : X.toCombMap.IsFaceCycle (X.toCombMap.alpha a :: ys))
+    (hSface : X.toCombMap.faceOf (X.toCombMap.alpha a) = (cell X j).face) :
+    RelLetter.listVal (dartWord X (xs ++ ys)) ≠ 1 := by
+  classical
+  intro hval
+  have hPrel : X.toCombMap.faceOf a ∈ X.vanKampenData.relFaces :=
+    DiscDiagram.mem_relatorFaces.mpr ⟨cell X i, cell_mem X i, hPface.symm⟩
+  have hSrel : X.toCombMap.faceOf (X.toCombMap.alpha a) ∈ X.vanKampenData.relFaces :=
+    DiscDiagram.mem_relatorFaces.mpr ⟨cell X j, cell_mem X j, hSface.symm⟩
+  have hPS : X.toCombMap.faceOf a ≠ X.toCombMap.faceOf (X.toCombMap.alpha a) := by
+    rw [hPface, hSface]
+    exact Embedded.cell_face_ne hij
+  have hprod := roseLobeOsinPiece_relProd_sub_two X.planar X.label_alpha X.vanKampenData
+    cycP cycS hPrel hSrel hPS hval
+  have hcard : X.vanKampenData.relFaces.card = X.rCellCount :=
+    DiscDiagram.relatorFaces_card X
+  have hbv : (RelLetter.listVal (X.vanKampenData.outer.map X.label))⁻¹ = X.boundaryValue := by
+    show _ = RelLetter.listVal (HullSC.RelWord.revInv (X.faceWord X.outerFace))
+    rw [HullSC.RelWord.listVal_revInv]
+    rfl
+  have hle := hlea (m := X.rCellCount - 2) (by
+    rw [← hcard, ← hbv]
+    exact hprod.inv)
+  have h1 := i.isLt
+  have h2 := j.isLt
+  have h3 : (i : ℕ) ≠ j := fun h => hij (Fin.ext h)
+  omega
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_merge_ne_one
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
