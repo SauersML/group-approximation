@@ -1,17 +1,19 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Main
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Proof
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Corollaries
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Intro
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Root audit for `simple_kazhdan_sofic_group.tex`
 
-This module imports the three root audit files and collects every printed label of
+This module imports the root audit files and collects every printed label of
 `simple_kazhdan_sofic_group.tex` into the single closed theorem `manuscript`.
 
 | tex label / passage | tex lines | root theorem |
 |---|---|---|
 | abstract | 32–47 | `abstract_claims` |
+| introduction: Ozawa, Thom (row A2) | 54–60 | `intro_ozawa_thom` |
 | `thm:main` | 69–80 | `thm_main` |
 | Brown's form of `thm:main` | 82–84 | `thm_main_brown_form` |
 | definitions after `thm:main` | 86–109 | `thm_main_definitions` |
@@ -48,12 +50,14 @@ universe u v
 namespace GroupApproximation.Full.SKRoot
 
 /-- **`simple_kazhdan_sofic_group.tex`, every printed label** (tex l.32–738): the abstract,
+the introduction's Ozawa and Thom sentences,
 `thm:main` with Brown's form and the definitions, `thm:general` with its remark, `tab:props`,
 `fig:models`, `eq:elementary`, the proof in `sec:proof` and `sec:main` (sharpness and the Fibonacci
 example), `cor:lef`, `cor:host`, `lem:nn`, `lem:host`, `lem:halfline`, `cor:wp`, and
 `sec:questions`. -/
 theorem manuscript :
     type_of% @abstract_claims ∧
+    type_of% @intro_ozawa_thom ∧
     type_of% @thm_main ∧
     type_of% @thm_main_brown_form ∧
     type_of% @thm_main_definitions.{u} ∧
@@ -79,7 +83,8 @@ theorem manuscript :
     type_of% @cor_wp ∧
     type_of% @cor_wp_proof ∧
     type_of% @sec_questions.{u, v} :=
-  ⟨@abstract_claims, @thm_main, @thm_main_brown_form, @thm_main_definitions.{u},
+  ⟨@abstract_claims, @intro_ozawa_thom, @thm_main, @thm_main_brown_form,
+    @thm_main_definitions.{u},
     @thm_general.{u, v}, @general_remark, @tab_props, @proof_ingredients, @fig_models,
     @eq_elementary, @proof_ring_T, @proof_simplicity.{u, v}, @proof_finite_models,
     @proof_brown_formulation.{u}, @sec_main_proof, @sec_main_sharpness, @sec_main_example,
