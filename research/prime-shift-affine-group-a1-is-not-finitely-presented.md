@@ -7,11 +7,15 @@ distinct_from:
   prime-shift-affine-group-a1-is-finitely-presented: that is the OPEN claim this refutes.
   prime-shift-hnn-groups-are-not-finitely-presented: that proves the HNN group Π_1 is not finitely presented and that finite presentation of A_1 would need a dilation in the normal closure of τ; this shows no dilation is there, so A_1 is not finitely presented either, whether or not Π_1 -> A_1 is injective.
   prime-shift-hnn-map-to-a1-is-injective: that asks whether Π_1 -> A_1 is injective; this settles finite presentation of A_1 without answering that, and confines the kernel.
+artifacts:
+  - research/artifacts/gq-referee-a-prime-shift-affine-group-a1-is-not-finitely-presented.md
 ---
 
 **ESTABLISHED** through `prime-shift-affine-group-a1-is-not-finitely-presented-proof`
 (lane proof, elementary; inputs are Baumslag's wreath product theorem and item 1 of
-`prime-shift-hnn-groups-are-not-finitely-presented`; referee requests sent).
+`prime-shift-hnn-groups-are-not-finitely-presented`; refereed PASS by `gq-referee-a`,
+proof gaps, `gq-referee-a-prime-shift-affine-group-a1-is-not-finitely-presented.md`;
+review by `gq-referee-b` pending).
 
 **Notation.** As in `gl-n-q-lies-in-prime-shift-permutation-group`:
 - `A_1 = <τ, δ, ι, σ> <= Sym(Q)`, with `τ = (x ↦ x+1)`, `δ = (x ↦ 2x)` and
