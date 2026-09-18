@@ -177,3 +177,51 @@ operator-norm asymptotic representations.
   - Under (A), the gate is equivalent to (B_op). This meets the w6-last2
     calibration, since the route uses operator-norm liftability. Neither
     prerequisite was proved here, so the gate stays OPEN.
+- **2026-09-18, swarm-0917-w12-w12-deligne-pull (probability-random): the
+  CLT/averaging amplification class dies at the op-norm gate; its HS shadow is
+  ESTABLISHED.**
+  - *Class.* Build a model `U` at a small parameter `t` whose curvature
+    `D = U(g)U(h)U(gh)^*` has eigen-angles `psi_j` (measured from
+    `2 pi t b(g,h)`) with small variance but possibly wide support. Then
+    amplify by
+    - mixtures (direct sums over a random choice of model),
+    - independent products (tensor powers `U^(tensor k)`), or
+    - any polynomial functor of `GL(d)` (Schur functors `S_lambda(U)` and
+      sums of them),
+
+    hoping for a `sqrt(k)` gain in the op defect.
+  - *Where every member dies.*
+    - Op norm of a direct sum is the max, so mixtures gain nothing.
+    - For a functor `F`, the curvature of `F(U)` is `F(D)`.
+    - `F(D)` contains the extremal `GL(d)`-weight. For `S_lambda` its
+      angle is `sum_j (lambda_j - lambda_(j+1)) X_j`, with
+      `X_j = psi_(1) + ... + psi_(j)` the partial sums of the sorted
+      angles. For `U^(tensor k)` it is `k max_j psi_j`.
+    - So `||F(D) - c^|lambda|||_op` is governed by the *support* of the
+      curvature spectrum, additively. There is no concentration gain.
+    - Rectangular `lambda = (c^d)` reduces to `det^c`: this is scalar data at
+      an integer parameter, which item 8 of
+      `sp4-winding-ratio-sharp-constant-is-gromov-dual` already
+      shows sits exactly at the threshold.
+  - *Invariant.* On this gate, the whole class reduces exactly to the sep8
+    op threshold `o(|t|)`. It gains nothing over it.
+  - *Not covered.* Subspaces invariant only under the specific image
+    `U(Gamma)^(tensor k)` and not under `GL(d)`. Such a subspace can avoid
+    extremal weights, but choosing it is structural input, not averaging.
+  - *What survives, in HS.* The distributional gain is real for normalized
+    traces.
+    - `deligne-hs-parameter-trace-threshold` (ESTABLISHED): the HS
+      parameter group `P_2`, which contains `P_op`, is `R/Z` iff small-parameter models have
+      *trace* defect `o(|t|)`, i.e. HS defect `o(|t|^(1/2))` plus centring.
+    - `1/3 in P_2` iff `E_3` is hyperlinear. So non-hyperlinearity is
+      exactly "`P_2 != R/Z` (a linear trace gap on one finite window) and
+      `3` does not divide `m`".
+    - `mod-s2-separating-twist-character-semigroup-dichotomy`
+      (ESTABLISHED): the circle part `G_2` of the separating-twist trace set
+      is a closed subgroup. The genus-two HS gap is `omega not in G_2`, and
+      `G_2 = S^1` iff the traces are tangent to the circle at 1.
+    - That split is recorded as route
+      `mod-s2-torelli-scalar-gap-via-nontangency`, with OPEN prerequisites
+      `mod-s2-separating-twist-characters-are-nontangent-at-one` and
+      `mod-s2-separating-twist-circle-group-has-order-prime-to-three`.
+  - The gate itself stays OPEN.
