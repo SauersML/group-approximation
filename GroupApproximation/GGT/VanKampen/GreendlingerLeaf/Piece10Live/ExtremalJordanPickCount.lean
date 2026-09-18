@@ -229,3 +229,70 @@ theorem extremalJordanPickCount_three_of_two_lt (K : PocketFaceSet D eps X lo hi
     fun h' => hac (Quot.eqvGen_sound h'), fun h' => hbc (Quot.eqvGen_sound h')⟩
 
 end CountProofs
+
+/-- **OPEN (lane gl-p10-41): the class count on the planar walk map.**  Under the premises of
+`ExtremalJordanPickEulerCountStatement`, Euler's bound `2 + excess ≤ #L + #O` holds, and the
+parity clause `excess = 2 → #O ≠ 2` holds.  LOUD: this is logically STRONGER than the count
+statement.  It implies it (`extremalJordanPickCount_count_of_euler`) but is not implied by it.  It
+is strictly smaller in proof content: the counting step, the extraction of three darts, `#O ≤ 2`,
+`excess ≥ 2` and the genus-0 input are proved in this file.  Both clauses held on every model
+instance up to 8 darts (`SP/gl-p10-41/par.py`). -/
+def ExtremalJordanPickCountEulerStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      ExtremalJordanPickThreeTwoOutside K →
+      ExtremalJordanPickEulerLocal K →
+        ExtremalJordanPickCountEulerBound K ∧ ExtremalJordanPickCountParity K
+
+/-- **The counting step**: the class count gives the global Euler count statement. -/
+theorem extremalJordanPickCount_count_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickEulerCountStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo hloc
+  obtain ⟨hbd, hpar⟩ :=
+    h D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo hloc
+  refine extremalJordanPickCount_three_of_two_lt K ?_
+  have hO := extremalJordanPickCount_outside_le_two K htwo
+  have hE := extremalJordanPickCount_two_le_excess K hloc.2.2.2.2 hft
+  unfold ExtremalJordanPickCountEulerBound at hbd
+  unfold ExtremalJordanPickCountParity at hpar
+  by_contra hL
+  exact hpar (by omega) (by omega)
+
+/-- **The endpoint**: the class count gives the TwoOutside statement. -/
+theorem extremalJordanPickCount_twoOutside_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickThreeTwoOutsideStatement.{u, w, v} :=
+  extremalJordanPickEuler_twoOutside_of_count (extremalJordanPickCount_count_of_euler h)
+
+/-- **The endpoint**: the class count gives the Three statement. -/
+theorem extremalJordanPickCount_three_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickRegionThreeStatement.{u, w, v} :=
+  extremalJordanPickEuler_three_of_count (extremalJordanPickCount_count_of_euler h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_linked
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_outside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_nonFirstAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_excess
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountEulerBound
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountParity
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_walkMap_planar
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_walkMap_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_outside_le_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_two_lt_nonFirstAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_two_le_excess
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_three_of_two_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountEulerStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_count_of_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_twoOutside_of_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_three_of_euler
