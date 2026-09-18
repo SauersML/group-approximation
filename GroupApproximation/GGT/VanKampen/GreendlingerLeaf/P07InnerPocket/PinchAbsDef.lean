@@ -21,7 +21,7 @@ lane defines it in Lean and discharges `P₀ ⊆ F` and the lobe condition for i
   no bad face.  This is exactly `m9.absorb` (an edge component `Q` of `R` is absorbed iff each of
   its darts `d` has `faceOf (alpha d) ∈ S` or `alpha d ∈ G`); the script
   `gl-p07-72/abs_check.py` checks the equality `abs_lean == m9.absorb` on every configuration.
-  (`m9.absorb` also admits `d ∈ G`; the check shows that never changes the set.)
+  (`m9.absorb` also allows `d ∈ G`; the check shows that never changes the set.)
 
 **Proof of the lobe condition** (`pinchAbs_lobe`, `PinchAbsLemmas.lean`).  Let `faceOf e ∈ F \ P₀`,
 so `faceOf e ∈ R` is not reached, and `faceOf (alpha e) ∉ F`; suppose `alpha e ∉ G₁ ∪ G₂`.
