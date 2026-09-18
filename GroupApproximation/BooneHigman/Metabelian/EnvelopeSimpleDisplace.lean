@@ -80,7 +80,8 @@ theorem roverNekrashevych_le_determinedSubgroup [Finite X] (H : Subgroup (TreeAu
     rw [e]
     exact locallyDetermined_localize (locallyDetermined_cantorHom h⁻¹) w
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.roverNekrashevych_le_determinedSubgroup
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.roverNekrashevych_le_determinedSubgroup
 
 /-- A nontrivial locally determined permutation carries some cone off itself. -/
 theorem exists_disjoint_image_cone {f : Equiv.Perm (Cantor X)} (hf : LocallyDetermined ⇑f)

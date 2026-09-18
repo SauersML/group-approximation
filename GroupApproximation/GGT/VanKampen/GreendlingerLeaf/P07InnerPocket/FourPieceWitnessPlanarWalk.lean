@@ -30,6 +30,7 @@ theorem exists_enclosedFaceSetSucc_of_connected {X : DiscDiagram.{u, w, v} W}
       ∀ d ∈ outerWalk, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ F := by
   obtain ⟨d₀, hd₀⟩ := exists_boundaryKeep (X.toCombMap.connected_of_planar X.planar) hout hne
   obtain ⟨L, hL, hnext⟩ := PocketOrbit.exists_pocketOrbit_of_connected
+    (M := X.toCombMap) (keep := boundaryKeep X.toCombMap F)
     (boundaryKeep_alpha X.toCombMap F) X.planar hB hd₀ X.outerFace
   have hcls : ∀ d, X.toCombMap.faceOf d ∈
       PocketNoncrossing.faceClass X.toCombMap (boundaryKeep X.toCombMap F) X.outerFace ↔
@@ -43,38 +44,45 @@ theorem exists_enclosedFaceSetSucc_of_connected {X : DiscDiagram.{u, w, v} W}
     · rintro ⟨hk, hd⟩
       refine ⟨hd, ?_⟩
       by_contra hα
-      exact hd (hk.mpr hα)
+      exact hd (Iff.mpr hk hα)
     · rintro ⟨hd, hα⟩
-      exact ⟨⟨fun h => absurd h hd, fun h => absurd hα h⟩, hd⟩
+      exact ⟨Iff.intro (fun h => absurd h hd) (fun h => absurd hα h), hd⟩
   have hwk : ∀ x, walkKeep X.toCombMap L x ↔ boundaryKeep X.toCombMap F x := by
     intro x
-    refine ⟨PocketNoncrossing.keep_of_walkKeep (boundaryKeep_alpha X.toCombMap F) hL.mem_iff x,
-      fun hk => ?_⟩
+    refine ⟨PocketNoncrossing.keep_of_walkKeep (keep := boundaryKeep X.toCombMap F)
+      (boundaryKeep_alpha X.toCombMap F) hL.mem_iff x, fun hk => ?_⟩
+    show x ∈ L ∨ X.toCombMap.alpha x ∈ L
     by_cases hx : X.toCombMap.faceOf x ∈ F
-    · refine Or.inr ((hmem _).mpr ⟨hk.mp hx, ?_⟩)
+    · refine Or.inr ((hmem (X.toCombMap.alpha x)).mpr ⟨Iff.mp hk hx, ?_⟩)
       rw [X.toCombMap.alpha_involutive x]
       exact hx
     · refine Or.inl ((hmem x).mpr ⟨hx, ?_⟩)
       by_contra hα
-      exact hx (hk.mpr hα)
+      exact hx (Iff.mpr hk hα)
+  have hmem' : ∀ d, d ∈ L ↔ X.toCombMap.faceOf d ∉ F ∧
+      (X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ F ∨ X.toCombMap.alpha d ∈ L) := by
+    intro d
+    constructor
+    · intro hd
+      exact ⟨((hmem d).mp hd).1, Or.inl ((hmem d).mp hd).2⟩
+    · rintro ⟨hd, hα | hα⟩
+      · exact (hmem d).mpr ⟨hd, hα⟩
+      · have h₂ := ((hmem (X.toCombMap.alpha d)).mp hα).2
+        rw [X.toCombMap.alpha_involutive d] at h₂
+        exact absurd h₂ hd
   refine ⟨L,
     { outerFace_not_mem := hout
       ne_nil := hL.ne_nil
       nodup := hL.nodup
       chain := hL.chain
       closes := hL.closes
-      mem_iff := fun d => ⟨fun hd => ⟨((hmem d).mp hd).1, Or.inl ((hmem d).mp hd).2⟩, ?_⟩
+      mem_iff := hmem'
       turn_mem := fun d hd m hm hk hfirst =>
         hL.turn d hd m hm ((hwk _).mp hk) fun k hk₀ hkm hkk => hfirst k hk₀ hkm ((hwk _).mpr hkk)
       turn_next := fun i hi m hm hk hfirst =>
         hnext i hi m hm ((hwk _).mp hk) fun k hk₀ hkm hkk =>
           hfirst k hk₀ hkm ((hwk _).mpr hkk) },
     fun d hd => ((hmem d).mp hd).2⟩
-  rintro ⟨hd, hα | hα⟩
-  · exact (hmem d).mpr ⟨hd, hα⟩
-  · have h₂ := ((hmem _).mp hα).2
-    rw [X.toCombMap.alpha_involutive d] at h₂
-    exact absurd h₂ hd
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.exists_enclosedFaceSetSucc_of_connected
 
