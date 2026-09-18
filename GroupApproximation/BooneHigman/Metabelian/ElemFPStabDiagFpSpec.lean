@@ -57,7 +57,8 @@ naturality bookkeeping are discharged.  What remains is van der Kallen's injecti
 the elements killed by every augmented specialization, including the base instance over `A[s]`.
 It is **not** equivalent to `vdkParPres_NoHiddenRelStatement`: that statement concerns every
 ring of stable rank `≤ r` and all of `K₂`.  The rings here are fixed and only a subset of
-`ker ev₀` is concerned.  The bridge from `ker Π = ⊥` is `ElemFPStabDiagFpBridge`.
+`ker ev₀` is concerned.  The per-prime sharpening (no `cc` condition, full injectivity,
+base case discharged by `K₂(N, F_p) = 0`) is module `ElemFPStabDiagFpMaps`.
 
 ## Truth check
 

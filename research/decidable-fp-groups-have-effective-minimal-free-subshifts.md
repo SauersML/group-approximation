@@ -302,3 +302,20 @@ stalling data are known either.
 *Refutation target.* Take data for which one could prove that every
 admissible level eventually contains a dead end. That would kill the greedy
 family, but not (M2), because (G) ⇒ (M2) is one way only.
+
+**Attempt 6 (2026-09-18, bh-free-37, machine-certified labellings plus randomness):
+dies at the local lemma.** Stays OPEN.
+- *Idea.* Configurations are labellings that a word-problem decider certifies as locally
+  consistent. Freeness constraints and "every admissible `r`-pattern recurs within `R_r`"
+  are imposed as bad events, and the local lemma plus compactness should give
+  nonemptiness. Minimality would then hold by definition.
+- *Kill.* `local-lemma-cannot-certify-multiscale-recurrence`: over the uniform product
+  measure, no asymmetric-LLL certificate exists once recurrence events occur at infinitely
+  many scales next to any translation-invariant positive-probability family.
+  - The reason is volume: recurrence of a density-`δ_r` pattern set succeeds at rate
+    `≈ δ_r → 0` per site, while the fixed family costs a fixed amount per site.
+  - This covers the tower subshifts of Attempt 3. So the uniform-measure local lemma does
+    not reach (N) either; Attempt 4 had listed it among the methods that reach (N).
+- *What survives.* The randomness has to be hierarchical, with scale-`r` patches drawn from
+  small libraries inside a deterministic computable skeleton. The decider enters only by
+  computing that skeleton, as in Attempt 2.
