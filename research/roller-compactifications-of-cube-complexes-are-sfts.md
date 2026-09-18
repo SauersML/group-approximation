@@ -100,7 +100,7 @@ and (C2) hold.
 - Calibration: `Z²` gives the product `C_Z ⊠ C_Z` of the gluing node, and `F_n` recovers
   `horofunction-lemma-holds-for-free-and-surface-groups` part 1.
 
-**Part 4.** The ladder's hyperplanes are the horizontal midline `M` and the rungs' duals `V_n`. The Roller boundary is
+**Part 4.** The ladder's hyperplanes are the horizontal midline `M`, dual to the rungs, and the vertical hyperplanes `V_n`, dual to the horizontal edges. The Roller boundary is
 `{±∞} × {top, bottom}`. Principal ultrafilters at bottom vertices choose the bottom side of `M`, and so does every
 limit of them.
 
