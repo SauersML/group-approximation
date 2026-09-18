@@ -96,3 +96,77 @@ theorem p10QS_side_iff_of_not_onB (B : List M.Dart) {x y : M.Dart}
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QS_side_iff_of_not_onB
+
+/-- **A dart of `c` off `B`** is kept by the quadrant move `p q` iff its face is on the side of
+`B` exactly when `p = false`. -/
+theorem p10QS_movePred_off {F : Finset M.Face} (c : BoundaryCycle M F) {B : List M.Dart}
+    (hBc : ∀ e ∈ B, e ∈ c.cycle) (p q : Bool) {d : M.Dart} (hd : d ∈ c.cycle) (hdB : d ∉ B) :
+    movePred M (p10FM_z M F B p q) d = true ↔ (M.faceOf d ∈ sideFaces M B ↔ p = false) := by
+  have hs : M.faceOf d ∈ sideFaces M B ↔ M.faceOf (M.alpha d) ∈ sideFaces M B :=
+    p10QM_side_alpha_iff M B hdB fun h => p10QM_alpha_not_mem M c hd (hBc _ h)
+  cases p <;> cases q
+  · rw [p10QM_movePred_FF M c B hd, ← hs]
+    simp
+  · rw [p10QM_movePred_FT M c B hd]
+    simp
+  · rw [p10QM_movePred_TF M c B hd, ← hs]
+    simp
+  · rw [p10QM_movePred_TT M c B hd]
+    simp
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QS_movePred_off
+
+/-- **A dart of `B`** is kept by the quadrant move `p q` iff `q = true ↔ p = false` (Jordan: its
+face is on the side of `B` and the face across it is not). -/
+theorem p10QS_movePred_on (hM : M.IsPlanar) {F : Finset M.Face} (c : BoundaryCycle M F)
+    {B : List M.Dart} (hB : IsSimpleClosedWalk M B) (hBc : ∀ e ∈ B, e ∈ c.cycle) (p q : Bool)
+    {d : M.Dart} (hd : d ∈ B) :
+    movePred M (p10FM_z M F B p q) d = true ↔ (q = true ↔ p = false) := by
+  have hJ := (hB.isBoundaryDart_sideFaces_iff hM d).mpr hd
+  have hin : M.faceOf d ∈ sideFaces M B := And.left hJ
+  have hout : M.faceOf (M.alpha d) ∉ sideFaces M B := And.right hJ
+  have hdc : d ∈ c.cycle := hBc d hd
+  cases p <;> cases q
+  · rw [p10QM_movePred_FF M c B hdc]
+    simp [hout]
+  · rw [p10QM_movePred_FT M c B hdc]
+    simp [hin]
+  · rw [p10QM_movePred_TF M c B hdc]
+    simp [hout]
+  · rw [p10QM_movePred_TT M c B hdc]
+    simp [hin]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QS_movePred_on
+
+/-- **The kept walk of a quadrant move for an untouched `B` is closed.**  If `B ⊆ c` is a simple
+closed walk untouched in `c` away from `v0`, then for every quadrant `p q` keeping some dart,
+the kept darts of `c` form a closed dart walk. -/
+theorem p10QS_closed_untouched (hM : M.IsPlanar) {F : Finset M.Face} (c : BoundaryCycle M F)
+    (hc : IsClosedDartWalk M c.cycle) {B : List M.Dart} (hB : IsSimpleClosedWalk M B)
+    (hBc : ∀ e ∈ B, e ∈ c.cycle) {v0 : M.Vertex} (hU : p10QS_Untouched M c.cycle B v0)
+    (p q : Bool) (hkept : ∃ d ∈ c.cycle, movePred M (p10FM_z M F B p q) d = true) :
+    IsClosedDartWalk M (c.cycle.filter (movePred M (p10FM_z M F B p q))) := by
+  refine p10QS_closed_filter_of_switch _ v0 hc ?_ hkept
+  intro d hd e he hde hne
+  by_cases hdB : d ∈ B <;> by_cases heB : e ∈ B
+  · exact absurd (Bool.eq_iff_iff.mpr ((p10QS_movePred_on M hM c hB hBc p q hdB).trans
+      (p10QS_movePred_on M hM c hB hBc p q heB).symm)) hne
+  · exact (hU e he heB).1 ⟨d, hdB, Or.inr hde⟩
+  · exact hde.symm.trans ((hU d hd hdB).2 ⟨e, heB, Or.inl hde.symm⟩)
+  · by_cases hW : p10QS_OnB M B (M.vertexOf e)
+    · exact (hU e he heB).1 hW
+    · have hadB : M.alpha d ∉ B := fun h => p10QM_alpha_not_mem M c hd (hBc _ h)
+      have hW' : ¬p10QS_OnB M B (M.vertexOf (M.alpha d)) := by
+        rw [hde]
+        exact hW
+      have hchain : M.faceOf d ∈ sideFaces M B ↔ M.faceOf e ∈ sideFaces M B :=
+        (p10QM_side_alpha_iff M B hdB hadB).trans (p10QS_side_iff_of_not_onB M B hde hW')
+      exact absurd (Bool.eq_iff_iff.mpr ((p10QS_movePred_off M c hBc p q hd hdB).trans
+        ((iff_congr hchain Iff.rfl).trans (p10QS_movePred_off M c hBc p q he heB).symm))) hne
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QS_closed_untouched
+
+end Untouched
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove
