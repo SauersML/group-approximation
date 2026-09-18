@@ -464,3 +464,33 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Configuration models at every subset size (swarm-0917-w12-w12-ptl-pull, 2026-09-18, family census-computation).**
+Landed as `subset-models-are-point-models-at-every-size` (established, unreviewed). It closes the subset-size gap that
+Theorem CP (`configuration-product-models-reduce-to-point-models`, swarm-0917-w11) left open. That gap is the product-action
+half of the next step above.
+- *Statement.* Let `g ∈ S_m` move the fraction `b` of `[m]`. Then at every `1 <= k <= m-1`, `g` moves between
+  `min(1, k'b)/6` and `min(1, k'b)` of the `k`-subsets, with `k' = min(k, m-k)`. So a model through `S_m wr S_l`, in
+  product action on `l`-tuples of `k`-subsets, has `h/δ <= 7 max(1, h_pt/δ_pt)`, where `h_pt/δ_pt` is taken for its
+  point model.
+  - No condition such as `m >= 8k^2` is needed.
+  - Nothing is lost in `k`.
+  - The corollary no longer needs `k δ -> 0`.
+- *Death step.* A `g`-invariant subset cannot split any of `>= M/3` disjoint pairs `{x, gx}`. That costs a constant
+  fraction of the event that `X` meets their union properly, at every `k`. So head and defect rescale by the same factor
+  `k'l`. Theorem CP's remark that "the ratio can genuinely change" for `sqrt(m/8) < k = o(m)` is false: the exact census
+  (253908 cycle-type and subset-size tests) finds a worst ratio of `0.5008`.
+- *Kills.* Every head certificate routed through product-action alternating sections, at any subset size. These are the
+  recalled branch (M) of `fp-simple-finite-group-models-reduce-to-alternating-constituents`, and they give nothing beyond
+  Hamming point models. The step "test the head against `A_m` on `m`-point configurations" is therefore closed: it does
+  not test anything new.
+- *Where it stops (hole stays OPEN).* The Hamming point problem itself remains: is `h/δ` for `x_13(Q)` unbounded on
+  every `St_4(J)` window? That is soficity of `EL_4(J)` with the head retained. Also open:
+  - branch (P);
+  - non-permutation unitary models;
+  - bounded-exception primitive sections;
+  - the fact that the Liebeck–Saxl / Guralnick–Magaard identification is recalled but not imported.
+- **Next falsifiable step.** Import the Liebeck–Saxl / Guralnick–Magaard minimal-degree theorem verbatim. Together with
+  this claim, branch (M) then reduces entirely to point models, and a finite-group certificate of the head must put
+  definite template weight on branch (P) or on bounded-exception sections. The alternative is to exhibit a primitive
+  irreducible representation family in branch (P) whose `St_4(J)`-relators are nearly scalar and not scalar.
