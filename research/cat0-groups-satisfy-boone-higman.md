@@ -52,12 +52,20 @@ space embeds in a finitely presented simple group.
    `cat0-groups-on-hyperbolic-plane-times-tree-lie-in-type-a-class` (2026-09-18, lane
    proof). The input is `arithmetic-lie-lattices-have-faithful-bs-members`, which puts
    `BS_G` in `B_A` for every arithmetic lattice `G`, surface groups included.
-8. **Every virtually torsion-free group acting geometrically on `X × T`,** for `X`
-   an irreducible symmetric space of noncompact type, in `B_A`:
+8. **Every group acting geometrically on `X × T` with virtually torsion-free fibre
+   groups,** for `X` an irreducible symmetric space of noncompact type, in `B_A`:
    `cat0-groups-on-symmetric-space-times-tree-lie-in-type-a-class` (2026-09-18, lane
    proof). Fibre lattices with non-discrete commensurator get faithful Hecke members.
-   Those with discrete commensurator force a virtual product `N × F`
+   Those with discrete commensurator force a virtual product `K × F`
    (`commensurator-rigid-bs-classes-are-virtual-products`), which is linear.
+
+9. **Groups acting geometrically on `Y × T`, `Y` any locally finite CAT(0) cube
+   complex,** whose `Y`-projection has a closure with no open subgroup fixing a
+   point of `∂Y`: `cube-complex-times-tree-lattices-with-fb-closures-are-pbh`
+   (2026-09-18, lane proof), through the faithful Hecke member criterion
+   `cubical-hecke-members-faithful-when-closure-fixes-bounded-sets`. It reaches only
+   residually finite fibres. The cubulated subclass is BBCMP Question 1.15,
+   `virtually-torsion-free-cubulated-groups-satisfy-boone-higman`.
 
 ## Attempts
 

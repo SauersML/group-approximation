@@ -89,7 +89,8 @@ def roseLobeTriple_NoLobeQuad {α : Type*} (s : α → α → Prop) (c I T : Lis
   ∀ (A C : List α) (a1 a2 a3 a4 : α), c = A ++ [a1, a2, a3, a4] ++ C →
     (∀ e ∈ c, ∀ r ∈ [a1, a2, a3, a4], Relation.EqvGen s r e → e ∈ [a1, a2, a3, a4]) →
     (∃ x, kp x ∧ ∀ r ∈ [a1, a2, a3, a4], ¬Relation.EqvGen s r x) →
-    ((∃ d ∈ [a1, a2, a3, a4], d ∉ I) ∨ [a1, a2, a3, a4] <+: I ∨ [a1, a2, a3, a4] <:+ I) →
+    ((∃ d ∈ [a1, a2, a3, a4], d ∉ I) ∨ [a1, a2, a3, a4] <+: I ∨
+      [a1, a2, a3, a4] <:+ I) →
     ((∀ d ∈ [a1, a2, a3, a4], d ∉ T) ∨ C = []) → False
 
 #audit_axioms

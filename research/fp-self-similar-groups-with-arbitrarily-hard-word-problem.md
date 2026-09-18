@@ -94,3 +94,53 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
        halting sets, compatibly with KMS's residual-finiteness proof (which needs
        sym-universal halting), is the open construction problem this reduces to.
        Nothing here is claimed as an obstruction.
+     - *Follow-up (bh-free-25): binomial encodings are dead.* Suppose the command
+       relations are binomials `x_q·a^n = x_{q'}·a^{n'}` in a free module over the
+       commutative group ring of the counter letters. Suppose also that a
+       Cartier-type `φ` acts as `C_0` (keep exponents divisible by `p`, divide them by
+       `p`) together with a state relabeling `σ`, and that `φ` carries the relation
+       submodule `R` into itself. Multiplying a relation by `a^m`, with `m ≡ −n`
+       (mod `p`), shows `n ≡ n'` (mod `p`). Otherwise one side of the image survives
+       alone and a configuration generator lies in `R`. `C_0` then turns the step
+       `n' − n` into `(n' − n)/p`, which must again be a step of `R`, hence again
+       divisible by `p`. By induction every step is divisible by every power of `p`,
+       so it is zero. A working design therefore cannot store counters as exponents
+       with monomial transitions. It must use genuinely polynomial operators, as KMS's
+       `P_i` are, or odometer-style counters whose carries are the sections.
+
+4. **Finite-state candidates are capped at PSPACE; scope of the Cartier kill**
+   (bh-free-02, 2026-09-18).
+   - *The cap.* By `automaton-tail-full-groups-have-conp-relative-word-problem`
+     (item 2), every automaton group has word problem in `PSPACE`. So do its
+     Rover--Nekrashevych and product 2-graph hosts. A finite-state witness can
+     therefore serve this claim only for bounds `T` below `PSPACE`. The claim needs
+     infinitely many states, as the first necessary condition says.
+   - *The intermediate target.* A finitely presented automaton group with `NP`- or
+     `PSPACE`-hard word problem is still open. It would give finitely presented
+     simple groups beyond Birget's coNP. Wächter--Weiß's PSPACE-complete automaton
+     group (STACS 2020; cited, not read) is not known to be finitely presented.
+   - *Scope of the partial kill above.* It assumes `φ = σ ∘ C_0`, which kills every
+     monomial `x_q a^n` with `p ∤ n`. A general semilinear `φ`, with `φ(a^p) = a`,
+     is determined by arbitrary images of the `x_q a^r`, `0 <= r < p`, because the
+     free module is free over `F_p[a^{±p}]` on these. The kill does not cover
+     `φ` that send `x_q a^r`, `r != 0`, to nonzero elements. That is how the
+     sections of lamplighter-type self-similar actions look. So "no monomial
+     transitions" is proved only for `σ ∘ C_0`. General semilinear `φ` are untested.
+5. **Lamp-digit route through the KMS groups (bh-free-25, 2026-09-18).**
+   - **The criterion.** `lamp-digit-modules-give-self-similar-semidirect-products`
+     (lane proof, elementary): if `Q` is self-similar on `T_X` and an `F_p[Q]`-module `M`
+     carries a *self-similar module structure*, then `M ⋊ Q` is self-similar on
+     `T_{X × F_p}`. Such a structure means maps `ρ_x: M → M` with
+     `ρ_{q(x)}(q m) = q|_x ρ_x(m)` and a `Q`-invariant separating functional `λ`.
+   - **What it turns the question into.** The KMS groups `G(M) = T ⋊ Q` are finitely
+     presented. So this claim follows once some hard `G(M)` has a self-similar top
+     together with such a structure on its configuration module (route
+     `hard-self-similar-groups-via-self-similar-kms-modules`, OPEN premise
+     `kms-configuration-modules-carry-self-similar-structures`).
+   - **Already known about the premise.** The one-counter factors of the top are
+     finite-state affine automaton groups on `F_p[[X]]` for odd `p`. The multi-counter
+     factor `B_0` has no scalar affine realization when `K ≥ 2`.
+   - **A companion kill.** `boundary-orbit-wreaths-over-tree-groups-are-not-fp` shows
+     that boundary-orbit wreath products over tree groups, the simplest outputs of the
+     criterion, are never finitely presented. So finite presentation has to come from
+     the KMS relations, not from the wreath shape.

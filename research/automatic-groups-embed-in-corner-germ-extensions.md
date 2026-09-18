@@ -62,3 +62,32 @@ group of local prefix replacements between prefixes with equal follower sets.
 - **Hyperbolic groups.** For hyperbolic groups the natural base is the contracting rational
   similarity group of Belk--Bleak--Matucci--Zaremsky, not a trivial-nucleus `B`. A version of
   this premise over a contracting-RSG base is the natural generalization.
+
+## Sharpened by recoding (bh-free-21, 2026-09-18, second landing)
+
+- **E2, E3 and E5 can be dropped.** By `prefix-replacement-actions-recode-into-germ-extensions-of-v`,
+  the automaton's base `B` can be replaced by Thompson's `V`. The theorem recodes the path space
+  with complete binary prefix codes, which turns every state-preserving prefix replacement into
+  a `V`-local map. Relative to `V`:
+  - E2 is Belk--Hyde--Matucci Appendix A;
+  - E3 holds for any finite union of `V`-orbits of rational points;
+  - E5 is automatic.
+- **What the premise really needs.** Two conditions on a continuous automatic structure of a
+  supergroup `G' >= G`:
+  - **(E1')** each generator acts by state-preserving prefix replacements off finitely many
+    eventually periodic points, and maps those points to eventually periodic points;
+  - **(E4')** after recoding, `(V)_p ⊴ (Γ)_p` with a finitely presented quotient at every
+    singular point.
+- **E5 for the automaton's own base fails in general.** For `Z^2 * Z` the automaton's own
+  Thompson group has `K_0 ≅ Z^5` and is not clopen transitive
+  (`z2-free-z-normal-form-boundary-has-corner-singular-orbits`). So the recoding is needed, not
+  optional.
+- **First complete instance.** `z2-free-z-lies-in-an-fp-full-germ-extension-of-v` does
+  `Z^2 * Z` in full: type `F_∞`, and in `B_A`.
+- **Limits recorded.**
+  - The naive diagonal normal form on `Z^3` fails E1'. A first-factor generator is singular at
+    each of the infinitely many points `(a_1a_2a_3)^m (a_1a_2)^∞`.
+  - Interleaved normal forms on `F_2 × F_2` fail E1' everywhere: prepending a letter to one
+    factor shifts the interleaving phase.
+  - Neither matters for Boone--Higman, since both groups lie in `V`. They mark where normal-form
+    boundaries stop being the right source of actions.
