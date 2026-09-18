@@ -111,3 +111,31 @@ density `1/k`, restricted to transversals.
       of every spread support.
   - Where it stops: the kill does not touch (H1) or (H2), and it proves nothing
     toward the hypothesis itself.
+* **Label-extended lifts: value plus base profile (reframing, 2026-09-17).**
+  `lifts-over-multiscale-expanders-expand-unless-ug-value-large` (ESTABLISHED,
+  exact replay) splits the NO case of any reduction that outputs label-extended
+  graphs `L(U)` of q-label games into two prerequisites. Every implication is
+  proved.
+  - *The prerequisites.* (N1) is soundness `val < nu^3 tau^2/64`. (N2) is base
+    expansion `Phi_H >= 1 - nu/24` at every scale in `[1/q, tau]`.
+  - *Sufficiency.* (N1) and (N2) imply `Phi_L(1/q) >= 1 - nu`, via a master
+    inequality that truncates loads.
+  - *Necessity.* `Phi_L(1/q) <= min(1 - val, Phi_H(1/q))`, witnessed by labeling
+    sets and cylinders. So lifts give no scale gain, and twisting permutations
+    over a sticky base stays inside the gadget-composition kill.
+  - *Equivalence.* SSEH is equivalent to Gap-UG hardness on N2 bases. The
+    converse direction cites RST Theorem 3.2's Gaussian profile.
+  - Where it stops: this is a reframing, not progress on hardness. The open gap
+    is between the necessary scale `{1/q}` and the sufficient range `[1/q, tau]`.
+* **Gap-2->4 on the top eigenspace projector as an equivalent (dead end,
+  2026-09-17).** The aim was SSEH iff a gap problem for `||P_(>=lambda)(L)||_(2->4)`
+  at `delta = 1/q`.
+  - *What holds.* A set with `mu = delta` and `Phi <= eta` gives
+    `||P_(>=lambda)||_(2->4) >= sqrt((1-eta-lambda)/(1-lambda)) delta^(-1/4)`,
+    by Hoelder on `P 1_S/sqrt(delta)`.
+  - *Where it dies.* BBHKSZ (arXiv:1205.4484v3) Theorem 2.4 needs the NO norm to
+    be `<= eps delta^(-1/4)` to certify expansion (item 1). Expansion only
+    supplies `<= 2/sqrt(delta)` (item 2). Separately, RST's NO profile is
+    vacuous for sets of measure below `gamma`, so it does not exclude large
+    norms coming from tiny localized sets. No two-sided equivalence follows at
+    either end.
