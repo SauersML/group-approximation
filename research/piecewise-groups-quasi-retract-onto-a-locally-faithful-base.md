@@ -54,15 +54,22 @@ some point `κ`. Then `H` is a quasi-retract of `K`. Consequently (Alonso, as im
 4. **The inclusion.** `ι : H -> K` is Lipschitz, since each of the finitely many generators
    of `H` is a word in `S`. Since `λ ∘ ι = id_H`, `H` is a quasi-retract of `K`. `∎`
 
+**Variant (same proof).** Only points of the orbit `Hκ` were used. So it is enough that each
+element of `K` has finitely many labels in `H` such that, near every point of `Hκ`, it agrees
+with one of them. Elements may have breakpoints off `Hκ`, where they agree with no element
+of `H`.
+
 ## Examples (hand remarks)
 
 - **Transformation groupoids.** If `Γ` is finitely generated and acts on a Cantor set
   topologically freely, or merely locally faithfully at one point, then every finitely
   generated `K` with `Γ <= K <= [[Γ ⋉ X]]` has at most the finiteness of `Γ`. So a finitely
   presented topological full group of such an action needs a finitely presented `Γ`.
-- **Thompson's `T`.** `T` is the group of piecewise-`PSL_2(Z)` homeomorphisms of `RP^1`
-  with finitely many rational breakpoints, and it contains `PSL_2(Z)`, which is locally
-  faithful. So `T` quasi-retracts onto `PSL_2(Z)` (label at an irrational point).
+- **Thompson's `T` (by the variant).** `T` is the group of homeomorphisms of `RP^1` that are
+  piecewise in `PSL_2(Z)`, with finitely many pieces and rational breakpoints, and it contains
+  `PSL_2(Z)`. `T` is not inside `[[PSL_2(Z) | RP^1]]`, because of the breakpoints. But an
+  irrational `κ` has an orbit of irrationals, which avoids all breakpoints, and `PSL_2(Z)` is
+  locally faithful there. So `T` quasi-retracts onto `PSL_2(Z)`.
 - **Where the hypothesis fails.** Weakly branch actions (for example Grigorchuk's group on
   the boundary of the binary tree) are locally faithful at no point, since rigid
   stabilizers of cylinders are nontrivial. In the finitely presented hosts of non-finitely
@@ -76,12 +83,15 @@ some point `κ`. Then `H` is a quasi-retract of `K`. Consequently (Alonso, as im
 A single locally faithful point turns "read the germ there" into a Lipschitz retraction. So
 a host that is piecewise over a locally faithful acting group cannot be more finitely
 presented than that acting group. Non-finite-presentability cannot be hidden in germs at an
-infinite emitter, or anywhere else, as long as the labels act locally faithfully. A non-fp
-input can therefore enter a finitely presented host in only two ways:
+infinite emitter, or anywhere else, as long as the labels act locally faithfully and lie in
+the host. So a non-fp input can enter a finitely presented host in one of three ways:
 - inside a finitely presented label group that contains it (a Clapham envelope, as in
   Track A);
 - through labels that are locally faithful nowhere (branching with rigid stabilizers, or
-  small-support `V`-type labels).
+  small-support `V`-type labels);
+- through a label group that is not a subgroup of the host. For stabilizer engines this way
+  is closed too: `F_B/D(F_B)` is finitely generated abelian, so `D(F_B)` fp gives `F_B` fp
+  (`fp-stabilizer-engines-need-fp-vertex-groups`).
 
 This is the carrier principle made exact on the finiteness side: the acting group must carry
 the finite presentation itself.
