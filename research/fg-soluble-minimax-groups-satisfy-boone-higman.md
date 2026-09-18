@@ -136,6 +136,11 @@ Either:
        torus. The better candidate is `Ω' = Γ_p/T`, whose point and two-point stabilizers are
        finitely generated. What remains is deriving the pair-of-transposition relations from
        finitely many of them.
+       By `fp-split-finitary-extensions-force-local-presentations-of-fsym`, this is the question whether
+       `FSym(Ω')` is the colimit of the `Sym(B)` over subsets of translates of one finite set. Two
+       points of a fibre of the central `C_(p^∞)` with a large-order difference never share a
+       translate, and `P` acts isometrically, so no Houghton-type induction on distance is
+       available. Open.
      - Gate (b) gives Boone–Higman for `B/C` and `Γ_p` directly, by
        `fp-finitary-permutation-overgroups-are-type-a-actors`. Gate (a) gives a finitely presented
        host, whose simplicity or type (A) is then checked as usual (Belk–Hyde–Matucci Theorem 1.3,

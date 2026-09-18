@@ -87,7 +87,7 @@ options are expected to number at least 2 for every table, not only for exceptio
 return-time set `{λ : λ^{-1}y ∈ Bad}` has bounded diameter for every `y`. Minimality of `Y`
 makes that implausible unless `Bad` is very thin (nowhere dense).
 
-**Design rule for E2.** The floating data must be *coupled across planes* so that no
+**Design rule for E2 (WITHDRAWN 2026-09-18 by `e2-for-plane-lifts-is-clustered-floating-freedom`, Theorem C: transport-coupled lifts are rigid but never minimal for a non-SFT input).** The floating data must be *coupled across planes* so that no
 modification is plane-local:
 - impose a cross-plane transport `σ_{λs} = β_s(T_λ, T_{λs}, σ_λ)` on floating identities, with
   each `β_s` a bijection of admissible sets;
@@ -136,3 +136,29 @@ After that, E2 on the E1 overgroup splits into:
 - centrality.
 
 None of these involves the complexity of the input.
+
+## Referee (bh-ref-ffwz, 2026-09-18): Parts 1 and 2 PASS
+
+- **Lemma 1.** Correct. With the global coordinates fixed, every rule constrains the
+  plane-local data of one plane only.
+- **Theorem 1.** Correct. The two single-plane modifications have difference sets in planes at
+  product distance `> 2D`. The far-modification lemma of
+  `minimal-sfts-with-a-finite-modification-are-not-quantum-rigid` builds the combined point
+  itself from locality, so it needs neither finite difference sets nor a separate check that
+  the combined point exists.
+- **Theorem 2.** Correct.
+  - No free plane means `z` is determined by its global coordinates, hence `(τ, φ)` is
+    injective.
+  - I re-checked Theorem 3 and Corollary 4(iii) of
+    `strongly-proximal-geometries-are-disjoint-from-measured-inputs`: conjugacy to `T × Y`;
+    `T` a subshift by expansivity; finite type preserved under conjugacy (Curtis–Hedlund–Lyndon);
+    the slice argument. `T × Y` is minimal because orbits are products.
+  - So `Y` would be of finite type.
+- **Corollary.** Correct. `A'` has infinitely many ends. By D. B. Cohen, *Geom. Topol.* 21
+  (2017), it carries no strongly aperiodic SFT, so the free minimal `Y_1` is not of finite type.
+- **Part 3** is design-level, and **Part 4** is open. The transport design rule is marked
+  withdrawn (f0fce6b145) by `e2-for-plane-lifts-is-clustered-floating-freedom`. That node was
+  not refereed here.
+- **Consequence for (★′).** Minimal plane lifts over a non-SFT input always have free planes,
+  and rigidity allows those only in clusters of diameter `≤ 2D`. Any (★′) build over the E1
+  overgroup must satisfy both constraints at once.

@@ -122,3 +122,23 @@ So neither phase fields, nor measures, nor boundary geometry are needed for exis
 Boundary geometry becomes relevant only if later gates need non-amenable hierarchy
 directions. The price is then freeness along the boundary factor: topological freeness is
 automatic there, and full freeness is the one extra gate.
+
+## Referee (bh-ref-e1-b, 2026-09-18): PASS for Parts 1–3; Part 4 correctly marked OPEN
+
+- **Part 1 (correction).** Correct *given* `keyed-diversification-slots-give-plane-constant-minimal-lifts`,
+  which passes at design level with one repairable gap: the slot key must be the full level-`K`
+  input field, see its Referee section. With that repair the floating identities are still chosen
+  per plane and indexed by distinct keys, so the retraction of (PF) as a requirement stands.
+- **Part 2 (tree cocycle, not load-bearing).** The eigenvalue argument is correct.
+  - `v∘σ − v ≡ 1` would make `e^{2πiv/2^k}` a continuous eigenfunction with eigenvalue
+    `e^{2πi/2^k}`.
+  - For irrational `α`, `1/2^k ∉ Zα + Z`, so that eigenvalue does not lie in `{e^{2πinα}}`.
+  - The density step also needs points with `c = −1`. Those are handled by the cocycle identity
+    `c(λ^{-1}, λy) = −c(λ, y)`.
+- **Part 3 (topological freeness).** Checked line by line: correct.
+  - End stabilizers in `W_3` are trivial or infinite cyclic. Vertex stabilizers of the Cayley tree
+    are trivial, so an involution, which inverts an edge, fixes no end.
+  - Countability of `Γ` gives both the `G_δ` and the existence of generic ends.
+  - Density follows from minimality.
+- **Part 4.** OPEN, correctly. Its repair (ii) is already supplied by bh-g3-topfree (2914b739e):
+  topological freeness suffices downstream.

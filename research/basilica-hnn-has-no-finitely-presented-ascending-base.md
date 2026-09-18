@@ -24,10 +24,12 @@ where `φ_v : St_G(v) → G` is the section homomorphism. Call such a `σ` **sec
 
 **(E)** every finitely presented cover of `G` contains a non-abelian free subgroup, and `G` contains none.
 
-**Theorem.**
+**Theorem.** (Item 3 was added 09-18 through `basilica-fp2-covers-contain-free-subgroups`.)
 1. A finitely generated subgroup `K ≤ N` that contains an `H`-conjugate of `G` is **not finitely presented**.
 2. So in every ascending HNN decomposition `H = B'*_s` whose base lies in `N`, the base `B'` is not finitely
    presented.
+3. **Homological form, for `G = B`.** In items 1 and 2, "not finitely presented" can be replaced by "not of type
+   `FP_2`".
 
 **Basilica instance.**
 - Take `G = B`, `v = 1` and Bartholdi–Virág's `σ : a ↦ b^2, b ↦ a`. Then `σ(g) = (a^(ε_a(g)), g)`
@@ -70,14 +72,22 @@ where `φ_v : St_G(v) → G` is the section homomorphism. Call such a `σ` **sec
 - **The base-change route is dead in homotopical form.** No base is finitely presented, so none is of type `F_n`
   for any `n ≥ 2`. Brown's criterion on the Bass–Serre tree of any ascending decomposition cannot certify `F_3`.
   Other tree actions are not treated here.
-- **Homological form.** An `FP_2` base that is not finitely presented is not excluded. De Cornulier's upgrade of
-  "finitely presented cover" to "cover of type `FP_2`" (BGdlH, Proposition 5.11) is proved for the Grigorchuk group
-  only. If it holds for `B`, the homological base route dies as well.
-- **Σ-invariants (recalled, not re-read; nothing above depends on it).** By the Bieri–Renz characterization of
-  `Σ^m` for discrete characters through ascending HNN bases of type `F_m`, item 2 says `[χ] ∉ Σ^2(B~)` in the
-  homotopical sense. Also `[−χ] ∉ Σ^1`, since `N` is not finitely generated. So a proof of `F_3` for `B~` must come
-  from a complex that the character sphere does not see. That is possible in principle: free groups have empty
-  `Σ^1` and are of type `F`.
+- **Homological form: also dead (added 09-18).** `basilica-fp2-covers-contain-free-subgroups` transfers de
+  Cornulier's perfect-kernel argument (BGdlH, Proposition 5.11) to `B`: every cover of type `FP_2` of `B`
+  contains `F_2`. The proof above then runs verbatim with "type `FP_2`" in place of "finitely presented", since
+  finite-index subgroups of `FP_2` groups are `FP_2`. **So no ascending base of `B~` is of type `FP_2`.**
+- **Σ-invariants (corrected 09-18 after reading Bieri–Renz, Comment. Math. Helv. 63 (1988) 464–497, at source).**
+  - An earlier version of this node attributed to Bieri–Renz a characterization of `Σ^m` (`m ≥ 2`) through
+    ascending HNN bases of type `F_m`. That paper does not contain it.
+  - Its Theorem B says: `Z` is of type `FP_m` over `N ⊇ G'` iff the great subsphere `S(G, N)` lies in
+    `Σ^m(G; Z)`. Its §6.5 defers the homotopical invariants to Renz.
+  - The `m = 1` characterization (`Σ^1` and ascending HNN extensions over finitely generated bases) is
+    Bieri–Neumann–Strebel, Proposition 4.4, as cited in Bieri–Renz §7.2.
+  - So nothing is claimed here about `Σ^2(B~)` beyond this: exactly one of `±χ` lies in `Σ^1`. The ascending direction does
+    (Bieri–Neumann–Strebel, Proposition 4.4), and not both do, since `N` is not finitely generated (Theorem B
+    with `m = 1`). Bieri–Renz §1.3 warn that the sign depends on the left or right action convention.
+  - Whether `[χ] ∈ Σ^2(B~)` holds is left open. `F_3` of `B~` does not hinge on it: free groups have empty
+    `Σ^1` and are of type `F`.
 - **Grigorchuk calibration.** Lysenok's `σ` is also section-inverting at vertex `1`: `d = (1, b)`, `b = (a, c)`,
   `c = (a, d)`, `aca = (d, a)`. The first Grigorchuk group satisfies (E). So the theorem covers Grigorchuk's extension
   too, where `grigorchuk-hnn-tree-stabilizers-not-fp2` already proves more.

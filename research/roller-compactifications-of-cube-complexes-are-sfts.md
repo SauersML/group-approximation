@@ -125,3 +125,25 @@ limit of them.
   subgroups and (T) forbids them. For Kazhdan inputs the seed must come from a non-median Helly system: horospheres
   in the hyperbolic case (the tube lemma), and an unknown system for the simple `H_Γ`. That is the sharp form of the
   remaining (IE′) gate.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS
+
+This is an internal lane review.
+- **The 1-ball rule.** For disjoint hyperplanes exactly one quadrant is empty, and here it is `h_1 ∩ h_2`, so no target makes both
+  edges descending. Correct.
+- **`o_f` is well defined.** Squares lie in `B_2`, opposite square edges are oriented alike, and hyperplane carriers are connected.
+  Correct.
+- **Ultrafilter.**
+  - Crossing pairs always intersect.
+  - For a minimal pointing-away pair, a separating `V` yields a closer pair whichever side `o(V)` takes. So `N = 0`.
+  - A hyperplane separating `o(H_1)` from `o(H_2)` cannot cross either of them, since crossing puts both of its sides into the
+    halfspace. So only `H_1, H_2` separate them, giving the path `a–x–b` with two descending edges dual to disjoint
+    hyperplanes, which contradicts the 1-ball rule. Correct.
+- **Part 1.** Helly number 2 for halfspaces (Roller, Sageev) gives `x_F`. Paths inside a ball cross only hyperplanes in `F`. The
+  equivariant homeomorphism is in product topologies. Correct.
+- **Part 2.** Gate projection onto `o_f(H)` plus upward closure gives a descending edge at a non-principal local minimum. Correct.
+- **Parts 3–6.** The ladder caveat is correct. The cited inputs are standard and were recalled, not re-read: Haglund–Wise (virtual
+  embedding in RAAGs), Agol (cubulated hyperbolic groups are virtually special), and Niblo–Reeves / Niblo–Roller ((T) ⇒ fixed
+  point).
+- **Scope note.** Part 5 correctly says "virtually contained in a group with an SFT compactification", not that every virtually
+  special group itself has one.

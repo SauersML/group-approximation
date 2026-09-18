@@ -153,3 +153,62 @@ such path be joined to any other at offset `μ = p + (R, R)`. ∎
 - **Result.** This gives the first free minimal quantum-rigid SFT over a non-amenable one-ended group,
   `F_2 × F_2`, conditional on the minimal crossing-wire fibre. Over Ã2 Kazhdan lattices it holds up to
   one finite primitivity check.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS for the transfer (items 1–5, and item 6's implication); the Corollary is correctly conditional
+
+I checked items 1–6 and the Corollary line by line. I did not check the fibre `Ω_min`; that is with
+another referee.
+
+- **Item 1, the criterion.** A translate of a dense `M^(-1)E`-orbit is dense. A coset inside
+  `Reach(x, U)` gives, for each of its elements `ℓ`, some `γ` with `γx ∈ U` and `β(γ,x) = ℓ`. So
+  every orbit meets every `U × V`. Correct.
+- **Item 2.** The cocycle identity `β(γ_2γ_1, x) = β(γ_2, γ_1 x) + β(γ_1, x)`, together with (Onto),
+  gives `Reach = L`. The equivalence with minimality of `X_s ×_β L` is correct, since `L` is discrete.
+- **Item 3.** `f = q − Mπ` is invariant, as checked, and nonconstant on a fibre `{x} × Y`.
+- **Item 4.**
+  - `K` preserves the phase, so each slice is closed and `K`-invariant, hence all of `Ω` or empty.
+    (Onto) gives `S = L/nL`.
+  - Sufficiency: the coset `(φ_U − φ) + nL` lies in `Reach`, and item 1 applies with `E = nL`.
+  - Necessity: `nZ^r`-minimal subsets of a minimal `Y` are equal or disjoint and cover `Y`, so they
+    give a finite factor onto `Z^r/H` with `nZ^r ⊆ H ≠ Z^r`.
+- **Item 5, `F_m × F_n`.** `K` is the product of the factors' relations. Only the inclusion "equal-lag
+  tail pairs `(vz, uz)` lie in `K` via `γ = uv^(-1)`" is needed.
+  - I checked it with the horoheight: for `|u| = |v| = m`, `u_m ≠ z_1^(-1)`, the vertex `vu^(-1)` has
+    horoheight `0` toward `vz`.
+  - The density construction (a reduced `u ∈ [w]`, each letter avoiding at most two values, `2n >= 4`)
+    is correct.
+  - (Onto) holds for the simply transitive product action.
+- **Item 6, (GP) ⇒ `K` minimal on `Ω`.** It is correct, granted one recalled fact.
+  - `γ_u c ∈ Z_S(o)` iff `type_c(u) = S`, and `β(γ_u, c) = 0` iff `b_c(u) = b_c(o)`.
+  - Equal types at `w` mean equal radius-`R` pieces at `w`, and `g w'' = w` puts `w` at offset `μ` in
+    `Q(u, gc'')`.
+  - In an apartment containing the opposite sector `S'` and `Q(w,c)`, `u + C̄ ⊇ w + C̄`.
+  - The corner parallelogram lies in `S'`, which is common to both apartments. So the uniqueness
+    steps of the Determination Lemma reconstruct the same radius-`R` piece at `u` for `c` and for
+    `gc''`, with input radius `R` at `w` and output radius `R + min(s,t)`.
+  - `γ_u = g^(-1)`, which gives `type = S`.
+  - The recalled fact is that two sectors at one vertex with opposite germs lie in a common apartment.
+    It is standard, but it is cited, not proved.
+- **Freeness and topological freeness transfer.**
+  - Γ acts freely on the transplant whenever `Z^r` acts freely on `Y`, by item 2 of
+    `tree-product-busemann-transplants-preserve-quantum-rigidity`. For Ã2 it is item 2 of the Ã2
+    theorem, which rests on the lane node on chamber-fixing translations. Both are refereed.
+  - Topological freeness follows from freeness.
+  - So for the Corollary it suffices that `Ω_min` is strongly aperiodic.
+- **Corollary for `F_m × F_n`.**
+  - `M(−e_1) = (2,1)` and `M(−e_2) = (1,1)` give `det M = 1`. SW-determinism becomes the cone rule
+    with offsets `(2,1), (1,1) ∈ Z_(>=1)^2`, so tree-product item 4 gives rigidity, and item 2 gives
+    freeness.
+  - Items 5 and 2 here give minimality for every minimal fibre.
+  - So the answer to `f2-times-f2-has-a-quantum-rigid-free-minimal-sft` is exactly as conditional as
+    the node says: it holds iff the lane proof of `Ω_min` (A4) holds.
+
+**Minor.**
+1. **The 2-graph clause.** The matrix step "positive times nonnegative stays positive" needs no zero
+   rows **and** no zero columns. Both hold for 2-graphs without sources or sinks. (GP) itself is
+   unverified for any lattice, so item 6's Ã2 Corollary remains conditional, as stated.
+2. **The Ã2 phase condition.** It uses the recalled DR fact that the maximal equicontinuous factor is
+   the 3-adic odometer. Given that fact, `n` prime to 3 suffices, because finite factors then have
+   3-power index.
+3. **"First free minimal quantum-rigid SFT over a non-amenable one-ended group."** This is a priority
+   claim, not checked, and it is conditional.

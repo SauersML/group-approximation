@@ -62,8 +62,8 @@ lane proofs it cites. Quantum families (Q1–Q3) are as in
    `X_s`, and `R_0 = max_W |w|`.
 4. **Rigidity.** If `Y` is `D_Y`-quantum rigid over `k`, then `Y^Γ` is `D`-quantum rigid over `k` for
    every `D >= max(D_s, K + R_0, κ + D_Y)`, with `μ = max_i |Me_i|` and `κ` the offset bound of
-   Step 6 of the proof (`κ <= 3μ D_Y` when `M(N^2) ⊆ C̄`, e.g. for NE-deterministic `Y` with `M` as
-   below). Distances on `Γ` are taken in the word metric of `{γ ≠ 1 : d(o, γo) <= 4}` (proof, metric
+   Step 6 of the proof (`κ <= 3μ D_Y` when `M(N^2) ⊆ C̄`, e.g. for NE-deterministic `Y` with `M` as in the
+   Setting's example). Distances on `Γ` are taken in the word metric of `{γ ≠ 1 : d(o, γo) <= 4}` (proof, metric
    convention). Conversely, if `Y^Γ` is rigid then so is `Y`, by
    `path-folded-sfts-are-quantum-rigid-only-if-the-fibre-is`.
 

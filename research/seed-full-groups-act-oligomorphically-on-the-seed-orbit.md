@@ -97,3 +97,28 @@ one finitely generated stabilizer.
 **Consequence for CAP.** Here the seed's configuration, not `Γ`, carries the hardness. So a CAP
 statement that bounds only the word problems of `Γ ∈ 𝒞` does not bound these actors. The relevant
 cap is on the evaluation complexity of rigid seeds.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS for items 1–3 and the Corollary; the title and Lesson overstate item 3
+
+Internal referee lane, not an external review.
+
+**Checked.**
+- **Item 1.** Orbit points are isolated, so finitary permutations have locally constant cocycles.
+- **Item 2.** Faithfulness holds by density (S3), and high transitivity comes from `FSym(O)`.
+- **Item 3.** `P_(ab) ∩ sP_(ab) = ∅` for `a ≠ b`, and `ρ` moves every point of `P ∪ sP`. So
+  `gρg^(-1) ∈ Stab(y_*)` iff `g^(-1)y_* ∉ P ∪ sP`.
+- **The Corollary.** A 2-transitive faithful action of a finitely presented group with one finitely
+  generated stabilizer is of type (A).
+
+**Gaps.**
+1. **What item 3 reduces.** It reduces the disjunctive set `E_s(y_*)`:
+   `[y_*(g) = a ∧ y_*(gs) = b] ∨ [y_*(gs) = a ∧ y_*(gs²) = b]`. It does not reduce the evaluation
+   `g ↦ y_*(g)`.
+   - The title's "computes the two-cell patterns along words" and the Lesson's "the orbit problem is
+     the evaluation problem of the seed configuration" say more than is proved.
+   - Along one `s`-line, the alternating patterns `…abab…` and `…baba…` give the same `E_s` data, so
+     `E_s` alone does not fix the phase.
+   - Decoding `y_*` from `E_s` together with the known seed values is plausible, but it is not given.
+2. **Finite generation of `F`.** For item 3 to be a reduction on words, `F` must be finitely
+   generated, or the reduction must be read in `⟨S, ρ⟩`. The Corollary assumes `F` is finitely
+   presented, so it is not affected.

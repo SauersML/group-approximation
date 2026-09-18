@@ -102,14 +102,19 @@ not determining either. Determining normals are conjugacy invariant (Theorem B o
 
 ## Lesson for general BH
 
-A rigid-by-determinism free SFT must carry an irreversible "time arrow" across every rational line.
+A determinism-rigid free SFT carries a surjective strip automaton across every rational line.
 - In every rational direction, rows are moved by a surjective strip automaton.
-- At every non-expansive direction that automaton is non-injective, and it acts on a non-sofic row language of at least
-  quadratic complexity.
+- At every non-expansive rational direction that automaton is non-injective (an irreversible time arrow). It acts on a
+  non-sofic row language of at least quadratic complexity. At expansive directions the automaton is injective, and
+  no irreversibility is needed.
 - Products of one-dimensional systems (in particular product substitution tilings) never qualify, because a
   one-dimensional infinite subshift always has asymptotic pairs on both sides.
 - Corner-deterministic tile sets fail exactly at the axes unless seeds are forced.
 
-So a construction for `free-minimal-sft-without-two-sided-faults-exists` must couple the two axes through an
-irreversible local rule. Ledrappier's triangle rule is the model, and self-simulation must run *inside* such a rule
-rather than beside it.
+**Correction (bh-free-35, 09-18, after refereeing `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`).**
+- The first version of this paragraph said the time arrow must be irreversible across *every* rational line, and
+  that self-simulation must run inside a Ledrappier-type irreversible rule. Neither follows from the theorem.
+- The theorem forces irreversibility only at non-expansive lines. A side-local hierarchical design can make every
+  rational line expansive, since strips read all levels through crossing wires.
+- The crossing-wire fixed points of bh-g2-fixedpoint-a are rigid by co-location and decimation, with no
+  Ledrappier-type rule. They are consistent with every item above.
