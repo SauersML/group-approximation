@@ -98,7 +98,8 @@ theorem k2PolyNF_eq_one_of_stab (hS : k2PolyNF_StabStatement) {p : ℕ} (hp : p.
     FieldK2.bruhatBigCell_third (by rw [Fintype.card_fin]; omega)
   have hSK : g ∈ k2PolyDeg_S p (Finset.univ : Finset (Fin N)) :=
     rootSpan_mono (p := fun _ _ : Fin N => True)
-      (q := fun i j => i ∈ (Finset.univ : Finset (Fin N)) ∧ j ∈ (Finset.univ : Finset (Fin N)))
+      (q := fun i j =>
+        i ∈ (Finset.univ : Finset (Fin N)) ∧ j ∈ (Finset.univ : Finset (Fin N)))
       (fun i j _ _ => ⟨Finset.mem_univ i, Finset.mem_univ j⟩) (mem_rootSpan_true g)
   exact k2PolyNF_S_eq_one hS hthird
     (fun z hz hzK => k2PolyField_eq_one_of_mem_range hp hN hzK hz) Finset.univ g hSK hg
