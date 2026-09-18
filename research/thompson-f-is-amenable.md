@@ -274,3 +274,17 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - *Survives, open:* the group-level Liouville program, and Juschenko–Zheng's Question 5 for finitely generated
     groups together with a LAT `F`-set with abelian stabilizers, which would follow from `F = HK`, `H` amenable,
     `K` abelian.
+- **2026-09-18 (swarm-0917-w8-w8-f-pull), abelian factorizations `F = HK` (obstruction-miner, host-geometry).**
+  This attacks the factorization survivor of the previous entry.
+  - *Established (unrefereed):* `thompson-f-abelian-cofactors-fixing-an-interval-force-f-into-h`. If `F = HK`
+    with `K` abelian, then:
+    - either `H` contains a copy of `F`, or `F` acts faithfully on `F/H ≅ K` with `C_F(K)` acting by translations;
+    - if `K` fixes an open interval pointwise, then `H ⊇ F(a,b) ⊇` a copy of `F`.
+    So `H` amenable forces `F` amenable, and the route is circular.
+  - *Invariant:* a copy of `F` in the cofactor. *Dies at:* proving `H` amenable.
+  - *Open, reduced:* the general case, `thompson-f-abelian-factorizations-put-f-into-the-cofactor`. This includes
+    dense-support `K` such as `⟨x_0⟩`.
+    - Lemma A and an orbital reduction show that it follows from a negative answer to problem (SA): no transitive
+      action of `F ≀ Z` on `Z` with the top generator as shift and no point stabilizer of the base factor containing
+      a copy of `F`.
+    - Proved constraints on a counterexample: the base factor acts faithfully, and the base group does not act freely.
