@@ -69,3 +69,32 @@ which is conditional on `boone-higman-conjecture`.
        action on a Cantor set that uses deeper cones for larger `s`?
 
      Neither was tested.
+4. **The short-expander route, split into two gates (2026-09-18, lane
+   `swarm-0917-w11-w11-bh-follow`).** *No construction; one class killed, one gate
+   located.*
+   - *Mechanism.* Coset averaging gives
+     `F_H(⌈2L^2/δ⌉) > X^δ_H(L)/2`. The w10 lane found this, and it is re-proved
+     in `amenable-recursive-groups-have-recursive-expander-profile`. So short
+     finite expanders inside `H` force Følner growth.
+   - *Single subgroup: killed.* By Cavaleri's Theorem 3.1, each finitely
+     generated amenable subgroup of a finitely presented group has recursive
+     `X^δ`. That is item 2 of the node above. The invariant is Cavaleri's
+     recursive Følner bound. The failing step is asking one `H` to serve every
+     `U`.
+   - *Single host, varying subgroups: split.* The route splits into
+     G1 (host expansion) and G2 (amenable localization), recorded on
+     `fp-simple-short-expander-profiles-escape-recursive-bounds`.
+   - *Where G1 stands.*
+     - Its necessary finiteness condition is exactly decidability. That is
+       `finiteness-decidable-iff-finite-subgroup-profile-recursive`.
+     - The condition fails in the Higman--Thompson groups (w10) and holds in
+       `2V`, by `brin-thompson-torsion-orders-escape-every-recursive-bound`.
+     - Torsion alone does not give expanders, by
+       `abelian-finite-expanders-have-recursively-bounded-order`.
+     - One functorial step does, in `EL_3(F_2[2V])`, by
+       `torsion-amplifies-to-kazhdan-expanders-over-group-rings`. That
+       group has solvable word problem but is not known to embed in a finitely
+       presented simple group.
+   - *Where it dies now.* Those expanders sit in a Kazhdan group. Nothing here
+     moves them into amenable subgroups that vary with `U` and escape the
+     certified-family kill of Attempt 2. That is G2, and it is the open step.
