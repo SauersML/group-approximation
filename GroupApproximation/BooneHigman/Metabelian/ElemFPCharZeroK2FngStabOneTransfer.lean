@@ -43,14 +43,14 @@ def czK2FngStabOne_tauFun (i k : Fin 3) : Fin 2 → Fin 3 := ![i, k]
 
 theorem czK2FngStabOne_sigmaFun_injective :
     ∀ i k : Fin 3, k ≠ i → Function.Injective (czK2FngStabOne_sigmaFun i k) := by
-  decide
+  decide +kernel
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sigmaFun_injective
 
 theorem czK2FngStabOne_tauFun_injective :
     ∀ i k : Fin 3, k ≠ i → Function.Injective (czK2FngStabOne_tauFun i k) := by
-  decide
+  decide +kernel
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_tauFun_injective
@@ -124,9 +124,8 @@ theorem czK2FngStabOne_sigma_padRow1 (i k : Fin 3) (hki : k ≠ i) (a : R₁) :
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sigma_padRow1
 
 theorem czK2FngStabOne_fin2_eta (v : Fin 2 → R₁) :
-    v = Pi.single 0 (v 0) + Pi.single 1 (v 1) := by
-  refine funext fun p => ?_
-  fin_cases p <;> simp [Pi.single_apply]
+    v = Pi.single 0 (v 0) + Pi.single 1 (v 1) :=
+  (Finset.univ_sum_single v).symm.trans (Fin.sum_univ_two fun p => Pi.single p (v p))
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_fin2_eta
