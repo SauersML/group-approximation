@@ -82,8 +82,9 @@ fields point sideways.
 
 - **Tree-type forcing.** The wall sets carry the free-group pointer structure, and item 1 would turn
   that into rigidity if coverings existed. Item 2 shows that the chamber stratum, which lies in the
-  closure of every wall stratum, blocks every midpoint covering at every radius.
-  - So no domination argument proves `∂Y` rigid.
+  closure of every wall stratum, blocks the midpoint coverings `M = B_R(m)` at every radius.
+  - So the covering scheme with midpoint balls cannot prove `∂Y` rigid. Coverings by other sets `M`
+    in the lens between `q` and `q'` are not ruled out here (not checked).
   - This matches the fact that `X_Ω` and `P` have rigidity proofs only through finite presentation.
 - **Central splitting.** Item 3 shows that the wall strata do not split off from the chamber stratum
   by central idempotents of finite patterns. A relative derived-subshift theorem would need a
@@ -99,7 +100,7 @@ fields point sideways.
 
 The rank-one proof of rigidity is a covering argument. Every midpoint letter must dominate one end, so
 far commutation follows by induction on distance. In rank two the outward cones are narrower than
-half-spaces, and sideways chamber fields defeat every covering at every radius. So higher-rank
-rigidity cannot be assembled from local forcing. It must be certified globally, by finite presentation
-of a host. For seeds on Kazhdan lattices this makes the host for the whole boundary, a non-minimal
+half-spaces, and sideways chamber fields defeat the midpoint coverings at every radius. So
+higher-rank rigidity is unlikely to be assembled from local forcing. The proved route certifies it
+globally, by finite presentation of a host. For seeds on Kazhdan lattices this makes the host for the whole boundary, a non-minimal
 groupoid with an open orbit, the one remaining object of rung 1d.

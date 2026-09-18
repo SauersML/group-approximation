@@ -118,8 +118,8 @@ Internal referee lane, not an external review. I checked the route
     relators at `Φ` on `(1 − S)W_0`, and `(1 − S)W_0` is invariant.
 - **Corollary C** (the gluing over `Z`). It needs `ρ = R ≥ m`, and that holds.
 - **Scope.** Local forcing is read against the language `L_ρ(Y)`, not against local admissibility. The
-  weaker, rule-based notion used in `seed-evaluation-is-bounded-by-the-forcing-radius` implies this
-  one but is not equivalent to it.
+  rule-based notion used in `seed-evaluation-is-bounded-by-the-forcing-radius` is stronger: it implies
+  this one, but not conversely.
 
 The companion node in the same commit, `seeded-recursively-presented-groups-have-solvable-word-problem`,
 was read through part 3. Its `Π^0_1`-singleton search, the termination argument by König's lemma, and

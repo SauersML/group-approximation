@@ -82,3 +82,30 @@ finitely many interface patterns, because the far side of a finite cut is constr
 **The missing coding.** A non-finite-state rigid compression coding must compute either inside a
 one-ended group or across an infinite edge interface. The first concrete target is `F_2 × F_2` with a
 Mihailova fiber product.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked `sft-isolated-points-finite-edge-groups-proof` step by step. Lane
+bh-g3-topfree's "finite cuts are finite-state" is a clean and useful structure theorem.
+- **§0.** The higher-block recoding is correct. Paths inside `B_r` transport the overlap
+  consistency.
+- **§1.** Both cut properties are correct:
+  - amalgam: both pieces of a point off `I(f)` lie on one side;
+  - HNN: by Britton, the `t`-edges realizing `f` are exactly `gk — gkt`.
+- **§2.** (BI) and (UE) are correct. One wording note: in the amalgam case the outside neighbours of
+  `A_f^+` lie in the parent piece, not in `I(f) ∖ A_f^+`, which is empty. The proof does not use that
+  sentence; "keep `y_*` elsewhere" suffices.
+- **§3.** The piece SFTs `Y_v^L`, the uniqueness in (P1) via (UE), and the completion in (P2) are
+  correct. Each point lies in one interface per piece, so every edge constraint is accounted for.
+  There are finitely many types `(v, τ, p)`.
+- **§4.** Checked:
+  - the recursion along normal forms;
+  - `C = {h : y_*(hw) = y_*(w) for all w ∈ W}`;
+  - over `Z`, eventual periodicity (by (UE) at cut points);
+  - the automaton composition on reduced words;
+  - the regular language, then Anisimov–Seifert, then `C ∩ F` finitely generated of finite index.
+
+  Item 4 uses Dunwoody accessibility for finitely presented groups.
+- **§5.** The cap recursion `D_ρ(a_{ρ+m}(v))` is correct.
+- **Consistency.** Item 3 agrees with, and extends to virtually free groups, the free case of
+  `relative-seeds-on-free-groups-have-fg-stabilizers` (bh-g1-universal-point), refereed alongside.
