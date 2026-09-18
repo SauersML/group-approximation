@@ -83,7 +83,7 @@ theorem suslinMonic_T_leadingCoeff_eq_C (fne : f ≠ 0) :
   nth_rw 2 [← f.support_sum_monomial_coeff]
   rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem vin h]
   rw [suslinMonic_leadingCoeff_finSuccEquiv_t] at coeff
-  simpa only [coeff, algebraMap_eq]
+  simp only [coeff, algebraMap_eq]
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonic_T_leadingCoeff_eq_C
