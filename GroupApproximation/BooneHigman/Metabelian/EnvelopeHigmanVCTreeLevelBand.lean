@@ -121,7 +121,7 @@ theorem higmanVCTreeLevel_iota_mem {d n : ℕ} (a b : List (Fin d))
     rw [higmanVCAll_iota_of]
     exact higmanVCTreeLevel_bal_gen ((higmanVCCentral_mem_words_iff d (n + 1) _).mp p.1.2)
       ((higmanVCCentral_mem_words_iff d (n + 1) _).mp p.2.2)
-  | inv_of p ih =>
+  | inv_of _ ih =>
     rw [map_inv (higmanVCAll_iota (higmanVCCentral_words d (n + 1))), map_inv]
     exact Subgroup.inv_mem _ ih
   | mul g₁ g₂ ih₁ ih₂ =>
