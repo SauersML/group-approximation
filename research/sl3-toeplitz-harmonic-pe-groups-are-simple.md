@@ -1,0 +1,37 @@
+---
+rg: 2
+id: sl3-toeplitz-harmonic-pe-groups-are-simple
+kind: claim
+title: The projective elementary groups PE_N(R_T) of the SL_3(Z) Toeplitz harmonic ring are infinite simple groups with centre of order at most 2, and they are finitely presented exactly when E_N(R_T) is
+distinct_from:
+  sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational: that proves the ring is simple and K_1-rational; this is the group side, normal subgroups and the centre clause of E_N over it.
+  sl3-toeplitz-harmonic-elementary-groups-are-fp: that is the open finite-presentation claim; this reduces the host premise for R_T to it.
+  ample-steinberg-el-simple-mod-centre-without-hausdorff: that is for Steinberg algebras, whose coefficients are locally constant; this is for R_T, whose harmonic coefficient is not locally constant.
+---
+
+**ESTABLISHED** by `sl3-toeplitz-harmonic-pe-groups-are-simple-proof` (lane proof, not independently
+reviewed). It is conditional on the lane proof of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`,
+which is also unreviewed; its parts 1–3 are used.
+
+## Statement
+
+Let `R_T` be the ring of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational` and `N >= 3`.
+
+1. **Normal subgroups.** Every normal subgroup of `E_N(R_T)` is central or all of `E_N(R_T)`. So
+   `PE_N(R_T) = E_N(R_T)/Z(E_N(R_T))` is an infinite simple group.
+2. **Centre clause.** `Z(E_N(R_T)) = Λ_N(R_T)·I ⊆ {±I}`, a group of order at most 2.
+3. **Finite presentation.** `PE_N(R_T)` is finitely presented if and only if `E_N(R_T)` is.
+4. **Embedding.** For `N >= n+2`, `GL_n(Q)` embeds in `PE_N(R_T)`
+   (`q-algebra-elementary-quotients-contain-gl-n-q`).
+
+Hence, if `E_N(R_T)` is finitely presented for some `N >= n+2`, then `GL_n(Q)` embeds in a finitely
+presented simple group. If this holds for infinitely many `N`, then `R_T` satisfies
+`q-algebra-with-fp-simple-projective-elementary-group`, through
+`q-algebra-host-via-sl3-toeplitz-harmonic-ring`.
+
+## Position
+
+This settles items (1) and (2) of the coordinator's group-side list for `R_T`. The simplicity of
+`PE_N(R_T)` is no longer open. The only open condition on the group side is finite presentation of
+`E_N(R_T)` (`sl3-toeplitz-harmonic-elementary-groups-are-fp`). Its known necessary conditions are the
+two K-budget clauses of `sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`.
