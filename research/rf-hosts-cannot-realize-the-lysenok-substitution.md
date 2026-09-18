@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof below, elementary; the input that `Γ̃` is not residually finite is cited from Sapir–Wise,
-J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-read here; no priority claimed).
+J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-read here; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-cannot-realize-the-lysenok-substitution.md`.
 
 ## Statement
 
@@ -17,7 +17,7 @@ J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-rea
    `t g t^{-1} = σ(g)` for all `g in Γ`. Then `⟨Γ, t⟩ ≅ Γ*_σ = ⟨Γ, t | t g t^{-1} = σ(g)⟩`.
 2. **Grigorchuk.** For the first Grigorchuk group `Γ` and the Lysenok substitution
    `σ: a ↦ aca, b ↦ d, c ↦ b, d ↦ c`, `Γ*_σ` is Grigorchuk's finitely presented extension `Γ̃`, which is not
-   residually finite. So no residually finite group, and in particular no group acting faithfully on a rooted tree,
+   residually finite. So no residually finite group, and in particular no group acting faithfully on a locally finite rooted tree,
    contains `Γ` together with such a `t`.
 
 ## Proof
@@ -31,7 +31,7 @@ Let `K` be the kernel of the natural map `Γ*_σ -> ⟨Γ, t⟩`. It meets `Γ` 
 - **Contradiction.** So on `Λ = σ^j(Γ)`, `σ^m` is conjugation by `h`, and
   `h^{-1} Λ h = σ^{m+j}(Γ) ⊊ σ^j(Γ) = Λ`. The inclusion is strict because `σ^j` is injective and
   `σ^m(Γ) ⊆ σ(Γ) ⊊ Γ`. Iterating the conjugation gives a strictly decreasing chain `h^{-i} Λ h^i`, but `h` has
-  finite order.
+  finite order. The contradiction takes place entirely inside `Γ`.
 
 So `K = 1`. For (2), `σ(Γ) ⊆ St_Γ(1) ≠ Γ`, and `Γ` is torsion. ∎
 
