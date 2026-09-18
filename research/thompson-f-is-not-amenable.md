@@ -39,7 +39,11 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   exact closed-walk counts are always matched by a symmetric measure reaching
   `+-1`. So no finite cogrowth computation, however exact, proves `||P|| < 1`.
   Such data certify only lower bounds on `||P||`, via orthogonal-polynomial zeros
-  (`experiments/thompson-f/cogrowth_exact.py`).
+  (`experiments/thompson-f/cogrowth_exact.py`). The best certified value on the 32 published terms
+  (Elvey Price–Guttmann, arXiv:1706.07571) is `||P|| > 0.910677`
+  (`thompson-f-norm-bound-from-epg-32-term-moments`). Exact extension past word length 62 and
+  Dirichlet-eigenvalue test vectors on marked-forest window sets were both scouted there and do not
+  beat it within reach.
 - **Non-Ore certificate.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   non-amenability is equivalent to a pair `a, b` in `K[F]` with no nonzero common
   multiple. A finite search can propose candidate pairs, but ruling out every
