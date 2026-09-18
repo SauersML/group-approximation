@@ -5,12 +5,24 @@ kind: claim
 title: The reduced-word boundary full group of a finitely generated free group is of type F-infinity by the Perron substitution theorem, with no power-and-phase recoding
 requires:
   - perron-substitution-finiteness-for-garside-full-groups
+  - perron-weights-do-not-give-li-finiteness
 ---
 
-**ESTABLISHED** (lane proof; a direct calibration of
-`perron-substitution-finiteness-for-garside-full-groups`; not independently reviewed;
-no priority claimed). It shows the Perron theorem applies where Li's `(t<d)` fails and
-`raag-cube-codings-fail-li-multiplicity-at-every-power` had to recode.
+**CORRECTED (2026-09-18).**
+- **The conclusion is true, the argument is not.** `F(G_{F_k})` is of type `F_∞` by Li's
+  `cor:ProdGraphs` (arXiv:2110.04505v2, l.2151–2160, `k = 1`). That proof goes through
+  Matui's recoding to at least two loops per vertex.
+- **What fails.** The Perron argument below does not prove it:
+  `perron-weights-do-not-give-li-finiteness` (ba9176b48a) shows that this exact coding
+  has non-simply-connected Witzel complexes `|E(x_N)|`. So "no recoding needed" is
+  refuted for Li's method on this datum.
+- **Without recoding.** The Cuntz-stabilized group `F(G_{F_k} × G_2)` is `F_∞` with no
+  recoding, by `cuntz-stabilized-garside-full-groups-are-f-infinity` (16be960ff1).
+
+The original text is kept below as a record.
+
+~~**ESTABLISHED** (lane proof; a direct calibration of
+`perron-substitution-finiteness-for-garside-full-groups`).~~
 
 ## The coding
 
