@@ -63,6 +63,23 @@ distinct_from:
     decoder identity of one strict pair, and a sitewise homomorphism `M -> A`. Any such cover is automatically
     strict, because non-surjectivity lifts through the sitewise surjection. By the clone claim it cannot extend to a
     full-clone structure when `k` is not a power of two.
+- **Omitted letters and separated defects** (swarm-0917-w11-w11-gs-break, host-geometry, 2026-09-18). Recorded as
+  `separated-omitted-patterns-make-nonsurjunctive-sizes-cofinite` (ESTABLISHED).
+  - *The result.* The claim holds for every strict datum whose image omits a letter. Restricting to the surviving
+    letters gives `k - 1 ∈ NS(G)`, and the upset `A \ {b}` with `z = 1` makes `NS(G)` cofinite.
+  - *Separated patterns.* It also holds when some finite-index `H` puts the support `F` of an omitted pattern in
+    distinct cosets. Regrouping over `H` with a transversal `T ⊇ F` turns the pattern into omitted letters of
+    `A^T`.
+  - *Escaping the radical.* The step that escapes the prime-divisor radical above is the restriction to surviving
+    letters. It sends `k^[G:H]` to `k^[G:H] - 1`. It is not a regrouping.
+  - *Invariant.* Separability of omitted-pattern supports modulo the finite residual, `F F^(-1) ∩ K = {1}`. The
+    strict datum transfers to the finitely presented covers `G_L`, so separation in any one `G_L` suffices.
+  - *Where it dies.* A counterexample world needs every omitted pattern of every strict datum to meet a coset of
+    `K(G_L)` twice, for all `L`. The test is vacuous when `K = G`, as in finitely generated infinite simple
+    groups, and overgroups cannot help.
+  - *Side remark (unproved).* Products `τ × ψ` have `R(τ × ψ)` equal to the tensor product of the digraphs. The
+    classes of that product appear not to beat those of powers of `τ` for lowering `g`. This was not checked in
+    general.
 - **Where it stops.** No construction is known that removes an odd prime from a failing size, for any explicit
   strict table pair, over any group. The frontier notes
   `notes/gottschalk-surjunctivity-conjecture-frontier-swarm-2026-09-16.md` record the ascent designs tried on the
