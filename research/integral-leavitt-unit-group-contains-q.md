@@ -56,7 +56,8 @@ subgroup.
   `aff-q-in-integral-unit-hosts-reduces-to-finite-fields`, part 3, no finitely
   generated subgroup of any characteristic-0 `L_K(1,2)^x` contains an `Aff(Q)`
   with `t` among its translations. By part 1 there, any `Aff(Q)` at all in such a
-  host already lives in some `L_(F_p)(1,2)^x`.- **Relation to the finite-field reduction.** Modulo any prime `p` the transvection
+  host already lives in some `L_(F_p)(1,2)^x`.
+- **Relation to the finite-field reduction.** Modulo any prime `p` the transvection
   `t` has order `p`, so every reduction map of
   `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields` sends this copy of `Q`
   onto a torsion quotient of `Q`. That claim transfers `(Q,+)` to a finite field
