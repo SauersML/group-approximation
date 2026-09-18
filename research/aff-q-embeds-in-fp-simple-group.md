@@ -130,3 +130,12 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      aperiodic machine-type base carries brick-local renormalizations of heights `2` and `3`. If
      so, the dilations for different primes cannot all come from renormalizing one `s = T × id`,
      and the `nV` route to `Aff(Q)` needs another mechanism for combining primes.
+8. **Katsura–Exel–Pardo host for the Baumslag–Solitar gate (2026-09-18, gq-affq; critic's U3).**
+   - `odometer-2v-is-fp-simple-and-contains-bs12`: `2V_τ = ⟨2V, τ × id⟩` is the full group of the Katsura
+     odometer triple `A=(2)`, `B=(1)` acting self-similarly on the product 2-graph. It is `F_∞` (Li, Example
+     ex:ZS (III)) and simple (Matui, Theorem simple2, after a perfectness count), and it contains `BS(1,2)`,
+     `(Q,+)` and `2V`.
+   - The odometer is renormalizable natively (`0w ↦ w` is a groupoid bisection), and the baker map of `2V` makes
+     the conjugacy global.
+   - *Not reached:* `Q ⋊ ⟨2⟩`. The conjugator `u` squares `s` and `u^{-1}su` is the first root in the tower `Q_τ`,
+     but `u` is not shown to normalize `Q_τ`. Nor is it known whether `2V_τ` embeds in any `nV`.
