@@ -217,3 +217,25 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
       breakpoint data, such as `T/H` or Farley-type cubical data).
     - Merely quasi-invariant measures on circle-functorial spaces.
     - The co-amenability test for `PSL2(Z)` is untouched, since invariant means are not measures.
+- 2026-09-18 (swarm-0917-w11-w11-nv-follow, operator-algebras): exact spectral reduction to the twist cost.
+  Status stays OPEN.
+  - *Characterization (established).* `lifted-thompson-t-haagerup-iff-twist-cost-spectral-measure`.
+    - This claim holds iff some σ-finite measure `ν` on `(R/Z) ∖ {0}` has `∫ c² dν < ∞` and
+      `Φ_ν(n) = ∫ |e(nθ) − 1|² dν → ∞`. Here `c` is the twist cost of
+      `lifted-thompson-t-relative-t-forces-dyadic-twist-gap`.
+    - Necessity: take Schoenberg states `e^{−4^{-j}ψ}` and bound `∫ c² dμ_j` by a spectral Fatou
+      inequality.
+    - Sufficiency: lift `ν` by Hahn–Banach to the compact space of `z`-twisted states. No
+      measurable selection is needed.
+  - *Explicit test (established).*
+    - `Σ_k c(2^{-k})² < ∞` implies this claim.
+    - Form internal to `T`: eigenvectors `ρ_k(r_k)ξ_k = e(2^{-k})ξ_k` whose `ι_k(S)`-costs are
+      square-summable.
+    - Relative (T) of the centre forces `liminf c(2^{-k}) > 0`, so the problem is now sandwiched
+      between two growth regimes of the single sequence `c(2^{-k})`.
+  - *What is left (OPEN).*
+    - Estimate `c(2^{-k})`. The only known bound is `c(2^{-k}) ≥ 4·2^{-k}/L`.
+    - Any family of `T`-representations with `e(2^{-k})`-eigenvectors of `r_k` whose cost is
+      `O(k^{-1/2-ε})` proves this claim.
+    - The intermediate regime, where `c(2^{-k}) → 0` but not square-summably, is decided only by
+      non-dyadic or non-geometric `ν`.
