@@ -6,11 +6,14 @@ title: For a quadratic irrational alpha, the group of interval exchanges with br
 distinct_from:
   substitution-subshift-full-groups-satisfy-boone-higman: that is the general statement for substitution subshifts; this is its interval-exchange corollary for Sturmian rotations of quadratic slope.
 artifacts:
+  - research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md
   - research/artifacts/gq-bh-bh-free-03-substitution-full-groups.md
 ---
 
+**Adversarial check (2026-09-18, lane `bh-refute`): PASS, conditional on the cited imports** (BBMZ, DHS and, for the IET node, Sturmian substitutivity), which it did not re-read. Report: `research/artifacts/gq-bh-bh-refute-verify-substitution-full-groups.md` (98821f68e). It re-derived the germ normal form, the no-stacking induction, the `T^{-1} c T` depth-shift transport, the finite nucleus, the full closure and the IET embedding, and found no gap. This is an internal check, not a referee review. The product and box-exchange nodes were not covered.
+
 **ESTABLISHED** by `quadratic-rotation-iet-groups-satisfy-boone-higman-proof` (lane
-proof, not reviewed). It uses one standard input that is cited but not read at
+proof; internally checked by `bh-refute`, no referee review). It uses one standard input that is cited but not read at
 source: Sturmian subshifts of quadratic-irrational slope are substitutive.
 
 **Statement.** Let `α` be a quadratic irrational and `Λ = Z + αZ`. Let `IET(Λ)` be

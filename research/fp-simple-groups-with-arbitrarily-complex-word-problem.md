@@ -111,3 +111,20 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      outside `P`,* for example `NP`- or `PSPACE`-hard. It then passes up through
      Zaremsky's Theorem 1.1. Beating every recursive bound needs infinite-state
      coefficient groups.
+7. **Linear superposition beats coNP: `(L ⊗ L)^x` is `coNP^⊕P`-complete** (bh-free-26,
+   2026-09-18, `leavitt-square-units-have-conp-parity-p-complete-word-problem`; lane proof,
+   not reviewed).
+   - *Result.* The finitely presented simple group `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^x`, whose
+     finite presentation and simplicity come from
+     `leavitt-square-unit-group-is-fp-simple-and-acyclic`, has word problem complete for
+     `coNP^⊕P = ∀·⊕P`. So it is not in coNP unless the polynomial hierarchy collapses (Toda).
+     It is the first finitely presented simple group here provably beyond Birget's coNP
+     level, modulo that standard hypothesis.
+   - *Mechanism.* The superposition letters `τ = s_0 + s_1` and `σ = t_0 + t_1` enter through
+     slot units and one commutator. The second tensor factor supplies baker scrolling, so
+     reversible circuits have polynomial length. This is not a piecewise-prefix host, which is
+     why item 6's cap does not apply: its elements are linear combinations, not homeomorphisms.
+   - *Limit.* `coNP^⊕P` is one fixed class, and every finitely generated subgroup of the unit
+     group of any `L_(F_2)(1,2)^(⊗d)` stays in it. So this route cannot give unbounded
+     complexity. Over `F_p` the same proof gives `coNP^(Mod_p P)` for finitely generated
+     subgroups; finite presentation of those hosts is not claimed.
