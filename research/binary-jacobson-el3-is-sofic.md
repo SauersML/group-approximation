@@ -150,3 +150,16 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
       relation sense.
     - The degenerate case where `R_+` or `R_-` alone is `R_Γ|_D`.
     - `n = 2`.
+* **Mirror sections of `P -> E` (swarm-0917-w13-w13-nh-break, 2026-09-18). Spatial class dead; the target stays OPEN.**
+  Recorded in `jacobson-el3-lef-from-local-mirror-lifts`.
+  - **Criterion (L1).** Partial `iota`-lifts `f` on every ball, meaning maps multiplicative on the ball with
+    `pi f = iota pi`, make `E` LEF through `g -> (g, f(g)) in P`. So LEF, hence soficity, of `E` reduces to
+    finding them.
+  - **Rank four (L2).** They fail on an explicit finite ball at `n = 4`, the relator ball of `St_4(J)`. At `n = 3`
+    they fail on some ball if `E` is finitely presented.
+  - **Global lifts (L4).** A global lift is an injective endomorphism of `E`. None is spatial on `L`: the
+    commuting-pair index `I(u,g) = [g~W : W]`, with `W = (u~+1)V`, satisfies `I(x_12(a), h^k) = -k`. Natural and
+    dual copies carry `I`, and inversion flips its sign, giving `-(r_+ + r_-)k = +k`. `I` vanishes at rank two,
+    which is why `psi` exists there.
+  - **Survivors.** Partial lifts that do not globalize. Global lifts whose `L`-module is a non-split finitary
+    extension.
