@@ -125,7 +125,7 @@ theorem czK2FngStabOne_sigma_padRow1 (i k : Fin 3) (hki : k ≠ i) (a : R₁) :
 
 theorem czK2FngStabOne_fin2_eta (v : Fin 2 → R₁) :
     v = Pi.single 0 (v 0) + Pi.single 1 (v 1) :=
-  (Finset.univ_sum_single v).symm.trans (Fin.sum_univ_two _)
+  (Finset.univ_sum_single v).symm.trans (Fin.sum_univ_two fun p => Pi.single p (v p))
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_fin2_eta

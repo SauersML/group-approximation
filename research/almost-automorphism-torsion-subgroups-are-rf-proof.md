@@ -109,6 +109,27 @@ of the finite group `R(m,N)`, so a residually finite `m`-generated group of expo
   subgroups.
 - **Item 5.** This is item 2 with `G = 𝔊`. Subgroups of `𝔊^k` are residually finite 2-groups.
 
+## Step 6b. Item 7 (characterization)
+
+**Only if.** Let `E ≤ 𝒩_d` be finitely generated torsion. By item 1, `K_n` has finite index in `E`, and by Step 4 it
+embeds in `Aut(X*)^(d^n)`. The product acts on the `d^n` subtrees below level `n`, so it is the level-`n` rigid
+product inside `Aut(X*)` and embeds there.
+
+If moreover `E ≤ V_d(G)`, then `K_n ≤ G^(d^n)`, acting at level `n`. Let `G'` be the subgroup of `Aut(X*)` generated
+by the rigid copies `G^(d^j)` acting at levels `0 <= j <= n`.
+- **Self-similar.** The sections of an element of `G^(d^j)` at a first-level vertex lie in `G^(d^(j−1))` for
+  `j >= 1`. At `j = 0` they lie in `G`, since `G` is self-similar. So `G'` is closed under sections.
+- **Finitely generated.** `G'` is finitely generated when `G` is.
+- **Containment.** `K_n ≤ G'`.
+
+**If.** Let `E' ≤ E` have finite index `k`. By Kaloujnine–Krasner, `E` embeds in `E' ≀ Sym(k)`. Choose `L` with
+`d^L >= k`, and use `k` of the depth-`L` cones.
+- **The permutation part.** `Sym(k)` acts by permuting those cones by prefix replacement, which is an element of
+  `V_d`.
+- **The base part.** An element of `(E')^k` acts on the `i`-th cone by `p_i w ↦ p_i e_i(w)`.
+- **Faithfulness.** Both parts lie in `𝒩_d`, and in `V_d(G')` if `E' ≤ G'` with `G'` self-similar. The resulting
+  action of `E' ≀ Sym(k)` is faithful.
+
 ## Step 7. Item 6 (graph version)
 
 Replace words by finite paths of `E` and `X^ω` by `E^∞`, with the metric `λ^(−|common prefix|)` for any `λ > 1`.

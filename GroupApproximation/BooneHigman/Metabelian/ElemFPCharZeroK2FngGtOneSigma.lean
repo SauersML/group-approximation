@@ -78,9 +78,8 @@ theorem czK2FngGtOne_sigma_padRow1 (i k : Fin 3) (hki : k ≠ i) (a : R) :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOne_sigma_padRow1
 
 theorem czK2FngGtOne_fin2_eta (v : Fin 2 → R) :
-    v = Pi.single 0 (v 0) + Pi.single 1 (v 1) := by
-  refine funext fun p => ?_
-  fin_cases p <;> simp [Pi.single_apply]
+    v = Pi.single 0 (v 0) + Pi.single 1 (v 1) :=
+  (Finset.univ_sum_single v).symm.trans (Fin.sum_univ_two _)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOne_fin2_eta
 
@@ -112,14 +111,14 @@ theorem czK2FngGtOne_sigma_mem (i k : Fin 3) (hki : k ≠ i) {y : St (2 + 1) R}
 
 /-- Any two indices of `Fin 3` miss a third one. -/
 theorem czK2FngGtOne_exists_third : ∀ i k : Fin 3, ∃ j : Fin 3, j ≠ i ∧ j ≠ k := by
-  decide
+  decide +kernel
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOne_exists_third
 
 /-- The index map `σ` never hits `j.castSucc` when `j ∉ {i, k}`. -/
 theorem czK2FngGtOne_sigmaFun_ne : ∀ i k j : Fin 3, j ≠ i → j ≠ k →
     ∀ p : Fin (2 + 1), czK2FngStabOne_sigmaFun i k p ≠ j.castSucc := by
-  decide
+  decide +kernel
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOne_sigmaFun_ne
 

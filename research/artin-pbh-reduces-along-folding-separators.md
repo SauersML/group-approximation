@@ -28,5 +28,5 @@ Notation of `artin-ordinary-foldings-are-retractions`.
 
 ## Scope
 
-- No foldable separator exists in the all-3 four-cycle, or in any 2-connected graph with all labels odd and no triangle. Those, and the hyperbolic triangles, remain open.
+- The all-3 four-cycle has no foldable separator of its own (over `{a, c}` the free subgroup `<a, c>` is not a retract of either side). It is reached instead by embedding it as a standard parabolic subgroup of a hub cone, where vertex stars become foldable separators: `artin-hub-cones-reduce-pbh-to-coned-cliques` and `triangle-free-all-3-artin-groups-satisfy-pbh` (2026-09-18). The hyperbolic triangles remain open.
 - Part 1 needs foldings on both sides; one-sided retracts are not covered (Scope of the closure theorem).

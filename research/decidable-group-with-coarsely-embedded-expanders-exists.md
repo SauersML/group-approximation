@@ -11,7 +11,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof; all inputs are read at source except the combinatorial
-Greendlinger lemma, which is textbook and not re-read; not independently reviewed).
+Greendlinger lemma, which is textbook and not re-read). gq-referee-a PASS (proof gaps,
+`research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5), nits N1–N2
+applied; citation review by gq-referee-b pending.
 No priority claimed: Osajda records recursiveness of the presentation (below), and the
 word-problem step is the classical Dehn algorithm.
 
@@ -73,9 +75,13 @@ Gr(7) and Gr(6).
 **Greendlinger step (trust surface).** Let `D` be a Γ-reduced diagram for a nonempty cyclically
 reduced word `w` with `w = 1`. By Gruber–Sisto p. 6, `D` is a (3,6)-diagram whose interior arcs
 satisfy `|a| < λ|∂Π|`. By the combinatorial core of Greendlinger's lemma for (3,6)-maps
-(Lyndon–Schupp, Ch. V, Thm 4.3, used as in the proof of Thm 4.4; not re-read), applied to an
-extremal disk component when `D` is singular as in the classical proof, some face `Π`
-has one exterior arc `e` and at most three interior arcs. Hence `|e| > (1 − 3λ)|∂Π| = (7/8)|∂Π|`.
+(Lyndon–Schupp, Ch. V, Thm 4.3, used as in the proof of Thm 4.4; not re-read), in its two-face
+form, some face `Π` has one exterior arc `e` and at most three interior arcs. Singular `D` (N1):
+- take an extremal disk component `D_0`, meeting the rest of `D` in at most one vertex `v`;
+- if `D_0` has at least two faces, the two-face form gives two such faces, and one of them has its
+  exterior arc avoiding `v`;
+- if `D_0` is a single face, its whole boundary, read from `v` back to `v`, is traversed contiguously
+  by `∂D`, and it serves as `e` with `|e| = |∂Π|`. Hence `|e| > (1 − 3λ)|∂Π| = (7/8)|∂Π|`.
 - The interior vertices of `e` have degree 2 in `D`, so `e` is traversed contiguously by `∂D`.
   So its label is a cyclic subword of `w`.
 - `∂Π` lifts to a simple closed path `γ` in some `Θ_i`, and `e` lifts to a subpath of `γ`.
@@ -86,7 +92,8 @@ has one exterior arc `e` and at most three interior arcs. Hence `|e| > (1 − 3�
 increase. Search all `i <= N`, all simple closed paths `γ` in `Θ_i`, and all subpaths `p` of `γ`
 with `|p| > |γ|/2` whose label is a cyclic subword of `w`.
 - If there is none and `w` is nonempty, output `w ≠ 1`.
-- Otherwise replace that subword by the label of `γ ∖ p` and repeat.
+- Otherwise replace that subword by the label of `γ ∖ p` and repeat. The free and cyclic reduction
+  and the bound `N` are recomputed from the current word in every round (N2).
 
 Each replacement preserves the element (`γ` is a relator) and strictly shortens the word, so the
 process halts. It reaches the empty word iff `w = 1`, because the Greendlinger step supplies a

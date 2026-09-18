@@ -63,6 +63,14 @@ spheromorphisms.
 
    It does **not** cover higher-rank graphs, so gq-affq's 2-graph group `2V_τ` is not covered. It also does not
    cover groups whose local maps change lengths inside cones, such as general rational similarity groups.
+7. **Characterization of the torsion subgroups.** Let `E` be a finitely generated torsion group and `d >= 2`.
+   - `E` embeds in `𝒩_d` if and only if some finite-index subgroup of `E` embeds in `Aut(X*)`, the automorphism
+     group of the rooted d-ary tree.
+   - `E` embeds in some Röver–Nekrashevych group `V_d(G)` (G self-similar) if and only if some finite-index subgroup
+     of `E` embeds in some self-similar group `G' ≤ Aut(X*)`.
+
+   So the torsion groups reachable by the Röver–Nekrashevych Boone–Higman hosts are exactly the torsion groups that
+   are virtually self-similar.
 
 ## Why it matters here
 
