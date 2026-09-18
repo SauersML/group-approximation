@@ -124,3 +124,47 @@ Tree compression is **profinite scaling**.
 
 DERIVATION
 locally-finite-tree-end-shift-rigidity-proof
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked `locally-finite-tree-end-shift-rigidity-proof` line by line.
+
+- **§1.**
+  - Out-edges are well defined, via (R1) and its inverse letters.
+  - (R2) orients each edge from exactly one endpoint, and no inversions makes the representation
+    `gε_0` consistent. The free-group Step 0 then gives ends.
+  - `ξ ↦ x_ξ` is continuous, since the cylinders are shadows, and bijective between compact
+    Hausdorff spaces.
+- **§2.**
+  - Lemma 1 is correct.
+  - Lemma 2 is correct: descent along `K_i` by the two-sided ball-sum identity, with inverse letters
+    applied at `gk^(-1)`. So `O_w(ε)` is well defined.
+- **§3.** Lemma 3 is correct.
+- **§4.** Steps 2–3 of `free-group-boundary-shift-rigidity-proof` are purely algebraic. The only
+  inputs are orthogonality at a vertex and the edge identity, and I re-derived the chain and the
+  four commutation cases. So they run on `T` for any degrees.
+- **§5.** Both directions of topological freeness ⟺ strong faithfulness are correct:
+  - a nontrivial `g` fixing an infinite perfect `∂H` pointwise is elliptic;
+  - such an elliptic element fixes geodesics between fixed ends, hence the half-tree `H'`.
+- **§6.** A topologically free action is faithful, and `Aut(T)_v` is profinite. (FA) subgroups fix
+  vertices.
+- **§7, BS(m,n).**
+  - The edges at `A` are `a^iC` (`i mod m`) and `a^itC` (`i mod n`), fixed by `a^j` iff `m | j`,
+    resp. `n | j`.
+  - Crossing rescales the exponent by `n/m`, resp. `m/n`, using `a^m = b^n` with `b = t^(-1)at`.
+  - Pure forward paths exist.
+  - The `p`-adic descent contradicts pointwise fixing when `v_p(m) ≠ v_p(n)`.
+  - There is no fixed end, since end stabilizers are abelian-by-cyclic and `BS(m,n) ⊇ F_2`.
+- **§8, PSL₂(Z[1/p]).**
+  - Integral trace in `[−2,2]` gives orders `1, 2, 3`.
+  - The eigenvalue criterion: `i ∈ Q_p` iff `p ≡ 1 mod 4`, and `ζ_3 ∈ Q_p` iff `p ≡ 1 mod 3`.
+  - So isotropy is torsion-free exactly for `p = 2, 3` and `p ≡ 11 mod 12`.
+
+**Minor.** In §7, the edge `C` joins `A` to `t^(-1)A`. So with `ε_0 = C` the edge rule relates `g`
+and `gt^(-1)`, not `gt`; alternatively take `ε_0 = tC`. `D_0 = 1` either way.
+
+**Not checked:**
+- the "first recorded instances" priority claim for `BS(2,3)`;
+- Instance 2's relation between Bux–Llosa Isenrich–Wu's `RP_G(T)` and the full group;
+- the companion node `tree-product-lattices-carry-rigid-topologically-free-sfts`;
+- the artifact `gq-bh-star-a-clapham-square-report.md`, which landed in the same commit.

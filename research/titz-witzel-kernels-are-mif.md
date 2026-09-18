@@ -10,7 +10,11 @@ artifacts:
   - research/artifacts/solve-bh-cat0-automatic-2026-09-13.md
 ---
 
-**OPEN.** Let `Γ̌ = Γ̌_i^q` be one of the five simple groups of
+**ESTABLISHED (literature import, 2026-09-18)** through `titz-witzel-kernels-mif-via-exotic-building-lattice-mif`:
+Le Bars–Leibtag–Vigdorovich, arXiv:2609.17129, Theorem `Thm:MIF` (read at source; unrefereed preprint;
+all credit theirs, and they state this application themselves). *(Previously OPEN.)*
+
+Let `Γ̌ = Γ̌_i^q` be one of the five simple groups of
 `titz-witzel-simple-kazhdan-cat0-lattices-exist`. The claim is that `Γ̌` is MIF:
 for every nontrivial `w ∈ Γ̌ * <x>` there is `g ∈ Γ̌` with `w(g) ≠ 1`.
 
@@ -52,3 +56,16 @@ Boone--Higman class.
    - **Rank-one methods are out.** Every geodesic line of `X` lies in an
      apartment, so no isometry is rank one. That rules out Rybak's curtain-model
      route.
+4. **Settled by Le Bars–Leibtag–Vigdorovich** (lane `bh-major-product`, 2026-09-18, reading
+   arXiv:2609.17129v1 at source).
+   - Their Theorem `Thm:MIF`: type-preserving free cocompact lattices on locally finite `C̃₂`
+     buildings, exotic or not, are MIF. `Γ̌` is one
+     (`titz-witzel-kernels-mif-via-exotic-building-lattice-mif`).
+   - Their key geometric input is the premise the graph called the crux in Attempt 3: open
+     dense opposite geometry for hyperbolic elements
+     (`titz-witzel-nowhere-domestic-via-open-dense-opposite-geometry`).
+   - They then use a stronger ping-pong, transversal contractivity, instead of the graph's
+     premise on dense pole pairs.
+   - What it rests on is recorded on `exotic-rank-two-building-lattices-are-mif`. The `C̃₂` chain
+     cites Ciobotaru–Le Bars Prop. 6.1 (cocompact lattices are of general type with full flag
+     limit set), but not the barycenter chain (trust note T1).
