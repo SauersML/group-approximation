@@ -297,6 +297,46 @@ theorem relKer_stepJ (i j : Fin n) (hij : i ≠ j) (s t : Fin K) (b : Bool) :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_stepJ
 
+/-- Any other swap fixes every state (this needs `ω` injective). -/
+theorem relKer_stepFix (hω : Function.Injective ω) (i j : Fin n) (hij : i ≠ j) (s t : Fin K)
+    (i' : Fin n) (s' : Fin K) (hI : (i', s') ≠ (i, s)) (hJ : (i', s') ≠ (j, t)) (bi bj : Bool) :
+    relKer_w D ω (i', s') * relKer_state D ω i j hij s t bi bj * (relKer_w D ω (i', s'))⁻¹ =
+      relKer_state D ω i j hij s t bi bj := by
+  have his : relKer_hi n K i' s' ≠ relKer_hi n K i s := fun h =>
+    hI (by obtain ⟨e1, e2⟩ := relKer_hi_inj h; rw [e1, e2])
+  have hjt : relKer_hi n K i' s' ≠ relKer_hi n K j t := fun h =>
+    hJ (by obtain ⟨e1, e2⟩ := relKer_hi_inj h; rw [e1, e2])
+  have hsI : relKer_lo n K i' = relKer_lo n K i → ω s' ≠ ω s := fun h e =>
+    hI (by rw [relKer_lo_inj h, hω e])
+  have hsJ : relKer_lo n K j = relKer_lo n K i' → ω t ≠ ω s' := fun h e =>
+    hJ (by rw [← relKer_lo_inj h, hω e])
+  have hbr0 : relKer_hi n K i' s' ≠ relKer_lo n K i := (relKer_lo_ne_hi i i' s').symm
+  have hcb0 : relKer_lo n K j ≠ relKer_hi n K i' s' := relKer_lo_ne_hi j i' s'
+  match bi, bj with
+  | false, false =>
+      exact relKer_swap_fix' (relKer_lo n K i') (relKer_hi n K i' s') (relKer_lo_ne_hi i' i' s')
+        (D.word (ω s') * D.p) (D.p * D.coword (ω s')) (relKer_lo n K i) (relKer_lo n K j)
+        (relKer_lo_ne hij) (D.unit (ω s) (ω t)) hbr0 hcb0
+        (fun h => relKer_Z1 D (hsJ h)) (fun h => relKer_Z3 D (hsI h))
+  | false, true =>
+      exact relKer_swap_fix' (relKer_lo n K i') (relKer_hi n K i' s') (relKer_lo_ne_hi i' i' s')
+        (D.word (ω s') * D.p) (D.p * D.coword (ω s')) (relKer_lo n K i) (relKer_hi n K j t)
+        (relKer_lo_ne_hi i j t) (-(D.word (ω s) * D.p)) hbr0 (fun h => hjt h.symm)
+        (fun h => absurd h.symm (relKer_lo_ne_hi i' j t)) (fun h => relKer_Z4 D (hsI h))
+  | true, false =>
+      exact relKer_swap_fix' (relKer_lo n K i') (relKer_hi n K i' s') (relKer_lo_ne_hi i' i' s')
+        (D.word (ω s') * D.p) (D.p * D.coword (ω s')) (relKer_hi n K i s) (relKer_lo n K j)
+        (relKer_lo_ne_hi j i s).symm (-(D.p * D.coword (ω t))) his hcb0
+        (fun h => relKer_Z2 D (hsJ h)) (fun h => absurd h (relKer_lo_ne_hi i' i s))
+  | true, true =>
+      exact relKer_swap_fix' (relKer_lo n K i') (relKer_hi n K i' s') (relKer_lo_ne_hi i' i' s')
+        (D.word (ω s') * D.p) (D.p * D.coword (ω s')) (relKer_hi n K i s) (relKer_hi n K j t)
+        (relKer_hi_ne hij s t) D.p his (fun h => hjt h.symm)
+        (fun h => absurd h.symm (relKer_lo_ne_hi i' j t))
+        (fun h => absurd h (relKer_lo_ne_hi i' i s))
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_stepFix
+
 end State
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

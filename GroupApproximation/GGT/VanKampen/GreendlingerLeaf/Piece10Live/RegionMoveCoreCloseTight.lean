@@ -123,12 +123,12 @@ theorem regionMoveCoreClose_not_crossed_of_tight (K : PocketFaceSet D eps X lo h
     intro h
     apply K.boundary_alpha_not_mem hd₀
     rw [h]
-    exact List.next_mem hd
+    exact List.next_mem _ _ hd
   have hy : X.toCombMap.alpha d ≠ K.boundary.cycle.next d₀ hd₀ := by
     intro h
     apply K.boundary_alpha_not_mem hd
     rw [h]
-    exact List.next_mem hd₀
+    exact List.next_mem _ _ hd₀
   exact regionMoveCoreClose_rotationBetween_iff htd hx hy
 
 /-- **The rose configuration has a loose crossing**: a pocket not in first-turn order, all of
