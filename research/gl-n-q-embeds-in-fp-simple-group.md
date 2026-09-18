@@ -240,6 +240,17 @@ None recorded before 2026-09-17.
      become infinitely divisible. The register roots give rational hulls of abelian subgroups only: commutators with
      non-commuting elements are localized on the overflow slab, and a dilation coprime to the radices acts on the
      register tower by a carry-from-below transducer (heuristic).
+   - (lane gq-nv-obstruct; `research/artifacts/gq-gq-nv-obstruct-verdict.md`)
+     - `fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups`: every finitely generated subgroup of
+       `GL_n(Q)` lies in a finitely presented simple `SV_Γ`, and `SV_Γ ⊇ kV` for `k <= |S|`, so `Q <= SV_Γ`.
+       So O2–O4 and every finitary obstruction fail for twisted hosts. Only the whole group can obstruct; the
+       question there is `gl-n-q-in-permutational-boone-higman-class`.
+     - `gl-3-z-in-no-nv-via-cnd-transversal`: the transversal function of
+       `brin-thompson-nv-cnd-proper-modulo-triangular-subgroup` alone (no properness on `T_n`) puts every Kazhdan
+       subgroup of `nV` virtually in `T_n`, so `GL_3(Z)` lies in no `nV`. That would kill plain `nV` for `n >= 3`.
+     - `BS(1,2) <= nV` needs a drift-free infinite-order base, since `D(a) = kD(a)` when `a ~ a^k`. Kojima–Sheng
+       root towers over elements of `V` therefore never give its translation subgroup. Sheng's Baumslag–Solitar
+       exclusions (arXiv:2209.11982) were withdrawn.
 
 12. **Unions of the chain `GL_n(Z[1/m!])` and tree hosts, 2026-09-17: constraints, one kill (lane
     gq-union-obstruct).** Summary in `research/artifacts/gq-gq-union-obstruct.md`.
