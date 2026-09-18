@@ -54,6 +54,15 @@ The single test case `B(2,665)` would be enough for `m = 2`. A reduction of all
   `cat0-groups-satisfy-boone-higman` is not known to exclude or include anything
   here.
 
+- **Almost automorphism hosts, including V and every Röver–Nekrashevych group.**
+  `almost-automorphism-torsion-subgroups-are-rf` (lane proof, bh-free-12) shows that every finitely generated
+  torsion subgroup of the almost automorphism group `𝒩_d` of the rooted d-ary tree is residually finite. So by
+  Zelmanov no infinite `B(m,n)` embeds in `𝒩_d`. That excludes the finitely presented simple hosts themselves, not
+  only the self-similar overgroups:
+  - `V` and all Higman–Thompson groups `V_d` (for `V` this is Röver's torsion local finiteness);
+  - every Röver–Nekrashevych group `V_d(G)`, for every self-similar `G`, including Röver's group, the hosts of
+    Zaremsky's Thm 1.1 and the contracting hosts of Belk–Matucci.
+
 ## What torsion does NOT rule out
 
 Periodicity is not an obstruction by itself. Röver's finitely presented simple
@@ -90,3 +99,16 @@ Candidate levers recorded when the node was opened:
      action.
    - No candidate `P` was found. Stalled here, with the precise open gate:
      `B(2,n) ∈ B_A`.
+2. **Attempt 2 (2026-09-18, lane `bh-free-12`): the Röver–Nekrashevych world is closed; the host question is
+   isolated.**
+   - Proved `almost-automorphism-torsion-subgroups-are-rf`. The argument uses a depth cocycle, which vanishes at
+     fixed points of torsion elements; a pushdown pumping bound; and finite permutation quotients on deep cones. So
+     every finitely presented simple group built as a Röver–Nekrashevych group, and `V` itself, is excluded as a
+     host. The periodic Grigorchuk subgroup of Röver's `V(G)` noted above is consistent with this: it is residually
+     finite, of unbounded exponent.
+   - The argument fails for Brin–Thompson `nV`, `n >= 2`. There the depth cocycle is a vector, and the pumping step
+     breaks. So `nV` and twisted Brin–Thompson groups remain the natural finitely presented simple candidates.
+   - The first necessary step is now a separate claim,
+     `fp-simple-groups-can-contain-infinite-finite-exponent-groups`: does some finitely presented simple group
+     contain an infinite finitely generated group of finite exponent? BH implies it, via `B(2,665)`, and a negative
+     answer would refute BH.
