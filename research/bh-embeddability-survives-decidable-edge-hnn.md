@@ -198,3 +198,33 @@ only through a proof that does not pass through the conjecture.
    index in `F`. That only kills maps sending `t` to a stable letter whose vertex
    group contains `F`. It does not kill tree hosts for free bases; unlike
    Attempt 8, no invariant was found there.
+10. **Type (A) actions of `A*_phi` itself, sharpened and killed on
+   proper-power data.** *Dies* for that engine on concrete flagship inputs
+   (2026-09-17, calibration family). This attempt sharpens Attempt 5 by
+   `type-a-actors-split-only-over-orbit-finite-edges`. Let `C_1 != A != C_2`, and
+   suppose `K = A*_phi` acts on `X` with finitely generated stabilizers and
+   finitely many orbits of pairs. Then:
+   - every point stabilizer contains a hyperbolic element and acts on the whole
+     Bass--Serre tree with finite quotient;
+   - `A`, `C_1` and `C_2` each have finitely many orbits on `X`.
+
+   So the clause "`D_1` has finitely many orbits" in Attempt 6 is necessary for
+   every type (A) action of a non-ascending HNN extension, not an artifact of
+   that construction. The invariant is `r(c)`, the number of regular orbits of
+   an element `c` generating a finite-index subgroup of a vertex or edge group.
+   It is conjugation invariant, and `r(c^p) = |p| r(c)`. The engine dies at the
+   step where `C_1` must be orbit-finite: whenever `C_1` is finite, or `phi`
+   together with `A` makes such a `c` conjugate to a proper power `c^q`,
+   `|q| != 1`, the set `X` is forced to be finite. By
+   `type-a-actors-have-no-proper-power-cyclic-edge-splittings`, this rules out a
+   type (A) action of the group itself in three cases:
+   - the Baumslag--Gersten group (`A = BS(1,2)`, `<a> -> <b>`), which is one of
+     the claims this node would flip;
+   - `BS(m,n)` with `|m| != |n|` both at least 2, even though these groups
+     satisfy Boone--Higman;
+   - every non-ascending HNN extension over a finite group.
+
+   Engines that build a *larger* actor containing `A*_phi` are not affected. But
+   a proof reaching BG must use an actor in which the restricted action of BG
+   has infinitely many orbits of pairs or an infinitely generated stabilizer. So
+   pair-orbit finiteness can never be inherited by restriction to BG.
