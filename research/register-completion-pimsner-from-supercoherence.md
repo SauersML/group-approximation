@@ -48,8 +48,12 @@ A **single-register completion with a spine** is the setting of
 - **point indicators**: the coefficient ring contains every point indicator `δ_n`, i.e.
   contains `J = ⊕_ℕ Q` at each type (referee b, A1). This holds when some availability
   indicator such as `[N = 0]` is present and letters shift `N` in both directions, as in
-  `R_cap`. It fails for `R_L`, whose coefficient ring `Q[N][(N+c)^(-1)]` has no
-  idempotents. There the reset `N ↦ 0` is not flat, and (P) for `R_L` stays open.
+  `R_cap`. It fails for the presented base `Q[N][(N+c)^(-1)]` of `R_L`, which has no
+  idempotents, and over that base the reset `N ↦ 0` is not flat. But `R_L` contains the point
+  indicators `q_k = s_1^k s_2 t_2 t_1^k`. Over the enlarged coefficient ring `B ⊕ ⊕_k Q δ_k`, `R_L` is the
+  universal completion with spine `s_1` and satisfies these hypotheses. So (P) holds for `R_L`. That is
+  shown in `leavitt-resolvent-k-theory-is-shifted-rational-k-theory` (lane proof, not independently
+  reviewed), which computes `K_n(R_L) ≅ K_(n-1)(Q)`. This amendment was pointed out by gq-infinite-primes.
 
 `R` is a `Q`-algebra.
 
