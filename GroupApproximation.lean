@@ -5793,6 +5793,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosAr
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairMazur
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosArvesonPairSqrt
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.BKR
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupOrth
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupAbstract
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupFunctor
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
