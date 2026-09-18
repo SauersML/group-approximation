@@ -9,6 +9,7 @@ distinct_from:
   elek-free-minimal-cantor-actions-with-invariant-measures: that constructs some measured minimal Cantor action for every countable group; this asks that every minimal set of the given action of a Kazhdan subgroup of nV is measured.
 artifacts:
   - research/artifacts/kazhdan-nv-measure-criterion-2026-09-17.md
+  - research/artifacts/kazhdan-nv-displacement-gap-2026-09-17.md
   - research/artifacts/kazhdan-nv-slope-distortion-and-tail-gate-2026-09-17.md
 ---
 
@@ -51,6 +52,25 @@ invariant probability measure of `K` is carried by `U_K`.
   hole to this claim; no progress on the claim itself. The shape-weighted brick
   families and the twisted Koopman representation of the Lebesgue measure both fail to
   give almost invariant vectors without an invariant measure (artifact Section 6).
+- 2026-09-17 (lane c-kaznv, wave swarm-0917, operator-algebras, transplanter): no proof;
+  two class-kills and two constraints, artifact
+  `research/artifacts/kazhdan-nv-displacement-gap-2026-09-17.md`.
+  - Displacement zero-one law (`kazhdan-nv-exceptional-set-has-a-displacement-gap`):
+    `min_ν max_q ||q_*ν - ν||_1` is `0` or `>= ε²`; in a counterexample it is `>= ε²` on
+    `Z_K`. Vanishing-error transport and Følner windows on any invariant cover of `Z`
+    are equivalent to this claim; finite windows on infinite orbits are forbidden.
+  - Kazhdan-projection transplant: the image of `p_K` in the reduced germ algebra of `Z`
+    is nonzero iff `Z` meets `U_K`, and in the maximal germ algebra iff `Z` is measured.
+    On an infinite minimal set the claim is nonvanishing in the kernel of max -> reduced,
+    so reduced-norm arguments see `0`; nonvanishing in max is an invariant measure
+    (circular). Dies at the max -> reduced quotient.
+  - Gottschalk–Hedlund (`bounded-slope-at-one-point-puts-nv-minimal-set-in-u-k`): bounded
+    slope at one point of a minimal set forces a continuous potential and a finite
+    canonically permuted brick family, so a counterexample has unbounded slopes along
+    every orbit of every measure-free minimal set.
+  - Fibration stabilizers (`kazhdan-subgroups-of-nv-fibration-stabilizers-are-finite`):
+    an infinite Kazhdan subgroup preserves no conjugate of a coordinate fibration. The
+    prerequisite "(T) virtually forces such a fibration" is not established.
 - 2026-09-17 (lane swarm-0917 e-nv-kazhdan, minimal-counterexample): a biography of an
   infinite Kazhdan `K <= nV` and a split of this claim into two halves.
   - **Established.** `nv-point-germ-groups-embed-in-zn-by-slope`.
