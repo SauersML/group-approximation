@@ -19,6 +19,13 @@ Let `G` be finitely generated with solvable word problem.
 3. Let `G_nu` be the germ groupoid and `A = A_(F_2)(G_nu)`. By
    `germ-steinberg-algebras-over-v-are-fg-central-simple`, `A` is a finitely
    generated central simple `F_2`-algebra and `S <= E_nu <= A^x`.
+   **Correction (bh-free-53, 09-18).** For shell envelopes `A` is not simple, for any `nu`:
+   `shell-germ-steinberg-algebras-are-never-simple` gives a nonzero singular element
+   `(1 - u_g) s_0 (1 - u_g) t_0`, so part 3 of that node never applies here. The step survives
+   with `A` replaced by `A/J`, `J` the singular ideal, since `E_nu` still embeds in
+   `(A/J)^x`. It then needs `A/J` to be central simple, which is not proved on main. Step 4
+   must then ask for finite presentation of `A/J`, which is finite presentation of `A` plus
+   finite generation of `J` as an ideal.
 4. By `shell-germ-steinberg-algebra-is-finitely-presented` (OPEN), choose `nu` so that `A`
    is finitely presented as an `F_2`-algebra.
 5. Put `R = A ⊗ L_(F_2)(1,2)`. Assume `ker(St_n(R) -> E_n(R))` is finitely normally
