@@ -15,10 +15,12 @@ Notation as in the claim. Put `W = {■0, ■1}`. Line references are to
 - **(W1) How the TM mode changes letters** (l. 1313, before the definition of `T_2`).
   In `T'`, "the symbols `#, $` and `γ_i ∈ Γ` are not changed by any transition and
   `0` and `1` are either also not changed or they are toggled". Only the
-  generalized check-mark part toggles digits (Proposition `prop:TMmode` and its
-  proof). The checking states store information in the state and output their input.
-  The states `checksub{g}` for the various `g` act identically before the first `$`
-  (l. ~1000). `T_2` reads encodings over `W` and never outputs a letter outside `W`
+  generalized check-mark states `checksub{g}` (Figure `fig:checkmarkingAutomaton`)
+  toggle digits. The format checker `z`, the final-state checker `f`, the check-mark
+  checker `c` and the transition checkers carry only `0/0` and `1/1` digit transitions
+  (checked in the figures, l. 900–1100). The states `checksub{g}` for the various `g`
+  act identically before the first `$` (l. ~1000); after `$`, `checksub{g}` passes
+  to `g`. `T_2` reads encodings over `W` and never outputs a letter outside `W`
   on `W`-input.
 - **(W2) What happens outside `W`.**
   - Every word of `W^*` is a prefix of an encoded word (Fact
@@ -67,12 +69,18 @@ Let `z` be the encoded format-checking state of `T'`: it loops on `0/0`, `id_Γ`
 an `R`-state `ρ != 1`:
 - `z ∈ K`, and `π_w(z) = ρ` exactly for `w = u$` with `u` well formed and all digit
   blocks zero; `π_w(z) = 1` otherwise.
-- For `h = c^n` one gets `π_w(h z h^-1) = π_{h^{-1} w}(z)`, because `c` passes to
-  `id` on `Σ̃`-letters. So the support of `c^n z c^{-n}` is `c^n(supp z)`.
-- On single-block words, `c^n(0^k γ $) = bin(n) γ $` (reverse binary), and
-  `0^k γ $` is the only `k`-digit single-block word in `supp z`.
-- So the conjugates `c^n z c^{-n}`, `0 <= n < 2^k`, are pairwise distinct. As `k` is
-  arbitrary, `K` is infinite.
+- Let `e = checksub{id}`, the check-mark state whose continuation after `$` is `id`.
+  Every section of every power of `e` is a TM-mode state or `id`, and these output
+  each `Σ̃`-letter unchanged and pass to `id`. (The other copy `checksub{r}` is
+  unsuitable, since it passes to the `R`-state `r` after `$`.)
+- For `h = e^n` and `w ∈ W^*` one therefore gets `h^{-1}(w a v) = h^{-1}(w) a v`, and
+  `π_w(h z h^-1) = π_{h^{-1} w}(z)`. So the support of `e^n z e^{-n}` is `e^n(supp z)`.
+- Fix `γ ∈ Γ` and `k`. On the set of encoded single-block words `x γ $` with `k`
+  digits, `e` acts as the adding machine on `x`, so `e^n(0^k γ $) = revbin_k(n) γ $`.
+  This set is `e`-invariant, and its only element in `supp z` is `0^k γ $`. Hence
+  `e^n(supp z)` meets it exactly in `revbin_k(n) γ $`.
+- So the conjugates `e^n z e^{-n}`, `0 <= n < 2^k`, have pairwise distinct supports and
+  are pairwise distinct. As `k` is arbitrary, `K` is infinite.
 
 ## 3. Not finitely presented
 
