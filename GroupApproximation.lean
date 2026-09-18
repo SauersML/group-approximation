@@ -6005,6 +6005,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.KhRel
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTLaurent
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientRels
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHalfExactUnit
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHalfExactOne
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
