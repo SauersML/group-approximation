@@ -101,3 +101,68 @@ theorem firstHit_lake (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
   · rw [ord_pow_add_apply, Nat.sub_add_cancel him.le]
   · rw [ord_pow_add_apply]
     exact hskip (t + i) (by omega) (by omega)
+
+/-- The six darts of the lake darts `L_0`, `L_j`, `L_k` of the ring map. -/
+noncomputable abbrev ordSix (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (x₀ : (walkMap M w).Dart) (j k : ℕ) : (ordRing hw hM).Dart → Prop :=
+  SixDart (ordRing hw hM) (((ordRing hw hM).facePerm ^ 0) (lakeStart hw hM x₀))
+    (((ordRing hw hM).facePerm ^ j) (lakeStart hw hM x₀))
+    (((ordRing hw hM).facePerm ^ k) (lakeStart hw hM x₀))
+
+/-- **No crossing.**  If `0 < j < k` are below the period, `α L_0` is the last dart of `w`, and
+`α L_j = w[a]`, `α L_k = w[b]` with `a < b < last`, the ring map violates the theta obstruction.
+(Osin, proof of Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex 2134.) -/
+theorem ord_false_of_cross (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
+    (hinner : (reclosedMap M (sideFaces M w) (hw.innerCycle hM)).eulerCharacteristic =
+      M.eulerCharacteristic)
+    (x₀ : (walkMap M w).Dart) (hx₀ : M.alpha x₀.1 ∈ w) (hn : w.length - 1 < w.length)
+    (h0 : 0 < w.length) {j k a b : ℕ} (hj0 : 0 < j) (hjk : j < k)
+    (hk : k < period (walkMap M w).facePerm x₀) (ha : a < w.length) (hb : b < w.length)
+    (hab : a < b) (hbn : b < w.length - 1)
+    (eA : (ordRing hw hM).alpha (((ordRing hw hM).facePerm ^ 0) (lakeStart hw hM x₀)) =
+      wd hw hM (w.length - 1) hn)
+    (eB : (ordRing hw hM).alpha (((ordRing hw hM).facePerm ^ j) (lakeStart hw hM x₀)) =
+      wd hw hM a ha)
+    (eC : (ordRing hw hM).alpha (((ordRing hw hM).facePerm ^ k) (lakeStart hw hM x₀)) =
+      wd hw hM b hb) : False := by
+  have hv : ∀ i, (((ordRing hw hM).facePerm ^ i) (lakeStart hw hM x₀)).1.1 =
+      (((walkMap M w).facePerm ^ i) x₀).1 := fun i => (lake_orbit hw hM x₀ hx₀ i).1
+  have hnot : ∀ i, (((ordRing hw hM).facePerm ^ i) (lakeStart hw hM x₀)).1.1 ∉ w :=
+    fun i hi => ord_lake_not_mem hw hM x₀ hx₀ i (by rw [← hv i]; exact hi)
+  have hval : ∀ {X Y : (ordRing hw hM).Dart}, X = Y → X.1.1 = Y.1.1 :=
+    fun h => congrArg (fun x : (ordRing hw hM).Dart => x.1.1) h
+  have vA : M.alpha (((ordRing hw hM).facePerm ^ 0) (lakeStart hw hM x₀)).1.1 =
+      w[w.length - 1] :=
+    (ordRing_alpha_val hw hM _).symm.trans ((hval eA).trans (wd_val hw hM _ hn))
+  have vB : M.alpha (((ordRing hw hM).facePerm ^ j) (lakeStart hw hM x₀)).1.1 = w[a] :=
+    (ordRing_alpha_val hw hM _).symm.trans ((hval eB).trans (wd_val hw hM _ ha))
+  have vC : M.alpha (((ordRing hw hM).facePerm ^ k) (lakeStart hw hM x₀)).1.1 = w[b] :=
+    (ordRing_alpha_val hw hM _).symm.trans ((hval eC).trans (wd_val hw hM _ hb))
+  have hLL : ∀ s t, s < period (walkMap M w).facePerm x₀ →
+      t < period (walkMap M w).facePerm x₀ → s ≠ t →
+      (((ordRing hw hM).facePerm ^ s) (lakeStart hw hM x₀)).1.1 ≠
+        (((ordRing hw hM).facePerm ^ t) (lakeStart hw hM x₀)).1.1 :=
+    fun s t hs ht hst h => ord_lake_ne x₀ hs ht hst ((hv s).symm.trans (h.trans (hv t)))
+  have hWW : ∀ r r' (hr : r < w.length) (hr' : r' < w.length), r ≠ r' → w[r] ≠ w[r'] :=
+    fun r r' hr hr' hne h => hne (hw.nodup.getElem_inj_iff.mp h)
+  have hp : 0 < period (walkMap M w).facePerm x₀ := by omega
+  have hj : j < period (walkMap M w).facePerm x₀ := by omega
+  have hlake : ∀ t, t < period (walkMap M w).facePerm x₀ → t ≠ 0 → t ≠ j → t ≠ k →
+      ¬ ordSix hw hM x₀ j k (((ordRing hw hM).facePerm ^ t) (lakeStart hw hM x₀)) := by
+    intro t ht t0 tj tk
+    refine not_sixDart_of_val hw hM (hLL t 0 ht hp t0) (hLL t j ht hj tj) (hLL t k ht hk tk)
+      ?_ ?_ ?_
+    · exact fun h => hnot t (by rw [h, vA]; exact List.getElem_mem hn)
+    · exact fun h => hnot t (by rw [h, vB]; exact List.getElem_mem ha)
+    · exact fun h => hnot t (by rw [h, vC]; exact List.getElem_mem hb)
+  have hwalk : ∀ r (hr : r < w.length), r ≠ w.length - 1 → r ≠ a → r ≠ b →
+      ¬ ordSix hw hM x₀ j k (wd hw hM r hr) := by
+    intro r hr r1 ra rb
+    have hmem : (wd hw hM r hr).1.1 ∈ w := List.getElem_mem hr
+    refine not_sixDart_of_val hw hM ?_ ?_ ?_ ?_ ?_ ?_
+    · exact fun h => hnot 0 (by rw [← h]; exact hmem)
+    · exact fun h => hnot j (by rw [← h]; exact hmem)
+    · exact fun h => hnot k (by rw [← h]; exact hmem)
+    · exact fun h => hWW r _ hr hn r1 ((wd_val hw hM r hr).symm.trans (h.trans vA))
+    · exact fun h => hWW r a hr ha ra ((wd_val hw hM r hr).symm.trans (h.trans vB))
+    · exact fun h => hWW r b hr hb rb ((wd_val hw hM r hr).symm.trans (h.trans vC))
