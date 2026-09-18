@@ -24673,14 +24673,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · fpbs-pivotal-budget-universal [OPEN] Every nonamenable Cayley graph has a uniform near-critical linear pivotal budget
+- 2026-09-18 · fpbs-bernoulli-cycle-tail-compactness [OPEN] Bernoulli cost minimizers have tight finite-cycle dimension
+- 2026-09-18 · fpbs-amenable-wq-normal-relative-subcriticality [OPEN] Slightly supercritical clusters meet an amenable wq-normal subgroup with finite mean
 - 2026-09-18 · toeplitz-schur-packet-center-dies-proof [COMPLETE] The packet's e_1-scaled coordinates are finitary root elements, whose infinite simple group dies in residually finite targets
 - 2026-09-18 · toeplitz-schur-packet-center-dies-in-residually-finite-models [ESTABLISHED] Residually finite models of the Toeplitz base kill the Schur packet's centre, so their forbidden mass is zero
 - 2026-09-18 · toeplitz-amenable-cells-reduce-to-base-hyperlinearity [ESTABLISHED] For the Toeplitz Schur packet, amenable and finite-index coefficient cells have no leverage beyond deciding whether EL_r(T) is hyperlinear
 - 2026-09-18 · toeplitz-amenable-cells-base-reduction-proof [COMPLETE] Split on hyperlinearity of EL_r(T); in the hyperlinear branch telescope or induce a canonical base microstate
 - 2026-09-18 · parity-compressor-old-commutant-has-positive-density [OPEN] Couple a Schur Reynolds carrier to positive density in the parity compressor's old commutant
-- 2026-09-18 · hyperlinear-base-amenable-telescope-proof [COMPLETE] Telescope one canonical base microstate through the joint Følner blocks
-- 2026-09-18 · hyperlinear-base-amenable-cells-retain-coefficients [ESTABLISHED] Amenable compression cells over any hyperlinear base retain every base coefficient and packet trace, without residual finiteness
-- 2026-09-18 · fpbs-mal-stage-generators-lie-in-b-double-coset-proof [COMPLETE] Generating elements are vertex identifications of the dumbbell Stallings graph, and only two survive the descent
 
 ## Active claims
 
