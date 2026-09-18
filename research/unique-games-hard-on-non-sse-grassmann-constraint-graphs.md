@@ -51,3 +51,49 @@ constraint graphs of the DKKMS shape. The reduction satisfies:
   (`parity-leaking-branch-selectors-reach-near-perfect-completeness`). The
   algorithmic falsifier through global hypercontractivity is deferred until the
   Grassmann weights are checked against that hypothesis.
+* **2026-09-18, swarm-0917-w9-w9-ugc-break (reframing): the deferred
+  global-hypercontractivity falsifier was resolved and the hole decomposed.
+  Status stays OPEN.**
+  * **Bafna--Minzer does not falsify this claim as stated, for two independent
+    reasons.**
+    - *Host.* Their Theorems 1.6--1.8 cover `Grass(n, l)`, `J(n, l, alpha l)`
+      and HDX walks. The hosts here are the DKKMS 2-to-1 constraint graphs,
+      which depend on the outer 3LIN instance and are none of these.
+    - *Constraints.* They cover only Affine-UG over `Z_q` (Definition 1.4).
+      Their footnote 2 says the KKMO reduction does not preserve the host.
+  * **What BM does reach, exactly.** On any host, a unique game is a union of
+    group-shift games on the same graph exactly when its holonomy group acts
+    regularly on each orbit, and it is Affine-UG exactly when that action is
+    cyclic. This is `unique-games-reduce-to-shifts-over-their-holonomy-group`.
+    Consequently, on BM hosts every instance with cyclic holonomy is solved at
+    every constant completeness (Corollary BM). If this claim is ever moved to
+    a BM-type host, its instances must have non-cyclic holonomy on some orbit.
+    The remaining algorithmic question is
+    `general-unique-games-easy-on-globally-hypercontractive-graphs`, with rungs
+    R2 (regular, for example `F_2^N` shifts), R3 (solvable, for example
+    `AGL(m, 2)`) and R4 (full `S_k`).
+  * **Shift instances are not excluded a priori.** By
+    `ugc-is-equivalent-to-affine-ugc`, under UGC hard instances can be taken to
+    be bipartite `Z_q`- or `F_2^N`-shift games, but only on hosts the KKMO
+    reduction chooses. So nothing forbids this claim from using shift
+    instances on DKKMS hosts, unless a BM-type algorithm is proved for those
+    hosts.
+  * **New prerequisite on the parameters (conditional).** The spectral gate
+    (K1') of `akkstv-rounding-holds-on-all-loop-free-constraint-graphs` applies
+    to *every* unique game on a loop-free host, not only to orientation lifts.
+    Assume `folded-dkkms-hosts-keep-spectral-gap-as-smoothing-vanishes`
+    (OPEN; gap `c(l)`, conjectured about `4^(-l)/2`). Then a reduction as in
+    this claim on folded hosts must have `c(l) < X(delta) eta` on some YES
+    outputs, unless P = NP. So `l` must grow as `eta -> 0`, with
+    `l >= log_4(1/(2 X(delta) eta))` at the conjectured gap. The DKKMS choice
+    of `l` as a function of the soundness alone cannot work at fixed `delta`.
+    On unfolded hosts, the gap is `Theta(beta)`, and the same gate forces
+    `beta <= X(delta) eta / C`. The lease e2-w2-ugc-h3 reported the plain
+    Grassmann-edge-law version of this cap. It has not landed on this branch.
+  * **Decomposition of the claim into prerequisites that can each fail.**
+    - (a) The host's YES spectral gap is `o(eta)`. On folded DKKMS hosts this
+      forces `l = l(eta)`, conditional as above.
+    - (b) No BM-type Affine-UG algorithm exists on the host family, or the
+      instances have non-cyclic holonomy.
+    - (c) Soundness `delta` survives the `l`-growth that (a) requires. DKKMS
+      soundness analysis fixes `l` from `delta`, so this is new.
