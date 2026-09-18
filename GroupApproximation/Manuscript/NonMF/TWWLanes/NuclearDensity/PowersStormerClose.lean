@@ -44,8 +44,10 @@ theorem powersStormer_contraction_bound {y h T : Matrix m m ℂ} {η : ℝ}
       (trace ((y * T - T * y)ᴴ * (y * T - T * y))).re ≤ 2 * η + (a + b) := by
   have hη0 : 0 ≤ η := (norm_nonneg _).trans h1
   have hh : hᴴ = h := by rw [← hTh, conjTranspose_mul, hT.isHermitian.eq]
-  obtain ⟨Yd, hYd⟩ : ∃ Yd : Matrix (m ⊕ m) (m ⊕ m) ℂ, Yd = fromBlocks 0 y yᴴ 0 := ⟨_, rfl⟩
-  obtain ⟨T', hT'⟩ : ∃ T' : Matrix (m ⊕ m) (m ⊕ m) ℂ, T' = fromBlocks T 0 0 T := ⟨_, rfl⟩
+  obtain ⟨Yd, hYd⟩ : ∃ Yd : Matrix (m ⊕ m) (m ⊕ m) ℂ, Yd = fromBlocks 0 y yᴴ 0 :=
+    ⟨_, rfl⟩
+  obtain ⟨T', hT'⟩ : ∃ T' : Matrix (m ⊕ m) (m ⊕ m) ℂ, T' = fromBlocks T 0 0 T :=
+    ⟨_, rfl⟩
   have hTpsd : T'.PosSemidef := by
     rw [hT']
     exact powersStormer_posSemidef_fromBlocks hT hT

@@ -117,3 +117,40 @@ theorem endBlockModel_eqvGen_of_cls {x y : Model.diagram.toCombMap.Dart}
       (endBlockModel_eqvGen_of_faceClass (y := 15) (hx.trans (by decide)))
       (Relation.EqvGen.trans _ _ _ (Relation.EqvGen.symm _ _ endBlockModel_eqvGen_14_15)
         (endBlockModel_eqvGen_of_faceClass (x := 14) (Eq.trans (by decide) hy.symm)))
+
+/-- **The colouring of the class of `r`**, in closed form: `true` exactly on the darts with the
+class index of `r`. -/
+theorem endBlockModel_colour (r d : Model.diagram.toCombMap.Dart) :
+    GL05b.regionColour Model.diagram.toCombMap
+        (walkKeep Model.diagram.toCombMap Model.pocketK.boundary.cycle) r d =
+      decide (endBlockModel_cls d = endBlockModel_cls r) := by
+  by_cases h : endBlockModel_cls d = endBlockModel_cls r
+  · rw [decide_eq_true h]
+    exact (GL05b.regionColour_eq_true_iff _ _ _ _).mpr (endBlockModel_eqvGen_of_cls h.symm)
+  · rw [decide_eq_false h]
+    exact GL05b.regionColour_eq_false _ _ fun he => h (endBlockModel_cls_of_eqvGen he).symm
+
+/-- **The move predicate of the class of `r`**, in closed form: a dart moves when neither it nor
+its reverse has the class index of `r`. -/
+theorem endBlockModel_movePred (r d : Model.diagram.toCombMap.Dart) :
+    GL05b.movePred Model.diagram.toCombMap (GL05b.regionColour Model.diagram.toCombMap
+        (walkKeep Model.diagram.toCombMap Model.pocketK.boundary.cycle) r) d =
+      (!decide (endBlockModel_cls d = endBlockModel_cls r) &&
+        !decide (endBlockModel_cls (Model.diagram.toCombMap.alpha d) = endBlockModel_cls r)) := by
+  rw [GL05b.movePred, endBlockModel_colour r d,
+    endBlockModel_colour r (Model.diagram.toCombMap.alpha d)]
+
+end GroupApproximation.Full.GL05c
+
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_facePerm
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_alpha
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_cases
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_step
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_cls_of_eqvGen
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_eqvGen_of_faceClass
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_not_walkKeep_14
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_eqvGen_14_15
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_eqvGen_of_cls
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_colour
+#audit_axioms GroupApproximation.Full.GL05c.endBlockModel_movePred

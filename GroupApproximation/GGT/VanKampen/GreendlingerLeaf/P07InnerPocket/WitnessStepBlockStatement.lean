@@ -88,3 +88,54 @@ def WitnessStepBlockTurn (a b : RegionCandidate D eps X) (G₁ : CyclicArc (cell
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessStepBlockTurn
 
 end BlockStatement
+
+/-- **Residual of lane gl-p07-49: the witness step off cell, side and block-order turns.**  Same
+premises as `WitnessStepSideResidualStatement`.  The forward disjunct is asked only for pairs
+`(x, y)` with no cell turn and no side turn at `y`, and no block-order turn `(x, y)`.  LOUD:
+logically equivalent to that statement given the proved reduction
+`witnessStepSideResidual_of_witnessStepBlock`, and strictly smaller only in proof content.  See
+the module docstring. -/
+def WitnessStepBlockResidualStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    0 < (a.cellArcList i).length → 0 < (a.cellArcList j).length →
+    0 < (b.cellArcList i).length → 0 < (b.cellArcList j).length →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 → C.face ∉ b.1 →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (witnessFaces a b K C.face) outerWalk →
+        (∀ d ∈ outerWalk,
+          X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face) →
+        (∀ e ∈ invDarts X outerWalk, e ∈ invDarts X G₁.darts ∨ e ∈ invDarts X G₂.darts ∨
+          X.toCombMap.alpha e ∈ a.sideFrom j ∨ X.toCombMap.alpha e ∈ b.sideFrom i) →
+        (∀ (n : ℕ) (s t : List X.toCombMap.Dart) (x y : X.toCombMap.Dart),
+            (invDarts X outerWalk).rotate n = s ++ x :: y :: t →
+            ¬ WitnessStepCellTurn G₁ G₂ outerWalk y →
+            ¬ WitnessStepSideTurn a b G₁ G₂ outerWalk y →
+            ¬ WitnessStepBlockTurn a b G₁ G₂ x y →
+            WitnessCurveSublistList.StepNext (witnessSublistCurve a b G₁ G₂)
+              (invDarts X outerWalk) x y) ∨
+          ∀ (n : ℕ) (s t : List X.toCombMap.Dart) (x y : X.toCombMap.Dart),
+            (invDarts X outerWalk).rotate n = s ++ x :: y :: t →
+            WitnessCurveSublistList.StepNext (witnessSublistCurve a b G₁ G₂)
+              (invDarts X outerWalk) y x
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessStepBlockResidualStatement
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
