@@ -14,7 +14,8 @@ This module shrinks the family of elements on which that local condition has to 
 * `czNK2_ConeOverStatement A`: the local condition, but only for the **cone images**
   `w = j(ι v)`, where `v ∈ K₂(n + 5, A[s_0..s_n])` is killed by every `π_i`, `ι` pads the rank
   once to `n + 6`, and `j : s_0 ↦ s_0 s_{n+1}` is the cone of module
-  `ElemFPCharZeroK2CubeResidueFieldCone`.  These `w` live at `k = n + 1` base variables and the minimal rank `n + 6 = k + 5`.
+  `ElemFPCharZeroK2CubeResidueFieldCone`.  These `w` live at `k = n + 1` base variables and the
+  minimal rank `n + 6 = k + 5`.
 * `czNK2_dies_of_coneOver`: every cube element `v` at rank `n + 5` dies after padding.  Quillen
   patching (`cubeNilField_dies_of_local`) kills `w`, using `hres` (every maximal ideal contains a
   rational prime) to reach the residual; the retraction `s_{n+1} ↦ 1` of the cone carries the death

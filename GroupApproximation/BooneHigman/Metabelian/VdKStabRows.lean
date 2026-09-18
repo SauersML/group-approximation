@@ -17,7 +17,8 @@ Lane `bh-met-90f`, helper module.  Concrete definitions for a commutative ring `
   lemma, and the form used here is the one that is consumed.)
 
 Basic facts proved here: the ideal-theoretic reformulation (`1 ∈ span (range v)`), transport
-along ring maps and ring isomorphisms, monotonicity in `r`, and `sr(K) ≤ 1` for a field `K`.
+along ring maps and ring isomorphisms, and monotonicity in `r`.  Fields and PIDs are treated in
+`VdKStabPID.lean`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
