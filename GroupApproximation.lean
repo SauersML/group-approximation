@@ -5981,6 +5981,17 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Transversal
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientCore
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAmbientAction
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideTransport
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSideRotation
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.OuterSteps
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVK2Route.Core
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtClass
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.Small
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.SchreierStep
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductIdeal
+import GroupApproximation.Manuscript.NonMF.Full.GL03D.KeptWalk
+import GroupApproximation.Manuscript.NonMFNotes.Full.CommNuclear.Unital
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Carrier
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
