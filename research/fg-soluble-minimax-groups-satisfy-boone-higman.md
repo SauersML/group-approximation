@@ -27,6 +27,14 @@ Then `G` embeds in a finitely presented simple group.
   node is stated as an embedding claim, and it is a Boone--Higman instance only once
   that input is confirmed.
 
+- **Isolated embedding (CGP Question 4) for the calibration example: ESTABLISHED**
+  (2026-09-18). Hall's `A_3/Z` and every finitely generated subgroup of `A_{n,p}/C`
+  embed in isolated groups, since `A_3/Z ≤ A_4/Z`, which is isolated by
+  Cornulier–Guyot–Pitsch Prop. 5.7. See
+  `hall-type-prufer-quotients-embed-in-isolated-abels-groups`.
+  - So Boone–Higman for Hall's group follows from Boone–Higman for the one finitely
+    presented 3-solvable group `A_{4,p}/Z`.
+
 ## The remaining case
 
 Suppose `τ(G)` is infinite. For minimax `G` this is the non-residually-finite case
@@ -123,10 +131,40 @@ Either:
      - (b) Finite presentation of `Alt_fin(Ω) ⋊ Γ_p` on the dense orbit
        `Ω = Z[1/p]^2 × Q_p/Z_p`. The point stabilizer is `Z[1/p]^3 ⋊ Z^2`, which is finitely
        generated. The lampshuffler obstruction needs a free action, so it does not apply.
+       Its generalization `levelled-actions-make-finitary-extensions-not-fp2` (every virtual character
+       must be nonzero on point stabilizers) is passed too, because the stabilizer contains the
+       torus. The better candidate is `Ω' = Γ_p/T`, whose point and two-point stabilizers are
+       finitely generated. What remains is deriving the pair-of-transposition relations from
+       finitely many of them.
+       By `fp-split-finitary-extensions-force-local-presentations-of-fsym`, this is the question whether
+       `FSym(Ω')` is the colimit of the `Sym(B)` over subsets of translates of one finite set. Two
+       points of a fibre of the central `C_(p^∞)` with a large-order difference never share a
+       translate, and `P` acts isometrically, so no Houghton-type induction on distance is
+       available. Open.
      - Gate (b) gives Boone–Higman for `B/C` and `Γ_p` directly, by
        `fp-finitary-permutation-overgroups-are-type-a-actors`. Gate (a) gives a finitely presented
        host, whose simplicity or type (A) is then checked as usual (Belk–Hyde–Matucci Theorem 1.3,
        or `fp-cantor-groups-containing-v-type-a-iff-clopen-stabilizer-fg`).
+
+4. Lane `bh-solvable`, 2026-09-18 (fallbacks after the split-finitary analysis). These are design
+   findings, not theorems.
+   - **Near actions.** The fallback is the genuine-action shell route: the near shift group
+     `R_ρ = ⟨ρ(Γ_p), s⟩` on an enumeration of `Ω' = Γ_p/T`. A normalizing shift needs an index-one
+     near-bijection that commutes with `ρ(Γ_p)` up to an automorphism. For regular one-ended
+     enumerations this is excluded by `one-ended-shell-inputs-admit-no-shift-normalizing-enumeration`.
+     For `Ω'` it is open (asked of lane `bh-near-actions`).
+   - **Gate (a) over product bases.**
+     1. Compactifying each `p`-adic coordinate separately makes the cocycle `x_1x_2` of `e_23`
+        discontinuous along `{∞} × Q_p` and `Q_p × {∞}`. That gives infinitely many singular points,
+        so it is not a finite germ extension.
+     2. The one-point compactification has one singular point `∞`, but it is not a product point.
+        The diagonal dilation `diag(1, p, p^{-1}, 1)` attracts everything to `∞`, while fixing the
+        fibre `{(0,0)} × Q_p/Z_p`, which accumulates at `∞`. Dilation germs of a product base fix a
+        point, a line or a box, so implanted torus germs are never base germs. So the germ group at
+        an implanted point strictly contains `Γ_p`.
+     3. With the compact fibre, a dense orbit of collapsed fibres is not Hausdorff.
+   - So a gate (a) host needs a base whose unit space carries a dense orbit of such cusp points. That
+     is not a Brin–Thompson product, and its finiteness is a new problem.
 
 ## Lesson for general BH
 

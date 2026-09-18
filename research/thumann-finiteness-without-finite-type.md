@@ -14,7 +14,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane bh-invent-07, 2026-09-18). This is a lane proof that modifies one estimate of
-Thumann's proof; it has not been independently reviewed. The source is W. Thumann, *Operad groups
+Thumann's proof; one referee PASS (bh-ref-engines, 2026-09-18). The source is W. Thumann, *Operad groups
 and their finiteness properties*, arXiv:1409.1085, read in its LaTeX source. Line numbers below
 refer to that file. No priority is claimed, and no literature search was done beyond the source.
 
@@ -75,9 +75,10 @@ Everything is Thumann's proof of Theorem `41762` (l.2664), except one estimate.
    - `𝒰/𝒢` is contractible. The subsection "A contractible complex" (l.3196–3623) uses only the
      cancellative calculus of fractions.
    - The degree filtration is cocompact and has `F_n` stabilizers, by (Cc)_n and (St)_n.
-   - So `Γ` is `F_n` once the pairs `((𝒰/𝒢)_k, (𝒰/𝒢)_{k−1})` are `(n − 1)`-connected for large `k`
-     (Thm `46200`, l.2689, and its `F_n` form). By the Morse method (Thm `34332`, l.1211), it
-     suffices that the descending link `lk↓(𝒦)` is `(n − 2)`-connected for all objects `𝒦` of
+   - So `Γ` is `F_n` once the pairs `((𝒰/𝒢)_k, (𝒰/𝒢)_{k−1})` are `n`-connected for large `k`.
+     Then `(𝒰/𝒢)_k` is `(n − 1)`-connected and cocompact (Thm `46200`, l.2689, and its `F_n` form).
+     Attaching along an `(n − 1)`-connected descending link gives an `n`-connected pair (Lemma
+     `76169`, l.1027). So it suffices that `lk↓(𝒦)` is `(n − 1)`-connected for all objects `𝒦` of
      large degree.
 2. **Whole link = corona.** `lk↓(𝒦) ≃ Corona(𝒦)`, the full subcategory of elementary arrows out of
    `𝒦`. This is Prop. `29625` with Lemma `90173` (l.4529–4600). It uses only the defining property
@@ -112,8 +113,10 @@ Everything is Thumann's proof of Theorem `41762` (l.2664), except one estimate.
      - hence `𝔩 ≥ N − n D_n`, so `ν_d(𝔩) ≥ n` once `N` is large;
      - then `conn ≥ 𝔫 + ν_d(𝔩) ≥ n + 1`, a contradiction.
    - So every descending link in the build-up is `(n − 2)`-connected for large `N`.
-     - By Thm `34332`, `Corona(𝒦)` then has the homotopy groups of `Core(𝒦)` up to degree `n − 2`.
-     - So `Corona(𝒦)` is `(n − 2)`-connected for large `N`, hence so is `lk↓(𝒦)`, by step 2.
+     - By Lemma `76169` each attachment is an `(n − 1)`-connected pair, so the pair
+       `(Corona(𝒦), Core(𝒦))` is `(n − 1)`-connected.
+     - `Core(𝒦)` is highly connected, so `Corona(𝒦)` is `(n − 1)`-connected for large `N`, and so
+       is `lk↓(𝒦)`, by step 2.
    - For `n = ∞`, run this for every `n`.
 6. **Variant.** Steps 2–5 use only (VE) and the three standing assumptions. Step 1 uses exactly
    (Cc)_n and (St)_n. `∎`
@@ -190,3 +193,32 @@ Deligne's lattice, and the unbounded-refinement operads, which are the only ones
 twisted Brin–Thompson groups. The finiteness gate becomes a **local homotopy test on each
 elementary class**: finite presentation needs only that the splitting categories of large
 elementary classes are connected.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked this against Thumann's proof of Lemma `15097` in his source (l.4428–4475).
+- **Where finite type enters.** For a pure object, Thumann bounds the connectivity of the descending link by
+  `𝔫 + ν_d(𝔩)`, using `𝔫 m_E + 𝔩 ≥ deg 𝒦`.
+  - This comes from the up-link, which is the join of the `𝒜_i`, each only nonempty, so `(𝔫−2)`-connected.
+  - The down-link is `ν_d(𝔩)`-connected.
+  - Finite type enters exactly there, and through `m_E` in the Morse function. The node locates this
+    correctly.
+- **The replacement bound is correct.** `conn ≥ Σ(c_i + 2) − 2 + (max(−2, ν_d(𝔩)) + 2)`, by joins.
+  - The case split under `(G)_n` is correct.
+  - If some `d_i ≥ D_n`, then `conn ≥ n − 2`.
+  - Otherwise `𝔫 < n`, so `𝔩 ≥ N − nD_n`, and then `conn ≥ 𝔫 + ν_d(𝔩) ≥ n + 1`.
+  - So `(Corona, Core)` is `(n−1)`-connected, and `lk↓` is `(n−1)`-connected for large `N`.
+  - Replacing `m_E` by `N = deg 𝒦` in the Morse function is harmless for fixed `𝒦`.
+  - The indices as corrected in 5a7d8353eb are right.
+- **Identification.** Thumann's `𝒜_i` is the node's `𝒜(θ_i)`. Every proper elementary pre-factorization of
+  a strictly elementary `θ_i` lowers `#_se^(d_i)`, so it is descending.
+- **Imported, not re-checked here:**
+  - the core connectivity `ν_d` for an infinite, tame archetype set of bounded length (Thm `85504`);
+  - the variant's (Cc)_n and (St)_n;
+  - the `F_n` forms of Brown's criterion and of the stabilizer argument.
+
+  The node says these are standard adaptations.
+- **The `SV_G` calibration** is correctly labelled a consistency check.
+
+**Credit.** Thumann (arXiv:1409.1085). Brown's criterion and the Stein–Farley descending-link method.
+Belk–Zaremsky (arXiv:2001.04579) for the twisted Brin–Thompson finiteness theorem it recovers.

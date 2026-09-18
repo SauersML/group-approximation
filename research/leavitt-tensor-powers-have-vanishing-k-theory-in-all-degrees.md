@@ -50,3 +50,14 @@ Route: `leavitt-tensor-powers-k-vanishing-via-farrell-jones-proof`.
 - No novelty is claimed: this is a standard use of the Farrell–Jones conjecture
   with coefficients. None of the sources read states it for Leavitt tensor
   powers with `d >= 3`.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review. The full check is on the route
+`leavitt-tensor-powers-k-vanishing-via-farrell-jones-proof`.
+
+The caution above, that Bartels–Lück record Laurent inheritance of regular coherence as open in
+general, does not apply here. The polynomial extensions `C[t_1, …, t_p]` are proved regular coherent
+directly. The Laurent extensions `C[Z^m]` follow from them by central localization, which is an
+elementary step, checked on the route. So the claim rests only on imported theorems plus elementary
+steps.

@@ -13,8 +13,7 @@ distinct_from:
   hard-cusps-are-canonical-and-flux-free: that describes the local model at the emitter; this shows the emitter model can only give finite presentation for isolated vertex groups.
   stabilizer-engines-embed-in-every-branch-compactification: that builds the blow-up family F_S^K and shows the emitter K = S⁺ is never of finite type; this shows the emitter engine itself is infinitely presented unless S is isolated. It does not apply to finite-type blow-ups.
 ---
-**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; **not reviewed**; referee
-requested). The characterization of isolated groups is Cornulier–Guyot–Pitsch (J. Algebra
+**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; one referee PASS, bh-ref-engines 2026-09-18, see Referee section). The characterization of isolated groups is Cornulier–Guyot–Pitsch (J. Algebra
 2007; not re-read at source): a finitely generated group is isolated iff it is finitely
 presented and finitely discriminable. No priority is claimed.
 
@@ -164,3 +163,34 @@ is the action of `s ∈ B_n`.
   with an isolated dense orbit.
 - **What to test next.** The next test is whether that isolated-seed rigidity can itself be
   approximated, that is, whether the transfer argument extends to finite-type blow-ups.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked this node together with `free-product-emitter-full-groups-need-isolated-vertex-groups`
+(an independent proof of the same isolation theorem) and `stabilizer-engines-need-torsion-vertex-groups`.
+- **Part 1 (approximation) holds.**
+  - Free products of convergent marked groups converge.
+  - `|B_n| → ∞` because `B` is infinite.
+  - Every bounded fact of a word's table computation transfers for `n ≥ n(w)`. This includes
+    emptiness in both directions, because used children at a vertex are finitely many for fixed
+    `w`, and the node correctly takes `n` large for each `w`.
+  - `w ≠ 1` gives a nonempty piece with a short nontrivial label, which stays nontrivial and acts
+    nontrivially, since edge stabilizers are trivial in the tree of `Z/k * B_n` too.
+- **Part 2 (isolation) holds.**
+  - `φ_n` exists for `n ≥ max n(r)`.
+  - The dichotomy uses simplicity of `D(F_B)`, which is referee-passed in the parent node.
+  - The trivial-centralizer argument is correct: three sibling shadows lie inside any clopen, and
+    a commutator of swaps is supported there.
+  - An injective `φ_n` restricts on `B` to the marked map onto `B_n`, which is an isomorphism, a
+    contradiction.
+  - The Cornulier–Guyot–Pitsch characterization (Prop. 2.2) was read at source by the parallel
+    node.
+- **Corollary (a), Reid's group (MO 339541) not finitely presented, holds.** `Z/n → Z` in the space
+  of marked groups. The identification of Reid's `d = 0` group with `F_Z` is referee-passed in
+  `reid-higman-thompson-variant-d-zero-abelianization`. This is confirmed by three independent
+  lane proofs (this node, 5d7507af3, 580e4fd2a).
+- **Minor fix in 3(b).** The Sturmian example has solvable word problem only for a **computable**
+  rotation angle, for example the golden-mean rotation. Matui proved that `D([[φ]])` is finitely
+  generated and simple, and never finitely presented, for minimal subshifts. Credit Matui (2006)
+  and Grigorchuk–Medynets for these.
+- **Item 3(d)** is correctly marked superseded by the collapse transfer.

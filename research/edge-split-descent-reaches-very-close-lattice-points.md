@@ -12,6 +12,11 @@ distinct_from:
 **ESTABLISHED** (lane bh-major-mcg-2, 2026-09-18). Lane proof, elementary, not
 independently reviewed. No priority claimed.
 
+**Superseded (2026-09-18).** In rank at least three, `half-tube-lattice-points-are-edge-split-vertices`
+(bh-free-61) captures every lattice point within sup-distance `1/2` of the ray, in the cell's
+coordinates, instead of `1/(2(m+1)!K^m)` here. Its strategy only ever pairs coordinates whose rounding errors have the same sign,
+so the errors never grow. The path here controls all coordinates at once. The lemma below stays correct but is no longer needed.
+
 ## Statement
 
 Notation of `edge-splits-cut-every-rational-hyperplane`.

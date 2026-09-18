@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-pure-char-prime-e-high-witt-e-base
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase: failed to synthesize instance of type class"
 ---
 
@@ -14,6 +15,8 @@ Source changed on main since that build: no.
 ```
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:125:27: failed to synthesize instance of type class
 ```
+
+**Kind.** proof error (classification merged from the parallel node `fix-bh-met-pure-char-prime-e-high-witt-e-base`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

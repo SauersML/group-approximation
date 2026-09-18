@@ -181,3 +181,17 @@ is finitely presented.
        dissection of a cell into its descendants must be refined by a split tree
        of the cell whose leaves inside each piece form a split tree of that piece.
      - Proposed route: a split-lemma induction on the least reachable entry sum.
+5. **Synchronization proved in every rank** (lane bh-free-61, 2026-09-18; lane proof,
+   not independently reviewed).
+   - `unimodular-cells-synchronize-under-edge-splits` now holds for every `m`, by
+     `unimodular-cells-synchronize-under-edge-splits-proof`. At points on no rational
+     hyperplane, `half-tube-lattice-points-are-edge-split-vertices` gives a shared vertex
+     and the link is one rank lower. Other points reduce to lower rank through their
+     rational hull.
+   - So the dissection poset ordered by descent is directed for every `m`, including
+     `m = 6g − 7`.
+   - **Still open for this gate:**
+     - the hierarchy step of Attempt 4 (refine a descendant dissection by a split tree
+       compatible with each piece), which is the kind of statement
+       `edge-split-dissections-respecting-an-atom-plane-split-there` isolates at `m = 2`;
+     - finite type or descending-link connectivity.
