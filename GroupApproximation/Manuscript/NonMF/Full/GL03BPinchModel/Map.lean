@@ -189,3 +189,54 @@ theorem planar : M.IsPlanar := by
     have heq : M.edgeCount = 13 := by omega
     rw [heq]
     norm_num
+
+/-- The face boundaries, each read from its representative. -/
+def faceDarts : Fin 7 → List (Fin 26) :=
+  ![[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], [20, 21],
+    [22, 23], [24, 25]]
+
+theorem mem_faceDarts_iff : ∀ (i : Fin 7) (d : Fin 26), d ∈ faceDarts i ↔ faceClass d = i := by
+  decide +kernel
+
+theorem closedOrbitList_faceRep (i : Fin 7) :
+    closedOrbitList M.facePerm (faceRep i) = faceDarts i := by
+  fin_cases i <;> decide +kernel
+
+noncomputable def indexedBoundary (i : Fin 7) : FaceBoundary M (face i) where
+  darts := faceDarts i
+  nonempty := by change faceDarts i ≠ ([] : List (Fin 26)); fin_cases i <;> decide
+  nodup := by fin_cases i <;> decide
+  mem_iff := fun d => (mem_faceDarts_iff i d).trans (faceOf_eq_face d i).symm
+  chain := by fin_cases i <;> decide
+  closes := by fin_cases i <;> decide
+  length_eq_degree := by
+    have h := closedOrbitList.length_eq_orbitDegree M.facePerm (faceRep i)
+    rw [closedOrbitList_faceRep] at h
+    exact h
+
+noncomputable def boundary (f : M.Face) : FaceBoundary M f :=
+  (faceEquiv.left_inv f) ▸ indexedBoundary (faceEquiv f)
+
+@[simp] theorem boundary_face_darts (i : Fin 7) :
+    (boundary (face i)).darts = faceDarts i := by
+  have htransport {f g : M.Face} (h : f = g) (B : FaceBoundary M f) :
+      (h ▸ B).darts = B.darts := by cases h; rfl
+  unfold boundary
+  rw [htransport]
+  exact congrArg faceDarts (faceEquiv_face i)
+
+/-! ## Finite facts used by the refutation -/
+
+/-- Every dart of a triangle has its reverse on the big face `H`. -/
+theorem alpha_faceClass_of_le_two :
+    ∀ d : Fin 26, faceClass d ≤ 2 → faceClass (mAlpha d) = 3 := by
+  decide
+
+/-- The face class is invariant under `sigma ∘ alpha`. -/
+theorem faceClass_sigma_alpha : ∀ d : Fin 26, faceClass (mSigma (mAlpha d)) = faceClass d := by
+  decide
+
+end GroupApproximation.Full.GL03BPinchModel
+
+#audit_axioms GroupApproximation.Full.GL03BPinchModel.planar
+#audit_axioms GroupApproximation.Full.GL03BPinchModel.boundary_face_darts

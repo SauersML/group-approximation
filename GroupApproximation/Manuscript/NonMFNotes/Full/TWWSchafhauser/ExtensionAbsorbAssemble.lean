@@ -63,7 +63,7 @@ of `x` by an isometry, then the Busby map of `x` is strongly absorbing for every
 theorem isStronglyAbsorbingBusby_of_isCompressionDominant {x : BusbyCycle S J}
     (hx : x.IsUnital) (hd : x.IsCompressionDominant) (𝒯 : Set (S →⋆ₐ[ℂ] StdBdd J)) :
     IsStronglyAbsorbingBusby (stdCoronaQuot J) (stdCuntzPair J) 𝒯 (x.busby hx) := by
-  obtain ⟨T, φ, hφ⟩ := exists_isBusbyAmplification_stdBdd J
+  obtain ⟨_, φ, hφ⟩ := exists_isBusbyAmplification_stdBdd J
   exact isStronglyAbsorbingBusby_of_amplification_compress
     (fun d hd' => stdCorona_eq_zero_of_star_mul_self d hd') (stdCoronaQuot J)
     (stdCuntzPairBdd J) hφ (hd.hdom hx φ 𝒯)
@@ -73,7 +73,7 @@ theorem isStronglyAbsorbingBusby_of_isCompressionDominant' {x : BusbyCycle S J}
     (hd : x.IsCompressionDominant) {θ : S →⋆ₐ[ℂ] StdCorona J}
     (hθ : ∀ s, θ s = stdCoronaQuot J (x.bddLift s)) (𝒯 : Set (S →⋆ₐ[ℂ] StdBdd J)) :
     IsStronglyAbsorbingBusby (stdCoronaQuot J) (stdCuntzPair J) 𝒯 θ := by
-  obtain ⟨T, φ, hφ⟩ := exists_isBusbyAmplification_stdBdd J
+  obtain ⟨_, φ, hφ⟩ := exists_isBusbyAmplification_stdBdd J
   refine isStronglyAbsorbingBusby_of_amplification_compress
     (fun d hd' => stdCorona_eq_zero_of_star_mul_self d hd') (stdCoronaQuot J)
     (stdCuntzPairBdd J) hφ fun σ _ => ?_

@@ -60,7 +60,7 @@ def SplitExtension.toSemisplitExtension {I A B : SepNUCStarAlgebra} (E : SplitEx
 
 section Character
 
-variable {A : Type} [CStarAlgebra A] [TopologicalSpace.SeparableSpace A] (χ : A →⋆ₐ[ℂ] ℂ)
+variable {A : Type} [CStarAlgebra A] (χ : A →⋆ₐ[ℂ] ℂ)
 
 /-- The kernel `ker χ` of a character, as a non-unital `⋆`-subalgebra.
 `non_mf_group_notes.tex`, `thm:fixed-radical-membership` (UCT input). -/
@@ -83,7 +83,7 @@ theorem coe_characterKernelSubalgebra :
   Set.ext fun _ => Iff.rfl
 
 /-- A character is continuous (it is a `⋆`-homomorphism of C⋆-algebras). -/
-theorem continuous_character : Continuous fun a : A => χ a :=
+theorem continuous_character : Continuous (χ : A → ℂ) :=
   AddMonoidHomClass.continuous_of_bound χ 1 fun a => by
     rw [one_mul]
     exact NonUnitalStarAlgHom.norm_apply_le χ a
@@ -101,7 +101,7 @@ instance instNonUnitalCStarAlgebraCharacterKernel : NonUnitalCStarAlgebra (Chara
   NonUnitalStarSubalgebra.nonUnitalCStarAlgebra (characterKernelSubalgebra χ)
     (h_closed := isClosed_characterKernelSubalgebra χ)
 
-instance instSeparableSpaceCharacterKernel :
+instance instSeparableSpaceCharacterKernel [TopologicalSpace.SeparableSpace A] :
     TopologicalSpace.SeparableSpace (CharacterKernel χ) := by
   have hcl : TopologicalSpace.IsSeparable (characterKernelSubalgebra χ : Set A) :=
     TopologicalSpace.IsSeparable.of_separableSpace _
@@ -110,13 +110,13 @@ instance instSeparableSpaceCharacterKernel :
 /-- **The kernel of a character** `χ : A → ℂ` of a separable unital C⋆-algebra, bundled as a
 separable non-unital C⋆-algebra.  `non_mf_group_notes.tex`, `thm:fixed-radical-membership`
 (UCT input). -/
-def characterKernel : SepNUCStarAlgebra :=
+def characterKernel [TopologicalSpace.SeparableSpace A] : SepNUCStarAlgebra :=
   SepNUCStarAlgebra.of (CharacterKernel χ)
 
 /-- **The split extension of a character** `0 → ker χ → A → ℂ → 0`, split by the unital
 inclusion `ℂ → A` (Blackadar 22.3.5).  `non_mf_group_notes.tex`,
 `thm:fixed-radical-membership` (UCT input). -/
-def characterSplitExtension :
+def characterSplitExtension [TopologicalSpace.SeparableSpace A] :
     SplitExtension (characterKernel χ) (SepNUCStarAlgebra.of A) (SepNUCStarAlgebra.of ℂ) where
   incl := NonUnitalStarSubalgebra.subtype (characterKernelSubalgebra χ)
   quot := χ.toNonUnitalStarAlgHom

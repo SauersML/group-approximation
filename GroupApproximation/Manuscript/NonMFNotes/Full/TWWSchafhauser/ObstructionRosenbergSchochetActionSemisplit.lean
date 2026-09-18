@@ -67,7 +67,8 @@ theorem IsCPLift.comp (f : S →⋆ₙₐ[ℂ] T) {ψ : T → StdOp J} (hψ : Is
   positive n a v := by
     have e : ∀ i j : Fin n, f (star (a i) * a j) = star (f (a i)) * f (a j) := fun i j => by
       rw [_root_.map_mul, _root_.map_star]
-    show 0 ≤ ∑ i, ∑ j, (standardModule ℕ J).inner (v i) ((ψ (f (star (a i) * a j))).toFun (v j))
+    show 0 ≤ ∑ i, ∑ j,
+      (standardModule ℕ J).inner (v i) ((ψ (f (star (a i) * a j))).toFun (v j))
     simp only [e]
     exact hψ.positive n (fun i => f (a i)) v
 
@@ -189,16 +190,18 @@ theorem ExtSS.hom_ext {G : Type*} [AddCommGroup G] {φ ψ : ExtSS S J →+ G}
 
 /-- The pulled-back semisplit cycle. -/
 def SSCycle.comap (f : S →⋆ₙₐ[ℂ] T) (x : SSCycle T J) : SSCycle S J :=
-  ⟨x.1.comap f, x.2.comap f⟩
+  ⟨x.1.comap f, BusbyCycle.IsSemisplit.comap f x.2⟩
 
 /-- The relation-respecting assignment `x ↦ [x ∘ f]`. -/
 def ExtSS.comapRespecting (f : S →⋆ₙₐ[ℂ] T) : ExtSS.Respecting T J (ExtSS S J) where
   toFun x := ExtSS.mk (x.comap f)
-  map_split x hx := ExtSS.mk_eq_zero_of_isSplit (x := x.comap f) (hx.comap f)
+  map_split x hx := ExtSS.mk_eq_zero_of_isSplit (x := x.comap f) (BusbyCycle.IsSplit.comap f hx)
   map_unitary x y h :=
-    ExtSS.mk_eq_of_isUnitarilyEquivalent (x := x.comap f) (y := y.comap f) (h.comap f)
+    ExtSS.mk_eq_of_isUnitarilyEquivalent (x := x.comap f) (y := y.comap f)
+      (BusbyCycle.IsUnitarilyEquivalent.comap f h)
   map_sum z x y h :=
-    ExtSS.mk_eq_add_of_isDirectSum (z := z.comap f) (x := x.comap f) (y := y.comap f) (h.comap f)
+    ExtSS.mk_eq_add_of_isDirectSum (z := z.comap f) (x := x.comap f) (y := y.comap f)
+      (BusbyCycle.IsDirectSum.comap f h)
 
 /-- **`Ext⁻¹(-, J)` on morphisms**: the pull-back `f^* : ExtSS T J → ExtSS S J`. -/
 def ExtSS.comap (f : S →⋆ₙₐ[ℂ] T) : ExtSS T J →+ ExtSS S J :=
@@ -294,16 +297,15 @@ theorem ExtSS.toExt_bijective_of_forall_isSemisplit
   have h₁ : g.comp ExtSS.toExt = AddMonoidHom.id (ExtSS S J) := by
     refine ExtSS.hom_ext fun x => ?_
     calc g (ExtSS.toExt (ExtSS.mk x))
-        = g (ExtGroup.mk x.1) := by rw [ExtSS.toExt_mk]
+        = g (ExtGroup.mk x.1) := congrArg g (ExtSS.toExt_mk x)
       _ = ExtSS.mk ⟨x.1, h x.1⟩ := ExtGroup.lift_mk (ExtSS.ofExtRespecting h) x.1
       _ = ExtSS.mk x := congrArg ExtSS.mk (Subtype.ext rfl)
       _ = AddMonoidHom.id (ExtSS S J) (ExtSS.mk x) := rfl
   have h₂ : ExtSS.toExt.comp g = AddMonoidHom.id (ExtGroup S J) := by
     refine ExtGroup.hom_ext fun x => ?_
     calc ExtSS.toExt (g (ExtGroup.mk x))
-        = ExtSS.toExt (ExtSS.mk ⟨x, h x⟩) := by
-          rw [ExtGroup.lift_mk (ExtSS.ofExtRespecting h) x]
-          rfl
+        = ExtSS.toExt (ExtSS.mk ⟨x, h x⟩) :=
+          congrArg ExtSS.toExt (ExtGroup.lift_mk (ExtSS.ofExtRespecting h) x)
       _ = ExtGroup.mk x := ExtSS.toExt_mk ⟨x, h x⟩
       _ = AddMonoidHom.id (ExtGroup S J) (ExtGroup.mk x) := rfl
   refine Function.bijective_iff_has_inverse.mpr ⟨g, fun ξ => ?_, fun ξ => ?_⟩
