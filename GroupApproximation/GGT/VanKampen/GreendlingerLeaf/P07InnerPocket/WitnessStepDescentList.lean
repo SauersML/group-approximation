@@ -42,6 +42,7 @@ theorem witnessStepDescent_pos_cons (x a : α) (r : List α) :
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepDescent_pos_cons
 
+open Classical in
 /-- The first index of `x` at a list starting with `x` is `0`. -/
 theorem witnessStepDescent_pos_cons_self (x : α) (r : List α) :
     witnessStepDescent_pos x (x :: r) = 0 := by
@@ -49,6 +50,7 @@ theorem witnessStepDescent_pos_cons_self (x : α) (r : List α) :
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepDescent_pos_cons_self
 
+open Classical in
 /-- The first index is at most the length. -/
 theorem witnessStepDescent_pos_le_length (x : α) (L : List α) :
     witnessStepDescent_pos x L ≤ L.length := by
@@ -64,6 +66,7 @@ theorem witnessStepDescent_pos_le_length (x : α) (L : List α) :
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepDescent_pos_le_length
 
+open Classical in
 /-- Past a prefix avoiding `x`, the first index of `x` shifts by the prefix length. -/
 theorem witnessStepDescent_pos_append_of_not_mem {x : α} (r : List α) (pre : List α)
     (h : x ∉ pre) :
@@ -86,6 +89,7 @@ theorem witnessStepDescent_length_le_pos {x : α} {pre r : List α} (h : x ∉ p
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepDescent_length_le_pos
 
+open Classical in
 /-- A dart of the prefix has its first index inside the prefix. -/
 theorem witnessStepDescent_pos_lt_of_mem {x : α} (r : List α) (pre : List α) (h : x ∈ pre) :
     witnessStepDescent_pos x (pre ++ r) < pre.length := by
@@ -264,12 +268,12 @@ theorem witnessStepDescent_two_le_turnSum {f : α → ℕ} {N : ℕ} {p q : α �
       · exact absurd (hpr.trans hqr.symm) hpq
       · have ht : witnessStepDescent_turn f N r = N :=
           witnessStepDescent_turn_of_descent (by rw [← hpr]; exact hp)
-        have := witnessStepDescent_le_turnSum hq ps hq'
+        have := witnessStepDescent_le_turnSum (f := f) (N := N) hq ps hq'
         omega
     · rcases List.mem_cons.mp hqm with hqr | hq'
       · have ht : witnessStepDescent_turn f N r = N :=
           witnessStepDescent_turn_of_descent (by rw [← hqr]; exact hq)
-        have := witnessStepDescent_le_turnSum hp ps hp'
+        have := witnessStepDescent_le_turnSum (f := f) (N := N) hp ps hp'
         omega
       · have := ih hp' hq'
         omega
