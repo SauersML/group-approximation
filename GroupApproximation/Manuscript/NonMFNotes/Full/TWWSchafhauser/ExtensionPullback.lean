@@ -31,7 +31,8 @@ Proved here, with no hypotheses:
   `extensionPullback_comm` is the commuting square.
 * `extensionPullbackFst_surjective`: if `π` is onto, so is `P → S`.
 * `extensionPullbackSplitting`: a ⋆-homomorphic lift `ψ` of `θ` gives a splitting
-  of `P → S`.  Conversely, `lifts_of_splitting` recovers a lift from a splitting.
+  of `P → S`.  Conversely, `lifts_of_extensionPullbackSplitting` recovers a lift
+  from a splitting.
 * `extensionPullbackLinearSplitting`: a linear lift of `θ` gives a linear
   splitting.  This is the shape of nuclear liftability, where the lift is ucp.
 -/
