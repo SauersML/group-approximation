@@ -107,4 +107,85 @@ theorem roseJunctionRefute_isoC4 : ∀ y ∈ roseJunctionRefute_F4, y ≠ 10 →
         roseJunctionRefute_vClass 10 := by
   decide
 
+/-- A backward window of `S` inside the moved darts of the class `3` has at most three darts. -/
+theorem roseJunctionRefute_w1c3 : ∀ n : ℕ, n < 8 → ∀ m : ℕ, m < 7 →
+    (∀ x ∈ roseJunctionRefute_win1 n m, x ∈ roseJunctionRefute_F3) →
+      (roseJunctionRefute_win1 n m).length ≤ 3 ∧
+        ((roseJunctionRefute_win1 n m).length = 3 →
+          roseJunctionRefute_win1 n m = [6, 18, 0]) := by
+  decide
+
+/-- An exterior window inside the moved darts of the class `3` has at most five darts. -/
+theorem roseJunctionRefute_w2c3 : ∀ p : ℕ, p < 6 → ∀ q : ℕ, q < 6 → p + q ≤ 5 →
+    (∀ x ∈ roseJunctionRefute_win2 p q, x ∈ roseJunctionRefute_F3) →
+      (roseJunctionRefute_win2 p q).length ≤ 5 ∧
+        ((roseJunctionRefute_win2 p q).length = 5 →
+          roseJunctionRefute_win2 p q = [8, 20, 10, 12, 22]) := by
+  decide
+
+/-- A backward window of `S` inside the moved darts of the class `5` has at most six darts. -/
+theorem roseJunctionRefute_w1c5 : ∀ n : ℕ, n < 8 → ∀ m : ℕ, m < 7 →
+    (∀ x ∈ roseJunctionRefute_win1 n m, x ∈ roseJunctionRefute_F5) →
+      (roseJunctionRefute_win1 n m).length ≤ 6 ∧
+        ((roseJunctionRefute_win1 n m).length = 6 →
+          roseJunctionRefute_win1 n m = [2, 16, 4, 6, 18, 0]) := by
+  decide
+
+/-- An exterior window inside the moved darts of the class `5` has at most two darts. -/
+theorem roseJunctionRefute_w2c5 : ∀ p : ℕ, p < 6 → ∀ q : ℕ, q < 6 → p + q ≤ 5 →
+    (∀ x ∈ roseJunctionRefute_win2 p q, x ∈ roseJunctionRefute_F5) →
+      (roseJunctionRefute_win2 p q).length ≤ 2 ∧
+        ((roseJunctionRefute_win2 p q).length = 2 →
+          roseJunctionRefute_win2 p q = [8, 20] ∨ roseJunctionRefute_win2 p q = [12, 22]) := by
+  decide
+
+/-- No free dart of the class `3` meets both junctions. -/
+theorem roseJunctionRefute_endC3 : ∀ b ∈ roseJunctionRefute_F3,
+    ([6, 18, 0] ++ [b] ++ [8, 20, 10, 12, 22] : List roseJunctionRefute_X.toCombMap.Dart).Nodup →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha 0) =
+        roseJunctionRefute_vClass b →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha b) =
+        roseJunctionRefute_vClass 8 → False := by
+  decide
+
+/-- No free dart of the class `5` meets both junctions before `[8, 20]`. -/
+theorem roseJunctionRefute_endC5a : ∀ b ∈ roseJunctionRefute_F5,
+    ([2, 16, 4, 6, 18, 0] ++ [b] ++ [8, 20] : List roseJunctionRefute_X.toCombMap.Dart).Nodup →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha 0) =
+        roseJunctionRefute_vClass b →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha b) =
+        roseJunctionRefute_vClass 8 → False := by
+  decide
+
+/-- No free dart of the class `5` meets both junctions before `[12, 22]`. -/
+theorem roseJunctionRefute_endC5b : ∀ b ∈ roseJunctionRefute_F5,
+    ([2, 16, 4, 6, 18, 0] ++ [b] ++ [12, 22] : List roseJunctionRefute_X.toCombMap.Dart).Nodup →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha 0) =
+        roseJunctionRefute_vClass b →
+      roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha b) =
+        roseJunctionRefute_vClass 12 → False := by
+  decide
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_isolated
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_arcDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_win1
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_win2
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_F2
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_F3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_F4
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_F5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_filtC2
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_filtC3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_filtC4
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_filtC5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_isoC2
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_isoC4
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_w1c3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_w2c3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_w1c5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_w2c5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_endC3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_endC5a
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_endC5b
