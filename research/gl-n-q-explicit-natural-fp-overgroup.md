@@ -47,7 +47,10 @@ definition above.
   - Independently, gq-referee-c's direct proof for `m >= 5`
     (`research/artifacts/gq-referee-c-steinberg-finite-presentation-and-kazhdan-theorem.md`,
     5d6390c47). Both routes use ranks 10 and 6n+7, which are at least 5. That
-    proof has not yet been checked by a second referee.
+    proof is a standard argument written out, not new. gq-referee-b checked it
+    against Milnor §5 (PASS, `research/artifacts/gq-referee-b-steinberg-direct-finite-presentation.md`,
+    95b06dff9), so at these ranks the answer does not depend on the unread
+    Krstić–McCool text.
 - **Priority and framing.** Some finitely presented overgroup exists by Higman,
   and Chatterji–Kassabov give a Kazhdan one. Mikaelian (arXiv:2507.04347 §1.4)
   announced an explicit, non-natural `Γ_n` with no construction given. So the
