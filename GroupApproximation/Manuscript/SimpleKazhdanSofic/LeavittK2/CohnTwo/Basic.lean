@@ -114,7 +114,8 @@ theorem toLeavitt_surjective : Function.Surjective (toLeavitt k) := by
 theorem toLeavitt_p : toLeavitt k (cohnP k) = 0 := by
   have h :
       BinaryLeavitt.generator k BinaryLeavitt.s0 * BinaryLeavitt.generator k BinaryLeavitt.t0 +
-        BinaryLeavitt.generator k BinaryLeavitt.s1 * BinaryLeavitt.generator k BinaryLeavitt.t1 = 1 :=
+        BinaryLeavitt.generator k BinaryLeavitt.s1 *
+          BinaryLeavitt.generator k BinaryLeavitt.t1 = 1 :=
     (BinaryLeavitt.family k).sum_range
   rw [cohnP_eq, map_sub, map_sub, map_one, map_mul, map_mul, toLeavitt_generator,
     toLeavitt_generator, toLeavitt_generator, toLeavitt_generator, sub_sub, h, sub_self]

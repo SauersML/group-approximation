@@ -231,3 +231,17 @@ extensions.
       non-lantern factorizations of `T_y` whose pairs have common fixed loops; the
       centralizer condition of attempt 14; then freeness and injectivity.
     - **Handoff.** The whole two-leaf test case is handed to bh-free-21 (see its board).
+16. **Germ extensions of V and Brin--Thompson hosts** (bh-free-21, 2026-09-18). *Constraint
+    plus one open local question; nothing constructed.* See
+    `research/artifacts/gq-bh-bh-free-21-automatic-germ-extensions.md` §7.
+    - **What such hosts allow.** Hosts from
+      `prefix-replacement-actions-recode-into-germ-extensions-of-v` have germ groups that are
+      spiral groups `C(C_2,Z) ⋊ V ≤ 2V` (`rational-germ-groups-of-germ-extensions-of-v-embed-in-2v`).
+      In those groups the period shift is a product of two commutators. So, unlike the local
+      product hosts of attempt 9, they are not excluded by Svetlov's charge.
+    - **What they require.** A Seifert fiber has a finite singular set, almost invariant
+      under its block (centralizer lemma, §7.3). Product and C-last normal forms violate this.
+      The fiber-first form on each `F_v × Z` respects it, with two singular points each.
+    - **Open.** Realizing `E` by coordinate flows in `2V` forces product centralizers of `E`
+      (sketch). The local question is whether `C_2V(z_1^p z_2^q)` contains a free subgroup
+      whose surface word is `z_1^r z_2^s` for a non-virtually-fibered gluing.

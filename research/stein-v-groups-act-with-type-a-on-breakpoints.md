@@ -55,13 +55,19 @@ since `1/λ` is a unit with property (F). So every subgroup of `V(Z[λ],⟨λ⟩
 For these slopes this adds little to that node: `D(V)` is itself a finitely presented simple group of finite
 index there.
 
-**Norm +1 slopes, such as `λ = 2 − √3`: OPEN.**
-- No finite presentation of `V(Z[λ],⟨λ⟩,ℓ)` is known to this lane. Cleary covers only norm −1 F-versions, and the
-  RSG route needs (F), which fails for norm +1 quadratic units (Akiyama, Proposition 1).
-- If (F1) and (F2) were proved for them, the theorem here would give Boone--Higman for all subgroups, with
-  `D(V)` of infinite index.
-- The earlier corollary "every real quadratic field" is **withdrawn** for norm +1 fields.
-- For those fields the Sturmian groups `IET(Z+αZ)` remain covered by bh-free-03's substitutive route
+**Norm +1 slopes, such as `λ = 2 − √3`: ESTABLISHED (09-18) by the negative-base nodes.**
+- **Update.** `negative-base-pisot-stein-groups-are-finitely-presented` proves (F1) for these slopes, through the
+  square of the coding `y ↦ {−βy}`, and (F2) follows since every length is covered. So the theorem here applies,
+  with `D(V)` of infinite index (`V^ab ↠ Z`).
+- `algebraic-interval-exchange-groups-satisfy-boone-higman` puts `V(Z[λ],⟨λ⟩,ℓ)` inside the flip group `G^±_β`,
+  `β = λ^{−1}`, which is a finitely presented contracting RSG on a negative-base coding
+  (`negative-base-pisot-stein-groups-are-contracting-rsgs`). So every subgroup embeds in a finitely presented
+  simple group, and the type (A) theorem here is not needed for that.
+- History: Cleary covers only norm −1 F-versions, and the positive-base RSG route needs (F), which fails for norm
+  +1 quadratic units (Akiyama, Proposition 1). `V` is not an RSG in the flip coding itself, since its canonical
+  similarities have slopes `(−β)^n`; the square of the coding fixes this.
+- The corollary "every real quadratic field" holds again, now with (F1) from the negative-base node. The
+  Sturmian case was first covered by bh-free-03's substitutive route
   (`quadratic-rotation-iet-groups-satisfy-boone-higman`).
 
 ## Priority
