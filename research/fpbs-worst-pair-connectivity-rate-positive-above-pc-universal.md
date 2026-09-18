@@ -52,3 +52,26 @@ each imply (K).
     finite-cluster susceptibility, or merely its ball truncation.
 
   Each of (a) and (b) can fail, and neither is in the graph.
+
+## Attempts
+
+1. **Conditional chemical slope at the critical worst pairs
+   (2026-09-18, swarm-0917-w7-w7-bs-follow).**
+   - **Established:** `fpbs-worst-pair-critical-rate-and-chemical-slope-tradeoff`.
+     - It proves `kappa_(p_c)(n) <= gr^(-n)` from subcritical sharpness
+       alone, by Fekete and lower semicontinuity. So `gamma(p_c) >= log gr`
+       is now load-bearing, not merely recalled.
+     - It proves `gamma(t) + l(t) log(t/p_c) >= gamma(p_c)` for all
+       `t > p_c`. Here `l(t)` is the conditional chemical slope of the
+       `p_c`-minimisers.
+     - The inequality is an equality on `T_d` at every `t`.
+   - **New route:** `fpbs-worst-pair-rate-via-chemical-slope`, through the OPEN
+     kernel (CS), `fpbs-worst-pair-chemical-slope-below-threshold-universal`.
+   - **Obstruction:** a collapse forces `l(p_c+epsilon) >= p_c log(gr)/epsilon`.
+     Every unconditional stretch or short-path construction is capped at the
+     same threshold (tradeoff item 5), so it cannot prove (CS).
+   - **Correction to the Position section:** input (b) of the (a)/(b) split
+     is already in the graph. `fpbs-supercritical-finite-susceptibility`
+     (Hermon–Hutchcroft, via `fpbs-hermon-hutchcroft-finite-tail-input`) gives
+     `E_p[|K_o|; |K_o| < infinity] < infinity` for every `p > p_c`. So the
+     split needs only (a), which is a ball form of (K').
