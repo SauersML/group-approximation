@@ -85,3 +85,11 @@ route.*
    representability theorem (cited, unread) this covers every finitely generated commutative
    algebra and every finitely generated right noetherian PI algebra. The complexity benchmark is
    still untouched, since the hosts are those of Attempt 6.
+8. **A transcendental field in characteristic p** (2026-09-18, lane `bh-algebra`). *Not a
+   finitely generated input.* For every prime `p`, the whole field `F_p(t)`, and every
+   `F_p(t)<x_1..x_m>`, embeds in one explicit finitely presented simple `F_p`-algebra `R_p` with
+   center `F_p` (`char-p-rational-function-field-in-fp-simple-algebra`, lane proof).
+   The construction: Horner registers realize every monic polynomial as a vacuum value, one
+   resolvent inverts them, and a squaring letter `t ↦ t^2` keeps `t` out of the center. It is the
+   characteristic-`p` counterpart of `rational-function-fields-embed-in-fp-simple-rings`, where the
+   characteristic-zero nonvanishing device (`N + 1 >= 1`) is unavailable.
