@@ -8,10 +8,13 @@ distinct_from:
   euler-ring-steinberg-rf-residual-is-fng: that is the open question whether the finite residual of St_N(D) is finitely normally generated; this computes the smallest test cases for it and does not decide it.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-euler-ring-symbols-in-small-finite-quotients.md
+  - research/artifacts/gq-referee-b-euler-ring-symbols-in-small-finite-quotients.md
 ---
 
-**ESTABLISHED (2026-09-18)** through `euler-ring-symbols-in-small-finite-quotients-proof`. Lane proof (gq-k2-q),
-not independently reviewed. Inputs:
+**ESTABLISHED (2026-09-18)** through `euler-ring-symbols-in-small-finite-quotients-proof`. Lane proof (gq-k2-q). *Reviewed:* PASS by
+`gq-referee-a` (`research/artifacts/gq-referee-a-euler-ring-symbols-in-small-finite-quotients.md`); nits N1–N5 are applied. Citation review PASS by
+`gq-referee-b` (`research/artifacts/gq-referee-b-euler-ring-symbols-in-small-finite-quotients.md`). Inputs:
 - the identities (S1)–(S4) and Stein's generation theorem for radical ideals, and the order of `K_2(O/P^m)`, from the
   Dennis–Stein survey, LNM 342, pp. 249, 252 and 254, read at the source;
 - textbook facts, not re-read: Morita invariance of `K_2`, the Artin–Hasse formula, and the two level bounds for
