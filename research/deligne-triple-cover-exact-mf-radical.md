@@ -117,3 +117,27 @@ z in Rad_MF(E_3).                                      (DER2)
   - Uniformity of this class is now `mod-s2-torelli-positive-relations-have-bounded-mass` (OPEN).
   - This class cannot refute the flagship unless `A_+ -> infinity`. The class stays open, but it is now
     a combinatorial question about short positive products of separating twists.
+- **2026-09-18, swarm-0917-w13-w13-deligne-follow (reframing): the monomial gate splits into a slope condition and a
+  period condition.** See `deligne-monomial-parameter-group-is-governed-by-maslov-slope` (ESTABLISHED, unreviewed).
+  - *Theorem.* Let `m(t) = inf_X mu_t(X)` be the best uniform relator defect of monomial `t`-models over finite
+    `Sp_4(Z)`-sets. It is subadditive and even, and it is `1/2`-periodic by Deligne's residual `2Z` and the Weil
+    double cover.
+    - Its zero set `P_mon` is a closed subgroup with `(1/2)Z/Z <= P_mon <= P_op`.
+    - The slope `s = lim_(t->0) m(t)/t` exists and equals `sup_t m(t)/t`. So `P_mon = R/Z` iff `s = 0`.
+    - `m(1/3) = m(1/6) <= mu_t(X)/(6t) + c_K t` for every `X` and every `t <= 1/6`.
+  - *New split.* The uniform third cellular floor `m(1/3) > 0` is necessary for the flagship. It holds iff two
+    conditions hold, each of which can fail on its own:
+    - (A) `s > 0`, i.e. `P_mon` is finite;
+    - (B) if `P_mon` is finite, `3` does not divide `|P_mon|`.
+
+    (A) is implied by the output of `sp4-quasirep-windings-are-sublinear`. (B) is implied by that output together
+    with `deligne-finite-parameter-group-has-period-prime-to-three`. So each operator-norm prerequisite of the
+    sublinear-windings route has a monomial shadow, which is a finite cellular-lattice question.
+  - *Refutation handle.* Any family of monomial models at small parameters `t_n -> 0` with defect `o(t_n)` refutes
+    the flagship. The target is a Diophantine one: find integral classes on Schreier complexes that approximate
+    `t kappa_R` better than linearly.
+  - *Not decided.* The value of `s` is not decided, nor is (B). A uniform systole of the integral lattices `L_X`
+    would force `s = c_K`.
+  - *Checked against the graph.* Bounded-mass detecting-cycle certificates are already known to die along the
+    congruence tower (the systole grows; see `deligne-class-finite-action-norms-vanish`), so they are not repeated
+    here.
