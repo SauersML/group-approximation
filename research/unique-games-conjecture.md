@@ -252,3 +252,25 @@ it is supplied, and the exponential pairing-support obstruction persists.
 * **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
   (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
   second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
+* **Fixed-exponent reductions: a size gate under ETH (class kill, 2026-09-18,
+  wave 6).** `ugc-hardness-reductions-need-epsilon-dependent-size-exponent`
+  (ESTABLISHED as a conditional theorem) imports ABS
+  (`abs-subexponential-unique-games-and-sse-algorithms`).
+  - *What it proves.* Assume ETH. A 3SAT reduction with output size `n^A` has:
+    - `A >= c gamma^(-1/6)` for Gap-UG at completeness `1 - gamma` vs `1/2`;
+    - `A >= c eps^(-1/6)` for every 2-to-1 hardness that the BKM noise test
+      certifies at `eps`. The test has size `|E|^2 m^(6l)`. This covers
+      Gap-Rich at `1 - eta` and at `1`, and the smooth-design and finite-moment
+      holes, so it applies to all four BKM-test routes;
+    - `A >= c/eta` for SSE on regular graphs, repaired to exact measure
+      `delta`.
+  - *Invariant.* The size exponent.
+  - *Where it dies.* At decoding: `exp(k N^(O(eps)))` time on the output
+    is `2^(o(n))`.
+  - *Survivors.* Exponents growing as `eps^(-Omega(1))`, such as parallel
+    repetition whose number of rounds tends to infinity; failure of ETH;
+    irregular SSE outputs; completeness bounded away from 1.
+  - *Consequence.* A route from `two-to-two-games-theorem` must pay the forced
+    blow-up at completeness amplification, from `1/2` to `1 - gamma`.
+  - Where it stops: it constrains the shape of a proof and proves nothing
+    toward the conjecture.
