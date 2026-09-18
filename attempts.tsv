@@ -360,3 +360,4 @@
 35309909235	2026-09-18T05:18:23Z	GroupApproximation/Sofic/FiniteNormalAverageCorner.lean	norm_subgroupEigenbasisMicrostate_mul_defect_eq
 35331203362	2026-09-18T09:46:47Z	GroupApproximation/Sofic/FiniteNormalAverageCorner.lean	norm_normTrace_sub_le_sqrt_hsDistSq
 35352844925	2026-09-18T13:55:32Z	GroupApproximation/Sofic/FiniteOrbitInvariantKernel.lean	exists_finite_invariant_subgroup_of_finite_orbits
+35375728578	2026-09-18T17:41:42Z	GroupApproximation/Sofic/FiniteOrderNormalGenerator.lean	reindexUnitarySequenceHom_maps_null
