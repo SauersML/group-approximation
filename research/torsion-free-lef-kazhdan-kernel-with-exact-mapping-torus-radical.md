@@ -10,7 +10,6 @@ distinct_from:
   torsion-free-lef-kazhdan-non-rf-seed: that seed is torsion-free, LEF and Kazhdan but has finite quotients, so its mapping-torus radicals stay inside its centre.
   torsion-free-sofic-extrinsic-kazhdan-defect-kernel: that asks for a sofic kernel with an extrinsic compression defect; this asks for a LEF kernel and a bare radical equation, with soficity automatic.
 artifacts:
-  - research/permanence-closure-radical-witnesses-have-lef-kernels.md
   - research/quotient-permuting-and-ambient-inner-mapping-tori-are-lef.md
   - research/char-zero-subshift-elementary-group-is-lef-kazhdan-quotientless.md
 ---
