@@ -84,7 +84,7 @@ theorem higmanVCTauFix3_inc3 {d : ℕ} {p t : List (Fin d)} (w : List (Fin d))
 `¬ p <+: a b c w`. -/
 theorem higmanVCTauFix3_inc3c {d : ℕ} {a b c : Fin d} {p : List (Fin d)} (w : List (Fin d))
     (hp : p.length = 3) (h : ¬ p <+: a :: b :: c :: w) : ¬ [a, b, c] <+: p ∧ ¬ p <+: [a, b, c] :=
-  higmanVCTauFix3_inc3 w (by simp [hp]) h
+  higmanVCTauFix3_inc3 (t := [a, b, c]) w (by simp [hp]) h
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3_inc3c
 

@@ -13,6 +13,8 @@ Lane `bh-met-92r`.  Indices: `1 = inl 0`, `2 = inl 1`, `3 = inr ()`.
   resp. `(1, 3)` (`suslinCongPow_e₁_stab_val`, `suslinCongPow_e₂_stab_val`).
 -/
 
+set_option linter.unusedSimpArgs false
+
 namespace GroupApproximation
 namespace BooneHigman
 namespace Metabelian
