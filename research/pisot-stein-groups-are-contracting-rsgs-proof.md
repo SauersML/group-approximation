@@ -20,7 +20,8 @@ Notation:
      of the follower interval of the state `v`. There are finitely many states.
    - The level-`n` intervals partition `[0,1)`, and their left endpoints are exactly the `z` with `len(z) ≤ n`.
    - Two admissible sequences have the same value iff it is such an endpoint. So `π` is an order-preserving
-     homeomorphism from `X_β` onto `[0,1)` Cantorized at `Fin(β) = Z[β] ∩ [0,1)`, using (F).
+     homeomorphism from `X_β` onto `[0_+,1_−]`, the interval `[0,1]` Cantorized at the interior points of `Fin(β) =
+     Z[β] ∩ [0,1)`, using (F). (Referee-c W1.)
    - Elements of `V_β` are piecewise increasing affine maps `x ↦ β^k x + c`, with `c ∈ Z[β]` and breakpoints in
      `Z[β]`. So they are homeomorphisms of `X_β` (Tanner's realization).
    - A cone-to-cone canonical similarity `[u] → [u']` with `t(u) = t(u')` is
