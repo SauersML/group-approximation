@@ -43,9 +43,15 @@ lemmas and with no `E`:
 * It is not a restatement of the `W''⇔…⇔W⁷` chain.  It needs no `E`-lift and no central
   element.
 
-Truth check (python, `SP/bh-met-93f/core_check.py`, d = 2, 3): assume `Q ≅ V_d` and use
-Claim F.  Every sampled instance has a tree pair with equal length multisets, i.e. lies in
-`E(S)`.
+Truth check (python, `SP/bh-met-93f/core_check.py`): assume `Q ≅ V_d` and use Claim F, so
+that `f ∈ E(S)` iff `f` has a tree pair with equal length multisets.  Both product orders
+were tested.
+* d = 2: 600 of 600 products lie in `E(S)`.
+* d = 3: 297 of 300 lie in `E(S)`.  None was refuted, and 3 ran out of search budget.
+* Random elements of `V_d`: 300 of 300 lie in `E(S)`, for d = 2 and for d = 3.
+
+There is no counterexample to `E(S) = V_d`.  Over `ℤ`, with positivity ignored, the
+equalising equations are always solvable.  Positivity is not proved.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
