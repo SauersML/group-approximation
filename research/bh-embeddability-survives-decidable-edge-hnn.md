@@ -245,3 +245,5 @@ only through a proof that does not pass through the conjecture.
   arbitrary, passes this first test. Full injectivity there is OPEN.
 - **Two-sided case.** When both `A` and `B` have infinite index, the condition constrains the
   choice of `α`. Whether a generic `α` gives an injective map is OPEN.
+
+- **Refinement (bh-free-05).** `domain-exact-hnn-hosts-have-multivalley-kernels`: in the one-sided case every kernel element of the Hall-host map is hyperbolic on `T_G`, with at least two height-maxima per period. That is the precise remaining gap there. Also checked: with `F` elliptic in a `BS_{F_2}` host, the forced subgroup `P' *_D tF_1t^-1` must be free. That imposes nothing, because M. Hall lets one choose `P'` with `D` a free factor, so it is not an obstruction.
