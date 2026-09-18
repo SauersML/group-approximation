@@ -118,3 +118,53 @@ theorem swapGen_mem_step [Finite X] [Nontrivial X] {G : Subgroup (Equiv.Perm (Ca
     exact G.mul_mem (hG p q' hpq hqp) hmem
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_step
+
+/-- Induction on the bound `N + B` for the lengths of the targets. -/
+theorem swapGen_mem_of_bound [Finite X] [Nontrivial X] {G : Subgroup (Equiv.Perm (Cantor X))}
+    (hG : ∀ (v w : List X) (h1 : ¬ v <+: w) (h2 : ¬ w <+: v), coneSwap v w h1 h2 ∈ G) (B : ℕ) :
+    ∀ (N : ℕ) (f : Equiv.Perm (Cantor X)),
+      (∀ w : List X, w.length = N → ∃ v, MapsCone f w v ∧ v.length ≤ N + B) → f ∈ G := by
+  induction B with
+  | zero =>
+    exact fun N f hf => swapGen_mem_base hG fun w hw =>
+      (hf w hw).imp fun v hv => ⟨hv.1, by have hv2 := hv.2; omega⟩
+  | succ B ih => exact fun N => swapGen_mem_step hG B ih N
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_bound
+
+/-- **Part (A): the cone swaps generate `V_X`.** Every element of `higmanThompsonV X` lies in
+every subgroup of `Equiv.Perm (Cantor X)` containing all cone swaps. -/
+theorem swapGen_mem_of_coneSwap_mem [Finite X] [Nontrivial X]
+    {G : Subgroup (Equiv.Perm (Cantor X))}
+    (hG : ∀ (v w : List X) (h1 : ¬ v <+: w) (h2 : ¬ w <+: v), coneSwap v w h1 h2 ∈ G)
+    {f : Equiv.Perm (Cantor X)} (hf : f ∈ higmanThompsonV X) : f ∈ G := by
+  obtain ⟨N, hN⟩ := mem_higmanThompsonV.mp hf
+  obtain ⟨M, hM⟩ :=
+    ((finite_words_length_eq N).image fun w : List X => (coneTarget f w).length).bddAbove
+  refine swapGen_mem_of_bound hG (M - N) N f fun w hw => ?_
+  obtain ⟨v, hv⟩ := hN w hw
+  have hvt : coneTarget f w = v := MapsCone.unique (mapsCone_coneTarget ⟨v, hv⟩) hv
+  have hle : (coneTarget f w).length ≤ M := hM ⟨w, hw, rfl⟩
+  rw [hvt] at hle
+  exact ⟨v, hv, by omega⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_coneSwap_mem
+
+/-- **Part (A), intrinsic form.** A subgroup of `V_X` containing all cone swaps is `⊤`. -/
+theorem swapGen_closure_eq_top [Finite X] [Nontrivial X] {H : Subgroup ↥(higmanThompsonV X)}
+    (hH : ∀ (v w : List X) (h1 : ¬ v <+: w) (h2 : ¬ w <+: v),
+      (⟨coneSwap v w h1 h2, coneSwap_mem_higmanThompsonV h1 h2⟩ : ↥(higmanThompsonV X)) ∈ H) :
+    H = ⊤ := by
+  refine eq_top_iff.mpr fun g _ => ?_
+  have hmap : (g : Equiv.Perm (Cantor X)) ∈ H.map (higmanThompsonV X).subtype :=
+    swapGen_mem_of_coneSwap_mem
+      (fun v w h1 h2 => Subgroup.mem_map.mpr
+        ⟨⟨coneSwap v w h1 h2, coneSwap_mem_higmanThompsonV h1 h2⟩, hH v w h1 h2, rfl⟩) g.2
+  obtain ⟨y, hy, hyg⟩ := Subgroup.mem_map.mp hmap
+  have hy' : y = g := Subtype.ext hyg
+  rw [← hy']
+  exact hy
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_closure_eq_top
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
