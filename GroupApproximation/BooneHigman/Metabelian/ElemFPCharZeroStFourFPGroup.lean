@@ -78,7 +78,7 @@ theorem czStFourFP_conj_zpow_iter {G R : Type*} [Group G] [Monoid R] {g : G} {f 
   obtain ⟨n, rfl | rfl⟩ := Int.eq_nat_or_neg j
   · rw [zpow_natCast, zpow_natCast, Units.val_pow_eq_pow_val]
     exact czStFourFP_conj_pow_iter hg n r
-  · rw [zpow_neg, zpow_neg, zpow_natCast, zpow_natCast, ← inv_pow, ← inv_pow,
+  · rw [zpow_neg, zpow_neg, zpow_natCast, zpow_natCast, ← inv_pow g n, ← inv_pow c n,
       Units.val_pow_eq_pow_val]
     exact czStFourFP_conj_pow_iter hinv n r
 
