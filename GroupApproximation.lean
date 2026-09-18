@@ -5593,6 +5593,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SturmTarskiPart
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SturmTarskiParts.Cauchy
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SturmTarski
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.Shift
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Corona
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
