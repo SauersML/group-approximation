@@ -47,3 +47,27 @@ scalars.
   This is heuristic here and conditional on `(P)` of `resolvent-register-units-give-rational-symbols`.
 - **Only stable `K_2(R)` is concerned.** That is what `infinitely-generated-symbols-block-fp-elementary-groups`
   uses.
+
+## Pimsner reading (conditional, not established)
+
+This section assumes the Pimsner six-term sequence `(P)` of `resolvent-register-units-give-rational-symbols` for
+`R` over a coefficient ring `B`, with the boundaries `K_*(Q̄)`-linear. Take `B` ultramatricial over the central
+`Q̄`, so that `K_1(B) = K_0(B) ⊗ Q̄^x`, and write `A = [X]` on `K_0(B)`.
+
+- *The `K_1` condition in terms of `A`.*
+  - `(P)` gives `0 -> coker(1 − A) ⊗ Q̄^x -> K_1(R) -> ker(1 − A) -> 0`.
+  - `Q̄^x` is a torsion group plus a `Q`-vector space. So `K_1(R)` is scalars plus torsion if and only if
+    - `ker(1 − A)` is `0` (`K_0(B)` is torsion-free), and
+    - `coker(1 − A) ⊗ Q` is spanned by `[1_B]`.
+  - The gate also wants `[1_R]`, the image of `[1_B]`, of infinite order. So `coker(1 − A) ⊗ Q = Q·[1_B] ≠ 0`.
+- *Index one is excluded.*
+  - If `A[1_B] = [1_B]`, then `[1_B] ∈ ker(1 − A)`, so some `y ∈ K_1(R)` has `∂y = [1_B]`.
+  - By linearity `∂(Φ_λ(y)) = ±[λ]`. So the scalar symbols of `y` map onto the image of `Q^x` in `K_1(B)`, which is
+    infinitely generated.
+  - This is the ungraded, `(P)`-conditional form of the graded dichotomy, and the mechanism behind the doubling
+    calibration.
+- *Finite rank is excluded.*
+  - If `K_0(B)` has finite rank, injectivity of `1 − A` makes `coker(1 − A)` finite, so `[1]` is torsion.
+- *The room left.* An index `≠ 1` correspondence over an ultramatricial `B` with `K_0(B)` of infinite rank, such
+  that `1 − A` is injective with rank-one cokernel spanned by `[1_B]`. This is the infinite-rank `K_0(B)` room of
+  gq-infinite-primes.
