@@ -6,6 +6,7 @@ title: "In K[F], every twisted binomial 1 + lambda g with g ≠ 1 has a nonzero 
 distinct_from:
   thompson-f-one-bump-binomials-have-common-multiples: that proves this for one-bump g; this asks it for every g ≠ 1, and the open cases have two or more bumps.
   thompson-f-amenable-iff-group-ring-is-ore: that is amenability of F as the Ore condition for all pairs; this is the Ore condition only for pairs with a binomial side, which amenability implies.
+  thompson-f-binomial-multipliers-see-every-conjugate: that proves necessary conditions on multipliers and kills classes of methods; this is the full statement, still open.
 ---
 
 **OPEN.** Let `K` be a field and `R = K[F]`. For every `g` in `F \ {1}`, every `lambda`
@@ -100,3 +101,26 @@ Equivalent forms:
   an endpoint while `z` stays fixed. What is missing is a normalization of `g` and a
   submonoid `P` with `F = P P^-1`, closed under conjugation by `g`, whose letter windows
   still grow polynomially under that conjugation. No such `P` is known.
+- **Mackey support obstruction (2026-09-17, obstruction; proves no case).** Split
+  `R/(1 + lambda g) R` over the double cosets `<g> w V`. On a free double coset
+  (`V ∩ w^-1 <g> w = 1`) the coset test turns `b v` into `beta v` for a nonzero `beta` in
+  `K[V]`. Proved in `thompson-f-binomial-multipliers-see-every-conjugate`:
+  - (1) any multiplier `v` with `b v` a nonzero element of `J` generates, through
+    `V_v = <x y^-1 : x, y in supp v>`, a group containing a nontrivial power of `t^-1 g t`
+    for every `t` in `supp b°`, so `Fix(V_v) ⊆ ∩_t Fix(t^-1 g t)`;
+  - (2) transverse factors (`K[A]` with `A` meeting no conjugate of `<g>`, for instance
+    one-bump twisted binomials when `g` has `>= 2` bumps) can be divided out of `y a` in `J`;
+  - (3) for `V` normalized by `g` with `V ∩ <g> = 1` and `b` in `K[V]`, multipliers in
+    `K[<g> V]` exist iff the shifts `phi^a(b)` are right linearly dependent over `K[V]`.
+
+  Classes killed:
+  - nesting in any subgroup that lacks powers of all the conjugates, which contains the dead
+    stabilizer nesting;
+  - every Guba-type shift count whose coefficients `r_a` fix a fixed point `z` of `g` (or
+    `u(z)` after a left prefactor `u`), against any `b` with a monomial sending `z` into
+    `supp g`. This covers steps 5c–5g with `M` or `M × M`;
+  - reduction to the one-bump product class for multi-bump `g`.
+
+  Where it survives: the opposite-orientations case is exactly zoom-orbit dependence of
+  `g^-a b g^a` over `K[<g_1> F_c(p,q)]`, with coefficients whose support groups move `m`.
+  The missing monoid `P` must contain crossing letters.
