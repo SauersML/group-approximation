@@ -10,7 +10,26 @@ artifacts:
   - research/artifacts/gq-bh-openq-lists.md
 ---
 
-**OPEN.** Printed in the AIM problem list *Groups of dynamical origin*
+**ANSWERED IN THE LITERATURE (yes), before the AIM list recorded it.** Caprace and
+Fujiwara, *Rank one isometries of buildings and quasi-morphisms of Kac–Moody groups*
+(GAFA 20 (2010); arXiv:0809.0470, TeX read on MSI, sha256 ae6ae1e6…c07879), prove:
+- Corollary `cor:KM:CommutatorWidth` (TeX l.262–267): for a Kac–Moody–Tits functor 𝒢 whose
+  Weyl group is irreducible, non-spherical and non-affine, and any integral domain R, the
+  space of homogeneous quasimorphisms of 𝒢(R) is infinite-dimensional, so 𝒢(R) has
+  elements of positive stable commutator length and infinite commutator width.
+- Corollary `cor:KM:simple` (TeX l.292–295): "There exists an infinite family of pairwise
+  non-isomorphic finitely presented simple groups possessing elements of strictly positive
+  stable commutator length; these groups have therefore infinite commutator width." The
+  simplicity and finite presentation come from Caprace–Rémy (2-spherical Weyl group, finite
+  field of order larger than the rank). The authors present this as answering Bardakov's
+  Kourovka Problem 14.13.
+
+So the third item of AimPL Problem 3.1 has answer **yes**, with commutator width infinite.
+No proof on main is needed and no priority is ours: this node records a status correction
+(bh-free-60, 09-18). The first two items of Problem 3.1 (ρ_1, ρ_2 for F, T, V and
+topological full groups) are unaffected.
+
+**Original record (kept).** Printed in the AIM problem list *Groups of dynamical origin*
 (http://aimpl.org/groupdynamorigin, section 3 "Thompson groups", Problem 3.1, accessed
 2026-09-18). With `ρ_1(g)` the commutator width of `g` and `ρ_2(g)` the least number of
 involutions in a factorization of `g`, for `G` one of `F, T, V` or a topological full
@@ -28,11 +47,11 @@ finitely presented simple groups share a uniform word-theoretic property.
   unbounded commutator length, by Bavard duality. So a finitely presented simple group
   with such a quasimorphism would give a strong yes, with infinite commutator width.
 - Candidate sources are finitely presented simple groups with WPD actions on hyperbolic
-  spaces (Bestvina–Fujiwara). No finitely presented simple group with that property is
-  known to this lane.
+  spaces (Bestvina–Fujiwara). (Superseded: Caprace–Fujiwara use rank-one isometries of a
+  single twin-building half, which is exactly such a source.)
 - Muranov's finitely generated simple groups of infinite commutator width are not known
-  to be finitely presented.
+  to be finitely presented. (Superseded by Caprace–Fujiwara Cor `cor:KM:simple`.)
 
-**Tractability.** Medium. A quasimorphism on any explicit finitely presented simple host
-used on main would answer it; so would an explicit element of length 2 in a
-twisted Brin–Thompson group.
+**Tractability (original, superseded).** Medium. A quasimorphism on any explicit finitely
+presented simple host used on main would answer it; so would an explicit element of
+length 2 in a twisted Brin–Thompson group.
