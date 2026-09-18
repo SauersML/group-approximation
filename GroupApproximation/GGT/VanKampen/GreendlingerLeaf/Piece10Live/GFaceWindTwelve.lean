@@ -48,7 +48,12 @@ Scratchpad `gl-p10-71/forms.py` (extends `gl-p10-66/nine.py`; Lean-faithful loop
 Lean list `∂K = firstSide ++ inv source ++ secondSide ++ target`): every no-loop case has a
 witness of shape `Wr`, `LL` or `WL` (not even `Lin` is needed) whose stretches avoid both arcs,
 with `g` `0/1` and all passing clauses: 16935 of 16935 (witness seed 2), 24229 of 24229 (random
-seed 1); 0 failures.  The searches do not model least area or labels.
+seed 1), 86580 of 86580 (random seed 3); 0 failures.  With the kept cell FIXED in advance (stricter
+than the Lean `∃ kept` in the loop and in clause 5): 54911 of 54911 (witness seed 2) but 78385 of
+78406 (random seed 1).  **LOUD: the 21 failures are a single map with kept cell `2`, where a
+two-lobe witness does exist for the other kept cells.**  So the residual holds there only because
+clause 5 is existential; a per-cell variant would be false at depth `≤ 2`.  The searches do not
+model least area or labels.
 
 ## Manuscript status
 
