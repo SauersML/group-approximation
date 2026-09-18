@@ -10,8 +10,9 @@ distinct_from:
   higman-group-satisfies-boone-higman: that is the open Higman test case; this makes it, plus a wreath closure, sufficient for the Baumslag--Gersten test case.
 ---
 
-**ESTABLISHED** (conditional implication; lane proof, elementary; not yet refereed; no priority
-claimed).
+**ESTABLISHED** (conditional implication; lane proof, elementary; no priority claimed). Reviewed:
+gq-referee-a PASS (`research/artifacts/gq-referee-a-baumslag-gersten-pbh-reduces-to-higman-group-and-a-lamp-wreath.md`,
+834cfa8c3; nits N1–N3 applied).
 
 ## Statement
 
@@ -20,16 +21,21 @@ generators `a_0, …, a_3` of `H_4` and `τ a_i τ^-1 = a_(i+1)`. Suppose `H_4 �
 `Γ ∈ B_A`. Then:
 1. `BG` embeds in the identity-edge extension `Γ *_(⟨a_0⟩) (⟨a_0⟩ × Z)`, via `a ↦ a_0` and
    `t ↦ τ u`;
-2. hence `BG ∈ B_A` if `Z/2 wr_(Γ/⟨a_0⟩) Γ ∈ B_A`, by the infinite-edge clause of
-   `free-permutational-products-preserve-pbh` (bh-free-10, lane proof, not reviewed).
+2. hence `BG ∈ B_A` if `Z/2 wr_(Γ/⟨a_0⟩) Γ ∈ B_A`. The standard isomorphism
+   `Γ *_C (C × Z) ≅ Z *_(Γ/C) Γ` (free permutational product), valid for infinite `C`, turns this
+   into part 1 of `free-permutational-products-preserve-pbh` (bh-free-10, lane proof, not reviewed).
+   Part 3 there covers finite `C` only.
 
 Since `B_A` is closed under finite-index overgroups, the hypothesis on `Γ` holds as soon as
 `H_4 ∈ B_A`. The wreath is an instance of the open `pbh-closed-under-decidable-permutational-wreaths`.
-It needs decidable membership in `⟨a_0⟩ ≤ Γ`, which must be checked for the chosen `Γ`.
+It needs decidable membership in `⟨a_0⟩ ≤ Γ`. For `Γ = H_4 ⋊ C_4` this is the power problem for
+`a_0` in Higman's group. It was not checked here, and no source is recorded. Normal forms for the
+square of groups (Martin, arXiv:1506.02837) are the natural place to look.
 
 **Necessity of a Higman-type quotient.** Any conjugating overgroup `Γ ⊇ BS(1,2) = ⟨a, b⟩` with
 `γ a γ^-1 = b` contains the quotient `⟨a, γ⟩` of `BG`, in which `BS(1,2)` survives. In that quotient
-`a_2 = γ b γ^-1 ∉ ⟨a, b⟩`, because inside `BS(1,2)` the map to `Z` detects `a_1`, and `a_1 ~ a_1^2`.
+`a_2 = γ b γ^-1 ∉ ⟨a, b⟩`, because inside `BS(1,2)` the exponent homomorphism `a_0 ↦ 0`, `a_1 ↦ 1` would send the relation
+`a_2 a_1 a_2^-1 = a_1^2` to `1 = 2`.
 So such a `Γ` needs at least a quotient of the tower `K` with `BS(1,2)` intact. `H_n ⋊ C_n` is the
 standard such quotient.
 
@@ -88,4 +94,5 @@ Put `A = ⟨a_0, a_1⟩ ≅ BS(1,2)` (Higman; cited in `baumslag-gersten-group-m
 So reduced words go to reduced words, and by Britton's lemma `ρ(g) ≠ 1`. For `k = 0`, `ρ` is the
 inclusion `A ≤ Γ`.
 
-**Item 2.** This is the cited clause with `A := Γ` and `C := ⟨a_0⟩`. `∎`
+**Item 2.** Apply the isomorphism of item 2 with `C := ⟨a_0⟩`, then part 1 of the cited node
+with `W := Γ`, `K := Z` and `X := Γ/⟨a_0⟩`. `∎`
