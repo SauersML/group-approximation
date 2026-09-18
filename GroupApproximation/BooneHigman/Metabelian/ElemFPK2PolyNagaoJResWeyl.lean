@@ -28,7 +28,7 @@ variable {I : Type} [Fintype I] [DecidableEq I] {p : ℕ} [Fact p.Prime]
 /-- `act x_ik(c)` at the row `i`: `v_i + c v_k`. -/
 theorem k2PolyNagaoJRes_act_x_self {i k : I} (hik : i ≠ k) (c : Polynomial (ZMod p))
     (v : I → Polynomial (ZMod p)) : act (x i k hik c) v i = v i + c * v k := by
-  rw [act_x_apply, if_pos rfl]
+  rw [act_x_apply, if_pos (rfl : i = i)]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_act_x_self
 
