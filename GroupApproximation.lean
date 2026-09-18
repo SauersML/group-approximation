@@ -5806,6 +5806,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.L
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiLevelSwaps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFCP
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHF
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.WordVec
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
