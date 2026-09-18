@@ -121,14 +121,14 @@ theorem bhNagaoUncond_torusWire_K2_bot_nagao {p : ℕ} (hp : p.Prime) :
   GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoUncond_torusWire_K2_bot_nagao
 
 /-- Unconditional `k2PolyNagaoTorusWire_oneVarNilOver_zero_of_nagao`. -/
-theorem bhNagaoUncond_torusWire_oneVarNilOver_zero_of_nagao {p : ℕ} (hp : p.Prime) (N : ℕ)
+theorem bhNagaoUncond_torusWire_oneVarNilZero {p : ℕ} (hp : p.Prime) (N : ℕ)
     (hN : 0 + 5 ≤ N) (u : K2n N (Polynomial (MvPolynomial (Fin 0) (ZMod p)))) :
     ∃ M : ℕ, ∃ hNM : N ≤ M,
       K2IndexMap (R := Polynomial (MvPolynomial (Fin 0) (ZMod p))) (Fin.castLEEmb hNM) u = 1 :=
   k2PolyNagaoTorusWire_oneVarNilOver_zero_of_nagao k2PolyNagaoJRes_statement hp N hN u
 
 #audit_axioms
-  GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoUncond_torusWire_oneVarNilOver_zero_of_nagao
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.bhNagaoUncond_torusWire_oneVarNilZero
 
 /-- Unconditional `k2PolyNagaoTorusWire_base_of_statement`: the one-variable base instance of
 the StabRangeDiag conjunct of `P1` (over `F_p[s]`, ranks `N ≥ 1 + 4`). -/
