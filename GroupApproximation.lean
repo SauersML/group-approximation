@@ -6070,6 +6070,10 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapSuspension
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapSuspensionEndo
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTProper
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HigsonKasparovClifford
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerTrace
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerTracial
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerUltratrace
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFUltrapowerKernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
