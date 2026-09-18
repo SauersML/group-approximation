@@ -19,7 +19,6 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-38.
 
 **LOUD.**  The residual `ExtremalJordanPickThreeTwoOutsideStatement` is logically STRONGER than the
 Three statement and strictly smaller in proof content (see `Piece10Live/ExtremalJordanPickThree`).
-
 ## Mathematical infrastructure
 
 Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
