@@ -27,6 +27,9 @@ artifacts:
   - research/artifacts/torsion-free-exact-radical-breakthrough-2026-08-26.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
+  - research/finite-outer-order-radical-witnesses-cross-alekseev-thom.md
+  - research/automorphic-sofic-kazhdan-kernel-with-full-mf-radical.md
+  - research/titz-witzel-smallest-kernel-not-mf.md
 ---
 
 There exist a group `G` and a subgroup `K normal G` such that
@@ -145,3 +148,37 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
       `normal-kazhdan-defect-non-mf`.
     So the criterion does not yet produce an exact Kazhdan radical here.  The surviving routes
     need non-infranormal sources or a compressor of nonzero degree.
+
+- **2026-09-18, swarm-0917-w10-w10-titz-last1 (last mile, reframing).  Status: OPEN.**
+  - *Closest route and its obstruction.* The Titz--Witzel route has the fewest open
+    prerequisites. Its holes are soficity of `Gamma_1^2` and non-MF of a residual. It lies wholly
+    inside the finite-outer-order region, and so does the defect-core route (`phi = id`).
+  - *New theorem* `finite-outer-order-radical-witnesses-cross-alekseev-thom` (ESTABLISHED, via
+    `-proof`), called FO-AT.
+    - A witness whose `[phi]` has finite order `r` in `Out(K)` contains an index-`r` subgroup
+      `K x Z`, and that subgroup is again a witness with the same kernel.
+    - `(K x Z, K)` is a witness exactly when `K` is nontrivial, finitely presented, torsion-free,
+      sofic and Kazhdan with `Rad_MF(K) = K`.
+    - Such a `K` answers Alekseev--Thom 6.1.
+    - Dichotomy: every witness is either (AT), with `K` finitely presented and 6.1 answered, or
+      (IO), with `K` infinitely presented, `[phi]` of infinite outer order, and `(FAP1)`.
+    - Named invariant: the order of `[phi]` in `Out(K)`. Every finite value is at least as hard as
+      6.1. This includes every kernel with finite `Out(K)`, such as all Titz--Witzel residuals.
+  - *New decomposition of region (IO).* Descent through `Rad_MF(K)` splits it in two.
+    - (IO-int), `Rad_MF(K) = K`. Before this attempt it had no route. The new route
+      `exact-mf-radical-over-z-via-automorphic-full-radical-kernel` requires the new OPEN claim
+      `automorphic-sofic-kazhdan-kernel-with-full-mf-radical`, whose parts can each fail on their
+      own:
+      - (P1) a finitely generated torsion-free sofic Kazhdan group with no nontrivial MF quotient;
+      - (P2) a finite two-sided automorphic presentation for one automorphism.
+      A refutation of (P1) kills (IO-int) and the whole finite-outer-order region together.
+    - (IO-ext) is `mf-kazhdan-quotientless-mapping-torus-exact-radical`, as before.
+  - *Route mis-specification found.* `torsion-free-sofic-exact-mf-radical-via-titz-witzel` asks
+    for soficity of `Gamma_1^2` and for the existential `titz-witzel-exact-kazhdan-mf-radical-over-z`.
+    The latter says some residual is not MF, and it can be witnessed by a different residual. So
+    the route does not follow from its requirements. The corrected route
+    `exact-mf-radical-over-z-via-sofic-non-mf-titz-witzel-kernel` requires
+    `titz-witzel-kernel-sofic` and the new OPEN claim `titz-witzel-smallest-kernel-not-mf`, which
+    are about the same kernel. It completes through FO-AT part 2.
+  - The stale paragraph above ("That route therefore succeeds exactly when one such lattice is
+    proved sofic") is superseded by the 2026-09-13 correction and by this corrected route.
