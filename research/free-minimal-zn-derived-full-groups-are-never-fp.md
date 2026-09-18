@@ -26,3 +26,10 @@ embeddability into finite groups for free minimal `Z^N` actions (an infinite sim
 LEF group is not finitely presented). The relevance to Boone–Higman: these groups
 are finitely generated, infinite, simple and amenable (`zaremsky-1-10-fp-infinite-simple-amenable-group`),
 so a finitely presented one would answer Zaremsky's Problem 1.10.
+
+**Related printed problem.** AIM problem list *Amenability of discrete groups*
+(http://aimpl.org/amenablediscrete), section "Topological Full group, IET and PRG",
+Problem 2.5: "Find an example of a Z²-action on a Cantor set such that the commutator
+subgroup of the topological full group is f.p." This allows Z² actions that are not free
+or not minimal. So even if this node holds, the AIM problem stays open for those actions.
+Accessed 2026-09-18; recorded in `research/artifacts/gq-bh-openq-lists.md`.
