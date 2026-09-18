@@ -259,10 +259,16 @@ not independently reviewed) unless another source is named.
 |---|---|---|---|---|---|
 | V, T, F | excluded (Q ⊄ V, Higman) | excluded | excluded | excluded | excluded |
 | T̄ | **excluded** (every Q ≤ T̄ contains the centre, Prop. 13) | **excluded** | **excluded** (contains Q²) | **excluded** | excluded |
-| Aut(F) ⊇ Brin's A = Aut₊(F) | not decided here (§7, spark S2) | **excluded** | not decided | **excluded** | excluded |
-| VA | yes (⊕_ω Q ≤ VA, survey §4.3) | open | open | **open** (O2 does not apply at n = 2) | excluded (SL_3(Z), survey Remark 4.12) |
-| 2V, nV (n ≥ 2) | yes (Kojima–Sheng + disjoint supports) | open (BS(1,2) ≤ Aff(Q); see `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets` for the structure a BS(1,2) image must have) | open | open | open (does SL_3(Z) embed in nV? lane gq-nv-obstruct) |
+| Aut(F) ⊇ Brin's A = Aut₊(F) | not decided here (§7, spark S2) | **excluded** | excluded (O4, via index 2) | **excluded** | excluded |
+| VA | yes (⊕_ω Q ≤ VA, survey §4.3) | excluded (O4) | excluded (O4) | excluded (O4) | excluded (SL_3(Z), survey Remark 4.12; also O4) |
+| 2V, nV (n ≥ 2) | yes (Kojima–Sheng + disjoint supports) | open (O4 does not apply: nV has distorted cyclic subgroups; see `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets` and root Attempts item 11) | open | open | open (see `gl-3-z-in-no-nv-via-cnd-transversal`) |
 | Mikaelian's explicit Higman groups | yes, in principle | yes, in principle | yes, in principle | announced (arXiv:2507.04347 §1.4, no construction yet) | announced |
+
+**Update (2026-09-17, after landing).** Root obstruction O4 (2688d4128; Burillo–Felipe, arXiv:2605.09763v1,
+unrefereed) settles the VA row: VA contains no group with distorted cyclic subgroups, and BS(1,2) ≤ Aff(Q),
+the Heisenberg group ≤ U_3(Q). So VA and all its subgroups (V, T̄, Brin's A) omit Aff(Q), U_3(Q) and GL_n(Q) for
+every n ≥ 2. The T̄ and Aut(F) exclusions above have a proof independent of O4. The Q² exclusion for T̄ is not
+implied by O4. Correction received from lane gq-va-affq.
 
 **Reading of the table.**
 1. Both geometric engines produce divisibility only along **abelian** lines. GL_2(Q) needs a Q that is
@@ -273,7 +279,7 @@ not independently reviewed) unless another source is named.
 3. So a host for GL_2(Q) needs a divisibility engine that **commutes with a dilation**: an element d and a root
    tower s_k with d s_k d^{-1} = s_k^{λ}. E1 cannot supply this, because d does not centralize z. It is untested
    for E2.
-4. For n ≥ 3, VA, V and every subgroup of them are excluded (O2). The hosts left are twisted Brin–Thompson groups,
+4. For every n ≥ 2, VA, V and every subgroup of them are excluded (O4; for n ≥ 3 also O2). The hosts left are twisted Brin–Thompson groups,
    nV, Röver–Nekrashevych-type groups with non-RF germs, and new constructions.
 
 ## 7. Sparks (ideas not pursued by this lane; free to adopt)
@@ -286,6 +292,11 @@ not independently reviewed) unless another source is named.
   - Is some finitely generated subgroup finitely presented?
 
   Natural owners: gq-tbar-lift-n or gq-pp-lift.
+
+  **Status.** Answered negatively for Aff(Q) by `commensurating-end-germ-groups-omit-aff-q` (780e84702; lane
+  proof, rests on arXiv:2605.09763v1). No finitely generated subgroup of the germ group Comm_inf contains
+  Aff_K(Q) = Q ⋊ K for any non-finitely-generated K ≤ Q^x_{>0}. That covers Aff(Q), GL_2(Q), SL_2(Q),
+  PSL_2(Q), and GL_n(Q), SL_n(Q), B_n(Q) for n ≥ 2. Q ⋊_a Z for a single dilation a is still open there.
 - **S2 (Q² in Brin's A by half-line supports).** Build BHM's root tower on (0, ∞) only: start from an element equal
   to z near +∞ and to the identity on (−∞, 0]. Run Lemma 6 on its support (each root has the same support, Step 0
   of the proof node). Then mirror on (−∞, 0). Commuting copies with disjoint supports would give Q² ≤ Aut₊(F).
@@ -294,5 +305,8 @@ not independently reviewed) unless another source is named.
 - **S3 (E2 and dilations).** In 2V the baker's-map-type elements exchange scales between the two coordinates. Is
   there d ∈ 2V with d s_k d^{-1} = s_k^2 for a Kojima–Sheng tower? That would put Z[1/2]-type affine divisibility,
   and possibly Aff(Q), in a finitely presented simple group. Natural owner: gq-bt-kojima.
+
+  **Status.** Root Attempts item 11 records that `BS(1,2) ≤ nV` needs a drift-free infinite-order base
+  (D(a) = kD(a) when a ~ a^k), so Kojima–Sheng towers over elements of V never give its translation subgroup.
 - **S4 (Problem 2.7).** E3 (Mikaelian) settles "explicit" once [41] appears. "Natural" is still open and is where
   the geometric engines matter. A natural answer for GL_2(Q) must avoid T̄ and Aut(F) (§6).
