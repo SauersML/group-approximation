@@ -249,10 +249,50 @@ The August audit and the September correction artifacts carry the arguments.
      hyperbolic, proper cocompact CAT(0), or of finite virtual cohomological
      dimension, and neither can any overgroup of `C`. That kills small-cancellation
      and Rips-type vertex groups, where hard membership problems are cheap.
+   - *Every independence engine, not only amalgams.* Take a faithful, minimal
+     general-type tree action with Tits' (P), or with Banks--Elder--Willis
+     `(P_k)`, and some nontrivial edge fixator. By
+     `micro-supported-tree-actions-self-embed-rigid-stabilizers`, every
+     half-tree rigid stabilizer `R` contains `⊕_N R`. So the same bounded-rank
+     classes are excluded for `Γ`, `Γ⁺` and `Γ^{+k}`.
+   - *Where the locally finite version reduces.* Take a locally finite tree with
+     (P). By `tits-independence-vertex-groups-are-branch-type`, each
+     ball fixator is the direct product of the level rigid stabilizers. So vertex
+     stabilizers are residually finite branch-type groups, and they are branch
+     groups when the local actions are 2-transitive. If `Γ` and its edge
+     stabilizers are finitely presented, the vertex stabilizers are finitely
+     presented too. The locally finite Tits route therefore needs a finitely
+     presented branch-type group. No finitely presented branch group is known
+     (Bartholdi--Grigorchuk--Šunić). The route also cannot contain an infinite
+     simple Kazhdan input.
    - *What is left.* Edge groups with self-similar direct products, as in Thompson
      groups or branch groups. It is open whether any finitely presented group acts
      faithfully on a tree with (P), a nontrivial finitely generated edge group, and
      not both indices 2.
+   - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
+     that are not finitely presented, or a positive answer to the finitely
+     presented branch-group question. The open first step is whether some
+     finitely presented group acts faithfully and minimally, with no fixed end,
+     on a tree of infinite valence with (P) and a nontrivial finitely generated
+     edge group. There the ball fixator only contains the restricted product of
+     rigid stabilizers, and the branch-type conclusion lapses.
+9. **A universal host from rewriting-system dynamics** (reframer lane sw-010,
+   2026-09-17).
+   - *The idea.* Feed a hard finitely presented group into
+     `fp-self-similar-groups-embed-in-fp-simple-groups`. To do that, make it
+     self-similar by letting its tree action be read off a canonical
+     endomorphism: a generator substitution respecting the relations, or a
+     Frobenius-type scaling of the Kharlampovich--Myasnikov--Sapir groups.
+   - *Where it dies.* By `virtually-endomorphic-self-similar-actions-have-finite-image`,
+     suppose the sections agree, on a finite-index subgroup, with endomorphisms of
+     a finite-index normal subgroup `G'`. Then the fully invariant subgroup
+     `R_n(G')` is carried into itself by every section, so it acts trivially.
+     The action therefore has finite image.
+   - *What is left.* Only "division" sections escape: section maps that extend
+     to no endomorphism, like the adding machine or Cartier-type digit
+     contractions. Whether a Cartier-type virtual endomorphism of a
+     Kharlampovich--Myasnikov--Sapir group gives an infinite-state faithful
+     action is open.
 
 A ninth non-attempt, recorded because it looks tempting from inside this
 program: Schupp's envelope

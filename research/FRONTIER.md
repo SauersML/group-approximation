@@ -24673,6 +24673,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · boone-higman-conjecture [OPEN] Every finitely generated group with solvable word problem embeds in a finitely presented simple group
 - 2026-09-18 · quantum-surjunctivity-conjecture [OPEN] Over every group, every equivariant finite-propagation unital *-endomorphism of the quasi-local matrix algebra is onto
 - 2026-09-18 · commuting-site-supports-force-quantum-automorphisms-proof [COMPLETE] Slice supports contain the image, commute at one-site overlaps, and a two-sided minimal-irrep count forces a tensor-slot splitting
 - 2026-09-18 · commuting-site-supports-force-quantum-automorphisms [ESTABLISHED] Over every group, a quantum automaton whose site supports pairwise commute, in particular one with a Sidon neighbourhood, is an automorphism that splits each site into tensor slots
@@ -24680,7 +24681,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · fpbs-fixed-position-morse-matchings-die-on-bernoulli-proof [COMPLETE] Take the height sublevel sets of a well-founded cut, show they are almost invariant under P, and contradict the Kesten gap of Bernoulli restricted to <P>
 - 2026-09-18 · fpbs-fixed-position-morse-matchings-die-on-bernoulli [ESTABLISHED] Well-founded fixed-position Morse matchings force Lambda-almost-invariant height levels, so on Bernoulli they lose a Kesten-gap amount of mass whenever <P> is nonamenable
 - 2026-09-18 · sp4-deligne-rigid-infinite-index-subgroup-exists [OPEN] Some finitely generated infinite-index subgroup of Sp_4(Z) keeps Deligne's mod-three class virtually nonzero
-- 2026-09-18 · minimal-free-z2-sfts-have-arbitrarily-hard-row-languages-proof [COMPLETE] Diagonalize a slope digit set, code it as a Sturmian angle, lift by Durand--Romashchenko, and read freeness off the column projection
 
 ## Active claims
 
