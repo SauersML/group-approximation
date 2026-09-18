@@ -6109,6 +6109,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorA
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebra
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVOreLocK2.Ring
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQnSeparable
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbQuasicentralStep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
