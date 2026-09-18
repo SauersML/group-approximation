@@ -41,8 +41,9 @@ does not imply Improve.  The new pair must also be basic.
 * The dart clause fails when the new walk runs along a face in `a.1` or `b.1`.
 * Noninterleave is not preserved under absorption.
 
-Any Statement that implies Improve and is implied by the target is equivalent as a `Prop`.
-So no strictly weaker `_of_` reduction exists among the consequences of the target.
+Base is unproved, so a reduction here has to carry it.  Any Statement `P` with
+`P → NoPlanarDegenStepStatement` and `NoPlanarDegenStepStatement → P` is equivalent as a `Prop`.
+A strictly weaker reduction, meaning Improve alone, needs Base proved first.
 
 ## Truth check
 
