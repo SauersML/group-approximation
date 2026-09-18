@@ -7,7 +7,9 @@ target: resolvent-vacuum-rings-have-no-k0-state
 requires: []
 ---
 
-Lane proof, elementary, not independently reviewed.
+Lane proof, elementary. Refereed PASS by gq-referee-a
+(`gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md`) and gq-referee-b
+(`gq-referee-b-resolvent-vacuum-rings-have-no-k0-state.md`). Trust record: `research/artifacts/gq-gq-fp-simple-rings-char-zero-writeup.md` §6.
 
 ## 1. Orthogonal copies
 - **Idempotents.** `P_m^2 = x_m (y_m x_m) y_m = x_m E y_m = x_m y_m`, since `x_m ∈ RE` and

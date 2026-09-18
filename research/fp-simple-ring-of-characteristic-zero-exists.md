@@ -12,7 +12,11 @@ artifacts:
 ---
 
 **ESTABLISHED** through `fp-simple-ring-of-char-zero-via-leavitt-resolvent-ring`
-(lane proof, not independently reviewed; referee requests sent). The ring is
+(lane proof). Its input `leavitt-resolvent-ring-is-fp-simple-of-char-zero` passed three referees:
+`gq-referee-a-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md`,
+`gq-referee-b-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md` and
+`gq-referee-c-leavitt-resolvent-ring-is-fp-simple-of-char-zero.md`, all PASS. The equivalence of the stated
+forms is proved in this node and was not refereed separately. Trust record: `research/artifacts/gq-gq-fp-simple-rings-char-zero-writeup.md` §6. The ring is
 `R_L = Z<s_1,s_2,t_1,t_2,N,A | Leavitt (1,2), N s_1 = s_1(N+1), N s_2 = 0, A(N+1) = 1 = (N+1)A>`
 (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`).
 

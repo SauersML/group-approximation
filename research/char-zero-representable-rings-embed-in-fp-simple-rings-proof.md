@@ -8,7 +8,10 @@ requires:
   - rational-function-fields-embed-in-fp-simple-rings
 ---
 
-Lane proof, not independently reviewed. Write `F_k = Q(t_1..t_k)`.
+Lane proof. Refereed PASS by gq-referee-a
+(`gq-referee-a-char-zero-representable-rings-embed-in-fp-simple-rings.md`) and gq-referee-b
+(`gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, which covers this claim). Trust
+record: `research/artifacts/gq-gq-fp-simple-rings-char-zero-writeup.md` §6. Write `F_k = Q(t_1..t_k)`.
 
 ## 1. Matrix rings over a finitely presented simple ring
 If `R` is finitely presented and simple, so is `M_e(R)`.
