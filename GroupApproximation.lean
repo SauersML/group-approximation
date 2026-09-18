@@ -5824,6 +5824,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaUnit
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnital
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.ChainsLowDegree
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.OpsAlg
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.PolyOps
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
