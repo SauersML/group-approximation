@@ -43,7 +43,7 @@ winding-one bound: the gap sum of the steps of `l`, indexed by first occurrence 
 `SP/gl-p07-59/random_maps.py` uses random connected combinatorial maps: `σ` random, `α` a random
 fixed-point-free involution, and `F` a random face set.  A case is kept when `ow` (successor rule)
 is one cycle and all of `ow` lies on one face orbit `Γ` (the `hlab` model).  In 81895 such cases:
-* 948 cases have `ow` with **two or more descents** against `Γ`, and every one of them has genus > 0.
+* 948 cases have `ow` with **two or more descents** against `Γ`; every one has genus > 0.
 * In the 34881 genus-0 cases there are **no** failures.
 
 The successor rule, the off-`F` fan of each step (`WitnessStepPinchFan`) and every other
