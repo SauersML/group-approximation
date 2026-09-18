@@ -11,7 +11,7 @@ Target: `CZK2FngRankFourStatement` (`∀ m > 0`, `K₂(4, ℤ[1/m])` finitely no
 **Residual.**  `czK2FngFour_TorusStatement`: for every `m > 0` there are finite sets
 `S ⊆ K₂(4, ℤ[1/m])` and `T ⊆ St_4(ℤ[1/m])` such that the images of the elements of `T` in
 `E_4(ℤ[1/m])` pairwise commute and `K₂(4, ℤ[1/m]) ≤ ⟪S⟫ ⊔ ⟨T⟩`.  The intended `T` is the finite
-torus family `H_ab(v) = w_ab(v) w_ab(1)⁻¹` (`czStFourFP_H`) for `v ∈ {-1, 1/m}` and `a ≠ b`,
+torus family `H_ab(v) = w_ab(v) w_ab(1)⁻¹` (`czStFourFP_H`) for `v ∈ {-1, m}` and `a ≠ b`,
 whose images are the diagonal matrices `diag(…, v at a, …, v⁻¹ at b, …)`: the residual then
 asks only that every element of `K₂` be, modulo finitely many normal generators, an element of
 the torus subgroup.  All of `K₂ ∩ ⟨T⟩` (Steinberg symbols included) is then discharged by
@@ -31,7 +31,7 @@ finite-presentation hypothesis on `SL_4` or `E_4` enters; no literature input is
 (`St_4(ℤ[1/m])` is finitely generated, proved in `czK2Fng_steinbergAway_fg`, and
 `SL_4(ℤ[1/m])` is finitely presented by Behr's theorem; that citation is a truth check only).
 The torus side condition was checked numerically for `m ∈ {2, 6, 10}`: the images of
-`H_ab(v)`, `v ∈ {-1, 1/m}`, are diagonal and pairwise commute.
+`H_ab(v)`, `v ∈ {-1, m}` (`czStFourFP_u m`), are diagonal and pairwise commute.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
