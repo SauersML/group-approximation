@@ -85,3 +85,31 @@ With G1--G4, `D` satisfies the hypotheses of
   full group. If such groups contain no `Z² ∗ Z`, as `V` does not
   (Bleak--Salazar-Díaz), that coding cannot work.
 - So the commutation quotient is not a convenience: it is forced.
+
+## Attempts
+
+1. **Reduction of G1 and G2 to local germs** (lane bh-mcg, 2026-09-18; reasoning
+   only, not a proof).
+   - **Compactness.** `Ω` is compact, and `D` is full. So `f ∈ L` lies in `D`
+     exactly when `f` is a groupoid germ near every trace: some prefix of `s`
+     reaches a track `ρ` for which `fρ` is, up to comb (slide) equivalence, a split
+     descendant of some representative `τ_j`. Finitely many cylinders then follow
+     automatically. Slides must therefore be added to the tail equivalence.
+     Penner--Harer: a complete track carried by `τ` is obtained from `τ` by splits
+     and shifts (recalled, not re-read).
+   - **Generic traces.** For a trace converging to a filling, uniquely ergodic
+     `λ`, deep tracks should become carried by every track carrying `λ`. That
+     would give the local germ.
+   - **Partial traces are the decisive case.** Consider a trace that splits only
+     inside a subsurface `Y`, with the complementary region frozen. Let `f` be
+     supported off `Y`, for example `T_c^n` with `c ⊂ S ∖ Y`. Then the germ needs
+     `T_c^n ρ` to be a split-and-slide descendant of finitely many representatives,
+     uniformly in `n`.
+   - **"Twists are splits."** A Dehn twist about a curve carried by `ρ` in a
+     suitable position is a composition of splits in the annulus around `c`. This
+     is the higher-genus analogue of the genus-one fact that the parabolic `x ↦ x+1`
+     fixing `∞` acts on eventually constant continued-fraction tails by a shift. It
+     is recalled from the train-track literature, not verified here.
+   - **Status.** The gate now reads: every mapping class supported on the frozen
+     complement of a partial trace acts there by finitely many split and slide
+     moves. That is the sharpest form of G1 found in this pass.
