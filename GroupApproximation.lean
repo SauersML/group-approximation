@@ -5525,6 +5525,7 @@ import GroupApproximation.Manuscript.NonMF.Full.NM16.BKLocalization
 import GroupApproximation.Manuscript.NonMF.Full.NM16.BKUnitalized
 import GroupApproximation.Manuscript.NonMF.Full.NM16.BKConverse
 import GroupApproximation.Manuscript.NonMF.Full.NM16.BKSentence
+import GroupApproximation.Manuscript.NonMF.Full.GL05b.RegionArcs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
