@@ -11,8 +11,8 @@ All nodes below are lane proofs, and none claims priority. Referee reviews exist
   on its f.g. subgroups, then `ℓ^{-1}Γ` consists of computable reals. For noncomputable `λ`, `D(V_λ)` is a
   2-generated simple group with unsolvable word problem.
 - **Type (A).** `stein-v-groups-act-with-type-a-on-breakpoints`: finitely presented Stein V-groups act with
-  type (A) on breakpoints. **Corrected:** Cleary proves only norm −1 F-versions, so finite presentation for norm
-  +1 quadratic slopes is OPEN. Boone--Higman for their subgroups now holds by the negative-base route below.
+  type (A) on breakpoints. Cleary proves only norm −1 F-versions; finite presentation for norm +1 quadratic
+  slopes now comes from `negative-base-pisot-stein-groups-are-finitely-presented` (below).
 - **Contracting RSGs.** `pisot-stein-groups-are-contracting-rsgs`: for units `β` with (F), in any degree,
   `V(Z[β],⟨β⟩,ℓ)` is a contracting RSG on the β-shift. The key step is a uniform slope-defect bound from a
   conjugate-growth length lemma. **Referee-c: PASS with fixes (d1081f87a).**
@@ -36,6 +36,9 @@ All nodes below are lane proofs, and none claims priority. Referee reviews exist
     proved by an explicit set of witnesses for the units above and for all norm +1 quadratic units. So every
     finitely generated interval exchange group, with or without flips, with real algebraic data embeds in a
     finitely presented simple group. This includes `Q(√3)`.
+  - `negative-base-pisot-stein-groups-are-finitely-presented`: the square of the coding is orientation
+    preserving, so `V(Z[β],⟨β⟩,ℓ)` itself is a full contracting RSG and finitely presented. In degree ≥ 3, `D(V)`
+    is a finite-index fp simple group, for suitable units of EVERY real field. All quadratic units are covered.
 - **Open:**
   - `transcendental-slope-thompson-groups-satisfy-boone-higman`: computable transcendental slopes, a
     Boone--Higman test case;
