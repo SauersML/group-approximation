@@ -464,3 +464,38 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+### Uniform Heisenberg bound: head-seeing models need non-uniform root defect (swarm-0917-w13-w13-nh-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+*Approach tried.* Kill the survivor "unitary models that are not scalar multiples of finite-group images", left open
+by the gapped and template entries above, using only the root Heisenberg group `H(J) = <x_12(J), x_23(J)>`. This
+group is locally finite, so it is amenable.
+
+*Result* (`jacobson-heisenberg-root-group-uniformly-kills-the-head`, established; route `...-proof`; new import
+`dot-amenable-uniform-hs-stability`, De Chiffre--Ozawa--Thom Theorem 5.2, quoted verbatim).
+- **Exact case.** Every finite-dimensional unitary representation of `H(J)` kills `x_13(JQJ)`. On each central
+  isotypic block the image of `x_12(J)` is finite. So the pairing `chi(ab)` has a right radical `R` of finite index,
+  and `R` is a right ideal. Direct finiteness of `J` on the finite quotient `J/R` then puts `Q` in `R`.
+- **Uniform case.** For every `phi : H(J) -> U(n)`, in any dimension:
+  `||phi(z) - 1||_2 < 111 sup_(g,h) ||phi(gh) - phi(g)phi(h)||_2`.
+  - This kills every model of any group receiving `H(J)`, including `EL_20(J)` and `Delta = St_20(R)` with
+    `theta z = x_13(s_1t_1)`, whose root parametrization is uniformly almost-Heisenberg.
+  - No finite-group, gap or alternating structure is needed, so it covers non-group unitary models.
+- **Invariant.** `delta_H(pi) = sup_(H(J) x H(J))` defect, on every conjugate root Heisenberg copy.
+- **Death step.** DOT rounding to a *finite-rank* corner representation, followed by the exact case.
+
+*Where it stops (hole stays OPEN).*
+- **Sharpness.** Every finite window `<F,z>` has an exact regular model with `||pi(z) - 1||_2 = sqrt 2`, so `H(J)` is
+  **not HS-stable**. Local defect `-> 0` never controls the head through `H(J)` alone.
+- **What a refutation certificate must do.** A CE head-seeing approximation of `EL_20(J)` must keep
+  `liminf delta_(gHg^-1)(pi_k) >= ||pi_k(z)-1||_2/111` on every root copy at once. Its defect escapes to root
+  elements of unbounded Toeplitz degree.
+- **What the positive side needs.** The remaining content is the interchange of `lim_k` with `sup_(H(J))`.
+- **Next falsifiable step (positive side).** Show that the Kazhdan structure of `EL_20(J)` forces local-to-uniform
+  control on `H(J)`, up to a change of approximation that preserves `tau(z)`. Concretely: bound
+  `||pi(x_12(a)) - prod_m pi(x_12(m))||_2`, over the monomials `m` of `a`, uniformly in the degree of `a`, using the
+  corner compressor `u = [[S,Q],[0,T]]`, together with the matching bound for the Heisenberg commutators. Any
+  argument that makes `delta_H(pi_k) -> 0` along head-preserving approximations, combined with (HJ2), gives
+  non-hyperlinearity of `EL_20(J)`.
+- **Next falsifiable step (refutation side).** Exhibit approximations of `EL_20(J)` whose Heisenberg defect grows with
+  the Toeplitz degree while `tr pi_k(z)` stays `<= 1/2`.
