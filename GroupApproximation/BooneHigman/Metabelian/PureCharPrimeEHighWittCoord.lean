@@ -17,7 +17,7 @@ Coordinates on `Fin n → eHighWitt_W2 L p` are indexed by `Fin n ⊕ Fin n`:
 
 Both are homogeneous of the right degree after homogenizing with `t = 1`.
 
-`eHighWitt_W2_polyFun`: suppose `act q` is weight-polynomial for every `q`.  Then there is a
+`eHighWitt_W2_polyFun` (in `PureCharPrimeEHighWittEmbed`) uses this: suppose `act q` is weight-polynomial for every `q`.  Then there is a
 space `V` of functions on `W₂(L)ⁿ` that is finite-dimensional, stable under translations and
 under `act`, and separating.  It is the space of polynomials of weighted degree `≤ p`.
 -/

@@ -45,7 +45,7 @@ theorem higmanVCCommon_ker_commute_of {d : ℕ} (hd : 1 < d)
     {r : FreeGroup (List (Fin d) × List (Fin d))} (hr : r ∈ (higmanVC_evalAll d).ker) :
     ∃ N, ∀ x y : List (Fin d), N ≤ x.length → N ≤ y.length → ¬ x <+: y → ¬ y <+: x →
       Commute (higmanVCCommon_mk d r) (higmanVCCommon_mk d (FreeGroup.of (x, y))) := by
-  haveI : Nontrivial (Fin d) := Fin.nontrivial_iff_two_le.mpr hd
+  haveI : Nontrivial (Fin d) := Fin.nontrivial_iff_two_le.mpr (by omega)
   obtain ⟨N, hN⟩ := higmanVCCommon_push hd r
   have e : higmanVCCommon_perm d r = 1 := by
     have h := congrArg Subtype.val (MonoidHom.mem_ker.mp hr)
@@ -131,13 +131,13 @@ theorem higmanVCCommon_ker_le_of_central (h : HigmanVCCommonCentralStatement) (d
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_ker_le_of_central
 
 /-- The gap and the long-relator extension `τ` give finite presentability of `V_d`. -/
-theorem higmanVCCommon_finFP_of_central_of_tau (hA : HigmanVCCommonCentralStatement)
+theorem higmanVCCommon_finFP_of_central (hA : HigmanVCCommonCentralStatement)
     (hB : ∀ d : ℕ, 1 < d → ∃ τ : List (Fin d) × List (Fin d) → higmanVC_Q d,
       ∀ t ∈ higmanVC_rels d (fun _ => True),
         t ∉ higmanVC_rels d (fun l => l.length ≤ 3) → higmanVC_psi d τ t = 1) :
     HigmanVFinFPStatement :=
   higmanVCAll_finFP_of_antichain_of_tau (higmanVCCommon_antichain_of_central hA) hB
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_finFP_of_central_of_tau
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_finFP_of_central
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope
