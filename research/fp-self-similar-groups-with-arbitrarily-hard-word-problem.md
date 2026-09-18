@@ -126,7 +126,7 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
      `φ` that send `x_q a^r`, `r != 0`, to nonzero elements. That is how the
      sections of lamplighter-type self-similar actions look. So "no monomial
      transitions" is proved only for `σ ∘ C_0`. General semilinear `φ` are untested.
-4. **Lamp-digit route through the KMS groups (bh-free-25, 2026-09-18).**
+5. **Lamp-digit route through the KMS groups (bh-free-25, 2026-09-18).**
    - **The criterion.** `lamp-digit-modules-give-self-similar-semidirect-products`
      (lane proof, elementary): if `Q` is self-similar on `T_X` and an `F_p[Q]`-module `M`
      carries a *self-similar module structure*, then `M ⋊ Q` is self-similar on
