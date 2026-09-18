@@ -566,3 +566,33 @@ is a root or torus only if (CCR) already holds everywhere.
 
 The claim stays OPEN. None of this touches the approximate microstate
 formulation or its dependence on `t`.
+
+**2026-09-18, w7-121 (obstruction-miner): enemies must break a fixed finite
+HNN relator set invisibly to the trace.** The wave step asked whether the
+enemies seen in metric ultraproducts of finite groups survive passage to
+unitary matrix models. The new node
+`compressor-enemies-need-trace-invisible-hnn-defects` (ESTABLISHED, proposed;
+its Corollary 3(e) cites Gluck) answers this for every passage through a
+unitary representation of the carrier.
+
+- **Theorem 1.** Fix one finite set `F`: Shalom's Kazhdan relators of `Gamma`
+  together with the compression relators of `t`. If representatives of `sigma`
+  satisfy `F` exactly, the model has (CCR) and no enemy. Every other relation of
+  `G` may hold only approximately, and the trace is arbitrary.
+- **Theorem 2.** In a transported model `rho_n ∘ phi_n` with an enemy, some
+  relator in `F` has a defect with `rho_n(z) != 1` and `Re tr rho_n(z) -> 1`.
+- **Killed classes.** Each of the following carries no enemy:
+  - regular transports;
+  - fixed-point-ratio permutation transports, including `GL`/`AGL` acting on
+    vectors;
+  - tensor-permutation transports;
+  - Weil/Clifford transports;
+  - bounded products of Lie-type or sporadic simple groups with **any**
+    representation.
+- **Survivors.** Hamming-type carriers survive: alternating groups of
+  unbounded degree, unboundedly many factors, and abelian or solvable pieces.
+  On them the `V_T`-part of the model is a non-liftable almost representation
+  with `Ad sigma(e) != 0`.
+
+Next step: the extension problem. Extend one sofic Pauli wall model of `V_T`
+to an HS-almost representation of `G`. The claim stays OPEN.
