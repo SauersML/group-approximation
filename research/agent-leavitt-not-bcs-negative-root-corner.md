@@ -607,3 +607,43 @@ Answers the next step above. Recorded in `configuration-product-models-reduce-to
 - **Next falsifiable step.** Decide whether the Hamming ratio `h(x_13(Q))/δ_(R_j)` is unbounded on every window, over
   all permutation models of the `St_4(J)` presentation. By Theorem HD this is exactly whether the head is visible in
   sofic-type limits.
+### Popa untwisting test is CE-blind: a class kill for the vanishing-cohomology decision point (swarm-0917-w12-w12-nh-last1, calibration, 2026-09-18)
+
+*Approach tried.* Run the recorded Popa decision point on the corner cocycle action `(alpha, omega)` of
+`Q = EL_20(F_2[x,x^(-1)])` on `R = L(GL_fin(V))`, with `L(EL_20(J)) = R x|_(alpha,omega) Q`. The decision point
+appears three times above: at the Jacobson reduction ("vanishing cohomology in `R' ∩ R^omega`"), at the mirror-head
+swap ("the Popa test has to be run on the corner action itself"), and at the virtual-splitting index ("whether
+`omega` is a coboundary in `U(R)`"). Before computing anything, first check whether either outcome can move the goal.
+
+*Result* (`hyperfinite-cocycle-untwisting-is-ce-blind`, established; route
+`hyperfinite-cocycle-untwisting-is-ce-blind-proof`, with Popa imported verbatim as
+`popa-vanishing-cohomology-amplification-and-ce-imports`).
+- **(A1) Freeness.** `(alpha, omega)` is a free cocycle action on `R`, from (S2) and (S3) of the Jacobson proof.
+- **(K2) Amplification.** `p(N x|_sigma Gamma)p ≅ pNp x|_(sigma^p, v^p) Gamma`, and CE is amplification-invariant.
+- **(K3) Cocycle form of Popa's Theorem 6.3.** `R x|_(alpha,v) Gamma` is CE iff there are `V_g` in `N_(R^omega)(R)`
+  with `Ad V_g = alpha_g` and `V_g V_h = v_(g,h) V_(gh)`. No trace condition is needed.
+- **(K1) Counterexample on `Q` itself.** `Q` is residually finite, sofic and Kazhdan. The amplified Bernoulli
+  cocycle `v^t` (`t < 1`, base `L(S_inf)`) is not weak-vanishing in `U(R)` (Popa's Theorem 3.2), yet its crossed
+  product `p L(S_inf wr Q) p` is CE ([HaS16] via Popa's Remark 6.5.1°, and (K2)).
+
+*What this kills.* The Popa test is not a prerequisite of `non-hyperlinear-group` under any of the three readings.
+- *"`omega` is not a (weak) coboundary in `U(R)`."* This does not imply that `E` is non-hyperlinear, by (K1) on
+  the same `Q`. Any proof by this route has to rest on an extra property that separates `omega` from every
+  amplified Bernoulli cocycle.
+- *"`omega` weakly vanishes in `U(R)`."* This turns `L(E)` into a genuine crossed product with a scalar twist. Its
+  CE is still the (K3) lifting problem, and the outcome points away from the goal.
+- *"The induced cocycle vanishes in `R' ∩ R^omega`."* By (K3), this is equivalent to `E` being hyperlinear. It is
+  the hole restated.
+- **Invariant.** Amplification invariance. CE has it, `U(R)`-vanishing does not.
+- **Death step.** The change of coefficients `U(R) -> U(R_omega)`.
+
+*Where it stops (hole stays OPEN).* Only the wall-rigid-approximation decision point for `P` remains as recorded.
+- **New sufficient condition for the refutation side (open, not a node).** Suppose `(alpha, omega)` is cocycle
+  conjugate, up to an automorphism of `Q`, to an amplification `beta^t` of the genuine bilateral action `beta` of
+  `Q` on `L(GL_fin(W))`. Then (K2), Popa's Proposition 1.2 and the LEF property of `H_bi` make `E` hyperlinear.
+- **Next falsifiable step.**
+  - Decide whether some isomorphism `L(E) ≅ p L(H_bi) p` carries `L(L)` onto `p L(GL_fin(W)) p`. By Popa's
+    Proposition 1.2 this is the same as cocycle conjugacy to some `beta^t`.
+  - On the goal side, name a property of `(alpha, omega)` that amplified Bernoulli cocycles lack and that obstructs
+    `(K3)` lifts. Any such property must fail to be amplification-invariant in `U(R)` form, or it must be stated with
+    `U(R_omega)` coefficients.
