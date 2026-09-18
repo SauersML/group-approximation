@@ -31,14 +31,14 @@ variable {C : Type w} [CStarAlgebra C] [CliffordSystem H C]
 /-- Second quantisation maps `Cliff(V)` into `Cliff(UV)`. -/
 theorem orth_mem_cliffordSub (U : H ≃ₗᵢ[ℝ] H) {V : Submodule ℝ H} {a : C}
     (ha : a ∈ cliffordSub (C := C) H V) :
-    orth U a ∈ cliffordSub (C := C) H (V.map (U.toLinearEquiv : H →ₗ[ℝ] H)) := by
+    orth (C := C) U a ∈ cliffordSub (C := C) H (V.map (U.toLinearEquiv : H →ₗ[ℝ] H)) := by
   have hle : cliffordSub (C := C) H V ≤
       (cliffordSub (C := C) H (V.map (U.toLinearEquiv : H →ₗ[ℝ] H))).comap
         (orth U : C ≃⋆ₐ[ℂ] C).toStarAlgHom := by
     refine StarAlgebra.adjoin_le ?_
     rintro _ ⟨v, rfl⟩
     rw [SetLike.mem_coe, StarSubalgebra.mem_comap]
-    show orth U (clifford ((0 : ℝ), (v : H))) ∈ _
+    show orth (C := C) U (clifford ((0 : ℝ), (v : H))) ∈ _
     rw [orth_clifford]
     exact clifford_mem_cliffordSub (V.map (U.toLinearEquiv : H →ₗ[ℝ] H))
       ⟨U (v : H), Submodule.mem_map_of_mem v.2⟩
@@ -127,28 +127,28 @@ variable {C : Type w} [CStarAlgebra C] [CliffordSystem H C]
 /-- The transported coefficient `v ↦ orth U (k (U⁻¹ v))` on `U V`. -/
 def transportCoeff (k : E.dir →ᵇ C) : (E.mapAffine U w).dir →ᵇ C :=
   BoundedContinuousFunction.ofNormedAddCommGroup
-    (fun v => CliffordSystem.orth (H := H) U (k (E.dirSymm U w v)))
+    (fun v => CliffordSystem.orth (H := H) (C := C) U (k (E.dirSymm U w v)))
     ((StarAlgEquiv.isometry (CliffordSystem.orth (H := H) (C := C) U)).continuous.comp
       (k.continuous.comp (E.isometry_dirSymm U w).continuous)) ‖k‖
     (fun v => by
-      show ‖CliffordSystem.orth (H := H) U (k (E.dirSymm U w v))‖ ≤ ‖k‖
+      show ‖CliffordSystem.orth (H := H) (C := C) U (k (E.dirSymm U w v))‖ ≤ ‖k‖
       rw [StarAlgEquiv.norm_map]
       exact k.norm_coe_le_norm _)
 
 theorem transportCoeff_apply (k : E.dir →ᵇ C) (v : (E.mapAffine U w).dir) :
-    E.transportCoeff U w k v = CliffordSystem.orth (H := H) U (k (E.dirSymm U w v)) :=
+    E.transportCoeff U w k v = CliffordSystem.orth (H := H) (C := C) U (k (E.dirSymm U w v)) :=
   rfl
 
 theorem transportCoeff_foot (k : E.dir →ᵇ C) (h : H) :
     E.transportCoeff U w k ((E.mapAffine U w).foot (U h + w)) =
-      CliffordSystem.orth (H := H) U (k (E.foot h)) := by
+      CliffordSystem.orth (H := H) (C := C) U (k (E.foot h)) := by
   rw [transportCoeff_apply, E.dirSymm_foot U w h]
 
 /-- Transport preserves the stage coefficients `C₀(V, Cliff(V))`. -/
 theorem isStageCoeff_transport {k : E.dir →ᵇ C} (hk : E.IsStageCoeff k) :
     (E.mapAffine U w).IsStageCoeff (E.transportCoeff U w k) := by
   refine ⟨?_, fun v => ?_⟩
-  · have h0 : Tendsto (fun a : C => CliffordSystem.orth (H := H) U a) (𝓝 0) (𝓝 0) :=
+  · have h0 : Tendsto (fun a : C => CliffordSystem.orth (H := H) (C := C) U a) (𝓝 0) (𝓝 0) :=
       (StarAlgEquiv.isometry (CliffordSystem.orth (H := H) (C := C) U)).continuous.tendsto' 0 0
         (map_zero _)
     exact h0.comp (hk.1.comp (E.tendsto_dirSymm_cocompact U w))
