@@ -5935,6 +5935,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.B
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Wired
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.ColRow
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ToRealFormula
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductDef
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
