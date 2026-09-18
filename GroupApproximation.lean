@@ -5684,6 +5684,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Chains
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Vars
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.CPoly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiThinRoom
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
