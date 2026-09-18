@@ -8,6 +8,16 @@ distinct_from:
   zaremsky-2-19c-every-gl-n-z-in-some-mv-resolved: that claim is Zaremsky's question 2.19(c); this claim is its negative answer.
 ---
 
+**OPEN.** Every route into this claim is conditional on an open claim:
+- `some-gl-n-z-in-no-nv-via-kazhdan-finiteness` needs `kazhdan-subgroups-of-brin-thompson-groups-are-finite`,
+  which is open for `n ≥ 2`;
+- `some-gl-n-z-in-no-nv-via-heisenberg` needs `heisenberg-group-embeds-in-no-brin-thompson-group`, of which
+  only `m = 1` is established;
+- `gl-3-z-in-no-nv-via-cnd-transversal` needs `brin-thompson-nv-cnd-proper-modulo-triangular-subgroup`, which is
+  open.
+
+The negation `every-gl-n-z-embeds-in-some-brin-thompson-group` is also open.
+
 There is `n` such that for every `m >= 1`, `GL_n(Z)` is not isomorphic to any
 subgroup of `mV`. Necessarily `n >= 3`, since `GL_2(Z)` embeds in `V`.
 

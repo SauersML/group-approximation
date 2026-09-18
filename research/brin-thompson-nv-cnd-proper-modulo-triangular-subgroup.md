@@ -8,6 +8,12 @@ distinct_from:
   brin-thompson-nv-no-cubical-action-proper-mod-triangular: that proves the cubical version of this statement is false; this asks for an arbitrary cnd function
 ---
 
+**OPEN.** No proof and no refutation is recorded.
+- The cubical candidates are dead, by `brin-thompson-nv-no-cubical-action-proper-mod-triangular`.
+- Weighted and non-cubical cocycles are unexplored.
+- The refutation test of the gq-nv-obstruct attempt has not been carried out. That test is a subset with
+  relative property (T) not contained in finitely many cosets of `V^n`.
+
 **Statement.** Let `n ≥ 2` and let `T_n ≤ nV` be the triangular subgroup of
 `brin-thompson-triangular-subgroup-is-undistorted`. There is a conditionally negative definite
 function `ψ_1` on `nV` such that each sublevel set `{ψ_1 ≤ R}` lies in finitely many left cosets of `T_n`.
