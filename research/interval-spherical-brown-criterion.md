@@ -45,14 +45,15 @@ in infinitely many orbits and have arbitrary stabilizers.
 
 **(finite presentation)** Suppose instead:
 1. `Y` is simply connected;
-2. each interval in `𝓘` is graded by `ρ`, so covers have rank difference one;
-3. vertex stabilizers are finitely presented, and stabilizers of covers are finitely
-   generated;
-4. there are finitely many orbits of vertices, of covers, and of intervals `I` of length
-   `≥ 2` for which `|(v, w)|` is disconnected. Covers have `(v, w) = ∅` and are counted
-   separately.
+2. vertex stabilizers are finitely presented, and stabilizers of covers (intervals with
+   `(v, w) = ∅`, of any length) are finitely generated;
+3. there are finitely many orbits of vertices, of covers, and of non-cover intervals `I`
+   for which `|(v, w)|` is disconnected.
 
 Then `Γ` is finitely presented. Intervals whose open part is connected impose no condition.
+No lattice structure, joins of atoms or grading is assumed. Covers may have any rank
+difference, so the criterion applies to posets of dissections with "prime" pieces, the
+non-LCM setting.
 
 ## Instances
 
@@ -74,7 +75,11 @@ four inputs:
 - finitely many orbits of the intervals whose open part is disconnected, which are the pairs
   of commuting splits.
 
-Stabilizers of long elementary edges never matter. For routes whose last open step is finite
+Stabilizers of long elementary edges never matter. Nor do lcms: a dissection operad with
+infinitely many primes gives covers of unbounded length, but only finitely many of them
+below any rank bound. So its failure to be finitely generated obstructs finite presentation
+only through the simple connectivity of the sublevel complexes (hypothesis 1), that is,
+through descending links. For routes whose last open step is finite
 presentation of an explicit Cantor full group (shell envelopes, Röver--Nekrashevych-type,
 groupoid full groups), the interval homotopy types and these stabilizers are the only things
 to compute.
