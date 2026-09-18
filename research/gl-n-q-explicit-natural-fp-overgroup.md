@@ -12,7 +12,12 @@ artifacts:
   - research/artifacts/gq-gq-lit-arxiv-priority.md
 ---
 
-**OPEN.** For every `n >= 2`, give an explicit and natural finitely presented
+**ESTABLISHED (explicit construction; whether it is "natural" in the problem's
+informal sense is for experts to judge)** through
+`gl-n-q-explicit-via-steinberg-group-of-resolvent-ring` and
+`gl-n-q-all-n-in-st-10-of-resolvent-ring`.
+
+**Statement.** For every `n >= 2`, give an explicit and natural finitely presented
 group `Γ_n` together with an embedding `GL_n(Q) -> Γ_n`.
 
 "Natural" is informal. Here a construction counts when `Γ_n` is described
@@ -20,17 +25,46 @@ uniformly: a group of transformations of a named space, or a matrix or
 automorphism group over a named ring or group, and not by running an embedding
 algorithm on a presentation of `GL_n(Q)`.
 
+**Answer.** Let `R_L` be the ring with generators `s_1, s_2, t_1, t_2, N, A` and
+relations `t_i s_j = δ_ij`, `s_1 t_1 + s_2 t_2 = 1`, `N s_1 = s_1(N+1)`, `N s_2 = 0`,
+`A(N+1) = 1 = (N+1)A` (`leavitt-resolvent-ring-is-fp-and-contains-q`). Then the
+Steinberg group `St_10(R_L)` is one finitely presented group containing every
+`GL_n(Q)`, and so is `St_(6n+7)(R_L)` for each fixed `n`. It is a matrix group
+over a named ring with the evident matrix inclusion, which fits the working
+definition above.
+
+**Trust record.**
+- The embedding lemmas `leavitt-pairs-embed-sl-n-q-in-steinberg-groups` (referees
+  a, b, c PASS) and `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1`
+  (referees a and b PASS). `R_L ⊇ Q` unitally with a Leavitt pair was checked by
+  referee b and by hand.
+- Finite presentation of `St_m(R)` for a finitely presented ring `R`:
+  - Krstić–McCool, JPAA 141 (1999), Theorem 3 (`m >= 4`). The primary text is
+    paywalled and unread here; it is quoted verbatim by Ershov–Jaikin-Zapirain
+    and by Khanh.
+  - Independently, gq-referee-c's direct proof for `m >= 5`
+    (`research/artifacts/gq-referee-c-steinberg-finite-presentation-and-kazhdan-theorem.md`,
+    5d6390c47). Both routes use ranks 10 and 6n+7, which are at least 5. That
+    proof has not yet been checked by a second referee.
+- **Priority and framing.** Some finitely presented overgroup exists by Higman,
+  and Chatterji–Kassabov give a Kazhdan one. Mikaelian (arXiv:2507.04347 §1.4)
+  announced an explicit, non-natural `Γ_n` with no construction given. So the
+  contribution is an explicit construction, uniform in `n`, of matrix type. The
+  group is not simple; `gl-n-q-embeds-in-fp-simple-group` stays open.
+
 ## Source
 
 - Belk--Bleak--Matucci--Zaremsky, arXiv:2306.16356v3, Problem 2.7: "For n >= 2,
   find an explicit and natural example of a finitely presented group that
   contains GL_n(Q)." Just before it the survey says that Bridson and de la Harpe
   also asked about `GL_n(Q)` and that "this part of their question remains open".
-- Kourovka notebook, Problem 14.10 (Bridson--de la Harpe, 1999). Mikaelian
-  (arXiv:2507.04347, §1.4) numbers the `GL_n` part 14.10(c) in the current
-  edition and quotes it as: "Find an explicit and "natural" finitely presented
-  group Γ_n and an embedding of GL(n,Q) in Γ_n." The entry and its comments in
-  the 21st edition (arXiv:1401.0300v46) have not been read here.
+- Kourovka notebook, Problem 14.10(c), credited there to P. de la Harpe alone
+  (the survey says Bridson and de la Harpe). The 21st issue (arXiv:1401.0300v46)
+  lists it in the main list with no comment, so it is open there. Verbatim:
+  "14.10. c) Find an explicit and "natural" finitely presented group Γn and an
+  embedding of GLn(ℚ) in Γn." Parts a) and b), about `Q`, are in the Archive of
+  Solved Problems (Belk–Hyde–Matucci 2022; Mikaelian 2005). Source record:
+  `research/artifacts/gq-gq-transfer-consequences.md` §1.
 
 ## Known
 

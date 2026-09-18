@@ -37,7 +37,7 @@ contains no `H_3(Z)` (`thompson-v-has-no-heisenberg-subgroup`).
    function on it is bounded. This is the Delorme–Guichardet theorem, together
    with the correspondence `ψ(g) = ‖b(g)‖²` between such functions and affine
    isometric actions (Bekka–de la Harpe–Valette, *Kazhdan's Property (T)*,
-   Chapter 2; theorem numbers not rechecked here). So `K ⊆ {ψ_1 <= R}` for some
+   Theorem 2.12.4, and §2.10 with Appendix C for the correspondence). So `K ⊆ {ψ_1 <= R}` for some
    `R`.
 3. By the choice of `ψ_1`, `{ψ_1 <= R} ⊆ g_1 T_m ∪ ⋯ ∪ g_r T_m` for finitely many
    `g_i`. If `K ∩ g_i T_m` contains some `k_i`, then `g_i T_m = k_i T_m`, and so
@@ -57,7 +57,8 @@ subgroup of `nV` has a finite-index subgroup inside `T_n`, given `ψ_1`. Step 5 
 the only place where `SL_3(Z)` is used.
 
 **Review.** gq-referee-a, proof-gap lens: PASS as a conditional route (report
-landed d89c65d4d). The referee noted that given `ψ_1`,
+landed d89c65d4d). gq-referee-b, citation and hypothesis lens: PASS as a
+conditional route (0c5ef12bf). The referee noted that given `ψ_1`,
 `kazhdan-finiteness-in-nv-via-cnd-transversal` already makes `SL_3(Z)` finite
 inside `nV`, which is absurd. So step 5 and its unreviewed input
 `triangular-subgroups-of-nv-contain-no-heisenberg-or-sl3z` are not needed for

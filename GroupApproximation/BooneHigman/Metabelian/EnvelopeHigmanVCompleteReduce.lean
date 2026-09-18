@@ -25,11 +25,13 @@ Why the gap is strictly smaller in proof content: the standard proof of the targ
 (1) + (2) + this reduction.  The reduction and the base case of (2) (standard relators among
 words of length `≤ 3`) are proved here.  Soundness of the relators is `higmanVC_rels_subset_ker`.
 
-Truth.  (1) is the classical infinite presentation of `V_d` by cone swaps: every kernel word is
-refined by splits to transpositions of the leaves of one complete prefix code and then reduced by
-the Coxeter relations of the symmetric group on those leaves, which are conjugation and involution
-relators.  (2) is true whenever the target is true: take `τ p` a preimage of `vgenSwapOrOne p`
-under the then-injective map `higmanVC_Q d → V_d`; then `ψ_τ` factors through `higmanVC_evalAll d`,
+Truth.  (1) is the infinite presentation of `V_d` by cone swaps with involution, conjugation and
+split relators, recalled (not checked) as standard.  Caution: a naive "refine everything to one
+complete prefix code" argument does not prove it, since e.g. `(0 1)` and `(0 10)` over `Fin 2` do
+not both permute the leaves of any single finite complete prefix code; for a fixed code `C` the
+involution and conjugation relators among the leaves of `C` do contain the Coxeter presentation of
+`Sym C`.  (2) is true whenever the target is true: take `τ p` a preimage of `vgenSwapOrOne p`
+under the then-bijective map `higmanVC_Q d → V_d`; then `ψ_τ` factors through `higmanVC_evalAll d`,
 which kills the standard relators.  Neither conjunct is verified here.
 -/
 

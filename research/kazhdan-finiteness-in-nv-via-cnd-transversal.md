@@ -33,7 +33,7 @@ Farley), and a group with both (T) and the Haagerup property is finite.
 2. *Covering.* Fix `σ`. The group `K' = σ^-1 K σ <= nV` has (T), so the cnd
    function `ψ_1|_{K'}` is bounded. That holds because (T) implies (FH), by the
    Delorme–Guichardet theorem (Bekka–de la Harpe–Valette, *Kazhdan's Property
-   (T)*, Chapter 2). So `K' ⊆ {ψ_1 <= R} ⊆ g_1T_n ∪ ⋯ ∪ g_rT_n`.
+   (T)*, Theorem 2.12.4). So `K' ⊆ {ψ_1 <= R} ⊆ g_1T_n ∪ ⋯ ∪ g_rT_n`.
    - If `k ∈ K' ∩ g_iT_n`, then `K' ∩ g_iT_n = k(K' ∩ T_n)`.
    - So `[K' : K' ∩ T_n] <= r`.
    - Conjugating back gives `[K : K ∩ T_n^σ] < ∞`.
@@ -66,3 +66,10 @@ of left cosets of `V^n`, then `ψ_1` does not exist. For example, `X` could be
 an infinite Kazhdan subgroup, or the normal `Z^2` of a copy of `Z^2 ⋊ F`,
 `F <= SL_2(Z)` non-amenable, placed off every finite union of cosets of `V^n`.
 Such an `X` would also show that `nV` fails the Haagerup property (Zaremsky 2.7).
+
+**Review.** Conditional route; both referees PASS.
+- gq-referee-a (proof-gap lens): d89c65d4d.
+- gq-referee-b (citation and hypothesis lens):
+  `research/artifacts/gq-referee-b-kazhdan-finiteness-in-nv-via-cnd-transversal.md`, 0c5ef12bf.
+
+It still depends on the OPEN `brin-thompson-nv-cnd-proper-modulo-triangular-subgroup`.
