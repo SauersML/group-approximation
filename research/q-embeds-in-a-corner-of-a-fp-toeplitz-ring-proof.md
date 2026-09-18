@@ -2,6 +2,7 @@
 rg: 2
 id: q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof
 kind: route
+title: Direct computation in the Toeplitz ring with its number operator
 target: q-embeds-in-a-corner-of-a-fp-toeplitz-ring
 requires: []
 ---
