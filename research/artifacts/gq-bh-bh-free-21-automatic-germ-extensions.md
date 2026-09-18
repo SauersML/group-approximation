@@ -242,3 +242,13 @@ replacements. Assign to each clopen set the sum of the end states of its cylinde
     hosts". By 7.1, the germ machine over `V` would then fail for them too, and the base must
     change.
   - If yes, the injectivity of the amalgam is the remaining step.
+
+**7.6 The local question of 7.5 is answered negatively for north-south flows**
+(`attracting-fixed-point-centralizers-embed-in-germ-groups`).
+- **The general lemma.** A homeomorphism with an attracting fixed point of open dense basin has
+  its centralizer, on the stabilizer of that point, embedded in the germ group there.
+- **Applied to 2V.** At a corner the 2V germ group is `Z^2`. So `C_2V(z^p × z^q) = Z^2` for
+  `pq != 0`, and the diagonal-fiber design dies.
+- **Lesson.** Large centralizers need large germ groups at attractors. So Seifert fibers in
+  Thompson-like hosts must sit at singular points with germ group containing the whole block,
+  as in the fiber-first normal form, or have no dense-basin attractor.
