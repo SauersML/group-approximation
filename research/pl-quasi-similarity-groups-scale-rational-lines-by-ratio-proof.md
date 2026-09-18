@@ -2,6 +2,7 @@
 rg: 2
 id: pl-quasi-similarity-groups-scale-rational-lines-by-ratio-proof
 kind: route
+title: Direct proof using Aut(Q) = Q^x
 target: pl-quasi-similarity-groups-scale-rational-lines-by-ratio
 requires: []
 ---

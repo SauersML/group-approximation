@@ -2,6 +2,7 @@
 rg: 2
 id: periodic-point-germ-groups-omit-aff-q-proof
 kind: route
+title: Modular maps from commensuration combined with undistorted cyclic subgroups of V
 target: periodic-point-germ-groups-omit-aff-q
 requires:
   - aff-q-forces-distortion-in-abelian-kernels

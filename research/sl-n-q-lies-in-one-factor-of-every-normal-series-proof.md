@@ -2,6 +2,7 @@
 rg: 2
 id: sl-n-q-lies-in-one-factor-of-every-normal-series-proof
 kind: route
+title: Direct proof with the root groups X_ij, which generate SL_n(Q)
 target: sl-n-q-lies-in-one-factor-of-every-normal-series
 requires: []
 ---

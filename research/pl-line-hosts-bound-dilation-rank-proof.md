@@ -2,6 +2,7 @@
 rg: 2
 id: pl-line-hosts-bound-dilation-rank-proof
 kind: route
+title: Direct proof from the derivative images of finitely generated groups
 target: pl-line-hosts-bound-dilation-rank
 requires:
   - fg-groups-have-fg-derivative-images

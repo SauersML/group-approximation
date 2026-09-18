@@ -2,6 +2,7 @@
 rg: 2
 id: circle-groups-with-divisible-free-germs-omit-gl-n-q-proof
 kind: route
+title: Direct proof through Poincare rotation numbers
 target: circle-groups-with-divisible-free-germs-omit-gl-n-q
 requires: []
 ---

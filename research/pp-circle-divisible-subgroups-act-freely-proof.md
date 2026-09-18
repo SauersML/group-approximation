@@ -2,6 +2,7 @@
 rg: 2
 id: pp-circle-divisible-subgroups-act-freely-proof
 kind: route
+title: Direct proof through germs of divisible subgroups at common fixed points
 target: pp-circle-divisible-subgroups-act-freely
 requires: []
 ---

@@ -2,6 +2,7 @@
 rg: 2
 id: abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q-proof
 kind: route
+title: Direct computation in the abelian base of the wreath product
 target: abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q
 requires: []
 ---
