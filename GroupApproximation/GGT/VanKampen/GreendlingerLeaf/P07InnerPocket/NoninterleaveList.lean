@@ -146,6 +146,28 @@ theorem rotate_four_mid {l U₁ U₂ U₃ U₄ : List α} {n : ℕ}
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPiece.rotate_four_mid
 
+/-- **Four uniform blocks do not interleave.**  Suppose a rotation of `l` reads
+`U₁ ++ U₂ ++ U₃ ++ U₄`, with `U₁` inside `A`, `U₃` outside `A`, and `U₂`, `U₄` each uniform.
+Then `l` does not interleave in `A`. -/
+theorem cyclicNoInterleave_of_four_blocks {A : α → Prop} {l U₁ U₂ U₃ U₄ : List α} {n : ℕ}
+    (hrot : l.rotate n = U₁ ++ U₂ ++ U₃ ++ U₄) (h₁ : ∀ x ∈ U₁, A x) (h₃ : ∀ x ∈ U₃, ¬ A x)
+    (h₂ : (∀ x ∈ U₂, A x) ∨ ∀ x ∈ U₂, ¬ A x) (h₄ : (∀ x ∈ U₄, A x) ∨ ∀ x ∈ U₄, ¬ A x) :
+    CyclicNoInterleave A l := by
+  rcases h₄ with h₄ | h₄
+  · rcases h₂ with h₂ | h₂
+    · exact cyclicNoInterleave_of_rotate_eq_append (V := U₄ ++ U₁ ++ U₂) (W := U₃)
+        (rotate_four_last hrot) (all_append (all_append h₄ h₁) h₂) h₃
+    · exact cyclicNoInterleave_of_rotate_eq_append (V := U₄ ++ U₁) (W := U₂ ++ U₃)
+        ((rotate_four_last hrot).trans (List.append_assoc (U₄ ++ U₁) U₂ U₃))
+        (all_append h₄ h₁) (all_append h₂ h₃)
+  · rcases h₂ with h₂ | h₂
+    · exact cyclicNoInterleave_of_rotate_eq_append (V := U₁ ++ U₂) (W := U₃ ++ U₄)
+        (hrot.trans (List.append_assoc (U₁ ++ U₂) U₃ U₄)) (all_append h₁ h₂) (all_append h₃ h₄)
+    · exact cyclicNoInterleave_of_rotate_eq_append (V := U₁) (W := U₂ ++ U₃ ++ U₄)
+        (hrot.trans (by simp only [List.append_assoc])) h₁ (all_append (all_append h₂ h₃) h₄)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPiece.cyclicNoInterleave_of_four_blocks
+
 end Lists
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPiece

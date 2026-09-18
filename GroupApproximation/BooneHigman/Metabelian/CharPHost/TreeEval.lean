@@ -66,7 +66,7 @@ theorem ev_C (A : σ → F[X]) (r : F) : ev i₀ A (C r) = Polynomial.C r := by
 theorem ev_X_self (A : σ → F[X]) : ev i₀ A (X i₀) = Polynomial.X := by
   show aeval (withUniformizer i₀ Polynomial.X A) (X i₀) = Polynomial.X
   rw [aeval_X]
-  exact if_pos rfl
+  exact if_pos (rfl : i₀ = i₀)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.ev_X_self
 
@@ -131,7 +131,7 @@ theorem exists_vecOf_act (w : List (Letter m F i₀)) :
     obtain ⟨R, hR⟩ := ih (g.map (shift i₀ a)) (carry i₀ g b (e, a)) A v
     exact ⟨R, fun k =>
       (eval_step i₀ g b e a (listPoint Polynomial.X (params i₀ u) A) (vecOf i₀ u v) k).trans
-        (congrArg (fun t => Polynomial.C (digit i₀ g b (e, a) k) + Polynomial.X * t) (hR k))⟩
+        (congrArg (fun t : F[X] => Polynomial.C (digit i₀ g b (e, a) k) + Polynomial.X * t) (hR k))⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.exists_vecOf_act
 

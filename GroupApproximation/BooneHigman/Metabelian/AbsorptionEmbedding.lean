@@ -165,7 +165,8 @@ noncomputable def absorptionUnits (M N : ℕ) (h : 2 * M ≤ N) :
         elementaryReindexUnitEquiv (R := R) (absorptionIndexEquiv M N h)
           (blockUnits (blockUnits g' (invTransposeHom g'))
             (1 : (Matrix (Fin (N - 2 * M)) (Fin (N - 2 * M)) R)ˣ))
-    rw [map_mul (invTransposeHom (R := R) (m := Fin M)) g g', blockUnits_mul, blockUnits_mul_one, map_mul]
+    rw [map_mul (invTransposeHom (R := R) (m := Fin M)) g g', blockUnits_mul, blockUnits_mul_one,
+      map_mul]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.absorptionUnits
 
