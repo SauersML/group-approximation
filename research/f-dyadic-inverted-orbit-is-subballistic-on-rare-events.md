@@ -8,6 +8,10 @@ distinct_from:
   thompson-f-dyadic-action-is-extensively-amenable: that is extensive amenability of the dyadic action; this is its concrete probabilistic form via the inverted orbit, equivalent to it by f-dyadic-ea-iff-inverted-orbit-confinement.
 artifacts:
   - research/artifacts/hl-f-extensive-amenability-dyadic-2026-09-14.md
+  - experiments/f-dyadic-rare-confinement-2026-09-17/cloning.py
+  - experiments/f-dyadic-rare-confinement-2026-09-17/band_long.py
+  - experiments/f-dyadic-rare-confinement-2026-09-17/lambda_long.py
+  - experiments/f-dyadic-rare-confinement-2026-09-17/psl_return.py
 ---
 
 **OPEN.** Let `μ` be a non-degenerate symmetric finitely supported probability measure on `F` with
@@ -34,6 +38,47 @@ for the dyadic lamplighter, of the same order of difficulty as the unsettled cog
 itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
 
 ## Attempts
+
+- 2026-09-17 (e-f-scale, swarm-0917, scale-shifter): **quantifier shift, decomposition, class kill,
+  numerics.** Established node: `f-dyadic-rare-confinement-rate-at-most-cogrowth-exponent`. This claim stays
+  OPEN.
+  - **One number instead of a quantifier.**
+    - `E 2^{−|O_n|} = ⟨(1_E P 1_E)^n 1_E, 1_E⟩`, where `P` is the Koopman operator of the Bernoulli shift
+      `F ↷ {0,1}^D` and `E = {ω(1/2) = 0}`.
+    - So the exponent exists and equals `−log ‖1_E P 1_E‖`. This claim is equivalent to `‖1_E P 1_E‖ = 1`,
+      and also to almost invariant sets inside the cylinder `E`.
+  - **Two-sided bounds.**
+    - Upper: the exponent is at most `−log ρ(F)`, which is `≤ 0.10366` for simple random walk by
+      `thompson-f-norm-bound-from-hhr-exact-moments`.
+    - Lower: `−log((1+ρ_0^+)/2)`, where `ρ_0^+` is the top spectrum on nonempty Walsh levels. It squeezes the
+      exponent whenever finite-set stabilizers are amenable.
+  - **Decomposition into prerequisites that can fail.**
+    - The band exponents `λ_C = limsup P(O_n ⊆ D_C)^{1/n}` are survival rates of finite killed chains
+      `T_i = h_iT_{i−1}`, with `λ_C ≤ ‖1_E P 1_E‖`.
+    - Dyadic depth grows by at most 1 per generator, so `λ_{R+2}` is at least the Perron eigenvalue of the
+      walk confined to the Cayley ball `B_R`.
+    - Hence `F` amenable ⟺ `λ_C → 1`. Each `λ_C` can be `< 1`; they all stay bounded away from 1 only if `F`
+      is nonamenable.
+  - **Correction to `research/artifacts/hl-f-extensive-amenability-dyadic-2026-09-14.md`.** Its "rate that
+    does not go to 0 with the band" is equivalent to nonamenability of `F`, so it is not an established
+    obstruction. The multi-scale nesting of bands is unnecessary.
+  - **Dead class: Walsh-level spectral gaps.** They cannot show this claim fails.
+    - On `ℓ²(P_k(D))` the top of the spectrum is 1 for every `k`. The witnesses are the `k`-subsets of the
+      ray `{2^{−j}}_{j≤N}`, which `x_1` fixes and `x_0` shifts.
+    - Every sector-by-sector bound on `⟨Pf_0,f_0⟩` therefore gives only exponent `≥ 0`. A positive exponent
+      must come from the toggle coupling `f̂(A) = f̂(A Δ {1/2})` between neighbouring levels.
+    - The amenable-stabilizer squeeze is unavailable, because finite-set stabilizers contain copies of `F`.
+  - **Numerics.** Scripts are in `experiments/f-dyadic-rare-confinement-2026-09-17/`, with bounded runtime.
+    - `F`: exponent estimate 0.058 at `n = 1000` and 0.046 at `n = 4000` (late windows about 0.042). Band
+      rates for `C = 2..8`: 0.34, 0.20, 0.15, 0.11, 0.087, 0.082, 0.06.
+    - Calibrator `PSL_2(Z) ↷ P¹(Q)`: not extensively amenable, so its exponent is provably positive. Its
+      estimates (0.047 late) and ball-band rates (down to 0.045 at 110 points) decrease the same way.
+    - `F_2` on itself: estimate 0.298, above the rigorous ceiling 0.1438.
+    - `Z³` and the lamplighter on themselves: estimates 0.19 and 0.12, where the true value is 0.
+    - Verdict: finite-size cloning at these sizes cannot tell which way this claim goes.
+  - **Where it stops.** No lower bound on `‖1_E P 1_E‖` beyond `ρ(F)` and no upper bound below 1 is proved.
+    The open step is to build almost invariant sets inside `E` (positive direction), or to control the
+    toggle coupling across Walsh levels (negative direction).
 
 - **Last-mile audit, then a rate kill (2026-09-17, swarm-0917-w6-w6-f-last2, quantifier-shift).**
   - *Closest route.* This hole is the only open prerequisite on `thompson-f-amenable-via-dyadic-extensive-amenability`,
