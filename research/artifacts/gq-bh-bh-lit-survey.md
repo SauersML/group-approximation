@@ -144,7 +144,8 @@ BFFHZ, arXiv:2503.21882:
   OPEN)
 - **Q3.6** "Are finitely presented simple Kac–Moody groups highly transitive? Are they
   MIF? Do they satisfy PBH?"
-- (Q3.5 was not returned by the fetch; not transcribed.)
+- There is no Question 3.5: numbering is shared, and 3.5 is a Remark (arXiv HTML, 2026-09-18). The numbered
+  questions are 3.1, 3.2, 3.3, 3.4 and 3.6.
 - Stated open: MCGs of closed surfaces of genus ≥ 3; exceptional spherical Artin types;
   Euclidean Artin groups other than Ã_n.
 
@@ -161,8 +162,19 @@ FWZ, arXiv:2603.24687:
 BHM, arXiv:2407.03149 (TeX line 954): whether VG has the Haagerup property (remark,
 not a numbered question).
 
-Kourovka: 14.10(a) (Q; answered naturally by BHM, Bull. AMS 2022) and 14.10(c)
-(GL_n(Q)); entry text not re-read here (v46 HTML too long, per the earlier lane).
+Kourovka notebook, 21st issue (2026), arXiv:1401.0300 e-print (top-level file 21tkt.tex, read on MSI
+2026-09-18; the PDF was not typeset):
+- **Active list, 14.10 (P. de la Harpe), only part c) remains:** "14.10. c) Find an explicit and “natural”
+  finitely presented group Γ_n and an embedding of GL_n(Q) in Γ_n." Followed by: "Another phrasing of
+  the same problems is: find a simplicial complex X which covers a finite complex such that the fundamental
+  group of X is Q or, respectively, GL_n(Q)."
+- **Archive of solved problems, 14.10 a) and b):** a) "(Well-known problem). It is known that any recursively
+  presented group embeds in a finitely presented group (G. Higman, Proc. Royal Soc. London Ser. A, 262 (1961),
+  455–475). Find an explicit and “natural” finitely presented group Γ and an embedding of the additive group
+  of the rationals Q in Γ." b) "Find an explicit embedding of Q in a finitely generated group; such a group exists
+  by Theorem IV in (G. Higman, B. H. Neumann, H. Neumann, J. London Math. Soc., 24 (1949), 247–254)."
+  Comment printed there: "a) Such an embedding is found (J. Belk, J. Hyde, F. Matucci, Bull. Amer. Math. Soc.,
+  59, no. 4 (2022), 561–567)." No separate comment on b) appears in that archive entry.
 
 ## 4. What this means for lane targeting (lane remark, not a claim)
 
