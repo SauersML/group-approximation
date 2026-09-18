@@ -6,6 +6,7 @@ title: After stabilizing by the Cuntz groupoid, the topological full group of a 
 distinct_from:
   fp-full-binary-cantor-groups-have-type-a-actions: that needs a standard binary V inside the full group, so that all clopen sets are equivalent; this proves the same equivalence combinatorially, by refining cylinder decompositions, with no standard V.
   torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups: that produces the finitely presented full group; this puts such full groups in B_A.
+  primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple: that embeds full groups of primitive aperiodic 2-graphs in infinite simple groups of type F_infinity; this puts full groups of loop-rich k-graphs of any rank, disjoint unions of strongly connected pieces, into the permutational class B_A, by a comparison lemma instead of simplicity.
 ---
 
 **ESTABLISHED** through `stabilized-kgraph-full-group-clopen-action-proof` (lane

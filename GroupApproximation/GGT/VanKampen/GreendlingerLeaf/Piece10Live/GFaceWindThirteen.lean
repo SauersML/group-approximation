@@ -89,6 +89,28 @@ theorem gfaceWindThirteen_wrap_wrap {C : List M.Dart} {g : M.Face → ℤ}
     gfaceWindTwelve_wrap y₁ m y₂ rfl hY
   exact Relation.TransGen.tail (Relation.TransGen.single s₁) s₂
 
+/-- **Two nested wrap excisions, then an inner one**: `C = z₁ ++ y₁ ++ v₁ ++ A ++ v₂ ++ y₂ ++ z₂`,
+first `z₂ ++ z₁`, then `y₂ ++ y₁`, then `A`. -/
+theorem gfaceWindThirteen_wrap_wrap_inner {C : List M.Dart} {g : M.Face → ℤ}
+    (z₁ y₁ v₁ A v₂ y₂ z₂ : List M.Dart) (h : C = z₁ ++ y₁ ++ v₁ ++ A ++ v₂ ++ y₂ ++ z₂)
+    (hZ : IsSimpleClosedWalk M (z₂ ++ z₁)) (hY : IsSimpleClosedWalk M (y₂ ++ y₁))
+    (hA : IsSimpleClosedWalk M A) :
+    Relation.TransGen (gfaceWind_Step M o) (C, g)
+      (v₁ ++ v₂, fun f => g f - gfaceWind_wind M o (z₂ ++ z₁) f -
+        gfaceWind_wind M o (y₂ ++ y₁) f - gfaceWind_wind M o A f) := by
+  have e : C = z₁ ++ y₁ ++ (v₁ ++ A ++ v₂) ++ y₂ ++ z₂ := by simp only [h, List.append_assoc]
+  have s₁ : Relation.TransGen (gfaceWind_Step M o) (C, g)
+      (v₁ ++ A ++ v₂, fun f => g f - gfaceWind_wind M o (z₂ ++ z₁) f -
+        gfaceWind_wind M o (y₂ ++ y₁) f) :=
+    gfaceWindThirteen_wrap_wrap z₁ y₁ (v₁ ++ A ++ v₂) y₂ z₂ e hZ hY
+  have s₂ : gfaceWind_Step M o
+      (v₁ ++ A ++ v₂, fun f => g f - gfaceWind_wind M o (z₂ ++ z₁) f -
+        gfaceWind_wind M o (y₂ ++ y₁) f)
+      (v₁ ++ v₂, fun f => g f - gfaceWind_wind M o (z₂ ++ z₁) f -
+        gfaceWind_wind M o (y₂ ++ y₁) f - gfaceWind_wind M o A f) :=
+    gfaceWindTwelve_inner v₁ A v₂ rfl hA
+  exact Relation.TransGen.tail s₁ s₂
+
 end Steps
 
 section Lobes
@@ -96,25 +118,36 @@ section Lobes
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
 
-/-- **An explicit two-lobe witness with nested wraps**: one of the four shapes of
-`gfaceWindTwelve_Lobes K`, or the shape `WW` (module docstring) with simple closed wrapping
-stretches, and the passing clauses at the explicit resulting state. -/
+/-- **An explicit witness with nested wraps**: one of the four shapes of
+`gfaceWindTwelve_Lobes K`, or one of the shapes `WW`, `WWL` (module docstring) with simple closed
+excised stretches, and the passing clauses at the explicit resulting state. -/
 def gfaceWindThirteen_Lobes (K : PocketFaceSet D eps X lo hi) : Prop :=
   gfaceWindTwelve_Lobes K ∨
-    ∃ z₁ y₁ m y₂ z₂ : List X.toCombMap.Dart,
+    (∃ z₁ y₁ m y₂ z₂ : List X.toCombMap.Dart,
       K.boundary.cycle = z₁ ++ y₁ ++ m ++ y₂ ++ z₂ ∧
       IsSimpleClosedWalk X.toCombMap (z₂ ++ z₁) ∧ IsSimpleClosedWalk X.toCombMap (y₂ ++ y₁) ∧
       gfaceWindTwelve_Good K m (fun f =>
         gfaceWind_ind K.faces f - gfaceWind_wind X.toCombMap X.outerFace (z₂ ++ z₁) f -
-          gfaceWind_wind X.toCombMap X.outerFace (y₂ ++ y₁) f)
+          gfaceWind_wind X.toCombMap X.outerFace (y₂ ++ y₁) f)) ∨
+    ∃ z₁ y₁ v₁ A v₂ y₂ z₂ : List X.toCombMap.Dart,
+      K.boundary.cycle = z₁ ++ y₁ ++ v₁ ++ A ++ v₂ ++ y₂ ++ z₂ ∧
+      IsSimpleClosedWalk X.toCombMap (z₂ ++ z₁) ∧ IsSimpleClosedWalk X.toCombMap (y₂ ++ y₁) ∧
+      IsSimpleClosedWalk X.toCombMap A ∧
+      gfaceWindTwelve_Good K (v₁ ++ v₂) (fun f =>
+        gfaceWind_ind K.faces f - gfaceWind_wind X.toCombMap X.outerFace (z₂ ++ z₁) f -
+          gfaceWind_wind X.toCombMap X.outerFace (y₂ ++ y₁) f -
+            gfaceWind_wind X.toCombMap X.outerFace A f)
 
 /-- **The arc-keeping winding choice from an explicit witness with nested wraps.** -/
 theorem gfaceWindThirteen_arcs_of_lobes (K : PocketFaceSet D eps X lo hi)
     (h : gfaceWindThirteen_Lobes K) : gfaceWindNine_Arcs K := by
-  rcases h with h | ⟨z₁, y₁, m, y₂, z₂, hC, hZ, hY, hg⟩
+  rcases h with h | ⟨z₁, y₁, m, y₂, z₂, hC, hZ, hY, hg⟩ |
+      ⟨z₁, y₁, v₁, A, v₂, y₂, z₂, hC, hZ, hY, hA, hg⟩
   · exact gfaceWindTwelve_arcs_of_lobes K h
   · exact gfaceWindTwelve_arcs_of_reach K
       (gfaceWindThirteen_wrap_wrap z₁ y₁ m y₂ z₂ hC hZ hY) hg
+  · exact gfaceWindTwelve_arcs_of_reach K
+      (gfaceWindThirteen_wrap_wrap_inner z₁ y₁ v₁ A v₂ y₂ z₂ hC hZ hY hA) hg
 
 /-- **A two-lobe witness is a witness with nested wraps.** -/
 theorem gfaceWindThirteen_lobes_of_twelve (K : PocketFaceSet D eps X lo hi)
@@ -168,6 +201,8 @@ end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_wrap_wrap
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_wrap_wrap_inner
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindThirteen_Lobes
 #audit_axioms

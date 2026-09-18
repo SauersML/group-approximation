@@ -117,3 +117,28 @@ action is trivial. `𝔅_n` acts faithfully, so `ψ` is trivial. ∎
 - **Next.** Either build a delayed Hooper/Kari–Ollinger element of `2V` with iterated-log
   movement, which refutes the gap, or exploit the variation identity for the four linked
   generators.
+
+**Attempt 2 (bh-testcases, 2026-09-18): the gap holds at all times, at rate `log N`; only sparse times remain.**
+- **Lower bound.** `brin-thompson-aperiodic-elements-have-logarithmic-movement`: in `nV`,
+  every element with a non-periodic point has `max_(t ≤ M) E(t) ≥ log_2 M/(2n) − O(1)`.
+  So a "slow counter" with `o(log N)` movement at all times does not exist in `nV`. In
+  particular, unbounded `o((log log N)^2)` movement is impossible. Option (1) of the
+  coordinator's message is ruled out in that form.
+- **What is left.** A refutation of the gap needs an element of `nV` whose movement is
+  `O((log m)^2)` at the times `2^m` only, while it is at least logarithmic infinitely
+  often. Such behaviour is exactly what a chain of Baumslag–Solitar relations produces.
+  - If the double chain `⟨a, b, c | a b a^-1 = b^2, b c b^-1 = c^2⟩` embeds in `nV`, then by
+    Horner `E_b(m) = O(log m)` for all `m`, and so `E_c(2^m) ≤ L + 2 E_b(m) = O(log m)`,
+    which refutes the gap.
+  - The middle element `b` has to be both a base, so it has zero entropy, and a
+    conjugator of `c` to `c^2`.
+  - The renormalization route (`renormalizable-thompson-elements-give-baumslag-solitar`,
+    SMART in `3V`) produces a base `s` and a baker-type conjugator `u`. Whether `u`, or any
+    zero-entropy conjugator, can be chosen renormalizable is the next question. It is
+    not settled here, and neither is `BS(1,2) ≤ nV`.
+- **Why counting cannot decide Higman's case.** The pumping bound and the counting of
+  distinct points along the words `γ_i^m γ_(i+1) γ_i^-m` are the same argument, and both
+  give exactly `log` at generic times. That matches the upper bound
+  `O(log N (log log N)^2)` up to the `log log` factor. So a triviality proof for
+  `H4 → nV` needs an invariant that sees the times `2^m` specifically. The squaring
+  recursion for reading lengths, `R_(m+1) ≤ R_m + E(2^m)`, is too weak by itself.

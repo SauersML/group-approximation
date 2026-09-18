@@ -70,3 +70,28 @@ Landed `fw-inputs-pass-window-zero-only-via-proper-self-embeddings` with its pro
 **Status of the gaps.**
 - Gap (ii) is closed for FW inputs.
 - Gap (i) is irrelevant for FW inputs, and stays open for inputs without FW.
+
+## Fourth pass: the descending window-zero case (sign −1, proper self-embedding)
+
+This is the one configuration the FW nodes leave open: `s rho_g s^-1 = rho_(psi(g))` near infinity, with `psi` injective, of infinite index and with trivial core. The other lanes' conditions still apply: high transitivity, `Z(P) = 1`, and `P` not co-Hopfian.
+
+**Exact model.** After finitely many modifications we may assume `rho_(psi(g))(0) = 0` and `rho_(psi(g))(n+1) = rho_g(n) + 1`. So `G = rho(P) ≤ Sym(N)` satisfies `G^+ ⊆ G`, where `g^+ = s g s^-1` with `0` fixed, and `psi` is `g ↦ g^+`. Then `psi^m(P)` fixes `[0, m)` pointwise and acts on `[m, ∞)` as `P` does on `N`.
+
+**Two identities (proved, elementary).**
+1. *Out-counts shift.* Put `out_g(k) = |g[0,k) \ [0,k)|`. Then `out_(psi(g))(k+1) = out_g(k)`.
+   - For a Kazhdan input with an infinite orbit, the Schreier graph is non-amenable. So `Σ_(g∈S) out_g(k) >= h k` for every `k`.
+   - This is consistent with the shift identity for every `m`, so it gives no contradiction.
+2. *Representations.* On `ℓ²(N)` the permutation representation satisfies `pi∘psi = S pi S* + e_00`, so `pi∘psi ≅ pi ⊕ 1`.
+   - Let `p` be the Kazhdan projection in `C*_max(P)` and `psi~` the induced `*`-homomorphism. Then `pi(psi~^m(p))` is the projection onto `span(e_0, …, e_(m-1))`.
+   - When `rho` is transitive, the conjugates `pi(g psi~(p) g^-1)` are all the rank-one projections `e_nn`. So `pi(C*_max(P))` contains the compact operators.
+   - So `pi` is an irreducible representation of a Kazhdan group whose image contains `K(ℓ²(N))`. That is consistent with high transitivity and gives no contradiction by itself.
+
+**A natural recursion that collapses (proved).** Take the free group `F_2 = <a,b>` with the infinite-order automorphism `psi(a) = b`, `psi(b) = bab^-1`. Near-realizing it with `alpha = rho(a)` and `beta = rho(b)` forces:
+- `beta = s alpha s^-1` and `s beta s^-1 = beta alpha beta^-1`;
+- equivalently, `x = alpha s^-1` satisfies `x^2 s = s x^2`;
+- the centralizer of `s` in `NearSym(N)` is `<s>`, and near index gives `x^2 = s^-2`;
+- so `x`, hence `alpha` and `beta`, are eventually 2-periodic, and `<alpha, beta>` is virtually abelian.
+
+So this twist admits no near-faithful realization. The lesson is that the shift relation turns a twist into centralizer equations in `NearSym(N)`, whose solutions are eventually periodic unless the twist feeds in genuinely new letters.
+
+**Status.** OPEN, both for Kazhdan inputs and as a construction problem in general. Wanted: a finitely generated `G ≤ Sym(N)` with no nontrivial finitary elements and `G^+ ⊊ G`, not virtually abelian; and, for Boone–Higman's reduced inputs, one with property (T). The first would already be the first non-virtually-abelian genuine window-zero witness. No mechanism is known for either.

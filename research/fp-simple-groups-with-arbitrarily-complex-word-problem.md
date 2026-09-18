@@ -111,3 +111,37 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      outside `P`,* for example `NP`- or `PSPACE`-hard. It then passes up through
      Zaremsky's Theorem 1.1. Beating every recursive bound needs infinite-state
      coefficient groups.
+7. **Linear superposition beats coNP: `(L ⊗ L)^x` is `coNP^⊕P`-complete** (bh-free-26,
+   2026-09-18, `leavitt-square-units-have-conp-parity-p-complete-word-problem`; lane proof,
+   not reviewed).
+   - *Result.* The finitely presented simple group `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^x`, whose
+     finite presentation and simplicity come from
+     `leavitt-square-unit-group-is-fp-simple-and-acyclic`, has word problem complete for
+     `coNP^⊕P = ∀·⊕P`. So it is not in coNP unless the polynomial hierarchy collapses (Toda).
+     It is the first finitely presented simple group here provably beyond Birget's coNP
+     level, modulo that standard hypothesis.
+   - *Mechanism.* The superposition letters `τ = s_0 + s_1` and `σ = t_0 + t_1` enter through
+     slot units and one commutator. The second tensor factor supplies baker scrolling, so
+     reversible circuits have polynomial length. This is not a piecewise-prefix host, which is
+     why item 6's cap does not apply: its elements are linear combinations, not homeomorphisms.
+   - *Limit.* `coNP^⊕P` is one fixed class, and every finitely generated subgroup of the unit
+     group of any `L_(F_2)(1,2)^(⊗d)` stays in it. So this route cannot give unbounded
+     complexity. Over `F_p` the same proof gives `coNP^(Mod_p P)` for finitely generated
+     subgroups; finite presentation of those hosts is not claimed.
+8. **Hard real parameters in PL hosts: die by order rigidity** (bh-free-32, 2026-09-18; lane
+   proofs, not reviewed).
+   - *Idea.* Keep the combinatorics of a Thompson-like host, but let one breakpoint or slope be a
+     computable transcendental `λ` whose digits are hard. A bump `u` with endpoint `e(λ)` and an
+     `F`-bump `k_r` on `(r, 1)` commute iff `e(λ) < r`, so the word problem decides the digits.
+   - *Dies.* `fp-pl-groups-with-f-have-no-transcendental-support-endpoints`: no finitely
+     generated PL group of an interval or circle with data in `Q(λ)` that contains a dyadic `F`
+     and such a bump is finitely presented. The reason is that the finitely many relators persist
+     when `λ` moves slightly, while `[u, k_r]` does not. For line groups,
+     `fp-bieri-strebel-line-groups-are-deformation-rigid` shows more: a finitely presented
+     `G(R;A,P)` has algebraic slopes, and its breakpoints lie in `Q(P)` after rescaling. So its
+     parameters live in a number field, where the word problem is arithmetic of bounded
+     complexity. This also shows that the necessary conditions of Bieri--Strebel D13.3 are not
+     sufficient, e.g. for `G(R; Z[1/2] + Z[1/2]τ, gp(2))` with any irrational `τ`.
+   - *Still open:* hard parameters in non-PL families (piecewise projective, germs), where the
+     same deformation argument should apply but is not written out. Notes:
+     `research/artifacts/gq-bh-bh-free-32-order-rigidity.md`.

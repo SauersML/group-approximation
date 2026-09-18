@@ -6,6 +6,8 @@ title: A torsion-free cocompact lattice on a product of thick leafless trees emb
 distinct_from:
   odometer-2v-is-fp-simple-and-contains-bs12: that applies Li's higher-rank-graph theorem to one explicit one-vertex 2-graph; this builds a k-graph from any torsion-free tree-product lattice and forces Li's loop hypothesis by a power-and-phase trick.
   product-of-trees-lattices-with-faithful-factor-satisfy-pbh: that needs a faithful or separating factor; this uses the boundary action on the product of the tree boundaries and needs no hypothesis on kernels, closures or residual finiteness.
+  primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple: that removes Li's loop hypothesis for 2-graphs with primitive colour matrices by the same rescaling, skew-product and full-shift steps (found independently the same day by bh-groupoid); this needs any rank k and allows colour matrices that are block diagonal and periodic, as cube k-graphs are.
+  li-finite-k-graph-full-groups-are-f-infinity: that is the imported finiteness theorem; this builds the k-graph to which it is applied.
 ---
 
 **ESTABLISHED** through `tree-lattice-kgraph-power-phase-proof` (lane proof; not
