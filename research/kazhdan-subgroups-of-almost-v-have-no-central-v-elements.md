@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `kazhdan-almost-v-central-v-elements-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-germ-extensions.md, bdc9e959c; lane proof, elementary
-from landed nodes plus the revealing-pair structure of elements of `V`; citation review by referee-b pending; no novelty claimed).
+from landed nodes plus the revealing-pair structure of elements of `V`; gq-referee-b PASS, research/artifacts/gq-referee-b-kazhdan-almost-v-central-and-normal-germ-extensions.md, f6b4126d9, fix W3 applied; no novelty claimed).
 
 ## Setting
 
