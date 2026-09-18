@@ -215,6 +215,39 @@ must build genuinely Hamming-approximate sofic models.
     or Dehn filling, extension-type certificates such as (RLT) of item 12,
     left-orderability, and linear models avoiding every fixed congruence level.
     This node stays OPEN.
+14. **(EK1) descends modulo amenable normal subgroups (2026-09-17, reframing).**
+    Item 13 is recorded on the live bus.
+    `kazhdan-defect-descends-modulo-amenable-radical` is established. For a
+    `phi`-invariant amenable `A normal K`, put `pi : G -> (K/A) semidirect Z`.
+    - (AD1): `pi(D_G(L)) <= D(pi L)`.
+    - (AD2): (EK1) holds iff the image of the defect is all of `K/A`. The
+      quotient `K/D` is amenable and Kazhdan, so it is finite, so it is trivial.
+    - (AD3): if `K/A` is KCF, then `D_G(L) <= A < K` for every `phi`
+      preserving `A`.
+
+    Consequences:
+    - A witness kernel is not KCF even modulo its amenable radical.
+    - This kills amenable extensions of Titz--Witzel lattices, including the
+      rational relation covers over them from item 12, and amenable extensions
+      of torsion-free hyperbolic Kazhdan groups, for every automorphism.
+    - Saturation can be tested on `K/Rad_amen(K)`, which may have torsion and
+      need not be sofic.
+
+    On the relation-cover route with abelian kernel `A`, (EK1) splits into two
+    prerequisites that can each fail:
+    - (Sat): the descended defect saturates `Q`. It dies when `Q` is KCF
+      modulo its amenable radical.
+    - (Lift): exact centralizing roots exist iff the class `[f_c]` in
+      `H^1(L; A)` vanishes (AD4). It dies for degree-0 roots of infinite
+      order whenever `pi(L)` has torsion and `A` sits in an induced envelope
+      (AD5). The reason: `z` must fix `l^m != 0`, and a finitely supported
+      vector fixed by `x` forces `x` to have finite order.
+
+    Over `EL_3(LC(X,F_q) semidirect Z)`, the scalar and diagonal roots of
+    infinite order from the ring recipes can lift only with nonzero `Z`-degree.
+    Not tested:
+    - whether degree-nonzero roots can satisfy (AD4);
+    - whether `H^1(L; A)` vanishes for torsion-free Kazhdan lifts of `EL_3(R_0)`.
 
 16. **Sources infranormal in the kernel (2026-09-18, minimal-counterexample).**
     `infranormal-kernel-sources-die-in-sofic-mapping-tori` is ESTABLISHED. Let `G` be sofic with
