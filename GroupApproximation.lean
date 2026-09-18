@@ -5729,6 +5729,9 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionVanishExt
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionVanishHom
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionTraceTransfer
+import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectWords
+import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectGeometry
+import GroupApproximation.Manuscript.NonMF.Full.GL06a.ObjectChanges
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
