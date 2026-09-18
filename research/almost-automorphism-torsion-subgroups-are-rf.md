@@ -74,6 +74,15 @@ spheromorphisms.
    So the torsion groups reachable by the Röver–Nekrashevych Boone–Higman hosts are exactly the torsion groups that
    are virtually self-similar.
 
+8. **Non-residually-finite torsion groups.** By item 1, no finitely generated torsion group that is not residually
+   finite embeds in `𝒩_d`. Examples:
+   - every infinite finitely generated simple torsion group, such as Tarski monsters and Ol'shanskii's infinite
+     simple groups of finite exponent;
+   - every infinite finitely generated group of finite exponent (item 3).
+
+   So all these Boone–Higman test inputs, including those with solvable word problem, need finitely presented simple
+   hosts outside every Röver–Nekrashevych group.
+
 ## Why it matters here
 
 The positive BH machinery for self-similar inputs lands in Röver–Nekrashevych groups:
