@@ -109,7 +109,7 @@ theorem subringFactorization_of_stableK2Trivial (A B C : Subring R) (hCA : C ≤
   obtain ⟨N, h, hN⟩ := hR n k hk
   refine ⟨N, h, 1, 1, 1, ?_, ?_⟩
   · rw [hN, map_one, map_one, one_mul]
-  · rw [map_one, map_one, map_one]
+  · simp only [map_one]
 
 end SubringSquare
 

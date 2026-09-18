@@ -132,7 +132,8 @@ theorem sideColour_ind (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDa
       exact hbd.2 hm.1
 
 /-- **On the old cycle, the side colouring keeps exactly the new boundary darts.** -/
-theorem movePred_sideColour_iff (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
+theorem movePred_sideColour_iff
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
     (hB : ∀ d, d ∈ B ↔ Surgery.MapCollapse.IsBoundaryDart M faces' d)
     {d : M.Dart} (hd : d ∈ c) :
     GL05b.movePred M (sideColour M faces faces') d = true ↔ d ∈ B := by
@@ -143,7 +144,8 @@ theorem movePred_sideColour_iff (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsB
   · rintro ⟨h1, h2⟩
     exact ⟨h1.mp hbd.1, fun h => hbd.2 (h2.mpr h)⟩
   · rintro ⟨h1, h2⟩
-    exact ⟨⟨fun _ => h1, fun _ => hbd.1⟩, ⟨fun h => absurd h hbd.2, fun h => absurd h h2⟩⟩
+    exact ⟨⟨fun _ => h1, fun _ => hbd.1⟩,
+      ⟨fun h => absurd h hbd.2, fun h => absurd h h2⟩⟩
 
 /-- **The moved face set of the side colouring is the new face set.** -/
 theorem flipFaces_sideColour {keep : M.Dart → Prop}
@@ -158,7 +160,8 @@ theorem flipFaces_sideColour {keep : M.Dart → Prop}
   rw [sideColour_eq_false_iff] at key
   rw [key]
   by_cases hA : M.faceOf x ∈ faces
-  · exact ⟨fun h => (h.mp hA).mp hA, fun hb => ⟨fun _ => ⟨fun _ => hb, fun _ => hA⟩, fun _ => hA⟩⟩
+  · exact ⟨fun h => (h.mp hA).mp hA,
+      fun hb => ⟨fun _ => ⟨fun _ => hb, fun _ => hA⟩, fun _ => hA⟩⟩
   · constructor
     · intro h
       by_contra hb
@@ -318,7 +321,8 @@ some dart and keeping an end block of each arc.  This is an internal combinatori
 (the existence half of `GL06f.RoseRegionMoveSubArcStatement`), not a literature result. -/
 def KeptSubwalkStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    X.LeastArea →
     (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
     ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
       K.sourceArc.length < (cellDarts X K.source).length →

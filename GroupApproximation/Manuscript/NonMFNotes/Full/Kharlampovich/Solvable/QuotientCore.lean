@@ -118,7 +118,8 @@ theorem map_foldl_zpow {F H : Type*} [Group F] [Group H] (φ : F →* H) {K : �
   induction L generalizing g with
   | nil => rfl
   | cons n L ih =>
-    rw [List.foldl_cons, List.foldl_cons, ih, map_mul, map_zpow]
+    simp only [List.foldl_cons]
+    rw [ih, map_mul, map_zpow]
 
 end QS
 end KMS

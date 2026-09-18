@@ -54,17 +54,21 @@ theorem exists_norm_lt_of_abs_gt (f : C₀(ℝ, D)) {ε : ℝ} (hε : 0 < ε) :
 def suspCutoff (N : ℕ) (x : ℝ) : ℝ :=
   max 0 (min 1 ((N : ℝ) - |x|))
 
-theorem continuous_suspCutoff (N : ℕ) : Continuous (suspCutoff N) :=
-  continuous_const.max (continuous_const.min (continuous_const.sub continuous_abs))
+theorem continuous_suspCutoff (N : ℕ) : Continuous (suspCutoff N) := by
+  show Continuous fun x : ℝ => max 0 (min 1 ((N : ℝ) - |x|))
+  exact continuous_const.max (continuous_const.min (continuous_const.sub continuous_abs))
 
-theorem suspCutoff_nonneg (N : ℕ) (x : ℝ) : 0 ≤ suspCutoff N x :=
-  le_max_left _ _
+theorem suspCutoff_nonneg (N : ℕ) (x : ℝ) : 0 ≤ suspCutoff N x := by
+  unfold suspCutoff
+  exact le_max_left _ _
 
-theorem suspCutoff_le_one (N : ℕ) (x : ℝ) : suspCutoff N x ≤ 1 :=
-  max_le zero_le_one (min_le_left _ _)
+theorem suspCutoff_le_one (N : ℕ) (x : ℝ) : suspCutoff N x ≤ 1 := by
+  unfold suspCutoff
+  exact max_le zero_le_one (min_le_left _ _)
 
-theorem suspCutoff_eq_zero {N : ℕ} {x : ℝ} (hx : (N : ℝ) ≤ |x|) : suspCutoff N x = 0 :=
-  max_eq_left ((min_le_right _ _).trans (sub_nonpos.mpr hx))
+theorem suspCutoff_eq_zero {N : ℕ} {x : ℝ} (hx : (N : ℝ) ≤ |x|) : suspCutoff N x = 0 := by
+  unfold suspCutoff
+  exact max_eq_left ((min_le_right _ _).trans (sub_nonpos.mpr hx))
 
 theorem suspCutoff_eq_one {N : ℕ} {x : ℝ} (hx : |x| ≤ (N : ℝ) - 1) : suspCutoff N x = 1 := by
   have h1 : (1 : ℝ) ≤ (N : ℝ) - |x| := by linarith
@@ -113,13 +117,13 @@ theorem dist_suspTrunc_le (N : ℕ) (g g' : C(Icc (-(N : ℝ)) (N : ℝ), D)) :
     (ContinuousMap.dist_apply_le_dist _)
 
 theorem continuous_suspTrunc (N : ℕ) : Continuous (suspTrunc (D := D) N) :=
-  LipschitzWith.continuous (LipschitzWith.of_dist_le_mul fun g g' => by
+  LipschitzWith.continuous (LipschitzWith.of_dist_le_mul (K := 1) fun g g' => by
     rw [NNReal.coe_one, one_mul]
     exact dist_suspTrunc_le N g g')
 
 /-- Truncations approximate: `dist f (χ_N · f) < ε` for `N` large. -/
 theorem exists_dist_suspTrunc_lt (f : C₀(ℝ, D)) {ε : ℝ} (hε : 0 < ε) :
-    ∃ N : ℕ, dist f (suspTrunc N ((f : C(ℝ, D)).restrict (Icc (-(N : ℝ)) (N : ℝ)))) < ε := by
+    ∃ N : ℕ, dist f (suspTrunc N (f.toContinuousMap.restrict (Icc (-(N : ℝ)) (N : ℝ)))) < ε := by
   have h2 : 0 < ε / 2 := half_pos hε
   obtain ⟨r, hr⟩ := exists_norm_lt_of_abs_gt f h2
   obtain ⟨N, hN⟩ := exists_nat_ge (r + 1)

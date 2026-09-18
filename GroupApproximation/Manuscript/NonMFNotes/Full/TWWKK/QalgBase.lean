@@ -107,7 +107,7 @@ def ideal (A : Type u) [NonUnitalCStarAlgebra A] :
   NonUnitalStarSubalgebra.comap (fold A) (⊥ : NonUnitalStarSubalgebra ℂ (Unitization ℂ A))
 
 theorem mem_ideal {x : FreeUnital A} : x ∈ ideal A ↔ fold A x = 0 :=
-  (NonUnitalStarSubalgebra.mem_comap ⊥ (fold A) x).trans NonUnitalStarSubalgebra.mem_bot
+  (NonUnitalStarSubalgebra.mem_comap ⊥ (fold A) x).trans NonUnitalStarAlgebra.mem_bot
 
 theorem coe_ideal (A : Type u) [NonUnitalCStarAlgebra A] :
     (ideal A : Set (FreeUnital A)) = {x | fold A x = 0} := by
