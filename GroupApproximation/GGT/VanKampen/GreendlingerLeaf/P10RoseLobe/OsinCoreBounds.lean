@@ -101,7 +101,8 @@ than `μ` times its word (pieces). -/
 def roseLobeOsinCore_CellBounds {G : Type u} [Group G] {Lambda : Type w}
     (D : RelGenSet G Lambda) (W : Set (List (RelLetter G Lambda)))
     (X : DiscDiagram.{u, w, v} W) (eps : ℕ) (mu lambda c : ℝ) (rho : ℕ) : Prop :=
-  (∀ word ∈ W, HullSC.RelWord.revInv word ∈ W) ∧ (∀ word ∈ W, ∀ n : ℕ, word.rotate n ∈ W) ∧
+  (∀ word ∈ W, HullSC.RelWord.revInv word ∈ W) ∧
+    (∀ word ∈ W, ∀ n : ℕ, word.rotate n ∈ W) ∧
     (∀ i : Fin X.rCellCount, rho ≤ (cellDarts X i).length) ∧
     (∀ (i : Fin X.rCellCount) (n k : ℕ), k ≤ (cellDarts X i).length →
       lambda * (k : ℝ) - c ≤ (WordMetric.wordNorm D.alphabet.carrier
