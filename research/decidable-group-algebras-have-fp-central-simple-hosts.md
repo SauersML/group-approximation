@@ -71,3 +71,29 @@ route `boone-higman-via-central-simple-leavitt-tensor-host`.
      That includes coefficient-free swindles and arguments natural in `B`.
    - *Open.* Whether some simple, or central simple, `F_2`-algebra fails the
      screen. Semisimple Artinian algebras pass it.
+7. **Fixed-point traces on crossed-product hosts (swarm-0917, `crossed-product-fixed-point-traces-detect-leavitt-k1`, `fp-central-simple-host-with-nonzero-leavitt-k1`).**
+   *Answers the open question of Attempt 6: yes, even a finitely presented
+   central simple host fails the screen. The hole stays OPEN.*
+   - *Example.* Let `Γ = F_2 ⋊ Z/2`, where `σ` acts by `c_2 ↦ c_2^(-1)`, act on `∂F_2`.
+     Then `B = LC(∂F_2, F_2) ⋊ Γ` is finitely presented: it is a `Z/2`-skew
+     extension of the boundary Leavitt path algebra. It is also central simple,
+     since the action is minimal and topologically free, and it contains `F_2[Γ]`.
+     Yet `K_1(B ⊗ L) ≠ 0`. The trace `τ(f u_(kσk^(-1))) = f(k c_1^∞)` takes the
+     value 1 on the square-zero element `1 + u_σ`.
+   - *Class killed.* The K-condition is independent of the other hypotheses on
+     `B` taken together: finite presentation, central simplicity, containing
+     `F_2[G]` (even for hyperbolic, Farrell–Jones `G`), and being a minimal
+     topologically free Cantor crossed product. Any proof must arrange the
+     K-condition by a separate mechanism.
+     - *Invariant.* A `C(g)`-invariant functional `ν` on `LC(Fix g)` with
+       `ν(1) ≠ 0`, for a `2`-element `g`.
+     - *Where it dies.* In the passage from free actions of finite subgroups
+       (`farrell-jones-groups-acting-freely-have-k-trivial-leavitt-hosts`) to
+       merely topologically free actions.
+   - *Consequence for crossed-product hosts.* Every `2`-element `g` of `Γ` must
+     have `ν(1) = 0` for every such functional. In particular, no `2`-element may
+     have a fixed point whose `C(g)`-orbit is finite of odd size.
+   - *Open.* Whether odd-order torsion with fixed points is harmless. Whether a
+     host exists for `G` with `2`-torsion: embedding `F_2[G]` forces
+     `u_g ≡ 1` in `HH_0(B)`, so `2`-elements of `G` must act with no such
+     fixed-point mass.
