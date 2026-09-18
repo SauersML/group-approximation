@@ -40,7 +40,7 @@ theorem nmWire_greendlinger_of_core_corrected_shortPocket
 #audit_axioms GroupApproximation.Full.NMWire.nmWire_greendlinger_of_core_corrected_shortPocket
 
 /-- **Route A to the zero-parameter torsion-free endpoints.** -/
-theorem nmWire_torsionFreeEndpoints_of_core_corrected_shortPocket
+theorem nmWire_torsionFreeEndpoints_of_core_corrected_short
     (hcore : GroupApproximation.Full.GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0})
     (hencl : GroupApproximation.Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected.{0, 0, 0})
     (hshort : GroupApproximation.Full.GL06h4.gl06h4Nearest_shortPocketStatement.{0, 0, 0}) :
@@ -48,8 +48,7 @@ theorem nmWire_torsionFreeEndpoints_of_core_corrected_shortPocket
   GroupApproximation.Full.TorsionFreeEndpoints.torsionFreeEndpoints_of_greendlinger
     (nmWire_greendlinger_of_core_corrected_shortPocket hcore hencl hshort)
 
-#audit_axioms
-  GroupApproximation.Full.NMWire.nmWire_torsionFreeEndpoints_of_core_corrected_shortPocket
+#audit_axioms GroupApproximation.Full.NMWire.nmWire_torsionFreeEndpoints_of_core_corrected_short
 
 /-- **Route B to Osin's Lemma 4.4 at least-area diagrams**, with residual 07 left as a node. -/
 theorem nmWire_greendlinger_of_core_uncut_proper
