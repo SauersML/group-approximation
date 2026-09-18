@@ -2,85 +2,147 @@
 rg: 2
 id: closed-surface-groups-contracting-rsg-via-bowen-series
 kind: route
-title: Code the circle by the Bowen–Series map of the right-angled (8g−4)-gon; canonical similarities are group elements and exactness gives an irreducible core, so what remains is invariance of the cut set and a finite nucleus
+title: Code the circle by the Bowen–Series map of the right-angled (8g−4)-gon; itineraries are directed geodesic rays of tiles, the level of a cut point is the time its ray enters the wall's carrier, and fellow travelling makes the level defect match the Busemann shift, which gives a finite nucleus
 target: closed-surface-groups-are-contracting-rsgs
 requires:
   - contracting-rsgs-closed-under-finite-index-overgroups
   - sft-irreducible-core-iff-unique-recurrent-component
 ---
 
-**Status.** Steps 1–3 are proved from the source read. Steps 4 and 5 are OPEN, so the route is OPEN.
+**Status.** All five steps are proved (lane `bh-partials`, lane proof, not reviewed). Steps 1–4 rest on sources read.
+Step 5 is new here. Its delicate points are marked (★) for the referee.
 
-**Source read.** Katok–Ugarcovici, *Structure of attractors for boundary maps associated to Fuchsian groups*,
-arXiv:1610.00167v2 (Geom. Dedicata 191 (2017)), §1–§2, read as PDF pages 1–9. Stated there:
+## Sources read
+
+**Katok–Ugarcovici**, arXiv:1610.00167v2 (Geom. Dedicata 191 (2017)), §1–§2:
 - `Γ` is a closed genus-`g` surface group with Adler–Flatto's fundamental domain `F`: a regular `(8g−4)`-gon with all
-  angles `π/2`.
-- Sides `1, …, 8g−4` are paired by `σ(i) = 4g − i` (i odd) and `σ(i) = 2 − i` (i even), with generators `T_i`,
-  `T_{σ(i)}T_i = Id`.
-- `P_iQ_{i+1}` is the geodesic extending side `i`. The points are in counterclockwise order
-  `P_1, Q_1, P_2, Q_2, …, Q_{8g−4}`, and `Π := {P_i, Q_i}`.
+  angles `π/2`, satisfying the Bowen–Series extension condition.
+- Sides are paired by `σ(i) = 4g−i` (i odd) and `σ(i) = 2−i` (i even).
+- `P_iQ_{i+1}` is the geodesic extending side `i`. It is the isometric circle of `T_i`.
+- The points are in counterclockwise order `P_1, Q_1, …, P_{8g−4}, Q_{8g−4}`. Put `Π = {P_i, Q_i}`.
 - **Prop. 2.2.** `T_i` maps `P_{i−1}, P_i, Q_i, P_{i+1}, Q_{i+1}, Q_{i+2}` to
   `P_{σ(i)+1}, Q_{σ(i)+1}, Q_{σ(i)+2}, P_{σ(i)−1}, P_{σ(i)}, Q_{σ(i)}`.
-- **The Bowen–Series map.** `f(x) = T_i x` for `P_i ≤ x < P_{i+1}` (eq. 1.7). It is Markov for the partition `Π`,
-  expanding, and satisfies Rényi's distortion estimate. It has a unique finite invariant ergodic measure `μ`
-  equivalent to Lebesgue, and it is exact (footnote 1: `F_P̄` is a K-automorphism, which is equivalent to `f` being
-  exact).
+- **The map.** `f(x) = T_i x` on `[P_i, P_{i+1})`. It is Markov for `Π`, expanding, Rényi, and exact, with an invariant
+  measure equivalent to Lebesgue.
+
+**Bowen–Series**, Publ. IHÉS 50 (1979) 153–170 (NUMDAM scan, pp. 153–163 read), for a region `R` with property (*),
+not a triangle:
+- **Lemma 2.3.** `W = ⋃_i W(v_i)`, where `W(v_i)` is the set of endpoints of the arcs of the net through the vertex
+  `v_i`. It satisfies `f(W) ⊆ W` and partitions `S¹`.
+- **Lemma 2.4.** `f` and `Γ` are orbit equivalent, except for the pairs `(Q_i, g_{i−1}Q_i)`. That is, `x = gy` with
+  `g ∈ Γ` iff `f^n x = f^m y` for some `n, m ≥ 0`.
+- For the right-angled polygon, exactly two net geodesics pass through each vertex, both extending sides. So `W = Π`.
+
+## Proof
 
 **Step 1 (the SFT).**
-- The states are the `2(8g−4)` arcs `a_i = [P_i, Q_i)` and `b_i = [Q_i, P_{i+1})`.
-- Möbius maps preserve the cyclic order, so Prop. 2.2 gives:
-  - `T_i(a_i) = [Q_{σ(i)+1}, Q_{σ(i)+2}) = b_{σ(i)+1} ∪ a_{σ(i)+2}`;
-  - `T_i(b_i) = [Q_{σ(i)+2}, P_{σ(i)−1}) = b_{σ(i)+2} ∪ a_{σ(i)+3} ∪ b_{σ(i)+3} ∪ ⋯ ∪ b_{σ(i)−2}`.
-- So `f` maps each state arc onto a union of state arcs, which is the Markov property made explicit. The transition graph
-  `Γ_BS` has an edge `s → t` exactly when `t ⊆ f(s)`.
-- **Coding.** Let `B := ⋃_n f^{-n}(Π)`. Cylinders of admissible words are half-open arcs, and `f^n` maps the cylinder
-  `[s_0 ⋯ s_n]` onto the arc `s_n` by the Möbius map `g_w := T_{i(s_{n−1})} ⋯ T_{i(s_0)} ∈ Γ`. Here `i(s)` is the
-  index `i` with `s ⊆ [P_i, P_{i+1})`.
-- `f` is expanding, so cylinders shrink to points. As for β-shifts (`pisot-stein-groups-are-contracting-rsgs-proof`,
-  step 1), the itinerary map is an order-preserving homeomorphism from the path space `Σ_{Γ_BS}` onto `S¹_B`, the circle
-  Cantorized at `B`.
+- The states are the arcs `a_i = [P_i, Q_i)` and `b_i = [Q_i, P_{i+1})`.
+- By Prop. 2.2: `T_i(a_i) = b_{σ(i)+1} ∪ a_{σ(i)+2}`, and `T_i(b_i) = b_{σ(i)+2} ∪ a_{σ(i)+3} ∪ ⋯ ∪ b_{σ(i)−2}`.
+- **Cut points.** `B := ⋃_n f^{-n}Π`.
+- **Group elements on cylinders.** `f^n` maps the cylinder `[w] = [s_0⋯s_n]` onto the arc `s_n` by `u_w^{-1} ∈ Γ`,
+  where `u_w^{-1} = T_{i(s_{n−1})}⋯T_{i(s_0)}`.
+- **The coding.** The itinerary map identifies `Σ_{Γ_BS}` with `S¹_B`, the circle Cantorized at `B` (cylinders are
+  half-open arcs; `f` is expanding).
 
-**Step 2 (RSG property).** Let `[w]` and `[w']` be cylinders with the same last state `s`. Then `g_{w'}^{-1} g_w ∈ Γ` maps
-`[w]` onto `[w']`, and on itineraries it is `wω ↦ w'ω`, since `f^{|w|}` sends both to `s·ω`. So every canonical similarity
-between cones of the same type is the restriction of a group element. For a root arc `[s]` versus `[w]`, use `g_w^{-1}`.
+**Step 2 (RSG property).** For cylinders `[w]`, `[w']` with the same last state, `u_{w'}u_w^{-1} ∈ Γ` is the canonical
+similarity `wω ↦ w'ω`.
 
 **Step 3 (irreducible core).**
-- Every state arc has positive `μ`-measure, because `μ` is equivalent to Lebesgue. Exactness implies mixing.
-- So for states `s, t`, `μ([s] ∩ f^{-n}[t]) > 0` for all large `n`, which gives an admissible path of length `n` from
-  `s` to `t`.
-- Hence `Γ_BS` is primitive. `Σ_{Γ_BS}` has no isolated points, since it is homeomorphic to `S¹_B`. So its irreducible
-  core is all of `Γ_BS` (`sft-irreducible-core-iff-unique-recurrent-component`).
+- Exactness gives mixing, and `μ` is equivalent to Lebesgue.
+- So every state reaches every state in all large lengths, and `Γ_BS` is primitive.
+- Its core is all of `Γ_BS` (`sft-irreducible-core-iff-unique-recurrent-component`).
 
-**Step 4 (OPEN: Γ acts on `S¹_B`).**
-- **What is needed.** `B` must be `Γ`-invariant. Otherwise some element sends a split point to an unsplit one and is not a
-  homeomorphism of `S¹_B`.
-- **What holds.** `B ⊆ Γ·Π`. Also `Γ·Π` is the set `W` of endpoints of all walls of the tiling: the walls are the
-  complete geodesics formed by edges, and every wall is a translate of a side-wall of `F`.
-- **So Step 4 says `W = B`.** Every wall endpoint must reach `Π` under `f`.
-- **Why this is plausible.**
-  - Tiles beyond `P_iQ_{i+1}` are one step closer to `F` after `T_i`. The dual graph metric counts separating walls, and
-    the dual of a right-angled tiling is a CAT(0) square complex.
-  - Walls within bounded depth are finitely many, so every wall-endpoint orbit is eventually periodic.
-- **Decided by** Bowen–Series orbit equivalence for the orbits of `Π`. That was not read at source: Bowen–Series,
-  Publ. IHES 50 (1979).
+**Step 4 (Γ acts on `S¹_B`, via Bowen–Series Lemma 2.4).**
+- `B ⊆ Γ·Π` is clear.
+- **The converse.** Let `x = gy` with `y ∈ Π`.
+  - If `(x,y)` is not exceptional, Lemma 2.4 gives `f^n x = f^m y ∈ f^m(Π) ⊆ Π` (Lemma 2.3 with `W = Π`), so `x ∈ B`.
+  - Exceptional pairs are `(Q_i, T_{i−1}Q_i) = (Q_i, P_{σ(i−1)})` (Prop. 2.2), and both points lie in `Π`.
+- So `B = Γ·Π` is `Γ`-invariant, and `Γ` acts faithfully on `S¹_B` by homeomorphisms.
 
-**Step 5 (OPEN: rational with finite nucleus).**
-- **The local actions.** The local action of `h ∈ Γ` at a deep cylinder `[w]` is the group element
-  `k = g_v h g_w^{-1}`, where `[v]` is the smallest cylinder containing `h[w]`.
-- **What is needed.** For each generator `h`, these `k` lie in one finite set for all but finitely many `w`.
-- **The obstacle.** `h[w]` may straddle a shallow cut point, so that `|v| ≪ |w|`. This happens exactly when the level
-  defect `level(h·b) − level(b)` is unbounded, where `level(b) = min{n : f^n(b) ∈ Π}`. It is the analogue of step 3 of
-  `pisot-stein-groups-are-contracting-rsgs-proof`.
-- **The expected mechanism.**
-  - The one-sided itineraries of a partition point resynchronize after a bounded delay: KU's cycle property, where the
-    upper and lower `f`-orbits of `P_i`, started at `T_iP_i` and `T_{i−1}P_i`, meet.
-  - Itineraries are combinatorial geodesic rays in the dual CAT(0) square complex, and their fellow travelling bounds
-    `d(g_v^{-1}F, h g_w^{-1}F)`, hence `k`.
-- **Warning.** Discreteness alone is not enough. Infinitely many `k ∈ Γ` map a root arc into a root arc with image of
-  size `≥ c`. For example, the elements `g u^n`, where `u` generates the stabilizer of a wall whose endpoint is a
-  partition point. So the proof must use the cylinder structure.
+**Step 5 (finite nucleus).**
 
-**Conclusion, once Steps 4–5 hold.**
-- `Γ ≤ R_{Γ_BS, Σ}` is an RSG (Step 2), contracting (Steps 3 and 5), and isomorphic to the surface group (faithful on
-  `S¹`).
-- `contracting-rsgs-closed-under-finite-index-overgroups` then extends this to every group commensurable up from it.
+*Walls.*
+- The tiling `Γ·F` is the chamber tiling of the right-angled Coxeter group of `F`. The neighbour across a side is forced
+  to be the reflected polygon.
+- So its **walls** (complete geodesics made of edges) are the Coxeter walls, and the tile distance (the word length for
+  the side pairings) is the number of separating walls.
+- Distinct walls are never asymptotic. They are lifts of closed geodesics of a torsion-free cocompact group; compare
+  `horofunction-lemma-holds-for-free-and-surface-groups`.
+- Every wall is `Γ`-equivalent to a side wall of `F`, so the set of wall endpoints is `Γ·Π = B`.
+- Each point of `B` is an endpoint of exactly one wall.
+- The **carrier** `car(W)` is the set of tiles with a side on `W`.
+
+*Lemma A (itineraries are directed geodesic rays).*
+- **Statement.** For `x ∈ S¹_B`, the tiles `τ_r(x) := u_r(x)F` form a geodesic ray from `F`. Every step crosses a wall
+  that separates the current tile from `x`, and the ray converges to `x`.
+- **Proof.**
+  - `f^r x ∈ [P_i, P_{i+1}) ⊆ [P_i, Q_{i+1}]`, the arc enclosed by the isometric circle `C(s_i)`, while `F` lies
+    outside it. So `u_r C(s_i)` separates `τ_r` from `x`, and `τ_{r+1} = u_r T_i^{-1}F` lies across it.
+  - A crossed wall is never recrossed. Later walls separate later tiles from `x`, and the ray is already on `x`'s side.
+  - So `r` distinct walls separate `F` from `τ_r`, and the ray is geodesic.
+  - Far walls have small far-arcs, so the ray converges to `x`.
+  - For `e ∈ B`, the one-sided points `e^±` use the one-sided branches. Before `f^r(e) ∈ Π`, the point `f^r e` is not
+    an endpoint of any side wall, so the argument applies.
+
+*Lemma B (level = carrier entry).* Let `e ∈ B` be an endpoint of the wall `W`, and put `lev(e) = min{r : f^r(e) ∈ Π}`.
+- `lev(e)` is the least `r` such that `e` is an endpoint of a level-`r` cylinder.
+- It is also the first time the ray `τ(e)` meets `car(W)`: `f^r e ∈ Π` iff `u_r^{-1}W` is a side wall of `F`, iff
+  `τ_r ∈ car(W)`.
+
+*Lemma C (directed rays enter carriers and stay).* Let `(τ_r)` be a geodesic ray whose every step crosses a wall
+separating the current tile from `e`.
+- **Heights.** Let `ht(τ)` count the walls disjoint from `W` that separate `τ` from `W`.
+- **Carrier tiles have height 0.** A tile `τ ∉ car(W)`, on one side of `W`, lies in one column between consecutive
+  rungs (walls perpendicular to `W`). The carrier tile `c` of that column is the column cut by the side walls of `c`
+  not adjacent to its `W`-side. Those walls are disjoint from `W` (Bowen–Series Lemma 2.2: non-consecutive sides have
+  disjoint circles). So some wall disjoint from `W` separates `τ` from `W`, and `ht(τ) ≥ 1` exactly off the carrier.
+- **Height never increases.** The ray crosses only walls separating the current tile from `e`. A wall disjoint from `W`
+  that has the current tile on `W`'s side also has `e` there, since `e ∈ ∂W` and the walls are non-asymptotic.
+- **Height reaches 0.**
+  - Every wall `V` counted by `ht(τ_r)` separates `τ_r` from `e`, so it is crossed later.
+  - The ray converges to `e ∈ ∂W`. Being a quasi-geodesic in `H²`, it is eventually within a bounded distance of `W`,
+    so infinitely many of its tiles are near `W`.
+  - While `ht > 0` the ray keeps having walls to cross, and each crossing lowers `ht`. So `ht` reaches 0: the ray
+    enters `car(W)`, and it stays there.
+- **(★) Quantitative form.** If two such rays toward `e` are `c_1`-close from some time on, and one is in `car(W)` at
+  time `t`, the other enters within `K_1` steps of the corresponding time.
+  - The other ray then has `ht ≤ c_1`.
+  - Each remaining wall `V` is disjoint from `W` and not asymptotic to it. So the region beyond `V` within distance
+    `c_1 + 1` of `W` is compact.
+  - By cocompactness its size is bounded uniformly over the finitely many configurations `(W, V)` up to `Γ`. The ray
+    cannot stay beyond `V` longer than that.
+
+*Lemma D (fellow travelling).* The tile graph is `δ`-hyperbolic. For `h ∈ Γ` and `ξ ∈ S¹`, the rays `τ(ξ)` from `F` and
+`h·τ(h^{-1}ξ)` from `hF` satisfy `d(τ_{t+Δ}(ξ), hτ_t(h^{-1}ξ)) ≤ c_1` for all `t ≥ |h| + c`, with an integer shift
+`|Δ(ξ)| ≤ |h|`. Here `c_1, c` depend on `δ` only, and `h` maps directed rays to directed rays. (★) If the rays to `ξ`
+and `ξ'` from `F` share a prefix of length `≥ |h| + c'`, then `|Δ(ξ) − Δ(ξ')| ≤ c_2`.
+
+*Lemma E (the local actions are bounded).* Fix `h`. Let `n = |w| ≥ n_0(h)`, let `[v]` be the smallest cylinder containing
+`h[w]`, and let `k = u_v^{-1} h u_w`. Then `d(F, kF) ≤ K`, with `K` independent of `h`.
+- **Lower bound, `|v| ≥ n + Δ − K_2`.**
+  - Minimality puts a cut point `e` of level `|v|+1` in the interior of `h[w]`, so `h^{-1}e ∈ int[w]` has level `> n`.
+  - By Lemma B, `lev(e)` and `lev(h^{-1}e)` are the carrier-entry times of the rays from `F` and from `hF` toward `e`.
+  - **If `lev(e) ≥ |h| + c`,** Lemmas C(★) and D give `lev(h^{-1}e) ≤ lev(e) − Δ(e) + K_1`, so
+    `n < |v| + 1 − Δ(e) + K_1`.
+  - **If `lev(e) < |h| + c`,** the `hF`-ray enters by time `3|h| + c + K_1`, which contradicts `n ≥ n_0(h)`.
+  - `Δ(e)` and `Δ(hx)` (`x ∈ [w]`) differ by `≤ c_2` by D(★), since `h[w] ⊆ [v]` has a common prefix `≥ n − |h| − 1`.
+- **Upper bound, `|v| ≤ n + Δ + K_3`.**
+  - Pick `y_1, y_2` in the state arc `s_n` whose next images lie in arcs `[P_i,P_{i+1})` with different `i`. This is
+    possible from the explicit transitions, and there are finitely many choices.
+  - Their rays from `F` split within a bounded time `D_sep` and then separate linearly.
+  - So the rays from `hF` to `h u_w y_1`, `h u_w y_2` split within `n + D_sep`.
+  - If the `F`-rays to these two points shared the tile at time `|v| > n + Δ + K_3`, Lemma D would keep the
+    `hF`-rays `2c_1`-close at time `n + K_3 − c`, which is impossible for `K_3` large.
+- **Conclusion.**
+  - `hu_wF` is `c_1`-close to `τ_{n+Δ}(hx)`, and `u_vF = τ_{|v|}(hx)`.
+  - So `d(F,kF) = d(u_vF, hu_wF) ≤ c_1 + max(K_2, K_3) + c_2 =: K`.
+
+*Nucleus.*
+- The local action of `h` at `[w]` is the map `y ↦ k·y` from the arc `s_n` to the arc of the last state of `v`, read on
+  itineraries. It is determined by `(s_n, t(v), k)`.
+- By Lemma E the deep local actions of every `h ∈ Γ` lie in the finite set `{states}² × B_K(1)`.
+- The shallow cylinders are finitely many. So every `h` is rational, and the nucleus is finite.
+- With Steps 2–4, `Γ ≅` a contracting RSG in `R_{Γ_BS, Σ}`. ∎
+
+**Extension.** By `contracting-rsgs-closed-under-finite-index-overgroups` (and Selberg's lemma), the same holds for
+every non-orientable closed hyperbolic surface group and every cocompact Fuchsian group.

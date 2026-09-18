@@ -69,3 +69,25 @@ per coset and to every `G`-stable subfield.
   - **What a proof now needs.** A rank function on `T` under which every nonzero lamp polynomial is full, with a
     diffuse invariant background such as iid Haar on `F_p[[t]]^H`. One candidate source is a characteristic-`p` Sylvester
     rank function on `L^0(Omega, F_p((t))) semidirect G`, which is a dimension theory for a nonsofic orbit relation.
+- **Lamp group ring and Ore localization (swarm-0917-w13-w13-gs-pull, stability-approximation, 2026-09-17).
+  Reduction established; the positive route dies at idempotent dilution; the node stays OPEN.**
+  See `coset-field-rank-certificates-need-base-faithful-lamp-ranks` (ESTABLISHED, unreviewed).
+  - **Reduction.** `R_p` is the Ore localization of `F_p[W]`, where `W = Z wr_H G`, at `S = F_p[⊕_H Z] \ {0}`.
+    - Clearing denominators shows that `R_p` fails the rank condition iff some `diag(s_1..s_d)` with `s_i ∈ S`
+      factors through `F_p[W]^r` with `r < d`.
+    - A rank-function proof is exactly a **base-faithful** Sylvester rank function on `F_p[W]`, meaning
+      `rk(s) = 1` on `S`.
+  - **Class kill (idempotent dilution).**
+    - **Invariant:** the rank of a site idempotent.
+    - **Dying step:** its `G`-conjugates are orthogonal and indexed by the infinite coset space, so its rank is 0.
+    - **Consequence:** every rank function on the marked-site targets `T_r` of the stable-finiteness proofs
+      (`diagonal-tensor-orbit-corner-induction-proof`) factors through the lamp augmentation to `F_p[G]`, and
+      so does every rank function on first-order jets `O/I^2`. So `rk(x_c - 1) = 0`.
+    - **Belief change:** the mechanism that proved `F_p[W]` stably finite cannot reach `R_p`.
+  - **Remaining suppliers.**
+    - A sofic rank function. It would need `Z wr_H G` to be sofic, and would then give the rank condition for
+      every `p`, by the Følner rank on the amenable lamp group (literature not in the graph). Nonsoficity is
+      recorded only for binary lamps. `lamp-charts-recover-set-action` suggests it also fails for integer
+      lamps, but this is not checked.
+    - A linear-sofic model that is base-faithful. Group-faithfulness does not suffice: on `F_p[Z^2]`, the rank
+      over the curve `x + y + 1 = 0` is group-faithful but kills `x + y + 1`.

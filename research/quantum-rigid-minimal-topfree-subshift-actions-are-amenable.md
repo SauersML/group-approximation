@@ -46,7 +46,10 @@ finitely presented simple non-exact group would need, if it came from this route
 
 ## Evidence (calibrated)
 
-1. **Every proved rigid example is amenable.**
+1. **Every proved minimal, topologically free rigid example is amenable.** Minimality matters, though. The rigid full
+   coset shifts of the Cornulier regime (`cornulier-regime-coset-sfts-are-quantum-rigid`, for example Thompson's `V`
+   on the dyadic points) are topologically free and carry Bernoulli measures, so their actions are **not** amenable.
+   They are not minimal: constant points are fixed.
 
    | Example | Why the action is amenable |
    |---|---|
@@ -151,3 +154,16 @@ It supersedes the OPEN line at the top of this node.
 - **What survives.** "Rigid minimal topologically free SFT ⇒ exact acting group" is untouched, because
   the counterexample group is exact. The "if true" branch (confinement to exact inputs) no longer follows
   from this node. It would need that exactness statement instead.
+- **Tight spacetimes and algebraic dynamics** (`group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp`).
+  - For group subshifts, quantum rigidity is equivalent to finite presentation of the lamp group.
+  - Over `Λ_0 × F_n`, rigid group subshifts are uniformly tight spacetimes.
+  - Every finitely presented lamp group over a non-amenable `Λ` is a rigid, measure-preserving,
+    non-amenable action, and never a minimal one. So the hypothesis *minimal* carries the whole content
+    of (RA).
+- **One-ended groups.** Over one-ended non-amenable groups the only recorded non-boundary rigidity is
+  the Cornulier regime, and there (IS) makes every minimal set a fixed point for `V`, `F`, `T` and
+  `CT_P(Z)`.
+  - So a counterexample to (RA) over a one-ended group would be a positive answer to
+    `finite-double-coset-space-with-free-minimal-coset-sft` whose action is not amenable.
+  - That would need, for instance, a non-exact group in the Cornulier regime.
+  - Conversely, (RA) implies that every positive answer to that question lives over an exact group.

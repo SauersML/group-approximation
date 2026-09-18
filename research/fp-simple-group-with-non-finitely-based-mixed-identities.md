@@ -102,3 +102,12 @@ closure in `S * <x>` of the substitution instances of `W`.
      `⟨T, g⟩` for any order-breaking homeomorphism `g` of `C` or `S^1`.
    - *What survives.* Abstract overgroups with no faithful action on `C` extending `T`
      (amalgams, HNN extensions, `(T * <x>)/N_W`), and the rational-orbit blow-ups of Attempt 5.
+7. **Rational-orbit blow-ups with the derivative gap action: die (2026-09-18, bh-ffwz-q59, lane
+   proof).** `thompson-t-identities-hold-on-linearized-blow-ups`: every `M ≤ Homeo+(C_Q)`
+   containing `T` acting on the gaps by one-sided slopes satisfies all of `J_k(T)`. The orbits may
+   be rational or irrational.
+   - *Mechanism.* A violating trajectory is mirrored into `S^1`, a gap point `s ∈ I_q` going to
+     `q + εs`, where constants act by exactly those slopes.
+   - *Still alive.* Blow-ups whose gap action is not the germ action (for example trivial, or
+     `T_q ≅ F` acting faithfully on the gap), orientation-reversing blow-up groups, and abstract
+     `T`-groups.

@@ -181,3 +181,54 @@ still bounded radius. Rigidity is the linear shadow of exactly this statement, a
 proves its algebraic version. So the group-side master-route gate (E3′/P2′) is a single
 local-to-global filling problem for cone partitions: nothing about links, packing or heights
 remains open.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS, with three presentation fixes
+
+I checked the proof line by line: 1a–1c, 2a–2c and 3, at its current version (after 5e00ad7ce).
+
+- **1a–1c.**
+  - The swap lemma's induction is correct: X-splits at distinct sites commute, and C-splits commute
+    with X-splits.
+  - For 1b, `Q̂_P ≤ P` follows from 1a, and levels are preserved because domains only grow. Stein's
+    conical contraction then applies.
+  - Stabilizers are finite: finitely many `λ` have `λF = F'`, and topological freeness makes the map
+    determined by its formal data.
+  - Height increases strictly along every split.
+- **2b.**
+  - `L_C` is `(⌊(k/T_N + 1)/3⌋ − 2)`-connected, since some type has at least `k/T_N` pieces and the
+    connectivity is that of the ordered matching complex.
+  - Hatcher–Vogtmann applies with "bad" meaning all vertices are X-merges. Condition (i) holds
+    because a simplex with no bad face lies in `L_C`, and (ii) holds because unions of bad faces
+    are bad.
+  - The good link of a bad `σ` is the C-merge complex off `supp σ`.
+  - **The arithmetic the node leaves "to check" holds.** With `k >= (3m+7)T_N`, `L_C` is
+    `m`-connected. For every `s >= 1`, the good link on `>= k − 2sT_N` pieces is `(m+1−s)`-connected,
+    because `⌊(3m+8−2s)/3⌋ >= m+3−s` exactly when `s >= 1`. The vacuous range `s >= m+3` and the
+    nonemptiness case `s = m+2` are both fine.
+- **2c.**
+  - The comparable elements already present are exactly `U ∪ W`. `f` drops under refining a
+    non-minimal block and under adding minimal blocks; releasing only minimal blocks raises the
+    piece count. Every `u ∈ U` is comparable to every `w ∈ W` through `Q`.
+  - The mixed case contracts via `x ≥ h(x) ≤ c`, and `h(x)` stays in `U`.
+  - In the pure case, Walker gives `conn U >= 𝔫 − 2`, and `W ≃ L(untouched)`. The counts
+    `𝔩 >= k − (n−1)β_N` hold.
+- **3.** Brown's criterion with its converse and the Bestvina–Brady Morse lemma apply. The
+  `N`-connected inclusion identifies essential connectivity of the two filtrations.
+
+**Fixes (presentation; none changes the result).**
+1. **Blocks carry their parent cone.** An X-split at a forced site gives a single-piece block
+   `{p}` whose parent has a smaller domain. The same set of pieces can be the joint split of
+   different formal cones. So `E(P)` should be systems of (block, parent) pairs.
+   - With that reading, every step holds.
+   - In particular, the splitting posets `(θ_i, released)` in 2c are nonempty: split first along a
+     direction that is non-forced for the parent, and the intermediate may consist of single-piece
+     blocks with smaller parents.
+   - Read as bare sets of pieces, those intervals can be empty.
+2. **Degree 0.** "In particular, `F` is finitely presented iff every loop in `|𝒫^(N)|` bounds in
+   `|𝒫^(N')|`" omits essential 0-connectivity. Level-`N` partitions need not have common
+   refinements inside level `N`, so `|𝒫^(N)|` need not be connected. Type `F_2` is essential
+   `1`-connectivity, which includes the `π_0` condition, equivalently `F` finitely generated.
+3. **The arithmetic.** The Hatcher–Vogtmann arithmetic in 2b is verified above; the phrase "it
+   remains to check" can be dropped.
+
+**Not checked.** The "What this does for the gates" bullets, which cite other lane nodes.
