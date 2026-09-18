@@ -104,3 +104,24 @@ half-spaces, and sideways chamber fields defeat the midpoint coverings at every 
 higher-rank rigidity is unlikely to be assembled from local forcing. The proved route certifies it
 globally, by finite presentation of a host. For seeds on Kazhdan lattices this makes the host for the whole boundary, a non-minimal
 groupoid with an open orbit, the one remaining object of rung 1d.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS, with the scope as stated (midpoint balls, outward domination)
+
+**Verdict: PASS.**
+- **Item 1 (covering lemma).** The occurring patterns `E_c` on `M` form a partition of unity, via
+  (Q3) on the `D`-ball. Each `E_c` commutes with both ends, since every site of `M` is within `< d` of
+  both. Domination gives `E_c E_a = δ E_c`, so `E_c[E_a, E_b] = 0`. Correct.
+  - The tree case with `M = {m}` is right: a pointer toward one end leaves the other in its outward
+    region.
+- **Item 2.**
+  - `z ∈ Out(x)` forces `b(z) − b(x) = d(x, z)`.
+  - The retraction centred at `c` preserves `b` and does not increase distances, so `ρz − ρx` lies in
+    the closed 60° cone spanned by the two outward directions `ε_1` and `−ε_3`.
+  - Pairs in a direction outside `K̄ ∪ −K̄`, at distance `≫ R`, are then dominated by no site of
+    `B_R(m)`.
+
+  Correct. The claim concerns domination by the outward-reachable sets; other domination relations,
+  if any exist, are not excluded. The node's own scoping, to midpoint balls, is accurate.
+- **Item 3.** `U` is a union of cylinders. Limits of `y_{o_k}` with `o_k = z − kω_1 − jω_2` agree with
+  `η` on `B_R(1)` and keep a wall label at `z − jω_2`. So `U` is open and invariant but not closed, and
+  no clopen invariant set separates the strata. Correct.

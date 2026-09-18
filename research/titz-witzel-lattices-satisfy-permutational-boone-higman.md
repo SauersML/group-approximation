@@ -22,6 +22,17 @@ conditional on trust note T1. Ciobotaru–Le Bars, arXiv:2601.13092, which suppl
 topological freeness used by the Euclidean theorem, is an unrefereed preprint. Its live
 barycenter chain was checked for author flags but was not re-derived.
 
+**Update (bh-major-product, 2026-09-18): T1 is no longer needed, and a second route fires.**
+- *Second route.* `titz-witzel-kernels-are-mif` is now ESTABLISHED as a literature import
+  (Le Bars–Leibtag–Vigdorovich, arXiv:2609.17129, Theorem `Thm:MIF`). So
+  `titz-witzel-lattices-pbh-from-mif-kernels` gives the claim through BFFHZ Theorem C, independently
+  of bh-groupoid's lane proof. The authors state this consequence themselves.
+- *T1 bypassed.* Apply the Euclidean theorem to the simple, type-preserving, free kernel `Γ̌`, and
+  then use closure of `B_A` under finite extensions. Its only dynamical input is then topological
+  freeness of `Γ̌`. That follows from their Theorem `thm:gq-open-dense-opposite-geometry`
+  (`titz-witzel-nowhere-domestic-via-open-dense-opposite-geometry`), which does not use the
+  Ciobotaru–Le Bars barycenter chain.
+
 Each lattice `Γ_i^q = π_1(Y_i^q)` of Titz Mite--Witzel lies in `B_A`.
 That is, it embeds in a finitely presented group with an action of type (A).
 

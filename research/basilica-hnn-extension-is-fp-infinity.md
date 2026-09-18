@@ -129,3 +129,8 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
   - Here `H_1(B; M) ≠ 0`, because `B` is not `FP_2` (`basilica-fp2-covers-contain-free-subgroups`).
   - `basilica-hnn-self-similar-geometry-gives-no-brown-certificate` shows that the self-similar trees give no Brown
     certificate. So this algebraic condition, a rewriting system, or a free Morse-theoretic complex is what is left.
+- **Farley and diagram-group route closed (2026-09-18, bh-openq-lists).** `basilica-group-is-not-bi-orderable`: take
+  `x = (a, a^b)`. It commutes with `b^2 = (a, a)` but not with `b`, so `B` is not bi-orderable. By Guba–Sapir
+  (diagram groups are bi-orderable), `B~` is not a subgroup of any diagram group. So Farley's free cube-complex
+  certificate, the one that gives `F_∞` for Thompson's `F`, is unavailable. Free actions on other cube complexes are
+  not excluded.

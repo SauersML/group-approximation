@@ -120,3 +120,16 @@ At the zone cell `(x, t)`, with (left, right, bottom, top):
 - (L2) and Step 2(b): the H, V, TURN, FAN, END and BIT tiles copy one bit.
 - (L3) and Step 2(a): the box table above.
 - (L4) and Step 2(c): the zone table above.
+
+## Referee (bh-ref-e1-a, 2026-09-18): layout adequate at design level after one repair
+
+- **R1: one bug in §2 "Inputs".** Left-side bits "one row above" right-side bits (and top-side
+  bits "one column right" of bottom-side bits) is inconsistent. A macrotile's right side and its
+  right neighbour's left side are the same edges, so the bit positions must coincide. Remove the
+  offset. Distinct private lines are still available because opposite margins are `Θ(N)` apart.
+- **Box spacing.** Columns and rows are 2 apart in and below the box, below DR's (p3) gap of
+  more than 2. This is harmless for minimality: a 2×2 window touching two box wires contains
+  their intersection cell.
+- **Not tabulated here.** The variable-zoom additions (DR §2.4 field (ii), the (p4) three-zone
+  encoding, the 12-tile slot frames) are described only by reference. They are coordinate-fixed
+  roles and poly(log N_k)-checkable per DR.

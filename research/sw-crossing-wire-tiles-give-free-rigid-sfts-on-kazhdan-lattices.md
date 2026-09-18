@@ -20,6 +20,32 @@ distinct_from:
 - (b) the Layout Lemma below, a design sketch in the same style as that node's construction step.
   It was not verified line by line.
 
+**Update (bh-invent-04, 2026-09-18): the Layout Lemma below is withdrawn and replaced.**
+- **Why it fails.** As the referee note at the end shows, and as Part 1 of
+  `sw-minimal-crossing-wire-shift-is-rigid` proves, an SW-deterministic self-simulation must have a
+  *causal* macro rule. The single one-way zone below, with shared input and output positions, violates
+  this.
+- **The replacement.** Use the diagonal-time layout of `sw-minimal-crossing-wire-shift-is-rigid` §2,
+  written out at tile level in `research/artifacts/gq-bh-g2-fixedpoint-a-diagonal-time-layout.md`
+  (bh-g2-fixedpoint-a; under verification by bh-free-35):
+  - multi-block sides `P_c < P_1 < P_2 < P_f` and `Q_c < Q_1 < Q_2 < Q_f`;
+  - `zone_T` fed by the left side, and `zone_R` fed by the bottom side;
+  - the combiners `COMB_T` and `COMB_R`.
+- **The cone condition holds for that layout.** Every tile type there is fixed by its left and bottom
+  colours, including the wires, CROSS, FAN, the combiners and the zone cells, whose top depends on the
+  left alone. So `y(z) = G(y(z − e_1), y(z − e_2))`, which is all that items 2–3 of the Theorem use.
+  Taking `W = {−e_1, −e_2}` is harmless even for tiles that read only one of the two edges.
+- **What still holds.** The Theorem holds with the shift `Ω_SW` of that node in place of `Ω_τ`. It is
+  conditional on (a), on that layout, and on the transplant nodes. Since `Ω_SW` is also minimal, see
+  `cmsz-lattices-carry-free-minimal-quantum-rigid-sfts` for the minimal version.
+- **An alternative repair (remark, not used).** Row-below determinism also meets the cone condition,
+  with window `{(−1,−1), (0,−1), (1,−1)}` and shear `M(e_1) = (1,1)`, `M(−e_2) = (2,3)`.
+  - It uses vertical edges that carry the pair of the adjacent bottom colours, diagonal wires, and
+    crossings by co-location on horizontal edges.
+  - Its light cones are symmetric, so a macro output may read every macro input. Outputs do not have
+    to split between a left-fed and a bottom-fed zone.
+  - It is recorded only as a fallback design.
+
 ## Layout Lemma (SW-deterministic crossing wires)
 
 There is a self-similar Wang tile set `τ` satisfying (L0)–(L3) of

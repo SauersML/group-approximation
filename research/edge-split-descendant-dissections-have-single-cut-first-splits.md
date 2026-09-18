@@ -12,8 +12,7 @@ distinct_from:
 ---
 
 **OPEN** (lane bh-major-mcg-2, 2026-09-18). A conjecture with evidence, proposed as the
-target of the bottom-up approach to TD. The reduction part below is a lane proof, not
-reviewed.
+target of the bottom-up approach to TD. The reduction part below is a lane proof; one referee PASS for the reduction (bh-ref-engines, 2026-09-18).
 
 ## Statement (SC)
 
@@ -93,3 +92,19 @@ cuts, then it yields `T ∈ Trees(C)` refining `D` with `T|r ∈ Trees(r)` for e
   with no synchronization.
 - **Evidence and gap.** It is the pattern in every computed case. It turns TD into one
   local geometric statement (SC), plus inheritance and a cut count.
+
+## Referee (bh-ref-engines, 2026-09-18): the reduction PASSES; (SC), (I) and the cut bound remain open, as stated
+
+- **The claim holds.** Assume (SC) and (I) at every stage and finitely many cuts. Then the recursion gives a
+  split tree `T` of `C` refining `D`, with `T|r ∈ Trees(r)`.
+  - Each round splits the current cell by one of its own first splits.
+  - Each straddler is split along one of its own first-split planes. So the fragments of every `r` form a
+    split tree of `r`.
+- **The termination step should be phrased as follows.**
+  - The set `P` of all pieces and fragments ever created is finite.
+  - Each current cell is the union of its current pieces, which form a subset of `P`, and cells strictly
+    decrease along a branch.
+  - So a branch has at most `2^|P|` steps, and it stops exactly when `D_g = {g}`.
+  - "Reaches a cell equal to a fragment" is true but needs this count.
+- **Evidence.** Items 1–2 are consistent with the claim. Item 3 is reported from another lane and was not
+  re-run here.
