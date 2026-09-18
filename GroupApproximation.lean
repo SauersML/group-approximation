@@ -6081,6 +6081,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorMa
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabMatEmbed
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseDilationAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseLiftForm
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Closure
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
