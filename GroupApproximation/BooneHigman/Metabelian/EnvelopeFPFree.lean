@@ -15,7 +15,7 @@ the cone of the one-letter word `[x₀]`.
 
 Route.
 * `rnFreeToPerm_mem`: the image lies in `V_X(H)`, by induction on the free product.
-* `rnGenerators_subset_range`: every generator of `V_X(H)` is in the image.  `V_X` and the
+* `mem_range_of_mem_rnGenerators`: every generator of `V_X(H)` is in the image.  `V_X` and the
   elements localised at the empty word are images of generators.  For a nonempty word `w`,
   `exists_mapsCone_of_ne_nil` gives `g ∈ V_X` carrying `cone [x₀]` onto `cone w`, and
   `MapsCone.conj_localize` gives `g * localize [x₀] h * g⁻¹ = localize w h`.
@@ -81,8 +81,7 @@ theorem rnFreeToPerm_mem (H : Subgroup (TreeAut X)) (x₀ : X) (k : RNFree X H) 
       rw [rnFreeToPerm_inr_inr]
       exact localize_mem_roverNekrashevych H [x₀] h.2
     | mul y z hy hz =>
-      rw [map_mul, map_mul]
-      exact (roverNekrashevych X H).mul_mem hy hz
+      simpa only [map_mul] using (roverNekrashevych X H).mul_mem hy hz
   | mul y z hy hz =>
     rw [map_mul]
     exact (roverNekrashevych X H).mul_mem hy hz
@@ -95,26 +94,30 @@ def rnFreeHom (H : Subgroup (TreeAut X)) (x₀ : X) : RNFree X H →* ↥(roverN
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnFreeHom
 
-theorem rnGenerators_subset_range [Nontrivial X] (H : Subgroup (TreeAut X)) (x₀ : X) :
-    rnGenerators H ⊆ (rnFreeToPerm H x₀).range := by
-  rintro f (hf | ⟨w, h, hh, rfl⟩)
-  · exact MonoidHom.mem_range.mpr ⟨Monoid.Coprod.inl ⟨f, hf⟩, rfl⟩
+theorem mem_range_of_mem_rnGenerators [Nontrivial X] (H : Subgroup (TreeAut X)) (x₀ : X)
+    {f : Equiv.Perm (Cantor X)} (hf : f ∈ rnGenerators H) : f ∈ (rnFreeToPerm H x₀).range := by
+  rcases hf with hf | ⟨w, h, hh, rfl⟩
+  · exact MonoidHom.mem_range.mpr
+      ⟨Monoid.Coprod.inl (⟨f, hf⟩ : ↥(higmanThompsonV X)), rnFreeToPerm_inl H x₀ _⟩
   · by_cases hw : w = []
     · subst hw
       rw [localize_nil]
-      refine MonoidHom.mem_range.mpr ⟨Monoid.Coprod.inr (Monoid.Coprod.inl ⟨h, hh⟩), ?_⟩
-      exact rnFreeToPerm_inr_inl H x₀ ⟨h, hh⟩
+      exact MonoidHom.mem_range.mpr
+        ⟨Monoid.Coprod.inr (Monoid.Coprod.inl (⟨h, hh⟩ : ↥H)), rnFreeToPerm_inr_inl H x₀ _⟩
     · obtain ⟨g, hg, hmap⟩ := exists_mapsCone_of_ne_nil (List.cons_ne_nil x₀ []) hw
-      refine MonoidHom.mem_range.mpr ⟨Monoid.Coprod.inl ⟨g, hg⟩ *
-        Monoid.Coprod.inr (Monoid.Coprod.inr ⟨h, hh⟩) * (Monoid.Coprod.inl ⟨g, hg⟩)⁻¹, ?_⟩
+      let gV : ↥(higmanThompsonV X) := ⟨g, hg⟩
+      let hH : ↥H := ⟨h, hh⟩
+      refine MonoidHom.mem_range.mpr ⟨(Monoid.Coprod.inl gV : RNFree X H) *
+        (Monoid.Coprod.inr (Monoid.Coprod.inr hH) : RNFree X H) *
+        (Monoid.Coprod.inl gV : RNFree X H)⁻¹, ?_⟩
       rw [map_mul, map_mul, map_inv, rnFreeToPerm_inl, rnFreeToPerm_inr_inr]
       exact hmap.conj_localize (cantorHom h)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnGenerators_subset_range
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.mem_range_of_mem_rnGenerators
 
 theorem roverNekrashevych_le_range [Nontrivial X] (H : Subgroup (TreeAut X)) (x₀ : X) :
     roverNekrashevych X H ≤ (rnFreeToPerm H x₀).range :=
-  (Subgroup.closure_le _).mpr (rnGenerators_subset_range H x₀)
+  (Subgroup.closure_le _).mpr fun _ hf => mem_range_of_mem_rnGenerators H x₀ hf
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.roverNekrashevych_le_range
 
@@ -144,12 +147,12 @@ theorem closure_rnFreeGenerators (H : Subgroup (TreeAut X)) :
       exact Subgroup.subset_closure (Set.mem_union_left _ (Set.mem_union_right _ ⟨h, rfl⟩))
     | inr h => exact Subgroup.subset_closure (Set.mem_union_right _ ⟨h, rfl⟩)
     | mul y z hy hz =>
-      rw [map_mul]
-      exact (Subgroup.closure (rnFreeGenerators H)).mul_mem hy hz
+      simpa only [map_mul] using (Subgroup.closure (rnFreeGenerators H)).mul_mem hy hz
   rw [Subgroup.eq_top_iff']
   intro k
   induction k using Monoid.Coprod.induction_on with
-  | inl v => exact Subgroup.subset_closure (Set.mem_union_left _ (Set.mem_union_left _ ⟨v, rfl⟩))
+  | inl v =>
+    exact Subgroup.subset_closure (Set.mem_union_left _ (Set.mem_union_left _ ⟨v, rfl⟩))
   | inr n => exact hinr n
   | mul y z hy hz => exact (Subgroup.closure (rnFreeGenerators H)).mul_mem hy hz
 
