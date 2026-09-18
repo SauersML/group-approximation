@@ -5724,6 +5724,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Laurent
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Relations
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Grading
 import GroupApproximation.Manuscript.NonMF.Full.GL03C.KeptArcs
+import GroupApproximation.Manuscript.NonMF.Full.GL06e.AllCellsStatement
+import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
