@@ -5937,6 +5937,14 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.ColRow
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ToRealFormula
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductDef
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Morita
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingLayer
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingCount
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingRow
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingTail
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingFloor
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingDefect
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingTrace
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesRoundingEndpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
