@@ -5529,6 +5529,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL05b.RegionArcs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Basic
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Multiplier
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopf.Consequences
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWW.SubgroupRegularModels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
