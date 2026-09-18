@@ -59,9 +59,9 @@ theorem vdkOmegaSet_compatAt_inv {g : S} (hg : vdkOmegaSet_CompatAt φ f₁ f₂
 /-- The elements `g : S` at which the lift condition holds form a subgroup. -/
 def vdkOmegaSet_compatSubgroup : Subgroup S where
   carrier := {g | vdkOmegaSet_CompatAt φ f₁ f₂ g}
-  mul_mem' ha hb := vdkOmegaSet_compatAt_mul φ f₁ f₂ ha hb
+  mul_mem' {a b} ha hb := vdkOmegaSet_compatAt_mul φ f₁ f₂ (g := a) (h := b) ha hb
   one_mem' := vdkOmegaSet_compatAt_one φ f₁ f₂
-  inv_mem' ha := vdkOmegaSet_compatAt_inv φ f₁ f₂ ha
+  inv_mem' {a} ha := vdkOmegaSet_compatAt_inv φ f₁ f₂ (g := a) ha
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaSet_compatSubgroup
 
