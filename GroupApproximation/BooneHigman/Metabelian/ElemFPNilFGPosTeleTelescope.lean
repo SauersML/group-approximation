@@ -30,7 +30,7 @@ open GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 section EvalMap
 
-variable {R S : Type*} [Semiring R] [Semiring S]
+variable {R S : Type*} [CommSemiring R] [CommSemiring S]
 
 /-- Evaluation at `0` commutes with coefficient maps. -/
 theorem evalRingHom_zero_comp_mapRingHom (f : R →+* S) :

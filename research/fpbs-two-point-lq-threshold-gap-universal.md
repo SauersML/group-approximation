@@ -138,3 +138,29 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     compactness proof of [Q] needs a uniform `Z_q` bound on an open subset of
     every closed `Y ⊆ K_r`, which is exactly as hard as the l2 kernel
     problem.
+* **Stability-approximation transplant, then a certified test case
+  (swarm-0917-w11, 2026-09-18).**
+  - *Transplant.* Approximate `tau_p` in the Fell topology by positive
+    definite functions whose GNS representations are weakly contained in
+    `lambda` (sofic / finite-quotient approximants, or the thinned family
+    `tau_(p^g)`), and pass `l^q` bounds to the limit. **Where it dies:**
+    weak containment in `lambda` carries no `l^q` exponent. On
+    `F_2 x Z`, `phi(g,z) = 3^(-|g|/2)` is tempered, because
+    `lambda_(F_2) ⊗ 1_Z` is weakly contained in `lambda_(F_2 x Z)`, since `Z`
+    is amenable. Yet `phi` is constant along `Z`, so it lies in no `l^q`.
+    Temperedness is Fell-closed and `l^q` bounds are not. So the transplant proves at most
+    the weak-containment statement [W] (`[A] => [W] => [F]`), which is too weak
+    to give an exponent. This is the operator-algebra obstruction above,
+    reached from the approximation side.
+  - *Pivot, a computation on the canonical case.*
+    `fpbs-t4xz-certified-critical-l2-gap` (ESTABLISHED, exact certificates)
+    gives `p_c <= 0.236 < 0.241 <= p_{2->2}` on `T_4 x Z = Cay(F_2 x Z, std)`,
+    and `p_c < p_{2->2}` on every `T_{2k} x Z`, `k >= 2`. Hence [Q] holds there,
+    with `q_0 < 2`. This is the first unimodular product case of the tree-anchor
+    table (`fpbs-weighted-surface-continuity-reduces-to-uniform-floor`) that
+    was not already covered.
+    - Monte Carlo gives `p_c(T_4 x Z)` near `0.212`, so the tree anchor
+      `0.21085` really fails there.
+    - A 4-cycle-avoiding Busemann Schur test reaches `0.2412`. The mechanism is
+      short-cycle avoidance plus a Busemann tilt, and it has no universal
+      analogue yet.
