@@ -6055,6 +6055,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionRel
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionHom
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B1Stable
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetCommutativeGelfand
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
