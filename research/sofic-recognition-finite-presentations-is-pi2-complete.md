@@ -79,3 +79,16 @@ missing is the finite-output compiler
     centreless), and every cone through it contains the finite twisted cone
     [[finite-twisted-kazhdan-cone-is-sofic]].  That cone is not residually finite.  Its soficity is now the
     single question the route rests on.
+- **w7-111, 2026-09-18: block Kun-Thom subpairs close the twisted-cone route in rank at least five (obstruction).**
+  - *Result.*  By [[block-subpairs-make-twisted-kazhdan-cones-nonsofic]], for a Theorem E pair of rank `r ≥ 5`,
+    every twisted-diagonal cone `(H x Gamma) *_(Gamma_psi) G` with `H ≠ 1` is nonsofic, for **every** twist
+    `psi`.  The same holds in rank four when `q ∉ {2, 3, 5}`.  In particular the finite twisted cone
+    [[finite-twisted-kazhdan-cone-is-sofic]] is refuted in those ranks, and the invisible-core loophole of w6-111
+    is closed there.
+  - *Mechanism.*  A 3-element coordinate block gives a subgroup `G_S ≤ G` whose trace on `Gamma` is exactly the
+    block group `Gamma_S`, by Suslin's theorem.  The pair `(G_S, Gamma_S)` is the rank-three Theorem E pair.  Any
+    `h ∈ H \ 1` centralising `psi(Gamma_S)` embeds `G_S *_(Gamma_S) G_S` into the cone, by amalgam normal form.
+    Such an `h` is supplied by `psi` of an elementary matrix supported off the block, or of a non-scalar
+    diagonal matrix in rank four.
+  - *Residue.*  Only the rank-three pairs remain, together with rank four for `q ∈ {2, 3, 5}`.  The test case is
+    [[rank-three-finite-twisted-kazhdan-cone-is-sofic]].
