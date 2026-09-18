@@ -231,3 +231,28 @@ Claim: `fpbs-near-optimal-morse-matchings-have-non-tight-heights` (ESTABLISHED, 
 - *Not ruled out.* Balanced multi-letter matchings at any list. An attack on them needs the joint law of per-cell
   height vectors, not per-letter marginals.
 - *Status.* The node stays OPEN.
+
+### 2026-09-18 — swarm-0917-w11-w11-fp-pull (obstruction-miner, host-geometry): layered twice-used-letter matchings die on cyclic-CSA groups
+
+- *Approach.* Iterate the positive mechanism, the twice-used dual forest, along a letter order (Magnus/Tietze
+  layering). Each matched `s`-cell uses `s` exactly twice, and otherwise uses only unmatched letters or later active
+  letters. This covers commuting chains and every such scheme over any `S` and any `P_L`.
+- *Result (negative, ESTABLISHED).* `fpbs-layered-twice-used-matchings-die-on-cyclic-csa`. On any non-cyclic
+  torsion-free group whose maximal abelian subgroups are cyclic and malnormal, every such matching has
+  `mu(M) <= |S| - 2`, on every free p.m.p. action. So the deficit is `>= 1 - beta_1`.
+- *Where it dies.* The bottom layer.
+  - Mass above `|S| - 2` forces at most one unmatched letter `t`.
+  - (M1) turns each layer's two-occurrence relation into a nontrivial commensuration or square root of the
+    previous subgroup.
+  - Malnormality and CSA then lock every layer into `C(t)`, so `Gamma` would be cyclic.
+- *Changes belief.* The node's only positive mechanism cannot reach zero deficit on any torsion-free hyperbolic
+  group with `beta_1 = 0`. This includes closed hyperbolic 3-manifold groups, where fixed price `1` is known (Agol
+  and Gaboriau), and torsion-free `Sp(n,1)` lattices. There, a proof of this node must use, on positive measure,
+  either
+  - letters used `>= 3` times (spectrally capped by w8/w9); or
+  - a cyclic letter dependency (the balanced regime of w9 Proposition D).
+- *Also checked, not written.*
+  - Q3 (`C_sub = C`) for treeable actions, via a measured exchange lemma: swaps with pairwise edge-disjoint
+    fundamental cycles keep a treeing a treeing. This is low impact.
+  - Voronoi coarsening of a near-optimal graphing. This hits isoperimetry: a constant fraction of edges cross cells.
+- *Status.* The node stays OPEN.
