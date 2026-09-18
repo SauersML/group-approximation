@@ -88,3 +88,49 @@ itself. So whether 14.10(c) is marked solved or commented is unverified.
 - The Kourovka v46 entry 14.10 and its comments.
 - Mikaelian's reference [41] (bibliography entry) and any posted version.
 - MathSciNet/zbMATH reviews citing BHM's "Embedding Q" paper, for later GL_n(Q) work.
+
+## 5. Follow-up for the coordinator (2026-09-17): nV hosts and contracting RSGs
+
+Asked: what is known about distorted cyclic subgroups, BS(1,2) and SL_3(Z) inside 2V/nV (Zaremsky list
+2.7, 2.19), and has anyone asked whether a contracting rational similarity group can contain (Q,+)?
+
+**Distortion in nV.** The only published fact found is Callard–Salo, arXiv:2208.00685, imported as
+`brin-thompson-mv-contains-a-distortion-element`: for m >= 2, mV has an element with |f^N| = O(log^4 N).
+- This is polylogarithmic. BS(1,2) needs an element with |a^N| = O(log N), since a^{2^k} = t^k a t^{-k}.
+  So the Callard–Salo element does not give BS(1,2), and no source found either embeds BS(1,2) in some nV
+  or excludes it.
+- The one exclusion paper, arXiv:2209.11982, is WITHDRAWN.
+- In Cairn: `bs12-embeds-in-brin-thompson-2v` is OPEN. The necessary condition
+  `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets` is ESTABLISHED (elementary, not
+  independently reviewed). Search artifacts: `bs12-2v-search-2026-09-13.md`,
+  `bs12-2v-survivors-2026-09-13.md`.
+- For GL_n(Q), BS(1,2) ≤ Aff(Z[1/2]) ≤ GL_2(Q). So **any nV route to G needs BS(1,2) ≤ nV first.**
+  That is exactly this open node.
+
+**SL_3(Z) in nV.** No source found. It is Zaremsky 2.19(c)/(d) (GL_n(Z) in some mV, or in 2V), open in the
+graph (`zaremsky-2-19c-...`, `zaremsky-2-19d-...`). It is coupled to 2.7: SL_3(Z) ≤ mV would make kV fail
+the Haagerup property for every k >= m. Whether 2V is a-T-menable is open (`zaremsky-2-07-...`).
+Known inside 2V:
+- every RAAG (Salo, arXiv:2103.06663, via the topological full group of the full shift, which embeds
+  in 2V; this refutes Belk–Bleak–Matucci Conjecture 1.7);
+- Z_2 ≀ Z and A ≀ G for groups with unique-move actions (same paper);
+- Q (Kojima–Sheng, arXiv:2603.18410v3);
+- a distortion element (Callard–Salo).
+
+Nothing found on nilpotent non-abelian groups (H_3(Z)) in nV. The Cairn node
+`heisenberg-in-nv-forces-drift-free-central-element` (established, not reviewed) is the only input.
+
+**Contracting RSGs and (Q,+).** Not asked anywhere I found.
+- BBMZ arXiv:2309.06224 §1.3 poses six questions. None concerns which groups (abelian, divisible, Q) lie
+  in contracting RSGs. Question 1.1 asks whether every non-elementary hyperbolic group is a contracting
+  RSG.
+- BHM arXiv:2407.03149 and Belk–Matucci arXiv:2405.10234 pose no such question.
+- Remarks, not checked against sources:
+  - Contracting *self-similar* groups are residually finite, so O1 excludes them.
+  - *Full* contracting RSGs contain V_{Γ,E}, so they are not residually finite, and O1 is silent.
+  - O3 (Q ⊄ V, via Higman's finitely-many-roots theorem) has no published analogue for RSGs.
+  - Belk–Bleak arXiv:1405.0982 transfer undecidability of the torsion problem from 2V to the rational
+    group R, which suggests 2V ≤ R and hence Q ≤ R. The abstract does not state the embedding verbatim.
+    R is not finitely generated, so this says nothing about contracting RSGs.
+- **The question looks unasked.** A lane could land it as an OPEN claim ("some full contracting RSG
+  contains (Q,+)") with O3's root argument as the first test.
