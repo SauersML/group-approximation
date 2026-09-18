@@ -15,7 +15,7 @@ distinct_from:
   cocompact-tree-product-lattices-lie-in-type-a-class: that is the product-of-trees case; this is every cubulation.
 ---
 
-**OPEN — REPAIRED 2026-09-18, pending re-review.** The first version failed (referee bh-ref-q115-b,
+**ESTABLISHED (internally refereed, 2026-09-18).** Two independent referees give PASS after repairs: bh-ref-q115-a (9580d05636) and bh-ref-q115-b (866b27097a, d6778b5f5f and the check of referee A's repairs below). The claim is conditional only on published imports: Li's `lem:link:n-conn_1`, Li's deduction of `_2` from `_3` (via Matui Lemma 6.18 and Brown Lemma 4.20), Witzel's criterion, Li's Corollary D, and Matui's `simple2` and Künneth formula. Earlier status: OPEN — REPAIRED 2026-09-18, pending re-review. The first version failed (referee bh-ref-q115-b,
 866b27097a: sink characters). The repair, working on `X_∞ = ∂Ω ∩ Ω_∞`, is below. It is not
 independently reviewed. The complete lane chain
 is in `torsion-free-cubulated-f-infinity-simple-host-proof`. Every link is either a landed
@@ -248,3 +248,38 @@ Keep the node OPEN until (a) is done. With (a), both referees give conditional P
    earlier round.
 
 Status stays **OPEN** until bh-ref-q115-b cross-checks items 1–3.
+
+## Referee B check of referee A's repairs (bh-ref-q115-b, 2026-09-18): all three PASS
+
+Checked against Li's TeX (arXiv:2110.04505v2, l.1125–1142, 1219–1231, 1328–1345, 1486–1560,
+1660–1768).
+1. **Direct proof of `lem:link:n-conn_3` for the pure-hole datum: PASS.**
+   - Membership in `𝐗(*)` is a multiset property: permutations are units of Π.
+   - Doubling uses `id ⊔ δ_τ ∈ Π`.
+   - The Dickson step is correct. `m(τ) ≥ C` keeps the support, and `m − e_τ` still dominates the
+     same minimal element.
+   - In the extension step, `O_l = 𝐭(ν_l) ∈ 𝐗(*)`. The merged object `w` has multiset
+     `𝐦_{O_l} − e_τ ∈ 𝐑`, and `z → w → *`, where `z` is `O_l` after the atom `α ≤ δ_τ`.
+   - `δ_τ ∈ Div(Δ)`, since its pieces `(1,x),(1,y)` with pure holes have norm 1.
+   - Cosmetic: an m-simplex has `m+1` atoms, so the touched-piece bound is `(n+L(m+1))B`, not
+     `(n+Lm)B`. Enlarging `R` fixes it.
+   - Still an import: the deduction `_3 ⇒ _2`, which uses no packing number.
+2. **Lemma E′: PASS.**
+   - Witnesses exist: `ω_0 ∉ f·X(𝐝 f)` and `u_f ∈ I(p,ω_0)` give `K_f ∈ τ_f ∩ H(u_f,ω_0)`.
+     Whether `u_f ∈ I(p,·)` depends only on which walls of `adj(p)` are crossed, pure flags
+     included.
+   - The branch beyond a fresh `c`-edge at `q` contains no wall of `p`'s copy and no `c`-wall at
+     `p`. `H(p,ω'') = H(p,q) ⊔ {c_q} ⊔ H(r,ω'')`. The only label after the `c`-edge is the wall
+     behind it.
+   - Both `c`-edges at `q` are available. The phrase "that `ω_0` does not use" is not needed.
+   - This subsumes my first-cube gap.
+3. **§2 of the Cuntz proof, (St) and lcms: PASS, with two reading notes.**
+   - (i) Li's `𝔛` is a set of subsets, so (1_Γ) and (2_Γ) quantify over every `e` representing a
+     pure type. Lemma P still holds for such `e`, because each piece is
+     `(U_𝔠 ∩ pX ∖ ⋃ p'X) × {x,y}^ℕ` (resp. `× t{x,y}^ℕ`) as a set.
+   - (ii) The bold `Γ` is taken to be all pure elements of `𝐒`, with several blocks allowed, as Li
+     does for the maximal datum (l.1524). The ⊔_𝔛-closure alone could not satisfy (5_Γ).
+   - The mcm computation `mcm((c,c'),(pq,t)) = mcm_𝔠(c,pq) × {c'}` and (4_Γ) via Li's maximal
+     datum both check.
+
+Q1.15 is answered YES, internally refereed, modulo the published imports listed in the status line.

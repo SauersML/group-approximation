@@ -48,12 +48,12 @@ In particular:
   forms.
 - **Zone cells.** A cell `i` at time `t` has:
   - bottom `x_t(i)`;
-  - left `(x_t(i−1), x_t(i−2))`;
-  - right `(x_t(i), x_t(i−1))`;
-  - top `x_(t+1)(i) = F(x_t(i−1), x_t(i−2))`.
+  - left `(x_t(i−1), x_t(i−2), x_t(i−3))`;
+  - right `(x_t(i), x_t(i−1), x_t(i−2))`;
+  - top `x_(t+1)(i) = F_U(x_t(i−3), x_t(i−2), x_t(i−1))`.
 
-  Put `y_t(i) = x_t(i+t)`. Then `y_(t+1)(i) = F(y_t(i), y_t(i−1))`, a radius-1 one-way CA, which is
-  universal for suitable `F`.
+  With tape cell `c` at time `t` in column `c + 2t`, `F_U` is the local update of the universal machine
+  `U`. The written-out tile family is §7 of the diagonal-time layout artifact.
 
 **Macrotile layout.** One macrotile implements `Φ` with the following parts.
 - **zone_T.** It sits upper left, at columns left of every top bit position and above every left bit position.

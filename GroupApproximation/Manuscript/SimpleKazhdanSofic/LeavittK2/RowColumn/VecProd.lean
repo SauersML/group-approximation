@@ -32,6 +32,7 @@ def rootVecProd (a : ι → A) : G :=
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.rootVecProd
 
+omit [DecidableEq ι] in
 theorem rootVecProd_add (hadd : ∀ (i : ι) (s t : A), ϕ i (s + t) = ϕ i s * ϕ i t)
     (a b : ι → A) :
     rootVecProd ϕ hcomm (a + b) = rootVecProd ϕ hcomm a * rootVecProd ϕ hcomm b := by
@@ -57,6 +58,7 @@ theorem rootVecProd_update_zero (hzero : ∀ i : ι, ϕ i 0 = 1) (i : ι) (s : A
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.RowColumn.rootVecProd_update_zero
 
+omit [DecidableEq ι] [AddMonoid A] in
 theorem rootVecProd_commute (y : G) (a : ι → A) (h : ∀ i, Commute y (ϕ i (a i))) :
     Commute y (rootVecProd ϕ hcomm a) :=
   Finset.noncommProd_commute _ _ _ y fun i _ => h i
