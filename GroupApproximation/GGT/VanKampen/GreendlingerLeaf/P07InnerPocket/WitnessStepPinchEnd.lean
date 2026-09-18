@@ -104,3 +104,66 @@ theorem witnessStepPinch_step_of_end_G₂ {a b : RegionCandidate D eps X}
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_step_of_end_G₂
 
+/-- **Piece end in `B`.** -/
+theorem witnessStepPinch_step_of_end_B {a b : RegionCandidate D eps X}
+    {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cellDarts X j)}
+    {F : Finset X.toCombMap.Face} {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X F ow)
+    (hnb : ∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ F)
+    {n : ℕ} {s t : List X.toCombMap.Dart} {x y : X.toCombMap.Dart}
+    (hr : (invDarts X ow).rotate n = s ++ x :: y :: t)
+    (hFa : ∀ f ∈ F, f ∉ a.1) (hFb : ∀ f ∈ F, f ∉ b.1) (hFi : (cell X i).face ∉ F)
+    (hFj : (cell X j).face ∉ F) (hij : i ≠ j) (hab : Disjoint a.1 b.1)
+    (hai : a.JoinsCells i j) (hbi : b.JoinsCells i j) (hai₁ : 0 < (a.cellArcList i).length)
+    (haj₁ : 0 < (a.cellArcList j).length) (hbj₁ : 0 < (b.cellArcList j).length)
+    (hcai : (cell X i).face ∉ a.1) (hcaj : (cell X j).face ∉ a.1)
+    (K₁ : CyclicArc (cellDarts X i))
+    (hK₁ : K₁.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (K₂ : CyclicArc (cellDarts X j))
+    (hK₂ : K₂.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {p : List X.toCombMap.Dart} (hS : b.sideFrom i = p ++ [X.toCombMap.alpha y])
+    (hyB : y ∈ FourBlock.sideBWord b G₁ G₂) :
+    WitnessCurveSublistList.StepNext (witnessSublistCurve a b G₁ G₂) (invDarts X ow) x y ∨
+      WitnessStepPinchAt a b G₁ G₂ ow x y := by
+  rcases witnessStepPinch_nil_or_cons G₂.darts with hG | ⟨g, r, hG⟩
+  · rcases witnessStepPinch_nil_or_cons (a.sideFrom j) with hA | ⟨g, r, hA⟩
+    · rcases witnessStepPinch_nil_or_cons G₁.darts with hG1 | ⟨g, r, hG1⟩
+      · obtain ⟨z, hz⟩ : ∃ z : List X.toCombMap.Dart, FourBlock.sideBWord b G₁ G₂ = y :: z := by
+          unfold FourBlock.sideBWord at hyB ⊢
+          exact witnessStepPinch_filter_head _ hS hyB
+        have h1 : invDarts X G₁.darts = [] := by simp [Embedded.invDarts, hG1]
+        have h2 : FourBlock.sideAWord a b G₁ G₂ = [] := by
+          simp [FourBlock.sideAWord, hA, Embedded.invDarts]
+        have h3 : FourBlock.cellG2Word G₁ G₂ = [] := by
+          simp [FourBlock.cellG2Word, hG, Embedded.invDarts]
+        exact Or.inl (witnessStepPinch_wrap (z := z)
+          (by simp [witnessSublistCurve, h1, h2, h3, hz]))
+      · exact witnessStepPinch_step_or_pinch_of_fan E hnb hr
+          (witnessStepPinch_junction_B_G₁ hFa hFb hFi hFj hij hai hbi hai₁ haj₁ hbj₁ K₁ hK₁ K₂
+            hK₂ hS hG hA hG1)
+          (Or.inl ⟨⟨p, hS⟩, Or.inr ⟨hG, Or.inr ⟨hA, r, hG1⟩⟩⟩)
+          (fun hgx => witnessStepPinch_fwd_B (List.mem_append_left _ (List.mem_append_left _
+            (witnessStepCorner_mem_invDarts_of_alpha_mem
+              (witnessStepPinch_alpha_mem_of_head hG1 hgx)))) hyB)
+    · exact witnessStepPinch_step_or_pinch_of_fan E hnb hr
+        (witnessStepPinch_junction_B_A hFa hFb hFj hij hai hbi haj₁ hbj₁ K₂ hK₂ hS hG hA)
+        (Or.inl ⟨⟨p, hS⟩, Or.inr ⟨hG, Or.inl ⟨r, hA⟩⟩⟩)
+        (fun hgx => witnessStepPinch_fwd_B (List.mem_append_left _ (List.mem_append_right _
+          (witnessStepCorner_mem_sideAWord hab (witnessStepPinch_alpha_mem_of_head hA hgx)
+            hcai hcaj))) hyB)
+  · exact witnessStepPinch_step_or_pinch_of_fan E hnb hr
+      (witnessStepPinch_junction_B_G₂ hFb hFj hij hbi hbj₁ K₂ hK₂ hS hG)
+      (Or.inl ⟨⟨p, hS⟩, Or.inl ⟨r, hG⟩⟩)
+      (fun hgx => witnessStepPinch_fwd_B (List.mem_append_right _
+        (witnessStepPinch_mem_cellG2Word
+          (witnessStepCorner_not_mem_invG₁_of_mem_G₂ hij
+            (witnessStepPinch_alpha_mem_of_head hG hgx))
+          (witnessStepCorner_mem_invDarts_of_alpha_mem
+            (witnessStepPinch_alpha_mem_of_head hG hgx)))) hyB)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_step_of_end_B
+
+end PinchEnd
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
