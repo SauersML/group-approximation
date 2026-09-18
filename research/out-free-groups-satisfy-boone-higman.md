@@ -93,3 +93,18 @@ This is the open part of a named problem.
    - **What remains.** A type (A) point stabilizer, if any exists, is a large,
      finitely generated, non-geometric, non-commensurated subgroup containing
      fully irreducibles.
+7. **Verdict pass: finite generation is the whole remaining question**
+   (bh-free-40; lane proofs, citations listed on the nodes).
+   - **The limit-set lemma.** `limit-set-escaping-forces-infinitely-many-double-cosets`:
+     if a loxodromic has both fixed points outside `Λ_H`, then `H\G/H` is
+     infinite. No quasiconvexity or properness is needed.
+   - **For Out(F_n).** `out-free-double-coset-finite-subgroups-have-dense-limit-sets`:
+     any `H` with finitely many double cosets has limit set in `∂FF_n` meeting
+     every fully irreducible fixed pair, and dense. The density part uses double
+     density, which is cited.
+   - **Why finite generation matters.** Hull–Osin highly transitive actions give
+     infinite-index stabilizers with two double cosets. So a no-type-(A) theorem
+     for `Out(F_n)` must use finite generation.
+   - **Not decided.** Either a rigidity theorem (finitely generated plus finitely
+     many double cosets implies finite index), or a finitely generated
+     Dehn-filling replacement for a Hull–Osin stabilizer.
