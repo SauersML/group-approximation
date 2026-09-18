@@ -185,7 +185,9 @@ This is the coordinator's design target of 2026-09-18.
       structure, and dilations add periodic tail classes on the `S`-adic completion, `S` the dilation primes. Not
       decided.
     - **Case 3, noncommutative register relations.** Closed for bases with rationally rank-one `K_0` and finite
-      stable range, in graded form: `isometric-frames-over-rank-one-bases-fail-the-k-budget`. That covers
+      stable range, in graded form, for elementary ranks divisible by `j = md`, and at every rank when projectives
+      in the unit class are free (item 3a): `isometric-frames-over-rank-one-bases-fail-the-k-budget`. Ranks prime to
+      `j` remain open over bases such as `A_1(Q)` with stably free non-free modules. That covers
       Weyl-type and enveloping-algebra bases without idempotents, with the `sl_2` pattern and beyond. **Open:**
       noncommutative bases whose `K_0` has rational rank at least `2`. These merge with Attempt 10 and case 2.
     - **Bracket.** For frame-generated designs, every remaining room has `rank K_0(B) ⊗ Q >= 2`:
