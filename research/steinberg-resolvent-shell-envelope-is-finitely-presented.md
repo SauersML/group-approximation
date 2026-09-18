@@ -2,9 +2,9 @@
 rg: 2
 id: steinberg-resolvent-shell-envelope-is-finitely-presented
 kind: claim
-title: Some enumeration of St_4(R_L) gives a finitely presented shell envelope, which would be one finitely presented simple group containing every GL_n(Q)
+title: Some enumeration of St_4(R_L), or of St_10(R_L), gives a finitely presented shell envelope, which would be one finitely presented simple group containing every GL_n(Q)
 distinct_from:
-  perfect-decidable-inputs-have-fp-shell-envelopes: that asks for a finitely presented shell envelope of every infinite perfect finitely presented group with decidable word problem; this asks it for one explicit input, St_4(R_L), whose word problem is not known to be decidable.
+  perfect-decidable-inputs-have-fp-shell-envelopes: that asks for a finitely presented shell envelope of every infinite perfect finitely presented group with decidable word problem; this asks it for explicit inputs, St_4(R_L) or St_N(R_L) with N >= 5 such as St_10(R_L), whose word problems are not known to be decidable.
   decidable-inputs-have-fp-shell-envelopes: that is the universal form for all decidable finitely presented inputs; this is one input chosen to contain every GL_n(Q).
   one-steinberg-group-contains-every-gl-n-q: that gives the finitely presented, non-simple overgroup St_4(R_L) of every GL_n(Q); this asks for a finitely presented simple overgroup built from it by germ implantation.
   steinberg-leavitt-resolvent-groups-have-no-type-a-action: that excludes St_N(R_L) as its own type (A) actor; this uses St_4(R_L) only as the germ input of a Cantor shell.
@@ -12,22 +12,45 @@ artifacts:
   - research/artifacts/gq-gq-typea-design-u2-germ-implant.md
 ---
 
-**OPEN.** Let `P = St_4(R_L)`, with `R_L` the ring of
-`leavitt-resolvent-ring-is-fp-and-contains-q`. There is a bijection `nu : P -> N`
-for which the shell envelope
+**OPEN.** Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-and-contains-q`, and
+let `P` be an **admissible input**:
+- `P = St_4(R_L)`; or
+- `P = St_N(R_L)` for some `N >= 5` such that `St_N(R_L)` contains every `GL_n(Q)`.
+  `N = 10` is such a rank.
+
+For some admissible `P` there is a bijection `nu : P -> N` for which the shell envelope
 
     E_nu = <V, hat(P)> <= Homeo({0,1}^N)
 
 of `shell-cantor-embeddings-are-finite-germ-extensions` is finitely presented.
 
 This is the germ implant U2 of `research/artifacts/gq-gq-critic-pass-3.md`,
-corrected as recorded below.
+corrected as recorded below. The original statement was for `St_4(R_L)` alone.
+
+## Choice of rank
+
+- **Perfect.** Every admissible `P` is perfect, because `x_ij(a) = [x_ik(a), x_kj(1)]`
+  with `N >= 3`.
+- **Contains every `GL_n(Q)`.** For `N = 4` this is
+  `one-steinberg-group-contains-every-gl-n-q`. For `N = 10` it is item 2 of
+  `leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1`, both refereed. For other
+  `N >= 5` it is part of admissibility.
+- **Finitely presented.** The route `gl-n-q-bh-via-steinberg-shell-envelope` does not
+  use this. It matters only when the claim is compared with the universal
+  `perfect-decidable-inputs-have-fp-shell-envelopes`, which asks for finitely presented
+  inputs.
+  - For `N >= 5` finite presentation comes from the direct, refereed proof
+    `steinberg-groups-of-fp-rings-are-fp-in-rank-five`.
+  - For `N = 4` it rests on `steinberg-finite-presentation-and-kazhdan-theorem`, that
+    is on Krstić–McCool (J. Pure Appl. Algebra 141 (1999), Theorem 3). That theorem is
+    read only through secondary quotations.
+  - **Krstić–McCool dependency.** Using `St_4(R_L)` as an instance of the universal
+    claim depends on that unread rank-4 import. Taking `P = St_10(R_L)` avoids every
+    unread import.
 
 ## What is already known for every enumeration
 
-- `P` is finitely presented (`steinberg-finite-presentation-and-kazhdan-theorem`),
-  perfect (`x_ij(a) = [x_ik(a), x_kj(1)]`), and contains every `GL_n(Q)`
-  (`one-steinberg-group-contains-every-gl-n-q`).
+- `P` is perfect and contains every `GL_n(Q)` (Choice of rank).
 - `E_nu` is a finite germ extension of `V` with singular set `V·0^∞`, and it is
   finitely generated. `hat` embeds `P` in it
   (`shell-cantor-embeddings-are-finite-germ-extensions`).
@@ -42,16 +65,16 @@ corrected as recorded below.
 
 1. **Word problem.** A finitely presented simple group has solvable word problem, and
    so do its finitely generated subgroups (`simple-envelope-forces-solvable-word-problem`).
-   So the claim requires `St_4(R_L)` to have solvable word problem.
+   So the claim requires the chosen `P = St_N(R_L)` to have solvable word problem.
    - *Lane remark; gq-referee-a PASS, proof-gap lens
      (`research/artifacts/gq-referee-a-bhm-singfix-condition-forces-fp-germ-groups.md`).*
      `R_L` is a nonzero finitely presented simple ring
      (`leavitt-resolvent-ring-is-fp-simple-of-char-zero`), so it has decidable word
      problem. Equalities `w = 0` are recursively enumerable. If `w ≠ 0`, then `1` lies
      in the ideal generated by `w`, and that too is recursively enumerable. So the
-     word problem of `E_4(R_L) <= GL_4(R_L)` is decidable. The gate is therefore
-     exactly this: decide whether a word of `St_4(R_L)` lying in `K_2(4,R_L)` is trivial.
-     It is open (critic pass 2, item (a)).
+     word problem of `E_N(R_L) <= GL_N(R_L)` is decidable. The gate is therefore
+     exactly this: decide whether a word of `St_N(R_L)` lying in `K_2(N,R_L)` is trivial.
+     It is open for `N = 4` and for `N = 10` (critic pass 2, item (a)).
 2. **Germ group.** If `E_nu` is finitely presented, its isotropy germ group
    `Q_nu = <germs of rho(P), tau>` at `0^∞` is finitely presented
    (`shell-envelope-fp-forces-fp-germ-group`). By
@@ -76,6 +99,28 @@ corrected as recorded below.
   non-virtually-cyclic input (`shell-isotropy-germs-fail-bhm-germ-hypothesis`). Only
   Theorem 2.1 applies, and at `n = 2` it reduces to finite presentation of
   `A_1 = SingFix({0^∞},{0^∞})` (`shell-one-singularity-fp-forces-two-point-stabilizers-fp`).
+
+## Dependence of the gate analysis on the rank
+
+None of the gate analysis in Attempt 1 depends on `N = 4`. Each point holds for every
+admissible `P`:
+- **Mixed near relation.** `t = x_12(1)` has infinite order in every `St_N(R_L)`: its
+  image `e_12(1)` has `k`-th power `e_12(k) ≠ I`. It has infinite index: `P` contains
+  `GL_2(Q) ⊇ Z^2`, so `P` is not virtually cyclic. So
+  `infinite-order-inputs-admit-mixed-near-relations` applies without property (T).
+- **Window `N >= 1`.** For `N >= 5`, `P` is finitely presented by the rank-five node, so
+  it is accessible (Dunwoody). It is not virtually cyclic, so
+  `accessible-shell-inputs-admit-no-shift-normalizing-enumeration` excludes window `0`
+  with no appeal to property (T). The one-endedness argument through (T) in Attempt 1
+  is an alternative route to the same point.
+- **Kazhdan exclusion of the fixed-base device.** Item 3 of
+  `fixed-base-shell-inputs-embed-in-odometer-rn-groups` needs an infinite subgroup with
+  property (T). `SL_3(Z) <= GL_3(Q) <= P` is one, for every admissible `P`, so neither
+  the rank nor a Steinberg-group (T) theorem is used.
+- **Gate 1.** It is the same statement with `K_2(N,R_L)`.
+- **Simplicity.** It needs only that `P` is perfect.
+- **Only for `N = 4`.** The remarks on `E_4(R_L)` and `PE_4(R_L)` under "What does not
+  help", and §2 of the artifact, are stated for `N = 4`. The route does not use them.
 
 ## Attempts
 

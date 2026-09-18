@@ -9,6 +9,7 @@ distinct_from:
   proper-sft-covers-exclude-finite-orbits-and-sofic-constants: that proves this statement for sofic groups (and for finite-orbit points on residually finite groups); this is the statement for all groups.
 artifacts:
   - research/artifacts/constant-point-domain-count-2026-09-17.md
+  - research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md
 ---
 
 **OPEN.** Read group by group. Let `G` be a group and `A` a finite alphabet. No SFT `X ⊊ A^G` that contains
@@ -31,3 +32,31 @@ constant `τ(a^G)`, since `τ(a^G)` is shift-fixed.
 - Linear sector: a one-sided inverse in `F_q[G]` gives a linear counterexample, whose domain contains `0`
   (bus lemma of `swarm-0917-w8-w8-gs-break`). So the claim at `G` forces `F_q[G]` to be stably finite.
 - Whether Gottschalk at `G` implies this claim at `G` is unknown.
+
+## Attempts
+
+- **Scheduled sections (swarm-0917-w8-w8-gs-follow, 2026-09-17; symbolic-dynamics). Gives a decomposition, not a
+  proof. Stays OPEN.**
+  - *Landed (ESTABLISHED, unreviewed).* `post-surjective-sft-covers-admit-scheduled-sections`. Lifting one output
+    site at a time inside `gΦ`, scheduled by a proper colouring of the Cayley graph of a finite `E`, gives a
+    continuous equivariant `S(z, κ, x_0) ∈ X` with `F ∘ S = z`. With a Borel greedy colouring of the Bernoulli
+    free part, this yields:
+    - Rok-max(G) ⇒ this claim at `G`, via `strict-automaton-lowers-bernoulli-rokhlin-entropy`;
+    - MCS(G) ⇒ this claim at `G`.
+    Both need only a Bernoulli-factor point, respectively an invariant probability, on `X`, not a constant. New
+    route `constant-point-domains-via-bernoulli-rokhlin-maximality`. So the chain is Rok-max ⇒ this claim ⇒
+    Gottschalk, and this claim reduces to countably infinite finitely generated groups (artifact Lemma 5).
+  - *Where the converse dies (Gottschalk ⇒ this claim).* By Proposition C of the artifact, `G` is non-surjunctive
+    iff some cover pair has a continuous equivariant section `A^G → X`. So for surjunctive `G` this claim says
+    that every constant-point cover pair has a section. The scheduled section needs the colouring:
+    - at a constant target `a^G`, a section must return a point fixed by `G`;
+    - `F` need not map any constant of `X` to `a^G`;
+    - interface sites between lifted and unlifted regions lose their data, and over nonamenable `G` the interface
+      is a fixed fraction of the volume;
+    - iterates `F^n` gain no capacity, since the alphabet is the same on both sides.
+    This is the proper-subshift table case left open in `irs-surjunctivity-iff-pmp-graphing-surjunctivity`.
+  - *Dead sub-attempt.* Converting a dual failure into a section by repeatedly replacing lifted blocks with a
+    canonical word dies at termination: defects can be pushed to infinity.
+  - *What would move this claim.* Either a de-colouring theorem for sections of cover pairs with base-independent
+    decoder over the colouring shift, or the Rokhlin hub. Artifact
+    `research/artifacts/scheduled-sections-of-post-surjective-covers-2026-09-17.md`.
