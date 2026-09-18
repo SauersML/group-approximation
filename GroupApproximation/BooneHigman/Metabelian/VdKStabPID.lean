@@ -48,7 +48,7 @@ theorem vdkStab_stableRangeLE_one_of_field (K : Type*) [Field K] :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_stableRangeLE_one_of_field
 
 /-- In a PID, if `g ≠ 0` and no irreducible divides all of `a`, `g`, `c`, then `a + t c` is
-coprime to `g` for `t` = the product of the (normalized) prime factors of `g` that do not
+coprime to `g` for `t` = the product of the distinct irreducible factors of `g` that do not
 divide `a`. -/
 theorem vdkStab_exists_isCoprime_add_mul {R : Type*} [CommRing R] [IsDomain R]
     [IsPrincipalIdealRing R] {a g c : R} (hg : g ≠ 0)
@@ -84,7 +84,7 @@ pick `t` with `a + t c` coprime to `g` and take `b = (t, 0, …, 0)`. -/
 theorem vdkStab_stableRangeLE_two_of_pid (R : Type*) [CommRing R] [IsDomain R]
     [IsPrincipalIdealRing R] : vdkStab_StableRangeLE R 2 := by
   intro n hn v hv
-  obtain ⟨m, rfl⟩ : ∃ m, n = m + 2 := ⟨n - 2, by omega⟩
+  obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 + 1 := ⟨n - 2, by omega⟩
   obtain ⟨g, hgJ, hgdvd⟩ : ∃ g : R,
       g ∈ Ideal.span (Set.range fun j : Fin (m + 1) ↦ v (Fin.castSucc j.succ)) ∧
         ∀ j : Fin (m + 1), g ∣ v (Fin.castSucc j.succ) :=
@@ -100,7 +100,7 @@ theorem vdkStab_stableRangeLE_two_of_pid (R : Type*) [CommRing R] [IsDomain R]
       have hj := hgdvd j
       rw [hg0, zero_dvd_iff] at hj
       exact hj
-    have hc_mem : v (Fin.last (m + 2)) ∈
+    have hc_mem : v (Fin.last (m + 1 + 1)) ∈
         Ideal.span (Set.range (vdkStab_reduceRow v fun _ ↦ (1 : R))) :=
       vdkStab_mem_span_of_eq (Fin.succ (0 : Fin (m + 1)))
         (by rw [vdkStab_reduceRow_apply, hz 0, zero_add, one_mul])
@@ -117,7 +117,7 @@ theorem vdkStab_stableRangeLE_two_of_pid (R : Type*) [CommRing R] [IsDomain R]
       | zero => exact ha_mem
       | succ j => rw [hz j]; exact Ideal.zero_mem _
   · have hno : ∀ z : R, Irreducible z → z ∣ v (Fin.castSucc 0) → z ∣ g →
-        z ∣ v (Fin.last (m + 2)) → False := by
+        z ∣ v (Fin.last (m + 1 + 1)) → False := by
       intro z hz hza hzg hzc
       have hall : ∀ i, z ∣ v i := by
         intro i
@@ -133,7 +133,7 @@ theorem vdkStab_stableRangeLE_two_of_pid (R : Type*) [CommRing R] [IsDomain R]
       exact hz.not_isUnit (isUnit_of_dvd_one h1)
     obtain ⟨t, α, β, hαβ⟩ := vdkStab_exists_isCoprime_add_mul hg0 hno
     refine ⟨Pi.single 0 t, ?_⟩
-    have hr0 : v (Fin.castSucc 0) + t * v (Fin.last (m + 2)) ∈
+    have hr0 : v (Fin.castSucc 0) + t * v (Fin.last (m + 1 + 1)) ∈
         Ideal.span (Set.range (vdkStab_reduceRow v (Pi.single 0 t))) :=
       vdkStab_mem_span_of_eq 0 (by rw [vdkStab_reduceRow_apply, Pi.single_eq_same])
     have hJ : Ideal.span (Set.range fun j : Fin (m + 1) ↦ v (Fin.castSucc j.succ)) ≤

@@ -82,7 +82,7 @@ theorem higmanVCPivotAC_deep_mem {d : ℕ} {K : Subgroup (higmanVCCommon_Q d)} (
   | succ m ih =>
     intro x y h
     rw [higmanVCCommon_deep_succ, map_list_prod, List.map_map]
-    refine Subgroup.list_prod_mem fun q hq => ?_
+    refine Subgroup.list_prod_mem _ fun q hq => ?_
     obtain ⟨a, _, rfl⟩ := List.mem_map.mp hq
     refine ih (x ++ [a]) (y ++ [a]) fun e he => ?_
     have hl : ([a] ++ e).length = m + 1 := by

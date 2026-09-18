@@ -45,6 +45,7 @@ noncomputable def higmanVCPivotAC_push (d B : ℕ) (g : FreeGroup (List (Fin d) 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCPivotAC_push
 
+open Classical in
 theorem higmanVCPivotAC_mem_push {d B : ℕ} {g : FreeGroup (List (Fin d) × List (Fin d))}
     {C : Finset (List (Fin d))} {z : List (Fin d)} :
     z ∈ higmanVCPivotAC_push d B g C ↔ ∃ x ∈ C,

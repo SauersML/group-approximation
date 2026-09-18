@@ -23,9 +23,9 @@ extension, specialization, or `PolyK2StabRangeDiag`:
   target: it is a general theorem about all commutative rings of finite stable range, and it is
   not routed through `polyK2StabRangeDiag_of_vdkRowExtension`.
 
-Endpoints: `vdkStab_specPos_of_stableRange_of_injStab : (A) → (B) → VdKRowExtSpecPosStatement`,
-`vdkStab_vdkRowExtension_of_high_of_injStab : (A, k ≥ 2) → (B) → VdKRowExtensionStatement`, and
-the `k = 1` corollary `vdkStab_K2Stab_injective_polyOne_of_injStab`, which needs (B) only.
+Endpoints: `vdkStab_specPos_of_sr_of_injStab : (A) → (B) → VdKRowExtSpecPosStatement`,
+`vdkStab_vdkRowExt_of_high_injStab : (A, k ≥ 2) → (B) → VdKRowExtensionStatement`, and
+the `k = 1` corollary `vdkStab_injective_polyOne`, which needs (B) only.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
@@ -67,35 +67,35 @@ theorem vdkStab_polyStableRange_of_high (h : vdkStab_PolyStableRangeHighStatemen
 
 /-- **Endpoint**: (A) and (B) give `VdKRowExtSpecPosStatement`.  The specialization hypothesis
 of the target is not used (so (B) is used in a strictly stronger form than needed). -/
-theorem vdkStab_specPos_of_stableRange_of_injStab (hA : vdkStab_PolyStableRangeStatement)
+theorem vdkStab_specPos_of_sr_of_injStab (hA : vdkStab_PolyStableRangeStatement)
     (hB : vdkStab_InjStabStatement) : VdKRowExtSpecPosStatement := by
   intro p hp k N _ hkN u _ hu
   exact hB (MvPolynomial (Fin k) (ZMod p)) (k + 1) N (hA p hp k) (by omega)
     (hu.trans (map_one (K2Stab N (MvPolynomial (Fin k) (ZMod p)))).symm)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_specPos_of_stableRange_of_injStab
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_specPos_of_sr_of_injStab
 
 /-- **Endpoint**: (A) for `k ≥ 2` and (B) give `VdKRowExtSpecPosStatement`. -/
 theorem vdkStab_specPos_of_high_of_injStab (hA : vdkStab_PolyStableRangeHighStatement)
     (hB : vdkStab_InjStabStatement) : VdKRowExtSpecPosStatement :=
-  vdkStab_specPos_of_stableRange_of_injStab (vdkStab_polyStableRange_of_high hA) hB
+  vdkStab_specPos_of_sr_of_injStab (vdkStab_polyStableRange_of_high hA) hB
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_specPos_of_high_of_injStab
 
 /-- **Endpoint**: (A) for `k ≥ 2` and (B) give `VdKRowExtensionStatement`. -/
-theorem vdkStab_vdkRowExtension_of_high_of_injStab (hA : vdkStab_PolyStableRangeHighStatement)
+theorem vdkStab_vdkRowExt_of_high_injStab (hA : vdkStab_PolyStableRangeHighStatement)
     (hB : vdkStab_InjStabStatement) : VdKRowExtensionStatement :=
   vdkRowExt_of_specPos (vdkStab_specPos_of_high_of_injStab hA hB)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_vdkRowExtension_of_high_of_injStab
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_vdkRowExt_of_high_injStab
 
 /-- The case `k = 1`, from (B) alone: `K2Stab N` is injective on `K₂(N, 𝔽_p[x₁])` for `N ≥ 5`,
 because `sr(𝔽_p[x₁]) ≤ 2` is proved. -/
-theorem vdkStab_K2Stab_injective_polyOne_of_injStab (hB : vdkStab_InjStabStatement) (p : ℕ)
+theorem vdkStab_injective_polyOne (hB : vdkStab_InjStabStatement) (p : ℕ)
     (hp : p.Prime) (N : ℕ) (hN : 5 ≤ N) :
     Function.Injective (K2Stab N (MvPolynomial (Fin 1) (ZMod p))) :=
   hB (MvPolynomial (Fin 1) (ZMod p)) 2 N (vdkStab_stableRangeLE_polyOne p hp) (by omega)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_K2Stab_injective_polyOne_of_injStab
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkStab_injective_polyOne
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
