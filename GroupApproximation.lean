@@ -6069,6 +6069,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeC
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapSuspension
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapSuspensionEndo
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTProper
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HigsonKasparovClifford
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
