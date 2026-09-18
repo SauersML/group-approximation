@@ -168,3 +168,46 @@ each imply (K).
      tradeoff claim, together with `kappa_p(n) >= p^n`, gives
      `p_c <= 1/gr`. This is already folklore from
      `chi_p >= |S_n| p^n` and sharpness.
+
+3. **Boundary Radon–Nikodym tilt (2026-09-18, swarm-0917-w9-w9-bs-follow;
+   OPEN, new decomposition and class kill).**
+   - **Established:** `fpbs-boundary-tilted-susceptibility-kernel`.
+     - Take any quasi-invariant probability `nu` on a `Gamma`-space, with
+       cocycle `Delta_zeta(o,y) = d(y_* nu)/d nu (zeta)`. It carries
+       Hutchcroft's tilted mass transport and the `lambda <-> 1-lambda`
+       duality of `chi^nu_lambda = sum_y tau(o,y) int Delta^lambda d nu`,
+       even though the Cayley group is unimodular.
+     - If `chi^nu_(1/2)(p) < infinity` and the Radon–Nikodym growth `h_nu` is at
+       least `h > 0` on a set of positive measure, then `gamma(p) >= h/2`. The
+       proof is one line: pointwise summability at a good `zeta`.
+   - **New route:** `fpbs-worst-pair-rate-via-boundary-half-tilt`, through the
+     OPEN kernel [BT], `fpbs-boundary-half-tilt-above-pc-universal`, which asks
+     for `p_c < p^nu_t`.
+     - Its prerequisites fail independently: [BT] is false on every amenable
+       graph (see below), while (K) is only asked on nonamenable ones.
+     - [BT] sits below the l2 gap whenever `pi_nu ≺ lambda`, since then
+       `p_(2->2) <= p^nu_t`.
+   - **Calibration.**
+     - On `T_d` with the visual measure, `p^nu_t = (d-1)^(-1/2)`. This matches
+       Hutchcroft's end-fixing `p_t` and gives `gamma >= (1/2) log(d-1)`, which
+       is sharp at the right endpoint.
+     - Kernel (K) already holds, with `gamma >= (log gr)/2`, on hyperbolic,
+       acylindrically hyperbolic and nonunimodular Cayley graphs. This follows
+       from the two l2-gap nodes, `Z_2 <= ||T_p||^2` and item (C) of
+       `fpbs-lq-two-point-infinite-cluster-reduction`. So what remains open in
+       (K) lies outside these classes.
+   - **Class killed.** On `BS(1,2) x Z` acting affinely on `R` with the Cauchy
+     law, every structural property holds:
+     - the mass transport, the duality and convexity;
+     - Radon–Nikodym growth at least `(log 2)/4` at every point;
+     - weak containment and Zimmer-amenability.
+
+     Yet `p^nu_t = p_c`. So no argument using only these properties and the
+     amenability-blind inputs of the collapse calibration can prove [BT].
+   - **Failing step.** A `zeta`-independent cocycle is trivial, so tilts are
+     root-dependent. Hutchcroft's layer supermultiplicativity would then need
+     fibre-uniform bounds, while mass transport gives only averages.
+   - **Survivors.**
+     - Harmonic or stationary `nu`, for example the Poisson boundary, whose
+       stationarity the Cauchy example lacks.
+     - Fibre-uniform estimates that fail on `BS(1,2) x Z`.
