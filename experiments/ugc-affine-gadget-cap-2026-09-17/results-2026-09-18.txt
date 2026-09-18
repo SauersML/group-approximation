@@ -1,0 +1,17 @@
+$ python3 experiments/ugc-affine-gadget-cap-2026-09-17/check_anchored_adversary.py
+q=2 Gamma=shift |Gamma|=2 N=4 rho*N=2 alpha0=3/4 edges=all:24 max N*Pr[cut]=4/3 ~1.3333 bound=4/3 ~1.3333
+q=3 Gamma=shift |Gamma|=3 N=9 rho*N=3 alpha0=2/3 edges=all:26406 max N*Pr[cut]=40/27 ~1.4815 bound=40/27 ~1.4815
+q=3 Gamma=sym |Gamma|=6 N=9 rho*N=3 alpha0=2/3 edges=all:52812 max N*Pr[cut]=40/27 ~1.4815 bound=40/27 ~1.4815
+q=4 Gamma=shift |Gamma|=4 N=16 rho*N=4 alpha0=5/8 edges=sampled:400 max N*Pr[cut]=37/24 ~1.5417 bound=37/24 ~1.5417
+q=5 Gamma=affine |Gamma|=20 N=25 rho*N=5 alpha0=3/5 edges=sampled:300 max N*Pr[cut]=118/75 ~1.5733 bound=118/75 ~1.5733
+q=4 Gamma=sym |Gamma|=24 N=16 rho*N=8 alpha0=3/4 edges=sampled:300 max N*Pr[cut]=89/48 ~1.8542 bound=89/48 ~1.8542
+all checks passed
+
+Run 2026-09-18, Python 3, exact Fraction arithmetic, sampling seed 1.
+Rows marked "all" enumerate every length-one edge with an endpoint whose
+anchor agreement exceeds alpha0 N; every other edge costs exactly 1 by the
+uniformity of h* (check_decoder). In every row the observed maximum equals
+the analytic bound 1 + delta (1 - 1/N)/(1 - alpha0) - delta/(q - 1) with
+delta = (1 - 1/q)/3, so the bound is attained. q = 2 differs from the
+Hadamard node's 5/4 because the primaries here are the three coordinates of
+{u + v + w = 0}, not the four characters of RM(1,2).

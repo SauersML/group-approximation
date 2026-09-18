@@ -75,3 +75,19 @@ unique-games point has deficit ratio `R(c, s) = (1-s)/(1-c) > 2`.
     - randomized maps;
     - a gadget applied after a tensor power;
     - direct reductions from 3LIN or label cover with non-split outputs.
+* **Gadget reductions from 3Lin(G) into permutation 2-CSPs on the alphabet
+  `G`.** **Dead for groups `Γ` with few fixed points (2026-09-18).** See
+  `three-lin-gadgets-stay-below-padding-line`, swarm-0917-w12-w12-ugc-break.
+  - *Invariant:* pairwise uniformity of the source constraint set. It gives
+    unique anchors `γ ∘ x_j` above agreement `(1 + ρ)/2`, and exact decoding
+    from two of the three coordinates.
+  - *Step:* per-gadget soundness. An anchored threshold adversary that is
+    random on the primaries has expected deletion at most `λ c`, with
+    `λ = 1 + (2q^2 - q - 2)/(3q^2) < 5/3`. This covers Max-2Lin(Z_q), affine
+    2Lin over `F_q`, `UG_3` and `A_5`, and `UG_4` has the cap `89/48`.
+  - Survivors:
+    - all of `UG_q` for `q >= 5`, where the adversary gives only `2.21` at
+      `q = 5`;
+    - output alphabets larger than the source alphabet;
+    - source predicates with small information sets, such as Hadamard;
+    - global NO-side certificates that are not per gadget.
