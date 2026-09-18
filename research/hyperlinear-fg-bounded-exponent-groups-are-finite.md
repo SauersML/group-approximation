@@ -311,3 +311,32 @@ factors through a finite quotient of `F_m`.
     - **Status.** The target stays OPEN. What was gained: the finite-group
       content and the analytic content are now separate prerequisites, and a
       failure of `LRB` does not refute `S`.
+11. **Inverter: the Lie-ring transfer of restricted Burnside is vacuous**
+    (d-bexp, swarm-0917, family group-rings, 2026-09-18). Kills a class of approaches; the
+    target stays OPEN.
+    - **Class.** Pass an approximation to an exact homomorphism
+      `G -> A^x` (for example `R^omega`, `prod_omega M_n(C)`, a rank ultraproduct
+      over `F_p`, or `F[G]`). Filter by powers of ideals containing the
+      augmentation, take the graded Lie object, and run Zelmanov's Engel/PI
+      argument there.
+    - **Established obstruction.**
+      `lie-linearizations-are-blind-to-bounded-exponent-residuals`.
+      - The finite residual `K` is perfect, so `I_K = I_K^2` in every
+        characteristic. `K` lies in every dimension subgroup of every
+        multiplicative filtration in every ambient algebra.
+      - When `N` is invertible (for example over `C`), `I_G = I_G^2`, so the
+        graded object is zero on all of `G`.
+      - Zassenhaus Lie algebras satisfy `L_p(G) = L_p(G/K)`.
+    - **Where it dies.** Finiteness needs the separation step
+      `⋂_j D_j` finite. Since `⋂_j D_j ⊇ K`, this step is equivalent to the
+      target. The invariant is `H_1(K; Z) = 0`; the step is the degree-one layer
+      `g ↦ (phi(g) - 1) + J_2`, a homomorphism that vanishes on `K`.
+    - **Metric variants.**
+      - Hilbert-Schmidt: there is no dimension-free commutator contraction, even
+        for exponent-`N` unitaries (block-embedded `S_3` gives ratio `(n/4)^{1/2}`).
+      - Operator norm: the gap `2 sin(pi/N)` makes neighbourhoods trivial and the
+        packing count dimension-dependent, which is the input of
+        `bounded-dimension-microstates-bounded-exponent-group-is-finite`.
+    - **Consequence.** A proof must see the perfect group `K` beyond abelian
+      layers, through trace values, non-abelian simple quotients, or geometry.
+      It cannot use a linearized Zelmanov argument.
