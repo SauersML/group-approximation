@@ -39,3 +39,22 @@ it is necessary for `brin-thompson-groups-nv-are-a-t-menable`.
   because the kernel depth is not conjugation-invariant up to bounded error: `g τ_2 g^{-1} = τ_m`. So an
   extension must pay for conjugators of scale `≥ m − 2`. That is the next thing to test: a cnd function
   on `nV` that is unbounded on `{τ_m}`.
+- **Cubical class-kill and forced shape (2026-09-17, swarm-0917-w6-w6-nv-last1).** ESTABLISHED as
+  `brin-thompson-nv-no-cubical-action-proper-on-cocycle-kernel`. It corrects the "Known" bullet above:
+  there *is* an elliptic family of unbounded kernel depth. Let `z = id × x_0` and let `τ ∈ K_2` swap
+  `[00]×[00]` and `[01]×[00]`. Then `z^M τ z^{−M}` has kernel depth exactly `M + 2`, bounded length in
+  every commensurating action, and `ψ(z^M τ z^{−M}) = O(M)` for every cnd `ψ`. So P3 is non-cubical, and
+  every witness `ψ_3` satisfies `ψ_3(z^M) → ∞` and `ψ_3(b^M) → ∞` (baker's map), and grows at most
+  linearly in depth along that family. A proof of P3 must be a cnd function that is unbounded along
+  powers of fibre elements while still sublinear there.
+- **Dead: formal reductions P1 ∧ P2 ⇒ P3 (2026-09-17, swarm-0917-w6-w6-nv-last1).** Build `ψ_3` from
+  `ψ_1, ψ_2` by products or commutators with bounded-pattern elements. It dies at sibling swaps: for every
+  locally constant `f` with `pd(f) < m` one has `f ∘ τ_m = f`. So any expression in `c`-values and
+  patterns of pattern depth `< m` cannot tell `τ_m` from the identity. Via conjugation it dies too: a
+  conjugate `g τ g^{−1}` lies in `K` iff `c(g)` is `τ`-invariant on the relevant set, and a proper `ψ_3`
+  gives no bounded deep swaps to use inside pieces of a partition.
+- **Dead: extending a Koopman wavelet cocycle (2026-09-17, swarm-0917-w6-w6-nv-last1).** A level-weighted
+  Haar-wavelet cocycle on `L^2(C^n)` is proper on `K`. Invariance under `c(g)`-rescaling forces the weights
+  to be constant in the level. With constant weights the sum over the eccentric bricks cut by the partition
+  of a generic `g` diverges. This is the same failure as the brick-wall count, and it matches the forced
+  sublinear shape above: a weight that is linear in depth is at the edge.
