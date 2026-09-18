@@ -5757,6 +5757,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Yao
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitEquiv
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitSum
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplit
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExt
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
