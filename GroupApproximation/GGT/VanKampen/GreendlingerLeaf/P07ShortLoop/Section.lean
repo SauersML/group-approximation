@@ -42,7 +42,7 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07ShortLoop
 universe u w v
 
 open Embedded HullSC WordMetric SimpleClosedWalkSides
-open GreendlingerLeaf.P07LakeExclusion
+open GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion
 
 /-- **The all-cells short-loop residual, beyond hyperbolic thresholds.**  The body is that of
 `AllCellsShortLoopStatement`.  It is guarded by the hyperbolicity of `D.alphabet.carrier` and by

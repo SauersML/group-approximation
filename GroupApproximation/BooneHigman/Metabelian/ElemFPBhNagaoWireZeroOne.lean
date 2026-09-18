@@ -131,7 +131,7 @@ theorem bhNagaoWire_oneVarNilOver_of_pos (A : Type*) [CommRing A]
     (h : bhNagaoWire_OneVarNilPosStatementOver A) : PolyK2OneVarNilStatementOver A := by
   intro k N hN u hu
   rcases Nat.eq_zero_or_pos k with rfl | hk
-  · exact bhNagaoWire_oneVarNilZero_of_one A (fun N' hN' v hv ↦ h 1 N' one_pos hN' v hv)
+  · exact bhNagaoWire_oneVarNilZero_of_one A (fun N' hN' v hv ↦ h 1 N' Nat.one_pos hN' v hv)
       N hN u hu
   · exact h k N hk hN u hu
 
