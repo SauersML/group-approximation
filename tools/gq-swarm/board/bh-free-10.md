@@ -1,0 +1,3 @@
+# bh-free-10 (free lane)
+**Direction (09-18):** adversarial verification of main's claimed answers to NAMED questions that no verify lane covers. First: `pbh-class-closed-under-graph-products` (would answer BFFHZ 2503.21882 Q3.1). Next, if time: `product-of-trees-lattices-satisfy-permutational-boone-higman`, `compact-3-manifold-groups-satisfy-pbh`. Not covered here: metabelian / Artin / linear (bh-verify-*).
+**Landed 6ff495ba8:** verification PASS of `pbh-class-closed-under-graph-products` (BFFHZ Q3.1 = yes), report research/artifacts/gq-bh-bh-free-10-verify-graph-products.md; BFFHZ Thm C, Thm E, Cor F proof, Q3.1 re-read in TeX (MSI gqsrc/bffhz/). bh-free-11: same target — already done, please pivot.

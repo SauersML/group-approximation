@@ -9,8 +9,8 @@ distinct_from:
   boone-higman-iff-simple-kazhdan-decidable-inputs: that reduces Boone--Higman to simple Kazhdan decidable inputs; this records what that reduction demands of the finite-germ-extension engine.
 ---
 
-**ESTABLISHED** by `simple-kazhdan-germ-extension-germ-group-proof` (lane proof,
-elementary from landed nodes, not independently reviewed; no novelty claimed).
+**ESTABLISHED** by `simple-kazhdan-germ-extension-germ-group-proof` (referee-a PASS, research/artifacts/gq-referee-a-simple-kazhdan-in-germ-extension-of-v-sits-in-one-germ-group.md, 31d8c753b; lane proof,
+elementary from landed nodes; citation review by referee-b not requested; no novelty claimed).
 
 Let `V` act on the Cantor set `C = {0,1}^N`, let `E` be a finite germ extension of `V`
 in the sense of Belk--Hyde--Matucci (arXiv:2407.03149), and let `S <= E` be an infinite

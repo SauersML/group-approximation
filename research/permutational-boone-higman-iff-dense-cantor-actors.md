@@ -90,17 +90,15 @@ is exactly PBH, which is OPEN, and the theorem gives the following sharper readi
   finitely presented simple group `SV_G`
   (`twisted-brin-thompson-wp-equals-actor-orbit-problem`).
 
-## Open refinement
+## Is the stabilizer clause needed? (OPEN)
 
-**Can the stabilizer clause be dropped?** Is every finitely presented dense subgroup
-of `Homeo(C)` automatically of type (A) on `Ω`, i.e. are its clopen stabilizers
-finitely generated?
-- If yes, PBH becomes: *every decidable input embeds in a finitely presented dense
-  subgroup of Homeo(C)*.
-- It holds for finitely presented full groups containing standard `V`
-  (`fp-full-binary-cantor-groups-have-type-a-actions`) and for twisted Brin–Thompson
-  groups.
-- No finitely presented dense subgroup with a non-finitely-generated clopen
-  stabilizer is known here.
-- A natural test case is a free product `V * Z` realized densely by a generic
-  homeomorphism.
+*Corrected 09-18 (bh-free-19).* This section used to say the clause cannot be dropped,
+citing `fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` (a generic `t`
+with `⟨V,t⟩ ≅ V * Z`). That claim is REFUTED by
+`v-and-a-homeomorphism-never-generate-a-free-product`: `⟨V,t⟩` is never `V * ⟨t⟩` for
+any `t ≠ 1`. So whether every finitely presented dense subgroup of `Homeo(C)` has
+finitely generated clopen stabilizers is open; no witness either way is on main.
+
+The clause does hold for finitely presented full groups containing standard `V`
+(`fp-full-binary-cantor-groups-have-type-a-actions`) and for twisted Brin–Thompson
+groups.

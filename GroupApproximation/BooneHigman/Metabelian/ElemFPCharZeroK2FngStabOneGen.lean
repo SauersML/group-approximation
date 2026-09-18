@@ -41,7 +41,7 @@ theorem czK2FngStabOne_src_ne : ∀ g : Fin 6, czK2FngStabOne_src g ≠ czK2FngS
 theorem czK2FngStabOne_elem_eq : ∀ g : Fin 6,
     ((LiteralP13MatrixModel.elem g : LiteralP13MatrixModel.SL3) : Matrix (Fin 3) (Fin 3) ℤ) =
       1 + Matrix.single (czK2FngStabOne_src g) (czK2FngStabOne_tgt g) 1 := by
-  decide
+  decide +kernel
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_elem_eq
 
@@ -141,7 +141,7 @@ theorem czK2FngStabOne_x_mem_range (p q : Fin 3) (hpq : p ≠ q) (z : ℤ) :
     rw [Int.cast_add, Int.cast_one, ← x_mul]
     exact mul_mem ih h1
   | pred i ih =>
-    rw [Int.cast_sub, Int.cast_one, sub_eq_add_neg, ← x_mul, x_neg]
+    rw [Int.cast_sub, Int.cast_one, sub_eq_add_neg, ← x_mul, x_neg p q hpq (1 : R₁)]
     exact mul_mem ih (inv_mem h1)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_x_mem_range
