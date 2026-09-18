@@ -268,4 +268,93 @@ theorem extremalJordanPickEuler_next_nonFirst (K : PocketFaceSet D eps X lo hi)
     (extremalJordanPickEuler_keep_of_mem (List.next_mem _ _ hmem)) hx₁ hx₂
   exact hne (extremalJordanPickEuler_next_injective K.boundary.cycle_nodup hd₀ hmem heq).symm
 
+/-- **A first passage crosses no turn**: if `d` is not non-first, both ends of `α d → next d` lie
+on one side of the sector of any `d₀`. -/
+theorem extremalJordanPickEuler_first_uncrossed (K : PocketFaceSet D eps X lo hi)
+    {d₀ d : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle) (hd : d ∈ K.boundary.cycle)
+    (h : ¬P10ChordLift.NonFirstTurn K d hd) :
+    (RotationBetween X.toCombMap (X.toCombMap.alpha d₀) (K.boundary.cycle.next d₀ hd₀)
+        (X.toCombMap.alpha d) ↔
+      RotationBetween X.toCombMap (X.toCombMap.alpha d₀) (K.boundary.cycle.next d₀ hd₀)
+        (K.boundary.cycle.next d hd)) := by
+  have hfrd : SectorNoninterleaving.SectorFree X.toCombMap K.boundary.cycle
+      (K.boundary.cycle.next d hd) (X.toCombMap.alpha d) := by
+    by_contra hc
+    exact h ((extremalJordanPickEuler_nonFirst_iff K hd).mpr hc)
+  have hn₀ : K.boundary.cycle.next d₀ hd₀ ∈ K.boundary.cycle := List.next_mem _ _ hd₀
+  have hxn : X.toCombMap.alpha d₀ ≠ K.boundary.cycle.next d hd := fun h' =>
+    K.boundary_alpha_not_mem hd₀ (by rw [h']; exact List.next_mem _ _ hd)
+  have hyz : K.boundary.cycle.next d₀ hd₀ ≠ X.toCombMap.alpha d := fun h' =>
+    K.boundary_alpha_not_mem hd (by rw [← h']; exact hn₀)
+  exact extremalJordanPickEuler_between_iff_of_free hfrd
+    (extremalJordanPickEuler_keep_alpha_of_mem hd₀) (extremalJordanPickEuler_keep_of_mem hn₀)
+    hxn hyz
+
+/-- **The local lemma `n_v ≥ 1 ⇒ n_v ≥ 3`.**  In the rose configuration, a non-first passage
+`d₀` of a pocket in walk order has two more non-first passages `d₁`, `d₂` at its vertex, with
+`d₀`, `d₁`, `d₂` pairwise distinct. -/
+theorem extremalJordanPickEuler_three_nonFirst (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K)
+    {d₀ : X.toCombMap.Dart} (hd₀ : d₀ ∈ K.boundary.cycle)
+    (hnf : P10ChordLift.NonFirstTurn K d₀ hd₀) :
+    ∃ (d₁ : X.toCombMap.Dart) (hd₁ : d₁ ∈ K.boundary.cycle) (d₂ : X.toCombMap.Dart)
+      (hd₂ : d₂ ∈ K.boundary.cycle),
+      P10ChordLift.NonFirstTurn K d₁ hd₁ ∧ P10ChordLift.NonFirstTurn K d₂ hd₂ ∧
+        d₁ ≠ d₀ ∧ d₂ ≠ d₀ ∧ d₁ ≠ d₂ ∧
+        X.toCombMap.vertexOf (X.toCombMap.alpha d₁) =
+          X.toCombMap.vertexOf (X.toCombMap.alpha d₀) ∧
+        X.toCombMap.vertexOf (X.toCombMap.alpha d₂) =
+          X.toCombMap.vertexOf (X.toCombMap.alpha d₀) := by
+  obtain ⟨d₁, hd₁, hne₁, hnf₁, hfr₁, hv₁⟩ := extremalJordanPickEuler_next_nonFirst K hK hd₀ hnf
+  obtain ⟨e, he, hne₂, hnfe, hfre, hve⟩ := extremalJordanPickEuler_next_nonFirst K hK hd₁ hnf₁
+  by_cases hed : e = d₀
+  · rw [hed] at hfre
+    have hn₀ : K.boundary.cycle.next d₀ hd₀ ∈ K.boundary.cycle := List.next_mem _ _ hd₀
+    have hk₀ := extremalJordanPickEuler_keep_alpha_of_mem hd₀
+    have hkn := extremalJordanPickEuler_keep_of_mem hn₀
+    have hxy : X.toCombMap.alpha d₀ ≠ K.boundary.cycle.next d₀ hd₀ := fun h =>
+      K.boundary_alpha_not_mem hd₀ (by rw [h]; exact hn₀)
+    have hv : X.toCombMap.vertexOf (K.boundary.cycle.next d₀ hd₀) =
+        X.toCombMap.vertexOf (X.toCombMap.alpha d₀) :=
+      (OuterPinchIsolated.rel_next_of_isChain K.boundary.cycle_nonempty K.boundary.cycle_nodup
+        hK.1 hK.2 hd₀ : X.toCombMap.vertexOf (X.toCombMap.alpha d₀) =
+          X.toCombMap.vertexOf (K.boundary.cycle.next d₀ hd₀)).symm
+    have hnn : K.boundary.cycle.next d₀ hd₀ ≠ K.boundary.cycle.next d₁ hd₁ := fun h =>
+      hne₁ (extremalJordanPickEuler_next_injective K.boundary.cycle_nodup hd₀ hd₁ h).symm
+    have hiff₁ : (RotationBetween X.toCombMap (X.toCombMap.alpha d₀)
+        (K.boundary.cycle.next d₀ hd₀) (X.toCombMap.alpha d₁) ↔
+      RotationBetween X.toCombMap (X.toCombMap.alpha d₀) (K.boundary.cycle.next d₀ hd₀)
+        (K.boundary.cycle.next d₁ hd₁)) :=
+      iff_of_false (extremalJordanPickEuler_not_between_of_free_after hfr₁ hk₀ hxy)
+        (extremalJordanPickEuler_not_between_of_free_before hfre hv hkn (Ne.symm hxy) hnn)
+    obtain ⟨d, hd, hdne, hsc, hcross⟩ := hrose d₀ hd₀ hnf
+    have hvd : X.toCombMap.vertexOf (X.toCombMap.alpha d) =
+        X.toCombMap.vertexOf (X.toCombMap.alpha d₀) :=
+      (X.toCombMap.vertexOf_eq_iff _ _).mpr hsc.symm
+    have hnfd : P10ChordLift.NonFirstTurn K d hd := by
+      by_contra hfd
+      exact hcross (extremalJordanPickEuler_first_uncrossed K hd₀ hd hfd)
+    have hdd₁ : d ≠ d₁ := by
+      intro heq
+      subst heq
+      exact hcross hiff₁
+    exact ⟨d₁, hd₁, d, hd, hnf₁, hnfd, hne₁, hdne, fun h => hdd₁ h.symm, hv₁, hvd⟩
+  · exact ⟨d₁, hd₁, e, he, hnf₁, hnfe, hne₁, hed, fun h => hne₂ h.symm, hv₁, hve.trans hv₁⟩
+
 end Pocket
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_facePerm_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_next_injective
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_exists_firstKept
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_keep_of_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_keep_alpha_of_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_alpha_mem_of_firstKept
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_not_between_of_free_after
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_not_between_of_free_before
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_between_iff_of_free
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_nonFirst_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_next_nonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_first_uncrossed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_three_nonFirst
