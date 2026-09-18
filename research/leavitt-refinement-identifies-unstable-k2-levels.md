@@ -9,7 +9,8 @@ distinct_from:
 ---
 
 **ESTABLISHED by citation plus a short argument**, through `leavitt-refinement-identifies-unstable-k2-levels-proof`.
-Lane proof, not independently reviewed.
+Refereed: gq-referee-a PASS on items 2--4, proof-gap lens (report 2d373a8ea, N1 and N2 applied); item 1 is
+with gq-referee-b.
 - Item 1 is Voronetsky, arXiv:2004.08551, §4, Proposition 1, in the form applied by Huynh Viet Khanh,
   arXiv:2609.08428, in the proof of Theorem `thm:steinberg-isomorphism` (TeX in `gq/src/on/2609.08428/`, read). Khanh
   states that this application "requires no hypothesis on stable rank". Voronetsky's proposition itself was read
@@ -37,8 +38,9 @@ Lane proof, not independently reviewed.
    - `St_r(R_L) ≅ St_3(R_L)` for all `r >= 3`. So the word problem of `St_r(R_L)` is solvable at one level iff at
      every level, and the same holds for recursive enumerability of nontriviality in `U_r`.
    - Gate 1 is the same question at `N = 3, 4, 5` or `10`.
-4. **Bounded-step form.** Suppose that the matrix `V_r = I_(r-1) ⊕ V'`, with
-   `V' = [[e*, 0, 0], [f*, 0, 0], [0, e, f]]`, lies in `E_(r+2)(R)`. Then for `x in St_r(R)`,
+4. **Bounded-step form.** Suppose that `V' = [[e*, 0, 0], [f*, 0, 0], [0, e, f]]` lies in `E_3(R)`. Then
+   `V_m = I_(m-1) ⊕ V'` lies in `E_(m+2)(R)` for every `m >= 3`, which the kernel identity at all levels needs
+   (gq-referee-a, N2). Then for `x in St_r(R)`,
    `j j (D_r x) = ω · j j j (x) · ω^-1` in `St_(r+3)(R)` for some `ω`, where `j` is one-step stabilization. It follows
    that `U_3 = 1` if and only if `j ∘ j` is injective on `K_2(m, R)` for every `m >= 3`. Whether `V' in E_3(R_L)` is not
    decided here. It holds if `GL_3(L_Q(1,2)) = E_3(L_Q(1,2))`.

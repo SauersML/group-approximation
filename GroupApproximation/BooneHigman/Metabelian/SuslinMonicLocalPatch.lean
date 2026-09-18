@@ -8,7 +8,7 @@ import GroupApproximation.Meta.AxiomGuard
 Lane `bh-met-93i`.  `suslinMonic_PatchStatement` is Suslin's local-global principle (Quillen
 patching) for stably elementary `SL₂`-blocks in rank `3`, stated only for the matrices that
 `suslinCongInd_MonicStab` is about.  It is a `def ... : Prop`, NOT proved here, and it is not a
-hypothesis of any root theorem.  `suslinMonicLocal_monicStatement_of_patch` shows that it,
+hypothesis of any root theorem.  `suslinMonicLocal_global_of_patch` shows that it,
 together with the unconditional local theorem `suslinMonicLocal_stab_map`
 (`SuslinMonicLocalEndpoint.lean`), gives `suslinCongInd_MonicStatement`.
 -/
@@ -50,13 +50,13 @@ def suslinMonic_PatchStatement : Prop :=
 
 /-- **Endpoint (target 3).**  Patching, together with the unconditional local theorem, gives
 the global monic `SL₂`-block Statement. -/
-theorem suslinMonicLocal_monicStatement_of_patch (hP : suslinMonic_PatchStatement) :
+theorem suslinMonicLocal_global_of_patch (hP : suslinMonic_PatchStatement) :
     suslinCongInd_MonicStatement := by
   intro R _ τ hdet hlc hconst
   exact hP R τ hdet hlc hconst fun 𝔪 _ ↦
     suslinMonicLocal_stab_map (algebraMap R (Localization.AtPrime 𝔪)) τ hdet hlc
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_monicStatement_of_patch
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_global_of_patch
 
 end Absorption
 end Metabelian

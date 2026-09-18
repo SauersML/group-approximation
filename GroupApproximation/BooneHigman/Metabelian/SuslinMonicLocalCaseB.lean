@@ -13,7 +13,7 @@ Lane `bh-met-93i`.  `R` local, `(f, g)` a first row of `SL₂(R[X])` (`f k - g c
 * `S_i = (X^i g) mod F` satisfies `S_{i+1} = (X S_i) mod F` and `S_{i+1} w ≡ S_i` modulo `f`,
   so `(f, S_{i+1})` good implies `(f, S_i)` good (Mennicke rule + column move).
 * `(-c) g ≡ 1 mod F`, so the `R`-linear map `h ↦ ((h g) mod F)(0)` is not into the maximal
-  ideal; by locality some `S_j(0)` is a unit (`suslinMonicLocal_exists_isUnit_coeff`), and
+  ideal; by locality some `S_j(0)` is a unit (`suslinMonicLocal_isUnit_coeff`), and
   `(f, S_j)` is good by case A.  Descending from `j` to `0` and one column move give `(f, g)`.
 -/
 
@@ -25,7 +25,7 @@ namespace Absorption
 open Polynomial
 
 /-- Over a local ring, if some `((h g) mod F)(0)` is a unit, so is some `((X^i g) mod F)(0)`. -/
-theorem suslinMonicLocal_exists_isUnit_coeff {R : Type*} [CommRing R] [IsLocalRing R]
+theorem suslinMonicLocal_isUnit_coeff {R : Type*} [CommRing R] [IsLocalRing R]
     (F g h : R[X]) (hu : IsUnit (((h * g) %ₘ F).coeff 0)) :
     ∃ i : ℕ, IsUnit (((X ^ i * g) %ₘ F).coeff 0) := by
   by_contra hne
@@ -43,7 +43,7 @@ theorem suslinMonicLocal_exists_isUnit_coeff {R : Type*} [CommRing R] [IsLocalRi
         ((IsLocalRing.mem_maximalIdeal _).mpr (mem_nonunits_iff.mpr (hne i)))
   exact (mem_nonunits_iff.mp ((IsLocalRing.mem_maximalIdeal _).mp (key h))) hu
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_exists_isUnit_coeff
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_isUnit_coeff
 
 /-- **Case B** of the local monic induction step. -/
 theorem suslinMonicLocal_caseB {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ}
@@ -100,7 +100,7 @@ theorem suslinMonicLocal_caseB {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ
       suslinMonicLocal_Good f q := by
     intro q hq
     have hmd := modByMonic_add_div (X * q) F
-    exact suslinMonicLocal_good_of_col_right
+    exact suslinMonicLocal_colRight
       (-(C ((e⁻¹ : Rˣ) : R) * q + C ((v⁻¹ : Rˣ) : R) * ((X * q) /ₘ F) * w))
       (suslinMonicLocal_good_mul_right hq hGw)
       (by linear_combination w * hmd + q * hXw - ((X * q) /ₘ F) * w * hF)
@@ -120,7 +120,7 @@ theorem suslinMonicLocal_caseB {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ
   have hu0 : IsUnit (((-c * g) %ₘ F).coeff 0) := by
     rw [modByMonic_eq_of_dvd_sub hFm hdvd, h1F, coeff_one_zero]
     exact isUnit_one
-  obtain ⟨j, hj⟩ := suslinMonicLocal_exists_isUnit_coeff F g (-c) hu0
+  obtain ⟨j, hj⟩ := suslinMonicLocal_isUnit_coeff F g (-c) hu0
   have hSj : suslinMonicLocal_Good f (Sq j) := by
     rw [hSq]
     exact suslinMonicLocal_caseA hIH ⟨v, hv⟩ hd
@@ -137,7 +137,7 @@ theorem suslinMonicLocal_caseB {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ
   have hS0 := hdown j 0 (by rw [zero_add]; exact hSj)
   rw [hSq, pow_zero, one_mul] at hS0
   have hmd := modByMonic_add_div g F
-  exact suslinMonicLocal_good_of_col_right (-(C ((v⁻¹ : Rˣ) : R) * (g /ₘ F))) hS0
+  exact suslinMonicLocal_colRight (-(C ((v⁻¹ : Rˣ) : R) * (g /ₘ F))) hS0
     (by linear_combination hmd - (g /ₘ F) * hF)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_caseB
