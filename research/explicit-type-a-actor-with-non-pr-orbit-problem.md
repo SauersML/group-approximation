@@ -18,6 +18,7 @@ problem of `G` together with membership in point stabilizers of orbit representa
 **Where hardness may and may not come from.**
 - *Not from base points of prefix-replacement hosts:*
   `aperiodic-point-stabilizers-in-germ-extensions-of-v-are-not-fg`.
+- *Not from single-machine singular schedules:* `block-power-germ-schedules-with-fp-germ-group-are-exponential`.
 - *Not from bounded-displacement half-finite generators:* the bounded-displacement theorem on
   `hard-half-finite-permutations-have-fp-shift-envelopes`.
 - *Possible sources left:*
