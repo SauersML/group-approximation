@@ -8,6 +8,7 @@ distinct_from:
   gl2-q-embeds-in-fp-simple-group: that is GL_2(Q), which contains SL_2(Q) and implies this; this is its determinant-one subgroup.
   psl2-q-embeds-in-fp-simple-group: that is the simple quotient PSL_2(Q) = SL_2(Q)/{±I}; neither statement is known to imply the other.
   rational-linear-groups-satisfy-boone-higman: that covers finitely generated subgroups such as SL_2(Z[1/m]); this is the whole countable group, which lies in no residually finite group.
+  sl-2-q-embeds-in-fp-simple-group: that is the same statement under a second id, landed later (39b37d26f) with the Ihara/Hecke/BLIW route; the routes sl2-q-duplicate-ids-agree and sl-2-q-duplicate-ids-agree make the two equivalent.
 ---
 
 **OPEN.** There is a finitely presented simple group containing `SL_2(Q)`.
@@ -64,6 +65,9 @@ This is the smallest linear case of `gl-n-q-embeds-in-fp-simple-group`
   - Type (A) actors and twisted Brin--Thompson groups
     (`gl-n-q-in-permutational-boone-higman-class`).
   - Finite germ extensions whose germ groups have distorted elements (not `VA`).
+- **No product of `PGL_2(K)`s.** Every homomorphism `SL_2(Q) -> PGL_2(K)`, for any
+  field `K`, kills `-I`: item 5a of `pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori`.
+  So tree and Möbius hosts can reach only `PSL_2(Q)` and `PGL_2(Q)`, not `SL_2(Q)` or `GL_2(Q)`.
 
 ## Attempts
 
@@ -72,3 +76,8 @@ This is the smallest linear case of `gl-n-q-embeds-in-fp-simple-group`
 2. **VA and its subgroups:** dead by O4 (the `BS(1,4)` distortion).
 3. **Natural piecewise-projective hosts:** dead by the analytic-continuation
    argument above.
+
+More attempts, including the Ihara amalgam route through a finitely presented
+Hecke overgroup and Bux--Llosa Isenrich--Wu Theorem C
+(`sl-2-q-via-hecke-overgroup-and-bliw`), are recorded under the duplicate id
+`sl-2-q-embeds-in-fp-simple-group`.
