@@ -19,7 +19,7 @@ the second proof, and this node is the one to cite.
 This lane read bh-artin's proof step by step and found no gap. Until a referee reads either,
 the two proofs cross-check each other.
 
-**Status**: lane proof, not reviewed. The proof is elementary and self-contained: it
+**Status**: lane proof; referee PASS on 2026-09-18 (see Referee). The proof is elementary and self-contained: it
 uses only the definition of a class transposition, with no groupoid theory and no cited
 theorem. Every step is an identity between explicit permutations of `Z`, which can be
 checked by hand or in Kohl's RCWA package.
@@ -200,3 +200,56 @@ union of the colour sets.
   single-prime pieces `CT_{p}(Z)` and route them through 2-power boxes.
 - The same argument should apply to any `k`-graph full group whose colours all factor
   through one common colour.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked every step by hand. The proof uses nothing beyond the definitions.
+
+**Source.** arXiv:1401.0300v46 (1 Sep 2026): Problems 21.75 and 17.60 read verbatim.
+- The quotes under Source are exact, including "P ∪ {2}" in the definition in 17.60.
+- 21.75 has no asterisk.
+
+**Step checks.**
+- **Restriction rule and (I1).** The sub-box representatives are normalized. The `C_i` partition
+  `r(m)`, and the `D_i` partition `s(n)`. Correct.
+- **(I2).** It is the conjugate of `τ_{E,B}` by `τ_{A,E}`, and canonical maps compose. Correct. The
+  word is a palindrome, so it does not depend on the composition convention.
+- **(I3).** Checked on `X`, on `E`, and off `X ∪ E`. It needs only that `g` maps `X'` canonically
+  onto `X` and that `g` is the identity on `E`. Correct.
+- **Step 1.** Splitting mod 4 puts `C` and `D` each inside one class mod 4, and a third class mod 4
+  is always free. Correct.
+- **Step 2.** Correct, including the explicit index `j`.
+  - `m = m_1 m_0 m_3`, with `4 | m_0`.
+  - `C ⊆ A' ⊆ A ⊆ c(4)`, and `A`, `E`, `F` are pairwise disjoint.
+  - `g = τ_{F,A'} τ_{A,F}` lies in `CT_{P2}(Z)`, maps `A` canonically onto `A'` and fixes `E`.
+  - By the restriction rule, `C' = g^{-1}(C)` has the `P1`-smooth modulus `m_0 m_1`, and `g` maps
+    it canonically onto `C`.
+  - (I3) gives the five-letter palindrome, which reads the same in either composition convention.
+- **Step 3.** The count is `4 · (5 + 5 + 5) = 60`. Correct.
+- **Explicit example.** I recomputed the six-letter word on `0, 12, −12, 6, 18`, and class by class;
+  it equals `τ_{0(6),1(10)}`. The claim that `τ_{0(6),1(10)}` lies in neither `CT_{3}(Z)` nor
+  `CT_{5}(Z)` is also right.
+  - Along any product of generators of `CT_Q(Z)`, each affine piece has a multiplier whose
+    numerator and denominator are `Q`-smooth.
+  - The pieces of `τ_{0(6),1(10)}` are `n ↦ (5n + 3)/3` and `n ↦ 3(n − 1)/5`, with multipliers
+    `5/3` and `3/5`.
+- **Consequences.** Both follow by induction on the finitely many primes in each generator:
+  - the join property;
+  - `CT(Z) = ⟨CT_{p}(Z) : p odd⟩`.
+
+**Notes** (none affects the verdict).
+1. **Wording.** In "Every class transposition of `CT_{P1∪P2}(Z)` is a product of at most 60…",
+   read "every class transposition with `(P1 ∪ P2)`-smooth moduli", i.e. every standard generator.
+   That is all the proof uses and all it needs.
+2. **Finite generation.** This bullet under Consequences cites
+   `ct-p-z-is-a-one-vertex-k-graph-full-group` (type `F_∞`, via groupoid theory). That claim is not
+   refereed here, and it is not part of the answer to 21.75. Note that type `F_∞` for finite `P`
+   would also settle 17.61, so it deserves a referee pass on its own node.
+3. **Why it is easy.** The printed definition puts the prime 2 into every `CT_P(Z)`, and the proof
+   uses exactly that shared colour: modulus-4 boxes for routing, 2-power stretches for transport.
+   Whenever the answer is quoted, quote the definition with it.
+4. **Second proof.** The independent second proof (`ct-p1-and-ct-p2-generate-ct-of-the-union-proof`)
+   was not re-read here.
+5. **Priority** (searched 2026-09-18). arXiv:2607.17477 treats 21.8 only among the
+   class-transposition problems, and arXiv:2604.12553 proves a Bardakov–Iskra conjecture on
+   horizontal class transpositions. Neither touches 21.75.
