@@ -111,7 +111,7 @@ theorem suslinR2Ind_blockLocal_succ {A : Type*} [CommRing A] {n : ℕ}
         (Matrix (Fin (n + 1)) (Fin (n + 1)) (Localization.AtPrime 𝔪)[X])ˣ) :
       Matrix (Fin (n + 1)) (Fin (n + 1)) (Localization.AtPrime 𝔪)[X]) = 1 := by
     rw [Units.val_mul, Matrix.det_mul, hdτ, hdF, one_mul]
-  have hT := suslinR2Ind_block_mem
+  have hT := suslinR2Ind_block_mem (B := Localization.AtPrime 𝔪)
     (fun σ hσ hσ0 ↦ suslinR2Ind_mem_of_localCase hL 𝔪 h𝔪 (hf 𝔪 h𝔪) σ hσ hσ0)
     _ r hblock hdT hnorm
   have hmem := mul_mem hT (inv_mem hF)

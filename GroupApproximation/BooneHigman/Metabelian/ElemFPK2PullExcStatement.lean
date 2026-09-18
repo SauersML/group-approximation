@@ -25,9 +25,9 @@ constant `s = C s₀`, the pullback residual `k2DilateSt_PullbackDiesAt s` holds
 * `k2PullExc_ProperStatement` is implied by `k2DilateSt_PullbackStatement`
   (`k2PullExc_proper_of_pullback`), and conversely by the proved degenerate cases.  So it is
   **logically equivalent** to the lane-`90s` residual, with **strictly smaller proof content**:
-  the cases `s₀ = 0` and `s₀` a unit are closed.  For `k = 0`, `F_p[∅]` is the field `F_p`, so
-  every instance of the proper residual with `k = 0` is vacuous; the open content is `k ≥ 1`
-  and `s₀` of positive degree.
+  the cases `s₀ = 0` and `s₀` a unit are closed.  Mathematically (not formalized here), for
+  `k = 0` the ring `F_p[∅]` is the field `F_p`, so every `k = 0` instance of the proper
+  residual is vacuous; the open content is `k ≥ 1` and `s₀` of positive degree.
 * **Truth**: it follows from `k2DilateSt_PullbackStatement`, which follows from Tulenbaev's
   dilation lemma (lane `90s`, `k2DilateSt_pullback_of_polyK2`).  It is true.
 * **What is left**: for proper `s₀`, `P ⊂ L[X]` (`L = A_s`) with conductor `X L[X]`, and the

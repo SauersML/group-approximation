@@ -118,7 +118,8 @@ theorem k2PullExc_toPullback_zero_eq_of_isUnit {s : A} (hs : IsUnit s) :
         f.map (algebraMap A (Localization.Away s))
       rw [pow_zero, k2CubeDilate_scale_one, RingHom.id_apply]))
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PullExc_toPullback_zero_eq_of_isUnit
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PullExc_toPullback_zero_eq_of_isUnit
 
 /-- **Unit case**: the pullback residual holds at every unit `s`. -/
 theorem k2PullExc_pullbackDiesAt_of_isUnit {s : A} (hs : IsUnit s) :

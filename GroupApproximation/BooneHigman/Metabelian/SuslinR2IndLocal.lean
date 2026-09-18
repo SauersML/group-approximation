@@ -60,8 +60,9 @@ theorem suslinR2Ind_mem_of_localCase {A : Type*} [CommRing A] {n : ℕ}
   have heq : elementaryMatrixUnitMap (ι := Fin n)
       (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) τ' =
       elementaryMatrixUnitMap (compRingHom (C (algebraMap A (Localization.AtPrime 𝔪) s) * X))
-        σ :=
-    Units.ext hP
+        σ := by
+    apply Units.ext
+    exact hP
   rw [heq] at hmem
   obtain ⟨c, hc⟩ :=
     (IsLocalization.map_units (Localization.AtPrime 𝔪) (⟨s, hs⟩ : 𝔪.primeCompl)).exists_right_inv

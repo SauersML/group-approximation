@@ -48,7 +48,8 @@ theorem suslinR2Ind_common_denom {R S κ : Type*} [CommRing R] [CommRing S] [Alg
     ← Finset.prod_erase_mul _ _ (Finset.mem_univ k), map_mul, C_mul, mul_assoc]
   congr 1
   ext n
-  rw [coeff_smul, coeff_C_mul, Algebra.smul_def]
+  rw [coeff_C_mul]
+  exact (coeff_smul (c k) (g k) n).trans (Algebra.smul_def (c k) ((g k).coeff n))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_common_denom
 
@@ -67,6 +68,7 @@ theorem suslinR2Ind_coeff_zero (σ : (Matrix ι ι R[X])ˣ)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR2Ind_coeff_zero
 
+omit [Fintype ι] in
 /-- A ring map preserves the entries of the identity matrix. -/
 theorem suslinR2Ind_one_apply_map {S : Type*} [CommRing S] (f : R →+* S) (i j : ι) :
     (1 : Matrix ι ι S) i j = f ((1 : Matrix ι ι R) i j) := by

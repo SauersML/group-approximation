@@ -73,3 +73,75 @@ universe u w v
 open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
 
 namespace FourPieceWitness
+
+/-- **Residual of lane gl-p07-61: one reclosing boundary cycle carrying the curve.**  The premises
+of `WitnessStepGenusBridgeStatement`.  The conclusion: a face set `O` and a boundary cycle `B` of
+`O` that follows its boundary, carries `outerWalk`, and on whose inverse reading
+`witnessSublistCurve a b G₁ G₂` has its order on `invDarts X outerWalk`.  LOUD: smaller in proof
+content; not claimed strictly weaker as a formula (possibly equivalent). -/
+def witnessStepBridge_ReclosedStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)
+    {i j : Fin X.rCellCount} (a b : RegionCandidate D eps X) (K : CellPocketWalk D eps X i j),
+    i ≠ j → a.JoinsCells i j → b.JoinsCells i j → Disjoint a.1 b.1 →
+    0 < (a.cellArcList i).length → 0 < (a.cellArcList j).length →
+    0 < (b.cellArcList i).length → 0 < (b.cellArcList j).length →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    (∀ word ∈ W, 1 < word.length) →
+    K.firstSide = b.sideFrom j → K.secondSide = a.sideFrom i →
+    ∀ G₁ : CyclicArc (cellDarts X i),
+      K.firstArc.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i →
+    ∀ G₂ : CyclicArc (cellDarts X j),
+      K.secondArc.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j →
+    ∀ hw : IsNoncrossingClosedWalk X.toCombMap K.walk,
+      X.outerFace ∉ sideFaces X.toCombMap K.walk →
+      (reclosedMap X.toCombMap (sideFaces X.toCombMap K.walk)
+          (hw.innerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      (reclosedMap X.toCombMap (sideOutside X.toCombMap K.walk)
+          (hw.outerCycle X.planar)).eulerCharacteristic = X.toCombMap.eulerCharacteristic →
+      ∀ C ∈ X.relatorCells, C.face ∈ sideFaces X.toCombMap K.walk → C.face ∉ a.1 →
+      C.face ∉ b.1 →
+      ∀ outerWalk : List X.toCombMap.Dart,
+        EnclosedFaceSetSucc X (witnessFaces a b K C.face) outerWalk →
+        (∀ d ∈ outerWalk,
+          X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face) →
+        (∀ e ∈ invDarts X outerWalk,
+          e ∈ invDarts X G₁.darts ∨ e ∈ invDarts X G₂.darts ∨
+          X.toCombMap.alpha e ∈ a.sideFrom j ∨ X.toCombMap.alpha e ∈ b.sideFrom i) →
+        (∃ (n : ℕ) (s t : List X.toCombMap.Dart) (x y : X.toCombMap.Dart),
+          (invDarts X outerWalk).rotate n = s ++ x :: y :: t ∧
+          ¬ WitnessStepCellTurn G₁ G₂ outerWalk y ∧
+          ¬ WitnessStepSideTurn a b G₁ G₂ outerWalk y ∧
+          ¬ WitnessStepBlockTurn a b G₁ G₂ x y ∧
+          ¬ WitnessStepCornerTurn a b G₁ G₂ outerWalk y ∧
+          WitnessStepPinchOffAt a b K C.face G₁ G₂ outerWalk x y) →
+        ∃ (O : Finset X.toCombMap.Face) (B : BoundaryCycle X.toCombMap O),
+          B.FollowsBoundary ∧ (∀ d ∈ outerWalk, d ∈ B.cycle) ∧
+          ∀ c ∈ invDarts X outerWalk, ∀ d ∈ invDarts X outerWalk,
+            (WitnessStepGenusBefore (witnessSublistCurve a b G₁ G₂) c d ↔
+              WitnessStepGenusBefore (invDarts X B.cycle) c d)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepBridge_ReclosedStatement
+
+/-- **Lane gl-p07-61: the Bridge residual from one reclosing boundary cycle.** -/
+theorem witnessStepBridge_of_reclosed (h : witnessStepBridge_ReclosedStatement.{u, w, v}) :
+    WitnessStepGenusBridgeStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst
+    hsecond G₁ hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  obtain ⟨O, B, hwalk, hsub, hcompat⟩ :=
+    h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
+      hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  exact witnessStepBridge_model E O B hwalk hsub _ hcompat
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepBridge_of_reclosed
+
+/-- **Lane gl-p07-61: the skip residual from one reclosing boundary cycle.** -/
+theorem witnessStepBridge_skip_of_reclosed (h : witnessStepBridge_ReclosedStatement.{u, w, v}) :
+    WitnessStepSkipStatement.{u, w, v} :=
+  witnessStepGenus_skip_of_bridge (witnessStepBridge_of_reclosed h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepBridge_skip_of_reclosed
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

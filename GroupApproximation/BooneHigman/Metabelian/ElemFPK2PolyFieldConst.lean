@@ -71,7 +71,9 @@ theorem k2PolyField_eq_one_of_mem_range {p : ℕ} (hp : p.Prime) {N : ℕ} (hN :
     g = 1 := by
   obtain ⟨w, hw⟩ := k2PolyField_exists_K2_of_mem_range hg hr
   have hw1 : w = 1 := eq_one_of_K2_eq_bot (vdkRowExt_fieldK2Vanishing p hp N hN) w
-  rw [← hw, hw1, map_one, Subgroup.coe_one]
+  rw [← hw, hw1]
+  exact congrArg Subtype.val (map_one (K2Map (I := Fin N)
+    (Polynomial.C : ZMod p →+* Polynomial (ZMod p))))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyField_eq_one_of_mem_range
 

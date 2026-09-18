@@ -37,8 +37,8 @@ theorem czTriOff_word_mulVec (j' : Fin n) (μu ρu : Fin n → R) (s r : R) (hμ
         padCol (μu + Pi.single j' s) * padRow (-(ρu + r • -(ρu + Pi.single j' (r - 1))))) *ᵥ
       surjStabVec (0 : Fin n → R) 1 = surjStabVec μu s := by
   have hs : 1 + -(ρu + Pi.single j' (r - 1)) ⬝ᵥ (μu + Pi.single j' s) = s := by
-    simp only [neg_dotProduct, add_dotProduct, dotProduct_add, dotProduct_single,
-      single_dotProduct, Pi.single_eq_same, hρ, hμ]
+    rw [neg_dotProduct, add_dotProduct, dotProduct_add, dotProduct_add, dotProduct_single,
+      dotProduct_single, single_dotProduct, Pi.single_eq_same, hρ, hμ]
     linear_combination (-1 : R) * hdot
   rw [map_mul, map_mul, map_mul, ← Matrix.mulVec_mulVec, ← Matrix.mulVec_mulVec,
     ← Matrix.mulVec_mulVec, czTriOff_padRow_mulVec, dotProduct_zero, add_zero,
@@ -56,8 +56,9 @@ theorem czTriOff_word_vecMul (j' : Fin n) (μu ρu : Fin n → R) (s r : R) (hμ
           padCol (μu + Pi.single j' s) * padRow (-(ρu + r • -(ρu + Pi.single j' (r - 1))))) =
       surjStabVec (0 : Fin n → R) 1 := by
   have ht : r + (ρu + r • -(ρu + Pi.single j' (r - 1))) ⬝ᵥ (μu + Pi.single j' s) = 1 := by
-    simp only [add_dotProduct, dotProduct_add, smul_dotProduct, neg_dotProduct,
-      dotProduct_single, single_dotProduct, Pi.single_eq_same, hρ, hμ, smul_eq_mul]
+    rw [add_dotProduct, smul_dotProduct, neg_dotProduct, add_dotProduct, dotProduct_add,
+      dotProduct_add, dotProduct_single, dotProduct_single, single_dotProduct,
+      Pi.single_eq_same, hρ, hμ, smul_eq_mul]
     linear_combination (1 - r) * hdot
   rw [map_mul, map_mul, map_mul, ← Matrix.vecMul_vecMul, ← Matrix.vecMul_vecMul,
     ← Matrix.vecMul_vecMul, surjStabFactor_vecMul_padCol, dotProduct_single, hρ, zero_mul,
