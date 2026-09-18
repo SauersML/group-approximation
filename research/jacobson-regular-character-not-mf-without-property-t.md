@@ -71,3 +71,28 @@ question.
   Status: obstruction ESTABLISHED; this hole stays OPEN.  The only
   spectral arguments left are model-specific ones that use a property
   destroyed by adding a rank-zero tensor block (the tracial rung).
+
+- **2026-09-18, MF zero-one law (swarm-0917-w11-w11-ptl-last1,
+  reframing).** `jacobson-mf-characters-zero-one-law` (ESTABLISHED) proves
+  the MF version of Theorem JH of
+  `leavitt-corner-trace-gate-collapses-to-jacobson-hyperlinearity`.
+  - The tools are closure of MF characters under conjugate tensor powers and
+    pointwise limits, Diracization, and simplicity and self-centralization
+    of `L`.
+  - Either every MF character of `E` is trivial on `L`, or `delta_e^E` is MF.
+
+  Consequences:
+  - This hole is **equivalent** to tracial head collapse (THC): in every
+    operator-norm MF model, `||rho_k(x_13(Q)) - 1||_2 -> 0`. The regularity
+    hypothesis in (H1) adds nothing, because one model with any positive HS
+    head mass upgrades to a regular-trace model.
+  - The recorded "strictly smaller class" distinction from
+    `property-t-free-jacobson-head-collapse` reduces to one residual case:
+    `E` is MF, but every MF model has an HS-null head, i.e. a norm-surviving
+    head of vanishing normalized rank.
+  - The corona-core reblocking that would remove that case fails, because
+    `w` normally generates only `L`.
+
+  Status: reformulation ESTABLISHED; this hole stays OPEN. The next falsifiable step is a rank statement:
+  bound `rank(rho_k(w)=-1)/d_k` by `o(1)` using operator-norm information
+  that is not a universal tracial identity.
