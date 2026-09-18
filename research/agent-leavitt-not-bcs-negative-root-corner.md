@@ -339,3 +339,31 @@ across the `V_+/V_-` wall. A hyperlinear approximation of `EL_20(J)` has to be *
     * virtual splitting over an odd-torsion-free congruence subgroup `Gamma`, which would reduce this hole to CE of the genuine crossed product `L x| Gamma`;
     * the von Neumann cocycle `omega` in `R x|_(alpha,omega) Q`.
   * Next falsifiable step: decide whether the sequence splits over a congruence subgroup of `SL_20(A)`. A mod-2 index of lifted involutions (the parity of `ker(u~+1)/im(u~+1)`) is the natural candidate obstruction.
+
+### Virtual splitting dies: image-layer index of unipotent lifts (swarm-0917-w9-w9-nh-last1, cohomology-index, 2026-09-18)
+
+*Approach tried.*  Take the recorded next step above: decide whether `1 -> L -> EL_n(J) -> SL_n(A) -> 1`
+splits over a finite-index (for example congruence) subgroup `Gamma`, which would reduce the Toeplitz survivor
+class to CE of a genuine semidirect product `L x| Gamma`. The mod-2 invariant `ker(u~+1)/im(u~+1)` proposed above
+turns out to be useless (its relative dimension against any finite-rank perturbation is always even, `2[ker t' : ker t]`),
+but the integer index of a commuting element on the image layer `im(u~+1)` is not.
+
+*Result* (`jacobson-symbol-sequence-does-not-virtually-split`, established; route
+`jacobson-symbol-sequence-does-not-virtually-split-proof` from `jacobson-symbol-sequence-does-not-split`).
+- For `a != 0` and `k != 0`, no lift of `x_12(a)` commutes with any lift of `h^k`, `h = diag(z,z,z^(-2),1,...)`.
+  If `u~ h~ = h~ u~`, then `h~` maps `t V = (u~+1)V` bijectively onto itself (index `0`); `tV` is commensurable
+  with the first coordinate `V_+`, where the Toeplitz lift of `h^k` is `S^k` (index `-k`); the subspace-relative
+  index is invariant under commensurable change and finite-rank perturbation.
+- Every finite-index `Gamma` contains some `x_12(a)`, `a != 0`, and some `h^k`, `k != 0`. So **the sequence splits
+  over no finite-index subgroup**, for every `n >= 3`, without the congruence subgroup property and without any
+  finite-order lift.
+
+*What this kills.*  Every virtual-semidirect reduction of `EL_20(J)` hyperlinearity: permanence theorems for split
+amenable-by-residually-finite extensions applied to a finite-index subgroup, and approximations pulled back along a
+section of any finite-index subgroup.
+
+*Where it stops (hole stays OPEN).*  The index lives on the defining representation. It does not decide whether
+the von Neumann cocycle `omega` of `L(E) = R x|_(alpha,omega) Q` is a coboundary in `U(R)` (a Popa-type
+untwisting uses unitaries of `R`, which are not finite-rank perturbations), and it does not exclude semidirect
+decompositions of `pi^(-1)(Gamma)` along normal subgroups other than `L`. The remaining decision points are the
+Popa vanishing-cohomology test for the corner action and wall-rigid approximations of `P`, both recorded above.
