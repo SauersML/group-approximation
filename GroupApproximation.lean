@@ -5635,6 +5635,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalAlgebr
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionLiftModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Cosets
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Boundary
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingTraceKernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
