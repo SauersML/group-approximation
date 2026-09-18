@@ -1,4 +1,5 @@
 import GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroTriOffFix
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -88,7 +89,7 @@ theorem czTriOff_eq_of_notMem_range {k : ℕ} {j : Fin (k + 1)} {a : Fin (k + 1 
     by_cases h : a' = j
     · rw [h]
     · obtain ⟨z, hz⟩ := Fin.exists_succAbove_eq h
-      exact absurd (Set.mem_range.mpr ⟨z, by rw [czTriOff_emb_apply, hz]⟩) ha
+      exact (ha (Set.mem_range.mpr ⟨z, by rw [czTriOff_emb_apply, hz]⟩)).elim
   · right
     rfl
 
