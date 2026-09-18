@@ -118,11 +118,12 @@ theorem skGer_freeAug_ι (i : V) : LVFreeAlgK2.freeAug F V (FreeAlgebra.ι F i) 
 /-- At `t = 0` the deformation is `const ∘ aug`, elementwise.
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
 theorem skGer_constantCoeff_deform (a : FreeAlgebra F V) :
-    Polynomial.constantCoeff (skGer_deform F V a) =
+    Polynomial.constantCoeff (R := FreeAlgebra F V) (skGer_deform F V a) =
       LVFreeAlgK2.freeConst F V (LVFreeAlgK2.freeAug F V a) := by
   induction a using FreeAlgebra.induction with
   | grade0 r =>
-    change Polynomial.constantCoeff (skGer_deform F V (LVFreeAlgK2.freeConst F V r)) =
+    change Polynomial.constantCoeff (R := FreeAlgebra F V)
+        (skGer_deform F V (LVFreeAlgK2.freeConst F V r)) =
       LVFreeAlgK2.freeConst F V (LVFreeAlgK2.freeAug F V (LVFreeAlgK2.freeConst F V r))
     rw [skGer_deform_freeConst, LVFreeAlgK2.freeAug_freeConst, Polynomial.constantCoeff_apply]
     exact Polynomial.coeff_C_zero
