@@ -128,3 +128,55 @@ free `Y_A`.
 - **Diagnosis.** Effective closedness (co-r.e. language) is available for every decidable
   group by Aubrun–Barbieri–Thomassé. The gap is the r.e. half: exhibiting computable
   witnesses of every legal pattern.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS, with two nits (both repairable)
+
+**Scope.** I checked this node together with the parent it cites "word for word":
+`free-products-with-z-inherit-m2-from-universal-points` (cc32b1908a), including its Step 1
+(the top-vertex lemma) and its Step 3 (freeness, end and sink types).
+
+**Checked.**
+- **The library.** It is computable, by greedy extension under a decidable `L(Y_A)`.
+- **The ruler schedule.** `v_2` is periodic mod `2^N` below `N`, and a window of length
+  `4r+1 < 2^N` contains at most one exceptional position. Position `0` is never in a top
+  window, because `p(w_top) ∉ E`.
+- **The A-top case.**
+  - `ι(k) = 2m` has a solution `k ≤ 2^{2m+1}`.
+  - `|o_m| = 2r+1` places the top at `ν` with `d(ν, p(u)) ≥ r+1`.
+- **Minimality and decidable language.**
+  - Uniform recurrence with a computable modulus gives minimality.
+  - `L_r(X) = L_r(x)` is read off inside `B(R(r))`, with `x` computable.
+- **Freeness.**
+  - End type: the Sturmian heights force `k = 0`, then an edge is fixed, and edge
+    stabilizers are trivial.
+  - A-sink: the fiber lies in the closed invariant `Y_A`, which is free.
+  - B-sink: the Sturmian component is aperiodic.
+
+**Nits.**
+1. **B-top recurrence.** The B-top data also includes the rooted Sturmian window
+   `y_B[m−2r, m+2r]`, and the recurrence step must match it at `m'` as well as
+   `m' ≡ m (mod 2^N)` and the exceptional class `v_2(j') = k`. This is available:
+   - rotation by `2^N α`, and by `2^{k+1} α`, is still irrational, so windows recur along
+     those progressions;
+   - for computable `α` the return bound is computable.
+
+   Add this sentence. The theorem is unaffected.
+2. **Order of the enumeration.** `M(r)` is computable as written only if `P_0, P_1, …`
+   enumerates patterns by nondecreasing radius. State that.
+
+**The premise node `decidable-groups-carry-free-subshifts-with-decidable-language`, as of
+876c511de.** Its equivalences, and the separation from effective closedness, are correct.
+- The union of Sturmian shifts with slopes in a `Π⁰₁` class of irrationals with no computable
+  member is closed, free and effectively closed: "some slope interval meets `C`" is `Π⁰₁`.
+- Its language is undecidable, since decidability would give a computable point, and hence
+  a computable slope in `C`.
+- "Minimal effectively closed implies decidable language" is standard. Ballier–Jeandel prove
+  it over `Z^d`; the group version was not re-read.
+- The later design-level proof added there (f9ae89eb9b) is **not** covered by this review.
+
+**The route `minimal-free-sft-via-decidable-free-subshift-of-the-envelope`.** The logic is
+correct. The product of two minimal free systems under the product group is minimal and
+free. The open premises (D) and (MSS) are correctly labelled.
+
+**Credit.** The tree gluing extends the parent node's construction. The Sturmian and ruler
+devices are standard (Morse–Hedlund; Toeplitz-type schedules).

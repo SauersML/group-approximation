@@ -16,7 +16,7 @@ distinct_from:
   baumslag-gersten-group-satisfies-boone-higman: that is the open question for BG; this settles its base K, and leaves the shift HNN step.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed).
+**OPEN**: referee FAIL of the proof, 2026-09-18, bh-ref-bs12; see the Referee section. The lane proof was marked established and not reviewed; no priority claimed.
 
 It inherits the status of the unreviewed lane chain `bs12-base-generator-is-a-centralizer-in-b-a`, which
 rests on `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` and `pbh-coset-wreaths-iff-identity-edge-hnns`.
@@ -107,3 +107,59 @@ input. Together with the amalgam engine this gives a constructor:
 `N ⋊ C`. This turns BH for towers and chains of HNN/amalgam type into the single question of **propagating
 centralizer realization up the tower** (is `⟨c⟩` realized in `G_1`?). Cycles and shifts, as in `H4` and
 `BG`, are the genuinely global part.
+
+## Referee (bh-ref-bs12, 2026-09-18): FAIL at item 1; items 2–4 fall with it
+
+**Verdict: the proof fails.** The statement `G_1 ∈ B_A` is not established by this node, and the status is
+now OPEN. The steps other than item 1 are correct as far as they go.
+
+**The gap: item 1 lands in the unrestricted wreath product.** The Kaloujnine–Krasner map
+`ψ(a) = (κ_a, a)` takes values in `C^(A/C) ⋊ A`, the product of all functions `A/C -> C`. It does not
+land in the restricted coset lamplighter `E wr_(A/C) A = (⊕_(A/C) E) ⋊ A`. Every `B_A` result that the
+proof cites is about the restricted product:
+- item 2 of `bs12-base-generator-is-a-centralizer-in-b-a`;
+- (e) ⟹ (b) of `pbh-coset-wreaths-iff-identity-edge-hnns`, whose lamp embedding extends finitely
+  supported functions by `1`;
+- `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a`, which says "restricted permutational wreath
+  product".
+
+The cocycle here cannot be made finitely supported:
+- Write cosets as `b^q a^k C` with `q ∈ Z[1/2]` and `k ∈ Z`. Then `b` fixes `b^q a^k C` exactly when
+  `k >= 0`. There `κ_b(tC) = t^(-1) b t = b^(2^k) ≠ 1`, and this value does not depend on the
+  transversal, because `C` is abelian.
+- For each `k >= 0` there are infinitely many such cosets.
+- So `ψ(b)` has infinite support, and `ψ(A)` does not lie in the restricted wreath product.
+
+The unrestricted product is uncountable, so it lies in no type (A) actor. For the finitely generated
+subgroup `⟨ψ(A), N_C⟩` it lies in, no `B_A` argument is given; that subgroup is `M_1` again.
+
+**Consistency check.** This is exactly the obstruction that
+`higman-chain-group-pbh-iff-chain-configuration` records in its Lesson: `b` acts on the lamp at
+`a^n⟨b⟩` by `2^(2^n)` for every `n >= 0`, so "one element must act with unbounded dilation on
+infinitely many independent pieces". In a restricted lamplighter, an element's lamp twist is finitely
+supported. A direct check along the top `(a, b)` gives the same answer:
+- let `a ↦ (h, a)` and `b ↦ (f, b)` in `E wr_(A/C) A`;
+- then `a^(-1) b a = b^2`, read at the cosets `a^n C`, gives `f(a^(n+1) C) ~ f(a^n C)^2`, where `~`
+  means conjugate in the torsion-free group `E`;
+- so a nontrivial twist `f(C)` forces `f(a^n C) ≠ 1` for all `n >= 0`, which is infinite support.
+
+So the twisted lamplighter is not placed by this construction. Whether some other embedding into a
+restricted wreath product exists is open, and the reduction node suggests it does not.
+
+**What does check:**
+- *Item 1 as algebra.* The cocycle identity and the injectivity hold in `E^(A/C) ⋊ A`.
+- *Item 2's Bass–Serre computation.* `N_c = *_(A/C) g N_0 g^(-1)`: the kernel meets vertex and edge
+  stabilizers in `1` and `gN_0g^(-1)`, and the quotient graph is a star. So `M_1` is the twisted coset
+  lamplighter, and it contains the chain configuration `(a, b, c)`.
+- *Item 3.* It is correct given `M_1 ∈ B_A`, through (2) ⟹ (1) of the reduction.
+- *Item 4.* `Y' ≅ N ⋊ C` and `X ∩ Y' = ψ(C)` are correct inside the unrestricted wreath product. That
+  product is not a `B_A` group, so item 3 of `pbh-amalgams-over-centralizer-separated-edges` cannot be
+  applied as stated.
+
+**Ways to repair:**
+- (i) Prove `B_A` closure for twisted coset lamplighters directly. One idea is to put the lamp in a
+  third variable `z` of `Aut_M(M * F(x, y, z))`, so that point stabilizers act on it by conjugation.
+  This is not checked here.
+- (ii) Find a chain configuration in a twisted Brin–Thompson group, which is (3) of the reduction.
+- (iii) Find an embedding of `M_1` into a restricted wreath product with finitely supported twists.
+  The Lesson of the reduction node argues against this.

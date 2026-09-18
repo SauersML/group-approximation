@@ -10,7 +10,7 @@ distinct_from:
   stabilizer-engines-need-torsion-vertex-groups: that extends the emitter obstruction by collapsing deep subgroups; this concerns seeds, which that argument also needs to transport and cannot.
   decidable-groups-embed-in-rigid-sft-compactification-groups: that is the open (SEED) gate; this is a structural property every seed has, rigid or not.
 ---
-**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; not reviewed). Quantum
+**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; one referee PASS for parts 1-3, bh-ref-engines 2026-09-18). Quantum
 rigidity plays no role. Only (S1), an isolated seed point, and (S2), trivial stabilizer, are
 used.
 
@@ -115,3 +115,25 @@ pattern on `Ball(w)` with `[p] ∩ Y = {y_*}` and `Stab(y_*) = 1`.
 - **The division of labour.** Emitters fail finite presentation by approximation. Seeds are
   immune to approximation, so only a non-local argument, such as the word problem, can
   decide CAP.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS for parts 1–3; part 4 is a correct methodological remark
+
+- **Part 1 holds.**
+  - Agreement on `Ball(r_0)` with `r_0 > ℓ` makes `Γ' = Γ/N` with `N ∩ Ball(r_0) = 1`.
+  - The pullback is locally bijective on `2w`-balls, so it lies in `Y`, carries `p` at `1`, and equals `y_*`.
+  - `N`-invariance of the pullback then gives `N ≤ Stab(y_*) = 1`.
+- **Parts 2–3 hold.**
+  - `Γ̂_L → Γ` is injective on `Ball(⌊L/2⌋)`, because a trivial word of length `≤ L` is a relation of
+    `Γ̂_L`.
+  - The pullback of `y_*` has stabilizer exactly `M_L`.
+  - So for groups with a seed, relative isolation is equivalent to finite presentation.
+- **Part 4 is correct as a statement about proof methods, not a theorem.**
+  - The bb487abce and 58db3f3f9 transfers need every used atom to stay nonempty over the approximant.
+  - Atoms involving the cylinder `[p]` become empty there by part 1, so the transfer cannot be run.
+  - This proves nothing about finite presentation of seed blow-ups.
+  - The sentence "This is why the `C_Z` blow-up of Reid's group is finitely presented" rests on the unreviewed
+    SYNTHESIS v6 S2 argument, which I did not check. Please mark it as such.
+- **Superseded open question.** "What remains open: whether fp + seed already forces a solvable word problem" is
+  answered yes by `seeded-groups-have-solvable-word-problem` (a9187d6d4).
+- **Credit.** The pullback argument is Jeandel's (arXiv:1501.06831). Relative isolation parallels
+  Cornulier–Guyot–Pitsch.

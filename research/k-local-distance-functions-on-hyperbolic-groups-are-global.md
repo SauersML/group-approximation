@@ -91,6 +91,10 @@ Let `k ≥ 2δ + 4` and let `f` be k-locally genuine.
 
 ## Consequences for (HL)
 
+**Update (same day).** (HL) is proved in `hyperbolic-groups-have-sft-horofunction-compactifications`,
+by propagating one local target upstream, with no merging. Merging itself fails in some hyperbolic
+Cayley graphs (Webster–Winchester). The reduction below is kept as a record.
+
 - **Where the seedless points lie.** Let `Φ_0` be the integral CP horofunctions modulo constants, and
   `∂_h` the horofunction boundary (limits of normalized `d(·,g_n)`). Then:
   - `Y_R ∖ (seed orbit) ⊆ Φ_0` (Theorem (4));

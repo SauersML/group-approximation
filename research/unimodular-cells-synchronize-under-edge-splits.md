@@ -9,8 +9,9 @@ distinct_from:
   rational-projective-full-groups-are-finitely-presented: that is the finiteness gate; this is one precise combinatorial input to it, equivalent to directedness of the edge-split expansion poset.
 ---
 
-**ESTABLISHED for every `m`** (lane bh-free-61, 2026-09-18). Lane proof, elementary,
-not independently reviewed: `unimodular-cells-synchronize-under-edge-splits-proof`.
+**ESTABLISHED for every `m`** (lane bh-free-61, 2026-09-18). Lane proof, elementary;
+referee PASS by bh-ref-kourovka-b on 2026-09-18 (see the Referee sections of
+`unimodular-cells-synchronize-under-edge-splits-proof` and `half-tube-lattice-points-are-edge-split-vertices`).
 - At points on no rational hyperplane, the half-tube lemma
   (`half-tube-lattice-points-are-edge-split-vertices`) gives the two descent systems a
   shared vertex, and the link at that vertex is one rank lower.

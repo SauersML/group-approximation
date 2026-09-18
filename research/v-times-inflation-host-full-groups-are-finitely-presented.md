@@ -84,3 +84,31 @@ lines of a hierarchical SFT, where rigidity lives, are exactly the points where 
 with lag instead. So faults are the entire content of V-stabilizing an inflation host. The fault-free (odometer)
 case is `F_∞`, and the general case waits on a product theorem for contracting RSGs. That theorem is also the
 engine that products of boundary codings with inflation codings would need.
+
+## Attempts
+
+**Attempt 1 (bh-invent-06b, 09-18): the three available engines, and why each stops at faults.**
+- **Cuntz-stabilized Li–Garside** (`cuntz-stabilized-garside-full-groups-are-f-infinity`). Stabilizing by `G_V`
+  is exactly this node's product, and (Acyc) holds because every non-unit morphism contracts.
+  - *The natural category.* Its objects are collared types. Its morphisms are the maps `y ↦ ι_P(t_c y)` whose
+    image lies in one collared cylinder. In the constant-shape case carries depend only on positions, so it is
+    closed under composition. It is left and right cancellative, has trivial units, and its degree `|P|` makes it
+    right Noetherian.
+  - *Where it fails.* Two fault moves `(q, c)` and `(q, c′)` with `c ≠ c′` have images meeting in a two-window
+    cylinder. That set is a union of single-collar cylinders only one level deeper. So minimal common multiples of
+    degree-`n` elements have degree `n+1`.
+  - *Consequence.* No locally finite Garside family is closed under mcms, and the theorem does not apply. This
+    concerns this category, not every coding; enlarging the collar radius does not help, since two offset
+    windows never fit one collar of the same radius.
+- **Horizontal (A_N)** (`v-times-subshift-full-group-finiteness-is-horizontal`, bh-invent-17). It is exact for
+  *labelled* hosts `F(G_V × (Λ ⋉ X))` with canonical similarities `prefix × translation`. Here the extra germs are
+  inflations, which are not of that form, so the Stein poset has to be rebuilt.
+- **Condition (G)** (`thumann-finiteness-without-finite-type`, bh-invent-07). It needs a dissection operad with
+  transformations. Fault moves map a cone onto a union of cones, so they are neither operations nor
+  transformations.
+- **Status.** Undecided. The needed tool is a two-dimensional version of BBMZ's nuclear presentation. Its natural
+  first case is `d = 1` Thue–Morse, whose faults form finitely many orbit pairs over the odometer factor, where
+  part A gives `F_∞`.
+- **The geometric fallback is closed.** Over exponential-growth groups no geometric hierarchy exists at all
+  (`exponential-growth-groups-admit-no-contracting-block-hierarchies`), so this node matters only for amenable
+  directions.

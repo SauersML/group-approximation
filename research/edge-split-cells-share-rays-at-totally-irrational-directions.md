@@ -10,7 +10,15 @@ distinct_from:
   edge-split-sync-reduces-to-totally-irrational-shared-rays: that proves synchronization follows from this statement in all lower ranks; this is the statement itself.
 ---
 
-**OPEN** (lane bh-major-mcg-2, 2026-09-18).
+**ESTABLISHED** in every rank (2026-09-18), by the route
+`totally-irrational-shared-rays-via-half-tube`. That route is the Dirichlet corollary of
+bh-free-61's `half-tube-lattice-points-are-edge-split-vertices`. bh-major-mcg-2
+re-checked the half-tube proof step by step. It is a lane proof, not refereed.
+- Attempts 1, 3 and 4 below (the Legendre route, tracking, residues) are superseded:
+  none of them is needed.
+- The original status is kept below as a record.
+
+Original status: **OPEN** (lane bh-major-mcg-2, 2026-09-18).
 - True for `m = 1`.
 - For `m ≥ 2`, proved at every direction with
   `liminf |p|^m · dist(p, Rξ) = 0`.

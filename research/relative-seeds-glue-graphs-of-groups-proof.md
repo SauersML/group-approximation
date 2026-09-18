@@ -151,3 +151,10 @@ computable.
 - **(b) Subgroups of `Z^m`.** In a Smith basis, take the product of finite shifts and copies of `C_Z`.
 - **(c) Graphs of free and free abelian groups.** Every vertex group is in `𝒞` (free groups, and `Z^m` via
   products of `C_Z`). Every edge pair is in `𝓡` by (a) and (b). Apply §1 with `C = 1`.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+See the Referee section of the target node. Small notes:
+- (A) should state the convention that the generating set of `Λ` contains those of the vertex groups, so that
+  `d_Λ ≤ d_(V_u)`.
+- (RS2), end case: the sink can be any `u_0`-vertex within `diam(𝔾)` of a far ray vertex.

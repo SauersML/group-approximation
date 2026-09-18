@@ -80,8 +80,9 @@ mechanism in operator form, for seeded coordinates of any finite phase type.
 - **The downhill step.** Following the time flow up from a site either approaches a target site, and
   then induction applies, or it leaves it. In the second case the target lies below, and its flow
   letter is forced. No invariance or expansivity of the fibre is needed.
-- **Consequence for E1 ∧ E2 on non-amenable squares.** Functional phase fields are always rigid, and
-  the spine costs nothing. But by that trichotomy (a sketch, not a theorem), graph couplings are
-  expected to kill minimality. So the remaining E1 ∧ E2 difficulty is expected to be a
-  **relational** phase coupling, `R_s ⊊ C × C` not a graph, that is still unsplittable. That is the
-  next test object.
+- **Consequence for E1 ∧ E2.** Functional phase fields are always rigid, and the spine costs nothing.
+  - **Correction (same day).** An earlier version expected graph couplings to kill minimality, from
+    the heuristic trichotomy. Over the end flow that is false.
+  - `relational-spine-couplings-are-splittable-or-not-minimal` proves that the functional clock is
+    minimal. It also proves that every relational coupling either splits or is not minimal.
+  - What these codings still lack is input complexity, which is v6's CAP question.

@@ -164,3 +164,32 @@ rational hull. This pattern should transfer to any host whose cells are unimodul
 simplices: `nV`-type hosts with `GL`-germs, Deligne-type `2V_Λ`, Lagrangian and
 train-track split hosts. The remaining finiteness gates there are hierarchy and links,
 not synchronization.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked every step. Lane bh-free-61's induction closes, and `(Sync_m)` holds for
+every `m`. This is a real advance on the MCG finiteness gate. The node states honestly what is not
+claimed: the hierarchy step, descending links and finite type.
+- **Step 1.** The splitting hyperplane `y_a = y_b` vanishes on `g`, so `c'` lies on one side exactly
+  when its corner does. `p_i = a''_i + x_i g` with `x_i ≥ 0` because `c' ⊆ f''`. The g-coefficient
+  inequality `y_g ≥ λ_i x_i ≥ y_{a_i}` justifies each child choice. Correct.
+- **Step 2.** Checked:
+  - `g` is extreme in `Q`, and corner(`Q`) = `π(Q)`;
+  - least lifts `p_i = e_i + θg`, where the bottom map `p̄ ↦ e(p̄)` is positively homogeneous and
+    continuous, so `p̂_i → ẑ = [ξ − s_0 g]` with `s_0 > 0`;
+  - so `α > 0` for deep `λ`, and Step 1 applies.
+
+  Correct.
+- **Step 3.** The half-tube corollary needs rank ≥ 3, i.e. `m ≥ 2`. `m = 1` is Serret. Correct.
+- **Step 4.** Checked:
+  - `σ_s = p_s ∩ W` is a face whose rays form a basis of `Λ_W`, with `ξ` in its relative interior by
+    minimality of `W`;
+  - face splits send `x` to the child whose face contains `ξ`, since `y_a ≠ y_b` at `ξ`, which is
+    generic in `W`;
+  - transverse splits have walls containing `W`;
+  - the lift-raising children keep the face and the transverse image, hence keep `x`.
+
+  Correct. The induction uses `LS_k` at generic points (`k < m`) and full `LS_{m−k−1}`, both lower
+  rank.
+- **Local form ⇒ `(Sync_m)`** (claim node, form 2): compactness, then the cut-lemma refinement, then
+  one piece per chamber. Correct.
