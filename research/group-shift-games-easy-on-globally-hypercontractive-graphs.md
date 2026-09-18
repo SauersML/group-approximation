@@ -16,6 +16,17 @@ artifacts:
 obstruction. What is still missing is an independent line-by-line referee of
 Sections 3.3--3.5 and 4.1--4.2 of Bafna--Minzer. Those sections are argued
 below to be alphabet-agnostic.
+  - experiments/ugc-bm-group-referee-2026-09-17/check_bm_group_referee.py
+  - experiments/ugc-bm-group-referee-2026-09-17/output.txt
+---
+
+**ESTABLISHED** (derived, through the route
+`bafna-minzer-proof-transfers-to-group-shift-games`). A line-by-line referee
+of the whole Bafna--Minzer source, listed under Attempts, found every line to
+be an alphabet identity (Lemma D items 1--8), host-only, or bookkeeping in
+`#Sigma`. It holds to exactly the standard of the imported
+`affine-ug-easy-on-globally-hypercontractive-graphs`; for Theorems 1.7 and 1.8
+BM's host side is itself a sketch.
 
 **Claim.** Let `A` be a finite group, `alpha in (0, 1)` and `c > 0`. There is
 `delta = delta(alpha, c) > 0` such that the following holds on each host family
@@ -180,3 +191,57 @@ sanity check of the algebra, not of the SoS degree bookkeeping.
   the labels. With left shifts, composition becomes
   `X_u^(-1) X''_u = (X_u^(-1) X'_u)(X'_u^(-1) X''_u)`, which is still a group
   law, so even that would transfer unless it commutes two factors.
+
+* **2026-09-18, swarm-0917-w11-w11-ugc-follow (reframing, referee).** I did
+  the line-by-line referee that the previous entry left open. It covers the
+  whole arXiv LaTeX source of 2304.07284v1, not only Sections 3.3--3.5 and
+  4.1--4.2:
+  - `prelims.tex`, `affine_johnson.tex`, `rounding.tex`;
+  - `low-comp.tex`, `missing-proofs.tex`;
+  - `structure.tex`, `generalization.tex`.
+
+  The route `bafna-minzer-proof-transfers-to-group-shift-games` records the
+  referee, with a table by file and line.
+
+  Each line falls into one of three classes:
+  - **(L)** an identity about the alphabet, which is exactly one of Lemma D
+    items 1--8;
+  - **(H)** host-only, meaning real functions `F_s`, `val_u` on `V(G)`, the
+    structure theorem, the edge-covering theorem and subcube expansion;
+  - **(B)** bookkeeping in `#Sigma` and `log #Sigma`.
+
+  The falsifier above does not occur. No line commutes two labels, composes
+  two shift partitions, or uses characters of the alphabet. The only Fourier
+  analysis is on the host, in `structure.tex`.
+
+  The eq. `relating-potential` step (`rounding.tex` 131--132) is item 5.
+
+  The main-term step (`rounding.tex` 157--181) switches between
+  `X_u - X_v = s` and `X_v - X_u = s`. For a group, that switch becomes the
+  bijection `s -> s^(-1)`.
+
+  The artifact `check_bm_group_referee.py` checks the following exactly over
+  `S_3` and `Q_8`:
+  - `lem:relating-ent-j`: the expansion identity, the main-term bound and the
+    full bound;
+  - `Psi(mu) = Psi(mu^sym)`;
+  - Condition&Round `>= Psi`;
+  - the invariance of `Phi`.
+
+  Its control C7 shows that the wrong-sided quotient breaks the crossing-edge
+  fact.
+
+  *Standard of proof.* The host side is used as a black box, so the result
+  holds to exactly the standard of the imported
+  `affine-ug-easy-on-globally-hypercontractive-graphs`. For Theorems 1.7 and
+  1.8, BM give sketches of the host side only (`generalization.tex` line 246:
+  "we omit the details here"). This caveat is identical for `Z_q` and for
+  groups.
+
+  *Status.* With that route, the claim is derived ESTABLISHED. The bold
+  **OPEN.** line at the top of the body is now stale. I left it in place
+  because this lane may edit only the frontmatter and Attempts, so it should
+  be updated at landing.
+
+  The claim closes the last requirement of
+  `general-ug-on-bm-hosts-from-group-shift-games`.
