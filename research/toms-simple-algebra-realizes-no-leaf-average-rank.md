@@ -132,3 +132,23 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     - For `N > j`, look for an invariant outside the top column, or build a staggered
       filling. For `(N, j) = (2, 1)` every obstruction is torsion.
     - Window extraction is still open.
+- **Wide cubes fill: the single-level route is dead beyond N = 2j - 2 (w7-113, 2026-09-18).**
+  - *Result.* `toms-wide-sibling-cubes-fill-without-common-drop`. The width-`N` band space
+    of positive matrices, with rank in `[g+1, g+N]`, is `(N^2 + 2N - 2)`-connected, and its
+    first homotopy group is `Z`. The proof replaces it by an open set of Hermitian
+    matrices, filters by the number of non-negative eigenvalues, and computes each layer
+    by Alexander duality.
+  - *Consequences.* The cube data of `N` swap nodes then extend over the whole box with no
+    drop to the common rank once `N + 2 sum j_nu <= N^2 + 2N - 1`. One degree higher, the
+    top-column alternant is the only obstruction. For equal `j` the drop is forced iff
+    `N <= j` and fillable iff `N >= 2j - 1`. So `j = 1, 2` are settled, and only
+    `j + 1 <= N <= 2j - 2` is open.
+  - *What it kills.* The brief's alternatives for `N > j` (torsion classes, lower columns)
+    cannot work once `N >= 2j - 1`: every invariant of the band space vanishes there. The
+    `(2, 1)` case is unobstructed, not torsion-obstructed. The `K/2` bottom-level
+    siblings, with `j_n = 2 d_n^2`, force nothing once `K/2 >= 4 d_n^2 - 1`.
+  - *Next.* Depth `K/2` must come from cubes whose nodes lie at several levels, so that the
+    Hall condition `#{nu : j_nu <= J} <= J` holds with `N = K/2`, or from data beyond the two
+    cube hypotheses. The first step is the trace weight of a higher-level window drop.
+    The first open single-level case is `(N, j) = (4, 3)`, where `d = 28` and the
+    groups `pi_23` (`= Z`) to `pi_27` of the band space enter.
