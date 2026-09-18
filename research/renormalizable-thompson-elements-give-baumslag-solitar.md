@@ -10,7 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `renormalizable-thompson-elements-give-baumslag-solitar-proof`.
-Elementary lane proof; not independently reviewed. It generalizes the odometer and
+Elementary lane proof. Reviewed: gq-referee-c PASS
+(`research/artifacts/gq-referee-c-renormalizable-thompson-elements-give-baumslag-solitar.md`,
+894d10d19). It generalizes the odometer and
 baker-map computation of Attempt 1 in `bs12-embeds-in-brin-thompson-2v`, which fails
 there only because the odometer is not in `V`. No priority claimed.
 
@@ -26,6 +28,13 @@ properties.
 **Statement.** If `T` has infinite order and a height-`m` renormalization, then
 `s = T × id ∈ (k+1)V` and some `u ∈ (k+1)V` satisfy `u s u^-1 = s^m`. So
 `BS(1,m) ≅ ⟨s, u⟩ <= (k+1)V`.
+
+**The infinite-order hypothesis is automatic** (remark of gq-referee-c). By item 1, `T` permutes
+`A, TA, …, T^{m-1}A` cyclically, so every orbit meets `A` exactly at times divisible by `m`.
+If `T` had finite order `N`, then `T^N x = x` for `x ∈ A` would force `m | N`. Then `T^m` would have
+order `N/m`, so `T^m|_A` would have order at most `N/m < N`, while by item 2 it is conjugate to
+`T`, which has order `N`. So a `T` with a height-`m` renormalization always has infinite order,
+and the hypothesis can be dropped.
 
 **Model.** The binary odometer `τ` on `C` has the height-2 renormalization
 `A = C(0)`, `φ(0w) = w`, since `τ^2(0w) = 0 τ(w)`. It fails only because `τ ∉ V`.
