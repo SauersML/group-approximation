@@ -370,3 +370,9 @@ None recorded before 2026-09-17.
       `prime-shift-dilation-normalizers-are-nowhere-continuous`: every permutation shifting the primes on the dilation
       group is `c·σ` on each half-line and discontinuous everywhere (real on `Q^x`, all `p`-adic), so no tame
       version of `σ` exists. The open question is whether `Π_1 -> A_1` is injective.
+
+19. **Derived units of the Leavitt resolvent ring, 2026-09-18: dead.** The route
+    `gl-n-q-bh-via-leavitt-resolvent-units` embeds `GL_n(Q)` in `D/Z(D)`, where `D = [R_L^x, R_L^x]`. It needs
+    `D/Z(D)` to be finitely presented and simple (`leavitt-resolvent-derived-units-mod-centre-fp-simple`).
+    `leavitt-resolvent-derived-units-mod-centre-not-fp` refutes the finite presentation, so the route can never
+    fire.
