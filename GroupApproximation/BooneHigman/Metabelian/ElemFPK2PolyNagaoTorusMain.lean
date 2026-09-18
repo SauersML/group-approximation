@@ -92,3 +92,80 @@ theorem k2PolyNagaoTorus_shift {K : Finset I} {m L i : I} (hmL : m ≠ L) (hmi :
   exact key
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_shift
+
+/-- The coset of `σ(u) = q_u σ₀(r_u)` against `σ₀(u)`, for every supported orbit vector `u`:
+`σ₀(u)⁻¹ q_u σ₀(r_u) ∈ Q` (`k2PolyNagaoTorus_shift` at `q_u`, `r_u`). -/
+theorem k2PolyNagaoTorus_sigma_supp {K : Finset I} {m L i : I} (hmL : m ≠ L) (hmi : m ≠ i)
+    (hLi : L ≠ i) (hmK : m ∈ K) (hiK : i ∈ K) (hLK : L ∉ K)
+    (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k) (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    {u : I → Polynomial (ZMod p)} (hu : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = u)
+    (huS : k2PolyNagaoWide_Supp m L u) :
+    (k2PolyNagaoSigma_sigma p m L hmL u)⁻¹ * k2PolyNagaoWide_qsel p K m L u *
+        k2PolyNagaoSigma_sigma p m L hmL (k2PolyNagaoWide_rep p K m L u) ∈
+      k2PolyNF_Q p K L := by
+  have hr := (k2PolyNagaoWide_rep_spec (m := m) hmK hu).1
+  have hq := k2PolyNagaoWide_qsel_spec (m := m) hmK hu
+  have hro := k2PolyNF_orbit_act (k2PolyNagaoWide_Q_le_G K L (Subgroup.inv_mem _ hq.1)) hu
+  rw [k2PolyNagaoWide_act_inv hq.2] at hro
+  have h := k2PolyNagaoTorus_shift hmL hmi hLi hmK hiK hLK hthird hStab hr hro hq.1
+    (by rw [hq.2]; exact huS)
+  rw [hq.2] at h
+  exact h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_sigma_supp
+
+/-- **The check, for every prime.**  The check of `σ = k2PolyNagaoWide_sigma` at `y = x_mL(1)`
+holds at every orbit vector `v` supported on `{m, L}`, given a third index `i ∈ K`:
+`σ(yv)⁻¹ y σ(v) = B₂⁻¹ (σ₀(yv)⁻¹ y σ₀(v)) B₁` with `B₁, B₂ ∈ Q` (`_sigma_supp`) and the middle
+factor in `Q` (`k2PolyNagaoRoot_rank_one`). -/
+theorem k2PolyNagaoTorus_check {K : Finset I} {m L i : I} (hmL : m ≠ L) (hmi : m ≠ i)
+    (hLi : L ≠ i) (hmK : m ∈ K) (hiK : i ∈ K) (hLK : L ∉ K)
+    (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hconst : ∀ g ∈ (ringMap (I := I) (Polynomial.C : ZMod p →+* Polynomial (ZMod p))).range,
+      g ∈ K2 I (Polynomial (ZMod p)) → g = 1)
+    (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v)
+    (hS : k2PolyNagaoWide_Supp m L v) :
+    (k2PolyNagaoWide_sigma p K m L hmL (act (x m L hmL (1 : Polynomial (ZMod p))) v))⁻¹ *
+        x m L hmL (1 : Polynomial (ZMod p)) * k2PolyNagaoWide_sigma p K m L hmL v ∈
+      k2PolyNF_Q p K L := by
+  have hyG := k2PolyEuclid_x_mem_G hmL (1 : Polynomial (ZMod p))
+    (Finset.mem_insert_of_mem hmK) (Finset.mem_insert_self L K)
+  have hvy := k2PolyNF_orbit_act hyG hv
+  have B1 := k2PolyNagaoTorus_sigma_supp hmL hmi hLi hmK hiK hLK hthird hStab hv hS
+  have B2 := k2PolyNagaoTorus_sigma_supp hmL hmi hLi hmK hiK hLK hthird hStab hvy
+    (k2PolyNagaoRoot_supp_x hmL hS)
+  have R1 := k2PolyNagaoRoot_rank_one hmL hmK hthird hconst hS hv
+  have e : ∀ a₁ s₁ a₂ s₂ y E F : SteinbergGroup I (Polynomial (ZMod p)),
+      (E⁻¹ * a₂ * s₂)⁻¹ * (E⁻¹ * y * F) * (F⁻¹ * a₁ * s₁) = (a₂ * s₂)⁻¹ * y * (a₁ * s₁) := by
+    intro a₁ s₁ a₂ s₂ y E F
+    group
+  have key := Subgroup.mul_mem _ (Subgroup.mul_mem _ (Subgroup.inv_mem _ B2) R1) B1
+  rw [e] at key
+  exact key
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_check
+
+/-- **Gap (a) of lane 93v closed: the torus interface at every prime `p`.** -/
+theorem k2PolyNagaoTorus_torusAt : ∀ (p : ℕ) [Fact p.Prime], k2PolyNagaoJRed_TorusAt p := by
+  intro p _ I _ _ K m L hmL hLK hmK him hthird hconst _ hJ v hv hS
+  obtain ⟨i, hiK, hi⟩ := him
+  have hLi : L ≠ i := fun e => hLK (by rw [e]; exact hiK)
+  exact k2PolyNagaoTorus_check hmL (Ne.symm hi) hLi hmK hiK hLK hthird hconst hJ hv hS
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_torusAt
+
+/-- **The torus interface** `k2PolyNagaoJRed_TorusIface`. -/
+theorem k2PolyNagaoTorus_torusIface : k2PolyNagaoJRed_TorusIface :=
+  k2PolyNagaoTorus_torusAt
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_torusIface
+
+/-- The lane target in its stated form: the torus interface at every odd prime. -/
+theorem k2PolyNagaoTorus_torusAt_odd :
+    ∀ (p : ℕ) [Fact p.Prime], p ≠ 2 → k2PolyNagaoJRed_TorusAt p :=
+  fun p _ _ => k2PolyNagaoTorus_torusAt p
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoTorus_torusAt_odd
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
