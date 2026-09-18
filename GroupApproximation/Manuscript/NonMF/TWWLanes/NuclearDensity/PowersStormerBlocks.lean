@@ -51,9 +51,12 @@ theorem powersStormer_posSemidef_fromBlocks {P Q : Matrix m m ℂ} (hP : P.PosSe
           * fromCols (1 : Matrix m m ℂ) (0 : Matrix m m ℂ)
         + (fromCols (0 : Matrix m m ℂ) (1 : Matrix m m ℂ))ᴴ * Q
           * fromCols (0 : Matrix m m ℂ) (1 : Matrix m m ℂ) := by
-    simp only [Matrix.mul_assoc, mul_fromCols, conjTranspose_fromCols_eq_fromRows_conjTranspose,
-      conjTranspose_one, conjTranspose_zero, fromRows_mul_fromCols, one_mul, zero_mul, mul_one,
-      mul_zero, fromBlocks_add, add_zero, zero_add]
+    rw [Matrix.mul_assoc, Matrix.mul_assoc, mul_fromCols, mul_fromCols,
+      conjTranspose_fromCols_eq_fromRows_conjTranspose,
+      conjTranspose_fromCols_eq_fromRows_conjTranspose, fromRows_mul_fromCols,
+      fromRows_mul_fromCols, fromBlocks_add]
+    simp only [conjTranspose_one, conjTranspose_zero, one_mul, zero_mul, mul_one, mul_zero,
+      add_zero, zero_add]
   rw [e]
   exact (hP.conjTranspose_mul_mul_same _).add (hQ.conjTranspose_mul_mul_same _)
 

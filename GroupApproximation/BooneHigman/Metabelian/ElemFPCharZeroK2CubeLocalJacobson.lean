@@ -44,7 +44,8 @@ theorem czCubeLocal_isJacobsonRing_int : IsJacobsonRing ℤ := by
       @Int.ideal_span_isMaximal_of_prime p ⟨hp⟩
     exact Ideal.jacobson_eq_self_of_isMaximal (H := hmax)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeLocal_isJacobsonRing_int
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeLocal_isJacobsonRing_int
 
 /-- `ℤ[1/m]` is a Jacobson ring. -/
 theorem czCubeLocal_isJacobsonRing_away (m : ℤ) : IsJacobsonRing (Localization.Away m) :=

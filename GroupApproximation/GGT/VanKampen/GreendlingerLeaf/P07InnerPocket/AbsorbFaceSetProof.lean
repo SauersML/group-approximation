@@ -99,3 +99,48 @@ theorem absorbFaceSet_exposed_of_basic {a b : RegionCandidate D eps X}
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbFaceSet_exposed_of_basic
 
 end Exposed
+
+/-- **The target from the absorption iteration.**  See the module docstring. -/
+theorem noPlanarDegenStep_of_absorbFaceSet (h : AbsorbFaceSetStatement.{u, w, v}) :
+    NoPlanarDegenStepStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbj hdisj hlet hW hK1 hK2 G₁ hG₁ G₂ hG₂ hw
+    hout hinE houtE C hC hCf hCa hCb hno hnc
+  obtain ⟨hbase, himp⟩ := h D eps X a b K hij hai hbj hdisj hlet hW hK1 hK2 G₁ hG₁ G₂ hG₂ hw
+    hout hinE houtE C hC hCf hCa hCb hno hnc
+  rcases absorbFaceSet_iterate (β := X.toCombMap.Face) (γ := List X.toCombMap.Dart)
+      (B := fun F ow => AbsorbFaceSetBasic a b K G₁ G₂ C.face F ow)
+      (S := fun _ ow => AbsorbFaceSetStepGood G₁ G₂ ow)
+      (R := AbsorbFaceSetBranchTwo i j C.face) hbase
+      (fun F ow hB hS => himp F ow hB hS (absorbFaceSet_exposed_of_basic K hG₁ hG₂ hB hS)) with
+    ⟨F, ow, ⟨E, hc, hsub, hd, h1, h2, h3, h4⟩, s1, s2, s3, s4⟩ | hR
+  · exact Or.inl ⟨F, ow, E, hc, hsub, hd, h1, h2, h3, h4, s1, s2, s3, s4⟩
+  · exact Or.inr hR
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noPlanarDegenStep_of_absorbFaceSet
+
+/-- **The converse.**  A good pair of the target serves Base and every Improve step, and branch 2
+serves both parts. -/
+theorem absorbFaceSet_of_noPlanarDegenStep (h : NoPlanarDegenStepStatement.{u, w, v}) :
+    AbsorbFaceSetStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbj hdisj hlet hW hK1 hK2 G₁ hG₁ G₂ hG₂ hw
+    hout hinE houtE C hC hCf hCa hCb hno hnc
+  rcases h D eps X a b K hij hai hbj hdisj hlet hW hK1 hK2 G₁ hG₁ G₂ hG₂ hw hout hinE houtE C hC
+      hCf hCa hCb hno hnc with
+    ⟨F, ow, E, hc, hsub, hd, h1, h2, h3, h4, s1, s2, s3, s4⟩ | hR
+  · exact ⟨Or.inl ⟨F, ow, E, hc, hsub, hd, h1, h2, h3, h4⟩,
+      fun _ _ _ _ _ => Or.inl ⟨F, ow, ⟨E, hc, hsub, hd, h1, h2, h3, h4⟩,
+        Or.inr ⟨s1, s2, s3, s4⟩⟩⟩
+  · exact ⟨Or.inr hR, fun _ _ _ _ _ => Or.inr hR⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbFaceSet_of_noPlanarDegenStep
+
+/-- **The absorption iteration and the target are equivalent.** -/
+theorem absorbFaceSet_iff_noPlanarDegenStep :
+    AbsorbFaceSetStatement.{u, w, v} ↔ NoPlanarDegenStepStatement.{u, w, v} :=
+  ⟨noPlanarDegenStep_of_absorbFaceSet, absorbFaceSet_of_noPlanarDegenStep⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbFaceSet_iff_noPlanarDegenStep
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
