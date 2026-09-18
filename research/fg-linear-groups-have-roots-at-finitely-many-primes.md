@@ -6,6 +6,7 @@ title: In a finitely generated linear group over a field, an element of infinite
 distinct_from:
   piecewise-commutative-linear-hosts-miss-linear-gl-n-q: that uses residual finiteness to exclude divisible groups from finitely generated commutative-linear hosts; this excludes the residually finite group Z_(p), and every Z[1/P] with P an infinite set of primes, from finitely generated linear groups over fields.
   rational-iwahori-group-lies-in-fp-self-similar-group: that needs a finitely presented overgroup of Gamma_p, which contains Z_(p); by this lemma the overgroup cannot be linear over any field.
+  infinite-prime-localizations-embed-in-no-fg-linear-group: that excludes the whole group Z[1/P], P infinite, from finitely generated linear groups; this bounds the primes q for which one element of infinite order has q-th roots, which implies that statement, and was landed independently at about the same time.
 ---
 
 **ESTABLISHED** through `fg-linear-groups-have-roots-at-finitely-many-primes-proof`.
