@@ -21,8 +21,9 @@ generated. Then `H` embeds in a finitely presented simple group.
 
 *Marked `root` because it is a natural class question in its own right.* The
 Belk--Bleak--Matucci--Zaremsky survey (arXiv:2306.16356v3, Problem 5.3) lists
-`GL_n(Q)` among the open cases, settled later by Zaremsky arXiv:2405.09722, and
-names no positive-characteristic linear class. This graph proves transcendence
+`GL_n(Q)` among the open cases and names no positive-characteristic linear class.
+Zaremsky arXiv:2405.09722 later settled the finitely generated subgroups of
+`GL_n(Q)`; the group itself is still open (`gl-n-q-embeds-in-fp-simple-group`). This graph proves transcendence
 degree `<= 2` (`char-two-surface-linear-groups-satisfy-boone-higman`).
 
 The conditional route `char-two-linear-groups-via-leavitt-tensor-powers` needs
