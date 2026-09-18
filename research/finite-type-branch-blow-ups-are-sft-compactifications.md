@@ -136,9 +136,31 @@ exists: a point that is not a local minimum has a descending neighbour, and a lo
 **(c) (HL), OPEN.** For every `f ∈ Y_R` and some f-descending ray `γ`, `f − f(1) = b_γ`. Equivalently,
 `Y_R = K_h`, i.e. (C2).
 - By (b), (HL) makes `(Y_R, π)` an SFT compactification, so `K_h` is of finite type and (IE′) holds for `S`.
-- The expected source is Coornaert–Papadopoulos, "Horofunctions and symbolic dynamics on Gromov hyperbolic
-  groups" (Glasgow Math. J. 2001), which codes horofunctions of hyperbolic groups symbolically. It has NOT
-  been checked at source whether it proves (HL) in this exact form.
+- **Checked at source (09-18): Coornaert–Papadopoulos do NOT prove (HL).** The paper is M. Coornaert and
+  A. Papadopoulos, "Horofunctions and symbolic dynamics on Gromov hyperbolic groups", Glasgow Math. J. 43
+  (2001) 425–456, doi:10.1017/S0017089501030063, read in the published PDF.
+  - *Their horofunctions are a different class.* Def. 2.1 defines horofunctions by two global conditions,
+    ε-convexity and the distance-like property `h(x) = λ + dist(x, h^{-1}(λ))` for all `λ ≤ h(x)`. So
+    `d(·,g)`, which is bounded below, is not one. `Φ_0` is the set of integral horofunctions modulo constants.
+  - *Their main theorem codes a single map, not the group action.* The Theorem on p. 426 says that
+    `(Φ_0, α)` is topologically conjugate to a one-sided subshift of finite type. Here `α(φ) = a^{-1}φ`,
+    with `a` the smallest generator satisfying `h(Id) − h(a) = 1`.
+  - *Their local-to-global step lives on a tube.* The SFT `Σ(∞)` of consistent sequences (Def. 6.7,
+    Thm. 6.13) records restrictions of genuine horofunctions to a tube `N(r, R_0)` around one gradient ray.
+    §7–8 build a horofunction from a consistent sequence.
+  - *Two facts we use.* Prop. 3.4: `φ(x, r(t)) = dist(x, R_{φ,t})`, where
+    `R_{φ,t} = {z : φ(r(t),z) = 0} ∩ B(r(t),16δ)`. Cor. 3.6: a horofunction is determined by its values on
+    the 16δ-neighbourhood of one ray to its point at infinity.
+  - *What (HL) needs instead.* Here the local states are restrictions of distance functions, the group is
+    the acting object, and the conclusion must be a limit of distance functions. None of this is in the
+    paper.
+  - *Consequence (lane proof).* Pointwise limits of normalized `d(·,g_n)` are integral CP horofunctions, so
+    `∂_h ⊆ Φ_0`. The distance-like property passes to the limit on balls, and ε-convexity is closed under
+    limits (distance functions are ε-convex, CP ref. [7], Ch. 3, Lemma 3.2). Prop. 3.4 gives only
+    `h ≤ b_r` for a CP horofunction `h` and its gradient ray `r`, the same inequality as in (b). So
+    `Φ_0 = ∂_h` is itself open.
+  - (HL) stays OPEN. bh-g2-buildings, which needs the same lemma for its hyperbolic compactification, is
+    proving it directly (notes exchanged on the boards).
 - Calibration: for `Z²` with the standard generators, `Σ`-tails also determine cones, part (a) goes through,
   and `K_h` is the ℓ¹ horofunction compactification. That one is of finite type (quadrant sign patterns).
 
@@ -171,3 +193,6 @@ exists: a point that is not a local minimum has a descending neighbour, and a lo
 - The live question moves from "can an emitter be finitely presented?" to "does the input have a Cayley
   graph whose cones are locally determined?", i.e. (TP) + (HL). That fails for the known non-hyperbolic
   simple Kazhdan inputs, which points the remaining work at overgroups with (TP).
+- Checked at source: Coornaert–Papadopoulos's symbolic coding is one-sided, for the single map `α`, and
+  its local-to-global step lives on a tube around one gradient ray. The two-sided group SFT with a seed
+  needs a different local-to-global statement, (HL). The citation that was "expected" to close it does not.
