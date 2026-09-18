@@ -123,7 +123,8 @@ Induction is exact, so by Step 0(b),(c) `C_*(F_d)/C_*(F_{d−1})` is quasi-isomo
   stabilizer `𝒢(r) ≅ G ≀ Σ_r` (BZ Lemma `lem:vtx_stab`).
 - Grid intervals with bottom `[id_r]` correspond to tuples `(C_1, ..., C_r)` of finite color
   sets. A twist `γ` at root `i` sends the full `C_i`-split to the full `γC_i`-split (BZ Lemma
-  `lem:Relations`(7), N5; compare `lem:stab_spectrum`), and permutations permute roots.
+  `lem:Relations`(7), `x_{γs} τ_γ = (τ_γ ⊕ τ_γ) x_s`, N5 and referee b W2), and permutations
+  permute roots.
 - So `Γ`-orbits of grid intervals with `e ≤ n` and bottom of rank `r` correspond to multisets
   of `G`-orbits of subsets of size `≤ n`. There are finitely many, because finitely many
   orbits on `S^n` give finitely many orbits on `S^k` for `k ≤ n` (embed `S^k` in `S^n` by

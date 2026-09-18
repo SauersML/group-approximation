@@ -13,7 +13,7 @@ distinct_from:
 arguments of `twisted-bt-type-fn-interval-filtration-proof` and
 `abstract-twisted-bt-type-fn-colored-stein-proof`). Referee c (independent second pass): **PASS**,
 `research/artifacts/gq-referee-c-abstract-twisted-bt-type-fn-criterion.md` (72d2941ac), which covers this node.
-Citation pass (gq-referee-b) requested. It is a variant of Brown's
+Referee b (citations): **PASS** (68ed8a399), with Brown 1984 unread at source. It is a variant of Brown's
 criterion. Filtering by intervals is standard (Belk--Zaremsky use it for contractibility);
 the graded use of stabilizers is the point. No priority claimed.
 

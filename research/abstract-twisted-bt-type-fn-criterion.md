@@ -14,7 +14,8 @@ Referee a (proof gaps): **PASS**,
 `research/artifacts/gq-referee-a-abstract-twisted-bt-type-fn-criterion.md` (efa4f3b5c), nits
 applied. Referee c (independent second pass): **PASS**,
 `research/artifacts/gq-referee-c-abstract-twisted-bt-type-fn-criterion.md` (72d2941ac).
-Citation pass (gq-referee-b) requested. No priority claimed.
+Referee b (citations): **PASS** (68ed8a399). No priority claimed; bounded literature search
+as on `twisted-brin-thompson-type-fn-criterion`.
 
 ## Statement
 
