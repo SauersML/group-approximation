@@ -1,0 +1,6 @@
+4887 {"a": "ab", "b": "bbca", "c": "aab"} m 2 r 2 mask abAB inmask 36 alive 0 homfeas False t 130 []
+4887 {"a": "ab", "b": "bbca", "c": "aab"} m 2 r 2 mask acAC inmask 16 alive 8 homfeas True t 92 ['aaa', 'aac', 'aca', 'caa', 'AAA', 'AAC', 'ACA', 'CAA']
+4887 {"a": "ab", "b": "bbca", "c": "aab"} m 2 r 2 mask bcBC inmask 36 alive 0 homfeas False t 79 []
+4012 {"a": "ab", "b": "bbac", "c": "abb"} m 2 r 2 mask abAB inmask 36 alive 0 homfeas False t 131 []
+4012 {"a": "ab", "b": "bbac", "c": "abb"} m 2 r 2 mask acAC inmask 16 alive 8 homfeas True t 106 ['aac', 'aca', 'caa', 'cac', 'AAC', 'ACA', 'CAA', 'CAC']
+4012 {"a": "ab", "b": "bbac", "c": "abb"} m 2 r 2 mask bcBC inmask 36 alive 0 homfeas False t 90 []
