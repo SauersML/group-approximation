@@ -124,3 +124,69 @@ theorem higmanVCOrbitStem_t_mem {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b
       (higmanVCOrbitStem_mem_R_b (higmanVCOrbitAll_mem_child [] i) (by simp))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitStem_t_mem
+
+/-- The one-letter peel `m(b y, a y) · t ∈ H_{R a b (y Q)}`. -/
+theorem higmanVCOrbitStem_peel_mem {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) (y : Fin d) (Q : List (Fin d)) :
+    higmanVCCommon_mk d (FreeGroup.of (b ++ [y], a ++ [y])) *
+        higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈
+      higmanVCTreeNFWitPivot_H d (higmanVCOrbitStem_R a b (y :: Q)) := by
+  have i1 : ¬ a ++ [y] <+: b ++ [y] :=
+    higmanVCOrbitGen_incomp hab hba (List.prefix_append a [y]) (List.prefix_append b [y])
+  have i2 : ¬ b ++ [y] <+: a ++ [y] :=
+    higmanVCOrbitGen_incomp hba hab (List.prefix_append b [y]) (List.prefix_append a [y])
+  have hWinv : higmanVCCommon_mk d (FreeGroup.of (b ++ [y], a ++ [y])) =
+      (higmanVCCommon_mk d (FreeGroup.of (a ++ [y], b ++ [y])))⁻¹ :=
+    (higmanVCOrbitGen_symm i1 i2).trans (inv_eq_of_mul_eq_one_right
+      (higmanVCCommon_mk_sq (a ++ [y]) (b ++ [y]))).symm
+  have hK : ∀ (q : List (Fin d)) (y' j : Fin d), q ++ [y'] <+: [y] → j ≠ y' →
+      higmanVCCommon_mk d (FreeGroup.of (a ++ q ++ [j], b ++ q ++ [j])) ∈
+        higmanVCTreeNFWitPivot_H d (higmanVCOrbitStem_R a b (y :: Q)) := by
+    intro q y' j hq hj
+    rcases higmanVCOrbitAll_prefix_snoc (p := []) (z := y) hq with h | ⟨rfl, hy⟩
+    · have hl := h.length_le
+      rw [List.length_append, List.length_singleton, List.length_nil] at hl
+      omega
+    · have hjy : j ≠ y := fun h => hj (h.trans hy.symm)
+      exact higmanVCLeafExp_letter_mem_H
+        (higmanVCOrbitStem_mem_R_a (higmanVCOrbitAll_mem_child [] j) (by simp))
+        (higmanVCOrbitStem_mem_R_b (higmanVCOrbitAll_mem_sib (y :: Q) [] y j
+          (List.prefix_append [y] Q) hjy) (by simp))
+  rw [hWinv]
+  exact higmanVCOrbitAll_path_mem [y] a b hab hba hK
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitStem_peel_mem
+
+/-- **The replicate claim.**  `m(a, b yᵐ⁺¹) · t · m(b, a y) ∈ H_{R a b yᵐ}`. -/
+theorem higmanVCOrbitStem_rep_mem_H {d : ℕ} (y : Fin d) :
+    ∀ (m : ℕ) (a b : List (Fin d)), ¬ a <+: b → ¬ b <+: a →
+      higmanVCCommon_mk d (FreeGroup.of (a, b ++ List.replicate (m + 1) y)) *
+          higmanVCCommon_mk d (FreeGroup.of (a, b)) *
+          higmanVCCommon_mk d (FreeGroup.of (b, a ++ [y])) ∈
+        higmanVCTreeNFWitPivot_H d (higmanVCOrbitStem_R a b (List.replicate m y)) := by
+  intro m
+  induction m with
+  | zero =>
+    intro a b hab hba
+    rw [List.replicate_succ, List.replicate_zero, higmanVCOrbitStem_base_eq
+      (higmanVCOrbitStem_conj hab hba y) (higmanVCCommon_mk_sq a (b ++ [y]))]
+    exact higmanVCOrbitStem_t_mem hab hba
+  | succ m ih =>
+    intro a b hab hba
+    have hab' : ¬ a <+: b ++ [y] :=
+      higmanVCOrbitGen_incomp hab hba (List.prefix_refl a) (List.prefix_append b [y])
+    have hba' : ¬ b ++ [y] <+: a :=
+      higmanVCOrbitGen_incomp hba hab (List.prefix_append b [y]) (List.prefix_refl a)
+    have hIH := ih a (b ++ [y]) hab' hba'
+    have hrep : b ++ [y] ++ List.replicate (m + 1) y = b ++ List.replicate (m + 1 + 1) y := by
+      rw [List.append_assoc, List.singleton_append, List.replicate_succ (n := m + 1)]
+    rw [hrep] at hIH
+    rw [List.replicate_succ (a := y) (n := m), higmanVCOrbitStem_step_eq
+      (higmanVCOrbitStem_conj hab hba y) (higmanVCCommon_mk_sq (b ++ [y]) (a ++ [y]))]
+    exact Subgroup.mul_mem _
+      (higmanVCPivotY_H_mono (higmanVCOrbitStem_R_sub a b (List.replicate m y) y) hIH)
+      (higmanVCOrbitStem_peel_mem hab hba y (List.replicate m y))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitStem_rep_mem_H
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

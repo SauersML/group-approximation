@@ -65,8 +65,8 @@ theorem k2KarNorm_ker_eq_normalClosure :
     (ringMap (I := ι) (Polynomial.evalRingHom (0 : R))).ker =
       Subgroup.normalClosure (k2KarNorm_polyGens ι R) := by
   apply le_antisymm
-  · exact k2KarNorm_ker_le _ fun i j hij h h0 ↦
-      Subgroup.subset_normalClosure ⟨i, j, hij, h, h0, rfl⟩
+  · exact k2KarNorm_ker_le (Subgroup.normalClosure (k2KarNorm_polyGens ι R))
+      fun i j hij h h0 ↦ Subgroup.subset_normalClosure ⟨i, j, hij, h, h0, rfl⟩
   · refine Subgroup.normalClosure_le_normal ?_
     rintro _ ⟨i, j, hij, h, h0, rfl⟩
     rw [SetLike.mem_coe, MonoidHom.mem_ker, ringMap_x, Polynomial.coe_evalRingHom, h0, x_zero]

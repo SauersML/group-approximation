@@ -169,15 +169,16 @@ theorem witnessStepCurve_double_chain {M : CombMap.{u}} {Γ B G₂ A G₁ : List
       (Or.inr h₃) (fun d hd => Or.inl (hA d hd)) (Or.inr h₄') (fun d hd => Or.inl (hG₁ d hd)))
   have hf := witnessStepCurve_chain_filter (fun e => decide (e ∈ Γ))
     (fun y => y ∉ Γ ∧ M.alpha y ∉ Γ)
-    (fun _ _ _ r₁ r₂ hq => witnessStepCurve_rel_trans r₁ r₂ hq.1 hq.2) _ hd
-    (fun y hy hp => (hP y hy).resolve_left (of_decide_eq_false hp))
+    (fun _ y _ r₁ r₂ (hq : y ∉ Γ ∧ M.alpha y ∉ Γ) => witnessStepCurve_rel_trans r₁ r₂ hq.1 hq.2)
+    _ hd (fun y hy (hp : decide (y ∈ Γ) = false) => Or.resolve_left (hP y hy)
+      (of_decide_eq_false hp))
   have hL := witnessStepCurve_filter_four (fun e => decide (e ∈ Γ))
-    (B := B) (G₂ := G₂) (A := A) (G₁ := G₁)
+    (B := B) (G₂ := G₂) (A := A) (G₁ := G₁) (z₂ := M.alpha z₂) (z₃ := z₃) (z₄ := M.alpha z₄)
     (fun d hd => @decide_eq_true _ (_) (hB d hd)) (fun h => h₂.2 (of_decide_eq_true h))
     (fun d hd => @decide_eq_true _ (_) (hG₂ d hd)) (fun h => h₃.1 (of_decide_eq_true h))
     (fun d hd => @decide_eq_true _ (_) (hA d hd)) (fun h => h₄.2 (of_decide_eq_true h))
     (fun d hd => @decide_eq_true _ (_) (hG₁ d hd))
-  have he := witnessStepCurve_filter_double (fun e => decide (e ∈ Γ))
+  have he := witnessStepCurve_filter_double (fun e => decide (e ∈ Γ)) (z := z₁)
     (fun h => h₁.1 (of_decide_eq_true h)) (hL.trans hΓ.symm)
   rw [he] at hf
   exact hf
