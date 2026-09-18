@@ -59,6 +59,14 @@ space embeds in a finitely presented simple group.
    Those with discrete commensurator force a virtual product `K × F`
    (`commensurator-rigid-bs-classes-are-virtual-products`), which is linear.
 
+9. **Groups acting geometrically on `Y × T`, `Y` any locally finite CAT(0) cube
+   complex,** whose `Y`-projection has a closure with no open subgroup fixing a
+   point of `∂Y`: `cube-complex-times-tree-lattices-with-fb-closures-are-pbh`
+   (2026-09-18, lane proof), through the faithful Hecke member criterion
+   `cubical-hecke-members-faithful-when-closure-fixes-bounded-sets`. It reaches only
+   residually finite fibres. The cubulated subclass is BBCMP Question 1.15,
+   `virtually-torsion-free-cubulated-groups-satisfy-boone-higman`.
+
 ## Attempts
 
 1. **Every known method fails on Kazhdan building lattices.** Take a cocompact

@@ -37,7 +37,21 @@ group. Actions failing it:
   (`commonly-fixed-letters-compress-to-faithful-actions`) deletes a commonly fixed letter, keeping the group and
   the states, and repairs the linear-activity example (`spine-grigorchuk-automaton-group-has-a-bounded-action`).
 
-The same group may still be covered through another action (Grigorchuk's group on `T_2`). No automaton group
+Tools on main for finding a good action or certifying one:
+- `lift-presentability-is-invariant-under-level-regrouping` (regroup by levels freely);
+- `commonly-fixed-letters-compress-to-faithful-actions` (delete a letter or word fixed by every state);
+- `finitary-extensions-preserve-lift-presentability` (transient states are free, so only strongly connected
+  components matter), and `spinal-extensions-of-lift-presented-groups-satisfy-boone-higman`;
+- `relator-complexity-descent-gives-free-splitting` and
+  `polynomial-automata-reduce-to-cycling-relators`: for subexponential activity, an action is lift-presented iff
+  its cycling relators (words following their states' cycles forever) lie in a finitely generated lift ideal;
+  `linear-activity-odometer-automaton-has-fp-nekrashevych-group` is a non-contracting instance.
+
+So for subexponential activity the open case is sharp: cycling relators along a periodic ray whose letter some
+recurrent state moves, so that compression does not apply, and which are not finitely generated. Transient
+states never matter: `lift-presentable-groups-closed-under-products-and-wreaths` (LP-embeddable groups are
+closed under finite direct products and finite extensions, and an automaton group is LP-embeddable iff the
+group of its recurrent states is). The same group may still be covered through another action (Grigorchuk's group on `T_2`). No automaton group
 is known that fails the hypothesis for every finite-state action. The route
 `automaton-groups-bh-via-lift-presented-overgroups` reduces the claim to finding such an action or overgroup.
 Whether this is a named problem in the literature was not checked here.

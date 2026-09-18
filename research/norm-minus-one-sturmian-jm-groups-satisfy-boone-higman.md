@@ -4,6 +4,7 @@ id: norm-minus-one-sturmian-jm-groups-satisfy-boone-higman
 kind: claim
 title: If the real quadratic field of an irrational angle α has a unit of norm −1, the Juschenko--Monod group of the Sturmian subshift of α embeds in the finitely presented simple derived subgroup of a metallic-mean Stein group
 distinct_from:
+  quadratic-rotation-iet-groups-satisfy-boone-higman: that (bh-free-03, landed earlier) embeds IET(Z+αZ) for every quadratic α via contracting RSGs, which already covers the Sturmian groups here; this node adds that for norm −1 fields the host can be taken to be the finite-index derived Stein group D(V(Z[ε_m],⟨ε_m⟩,N)) itself.
   stein-derived-groups-need-computable-modules: that is the computability obstruction for Stein groups with noncomputable breakpoint modules; this is the positive embedding for quadratic angles, through Stein groups whose derived subgroup has finite index.
   computable-grigorchuk-groups-satisfy-boone-higman: that embeds computable Grigorchuk groups in finitely presented simple groups; this does it for derived full groups of quadratic Sturmian subshifts, which are amenable, simple and not finitely presented.
   fp-simple-groups-have-no-interval-exchange-action: that forbids finitely presented infinite simple groups from ACTING by interval exchanges; here the interval exchange group is a subgroup of the finitely presented simple host, which acts with nontrivial slopes.

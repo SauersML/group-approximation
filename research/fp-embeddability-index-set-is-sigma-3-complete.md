@@ -31,6 +31,8 @@ simple group`}` is `Σ_3`-complete.
    - Each `H(Q)` is finitely presented, with word problem Turing-equivalent to
      that of `Q`.
 
+MH is now its own node, `mihailova-centralizing-hnn-extensions-embed-in-fp-simple-groups` (OPEN). That node proves MH implies `fp-simple-groups-with-arbitrarily-complex-word-problem`, so this route is at least as hard as that open root.
+
 ## Why the direct attack stops
 
 The recursively presented witnesses `G_U` lie in `DV_F` when `U` is cofinite

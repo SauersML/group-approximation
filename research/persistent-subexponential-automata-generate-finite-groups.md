@@ -8,7 +8,7 @@ distinct_from:
   linear-activity-automata-can-have-non-fp-nekrashevych-groups: that is a linear-activity failure of finite presentation using only a commonly fixed letter, not full persistence.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`. Referee b (citations, scope) PASS: `research/artifacts/gq-referee-b-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## Statement
 
@@ -16,6 +16,8 @@ Let `S <= Aut(X^*)` be finite, closed under sections and inverses, and **twisted
 every `s in S` fixes `i`, and `θ(s) = s|_i` is a permutation of `S`. Suppose every state has subexponential
 activity (`#{v in X^n : s|_v ≠ 1}` grows subexponentially), e.g. polynomial activity in Sidki's sense. Then
 `G = ⟨S⟩` is finite.
+
+(Sidki's polynomial activity, via Bondarenko arXiv:1101.3200 §2, counts exactly the nontrivial sections used here.)
 
 **Consequence.** With `persistent-automata-rn-group-fp-iff-group-fp`, every persistent (or twisted-persistent)
 finite-state action with `V_d(G)` not finitely presented has exponential activity; in particular SWZ's

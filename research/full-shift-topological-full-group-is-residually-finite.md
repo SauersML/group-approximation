@@ -6,6 +6,7 @@ title: The topological full group of the two-sided full shift is residually fini
 distinct_from:
   brin-thompson-2v-is-torsion-locally-finite: that is the open question whether every finitely generated periodic subgroup of 2V is finite, with the copy of [[σ]] inside 2V as a candidate source of counterexamples; this proves every subgroup of [[σ]] is residually finite, so that copy can refute it only with unbounded exponent.
   almost-automorphism-torsion-subgroups-are-rf: that proves residual finiteness of finitely generated torsion subgroups of one-dimensional almost automorphism groups by a pumping argument; this proves residual finiteness of the whole topological full group of the two-sided full shift, through its dense set of finite shift orbits.
+  full-shift-topological-full-groups-are-torsion-locally-finite: that proves every finitely generated periodic subgroup of [[σ]] is finite, which is stronger; this is the elementary residual-finiteness statement it strengthens.
   fp-simple-groups-can-contain-infinite-finite-exponent-groups: that is the open existence question for finitely presented simple hosts of infinite bounded-exponent groups; this removes the copy of [[σ]] inside 2V as a bounded-exponent witness and says what a witness inside 2V must use instead.
 ---
 
@@ -39,4 +40,4 @@ be the topological full group: the homeomorphisms `g` of `X` for which some cont
   points (every irreducible shift of finite type, every irreducible sofic shift), and for every
   group of homeomorphisms of a compact space that preserves each orbit of a dense family of finite
   sets.
-- Nothing here decides whether `[[σ]]` contains an infinite finitely generated periodic group.
+- **Superseded in strength.** `full-shift-topological-full-groups-are-torsion-locally-finite` (bh-free-06, 360ac2690) proves every finitely generated periodic subgroup of `[[σ]]` is finite, which contains item 2 without Zelmanov. This node stays as the elementary residual-finiteness statement.

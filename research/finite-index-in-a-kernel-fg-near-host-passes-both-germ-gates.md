@@ -40,5 +40,6 @@ their parity-charge subgroups `B_0` (`a5-arithmetic-germs-embed-in-fp-odometer-h
 `a5-arithmetic-near-group-obeys-parity-charge-constraint`: finitely presented,
 charge onto `Z`, finitely generated charge kernel). Any enumeration of any input
 whose near group has finite index in such a host is the first known
-non-virtually-cyclic enumeration passing both germ gates. It still leaves the
+non-virtually-cyclic regular enumeration passing both germ gates (genuine-action shells already
+have a one-ended example, `eventually-periodic-genuine-shell-actions-give-fp-envelopes`). It still leaves the
 lifting gate (G3) and, for the shell route, finite presentation of `A_1`.

@@ -41,7 +41,7 @@ finitely presented and has decidable word problem. Smallest instance:
   action with locally virtually abelian stabilizers is excluded.
 - For `h_0 = h_1` this enumeration is exactly the dead A*A benchmark.
 
-A positive answer would give the first non-virtually-cyclic enumeration passing
+A positive answer would give the first non-virtually-cyclic regular enumeration passing
 gates (G1) and (G2) of `mz-envelope-fp-forces-two-sided-fg-near-index-kernel`, and
 the shell germ gate. Gate (G3), finite presentation of `A_1`, and finite
 presentation of `E_nu` would remain.
@@ -57,3 +57,9 @@ presentation of `E_nu` would remain.
   equal-radix argument. They are glued by disjoint-support relations, so `R_nu` is not their
   amalgam and not a group of Bass--Serre tree automorphisms. At `(0,-1/2)`, `R_nu` realizes the
   full rank-2 germ group of `H`.
+- **Local non-tree element (bh-shell-arith, MSI-verified).** `unequal-radix-near-group-has-a-local-expanding-element`:
+  `k = s^-1 lambda_(x^-1) lambda_(z^-1) s lambda_x lambda_z` is the identity on root 0 and has slope `59^2`
+  on generic depth-one cones of root 1. Every tree-compatible near group, including the equal-radix
+  benchmark, lacks such elements. This is a necessary condition for `[H : R_nu] < infinity`, and it
+  holds. Finite index itself remains OPEN; the next test is whether conjugates of `k` generate the
+  rigid stabilizer of root 0 in `H'`.

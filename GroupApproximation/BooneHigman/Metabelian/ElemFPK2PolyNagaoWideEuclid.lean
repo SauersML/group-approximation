@@ -37,12 +37,14 @@ noncomputable def k2PolyNagaoWide_mu (K : Finset I) (m : I) (v : I → Polynomia
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_mu
 
+omit [Fact p.Prime] in
 theorem k2PolyNagaoWide_nu_zero : k2PolyNagaoWide_nu (0 : Polynomial (ZMod p)) = 0 := by
   unfold k2PolyNagaoWide_nu
   rw [if_pos rfl]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_nu_zero
 
+omit [Fact p.Prime] in
 theorem k2PolyNagaoWide_nu_pos {f : Polynomial (ZMod p)} (hf : f ≠ 0) :
     0 < k2PolyNagaoWide_nu f := by
   unfold k2PolyNagaoWide_nu
@@ -64,6 +66,7 @@ theorem k2PolyNagaoWide_nu_mod_lt (f : Polynomial (ZMod p)) {g : Polynomial (ZMo
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_nu_mod_lt
 
+omit [Fintype I] [Fact p.Prime] in
 /-- `μ` drops if only the `j`- and `m`-coordinates change and their weighted `ν` drops. -/
 theorem k2PolyNagaoWide_mu_lt {K : Finset I} {m j : I} (hj : j ∈ K.erase m)
     {v u : I → Polynomial (ZMod p)} (hu : ∀ i, i ≠ j → i ≠ m → u i = v i)
@@ -71,9 +74,11 @@ theorem k2PolyNagaoWide_mu_lt {K : Finset I} {m j : I} (hj : j ∈ K.erase m)
       2 * k2PolyNagaoWide_nu (v j) + k2PolyNagaoWide_nu (v m)) :
     k2PolyNagaoWide_mu K m u < k2PolyNagaoWide_mu K m v := by
   have e1 : k2PolyNagaoWide_nu (u j) + ∑ i ∈ (K.erase m).erase j, k2PolyNagaoWide_nu (u i) =
-      ∑ i ∈ K.erase m, k2PolyNagaoWide_nu (u i) := Finset.add_sum_erase _ _ hj
+      ∑ i ∈ K.erase m, k2PolyNagaoWide_nu (u i) :=
+    Finset.add_sum_erase (K.erase m) (fun i => k2PolyNagaoWide_nu (u i)) hj
   have e2 : k2PolyNagaoWide_nu (v j) + ∑ i ∈ (K.erase m).erase j, k2PolyNagaoWide_nu (v i) =
-      ∑ i ∈ K.erase m, k2PolyNagaoWide_nu (v i) := Finset.add_sum_erase _ _ hj
+      ∑ i ∈ K.erase m, k2PolyNagaoWide_nu (v i) :=
+    Finset.add_sum_erase (K.erase m) (fun i => k2PolyNagaoWide_nu (v i)) hj
   have hs : ∑ i ∈ (K.erase m).erase j, k2PolyNagaoWide_nu (u i) =
       ∑ i ∈ (K.erase m).erase j, k2PolyNagaoWide_nu (v i) :=
     Finset.sum_congr rfl fun i hi => by
@@ -85,6 +90,7 @@ theorem k2PolyNagaoWide_mu_lt {K : Finset I} {m j : I} (hj : j ∈ K.erase m)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_mu_lt
 
+omit [Fact p.Prime] in
 /-- A single root element leaves every coordinate other than its row alone. -/
 theorem k2PolyNagaoWide_act_x_ne {i j : I} (hij : i ≠ j) (c : Polynomial (ZMod p))
     (v : I → Polynomial (ZMod p)) {k : I} (hk : k ≠ i) : act (x i j hij c) v k = v k := by
@@ -142,16 +148,16 @@ theorem k2PolyNagaoWide_clear {K : Finset I} {m : I} (hmK : m ∈ K) (n : ℕ) :
       ∃ s ∈ k2PolyDeg_S p K, ∀ j ∈ K.erase m, act s v j = 0 := by
   induction n using Nat.strong_induction_on with
   | _ n ih =>
-  intro v hv
-  by_cases hex : ∃ j ∈ K.erase m, v j ≠ 0
-  · obtain ⟨j, hj, hf⟩ := hex
-    obtain ⟨s₁, hs₁, hlt⟩ := k2PolyNagaoWide_step hmK hj hf
-    obtain ⟨s, hs, hJ⟩ := ih _ (by rw [← hv]; exact hlt) (act s₁ v) rfl
-    refine ⟨s * s₁, Subgroup.mul_mem _ hs hs₁, fun i hi => ?_⟩
-    rw [act_mul]
-    exact hJ i hi
-  · push Not at hex
-    exact ⟨1, Subgroup.one_mem _, fun j hj => by rw [act_one]; exact hex j hj⟩
+    intro v hv
+    by_cases hex : ∃ j ∈ K.erase m, v j ≠ 0
+    · obtain ⟨j, hj, hf⟩ := hex
+      obtain ⟨s₁, hs₁, hlt⟩ := k2PolyNagaoWide_step hmK hj hf
+      obtain ⟨s, hs, hJ⟩ := ih _ (by rw [← hv]; exact hlt) (act s₁ v) rfl
+      refine ⟨s * s₁, Subgroup.mul_mem _ hs hs₁, fun i hi => ?_⟩
+      rw [act_mul]
+      exact hJ i hi
+    · push Not at hex
+      exact ⟨1, Subgroup.one_mem _, fun j hj => by rw [act_one]; exact hex j hj⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_clear
 

@@ -135,7 +135,99 @@ extensions.
       to the central `T_x^e != 1`. So freeness of the block must come from the
       point-pushing kernel: the block is a lift of a non-free surface-group image with a
       nontrivial boundary-twist relator. Such images need `T_x^e` to be a product of `h'`
-      commutators in `Mod(Σ_{h',1})`, which fails for `h' = 1` (there
-      `Mod(Σ_{1,1})^ab = Z` and `T_x = (T_a T_b)^6` maps to `12`).
+      commutators in `Mod(Q̂)`. *Correction (attempt 12):* the ambient is `Mod(Q̂)`, of any
+      genus `g`, not `Mod(Σ_{h',1})`. For `g >= 2`, Baykur (arXiv:1206.3512, abstract) gives
+      commutator length `floor((|e|+3)/2)` for `T_∂^e`, so this is possible iff
+      `|e| <= 2h' - 2`. In particular it fails for `h' = 1` and works for `h' = 2`, `e = ±1`.
     - Still open: choosing lifts whose kernel part is exactly `(T_y T_x^-1)^{-n'}`,
       freeness of the lift, and injectivity of the amalgam.
+12. **Lifting the capped relator** (bh-3manifold, 2026-09-18). *Reduced to one explicit
+    condition plus freeness and injectivity; not constructed.* Let `Σ' ⊂ Q̂` be the
+    complement of the collar between `y` and `x = ∂Q̂`, so `∂Σ' = y` and `p` lies in the
+    collar. `Mod(Σ')` meets the pushing kernel trivially, so
+    `Push(pi_1(Q̂, p)) ⋊ Mod(Σ') <= Mod(Q, p)`, with `Mod(Σ')` acting on `pi_1(Q̂, p)` by based
+    automorphisms. Write elements as `(u, a)`.
+    - **Relator.** Take `a_1, b_1, a_2, b_2 ∈ Mod(Σ')` with `[a_1, b_1][a_2, b_2] = T_y` (Baykur,
+      genus of `Σ' >= 2`), and the lifts `(u, a_1), (1, b_1), (1, a_2), (1, b_2)`. A direct
+      computation gives `[(u, a_1), (1, b_1)] = (u · c(u)^-1, [a_1, b_1])` with
+      `c = a_1 b_1 a_1^-1`. So the relator product is `Push(u c(u)^-1) T_y`, which equals `T_y`,
+      i.e. `m' = 0`, `n' = 1`, exactly when `c` fixes `u`.
+    - **Consequence.** With the `v` block pushed, that is the non-virtually-fibered case
+      `m'/n' = 0` (attempt 10, item 5).
+    - **Non-degeneracy.** `T_y` acts on `pi_1(Q̂, p)` as conjugation by the boundary loop
+      `ℓ` (`T_y = T_x Push(ℓ)^-1`, and `T_x` acts trivially). So `T_y` is not central in the
+      lifted block, as it must not be, iff `u ∉ <ℓ>`.
+    - **The explicit condition.** Find a Baykur factorization in which `a_1 b_1 a_1^-1` fixes
+      some based loop `u ∉ <ℓ>`, e.g. `b_1` supported on a proper subsurface `W` with
+      `a_1(W)` missing a loop through the collar.
+    - **Still open:** that condition, freeness of the four lifts (their capped images are
+      not free), and injectivity of the amalgam with the pushed leaf.
+13. **Explicit candidate** (bh-3manifold, 2026-09-18). *Item 1 of attempt 12 solved;
+    freeness and injectivity open.*
+    - **Source.** Baykur, arXiv:1206.3512v2 (TeX read on MSI), l.206--262: the explicit
+      factorization of `t_δ^{2k}` into `k + 1` commutators by push maps and the generalized
+      lantern relation. The odd powers are deferred to BKM there.
+    - **An explicit `T_y` in two commutators** (same method, lantern case). Take a sphere
+      with boundary `y` and holes `A_1, A_2, A_3`, glued along the holes to a connected `Z`,
+      giving `Σ'` of genus `>= 2` with boundary `y`. Let `X_{ij}` be the lantern curve around
+      `A_i, A_j`. Boundary twists commute with the lantern twists, so the lantern relation
+      gives `T_y = (t_{X_12} t_{A_1}^-1)(t_{X_23} t_{A_2}^-1)(t_{X_13} t_{A_3}^-1)`. So
+      `T_y = [t_{X_12} t_{A_1}^-1, φ] [t_{X_13}, ψ]` for `φ` with `φ(X_12) = A_2`,
+      `φ(A_1) = X_23`, and `ψ` with `ψ(X_13) = A_3`. Both exist rel `∂` by change of
+      coordinates: each pair consists of disjoint nonseparating curves with connected
+      complement, since `Z` is connected.
+    - **Lift.** Push `B_1 = φ` along the based loop `v` around `A_1` on the `y`-side of
+      `X_23`. A computation like attempt 12's, for a push on the second entry, gives
+      `[(1, a), (v, b)] = (a(v) [a, b](v)^-1, [a, b])`. So the relator is exactly `T_y` iff
+      `(b a b^-1)(v) = v`. Here `b a b^-1 = t_{A_2} t_{X_23}^-1`, and `v` misses `A_2` and
+      `X_23`, so the lifted relator is `T_y`: `m' = 0`, `n' = 1`. Also `v ∉ <ℓ>`, since `A_1`
+      is essential.
+    - **Lattice matching.** With the pushed leaf `(Push(pi_1 Y_v), T_y)` and the lifted leaf
+      `H x <T_x>`, both boundary tori are `<T_x, T_y>`, since `(-1, 1), (0, 1)` and
+      `(0, 1), (1, 0)` are both bases. The boundary words `(-1, 1)` and `(0, 1)` are not
+      parallel, so the abstract amalgam is a non-fibered two-leaf graph manifold group
+      (`two-leaf-graph-manifold-twist-realizations`, item 1). By item 2 (the Svetlov
+      reading) it is not virtually fibered.
+    - **Host.** `S = Σ' ∪_y P ∪_x Y'_v`, with `P` the pair of pants containing the puncture
+      `p`. It is punctured, so `Mod(S)` is in `B_A`.
+    - **Open:** (a) `H = <t_{X_12} t_{A_1}^-1, Push(v) φ, t_{X_13}, ψ>` is free of rank 4.
+      Its image in `Mod(Σ')` is not free; kernel elements of exponent sum zero in the
+      relator map to nontrivial push products `Π Push([u_i, ℓ])`, which is encouraging but
+      proves nothing. (b) Injectivity of the amalgam. Candidate tools, untried: ping-pong
+      on the curve complex (Koberda / Clay--Mangahas type combination theorems), or
+      Bass--Serre theory for the pushed leaf through the Birman exact sequence.
+14. **Correction to attempt 13: that `H` is not free** (bh-3manifold, 2026-09-18).
+    - **Why.** `t_{X_12} t_{A_1}^-1`, `t_{X_13}` and `ψ` lie in `Mod(Σ')`, so they commute with its
+      boundary twist `T_y`, the image of the relator `r = [a_1, b_1][a_2, b_2]`. So
+      `[r, a_1] != 1` in `F_4` maps to `1`, and the candidate of attempt 13 fails at (a).
+    - **Criterion.** In `Push(pi_1(Q̂, p)) ⋊ Mod(Σ')`, `(u, a)` commutes with `(1, T_y)` iff
+      `u ∈ <ℓ>`. `T_y` acts by conjugation by `ℓ^{±1}`, and `ℓ`, the boundary loop, generates
+      its own centralizer.
+    - **Necessary condition for any freely lifted block.** In a free group the centralizer
+      of `r` is `<r>`. So every element of the lifted block whose push part lies in `<ℓ>`
+      must be a power of the relator image. In particular all four generators need push
+      parts outside `<ℓ>`, not just one.
+    - **What survives.** The factorization, the lattice matching and the host are unaffected.
+      What is needed is a lift `(u_i, A_i), (v_i, B_i)` with all push parts outside `<ℓ>`,
+      relator exactly `T_y`, and the centralizer condition above.
+    - **Multiplier freedom.** Each generator may be multiplied by an element of its
+      partner's centralizer, e.g. `B_1 -> B_1 ζ` with `ζ ∈ C(A_1)`. This keeps the relator
+      and the attempt-13 fixed-loop condition. Such multipliers in `Mod(Σ')` do not add
+      push parts, so they cannot cure the defect alone. Not constructed.
+15. **Pushing all four generators** (bh-3manifold, 2026-09-18). *Simplest method dies for
+    every lantern-based factorization; general case handed to bh-free-21.*
+    - **Formula.** In `Push ⋊ Mod(Σ')` with `(u, a)(v, b) = (u·a(v), ab)`, the commutator
+      `[(u, a), (v, b)]` is `(P, [a, b])` with `P = u · a(v) · c(u)^-1 · [a, b](v)^-1`, where
+      `c = a b a^-1`. For two pairs the relator is `(P_1 · [a_1, b_1](P_2), T_y)`.
+    - **Common fixed loops.** If `a(w) = b(w) = w`, the lifts `(w^k, a)` and `(w^j, b)` give
+      `P = 1` for all `k, j`. So a pair with a common fixed based loop `w ∉ <ℓ>` can be pushed
+      without changing the relator.
+    - **Why it dies.** The first pair `[t_X t_{A_i}^-1, φ]`, with `φ(X) = A_j` and
+      `φ(A_i) = Y`, always involves two lantern curves `X != Y`, which share exactly one hole.
+      A loop fixed by the pair misses `X`, `A_i`, `A_j` and `Y`. From the collar of `y` such a
+      loop stays on the `y`-side of both `X` and `Y` and cannot leave the lantern sphere
+      through a hole without crossing one of them. So it lies in `<ℓ>`.
+    - **Remaining freedom.** Twisted solutions of `P_1 · [a_1, b_1](P_2) = 1` with `P_i != 1`;
+      non-lantern factorizations of `T_y` whose pairs have common fixed loops; the
+      centralizer condition of attempt 14; then freeness and injectivity.
+    - **Handoff.** The whole two-leaf test case is handed to bh-free-21 (see its board).

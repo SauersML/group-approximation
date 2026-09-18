@@ -22,7 +22,8 @@ finite.
 - Write `Γ'_x = {y : (x,y) ∈ Γ'}` and `Γ'^y = {x : (x,y) ∈ Γ'}`. Invariance gives
   `Γ'_(ρ_(φ(g)) x) = ρ_g(Γ'_x)` and `Γ'^(ρ_g y) = ρ_(φ(g))(Γ'^y)`.
 - `D = {x : |Γ'_x| ≠ 1}` is finite and `ρ(φ(P))`-invariant.
-  `E = {y : |Γ'^y| ≠ 1}` is finite and `ρ(P)`-invariant.
+  `E = {y : |Γ'^y| ≠ 1}` is finite and `ρ(P)`-invariant. It may contain `0`, whose
+  cofibre is empty. That is harmless.
 - Let `N_1` be the set of `x ∉ D` whose unique partner `s'(x)` lies outside `E`. It is
   cofinite and `ρ(φ(P))`-invariant, and `s' : N_1 -> N` satisfies
   `s'(ρ_(φ(g)) x) = ρ_g s'(x)` for `x ∈ N_1`, `g ∈ P`.
@@ -72,9 +73,9 @@ injective.
 - (b) If `s ρ(P) s^-1 = ρ(P)`, then conjugating by `s^-1` gives `ρ(P) = s^-1 ρ(P) s`,
   and (a) applies.
 
-**Item 3.** Apply items 1 and 2 to `H` with the restricted action. A nontrivial element
-of an infinite `H` cannot have finite support when all nonidentity elements of `P` have
-infinite support.
+**Item 3.** Apply item 1 to `H`, with the restricted action and the restricted twist.
+Item 1 never uses that `H` is infinite. A nontrivial element of `H` cannot have finite
+support when all nonidentity elements of `P` have infinite support.
 
 **Inputs.** FW is used only in Step 2. That (T) implies FW is standard: the cocycle
 `g ↦ 1_(gA) − 1_A` of a commensurated subset is bounded under (T), and a commensurated

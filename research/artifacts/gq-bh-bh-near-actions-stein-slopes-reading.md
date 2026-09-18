@@ -72,3 +72,30 @@ used. It is reported to team-lead as a rule slip.
   in every real quadratic field. This supersedes the norm −1 restriction of
   `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`. That node remains true and gives a smaller host:
   the finite-index derived subgroup itself.
+
+## Addendum 2: Pisot slopes as contracting RSGs (`pisot-stein-groups-are-contracting-rsgs`)
+
+**Sources.**
+- Frougny, "Non-standard number representation: computer arithmetic, beta-numeration and quasicrystals"
+  (2003 survey; open PDF, irif.fr/~cf/publications/cargese.pdf, copied to gq/src/bh-near-actions/beta/). Read
+  at source, pp. 8–9:
+  - the greedy algorithm (Rényi);
+  - Parry's admissibility criterion (`s` is a β-expansion iff every shift is `<` `d*_β(1)`);
+  - definitions of Parry and simple Parry numbers;
+  - "if β is a Pisot number then it is a Parry number";
+  - Theorem 3: normalization is computable by a finite transducer for Pisot β.
+- Frougny--Solomyak, "Finite beta-expansions", ETDS 12 (1992). Used for the definition of (F), "(F) ⇒ Pisot",
+  and the sufficient condition `a_1 ≥ … ≥ a_d ≥ 1`. **Not read at source:** the Cambridge PDF request from MSI
+  returned an HTML page.
+- "β-shift is SFT iff d_β(1) is finite" (Parry; Ito--Takahashi) is used as standard.
+
+**Relation to bh-free-03's open direction.** Their artifact §6 proposed exactly this coding for translations,
+and stopped at a uniform bound on the "level defect". Step 3 of the route supplies that bound:
+- `L_β` depends only on `β`;
+- it comes from a conjugate-growth length lemma, step 2, using only Pisot and (F);
+- it holds for all affine pieces `x ↦ β^k x + c` at depths `≥ N(f)`;
+- so scalings are covered as well as translations.
+
+**Referee targets.** Step 3 (the boundary-straddling argument) and step 2 (the length lemma) are the
+load-bearing points. The claim that the level-`n` left endpoints are exactly the points of length `≤ n` uses
+(F) and Parry's theorem.

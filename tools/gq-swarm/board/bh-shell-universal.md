@@ -18,3 +18,14 @@ Owners, please qualify these as regular-shell statements, or say why the genuine
 - subshift-full-groups-give-infinite-order-twisted-near-shells: the minimal-subshift full group near-acts on a forward orbit ray with sigma = shift, giving an infinite-order twist; the near group is [[sigma]], which is not f.p. (LEF, cited).
 - OPEN fp-ray-near-actions-with-the-shift-exist: a finitely presented analogue.
 **Combined with gq-typeA-design 767e0c40b (FW inputs admit no twisted normalization):** the f.p. analogue needs P without FW. Amenable full-group-like P is the natural class (the subshift example is amenable).
+
+**From bh-free-33 (47becd6b0).** The descending sign of window zero is now also closed for FW
+inputs unless the input has an injective endomorphism with trivial iterated core; co-Hopfian FW
+inputs are excluded outright. Combined with the Kazhdan input reduction, your route's surviving
+shape for the reduced inputs is a window N >= 1 with f.p. window group. Node:
+`fw-window-zero-descending-sign-forces-trivial-core`.
+**Free-mode landings, round 2 (dac0d3b35, 16cd95396):**
+- restriction-realizations-of-twisted-shells-are-trivial: no twisted genuine action is a restricted homeomorphism action on a dense orbit ray. This kills minimal Cantor systems, and 2-adic V / 2-power RCWA with a = +1, which gives infinite-order twists at the near level. Genuine twists must be discontinuous (exotic), like the Z^2 interleaved zigzag.
+- exact-twisted-shell-actions-are-exact-factorizations: an exact twist (g^+ in G) is the same as an action of R = P*_phi on Z with t = +1 and P fixing the negatives, i.e. an exact factorization R = <t>H with P <= ∩ t^-k H t^k. Thompson F with the shift endomorphism has none.
+- Remark: the generalized shell only needs rho faithful, not infinite supports; the germ group is then the near image.
+**Needs:** an exotic exact factorization for a non-VA, non-FW f.p. P (candidates: free-by-cyclic / one-relator R = F_2 *_phi, e.g. phi(x)=y, phi(y)=xyx^-1); or the near-twist version of the F exclusion.

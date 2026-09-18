@@ -76,3 +76,13 @@ finite groups is recalled, not checked here.)
    - A candidate is Lehnert's conjecture (`lehnert-conjecture-every-cocf-group-embeds-in-v`),
      since whether surface groups are coCF is also open. That turns a no into a
      coCF question, not an answer.
+
+- **bh-free-41, 09-18 (support and attractor route; stalled).** These three landings are lane proofs and have not been reviewed:
+  - `cyclic-centralizer-subgroups-of-nv-have-meeting-supports`: in every `nV`, all nontrivial supports meet.
+  - `cyclic-centralizer-subgroups-of-v-touch-attractors`: in `V`, every support meets the attractors, the repellers, or the identity region of any other element's flow power.
+  - `support-constraints-on-v-subgroups-cannot-see-one-endedness`: free subgroups of `PSL_2(Z) ≤ T` satisfy every such condition with full supports.
+
+  One serious pass on the next idea also failed. The idea was an equivariant map from the orbit closure of the attractors onto `∂Γ = S^1` that clashes with the Cantor topology.
+  - Such maps exist and clash with nothing. Belk–Bleak–Matucci embed every hyperbolic group in the rational group `R` through its horofunction boundary, a Cantor set carrying a continuous, finite-to-one, equivariant surjection onto `∂Γ`. I recalled this and did not read it at source.
+  - The Bowen–Series coding of a surface group gives the same picture.
+  - So connectedness of `∂Γ` alone gives no obstruction. A negative answer to Q4.7 must see the difference between `V` and `R`, that is, synchronous against asynchronous transducers, and not just the Cantor-versus-circle topology.

@@ -29,3 +29,24 @@ gates of the genuine-action shell. It would be the first input that is not virtu
 - Candidates to test: full groups of non-minimal Cantor systems with a single dense forward orbit;
   groupoids mixing a Z-action with a contracting self-similar part (to break the LEF obstruction); and
   Houghton-type groups with their finitary part replaced by infinite-support elements.
+
+## Attempts
+
+- **Two-radix odometer host (bh-shell-arith, 2026-09-18).** `two-radix-host-meets-the-fp-ray-conditions-except-realizability`:
+  the `F_infinity` host `H` of `two-radix-odometer-host-is-f-infinity-with-fg-charge-kernel` acts
+  genuinely on `{0,1} x Z` with `s` the translation. Its restriction to the nonnegative ray gives a
+  finitely presented `R = H` with `t = s`, a finitely generated, not virtually abelian index kernel `P`,
+  and infinite supports. So this is the "mixed `Z`-action plus self-similar" candidate, and it escapes
+  the LEF obstruction. It fails at realizability:
+  `commuting-translations-sharing-an-inflow-ray-are-not-realizable` applies to the commuting pair
+  `a_(d_0) a_(c')^-1`, `a_(d_1) a_(c')^-1` in `P`, and to all finite-index subgroups. So a positive
+  candidate must have no two commuting index-zero elements that drain a common ray into different rays.
+
+## Attempts
+
+1. (bh-shell-universal, 09-18) **Answered in substance.** Take `R = B = V_(2,1)(<a>)`, `t = a`, with its
+   faithful near action on `N`. `B` is of type `F_infinity`, and `P = ker chi` is finitely generated
+   (`odometer-prefix-groups-have-fg-index-kernels`), not virtually abelian (it contains `V`), and
+   near-faithful. The realizability clause is unnecessary by `shell-envelopes-depend-only-on-the-near-image`.
+   It is also met literally by the subgroup `V`, which acts genuinely
+   (`thompson-v-binary-shell-action-passes-both-germ-gates`). Every input obtained this way lies in `B`.

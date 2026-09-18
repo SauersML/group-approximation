@@ -23,7 +23,7 @@ Notation is as in the claim. Write `ℓ = ℓ_v`.
 **1. `G_Π` is a group containing `V`.**
 - **Every `V`-germ between points of `Ω_Π` is admissible with `π = id`.** Near `p = uv^∞` an element
   of `V` is one prefix replacement `uv^K ζ ↦ wζ`. If it sends `p` to `q = u'v^∞`, then
-  `wv^∞ = u'v^∞`. Since `v` is primitive, this gives `w = u'v^L`. So it maps `D_{k,j}(p)` onto
+  `wv^∞ = u'v^∞`. Since `v` is primitive, this gives `w = u'v^L` for some `L ∈ Z` (if `|w| < |u'|`, read it as `u' = wv^{-L}`). So it maps `D_{k,j}(p)` onto
   `D_{k+L-K, j}(q)`.
 - **Admissible germs compose.** They compose to admissible germs:
   `(m, π)` followed by `(m', π')` is `(m'∘π + m, π'π)`, and inverses are admissible.
