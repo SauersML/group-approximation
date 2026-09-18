@@ -52,8 +52,7 @@ theorem suslinBase3_map_stabilize {R S ι κ : Type*} [CommRing R] [CommRing S] 
   change f (Matrix.fromBlocks (u : Matrix ι ι R) 0 0 1 i j) =
     Matrix.fromBlocks (f.mapMatrix (u : Matrix ι ι R)) 0 0 1 i j
   rcases i with i | i <;> rcases j with j | j
-  · rw [Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₁]
-    rfl
+  · rfl
   · simp only [Matrix.fromBlocks_apply₁₂, Matrix.zero_apply, map_zero]
   · simp only [Matrix.fromBlocks_apply₂₁, Matrix.zero_apply, map_zero]
   · rw [Matrix.fromBlocks_apply₂₂, Matrix.fromBlocks_apply₂₂]

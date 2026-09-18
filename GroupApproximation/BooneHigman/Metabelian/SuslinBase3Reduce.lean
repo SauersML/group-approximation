@@ -78,7 +78,7 @@ theorem suslinBase3_stab_mem {A : Type*} [CommRing A] {n : ℕ}
         σ := by
     apply Units.ext
     exact hP
-  rw [heq, ← suslinBase3_map_stabilize
+  rw [heq, ← suslinBase3_map_stabilize (κ := Unit)
     (compRingHom (C (algebraMap A (Localization.AtPrime 𝔪) s) * X)) σ] at hmem
   obtain ⟨c, hc⟩ :=
     (IsLocalization.map_units (Localization.AtPrime 𝔪) (⟨s, hs⟩ : 𝔪.primeCompl)).exists_right_inv
@@ -163,3 +163,61 @@ theorem suslinBase3_blockLocal_of_stab {A : Type*} [CommRing A] {n : ℕ}
   rwa [mul_inv_cancel_right] at hmem
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinBase3_blockLocal_of_stab
+
+/-- **The converse**, for every `A`: the block form at rank `n + 1` gives the stabilized
+residual at rank `n`.  Apply it to `τ = diag(σ, 1)` reindexed, with `F = 1`. -/
+theorem suslinBase3_stab_of_blockLocal {A : Type*} [CommRing A] {n : ℕ}
+    (h : SuslinR2BlockLocal A (n + 1)) : SuslinBase3StabLocal A n := by
+  intro σ hdet h0 𝔪 h𝔪
+  obtain ⟨e⟩ : Nonempty (Fin n ⊕ Unit ≃ Fin (n + 1)) :=
+    ⟨((finSuccEquiv' (0 : Fin (n + 1))).trans (Equiv.optionEquivSumPUnit (Fin n))).symm⟩
+  have hdetτ : Matrix.det ((elementaryReindexUnitEquiv (R := A[X]) e
+      (stabilizeUnit (R := A[X]) (κ := Unit) σ) : (Matrix (Fin (n + 1)) (Fin (n + 1)) A[X])ˣ) :
+        Matrix (Fin (n + 1)) (Fin (n + 1)) A[X]) = 1 := by
+    change Matrix.det ((Matrix.reindexRingEquiv A[X] e)
+      (Matrix.fromBlocks (σ : Matrix (Fin n) (Fin n) A[X]) 0 0 1)) = 1
+    rw [Matrix.coe_reindexRingEquiv, Matrix.det_reindex_self, Matrix.det_fromBlocks_zero₂₁,
+      Matrix.det_one, mul_one]
+    exact hdet
+  have hτ0 : elementaryMatrixUnitMap (Polynomial.constantCoeff (R := A))
+      (elementaryReindexUnitEquiv (R := A[X]) e (stabilizeUnit (R := A[X]) (κ := Unit) σ)) =
+        1 := by
+    rw [suslinBase3_map_reindex, suslinBase3_map_stabilize, h0, map_one, map_one]
+  have hblock : elementaryMatrixUnitMap (ι := Fin (n + 1))
+      (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪)))
+      (elementaryReindexUnitEquiv (R := A[X]) e (stabilizeUnit (R := A[X]) (κ := Unit) σ)) *
+        1 ∈ coordinateBlock (Localization.AtPrime 𝔪)[X] (e (Sum.inr ())) := by
+    rw [mul_one, suslinBase3_map_reindex, suslinBase3_map_stabilize,
+      ← range_reindexedStabilize_eq_coordinateBlock (R := (Localization.AtPrime 𝔪)[X]) e]
+    exact MonoidHom.mem_range.mpr ⟨elementaryMatrixUnitMap (ι := Fin n)
+      (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) σ, rfl⟩
+  have hnorm : elementaryMatrixUnitMap (ι := Fin (n + 1))
+      (Polynomial.constantCoeff (R := Localization.AtPrime 𝔪))
+      (elementaryMatrixUnitMap (ι := Fin (n + 1))
+        (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪)))
+        (elementaryReindexUnitEquiv (R := A[X]) e (stabilizeUnit (R := A[X]) (κ := Unit) σ)) *
+          1) = 1 := by
+    rw [mul_one]
+    exact suslinR2_constantCoeff_map _ _ hτ0
+  have hτ := h _ hdetτ hτ0 𝔪 h𝔪 1 (one_mem _) (e (Sum.inr ())) hblock hnorm
+  rw [suslinBase3_map_reindex, suslinBase3_map_stabilize,
+    ← elementaryReindexGroup_map (R := (Localization.AtPrime 𝔪)[X]) e,
+    Subgroup.mem_map_equiv, MulEquiv.symm_apply_apply] at hτ
+  exact hτ
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinBase3_stab_of_blockLocal
+
+/-- The residual at rank `n` is equivalent to the block form at rank `n + 1`, when `A → A_𝔪`
+is injective for every maximal `𝔪`. -/
+theorem suslinBase3_stab_iff_blockLocal {A : Type*} [CommRing A] {n : ℕ}
+    (hf : ∀ (𝔪 : Ideal A) (_ : 𝔪.IsMaximal),
+      Function.Injective (algebraMap A (Localization.AtPrime 𝔪))) :
+    SuslinBase3StabLocal A n ↔ SuslinR2BlockLocal A (n + 1) :=
+  ⟨fun h ↦ suslinBase3_blockLocal_of_stab h hf, suslinBase3_stab_of_blockLocal⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinBase3_stab_iff_blockLocal
+
+end Absorption
+end Metabelian
+end BooneHigman
+end GroupApproximation
