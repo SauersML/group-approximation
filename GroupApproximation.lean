@@ -6093,6 +6093,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeF
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Theta
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabReindex
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexStabRankDef
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionX
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
