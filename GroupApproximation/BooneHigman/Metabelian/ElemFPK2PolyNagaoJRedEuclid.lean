@@ -40,8 +40,10 @@ theorem k2PolyNagaoJRed_step {K : Finset I} {m : I} (L : I) {j j' : I} (hj : j �
       (Finset.mem_insert_of_mem (Finset.mem_of_mem_erase hj)) hj', ?_⟩
     refine k2PolyNagaoWide_mu_lt hj (fun i hij _ => k2PolyNagaoWide_act_x_ne _ _ _ hij) ?_
     have e1 : act (x j j' hne (-(v j / v j'))) v j = v j % v j' := by
+      have hd : v j' * (v j / v j') + v j % v j' = v j :=
+        EuclideanDomain.div_add_mod (v j) (v j')
       rw [act_x_apply, if_pos rfl]
-      linear_combination -(EuclideanDomain.div_add_mod (v j) (v j'))
+      linear_combination -hd
     rw [e1, k2PolyNagaoWide_act_x_ne _ _ _ hjm.symm]
     have hlt := k2PolyNagaoWide_nu_mod_lt (v j) h2
     omega
@@ -49,8 +51,10 @@ theorem k2PolyNagaoJRed_step {K : Finset I} {m : I} (L : I) {j j' : I} (hj : j �
       (Finset.mem_insert_of_mem (Finset.mem_of_mem_erase hj')) hj, ?_⟩
     refine k2PolyNagaoWide_mu_lt hj' (fun i hij _ => k2PolyNagaoWide_act_x_ne _ _ _ hij) ?_
     have e1 : act (x j' j hne.symm (-(v j' / v j))) v j' = v j' % v j := by
+      have hd : v j * (v j' / v j) + v j' % v j = v j' :=
+        EuclideanDomain.div_add_mod (v j') (v j)
       rw [act_x_apply, if_pos rfl]
-      linear_combination -(EuclideanDomain.div_add_mod (v j') (v j))
+      linear_combination -hd
     rw [e1, k2PolyNagaoWide_act_x_ne _ _ _ hj'm.symm]
     have hlt := k2PolyNagaoWide_nu_mod_lt (v j') h1
     omega
@@ -90,8 +94,9 @@ theorem k2PolyNagaoJRed_row {K : Finset I} {m L i j : I} (hij : i ≠ j) (hi : i
       act g v i = v i % v j ∧ ∀ k, k ≠ i → act g v k = v k := by
   refine ⟨x i j hij (-(v i / v j)), k2PolyNagaoJRed_x_mem_Qm hij _ hi hj, ?_,
     fun k hk => k2PolyNagaoWide_act_x_ne _ _ _ hk⟩
+  have hd : v j * (v i / v j) + v i % v j = v i := EuclideanDomain.div_add_mod (v i) (v j)
   rw [act_x_apply, if_pos rfl]
-  linear_combination -(EuclideanDomain.div_add_mod (v i) (v j))
+  linear_combination -hd
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_row
 
