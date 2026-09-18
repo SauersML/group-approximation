@@ -62,10 +62,12 @@ theorem eHighWittLin_isWH_carry {τ : Type} {w : τ → ℕ} {Φ Ψ : MvPolynomi
   have hc : ((p.choose i / p : ℕ) : MvPolynomial τ L) =
       C ((p.choose i / p : ℕ) : L) :=
     (map_natCast (C : L →+* MvPolynomial τ L) (p.choose i / p)).symm
-  rw [hc]
-  refine eHighWitt_isWH_of_eq (((hΦ.pow i).C_mul _).mul (hΨ.pow (p - i))) ?_
-  simp only [smul_eq_mul, mul_one]
-  omega
+  have key : IsWeightedHomogeneous w
+      (C ((p.choose i / p : ℕ) : L) * Φ ^ i * Ψ ^ (p - i)) p :=
+    eHighWitt_isWH_of_eq (((hΦ.pow i).C_mul _).mul (hΨ.pow (p - i)))
+      (by simp only [smul_eq_mul, mul_one]; omega)
+  rw [← hc] at key
+  exact key
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWH_carry
 
@@ -78,8 +80,8 @@ theorem eHighWittLin_aeval_carry {τ : Type} (pt : τ → L) (Φ Ψ : MvPolynomi
 theorem eHighWittLin_isWP_zero (w : σ → ℕ) (co : N → σ → L) :
     eHighWittLin_IsWP w co (fun _ => (0 : eHighWitt_W2 L p)) :=
   ⟨0, 0, isWeightedHomogeneous_zero L _ _, isWeightedHomogeneous_zero L _ _, fun x =>
-    ⟨(map_zero (aeval (eHighWitt_hpt (co x)))).symm,
-      (map_zero (aeval (eHighWitt_hpt (co x)))).symm⟩⟩
+    ⟨(map_zero (aeval (R := L) (eHighWitt_hpt (co x)))).symm,
+      (map_zero (aeval (R := L) (eHighWitt_hpt (co x)))).symm⟩⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWP_zero
 
