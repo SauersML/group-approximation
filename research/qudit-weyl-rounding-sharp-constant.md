@@ -5,6 +5,8 @@ kind: claim
 title: The sharp additive stabilizer rounding constant for prime-qudit Weyl sums is d/pi + O(1)
 artifacts:
   - experiments/qudit-stabilizer-rounding-constant-2026-09-17/README.md
+refuted_by:
+  - qudit-weyl-rounding-constant-triangular-harper-bound
 distinct_from:
   qudit-weyl-rounding-constant-linear-upper-bound: that proves the upper bound 2/sin(pi/d)+3, about 2d/pi; this asks for the sharp constant, conjectured to be about d/pi, with rigorous lower bounds and numerics.
   stabilizer-rounding-constant-is-one-over-sqrt2: that is the sharp qubit constant 1/sqrt2; this is the prime-qudit analogue, which grows linearly in d.
@@ -72,6 +74,32 @@ The exact pair gap `eps_d = min(delta_u + delta_v)` over non-commuting Weyl pair
    while the pair bound guarantees nothing below `pi/d`. A Jordan-type lemma is needed for
    the pair `(P, u)`, where `u` permutes the `d` eigenspaces of `u_R` cyclically. The
    leak there is governed by a `d`-cycle (Harper) spectrum, not by two-dimensional blocks.
+
+3. *Harper-spectral upper bound toward `d/pi`* (w3-078, 2026-09-18). This dies because the
+   target is false. The aim was a leak lemma whose per-term defect is the Harper gap `2pi/d`. So
+   the first question was which one-qudit configuration of directions has the smallest semiclassical
+   frustration per unit of stabilizer loss.
+   - In the small-angle regime, `F_min ~ (pi/d) ||D Omega D||_1` and `F_stab <= 2(W - m_iso)`.
+     Here `Omega` is the integer symplectic Gram matrix of the directions, `D = diag(sqrt w)`, and
+     `m_iso` is the maximum weight of a commuting set.
+   - So `c ~ (d/2pi) rho` with `rho = 4(W - m_iso)/||D Omega D||_1`. The square Harper sum has
+     `rho = 2`, which is the source of `d/pi`.
+   - The triangle `Z, X, e^(i pi/d) XZ` has `rho = 4/sqrt3`, which gives `2d/(sqrt3 pi)`. For one qudit
+     the Farey graph is `K_4`-free, and Motzkin–Straus caps `rho` at `4/sqrt3` (heuristic, small-angle
+     regime).
+   - The triangle bound is proved in `qudit-weyl-rounding-constant-triangular-harper-bound`, with a
+     chirped Gaussian and Poisson summation. The phase `e^(i pi/d) = -omega^(2^(-1))` is essential,
+     because `+D(1,1)` is frustrated and gives `c ~ 0.2`.
+   - So `c_d >= 2d/(sqrt3 pi) - 1 - o(1)`, and the conjecture above is refuted.
+
+   What survives: the leading coefficient lies in `[2/(sqrt3 pi), 2/pi]`. The natural replacement
+   conjecture is `c_d = 2d/(sqrt3 pi) + O(1)`. A matching upper bound would need two things:
+   - a quantum uncertainty bound `F >= (pi/d) ||D Omega D||_1 (1 - o(1))` for the non-negligible
+     terms;
+   - a rounding that loses only `2(W - m_iso)`.
+
+   The antiparity example at `d = 3` shows that the small-angle picture is not the whole story for
+   small `d`.
 
 **What is missing.**
 1. The leak lemma in Attempt 2. The Harper example suggests that the per-term defect is
