@@ -182,6 +182,77 @@ theorem witnessStepPinchParity_faceOf_sigma {M : CombMap.{v}} (z : M.Dart) :
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchParity_faceOf_sigma
 
+section ParityWalk
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {X : DiscDiagram.{u, w, v} W}
+
+/-- **The inner darts of a walk turn have both faces off `F`.**  Piece 1 of the module docstring:
+induction on `k`, with `faceOf (σ z) = faceOf (α z)` and `mem_iff`. -/
+theorem witnessStepPinchParity_inner {F : Finset X.toCombMap.Face}
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X F ow) {d : X.toCombMap.Dart}
+    (hd : d ∈ ow) {m : ℕ}
+    (hfirst : ∀ k, 0 < k → k < m →
+      ¬ walkKeep X.toCombMap ow ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d))) :
+    ∀ k : ℕ, 0 < k → k < m →
+      X.toCombMap.faceOf ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d)) ∉ F ∧
+      X.toCombMap.faceOf
+        (X.toCombMap.alpha ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d))) ∉ F := by
+  have hoff : ∀ k, 0 < k → k < m → (X.toCombMap.sigma ^ k) (X.toCombMap.alpha d) ∉ ow :=
+    fun k hk hkm hz => hfirst k hk hkm (Or.inl hz)
+  have key : ∀ k : ℕ, 0 < k → k < m →
+      X.toCombMap.faceOf ((X.toCombMap.sigma ^ k) (X.toCombMap.alpha d)) ∉ F := by
+    intro k
+    induction k with
+    | zero => exact fun hk => absurd hk (Nat.lt_irrefl 0)
+    | succ k ih =>
+      intro _ hkm
+      rw [pow_succ', Equiv.Perm.mul_apply, witnessStepPinchParity_faceOf_sigma]
+      rcases Nat.eq_zero_or_pos k with hk0 | hk
+      · subst hk0
+        rw [pow_zero, Equiv.Perm.one_apply, X.toCombMap.alpha_involutive d]
+        exact ((E.mem_iff d).mp hd).1
+      · exact witnessStepPinchOff_alpha_faceOf_not_mem E (hoff k hk (by omega))
+          (ih hk (by omega))
+  exact fun k hk hkm => ⟨key k hk hkm,
+    witnessStepPinchOff_alpha_faceOf_not_mem E (hoff k hk hkm) (key k hk hkm)⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchParity_inner
+
+/-- **Piece 1: every walk turn is a fan.**  If `(x, y)` is consecutive in a rotation of
+`invDarts X ow`, then the sector from `y` to `α x` meets no face of `F`. -/
+theorem witnessStepPinchParity_turn_fan {F : Finset X.toCombMap.Face}
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X F ow) {n : ℕ}
+    {s t : List X.toCombMap.Dart} {x y : X.toCombMap.Dart}
+    (h : (invDarts X ow).rotate n = s ++ x :: y :: t) :
+    WitnessStepPinchFan X.toCombMap F y (X.toCombMap.alpha x) := by
+  have h0 : (ow.reverse.map X.toCombMap.alpha).rotate n = s ++ x :: y :: t := h
+  have hr := witnessStep_rotate_of_rotate_inv X.toCombMap.alpha_involutive h0
+  have hmem : X.toCombMap.alpha y ∈ ow :=
+    witnessStepCorner_alpha_mem_of_mem_invDarts (witnessStepPinchParity_mem_of_rotate h)
+  obtain ⟨m, hm, hkeep, hfirst⟩ := PocketRun.exists_firstKeep ow hmem
+  have hfan : WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha (X.toCombMap.alpha y))
+      (X.toCombMap.alpha x) :=
+    ⟨m, hm, witnessStepSide_sigma_of_rotate E hr hm hkeep hfirst,
+      witnessStepPinchParity_inner E hmem hfirst⟩
+  rwa [X.toCombMap.alpha_involutive y] at hfan
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchParity_turn_fan
+
+/-- **The second dart of a turn looks into `F`**, by `hnb`. -/
+theorem witnessStepPinchParity_face_of_rotate {F : Finset X.toCombMap.Face}
+    {ow : List X.toCombMap.Dart}
+    (hnb : ∀ d ∈ ow, X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ F) {n : ℕ}
+    {s t : List X.toCombMap.Dart} {x y : X.toCombMap.Dart}
+    (h : (invDarts X ow).rotate n = s ++ x :: y :: t) : X.toCombMap.faceOf y ∈ F := by
+  have hf := hnb _ (witnessStepCorner_alpha_mem_of_mem_invDarts
+    (witnessStepPinchParity_mem_of_rotate h))
+  rwa [X.toCombMap.alpha_involutive y] at hf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinchParity_face_of_rotate
+
+end ParityWalk
+
 end FourPieceWitness
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
