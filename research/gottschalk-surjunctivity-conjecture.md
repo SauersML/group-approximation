@@ -914,6 +914,15 @@ The most promising continuation is the first solvable non-nilpotent alphabet, `S
 `Z/3` layer is twisted by the sign automaton, and the fibre maps are linear over a twisted crossed product
 of `C(2^G, F_3)` rather than a group ring.
 
+- **Heretic A1, second pass: solvable laws cannot stabilize a non-affine binary rule (sw-013, 2026-09-17).**
+  Stabilizing `tau` with identity ancilla symbols and encoding `tau x id_B` sitewise as a polynomial automaton over
+  a solvable group of order `2|B|` would let the nilpotent and solvable reductions reach arbitrary binary rules.
+  `solvable-ancilla-realizations-of-binary-automata-are-affine` kills this: at the first chief factor whose cosets
+  cross the data fibres, an abelian factor makes every data flip a configuration-independent translation, so
+  `tau` is affine, over every host, ancilla size, encoding and word. Non-affine data always sits above `Sol(Q)`,
+  and over `A_5` with `|B| = 30` every rule is realized. Open escapes: several data tracks, non-identity ancilla
+  dynamics, regrouping, and realization up to reversible-automaton conjugacy.
+
 **Homogeneity denied: invariant random subgroups (a-gs-heretic, 2026-09-17).** This was a heretic lane.
 Artifact `research/artifacts/irs-surjunctivity-heretic-2026-09-17.md`.
 

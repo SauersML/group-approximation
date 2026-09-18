@@ -69,3 +69,25 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
   - *Next.* Bound the drop loci. The same Chern count on a sub-slice where the rank
     is constant should force the drop set to have large dimension. Then run the
     argument in `B` with the point-evaluation blocks included.
+- **Drop loci bounded, and the single-family route blocked (w3-113, 2026-09-17).**
+  - *Drop-locus bound.* `toms-swap-drop-locus-has-codimension-at-most-2m-plus-1`
+    shows that the Chern count survives a drop set `D` with `dim D <= 2j - 2m - 1`.
+    The proof doubles the arc and uses Alexander duality. So a target of maximal
+    rank `m < 2 max(R_x, R_y) + π` on a swap family drops rank on a set of dimension
+    at least `2j - 2m`. In `A`, deep approximants drop on codimension at most
+    `2 r_(M-1) + 1`.
+  - *In `B`.* `toms-simple-algebra-approximants-drop-rank-on-a-large-set` runs the
+    same bound through branch traces. The point blocks enter as a trivial summand
+    and cancel, and the margin is `delta Delta`. Every finite-stage `a''` between a
+    deep approximant and the band drops on dimension at least
+    `delta^2 r_M^2 - 2 r_M/delta`.
+  - *Blocked.* `toms-chern-swap-count-allows-depth-one-drops` builds a target
+    `Q >= phi(a')` of the leaf profile on one swap family, with rank in `{R-1, R}`.
+    It drops by one on `{c_i} x hyperplane`. Traces see these drops as `1/r_M`, so the
+    drop count on one family plus the bands cannot reproduce the firewall's `K/2`
+    jump. The step "combine with Poincare–Miranda" fails there.
+  - *Next.* Try depth additivity across sibling doubling nodes. On the cube family
+    `[0,1]^N x prod CP^(j')`, product models drop at a common point with depth `N`.
+    Prove by Künneth that coordinated transports cannot stagger their drops across
+    nodes, or build a staggered one. Depth `K/2` at one point would give the
+    `delta/(2 r_n)` jump in `A` and `B`.

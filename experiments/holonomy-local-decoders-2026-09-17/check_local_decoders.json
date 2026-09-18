@@ -1,0 +1,138 @@
+{
+ "control_rotation_gadget": {
+  "L": true,
+  "R": true,
+  "Q": true,
+  "H": false,
+  "gadgets": 3,
+  "gadgets_decoding_o": 3,
+  "decoders_of_o": [
+   [
+    [
+     1,
+     1,
+     1
+    ]
+   ],
+   [
+    [
+     1,
+     1,
+     1
+    ]
+   ],
+   [
+    [
+     1,
+     1,
+     1
+    ]
+   ]
+  ]
+ },
+ "rotation_family": {
+  "built": 432,
+  "LRQ_ok": 62,
+  "LRQ_ok_multi_gadget": 62,
+  "LRQ_ok_multi_gadget_H_ok": 0,
+  "max_gadgets_decoding_o": 3
+ },
+ "configs": [
+  {
+   "q": 2,
+   "L": 4,
+   "ncol": 2,
+   "G": 2,
+   "r": 3
+  },
+  {
+   "q": 2,
+   "L": 4,
+   "ncol": 3,
+   "G": 3,
+   "r": 2
+  },
+  {
+   "q": 3,
+   "L": 3,
+   "ncol": 2,
+   "G": 2,
+   "r": 2
+  },
+  {
+   "q": 2,
+   "L": 5,
+   "ncol": 2,
+   "G": 2,
+   "r": 3
+  },
+  {
+   "q": 3,
+   "L": 4,
+   "ncol": 2,
+   "G": 2,
+   "r": 3
+  },
+  {
+   "q": 2,
+   "L": 3,
+   "ncol": 3,
+   "G": 3,
+   "r": 2
+  }
+ ],
+ "track_H": {
+  "patterns": 300,
+  "patterns_H_ok": 300,
+  "functionals_tested": 52992,
+  "multi_gadget_sites": 0,
+  "multi_gadget_patterns": 0,
+  "multi_gadget_patterns_failing_H": 0,
+  "nonunique_on_H_ok": 0,
+  "T_two_components_on_H_ok": 0,
+  "decoder_instances": 15877,
+  "nontrivial_instances": 577,
+  "max_rows_in_decoder": 3,
+  "max_gadgets": 3,
+  "seed_modes": {
+   "translate": 240,
+   "random": 60
+  },
+  "glue": {
+   "tried": 211,
+   "LRQ_ok": 0,
+   "LRQ_ok_H_ok": 0,
+   "LRQ_ok_multi_confirmed": 0,
+   "fail_R": 127,
+   "fail_L": 84
+  }
+ },
+ "track_Q": {
+  "patterns": 300,
+  "patterns_H_ok": 252,
+  "functionals_tested": 53092,
+  "multi_gadget_sites": 0,
+  "multi_gadget_patterns": 0,
+  "multi_gadget_patterns_failing_H": 0,
+  "nonunique_on_H_ok": 0,
+  "T_two_components_on_H_ok": 0,
+  "decoder_instances": 15904,
+  "nontrivial_instances": 604,
+  "max_rows_in_decoder": 3,
+  "max_gadgets": 3,
+  "seed_modes": {
+   "translate": 257,
+   "random": 43
+  },
+  "glue": {
+   "tried": 194,
+   "LRQ_ok": 0,
+   "LRQ_ok_H_ok": 0,
+   "LRQ_ok_multi_confirmed": 0,
+   "fail_L": 78,
+   "fail_R": 116
+  }
+ },
+ "prediction_holds": true,
+ "seconds": 6.0
+}

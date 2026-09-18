@@ -59,8 +59,8 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     - `(La,Lb,Lc,Lu) = (1,1,1,1)`: 480 bounded nontrivial triples.
     - `(2,1,2,1)`: 4520, with identical counts at `K = 3, 4, 6`.
     - Pure `(2,1,2)` with `u ∈ R_X(1)`: 7934.
-    - `(2,2,2,2)` with `|R_X(2)| = 1810`, run one `a` at a time. Partial results at landing are in
-      `H4_22222.out`: 2 of 36 `a`, 7369 triples, all found, 0 candidates.
+    - `(2,2,2,2)` with `|R_X(2)| = 1810`, run one `a` at a time. Complete, in `H4_22222.out`:
+      4300560 words, 168240 bounded nontrivial triples, all found, 0 candidates.
     - Pure `(2,2,2)` with `|PX(2)| = 709`, `u ∈ R_X(1)`. Complete, in `PH4_22212.out`:
       4305048 words, 164002 bounded nontrivial triples, all found, 0 candidates.
   - **What it rules out.** No counterexample is a 6-cycle whose words lie in these balls, among

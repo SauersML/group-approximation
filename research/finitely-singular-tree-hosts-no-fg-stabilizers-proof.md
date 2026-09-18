@@ -88,6 +88,28 @@ fixed. Every `h ∈ Γ_σ` is an isometry fixing `σ`, so `d_σ(hu) = d_σ(u)`.
 **4. Item 4.** Assume the hypotheses: (M) minimal, no fixed end, not a line; (N)
 some `R_Γ(Y_0) ≠ 1`. `Γ` acts faithfully, being a group of automorphisms.
 
+- **Reduction to an action without inversions.** The cited results of
+  `micro-supported-tree-actions-self-embed-rigid-stabilizers` (Lemma A, and the
+  transport of its item 1) assume an action without inversions, while `Γ ≤ Aut(T)`
+  may invert edges. Let `Γ_0 ≤ Γ` be the type-preserving subgroup (elements preserving
+  the bipartition of `T`). It is normal of index `≤ 2`, acts without inversions, and
+  `Γ_0 ≤ Γ(G, ρ)`. An automorphism fixing a vertex preserves the parity of distances,
+  so `Γ_0` contains every vertex stabilizer, edge stabilizer and rigid stabilizer of
+  `Γ`: `(Γ_0)_v = Γ_v`, `(Γ_0)_f = Γ_f` and `R_{Γ_0}(Y) = R_Γ(Y)`. In particular
+  (N) holds for `Γ_0` and `Γ_0 ≠ 1`. `Γ_0` satisfies (M):
+  - If `Γ_0` has no hyperbolic element, then (acting without inversions) it fixes a
+    vertex or fixes a unique end. In the first case its fixed subtree is nonempty and
+    `Γ`-invariant, since `Γ_0` is normal, so it is `T` by minimality and `Γ_0 = 1`,
+    a contradiction. In the second case that end is `Γ`-fixed, contradicting (M).
+  - So `Γ_0` has hyperbolic elements, and its minimal invariant subtree (the union of
+    their axes) is unique, hence `Γ`-invariant, hence `T`.
+  - If `Γ_0` fixed an end, its fixed ends would number one (then `Γ`-fixed, contrary
+    to (M)) or two (then every hyperbolic axis is the line joining them and `T`, the
+    union of the axes, is a line, contrary to (M)).
+
+  The statements of item 4 are about `Γ_v`, `Γ_f` and `R_Γ(Y)`, which are unchanged,
+  so we may and do replace `Γ` by `Γ_0` below.
+
 - **Deep half-trees.** Let `Z = Y_f` with `f = (x, y)`, let `σ` be a finite set of
   vertices and `k ≥ 0`. We find a half-tree `Y ⊆ Z` with `d(u, σ) > k` for all
   `u ∈ Y`.

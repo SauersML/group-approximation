@@ -24,18 +24,18 @@ truth-check endpoints.
 What the split buys, unconditionally:
 * `D ∘ σ = pad_{5 → 6}` (`fiveStep_refineHom_comp_cornerHom`).
 * `ker σ ≤ K₂(5)` (`fiveStep_projection_eq_one_of_cornerHom_eq_one`).
-* If `K₂(5)` is central, `D` is injective (sk-leavitt-28), so `ker pad_{5→6} = ker σ`.  The rank
-  change is then gone: the step is a question about a *same-rank* endomorphism of `St_5(L)`.
+* If `K₂(5)` is central, `D` is injective (sk-leavitt-28), so `ker pad_{5→6} = ker σ`.  The
+  rank change is then gone: the step is a question about a *same-rank* endomorphism of `St_5(L)`.
 
 ## Negative findings (not formalized)
 
-* **Centrality alone is not formally enough.**  What is left is `H₂(E₅) → H₂(E₆)` injectivity,
-  which is homological stability.
+* **Centrality alone is not formally enough.**  What is left is `H₂(E₅) → H₂(E₆)`
+  injectivity, which is homological stability.
 * **A normal generating set of `K₂(5)` does not help.**  Injectivity of a homomorphism cannot be
   checked on generators of a normal subgroup.
 * **Every retraction `St_6 → St_5` fails already for `N = 6`, at the level of `E`.**  The
-  elements `diag(I₅, u)` centralize `pad(E₅)`, so they must go to `Z(GL₅(L)) = 1`.  Their normal
-  closure is everything.
+  elements `diag(I₅, u)` centralize `pad(E₅)`, so they must go to `Z(GL₅(L)) = 1`.  Their
+  normal closure is everything.
 * **`σ` has no left inverse.**  At the level of `E`, a hand computation gives `σ² = Ad(U) ∘ σ`
   for a unit `U` built from a partial isomorphism of idempotents of `L`.  On a central `K₂` this
   would make `σ_*` idempotent, so corner injectivity on `K₂(5)` would be equivalent to `σ = id`
@@ -91,8 +91,8 @@ theorem fiveStep_k2StabInjective_of_central_of_cornerInjective {n : ℕ} (hn : 4
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStep_k2StabInjective_of_central_of_cornerInjective
 
-/-- **Corner injectivity from one-step injective stability.**  A `w` with `σ_r w = 1` lies in `K₂`
-and dies under padding, since `pad w = D_r (σ_r w)`. -/
+/-- **Corner injectivity from one-step injective stability.**  A `w` with `σ_r w = 1` lies in
+`K₂` and dies under padding, since `pad w = D_r (σ_r w)`. -/
 theorem fiveStep_cornerInjective_of_k2StabInjective {n : ℕ} (r : Fin n)
     (hS : Full.LVH2GL3.K2StabInjective R n) :
     ∀ w : SteinbergGroup (Fin n) R, fiveStepCornerHom L r w = 1 → w = 1 := by

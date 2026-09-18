@@ -6,7 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 Lane gl-p07-35.  The target is `FourPieceWitness.NoPlanarDegenStepStatement`
 (`NoPlanarDegenStepStatement.lean`, lane gl-p07-33).  This file states the residual
-`FourPieceWitness.NoWalkAbsorbStatement`.  `NoWalkAbsorbProof.lean` proves the target from it.
+`FourPieceWitness.NoWalkAbsorbStatement`.  `NoWalkAbsorbProof.lean` proves the target from it,
+and the converse.  **LOUD: the two are equivalent, and the LEFT disjunct is dead** (LOUD 3).
 Certifies no printed sentence on its own.
 
 ## LOUD 1: the suggested face set is a rejected candidate, so the whole pocket is used
@@ -49,19 +50,20 @@ There is an outer walk `ow` of `P = sideFaces K.walk` such that:
 * **S1b.**  A position that is neither kept nor pinch-free has `facePerm` off `G₁` (closure).  By
   `eq_of_facePerm_not_mem` and `nodup` there is at most one such position.
 
-## LOUD 3: truth check (on paper)
+## LOUD 3: truth check (corrected by lane gl-p07-35c)
 
-The residual follows from the target, so it holds wherever the target holds.  Model by model, LEFT
-itself holds:
-* **M8 (empty-arc island).**  `P' ∪ a.1` is the whole pocket, and its walk reads `Ḡ₁ · B̄ · Ḡ₂`.
-  Every dart lies on `G₁`/`G₂` or is a `B̄` dart with a pocket face across, off `a.1 ∪ b.1`.
-* **M9 with a hole.**  `faces = sideFaces K.walk`, as lane 31 reads M9.
-* **M11 with a hole, `C` in the `O`-pocket.**  `O ∪` the `λ`, `ν`, `λ'` discs `∪` the hole is the
-  whole pocket.
+The residual follows from the target, so it holds wherever the target holds.  It is
+**equivalent** to the target (`noWalkAbsorb_iff_noPlanarDegenStep`, `NoWalkAbsorbProof.lean`).
 
-**Possible failure of LEFT.**  An `a`-lobe inside the pocket that touches both a `G₁` edge and the
-`b` side puts an `a.1` face across a non-`G` dart of the pocket boundary.  There the right disjunct
-is needed.
+**LEFT is FALSE on every nondegenerate instance.**  The whole pocket `sideFaces K.walk` contains
+`a.1` and `b.1`, because `K.walk` runs along the contacts and near sides of `a` and `b`.  Its outer
+walk therefore contains every contact dart `d ∈ a.cellArcList i` whose face (`Π_i`) is off the
+pocket, and `faceOf (α d) ∈ a.1`.  So the dart clause fails unless `d ∈ G₁ ∪ G₂`
+(`noWalkAbsorb_left_mem`, `noWalkAbsorb_left_false` in `NoWalkAbsorbAudit.lean`).  An earlier
+draft of this docstring claimed LEFT in M9 and M11 with a hole.  That claim was wrong: both models
+have nonempty contacts.  LEFT can hold only when the contacts and near sides of `a` and `b` are
+empty or are bridges.  In every instance that matters, a proof of this statement has to prove the
+right disjunct, which is the target conclusion.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

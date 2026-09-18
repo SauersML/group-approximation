@@ -6,6 +6,9 @@ title: For derived length at least 3 the b-side relations do not bound the c-spa
 distinct_from:
   higman-b-side-derived-closure-stays-in-bottom-layer: that makes the top A/A^(k-1) free solvable and leaves the bottom layer open; this closes the bottom layer for every element outside P^(k-1), so a one-sided bound fails in every layer.
   higman-one-sided-span-bound-fails-at-derived-length-three: that shows infinite gamma-span for z in A'/A'' in one explicit group; this shows infinite gamma-span in A''/A''' in the universal b-side group, for [z, z^alpha] and for every element of F'' outside P''.
+artifacts:
+  - experiments/higman-derived-length-three-2026-09-17/bottom_layer_fox.py
+  - experiments/higman-derived-length-three-2026-09-17/bottom_layer_fox-output.txt
 ---
 
 **ESTABLISHED** by `higman-b-side-bottom-layer-spans-proof` (obstruction).

@@ -55,3 +55,28 @@ any cocycle carried by finitely atomic, bounded-phase-variation or `F`-regular c
 - **Quasimorphisms and congruence quotients (die).**
   - Every homogeneous quasimorphism of `G` vanishes on `A`, so `scl(1_C) = 0` gives nothing.
   - In `C(C,Z/N) ⋊ V` the image of `1_C` has finite order, so it can carry no growth witness.
+- **2026-09-17 (swarm-0917-w6b-w6b-nv-break): independent or mixing witness laws (die;
+  class-kill).**
+  - Established `cantor-central-witnesses-have-long-range-dependence`. Suppose a witness
+    `ξ` is `ε`-almost invariant with no `1_C`-invariant vector, and `(u, v)` is a pair of
+    disjoint, non-complementary cones. Then the spectral law keeps the phases `χ[u]` and `χ[v]`
+    at conditional TV-dependence at least `(1 − ε − 50Lε)/8`, given any `V`-invariant function.
+    Here `L` is the word length of four moving elements.
+  - **Invariant:** `χ[0] = χ[00] + χ[01]`. Two prefix moves turn independence into
+    `ν ≈ ν * ν` in total variation.
+  - **Where every member dies:** `ν̂` cannot leave `1`, since it stays near `{0, 1}` with steps
+    less than `1`. So `χ[0]` and `χ[1]` have atoms near mass `1` at `0`, which forces
+    `χ[C] = 0`.
+  - **Class killed:** independent-subtree, finite-range or mixing random characters, wrapped
+    Gaussian charges with small correlations, and random cone products with rarely included
+    common ancestors.
+  - **Not ruled out:** witnesses with long-range coupling that is not a `V`-invariant function
+    of `χ`, for example a random scale shifted by `V`.
+  - **Refutation route (not recorded as a node).** Suppose some co-amenable `H ≤ G` contains
+    `1_C` with `(H, Z·1_C)` not relatively (T), for example with `ψ : H → R` and
+    `ψ(1_C) ≠ 0`. Then this claim fails: induce `e^{2πitψ}`, use Fell continuity of induction,
+    and note that `1_C` acts by a scalar.
+    - Obstruction: take a section cocycle `c(g, x)` of `G/H`. If `ψ∘c(s, ·)` is bounded for the
+      generators `s`, averaging `ψ∘c` with the invariant mean gives a homomorphism `G → R`
+      that is nonzero on `1_C`. This is impossible because `G` is perfect.
+    - So such `H` must have unbounded transfer.

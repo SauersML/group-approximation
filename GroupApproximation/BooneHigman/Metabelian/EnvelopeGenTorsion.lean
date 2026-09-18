@@ -77,7 +77,7 @@ theorem rnGeneratorTorsion_of_vPerfect (hperf : GenTorsionVPerfectStatement) :
     (hperf X).trans
       (Subgroup.commutator_mono (higmanThompsonV_le_rn _) (higmanThompsonV_le_rn _))
   have hKfg : Group.FG ↥(envelopeK 2 H) := by
-    obtain ⟨n, φ, hφ, -⟩ := (isFinitelyPresented_envelopeK hHfp).out
+    obtain ⟨n, φ, hφ, -⟩ := (isFinitelyPresented_envelopeK (m := 2) hHfp).out
     exact Group.fg_of_surjective hφ
   obtain ⟨S, hS, hSfin⟩ := Group.fg_iff.mp hKfg
   obtain ⟨a⟩ := (inferInstance : Nonempty (envelopeY X 2))
@@ -127,8 +127,11 @@ theorem rnGeneratorTorsion_of_vPerfect (hperf : GenTorsionVPerfectStatement) :
     exact MonoidHom.mem_range.mp (hle hu)
   obtain ⟨m, hm, hpow⟩ := gentorsion_exists_exponent hAfg hsq
   refine ⟨m, gentorsionGens H S a, hm, hfin, hgen, fun t _ => ?_⟩
-  exact (Abelianization.ker_of ↥(envelopeV X H)).le
-    (MonoidHom.mem_ker.mpr ((map_pow _ t m).trans (hpow _)))
+  have ht1 : (Abelianization.of : ↥(envelopeV X H) →* Abelianization ↥(envelopeV X H))
+      (t ^ m) = 1 := by
+    rw [map_pow]
+    exact hpow _
+  exact (Abelianization.ker_of ↥(envelopeV X H)).le (MonoidHom.mem_ker.mpr ht1)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnGeneratorTorsion_of_vPerfect
 

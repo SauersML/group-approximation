@@ -163,7 +163,8 @@ theorem choiEffros_krausMap_star {Y : Type} [Fintype Y] (G : Y → A) (N : Matri
 
 /-- Shifting the left column: `⟨u - G c, v⟩ = ⟨u, v⟩ - c⋆ ⟨G, v⟩`. -/
 theorem choiEffros_pair_shift_left {Y : Type} [Fintype Y] (u G v : Y → A) (c : A) :
-    choiEffrosPair (choiEffrosShift u G c) v = choiEffrosPair u v - star c * choiEffrosPair G v := by
+    choiEffrosPair (choiEffrosShift u G c) v =
+      choiEffrosPair u v - star c * choiEffrosPair G v := by
   simp only [choiEffrosPair, choiEffrosShift, star_sub, star_mul, sub_mul, Finset.sum_sub_distrib,
     Finset.mul_sum, mul_assoc]
 
@@ -171,7 +172,8 @@ theorem choiEffros_pair_shift_left {Y : Type} [Fintype Y] (u G v : Y → A) (c :
 
 /-- Shifting the right column: `⟨u, v - G c⟩ = ⟨u, v⟩ - ⟨u, G⟩ c`. -/
 theorem choiEffros_pair_shift_right {Y : Type} [Fintype Y] (u v G : Y → A) (c : A) :
-    choiEffrosPair u (choiEffrosShift v G c) = choiEffrosPair u v - choiEffrosPair u G * c := by
+    choiEffrosPair u (choiEffrosShift v G c) =
+      choiEffrosPair u v - choiEffrosPair u G * c := by
   simp only [choiEffrosPair, choiEffrosShift, mul_sub, Finset.sum_sub_distrib, Finset.sum_mul,
     mul_assoc]
 

@@ -33,9 +33,9 @@ theorem gentorsion_exists_exponent {A : Type*} [CommGroup A] (hA : Group.FG A)
   have hle : (⊤ : Submodule ℤ (Additive A)) ≤ Ideal.span ({2} : Set ℤ) • ⊤ := by
     intro n _
     obtain ⟨b, hb⟩ := hsq (Additive.toMul n)
-    have e : n = (2 : ℤ) • Additive.ofMul b := by
-      rw [← ofMul_zpow, zpow_two, ← pow_two, hb, ofMul_toMul]
-    rw [e]
+    have e : n = Additive.ofMul (b ^ (2 : ℤ)) := by
+      rw [zpow_two, ← pow_two, hb, ofMul_toMul]
+    rw [e, ofMul_zpow]
     exact Submodule.smul_mem_smul (Ideal.subset_span (Set.mem_singleton 2)) Submodule.mem_top
   obtain ⟨r, hr1, hr⟩ := Submodule.exists_sub_one_mem_and_smul_eq_zero_of_fg_of_le_smul
     (Ideal.span ({2} : Set ℤ)) ⊤ (Module.finite_def.mp hfin) hle

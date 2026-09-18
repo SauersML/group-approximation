@@ -70,12 +70,14 @@ theorem suslinNormal_inE_add {X Y : Matrix ι ι A} (hX : SuslinNormalInE ι A (
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_inE_add
 
+omit [DecidableEq ι] in
 theorem suslinNormal_vecMulVec_mul_of_dot {a b c d : ι → A} (h : b ⬝ᵥ c = 0) :
     Matrix.vecMulVec a b * Matrix.vecMulVec c d = 0 := by
   rw [Matrix.vecMulVec_mul_vecMulVec, h, zero_smul, Matrix.vecMulVec_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_vecMulVec_mul_of_dot
 
+omit [Fintype ι] in
 theorem suslinNormal_vecMulVec_single_single (k l : ι) (c d : A) :
     Matrix.vecMulVec (Pi.single k c) (Pi.single l d) = Matrix.single k l (c * d) := by
   ext i j
@@ -100,6 +102,7 @@ theorem suslinNormal_inE_single_single (k l : ι) (c d : A) (h : k = l → c * d
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_inE_single_single
 
+omit [Fintype ι] in
 theorem suslinNormal_update_add_single (z : ι → A) (l : ι) :
     z = Function.update z l 0 + Pi.single l (z l) := by
   funext m
@@ -109,6 +112,7 @@ theorem suslinNormal_update_add_single (z : ι → A) (l : ι) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_update_add_single
 
+omit [Fintype ι] in
 /-- Erasing the coordinate `l` keeps a vector supported in `t` once it was supported in
 `insert l t`. -/
 theorem suslinNormal_update_support {z : ι → A} {l : ι} {t : Finset ι}

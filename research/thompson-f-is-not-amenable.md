@@ -39,7 +39,11 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   exact closed-walk counts are always matched by a symmetric measure reaching
   `+-1`. So no finite cogrowth computation, however exact, proves `||P|| < 1`.
   Such data certify only lower bounds on `||P||`, via orthogonal-polynomial zeros
-  (`experiments/thompson-f/cogrowth_exact.py`).
+  (`experiments/thompson-f/cogrowth_exact.py`). The best certified value on the 32 published terms
+  (Elvey Price–Guttmann, arXiv:1706.07571) is `||P|| > 0.910677`
+  (`thompson-f-norm-bound-from-epg-32-term-moments`). Exact extension past word length 62 and
+  Dirichlet-eigenvalue test vectors on marked-forest window sets were both scouted there and do not
+  beat it within reach.
 - **Non-Ore certificate.** By `thompson-f-amenable-iff-group-ring-is-ore`,
   non-amenability is equivalent to a pair `a, b` in `K[F]` with no nonzero common
   multiple. A finite search can propose candidate pairs, but ruling out every
@@ -183,6 +187,41 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     example `{x_a x_b x_c : a <= 2, b <= 3, c <= 4}`, where none appears through `D = 10`. Degree-one sets
     with gaps have cores at `D = |J| − 1` (computed), but the block construction does not cover them.
   (c-pz0, obstruction-miner, host-geometry.)
+- **Invariant pivot orders.** A pivot-order certificate
+  (`thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`) is killed when the order is
+  left- or right-invariant on `F`, for every finite set
+  (`thompson-f-invariant-pivot-orders-cannot-certify-doubling`). The step where it fails: two private
+  points at `m` force a two-sided descent `g m ≺ m ≻ g^-1 m` with `g ∈ S^-1 S \ {1}`. Invariance turns
+  this into `c ≺ 1` and `c^-1 ≺ 1`. The failure occurs at any deep `m`, where all competitors are
+  positive, and deep elements exist by common right multiples.
+  - An order that first compares a bi-ordered quotient only certifies one fiber of `S`, which must
+    itself double and have at least four elements.
+  - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
+    maximum.
+  - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
+- **Co-amenable non-amenable hosts (heretic, swarm-0917).** The routes above share three
+  assumptions:
+  1. the certificate lives on `F` itself;
+  2. the witness uses `F`'s own dynamics;
+  3. the witness is read from finitely supported data.
+
+  Denying 1 and 2 gives a route: show that `F` is co-amenable in some non-amenable host `G`.
+  Then any invariant mean on `F` would yield one on `G`.
+  - A transfer lemma is established:
+    `co-amenable-subgroups-transfer-hyperfinite-orbit-relations`. A co-amenable subgroup with
+    a hyperfinite measured relation forces the host's relation to be hyperfinite. It needs no
+    amenable stabilizers, unlike the Zimmer-action version, which is circular for `F`.
+  - Consequence: `thompson-f-is-not-co-amenable-in-its-known-nonamenable-hosts`. `F` is not
+    co-amenable in `T` or `V`, nor, by Eymard with `F`'s fixed-point measures, in circle hosts
+    moving `0` or Cantor hosts moving `0^∞` and `1^∞` out of the pair. It is also not
+    co-amenable in the Lodha–Moore group or in Monod's `H(A)` for `0 ∈ P_A`.
+  - Dies: each host's non-amenability is witnessed on a space where `F` is amenable. On the
+    boundary `F` has a fixed point, and on the line its Lebesgue orbit relation is hyperfinite.
+    The co-amenability hypothesis carries that witness up to `G` and contradicts it.
+  - A host route survives only with a witness for `G` whose restriction to `F` is already
+    non-amenable, and that is a direct certificate for `F`.
+  - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
+  - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.

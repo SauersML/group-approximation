@@ -87,6 +87,13 @@ established claims:
   the criterion reaches the ensemble's own first-moment limit `0.27258`, and a lower
   limit needs several excursions per slot. `S_rig` is certified separately in
   `fpbs-rigid-f2xz-certified-strict-thresholds`.
+  **Obstruction at `m = 3`, `v = 2`** (section 7 of the proof). Take all trails with any
+  number of depth-one excursions per slot and no vertical steps. Their first moment
+  already vanishes for `p <= p*`: the root of `4m(m-1)p^2 + 3mp = 1` is `0.08967`, while
+  `p*(3,2) <= 0.089008`. So no second moment over that class reaches any `m = 3`, `v = 2`
+  decoration. A small-`m` route needs vertical steps or deeper excursions, with the
+  vertical-step root `0.0777 < p*`, together with an exact pattern transfer. The lumped
+  count with vertical steps is worse at every `m` from 3 to 18.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts

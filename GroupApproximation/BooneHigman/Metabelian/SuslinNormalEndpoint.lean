@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigman.Metabelian.SuslinNormalLemma
 import Mathlib.Tactic.Group
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -74,7 +75,7 @@ theorem suslinNormal_elementaryGroup_normal (h3 : ∀ p q : ι, ∃ k, k ≠ p �
   refine ⟨fun n hn => ?_⟩
   have hn' : n ∈ Subgroup.closure
       {z | ∃ (i j : ι) (h : i ≠ j) (a : A), elementaryUnit i j h a = z} := hn
-  refine Subgroup.closure_induction (p := fun x _ => ∀ g : (Matrix ι ι A)ˣ,
+  refine Subgroup.closure_induction (p := fun (x : (Matrix ι ι A)ˣ) _ => ∀ g : (Matrix ι ι A)ˣ,
       g * x * g⁻¹ ∈ elementaryGroup ι A) ?_ ?_ ?_ ?_ hn'
   · rintro x ⟨i, j, h, a, rfl⟩ g
     exact suslinNormal_conj_elementaryUnit_mem h3 i j h a g
@@ -118,7 +119,7 @@ theorem suslinNormalStatement_holds : SuslinNormalStatement.{u} := by
 theorem suslinNormal_conj_mem {A : Type*} [CommRing A] {N : ℕ} (hN : 2 < N)
     {ε : Matrix.GeneralLinearGroup (Fin N) A} (hε : ε ∈ elementaryGroup (Fin N) A)
     (g : Matrix.GeneralLinearGroup (Fin N) A) : g * ε * g⁻¹ ∈ elementaryGroup (Fin N) A :=
-  (suslinNormal_elementaryGroup_normal_fin N hN).conj_mem ε hε g
+  (suslinNormal_elementaryGroup_normal_fin (A := A) N hN).conj_mem ε hε g
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_conj_mem
 

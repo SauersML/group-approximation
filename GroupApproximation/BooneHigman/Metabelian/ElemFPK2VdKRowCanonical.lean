@@ -27,7 +27,7 @@ open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
     projectionMatrix stab_conj_colVec)
 open scoped commutatorElement Matrix
 
-variable {R : Type*} [Ring R] {n : ℕ}
+variable {n : ℕ} {R : Type*} [Ring R]
 
 /-- `x_{last,j}(a)` commutes with `stab x_{kl}(b)` when `j ≠ k`. -/
 theorem vdkRow_rowRoot_stab_comm (j k l : Fin n) (hkl : k ≠ l) (hjk : j ≠ k) (a b : R) :
@@ -140,7 +140,7 @@ theorem vdkRow_colVec_single (i : Fin n) (a : R) :
 /-- Left multiplication by `x_{i,last}(a)` on the parameters is `vdkCol`. -/
 theorem vdkRowPar_col (i : Fin n) (a : R) (v : Fin n → R) (g : St n R) :
     vdkRowPar (v + Pi.single i a, g) = colRoot i a * vdkRowPar (v, g) := by
-  rw [vdkRowPar_apply, vdkRowPar_apply, add_comm, colVec_add, vdkRow_colVec_single, mul_assoc]
+  rw [vdkRowPar_apply, vdkRowPar_apply, add_comm v, colVec_add, vdkRow_colVec_single, mul_assoc]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowPar_col
 

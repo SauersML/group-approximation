@@ -13,6 +13,7 @@ artifacts:
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p5_d130.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p7_d130.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p11.out
+  - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p11_d135.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p13.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p17_d105.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p19_d117.out

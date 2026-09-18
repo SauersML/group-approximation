@@ -142,3 +142,57 @@ presentation coordinates.
   slides, invisible small defects, an eigenvalue-balance floor
   `2 sin(pi/3d)` when `3` does not divide `d`), all recorded in the
   artifact.
+- **2026-09-18, swarm-0917-w7-w7-deligne-pull: the group-rings transplant
+  (COLD family) dies at the characteristic split.**  Dictionary: a sector
+  model `phi_n` gives `phi_omega: C^alpha[Gamma] -> M^omega`; a group-ring
+  certificate reads ring data of the image (direct/stable finiteness, zero
+  divisors, idempotent traces and `K_0` order, units and `K_1`, Sylvester rank
+  functions) and derives a contradiction.
+  - *Characteristic zero, tracial side.*  By
+    `deligne-maslov-sector-traces-are-central-regular` the pulled-back trace is
+    `t tau_+ + (1-t) tau_-`, determined by group data up to `t`.  So the
+    tracial `*`-ring `(phi_omega(C^alpha[Gamma]), tau_omega)` and its
+    von Neumann closure are fixed up to isomorphism, independently of the model.
+    Every ring-theoretic property of that pair also holds for the abstract
+    twisted algebra `L_alpha(Gamma)` cut by the central character. That
+    algebra exists, so the certificate refutes nothing unless it uses the
+    embedding into `M^omega` itself, and then it is the target restated.
+    Invariant: the canonical central-regular trace.
+  - *Characteristic zero, norm side (for the operator-norm gate).*  Stable
+    finiteness certificates ("no stably finite quotient of `A_alpha`") are
+    refuted by the reduced twisted algebra, which has a faithful trace.  `K_1`
+    and determinant certificates are already killed by
+    `deligne-sector-determinants-see-only-dimension-mod-three`.  `K_0` classes
+    from finite subgroups are killed by the finite-subgroup atlas no-go above.
+    Any other `K_0` certificate needs `K_0(C^*(Sp_4(Z),alpha))`, which is
+    unknown, since twisted Baum--Connes for `Sp_4(Z)` is open.
+  - *Characteristic `p != 3`.*  The central tool here is Elek--Szabo, as used
+    by the Leavitt no-weakly-finite-image lane: sofic, or linear-sofic,
+    approximations give faithful rank functions, so `F_q^alpha[Gamma]` with
+    `q = 1 mod 3` would be stably finite.  Its failure proves only that `E_3`
+    is **non-sofic**.  An HS model of the sector induces no rank function
+    over `F_q`, so the conclusion is too weak for this gap, which is
+    equivalent to non-hyperlinearity.  This route belongs to
+    `deligne-cover-nonsurjunctive-from-twisted-algebra-failure` and
+    `deligne-cover-linear-soficity-is-rank-projective-approximation`, not here.
+  - Survivor: none inside the family.  A ring certificate must read the
+    relative position of the image inside `M^omega` or `Q`. That is
+    stability-approximation territory, which is HOT here.
+- **2026-09-18, swarm-0917-w7-w7-deligne-pull: the calibration transplant
+  dies, since no neighbouring world has a known answer.**  The idea was to
+  calibrate the gap against a nearby Deligne-type cover whose hyperlinearity
+  is decided.
+  - `W_3`, the triple cover over `SL_2(Z[1/p])`, is Deligne-rigid with the
+    congruence subgroup property.  Its soficity reduces to a
+    voltage/frustration problem on congruence Selberg expanders, but its
+    hyperlinearity is itself OPEN
+    (`sl2-z-1-p-universal-cover-quotients-are-sofic`,
+    `dv-s-arithmetic-hs-stable-nonhyperlinear-extension`).
+  - BDL (`bdl-deligne-type-two-norm-inapproximability`) and genus
+    monotonicity (`deligne-cover-hyperlinearity-is-monotone-in-genus`) move
+    results only upward in genus.  As of April 2026, BDL leaves the real
+    Deligne covers undecided, so neither gives a calibrated answer at
+    genus two.
+  - The metaplectic and trivial sectors are already the controls in the
+    falsification runs above, so they add no new calibration point.
+  - Survivor: none.  The claim stays OPEN.
