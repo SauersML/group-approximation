@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10Rose.Lobe
 import GroupApproximation.GGT.VanKampen.Estimating.Embedded
 import Mathlib.Data.List.Rotate
+import Mathlib.Data.List.Chain
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
