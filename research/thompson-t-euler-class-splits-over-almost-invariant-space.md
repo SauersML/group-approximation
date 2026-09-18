@@ -79,3 +79,14 @@ excluded too.
       forces `e^{2πiθ} = 1`.
   - *Surviving pmp witnesses* must be non-Bernoulli and non-Gaussian over `F_A × F_B` (for
     example, with some `F_J` not weakly mixing), unless `F` is amenable.
+- 2026-09-18 (swarm-0917-w13-w13-nv-last1): the converse sketched in Remarks is now
+  ESTABLISHED, in corrected form, as `central-zero-poincare-exponent-gives-euler-splitting`.
+  - If some cnd `ψ` on `T̄` has `Σ_m e^{−sψ(z^m)} < ∞` for **every** `s > 0`, then (MT) holds with
+    an integer `β`. A single `s` is not enough, since almost invariance needs `ψ/j`.
+  - The proof uses AIM Theorem B (`t_diss ≤ 2√(2δ)`, quoted verbatim), Prop. 4.9 for freeness, a
+    fundamental domain for `⟨z⟩`, and a fibrewise `ℓ²` pushdown.
+  - So (MT) sits between (SL), the new open node
+    `lifted-thompson-t-has-cnd-with-zero-central-poincare-exponent`, and the Haagerup property of
+    `T̄`: `(SL) ⇒ (MT) ⇒ T̄ Haagerup ⇒ ψ proper on ⟨z⟩`.
+  - Route: `lifted-thompson-t-a-t-menable-via-central-poincare-exponent`.
+  - (MT) itself is still OPEN.
