@@ -111,8 +111,10 @@ tools.
    - fp envelopes with a non-finitely-presented proper quotient.
    In Attempt 6 the covering kernel of a finite bi-index cover must be
    finitely normally generated, so the elementary image would be finitely
-   presented. Open side question: ACC for the two-sided ideals of the
-   universal sandwich ring. See
+   presented. Side question, ACC for the two-sided ideals of the universal sandwich ring:
+   answered negatively by `ck-sandwich-ring-has-infinite-ascending-ideal-chains` (2a42fc561;
+   see Attempt 10), which gives infinite strictly ascending chains over every nonzero
+   commutative coefficient ring. *(Updated by bh-integrate, 2026-09-18.)* See
    `research/artifacts/finite-bi-index-normal-lattice-collapse-2026-09-17.md`.
 8. **Price the Kazhdan surcharge along every recorded host route
    (2026-09-17, swarm-0917 w5).** *Result: along the linear routes the

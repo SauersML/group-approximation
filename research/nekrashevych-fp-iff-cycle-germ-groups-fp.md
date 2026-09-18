@@ -10,9 +10,11 @@ distinct_from:
   bhm-singfix-condition-forces-fp-germ-groups: that shows the Belk–Hyde–Matucci hypothesis forces fp germ groups in finite germ extensions of V; this is a two-sided germ criterion for Rover–Nekrashevych groups of automata.
 ---
 
-**ESTABLISHED** by `nekrashevych-fp-iff-cycle-germ-groups-fp-proof` (lane proof, elementary; it uses Theorem A
-of `rover-nekrashevych-fp-iff-finite-lift-presentation` in both directions, not yet refereed; no priority
-claimed).
+**ESTABLISHED** by `nekrashevych-fp-iff-cycle-germ-groups-fp-proof` (lane proof, elementary; no priority
+claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-nekrashevych-fp-iff-cycle-germ-groups-fp.md`. In lift-ideal form both directions are unconditional: a lift-presented action has finitely
+presented germ groups at every closed stable family, and under (P1) conversely. Theorem A of
+`rover-nekrashevych-fp-iff-finite-lift-presentation` (not yet refereed) enters only to translate "lift-presented" into
+"`V_d(G)` finitely presented".
 
 ## Setting
 
