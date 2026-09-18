@@ -60,10 +60,88 @@ theorem k2KarQuadSt_indexMap_refl {R : Type*} [Ring R] {M : ℕ}
     refine PresentedGroup.ext ?_
     rintro ⟨i, j, hij, a⟩
     change SteinbergGroup.indexMap (Fin.castLEEmb (le_refl M)) (x i j hij a) = x i j hij a
-    rw [SteinbergGroup.indexMap_x]
-    rfl
+    exact SteinbergGroup.indexMap_x (Fin.castLEEmb (le_refl M)) i j hij a
   exact DFunLike.congr_fun hh y
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_indexMap_refl
 
 end KarQuadStCheapDef
+
+section KarQuadStCheap
+
+variable {A : Type*} [CommRing A] [IsDomain A] {s : A}
+
+/-- **The cheap case dies**: a datum-cheap `y` with `St(snd) y = 1` dies after padding. -/
+theorem k2KarQuadSt_stDies_of_datumCheap (hs : s ≠ 0) {M : ℕ}
+    {y : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (hsnd : ringMap (k2PullRel_snd s) y = 1) (h : k2KarQuadSt_DatumCheap y) :
+    cubeDiagDilate_StDies y := by
+  obtain ⟨M', hM, c, Y, g₃, g₄, V, W, k, l, hkl, c₃, i, j, hij, c₄, hst, hm, hd, he⟩ := h
+  refine cubeDiagDilate_stDies_of_indexMap hM ?_
+  have hsnd' : ringMap (k2PullRel_snd s)
+      (c * SteinbergGroup.indexMap (Fin.castLEEmb hM) y * c⁻¹) = 1 := by
+    rw [map_mul, map_mul, map_inv, ← GroupApproximation.Full.LVStableK2.indexMap_ringMap, hsnd,
+      map_one, mul_one, mul_inv_cancel]
+  have hc : cubeDiagDilate_StDies (c * SteinbergGroup.indexMap (Fin.castLEEmb hM) y * c⁻¹) := by
+    rw [he] at hsnd' ⊢
+    exact k2KarQuad_stDies_datum_mul_two (k2KarInd_mul_eq_zero hs) hst hm hd g₃ k l hkl c₃
+      g₄ i j hij c₄ (k2KarInd_padMat_eq_one hs hsnd')
+  have e : c⁻¹ * (c * SteinbergGroup.indexMap (Fin.castLEEmb hM) y * c⁻¹) * c⁻¹⁻¹ =
+      SteinbergGroup.indexMap (Fin.castLEEmb hM) y := by
+    group
+  have h' := cubeDiagDilate_stDies_conj c⁻¹ hc
+  rwa [e] at h'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_stDies_of_datumCheap
+
+/-- **Factorization criterion**: a padded conjugate `w₁ w₂ w₃ w₄` of `y` (relative conjugates)
+with `PairRankOne (w₁ w₂)` makes `y` datum-cheap. -/
+theorem k2KarQuadSt_datumCheap_of_factor (hs : s ≠ 0) {M M' : ℕ} (hM : M ≤ M')
+    {y : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (c : SteinbergGroup (Fin M') (k2DilateSt_pullback s))
+    {w₁ w₂ w₃ w₄ : SteinbergGroup (Fin M') (k2DilateSt_pullback s)}
+    (h₁ : w₁ ∈ k2KarRel_gens s M') (h₂ : w₂ ∈ k2KarRel_gens s M')
+    (h₃ : w₃ ∈ k2KarRel_gens s M') (h₄ : w₄ ∈ k2KarRel_gens s M')
+    (he : c * SteinbergGroup.indexMap (Fin.castLEEmb hM) y * c⁻¹ = w₁ * w₂ * w₃ * w₄)
+    (hp : k2KarQuad_PairRankOne (w₁ * w₂)) : k2KarQuadSt_DatumCheap y := by
+  obtain ⟨V, W, hm, hd⟩ := hp
+  have e : [w₁, w₂].prod = w₁ * w₂ := by
+    rw [List.prod_cons, List.prod_cons, List.prod_nil, mul_one]
+  have hl : ∀ z ∈ [w₁, w₂], z ∈ k2KarRel_gens s M' := by
+    intro z hz
+    rcases List.mem_pair.mp hz with rfl | rfl
+    · exact h₁
+    · exact h₂
+  obtain ⟨V', W', hs', hm'⟩ := k2KarTri_rankOneAt_two hs M' [w₁, w₂] (by simp) hl V W
+    (by rw [e]; exact hm) hd
+  rw [e] at hs' hm'
+  have hd' : W' ⬝ᵥ V' = 0 := by rw [k2KarQuad_dot_eq_of_padMat hm hm', hd]
+  obtain ⟨g₃, k, l, hkl, c₃, _, rfl⟩ := h₃
+  obtain ⟨g₄, i, j, hij, c₄, _, rfl⟩ := h₄
+  exact ⟨M', hM, c, w₁ * w₂, g₃, g₄, V', W', k, l, hkl, c₃, i, j, hij, c₄, hs', hm', hd', he⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_factor
+
+/-- **Pair `(1,2)`.** -/
+theorem k2KarQuadSt_datumCheap_of_pair12 (hs : s ≠ 0) {M : ℕ}
+    {z₁ z₂ z₃ z₄ : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (h₁ : z₁ ∈ k2KarRel_gens s M) (h₂ : z₂ ∈ k2KarRel_gens s M)
+    (h₃ : z₃ ∈ k2KarRel_gens s M) (h₄ : z₄ ∈ k2KarRel_gens s M)
+    (hp : k2KarQuad_PairRankOne (z₁ * z₂)) : k2KarQuadSt_DatumCheap (z₁ * z₂ * z₃ * z₄) := by
+  refine k2KarQuadSt_datumCheap_of_factor hs (le_refl M) 1 h₁ h₂ h₃ h₄ ?_ hp
+  rw [k2KarQuadSt_indexMap_refl]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_pair12
+
+/-- **Pair `(2,3)`**, by rotation `z₂ z₃ z₄ z₁ = z₁⁻¹ (z₁ z₂ z₃ z₄) z₁`. -/
+theorem k2KarQuadSt_datumCheap_of_pair23 (hs : s ≠ 0) {M : ℕ}
+    {z₁ z₂ z₃ z₄ : SteinbergGroup (Fin M) (k2DilateSt_pullback s)}
+    (h₁ : z₁ ∈ k2KarRel_gens s M) (h₂ : z₂ ∈ k2KarRel_gens s M)
+    (h₃ : z₃ ∈ k2KarRel_gens s M) (h₄ : z₄ ∈ k2KarRel_gens s M)
+    (hp : k2KarQuad_PairRankOne (z₂ * z₃)) : k2KarQuadSt_DatumCheap (z₁ * z₂ * z₃ * z₄) := by
+  refine k2KarQuadSt_datumCheap_of_factor hs (le_refl M) z₁⁻¹ h₂ h₃ h₄ h₁ ?_ hp
+  rw [k2KarQuadSt_indexMap_refl]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarQuadSt_datumCheap_of_pair23
