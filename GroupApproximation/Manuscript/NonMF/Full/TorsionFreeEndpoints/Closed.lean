@@ -499,8 +499,8 @@ section Sentences
 
 open GroupApproximation.Manuscript.NonMF.TorsionFreeGreendlingerSentences
 
-/-- "Hull's proof treats `m = 1` by passing to `G/⟨⟨r⟩⟩`" (tex 1644), **CONDITIONAL on `hG`**
-(not proved in the repository). -/
+/-- "Hull's proof treats `m = 1` by passing to `G/⟨⟨r⟩⟩`" (tex 1644),
+**CONDITIONAL on `hG`** (not proved in the repository). -/
 theorem manuscriptSentence_hullOneTargetOneRelatorGeneral_closed_of_greendlinger
     (hG : GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}) :
     type_of% (@manuscriptSentence_hullOneTargetOneRelatorGeneral_of_greendlinger hG) :=
