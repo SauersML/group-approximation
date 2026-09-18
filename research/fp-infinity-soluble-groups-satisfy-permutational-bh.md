@@ -2,9 +2,9 @@
 rg: 2
 id: fp-infinity-soluble-groups-satisfy-permutational-bh
 kind: claim
-title: Soluble groups of type FP_∞ lie in the permutational Boone--Higman class modulo Kropholler's locally finite radical, and outright when that radical is finite (torsion-free, metanilpotent and constructible cases)
+title: Every virtually soluble group of type FP_∞ lies in the permutational Boone--Higman class, and hence so does every elementary amenable group of type FP_∞
 distinct_from:
-  rf-soluble-minimax-groups-satisfy-permutational-bh: that assumes residual finiteness and finite Prüfer rank; this assumes only the homological finiteness condition FP_∞, and derives those hypotheses from Kropholler's structure theorem.
+  rf-soluble-minimax-groups-satisfy-permutational-bh: that assumes residual finiteness and finite Prüfer rank; this assumes only the homological finiteness condition FP_∞, and derives those hypotheses from the Kropholler structure theorem.
   fp-metabelian-groups-satisfy-boone-higman: that is finitely presented metabelian groups, of possibly infinite rank; this is soluble groups of any derived length under the stronger condition FP_∞.
   amenable-automatic-va-via-ea-and-soluble-case: that uses FP_∞ structure theory to reduce amenable automatic groups to the soluble case; this turns the same structure theory into Boone--Higman envelopes.
 artifacts:
@@ -12,41 +12,40 @@ artifacts:
 ---
 
 **ESTABLISHED** by `fp-infinity-soluble-groups-satisfy-permutational-bh-proof` (lane
-`bh-solvable`, lane proof composing one literature import, read at source, with landed
-nodes). Not independently reviewed. No priority is claimed: this is a direct corollary and
+`bh-solvable`, lane proof). It composes literature imports read at source with landed
+nodes. Not independently reviewed. No priority is claimed: this is a direct corollary and
 may be folklore.
 
 ## Statement
 
-Let `G` be a soluble group of type `FP_∞` over `Z`, or finitely generated and of type
-`FP_∞` over `Q`. By Kropholler's Theorem B, stated below, `G` has a locally finite normal
-subgroup `T` with `G/T` constructible-by-finite.
-- **(a)** `G/T` lies in `B_A`, so it embeds in a finitely presented simple group.
-- **(b)** If `T` is finite, then `G` lies in `B_A`. This holds in particular in three cases:
-  - `G` is torsion-free, since then `T = 1`;
-  - `G` is metanilpotent, by Theorem C;
-  - `G` is constructible-by-finite.
-- **(c) Elementary amenable groups.** Let `G` be elementary amenable of type `FP_∞` over `Z`. By
-  `elementary-amenable-fp-infinity-groups-virtually-soluble`, `G` has a soluble subgroup `H` of
-  finite index, and `H` is again of type `FP_∞`. If `H`'s Kropholler subgroup `T_H` is finite
-  (for example, if `G` is virtually torsion-free), then `G ∈ B_A`. The virtual solubility
-  input is Kropholler--Martínez-Pérez--Nucinkis (Crelle 637, 2009). Main carries it through a
-  secondary citation and it was not read here.
+1. Every virtually soluble group `G` of type `FP_∞` (over `Z`) lies in `B_A`, and so embeds in a
+   finitely presented simple group.
+2. Hence every elementary amenable group of type `FP_∞` lies in `B_A`.
 
-## Source (read at source)
+This includes all constructible soluble groups, for example `BS(1,n)`, iterated ascending HNN
+extensions of them, and all polycyclic groups.
 
-P. H. Kropholler, *Soluble groups of type (FP)_∞ have finite torsion-free rank*, Bull.
-London Math. Soc. 25 (1993) 558–566 (PDF via MSI institutional access, copy in
-`gq/src/bh-solvable/`), p. 558–559:
-- **Theorem B.** "Let `G` be a soluble group of type `(FP)_∞` over `Q`. Then `G` has
-  finite torsion-free rank. More precisely, `G` has a locally finite normal subgroup `T`
-  such that `G/T` is constructible-by-finite."
-- **Definition used there.** A soluble group is constructible-by-finite if and only if it is
-  a finite extension of a group built up from the trivial group by a finite sequence of
-  ascending HNN-extensions.
-- **Theorem C.** "Let `G` be a metanilpotent group. Then `G` is of type `(FP)_∞` over `Q`
-  if and only if `G` is constructible-by-finite."
-- **The open point.** The paper says: "Whether or not there exists a group `G` as in
-  Theorem B where the subgroup `T` is infinite remains an open problem of some interest."
-  So part (b) covers every soluble group of type `FP_∞` exactly when that problem has a
-  negative answer.
+## Sources
+
+- **Read at source.** C. Martínez-Pérez and B. E. A. Nucinkis, *Virtually soluble groups of
+  type FP_∞*, Comment. Math. Helv. 85 (2010) 135–150 (open PDF, copy in
+  `gq/src/bh-solvable/`).
+  - p. 135: "Kropholler has shown that soluble groups of type FP_∞ are virtually
+    torsion-free [17]."
+  - **Theorem 1.1** ([10], [15], [17]). "Let `G` be a soluble group. Then the following are
+    equivalent: (i) `G` is of type FP_∞. (ii) `G` is a virtual duality group. (iii) `G` is
+    virtually torsion-free and vcd `G` = h`G` < ∞. (iv) `G` is virtually torsion-free and
+    constructible."
+  - p. 136: "Groups satisfying the conditions of the theorem are minimax."
+  - p. 137 records that elementary amenable groups of type FP_∞ have a bound on the orders
+    of their finite subgroups [17].
+- **Also read.** P. H. Kropholler, Bull. London Math. Soc. 25 (1993) 558–566, Theorems B and C.
+  Theorem B makes `G/T` constructible-by-finite for a locally finite normal `T`, and leaves
+  open whether `T` can be infinite. Martínez-Pérez--Nucinkis attribute virtual
+  torsion-freeness to their reference [17], which their bibliography gives as P. H. Kropholler,
+  *On groups of type FP_∞*, J. Pure Appl. Algebra 90 (1993) 55–67. With it, `T` is finite in
+  every case. That paper was not read here.
+- **Secondary only.** The virtual solubility of elementary amenable `FP_∞` groups is
+  Kropholler--Martínez-Pérez--Nucinkis, Crelle 637 (2009), carried on main through a secondary
+  citation (`elementary-amenable-fp-infinity-groups-virtually-soluble`). The Crelle PDF was not
+  reachable from MSI.
