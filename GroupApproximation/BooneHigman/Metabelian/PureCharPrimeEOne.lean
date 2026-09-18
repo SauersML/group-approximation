@@ -1,4 +1,5 @@
 import Mathlib.RingTheory.Finiteness.Prod
+import Mathlib.RingTheory.Finiteness.Basic
 import Mathlib.Data.ZMod.Basic
 import GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEStatement
 import GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEAffine
@@ -48,7 +49,7 @@ theorem exists_gl_of_exponent_prime_comm (h1 : PureCharPrimeEOneStatement) {B Q 
     show ι (eOneOf (φ := φ) (hV := hexp) (φ q b), 0) =
       (ρ q : Matrix (Fin d) (Fin d) K) *ᵥ ι (eOneOf (φ := φ) (hV := hexp) b, 0)
     rw [← hequiv]
-    exact congrArg ι (Prod.ext (eOne_smul q (eOneOf b)).symm
+    exact congrArg ι (Prod.ext (eOne_smul (φ := φ) (hV := hexp) q (eOneOf b)).symm
       (smul_zero (MonoidAlgebra.of (ZMod p) Q q)).symm)
   have hκi : Function.Injective κ := by
     intro a b hab

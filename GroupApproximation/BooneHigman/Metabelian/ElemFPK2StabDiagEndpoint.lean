@@ -42,8 +42,8 @@ The converse shows that the demand is satisfiable, but only by assuming the gap,
 proof of the gap.
 
 Truth.  By the converse, the statement follows from `PolyK2StabRangeDiagStatement`.  That statement
-is true: by Bass, `sr(R_k) ≤ k + 1`, and van der Kallen's injective stability holds for `n ≥ sr + 2`,
-while here `n = k + 4 ≥ sr + 3`.
+is true: by Bass, `sr(R_k) ≤ k + 1`, and van der Kallen's injective stability holds for
+`n ≥ sr + 2`, while here `n = k + 4 ≥ sr + 3`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
