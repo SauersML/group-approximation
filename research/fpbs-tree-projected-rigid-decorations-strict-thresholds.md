@@ -144,6 +144,35 @@ established claims:
     `h' = 0` mass, or replace the uniform count by exact per-height-pattern counts
     (finitely many patterns of `D - D` coincidences for each `m`).
   * `m <= 5` and `S_rig`: two or more excursions per slot together with exact counts.
+* **Pollard pair counts and non-AP collisions (2026-09-18).**
+  `fpbs-tree-projected-pollard-slot-second-moment` keeps the bidirectional ensemble and
+  LP map and sharpens the counting bound pointwise in `h`, for rigid decorations:
+  * a determined variable `y = e1 x1 + e2 x2 + ...` confines the pair `(x1, x2)` to
+    `min_t [m t + (m-t)^2]` values (Pollard's inequality in `Z`), or
+    `min_t [m t + (m-t)(m-t-1)]` when `x1 != x2` have the same letter and opposite
+    coefficients;
+  * `y = x + gamma` with the same letter and `gamma != 0` gives
+    `|D ∩ (D - gamma)| <= m - 2`, since equality `m - 1` forces an arithmetic
+    progression, which is symmetric up to translation.
+
+  Exact certificates settle `v = 2`, rigid decorations, `m = 10, 11` (margins `4.7e-4`
+  and `6.6e-3`). So `v = 2` with uniform multiplicity is closed for every rigid
+  decoration at `m >= 10`.
+  **Where it stops:** `m = 9` (`rho(p*) = 1.0065`; `1.0053` with the generic row made
+  affine in the autocorrelations `R(h + jc)` and optimised over their box; `1.0048` with
+  `K = 2` as well). The remaining loss at `m = 9` is the `0 -> 0` entry (`0.0204` of
+  decoration-dependent mass above the exact identity-type `0.9277`) and the
+  class-constant test function on the generic class. On the exact near-AP operator at
+  `m = 10`, a generic-class test function `a + b (r_{D_a} + r_{D_b})(h)` recovers about
+  80% of the lumping loss (`0.9768` against lumped `0.9890` and exact `0.9745`). That
+  test function needs the weighted landing mass
+  `W(s) = Σ_(h' in G) T(s,h') (r_{D_a} + r_{D_b})(h')`. Counting it with two extra
+  variables `u - w = h'` bounds it only uniformly over the generic class (`4.46 · 3w^2`
+  at `m = 9`), and with that bound the best test function is the constant one (`b = 0`,
+  `1.0053`, no gain). Next step: bound `W(h)` pointwise in the generic height `h`, by
+  autocorrelations of order 3 and 4 at `h` (so `W(h)` is small where
+  `r_{D_a} + r_{D_b}` vanishes), and certify `m = 9` with the `h`-dependent test
+  function.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts

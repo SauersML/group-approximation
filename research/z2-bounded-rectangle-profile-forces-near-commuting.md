@@ -92,3 +92,21 @@ non-permutation unitary construction.
     monodromies of `B^k` at the two ends of a band are conjugate rather than equal. Regluing needs a
     conjugating fibre bijection, whose rank cost is not yet bounded by `K`. Bounding that cost is
     the next step.
+- **Conjugating fibre bijections for the non-abelian thin case (2026-09-18, w8-124, transplanter).
+  Dead: the step is false.**
+  - **Proved** (`centralizer-rounding-cannot-bound-rank-distance-by-profile`). The example is a
+    cross-slit pair on `(Z/p)^2 x Z/2`, with one swap on `b` and one swap on `c`. It has profile at most
+    2 and distance 1. Yet every commuting pair that keeps a word `b^v1 c^v2` with `|v|_1 < p`, and
+    changes only the other generator inside its centralizer, costs at least `2p`.
+  - **Why this settles the step.** Over the one-square torus every permutation pair is thin, and
+    band surgery there means "keep `b`, conjugate `c`". So the conjugator cost of the proposed step is
+    not bounded by any function of `K`.
+  - **Why it fails.** The 2p-cycles of the kept word lie over a proper set of base orbits. The other
+    generator translates that set, so every conjugator must move it.
+  - **Computation** (exact: all frames for `p = 11, 13, 17`, and cylinder variants). On random
+    `S_3`, `Q_8` and `A_4` slit covers, one-sided rounding stays within `3.4 K`. Those covers have long
+    slits, whereas the obstruction lives in short cross slits.
+  - **What it leaves.** Any proof of the forward statement has to be two-sided and local near the
+    defects: it must change both generators, as the abelian path cuts do. For general permutation
+    pairs, the open step is a local two-sided surgery around non-commuting cone points whose cost
+    is bounded by the profile.
