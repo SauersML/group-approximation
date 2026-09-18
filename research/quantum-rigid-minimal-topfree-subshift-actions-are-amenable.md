@@ -6,6 +6,8 @@ title: Every minimal, topologically free, quantum-rigid subshift action of a fin
 requires:
   - quantum-rigid-subshifts-cluster-the-modifications-of-each-point
   - decidable-residually-finite-non-exact-group-exists
+refuted_by:
+  - rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer
 distinct_from:
   exactness-separates-boone-higman-iff-fp-simple-groups-exact: that shows Boone–Higman forces a finitely presented simple non-exact group; this asks whether the master route's rigid dynamics can ever be non-amenable, which that group would need if it came from this route.
   amenable-groupoid-full-groups-are-exact: that asks whether full groups of amenable groupoids are exact; this asks whether quantum rigidity forces the transformation groupoid to be amenable in the first place.
@@ -104,3 +106,27 @@ The master route inherits an analytic constraint that no combinatorial gate show
 So after (IE), the decisive adversarial question for (★′) is this one. Settling it either way changes
 the ranking: true confines the master route to exact inputs and promotes the `V`-less engines and Track B; false
 gives the first non-amenable rigid dynamics.
+
+## Attempts
+
+**2026-09-18, bh-break (minimal-counterexample): REFUTED** by
+`rigid-minimal-topfree-sft-with-non-amenable-point-stabilizer`, through
+`non-amenable-stabilizer-from-gluing-a-cone-compactification`. This is a lane proof and is not reviewed.
+It supersedes the OPEN line at the top of this node.
+- **Cone.** `products-with-z-have-rigid-compactifications-with-fixed-points` works over
+  `Λ_0 × Z`. It puts a `C_Z` height, constant along `Λ_0`, and a copy of a rigid compactification of `Λ_0`
+  on the `*` slice only. The result is a rigid compactification whose points `±^Z` are fixed by all of
+  `Λ_0 × Z`. Rigidity holds because the height letters form a commutative chain, fibre letters on
+  different slices are orthogonal, and one slice is a quantum family for `Λ_0`.
+- **Glue.** Take `Λ_0 = F_2` and glue with `C_Z` over `(F_2 × Z) * Z`, using
+  `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`. The result is minimal, topologically
+  free and rigid. The point whose sink piece carries `+^Z` has stabilizer `F_2 × Z`, which is not
+  amenable, so the action is not topologically amenable.
+- **Which evidence fails.**
+  - Items 2 and 4 miss a transfer: cones over a rigid compactification are rigid, and they manufacture
+    global fixed points.
+  - Item 3's inference fails: non-amenable isotropy in a free-product compactification does not by itself
+    destroy rigidity. The emitters fail for another reason.
+- **What survives.** "Rigid minimal topologically free SFT ⇒ exact acting group" is untouched, because
+  the counterexample group is exact. The "if true" branch (confinement to exact inputs) no longer follows
+  from this node. It would need that exactness statement instead.
