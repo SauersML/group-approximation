@@ -114,3 +114,12 @@ values `β(t, i, s_+, s_*)` from the nesting table. Neither the side of that cel
 **Conclusion.** Transported by the brick-local conjugacy of §1, `(A, φ)` is a height-`m` renormalization
 of an element `U' ∈ 2V` in the sense of items 1–3 of `renormalizable-thompson-elements-give-baumslag-solitar`.
 `U'` has infinite order (automatic from items 1–2).
+
+**Lesson for general BH.** A renormalization of a Turing-type element of `kV` is a **local** identity.
+- `U` has bounded return time, and `φ` and `A` read bounded windows. So `φ U^m = U φ` is decided by a
+  lazy exhaustive search with symbolic unread cells. It is a finite computation, not a statement about
+  deep hierarchies.
+- The induction and density argument explains why the identity holds. The certificate proves it for
+  each fixed `m`.
+- This transfers to any claimed embedding into an `nV`-type host that is built from finitely many
+  table elements and first-return maps. Such claims can be certified outright, not sampled.
