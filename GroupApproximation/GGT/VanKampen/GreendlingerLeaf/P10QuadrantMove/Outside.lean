@@ -83,10 +83,8 @@ theorem p10QM_move_TT (M : CombMap.{v}) (F : Finset M.Face) (c : BoundaryCycle M
     exact hk (h.mpr rfl)
   · obtain ⟨y, hy⟩ := List.exists_mem_of_ne_nil B hne
     exact ⟨y, hBc y hy, Bool.eq_false_iff.mpr fun h => (hkeep y (hBc y hy)).mp h hy⟩
-  · rw [hfa]
-    exact List.infix_refl _
-  · rw [hfb]
-    exact List.prefix_refl _
+  · exact (congrArg (· <:+: a.darts.reverse.map M.alpha) hfa).mpr (List.infix_refl _)
+  · exact (congrArg (· <+: b.darts) hfb).mpr (List.prefix_refl _)
   · exact p10QM_closed_filter_remove hc c.cycle_nodup hblk hBw hP hkeep
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10QuadrantMove.p10QM_move_TT
