@@ -50,27 +50,34 @@ theorem leads_countdown {A : ℕ → σ} {dst z : Fin K} {X : σ} (hzd : z ≠ d
       rw [ho i hi, Function.update_of_ne hi]
 
 /-- A loop at `L` that empties glass `src`, running a body once per coin, where
-the body adds `s` coins to glass `dst` (input for
-`thm:fixed-radical-membership`, `non_mf_group_notes.tex`). -/
-theorem leads_loop {L B X : σ} {src dst : Fin K} {s : ℕ} (hsd : src ≠ dst)
+the body adds `s` coins to glass `dst` and needs the glass `z` to be empty
+(input for `thm:fixed-radical-membership`, `non_mf_group_notes.tex`). -/
+theorem leads_loop {L B X : σ} {src dst z : Fin K} {s : ℕ} (hsd : src ≠ dst)
+    (hzs : z ≠ src) (hzd : z ≠ dst)
     (hL : T.δ L = some (TInstr.test src B X))
-    (hB : ∀ g : Fin K → ℕ, ∃ g' : Fin K → ℕ, T.Leads (B, g) (L, g') ∧
+    (hB : ∀ g : Fin K → ℕ, g z = 0 → ∃ g' : Fin K → ℕ, T.Leads (B, g) (L, g') ∧
       g' dst = g dst + s ∧ ∀ i, i ≠ dst → g' i = g i) (x : ℕ) :
-    ∀ g : Fin K → ℕ, g src = x →
+    ∀ g : Fin K → ℕ, g src = x → g z = 0 →
       ∃ g' : Fin K → ℕ, T.Leads (L, g) (X, g') ∧ g' src = 0 ∧
         g' dst = g dst + s * x ∧ ∀ i, i ≠ src → i ≠ dst → g' i = g i := by
   induction x with
   | zero =>
-    intro g hg
+    intro g hg _
     refine ⟨g, T.leads_of_leads1 (T.leads1_test_zero hL hg), hg, ?_, fun _ _ _ ↦ rfl⟩
     rw [Nat.mul_zero, Nat.add_zero]
   | succ x ih =>
-    intro g hg
+    intro g hg hgz
     have h1 := T.leads1_test_pos hL hg
-    obtain ⟨g1, hl1, hd1, ho1⟩ := hB (Function.update g src x)
+    have hz1 : Function.update g src x z = 0 := by
+      rw [Function.update_of_ne hzs]
+      exact hgz
+    obtain ⟨g1, hl1, hd1, ho1⟩ := hB (Function.update g src x) hz1
     have hg1 : g1 src = x := by
       rw [ho1 src hsd, Function.update_self]
-    obtain ⟨g', hl, hs', hd', ho'⟩ := ih g1 hg1
+    have hgz1 : g1 z = 0 := by
+      rw [ho1 z hzd, Function.update_of_ne hzs]
+      exact hgz
+    obtain ⟨g', hl, hs', hd', ho'⟩ := ih g1 hg1 hgz1
     refine ⟨g', T.leads_trans (T.leads_of_leads1 (T.leads1_trans_leads h1 hl1)) hl,
       hs', ?_, ?_⟩
     · rw [hd', hd1, Function.update_of_ne hsd.symm, Nat.mul_add_one]
