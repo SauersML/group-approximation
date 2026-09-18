@@ -27,14 +27,17 @@ and `ker(dim) ≅ L_2`. Here `ker(dim)` is the group of inert automorphisms.
 - Subgroups of residually finite groups are residually finite, and `(Q,+)` has no nontrivial finite quotient. So
   `Q` does not embed in `Aut`, nor in `L_2`.
 - If `D ≅ Q` lies in `O_2`, then `D ∩ L_2` is a residually finite subgroup of `D`, so `D ∩ L_2 != D`.
-- `D` contains an element outside `L_2`, which violates the Lipschitz constraint SL3 on some circuit. Such an element
-  changes the length of the corresponding periodic orbit.
+- `D` contains an element outside `L_2`, which violates the Lipschitz constraint SL3 on some circuit, since
+  `L_2 = O_2 ∩ SL_2` and `SL_2` is defined by SL3 alone.
 
 **Item 3.**
 - Let `π : Aut -> L_2` be the quotient map, with kernel `<σ>`. If `h^n = g` in `Aut`, then `π(h)^n = π(g)`.
 - **`π(g) != 1` when `I` is infinite.** Suppose `π(g) = 1`. Then `g = σ^j` with `j != 0`, since `g` has infinite
   order. Then `dim(h_n)^n = 2^j` in `<2> ≅ Z` for each `n in I`, so `n` divides `j`. That is impossible for infinitely
   many `n`.
+- **`π(g)` has infinite order** (gq-referee-a, N1). If `π(g)^m = 1` with `m >= 1`, then `g^m = σ^(jm)`, and `g^m` has `n`-th
+  roots for every `n in I`. So `n` divides `jm` for infinitely many `n`, hence `jm = 0` and `g^m = 1`, which contradicts
+  infinite order.
 - **`Z[1/2]`.** If `E ≅ Z[1/2]` lies in `Aut`, then `E ∩ <σ>` is `0`. Otherwise some `σ^j`, `j != 0`, would have
   `2^k`-th roots in `E` for all `k`, contradicting the divisibility argument above. So `π` is injective on `E`.
   Conversely, `L_2 ≅ ker(dim) ⊂ Aut`.
