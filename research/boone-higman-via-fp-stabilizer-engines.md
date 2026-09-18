@@ -26,8 +26,19 @@ infinite, since finite groups embed in Thompson's `V`.
    by the open `fp-decidable-vertex-groups-have-fp-stabilizer-engines`. So `G` embeds in a
    finitely presented simple group. `∎`
 
-**Status.** Open exactly at the engine claim, whose two hypotheses on `B` (finitely presented,
-decidable) are both necessary. The first test is Reid's group, `B = Z`.
+**Status. DEAD AS STATED (2026-09-18).** Its engine claim
+`fp-decidable-vertex-groups-have-fp-stabilizer-engines` is refuted by
+`free-product-emitter-full-groups-need-isolated-vertex-groups`: a finitely presented
+`D(F_B)` forces `B` to be *isolated* (finitely presented and finitely discriminable), and Reid's
+`B = Z` fails.
+- Clapham's `B_0` need not be isolated. For residually finite `B_0` neither `B_0` nor
+  `B_0 ≀ Z/2` is isolated.
+- **The corrected route** replaces step 1 by "`G` embeds in an isolated group `B_0`". Then
+  `B = B_0 ≀ Z/2` is isolated (Cornulier–Guyot–Pitsch, Thm. 7), and step 3 needs the corrected
+  engine conjecture for isolated `B`.
+- The new step 1 is exactly Cornulier–Guyot–Pitsch Question 4 (J. Algebra 2007), which is
+  open and weaker than Boone–Higman. So the corrected route shows: corrected engine
+  conjecture ⇒ (BH ⟺ CGP Question 4).
 
 ## Lesson for general BH
 

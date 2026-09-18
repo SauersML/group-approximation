@@ -66,11 +66,16 @@ compute the abelianization of G".
    - `H_*(G; Q)` is `Q` in degrees 0 and 1 and vanishes above.
    - `G` is not isomorphic to any Higman–Thompson group `V_{n,r}` or Brin–Higman–Thompson
      group, since those have finite abelianization.
-5. **Open.** Is `G` (equivalently `G'`) finitely presented? Li's Garside finiteness
-   theorem does not apply, because the vertices of `T` are infinite emitters.
-   - Near a vertex, `t` together with the finitary permutations of the branches is a copy
-     of the Houghton group `H_2 = FSym(Z) ⋊ Z`, which is not finitely presented.
-   - That is only a heuristic; finite presentation of `G` is open.
+5. **Not finitely presented** (added 2026-09-18). Neither `G` nor `G'` is finitely
+   presented, by `free-product-emitter-full-groups-need-isolated-vertex-groups`.
+   - Finite presentation would force the vertex group `Z` to be isolated in the space of
+     marked groups. But `Z` is residually finite, so its fillings `Z → Z/d` are nearby
+     proper quotients.
+   - The realization maps land in Reid's own groups for finite `d`, and each of them
+     kills the nontrivial element `t^d`.
+   - The earlier heuristic was the Houghton group `H_2 = FSym(Z) ⋊ Z` near a vertex,
+     which is not finitely presented. It pointed the right way. Li's Garside finiteness
+     theorem does not apply, because the vertices of `T` are infinite emitters.
 
 ## Lesson for general BH
 
@@ -79,7 +84,7 @@ The full group then has infinite abelianization, and its simple derived group ha
 homology of the germ group shifted up. The general mechanism is recorded in the parent
 node: infinite vertex groups survive as isotropy and as homology. For hosts it means that
 full groups with parabolic germs are a genuinely different family from Thompson-like
-ones. Their finite presentation is the open gate.
+ones. Their finite presentation fails whenever the parabolic germ group is not isolated (item 5).
 
 ## Referee (bh-ref-misc, 2026-09-18): PASS
 

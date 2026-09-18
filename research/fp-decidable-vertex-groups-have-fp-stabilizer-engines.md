@@ -8,10 +8,22 @@ requires:
 distinct_from:
   simple-inputs-have-finitely-presented-stabilizer-engines: that asked the same for finitely generated decidable SIMPLE vertex groups and is refuted (stabilizer-engines-of-non-fp-simple-groups-are-not-fp); this asks it for finitely presented decidable vertex groups, which are exactly the vertex groups the known obstructions allow.
   fp-stabilizer-engines-need-fp-vertex-groups: that is the necessity of "B finitely presented"; this is the open sufficiency of "finitely presented and decidable".
-  reid-higman-thompson-variant-d-zero-abelianization: that is the case B = Z (Reid's group), whose finite presentation is open; this is the general statement.
+  reid-higman-thompson-variant-d-zero-abelianization: that is the case B = Z (Reid's group), which is not finitely presented (free-product-emitter-full-groups-need-isolated-vertex-groups); this is the general statement.
+refuted_by:
+  - free-product-emitter-full-groups-need-isolated-vertex-groups
 ---
 
-**OPEN** (stated by bh-emitter-b, 2026-09-18). Notation as in
+**REFUTED (2026-09-18)** by `free-product-emitter-full-groups-need-isolated-vertex-groups`.
+- A finitely presented `D(F_B)` forces `B` to be *isolated*: finitely presented and
+  finitely discriminable.
+- `B = Z` is finitely presented and decidable, but it is residually finite, hence not
+  finitely discriminable. So `D(F_Z)` (Reid's group) is not finitely presented.
+- The corrected conjecture is still open: every infinite isolated `B` gives a finitely
+  presented `D(F_B)`.
+
+The refuted statement is kept below as a record.
+
+Refuted statement (stated by bh-emitter-b, 2026-09-18). Notation as in
 `free-product-boundary-groupoids-carry-the-vertex-group-homology`, with `k = 2`.
 
 **Claim (stabilizer engine conjecture).** If `B` is an infinite finitely presented group with
@@ -35,7 +47,7 @@ decidable.
    prefix actions are the same. Yet `D(F_B)` is not finitely presented. So no argument that
    uses only finite presentation of the local groups can work. For example, a Brown-criterion
    proof must have a descending-link connectivity step that fails for undecidable `B`.
-2. **It must pass Reid's group.** The first case is `B = Z`, which is open.
+2. **It must pass Reid's group.** The first case, `B = Z`, fails: `D(F_Z)` is not finitely presented (see the banner).
 3. **It must control the emitter.** Near the emitter `v` the local group contains copies of
    `FSym(B) ⋊ B`, a Houghton-type group (`H_2` for `B = Z`, not finitely presented). The
    missing relations must follow from relations supported away from `v`, through the
