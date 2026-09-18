@@ -5934,6 +5934,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionS
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.BKROps
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Wired
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.ColRow
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ToRealFormula
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
