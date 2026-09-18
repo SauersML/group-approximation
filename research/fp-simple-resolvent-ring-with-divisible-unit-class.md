@@ -54,3 +54,32 @@ This is the coordinator's design target of 2026-09-18.
      `Σ_(j<=N) D^j S S^* D^(−j) = …`, which is not a finite ring relation.
    - A resolvent-type identity that replaces this sum by finitely many relations is the
      open step.
+2. **Capacity chain (2026-09-18, refuted).** The candidate
+   `capacity-chain-resolvent-ring-has-rational-k0` realizes "a level-`k` state emits
+   `k+1` routes" with 7 letters and a capacity register. Its finite presentation is not
+   simple: a bi-infinite chain module with non-integral capacity detects an element that
+   vanishes concretely (`capacity-chain-presentation-is-not-simple`, referee a PASS).
+3. **The squeeze on register designs.** Two landed results bracket every design built
+   from commutative registers, substitution letters and availability idempotents.
+   - **One unbounded register per type.** Here `[1]` is divisible at only finitely many
+     primes (`single-register-rings-divide-unit-at-finitely-many-primes`, lane
+     `gq-k2-q`; part 2 conditional on the Pimsner sequence). Resolvents do not help: they
+     live in `K_1`.
+   - **Two unbounded registers.** Divisibility at infinitely many primes needs a fibre
+     whose size grows with the level and exits into a fresh level. That forces a
+     comparison between two unbounded registers (observation of `gq-k2-q`). For the
+     capacity shape, the comparison creates hidden positivity identities that the finite
+     presentation cannot enforce. Whether this holds for *every* two-register design is
+     open. The general form would be a no-go: generic modules, with register values off
+     the integers, satisfy all finitely many relations but violate the hidden identities.
+   - **Also needed (lane `gq-k2-q`, `resolvent-register-units-give-rational-symbols`).**
+     Item 5 must control every symbol `{λ, x}` with `x` a unit, not only `{λ, μ}`.
+     Register units `N + c` contribute a tail lattice whose `1 − [X]` cokernel must
+     vanish, so every register type needs a register-preserving loop and fed row ends.
+4. **Remaining loopholes (untested).**
+   - Dilation letters `N ↦ pN + r`. A first heuristic with digits `x_0, x_1` and a shift
+     gives torsion or no divisibility.
+   - Well-foundedness encoded noncommutatively. For example, `sl_2`-type relations,
+     whose finite-dimensional modules have dimension `k+1` at highest weight `k`; but
+     Verma modules are the analogue of the bad chain.
+   - Hosts not of register type at all.
