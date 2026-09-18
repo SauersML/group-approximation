@@ -7,9 +7,16 @@ distinct_from:
   prime-shift-hnn-groups-are-not-finitely-presented: that proves the HNN group Π_1 is not finitely presented and that finite presentation of A_1 needs a hidden relation; this asks whether A_1 itself is finitely presented.
   prime-shift-hnn-map-to-a1-is-injective: that asks whether Π_1 -> A_1 is injective; a positive answer there refutes this claim.
   prime-shift-affine-group-a1-has-fg-point-stabilizer: that is the other type (A) condition, on a point stabilizer; this is the finite-presentation condition.
+refuted_by:
+  - prime-shift-affine-group-a1-is-not-finitely-presented
 ---
 
-**OPEN.** The group `A_1 = <x -> x+1, x -> 2x, x -> -x, σ> <= Sym(Q)` of
+**REFUTED (2026-09-18)** by `prime-shift-affine-group-a1-is-not-finitely-presented`.
+Deep-denominator germs map `A_1 / <<τ>>` onto `Z ≀ Z`, with kernel of order at most `2`,
+so no dilation lies in `<<τ>>` and `A_1` is not finitely presented. That holds whether or
+not `Π_1 -> A_1` is injective.
+
+**Refuted statement.** The group `A_1 = <x -> x+1, x -> 2x, x -> -x, σ> <= Sym(Q)` of
 `gl-n-q-lies-in-prime-shift-permutation-group` is finitely presented.
 
 **Source.** Root `gl-n-q-embeds-in-fp-simple-group`, Attempt 18: for `A_1`, type (A) "reduces to finite

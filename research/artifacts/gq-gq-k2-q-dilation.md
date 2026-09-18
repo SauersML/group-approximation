@@ -85,3 +85,16 @@ by larger-base dilations while the smallest-base letters land elsewhere.
   neighbouring free values to agree, so there is no division.
 - An escape would need consistency conditions whose coefficient on the newest free parameter has unbounded prime
   support. None is known.
+
+## 8. Point indicators in the dilation examples (scope of (P), db70a3dbb)
+
+The proof of (P) needs `⊕_N Q ⊆ B⁺` at each type. For the one-type loop-plus-dilation examples:
+- **Down transports alone are not enough.** With the vacuum idempotent `e_N = δ_0`, the substitution transports
+  `σ_x(δ_k) = δ_((k−r)/p)` only move indicators down. Starting from `δ_0` they give `δ_0` alone.
+- **Up transports supply the rest.** The ring also contains `s_x δ_j t_x = δ_(pj+r)`, a function of the register
+  in the concrete model. With all residues of some base `p`, every `n` is reached from `δ_0`, by its base-`p`
+  expansion.
+- So the examples meet the amendment once `B⁺` is taken closed under both transports `f ↦ σ_x(f)` and
+  `f ↦ s_x f t_x`, which leaves the ring `R` unchanged. Whether the proof of (P) allows this enlarged
+  coefficient ring is for `gq-ring-fp-simple` to confirm.
+- The `K_0` computations in §4 and §7 already used the point classes, so they describe that enlarged setting.

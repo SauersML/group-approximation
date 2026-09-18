@@ -64,3 +64,16 @@ open part is finite presentation. One concrete route is
      and the explicit host `G_l` of `z-localized-embeds-in-fg-rf-soluble-group` satisfies both. So an affirmative
      answer to the effective-RF form of the Kharlampovich--Myasnikov--Sapir question, left open by Rauzy,
      would give this claim. The Kharlampovich--Myasnikov--Sapir groups themselves are soluble of class 3, as is `G_l`.
+2. **Third pass (2026-09-18, lane gq-infinite-primes): the ring side is closed, and the gap is K_2.**
+   - `R_l` has an explicit path normal form (`resolvent-ring-has-path-normal-form`).
+   - `R_l` is residually finite for every `l` (`resolvent-presentation-ring-is-residually-finite`). So
+     `E_N(R_l)` is a finitely generated residually finite group containing `Z_(l)`, and it is a quotient of the
+     finitely presented `St_N(R_l)`.
+   - Two new routes reduce this claim to K-theory of `R_l`:
+     - `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`, from
+       `resolvent-steinberg-rf-residual-is-finitely-normally-generated`;
+     - `z-localized-fp-rf-via-fp-resolvent-elementary-group-over-r-l`, from `resolvent-elementary-group-is-fp`.
+   - The deciding computation: do the corner tame symbols from `K_2(Z_(l)) ⊇ ⊕_(q != l) F_q^×` survive in
+     `St_N(R_l)`? If they do not, or only finitely many matter, the claim follows. If infinitely many
+     survive independently and `K_2(N, R_l)` is central, both routes through `R_l` fail, and the ring must be
+     modified.

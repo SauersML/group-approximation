@@ -180,3 +180,16 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
   - *(b) Joint `BS(1,2)` and `BS(1,3)`.* This contains `BS(1,2)`, so it waits on it.
     `renormalization-heights-force-eigenvalue-roots` (gq-affq) and the Durand–Cobham conjecture there
     suggest that one base will not carry heights 2 and 3.
+- **2026-09-18 (lane gq-affq): two-head / even-arity route, one design pass. No candidate.**
+  `research/artifacts/gq-affq-binary-two-head-design.md`.
+  - *Two heads on one tape are not elements of `kV`.* The finite segment between the heads is
+    not a Cantor coordinate.
+  - *A second coordinate as a displacement stack* makes the Jacobsthal turn test bounded. It moves
+    the cost into merging nested counters, which means deleting a separator at depth `L`, the
+    same linear walk found in the one-head search.
+  - *Tower of Hanoi on three stacks (`3V`)* has exact doubling, `f+1 = 2^n`, with no walk. But
+    the even-step move is an order comparison of unbounded labels. On MSI, parity, a last-move
+    mark, depth-2 parity and size mod `M` (`M <= 12`, with `n <= 15`) all leave conflicts.
+  - *Conjecture:* a binary hierarchy needs control information that grows with the level. Inside
+    `kV` that costs either unbounded lookahead or a walk that breaks exact doubling. No candidate
+    reached the `i ∈ E(S)` filter of `smart-induced-map-alternates-head-direction`.
