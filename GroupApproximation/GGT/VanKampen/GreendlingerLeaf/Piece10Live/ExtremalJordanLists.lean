@@ -6,15 +6,16 @@ import GroupApproximation.Meta.AxiomGuard
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-17.
 
-The list lemma behind `Piece10Live/ExtremalJordan`: if a duplicate-free list is split twice,
-`X ++ Y = U ++ V`, then no `e ∈ X` with `e ∈ V` can come together with a `b ∈ Y` with `b ∈ U`
-(`extremalJordan_false_of_order`): the two splittings cannot put `e` before `b` and `b` before
-`e` at once.
+The list lemma behind `Piece10Live/ExtremalJordan`: if a duplicate-free list is split
+twice, `X ++ Y = U ++ V`, then no `e ∈ X` with `e ∈ V` can come together with a `b ∈ Y` with
+`b ∈ U` (`extremalJordan_false_of_order`): the two splittings cannot put `e` before `b` and `b`
+before `e` at once.
 
 ## Proof route
 
 `List.append_eq_append_iff` splits `X ++ Y = U ++ V`.  Either `Y = p ++ V`, so `e ∈ Y` as well
-as `e ∈ X`; or `X = U ++ q`, so `b ∈ X` as well as `b ∈ Y`.  Both contradict `List.nodup_append`.
+as `e ∈ X`; or `X = U ++ q`, so `b ∈ X` as well as `b ∈ Y`.  Both contradict
+`List.nodup_append`.
 
 ## Manuscript status
 
