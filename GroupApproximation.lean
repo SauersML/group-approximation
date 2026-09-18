@@ -5681,6 +5681,9 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.VertexSe
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.ExistsCode
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Vectors
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Chains
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Semantics
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Vars
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.CPoly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
