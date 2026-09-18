@@ -174,3 +174,73 @@ theorem vdkInjAct_truthPhi_neg {u : Fin (n + 1) → R} (hu : ¬vdkInjAct_Orb u)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi_neg
 
+/-- Step A and injectivity of `vdkRowPar` make `truthPhi` multiplicative along the row action. -/
+theorem vdkInjAct_truthPhi_mul (hA : vdkInjCoset_rowStab n R ≤ vdkRowParSubgroup n R)
+    (hinj : Function.Injective (vdkRowPar (n := n) (R := R))) (u : Fin (n + 1) → R)
+    (g g' : St (n + 1) R) :
+    vdkInjAct_truthPhi u g * vdkInjAct_truthPhi (vdkInjAct_row u g) g' =
+      vdkInjAct_truthPhi u (g * g') := by
+  by_cases hu : vdkInjAct_Orb u
+  · have hu' := vdkInjAct_Orb_row hu g
+    have hq : vdkInjAct_sec u * g * (vdkInjAct_sec (vdkInjAct_row u g))⁻¹ *
+        (vdkInjAct_sec (vdkInjAct_row u g) * g' *
+          (vdkInjAct_sec (vdkInjAct_row (vdkInjAct_row u g) g'))⁻¹) =
+        vdkInjAct_sec u * (g * g') * (vdkInjAct_sec (vdkInjAct_row u (g * g')))⁻¹ := by
+      rw [vdkInjAct_row_mul]
+      group
+    rw [vdkInjAct_truthPhi_pos hu g, vdkInjAct_truthPhi_pos hu' g',
+      vdkInjAct_truthPhi_pos hu (g * g'),
+      ← vdkInjAct_pre_mul hinj (hA (vdkInjAct_twist_mem hu g)) (hA (vdkInjAct_twist_mem hu' g')),
+      hq]
+  · have hu' : ¬vdkInjAct_Orb (vdkInjAct_row u g) := fun h ↦ hu (vdkInjAct_Orb_of_row h)
+    rw [vdkInjAct_truthPhi_neg hu g, vdkInjAct_truthPhi_neg hu' g',
+      vdkInjAct_truthPhi_neg hu (g * g'), one_mul]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi_mul
+
+/-- The cocycle of `truthPhi` is based: at `e_last`, a stabilized root `x_{i'j'}(a)` is
+`vdkRowPar (0, x_{ij}(a))`, so its component is `x_{ij}(a)`. -/
+theorem vdkInjAct_truthPhi_based (hinj : Function.Injective (vdkRowPar (n := n) (R := R))) :
+    vdkInjAct_IsBased (fun u i j hij a ↦ vdkInjAct_truthPhi u (x i j hij a)) := by
+  intro i j hij h' a
+  show vdkInjAct_truthPhi (Pi.single (Fin.last n) 1) (x i.castSucc j.castSucc h' a) = x i j hij a
+  have he : vdkInjAct_Orb (Pi.single (Fin.last n) (1 : R)) := ⟨1, vdkInjAct_row_one _⟩
+  have hrow : vdkInjAct_row (Pi.single (Fin.last n) (1 : R)) (x i.castSucc j.castSucc h' a) =
+      Pi.single (Fin.last n) 1 :=
+    (vdkInjCoset_mem_rowStab _).mp (vdkInjCoset_x_mem _ _ h' a (Fin.castSucc_ne_last i))
+  have hs : vdkRowPar ((0 : Fin n → R), x i j hij a) = stab n R (x i j hij a) := by
+    rw [vdkRowPar_apply, colVec_zero, one_mul]
+  rw [vdkInjAct_truthPhi_pos he, hrow, vdkInjAct_sec_base, one_mul, inv_one, mul_one,
+    ← stab_x i j hij a, ← hs, vdkInjAct_pre_rowPar hinj]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi_based
+
+/-- **Truth check at one `n`.**  Step A and injectivity of `K2Stab n R` give a based row cocycle.
+-/
+theorem vdkInjAct_cocycle_of_rowStab (hA : vdkInjCoset_RowStabAt n R)
+    (hK : Function.Injective (K2Stab n R)) :
+    ∃ c : vdkInjAct_Cocycle n R, vdkInjAct_IsCocycle c ∧ vdkInjAct_IsBased c := by
+  have hinj := vdkRowParInjective_of_K2Stab_injective hK
+  exact ⟨_, vdkInjAct_isCocycle_of_mul _ (vdkInjAct_truthPhi_mul hA hinj),
+    vdkInjAct_truthPhi_based hinj⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_cocycle_of_rowStab
+
+/-- **Truth check.**  Step A (`vdkInjCoset_RowStabStatement`) and the target give the residual.
+-/
+theorem vdkInjAct_cocycleStatement_of_injStab (hA : vdkInjCoset_RowStabStatement)
+    (h : vdkInjDirect_TransitiveInjStatement) : vdkInjAct_CocycleStatement := by
+  intro R _ r hsr htr
+  exact vdkInjAct_cocycle_of_rowStab (hA R r (r + 3) hsr le_rfl) (h R r hsr htr)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_cocycleStatement_of_injStab
+
+/-- **Strength (LOUD).**  Modulo Step A, the residual is equivalent to the target. -/
+theorem vdkInjAct_cocycle_iff_of_rowStab (hA : vdkInjCoset_RowStabStatement) :
+    vdkInjAct_CocycleStatement ↔ vdkInjDirect_TransitiveInjStatement :=
+  ⟨vdkInjAct_transitiveInj_of_cocycle, vdkInjAct_cocycleStatement_of_injStab hA⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_cocycle_iff_of_rowStab
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
+
