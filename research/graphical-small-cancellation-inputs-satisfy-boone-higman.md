@@ -49,6 +49,11 @@ the case where each component is a cycle.
 - **Any single host.** No single finitely generated group with solvable word problem
   contains every member of the family (item 5 of the complexity node).
 
+## Instances on main
+
+- `osajda-decidable-nonexact-group-satisfies-boone-higman` (bh-testcases): the Boone--Higman question for Osajda's decidable residually finite non-exact group. It is the single-input instance of this claim.
+- `decidable-graphical-non-exact-groups-exist`: two more decidable inputs. One is `G_exp`, with isometrically embedded expanders, so no Haagerup host contains it and a host of it is not coarsely embeddable into Hilbert space. The other is `G_PW`, which acts properly on a CAT(0) cube complex and is not exact. `G_PW` is the natural test for exactness of `V`; see `every-cocf-group-is-exact`.
+
 ## What is known
 
 - **Finitely many components.** Then `G(Γ)` is finitely presented and hyperbolic.
