@@ -134,3 +134,20 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
   - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at comparable windows, which is again the quantifier
     exchange. At windows 1 and 2, `F` sits between free-like and amenable-like: `R(1) = 3 < CR(1) = 5 ≤ R(2) − 4`.
     Radii this small cannot decide RGAP₁, and no belief moves in either direction.
+- **2026-09-18 (swarm-0917-w12-w12-f-last1, reframing).** The hole is reduced to a statement about sets alone. It
+  stays OPEN. Established (unreviewed): `thompson-f-ramsey-functions-cost-no-more-than-ramsey-sets`.
+  - *Threshold dithering.* Code `f : B_n(G) → [0,1]` as the set `E = {(x,z) : f(x) > (z mod T + 1/2)/T}` in `G × Z`.
+    Average a set witness over the window `{(g,s) : s < T}`. The `G`-marginal then balances `f` to `ε + 1/T`. So
+    `R̃_G(m, ε + 2/T) ≤ R_{G×Z}(m+T−1, ε)` in every group.
+  - *Back into F.* `H = F_{[0,1/2]}·⟨x_1⟩ ≅ F × Z` is undistorted in `F`, with linear constants. The inputs are the
+    log-slope at `1` and "restriction to `[0,1/2]` does not add carets", together with the imported caret
+    comparison. A coset push-forward gives `R_H(m, ε) ≤ L(2R_F(cm, ε))`. Together:
+    `R̃(m, ε + 2/T) ≤ 2A·R(c(m+T), ε) + A`.
+  - *Consequence.* AMP(D) ⇒ AMP_set(D) ⇒ AMP(D + 2k). So this claim is equivalent to `¬AMP_set`: for every `D`
+    there are `m, u` with `R(m, 1/u) > exp_D(R(exp_D(m+u)) + u)`, with sets on both sides.
+  - *Class kill.* No approach through a gap between set and function witnesses can reach `¬AMP`. That gap is at
+    most linear in `R` after a window shift `T` and a precision loss `2/T`. This covers the radius-11 separation of
+    the w8 census.
+  - *Where it dies.* The reduction carries no information from precision 1/2 to precision 1/u. Everything left is
+    the amplification of 1/2-Ramsey sets to 1/u-Ramsey sets. That is still the ∀E∃ν versus ∃ν∀E swap of the gap
+    node, which is untouched.
