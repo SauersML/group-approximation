@@ -39,8 +39,9 @@ This is made exact here:
   `vdkInj_low_of_needed` is the converse.  So, given (A), needed ⟺ target ∧ low part.
 
 The low part is where the needed statement exceeds the target.  It is vacuous when
-`sr(R_k) = k + 1`.  For `k = 1` this is the case (`sr(F_p[s]) = 2`: the unimodular row
-`(s, 1 + s³)` cannot be reduced to a unit, by degree).  For `k ≥ 2` it is not vacuous if
+`sr(R_k) = k + 1`.  For `k = 1` this is the case (paper check, not formalized:
+`sr(F_p[s]) = 2`, since `s + b (1 + s³)` is never a nonzero constant, by degree, although the row
+`(s, 1 + s³)` is unimodular).  For `k ≥ 2` it is not vacuous if
 `sr(R_k) ≤ k` (literature remark, no Lean depends on it: Vaserstein–Suslin bound `sr ≤ max(2, d)`
 for affine algebras over finite fields).  Whether the needed statement is strictly stronger than
 the target therefore depends on `sr(R_k)` exactly; it is never weaker.
