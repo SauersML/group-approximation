@@ -56,3 +56,13 @@ group of its recurrent states is). The same group may still be covered through a
 is known that fails the hypothesis for every finite-state action. The route
 `automaton-groups-bh-via-lift-presented-overgroups` reduces the claim to finding such an action or overgroup.
 Whether this is a named problem in the literature was not checked here.
+
+## Reduction (09-18, bh-self-similar)
+
+- `separated-automata-reduce-bh-to-fp-overgroups-of-the-base`: a separated automaton group (loops on private
+  letters over a base acting on the other letters) is Boone–Higman once its base embeds in a finitely presented
+  automaton group. This covers every test case above, over the Grigorchuk base.
+- For linear activity the base is bounded. The single remaining input for separated linear automata is
+  `bounded-automaton-groups-embed-in-fp-automaton-groups`.
+- Not yet reduced: automata that are not separated, where the base acts on loop letters. The germ criterion
+  still applies to them.

@@ -9,7 +9,9 @@ distinct_from:
   fp-strongly-shift-similar-admits-type-a-action: that is Zaremsky's type (A) theorem for finitely presented strongly shift-similar groups; this supplies new strongly shift-similar groups to which that theorem can be applied.
 ---
 
-**ESTABLISHED** by `houghton-like-groups-strongly-shift-similar-citation` (citation import, read at source).
+**ESTABLISHED** by `houghton-like-groups-strongly-shift-similar-citation` (citation import, read at source). Referee b PASS
+(research/artifacts/gq-referee-b-houghton-like-groups-are-strongly-shift-similar.md, 25b091cb0): quotes verbatim,
+SHA-256 and counter numbering confirmed.
 
 Let `G <= Sym(N)` be shift-similar in the sense of Mallery--Zaremsky, arXiv:2202.00822, and let `H_n(G)` be
 their Houghton-like group (Definition 4.1): the bijections of `[n] x N` that send a finite set `M_+` to a finite
@@ -25,7 +27,8 @@ set `M_-` of the same size by some bijection, and send each quasi-ray `Q(k, M_+)
    finitely generated then so is `H_n(G)` (Corollary 5.11).
 4. If `G` is strongly shift-similar then every `psi_j : G -> G` is surjective (Lemma 3.19). So the source's
    notion of strongly shift-similar (Definition 3.17: the germ shifting map `psi_infinity` is surjective)
-   implies the one quoted in `fp-strongly-shift-similar-admits-type-a-action` (each `psi_j` surjective).
+   implies the one quoted in `fp-strongly-shift-similar-admits-type-a-action` (each `psi_j` surjective). For
+   infinite `G` the two are equivalent, since `psi_infinity` is induced by any `psi_j` (referee b).
 
 **Consequence used in this graph.** By item 2 and `fp-strongly-shift-similar-admits-type-a-action`, if
 `H_n(G)` is finitely presented, then it has a type (A) action. By item 1 and

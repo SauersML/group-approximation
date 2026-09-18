@@ -12,7 +12,10 @@ distinct_from:
 **ESTABLISHED** by `abstract-twisted-bt-type-fn-colored-stein-proof` (lane proof, 2026-09-18).
 Referee a (proof gaps): **PASS**,
 `research/artifacts/gq-referee-a-abstract-twisted-bt-type-fn-criterion.md` (efa4f3b5c), nits
-applied. Second pass (gq-referee-c) and citation pass (gq-referee-b) requested. No priority claimed.
+applied. Referee c (independent second pass): **PASS**,
+`research/artifacts/gq-referee-c-abstract-twisted-bt-type-fn-criterion.md` (72d2941ac).
+Referee b (citations): **PASS** (68ed8a399). No priority claimed; bounded literature search
+as on `twisted-brin-thompson-type-fn-criterion`.
 
 ## Statement
 
@@ -24,6 +27,9 @@ twisted Brin--Thompson group (FFWZ, arXiv:2603.24687v2, Definition 2.12). For `n
    type `[A_∞]`.
 
 Necessity in all items is FFWZ Corollary 4.18 (`twisted-brin-thompson-type-fn-implies-type-an`).
+Its quasi-retraction (Proposition 4.17) is cited together with the realization of
+`abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one`, which makes the germinal
+twists in `G` well defined.
 Sufficiency is new here:
 - in item 1, for every `n ≥ 3`;
 - in items 2 and 3, for non-faithful actions: FFWZ Theorem B(ii), (iii) had a proof with a

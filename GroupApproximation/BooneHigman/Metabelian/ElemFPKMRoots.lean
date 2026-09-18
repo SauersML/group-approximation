@@ -42,7 +42,8 @@ def RootGroup (i j : Fin (d + 5)) (_hij : i ≠ j) : Type _ :=
 
 instance rootGroup_commGroup (i j : Fin (d + 5)) (hij : i ≠ j) :
     CommGroup (RootGroup X d i j hij) :=
-  { (inferInstanceAs (Group ↥(Subgroup.closure (rootWords X d i j)))) with
+  { (inferInstanceAs (Group ↥(Subgroup.closure (rootWords X d i j))) :
+      Group ↥(Subgroup.closure (rootWords X d i j))) with
     mul_comm := fun a b => Subtype.ext
       (closure_commute X d i j i j hij hij (Ne.symm hij) hij (Subtype.property a)
         (Subtype.property b)).eq }

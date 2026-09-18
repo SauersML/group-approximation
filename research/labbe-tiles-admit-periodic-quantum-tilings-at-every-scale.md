@@ -70,7 +70,9 @@ tiling.
   - *Why it fails.* The resulting family consists of conjugates of diagonal (multiplication)
     operators by monomial matrices. It is therefore commutative, hence a classical periodic tiling.
     Truncating the phase space reinstates the carry at the top digit as a local defect.
-  - *General lesson.* Holonomy that normalizes a maximal commutative frame never produces
-    contextuality. A witness needs holonomy that is non-monomial with respect to every local
-    classical frame. This refines the "Topology" entry above: a frame change around the cycles is
-    necessary, but a permutation of a fixed frame is not enough.
+  - *General lesson* (gq-referee-a PASS, 834cfa8c3).
+    - *Proved:* if all `E_a(z)` lie in one maximal commutative subalgebra, the family is classical.
+      This covers diagonal operators conjugated by monomial holonomy.
+    - *Heuristic necessary condition:* a witness's holonomy must be non-monomial with respect to
+      every local classical frame. This refines the "Topology" entry above: a frame change around
+      the cycles is necessary, but a permutation of a fixed frame is not enough.

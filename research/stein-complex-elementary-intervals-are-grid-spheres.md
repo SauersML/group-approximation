@@ -9,7 +9,9 @@ distinct_from:
 
 **ESTABLISHED** by `stein-interval-grid-sphere-proof` (lane proof). Referee a (proof gaps):
 **PASS** (`research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md`,
-16bd2d9b5). The computation is the
+16bd2d9b5). Referee b (citations): **PASS** (68ed8a399); it confirms that the
+dichotomy is exactly the nerve computation of BZ Lemma 7.6 (`lem:all_big`), and that the
+generalization to arbitrary elementary intervals is legitimate. The computation is the
 nerve argument in the proof of Belk--Zaremsky, arXiv:2001.04579, Lemma `lem:all_big`
 ("Descending split link, second case"). There it is applied to the descending links of the
 Stein complex; here it is stated for an arbitrary elementary interval. No priority claimed.

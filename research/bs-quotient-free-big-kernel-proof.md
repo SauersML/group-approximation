@@ -39,14 +39,17 @@ groups of `H`.
   extension `1 → K → H_1 → F_m → 1` splits because `F_m` is free, so
   `H_1 = K ⋊ F_m`.
 - **Splitting off the free group.** If the image of `H_1` in `Out(K)` is finite,
-  let `H_2 ≤ H_1` be the kernel. Its elements act on `K` by inner automorphisms,
-  and `H_2 = K · C_(H_2)(K)`.
-- **When `Z(K)` is trivial.** Then `H_2 ≅ K × C_(H_2)(K)`, and `C_(H_2)(K) ≅ H_2/K`
-  is virtually free.
-- **When `Z(K)` is finite.** The splitting argument of
-  `commensurator-rigid-bs-products-proof`, Step 4, gives a free `F` with `K × F`
-  of finite index.
-- **Finite `Out(R(G))`.** `K ⊇ N ≅ R(G)` with finite index. `N` is characteristic
+  let `H_2 ≤ H_1` be the kernel, of finite index. Its elements act on `K` by inner
+  automorphisms, so `H_2 = K · C` with `C = C_(H_2)(K)`.
+  - `C ∩ K = Z(K)`, which may be infinite, and `C/Z(K) ≅ H_2/K ≤ H_1/K ≅ F_m` is free.
+  - The central extension `1 → Z(K) → C → C/Z(K) → 1` splits over the free quotient,
+    so `C = Z(K) × F` with `F` free.
+  - Then `H_2 = K · F`, `F` centralizes `K`, and `K ∩ F ⊆ Z(K) ∩ F = 1`. So
+    `H_2 ≅ K × F` exactly.
+  - This is due to referee a, and replaces an earlier case split on `Z(K)`, which
+    missed an infinite center.
+- **Finite `Out(R(G))` (the separate statement in item 3).** `K ⊇ N ≅ R(G)` with
+  finite index. `N` is characteristic
   in the vertex groups and normal in `H`, so `H` acts on `N`. If `Out(N)` is finite
   and `Z(N) = 1`, a finite-index `H_3 ≤ H` acts on `N` by inner automorphisms, and
   `H_3 = N · C` with `C = C_(H_3)(N)` and `N ∩ C = Z(N) = 1`, so `H_3 ≅ N × C`.
@@ -64,11 +67,16 @@ groups of `H`.
   orbits, so it lies in `B_A` by
   `product-of-two-trees-lattices-satisfy-permutational-boone-higman` (one factor
   with more than two ends).
-- **The action on `K`.** It is by conjugation, realized through the projection of
-  `Γ` to `Aut(T_1) × Aut(T_2)`. `K` acts on `T_1 × T_2` cocompactly with finite
-  kernel.
-- **Discrete projection.** If the projection is discrete, it contains the image of
-  `K` with finite index, and the image in `Out(K)` is finite up to the finite kernel.
+- **The action on `K`.** It is by conjugation, realized through the projection
+  `p : Γ → Aut(T_1) × Aut(T_2)`. `Γ` acts faithfully on `T_1 × T_2 × T_3`, and `K`
+  fixes `T_3`, so `p` is injective on `K`. `K` has finite index in the vertex
+  stabilizer `Γ_v`, which acts on `T_1 × T_2` properly and cocompactly, so `p(K)` is
+  a cocompact lattice in `Aut(T_1) × Aut(T_2)`.
+- **Discrete projection.** If `p(Γ)` is discrete, it is a lattice containing the
+  lattice `p(K)`, so `[p(Γ) : p(K)] = covol(p(K)) / covol(p(Γ)) < ∞`. Conjugation
+  by `Γ` on `K` factors through `p(Γ)` and is inner on `p(K)`, so its image in
+  `Out(K)` is finite. Conversely, an infinite image in `Out(K)` forces `p(Γ)`, and
+  hence the normalizer of `p(K)`, to be non-discrete.
 
 **Trust surface.** Standard, not re-read: that extensions by free groups split,
 Bass--Serre theory, and that finitely generated virtually free groups are linear.

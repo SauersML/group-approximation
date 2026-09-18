@@ -17,8 +17,9 @@ artifacts:
   the conjugator into `CT(Z)`.
 - **Priority.** None is claimed. Kohl's RCWA package documentation may discuss conjugacy tests in
   RCWA(Z); it was not read.
-- **Scope.** This settles Kourovka 21.73 only on pairs in which one element has finite
-  order. The general problem remains open; see "Consequences for 21.73".
+- **Scope.** This settles Kourovka 21.73 on pairs in which one element has finite order.
+  The general problem is undecidable (`ct-z-conjugacy-problem-is-undecidable`, landed
+  later). As "Consequences for 21.73" below predicts, its instances have infinite order.
 
 ## Setting
 

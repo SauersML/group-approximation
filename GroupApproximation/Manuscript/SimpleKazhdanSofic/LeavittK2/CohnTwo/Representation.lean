@@ -173,8 +173,8 @@ theorem fock_word_pt (α : List (Fin 2)) (c : k) :
         show (if w = α then c else 0) = _
         by_cases hw : w = α
         · rw [if_pos hw, if_pos (show j :: w = a :: α by rw [h, hw])]
-        · rw [if_neg hw, if_neg (fun hc => hw (List.cons.inj hc).2)]
-      · rw [if_neg h, if_neg (fun hc => h (List.cons.inj hc).1)]
+        · rw [if_neg hw, if_neg (fun hc : j :: w = a :: α => hw (List.cons.inj hc).2)]
+      · rw [if_neg h, if_neg (fun hc : j :: w = a :: α => h (List.cons.inj hc).1)]
 
 /-- The matrix unit `α p β*` acts by `f ↦ (w ↦ if w = α then f β else 0)`. -/
 theorem fock_unit (α β : List (Fin 2)) (f : FockSpace k) :
