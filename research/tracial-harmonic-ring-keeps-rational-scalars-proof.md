@@ -8,8 +8,16 @@ requires:
   - q-algebra-elementary-quotients-contain-gl-n-q
 ---
 
-Lane proof (gq-deep-adelic-1), not independently reviewed. The notation is that of the target.
+Lane proof (gq-deep-adelic-1). The notation is that of the target.
 Throughout, `u^k χ_D u^(-k) = χ_(σ^k D)` for clopen `D`.
+
+Two standard facts about an infinite minimal system `(X, σ)` are used throughout.
+- `X` has no isolated points: an isolated point has an open orbit, which by minimality is all of
+  `X`, so `X` would be countable and hence finite, as a compact space with every point isolated.
+  This makes the sets `U_k ∖ U_(k+1)` nonempty along a subsequence, and lets (c) pick `y` outside
+  a finite set.
+- `σ` has no periodic points: a periodic orbit is closed and invariant, so by minimality it would
+  be all of `X`, which is infinite.
 
 ## (a) Clopen indicators and Q lie in R_h
 
@@ -50,8 +58,7 @@ Let `I` be a nonzero two-sided ideal.
   pick `y ∉ F` with `a_0(y) != 0`.
 - **A good neighbourhood.** `σ` has no periodic points, so `σ^j(y) != y` for `j ∈ J ∖ {0}`. Pick a
   clopen `W ∋ y` such that:
-  - `W ∩ F = ∅`;
-  - `a_0 = r` is constant on `W`, with `r ∈ Q^x`;
+  - `a_0 = r` is constant on `W`, with `r ∈ Q^x` (possible because `y ∉ F`);
   - `σ^j(W) ∩ W = ∅` for every `j ∈ J ∖ {0}`.
 - **Compression.** `χ_W x χ_W = Σ_j χ_W a_j χ_(σ^j W) u^j = r χ_W`. So
   `χ_W = r^(-1) χ_W x χ_W ∈ I`, because `r^(-1) ∈ Q ⊆ R_h`.
