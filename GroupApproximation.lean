@@ -5907,6 +5907,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Desce
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Elim
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemSem
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFNuclearLift
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Dichotomy
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
