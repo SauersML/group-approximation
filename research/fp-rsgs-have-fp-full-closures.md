@@ -103,3 +103,31 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
    - So Question 1.4 for this family comes down to whether the descent terminates, or can be avoided
      by a cleverer normal form. A proof that no finite set of relations stops it would give a
      negative answer.
+3. **Narrowing the gap with restriction-closed generators (bh-higman-classic, 2026-09-18).**
+   *Progress, still one step missing.*
+   - **The generating set.** For `V ≤ G ≤ N(V)`, take generators `S = S_V ∪ {h_1, …, h_m}`. Each
+     normalized restriction of `h_i` lies in `h_i V = V h_i` (item 1 of
+     [[v-by-normalizer-groups-are-self-similar]]). So every generator restricts to a single generator,
+     up to `V` on either side (the case "K = 1").
+   - **Pure one-sided expansions.** Add, for each `h_i`, one left and one right one-level expansion
+     relation:
+     - left: `ĥ_i = ι_0(W_i) · ι_{00}(v_0 h_i) ι_{01}(v_1 h_i)`;
+     - right: `ĥ_i = ι_{00}(h_i v'_0) ι_{01}(h_i v'_1) · ι_0(E_i)`.
+     Then every cone copy of a generator has a pure left expansion (`V` only on the left) and a pure
+     right expansion to every finer partition. The derivation is a recursion that strictly lowers
+     the depth, because restrictions of generators are generators times `V`.
+   - **Layered normal forms.** Pushing each `V`-element to the right end uses only pure right
+     expansions of generator copies. So every word of the candidate presentation equals
+     `L · Λ_1 ⋯ Λ_m · R`, where `L, R ∈ V` and each layer `Λ_k` is a product of generator copies over a
+     cone partition.
+   - **What remains.** Collapse the layers to one partition, so that the triviality test of item 4
+     applies.
+     - Two layers collapse: left-expand the first, right-expand the second, and combine the pieces.
+     - The combined pieces are products of two generators, whose derived expansions are two-sided.
+     - Pure one-sided expansions of products such as `t^n`, `n ≥ 2`, are not obtained this way. Every
+       recursion tried produces a `V`-part between two layers, because the `V`-parts of asynchronous
+       expansions send cones to non-cones.
+   - **Where it now stands.** Question 1.4 for every finitely presented `V ≤ G ≤ N(V)` (in particular
+     every `Γ_t`) reduces to deriving pure one-sided expansions of `ι_u(h^n)` from the finitely many
+     relations. Equivalently, it reduces to a normal form that never has to multiply pieces. A
+     Stein–Farley complex whose cells are layered normal forms is the natural next tool.
