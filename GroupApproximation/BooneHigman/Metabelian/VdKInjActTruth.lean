@@ -102,3 +102,75 @@ theorem vdkInjAct_sec_inv {w : Fin (n + 1) → R} (hw : vdkInjAct_Orb w) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_sec_inv
 
+open Classical in
+/-- A preimage under `vdkRowPar`, when one exists, and `(0, 1)` otherwise. -/
+noncomputable def vdkInjAct_pre (h : St (n + 1) R) : (Fin n → R) × St n R :=
+  if hh : ∃ p : (Fin n → R) × St n R, vdkRowPar p = h then Classical.choose hh else (0, 1)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_pre
+
+theorem vdkInjAct_pre_spec {h : St (n + 1) R} (hh : h ∈ vdkRowParSubgroup n R) :
+    vdkRowPar (vdkInjAct_pre h) = h := by
+  have hh' : ∃ p : (Fin n → R) × St n R, vdkRowPar p = h := (mem_vdkRowParSubgroup h).mp hh
+  rw [vdkInjAct_pre, dif_pos hh']
+  exact Classical.choose_spec hh'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_pre_spec
+
+theorem vdkInjAct_pre_rowPar (hinj : Function.Injective (vdkRowPar (n := n) (R := R)))
+    (p : (Fin n → R) × St n R) : vdkInjAct_pre (vdkRowPar p) = p :=
+  hinj (vdkInjAct_pre_spec ((mem_vdkRowParSubgroup _).mpr ⟨p, rfl⟩))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_pre_rowPar
+
+theorem vdkInjAct_rowPar_mul (p p' : (Fin n → R) × St n R) :
+    vdkRowPar p * vdkRowPar p' = vdkRowPar (p.1 + projectionMatrix p.2 *ᵥ p'.1, p.2 * p'.2) := by
+  obtain ⟨v, g⟩ := p
+  obtain ⟨v', g'⟩ := p'
+  exact vdkRowPar_mul v g v' g'
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_rowPar_mul
+
+/-- On the parabolic, the `St_n(R)`-component of the preimage is multiplicative. -/
+theorem vdkInjAct_pre_mul (hinj : Function.Injective (vdkRowPar (n := n) (R := R)))
+    {q₁ q₂ : St (n + 1) R} (h₁ : q₁ ∈ vdkRowParSubgroup n R) (h₂ : q₂ ∈ vdkRowParSubgroup n R) :
+    (vdkInjAct_pre (q₁ * q₂)).2 = (vdkInjAct_pre q₁).2 * (vdkInjAct_pre q₂).2 := by
+  have h12 := vdkInjAct_rowPar_mul (vdkInjAct_pre q₁) (vdkInjAct_pre q₂)
+  rw [vdkInjAct_pre_spec h₁, vdkInjAct_pre_spec h₂] at h12
+  rw [h12, vdkInjAct_pre_rowPar hinj]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_pre_mul
+
+theorem vdkInjAct_twist_mem {u : Fin (n + 1) → R} (hu : vdkInjAct_Orb u) (g : St (n + 1) R) :
+    vdkInjAct_sec u * g * (vdkInjAct_sec (vdkInjAct_row u g))⁻¹ ∈ vdkInjCoset_rowStab n R := by
+  rw [vdkInjCoset_mem_rowStab]
+  show vdkInjAct_row (Pi.single (Fin.last n) 1)
+      (vdkInjAct_sec u * g * (vdkInjAct_sec (vdkInjAct_row u g))⁻¹) = Pi.single (Fin.last n) 1
+  rw [← vdkInjAct_row_mul, ← vdkInjAct_row_mul, vdkInjAct_sec_spec hu,
+    vdkInjAct_sec_inv (vdkInjAct_Orb_row hu g)]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_twist_mem
+
+open Classical in
+/-- The multiplicative function behind the truth check: the `St_n(R)`-component of
+`sec(u) g sec(u M_g)⁻¹` on the orbit of `e_last`, and `1` off it. -/
+noncomputable def vdkInjAct_truthPhi (u : Fin (n + 1) → R) (g : St (n + 1) R) : St n R :=
+  if vdkInjAct_Orb u then
+    (vdkInjAct_pre (vdkInjAct_sec u * g * (vdkInjAct_sec (vdkInjAct_row u g))⁻¹)).2
+  else 1
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi
+
+theorem vdkInjAct_truthPhi_pos {u : Fin (n + 1) → R} (hu : vdkInjAct_Orb u) (g : St (n + 1) R) :
+    vdkInjAct_truthPhi u g =
+      (vdkInjAct_pre (vdkInjAct_sec u * g * (vdkInjAct_sec (vdkInjAct_row u g))⁻¹)).2 := by
+  rw [vdkInjAct_truthPhi, if_pos hu]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi_pos
+
+theorem vdkInjAct_truthPhi_neg {u : Fin (n + 1) → R} (hu : ¬vdkInjAct_Orb u)
+    (g : St (n + 1) R) : vdkInjAct_truthPhi u g = 1 := by
+  rw [vdkInjAct_truthPhi, if_neg hu]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_truthPhi_neg
+
