@@ -113,16 +113,15 @@ theorem higmanVCTauD2_classAB {d : ℕ} {a b c k oa ob o2 : Fin d}
         (fixAB ((a :: b :: c :: k :: t).drop [a, b, c].length))
         (fixAB ((a :: b :: o2 :: o4).drop [a, b, c].length))
         (by
-          simp only [List.length_cons, List.length_append, List.length_drop,
-            List.length_nil] <;> omega)
+          simp only [List.length_cons, List.length_drop, List.length_nil] <;> omega)
     · have e2 : o' = a :: b :: o2 :: o4 := ho2 hvo
       subst e2
       exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tu
         (mapsCone_coneSwap_right hT1 hT2) hu2 hP
         (fixAB ((a :: b :: c :: k :: t).drop [a, b, c].length)) tO
         (by
-          simp only [List.length_cons, List.length_append, List.length_drop,
-            List.length_nil] at hY0 ⊢ <;> omega)
+          simp only [List.length_cons, List.length_drop, List.length_nil] at hY0 ⊢ <;>
+            omega)
   · have hvo : v <+: a :: b :: o2 :: o4 := hvmo.resolve_left hvm
     obtain rfl := higmanVCTauD2_pre3 hvo hv
     have ho2c : o2 ≠ c := fun h => hvm (by
@@ -140,8 +139,7 @@ theorem higmanVCTauD2_classAB {d : ℕ} {a b c k oa ob o2 : Fin d}
     exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tu tv hu2 (by simp) tM
       (fixAB ((a :: b :: o2 :: o4).drop [a, b, o2].length))
       (by
-        simp only [List.length_cons, List.length_append, List.length_drop,
-          List.length_nil] <;> omega)
+        simp only [List.length_cons, List.length_drop, List.length_nil] <;> omega)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_classAB
 

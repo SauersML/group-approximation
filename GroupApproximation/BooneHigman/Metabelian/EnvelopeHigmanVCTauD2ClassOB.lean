@@ -116,8 +116,7 @@ theorem higmanVCTauD2_classOB {d : ℕ} {a b c k ob o0 : Fin d} {t o'' u v m' o'
       subst e2
       exact higmanVCTauD2_mkDirect hT1 hT2 hP hQ tM tO ht tu tv hu2 hv3 tM
         (fixO o0 (u1 :: (o0 :: o'').drop v.length) ho0) (by
-          simp only [List.length_cons, List.length_append, List.length_drop,
-            List.length_nil] <;> omega)
+          simp only [List.length_cons, List.length_drop] <;> omega)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauD2_classOB
 

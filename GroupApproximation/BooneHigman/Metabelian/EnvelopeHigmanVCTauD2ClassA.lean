@@ -77,9 +77,9 @@ theorem higmanVCTauD2_classA_m {d : ℕ} {a b c k oa o1 : Fin d}
   subst e2
   subst hm1
   exact higmanVCTauD2_mkBridge hT1 hT2 (by simp) (by simp) tM tO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons] <;> omega)
     hW1 hW2 (by simp) (by simp) wM wO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons] <;> omega)
     (mapsCone_coneSwap_right hW1 hW2)
     (higmanVCTauD2_fix hW1 hW2 (higmanVCTauD2_inc2 [c] [] ho1b.symm)
       (higmanVCTauBridge_inc_cons [b, c] [] hoa.symm))
@@ -127,9 +127,9 @@ theorem higmanVCTauD2_classA_o {d : ℕ} {a b c k oa o1 : Fin d}
   subst hm2
   subst ho1
   exact higmanVCTauD2_mkBridge hT1 hT2 (by simp) (by simp) tM tO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons] <;> omega)
     hW1 hW2 (by simp) (by simp) wM wO
-    (by simp only [List.length_cons, List.length_append, List.length_nil] <;> omega)
+    (by simp only [List.length_cons] <;> omega)
     (mapsCone_coneSwap_right hW1 hW2) ((mapsCone_coneSwap_left hW1 hW2).append [c])
     (by simp) (by simp)
     ((mapsCone_coneSwap_right hW1 hW2).append (k :: t)) wO
