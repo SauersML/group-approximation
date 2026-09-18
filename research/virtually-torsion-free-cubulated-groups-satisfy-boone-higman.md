@@ -131,3 +131,40 @@ label-injective codings never have it, and powers supply it only under an additi
 grading, which exists only for products. So a host for groups with non-splitting flats
 must get its loops from an overcoding (a full shift, as in Salo) or from a finiteness
 theorem for deterministic codings (primitive type matrix in place of diagonal ≥ 2).
+
+6. **(bh-major-cube-b, 09-18) The Garside layer holds for all cubulations; the real
+   finiteness gate is merge packing.**
+   - `pointed-cube-categories-are-li-garside-categories`: `C_X` satisfies Li's
+     `intro:Gars` hypotheses for every free cocompact cubulation, special or not.
+   - `perron-weights-do-not-give-li-finiteness`: a Perron weight does not replace
+     (`t<d`), and the Perron proof is invalid. Li's proof needs a height plus merge
+     packing (Pack).
+   - `thin-cycles-decide-li-packing`: (Pack) fails exactly along thin cycles, and on raw
+     tree and product codings it fails at every power.
+7. **(bh-major-cube-b, 09-18) Cuntz stabilization removes the finiteness gate.**
+   `cuntz-stabilized-garside-full-groups-are-f-infinity`: for every Li-Garside category
+   with trivial units and (Acyc), `F((𝒢 × G_2)_Y^Y)` is of type `F_∞`. No loops, no degree
+   map and no (`t<d`) are needed. For a torsion-free cubulated `G`, Q1.15 now reduces to
+   three gates, none of them about finiteness:
+   - **(G1) Bisection action on a closed set.** A closed invariant `X ⊆ Ω_∞(C_X)`,
+     inside the base cone, on which `G` acts faithfully by global bisections of `C_X`.
+     The regular part `R` works if it is closed, which is the old closedness gate.
+   - **(G2) (Acyc) on `X`.** No nonempty open subset of `X` lies in `∩_m σ^m·X(v)` for a
+     loop `σ` of `C_X`, i.e. beyond the axis ray of one element. This holds for products
+     of thick trees on `∏ ∂T_i`.
+   - **(G3) From `F_∞` to a host.** Either:
+     - comparison for `𝒢_X × G_2` (the degree-category proof of
+       `finitely-coded-cantor-actions-give-type-a-hosts`, with Li's cylinder types in
+       place of vertex cylinders; not yet checked), which gives `B_A`; or
+     - minimality and effectiveness of `𝒢_X` together with Li's acyclicity route of
+       `cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple` (stated there for
+       action groupoids), which gives a finitely presented simple host.
+
+   Then `G ↪ F((𝒢_X × G_2)_Y^Y)` by `g ↦ g × id`.
+
+**Lesson for general BH (Attempts 6–7).** For higher-rank codings the finiteness wall was
+merge packing, not loops or eigenvalues. One Cuntz stabilization gives packing for free,
+because every cylinder merges with its own copy. So for cubulated groups, and for every
+finite Garside coding, the Boone–Higman host problem is now purely dynamical: find a
+closed invariant set with a bisection action and no open set trapped beyond a loop, then
+compare clopen sets.

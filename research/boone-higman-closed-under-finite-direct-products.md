@@ -219,3 +219,25 @@ live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
       would prove it with no extra work. A counterexample to (SQ) would have to be a
       finitely presented simple group that embeds in no self-square finitely presented
       simple group. None is known.
+15. **The whole recorded census is in `B_A`** (lane `bh-major-product`, 2026-09-18, lane
+    proofs, not reviewed). This settles the two residues of Attempt 14.
+    - **Odd-prime Leavitt hosts.** `projective-leavitt-tensor-units-lie-in-the-permutational-class`:
+      - `u ↦ u ⊗ (u^*)^(-1)` embeds `R_d^× / F_p^×` in `R_(2d)^×`, where `R_d = L_p^(⊗d)`;
+      - the affine Cantor-module argument puts every `R_d^×` in `B_A`, using `dV`.
+      So `(L_p ⊗ L_p)^× / F_p^×`, and every simple host `R_d^× / F_p^×`, lie in `B_A`.
+    - **`W` and `W_(P,ℓ)`.** `twisted-integral-affine-groups-lie-in-the-permutational-class`:
+      `W_(P,ℓ)` acts with type (A) on ordered partitions of `Z_ℓ^D` into `ℓ` clopen pieces of
+      unit class. That absorbs the `Z/(ℓ−1)` clopen class at odd `ℓ`. The simple groups
+      `D(W_(P,ℓ))` and `W` are therefore in `B_A`.
+    - **Consequence.** Every finitely presented simple group in the census of Attempts 13–14
+      lies in `B_A`, conditional on the lane proofs and imports named on those nodes. So the
+      claim holds for every pair of them, and for every pair of their subgroups, through closure
+      of `B_A` under products.
+    - *Lesson.* No recorded group separates BH from PBH, because each host machine gives PBH
+      once the host is finitely presented:
+      - full groups, via clopen or partition actions;
+      - Leavitt-tensor units, via Cantor modules, with one tensor doubling to remove central
+        scalars.
+
+      A counterexample to this claim, or to BFFHZ Question 3.4, needs a finitely presented
+      simple group built by neither machine.

@@ -83,3 +83,8 @@ This claim holds iff `J_D = 0` for some `D` (`labbe-shift-is-wall-rigid`). Route
   `labbe-shift-derived-full-group-is-finitely-presented` is open. Read in reverse, a noncommuting family
   at every scale here also refutes finite presentation of Labbé's derived full group
   (`zd-derived-full-group-fp-forces-quantum-rigidity`).
+- **One scale decides (bh-g2-labbe, 2026-09-18, unreviewed).** By `labbe-shift-is-quantum-rigid-iff-rigid-at-scale-two`
+  (from `recognizable-morphisms-collapse-quantum-rigidity-to-one-scale` applied to `ω^2`, recognizable at radius `3`),
+  this claim holds iff `J_2(Ω_U) = 0`. That means operator tilings commuting within sup-distance `4` and killing the
+  non-occurring `5×5` patterns must commute. A non-commuting family at scale `2` refutes it at every scale. The
+  "renormalization problem" above therefore has a fixed scale: level induction cannot trade scale for rigidity.

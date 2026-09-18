@@ -77,6 +77,21 @@ Stern–Brocot vertex": every rational line in the triangle becomes a union of e
   node's language, the needed statement is that edge splits make every rational
   hyperplane a union of faces. `Mod(S_g)` needs rank `6g − 6`.
 
+## Attempts
+
+1. **Higher rank is settled** (lane bh-major-mcg-2, 2026-09-18).
+   - The gap recorded under "Higher rank (open)" was closed before this node landed.
+     The cut lemma of `edge-splits-cut-every-rational-hyperplane` (bh-free-61,
+     landed ef0882df7) is Part 1 in every rank `m ≥ 1`: take `Π = ker ℓ`.
+   - Its potential is `(T, c_T, n_{−σ})`: the largest coefficient, the number of
+     coefficients attaining it, and the number of coefficients of the opposite sign.
+     It drops along every branch of the rule "split a maximal coefficient against an
+     opposite-signed one, maximal if possible". I re-checked the three cases.
+   - The proof of Part 2 above is rank-free.
+   - **So Parts 1 and 2 hold for every `m`.** The phrase "Open for `m ≥ 3`" in the
+     status line is superseded. The greedy rule recorded above, with its evidence, is
+     a different rule, and it is no longer needed.
+
 ## Lesson for general BH
 
 - **Two confluence questions, one settled.** Edge splits are a Euclid algorithm for

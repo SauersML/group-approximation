@@ -231,7 +231,15 @@ inputs need one-ended, uniformly non-amenable scaffolds (bh-gate-u-wobble, bh-in
 - the MO 491978 candidate, which is not finitely presented.
 
 **Mislabels to avoid:**
-- the LISW result answers Q1.10, and only in part. "LISW Q1.11" in earlier summaries was a mislabel;
+- the quasi-retract result `non-fp2-groups-are-quasi-retracts-of-simple-groups` answers LISW Q1.10
+  (TeX l.289), and only for f.g. groups of type FP_2 over no field. Earlier summaries called it
+  "LISW Q1.11", which was a mislabel. Q1.11 (l.302, `quest:embedding`: "Does every finitely generated
+  linear group embed into a finitely generated self-similar group?") is a different question. It is
+  answered yes, even with a finitely presented self-similar group, by
+  `fg-linear-groups-embed-in-fp-self-similar-groups`. That is a lane composition of nodes on main, not
+  reviewed as a composition, and it is not in the tables above. The numbering was checked against the
+  v1 e-print (sha256 `6d7b8e1e…a4ee6`): the theorem counter is shared, and section 1 runs Thm 1.1,
+  Cor 1.2, Cor 1.3, Thm 1.4, Rem 1.5, Q 1.6, Cor 1.7, Cor 1.8, Prop 1.9, Q 1.10, Q 1.11, Q 1.12;
 - BFFHZ Q3.1 was proved on 09-14 and only re-verified today;
 - Kourovka 5.15 is a literature answer;
 - lean-eval `higman_infinite_simple` is a formalization of Hyde–Lodha, not a mathematical solution.
