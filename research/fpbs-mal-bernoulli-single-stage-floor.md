@@ -338,5 +338,36 @@ census-computation).** Artifact
   - A lower bound on `Q_j(a_j)`, as w10 Corollary 2 needs, is untouched.
   - Surviving conjecture: `sigma_b(X) > 0` iff the profinite `X` is strongly
     ergodic.
+**Chord-cell bootstrap: local absorption of long chords pays the seed floor
+(September 18, 2026, swarm-0917-w12-w12-fp-last1, local-designs).** Script
+`experiments/fpbs-chord-bootstrap-2026-09-17/bootstrap_injection.py`.
+- **Result.** [[fpbs-mal-bootstrap-certified-chords-pay-seed-floor]]
+  is ESTABLISHED through its route. Extend the 2-of-3 rule by one rule per
+  chord instance: when all but one b-edge on its path is known, add the last
+  one. Charge each such firing to its chord instance. Then the charged edges
+  and the ignition seeds `A_0` have a plain 2-of-3 closure containing the
+  whole bootstrap closure. So a conull bootstrap closure forces
+  `μ(A_0) + mass(Φ) ≥ σ_b ≥ 1/80`. The bound is unweighted and uniform in
+  label lengths, paths, sharing and number of labels.
+- **Invariant, and the step where members die.** The injection from new
+  b-edges to chord instances. Each instance fires at most once, at its first
+  round with at most one unknown path edge. Every "sprinkle, then absorb long
+  chords one at a time" refutation of this claim dies at that step, including
+  heavily shared long chords (the shape of P2). This covers what the w7
+  sprinkle-then-absorb kill left open for bounded-crossing steps, now for all
+  lengths.
+- **Obstruction to P1 through local closures.** The chord-cell closure is not
+  exact. `Φ_0 = bab|_X ⊔ bbab|_X` generates (`bbab (bab)^{-1} = b`), both
+  labels have b-length 2, and the bootstrap closure of `∅` is `∅`. So no
+  finite-range bootstrap rule set can replace generation, as fold exactness
+  does for b-seeds. P1 must bound circuits of several chords, where b-edges
+  appear only as composites.
+- **What survives.** A counterexample of mass `ε < σ_b` must have a
+  non-conull bootstrap closure from every ignition set of measure
+  `< σ_b − ε`. So it derives a non-null set of b-edges only through circuits
+  of two or more chords, as in `Φ_0`. Next falsifiable step: a charging rule
+  for
+  two-chord circuits. Charge `h_2 h_1^{-1}` to the pair and bound how often
+  one chord instance is reused across circuits.
 
   The claim stays OPEN.
