@@ -56,8 +56,7 @@ Any composition convention works: the relations above hold in the abstract group
   case is `Cor:TwoGenerator`, and each step applies `Prop:Identity` to pairs `(g, h_1)`,
   `(g h_1, h_2)`, … inside a torsion group. Since `Prop:Identity` is proved from the torsion
   of `g`, `h`, `gh` alone and its conclusion fails for the pair above, the argument as written
-  is invalid. I did not locate the individual faulty step among Lemmas `Lem:TandR`,
-  `Prop:TandR`, `Lem:Flip`.
+  is invalid. The first false statement is `Lem:Flip`; see the next section.
 - The theorem itself is not refuted: `Δ(3,3,3)` is not a torsion group, and for `n = 1` the
   statement is Röver's theorem. For `n ≥ 2`, torsion local finiteness of `nV` has no valid
   published proof known to this graph, and it remains open
@@ -65,3 +64,58 @@ Any composition convention works: the relations above hold in the abstract group
 - Main previously cited the Kojima–Sheng torsion theorem as a fact in
   `every-gl-n-z-embeds-in-some-brin-thompson-group`; that citation is corrected in the same
   landing. The "torsion is no obstruction" conclusion there does not depend on it.
+
+## The faulty step: `Lem:Flip` reverses a product (lane bh-free-50, 2026-09-18, by hand)
+
+**Their conventions.**
+- Group law: `gh = h ∘ g` (first `g`, then `h`).
+- A dyadic block `X` is admissible for `g` if `g` is affine (a prefix replacement) on each
+  piece of `X`. Then `g(X)` is the block of image pieces.
+- If `g`, `h` fix blocks `X`, `Y` (so `g(X) = X`, `h(Y) = Y`), then `gh` is represented by
+  `(S, T) = (g^{-1}(X∧Y), h(X∧Y))` and `hg` by `(D, R) = (h^{-1}(X∧Y), g(X∧Y))`.
+- `(S^i, T^i)` and `(D^i, R^i)` are the `i`-th powers of these representations, under their
+  product `(X,Y)·(X',Y') = (g^{-1}(Y∧X'), g'(Y∧X'))`.
+
+**The pair, as maps on `{0,1}^N`.** Write `x_0` for `0v ↦ 00v, 10v ↦ 01v, 11v ↦ 1v`.
+- `g`: `00w ↦ 01w`, `01w ↦ 1w`, `1w ↦ 00w`.
+- `h`: `00w ↦ 01·x_0^{-1}(w)`, `01w ↦ 1w`, `1w ↦ 00·x_0(w)`.
+- This is the pair of the Proof section, up to the choice of composition order. As maps, `g`,
+  `h`, `h∘g` and `g∘h` all have order 3, and `g^{-1}∘h` is `x_0^{-1}` on `00`, the identity on
+  `01` and `x_0` on `1`.
+- `X = {00, 01, 1}` is `g`-invariant. `Y = {0000, 0001, 001, 010, 0110, 0111, 10, 110, 111}` is
+  `h`-invariant and refines `X`, so `X ∧ Y = Y`.
+
+**The blocks for `p = 3`.**
+- `S = g^{-1}(Y) = {000, 0010, 0011, 010, 0110, 0111, 100, 101, 11}` and `T = Y`.
+- `T^2 = {0000, 0001, 001, 010, 0110, 01110, 01111, 100, 101, 110, 111}`.
+- `T^3 = S^3 = T^2 ∧ S = {0000, 0001, 0010, 0011, 010, 0110, 01110, 01111, 100, 101, 110, 111}`,
+  which is `(gh)`-invariant.
+- `D = Y` and `R = g(Y) = {000, 0010, 0011, 0100, 0101, 011, 10, 110, 111}`.
+- `R^2 = {0000, 0001, 0010, 0011, 0100, 0101, 011, 10, 110, 1110, 1111}`.
+- `R^3 = D^3 = {0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 10, 110, 1110, 1111}`, which is
+  `(hg)`-invariant.
+
+**What holds on this pair.** `Lem:Filtration`, `Lem:FiltrationII` and `Lem:TandR` (checked at
+`i = 1`) hold, and so does `Prop:TandR`: `g(T^3) = R^3` and `h(R^3) = T^3`. This example does not
+refute them. I did not check them in general.
+
+**What fails.** `Lem:Flip` asserts `g(R^p) = h^{-1}(R^p)` and `h(T^p) = g^{-1}(T^p)`. Here:
+- `g(R^3) = {000, 0010, 00110, 00111, 0100, 0101, 0110, 0111, 100, 101, 110, 111}`, while
+  `h^{-1}(R^3) = {00000, 00001, 0001, 001, 010, 0110, 01110, 01111, 10, 110, 1110, 1111}`.
+- `h(T^3) = {00000, 00001, 0001, 001, 010, 0110, 01110, 01111, 10, 110, 1110, 1111}`, while
+  `g^{-1}(T^3) = {000, 0010, 00110, 00111, 0100, 0101, 0110, 0111, 100, 101, 110, 111}`.
+
+So both claims of `Lem:Flip` are false. So is the conclusion of `Prop:Identity`, which is proved
+from `Lem:Flip`: `R^3 ≠ T^3`, and `g(R^3) ≠ R^3`.
+
+**The slip.**
+- The displayed chain in the proof of `Lem:Flip` correctly gives `R^p = (hg)^{-1}(R^p)`. That is
+  `(hg)`-invariance of `R^p`.
+- Under their law, `hg = g ∘ h`, so this invariance says `g(h(R^p)) = R^p`, that is,
+  `h(R^p) = g^{-1}(R^p)`. That is only `Prop:TandR` restated.
+- The lemma instead concludes `g(R^p) = h^{-1}(R^p)`, i.e. `h(g(R^p)) = R^p`. That is
+  `(gh)`-invariance, the other order. The second claim reverses the order in the same way.
+- `Prop:Identity` needs the reversed identity (display `Eq:g(R^p)`), and every later step
+  inherits it.
+- The proof cannot be repaired while keeping its hypotheses, because its conclusion fails here.
+  A correct argument must use that the whole group `⟨g, h⟩` is torsion, not only `g`, `h`, `gh`.

@@ -28,7 +28,9 @@ where `(·)_G` denotes coinvariants for the diagonal action of the monomials. Th
 2. `K_2 = 0` (`free-centre-by-metabelian-rank-two-linearity-proof`, Step 4).
 3. `(Λ²_Z R^n)_G` is free abelian, so `K_n` contains the torsion of `F''/[F'', F]`. By
    Gupta 1973 (abstract), `K_n ≠ 0` for `n >= 4`.
-4. **Open:** whether `K_3 = 0`. A yes gives `C_3` linear, hence in `B_A`.
+4. **Answered (2026-09-18):** `K_3 = 0`, and for every `n`, `K_n` is exactly the torsion
+   subgroup, `(Z/d)^C(n,4)`. See `free-centre-by-metabelian-corner-kernel-is-the-torsion`.
+   So `C_3` is linear, and every `C_n` is linear by `free-centre-by-metabelian-groups-are-linear`.
 
 ## Construction
 
@@ -100,5 +102,6 @@ cyclic. Proof, with `G = Z^n` and `I ⊂ R` the augmentation ideal:
 **Reading.** The `Λ^4` part is the natural home for Gupta's 2-torsion. Whether its rank `C(n,4)`
 matches the rank of Gupta's `H_n` was not checked (the paper was not read). The
 `Λ^3` part is a single class for `n = 3`. So `C_3` is linear, via this construction, iff
-that one class dies in `F''/[F'', F]`. A Hall–Witt-type identity is the natural candidate
-to kill it. **Not decided here.**
+that one class dies in `F''/[F'', F]`. **Decided later the same day:** the class is
+not hit; the connecting map to `H_0(G; M⊗I)` is injective. See
+`free-centre-by-metabelian-corner-kernel-is-the-torsion`, Step 2.

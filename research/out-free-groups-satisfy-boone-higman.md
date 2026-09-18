@@ -78,3 +78,46 @@ This is the open part of a named problem.
      `a_1 ↦ a_1 c`, while mapping-class-group orbits grow polynomially.
    - **Where that leaves Attempt 4.** A direct type (A) stabilizer must also
      avoid this last natural geometric shape.
+6. **All geometric and all virtually cyclic stabilizers fail** (bh-free-40; lane
+   proofs, cited inputs listed on each node).
+   - **Surfaces.** `nonorientable-surface-word-stabilizers-infinite-double-cosets`
+     covers the one-cusp nonorientable word `a_1²⋯a_n²` for every `n ≥ 3`, odd `n`
+     included. Every surface peripheral-structure stabilizer is then excluded.
+     With two or more boundary components, a boundary class is primitive and the
+     free-factor exclusion applies.
+   - **Virtually cyclic.** `virtually-cyclic-out-free-subgroups-have-infinite-double-cosets`
+     uses the general escaping lemma
+     `escaping-invariant-sets-force-infinitely-many-double-cosets` on `FF_n`.
+     So stabilizers of attracting laminations of fully irreducibles, which are
+     virtually cyclic by BFH (cited), are excluded too.
+   - **What remains.** A type (A) point stabilizer, if any exists, is a large,
+     finitely generated, non-geometric, non-commensurated subgroup containing
+     fully irreducibles.
+7. **Verdict pass: finite generation is the whole remaining question**
+   (bh-free-40; lane proofs, citations listed on the nodes).
+   - **The limit-set lemma.** `limit-set-escaping-forces-infinitely-many-double-cosets`:
+     if a loxodromic has both fixed points outside `Λ_H`, then `H\G/H` is
+     infinite. No quasiconvexity or properness is needed.
+   - **For Out(F_n).** `out-free-double-coset-finite-subgroups-have-dense-limit-sets`:
+     any `H` with finitely many double cosets has limit set in `∂FF_n` meeting
+     every fully irreducible fixed pair, and dense. The density part uses double
+     density, which is cited.
+   - **Why finite generation matters.** Hull–Osin highly transitive actions give
+     infinite-index stabilizers with two double cosets. So a no-type-(A) theorem
+     for `Out(F_n)` must use finite generation.
+   - **Not decided.** Either a rigidity theorem (finitely generated plus finitely
+     many double cosets implies finite index), or a finitely generated
+     Dehn-filling replacement for a Hull–Osin stabilizer.
+8. **Calibration of the rigidity direction** (bh-free-40,
+   `hyperbolic-groups-have-fg-subgroups-with-two-double-cosets`; lane proof).
+   - **The naive statement is false in hyperbolic groups.** The rigidity
+     statement was: finitely generated plus finitely many double cosets implies
+     finite index. Rips' construction over Thompson's `V`, with the finitely
+     generated point stabilizer `Stab_V(0^∞)` of a highly transitive action,
+     gives a hyperbolic group with a finitely generated infinite-index subgroup
+     having exactly two double cosets. That subgroup is not core-free.
+   - **Quasiconvex subgroups are rigid**, via the limit-set lemma.
+   - **The correct target for Out(F_n)** is core-free rigidity. A core-free,
+     finitely generated subgroup with finitely many double cosets is exactly a
+     type (A) point stabilizer, up to finite presentation of pair stabilizers.
+     That is open here, and even for hyperbolic groups.

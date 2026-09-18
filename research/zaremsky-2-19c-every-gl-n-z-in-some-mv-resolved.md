@@ -41,6 +41,9 @@ and `some-gl-n-z-embeds-in-no-brin-thompson-group`. Never write a
 ## Attempts
 
 - 2026-09-13 (lane z2-19-hyperbolic-nv): recorded the reading and the couplings
-  above. The attack belongs to lane z2-19-glnz-q-2v. The Kojima–Sheng torsion
-  local finiteness theorem (arXiv:2603.18410) does not obstruct GL_n(Z), whose
-  torsion subgroups are finite.
+  above. The attack belongs to lane z2-19-glnz-q-2v. Torsion local finiteness of
+  mV, claimed by Kojima–Sheng (arXiv:2603.18410) but with an invalid proof for
+  m >= 2 (`kojima-sheng-two-generator-torsion-criterion-fails-in-v`, a22c90a4a; the
+  statement is open, `brin-thompson-2v-is-torsion-locally-finite`, `brin-thompson-groups-contain-infinite-periodic-groups`), would not
+  obstruct GL_n(Z) even if true, since the finitely generated torsion subgroups of
+  GL_n(Z) are finite.

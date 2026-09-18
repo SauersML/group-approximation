@@ -61,7 +61,7 @@ theorem gfaceWindEleven_adjEnd {M : CombMap.{v}} {c W T : List M.Dart}
   have hs : s ≠ [] := by
     rintro rfl
     have hh : W.head hW.ne_nil = w :=
-      gfaceWindEleven_head_eq hW.ne_nil (by rw [hWs, List.nil_append])
+      gfaceWindEleven_head_eq (u := t) hW.ne_nil (by rw [hWs, List.nil_append])
     exact hcl (hj.trans ((congrArg M.vertexOf hh).trans hwq))
   have hsw : (s ++ w :: t).IsChain fun d e => M.vertexOf (M.alpha d) = M.vertexOf e := by
     rw [← hWs]

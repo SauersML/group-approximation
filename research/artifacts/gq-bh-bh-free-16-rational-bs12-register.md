@@ -30,7 +30,7 @@ type (A) and still contain the dilation.
   register at unit speed with double overflow, the second at double speed with single overflow). So `u` does not
   normalize `Q_s`, and `⟨Q_s, u⟩` is not `Q ⋊ ⟨2⟩` in any evident way.
 
-## 3. Why the natural corrections fail
+## 3. Why the natural corrections fail (WITHDRAWN in part; see §6)
 
 To get `Q ⋊ ⟨2⟩` one must replace `u` by `u' = u ∘ ψ` with `ψ` acting on the register so that `u' R_n(s) u'^-1 = R_n(s)^2`.
 On values `f ∈ [0,1)` of the register this forces `ψ` to be `f ↦ 2f` with the integer part fed to the overflow.
@@ -47,7 +47,7 @@ On values `f ∈ [0,1)` of the register this forces `ψ` to be `f ↦ 2f` with t
   halved), and a fixed register space invariant under this with infinitely many odd radices needs a radix conversion
   with unbounded look-ahead.
 
-## 4. Exact remaining gap (a precise next question)
+## 4. Exact remaining gap (WITHDRAWN; see §6)
 
 The design works if and only if the actor supplies a copy of `BS(1,2) = ⟨a, u⟩` in which `a` is translation-like on
 the rest space: a clopen `D` with `a^k(D)` pairwise disjoint and `u(D) = D ⊔ a(D)` up to a clopen correction. In
@@ -67,3 +67,28 @@ designs cannot reach `Q ⋊ ⟨2⟩`.
   proof). Already used on main in `countable-virtually-abelian-groups-embed-in-2v`.
 - `VA` (Belk–Hyde–Matucci) is full, contains `V`, and contains `⊕_ω(A ⊕ V)` with `A` Brin's group. Combining it with
   `DV_F` adds nothing beyond `one-fp-simple-group-contains-every-brin-thompson-subgroup`.
+
+## 6. Correction (2026-09-18, same lane): the gap is the register, and it is now a theorem
+
+§3's first bullet and §4 are wrong. The dilation need not be `u ∘ ψ`, and translation-likeness of the overflow
+element is not the obstruction.
+
+**The right dilation (checked by hand).** Model the register copy `Q_g` on `X × D` as
+`q·(x, f) = (g^⌊f+q⌋ x, {f+q})`, with `D` the register (the circle Cantorized at `Q/Z`).
+- A homeomorphism `Φ` with `Φ q Φ^-1 = 2q` for all `q` exists whenever `g` is conjugate to its height-2 tower
+  `σ(x,0) = (x,1)`, `σ(x,1) = (g x, 0)` by some `h : X × {0,1} → X`. Then `Φ(x, f) = (h(x, ⌊2f⌋), {2f})`.
+- The identity `⌊2f⌋ + ⌊{2f} + 2q⌋ = ⌊2f + 2q⌋` gives the conjugation. Bijectivity comes from `h`.
+- For `g = τ × id` (the odometer on coordinate 1), `h(x, i) = i·x` (prepend the digit `i`) is bounded.
+- So on the `X` side everything is fine. What fails is the register part `f ↦ {2f}` on the two halves.
+
+**The theorem.** `rational-rotations-and-doubling-have-no-common-tree-coding` (landed with this correction) proves
+that no coding of `D` by a locally finite tree makes the doubling branches almost-automorphic while also making
+`R_(1/p)` almost-automorphic for infinitely many primes `p`. The proof has two steps:
+- vertex boundaries are pulled back by the covering map, so their denominators have bounded odd part;
+- a rotation by another rational would move a vertex boundary point out of that set.
+
+So in `nV`, in every twisted Brin–Thompson group `SV_G` (any coordinate), and on the free colour of the KEP hosts
+`2V_τ` and `2V_H`, no register copy of `Q` is normalized as `x ↦ 2x` by a skew product over the register coordinate.
+- The design of §1–§2 is dead in that form.
+- What is left: dilations that mix the register with other coordinates, exotic (non-rotation) actions of `Q`,
+  and hosts whose local maps on the register coordinate are not almost-automorphisms (automaton or odometer germs).

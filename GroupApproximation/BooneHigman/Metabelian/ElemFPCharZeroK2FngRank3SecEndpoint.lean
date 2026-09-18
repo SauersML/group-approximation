@@ -77,8 +77,9 @@ theorem czK2FngRank3Sec_sectionProp_of_cyclic {R S : Type*} [CommRing R] [CommRi
     (φ : R →+* S) (s : Set (SteinbergGroup (Fin 3) S)) (u : S)
     (h : czK2FngRank3Sec_CyclicSectionProp φ s u) : czK2FngGtOneRank3_SectionProp φ s u := by
   obtain ⟨σ, h0, c01, c12, c20, cu⟩ := h
-  have hall := czK2FngRank3Sec_all_of_cyclic (czK2FngGtOneRank3_good (czK2FngGtOneRank3_Q φ s) σ)
-    u (czK2FngGtOneRank3_mem_good.mpr c01) (czK2FngGtOneRank3_mem_good.mpr c12)
+  have hall := czK2FngRank3Sec_all_of_cyclic
+    (czK2FngGtOneRank3_good (czK2FngGtOneRank3_Q φ s) σ) u
+    (czK2FngGtOneRank3_mem_good.mpr c01) (czK2FngGtOneRank3_mem_good.mpr c12)
     (czK2FngGtOneRank3_mem_good.mpr c20) (czK2FngGtOneRank3_mem_good.mpr cu)
   exact ⟨σ, h0, fun i j hij ↦ czK2FngGtOneRank3_mem_good.mp (hall i j hij).1,
     fun i j hij ↦ czK2FngGtOneRank3_mem_good.mp (hall i j hij).2⟩

@@ -4,7 +4,7 @@ id: lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a
 kind: claim
 title: For m odd, every B_A lamp group wreathed over the vertex cosets PSL_2(Z[1/2m])/PSL_2(Z[1/m]) gives a group in B_A, in particular Z wr_X PSL_2(Z[1/2]) embeds in a finitely presented simple group
 distinct_from:
-  z-wr-psl2-z-half-embeds-in-fp-self-similar-group: that is the self-similar question printed in arXiv:2609.01868 (still open); this is the Boone--Higman / permutational form for the same groups, which the printed question was asked in service of.
+  z-wr-psl2-z-half-embeds-in-fp-self-similar-group: that is the self-similar question printed in arXiv:2609.01868, refuted by z-wr-psl2-z-half-is-not-residually-finite (the group is not residually finite, so lies in no self-similar group); this is the Boone--Higman / permutational form for the same groups, which the printed question was asked in service of.
   wreaths-over-clopen-stabilizer-cosets-lie-in-b-a: that is the general lemma; this is its application to the Möbius action of PSL_2 of S-integers on the 2-adic projective line.
 artifacts:
   - research/artifacts/gq-bh-openq-papers-list.md
@@ -31,7 +31,11 @@ embeds in a finitely presented simple group.
   arXiv:2609.01868v1. Its introduction (TeX l.221–225) says that it is covered neither by
   their Theorem C, nor by Zaremsky, nor by Belk–Matucci. The authors then ask whether it
   embeds in a finitely presented self-similar group
-  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`, which stays open).
+  (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`). That has a negative answer: the group
+  is not residually finite, so it lies in no self-similar group
+  (`z-wr-psl2-z-half-is-not-residually-finite`, lane bh-free-46). So only hosts that are not residually finite can contain it. Here the host is the
+  twisted Brin–Thompson group of the type (A) wreath actor built over the clopen action of
+  `V_2(Γ_2(1))`, which is finitely presented and simple.
 - It is the second test case of `pbh-closed-under-decidable-permutational-wreaths`.
 - `L` may be any group in `B_A`, for example any finitely generated linear group in
   characteristic zero (`char-zero-linear-groups-satisfy-permutational-boone-higman`).

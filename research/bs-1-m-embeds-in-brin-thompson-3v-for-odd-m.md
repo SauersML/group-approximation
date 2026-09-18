@@ -10,7 +10,16 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane bh-free-18, lane proof, not reviewed) through
-`bs-1-m-in-3v-via-odd-smart-renormalization`. For every odd `m >= 3` there are `s, u ∈ 3V` with `s` of
+`bs-1-m-in-3v-via-odd-smart-renormalization`.
+
+**Checks.**
+- bh-refute hand-verified the chain: PASS (`research/artifacts/gq-bh-bh-refute-verify-bs1m-in-3v.md`,
+  e28fb9446).
+- For m = 3, 5, 7, 9, 11 every hypothesis of the renormalization criterion that is not a general
+  theorem is decided by an exhaustive machine certificate
+  (`research/artifacts/gq-bh-bh-free-18-odd-smart-certificate.md`).
+
+For every odd `m >= 3` there are `s, u ∈ 3V` with `s` of
 infinite order and `u s u^-1 = s^m`, so `BS(1,m) = ⟨a, t | t a t^-1 = a^m⟩ ≅ ⟨s, u⟩ ≤ 3V`.
 
 **Credit and scope.**
@@ -34,7 +43,7 @@ infinite order and `u s u^-1 = s^m`, so `BS(1,m) = ⟨a, t | t a t^-1 = a^m⟩ �
   still not covered.
 - **Stepping-stone gates.** The Baumslag--Solitar gate of `rational-stepping-stones-in-nv-need-bs12-or-heisenberg`
   is passable at every odd prime separately. The gate at 2 stays open.
-- **Subgroups.** `Z[1/m] ≤ 3V` for every odd `m` (already implied by `Q ≤ 2V`, Kojima--Sheng).
+- **Subgroups.** `Z[1/m] ≤ 3V` for every odd `m`: it is the normal closure of `a` in `BS(1,m)`.
 
 **Calibration.** At `m = 3` every step specializes to the refereed SMART route
 (`bs13-in-3v-via-smart-renormalization`).
