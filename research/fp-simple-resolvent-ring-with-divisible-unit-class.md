@@ -120,3 +120,11 @@ This is the coordinator's design target of 2026-09-18.
    - Pimsner form: rational `K_1` classes of the base are fixed by `σ_*` and lift to `{λ, u}`. Item 5, over all
      `{λ, x}`, is what forces `1 - [X]` to be injective on them, not `K_1` detection and not `K_0`.
    - A cure must make the shift a non-unit (Cuntz--Pimsner isometries) or use inhomogeneous relations.
+8. **Isometric shifts of any index over `U_Q`-type bases, 2026-09-18 (lane `gq-infinite-primes`): dead in graded
+   form.** `isometric-shift-frames-over-uhf-bases-fail-the-k-budget`. Take a frame `s t = 1`, `t s = p in M_k(B)`
+   over a matricial base `B ⊇ Q` (`K_0(B) ⊆ Q`), with index `r = [p]`.
+   - If `r != 1`, then `[1] = r[1]` has finite order and `K_1` detection fails. No grading is used.
+   - If `r = 1`, the frame gives a unit `u`. In a graded ring it has degree `1`, and the graded dichotomy applies.
+   - Open: ungraded index-one frames; Toeplitz frames (`s t != 1`); multi-type bases, where `K_1` detection forces
+     `det(1 - [X]) = 0`. In that last case it is open whether the resulting `K_2` classes lie in the image of
+     `K_2(N, R)`.
