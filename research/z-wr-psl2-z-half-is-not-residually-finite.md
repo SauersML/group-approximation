@@ -75,7 +75,7 @@ stabilizers, whose intersection is trivial.
     proof (l.501–532). From the fact that iterating the virtual endomorphisms `ρ_i` preserves
     the support size of a lamp element `y`, they conclude "`h_2, …, h_r ∈ KH_ω`". That does not
     follow: support preservation is exactly the injectivity of their maps `λ_i` (their Lemma
-    before l.400) and says nothing about the `h_j`.
+    at l.378) and says nothing about the `h_j`.
   - **Explicit kernel.** Whenever `KH_i = G` for every `i`, their construction is not
     faithful. Let `N` be the subgroup of lamp elements with total exponent sum `0`. Then:
     - `N` is normal in `𝒢 = A ≀_{K\G} G`, and lies in `𝒢 ∩ ⋂ 𝒢_i` because every `𝒢_i`
