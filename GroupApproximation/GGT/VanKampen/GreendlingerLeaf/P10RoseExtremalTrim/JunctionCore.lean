@@ -226,10 +226,7 @@ theorem roseJunctionCore_regionMoveSubArc_of_lobeRemoval
     hs₁, hs₂, hlo, hhi, ht₁, ht₂⟩ := h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
   have hc := K.boundary.cycle_mem_iff
   rcases hcase with ⟨hne, hrs⟩ | ⟨r, rfl, hrout, y, hy, hry⟩
-  · obtain ⟨r, hr⟩ : ∃ r, r ∈ rs := by
-      cases rs with
-      | nil => exact absurd rfl hne
-      | cons a l => exact ⟨a, by simp⟩
+  · obtain ⟨r, hr⟩ := List.exists_mem_of_ne_nil rs hne
     exact ⟨roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs,
       roseJunctionCore_lobeColour_step X.toCombMap _ rs,
       fun d hd => Or.inr (roseJunctionCore_lobeColour_alpha_eq_false hc hrs hd),
