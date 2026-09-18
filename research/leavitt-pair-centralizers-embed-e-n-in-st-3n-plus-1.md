@@ -6,9 +6,17 @@ title: If a subring A centralizes a binary Leavitt pair of S, then E_N(A) embeds
 distinct_from:
   leavitt-pairs-embed-sl-n-q-in-steinberg-groups: that is the established case A = Q at rank 6N+1, which uses Whitehead's lemma; this factors the swap matrix itself into elementary matrices (rank 3N+1) and allows any centralizing subring A, which gives all GL_n(Q) in one group.
   one-steinberg-group-contains-every-gl-n-q: that puts every GL_n(Q) in St_4(S) through K_2 centrality for stable rank one and compatible refinements, with cited inputs; this reaches St_10(S) by the elementary swindle alone.
+artifacts:
+  - research/artifacts/gq-referee-a-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md
+  - research/artifacts/gq-gq-lit-arxiv-priority.md
 ---
 
 **OPEN (proof claimed by lane `gq-steinberg-q`, 2026-09-17, under review).**
+
+**Review status.**
+- `gq-referee-a` PASS, on the proof-gap lens (`research/artifacts/gq-referee-a-leavitt-pair-centralizers-embed-e-n-in-st-3n-plus-1.md`).
+- `gq-referee-b` pending.
+- Priority: `research/artifacts/gq-gq-lit-arxiv-priority.md` §7 found no finite-rank unstable Leavitt swindle and no finitely presented Steinberg-group overgroup of `GL_n(Q)`.
 
 **Statement.** Let `S` be a unital ring with a Leavitt pair `x_1, x_2, y_1, y_2`
 (`y_i x_j = δ_ij`, `x_1 y_1 + x_2 y_2 = 1`). Let `A ⊆ S` be a unital subring whose elements
