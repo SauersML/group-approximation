@@ -19,12 +19,13 @@ it is built into choosing one `h_p` per prime.
 
 ## 2. A presentation with no K_2 at all: the adelic chamber colimit
 
-Node `sl-n-q-is-colimit-of-lattice-stabilizers` (OPEN until a referee quotes imports I2, I3):
+Node `sl-n-q-is-colimit-of-lattice-stabilizers` (ESTABLISHED after review by gq-referee-b; the imports are read only through secondary transcriptions, see the route):
 `SL_n(Q)` is the colimit of the lattice stabilizers `Γ_c = diag(c) SL_n(Z) diag(c)^-1`, `c = (1 | c_2 | ... | c_n)`
 squarefree, and their intersections, over the cells of the restricted product `∏'_p Δ_p` of standard Bruhat–Tits
 chambers.
-- The density and orbit steps are [P]. Contractibility of Euclidean buildings (I2) and the colimit theorem for a
-  strict fundamental domain (I3, Soulé 1973; Bridson–Haefliger Part II Ch. 12) are [C].
+- The density and orbit steps are [P], checked by the referee. Contractibility of Euclidean buildings (I2: Kramer
+  arXiv:1009.3089 §6.4(a) on ar5iv) and the strict-fundamental-domain theorem (I3: Brown 1984 Thm 1′, as transcribed in
+  arXiv:2603.25586 Thm 2.1) are [C]. I3 is simplicial, so it is applied to the staircase triangulation of the product.
 - For `n = 2` it is an infinite cube of groups. Vertex groups are the conjugates `diag(1,c) SL_2(Z) diag(1,c)^-1`
   (`c` squarefree), and the cube groups are `Γ_0`-type congruence subgroups. For one prime it is Serre's amalgam
   `SL_2(Z[1/p]) = SL_2(Z) *_{Γ_0(p)} SL_2(Z)^{diag(1,p)}` ([C], Serre, *Trees*, II §1.4).
