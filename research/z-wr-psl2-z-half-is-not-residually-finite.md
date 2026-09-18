@@ -5,6 +5,7 @@ kind: claim
 title: The permutational wreath product A wr_X PSL_2(Z[1/n]) over the cosets of PSL_2(Z) is not residually finite, so it lies in no self-similar group
 distinct_from:
   z-wr-psl2-z-half-embeds-in-fp-self-similar-group: that is the printed question (arXiv:2609.01868, Question 1.1) asking for a finitely presented self-similar overgroup; this proves no self-similar overgroup of any kind exists, which refutes it.
+  double-of-psl2-z-half-along-psl2-z-lies-in-b-a: that uses the same profinite density of PSL_2(Z) in PSL_2(Z[1/2]), via Serre's congruence subgroup theorem (cited), to show the double is not residually finite; this proves the density elementarily and applies it to the wreath product.
   lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a: that proves the same wreath product embeds in a finitely presented simple group; this is compatible with it (finitely presented simple groups need not be residually finite) and says the host can never be residually finite.
 ---
 
@@ -60,12 +61,42 @@ stabilizers, whose intersection is trivial.
 
 ## Remarks
 
-- **Conflict with the source.** arXiv:2609.01868v1 states, as Theorem B item (3), that
-  `A ≀_X PSL_2(Z[1/2])` is a self-similar group for every finitely generated abelian `A`,
-  with `X = PSL_2(Z)\PSL_2(Z[1/2])`. It also says Cornulier lists `Z ≀_X PSL_2(Z[1/2])` as
-  *residually finite*. Both contradict item (2) above for `A ≠ 1`. I have read only the
-  statements, via the arXiv HTML, not their proofs. The likely failure is their condition
-  `(Ω)` for `PSL_2(Z)`, or the faithfulness of their construction.
+- **Conflict with the source, resolved at source** (TeX of arXiv:2609.01868v1, fetched
+  2026-09-18 via MSI, lines cited from `main.tex`).
+  - **Same X.** Theorem B item (3) (l.149–150), the Cornulier remark (l.154–157) and
+    Question 1.1 (l.227) all use `X = PSL_2(Z)\PSL_2(Z[1/2])`, the right cosets of `PSL_2(Z)`.
+    It is not a Borel-coset set, so this node answers the question actually printed.
+  - **Their B(3) is false.** It claims `A ≀_X PSL_2(Z[1/2])` is self-similar for every f.g.
+    abelian `A`. By item (3) above, no such group with `A ≠ 1` is self-similar, since the
+    paper's self-similar groups are faithful state-closed groups on finite-degree regular
+    trees (l.275, l.293), which are residually finite.
+  - **Failing step.** B(3) is deduced from their Theorem A (l.131), after checking condition
+    `(Ω)` for `K = PSL_2(Z)` (l.841–895). The error is in the faithfulness part of Theorem A's
+    proof (l.501–532). From the fact that iterating the virtual endomorphisms `ρ_i` preserves
+    the support size of a lamp element `y`, they conclude "`h_2, …, h_r ∈ KH_ω`". That does not
+    follow: support preservation is exactly the injectivity of their maps `λ_i` (their Lemma
+    before l.400) and says nothing about the `h_j`.
+  - **Explicit kernel.** Whenever `KH_i = G` for every `i`, their construction is not
+    faithful. Let `N` be the subgroup of lamp elements with total exponent sum `0`. Then:
+    - `N` is normal in `𝒢 = A ≀_{K\G} G`, and lies in `𝒢 ∩ ⋂ 𝒢_i` because every `𝒢_i`
+      contains the whole lamp group;
+    - `ρ` sends every lamp to one fixed `x ∈ G`, so `ρ(N) = 1 ≤ N`;
+    - if `KH_i = G`, then `ρ_i` sends each lamp `a^{Kh}` to a lamp `a^{Kh^{f_i}}` and none to
+      `1`, so it preserves exponent sums and `ρ_i(N) ≤ N`.
+    So `N ≠ 1` lies in the `f`-core, the kernel of their tree action. For `K = PSL_2(Z)`, the
+    density in item (1) gives `KH_i = G` for every finite-index `H_i`. The same `N` is exactly
+    the obstruction of item (2).
+  - **Scope.** I did not re-derive their virtual endomorphism `f` for `PSL_2(Z[1/2])`. If
+    their check of `(Ω)` for `PSL_2(Z)` is correct, Theorem A is false as stated, with this
+    as a counterexample. Either way B(3) is false. Their lower-triangular example
+    (Corollary near l.831, `K = ` lower-triangular in `PSL_2(Z[1/p])`) is not touched, since
+    there `KH_i ≠ G` and lamps outside `KH_i` are killed.
+  - **The Cornulier citation is a misreading.** Cornulier (arXiv:math/0509090v2, TeX read on
+    MSI, just before Appendix A) asks whether a *residually finite group* can act almost
+    2-transitively and faithfully on an infinite set with f.g. stabilizers. He then notes the
+    answer is yes for "primitively", via the action of `PSL_2(Z[1/p])` on
+    `PSL_2(Z[1/p])/PSL_2(Z)`. The residually finite group there is `PSL_2(Z[1/p])`, not the
+    wreath product. So the source's l.154–157 attributes to Cornulier a claim he does not make.
 - **Boone–Higman is unaffected.** `lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a` already
   embeds the group in a finitely presented simple group, which need not be residually finite.
   Item (2) says every host must be non-residually-finite.
