@@ -183,7 +183,7 @@ theorem bruhatBigCell_S_conj_U {K : Finset I} {L : I} (hLK : L ∉ K)
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2.bruhatBigCell_S_conj_U
 
 /-- `U_{≠b}` normalizes `C_b`. -/
-theorem bruhatBigCell_Uex_conj_C {K : Finset I} {L b : I} (hLK : L ∉ K)
+theorem bruhatBigCell_Uex_conj_C {K : Finset I} {L b : I}
     {u : SteinbergGroup I R} (hu : u ∈ bruhatBigCellUex R K L b)
     {y : SteinbergGroup I R} (hy : y ∈ bruhatBigCellC R K L b) :
     u * y * u⁻¹ ∈ bruhatBigCellC R K L b := by
