@@ -94,3 +94,94 @@ theorem czStabGen_weyl_conj_mem_range (j : Fin n) {g : St (n + 1) R}
       exact czStabGen_x_mem_range hpq hpL hqL a
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_weyl_conj_mem_range
+
+/-- If `w z w⁻¹ ∈ stab St_n` and `z ∈ K₂(n+1)`, then `z ∈ stab K₂(n)`. -/
+theorem czStabGen_mem_map_of_conj {w z : St (n + 1) R} (hzK : z ∈ K2 (Fin (n + 1)) R)
+    (hw : w * z * w⁻¹ ∈ (stab n R).range) : z ∈ (K2 (Fin n) R).map (stab n R) := by
+  obtain ⟨k, hk⟩ := MonoidHom.mem_range.mp hw
+  have hkK : k ∈ K2 (Fin n) R := by
+    refine (mem_K2_iff k).mpr ?_
+    have hinj : Function.Injective (elementaryStab n R) :=
+      GroupApproximation.ElementaryPadding.elementaryPad_injective (R := R) Fin.castSuccEmb
+    apply hinj
+    rw [← projection_stab, hk, map_mul, map_mul, map_inv, (mem_K2_iff z).mp hzK, mul_one,
+      mul_inv_cancel, map_one]
+  have hcen : stab n R k ∈ Subgroup.center (St (n + 1) R) :=
+    map_stab_K2_le_center (R := R) (n := n) (Subgroup.mem_map_of_mem (stab n R) hkK)
+  have hcomm : w * stab n R k = stab n R k * w := Subgroup.mem_center_iff.mp hcen w
+  have h1 : w * z * w⁻¹ * w = stab n R k * w := by rw [hk]
+  have h2 : w * z = w * stab n R k := by rw [hcomm, ← h1, inv_mul_cancel_right]
+  rw [mul_left_cancel h2]
+  exact Subgroup.mem_map_of_mem (stab n R) hkK
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_mem_map_of_conj
+
+/-- **Support lemma.**  `K₂(n+1) ∩ czStabGen_off R j.castSucc ≤ stab K₂(n)`, any ring, any `n`. -/
+theorem czStabGen_mem_map_of_off (j : Fin n) {z : St (n + 1) R}
+    (hzK : z ∈ K2 (Fin (n + 1)) R) (hz : z ∈ czStabGen_off R j.castSucc) :
+    z ∈ (K2 (Fin n) R).map (stab n R) :=
+  czStabGen_mem_map_of_conj hzK (czStabGen_weyl_conj_mem_range j hz)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_mem_map_of_off
+
+/-- `padCol v ∈ czStabGen_off R j.castSucc` when `v j = 0`. -/
+theorem czStabGen_padCol_mem_off {j : Fin n} {v : Fin n → R} (hv : v j = 0) :
+    padCol v ∈ czStabGen_off R j.castSucc := by
+  have key : ∀ s : Finset (Fin n),
+      padCol (∑ p ∈ s, Pi.single p (v p)) ∈ czStabGen_off R j.castSucc := by
+    intro s
+    induction s using Finset.induction_on with
+    | empty => rw [Finset.sum_empty, padCol_zero]; exact one_mem _
+    | insert p s hp ih =>
+      rw [Finset.sum_insert hp, padCol_add, padCol_single]
+      refine mul_mem ?_ ih
+      by_cases hpj : p = j
+      · subst hpj
+        rw [hv, x_zero]
+        exact one_mem _
+      · exact Subgroup.subset_closure ⟨p.castSucc, Fin.last n, (Fin.castSucc_lt_last p).ne,
+          v p, fun h => hpj (Fin.castSucc_inj.mp h), (Fin.castSucc_lt_last j).ne', rfl⟩
+  have h := key Finset.univ
+  rwa [Finset.univ_sum_single] at h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_padCol_mem_off
+
+/-- `padRow v ∈ czStabGen_off R j.castSucc` when `v j = 0`. -/
+theorem czStabGen_padRow_mem_off {j : Fin n} {v : Fin n → R} (hv : v j = 0) :
+    padRow v ∈ czStabGen_off R j.castSucc := by
+  have key : ∀ s : Finset (Fin n),
+      padRow (∑ p ∈ s, Pi.single p (v p)) ∈ czStabGen_off R j.castSucc := by
+    intro s
+    induction s using Finset.induction_on with
+    | empty => rw [Finset.sum_empty, padRow_zero]; exact one_mem _
+    | insert p s hp ih =>
+      rw [Finset.sum_insert hp, padRow_add, padRow_single]
+      refine mul_mem ?_ ih
+      by_cases hpj : p = j
+      · subst hpj
+        rw [hv, x_zero]
+        exact one_mem _
+      · exact Subgroup.subset_closure ⟨Fin.last n, p.castSucc, (Fin.castSucc_lt_last p).ne',
+          v p, (Fin.castSucc_lt_last j).ne', fun h => hpj (Fin.castSucc_inj.mp h), rfl⟩
+  have h := key Finset.univ
+  rwa [Finset.univ_sum_single] at h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_padRow_mem_off
+
+/-- `stab` carries `czStabGen_off R j` into `czStabGen_off R j.castSucc`. -/
+theorem czStabGen_stab_mem_off {j : Fin n} {g : St n R} (hg : g ∈ czStabGen_off R j) :
+    stab n R g ∈ czStabGen_off R j.castSucc := by
+  induction hg using Subgroup.closure_induction with
+  | mem g hg =>
+    obtain ⟨p, q, hpq, a, hpj, hqj, rfl⟩ := hg
+    rw [stab_x]
+    exact Subgroup.subset_closure ⟨p.castSucc, q.castSucc,
+      fun h => hpq (Fin.castSucc_inj.mp h), a, fun h => hpj (Fin.castSucc_inj.mp h),
+      fun h => hqj (Fin.castSucc_inj.mp h), rfl⟩
+  | one => rw [map_one]; exact one_mem _
+  | mul g h _ _ ihg ihh => rw [map_mul]; exact mul_mem ihg ihh
+  | inv g _ ih => rw [map_inv]; exact inv_mem ih
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_stab_mem_off
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
