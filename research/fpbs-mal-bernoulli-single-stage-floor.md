@@ -208,3 +208,35 @@ quantifier-shift).** Artifact
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
 
   The claim stays OPEN.
+
+**Finite-piece bridges pay the length floor (September 18, 2026,
+swarm-0917-w10-w10-fp-follow, minimal-counterexample).** Artifact
+`research/artifacts/fpbs-finite-piece-bridges-length-floor-2026-09-18.md`.
+- **Result.** [[fpbs-mal-finite-piece-bridges-pay-length-floor]] is
+  ESTABLISHED, through its route. Let `E ⊆ R_L` be a bridge, meaning
+  `R_K ∨ E = R_L`, whose pieces `E ∩ R_K` are finite. Suppose `E` is
+  hyperfinite, or is treed by `G` with connected pieces. If `E` is generated
+  by labels of `b`-length `≤ r`, then `relC(E; E ∩ R_K) ≥ σ_b/r ≥ 1/80r`.
+- **Invariant, and the step where members die.** The invariant is the
+  `b`-length of a generating graphing of `E`.
+  - Projecting that graphing to a transversal of the pieces and running a
+    nested Kruskal extraction gives a treeing of `E|_Y`. Its labels are
+    `K`-double translates of the generators.
+  - By Gaboriau's treeing theorem, its cost is at most `relC(E; E ∩ R_K)`.
+  - Every such bridge dies at Theorem B, Step 3 (fold exactness).
+- **What it kills.** The approximate-bridge route left open by
+  [[fpbs-malnormal-cosets-admit-no-amenable-bridges]], namely amenable `E`
+  whose trace on `R_K` has large finite classes.
+  - Cayley-subgraph bridges (`a`, `c` and `b` edges) die outright, with
+    value `≥ σ_b`.
+  - The remaining approximate bridges produce witnesses of exactly the P2
+    shape. So they are not an independent route to the negation of this
+    claim.
+- **What survives.**
+  - P2 (long labels shared across seeds).
+  - Non-hyperfinite bridges whose `E|_Y` has no treeing with short labels.
+    Their cheap graphings are as uncontrolled as the target's witnesses.
+  - Mixed traces.
+  - P3 and D1 (deep labels).
+
+  The claim stays OPEN.
