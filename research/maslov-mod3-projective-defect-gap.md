@@ -196,3 +196,35 @@ presentation coordinates.
   - The metaplectic and trivial sectors are already the controls in the
     falsification runs above, so they add no new calibration point.
   - Survivor: none.  The claim stays OPEN.
+- **2026-09-18, swarm-0917-w8-w8-deligne-pull: the entropy/measure transplant
+  (measurable untwisting) dies at descent.**  The idea was to refute the gap by
+  finding an action `Z` of `Gamma` on which `alpha` is a measurable `T`-coboundary,
+  with `L^infty(Z) x| Gamma` Connes-embeddable.  Then
+  `L_alpha(Gamma) ⊂ L^infty(Z) x|_alpha Gamma = L^infty(Z) x| Gamma` would make
+  `E_3` hyperlinear.  The invariant is the image of `[alpha]` in
+  `H^2(Gamma, L^0(Z,T))`.
+  - `kazhdan-profinite-untwisting-is-virtual-splitting` (ESTABLISHED) proves that,
+    for a group with (T), a multiplier dies on an ergodic profinite action only if
+    it splits on a finite-index subgroup.  The argument has four stages.
+    - Double the phase field, so that it twists a genuine representation.
+    - Coset indicators are almost invariant by martingale convergence.  A (T)
+      projection makes `c` cohomologous to `c(., . k)` on an open subgroup.
+    - Peter--Weyl splits the resulting compact central `T`-extension.
+    - `c` then descends to an exact monomial `alpha`-representation on a finite
+      coset space.
+  - `deligne-multiplier-survives-on-bernoulli-times-profinite-actions`
+    (ESTABLISHED) combines this with Deligne invisibility, and with Popa product
+    superrigidity for `E_3` acting on the generalized Bernoulli shift over
+    `E_3/mu_3`.  Conclusion: `alpha` and `alpha^2` survive in `L^0` cohomology on
+    every profinite action, on every Bernoulli shift, and on every Bernoulli-times-profinite
+    action.  These are the standard Connes-embeddable actions of the residually
+    finite `Gamma`, so the whole class of untwisting witnesses built from them is
+    dead.
+  - Survivor 1: `[0,1]^{E_3}/mu_3`, on which `alpha` is `mu_3`-trivial.  If its
+    crossed product is Connes-embeddable, then `E_3` is already hyperlinear, so
+    this witness is circular.
+  - Survivor 2: incoherent finite-level voltage towers on `Gamma/Gamma_n`.  The
+    doubling trick needs one measurable field on the limit.  At a fixed level it
+    sees only the diagonal.  These towers stay governed by
+    `deligne-class-finite-action-norms-vanish`.
+  - The claim stays OPEN.
