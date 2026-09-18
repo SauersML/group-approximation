@@ -42,3 +42,17 @@ by `psl2-q-bh-via-root`.
 ## Attempts
 
 See `sl2-q-embeds-in-fp-simple-group`, Attempts 1--3. They apply verbatim.
+
+**Rover--Nekrashevych route (2026-09-17, lane gq-rn-varying-degree).**
+- `pgl2-q-in-rover-nekrashevych-group-of-rational-iwahori` puts all of
+  `PGL_2(Q)` in the Röver–Nekrashevych group `V_p(Γ_p)`, where `Γ_p` is the
+  self-similar rational Iwahori group acting on `Z_p`. That group is not
+  finitely generated.
+- The conditional route `psl2-q-fp-simple-via-rational-iwahori-rn-host` then
+  needs only `rational-iwahori-group-lies-in-fp-self-similar-group`: a finitely
+  presented self-similar overgroup of `Γ_p` in `Aut(T_p)` whose
+  Röver–Nekrashevych group has finite abelianization.
+- Such an overgroup must be neither contracting nor Möbius. The device does not
+  reach `SL_2(Q)`: every homomorphism `SL_2(Q) -> PGL_2(K)` kills `-I`.
+- Varying-degree and all-primes trees are dead
+  (`aperiodic-tree-almost-automorphism-fg-subgroups-are-rf`).
