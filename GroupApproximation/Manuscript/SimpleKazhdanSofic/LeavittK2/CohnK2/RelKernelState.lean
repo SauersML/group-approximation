@@ -28,6 +28,8 @@ Each swap either flips one flag (`relKer_stepI`, `relKer_stepJ`) or fixes the st
 `p V α W β p = δ_{αβ} p`.
 -/
 
+set_option linter.unusedSimpArgs false
+
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
 
 open GroupApproximation.SteinbergGroup

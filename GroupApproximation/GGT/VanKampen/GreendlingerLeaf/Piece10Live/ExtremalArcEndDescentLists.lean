@@ -139,3 +139,58 @@ theorem extremalArcEndDescent_false_of_order (p : α → Bool) (c : Bool)
       have htail' : x :: (V ++ y :: Z) = g :: (bs₀ ++ post) := htail
       have hxg : x = g := (List.cons.inj htail').1
       exact key x (hpre x (by rw [hpre', hxg]; simp)) hx
+
+/-- **A member of the middle run splits the pattern** in the two ways used below. -/
+theorem extremalArcEndDescent_split_mid {l P B Q : List α} {d e b : α}
+    (hl : l = P ++ d :: (B ++ e :: Q)) (hb : b ∈ B) :
+    ∃ B₁ B₂ : List α, l = P ++ d :: (B₁ ++ b :: (B₂ ++ e :: Q)) ∧
+      l = (P ++ d :: B₁) ++ b :: (B₂ ++ e :: Q) := by
+  obtain ⟨B₁, B₂, hB⟩ := List.append_of_mem hb
+  have h1 : l = P ++ d :: (B₁ ++ b :: (B₂ ++ e :: Q)) := by
+    rw [hl, hB]
+    simp only [List.append_assoc, List.cons_append]
+  refine ⟨B₁, B₂, h1, ?_⟩
+  rw [h1]
+  simp only [List.append_assoc, List.cons_append]
+
+/-- **Kept / removed / kept is not met through one end.** -/
+theorem extremalArcEndDescent_not_end_of_krk (p : α → Bool) {l : List α}
+    (h : ExtremalArcEndDescentKRKList p l) : ¬ExtremalArcEndDescentEnd p l := by
+  obtain ⟨P, d, B, e, Q, hl, hd, he, hB, hBx⟩ := h
+  obtain ⟨b, hb⟩ := List.exists_mem_of_ne_nil B hB
+  obtain ⟨B₁, B₂, h1, h2⟩ := extremalArcEndDescent_split_mid hl hb
+  rintro ⟨pre, post, hsplit, ⟨hpre, hpost⟩ | ⟨hpre, hpost⟩⟩
+  · -- `pre` kept, `post` removed: the removed `b` comes before the kept `e`.
+    exact extremalArcEndDescent_false_of_order p true (hsplit.symm.trans h2) hpre hpost
+      (hBx b hb) he
+  · -- `pre` removed, `post` kept: the kept `d` comes before the removed `b`.
+    exact extremalArcEndDescent_false_of_order p false (hsplit.symm.trans h1) hpre hpost
+      hd (hBx b hb)
+
+/-- **Removed / kept / removed is not met through one end.** -/
+theorem extremalArcEndDescent_not_end_of_rkr (p : α → Bool) {l : List α}
+    (h : ExtremalArcEndDescentRKRList p l) : ¬ExtremalArcEndDescentEnd p l := by
+  obtain ⟨P, d, B, e, Q, hl, hd, he, hB, hBx⟩ := h
+  obtain ⟨b, hb⟩ := List.exists_mem_of_ne_nil B hB
+  obtain ⟨B₁, B₂, h1, h2⟩ := extremalArcEndDescent_split_mid hl hb
+  rintro ⟨pre, post, hsplit, ⟨hpre, hpost⟩ | ⟨hpre, hpost⟩⟩
+  · -- `pre` kept, `post` removed: the removed `d` comes before the kept `b`.
+    exact extremalArcEndDescent_false_of_order p true (hsplit.symm.trans h1) hpre hpost
+      hd (hBx b hb)
+  · -- `pre` removed, `post` kept: the kept `b` comes before the removed `e`.
+    exact extremalArcEndDescent_false_of_order p false (hsplit.symm.trans h2) hpre hpost
+      (hBx b hb) he
+
+end Lists
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndDescentEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndDescentKRKList
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcEndDescentRKRList
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_forall_cons
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_trichotomy
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_false_of_order
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_split_mid
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_not_end_of_krk
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndDescent_not_end_of_rkr
