@@ -5638,6 +5638,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Boundary
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingTraceKernel
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.RelatedWorkStatements
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Ext
+import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordMF.CliffordLift
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
