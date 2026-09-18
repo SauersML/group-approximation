@@ -146,3 +146,26 @@ outside one side. ∎
 - **Where G2 should aim.** Aim at a *design* rather than at analysing existing sets. The co-location
   design (complete crossings, one-way flow) is the one carried out in
   `sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices`.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS for items 1–4; item 5 is heuristic, as labelled
+
+**Verdict: PASS** for items 1–4. Lane bh-invent-04's use of Lemma 1 of
+`determinism-closure-certifies-quantum-rigidity` is correct throughout.
+- **Item 1.** The NE and SW rules give `𝒟_n = 𝒟_{n+1}`. This needs determinism of the tile set
+  (local), which the Setting's Wang tile examples have.
+- **Item 2.** Correct as stated. For normals `(m, 1)` with `w ≥ m` the layer induction works. The
+  same argument covers every normal `(p, q)` with `p, q > 0`, which is what "every nonzero finite
+  slope" needs. Boyle–Lind then puts non-expansiveness on an axis. Row propagation of disagreement
+  by the SW and SE rules is correct.
+- **Item 3.** Correct, with one ordering fix. In the SE corner, first descend the column `x = R+1`
+  only to `y = −R`. Then run along the row `y = −(R+1)` from `x = R−ρ+1` to `R`. Only then add the
+  corner `(R+1, −R−1)`, whose rule inputs `(R, −R−1)` and `(R+1, −R)` are both present by then.
+  As written, the corner step comes before `(R, −R−1)` is added. Everything else holds:
+  - the axis segments via (z) with `F_h` and `F_v`;
+  - the NE climb;
+  - `C = −C` for the NW and SW corners;
+  - the compactness characterization.
+- **Item 4.** Correct, given Corollary (a) of `quantum-rigid-sfts-over-products-have-a-single-free-branch`.
+- **Item 5.** A heuristic, correctly flagged as such. The Kari–Papasoglu paper (GAFA 9 (1999)
+  353–369) was not read here either. It is the natural first test case, and credit for four-way
+  deterministic aperiodic tile sets goes to Kari and Papasoglu.
