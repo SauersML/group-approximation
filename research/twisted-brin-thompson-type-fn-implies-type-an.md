@@ -29,6 +29,14 @@ paragraph before Corollary 4.18). `G ↷ S` is of type `[A_n]` if
 Type `[HA_n]` is the same with `FP` in place of `F`. Condition (ii) is empty for
 `|T| ≥ n`. For faithful actions these are types `(A_n)` and `(HA_n)`.
 
+**Non-faithful case (referee c note, 488bd5ce1).** FFWZ's quasi-retraction in Proposition 4.17
+uses the germinal twist in `G` of the leaf containing a point `κ`, although the text says it
+works "via the quotient", which only sees `G/K`. That label is well defined in `G`: it is the
+germinal twist of the image in the faithful realization `S'V_G`, `S' = S ⊔ G`
+(`abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one`). So necessity holds for
+every action, and for non-faithful actions it should be cited together with that
+realization.
+
 **Mechanism.** `Z ≀_S G` is a quasi-retract of `SV_G` (their Proposition 4.17). Alonso's
 theorem then transfers `F_n` or `FP_n`. The wreath product `Z ≀_S G` is of type `F_n` iff
 `G ↷ S` is of type `[A_n]` (de Cornulier; Bartholdi--de Cornulier--Kochloukova), and
