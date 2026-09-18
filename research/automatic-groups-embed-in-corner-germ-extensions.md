@@ -154,3 +154,20 @@ proofs, elementary, not independently reviewed.
   - Whether one exists is open.
   - Otherwise the premise should move to a higher-rank host, as in
     `cubulated-groups-act-by-bisections-of-a-pointed-cube-category`.
+
+## Lesson for general BH
+
+*Added 2026-09-18.*
+
+**Where the obstruction is.** For automatic groups there is no complexity obstruction, since the
+word problem is quadratic. The obstruction is the *carry*.
+- A central element of a vertex group, such as a Seifert fiber, commutes with the whole vertex
+  group.
+- In any normal form it passes through every letter of that vertex group.
+- By the centralizer lemma of the artifact (§7), in a germ extension its finite singular set is
+  almost invariant under its centralizer.
+
+**So the right hosts are the ones where fibers can be commutators.** Svetlov's charge
+obstruction kills hosts with characters on fibers (`fiber-detecting-block-characters-force-npc-graph-manifolds`).
+In the spiral group `C(C_2,Z) ⋊ V`, the period shift is a product of two commutators
+(artifact §7). So germ extensions of `V`, and `2V`, are not ruled out by charge.
