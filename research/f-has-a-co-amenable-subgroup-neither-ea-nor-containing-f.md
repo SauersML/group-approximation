@@ -49,3 +49,16 @@ This is prerequisite P1 of `thompson-f-amenable-via-exotic-co-amenable-subgroup`
     so there is no candidate to test.
   - *Payoff.* P1 is at least as hard as refuting Brin–Sapir and proving `F` sofic together. By items 2–3 of the
     sandwich claim, any weaker "co-amenable subgroup" hypothesis collapses to amenability of `F`.
+- **Tower transfer (swarm-0917-w13-f-follow, 2026-09-18).** The aim was to test the route's claim that P1 and P2
+  "escape the tower barrier".
+  - *Established* (`thompson-f-co-amenable-splits-must-pay-the-folner-tower`). For any `K ≤ F`, laying a relative
+    Følner set of `K` over each coset of an `ε`-Følner set `E ⊆ K\F` gives an `(ε + |Γ|η)`-Følner set of `F` of
+    size `|E|·Φ_K(2·rad(E)+1, η)`. By Moore's Theorem 1.1, the coset profile `S_K`, which counts size plus
+    distance from `K`, and the relative Følner function `Φ_K` cannot both be elementary.
+  - *Consequence for P1.* Any witness that P2 makes amenable pays Moore's tower. It pays either in the Følner sets
+    of `F/K`, through their size or their distance from the base coset, or in Følner sets of `K` measured
+    against `F`-length. If `F/K` has polynomial growth, the tower lands on `K`.
+  - *Where it dies.* This is not a kill of P1, which is qualitative. It kills the constructive class: an explicit
+    `K` with elementary coset Følner sets, together with a bounded-depth, undistorted or otherwise
+    elementary-Følner proof that `K` is amenable. That combination would build elementary Følner sets of `F` by
+    Theorem 1.
