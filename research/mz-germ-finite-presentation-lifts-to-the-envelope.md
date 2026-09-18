@@ -36,3 +36,11 @@ and the action on it, must follow from finitely many relations once the germ gro
   `FSym(N)` whose support is not controlled uniformly in `x`. The `E_2`-part alone reproduces `H_2` and has no room.
   Deferred: a proof must exhibit an input-dependent "three independent directions" condition coming from
   `rho(P)` with `P` infinite. No such condition is formulated here.
+- **Three directions by passing to H_n (bh-map, 2026-09-18).** The "three independent directions" asked for above
+  can be supplied without any input-dependent condition: replace `E_nu(P)` by the Mallery–Zaremsky Houghton-like
+  group `H_n(E_nu(P))`, `n >= 3`, which contains it and is again strongly shift-similar
+  (`houghton-like-groups-are-strongly-shift-similar`). For `n >= 2` its germ group is finitely presented iff `R_nu`
+  is (`houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group`), so the two-sided window is no longer
+  needed, and generic enumerations pass. The lifting problem moves to
+  `houghton-like-envelopes-lift-finite-presentation-from-germs` (OPEN), where each ray carries the action of `G`
+  instead of translations. This claim itself is unchanged.

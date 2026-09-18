@@ -14,7 +14,7 @@ unless it is marked "archive". Wording is paraphrased; numbers are exact.
 |---|---|---|---|
 | 17.61 (Kohl) | Is CT_P(Z) finitely presented for finite P? | **Yes.** CT_P(Z) = [[G_Λ]] for an explicit one-vertex (\|P\|+1)-graph Λ; it is simple and of type F_∞. | `ct-p-z-is-a-one-vertex-k-graph-full-group` |
 | 17.59 (Kohl) | Is CT(Z) the group of all RCWA permutations of Z fixing N_0 setwise? | **Yes.** | `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers` |
-| 17.60 (Kohl) | Are the CT_P(Z) pairwise non-isomorphic? | **Partial.** CT_P ≅ CT_Q implies \|P\| = \|Q\| (isotropy rank via Matui's spatial isomorphism theorem). Sets of equal size are OPEN; a sketched invariant is on the node. | `ct-p-z-isomorphism-type-remembers-the-number-of-primes` |
+| 17.60 (Kohl) | Are the CT_P(Z) pairwise non-isomorphic? | **Yes**, for all sets of odd primes (finite or infinite). Matui makes an isomorphism spatial. The germ groups at rational points have "prime axes" as minimal stable sets. Each axis is labeled by the unique prime ℓ with infinite ℓ-primary eigenvalue group of the induced shell rotation. (The earlier partial node gives |P| = |Q|.) | `ct-p-z-groups-are-pairwise-nonisomorphic` (+ `ct-p-z-isomorphism-type-remembers-the-number-of-primes`) |
 
 **The mechanism.** Residue classes with P'-smooth moduli are the cylinders of a
 one-vertex k-graph whose infinite-path space is the profinite completion

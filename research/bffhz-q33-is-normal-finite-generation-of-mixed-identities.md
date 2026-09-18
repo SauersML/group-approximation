@@ -51,11 +51,11 @@ quotient `(G * F_k) / J_k(G)` is finitely presented".
   negatively at every rank `k`. By `bffhz-q32-forces-finitely-based-mixed-identities`,
   the same group answers Question 3.2 negatively at every rank `n >= 2`. So one
   witness settles both published questions for `G`.
-- **The open case.** Every open case of Question 3.3 is a non-MIF finitely presented
-  simple group. Thompson's `T` is one, and its one-variable mixed identities are
-  decidable (`thompson-t-mixed-identity-problem-is-decidable`). For `T` the question
-  becomes: is `J_1(T)` normally finitely generated in `T * Z`? By part 2 that is
-  necessary for every rank.
+- **Answered for T (update 2026-09-18).** Every open case of Question 3.3 is a non-MIF
+  finitely presented simple group. For Thompson's `T`, whose one-variable mixed identities
+  are decidable (`thompson-t-mixed-identity-problem-is-decidable`), the answer is negative
+  at every rank: `thompson-t-mixed-identities-are-not-finitely-normally-generated` shows
+  `J_1(T)` is not finitely normally generated in `T * Z`. Part 2 then gives every rank.
 - **No implication with Question 3.2 is shown in either direction.** Question 3.2
   gives a finite basis through substitution instances, which is weaker than part 1.
   Question 3.3 says nothing about the automorphism action.

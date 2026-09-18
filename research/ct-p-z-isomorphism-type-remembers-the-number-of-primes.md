@@ -13,8 +13,10 @@ artifacts:
 1210.5800, Theorem `iso2`, read at source. No priority is claimed.
 
 Kourovka 17.60 (S. Kohl) asks whether the groups `CT_P(Z)` are pairwise
-nonisomorphic. This node settles the case `|P| ≠ |Q|`. The case `|P| = |Q|` with
-`P ≠ Q` stays OPEN; a candidate invariant is sketched below.
+nonisomorphic. This node settles the case `|P| ≠ |Q|`. **Superseded:** the full
+answer (yes, for all sets of odd primes, finite or infinite) is
+`ct-p-z-groups-are-pairwise-nonisomorphic`, which makes the sketch below rigorous
+through eigenvalues of shell rotations.
 
 ## Statement
 

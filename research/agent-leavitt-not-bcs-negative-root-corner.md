@@ -569,3 +569,19 @@ the `A_m`-configuration test above, and the test fails.
     non-window part must be paid for by relations of `E` itself.
   - The open `kazhdan-consistent-partial-models-round-to-finite-actions` is the corresponding rounding statement. It
     needs its globalization step repaired.
+**MF-null corner criterion and stripping (swarm-0917-w10-w10-ptm-pull, 2026-09-18, family stability-approximation).**
+Landed as `mf-null-corner-criterion-needs-faithful-ce-trace` (established, unreviewed). It proves three things.
+- *The criterion needs less.* The TCN criterion needs only that the corner be MF-null, meaning it has no unital map into
+  any norm matrix corona. So `(LNC3)` factors through the weaker hole `leavitt-root-corner-algebra-is-mf-null`
+  (route `leavitt-bcs-corner-makes-root-corner-mf-null`). That hole closes the goal by
+  `leavitt-mf-null-root-corner-closes-full-radical`.
+- *Class death.* Any certificate that a unital no-CE algebra maps into a nonzero corner of the witness forces `Delta`
+  nonhyperlinear. This covers `B_loop`, every MIP*=RE gadget, and every augmentation-corner variant. It also forces
+  `sigma(p) = 0` for every tracial `R^U`-representation `sigma`.
+  - Invariant: `tau_e o Phi`.
+  - Death step: the normalized compression of a CE trace to a positive-trace corner is CE.
+- *Stripping.* An MF-null algebra with a CE trace has an MF-null quotient inside `R^U`, with a faithful trace and no
+  CE-null algebra in any nonzero corner.
+- *Where it stops (hole stays OPEN).* For hyperlinear `Delta`, the only surviving certificates are operator-norm-only
+  rigidities of `P_z C[Delta] P_z`, which are invisible to traces and to K-zero rank arithmetic. This hole is
+  unchanged, and it is flagship-hard.

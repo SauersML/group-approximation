@@ -12,7 +12,9 @@ distinct_from:
 
 **ESTABLISHED** (lane proof, elementary; no novelty claimed). Reviewed: gq-referee-a PASS,
 proof-gap lens (`research/artifacts/gq-referee-a-bg-in-isometric-brick-hosts-needs-unbounded-exponents.md`,
-5d3e18e0b; nits N1 and N2 applied below). Citation review by gq-referee-b pending.
+5d3e18e0b; nits N1 and N2 applied below), and gq-referee-b PASS, citation lens
+(`research/artifacts/gq-referee-b-bg-in-isometric-brick-hosts-needs-unbounded-exponents.md`,
+a8dffeea3; W1 applied: the entropy bound is now proved directly by spanning sets).
 
 ## Setting
 
@@ -88,10 +90,17 @@ together, so length differences add.
 **Item 3.** If `d(x, y) < 2^{-L(f)+1}`, then `x, y` lie in one table brick `Π C(u_j) → Π C(v_j)`
 of `f`, and their common prefix lengths change by `|v_j| − |u_j| ≥ −|u_j| ≥ −L(f)`. Otherwise
 `d(x,y) ≥ 2^{-L(f)+1}`, and `d(fx, fy) ≤ diam(C^n) = 1 ≤ 2^{L(f)-1} d(x,y)`. So `f` is
-`2^{L(f)}`-Lipschitz. `(C^n, d)` has upper box dimension `n` (it needs `2^{nk}` balls of
-radius `2^{-k}`). The textbook bound `h(f) ≤ dim_B · max(0, log Lip(f))` gives
-`h(f) ≤ n L(f) log 2 < ∞`. Now `φ(b) g φ(b)^{-1} = g^2` gives `h(g) = h(g^2) = 2h(g)`, so
-`h(g) = 0`, and `h(φ(b)) = h(g)` because `φ(b) = φ(t) g φ(t)^{-1}`.
+`2^{L(f)}`-Lipschitz, so `d(f^i x, f^i y) ≤ 2^{iL(f)} d(x,y)`.
 
-The Lipschitz entropy bound was not re-read at source (Bowen; Katok--Hasselblatt, the bound
-for Lipschitz maps via box dimension). Items 1 and 2 do not use it.
+*Spanning sets* (Bowen's definition: `E` is `(k,ε)`-spanning if every `x` has `y ∈ E` with
+`d(f^i x, f^i y) ≤ ε` for `0 ≤ i < k`). Given `ε > 0` and `k ≥ 1`, put
+`m = ⌈log_2(1/ε)⌉ + (k−1)L(f)` and pick one point in each brick `Π_j C(u_j)` with all
+`|u_j| = m`. Every `x` shares such a brick with a chosen `y`, so `d(x,y) ≤ 2^{-m}` and
+`d(f^i x, f^i y) ≤ 2^{(k-1)L(f) - m} ≤ ε` for `i < k`. This spanning set has `2^{nm}`
+points, so `(1/k) log r_k(ε) ≤ (n/k)(⌈log_2(1/ε)⌉ + (k−1)L(f)) log 2`, which tends to
+`n L(f) log 2` as `k → ∞`. Hence `h(f) ≤ n L(f) log 2 < ∞`, with no box-dimension theorem.
+
+Now `φ(b) g φ(b)^{-1} = g^2` gives `h(g) = h(g^2) = 2h(g)`, so `h(g) = 0`, and
+`h(φ(b)) = h(g)` because `φ(b) = φ(t) g φ(t)^{-1}`. These use the textbook facts
+`h(T^k) = |k| h(T)` and invariance of entropy under conjugacy (Walters, *An Introduction to
+Ergodic Theory*, Ch. 7; not re-read). Items 1 and 2 do not use entropy.

@@ -103,3 +103,12 @@ extensions.
      neighbor's side `chi` must send the image of `F_v` into the centralizer of a
      non-fiber element of the neighbor's edge torus, which is abelian, so it kills the
      boundary word `c` it must preserve. Other enlargements are untested.
+9. **Local product hosts** (bh-3manifold, 2026-09-18). *Dies* for a whole design class.
+   By `fiber-detecting-block-characters-force-npc-graph-manifolds` (Svetlov's charge and
+   Theorem III, read at source), in every finite cover some block has nonzero charge: its
+   fiber is, rationally and modulo commutators of the block, a combination of the
+   neighbors' fibers. So no embedding can send each block into a subgroup with a character
+   that sees its own fiber and kills its neighbors' fibers, e.g. `K_v x A_v` with the fiber
+   in the abelian factor, or twist realizations in a mapping class group with each fiber a
+   twist about curves disjoint from the rest of the block's support. Designs must instead
+   produce such a rational fiber relation, e.g. through chain or lantern relations. Untested.

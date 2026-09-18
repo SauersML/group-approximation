@@ -73,7 +73,7 @@ satisfies PBH. So Q1.6 for G follows from G ∈ B_A, i.e. from Zaremsky Q5.13(ii
 | Zaremsky Q5.13(ii): every fp simple group in B_A? | `bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh` (equivalent to BH ⇒ PBH) | open |
 | BFFHZ Q3.1: graph products of PBH groups | `pbh-class-closed-under-graph-products` (56d98e4fb) | **answered YES on main** (lane proof, not reviewed; priority search partial) |
 | BFFHZ Q3.2 | `bffhz-q32-for-fp-simple-groups` | open; necessary conditions landed (recursive and finitely based mixed identities) |
-| BFFHZ Q3.3 | **new**: `bffhz-q33-is-normal-finite-generation-of-mixed-identities` (this lane) | open; reformulated, see §5 |
+| BFFHZ Q3.3 | `bffhz-q33-is-normal-finite-generation-of-mixed-identities` (reformulation), `thompson-t-mixed-identities-are-not-finitely-normally-generated` | **answered NO (lane proof, 09-18)**: T is a counterexample at every rank, see §7 item 4 |
 | BFFHZ Q3.4: fp simple into fp simple MIF | `fp-simple-mif-embedding-via-permutational-boone-higman` (route) | open; reduced to two symbolic-dynamics premises |
 | BFFHZ Q3.6: fp simple Kac–Moody groups highly transitive? MIF? PBH? | `fp-simple-kac-moody-lattices-are-mif` (literature import), `fp-simple-kac-moody-lattices-satisfy-pbh` (ESTABLISHED), `fp-simple-kac-moody-lattices-are-highly-transitive` (OPEN) | MIF yes, PBH yes, highly transitive open. Caprace–Hume 1408.6117 covers only *orthogonal forms*, not Γ(F) itself (checked by arXiv search). |
 | FFKLZ 2506.02319 Q2.4 | none | open, unowned |
@@ -115,3 +115,27 @@ satisfies PBH. So Q1.6 for G follows from G ∈ B_A, i.e. from Zaremsky Q5.13(ii
 - BBMZ-hyperbolic Q1.1–Q1.4;
 - FFKLZ Q2.4;
 - BFFHZ Q3.3 for T (normal finite generation of J_1(T)).
+
+## 7. Update (09-18, later): Q3.3 answered, Q4.7 reduced
+
+4. **BFFHZ Question 3.3 has a negative answer**
+   (`thompson-t-mixed-identities-are-not-finitely-normally-generated`, lane proof, not
+   reviewed). For every n ≥ 1, the mixed identities of Thompson's T are not finitely
+   normally generated in T∗F_n. The proof has three parts:
+   - **Localization.** Take any mixed identity w of T. Every homeomorphism of the Cantor
+     set supported in a small enough neighbourhood of a generic point satisfies w. The
+     reason is that inside such a neighbourhood the word collapses to P^s, and s = 0
+     because an infinite-order t ∈ T supported there must satisfy w.
+   - **Separation.** Thompson's V (which contains T) breaks the circle's cyclic order at
+     every scale. A three-arc identity with constants inside a tiny cone U fails for some
+     P ∈ V supported in U, by a generic-trajectory argument.
+   - **Conclusion.** A finite set W of identities is killed by x ↦ P, but some other
+     identity is not, so it does not normally generate J_1. Descent handles every rank.
+
+   Q3.2 for T stays open: substitution instances escape the localization.
+5. **Survey Q4.7 reduced and the RAAG route to V killed** (610442438):
+   - `closed-hyperbolic-surface-groups-embed-in-thompson-v` (OPEN);
+   - `cocompact-fuchsian-groups-embed-in-v-all-or-none`: the question is one question for
+     the whole commensurability class, e.g. π_1(Σ_2) or Δ(2,3,7);
+   - `raag-subgroups-of-v-contain-no-one-ended-hyperbolic-group`: RAAGs inside V are
+     products of free groups, and no one-ended hyperbolic group virtually embeds in one.
