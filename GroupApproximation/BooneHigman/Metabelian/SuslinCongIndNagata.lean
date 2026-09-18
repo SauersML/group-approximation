@@ -41,7 +41,7 @@ theorem suslinCongInd_exists_elem_entry {B : Type*} [CommRing B]
         (σ : Matrix (Fin 2) (Fin 2) B) 0 0 + (σ : Matrix (Fin 2) (Fin 2) B) 1 0 := by
   refine ⟨elementaryUnit (0 : Fin 2) 1 (by decide) 1, elementaryUnit_mem _ _ _ _, ?_⟩
   change ((1 + Matrix.single (0 : Fin 2) 1 (1 : B)) * (σ : Matrix (Fin 2) (Fin 2) B)) 0 0 = _
-  rw [add_mul, one_mul, Matrix.add_apply, Matrix.single_mul_apply_same, one_mul]
+  rw [Matrix.add_mul, Matrix.one_mul, Matrix.add_apply, Matrix.single_mul_apply_same, one_mul]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongInd_exists_elem_entry
 

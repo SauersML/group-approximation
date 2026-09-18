@@ -111,3 +111,39 @@ theorem roseLobeCore_unsep (K : PocketFaceSet D eps X lo hi)
   exact roseLobeCore_pow K x n
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeCore_unsep
+
+/-- **Jordan separation for the walk of a pocket**: two darts of the walk map are in one face
+class iff they lie on one face of the walk map. -/
+theorem roseLobeCore_iff (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (x y : (walkMap X.toCombMap K.boundary.cycle).Dart) :
+    Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle)) x.1 y.1 ↔
+      (walkMap X.toCombMap K.boundary.cycle).faceOf x =
+        (walkMap X.toCombMap K.boundary.cycle).faceOf y :=
+  ⟨roseLobeCore_sep K hK, roseLobeCore_unsep K⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeCore_iff
+
+/-- **Cover**: every face class of the walk holds a dart of the walk map. -/
+theorem roseLobeCore_cover (K : PocketFaceSet D eps X lo hi) (x : X.toCombMap.Dart) :
+    ∃ y, walkKeep X.toCombMap K.boundary.cycle y ∧ Relation.EqvGen
+      (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) x y :=
+  P01HoldingSmallFaces.exists_keep_of_connected (M := X.toCombMap)
+    (K := walkKeep X.toCombMap K.boundary.cycle) (walkKeep_alpha X.toCombMap K.boundary.cycle)
+    X.planar.1 (w₀ := K.boundary.cycle.head K.boundary.cycle_nonempty)
+    (Or.inl (List.head_mem K.boundary.cycle_nonempty)) x
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeCore_cover
+
+/-- **Side constancy**: membership of the face in `K.faces` is constant on a face class. -/
+theorem roseLobeCore_side (K : PocketFaceSet D eps X lo hi) {x y : X.toCombMap.Dart}
+    (h : Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle)) x y) :
+    X.toCombMap.faceOf x ∈ K.faces ↔ X.toCombMap.faceOf y ∈ K.faces :=
+  P10ExtremalRegion.extremalJordanPickCyc_faces_iff K h
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeCore_side
+
+end Pocket
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
