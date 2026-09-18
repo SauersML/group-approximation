@@ -2,7 +2,7 @@
 rg: 2
 id: euler-ring-symbols-in-small-finite-quotients
 kind: claim
-title: The symbols {π_0, π_q} die in the two-step folding quotient F_(2,l); the cyclotomic point u -> ζ_l - 1 detects them on A, but its σ-orbit does not
+title: The symbols {π_0, π_q} die in the folding quotients F_(2,l) and F_(r,N) for r <= l - 1; the cyclotomic point u -> ζ_l - 1 detects them on A, but its σ-orbit does not
 distinct_from:
   euler-ring-rational-symbols-are-infinitely-generated: that proves the c_q independent in K_2(D); this asks which finite quotients of D still see them.
   euler-ring-steinberg-rf-residual-is-fng: that is the open question whether the finite residual of St_N(D) is finitely normally generated; this computes the smallest test cases for it and does not decide it.
@@ -28,6 +28,8 @@ not independently reviewed. Inputs:
 
 1. **The two-step quotient kills every c_q.** For every prime `l`, every prime `q != l` and every `N >= 3`, the
    image of `c_q` in `K_2(N, C)` is trivial, and so is its image in `K_2(N, F_(2,l))`.
+   - More generally, for `l` odd and `1 <= r <= l − 1`, the image `C_r` of `A` in `F_(r,N)` is `Z[u]/(l,u)^r`, and
+     `K_2(N, C_r) = 0`. So every `c_q` dies in every `F_(r,N)` with `r <= l − 1`.
 2. **The cyclotomic point detects c_q on A.** Let `l` be odd, `K = Q_l(ζ)` with `ζ` a primitive `l`-th root of unity,
    `𝔭 = (ζ − 1)`, and `n >= l + 1`.
    - Then `u -> ζ − 1` defines a ring map `A -> O_K/𝔭^n`, and the image of `c_q` in `K_2(O_K/𝔭^n)` has `l`-th
@@ -42,7 +44,8 @@ not independently reviewed. Inputs:
 
 ## What is not claimed
 
-- The folding quotients `F_(r,N)` with `r >= 3` are not treated.
+- The folding quotients `F_(r,N)` with `r >= max(l, 3)` are not treated. At `r = l` the
+  argument breaks, and the expected survivor of `K_2(C_l)` is the class of `u^(l−1) du`.
 - Whether `c_q` vanishes in `K_2(ρ_m(D))`, the crossed product itself, is not decided. Items 2 and 3 locate the
   question there: the commutative part sees `c_q`, and the ambient matrix ring does not.
 - `euler-ring-steinberg-rf-residual-is-fng` stays OPEN.
