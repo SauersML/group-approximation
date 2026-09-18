@@ -95,7 +95,7 @@ theorem higmanVCTauFix3Vac_caseDiff {d : ℕ} (hd : 1 < d) {p q t' y' : List (Fi
         have := congrArg List.length (higmanVCTauConj_eq_of_prefix_right hpq hqp hmy h)
         simp only [List.length_cons, List.length_nil] at this
         omega
-      rcases higmanVCTauFix3Vac_single hd r hc hq3' hVy he with h | h
+      rcases higmanVCTauFix3Vac_single (m2 := m2) hd r hc hq3' hVy he with h | h
       · exact hB h
       · exact hF' h
     · have hp3' : p.length = 3 := by
@@ -106,7 +106,7 @@ theorem higmanVCTauFix3Vac_caseDiff {d : ℕ} (hd : 1 < d) {p q t' y' : List (Fi
         have := congrArg List.length (higmanVCTauConj_eq_of_prefix_left hpq hqp hmy h)
         simp only [List.length_cons, List.length_nil] at this
         omega
-      rcases higmanVCTauFix3Vac_single hd r hc hp3' hVy he with h | h
+      rcases higmanVCTauFix3Vac_single (m2 := m2) hd r hc hp3' hVy he with h | h
       · exact hB (higmanVCTauFix3Vac_bfSwap h)
       · exact hF h
   have hi3 := higmanVCTauBridge_inc_cons [higmanVCTau_other y1] [m1, m2] he

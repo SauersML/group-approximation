@@ -36,8 +36,8 @@ theorem higmanVCTauFix3Vac_notDef {d : ℕ} {z0 z1 : Fin d} {p q : List (Fin d)}
   · exact Or.inl (higmanVCTauFix3Vac_fail2 hp h1.1 h1.2)
   by_cases h2 : [z0, z1] <+: q ∧ [z0, z1] ≠ q
   · exact Or.inr (higmanVCTauFix3Vac_fail2 hq h2.1 h2.2)
-  exact absurd ⟨fun a => Classical.byContradiction fun b => h1 ⟨a, b⟩,
-    fun a => Classical.byContradiction fun b => h2 ⟨a, b⟩⟩ h
+  exact (h ⟨fun a => Classical.byContradiction fun b => h1 ⟨a, b⟩,
+    fun a => Classical.byContradiction fun b => h2 ⟨a, b⟩⟩).elim
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_notDef
 
