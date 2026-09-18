@@ -112,3 +112,22 @@ Serret-type statement about a free-choice multidimensional continued fraction.
   free-choice Serret statement is the directedness input of the natural
   Stein–Farley complex. A proof of `(Sync_m)` would transfer to every such host
   whose cells are unimodular simplices.
+3. **Bounded exact search** (lane bh-free-61, 2026-09-18; one approved MSI run
+   of seconds, single core).
+   - **Scope.** Every stuck nonnegative unimodular `3×3` matrix of entry sum at
+     most 36, up to row and column permutations (the game is invariant under
+     both), with split depth at most 40.
+   - **Strategy.** The braid-cut strategy of Attempt 2. The terminal matrices
+     of left reduction are explored exhaustively.
+   - **Calibration.** `M` is won at depth 1 and `[[9,2,0],[2,1,1],[0,1,2]]` at
+     depth 2, matching the hand wins. Two negative-entry controls lose, as they
+     must: their cells leave `Δ`.
+   - **Result.** All 10310 matrices are won. The 3299 of entry sum at most 30 need
+     depth at most 16, and all 10310 need depth at most 24. The depth histogram
+     decays smoothly.
+     - At depth 12, 18 matrices of entry sum 27–30 were undecided. Each one has
+       a braid coefficient with a large entry, which the one-subtraction-per-split
+       Euclid rule pays for linearly.
+   - **Reading.** Consistent with `(Sync_2)`, and not a proof.
+     `rank-two-synchronization-off-totally-irrational-rays` proves
+     `(Sync_2)` at every direction except the totally irrational ones.

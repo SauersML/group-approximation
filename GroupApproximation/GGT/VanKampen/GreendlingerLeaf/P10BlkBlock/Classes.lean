@@ -134,7 +134,8 @@ theorem flipIff (rs : List diagram.toCombMap.Dart) (x : diagram.toCombMap.Dart) 
     diagram.toCombMap.faceOf x ∈ flipFaces diagram.toCombMap pK.faces
       (roseJunctionCore_lobeColour diagram.toCombMap
         (walkKeep diagram.toCombMap pK.boundary.cycle) rs) ↔
-      (faceIn (faceClass x) = true ↔ decide (∃ r ∈ rs, faceClass r = faceClass x) = false) := by
+      (faceIn (faceClass x) = true ↔
+        decide (∃ r ∈ rs, faceClass r = faceClass x) = false) := by
   rw [mem_flipFaces_iff (roseJunctionCore_lobeColour_step _
     (walkKeep diagram.toCombMap pK.boundary.cycle) rs) x, colour_eq]
   change (M.faceOf x ∈ pFaces ↔ _) ↔ _
