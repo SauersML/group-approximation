@@ -80,6 +80,26 @@ any cocycle carried by finitely atomic, bounded-phase-variation or `F`-regular c
       generators `s`, averaging `ψ∘c` with the invariant mean gives a homomorphism `G → R`
       that is nonzero on `1_C`. This is impossible because `G` is perfect.
     - So such `H` must have unbounded transfer.
+- **2026-09-17 (swarm-0917-w7-w7-nv-last1): Gaussian designs of every correlation structure (die;
+  class-kill).**
+  - Established `cantor-central-gaussian-scale-mixture-witnesses-die`. No sequence of wrapped
+    laws `e∘(m + √s·Y)` is `V`-almost invariant, tends to `δ_0` and keeps `χ(1_C) ≠ 1`. Here `Y`
+    is a centred Gaussian random homomorphism with any covariance, `m` is a deterministic mean and
+    `s > 0` is an independent random scale. Every such sequence ends with `χ(1_C) = 1` a.s.
+  - **Invariant:** quadratic inclusion–exclusion of the covariance. Near `0` the lift mod 1 is
+    harmless. The scale-free angular laws of ordered pairs of disjoint cones are then forced to one
+    limit with variance ratio `1` and correlation `−1/2`.
+  - **Where every member dies:** the pair `(U_1⊔U_2⊔U_3, U_4)`, whose variance ratio must be
+    `1` but equals `3 − 3 = 0`. When the Gaussian part degenerates, the mean is a
+    `V`-invariant character on the cones and additivity forces `χ(1_C) = 1`.
+  - This kills the survivor "random scale shifted by `V`" of the previous attempt for Gaussian
+    shapes, and it makes the heuristic white-noise kill in
+    `cantor-integer-maps-by-v-have-haagerup-property` rigorous.
+  - **Remaining classes:**
+    - mixtures over a random covariance *shape* (angular mixtures are not identifiable);
+    - random means;
+    - jump-type (compound Poisson) laws. These are the canonical `e^{−tψ}` witnesses, since the
+      Gaussian part of every cnd `ψ|_A` vanishes by artifact §3(e).
 - **2026-09-18 (swarm-0917-w7-w7-nv-break, reframing): co-amenable induction witnesses (die
   unless `V` has a fixed-point-free amenable action; class-kill).**
   - Established `central-induction-witnesses-need-amenable-v-action`, which kills the w6b refutation
