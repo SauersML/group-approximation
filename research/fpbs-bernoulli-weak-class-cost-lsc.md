@@ -125,3 +125,28 @@ affine, antitone, upper semicontinuous functional can still jump at the minimum.
 this claim must use an input specific to cost on F̃R, beyond compactness, affinity, Kechris
 monotonicity and upper semicontinuity. The obvious candidates are freeness of the approximants
 at every scale, or Γ-specific geometry.
+
+Kesten gap at two-piece statistics (swarm-0917 wave 6, inverter;
+`fpbs-bernoulli-class-approximants-are-almost-ergodic`, ESTABLISHED). This uses the Γ-specific
+input named above. Let Γ be non-amenable and S generating, with κ = 2|S|(1−ρ). The Bernoulli
+Koopman representation is ∞λ, so Σ_σ μ(BΔσB) ≥ κ p(1−p) for Bernoulli sets. The two-piece
+matrices at a window F ⊇ S ∪ {e} carry this to every b within d of s̃ at (F,2), up to an error
+(κ+4|S|)d. So approximants of s̃ expand every macroscopic set. Their invariant sets have mass
+at most η or at least 1−η, with η ≤ 2(1+4|S|/κ)d. They have an ergodic component of mass at
+least 1−η whose class is within 2η of b̃ at every window, and whose cost is at most
+C(b)/(1−η). Consequences:
+
+- This claim is equivalent to its restriction to free ergodic approximants.
+- The cheap-approximability hole is equivalent to its ergodic version.
+- A jump, if one exists, is realised by ergodic, uniformly almost-expanding e_n.
+- Every approximant whose cheapness sits on a macroscopic piece with small S-boundary is killed,
+  with an explicit lower bound on d. This covers invariant mixtures, non-ergodic sequences with
+  macroscopic invariant mass, and cheap patches with small boundary.
+
+**Where it stops.** This is a reduction, not (c3). It does not reach the soft-axiom example
+above, whose jumping points δ_{1/n} are already extreme, so ergodicity alone is not the
+missing input. It gives no bound on the coarse modulus. By
+`fpbs-tight-routes-iff-bernoulli-weakly-treeable`, route moduli of near-minimizers diverge on
+every non-treeable Γ even for the constant sequence, so an argument for (c3) must control
+divergent moduli through expansion rather than bound them. The surviving question is whether
+uniform almost expansion (A), combined with freeness, forces lim_u C_M(e_n) to be uniform in M.
