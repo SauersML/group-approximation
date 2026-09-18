@@ -204,3 +204,13 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
     height-2 renormalization.
   - So no height-2 renormalization appears. This agrees with gq-affq's growing-control-information
     conjecture.
+- **2026-09-18 (lane gq-affq): the odometer just outside `nV`, and why it cannot be imported directly.**
+  - *Host next door.* `odometer-2v-is-fp-simple-and-contains-bs12` (both referees PASS) puts `BS(1,2) = ⟨τ×id, u⟩`
+    in `2V_τ = ⟨2V, τ×id⟩`, an `F_∞` simple Katsura–Exel–Pardo full group. So Attempt 1 (odometer realization) is
+    valid one step outside `2V`. If `2V_τ` embedded in some `nV`, this node would follow.
+  - *No direct import (lane argument; `research/artifacts/gq-affq-kep-odometer-host.md` §7).*
+    - A brick-local self-homeomorphism of `C^k` lies in `kV`, and `τ × id^{k-1} ∉ kV`.
+    - So by `brin-thompson-first-return-maps-lie-in-kv`, no bounded-return first-return map of any `W ∈ kV` is
+      brick-locally conjugate to `τ × id^{k-1}`.
+    - A witness must therefore have the odometer only as a factor, as SMART's `U` has `Z_3` for `BS(1,3)`: the
+      binary-hierarchy problem of lane gq-nv-obstruct.

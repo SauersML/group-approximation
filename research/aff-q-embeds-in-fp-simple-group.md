@@ -139,3 +139,11 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      the conjugacy global.
    - *Not reached:* `Q ⋊ ⟨2⟩`. The conjugator `u` squares `s` and `u^{-1}su` is the first root in the tower `Q_τ`,
      but `u` is not shown to normalize `Q_τ`. Nor is it known whether `2V_τ` embeds in any `nV`.
+9. **`Q ⋊ ⟨2⟩` in Katsura–Exel–Pardo 2V-hosts: every finite prime set, not all (2026-09-18, gq-affq).**
+   - `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`: `Z[1/2N] ⋊ ⟨2⟩` (not finitely generated) lies in the
+     simple group `2V_{G_N}`, `G_N = Z[1/N] ⋊ ⟨p | N⟩`. For `N = 3` the host is `F_∞`, and it contains
+     `Z[1/6] ⋊ ⟨2⟩`, `BS(1,2)`, `BS(1,3)` and `2V ⊇ Q`.
+   - The natural `Q ⋊ ⟨2⟩` lies in no `2V_H` with `H ≤ Aff(Q)` finitely generated, by bounded denominators (the
+     mechanism of `finite-state-mobius-pieces-see-finitely-many-primes`).
+   - Torus amalgams, adelic finite support and p-adic power maps are escaped or not triggered (claim node).
+   - *Open:* wild copies, and non-affine coefficient groups containing `Z_(2)`.
