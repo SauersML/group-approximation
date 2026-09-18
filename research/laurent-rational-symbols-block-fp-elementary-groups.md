@@ -10,13 +10,21 @@ distinct_from:
   aperiodic-subshift-ring-unstable-k2-vanishes: that is characteristic 2, where K_1(LC(Y, F_2)) = 0 and the symbols vanish; this is the characteristic-0 case, where they do not.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-k-budget.md
+  - research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md
 ---
 
-**ESTABLISHED** by `laurent-rational-symbols-block-fp-elementary-groups-proof` (lane proof, not
-independently reviewed). It uses the Ara–Brustenga–Cortiñas fibration
+**ESTABLISHED** by `laurent-rational-symbols-block-fp-elementary-groups-proof` (lane proof;
+referee gq-referee-b PASS, citation and hypothesis lens, `research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md`).
+
+**Trust surface T1 (unread by anyone).** Two inputs are standard but were not re-read at a
+source: naturality of the ABC fibration in the pair `(B, σ)`, and the Bass–Heller–Swan value
+`∂{λ, u} = ±[λ]` for `(Q, id)`. An independent twisted fundamental theorem (Farrell–Hsiang or
+Grayson) would remove this surface. The review confirms that ABC Theorem 3.6 applies to every
+unital `B`, and that `∂` can be taken as the connecting map of the fibration, with no splitting.
+
+The proof uses the Ara–Brustenga–Cortiñas fibration
 (`abc-twisted-laurent-k-theory-fibration`) and standard facts: Bass–Heller–Swan, Kervaire's
-theorem that `K_2(R)` is the centre of `St(R)`, and B. H. Neumann's lemma. Naturality of the
-fibration in the pair `(B, σ)` was not re-read at the source.
+theorem that `K_2(R)` is the centre of `St(R)`, and B. H. Neumann's lemma.
 
 ## Statement
 

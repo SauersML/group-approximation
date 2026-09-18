@@ -7,10 +7,13 @@ distinct_from:
   projective-elementary-fp-kernel-criterion: that is the criterion (finite normal generation of the unstable Steinberg kernel plus a finitely generated centre) for finitely presented R and n >= 4; this extracts from finite normal generation a condition on stable K_2 that needs no centrality at finite rank and no finite presentation of R.
   laurent-rational-symbols-block-fp-elementary-groups: that applies the present lemma to skew Laurent rings, where the symbols {λ, u} are detected by the ABC boundary map; this is the ring-general lemma.
   rational-leavitt-path-k1-k2-scalar-dichotomy: that shows K_2(Q) -> K_2(L_Q(E)) has infinitely generated image when [1] has infinite order, and says this obstructs whenever K_2(N,R) is central; this lemma removes the centrality proviso.
+artifacts:
+  - research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md
 ---
 
-**ESTABLISHED** by `infinitely-generated-symbols-block-fp-elementary-groups-proof` (lane proof,
-not independently reviewed; standard ingredients, no novelty claimed for them).
+**ESTABLISHED** by `infinitely-generated-symbols-block-fp-elementary-groups-proof` (lane proof;
+referee gq-referee-b PASS, `research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md`: Neumann, Kervaire (Milnor, Theorem 5.1), the rank-`N` symbols
+and P. Hall checked; standard ingredients, no novelty claimed for them).
 
 ## Statement
 

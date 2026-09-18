@@ -10,10 +10,21 @@ distinct_from:
   rational-scalars-obstruct-fp-elementary-hosts: that shows a host needs Λ_N(R) finitely generated; this exhibits a finitely generated simple ring with Λ_N(R) ⊆ {±1}.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-k-budget.md
+  - research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md
 ---
 
-**ESTABLISHED** by `tracial-harmonic-ring-keeps-rational-scalars-proof` (lane proof, not
-independently reviewed). The harmonic device, a function with values `1/m` on clopen pieces, is
+**ESTABLISHED** by `tracial-harmonic-ring-keeps-rational-scalars-proof` (lane proof).
+
+**Review status.**
+- Part 4, the rational scalars, has a gq-referee-b PASS (`research/artifacts/gq-referee-b-laurent-rational-symbols-block-fp-elementary-groups.md`). A faithful trace from
+  minimality, a II_1 factor from a free ergodic atomless measure, then Fuglede–Kadison.
+- **Trust surface T2.** The Fuglede–Kadison statement is taken from a secondary source
+  (Wikipedia, citing Ann. of Math. 55 (1952) 520–530). P. de la Harpe's survey,
+  arXiv:1107.1059, is the recommended primary replacement; it was not read here.
+- Parts 1–3 (finite generation, skew Laurent structure, simplicity and centre) are not yet
+  reviewed. Review was requested from gq-referee-a.
+
+The harmonic device, a function with values `1/m` on clopen pieces, is
 the one of `harmonic-cuntz-ring-is-purely-infinite-simple` and
 `leavitt-resolvent-ring-is-fp-simple-of-char-zero`. What is new is the host: a tracial crossed
 product instead of a purely infinite one.
