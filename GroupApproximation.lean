@@ -5599,6 +5599,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Algo
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Coefficients
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.DirectedUnion
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalTraceModels
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Prenex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
