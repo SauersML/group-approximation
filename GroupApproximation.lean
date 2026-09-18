@@ -5801,6 +5801,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Ops
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiReturns
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRFamily
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Shift
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitCorona
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
