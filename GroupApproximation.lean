@@ -6078,6 +6078,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingCon
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbDiagonalLimit
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbLocalMatrix
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorMap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabMatEmbed
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
