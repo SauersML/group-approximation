@@ -22,3 +22,19 @@ have the bound for nonzero elements of the trace ideal of one second syzygy `P �
 of a dual-basis functional. For amenable `G`, `dim_NG ker(r_a)` is the Følner limit of the
 normalized kernel dimensions of `a` acting on finite Følner pieces (Elek; recalled). So a
 counterexample needs integral group-ring elements whose finite kernel densities approach 1.
+
+## Attempts
+
+- **2026-09-18 (lane `w9-112`): annihilator iteration. Dead as a proof; it closes up on itself.**
+  See `amenable-cd-two-annihilator-iteration-closes-up`. The planned line was: a thin `a` is a
+  zero divisor; `J = ann_l(a)` is a non-finitely-generated projective of dimension `1 − rk(a)`
+  (`gl.dim Q[G] <= 2` plus integral Baum–Connes traces); iterate on `J`. Every step goes
+  through. `T(J)` contains zero divisors of arbitrarily small rank, so the iteration takes one
+  zero divisor to an infinite chain `a_{n+1} ∈ T(ann_l a_n)` with `rk(a_n) → 0` and
+  `dim ann_l(a_n) ↑ 1`. No input is ever violated. The exact failing step is the last one: no
+  quantity decreases in a way that can bottom out. Ranks tend to 0 without reaching it, and
+  Følner densities are the same numbers (Elek). By-product: for torsion-free amenable `G` with
+  `cd_Q G <= 2`, the infimum of ranks is either 1 (domain) or 0. Calibration: `Z/2 ≀ Z` satisfies
+  every input except integrality and has thin idempotents. So a proof needs an input not implied
+  by "one zero divisor exists", and every known such input (coherence, one finite annihilator,
+  elementary amenability of the support) is equivalent to this claim.
