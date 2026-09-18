@@ -37,7 +37,8 @@ states (`gfaceWindCell_RCells K` is false there, so it is outside the target's d
   `gfaceWindSix_nil`, so no relator cell has value `1`, and no dart lies on `c`).
 * `gfaceWindCellNine_Statement` (OPEN): under the premises of `gfaceWindCell_NineStatement`,
   `gfaceWindCellNine_Arcs K`.
-* `gfaceWindCellNine_nine_of` (proved): `gfaceWindCellNine_Statement → gfaceWindCell_NineStatement`.
+* `gfaceWindCellNine_nine_of` (proved):
+  `gfaceWindCellNine_Statement → gfaceWindCell_NineStatement`.
 * `gfaceWindCellNine_of_nine` (proved): the converse.
 * `gfaceWindCellNine_extremal_of` (proved): with `gfaceWindCell_CollapseStatement`, it gives
   `extremalGFaceProve_Statement`.
@@ -119,8 +120,9 @@ theorem gfaceWindCellNine_sub (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWa
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_sub
 
 /-- **A walk containing the arcs is nonempty when an arc is.** -/
-theorem gfaceWindCellNine_ne_nil (K : PocketFaceSet D eps X lo hi) {c : List X.toCombMap.Dart}
-    (hs : ∀ d ∈ invDarts X K.sourceArc.darts, d ∈ c) (ht : ∀ d ∈ K.targetArc.darts, d ∈ c)
+theorem gfaceWindCellNine_ne_nil (K : PocketFaceSet D eps X lo hi)
+    {c : List X.toCombMap.Dart} (hs : ∀ d ∈ invDarts X K.sourceArc.darts, d ∈ c)
+    (ht : ∀ d ∈ K.targetArc.darts, d ∈ c)
     (h : K.sourceArc.darts ≠ [] ∨ K.targetArc.darts ≠ [] ∨ c ≠ []) : c ≠ [] := by
   rcases h with h | h | h
   · obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil _ h
@@ -153,12 +155,12 @@ theorem gfaceWindCellNine_ne_nil_of_c5 (K : PocketFaceSet D eps X lo hi) (hK : K
   obtain ⟨-, hcob, ho⟩ := gfaceWindCellNine_sub K hK hr
   intro hc0
   subst hc0
-  rcases h5 with ⟨x, hx, -⟩ | ⟨i, hi⟩
+  rcases h5 with ⟨x, hx, -⟩ | ⟨i, hif⟩
   · simp at hx
-  · rw [gfaceWind_mem_faces] at hi
+  · rw [gfaceWind_mem_faces] at hif
     have h0 := gfaceWindSix_nil (X.toCombMap.connected_of_planar X.planar) hcob ho
       (cell X i).face
-    rw [hi] at h0
+    rw [hif] at h0
     exact absurd h0 one_ne_zero
 
 #audit_axioms
