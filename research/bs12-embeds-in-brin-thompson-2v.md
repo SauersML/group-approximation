@@ -145,3 +145,14 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      A variant with `f(k+1) = 3 f(k)` exactly is the natural candidate for a
      height-3 renormalization.
    - *Verdict.* Still open either way.
+- 2026-09-18 (lane gq-nv-obstruct). **Search for a binary SMART: not found.** See
+  `research/artifacts/gq-gq-nv-obstruct-binary-smart-search.md`.
+  - The `m = 3` analogue is done: `bs13-embeds-in-brin-thompson-3v`.
+  - For `m = 2`, why SMART-type hierarchies are ternary: crossing-only hierarchies branch oddly, and
+    prefix consistency constrains mixed ones. The natural binary scheme is the Jacobsthal recursion
+    `a→ac, b→bd, c→ba, d→ab`.
+  - Exhaustive MSI searches covered 2+2 to 4+4 states, and mirror-symmetric 4+4 with 3 symbols and 6+6
+    with 2 symbols. The only binary counters found have per-level overhead `Θ(j)`.
+  - A partial search of mirror-symmetric 8+8 states with 2 symbols found machines with binary frontier
+    timing `t_{j+1} = 2t_j + {0,-2}`, for example mask 169. Their cyclic periods and per-type counts count
+    against a clean 2-adic hierarchy. Open.
