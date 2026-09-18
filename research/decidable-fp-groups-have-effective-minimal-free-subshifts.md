@@ -365,9 +365,30 @@ items sharpen it.
      - (ii) Effectivity of the limit: `φ = lim φ^N` is taken along a subsequence (l.1046).
        `φ^N` is defined top-down from level `N` (Definition `d. psin`, l.3150), so `φ^N` and
        `φ^{N+1}` need not agree near `p`. The limit is effective if the level-`n` value at `p`
-       is the same for all `N ≥ n`. Remark `r. psi xxn` (l.3172: the value at a point
-       determines membership in `𝔛_m`, and `p ∈ 𝔛_m` for all `m`) suggests it is, but this
-       was not checked.
+       is the same for all `N ≥ n`. *Checked (lane reading).*
+       - At the top, `φ_N^N(p) = (χ_N(p), 0) = (0, 0)`, since `χ_N(x) = 0` iff
+         `x ∈ 𝔛_N` (Prop. `p: chin`(i), l.2164) and `p ∈ 𝔛_N`.
+       - One level down, `φ_N^(N+1)(p)` is `ψ^0_(N+1,p)(p)` paired with `χ_N(p) = 0`. The
+         colouring `ψ^0` is strongly adapted, and adapted colourings send exactly the
+         `𝔛_N`-points of the cluster to `0` (Definition `d. phi_{n,x}^0 i`(i), l.2918). So
+         `φ_N^(N+1)(p) = (0, 0)` too.
+       - By downward induction, `φ^N` restricted to the level-`n` cluster of `p` depends only
+         on `φ_n^N(p) = (0,0)`, so it is the same for all `N ≥ n`.
+       - These clusters exhaust `G`: they contain `D(p, Σ_{i≤n} r_i)` (Cor. `c. cn-1 contained`,
+         l.2104).
+       - So `φ = lim φ^N` exists with no subsequence, and it is computable once each finite
+         step is. The steps are: cluster centres by maximal separated sets, BFS orders,
+         power-set enumerations (Prop. `p: phi_n x^i`, l.3024), and the sets `𝔛_n`, where
+         `𝔛_n ∩ D(p, 𝔯_l) = 𝔛^l_n ∩ D(p, 𝔯_l)` by Prop. `p: zmn`(iii).
+       - *Strong* repetitivity needs the disk maps `𝔥_(n,x)` to be left translations. The
+         remark after Prop. `p: xxn` (l.1336) allows prescribing them as compositions of chosen
+         pointed isometries, so choose translations.
+       - *Not read.* The computability of the companion construction of `𝔛^m_n`
+         (Álvarez López–Barral Lijó, arXiv:2002.08662, Props. 4.1–4.3), and finite halting of
+         every search. Modulo those, every f.g. group with decidable word problem has a
+         *computable* strongly aperiodic, strongly repetitive point with computable freeness
+         radii and a computable central modulus. What is still missing for (M2) is exactly the
+         global modulus (i).
    - *Use.* A lane attacking (M2) by hierarchy can start from this construction. The open part
      is then only: seam patterns between adjacent level-`n` clusters must occur inside some
      replicated level-`m` cluster, computably in `n`.
