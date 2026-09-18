@@ -81,3 +81,19 @@ None recorded before 2026-09-17.
    `GL_n(Q)`, `SL_n(Q)`, `PSL_n(Q)`, `Aff(Q)`, `U_3(Q)`. The unipotent `(Q,+)`
    meets the centre trivially, so the lift cannot absorb its divisibility, and
    it must already embed in the base group. Independent of O4.
+
+2. **Gluing affine hosts along the chain `GL_n(Z[1/m!])`, 2026-09-17: the natural
+   gluing is dead.** `fg-piecewise-linear-hosts-omit-natural-gl-n-q` (via
+   `fg-groups-have-fg-derivative-images`): in a finitely generated group whose
+   generators have finitely many linear parts, every derivative has entries in a
+   finitely generated ring, which never contains `Q`. So no finitely generated
+   union of the following carries the chain with its natural action, where the
+   origin is fixed and the derivative is `g`:
+   - Scott's `Sc(n)`;
+   - Zaremsky's affine hosts on `Z_p^n`;
+   - adelic V-type groups on `A_f^n ∪ {∞}` or on `⊔_p Q_p^n`.
+
+   In any such host, divisible subgroups and `SL_n(Q)` have trivial derivative
+   at every fixed point. What survives is the Belk--Hyde--Matucci shape:
+   divisibility through torsion plus a central extension, acting without fixed
+   points.
