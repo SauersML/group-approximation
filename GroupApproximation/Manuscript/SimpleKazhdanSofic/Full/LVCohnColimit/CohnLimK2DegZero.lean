@@ -113,3 +113,48 @@ theorem skCohnLimK2_stableK2Trivial_degreeZero :
     skCohnLimK2_isUltramatricialF2_degreeZero
 
 #audit_axioms GroupApproximation.Full.LVCohnColimit.skCohnLimK2_stableK2Trivial_degreeZero
+
+/-- **Residual Statement of lane sk-lv-01: stable surjectivity of `K₂(C₀) → K₂(C)`.**  Every
+`k ∈ K₂(n, C)`, `C = C_2(𝔽₂)`, becomes after padding the image of some `y ∈ K₂(N, C₀)` under
+the inclusion `C₀ ⊆ C` of the degree-zero part.  This is the Mayer–Vietoris / Yao step of
+Ara–Brustenga–Cortiñas 2009, Thm 3.6 (`yaoseq6.tex` `thm:skewyao`; Yao 1995, Thm 2.1), where
+`K₁(C₀) = 0` kills the `ker(1 - φ on K₁)` term.
+
+Truth: true, since stable `K₂(C) = 0` (ABC 2009, Thm 3.6) and the Statement follows from that
+(`skCohnLimK2_degreeZeroSurj_of_cohn_stableK2Trivial`).  Strictly smaller in proof content than
+`StableK2Trivial CohnTwoF2` and than `StableK2Trivial CohnLimit`: the vanishing of stable
+`K₂(C₀)` (`skCohnLimK2_stableK2Trivial_degreeZero`) is proved here and no longer needed.  LOUD:
+logically it is EQUIVALENT to `StableK2Trivial CohnTwoF2` (both are true, and each implies the
+other by the two theorems below); it is not logically weaker.
+(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+def skCohnLimK2_degreeZeroSurjStatement : Prop :=
+  LVStableK2.StableK2BaseSurjective LVCohnDegZero.cohnDegreeZero.subtype
+
+#audit_axioms GroupApproximation.Full.LVCohnColimit.skCohnLimK2_degreeZeroSurjStatement
+
+/-- **Reduction:** stable surjectivity of `K₂(C₀) → K₂(C)` gives stable `K₂(C_2(𝔽₂)) = 0`,
+because stable `K₂(C₀) = 0`.  (ABC 2009 Thm 3.6; `simple_kazhdan_sofic_group.tex` l.733-735,
+leaf T1b.iii.) -/
+theorem skCohnLimK2_cohn_stableK2Trivial_of_degreeZeroSurj
+    (h : skCohnLimK2_degreeZeroSurjStatement) :
+    LVH2GL3.StableK2Trivial LVCohnRelK1.CohnTwoF2 :=
+  LVStableK2.stableK2Trivial_of_baseSurjective LVCohnDegZero.cohnDegreeZero.subtype h
+    skCohnLimK2_stableK2Trivial_degreeZero
+
+#audit_axioms
+  GroupApproximation.Full.LVCohnColimit.skCohnLimK2_cohn_stableK2Trivial_of_degreeZeroSurj
+
+/-- The converse, recorded for honesty: stable `K₂(C_2(𝔽₂)) = 0` gives the residual Statement.
+So the residual is logically equivalent to `StableK2Trivial CohnTwoF2`.  (ABC 2009 Thm 3.6;
+`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem skCohnLimK2_degreeZeroSurj_of_cohn_stableK2Trivial
+    (h : LVH2GL3.StableK2Trivial LVCohnRelK1.CohnTwoF2) :
+    skCohnLimK2_degreeZeroSurjStatement :=
+  LVStableK2.baseSurjective_of_stableK2Trivial LVCohnDegZero.cohnDegreeZero.subtype h
+
+#audit_axioms
+  GroupApproximation.Full.LVCohnColimit.skCohnLimK2_degreeZeroSurj_of_cohn_stableK2Trivial
+
+end
+
+end GroupApproximation.Full.LVCohnColimit
