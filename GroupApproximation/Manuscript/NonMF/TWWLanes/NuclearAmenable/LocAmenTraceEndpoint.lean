@@ -54,12 +54,8 @@ theorem locAmenTrace_ucpKraus_of_isNuclear {A : Type u} [CStarAlgebra A]
   rcases subsingleton_or_nontrivial A with hA | hA
   · refine ⟨⟨Fin 0, inferInstance, inferInstance⟩, 0, fun _ ↦ 0, ?_, ?_,
       Subsingleton.elim _ _, ?_⟩
-    · first
-        | exact Matrix.ext fun i _ ↦ Fin.elim0 i
-        | exact Subsingleton.elim _ _
-    · first
-        | exact isCompletelyPositiveOnMatrices_zero _
-        | (rw [LinearMap.coe_zero]; exact isCompletelyPositiveOnMatrices_zero _)
+    · exact Matrix.ext fun i _ ↦ Fin.elim0 i
+    · exact isCompletelyPositiveOnMatrices_zero _
     · intro a _
       exact (congrArg norm (Subsingleton.elim _ (0 : A))).trans_le (norm_zero.trans_le hδ.le)
   · obtain ⟨Z, hZ, ρ₀, ψ₀, hρCP, hρ1, hψCP, hψ1, happ⟩ :=
