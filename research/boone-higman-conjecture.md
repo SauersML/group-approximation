@@ -434,6 +434,36 @@ conjecture's two halves without narrowing either.
     - *Survivors.* A host class carrying the conjecture must contain
       non-exact groups. The exactness of `V`, `nV`, `SV_G` and `L^x` is not
       settled in this graph.
+13. **Følner growth of amenable subgroups as the separating property of
+    Attempt 7** (transplanter lane w7-z, swarm-0917, 2026-09-18).
+    - *Separators.* `P_U` is the class of groups whose finitely generated
+      amenable subgroups `H` all have `F_H ≼ U`.
+      `folner-separators-of-boone-higman` (ESTABLISHED, unreviewed) shows that
+      `P_U` is hereditary, and that for recursive `U` it separates iff every
+      finitely presented simple group lies in `P_U`.
+    - *Lemma (decidable side).*
+      `decidable-amenable-groups-have-no-recursive-folner-bound` (ESTABLISHED,
+      unreviewed). For every recursive `U`, a Brieussel--Zheng diagonal product
+      with expander factors chosen against `U` is decidable, elementary
+      amenable, and has `F ⋠ U`.
+    - *Kill 1.* Invariant: tower height. Step: (S1). Every `U ≼ exp_k` fails,
+      because `Z wr (... wr Z)` with `k+2` factors lies in `B_A` and has
+      `F ⋠ exp_k` (`iterated-wreath-products-of-z-have-tower-folner-functions`,
+      from Erschler's wreath formula).
+    - *Kill 2.* Invariant: membership in one c.e. class of amenable
+      presentations. Step: the choice of witness. Any proof that no recursive
+      `U` works, with witnesses taken from a uniformly computable family of
+      amenable subgroups of finite presentations, dies at Cavaleri's uniform
+      bound `U_*`. So a proof must use the totality of `U`.
+    - *Result.* The conjecture implies
+      `fp-simple-amenable-subgroups-beat-every-recursive-folner-bound` (OPEN),
+      by `fp-simple-amenable-folner-growth-via-boone-higman`. A single
+      recursive `U` above every tower with (S1_U) would disprove the
+      conjecture. The live unconditional step is to embed the diagonal
+      products in finitely presented simple groups. They are
+      locally-finite-by-`Z` and residually finite, but their envelope is an
+      unrestricted wreath product, so the `B_A` wreath closure does not
+      reach them.
 
 **September 17: one decidable host per complexity bound.**  This attempt
 decomposes the conjecture as follows.
