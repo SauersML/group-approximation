@@ -102,3 +102,18 @@ type-substitution matrix has **Perron eigenvalue `> 1` and is primitive**. Loop-
 is a Perron property, not a diagonal one. This dissolves the "deterministic codings have
 no loops" wall for every host whose local combinatorics grows exponentially, and it is
 the general finiteness certificate the synthesis calls FTR for deterministic codings.
+
+## Attempts
+
+1. **(bh-major-cube-b, 09-18) The proof is invalid, and the "ESTABLISHED" status above
+   does not stand for `n ≥ 2`.** See `perron-weights-do-not-give-li-finiteness`, which
+   invalidates `perron-substitution-finiteness-proof`.
+   - For the `F_k` reduced-word coding (so `(Perron)` holds), `𝐗(*)` contains
+     infinitely many objects `x_N = (a, a^{-1}, N b, N b^{-1})` whose Witzel complexes
+     `|E(x_N)|` are not simply connected.
+   - Li's `lem:link:n-conn_3` needs the packing number `ρ'(x) → ∞`, and here
+     `ρ'(x_N) ≤ 2`. A Perron height does not control it.
+   - The correct extra hypothesis is **(Pack)**: finitely many objects of bounded
+     packing. Li's (`t<d`) is what makes packing a height.
+   - The free-group consequence remains true, via Li's `cor:ProdGraphs` with Matui's
+     recoding. The claim that no recoding is needed does not.
