@@ -5534,6 +5534,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL03C.PocketListing
 import GroupApproximation.Manuscript.NonMFNotes.Full.FFExistencePrinted.Assembly
 import GroupApproximation.Manuscript.NonMF.Full.AtomRepresentatives.SeparatingAtoms
 import GroupApproximation.Manuscript.NonMF.Full.AtomRepresentatives.AtomBaseSet
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.LabelledMap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.ShellAssembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
