@@ -30,6 +30,7 @@ section PermSection
 
 variable {α : Type*} [DecidableEq α] {G : Type*} [Group G]
 
+omit [DecidableEq α] in
 /-- The relators force each `t a b` to be its own inverse. -/
 theorem higmanVCAll_t_inv (t : α → α → G) (h2 : ∀ a b, t a b * t a b = 1) (a b : α) :
     (t a b)⁻¹ = t a b :=
