@@ -5723,6 +5723,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.LaurentWidt
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Laurent
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Relations
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Grading
+import GroupApproximation.Manuscript.NonMF.Full.GL03C.KeptArcs
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
