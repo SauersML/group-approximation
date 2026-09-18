@@ -83,11 +83,10 @@ theorem regionMoveLoose_countP_attach_next {β : Type*} {l : List β} (hl : l.No
     (p : β → Bool) : l.attach.countP (fun q => p (l.next q.1 q.2)) = l.countP p := by
   have e1 : l.attach.countP (fun q => p (l.next q.1 q.2)) =
       (l.attach.map (fun q => l.next q.1 q.2)).countP p := by
-    rw [List.countP_map]
-    try rfl
+    rw [List.countP_map, Function.comp_def]
   have e2 : l.pmap l.next (fun _ h => h) = l.attach.map (fun q => l.next q.1 q.2) := by
     rw [List.pmap_eq_map_attach]
-  rw [e1, ← e2, List.pmap_next_eq_rotate_one hl, (List.rotate_perm l 1).countP_eq]
+  rw [e1, ← e2, List.pmap_next_eq_rotate_one _ hl, (List.rotate_perm l 1).countP_eq]
 
 /-- **A predicate true at exactly one entry is counted once.** -/
 theorem regionMoveLoose_countP_eq_one {β : Type*} {l : List β} (hl : l.Nodup) {a : β}
@@ -135,8 +134,9 @@ theorem regionMoveLoose_bne_decide {p q r s : Prop} [Decidable p] [Decidable q] 
     [Decidable s] (h1 : p ↔ r ∧ ¬s) (h2 : q ↔ s ∧ ¬r) :
     (decide p != decide q) = (decide r != decide s) := by
   by_cases hr : r <;> by_cases hs : s
-  · rw [decide_eq_false (fun h => (h1.mp h).2 hs), decide_eq_false (fun h => (h2.mp h).2 hr),
+  · rewrite [decide_eq_false (fun h => (h1.mp h).2 hs), decide_eq_false (fun h => (h2.mp h).2 hr),
       decide_eq_true hr, decide_eq_true hs]
+    rfl
   · rw [decide_eq_true (h1.mpr ⟨hr, hs⟩), decide_eq_false (fun h => hs (h2.mp h).1),
       decide_eq_true hr, decide_eq_false hs]
   · rw [decide_eq_false (fun h => hr (h1.mp h).1), decide_eq_true (h2.mpr ⟨hs, hr⟩),

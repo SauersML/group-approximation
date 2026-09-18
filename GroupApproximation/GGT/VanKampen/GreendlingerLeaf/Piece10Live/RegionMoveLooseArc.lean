@@ -91,13 +91,13 @@ theorem regionMoveLoose_sigma_eq_of_outerDarts_next {a b : X.toCombMap.Dart}
     (List.nodup_reverse.mpr (X.faceBoundary X.outerFace).nodup).map X.toCombMap.alpha.injective
   have hb : b ∈ outerDarts X := by
     rw [← hab]
-    exact List.next_mem ha
+    exact List.next_mem _ _ ha
   have hu : X.toCombMap.alpha b ∈ (X.faceBoundary X.outerFace).darts := by
     obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hb
     rw [X.toCombMap.alpha_involutive]
     exact List.mem_reverse.mp hd
   have hs : X.toCombMap.sigma b ∈ (X.faceBoundary X.outerFace).darts := by
-    have h1 := List.next_mem hu
+    have h1 := List.next_mem _ _ hu
     rwa [OuterPinchCornerFix.next_faceBoundary_darts (X.faceBoundary X.outerFace) hu,
       OuterPinchCornerFix.facePerm_alpha] at h1
   have hm : X.toCombMap.alpha (X.toCombMap.sigma b) ∈ outerDarts X :=
