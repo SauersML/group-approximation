@@ -67,3 +67,10 @@ the kernel of `St_N(R_L) -> E_N(R_L)`. Items 1–3 hold for every such `N`. They
    - So (ii) holds, and **gate 1 reduces to (i) alone**.
    - Without (i): `K_2(N, R_L) = U_N ⋊ Q^x`, where `U_N` is the kernel of stabilization. The word problem is solvable
      if and only if nontriviality in `U_N` is recursively enumerable.
+3. **Condition (i) is level-independent, 2026-09-18 (lane gq-infinite-primes).**
+   `leavitt-refinement-identifies-unstable-k2-levels`. Voronetsky refinement, in the form applied by Khanh
+   (arXiv:2609.08428), gives isomorphisms `D_r : St_r(R_L) ≅ St_(r+1)(R_L)` for `r >= 3`, with `ι_(r+1) D_r = ι_r`.
+   - So all stabilization kernels `U_r` are isomorphic. Gate 1 is the same question at every `N >= 3`.
+   - If a Leavitt block `V'` is elementary, (i) is equivalent to injectivity of two-step stabilization at every level.
+   - An absolute input at one level is still missing. Khanh's frame-complex criterion needs `GL = E` and
+     `H_2 = 0`, and both fail for `R_L`.

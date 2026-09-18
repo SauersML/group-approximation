@@ -1,0 +1,3 @@
+{"class": 657, "L": 6, "pure": true, "powers": true, "pairs": 5287, "cycle": null}
+{"class": 925, "L": 6, "pure": true, "powers": true, "pairs": 3369, "cycle": null}
+{"class": 1174, "L": 6, "pure": true, "powers": true, "pairs": 4522, "cycle": ["v|h11", "v|h1111", "v0130|h", "v013130|h", "v|h000323", "v20|h", "v0202|h"]}
