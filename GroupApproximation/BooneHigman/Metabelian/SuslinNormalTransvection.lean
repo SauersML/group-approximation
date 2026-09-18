@@ -84,9 +84,9 @@ theorem suslinNormal_vecMulVec_single_single (k l : ι) (c d : A) :
   · by_cases hj : j = l
     · rw [hi, hj, Pi.single_eq_same, Pi.single_eq_same, Matrix.single_apply_same]
     · rw [Pi.single_eq_of_ne hj, mul_zero,
-        Matrix.single_apply_of_ne _ _ _ _ _ (fun h => hj h.2.symm)]
+        Matrix.single_apply_of_ne k l (c * d) i j (fun h => hj h.2.symm)]
   · rw [Pi.single_eq_of_ne hi, zero_mul,
-      Matrix.single_apply_of_ne _ _ _ _ _ (fun h => hi h.1.symm)]
+      Matrix.single_apply_of_ne k l (c * d) i j (fun h => hi h.1.symm)]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinNormal_vecMulVec_single_single
 

@@ -71,7 +71,8 @@ theorem binaryLeavittK2FiveStability_of_step (hS : BinaryLeavittK2FiveStepStatem
     BinaryLeavittK2FiveStabilityStatement := by
   have hC : ∀ m : ℕ, 5 ≤ m →
       BooneHigman.SteinbergBasic.K2 (Fin m) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) ≤
-        Subgroup.center (SteinbergGroup (Fin m) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) := by
+        Subgroup.center
+          (SteinbergGroup (Fin m) (BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2))) := by
     intro m hm
     induction m, hm using Nat.le_induction with
     | base => exact fiveStability_K2_le_center_of_k2StabInjective hS

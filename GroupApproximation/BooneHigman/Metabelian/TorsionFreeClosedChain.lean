@@ -53,7 +53,8 @@ theorem metabelianPiecesStatement_of_frontierTwo_zeroClosed
 
 /-- **The root from the nine remaining gaps**: finitely presented metabelian groups satisfy the
 Boone–Higman conjecture, given the nine Statements listed in the module docstring (item 1
-linearity in characteristic `p`, items 2–6 linear hosts, items 7–9 the self-similar envelope). -/
+linearity in characteristic `p`, items 2–6 linear hosts, items 7–9 the self-similar
+envelope). -/
 theorem finitelyPresentedMetabelianStatement_of_frontierTwo_zeroClosed
     (hsplit : Coprimary.PureCharPrimeSplitStatement) (hS : Absorption.PolynomialSuslinStatement)
     (hdiag : ElemFP.PolyK2StabRangeDiagStatement) (hone : ElemFP.PolyK2OneVarNilStatement)

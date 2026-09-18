@@ -49,7 +49,8 @@ theorem fiveStability_refineLast_indexMap {n M : ℕ} (h : n ≤ M) :
     ((Fin.castLEEmb (show n ≤ M + 1 by omega)).injective.ne hij) a hi hj]
   apply usedRankFour_x_congr <;> exact Fin.ext rfl
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineLast_indexMap
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineLast_indexMap
 
 include L in
 /-- **Descending one rank.**  If `K₂(M + 1, R)` is central and `4 ≤ n ≤ M`, an element of
