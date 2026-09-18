@@ -8,10 +8,15 @@ distinct_from:
   free-group-mapping-tori-contain-no-z-localized: that applies the present lemma to ascending HNN extensions of free groups.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md
+  - research/artifacts/gq-referee-b-z-localized-tree-and-free-mapping-tori.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `z-localized-fixes-a-vertex-or-end-of-every-tree-proof`. Lane proof (gq-k2-q),
-elementary, not independently reviewed. No novelty is claimed.
+elementary. No novelty is claimed. *Reviewed:*
+- PASS by `gq-referee-a`, proof-gap lens (`research/artifacts/gq-referee-a-z-localized-tree-mapping-torus-metabelian.md`);
+- PASS by `gq-referee-b`, citation lens (`research/artifacts/gq-referee-b-z-localized-tree-and-free-mapping-tori.md`), with
+  fixes W1 and W2 applied.
 
 ## Statement
 
@@ -23,9 +28,8 @@ Let `A` act on a simplicial tree `T` without inversions.
 2. `A` fixes a vertex of `T`, or fixes an end `ω` of `T`. In the second case, for any ray `(v_k)` towards `ω`, the
    groups `A ∩ Stab(v_k)` increase eventually and have union `A`.
 3. **Graphs of groups.** If a group `Λ` is the fundamental group of a graph of groups and contains `A`, then either
-   `A` is conjugate into a vertex group, or `A` is the increasing union of its intersections with the stabilizers
-   of the vertices of a ray. Each such intersection lies in a conjugate of a vertex group, and consecutive ones lie
-   in a common edge stabilizer.
+   `A` is conjugate into a vertex group, or `A` is the increasing union of its intersections with the edge stabilizers
+   along a ray. Each such intersection lies in a conjugate of an edge group, hence of a vertex group.
 
 ## Consequence for the Z_(l) bottleneck
 

@@ -78,3 +78,16 @@ primes `q`, as `BS(1,m)` does for the primes of `m`.
     `H = Z ≀ Z` but not `G_l`.
 - **Verdict:** undecided. What a positive answer needs is a transducer structure on the lamp index that carries the
   arithmetic multipliers `1 + lj`.
+
+## 6. All ascending HNN extensions of free groups are excluded (third pass, 2026-09-18)
+
+Node `ascending-hnn-extensions-of-free-groups-contain-no-z-localized`. It settles the case that
+`free-group-mapping-tori-contain-no-z-localized` left open.
+- **The idea.** If `φ(r) = s^f` with `r` and `s` not proper powers, then `⟨s⟩ ∩ φ(F) = ⟨s^m⟩` with `m` at most the
+  number of vertices `V_φ` of the Stallings graph of `φ(F)`, because reading `s` is an injective partial map on
+  finitely many vertices. Injectivity of `φ` and primitivity of `r` then force `f = m <= V_φ`.
+- **Along an orbit.** The root exponent of `φ^k(x)` is a product of such bounded factors, so only primes up to `V_φ`
+  (and those dividing the initial exponent) ever occur.
+- **Result.** No `F *_φ` contains `Z[1/P]` with `P` infinite, whether or not `φ` kills homology. The lower central
+  series and the "sinking" worry are not needed.
+- **Calibration.** In `BS(1,m)`, `V_φ = m`.
