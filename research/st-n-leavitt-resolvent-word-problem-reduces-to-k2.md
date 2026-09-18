@@ -60,3 +60,10 @@ the kernel of `St_N(R_L) -> E_N(R_L)`. Items 1–3 hold for every such `N`. They
    - `K_2(N, R_L) -> K_2(R_L)` is onto for every `N >= 3`, and `E_N(R_L)` is not finitely presented.
    - The shortcut "(i) and `K_2 = 0`" is closed.
    - Under (i), (ii) asks for a computable form of `K_2(N, R_L) -> Q^x`. That is open.
+2. **Condition (ii) proved, 2026-09-18 (lane gq-infinite-primes).** `leavitt-resolvent-stable-k2-class-is-computable`.
+   Given `w in K_2(N, R_L)`, search over `M >= N`, `λ in Q^x` and derivations of `w = {λ, N+1}_M` in `St_M(R_L)`.
+   Equalities there are recursively enumerable, since `R_L` has solvable word problem. The search halts, and it
+   returns the Pimsner value `ι[w]`, because every stable class is a unique `{λ, N+1}`.
+   - So (ii) holds, and **gate 1 reduces to (i) alone**.
+   - Without (i): `K_2(N, R_L) = U_N ⋊ Q^x`, where `U_N` is the kernel of stabilization. The word problem is solvable
+     if and only if nontriviality in `U_N` is recursively enumerable.
