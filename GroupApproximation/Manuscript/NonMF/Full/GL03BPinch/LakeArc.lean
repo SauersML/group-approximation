@@ -103,7 +103,7 @@ variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G La
 
 /-- The inverse of a concatenation is the concatenation of the inverses in reverse order
 (`thm:hull`). -/
-theorem invDarts_append (a b : List X.toCombMap.Dart) :
+theorem pinch_invDarts_append (a b : List X.toCombMap.Dart) :
     invDarts X (a ++ b) = invDarts X b ++ invDarts X a := by
   simp only [invDarts, List.reverse_append, List.map_append]
 

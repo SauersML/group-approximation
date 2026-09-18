@@ -85,13 +85,8 @@ theorem traceKernelPullbackFst_surjective {A : Type u} [CStarAlgebra A]
 /-- The corona class of the ucp lift, `a ↦ [E.lift a] ∈ Q_ω`.  It is linear. -/
 def TracialEmbedding.coronaLift {A : Type u} [CStarAlgebra A] {τ : A → ℂ}
     {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)] {ω : Ultrafilter ℕ}
-    (E : TracialEmbedding τ X ω) : A →ₗ[ℂ] NormMatrixCStarCorona (fun n => X n) where
-  toFun a := normMatrixCStarCoronaMk (fun n => X n) (E.lift a)
-  map_add' a b := by
-    rw [map_add, map_add]
-  map_smul' c a := by
-    rw [map_smul, RingHom.id_apply]
-    exact map_smul (normMatrixCStarCoronaQuotient (fun n => X n)) c (E.lift a)
+    (E : TracialEmbedding τ X ω) : A →ₗ[ℂ] NormMatrixCStarCorona (fun n => X n) :=
+  (normMatrixCStarCoronaQuotient (fun n => X n)).toAlgHom.toLinearMap.comp E.lift
 
 theorem TracialEmbedding.coronaLift_apply {A : Type u} [CStarAlgebra A] {τ : A → ℂ}
     {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)] {ω : Ultrafilter ℕ}

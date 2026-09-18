@@ -78,13 +78,13 @@ structure HopfTwExt where
   /-- The `G`-coordinate. -/
   g : G
 
-instance hopfTwExtMul : Mul (HopfTwExt G) :=
+noncomputable instance hopfTwExtMul : Mul (HopfTwExt G) :=
   ⟨fun x y => ⟨x.a + y.a + hopfTwR x.g y.g, x.g * y.g⟩⟩
 
 instance hopfTwExtOne : One (HopfTwExt G) :=
   ⟨⟨0, 1⟩⟩
 
-instance hopfTwExtInv : Inv (HopfTwExt G) :=
+noncomputable instance hopfTwExtInv : Inv (HopfTwExt G) :=
   ⟨fun x => ⟨-x.a - hopfTwR x.g⁻¹ x.g, x.g⁻¹⟩⟩
 
 theorem hopfTw_mul_assoc (x y z : HopfTwExt G) : x * y * z = x * (y * z) := by
@@ -134,7 +134,7 @@ theorem hopfTw_comm_of_g_eq_one {x : HopfTwExt G} (hx : x.g = 1) (y : HopfTwExt 
 
 variable (G) in
 /-- The projection `X →* G`. -/
-def hopfTwProj : HopfTwExt G →* G :=
+noncomputable def hopfTwProj : HopfTwExt G →* G :=
   MonoidHom.mk' (fun x => x.g) fun x y => hopfTw_mul_g x y
 
 variable {α : Type} (f : FreeGroup α →* G)

@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.NonUnitalHomotopy
+import Mathlib.Algebra.Star.StarProjection
 
 /-!
 # `⋆`-homomorphisms out of `ℂ` are projections

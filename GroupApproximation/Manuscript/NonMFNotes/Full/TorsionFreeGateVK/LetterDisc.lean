@@ -34,24 +34,24 @@ universe u v
 /-- The orbit fibre of `x` has `minimalPeriod p x` elements. -/
 theorem orbitDegree_mk {D : Type v} [Fintype D] (p : Equiv.Perm D) (x : D) :
     CombMap.orbitDegree p (Quotient.mk'' x) = Function.minimalPeriod p x := by
-  classical
   have hpos : 0 < Function.minimalPeriod p x :=
     Function.minimalPeriod_pos_of_mem_periodicPts (p.injective.mem_periodicPts x)
   let f : Fin (Function.minimalPeriod p x) →
       {d : D // (Quotient.mk'' d : CombMap.Orbit p) = Quotient.mk'' x} :=
     fun i => ⟨(p ^ (i : ℕ)) x, Quotient.eq''.mpr
-      (Equiv.Perm.sameCycle_pow_left.mpr Equiv.Perm.SameCycle.rfl)⟩
+      (show p.SameCycle ((p ^ (i : ℕ)) x) x from
+        Equiv.Perm.sameCycle_pow_left.mpr (Equiv.Perm.SameCycle.refl p x))⟩
   have hinj : Function.Injective f := by
     intro i j hij
     have hv : (p ^ (i : ℕ)) x = (p ^ (j : ℕ)) x := congrArg Subtype.val hij
-    exact Fin.ext (Function.iterate_injOn_Iio_minimalPeriod (f := p) (x := x)
+    exact Fin.ext (Function.iterate_injOn_Iio_minimalPeriod (f := ⇑p) (x := x)
       (Set.mem_Iio.mpr i.2) (Set.mem_Iio.mpr j.2) hv)
   have hsurj : Function.Surjective f := by
     rintro ⟨d, hd⟩
     have hdx : p.SameCycle d x := Quotient.eq''.mp hd
     obtain ⟨n, hn⟩ := hdx.symm.exists_nat_pow_eq
     refine ⟨⟨n % Function.minimalPeriod p x, Nat.mod_lt _ hpos⟩, Subtype.ext ?_⟩
-    exact (Function.iterate_mod_minimalPeriod_eq (f := p) (x := x) (n := n)).trans hn
+    exact (Function.iterate_mod_minimalPeriod_eq (f := ⇑p) (x := x) (n := n)).trans hn
   exact (Nat.card_eq_of_bijective f ⟨hinj, hsurj⟩).symm.trans (Nat.card_fin _)
 
 /-- Summing the reciprocal minimal periods over all points counts the orbits. -/
@@ -60,15 +60,13 @@ theorem sum_one_div_minimalPeriod {D : Type v} [Fintype D] (p : Equiv.Perm D) :
       (Nat.card (CombMap.Orbit p) : ℚ) := by
   classical
   calc (∑ d : D, (1 : ℚ) / (Function.minimalPeriod p d : ℚ))
-      = ∑ d : D, (fun o : CombMap.Orbit p => (1 : ℚ) / (CombMap.orbitDegree p o : ℚ))
-          (Quotient.mk'' d) := by
+      = ∑ d : D, (1 : ℚ) / (CombMap.orbitDegree p (Quotient.mk'' d) : ℚ) := by
         refine Finset.sum_congr rfl fun d _ => ?_
-        show (1 : ℚ) / (Function.minimalPeriod p d : ℚ) =
-          (1 : ℚ) / (CombMap.orbitDegree p (Quotient.mk'' d) : ℚ)
         rw [orbitDegree_mk]
     _ = ∑ o : CombMap.Orbit p, ∑ _i : {i : D // (Quotient.mk'' i : CombMap.Orbit p) = o},
-          (1 : ℚ) / (CombMap.orbitDegree p o : ℚ) :=
-        (Fintype.sum_fiberwise' (fun d : D => (Quotient.mk'' d : CombMap.Orbit p)) _).symm
+          (1 : ℚ) / (CombMap.orbitDegree p o : ℚ) := by
+        convert (Fintype.sum_fiberwise' (fun d : D => (Quotient.mk'' d : CombMap.Orbit p))
+          (fun o : CombMap.Orbit p => (1 : ℚ) / (CombMap.orbitDegree p o : ℚ))).symm
     _ = ∑ _o : CombMap.Orbit p, (1 : ℚ) := by
         refine Finset.sum_congr rfl fun o _ => ?_
         have hne : (CombMap.orbitDegree p o : ℚ) ≠ 0 := by
@@ -98,7 +96,8 @@ theorem path_iterate (M : LabelledMap α) (d : M.Dart) :
     ∀ n : ℕ, Relation.ReflTransGen (fun x y => y = M.next x ∨ y = M.opp x) d (M.next^[n] d)
   | 0 => Relation.ReflTransGen.refl
   | n + 1 => by
-    rw [Function.iterate_succ_apply']
+    have e : M.next^[n + 1] d = M.next (M.next^[n] d) := Function.iterate_succ_apply' M.next n d
+    rw [e]
     exact (path_iterate M d n).trans (path_next M _)
 
 /-! ## Letter discs -/
@@ -187,7 +186,8 @@ theorem wordFrom_mem_symmetrization (d : D.map.Dart)
     (hd : ¬ D.toLabelledMap.OnFace D.base d) :
     D.toLabelledMap.wordFrom d ∈ symmetrization R := by
   obtain ⟨l, hl, hhead⟩ := D.map.exists_isFaceCycle_head d
-  have hne : D.map.faceOf (l.head hl.ne_nil) ≠ D.map.faceOf (D.outer.head D.outer_cycle.ne_nil) := by
+  have hne :
+      D.map.faceOf (l.head hl.ne_nil) ≠ D.map.faceOf (D.outer.head D.outer_cycle.ne_nil) := by
     rw [hhead]
     intro h
     exact hd ((D.onFace_iff _ _).mpr h.symm)
@@ -234,9 +234,9 @@ theorem isConnected : D.toLabelledMap.IsConnected := by
     intro x y h
     induction h with
     | rel a b hab => exact hadj a b hab
-    | refl a => exact ⟨Relation.ReflTransGen.refl, Relation.ReflTransGen.refl⟩
-    | symm a b _ ih => exact ⟨ih.2, ih.1⟩
-    | trans a b c _ _ ih₁ ih₂ => exact ⟨ih₁.1.trans ih₂.1, ih₂.2.trans ih₁.2⟩
+    | refl _ => exact ⟨Relation.ReflTransGen.refl, Relation.ReflTransGen.refl⟩
+    | symm _ _ _ ih => exact ⟨ih.2, ih.1⟩
+    | trans _ _ _ _ _ ih₁ ih₂ => exact ⟨ih₁.1.trans ih₂.1, ih₂.2.trans ih₁.2⟩
   intro d d'
   exact (key d d' (D.map.connected_of_planar D.planar d d')).1
 
