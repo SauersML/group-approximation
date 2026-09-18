@@ -44,7 +44,8 @@ theorem fiveStepCentral_exists_third {n : ℕ} (hn : 3 ≤ n) (i j : Fin n) :
   · have e2 : (j : ℕ) = 2 := congrArg Fin.val e
     omega
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_exists_third
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_exists_third
 
 /-- **Killing `x_{ij}(1)` kills every root element**, over any ring, for `n ≥ 3`. -/
 theorem fiveStepCentral_map_x_eq_one {R : Type*} [Ring R] {Q : Type*} [Group Q] {n : ℕ}
@@ -87,7 +88,8 @@ theorem fiveStepCentral_map_x_eq_one {R : Type*} [Ring R] {Q : Type*} [Group Q] 
         commutatorElement_one_left]
     · exact hmid p q hpq hpi hqi c
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_map_x_eq_one
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_map_x_eq_one
 
 /-- **A normal subgroup of `St_n(R)` containing `x_{ij}(1)` is everything**, for `n ≥ 3`. -/
 theorem fiveStepCentral_mem_of_normal {R : Type*} [Ring R] {n : ℕ} (hn : 3 ≤ n)
@@ -105,7 +107,8 @@ theorem fiveStepCentral_mem_of_normal {R : Type*} [Ring R] {n : ℕ} (hn : 3 ≤
   rw [QuotientGroup.ker_mk'] at hk
   exact hk
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_mem_of_normal
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_mem_of_normal
 
 /-- **Centrality of `K₂(n, R)` from one root element**, over any ring, for `n ≥ 3`: if every
 `k ∈ K₂(n, R)` commutes with `x_{ij}(1)`, then `K₂(n, R)` is central in `St_n(R)`.  The

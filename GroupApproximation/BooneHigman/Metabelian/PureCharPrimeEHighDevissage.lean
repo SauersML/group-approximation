@@ -49,7 +49,8 @@ theorem pureCharPrimeEHighModule_of_eHighDevissageCoprimary
   letI : CommGroup Q := { ‹Group Q› with mul_comm := hQ }
   haveI : Fact p.Prime := ⟨hp⟩
   haveI : NeZero (p ^ e) := ⟨pow_ne_zero e hp.ne_zero⟩
-  haveI : IsNoetherianRing (ZMod (p ^ e)) := isNoetherian_of_finite (ZMod (p ^ e)) (ZMod (p ^ e))
+  haveI : IsNoetherianRing (ZMod (p ^ e)) :=
+    _root_.isNoetherian_of_finite (ZMod (p ^ e)) (ZMod (p ^ e))
   haveI : Group.FG Q := hfg
   haveI : Module.Finite (MonoidAlgebra (ZMod (p ^ e)) Q) M := hfin
   haveI : IsNoetherianRing (MonoidAlgebra (ZMod (p ^ e)) Q) :=

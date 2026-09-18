@@ -27,7 +27,7 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 open GroupApproximation.BooneHigman.SteinbergBasic GroupApproximation.SteinbergGroup
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
-  (colRoot colVec colVec_add colVec_zero)
+  (colVec colVec_add colVec_zero)
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral
   (padCol padMat padCol_add padCol_zero padCol_single)
 open GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
@@ -77,9 +77,9 @@ theorem vdkRowParInj_stab_eq {v v' : Fin n → R} {g g' : St n R}
 /-- `ker stab ≤ K₂`: if `stab u = 1`, then `u ∈ K₂(n, R)`. -/
 theorem vdkRowParInj_mem_K2_of_stab_eq_one {u : St n R} (hu : stab n R u = 1) :
     u ∈ K2n n R := by
-  rw [mem_K2_iff]
+  refine (mem_K2_iff u).mpr ?_
   have hinj : Function.Injective (elementaryStab n R) :=
-    GroupApproximation.ElementaryPadding.elementaryPad_injective _
+    GroupApproximation.ElementaryPadding.elementaryPad_injective (R := R) Fin.castSuccEmb
   apply hinj
   rw [← projection_stab, hu]
   simp only [map_one]
@@ -102,8 +102,8 @@ theorem vdkRowParInj_eq_of_stab_eq (hK : Function.Injective (K2Stab n R)) {g g' 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkRowParInj_eq_of_stab_eq
 
-/-- **Over any ring**, injectivity of `K₂(n, R) → K₂(n+1, R)` gives injectivity of the parabolic
-map `vdkRowPar : R^n × St_n(R) → St_{n+1}(R)`. -/
+/-- **Over any ring**, injectivity of `K₂(n, R) → K₂(n+1, R)` gives injectivity of the
+parabolic map `vdkRowPar : R^n × St_n(R) → St_{n+1}(R)`. -/
 theorem vdkRowParInjective_of_K2Stab_injective (hK : Function.Injective (K2Stab n R)) :
     Function.Injective (vdkRowPar (n := n) (R := R)) := by
   rintro ⟨v, g⟩ ⟨v', g'⟩ h
