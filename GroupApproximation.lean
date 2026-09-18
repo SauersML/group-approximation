@@ -5632,6 +5632,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeStab
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeGeneration
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeRelation
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalAlgebra
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionLiftModel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
