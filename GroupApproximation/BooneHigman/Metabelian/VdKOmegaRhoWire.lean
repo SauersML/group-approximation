@@ -114,6 +114,7 @@ theorem vdkOmegaRho_agree :
   intro g
   refine Equiv.ext fun ω ↦ ?_
   obtain ⟨p, y⟩ := ω
+  rw [vdkOmegaRho_beta_apply]
   exact (vdkOmegaRho_bwd_inr_mul_fwd (φ := vdkParPres_act) (φ' := vdkOmega_rowAct)
     θ σ g p y).symm
 
