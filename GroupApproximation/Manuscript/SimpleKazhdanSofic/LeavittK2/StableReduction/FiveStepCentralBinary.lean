@@ -103,13 +103,13 @@ theorem fiveStepCentralRoot_of_binaryLeavittSteinbergInjective
 
 /-- **The step from single-root centrality and corner injectivity** (compare
 `binaryLeavittK2FiveStep_of_central_of_cornerInjective`). -/
-theorem binaryLeavittK2FiveStep_of_fiveStepCentralRoot_of_cornerInjective
+theorem fiveStepCentral_binaryLeavittK2FiveStep_of_root_of_cornerInjective
     (h : FiveStepCentralRootStatement) (hσ : BinaryLeavittFiveCornerInjectiveStatement) :
     BinaryLeavittK2FiveStepStatement :=
   binaryLeavittK2FiveStep_of_central_of_cornerInjective
     (binaryLeavittK2FiveCentral_of_fiveStepCentralRoot h) hσ
 
 #audit_axioms
-  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2FiveStep_of_fiveStepCentralRoot_of_cornerInjective
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStepCentral_binaryLeavittK2FiveStep_of_root_of_cornerInjective
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

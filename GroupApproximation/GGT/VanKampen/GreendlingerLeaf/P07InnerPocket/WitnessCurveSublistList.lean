@@ -4,19 +4,19 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Greendlinger leaf P07, lane gl-p07-36: sublists from local steps
 
-Lane gl-p07-36.  List infrastructure for the reduction of
+Lanes gl-p07-36, gl-p07-36c.  List infrastructure for the reduction of
 `FourPieceWitness.WitnessCurveSublistNondegStatement` (`FourBlockNondegStepStatement.lean`) to the
-local step residual `FourPieceWitness.WitnessCurveStepStatement`
+local step residual `FourPieceWitness.WitnessCurveSublistStepStatement`
 (`WitnessCurveSublistStatement.lean`).  Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 Certifies no printed sentence on its own.
 
-* `CurveStep.StepNext w l x y`: in the word `w`, `x` comes before `y`, or `y` is the first entry
-  of `w` that lies in `l`.
-* `CurveStep.exists_split_sublist`: for duplicate-free `w` and `l` with `l ⊆ w`, if every
-  consecutive pair of every rotation of `l` is a `StepNext` pair, then `l` is empty or some
-  rotation `y :: (t ++ s)` of `l = s ++ y :: t` is a sublist of `w`.  The rotation starts at the
+* `WitnessCurveSublistList.StepNext w l x y`: in the word `w`, `x` comes before `y`, or `y` is the
+  first entry of `w` that lies in `l`.
+* `WitnessCurveSublistList.exists_rotate_sublist_of_steps` (`WitnessCurveSublistRotate.lean`): for
+  duplicate-free `w` and `l` with `l ⊆ w`, if every consecutive pair of every rotation of `l` is a
+  `StepNext` pair, then some rotation of `l` is a sublist of `w`.  The rotation starts at the
   first entry `y` of `w` in `l`; no pair of that rotation ends at `y`, so every pair is a forward
-  step, and the forward steps chain to a sublist.
+  step, and the forward steps chain to a sublist (`sublist_of_forward`, below).
 -/
 
 namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList
@@ -132,10 +132,13 @@ theorem sublist_of_forward {w : List α} (hw : w.Nodup) :
   | cons y' l ih =>
     intro y u z hwu hstep
     obtain ⟨u', v, z', hw'⟩ := hstep [] l y y' rfl
-    have hwn : (u ++ y :: z).Nodup := hwu ▸ hw
+    have hwn : (u ++ y :: z).Nodup := by
+      rw [← hwu]
+      exact hw
     obtain ⟨_, hz⟩ := append_cons_inj_of_nodup hwn (hwu.symm.trans hw')
     have hw'' : w = (u' ++ y :: v) ++ y' :: z' := by rw [hw']; simp
-    have hsub := ih hw'' (fun s t x y'' hst => hstep (y :: s) t x y'' (by rw [hst]; rfl))
+    have hsub := ih hw'' (fun s t x y'' hst =>
+      hstep (y :: s) t x y'' (by rw [hst, List.cons_append]))
     rw [hz]
     exact List.cons_sublist_cons.mpr (hsub.trans (List.sublist_append_right v _))
 

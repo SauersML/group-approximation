@@ -43,14 +43,12 @@ theorem eHighDevissage_exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G
     (LinearMap.toMatrixAlgEquiv b).toRingEquiv.toMonoidHom
   have he : Function.Injective e := fun x y hxy => (LinearMap.toMatrixAlgEquiv b).injective hxy
   refine ⟨Module.finrank L V, (e.comp κ).toHomUnits, (e.comp ρ).toHomUnits, ?_, fun q g => ?_⟩
-  · rw [injective_iff_map_eq_one]
-    intro g hg
-    refine hinj g (he ?_)
+  · refine (injective_iff_map_eq_one _).mpr fun g hg => hinj g (he ?_)
     have h1 : e (κ g) = 1 := congrArg Units.val hg
-    rw [h1, map_one]
+    exact h1.trans (map_one e).symm
   · refine eq_mul_inv_of_mul_eq (Units.ext ?_)
     show e (κ (act q g)) * e (ρ q) = e (ρ q) * e (κ g)
-    rw [← map_mul, ← map_mul, hequiv]
+    exact (map_mul e _ _).symm.trans ((congrArg e (hequiv q g)).trans (map_mul e _ _))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighDevissage_exists_gl_of_end_conj
 
