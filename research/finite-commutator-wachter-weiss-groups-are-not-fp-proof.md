@@ -77,6 +77,23 @@ computes `ρ(G_R)` and `ρ(H_R)` separately; steps 2 and 3 are unchanged in subs
 - **`K` is locally finite.** The unrestricted power of a finite group lies in the
   variety it generates, which is locally finite.
 
+## 1b. The extension splits, so C is a retract
+
+- **The subgroup `C_id`.** Each copy `T_{2,r}` contains the check-mark states
+  `checksub{id}` and their intermediate and encoding states, whose continuation after
+  `$` is `id`. The paper builds the check-mark automaton "once for `g = r` and once
+  for `g = id`" (l. ~940). Let `C_id <= G_R` be the subgroup these states generate.
+- **How `C_id` acts.** An element `g ∈ C_id` passes to `id` at every `Σ̃`-letter (W2)
+  and after an encoded `$`. So for `u ∈ W^*` and `a ∈ Σ̃`, `g(u a v) = ρ(g)(u) a v`, and
+  on `W^N` it acts by `ρ(g)`. Hence `ρ|_{C_id}` is injective.
+- **`ρ|_{C_id}` is onto `C`.** Its generators restrict to the same maps on `W^*` as the
+  check-mark states with continuation `r`, because `r` fixes `W`-letters. These
+  restrictions generate `C`.
+- **Consequence.** `s = (ρ|_{C_id})^{-1}` is a section of `ρ`, so `G_R = K ⋊ C_id`, and
+  `s ∘ ρ` is a retraction of `G_R` onto `C_id ≅ C`. A retract of a finitely presented
+  group is finitely presented: add the relations `x = s ρ(x)` for the generators and
+  eliminate. So `G_R` finitely presented implies `C` finitely presented.
+
 ## 2. The kernel of the reduction group is infinite
 
 Let `z` be the encoded format-checking state of `T'`, in the copy where `r` is an

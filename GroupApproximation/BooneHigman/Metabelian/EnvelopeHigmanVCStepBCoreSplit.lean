@@ -33,7 +33,9 @@ The progress is in proof content only: fewer, more normalised instances.
 Truth check (python, `SP/bh-met-93r/split_check.py`, assuming `Q ≅ V_d` and Claim F):
 sampled `C` complete, `D` complete and strictly deeper, non-symmetric, `P` an involution,
 both product orders; the one-antichain case is not filtered out (over-sampling).
-d = 2: 200 instances, 400 of 400 products in `E(S)`, 0 refuted.
+d = 2: 200 instances, 400 of 400 products in `E(S)`, 0 refuted.  d = 3: the search did not
+finish within its time budget on any instance (completed `D` is large), so nothing was decided
+there; no refutation was found.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope

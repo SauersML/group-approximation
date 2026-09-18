@@ -26,6 +26,7 @@ excluded).
 
 Truth check (python, `SP/bh-met-93r/split_check.py`, assuming `Q ≅ V_d` and Claim F, both
 product orders): d = 2: 200 instances, 400 of 400 products in `E(S)`, 0 refuted.
+d = 3: inconclusive (search timed out before deciding any instance), 0 refuted.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
