@@ -5602,6 +5602,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalTraceM
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Prenex
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Lifts
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemDefs
+import GroupApproximation.Manuscript.NonMF.Full.GL06e.Statements
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Builders
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
