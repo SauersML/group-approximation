@@ -13,6 +13,8 @@ requires:
   - houghton-like-groups-are-strongly-shift-similar
 ---
 
+**DEAD (bh-map, 2026-09-18).** Step 4 requires `houghton-like-envelopes-lift-finite-presentation-from-germs`, which is refuted. Its conclusion is also false for the enumerations of step 1: by `free-shift-houghton-like-envelopes-are-not-fp`, `H_3(E_nu(P))` is not finitely presented when `R_nu = P*<s>`. Kept as a record of the attempt.
+
 Let `P` be an infinite finitely presented group with solvable word problem.
 
 1. By `regular-enumerations-can-make-near-shift-free-product`, choose `nu` (computably, from the word-problem

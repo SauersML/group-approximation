@@ -44,8 +44,9 @@ The same `g` works for every such `x` with the same `ω` and the same `a`.
 - **General finite-nucleus RSGs.** Not known. The missing input is a dynamics theorem:
   forward orbits of wandering points of an element accumulate at rational periodic
   points. For Röver--Nekrashevych groups of finite-state self-similar groups,
-  attracting fixed points of prefix-extending cycles are rational, because the
-  sequence of states along the cycle is eventually periodic. The general statement is
+  attracting fixed points of prefix-extending cycles are rational. Their letters
+  are produced by a finite deterministic system, namely the state of the local action
+  together with a window of bounded length. The general statement is
   sketched in the artifact, not proved.
 
 **Use.** In the Bleak--Salazar-Díaz proof that `Z^2 * Z` does not embed in `V`, the

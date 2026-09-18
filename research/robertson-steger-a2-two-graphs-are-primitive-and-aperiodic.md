@@ -63,3 +63,13 @@ What is known about it (all lane proofs, not reviewed):
     `ergodic`) is phase-free.
   - It should give irreducibility of `M_1` and `M_2`, which is not written out.
   - Primitivity needs its phase-sensitive refinement.
+
+**Update (2026-09-18, later): the corrected form is ESTABLISHED for every building**, exotic
+ones included (lane proof, not reviewed). See
+`a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`:
+- `M_1` and `M_2` are always irreducible;
+- they are primitive iff `θ ≠ 0`, and have period 3 iff `θ = 0`;
+- the proof is a local link argument, with no ergodic theory;
+- aperiodicity then follows by `rs-two-graph-aperiodicity-from-h3-and-irreducibility`.
+
+The exotic-case item above is superseded.

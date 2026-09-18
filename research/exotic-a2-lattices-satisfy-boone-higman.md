@@ -55,3 +55,25 @@ A finitely presented simple host must come from a new source. Candidates:
   Brin--Thompson-like group of sector germs;
 - a proof that some finite-index subgroup is MIF, together with a finitely
   presented simple overgroup.
+
+## Attempt (2026-09-18, bh-groupoid): vertex-free type-transitive exotic lattices
+
+*Reduced to the unpinned k-graph standard facts.*
+
+- **Statement.** `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` covers
+  every exotic lattice that acts freely on vertices with finitely many orbits, by type
+  rotating automorphisms that are not all type preserving. This includes every CMSZ group,
+  and so the 65 exotic order-3 buildings of CMSZ listed by BCL §`sec:ReviewExotic`.
+  - Such a lattice embeds in a finitely presented simple group of type `F_∞`.
+  - The only open input is `finite-k-graph-boundary-groupoid-standard-facts`.
+- **Host.** This is the "boundary dynamics on the chamber space at infinity" candidate
+  above, realized through the Robertson–Steger 2-graph groupoid and Li–Matui, with no sector
+  germs.
+- **Key steps** (lane proofs, not reviewed):
+  - a geometric embedding into the 2-graph full group
+    (`a2-group-embeds-in-rs-two-graph-geometric-proof`);
+  - irreducibility and primitivity of the transition matrices by a local link argument
+    (`a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`);
+  - aperiodicity from (H3) (`rs-two-graph-aperiodicity-from-h3-and-irreducibility`).
+- **Not covered.** Lattices with torsion, and groups that are type preserving with no
+  type-transitive overgroup, stay open here.

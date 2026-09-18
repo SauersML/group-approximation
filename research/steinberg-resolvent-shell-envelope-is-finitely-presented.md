@@ -191,4 +191,13 @@ admissible `P`:
      - The proof transfixes the graph of the shift, a commensurated subset of `N × N`, and
        follows the unique infinite forward ray.
    - So for `St_N(R_L)` every route to gate 2, regular or genuine, needs a window `N >= 1`
-     or a proper inclusion `s ρ(P) s^-1 < ρ(P)`. The second case is open.
+     or an inclusion `s ρ(P) s^-1 <= ρ(P)` in the other direction.
+   - *The other direction* (`fw-shell-inputs-at-window-zero-are-highly-transitive`).
+     - Such an inclusion makes `P` act highly transitively on finitely many cofinite
+       orbits, so `Z(P) = 1`.
+     - For `P = St_N(R_L)` this forces `K_2(N,R_L)` to be non-central. If `K_2` were central,
+       the centre would contain `π^-1(Q^x I_N)`.
+     - `E_N(R_L)` fails outright, because its centre contains `Q^x I_N`.
+     - So window zero for `St_N(R_L)` is dead if `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`
+       holds. Otherwise it needs a self-similar highly transitive action in which `K_2` acts
+       transitively on some orbit.

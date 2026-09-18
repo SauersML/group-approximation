@@ -159,10 +159,20 @@ points, because attractors of revealing pairs are rational.
 
 **Rational attractors in Röver--Nekrashevych groups (sketch).** Let `H` be finite-state
 and `g ∈ V_d(H)`. Suppose `g` maps a cone `C_α` into a proper subcone `C_{αβ}` with
-local action `h ∈ H`, so `g(α w) = α β h(w)`. The attracting fixed point is
-`ω = α β h(β) h_β(β) h_{ββ}(β) ⋯`, where `h_{β^n}` is the section of `h` at `β^n`.
-Finitely many states means the sequence `h_{β^n}` is eventually periodic, so `ω` is
-eventually periodic, hence rational. For a general finite-nucleus RSG the same
+local action `h ∈ H`, so `g(α w) = α β h(w)`. The attracting fixed point is `ω = α y`,
+where `y` is the unique solution of `y = β h(y)`.
+- **The letters of `y` are forced one at a time.** `y_j = β_j` for `j < |β|`. After that,
+  `y_{j+|β|}` is the output of `h` on the letter `y_j`, from the state `h` is in after
+  reading `y_0 ⋯ y_{j-1}`. This uses that `h` acts synchronously.
+- **A finite deterministic system.** So the pair (state of `h`, window
+  `y_j ⋯ y_{j+|β|-1}`) evolves by a deterministic map on a finite set, since `h` is
+  finite-state.
+- **Conclusion.** That pair is eventually periodic, so `y` and `ω` are eventually
+  periodic, hence rational.
+- **Correction.** The version landed in a6ff86235 wrote `ω` as a product of sections of
+  `h` along `β^n`. That formula was wrong; this replaces it.
+
+For a general finite-nucleus RSG the same
 argument needs the relevant local actions to lie in the finite nucleus, which holds
 for deep cones. It also needs an analogue of the statement "wandering points converge
 to such cycles", which is the unproved step.

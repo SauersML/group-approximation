@@ -122,3 +122,11 @@ There is no ambient group, and the hypothesis of item 2 has to be proved geometr
   the panel tree `T_u`. These have to be lifted to `Aut(Υ)^0`, together with their translation
   part.
 - Open.
+
+**Superseded (2026-09-18, later).** The exotic case is settled without ergodicity by
+`a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`:
+- irreducible always;
+- primitive iff `θ ≠ 0`;
+- the proof is local, in the vertex links.
+
+Items 1–3 above remain correct, and item 3 is now a special case.

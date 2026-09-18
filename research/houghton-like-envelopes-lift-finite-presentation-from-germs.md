@@ -2,6 +2,7 @@
 rg: 2
 id: houghton-like-envelopes-lift-finite-presentation-from-germs
 kind: claim
+refuted_by: [free-shift-houghton-like-envelopes-are-not-fp]
 title: For n >= 3 a Houghton-like group H_n(G) of a finitely generated strongly shift-similar group is finitely presented once its germ group is
 distinct_from:
   mz-germ-finite-presentation-lifts-to-the-envelope: that is the lifting gate for E_nu(P) itself, which has only the two "directions" evens/odds and whose E_2-part reproduces the non-finitely-presented Houghton group H_2; this is the lifting gate for H_n(G) with n >= 3 rays, where Houghton's own H_n is finitely presented.
@@ -9,7 +10,7 @@ distinct_from:
   houghton-like-groups-are-strongly-shift-similar: that imports Mallery-Zaremsky Question 5.13 (does G finitely presented imply H_n(G) finitely presented for n >= 3?); this claim implies the positive answer to that part and asks for more, since G itself need not be finitely presented.
 ---
 
-**OPEN.**
+**REFUTED** by `free-shift-houghton-like-envelopes-are-not-fp` item 4 (lane proof, bh-map 2026-09-18). Counterexample: `G = E_nu(Z)` with a free-shift enumeration (`R_nu ≅ F_2`) and `n = 3`. The germ group of `H_3(G)` is finitely presented by `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group` item 3, but `H_3(G)` is not. The same holds for every `n >= 1` and every infinite finitely generated `P` with a free-shift enumeration. The first sentence of Mallery--Zaremsky Question 5.13 (`G` finitely presented) is untouched, since this `G` is not finitely presented. The text below is kept as written before the refutation.
 
 **Statement.** Let `G <= Sym(N)` be a finitely generated infinite strongly shift-similar group, and let `n >= 3`.
 If `H_n(G)/FSym([n] x N)` is finitely presented, then `H_n(G)` is finitely presented.
@@ -38,7 +39,7 @@ presented, for every `n >= 3`.
   - `G = E_k`: `H_n(E_k)` contains `H_n(H_k)` with finite index (source, after Question 5.13).
 - **First test case.** `P = Z` with a generic enumeration: `R_nu ≅ F_2`, `E_nu(Z)` is not finitely presented, and
   the germ group of `H_3(E_nu(Z))` is finitely presented. Deciding finite presentation of `H_3(E_nu(Z))` is the
-  smallest instance, and it would already calibrate the claim beyond the Houghton family.
+  smallest instance, and it would already calibrate the claim beyond the Houghton family. *Decided, negatively (item 4 of the refuter).*
 
 ## Attempts
 
