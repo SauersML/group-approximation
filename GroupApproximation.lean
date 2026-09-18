@@ -5619,6 +5619,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Encoding
 import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Separation
 import GroupApproximation.Manuscript.NonMF.Full.GL06f.Statement
 import GroupApproximation.Manuscript.NonMF.Full.GL06f.Reduction
+import GroupApproximation.Manuscript.NonMF.Full.GL06g.Doubling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
