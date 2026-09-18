@@ -5852,6 +5852,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Conjugate
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Witness
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexAdditive
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexRotation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiDecomposeInduct
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
