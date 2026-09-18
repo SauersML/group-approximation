@@ -52,15 +52,13 @@ theorem suslinKill_phi_X (N : ℕ) :
 
 theorem suslinKill_psi_C (N : ℕ) (a : MvPolynomial (Fin (n + 1)) R) :
     suslinKill_psi R n N (Polynomial.C a) = suslinKill_rhoInv R n N a := by
-  show Polynomial.eval₂ _ _ (Polynomial.C a) = _
-  rw [Polynomial.eval₂_C]
+  rw [suslinKill_psi, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_C]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinKill_psi_C
 
 theorem suslinKill_psi_X (N : ℕ) :
     suslinKill_psi R n N Polynomial.X = Polynomial.C (MvPolynomial.X 0) := by
-  show Polynomial.eval₂ _ _ Polynomial.X = _
-  rw [Polynomial.eval₂_X]
+  rw [suslinKill_psi, Polynomial.coe_eval₂RingHom, Polynomial.eval₂_X]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinKill_psi_X
 

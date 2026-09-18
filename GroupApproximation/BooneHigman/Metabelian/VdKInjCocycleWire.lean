@@ -98,7 +98,8 @@ theorem vdkInjCocycle_polyRetract_of_cocycle (h : vdkInjAct_CocycleStatement) :
 /-- **Strength (LOUD).**  Under Step A the residual is equivalent to `K2Stab` injectivity for
 the family.  By `vdkRowCoreX_diag_iff_injective`, that is `vdkInj_DiagStatement`.  The `⟸`
 direction is also the truth check of the residual. -/
-theorem vdkInjCocycle_polyRetract_iff_injective_of_rowStab (hA : vdkInjCoset_RowStabStatement) :
+theorem vdkInjCocycle_polyRetract_iff_injective_of_rowStab
+    (hA : vdkInjCoset_RowStabStatement) :
     vdkInjCocycle_PolyRetractStatement ↔
       ∀ p : ℕ, p.Prime → ∀ k r : ℕ, 0 < k →
         vdkStab_StableRangeLE (MvPolynomial (Fin k) (ZMod p)) r →

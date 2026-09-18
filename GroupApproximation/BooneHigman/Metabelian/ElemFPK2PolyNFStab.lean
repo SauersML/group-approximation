@@ -25,9 +25,9 @@ The step `G ∩ K₂ = 1` follows from the residual and the kernel lemma
 **Truth check.**  The matrix shadow holds: a matrix of `E_{K'}(R)` fixing `e_L` is
 `[[A, 0], [r, 1]]` with `A ∈ SL_K(R) = E_K(R)` (Euclid), hence in `π(Q)`.  Transitivity on
 unimodular columns and the Euclidean reduction of `SL₂` columns were checked for `p = 2, 3`,
-degree `≤ 2`, `|K'| = 3, 4, 5` (scratchpad `bh92c/chk.py`).  Lifting to `St`: given the true
-theorem `K₂(N, F_p[X]) = 0` (`N ≥ 5`), `G ∩ K₂ = 1`, so `g ∈ G` fixing `e_L` equals `q ∈ Q`
-with `π q = π g`.  **The residual is TRUE.**
+degree `≤ 2`, `|K'| = 3, 4, 5` (scratchpad `bh92c/chk.py`).  Lifting to `St`: given the
+true theorem `K₂(N, F_p[X]) = 0` (`N ≥ 5`), `G ∩ K₂ = 1`, so `g ∈ G` fixing `e_L` equals
+`q ∈ Q` with `π q = π g`.  **The residual is TRUE.**
 
 **LOUD: EQUIVALENT, NOT WEAKER.**  With the hypotheses it grants, and given
 `SL_K(F_p[X]) = E_K(F_p[X])`, the residual is logically equivalent to the step `G ∩ K₂ = 1`.
@@ -71,8 +71,8 @@ noncomputable def k2PolyNF_eps (K : Finset I) (L : I) (v : I → Polynomial (ZMo
 end Defs
 
 /-- **The residual.**  At the inductive step (granting `S ∩ K₂ = 1`, the constants lemma and a
-third index), every `g ∈ G_{K ∪ {L}}` fixing `e_L` lies in `Q = S ⊔ V`.  TRUE; LOUD: equivalent
-to the step given `SL_K(F_p[X]) = E_K(F_p[X])` (module docstring). -/
+third index), every `g ∈ G_{K ∪ {L}}` fixing `e_L` lies in `Q = S ⊔ V`.  TRUE; LOUD:
+equivalent to the step given `SL_K(F_p[X]) = E_K(F_p[X])` (module docstring). -/
 def k2PolyNF_StabStatement : Prop :=
   ∀ (p : ℕ) [Fact p.Prime] {I : Type} [Fintype I] [DecidableEq I] (K : Finset I) (L : I),
     L ∉ K → K.Nonempty → (∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k) →
@@ -93,8 +93,9 @@ def k2PolyNF_CosetStatement : Prop :=
     (∀ s ∈ k2PolyDeg_S p K, s ∈ K2 I (Polynomial (ZMod p)) → s = 1) →
     ∃ σ : (I → Polynomial (ZMod p)) → SteinbergGroup I (Polynomial (ZMod p)),
       σ (unitVec L) ∈ k2PolyNF_Q p K L ∧
-      ∀ (i j : I) (hij : i ≠ j) (a : Polynomial (ZMod p)), i ∈ insert L K → j ∈ insert L K →
-        ∀ v : I → Polynomial (ZMod p), (∃ g ∈ k2PolyDeg_G p K L, act g (unitVec L) = v) →
+      ∀ (i j : I) (hij : i ≠ j) (a : Polynomial (ZMod p)), i ∈ insert L K →
+        j ∈ insert L K → ∀ v : I → Polynomial (ZMod p),
+          (∃ g ∈ k2PolyDeg_G p K L, act g (unitVec L) = v) →
           (σ (act (x i j hij a) v))⁻¹ * x i j hij a * σ v ∈ k2PolyNF_Q p K L
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNF_CosetStatement
