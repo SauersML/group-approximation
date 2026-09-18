@@ -47,3 +47,10 @@ from `bh-embeddability-survives-decidable-edge-hnn`, through
    base and the edge groups are free of finite rank, and membership in finitely
    generated subgroups of free groups is decidable (Stallings foldings). So the
    open input is exactly that permanence, specialized to free bases.
+3. **Index-two twisted double** (lane bh-artin, 2026-09-18). *Reduces* the amalgam case
+   `A *_C B` (`[B : C] = 2`) to a single HNN extension of the free group `A`: the
+   index-two subgroup is a twisted double of `A` along `C`, which embeds in
+   `A *_(α : C -> C)` with `α` conjugation by an element of `B \ C`
+   (`admissible-artin-pbh-reduces-to-free-partial-mapping-tori`). For large-type
+   triangles this is `F_3 *_(α : F_7 -> F_7)`. It is in `B_A` when `C` is a free factor
+   of `A`, which the ranks rule out here, so the specific HNN extension stays open.

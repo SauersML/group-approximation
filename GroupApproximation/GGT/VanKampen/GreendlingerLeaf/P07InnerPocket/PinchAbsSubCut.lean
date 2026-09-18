@@ -55,7 +55,7 @@ theorem pinchAbsSub_sub {a b : RegionCandidate D eps X} {K : CellPocketWalk D ep
       (by rw [hd₀]; exact pinchAbsSub_not_mem_set hbad.1 (pinchAbs_reach_of_bad hbad))
       (fun h' => hd₀s (hF _ h'))
     rw [hd₀] at ht
-    exact ⟨_, hd₀s, ht.symm.trans (pinchAbsSub_reach_iff hbad hch)⟩
+    exact ⟨_, hd₀s, ht.symm.trans (pinchAbsSub_reach_iff (comp := comp) hbad hch)⟩
   · exact ⟨_, hs, Iff.rfl⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsSub_sub

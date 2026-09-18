@@ -10,18 +10,15 @@ requires:
   - garside-odometer-groups-have-simple-finite-index-commutator
 ---
 
-This is a second route to `spherical-artin-groups-satisfy-boone-higman`. It is
-independent of the characteristic-zero linear chain that the node currently
-rests on, whose literature status bh-lit flagged in finding F1.
+**DEAD** (2026-09-18). Its third input,
+`garside-odometer-groups-have-simple-finite-index-commutator`, is REFUTED by
+`garside-decorated-groupoids-hide-artin-groups-in-isotropy`. The compiler
+invalidates this route automatically.
+- The groupoid is not effective: Li's boundary of `A^+` is a point, and
+  `ker(ℓ)` lies in the isotropy.
+- No simple subgroup of the host contains the Artin group.
 
-1. **Finiteness (established).** `decorated-garside-odometer-full-groups-are-type-f-infinity`,
-   a lane proof via Li arXiv:2110.04505, gives the F_infinity group `F_P`.
-2. **Embedding (established).** `artin-groups-embed-in-decorated-garside-odometer-groups`,
-   a lane proof, puts `A` inside it. Faithfulness is imported from
-   Belk--Bleak--Chatterji--Matucci--Perego, Theorem 2.4.
-3. **Simplicity (OPEN).** `garside-odometer-groups-have-simple-finite-index-commutator`
-   supplies it: `D(F_P)` is simple of finite index, and `A` embeds in it by the
-   disjoint-copies argument recorded in that node.
-
-Artin groups with one generator (`Z`) are trivial cases. The route is OPEN
-until step 3 is proved.
+The original plan, kept for the record:
+1. `F_P` is F_infinity (Li's theorem). This still stands.
+2. `A` embeds in `F_P`. This is true, but only through isotropy.
+3. `D(F_P)` is simple of finite index. This is false.

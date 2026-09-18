@@ -95,3 +95,72 @@ int main(int argc, char **argv) {
   printf("\n"); return 0;
 }
 ```
+
+## 4. The SMART pipeline transfers to M_5 (MSI evidence)
+
+**Inducing set.** SMART's genuine level-0 moves are
+`Y = {filled at phase 2 with a nonzero source cell} ∪ {hollow at phase 2 with a nonzero target cell}`
+(`smart-induced-on-genuine-moves-has-exact-tripling`). The level-`L` crossing contains exactly `m^L` steps in `Y`,
+counted by `ycount.c`:
+
+| machine | `N_Y(L)`, `L = 0..5` |
+|---|---|
+| SMART (calibration) | 1, 3, 9, 27, 81, 243 |
+| `M_5` | 1, 5, 25, 125, 625, 3125 |
+| `T1 = F0>F2f F1>H2f F2>F1f F3>F0 F4>H0f H0>H3 H1>F4f H2>F3f` (a SMART-like quintic) | 1, 5, 25, 125, 625, 3125 |
+
+**Locally readable eigenvalues of the induced map `S`** (`eigm.c`: offset union-find over direction-relative
+windows of radius `r`, 40 random tapes, `P(0) = 0.4`, 20,000 `S`-steps each; X = no eigenfunction at radius `r`):
+
+| machine | `n = 2` | `n = 3` | `n = 5` | `n = 9` | `n = 25` | `n = 4` |
+|---|---|---|---|---|---|---|
+| SMART (calibration; matches the proved `Z/2 × Z_3` factor) | r ≥ 0 | r ≥ 1 | — | r ≥ 2 | — | none up to 7 |
+| `M_5` | r ≥ 0 | none up to 5 | r ≥ 1 | — | r ≥ 2 | — |
+
+So `M_5` shows exactly SMART's pattern with 3 replaced by 5:
+- direction alternation gives `-1`;
+- the phase mod `5^j` is read at radius `j`, which is item 2 of
+  `renormalization-return-times-tend-to-zero-adically` with `b = 1`;
+- there is no 3-torsion eigenvalue.
+
+This is evidence for a factor onto `Z/2 × Z_5`, not a proof.
+
+(A first version of `eigm.c` hashed the state and the first cell by XOR without mixing, so they collided. It
+failed the SMART calibration, and it was fixed before these runs.)
+
+## 5. A height-5 renormalization of M_5's induced map (MSI evidence)
+
+`phim.c` does four things:
+- it learns the phase `χ: radius-1 windows → Z/m` with `χ(Sy) = χ(y)+1`;
+- for each class `A = χ^{-1}(a)`, it collects every pair `(e, e')` of one-cell edits with
+  `S(e(y)) = e'(S^m y)`. Equality is exact: hashes of state plus the full tape within ±580 cells of the head, on
+  arrays of 3000 cells, so the earlier `R_EQ > W` bug cannot recur. An edit deletes no cell or one cell at
+  direction-relative offset −2..2, shifts the head by −2..2, and sets the shape and a direction flip;
+- it constraint-propagates a rule `radius-2 window → edit`;
+- it validates the rule on fresh random tapes with `P(0) ∈ {0.3, 0.5, 0.7, 0.9}`.
+
+| machine | classes | training points | windows | empty after propagation | validation |
+|---|---|---|---|---|---|
+| SMART (calibration) | all 3 | 3000 each | 216 | 0 | 6000/6000 each, 0 unseen |
+| `M_5` | all 5 | 12000 each | ~1830 | 0 | 10931–11316 ok, **0 bad** per class; 684–1069 validation windows unseen in training |
+
+**SMART's rule is recovered.** In class 0 the learned rule's main edits are:
+- edit 15, "delete the cell ahead of the head, keep the state" (108 windows);
+- edit 38, "delete the head cell, step back, become hollow" (54 windows).
+
+These are the two main cases of the proved rule of `smart-induced-map-has-brick-local-height-3-renormalization`.
+
+**M_5's rule** (class 1) uses only one-cell deletions at or ahead of the head:
+- SMART's edits 15 (430 windows) and 38 (234);
+- deletion of the head cell with the shape or direction changed: edits 14, 44 and 74 (106, 287 and 229 windows);
+- deletion ahead of the head with a head shift and a flip: edit 111 (331 windows);
+- rarer variants.
+
+The "lowest edit" choice is not canonical, so equivalent edits are split across labels.
+
+**Not yet checked:**
+- that `φ: A → Y` is a bijection;
+- the ~7% of windows unseen in training;
+- any proof.
+
+So `BS(1,5) ≤ 3V` is supported, not established.

@@ -91,3 +91,33 @@ group of local prefix replacements between prefixes with equal follower sets.
     factor shifts the interleaving phase.
   - Neither matters for Boone--Higman, since both groups lie in `V`. They mark where normal-form
     boundaries stop being the right source of actions.
+
+## (E1') is decidable and (E4') has a rate test (bh-free-51, 2026-09-18)
+
+Three results make the two remaining conditions checkable rather than existential. All are lane
+proofs, elementary, not independently reviewed.
+
+- **(E1') is a finite check on a transducer.** By BBCMP Cor 1.8 (read at source) the boundary
+  action is by rational homeomorphisms, and
+  `rational-germ-singular-sets-are-finite-graph-path-spaces` shows that for such a map the
+  singular set over the base is exactly the path space of a finite graph built from the
+  transducer and the boundary automaton. So finiteness of a generator's singular set is
+  decidable, and it fails uncountably when it fails: a recurrent vertex with two return paths
+  gives a Cantor set of singular points.
+- **The second clause of (E1') is redundant.** Finiteness already forces every singular point to
+  be eventually periodic (item 3 of that claim), and `sing(g^{-1}) = g(sing(g))` forces the
+  images of singular points to be singular points, hence eventually periodic as well. So (E1')
+  is exactly "each generator is thin".
+- **Axiom (3) of Belk--Hyde--Matucci is free after recoding.**
+  `thin-rational-actions-give-finite-germ-extensions` derives all three axioms from thinness
+  plus clopen transitivity of the base. Clopen transitivity fails for the automaton's own base
+  here, but holds for `V`, so with the recoding of
+  `prefix-replacement-actions-recode-into-germ-extensions-of-v` the axioms come from the
+  thinness check alone.
+- **(E4') has a necessary arithmetic condition and a sufficient one.** At an eventually periodic
+  point, `germ-rate-homomorphism-tests-germ-extension-finiteness` gives `(B)_p ≅ Z` and a
+  germ-rate homomorphism `(Γ)_p → Q_{>0}` that kills it. If (E4') holds at `p` then the rate
+  group is finitely generated, so only finitely many primes occur among the germ rates; and
+  (E4') does hold whenever `(Γ)_p` is finitely generated abelian, which covers the flat germs of
+  the `Z^2 * Z` instance. Expanding germs with unboundedly many prime rates therefore refute
+  (E4') at that point.

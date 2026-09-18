@@ -144,3 +144,16 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
      that boundary-orbit wreath products over tree groups, the simplest outputs of the
      criterion, are never finitely presented. So finite presentation has to come from
      the KMS relations, not from the wreath shape.
+
+5. **The known PSPACE-hard automaton groups, in finite-commutator form, are not
+   finitely presented** (bh-free-02, 2026-09-18). Wächter--Weiß
+   (arXiv:1906.03424v3, read from the TeX) build PSPACE-complete automaton groups
+   from a Turing-machine checking mode and a conjunction group `R`.
+   - *Finite `R` dies.* For finite `R` acting off the encoding letters, for example
+     `A_5`, the group is locally-finite-by-`Z`. By Bieri--Strebel it is therefore
+     not finitely presented
+     (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+   - *The binary headline group (`R` = Aleshin's `F_3`)* is open. The paper says
+     nothing about finite presentation.
+   - *Design lesson.* A finitely presented PSPACE-hard automaton group cannot read a
+     finite conjunction group off below a virtually cyclic checking group.
