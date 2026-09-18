@@ -102,18 +102,20 @@ arbitrary graphs.
 ## 4. The shift and the host
 
 - **The coordinate set.** `F` acts on the dyadic rationals `D ⊂ (0,1)`. Its
-  generator `x_0` satisfies `x_0(s) > s` on `(0,1)`, so every orbit in `D` is
-  bi-infinite.
+  standard generator, written `f` here, satisfies `f(s) > s` on `(0,1)`, so every
+  orbit in `D` is bi-infinite. On the three pieces `[0,1/4]`, `[1/4,1/2]` and
+  `[1/2,1]` it is `2s`, `s + 1/4` and `s/2 + 1/2`. Below, `x_j` always denotes the
+  vertex elements of §3.
 - **Placing the coordinates.** Choose distinct dyadics `s_d ∈ [1/4,1/2)`, one for
   each `d ∈ E`. They lie in one fundamental domain, so they have distinct orbits.
-  Identify `e_{j,d}` with `x_0^j(s_d)`. This embeds `S_E ⊆ D`, and `t` acts as
-  `x_0`.
-- **Elements of `DV_F`.** In `DV_F`, `x_0` acts on `C^D` by permuting coordinates.
+  Identify `e_{j,d}` with `f^j(s_d)`. This embeds `S_E ⊆ D`, and `t` acts as
+  `f`.
+- **Elements of `DV_F`.** In `DV_F`, `f` acts on `C^D` by permuting coordinates.
   Each `x_j` is an untwisted Brin–Thompson element supported on the finitely many
-  coordinates `inc(j) ⊆ D`, so both lie in `DV_F`. Moreover
-  `x_0 x_j x_0^{-1} = x_{j+1}`, because conjugation transports supports and slot
+  coordinates `inc(j) ⊆ D`. So `f` and every `x_j` lie in `DV_F`. Moreover
+  `f x_j f^{-1} = x_{j+1}`, because conjugation transports supports and slot
   order.
-- **The map.** So `a ↦ x_0` (the vertex element at `j = 0`), `t ↦ x_0 ∈ F`
+- **The map.** So `a ↦ x_0` (the vertex element at `j = 0`), `t ↦ f ∈ F`
   defines a homomorphism `φ : G_U → DV_F`, which is injective on `A(Γ_U)`.
 - **Injectivity.** Let `K = ker φ`. Then `K ∩ A(Γ_U) = 1`, and both are normal, so
   `[K, A(Γ_U)] = 1`.

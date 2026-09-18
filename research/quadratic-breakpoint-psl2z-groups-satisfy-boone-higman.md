@@ -21,6 +21,18 @@ independently reviewed). No priority is claimed. An arXiv search on "piecewise p
   on `H`.
 - So every such `H` satisfies the Boone--Higman conjecture.
 
+**The breakpoint condition is automatic.** Let `g` be any homeomorphism of `P^1(R)` that is
+piecewise `PSL_2(Z)` with finitely many pieces. At a breakpoint `ξ`, the adjacent pieces satisfy
+`γ_-(ξ) = γ_+(ξ)` and `γ_- ≠ γ_+`. So `ξ` is fixed by the nontrivial element `γ_-^{-1}γ_+` of
+`PSL_2(Z)`.
+- Elliptic elements have no fixed point on `P^1(R)`.
+- Parabolic fixed points lie in `Q ∪ {∞}`.
+- Hyperbolic fixed points are real quadratic irrationals.
+
+So `PP_Z` is the whole group of piecewise `PSL_2(Z)` homeomorphisms of the projective line, and
+**every finitely generated group of piecewise `PSL_2(Z)` homeomorphisms of the circle embeds in a
+finitely presented simple group.**
+
 **Examples.**
 - **Thompson's `T`.** It is the case of rational breakpoints only (Lodha's model).
 - **Monod's group `H(Z)`.** Its elements are the piecewise `PSL_2(Z)` homeomorphisms whose
