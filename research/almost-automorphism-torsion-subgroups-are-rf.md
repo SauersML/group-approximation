@@ -100,3 +100,18 @@ shows none of these hosts, nor `V` itself, can serve BBMZ Problem 5.3(6) (free B
   directed graph (cones indexed by paths, tail maps length-preserving with sections). Whether the full contracting
   rational similarity groups of Belk–Bleak–Matucci–Zaremsky (arXiv:2309.06224) are of this form was not checked, so
   no claim is made about them.
+
+## Lesson for general BH
+
+**Equicontinuity principle.** A finitely generated torsion group acting by "prefix replacement followed by
+synchronous tree maps" has a bounded depth cocycle, since any unbounded pumping yields a contraction and hence an
+element of infinite order. So it acts equicontinuously on deep cones, and its closure is profinite. Torsion there is
+residually finite, and Zelmanov then removes all infinite bounded-exponent groups.
+
+Since `B(2,665)` has solvable word problem, **every Boone–Higman host must contain non-residually-finite torsion**.
+No host whose torsion is forced to be equicontinuous qualifies: synchronous tree dynamics, V-type groups, and all
+Röver–Nekrashevych groups are out.
+
+The universal host must therefore be "asynchronous or higher-rank". The only places where this proof breaks are
+the vector depth cocycles of `nV` and 2-graph groups, and the length-changing local maps of RSGs. That tells host
+designers exactly which mechanism they must use.

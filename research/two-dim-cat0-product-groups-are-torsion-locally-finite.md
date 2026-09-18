@@ -52,3 +52,13 @@ Call a group **torsion locally finite** if every finitely generated torsion subg
   element of infinite order"). The conjecture is known for CAT(0) cube complexes (Sageev) and open in general.
 - Finite dimension matters. NOP (§1) note that Burnside groups act without global fixed point on
   infinite-dimensional CAT(0) cube complexes (Osajda 2018).
+
+## Lesson for general BH
+
+This is the geometric form of the equicontinuity principle of `almost-automorphism-torsion-subgroups-are-rf`.
+Fixed-point theorems for torsion (Serre for trees, Norin–Osajda–Przytycki in dimension 2) plus finite stabilizers
+make torsion locally finite. So a Boone–Higman host for `B(2,665)` cannot act properly on any low-dimensional CAT(0)
+space for which such a fixed-point theorem is known. For CAT(0) and building hosts the Burnside test is exactly
+Norin–Osajda–Przytycki's Conjecture 1.5 (every finitely generated group acting without a global fixed point on a
+finite-dimensional CAT(0) complex contains an element of infinite order): if that conjecture holds, no proper
+finite-dimensional CAT(0) group is a universal host.

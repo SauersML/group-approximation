@@ -105,3 +105,11 @@ Landed `cyclic-input-window-zero-needs-an-automorphism-twist` with its proof rou
 - On lines it is the line coordinate, which the shift scales by `k`. This forces infinitely many lines, via the count of ends.
 
 **Lesson for the Kazhdan case.** Non-surjective twists die by counting whenever orbits carry sizes or coordinates. The residual FW configuration is highly transitive, so neither is available there, which is why the counting method cannot reach it.
+
+## Sixth pass: general tools for the construction side
+
+**Landed nodes.**
+- `window-zero-twists-are-fixed-point-free`. Every window-zero twist has no nontrivial fixed point, and its periodic points act eventually periodically. The reason is that the centralizer of the shift in `NearSym(N)` is `<s>`. This kills the Baumslag-type lamplighter twist, since `t ↦ t` fixes `t`.
+- `odometer-conjugation-realizes-the-shell-shift`. On `N ⊂ Z_2` the shell shift is conjugation by the odometer. Near equality on `N` is equality in `Aut(T)`. So a window-zero witness of sign `−1` is an odometer-stable, finitely generated group of tree automorphisms that commensurates `N` with index `0` and has a liftable near action. The zigzag `D_∞` is recovered from the root swap. Groups whose sections lie in the odometer group at some level are virtually abelian, which is a ceiling.
+
+**Lesson.** Window zero turns the shell gate into a problem about self-similar groups containing the adding machine. The shell route and the Röver–Nekrashevych route merge there.

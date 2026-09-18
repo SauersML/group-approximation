@@ -70,3 +70,17 @@ groups, where they are the sharpest open part:
    - The same host covers `B_3`, `GL_2(Z) ≅ Out(F_2)` and `SL_2(Z)`, again with an F_∞ host.
    - For hyperbolic groups the node is now open exactly for the non-cubulated ones, for example infinite
      Kazhdan hyperbolic groups. For those, either BBMZ `quest:F_infty` or a new F_∞ host is needed.
+
+4. **(bh-free-45, 09-18) For this host, the F_∞ half for all hyperbolic groups reduces to BBMZ
+   `quest:F_infty`: F_∞ of the RSG family suffices, and F_∞ of `Γ` is necessary. It is not available from print.**
+   - `twisted-bt-of-full-contracting-rsg-inherits-f-n-from-rsg-family` (conditional reduction, lane proof):
+     - finite-set stabilizers in a full contracting RSG `Γ` are, up to finite index, iterated ascending HNN
+       extensions of full RSGs on clopen subsets;
+     - so F_∞ for that family makes `SV_Γ` of type F_∞ (Belk–Zaremsky Theorem 4);
+     - conversely `SV_Γ` of type F_∞ forces `Γ` of type F_∞.
+   - A yes to `quest:F_infty` would therefore settle this node for every hyperbolic group, Kazhdan ones
+     included.
+   - Checked and not sufficient:
+     - BBMZ Theorem 3.1 (`thrm:fin_pres`) gives only finite presentability;
+     - the Skipper–Zaremsky question (`contracting-rover-nekrashevych-groups-are-f-infinity`) is itself
+       OPEN, and it is the Röver–Nekrashevych special case of `quest:F_infty`.

@@ -16,7 +16,8 @@ Adv. Math. 28 (1978), Proposition 1.6 (the fiber lemma; the version BZ cite as
 its proof, vertices of `F_q` above `[id_q]` correspond to unordered dyadic partitions of
 `C^S(q)`, with `≤` corresponding to refinement, and any two have a least common refinement.
 So `[v, w]` is the poset of dyadic partitions of `C^S(q)` that are refined by the partition
-`π_f` of `f`. Write `Q = (v, w)`.
+`π_f` of `f`. Every `u ∈ [v, w]` is a forest class, since `[id_q] ≤ u` (N6). Write
+`Q = (v, w)`.
 
 **Step 2. Atoms.** For a root `i` and a color `s`, let `z_i^s = [id ⊕ x_s ⊕ id]` (split cube
 `i` in color `s`). Then `z_i^s ≤ w` iff `π_f` refines the `s`-halving of cube `i`, iff every

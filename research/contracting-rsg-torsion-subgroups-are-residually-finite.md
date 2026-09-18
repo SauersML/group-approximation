@@ -59,3 +59,10 @@ exponent.
      `|u| + B`, contained in a cone of depth at least `|u| − B`. With that, the orbit of each deep cone is finite, `H`
      permutes finitely many clopen sets at each level, and it is residually finite. For asynchronous generators this
      is a nondeterministic pushdown-type pumping statement.
+
+## Lesson for general BH
+
+Whether BBMZ's contracting RSG hosts can contain infinite bounded-exponent groups is the asynchronous test of the
+equicontinuity principle. A positive answer here, i.e. torsion RF, would show that every host family on main built
+from contracting dynamics fails the Burnside test. Then only non-contracting or higher-rank dynamics, such as
+`nV`, twisted Brin–Thompson groups and SFT full groups, could carry Boone–Higman for `B(2,665)`.

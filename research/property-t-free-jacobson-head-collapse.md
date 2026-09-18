@@ -352,3 +352,28 @@ instead of `4`) changes no conclusion.
   `P_{2,2}(J)` is not LEF, which is a four-index witness. The missing step is
   to show that the unipotent commutations force (C) on all of `Z`. The claim
   stays OPEN.
+- **The trap-relator shadow `Gamma_trap` has a head-keeping finite quotient
+  (2026-09-18).** See `gamma-trap-has-a-head-keeping-finite-quotient`.
+
+  *Model.* It is class two over `W = M_2(F_2[x]/(x^4+1))`:
+  - `N_W = W x (W (x) W)` with cocycle `w w'^T`;
+  - the quotient is by the `G0`-span `K` of the relator differences;
+  - `u = (E_11, c_u)` with random `c_u`.
+
+  *What it satisfies.* All of (R1)-(R3), (LR), (UU), the involutions and the
+  30 `EXTRA_RELS` hold, and so does (C1) at `z = u`. The head survives in
+  `C/K`, which has dimension 13.
+
+  *Checks.* Three independent implementations agree, one of them a plain
+  `GL_33(F_2)` matrix check.
+
+  *What dies.*
+  - The orbit-trap reduction "(UU) forces (C) in finite quotients" is false.
+  - Every head-collapse argument whose relator input lies in `Gamma_trap`,
+    plus `EXTRA_RELS`, plus (C) at the base point, fails. This includes
+    finite, exact and norm-corona arguments.
+
+  *Where the head dies again.* Adding (C1) and (C2) at right-orbit depth one
+  kills the head in this family. These relations are true in `P`. The next
+  finitely presented non-LEF candidate is therefore
+  `Gamma_trap + EXTRA_RELS + (C) at depth <= 1`, and it is open.

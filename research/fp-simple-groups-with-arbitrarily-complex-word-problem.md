@@ -134,17 +134,19 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
 7. **Linear superposition beats coNP: `(L ⊗ L)^x` is `coNP^⊕P`-complete** (bh-free-26,
    2026-09-18, `leavitt-square-units-have-conp-parity-p-complete-word-problem`; lane proof,
    not reviewed).
-   - *Result.* The finitely presented simple group `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^x`, whose
-     finite presentation and simplicity come from
-     `leavitt-square-unit-group-is-fp-simple-and-acyclic`, has word problem complete for
-     `coNP^⊕P = ∀·⊕P`. So it is not in coNP unless the polynomial hierarchy collapses (Toda).
-     It is the first finitely presented simple group here provably beyond Birget's coNP
-     level, modulo that standard hypothesis.
+   - *Result.* The group `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^x` has word problem complete for
+     `coNP^⊕P = ∀·⊕P`, so it is outside PH unless PH collapses (Toda). Hardness for an
+     explicit finitely generated subgroup and the upper bound are unconditional. That the
+     group is finitely presented and simple comes from
+     `leavitt-square-unit-group-is-fp-simple-and-acyclic`, **conditional on the Khanh and
+     Ara--Cortiñas imports**. Modulo those imports and the standard hypothesis, it is the
+     first finitely presented simple group here beyond Birget's coNP level. Cross-checked
+     by bh-free-02 (math PASS, e0faf3f03).
    - *Mechanism.* The superposition letters `τ = s_0 + s_1` and `σ = t_0 + t_1` enter through
      slot units and one commutator. The second tensor factor supplies baker scrolling, so
      reversible circuits have polynomial length. This is not a piecewise-prefix host, which is
      why item 6's cap does not apply: its elements are linear combinations, not homeomorphisms.
-   - *Every prime.* With a characteristic-free slot unit, the finitely presented simple group
+   - *Every prime.* With a characteristic-free slot unit, the (conditionally) finitely presented simple group
      `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem, for every prime `p`
      (`leavitt-square-units-mod-p-complete-word-problem`). By Toda--Ogiwara,
      none of these word problems lies in PH unless PH collapses.

@@ -80,3 +80,21 @@ sources:
   direct product inside one finitely presented simple group. This suffices by the Chinese
   remainder theorem: counts below `2^q` agree iff they agree mod each of the first `O(q)`
   primes, and in a direct product a product of tests is trivial iff each test is.
+
+## Lesson for general BH
+
+**Characteristic-zero linear hosts face a dichotomy.** The proof of part 3 uses only a
+multiplicative `Z`-form that is a free `Z`-module spanning the algebra. Leavitt path,
+Weyl, group and Nekrashevych algebras over `Q` all have one. For such algebras:
+- a finitely generated simple subgroup of `GL_N(A_Q)` reduces injectively mod some prime;
+- it therefore has no nontrivial square-zero unipotent, and in effect it has positive
+  characteristic;
+- `Z[1/M]`-forms carry congruence quotients;
+- `Q`-algebras containing `L_Q(1,2)` have scalar commutators that block finitely presented
+  central quotients.
+
+So an input whose infinite-order square-zero unipotents are placed standardly cannot sit in
+any simple host of this kind. Such inputs include `SL_3(Z)` blocks, the unipotents of
+`GL_n(Q)`, and the counters of `Γ_Z`. A host must realize them as non-unipotent elements, or
+use a ring such as the Leavitt resolvent ring, which contains `Q` internally rather than
+through a `Z`-form. This is a design constraint for `gl-n-q-embeds-in-fp-simple-group`.

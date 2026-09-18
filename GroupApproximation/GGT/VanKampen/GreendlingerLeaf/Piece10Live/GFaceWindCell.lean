@@ -52,9 +52,14 @@ Scratchpad `gl-p10-78/cellcheck.py` (Lean-exact model of `gl-p10-73/leanexact.py
 clauses computed literally by `extcx.py`, brute force over all `F'`).
 * Counterexample above: the extremal clauses hold with `F' = {4}` or `{1,4}`
   (relator cells `{4,6}`), so the collapse statement holds there.
-* See the lane report for the random and witness seed counts (r-cells `K.faces ∪ {source}` for
-  the cell statement; r-cells `{kept, source}` with a `0`-cell in `K` for the collapse
-  statement).
+* Cell statement (relator cells `K.faces ∪ {source}`, no-loop cases): an arc-keeping state
+  exists, and so do the extremal clauses, in 47921, 53179, 28118 of 47921, 53179, 28118 cases
+  (random seeds 1, 3; witness seed 2).
+* Collapse statement (relator cells `{kept, source}`, no-loop cases with a `0`-cell in `K`):
+  the extremal clauses hold in 148152, 169662, 111883 of 148152, 169662, 111883 cases; an
+  arc-keeping state fails to exist in 0, 21, 0 of them (so Nine is false there, but the
+  extremal clauses still hold).
+* `gfaceWindCell_rcell_of_leastArea` is refuted by the least-area labelling above.
 
 ## Manuscript status
 

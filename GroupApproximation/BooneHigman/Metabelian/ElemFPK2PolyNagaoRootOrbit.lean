@@ -119,8 +119,9 @@ theorem k2PolyNagaoRoot_orbit_pair {m L : I} (hmL : m ≠ L) (a : Polynomial (ZM
         Subgroup.mul_mem _ (Subgroup.mul_mem _ (k2PolyEuclid_x_mem_G hmL.symm _ hL hm)
           (k2PolyNagaoRoot_w_mem hmL _)) hy, ?_⟩
       rw [act_mul, act_mul, hye, k2PolyNagaoRoot_act_W, k2PolyNagaoRoot_act_xLm]
+      have h1 : a * (b / a) + b % a = b := EuclideanDomain.div_add_mod b a
       exact congrArg₂ (fun s t => s • unitVec m + t • unitVec L) (neg_neg a)
-        (by linear_combination EuclideanDomain.div_add_mod b a)
+        (by linear_combination h1)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoRoot_orbit_pair
 
