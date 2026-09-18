@@ -83,7 +83,7 @@ variable [IsDomain A] [CharZero A]
 theorem stateG_one (ℓ : Letter p n k) :
     stateG D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = 1 := by
   have hl : outDigit D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = ℓ.1 :=
-    congrArg Prod.fst (letter_one D ℓ)
+    (congrArg Prod.fst (letter_one D ℓ) :)
   have hz : z D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = 0 := by
     rw [z, hl, mat_one, vec_one, Matrix.one_mulVec, add_zero, sub_self]
   have hp : (p : MvPolynomial (Fin k) A) ≠ 0 := Nat.cast_ne_zero.2 (NeZero.ne p)
@@ -92,8 +92,8 @@ theorem stateG_one (ℓ : Letter p n k) :
     have h := sigmaZ_z D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ j
     rw [hz, Pi.zero_apply, map_zero] at h
     exact (mul_eq_zero.1 h.symm).resolve_left hp
-  · show ((Matrix.GeneralLinearGroup.map (sigmaZ p ℓ.2) 1 : GL (Fin n) (MvPolynomial (Fin k) A)) :
-      Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) = 1
+  · show ((Matrix.GeneralLinearGroup.map (sigmaZ p ℓ.2) 1 :
+        GL (Fin n) (MvPolynomial (Fin k) A)) : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) = 1
     rw [map_one, Units.val_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.stateG_one
@@ -119,8 +119,12 @@ noncomputable def actPerm (x : Aff n (MvPolynomial (Fin k) A)) :
     Equiv.Perm (List (Letter p n k)) where
   toFun := act D x
   invFun := act D x⁻¹
-  left_inv w := by rw [← act_mul, inv_mul_cancel, act_one]
-  right_inv w := by rw [← act_mul, mul_inv_cancel, act_one]
+  left_inv w := by
+    show act D x⁻¹ (act D x w) = w
+    rw [← act_mul, inv_mul_cancel, act_one]
+  right_inv w := by
+    show act D x (act D x⁻¹ w) = w
+    rw [← act_mul, mul_inv_cancel, act_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.actPerm
 

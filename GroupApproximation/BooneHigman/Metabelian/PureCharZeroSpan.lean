@@ -60,7 +60,7 @@ theorem kkCocycle_mem_span_image {T : Set Γ} (hT : Subgroup.closure T = ⊤) (g
         rw [eq_neg_of_add_eq_zero_left h]
         exact S.neg_mem (S.smul_mem _ ha) }
   have hle : Subgroup.closure T ≤ H :=
-    Subgroup.closure_le.mpr fun t ht => Submodule.subset_span (Set.mem_image_of_mem _ ht)
+    (Subgroup.closure_le H).mpr fun t ht => Submodule.subset_span (Set.mem_image_of_mem _ ht)
   have hg : g ∈ Subgroup.closure T := by
     rw [hT]
     exact Subgroup.mem_top g
@@ -99,7 +99,8 @@ variable (Γ) in
 /-- The Kaloujnine–Krasner homomorphism with values in the span of the cocycles. -/
 noncomputable def kkSpanHom : Γ →* GroupRing.Affine ℤ (Abelianization Γ) (kkSpan Γ) :=
   MonoidHom.mk'
-    (fun g => ⟨Multiplicative.ofAdd ⟨kkCocycle g, Submodule.subset_span ⟨g, rfl⟩⟩,
+    (fun g => ⟨Multiplicative.ofAdd
+      (⟨kkCocycle g, Submodule.subset_span (Set.mem_range_self g)⟩ : kkSpan Γ),
       Abelianization.of g⟩)
     fun g h => by
       refine SemidirectProduct.ext ?_ (map_mul Abelianization.of g h)

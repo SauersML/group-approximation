@@ -7,9 +7,11 @@ import GroupApproximation.Meta.AxiomGuard
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-12a.
 
-The only live consumer of `PocketOuterPinchStepSectionStatement` is the pinch induction
-`pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep`, whose only consumer is
-`sectionPocketCutInput_of_residualsTwoArc` (`Estimating/OsinPocketPinchOuterDispatch`).  There
+The live waists (`Common/EightResidualWaistBelow`, `P06Bypass/WaistBinderFive`) consume
+`PocketOuterPinchStepSectionStatement` through the pinch induction
+`pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep` and then
+`sectionPocketCutInput_of_residualsTwoArc` (`Estimating/OsinPocketPinchOuterDispatch`); the below
+variant `sectionPocketCutBelowInput_of_residualsTwoArcBelow` has the same shape.  There
 `hi = cuts.cut j.succ ≤ cuts.cut (Fin.last _) = |Δ.boundaryWord| = |outerDarts X₀|`, and the
 induction passes to O-equivalent copies, which keep `|outerDarts|`.  So the no-wrap premise is
 available, and the section pocket cut follows from the no-wrap step.

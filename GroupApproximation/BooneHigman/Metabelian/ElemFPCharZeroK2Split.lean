@@ -128,7 +128,8 @@ theorem charZeroStableK2FG_of_splitGap (h : CharZeroK2SplitGapStatement) :
   · exact k2_fg_of_base_of_nil (σ := Fin k) (R := Localization.Away (m : ℤ)) (I := Fin N)
       (h.1 m N h5N) (h.2 m k N hk hkN h5N)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroStableK2FG_of_splitGap
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroStableK2FG_of_splitGap
 
 /-- The base part is logically weaker than the target: it is the case `k = 0`, transported along
 the surjection `ev₀ : K₂(N, ℤ[1/m][∅]) → K₂(N, ℤ[1/m])`. -/
