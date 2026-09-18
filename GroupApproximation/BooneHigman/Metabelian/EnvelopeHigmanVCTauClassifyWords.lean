@@ -27,7 +27,8 @@ theorem higmanVCTauClassify_fresh {d : ℕ} (hd : 3 ≤ d) (a b : Fin d) :
       · exact ⟨1, by omega, by omega, by omega⟩
     · exact ⟨0, by omega, by omega, by omega⟩
   obtain ⟨k, hk3, hka, hkb⟩ := hk
-  exact ⟨⟨k, by omega⟩, fun e => hka (congrArg Fin.val e), fun e => hkb (congrArg Fin.val e)⟩
+  exact ⟨⟨k, by omega⟩, fun e => hka (congrArg Fin.val e),
+    fun e => hkb (congrArg Fin.val e)⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_fresh
 
@@ -126,7 +127,8 @@ theorem higmanVCTauClassify_tri {d : ℕ} (hd : 1 < d) {p q x x' : List (Fin d)}
     exact Or.inl ⟨r, rfl, MapsCone.unique h ((mapsCone_coneSwap_left hpq hqp).append r)⟩
   by_cases h2 : q <+: x
   · obtain ⟨r, rfl⟩ := h2
-    exact Or.inr (Or.inl ⟨r, rfl, MapsCone.unique h ((mapsCone_coneSwap_right hpq hqp).append r)⟩)
+    exact Or.inr (Or.inl ⟨r, rfl,
+      MapsCone.unique h ((mapsCone_coneSwap_right hpq hqp).append r)⟩)
   have h3 : ¬ x <+: p := by
     intro hx
     have e : x = p := higmanVCTauConj_eq_of_prefix_left hpq hqp h hx
