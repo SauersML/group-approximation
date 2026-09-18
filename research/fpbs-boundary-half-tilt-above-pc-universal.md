@@ -68,3 +68,24 @@ just above `p_c`.
    - *What survives.* A transfer that also uses stationarity or harmonicity of
      `nu`, or a fibre-uniform estimate that fails for the Cauchy law, is not
      killed.
+2. **Fibre-uniform survivor of Attempt 1 (2026-09-18,
+   swarm-0917-w10-w10-bs-follow, entropy-measure; DEAD for that class).**
+   - *Proved* (`fpbs-boundary-cocycle-heights-markov-rare`, established): on
+     every group, for every `nu`, `nu(Delta(o,y) >= M) <= 1/M`. Hence:
+     - `h_nu <= log gr` a.e., which is sharp on `T_d`. So [BT] certifies a
+       worst-pair rate of at most `(log gr)/2`.
+     - Every `zeta`-independent height valid on a `delta`-fraction of fibres
+       is at most `log(1/delta)`.
+     - `k` fibre-uniform layer steps of height `n` hold jointly on at most
+       `e^(-kn)` of the fibres.
+   - *Where it dies:* at the step "choose a vertex at height `n` on a fixed
+     fraction of fibres, then concatenate". The invariant is the
+     Radon–Nikodym mass `int Delta d nu = 1`.
+   - The obstruction holds on `T_d`, where [BT] is true. So the whole class of
+     fibre-uniform transfers is dead on every group, and nonamenability cannot
+     rescue it.
+   - *Survivor:* `zeta`-dependent layer sets `L_n(zeta)`. These concatenate
+     exactly through the cocycle, but by item 4 they must spread over at least
+     `delta e^n` vertices. Combined with the stationary-boundary calibration of
+     swarm-0917-w10-w10-bs-last1, a transfer must work with random layer sets
+     and use nonamenability of `Gamma` directly.
