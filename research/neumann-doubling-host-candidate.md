@@ -8,8 +8,9 @@ distinct_from:
   neumann-group-is-locally-finite-by-z-and-not-fp: that proves structure of Neumann's group itself and constraints on hosts; this builds a specific candidate host and proves its structure.
 ---
 
-**ESTABLISHED** for the stated properties. Whether the host is finitely presented is
-**OPEN**. Elementary; written inline by lane bh-free-59, not independently reviewed, no
+**ESTABLISHED** for the stated properties. **REFUTED as a host:** the host is not finitely
+presented, by `neumann-doubling-host-is-not-fp`, which proves that the truncations `Γ_K`
+never stabilize. Elementary; written inline by lane bh-free-59, not independently reviewed, no
 priority claimed.
 
 ## The candidate
@@ -110,3 +111,10 @@ support, `α` must sit at an `s`-fixed point. So for `S = M` every "coordinate-l
 action is already a genuine `Γ`-action: the three cases are `m ∈ M`, `Z[1/2]` via `Λ`,
 and actions with no `α`-support via `Γ → BS(1,2)`. The proposition above therefore gives
 nothing for Neumann's own set `M`. Deciding `Γ_K = Γ` needs a different idea.
+
+## Lesson for general BH
+
+A residually finite host built as the "uniform thickening" of a LEF limit
+(`Γ ↠ Λ` with kernel `⊕` of finite groups) is finitely presented only if `Λ` is **not**
+(by (4)). So the finitely presented object has to be the thickening itself, never its
+limit. The companion node shows how such thickenings fail anyway.
