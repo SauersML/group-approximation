@@ -117,7 +117,7 @@ noncomputable def quillenIdeal (u : K2 (Fin N) (Polynomial B)) : Ideal B where
   carrier := {a | K2DiesAfterPadding (quillenDiff u a)}
   add_mem' := fun ha hb ↦ diesAfterPadding_quillenDiff_add u ha hb
   zero_mem' := diesAfterPadding_quillenDiff_zero u
-  smul_mem' := fun c ha ↦ diesAfterPadding_quillenDiff_mul u c ha
+  smul_mem' := fun c {_} ha ↦ diesAfterPadding_quillenDiff_mul u c ha
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenIdeal
 

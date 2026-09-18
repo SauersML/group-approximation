@@ -16,7 +16,7 @@ every element of `S` modulo `⁅V, V⁆`, and every `t ∈ T` has `t ^ m ∈ [V,
 Then `[V, V]` has finite index in `V` (`commutator_finiteIndex_of_gens`).
 
 Route: `closure T ⊔ [V, V] = ⊤` in `V` (push through `V.subtype`, `Subgroup.map_sup`,
-`Subgroup.map_closure`, `Subgroup.map_subtype_commutator`); mapping to the abelianisation kills
+`MonoidHom.map_closure`, `Subgroup.map_subtype_commutator`); mapping to the abelianisation kills
 `[V, V]` (`Abelianization.ker_of`), so the images of `T` generate it.  They lie in the kernel of
 `powMonoidHom m`, hence so does everything, and `CommGroup.finite_of_fg_torsion` gives a finite
 quotient.
@@ -31,9 +31,9 @@ theorem closure_sup_commutator_eq_top {S : Set G} (hVS : V ≤ Subgroup.closure 
     Subgroup.closure T ⊔ commutator ↥V = ⊤ := by
   have hmap : (Subgroup.closure T ⊔ commutator ↥V).map V.subtype =
       Subgroup.closure (V.subtype '' T) ⊔ ⁅V, V⁆ := by
-    rw [Subgroup.map_sup, Subgroup.map_closure, Subgroup.map_subtype_commutator]
+    rw [Subgroup.map_sup, MonoidHom.map_closure, Subgroup.map_subtype_commutator]
   have hle : Subgroup.closure S ≤ Subgroup.closure (Subtype.val '' T) ⊔ ⁅V, V⁆ :=
-    Subgroup.closure_le.mpr hgen
+    (Subgroup.closure_le _).mpr hgen
   refine top_le_iff.mp ?_
   intro x _
   have hx : x.1 ∈ (Subgroup.closure T ⊔ commutator ↥V).map V.subtype := by
@@ -53,7 +53,7 @@ theorem closure_image_of_eq_top {T : Set ↥V} (htop : Subgroup.closure T ⊔ co
   have hbot : (commutator ↥V).map (Abelianization.of : ↥V →* Abelianization ↥V) = ⊥ :=
     (Subgroup.map_eq_bot_iff _).mpr (Abelianization.ker_of ↥V).ge
   have h1 := congrArg (Subgroup.map (Abelianization.of : ↥V →* Abelianization ↥V)) htop
-  rw [Subgroup.map_sup, hbot, sup_bot_eq, Subgroup.map_closure,
+  rw [Subgroup.map_sup, hbot, sup_bot_eq, MonoidHom.map_closure,
     Subgroup.map_top_of_surjective _ hsurj] at h1
   exact h1
 
@@ -65,7 +65,7 @@ theorem isTorsion_abelianization {T : Set ↥V}
     Monoid.IsTorsion (Abelianization ↥V) := by
   have hker : Subgroup.closure ((Abelianization.of : ↥V →* Abelianization ↥V) '' T) ≤
       (powMonoidHom m : Abelianization ↥V →* Abelianization ↥V).ker := by
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨t, ht, rfl⟩
     have hk : (Abelianization.of : ↥V →* Abelianization ↥V) t ^ m = 1 :=
       (map_pow (Abelianization.of : ↥V →* Abelianization ↥V) t m).symm.trans

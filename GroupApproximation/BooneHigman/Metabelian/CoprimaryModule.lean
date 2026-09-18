@@ -29,6 +29,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+noncomputable section
+
 variable (G : Type*) [Group G]
 
 /-- The derived subgroup made abelian and written additively. -/
@@ -150,6 +152,8 @@ theorem of_smul_dcls (g : G) (a : commutator G) :
   (of_smul g (dcls a)).trans (conj_dcls g a)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.of_smul_dcls
+
+end
 
 end Coprimary
 end Metabelian

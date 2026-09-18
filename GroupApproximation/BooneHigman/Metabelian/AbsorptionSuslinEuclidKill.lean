@@ -105,8 +105,8 @@ theorem suslin_exists_row_killed (hR : HasWellFoundedDivision R) (S : Finset ι)
       · refine ⟨M, hMr, hMc, fun c hc hct hcS ↦ ?_⟩
         rcases Finset.mem_insert.mp hc with hcj | hcT
         · rcases hj with h | h
-          · exact hct (hcj.trans h)
-          · exact hcS (hcj ▸ h)
+          · exact (hct (hcj.trans h)).elim
+          · exact (hcS (hcj ▸ h)).elim
         · exact hMT c hcT hct hcS
       · obtain ⟨hjt, hjS⟩ := not_or.mp hj
         obtain ⟨M', hM'r, hM'c, hM'tj, hM'row⟩ :=

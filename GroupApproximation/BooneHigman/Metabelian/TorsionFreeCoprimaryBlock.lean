@@ -22,6 +22,8 @@ namespace BooneHigman
 namespace Metabelian
 namespace Coprimary
 
+open scoped Matrix
+
 /-- The block-diagonal action of `Q` on `∏_j L^{d_j}`. -/
 noncomputable def blockEnd {Q J L : Type} [Monoid Q] [Field L] {d : J → ℕ}
     (ρ : ∀ j, Q →* Matrix.GeneralLinearGroup (Fin (d j)) L) :

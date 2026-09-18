@@ -128,8 +128,8 @@ theorem model_conj_single (i j : I) (h : i ≠ j) (a : R) (k : I) (r : R) :
     (SemidirectProduct.inr (elementaryRoot i j h a) : AffineElementary I R) *
       SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k r : I → R)) *
       (SemidirectProduct.inr (elementaryRoot i j h a))⁻¹ =
-    SemidirectProduct.inl
-      (Multiplicative.ofAdd (Pi.single k r + Pi.single i (a * Pi.single k r j) : I → R)) := by
+    SemidirectProduct.inl (Multiplicative.ofAdd
+      (Pi.single k r + Pi.single i (a * (Pi.single k r : I → R) j) : I → R)) := by
   rw [← map_inv, ← SemidirectProduct.inl_aut, affAction_root]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_conj_single
@@ -161,7 +161,9 @@ theorem model_c3 (k l : I) :
       (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R)) :
         AffineElementary I R)
       (SemidirectProduct.inl (Multiplicative.ofAdd (Pi.single l (1 : R) : I → R))) :=
-  (Commute.all _ _).map (SemidirectProduct.inl (φ := affAction I R))
+  (Commute.all (Multiplicative.ofAdd (Pi.single k (1 : R) : I → R))
+    (Multiplicative.ofAdd (Pi.single l (1 : R) : I → R))).map
+    (SemidirectProduct.inl (φ := affAction I R))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c3
 

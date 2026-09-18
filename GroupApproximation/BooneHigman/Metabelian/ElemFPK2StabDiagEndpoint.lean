@@ -67,16 +67,11 @@ def stabDiagLeftRegular (n : ℕ) (R : Type*) [Ring R] : LastRootAction n R (St 
       stabDiagLeftPerm n R (stab n R (x i j hij a))
     rw [stab_x]
   add i j hij a b _ := by
-    change stabDiagLeftPerm n R (x i j hij a) * stabDiagLeftPerm n R (x i j hij b) =
-      stabDiagLeftPerm n R (x i j hij (a + b))
     rw [← map_mul, x_mul]
   commute i j k l hij hkl hjk hli a b _ := by
-    change ⁅stabDiagLeftPerm n R (x i j hij a), stabDiagLeftPerm n R (x k l hkl b)⁆ = 1
     rw [← map_commutatorElement, (x_commute_of_ne i j k l hij hkl hjk hli a b).commutator_eq,
       map_one]
   adjacent i j k hij hjk hik a b _ := by
-    change ⁅stabDiagLeftPerm n R (x i j hij a), stabDiagLeftPerm n R (x j k hjk b)⁆ =
-      stabDiagLeftPerm n R (x i k hik (a * b))
     rw [← map_commutatorElement, x_commutator i j k hij hjk hik a b]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagLeftRegular
