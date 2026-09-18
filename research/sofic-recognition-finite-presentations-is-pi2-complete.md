@@ -65,3 +65,17 @@ missing is the finite-output compiler
     a possibly infinitely generated centraliser `C_H(psi(Gamma))`, and nonsofic when that centraliser is
     nontrivial.  Their positive branch needs a soficity theorem for amalgams over a Kazhdan subgroup that is
     not a free factor, and no such theorem is known.
+- **w6-111, 2026-09-18: twisted-diagonal cones need a profinitely invisible core (obstruction).**
+  - *Result.*  [[twisted-diagonal-cones-need-a-profinitely-invisible-core]] kills the twisted-cone route of
+    w5-111 for every twist that the finite quotients of `G` can see.
+  - *Mechanism.*  Restricting a Kun-Thom pair to a finite-index normal level `G_1` gives a Kun-Thom pair
+    `Gamma ∩ G_1 ≤ G_1`.  So `(H x Gamma) *_(Gamma_psi) G` contains the double `G_1 *_(Gamma ∩ G_1) G_1`, and is
+    nonsofic, as soon as `C_H(psi(Gamma ∩ G_1)) ≠ 1` at some level.
+  - *Consequence.*  For amenable `H`, such as the machine group, the twist `psi` has finite image, and the
+    deciding invariant is `C_H(F_inf)`, where `F_inf` is the invisible core `∩_levels psi(Gamma ∩ G_1)`.  It is
+    not `C_H(psi(Gamma))`.  Visible twists, or twists with abelian cores, always give nonsofic cones, on INF as
+    well as on FIN.
+  - *Exact loophole.*  Evaluation at the origin on the Theorem E pair has core `PSL_r(F_q)` (simple and
+    centreless), and every cone through it contains the finite twisted cone
+    [[finite-twisted-kazhdan-cone-is-sofic]].  That cone is not residually finite.  Its soficity is now the
+    single question the route rests on.
