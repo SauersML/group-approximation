@@ -38,9 +38,9 @@ artifacts:
   piecewise power of `σ` on a clopen partition is piecewise a product prefix
   replacement on finitely many product cones. So the topological full group
   `[[σ]]` of the full two-sided 2-shift is a subgroup of `2V`. Hence any infinite
-  finitely generated periodic subgroup of `[[σ]]` refutes this claim. Matte Bon's
-  embeddings of Grigorchuk groups into `[[σ_X]]` use minimal subshifts `X`, not the
-  full shift, so they do not apply directly.
+  finitely generated periodic subgroup of `[[σ]]` would refute this claim.
+  *Superseded (Attempt 2):* there is none, by
+  `full-shift-topological-full-groups-are-torsion-locally-finite`.
 
 ## Attempts
 
@@ -49,3 +49,18 @@ artifacts:
    configuration below the reading depth to be read-only. In `2V`, the second
    coordinate is a second stack that the segment can both read and rewrite, so no
    bounded window determines the segment's action.
+2. **The read-only head subgroup is torsion locally finite (2026-09-18, lane
+   `bh-free-06`).** *Kills the `[[σ]]` source of candidates.*
+   - `full-shift-topological-full-groups-are-torsion-locally-finite` shows that every
+     finitely generated torsion subgroup of `[[Σ^Z]]` is finite, and likewise for
+     `RFA(Z,n,k)`. The proof pumps to a periodic tape through a Ramsey-homogeneous
+     triple of cuts. By Salo (arXiv:2103.06663), `[[Σ^Z]] ≤ 2V`.
+   - So a counterexample to this claim must use elements that **write**. It can
+     contain no read-only head machine as the whole mechanism.
+   - The remaining natural source is `RTM(Z,2,1) ≤ 2V`, the reversible Turing
+     machines. It is LEF (Barbieri–Kari–Salo, arXiv:1603.08715, Theorem 6), and its
+     elementary subgroup has undecidable torsion problem (arXiv:2303.17270,
+     Theorem 1.2).
+   - The pumping fails for `RTM` because the tape, and with it `Γ_x`, changes along
+     a path. No torsion-local-finiteness argument for `RTM` is known here, and no
+     infinite torsion subgroup was constructed.
