@@ -20,8 +20,8 @@ requires:
 **Item 1.**
 - **The embedding.** `q_k q_l = δ_(kl) q_k`, since `t_2 t_1^k s_1^l s_2 = δ_(kl)`.
   `q_k f = s_1^k s_2 t_2 f(N + k) t_1^k = f(k) q_k`, and likewise `f q_k = f(k) q_k`. So
-  `f + Σ a_k δ_k -> f + Σ a_k q_k` is a ring homomorphism `B⁺ -> R_L`. It is injective: in the faithful model on
-  `Q^(X)` of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`, `q_k` is the projection onto `{N = k}` and `f` acts
+  `f + Σ a_k δ_k -> f + Σ a_k q_k` is a ring homomorphism `B⁺ -> R_L`. It is injective: in the model on
+  `Q^(X)` (faithfulness is not needed; gq-referee-b, W1) of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`, `q_k` is the projection onto `{N = k}` and `f` acts
   as `f(N)`, and `N` takes every value `k >= 0`. Here `B -> Fun(N, Q)` is injective, because a rational function
   vanishing on `N` is `0`.
 - **The letters.**
@@ -45,13 +45,16 @@ requires:
 
 **Item 2.**
 - **`K_*(B)`.** `B` is the localization of the Dedekind domain `Q[N]` at the primes `(N + c)`, `c >= 1`, all with
-  residue field `Q`. Quillen's localization sequence, a colimit over finite sets of primes, and `K_*(Q[N]) = K_*(Q)`
+  residue field `Q`. Quillen's localization sequence (Weibel V App. 6.1, (6.6), Cor. 6.7.1), a colimit over finite sets of
+  primes, and `K_*(Q[N]) = K_*(Q)` (Weibel V Thm 6.3)
   give `0 -> K_n(Q) -> K_n(B) -> ⊕_(c>=1) K_(n-1)(Q) -> 0`.
   - The pushforwards `K_n(Q[N]/(N+c)) -> K_n(Q[N])` vanish, since `[Q[N]/(N+c)] = [Q[N]] - [Q[N]] = 0` in `G_0` and
     the pushforward is `K_*(Q)`-linear.
   - The sequence splits by `ev_0 : B -> Q`, since `c != 0`, and by the lifts `x -> {x, N + c}` of the residues. Write
     `e_c` for the residue coordinate at `N = -c`.
-- **`K_*(B⁺)`.** `J` is an ideal with local units, a directed union of `Q^m`. Excision and colimits give
+- **`K_*(B⁺)`.** `J` is an ideal with local units, a directed union of `Q^m`. Excision (Weibel IV 1.11.2) and
+  colimits give, or more simply `B⁺` is the filtered union of subrings `≅ Q^m × B` and Weibel IV 6.4 applies
+  (gq-referee-b), giving
   `K_n(J) = ⊕_k K_n(Q) δ_k`. The inclusion `B ⊆ B⁺` splits `B⁺ -> B⁺/J = B`, so
   `K_n(B⁺) = K_n(B) ⊕ K_n(J)`. This gives the decomposition `A ⊕ E ⊕ D` of the claim, with `A = K_n(Q)·1`.
 - **The transfer.** `[X]` is the sum over the two letters of the substitution maps: `σ_*` for `s_1`, and
@@ -78,7 +81,7 @@ listed are the images of `[N + c] = e_c` in degree `1` and `{λ, N + c} = λ e_c
 `St_N(R_L)` for `N >= 2`. It lies in `K_2(N, R_L)`, and it maps to the symbol in `K_2(R_L)`.
 
 **Signs.** Residue and product sign conventions change only the sign of the isomorphism `K_2(R_L) -> Q^x`
-(gq-referee-a, N3).
+(gq-referee-a, N3). Weibel orders the lift as `{N+c, x}` (V Cor. 6.3.1: `∂{s, x} = x`); gq-referee-b, W3.
 
 **Item 5.** `Sym(R_L)` contains every `{λ, N+1}`, which generate `K_2(R_L) ≅ Q^x`, and this group is not finitely
 generated. Apply item 2 of `infinitely-generated-symbols-block-fp-elementary-groups`.
