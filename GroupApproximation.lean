@@ -5929,6 +5929,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Lett
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Threshold
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRPw
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeDefs
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetTransfer
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
