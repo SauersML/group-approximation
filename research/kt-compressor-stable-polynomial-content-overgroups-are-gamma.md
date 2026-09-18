@@ -52,3 +52,18 @@ attack were tried:
 A `Mon`-stable counterexample `Δ ≠ Γ` would not refute
 `kt-pair-hyperlinear-floor-below-normal-closure`. It would supply the first candidate
 below the normal closure that does not collapse to `hyperlinear-wreath-model`.
+
+## Attempts
+
+* **Reduction to the kernel (w3-121).** The projection part is not a separate problem.
+  If the kernel `H = Δ ∩ EL_r(R)` lies in `SL_r(A)`, conjugating `U_ij(A)` by
+  `(g,P) ∈ Δ` gives `g·M_r(P·A)·g^(-1) ⊆ M_r(A)`, hence `P·A ⊆ A`. The same holds for
+  `P^(-1)`, so `π(Δ)` consists of permutation matrices, and the central-finite dichotomy
+  makes it trivial. So this claim is equivalent to
+  `kt-compressor-stable-kernel-overgroups-are-polynomial`
+  (`kt-compressor-sandwich-equivalent-to-kernel-polynomiality`, route
+  `kt-sandwich-from-kernel-polynomiality`). The Zariski-dense branch needs no separate
+  treatment. Along the way: the entries of the kernel span `A` or `R`, and the
+  one-variable analogue holds with no compressors (`SL_r(F_q[t])` is maximal in
+  `SL_r(F_q[t^(±1)])`). The density argument behind it dies for `d ≥ 2` because no
+  valuation ring meets `R` in `A`.
