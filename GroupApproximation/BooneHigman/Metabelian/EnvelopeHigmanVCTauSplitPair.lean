@@ -116,4 +116,70 @@ theorem higmanVCTauSplit_pair_maps {d : ℕ} (hd : 1 < d) {v w : List (Fin d)}
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_pair_maps
 
+/-- The descended pair is incomparable. -/
+theorem higmanVCTauSplit_pair_incomp {d : ℕ} (hd : 1 < d) {v w : List (Fin d)}
+    (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) (hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2)) :
+    ¬ higmanVCTau_pX (v, w) <+: higmanVCTau_pY (v, w) ∧
+      ¬ higmanVCTau_pY (v, w) <+: higmanVCTau_pX (v, w) := by
+  by_cases h : w.length ≤ v.length
+  · have hm : 3 ≤ v.length := by omega
+    have hf := higmanVCTauSplit_descP_facts hd hwv hm
+    rw [higmanVCTauSplit_pX_of_le h, higmanVCTauSplit_pY_of_le h]
+    exact higmanVCTauSplit_incomp_desc hvw hwv hf.2.1.1 hf.2.1.2 hm
+  · have hm : 3 ≤ w.length := by omega
+    have hf := higmanVCTauSplit_descP_facts hd hvw hm
+    rw [higmanVCTauSplit_pX_of_not h, higmanVCTauSplit_pY_of_not h]
+    exact (higmanVCTauSplit_incomp_desc hwv hvw hf.2.1.1 hf.2.1.2 hm).symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_pair_incomp
+
+/-- The descended pair is shorter. -/
+theorem higmanVCTauSplit_pair_len {d : ℕ} (hd : 1 < d) {v w : List (Fin d)}
+    (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) (hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2)) :
+    (higmanVCTau_pX (v, w)).length ≤ v.length ∧ (higmanVCTau_pY (v, w)).length ≤ w.length ∧
+      (higmanVCTau_pX (v, w)).length + (higmanVCTau_pY (v, w)).length <
+        v.length + w.length := by
+  by_cases h : w.length ≤ v.length
+  · have hm : 3 ≤ v.length := by omega
+    have hl := higmanVCTauSplit_len_desc hd hwv hm
+    rw [higmanVCTauSplit_pX_of_le h, higmanVCTauSplit_pY_of_le h]
+    omega
+  · have hm : 3 ≤ w.length := by omega
+    have hl := higmanVCTauSplit_len_desc hd hvw hm
+    rw [higmanVCTauSplit_pX_of_not h, higmanVCTauSplit_pY_of_not h]
+    omega
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_pair_len
+
+/-- Appending a letter to both words fixes `P`, `Q` and appends it to `X`, `Y`. -/
+theorem higmanVCTauSplit_pair_append {d : ℕ} {v w : List (Fin d)}
+    (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) (hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2)) (a : Fin d) :
+    higmanVCTau_pP (v ++ [a], w ++ [a]) = higmanVCTau_pP (v, w) ∧
+      higmanVCTau_pQ (v ++ [a], w ++ [a]) = higmanVCTau_pQ (v, w) ∧
+        higmanVCTau_pX (v ++ [a], w ++ [a]) = higmanVCTau_pX (v, w) ++ [a] ∧
+          higmanVCTau_pY (v ++ [a], w ++ [a]) = higmanVCTau_pY (v, w) ++ [a] := by
+  have hlv : (v ++ [a]).length = v.length + 1 := by
+    rw [List.length_append, List.length_singleton]
+  have hlw : (w ++ [a]).length = w.length + 1 := by
+    rw [List.length_append, List.length_singleton]
+  by_cases h : w.length ≤ v.length
+  · have hm : 3 ≤ v.length := by omega
+    have h' : (w ++ [a]).length ≤ (v ++ [a]).length := by omega
+    rw [higmanVCTauSplit_pP_of_le h', higmanVCTauSplit_pP_of_le h,
+      higmanVCTauSplit_pQ_of_le h', higmanVCTauSplit_pQ_of_le h,
+      higmanVCTauSplit_pX_of_le h', higmanVCTauSplit_pX_of_le h,
+      higmanVCTauSplit_pY_of_le h', higmanVCTauSplit_pY_of_le h]
+    exact ⟨higmanVCTauSplit_descP_append hwv hm a, List.take_append_of_le_length hm,
+      higmanVCTauSplit_dM_append hwv hm a, higmanVCTauSplit_dO_append hwv hm a⟩
+  · have hm : 3 ≤ w.length := by omega
+    have h' : ¬ (w ++ [a]).length ≤ (v ++ [a]).length := by omega
+    rw [higmanVCTauSplit_pP_of_not h', higmanVCTauSplit_pP_of_not h,
+      higmanVCTauSplit_pQ_of_not h', higmanVCTauSplit_pQ_of_not h,
+      higmanVCTauSplit_pX_of_not h', higmanVCTauSplit_pX_of_not h,
+      higmanVCTauSplit_pY_of_not h', higmanVCTauSplit_pY_of_not h]
+    exact ⟨higmanVCTauSplit_descP_append hvw hm a, List.take_append_of_le_length hm,
+      higmanVCTauSplit_dO_append hvw hm a, higmanVCTauSplit_dM_append hvw hm a⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauSplit_pair_append
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
