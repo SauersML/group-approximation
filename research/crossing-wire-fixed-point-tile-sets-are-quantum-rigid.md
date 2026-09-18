@@ -13,7 +13,7 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-18)** through `crossing-wire-fixed-point-tile-sets-are-quantum-rigid-proof`. Lane proof
-(bh-g2-fixedpoint-a), elementary, **not independently reviewed; referee review recommended** (it answers the
+(bh-g2-fixedpoint-a), elementary, **one referee PASS (bh-ref-engines, 2026-09-18), conditional on the explicit crossing-wire layout; see Referee section** (it answers the
 free half of gate E2 over `Z^2`). No priority claimed.
 
 ## Setting: crossing-wire fixed-point layouts
@@ -85,3 +85,53 @@ Let `τ` satisfy (L0)–(L4). Then:
     (`plane-constant-simulation-computation-layers-are-quantum-rigid`).
   - There, the forced ambiguity of `bounded-determination-simulations-only-realize-sft-shadows` must be
     carried on crossing wires.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS, conditional on writing out the layout
+
+I checked the proof node line by line, together with the parent reduction
+(`fixed-point-wang-tile-rigidity-is-edge-family-commutation`). I also re-read DRS arXiv:0910.2415 §2 at source
+(`fpt-arxiv.tex`: Example 2, Prop. `selfsimilar-aperiodic`, "Simulating a tile set" and "Simulating itself").
+
+**The operator argument (proof Steps 1–5) is correct, given (L0)–(L4).**
+- *Step 1.* The coordinate projections lie in the algebra of every single edge and are transported along the grid,
+  so they are central. This is correct.
+- *Step 2(a).* The wire and fan-out tiles force equal PVMs, via F1 plus F2 on mismatched bits. The crossing tile
+  `(a,a,b,b)` makes the copies of `e` and `e'` commute by F1. Both steps are correct.
+- *Step 2(c), crossing edges.* For a deterministic one-head machine, "head leaves `j−1` to the right in state `q`"
+  is exactly the set of tiles at face `(t, j−1)` whose bottom edge has the head in a right-moving transition to
+  `q`. So `P_(R,q)(v)` is a sum of bottom-edge projections. Top edges follow from the face rule. This is correct.
+- *Step 3.* On a joint spectral projection `Π` of the `4k` bits, every edge of the block is a scalar colour. If a
+  face has no valid completion, `Π = Π·(vanishing product) = 0`. So `P^1` is an FLEF of `τ`. Also `A(Z) = A_1(Z)`,
+  because each single bit is a sum of `P^1` projections once non-encoding values vanish. This is correct.
+- *Steps 4–5.* The margin induction (I2) is the reduction node's scaling of the margin (`m N^(K−1)`). The case
+  split "same block / shared side / shared corner" is exhaustive once `d < m N^(K−1) ≤ N^K`. This is correct.
+- *Field independence.* Only idempotents and finite central decompositions are used, so the argument works over
+  every field.
+
+**The gap: the layout is a modification of DRS, not DRS as written.**
+- DRS say explicitly: "(this can be done in any reasonable way; **we assume that wires do not cross each
+  other**)". So (L3) complete crossing departs from their stated layout. The node's gloss "DRS fix the wiring in
+  any reasonable way" should add this.
+- Their computation zone is described through 3×2 window tiles (footnote `local-rules-footnote`). It does not
+  literally give (L4) ("top edge fixed by the other three; the head's crossing edge fixed by the head cell's
+  bottom edge"). (L4) needs the standard direct encoding of a deterministic one-head machine, in which cells
+  carry a symbol plus an optional head state on horizontal edges and head moves are carried on vertical edges.
+
+**Why the modification is harmless.**
+- DRS's fixed-point step ("Simulating itself") needs only one thing: the program can check, in time polynomial in
+  the `O(log N)`-bit input, that macro-tiles obey `τ`'s coordinate-determined local rules (coordinates, wires,
+  zone, program bits). Crossing tiles, fan-out tiles and the direct machine encoding are further such rules.
+- So the Kleene-style closure goes through verbatim, and a `τ` with (L0)–(L4) exists for all large `N`. I judge
+  the claim correct.
+- Recommended: write the crossing box and the zone encoding explicitly in the node, as a checkable
+  coordinate→role table.
+
+**Trimming (no gap).** The proof shows that every FLEF of the **untrimmed** `τ` commutes. FLEFs of the trimmed
+`τ' ⊆ τ` are FLEFs of `τ`, and `Ω_τ' = Ω_τ`. So item 1 of the reduction node, which is stated for trimmed sets,
+applies with `τ'`.
+
+**Items 3–4.** These are imported: `sft-crossed-product-fp-iff-quantum-rigid` (not re-checked here) and DRS
+Prop. `selfsimilar-aperiodic` (read at source). Nonemptiness of `Ω_τ` is DRS's compactness remark.
+
+**Credit.** Durand–Romashchenko–Shen for the fixed-point tile sets. The co-location mechanism is new here as far as
+I know. The local Pauli example is in the spirit of Mermin–Peres contextuality.

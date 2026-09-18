@@ -15,7 +15,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `relative-seeds-glue-graphs-of-groups-proof` (lane bh-invent-03, 2026-09-18; elementary lane
-proof, not reviewed; no priority claimed). Quantum families are Q1–Q3 of
+proof; one referee PASS, bh-ref-engines 2026-09-18; no priority claimed). Quantum families are Q1–Q3 of
 `fp-v-times-subshift-full-groups-force-quantum-rigidity`, over a fixed field `k`.
 
 ## Definition
@@ -95,3 +95,47 @@ Bass–Serre tree are free.
 - **CAP is one question.** Can compression-rigid, locally forced configurations compute? That is, is there a rigid
   relative seed whose stabilizer has membership outside every fixed class?
 - **Suggested first test.** `(K_M, R_0)` for a trivial modular machine, with lanes bh-free-56 and bh-star-a.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked the proof node (§§1–5) line by line.
+
+**§1, the SFT.**
+- (X) is well defined on cosets, because `hc t_ε = h t_ε φ(c)` with `φ(c) ∈ C_ε̄`, and seeds of `a.y_*^ε` form
+  exactly `aC_ε`.
+- The out-degree is at most 1, and each edge is pointed along by exactly one endpoint. So there is at most one sink
+  (two sinks would force a vertex of out-degree 2 on the path between them), and with no sink there is a unique end.
+- (RS1): the type-0 seed forces every pointer and every vertex configuration, and `Stab(y_*) = C`, since `c ∈ C`
+  maps `y_*` into the one-point cylinder.
+- (RS2): the four kinds of point are exhaustive. In the end case, place a `u_0`-sink within `diam(𝔾)` of a far ray
+  vertex; the window then routes along the ray.
+
+**§2, rigidity.**
+- In (A), the restricted `F`-family is a `D`-family for `Y_τ`. This needs `d_Λ ≤ d_(V_u)`, which holds when the
+  generating set of `Λ` contains those of the vertex groups (choose it so, or rescale `D`).
+- Its commuting idempotents obey the forbidden patterns, so they realize `LC(Y_τ)` through the Boolean-algebra
+  presentation.
+- The atom property follows because `[π_ε at a]` is a singleton, and `λΠ` idempotent with `Π ≠ 0` forces
+  `λ ∈ {0,1}`.
+- (B) holds because both "exactly one" halves are window patterns of diameter `≤ 2D`.
+- The (C) monotone chain and the (D) domination are correct, and the different-cosets decomposition closes the
+  argument.
+
+**§3 induction** is correct: the `λ`-coordinates are central, the `Σ`-letters on distinct cosets are orthogonal,
+and `H → A` is a quasi-isometry.
+
+**§4 (membership is consumed)** is correct, and it needs only (RS1) and a solvable word problem.
+
+**§5 corollaries.**
+- (a) uses M. Hall's theorem (a finitely generated subgroup of `F_n` is a free factor of a finite-index subgroup).
+- (b) uses the Smith normal form, a product of finite shifts and copies of `C_Z`, and product stability of rigidity.
+- (c) follows.
+
+**Consistency check.** Every group in (c) is finitely presented with solvable word problem: Britton's lemma plus
+Stallings-decidable membership. That matches `seeded-groups-have-solvable-word-problem`.
+
+**Unverified, not used in the proofs.** "This includes the modular-machine groups of Aanderaa–Cohen" is recalled.
+It is plausible for their first rung `K_M` (an HNN extension of `Z²` over finitely generated subgroups), but not for
+the later groups, whose word problems encode halting. Please say which group is meant.
+
+**Credit.** Bass–Serre theory, M. Hall (1949), Stallings folding, Aanderaa–Cohen and Clapham for the towers.

@@ -10,7 +10,7 @@ distinct_from:
   seeds-never-survive-marked-approximation: that rules out seed configurations on nearby proper quotients; this rules them out on every proper quotient, using word windows, and turns that into an algorithm.
   decidable-groups-embed-in-rigid-sft-compactification-groups: that is the open (SEED) gate; this shows its fp members have decidable word problem even without the rigidity clause.
 ---
-**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; not reviewed). **No
+**ESTABLISHED** (lane proof, bh-invent-15, 2026-09-18; elementary; one referee PASS, bh-ref-engines 2026-09-18). **No
 priority:** the argument is Jeandel's (arXiv:1501.06831, `cor:final`: a recursively presented
 group with a normally aperiodic effectively closed subshift has decidable word problem; read at
 source by bh-g1-simulation, see `research/artifacts/gq-bh-bh-g1-simulation.md`). The only change
@@ -90,3 +90,21 @@ together with `x(u) ≠ a` is unsatisfiable. This is r.e., and exactly one `a` p
   for isolated groups: they consume exactly the decidability Clapham supplies.
 - **What is left for CAP.** A uniform bound on the size of the seed's contradiction
   certificates (the seed-collapse function `κ`) would give CAP.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- *Pullback.* For `w ≠ 1` in `Γ`, a `p`-configuration over `Γ_w` pulls back along `π` to a point of
+  `[p] ∩ Y(Γ)`. Its `U`-patterns are preserved because `π(gū) = π(g)π(ū)`. It is fixed by the nontrivial normal
+  subgroup `ker π`. This is correct.
+- *Semi-decision.* Emptiness of `[p] ∩ Y(Γ_w)` is expressed as an r.e. family of finitary constraints on
+  `A^F`: coset-constancy for `N_w`, the forbidden `U`-patterns, and `x|_U = p`. Compactness turns emptiness into
+  a finite unsatisfiable subfamily. This is correct.
+- *Computing `y_*`.* The same system with `x(u) ≠ a` is correct.
+- *Seeds satisfy the hypothesis.* Any normal subgroup fixing `y_*` lies in `Stab(y_*) = 1`.
+
+The argument is a verbatim adaptation of Jeandel's (arXiv:1501.06831; recursively presented + normally aperiodic
+effectively closed subshift ⇒ decidable word problem), weakened to one cylinder, and the node credits it so. Also
+credit the prior "strongly aperiodic SFT on an fp group ⇒ solvable word problem" line (Jeandel; cf. Cohen's work on
+strongly aperiodic subshifts). Part 1 subsumes part 1 of `seeds-never-survive-marked-approximation`: every proper
+quotient is covered, not only nearby ones. The b970e40ae0 edit (a uniform bound on `κ` ⇒ CAP) is consistent with
+the proof.
