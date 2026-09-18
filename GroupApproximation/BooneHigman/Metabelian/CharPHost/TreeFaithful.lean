@@ -36,7 +36,8 @@ theorem eq_zero_of_forall_X_pow_dvd {F : Type*} [Field F] {p : F[X]}
   rw [Polynomial.natDegree_X_pow] at h1
   omega
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.eq_zero_of_forall_X_pow_dvd
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.eq_zero_of_forall_X_pow_dvd
 
 variable {F : Type*} [Field F] {σ : Type*} [DecidableEq σ] (i₀ : σ)
 

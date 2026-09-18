@@ -6,8 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf P07, lane gl-p07-21a: the per-dart clause for the cut-down witness
 
 This module proves clause 2 of `PocketFourPieceInputProofResidualStatement`
-(`FourPieceInputProofStatement.lean`) for `FourPieceWitness.witnessFaces` (`FourPieceWitnessDef.lean`).
-The context is Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Write `F` for the witness,
+(`FourPieceInputProofStatement.lean`) for `FourPieceWitness.witnessFaces`
+(`FourPieceWitnessDef.lean`).  The context is Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Write `F` for the witness,
 `P` for the blocking set and `f = faceOf (α d)`, `g = faceOf d` for a dart `d` with `g ∉ F` and
 `f ∈ F`.
 

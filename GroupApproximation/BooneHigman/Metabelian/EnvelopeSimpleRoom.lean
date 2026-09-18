@@ -81,7 +81,8 @@ theorem commutator_rn_ne_bot [Finite X] [Nontrivial X] (H : Subgroup (TreeAut X)
   have e1 : prepend [a, a] y = prepend [a] (prepend [a] y) := prepend_append [a] [a] y
   have e2 : prepend [a, b] y = prepend [a] (prepend [b] y) := prepend_append [a] [b] y
   rw [coneSwapFun_prepend_left [a, a] [a, b] y, e2,
-    coneSwapFun_prepend_left [a] [b] (prepend [b] y), e1, coneSwapFun_prepend_left [a] [b] (prepend [a] y),
+    coneSwapFun_prepend_left [a] [b] (prepend [b] y), e1,
+    coneSwapFun_prepend_left [a] [b] (prepend [a] y),
     coneSwapFun_of_not (not_isStreamPrefix_cons_prepend hab [a] [] (prepend [a] y))
       (not_isStreamPrefix_cons_prepend hab [b] [] (prepend [a] y))] at h2
   have h3 := prepend_injective [b] h2
