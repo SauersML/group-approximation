@@ -5777,6 +5777,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Cases
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Injective
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSequence
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTValuation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaGroup
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaSteinberg
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
