@@ -43,12 +43,22 @@ theorem k2KarNorm_ker_le (N : Subgroup (SteinbergGroup ι (Polynomial R))) [N.No
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_ker_le
 
+end KarNormKer
+
+section KarNormPolyGens
+
 /-- The generators `x_ij(h)`, `h(0) = 0`, of `ker ev₀` as a normal subgroup. -/
 def k2KarNorm_polyGens (ι R : Type*) [Fintype ι] [DecidableEq ι] [CommRing R] :
     Set (SteinbergGroup ι (Polynomial R)) :=
   {g | ∃ i j : ι, ∃ hij : i ≠ j, ∃ h : Polynomial R, h.eval 0 = 0 ∧ x i j hij h = g}
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_polyGens
+
+end KarNormPolyGens
+
+section KarNormKer2
+
+variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [CommRing R]
 
 /-- **`ker ev₀` is the normal closure of `{x_ij(h) : h(0) = 0}`** (any index type). -/
 theorem k2KarNorm_ker_eq_normalClosure :
@@ -74,6 +84,6 @@ theorem k2KarNorm_ker_le_H (h3 : ∀ i j : ι, ∃ m : ι, m ≠ i ∧ m ≠ j) 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_ker_le_H
 
-end KarNormKer
+end KarNormKer2
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

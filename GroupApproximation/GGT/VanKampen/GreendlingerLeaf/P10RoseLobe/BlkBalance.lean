@@ -216,7 +216,7 @@ theorem roseLobeBlk_inL_append (L L' : List M.Dart) (o : M.Vertex) :
 theorem roseLobeBlk_outL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
     roseLobeBlk_outL M (x :: L) o = roseLobeBlk_outL M [x] o + roseLobeBlk_outL M L o := by
   unfold roseLobeBlk_outL
-  rw [List.countP_cons, List.countP_singleton]
+  rw [List.countP_cons (l := L), List.countP_singleton]
   exact Nat.add_comm _ _
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outL_cons
@@ -224,7 +224,7 @@ theorem roseLobeBlk_outL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
 theorem roseLobeBlk_inL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
     roseLobeBlk_inL M (x :: L) o = roseLobeBlk_inL M [x] o + roseLobeBlk_inL M L o := by
   unfold roseLobeBlk_inL
-  rw [List.countP_cons, List.countP_singleton]
+  rw [List.countP_cons (l := L), List.countP_singleton]
   exact Nat.add_comm _ _
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_cons
@@ -298,3 +298,45 @@ theorem roseLobeBlk_balanced_of_closed {L : List M.Dart} (hw : IsClosedDartWalk 
   omega
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_of_closed
+
+/-- The leaving count of a duplicate-free list is that of its set of darts. -/
+theorem roseLobeBlk_outL_eq_outN {L : List M.Dart} (hL : L.Nodup) {p : M.Dart → Prop}
+    (hp : ∀ x, x ∈ L ↔ p x) (o : M.Vertex) :
+    roseLobeBlk_outL M L o = roseLobeBlk_outN M p o := by
+  classical
+  unfold roseLobeBlk_outL roseLobeBlk_outN
+  rw [List.countP_eq_length_filter, ← List.toFinset_card_of_nodup (hL.filter _)]
+  congr 1
+  ext x
+  simp only [List.mem_toFinset, List.mem_filter, Finset.mem_filter, Finset.mem_univ, true_and,
+    decide_eq_true_eq, hp]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outL_eq_outN
+
+/-- The arriving count of a duplicate-free list is that of its set of darts. -/
+theorem roseLobeBlk_inL_eq_inN {L : List M.Dart} (hL : L.Nodup) {p : M.Dart → Prop}
+    (hp : ∀ x, x ∈ L ↔ p x) (o : M.Vertex) :
+    roseLobeBlk_inL M L o = roseLobeBlk_inN M p o := by
+  classical
+  unfold roseLobeBlk_inL roseLobeBlk_inN
+  rw [List.countP_eq_length_filter, ← List.toFinset_card_of_nodup (hL.filter _)]
+  congr 1
+  ext x
+  simp only [List.mem_toFinset, List.mem_filter, Finset.mem_filter, Finset.mem_univ, true_and,
+    decide_eq_true_eq, hp]
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_eq_inN
+
+/-- A duplicate-free nonempty dart chain whose set of darts is balanced closes up. -/
+theorem roseLobeBlk_closes_of_balanced {L : List M.Dart} (hne : L ≠ []) (hL : L.Nodup)
+    (hch : L.IsChain fun d e => M.vertexOf (M.alpha d) = M.vertexOf e) {p : M.Dart → Prop}
+    (hbal : roseLobeBlk_Balanced M p) (hp : ∀ x, x ∈ L ↔ p x) : IsClosedDartWalk M L :=
+  roseLobeBlk_closes hne hch fun o => by
+    rw [roseLobeBlk_outL_eq_outN hL hp, roseLobeBlk_inL_eq_inN hL hp]
+    exact hbal o
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_closes_of_balanced
+
+end Counts
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
