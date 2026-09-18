@@ -36,8 +36,9 @@ unital `Q`-algebra, hence `ℤ`-flat and H'-unital (ABC Remark 2.2).
 ## 3. The NK terms vanish (repair of G1)
 Let `S = φ^(-1)R_0 = colim(R_0 →φ R_0 →φ …)`, with automorphism `φ̂`, and let
 `D = S ⊕ Q` be its `Q`-unitization. By the ABC step quoted in the claim,
-`NK(R_0, φ)_± = NK(D, φ̂)_±`, so by Lemma 7.2 it suffices that `D` is regular
-supercoherent.
+`NK(R_0, φ)_± = NK(D, φ̂)_±`: `S` is `H'`-unital, being a colimit of unital `Q`-algebras,
+hence `H`-unital and `ℤ`-flat (ABC Remark 2.2), and `Q` is regular supercoherent. So by
+Lemma 7.2 it suffices that `D` is regular supercoherent.
 - **D is a filtered colimit.** `D = colim_n D_n`, where `D_n = R_(0,n) ⊕ Q ≅ R_(0,n) × Q`,
   since each `R_(0,n)` is unital. The transitions `D_n -> D_(n+1)` are unital.
 - **Each `D_n` is regular supercoherent.** `R_(0,n)` is Morita equivalent to a finite
@@ -47,7 +48,8 @@ supercoherent.
   are they over polynomial rings, because `M_m(A)[t] = M_m(A[t])`.
 - **The transitions are flat, on both sides.**
   - The padding maps are block maps whose blocks are `B⁺` viewed through the substitutions
-    `σ_x`, cut down by availability idempotents. These are flat by part 4 of that node.
+    `σ_x`, cut down by availability idempotents. These are flat by part 4 of that node, which uses the point indicators
+    `δ_n ∈ B⁺` (the Setting).
   - The spine maps `φ` are untwisted corner embeddings. Over the image corner
     `e = φ(1)`, the remaining blocks are standard column modules, which are finitely
     generated projective. On the `(1−e)` part, the unitized transition
