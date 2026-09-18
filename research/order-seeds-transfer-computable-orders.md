@@ -71,7 +71,8 @@ Let `A` be finitely generated and recursively presented.
   - We know of no finitely presented group with an isolated order and a word problem outside EXP. (O) stays
     **open**.
 - **Relative seeds must be stabilizer-rich.** By 2, a group without a computable left order can sit inside a
-  relatively order-seeded `A` only if it fixes a point of every orbit it meets there. So a CAP counterexample or a
+  relatively order-seeded `A` with decidable word problem only if every point of the seeded orbit has a
+  nontrivial stabilizer in it. So a CAP counterexample or a
   (SEED) construction through order seeds must use actions with large point stabilizers, where membership, not
   order, carries the complexity.
 - **Orderability alone certifies nothing.** Darbinyan's Theorem 2 gives a bi-orderable recursively presented group
