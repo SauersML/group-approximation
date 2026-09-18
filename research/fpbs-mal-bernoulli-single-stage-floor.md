@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/fpbs-shifted-stage-relative-cost-zero-or-infinite-2026-09-17.md
   - research/artifacts/fpbs-deep-promotion-reduction-2026-09-18.md
+  - research/artifacts/fpbs-promotion-cost-weak-containment-2026-09-18.md
 ---
 
 **OPEN.** Let `beta` be the Bernoulli shift of
@@ -208,3 +209,35 @@ quantifier-shift).** Artifact
   - The refutation shape: factor-of-iid promotions at depth `j -> infinity`.
 
   The claim stays OPEN.
+
+**Weak containment: promotion costs are maximal at Bernoulli, so each
+depth needs only some free witness (September 18, 2026,
+swarm-0917-w10-w10-fp-last1, stability-approximation).** Artifact
+`research/artifacts/fpbs-promotion-cost-weak-containment-2026-09-18.md`.
+- **Result.** [[fpbs-mal-promotion-cost-monotone-under-weak-containment]] is
+  ESTABLISHED, through its route.
+  - *Theorem M.* Promotion cost `P(a; H', H)`, with labels anywhere in `Γ`
+    and `H` finitely generated over `H'`, is antitone along `a ≼ b` for
+    free `a`. The proof needs one conjugator, finitely many words, and a
+    fix-up piece.
+  - With Abért–Weiss, `Q_j(ρ) = max Q_j(c)` over free actions `c` of `F_2`,
+    and `Q_j(c) <= Q_0(ρ)`.
+  - So this claim holds iff there is `c > 0` such that each depth `j` has
+    **some** free `F_2`-action `a_j` with `Q_j(a_j) >= c`. The `a_j` may be
+    unrelated, profinite, and need not extend to `Gamma_mal`.
+- **What it changes.** Every earlier lower-bound attempt used iid seeds or
+  the Bernoulli weak class (w8 Theorem A, w9 Theorem B). Lower bounds may
+  now use any free action. Only a refutation is tied to actions `≼ ρ`.
+- **Profinite reduction** (artifact §3, Proposition F). For a free profinite
+  tower `G_n = L/N_n`, `Q_j = lim_n Q_j^{(n)}`. Here `Q_j^{(n)}` is a
+  finite-colouring covering problem on the tree of `L`: realise
+  `t_j = phi^j(b)` over `L_{j+1}` at every point of `G_n`.
+- **Where it stops.** No witness can beat `ρ`, so witnesses are proof
+  devices only. No depth-`j` bound was proved for any action.
+  - Rank counting at level `n` gives `e >= 0`, since
+    `rk L_j = rk L_{j+1}`. So a profinite bound must use the fold
+    structure. This is a heuristic, not a kill.
+  - The sofic route needs a relative Carderi–Gaboriau–de la Salle identity,
+    which is not in the graph.
+- **What survives.** Hole (W): uniform per-depth witnesses, split as
+  (W-prof) and (W-sof). (D1) via bundling is unchanged. The claim stays OPEN.
