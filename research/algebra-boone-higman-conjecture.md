@@ -77,3 +77,11 @@ route.*
    `M_n(L_2^{⊗(k+1)})` (`polynomially-representable-algebras-have-fp-simple-envelopes`).
    All covered inputs share one exponential time bound, so the monomial complexity
    benchmark stays untouched.
+7. **All representable inputs, over every field** (2026-09-18, lane `bh-algebra`). *New class, low
+   complexity.* Every finitely generated subalgebra of `M_N(F ⊗ K<x_1..x_m>)`, `F` any field
+   extension of `K`, embeds in some `M_n(L_2^{⊗(k+1)})`
+   (`field-representable-algebras-have-fp-simple-envelopes`, lane proof). Noether normalization
+   reduces field coefficients to polynomial ones, and Attempt 6 finishes. With Anan'in's
+   representability theorem (cited, unread) this covers every finitely generated commutative
+   algebra and every finitely generated right noetherian PI algebra. The complexity benchmark is
+   still untouched, since the hosts are those of Attempt 6.
