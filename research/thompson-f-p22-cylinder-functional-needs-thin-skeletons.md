@@ -15,6 +15,8 @@ artifacts:
   - experiments/thompson-f-p22-2026-09-17/cells.cpp
   - experiments/thompson-f-p22-2026-09-17/vine_partition.py
   - experiments/thompson-f-p22-2026-09-17/show_optimal.py
+  - experiments/thompson-f-p22-skeleton-2026-09-17/skeleton.py
+  - experiments/thompson-f-p22-skeleton-2026-09-17/types_check.py
 ---
 
 **OPEN** (computation done; the reduction and completeness argument below are written as a proof sketch, with
@@ -115,3 +117,14 @@ Guba's cardinality method solves `P_(2,2)` exactly when `h(S_(3,5)) < 2`
   finite computation.
 - **Linear algebra common multiples** (item (b) of the lane). Not run here. The degree-free functional
   concerns only the cardinality method.
+- **Entrywise thin skeletons: vine and comb (caterpillar) patterns across the five roots** (2026-09-18,
+  local-designs). Dead, and proved dead in `thompson-f-caterpillar-tuples-cannot-certify-p22`.
+  - A local discharging rule gives `|S_(3,5) Y| >= (13/6)|Y|` for every `Y` whose first five trees are caterpillars,
+    and `>= (12/5)|Y|` for vines, at every size and degree. The rule is exact at `X_1`, where it gives 1.
+  - Exact min-cut values over the whole class plateau at about 3.80 for caterpillars and 4.48 for vines, against
+    3.07 for the full degree-7 slice.
+  - The `X_1` control case of item 5 does not transfer. Vines rise toward 2 already for `X_2`. For `S_(2,4)`, where
+    27/14 is known, caterpillars plateau at 2.512.
+  - Step (i) therefore needs skeletons that are thin through correlations between the entries, not through the
+    entry class.
+  - Artifacts: `experiments/thompson-f-p22-skeleton-2026-09-17/skeleton.py` and `types_check.py`.
