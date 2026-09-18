@@ -100,3 +100,13 @@ This is the coordinator's design target of 2026-09-18.
      (`sl2-vacuum-hosts-admit-verma-type-modules`, lane `gq-k2-q`).
    - **Still open:** the singular dilation case, hosts not of register type, and
      noncommutative relations outside the `sl_2` pattern.
+6. **The rational half of item 5 comes free with `Q̄` (2026-09-18, lane `gq-infinite-primes`).**
+   `algebraic-closure-kills-rational-steinberg-symbols`: if `Q̄` embeds unitally, extending `Q -> R`, then every
+   rational symbol `{λ, μ}_N` is trivial in `St_N(R)` for every `N >= 3`, with no stability hypothesis.
+   - For that half of item 5, matricial divisibility (item 3 and the divisibility in item 4) is not needed.
+     `[1]` of infinite order is still needed, for `K_1` detection.
+   - If `Q̄` is central, every `{λ, x}`, with `λ in Q̄^x` and `x` a unit, is divisible by every integer. So it
+     must vanish once `E_N(R)` is finitely presented.
+   - `R_L` contains `Q̄`, so the literal symbol budget "finitely presented `⊇ Q` forces infinitely generated
+     rational `K_2`" is false. A budget that bites must exclude `Q̄`. For example: no finitely presented ring
+     with `[1]` of infinite order contains `Q̄` unitally. That is open.
