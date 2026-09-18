@@ -106,3 +106,155 @@ theorem extremalJordanPickCountParity_perm_odd {α : Type*} [Fintype α] [Decida
   omega
 
 end ParityAbstract
+
+section ParityPocket
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **The non-first passages**: the walk darts `d` whose passage `d → next d` is not a first
+turn. -/
+noncomputable def extremalJordanPickCountParity_nonFirst (K : PocketFaceSet D eps X lo hi) :
+    Finset X.toCombMap.Dart :=
+  K.boundary.cycle.toFinset.filter fun d =>
+    ∃ hd : d ∈ K.boundary.cycle, P10ChordLift.NonFirstTurn K d hd
+
+/-- Membership in the non-first passages. -/
+theorem extremalJordanPickCountParity_mem_nonFirst (K : PocketFaceSet D eps X lo hi)
+    {d : X.toCombMap.Dart} :
+    d ∈ extremalJordanPickCountParity_nonFirst K ↔
+      ∃ hd : d ∈ K.boundary.cycle, P10ChordLift.NonFirstTurn K d hd := by
+  unfold extremalJordanPickCountParity_nonFirst
+  rw [Finset.mem_filter, List.mem_toFinset]
+  constructor
+  · rintro ⟨-, h⟩
+    exact h
+  · rintro ⟨hd, hnf⟩
+    exact ⟨hd, hd, hnf⟩
+
+/-- **Three non-first passages**: with `excess = 2` there are exactly three non-first passages.
+Each vertex has `n_x = 0` or `n_x ≥ 3`, so `2 Σ n_x ≤ 3 Σ (n_x - 1) = 6`, and some `n_x ≥ 3`. -/
+theorem extremalJordanPickCountParity_card_nonFirst (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K) (hex : extremalJordanPickCount_excess K = 2) :
+    (extremalJordanPickCountParity_nonFirst K).card = 3 := by
+  have hmaps : ((extremalJordanPickCountParity_nonFirst K : Finset X.toCombMap.Dart) :
+      Set X.toCombMap.Dart).MapsTo (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d))
+      (K.boundary.cycle.toFinset.image fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)) := by
+    intro d hd
+    obtain ⟨hdc, -⟩ := (extremalJordanPickCountParity_mem_nonFirst K).mp (Finset.mem_coe.mp hd)
+    exact Finset.mem_image.mpr ⟨d, List.mem_toFinset.mpr hdc, rfl⟩
+  have hfib : (extremalJordanPickCountParity_nonFirst K).card =
+      ∑ x ∈ K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+        extremalJordanPickCount_nonFirstAt K x := by
+    rw [Finset.card_eq_sum_card_fiberwise hmaps]
+    refine Finset.sum_congr rfl fun x _ => ?_
+    unfold extremalJordanPickCount_nonFirstAt
+    refine congrArg Finset.card (Finset.ext fun d => ?_)
+    simp only [Finset.mem_filter, extremalJordanPickCountParity_mem_nonFirst, List.mem_toFinset]
+    constructor
+    · rintro ⟨⟨hd, hnf⟩, hv⟩
+      exact ⟨hd, ⟨hd, hnf⟩, hv⟩
+    · rintro ⟨-, h1, h2⟩
+      exact ⟨h1, h2⟩
+  have hdich : ∀ x ∈ K.boundary.cycle.toFinset.image
+      (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+      extremalJordanPickCount_nonFirstAt K x = 0 ∨
+        3 ≤ extremalJordanPickCount_nonFirstAt K x := by
+    intro x _
+    by_cases h0 : extremalJordanPickCount_nonFirstAt K x = 0
+    · exact Or.inl h0
+    · right
+      have hpos : 0 < extremalJordanPickCount_nonFirstAt K x := Nat.pos_of_ne_zero h0
+      unfold extremalJordanPickCount_nonFirstAt at hpos
+      obtain ⟨d, hd⟩ := Finset.card_pos.mp hpos
+      obtain ⟨-, ⟨hdc, hnf⟩, hv⟩ := Finset.mem_filter.mp hd
+      have hlt := extremalJordanPickCount_two_lt_nonFirstAt K h3 hdc hnf
+      rw [hv] at hlt
+      omega
+  have hup : 2 * ∑ x ∈ K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+        extremalJordanPickCount_nonFirstAt K x ≤
+      3 * ∑ x ∈ K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+        (extremalJordanPickCount_nonFirstAt K x - 1) := by
+    rw [Finset.mul_sum, Finset.mul_sum]
+    exact Finset.sum_le_sum fun x hx => by rcases hdich x hx with h | h <;> omega
+  unfold extremalJordanPickCount_excess at hex
+  by_cases hall : ∀ x ∈ K.boundary.cycle.toFinset.image
+      (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+      extremalJordanPickCount_nonFirstAt K x = 0
+  · have hz : ∑ x ∈ K.boundary.cycle.toFinset.image
+        (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+        (extremalJordanPickCount_nonFirstAt K x - 1) = 0 :=
+      Finset.sum_eq_zero fun x hx => by
+        have := hall x hx
+        omega
+    omega
+  · push Not at hall
+    obtain ⟨x, hx, hnx⟩ := hall
+    have h3x := (hdich x hx).resolve_left hnx
+    have hle : extremalJordanPickCount_nonFirstAt K x ≤
+        ∑ y ∈ K.boundary.cycle.toFinset.image
+          (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+          extremalJordanPickCount_nonFirstAt K y :=
+      Finset.single_le_sum (f := fun y => extremalJordanPickCount_nonFirstAt K y)
+        (fun _ _ => Nat.zero_le _) hx
+    omega
+
+/-- **The return permutation moves the non-first passages.**  If `f` fixes the darts off the walk
+and `f (next d) = d` exactly for first passages, then `f * formPerm c` moves exactly the
+non-first passages. -/
+theorem extremalJordanPickCountParity_support_eq (K : PocketFaceSet D eps X lo hi)
+    (f : Equiv.Perm X.toCombMap.Dart) (hf : ∀ d, d ∉ K.boundary.cycle → f d = d)
+    (hfirst : ∀ (d : X.toCombMap.Dart) (hd : d ∈ K.boundary.cycle),
+      f (K.boundary.cycle.next d hd) = d ↔ ¬P10ChordLift.NonFirstTurn K d hd) :
+    (f * K.boundary.cycle.formPerm).support = extremalJordanPickCountParity_nonFirst K := by
+  ext d
+  rw [Equiv.Perm.mem_support, Equiv.Perm.mul_apply, extremalJordanPickCountParity_mem_nonFirst]
+  by_cases hd : d ∈ K.boundary.cycle
+  · rw [List.formPerm_apply_mem_eq_next K.boundary.cycle_nodup d hd, ne_eq, hfirst d hd,
+      not_not]
+    constructor
+    · intro h
+      exact ⟨hd, h⟩
+    · rintro ⟨_, h⟩
+      exact h
+  · rw [List.formPerm_apply_of_notMem hd, hf d hd]
+    constructor
+    · intro h
+      exact absurd rfl h
+    · rintro ⟨hd', -⟩
+      exact absurd hd' hd
+
+/-- **The per-pocket reduction.**  Let `f` fix the darts off the walk, with `f (next d) = d`
+exactly for first passages.  If `#O` has the parity of the orbit count of `f` on the walk, then
+the parity clause holds. -/
+theorem extremalJordanPickCountParity_of_perm (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K)
+    (f : Equiv.Perm X.toCombMap.Dart) (hf : ∀ d, d ∉ K.boundary.cycle → f d = d)
+    (hfirst : ∀ (d : X.toCombMap.Dart) (hd : d ∈ K.boundary.cycle),
+      f (K.boundary.cycle.next d hd) = d ↔ ¬P10ChordLift.NonFirstTurn K d hd)
+    (hO : (extremalJordanPickCount_outside K).card % 2 =
+      (K.boundary.cycle.length - f.support.card + f.cycleType.card) % 2) :
+    ExtremalJordanPickCountParity K := by
+  unfold ExtremalJordanPickCountParity
+  intro hex hO2
+  have h3' : (f * K.boundary.cycle.formPerm).support.card = 3 := by
+    rw [extremalJordanPickCountParity_support_eq K f hf hfirst]
+    exact extremalJordanPickCountParity_card_nonFirst K h3 hex
+  have hodd := extremalJordanPickCountParity_perm_odd K.boundary.cycle K.boundary.cycle_nodup
+    f hf h3'
+  omega
+
+end ParityPocket
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_mod_two_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_perm_odd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_nonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_mem_nonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_card_nonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_support_eq
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCountParity_of_perm
