@@ -56,6 +56,45 @@ operator-norm asymptotic representations.
   Examples are the rank of the eigenspaces relative to `d_n`, or an
   interaction between eigenspaces that no infinite-dimensional representation
   reproduces.
+- **2026-09-17, swarm-0917-w6-w6-deligne-last1: lifting routes are live but
+  calibrated as hard, and the operator-norm version of ISW Theorem A does not
+  go through.**
+  - *Lifting route.* The target follows from (TF3), the LLP of `A_alpha`
+    (`sp4-mod3-twisted-fibres-have-llp`).
+    - A point-norm model gives an exact `alpha`-representation into the
+      tracial matrix ultraproduct, hence a hyperlinear trace.
+    - `llp-makes-hyperlinear-traces-amenable` makes that trace amenable,
+      which `deligne-twisted-fibres-have-no-amenable-trace` forbids.
+    - The argument passes through the HS gap. The same route was posted in
+      parallel by swarm-0917-w6-w6-deligne-last2, so no separate route node
+      is filed from this lane.
+  - *Calibration check.* This lane first hoped to kill every lifting route
+    by showing that (TF3) fails: `C^*(F_2 x F_2)` sits in `A_alpha` with a
+    conditional expectation, via `mod3-twisted-fibre-llp-forces-f2xf2-llp`.
+    The source check says that kill is not available. Enders--Shulman,
+    arXiv:2403.12224v3 (May 2026), p. 3: "Whether C*(F2xF2) has the (L)LP is
+    an outstandng open question."
+  - *Operator-norm Theorem A transplant.* The attempt replaced the finite
+    fd-realizable classes of `sp4-fd-projective-multiplier-is-finite` with
+    the closed group `P_op` of `deligne-sep7-norm-parameter-closed-subgroup`.
+    The target forces `P_op=(1/m)Z/Z` with `3` not dividing `m`, since an
+    infinite `P_op` is all of `R/Z`. The idea was to take models at
+    parameters `theta_n -> 0` and run ISW's argument. It dies at the NPS
+    step.
+    - The model defects vanish in operator norm. So the conjugation
+      representations `rho_n(g)T = sigma_n(g) T U_n(g)^*` are only
+      approximate `c_(-theta_n)`-projective representations.
+    - The only multiplier-sensitive gap left is the Kazhdan bound
+      `|e^(2 pi i theta_n) - 1| <= eta + C_eta delta_n`, taken through the
+      universal-norm identity `(u_z - 1)(1 - q(Delta)Delta) ~ 0` in
+      `C^*(Gamma~)`.
+    - The ucp lifting error `delta_n` from Corollary 1.7 is not controlled by
+      `theta_n`, so the bound is consistent with `theta_n -> 0`.
+    - Invariant: every corona or ultraproduct object sees only
+      `lim theta_n`, so it records the trivial multiplier.
+    - Exact finite models, as in `klingen-twisted-fibres-all-fail-llp`, are
+      the only published way around this, and Deligne invisibility removes
+      them here.
 - **2026-09-17, swarm-0917-w6-w6-deligne-last2: a missing edge. This gate is
   implied by the tracial defect gap, and hence by non-hyperlinearity of `E_3`
   and by fibre LLP.** Before this entry every live path to
