@@ -1,0 +1,12 @@
+===== GATE
+  File "scripts/check_palomar_submission.py", line 78
+    from __future__ import annotations
+    ^
+SyntaxError: future feature annotations is not defined
+===== GATE RC 1
+===== SELFTEST
+  File "scripts/check_palomar_submission.py", line 78
+    from __future__ import annotations
+    ^
+SyntaxError: future feature annotations is not defined
+===== SELFTEST RC 1
