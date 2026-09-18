@@ -52,3 +52,14 @@ The local-minimisation ratios in `hermitian-edge-trace-norm-other-stab-facets` a
   `c(P_w^k)/(sqrt3 w)` over the webs with `n >= 2k+3` is `3k/(3k+2)`, attained at `n = 3k+2`. The
   numerical values of `c(P_6^3)` and `c(P_7^3)` are `0.832` and `0.833` of `sqrt3 w` (need `0.818`),
   so `k = 3` is within reach. For large `k` the windows must grow, because `3k/(3k+2) -> 1`.
+- 2026-09-18 (w7-078), **clique windows prove the webs with `k >= 10`.** `hermitian-edge-trace-norm-web-rank-large-k`
+  (ESTABLISHED; ordinary proof on certified clique bounds, exact arithmetic) proves the rank inequality
+  `||C||_1 >= sqrt3 (n - floor(n/(k+1)))` on `C_n^k` for every `k >= 10` and every `n`. It also
+  covers `k = 3` and `5 <= k <= 9` except finite lists of `n`, for example `k = 9` except `n = 29`.
+  - The windows of `m = k + 1` consecutive vertices are cliques. The bound
+    `c_m >= 2 (c_00 m^2 - m F(1))/(m-1)` from the large-m proof exceeds `sqrt3 (m-1)` by
+    `eps_m >= sqrt3 (m-1)/(3m-1)` once `m >= 11`, and that margin handles every remainder `n mod m`.
+  - This answers the concern above that the windows must grow for large `k`. Clique windows need no
+    new certificate, because the margin `eps_m` of the large-m bound grows linearly in `m`.
+  - Still open among webs: `k = 4` (it needs `c_5 > 4 sqrt3`) and the listed small-`k`, small-`n`
+    pairs. The largest of those is `k = 5`, `n = 143`.
