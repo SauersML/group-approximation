@@ -61,9 +61,9 @@ Lemma 9.7(b); `thm:hull`).  The all-cells refutation comes from the nearest-cell
 theorem p07Reroute_arcs_nearestPocket
     (h : GroupApproximation.Full.GL06h4.NearestCellPocketStatement.{u, w, v}) :
     CellPocketWalkProperArcsBelowSectionStatement.{u, w, v} :=
-  p07Reroute_arcs_allCells
-    (Full.GL06h3.allCellsShortEnclosedRefutedBelowSection_of_nearestCellCutSection
-      (GroupApproximation.Full.GL06h4.nearestCellCutSection_of_pocket h))
+  p07Reroute_arcs_allCells <|
+    GroupApproximation.Full.GL06h3.allCellsShortEnclosedRefutedBelowSection_of_nearestCellCutSection
+      (GroupApproximation.Full.GL06h4.nearestCellCutSection_of_pocket h)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.p07Reroute_arcs_nearestPocket
 
