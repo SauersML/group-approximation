@@ -228,3 +228,20 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
   - Survivor: H2 witnesses, far from every honest encoding on the *clean* mass.
     Different labels on dirty tuples are absorbed by the corollary.
   - Still unchecked: membership of the KMS 2-to-2 instances.
+* **Orient Grassmann 2-to-1 instances with a view-local branch selector
+  (heretic lane, 2026-09-18).**
+  **Dead** -- route `rich-2to1-via-view-local-branch-selectors`, killed by
+  `view-local-branch-selectors-are-gauge-blind`.
+  - Invariant: the visible parity space `Q_e meet X_(U_e)` of the selector's view.
+  - Step: completeness. Under the value-preserving gauge `I -> (M, b + Mz)`, the
+    branch bit of a transported witness is exactly uniform given the view and
+    the B-label whenever `Q_e meet X_U = H_U`.
+  - Consequences: honest lift value is at most `1/2 + w_bad/2` in expectation,
+    concentrating over equivariant menus of size `exp(o(n/s^2))`. Completeness
+    `1 - eta'` needs parity leakage on `1 - 2 eta' - o(1)` of the edges.
+  - Brute force: all selectors on 480 windows, 0 violations.
+  - Heretic decomposition, all OPEN:
+    - H1 `parity-leaking-branch-selectors-reach-near-perfect-completeness`,
+      which feeds route `ugc-via-parity-leaking-branch-selector`;
+    - H2 `view-local-selectors-beat-one-half-through-non-honest-witnesses`;
+    - H3 `unique-games-hard-on-non-sse-grassmann-constraint-graphs`.
