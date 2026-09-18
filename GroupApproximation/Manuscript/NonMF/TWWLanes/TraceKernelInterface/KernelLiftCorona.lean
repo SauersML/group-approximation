@@ -47,12 +47,14 @@ def kernelLiftCoronaHom (M : Quasidiagonal.QuasidiagonalTraceModel τ)
   map_add' a b := map_add (FactorizationTraceCoronaProof.coronaMap M) a b
   commutes' z := by
     calc FactorizationTraceCoronaProof.coronaMap M (algebraMap ℂ A z)
-        = FactorizationTraceCoronaProof.coronaMap M (z • (1 : A)) := by
-          rw [Algebra.algebraMap_eq_smul_one z]
+        = FactorizationTraceCoronaProof.coronaMap M (z • (1 : A)) :=
+          congrArg (fun x : A ↦ FactorizationTraceCoronaProof.coronaMap M x)
+            (Algebra.algebraMap_eq_smul_one z)
       _ = z • FactorizationTraceCoronaProof.coronaMap M 1 :=
           map_smul (FactorizationTraceCoronaProof.coronaMap M) z 1
-      _ = z • (1 : NormMatrixCStarCorona (fun n ↦ M.space n)) := by
-          rw [FactorizationTraceCoronaProof.coronaMap_one]
+      _ = z • (1 : NormMatrixCStarCorona (fun n ↦ M.space n)) :=
+          congrArg (fun x : NormMatrixCStarCorona (fun n ↦ M.space n) ↦ z • x)
+            (FactorizationTraceCoronaProof.coronaMap_one M)
       _ = algebraMap ℂ (NormMatrixCStarCorona (fun n ↦ M.space n)) z :=
           (Algebra.algebraMap_eq_smul_one z).symm
   map_star' a := map_star (FactorizationTraceCoronaProof.coronaMap M) a

@@ -46,7 +46,8 @@ theorem eHighCoprimary_two_le_of_nsmul_ne_zero {R M : Type*} [CommRing R] [AddCo
   · rw [pow_one] at h0
     exact hm h0
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_two_le_of_nsmul_ne_zero
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_two_le_of_nsmul_ne_zero
 
 /-- **The exponent-`p` sub-case, proved outright.**  A finite `(ℤ/p^e)[Q]`-module `M` with
 `p • M = 0`, for `Q` f.g. abelian, embeds multiplicatively into `GL_{d}(K)` with
@@ -76,6 +77,7 @@ theorem eHighCoprimary_exists_gl_of_nsmul_eq_zero {p : ℕ} (hp : p.Prime) (e : 
     (fun q m => (congrArg ι (hof q m)).symm.trans (hequiv q m))
   exact ⟨K, hK, d + 1, κ', ρ', hchar, hκ', hrel⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_exists_gl_of_nsmul_eq_zero
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_exists_gl_of_nsmul_eq_zero
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary

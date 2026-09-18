@@ -44,8 +44,9 @@ theorem endBlock_not_isEndBlock_middle {α : Type*} {p : α → Bool} {a b c : �
     (hab : b ≠ a) (hbc : b ≠ c) (ha : p a = false) (hb : p b = true) (hc : p c = false) :
     ¬GL05b.IsEndBlock p [a, b, c] := by
   have hf : [a, b, c].filter p = [b] := by
-    rw [List.filter_cons_of_neg (ne_true_of_eq_false ha), List.filter_cons_of_pos hb,
-      List.filter_cons_of_neg (ne_true_of_eq_false hc), List.filter_nil]
+    rw [List.filter_cons_of_neg (p := p) (ne_true_of_eq_false ha),
+      List.filter_cons_of_pos (p := p) hb,
+      List.filter_cons_of_neg (p := p) (ne_true_of_eq_false hc), List.filter_nil]
   rintro ⟨i, h | h⟩
   · rw [hf] at h
     rcases i with _ | i
@@ -70,8 +71,9 @@ theorem endBlock_not_isEndBlock_ends {α : Type*} {p : α → Bool} {a b c : α}
     (hab : a ≠ b) (hcb : c ≠ b) (ha : p a = true) (hb : p b = false) (hc : p c = true) :
     ¬GL05b.IsEndBlock p [a, b, c] := by
   have hf : [a, b, c].filter p = [a, c] := by
-    rw [List.filter_cons_of_pos ha, List.filter_cons_of_neg (ne_true_of_eq_false hb),
-      List.filter_cons_of_pos hc, List.filter_nil]
+    rw [List.filter_cons_of_pos (p := p) ha,
+      List.filter_cons_of_neg (p := p) (ne_true_of_eq_false hb),
+      List.filter_cons_of_pos (p := p) hc, List.filter_nil]
   rintro ⟨i, h | h⟩
   · rw [hf] at h
     rcases i with _ | _ | i

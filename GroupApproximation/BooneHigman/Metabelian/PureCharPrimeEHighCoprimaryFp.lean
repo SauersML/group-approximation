@@ -44,7 +44,7 @@ theorem eHighCoprimaryEnd_apply (a : MonoidAlgebra (ZMod (p ^ e)) Q) (m : M) :
 
 variable (p e Q M) in
 /-- The action of `Q` on `M` as a monoid hom into `End_{F_p}(M)`. -/
-def eHighCoprimaryRep : Q →* Module.End (ZMod p) M where
+noncomputable def eHighCoprimaryRep : Q →* Module.End (ZMod p) M where
   toFun q := eHighCoprimaryEnd p (MonoidAlgebra.of (ZMod (p ^ e)) Q q)
   map_one' := by
     refine LinearMap.ext fun m => ?_
