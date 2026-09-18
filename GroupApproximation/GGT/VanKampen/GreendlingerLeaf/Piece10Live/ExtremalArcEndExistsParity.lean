@@ -207,3 +207,80 @@ theorem extremalArcEndExists_telescope (M : CombMap.{v}) (w : M.Vertex) (e : M.D
     simp only [List.map_cons, List.sum_cons]
     rw [ih b h2, extremalArcEndExists_at_congr M w h1]
     exact extremalArcEndExists_add_cancel _ _ _
+
+/-- **A lone removed run is closed**: if every dart of the boundary cycle outside the gap `B`
+between the kept darts `d` and `e` is kept and every dart of `B` is removed, then `α d` and `e`
+share a vertex.  Parity count at the vertex of `e`. -/
+theorem extremalArcEndExists_closed_run (M : CombMap.{v}) {faces : Finset M.Face}
+    {c : List M.Dart} (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
+    (hnd : c.Nodup) (hchain : c.IsChain fun a b => M.vertexOf (M.alpha a) = M.vertexOf b)
+    (z : M.Dart → Bool) (hz : ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y → z x = z y)
+    (hind : ∀ d ∈ c, z d = false ∨ z (M.alpha d) = false)
+    {A B C : List M.Dart} {d e : M.Dart} (hdec : c = A ++ d :: (B ++ e :: C))
+    (hA : ∀ x ∈ A, movePred M z x = true) (hd : movePred M z d = true)
+    (hB : ∀ x ∈ B, movePred M z x = false) (he : movePred M z e = true)
+    (hC : ∀ x ∈ C, movePred M z x = true) :
+    M.vertexOf (M.alpha d) = M.vertexOf e := by
+  have hkept : ∀ x, movePred M z x = true →
+      extremalArcEndExists_weight M z (extremalArcEndExists_at M (M.vertexOf e)) x = 0 := by
+    intro x hx
+    obtain ⟨h1, h2⟩ := (movePred_eq_true_iff M z x).mp hx
+    unfold extremalArcEndExists_weight
+    rw [h1, h2, extremalArcEndExists_add_self (extremalArcEndExists_col false), mul_zero]
+  have hremoved : ∀ x ∈ B,
+      extremalArcEndExists_weight M z (extremalArcEndExists_at M (M.vertexOf e)) x =
+        extremalArcEndExists_at M (M.vertexOf e) x +
+          extremalArcEndExists_at M (M.vertexOf e) (M.alpha x) := by
+    intro x hx
+    have hxc : x ∈ c := by
+      rw [hdec]
+      simp [hx]
+    unfold extremalArcEndExists_weight
+    rw [extremalArcEndExists_col_removed (a := z x) (b := z (M.alpha x)) (hB x hx)
+      (hind x hxc), mul_one]
+  have hsum := extremalArcEndExists_parity M hc hnd z hz
+    (extremalArcEndExists_at M (M.vertexOf e)) (extremalArcEndExists_at_sigma M (M.vertexOf e))
+  have hch : (d :: (B ++ [e])).IsChain fun a b => M.vertexOf (M.alpha a) = M.vertexOf b :=
+    hchain.infix ⟨A, C, by
+      rw [hdec]
+      simp⟩
+  have hT := extremalArcEndExists_telescope M (M.vertexOf e) e B d hch
+  rw [hdec, List.map_append, List.sum_append, List.map_cons, List.sum_cons, List.map_append,
+    List.sum_append, List.map_cons, List.sum_cons,
+    extremalArcEndExists_sum_map_eq_zero
+      (extremalArcEndExists_weight M z (extremalArcEndExists_at M (M.vertexOf e))) A
+      (fun x hx => hkept x (hA x hx)),
+    hkept d hd, hkept e he,
+    extremalArcEndExists_sum_map_eq_zero
+      (extremalArcEndExists_weight M z (extremalArcEndExists_at M (M.vertexOf e))) C
+      (fun x hx => hkept x (hC x hx)),
+    extremalArcEndExists_sum_map_congr
+      (extremalArcEndExists_weight M z (extremalArcEndExists_at M (M.vertexOf e)))
+      (fun x => extremalArcEndExists_at M (M.vertexOf e) x +
+        extremalArcEndExists_at M (M.vertexOf e) (M.alpha x)) B hremoved,
+    hT, extremalArcEndExists_at_eq_one M (rfl : M.vertexOf e = M.vertexOf e)] at hsum
+  simp only [zero_add, add_zero] at hsum
+  exact extremalArcEndExists_vertexOf_of_at M (extremalArcEndExists_eq_one_of_add_one _ hsum)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_col
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_at
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_term
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_weight
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_add_self
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_add_cancel
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_eq_one_of_add_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_col_removed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_at_eq_one
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_at_eq_zero
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_vertexOf_of_at
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_at_congr
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_at_sigma
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_term_add_alpha
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_sum_map_eq_zero
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_sum_map_congr
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_parity_univ
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_parity
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_telescope
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalArcEndExists_closed_run
