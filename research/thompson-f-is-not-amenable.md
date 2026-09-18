@@ -199,6 +199,29 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
     maximum.
   - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
+- **Co-amenable non-amenable hosts (heretic, swarm-0917).** The routes above share three
+  assumptions:
+  1. the certificate lives on `F` itself;
+  2. the witness uses `F`'s own dynamics;
+  3. the witness is read from finitely supported data.
+
+  Denying 1 and 2 gives a route: show that `F` is co-amenable in some non-amenable host `G`.
+  Then any invariant mean on `F` would yield one on `G`.
+  - A transfer lemma is established:
+    `co-amenable-subgroups-transfer-hyperfinite-orbit-relations`. A co-amenable subgroup with
+    a hyperfinite measured relation forces the host's relation to be hyperfinite. It needs no
+    amenable stabilizers, unlike the Zimmer-action version, which is circular for `F`.
+  - Consequence: `thompson-f-is-not-co-amenable-in-its-known-nonamenable-hosts`. `F` is not
+    co-amenable in `T` or `V`, nor, by Eymard with `F`'s fixed-point measures, in circle hosts
+    moving `0` or Cantor hosts moving `0^∞` and `1^∞` out of the pair. It is also not
+    co-amenable in the Lodha–Moore group or in Monod's `H(A)` for `0 ∈ P_A`.
+  - Dies: each host's non-amenability is witnessed on a space where `F` is amenable. On the
+    boundary `F` has a fixed point, and on the line its Lebesgue orbit relation is hyperfinite.
+    The co-amenability hypothesis carries that witness up to `G` and contradicts it.
+  - A host route survives only with a witness for `G` whose restriction to `F` is already
+    non-amenable, and that is a direct certificate for `F`.
+  - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
+  - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
