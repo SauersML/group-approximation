@@ -11,7 +11,17 @@ artifacts:
   - research/artifacts/gq-gq-obstruction-miner-invariant.md
 ---
 
-**OPEN.** `T-check = <T-bar, δ>`, `δ(x) = 2x`, the finitely presented ascending HNN
+**REFUTED** (2026-09-18, lane bh-free-16, unreviewed) by `t-check-contains-no-q-rtimes-2-z`.
+- No copy exists, minimal or blown-up.
+- More generally, `A x|_2 Z` with `A` a nonzero 2-divisible subgroup of `Q` lies in `T-check` only when
+  `A ≅ Z[1/2]`.
+- The proof is boundary arithmetic along the doubling semiconjugacy `h`: dyadic cells of positive `h`-mass have
+  boundary values in the 2-power preimage of a finite set, which leaves room for only boundedly many odd
+  denominators.
+
+The original statement follows.
+
+`T-check = <T-bar, δ>`, `δ(x) = 2x`, the finitely presented ascending HNN
 extension of the lifts `T-bar` of Thompson's `T`, contains a subgroup isomorphic to
 `D_2 = Q x|_2 Z = <Q, t | t q t^-1 = 2q>`.
 
