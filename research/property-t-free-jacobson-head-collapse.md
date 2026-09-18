@@ -281,3 +281,35 @@ instead of `4`) changes no conclusion.
   higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
   pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
   OPEN.
+
+- **The Loewy-length escape is closed as stated; the real invariant is the
+  envelope abelianisation (swarm-0917-w10-w10-ptl-last1, 2026-09-18).**
+  `jacobson-p22-finite-models-put-head-in-envelope-commutator` (ESTABLISHED,
+  no Kazhdan input) answers the open spark above.
+
+  *Mechanism.* Take any finite partial model `sigma : B_0 -> G_0`. Run the
+  trap at degree one on the regular module `F_2[G_0] / (I*)^3 F_2[G_0]`,
+  where `I*` is the augmentation ideal of the Levi envelope `U*` of
+  `sigma(N_0)`. Then use `I*/(I*)^2 = U*^ab (x) F_2`. The result is
+  `sigma(x_13(Q)) in [U*, U*]`.
+
+  *Class killed.* Every finite model whose envelope `U*` is abelian:
+  - every split model `A x| F_L`, with `F_L` an arbitrary finite Levi model,
+    even though the regular module of such a model has unbounded Loewy
+    length;
+  - every exact finite quotient of `P_{2,2}(J)`.
+
+  The invariant is `U*^ab`, and every member dies at Step 5 (the trap) of
+  `jacobson-double-parabolic-two-step-trap-proof`, applied on the regular
+  module.
+
+  *What remains.* A head-keeping model must have a nonabelian envelope, and
+  the head must be a product of commutators of Levi-conjugates of
+  `sigma(N_0)`. By Corollary 3 of that node, those commutators must involve
+  wrapped Levi elements, not images of words inside the ball.
+
+  *Negative note.* The trap does not iterate to degree two: the finitary
+  ideal `(Q)` contains no trap base (`S y` is never in `y J`). So
+  `[U*, U*] / [U*, U*, U*]` is not controlled.
+
+  The norm (MF) case is untouched, and the claim stays OPEN.

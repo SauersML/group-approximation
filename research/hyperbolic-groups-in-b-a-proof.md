@@ -43,8 +43,8 @@ same verification BBMZ perform for Zaremsky's oligomorphic criterion; nothing is
 the observation that it is a type (A) verification.
 
 **Step 3. Inputs.**
-- *Hyperbolic groups.* Theorem 4.1 (label `thrm:hyp_to_contracting`; = Theorem A,
-  `thrm:hyp_embed`): "Every hyperbolic group embeds into a full, contracting RSG." This is
+- *Hyperbolic groups.* Theorem 4.1 (label `thrm:hyp_to_contracting`; stated in the introduction as the lettered
+  theorem with label `thrm:hyp_embed`): "Every hyperbolic group embeds into a full, contracting RSG." This is
   `hyperbolic-groups-embed-in-contracting-rsgs`.
 - *Contracting self-similar groups.* BBMZ Example `ex:rn` shows that the Röver--Nekrashevych
   group `V_n(G)` of a finite-state self-similar group `G` is a full RSG, and the remark after
