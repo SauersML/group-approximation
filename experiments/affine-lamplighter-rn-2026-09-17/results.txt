@@ -1,0 +1,111 @@
+### python3 afflamp.py 2 1 6
+p=2 a=1 P       len=  4 in N: True  in K_inf: True  reach=2
+p=2 a=1 L1      len=  8 in N: True  in K_inf: True  reach=4
+p=2 a=1 L2      len= 12 in N: True  in K_inf: True  reach=6
+p=2 a=1 L3      len= 16 in N: True  in K_inf: True  reach=10
+p=2 a=1 L4      len= 20 in N: True  in K_inf: True  reach=14
+p=2 a=1 L5      len= 24 in N: True  in K_inf: True  reach=22
+p=2 a=1 L6      len= 28 in N: True  in K_inf: True  reach=30
+ALL IN K_inf: True
+
+### python3 afflamp.py 3 1 5
+p=3 a=1 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=3 a=1 P       len=  6 in N: True  in K_inf: True  reach=2
+p=3 a=1 L1      len=  8 in N: True  in K_inf: True  reach=5
+p=3 a=1 L2      len= 12 in N: True  in K_inf: True  reach=8
+p=3 a=1 L3      len= 16 in N: True  in K_inf: True  reach=17
+p=3 a=1 L4      len= 20 in N: True  in K_inf: True  reach=26
+p=3 a=1 L5      len= 24 in N: True  in K_inf: True  reach=53
+ALL IN K_inf: True
+
+### python3 afflamp.py 3 2 5
+p=3 a=2 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=3 a=2 P       len=  6 in N: True  in K_inf: True  reach=2
+p=3 a=2 L1      len=  8 in N: True  in K_inf: True  reach=5
+p=3 a=2 L2      len= 12 in N: True  in K_inf: True  reach=8
+p=3 a=2 L3      len= 16 in N: True  in K_inf: True  reach=17
+p=3 a=2 L4      len= 20 in N: True  in K_inf: True  reach=26
+p=3 a=2 L5      len= 24 in N: True  in K_inf: True  reach=53
+ALL IN K_inf: True
+
+### python3 afflamp.py 5 1 4
+p=5 a=1 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=5 a=1 T3      len=  6 in N: True  in K_inf: True  reach=2
+p=5 a=1 T4      len=  8 in N: True  in K_inf: True  reach=2
+p=5 a=1 P       len= 10 in N: True  in K_inf: True  reach=2
+p=5 a=1 L1      len=  8 in N: True  in K_inf: True  reach=7
+p=5 a=1 L2      len= 12 in N: True  in K_inf: True  reach=12
+p=5 a=1 L3      len= 16 in N: True  in K_inf: True  reach=37
+p=5 a=1 L4      len= 20 in N: True  in K_inf: True  reach=62
+ALL IN K_inf: True
+
+### python3 afflamp.py 5 2 4
+p=5 a=2 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=5 a=2 T3      len=  6 in N: True  in K_inf: True  reach=2
+p=5 a=2 T4      len=  8 in N: True  in K_inf: True  reach=2
+p=5 a=2 P       len= 10 in N: True  in K_inf: True  reach=2
+p=5 a=2 L1      len=  8 in N: True  in K_inf: True  reach=7
+p=5 a=2 L2      len= 12 in N: True  in K_inf: True  reach=12
+p=5 a=2 L3      len= 16 in N: True  in K_inf: True  reach=37
+p=5 a=2 L4      len= 20 in N: True  in K_inf: True  reach=62
+ALL IN K_inf: True
+
+### python3 afflamp.py 7 3 4
+p=7 a=3 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=7 a=3 T3      len=  6 in N: True  in K_inf: True  reach=2
+p=7 a=3 T4      len=  8 in N: True  in K_inf: True  reach=2
+p=7 a=3 T5      len= 10 in N: True  in K_inf: True  reach=2
+p=7 a=3 T6      len= 12 in N: True  in K_inf: True  reach=2
+p=7 a=3 P       len= 14 in N: True  in K_inf: True  reach=2
+p=7 a=3 L1      len=  8 in N: True  in K_inf: True  reach=9
+p=7 a=3 L2      len= 12 in N: True  in K_inf: True  reach=16
+p=7 a=3 L3      len= 16 in N: True  in K_inf: True  reach=65
+p=7 a=3 L4      len= 20 in N: True  in K_inf: True  reach=114
+ALL IN K_inf: True
+
+### python3 afflamp.py 3 1 3 --mu
+p=3 a=1 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=3 a=1 P       len=  6 in N: True  in K_inf: True  reach=2
+p=3 a=1 L1      len=  8 in N: True  in K_inf: True  reach=5
+p=3 a=1 L2      len= 12 in N: True  in K_inf: True  reach=8
+p=3 a=1 L3      len= 16 in N: True  in K_inf: True  reach=17
+p=3 a=1 Mord    len=  2 in N: True  in K_inf: False  reach=1
+p=3 a=1 Mconj0  len=  4 in N: True  in K_inf: False  reach=3
+p=3 a=1 Mconj1  len=  4 in N: True  in K_inf: False  reach=3
+p=3 a=1 Mconj2  len=  4 in N: True  in K_inf: False  reach=3
+ALL IN K_inf: False
+
+### python3 afflamp.py 5 2 3 --mu
+p=5 a=2 T2      len=  4 in N: True  in K_inf: True  reach=2
+p=5 a=2 T3      len=  6 in N: True  in K_inf: True  reach=2
+p=5 a=2 T4      len=  8 in N: True  in K_inf: True  reach=2
+p=5 a=2 P       len= 10 in N: True  in K_inf: True  reach=2
+p=5 a=2 L1      len=  8 in N: True  in K_inf: True  reach=7
+p=5 a=2 L2      len= 12 in N: True  in K_inf: True  reach=12
+p=5 a=2 L3      len= 16 in N: True  in K_inf: True  reach=37
+p=5 a=2 Mord    len=  4 in N: True  in K_inf: False  reach=1
+p=5 a=2 Mconj0  len=  4 in N: True  in K_inf: False  reach=5
+p=5 a=2 Mconj1  len=  4 in N: True  in K_inf: False  reach=5
+p=5 a=2 Mconj2  len=  4 in N: True  in K_inf: False  reach=5
+p=5 a=2 Mconj3  len=  4 in N: True  in K_inf: False  reach=5
+p=5 a=2 Mconj4  len=  4 in N: True  in K_inf: False  reach=5
+p=5 a=2 Mpow3   len=  4 in N: True  in K_inf: False  reach=1
+p=5 a=2 Mpow4   len=  3 in N: True  in K_inf: False  reach=1
+ALL IN K_inf: False
+
+### python3 afflamp.py 2 1 4 --persist
+p=2 a=1 P       len=  4 in N: True  in K_inf: False  reach=2
+p=2 a=1 L1      len=  8 in N: True  in K_inf: False  reach=4
+p=2 a=1 L2      len= 12 in N: True  in K_inf: False  reach=6
+p=2 a=1 L3      len= 16 in N: True  in K_inf: False  reach=10
+p=2 a=1 L4      len= 20 in N: True  in K_inf: False  reach=14
+ALL IN K_inf: False
+
+### python3 afflamp.py 3 2 3 --persist
+p=3 a=2 T2      len=  4 in N: True  in K_inf: False  reach=2
+p=3 a=2 P       len=  6 in N: True  in K_inf: False  reach=2
+p=3 a=2 L1      len=  8 in N: True  in K_inf: False  reach=5
+p=3 a=2 L2      len= 12 in N: True  in K_inf: False  reach=8
+p=3 a=2 L3      len= 16 in N: True  in K_inf: False  reach=17
+ALL IN K_inf: False
+
