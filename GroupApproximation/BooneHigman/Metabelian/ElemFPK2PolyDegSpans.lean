@@ -38,7 +38,7 @@ variable {G : Type*} [Group G]
 
 /-- A subgroup that conjugates `N` into itself lies in the normalizer of `N`. -/
 theorem k2PolyDeg_le_normalizer {H N : Subgroup G}
-    (hc : ∀ s ∈ H, ∀ v ∈ N, s * v * s⁻¹ ∈ N) : H ≤ N.normalizer := by
+    (hc : ∀ s ∈ H, ∀ v ∈ N, s * v * s⁻¹ ∈ N) : H ≤ Subgroup.normalizer (N : Set G) := by
   intro s hs
   rw [Subgroup.mem_normalizer_iff]
   intro v
@@ -129,8 +129,10 @@ theorem k2PolyDeg_torus_conj_rootSpan (m L n : I) (hmL : m ≠ L) (hmn : m ≠ n
 
 /-- `S` normalizes `V`. -/
 theorem k2PolyDeg_S_le_normalizer_V {K : Finset I} {L : I} (hLK : L ∉ K) :
-    k2PolyDeg_S p K ≤ (k2PolyDeg_V p K L).normalizer := by
-  refine k2PolyDeg_le_normalizer fun s hs v hv => rootSpan_normalizes ?_ hs hv
+    k2PolyDeg_S p K ≤ Subgroup.normalizer
+      (k2PolyDeg_V p K L : Set (SteinbergGroup I (Polynomial (ZMod p)))) := by
+  refine k2PolyDeg_le_normalizer fun s hs v hv => rootSpan_normalizes
+    (p := fun i j => i ∈ K ∧ j ∈ K) (q := fun i j => i = L ∧ j ∈ K) ?_ hs hv
   intro i j hij a hp k l hkl b hq
   obtain ⟨hi, hj⟩ := hp
   obtain ⟨hk, hl⟩ := hq
@@ -154,7 +156,7 @@ theorem k2PolyDeg_SV_decomp {K : Finset I} {L : I} (hLK : L ∉ K)
       (k2PolyDeg_V p K L : Set (SteinbergGroup I (Polynomial (ZMod p)))) := by
     rw [← Subgroup.coe_mul_of_left_le_normalizer_right _ _ (k2PolyDeg_S_le_normalizer_V hLK)]
     exact hg
-  exact hg'
+  exact Set.mem_mul.mp hg'
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_SV_decomp
 

@@ -49,7 +49,7 @@ theorem suslinBase3Core_lift {A K : Type*} [CommRing A] [CommRing K] (π : A →
       (elementaryGroup (Fin n) A[X]).map
         (elementaryMatrixUnitMap (ι := Fin n) (Polynomial.mapRingHom π)) := by
     rw [elementaryGroup_map_eq_of_surjective (Polynomial.mapRingHom π)
-      (Polynomial.map_surjective π hπ)]
+      (by rw [Polynomial.coe_mapRingHom]; exact Polynomial.map_surjective π hπ)]
     exact hK _ hdet'
   obtain ⟨ε₁, hε₁, hmap⟩ := Subgroup.mem_map.mp hmem
   obtain ⟨c₀, hc₀⟩ : ∃ c₀, elementaryMatrixUnitMap (ι := Fin n)
