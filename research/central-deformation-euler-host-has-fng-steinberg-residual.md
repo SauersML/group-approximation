@@ -182,3 +182,19 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
        every quotient where `p` is nilpotent. The `p`-adic fibre is where the residual lives.
      - The `r <= l − 1` kill result concerns the Euler part, where the `T_p`-classes are already finite, so it is
        not needed there.
+6. **Normal-form data for residual finiteness of `B` (2026-09-18, lane gq-k2-q).** Proved, elementary. RF of `B`
+   itself is still open.
+   - *Eliminating `u`.* In the lamp subring, `u` is central, and `u b_k = p − (1+kl) b_k`. So for a lamp word
+     `w = b_(k_1) ⋯ b_(k_r)` and any position `i`, `u·w = p·(w ∖ i) − (1 + k_i l)·w`, where `w ∖ i` deletes the
+     `i`-th letter.
+   - *Positional relations.* Comparing two positions gives `p(w ∖ i − w ∖ i') = (k_i − k_(i')) l · w`. These
+     relations, together with centrality of `p`, present the positive-degree part of the lamp subring as a
+     `Z[p]`-module spanned by lamp words.
+   - *Consequences.*
+     - `w = b_k b_j b_k` with `i = 1`, `i' = 3` gives `p [b_j, b_k] = 0`. So each lamp commutator is killed by `p`,
+       by `(k−j) l`, and on the left by `π_j` and `π_k`. It vanishes where `p` is a unit, which is consistent with
+       Attempt 4.
+     - Modulo `p`, a word is killed by `l·(k_i − k_(i'))` for each pair of positions. In the fibre `B/(p)`, only
+       the powers `b_k^r` stay torsion-free in positive degree.
+   - *What RF needs.* Enough finite representations to separate the `Z[p]`-module of words modulo the positional
+     relations, together with residual finiteness of the commutative image `A_p[x^(±1); σ]`. Neither is done.
