@@ -500,6 +500,22 @@ content in that region.
   `∫ dS/S = infinity`, because `S_{p_c} = 0`. Next: prove the log law
   `kappa_A((s,t]) >= c log(m(t)/m(s))`, and identify an invariant input that
   forces (AG*).
+* **The log law for volume-uniform activation gates (2026-09-18, w7-123).**
+  `fpbs-volume-uniform-activation-gate-log-law`: test the activation gate on
+  two far-apart edges `{u,w}`, `{v,w'}`. There `D^A(u,v) >= s^2 ΔPsi` and
+  `X J X(u,v) <= 4 mu Psi(t)`, where `Psi` is the probability that the spine
+  meets both edges. A spine vertex at distance `4` gives `Psi(y) >= m(y)/d^4`.
+  Chaining intervals on which `m` grows by the factor `4 d^4` gives
+  `kappa_A((s,t]) >= c log(m(t)/m(s)) - c'` for any gate holding over all
+  two-edge volumes. This covers (AG), (AG*) and the full gate. It holds for
+  every connected invariant spine with continuous density, with no collapse
+  or critical-L2 input.
+
+  **Where it dies:** every volume-uniform activation input dies at the birth
+  of any spine (`kappa_A = infinity` near `s*`), whether or not the family
+  collapses. So the failure is not evidence about uniqueness. A correct input
+  must be exhaustion-specific. Open: the log law along a fixed exhaustion,
+  where `X J X` carries unbounded spine-routed mass.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
