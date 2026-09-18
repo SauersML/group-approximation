@@ -194,7 +194,8 @@ theorem wk_fg [Finite K] : Group.FG (WK K) := by
       inferInstance
   exact Group.fg_of_surjective
     (f := (wreathCongr K gstarEquivVertical gstarCosetEquiv gstarCosetEquiv_smul).symm.toMonoidHom)
-    (MulEquiv.surjective _)
+    (MulEquiv.surjective
+      (wreathCongr K gstarEquivVertical gstarCosetEquiv gstarCosetEquiv_smul).symm)
 
 /-- **thm:notes-visible-quotient.**  For a finite group `K`, the map
 `Φ_K : W_K → P_K` is onto, `P_K` is residually finite, and
