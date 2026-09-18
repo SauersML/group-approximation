@@ -15,7 +15,9 @@ distinct_from:
   bh-separators-must-omit-nested-decidable-hosts: that asks for "a genuinely new invariant" beyond decision problems, complexity bounds and approximation properties; this is one, since its witness has solvable word problem.
 ---
 
-**ESTABLISHED** (lane proof, elementary; Rauzy's theorem was read at source, arXiv:2002.02540 TeX, md5 daf6a587…, copy in `gq/src/bh-invent-11/rauzy.tex`; no priority claimed). The separating side is the OPEN node `fp-simple-group-containing-a-non-efrf-residually-finite-group`.
+**ESTABLISHED** (lane proof, elementary; Rauzy's theorem was read at source, arXiv:2002.02540 TeX, md5 daf6a587…, copy in `gq/src/bh-invent-11/rauzy.tex`; no priority claimed). The separating side is `fp-simple-group-containing-a-non-efrf-residually-finite-group`.
+
+**Settled 2026-09-18: P_eff does not separate Boone–Higman.** (S1_eff) below is false. `nv-machines-realize-linear-time-lamp-centralizers` puts the Dyson group `L(A)` in `B_A` for the set `A` of `linear-time-rauzy-sets-exist`, which is closed but not effectively closed. So a finitely presented simple group contains a residually finite group that is not effectively residually finite. The theorem below is unchanged: it now shows that `P_eff` is a class that every Boone–Higman host must leave.
 
 ## Definition
 
@@ -43,7 +45,7 @@ distinct_from:
 
 ## What a kill would take
 
-A finitely presented simple group containing `L(A)` for one Rauzy set `A`. Two facts constrain the shape (recorded in the OPEN node):
+A finitely presented simple group containing `L(A)` for one Rauzy set `A`. Two facts constrain the shape (recorded in `fp-simple-group-containing-a-non-efrf-residually-finite-group`; the machine construction there is consistent with both):
 - In any host, the amalgamated lamps must be separated from the rest of the base by a condition as complex as `A`. Neither a clopen stabilizer nor a virtual retract can do that.
 - The double `L(A)` has index 2 in `L *_{U_A} (U_A × Z/2)`. So `L(A) ∈ B_A` iff `U_A` is the intersection of `L` with a centralizer in some `B_A` overgroup (`pbh-coset-wreaths-iff-identity-edge-hnns`).
 
