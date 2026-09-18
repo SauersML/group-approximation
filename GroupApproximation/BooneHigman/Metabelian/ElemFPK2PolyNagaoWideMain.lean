@@ -52,7 +52,11 @@ open GroupApproximation.BooneHigman.SteinbergBasic
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (act act_one unitVec
   rootSpan_mono)
 
-variable {I : Type} [Fintype I] [DecidableEq I] {p : ℕ} [Fact p.Prime]
+variable {I : Type} [Fintype I] [DecidableEq I]
+
+section Induction
+
+variable {p : ℕ} [Fact p.Prime]
 
 /-- **Coset trick.**  A `σ` with `σ(e_L) ∈ Q` passing `k2PolyNagao_Gens` gives `Stab(K, L)`. -/
 theorem k2PolyNagaoWide_stab_of_gens {K : Finset I} {m L : I} (hLK : L ∉ K) (hmL : m ≠ L)
@@ -174,6 +178,8 @@ theorem k2PolyNagaoWide_stab_all (hR : k2PolyNagaoWide_Statement) (n : ℕ) :
       (k2PolyNagaoWide_step_gens hR hmL hLK hmK ⟨i, hi, him⟩ hthird hconst hSK hJ)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_stab_all
+
+end Induction
 
 /-- **Reduction.**  The residual gives `k2PolyNagaoSigma_WideStatement`. -/
 theorem k2PolyNagaoWide_wide_of_statement (hR : k2PolyNagaoWide_Statement) :
