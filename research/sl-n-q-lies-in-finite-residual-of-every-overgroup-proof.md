@@ -1,7 +1,6 @@
 ---
 rg: 2
 id: sl-n-q-lies-in-finite-residual-of-every-overgroup-proof
-title: Direct proof of: sl n q lies in finite residual of every overgroup
 kind: route
 title: Direct proof from the absence of nontrivial finite quotients of divisible groups
 target: sl-n-q-lies-in-finite-residual-of-every-overgroup
