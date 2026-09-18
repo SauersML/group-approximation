@@ -1,0 +1,1 @@
+{"mode": "spine", "N": 9, "rounds": [{"round": 1, "new": 6, "new_by_size": {"5": 6}, "truncated_pairs_or_bounds": 0}, {"round": 2, "new": 7, "new_by_size": {"6": 1, "7": 3, "8": 3}, "truncated_pairs_or_bounds": 3}, {"round": 3, "new": 0, "new_by_size": {}, "truncated_pairs_or_bounds": 27}], "spine_by_size": {"2": 3, "5": 6, "6": 1, "7": 3, "8": 3}, "secs": 234.8}

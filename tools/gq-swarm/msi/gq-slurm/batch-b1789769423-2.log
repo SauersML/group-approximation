@@ -1,0 +1,1669 @@
+ℹ [870/912] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeCantorAction
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_eq_take' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:41:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_streamFun' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.streamFun_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:99:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:119:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.firstWord_length_prepend' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeCantorAction.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.cantorHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [881/920] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenConj
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_mapsCone_coneSwap_fix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:49:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_inv' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenConj.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_conj_coneSwap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [883/920] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenWords
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:27:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_exists_avoid1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_exists_avoid2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_left' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_right' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenWords.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_not_prefix_append_swap' depends on axioms: [propext]
+ℹ [890/929] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenStep
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:28:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.VGenSwapIn' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenStep.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_shorten_both' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [891/929] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenInduct
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_split_last' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenInduct.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [892/929] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenAll
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_all' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenAll.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgen_swapIn_of_short' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1042/1079] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:29:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenSwapOrOne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenSwapOrOne_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortPairs' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortPairs_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:94:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.vgenShortSwaps_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1043/1079] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenCount
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:32:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_getElem_eq' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_exists_source' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_take_eq_of_prepend_eq' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_source_eq_of_prefix' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_length_eq_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenCount.lean:149:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_inv_ge' depends on axioms: [propext, Quot.sound]
+ℹ [1044/1079] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenLeaf
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:23:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_not_prefix' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:33:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_fix_same_length' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenLeaf.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_leaf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1045/1079] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenMove
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenMove.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_move_incomparable' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenMove.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_move' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1046/1079] Replayed GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVSwapGenAll
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_base' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_mem_of_coneSwap_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVSwapGenAll.lean:170:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_closure_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1988/2013] Replayed GroupApproximation.BooneHigman.Metabelian.CharPHost.Carry
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:97:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.exists_eq_C_eval_add_X_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:109:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_exists' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:118:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_exists' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:126:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.X_dvd_carrySubst_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:137:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_eq_add_carryQuot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:146:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carryQuot_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:160:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.charPSubst_X_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:167:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.charPSubst_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/Carry.lean:177:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.charPCarry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1989/2013] Replayed GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeShift
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.Letter' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.extParam' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.digitEval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.carryDiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_eq_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.eval_zero_C_add_X_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_unique' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:114:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.digit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.carry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:128:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_image' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.shift_comp_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeShift.lean:145:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.mulVec_add_X_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [1992/2013] Built GroupApproximation.BooneHigman.Metabelian.AffineFPIdentities (57s)
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:40:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.commute_commutator_of' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.commute_of_shear' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.mul_commutator_eq_one' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPIdentities.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.exists_ne_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2012/2023] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeGenTorsionNakayama (69s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_exists_exponent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:79:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_mem_commutator_subtype' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:99:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_class_eq_of_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeGenTorsionNakayama.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.gentorsion_class_sq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2014/2030] Built GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighCoprimaryFp (67s)
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryEnd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:45:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryEnd_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryRep' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryAlgHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:76:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryAlgHom_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:83:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryFpModule' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighCoprimaryFp.lean:137:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryFp_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2015/2030] Built GroupApproximation.BooneHigman.Metabelian.CoprimaryModule (52s)
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.DerivedModule' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:46:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.dcls_pow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.endHom_ext' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conjEnd' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:87:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conjEnd_dcls' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:100:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conj' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conj_dcls' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.commutator_le_ker_conj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conjQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:132:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.conjQ_of' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:140:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.instModuleDerived' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:147:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.of_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.of_smul_dcls' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2143/2186] Built GroupApproximation.BooneHigman.Metabelian.CharPHost.CarryRecursion (55s)
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.aeval_carrySubst' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:84:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubstList_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:92:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubstList_X_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubstList_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/CarryRecursion.lean:145:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.aeval_carrySubstList' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2144/2188] Built GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord (54s)
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.act' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.act_cons' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.length_act' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.act_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:78:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.isTreeMap_act' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:87:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image_one_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:97:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.digit_carry_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:104:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.map_one_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:116:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.act_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.digit_carry_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:167:14: 'GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.act_act' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2149/2191] Replayed GroupApproximation.BooneHigman.Metabelian.CharPCoordsNagata
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.lt_up' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.T1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.t1_comp_t1_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.T' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.sum_r_mul_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.degreeOf_zero_t' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.degreeOf_t_ne_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:127:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.leadingCoeff_finSuccEquiv_t' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:157:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.T_leadingcoeff_isUnit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsNagata.lean:170:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.Nagata.exists_algEquiv_isUnit_leadingCoeff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2150/2191] Built GroupApproximation.BooneHigman.Metabelian.CharZeroHost.Letters (56s)
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:38:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.DigitData' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:46:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.evalN' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.evalN_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.evalN_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.sigma' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.sigma_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.sigma_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:100:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_sigma_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.divP' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:114:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.eq_mul_divP' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.sigmaZ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:128:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.dig' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:140:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_sigmaZ_eq_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:146:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.castVec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroHost/Letters.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.dig_castVec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2152/2191] Replayed GroupApproximation.BooneHigman.Metabelian.CharPCoordsStatement
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsStatement.lean:58:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.CharPPolynomialCoordinatesStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsStatement.lean:69:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.FiniteDomainAwayEmbeddingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2153/2191] Replayed GroupApproximation.BooneHigman.Metabelian.CharPCoordsAway
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAway.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.quotSpanEquivAdjoinRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAway.lean:76:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.matrixEmbedding_adjoinRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAway.lean:91:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.matrixEmbedding_localizationAway' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2180/2202] Built GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock (89s)
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.blockEnd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:64:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_matrix_of_end' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:82:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_linearization_of_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:109:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_linearization_of_field_pieces' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2200/2213] Replayed GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEChain
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_IsChain' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_val' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_ann' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_ideal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_baer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:133:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_selfInj' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:159:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_exists_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:188:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_embed_of_artinian' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEChain.lean:206:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_isArtinianRing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2202/2215] Building GroupApproximation.BooneHigman.Metabelian.AffineFPModel (49s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/nonsofic_existence/GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean -o /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/AffineFPModel.olean -i /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/AffineFPModel.ilean -c /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/AffineFPModel.c --setup /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/AffineFPModel.setup.json --json
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.vecEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.vecAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.affAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.AffineElementary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:93:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.elementaryUnit_mulVec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.affAction_root' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.closure_single_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:124:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.vec_hom_ext' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.model_conj_single' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:144:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c1' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:157:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c2' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:168:14: 'GroupApproximation.BooneHigman.Metabelian.AffineFP.model_c3' depends on axioms: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:174:4: typeclass instance problem is stuck
+  Group ?m.20
+
+Note: Lean will not try to resolve this typeclass instance problem because the type argument to `Group` is a metavariable. This argument must be fully determined before Lean will try to resolve the typeclass.
+
+Hint: Adding type annotations and supplying implicit arguments to functions can give Lean more information for typeclass resolution. For example, if you have a variable `x` that you intend to be a `Nat`, but Lean reports it as having an unresolved type like `?m`, replacing `x` with `(x : Nat)` can get typeclass resolution un-stuck.
+error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:182:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.AffineFP.model_commutator`
+error: Lean exited with code 1
+ℹ [2205/2220] Built GroupApproximation.BooneHigman.Metabelian.PureCharZeroMatrix (48s)
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:36:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffMat' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffMat_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:64:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffMat_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffMatHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffGL' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroMatrix.lean:103:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkAffGL_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2209/2224] Built GroupApproximation.BooneHigman.Metabelian.CharPCoordsFreeMul (51s)
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.awayMulLeft' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.awayMulLeft_mk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:94:14: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.awayMulLeft_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsFreeMul.lean:114:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.matrixEmbedding_of_basis_away' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2221/2235] Replayed GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherFinite
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherFinite.lean:62:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.noether_finiteDimensional_of_adjoin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [2225/2236] Building GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff (75s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/nonsofic_existence/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean -o /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.olean -i /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.ilean -c /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.c --setup /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.setup.json --json
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:32:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_coeff_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:40:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_init_coeff_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_tail_coeff_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_tail_coeff_ge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_decomp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:67:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_shift_coeff_zero`:
+  [Fact (Nat.Prime p)]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fact (Nat.Prime p)] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_shift_coeff_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_coeff_add_V' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_coeff_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittECoeff.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_coeff_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: Lean exited with code 1
+ℹ [2232/2250] Replayed GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherTranscendence
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherTranscendence.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.noether_exists_transcendence_lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2261/2284] Built GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase (47s)
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:29:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_inr_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_aut_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBaseAutOf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBaseAut' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:82:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_left_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBaseHom' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBaseHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBaseHom_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_fg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_comm' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:132:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eBase_pow' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:143:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.exists_gl_of_eBase' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2295/2366] Built GroupApproximation.BooneHigman.Metabelian.CharPCoordsAssembly (49s)
+info: GroupApproximation/BooneHigman/Metabelian/CharPCoordsAssembly.lean:79:2: 'GroupApproximation.BooneHigman.Metabelian.CharPCoords.charPCoordinates_of_finiteDomainAway' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [2347/2411] Built GroupApproximation.BooneHigman.Metabelian.PureCharZeroCocycle (48s)
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:42:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.translEnd' depends on axioms: [Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.transl' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.instModuleTransl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.of_smul_transl' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:78:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.abOf_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.of_kkSection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:97:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkElt_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:103:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkElt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkElt_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.KKSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkCocycle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:139:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkCocycle_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:148:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkHom' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eq_one_of_abOf_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:178:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.kkHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:195:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.isMulTorsionFree_abDerived' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharZeroCocycle.lean:204:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.isAddTorsionFree_kkSpace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3022/3051] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroRingPresentation
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:149:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.freeToPoly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:150:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.freeToPoly_ι' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:151:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.freeToPoly_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:152:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.liftRel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.freeToPoly_liftRel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyRelators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:155:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyRelators_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:156:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.liftRel_mem_polyRelators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:157:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.comm_mem_polyRelators' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:158:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.RelQuot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:159:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:160:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.ker_relQuotMk' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:161:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:162:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk_relator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk_ι_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:164:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingPresentation.lean:165:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.relQuotMk_mem_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3026/3058] Replayed GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.CommutatorCalculus
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:83:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_mul_left' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:84:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_mul_right' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:85:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.comm_assoc' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:86:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_commutatorElement_right' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:87:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_commutatorElement_left' depends on axioms: [propext]
+info: GroupApproximation/Manuscript/SimpleKazhdanSofic/LeavittFP/CommutatorCalculus.lean:88:14: 'GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.commute_of_mem_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3042/3074] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMGroup
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:162:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.Gen' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.R1Dom' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:164:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.R2Dom' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:165:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.R3Dom' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:166:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.r0' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:167:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.r1' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:168:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.r2' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:169:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.r3' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:170:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rels' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:171:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rels_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:172:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.KMGroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:173:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.kmGroup_isFinitelyPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:174:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:175:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen_diag' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:176:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:177:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen_adj_none' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:178:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen_adj_some' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:179:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.spare' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:180:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.spare_ne_left' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:181:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.spare_ne_right' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:182:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:183:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMGroup.lean:184:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3047/3077] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMWords
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:116:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.Cgw' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:117:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.Cww' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:118:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.A0' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:119:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.Ins' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.ins_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cgw_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cww_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWords.lean:123:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.a0_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3048/3077] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMPhi
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:102:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.coef' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:103:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.coef_none' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:104:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.coef_some' depends on axioms: [propext]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:105:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phiGen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phiGen_diag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:107:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phiGen_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_rels' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:109:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMPhi.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3052/3079] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMWordPackage
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_package' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:109:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_commute_gen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_commute_word' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.gen_none_word' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:112:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_cons_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMWordPackage.lean:113:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.word_append' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3054/3079] Replayed GroupApproximation.BooneHigman.Metabelian.ChainHost
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.affineAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.AffineElementaryGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.AffineExtensionFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:79:2: 'GroupApproximation.BooneHigman.Metabelian.Chain.embedsInFPSelfSimilarGroup_of_affineHost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.finiteType_int_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainHost.lean:96:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.finiteType_int_of_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3056/3079] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPPolyPresentation
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:152:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyQuotientMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyQuotientMap_ι' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyQuotientMap_surjective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:155:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyRelators' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:156:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyRelators_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:157:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.natCast_mem_polyRelators' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:158:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.comm_mem_polyRelators' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:159:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.span_polyRelators_le_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:160:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.RelQuot' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:161:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:162:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.ker_relQuotMk' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk_surjective' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:164:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk_relator' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:165:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk_ι_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:166:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:167:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuotMk_mem_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:168:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.relQuot_natCast_p' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyPresentation.lean:169:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.center_natCast_p' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3057/3079] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPPolyKernel
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyKernel.lean:62:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.zmodToCenter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyKernel.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.centerGen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyKernel.lean:64:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyKernel.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyLift_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPPolyKernel.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.ker_polyQuotientMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3058/3079] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMRoots
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:171:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootWords' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:172:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.closure_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:173:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.RootGroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:174:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootGroup_commGroup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:175:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootElem' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:176:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:177:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:178:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum_monomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:179:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:180:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:181:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_monomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:182:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:183:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:184:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:185:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:186:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.freeAlgebra_induction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMRoots.lean:187:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.adj_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3061/3081] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPKMIso
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:126:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiRoot_adjacent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psiGen' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:128:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psi_rels' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:129:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psi' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:130:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psi_x' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.psi_comp_phi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:132:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_psiRoot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:133:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.phi_comp_psi' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:134:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.kmEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPKMIso.lean:136:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergFreeAlgebra_isFinitelyPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3062/3081] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroRingKernel
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:133:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.centerGen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:134:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyLiftC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:135:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyLift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:136:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyLift_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:137:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyLift_comp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:138:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.polyLiftC_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:139:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.span_le_ker_polyLiftC' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:140:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.ker_comp_freeToPoly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:142:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.steinberg_isFinitelyPresented_of_presentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroRingKernel.lean:144:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.steinberg_isFinitelyPresented_of_finitePresentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3063/3081] Replayed GroupApproximation.BooneHigman.Metabelian.ChainCharZero
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:39:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.SIntPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:50:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.CharZeroPolynomialCoordinatesStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:62:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.CharZeroElementaryAbsorptionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.CharZeroElementaryFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.CharZeroAffineSelfSimilarStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.CharZeroLinearHostStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.sIntPoly_finiteType' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ChainCharZero.lean:118:14: 'GroupApproximation.BooneHigman.Metabelian.Chain.charZeroLinearHostStatement_of_chain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3064/3081] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPEndpoint
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPEndpoint.lean:96:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.steinbergPoly_isFinitelyPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPEndpoint.lean:97:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolynomialFpElementaryFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPEndpoint.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolynomialFpK2VanishingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPEndpoint.lean:100:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpElementaryFP_of_polynomialFpK2Vanishing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3067/3092] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroEndpoint
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:99:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.steinbergSIntPoly_isFinitelyPresented' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:101:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_isFinitelyNormallyGenerated_of_fg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:103:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.isFinitelyPresented_elementaryGroup_of_fg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:104:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroStableK2FGStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:105:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroRankFourFPStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:107:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroElementaryFPGapStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroEndpoint.lean:108:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroElementaryFP_of_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3072/3094] Replayed GroupApproximation.Leavitt.LeavittModuleRank
+info: GroupApproximation/Leavitt/LeavittModuleRank.lean:217:21: 'GroupApproximation.UniversalLeavitt.nonuniqueModuleRank' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [3073/3094] Replayed GroupApproximation.Leavitt.BinaryLeavittAllRanksUnits
+info: GroupApproximation/Leavitt/BinaryLeavittAllRanksUnits.lean:201:21: 'GroupApproximation.UniversalLeavitt.manuscriptSentence_glElUnitsAllRanks' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/Leavitt/BinaryLeavittAllRanksUnits.lean:202:21: 'GroupApproximation.UniversalLeavitt.manuscriptSentence_rightModuleSelfSimilarity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3077/3097] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagAction
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:53:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.T_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.T_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.T_adjacent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:117:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.generatorPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:141:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.generatorPerm_kills_relations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:147:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.lift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.lift_x' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:163:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.lift_comp_stab' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:171:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.LastRootAction.act_eq_one_of_stab_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagAction.lean:184:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2Stab_of_lastRootAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3084/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2SplitStab
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2SplitStab.lean:30:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2_eq_bot' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2SplitStab.lean:44:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.k2StabInjective_of_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2SplitStab.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2IndexMap_K2Map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3085/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2Split
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Split.lean:41:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2InjectiveStabilityStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Split.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2HomotopyStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Split.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.FieldK2VanishingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Split.lean:75:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3086/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2Homotopy
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_constantCoeff_K2Map_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:57:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_C_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_constantCoeff_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:80:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_constantCoeff_injective_of_isEmpty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:88:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2Map_constantCoeff_eq_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2Nil_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:132:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2Homotopy_of_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Homotopy.lean:146:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2Nil_of_homotopy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3087/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2Stability
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Stability.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2NilStabilityPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Stability.lean:48:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2InjectiveStability_of_nilPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2Stability.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_nilPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3088/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2OneVarTransport
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_K2Map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:40:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_K2Map_of_comp_eq_id' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2MapEquiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:71:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2IndexMap_castLEEmb_castLEEmb' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2IndexMap_eq_one_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.evalRingHom_zero_comp_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:105:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.constantCoeff_eval_zero_finSuccEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarTransport.lean:115:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.constantCoeff_comp_finSuccEquiv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3089/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabRange
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabRange.lean:63:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.eq_one_of_K2Stab_retract' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabRange.lean:73:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2StabRangeDiagStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabRange.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2NilStabilityPos_of_diag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabRange.lean:101:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_stabRangeDiag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3090/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2OneVar
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2OneVarNilStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:80:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.nil_of_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:99:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2Nil_of_oneVar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2NilPos_of_oneVar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:124:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2OneVarNil_of_nilPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVar.lean:133:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_oneVar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3091/3103] Built GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittEBase (77s)
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:41:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_red' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_S' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_D' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:65:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_zmod_ker' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_red_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_zmod_cast_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:114:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_red_eq_zero_of_pow_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:121:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_red_ne_zero_of_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:128:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_mem_of_red_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:142:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_eq_p_mul_of_red' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:157:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_isUnit_or' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:166:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_p_pow_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:178:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_p_pow_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighWittEBase.lean:186:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittE_isChain' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3092/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2OneVarNilCubeMaps
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:36:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:56:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_C' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:72:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:78:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:84:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:89:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X_of_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:95:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:100:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X_of_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:112:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X_of_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:118:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeScale_X_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:127:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_idem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:141:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_comp_comm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:151:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.constantCoeff_comp_cubeKill' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:166:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_comp_cubeScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:179:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeUnit_comp_cubeScale_comp_cubeKill' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:195:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeKill_comp_cubeScale_of_ne' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCubeMaps.lean:206:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.constantCoeff_comp_cubeScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3093/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2OneVarNilCube
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:41:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2DiesAfterPadding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:52:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:59:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_K2Map' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.cube_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:120:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.nil_of_cube' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:131:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2CubeNilStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:138:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2NilPos_of_cubeNil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:147:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2CubeNil_of_nilPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2OneVarNil_of_cubeNil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2OneVarNilCube.lean:162:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_cubeNil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3094/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenMaps
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:34:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenShift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:43:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenTranslate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenCollapse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:67:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenShift_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenShift_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:80:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenScale_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:86:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenScale_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:92:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenTranslate_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenTranslate_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:105:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenCollapse_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenMaps.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenCollapse_X' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3095/3103] Replayed GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenComp
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:35:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenShift_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenScale_comp_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:55:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenScale_comp_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:69:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenTranslate_comp_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenTranslate_comp_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenCollapse_comp_shift_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenComp.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenCollapse_comp_C' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3096/3103] Built GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize (65s)
+info: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:151:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.noether_exists_fd_embedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+✖ [3097/3103] Building GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg (77s)
+trace: .> LEAN_PATH=/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Cli/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/batteries/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/Qq/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/aesop/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/proofwidgets/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/importGraph/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/plausible/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/packages/mathlib/.lake/build/lib/lean:/projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean /projects/standard/hsiehph/sauer354/.elan/toolchains/leanprover--lean4---v4.32.0/bin/lean -DwarningAsError=true /projects/standard/hsiehph/sauer354/nonsofic_existence/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean -o /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.olean -i /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/lib/lean/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.ilean -c /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.c --setup /projects/standard/hsiehph/sauer354/nonsofic_existence/.lake/build/ir/GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.setup.json --json
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_precomp' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:70:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_trans' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:85:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_psi' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:94:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_trans' depends on axioms: [propext,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:140:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_mul' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:161:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_one' depends on axioms: [propext, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:168:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_alg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:187:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conj_mem' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:194:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_restr' depends on axioms: [propext, Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:203:2: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:206:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:214:5: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:218:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_val' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:226:4: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:227:6: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:233:14: Unknown constant `GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:241:4: Function expected at
+  eHighArtinHasse_conjB
+but this term has type
+  ?m.1
+
+Note: Expected a function because this term is being applied to the argument
+  act
+
+Hint: The identifier `eHighArtinHasse_conjB` is unknown, and Lean's `autoImplicit` option causes an unknown identifier to be treated as an implicitly bound variable with an unknown type. However, the unknown type cannot be a function, and a function is what Lean expects here. This is often the result of a typo or a missing `import` or `open` statement.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:246:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_conjB_one' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:255:32: Unknown identifier `eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:256:5: Unknown identifier `eHighArtinHasse_conjB`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:258:48: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:257:25: unsolved goals
+L M Q : Type
+inst✝² : Field L
+inst✝¹ : AddCommGroup M
+inst✝ : Group Q
+act : Q → M → M
+hadd : ∀ (q : Q) (x y : M), act q (x + y) = act q x + act q y
+hmul : ∀ (q r : Q) (x : M), act (q * r) x = act q (act r x)
+hone : ∀ (x : M), act 1 x = x
+V : Submodule L (M → L)
+htrans : ∀ (m : M), ∀ f ∈ V, (fun x => f (x + m)) ∈ V
+hact : ∀ (q : Q), ∀ f ∈ V, (fun x => f (act q x)) ∈ V
+q : Q
+b : ↥(eHighArtinHasse_alg V htrans)
+⊢ sorry (sorry b) = b
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:261:48: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:260:25: unsolved goals
+L M Q : Type
+inst✝² : Field L
+inst✝¹ : AddCommGroup M
+inst✝ : Group Q
+act : Q → M → M
+hadd : ∀ (q : Q) (x y : M), act q (x + y) = act q x + act q y
+hmul : ∀ (q r : Q) (x : M), act (q * r) x = act q (act r x)
+hone : ∀ (x : M), act 1 x = x
+V : Submodule L (M → L)
+htrans : ∀ (m : M), ∀ f ∈ V, (fun x => f (x + m)) ∈ V
+hact : ∀ (q : Q), ∀ f ∈ V, (fun x => f (act q x)) ∈ V
+q : Q
+b : ↥(eHighArtinHasse_alg V htrans)
+⊢ sorry (sorry b) = b
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:268:10: Unknown identifier `eHighArtinHasse_conjB_mul`
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:270:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_sigma' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:280:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_theta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:304:7: failed to synthesize instance of type class
+  Ring ↥(eHighArtinHasse_alg V htrans)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:306:47: failed to synthesize instance of type class
+  Algebra L ↥(eHighArtinHasse_alg V htrans)
+
+Hint: Type class instance resolution failures can be inspected with the `set_option trace.Meta.synthInstance true` command.
+error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:328:14: 'GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighArtinHasse_exists_units_of_polyFun' depends on axioms outside the classical allowlist: [sorryAx]
+  full closure: [propext, sorryAx, Classical.choice, Quot.sound]
+  permitted: [propext, Classical.choice, Quot.sound]
+error: Lean exited with code 1
+ℹ [3098/3103] Built GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators (61s)
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:54:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.away_ringHom_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:78:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.rat_mem_range_of_den_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:89:2: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.mvPolynomial_mem_range_of_den_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:100:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.matrix_mem_range_mapMatrix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:111:14: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_den_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:153:2: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_matrixEmbedding_of_den_dvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean:174:2: 'GroupApproximation.BooneHigman.Metabelian.CharZeroHost.exists_matrixEmbedding_away_of_closure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3099/3103] Built GroupApproximation.BooneHigman.Metabelian.ElemFPK2StabDiagEndpoint (64s)
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:58:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagLeftPerm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:77:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagLeftRegular' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:90:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.StabDiagLastRootActionStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:101:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2StabRangeDiag_of_lastRootAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:118:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.stabDiagLastRootAction_of_polyK2StabRangeDiag' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2StabDiagEndpoint.lean:128:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.polynomialFpK2Vanishing_of_lastRootAction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3100/3103] Built GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2Split (65s)
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:83:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_fg_of_base_of_nil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:95:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_fg_mvPolynomial_of_isEmpty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:110:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.K2NilFGAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:117:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.K2NilPosAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:130:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2NilFGAt_of_nilPosAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:141:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.k2_fg_of_fg_mvPolynomial_fin_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:149:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2BaseFGStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:156:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2NilFGPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:162:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2SplitGapStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:175:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroStableK2FG_of_splitGap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:184:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2BaseFG_of_stableK2FG' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:193:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.CharZeroK2NilPosStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPCharZeroK2Split.lean:200:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2NilFGPos_of_nilPos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3101/3103] Built GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel (112s)
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.closure_sup_commutator_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:60:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.closure_image_of_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:81:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.isTorsion_abelianization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:96:14: 'GroupApproximation.BooneHigman.Metabelian.Envelope.commutator_finiteIndex_of_gens' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3102/3103] Built GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal (73s)
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:40:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:47:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_inv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:61:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenDiff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:66:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenDiff_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:74:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.K2Map_quillenScale_quillenDiff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:82:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenDiff_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:91:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenDiff_one_collapse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:98:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_quillenDiff_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:106:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_quillenDiff_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:113:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_quillenDiff_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:122:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenIdeal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:128:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.mem_quillenIdeal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:138:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_of_one_mem_quillenIdeal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:154:14: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_of_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:164:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_quillenDiff_of_diesAfterPadding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:173:2: 'GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenIdeal_eq_top_of_diesAfterPadding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [3103/3103] Built GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidKill (119s)
+info: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:36:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.HasWellFoundedDivision' depends on axioms: []
+info: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:51:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_exists_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:88:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_exists_kill_entry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:123:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_exists_row_killed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: GroupApproximation/BooneHigman/Metabelian/AbsorptionSuslinEuclidKill.lean:153:14: 'GroupApproximation.BooneHigman.Metabelian.Absorption.suslin_exists_diag_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Some required targets logged failures:
+- GroupApproximation.BooneHigman.Metabelian.AffineFPModel
+- GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighWittECoeff
+- GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg
+error: build failed
