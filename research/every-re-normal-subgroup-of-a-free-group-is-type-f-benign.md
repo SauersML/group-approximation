@@ -65,3 +65,15 @@ of type `F` benign subgroups.
     Kropholler-type kernels in residually finite groups.
   - The Boone-tower base case is consistent: its `Σ` is non-separable.
   - See `separable-benign-witness-forces-rf-quotient`.
+- **Semidirect join holds for normalized witnesses; the converse is one
+  fibre product** (proposed-established, w7-117, 2026-09-18).
+  - If `H ≤ K` of type `F` normalizes the witness `Σ` of `L` and `H ∩ L = 1`,
+    then `(Λ, ΣH)` witnesses `LH`.
+  - (d) is equivalent to benignness of the single fibre product
+    `F(B) ×_U F(B)`, and (d) gives type `F` benignness of every r.e.
+    subgroup of a free group (the full type `F` Higman benign theorem).
+  - Sufficient: `U` embeds in `N_Λ(Σ)/Σ` for a type `F` pair ("`U` is
+    Weyl"), which is the same as an `F`-normalized witness for `N_U`.
+  - Still open: root ⇒ normalized witness. The Boone-tower witness is not
+    normalized.
+  - See `normalized-benign-witnesses-give-the-semidirect-join`.
