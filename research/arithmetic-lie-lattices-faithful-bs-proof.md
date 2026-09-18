@@ -38,8 +38,14 @@ dimension, so its identity component `D̄°` is nontrivial.
 
 **Step 4 (K = 1).** `L` has trivial center, so `L = L_1 × ... × L_k` with each
 `L_i` simple with trivial center, and `Z_L(L_j) = ∏_(i≠j) L_i`.
-- `K ⊆ G ∩ ∏_(i≠j) L_i`, which is finite: trivially for `k = 1`, and
-  because `G` is irreducible for `k >= 2`. Then `K` is a finite normal subgroup of `G`. Its normalizer in `L` is
+- `K ⊆ G ∩ ∏_(i≠j) L_i`, which is finite: trivially for `k = 1`, and for
+  `k >= 2` as follows. `G` is irreducible, so `G L_j` is dense in `L` (Witte Morris,
+  math/0106063, Def. 4.3.1). The discrete group `Δ = G ∩ ∏_(i≠j) L_i` is normalized by `G`, and
+  also by `L_j`, which centralizes it. So its normalizer, which is closed, contains
+  the dense set `G L_j` and is all of `L`. Then the connected group `∏_(i≠j) L_i`
+  normalizes, hence centralizes, the discrete `Δ`. So `Δ` lies in the trivial
+  center of `∏_(i≠j) L_i`, and `Δ = 1`. So `K` is trivial; in particular it is a finite normal subgroup of
+  `G`, and the following argument, kept for the case `k = 1`, also applies. Its normalizer in `L` is
   Zariski closed and contains `G`, so it is all of `L`. The connected group `L`
   then centralizes the finite group `K`, and `K ⊆ Z(L) = 1`.
 
@@ -76,13 +82,13 @@ This proves the lemma.
 - **Instance 3.** The standard arithmetic lattices are arithmetic by definition.
 - **Instance 4.** The higher-rank case rests on Margulis arithmeticity.
 
-**Trust surface.** Cited and not re-read:
-- Britton's lemma;
-- Cartan's closed subgroup theorem;
-- Borel density;
-- the Kazhdan--Margulis covolume bound;
-- finite presentation of lattices;
-- Borel's density of the commensurator of arithmetic groups, and Margulis's
-  commensurator and arithmeticity theorems;
-- the finiteness of `G ∩ ∏_(i≠j) L_i` for irreducible lattices;
-- Selberg's lemma.
+**Trust surface.** Pinned by referee b in Witte Morris, *Introduction to Arithmetic
+Groups*, math/0106063v6:
+- Borel density: Thm 4.5.1(2) and Cor 4.5.4;
+- density of the commensurator and Margulis's criterion: Remark 5.2.5(1), Ex. 5.2#3;
+- arithmeticity: Thm 5.2.1;
+- finite presentation of lattices: Thm 4.7.10;
+- the `{2,3}` quaternion Fuchsian group: Prop 6.2.4.
+
+Cited and not re-read: Britton's lemma, Cartan's closed subgroup theorem, the
+Kazhdan--Margulis covolume bound, and Selberg's lemma.

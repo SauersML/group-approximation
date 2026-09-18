@@ -1,0 +1,63 @@
+# Wächter–Weiß, "An automaton group with PSPACE-complete word problem": source reading (bh-free-02, 09-18)
+
+Source: arXiv:1906.03424v3 (8 Jun 2019, revised 17 Jul 2021; Theory Comput. Syst.).
+The e-print was fetched on the MSI login node; the TeX is `pspace.tex`, 2332 lines, copied to
+`gq/src/ww/pspace.tex`. Line numbers below refer to that file.
+
+## What is proved
+
+- **Theorem `thm:uniformPSPACE`** (l. 636). The uniform word problem for automaton
+  groups is PSPACE-complete.
+- **Theorem `thm:nonuniformPSPACE`** (l. 803). There is an automaton group, over a
+  binary alphabet, with PSPACE-complete word problem. This proves Steinberg's
+  conjecture (l. 268).
+- **Theorem `thm:compressedEXPSPACE`** (l. 2145) and the final Corollary. The same
+  method gives a binary automaton group with PSPACE-complete word problem and
+  EXPSPACE-complete compressed word problem.
+
+## Construction
+
+`T` is the union of:
+- **`R`**, an automaton with nontrivial balanced iterated commutators, used as a
+  Barrington-type conjunction (l. 1450ff.);
+- **copies `T_{2,r}`, one for each `r ∈ R`**, of the binary encoding `T_2` of the
+  TM-mode automaton `T'` of Proposition `prop:TMmode` (l. 879);
+- **the delayed copy `R_0` of `R`** (l. 1768).
+
+The TM mode verifies a Kozen-style sequence of configurations using "generalized
+check-marks": digit blocks incremented by an adding-machine state. The checks end
+in the `R`-state `r` (success) or in `id` (failure) after the encoded `$`. The
+input is a balanced iterated commutator of the checking state sequences, which is
+nontrivial iff the Turing machine accepts.
+- **Choices of `R`:** `A_5` (Example `ex:commutatorInA5`; alphabet with at least
+  five letters), Aleshin's automaton for `F_3` over two letters
+  (Example `ex:freeGroup`, the headline choice), or any uniformly SENS automaton
+  group such as Grigorchuk's (Example `ex:SENSandGrigorchuk`).
+- **Key structural fact** (l. 1313): TM-mode transitions only toggle digit letters;
+  every other letter passes unchanged.
+
+## What is not in the paper
+
+It contains no statement about finite presentation, amenability, residual properties
+beyond self-similarity, or embeddings of the constructed group. The words
+"presented" and "presentation" occur only in the phrase "presentation of groups
+using automata" (l. 265) and in the thesis acknowledgment (l. 281).
+
+## Consequences drawn here
+
+- **Finite `R` gives no finitely presented group.** For finite `R` acting off the
+  encoding letters, for example `A_5` on five extra letters, the group is
+  locally-finite-by-`Z`, hence not finitely presented
+  (`finite-commutator-wachter-weiss-groups-are-not-fp`).
+- **The binary headline group (`R = F_3`)** is not covered. Whether it is finitely
+  presented is open. The Aleshin states also act on the encoded Turing-machine part,
+  so the simple kernel argument does not apply.
+- **Hosts.** Every finitely presented self-similar overgroup, and every finitely
+  presented simple overgroup, of any of these groups has PSPACE-hard word problem.
+  By `automaton-tail-full-groups-have-conp-relative-word-problem`, such an overgroup
+  cannot be a piecewise prefix-and-automaton group whose coefficient groups have
+  polynomial-time word problem, unless PSPACE = coNP. This excludes, among others:
+  - `nV`;
+  - Nekrashevych groups of contracting groups;
+  - `2V_τ` and `2V_{G_N}`;
+  - Zaremsky's hosts with linear coefficients.

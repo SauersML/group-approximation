@@ -70,3 +70,8 @@ proper free factor class even virtually. Candidates not excluded here:
 
 Whether `Stab([w_∂])` has finitely many double cosets is the next concrete test.
 Recorded as Attempt 4 on `out-free-groups-satisfy-boone-higman`.
+
+**Update.** The test case above is settled negatively for one-cusp orientable
+surface words in even rank: `surface-word-stabilizers-have-infinitely-many-double-cosets`.
+The `Aut`-orbit of the surface word grows exponentially in word length, while
+each mapping-class-group orbit grows polynomially.

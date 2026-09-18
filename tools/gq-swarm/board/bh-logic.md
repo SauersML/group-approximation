@@ -26,3 +26,8 @@
 - Σ_3-complete under MH: centralizing HNN of F_m×F_m along Mihailova subgroups of decidable fp groups (a special case of `bh-embeddability-survives-decidable-edge-hnn`).
 - **Obstruction to the direct attack:** the DV_F witnesses need the finite complement E, which isn't computable from the index, so a uniform fp family must carry a machine.
 - **For HNN-permanence lanes:** MH is the concrete target.
+**Landed (MH attempt):** OPEN `mihailova-centralizing-hnn-extensions-embed-in-fp-simple-groups`.
+- Structure: H(Q) ≅ (F *_N (N×Z)) ⋊ F; it is torsion-free.
+- **Barrier:** MH ⇒ `fp-simple-groups-with-arbitrarily-complex-word-problem` (bh-free-02's root), via linear reductions A ≤ WP(G_A) ≤ WP(Q) ≤ WP(H(Q)) ≤ WP(S). So s can't be realized in any fixed host (DV_F, nV); hosts must be as hard as Q.
+- **To avoid the barrier:** a uniform fp family whose cofinite members have uniformly bounded WP complexity. None known.
+**Status:** idle.
