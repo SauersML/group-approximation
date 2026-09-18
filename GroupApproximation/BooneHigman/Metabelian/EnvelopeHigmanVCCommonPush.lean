@@ -184,3 +184,49 @@ theorem higmanVCCommon_push_inv_of {d : ℕ} (hd : 1 < d) (u v : List (Fin d)) :
     (higmanVCCommon_mk_inv_of u v).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_inv_of
+
+/-- **Push for a product**: thresholds add. -/
+theorem higmanVCCommon_push_mul {d N₁ N₂ : ℕ} (hd : 0 < d)
+    {g₁ g₂ : FreeGroup (List (Fin d) × List (Fin d))} (h₁ : HigmanVCCommonPush d g₁ N₁)
+    (h₂ : HigmanVCCommonPush d g₂ N₂) : HigmanVCCommonPush d (g₁ * g₂) (N₁ + N₂) := by
+  intro x y hx hy hxy hyx
+  obtain ⟨x₂, y₂, hx₂, hy₂, hlx₂, hly₂, he₂⟩ := h₂ x y (by omega) (by omega) hxy hyx
+  obtain ⟨x₁, y₁, hx₁, hy₁, hlx₁, hly₁, he₁⟩ := h₁ x₂ y₂ (by omega) (by omega)
+    (higmanVCCommon_incomp_image hd hx₂ hy₂ hxy hyx)
+    (higmanVCCommon_incomp_image hd hy₂ hx₂ hyx hxy)
+  refine ⟨x₁, y₁, ?_, ?_, by omega, by omega, ?_⟩
+  · rw [higmanVCCommon_perm_mul]
+    exact hx₂.comp hx₁
+  · rw [higmanVCCommon_perm_mul]
+    exact hy₂.comp hy₁
+  · have key : higmanVCCommon_mk d (g₁ * g₂ * FreeGroup.of (x, y) * (g₁ * g₂)⁻¹) =
+        higmanVCCommon_mk d g₁ * higmanVCCommon_mk d (g₂ * FreeGroup.of (x, y) * g₂⁻¹) *
+          (higmanVCCommon_mk d g₁)⁻¹ := by
+      simp only [map_mul, map_inv, mul_inv_rev, mul_assoc]
+    have he₁' : higmanVCCommon_mk d g₁ * higmanVCCommon_mk d (FreeGroup.of (x₂, y₂)) *
+        (higmanVCCommon_mk d g₁)⁻¹ = higmanVCCommon_mk d (FreeGroup.of (x₁, y₁)) := by
+      rw [← he₁, map_mul, map_mul, map_inv]
+    rw [key, he₂, he₁']
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push_mul
+
+/-- **Pushing lemma.**  Every word of the all-swaps free group has the push property at some
+threshold. -/
+theorem higmanVCCommon_push {d : ℕ} (hd : 1 < d) (g : FreeGroup (List (Fin d) × List (Fin d))) :
+    ∃ N, HigmanVCCommonPush d g N := by
+  induction g using FreeGroup.induction_on with
+  | C1 => exact ⟨0, higmanVCCommon_push_one d⟩
+  | of p =>
+    obtain ⟨u, v⟩ := p
+    exact ⟨_, higmanVCCommon_push_of hd u v⟩
+  | inv_of p _ =>
+    obtain ⟨u, v⟩ := p
+    exact ⟨_, higmanVCCommon_push_inv_of hd u v⟩
+  | mul g₁ g₂ ih₁ ih₂ =>
+    obtain ⟨N₁, h₁⟩ := ih₁
+    obtain ⟨N₂, h₂⟩ := ih₂
+    exact ⟨N₁ + N₂, higmanVCCommon_push_mul (by omega) h₁ h₂⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCCommon_push
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
