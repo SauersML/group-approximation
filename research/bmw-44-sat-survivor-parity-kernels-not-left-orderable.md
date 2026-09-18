@@ -202,3 +202,13 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
     - or find an invariant compatible with `ρ`.
     For `#193` and `332H`, the analogous duality has three independent `D`-letters generating
     `C_2^3` and the `S_3` relation `(τc)^3 = 1`, so it needs its own parity lemma.
+- (w6-107c, 2026-09-18) **Hand proof, no SAT (`bmw-40-40-193-281-332-klein-chain-proof`).** For all
+  three classes `Γ^+` contains four elements, each a two-letter word or a letter conjugate of one, with
+  `x_{i+1} x_i x_{i+1}^{-1} = x_i^{-1}` cyclically.
+  - In a left order, `a b a^{-1} = b^{-1}` forces `|b| < |a|`. So the cycle gives
+    `|x_1| < |x_2| < |x_3| < |x_4| < |x_1|`.
+  - For #281 and #332 the cycle is `h0h2, v3v0v2v3, h3h1h2h3, v1v2`.
+  - For #193 it is `h0h1, v0v3, h3h0h2h3, v2v0v1v2`.
+  - The dichotomy is thus proved by hand, independently of the DRUP certificate.
+  - **Remaining open for these classes:** irreducibility of #332 and #193 (the dual-orbit parity of
+    `bmw-40-40-332-irreducible-if-dual-orbit-parity`). It no longer matters for orderability.

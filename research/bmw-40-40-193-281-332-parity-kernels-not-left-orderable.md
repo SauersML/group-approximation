@@ -62,3 +62,17 @@ letters. The positive-cone CNF of the certificate has 910 clauses on 490 variabl
   3. The four generators were rewritten as the uniform shape above, and all 144 subgroups of that shape were
      searched in each class. #193 and #332 each have one UNSAT subgroup. The product class `#0`, which is
      left-orderable, has none (`gs0.log`).
+- (w6-107c, 2026-09-18) **A hand proof with no SAT: `bmw-40-40-193-281-332-klein-chain-proof`.**
+  - **Lemma.** In a left-ordered group, `a b a^{-1} = b^{-1}` with `b ≠ 1` forces `|b| < |a|`. So a
+    cyclic chain in which each element inverts the previous one is impossible.
+  - **The chain for #281 and #332.** `h0h2 → v3v0v2v3 → h3h1h2h3 → v1v2 → h0h2`, where each element
+    inverts the one before it.
+  - **The chain for #193.** `h0h1 → v0v3 → h3h0h2h3 → v2v0v1v2 → h0h1`.
+  - **Why it holds.** Each of the four relations is a letter conjugate of one of two Klein pairs
+    `pq ⇝ rs`. In such a pair, `p` centralizes `rs` and `q` swaps `r ↔ s`, and both are read off
+    from the squares directly.
+  - **Check.** `experiments/bmw-klein-chains-2026-09-17/verify_klein.py` re-checks all twelve
+    relations by rewriting and logs the traces. The statement is therefore now established by a
+    hand proof as well as by the certificate.
+  - **Structure.** The certificate subgroup `M` is not needed. The obstruction is a cycle of
+    order-of-magnitude comparisons between Klein-bottle subgroups.
