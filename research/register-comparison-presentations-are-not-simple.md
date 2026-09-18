@@ -7,10 +7,13 @@ distinct_from:
   capacity-chain-presentation-is-not-simple: that is one presentation and one bad module; this is the general theorem covering every presentation with a translation chain and a comparison, and every finite set of added commutative relations.
   single-register-rings-divide-unit-at-finitely-many-primes: that is the other half of the squeeze (one unbounded register per type gives divisibility at finitely many primes); this covers designs that compare two unbounded registers.
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the design target these no-go results constrain.
+artifacts:
+  - research/artifacts/gq-referee-a-register-comparison-presentations-are-not-simple.md
 ---
 
 **ESTABLISHED** through `register-comparison-presentations-are-not-simple-proof` (lane
-proof, not independently reviewed; referee requests sent).
+proof; refereed PASS by `gq-referee-a`, proof gaps, `gq-referee-a-register-comparison-presentations-are-not-simple.md`, b82951dcd; the citation and
+scope review by `gq-referee-b` is pending).
 
 ## Scope: which presentations are covered
 A **register presentation** `𝒫` consists of the following data.
