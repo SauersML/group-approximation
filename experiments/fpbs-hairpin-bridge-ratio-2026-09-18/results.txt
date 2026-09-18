@@ -1,0 +1,30 @@
+# results.txt -- raw output of run_all.sh sections (1)-(3); section (0) is exact_column.txt
+# (1) direct runs: Br/TJT and n D_n, p'=0.55, r=0.2, n=30, box margin 12, 20000 samples, seed 2
+hairpin  n=30 p=0.550 r=0.20 L=12 S=20000  nD_n=63.9529 +- 0.0799  Br/TJT=0.2955 +- 0.0010  gamma=0.1260
+straight n=30 p=0.550 r=0.20 L=12 S=20000  nD_n=64.7449 +- 0.1519  Br/TJT=0.2925 +- 0.0013  gamma=0.1263
+# (2) Lmid = log t(0,n) - 2 log t(0,n/2), seed 3
+hairpin  n=22 p=0.550 r=0.50 L=12 S=40000  Lmid=0.03973 +- 0.00346  logT=-5.7424
+straight n=22 p=0.550 r=0.50 L=12 S=40000  Lmid=0.01420 +- 0.00300  logT=-5.7640
+hairpin  n=42 p=0.550 r=0.50 L=12 S=40000  Lmid=0.06566 +- 0.00388  logT=-10.9505
+straight n=42 p=0.550 r=0.50 L=12 S=40000  Lmid=0.01179 +- 0.00400  logT=-10.9861
+hairpin  n=82 p=0.550 r=0.50 L=12 S=40000  Lmid=0.11327 +- 0.00550  logT=-21.3433
+straight n=82 p=0.550 r=0.50 L=12 S=40000  Lmid=0.01967 +- 0.00481  logT=-21.4319
+hairpin  n=162 p=0.550 r=0.50 L=12 S=40000  Lmid=0.20657 +- 0.00623  logT=-42.1598
+straight n=162 p=0.550 r=0.50 L=12 S=40000  Lmid=-0.00065 +- 0.00608  logT=-42.3502
+hairpin  n=22 p=0.550 r=0.30 L=12 S=40000  Lmid=0.04363 +- 0.00399  logT=-8.4192
+straight n=22 p=0.550 r=0.30 L=12 S=40000  Lmid=0.02138 +- 0.00337  logT=-8.4485
+hairpin  n=22 p=0.600 r=0.30 L=12 S=40000  Lmid=0.00695 +- 0.00185  logT=-7.2564
+straight n=22 p=0.600 r=0.30 L=12 S=40000  Lmid=0.00524 +- 0.00173  logT=-7.2630
+hairpin  n=22 p=0.700 r=0.30 L=12 S=40000  Lmid=0.00119 +- 0.00049  logT=-5.1873
+straight n=22 p=0.700 r=0.30 L=12 S=40000  Lmid=0.00070 +- 0.00033  logT=-5.1889
+hairpin  n=22 p=0.600 r=0.50 L=12 S=40000  Lmid=0.00715 +- 0.00231  logT=-4.9529
+straight n=22 p=0.600 r=0.50 L=12 S=40000  Lmid=0.00382 +- 0.00142  logT=-4.9580
+# (3) log K for l matched single-edge runs per side, p'=0.55, seed 4
+hairpin  l=2 n=14 p=0.550 L=12 S=40000  q(S-)=0.9287 q(S)=0.88577  logK=0.0266 +- 0.0044
+straight l=2 n=14 p=0.550 L=12 S=40000  q(S-)=0.9305 q(S)=0.86898  logK=0.0036 +- 0.0033
+hairpin  l=4 n=22 p=0.550 L=12 S=40000  q(S-)=0.88645 q(S)=0.82117  logK=0.0440 +- 0.0036
+straight l=4 n=22 p=0.550 L=12 S=40000  q(S-)=0.88758 q(S)=0.78975  logK=0.0025 +- 0.0037
+hairpin  l=8 n=38 p=0.550 L=12 S=40000  q(S-)=0.80358 q(S)=0.69135  logK=0.0683 +- 0.0089
+straight l=8 n=38 p=0.550 L=12 S=40000  q(S-)=0.8044 q(S)=0.6459  logK=-0.0018 +- 0.0039
+hairpin  l=16 n=70 p=0.550 L=12 S=40000  q(S-)=0.65928 q(S)=0.49902  logK=0.1381 +- 0.0098
+straight l=16 n=70 p=0.550 L=12 S=40000  q(S-)=0.65965 q(S)=0.43807  logK=0.0067 +- 0.0080
