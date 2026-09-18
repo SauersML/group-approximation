@@ -7,10 +7,14 @@ distinct_from:
   type-a-actors-have-no-infinite-virtually-central-subgroup: that is the general necessary condition on a faithful actor with finitely many pair orbits; this applies it to Steinberg groups of Leavitt-type Q-algebras, where the rational scalars supply the infinite centre once K_2 is central.
   leavitt-scalar-commutators-block-fp-central-quotients: that shows central quotients of Leavitt unit groups and of E_N(R) are not finitely presented; this concerns the Steinberg group itself as a permutation actor, and the faithful images of its actions.
   steinberg-leavitt-resolvent-groups-have-no-type-a-action: that is the flat verdict for St_N(R_L), which also needs centrality of K_2(N,R_L); this is the unconditional implication.
+artifacts:
+  - research/artifacts/gq-referee-a-faithful-pair-finite-steinberg-actions-need-noncentral-k2.md
 ---
 
 **ESTABLISHED** by `faithful-pair-finite-steinberg-actions-need-noncentral-k2-proof`
-(lane proof, elementary, not independently reviewed; no novelty claimed).
+(lane proof, elementary; gq-referee-a PASS, proof-gap lens,
+`research/artifacts/gq-referee-a-faithful-pair-finite-steinberg-actions-need-noncentral-k2.md`;
+no novelty claimed).
 
 ## Statement
 

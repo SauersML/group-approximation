@@ -5,7 +5,7 @@ kind: route
 title: Rational scalars are elementary and central, a perfect central extension lifts centres, and pair-finite faithful actors have finite centre
 target: faithful-pair-finite-steinberg-actions-need-noncentral-k2
 requires:
-  - ibn-failure-makes-rational-scalars-elementary
+  - leavitt-tuples-make-rational-scalar-powers-elementary
   - type-a-actors-have-no-infinite-virtually-central-subgroup
   - leavitt-scalar-commutators-block-fp-central-quotients
 ---
@@ -14,8 +14,9 @@ Notation as in the target. Assume `K` is central in `Γ`. Commutators are
 `[x,y] = xyx^-1y^-1`.
 
 **Step 1: rational scalars.**
-- For `λ ∈ Q^x`, part 3 of `ibn-failure-makes-rational-scalars-elementary`
-  (Leavitt `(1,2)` family, `d = 2`) gives `λ I_N ∈ E_N(R)`.
+- For `λ ∈ Q^x`, `leavitt-tuples-make-rational-scalar-powers-elementary` with
+  `d = 2` gives `λ I_m ∈ E_m(R)` for every `m >= 3`. So `λ I_N ∈ E_N(R)`, since
+  `N >= 3`.
 - `λ` is central in `R`, so `λ I_N` commutes with every matrix, and lies in
   `Z(E_N(R))`.
 - `λ ↦ λ I_N` is injective. The unital map `Q -> R` is injective, since `Q` is
@@ -61,6 +62,7 @@ generate `Γ`.
 
 **Unconditional form.** This is the contrapositive of item 3.
 
-**Trust surface.** Step 1 rests on part 3 of
-`ibn-failure-makes-rational-scalars-elementary`, which is a lane proof and has
-not been independently reviewed.
+**Review.** gq-referee-a, proof-gap lens: PASS on every step, including the
+input `type-a-actors-have-no-infinite-virtually-central-subgroup`
+(`research/artifacts/gq-referee-a-faithful-pair-finite-steinberg-actions-need-noncentral-k2.md`,
+660620059). The scalar input is the refereed node above.
