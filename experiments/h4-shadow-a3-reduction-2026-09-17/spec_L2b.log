@@ -1,0 +1,8 @@
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, 1)) a2 ((1, 1),)
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, 1)) a2 ((1, -1),)
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, 1)) a2 ((1, 1), (1, 1))
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, 1)) a2 ((1, -1), (1, -1))
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, -1)) a2 ((1, 1),)
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, -1)) a2 ((1, -1),)
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, -1)) a2 ((1, 1), (1, 1))
+NOFORM closing hexagon a1 ((0, -1), (0, -1)) b1 ((0, 1), (1, -1)) a2 ((1, -1), (1, -1))

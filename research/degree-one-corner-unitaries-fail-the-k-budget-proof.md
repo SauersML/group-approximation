@@ -16,7 +16,9 @@ inclusion induces isomorphisms `K_n(e R e) -> K_n(R)`, sending the class of a un
 
 **Item 1.**
 - Since `e in R_0`, `e R e = ⊕_k e R_k e` is a grading with unit `e`, and `λ -> λ e` is a unital map `Q -> e R e`.
-- `w = e w e`, since `e w = w w' w = w e`, and `w' = e w' e`. So `w` is a unit of `e R e` of degree `1` with inverse `w'`.
+- `w = e w e` and `w' = e w' e` by hypothesis. (The identities `e w = w w' w = w e` alone do not give this.) So
+  `w` is a unit of `e R e` of degree `1` with inverse `w'`. If `w, w'` are not in `e R e`, replace them by `e w e` and
+  `e w' e`: `(e w e)(e w' e) = e (w w') e = e`, and symmetrically.
 - Item 1 of `graded-rings-with-degree-one-units-fail-the-k-budget` gives the skew Laurent structure.
 - `u_e (w' + f) = w w' + f = 1`, and similarly `(w' + f) u_e = 1`, since `w f = 0 = f w`. Elements of `Q` are central.
 
@@ -52,6 +54,7 @@ Then items 2 and 3 apply.
 - `x = x y x = φ(e) x` and `p φ(e) = t s t e s = t e s = φ(e)`, so `p x = x`.
 - `w' w = y t s x = y p x = y x = e`, and `w w' = s x y t = s φ(e) t = (s t) e (s t) = e`.
 - The degrees are right: `s_i in R_1`, `t_i in R_(-1)`, and `x`, `y` have entries in `B ⊆ R_0`.
+- `w in e R e`: `e w = e s x = s φ(e) x = s x = w`, and `w e = s x y x = s x = w`. Likewise for `w'`.
 
 **Item 6.** For an idempotent matrix `g` over `B`, `(t g)(g s) = t g s = φ(g)` and `(g s)(t g) = g (s t) g = g`. So `g` and
 `φ(g)` are equivalent over `R`, and `[φ(g)] = [g]` in `K_0(R)`. This is item 1 of the matricial frame node, applied

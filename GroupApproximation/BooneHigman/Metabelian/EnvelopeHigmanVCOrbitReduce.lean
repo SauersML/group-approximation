@@ -98,4 +98,112 @@ theorem higmanVCOrbit_U_mul_sym_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_U_mul_sym_mem_S
 
+/-- `h` is *a/b-balanced*: `h = ι r` for a word `r` in the letters of an antichain `C`, and
+`π r` preserves the length of every leaf near the pivot `(a, b)`. -/
+def higmanVCOrbit_Bal (d : ℕ) (a b : List (Fin d)) (h : higmanVCCommon_Q d) : Prop :=
+  ∃ C : Finset (List (Fin d)), higmanVCTreeNFWitPivot_IsAC C ∧ ∃ r : FreeGroup (↥C × ↥C),
+    higmanVCCommon_mk d (higmanVCAll_iota C r) = h ∧
+      ∀ c : ↥C, higmanVCOrbit_Near a b c.1 → (higmanVCOrbit_pi C r c).1.length = c.1.length
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_Bal
+
+/-- **a/b-balanced discharge.**  `h = u σ` with `u ∈ U` and `σ ∈ H_D` for
+`D = {a, b} ∪ (far part of C)`, so `σ` is symmetric (trivial tree) and `h t ∈ S`. -/
+theorem higmanVCOrbit_bal_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) {h : higmanVCCommon_Q d} (hh : higmanVCOrbit_Bal d a b h) :
+    h * higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈ higmanVCTreeNFWitPivot_S d := by
+  obtain ⟨C, hC, r, rfl, hlen⟩ := hh
+  have hK : ∀ x y : ↥C, ¬ higmanVCOrbit_Near a b x.1 → ¬ higmanVCOrbit_Near a b y.1 →
+      higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) ∈
+        higmanVCTreeNFWitPivot_H d (higmanVCOrbit_far a b C) := fun x y hx hy =>
+    higmanVCLeafExp_letter_mem_H (higmanVCOrbit_mem_far.mpr (Or.inr (Or.inr ⟨x.2, hx⟩)))
+      (higmanVCOrbit_mem_far.mpr (Or.inr (Or.inr ⟨y.2, hy⟩)))
+  obtain ⟨u, hu, σ, hσ, heq⟩ :=
+    higmanVCOrbit_split hC (fun c => higmanVCOrbit_Near a b c.1) hK _ r le_rfl hlen
+  rw [heq]
+  refine higmanVCOrbit_U_mul_sym_mem_S hab hba hu ⟨higmanVCOrbit_far a b C, {[]},
+    higmanVCOrbit_far_isAC hab hba hC, higmanVCLeafExp_IsTree.root, hσ, fun e he => ?_⟩
+  rw [Finset.mem_singleton] at he
+  subst he
+  simp only [List.append_nil]
+  exact ⟨higmanVCOrbit_mem_far.mpr (Or.inl rfl),
+    higmanVCOrbit_mem_far.mpr (Or.inr (Or.inl rfl))⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_bal_mem_S
+
+/-- `S` is closed under inverses. -/
+theorem higmanVCOrbit_inv_mem_S {d : ℕ} {s : higmanVCCommon_Q d}
+    (hs : s ∈ higmanVCTreeNFWitPivot_S d) : s⁻¹ ∈ higmanVCTreeNFWitPivot_S d := by
+  obtain ⟨u₁, hu₁, C, hC, h, hh, u₂, hu₂, rfl⟩ := higmanVCTreeNFWitPivot_mem_S.mp hs
+  exact higmanVCTreeNFWitPivot_mem_S.mpr ⟨u₂⁻¹, Subgroup.inv_mem _ hu₂, C, hC, h⁻¹,
+    Subgroup.inv_mem _ hh, u₁⁻¹, Subgroup.inv_mem _ hu₁, by simp only [mul_inv_rev, mul_assoc]⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_inv_mem_S
+
+/-- **Twisted discharge.**  If `t⁻¹ h⁻¹ t⁻¹` is a/b-balanced, then `h t ∈ S`, because
+`h t = ((t⁻¹ h⁻¹ t⁻¹) t)⁻¹`. -/
+theorem higmanVCOrbit_twist_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) {h : higmanVCCommon_Q d}
+    (hh : higmanVCOrbit_Bal d a b ((higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ * h⁻¹ *
+      (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹)) :
+    h * higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈ higmanVCTreeNFWitPivot_S d := by
+  have hs := higmanVCOrbit_inv_mem_S (higmanVCOrbit_bal_mem_S hab hba hh)
+  rwa [inv_mul_cancel_right, mul_inv_rev, inv_inv, inv_inv] at hs
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_twist_mem_S
+
+/-- The pivot closure of `higmanVCLeafExp_Closed`, required only for `h` that is
+non-symmetric, not a/b-balanced and not twisted-balanced. -/
+def higmanVCOrbit_Closed (d L : ℕ) (a b : List (Fin d)) : Prop :=
+  ∀ C : Finset (List (Fin d)), higmanVCTreeNFWitPivot_IsAC C → (∀ c ∈ C, L ≤ c.length) →
+    (∃ M : ℕ, ∀ w : List (Fin d), w.length = M → ∃ c ∈ C, c <+: w) →
+      ∀ h ∈ higmanVCTreeNFWitPivot_H d C, ¬ higmanVCLeafExp_Sym d a b h →
+        ¬ higmanVCOrbit_Bal d a b h →
+          ¬ higmanVCOrbit_Bal d a b ((higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ * h⁻¹ *
+            (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹) →
+            h * higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈ higmanVCTreeNFWitPivot_S d
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_Closed
+
+/-- **Residual W'**: W restricted further to non-balanced, non-twisted-balanced `h`.
+LOUD: `W' ⇔ W ⇔ Z` as Props.  W' is strictly smaller in proof content only. -/
+def HigmanVCOrbitStatement : Prop :=
+  ∀ d : ℕ, 1 < d → ∀ N : ℕ, ∃ n : ℕ, N ≤ n ∧ ∃ a b : List (Fin d), a.length = n ∧
+    b.length = n + 1 ∧ ¬ a <+: b ∧ ¬ b <+: a ∧ higmanVCOrbit_Closed d (n + 1) a b
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCOrbitStatement
+
+/-- **`W' → W`.** -/
+theorem higmanVCOrbit_W_of_orbit (hO : HigmanVCOrbitStatement) :
+    HigmanVCLeafExpStatement := by
+  intro d hd N
+  obtain ⟨n, hn, a, b, ha, hb, hab, hba, hcl⟩ := hO d hd N
+  refine ⟨n, hn, a, b, ha, hb, hab, hba, ?_⟩
+  intro C hC hL hM h hh hs
+  by_cases hB : higmanVCOrbit_Bal d a b h
+  · exact higmanVCOrbit_bal_mem_S hab hba hB
+  by_cases hT : higmanVCOrbit_Bal d a b ((higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ *
+      h⁻¹ * (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹)
+  · exact higmanVCOrbit_twist_mem_S hab hba hT
+  exact hcl C hC hL hM h hh hs hB hT
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_W_of_orbit
+
+/-- **`W' → Z`.** -/
+theorem higmanVCOrbit_Z_of_orbit (hO : HigmanVCOrbitStatement) : HigmanVCPivotYStatement :=
+  higmanVCLeafExp_Z_of_W (higmanVCOrbit_W_of_orbit hO)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_Z_of_orbit
+
+/-- **Wiring.**  `W'` and the short-relation section `τ` give the swap section. -/
+theorem higmanVCOrbit_swapSection_of_orbit_of_tau (hO : HigmanVCOrbitStatement)
+    (hB : ∀ d : ℕ, 1 < d → ∃ τ : List (Fin d) × List (Fin d) → higmanVC_Q d,
+      ∀ t ∈ higmanVC_rels d (fun _ => True),
+        t ∉ higmanVC_rels d (fun l => l.length ≤ 3) → higmanVC_psi d τ t = 1) :
+    HigmanVSwapSectionStatement :=
+  higmanVCLeafExp_swapSection_of_W_of_tau (higmanVCOrbit_W_of_orbit hO) hB
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_swapSection_of_orbit_of_tau
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope

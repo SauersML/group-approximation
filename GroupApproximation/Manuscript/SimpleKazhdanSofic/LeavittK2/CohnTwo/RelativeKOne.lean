@@ -152,7 +152,7 @@ theorem cohnRelativeKOneTrivial : CohnRelativeKOneTrivialStatement := by
   intro n hn u hu hu'
   haveI : Nontrivial (Fin n) := Fin.nontrivial_iff_two_le.mpr hn
   exact (data (ZMod 2)).mem_relativeElementary_of_unitSpan (data_p_ne_zero (ZMod 2))
-    (pIdeal (ZMod 2)) (TwoSidedIdeal.subset_span (Set.mem_singleton _)) u
+    (pIdeal (ZMod 2)) (TwoSidedIdeal.subset_span (Set.mem_singleton (cohnP (ZMod 2)))) u
     (fun i j => (data (ZMod 2)).mem_unitSpan_of_mem_span_p mem_monomialSpan (hu i j))
     (fun i j => (data (ZMod 2)).mem_unitSpan_of_mem_span_p mem_monomialSpan (hu' i j))
 

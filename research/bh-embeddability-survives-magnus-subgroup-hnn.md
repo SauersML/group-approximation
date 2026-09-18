@@ -65,3 +65,13 @@ embeds in a finitely presented simple group.
    quasi-convex combination keeps hyperbolicity, but by Linton's Theorem 7.1
    no hierarchy of a group containing a Baumslag--Solitar subgroup is
    quasi-convex with hyperbolic top group. *Dies* for such groups.
+5. **Fat Magnus edges (2026-09-18).** *Reduction.*
+   `hnn-extensions-split-over-their-vertex-group-via-the-double` rewrites the Magnus step
+   `H*_β` as an HNN extension of the double `H *_(⟨Y_2⟩) tHt^-1` along `H → tHt^-1`.
+   - The edge is then the one-relator base `H` itself. It can be orbit-finite, for example
+     transitive, in an actor, which the free Magnus edges never are when they carry proper-power
+     relations.
+   - For the Baumslag--Gersten step the double is the height-two tower, and the orbit clause is
+     realized on the type (A) orbit `W = ±1/3 + Z[1/2]` of `2V_τ`
+     (`baumslag-gersten-splits-over-bs12-edges`).
+   - What remains is a symmetric actor for the double, plus faithfulness. *Open.*

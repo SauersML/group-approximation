@@ -1,0 +1,6 @@
+x-arc ends [('P', 6), ('P', 6), ('P', 6)]
+R_ij {(0, 1): [0, 1, 2, 4, 5], (1, 2): [0, 1, 2, 3, 5], (2, 0): [0, 1, 2, 5]} R [0, 1, 2, 5]
+pair adjacency check (y_ij ~ x_i, x_j): True
+twist centres j (|j| <= 6 ): [] | vertex centres: [(2, 0)] with m [0]
+p_c in R: False | ejecting pairs [(0, 1), (2, 0)] m there [0, 0]
+prediction (P1)+(P2) holds: True

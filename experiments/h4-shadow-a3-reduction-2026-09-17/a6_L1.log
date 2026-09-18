@@ -1,0 +1,5 @@
+F words 6 N words 14 14
+lhs done 397
+  y2~x1 False twist j [-4, -3, -2, -1, 0, 1, 2, 3, 4] : 48
+  y2~x1 True twist j [-4, -3, -2, -1, 0, 1, 2, 3, 4] : 132
+nondegenerate tuples 180 no-form 0

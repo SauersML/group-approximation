@@ -51,3 +51,69 @@ counterexample needs integral group-ring elements whose finite kernel densities 
   `C` iff it is elementary amenable, so placing the Remark R subgroup in `C` is the target itself.
   What remains open: (Q_ab). The finite-index step is where it stalls, because passing strong
   Atiyah to finite extensions is open, so virtual `b_1 > 0` would not suffice.
+- **2026-09-18 (lane `w11-112`): (Q_ab) on the counterexample K. Literature record, two
+  reductions, and the finite-index barrier removed without free subsemigroups.**
+  - *Literature: what is already solved.*
+    - Elementary amenable: Hillman–Linnell. Kropholler–Linnell–Lück: a finitely generated EA group
+      of cd at most 2 is `1`, `Z` or `BS(1,m)`.
+    - `FP_2`: solved; a counterexample is never `FP_2`
+      (`amenable-fp-iff-affiliated-top-homology-vanishes`). Almost coherent groups reduce to this.
+    - Linear groups: Tits alternative.
+    - Branch groups and the Grigorchuk groups: infinite cd.
+    - Residually finite: I found no result. Virtually indicable: not known to suffice in general.
+  - *Directed unions and extensions.* See
+    `kropholler-dim-two-counterexamples-live-in-generating-classes`. Obstruction: a two-dimensional
+    counterexample in the extension-union closure `ED(X)` of a subgroup-closed amenable class `X`
+    contains a finitely generated one lying in `X`. So no construction by extensions and directed
+    unions from non-counterexample pieces can produce `K`. The step that absorbs each extension is
+    the EA-radical theorem: a finitely generated subgroup meets the kernel, or embeds one level
+    lower.
+  - *No free subsemigroups.* See
+    `subexp-amenable-cd-two-kropholler-iff-no-intermediate-growth`. Rosset-type kernels plus
+    item 3(c) of `amenable-cd-two-ascending-hnn-groups-are-baumslag-solitar` give: a finitely
+    generated amenable NFS group of cd 2 with virtual `b_1 > 0`, or with any infinite EA quotient,
+    is `Z²` or `Kb`. So in the NFS class the finite-index stall above disappears. Both-direction
+    reductions: Kropholler in dimension 2 for `SG` holds iff no group of intermediate growth has cd at
+    most 2. For `ED(amenable NFS)` it holds iff every finitely generated amenable NFS cd-2 group is
+    virtually indicable.
+  - *What remains.* Two cases are left. A counterexample `K` with a free subsemigroup, where the
+    Rosset kernels fail (`BS(1,2)` shows why). Or an NFS `K`, where every finite-index subgroup has
+    finite abelianization and there are no infinite EA quotients. The second case contains every
+    possible counterexample of intermediate growth.
+- **2026-09-18 (lane `w12-112`): the NFS and intermediate-growth case. The Euler-characteristic
+  route is equivalent to the target, and it reduces to one weak-Bass inequality. Three
+  obstructions, and the H_FD route is circular.** See
+  `amenable-cd-two-bass-defect-equals-euler-characteristic` (proposed ESTABLISHED) and the route
+  `amenable-cd-two-rank-gap-via-l2-finite-weak-bass`.
+  - *Identity.* For an infinite, finitely generated amenable `G` of cd at most 2, the relation
+    module `P` has `dim_U(U ⊗ P) = n − 1` and `rank_Q(Q ⊗ P) = n − b_1 + b_2`. So its Bass defect
+    is `χ_Q(G) = 1 − b_1 + b_2`.
+  - *Reduction, both directions.* The target holds iff `b_1 = 1 + b_2` for all such `G`, iff
+    `χ_Q <= 0`, iff every relation module satisfies the weak Bass inequality.
+  - *The counterexample `K`.* In `K`, the defect `1 + b_2(K)` sits entirely in the core `P'` with
+    no finitely generated summand. In the NFS case it is the same on every finite-index subgroup.
+  - *One-direction reduction.* The target follows from the open statement
+    `l2-finite-projectives-over-amenable-groups-satisfy-weak-bass`: rational rank is at most
+    `L²`-dimension for countably generated projectives of finite `L²`-dimension over torsion-free
+    amenable groups. That is a statement about projective modules with no group theory in it.
+  - *Obstructions (the brief's growth, Euler-characteristic and L2 route).*
+    - (A) Finite truncations. The Hantzsche–Wendt group `HW` is torsion-free, virtually `Z³` and
+      has `b_1 = 0`. Its Fox matrices satisfy `rank ε(J) = n > n − 1 >= rank_U(J)`. So no
+      termwise rank comparison on finitely many relators can work.
+    - (B) Flatness. The colimit of `B = J^*J` over `HW` is a countably generated flat module with
+      defect 1 that is not projective. This kills Lazard–Govorov, Følner-truncation and
+      f.g.-submodule arguments.
+    - (C) `L²` and Følner or growth data. The `U`-dimension profile `(n − 1, n, 1)` is the same as
+      for `Z²`, and Degrijse's `χ = χ^(2)` step is literally `D(P) = 0`. So the growth of the
+      cellular chain complex together with `L²`-Betti vanishing yields exactly the identity, and
+      no bound on `b_2`.
+  - *H_FD.* This is a reformulation, not a reduction. By Shalom, an amenable group with H_FD is
+    virtually indicable. By `subexp-amenable-cd-two-kropholler-iff-no-intermediate-growth`,
+    virtually indicable NFS cd-2 groups are `Z²` or `Kb`, and these have H_FD. So among NFS cd-2
+    groups, having H_FD is the same as not being a counterexample. Every known proof of H_FD
+    (polycyclic, Shalom; virtually nilpotent, Ozawa) goes through a solvable or finite-dimensional
+    structure that `K` lacks.
+  - *Next step.* Prove the weak-Bass inequality for countably generated projectives of finite
+    `L²`-dimension. The first case to try is groups of subexponential growth. It needs a trace on
+    idempotents of column-finite matrices that extends Hattori–Stallings and uses `E² = E`
+    globally, since items A and B rule out approximation by finite corners and by flat colimits.

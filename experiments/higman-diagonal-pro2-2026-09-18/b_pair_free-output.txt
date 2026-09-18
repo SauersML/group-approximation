@@ -1,0 +1,12 @@
+free rank-2 log2|F/P_k| = [ 2, 5, 10, 18, 32, 55, 96, 167 ]
+Syntax warning: Unbound global variable in b_pair_free.g:14
+  gg:=List(g,x->Image(h,x)); A:=Group(gg[1],gg[3]); B:=Group(gg[2],gg[4]);
+                      ^
+k=1 log2|G|=4 log2|A|=2 log2|B|=2 log2|AcapB|=0 B^ab=[ 2, 2 ]
+k=2 log2|G|=10 log2|A|=5 log2|B|=5 log2|AcapB|=0 B^ab=[ 4, 4 ]
+k=3 log2|G|=19 log2|A|=9 log2|B|=10 log2|AcapB|=0 B^ab=[ 8, 8 ]
+k=4 log2|G|=32 log2|A|=14 log2|B|=18 log2|AcapB|=0 B^ab=[ 16, 16 ]
+k=5 log2|G|=52 log2|A|=20 log2|B|=32 log2|AcapB|=0 B^ab=[ 32, 32 ]
+k=6 log2|G|=84 log2|A|=29 log2|B|=55 log2|AcapB|=0 B^ab=[ 64, 64 ]
+k=7 log2|G|=141 log2|A|=47 log2|B|=94 log2|AcapB|=0 B^ab=[ 64, 64 ]
+k=8 log2|G|=231 log2|A|=70 log2|B|=161 log2|AcapB|=0 B^ab=[ 64, 64 ]

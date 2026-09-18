@@ -1,0 +1,14 @@
+H = ['bab']  <K,H> = L: False
+H = ['bAb']  <K,H> = L: False
+H = ['bab', 'bAb']  <K,H> = L: False
+H = ['bab', 'bAb', 'baab', 'bAAb']  <K,H> = L: True
+H = ['babab']  <K,H> = L: False
+H = ['bb']  <K,H> = L: True
+H = ['bb', 'bab']  <K,H> = L: True
+H = ['b']  <K,H> = L: True
+H = ['bbb']  <K,H> = L: False
+H = ['bbbb']  <K,H> = L: False
+H = ['bbb', 'bb']  <K,H> = L: True
+H = ['bbab']  <K,H> = L: False
+H = ['babb']  <K,H> = L: False
+H = ['bAbb']  <K,H> = L: False

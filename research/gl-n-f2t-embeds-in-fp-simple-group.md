@@ -49,6 +49,13 @@ residue fields. The same question makes sense over `F_q(t)` for every `q`.
    Leavitt algebra (`rational-function-field-embeds-in-binary-leavitt-algebra`),
    then every subgroup of every `GL_n(F_2(t))` lies in `L_(F_2)(1,2)^x`.
 
+2. `gl-n-f2t-bh-via-horner-resolvent-leavitt-tensor` (2026-09-18, lane `bh-algebra`): `F_2(t)` lies in the
+   explicit finitely presented central simple algebra `R_2` of
+   `char-p-rational-function-field-in-fp-simple-algebra` (lane proof), so every
+   `GL_n(F_2(t))`, all `n` at once, lies in `(R_2 ⊗ L)^x`. That group is finitely presented and simple
+   once `K_1(R_2 ⊗ L) = K_2(R_2 ⊗ L) = 0` (`horner-resolvent-leavitt-tensor-k1-k2-vanish`, OPEN). This
+   replaces the embedding into the fixed algebra `L_(F_2)(1,2)` by a `K`-theory computation.
+
 ## Attempts
 
 - **Transfer to Q** (2026-09-17, lane `gq-countable-fields`). See

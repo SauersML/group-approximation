@@ -12,6 +12,9 @@ dart shift.  System (lp_memory.build): A y + B c = e_norm, y, c >= 0 (masked: on
 Infeasible means: no legal f^m-folded fatgraph over the rose (with d^- words over the mask), any boundary.
 usage: python3 farkas_rho.py dump.json [--D D] [--key y|y_rho] [--mask LETTERS] [--save cert.json]
        python3 farkas_rho.py cert.json          (compact integer certificate: rows zrows, pairs zpairs)
+A certificate with a "live" window list (cg_masked.py --propwin) is re-checked in two exact steps: the masked
+support propagation of sp_mask.py is re-run and must leave only live windows, and z' must be a Farkas vector of
+the LP on the live windows.
 """
 import sys, json, itertools
 import numpy as np
@@ -81,6 +84,18 @@ def main():
     if "zrows" in J:                 # compact integer certificate (written by --save)
         D = int(J["D"])
     live = np.ones(len(TY.windows), dtype=bool) if not mask else np.array([set(v) <= set(mask) for v in TY.windows])
+    if J.get("live"):
+        # LP on the windows surviving exact support propagation (cg_masked.py --live); see sp_mask_sweep logs
+        live &= np.array(["".join(v) in set(J["live"]) for v in TY.windows])
+        assert int(live.sum()) == len(set(J["live"]))
+        if "--no-prop-check" not in sys.argv:
+            # re-run the exact masked support propagation: every window outside J["live"] must be forced to 0
+            import sp_mask as SP
+            wmask = [set(v) <= set(mask) for v in TY.windows] if mask else None
+            wp, _ = SP.propagate(TY, g, 4, log=lambda *a, **k: None, wmask=wmask)
+            surv = {"".join(v) for j, v in enumerate(TY.windows) if wp[j]}
+            assert surv <= set(J["live"]), surv - set(J["live"])
+            print("propagation re-check: %d surviving windows, all in the live list" % len(surv), flush=True)
     dead = ~live[np.array(TY.cw)]
     BIG = float(10 ** 12)
     if "zrows" in J:
@@ -93,7 +108,7 @@ def main():
         zpair = {k: v for k, v in zpair.items() if v != 0}
     if "--save" in sys.argv:
         out = sys.argv[sys.argv.index("--save") + 1]
-        json.dump({"phi0": J["phi0"], "power": J["power"], "r": J["r"], "mask": mask, "rN": rN, "D": D,
+        json.dump({"phi0": J["phi0"], "power": J["power"], "r": J["r"], "mask": mask, "live": J.get("live"), "rN": rN, "D": D,
                    "zrows": [int(v) for v in z], "zpairs": [[int(a), int(b), int(v)] for (a, b), v in zpair.items()]},
                   open(out, "w"))
     z[:N][dead] = -BIG

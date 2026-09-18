@@ -2,19 +2,23 @@
 rg: 2
 id: degree-one-corner-unitaries-fail-the-k-budget
 kind: claim
-title: A degree-one unitary on a full corner of a graded ring containing Q, whose idempotent class is a rational multiple of the unit class, forces the scalar K-budget to fail; for frame designs this closes every multi-type base whose fixed classes meet the positive cone and span the unit class
+title: A degree-one unitary on a full corner of a graded ring containing Q, whose idempotent class is a rational multiple of the unit class, forces the scalar K-budget to fail; for frame designs this closes every multi-type matricial base whose fixed classes meet the positive cone and span the unit class
 distinct_from:
   graded-rings-with-degree-one-units-fail-the-k-budget: that needs a degree-one unit of R itself; this needs one only on a full corner eRe, and pays for it with a relation between [e] and [1] in K_0(R).
   isometric-frames-over-rank-one-bases-fail-the-k-budget: that treats bases whose K_0 is rationally rank one; this treats bases of any finite rank, through a fixed idempotent class of the frame.
   fp-simple-resolvent-ring-with-divisible-unit-class: that parks the multi-type gap as Attempt 10; this answers it positively in the positive-fixed-vector case, where the forced K_2 classes are Steinberg symbols of units of R.
 ---
 
-**ESTABLISHED** through `degree-one-corner-unitaries-fail-the-k-budget-proof`. Lane proof, not independently
-reviewed. Elementary, given the graded and symbol nodes and Morita invariance of `K`-theory for full corners. No
+**ESTABLISHED** through `degree-one-corner-unitaries-fail-the-k-budget-proof`. Refereed: gq-referee-a FAIL at one step of item 1
+(report e30cde7e0), repaired here by requiring `w in e R e`; gq-referee-b PASS, citation lens (report c3e534995,
+W1 applied to the title). Elementary, given the graded and symbol nodes and Morita invariance of `K`-theory for full corners. No
 Pimsner sequence is used. No priority is claimed.
 
 **Statement.** Let `R` be a `Z`-graded unital ring with `Q ⊆ R`. Let `e in R_0` be a full idempotent (`R e R = R`;
-this is automatic for `e != 0` when `R` is simple), and `w in R_1`, `w' in R_(-1)` with `w' w = e = w w'`.
+this is automatic for `e != 0` when `R` is simple), and `w in e R_1 e`, `w' in e R_(-1) e` with `w' w = e = w w'`. Any `w, w'` with `w' w = e = w w'` can be
+replaced by `e w e, e w' e`, which satisfy the same identities (gq-referee-a, e30cde7e0). Without `w in e R e`, the
+element `w + 1 - e` need not be a unit: in `M_2(Q)[x^±1]` with `e = E_11`, `w = x`, `w' = E_11 x^-1`, it is
+`diag(x, x + 1)`.
 1. **Corner Laurent ring.** `e R e` is graded with degree-zero part `e R_0 e` and the unit `w` in degree `1`, so
    `e R e = (e R_0 e)[w^±1; Ad w]`. `u_e = w + 1 - e` is a unit of `R` commuting with `Q`.
 2. **Dichotomy.** Either `Λ_e = {λ in Q^x : [λ e + 1 - e] = 0 in K_1(R)}` is not finitely generated, or the symbols

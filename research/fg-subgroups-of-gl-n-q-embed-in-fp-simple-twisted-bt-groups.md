@@ -14,7 +14,10 @@ artifacts:
 
 **ESTABLISHED (2026-09-17)** through
 `fg-subgroups-of-gl-n-q-in-twisted-bt-proof`. Lane proof assembling
-established nodes. Not independently reviewed.
+established nodes. Reviewed end to end by bh-referee-c: PASS-with-fixes
+(`research/artifacts/gq-bh-bh-referee-c-fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups.md`,
+4933b62e6). Its fix F1 is item 3 below. Without it, the title's "also contains `2V`" was proved only for
+infinite `H`.
 
 **Statement.** Let `n >= 1` and let `H <= GL_n(Q)` be finitely generated.
 1. There are a finitely presented group `Γ >= H`, a faithful action of `Γ` on a
@@ -24,6 +27,10 @@ established nodes. Not independently reviewed.
    If `H` is infinite then `S` is infinite, so `SV_Γ` contains every `kV`, hence
    `(Q,+)` (`rationals-embed-in-brin-thompson-group-2v`) and every countable
    virtually abelian group (`countable-virtually-abelian-groups-embed-in-2v`).
+3. For every finitely generated `H <= GL_n(Q)`, finite or not, the `Γ` in item 1 can be chosen with `S`
+   infinite. Then the host `SV_Γ ⊇ H` contains every `kV`, and so `2V` and `(Q,+)`. To see this, apply
+   items 1 and 2 to the infinite finitely generated group `H × Z`, realized in `GL_(n+1)(Q)` as
+   `⟨diag(H, 1), diag(I_n, 2)⟩`.
 
 In particular, for all `n, m >= 1` each of `GL_n(Z[1/m])`, `SL_3(Z)`,
 `BS(1,2) <= GL_2(Z[1/2])` and `H_3(Z) <= SL_3(Z)` embeds in a finitely presented

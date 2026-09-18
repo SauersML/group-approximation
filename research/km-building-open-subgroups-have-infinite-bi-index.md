@@ -4,6 +4,7 @@ id: km-building-open-subgroups-have-infinite-bi-index
 kind: claim
 title: A subgroup of a Kac--Moody group of irreducible infinite type over a finite field that contains the trace of an open subgroup of the positive completion has finite index or infinitely many double cosets
 distinct_from:
+  km-negative-completion-building-open-dichotomy: that transfers this dichotomy to the negative building topology through a Chevalley involution; this proves it for the positive one.
   fp-simple-type-a-actions-iff-finite-bi-index-subgroups: that turns a finitely generated proper subgroup with finitely many double cosets of a finitely presented simple group into a type (A) action and back; this shows that for Kac--Moody lattices no such subgroup can contain the trace of an open subgroup of the building completion.
   fp-simple-kac-moody-lattices-are-highly-transitive: that asks whether these groups are highly transitive; this is a no-go for one class of point stabilizers (those open in the building topology) and does not decide the question.
   km-246-completions-are-kazhdan-howe-moore-simple: that imports simplicity, (T) and Howe--Moore for the completions of type (2,4,6); this is a double-coset statement about open subgroups of any completed Kac--Moody group of irreducible infinite type over a finite field, proved from Caprace--Marquis's classification of open subgroups.

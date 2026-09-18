@@ -618,3 +618,75 @@ to an HS-almost representation of `G`. The claim stays OPEN.
     bounded-arity permutation modules, and non-monomial HS extensions. Also
     open is a version of Theorem C for infinite-measure (Poisson-type) sofic
     actions, which would kill infinite-hull walls.
+
+- **The infinite-measure Theorem C, tested (lane w9-121, 2026-09-18).**
+  Result: `gaussian-theorem-c-for-ad-sigma-is-equivalent-to-ccr`.
+  - *Transfer.* An enemy of any trace-faithful `sigma` (an element of
+    `sigma(Gamma)' ∩ M` not fixed by `sigma(N)`, `N ⊇ E`) gives a Gaussian
+    action of `G`, the suspension of the enemy's cyclic part of `Ad sigma`, in
+    which `L^∞^Gamma` is not `G`-invariant. By Theorem C, that action is not
+    sofic and is not a factor of a sofic action. No soficity of `sigma` is
+    needed, so this covers `A_m` and all other non-permutation carriers.
+  - *Equivalence.* Theorem C's conclusion for all Gaussian suspensions of
+    `Ad sigma^(⊗j)` holds if and only if no tensor power `sigma^(⊗k)` has an
+    enemy. The proof uses Wiener chaos, `L^2`-fixed vectors of `Ad` as
+    closures of relative commutants, and tensor ultraproducts. Sofic and
+    trace-faithful classes are closed under tensor powers. So the
+    Poisson-type Theorem C for sofic models is *equivalent* to
+    `kt-sofic-models-normalize-vn-commutants`, not a lever toward it.
+  - *Exact missing input.* Soficity (a Păunescu model) of Gaussian
+    suspensions of conjugation representations would suffice. Corollary D is
+    the coset case of the transfer.
+  - *Flexible target.* An enemy must make some compressor have positive
+    entropy on a `Gamma`-fixed Gaussian factor
+    (`zero-entropy-compressors-preserve-fixed-algebra`).
+
+Next step: decide whether the Gaussian suspension of `Ad sigma`, for a sofic
+`sigma` of `G`, admits a Păunescu model. The natural row-Poisson model sees
+only pair scales. The claim stays OPEN.
+
+- **Gaussian of a sofic representation, tested (lane w10-121, 2026-09-18).**
+  Result: `planted-lifts-defeat-hilbert-level-gaussian-soficity`
+  (obstruction).
+  - *Planting.* Change any lift on `o(|Y_n|)` points. This leaves `sigma`,
+    `M` and `Ad sigma` unchanged, but puts `ℓ^2(G/Gamma)` equivariantly into
+    the Hilbert ultraproduct of the pair spaces. Its Gaussian is
+    `N(0,1)^(G/Gamma)`, which fails Theorem C.
+  - *What dies.* Every proof of "Gaussian of `Ad sigma` is sofic" that uses
+    only asymptotic equivariance of the lifted vectors, including
+    Gaussian-of-sofic-representation and Hayes-type Gaussian microstates, is
+    refuted at every sofic `sigma`.
+  - *Enemy side.* The compressor dynamics with positive entropy on a
+    `Gamma`-fixed Gaussian factor exists at every `sigma`. It is always
+    orthogonal to `L^2(M)`, because planted vectors are orthogonal to
+    marginally uniformly integrable (MUI) ones. Positive-density planting is
+    forbidden by Theorem C. So planting gives no enemy in either regime.
+  - *Reformulation.* The Gaussian of `K` is sofic iff `K` is weakly contained
+    in a sofic Koopman representation. Theorem C holds for such
+    representations. Flat vectors pass.
+
+Next step: (MUI-C). Are `Gamma`-invariant, non-flat MUI vectors of the
+canonical equivariant part `N`-invariant? Or, more strongly: are the cyclic
+representations `K_x` with `x ∈ sigma(Gamma)' ∩ M` weakly contained in sofic
+Koopman representations? The claim stays OPEN.
+
+- **(MUI-C) tested against its measure shadow (lane w11-121, 2026-09-18).**
+  Result: `mui-commutant-reduces-to-internal-joining-invariance`
+  (reduction + obstruction).
+  - *Reduction.* Entrywise positive parts commute with the pair permutations,
+    so (MUI-C) is equivalent to (MUI-J): MUI pair probability measures
+    `lambda_n` on `Y_n × Y_n` that are internally (total-variation)
+    `Gamma`-invariant are internally `N`-invariant.
+  - *What dies.* The standard-part shadow of (MUI-J) is false. On the exact
+    Bernoulli models `Y_n = {0,1}^(Q_n)` over finite quotients (coordinatewise
+    genuine, where (MUI-C) holds for all of `H`), the relative product of the
+    Loeb space over the Bernoulli coordinates indexed by `Gamma` is a
+    `Gamma`-invariant, non-`N`-invariant self-joining with marginals `mu`.
+    So "Theorem C for joinings / factors / Koopman intertwiners" is false,
+    and any proof of (MUI-C) through the Loeb joining `st(|xi|^2)` dies. That
+    joining has no internally invariant lift.
+
+Next step: (MUI-J) itself. Run a Kun-type expander decomposition of
+`(W_n, lambda_n, psi_n(Gamma))` and compare it with its `psi_n(t)`-conjugate,
+using UI marginals to make the Hamming defects of the lift cost `o(1)`
+`lambda_n`-mass. The claim stays OPEN.

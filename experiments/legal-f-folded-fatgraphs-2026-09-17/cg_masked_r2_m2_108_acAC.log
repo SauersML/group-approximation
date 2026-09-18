@@ -1,0 +1,29 @@
+propagation: surviving windows ['aaa', 'aac', 'aca', 'acc', 'caa', 'cac', 'cca', 'ccc', 'AAA', 'AAC', 'ACA', 'ACC', 'CAA', 'CAC', 'CCA', 'CCC']
+phi0 {'a': 'abb', 'b': 'bccc', 'c': 'cabb'} m 2 r 2 mask acAC windows alive 16 slots 50176
+phase 1 it 1 obj 12.000000 cols 3000 pairs 1666 min rc -4 LB -46 best -16 {2: -2.0, 3: inf, 4: -4.0} added 3000 t 2.8 tm 0.0  dartLB -16
+phase 1 it 2 obj 3.750000 cols 6000 pairs 3072 min rc -6.946 LB -68.31 best -16 {2: -3.7838, 3: inf, 4: -6.9455} added 3000 t 5.7 tm 0.4  dartLB -26.39
+phase 1 it 3 obj 2.426681 cols 8781 pairs 3871 min rc -6.625 LB -61.92 best -16 {2: -4.0, 3: inf, 4: -6.6247} added 2781 t 10.1 tm 2.0  dartLB -25.06
+phase 1 it 4 obj 1.952287 cols 11068 pairs 4241 min rc -6.278 LB -57.54 best -16 {2: -3.1046, 3: inf, 4: -6.2776} added 2287 t 16.8 tm 5.8  dartLB -20.04
+phase 1 it 5 obj 1.798429 cols 12935 pairs 4363 min rc -5.754 LB -52.29 best -16 {2: -1.3488, 3: inf, 4: -5.7543} added 1867 t 25.2 tm 11.2  dartLB -17.86
+phase 1 it 6 obj 1.705536 cols 14904 pairs 4478 min rc -5.725 LB -51.84 best -16 {2: -1.0427, 3: inf, 4: -5.7247} added 1969 t 34.8 tm 17.9  dartLB -17.09
+phase 1 it 7 obj 1.603332 cols 16869 pairs 4574 min rc -5.485 LB -49.42 best -15.86 {2: -1.0, 3: inf, 4: -5.485} added 1965 t 45.9 tm 26.0  dartLB -15.86
+phase 1 it 8 obj 1.563575 cols 18761 pairs 4664 min rc -5.914 LB -53.33 best -15.29 {2: -0.9826, 3: inf, 4: -5.9138} added 1892 t 58.2 tm 35.5  dartLB -15.29
+phase 1 it 9 obj 1.408401 cols 20587 pairs 4735 min rc -5.308 LB -47.45 best -13.64 {2: -0.2658, 3: inf, 4: -5.3082} added 1826 t 69.7 tm 44.4  dartLB -13.64
+phase 1 it 10 obj 1.297732 cols 22384 pairs 4780 min rc -4.571 LB -40.52 best -11.12 {2: 0.0, 3: inf, 4: -4.5714} added 1797 t 83.1 tm 54.8  dartLB -11.12
+phase 1 it 11 obj 1.124381 cols 24103 pairs 4805 min rc -4.93 LB -43.55 best -10.7 {2: 0.0, 3: inf, 4: -4.93} added 1719 t 98.4 tm 67.5  dartLB -10.7
+phase 1 it 12 obj 1.045970 cols 25685 pairs 4817 min rc -4.521 LB -39.75 best -8.94 {2: 0.0, 3: inf, 4: -4.5211} added 1582 t 117.4 tm 83.6  dartLB -8.94
+phase 1 it 13 obj 1.004465 cols 27026 pairs 4833 min rc -3.751 LB -32.76 best -6.345 {2: 0.0, 3: inf, 4: -3.751} added 1341 t 135.3 tm 98.8  dartLB -6.345
+phase 1 it 14 obj 0.977108 cols 28171 pairs 4833 min rc -3.532 LB -30.77 best -5.629 {2: 0.0, 3: inf, 4: -3.5316} added 1145 t 154.0 tm 114.6  dartLB -5.629
+phase 1 it 15 obj 0.937984 cols 29075 pairs 4833 min rc -2.845 LB -24.58 best -4.061 {2: 0.0, 3: inf, 4: -2.8447} added 904 t 176.3 tm 134.1  dartLB -4.061
+phase 1 it 16 obj 0.914181 cols 30132 pairs 4833 min rc -2.899 LB -25.05 best -3.856 {2: 0.0, 3: inf, 4: -2.8989} added 1057 t 196.8 tm 152.3  dartLB -3.856
+phase 1 it 17 obj 0.882815 cols 30984 pairs 4837 min rc -2.215 LB -18.93 best -2.722 {2: 0.0, 3: inf, 4: -2.2155} added 852 t 218.5 tm 171.6  dartLB -2.722
+phase 1 it 18 obj 0.873065 cols 31607 pairs 4837 min rc -2.005 LB -17.04 best -1.889 {2: 0.0, 3: inf, 4: -2.0045} added 623 t 241.0 tm 190.5  dartLB -1.889
+phase 1 it 19 obj 0.862454 cols 32071 pairs 4837 min rc -1.646 LB -13.84 best -1.532 {2: 0.0, 3: inf, 4: -1.6462} added 464 t 264.1 tm 211.0  dartLB -1.532
+phase 1 it 20 obj 0.861135 cols 32350 pairs 4853 min rc -1.121 LB -9.154 best -0.7386 {2: 0.0, 3: inf, 4: -1.1215} added 279 t 284.4 tm 228.7  dartLB -0.7386
+phase 1 it 21 obj 0.860927 cols 32576 pairs 4869 min rc -1.094 LB -8.91 best -0.6838 {2: 0.0, 3: inf, 4: -1.0941} added 226 t 306.0 tm 247.1  dartLB -0.6838
+phase 1 it 22 obj 0.860927 cols 32740 pairs 4885 min rc -1.088 LB -8.853 best -0.6757 {2: 0.0, 3: inf, 4: -1.0877} added 164 t 328.8 tm 266.6  dartLB -0.6757
+phase 1 it 23 obj 0.860927 cols 32872 pairs 4901 min rc -1.078 LB -8.765 best -0.6629 {2: 0.0, 3: inf, 4: -1.0779} added 132 t 350.0 tm 284.7  dartLB -0.6629
+phase 1 it 24 obj 0.860927 cols 33004 pairs 4901 min rc -0.6041 LB -4.534 best 0.0375 {2: 0.0, 3: inf, 4: -0.6041} added 132 t 370.0 tm 302.6  dartLB 0.0375
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible
+window flow {'aaa': 0.13245, 'aac': 0.069536, 'aca': 0.006623, 'acc': 0.069536, 'caa': 0.069536, 'cac': 0.006623, 'cca': 0.069536, 'ccc': 0.076159, 'AAA': 0.135762, 'AAC': 0.066225, 'ACA': 0.006623, 'ACC': 0.069536, 'CAA': 0.066225, 'CAC': 0.009934, 'CCA': 0.069536, 'CCC': 0.076159}

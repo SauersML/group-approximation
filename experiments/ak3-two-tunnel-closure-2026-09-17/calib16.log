@@ -1,0 +1,13 @@
+# calibration: AK(3), rank 2, cap 16, C2 24 against grow2t (161 states)
+# grow 2 16 empty.txt ak3seed.txt t16r2.txt
+EXHAUSTED new states 150 processed 150 tunnels 168447 tunnel-PRIM 0
+# t2m A 2 16 24 t16r2.txt 0 150 m16.txt
+DONE A 0..150 moves 173240 capped 4793 tunnels 168447 in-range 133012 classes 16575 PRIM 0
+# t2m B 2 16 24 t16r2.txt m16.txt 0 16575 (274 s)
+DONE B 0..16575 moves 34402500 capped 393663 tunnels 34008837 NEW 325 PRIM 0 next-level 47046 goals-of-m PRIM 0 planar 16575 THICK 0 PROJ 0 thick-calls 16575 undecided 0
+# 325 NEW landings -> 7 classes (canon); grow 2 16 t16r2.txt c16a.txt g16a.txt
+EXHAUSTED new states 11 processed 11 tunnels 13296 tunnel-PRIM 0
+# 150 + 11 = 161 = grow2t count. m classes of the 11 new states, minus m16.txt: 1134
+# t2m B 2 16 24 t16r2.txt,g16a.txt m16b.txt 0 1134
+DONE B 0..1134 moves 2449520 capped 25067 tunnels 2424453 NEW 0 PRIM 0 next-level 4243 goals-of-m PRIM 0 planar 1134 THICK 0 PROJ 0 thick-calls 1134 undecided 0
+# closed at 161 states, no goal: agrees with grow2t.

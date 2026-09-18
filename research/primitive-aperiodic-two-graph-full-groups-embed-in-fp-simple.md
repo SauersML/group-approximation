@@ -9,8 +9,7 @@ artifacts:
   - research/artifacts/hl-bh-a2-boundary-hosts-2026-09-14.md
 ---
 
-**OPEN: the proof is complete except for the unpinned standard facts
-`finite-k-graph-boundary-groupoid-standard-facts`.** Unreviewed.
+**ESTABLISHED** (2026-09-18). The proof `primitive-two-graph-fp-simple-embedding-proof` is complete: its last open input, `finite-k-graph-boundary-groupoid-standard-facts`, is now proved by `finite-k-graph-standard-facts-proof` (lane proof, bh-groupoid). Unreviewed.
 
 Let `Λ` be a finite 2-graph with coordinate matrices `M_1`, `M_2`, where
 `M_j(u, v) = #uΛ^{ε_j}v`. Suppose both are primitive and `Λ` is aperiodic. Then for all

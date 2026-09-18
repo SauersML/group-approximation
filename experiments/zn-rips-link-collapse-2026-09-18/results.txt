@@ -1,0 +1,100 @@
+# results.txt -- replay logs for route research/z8-rips-contractible-at-scale-8-proof.md
+# All programs built with g++ -O2 -march=native (g++ 13.3.0), run single-threaded under nice.
+
+== sha256 of the uncompressed certificates (gunzip -c certs/<f>.gz | sha256sum), with line counts ==
+6420aa9565ddb106ae979a3fb31cf3bf6098fe1acdaa89e7ce0a16fa2e051125  71 lines  cert-8-8-k2.txt
+51c5ec674a14c723e8408306a0d3ac5cf4d7b07bff2add136551e3e2232bb959  415 lines  cert-8-8-k3.txt
+3024919c3555a47867b425148747efeec42d5f38c29a658ce63ee8cbe7fcd57f  1823 lines  cert-8-8-k4.txt
+55b05be978df3f535e561eeb9d56a09c28f7990ba4d835f5889b223b4390598c  6535 lines  cert-8-8-k5.txt
+c353b38f47d7964faa05d50240de5a8816d9833ea1ae9f0d09240db451f0fbd1  20039 lines  cert-8-8-k6.txt
+2cfc38b0f40bedad45dfcb30c04613d767fa0df4a73f5f1903909608b007b8c3  54271 lines  cert-8-8-k7.txt
+fc354d2ecca4a5433709b80f7d7e5bb99933e2e25d76888634eaaff3b55a29c2  40441 lines  cert-8-8-k8-link.txt
+1a0b7de09186dd445915f1e6d361a445884824066ab3065591e47b91843a9d25  92422 lines  cert-8-8-k8-prefix.txt
+
+== sha256 of the sources in this directory ==
+b2a35e04120684a804ec6878b303075eab431fafaf26e8be0aa473a709071e3a  genL.py
+c78e76ee5d978ef49cdce61ce78ad35ae0727aa6274065c6fc354ca70109ce3f  kz.cpp
+6ec5736cb89fca1be9b98611efe146b335a3866478a86c967fd8c9b5ffbf7862  kze.cpp
+6c087a7f333500358a77b2cf368eeba9aead3bb5cee29e0c173bb297d6c87266  kzv.cpp
+1db6b7da64d82569654ca1960ad9d6c623df0b76c68909b9dcc1bf19cfb8bf47  kzv3.cpp
+e6f59d9a8b4c5cf80cae30aa9b527731ca7c8bba08aa94f7968e35c53b95781e  negK.py
+17f5b48df0d887b9ca8ba8135d3c2a221a139c99d91fbc272678abacf7033479  stuck-5-4.txt
+
+== k = 2..7: ./kzv k 8 L.txt cert.txt, start = python3 genL.py k 8 L.txt ==
+start is all of Lmax_k (|Lmax_k| = 72)
+kzv k=2 r=8 start=72 lines=71 D=71 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 416)
+kzv k=3 r=8 start=416 lines=415 D=415 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 1824)
+kzv k=4 r=8 start=1824 lines=1823 D=1823 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 6536)
+kzv k=5 r=8 start=6536 lines=6535 D=6535 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 20040)
+kzv k=6 r=8 start=20040 lines=20039 D=20039 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 54272)
+kzv k=7 r=8 start=54272 lines=54271 D=53599 K=672 collapse-steps=2427964 end=1 END={e_k} ACCEPT (19 s cpu)
+
+== k = 2..7: the same replays with ./kzv3 k 8 L.txt cert.txt ==
+start is all of Lmax_k (|Lmax_k| = 72)
+kzv k=2 r=8 start=72 lines=71 D=71 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 416)
+kzv k=3 r=8 start=416 lines=415 D=415 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 1824)
+kzv k=4 r=8 start=1824 lines=1823 D=1823 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 6536)
+kzv k=5 r=8 start=6536 lines=6535 D=6535 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 20040)
+kzv k=6 r=8 start=20040 lines=20039 D=20039 K=0 collapse-steps=0 end=1 END={e_k} ACCEPT (0 s cpu)
+start is all of Lmax_k (|Lmax_k| = 54272)
+kzv k=7 r=8 start=54272 lines=54271 D=53599 K=672 collapse-steps=2381660 end=1 END={e_k} ACCEPT (24 s cpu)
+
+== k = 8, prefix: ./vcert2 8 8 -o a8_8.txt cert-8-8-k8-prefix.txt (exit 2: every move valid, end set larger) ==
+k=8 r=8 |B|=265729 start present=132864 (= |Lmax|)
+moves: A=56064 D=36358 (K steps 0) left=40442 dfs=366859388 -> all moves valid; end set is not {e_k}
+md5 of the sorted vcert2 end set = md5 of the sorted ilv4 end set a8_8: 4f37b733a1e9eabeda892b4e59ce564b / 4f37b733a1e9eabeda892b4e59ce564b
+sha256 of a8_8 (40,442 points, as written by ilv4): 6096a51b347af25d18e54e7044a28a5ff71197c4e85f8f9eea552ba27909bb96
+
+== k = 8, link part: kzv3 8 8 cur.txt rem.txt nxt.txt 800, replayed in budgeted pieces from a8_8 ==
+# certs/cert-8-8-k8-link.txt is the concatenation of the four stage files cert1..cert4 (search stages of the README).
+# Stage i was replayed from the stage-i start set s_i; its end set was compared (sorted) with s_{i+1}.
+# s_1 = a8_8 (sorted md5 4f37b733a1e9eabeda892b4e59ce564b, the vcert2 end set above); s_5 = {e_8}.
+# Each PAUSED piece stops at a line boundary and writes the current set; the next piece starts from that set
+# with the remaining lines.  The two 500-line chunks c000, c001 of stage 1 were checked by an earlier build of
+# kzv3.cpp with the same checks and without the budget and the Lmax_k size line.
+stage 1: start 40442 points, 2140 lines, cert sha256 fdb9848b41fe1275da9be80e4c95ead286593dd04d46754c83432c2219c0a850
+stage 2: start 38302 points, 2278 lines, cert sha256 f7b0ec5eb11a004c99fab15c367e7f3942336a1238fdfd733af3ded683681680
+stage 3: start 36024 points, 1962 lines, cert sha256 6dd8a09409ecdbccef50ac7e9719a6bfe64f99c89f5143f0c6e20e0f1866e2ff
+stage 4: start 34062 points, 34061 lines, cert sha256 6ec408899d0a38c672a64a6d0419529dae5b08aae477df25f9c690c1bd02d2e0
+stage 1 chunk vch1/c000: kzv k=8 r=8 start=40442 lines=500 D=0 K=500 collapse-steps=4406458 end=39942 END>{e_k} ACCEPT (104 s cpu)
+stage 1 chunk vch1/c001: kzv k=8 r=8 start=39942 lines=500 D=0 K=500 collapse-steps=4604440 end=39442 END>{e_k} ACCEPT (171 s cpu)
+stage 1 piece: kzv k=8 r=8 start=39442 lines=699 D=0 K=699 collapse-steps=5895179 end=38743 END>{e_k} PAUSED (278 s cpu)
+stage 1 piece: kzv k=8 r=8 start=38743 lines=441 D=0 K=441 collapse-steps=3873676 end=38302 END>{e_k} ACCEPT (179 s cpu)
+stage 1 VERIFIED end set matches (38302 points)
+stage 2 piece: kzv k=8 r=8 start=38302 lines=1974 D=1510 K=464 collapse-steps=4051174 end=36328 END>{e_k} PAUSED (144 s cpu)
+stage 2 piece: kzv k=8 r=8 start=36328 lines=290 D=0 K=290 collapse-steps=2662940 end=36038 END>{e_k} PAUSED (158 s cpu)
+stage 2 piece: kzv k=8 r=8 start=36038 lines=14 D=0 K=14 collapse-steps=136315 end=36024 END>{e_k} ACCEPT (7 s cpu)
+stage 2 VERIFIED end set matches (36024 points)
+stage 3 piece: kzv k=8 r=8 start=36024 lines=1399 D=721 K=678 collapse-steps=2923024 end=34625 END>{e_k} PAUSED (203 s cpu)
+stage 3 piece: kzv k=8 r=8 start=34625 lines=441 D=0 K=441 collapse-steps=2816950 end=34184 END>{e_k} PAUSED (144 s cpu)
+stage 3 piece: kzv k=8 r=8 start=34184 lines=122 D=0 K=122 collapse-steps=732835 end=34062 END>{e_k} ACCEPT (43 s cpu)
+stage 3 VERIFIED end set matches (34062 points)
+stage 4 piece: kzv k=8 r=8 start=34062 lines=1723 D=1268 K=455 collapse-steps=2958080 end=32339 END>{e_k} PAUSED (160 s cpu)
+stage 4 piece: kzv k=8 r=8 start=32339 lines=518 D=0 K=518 collapse-steps=3291079 end=31821 END>{e_k} PAUSED (173 s cpu)
+stage 4 piece: kzv k=8 r=8 start=31821 lines=31820 D=31790 K=30 collapse-steps=252750 end=1 END={e_k} ACCEPT (6 s cpu)
+stage 4 VERIFIED end set matches (1 points)
+TOTAL link part: lines=40441 D=35289 K=5152 collapse-steps=38604900 end={e_8}, 1770 s cpu over all pieces
+
+== negative controls ==
+python3 negK.py 5 4 stuck-5-4.txt ./kzv   (every admissible single move on a D-stuck set at (5,4) must fail)
+Counter({('D', 'D not dominated'): 228, ('K', 'K link does not collapse into N[w]'): 228})
+python3 negK.py 5 4 stuck-5-4.txt ./kzv3
+Counter({('D', 'D not dominated'): 228, ('K', 'K link does not collapse into N[w]'): 228})
+(6,6) certificate (D and 80 K lines) from kz, corrupted copies, replayed from Lmax_6 at r = 6 with kzv3:
+  K line's w replaced by a point outside hull(0,u,E): FAIL line 3612: w not adjacent or not in hull(0,x,E)
+  one K line deleted:                                FAIL line 3691: D not dominated
+  K tag changed to D (kzv and kzv3):                 FAIL line 3612: D not dominated
+  D line's w replaced by a non-dominating point:     FAIL line 2: D not dominated
+  file truncated inside a line:                      FAIL parse at line 1
+  one point dropped from the start set:              FAIL line 1: point absent or equal
+  two D lines with a different valid dominator:      ACCEPT (as expected)
+(7,7) certificate from kze (D=23190, K=1128): ACCEPT END={e_k} by kzv and by kzv3.

@@ -1,0 +1,52 @@
+{"class": 106, "L": 6, "pure": true, "powers": true, "pairs": 1417, "cycle": null}
+{"class": 144, "L": 6, "pure": true, "powers": true, "pairs": 864, "cycle": null}
+{"class": 157, "L": 6, "pure": true, "powers": true, "pairs": 1813, "cycle": ["v|h30", "v|h3030", "v023210|h", "v|h0211", "v|h003031", "v021210|h"]}
+{"class": 159, "L": 6, "pure": true, "powers": true, "pairs": 567, "cycle": ["v|h20", "v|h1313", "v023210|h", "v|h0021", "v|h002021", "v021210|h"]}
+{"class": 161, "L": 6, "pure": true, "powers": true, "pairs": 617, "cycle": null}
+{"class": 185, "L": 6, "pure": true, "powers": true, "pairs": 2899, "cycle": null}
+{"class": 232, "L": 6, "pure": true, "powers": true, "pairs": 1462, "cycle": null}
+{"class": 265, "L": 6, "pure": true, "powers": true, "pairs": 2807, "cycle": null}
+{"class": 284, "L": 6, "pure": true, "powers": true, "pairs": 903, "cycle": null}
+{"class": 287, "L": 6, "pure": true, "powers": true, "pairs": 104, "cycle": null}
+{"class": 288, "L": 6, "pure": true, "powers": true, "pairs": 1681, "cycle": ["v|h00", "v10|h", "v1010|h", "v|h0021", "v2102|h", "v201012|h"]}
+{"class": 289, "L": 6, "pure": true, "powers": true, "pairs": 57, "cycle": null}
+{"class": 290, "L": 6, "pure": true, "powers": true, "pairs": 1659, "cycle": ["v|h00", "v10|h", "v1010|h", "v|h0021", "v2102|h", "v201012|h"]}
+{"class": 291, "L": 6, "pure": true, "powers": true, "pairs": 627, "cycle": ["v|h02", "v|h0202", "v123201|h", "v|h1130", "v|h120200", "v102021|h"]}
+{"class": 292, "L": 6, "pure": true, "powers": true, "pairs": 1267, "cycle": ["v|h2121", "v313210|h", "v|h1300", "v|h112120", "v310210|h", "v|h21"]}
+{"class": 308, "L": 6, "pure": true, "powers": true, "pairs": 2807, "cycle": null}
+{"class": 345, "L": 6, "pure": true, "powers": true, "pairs": 1540, "cycle": ["v|h2121", "v313210|h", "v|h1300", "v|h112120", "v010313|h", "v|h21"]}
+{"class": 348, "L": 6, "pure": true, "powers": true, "pairs": 1024, "cycle": ["v|h0202", "v312310|h", "v|h1200", "v|h120200", "v312010|h", "v|h02"]}
+{"class": 354, "L": 6, "pure": true, "powers": true, "pairs": 2491, "cycle": null}
+{"class": 370, "L": 6, "pure": true, "powers": true, "pairs": 524, "cycle": null}
+{"class": 376, "L": 6, "pure": true, "powers": true, "pairs": 1097, "cycle": null}
+{"class": 377, "L": 6, "pure": true, "powers": true, "pairs": 60, "cycle": null}
+{"class": 378, "L": 6, "pure": true, "powers": true, "pairs": 1580, "cycle": ["v|h112122", "v23|h", "v|h2033", "v|h203033", "v0101|h"]}
+{"class": 379, "L": 6, "pure": true, "powers": true, "pairs": 621, "cycle": null}
+{"class": 380, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 381, "L": 6, "pure": true, "powers": true, "pairs": 545, "cycle": null}
+{"class": 382, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 384, "L": 6, "pure": true, "powers": true, "pairs": 1547, "cycle": null}
+{"class": 385, "L": 6, "pure": true, "powers": true, "pairs": 1540, "cycle": ["v|h12", "v|h1212", "v313210|h", "v|h0211", "v|h003031", "v0101|h"]}
+{"class": 414, "L": 6, "pure": true, "powers": true, "pairs": 2899, "cycle": null}
+{"class": 424, "L": 6, "pure": true, "powers": true, "pairs": 309, "cycle": null}
+{"class": 426, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 433, "L": 6, "pure": true, "powers": true, "pairs": 864, "cycle": null}
+{"class": 450, "L": 6, "pure": true, "powers": true, "pairs": 2504, "cycle": null}
+{"class": 453, "L": 6, "pure": true, "powers": true, "pairs": 100, "cycle": null}
+{"class": 455, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 462, "L": 6, "pure": true, "powers": true, "pairs": 1290, "cycle": null}
+{"class": 463, "L": 6, "pure": true, "powers": true, "pairs": 3206, "cycle": null}
+{"class": 464, "L": 6, "pure": true, "powers": true, "pairs": 545, "cycle": null}
+{"class": 465, "L": 6, "pure": true, "powers": true, "pairs": 695, "cycle": null}
+{"class": 466, "L": 6, "pure": true, "powers": true, "pairs": 3206, "cycle": null}
+{"class": 467, "L": 6, "pure": true, "powers": true, "pairs": 1290, "cycle": null}
+{"class": 469, "L": 6, "pure": true, "powers": true, "pairs": 44, "cycle": null}
+{"class": 470, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 471, "L": 6, "pure": true, "powers": true, "pairs": 36, "cycle": null}
+{"class": 472, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 474, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
+{"class": 508, "L": 6, "pure": true, "powers": true, "pairs": 2578, "cycle": ["v|h21", "v12|h", "v|h12", "v03|h"]}
+{"class": 522, "L": 6, "pure": true, "powers": true, "pairs": 545, "cycle": null}
+{"class": 524, "L": 6, "pure": true, "powers": true, "pairs": 617, "cycle": null}
+{"class": 532, "L": 6, "pure": true, "powers": true, "pairs": 545, "cycle": null}
+{"class": 535, "L": 6, "pure": true, "powers": true, "pairs": 0, "cycle": null}
