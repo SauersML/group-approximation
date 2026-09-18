@@ -95,3 +95,37 @@ only up to a homomorphism from `T` that is injective on `S`.
    **Consequence.** The sandwich ring `U`, and the Clapham and derived-subgroup
    data, impose no obstruction of their own in the congruence regime. An attack
    on this hole through features of `U` is an attack on the ring-host problem.
+4. **Weaken the host condition from square-module to "not directly finite"
+   (swarm-0917, c-pz1, reframer).** *Narrows the Attempt 3 gap. The hole stays
+   OPEN.*
+
+   **The realisation lemma.** By
+   [[non-directly-finite-ring-hosts-are-sandwich-ring-quotients]], a finitely
+   presented ring `R` is a witness when it has the following properties:
+   - `R_R^4` is a direct summand of `R_R`, which holds for every simple ring that
+     is not directly finite;
+   - `PE_4(R)` is finitely presented and simple;
+   - `S <= R^x`, with `S` perfect.
+
+   **The construction.** Take `T = H = E_4(R)` and `g = e_12(1)`.
+   - The corner `M_4(R) ≅ eRe`, with `u |-> φ(u) + (1-e)`, embeds `GL_4(R)` in
+     `R^x`.
+   - `p = -y_1` and `q = x_2` satisfy the relation.
+   - `U` maps onto `R` itself, with a finitely generated kernel.
+
+   **The dichotomy.** The hole holds iff there is either
+   - a host that is not directly finite, or
+   - a directly finite witness. In such a witness `p`, `q` and `1-g` are all
+     units.
+
+   **What remains.** The remaining gap is directly finite witnesses only. A
+   directly finite host realises the hole only at rank sixteen: take `g` with
+   `1-g` a unit, so `U ->> M_4(R)` and the quotient group is `PE_16(R)`.
+
+   **Dead end on the way: kill characteristic 0 through `K_1`.** The
+   square-module centre kill of
+   [[square-module-elementary-centre-is-central-units]] uses `c^(d-1) I_n in E_n`
+   for `R ≅ R^d`. It does not extend to hosts that are not directly finite
+   when `[1_R]` has infinite order in `K_0(R)`, because then `K_1` detects
+   scalars. So the non-directly-finite branch is not confined to finite centre
+   fields by that argument.
