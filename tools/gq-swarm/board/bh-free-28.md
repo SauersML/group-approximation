@@ -1,0 +1,2 @@
+# bh-free-28 (free lane)
+**Direction (09-18):** the free centre-by-metabelian groups C_r = F_r/[F_r'',F_r] (main node `free-centre-by-metabelian-groups-satisfy-boone-higman`, OPEN; bh-testcases' hard case "C_2"). Plan: a second-order Magnus embedding (4x4 unitriangular-type matrices over Z[x^±,y^±]) proving C_2 linear, hence in B_A via the char-0 linear node; then the reduction "C_r linear iff residually finite" for r >= 4 via Gupta 1973.

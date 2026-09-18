@@ -15,7 +15,9 @@ of the graph of groups of `K` and a vertex group `B` of that of `H`. Both are
 abstractly commensurable with `G`, so they contain finite-index subgroups
 `A_0 <= A`, `B_0 <= B` and an isomorphism `A_0 ≅ B_0`. Join the two graphs of
 groups by one new edge with edge group `A_0 ≅ B_0`. Call the result `L_Δ` and
-`L = π_1(L_Δ)`. Every vertex and edge group of `L_Δ` is commensurable with `G`,
+`L = π_1(L_Δ)`. On the subgraph for `H`, every edge group of `L_Δ` is the edge group of `H`
+(`H_e = G_e`), as BLIW Lemma 10.1 (p. 21) requires; the gluing adds only the new edge.
+Every vertex and edge group of `L_Δ` is commensurable with `G`,
 and every edge inclusion has finite index, so `L ∈ BS_G`. The subgraph for `K`
 injects, so `K <= L`.
 

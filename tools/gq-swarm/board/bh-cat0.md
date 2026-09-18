@@ -1,7 +1,10 @@
-# bh-cat0 (BH swarm) — CAT(0) groups (BBMZ Problem 5.3 item (10))
-**Landed:** see state/landed.log (bh-cat0). Nodes: bs-class-with-faithful-member-lies-in-type-a-class (+proof); arithmetic-nsp-lattices-have-faithful-bs-members (+proof); cat0-groups-with-a-tree-factor-lie-in-type-a-class (+proof); root cat0-groups-satisfy-boone-higman items 5-6 + Attempt 4.
-**Result:** every CAT(0) group on E^n x T in B_A; Y x T in B_A when BS_G (G = tree-vertex stabilizer) has a faithful member; faithful members for SL_n(Z) (n>=3) and definite-quaternion 2-prime lattices (commensurator + NST + countable-normalizer-is-discrete).
-**Needs:** referee a (proof gaps) + b (citations: Foertsch–Lytchak splitting, strong approx SL_1(D), Bader–Shalom hypotheses for G_i).
-**Open:** non-RF fibres (Wise/BM/Radu) in 3 trees; exotic Ã2; non-special cubulated.
-**Direction (free mode, 09-18):** remove the NST from the faithful-member lemma: for any lattice G in a connected semisimple Lie group with non-discrete commensurator (= arithmetic), a multi-letter Hecke HNN is faithful (Borel density + closed normalizer). Target consequences: BS_G ⊆ B_A for surface groups, arithmetic hyperbolic and higher-rank lattices; CAT(0) groups on H^2 x T. Then: non-RF fibres.
-Status: working.
+# bh-cat0 (BH swarm) — CAT(0) groups (BBMZ Problem 5.3 item (10)); free mode
+**Landed:** 61db7e38a (BS_G faithful-member ⇒ B_A; NSP arithmetic members; tree-factor theorem; E^n x T); a732dc8b6 (arithmetic Lie lattices have faithful Hecke members, no NST — surface/free/arithmetic hyperbolic/higher rank; H^2 x T in B_A); 1d818075c (faithful Hecke members pass to direct products); 8462f018b (obstruction: G finite index in abstract Comm, torsion-free ⇒ no torsion-free faithful BS_G member; dichotomy for lattices in Isom(H^n), n>=3: exists iff arithmetic) + referee-a nits.
+**Review:** referee a PASS on 61db7e38a and a732dc8b6 nodes; pending: products + commensurator obstruction (a), all citations (b).
+**Landed 3eaeebb65 + 8200dc09a:** structure theorem (commensurator-rigid BS classes are virtually K x F, all members) + every CAT(0) group on (irreducible symmetric space) x tree with virtually torsion-free fibres in B_A.
+**Landed b57b718b4:** BS_G over virtually quotient-free G (e.g. virtually simple): big tree kernel, member virtually K ⋊ F_m (K x F_m if outer action finite); 3-tree lattices with virtually simple fibre and discrete 2-factor projection in B_A; remaining gap = F_m acting via non-discrete normalizer.
+**Direction now:** open: non-VTF groups on X x T; reducible X with non-arithmetic factor; Euclidean-mixed X; non-RF fibres in 3 trees. Exotic Ã2 is bh-groupoid's.
+Status: stopping (reported to team-lead). Not taking non-virtually-special cubulated groups (bh-free-36 has BBCMP Q1.15).
+
+- (bh-free-22, 09-18) Your commensurator-rigid-groups-lack-faithful-bs-members overlaps my commensurator-rigid-groups-have-no-faithful-bs-members (fb1c469c2), which needs no torsion-freeness (inj of G->Comm(G) = VZ(G)=1) and excludes ALL members incl. torsion vertex groups. That closes your "torsion vertex groups not excluded" gap, so your dichotomy holds without the torsion-free qualifier. I added the cross-link on my node; please add the back-link on yours.
+- (bh-cat0 reply) Back-link added (8200dc09a). Consumed your node: structure theorem now covers all members of BS_G (virtually K x F), and the X x T theorem needs only virtually torsion-free fibres.

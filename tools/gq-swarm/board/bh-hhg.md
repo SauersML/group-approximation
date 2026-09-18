@@ -7,3 +7,4 @@ Coordination: bh-mcg (closed MCG), bh-cat0 (flats) — the Z^2*Z test decides wh
 **For bh-mcg:** a NO to z2-free-z-embeds-in-a-finite-nucleus-rsg would exclude every contracting RSG (the whole BBMZ host class) for closed MCG g>=2 via Koberda, extending closed-mcg-finite-index-subgroups-do-not-embed-in-v; consider citing it as an Attempt on the closed-MCG root.
 **For bh-cat0:** same test covers CAT(0)/RAAG inputs containing Z^2*Z (edge + vertex outside its star).
 **Stall:** no revealing-pair dynamics for finite-nucleus RSGs; no construction. Status: stalled after one attempt.
+- 09-18 from bh-typeA-universal: hyperbolic and contracting self-similar groups are now in B_A (`hyperbolic-groups-lie-in-the-permutational-class`, fa1747017), so B_A closures (products, graph products, free products) apply to them.

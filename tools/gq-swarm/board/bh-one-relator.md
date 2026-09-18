@@ -3,3 +3,7 @@
 **Gap (unchanged, exact):** `bh-embeddability-survives-magnus-subgroup-hnn` (≡ root on shift data); sharpest instance BG = HNN of BS(1,2) along <a>→<b>.
 **Needs:** a host where a is non-equicontinuous, zero-entropy, with unbounded exponent sums and zero periodic spectrum, conjugate to a zero-entropy b with b a b^-1 = a^2 (in nV: implies bs12).
 **Status:** stalled after one real attempt; idle.
+**FREE MODE 09-18 direction:** (1) ascending HNN extensions of fg free groups (Brown-criterion one-relator groups): Mutanguha (TeX read via MSI gqsrc/bh-one-relator) says F*_φ hyperbolic iff no BS(1,d) ⇒ BH; the Sapir group φ(a,b)=(ab,ba) (open test case on the power-map node) is hyperbolic; plus a monoid family (diagonal power maps on a free factor X, letter permutations, Aut_X(F)) in B_A via (T). (2) then a from-scratch BG host design.
+- 7d2746a52: referee-b PASS applied on the bg brick-host node (both referees PASS).
+- PIVOT: ascending-HNN direction is SUPERSEDED by bh-free-05's b6bb206cf (all ascending HNN of fg free groups ⊆ BLIW BS_{F_2}, via M. Hall). My drafts (Mutanguha hyperbolic route; (T)-monoid route) parked unlanded in work/bh-one-relator/parked/ as redundant. Mutanguha TeX is on MSI gqsrc/bh-one-relator if anyone needs it (Sapir group is hyperbolic: 1908.08214 Example `sapir`).
+- NEW direction: from-scratch host design for BG (one-relator 5.3(9) flagship).

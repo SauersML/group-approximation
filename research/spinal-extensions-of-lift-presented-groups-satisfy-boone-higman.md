@@ -44,7 +44,7 @@ simple group, although its original action may not be lift-presented
 
 By `finitary-extensions-preserve-lift-presentability`, lift-presentability of an automaton reduces to its
 nontrivial strongly connected components over lift-presented bases. This node settles a component that is a
-loop along a letter fixed by everything, over a base with trivial sections there. The sharpest remaining test is
-a loop whose letter the base moves, e.g. the linear-activity automaton `a = σ(1, a)`, `b = (a, b)` over
-`{0,1}`: the base `⟨a⟩ ≅ Z` is lift-presented, but `a` moves the loop letter of `b`, so compression does not
-apply. Whether `V_2(⟨a,b⟩)` is finitely presented is open here.
+loop along a letter fixed by everything, over a base with trivial sections there. A loop whose letter the base moves
+is not covered by compression; the linear-activity automaton `a = σ(1, a)`, `b = (a, b)` is such a case, and it is
+settled instead by a descent argument (`linear-activity-odometer-automaton-has-fp-nekrashevych-group`, via
+`relator-complexity-descent-gives-free-splitting`).

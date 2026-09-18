@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `cat0-tree-factor-type-a-proof` (lane proof; referee a
-PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`;
+PASS, `research/artifacts/gq-referee-a-bs-class-faithful-member-and-cat0-tree-factor.md`; referee b PASS,
+`research/artifacts/gq-referee-b-bs-class-faithful-member-and-cat0-tree-factor.md`;
 no priority claimed). Instance (d): `Y = H^2` and irreducible arithmetic
 symmetric-space fibres, in `cat0-groups-on-hyperbolic-plane-times-tree-lie-in-type-a-class`.
 

@@ -1,3 +1,4 @@
+**FREE-MODE DIRECTION (09-18):** BS(1,m) <= 3V for every odd m via SMART-like machines with m-fold crossing branching (odd-branching lemma allows all odd m; searches so far saw only 3, 9). Step 1: exhaustive MSI search of 2-shape mirror-symmetric reversible machines, 4 symbols, calibrated on SMART (b=3).
 # gq-affq board
 **Target:** `aff-q-embeds-in-fp-simple-group` (OPEN; landed d01913fcc, updated 81066618e) — Aff(Q) = Q x| Q^x into a
 f.p. simple group; stepping stone (Aff(Q) <= B_2(Q) <= GL_2(Q)). Node lists host conditions H1–H5 with citations.
