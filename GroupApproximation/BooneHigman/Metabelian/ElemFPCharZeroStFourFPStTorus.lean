@@ -78,37 +78,41 @@ end Inverse
 
 section Torus
 
-variable (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ) (r : R)
-
-theorem czStFourFP_H_ak : czStFourFP_H a b hab v * SteinbergGroup.x a k hak r *
-    (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x a k hak ((v : R) * r) := by
+theorem czStFourFP_H_ak (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x a k hak r *
+      (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x a k hak ((v : R) * r) := by
   rw [czStFourFP_H, czStFourFP_conj_H, czStFourFP_winv_ak a b k hab hak hbk,
     czStFourFP_w_conj_bk a b k hab hak hbk]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ak
 
-theorem czStFourFP_H_bk : czStFourFP_H a b hab v * SteinbergGroup.x b k hbk r *
-    (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x b k hbk (((v⁻¹ : Rˣ) : R) * r) := by
+theorem czStFourFP_H_bk (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x b k hbk r *
+      (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x b k hbk (((v⁻¹ : Rˣ) : R) * r) := by
   rw [czStFourFP_H, czStFourFP_conj_H, czStFourFP_winv_bk a b k hab hak hbk,
     czStFourFP_w_conj_ak a b k hab hak hbk, neg_mul_neg]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_bk
 
-theorem czStFourFP_H_ka : czStFourFP_H a b hab v * SteinbergGroup.x k a hak.symm r *
-    (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x k a hak.symm (r * ((v⁻¹ : Rˣ) : R)) := by
+theorem czStFourFP_H_ka (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x k a hak.symm r *
+      (czStFourFP_H a b hab v)⁻¹ =
+        SteinbergGroup.x k a hak.symm (r * ((v⁻¹ : Rˣ) : R)) := by
   rw [czStFourFP_H, czStFourFP_conj_H, czStFourFP_winv_ka a b k hab hak hbk,
     czStFourFP_w_conj_kb a b k hab hak hbk]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_ka
 
-theorem czStFourFP_H_kb : czStFourFP_H a b hab v * SteinbergGroup.x k b hbk.symm r *
-    (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x k b hbk.symm (r * (v : R)) := by
+theorem czStFourFP_H_kb (a b k : I) (hab : a ≠ b) (hak : a ≠ k) (hbk : b ≠ k) (v : Rˣ)
+    (r : R) : czStFourFP_H a b hab v * SteinbergGroup.x k b hbk.symm r *
+      (czStFourFP_H a b hab v)⁻¹ = SteinbergGroup.x k b hbk.symm (r * (v : R)) := by
   rw [czStFourFP_H, czStFourFP_conj_H, czStFourFP_winv_kb a b k hab hak hbk,
     czStFourFP_w_conj_ka a b k hab hak hbk, neg_mul, neg_neg]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_H_kb
 
-theorem czStFourFP_H_kl (l : I) (hkl : k ≠ l) (hal : a ≠ l) (hbl : b ≠ l) :
+theorem czStFourFP_H_kl (a b k l : I) (hab : a ≠ b) (hkl : k ≠ l) (hak : a ≠ k) (hbk : b ≠ k)
+    (hal : a ≠ l) (hbl : b ≠ l) (v : Rˣ) (r : R) :
     czStFourFP_H a b hab v * SteinbergGroup.x k l hkl r * (czStFourFP_H a b hab v)⁻¹ =
       SteinbergGroup.x k l hkl r := by
   have h := czStFourFP_w_conj_kl a b k l hab hkl hak hbk hal hbl 1 r
