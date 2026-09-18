@@ -28,7 +28,7 @@ given because the numbers below are read off the counter order, not printed in t
   of X. Then G acts highly transitively (and hence oligomorphically) on each of its orbits."
   Belk--Fournier-Facio--Hyde--Zaremsky cite this as [BBMZ, Proposition 5.4], which fixes the
   number.
-- (c) *Stabilizers.* Proposition `prop:fin_gen_stabs` (Section 5): "Let G ≤ R_{Γ,E} be a full,
+- (c) *Stabilizers.* Proposition 5.8 (label `prop:fin_gen_stabs`): "Let G ≤ R_{Γ,E} be a full,
   contracting RSG, and let S′ be a finite set of rational points in E. Then the stabilizer
   Stab_G(S′) is finitely generated."
 - (d) *Faithfulness.* In the proof of Proposition 5.1 (label `prop:contr_to_simple`): "Let S be
@@ -44,7 +44,7 @@ same verification BBMZ perform for Zaremsky's oligomorphic criterion; nothing is
 the observation that it is a type (A) verification.
 
 **Step 3. Inputs.**
-- *Hyperbolic groups.* Theorem 4.1 (label `thrm:hyp_to_contracting`; stated in the introduction as the lettered
+- *Hyperbolic groups.* Theorem 4.1 (label `thrm:hyp_to_contracting`; stated in the introduction as Theorem E, the lettered
   theorem with label `thrm:hyp_embed`): "Every hyperbolic group embeds into a full, contracting RSG." This is
   `hyperbolic-groups-embed-in-contracting-rsgs`.
 - *Contracting self-similar groups.* BBMZ Example `ex:rn` shows that the Röver--Nekrashevych
