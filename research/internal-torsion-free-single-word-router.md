@@ -53,3 +53,33 @@ Higman--Neumann--Neumann) has a stable-letter exponent-sum epimorphism onto
 gadget amalgams with HNN two-generation regresses without terminating.  This
 claim itself (surjective, from an acylindrically hyperbolic input) remains
 OPEN.
+
+**Zero marginal impact, and the last import of the routing chain removed
+(swarm-0917, d-ptf-router, reframing).**  *Domination.*  Every live route
+that uses this claim also needs a finitely presented torsion-free seed `E`
+with `1 != d in Rad_MF(E)`.  Such a seed is exactly
+`property-t-free-torsion-free-fp-non-mf-seed`, and
+`property-t-free-torsion-free-via-embedding-router` already finishes from it
+without this claim.  So a proof of the surjective router changes no goal
+status.  The seed is the last missing prerequisite, and effort belongs there.
+
+*Internal acylindricity.*  The established upgrade still imported
+Minasyan--Osin.  That import is now gone:
+
+* `malnormal-edge-amalgam-tree-action-is-acylindrical` (elementary): if the
+  edge group is malnormal in one factor, 3-paths in the Bass--Serre tree have
+  trivial stabilizers.  Acylindricity follows with `R = 2ε+5` and
+  `N = 4ε+2`, and `tb`, `bt` are independent loxodromics.
+* `two-generated-acylindrical-upgrade-without-minasyan-osin`: a second
+  amalgam `(Q_1*<t>) *_{C'} F(a,b)` over the fixed malnormal
+  `C' = <a, ba^2b^2, baba^{-1}b, b^3ab^{-1}>`, with `t^4 <-> a`,
+  `st <-> ba^2b^2`, `ct^2 <-> baba^{-1}b` and `sct^3 <-> b^3ab^{-1}`.
+
+*Where it stops.*  Malnormality of `C'` and triviality of
+`<t,b | t=bt^8b^2, t^2=bt^4bt^{-4}b, t^3=b^3t^4b^{-1}>` are finite
+computations, done by two independent coset enumerators.  They are not yet
+by-hand derivations.  The script's search also found no malnormal
+`<a,y_1,y_2>` with all `|y_i| <= 4`: every malnormal completion needs words of
+length 5.  Surjectivity is still unaddressed.  An internal proof would need
+small cancellation over a hyperbolic group, which is formalizing Hull--Osin,
+and by the domination above it would buy nothing.
