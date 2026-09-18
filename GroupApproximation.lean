@@ -5634,6 +5634,23 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeRela
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.QuasidiagonalAlgebra
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionLiftModel
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Cosets
+import GroupApproximation.Manuscript.NonMFNotes.Full.AbelianBoundary.Boundary
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingTraceKernel
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCore.RelatedWorkStatements
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.Ext
+import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordMF.CliffordLift
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.ReturnSection
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockCells
+import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockPlacement
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.UpperTriangular
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.CompressMatrix
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Products
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.FormPositivity
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.ModelLift
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.Factorization
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.LocalModel
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Descend
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Block
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
