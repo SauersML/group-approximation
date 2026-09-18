@@ -126,11 +126,12 @@ theorem fiveStepRankFourFix_conj_stab (r : Fin n) (w : SteinbergGroup (Fin n) R)
       rw [fiveStepRankFourFixLeft_of_eq L r rfl, mul_one])
     (show fiveStepRankFourFixRight L r r = 1 * L.t0 by
       rw [fiveStepRankFourFixRight_of_eq L r rfl, one_mul])
-    (fun j hj => fiveStepRankFourFixLeft_of_ne L r hj)
-    (fun j hj => fiveStepRankFourFixRight_of_ne L r hj) w
+    (fun _ hj => fiveStepRankFourFixLeft_of_ne L r hj)
+    (fun _ hj => fiveStepRankFourFixRight_of_ne L r hj) w
   have e1 : Full.LVCornerShift.cornerMap (fun _ : Fin n => (1 : R)) (fun _ : Fin n => (1 : R))
       (fun _ => mul_one _) w = w :=
-    Full.LVCornerShift.cornerMap_eq_self _ _ _ (fun _ => rfl) (fun _ => rfl) w
+    Full.LVCornerShift.cornerMap_eq_self (fun _ : Fin n => (1 : R)) (fun _ : Fin n => (1 : R))
+      (fun _ => mul_one _) (fun _ => rfl) (fun _ => rfl) w
   rw [e1, fiveStepRankFourFix_cornerMap_eq L r w] at step
   exact step
 
