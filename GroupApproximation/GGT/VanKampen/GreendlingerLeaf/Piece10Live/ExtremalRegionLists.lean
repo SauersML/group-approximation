@@ -36,10 +36,10 @@ theorem rel_of_isChain_stretch (f g : α → β) {d e : α} {B C : List α}
     (hc : (d :: (B ++ e :: C)).IsChain fun x y => f x = g y)
     (hB : ∀ b₀ ∈ B.head?, ∀ b₁ ∈ B.getLast?, g b₀ = f b₁) :
     f d = g e := by
-  obtain ⟨hhead, htail⟩ := List.isChain_cons.mp hc
   cases B with
-  | nil => exact hhead e (Option.mem_def.mpr rfl)
+  | nil => exact (List.isChain_cons.mp hc).1 e (Option.mem_def.mpr rfl)
   | cons b₀ B' =>
+    obtain ⟨hhead, htail⟩ := List.isChain_cons.mp hc
     obtain ⟨b₁, hb₁⟩ : ∃ b₁, (b₀ :: B').getLast? = some b₁ :=
       ⟨_, List.getLast?_eq_getLast (List.cons_ne_nil b₀ B')⟩
     have hmem : b₁ ∈ (b₀ :: B').getLast? := Option.mem_def.mpr hb₁

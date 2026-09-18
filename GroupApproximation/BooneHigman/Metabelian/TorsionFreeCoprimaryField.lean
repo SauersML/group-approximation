@@ -50,7 +50,8 @@ theorem exists_common_field_finset {J : Type} [DecidableEq J] (K : J → Type)
     [∀ i, Field (K i)] [∀ i, CharZero (K i)] (s : Finset J) :
     ∃ (L : Type) (_ : Field L), CharZero L ∧ ∀ i ∈ s, Nonempty (K i →+* L) := by
   induction s using Finset.induction_on with
-  | empty => exact ⟨ℚ, inferInstance, inferInstance, fun i hi => absurd hi (Finset.notMem_empty i)⟩
+  | empty =>
+    exact ⟨ℚ, inferInstance, inferInstance, fun i hi => absurd hi (Finset.notMem_empty i)⟩
   | insert a s _ ih =>
     obtain ⟨L, _, _, hs⟩ := ih
     obtain ⟨M, _, hM, ⟨g⟩, ⟨f⟩⟩ := exists_common_field L (K a)
