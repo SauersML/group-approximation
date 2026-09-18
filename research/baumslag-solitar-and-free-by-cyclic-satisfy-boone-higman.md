@@ -31,3 +31,7 @@ The BLIW method applies to groups acting on locally finite trees under the
 paper's hypotheses. Only the two named families, plus the triangle Artin case
 the survey reports, are imported here. Nothing is reproved, and there is no
 Lean counterpart.
+
+## Update (bh-free-05, 2026-09-18)
+
+Extension: the free-by-cyclic case (surjective φ) extends to every injective endomorphism of a finitely generated free group in `ascending-hnn-of-free-groups-satisfy-boone-higman` (b6bb206cf, lane proof, not reviewed). The mapping torus embeds in a member of BS_{F_2} via M. Hall's theorem, and the same BLIW §12.5 theorem applies.

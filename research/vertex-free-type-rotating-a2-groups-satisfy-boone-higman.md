@@ -26,3 +26,22 @@ three nodes:
 By Bader–Caprace–Lécureux (pinned in `exotic-a2-lattices-satisfy-boone-higman`) they have
 only finite linear images, so no linear Boone–Higman route on main reaches them. Lattices
 with torsion, or not type rotating, are not covered.
+
+## Status update (2026-09-18, bh-groupoid)
+
+- **Premise refuted as stated.** The primitivity premise
+  `robertson-steger-a2-two-graphs-are-primitive-and-aperiodic` is false for type-preserving
+  `Γ`, where the period is 3 (`rs-strip-tail-transitivity-forces-primitive-transition-matrices`).
+- **Corrected premise proved.** For every `Γ`, the transition matrices are irreducible, and
+  they are primitive iff the type-rotation character `θ` is nonzero
+  (`a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`).
+- **Other premises.** Aperiodicity always holds
+  (`rs-two-graph-aperiodicity-from-h3-and-irreducibility`). The embedding premise is
+  ESTABLISHED (`a2-group-embeds-in-rs-two-graph-geometric-proof`). These are lane proofs.
+- **Type-transitive case.** For `θ ≠ 0` the claim is therefore reduced to the unpinned
+  `finite-k-graph-boundary-groupoid-standard-facts`: see
+  `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` and route
+  `type-transitive-a2-bh-via-rs-two-graph-full-groups`. Subgroups of such groups follow too.
+- **Type-preserving case.** `θ = 0` without a type-transitive overgroup is still open. A
+  sketch of a variant route through the index-3 degree lattice is in
+  `research/artifacts/gq-bh-bh-groupoid-frontier.md` §6.

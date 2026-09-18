@@ -10,8 +10,11 @@ distinct_from:
   circle-and-tree-product-periodic-subgroups-are-finite: that is an established lemma excluding circle groups and tree-product lattices as witnesses; this is the open existence statement.
 requires:
   - circle-and-tree-product-periodic-subgroups-are-finite
+  - brin-thompson-2v-is-torsion-locally-finite
   - bh-separators-must-omit-nested-decidable-hosts
   - hereditary-approximation-disproofs-of-boone-higman
+artifacts:
+  - research/artifacts/gq-bh-bh-free-06-one-stack-pumping.md
 ---
 
 **OPEN.** There are an integer `n >= 1` and a finitely presented simple group `S`
@@ -85,3 +88,21 @@ the first non-decision-problem candidate for a counterexample to Boone--Higman.
    - The tree fixed-point argument fails for `V`: the natural `V`-complexes are
      infinite-dimensional.
    - The rotation-number argument has no analogue on the Cantor set.
+2. **Thompson's `V` is not a witness; the sharpest open host is `2V` (2026-09-18,
+   lane `bh-free-06`).** `V` is torsion locally finite (Röver; Burillo--Cleary--Röver,
+   arXiv:1402.3860, Theorem 1.3). The one-stack pumping re-proof in
+   `research/artifacts/gq-bh-bh-free-06-one-stack-pumping.md` also covers `V_{n,r}`,
+   and it shows that the argument breaks exactly at a second stack. So `V`, `F`, `T`
+   and `V_{n,r}` are excluded as witnesses.
+   - The open two-stack case is `brin-thompson-2v-is-torsion-locally-finite`.
+   - The full-shift topological full group `[[σ]]` sits inside `2V`, which gives
+     concrete candidates there.
+   - The withdrawn arXiv:2209.11982 was the only published claim about torsion in
+     `nV`.
+3. **The read-only head subgroup of `2V` is excluded (2026-09-18, lane
+   `bh-free-06`).** `full-shift-topological-full-groups-are-torsion-locally-finite`
+   shows that `[[Σ^Z]] ≤ 2V` has no infinite finitely generated torsion subgroup of
+   any exponent. For bounded exponent this also follows from residual finiteness of
+   `[[Σ^Z]]` together with Zelmanov. A witness inside `2V` must use writing
+   machines, for example `RTM(Z,2,1)`. `RTM(Z,2,1)` is LEF (arXiv:1603.08715,
+   Theorem 6), and Zelmanov does not apply directly to LEF groups.
