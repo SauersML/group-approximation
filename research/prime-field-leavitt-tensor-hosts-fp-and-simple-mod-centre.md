@@ -46,3 +46,16 @@ There are two new ingredients.
 
 DERIVATION
 prime-field-leavitt-tensor-hosts-proof
+
+## Referee (bh-ref-misc, 2026-09-18): Khanh source match
+
+Parts 1–3 are due to Huynh Viet Khanh (arXiv:2609.08428v1). The source proves them for
+`L_(F_2)(1,2)` and states the two criteria (Thms 2.2 and 5.1) in characteristic 2.
+
+I read the v1 TeX at source; the full comparison is on
+`khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts`. The transfers used here check:
+- to `B ⊗ L_p`;
+- to odd `p`, where Thm 2.2 and Lemma 2.4 need transferring too, not only Lemma 2.3 and Thm 5.1;
+- to the degree-truncated form of part 1.
+
+PASS.

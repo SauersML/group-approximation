@@ -61,3 +61,18 @@ subgroups `C` with decidable membership:
   `B_A`-overgroup of `G`.
 
 The first two are OPEN, so the third is too.
+
+## Referee (bh-ref-bs12, 2026-09-18): PASS, conditional on its literature inputs
+
+The equivalence chain in `pbh-coset-wreaths-iff-identity-edge-hnns-proof` checks.
+- **Inputs:** BFFHZ Theorem C (i) ⟹ (iv) and Theorem E, as recorded in their repo nodes, and
+  `type-a-actors-closed-under-type-a-lamp-wreaths`.
+- **Partial conjugations:** `π_g·(m_1, m_2) = (g^(-1) m_1 g, m_2)`, so the stabilizer of `(m, 1)` in
+  `π(G)` is `π(C_G(m))`.
+- **Britton's lemma** gives (d) ⟹ (e).
+- **Cases 1–5** of "When (e) holds" are correct.
+
+**Scope.** All the wreath products here are **restricted**, with finitely supported lamp functions.
+The lamp embedding in (e) ⟹ (b) extends finitely supported functions by `1`. Twisted coset
+lamplighters, whose stabilizers act nontrivially on the lamps at infinitely many cosets, are not
+covered.

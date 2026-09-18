@@ -84,3 +84,17 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
   use features `F` lacks, such as the base `B` not being finitely presented, or `B ∉ SG`.
 - **No positive tool is known.** Nothing in this lane's reading proves `FP_3` for any finitely
   presented ascending HNN extension of a weakly branch group.
+- **No finitely presented ascending base (2026-09-18, bh-openq-lists; closes the homotopical base route).**
+  `basilica-hnn-has-no-finitely-presented-ascending-base` proves that `B~` is not an ascending HNN extension of any
+  finitely presented group.
+  - Mechanism: `σ` is section-inverting at vertex `1`, so any base contains `g σ^q(B) g^(−1)` after conjugation. Its
+    stabilizer of a suitable vertex then maps onto `B`, a finitely presented cover inside the amenable `B`, which
+    Erschler's theorem forbids.
+  - So the "Changing the base" attempt above can never give `F_3`.
+  - Still open: a base of type `FP_2` that is not finitely presented (de Cornulier's `FP_2` upgrade in BGdlH
+    Proposition 5.11 is proved only for the Grigorchuk group), and any certificate not coming from an ascending
+    decomposition.
+  - **Literature (checked 09-18).** Bartholdi–Virág, Grigorchuk–Żuk, Benli–Grigorchuk–de la Harpe
+    (arXiv:1206.2072) and Hartung (arXiv:1106.1098) state nothing on `FP_n` of `B~` for `n ≥ 3`. Hartung computes
+    the Dwyer quotients `M_c(B)` for `c ≤ 103` and only conjectures their pattern: `Z^2` plus 2-primary cyclic
+    groups of unbounded order, which would make `H_2(B; Z)` infinitely generated.
