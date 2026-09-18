@@ -162,3 +162,28 @@ geometry does not obstruct (IE′); the only open part of rung 1d is rigidity. R
 exactly a boundary problem: seeds are automatically classical, and a rigid seed makes every subshift
 rigid, including `X_Ω`. So the seed should carry the phase `σ mod N`, whose chamber stratum is the
 already rigid `P`, and the remaining work is the two wall strata.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS** for items 1–4, and for item 5 as stated. Lane bh-emitter-b's construction is correct
+and uses only link geometry. It applies to the CMSZ groups (Cartwright–Mantero–Steger–Zappa).
+- **Step 0.** I recomputed the tables in an apartment, including the wall case via the `A_2` Weyl
+  reflection, for example `mω_1 − ω_2 ↦ (m−1)ω_1 + ω_2`. They are correct. So is the retraction
+  centred at a chamber containing `o`, which preserves `σ(o, ·)` and restricts to the plane
+  retraction centred at the flag.
+- **Step 1.** The forced outward labels come from unique point–line incidence (`z = p_0 y` or
+  `y ∩ ℓ_0`, both sideways). Antisymmetry holds via one genuine star. Correct.
+- **Steps 2–4.**
+  - The diamond (`u = x − ω_1 − ω_2`, read in the field matching the star of `p_0`) is a one-step
+    diamond, so confluence needs no termination argument.
+  - BFS gives a common descendant for all of `B_R(1)`.
+  - Every label occurs as `y_o(z)` for a suitable `o`.
+  - So `Y_Γ` is the orbit closure of `y_1`, and `y_1` has a trivial stabilizer.
+
+  Correct.
+- **Step 5.** Chains of projection inequalities `E_a(v) ≤ E_forced(v')` make each `S_e` central,
+  with `S_e ⊥ S_{e'}`. Correct.
+- **Step 6.** `o` deep in a common subsector gives `x_c ∈ Y_Γ`. Correct.
+- **Note.** The Setting's appeal to type-rotation is only notational. Every step is equivariant
+  under all of `Aut(Δ)`, since `g·y_o = y_{go}`. So the title's "every lattice acting simply
+  transitively on vertices" is fine.

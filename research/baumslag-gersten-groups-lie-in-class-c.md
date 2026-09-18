@@ -98,3 +98,42 @@ parameters.**
 - **For CAP.** A hard membership problem must be carried by the forcing on the seed orbit, where it is free. It
   must not leave a non-collapsing residue on the boundary. Whether hard membership can be forced without such a
   residue is the rung-1c question in its sharpest form.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+Internal referee lane, not an external review. I checked the route `baumslag-gersten-class-c-proof`
+line by line.
+
+- **§0.** The up and down cosets follow from `a^(nm) b = b a^m`, the down-ends are odometer
+  coordinates, and every line through `ω` meets every up-ray.
+- **§1.**
+  - `*` propagates to all `b^k`, by (Ax), (Sg) and (LR).
+  - (C) forces `σ` on axis cosets, because the only transitions are `++`, `+*`, `*−`, `−−`.
+  - Off-axis vertices are `↑`: take the first axis vertex on the up-ray, and apply the up clause of
+    (LR).
+  - The formula satisfies the rules: (Sg) at `b^k a^(nj)`, and exactly one axis child because
+    `b^k a^m b` is axis iff `n | m`. The stabilizer is `⟨b⟩`.
+- **§2.** An axis set is closed upward with exactly one child, so it is empty or one line through `ω`.
+  - The three types are exhaustive.
+  - Signed lines are limits of `a^(m_k).y_b` with `m_k ≡ ζ (mod n^k)` and `εm_k → +∞`.
+  - The constant point is a limit because lines meeting the up-ray of `⟨a⟩` only high up have cosets
+    far from `1` (tree distance ≤ word length).
+- **§3.**
+  - `X_v` and `E_+^v` are constant along `a`.
+  - They increase up the tree and are orthogonal across incomparable children.
+  - Sign propagation `E_+^c = E_+^v X_c = X_c E_+^v` holds, so all site idempotents commute.
+  - Every vanishing product used is a two-site pattern at distance `≤ n + 2`.
+- **§4.**
+  - Local forcing holds, in the language sense of the derived-subshift theorem, because every deduction
+    uses the rules inside one window.
+  - `(V_n, ⟨a⟩) ∈ 𝓡` comes from the second bullet of the gluing theorem applied to the HNN splitting of
+    `V_n` over `⟨a⟩`, with finite-index edge images.
+
+**Two wording points.** Neither affects the result.
+1. **Diameter versus radius.** The route's remark "a pattern of diameter `≤ 2D` that never occurs has
+   vanishing product (expand to a `D`-ball)" holds for two-site patterns, which fit in a `D`-ball
+   around a geodesic midpoint. It does not hold for arbitrary sets of diameter `2D`. Only two-site
+   patterns are used, so §3 is unaffected.
+2. **"Maps to" should read "maps onto".** In the graph-of-groups generalization, "every edge group maps
+   to a conjugate of `⟨a_i⟩` or `⟨b_i⟩`" should read "maps onto". An edge image of finite index in a
+   conjugate of `⟨b_i⟩` is not covered by what is proved.

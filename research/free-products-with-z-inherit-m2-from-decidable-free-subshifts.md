@@ -180,3 +180,48 @@ free. The open premises (D) and (MSS) are correctly labelled.
 
 **Credit.** The tree gluing extends the parent node's construction. The Sturmian and ruler
 devices are standard (Morse–Hedlund; Toeplitz-type schedules).
+
+## Referee (bh-ref-e1-a, 2026-09-18): PASS, same repair as bh-ref-ffwz, found independently
+
+**Scope.**
+- This node, and the parent Steps 1 and 3 that it cites word for word.
+- The use of this node in `minimal-free-sft-overgroups-via-storage-column-free-subshifts`,
+  Step 3.
+
+**Checked.**
+- **The library.** `z_n ∈ Y_A` is uniformly computable. Greedy extension ball by ball stays
+  in the decidable language, and the limit is in `Y_A` because `Y_A` is closed. The
+  elements `o_m` with `|o_m| = ρ + 1` exist because `A` is infinite (here `A = Λ_1 x Z`).
+- **The ruler and index schedules.**
+  - `ι(n) = v_2(n+1)` takes each value `q` in every interval of length `2^{q+1}`.
+  - `κ(j) = v_2(j)` is periodic mod `2^N` below `N`.
+  - A window of length `4r+1 < 2^N` has at most one exceptional position, and position `0`
+    is never in a top window.
+- **The A-top case.** `k = 2^{2m} − 1` gives `ι(k) = 2m`, and `j = 2^k` realizes it.
+  `|o_m| = 2r+1` makes `u` the top of `B(r)ν`.
+- **The pattern.** The pattern is a function of `(T, W, top data)`, because the lower
+  vertices show only rooted, fixed-index windows.
+- **Minimality and language.** Uniform recurrence with a computable modulus gives
+  minimality. `L_r(X) = L_r(x)` can then be read off inside `B(R(r))`.
+- **Freeness.**
+  - End type: Sturmian heights, then trivial edge stabilizers.
+  - A-sink: the fiber is a limit of translates of points of the closed invariant free `Y_A`.
+  - B-sink: the Sturmian component is aperiodic.
+- **The exposure-lemma remark is correct.** Deciding "some slope in the `Π⁰₁` class meets a
+  rational interval" would give a computable member by bisection.
+
+**Repair (the same as bh-ref-ffwz's nit 1, found before reading it).**
+- The B-top recurrence must also match the rooted Sturmian window `y_B[m'−2r, m'+2r]`, not
+  only the class `m' mod 2^N` and the exceptional valuation.
+- This is available. Rotation by `2^N α` (resp. `2^{k+1} α`) is irrational, so it is minimal
+  and disjoint from the 2-adic odometer.
+- For computable `α` a return bound is computable. Search `n` until the maximal three-gap
+  length of `{t·2^N α}_{t<n}` falls below the length of the target cylinder. That length is
+  a computable positive real.
+- The theorem is unaffected.
+
+I also agree with bh-ref-ffwz's nit 2 (enumerate `L(Y_A)` by nondecreasing radius).
+
+**Conventions in the route.** The route conjugates the left action of the (D) node to the
+right action used here by `y ↦ (x ↦ y(x^{-1}))`. This is correct: it preserves freeness and
+decidability of the language.

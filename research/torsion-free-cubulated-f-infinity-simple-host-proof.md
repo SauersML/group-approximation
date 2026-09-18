@@ -25,23 +25,39 @@ basic open sets are those of `X_∞`, and every point is a Roller point.
 
 ## 1. Fresh exits
 
-**Lemma E.** Let `B = λ·X(v;e)` be a nonempty basic open subset of `∂Ω(C⁺)`, ending at
-`(p,μ)`. Pick `ω_0 ∈ B` with first cube `s_0` from `p`, and let `p'` be the far corner of
-`s_0`. Then:
-- The two `c`-edges at `p'` are allowed.
-  - Their walls are adjacent only to their endpoints, not to `p`, so they are neither
-    propagated labels nor crossed walls.
-  - A continuation along either one leaves `p'`'s copy, so it never meets `μ` or the
-    other `c`-walls at `p`.
-- The continuation `p → p' → (c-edge) → anything in that branch` lies in `B`.
-- From a vertex reached by a `c`-edge, the only forbidden wall is the `c`-wall behind it.
-  So every vertex of the new copy is a geodesic continuation, and every end of the branch
-  is realized inside `B`.
+**Lemma E′** (replaces the original Lemma E, which referee bh-ref-q115-a showed false when
+`B` has holes whose witness walls lie beyond the first cube; the repair is theirs, written out
+here). Let `B = λ·X(v;e)` be a nonempty basic open subset of `X_∞`, ending at `(p,μ)`, with
+holes `f = (u_f, τ_f) ∈ e` (one-step morphisms from `(p,μ)`). Pick a Roller point `ω_0 ∈ B`.
+- **Why `ω_0` avoids each hole.** Since `ω_0 ∈ B`, for each `f ∈ e` either
+  `u_f ∉ I(p,ω_0)`, or `u_f ∈ I(p,ω_0)` and `ω_0` crosses a **witness wall**
+  `K_f ∈ τ_f ∩ H(u_f,ω_0)`.
+- **Choice of `q`.** Choose a vertex `q` on a geodesic ray of `ω_0` from `p` beyond:
+  - (i) every crossing of a wall of `adj(p)` that `ω_0` crosses;
+  - (ii) the crossing of each witness wall `K_f`.
+
+  If `q` is entered by a `c`-edge, move `q` one step further along the ray. If the ray's
+  next step is also a `c`-edge, then instead leave the ray by one internal edge of the new
+  copy. That edge is allowed, because after a `c`-edge the only forbidden wall is the
+  `c`-wall behind it, and `ω_0` has already passed (i) and (ii).
+- **Then:**
+  - Both `c`-edges at `q` are allowed. Their walls are adjacent only to `q` and its
+    `c`-neighbours, and `q` was entered by a non-`c` edge, so these walls are neither crossed
+    nor propagated labels.
+  - Let `ω'` follow `ω_0`'s path (or the one-edge detour) to `q`, then take either `c`-edge,
+    then anything in that branch. Then `ω' ∈ B`:
+    - it crosses exactly the walls of `adj(p)` that `ω_0` crosses, so `u_f ∈ I(p,ω')` iff
+      `u_f ∈ I(p,ω_0)`;
+    - it crosses each witness `K_f` after `u_f`;
+    - it never crosses a wall of `μ`, since after `q` it stays in a branch disjoint from
+      `p`'s copy and from the other `c`-edges at `p`.
+  - From the landing vertex, every vertex of the new copy is a geodesic continuation. So
+    every end of the branch beyond either `c`-edge at `q` is realized in `B`.
 
 ## 2. (TF), faithfulness, Hausdorff and effective
 
 - **(TF).** Suppose `k ∈ G'` fixes a nonempty open subset of `∂_R X'` pointwise.
-  - By Lemma E, `k` fixes every end of a half-tree of `T` beyond a `c`-edge.
+  - By Lemma E′, `k` fixes every end of a half-tree of `T` beyond a `c`-edge.
   - That half-tree has infinitely many ends, so `k` fixes the edge.
   - Edge stabilizers are trivial, so `k = 1`.
   - Cones of objects embed as open subsets of the base cone, so (TF) also holds on every
@@ -66,13 +82,13 @@ Take a non-unit loop `σ ∈ C⁺(v,v)` with `v = [(w,λ)]`.
 - **The loop moves.** `σ = (w,λ; hw,hλ)` with `h ≠ 1`: a flag has a different domain
   object, and `h = 1` would force `σ` to be the identity. So `∩_m σ^m X(v)` consists of
   points crossing every wall of `W = ∪_m H(w, h^m w)`.
-- **An escaping point in any open set.** Take a basic open `B ⊆ X(v)`, and pick `p'` and
-  its `c`-edges as in Lemma E.
+- **An escaping point in any open set.** Take a basic open `B ⊆ X(v)`, and pick `q` and
+  its two `c`-edges as in Lemma E′.
   - If `h` fixes a copy `X_0` in `T`, then `W` is an infinite set of walls of `X_0`. Take
-    the `c`-edge at `p'` whose branch misses `X_0`.
+    the `c`-edge at `q` whose branch misses `X_0`.
   - Otherwise `h` translates along an axis of `T` towards an end `ξ`, and `W` contains
-    infinitely many `c`-walls on the way to `ξ`. Take the `c`-edge at `p'` whose branch
-    misses `ξ`. The two branches at `p'` are disjoint, so one of them works.
+    infinitely many `c`-walls on the way to `ξ`. Take the `c`-edge at `q` whose branch
+    misses `ξ`. The two branches at `q` are disjoint, so one of them works.
   - The resulting point of `B` crosses only finitely many walls of `W`.
 - **Conclusion.** So `∩_m σ^m X(v)` has empty interior, and (Acyc) holds. `C⁺` is
   Li-Garside with trivial units (item 1 of the flag theorem). So
@@ -83,7 +99,7 @@ Take a non-unit loop `σ ∈ C⁺(v,v)` with `v = [(w,λ)]`.
 **Minimal.** Take `ω ∈ Y` and a basic open `B ⊆ Y` ending at `(p,μ)`. Choose any object
 `(z_n,κ_n)` on the tail of `ω` with `κ_n ≠ ∅`, and `e ∈ κ_n`. Let `v''` be the vertex of `K`
 under the endpoint of `e` opposite `z_n`.
-- By Lemma E, go from `p` through `p'` and a `c`-edge into a fresh copy.
+- By Lemma E′, go from `p` to `q` and through a `c`-edge into a fresh copy.
 - Walk inside it (the whole copy is allowed) to a vertex over `v''`, and take `c_{v''}`
   into another fresh copy, landing at `q''` over `v''`.
 - Cross the edge at `q''` matching `e`. This reaches a translate `z''` of `z_n` with
@@ -129,7 +145,7 @@ index (the normal core of a torsion-free subgroup). Put `Q = G/G_0`.
 3. The maximal-character identification (the minimal-`J` gate argument).
 4. The germ formula (item 3).
 5. The Cuntz theorem's use of Li's lemma, read over `Γ(*)`.
-6. Lemma E and (Acyc).
+6. Lemma E′ and (Acyc).
 7. The hypotheses of Li's Corollary D and Matui's Theorem `simple2` for this groupoid.
 
 ## Lesson for general BH
@@ -143,3 +159,28 @@ generator:
 The generic template for Boone–Higman on geometric groups is to find the finite local state,
 add promise moves until codings from different base points resynchronize, then stabilize
 by Cuntz and by free exits.
+
+## Referee A note on Lemma E (bh-ref-q115-a, 2026-09-18)
+
+**Lemma E is false as stated when `B` has holes.**
+- *Counterexample.* Let `f ∈ e` be the one-step morphism along `s_0` with label
+  `τ_f = π(μ;p,p') ∪ {K}`, where `K ∈ adj(p')` is a wall that `ω_0` crosses after `p'`. Then
+  `ω_0 ∉ f·X(𝐝 f)`. But a continuation that leaves `p'` at once through a `c`-edge never
+  crosses `K`, so it lies in `f·X(𝐝 f)` and not in `B`.
+- *Worse case.* Take holes `f_s` for every first cube `s`, each forbidding every non-`c` wall at
+  the far corner. Then `B` is still nonempty, but no immediate `c`-exit lies in `B`.
+
+**Lemma E′ (repair).** Choose `q` on the path of `ω_0` after:
+- (i) every wall of `adj(p)` that `ω_0` crosses;
+- (ii) for every hole `f ∈ e` with `u_f ∈ I(p,ω_0)`, a witness wall
+  `K_f ∈ τ_f ∩ H(u_f,ω_0)`.
+
+Choose `q` so that it is entered by a non-`c` edge, taking one internal step in its copy if
+needed. Then continue through a `c`-edge at `q` that `ω_0` does not use.
+- The continuation crosses exactly the walls of `adj(p)` that `ω_0` crosses, so `u_f ∈ I(p,·)`
+  is unchanged.
+- It crosses every `K_f` after `u_f`, and it never crosses `μ`. So it lies in `B`.
+- Every Roller point of the new branch is realized in `B`.
+
+(TF), (Acyc) (use `q` in place of `p'` and the same two-branch choice at `q`) and the minimality
+walk then go through verbatim. This also covers referee B's case where `s_0` is a `c`-edge.

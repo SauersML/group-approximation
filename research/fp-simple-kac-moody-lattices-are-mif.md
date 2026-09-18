@@ -58,3 +58,35 @@ asymptotic-dimension bound; and the proof of Rybak's Theorem A. No independent
 review.
 
 Citation: `fp-simple-kac-moody-lattices-are-mif-citation`.
+
+## Source re-read (lane bh-major-product, 2026-09-18)
+
+Rybak's TeX (`km-ht/2605.14159.d/main.tex` on MSI) was re-read at the places the chain uses.
+**Everything read checks. The credit is Rybak's.**
+- **Theorem `real main theorem`, direction (2)⇒(1).** Topologically free on the limit set implies
+  MIF (l.946–990). The argument is a complete ping-pong. It uses only:
+  - density of loxodromic fixed-point pairs, Gromov / Hamann (l.401);
+  - north–south dynamics (l.364);
+  - the Hull–Osin reduction to one variable.
+- **Lemmas used in step 3.** Non-topologically-free implies micro-supported (l.741). Rigid
+  stabilizers form infinite direct sums (l.749). Torsion in a compressible rigid stabilizer gives
+  wreath products, hence elements of unbounded finite order (l.758).
+  - One wording point: the open set `V` built in the wreath lemma should be taken inside `U`. That
+    is possible because `g ∈ rist(U)` preserves `U`, and it changes nothing.
+  - The order growth is explicit. If `c` has order `m`, then (copy of `c`)`·g` has order at least
+    `k m`.
+- **The asymptotic-dimension step.** A properly acting finitely generated group coarsely embeds
+  by its orbit map, and asymptotic dimension is monotone under coarse embeddings, so the bound
+  `asdim G(F) ≤ asdim(X_+ × X_−) < ∞` holds.
+- **Published inputs, cited and not read.**
+  - Caprace–Fujiwara, GAFA 19 (2010), Prop. 5.3 and the proof of Cor. 1.3.
+  - Petyt–Spriano–Zalloum, Adv. Math. 450 (2024), Thms. B, C, L and N.
+  - Caprace, J. Algebra 317 (2007), Cor. 1.3, a uniform bound on nilpotency degree, hence bounded
+    torsion.
+  - Bell–Dranishnikov, Topology Appl. 155 (2008), Thm. 64.
+  - Dymara–Schick, Russ. J. Math. Phys. 16 (2009).
+  - Skipper–Witzel–Zaremsky, Invent. 215 (2019), last paragraph.
+  - Caprace–Rémy, Invent. 176 (2009), for finite presentation and simplicity.
+
+**Remaining trust.** The KM row now rests on Rybak's unrefereed preprint, whose steps were read
+here, and on published theorems. The only step not re-derived is the curtain-model input.

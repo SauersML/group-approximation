@@ -13,7 +13,8 @@ distinct_from:
 - `V_τ` is finitely presented as a full contracting RSG on the golden-mean shift
   (`pisot-unit-slope-stein-groups-are-finitely-presented`).
 
-`F_∞` for `V_τ`, as asserted by BNR, is not proved here. The text below records why the node was OPEN before (09-13).
+**Update (later 09-18):** `V_τ` is also of type `F_∞`, by `irrational-slope-v-tau-is-of-type-f-infinity` (golden
+subdivision category, Witzel's criterion), which writes out BNR's assertion. The text below records why the node was OPEN before (09-13).
 
 **Was OPEN (as a graph node).** Let `τ = (√5 − 1)/2`. The groups `T_τ` (piecewise-linear
 orientation-preserving homeomorphisms of the circle with breakpoints in `Z[τ]` and

@@ -95,3 +95,16 @@ Each slot is `4 × 4`, so the total is `poly(log N_k)`, far below the `N_k^2` sp
 ## C. Freeness
 
 As in DR §2 (and DRS Prop. 1): every period of a tiling is a multiple of every `N_1 ⋯ N_k`.
+
+## Referee (bh-ref-e1-a, 2026-09-18): PASS at design level
+
+- **A2 and A3.** The frame-forced-scalar argument is correct in every FLEF, given that frame
+  faces have a unique tile per real coordinate. That holds because slots are away from wires and
+  the zone.
+- **A4.** The one-way variant is fine.
+- **B (minimality).** It matches DR §3.2, Cases 1–3, which I read at source, plus slotted
+  crossing windows. Type 2 needs only "no crossing tile ⇒ at most one wire read", which holds for
+  the box spacing 2.
+- **C (freeness).** Standard.
+- **Required repair.** R1 on the target: bits on opposite sides must sit at the same rows and
+  columns.
