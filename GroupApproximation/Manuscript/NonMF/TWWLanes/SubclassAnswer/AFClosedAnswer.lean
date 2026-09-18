@@ -67,7 +67,8 @@ theorem afClosed_isQuasidiagonalTrace_commutativeOrAF_tracialState
     (τ : TracialState S) :
     Quasidiagonal.IsQuasidiagonalTrace (fun a : S ↦ τ a) := by
   rcases hS with hc | ⟨P⟩
-  · exact CommutativeQD.pointEval_isQuasidiagonalTrace_of_commutative_tracialState hc τ
+  · exact CommutativeQD.pointEval_isQuasidiagonalTrace_of_commutative_tracialState
+      (A := S) hc τ
   · exact afClosed_isQuasidiagonalTrace_of_multimatrixAFPresentation_tracialState P τ
 
 /-- **The Blackadar--Kirchberg question on the commutative ∪ AF subclass**, at every
