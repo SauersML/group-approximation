@@ -60,10 +60,12 @@ for closed surfaces of genus at least three
    - *Why this does not extend.* The route needs a finite-index subgroup that is a
      Garside group modulo a central subgroup. For genus at least three this lane knows
      no such identification.
-   - *What a general structure must supply.* Normal forms on which left multiplication
-     by each generator is computed by a letter-to-letter, left-to-right transducer, up to
-     bounded deletions at the front. This is the mechanism of all three BBCMP examples:
-     Garside forms, Niblo--Reeves normal cube paths, and Baumslag--Solitar forms.
+   - *What the known examples use.* Normal forms on which left multiplication by each
+     generator changes a bounded amount at the front and then propagates a finite-state
+     carry from left to right. This is what Garside forms and Niblo--Reeves normal cube
+     paths do. For Baumslag--Solitar forms it is a bounded prefix rewrite with bounded
+     cancellation. It is the mechanism of these examples, not a proved necessary
+     condition.
    - *Natural candidates.* Canonical flip sequences in Mosher's mapping class groupoid,
      which BBCMP Theorem 2.12 reduces to a groupoid statement for punctured surfaces.
      Also greedy train-track splitting sequences, whose infinite limits code the rational
