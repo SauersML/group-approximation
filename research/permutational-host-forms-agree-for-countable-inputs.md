@@ -8,11 +8,14 @@ distinct_from:
   type-a-action-gives-boone-higman-for-subgroups: that is Zaremsky's Corollary B, the payoff for subgroups of a type (A) actor; this is the equivalence of three descriptions of the class of such subgroups.
   boone-higman-type-a-class-closed-under-finite-extensions: that gives the closure properties of the class B_A; this gives equivalent membership tests for it.
   bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh: that is the universal question whether every finitely presented simple group satisfies PBH; this is a per-input statement and assumes nothing about it.
+artifacts:
+  - research/artifacts/gq-referee-b-permutational-host-forms-agree-for-countable-inputs.md
 ---
 
 **ESTABLISHED** by `permutational-host-forms-agree-for-countable-inputs-proof`
-(hand proof assembling landed nodes, not independently reviewed; no novelty is
-claimed, the point is only that the inputs are unrestricted).
+(hand proof assembling landed nodes; refereed PASS by gq-referee-a and
+gq-referee-b, see Review below; no novelty is claimed, the point is only that
+the inputs are unrestricted).
 
 ## Statement
 
@@ -58,21 +61,26 @@ target.
   arXiv:2306.16356v3, end of §4.4). So every finitely presented simple group
   with a faithful highly transitive action lies in `B_A`. By item 3, a group
   that embeds in any such host is in `B_A`.
-  - Their Remark 3.5 lists such hosts (`bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh`),
-    including every finitely presented simple group of homeomorphisms of the
-    Cantor space that contains the commutator subgroup of some Higman--Thompson
-    group.
-- **Every countable abelian group lies in `B_A`.** It embeds in `VA`
-  (Belk--Hyde--Matucci, survey Theorem 4.11). `VA` is a finitely presented
-  simple group of Cantor homeomorphisms that contains `V`, and `V` is its own
-  commutator subgroup. In particular `(Q,+)` and `GL_1(Q) = Q^x` lie in `B_A`.
-  - *Trust surface.* This consequence rests on the BFFHZ Remark 3.5 wording as
-    recorded in `bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh`. It has not
-    been re-read at arXiv:2503.21882 for this node. Check it at the source
-    before using `(Q,+) ∈ B_A` as a stepping stone.
-
-**Review.** gq-referee-a, proof-gap lens: PASS for items 1–3 and the kernel
-removal (review landed 09d5b4797).
+  - BFFHZ Remark 3.5 (arXiv:2503.21882v2) says that "any finitely presented
+    simple groups of homeomorphisms of the Cantor space {1,…,n}^ℕ that contain
+    the commutator subgroup of the Higman–Thompson group V_n" are highly
+    transitive (`bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh`).
+- **Every countable abelian group lies in `B_A`.**
+  - It embeds in `VA` (Belk--Hyde--Matucci, survey Theorem 4.11).
+  - `VA` is a finitely presented simple group of homeomorphisms of `{0,1}^ℕ`.
+    It contains `V_2 = [V_2, V_2]`, so Remark 3.5 makes it highly transitive.
+  - `VA` is finitely generated. It has solvable word problem, because it is
+    finitely presented and simple (survey Proposition 3.1).
+  - BFFHZ Theorem C (iii)⇒(i), applied to `G = VA`, gives `VA ∈ B_A`.
+  - `B_A` is closed under subgroups. So every subgroup of `VA` lies in `B_A`,
+    finitely generated or not. In particular `(Q,+)` and `GL_1(Q) = Q^x` do.
+  - Source check: `research/artifacts/gq-referee-b-permutational-host-forms-agree-for-countable-inputs.md`.
 - **No local-to-global step.** Membership of every finitely generated subgroup of
   `H` in `B_A` does not give `H ∈ B_A` by any argument recorded here. The
   equivalences need one host for all of `H`.
+
+**Review.**
+- gq-referee-a, proof-gap lens: PASS for items 1–3 and the kernel removal
+  (09d5b4797).
+- gq-referee-b, citation lens: PASS for the Remark 3.5 and Theorem C
+  consequences (fd335d944).
