@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-elem-fpk2-local-quillen-ideal
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal: Application type mismatch: The argument"
 ---
 
@@ -14,6 +15,8 @@ Source changed on main since that build: no.
 ```
 error: GroupApproximation/BooneHigman/Metabelian/ElemFPK2LocalQuillenIdeal.lean:120:63: Application type mismatch: The argument
 ```
+
+**Kind.** proof error (classification merged from the parallel node `fix-bh-met-elem-fpk2-local-quillen-ideal`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.ElemFPK2LocalQuillenIdeal` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

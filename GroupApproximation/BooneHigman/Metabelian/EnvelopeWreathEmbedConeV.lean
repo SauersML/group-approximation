@@ -138,7 +138,7 @@ theorem localize_mem_rn [Finite X] (H : Subgroup (TreeAut X)) (w : List X)
     {g : Equiv.Perm (Cantor X)} (hg : g ∈ roverNekrashevych X H) :
     localize w g ∈ roverNekrashevych X H := by
   have hle : roverNekrashevych X H ≤ (roverNekrashevych X H).comap (localize w) := by
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro f (hf | ⟨v, h, hh, rfl⟩)
     · exact higmanThompsonV_le_rn H (localize_mem_higmanThompsonV hf w)
     · have e := localize_mem_roverNekrashevych H (w ++ v) hh
