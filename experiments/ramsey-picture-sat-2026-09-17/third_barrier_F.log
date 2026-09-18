@@ -1,0 +1,6 @@
+{"group": "F", "n": 6, "ball": 1381, "interior": 475, "sat": true, "E_size": 905, "realized": [4, 5, 9, 10, 11, 13, 14, 15, 28, 29], "min_w_exact": "1/3", "seconds": 1.2}
+{"group": "F", "n": 7, "ball": 3957, "interior": 1381, "sat": true, "E_size": 2588, "realized": [4, 5, 9, 10, 11, 14, 15, 28, 29], "min_w_exact": "1/3", "seconds": 3.9}
+{"group": "F", "n": 8, "ball": 11237, "interior": 3957, "sat": true, "E_size": 3879, "realized": [4, 5, 8, 9, 10, 11, 12, 14, 15, 28, 29], "min_w_exact": "1/3", "seconds": 10.7}
+{"group": "F", "n": 9, "ball": 31589, "interior": 11237, "sat": true, "E_size": 10942, "realized": [4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 28, 29], "min_w_exact": "1/3", "seconds": 36.1}
+{"group": "F", "n": 10, "ball": 88253, "interior": 31589, "sat": true, "E_size": 30736, "realized": [4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 28, 29], "min_w_exact": "1/3", "seconds": 111.0}
+{"group": "F", "n": 11, "ball": 244823, "interior": 88257, "sat": false, "seconds": 469.9}
