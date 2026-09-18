@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-emitter-b, 2026-09-18; elementary apart from Alonso's
-theorem; not reviewed). No priority is claimed: the retraction is the germinal-twist idea of
+theorem; one referee PASS, bh-ref-engines 2026-09-18, see Referee section). No priority is claimed: the retraction is the germinal-twist idea of
 Belk--Zaremsky and of FFWZ Proposition 4.17, applied to a subgroup of labels.
 
 ## Setting
@@ -95,3 +95,12 @@ the host. So a non-fp input can enter a finitely presented host in one of three 
 
 This is the carrier principle made exact on the finiteness side: the acting group must carry
 the finite presentation itself.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- Labels at orbit points are well defined by local faithfulness.
+- The cocycle identity holds.
+- The retraction `λ(k) = δ(k^{-1}, κ)^{-1}` satisfies `λ(ks) = λ(k)·δ(s^{-1}, k^{-1}κ)^{-1}`, so it
+  is `C`-Lipschitz, and `λ|_H = id`.
+- The Alonso transfer (quasi-retracts inherit `F_n` and `FP_n`) is standard.
+- Credit: the germinal retraction of Belk–Zaremsky and FFWZ Prop. 4.17, as stated.

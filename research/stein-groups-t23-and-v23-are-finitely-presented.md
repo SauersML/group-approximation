@@ -8,12 +8,16 @@ distinct_from:
   stein-group-f23-does-not-embed-in-thompson-v: that is the non-embedding of the interval group F_{2,3} in V; this is finite presentation of the circle and rearrangement versions.
 ---
 
-**Update (2026-09-18, lane `bh-near-actions`).** The `V_{2,3}` half is proved, with `F_∞`, in the piecewise-linear model
-and without Stein's paper: `integral-slope-stein-v-groups-are-k-graph-full-groups` identifies `V_{2,3}` with the full
-group of a one-vertex 2-graph and applies Li's finiteness theorem. The `T_{2,3}` half is still open, so this node
-stays OPEN.
+**ESTABLISHED (2026-09-18, lane `bh-near-actions`; lane proofs, not reviewed)** through
+`stein-groups-t23-and-v23-fp-via-simplex-and-k-graph`. Both groups are of type `F_∞`:
+- `V_{2,3}` is the full group of a one-vertex 2-graph (`integral-slope-stein-v-groups-are-k-graph-full-groups`,
+  via Li's theorem);
+- `T_{2,3}` inherits `F_∞` from `F_{2,3}` through the full simplex on its breakpoint orbit
+  (`circle-pl-groups-inherit-finiteness-from-interval-groups`).
 
-**OPEN (as a graph node).** `T_{2,3} = T(Z[1/6], <2,3>)` and
+The discussion below records why the node was OPEN before (09-13).
+
+**Was OPEN (as a graph node).** `T_{2,3} = T(Z[1/6], <2,3>)` and
 `V_{2,3} = V(Z[1/6], <2,3>)`, in the notation of
 `pl-interval-and-circle-groups-have-type-a-orbit-actions`, are finitely presented.
 
@@ -36,7 +40,7 @@ centralisers in generalisations of Thompson's group V*, arXiv:1309.7858, `main.t
 - Theorem `FPinfty` (l.660): "Let $\Sigma$ be valid, bounded and complete. Then
   $V_r(\Sigma)$ is of type $\F_\infty$."
 
-## Why this node is OPEN
+## Why this node was OPEN (09-13)
 
 - **The model is not checked.** MMN's groups are automorphism groups of Cantor algebras.
   Their identification with the piecewise-linear groups of `[0,1)` is taken from

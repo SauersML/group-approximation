@@ -13,7 +13,11 @@ requires:
 - part 4(a), the unique seed;
 - part 4(b), the reduction.
 
-**OPEN:** the lemma (HL) of part 4(c).
+**OPEN:** the lemma (HL) of part 4(c) in general.
+
+**PROVED for `F_n` (free basis) and for closed surface groups `Γ_g` (standard generators)** in
+`horofunction-lemma-holds-for-free-and-surface-groups`. So for these groups the seed orbit is dense in `Y_R`, and
+(IE′) holds.
 
 **Notation.** As in `stabilizer-engines-embed-in-every-branch-compactification` (the parent): `D = Z/2 * S`,
 S-compactifications `K = S ⊔ ∂`, engines `Ω^K` and `F_S^K`. An *SFT compactification* `(Y, π)` is as in
@@ -159,7 +163,9 @@ exists: a point that is not a local minimum has a descending neighbour, and a lo
     limits (distance functions are ε-convex, CP ref. [7], Ch. 3, Lemma 3.2). Prop. 3.4 gives only
     `h ≤ b_r` for a CP horofunction `h` and its gradient ray `r`, the same inequality as in (b). So
     `Φ_0 = ∂_h` is itself open.
-  - (HL) stays OPEN. bh-g2-buildings, which needs the same lemma for its hyperbolic compactification, is
+  - (HL) is PROVED for free groups and closed surface groups (`horofunction-lemma-holds-for-free-and-surface-groups`:
+    wall orientations, Helly in `H²`, and a descent lemma bounding minimal pointing-away wall pairs). In general
+    it is OPEN. bh-g2-buildings, which needs the same lemma for its hyperbolic compactification, is
     proving it directly (notes exchanged on the boards).
 - Calibration: for `Z²` with the standard generators, `Σ`-tails also determine cones, part (a) goes through,
   and `K_h` is the ℓ¹ horofunction compactification. That one is of finite type (quadrant sign patterns).

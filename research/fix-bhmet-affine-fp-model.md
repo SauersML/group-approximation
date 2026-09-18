@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-affine-fp-model
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.AffineFPModel: Type mismatch"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:135:14: Unkn
 error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:140:12: Unknown identifier `model_conj_single`
 error: GroupApproximation/BooneHigman/Metabelian/AffineFPModel.lean:139:86: unsolved goals
 ```
+
+**Kind.** proof error (classification merged from the parallel node `fix-bh-met-affine-fp-model`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.AffineFPModel` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

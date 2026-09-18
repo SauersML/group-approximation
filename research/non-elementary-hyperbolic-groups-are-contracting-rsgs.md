@@ -148,3 +148,15 @@ remains:
    - **Comparison with Attempt 4.** The coset gates of Attempt 4 need a separating finite set.
      One-ended groups have none, and here that shows up concretely: no cell is cut off by a single
      wall.
+6. **2026-09-18 (lane `bh-partials`), the one-ended case through the Bowen–Series coding.**
+   - **The new node.** `closed-surface-groups-are-contracting-rsgs`, with route
+     `closed-surface-groups-contracting-rsg-via-bowen-series` (OPEN).
+   - **Proved there from Katok–Ugarcovici (arXiv:1610.00167), read at source.** The Bowen–Series map of the right-angled
+     `(8g−4)`-gon gives an explicit SFT on `2(8g−4)` arc states. Canonical similarities are group elements `g_{w'}^{-1}g_w`
+     (Attempt 2's observation). Exactness of the map makes the graph primitive. So the irreducible core, the obstacle of
+     Attempts 3 and 5, is automatic in this coding.
+   - **Still open there.**
+     - `Γ`-invariance of the cut set (the wall endpoints must all reach `Π`);
+     - a finite nucleus, via a bounded level defect under generators. This is the same shape of lemma as step 3 of
+       `pisot-stein-groups-are-contracting-rsgs-proof`.
+   - **Lesson.** The irreducible core belongs to the coding, not to the group. Question 1.1 is now a contraction question.

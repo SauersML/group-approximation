@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-pure-char-prime-e-high-artin-hasse-alg
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg: automatically included section variable(s) unused in theorem ..."
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:217:4: Application type mismatch: The argument
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEHighArtinHasseAlg.lean:219:4: Application type mismatch: The argument
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-pure-char-prime-e-high-artin-hasse-alg`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEHighArtinHasseAlg` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

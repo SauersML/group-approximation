@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-pure-char-prime-e-base
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase: Application type mismatch: The argument"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:51:29: 
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:57:27: Application type mismatch: The argument
 error: GroupApproximation/BooneHigman/Metabelian/PureCharPrimeEBase.lean:55:30: unsolved goals
 ```
+
+**Kind.** proof error (classification merged from the parallel node `fix-bh-met-pure-char-prime-e-base`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.PureCharPrimeEBase` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

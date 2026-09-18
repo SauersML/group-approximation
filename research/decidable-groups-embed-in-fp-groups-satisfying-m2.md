@@ -29,3 +29,9 @@ effectively closed subshift on which it acts minimally and freely.
 - The Boone–Higman-relevant case, simple Kazhdan inputs: open. It reduces to
   `decidable-groups-have-universal-hyperaperiodic-points` for their Clapham envelopes, by the
   route.
+
+**Route fires (2026-09-18, bh-g1-simulation; design level, unreviewed).** The one open premise of
+`m2-envelopes-via-free-product-with-z`, `decidable-groups-have-universal-hyperaperiodic-points`,
+now has route `universal-hyperaperiodic-points-via-decidable-free-subshifts`. So this statement
+holds, with `Λ = A * Z` for the Clapham envelope `A`. The witness is tree-based on the
+overgroup. On `A` itself it is a transitive, non-minimal free subshift with decidable language.
