@@ -9,7 +9,7 @@ distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that imports Nekrashevych's FP2 for contracting groups; for bounded automata this node reduces finite presentation to cycling relators, which are the analogue of his nucleus relations.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`. The equivalence "`N = ⟨⟨R⟩⟩_lift` iff every cycling relator lies in it" is unconditional. Consequences 1–2 use the sufficiency half of Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation`; the `V_d(G)` equivalence and consequence 3 use its necessity half, not yet refereed.
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`. Referee b (citations, priority) PASS: `research/artifacts/gq-referee-b-run-compression-cycling-relators-odometer-regrouping.md`. The equivalence "`N = ⟨⟨R⟩⟩_lift` iff every cycling relator lies in it" is unconditional. Consequences 1–2 use the sufficiency half of Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation`; the `V_d(G)` equivalence and consequence 3 use its necessity half, not yet refereed.
 
 Letter convention: `F = F(S_0)` with `S = S_0 ⊔ S_0^{-1}` and inverse letters formal; the weight of `s^{-1}` is that of `s`, and its sections are `(s^{-1})|_x = (s|_{s^{-1}(x)})^{-1}`.
 
@@ -20,7 +20,9 @@ graph on nontrivial states (edges `s --x--> s|_x`, `s|_x ≠ 1`). Assume
 
 **(P1)** for every nontrivial `s`, at most one letter `x` has `s|_x` in the strongly connected component of `s`.
 
-Subexponential activity implies (P1): two such letters give two first-return walks at `s`, hence exponential
+(P1) is equivalent to Sidki's polynomial-activity condition (distinct nontrivial cycles are disjoint; Bondarenko
+arXiv:1101.3200 §2): two letters into the component of `s` give two distinct cycles through `s`. In particular
+subexponential activity implies (P1): two such letters give two first-return walks at `s`, hence exponential
 activity (`persistent-subexponential-automata-generate-finite-groups`, step 1). Under (P1) every strongly
 connected component is a single state with no loop or a simple cycle; for `s` on a cycle write `ℓ(s)` for its
 cycle letter and `ν(s) = s|_{ℓ(s)}`, the next state on the cycle. `ν` is a permutation of the cycle states, of

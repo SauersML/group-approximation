@@ -56,3 +56,37 @@ subgroup `Γ <= Sym(N)/FSym(N)` satisfies `c(Γ) ⊊ Γ`.
 - *Candidate source of examples (untested).* Residue-class-wise affine permutations of `N` (Kohl's RCWA groups)
   are closed under `c` and `c^-1`, and they contain many finitely generated subgroups. A finitely generated RCWA
   subgroup with `c(Γ) ⊊ Γ` would settle the node negatively.
+- *Bounded GAP/RCWA search, 2026-09-18* (artifact `research/artifacts/gq-bh-bh-houghton-presentation-rcwa-search.md`).
+  - The calibration passed, the planted positives were found, and the power lemma's prediction of zero hits held.
+  - Shifted class transpositions (6 seeds, `L <= 3`) showed no forward or backward closure within word balls of up
+    to about 9300 elements.
+  - No Thompson-`F` prototype (`x_0` acting as the shift) turned up among 1870 small RCWA⁺ elements of index 0.
+  - This is weak evidence that the statement is true. It proves nothing.
+
+**Lesson for general BH (from the search).** Inside RCWA⁺(Z) the shift acts on germs of class transpositions by
+drifting affine offsets. Short-word closure of these drifting families never appeared, in either direction. A
+positive answer to this node (f.g. ⇒ strongly shift-similar) would complete Mallery--Zaremsky Question 5.13. A
+proof would most likely come from a `Σ^1` symmetry argument for subgroups of `NearSym(N)` containing the shift,
+generalizing the end count of `no-nontrivial-germ-is-shift-conjugate-to-a-proper-power`, rather than from a search.
+- *Proof attempts toward the `Σ^1`-symmetric form* (coordinator's route, 2026-09-18). The target is "never exactly
+  one-sided", not "always two-sided". The latter is false: see the calibration on
+  `shift-similar-germ-groups-are-ascending-hnn-extensions`. Partial facts, with elementary proofs:
+  - *Supports are cofinite.* Let `B` be finitely generated with `c(B) ⊆ B`, and let `S` be the union of the
+    supports of its generators, modulo finite sets. Then `S - 1 ⊆ S` modulo finite. So if `n ∈ S` is large, then
+    `n - 1 ∈ S`, and `S` contains a tail `[n_1, ∞)` unless `B = 1`. This is exactly what kills sparse examples in
+    the finitely generated setting.
+  - *Orbits are downward refining.* The `c(B)`-orbits are the `B`-orbits shifted down by one, and they refine the
+    `B`-orbits. The parent-map argument of `no-nontrivial-germ-is-shift-conjugate-to-a-proper-power` then suggests
+    that the orbits are eventually residue classes mod some `d`. This is not written out; bottom effects from
+    finitely many orbits meeting the bad region still need care.
+  - *Thompson-type realizations fail for a dynamical reason.* Suppose `t^-1 B t ⊊ B` is realized with `B` supported
+    on a region `I` that `t` expands. Then points of `I` have infinite backward `t`-orbits, while under the shift
+    (one ray) every backward orbit is finite. This kills the natural embeddings of `F = <x_0,x_1>` with
+    `t = u x_0` and `u` supported off `supp(B)`.
+  - *Bounded displacement.* Pass to the two-sided limit subshift `Ω` of the generators' displacement data. For
+    every limit configuration `y`, `c(B) ⊆ B` becomes `Γ_(Ty) ⊆ Γ_y` inside `Sym(Z)`. For recurrent `y` this gives
+    only density of `Γ_(Ty)` in `Γ_y` in the pointwise topology, i.e. the same orbits on all finite tuples, not
+    equality. Non-recurrent (sparse) features, where properness hid in the infinitely generated example, are
+    invisible in `Ω`.
+  - No proof of the symmetric statement. The next tractable case is abelian `B`, by orbit-type counting (the cyclic
+    case is the lemma).

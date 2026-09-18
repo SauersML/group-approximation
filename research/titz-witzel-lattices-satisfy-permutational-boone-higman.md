@@ -12,8 +12,15 @@ artifacts:
 
 **ESTABLISHED** (2026-09-18) through `titz-witzel-lattices-pbh-via-euclidean-building-lattices`,
 as a special case of bh-groupoid's `euclidean-building-lattices-lie-in-permutational-bh-class`.
-That is a lane proof, not independently reviewed. *(Status line updated by bh-integrate; it
-previously read OPEN.)*
+That is a lane proof. *(Status line updated by bh-integrate; it previously read OPEN.)*
+
+**Verified conditionally** (bh-verify-euclid, 84896de5e,
+`research/artifacts/gq-bh-verify-euclid-report.md` §7, PASS). The hypotheses match: C̃₂ is an
+irreducible type of dimension 2, the buildings have thickness `q + 1`, and `Γ_i^q` acts
+freely and cocompactly. The simple kernels `Γ̌_i^q` are in `B_A` too. The verification is
+conditional on trust note T1. Ciobotaru–Le Bars, arXiv:2601.13092, which supplies the
+topological freeness used by the Euclidean theorem, is an unrefereed preprint. Its live
+barycenter chain was checked for author flags but was not re-derived.
 
 Each lattice `Γ_i^q = π_1(Y_i^q)` of Titz Mite--Witzel lies in `B_A`.
 That is, it embeds in a finitely presented group with an action of type (A).

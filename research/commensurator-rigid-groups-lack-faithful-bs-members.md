@@ -12,7 +12,8 @@ distinct_from:
 
 **ESTABLISHED** through `commensurator-finite-no-faithful-bs-proof` (lane proof;
 referee a PASS,
-`research/artifacts/gq-referee-a-hecke-products-and-commensurator-rigidity.md`;
+`research/artifacts/gq-referee-a-hecke-products-and-commensurator-rigidity.md`; referee b PASS,
+`research/artifacts/gq-referee-b-commensurator-rigid-bs-and-symmetric-space-tree.md`;
 no priority claimed).
 
 **Notation.**
@@ -29,11 +30,14 @@ groups are torsion-free. Then `H` does not act faithfully on its Bass--Serre tre
 
 **Instances.** Torsion-free non-arithmetic lattices `G` in `PO(n,1)^0`, `n >= 3`,
 and in `PU(n,1)`, `n >= 2`, such as the Gromov--Piatetski-Shapiro and
-Deligne--Mostow lattices.
+Deligne--Mostow lattices. Non-arithmetic lattices in `PU(n,1)` are known only for
+`n <= 3` (Witte Morris, math/0106063v6, Remark 5.2.4(3)), so that instance is
+non-empty only there.
 - By Mostow--Prasad rigidity, every isomorphism between finite-index subgroups is
-  conjugation by an isometry. So `Comm(G) ≅ Comm_L(G)`.
-- By Margulis, `Comm_L(G)` is discrete for non-arithmetic `G`, so it contains `G`
-  with finite index.
+  conjugation by an isometry, possibly orientation-reversing or antiholomorphic. So
+  `Comm(G) ≅ Comm_(Isom(X))(G)`, which contains `Comm_L(G)` with index `<= 2`.
+- By Margulis, `Comm_L(G)` is discrete for non-arithmetic `G`, hence so is
+  `Comm_(Isom(X))(G)`, and it contains `G` with finite index.
 - `VZ(G) = 1` by Borel density.
 
 **Dichotomy.** Let `G` be a torsion-free lattice in `PO(n,1)^0`, `n >= 3`. Then `BS_G`
