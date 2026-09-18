@@ -5628,6 +5628,9 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06c.FaceSetCut
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Cohn
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.TMachine
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.RotationBlock
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeStab
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeGeneration
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.EdgeRelation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
