@@ -5949,6 +5949,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.FinMod
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Decode
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtBusby
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.ProperCrossedProductSlice
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.UHFKTheoryMatrixRank
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
