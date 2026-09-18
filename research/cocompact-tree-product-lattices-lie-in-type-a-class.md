@@ -70,3 +70,11 @@ three or more trees, for non-simple non-residually-finite lattices beyond
 - **Torsion.** The germ-groupoid treatment of torsion.
 
 No priority is claimed pending a citation-database search.
+
+**Lesson for general BH.** Geometry enters only through a finite combinatorial
+coding of the boundary: oriented cubes, grids, and stabilizers as units.
+Everything else is uniform. Rescaling plus a Busemann phase manufactures Li's loops,
+and the Cuntz factor manufactures comparison. So any group whose faithful boundary
+action has such a coding falls to the same machine
+(`finitely-coded-cantor-actions-give-type-a-hosts`). Residual finiteness,
+irreducibility and normal subgroup theorems were never needed.

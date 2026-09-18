@@ -64,3 +64,11 @@ open set pointwise. Shrink it to a basic open set `U = ∏_{s ∈ F} U_s × C^{S
 unchanged, while `x_s` changed, so `l` cannot fix both points. Hence `γ^{-1}s = s` for every `s`, and
 `γ = 1` because `Γ` acts faithfully on `S`. Every element of `Γ ≤ SV_Γ` lies in `L`, so the statement
 applies. ∎
+
+## Lesson for general BH
+
+Geometry comes free in the full-group route. A label (or germ cocycle) that is determined locally and
+subadditive bounds word length in every finitely generated group between `H` and its full closure. So an
+embedding into a full-group host is undistorted as soon as the input acts locally faithfully. Distortion
+is never the obstruction to a quasi-isometric Boone–Higman embedding through full groups; finiteness of
+the host is.

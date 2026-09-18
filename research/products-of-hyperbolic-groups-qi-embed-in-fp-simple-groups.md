@@ -35,3 +35,10 @@ a finitely generated group `Δ` with an action of type (A), in the sense of
 This is the "(quasi-isometrically?)" half of Zaremsky's question (arXiv:2201.00711v1, TeX l.495–497) for
 these products. The type F_∞ half is not addressed. For virtually compact special factors it holds with
 the host `2V` (`virtually-compact-special-groups-undistorted-in-2v`).
+
+## Lesson for general BH
+
+The undistorted permutational class has exactly the closures of `B_A`, because disjoint-union actions and
+imprimitive wreaths act coordinatewise, and the acting group is always undistorted in its twisted
+Brin–Thompson group. In any permutational Boone–Higman embedding, only the step from the input into the
+acting group needs geometric work.

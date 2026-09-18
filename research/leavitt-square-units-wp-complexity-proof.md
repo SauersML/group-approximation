@@ -22,8 +22,10 @@ Lane proof (bh-free-26), elementary. Standard complexity inputs: Toda 1991
 
 `A` acts on `M = C(C × C, F_2)`, `C = {0,1}^N`, by
 `(a_i f)(iξ, y) = f(ξ, y)`, `a_i f = 0` off `[i] × C`, `(a_i^* f)(ξ, y) = f(iξ, y)`, and the
-same in the second coordinate for `b`. The relations hold. `A` is simple (the host node; `L` is
-central simple), so this nonzero representation is faithful. A homeomorphism `h` of `C × C`
+same in the second coordinate for `b`. The relations hold. `A` is simple, classically and unconditionally:
+`L_(F_2)(1,2)` is simple with centre `F_2`, and a central simple algebra tensored with a simple
+algebra is simple. So this nonzero representation is faithful; it is used only in §5, to pass
+from "`X_R` acts as 0" to "`X_R = 0`", and §6 needs no faithfulness. A homeomorphism `h` of `C × C`
 mapping a finite brick partition onto another by prefix replacement gives the monomial unit
 `U_h f = f ∘ h^(-1)`, with `U_(h h') = U_h U_(h')`.
 
@@ -130,6 +132,10 @@ Turing reductions (`⊕P^⊕P = ⊕P`), so `NP^⊕P = ∃·⊕P`. For `L ∈ coN
 So `w ↦ W_(R_w)` is a many-one reduction to `WP(Γ)`, and `WP(Γ)` is `coNP^⊕P`-hard.
 
 ## 6. Upper bound
+
+Written for two coordinates. With `d` coordinates, cylinders in each coordinate and the same
+padding word give the bound for `L^(⊗d)`; the general statement, for every `L(1,n)` factor and
+matrix size, is `leavitt-tensor-unit-counting-cap-proof`.
 
 Let `W` be a word of length `ℓ` over any finite set of units of `A`. Each unit is a fixed
 finite sum of monomials `a_(α') b_(β') b_β^* a_α^*`; a product of monomials is `0` or a

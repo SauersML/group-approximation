@@ -289,3 +289,28 @@ now contain several chambers. The links are generalized hexagons (type 0), gener
 generalized n-gon: closure under "all lines through a point of a member line" reaches every
 line through the connected incidence graph. The bookkeeping is heavier and has not been
 attempted.
+
+## 10. The general theorem: every type, every dimension (2026-09-18, after INSIGHT FIRST)
+
+`euclidean-building-lattices-lie-in-permutational-bh-class` (lane proof) states that every
+cocompact lattice in a locally finite thick irreducible Euclidean building lies in `B_A`.
+This covers exotic C̃₂ and G̃₂: Kantor, Essert, the chamber-regular lattices of 2511.08312,
+and Titz Mite–Witzel. Four inputs, all general:
+1. **Box calculus.** Tiles `{0 ≤ α_i ≤ 1}` and a two-leg monotone-gallery composition lemma.
+   This gives the orbit category in any type, with disjoint minimal common multiples and no
+   girth input.
+2. **Cylinder exchanges.** Parallel sectors share subsectors, and the sets `U_{l,n}` are
+   clopen, so compactness applies. This replaces the RS sector lemmas.
+3. **Complete reducibility.** It follows from counting alone: orbit–stabilizer weights
+   `1/|K_a|` together with regular successor and predecessor counts.
+4. **Topological freeness.** Ciobotaru–Le Bars (arXiv:2601.13092, read at source) give it
+   for cocompact lattices in irreducible locally finite affine buildings, in every type.
+
+Then Li's `thm:deg` and bh-lattices' stabilized type (A) comparison apply.
+
+**What this retires.** The C̃₂ colour-2 bookkeeping and the G̃₂ tile computations planned in
+§9 are no longer needed for `B_A`. Irreducibility and primitivity of the transfer matrices
+matter only for simplicity of the specific Matui host, not for Boone–Higman.
+
+**Lesson (see board/LESSONS.md).** Finite-type boundary codings are the mechanism. They are
+complexity-bounded, so universality needs a coding that grows with the input.
