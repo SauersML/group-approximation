@@ -131,7 +131,22 @@ equivalent to `H4` having some nontrivial sofic quotient
      - **Narrowing of the Open item below.** Its solvable survivors now need every finite-index
        subgroup to have derived length `>= 12`, as well as `A_0''` of infinite Hirsch length. Proving
        nonvanishing for all `k` would remove the solvable case entirely.
-   - Open: amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
+   - **Every virtually solvable `A` is impossible, and so is any tree splitting of a nontrivial
+     quotient over virtually solvable edge groups (w6-053, 2026-09-18).** See
+     `higman-virtually-solvable-edge-images-collapse`, with proof
+     `higman-virtually-solvable-edge-images-collapse-proof`. `ncl_H4(F^(k)) = H4` for every `k`.
+     - **The missing input, proved for all `k`.** Lemmas B and C of the tower chain reduce the
+       nonvanishing input to a free-group statement: `S_(k-1)` is not identically zero on
+       `<alpha,gamma>^(k)`.
+     - **Proof.** On the `r`-th derived term, `S_r` is a Fox derivation over the homomorphism
+       `S_(r-1)`. If it vanished on the next derived term it would be inner over the fraction field.
+       Conjugation by `x^n` then forces `z = theta(z) + n` for a variable-renaming `theta`, and no
+       rational function satisfies that. The explicit witnesses are
+       `w_(r+1) = [w_r, x_r w_r x_r^-1]`.
+     - **Consequence for the Open item below.** Its solvable survivors are gone. Only amenable `A` that
+       are not virtually solvable remain: locally solvable groups of unbounded derived length, other
+       elementary amenable groups that are not virtually solvable, and non-elementary-amenable groups.
+   - Open (solvable part now closed by w6-053, see above): amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
      derived length at least 3), and non-elementary-amenable `A`. GAP could not decide the
      metabelian-type relators at `2*10^6` cosets. After sw-053b, the solvable survivors are those
      in which every finite-index subgroup `A_0` has `A_0''` of infinite Hirsch length. The two suggested
