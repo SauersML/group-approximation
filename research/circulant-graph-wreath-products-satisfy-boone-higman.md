@@ -8,7 +8,9 @@ distinct_from:
   bh-type-a-class-closed-under-permutational-lamp-wreaths: that is about wreath products with a permutational action; this is a graph wreath product, where lamps at bounded distance fail to commute.
 ---
 
-**OPEN.** Let `E ⊆ N_{≥1}` be finite and `U = N_{≥1} ∖ E`. Then
+**ESTABLISHED** (lane proof, not reviewed; route `circulant-graph-wreath-products-embed-in-dv-f-proof`): every such `G_U` embeds in the one finitely presented simple group `DV_F`, by an edge-coordinate ping-pong in which the shift permutes coordinates. It is proved in general for right-angled Artin groups whose defining graph has locally finite complement.
+
+Let `E ⊆ N_{≥1}` be finite and `U = N_{≥1} ∖ E`. Then
 `G_U = ⟨a, t | [a, t^k a t^{-k}] = 1 (k ∈ U)⟩` embeds in a finitely presented
 simple group. Here `G_U = A(Γ_U) ⋊ Z`, with `Γ_U` the circulant graph on `Z` whose
 connection set is `U`.
@@ -45,14 +47,16 @@ Every `G_U` here has word problem decidable in polynomial time, uniformly in `E`
    So any faithful action must move points between the regions indexed by
    different lamps. The naive "each lamp acts inside a window of fundamental
    domains of `t`" design used for `Z ≀ Z ≤ F` cannot extend to `E ≠ ∅`.
+6. **No lamplighter hosts of the naive form (corollary of 5).** Suppose `E ≠ ∅`,
+   and let `H` be any group. Then there is no embedding `G_U -> H ≀ Z` sending
+   `a` into the base and `t` to an element with nonzero `Z`-component `s`.
+   - **Why:** `a_j` is supported in `supp(a) + js`. So each coordinate projection
+     of the base kills every `a_j` outside a set of `j` of diameter
+     `≤ diam(supp a)/|s|`. The coordinate projections are jointly injective on the
+     base, so item 5 applies.
+   - **Scope:** this is not a general obstruction. A host `H` containing `G_U`,
+     with `t` in the base, trivially works.
 
-## Candidate hosts
+## How the obstructions are avoided
 
-- `2V`, which contains `Z^2 * Z`, or `DV_F` of
-  `one-fp-simple-group-contains-every-brin-thompson-subgroup`, which contains
-  every `nV`.
-- The generator `t` should translate one coordinate. The generator `a` should
-  mix fundamental domains `D_0, …, D_{max E}` in a second coordinate.
-- A general theorem would need a shift-equivariant version of the embeddings of
-  right-angled Artin groups into Brin–Thompson groups. That would cover all
-  locally finite circulant non-commutation graphs.
+The proof puts the lamps on *coordinates* of `C^D`, not on positions. Each lamp gets one coordinate per incident non-commutation edge, and the shift acts by permuting coordinates inside `DV_F`. Coordinates are not invariant pieces with restriction homomorphisms, so items 5 and 6 do not apply.

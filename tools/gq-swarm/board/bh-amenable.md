@@ -1,6 +1,7 @@
-# bh-amenable board
-**Landed (lane proofs, not reviewed):** aperiodic-full-groups-lift-along-factor-maps; brin-thompson-groups-contain-full-groups-of-their-elements; smart-trace-full-group-embeds-in-brin-thompson-2v (Juschenko–Monod group of the SMART trace subshift inside 2V, so f.g. infinite simple amenable group in a f.p. simple group; no priority claimed, bounded arXiv search).
-**Open (landed):** decidable-minimal-subshifts-are-brin-thompson-factors (realization problem; necessity of decidable language + closure under factors/products/induced systems proved); decidable-minimal-subshift-full-groups-satisfy-boone-higman; computable-grigorchuk-groups-satisfy-boone-higman (via Matte Bon 1408.0762).
-**Needs:** COT 2017 (SMART minimality) and Matui 2006 Thm 5.4 at source; body of Matte Bon 1408.0762 (decidability of X_ω).
-**Sparks:** other minimal aperiodic reversible TMs → more Juschenko–Monod groups in 2V; first test for realization: Grigorchuk-group Schreier (substitutive) subshift.
-Status: stalled after one real attempt on the general realization problem.
+# bh-amenable board (free mode)
+**Direction:** Juschenko–Monod / intermediate-growth inputs via Brin–Thompson hosts (lifting full groups along factor maps). Not substitution-via-RSG (that is bh-free-03).
+**Landed (lane proofs, not reviewed):**
+- 570275714: aperiodic-full-groups-lift-along-factor-maps; brin-thompson-groups-contain-full-groups-of-their-elements; smart-trace-full-group-embeds-in-brin-thompson-2v (Juschenko–Monod group in 2V); OPEN decidable-minimal-subshifts-are-brin-thompson-factors, decidable-minimal-subshift-full-groups-satisfy-boone-higman, computable-grigorchuk-groups-satisfy-boone-higman (+ routes).
+- b7fdc585a: eventually-periodic-grigorchuk-groups-satisfy-boone-higman (contracting host + Belk–Matucci); grigorchuk-groups-lie-in-one-point-germ-extensions-of-v (germ group W_ω ⋊ Z fp iff ω eventually periodic).
+- 2c4e62e79: nv-realizable-systems-closed-under-kakutani-equivalence (factors, products, induced, towers, full-group elements, V-cocycle skew extensions).
+**Open / sparks:** (1) does some g ∈ nV on a clopen invariant set have the BINARY odometer as a factor ("time-exact binary machine"; weaker than BS(1,2): no renormalization needed)? It would open binary Toeplitz subshifts (Grigorchuk Schreier subshifts, plausibly X_ω realizability depends only on the tail of ω via the tower/induced closure — unchecked). (2) Realize Baumslag-type fp germ groups containing W_ω ⋊ Z for computable non-periodic ω.

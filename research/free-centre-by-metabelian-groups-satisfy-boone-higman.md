@@ -8,6 +8,8 @@ distinct_from:
   free-solvable-groups-satisfy-permutational-boone-higman: that is F/F^(d); this is F/[F'',F], a central quotient between F/F''' and F/F''.
 ---
 
+**OPEN for r >= 3; rank 2 settled** by `free-centre-by-metabelian-group-of-rank-two-satisfies-pbh` (lane proof, 2026-09-18).
+
 **OPEN.** For every finite `r >= 2`, the free centre-by-metabelian group
 `C_r = F_r/[F_r'', F_r]` lies in `B_A`. Then all its subgroups embed in finitely
 presented simple groups.
@@ -44,5 +46,15 @@ presented simple groups.
 4. **Untested.** Embedding `C_r` in a central extension of `Z^r wr M_r` realised
    inside a type (A) actor, e.g. as a subgroup of a relative automorphism actor with a
    central lamp.
+5. **Second-order Magnus embedding (bh-free-28, 2026-09-18).** *Settles r = 2; reduces r >= 4.*
+   - Attempt 1's "not available" is superseded at rank 2. The 4x4 block matrices
+     `[[1,a,c],[0,gI,b],[0,0,1]]` over `Z[x^(±1),y^(±1)]` give a faithful representation of
+     `C_2` (`free-centre-by-metabelian-group-of-rank-two-is-linear`), so `C_2` is in `B_A`
+     through the characteristic-zero linear node.
+   - For `r >= 4`, `C_r` is linear, hence in `B_A`, exactly when it is residually finite
+     (`free-centre-by-metabelian-groups-linear-iff-residually-finite`, using Gupta 1973 at
+     abstract level).
+   - Rank 3 and residual finiteness for `r >= 4` remain open. Classical priority: C. K. Gupta
+     (1969, 1973) gives faithful 3x3 representations in this family; not read.
 
 _Orphan sweep (2026-09-14): this node cited `research/artifacts/bh-solvable-general-2026-09-13.md`, which its lane never wrote to the repository and which could not be recovered from the lane transcript._

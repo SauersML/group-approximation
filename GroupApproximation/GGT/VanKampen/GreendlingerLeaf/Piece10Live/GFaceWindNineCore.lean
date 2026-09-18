@@ -81,7 +81,7 @@ def gfaceWindNine_C4 (K : PocketFaceSet D eps X lo hi) (c : List X.toCombMap.Dar
     (cell X K.source).face ∉ gfaceWind_faces g
 
 /-- **Clause 5 of a winding choice** (region form). -/
-def gfaceWindNine_C5 (K : PocketFaceSet D eps X lo hi) (c : List X.toCombMap.Dart)
+def gfaceWindNine_C5 (_K : PocketFaceSet D eps X lo hi) (c : List X.toCombMap.Dart)
     (g : X.toCombMap.Face → ℤ) : Prop :=
   (∃ x ∈ c, ∃ kept : Fin X.rCellCount,
       Relation.ReflTransGen (gfaceWindClause_Adj X.toCombMap c) (X.toCombMap.faceOf x)
