@@ -5968,6 +5968,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.Commute
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetNaturalPrecomp
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFreeAlgK2.Augmented
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Spec
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRMulti
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
