@@ -57,7 +57,8 @@ theorem gfaceWindFive_lobe {M : CombMap.{v}} {c : List M.Dart}
   have hsub : ∀ x ∈ A, x ∈ c := fun x hx => by
     rw [hseg]
     exact List.mem_append_left q (List.mem_append_right p hx)
-  exact ⟨p, A, q, hseg, ⟨hne, hchA, hcl, hnd, fun x hx hax => hal x (hsub x hx) (hsub _ hax)⟩⟩
+  exact ⟨p, A, q, hseg,
+    ⟨hne, hchA, hcl, hnd, fun x hx hax => hal x (hsub x hx) (hsub _ hax)⟩⟩
 
 /-- **A winding step from a pinched state**: the inner excision of the innermost lobe. -/
 theorem gfaceWindFive_step {M : CombMap.{v}} (o : M.Face) {c : List M.Dart}
@@ -65,7 +66,8 @@ theorem gfaceWindFive_step {M : CombMap.{v}} (o : M.Face) {c : List M.Dart}
     (hal : ∀ x ∈ c, M.alpha x ∉ c) (hrep : ¬ (c.map M.vertexOf).Nodup) :
     ∃ t : List M.Dart × (M.Face → ℤ), gfaceWind_Step M o (c, g) t := by
   obtain ⟨p, A, q, hseg, hw⟩ := gfaceWindFive_lobe hch hal hrep
-  exact ⟨(p ++ q, fun f => g f - gfaceWind_wind M o A f), p, A, q, hseg, Or.inl ⟨hw, rfl, rfl⟩⟩
+  exact ⟨(p ++ q, fun f => g f - gfaceWind_wind M o A f), p, A, q, hseg,
+    Or.inl ⟨hw, rfl, rfl⟩⟩
 
 section Pocket
 
