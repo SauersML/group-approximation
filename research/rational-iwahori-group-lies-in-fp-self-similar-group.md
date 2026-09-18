@@ -109,3 +109,33 @@ The first two constraints are from
    `M_{j+1} = ρ F(M_j) ρ^{-1}` inside one finitely generated subgroup of
    `PGL_2(Q)`. So the spine must be non-Möbius on infinitely many shells, or
    the singular sets must be infinite.
+5. **Two shape obstructions and a finitely generated reduction (2026-09-18, lane
+   gq-ring-fp-simple).**
+   - **No prime shifts on T_p.** `p-adic-dilation-normalizers-act-by-power-maps`
+     proves the following, using the p-adic six exponentials theorem. A tree
+     automorphism, or a germ at 0 of an element of `V_p(Λ)`, that conjugates the
+     dilations by a rank-three group of rational units into rational dilations
+     acts on them by a rational power map.
+     - So no element of any `Λ` permutes three primes among the `d_q`.
+     - The `σ`-device of `K_n` and `A_1` has no tree analogue, and the dilations
+       cannot be produced as `c^n d_(q_0) c^-n` for one `c`.
+   - **Finite-state generators must be wild.**
+     `finite-state-mobius-pieces-see-finitely-many-primes`: if finite-state
+     generators are each locally Möbius on a dense open set, they add only
+     finitely many primes to `Γ_p(1)`. The reason is that their pieces are affine
+     over one `Z[1/N]`, and a Baire argument composes pieces along generic orbits.
+     A useful finite-state generator must be nowhere locally Möbius on some open
+     set, as digit substitutions are.
+   - **Reduction at the finitely generated level.** If some automaton group
+     `W <= Aut(T_p)` contains every `d_q`, `q != p`, then `<Γ_p(1), W>` is a
+     finitely generated self-similar overgroup of `Γ_p`, the first overgroup of
+     that kind. The reason is that `Γ_p(1)` is self-similar and `W` is closed
+     under states.
+     - By the two nodes above, the generators of `W` must be wild, and no
+       element of `W` shifts three dilations.
+     - Whether finitely many wild finite-state maps generate a group containing
+       infinitely many `d_q` is open. Finite presentation would be a separate
+       question.
+   - **Not pursued.** The suggestion to feed Serre's amalgam
+     `SL_2(Q) = SL_2(Z_(p)) *_(Iwahori) SL_2(Z_(p))'` into a self-similar
+     overgroup, and Wilson-type embeddings.
