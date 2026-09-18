@@ -25,6 +25,10 @@ can be decided in time polynomial in the length of the word.
   Dehn's algorithm for them must read components with exponentially many vertices in
   `|w|`.
 
+## A pointer
+
+Darbinyan, *The word and conjugacy problems in lacunary hyperbolic groups*, arXiv:1708.04591 (abstract only, via the arXiv API), builds lacunary hyperbolic "monsters" with almost linear-time word problem. Examples are torsion-free Tarski monsters and verbally complete groups. They use classical graded small cancellation with few relators per stage, so they do not carry expanders or large-girth graphs, and they are not known to be non-exact. The obstacle here is specific to graphical families: each component has exponentially many cycles.
+
 ## Route
 
 `polytime-non-exact-group-via-decodable-labellings` reduces this claim to two algorithmic
