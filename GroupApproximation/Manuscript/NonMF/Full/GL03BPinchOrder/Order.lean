@@ -183,7 +183,7 @@ theorem ord_false_of_cross (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
       ((ordRing hw hM).alpha (((ordRing hw hM).facePerm ^ 0) (lakeStart hw hM x₀)))
       ((ordRing hw hM).alpha (((ordRing hw hM).facePerm ^ j) (lakeStart hw hM x₀))) := by
     rw [eA, eB]
-    refine ⟨a + 1, by omega, ?_, fun t ht0 hta => ?_⟩
+    refine ⟨a + 1, by omega, ?_, fun t _ht0 hta => ?_⟩
     · rw [pow_succ (ordRing hw hM).facePerm a, Perm.mul_apply, wd_last hw hM hn h0]
       exact (ordRing_facePerm_pow_wd hw hM 0 a h0 (by omega)).trans
         (ordRing_ext hw hM (getElem_idx_congr w (i := 0 + a) (j := a) (Nat.zero_add a)
