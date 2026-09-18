@@ -70,7 +70,9 @@ theorem skCohnHo_x_mem_monoSt {n : ℕ} {i j : Fin n} (hij : i ≠ j) (a : CohnT
   induction ha using Submodule.span_induction with
   | mem _ hq =>
     obtain ⟨q, rfl⟩ := hq
-    exact Subgroup.subset_closure ⟨i, j, hij, q.1, q.2, rfl⟩
+    unfold skCohnHo_monoSt
+    apply Subgroup.subset_closure
+    exact ⟨i, j, hij, q.1, q.2, rfl⟩
   | zero =>
     rw [x_zero]
     exact one_mem _
@@ -117,7 +119,8 @@ theorem skCohnHo_mono_mem_gradedSt_align {n : ℕ} {i j : Fin n} (hij : i ≠ j)
     x i j hij (xw μ * yw ν) ∈
       LVCohnGraded.skCohnGr_gradedSt (skCohnHo_alignPotential i μ ν) := by
   refine skCohnHo_mono_mem_gradedSt _ hij μ ν ?_
-  unfold skCohnHo_alignPotential
+  show (if i = i then ν.length else μ.length) + μ.length =
+    (if j = i then ν.length else μ.length) + ν.length
   rw [if_pos rfl, if_neg (Ne.symm hij)]
   exact Nat.add_comm _ _
 
@@ -136,7 +139,7 @@ theorem skCohnHo_mono_exists_potential {n : ℕ} {i j : Fin n} (hij : i ≠ j) (
 one common potential on `K₂`.  That is the precise remaining obstacle; see the module docstring.
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
 theorem skCohnHo_iSup_gradedSt_eq_top (n : ℕ) :
-    ⨆ m : Fin n → ℕ, LVCohnGraded.skCohnGr_gradedSt m = ⊤ := by
+    (⨆ m : Fin n → ℕ, LVCohnGraded.skCohnGr_gradedSt m) = ⊤ := by
   rw [eq_top_iff, ← skCohnHo_monoSt_eq_top n, skCohnHo_monoSt, Subgroup.closure_le]
   rintro g ⟨i, j, hij, μ, ν, rfl⟩
   exact Subgroup.mem_iSup_of_mem (skCohnHo_alignPotential i μ ν)
