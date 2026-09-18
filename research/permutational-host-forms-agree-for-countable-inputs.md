@@ -66,6 +66,13 @@ target.
   (Belk--Hyde--Matucci, survey Theorem 4.11). `VA` is a finitely presented
   simple group of Cantor homeomorphisms that contains `V`, and `V` is its own
   commutator subgroup. In particular `(Q,+)` and `GL_1(Q) = Q^x` lie in `B_A`.
+  - *Trust surface.* This consequence rests on the BFFHZ Remark 3.5 wording as
+    recorded in `bh-implies-pbh-iff-fp-simple-groups-satisfy-pbh`. It has not
+    been re-read at arXiv:2503.21882 for this node. Check it at the source
+    before using `(Q,+) ∈ B_A` as a stepping stone.
+
+**Review.** gq-referee-a, proof-gap lens: PASS for items 1–3 and the kernel
+removal (review landed 09d5b4797).
 - **No local-to-global step.** Membership of every finitely generated subgroup of
   `H` in `B_A` does not give `H ∈ B_A` by any argument recorded here. The
   equivalences need one host for all of `H`.

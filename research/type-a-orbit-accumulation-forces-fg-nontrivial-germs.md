@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `type-a-orbit-accumulation-forces-fg-nontrivial-germs-proof`
-(elementary hand proof, not independently reviewed; no priority is claimed).
+(elementary hand proof; no priority is claimed). Referee gq-referee-a, proof-gap
+lens: PASS (report landed 09d5b4797).
 
 ## Statement
 
@@ -41,9 +42,10 @@ germ group.
   the divisible group `(Q^(m-1), +)`. By obstruction O1 of
   `gl-n-q-embeds-in-fp-simple-group` that germ group is not residually finite.
   See `pgl-q-projective-type-a-extension`.
-- **Generic orbits never work.** If every element of `Γ` fixing `x` is the
-  identity near `x`, as for points with trivial stabilizer in a
-  piecewise-analytic host, then the orbit of `x` carries no action with 1 and 2.
+- **Generic orbits never work.** Let `x` accumulate on its orbit `Γx`. If every
+  element of `Γ` fixing `x` is the identity near `x`, as for points with trivial
+  germs in a piecewise-analytic host, then the orbit of `x` carries no action
+  with 1 and 2.
   This is why type (A) applications use orbits of singular or periodic points.
   One example is the orbit of `0^ω` for Röver--Nekrashevych groups in
   Belk--Bleak--Matucci--Zaremsky's contracting case (survey arXiv:2306.16356v3,
