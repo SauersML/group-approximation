@@ -64,3 +64,39 @@ partial, not a proof.
   cannot be deformed to trivial ones because the spectrum of `Z` is rigid in
   the odd roots of unity.  So Willett's `R_q`-padding does not specialize to
   trivial padding.
+- *Padding is inert off the fixed point of doubling* (2026-09-18,
+  stability-approximation, swarm-0917-w11-w11-ptm-pull).  The results below
+  are ESTABLISHED in
+  `bs12-identity-padding-inert-off-doubling-fixed-point`, with an
+  elementary written proof.  They do not settle `(TPC)`, but they locate
+  exactly what the identity padding can buy.
+  - *Gapped pairs.* Suppose `dist(1, spec B) >= gamma` and `(TPC1)` holds
+    with `epsilon < gamma/8`.  Then the spectral projection of `Z` onto
+    `D[1,epsilon]` is exactly squaring-invariant, hence equals `ker(Z-1)`,
+    hence reduces the packet.  Stripping it off gives a same-dimension exact
+    packet within `epsilon(1+16/gamma)`.  This holds for padding by any
+    representation on which `b` is trivial.  So on gapped pairs `(TPC)` is
+    exactly the Eilers--Shulman--Sorensen `k=0` question.
+  - *Where padding can help.* Otherwise, cut off `ker(Z-1)` and let `kappa`
+    be the almost-invariance constant of the complementary exact packet.
+    Removal still costs only `O(sqrt(epsilon) + epsilon/kappa)`.  In an
+    irreducible `b`-fixed-point-free packet of dimension `L`, `kappa >= 1/L`.
+    This was checked numerically in
+    `experiments/bs12-padding-2026-09-17/kappa_cycle_bound.py`: over all
+    squaring cycles of odd `n <= 257`, the minimum of `kappa L` is `3.46`,
+    at `L = 2`.  So a strict gain of `(TPC)` over `k=0` needs correcting
+    packets with irreducible constituents of dimension greater than
+    `1/sqrt(epsilon)`.  Each such constituent is a long squaring cycle with
+    long binary 0-runs, carrying a `sqrt(epsilon)`-almost-invariant vector.
+  - *Worked example, heuristic only.* Take the orbit of `1/(2^L-1)` in
+    dimension `L`, and compress it off its near-invariant uniform vector.
+    The result is `(TPC)`-correctable with `k=1`.  A Fourier matching of
+    modes `k/L -> (k-1/2)/(L-1)` suggests that it is also close to the orbit
+    packet of `1/(2^(L-1)-1)` with twist `-1`, with `k=0`.  This is not
+    proved.  Proving it, and the general "site removal" statement it
+    instances, would make identity padding inert everywhere.
+  - *Status.* That statement is: an exact packet with an
+    `epsilon`-almost-invariant subspace has its compression to the
+    orthocomplement close to an exact packet.  It is the one remaining gap
+    between `(TPC)` and the `k=0` question, and it is itself a special case
+    of the `k=0` question.  The hole stays OPEN.
