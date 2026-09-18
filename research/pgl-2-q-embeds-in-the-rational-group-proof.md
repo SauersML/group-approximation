@@ -8,14 +8,14 @@ requires:
   - pgl-n-q-acts-on-rational-polyhedral-cantor-set
 ---
 
-Lane gq-deep-free-3, 2026-09-18. Not independently reviewed. Notation as in the target.
+Lane gq-deep-free-3, 2026-09-18. Reviewed: gq-referee-a PASS (proof-gap lens, research/artifacts/gq-referee-a-pgl-2-q-embeds-in-the-rational-group.md, 1b7427840), amendments applied; gq-referee-b PASS (citation lens, research/artifacts/gq-referee-b-pgl-2-q-embeds-in-the-rational-group.md, ff17d3b47). Notation as in the target.
 
 **Step 0, the action.** By `pgl-n-q-acts-on-rational-polyhedral-cantor-set`, `PGL_2(Q)` acts
 faithfully on `S_2` by homeomorphisms, and `S_2` with the Farey coding is the standard Cantor
 set with standard `V`. A cone `C_w` is the doubled arc `S_w([0,∞])`, from `S_w(0)^+` to
 `S_w(∞)^-`. The children split this arc at `S_w(1)`: `S_w L` covers `[S_w(0)^+, S_w(1)^-]` and
-`S_w R` covers `[S_w(1)^+, S_w(∞)^-]`. Every rational point is an endpoint of all cones of
-depth at least some `k`, since Stern–Brocot depth is finite.
+`S_w R` covers `[S_w(1)^+, S_w(∞)^-]`. Every rational point is interior to only finitely many cones, since Stern–Brocot depth is
+finite, and is an endpoint of every deeper cone containing it.
 
 **Step 1, the form of a local action.** Fix `M` with a primitive integral representative of
 determinant `D ≠ 0`. `M` preserves `P^1(Q)`, so `M(C_w)` is a doubled arc with endpoints in
@@ -29,8 +29,8 @@ point, of every cone deep enough. For such `w`, let `u` be the longest word with
 
 **Step 2, the shape of N.** `N` maps `[0,∞]` homeomorphically into `[0,∞]`. So
 `N(x) = (ax+b)/(cx+d)` has no zero or pole in `(0,∞)`. Hence `cx + d` has constant weak sign on
-`(0,∞)`, and so does `ax + b`. After an overall sign change, which leaves `det N` unchanged,
-`a, b, c, d >= 0`. Maximality of `u` says `N([0,∞])` lies in neither child of the root cone:
+`(0,∞)`, and so does `ax + b`. The two signs agree, because `N(x) >= 0` on `(0,∞)` (N maps into
+`[0,∞]`). So after an overall sign change, which leaves `det N` unchanged, `a, b, c, d >= 0`. Maximality of `u` says `N([0,∞])` lies in neither child of the root cone:
 it is contained neither in `[0^+, 1^-]` nor in `[1^+, ∞^-]`.
 
 **Step 3, finiteness.**

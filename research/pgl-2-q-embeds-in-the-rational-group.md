@@ -9,10 +9,12 @@ distinct_from:
   aff-q-embeds-in-fp-simple-group: that is the OPEN stepping stone asking for a finitely presented simple host of Aff(Q); this gives a simple host that is not finitely generated (R), and records why the natural copy lies in no contracting RSG.
   rsg-equicontinuity-program-cannot-exclude-gl-n-q: that shows one open test cannot exclude these groups from finite-nucleus RSGs; this shows they do lie in the full rational group, in non-contracting RSGs.
   aff-q-does-not-embed-in-aut-thompson-f: that excludes Aff(Q) from Aut(F); this puts Aff(Q) in the rational group and leaves Aut(V) open (aff-q-embeds-in-aut-v).
+artifacts:
+  - research/artifacts/gq-referee-a-pgl-2-q-embeds-in-the-rational-group.md
+  - research/artifacts/gq-referee-b-pgl-2-q-embeds-in-the-rational-group.md
 ---
 
-**ESTABLISHED** through `pgl-2-q-embeds-in-the-rational-group-proof` (lane proof, not
-independently reviewed). The transducers are Raney's (G. N. Raney, *On continued fractions
+**ESTABLISHED** through `pgl-2-q-embeds-in-the-rational-group-proof` (lane proof; referees gq-referee-a PASS, 1b7427840, and gq-referee-b PASS, ff17d3b47). The transducers are Raney's (G. N. Raney, *On continued fractions
 and finite automata*, Math. Ann. 206 (1973) 265–284, not read at the source). The proof below
 is self-contained, and no novelty is claimed.
 
@@ -38,7 +40,7 @@ rational if and only if it has finitely many distinct local actions `f|_α`, whe
    `±D(M)`, where `D(M)` is the determinant of a primitive integral representative. There are
    finitely many of these.
 2. Hence `Aff(Q) ≅ {[[a,b],[0,1]]}`, `PSL_2(Q)`, `SL_2(Q)/{±1}` and `BS(1,m) ≤ Aff(Z[1/m])`
-   (every `m ≥ 2`) embed in `R`. Since `R` is simple (Belk–Hyde–Matucci, arXiv:1711.01668,
+   (every `m ≥ 2`) embed in `R`. Since `R` is simple (Belk–Matucci–Hyde, arXiv:1711.01668,
    abstract: "simple and not finitely generated"), each of these groups embeds in a simple
    group that is not finitely generated.
 3. **Not contracting.** In `Γ_2` the powers `x ↦ 2^k x` have deep local actions of primitive
