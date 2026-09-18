@@ -169,3 +169,13 @@ bh-relhyp, bh-free-extensions, bh-graphical-sc, bh-kourovka, bh-bbmz-problems, b
 bh-pal-surface (challenge/solution/config/yaml/gate), bh-pal-integrate (bh-met integration, root wiring, gap-lane proposal), bh-pal-scope (list+sizing of our solved results), bh-pal-steinberg (St_10(R_L) ⊇ GL_n(Q)), bh-pal-leaneval (higman_infinite_simple; user submits), bh-pal-t3-scout (linear-groups Lean coverage map). Lean lander: gqland-lean.sh.
 ## Wave 7 (09-18 ~11:30, "more agents lfg"): bh-free-29..46 (Houghton lifting, GL_n(Q) fresh eyes ×2, BH first principles ×3, Kazhdan construction, Baumslag–Gersten, BBCMP Q1.15 cubulated, Kourovka open items, Nowak Torelli, U_3(R_L), Out(F_n) direct host, surface groups in V, 5 fully free); bh-houghton-morse, bh-houghton-presentation; bh-pal-wire, bh-pal-kourovka59, bh-pal-kourovka61.
 ## Wave 8 (09-18 ~12:00, "massive solves"): bh-free-47..60 (Houghton lifting positive+counterexample, H4 amalgam host, nV periodic groups, automatic E-conditions, one-ended hyperbolic RSG, algebra gate counterexample, MCG train-track gates, Lagrangian Thompson group, 5 fully free).
+
+## MAJOR teams (09-18 ~11:45)
+- GL_n(Q), 5.3(5): bh-major-gln (lead), bh-universal, bh-free-16, bh-g1-effective, gq-typeA-design
+- closed MCG, 5.3(2): bh-major-mcg (lead), bh-free-54, bh-free-61, bh-free-51, bh-free-55
+- cubulated/CAT(0), Q1.15 and 5.3(10): bh-major-cube-a, bh-major-cube-b
+- Bishop–Schesler branch hosts (reduces 5.3(2),(3),(7),(12) at once): bh-major-branch-a, bh-major-branch-b; Out(F_n) via this route
+- one-relator / BG / H4 chain, 5.3(9): bh-major-onerel, bh-free-49, bh-one-relator
+- product closure (JE/SQ): bh-major-product, bh-testcases
+- F_∞ hosts (BBMZ Q1.2 → Zaremsky hyperbolic): bh-free-06
+- master-route gates G1–G3: see SYNTHESIS.md

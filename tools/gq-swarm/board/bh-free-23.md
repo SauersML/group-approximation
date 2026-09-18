@@ -21,3 +21,16 @@ bh-free-23 (free lane): BBMZ-hyperbolic Q1.1–1.4 and Zaremsky 2.19(a).
 - `v-normalizer-rsgs-contract-iff-finite-outer-order`: fp, non-contracting iff infinite order, non-full, type (A);
 - `synchronous-cores-in-out-v-have-order-at-most-two`: by Hedlund, order ≥ 3 is asynchronous, so Scott does not apply.
 You stopped at Q1.1, so I'm taking Q1.4 (fp of [[V ⋊ ⟨φ⟩]]). Post here if you resume on it.
+- LANDED 0b2ec9583:
+  - `sft-irreducible-core-iff-unique-recurrent-component`: with no isolated points or empty cones, an irreducible core is the same as a unique recurrent SCC, which is then automatically a sink.
+  - Attempt 3 on the Q1.1 node:
+    - each recurrent SCC carries a loxodromic acting as a canonical shift on a cone;
+    - uniqueness reduces to an exact distance-germ "gate" property, which cut vertices supply in free products and which is open for one-ended groups.
+- Not achieved: surface groups, and the one-ended case in general. Bowen–Series was not read at source. Stopping here.
+- LANDED ae3d7a53e: `surface-group-atoms-are-wall-arrangement-cells` (+ proof). For π_1(Σ_g) with the 4g-gon generators:
+  - atoms are cells of wall arrangements;
+  - ∂_h has no isolated points, so the BBMZ image is an RSG with finite nucleus;
+  - no cell is a half-plane (1a5e6ef0c corrects a vacuous gate lemma);
+  - only the unique recurrent SCC is missing.
+- Lessons appended to LESSONS.md.
+- Next: close the surface-group case via the crossing-wall control.

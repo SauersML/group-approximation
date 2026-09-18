@@ -14,3 +14,8 @@ Sources fetched (MSI → $GQ/src/bh-free-24/): FFKLZ 2506.02319v2 TeX, BFFHZ 250
   - A star-shaped partial link always completes. But the growth order forces vertices whose partial links are unions of stars, so link-by-link free completion can close up.
   - Lemma C: simplicity forces Σ 1/girth(Γ_J) ≥ 1/2. So the development is not CAT(−1), and Ronan–Tits style free constructions don't apply.
   - (E) OPEN. Next idea, not started: a global mechanism, such as perturbing orbits of the X_+ action.
+- LANDED dd09f4684: `km-negative-completion-building-open-dichotomy` (+ proof). A Chevalley involution (De Medts–Gramlich–Horn 0709.3466v2, l.459/468; 2-spherical, |F| ≥ 4) swaps B_±. It transfers the bi-index dichotomy and the HT orbit constraints to the negative completion; B_- has only infinite orbits in any HT action of S_q.
+- LANDED b01b278c6 (FFKLZ Q2.4, claimed after bh-free-11 released it): an OPEN node, plus two ESTABLISHED claims:
+  - f ↦ f*(RfR) kills H^2(F;A), so central extensions of F-containing groups contain F. This is Brown's ring plus the flip acting as −1 on H_2.
+  - If G/K ⊇ F and Out(K) ⊉ F, then G ⊇ F. So non-faithful actions cannot hide F.
+- Q2.4 remains OPEN. Gap: a faithful, F-free oligomorphic action with FP∞ finite-set stabilizers by a group outside HF. Lane stopping.
