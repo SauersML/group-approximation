@@ -53,6 +53,10 @@ and Example `ex:ZS` (III), `D` is of type `F_n` when:
 - **Tree-product lattices.** All faithful cocompact lattices on products of thick
   trees (`cocompact-tree-product-lattices-lie-in-type-a-class`).
 - **Ã₂ lattices.** All cocompact Ã₂ lattices (`a2-lattices-satisfy-permutational-boone-higman`).
+- **Euclidean buildings.** All cocompact lattices on locally finite thick irreducible
+  Euclidean buildings of any type (`euclidean-building-lattices-lie-in-permutational-bh-class`,
+  bh-groupoid). There strong connectivity of the pieces comes from complete
+  reducibility by counting, not from irreducibility of the transition matrices.
 
 **Limits.**
 - **Complexity.** With finite unit groups, every subgroup of `F(𝒢)` has word problem
