@@ -58,6 +58,9 @@ sequence `(P)`, and item 6 is open.
 - Heuristic: `K_0(χ)` is evaluation at `t = 0`, the same functional that carries `[1_R]` in `coker(1 − A)`. In this
   example, the invariant functional that keeps `[1]` alive is carried by a character. Whether that is forced in general
   is not known; if it were, it would be the kind of no-go (b) asks for.
+- Parallel (coordinator's remark): in the Cohn–Toeplitz algebra, `[1]` likewise survives only through a non-full
+  ideal, the vacuum ideal, rather than a character. In both, the class of `[1]` is carried by a proper ideal or
+  quotient, which blocks simplicity.
 - A simple design needs a core whose dimension group is simple, such as polynomials positive on a closed
   subinterval of `(0,1)`, while `×x` stays implemented by a corner. So the letter frequencies must be kept away from
   the boundary. No finitely presented mechanism for that is known here.

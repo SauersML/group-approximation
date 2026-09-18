@@ -9,12 +9,15 @@ requires:
 ---
 
 **Inputs.**
-- (K) Kervaire: `K_2(R)` is central in `St(R)`. Milnor, as quoted in Dennis–Stein, LNM 342, p. 245.
+- (K) Kervaire: `K_2(R)` is central in `St(R)`. Weibel, *The K-book*, III Theorem 5.2.1; also Milnor, as quoted in
+  Dennis–Stein, LNM 342, p. 245.
 - (W) Whitehead: `E(R) = [GL(R), GL(R)]`. Also `E_n(R) ⊆ [GL_n(R), GL_n(R)]` for `n >= 3`, via
   `e_ij(r) = [e_ik(r), e_kj(1)]`. Also `diag(g, g^(-1)) ∈ E_(2n)(R)`.
-- (C) For commuting units `u, v` of a commutative ring, the Steinberg symbol equals the commutator of lifts of
-  `diag(u, u^(-1), 1)` and `diag(v, 1, v^(-1))`. Milnor, *Introduction to Algebraic K-Theory*, §8–9. Textbook;
-  the pin at source is requested.
+- (C) For commuting units `r, s` of any ring, the Steinberg symbol is `{r,s} = diag(r, r^(-1), 1) ⋆ diag(s, 1, s^(-1))`,
+  where `A ⋆ B = [a, b]` for commuting `A, B ∈ E(R)` with lifts `a, b`. This is well defined, skew-symmetric and
+  bilinear. Weibel, *The K-book*, III §5, p. 42, Definition 5.10; Example 5.10.1 gives `{r,s} = [h_12(r), h_13(s)]`.
+  Pinned at source by gq-referee-b. The pairing `c` below is Weibel's `⋆`. Agreement with the Dennis–Stein form
+  `h(uv)h(u)^(-1)h(v)^(-1)` is Milnor §9, and is not pinned.
 - (G) Garland and the tame sequence: for a number field `F`, `1 -> K_2(O_F) -> K_2(F) -> ⊔_𝔭 (O_F/𝔭)^x -> 1` is
   exact, and `K_2(O_F)` is finite. Dennis–Stein §15, p. 257, read at the source by this lane.
 - (S) Bass–Tate: `K_2` of an algebraically closed field is torsion-free and divisible. Dennis–Stein §11(ii),
@@ -35,8 +38,7 @@ requires:
     supported on disjoint indices, so lifts can be chosen in commuting Steinberg generators. So `Φ_ν` is
     compatible with stabilization.
   - Hence `Φ_ν` defines a homomorphism on `GL(R)/E(R) = K_1(R)`.
-- *Units.* For `x ∈ R^x`, `ν` and `x` lie in the commutative subring `Q̄[x, x^(-1)]`, where (C) identifies
-  `Φ_ν(x)` with `{ν, x}`. Naturality carries this to `R`.
+- *Units.* For `x ∈ R^x`, `Φ_ν(x) = {ν, x}` by (C), which holds in any ring for commuting units.
 - *Multiplicativity in `ν`.* `A_(νν') = A_ν A_(ν')`, all commuting with `D_g`. ∎
 
 **Part 2.**

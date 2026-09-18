@@ -9,10 +9,13 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the ring gate; this turns the K_2 half of its symbol budget, for central Q̄, into a condition on K_1.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-b-torsion-k1-modulo-central-scalars-kills-scalar-symbols.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `torsion-k1-modulo-central-scalars-kills-scalar-symbols-proof`. Lane proof
-(gq-k2-q), elementary given classical inputs, not independently reviewed. This verifies the coordinator's sketch,
+(gq-k2-q), elementary given classical inputs. *Reviewed:* citation PASS by `gq-referee-b`
+(`research/artifacts/gq-referee-b-torsion-k1-modulo-central-scalars-kills-scalar-symbols.md`), all inputs pinned; the
+proof-gap review is pending. This verifies the coordinator's sketch,
 with the product built by hand rather than taken from Loday.
 
 ## Statement
