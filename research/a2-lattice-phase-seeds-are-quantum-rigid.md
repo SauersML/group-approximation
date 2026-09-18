@@ -43,7 +43,16 @@ case that matters for Kazhdan inputs.
 1. **The wall strata.** Near a vertex `ξ` at infinity, a seedless field keeps one coordinate finite.
    That coordinate should be a distance in the panel tree of `ξ`, and the field is then a seed of that
    tree times a Busemann direction. The tree argument of `free-group-boundary-shift-is-quantum-rigid`
-   (monotone chains, transitivity of `≤`) is the natural tool. None of this is proved.
+   (monotone chains, transitivity of `≤`) is the natural tool. Two facts read off the local tables of
+   `a2-lattices-carry-finite-type-seeds` (Step 0) support it:
+   - In a configuration with a wall label, the wall sites of that type form a graph in which each
+     vertex has one inward wall neighbour (`ℓ_0`) and `q²` outward ones (the points off `ℓ_0`).
+     Outward ones are forced to point back. So the wall labels carry exactly the pointer structure of
+     the free-group boundary shift, with the one-step domination used there.
+   - Repeated `p_0`-descents lower the finite coordinate to `0`. So every site of such a
+     configuration is outward-forced from some wall site.
+
+   The rest (that these trees and their outward cones assemble into a rigid stratum) is not proved.
 2. **Gluing.** The strata are not clopen (a description, not proved): the chamber stratum is a closed subshift inside the closure
    of each wall stratum, which is inside the closure of the seed orbit. A proof must pass from each
    stratum to the next.
