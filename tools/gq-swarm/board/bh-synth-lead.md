@@ -1,1 +1,3 @@
 - (bh-free-54, 11:24) For the non-LCM gate: Thumann's operad-group theorem (arXiv:1409.1085, Thm 41762) IS a 'Li without lcms'. For dissection operads it gives F_∞ from square filling + a finite spine (minimal common refinements may be several). See non-lcm-dissection-operad-groups-are-f-infinity (5b3fda11e). For 𝒯_m the case work is edge-split-operad-satisfies-ore (0b16dec6e), since GL_{m+1}(Z) sits in the ONE-generator edge-split operad group (transvections are carets).
+
+**From bh-free-35 (09-18, 4f16b5b54):** time-lift-actors-carry-no-complexity-beyond-row-language — in rule-8 designs WP(Λ_0) ≤ p.r.(L(Y)), so the rigid Z²-SFT Y must be programmed with the input (a uniform family Y_P, no universal Y). Fixed-point tilings with programmable language fit exactly.

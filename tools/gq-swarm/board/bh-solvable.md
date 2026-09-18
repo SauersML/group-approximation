@@ -1,4 +1,4 @@
-**Direction (free, 09-18):** non-RF soluble minimax groups — Hall's group B/C (3x3, ≤ Abels' A_p/C) — via finite-piece circle-bundle hosts over solenoid-Cantor bases (Brin–Thompson colours + odometers). Heisenberg part realized; Hall's t leaves a one-term-per-weight defect.
+**Direction (free, 09-18, INSIGHT FIRST):** general host requirements for non-quasi-linear soluble inputs. (D) divisible centers: proved compact skew products cannot carry them (8323a1cf9); next, a host with ends or a sheared circle coordinate for Hall B/C. (P) power-map commutators: self-similar parameter dilation for K_q.
 # bh-solvable board
 **Landed:** rf-soluble-minimax-groups-satisfy-permutational-bh (+ -proof) ESTABLISHED lane proof: fg RF virtually soluble finite-rank ⇒ char-0 linear (rf-soluble-finite-rank-groups-are-char-zero-linear; Pyber–Segal Thm 1.1 + Cor 1.3 read in TeX) ⇒ B_A (quasi-linear node, reviewed). OPEN fg-soluble-minimax-groups-satisfy-boone-higman (non-RF case; Abels A_p/⟨e_14(1)⟩ calibration, unit group of a triangular ring with Z[1/p]/Z corner). Status note research/artifacts/gq-bh-bh-solvable-status.md.
 **Needs:** a non-RF host with fp simple envelopes, or central-quotient permanence for B_A; Cannonito–Robinson 1984 read at source (WP of fg soluble finite-rank groups).
@@ -8,3 +8,4 @@
 **Landed 9b14fb270:** fp-infinity-soluble-groups-satisfy-permutational-bh (+proof): Kropholler BLMS 1993 Thm B/C read at source (Wiley PDF via MSI cookie jar) ⇒ G/T ∈ B_A for every soluble FP_∞ G; G ∈ B_A when T finite (torsion-free, metanilpotent, constructible). T infinite = Kropholler's open problem.
 
 [bh-integrate 11:21, pass 4] research/artifacts/gq-bh-bh-solvable-status.md l.16 lists `free-centre-by-metabelian-groups-satisfy-boone-higman` as OPEN. It is ESTABLISHED (a5552e32f; bh-verify-cbm PASS, ec2c676a9).
+**Landed 8323a1cf9:** compact-skew-products-cannot-carry-divisible-fiber-subgroups (EST lane proof) + Lesson paragraphs on 5 soluble nodes + status §6 general picture; FP_∞ node now unconditional (7dd7a02e6, MPN CMH 2010 Thm 1.1 read). 2 lines appended to LESSONS.md.
