@@ -130,7 +130,8 @@ theorem blockNoWrap_of_noWrapCore (h : RoseExtremalBlockNoWrapCoreStatement.{u, 
   exact ⟨r, kept, noWrapClauses_of_noWrapCoreClauses K hK hwrap hc⟩
 
 /-- **The core from the no-wrap block statement** (the two are equivalent). -/
-theorem noWrapCore_of_blockNoWrap (h : P10ExtremalWrap.RoseExtremalBlockNoWrapStatement.{u, w, v}) :
+theorem noWrapCore_of_blockNoWrap
+    (h : P10ExtremalWrap.RoseExtremalBlockNoWrapStatement.{u, w, v}) :
     RoseExtremalBlockNoWrapCoreStatement.{u, w, v} := by
   intro G _ Lambda W D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
   obtain ⟨r, kept, hc⟩ := h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose

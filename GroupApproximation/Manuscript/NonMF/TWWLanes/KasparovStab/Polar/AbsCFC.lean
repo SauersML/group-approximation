@@ -48,6 +48,7 @@ theorem exists_isSelfAdjoint_mul_self_eq_of_test {A : Type*} [NonUnitalCStarAlge
   obtain ⟨s, hs, hps⟩ := CStarAlgebra.nonneg_iff_exists_isSelfAdjoint_and_eq_mul_self.mp hp
   exact ⟨s, hs, by rw [hdec, hn0, sub_zero, hps]⟩
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.exists_isSelfAdjoint_mul_self_eq_of_test
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.exists_isSelfAdjoint_mul_self_eq_of_test
 
 end GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp

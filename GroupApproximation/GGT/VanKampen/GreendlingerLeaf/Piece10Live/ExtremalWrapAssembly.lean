@@ -9,14 +9,15 @@ Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-12a.
 
 `P06Bypass.Waist.relativeGreendlingerQuasiGeodesicLeastArea_of_binderFiveBelow` feeds residual 10
 (`hstep : PocketOuterPinchStepSectionStatement`) only through
-`osinSectionPocketCutSection_of_residualsTwoArc … (pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep
-hstep) …`.  This module copies that waist term with the no-wrap pinch
-(`ExtremalWrapPinch`) in that slot, then copies `AssemblyResidual.relativeGreendlinger_of_residuals`
-with residual 10 given by the no-wrap extremal core.
+`osinSectionPocketCutSection_of_residualsTwoArc …
+(pocketPinchLabelledSectionTwoArcStatement_of_outerPinchStep hstep) …`.  This module copies that
+waist term with the no-wrap pinch (`ExtremalWrapPinch`) in that slot, then copies
+`AssemblyResidual.relativeGreendlinger_of_residuals` with residual 10 given by the no-wrap extremal
+core.
 
 * `relativeGreendlinger_of_binderFiveBelowNoWrap` (proved): the waist with the no-wrap step.
-* `relativeGreendlinger_of_residualsNoWrap` (proved): from `P07InnerPocket.PocketFourPieceOffStatement`
-  and `RoseExtremalCoreNoWrapStatement`.
+* `relativeGreendlinger_of_residualsNoWrap` (proved): from
+  `P07InnerPocket.PocketFourPieceOffStatement` and `RoseExtremalCoreNoWrapStatement`.
 * `relativeGreendlinger_of_contigResidualNoWrap` (proved): from the four-piece-off residual and
   `RoseExtremalContigResidualNoWrapStatement`.
 

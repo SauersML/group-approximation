@@ -98,7 +98,8 @@ end GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp
 
 namespace GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab
 
-open GroupApproximation.HilbertModule GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp
+open GroupApproximation.HilbertModule
+open GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp
 
 universe v
 

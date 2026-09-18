@@ -72,7 +72,8 @@ theorem completeSpace_of_isCompleteModule {E : CStarModule.{v, v} B}
   rw [dist_eq_norm_sub, absNorm_eq (E := E)]
   exact lt_of_le_of_lt (hN n hn) (half_lt_self hε)
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.completeSpace_of_isCompleteModule
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.completeSpace_of_isCompleteModule
 
 /-- The inner product is continuous in its second slot. -/
 theorem tendsto_inner_right_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E.carrier}
@@ -80,7 +81,8 @@ theorem tendsto_inner_right_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E
     Tendsto (fun n => E.inner x (u n)) atTop (𝓝 (E.inner x a)) :=
   (isLimit_of_tendsto hu).tendsto_inner_right x
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.tendsto_inner_right_of_tendsto
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.tendsto_inner_right_of_tendsto
 
 /-- The inner product is continuous in its first slot. -/
 theorem tendsto_inner_left_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E.carrier}
@@ -89,6 +91,7 @@ theorem tendsto_inner_left_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E.
   have h := (tendsto_inner_right_of_tendsto hu y).star
   simpa only [E.inner_star] using h
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.tendsto_inner_left_of_tendsto
+#audit_axioms
+  GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.tendsto_inner_left_of_tendsto
 
 end GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp

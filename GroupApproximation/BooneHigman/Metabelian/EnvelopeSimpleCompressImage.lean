@@ -7,12 +7,11 @@ import GroupApproximation.Meta.AxiomGuard
 First half of clause (C) (`RNCompressStatement`): `MissesCone` is invariant under
 `roverNekrashevych X H`.
 
-Route: `ConeInImage f` says every cone contains... rather, the image of every cone contains
-a cone.  It holds for elements of positive depth (`coneInImage_of_hasDepth`), for tree
-automorphisms (`coneInImage_cantorHom`), is preserved by `localize` and by products, so by
-closure induction on `ConeInImage g ∧ ConeInImage g⁻¹` it holds on `V_X(H)`
-(`coneInImage_rn`).  If `S` misses `cone c` and `cone c' ⊆ f '' cone c`, then `f '' S`
-misses `cone c'` (`missesCone_image_rn`).  Self-similarity is not used.
+Route: `ConeInImage f` says that the image under `f` of every cone contains a cone.  It holds
+for elements of some depth (`coneInImage_of_hasDepth`), for tree automorphisms
+(`coneInImage_cantorHom`), is preserved by `localize` and by products, so by closure induction
+on `ConeInImage g ∧ ConeInImage g⁻¹` it holds on `V_X(H)` (`coneInImage_rn_and_inv`).
+If `S` misses `cone c` and `cone c' ⊆ f '' cone c`, then `f '' S` misses `cone c'` (`missesCone_image_rn`).  Self-similarity is not used.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
@@ -68,9 +67,10 @@ theorem coneInImage_cantorHom (g : TreeAut X) : ConeInImage (cantorHom g) := by
   refine ⟨g • c, fun p hp => ⟨cantorHom g⁻¹ p, ?_, ?_⟩⟩
   · have hw : firstWord c.length (cantorHom g⁻¹ p) = c := by
       rw [cantorHom_apply, firstWord_streamFun, ← TreeAut.length_smul g c,
-        firstWord_length_of_isStreamPrefix hp, inv_smul_smul]
+        firstWord_length_of_isStreamPrefix (w := g • c) (p := p) hp, inv_smul_smul]
     have h := isStreamPrefix_firstWord c.length (cantorHom g⁻¹ p)
-    rwa [hw] at h
+    rw [hw] at h
+    exact h
   · rw [cantorHom_apply, cantorHom_apply, ← streamFun_mul, mul_inv_cancel, streamFun_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.coneInImage_cantorHom
@@ -86,7 +86,7 @@ theorem coneInImage_localize {g : Equiv.Perm (Cantor X)} (hg : ConeInImage g) (w
     obtain ⟨q, hq, hqz⟩ := hr' (prepend_mem_cone r' z)
     obtain ⟨y, rfl⟩ := mem_cone_iff.mp hq
     refine ⟨prepend (w ++ r) y, prepend_mem_cone (w ++ r) y, ?_⟩
-    rw [prepend_append, localize_apply_prepend, hqz, prepend_append]
+    rw [prepend_append w r y, localize_apply_prepend, hqz, prepend_append w r' z]
   · by_cases hcw : c <+: w
     · refine ⟨w, fun p hp => ?_⟩
       obtain ⟨z, rfl⟩ := mem_cone_iff.mp hp
@@ -94,7 +94,7 @@ theorem coneInImage_localize {g : Equiv.Perm (Cantor X)} (hg : ConeInImage g) (w
       rw [localize_apply_prepend, Equiv.apply_symm_apply g z]
     · refine ⟨c, fun p hp => ⟨p, hp, ?_⟩⟩
       exact localize_apply_of_not
-        (fun h => Set.disjoint_left.mp (disjoint_cone hwc hcw) h hp) g
+        (fun h => Set.disjoint_right.mp (disjoint_cone hwc hcw) hp h) g
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.coneInImage_localize
 
@@ -105,7 +105,9 @@ theorem coneInImage_rn_and_inv [Finite X] (a : X) (H : Subgroup (TreeAut X))
   clear hf
   induction hf' using Subgroup.closure_induction with
   | mem x hx =>
-      rcases (Set.mem_union x _ _).mp hx with hV | ⟨w, h, _, rfl⟩
+      have hx' : x ∈ (higmanThompsonV X : Set (Equiv.Perm (Cantor X))) ∪
+          {g | ∃ w : List X, ∃ h ∈ H, g = localize w (cantorHom h)} := hx
+      rcases hx' with hV | ⟨w, h, _, rfl⟩
       · obtain ⟨N, hN⟩ := mem_higmanThompsonV.mp (SetLike.mem_coe.mp hV)
         obtain ⟨M, hM⟩ := hN.exists_inv
         exact ⟨coneInImage_of_hasDepth a hN, coneInImage_of_hasDepth a hM⟩

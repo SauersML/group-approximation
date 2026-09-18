@@ -8,8 +8,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 Assume `E` is complete. Then `E.carrier →L[ℂ] E.carrier` is complete, and `adjSub E` is closed in
 it. Proof: let `u n → f` with each `u n` adjointable.
-* The adjoints `u n⋆` form a Cauchy sequence, because `‖u m⋆ - u n⋆‖ = ‖(u m - u n)⋆‖ ≤ ‖u m - u n‖`.
-  So they converge to some `g`.
+* The adjoints `u n⋆` form a Cauchy sequence, because
+  `‖u m⋆ - u n⋆‖ = ‖(u m - u n)⋆‖ ≤ ‖u m - u n‖`. So they converge to some `g`.
 * Passing to the limit in `⟨u n x, y⟩ = ⟨x, u n⋆ y⟩` gives `⟨f x, y⟩ = ⟨x, g y⟩`.
 
 Together with `AbsStar`, `cstarAlgebra hE` makes `adjSub E` a `CStarAlgebra`. It is a

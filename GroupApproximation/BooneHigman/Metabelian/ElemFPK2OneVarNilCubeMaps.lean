@@ -142,7 +142,7 @@ theorem cubeKill_comp_comm (i j : σ) :
 
 /-- `cc ∘ π_i = cc`. -/
 theorem constantCoeff_comp_cubeKill (i : σ) :
-    MvPolynomial.constantCoeff.comp (cubeKill R i) = MvPolynomial.constantCoeff :=
+    RingHom.comp MvPolynomial.constantCoeff (cubeKill R i) = MvPolynomial.constantCoeff :=
   MvPolynomial.ringHom_ext (fun r ↦ by simp only [RingHom.comp_apply, cubeKill_C]) fun l ↦ by
     by_cases h : l = i
     · simp only [RingHom.comp_apply, cubeKill_X_of_eq h, map_zero, MvPolynomial.constantCoeff_X]
@@ -152,7 +152,7 @@ theorem constantCoeff_comp_cubeKill (i : σ) :
 
 /-- `π_i ∘ θ_i = C ∘ cc`. -/
 theorem cubeKill_comp_cubeScale (i : σ) :
-    (cubeKill R i).comp (cubeScale R i) = MvPolynomial.C.comp MvPolynomial.constantCoeff :=
+    (cubeKill R i).comp (cubeScale R i) = RingHom.comp MvPolynomial.C MvPolynomial.constantCoeff :=
   MvPolynomial.ringHom_ext
     (fun r ↦ by
       simp only [RingHom.comp_apply, cubeScale_C, cubeKill_C, MvPolynomial.constantCoeff_C])
@@ -196,7 +196,7 @@ theorem cubeKill_comp_cubeScale_of_ne {i j : σ} (h : i ≠ j) :
 
 /-- `cc ∘ θ_i = cc`. -/
 theorem constantCoeff_comp_cubeScale (i : σ) :
-    MvPolynomial.constantCoeff.comp (cubeScale R i) = MvPolynomial.constantCoeff :=
+    RingHom.comp MvPolynomial.constantCoeff (cubeScale R i) = MvPolynomial.constantCoeff :=
   MvPolynomial.ringHom_ext (fun r ↦ by simp only [RingHom.comp_apply, cubeScale_C]) fun l ↦ by
     by_cases h : l = i
     · simp only [RingHom.comp_apply, cubeScale_X_of_eq h]

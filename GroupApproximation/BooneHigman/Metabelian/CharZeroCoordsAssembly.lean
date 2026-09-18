@@ -48,7 +48,7 @@ theorem fgSubringCoordinates : FGSubringCoordinatesStatement := by
   haveI : Algebra.FiniteType ℚ A :=
     (Subalgebra.fg_iff_finiteType A).mp (by
       rw [hA]
-      exact Algebra.fg_adjoin_finset t)
+      exact Subalgebra.fg_adjoin_finset t)
   obtain ⟨s, g, hginj, hgfin⟩ := exists_finite_inj_algHom_of_fg ℚ A
   obtain ⟨f, hf⟩ := CharPCoords.finiteDomainAwayEmbedding ℚ s A g.toRingHom hginj hgfin
   obtain ⟨N, Φ, hΦ⟩ := hf.trans (CharPCoords.matrixEmbedding_localizationAway f)
