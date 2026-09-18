@@ -1,0 +1,250 @@
+{
+ "n": 3,
+ "spheres": 8001,
+ "time_s": 116.5,
+ "per_depth": [
+  [
+   0,
+   7
+  ],
+  [
+   1,
+   14
+  ],
+  [
+   2,
+   31
+  ],
+  [
+   3,
+   64
+  ],
+  [
+   4,
+   138
+  ],
+  [
+   5,
+   313
+  ],
+  [
+   6,
+   755
+  ],
+  [
+   7,
+   1913
+  ],
+  [
+   8,
+   4976
+  ],
+  [
+   9,
+   8001
+  ]
+ ],
+ "total_rank": 21,
+ "piece_rank": 16,
+ "dim_coords": 34,
+ "piece_fan_dim_after_matching": 22,
+ "checks": {},
+ "skipped": {},
+ "n_classes": 1199,
+ "max_class_rank": 8,
+ "classes_rank_eq_expected": 398,
+ "top_classes": [
+  {
+   "size": 122,
+   "support": 9,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 98,
+   "support": 11,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 88,
+   "support": 11,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 84,
+   "support": 13,
+   "rank": 7,
+   "expected_dim": 7
+  },
+  {
+   "size": 75,
+   "support": 11,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 74,
+   "support": 12,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 72,
+   "support": 12,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 66,
+   "support": 12,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 64,
+   "support": 14,
+   "rank": 8,
+   "expected_dim": 8
+  },
+  {
+   "size": 58,
+   "support": 11,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 58,
+   "support": 13,
+   "rank": 7,
+   "expected_dim": 7
+  },
+  {
+   "size": 57,
+   "support": 12,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 49,
+   "support": 12,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 48,
+   "support": 13,
+   "rank": 7,
+   "expected_dim": 7
+  },
+  {
+   "size": 46,
+   "support": 8,
+   "rank": 3,
+   "expected_dim": 3
+  },
+  {
+   "size": 45,
+   "support": 13,
+   "rank": 7,
+   "expected_dim": 7
+  },
+  {
+   "size": 43,
+   "support": 10,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 42,
+   "support": 10,
+   "rank": 4,
+   "expected_dim": 4
+  },
+  {
+   "size": 41,
+   "support": 11,
+   "rank": 6,
+   "expected_dim": 6
+  },
+  {
+   "size": 39,
+   "support": 13,
+   "rank": 7,
+   "expected_dim": 7
+  },
+  {
+   "size": 38,
+   "support": 9,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 37,
+   "support": 11,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 36,
+   "support": 8,
+   "rank": 4,
+   "expected_dim": 4
+  },
+  {
+   "size": 35,
+   "support": 11,
+   "rank": 5,
+   "expected_dim": 5
+  },
+  {
+   "size": 34,
+   "support": 8,
+   "rank": 4,
+   "expected_dim": 4
+  }
+ ],
+ "class_growth_by_depth": [
+  [
+   0,
+   2
+  ],
+  [
+   1,
+   7
+  ],
+  [
+   2,
+   14
+  ],
+  [
+   3,
+   30
+  ],
+  [
+   4,
+   55
+  ],
+  [
+   5,
+   98
+  ],
+  [
+   6,
+   180
+  ],
+  [
+   7,
+   333
+  ],
+  [
+   8,
+   612
+  ],
+  [
+   9,
+   990
+  ]
+ ]
+}

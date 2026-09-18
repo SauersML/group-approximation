@@ -1,0 +1,9 @@
+syntax ok
+{"AR": {"Z": {"status": "ok", "size": 7}, "M": {"status": "ok", "size": 10}, "Mprime": {"status": "ok", "size": 10}, "P9": {"status": "ok", "size": 42}}}
+{"DEEP": {"cells": 5043, "non_inherited": 24, "atom_pairs": {"ok": 15057, "ok-noninh": 72}, "path_pairs": {"ok": 386, "maxsize": 377, "budget": 14, "example": [[[0, 1, 6], [1, 1, 0], [2, 2, 1]], [[1, 0, 3], [1, 1, 2], [1, 2, 2]]]}, "non_inherited_example": [[[0, 1, 2], [1, 1, 2], [3, 1, 3]]]}, "S": 14}
+{"TD": {"non_tree_tested": 17, "tree": 183, "ok": 17, "maxsize": 355}}
+{"BIG_k": 20, "stats": {"ok": 28, "maxsize": 327, "budget": 2}}
+{"BIG_k": 24, "stats": {"ok": 24, "maxsize": 335, "budget": 6}}
+{"BIG_k": 32, "stats": {"ok": 22, "maxsize": 351, "budget": 8}}
+{"BIG_k": 40, "stats": {"ok": 20, "maxsize": 392, "budget": 10}}
+{"secs": 254.3, "memo": 38315}

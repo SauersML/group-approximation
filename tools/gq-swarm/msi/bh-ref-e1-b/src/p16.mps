@@ -1,0 +1,988 @@
+%!PS
+%%BoundingBox: -1 -1 488 488 
+%%HiResBoundingBox: -0.25 -0.25 487.80817 487.80817 
+%%Creator: MetaPost 1.902
+%%CreationDate: 2017.11.24:1334
+%%Pages: 1
+%*Font: cmr10 9.96265 9.96265 28:d07804000000142042
+%*Font: cmmi10 9.96265 9.96265 19:800000006000140000c0f071
+%%BeginProlog
+%%EndProlog
+%%Page: 1 1
+ 0.7 0.7 0.7 setrgbcolor
+newpath 121.88954 121.88954 moveto
+243.77908 121.88954 lineto
+243.77908 243.77908 lineto
+121.88954 243.77908 lineto
+ closepath fill
+newpath 243.77908 121.88954 moveto
+365.66862 121.88954 lineto
+365.66862 243.77908 lineto
+243.77908 243.77908 lineto
+ closepath fill
+newpath 121.88954 243.77908 moveto
+243.77908 243.77908 lineto
+243.77908 365.66862 lineto
+121.88954 365.66862 lineto
+ closepath fill
+newpath 243.77908 243.77908 moveto
+365.66862 243.77908 lineto
+365.66862 365.66862 lineto
+243.77908 365.66862 lineto
+ closepath fill
+ 0.3 0.3 0.3 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop
+ [] 0 setdash 1 setlinejoin 10 setmiterlimit
+newpath 0 0 moveto
+121.88954 0 lineto
+121.88954 121.88954 lineto
+0 121.88954 lineto
+ closepath stroke
+newpath 121.88954 0 moveto
+243.77908 0 lineto
+243.77908 121.88954 lineto
+121.88954 121.88954 lineto
+ closepath stroke
+newpath 243.77908 0 moveto
+365.66862 0 lineto
+365.66862 121.88954 lineto
+243.77908 121.88954 lineto
+ closepath stroke
+newpath 365.66862 0 moveto
+487.55817 0 lineto
+487.55817 121.88954 lineto
+365.66862 121.88954 lineto
+ closepath stroke
+newpath 0 121.88954 moveto
+121.88954 121.88954 lineto
+121.88954 243.77908 lineto
+0 243.77908 lineto
+ closepath stroke
+newpath 121.88954 121.88954 moveto
+243.77908 121.88954 lineto
+243.77908 243.77908 lineto
+121.88954 243.77908 lineto
+ closepath stroke
+newpath 243.77908 121.88954 moveto
+365.66862 121.88954 lineto
+365.66862 243.77908 lineto
+243.77908 243.77908 lineto
+ closepath stroke
+newpath 365.66862 121.88954 moveto
+487.55817 121.88954 lineto
+487.55817 243.77908 lineto
+365.66862 243.77908 lineto
+ closepath stroke
+newpath 0 243.77908 moveto
+121.88954 243.77908 lineto
+121.88954 365.66862 lineto
+0 365.66862 lineto
+ closepath stroke
+newpath 121.88954 243.77908 moveto
+243.77908 243.77908 lineto
+243.77908 365.66862 lineto
+121.88954 365.66862 lineto
+ closepath stroke
+newpath 243.77908 243.77908 moveto
+365.66862 243.77908 lineto
+365.66862 365.66862 lineto
+243.77908 365.66862 lineto
+ closepath stroke
+newpath 365.66862 243.77908 moveto
+487.55817 243.77908 lineto
+487.55817 365.66862 lineto
+365.66862 365.66862 lineto
+ closepath stroke
+newpath 0 365.66862 moveto
+121.88954 365.66862 lineto
+121.88954 487.55817 lineto
+0 487.55817 lineto
+ closepath stroke
+newpath 121.88954 365.66862 moveto
+243.77908 365.66862 lineto
+243.77908 487.55817 lineto
+121.88954 487.55817 lineto
+ closepath stroke
+newpath 243.77908 365.66862 moveto
+365.66862 365.66862 lineto
+365.66862 487.55817 lineto
+243.77908 487.55817 lineto
+ closepath stroke
+newpath 365.66862 365.66862 moveto
+487.55817 365.66862 lineto
+487.55817 487.55817 lineto
+365.66862 487.55817 lineto
+ closepath stroke
+ 0 5.66928 dtransform truncate idtransform setlinewidth pop
+newpath 121.88954 121.88954 moveto
+243.77908 121.88954 lineto
+243.77908 243.77908 lineto
+121.88954 243.77908 lineto
+ closepath stroke
+newpath 243.77908 121.88954 moveto
+365.66862 121.88954 lineto
+365.66862 243.77908 lineto
+243.77908 243.77908 lineto
+ closepath stroke
+newpath 121.88954 243.77908 moveto
+243.77908 243.77908 lineto
+243.77908 365.66862 lineto
+121.88954 365.66862 lineto
+ closepath stroke
+newpath 243.77908 243.77908 moveto
+365.66862 243.77908 lineto
+365.66862 365.66862 lineto
+243.77908 365.66862 lineto
+ closepath stroke
+ 0 0 0.8 setrgbcolor
+newpath 121.88954 121.88954 moveto
+365.66862 121.88954 lineto
+365.66862 365.66862 lineto
+121.88954 365.66862 lineto
+ closepath stroke
+ 0 0 0 setrgbcolor
+50.80388 9.6983 moveto
+(\() cmr10 9.96265 fshow
+54.67828 9.6983 moveto
+(i;) cmmi10 9.96265 fshow
+62.53828 9.6983 moveto
+(j) cmmi10 9.96265 fshow
+67.21127 9.6983 moveto
+(\)) cmr10 9.96265 fshow
+42.22498 107.20995 moveto
+(\() cmr10 9.96265 fshow
+46.09938 107.20995 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 107.20995 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 107.20995 moveto
+(+) cmr10 9.96265 fshow
+70.80887 107.20995 moveto
+(1\)) cmr10 9.96265 fshow
+5.09529 58.45413 moveto
+(\() cmr10 9.96265 fshow
+8.9697 58.45413 moveto
+(i;) cmmi10 9.96265 fshow
+16.8297 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+21.50269 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+78.7922 58.45413 moveto
+(\() cmr10 9.96265 fshow
+82.66661 58.45413 moveto
+(i;) cmmi10 9.96265 fshow
+90.52661 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+97.41351 58.45413 moveto
+(+) cmr10 9.96265 fshow
+107.3761 58.45413 moveto
+(1\)) cmr10 9.96265 fshow
+164.11452 9.6983 moveto
+(\() cmr10 9.96265 fshow
+167.98892 9.6983 moveto
+(i) cmmi10 9.96265 fshow
+173.63501 9.6983 moveto
+(+) cmr10 9.96265 fshow
+183.59761 9.6983 moveto
+(1) cmr10 9.96265 fshow
+188.57892 9.6983 moveto
+(;) cmmi10 9.96265 fshow
+193.00671 9.6983 moveto
+(j) cmmi10 9.96265 fshow
+197.67972 9.6983 moveto
+(\)) cmr10 9.96265 fshow
+172.61221 107.20995 moveto
+(\() cmr10 9.96265 fshow
+176.48662 107.20995 moveto
+(s;) cmmi10 9.96265 fshow
+185.58441 107.20995 moveto
+(t) cmmi10 9.96265 fshow
+189.182 107.20995 moveto
+(\)) cmr10 9.96265 fshow
+127.54727 58.45413 moveto
+(\() cmr10 9.96265 fshow
+131.42168 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+137.06776 58.45413 moveto
+(+) cmr10 9.96265 fshow
+147.03036 58.45413 moveto
+(1) cmr10 9.96265 fshow
+152.01167 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+156.43947 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+161.11247 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+200.68175 58.45413 moveto
+(\() cmr10 9.96265 fshow
+204.55615 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+210.20224 58.45413 moveto
+(+) cmr10 9.96265 fshow
+220.16484 58.45413 moveto
+(2) cmr10 9.96265 fshow
+225.14615 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+229.57394 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+234.24695 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+286.00406 9.6983 moveto
+(\() cmr10 9.96265 fshow
+289.87846 9.6983 moveto
+(i) cmmi10 9.96265 fshow
+295.52455 9.6983 moveto
+(+) cmr10 9.96265 fshow
+305.48715 9.6983 moveto
+(2) cmr10 9.96265 fshow
+310.46846 9.6983 moveto
+(;) cmmi10 9.96265 fshow
+314.89626 9.6983 moveto
+(j) cmmi10 9.96265 fshow
+319.56926 9.6983 moveto
+(\)) cmr10 9.96265 fshow
+285.92285 107.20995 moveto
+(\() cmr10 9.96265 fshow
+289.79726 107.20995 moveto
+(s) cmmi10 9.96265 fshow
+296.68105 107.20995 moveto
+(+) cmr10 9.96265 fshow
+306.64365 107.20995 moveto
+(1) cmr10 9.96265 fshow
+311.62505 107.20995 moveto
+(;) cmmi10 9.96265 fshow
+316.05286 107.20995 moveto
+(t) cmmi10 9.96265 fshow
+319.65045 107.20995 moveto
+(\)) cmr10 9.96265 fshow
+249.43681 58.45413 moveto
+(\() cmr10 9.96265 fshow
+253.31122 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+258.9573 58.45413 moveto
+(+) cmr10 9.96265 fshow
+268.9199 58.45413 moveto
+(2) cmr10 9.96265 fshow
+273.90121 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+278.32901 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+283.00201 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+322.57129 58.45413 moveto
+(\() cmr10 9.96265 fshow
+326.4457 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+332.09178 58.45413 moveto
+(+) cmr10 9.96265 fshow
+342.05438 58.45413 moveto
+(3) cmr10 9.96265 fshow
+347.03569 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+351.46349 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+356.13649 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+407.8936 9.6983 moveto
+(\() cmr10 9.96265 fshow
+411.768 9.6983 moveto
+(i) cmmi10 9.96265 fshow
+417.4141 9.6983 moveto
+(+) cmr10 9.96265 fshow
+427.3767 9.6983 moveto
+(3) cmr10 9.96265 fshow
+432.358 9.6983 moveto
+(;) cmmi10 9.96265 fshow
+436.7858 9.6983 moveto
+(j) cmmi10 9.96265 fshow
+441.4588 9.6983 moveto
+(\)) cmr10 9.96265 fshow
+399.3147 107.20995 moveto
+(\() cmr10 9.96265 fshow
+403.1891 107.20995 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 107.20995 moveto
+(+) cmr10 9.96265 fshow
+418.79779 107.20995 moveto
+(3) cmr10 9.96265 fshow
+423.7791 107.20995 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 107.20995 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 107.20995 moveto
+(+) cmr10 9.96265 fshow
+445.0564 107.20995 moveto
+(1\)) cmr10 9.96265 fshow
+371.32635 58.45413 moveto
+(\() cmr10 9.96265 fshow
+375.20076 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+380.84685 58.45413 moveto
+(+) cmr10 9.96265 fshow
+390.80945 58.45413 moveto
+(3) cmr10 9.96265 fshow
+395.79076 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+400.21855 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+404.89156 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+444.46083 58.45413 moveto
+(\() cmr10 9.96265 fshow
+448.33524 58.45413 moveto
+(i) cmmi10 9.96265 fshow
+453.98132 58.45413 moveto
+(+) cmr10 9.96265 fshow
+463.94392 58.45413 moveto
+(4) cmr10 9.96265 fshow
+468.92523 58.45413 moveto
+(;) cmmi10 9.96265 fshow
+473.35303 58.45413 moveto
+(j) cmmi10 9.96265 fshow
+478.02603 58.45413 moveto
+(\)) cmr10 9.96265 fshow
+42.22498 131.58784 moveto
+(\() cmr10 9.96265 fshow
+46.09938 131.58784 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 131.58784 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 131.58784 moveto
+(+) cmr10 9.96265 fshow
+70.80887 131.58784 moveto
+(1\)) cmr10 9.96265 fshow
+42.22498 229.09949 moveto
+(\() cmr10 9.96265 fshow
+46.09938 229.09949 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 229.09949 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 229.09949 moveto
+(+) cmr10 9.96265 fshow
+70.80887 229.09949 moveto
+(2\)) cmr10 9.96265 fshow
+5.65773 180.34367 moveto
+(\() cmr10 9.96265 fshow
+9.53214 180.34367 moveto
+(i;) cmmi10 9.96265 fshow
+17.39214 180.34367 moveto
+(j) cmmi10 9.96265 fshow
+24.27904 180.34367 moveto
+(+) cmr10 9.96265 fshow
+34.24162 180.34367 moveto
+(1\)) cmr10 9.96265 fshow
+87.2899 180.34367 moveto
+(\() cmr10 9.96265 fshow
+91.1643 180.34367 moveto
+(s;) cmmi10 9.96265 fshow
+100.2621 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+103.8597 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+172.61221 131.58784 moveto
+(\() cmr10 9.96265 fshow
+176.48662 131.58784 moveto
+(s;) cmmi10 9.96265 fshow
+185.58441 131.58784 moveto
+(t) cmmi10 9.96265 fshow
+189.182 131.58784 moveto
+(\)) cmr10 9.96265 fshow
+164.03331 229.09949 moveto
+(\() cmr10 9.96265 fshow
+167.90771 229.09949 moveto
+(s;) cmmi10 9.96265 fshow
+177.00551 229.09949 moveto
+(t) cmmi10 9.96265 fshow
+182.81702 229.09949 moveto
+(+) cmr10 9.96265 fshow
+192.77962 229.09949 moveto
+(1\)) cmr10 9.96265 fshow
+136.04497 180.34367 moveto
+(\() cmr10 9.96265 fshow
+139.91937 180.34367 moveto
+(s;) cmmi10 9.96265 fshow
+149.01717 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+152.61476 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+200.60054 180.34367 moveto
+(\() cmr10 9.96265 fshow
+204.47495 180.34367 moveto
+(s) cmmi10 9.96265 fshow
+211.35873 180.34367 moveto
+(+) cmr10 9.96265 fshow
+221.32133 180.34367 moveto
+(1) cmr10 9.96265 fshow
+226.30273 180.34367 moveto
+(;) cmmi10 9.96265 fshow
+230.73055 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+234.32814 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+285.92285 131.58784 moveto
+(\() cmr10 9.96265 fshow
+289.79726 131.58784 moveto
+(s) cmmi10 9.96265 fshow
+296.68105 131.58784 moveto
+(+) cmr10 9.96265 fshow
+306.64365 131.58784 moveto
+(1) cmr10 9.96265 fshow
+311.62505 131.58784 moveto
+(;) cmmi10 9.96265 fshow
+316.05286 131.58784 moveto
+(t) cmmi10 9.96265 fshow
+319.65045 131.58784 moveto
+(\)) cmr10 9.96265 fshow
+277.34396 229.09949 moveto
+(\() cmr10 9.96265 fshow
+281.21837 229.09949 moveto
+(s) cmmi10 9.96265 fshow
+288.10216 229.09949 moveto
+(+) cmr10 9.96265 fshow
+298.06476 229.09949 moveto
+(1) cmr10 9.96265 fshow
+303.04616 229.09949 moveto
+(;) cmmi10 9.96265 fshow
+307.47397 229.09949 moveto
+(t) cmmi10 9.96265 fshow
+313.28546 229.09949 moveto
+(+) cmr10 9.96265 fshow
+323.24806 229.09949 moveto
+(1\)) cmr10 9.96265 fshow
+249.3556 180.34367 moveto
+(\() cmr10 9.96265 fshow
+253.23001 180.34367 moveto
+(s) cmmi10 9.96265 fshow
+260.1138 180.34367 moveto
+(+) cmr10 9.96265 fshow
+270.0764 180.34367 moveto
+(1) cmr10 9.96265 fshow
+275.0578 180.34367 moveto
+(;) cmmi10 9.96265 fshow
+279.48561 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+283.0832 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+322.49008 180.34367 moveto
+(\() cmr10 9.96265 fshow
+326.36449 180.34367 moveto
+(s) cmmi10 9.96265 fshow
+333.24828 180.34367 moveto
+(+) cmr10 9.96265 fshow
+343.21088 180.34367 moveto
+(2) cmr10 9.96265 fshow
+348.19228 180.34367 moveto
+(;) cmmi10 9.96265 fshow
+352.62009 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+356.21768 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+399.3147 131.58784 moveto
+(\() cmr10 9.96265 fshow
+403.1891 131.58784 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 131.58784 moveto
+(+) cmr10 9.96265 fshow
+418.79779 131.58784 moveto
+(3) cmr10 9.96265 fshow
+423.7791 131.58784 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 131.58784 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 131.58784 moveto
+(+) cmr10 9.96265 fshow
+445.0564 131.58784 moveto
+(1\)) cmr10 9.96265 fshow
+399.3147 229.09949 moveto
+(\() cmr10 9.96265 fshow
+403.1891 229.09949 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 229.09949 moveto
+(+) cmr10 9.96265 fshow
+418.79779 229.09949 moveto
+(3) cmr10 9.96265 fshow
+423.7791 229.09949 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 229.09949 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 229.09949 moveto
+(+) cmr10 9.96265 fshow
+445.0564 229.09949 moveto
+(2\)) cmr10 9.96265 fshow
+371.24515 180.34367 moveto
+(\() cmr10 9.96265 fshow
+375.11955 180.34367 moveto
+(s) cmmi10 9.96265 fshow
+382.00334 180.34367 moveto
+(+) cmr10 9.96265 fshow
+391.96594 180.34367 moveto
+(2) cmr10 9.96265 fshow
+396.94734 180.34367 moveto
+(;) cmmi10 9.96265 fshow
+401.37515 180.34367 moveto
+(t) cmmi10 9.96265 fshow
+404.97275 180.34367 moveto
+(\)) cmr10 9.96265 fshow
+429.78708 180.34367 moveto
+(\() cmr10 9.96265 fshow
+433.66148 180.34367 moveto
+(i) cmmi10 9.96265 fshow
+439.30757 180.34367 moveto
+(+) cmr10 9.96265 fshow
+449.27017 180.34367 moveto
+(4) cmr10 9.96265 fshow
+454.25148 180.34367 moveto
+(;) cmmi10 9.96265 fshow
+458.67928 180.34367 moveto
+(j) cmmi10 9.96265 fshow
+465.56618 180.34367 moveto
+(+) cmr10 9.96265 fshow
+475.52878 180.34367 moveto
+(1\)) cmr10 9.96265 fshow
+42.22498 253.47739 moveto
+(\() cmr10 9.96265 fshow
+46.09938 253.47739 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 253.47739 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 253.47739 moveto
+(+) cmr10 9.96265 fshow
+70.80887 253.47739 moveto
+(2\)) cmr10 9.96265 fshow
+42.22498 350.98903 moveto
+(\() cmr10 9.96265 fshow
+46.09938 350.98903 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 350.98903 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 350.98903 moveto
+(+) cmr10 9.96265 fshow
+70.80887 350.98903 moveto
+(3\)) cmr10 9.96265 fshow
+5.65773 302.23322 moveto
+(\() cmr10 9.96265 fshow
+9.53214 302.23322 moveto
+(i;) cmmi10 9.96265 fshow
+17.39214 302.23322 moveto
+(j) cmmi10 9.96265 fshow
+24.27904 302.23322 moveto
+(+) cmr10 9.96265 fshow
+34.24162 302.23322 moveto
+(2\)) cmr10 9.96265 fshow
+78.711 302.23322 moveto
+(\() cmr10 9.96265 fshow
+82.5854 302.23322 moveto
+(s;) cmmi10 9.96265 fshow
+91.6832 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+97.4947 302.23322 moveto
+(+) cmr10 9.96265 fshow
+107.4573 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+164.03331 253.47739 moveto
+(\() cmr10 9.96265 fshow
+167.90771 253.47739 moveto
+(s;) cmmi10 9.96265 fshow
+177.00551 253.47739 moveto
+(t) cmmi10 9.96265 fshow
+182.81702 253.47739 moveto
+(+) cmr10 9.96265 fshow
+192.77962 253.47739 moveto
+(1\)) cmr10 9.96265 fshow
+164.03331 350.98903 moveto
+(\() cmr10 9.96265 fshow
+167.90771 350.98903 moveto
+(s;) cmmi10 9.96265 fshow
+177.00551 350.98903 moveto
+(t) cmmi10 9.96265 fshow
+182.81702 350.98903 moveto
+(+) cmr10 9.96265 fshow
+192.77962 350.98903 moveto
+(2\)) cmr10 9.96265 fshow
+127.46606 302.23322 moveto
+(\() cmr10 9.96265 fshow
+131.34047 302.23322 moveto
+(s;) cmmi10 9.96265 fshow
+140.43826 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+146.24977 302.23322 moveto
+(+) cmr10 9.96265 fshow
+156.21237 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+185.9268 302.23322 moveto
+(\() cmr10 9.96265 fshow
+189.80121 302.23322 moveto
+(s) cmmi10 9.96265 fshow
+196.685 302.23322 moveto
+(+) cmr10 9.96265 fshow
+206.6476 302.23322 moveto
+(1) cmr10 9.96265 fshow
+211.629 302.23322 moveto
+(;) cmmi10 9.96265 fshow
+216.05681 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+221.8683 302.23322 moveto
+(+) cmr10 9.96265 fshow
+231.8309 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+277.34396 253.47739 moveto
+(\() cmr10 9.96265 fshow
+281.21837 253.47739 moveto
+(s) cmmi10 9.96265 fshow
+288.10216 253.47739 moveto
+(+) cmr10 9.96265 fshow
+298.06476 253.47739 moveto
+(1) cmr10 9.96265 fshow
+303.04616 253.47739 moveto
+(;) cmmi10 9.96265 fshow
+307.47397 253.47739 moveto
+(t) cmmi10 9.96265 fshow
+313.28546 253.47739 moveto
+(+) cmr10 9.96265 fshow
+323.24806 253.47739 moveto
+(1\)) cmr10 9.96265 fshow
+277.34396 350.98903 moveto
+(\() cmr10 9.96265 fshow
+281.21837 350.98903 moveto
+(s) cmmi10 9.96265 fshow
+288.10216 350.98903 moveto
+(+) cmr10 9.96265 fshow
+298.06476 350.98903 moveto
+(1) cmr10 9.96265 fshow
+303.04616 350.98903 moveto
+(;) cmmi10 9.96265 fshow
+307.47397 350.98903 moveto
+(t) cmmi10 9.96265 fshow
+313.28546 350.98903 moveto
+(+) cmr10 9.96265 fshow
+323.24806 350.98903 moveto
+(2\)) cmr10 9.96265 fshow
+246.87157 302.23322 moveto
+(\() cmr10 9.96265 fshow
+250.74597 302.23322 moveto
+(s) cmmi10 9.96265 fshow
+257.62976 302.23322 moveto
+(+) cmr10 9.96265 fshow
+267.59236 302.23322 moveto
+(1) cmr10 9.96265 fshow
+272.57376 302.23322 moveto
+(;) cmmi10 9.96265 fshow
+277.00157 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+282.81306 302.23322 moveto
+(+) cmr10 9.96265 fshow
+292.77567 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+307.81635 302.23322 moveto
+(\() cmr10 9.96265 fshow
+311.69075 302.23322 moveto
+(s) cmmi10 9.96265 fshow
+318.57454 302.23322 moveto
+(+) cmr10 9.96265 fshow
+328.53714 302.23322 moveto
+(2) cmr10 9.96265 fshow
+333.51854 302.23322 moveto
+(;) cmmi10 9.96265 fshow
+337.94635 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+343.75784 302.23322 moveto
+(+) cmr10 9.96265 fshow
+353.72044 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+399.3147 253.47739 moveto
+(\() cmr10 9.96265 fshow
+403.1891 253.47739 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 253.47739 moveto
+(+) cmr10 9.96265 fshow
+418.79779 253.47739 moveto
+(3) cmr10 9.96265 fshow
+423.7791 253.47739 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 253.47739 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 253.47739 moveto
+(+) cmr10 9.96265 fshow
+445.0564 253.47739 moveto
+(2\)) cmr10 9.96265 fshow
+399.3147 350.98903 moveto
+(\() cmr10 9.96265 fshow
+403.1891 350.98903 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 350.98903 moveto
+(+) cmr10 9.96265 fshow
+418.79779 350.98903 moveto
+(3) cmr10 9.96265 fshow
+423.7791 350.98903 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 350.98903 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 350.98903 moveto
+(+) cmr10 9.96265 fshow
+445.0564 350.98903 moveto
+(3\)) cmr10 9.96265 fshow
+368.76111 302.23322 moveto
+(\() cmr10 9.96265 fshow
+372.63551 302.23322 moveto
+(s) cmmi10 9.96265 fshow
+379.5193 302.23322 moveto
+(+) cmr10 9.96265 fshow
+389.4819 302.23322 moveto
+(2) cmr10 9.96265 fshow
+394.4633 302.23322 moveto
+(;) cmmi10 9.96265 fshow
+398.89111 302.23322 moveto
+(t) cmmi10 9.96265 fshow
+404.7026 302.23322 moveto
+(+) cmr10 9.96265 fshow
+414.6652 302.23322 moveto
+(1\)) cmr10 9.96265 fshow
+429.78708 302.23322 moveto
+(\() cmr10 9.96265 fshow
+433.66148 302.23322 moveto
+(i) cmmi10 9.96265 fshow
+439.30757 302.23322 moveto
+(+) cmr10 9.96265 fshow
+449.27017 302.23322 moveto
+(4) cmr10 9.96265 fshow
+454.25148 302.23322 moveto
+(;) cmmi10 9.96265 fshow
+458.67928 302.23322 moveto
+(j) cmmi10 9.96265 fshow
+465.56618 302.23322 moveto
+(+) cmr10 9.96265 fshow
+475.52878 302.23322 moveto
+(2\)) cmr10 9.96265 fshow
+42.22498 375.36693 moveto
+(\() cmr10 9.96265 fshow
+46.09938 375.36693 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 375.36693 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 375.36693 moveto
+(+) cmr10 9.96265 fshow
+70.80887 375.36693 moveto
+(3\)) cmr10 9.96265 fshow
+42.22498 472.87857 moveto
+(\() cmr10 9.96265 fshow
+46.09938 472.87857 moveto
+(i;) cmmi10 9.96265 fshow
+53.95938 472.87857 moveto
+(j) cmmi10 9.96265 fshow
+60.84628 472.87857 moveto
+(+) cmr10 9.96265 fshow
+70.80887 472.87857 moveto
+(4\)) cmr10 9.96265 fshow
+5.65773 424.12276 moveto
+(\() cmr10 9.96265 fshow
+9.53214 424.12276 moveto
+(i;) cmmi10 9.96265 fshow
+17.39214 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+24.27904 424.12276 moveto
+(+) cmr10 9.96265 fshow
+34.24162 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+64.11845 424.12276 moveto
+(\() cmr10 9.96265 fshow
+67.99286 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+73.63895 424.12276 moveto
+(+) cmr10 9.96265 fshow
+83.60155 424.12276 moveto
+(1) cmr10 9.96265 fshow
+88.58286 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+93.01065 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+99.89755 424.12276 moveto
+(+) cmr10 9.96265 fshow
+109.86015 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+164.03331 375.36693 moveto
+(\() cmr10 9.96265 fshow
+167.90771 375.36693 moveto
+(s;) cmmi10 9.96265 fshow
+177.00551 375.36693 moveto
+(t) cmmi10 9.96265 fshow
+182.81702 375.36693 moveto
+(+) cmr10 9.96265 fshow
+192.77962 375.36693 moveto
+(2\)) cmr10 9.96265 fshow
+155.53561 472.87857 moveto
+(\() cmr10 9.96265 fshow
+159.41002 472.87857 moveto
+(i) cmmi10 9.96265 fshow
+165.0561 472.87857 moveto
+(+) cmr10 9.96265 fshow
+175.0187 472.87857 moveto
+(1) cmr10 9.96265 fshow
+180.00002 472.87857 moveto
+(;) cmmi10 9.96265 fshow
+184.42781 472.87857 moveto
+(j) cmmi10 9.96265 fshow
+191.31471 472.87857 moveto
+(+) cmr10 9.96265 fshow
+201.27731 472.87857 moveto
+(4\)) cmr10 9.96265 fshow
+125.06322 424.12276 moveto
+(\() cmr10 9.96265 fshow
+128.93762 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+134.58371 424.12276 moveto
+(+) cmr10 9.96265 fshow
+144.54631 424.12276 moveto
+(1) cmr10 9.96265 fshow
+149.52762 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+153.95541 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+160.84232 424.12276 moveto
+(+) cmr10 9.96265 fshow
+170.80492 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+186.008 424.12276 moveto
+(\() cmr10 9.96265 fshow
+189.8824 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+195.52849 424.12276 moveto
+(+) cmr10 9.96265 fshow
+205.49109 424.12276 moveto
+(2) cmr10 9.96265 fshow
+210.4724 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+214.90019 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+221.7871 424.12276 moveto
+(+) cmr10 9.96265 fshow
+231.7497 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+277.34396 375.36693 moveto
+(\() cmr10 9.96265 fshow
+281.21837 375.36693 moveto
+(s) cmmi10 9.96265 fshow
+288.10216 375.36693 moveto
+(+) cmr10 9.96265 fshow
+298.06476 375.36693 moveto
+(1) cmr10 9.96265 fshow
+303.04616 375.36693 moveto
+(;) cmmi10 9.96265 fshow
+307.47397 375.36693 moveto
+(t) cmmi10 9.96265 fshow
+313.28546 375.36693 moveto
+(+) cmr10 9.96265 fshow
+323.24806 375.36693 moveto
+(2\)) cmr10 9.96265 fshow
+277.42516 472.87857 moveto
+(\() cmr10 9.96265 fshow
+281.29956 472.87857 moveto
+(i) cmmi10 9.96265 fshow
+286.94565 472.87857 moveto
+(+) cmr10 9.96265 fshow
+296.90825 472.87857 moveto
+(2) cmr10 9.96265 fshow
+301.88956 472.87857 moveto
+(;) cmmi10 9.96265 fshow
+306.31735 472.87857 moveto
+(j) cmmi10 9.96265 fshow
+313.20425 472.87857 moveto
+(+) cmr10 9.96265 fshow
+323.16685 472.87857 moveto
+(4\)) cmr10 9.96265 fshow
+246.95276 424.12276 moveto
+(\() cmr10 9.96265 fshow
+250.82716 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+256.47325 424.12276 moveto
+(+) cmr10 9.96265 fshow
+266.43585 424.12276 moveto
+(2) cmr10 9.96265 fshow
+271.41716 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+275.84496 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+282.73186 424.12276 moveto
+(+) cmr10 9.96265 fshow
+292.69446 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+307.89754 424.12276 moveto
+(\() cmr10 9.96265 fshow
+311.77194 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+317.41803 424.12276 moveto
+(+) cmr10 9.96265 fshow
+327.38063 424.12276 moveto
+(3) cmr10 9.96265 fshow
+332.36194 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+336.78973 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+343.67664 424.12276 moveto
+(+) cmr10 9.96265 fshow
+353.63924 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+399.3147 375.36693 moveto
+(\() cmr10 9.96265 fshow
+403.1891 375.36693 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 375.36693 moveto
+(+) cmr10 9.96265 fshow
+418.79779 375.36693 moveto
+(3) cmr10 9.96265 fshow
+423.7791 375.36693 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 375.36693 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 375.36693 moveto
+(+) cmr10 9.96265 fshow
+445.0564 375.36693 moveto
+(3\)) cmr10 9.96265 fshow
+399.3147 472.87857 moveto
+(\() cmr10 9.96265 fshow
+403.1891 472.87857 moveto
+(i) cmmi10 9.96265 fshow
+408.83519 472.87857 moveto
+(+) cmr10 9.96265 fshow
+418.79779 472.87857 moveto
+(3) cmr10 9.96265 fshow
+423.7791 472.87857 moveto
+(;) cmmi10 9.96265 fshow
+428.2069 472.87857 moveto
+(j) cmmi10 9.96265 fshow
+435.0938 472.87857 moveto
+(+) cmr10 9.96265 fshow
+445.0564 472.87857 moveto
+(4\)) cmr10 9.96265 fshow
+368.8423 424.12276 moveto
+(\() cmr10 9.96265 fshow
+372.7167 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+378.3628 424.12276 moveto
+(+) cmr10 9.96265 fshow
+388.3254 424.12276 moveto
+(3) cmr10 9.96265 fshow
+393.3067 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+397.7345 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+404.6214 424.12276 moveto
+(+) cmr10 9.96265 fshow
+414.584 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+429.78708 424.12276 moveto
+(\() cmr10 9.96265 fshow
+433.66148 424.12276 moveto
+(i) cmmi10 9.96265 fshow
+439.30757 424.12276 moveto
+(+) cmr10 9.96265 fshow
+449.27017 424.12276 moveto
+(4) cmr10 9.96265 fshow
+454.25148 424.12276 moveto
+(;) cmmi10 9.96265 fshow
+458.67928 424.12276 moveto
+(j) cmmi10 9.96265 fshow
+465.56618 424.12276 moveto
+(+) cmr10 9.96265 fshow
+475.52878 424.12276 moveto
+(3\)) cmr10 9.96265 fshow
+showpage
+%%EOF
