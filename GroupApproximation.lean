@@ -5512,6 +5512,10 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Minsky
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCentral.Endpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.CandidateParts.Signs
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.CandidatePoints
+import GroupApproximation.Manuscript.NonMF.Full.GL01.Switch
+import GroupApproximation.Manuscript.NonMF.Full.GL01.Bridge
+import GroupApproximation.Manuscript.NonMF.Full.GL01.Triangle
+import GroupApproximation.Manuscript.NonMF.Full.GL01.Endpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
