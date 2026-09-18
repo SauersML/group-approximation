@@ -8,6 +8,7 @@ distinct_from:
   fpbs-sandwich-cost-fiber-formula: that proves the value 2 for group-generated and virtually group-generated sandwiches only; this asks it for all measurable sandwiches.
 artifacts:
   - research/artifacts/fpbs-sandwich-cost-fiber-formula-2026-09-17.md
+  - research/artifacts/fpbs-finite-coset-sandwich-cost-commensurator-rank-2026-09-17.md
 ---
 
 **OPEN.** Let `a` be a free p.m.p. action of `F_2` on `(X, μ)`, and let
@@ -49,3 +50,35 @@ So `p_F(s) ≤ p_F(a)` holds for every free `a`, which is
   isomorphism in `[[E_a]]` that commutes with `a|K` is the identity. This
   rules out the amplification construction of cheap sandwiches inside
   `E_a`.
+
+## Attempts
+
+**Commensurator kill of finite-coset sandwiches (September 18, 2026,
+w12-fp-follow, cohomology-index).**
+- Tried: split any sandwich `E` by `d(x)`, the number of `K`-orbits in
+  `[x]_E`. Price the finite part `Y_fin = {d < ∞}` directly.
+- Proved (`fpbs-finite-coset-sandwich-cost-commensurator-rank`):
+  - On `Y_fin`, a.e. class lies in one `Comm(K)`-orbit and has
+    `d ≤ [Comm K : K]`.
+  - `C(E|Y_fin) ≥ rk(Comm K) μ(Y_fin) ≥ 2 μ(Y_fin)`.
+  - For rank-2 `K`, `E = E_{a|K}` on `Y_fin`.
+  - The mechanism of the §5 counterexample to the unconstrained form (a
+    finite-index extension of cost 3/2) is therefore impossible inside
+    `E_a`.
+  - The death step is a finite `K`-invariant measure on the countable set
+    of finite coset sets, which lives on finite orbits. That forces
+    `h ∈ Comm(K)`, and a covering relation plus the induction formula
+    prices the piece at `1 + (rk K − 1)/d`.
+- Reduction: MC follows from MC_∞, namely `C(E|Y_∞) ≥ 2μ(Y_∞)` on the
+  infinite-coset part. Any counterexample has `μ(Y_∞) > 0`.
+- Where it stops: on `Y_∞` the root coset block is infinite. The `K`-set
+  `K\F ∖ K\Comm(K)` has only infinite orbits, so the invariant-measure
+  step has no analogue.
+- Open core:
+  - malnormal `K`, for example `⟨a, bab^{-2}⟩`;
+  - `F_2`-invariant random partitions of `K\F` into infinite blocks that
+    are not group-generated.
+  - Contact `K = ⟨a, bab^{-1}⟩` absorbs any positive-measure `b`-merge to
+    `E_a` when `⟨a⟩` is ergodic.
+  - A hull Euler-characteristic formula for `β_1(E)` is suggested in
+    artifact §5, with its finiteness hypotheses unchecked.
