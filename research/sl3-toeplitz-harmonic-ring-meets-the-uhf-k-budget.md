@@ -10,7 +10,12 @@ artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
 ---
 
-**OPEN.** Let `R_T` be the ring of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`. Then:
+**OPEN, and off the host route (2026-09-18).** `bounded-harmonic-rings-are-not-finitely-presented`
+(lane gq-steinberg-q, 1111ca113) shows that neither `R_T` nor any `E_N(R_T)`, `N >= 3`, is finitely presented. R1
+and R2 below are necessary conditions only for a finitely presented `E_N`, so they no longer bear on
+`gl-n-q-embeds-in-fp-simple-group` through `R_T`. They remain open as K-theory questions about this ring.
+
+Let `R_T` be the ring of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`. Then:
 
 - **(R1) Full corners.** For every nonzero idempotent `e ∈ R_T`, the image of
   `K_2(Q) -> K_2(e R_T e)` is finite. This is required by `full-corners-must-kill-rational-k2-symbols`
@@ -45,3 +50,19 @@ artifacts:
   its clopen classes are divisible, so R1 at clopens is automatic. But its coefficient ring may have
   no idempotents beyond `0, 1`, and neither its simplicity nor the divisibility of `[1]` is known. See
   the artifact.
+
+## Attempts
+
+1. **Towards R2 through the coefficient ring (2026-09-18, not landed as a node).** Choose `x_∞` with a
+   one-point fibre `π^(-1)(x_∞)`, which exists because `X` is an almost one-to-one extension of `K`
+   (Cecchi Bernales–Cortez–Gómez). Then the coefficient ring `B = R_T ∩ C(X,Q)` has two properties:
+   - every element of `B` is locally constant off finitely many orbit points, and near each of them is
+     a polynomial in one harmonic function;
+   - so `B^x = LC(X, Q^x)`, and each finite stage is an extension of `Π Q[t]` by an ideal with local
+     units.
+
+   Tor-unital excision (Suslin, as quoted in Tamme, arXiv:1703.03331) and homotopy invariance of
+   `K(Q[t])` would then give `K_*(LC(X,Q)) ≅ K_*(B)`, and the same for `B ⋊ V` with `V` finite. That
+   would reduce R2 to the Steinberg-algebra ring `LC(X,Q) ⋊ Γ` and to `H_*(Γ; C(X,Z))`, if also
+   infinite virtually cyclic `V` and a Farrell–Jones comparison were handled. Not pursued once 1111ca113
+   removed `R_T` from the host route.

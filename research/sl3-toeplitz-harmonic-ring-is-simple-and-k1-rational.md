@@ -11,11 +11,12 @@ artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
   - research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md
   - research/artifacts/gq-referee-a-sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational.md
+  - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-ring-proof-review.md
 ---
 
 **ESTABLISHED** by `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational-proof` (lane proof; gq-referee-a
 PASS on all parts, proof-gap lens, `research/artifacts/gq-referee-a-sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational.md`;
-gq-referee-b checked the citations and part 6). Unreviewed dependencies:
+gq-referee-b PASS on the citations and all parts, `research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-ring-proof-review.md`). Parts 1–6 are double-refereed. Unreviewed dependencies:
 `matricial-divisibility-kills-rational-k2-symbols` and `q-algebra-elementary-quotients-contain-gl-n-q` (the
 latter has a gq-referee-b PASS). Trust surfaces:
 - T2: Fuglede–Kadison from a secondary source;
@@ -70,7 +71,8 @@ latter has a gq-referee-b PASS). Trust surfaces:
 
 This is the first finitely generated simple ring on main that contains `Q`, detects `Q^x` in `K_1` with
 finite kernel, kills `K_2(Q)`, and has no Laurent-type unit on its blocks. That is the example
-`matricial-divisibility-kills-rational-k2-symbols` records as missing. Still open:
-- the remaining parts of both K-budget clauses (`sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`);
-- finite presentation;
-- simplicity of `PE_N(R_T)`.
+`matricial-divisibility-kills-rational-k2-symbols` records as missing. **Not a host.** `bounded-harmonic-rings-are-not-finitely-presented` (1111ca113) shows that `E_N(R_T)` is not
+finitely presented for any `N >= 3`. `sl3-toeplitz-harmonic-pe-groups-are-simple` (lane gq-en-ring) gives
+simplicity of `PE_N(R_T)`. So `R_T` yields a finitely generated, not finitely presented, simple group
+`PE_N(R_T)` containing every `GL_n(Q)` (`n <= N-2`), but no host. The remaining K-budget question
+(`sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`) is off the host route.

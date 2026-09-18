@@ -10,10 +10,11 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
   - research/artifacts/gq-referee-a-harmonic-elimination-puts-q-in-odometer-crossed-products.md
+  - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-ring-proof-review.md
 ---
 
-**ESTABLISHED** by `harmonic-elimination-puts-q-in-odometer-crossed-products-proof` (lane proof; referee
-gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-harmonic-elimination-puts-q-in-odometer-crossed-products.md`;
+**ESTABLISHED** by `harmonic-elimination-puts-q-in-odometer-crossed-products-proof` (lane proof; referees
+gq-referee-b PASS (`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-ring-proof-review.md`) and gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-harmonic-elimination-puts-q-in-odometer-crossed-products.md`;
 elementary).
 
 ## Setting
