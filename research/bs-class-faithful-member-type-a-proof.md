@@ -26,7 +26,7 @@ associated Bass–Serre tree. Thus, it follows from Lemma 10.1 that L acts faith
 on its Bass–Serre tree."
 
 Elementary check of that step. Let `N` be the kernel of `L` on its tree. It fixes
-the vertex `w` carrying `B`, so `N <= L_w = B <= H`. The `H`-translates of `w`
+the vertex `w` carrying `B`, so `N <= L_w = B <= H`. The subgraph of groups for `H` is connected, so the `H`-translates of `w`
 span an `H`-invariant subtree `H`-equivariantly isomorphic to the Bass--Serre tree
 of `H`, and `N` fixes it pointwise, so `N <= ker(H on its tree) = 1`.
 
