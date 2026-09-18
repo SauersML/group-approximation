@@ -83,7 +83,7 @@ theorem suslinR2Ind_block_mem {B : Type*} [CommRing B] {n : ℕ}
     · rw [Matrix.one_apply_ne hij,
         Matrix.one_apply_ne (e.injective.ne (Sum.inl_injective.ne hij))]
   have hmem : stabilizeUnit (R := B[X]) (κ := Unit) σ ∈ elementaryGroup (Fin n ⊕ Unit) B[X] :=
-    (elementaryStabilization (κ := Unit) ⟨σ, hσ σ hdσ hσ0⟩).2
+    (elementaryStabilization (ι := Fin n) (κ := Unit) (R := B[X]) ⟨σ, hσ σ hdσ hσ0⟩).2
   rw [← elementaryReindexGroup_map (R := B[X]) e]
   exact Subgroup.mem_map_of_mem _ hmem
 

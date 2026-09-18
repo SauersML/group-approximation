@@ -54,7 +54,8 @@ noncomputable def k2DilateSt_family (s : A) (r : ℕ) (q : k2DilateSt_pullback s
 /-- For every lift `ι_k f = q`, eventually `F_r(q) = μ_{s^{r-k}} f`. -/
 theorem k2DilateSt_family_eventually {s : A} {q : k2DilateSt_pullback s} {k : ℕ}
     {f : Polynomial A} (hf : k2DilateSt_stage s k f = (q : A × Polynomial (Localization.Away s))) :
-    ∃ m : ℕ, ∀ r : ℕ, m ≤ r → k2DilateSt_family s r q = k2CubeDilate_scale A (s ^ (r - k)) f :=
+    ∃ m : ℕ, ∀ r : ℕ, m ≤ r →
+      k2DilateSt_family s r q = k2CubeDilate_scale A (s ^ (r - k)) f :=
   k2DilateSt_scale_eventually_eq ((k2DilateSt_stage_lift s q).trans hf.symm)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2DilateSt_family_eventually
