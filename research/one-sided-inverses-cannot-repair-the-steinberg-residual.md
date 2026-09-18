@@ -11,9 +11,11 @@ requires:
   - steinberg-rf-forces-ring-rf
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-one-sided-inverses-cannot-repair-the-steinberg-residual.md
 ---
 
-**ESTABLISHED (2026-09-18)**, proof below. Lane proof (gq-k2-q), elementary, not independently reviewed. The only
+**ESTABLISHED (2026-09-18)**, proof below. Lane proof (gq-k2-q), elementary. *Reviewed:* PASS by
+`gq-referee-a` (`research/artifacts/gq-referee-a-one-sided-inverses-cannot-repair-the-steinberg-residual.md`). The only
 input is `steinberg-rf-forces-ring-rf` (refereed PASS).
 
 ## Statement
@@ -36,7 +38,8 @@ index, and `Γ_N(T) = St_N(T)/St_N(T)_rf` for the largest residually finite quot
    - `Γ_N(T) ≅ Γ_N(T')`.
 
    Moreover `St_N(T)_rf` is finitely normally generated if and only if `St_N(T')_rf` is, and a finite presentation
-   of `T` gives one of `T'`. For the Euler lamps `π_k = u + 1 + kl`, `T'` again contains commuting units `π_k`, which is the situation of `euler-ring-steinberg-rf-residual-is-fng`.
+   of `T` gives one of `T'`. For the Euler lamps `π_k = u + 1 + kl`, `T'` again contains commuting units `π_k`, which is the situation of `euler-ring-steinberg-rf-residual-is-fng`. This is exact when `T` is the presentation of `D`
+   with `π_0^(-1)` replaced by a one-sided inverse `γ_0`: then `T' ≅ D`.
 
 ## Proof
 
@@ -52,6 +55,7 @@ index, and `Γ_N(T) = St_N(T)/St_N(T)_rf` for the largest residually finite quot
   - Pick `k ∉ {i, j}`, which exists since `N >= 3`. Then `x_ij(t g t') = [x_ik(t), x_kj(g t')]` and
     `x_kj(g t') = [x_ki(g), x_ij(t')]`.
   - So every `x_ij(a)` lies in the normal closure of the `x_ij(g_t)`. ∎
+  - One index pair suffices (gq-referee-a): conjugation by `w_ab(1)` permutes the index pairs.
 
 **Part 2.** Let `F` be a finite quotient ring. Left multiplication by `π̄` is injective, since `γ̄π̄ f = f`. `F` is
 finite, so it is bijective, and `π̄ g = 1` for some `g`. Then `γ̄ = γ̄(π̄ g) = g`, so `π̄ γ̄ = 1`. Hence
