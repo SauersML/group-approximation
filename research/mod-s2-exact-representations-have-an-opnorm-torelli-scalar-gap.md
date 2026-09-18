@@ -81,3 +81,22 @@ same diagonal, tensor and conjugate argument as (U2).
     of `M` or through a one-dimensional character is bounded by the (E4)
     floor, which is not uniform in the quotient. A uniform proof needs
     information from representations with infinite image.
+- **2026-09-18, swarm-0917-w10-w10-deligne-pull: split into a Torelli-abelian arithmetic part and an
+  infinite-image reduction (reframing).**
+  - *Dictionary (ESTABLISHED).* `mod-s2-torelli-abelian-scalars-are-shifted-maslov-multipliers`:
+    - Decompose `rho|_(K/[K,K])` into Torelli eigencharacters. Mess's free basis makes `K/[K,K]` the
+      permutation module `Z[X]`.
+    - One orbit is an exact projective representation of its finite-index stabilizer `Gamma'`, with class
+      `Phi_(Gamma')(h) - (alpha/r)[b]`, where `|h| <= epsilon/4`.
+    - Induction reverses this.
+  - *Finite image is Torelli-abelian (ESTABLISHED).*
+    `mod-s2-finite-image-near-scalar-reps-are-torelli-abelian`: a dimension-free Frobenius commutator
+    lemma shows that `||rho(t_s) - omega I|| < 1/2` with finite image forces `rho(K)` abelian.
+  - *Decomposition.* Route `mod-s2-opnorm-torelli-gap-via-finite-index-multipliers` needs two OPEN inputs:
+    - the infinite-image reduction `mod-s2-near-scalar-reps-reduce-to-torelli-abelian`;
+    - the arithmetic statement `sp4-shifted-maslov-multipliers-stay-far-on-finite-index`, a floor uniform over
+      all finite-index subgroups.
+    Given the reduction, the target is equivalent to the arithmetic statement.
+  - *Where uniformity dies.* Corestriction by tensor induction to `Sp_4(Z)` sees only `n(alpha + m(h))`, where
+    `n` is the index and `m(h)` the mean of `h`. That is non-uniform in `n` and empty when `3 | n`, like the (E4)
+    floor. A proof must use classes of `H^2(Gamma';R)` that are not restricted from `Gamma`.
