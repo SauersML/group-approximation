@@ -110,3 +110,91 @@ theorem roseLobeBlk_inN_eq_outN_of_alpha {p : M.Dart → Prop}
   simp only [Finset.mem_filter, Finset.mem_univ, true_and, hp]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inN_eq_outN_of_alpha
+
+/-- Splitting the leaving count along a second predicate. -/
+theorem roseLobeBlk_outN_split (p q : M.Dart → Prop) (o : M.Vertex) :
+    roseLobeBlk_outN M p o =
+      roseLobeBlk_outN M (fun x => p x ∧ q x) o + roseLobeBlk_outN M (fun x => p x ∧ ¬ q x) o := by
+  classical
+  unfold roseLobeBlk_outN
+  rw [← Finset.card_union_of_disjoint]
+  · congr 1
+    ext x
+    simp only [Finset.mem_union, Finset.mem_filter, Finset.mem_univ, true_and]
+    tauto
+  · rw [Finset.disjoint_left]
+    intro x hx hx'
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hx hx'
+    exact hx'.1.2 hx.1.2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outN_split
+
+/-- Splitting the arriving count along a second predicate. -/
+theorem roseLobeBlk_inN_split (p q : M.Dart → Prop) (o : M.Vertex) :
+    roseLobeBlk_inN M p o =
+      roseLobeBlk_inN M (fun x => p x ∧ q x) o + roseLobeBlk_inN M (fun x => p x ∧ ¬ q x) o := by
+  classical
+  unfold roseLobeBlk_inN
+  rw [← Finset.card_union_of_disjoint]
+  · congr 1
+    ext x
+    simp only [Finset.mem_union, Finset.mem_filter, Finset.mem_univ, true_and]
+    tauto
+  · rw [Finset.disjoint_left]
+    intro x hx hx'
+    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hx hx'
+    exact hx'.1.2 hx.1.2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inN_split
+
+/-- Balance only depends on the predicate up to pointwise equivalence. -/
+theorem roseLobeBlk_balanced_congr {p q : M.Dart → Prop} (hp : roseLobeBlk_Balanced M p)
+    (hpq : ∀ x, p x ↔ q x) : roseLobeBlk_Balanced M q := by
+  have h : p = q := funext fun x => propext (hpq x)
+  subst h
+  exact hp
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_congr
+
+/-- **The boundary of a face-class colouring is balanced.**  If `z` is constant along the
+face-class steps, the darts coloured `true` whose reverse is coloured `false` leave each vertex
+as often as they arrive. -/
+theorem roseLobeBlk_balanced_boundary {keep : M.Dart → Prop} {z : M.Dart → Bool}
+    (hz : ∀ x y, CombMap.FaceClassStep M keep x y → z x = z y) :
+    roseLobeBlk_Balanced M fun x => z x = true ∧ ¬ z (M.alpha x) = true := by
+  intro o
+  have hT : roseLobeBlk_inN M (fun x => z x = true) o =
+      roseLobeBlk_outN M (fun x => z x = true) o :=
+    roseLobeBlk_inN_eq_outN_of_facePerm (fun x => by
+      show z (M.facePerm x) = true ↔ z x = true
+      rw [← hz x (M.facePerm x) (Or.inl rfl)]) o
+  have hQ : roseLobeBlk_inN M (fun x => z x = true ∧ z (M.alpha x) = true) o =
+      roseLobeBlk_outN M (fun x => z x = true ∧ z (M.alpha x) = true) o :=
+    roseLobeBlk_inN_eq_outN_of_alpha (fun x => by
+      show z (M.alpha x) = true ∧ z (M.alpha (M.alpha x)) = true ↔
+        z x = true ∧ z (M.alpha x) = true
+      rw [M.alpha_involutive x]
+      exact And.comm) o
+  have h1 : roseLobeBlk_outN M (fun x => z x = true) o =
+      roseLobeBlk_outN M (fun x => z x = true ∧ z (M.alpha x) = true) o +
+        roseLobeBlk_outN M (fun x => z x = true ∧ ¬ z (M.alpha x) = true) o :=
+    roseLobeBlk_outN_split _ _ o
+  have h2 : roseLobeBlk_inN M (fun x => z x = true) o =
+      roseLobeBlk_inN M (fun x => z x = true ∧ z (M.alpha x) = true) o +
+        roseLobeBlk_inN M (fun x => z x = true ∧ ¬ z (M.alpha x) = true) o :=
+    roseLobeBlk_inN_split _ _ o
+  omega
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_boundary
+
+/-- **The reversed boundary of a face-class colouring is balanced**: the darts coloured `false`
+whose reverse is coloured `true`. -/
+theorem roseLobeBlk_balanced_boundary_rev {keep : M.Dart → Prop} {z : M.Dart → Bool}
+    (hz : ∀ x y, CombMap.FaceClassStep M keep x y → z x = z y) :
+    roseLobeBlk_Balanced M fun x => z x = false ∧ z (M.alpha x) = true := by
+  refine roseLobeBlk_balanced_congr (roseLobeBlk_balanced_boundary (keep := keep)
+    (z := fun x => !z x) fun x y h => congrArg (fun b => !b) (hz x y h)) fun x => ?_
+  show (!z x) = true ∧ ¬ (!z (M.alpha x)) = true ↔ z x = false ∧ z (M.alpha x) = true
+  cases z x <;> cases z (M.alpha x) <;> simp
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_balanced_boundary_rev
