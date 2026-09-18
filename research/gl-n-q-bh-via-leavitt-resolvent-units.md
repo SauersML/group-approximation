@@ -2,6 +2,7 @@
 rg: 2
 id: gl-n-q-bh-via-leavitt-resolvent-units
 kind: route
+title: Embed GL_n(Q) in the derived unit group of the Leavitt resolvent ring modulo its centre
 target: gl-n-q-embeds-in-fp-simple-group
 requires:
   - leavitt-resolvent-ring-is-fp-simple-of-char-zero

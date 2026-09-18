@@ -2,6 +2,7 @@
 rg: 2
 id: fp-simple-ring-of-char-zero-via-leavitt-resolvent-ring
 kind: route
+title: The Leavitt resolvent ring is a finitely presented simple ring containing Q
 target: fp-simple-ring-of-characteristic-zero-exists
 requires:
   - leavitt-resolvent-ring-is-fp-simple-of-char-zero

@@ -2,6 +2,7 @@
 rg: 2
 id: pp-circle-and-lift-hosts-miss-gl-n-q-proof
 kind: route
+title: Deduce the host exclusions from the free action of divisible subgroups
 target: pp-circle-and-lift-hosts-miss-gl-n-q
 requires:
   - pp-circle-divisible-subgroups-act-freely

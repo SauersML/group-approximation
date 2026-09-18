@@ -2,6 +2,7 @@
 rg: 2
 id: gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings-proof
 kind: route
+title: Direct proof with lattice classes in Q_p^(n+1), following Serre's Trees
 target: gl-n-q-acts-faithfully-on-p-adic-bruhat-tits-buildings
 requires:
   - divisible-elements-act-elliptically-on-trees

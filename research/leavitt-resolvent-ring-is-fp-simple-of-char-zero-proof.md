@@ -2,6 +2,7 @@
 rg: 2
 id: leavitt-resolvent-ring-is-fp-simple-of-char-zero-proof
 kind: route
+title: Apply the Leavitt--Nekrashevych completion criteria to the resolvent ring
 target: leavitt-resolvent-ring-is-fp-simple-of-char-zero
 requires:
   - leavitt-nekrashevych-completion-simplicity-criterion

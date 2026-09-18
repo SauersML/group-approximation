@@ -2,6 +2,7 @@
 rg: 2
 id: q-free-lifts-reach-only-lattice-affine-q-groups-proof
 kind: route
+title: Direct proof by tracking Q-free subgroups through the normal series
 target: q-free-lifts-reach-only-lattice-affine-q-groups
 requires: []
 ---

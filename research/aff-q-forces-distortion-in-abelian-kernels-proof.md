@@ -2,6 +2,7 @@
 rg: 2
 id: aff-q-forces-distortion-in-abelian-kernels-proof
 kind: route
+title: Direct elementary proof in a finitely generated overgroup of Aff(Q)
 target: aff-q-forces-distortion-in-abelian-kernels
 requires: []
 ---

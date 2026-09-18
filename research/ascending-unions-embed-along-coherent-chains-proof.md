@@ -2,6 +2,7 @@
 rg: 2
 id: ascending-unions-embed-along-coherent-chains-proof
 kind: route
+title: Restrict an embedding to the chain, and glue coherent embeddings of the terms
 target: ascending-unions-embed-along-coherent-chains
 requires: []
 ---
