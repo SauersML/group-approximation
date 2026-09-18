@@ -1,0 +1,4 @@
+k=2 L=7 P=16 nmax=60 squares=1
+    progress nodes=2000 {'nodes': 2000, 'empty_prune': 322, 'leaves': 0, 'maxlevel': 6, 'certified': 5, 'lang_prune': 1571}
+    progress nodes=4000 {'nodes': 4000, 'empty_prune': 458, 'leaves': 0, 'maxlevel': 6, 'certified': 5, 'lang_prune': 3336}
+    progress nodes=6000 {'nodes': 6000, 'empty_prune': 477, 'leaves': 0, 'maxlevel': 6, 'certified': 5, 'lang_prune': 5213}

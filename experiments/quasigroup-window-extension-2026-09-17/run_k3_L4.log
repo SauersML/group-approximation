@@ -1,0 +1,8 @@
+k=3 L=4 P=10 nmax=60 squares=5
+    progress nodes=2000 {'nodes': 2000, 'empty_prune': 522, 'leaves': 0, 'maxlevel': 8, 'certified': 5, 'lang_prune': 1296}
+    progress nodes=4000 {'nodes': 4000, 'empty_prune': 908, 'leaves': 0, 'maxlevel': 8, 'certified': 5, 'lang_prune': 2739}
+    progress nodes=6000 {'nodes': 6000, 'empty_prune': 1407, 'leaves': 0, 'maxlevel': 8, 'certified': 5, 'lang_prune': 4073}
+    progress nodes=8000 {'nodes': 8000, 'empty_prune': 1669, 'leaves': 0, 'maxlevel': 8, 'certified': 6, 'lang_prune': 5649}
+    progress nodes=10000 {'nodes': 10000, 'empty_prune': 1959, 'leaves': 0, 'maxlevel': 8, 'certified': 6, 'lang_prune': 7197}
+    progress nodes=12000 {'nodes': 12000, 'empty_prune': 2493, 'leaves': 0, 'maxlevel': 8, 'certified': 6, 'lang_prune': 8499}
+    progress nodes=14000 {'nodes': 14000, 'empty_prune': 3015, 'leaves': 0, 'maxlevel': 8, 'certified': 6, 'lang_prune': 9805}
