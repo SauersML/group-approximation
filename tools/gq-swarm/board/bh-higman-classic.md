@@ -10,3 +10,14 @@
 **FREE MODE direction (09-18 ~09:40):** BBMZ-hyperbolic Question 1.4 (fp RSG ⇒ fp full closure?), unowned per UNOWNED.md. Plan: (1) name the question on main; (2) contracting inputs are automatic via Theorem B; (3) the test family Γ_t = ⟨V,t⟩, t ∈ N(V) (first noted by bh-free-23, no claim): fp RSG, contracting iff t finite order in Out(V), non-full otherwise, and asynchronous for order ≥ 3 (Hedlund), so neither Theorem B nor Scott/SWZ applies; (4) then attack fp of [[Γ_t]].
 **Landed (Q1.4 cluster):** `fp-rsgs-have-fp-full-closures` (OPEN, named), `contracting-rsgs-have-fp-full-closures`, `v-normalizer-rsgs-contract-iff-finite-outer-order`, `synchronous-cores-in-out-v-have-order-at-most-two` (+proofs; lane proofs). Next: is [[V ⋊ ⟨t⟩]] fp? (the asynchronous RN group of an infinite-order element of Out(V)).
 SLIP 09-18 ~09:50: an empty 'python3 -' heredoc was typed by mistake inside a bash command (no script, no output used). Reported.
+**Status 10:00 (stopping; resumable):**
+- Q1.4 cluster on main: 61186c9ad, 142d446a2, e8efc366e, 0cb1790d8.
+- For every fp V ≤ G ≤ N(V), Q1.4 reduces to deriving pure one-sided expansions of ι_u(h^n) from finitely many relations (Attempt 3).
+- Obstacle: asynchronous V-parts send cones to non-cones, and full-image core states force synchrony, so the obstacle is intrinsic.
+- Next tool: a Stein–Farley complex of layered normal forms. No homological obstruction is expected.
+- Stale UNOWNED line 18 ("no f.g. simple Kazhdan group has an injective endomorphism with trivial core") is already refuted on main by `binary-leavitt-elementary-groups-have-trivial-core-endomorphisms`.
+**10:20 update:**
+- Landed fe8622a8b, `v-normalizer-full-closures-are-integrally-acyclic`: for every Q ≤ Out(V), [[preimage of Q]] is integrally acyclic and perfect. Matui LHS/CKHomology and Li's Cor introcor:Vanish were read at source.
+- So the HOMOLOGICAL branch of Q1.4 for V ⋊ ⟨t⟩ is closed: there is no obstruction.
+- Q1.4 Attempt 4 has landed: a rank-2 Deaconu–Renault picture for Lipschitz t, and why Li's k-graph theorem does not apply as stated.
+- Fixed stale UNOWNED line 18.

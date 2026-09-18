@@ -77,3 +77,20 @@ distinct_from:
   all neighbours.
 - **The general rule.** For group-shift rigidity, the acting group must be the object whose geometry
   the tiles encode. Tiling a quotient space by a translation lattice creates free directions.
+
+## Progress (bh-invent-12, 2026-09-18)
+
+Lane proofs, not reviewed.
+- **Step 1 done (rank one).** `free-group-boundary-shift-is-quantum-rigid`: the boundary shift of
+  `F_d` is a nearest-neighbour SFT that is `1`-quantum rigid over every field, by domination along
+  geodesics.
+- **Ã₂, in skew-product form.** `a2-lattice-boundary-skew-shifts-are-quantum-rigid`: for every
+  cocompact type-rotating lattice of a thick Ã₂ building, a finite phase skew product `P` of `X_Ω` is a
+  minimal, topologically free SFT that is quantum rigid over every field. The proof is not a direct
+  propagation argument. It is a transfer:
+  - bh-groupoid's finitely presented host is `F(G_V × (Γ ⋉ P))`;
+  - `topologically-free-subshift-full-groups-force-quantum-rigidity` extends the necessity theorem to
+    topologically free actions;
+  - together they force rigidity.
+- **Still open here.** Rigidity of `X_Ω` itself, which is the unskewed coding. Freeness also stays
+  open; the "Not free" caveat above applies to `P` as well.

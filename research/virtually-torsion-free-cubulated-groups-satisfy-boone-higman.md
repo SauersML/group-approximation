@@ -107,3 +107,27 @@ input's flats. Codings where one element moves independent directions by differe
 amounts need higher-rank categories (`k`-graphs, trace-type categories), not germ
 extensions of `V`. The finite-state concatenation criterion of Attempt 4 is the
 transferable tool.
+
+5. **(bh-major-cube-a, 09-18) Li's multiplicity gate cannot be passed on pointed-cube
+   codings beyond products of trees.** Two lane theorems:
+   - `commutative-cube-degree-maps-force-tree-products`: a (UFP*) degree map from `C_X`
+     to a commutative monoid exists iff `X` is a product of trees. So the
+     power-and-phase trick behind item 3 bis is special to products.
+   - `raag-cube-codings-fail-li-multiplicity-at-every-power`: for every RAAG and every
+     `N`, the trace-degree coding with the height-`≤ N` Garside family violates Li's
+     (`t < d`). A maximal-clique state has exactly one self-return per layer, because
+     labels are injective. For `N ≥ 2` the failure is at the one-layer completion that
+     (2_Γ) forces.
+   - The RAAG calibration passes only after recoding: the free group through its 1-graph,
+     the square `F_2 × F_2` through the cube 2-graph. `P_4` is the first RAAG with no Li
+     certificate on this coding. That does not matter for Boone–Higman itself, since
+     virtually special groups embed in 2V by Salo.
+   - The open part of Q1.15 is non-special groups. There labels are not injective, so
+     self-returns can multiply and Li on `C_X` is not excluded by this argument. Test
+     next on a non-special, non-product example.
+
+**Lesson for general BH (Attempt 5).** Li's (`t < d`) is loop-richness. Deterministic,
+label-injective codings never have it, and powers supply it only under an additive
+grading, which exists only for products. So a host for groups with non-splitting flats
+must get its loops from an overcoding (a full shift, as in Salo) or from a finiteness
+theorem for deterministic codings (primitive type matrix in place of diagonal ≥ 2).

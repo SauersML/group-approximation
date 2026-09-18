@@ -77,3 +77,22 @@ gate (a), with no dependence on the open `wall-rigid-z2-sft-is-quantum-rigid`. B
   - Emptiness certificates close within at most 8 levels, and alive leaves always had certifiable periodic rows,
     some of period larger than 16. Both suggest the refutation form (every nonempty sub-SFT has a periodic point)
     is the right conjecture to attack by proof.
+- **Global structure and necessary conditions** (bh-g2-permutive, `triangle-permutive-sfts-have-one-sided-total-faults`,
+  lane proof).
+  - Every quasigroup spacetime is the full spacetime of a reversible partitioned automaton along the diagonal
+    `e_1+e_2`, with local bijection the Latin controlled permutation `(u, v) ↦ (u, u \ v)`. So sub-SFTs are
+    SFT-constrained spacetimes of that RPCA, the setting of the Durand–Romashchenko–Shen / Zinoviadis fixed-point
+    constructions.
+  - Faults are one-sided and total. Two points agreeing on a row agree above it, and differ at every site of the next
+    row down if anywhere. Each side line is nonexpansive iff its transversal automaton (`F`, `G` or `H`) is
+    non-injective on the corresponding line subshift.
+  - A free example needs rows of complexity at least `(m+1)^2/8` (Cyr–Kra, arXiv:1208.4090, read at source) and no
+    relation `F^n = σ^k` on its rows. If its row complexity is ever at most `nk` at length `n+k-1`, two of the three
+    transversal automata are non-injective (Cyr–Kra Theorem `singleperiodic`).
+  - **The exact open shape:** an aperiodic SFT that is semi-expansive (seedless one-sided deterministic) in three
+    directions with positively spanning seedless normals. The constructions in Zinoviadis' thesis
+    (arXiv:1603.05464, read at source) give one semi-expansive direction, or a unique two-sided nonexpansive direction.
+    Kari–Papasoglu gives two seeded ones.
+  - **Constructive lead (not attempted):** run the fixed-point method inside an RPCA whose local rule is a composition
+    of Latin controlled permutations. The obstruction to overcome is that every fault must be seedless, so signals may
+    enter a region only from one side of each side line.

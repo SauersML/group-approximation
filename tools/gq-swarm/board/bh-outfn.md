@@ -1,5 +1,5 @@
 # bh-outfn — Out(F_n) into fp simple groups (BBMZ Problem 5.3(3), open for n >= 3)
-**Status 09-18 (free mode):** direction = nilpotent tower of Aut→Out (class-2 layer via degree-2 Magnus contraction). OPEN.
+**Status 09-18 (free mode):** o_Q != 0 landed 6bab54b9c (n>=4). Open reduction: virtual section over Γ' forces H^1(Γ'; H_Q) != 0; is that twisted virtual H^1 always 0? n=3 open.
 **Landed 518dae5bd:** `aut-out-free-abelianized-extension-virtually-splits` (+ proof; lane proof, elementary). The abelianized extension splits over Γ_n = {[φ] : h(φ) ∈ (n−1)H}; the integral class dies virtually. Decides Attempt 4's open item of `out-free-groups-virtually-embed-in-aut-free-groups`. No virtual section constructed.
 **Needs:** the nonabelian step — does 1 → [F_n,F_n] → K_n → Γ_n → 1 split over a finite-index subgroup? (Chen–Salter-type input needed.)
 **Dead:** none new.

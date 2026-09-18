@@ -40,3 +40,18 @@ solvable word problem and embeds in a finitely presented simple group.
   finite, i.e. those whose maximal periodic normal subgroup `τ(G)` is infinite. The
   quotient of Abels' group by a cyclic subgroup of its center `Z[1/p]` is one. See
   `fg-soluble-minimax-groups-satisfy-boone-higman` (OPEN).
+
+## Lesson for general BH
+
+For soluble groups, residual finiteness together with finite rank is exactly linearity in
+characteristic zero (Pyber–Segal), and quasi-linear groups lie in `B_A`. So the whole
+"tame" finite-rank soluble world costs nothing beyond the linear hosts. What remains of
+soluble Boone–Higman is precisely the groups that are not quasi-linear. They fail
+quasi-linearity by one of two mechanisms:
+- **Divisible torsion.** An infinite radicable torsion radical makes the group non-RF. See
+  `fg-soluble-minimax-groups-satisfy-boone-higman` and
+  `compact-skew-products-cannot-carry-divisible-fiber-subgroups`.
+- **Dilating commutators.** A commutator acts by a nontrivial power map on a torsion-free
+  abelian section. See `q-difference-lamplighter-is-not-quasi-linear`.
+
+A general soluble theorem needs a host for each mechanism, not a better linearity input.
