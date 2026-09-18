@@ -22,11 +22,11 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion
 universe u w v
 
 /-- The Piece 07 `Below` section, reduced to the single all-cells short-loop residual. -/
-theorem glFix01_proof_of_allCellsShortLoop (h : AllCellsShortLoopStatement.{u, w, v}) :
+theorem glFix01_proof_of_allCells (h : AllCellsShortLoopStatement.{u, w, v}) :
     CellPocketWalkProperArcsBelowSectionStatement.{u, w, v} :=
   proof_of_gaps LakeFill.lakeFillSucc h
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.glFix01_proof_of_allCellsShortLoop
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion.glFix01_proof_of_allCells
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07LakeExclusion
