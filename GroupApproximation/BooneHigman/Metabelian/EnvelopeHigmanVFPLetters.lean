@@ -107,4 +107,70 @@ theorem higmanVFP_swapOrOne_conj {p q x y x' y' : List X} (hpq : ¬ p <+: q) (hq
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_swapOrOne_conj
 
+/-- **Comparable letters are relators.** -/
+theorem higmanVFP_letter_comparable_mem {d : ℕ} {v w : List (Fin d)} (hv : v.length ≤ 3)
+    (hw : w.length ≤ 3) (h : ¬ (¬ v <+: w ∧ ¬ w <+: v)) :
+    higmanVFPLetter hv hw ∈ higmanVFPRelators d :=
+  higmanVFP_mem_relators ((higmanVFP_lift_letter hv hw).trans (higmanVFP_swapOrOne_of_not h))
+    ((higmanVFP_norm_letter hv hw).trans_le (by norm_num))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_comparable_mem
+
+/-- **Involution relators.** -/
+theorem higmanVFP_letter_sq_mem {d : ℕ} {v w : List (Fin d)} (hv : v.length ≤ 3)
+    (hw : w.length ≤ 3) :
+    higmanVFPLetter hv hw * higmanVFPLetter hv hw ∈ higmanVFPRelators d :=
+  higmanVFP_mem_relators
+    (by
+      simp only [map_mul, higmanVFP_lift_letter]
+      exact higmanVFP_swapOrOne_mul_self v w)
+    ((FreeGroup.norm_mul_le _ _).trans (by norm_num [higmanVFP_norm_letter]))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_sq_mem
+
+/-- **Symmetry relators.** -/
+theorem higmanVFP_letter_symm_mem {d : ℕ} {v w : List (Fin d)} (hv : v.length ≤ 3)
+    (hw : w.length ≤ 3) :
+    higmanVFPLetter hv hw * (higmanVFPLetter hw hv)⁻¹ ∈ higmanVFPRelators d :=
+  higmanVFP_mem_relators
+    (by
+      simp only [map_mul, map_inv, higmanVFP_lift_letter]
+      exact mul_inv_eq_one.mpr (higmanVFP_swapOrOne_symm v w))
+    ((FreeGroup.norm_mul_le _ _).trans
+      (by norm_num [FreeGroup.norm_inv_eq, higmanVFP_norm_letter]))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_symm_mem
+
+/-- **Conjugation relators.**  If `(p q)` carries the cones `x`, `y` onto `x'`, `y'`, then
+`ℓ(p, q) ℓ(x, y) ℓ(p, q)⁻¹ ℓ(x', y')⁻¹` is a relator. -/
+theorem higmanVFP_letter_conj_mem {d : ℕ} {p q x y x' y' : List (Fin d)} (hpl : p.length ≤ 3)
+    (hql : q.length ≤ 3) (hxl : x.length ≤ 3) (hyl : y.length ≤ 3) (hxl' : x'.length ≤ 3)
+    (hyl' : y'.length ≤ 3) (hpq : ¬ p <+: q) (hqp : ¬ q <+: p) (hxy : ¬ x <+: y)
+    (hyx : ¬ y <+: x) (hxy' : ¬ x' <+: y') (hyx' : ¬ y' <+: x')
+    (hx : MapsCone (coneSwap p q hpq hqp) x x') (hy : MapsCone (coneSwap p q hpq hqp) y y') :
+    higmanVFPLetter hpl hql * higmanVFPLetter hxl hyl * (higmanVFPLetter hpl hql)⁻¹ *
+      (higmanVFPLetter hxl' hyl')⁻¹ ∈ higmanVFPRelators d :=
+  higmanVFP_mem_relators
+    (by
+      simp only [map_mul, map_inv, higmanVFP_lift_letter]
+      exact higmanVFP_swapOrOne_conj hpq hqp hxy hyx hxy' hyx' hx hy)
+    ((higmanVFP_norm_mul4 _ _ _ _).trans
+      (by norm_num [FreeGroup.norm_inv_eq, higmanVFP_norm_letter]))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_conj_mem
+
+/-- **Commutation relators.**  Swaps of pairwise incomparable words commute. -/
+theorem higmanVFP_letter_comm_mem {d : ℕ} {p q x y : List (Fin d)} (hpl : p.length ≤ 3)
+    (hql : q.length ≤ 3) (hxl : x.length ≤ 3) (hyl : y.length ≤ 3) (hpq : ¬ p <+: q)
+    (hqp : ¬ q <+: p) (hxy : ¬ x <+: y) (hyx : ¬ y <+: x) (hxp : ¬ x <+: p) (hpx : ¬ p <+: x)
+    (hxq : ¬ x <+: q) (hqx : ¬ q <+: x) (hyp : ¬ y <+: p) (hpy : ¬ p <+: y) (hyq : ¬ y <+: q)
+    (hqy : ¬ q <+: y) :
+    higmanVFPLetter hpl hql * higmanVFPLetter hxl hyl * (higmanVFPLetter hpl hql)⁻¹ *
+      (higmanVFPLetter hxl hyl)⁻¹ ∈ higmanVFPRelators d :=
+  higmanVFP_letter_conj_mem hpl hql hxl hyl hxl hyl hpq hqp hxy hyx hxy hyx
+    (vgen_mapsCone_coneSwap_fix hpq hqp hxp hpx hxq hqx)
+    (vgen_mapsCone_coneSwap_fix hpq hqp hyp hpy hyq hqy)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVFP_letter_comm_mem
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope

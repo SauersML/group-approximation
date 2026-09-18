@@ -106,6 +106,14 @@ def eHighCoprimaryDiagHom (ρ : Q →* GeneralLinearGroup (Fin d) K) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryDiagHom
 
+variable (K d) in
+/-- The reindexing ring isomorphism from `Fin d ⊕ Fin 1` to `Fin (d + 1)` indices. -/
+noncomputable def eHighCoprimaryReindex :
+    Matrix (Fin d ⊕ Fin 1) (Fin d ⊕ Fin 1) K ≃+* Matrix (Fin (d + 1)) (Fin (d + 1)) K :=
+  reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimaryReindex
+
 /-- **Translation trick.**  An injective additive representation `ι` intertwining `act` with
 `ρ` gives an injective `κ' : Multiplicative M →* GL_{d+1}(K)` and `ρ' : Q →* GL_{d+1}(K)`
 such that conjugation by `ρ' q` realises `act q`. -/
@@ -116,20 +124,20 @@ theorem eHighCoprimary_exists_gl_of_additive (act : Q → M → M) (ι : M →+ 
       (ρ' : Q →* GeneralLinearGroup (Fin (d + 1)) K), Function.Injective κ' ∧
         ∀ (q : Q) (m : M), κ' (Multiplicative.ofAdd (act q m)) =
           ρ' q * κ' (Multiplicative.ofAdd m) * (ρ' q)⁻¹ := by
-  refine ⟨((reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))).toMonoidHom.comp
+  refine ⟨((eHighCoprimaryReindex K d).toMonoidHom.comp
       (eHighCoprimaryTransHom ι)).toHomUnits,
-    ((reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))).toMonoidHom.comp
+    ((eHighCoprimaryReindex K d).toMonoidHom.comp
       (eHighCoprimaryDiagHom ρ)).toHomUnits, ?_, ?_⟩
   · refine (injective_iff_map_eq_one _).mpr fun x hx => ?_
-    have h1 : reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))
+    have h1 : eHighCoprimaryReindex K d
         (eHighCoprimaryTransHom ι x) =
-          reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1)) 1 := by
+          eHighCoprimaryReindex K d 1 := by
       rw [map_one]
       exact congrArg Units.val hx
     have h2 : fromBlocks (1 : Matrix (Fin d) (Fin d) K)
         (replicateCol (Fin 1) (ι (Multiplicative.toAdd x))) 0 1 =
           fromBlocks (1 : Matrix (Fin d) (Fin d) K) 0 0 (1 : Matrix (Fin 1) (Fin 1) K) :=
-      ((reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))).injective h1).trans
+      ((eHighCoprimaryReindex K d).injective h1).trans
         fromBlocks_one.symm
     obtain ⟨-, hB, -, -⟩ := fromBlocks_inj.mp h2
     have h3 : Multiplicative.toAdd x = 0 := hι (by
@@ -140,14 +148,15 @@ theorem eHighCoprimary_exists_gl_of_additive (act : Q → M → M) (ι : M →+ 
     have h : eHighCoprimaryTransHom ι (Multiplicative.ofAdd (act q m)) *
         eHighCoprimaryDiagHom ρ q =
           eHighCoprimaryDiagHom ρ q * eHighCoprimaryTransHom ι (Multiplicative.ofAdd m) := by
-      show eHighCoprimaryTrans (ι (act q m)) * eHighCoprimaryDiag (ρ q : Matrix (Fin d) (Fin d) K) =
+      show eHighCoprimaryTrans (ι (act q m)) *
+          eHighCoprimaryDiag (ρ q : Matrix (Fin d) (Fin d) K) =
         eHighCoprimaryDiag (ρ q : Matrix (Fin d) (Fin d) K) * eHighCoprimaryTrans (ι m)
       rw [hequiv]
       exact eHighCoprimaryTrans_mul_diag _ _
     refine eq_mul_inv_of_mul_eq (Units.ext ?_)
-    exact (map_mul (reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))) _ _).symm.trans
-      ((congrArg (reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))) h).trans
-        (map_mul (reindexRingEquiv K (finSumFinEquiv : Fin d ⊕ Fin 1 ≃ Fin (d + 1))) _ _))
+    exact (map_mul (eHighCoprimaryReindex K d) _ _).symm.trans
+      ((congrArg (eHighCoprimaryReindex K d) h).trans
+        (map_mul (eHighCoprimaryReindex K d) _ _))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_exists_gl_of_additive
 
