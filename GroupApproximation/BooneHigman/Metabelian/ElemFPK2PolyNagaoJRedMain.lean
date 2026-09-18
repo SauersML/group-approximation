@@ -105,6 +105,7 @@ def k2PolyNagaoJRed_Statement : Prop :=
   ∀ (p : ℕ) [Fact p.Prime], k2PolyNagaoJRed_ResAt p
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_Statement
+
 /-- **The `J`-reduction at `p`.**  The residual at `p` and the torus interface at `p` give the
 check of `σ` at `x_mL(1)` (`k2PolyNagaoJRed_check_all`). -/
 theorem k2PolyNagaoJRed_check_of_at {p : ℕ} [Fact p.Prime] (hR : k2PolyNagaoJRed_ResAt p)

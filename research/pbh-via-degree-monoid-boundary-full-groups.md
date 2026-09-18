@@ -103,6 +103,23 @@ combinatorics.
     criterion (Li, Theorem `intro:Fn`), whose extra conditions (St), (LCM) and (t < d) are
     not checked here.
 
+## Limits of the route (proved)
+
+- **L1. The units act through a residually finite quotient.**
+  - `C^*` acts on the finite set `Res_e = {aC : d(a) = e}` (M3) by `u·aC = uaC`. This preserves
+    degree, so it gives a homomorphism `C^* → Sym(Res_e)`.
+  - A unit in every kernel fixes every cylinder `∂Ω(a)` setwise. For each `e` the degree-`e`
+    cylinders partition `∂Ω`, and cylinders form a basis, so such a unit fixes every point.
+  - `G_C` is effective, so `H_C` acts faithfully. Hence that unit is trivial in `H_C`.
+  - So the image of `C^*` in `H_C` embeds in `∏_e Sym(Res_e)`: it is residually finite. Its
+    `F_∞` property is used, but its non-residually-finite part is invisible.
+  - Non-residually-finite subgroups of `H_C`, such as `BS(1,2)` in `2V_τ` through the baker
+    map, must come from the combinatorics of the boundary, not from the units.
+- **L2. Hosts are `F_∞`.** Every group the route reaches embeds in an `F_∞` group. A proof of
+  BH through this route therefore also proves, for the groups it reaches, a positive answer
+  to BBMZ survey Question 5.6 ("Does every finitely presented group embed as a subgroup of a
+  type F∞ group?").
+
 ## Question
 
 Does every finitely generated group with solvable word problem act faithfully by the

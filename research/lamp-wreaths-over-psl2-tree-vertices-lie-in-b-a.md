@@ -39,3 +39,14 @@ embeds in a finitely presented simple group.
 - It is the second test case of `pbh-closed-under-decidable-permutational-wreaths`.
 - `L` may be any group in `B_A`, for example any finitely generated linear group in
   characteristic zero (`char-zero-linear-groups-satisfy-permutational-boone-higman`).
+
+## Lesson for general BH
+
+`S`-arithmetic groups acting on Bruhat–Tits trees turn vertex and edge stabilizers into
+stabilizers of clopen balls in `P^1(Q_p)`. Their Röver–Nekrashevych groups over Iwahori
+groups then realize the tree's coset spaces as clopen orbits.
+- Such inputs are dense in the profinite topology (`z-wr-psl2-z-half-is-not-residually-finite`).
+- So they *force* hosts that are not residually finite, and the Thompson-like full groups
+  supply exactly that.
+- Residually finite host classes (linear, self-similar, automaton) are structurally blind here,
+  not just technically.

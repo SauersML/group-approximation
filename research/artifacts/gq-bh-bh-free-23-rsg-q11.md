@@ -85,10 +85,10 @@ hyperbolic groups, not both of order 2.
 ## Update (fifth landing): surface groups via tiling walls
 `surface-group-atoms-are-wall-arrangement-cells` (+ proof): for `π_1(Σ_g)` with the regular
 `4g`-gon generators:
-- the atoms are the cells of wall arrangements, and half-plane cells are gated;
+- the atoms are the cells of wall arrangements;
 - every BBMZ hypothesis holds except the irreducible core;
-- the remaining obstacle is the crossing-wall effect at tiling vertices, the non-median part of
-  the wall metric.
+- no cell is a half-plane (correction: the first landing's gate lemma was vacuous);
+- the remaining obstacle concerns sector cells at crossing vertices.
 
 I used the geodesic walls of the tiling, the alternative route suggested by the coordinator,
 instead of reading Bowen–Series at source.

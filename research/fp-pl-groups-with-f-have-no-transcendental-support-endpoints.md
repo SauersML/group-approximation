@@ -57,9 +57,9 @@ an `F`-bump supported in a small dyadic subinterval of `I`.
 
 ## Scope and what is not claimed
 
-- One transcendental parameter only (data in `Q(λ)`). Several independent transcendentals, or
-  algebraic extensions of `Q(λ)`, should go through by deforming one element of a transcendence basis
-  and following simple roots continuously; this is not written out.
+- One transcendental parameter only (data in `Q(λ)`). This is superseded by
+  `fp-piecewise-projective-groups-rigidity-criterion`, which allows any finitely generated data field,
+  projective pieces, the line and the circle, and any algebraic rigid subgroup.
 - Homeomorphisms only. PL bijections with finitely many discontinuities (`V`-type) should work
   verbatim with pieces taken as right-open intervals; not written out.
 - Nothing is claimed for groups without a dyadic `F` or without an element as in (E); for line groups

@@ -129,11 +129,19 @@ today.
   is about faithfulness of Hurley's embedding, not about residual nilpotence being open.
 - **C. K. Gupta 1973, abstract.** For `n ≥ 4`, `C_n/H_n` is 3×3-linear with `H_n` finite. So the whole
   question was residual separation of a finite central `H_n`.
-- **Two 1976 papers could already contain RN or RF of `C_n`:** N. D. Gupta–Wehrfritz, "Some residual properties
-  of certain nilpotent-by-abelian groups", Arch. Math. 27; and C. K. Gupta–Levin, "Separating laws for free
-  centre-by-metabelian nilpotent groups", Comm. Algebra 4 (1976) 249–270. Both returned 403 and were not read.
-- **Recommendation:** no novelty claim. Linearity of `C_2`, `C_3` and `C_n/T_n` is very likely classical. A
-  MathSciNet or zbMATH check of the two 1976 papers is needed before calling the `n ≥ 4` linearity or RN new.
+- **Update (same day): both 1976 papers were fetched through MSI and read.**
+  - N. D. Gupta–Wehrfritz, Arch. Math. 27 (1976) 449–455, doi:10.1007/BF01224698, md5 `3b7401f7…`.
+  - N. D. Gupta–Levin, Comm. Algebra 4 (1976) 249–270, doi:10.1080/00927877608822105, md5 `2ffc8d47…`.
+  - Copies are in `$GQ/src/bh-verify-cbm/` and `gqsrc/bh-verify-cbm/`.
+- **The theorem is known.** Gupta–Wehrfritz p. 454, Remark 3: "Every free centre-by-metabelian group of
+  finite rank has a faithful representation of finite degree (depending on the rank) over the ring R_0". Their
+  facts (ii) and (iii) on p. 454 are credited to C. K. Gupta 1969/1973:
+  - the torsion is elementary abelian of rank `C(r,4)`, which confirms `d = 2` independently of Kuz'min;
+  - `F/[F'', F]` is residually a finite 2-group.
+- **Gupta–Levin 1976** is about separating laws for the nilpotent quotients, so it is not relevant here.
+- **Verdict on priority.** bh-free-28's chain is a new, explicit proof of a 1976 theorem: an explicit
+  corner representation, a homological kernel computation, and a nilpotent patch. It is not a new result. The
+  node's priority line is updated to say so.
 
 ## Lesson for general BH
 

@@ -63,6 +63,15 @@ Found by grep of 2026-09-18; the list may be incomplete.
 
 These are the owners' to re-grade. This node does not edit them.
 
+## Repair
+
+The statements are re-proved for every action in `abstract-twisted-bt-type-fn-criterion`. That
+route realizes the abstract group as the `S`-colored subgroup of the faithful `S'V_G`, with
+`S' = S ⊔ G` (`abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one`). It then uses
+the `S`-colored Stein complex, whose vertex stabilizers are the correct `G ≀ Σ_m`. The nodes
+listed above can cite that node in place of FFWZ Theorem B(ii), (iii) for non-faithful
+actions.
+
 ## Lesson for general BH
 
 A stabilizer computation does not survive passing to an action through a quotient. The

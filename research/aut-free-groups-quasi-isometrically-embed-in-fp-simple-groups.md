@@ -41,3 +41,16 @@ is undistorted. This lane did not settle that.
 
 **Scope.** Parts 1 and 2 use only the existence of the BFFHZ host and the Belk--Zaremsky quasi-retraction.
 The high transitivity of the action is not used.
+
+## Attempts
+
+1. **(bh-free-44, 09-18) Braid groups and loop braid groups.**
+   - The braid-group question above is now answered with a different embedding:
+     `braid-groups-quasi-isometrically-embed-in-fp-simple-groups`. There `B_n` enters `Aut(F_{2n})` through
+     handle capping, a once-punctured surface, and Hamenstädt–Hensel, not through Artin's `B_n <= Aut(F_n)`.
+     The same holds for `Mod(S_g^b)`, `b >= 1`.
+   - Part 2 of this node has a negative use: `loop-braid-groups-are-distorted-in-aut-free-groups`. By Handel–Mosher, the
+     symmetric automorphism groups are distorted in `Aut(F_n)` for `n >= 3`, so the BFFHZ embedding of
+     loop braid groups is not quasi-isometric.
+   - Lesson for general BH: this host is geometrically faithful to `Aut(F_n)`, so the Handel–Mosher
+     coindex dichotomy predicts which natural inputs embed quasi-isometrically.

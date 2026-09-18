@@ -111,10 +111,10 @@ the last step by de Cornulier and Bartholdi--de Cornulier--Kochloukova.
 
 ## Scope
 
-- **Non-faithful actions stay open.** FFWZ conjecture the same characterization for
-  abstract twisted Brin--Thompson groups. The proof uses the connectivity of the Stein
-  complex sublevel sets (FFWZ Proposition 4.8(ii)), which is proved only for faithful
-  actions.
+- **Non-faithful actions.** FFWZ conjecture the same characterization for abstract twisted
+  Brin--Thompson groups. It is proved in `abstract-twisted-bt-type-fn-criterion` (lane proof,
+  unreviewed), by running this argument on the `S`-colored Stein complex of the faithful
+  `(S ⊔ G)V_G`.
 - **Literature check (2026-09-18).** FFWZ v2 records the problem as open. One web search
   ("twisted Brin–Thompson type F_n ... 2026") found no later resolution. No MathSciNet
   search was done.
