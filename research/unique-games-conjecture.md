@@ -16,6 +16,8 @@ artifacts:
   - research/artifacts/ugc-galois-games-2026-09-12.md
   - experiments/grassmann-can-holonomy-2026-09-17/can_holonomy.py
   - experiments/grassmann-can-holonomy-2026-09-17/output.txt
+  - experiments/ugc-sqrt-scale-2026-09-17/check_sqrt_scale.py
+  - experiments/ugc-sqrt-scale-2026-09-17/output.txt
 ---
 
 **OPEN.** Khot's Unique Games Conjecture: for every `0 < eps < 1/2` there is an
@@ -278,6 +280,36 @@ it is supplied, and the exponential pairing-support obstruction persists.
 * **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
   (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
   second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
+* **Sqrt-scale quantifier shift** (swarm-0917, `e-ugc-pull-logic`). The root
+  gap `1-eps` versus `eps` is equivalent to a near-1 versus near-1 gap
+  (`sqrt-scale-unique-games-hardness-is-equivalent-to-ugc`, ESTABLISHED):
+
+  ```text
+  UGC  <=>  for every C there are eta <= 1/C^2 and k with
+            Gap-UG_k[1-eta, 1-C sqrt(eta)] NP-hard.
+  ```
+
+  The forward direction is trivial. The converse uses `floor(eps/eta)` rounds of
+  Dinur--Steurer repetition with `C^2 = 32 ln(1/eps)/eps`. The OPEN premise
+  `sqrt-scale-unique-games-hardness` gives the two-way route
+  `ugc-from-sqrt-scale-unique-games-hardness`.
+  - *Squaring law.* Hardness at ratio `R >= 6` yields
+    `Gap-UG[1-17rho/R^2, 1-(1-1/e)rho]` hardness, so linear deficit ratio
+    `>= R^2/27`. A bounded linear deficit ratio would therefore refute UGC.
+  - *Scale is forced.* `black-box-repetition-needs-sqrt-scale-soundness-gap` is
+    a class kill, via Raz's odd cycle. Every repetition amplifier with product
+    completeness and a universal soundness bound needs
+    `gamma >= c sqrt(eta/eps')`. Sub-sqrt deficits, including linear
+    `1-eta` versus `1-O(eta)` hardness, die at the soundness certification step.
+  - *Alphabet cost.* `sqrt-scale-ug-hardness-costs-alphabet-exp-c-squared`
+    (via CMM): ratio `C` needs `log k >= C^2/4A^2` unless `NP <= RP`.
+  - *Credit.* The equivalence is folklore from Rao, Dinur--Steurer and Raz; the
+    explicit constants, squaring law and pairing with the two sharpness facts
+    are recorded here.
+  - *What falsifies it.* A rounding algorithm reaching `1 - C_0 sqrt(eta)`
+    uniformly in `k` would refute UGC.
+  - *Survivors of the kill.* Instance-aware soundness analyses, and non-repetition
+    amplifiers.
 * **Calibration against the expanding-constraint-graph world (e-ugc-calibrate,
   swarm-0917, 2026-09-17).** ESTABLISHED:
   `spectral-gap-ratio-reductions-cannot-prove-ugc`, resting on the new import

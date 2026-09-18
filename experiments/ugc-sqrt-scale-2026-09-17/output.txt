@@ -1,0 +1,8 @@
+[1] max over grid of 2sqrt(1-g)/(2-g) - exp(-g^2/8) = -1.110e-16
+[2] amplification parameter cases: 180, violations: 0
+[3] squaring-law parameter cases: 25, violations: 0
+[4] random UG (k=2,|U|=2,|V|=3,5 edges): 40 trials, violations: 0, cases with val2 > val^2: 3
+[5] odd cycle C_3: value 0.833333, expected 0.833333, ok=True
+[5] odd cycle C_5: value 0.900000, expected 0.900000, ok=True
+[5] odd cycle C_3 2-fold: value 0.694444; val^2 = 0.694444; DS bound sqrt(prod) = 0.995859
+RESULT: all checks passed
