@@ -113,8 +113,14 @@ The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
 - More generally, any centerless linear group with finite outer automorphism group
   qualifies. This includes torsion-free lattices in simple Lie groups not locally
   isomorphic to `PSL_2(R)` (strong rigidity; rigidity inputs not re-read here).
-- For one-ended hyperbolic `Γ`, item 6 needs `Γ` itself in `B_A`, known here only when `Γ` is
-  linear, e.g. cubulated (virtually special).
+- **Hyperbolic kernels.** Every hyperbolic group is in `B_A`
+  (`hyperbolic-groups-lie-in-the-permutational-class`, referees a and b PASS). So item 6
+  applies to every hyperbolic `Γ` with trivial center (e.g. torsion-free non-elementary) and
+  finite `Out(Γ)`. By Paulin's theorem with the Rips--Bestvina--Feighn theory of actions on
+  R-trees (inputs not re-read here), `Out(Γ)` is finite when `Γ` is one-ended and does not split
+  over a virtually cyclic subgroup. So every extension of a group in `B_A` by such a `Γ` is in
+  `B_A`. When `Out(Γ)` is infinite, item 6 still covers extensions whose outer action has
+  finite image.
 
 ## Scope
 
