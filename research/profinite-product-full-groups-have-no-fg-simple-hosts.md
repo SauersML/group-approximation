@@ -2,7 +2,7 @@
 rg: 2
 id: profinite-product-full-groups-have-no-fg-simple-hosts
 kind: claim
-title: In the full group of a profinite translation groupoid times any ample groupoid, every finitely generated simple subgroup containing the translations is isomorphic to the group
+title: The full group of a profinite translation groupoid times any ample groupoid has no finitely generated simple subgroup containing the translations
 distinct_from:
   fp-residually-finite-boone-higman: that is the open problem for all finitely presented residually finite groups; this kills one natural host shape for it, the Cantor hosts built by crossing the profinite translation action of G with a Thompson-type groupoid.
   bliw-locally-finite-tree-actions-embed-in-fp-simple-groups: that embeds groups acting on locally finite trees; this is about hosts inside topological full groups whose only link between the profinite coordinate and the expanding coordinate is the product structure.
@@ -23,9 +23,7 @@ group `F(𝒢)` by `g ↦ ((y,z) ↦ (gy, z))`.
 1. `F(𝒢) = ⋃_i F_i` is a strictly increasing union of proper subgroups, so it is not
    finitely generated. Here `F_i` is the subgroup of elements whose `G`-cocycle is
    constant on pieces of the form (`N_i`-coset) × (compact open subset of `Z`).
-2. Every finitely generated simple subgroup `S <= F(𝒢)` with `G <= S` is isomorphic
-   to `G`. In particular, if `G` is not simple, no finitely generated simple subgroup
-   of `F(𝒢)` contains `G`.
+2. No finitely generated simple subgroup `S <= F(𝒢)` contains `G`.
 
 **Proof.**
 - *Cocycle.* Each `f ∈ F(𝒢)` has the local form `f(y,z) = (c_f(y,z) y, β(z))`, with
@@ -45,13 +43,10 @@ group `F(𝒢)` by `g ↦ ((y,z) ↦ (gy, z))`.
   `c σ c^(-1)`, which is again `N_i`-valued because `N_i` is normal. So `K_i` is
   normal in `F_i`, and `G ∩ K_i = N_i`. This uses that `g` acts trivially on
   `G/N_i` exactly when `g ∈ N_i`.
-- *Simplicity.* `S ∩ K_i` is normal in `S` and contains `N_i`, which is nontrivial
-  because `G` is infinite. So `S <= K_i`, hence `G <= N_i`. So `N_i = G` and
-  `S <= K_G = {(y,z) ↦ (σ(z) y, z)}`, where `σ: Z -> G` is locally constant. There,
-  composition is pointwise multiplication. For `z_0 ∈ Z`, evaluation `σ ↦ σ(z_0)` is
-  a homomorphism `K_G -> G`, and it restricts to the identity on the constant
-  functions `G`. On the simple group `S` it is injective, with image containing
-  `G`, so `S ≅ G`.
+- *Simplicity.* Since the `F_i` increase, `S <= F_i` for some `i >= 1`. `S ∩ K_i` is
+  normal in `S` and contains `N_i`, which is nontrivial because `G` is infinite and
+  `N_i` has finite index. So `S <= K_i`, hence `G <= G ∩ K_i = N_i`, which is a proper
+  subgroup of `G`. This is a contradiction.
 
 **What this says for Problem 5.3(12).** A finitely presented simple host for a
 residually finite `G` cannot be built by letting `G` act only through its profinite

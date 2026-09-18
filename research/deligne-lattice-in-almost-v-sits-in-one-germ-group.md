@@ -9,8 +9,7 @@ distinct_from:
   deligne-lattice-embeds-in-no-rover-nekrashevych-group: that excludes Rover--Nekrashevych hosts; this constrains every finite germ extension of V, including shell envelopes, without excluding them.
 ---
 
-**ESTABLISHED** by `deligne-lattice-almost-v-germ-group-proof` (lane proof, not
-independently reviewed; no novelty claimed).
+**ESTABLISHED** by `deligne-lattice-almost-v-germ-group-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-germ-extensions.md, bdc9e959c; lane proof; citation review by referee-b pending; no novelty claimed).
 
 Let `n >= 2`, let `p : G~ -> Sp_2n(R)` be the universal cover, let `Gamma~ = p^-1(Sp_2n(Z))`
 (`deligne-universal-cover-lattice-is-non-rf-kazhdan`) and `Z = ker p ≅ Z`. Let `E <= H` be a

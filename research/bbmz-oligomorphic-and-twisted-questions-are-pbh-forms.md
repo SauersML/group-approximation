@@ -11,7 +11,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `bbmz-oligomorphic-twisted-questions-proof` (lane proof, elementary, assembling
-landed nodes; not independently reviewed). No priority claimed; Zaremsky's text, where type (A)
+landed nodes). Referee a (proof gaps): PASS in
+`research/artifacts/gq-referee-a-hyperbolic-groups-lie-in-the-permutational-class.md` (2bdad9399),
+nit N2 applied. No priority claimed; Zaremsky's text, where type (A)
 was introduced after these questions were posed, was not re-read for a remark to the same effect.
 
 ## The questions

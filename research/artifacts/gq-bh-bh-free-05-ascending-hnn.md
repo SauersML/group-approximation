@@ -110,3 +110,15 @@ different argument that (L3) asks for, available because the extension is ascend
   as open. This is a bounded search: no MathSciNet, no Google Scholar.
 - **Not claimed:** HNN extensions of free groups with both associated subgroups of infinite
   index, where Step 5 fails. `bh-embeddability-survives-decidable-edge-hnn` stays open.
+
+## 6. Consequence: generic one-relator groups (added 09-18)
+
+Sapir–Špakulová, arXiv:0809.4693v2 (TeX read via MSI, SHA-256 1fabe7cb…d09d88ae), `thm3`: a
+random k-generator one-relator group, k ≥ 3, embeds in an ascending HNN extension of a
+finitely generated free group with probability 1. Composing with §2 gives
+`almost-all-one-relator-groups-satisfy-boone-higman`: BH, and PBH, hold for almost all
+one-relator groups with at least 3 generators (models NR, CR, IC). They also hold for the
+explicit criteria `thm1` and `lm4`, and for Brown's two-generator criterion (`lm0`, quoted by
+SS; Brown's paper not read). BBMZ 5.3(9) in full stays open. The two-generator generic case is
+only numerically suggested (~94%, per Borisov–Sapir and Dunfield–Thurston as quoted by SS), and
+it is not almost sure.
