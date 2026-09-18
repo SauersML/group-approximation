@@ -5,6 +5,7 @@ kind: claim
 title: Bernoulli cost minimizers have tight finite-cycle dimension
 artifacts:
   - research/artifacts/fpbs/docs/cost-cycle-structure.md
+  - research/artifacts/fpbs/docs/cycle-tail-hodge-gap-dictionary.md
 distinct_from:
   fpbs-graphing-cost-betti-cycle-dimension-identity: that proves the identity and a conditional equivalence; this asserts the unproved existence of compact near-minimizing sequences for all finitely generated groups
 ---
@@ -83,6 +84,26 @@ price one free factor. Amalgams of fixed price one groups over infinite
 subgroups have fixed price one by Corollary 2.40(a), free products are
 covered by Theorem 2.27, and amenable H falls under Corollaries 2.28 and
 2.32.
+
+Use a gap for the Hodge atom (2026-09-17, operator-algebras transplant).
+Fill every closed walk of length at most L. The kernel of the Laplacian
+partial_1^* partial_1 + partial_2 partial_2^* then has dimension
+beta_1^(2)+tau_L(Phi). For cylinder graphings of the binary shift it is a
+rational matrix over Z/2 wr Gamma. For residually finite Gamma, Lueck
+approximation turns tau_L+beta_1 into normalized average Betti numbers of
+L-filled finite labelled complexes. That suggests quantization arguments:
+integer Betti numbers, Atiyah-type rationality, or a spectral gap at zero.
+All of them die at the step "small tail implies zero tail". By
+`fpbs-cycle-tail-gap-near-minimum-iff-cost-betti-gap`, adding long chords
+gamma on a pattern-isolated cylinder set costs arbitrarily little and
+creates no simple cycle of length at most L. So a gap tau_L outside
+(0,delta) for all near-minimizers is equivalent to g>0, the negation of
+this claim. The finite formula also does not give the needed uniformity,
+since its limit is over quotients for a fixed graphing. The same
+limit-interchange problem reappears. Artifact:
+`research/artifacts/fpbs/docs/cycle-tail-hodge-gap-dictionary.md`.
+A surviving route needs a quantitative bound tau_L <= f_L(eps) along a
+chosen sequence that is insensitive to chord insertion.
 
 Generalize the Section 8 routing to a hyperfinite spine (2026-09-17). The
 F_r x Z calculation uses one feature: the orbit relation T_0 of the central
