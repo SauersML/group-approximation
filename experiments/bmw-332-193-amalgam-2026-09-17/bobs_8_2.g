@@ -1,0 +1,42 @@
+F:=FreeGroup("b0","b1","b2");; b0:=F.1;; b1:=F.2;; b2:=F.3;;
+R:=[b0*b1^-1*b0*b1^-1,
+b0*b2^-1*b0*b2^-1,
+b1*b2^-1*b1*b2^-1,
+b0*b1^-1*b0*b2^-1*b1*b2^-1,
+b0*b1^-1*b2*b0^-1*b1*b2^-1,
+b0*b1^-1*b2*b0^-1*b2*b1^-1,
+b0*b1^-1*b2*b1^-1*b0*b2^-1,
+b0*b0*b1^-1*b0*b1^-1*b1^-1*b0*b1^-1,
+b0*b0*b1^-1*b0*b1^-1*b2^-1*b0*b2^-1,
+b0*b0*b2^-1*b0*b2^-1*b1^-1*b0*b1^-1,
+b0*b0*b2^-1*b0*b2^-1*b2^-1*b0*b2^-1,
+b0*b1*b0^-1*b1*b0^-1*b1^-1*b0*b1^-1,
+b0*b1*b0^-1*b1*b0^-1*b2^-1*b0*b2^-1,
+b0*b1*b2^-1*b1*b2^-1*b1^-1*b0*b1^-1,
+b0*b1*b2^-1*b1*b2^-1*b2^-1*b0*b2^-1,
+b0*b2*b0^-1*b2*b0^-1*b1^-1*b0*b1^-1,
+b0*b2*b0^-1*b2*b0^-1*b2^-1*b0*b2^-1,
+b0*b2*b1^-1*b2*b1^-1*b1^-1*b0*b1^-1,
+b0*b2*b1^-1*b2*b1^-1*b2^-1*b0*b2^-1,
+b0*b1^-1*b0*b1^-1*b0*b1^-1*b0*b1^-1,
+b0*b1^-1*b0*b1^-1*b0*b2^-1*b0*b2^-1,
+b0*b1^-1*b0*b1^-1*b2*b1^-1*b2*b1^-1,
+b0*b1^-1*b0*b1^-1*b1^-1*b2*b1^-1*b2,
+b0*b1^-1*b0*b1^-1*b2^-1*b1*b2^-1*b1,
+b0*b1^-1*b0*b2^-1*b0*b1^-1*b0*b2^-1,
+b0*b1^-1*b2*b1^-1*b0*b1^-1*b2*b1^-1,
+b0*b2^-1*b0*b2^-1*b0*b2^-1*b0*b2^-1,
+b0*b2^-1*b0*b2^-1*b1*b2^-1*b1*b2^-1,
+b0*b2^-1*b0*b2^-1*b1^-1*b2*b1^-1*b2,
+b0*b2^-1*b0*b2^-1*b2^-1*b1*b2^-1*b1,
+b0*b2^-1*b1*b2^-1*b0*b2^-1*b1*b2^-1,
+b1*b1*b2^-1*b1*b2^-1*b2^-1*b1*b2^-1,
+b1*b2*b1^-1*b2*b1^-1*b2^-1*b1*b2^-1,
+b1*b2^-1*b1*b2^-1*b1*b2^-1*b1*b2^-1];;
+A:=F/R;; ag:=GeneratorsOfGroup(A);;
+Hw:=[b2,b2^-1,b0,b0^-1,b1*b2*b1,b1*b2^-1*b1,b1*b0*b1,b1^-1*b2^-1*b1^-1,b1^-1*b0*b1^-1,b1*b0^-1*b1,b1^-1*b2*b1^-1,b1^-1*b0^-1*b1^-1,b1^-1*b1^-1*b1^-1,b1*b1*b1];;
+H:=Subgroup(A,List(Hw,w->MappedWord(w,GeneratorsOfGroup(F),ag)));;
+c1:=ag[2]*ag[1]^-1;;
+LI:=LowIndexSubgroupsFpGroup(A,H,6);;
+Print("L=8 v=2 #rels ",Length(R)," #subgroups of index<=6 containing H: ",Length(LI)," indices ",List(LI,U->Index(A,U))," not containing c1: ",Number(LI,U->not c1 in U),"\n");
+QUIT;

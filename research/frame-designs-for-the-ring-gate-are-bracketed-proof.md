@@ -17,6 +17,8 @@ requires:
   - dilation-letters-cannot-divide-the-unit-class
   - register-comparison-presentations-are-not-simple
   - algebraic-closure-kills-rational-steinberg-symbols
+  - rational-k1-detection-forces-infinite-order-unit-class
+  - sl2-vacuum-hosts-admit-verma-type-modules
 ---
 
 Each item of the claim is the cited node's statement, specialized to the widened gate. The only glue is the following.

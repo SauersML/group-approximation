@@ -1,0 +1,18 @@
+class 281 generators ['v0v1|', '|h0h1', 'v3v1v0v3|', '|h3h1h0h3']
+elements 333 with inverses 490 relations 420 clauses 910
+Glucose4 UNSAT
+Minisat22 UNSAT
+Cadical153 UNSAT
+DRUP proof lines 151 self-checked by reverse unit propagation: True
+class 193 generators ['v1v3|', '|h1h2', 'v2v3v1v2|', '|h3h2h1h3']
+elements 333 with inverses 490 relations 420 clauses 910
+Glucose4 UNSAT
+Minisat22 UNSAT
+Cadical153 UNSAT
+DRUP proof lines 291 self-checked by reverse unit propagation: True
+class 332 generators ['v0v1|', '|h0h1', 'v3v1v0v3|', '|h3h1h0h3']
+elements 333 with inverses 490 relations 420 clauses 910
+Glucose4 UNSAT
+Minisat22 UNSAT
+Cadical153 UNSAT
+DRUP proof lines 151 self-checked by reverse unit propagation: True

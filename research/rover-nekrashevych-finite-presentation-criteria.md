@@ -32,3 +32,11 @@ distinct_from:
 
 Finite presentation is not what stops the Rover--Nekrashevych route to the full conjecture. Property (T) does:
 `deligne-lattice-embeds-in-no-rover-nekrashevych-group`.
+
+## Attempts
+
+- 2026-09-18 (w7-101): a characterization for finite-state `H` is now proved in
+  `rover-nekrashevych-fp-iff-finite-lift-presentation`. `V_d(H)` is finitely presented iff the relator kernel is a
+  finitely generated lift ideal; FP1 and FP2 are special cases.
+  - First example beyond FP1 and FP2: `rover-nekrashevych-group-of-lamplighter-automaton-is-fp`, where
+    `V_2(Z/2 ≀ Z)` is finitely presented.

@@ -19,13 +19,15 @@ Notation of `frame-generated-simple-rings-have-no-vacuum`: `S_n`, `T_n` are the 
   with `ι_n(c) = S_n c T_n`.
 - `ι_n` is a unital ring map, since `S_n P^(n) T_n = E_n = 1`. It is injective, since `T_n ι_n(c) S_n = P^(n) c P^(n) = c`.
   The inclusions are `c -> φ(c)`, since `S_n c T_n = S_(n+1) φ(c) T_(n+1)`.
-- Each `P^(n) M(B) P^(n)` is a corner of a matrix ring over a product of matricial rings, hence matricial. So `R_0` is
-  a directed union of matricial rings, which is ultramatricial, with cancellation of idempotents.
+- Each `P^(n) M(B) P^(n)` is a corner of a matrix ring over a product of `U_Q`-type rings, hence ultramatricial.
+  So `R_0` is ultramatricial. Cancellation holds, because equality in the colimit is reached at a finite semisimple
+  stage (gq-referee-a, N1). `P^(n)` is full, since `A` has positive row sums, so the corner has `K_0 = K_0(B)` (N4).
 - `K_0(R_0) = colim(K_0(B) --A--> K_0(B) --A--> ...)`, which is `Q^m` in level-`0` coordinates when `A` is invertible.
 - For `g in M_j(B)`, `w_g = S φ(g)` (block-diagonal `S`) has `w_g w_g' = g` and `w_g' w_g = φ(g)`, with
   `w_g' = φ(g) T` (item 6 of the corner node). So a degree-`1` partial isometry with domain of class `A[g]` has range
-  of class `[g]`. By cancellation in `R_0`, every degree-`1` partial isometry differs from some `w_g` by degree-`0`
-  equivalences on both sides, which gives `[E] = A^-1 [D]`.
+  of class `[g]`. In general (gq-referee-a, N2): let `w` be of degree `1` with `w = E w D`, `w' w = D` and `w w' = E`.
+  Then `w = s (t w)`, and `c = t w`, `c' = w' s` have entries in `R_0`. `c' c = w' (s t) w = D`, `c c' = t E s = φ(E)`,
+  and `c c' c = c`. So `D ~ φ(E)`, that is `[D] = A[E]` in level-`0` coordinates, since `φ(ι_1(c)) = c`.
 
 **Item 2.**
 - Pick an idempotent `g in B` with `[g] = c`. Such a `g` exists: each `B_i` has idempotents of every class in
@@ -38,7 +40,8 @@ Notation of `frame-generated-simple-rings-have-no-vacuum`: `S_n`, `T_n` are the 
   degreewise, and `r t_+^n = 0` forces `r α^n(1) = 0`, so the map is injective.
 
 **Item 3.**
-- Write `v = [dom_+] - A[dom_-]` for vectors `dom_+ = v + A b` and `dom_- = b`. Take `b >= 0` with `v + A b >= 0`.
+- Write `v = [dom_+] - A[dom_-]` for vectors `dom_+ = v + A b` and `dom_- = b`. Take `b >= 0` with `v + A b >= 0` and `v + b >= 0`, for
+  example `b = N·(1, ..., 1)` for large `N` (gq-referee-a, N3).
   Ranges are `ran_+ = A^-1 dom_+` and `ran_- = A dom_-`, by item 1 applied to `w_+` and to the adjoint of `w_-`.
 - Then `dom_+ + dom_- - ran_+ - ran_- = (1 - A^-1)(v + A b) + (1 - A) b = (1 - A^-1) v = 0`, since `A v = v`. So the
   totals agree. That is `[dom w_+] - [ran w_-] = v` in level-`0` coordinates, since `ran_- = A b`.

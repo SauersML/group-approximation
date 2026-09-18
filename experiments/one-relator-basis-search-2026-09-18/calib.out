@@ -1,0 +1,6 @@
+SC TaatAAA len=7 maxpiece=2 C6=False C4=False T4=False -> none T4witness=AAATaat
+SC TAtaTatAA len=9 maxpiece=3 C6=False C4=False T4=False -> none T4witness=AATAt
+SENTINEL_DONE
+ORBIT TaatAAA states=88 -> none best=TAAtaaa(2/7)
+ORBIT TAtaTatAA states=88 -> none best=TTAtaatATA(2/10)
+SENTINEL_DONE

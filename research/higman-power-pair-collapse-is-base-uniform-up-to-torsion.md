@@ -53,3 +53,23 @@ cannot prove more than "the generators are torsion", because `D_oo x D_oo` exist
 the rational abelianization of a finite-index subgroup. The chain controls `A_M/A_M'` (it is finite).
 Showing `b_1(A_M') = 0` for all `M` is the next rung. It would still not collapse perfect edge images such
 as simple amenable groups, which is why item 4's base-uniformity matters.
+
+## Attempts
+
+- **w9-053 (question (a), odd base).** Landed `higman-edge-closure-absorbs-b-powers` (00bd4a967).
+  - In every finite or profinite image, a relation `w` of `A_M` puts `b^(n^|e_a(w)| - 1)` and
+    `d^(n^|e_c(w)| - 1)` into the closure of `A_M`.
+  - So if a profinite image (for example `Aut(T)`) has no power of `b` in `cl(A)`, then `A` is free.
+  - Consequences for (a):
+    - odometer, level-separated, independent-tree and matched-pair (exact-factorization)
+      constructions all give free `A`;
+    - a residually finite counterexample must be "diagonal", with `b^(n^Y - 1)` in `cl(A)`.
+  - Dead ends: linear quotients (all generators torsion) and topological full groups of minimal
+    Z-systems (only finite orbits).
+  - Evidence:
+    - the universal pro-2 quotients of `H4(3)`, `H4(5)`, `H4(7)` up to class 6 are exact products
+      `A_k B_k`;
+    - in `H4(3)/<<[a,c]^2>>`, the least `s` with `b^(2^s)` in `A_k` stabilizes at the predicted
+      `v_2(3^16 - 1) = 6`, while `ord(a)` keeps growing and `A^ab = (Z/16)^2`.
+  - Next: decide whether the residually-2 image of `H4(3)/<<[a,c]^2>>` has infinite-order
+    generators and an amenable edge image, or prove the pro-2 exact-product theorem.

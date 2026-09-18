@@ -1,0 +1,23 @@
+k=1 #gens 8 maxlen 5 index 3 level-1 orbit of letter 0 (1-based): [ 1, 3, 2 ]
+   G_0 <= G_1: false
+k=2 #gens 20 maxlen 7 index 9 level-1 orbit of letter 0 (1-based): [ 1, 2, 3 ]
+   G_0 <= G_2: false
+   G_1 <= G_2: false
+k=3 #gens 56 maxlen 15 index 27 level-1 orbit of letter 0 (1-based): 
+[ 1, 2, 3 ]
+   G_0 <= G_3: false
+   G_1 <= G_3: false
+   G_2 <= G_3: false
+k=4 #gens 164 maxlen 21 index 81 level-1 orbit of letter 0 (1-based): 
+[ 1, 3, 2 ]
+   G_0 <= G_4: false
+   G_1 <= G_4: false
+   G_2 <= G_4: false
+   G_3 <= G_4: false
+k=5 #gens 488 maxlen 25 index 243 level-1 orbit of letter 0 (1-based): 
+[ 1, 2, 3 ]
+   G_0 <= G_5: false
+   G_1 <= G_5: false
+   G_2 <= G_5: false
+   G_3 <= G_5: false
+   G_4 <= G_5: false
