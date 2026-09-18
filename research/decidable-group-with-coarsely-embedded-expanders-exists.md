@@ -13,7 +13,8 @@ distinct_from:
 **ESTABLISHED** (lane proof; every input is read at source, including the curvature formula behind the
 Greendlinger step, Gruber–Sisto Lemma 2.14). gq-referee-a PASS (proof gaps,
 `research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5), nits N1–N2
-applied; citation review by gq-referee-b pending.
+applied. gq-referee-b PASS (citations,
+`research/artifacts/gq-referee-b-decidable-expanders-and-ce-separator.md`, a145cf14f), W1–W2 applied.
 No priority claimed: Osajda records recursiveness of the presentation (below), and the
 word-problem step is the classical Dehn algorithm.
 
@@ -38,7 +39,7 @@ arXiv:1406.5015v3 (Acta Math.), read from the PDF:
 - Remark 2.8 (p. 14): each finite stage "can be extended … by using the brute force
   algorithm", so "if the sequence Θ of finite graphs is recursive, the small cancellation
   labelling `(Θ,m)`, as well as the resulting small cancellation presentation, are recursive".
-- p. 15: "Recursive sequences of finite graphs Θ (satisfying our assumptions from the beginning
+- Remark 2.8 and §2.4: "Recursive sequences of finite graphs Θ (satisfying our assumptions from the beginning
   of Section 2) exist"; §2.4 names the LPS Cayley graphs `X^(p,q_n)` of `PGL_2(q_n)`, an
   expander of degree `p+1` with girth → ∞ satisfying (1).
 - §3.2 (p. 17) uses `λ <= 1/24`. Theorem 3.2: each `Θ_n` embeds isometrically into the Cayley
@@ -56,7 +57,7 @@ hyperbolic*, arXiv:1408.4488v3, read from the PDF:
 
 ## Proof
 
-**The group.** Take `Θ` recursive as on p. 15 (LPS graphs, subsequence chosen greedily, which is
+**The group.** Take `Θ` recursive as in Remark 2.8 and §2.4 (W2) (LPS graphs, subsequence chosen greedily, which is
 computable because girths of finite graphs are computable). Fix `λ = 1/24`, and let `m` be the
 labelling of Theorem 2.7, over a finite set `S`. It is recursive by Remark 2.8. Put `Γ = ⊔ Θ_n`
 and `M = G(Γ)`. This is Osajda's `⟨Γ | Θ⟩`: the normal closure of the image of `π_1(Θ_n)` is
@@ -86,7 +87,8 @@ maximal arcs. Strebel's formula (Gruber–Sisto Lemma 2.14, p. 8, quoting [Str90
 - Interior faces have `e = 0` and `i >= 25`, so they contribute negatively.
 - A boundary face of a disk component with at least two faces has `i >= e >= 1`: consecutive maximal arcs
   of `∂Π` meet at a vertex of degree `>= 3`, and in a disk two consecutive exterior arcs cannot share a face.
-  This is the standard (3,k)-diagram bookkeeping of Gruber–Sisto §2.5, which referees should check.
+  This is the (3,k)-diagram bookkeeping of Gruber–Sisto §2.5; the degree argument is checked in the
+  gq-referee-b report above (W1).
   So its term is `<= 3`, and it is positive only if `e = 1` and `i <= 3`.
 - Hence at least two faces of `D_0` have **one exterior arc `e` and at most three interior arcs**.
 

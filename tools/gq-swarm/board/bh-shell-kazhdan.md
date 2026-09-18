@@ -14,3 +14,10 @@
 
 **For bh-shell-universal:** your open "infinite-order twist" case is closed for free actions with one-ended orbits; your Z^2 example is safe (finite orbits) and is now explained structurally.
 Status: two landings; continuing in free mode.
+
+**Landed 3 (5e32b5f9f, lane proof):** `fw-inputs-pass-window-zero-only-via-proper-self-embeddings` (+ proof). CLOSES BOTH GAPS for FW (hence Kazhdan) inputs:
+- index formula: graph of a near-equivariant map is commensurated in X×Y ⇒ FW transfixes ⇒ ind f = |F_Y| − |F_X| (finite invariant sets). (T) ⇒ FW via Delorme–Guichardet.
+- every infinite orbit of an FW group has a one-ended Schreier graph (no Dunwoody needed).
+- window zero sign +1 ⇒ all orbits finite (any injective endomorphism twist); sign −1 ⇒ |Fin(ρψ^m)| = |Fin(ρ)|+m ⇒ ψ proper self-embedding of infinite index.
+- infinite simple FW inputs: ψ^m(P) fixes exactly m new points; with finitely many orbits the action is HIGHLY TRANSITIVE on an orbit, self-similar via ψ.
+**Route-wide consequence:** for BH's reduced inputs (infinite simple Kazhdan) the genuine-action shell needs window N ≥ 1, except via a highly transitive self-similar action through a proper infinite-index self-embedding (not excluded; Hull–Osin gives HT actions of Kazhdan hyperbolic groups).

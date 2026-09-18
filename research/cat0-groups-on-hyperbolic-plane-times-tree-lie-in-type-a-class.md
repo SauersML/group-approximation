@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `cat0-hyperbolic-plane-tree-type-a-proof` (lane proof; referee a PASS,
-`research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
+`research/artifacts/gq-referee-a-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`; referee b PASS,
+`research/artifacts/gq-referee-b-arithmetic-lie-lattices-and-hyperbolic-plane-tree.md`;
 no priority claimed).
 
 1. Let `Γ` act properly and cocompactly by isometries on `H^2 × T`, with `T` a

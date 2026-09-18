@@ -8,10 +8,17 @@ distinct_from:
   accessible-shell-inputs-admit-no-shift-normalizing-enumeration: that is the regular-action statement for accessible inputs, by an end Euler measure; this is the genuine-action statement for FW inputs, by transfixing one commensurated set.
   eventually-periodic-genuine-shell-actions-give-fp-envelopes: that shows a finite-order twist forces eventual periodicity, hence a virtually abelian input; this shows that, for FW inputs, a twist of any order forces every element to act with finite support.
   genuine-action-shell-envelopes-generalize-the-regular-shell: that sets up the genuine-action shell and its gates; this rules out the window-zero case of those gates for FW inputs.
+  fw-inputs-admit-no-twisted-normalizing-genuine-shell-action: that is the parallel result of lane bh-kazhdan-inputs, for any power s^m with m > 0 and any map phi, and for m < 0 with automorphisms, and it subsumes items 1 and 2 here at m = 1; this one states the conclusion as finite supports for every element, proves it by following the single forward ray, and adds the subgroup form of item 3.
+artifacts:
+  - research/artifacts/gq-referee-a-fw-inputs-admit-no-twisted-shell-normalization.md
 ---
 
 **ESTABLISHED** by `fw-inputs-admit-no-twisted-shell-normalization-proof` (lane proof,
-elementary, not independently reviewed; no novelty claimed for the ingredients).
+elementary; gq-referee-a PASS, proof-gap lens,
+`research/artifacts/gq-referee-a-fw-inputs-admit-no-twisted-shell-normalization.md`, 07944799c,
+nits applied; no novelty claimed for the ingredients). Items 1 and 2 overlap
+`fw-inputs-admit-no-twisted-normalizing-genuine-shell-action`, landed independently by lane
+bh-kazhdan-inputs (2a1326804).
 
 ## Statement
 
@@ -25,9 +32,11 @@ transfixed. Property (T) implies FW. Let `ρ : P -> Sym(N)` be an action and
 2. **Window zero.** Suppose every `ρ_g`, `g ≠ 1`, has infinite support, and `P ≠ 1`.
    - (a) `s^-1 ρ(P) s` is not contained in `ρ(P)`.
    - (b) `s ρ(P) s^-1 ≠ ρ(P)`.
-3. **Subgroups.** The same holds for every infinite FW subgroup `H <= P` in place of `P`.
-   In particular no endomorphism twist, as in item 1, can map an infinite FW subgroup of
-   the input into itself.
+3. **Subgroups.** The same holds for every FW subgroup `H <= P` in place of `P`. Item 1
+   needs no infiniteness. In particular, when the twist `φ` of `P` restricts to an
+   endomorphism of a nontrivial FW subgroup `H`, every `ρ_h`, `h ∈ H`, has finite
+   support. If all nonidentity elements of `P` have infinite support, this is
+   impossible.
 
 ## Consequences for the shell route
 
