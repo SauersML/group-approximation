@@ -101,3 +101,23 @@ boundary SFT.
 Rigidity is known exactly where the boundary is a tree of cliques. Past trees, the obstruction is the lanes:
 the same phenomenon that breaks Busemann merging. The next proof must carry commutation through bounded
 tubes of parallel descents, not along single rays.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS for parts 1 and 3; part 2 PASS conditional on the tree-gluing rigidity theorem
+
+This is an internal lane review.
+- **Part 1 (local forcing).** This is the key step.
+  - Take `g''` on `[1,g]` with `B_(k_C)(g'') ⊆ B_n(1)` and `g ∈ B_R(g'')`, so `R ≥ k_C + 2` suffices.
+  - Any language pattern `β = d(·,q) + c` on `B_R(g'')` is genuine, because `Y_k = K_h` by
+    `hyperbolic-groups-have-sft-horofunction-compactifications` (PASS, f2a29310d1).
+  - If `β` has the same `k_C`-tail as `|·|` at `g''`, then Cannon's theorem, applied after translating by `q^(−1)`, gives it the
+    same cone. So `β(g) − β(g'') = |g| − |g''|`.
+  - This is exactly one step of the forcing closure `F_(j+1)`, and the extra agreement the closure imposes only strengthens the
+    hypothesis. `F_0 = B_R(1)` isolates the seed by part (3) of the k-local node.
+  - So Corollary A of `quantum-rigidity-is-decided-on-the-derived-subshift` applies. I did not referee that corollary.
+- **Part 2 (trees of finite groups).** The recoding between `Y_k` letters and clique-exit letters is mutually local on `B_1`. This
+  part rests on part 4 of `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`, which I have not reviewed.
+- **Part 3 (Bellman).**
+  - Seedless points have no sink, so descending paths are infinite geodesics and leave any finite `F`.
+  - For one-ended `Γ`, take `F′ = F ∪` (the finite components of `Γ ∖ F`). Every path leaving `F′` ends in the infinite component,
+    where `h − h′` is constant. So `h = h′ + c` on `F′`, and `x = z`. Correct.
+- **Part 4.** It is OPEN as stated. I did not check the BBMZ remark (arXiv 2309.06224) at source.
