@@ -55,3 +55,9 @@ effective construction gives decidable simple envelopes for perfect
 inputs, but proves those same envelopes are not finitely presented.
 The existential search must therefore use additional mixed near
 relations; no sufficiency result for those relations is claimed.
+**Rigidity attempt for Kazhdan inputs (bh-shell-kazhdan, 2026-09-18; lane result).** `boone-higman-iff-simple-kazhdan-decidable-inputs` lets the inputs be simple and Kazhdan. The attempt was to use (T) to finitize the near relations. The result is `one-ended-near-regular-actions-have-a-realization-defect`, which uses only one-endedness:
+- shell conjugates carry the defect `delta(c_k) = -k`;
+- no window witness conjugates `c_(-eps)` into a single copy;
+- for `eps = 1` the window group is not realizable on `N`.
+
+The `Z^2` square spiral meets all of these constraints, so they restrict the shape of a witness without excluding one. FA and FW of the copies are consistent with an ascending HNN extension, and no Kazhdan-specific obstruction or construction was found. See `research/artifacts/gq-bh-bh-shell-kazhdan-rigidity-attempt.md`. OPEN.

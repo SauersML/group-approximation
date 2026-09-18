@@ -12,11 +12,13 @@ Lane `bh-met-93j`.  Generic group theory, unconditional.
   multiplication by `γ`.  Products, inverses and hence commutators are carried along
   (`vdkOmegaFree_commutator_eq`): this turns one identity in `Γ` into one identity of
   permutations.
-* `vdkOmegaFree_Orb π`: for `π : P →* Γ`, the orbit space `π(P) \ Γ` of left multiplication.
-  `vdkOmegaFree_E π : P × Orb π → Γ`, `(p, x) ↦ π p · out x`, is onto, and injective when `π`
-  is (`vdkOmegaFree_Eequiv`).  It carries left multiplication by `p` to that by `π p`.
-* `vdkOmegaFree_Psi π π'`: for two injective homs out of `N ⋊[φ] G` and `N' ⋊[φ'] G` that agree
-  on `G`, the composite `E'⁻¹ ∘ E` is `G`-equivariant (`vdkOmegaFree_Psi_equivariant`).
+* `vdkOmegaFree_Orb π`: for `π : P →* Γ`, the orbit space `π(P) \ Γ` of left
+  multiplication.  `vdkOmegaFree_E π : P × Orb π → Γ`, `(p, x) ↦ π p · out x`, is onto,
+  and injective when `π` is (`vdkOmegaFree_Eequiv`).  It carries left multiplication by
+  `p` to that by `π p`.
+* `vdkOmegaFree_Psi π π'`: for two injective homs out of `N ⋊[φ] G` and `N' ⋊[φ'] G` that
+  agree on `G`, the composite `E'⁻¹ ∘ E` is `G`-equivariant
+  (`vdkOmegaFree_Psi_equivariant`).
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
@@ -164,13 +166,15 @@ theorem vdkOmegaFree_Psi_equivariant
   intro g p x
   apply vdkOmegaFree_E_injective π' hπ'
   rw [vdkOmegaFree_E_Psi, vdkOmegaFree_E_mul, vdkOmegaFree_E_mul, hinr]
-  exact congrArg (π' (SemidirectProduct.inr g) * ·) (vdkOmegaFree_E_Psi π π' hπ hπ' (p, x)).symm
+  exact congrArg (π' (SemidirectProduct.inr g) * ·)
+    (vdkOmegaFree_E_Psi π π' hπ hπ' (p, x)).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_Psi_equivariant
 
 /-- Left multiplication by `q` on the `Ψ`-side is carried by `E` to left multiplication by
 `π' q`. -/
-theorem vdkOmegaFree_E_Psi_symm_mul (q : N' ⋊[φ'] G) (ω : (N ⋊[φ] G) × vdkOmegaFree_Orb π) :
+theorem vdkOmegaFree_E_Psi_symm_mul (q : N' ⋊[φ'] G)
+    (ω : (N ⋊[φ] G) × vdkOmegaFree_Orb π) :
     vdkOmegaFree_E π ((vdkOmegaFree_Psi π π' hπ hπ').symm
       (q * (vdkOmegaFree_Psi π π' hπ hπ' ω).1, (vdkOmegaFree_Psi π π' hπ hπ' ω).2)) =
       π' q * vdkOmegaFree_E π ω := by
