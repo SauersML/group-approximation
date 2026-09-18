@@ -93,4 +93,82 @@ theorem k2PolyDeg_w_mem_rootSpan {I R : Type*} [Fintype I] [DecidableEq I] [Ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_w_mem_rootSpan
 
+variable {I : Type} [Fintype I] [DecidableEq I] {p : ℕ} [Fact p.Prime]
+
+/-- **Extension theorem.** If `Φ : π(G) → St_I(F_p[X])` sends `π z` back to `z` for every
+constant `z ∈ A` and every `z ∈ P`, then `G ∩ K₂ = 1`. -/
+theorem k2PolyDeg_eq_one_of_extension {K : Finset I} {m L n : I} (hmL : m ≠ L) (hmn : m ≠ n)
+    (hLn : L ≠ n) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (Φ : (k2PolyDeg_G p K L).map projection →* SteinbergGroup I (Polynomial (ZMod p)))
+    (hΦA : ∀ z ∈ k2PolyDeg_A p K L, ∀ hz : projection z ∈ (k2PolyDeg_G p K L).map projection,
+      Φ ⟨projection z, hz⟩ = z)
+    (hΦP : ∀ z ∈ k2PolyDeg_P p K m L n hmL hmn hLn,
+      ∀ hz : projection z ∈ (k2PolyDeg_G p K L).map projection, Φ ⟨projection z, hz⟩ = z)
+    {g : SteinbergGroup I (Polynomial (ZMod p))} (hg : g ∈ k2PolyDeg_G p K L)
+    (hK2 : g ∈ K2 I (Polynomial (ZMod p))) : g = 1 := by
+  have hfix : ∀ z : SteinbergGroup I (Polynomial (ZMod p)), z ∈ k2PolyDeg_G p K L →
+      (z ∈ k2PolyDeg_A p K L ∨ z ∈ k2PolyDeg_P p K m L n hmL hmn hLn) →
+      z ∈ k2PolyDeg_fixSub projection (k2PolyDeg_G p K L) Φ := by
+    intro z hz hAP
+    refine k2PolyDeg_mem_fixSub projection _ Φ hz ?_
+    rcases hAP with hA | hP
+    · exact hΦA z hA _
+    · exact hΦP z hP _
+  have hle : ∀ z : SteinbergGroup I (Polynomial (ZMod p)), z ∈ k2PolyDeg_G p K L →
+      z ∈ k2PolyDeg_fixSub projection (k2PolyDeg_G p K L) Φ := by
+    intro z hz
+    refine rootSpan_induction (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K)
+      (Q := fun z => z ∈ k2PolyDeg_fixSub projection (k2PolyDeg_G p K L) Φ) ?_
+      (Subgroup.one_mem _) (fun _ _ _ _ h1 h2 => Subgroup.mul_mem _ h1 h2) hz
+    intro i j hij a hq
+    show x i j hij a ∈ k2PolyDeg_fixSub projection (k2PolyDeg_G p K L) Φ
+    have hq1 : i ∈ insert L K := hq.1
+    have hq2 : j ∈ insert L K := hq.2
+    have hxG : x i j hij a ∈ k2PolyDeg_G p K L :=
+      x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hij a ⟨hq1, hq2⟩
+    by_cases hj : j ∈ K
+    · have hSV : x i j hij a ∈ k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L := by
+        by_cases hiL : i = L
+        · exact Subgroup.mem_sup_right
+            (x_mem_rootSpan (p := fun i j => i = L ∧ j ∈ K) hij a ⟨hiL, hj⟩)
+        · have hi : i ∈ K := (Finset.mem_insert.mp hq1).resolve_left hiL
+          exact Subgroup.mem_sup_left
+            (x_mem_rootSpan (p := fun i j => i ∈ K ∧ j ∈ K) hij a ⟨hi, hj⟩)
+      have hP' : x i j hij a ∈ (k2PolyDeg_torus p m L n hmL hmn hLn).range ⊔
+          (k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L) := Subgroup.mem_sup_right hSV
+      exact hfix _ hxG (Or.inr hP')
+    · have hjL : j = L := (Finset.mem_insert.mp hq2).resolve_right hj
+      have hiL : i ≠ L := fun e => hij (e.trans hjL.symm)
+      have hi : i ∈ K := (Finset.mem_insert.mp hq1).resolve_left hiL
+      obtain ⟨n', hin', hLn'⟩ := hthird i L
+      have e : x i j hij a = w i L hiL (1 : (Polynomial (ZMod p))ˣ) * x L i hiL.symm (-a) *
+          (w i L hiL (1 : (Polynomial (ZMod p))ˣ))⁻¹ := by
+        rw [k2PolyDeg_w_conj_self_symm_eq i L n' hiL hin' hLn' 1 (-a)]
+        exact x_congr _ _ rfl hjL (by rw [Units.val_one, one_mul, mul_one, neg_neg])
+      have hwA : w i L hiL (1 : (Polynomial (ZMod p))ˣ) ∈ k2PolyDeg_A p K L :=
+        Subgroup.mem_map.mpr ⟨w i L hiL (1 : (ZMod p)ˣ),
+          k2PolyDeg_w_mem_rootSpan (q := fun i j => i ∈ insert L K ∧ j ∈ insert L K) i L hiL 1
+            ⟨Finset.mem_insert_of_mem hi, Finset.mem_insert_self L K⟩
+            ⟨Finset.mem_insert_self L K, Finset.mem_insert_of_mem hi⟩,
+          by rw [k2PolyDeg_ringMap_w, map_one]⟩
+      have hwG : w i L hiL (1 : (Polynomial (ZMod p))ˣ) ∈ k2PolyDeg_G p K L :=
+        k2PolyDeg_w_mem_rootSpan (q := fun i j => i ∈ insert L K ∧ j ∈ insert L K) i L hiL 1
+          ⟨Finset.mem_insert_of_mem hi, Finset.mem_insert_self L K⟩
+          ⟨Finset.mem_insert_self L K, Finset.mem_insert_of_mem hi⟩
+      have hxLG : x L i hiL.symm (-a) ∈ k2PolyDeg_G p K L :=
+        x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hiL.symm (-a)
+          ⟨Finset.mem_insert_self L K, Finset.mem_insert_of_mem hi⟩
+      have hV : x L i hiL.symm (-a) ∈ k2PolyDeg_V p K L :=
+        x_mem_rootSpan (p := fun i j => i = L ∧ j ∈ K) hiL.symm (-a) ⟨rfl, hi⟩
+      have hxLP : x L i hiL.symm (-a) ∈ (k2PolyDeg_torus p m L n hmL hmn hLn).range ⊔
+          (k2PolyDeg_S p K ⊔ k2PolyDeg_V p K L) :=
+        Subgroup.mem_sup_right (Subgroup.mem_sup_right hV)
+      have hwF := hfix _ hwG (Or.inl hwA)
+      have hxF := hfix _ hxLG (Or.inr hxLP)
+      rw [e]
+      exact Subgroup.mul_mem _ (Subgroup.mul_mem _ hwF hxF) (Subgroup.inv_mem _ hwF)
+  exact k2PolyDeg_eq_one_of_mem_fixSub projection _ Φ (hle g hg) ((mem_K2_iff g).mp hK2)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_eq_one_of_extension
+
 end GroupApproximation.BooneHigman.Metabelian.ElemFP
