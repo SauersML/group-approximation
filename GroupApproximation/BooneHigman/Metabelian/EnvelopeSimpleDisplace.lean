@@ -114,6 +114,7 @@ theorem rnDisplaceCompress_of_compress_fragments (hC : RNCompressStatement)
     (hF : RNFragmentsStatement) : RNDisplaceCompressStatement :=
   rnDisplaceCompress_of_clauses rnDisplace hC hF
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnDisplaceCompress_of_compress_fragments
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Envelope.rnDisplaceCompress_of_compress_fragments
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope
