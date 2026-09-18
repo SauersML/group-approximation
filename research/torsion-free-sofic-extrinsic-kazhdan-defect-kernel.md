@@ -14,6 +14,7 @@ distinct_from:
   mapping-torus-mf-radical-descends-through-kernel-radical: That computes a mapping-torus radical as a pullback from the mapping torus of the kernel's MF quotient; this is the construction problem that the reduction splits.
   filtered-torsion-certificates-die-on-perfect-kernels: That obstruction proves a perfect kernel is invisible to every separated-filtration or radical target, killing congruence, unipotent and radical torsion-freeness certificates; this is the construction problem, which must certify torsion-freeness by some other mechanism.
   mf-kazhdan-quotientless-mapping-torus-exact-radical: That is the purely extrinsic existence question for MF Kazhdan kernels, with no soficity or torsion-freeness; this needs a torsion-free sofic kernel with an explicit defect.
+  compression-defects-need-strict-kernel-centralizer-towers: That obstruction proves a defect over an abelian quotient needs a strictly ascending, non-finitely-generated tower of Kazhdan centralizers in the kernel, killing every subgroup of a finite product of KCF and linear groups; this is the construction problem such a kernel must escape.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -213,4 +214,28 @@ must build genuinely Hamming-approximate sofic models.
     Survivors: geometric torsion-freeness (CAT(0) lattices), small cancellation
     or Dehn filling, extension-type certificates such as (RLT) of item 12,
     left-orderability, and linear models avoiding every fixed congruence level.
+    This node stays OPEN.
+15. **Kernel centralizer towers (2026-09-17, reframing, swarm-0917-w6-w6-titz-last2).** This
+    attempt extends the KCF kill of `abelian-extensions-kill-kcf-compression-defects` to its natural
+    escape: products of KCF kernels, with the automorphism permuting or twisting the factors.
+    `compression-defects-need-strict-kernel-centralizer-towers` (ESTABLISHED) proves the following
+    for `K normal G` with `G/K` abelian, `L <= K` and `M = C_K(L)`.
+    - (CT1) `D_G(L) = 1` if and only if every compressor `s` satisfies `s M s^-1 = M`. The inclusion
+      `M <= s M s^-1` always holds.
+    - (CT2) If `D_G(L) != 1`, some compressor `s` strictly compresses `L`, and `s^-1` strictly
+      compresses `M`. The groups `C_K(s^j L s^-j)` form an infinite strictly ascending tower. Its
+      union is not finitely generated and centralizes the intersection of the `s^j L s^-j`.
+    - (CT3) If `s` has finite outer order on `K`, some `gamma in K` already realizes the tower.
+    - *Class killed.* Tame kernels, meaning Kazhdan centralizers stabilize along every descending
+      chain of Kazhdan subgroups. This class contains every subgroup of a finite product of KCF groups
+      (Titz Mite--Witzel, torsion-free hyperbolic, torsion-free cocompact CAT(0) of dimension two)
+      and linear groups. It includes `K_1 x K_2` and its fibre products, which are not KCF.
+    - *Invariant.* The number of changes of `C_K(L_j)` along nested Kazhdan towers.
+    - *Step where every member dies.* `[s,z] in C_K(s L s^-1) = s M s^-1 = M`, which puts `s z s^-1`
+      back into `C_G(L)`.
+    - *Forced biography of a witness.* A Kazhdan `L`, a nontrivial commuting partner `M`, and one
+      element whose positive powers strictly compress `L` and whose negative powers strictly
+      compress `M`.
+    - The same kill applies to compression certificates for (XMF) on `Q semidirectProduct_psi Z`.
+
     This node stays OPEN.
