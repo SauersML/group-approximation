@@ -160,6 +160,37 @@ This is the coordinator's design target of 2026-09-18.
         Then `R` is free of rank `m` over `A`, `A` is already finitely generated, and `σ^m` is inner, so `σ` has
         finite order on `K_*(A)`. The gate conditions pass to `A`, with `m[1_A]` in place of `[1]`. So the symmetry
         is inessential and produces no new `K_0` classes.
-    - **What remains.** Non-invertible shifts, that is isometric frames and register letters, as in `R_L`. That is
+    - **What remains.** Unit symmetries of cores that are not `σ`-simple (gq-referee-b, W2), and non-invertible
+      shifts, that is isometric frames and register letters, as in `R_L`. The latter is
       the register squeeze of Attempt 5, whose open cases are the singular dilation case, multi-type
       never-top directions, and noncommutative relations outside the `sl_2` pattern.
+12. **Register squeeze, case by case, 2026-09-18 (lane `gq-infinite-primes`).** Conditional on (P), which is proved
+    for spine designs with every `δ_n` in `B⁺`.
+    - **Case 1, the singular dilation case.** "Singular" means `det M_top = 0`, where `M_top` is the types × types
+      coefficient matrix of level `k + c` in `(1 - [X]) V_(τ,k)`, and `c` is the largest upward step
+      (`dilation-letters-cannot-divide-the-unit-class`). For one type this is closed:
+      `top-determined-register-rings-cannot-divide-the-unit` (gq-k2-q, 6d01679a4) shows that every one-type design
+      with a non-loop letter is top-determined, singular or not. A one-type design with only loops has
+      `(1 - a)[1] = 0` if `a != 1`. If `a = 1`, its single loop is a unit and the graded dichotomy applies. The
+      Attempt 5 phrase "the singular case `det M_top = 0` is open" is superseded for one type. With several types,
+      singularity is part of case 2.
+    - **Case 2, multi-type never-top directions.** These matter only with dilation letters (`p >= 2`). The
+      Part 2 argument of `single-register-rings-divide-unit-at-finitely-many-primes` is uniform in the type: shifts
+      commute with the level shift `t` on every type, so multi-type shift/reset designs give a finitely generated
+      `Z[t]`-module modulo a finitely generated subgroup. They are closed by generic freeness, whether or not they
+      are top-determined. This reading of its scope is to be confirmed by gq-k2-q. **Open:** multi-type designs with
+      dilation letters and never-top directions. There the level couplings `k -> (k - r)/p` break the `Z[t]`-module
+      structure, and dilations add periodic tail classes on the `S`-adic completion, `S` the dilation primes. Not
+      decided.
+    - **Case 3, noncommutative register relations.** Closed for bases with rationally rank-one `K_0` and finite
+      stable range, in graded form: `isometric-frames-over-rank-one-bases-fail-the-k-budget`. That covers
+      Weyl-type and enveloping-algebra bases without idempotents, with the `sl_2` pattern and beyond. **Open:**
+      noncommutative bases whose `K_0` has rational rank at least `2`. These merge with Attempt 10 and case 2.
+    - **Bracket.** For frame-generated designs, every remaining room has `rank K_0(B) ⊗ Q >= 2`:
+      - finite rank: the Attempt 10 gap;
+      - infinite rank: case 2 with dilations, or bases outside the register class;
+      - ungraded simple quotients of graded frame rings.
+    - **A route for the finite-rank gap.** If the host has finite stable range `d`, then `K_2(N, R) ≅ K_2(R)` for
+      `N >= d + 2` (Weibel, *The K-book*, Ch. III, Remark 5.5.2, read by gq-referee-b; primary sources not read). That
+      would put the Attempt 10 lifts in the image of `K_2(N, R)`. Gate hosts are not stably finite, and whether such
+      a ring can have finite stable range is not settled here.
