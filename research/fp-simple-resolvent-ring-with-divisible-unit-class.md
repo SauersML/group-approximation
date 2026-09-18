@@ -192,5 +192,9 @@ This is the coordinator's design target of 2026-09-18.
       - ungraded simple quotients of graded frame rings.
     - **A route for the finite-rank gap.** If the host has finite stable range `d`, then `K_2(N, R) ≅ K_2(R)` for
       `N >= d + 2` (Weibel, *The K-book*, Ch. III, Remark 5.5.2, read by gq-referee-b; primary sources not read). That
-      would put the Attempt 10 lifts in the image of `K_2(N, R)`. Gate hosts are not stably finite, and whether such
-      a ring can have finite stable range is not settled here.
+      would put the Attempt 10 lifts in the image of `K_2(N, R)`. **The route is unavailable for gate hosts.** Finite
+      stable range forces stable finiteness: `sr(M_n(R)) = ceil((sr(R) - 1)/n) + 1` (Vaserstein), so `M_n(R)` has stable
+      range `1` for `n >= sr(R) - 1`, and stable range `1` implies direct finiteness. Every `M_m(R)` is then a corner of
+      a directly finite matrix ring, hence directly finite. Gate hosts are not stably finite
+      (`resolvent-vacuum-rings-have-no-k0-state`), so they have infinite stable range. Vaserstein's formula was not
+      read at source.
