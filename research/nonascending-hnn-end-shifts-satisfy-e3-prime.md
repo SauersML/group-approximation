@@ -16,7 +16,7 @@ distinct_from:
   rank-one-cone-hosts-put-fw-groups-in-local-map-groups: that says FW inputs of rank-one hosts sit in local-map groups; here the local-map groups are the finite-index subgroups of H, so this family can never carry an infinite simple Kazhdan input.
 ---
 
-**ESTABLISHED** (lane proof, bh-e3prime, 2026-09-18; not reviewed). The proof is in
+**ESTABLISHED** (lane proof, bh-e3prime, 2026-09-18; one referee PASS, bh-ref-engines 2026-09-18). The proof is in
 `nonascending-hnn-end-shifts-satisfy-e3-prime-proof`. The finiteness input is X. Li, *Left regular
 representations of Garside categories II*, arXiv:2110.04505v2, Example `ex:ZS` (II) with Theorem
 `thm:ZS` and Remark `rem:ZS-Stab`, read at source in `$GQ/src/kep/li-garside-II-2110.04505v2.tex`.
@@ -114,3 +114,44 @@ out of them.
 The split between finite-index and infinite-index edge groups is the same as the split between E3′
 in finite type and the emitter gate (IE). A hard simple input either rides in rank at least 2, or sits
 at an infinite emitter.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked the proof node, Steps 0–9. I spot-checked Li's `thm:ZS`, `ex:ZS` (II) and `rem:ZS-Stab` in the local
+copy of arXiv:2110.04505v2.
+
+**Steps 0–5 (combinatorics and groupoid identification).**
+- *Step 0.* The allowed edges `(ε', h) ≠ (ε̄, 1)` are exactly Britton-reduced.
+- *Step 1.* (R1) and (R2) follow from the geometry of rays. Surjectivity holds: each edge is pointed along by
+  exactly one endpoint, so there is a unique end.
+- *Step 2.* Minimality follows from the complete graph `E_T` and the edge-transitivity of each type.
+- *Step 3.* Topological freeness is equivalent to (TF). The valences are at least 4, so shadows are infinite.
+  Serre's theorem shows FA subgroups are residually finite.
+- *Steps 4–5.* `g h t_(ε') = h' t_(ε') θ_(ε')(a)`, and the self-similar action is pseudo-free and right
+  cancellative. The prefix and unit pseudogroup is the restricted `Γ`-pseudogroup. Both groupoids are effective:
+  the length argument uses at least two outgoing edges per state.
+
+**Step 6, Li's theorem.** Li's (II) asks that `P` be left reversible and that `#v d^(-1)(s) v ≥ 2` for
+`s ∈ S_P`. The lane's loop counts for degrees `(1,0), (0,1), (1,1)` match. Loops of type `ε → ε` are all
+allowed, since `ε ≠ ε̄`. Also:
+- `rem:ZS-Stab` identifies the units as `A_ε̄` (`C'^* = C'^0`);
+- (F) follows from right cancellativity;
+- the conclusion is exactly `F((I_l(D') ⋉ ∂Ω)_Y^Y)` of type `F_n`.
+
+**Multiplicities.** The bisection `B` built from prefix codes `{u_h}` is correct.
+
+**Steps 7–9.**
+- *Step 7* imports `F = A` (transpositions), Nekrashevych's simplicity, type (A), and the rigidity necessity
+  theorem. These are not re-checked here.
+- *Step 9, the BS calibration*, is correct. `N` is the largest subset of `lcm(m,k)Z` stable under
+  `u ↦ uk/m` and `u ↦ um/k`, and it is `0` iff `|m| ≠ |k|`.
+
+**Consistency.** This agrees with `cocompact-tree-end-shift-hosts-are-f-infinity` (the Thumann route) on the
+overlap. This node reaches `F_n` vertex groups, not only `F_∞^+` ones.
+
+**Credit.**
+- Li (arXiv:2110.04505) for the Zappa–Szép Garside finiteness theorem.
+- Exel–Pardo and Brownlowe–Mundey–Pask–Spielberg–Thomas for self-similar graph models.
+- Nekrashevych for alternating full groups.
+- Bass–Serre, Britton, Serre.
+- The Stein–Farley / Thumann lineage of finiteness proofs for Thompson-like groups.

@@ -85,6 +85,18 @@ send mortal machines to mortal modular machines. That requires every modular con
 Turing configuration, and every modular step to be a bounded number of Turing steps. This is recorded as a check
 for the seed-tower team; see `board/seed-tower.md`.
 
+## Scope correction (2026-09-18, after `modular-machine-mortality-at-infinity-is-uniform`, d03fdfb06)
+
+**What mortality forces.** It forces the halting marks on the **genuine** sheet, the configurations anchored at a
+seed origin. That is (S1) and nothing more.
+- **Seedless limit points.** These run the `m`-adic extension of the machine. By compactness that extension
+  terminates everywhere iff the running time is bounded, which is false whenever the halting set is infinite.
+- **What is left free.** At infinity, exact transport plus pinned endpoints leaves one free projection per
+  unterminated component.
+- **What this does not settle.** Rigidity (RS3) and exact orbit closure (RS2)/(S3). They need a separate coupling
+  layer (gate 4, bh-free-56 with bh-star-a).
+- **A remark withdrawn.** "Rogue runs also terminate", made on the seed-tower board, is withdrawn.
+
 ## Lesson for general BH
 
 The compactness wall between "halts" (Σ₁) and "is forced" is crossed by building termination into the machine,
