@@ -81,7 +81,7 @@ theorem higmanVCOrbit_mem_of_fix {d : ℕ} {C : Finset (List (Fin d))}
     obtain ⟨x, hx⟩ : ∃ x, higmanVCOrbit_pi C r x ≠ x := by
       by_contra hne
       push Not at hne
-      exact h1 (Equiv.ext hne)
+      exact h1 (Equiv.ext fun c => (hne c).trans (Equiv.Perm.one_apply c).symm)
     have hpx : ¬ p x := fun hp => hx (hfix x hp)
     have hpy : ¬ p (higmanVCOrbit_pi C r x) := fun hp =>
       hx ((higmanVCOrbit_pi C r).injective (hfix _ hp))
