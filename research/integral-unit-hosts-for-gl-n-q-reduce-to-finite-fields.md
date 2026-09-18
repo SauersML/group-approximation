@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields-proof`
-(lane proof, not independently reviewed; elementary, no novelty claimed).
+(lane proof, elementary, no novelty claimed; referee PASS from `gq-referee-a`,
+proof-gap lens, report 597b02ae2).
 
 **Setting.** `A` is a unital ring whose additive group is free abelian, `K` is any
 field, `m >= 1`, and `A_K = A ⊗_Z K`. Examples: the Leavitt algebras
