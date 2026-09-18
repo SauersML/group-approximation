@@ -115,7 +115,8 @@ theorem isModelled_top_of_isQuasidiagonalTrace {G : Type} [Group G]
         rw [normTrace, h0, Nat.cast_zero, div_zero]
       have hone : canonicalFaithfulTracialState G (1 : ReducedGroupCStar G) = 1 :=
         (canonicalFaithfulTracialState G).map_one
-      have hlt := hn3
+      have hlt : ‖canonicalFaithfulTracialState G (1 : ReducedGroupCStar G)
+          - normTrace (M.space n) (M.map n 1)‖ < 1 / 2 := hn3
       rw [hone, ht, sub_zero, norm_one] at hlt
       linarith
     · exact hpos
@@ -160,7 +161,8 @@ theorem isModelled_top_of_isQuasidiagonalTrace {G : Type} [Group G]
         / (Fintype.card (M.space n) : ℂ)‖ ≤ ε
     have h0 : canonicalFaithfulTracialState G (reducedTranslate G g) = 0 :=
       canonicalFaithfulTracialState_reducedTranslate_of_ne G hg1
-    have hlt := hn2 g hg
+    have hlt : ‖canonicalFaithfulTracialState G (reducedTranslate G g)
+        - normTrace (M.space n) (M.map n (reducedTranslate G g))‖ < ε := hn2 g hg
     rw [h0, zero_sub, norm_neg] at hlt
     exact hlt.le
 
