@@ -126,8 +126,12 @@ theorem gfaceWindTen_nest {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart
     {o : M.Face} (hoW : o ∉ sideFaces M W) (hoL : o ∉ sideFaces M L) :
     sideFaces M L ⊆ sideFaces M W := by
   intro F hF
-  obtain ⟨z, rfl⟩ : ∃ z, M.faceOf z = F := Quotient.exists_rep F
-  obtain ⟨zo, rfl⟩ : ∃ zo, M.faceOf zo = o := Quotient.exists_rep o
+  obtain ⟨z, hz⟩ := Quotient.exists_rep F
+  have hz' : M.faceOf z = F := hz
+  subst hz'
+  obtain ⟨zo, hzo⟩ := Quotient.exists_rep o
+  have hzo' : M.faceOf zo = o := hzo
+  subst hzo'
   by_contra hFW
   have hW' := hW.reverseAlpha
   have hside := gfaceWindTen_outside hM hW
@@ -151,6 +155,8 @@ theorem gfaceWindTen_nest {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart
   obtain ⟨d, hd, hdz⟩ := (mem_sideFaces_iff M L z).mp hF
   exact hoL ((mem_sideFaces_iff M L zo).mpr ⟨d, hd, .trans _ _ _ hdz hzzoL⟩)
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_nest
+
 /-- **Strict side nesting.**  Under the hypotheses of `gfaceWindTen_nest`, if `L` is a simple
 closed walk with a dart off `W`, its side has fewer faces than the side of `W`. -/
 theorem gfaceWindTen_card_lt {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.Dart}
@@ -165,11 +171,6 @@ theorem gfaceWindTen_card_lt {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.D
   rw [heq] at hb
   exact (hW.isBoundaryDart_sideFaces_iff hM x).mp hb
 
-end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
-
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_step
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_head
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_outside
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_transfer
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_nest
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_card_lt
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
