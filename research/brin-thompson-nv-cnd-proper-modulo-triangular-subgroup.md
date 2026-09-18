@@ -34,3 +34,14 @@ wall counts.
 - *Relative coarse geometry.* A necessary condition is that the coset space `nV/T_n`, with the
   quotient of a word metric, has growth compatible with a Hilbert-space compression along
   `⟨f⟩`. No computation yet.
+- 2026-09-17 (lane gq-nv-obstruct). *Strength, and a refutation test.* Route
+  `kazhdan-finiteness-in-nv-via-cnd-transversal`. Apply `ψ_1` after the coordinate-permutation
+  automorphisms of `nV`: the triangular subgroups of the `n` orders starting with each coordinate
+  intersect in `V^n`. Two consequences:
+  - This claim alone already makes every Kazhdan subgroup of `nV` finite (by Farley for `V^n`), with
+    no fibre half. So it answers Zaremsky 2.19(a), (c) and (d) with "no". It is exactly as strong as
+    a cnd function proper modulo `V^n`.
+  - It is refuted by any subset of `nV` with relative property (T) that is not contained in finitely
+    many left cosets of `V^n`. Such a subset would also refute the Haagerup property of `nV`.
+  So this half is no easier than finiteness of Kazhdan subgroups. Constructing `ψ_1` needs a
+  non-cubical cocycle that is unbounded but polylogarithmic on the Callard–Salo element; not attempted.

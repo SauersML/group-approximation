@@ -120,3 +120,32 @@ overgroup.
    - `E_N(L)` for Leavitt-type rings over a finitely presented ring containing
      `Q`;
    - `nV` for `n >= 3`, with `SL_3(Z)` as the first test.
+3. **Automorphism groups and abstract commensurators (lane gq-explicit-2,
+   2026-09-17): dead except for automorphism groups of non-residually-finite
+   groups and commensurators of branch-type groups.** Lane proofs, not
+   independently reviewed. Details in
+   `research/artifacts/gq-gq-explicit-2-aut-comm-hosts.md`.
+   - `fg-automorphism-hosts-contain-no-divisible-subgroup`: `Aut(Γ)` for
+     finitely generated residually finite `Γ` is residually finite, and so is
+     every finitely generated group of automorphisms of a separated scheme of
+     finite type over a field. So neither contains `(Q,+)`, under any embedding.
+     This kills `Aut(F_k)`, `Aut(π_1 Σ_g)`, `Aut(RAAG)`, and polynomial and
+     variety automorphism groups.
+   - `fg-cremona-subgroups-have-arithmetic-linear-part`: in a finitely
+     generated subgroup of `Bir(P^m_Q)`, the linear elements lie in
+     `PGL_{m+1}(Z[1/N])`. So the natural linear `GL_n(Q)`, and every
+     linearizable `(Q,+)`, lies in no finitely generated Cremona subgroup. A
+     non-linearizable copy would give a non-residually-finite finitely
+     generated Cremona subgroup, a negative answer to a question attributed to
+     Cantat.
+   - `comm-of-z-n-times-torsion-group-splits`:
+     `Comm(Z^n x B) = GL_n(Q) x Comm(B)` for torsion `B` with trivial FC-centre,
+     for example `B` = Grigorchuk's group, whose commensurator is Röver's group.
+     Such commensurators are never finitely generated. `Comm(Z^n)`,
+     `Comm(SL_n(Z))` (`n >= 3`) and `com(F)` (Burillo--Cleary--Röver) are not
+     finitely generated either.
+   - Still open in this row:
+     - `Aut(V)`, `Aut(nV)`, `Aut(SV_G)` (normalizers of simple groups in Cantor
+       homeomorphism groups, by Rubin), starting with whether `(Q,+) <= Aut(V)`;
+     - finitely generated commensurators of branch or self-replicating groups
+       containing `GL_n(Q)`.
