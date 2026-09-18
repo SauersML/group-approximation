@@ -3,6 +3,8 @@ rg: 2
 id: lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map
 kind: claim
 title: Some odd root of the 2V_tau odometer built from a V-torsion lift is squared by a doubling element, the first step toward Q semidirect 2 inside the F_infinity simple host 2V_tau
+refuted_by:
+  - no-free-q-odd-action-by-v-has-a-doubling-intertwiner
 target: affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q
 requires:
   - odometer-2v-is-fp-simple-and-contains-bs12
@@ -11,6 +13,8 @@ distinct_from:
   affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q: that node proves the NATURAL (translation) copy of Q semidirect <2> lies in no finitely generated affine 2V_H host, and leaves wild copies open; this claim proposes a specific wild copy, built from lifts of torsion of V as in the odometer-lift node, and reduces its first step to explicit functional equations.
   odometer-generators-carry-no-nonsolvable-baumslag-solitar: that forbids BS(m,n) with m or n odd on the odometer generator itself; here the doubling conjugation is u r u^{-1} = r^2, a BS(1,2) relation on the odd root r, which that node does not exclude.
 ---
+
+**REFUTED** (full target) by `no-free-q-odd-action-by-v-has-a-doubling-intertwiner`: no single doubling element serves all odd q, so there is no Q ⋊ ⟨2⟩ in 2V_τ with 1 ↦ s. Each single q holds (`odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators`). The original text follows as the record.
 
 **OPEN.** Lane bh-free-30 (09-18), a construction target outside the ring and prime-shift frames of the GL_n(Q) campaign. It is the n = 1 affine step: Q ⋊ ⟨2⟩ ≤ Aff(Q) ≤ GL_2(Q).
 

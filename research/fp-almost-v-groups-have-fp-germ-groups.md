@@ -9,9 +9,10 @@ distinct_from:
   shell-fp-stabilizer-forces-fp-germ-group: that derives a finitely presented germ group from a finitely presented one-point stabilizer; this needs only the whole group finitely presented.
 ---
 
-**ESTABLISHED** by `fp-almost-v-groups-fp-germ-groups-proof` (lane proof, elementary; the
-mechanism is that of `shell-envelope-fp-forces-fp-germ-group-proof`, extended from shells
-to all almost-V groups; not independently reviewed; no novelty claimed).
+**ESTABLISHED** by `fp-almost-v-groups-fp-germ-groups-proof` (lane proof, elementary; gq-referee-a PASS,
+`research/artifacts/gq-referee-a-fp-almost-v-groups-have-fp-germ-groups.md`, 97f2f5761, nits applied;
+the mechanism is that of `shell-envelope-fp-forces-fp-germ-group-proof`, extended from shells
+to all almost-V groups; no novelty claimed).
 
 **Setting.** `V` acts on `C = {0,1}^N`. A homeomorphism `g` of `C` is V-local at `x` if it
 agrees near `x` with an element of `V`, and `sing(g)` is the set of points where it is not.
@@ -54,6 +55,6 @@ applies a letter of `Z^±` at one of its singular points.
   beyond finiteness of singular sets, and no finiteness property of point stabilizers.
 - The converse is false in general, since germ groups say nothing about how the singular
   orbit is assembled. It is not claimed.
-- The base is the binary `V`. The proof uses only that `V`-orbits are dense and that two points
-  of one `V`-orbit in an open set `U` are exchanged by an element of `V` supported in `U`, so it
-  transfers to `V_(d,r)`.
+- The base is the binary `V`. The proof uses only that `V`-orbits are dense tail classes and that two points
+  of one `V`-orbit in an open set `U` are exchanged by an element of `V` supported in `U`. A
+  transfer to `V_(d,r)` must check these two facts there.

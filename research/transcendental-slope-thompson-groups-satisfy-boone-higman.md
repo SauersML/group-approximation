@@ -70,3 +70,13 @@ a contracting RSG over such a coding. This is a heuristic remark, not a proof.
   `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`).
 - **What survives.** A proof for all `λ` must build hosts that run `λ`'s algorithm. The cases
   `λ = 1/e`, `π − 3` and other slopes with cheap digits are not touched by this calibration.
+- **No one-dimensional piecewise-projective host for hard slopes** (09-18, bh-free-19).
+  - `fp-piecewise-projective-groups-specialize-to-algebraic-data`: a finitely presented group of
+    piecewise-projective maps of an interval, circle or line, with any real data, specializes to
+    real algebraic data nontrivially on any finite set. So its finitely generated simple subgroups
+    embed over a real number field and have polynomial-time word problem.
+  - Hence (`hard-slope-thompson-groups-have-no-piecewise-projective-hosts`), for the hard Liouville
+    `λ`, `D(V_λ)` has no such finitely presented overgroup. In particular `V_λ` and `D(V_λ)` are not
+    finitely presented, unconditionally.
+  - For any transcendental `λ`, a one-dimensional piecewise-projective host would require
+    `D(V_λ) ↪ PP_K` with `K` a real number field.
