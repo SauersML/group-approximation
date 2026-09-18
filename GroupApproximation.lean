@@ -5653,6 +5653,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Descend
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Block
 import GroupApproximation.Manuscript.NonMF.Full.GL06e.TwoArcUnpinch
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Transport
+import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Words
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
