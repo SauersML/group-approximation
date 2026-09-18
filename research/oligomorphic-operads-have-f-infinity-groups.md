@@ -5,12 +5,19 @@ kind: claim
 title: Conjecture - an operad with transformations whose transformation groups act oligomorphically on its elementary classes, with type F-infinity stabilizers of finite tuples, has operad groups of type F-infinity; this unifies Thumann's theorem, the Röver–Nekrashevych transfer and the twisted Brin–Thompson criterion
 requires:
   - thumann-operad-groups-need-only-f-infinity-transformations
+  - thumann-finiteness-without-finite-type
   - finite-type-operad-groups-split-over-a-label-kernel
 ---
 
 **OPEN** (conjecture, lane bh-invent-07, 2026-09-18). Proposed as the operadic finiteness engine for
 "programmable" hosts. Parts (a) and (b) of the reduction below are lane sketches, not reviewed; part
-(c) is the open gate. No priority claimed.
+(c) is the connectivity gate. No priority claimed.
+
+**Update (2026-09-18, bh-invent-07).** Gate (c) is proved under a splitting condition (G) by
+`thumann-finiteness-without-finite-type` (Variant), assuming very elementary classes of bounded
+degree. (G) asks that the splitting category of every large elementary class be highly connected.
+So the conjecture holds whenever (O1) and (O2) supply cocompactness and stabilizers, which is the
+content of the sketches (a) and (b), and (G) holds. Without (G) it stays open.
 
 ## Setting
 
@@ -58,14 +65,16 @@ Thumann's proof has three parts: Brown's criterion applied to `Γ ↷ 𝒰/𝒢`
    - Lane sketch.
 2. **(b) Cell stabilizers are `F_∞`.** Thumann's proposition (l.3700–3781) needs exactly the groups
    `H_θ` and finite intersections of their conjugates, so this is (O2). Lane sketch.
-3. **(c) Connectivity of descending links tends to infinity with degree. OPEN in general.**
-   - Thumann's core/corona argument uses finitely many elementary classes in each descending link.
+3. **(c) Connectivity of descending links tends to infinity with degree. PROVED under (G)**
+   (`thumann-finiteness-without-finite-type`); open without it.
+   - Thumann's core/corona argument uses a bound on the degrees of elementary classes only once, in
+     the corona estimate. The core already allows infinitely many archetypes.
    - With infinitely many classes, a descending link is a "colored" arc complex: each merge carries a
      class from `E`, and the merges must be jointly realizable.
-   - For `SV_G`, Belk–Zaremsky and the node above prove the needed connectivity (matching complexes
-     across coordinates).
-   - A general proof would show that oligomorphic colorings of Thumann's arc complexes keep
-     connectivity growing linearly.
+   - Thumann's arc complex theorem already handles such colorings: its archetype sets may be
+     infinite. What infinitely many classes add is the splitting of large elementary classes, and
+     that is exactly condition (G).
+   - For `SV_G`, (G) is the grid-sphere computation (`stein-complex-elementary-intervals-are-grid-spheres`).
 
 ## Why it matters (programmable hosts)
 
