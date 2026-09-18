@@ -140,3 +140,28 @@ theorem cited here covers it.
    - A proof must use a seed that already carries a BG cycle (Thompson-like,
      Leavitt or highly transitive actors, whose status is open), or a
      permutation-realized HNN step along which `a` has infinite orbits.
+9. **Status check and new hosts (2026-09-18).** *Constrains; the root stays open.*
+   - **The hierarchy reduction is already complete.** The induction on the
+     Magnus--Moldavanskii hierarchy is landed as
+     `magnus-hnn-permanence-forces-one-relator-boone-higman`. Its edge
+     hypotheses (free Magnus subgroups, decidable membership, computable edge
+     isomorphism) are checked in `magnus-moldavanskii-hierarchy-with-decidable-edges`
+     and `magnus-hnn-permanence-from-decidable-edge-permanence`. The whole gap is
+     the one HNN step `bh-embeddability-survives-magnus-subgroup-hnn`, which is
+     equivalent to this root on the shift data the induction uses. The
+     Baumslag--Gersten step over `BS(1,2)` is its sharpest known instance.
+   - **Literature.** An arXiv search for "Boone-Higman" through 2026-09 (API
+     query, titles and abstracts) finds no progress on one-relator groups beyond
+     Bux--Llosa Isenrich--Wu (arXiv:2408.05673). The newer entries are
+     Belk--Fournier-Facio--Hyde--Zaremsky (Aut(F_n), arXiv:2503.21882),
+     Fournier-Facio--Kropholler--Lyman--Zaremsky (arXiv:2506.02319),
+     Fournier-Facio--Wu--Zaremsky (abstract twisted Brin--Thompson groups,
+     arXiv:2603.24687) and Almeida--Dantas--Oliveira-Tosti (permutational wreath
+     products, arXiv:2609.01868). None treats one-relator groups or `BG`.
+   - **Odometer-extended Brin--Thompson hosts.**
+     `bg-in-isometric-brick-hosts-needs-unbounded-exponents` shows
+     that the `BS(1,2)` inside the finitely presented simple group `2V_τ` never
+     extends to `BG`. A `BG` image in `nV`, `2V_τ` or the affine `2V` hosts needs
+     a base with zero periodic exponents and unbounded exponent sums, and a
+     zero-entropy conjugator. In `nV` that includes a witness for
+     `bs12-embeds-in-brin-thompson-2v`.

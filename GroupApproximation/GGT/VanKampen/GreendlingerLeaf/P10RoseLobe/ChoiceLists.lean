@@ -55,7 +55,8 @@ theorem roseLobeChoice_mem_AC_of_ne {c A C : List α} {d e : α} (hc : c = A ++ 
 
 /-- **A split of `c = P ++ T` at `d`**, taken at the very end of `c` when `d` ends `T`. -/
 theorem roseLobeChoice_split_end {c P T : List α} {d : α} (hdec : c = P ++ T) (hd : d ∈ c)
-    (hT : d ∉ T ∨ [d] <:+ T) : ∃ A C : List α, c = A ++ [d] ++ C ∧ (d ∉ T ∨ C = []) := by
+    (hT : d ∉ T ∨ [d] <:+ T) :
+    ∃ A C : List α, c = A ++ [d] ++ C ∧ (d ∉ T ∨ C = []) := by
   rcases hT with hT | ⟨t, ht⟩
   · obtain ⟨A, C, h⟩ := List.append_of_mem hd
     refine ⟨A, C, ?_, Or.inl hT⟩
