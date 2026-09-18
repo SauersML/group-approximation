@@ -1,0 +1,13 @@
+{"census": "census_40_40.json", "idx": 176, "R": 8, "short": 4, "solver": "Cadical153", "sat": false, "clauses": 5756592, "secs": 97.1}
+{"census": "census_40_40.json", "idx": 176, "R": 8, "short": 4, "solver": "Glucose4", "sat": false, "clauses": 5756592, "secs": 137.8}
+R8s4 176 exit=0
+{"census": "census_40_40.json", "idx": 193, "R": 8, "short": 4, "solver": "Cadical153", "sat": true, "clauses": 5756592, "secs": 189.7}
+{"census": "census_40_40.json", "idx": 193, "R": 8, "short": 4, "solver": "Glucose4", "sat": true, "clauses": 5756592, "secs": 176.8}
+R8s4 193 exit=0
+{"census": "census_40_40.json", "idx": 281, "R": 8, "short": 4, "solver": "Cadical153", "sat": true, "clauses": 5756592, "secs": 192.6}
+{"census": "census_40_40.json", "idx": 281, "R": 8, "short": 4, "solver": "Glucose4", "sat": true, "clauses": 5756592, "secs": 169.5}
+R8s4 281 exit=0
+{"census": "census_40_40.json", "idx": 332, "R": 8, "short": 4, "solver": "Cadical153", "sat": true, "clauses": 5756592, "secs": 190.2}
+{"census": "census_40_40.json", "idx": 332, "R": 8, "short": 4, "solver": "Glucose4", "sat": true, "clauses": 5756592, "secs": 196.3}
+R8s4 332 exit=0
+{"census": "census_40_40.json", "idx": 176, "R": 10, "short": 2, "solver": "Cadical153", "sat": false, "clauses": 9373692, "secs": 153.6}
