@@ -23,7 +23,8 @@ get the extra hypothesis `gfaceWindCell_RCells K` (every face of `K.faces` is a 
 ## Truth check
 
 Scratchpad `gl-p10-78/cellcheck2.py` (the lobe forms of `gl-p10-73/leanexact.py`, relator
-cells `K.faces ∪ {source}`); see the lane report for the counts.
+cells `K.faces ∪ {source}`): the two-lobe and nested-wrap witnesses exist in 210482, 128524
+of 210482, 128524 no-loop cases (random seed 5; witness seed 2).
 
 ## Manuscript status
 
