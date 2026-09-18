@@ -24,7 +24,7 @@ theorem eHighWittCoeff_sum_carry_int {p : ℕ} (hp : p.Prime) (n : ℕ) :
   induction n with
   | zero => rw [Finset.sum_range_zero, mul_zero, Nat.cast_zero, zero_pow hp.ne_zero, sub_zero]
   | succ n ih =>
-    rw [Finset.sum_range_succ, mul_add, ih, eHighWitt_mul_carry hp, one_pow, Nat.cast_succ]
+    rw [Finset.sum_range_succ, mul_add, ih, eHighWitt_mul_carry hp, one_pow, Nat.cast_add_one]
     ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittCoeff_sum_carry_int
@@ -63,10 +63,10 @@ theorem eHighWittCoeff_natCast_x1 [Fact p.Prime] [CharP L p] (n : ℕ) :
     ((n : eHighWitt_W2 L p)).x1 = -∑ m ∈ Finset.range n, eHighWitt_carry p (m : L) 1 := by
   induction n with
   | zero =>
-    exact (congrArg eHighWitt_W2.x1 (Nat.cast_zero (R := eHighWitt_W2 L p))).trans
-      (neg_zero.symm.trans (congrArg Neg.neg (Finset.sum_range_zero _).symm))
+    rw [Finset.sum_range_zero, neg_zero]
+    exact congrArg eHighWitt_W2.x1 (Nat.cast_zero (R := eHighWitt_W2 L p))
   | succ n ih =>
-    rw [Nat.cast_succ]
+    rw [Nat.cast_add_one]
     show ((n : eHighWitt_W2 L p)).x1 + 0 - eHighWitt_carry p ((n : eHighWitt_W2 L p)).x0 1 = _
     rw [ih, eHighWittCoeff_natCast_x0, Finset.sum_range_succ]
     ring
