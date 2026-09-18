@@ -133,3 +133,21 @@ Only the moduli `2` and `p` occur.
   makes room.
 - **Superseded content.** The first landed version (18ebf78dc) recorded a failed
   piece-count induction. That gap is not needed by this argument.
+
+## Lesson for general BH
+
+Showing that an explicitly generated transposition group is the whole topological full
+group of a box groupoid is a finite type calculus, not a simplicity argument. Swaps
+(transpositions) move subtrees and preserve the type. The factorization square changes the
+type by `(1 split by p) ↔ ((p−1) splits by 2)`. Stable refinement cancels. So the
+transposition group is everything once the square relations kill the type count modulo
+size. That is the elementary shadow of `H_0 ⊗ Z/2 = 0` (a colour with 2 edges gives
+`[B] = 2[B]`) and `H_1 = 0` (the square bounds the only 1-cycle).
+
+For host design this means an explicit group such as `CT_P(Z)` can be certified equal to a
+full-group host by counting alone, and then inherits the host's simplicity and finite
+presentation. Two cautions:
+- At a fixed size, swaps never change the root prime or remove a `p`-divisible modulus,
+  so the room always comes from refinement, the Hilbert-hotel step.
+- Such a check does not give relations. Finite presentation still has to come from the
+  groupoid, as in `ct-p-z-is-a-one-vertex-k-graph-full-group`.

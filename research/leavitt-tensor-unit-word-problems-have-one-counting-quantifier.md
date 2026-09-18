@@ -39,7 +39,7 @@ Let `k >= 1`, `n_1, ..., n_k >= 2`, and `A_K = L_K(1,n_1) ⊗_K ... ⊗_K L_K(1,
   `∀·Mod_pP`, the level already attained by the square. The counting modulus is the
   characteristic of the coefficients, not the number of Leavitt generators: `L_(F_2)(1,3)`
   still counts mod 2, and mod-3 counting needs `F_3` coefficients. The finitely presented
-  simple groups `(L_p^(⊗d))^x / F_p^x` for `d >= 3` (finitely presented and simple by
+  simple groups `(L_p^(⊗d))^x / F_p^x` for `d >= 3` (finitely presented and simple, conditionally, by
   `prime-field-leavitt-tensor-powers-have-trivial-k-theory` with
   `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`) are no harder than `d = 2`.
 - **A barrier for PSPACE.** If some finitely generated `Γ` as above had `PSPACE`-hard word
@@ -62,3 +62,16 @@ Let `k >= 1`, `n_1, ..., n_k >= 2`, and `A_K = L_K(1,n_1) ⊗_K ... ⊗_K L_K(1,
   (`integral-counting-group-avoids-leavitt-linear-simple-hosts`).
   Reduction mod `p` maps `Γ_Z` onto `Γ_p`, but no single prime is injective on `Γ_Z`, since
   the counts `X_1 - X_2` can be any integer.
+
+## Lesson for general BH
+
+**Depth is the complexity resource.** In a finite-depth monomial host, a word of length `ℓ`
+has depth `O(ℓ)`, and one counting quantifier over depth-`O(ℓ)` test points decides it. This
+covers `V`, `nV`, and Leavitt tensor units over `F_q` or `Z[1/M]`, in every tensor power and
+matrix size. So the whole class of finite-depth Leavitt-linear hosts, over finite fields and over `Q`,
+shares the recursive bound `PSPACE`. By `complexity-bounded-host-classes-are-not-universal`,
+no construction confined to it can prove Boone--Higman.
+
+The obstruction also says what a proof must add: elements whose depth is not bounded by
+word length. Self-similar or germ recursion, as in automaton groups, is the known source,
+and it is exactly where hosts with hard word problems have come from.

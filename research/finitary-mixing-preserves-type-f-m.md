@@ -97,3 +97,9 @@ mixing with `G_n`. ∎
 - **Houghton check.** `(H_k-rays, H_k) ∈ 𝔐_(k-1)`, via its strongly shift-similar representation and item 3, since
   `H_k` is of type `F_(k-1)` (Brown). Item 1 then gives `(H_a x H_b) · FSym` of type `F_(min(a,b)-1)`. That group is
   the kernel of a character of `H_(a+b)`, which is of type `F_(a+b-1)`, so there is no conflict with Brown's theorem.
+
+**Lesson for general BH.** This gives a reusable finiteness tool for any host of the form "product of highly
+transitive groups, plus all finitary permutations". The finiteness type is the minimum over finite-set
+stabilizers. The complex is the balanced slice of the infinite recoloring cube: a directed union of convex slices,
+so it is contractible without any Morse theory. It applies to permutational constructions beyond Houghton-like
+groups whenever `FSym` is present, e.g. envelopes and mixtures of oligomorphic pieces.

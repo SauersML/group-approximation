@@ -24,8 +24,9 @@ subgroup `Γ <= Sym(N)/FSym(N)` satisfies `c(Γ) ⊊ Γ`.
 - *Near-action form.* A counterexample `Γ` makes `Δ = < Γ, σ̄ >` a finitely generated subgroup of the near
   symmetric group whose index-zero part `∪_k c^-k(Γ)` is a strictly ascending union. It is therefore not finitely
   generated (compare Corollary 5.6 of the source).
-- *A test case.* `c(x) = x^2` with `x` of infinite order would give one, since `c(<x>) = <x^2>`. That is a near
-  action of `BS(1,2)` in which `t` acts as the shift. Neither this lane nor the source knows whether one exists.
+- *A test case, now refuted.* `c(x) = x^2` with `x` of infinite order would give one, since `c(<x>) = <x^2>`. That is a near
+  action of `BS(1,2)` in which `t` acts as the shift. None exists, and more generally no cyclic `Γ` works
+  (`no-nontrivial-germ-is-shift-conjugate-to-a-proper-power`). A counterexample needs at least two generators.
 
 **Why it matters.**
 - If true, every group satisfying the hypotheses of Question 5.13 (finitely presented, or of type `F_m`) is finite
@@ -42,7 +43,7 @@ subgroup `Γ <= Sym(N)/FSym(N)` satisfies `c(Γ) ⊊ Γ`.
   sparse pattern tends to add the flip-type germs of `E_2`, which make `c` onto again. An example: `x` a sparse
   product of transpositions on even pairs, and `μ` the flip `(1 2)(3 4)...`. Then `c(x) = μ x μ`, and
   `c(< x, Germs(E_2) >) = < x, Germs(E_2) >`.
-- *Commensurated subsets for `BS(1,2)`.* The affine action on `Z[1/2]` (`a = +1`, `t = /2`) was tried with subsets
+- *Commensurated subsets for `BS(1,2)`* (superseded: `no-nontrivial-germ-is-shift-conjugate-to-a-proper-power` proves no such near action exists). The affine action on `Z[1/2]` (`a = +1`, `t = /2`) was tried with subsets
   `{y >= 0 : den(y) <= f(y)}`. None is commensurated by both `a` and `t`: bounded denominators break `t`, and
   unbounded ones break `a` at infinitely many jumps. No counterexample and no proof.
 - *Sparse transpositions plus one window rotation.* Take `x = rho̅_0` of the non-finitely-generated example, and let

@@ -92,3 +92,18 @@ virtually special nor covered by items 4--6.
      natural replacement. Whether Niblo--Reeves normal cube paths give such a finite
      Garside coding is exactly BBCMP's remark that finite presentation of the
      Roller-boundary full group is unknown.
+4. **(bh-free-36, 09-18) A higher-rank coding for every cubulated group.**
+   `cubulated-groups-act-by-bisections-of-a-pointed-cube-category`: for `G` acting
+   freely and cocompactly on `X`, geodesics modulo square flips form a finite-object
+   category `C_X` whose states are cubes (the last-edge hyperplanes pairwise cross), and
+   `G` acts by bisections of its left regular groupoid at every point of the regular
+   Roller boundary `R`. This replaces the rank-one coding of Attempt 3 and specializes
+   to the cube `k`-graph of item 3 bis. The remaining gates for Q1.15 are listed there:
+   closedness of `R`, faithfulness, and Li's conditions (St), (LCM), (`t < d`) after a
+   power and a phase. The RAAG case (Salvetti covers) is the first calibration to check.
+
+**Lesson for general BH (Attempts 3--4).** The host must match the rank of the
+input's flats. Codings where one element moves independent directions by different
+amounts need higher-rank categories (`k`-graphs, trace-type categories), not germ
+extensions of `V`. The finite-state concatenation criterion of Attempt 4 is the
+transferable tool.

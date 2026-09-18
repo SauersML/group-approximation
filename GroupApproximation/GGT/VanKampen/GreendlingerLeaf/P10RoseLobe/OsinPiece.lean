@@ -21,7 +21,8 @@ Assume `W` is closed under `revInv` and rotation, and `X` is least area.  Write
 
 * `v = u ++ ℓ S` (`dartWord_append`).  `v ∈ W` because `v` is `rotate n` of the word of cell
   `i` (`dartWord_rotate`, `dartWord_cellDarts`, `rotate_mem`).
-* `v' = u ++ revInv ℓ T`, because `revInv (ℓ T ++ revInv ℓ(a :: A)) = ℓ(a :: A) ++ revInv ℓ T`
+* `v' = u ++ revInv ℓ T`, because
+  `revInv (ℓ T ++ revInv ℓ(a :: A)) = ℓ(a :: A) ++ revInv ℓ T`
   (`dartWord_reverse_alpha`, `revInv_append`, `revInv_revInv`).  Also `v' ∈ W` (`inv_mem`,
   `rotate_mem`).
 * `|y|, |z| ≤ ε` since `|1| = 0`, and `listVal u' = 1 · listVal u · 1`.
@@ -30,10 +31,10 @@ Assume `W` is closed under `revInv` and rotation, and `X` is least area.  Write
   `(listVal ℓ T)⁻¹ = listVal ℓ S`.  Rotate cell `j` further by `|T| + |A|` so that it reads
   `α a :: (T ++ A.reverse.map α)`.  Cell `i` reads `a :: (A ++ S)`.  The merged word
   `(A ++ S) ++ (T ++ A.reverse.map α)` then has value
-  `P · s · t · P⁻¹ = P · t⁻¹ · t · P⁻¹ = 1`, where `P = listVal ℓ A`, `s = listVal ℓ S` and
-  `t = listVal ℓ T`.  That contradicts `roseLobeOsinPiece_merge_ne_one`: cancelling the two
-  cells would give a relator product with `rCellCount - 2` factors, so `X` would not be
-  least area.
+  `P · s · t · P⁻¹ = P · t⁻¹ · t · P⁻¹ = 1`, where `P = listVal ℓ A`,
+  `s = listVal ℓ S` and `t = listVal ℓ T`.  That contradicts
+  `roseLobeOsinPiece_merge_ne_one`: cancelling the two cells would give a relator product
+  with `rCellCount - 2` factors, so `X` would not be least area.
 
 So a shared arc of two distinct cells is a piece, or `X` is not least area.  No surgery
 residual remains: the surgery is `VanKampenData.exists_merge` and `planar_of_neFace`.

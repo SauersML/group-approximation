@@ -47,3 +47,17 @@ infinite order and `u s u^-1 = s^m`, so `BS(1,m) = ⟨a, t | t a t^-1 = a^m⟩ �
 
 **Calibration.** At `m = 3` every step specializes to the refereed SMART route
 (`bs13-in-3v-via-smart-renormalization`).
+
+**Lesson for general BH.**
+- **What V excludes, 3V admits.** The known exclusion of ascending HNN extensions like `BS(1,n)` from `V`
+  (`bs-1-n-does-not-embed-in-thompson-v`) is not an obstruction for Brin–Thompson hosts. Reversible
+  Turing dynamics inside `2V` supplies elements that are conjugate to their own powers after one extra
+  dimension.
+- **What the question reduces to.** Which ascending HNN extensions of `Z` live in `nV` is a question
+  about which **branching numbers a self-similar one-head hierarchy can realize**. A hierarchy that
+  branches `m`-fold exactly, and whose first and last sub-moves have zero start or end cost, gives
+  `BS(1,m)`.
+- **Odd versus even.** Odd `m` is fully realized: `SMART_m`. Even `m` is blocked for crossing-only
+  hierarchies by a parity count (`crossing-move-hierarchies-have-odd-branching`).
+- **The general tool.** It is the pair "renormalizable element + criterion", not the individual
+  machine. Every new branching number or sign comes from a new hierarchy, not a new host.
