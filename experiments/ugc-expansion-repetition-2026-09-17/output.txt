@@ -1,0 +1,5 @@
+(a) Bernoulli checks: 488 violations: 0
+(b) round-budget checks: 265 violations: 0
+(c) ratio-bound checks: 275400 violations: 0 max ratio/bound = 0.5000
+max certified deficit ratio at the gate for rate [kappa lam gamma, kappa=1]: 2.59
+max certified deficit ratio at the gate for rate [AKKSTV c lam g0/ln(1/g0), c=1/2]: 2.56
