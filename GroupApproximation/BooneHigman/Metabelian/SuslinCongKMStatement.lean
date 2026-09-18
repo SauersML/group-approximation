@@ -66,8 +66,11 @@ def suslinCongKM_ellSet (R : Type*) [CommRing R] :
 
 /-- Every unipotent of `GL₂(R[X])` is `K[X]`-parabolic (`R` a domain). -/
 theorem suslinCongKM_unipSet_subset (R : Type*) [CommRing R] [IsDomain R] :
-    suslinCongDecide_unipSet R[X] ⊆ suslinCongKM_ellSet R := fun _ hσ ↦
-  suslinCongKM_unip_conj _ (suslinCongKM_map_unipSet _ hσ)
+    suslinCongDecide_unipSet R[X] ⊆ suslinCongKM_ellSet R := by
+  intro σ hσ
+  obtain ⟨P, β, hP⟩ := suslinCongKM_unip_conj _
+    (suslinCongKM_map_unipSet (mapRingHom (algebraMap R (FractionRing R))) hσ)
+  exact ⟨P, β, hP⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongKM_unipSet_subset
 

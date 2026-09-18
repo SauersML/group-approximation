@@ -50,7 +50,8 @@ theorem k2KarRel_row_conj_col (p q i j : I) (hij : i ≠ j) (hip : i ≠ p) (hjp
   have e1 : x q j hqj rj * k2KarRel_col p i j hip hjp ci cj * (x q j hqj rj)⁻¹ =
       x q p hqp (rj * cj) * x j p hjp cj * x i p hip ci := by
     rw [k2KarRel_col, k2KarNorm_conj_mul, k2KarNorm_C2 j p q hjp hqj hqp cj rj,
-      k2KarNorm_conj_of_commute (x_commute_of_ne q j i p hqj hip (Ne.symm hij) (Ne.symm hqp) rj ci)]
+      k2KarNorm_conj_of_commute
+        (x_commute_of_ne q j i p hqj hip (Ne.symm hij) (Ne.symm hqp) rj ci)]
   have e2 : x q i hqi ri * (x q p hqp (rj * cj) * x j p hjp cj * x i p hip ci) *
       (x q i hqi ri)⁻¹ = x q p hqp (rj * cj) * x j p hjp cj * (x q p hqp (ri * ci) * x i p hip ci) := by
     rw [k2KarNorm_conj_mul, k2KarNorm_conj_mul, k2KarNorm_C2 i p q hip hqi hqp ci ri,
