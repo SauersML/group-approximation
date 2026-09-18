@@ -851,7 +851,38 @@ def zeroInputEndpoints : List Name :=
    ``GroupApproximation.Full.NN12.e0_printed,
    ``GroupApproximation.Full.NN12.markedGroup_isDeligneType,
    ``GroupApproximation.Full.NN12.findim_paragraph_printed,
-   ``GroupApproximation.Full.NN12.blockComparison_printed]
+   ``GroupApproximation.Full.NN12.blockComparison_printed,
+   -- The `Manuscript/SimpleKazhdanSofic/Full` endpoints (`simple_kazhdan_sofic_group.tex`),
+   -- collected with printed labels in `Full/Root/{Main,Proof,Corollaries,Manuscript}.lean`.
+   -- Each is a conjunction of the types of landed `Full.SKxx` endpoints; `manuscript` is the
+   -- conjunction of all of them.
+   ``GroupApproximation.Full.SKRoot.abstract_claims,
+   ``GroupApproximation.Full.SKRoot.thm_main,
+   ``GroupApproximation.Full.SKRoot.thm_main_brown_form,
+   ``GroupApproximation.Full.SKRoot.thm_main_definitions,
+   ``GroupApproximation.Full.SKRoot.thm_general,
+   ``GroupApproximation.Full.SKRoot.general_remark,
+   ``GroupApproximation.Full.SKRoot.tab_props,
+   ``GroupApproximation.Full.SKRoot.proof_ingredients,
+   ``GroupApproximation.Full.SKRoot.fig_models,
+   ``GroupApproximation.Full.SKRoot.eq_elementary,
+   ``GroupApproximation.Full.SKRoot.proof_ring_T,
+   ``GroupApproximation.Full.SKRoot.proof_simplicity,
+   ``GroupApproximation.Full.SKRoot.proof_finite_models,
+   ``GroupApproximation.Full.SKRoot.proof_brown_formulation,
+   ``GroupApproximation.Full.SKRoot.sec_main_proof,
+   ``GroupApproximation.Full.SKRoot.sec_main_sharpness,
+   ``GroupApproximation.Full.SKRoot.sec_main_example,
+   ``GroupApproximation.Full.SKRoot.cor_lef,
+   ``GroupApproximation.Full.SKRoot.cor_host,
+   ``GroupApproximation.Full.SKRoot.sec_lef_route,
+   ``GroupApproximation.Full.SKRoot.lem_nn,
+   ``GroupApproximation.Full.SKRoot.lem_host,
+   ``GroupApproximation.Full.SKRoot.lem_halfline,
+   ``GroupApproximation.Full.SKRoot.cor_wp,
+   ``GroupApproximation.Full.SKRoot.cor_wp_proof,
+   ``GroupApproximation.Full.SKRoot.sec_questions,
+   ``GroupApproximation.Full.SKRoot.manuscript]
 
 /-- Does an elaborated declaration type still expose an outer input? -/
 def hasLeadingInput : Expr → Bool

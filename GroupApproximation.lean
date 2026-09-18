@@ -5497,6 +5497,14 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.Retracti
 import GroupApproximation.Manuscript.NonMF.Full.CensusBridges.Sentences
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.HullRouting.Reduction
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFree.FFF.FromPrintedData
+import GroupApproximation.Manuscript.NonMF.Full.LoopErasure.Paths
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Main
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Proof
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Corollaries
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Manuscript
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Action
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Macbeath
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.ProductExample
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
