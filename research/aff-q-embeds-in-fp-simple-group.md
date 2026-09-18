@@ -76,6 +76,11 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      `bs-kl-images-in-brin-thompson-groups-have-open-periodic-sets`) or the logarithmic
      table-length bound (`bs12-images-in-nv-have-logarithmic-table-length`). Both
      reduce to the head excursions of SMART.
+   - *A constructive handle:* `renormalizable-thompson-elements-give-baumslag-solitar`.
+     Suppose an infinite-order `T ∈ kV` has a brick-local height-`m` tower
+     renormalization, that is, `T^m` on a clopen base is conjugate to `T` by a
+     prefix-replacement map. Then `BS(1,m) <= (k+1)V`, with `s = T × id`. So the
+     conjugacy step becomes a search for an odometer-like element inside some `kV`.
    - *Beyond that:* commuting dilations for all primes, acting on all of `Q_T` at once.
 4. **Röver–Nekrashevych hosts over rational Iwahori groups.** A live route of lane
    gq-rn-varying-degree, in drafts at the time of writing. `PGL_2(Q) ⊇ Aff(Q)` acts
