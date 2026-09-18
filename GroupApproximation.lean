@@ -5780,6 +5780,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTValuati
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaGroup
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaSteinberg
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Hsp
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.StageEstimates
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
