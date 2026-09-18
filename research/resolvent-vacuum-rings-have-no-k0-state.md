@@ -6,11 +6,14 @@ title: A resolvent vacuum forces infinitely many orthogonal copies of the vacuum
 distinct_from:
   leavitt-tuples-make-rational-scalar-powers-elementary: that shows a Leavitt (1,d)-tuple makes rational scalar powers elementary; this shows that the resolvent mechanism itself, with or without a Leavitt tuple, rules out every stably finite or traced host.
   bounded-harmonic-rings-are-not-finitely-presented: that refutes finite presentation for rings getting Q from bounded harmonic functions over odometers; this concerns rings getting Q from a number operator with a vacuum, and constrains their K_0.
-  leavitt-resolvent-ring-is-fp-simple-of-char-zero: that is one ring with the mechanism, R_L; this is a structural consequence shared by R_L, R_T, R_k and every future host of this type.
+  leavitt-resolvent-ring-is-fp-simple-of-char-zero: that is one ring with the mechanism, R_L; this is a structural consequence shared by R_L, R_Toep, R_k and every future host of this type.
+artifacts:
+  - research/artifacts/gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md
 ---
 
 **ESTABLISHED** through `resolvent-vacuum-rings-have-no-k0-state-proof` (lane proof,
-elementary, not independently reviewed; referee requests sent).
+elementary; refereed PASS by `gq-referee-a`, proof gaps, `gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md`, 061bc8d2d; the
+citation review by `gq-referee-b` is pending).
 
 **Setting (a resolvent vacuum).** A unital ring `R` has a *resolvent vacuum* if it contains
 a nonzero idempotent `E`, an element `N`, and, for infinitely many indices `m`, elements

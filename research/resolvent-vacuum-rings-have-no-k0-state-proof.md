@@ -43,6 +43,6 @@ Lane proof, elementary, not independently reviewed.
   which equals `(m − 1) s_1^(m−1) s_2` because `N s_2 = 0`. Dually, `t_1 N = (N+1) t_1` and
   `t_2 N = 0` give `t_2 t_1^(m−1) N = (m−1) t_2 t_1^(m−1)`. This is §1 of
   `leavitt-resolvent-ring-is-fp-simple-of-char-zero-proof`.
-- **R_T.** `N E = E N = 0` and `T N = (N+1) T`, from `N = N(ST + E)` and `NS = S(N+1)`.
+- **R_Toep.** `N E = E N = 0` and `T N = (N+1) T`, from `N = N(ST + E)` and `NS = S(N+1)`.
   These give the same two identities for `S^(m−1) E` and `E T^(m−1)`.
 - **R_k.** Replace `s_1` by `s_n` and `s_2` by `s_v`, and `N` by the register `N`.
