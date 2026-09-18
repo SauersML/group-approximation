@@ -52,6 +52,17 @@ So item 2 needs the open decidable case, `pbh-closed-under-decidable-permutation
 proper-power cyclic stabilizer. Coset spaces of proper-power cyclic subgroups are never type (A)
 spaces. Any proof of that case must put the wreath in an actor that does not act on `Γ/⟨a_0⟩`.
 
+**Edge shrinking does not work (2026-09-18).** A natural way around the coset space is to shrink a
+point-stabilizer edge `P` of a type (A) action to `C = P ∩ xPx^-1`, via
+`Γ *_C (C × ⟨u⟩) → Γ *_P (P × ⟨w⟩)` with `u ↦ v = w x w x^-1`. This map is well defined but not
+injective in general.
+- For `g_1 ∈ xPx^-1` one has `v g_1 v^-1 = w g_1 w^-1`.
+- So for `g_2 ∈ (P ∩ g_1^-1 P g_1) ∖ C`, the reduced word `u g_1 u^-1 g_2 u g_1^-1 u^-1` maps to
+  `g_1 g_2 g_1^-1 ∈ Γ`.
+
+The same collapse happens for every `v` that agrees with a conjugate of `w` on `xPx^-1`. Pair
+stabilizers are therefore not automatically good edges.
+
 ## Lesson for general BH
 
 HNN permanence splits into two independent inputs.
