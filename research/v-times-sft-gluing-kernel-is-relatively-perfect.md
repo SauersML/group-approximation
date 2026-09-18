@@ -9,7 +9,10 @@ distinct_from:
   v-times-sft-full-groups-split-into-two-wreath-pieces: that builds the gluing group and its copy endomorphisms; this computes what the copy endomorphisms force on the kernel.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not yet refereed; no priority claimed).
+**ESTABLISHED** (lane proof, elementary; no priority claimed). Reviewed: gq-referee-a PASS
+(`research/artifacts/gq-referee-a-v-times-sft-gluing-kernel-is-relatively-perfect.md`, 59eb5cfa1; nits
+N1–N4 applied). The facts used about `D`, the `φ_i` and `[φ_0(Γ~), φ_1(Γ~)] = 1` come from the
+unreviewed parent node, but all three follow from (R1) and (R2), which are proved here.
 
 ## Setting
 
@@ -57,8 +60,9 @@ complex statement, and no homological shortcut exists.
 
 **Two relation families available in `Γ~`.**
 - *(R1) Disjoint commutation.* `[M_U, N_(U')] = 1` for disjoint nonempty clopen `U, U' ⊆ C`. Here
-  `M_U ≤ M` and `N_U = LC(X, V_[U])` are the elements supported in `U × X`. Choose `v ∈ V` with
-  `v(C_0) ⊇ U` and `v(C_1) ⊇ U'`, and conjugate `[M_0, N_1] = 1`. Conjugation by `v` is computed inside
+  `M_U ≤ M` and `N_U = LC(X, V_[U])` are the elements supported in `U × X`. Pick a clopen `A` with
+  `U ⊆ A ⊆ C ∖ U'`, and `v ∈ V` with `v(C_0) = A`. Then `v M_0 v^-1 = M_A ⊇ M_U` and
+  `v N_1 v^-1 = N_(A^c) ⊇ N_(U')`; conjugate `[M_0, N_1] = 1`. Conjugation by `v` is computed inside
   `M` and inside `N_X`.
 - *(R2) Local labels.* For `λ ∈ Λ` and `n ∈ N_U`, `λ|_U n λ|_U^-1 = λ n λ^-1`. Write
   `λ|_U = λ · (λ^-1)|_(U^c)` in `M`, and use (R1) for `(λ^-1)|_(U^c) ∈ M_(U^c)`.
@@ -66,7 +70,8 @@ complex statement, and no homological shortcut exists.
 **Item 1, one letter.** Say `h` maps each piece of `Q` onto a piece of `Q'` by
 `(u w, x) ↦ (u' w, λ x)`. Then in `F(T)`, `ρ_(Q') h ρ_Q^-1` sends `(a u w, x) ↦ (a u' w, λ x)`,
 which is `D(h)`. It remains to see that this identity holds in `Γ~`.
-- *Case `h ∈ N_X`.* `ρ_Q`, `ρ_(Q')` and `h` lie in `N_X`. For `h = f λ`, the element
+- *Case `h ∈ N_X`.* `Q` refines a table of `h`, and `λ` maps cylinders to cylinders, so
+  `Q' = h(Q)` is a product partition. `ρ_Q`, `ρ_(Q')` and `h` lie in `N_X`. For `h = f λ`, the element
   `D(h) = copy_0(f) λ|_(C_0) copy_1(f) λ|_(C_1)` equals `copy_0(f) copy_1(f) λ ∈ N_X`, by (R1) for
   `λ|_(C_0)` against `copy_1(f)`. So the identity is one inside `N_X`, which embeds in `F(T)`.
 - *Case `h ∈ M`, `Q` with no dependence on `X`.* Every term lies in `M`, since `ρ_Q ∈ V`. The
@@ -83,7 +88,9 @@ which is `D(h)`. It remains to see that this identity holds in `Γ~`.
     `[u'_i]`, computed in `N_X`.
 
 **Item 1, words.** Choose `Q_r` so fine that each `Q_j := (h_(j+1) ⋯ h_r)(Q_r)` refines the table
-partition of `h_j`. This is a finite common refinement of pullbacks. Then `Q_(j−1) = h_j(Q_j)`, and
+partition of `h_j`. This is a finite common refinement of pullbacks. Each `Q_j` is a product
+partition, because pieces of the form `[u] × P` go to pieces of the same form under elementary maps
+`(u w, x) ↦ (u' w, λ x)`. Then `Q_(j−1) = h_j(Q_j)`, and
 `D(g) = ∏_j D(h_j) = ∏_j ρ_(Q_(j−1)) h_j ρ_(Q_j)^-1 = ρ_(Q_0) g ρ_(Q_r)^-1`. If `π(g) = 1`, then
 `Q_0 = π(g)(Q_r) = Q_r`, piece by piece.
 
