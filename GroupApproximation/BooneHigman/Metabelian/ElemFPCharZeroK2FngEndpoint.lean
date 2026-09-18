@@ -122,7 +122,7 @@ theorem czK2Fng_charZeroK2PosStabGen_of_rankFourFP_of_conjTriple
   charZeroK2PosStabGen_of_fngSurj
     (czK2Fng_stabGenFNGSurj_of_rankFourFP h (charZeroK2SurjStab_of_conjTriple h'))
 
-#audit_axioms
-  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2Fng_charZeroK2PosStabGen_of_rankFourFP_of_conjTriple
+-- Short name (resolved in the current namespace): the full name exceeds 100 characters.
+#audit_axioms czK2Fng_charZeroK2PosStabGen_of_rankFourFP_of_conjTriple
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

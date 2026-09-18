@@ -133,3 +133,45 @@ None recorded before 2026-09-17.
    of the current routes and what survives each denial. The survivor of the
    central-root denial is the configuration of `Aff(Q)`: an element conjugate to
    its `p`-th power for every prime `p`, through commuting conjugators.
+
+5. **BN-pair, Curtis--Tits and local Steinberg amalgams, 2026-09-17: no reduction.**
+   `sl-q-local-amalgam-gluing-is-the-whole-problem` (lane gq-borel-q):
+   - `SL_m(Q)` is the colimit of its subgroups `SL_I(Q)`, `|I| <= 4`;
+   - so a compatible family of homomorphisms of the pieces into one group *is* a
+     homomorphism of `SL_m(Q)`, and for odd `m` an embedding.
+
+   Gluing separately built hosts of `SL_3(Q)`-sized pieces is therefore the whole
+   problem. In any host every Curtis--Tits vertex angle is `π/2`, so curvature
+   criteria never apply. The rank-2 parabolic amalgam already contains `GL_3(Q)`
+   Levi factors, and `P_1 *_B P_2` is not `GL_3(Q)`. Embeddability is not closed
+   under amalgams in general (`bh-embeddability-forces-decidable-edge-membership`).
+   - What survives: `gl-n-q-root-needs-only-nontrivial-psl-maps`. `PSL_n(Q)` is
+     simple (`SL_m(Q)` for odd `m`), so a nontrivial homomorphism into an
+     embeddable group suffices for infinitely many `n`; open form
+     `psl-n-q-maps-nontrivially-to-fp-simple-groups`.
+   - Borel side: `borel-two-q-is-units-times-aff-q` (`B_2(Q) = Q^x x Aff(Q)`).
+
+6. **VA-pattern finite germ extensions of Higman–Thompson groups, 2026-09-17: dead for every n >= 3, for every
+   embedding.** `normal-germ-extensions-of-thompson-v-contain-no-sl3z` (lane gq-germ-design). By property FW,
+   `SL_3(Z)` fixes a vertex of the Belk–Hyde–Matucci germ cube complex. Margulis's normal subgroup theorem then
+   embeds a finite-index subgroup into a finite product of germ groups (Theorem A, no hypothesis on the germs).
+   When every singular germ group contains `(V)_p` with finite index, or normalizes it at a periodic point, the
+   germ groups are abelian-by-(subgroups of `V`), and Higman's nilpotent theorem finishes (Theorem B). This
+   covers `VA`, bounded-automata Röver–Nekrashevych groups, and the regime of the Belk–Hyde–Matucci Corollary
+   2.10. A host for `n >= 3` needs aperiodic, non-normalizing (shell-type) germs whose finite products contain
+   finite-index subgroups of `SL_3(Z)`. In the VA-pattern regime the germ groups also carry no `BS(1,2)`, so
+   the distortion required by O4 cannot live in them either. `n = 2` stays open outside `VA`.
+
+7. **Adelic covering lifts with deck group `Q^n`, 2026-09-17: dead for the natural affine part.**
+   `adelic-deck-lifts-exclude-affine-q-n-and-fp-bases` (lane gq-adelic), via
+   `fg-groups-with-normal-q-n-have-non-fp-quotients`. Take the adelic analogue of `R -> S^1`, the covering
+   `A^n -> (A/Q)^n` with deck group `Q^n`. The deck group is a normal copy of `Q^n` in any lift group, which gives
+   two facts:
+   - a finitely generated lift group has monodromy in some `GL_n(Z[1/m])`, so it never carries `Aff_n(Q)` with the
+     deck group as translations;
+   - its base is never finitely presented, so a finitely presented Thompson-type group of the solenoid has no
+     finitely generated lift group.
+
+   Together with attempt 1, which kills lifts whose deck group is `Q`-free, covering lifts supply the divisible
+   unipotent part only in a finitely generated lift group over a base that is not finitely presented, and only
+   through divisible subgroups that are not contained in the deck group.

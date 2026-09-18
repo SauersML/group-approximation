@@ -6085,6 +6085,28 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Clos
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Transfer
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Canonical
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientSolvable
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecWords
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecPoly
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.PrimrecFormula
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Swap
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapTwoOfThreeFormal
+import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Theta
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabReindex
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexStabRankDef
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionX
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbIsometryFixCore
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbDiagonalChoice
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparableKOneApprox
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Inputs
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbAmplifyOp
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorEndo
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Hom
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Stage
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.StageHom
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductNorm
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraModuleComplete
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraComplete
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebra
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

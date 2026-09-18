@@ -151,7 +151,9 @@ theorem k2InjStab_constantCoeff_eq_one {p k N : ℕ} (hk : 0 < k)
       = K2Map (MvPolynomial.constantCoeff : MvPolynomial (Fin 0) (ZMod p) →+* ZMod p)
           (K2Map ((MvPolynomial.C : ZMod p →+* MvPolynomial (Fin 0) (ZMod p)).comp
             (MvPolynomial.constantCoeff : MvPolynomial (Fin k) (ZMod p) →+* ZMod p)) u) := by
-        rw [K2Map_K2Map, hcomp]
+        rw [K2Map_K2Map]
+        exact congrArg (fun φ : MvPolynomial (Fin k) (ZMod p) →+* ZMod p ↦ K2Map φ u)
+          hcomp.symm
     _ = K2Map (MvPolynomial.constantCoeff : MvPolynomial (Fin 0) (ZMod p) →+* ZMod p) 1 := by
         rw [hψ 0 hk]
     _ = 1 := map_one (K2Map (I := Fin N)
