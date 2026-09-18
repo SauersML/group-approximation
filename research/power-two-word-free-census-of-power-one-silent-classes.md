@@ -33,6 +33,8 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lift_word_short_words_m2.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory.py
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory_r1_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_len8_m2_open_entries.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_m3_open_entries.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -159,3 +161,19 @@ entries, one per line).
     and inverses. A memory-1 refinement of the LP (`lp_memory.py`, windows of two turns) gives the same value
     (`lp_memory_r1_4887_m2.log`, where all seven certificates also project with 0 failures).
     So neither relaxation separates these entries from certified ones.
+
+- **2026-09-18, addendum (w3-074): no single-word certificate of length at most 8 on the 14 open entries at power two, nor on the tested ones at power three.**
+  - Every certificate whose boundary is copies of `(w, f(w)^{-1})` for one word `w` projects to a
+    point of the per-word LP of `lp5.py` with `chi < 0`. So an infeasible LP rules out all of them. Since `I - M` is invertible over `Q`, every
+    boundary has zero total homology, so restricting to zero-homology words loses nothing.
+  - Power two: on all 14 open entries, every legal primitive zero-homology word of length `<= 8` with
+    `|w| + |f(w)| <= 150` gives an infeasible LP (174 to 324 words per entry, 0 with `chi <= 0`;
+    `lp5_single_word_len8_m2_open_entries.log`). This is a float LP, not an exact Farkas check.
+  - Power three: with length `<= 6` (at most 260 darts) every word is infeasible on 4485, 4887, 4012
+    and 2298. With length `<= 8` (at most 520 darts) all 174 words are infeasible on 4485, and 179 and
+    157 of 200 on 4887 and 4012 before the time limit. 2298 exceeded the 2GB cap
+    (`lp5_single_word_m3_open_entries.log`).
+  - The power-three word-free optima are strongly negative (`-1.09` to `-1.76` per copy), so the
+    obstruction at power three lies in the realisation of words, not in the local polygon LP.
+  - What remains: multiword boundaries at power two or three, or single words longer than 8. A
+    certificate for an open entry needs one of these.

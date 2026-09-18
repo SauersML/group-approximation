@@ -1,0 +1,29 @@
+# lp5.py single-word scan at power 3.
+# pass 1: python3 lp5.py '<phi>' 3 6 260 1000 (length <= 6, <= 260 darts)
+== 4485
+words 18
+stats {'infeasible': 18, 'chi0': 0, 'neg': 0} best None time 20.7
+== 4887
+words 20
+stats {'infeasible': 20, 'chi0': 0, 'neg': 0} best None time 29.5
+== 4012
+words 20
+stats {'infeasible': 20, 'chi0': 0, 'neg': 0} best None time 38.3
+== 2298
+words 4
+stats {'infeasible': 4, 'chi0': 0, 'neg': 0} best None time 8.1
+ALLDONE
+# pass 2: python3 lp5.py '<phi>' 3 8 520 1100 (length <= 8, <= 520 darts; 2298 exceeded the 2GB memory cap)
+== 4485
+words 174
+stats {'infeasible': 174, 'chi0': 0, 'neg': 0} best None time 730.3
+== 4887
+words 200
+stats {'infeasible': 179, 'chi0': 0, 'neg': 0} best None time 1100.5
+== 4012
+words 200
+stats {'infeasible': 157, 'chi0': 0, 'neg': 0} best None time 1103.5
+== 2298
+words 200
+MemoryError: std::bad_alloc
+ALLDONE
