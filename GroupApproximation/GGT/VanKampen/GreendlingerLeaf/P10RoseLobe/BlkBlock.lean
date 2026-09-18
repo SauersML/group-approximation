@@ -191,7 +191,7 @@ theorem roseLobeBlk_block_close {c A B C : List M.Dart} {P : M.Dart → Bool}
 /-- **The lobe lies on one side of the walk.**  For roots on `c`, or a single root, the lobe
 colouring colours no outer side of a dart of `c`, or no dart of `c` at all. -/
 theorem roseLobeBlk_side {faces : Finset M.Face} {c : List M.Dart}
-    (hc : ∀ d, d ∈ c ↔ IsBoundaryDart M faces d) {rs : List M.Dart}
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d) {rs : List M.Dart}
     (hroot : (∀ r ∈ rs, r ∈ c) ∨ ∃ r, rs = [r]) :
     (∀ d ∈ c, roseJunctionCore_lobeColour M (walkKeep M c) rs (M.alpha d) = false) ∨
       ∀ d ∈ c, roseJunctionCore_lobeColour M (walkKeep M c) rs d = false := by

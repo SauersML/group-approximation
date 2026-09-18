@@ -233,7 +233,8 @@ theorem roseLobeBlk_inL_cons (x : M.Dart) (L : List M.Dart) (o : M.Vertex) :
 theorem roseLobeBlk_inL_singleton_eq_outL {a b : M.Dart}
     (h : M.vertexOf (M.alpha a) = M.vertexOf b) (o : M.Vertex) :
     roseLobeBlk_inL M [a] o = roseLobeBlk_outL M [b] o := by
-  simp only [roseLobeBlk_inL, roseLobeBlk_outL, List.countP_singleton, h]
+  unfold roseLobeBlk_inL roseLobeBlk_outL
+  rw [List.countP_singleton, List.countP_singleton, h]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_inL_singleton_eq_outL
 
