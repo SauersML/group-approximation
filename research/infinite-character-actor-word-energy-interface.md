@@ -230,3 +230,33 @@ do not provide either mechanism.
   The two gates are logically independent; the invariant any proof must use
   is a property of the stabilizer that fails for locally finite groups (the
   `SL_3(Z)` and Andre--Guirardel stabilizers survive).
+- **Shift from uniform word defect to entropy of p.m.p. witnesses (scale
+  shift, entropy-measure).**
+  `coset-lamp-seed-radical-is-ce-fixed-algebra-rigidity` changes the level
+  for coset-lamp packets. The quantifier over matrix microstates becomes a
+  quantifier over Connes-embeddable actions. The certificate `J in Rad_hyp`
+  that `(ICR2)` would deliver becomes `F_C <= F_(<C,a>)` in every such action.
+  At that level `zero-entropy-compressors-preserve-fixed-algebra` proves the
+  rigidity for every action in which the compressors have zero entropy on
+  `F_C`. It uses no (T), soficity, freeness or ergodicity, and rests only on
+  the one-sided sigma-algebra `s^-1 F_C <= F_C`. For the Kun--Thom pair every
+  surviving witness therefore has `h(s_0) > 0`. The route dies for this node
+  at its first hypothesis: a strict compressor `t C t^-1 < C` whose group
+  `<C, t, ...>` contains the seed displacement `a`.
+  - A finitely presented coset packet with finitely generated `C` has no
+    finite-index strict compressor. If `[C : tCt^-1] = k > 1`, the `C`-orbit
+    of `t^n C` has stabilizer `t^n C t^-n` of index `k^n`. So the double
+    cosets `C t^n C` are pairwise distinct, contradicting the finite
+    double-coset condition in `wreath-presentation-double-coset-obstruction`.
+  - In the SL3 Hecke host `SL3(Z) < SL3(Z[1/2])` every compressor image
+    `tCt^-1 <= C` is a lattice of the same covolume in `SL3(R)`, hence equal
+    to `C`. So `P_C = N_A(C)` and the entropy floor `H(P | s^-1 F_C)` is
+    identically zero.
+  - Infinite-index strict compressors in a finitely presented coset packet
+    are not ruled out here. Even there, positive-entropy Connes-embeddable
+    witnesses remain as the independent statement (PE) of that node.
+  - More fundamentally, the bridge back fails. Entropy of a witness action
+    bounds no normalized-HS relator defect. Radical membership is only a
+    consequence of `(ISC2)` (`infinite-character-interface-is-marked-radical-certificate`),
+    and no converse is known. So this level can bypass the interface for
+    non-finitely-presented hosts, but it cannot produce `(IWE6)`.
