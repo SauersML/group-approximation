@@ -169,3 +169,17 @@ the Kaplansky zero-divisor conjecture."
    - Next: `|L_S| >= 11`, e.g. contiguous `S` of span `>= 10^{51}`.  Chains
      through 11 distinct lines exist, so the coefficients of `alpha beta = 0`
      must be tracked along the walk.
+11. **Eleven-point a-supports in Steenbock's graphs (proposed established; `rips-segev-steenbock-eleven-point-a-supports-are-regular`).**
+   - Steenbock's rows are super-increasing: `min Dist_r^+ = 10^{5r-4}`
+     exceeds the sum of all larger elements of lower rows.
+   - So one pair of `S` per line of `L_S` gives a forest on `S`.  A cycle
+     would be a signed sum of distinct-row differences equal to zero.  Hence
+     `|L_S| <= |S| - 1` for every finite `S`.
+   - With attempt 10: every `beta in k[a^S <b>]` (or `k[<b> a^S]`) with
+     `|S| <= 11` is regular, whatever the spread of `S`, for any number of
+     layers and any field.
+   - A zero divisor of this shape therefore needs at least 12 distinct
+     `a`-exponents and `a`-span `>= 10^{51}`.
+   - The support method stops at some `S` with `|S| <= q(gamma) + 1 <= 25`
+     (12 if `gamma = 42`).  A shortest relator cycle gives a chain there, so
+     the coefficients must enter beyond it.
