@@ -72,6 +72,8 @@ theorem gfaceWindTen_lobe_simple {M : CombMap.{v}} {c W R : List M.Dart}
   · exact hA
   · exact hB
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_lobe_simple
+
 /-- **The base face is off the side of every lobe** at a residual state. -/
 theorem gfaceWindTen_lobe_base {M : CombMap.{v}} {c W R : List M.Dart} {o : M.Face}
     (h1 : ¬ ∃ p A q : List M.Dart, c = p ++ A ++ q ∧ IsSimpleClosedWalk M A ∧
@@ -81,8 +83,10 @@ theorem gfaceWindTen_lobe_base {M : CombMap.{v}} {c W R : List M.Dart} {o : M.Fa
     (hl : gfaceWindEight_Lobe M c W R) : o ∉ SimpleClosedWalkSides.sideFaces M W := by
   intro hoW
   obtain ⟨p, A, q, hseg, ⟨hA, rfl, -⟩ | ⟨hB, rfl, -⟩⟩ := hl
-  · exact h1 ⟨p, A, q, hseg, hA, hoW⟩
+  · exact h1 ⟨p, _, q, hseg, hA, hoW⟩
   · exact h2 ⟨p, A, q, hseg, hB, hoW⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_lobe_base
 
 /-- **Inner lobes of non-clean lobes at residual states**: the hypotheses of
 `gfaceWindEight_Statement`, and each non-clean lobe `W` has a lobe `W'` whose darts have their
@@ -105,6 +109,8 @@ def gfaceWindTen_Statement : Prop :=
             (∀ x ∈ W', M.faceOf x ∈ SimpleClosedWalkSides.sideFaces M W) ∧
               ∃ x ∈ W', x ∉ W
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_Statement
+
 /-- **Clean lobes from inner lobes**: planar side nesting turns inner lobes into the strict
 descent of `gfaceWindEight_descent`. -/
 theorem gfaceWindTen_eight (h : gfaceWindTen_Statement.{v}) :
@@ -119,14 +125,12 @@ theorem gfaceWindTen_eight (h : gfaceWindTen_Statement.{v}) :
     (gfaceWindTen_lobe_simple hl') hin (gfaceWindTen_lobe_base h1 h2 hl₁)
     (gfaceWindTen_lobe_base h1 h2 hl') hxW' hxW₁⟩
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_eight
+
 /-- **`PosStep` from inner lobes**, through `gfaceWindEight_posStep`. -/
 theorem gfaceWindTen_posStep (h : gfaceWindTen_Statement.{v}) : gfaceWindSix_PosStep.{v} :=
   gfaceWindEight_posStep (gfaceWindTen_eight h)
 
-end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
-
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_lobe_simple
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_lobe_base
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_Statement
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_eight
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_posStep
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
