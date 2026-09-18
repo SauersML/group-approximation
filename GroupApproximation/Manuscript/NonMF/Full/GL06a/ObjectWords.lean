@@ -161,10 +161,7 @@ theorem card_changePositions_le [DecidableEq α] :
 theorem some_mem_of_mem_reducedWord [DecidableEq α] {l : List (Option α)} {a : α}
     (h : a ∈ reducedWord l) : some a ∈ l := by
   have h1 : a ∈ l.reduceOption := (List.destutter_sublist _ _).subset h
-  obtain ⟨x, hx, hxa⟩ := List.mem_filterMap.mp h1
-  have hxa' : x = some a := hxa
-  subst hxa'
-  exact hx
+  exact List.reduceOption_mem_iff.mp h1
 
 /-- **No `a b a b`**: no subsequence `a, b, a, b` with `a ≠ b`. -/
 def NoABAB (w : List α) : Prop :=
@@ -232,16 +229,15 @@ theorem length_add_one_le_two_mul_card [DecidableEq α] :
         rw [hset, Finset.card_union_of_disjoint hdisj]
       have hlen : (a :: (u ++ a :: v)).length = u.length + (a :: v).length + 1 := by
         rw [List.length_cons (a := a) (as := u ++ a :: v), List.length_append]
-      have hupos : 0 < u.length := List.length_pos_iff.mpr hune
       have hu := length_add_one_le_two_mul_card n u (by omega) hune hu_chain
         (hno.sublist ((List.sublist_append_left u (a :: v)).cons a))
       have hv := length_add_one_le_two_mul_card n (a :: v) (by omega) (List.cons_ne_nil a v)
         hv_chain (hno.sublist ((List.sublist_append_right u (a :: v)).cons a))
       omega
     · have hl : (a :: rest).length = rest.length + 1 := List.length_cons
+      have hnot : a ∉ rest.toFinset := fun h => ha (List.mem_toFinset.mp h)
       have hcard : (a :: rest).toFinset.card = rest.toFinset.card + 1 := by
-        rw [List.toFinset_cons,
-          Finset.card_insert_of_notMem (fun h => ha (List.mem_toFinset.mp h))]
+        rw [List.toFinset_cons, Finset.card_insert_of_notMem hnot]
       by_cases hrest : rest = []
       · subst hrest
         have h0 : ([] : List α).toFinset.card = 0 := by

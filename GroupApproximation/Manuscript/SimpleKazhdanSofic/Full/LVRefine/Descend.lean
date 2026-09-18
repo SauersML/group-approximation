@@ -119,8 +119,9 @@ def refineGen (g : SteinbergGenerator (Fin n) R) : SteinbergGroup (Fin (n + 1)) 
   refineRoot L r g.row g.column g.row_ne_column g.coefficient
 
 theorem refineGen_kills_relations (w : FreeGroup (SteinbergGenerator (Fin n) R))
-    (hw : w ∈ relations (I := Fin n) (R := R)) : FreeGroup.lift (refineGen L r) w = 1 := by
-  change IsRelation w at hw
+    (hw : w ∈ SteinbergGroup.relations (I := Fin n) (R := R)) :
+    FreeGroup.lift (refineGen L r) w = 1 := by
+  change SteinbergGroup.IsRelation w at hw
   cases hw with
   | add i j hij a b =>
       simp only [map_mul, map_inv, FreeGroup.lift_apply_of]
@@ -137,7 +138,7 @@ theorem refineGen_kills_relations (w : FreeGroup (SteinbergGenerator (Fin n) R))
 /-- Khanh's refinement homomorphism `D_r : St_n(R) → St_{n+1}(R)` splitting the coordinate `r`
 along the Leavitt family `L` (Khanh Thm 5.4, `eq:steinberg-refinement`;
 `sec:questions` l.733-735). -/
-def refineHom {n : ℕ} (r : Fin n) : SteinbergGroup (Fin n) R →* SteinbergGroup (Fin (n + 1)) R :=
+def refineHom : SteinbergGroup (Fin n) R →* SteinbergGroup (Fin (n + 1)) R :=
   PresentedGroup.toGroup (f := refineGen L r) (refineGen_kills_relations L r)
 
 theorem refineHom_x (i j : Fin n) (hij : i ≠ j) (a : R) :

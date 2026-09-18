@@ -54,7 +54,9 @@ theorem exists_finiteIndex_avoid (G : Type) [Group G] [Group.ResiduallyFinite G]
         Group.residuallyFinite_iff_exists_finiteIndex.mp ‹Group.ResiduallyFinite G› a ha1
       refine ⟨K ⊓ L, inferInstance, fun s hs hs1 hmem => ?_⟩
       rcases Finset.mem_insert.mp hs with hsa | hs'
-      · exact haL (hsa ▸ (Subgroup.mem_inf.mp hmem).2)
+      · apply haL
+        rw [← hsa]
+        exact (Subgroup.mem_inf.mp hmem).2
       · exact hKS s hs' hs1 (Subgroup.mem_inf.mp hmem).1
 
 /-- `r` lies in the orbit of `x` under left multiplication by the copy `b` of `G`. -/
@@ -83,7 +85,7 @@ noncomputable def copyRep (G : Type) [Group G] (Γ : Subgroup G) (b : Bool)
 theorem copyRep_spec (G : Type) [Group G] (Γ : Subgroup G) (b : Bool)
     (x : SymmetricDouble G Γ) :
     ∃ g : G, inDouble G Γ b g * copyRep G Γ b x = x :=
-  Classical.epsilon_spec_aux ⟨1⟩ (copyOrbit G Γ b x)
+  Classical.epsilon_spec_aux (Nonempty.intro (1 : SymmetricDouble G Γ)) (copyOrbit G Γ b x)
     ⟨x, show ∃ g : G, inDouble G Γ b g * x = x from ⟨1, by rw [map_one, one_mul]⟩⟩
 
 theorem copyRep_mul (G : Type) [Group G] (Γ : Subgroup G) (b : Bool) (g : G)
@@ -186,7 +188,8 @@ theorem exists_copyModel (G : Type) [Group G] [Group.ResiduallyFinite G] (Γ : S
       ∀ (g : G) (x : SymmetricDouble G Γ), act g (ι x) = ι (inDouble G Γ b g * x) := by
   classical
   obtain ⟨K, _, hK⟩ := exists_finiteIndex_avoid G
-    ((B ×ˢ B).image fun p => (copyCoord G Γ b p.1)⁻¹ * copyCoord G Γ b p.2)
+    ((B ×ˢ B).image fun p : SymmetricDouble G Γ × SymmetricDouble G Γ =>
+      (copyCoord G Γ b p.1)⁻¹ * copyCoord G Γ b p.2)
   refine ⟨Option (B.image (copyRep G Γ b)) × (G ⧸ K), inferInstance,
     copyAct G Γ (B.image (copyRep G Γ b)) K, copyEmbed G Γ b (B.image (copyRep G Γ b)) K,
     copyEmbed_injOn G Γ b B (B.image (copyRep G Γ b)) K
@@ -251,7 +254,7 @@ end GroupApproximation.Full.NN01b.LocalModel
 
 namespace GroupApproximation.Full.NN01b
 
-open GroupApproximation LocalModel
+open GroupApproximation GroupApproximation.Full.NN01b.LocalModel
 
 /-- Finite local models of the symmetric double of a residually finite group
 (`thm:exact-mf-residual`, local step). -/
@@ -291,6 +294,6 @@ theorem exists_localModel
   | true =>
     intro g x _ _
     exact (sumRightHom_apply_inr (Z := Zf) actT g (ιt x)).trans
-      (congrArg Sum.inr (heqT g x))
+      (congrArg (Sum.inr : Zt → Zf ⊕ Zt) (heqT g x))
 
 end GroupApproximation.Full.NN01b

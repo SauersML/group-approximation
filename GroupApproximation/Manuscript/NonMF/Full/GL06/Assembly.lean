@@ -7,8 +7,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06b.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
 import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
+import GroupApproximation.Manuscript.NonMF.Full.GL06h.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06f.Reduction
-import GroupApproximation.Manuscript.NonMF.Full.GL03B.FollowsCase
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL03D.Endpoint
 import GroupApproximation.Meta.AxiomGuard
@@ -33,14 +33,22 @@ remaining binders come from sibling lanes. Names marked PROVISIONAL are not land
 * `hwhole` (residual 09): PROVISIONAL `Full.GL06c.wholeSectionTwoArc`.
 * `hcopy` (binder 5, residuals 06 and 07): `Full.GL06.osinMultipleEdgePocketRegionCopyBelowSection_of_refuted`
   (`Full/GL06/BinderFive`) applied to PROVISIONAL
-  `Full.GL06e.refutedBelowSection_of_innerPocketEnclosed`. That in turn is applied to the landed
-  `Full.GL03B.innerPocketEnclosedTwoArcLocal_of_pinched` of PROVISIONAL
-  `Full.GL03BPinch.innerPocketEnclosedTwoArcPinched`.
+  `Full.GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected :
+    Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected →
+    Full.GL06.EnclosedAllRelatorCellsRefutedSectionStatement →
+    Full.GL06e.CellPocketWalkRefutedBelowSectionStatement`, with arguments
+  * PROVISIONAL `Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected`, and
+  * PROVISIONAL `Full.GL06h.enclosedAllRelatorCellsRefuted`, which excludes the all-cells disjunct
+    (statement in `Full/GL06/EnclosedAllCells`).
+
+  GL03BPinch found on paper that `Full.GL03B.InnerPocketEnclosedTwoArcLocal`, its pinched form and
+  the foreign `P07LakeExclusion.InnerPocketEnclosedTwoArcStatement` are false.  No consumer of them
+  is used here.
 * `hstep` (residual 10): `Full.GL06.outerPinchStep_of_cases` of
   * PROVISIONAL `Full.GL06d.nonRoseStep`, whose type must be definitionally
     `Full.GL06.NonRoseStepStatement` (over `Full.GL06f.AllNonFirstTurnsCrossed`, not the
     non-compiling `P10ChordLift` predicate), and
-  * PROVISIONAL `Full.GL06f.rose_of_regionMoveSubArc` applied to PROVISIONAL
+  * the landed `Full.GL06f.rose_of_regionMoveSubArc` applied to PROVISIONAL
     `Full.GL03D.roseRegionMoveSubArc : Full.GL06f.RoseRegionMoveSubArcStatement`.
 
 GL05c's counterexample (fk/orders/GL05c-counterexample.md) killed the rose junction route
@@ -67,9 +75,9 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea :
     GroupApproximation.Full.GL06b.twoGonCleanCopy.{u, w, v}
     GroupApproximation.Full.GL06c.wholeSectionTwoArc.{u, w, v}
     (osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
-      (GroupApproximation.Full.GL06e.refutedBelowSection_of_innerPocketEnclosed
-        (GroupApproximation.Full.GL03B.innerPocketEnclosedTwoArcLocal_of_pinched
-          GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcPinched.{u, w, v})))
+      (GroupApproximation.Full.GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected
+        GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected.{u, w, v}
+        GroupApproximation.Full.GL06h.enclosedAllRelatorCellsRefuted.{u, w, v}))
     (outerPinchStep_of_cases GroupApproximation.Full.GL06d.nonRoseStep.{u, w, v}
       (GroupApproximation.Full.GL06f.rose_of_regionMoveSubArc
         GroupApproximation.Full.GL03D.roseRegionMoveSubArc.{u, w, v}))

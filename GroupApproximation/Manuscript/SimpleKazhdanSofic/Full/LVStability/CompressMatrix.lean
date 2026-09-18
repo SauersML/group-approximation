@@ -166,7 +166,8 @@ theorem compB_mul_compA (hp : 0 < p) : compB F p * compA F p = 1 := by
         · subst hab
           rw [if_pos (rfl : a = a), dR_mul_dL, Matrix.one_apply_eq]
         · rw [if_neg hab, mul_zero,
-            Matrix.one_apply_ne (fun h => hab (Fin.castSucc_inj.1 h))]
+            Matrix.one_apply_ne
+              (fun h : Fin.castSucc a = Fin.castSucc b => hab (Fin.castSucc_inj.1 h))]
       · intro k _ hka
         rw [compB_castSucc, if_neg (Ne.symm hka), zero_mul]
       · intro h
@@ -185,7 +186,7 @@ theorem compA_mul_single_mul_compB (i j : Fin p) (a : A) :
       · rw [if_neg hy, mul_zero, if_neg (fun h : i = x ∧ j = y => hy h.2)]
     · rw [if_neg hx, zero_mul, zero_mul, if_neg (fun h : i = x ∧ j = y => hx h.1.symm)]
   · intro l _ hl
-    rw [Matrix.mul_single_apply_of_ne _ _ _ _ hl, zero_mul]
+    rw [Matrix.mul_single_apply_of_ne a _ _ _ _ hl, zero_mul]
   · intro h
     exact absurd (Finset.mem_univ _) h
 

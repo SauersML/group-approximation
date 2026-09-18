@@ -60,18 +60,18 @@ end Group
 variable {K N : ℕ} (M : Minsky.Machine K N)
 
 /-- The image of a letter in `G(M)`. -/
-def lt (s : KhGen K N) : KhGroup M := PresentedGroup.mk (relators M) (FreeGroup.of s)
+def kLet (s : KhGen K N) : KhGroup M := PresentedGroup.mk (relators M) (FreeGroup.of s)
 
 /-- `f ↦ f * a_{n+1}` in `G(M)`. -/
-def sOp (n : Fin K) (f : KhGroup M) : KhGroup M := khStar f (lt M (.a n)) (lt M (.a' n))
+def sOp (n : Fin K) (f : KhGroup M) : KhGroup M := khStar f (kLet M (.a n)) (kLet M (.a' n))
 
 /-- `f ↦ f * A_{n+1}` in `G(M)`. -/
-def cOp (n : Fin K) (f : KhGroup M) : KhGroup M := khComm f (lt M (.bigA n.succ))
+def cOp (n : Fin K) (f : KhGroup M) : KhGroup M := khComm f (kLet M (.bigA n.succ))
 
 /-- The configuration element as a fold of operations. -/
 theorem configElem_eq (c : Minsky.Cfg K N) :
     configElem M c = opFold (cOp M) (List.finRange K)
-      (opFold (fun k ↦ (sOp M k)^[c.glass k]) (List.finRange K) (lt M (.x c.state {0}))) := by
+      (opFold (fun k ↦ (sOp M k)^[c.glass k]) (List.finRange K) (kLet M (.x c.state {0}))) := by
   have hc : ∀ (k : Fin K) (x : FreeGroup (KhGen K N)),
       PresentedGroup.mk (relators M) (khComm x (gA k.succ)) =
         cOp M k (PresentedGroup.mk (relators M) x) :=
@@ -84,14 +84,16 @@ theorem configElem_eq (c : Minsky.Cfg K N) :
       PresentedGroup.mk (relators M)
           ((fun f : FreeGroup (KhGen K N) ↦ khStar f (ga k) (ga' k))^[c.glass k] x) =
         (sOp M k)^[c.glass k] (PresentedGroup.mk (relators M) x) :=
-    fun k x ↦ iterate_semiconj (hs k) (c.glass k) x
-  have h1 := opFold_semiconj (φ := PresentedGroup.mk (relators M))
+    fun k x ↦ iterate_semiconj (φ := ⇑(PresentedGroup.mk (relators M)))
+      (F := fun f : FreeGroup (KhGen K N) ↦ khStar f (ga k) (ga' k)) (E := sOp M k) (hs k)
+      (c.glass k) x
+  have h1 := opFold_semiconj (φ := ⇑(PresentedGroup.mk (relators M)))
     (G := fun (k : Fin K) (x : FreeGroup (KhGen K N)) ↦ khComm x (gA k.succ)) (E := cOp M) hc
     (List.finRange K)
     (opFold (fun (k : Fin K) (x : FreeGroup (KhGen K N)) ↦
       (fun f : FreeGroup (KhGen K N) ↦ khStar f (ga k) (ga' k))^[c.glass k] x)
       (List.finRange K) (gxA0 c.state))
-  have h2 := opFold_semiconj (φ := PresentedGroup.mk (relators M))
+  have h2 := opFold_semiconj (φ := ⇑(PresentedGroup.mk (relators M)))
     (G := fun (k : Fin K) (x : FreeGroup (KhGen K N)) ↦
       (fun f : FreeGroup (KhGen K N) ↦ khStar f (ga k) (ga' k))^[c.glass k] x)
     (E := fun k ↦ (sOp M k)^[c.glass k]) hsi (List.finRange K) (gxA0 c.state)
@@ -100,10 +102,11 @@ theorem configElem_eq (c : Minsky.Cfg K N) :
 
 /-! ## Relators -/
 
-theorem commute_lt_of_mem {s t : KhGen K N}
-    (h : khComm (FreeGroup.of s) (FreeGroup.of t) ∈ relators M) : Commute (lt M s) (lt M t) :=
+theorem commute_kLet_of_mem {s t : KhGen K N}
+    (h : khComm (FreeGroup.of s) (FreeGroup.of t) ∈ relators M) :
+    Commute (kLet M s) (kLet M t) :=
   commute_of_khComm_eq_one
-    ((map_khComm (PresentedGroup.mk (relators M)) _ _).symm.trans
+    ((map_khComm (PresentedGroup.mk (relators M)) (FreeGroup.of s) (FreeGroup.of t)).symm.trans
       (mk_eq_one_of_mem_relators M h))
 
 theorem small_mem_relators {s t : KhGen K N} (hs : s.IsSmall) (ht : t.IsSmall) :
@@ -140,64 +143,61 @@ theorem block_mem_relators {s t : KhGen K N} {i i' : Fin (K + 1)} (hs : s.block 
     j ≠ j' ∧ khComm (FreeGroup.of s) (FreeGroup.of t) = khComm (FreeGroup.of s') (FreeGroup.of t')
   exact ⟨s, t, i, i', hs, ht, hii', rfl⟩
 
-theorem commute_a_a (n k : Fin K) : Commute (lt M (.a n)) (lt M (.a k)) :=
-  commute_lt_of_mem M (small_mem_relators M trivial trivial)
+theorem commute_a_a (n k : Fin K) : Commute (kLet M (.a n)) (kLet M (.a k)) :=
+  commute_kLet_of_mem M (small_mem_relators M (s := .a n) (t := .a k) trivial trivial)
 
-theorem commute_a_a' (n k : Fin K) : Commute (lt M (.a n)) (lt M (.a' k)) :=
-  commute_lt_of_mem M (small_mem_relators M trivial trivial)
+theorem commute_a_a' (n k : Fin K) : Commute (kLet M (.a n)) (kLet M (.a' k)) :=
+  commute_kLet_of_mem M (small_mem_relators M (s := .a n) (t := .a' k) trivial trivial)
 
-theorem commute_a'_a (n k : Fin K) : Commute (lt M (.a' n)) (lt M (.a k)) :=
-  commute_lt_of_mem M (small_mem_relators M trivial trivial)
+theorem commute_a'_a (n k : Fin K) : Commute (kLet M (.a' n)) (kLet M (.a k)) :=
+  commute_kLet_of_mem M (small_mem_relators M (s := .a' n) (t := .a k) trivial trivial)
 
-theorem commute_a'_a' (n k : Fin K) : Commute (lt M (.a' n)) (lt M (.a' k)) :=
-  commute_lt_of_mem M (small_mem_relators M trivial trivial)
+theorem commute_a'_a' (n k : Fin K) : Commute (kLet M (.a' n)) (kLet M (.a' k)) :=
+  commute_kLet_of_mem M (small_mem_relators M (s := .a' n) (t := .a' k) trivial trivial)
 
-theorem commute_bigA_bigA (i i' : Fin (K + 1)) : Commute (lt M (.bigA i)) (lt M (.bigA i')) :=
-  commute_lt_of_mem M (bigA_mem_relators M i i')
+theorem commute_bigA_bigA (i i' : Fin (K + 1)) :
+    Commute (kLet M (.bigA i)) (kLet M (.bigA i')) :=
+  commute_kLet_of_mem M (bigA_mem_relators M i i')
 
 theorem commute_bigA_a {n k : Fin K} (h : k ≠ n) :
-    Commute (lt M (.bigA n.succ)) (lt M (.a k)) :=
-  commute_lt_of_mem M (block_mem_relators M (s := .bigA n.succ) (t := .a k) rfl rfl
-    (fun he ↦ h (Fin.succ_inj.mp he.symm)))
+    Commute (kLet M (.bigA n.succ)) (kLet M (.a k)) :=
+  commute_kLet_of_mem M (block_mem_relators M (s := .bigA n.succ) (t := .a k)
+    (i := n.succ) (i' := k.succ) rfl rfl (fun he ↦ h (Fin.succ_inj.mp he.symm)))
 
 theorem commute_bigA_a' {n k : Fin K} (h : k ≠ n) :
-    Commute (lt M (.bigA n.succ)) (lt M (.a' k)) :=
-  commute_lt_of_mem M (block_mem_relators M (s := .bigA n.succ) (t := .a' k) rfl rfl
-    (fun he ↦ h (Fin.succ_inj.mp he.symm)))
+    Commute (kLet M (.bigA n.succ)) (kLet M (.a' k)) :=
+  commute_kLet_of_mem M (block_mem_relators M (s := .bigA n.succ) (t := .a' k)
+    (i := n.succ) (i' := k.succ) rfl rfl (fun he ↦ h (Fin.succ_inj.mp he.symm)))
 
 /-- G8 for `i → Add(n); j`: `x_{q_i A_0} = x_{q_j A_0} * a_n`. -/
-theorem add_relation {i j : Fin (N + 1)} {n : Fin K} (hc : (i, Minsky.Instr.add n j) ∈ M.prog) :
-    lt M (.x i {0}) = sOp M n (lt M (.x j {0})) := by
-  have h := mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
-  have h2 : PresentedGroup.mk (relators M) (gxA0 i) *
-      (PresentedGroup.mk (relators M) (khStar (gxA0 j) (ga n) (ga' n)))⁻¹ = 1 := by
-    rw [← map_inv, ← map_mul]
-    exact h
-  rw [map_khStar] at h2
-  exact mul_inv_eq_one.mp h2
+theorem add_relation {i j : Fin (N + 1)} {n : Fin K}
+    (hc : (i, Minsky.Instr.add n j) ∈ M.prog) :
+    kLet M (.x i {0}) = sOp M n (kLet M (.x j {0})) := by
+  have h : PresentedGroup.mk (relators M)
+      (gxA0 i * (khStar (gxA0 j) (ga n) (ga' n))⁻¹) = 1 :=
+    mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
+  rw [map_mul, map_inv, map_khStar] at h
+  exact mul_inv_eq_one.mp h
 
 /-- G8 for `i, ε_n > 0 → Sub(n); j`: `x_{q_i A_0} * a_n = x_{q_j A_0}`. -/
-theorem sub_relation {i j : Fin (N + 1)} {n : Fin K} (hc : (i, Minsky.Instr.sub n j) ∈ M.prog) :
-    sOp M n (lt M (.x i {0})) = lt M (.x j {0}) := by
-  have h := mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
-  have h2 : PresentedGroup.mk (relators M) (khStar (gxA0 i) (ga n) (ga' n)) *
-      (PresentedGroup.mk (relators M) (gxA0 j))⁻¹ = 1 := by
-    rw [← map_inv, ← map_mul]
-    exact h
-  rw [map_khStar] at h2
-  exact mul_inv_eq_one.mp h2
+theorem sub_relation {i j : Fin (N + 1)} {n : Fin K}
+    (hc : (i, Minsky.Instr.sub n j) ∈ M.prog) :
+    sOp M n (kLet M (.x i {0})) = kLet M (.x j {0}) := by
+  have h : PresentedGroup.mk (relators M)
+      (khStar (gxA0 i) (ga n) (ga' n) * (gxA0 j)⁻¹) = 1 :=
+    mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
+  rw [map_mul, map_inv, map_khStar] at h
+  exact mul_inv_eq_one.mp h
 
 /-- G8 for `i, ε_n = 0 → j`: `x_{q_i A_0} * A_n = x_{q_j A_0} * A_n`. -/
 theorem zero_relation {i j : Fin (N + 1)} {n : Fin K}
     (hc : (i, Minsky.Instr.zero n j) ∈ M.prog) :
-    cOp M n (lt M (.x i {0})) = cOp M n (lt M (.x j {0})) := by
-  have h := mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
-  have h2 : PresentedGroup.mk (relators M) (khComm (gxA0 i) (gA n.succ)) *
-      (PresentedGroup.mk (relators M) (khComm (gxA0 j) (gA n.succ)))⁻¹ = 1 := by
-    rw [← map_inv, ← map_mul]
-    exact h
-  rw [map_khComm, map_khComm] at h2
-  exact mul_inv_eq_one.mp h2
+    cOp M n (kLet M (.x i {0})) = cOp M n (kLet M (.x j {0})) := by
+  have h : PresentedGroup.mk (relators M)
+      (khComm (gxA0 i) (gA n.succ) * (khComm (gxA0 j) (gA n.succ))⁻¹) = 1 :=
+    mk_eq_one_of_mem_relators M (instrRelator_mem_relators M hc)
+  rw [map_mul, map_inv, map_khComm, map_khComm] at h
+  exact mul_inv_eq_one.mp h
 
 end Forward
 
