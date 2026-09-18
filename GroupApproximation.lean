@@ -5925,6 +5925,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderCent
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderPeriodic
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductCovariant
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaProjection
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Letters
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
