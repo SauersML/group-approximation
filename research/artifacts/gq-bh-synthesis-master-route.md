@@ -85,7 +85,7 @@ coefficients for Λ₀ acting with torsion-free isotropy.
 | success + | `topologically-free-subshift-full-groups-force-quantum-rigidity` | necessity needs one free point per cylinder |
 | success + | `boolean-inverse-monoid-finite-presentation-is-finite-type` | idempotents commute by axiom; all difficulty is the units functor |
 | success + | `v-cone-sliding-localizes-disjoint-support-relations` | disjoint-support relations have bounded diameter |
-| success + | `perron-substitution-finiteness-for-garside-full-groups` | a Perron weight replaces Li's diagonal ≥ 2 |
+| ~~success +~~ refuted | `perron-substitution-finiteness-for-garside-full-groups` | proof invalid (ba9176b48a): Li needs merge packing, not a Perron height; `cuntz-stabilized-garside-full-groups-are-f-infinity` (16be960ff1) gets packing from the Cuntz colour |
 | success | `self-similar-sfts-are-quantum-rigid-iff-rigid-at-one-scale` | scale collapse |
 | success | `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products` | ring FTR |
 
@@ -209,10 +209,13 @@ finiteness along fp hosts, or of relations along cones. Nothing kills programmab
 - **Cubulated (5.3(10), Q1.15).** The Garside layer is free for every free cocompact
   cubulation, special or not (d172582dd).
   - What is missing is a power operation when time is a poset.
-  - The Perron criterion (4e48d1730) says a power is not needed, only a primitive
-    type-substitution matrix with Perron value > 1.
-  - The next lemma: is the cube-type matrix of a non-product cocompact cubulation primitive with
-    λ > 1? Hyperbolic cubulations are the likely yes; Z² flats are the test.
+  - ~~The Perron criterion (4e48d1730) says a power is not needed, only a primitive
+    type-substitution matrix with Perron value > 1.~~ Refuted (ba9176b48a). Li's proof needs
+    merge packing, which fails along thin cycles (63bf7063b). Cuntz stabilization supplies it
+    for every Li-Garside category with trivial units and (Acyc)
+    (`cuntz-stabilized-garside-full-groups-are-f-infinity`, 16be960ff).
+  - The finiteness gate is closed after stabilization. Q1.15 reduces to dynamical gates G1–G3:
+    a closed bisection set, (Acyc), and comparison or minimality (Attempt 7 of the Q1.15 node).
   - Lanes: bh-major-cube-b, bh-invent-perron.
 - **One-relator / H4 / BG (5.3(9)).** BS chains are towers of coordinate changes at one rational
   point, and they close up in germ extensions of V (98efce84c).

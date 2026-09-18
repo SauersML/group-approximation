@@ -11,11 +11,24 @@ distinct_from:
   raag-cube-codings-fail-li-multiplicity-at-every-power: that shows (t<d) fails for RAAG codings because each maximal state returns only once; this supplies the replacement finiteness theorem whose recurrence is off-diagonal.
 ---
 
-**ESTABLISHED** through `perron-substitution-finiteness-proof` (lane proof; it uses
-X. Li, *Ample groupoids, topological full groups, algebraic K-theory spectra and
-infinite loop spaces* (arXiv:2110.04505v2), Theorem `thm:Fn` and its proof, read at
-source in `$GQ/src/kep/li-garside-II-2110.04505v2.tex`; not independently reviewed;
-no priority claimed).
+**OPEN (proof refuted 2026-09-18).**
+- The only proof, `perron-substitution-finiteness-proof`, is invalidated by
+  `perron-weights-do-not-give-li-finiteness` (landed ba9176b48a).
+- For the `F_k` reduced-word coding, (Perron) holds, yet infinitely many Witzel complexes
+  `|E(x_N)|` are not simply connected. So no height function, Perron or otherwise, makes
+  Witzel's criterion work for that datum.
+- The correct extra hypothesis is merge packing (Pack), decided by
+  `thin-cycles-decide-li-packing`.
+- After Cuntz stabilization, packing is automatic
+  (`cuntz-stabilized-garside-full-groups-are-f-infinity`, 16be960ff1).
+- Whether (Perron) alone implies `F_n` for the unstabilized full group is open. No
+  counterexample is known.
+
+The original text follows, unchanged, as a record.
+
+~~**ESTABLISHED** through `perron-substitution-finiteness-proof` (lane proof; it uses
+X. Li, arXiv:2110.04505v2, Theorem `thm:Fn` and its proof; not independently reviewed;
+no priority claimed).~~
 
 ## Motivation
 
