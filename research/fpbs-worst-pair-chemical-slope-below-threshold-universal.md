@@ -76,3 +76,46 @@ tradeoff claim, a collapse `p_c = p_u` must break this by a full factor
    - *What survives.* (CS) needs a conditional statement *at level `t`*: given
      `o <-> v_n` at `t`, a short route is not much rarer. Passing through
      level `p_c` loses this.
+
+2. **Calibration against amenable Cayley graphs of exponential growth
+   (2026-09-18, swarm-0917-w9-w9-bs-last1; OPEN, class killed).**
+   - **Established:** `fpbs-worst-pair-collapse-realized-on-amenable-growth`.
+     Let `H` be an amenable Cayley graph with `gr > 1` and `p_c < 1`, for
+     example `Z_2 wr Z^2`. The trade-off proofs are amenability-blind, and
+     relative Burton–Keane gives uniqueness on `(p_c,1]`. So on `H`:
+     - `gamma >= log gr` on `[0,p_c]` and `gamma = 0` on `(p_c,1]`;
+     - `l(t) >= log(gr)/log(t/p_c)` at every `t > p_c`, so (CS) is false on
+       `H` everywhere;
+     - `g = log gr` on `(p_c,1]`, so (K') and (EG) are false on `H` too;
+     - the deterministic-endpoint spikes of Attempt 2 of
+       `fpbs-worst-pair-connectivity-rate-positive-above-pc-universal` hold
+       outright.
+   - **Obstruction (type: calibration).**
+     - *Invariant:* amenability.
+     - *Class:* every argument for (CS) whose inputs hold on all Cayley graphs
+       with `gr > 1` and `p_c < 1`. This includes every input now on the
+       worst-pair lane: kernel items 1–3, trade-off items 1, 2 and 5,
+       thinning, the linear lower bound on `theta`, Russo, FKG, BK and Fekete.
+     - *Where every member dies:* at the step that bounds `l(t)` from above
+       at some `t > p_c`, because on `H` that bound is false at every `t`.
+   - **What it changes.**
+     - The collapse picture on this lane (the jump, the forced slope
+       `p_c log(gr)/epsilon`, the `log gr` spikes) is not pathological. It is
+       the actual behaviour of `Z_2 wr Z^2`, so no contradiction can be drawn
+       from its size.
+     - The mean-field `epsilon^(-1/2)` heuristic above is not evidence for
+       (CS): the heuristic fails on `H` by a factor at least
+       `c epsilon^(-1/2)`.
+     - A proof of (CS) must feed a nonamenable quantity into the conditional
+       chemical length of infinite-cluster connections at level `t`. By
+       contrast, the walk-averaged budget `log(1/rho)` vanishes on amenable
+       graphs.
+   - **Side remark, not filed.** The finite-cluster part cannot be that
+     nonamenable input. `P_t(o <-> v, |K_o| < infinity)` is already small in
+     `d(o,v)`, whereas on `H` the infinite-cluster part
+     `P_t(o <-> v, o <-> infinity)` is at least `theta(t)^2`. With the
+     Hermon–Hutchcroft exponential tail as imported in
+     `fpbs-hermon-hutchcroft-finite-tail-input`, (K) at `t` becomes
+     equivalent to exponential decay along `B_n` of the infinite-cluster part
+     alone. The Hermon–Hutchcroft input is therefore spent on the harmless
+     term.

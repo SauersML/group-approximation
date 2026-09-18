@@ -25874,14 +25874,14 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · window-certified-richness-is-conserved-modulo-merges [ESTABLISHED] A left-preserving 2-to-1 wrapper whose constraints are certified by source windows that use every left label splits each window relation into forced 2-blocks and partial bijections, so its value is floored by a derived unique game up to the forced mass, the forced mass is capped by the entropy of the source's forced pairings, and over coset sources on any finite group the rich mass is a merge; windows that omit left labels, dummy padding among them, are outside the class
+- 2026-09-18 · rotated-frame-universe-discretises-to-robust-rich-2to1-sdp-gaps [ESTABLISHED] The rotated-frame universe rich 2-to-1 game U_n discretises, at every fixed n and every eta > 0, to a finite rich instance with basic SDP value at least 1 - eta and integral value at most val(U_n) + eta
+- 2026-09-18 · projective-alphabet-lifts-cannot-amplify-pairing-moments [ESTABLISHED] A reduction whose output kernels refine input kernels through a few label projections multiplies the pull-back q-moment by m^((q-2)g/(2q)), so it can make no pairing law smooth
 - 2026-09-18 · rich-2to1-hard-at-completeness-one-half [ESTABLISHED] For every eps it is NP-hard to tell fully rich 2-to-1 games of value >= (1-eps)/2 from value <= eps
 - 2026-09-18 · jacobson-regular-character-not-mf-without-property-t [OPEN] Exclude the regular character of EL_5 of the binary Jacobson ring from the MF characters without property T
 - 2026-09-18 · delta-e-adjoint-msg-is-fd-uniform-gap-proof [COMPLETE] Adjoin V tensor U to a delta_e model to make U an exact reducing corner of the adjoint corona, then stack finite-dimensional representations with eigenvalues creeping to 1
 - 2026-09-18 · delta-e-adjoint-msg-is-fd-uniform-gap [ESTABLISHED] Model-generic Kesten gaps in delta_e adjoint coronas are exactly corona gaps for every model, and they force a uniform spectral gap of L across all finite-dimensional representations of G
 - 2026-09-18 · random-walk-separators-of-boone-higman-proof [COMPLETE] Put Z/2 wr Z^3 into B_A by the wreath closure, count fair lamps on the range of its transient base walk for linear entropy and drift, read off non-Liouville from the limiting lamp configuration, and split every bound at the linear ceiling
-- 2026-09-18 · random-walk-separators-of-boone-higman [ESTABLISHED] No hereditary class defined by an entropy bound, a drift bound or the Liouville property on metabelian-or-larger subgroups separates Boone--Higman; the lamplighter Z/2 wr Z^3 in B_A reaches the linear ceiling, which no amenable group reaches for return probabilities
-- 2026-09-18 · boone-higman-conjecture [OPEN] Every finitely generated group with solvable word problem embeds in a finitely presented simple group
-- 2026-09-18 · fpbs-worst-pair-kernel-via-some-lq-two-point [OPEN] One finite l^q exponent of the two-point function at one supercritical p forces the worst-pair rate log(gr)/q by Chebyshev on balls
 
 ## Active claims
 

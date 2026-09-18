@@ -87,3 +87,18 @@ not use germs, and it reaches both characters.
     letter, or has several active letters;
   - Lemma 2 of the proof gives a finite test for such a design before any presentation
     work is done.
+
+## Attempts
+
+- **2026-09-17, swarm-0917-w9-w9-bh-last1: the design advice above fails inside the odometer
+  class.** `singular-odometer-self-replicating-groups-have-b1-two` defines characters `(A, B)`
+  on the ambient group `𝒪_d`. `𝒪_d` consists of the tree automorphisms that move points along
+  odometer orbits off finitely many singular points. `(A, B)` comes from a regularized
+  integral of the displacement, and on this `R` it equals `(e_a, e_c)`. It is defined before
+  any subgroup is chosen, so no relation of any subgroup, stable or not, can carry flux.
+  - Redesigning stable section-cycles cannot rescue a candidate inside `𝒪_d` that has a
+    nonzero-slope element, since `b_1 ≥ 2` follows from the sub-tree shift
+    `A(g@x) = A(g) − B(g)`.
+  - It cannot rescue any candidate with a nonzero-index element for `FP_{d−1}`.
+  - A next candidate must have zero slope everywhere, or lie outside `𝒪_d` for every digit
+    identification.
