@@ -99,3 +99,48 @@ Minimality is not claimed at any stage.
   one reviewed lemma and one careful layout.
 - **Next gate.** For the master route, E2 over Kazhdan lattices is now reduced to minimality. That points
   at a Durand–Romashchenko minimal fixed point with one-way flow and complete crossings.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): FAIL for the Layout Lemma as written; the node stays CONDITIONAL
+
+**Verdict: FAIL** for (b), the Layout Lemma, as a proof. There is one specific gap. It looks
+repairable, but the repair has to be written. The node's own status, CONDITIONAL, is accurate.
+Items 1–4 of the Theorem remain conditional on (a) and a corrected (b).
+
+The route is a good one: lane bh-invent-04 combines the DRS fixed point (Durand–Romashchenko–Shen,
+arXiv:0910.2415) with transplants over CMSZ-type Ã2 lattices (Cartwright–Mantero–Steger–Zappa).
+Only the SW layout step fails.
+
+**The gap: SW-determinism forces a causality constraint on the macro rule.**
+1. In an SW-deterministic tiling, each tile is determined by its west and south neighbours. By
+   induction, the top-edge colours of an `N × N` block at column `p` are functions of:
+   - the block's whole left edge;
+   - the bottom-edge colours at columns `≤ p` only.
+
+   Symmetrically, the right-edge colours at height `r` depend on the whole bottom edge and on the
+   left edge at heights `≤ r`.
+2. In a fixed point, the macrotile above reads its bottom colour at the same positions where this
+   macrotile writes its top colour. So `τ`'s own rule must be causal in the macro encoding `E`:
+   - bit `p` of `E(T(l,b))` depends only on `E(l)` and on `E(b)` at positions `≤ p`;
+   - likewise for `R(l,b)` and `E(l)`.
+3. The Design places inputs and outputs of each side at common positions, uses one zone, and says
+   that "outputs are functions of the inputs". It never checks this constraint. For zone tiles,
+   `T = δ(l, b)` is a generic CA step. A generic `δ` violates the constraint, since the leftmost top
+   output bit could then read only the leftmost bottom input bit.
+
+**A likely repair** (not checked).
+- A cell may emit any function of `b` to its right and any function of `l` upward. So:
+  - use side formats with two or more blocks;
+  - write each mixed result only into a block lying above or right of every bit it reads;
+  - send information back to the low blocks by an up-turn and then a right-turn.
+- It must then be re-verified that (L3) complete crossings and the crossing-wire proof's Step 2(c)
+  survive this format.
+- **Supporting evidence.** Deterministic aperiodic tile sets exist (Kari–Papasoglu, GAFA 9 (1999),
+  four-way deterministic), and they can embed computation (Lukkarila 2009). So a correct layout is
+  plausible, but it is not yet a proof.
+
+**Checked and correct.**
+- Item 2's example `M(−e_1) = 2a + b`, `M(−e_2) = a + b` has determinant 1.
+- The lattice examples are correct: index-3 type-preserving subgroups of torsion-free CMSZ groups act
+  simply transitively on one vertex type.
+
+**Not reviewed.** (a) `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`.
