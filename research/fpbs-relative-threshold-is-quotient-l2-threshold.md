@@ -171,3 +171,31 @@ graphs of type (ii) in C1, or through premise (beta).
   operator is bounded is part 5 of the sandwich. It preserves boundedness but
   cannot create it.
 
+**Tree products with product generators (probability-random, 2026-09-17,
+swarm-0917 w12).**
+
+* `fpbs-tree-product-fibre-operator-is-half-tilted-susceptibility`
+  (ESTABLISHED) covers `Gamma = Lambda x H_grp` with product generators,
+  where `Cay(Lambda)` is the `k`-regular tree (`k >= 3`), `H_grp` is
+  arbitrary and `N = H_grp`. It proves
+  `||sigma^N_p||_Q = chi_(p,1/2)`, Hutchcroft's half-tilted susceptibility
+  for the end-fixing group, so `p^Q_(2->2)(N;G) = p_t`. With Hutchcroft's
+  `p_c < p_t` (`fpbs-hutchcroft-nonunimodular-pc-below-pt`), every such pair
+  is of **type (i)**.
+* **Test case settled.** `F_2 x F_2` along either factor (standard product
+  generators) is type (i), not type (ii). `E'` holds on all these pairs, and
+  none of them is an escape from C1.
+* **Reduction of E there.** `E(G,N)` is equivalent to the fibre square-root
+  law: `sum_n n (k-1)^(n/2) f_p(n) < infinity` for all `p < p_c(N;G)`, where
+  `f_p(n)` is the mean cluster mass on one fibre at tree distance `n`. This
+  holds for amenable `H_grp`, and is open for nonamenable `H_grp`:
+  `fpbs-tree-product-fibre-square-root-law-below-relative-threshold`.
+  A counterexample to E of this form needs nonamenable `H_grp` and a window
+  `(p_t, p_c(N;G))`, strictly above `p_c`.
+* **Where the HP transfer stops.** Hutchcroft--Pan's point-to-point Lemma 2.8
+  uses Kesten's return bound for amenable `H`. The invariant is the gap
+  between the point rate and the fibre rate. Details are in the open node.
+* **Next test.** A type-(ii) pair, if one exists, must have a quotient whose
+  Cayley graph is not a tree, or a generating set that is not a product. The
+  open node's smallest case, `F_2 x F_2`, tests E only, not E'.
+
