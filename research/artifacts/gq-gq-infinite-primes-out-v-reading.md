@@ -34,7 +34,8 @@ They are cited through Salo. Line numbers refer to the TeX files.
   `Q^x` by the primes dividing `n`, and `dim(σ_n) = n`. For `n = 2`, `G(2) = <2>`. So
   `Aut(X_2^Z, σ_2) = <σ_2> × ker(dim)`, and `L_2 ≅ ker(dim)`, the inert automorphisms.
 - **One-sided** (2004.08478, abstract). `Aut(X_n^N, σ_n)` embeds in `Out(G_(n,r))` as `H_n`. Every `H in H_n` is a product
-  of at most `|H|` torsion elements. Finitely generated torsion subgroups of `H_n` are finite (l. 1166).
+  of at most `|H|` torsion elements. (A statement at l. 1166 that finitely generated torsion subgroups of `H_n` are
+  finite lies inside a `comment` environment, l. 1164--1192, so it is not part of the paper; gq-referee-b, W1.)
   `Aut(X_2^N, σ_2) ≅ C_2` (Hedlund, reproved there).
 
 ## 3. Decidability, torsion and growth

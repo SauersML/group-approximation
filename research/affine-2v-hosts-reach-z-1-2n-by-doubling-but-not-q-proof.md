@@ -34,8 +34,12 @@ requires:
   `g = 1` by pseudo-freeness, and `λ = μ`.
   - So the groupoid is effective, and the full group acts faithfully on `X`.
   - *Hausdorff.* For `g ≠ 1`, the map `x ↦ ax + b` has at most one fixed point in `Z_2`: exactly one if `a ≠ 1`,
-    none if `a = 1` and `b ≠ 0`. With degree mismatch, fixed points solve affine equations and are rational.
-    Either way the fixed sets have empty interior, so unit-germ sets are `μX` or `∅`.
+    none if `a = 1` and `b ≠ 0`. So for `λ = μ` and `g ≠ 1` the fixed set is at most `μ·({x_0} × C)`. Unlike the
+    odometer case, it can be nonempty, but it is nowhere dense. With degree mismatch, fixed points solve affine
+    equations and are rational. Either way the fixed sets have empty interior, so unit-germ sets are `μX` or `∅`.
+  - *Essentially principal* (referee a, N3). By the fixed-set computation, the interior of the isotropy is the unit
+    space. This is Matui's essential principality. Points with nontrivial isotropy lie in countably many nowhere
+    dense fixed sets.
   - *Normal form.* Every element is `f = h ∏ σ_{μ_i}(g_i)`, with `h ∈ 2V` and `σ_μ(g)` equal to `g` on the cylinder
     `μX` and the identity elsewhere.
 - *C, finiteness.* Li, Example ex:ZS (III), applies with `D^*(w,w) = St(G_N, v) = G_N` (rem:ZS-Stab). So `2V_{G_N}`
@@ -61,7 +65,8 @@ requires:
   - Then `h(x') = x' + (b - b' + 1/q)/2^j` is a translation lying in `H ⊆ Aff(Z[1/N'])`.
 - So `(b - b' + 1/q)/2^j ∈ Z[1/N']`, hence `1/q ∈ Z[1/2N']`, which is false for a prime `q ∤ 2N'`.
 
-A finitely generated `H ≤ Aff(Z_2)` whose elements have rational coefficients has all of them in some `Z[1/N']`:
-take `N'` to be the product of the denominators of the generators. Since `H` acts by tree automorphisms, every
-multiplier is a 2-adic unit, so `N'` may be taken odd. The natural `Q ⋊ ⟨2⟩` contains every `T_q`, so it is not
+A finitely generated `H ≤ Aff(Z_2)` whose elements have rational coefficients has all of them in some `Z[1/N']`.
+Take `N'` to be the product of the denominators of the generators' coefficients and the numerators of their
+multipliers, since `a^{-1}` has the numerators of `a` as denominators (referee a, N1). Since `H` acts by tree
+automorphisms, every multiplier is a 2-adic unit, so its numerator and denominator are odd, and so is `N'`. The natural `Q ⋊ ⟨2⟩` contains every `T_q`, so it is not
 contained in `2V_H`. ∎

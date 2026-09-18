@@ -40,6 +40,6 @@ at the source here).
     on prime cyclic words have unbounded length.
   - An obstruction showing that no nontrivial element of `O_2` has roots of infinitely many orders, or of all
     orders, would answer the corresponding case of Boyle's open root problem for the full 2-shift. It would also
-    show `Z[1/2]` is not in the class of groups of cellular automata, which Salo (arXiv:2305.17946) records as open.
+    show that `Z[1/2]` does not embed in `Aut(X_2^Z)`. Salo (arXiv:2305.17946) records that embedding question as open.
     So an obstruction must use the coherence of roots, or structure outside `L_2`.
   - Core growth class is invariant under powers (Olukoya, arXiv:2004.00516), so it cannot separate roots.

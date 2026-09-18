@@ -353,7 +353,8 @@ it to the first case (referee a, W1).
 
 ## Part III. BS(1,2) in nV (`bs12-embeds-in-brin-thompson-2v`, OPEN)
 
-**24. `renormalization-return-times-tend-to-zero-adically`** (lane proof). Let `T` have a height-`m`
+**24. `renormalization-return-times-tend-to-zero-adically`** (lane proof at `476938cdb`; since then 2 referees, gq-referee-b
+fba51b1a0 and gq-referee-a d4e505ddd; see the evening summary `gq-gq-obstructions-0918-evening-writeup.md`). Let `T` have a height-`m`
 renormalization `(A, φ)`.
 1. `π(x) = Σ_j digit(S^j x) m^j` is a continuous factor onto `Z_m`, with `π ∘ T = π + 1`.
 2. Under bounded brick depth `D` and bounded address growth `P`, `π mod m^j` is constant on bricks of depth
@@ -403,7 +404,6 @@ moves.
    - `fg-metabelian-groups-have-roots-at-finitely-many-primes`, with its addendum;
    - `resolvent-elementary-groups-are-not-fp`;
    - `fg-restricted-product-actions-have-finite-support`;
-   - `renormalization-return-times-tend-to-zero-adically`;
    - the verified facts of the T_p host.
 
    Four nodes have one referee each: `resolvent-ring-corner-symbols-survive-in-k2` (b),
