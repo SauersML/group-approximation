@@ -1,0 +1,101 @@
+[
+ {
+  "group": "Z2",
+  "n": 2,
+  "ball": 13,
+  "interior": 5,
+  "M_n": 0.6666666666666666,
+  "exact_M": "2/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 3,
+  "ball": 25,
+  "interior": 13,
+  "M_n": 1.0,
+  "exact_M": "1",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 4,
+  "ball": 41,
+  "interior": 25,
+  "M_n": 1.3333333333333333,
+  "exact_M": "4/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 5,
+  "ball": 61,
+  "interior": 41,
+  "M_n": 1.6666666666666667,
+  "exact_M": "5/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 6,
+  "ball": 85,
+  "interior": 61,
+  "M_n": 2.0,
+  "exact_M": "2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 7,
+  "ball": 113,
+  "interior": 85,
+  "M_n": 2.3333333333333335,
+  "exact_M": "7/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 8,
+  "ball": 145,
+  "interior": 113,
+  "M_n": 2.6666666666666665,
+  "exact_M": "8/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 9,
+  "ball": 181,
+  "interior": 145,
+  "M_n": 2.9999999999999862,
+  "exact_M": "3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "Z2",
+  "n": 10,
+  "ball": 221,
+  "interior": 181,
+  "M_n": 3.333333333333336,
+  "exact_M": null,
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ }
+]

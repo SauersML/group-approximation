@@ -52,6 +52,34 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
     so it need not be a product coloring, and nothing forces the trials to be independent with respect to `E`.
   - *A model group where AMP fails.* There is no candidate yet. Such a group needs a non-elementary Følner function
     (Known facts). No Ramsey function of such a group has been computed in the literature this lane read.
+- **2026-09-18 (swarm-0917-w8-w8-f-break, census computation).** This entry gives the first exact values of the
+  Ramsey function of `F`, using a sharper unit-ball precision. It decides nothing about AMP. The node is
+  `thompson-f-b1-ramsey-witnesses-are-at-most-one-third`, and its route certifies everything with DRAT-checked
+  SAT and exact rational duals.
+  - *Exact values.*
+    - `R(1) = R(1, 1/2) = 3`, the same as in `F_2`.
+    - `R(1, ε) = 7` for `1/3 ≤ ε < 1/2`.
+    - `R(1, ε) ≥ 11` for `ε < 1/3`, since the profile `ρ_F(n)` is exactly `1/3` on radii 7 to 10.
+    - The sharper precision costs `+4` radii from `1/2` to `1/3`. In `F_2` it never arrives, because
+      `ρ_{F_2} ≡ 1/2`. This is the first point where `F` separates from the free group in Ramsey terms.
+  - *Why this cannot decide AMP.* AMP compares `R̃(m, 1/u)` with the tower `exp_D(R(exp_D(m+u)) + u)`.
+    - For `D ≥ 1` and every `m, u ≥ 1`, the bound `R(M) ≥ M` (criterion node) makes the right side at least
+      `exp_D(exp_D(2) + 1)`. That is at least `2^5 = 32` when `exp_1(x) ≥ 2^x`.
+      So the census values, which are small lower bounds on the left side, are consistent with AMP(D) and with ¬AMP.
+    - `R` at the arguments AMP needs, such as `R(exp_D(2))`, is far out of computational reach. The census bears
+    only on the qualitative question behind AMP: whether amplification in `F` is free-group-like.
+  - *Function side (exact, item 5 of the node).* Take the extremal direction
+    `w = (1/3)(x_0^{-1} − x_0) + (2/3)(x_1 − x_1^{-1})`.
+    - An exactly checked `f : B_11 → [0,1]` has `Σ_a w_a f(ag) ≥ 0.3404` on `I_11`, so `R̃(1, 1/3) ≥ 12`.
+    - The `{0,1}` version of the same direction dies at radius 11, and a DRAT-checked configuration of 71 elements
+      is the obstruction. So along this direction, sets and functions (`R` versus `R̃`) separate in `F` by radius 11.
+    - The floating LP optima of the relaxation in `F` agree with the exact `F_2` values
+      `11/12, 15/16, 23/24, 31/32` for `n = 7..10`, and are about `47/48` at `n = 11`. So fractionally, `F` stays
+      free-like in this direction.
+  - *Belief update.* Neither branch gains support from the data. `F` looks free through radius 6. It then loses the
+    ping-pong witness, and set witnesses are capped at `1/3`, while the fractional relaxation stays free-like
+    through radius 11. The one structural lesson for AMP is that in `F` the obstruction to set witnesses appears
+    well before the obstruction to function witnesses.
 - **2026-09-18 (swarm-0917-w8-w8-f-follow, operator-algebras).** The hole is reduced to a set-versus-measure gap.
   It stays OPEN. The established parts are `coarse-ball-invariance-gives-fine-reiter-measures` and
   `thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap`.
