@@ -51,7 +51,7 @@ def vdkDiag_RowCoreStatement : Prop :=
 /-- **Reduction**: the residual gives the diagonal statement. -/
 theorem vdkDiag_diag_of_rowCore (h : vdkDiag_RowCoreStatement) : vdkInj_DiagStatement := by
   intro p hp k r hk hsr u _ hu
-  obtain ⟨X, o, ⟨x₀⟩, ⟨C⟩⟩ := h p hp k r hk hsr
+  obtain ⟨_, _, ⟨x₀⟩, ⟨C⟩⟩ := h p hp k r hk hsr
   exact C.toRowData.eq_one_of_K2Stab x₀ u hu
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkDiag_diag_of_rowCore
@@ -71,7 +71,8 @@ theorem vdkDiag_rowCore_of_injStab (hB : vdkStab_InjStabStatement) :
   intro p _ k r _ hsr
   have hK := hB (MvPolynomial (Fin k) (ZMod p)) r (r + 3) hsr le_rfl
   exact ⟨VdKRowCoset (r + 3) (MvPolynomial (Fin k) (ZMod p)), ⟨0, by omega⟩,
-    ⟨Quotient.mk _ 1⟩,
+    ⟨Quotient.mk (QuotientGroup.rightRel
+      (vdkRowParSubgroup (r + 3) (MvPolynomial (Fin k) (ZMod p)))) 1⟩,
     ⟨vdkDiag_RowCore.ofRowData
       (vdkRowDataOfInjective (vdkRowParInjective_of_K2Stab_injective hK)) _⟩⟩
 
@@ -84,7 +85,7 @@ theorem vdkDiag_rowCore_iff_rowData : vdkDiag_RowCoreStatement ↔
       ∃ X : Type, Nonempty X ∧ Nonempty (VdKRowData (r + 3) (MvPolynomial (Fin k) (ZMod p)) X) := by
   constructor
   · intro h p hp k r hk hsr
-    obtain ⟨X, o, hX, ⟨C⟩⟩ := h p hp k r hk hsr
+    obtain ⟨X, _, hX, ⟨C⟩⟩ := h p hp k r hk hsr
     exact ⟨X, hX, ⟨C.toRowData⟩⟩
   · intro h p hp k r hk hsr
     obtain ⟨X, hX, ⟨D⟩⟩ := h p hp k r hk hsr
