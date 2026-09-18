@@ -108,6 +108,24 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
       sits inside `A`.
     - Option 2: prove continuity of the matched-pair transducer action of `H4(n)` on
       `(Z_2 * Z_2)`-words with `Z_2` exponents.
+- **w12-053 (question (a): the edge-group Freiheitssatz is false).** Landed
+  `higman-edge-relator-twist-breaks-tree-lattice-freiheitssatz` (claim and proof route).
+  - Reduction tested. The w11 reduction asks that `<a,c>/<<[a,c]^2>>` embed in
+    `<a,b,c>/<<[a,c]^2>>` inside `Gamma(3, 2^e)`, for infinitely many `e`.
+  - Result: the embedding fails for every `m = 2^e >= 8`.
+    - Conjugating by `b` gives `b^-1 [a,c] b = a^-1 c^-lambda a c^3`, where `lambda = 3^(3^-1 mod m)`
+      and `lambda = 3 mod 8`.
+    - So `S = (a^-1 c^-lambda a c^3)^2` is a conjugate of `R` that lies in `<a,c>`.
+    - `S` survives in a class-7 2-quotient of `<a,c | a^8, c^8, [a,c]^2>`.
+  - The same twist proves the w9/w10 observations as bounds. In every quotient with 2-power-order
+    generators:
+    - `A^ab` is a quotient of `(Z/16)^2`;
+    - `b^64` and `d^64` lie in `A`, because `e_c(S)` has 2-adic valuation 4.
+  - For `e >= 7`, `<<R>>` is not inside `A`, and no splitting over the image of `A` keeps index `m`.
+  - Dead: every argument that routes `ord(a) = 2^e` through the A-splitting.
+  - Next: the B-splitting Freiheitssatz, that `<d,a,b>` embeds in `Gamma(3,2^e)/<<[a,c]^2>>`.
+    Over `<b,d>`, `R` is an exponent-2 proper power of length 8. Alternatively, pro-2 growth of
+    `ord(a)` compatible with `b^64 in A`.
 - **w11-053 (question (a): the torsion regime is a family of tree lattices).** Landed
   `higman-torsion-generator-quotients-factor-through-tree-lattices` (claim and proof route).
   - Universality. Every quotient of `H4(n)` whose four generators are torsion, with lcm of orders
