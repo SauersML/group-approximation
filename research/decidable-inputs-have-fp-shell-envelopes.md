@@ -88,3 +88,14 @@ perfect benchmark. The square-spiral Z^2 envelope is also not finitely
 presented, by the same argument. Still missing for this hole: any
 enumeration of a non-virtually-cyclic input with R_nu finitely
 presented and the gate passed, and a lift from Q to E_nu.
+
+2026-09-18 (bh-shell-universal). The shell proofs never use regularity of the input
+action. `genuine-action-shell-envelopes-generalize-the-regular-shell` runs the
+construction for any action of the input on N whose nonidentity elements have infinite
+support. The one-ended window obstruction and the virtually cyclic prefix-core cap are
+specific to regular enumerations: `eventually-periodic-genuine-shell-actions-give-fp-envelopes`
+gives finitely presented envelopes for every finitely generated virtually abelian input,
+including one-ended Z^2 (near group Z^2 ⋊ Z, window N = 0). The weaker universal claim
+`decidable-inputs-have-fp-genuine-action-shell-envelopes` (implied by this one) also
+suffices for Boone--Higman. The normal-core method reaches exactly the virtually
+abelian inputs, so it cannot go further.
