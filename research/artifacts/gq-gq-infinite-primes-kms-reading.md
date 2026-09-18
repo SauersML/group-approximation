@@ -73,3 +73,56 @@ generated base. A finitely presented residually finite host of KMS type for it w
 
 None of 1–3 is supplied by the paper. So route (a) reduces to a new construction; the KMS paper itself cannot supply
 it.
+
+## 4. Calibration of the characteristic-0 variant (2026-09-18)
+
+**4.1 The naive variant is inconsistent** (`kms-configuration-letters-inherit-exponent-p`, lane proof).
+- Drop only the base law "`H_0` has exponent `p`" from G1.
+- G1 (`A_i^p = 1`), G5 a), G5 c) and G7 still give `x_u^(A_i^n) = x_u x_(uA_i)^n`, hence `x_(uA_i)^p = 1`.
+- So every configuration letter except `x_(q_0), ..., x_(q_N)` has order dividing `p`, and the machine
+  relations G8 live in the `p`-torsion.
+- **The relation that kills torsion-freeness:** the exponent law on `H_1` in G1, transported by G5 a).
+
+**4.2 The fully characteristic-0 variant `G^Z(M)`.** Drop the exponent laws on both `H_0` and `H_1`. This is
+analysis, NOT proved: the KMS structure lemmas were not re-derived over `Z`.
+- *Where exponent `p` enters KMS.*
+  - The structure of `T` is Lemma 4.14 (label `l097`): `T` is "the direct product of cyclic subgroups generated
+    by the elements `x_(i,w)`". It is proved by linear independence of the images in the model `T_1` of a group
+    `Ḡ`, built over `F_p` (Lemmas 4.9–4.13).
+  - The finite-index step is Lemma 4.15 (`l096`): `T(V_R)` is normal and of finite index. Finite index holds
+    because `T/T(V_R)` is spanned by finitely many `x_(i,w)` of order `p`.
+- *If the model works over `Z`.* Then `T` is free abelian on the `x_(i,w)`, and `T(V_R)` has
+  finitely generated free abelian cokernel.
+  - Theorem 4.17's argument then goes through with "finite ⋊ metabelian" replaced by
+    "(finitely generated abelian) ⋊ (finitely generated metabelian)". Such split extensions are residually
+    finite: reduce the base modulo `m`, a characteristic subgroup of finite index.
+  - So residual finiteness, ingredient (3), is plausibly NOT where a Minsky-type characteristic-0 variant breaks.
+- *Where it does break, conditionally.* If `T` is free abelian, `G^Z(M)` contains no `Z_(l)`.
+  - `Z_(l) ∩ T` would be free abelian of rank at most 1.
+  - Then `Z_(l) / (Z_(l) ∩ T)` is either `Z_(l)` or a torsion group with elements of order `q^j` for every prime
+    `q != l` and every `j`. It would have to embed in the finitely generated metabelian top.
+  - The first is impossible (`fg-metabelian-groups-have-roots-at-finitely-many-primes`).
+  - The second is impossible because torsion in a finitely generated metabelian group has bounded exponent. The
+    torsion of `G'` is a finitely generated module over the Noetherian ring `Z[G/G']`, and `G/G'` has finite
+    torsion.
+  - So in characteristic 0 the obstruction moves from (3) to (2). Minsky relations (G5–G8) only identify
+    configuration elements, with coefficients `±1` in `Z[top]`. Divisibility needs a relation with a non-unit
+    integer coefficient.
+- *The minimal such relation* is the Euler relation of `G_l`: `m^(x β x^(-1)) = m^β m^l` on the base, which makes
+  `x β x^(-1) - β` act as `l`. With it, the base becomes `D/Du`, the Euler lamplighter module, and ingredient (3)
+  becomes hard again. The quotient `T/T(V_R)` is then no longer finitely generated abelian: it contains `Z_(l)`.
+  The only residual-finiteness mechanism known here is `l`-adic reduction and folding, as in
+  `z-localized-embeds-in-fg-rf-soluble-group`.
+
+**4.3 Classical inputs: status.**
+- *Finitely generated metabelian groups are residually finite.* KMS use it without citation in the proof of
+  Theorem 4.17 ("Since every finitely generated metabelian group is residually finite"). It is P. Hall's theorem,
+  Proc. LMS 1959, NOT read at source.
+- *Finitely generated metabelian groups embed in direct products of linear groups.* KMS §1.4 cites Wehrfritz,
+  "On finitely generated soluble linear groups", Math. Z. 170 (1980), 155–167.
+- *Residual finiteness of finitely generated abelian-by-polycyclic groups* (Roseblade, Jategaonkar). NOT read at
+  source. It does not apply to `G_l`, whose top `Z ≀ Z` is not polycyclic.
+- *Hall's centre-by-metabelian groups with centre `Q`* show that finitely generated abelian-by-metabelian groups
+  need not be residually finite. From memory, NOT read at source.
+- *Bieri–Strebel criterion for finitely presented metabelian groups.* NOT read at source. There is no known
+  general criterion for finitely presented abelian-by-metabelian groups.
