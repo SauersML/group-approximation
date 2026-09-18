@@ -126,3 +126,23 @@ a cycle of equations through the window.
   - *Still alive.* The constant-bias cell, 2-to-2 inner games, and new
     constructions. (F4) is the sharpest target. It would be killed by showing
     that 1%-soundness of a Grassmann 2-to-1 test forces 99% local rigidity.
+* **2-to-2 inner games presented as dense-link squares (2026-09-18).**
+  **Dead under NP not in RP** on every square of a rigid doubled LEC. Killed by
+  `dense-link-square-selectors-reduce-to-base-orientations`. Take the 2-to-2
+  game `Sq_J(G)`, whose constraint is `pi_(e1)(sigma1) = pi_(e2)(sigma2)` for
+  pairs drawn from an alpha-dense link coupling `J_q` at each right vertex. A
+  deterministic pivot turns any matching selection of value `1 - xi` into an
+  orientation of `G` with lift value `1 - 13 xi / alpha^3` (Theorem Q). Theorem
+  S\* then applies to that orientation. The converse costs a factor 2 (Q'). The
+  DKKMS derived 2-to-2 game (two members sharing a B-vertex agree on `L'`) is
+  the product square, with `alpha = 1`. So 2-to-2 selectors on it with YES value
+  at least `1 - 10^(-5)/13` die at every certified point.
+  - *Invariant.* A dense-link square presentation whose base satisfies (E),
+    (M=), (Rig) and (S). The members die at the pivot step. Every 2-to-2 game is
+    an `alpha = 1` square of its edge subdivision, but that base has stars of
+    size 2 and fails (E). So the kill does not reach general 2-to-2 games.
+  - *Still alive in the 2-to-2 cell.* (T1) sparse or non-uniformly removed
+    links, `alpha -> 0` (the KMS Remark 1.11 constraint removal, if it is not
+    uniform on links); (T2) families whose only square presentations are thin
+    and fail (E); (T3) dense-link bases failing (F1) to (F4). The constant-bias
+    cell is untouched.
