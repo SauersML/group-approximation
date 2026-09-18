@@ -242,3 +242,20 @@ None recorded before 2026-09-17.
       divisibility.
     - `no-q-in-tree-product-actions-with-finite-stabilizers`: kill. No `(Q,+)` in any group acting on a product
       of trees with finite vertex stabilizers.
+
+13. **Leavitt unit groups over commutative coefficients, 2026-09-17: a natural countable simple host, but no
+   finitely presented one from them.** (lane gq-leavitt-units)
+   - `leavitt-unit-groups-over-every-field-are-simple-mod-scalars`: over every field `k`, `L_k(1,2)^x / k^x` is
+     simple. So `Λ = L_Q(1,2)^x / Q^x` is a countable simple group containing `GL_∞(Q)`, `V` and `SL_3(Z)`.
+     Route `gl-n-q-bh-via-rational-leavitt-simple-group` reduces every `n` at once to the OPEN
+     `rational-leavitt-simple-group-embeds-in-fp-simple-group`.
+   - `infinite-field-leavitt-units-are-not-finitely-generated`: `Λ` is not finitely generated, and in
+     characteristic zero no finitely generated subring of any `L_k(1,n)` contains `Q`. So `Q` cannot enter a
+     Leavitt host through commutative coefficients.
+   - `q-coefficient-leavitt-tensor-unit-groups-are-fp` (OPEN, one gap: `H_2(GL_3) = 0` in characteristic zero):
+     noncommutative coefficients `B ⊇ Q` give at best a finitely presented overgroup of `GL_∞(Q)`, which serves
+     `gl-n-q-explicit-natural-fp-overgroup`. Its simple scalar quotient is never finitely presented, because
+     `Q^x` is central and not finitely generated. The same holds for any `Q`-algebra whose elementary groups
+     contain all rational scalars.
+   - `leavitt-units-over-s-integers-are-finitely-presented` (OPEN): the Khanh route fails as stated over `Z[1/m]`,
+     because GE via Menal–Moncasi needs a simple ring.
