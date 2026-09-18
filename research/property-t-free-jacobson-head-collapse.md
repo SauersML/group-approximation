@@ -281,3 +281,62 @@ instead of `4`) changes no conclusion.
   higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
   pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
   OPEN.
+
+- **host-geometry, swarm-0917 (swarm-0917-w11-w11-ptl-pull): mirror seams
+  of the double parabolic die on a Fredholm index.**
+
+  *Proposal.* Make `P_{2,2}(J)` LEF with the head alive by the w8 seam
+  gluing of `binary-jacobson-el2-is-lef`, so no finite-dimensional two-step
+  model is needed:
+  - keep the faithful Toeplitz end `V_+`;
+  - glue it to a mirror far end on a left-infinite half-line;
+  - take the far end root-preserving, `x_ij(a) -> 1 + lambda_ij(a) e_ij`, with
+    the identity Laurent symbol.
+
+  *Result (established class kill).* `p22-seam-lifts-die-on-fredholm-index`.
+  - Let `pi` be any root-preserving partial model of `P_{2,2}` on arbitrary
+    vector spaces, with no dimension bound or filtration. Put
+    `L(S) = phi_12(S) phi_21(1)` and `Y = range phi_13(1)`.
+  - Then `L(S)` preserves `Y`, `L(T) L(S) = 1` on `Y`, and
+    `range phi_13(Q) ≅ Y / L(S) Y`.
+  - Hence, when `L(S)` is Fredholm and `Y` has finite codimension,
+    `ind L(S) <= 0`, and `ind L(S) <= -1` if the head survives.
+  - A mirror end has `m = 1 + finite rank` and `L(S) = shift + finite rank`
+    of index `+1`. So it cannot exist for any target ring `J'` or any family
+    `lambda_ij`, whether or not the head survives there.
+  - This lifts the w9 finite-dimensional trap to infinite-dimensional exact
+    ends.
+
+  *Invariant and step where it dies.*
+  - The invariant is the Fredholm index of the S-root `L(S)` on the range
+    of `x_13(1)`. The source end `V_+` carries `-1`, and every mirror (sink)
+    end would carry `+1`.
+  - Death comes at the sink end, at the right-Levi relations
+    `[x_13(1), x_34(1)] = x_14(1)` and `[x_14(1), x_43(a)] = x_13(a)`. These
+    make `Y` stable under `L(S)`, and the one-sided `P_{2,1}` lacks them.
+  - Only four root triples and `TS = 1` are used.
+
+  *Side computation (class-two tensor models, recorded without a claim).*
+  - `experiments/p22-depth-one-class-two-2026-09-17/c2scan.py` independently
+    re-implements the w10 class-two model of `Gamma_trap` over every Levi
+    module `M_2(F_2[x]/(p))`, `S -> a`, with `p(0) = 1`, every unit
+    `a != 1` and 3 random `c_u` each.
+  - The sweep covers every pair with `deg p <= 5`, plus the first part of
+    degree 6. In total 1093 pairs were run at depth 0 and 993 at depth 1,
+    out of 1755 for `deg p <= 6`. The outputs are in `scan_depth0.txt` and
+    `scan_depth1.txt` in the same directory.
+  - With EXTRA_RELS and orbit depth 0, the head survives only for
+    `p = (x+1)^4, (x+1)^5, (x+1)^6`, in 28 pairs.
+  - At orbit depth 1 it dies in every pair scanned, so the depth-one death
+    seen by w10 is not an accident of `x^4 + 1`.
+
+  *What survives.*
+  - Models that are not root-preserving, where `pi(x_13(a))` leaves the
+    `(1,3)` block (for example, a far end mixing blocks away from the seam).
+  - Models that are nonlinear on the unipotent radical.
+  - Norm-approximate models.
+  - A seam whose two ends both have index `<= -1` is allowed, but it cannot
+    close into a finite model.
+
+  Spark: any LEF or MF model of `P_{2,2}(J)` that keeps the head must break
+  the block decomposition of the unipotent radical. The claim stays OPEN.
