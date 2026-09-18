@@ -5,7 +5,7 @@ kind: claim
 title: An explicit product of five class transpositions has no finite cycles on Z and permutes no nontrivial partition of Z into residue classes
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). Elementary and self-contained. No
+**ESTABLISHED** (lane proof; the formula and items 1 and 3 refereed PASS on 2026-09-18, item 2 not reviewed; see Referee). Elementary and self-contained. No
 priority is claimed.
 
 ## Statement
@@ -100,3 +100,19 @@ composed right to left, so `τ_{1(4),2(4)}` acts first. Then `ψ ∈ CT(Z)`, and
 
 This is the garbage filler in `ct-z-finite-cycle-problems-are-undecidable` (Kourovka
 21.74(c)). By 2, `ψ` is an explicit no-instance of Kourovka 21.74(a).
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): formula and items 1 and 3 PASS; item 2 not reviewed
+
+Reviewed as the filler for `ct-z-finite-cycle-problems-are-undecidable` (Kourovka 21.74(c)).
+- **The formula.** I recomputed all seven pieces through the five factors, right to left: `0(4)`,
+  `3(4)`, `2(4)`, `1(16)`, `5(16)`, `9(16)`, `13(16)`. They give `4n + 2`, `n − 3` and `(n − 1)/4`
+  exactly as stated. PASS.
+- **Item 1.**
+  - On `5(16)`, the map `n ↦ (n − 1)/4` lands in `1(4)` and strictly decreases `|n|`, including for
+    negative `n`. So every forward orbit reaches `2(4)` within finitely many steps.
+  - On `2(4)` we have `|n| ≥ 2` and `|4n + 2| > |n|`, and `2(4)` is invariant.
+  - So no point is periodic. PASS.
+- **Item 3.** `κ(r(m')) = (j + m r)(m m')` is normalized, and conjugating by `κ` sends
+  `τ_{A,B}` to `τ_{κ(A),κ(B)}`. PASS.
+- **Item 2** (no invariant residue partition) is not used by 21.74(b) or (c). It was not reviewed
+  here. It matters only as the explicit no-instance of 21.74(a), which is not claimed as solved.
