@@ -13,7 +13,7 @@ cannot act on 1-manifolds*, Proc. Amer. Math. Soc. 122 (1994), no. 2, 333--340.
 **What was read.** The AMS article page and PDF returned HTTP 403 on 2026-09-17, so
 the primary text was not read. The statement is recorded from secondary sources:
 - K. Parwani, *Actions of SL(n,Z) on homology spheres*, arXiv:math/0504189v1
-  (10 April 2005), HTML version, verbatim: "If Γ is a subgroup of finite index in
+  (10 April 2005), HTML version, Theorem 1.2, verbatim: "If Γ is a subgroup of finite index in
   SL(n,ℤ) with n≥3, then every continuous action of Γ on the circle factors
   through a finite group action." Its reference entry: "D. Witte, Arithmetic
   groups of higher Q-rank cannot act on 1-manifolds, Proc. Amer. Math. Soc. 122
@@ -24,3 +24,6 @@ the primary text was not read. The statement is recorded from secondary sources:
 
 This route asserts only that the source states the theorem as recorded. A
 reviewer with access should confirm the primary statement and its theorem number.
+
+Referee `gq-referee-b` (research/artifacts/gq-referee-b-gl-n-q-hosts-cannot-act-on-one-manifolds.md)
+confirmed the Parwani quotation as his Theorem 1.2; Witte's primary text remains unread.
