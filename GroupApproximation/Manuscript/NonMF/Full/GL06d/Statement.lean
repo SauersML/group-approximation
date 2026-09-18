@@ -10,8 +10,9 @@ turn), which feeds Lemma 4.4.  Manuscript `non_mf_groups_exist.tex`, infrastruct
 `NonRoseStepStatement` is the outer-pinch step `PocketOuterPinchStepSectionStatement` with the
 extra premise `¬ AllNonFirstTurnsCrossed K`.  It is restated here verbatim from the foreign
 `GreendlingerLeaf/P10ChordLift/Proof.lean`, which the independent swarm has not finished, so it is
-definitionally the same Prop as `P10ChordLift.NonRoseStepStatement`.  The theorem proving it is
-`GroupApproximation.Full.GL06d.nonRoseStep` (module `Full/GL06d/NonRose`).
+definitionally the same Prop as `P10ChordLift.NonRoseStepStatement`.  Note that
+`Full.GL06d.nonRoseStep` (module `Full/GL06d/NonRose`) proves the separate
+`Full.GL06.NonRoseStepStatement` (built on `GL06f.AllNonFirstTurnsCrossed`), not this Prop.
 
 ## Manuscript status
 

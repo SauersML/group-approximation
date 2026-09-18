@@ -56,8 +56,8 @@ The remaining residuals are hypotheses, discharged in `Full/GL06/Assembly`:
 `outerPinchStep_of_cases` splits residual 10 into the rose case (`Full.GL06f.RoseStepStatement`)
 and its complement (`Full.GL06.NonRoseStepStatement`, stated here), by excluded middle on
 `Full.GL06f.AllNonFirstTurnsCrossed`.  The foreign `GreendlingerLeaf/P10ChordLift/Predicate` (and so
-`Full/GL06d/Statement`, which imports it through `GoodSector`) is not imported: it does not
-compile, since its `List.next` has no decidable equality of darts in scope.
+`Full/GL06d/Statement`, which imports it through `GoodSector`) is not imported; this module uses
+its own `GL06f`-based predicate instead.
 
 ## Manuscript status
 
