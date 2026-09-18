@@ -78,3 +78,117 @@ def roseLobeOsinSelf_NonGenStatement : Prop :=
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_NonGenStatement
+
+/-- **The cell-bound region choice with the all-pairs shared-arc bound supplied** (OPEN, not
+refuted; see the module docstring).  `roseLobeOsinCore_Statement` with the extra premise
+`roseLobeOsinSelf_SharedArcBoundAll X μ` after `X.LeastArea`. -/
+def roseLobeOsinSelf_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+            roseLobeOsinCore_CellBounds D W X eps mu lambda c rho → X.LeastArea →
+              roseLobeOsinSelf_SharedArcBoundAll X mu →
+                (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+                ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+                  K.sourceArc.length < (cellDarts X K.source).length →
+                  K.targetArc.length < (outerDarts X).length →
+                  ¬Unpinched X.toCombMap K.faces →
+                  P10ChordLift.AllNonFirstTurnsCrossed K →
+                  (walkMap X.toCombMap K.boundary.cycle).IsPlanar →
+                  (∀ x y : (walkMap X.toCombMap K.boundary.cycle).Dart,
+                    Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                      (walkKeep X.toCombMap K.boundary.cycle)) x.1 y.1 ↔
+                      (walkMap X.toCombMap K.boundary.cycle).faceOf x =
+                        (walkMap X.toCombMap K.boundary.cycle).faceOf y) →
+                  (∀ x : X.toCombMap.Dart, ∃ y, walkKeep X.toCombMap K.boundary.cycle y ∧
+                    Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                      (walkKeep X.toCombMap K.boundary.cycle)) x y) →
+                  (∀ x y : X.toCombMap.Dart, Relation.EqvGen (CombMap.FaceClassStep
+                      X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) x y →
+                    (X.toCombMap.faceOf x ∈ K.faces ↔ X.toCombMap.faceOf y ∈ K.faces)) →
+                  (∀ d ∈ invDarts X K.sourceArc.darts,
+                    X.toCombMap.faceOf (X.toCombMap.alpha d) = (cell X K.source).face) →
+                  (∀ d ∈ K.targetArc.darts,
+                    X.toCombMap.faceOf (X.toCombMap.alpha d) = X.outerFace) →
+                    roseLobeOsin_RegionAt K
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_Statement
+
+/-- **The reduction**: the all-pairs region choice and the non-generic self-overlap residual
+give the cell-bound region choice (thresholds: maxima of the two). -/
+theorem roseLobeOsinSelf_core_of (hN : roseLobeOsinSelf_NonGenStatement.{u, w, v})
+    (h : roseLobeOsinSelf_Statement.{u, w, v}) : roseLobeOsinCore_Statement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨e1, he1⟩ := h D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨e2, he2⟩ := hN D hhyp lambda c mu h1 h2 h3 h4 h5
+  refine ⟨max e1 e2, fun eps heps => ?_⟩
+  obtain ⟨r1, hr1, hs1⟩ := he1 eps (le_of_max_le_left heps)
+  obtain ⟨r2, -, hs2⟩ := he2 eps (le_of_max_le_right heps)
+  refine ⟨max r1 r2, lt_of_lt_of_le hr1 (le_max_left r1 r2), ?_⟩
+  intro rho hrho W X lo hi hB hlea hlab
+  exact hs1 rho (le_of_max_le_left hrho) W X lo hi hB hlea
+    (roseLobeOsinSelf_sharedArcBound hB hlea
+      (hs2 rho (le_of_max_le_right hrho) W X hB hlea hlab)) hlab
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_core_of
+
+/-- **Certificate**: the cell-bound region choice gives the all-pairs one (drop the premise),
+so `roseLobeOsinSelf_Statement` is no stronger than it. -/
+theorem roseLobeOsinSelf_of_core (h : roseLobeOsinCore_Statement.{u, w, v}) :
+    roseLobeOsinSelf_Statement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨eps0, heps0⟩ := h D hhyp lambda c mu h1 h2 h3 h4 h5
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
+  exact ⟨rho0, hrho0, fun rho hrho' W X lo hi hB hlea _ => hrho rho hrho' W X lo hi hB hlea⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_of_core
+
+/-- **Certificate**: the distinct-pairs region choice gives the all-pairs one, so
+`roseLobeOsinSelf_Statement` is no stronger than `roseLobeOsinPiece_Statement`. -/
+theorem roseLobeOsinSelf_of_piece (h : roseLobeOsinPiece_Statement.{u, w, v}) :
+    roseLobeOsinSelf_Statement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨eps0, heps0⟩ := h D hhyp lambda c mu h1 h2 h3 h4 h5
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
+  exact ⟨rho0, hrho0, fun rho hrho' W X lo hi hB hlea hall =>
+    hrho rho hrho' W X lo hi hB hlea (roseLobeOsinSelf_pairs_of_all hall)⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_of_piece
+
+/-- **The rose step from the all-pairs region choice and the residual.** -/
+theorem roseLobeOsinSelf_rose_of (hN : roseLobeOsinSelf_NonGenStatement.{u, w, v})
+    (h : roseLobeOsinSelf_Statement.{u, w, v}) : P10ChordLift.RoseStepStatement.{u, w, v} :=
+  roseLobeOsinCore_rose_of (roseLobeOsinSelf_core_of hN h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_rose_of
+
+/-- **The outer-pinch step from the all-pairs region choice and the residual.** -/
+theorem roseLobeOsinSelf_pinch_of (hN : roseLobeOsinSelf_NonGenStatement.{u, w, v})
+    (h : roseLobeOsinSelf_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobeOsinCore_pinch_of (roseLobeOsinSelf_core_of hN h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_pinch_of
+
+/-- **The Greendlinger leaf from the all-pairs region choice and the residual.** -/
+theorem roseLobeOsinSelf_green_of (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (hN : roseLobeOsinSelf_NonGenStatement.{u, w, v})
+    (h : roseLobeOsinSelf_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobeOsinCore_green_of hoff (roseLobeOsinSelf_core_of hN h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinSelf_green_of
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe

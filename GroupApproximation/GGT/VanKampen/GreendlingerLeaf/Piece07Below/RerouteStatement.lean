@@ -16,7 +16,8 @@ docstring of `GL03BPinch/Statement`: every relator cell sits inside the pocket w
 enclosed face set has a short outer walk, not the two-arc shape.  Every endpoint that takes it as a
 hypothesis is vacuous.  The corrected statement `GL03BPinch.InnerPocketEnclosedTwoArcCorrected`
 adds a second disjunct: an enclosed face set holding **all** relator cells, with outer walk of
-length `≤ ε + ε`.  `GL03BPinch.innerPocketEnclosedTwoArcCorrected` (`GL03BPinch/Endpoint`) proves it.
+length `≤ ε + ε`.  `GL03BPinch.innerPocketEnclosedTwoArcCorrected` (`GL03BPinch/Endpoint`) proves
+it, but that module does not build yet (see `Piece07Below/RerouteEndpoint`).
 
 **LOUD: the second disjunct does not by itself give the proper-arcs conclusion.**  So ONE
 residual is needed, and it is already on disk:
@@ -56,13 +57,13 @@ route.
 |---|---|
 | `Piece07Below.proof_of_innerPocketEnclosed` (Piece07Below/Proof) | R: `p07Reroute_arcs_allCells` |
 | `P07LakeExclusion.proof_of_innerPocketEnclosed` (InnerTwoArcLong) | R: same target |
-| `P07LakeExclusion.innerTwoArcLong_of_innerPocketEnclosed` | D: target `InnerTwoArcLong` fails too |
-| `AsmFrontier.properArcsBelow_of_innerTwoArcLong` (AsmFrontier/Gaps) | D: through `InnerTwoArcLong` |
+| `P07LakeExclusion.innerTwoArcLong_of_innerPocketEnclosed` | D: `InnerTwoArcLong` fails too |
+| `AsmFrontier.properArcsBelow_of_innerTwoArcLong` (Gaps) | D: through `InnerTwoArcLong` |
 | `AsmClose.regionEndpoints_of_liveFrontier` (LiveFrontier:66) | R: `p07Reroute_regionEndpoints` |
 | `AsmClose.relativeGreendlinger…Closed_of_liveFrontier` (:78) | R: `p07Reroute_greendlinger` |
 | `P06Bypass.refutedBelowSection_of_innerPocketEnclosed` (RefutedCore:97) | R: via `GL06e` |
-| `P06Bypass.binderFiveRefutedBelowSection_of_innerPocketEnclosed` (RefutedBridge:45) | R: via `GL06e` |
-| `P06Bypass.Waist.refutedBelowSection_of_innerPocketEnclosed_of_long` (WaistInterface:134) | R: via `GL06e` |
+| `P06Bypass.binderFiveRefutedBelowSection_of_innerPocketEnclosed` (RefutedBridge:45) | R |
+| `P06Bypass.Waist.refutedBelowSection_of_innerPocketEnclosed_of_long` (WaistInterface:134) | R |
 | `P06Bypass.relativeGreendlinger…_of_bypassFrontier` (WaistFrontier:61) | R: via `GL06e` |
 | `P06Assembly.RefutedOfInnerPocketEnclosedStatement` (Bypass:102) | D: vacuous implication |
 | `P06Assembly.greendlinger_of_frontier` (Waist:101) | D: consumes the vacuous one |
