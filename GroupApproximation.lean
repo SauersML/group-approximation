@@ -5693,6 +5693,14 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InducedMat
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.FiniteIndex
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSpectral
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.RealForms
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.CompletionRep
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.RealDilation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.CompactExtraction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TraceModels
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TensorSquare
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Frame
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Theorem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
