@@ -12,8 +12,11 @@ distinct_from:
 
 **ESTABLISHED (2026-09-13)** through
 `char-p-linear-pbh-via-polynomial-self-similar-hosts`. The route composes the
-three new nodes of lane `bh-metabelian` with established, reviewed nodes. Not
-independently reviewed.
+three new nodes of lane `bh-metabelian` with established, reviewed nodes. ~~Not
+independently reviewed.~~ *Reviewed:* the route and all three new nodes PASS in
+`research/artifacts/review-metabelian-bh-2026-09-13.md` (items 2–4, 2026-09-13).
+Status line updated 2026-09-18 by lane `bh-linear-fields`; the mathematics is
+unchanged.
 
 **Statement.** Let `K` be a field of characteristic `p > 0` and let
 `H <= GL_n(K)` be finitely generated. Then `H` embeds in a finitely presented

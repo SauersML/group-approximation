@@ -11,8 +11,11 @@ distinct_from:
 
 **ESTABLISHED (2026-09-13)** through
 `char-zero-linear-pbh-via-polynomial-self-similar-hosts`. The route only composes
-established nodes, all but the last reviewed by lane `bh-poly-linear-review`. Not
-independently reviewed.
+established nodes, all but the last reviewed by lane `bh-poly-linear-review`.
+*Adversarially re-checked end to end (2026-09-18, lane `bh-verify-metabelian`):* no
+gap found. Zaremsky's Theorem 1.1 and BFFHZ's Theorem C and Remark 3.5 were re-read at
+source, and the parameter-coordinate states were re-derived. See
+`research/artifacts/gq-bh-bh-verify-metabelian-report.md`, steps 3–9.
 
 **Statement.** Let `K` be a field of characteristic zero and let `H <= GL_n(K)` be
 finitely generated. Then `H` embeds in a group admitting an action of type (A).

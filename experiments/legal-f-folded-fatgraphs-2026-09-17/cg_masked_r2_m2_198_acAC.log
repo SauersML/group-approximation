@@ -1,0 +1,26 @@
+propagation: surviving windows ['aaa', 'aac', 'aca', 'caa', 'cac', 'AAA', 'AAC', 'ACA', 'CAA', 'CAC']
+phi0 {'a': 'bbc', 'b': 'aaab', 'c': 'bbca'} m 2 r 2 mask acAC windows alive 10 slots 20164
+phase 1 it 1 obj 13.000000 cols 1633 pairs 1630 min rc -4 LB -45 best -16 {2: -2.0, 3: inf, 4: -4.0} added 1633 t 1.8 tm 0.0  dartLB -16
+phase 1 it 2 obj 2.295608 cols 2155 pairs 1678 min rc -6.498 LB -57.15 best -16 {2: -2.0, 3: inf, 4: -6.4983} added 522 t 3.8 tm 0.5  dartLB -18.62
+phase 1 it 3 obj 1.988864 cols 2656 pairs 1736 min rc -5.935 LB -51.39 best -16 {2: -1.1091, 3: inf, 4: -5.9347} added 501 t 6.0 tm 1.1  dartLB -18.02
+phase 1 it 4 obj 1.875000 cols 3136 pairs 1784 min rc -6.838 LB -59.24 best -16 {2: 0.0, 3: inf, 4: -6.8382} added 480 t 8.2 tm 1.7  dartLB -18.7
+phase 1 it 5 obj 1.875000 cols 3622 pairs 1836 min rc -6.45 LB -55.77 best -16 {2: -0.156, 3: inf, 4: -6.4498} added 486 t 10.6 tm 2.6  dartLB -17.39
+phase 1 it 6 obj 1.875000 cols 4102 pairs 1878 min rc -5.692 LB -49 best -16 {2: 0.0, 3: inf, 4: -5.6922} added 480 t 13.0 tm 3.6  dartLB -16.06
+phase 1 it 7 obj 1.875000 cols 4572 pairs 1906 min rc -6.362 LB -54.99 best -16 {2: 0.0, 3: inf, 4: -6.3624} added 470 t 15.7 tm 4.8  dartLB -16.78
+phase 1 it 8 obj 1.851787 cols 5050 pairs 1941 min rc -4.994 LB -42.73 best -13.03 {2: 0.0, 3: inf, 4: -4.9943} added 478 t 18.7 tm 6.1  dartLB -13.03
+phase 1 it 9 obj 1.754664 cols 5505 pairs 1972 min rc -4.428 LB -37.55 best -10.59 {2: 0.0, 3: inf, 4: -4.428} added 455 t 21.8 tm 7.6  dartLB -10.59
+phase 1 it 10 obj 1.602345 cols 5906 pairs 1980 min rc -4.691 LB -39.69 best -8.286 {2: 0.0, 3: inf, 4: -4.6912} added 401 t 25.0 tm 9.3  dartLB -8.286
+phase 1 it 11 obj 1.466590 cols 6243 pairs 1991 min rc -3.983 LB -33.32 best -6.998 {2: 0.0, 3: inf, 4: -3.983} added 337 t 28.2 tm 11.1  dartLB -6.998
+phase 1 it 12 obj 1.419386 cols 6534 pairs 1999 min rc -5.233 LB -44.16 best -6.998 {2: 0.0, 3: inf, 4: -5.2327} added 291 t 31.8 tm 13.2  dartLB -7.774
+phase 1 it 13 obj 1.386251 cols 6828 pairs 2001 min rc -4.233 LB -35.41 best -5.908 {2: 0.0, 3: inf, 4: -4.2326} added 294 t 35.5 tm 15.2  dartLB -5.908
+phase 1 it 14 obj 1.349705 cols 6976 pairs 2003 min rc -3.197 LB -26.38 best -4.18 {2: 0.0, 3: inf, 4: -3.1969} added 148 t 39.3 tm 17.5  dartLB -4.18
+phase 1 it 15 obj 1.312364 cols 7147 pairs 2005 min rc -3.045 LB -25.05 best -3.48 {2: 0.0, 3: inf, 4: -3.0452} added 171 t 42.9 tm 19.7  dartLB -3.48
+phase 1 it 16 obj 1.168950 cols 7337 pairs 2007 min rc -2.924 LB -23.93 best -3.48 {2: 0.0, 3: inf, 4: -2.9241} added 190 t 46.6 tm 21.7  dartLB -3.513
+phase 1 it 17 obj 1.135338 cols 7475 pairs 2016 min rc -1.815 LB -14.41 best -1.703 {2: 0.0, 3: inf, 4: -1.8148} added 138 t 50.6 tm 24.2  dartLB -1.703
+phase 1 it 18 obj 1.111111 cols 7577 pairs 2023 min rc -1.49 LB -11.64 best -1.012 {2: 0.0, 3: inf, 4: -1.4902} added 102 t 54.5 tm 26.5  dartLB -1.012
+phase 1 it 19 obj 1.101942 cols 7691 pairs 2023 min rc -1.286 LB -9.891 best -0.5489 {2: 0.0, 3: inf, 4: -1.2856} added 114 t 58.4 tm 28.8  dartLB -0.5489
+phase 1 it 20 obj 1.090470 cols 7796 pairs 2023 min rc -1.004 LB -7.492 best -0.1134 {2: 0.0, 3: inf, 4: -1.0043} added 105 t 62.2 tm 31.2  dartLB -0.1134
+phase 1 it 21 obj 1.063830 cols 7885 pairs 2025 min rc -0.6429 LB -4.422 best 0.228 {2: 0.0, 3: inf, 4: -0.6429} added 89 t 65.9 tm 33.4  dartLB 0.228
+phase 1 Lagrangian bound > 0: full LP infeasible
+RESULT infeasible
+window flow {'aaa': 0.021277, 'aac': 0.010638, 'aca': 0.234043, 'caa': 0.010638, 'cac': 0.223404, 'AAA': 0.021277, 'AAC': 0.010638, 'ACA': 0.234043, 'CAA': 0.010638, 'CAC': 0.223404}

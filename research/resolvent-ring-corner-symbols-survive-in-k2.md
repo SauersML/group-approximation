@@ -9,9 +9,11 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-gq-k2-q-resolvent-corner.md
   - research/artifacts/gq-referee-b-resolvent-ring-corner-symbols-survive-in-k2.md
+  - research/artifacts/gq-referee-a-resolvent-ring-corner-symbols-survive-in-k2.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `resolvent-ring-corner-symbols-survive-in-k2-proof`. Lane proof (gq-k2-q).
+*Reviewed (gq-referee-a, proof-gap lens):* PASS (`research/artifacts/gq-referee-a-resolvent-ring-corner-symbols-survive-in-k2.md`).
 *Reviewed (gq-referee-b, citation and hypothesis lens):* PASS, with one wording fix (W1, applied):
 `research/artifacts/gq-referee-b-resolvent-ring-corner-symbols-survive-in-k2.md`. Inputs:
 - the refereed `resolvent-ring-has-path-normal-form`;
@@ -30,7 +32,8 @@ homomorphism `θ : Z_(l) -> e R_l e`.
    - `θ(c) ↦ c E_(0,0)`.
 2. **Injectivity.** `K_2(R_l/J) ≅ K_2(D) ⊕ K_2(Z_(l))`, and the composite
    `K_2(Z_(l)) -> K_2(R_l) -> K_2(R_l/J)` is the inclusion of the second summand. Hence
-   `θ_* : K_2(Z_(l)) -> K_2(R_l)` is injective.
+   `θ_* : K_2(Z_(l)) -> K_2(R_l)` is injective. Here `θ_*` is induced by `St_N(θ)` together with the non-unital
+   embedding `A ↦ A + (1−e)I` of matrices, `e = θ(1)`.
 3. **Corner symbols.** For `λ, μ ∈ Z_(l)^x` and `N >= 3`, let `c(λ,μ) ∈ K_2(N, R_l)` be the image of the Steinberg
    symbol `{λ,μ}_N ∈ St_N(Z_(l))` under `St_N(θ)`.
    - The stable classes of the `c(λ,μ)` generate a subgroup of `K_2(R_l)` isomorphic to the symbol subgroup of

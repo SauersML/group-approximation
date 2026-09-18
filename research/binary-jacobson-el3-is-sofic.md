@@ -98,3 +98,16 @@ pair and the constant Weyl group (`toeplitz-pair-and-weyl-elements-generate-jaco
   - Survivor: `DD(sofic)` with a defect in `GL_n(J_F, I)` and a Kazhdan compressor hull. The corner compressor
     `u = [[S,Q],[0,T]]` has a nontrivial defect, but its hull has infinite abelianization (top-block determinant
     `x^m`). Next: a Fredholm-index homomorphism on compressor hulls that is nonzero on strict compressors.
+* **Descent from the bilateral LEF envelope (swarm-0917-w8-w8-nh-pull, 2026-09-18). Dead as a class.** Recorded in
+  `bilateral-envelope-fuses-the-mirror-kernel-with-the-head`.
+  - **The fusion.** A finitary swap `c` of the sites `0` and `-1` conjugates the mirror head `(1,w')`, which lies in
+    `L_-`, to the head `(w,1)`.
+  - **Characters.** Every character of `H_bi` that is `1` at one nontrivial finitary element is `1` on all of
+    `GL_fin(W)`. A character of `E` whose pullback to `P` extends to `<P,c>` is trivial on `L`.
+  - **Approximations.** No sofic or hyperlinear approximation of `H_bi` descends through `E = P/L_-` to one that sees
+    the head. This covers LEF models with any permutation representation, and periodic or window models.
+  - **Invariant.** The conjugacy class of the finitary transvection. In linear models it is `rank(sigma - 1)` on
+    involutions.
+  - **Step where it dies.** `tr -> 1` on `L_-`, transported by `c` to the head.
+  - **Survivors.** Approximations of `P` with trace `1_(L_-)` that are not restrictions from `<P,c>`. In linear form,
+    the two boundary heads must have unequal rank.

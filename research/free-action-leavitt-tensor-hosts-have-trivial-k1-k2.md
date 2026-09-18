@@ -71,3 +71,26 @@ known mechanism for `K_1 ≠ 0`.
     `VCyc` to `VCyc_I`. Both are recalled and **not verified**.
   - **Where it stops**: those imports, and the Farrell-Jones conjecture for the `Λ` given by (E),
     which need not be a known Farrell-Jones group.
+- **2026-09-18: the torsion sketch is closed; (K) is reduced to Farrell-Jones.**
+  - *Every-degree vanishing for Farrell-Jones groups (established).*
+    `farrell-jones-groups-acting-freely-have-k-trivial-leavitt-hosts` proves `K_n(B ⊗ L) = 0` for
+    all `n` whenever `Λ` satisfies K-FJC with additive coefficients relative to `VCyc` (torsion
+    allowed) and every finite subgroup acts freely.
+    - The `D_∞` gap above is removed, not verified. By
+      `fj-family-reduces-to-finite-by-cyclic-with-coefficients` (Davis-Quinn-Reich,
+      arXiv:1002.3702, with coefficients, verbatim import), `fbc` assembly already agrees with
+      `VCyc` assembly, so amalgam orbits never occur.
+    - The remaining orbits are the finite and finite-by-`Z` cases above.
+  - *Universal KH vanishing (established).* `leavitt-tensor-k-theory-is-pure-twisted-nil` (ABC
+    arXiv:0903.0056, Theorems 5.10 and 8.6, verbatim import) gives:
+    - `KH(A ⊗ L) ≃ 0` for every unital ring `A`;
+    - `K(A ⊗ L) ≅ NK_+ ⊕ NK_-` of the twisted Laurent ring over `L_0 ⊗ A`.
+    - So (K) is **equivalent** to vanishing of these two twisted Nil groups in degrees 1 and 2,
+      for `A = B`. It follows from `K_2`-regularity of `B ⊗ L`.
+    - Any counterexample to (K) must therefore be a Nil phenomenon.
+  - *Route.* `free-action-leavitt-k1-k2-via-farrell-jones-with-torsion` has a single open
+    prerequisite, `full-farrell-jones-for-fixed-two-generator-all-group-tester`: Full FJ for the
+    fixed two-generator all-group tester, equivalently for every group.
+    - Alternatively, a version of (E) whose acting group is a known Farrell-Jones group gives (K)
+      for that group outright.
+  - (K) stays **OPEN**.

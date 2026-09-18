@@ -39,3 +39,23 @@ independently of Gottschalk's conjecture.
     degree matrix. Every character `x -> <gxi, x>` with `xi D = 0` pulls back to a
     nullhomotopic function on the image. So the image is an equivariant copy of the full
     torus shift on which a whole `G`-module of characters is homotopically trivial.
+- 2026-09-17 (swarm-0917-w9-w9-gs-break): the augmentation dichotomy
+  (`torus-degree-regular-on-prime-power-residual-support`, ESTABLISHED; artifact
+  `research/artifacts/torus-degree-prime-power-support-2026-09-17.md`).
+  - **Positive.** C2 depends only on `H = <supp D>`, via a coset decomposition of `Q[G]^d`.
+    If `H` is residually prime-power (RPP), then `epsilon(D) in GL_d(Z)` already forces
+    regularity at every `d`. The proof uses the nilpotent augmentation ideal of `F_p[P]`
+    in a `p`-group quotient injective on `supp v`. New hosts: `Q`, `Z(p^inf)`,
+    `Q (+) Z(p^inf)`, and locally finite `p`-groups, all at every `d`.
+  - **Where augmentation-only proofs die.** On any `H` with a finite subgroup of
+    non-prime-power order, `a P_s + b P_t` with `ap + bq = 1` has `epsilon = 1` and is a
+    zero divisor. The `Z/6` example above is the case `p, q = 2, 3`.
+  - **Belief change.** The smallest open host is `Z(2^inf) x Z(3^inf)` (or `Q/Z`).
+    - It is locally finite, amenable and divisible, and has no finite quotients.
+    - Finite-alphabet Gottschalk over it is elementary.
+    - So C2, and TS, are open where GOT is trivial. The heuristic "TS is the easy
+      characteristic-zero shadow" behind `gottschalk-via-torus-alphabet-degree-transfer`
+      fails.
+  - **Next test.** Construct, or rule out, an injective `tau` on `T^(Q/Z)` with
+    `D = s + s^2 - t`. On every finite-subgroup block it would have degree 0, so it must
+    carry information between blocks with unbounded memory.

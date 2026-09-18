@@ -1,0 +1,101 @@
+[
+ {
+  "group": "Z2",
+  "n": 2,
+  "ball": 13,
+  "interior": 5,
+  "M_n": 2.0,
+  "exact_M": "2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 3,
+  "ball": 25,
+  "interior": 13,
+  "M_n": 4.5,
+  "exact_M": "9/2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 4,
+  "ball": 41,
+  "interior": 25,
+  "M_n": 8.0,
+  "exact_M": "8",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 5,
+  "ball": 61,
+  "interior": 41,
+  "M_n": 12.5,
+  "exact_M": "25/2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 6,
+  "ball": 85,
+  "interior": 61,
+  "M_n": 18.0,
+  "exact_M": "18",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 7,
+  "ball": 113,
+  "interior": 85,
+  "M_n": 24.5,
+  "exact_M": "49/2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 8,
+  "ball": 145,
+  "interior": 113,
+  "M_n": 32.0,
+  "exact_M": "32",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 9,
+  "ball": 181,
+  "interior": 145,
+  "M_n": 40.5,
+  "exact_M": "81/2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "Z2",
+  "n": 10,
+  "ball": 221,
+  "interior": 181,
+  "M_n": 50.0,
+  "exact_M": "50",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ }
+]

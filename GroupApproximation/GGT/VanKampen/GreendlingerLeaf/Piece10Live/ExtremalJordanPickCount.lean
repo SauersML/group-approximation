@@ -1,0 +1,298 @@
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Piece10Live.ExtremalJordanPickEulerReduction
+import GroupApproximation.Meta.AxiomGuard
+
+/-!
+# The global Euler count: the counting step
+
+Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lane gl-p10-41.
+
+`ExtremalJordanPickEulerCountStatement` (lane gl-p10-39) asks for three walk darts that are
+pairwise not linked by face classes and first turns.  Its proof has two parts: (a) Euler's
+formula on the genus-0 walk map, and (b) a counting step.  This file proves (b) and the planarity
+input of (a).  What is left is the count of classes itself.
+
+**The counts.**
+* `extremalJordanPickCount_linked K` is the finset of linked classes of walk darts.  `#L` is its
+  card.
+* `extremalJordanPickCount_outside K` is the finset of face classes of darts outside `K.faces`.
+  `#O` is its card.
+* `extremalJordanPickCount_nonFirstAt K x` counts the non-first passages at the vertex `x`.  This
+  is `n_x`.  The vertex of a passage `d → next d` is `vertexOf (α d)`.
+* `extremalJordanPickCount_excess K` is `Σ_x (n_x - 1)`, with truncated subtraction, summed over
+  the vertices of the walk.
+
+**Proved here.**
+* **Genus 0** (`extremalJordanPickCount_walkMap_planar`, `extremalJordanPickCount_walkMap_euler`).
+  The walk map `P` is a connected restriction of the planar diagram map, so `V - E + F = 2` on it.
+* **At most two outside classes** (`extremalJordanPickCount_outside_le_two`).  This comes from
+  `ExtremalJordanPickThreeTwoOutside`.
+* **`excess ≥ 2`** (`extremalJordanPickCount_two_le_excess`).  `¬ K.FirstTurns` gives a non-first
+  passage.  The proved local lemma `n_x ≥ 1 ⇒ n_x ≥ 3` then gives `n_x ≥ 3` at its vertex.
+* **Extraction** (`extremalJordanPickCount_three_of_two_lt`).  Three linked classes give three
+  pairwise unlinked walk darts.
+* **The counting step** (`extremalJordanPickCount_count_of_euler`).  Suppose
+  `2 + excess ≤ #L + #O` and `#O ≤ 2`, so that `excess ≥ 2`.  Then `#L ≥ 3`, except when
+  `excess = 2`, `#O = 2` and `#L = 2`.  The parity clause rules that case out.
+
+**The isolated Statement** `ExtremalJordanPickCountEulerStatement`.  Under the premises of
+`ExtremalJordanPickEulerCountStatement`, two things hold:
+* `ExtremalJordanPickCountEulerBound K`, which is Euler's bound `2 + excess ≤ #L + #O`;
+* `ExtremalJordanPickCountParity K`, which says that `excess = 2 → #O ≠ 2`.
+
+**LOUD (strength).**  The residual is a conjunction of two count facts.  It implies the count
+statement (`extremalJordanPickCount_count_of_euler`).  It is NOT implied by it, since the count
+statement says nothing about cards.  So as a proposition it is STRONGER than the count statement,
+NOT weaker and NOT equivalent.  It is strictly smaller in proof content.
+* The counting step, the extraction of three darts, `#O ≤ 2`, `excess ≥ 2` and the planarity of
+  the walk map are all proved here.
+* Only the count of classes on the planar walk map is left.
+* Both clauses are true on every model instance (truth check below).  The bound is the weak half
+  of an identity that holds with equality.  The parity clause is the case `excess = 2` of a
+  general parity law.
+
+**Truth check** (`SP/gl-p10-41/par.py`, outputs `par_m6.out`, `par_m7.out`, `par_m8b4.out`,
+`par_m8b5.out`).  This uses the lane-34 model (`configs_b`): planar walk maps, not all passages
+first, and every non-first passage crossed.
+* Every instance satisfies the identity `#L + #O = 2 + excess`.
+* Every instance satisfies the parity law `#O ≡ 1 + Σ_x (n_x - c_x) (mod 2)`.  Here `c_x` is the
+  number of cycles, at `x`, of the return permutation `h` on the non-first passages.
+* In the case `excess = 2`, `#O` is 1 or 3 and never 2.
+* The count conclusion `#O ≤ 2 → #L ≥ 3` holds in every instance.
+
+| darts | configurations      | `excess = 2`, `#O = 1` | `excess = 2`, `#O = 3` |
+|-------|---------------------|------------------------|------------------------|
+| ≤ 6   | 9,010               | 274                    | 1,267                  |
+| ≤ 7   | 178,196             | 1,275                  | 8,274                  |
+| ≤ 8   | 36,394 (degree ≤ 4) | 2,834                  | 11,809                 |
+| ≤ 8   | 116,345 (degree ≤ 5)| 4,392                  | 25,536                 |
+
+The naive parity `#O ≡ 1 + excess` fails: 79,453 instances at ≤ 7 darts break it.  So the cycle
+count `c_x` is needed.
+
+**Proof sketch of the residual** (not formalized).  The walk map `P` has walk darts and their
+reversals.
+1. By the proved alternation fact, the rotation at each vertex of `P` alternates between walk
+   darts and reversals.  So each face of `P` is inside (all walk darts) or outside (all reversals).
+   By `faceOf_eq_of_faceClass` and separation, these faces are the face classes.
+2. So `#O` counts the outside faces of `P`.  `#L` counts the inside faces of `P`, glued along first
+   passages.
+3. Detach first passages one at a time by `PinchSplit` at the corner `(next d, α d)`:
+   - at a vertex with `n_x = 0`, detach all passages but one;
+   - at a vertex with `n_x ≥ 1`, detach all first passages.
+
+   Each detach adds one vertex and keeps the edge count.  It glues two distinct inside faces,
+   because a split of one face would force `χ = 4` on a connected map
+   (`witnessStepGenus_split_not_connected`).  The outside faces are unchanged.
+4. Euler's formula on the result gives the identity.
+5. **Parity.**  Let `f(d) = α (σ_P d)` and `next = h ∘ f⁻¹` on walk darts.  The outside faces are
+   the cycles of `f`, and `next` is a single cycle.  Comparing signs gives
+   `#O ≡ m + 1 + #cycles(h) (mod 2)`, where `m` is the number of walk darts.
+6. With `excess = 2`, one vertex has exactly three non-first passages.  At that vertex `h` is a
+   derangement of 3 points, so it is a 3-cycle, and `#O` is odd.
+
+## Mathematical infrastructure
+
+Infrastructure for `thm:hull` (Hull's small cancellation theorem, through Osin's Lemma 9.7(b));
+no manuscript citation of its own.
+-/
+
+namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+universe u w v
+
+open Embedded Surgery.MapCollapse SimpleClosedWalkSides P10Rose.FilterMove P10Rose.SubArcMove
+open scoped Classical
+
+section CountDefs
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **The linked classes of walk darts**: the classes, under `ExtremalJordanPickThreeLinked`, of
+the darts of the boundary cycle. -/
+noncomputable def extremalJordanPickCount_linked (K : PocketFaceSet D eps X lo hi) :
+    Finset (Quot (ExtremalJordanPickThreeStep K)) :=
+  K.boundary.cycle.toFinset.image (Quot.mk (ExtremalJordanPickThreeStep K))
+
+/-- **The outside classes**: the face classes, off the walk, of the darts based outside
+`K.faces`. -/
+noncomputable def extremalJordanPickCount_outside (K : PocketFaceSet D eps X lo hi) :
+    Finset (Quot (CombMap.FaceClassStep X.toCombMap
+      (walkKeep X.toCombMap K.boundary.cycle))) :=
+  (Finset.univ.filter fun r => X.toCombMap.faceOf r ∉ K.faces).image
+    (Quot.mk (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)))
+
+/-- **The non-first passages at a vertex** `x`: the walk darts `d` whose passage `d → next d` is
+not a first turn and runs through `x = vertexOf (α d)`. -/
+noncomputable def extremalJordanPickCount_nonFirstAt (K : PocketFaceSet D eps X lo hi)
+    (x : X.toCombMap.Vertex) : ℕ :=
+  (K.boundary.cycle.toFinset.filter fun d =>
+    (∃ hd : d ∈ K.boundary.cycle, P10ChordLift.NonFirstTurn K d hd) ∧
+      X.toCombMap.vertexOf (X.toCombMap.alpha d) = x).card
+
+/-- **The excess** `Σ_x (n_x - 1)`, with truncated subtraction, over the vertices of the walk. -/
+noncomputable def extremalJordanPickCount_excess (K : PocketFaceSet D eps X lo hi) : ℕ :=
+  ∑ x ∈ K.boundary.cycle.toFinset.image (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)),
+    (extremalJordanPickCount_nonFirstAt K x - 1)
+
+/-- **Euler's bound** `2 + excess ≤ #L + #O`.  On every model instance it holds with equality. -/
+def ExtremalJordanPickCountEulerBound (K : PocketFaceSet D eps X lo hi) : Prop :=
+  2 + extremalJordanPickCount_excess K ≤
+    (extremalJordanPickCount_linked K).card + (extremalJordanPickCount_outside K).card
+
+/-- **The parity clause**: when the excess is exactly two, there are not exactly two outside
+classes.  This is the case `excess = 2` of the parity law `#O ≡ 1 + Σ_x (n_x - c_x)`. -/
+def ExtremalJordanPickCountParity (K : PocketFaceSet D eps X lo hi) : Prop :=
+  extremalJordanPickCount_excess K = 2 → (extremalJordanPickCount_outside K).card ≠ 2
+
+end CountDefs
+
+section CountProofs
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **Genus 0**: the walk map of a closed walk is planar.  It is a connected restriction of the
+planar diagram map. -/
+theorem extremalJordanPickCount_walkMap_planar (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) : (walkMap X.toCombMap K.boundary.cycle).IsPlanar :=
+  (walkMap_isRestriction X.toCombMap K.boundary.cycle).planar X.planar
+    (FirstTurnEnclosure.walkMap_connected K.boundary.cycle_nonempty hK.1)
+    ⟨K.boundary.cycle.head K.boundary.cycle_nonempty,
+      Or.inl (List.head_mem K.boundary.cycle_nonempty)⟩
+
+/-- **Euler's formula on the walk map**: `V - E + F = 2`. -/
+theorem extremalJordanPickCount_walkMap_euler (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) :
+    ((walkMap X.toCombMap K.boundary.cycle).vertexCount : ℤ) -
+        ((walkMap X.toCombMap K.boundary.cycle).edgeCount : ℤ) +
+      ((walkMap X.toCombMap K.boundary.cycle).faceCount : ℤ) = 2 :=
+  (walkMap X.toCombMap K.boundary.cycle).euler_eq_two
+    (extremalJordanPickCount_walkMap_planar K hK)
+
+/-- **At most two outside classes**: every outside class is the class of `o` or of `s`. -/
+theorem extremalJordanPickCount_outside_le_two (K : PocketFaceSet D eps X lo hi)
+    (h : ExtremalJordanPickThreeTwoOutside K) :
+    (extremalJordanPickCount_outside K).card ≤ 2 := by
+  obtain ⟨o, s, hos⟩ := h
+  have hsub : extremalJordanPickCount_outside K ⊆
+      {Quot.mk _ o, Quot.mk _ s} := by
+    intro q hq
+    unfold extremalJordanPickCount_outside at hq
+    obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hq
+    rcases hos r (Finset.mem_filter.mp hr).2 with h' | h'
+    · exact Finset.mem_insert.mpr (Or.inl (Quot.eqvGen_sound h'))
+    · exact Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton.mpr (Quot.eqvGen_sound h')))
+  exact (Finset.card_le_card hsub).trans Finset.card_le_two
+
+/-- **Three non-first passages at a vertex**: a non-first passage through `x` gives `n_x ≥ 3`. -/
+theorem extremalJordanPickCount_two_lt_nonFirstAt (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K) {d₀ : X.toCombMap.Dart}
+    (hd₀ : d₀ ∈ K.boundary.cycle) (hnf : P10ChordLift.NonFirstTurn K d₀ hd₀) :
+    2 < extremalJordanPickCount_nonFirstAt K
+      (X.toCombMap.vertexOf (X.toCombMap.alpha d₀)) := by
+  obtain ⟨d₁, hd₁, d₂, hd₂, hnf₁, hnf₂, h10, h20, h12, hv₁, hv₂⟩ := h3 d₀ hd₀ hnf
+  unfold extremalJordanPickCount_nonFirstAt
+  refine Finset.two_lt_card.mpr ⟨d₀, ?_, d₁, ?_, d₂, ?_, Ne.symm h10, Ne.symm h20, h12⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₀, ⟨hd₀, hnf⟩, rfl⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₁, ⟨hd₁, hnf₁⟩, hv₁⟩
+  · exact Finset.mem_filter.mpr ⟨List.mem_toFinset.mpr hd₂, ⟨hd₂, hnf₂⟩, hv₂⟩
+
+/-- **`excess ≥ 2`**: a pocket not in first-turn order has a vertex with `n_x ≥ 3`. -/
+theorem extremalJordanPickCount_two_le_excess (K : PocketFaceSet D eps X lo hi)
+    (h3 : ExtremalJordanPickEulerThreeAtVertex K) (hft : ¬ K.FirstTurns) :
+    2 ≤ extremalJordanPickCount_excess K := by
+  obtain ⟨d₀, hd₀, hnf⟩ := K.exists_not_firstTurn hft
+  have hlt := extremalJordanPickCount_two_lt_nonFirstAt K h3 hd₀ hnf
+  have hmem : X.toCombMap.vertexOf (X.toCombMap.alpha d₀) ∈
+      K.boundary.cycle.toFinset.image (fun d => X.toCombMap.vertexOf (X.toCombMap.alpha d)) :=
+    Finset.mem_image.mpr ⟨d₀, List.mem_toFinset.mpr hd₀, rfl⟩
+  have hle : extremalJordanPickCount_nonFirstAt K
+      (X.toCombMap.vertexOf (X.toCombMap.alpha d₀)) - 1 ≤ extremalJordanPickCount_excess K :=
+    Finset.single_le_sum (f := fun x => extremalJordanPickCount_nonFirstAt K x - 1)
+      (fun _ _ => Nat.zero_le _) hmem
+  omega
+
+/-- **Extraction**: three linked classes give three pairwise unlinked walk darts. -/
+theorem extremalJordanPickCount_three_of_two_lt (K : PocketFaceSet D eps X lo hi)
+    (h : 2 < (extremalJordanPickCount_linked K).card) :
+    ∃ r₁ ∈ K.boundary.cycle, ∃ r₂ ∈ K.boundary.cycle, ∃ r₃ ∈ K.boundary.cycle,
+      ¬ExtremalJordanPickThreeLinked K r₁ r₂ ∧ ¬ExtremalJordanPickThreeLinked K r₁ r₃ ∧
+        ¬ExtremalJordanPickThreeLinked K r₂ r₃ := by
+  obtain ⟨a, ha, b, hb, c, hc, hab, hac, hbc⟩ := Finset.two_lt_card.mp h
+  unfold extremalJordanPickCount_linked at ha hb hc
+  obtain ⟨r₁, h₁, rfl⟩ := Finset.mem_image.mp ha
+  obtain ⟨r₂, h₂, rfl⟩ := Finset.mem_image.mp hb
+  obtain ⟨r₃, h₃, rfl⟩ := Finset.mem_image.mp hc
+  exact ⟨r₁, List.mem_toFinset.mp h₁, r₂, List.mem_toFinset.mp h₂, r₃,
+    List.mem_toFinset.mp h₃, fun h' => hab (Quot.eqvGen_sound h'),
+    fun h' => hac (Quot.eqvGen_sound h'), fun h' => hbc (Quot.eqvGen_sound h')⟩
+
+end CountProofs
+
+/-- **OPEN (lane gl-p10-41): the class count on the planar walk map.**  Under the premises of
+`ExtremalJordanPickEulerCountStatement`, Euler's bound `2 + excess ≤ #L + #O` holds, and the
+parity clause `excess = 2 → #O ≠ 2` holds.  LOUD: this is logically STRONGER than the count
+statement.  It implies it (`extremalJordanPickCount_count_of_euler`) but is not implied by it.  It
+is strictly smaller in proof content: the counting step, the extraction of three darts, `#O ≤ 2`,
+`excess ≥ 2` and the genus-0 input are proved in this file.  Both clauses held on every model
+instance up to 8 darts (`SP/gl-p10-41/par.py`). -/
+def ExtremalJordanPickCountEulerStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      ExtremalJordanPickThreeTwoOutside K →
+      ExtremalJordanPickEulerLocal K →
+        ExtremalJordanPickCountEulerBound K ∧ ExtremalJordanPickCountParity K
+
+/-- **The counting step**: the class count gives the global Euler count statement. -/
+theorem extremalJordanPickCount_count_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickEulerCountStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo hloc
+  obtain ⟨hbd, hpar⟩ :=
+    h D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo hloc
+  refine extremalJordanPickCount_three_of_two_lt K ?_
+  have hO := extremalJordanPickCount_outside_le_two K htwo
+  have hE := extremalJordanPickCount_two_le_excess K hloc.2.2.2.2 hft
+  unfold ExtremalJordanPickCountEulerBound at hbd
+  unfold ExtremalJordanPickCountParity at hpar
+  by_contra hL
+  exact hpar (by omega) (by omega)
+
+/-- **The endpoint**: the class count gives the TwoOutside statement. -/
+theorem extremalJordanPickCount_twoOutside_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickThreeTwoOutsideStatement.{u, w, v} :=
+  extremalJordanPickEuler_twoOutside_of_count (extremalJordanPickCount_count_of_euler h)
+
+/-- **The endpoint**: the class count gives the Three statement. -/
+theorem extremalJordanPickCount_three_of_euler
+    (h : ExtremalJordanPickCountEulerStatement.{u, w, v}) :
+    ExtremalJordanPickRegionThreeStatement.{u, w, v} :=
+  extremalJordanPickEuler_three_of_count (extremalJordanPickCount_count_of_euler h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_linked
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_outside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_nonFirstAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_excess
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountEulerBound
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountParity
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_walkMap_planar
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_walkMap_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_outside_le_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_two_lt_nonFirstAt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_two_le_excess
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_three_of_two_lt
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickCountEulerStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_count_of_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_twoOutside_of_euler
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickCount_three_of_euler

@@ -1,0 +1,11 @@
+ s=1 (non-edge K<0): verified, 1 boxes, min gap 0.001999999999976
+ s=2 (edge K<2y/|1-z|): verified, 199689 boxes, min gap 9.708163967170336e-09
+ s=3 (edge K<2y/|1-z|): verified, 199735 boxes, min gap 1.4832523889674043e-09
+ s=4 (edge K<2y/|1-z|): verified, 199653 boxes, min gap 1.8506459142919596e-09
+ s=5 (edge K<2y/|1-z|): verified, 199771 boxes, min gap 2.557497602584391e-09
+ s=6 (edge K<2y/|1-z|): verified, 199701 boxes, min gap 3.5300193601539576e-09
+K_n13_D4.json n=13 D=4
+ y = {2: '435721/2500000', 3: '20883/1000000', 4: '14449/100000', 5: '578649/10000000', 6: '1024737/10000000'}
+ f_pq(0) bumped for circulant PSD: {'0,1': '129/1000000000', '0,2': '1/7812500', '0,3': '1/25000000', '0,4': '99/1000000000', '1,3': '49/250000000', '1,4': '37/500000000'}
+ bound n*beta = 4802400421/250000000 = 19.209602 ; need sqrt3(n-2) = 19.052559 ; n*beta >= sqrt3(n-2): True
+RESULT: CERTIFIED ||C||_1 >= 19.209602 >= sqrt3(n-2) on C_13-bar

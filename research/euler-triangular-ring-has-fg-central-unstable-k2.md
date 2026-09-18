@@ -2,6 +2,8 @@
 rg: 2
 id: euler-triangular-ring-has-fg-central-unstable-k2
 kind: claim
+refuted_by:
+  - euler-ring-rational-symbols-are-infinitely-generated
 title: For some l and N >= 5, the kernel K_2(N, T_l) of St_N(T_l) -> E_N(T_l) is a finitely generated central subgroup
 distinct_from:
   euler-triangular-steinberg-rf-residual-is-fng: that asks only that the finite residual be finitely normally generated; this stronger K-theoretic statement implies it.
@@ -33,3 +35,10 @@ central in `St_N(T_l)` and finitely generated.
      particular for `N >= sr + 3`.
    - Together, (T1)–(T3) would give this claim for `N` large enough, with `K_2(N, T_l)` finite. The claim
      allows `N` to be chosen, since `St_N(T_l)` is finitely presented for every `N >= 5`.
+2. **Refuted (2026-09-18, lane gq-k2-q).** `euler-ring-rational-symbols-are-infinitely-generated`: `K_2(N, T_l)` is not
+   finitely generated for any `l` and `N >= 3`.
+   - Heuristic (T2) fails. The residues of `K_2(A)` lie in `⊕_k K_1(Q) = ⊕_k Q^x`, not in `⊕_k Z/2`, because the lines
+     `π_k` meet over the primes dividing `(k−j)l`.
+   - The symbols `{π_0, π_q}` (`q ≠ l` prime) are independent in the `σ`-coinvariants. They are detected by the
+     line-weighted residue `Σ_k k·v_q(∂_k z)`, which is shift-invariant by two-dimensional reciprocity.
+   - So they are independent in `K_2(D) ⊆ K_2(T_l)`. (T1) and (T3) are not needed for the refutation.

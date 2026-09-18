@@ -14,8 +14,8 @@ presented. Here `R̄_l` is the ring of `rf-resolvent-ring-has-z-localized-corner
 
 **Use.** With `sl-n-z-localized-embeds-in-fg-rf-elementary-group` this gives
 `z-localized-embeds-in-fp-rf-group`, by route
-`z-localized-fp-rf-via-fp-resolvent-elementary-group`. For `N >= 6` it gives a
-finitely presented residually finite group containing `GL_3(Z_(l))`, so containing
+`z-localized-fp-rf-via-fp-resolvent-elementary-group`. For `N >= 4` it gives a
+finitely presented residually finite group containing `GL_3(Z_(l))` (inside `E_4`, corrected from `E_6`), so containing
 every `GL_3(Z[1/P])` with `l ∉ P`.
 
 **Sub-questions, each falsifiable.**

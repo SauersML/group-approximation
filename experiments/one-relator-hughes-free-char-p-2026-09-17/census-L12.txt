@@ -1,0 +1,34 @@
+length edge-injective segment count
+2 True True 2
+3 True True 2
+4 True True 6
+5 True True 12
+6 True True 34
+7 True True 78
+8 True True 217
+9 True True 546
+10 True True 1516
+11 False False 2
+11 False True 6
+11 True True 4018
+12 False False 10
+12 False True 63
+12 True True 11113
+uncertified:
+11 A A B a b a B A A b b nielsen(open-rank2)
+11 A A B B A A b a B a b nielsen(open-rank2)
+12 A A A B B a b A b a a B nielsen(open-rank2)
+12 A A A B a a b b b a a B nielsen(open-rank2)
+12 A A A B a a b A b a B B nielsen(open-rank2)
+12 A A A b b a B A B a a b nielsen(open-rank2)
+12 A A A b a a B B B a a b nielsen(open-rank2)
+12 A A A b a a B A B a b b nielsen(open-rank2)
+12 A A B A B A A b a B a b nielsen(open-rank2)
+12 A A B a B A A b a B a b nielsen(open-rank2)
+12 A A B a b a B A A b A b nielsen(open-rank2)
+12 A A B a b a B A A b a b nielsen(open-rank2)
+time 133.5s
+
+real	2m14.024s
+user	0m30.037s
+sys	0m0.067s

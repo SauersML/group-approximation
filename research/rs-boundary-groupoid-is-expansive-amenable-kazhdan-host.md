@@ -7,6 +7,8 @@ distinct_from:
   rank-two-prefix-replacement-groups-contain-infinite-kazhdan: that proves the lattice acts by rank-two prefix replacements, faithfully and without invariant measures; this adds the groupoid-level properties (Cantor space, expansive action, minimality, amenability, compact generation, expansivity of the groupoid and of its product with G_2), which extend the class kill to proofs that use compact generation or expansivity.
   amenable-purely-infinite-groupoid-full-group-hosts-kazhdan: that host (M ⋊ Γ) × G_2 is free (effective) but open on citations and not known to be expansive; this host is expansive and established, but its effectiveness is not asserted.
   input-encoded-sft-groupoid-hosts-are-not-universal: that shows rank-one SFT groupoids contain no infinite Kazhdan group; this shows that expansivity, the property those groupoids share with G_2^n, does not suffice.
+artifacts:
+  - research/artifacts/nv2-expansivity-calibration-audit-2026-09-18.md
 ---
 
 **ESTABLISHED** through `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host-proof`.
@@ -72,3 +74,63 @@ or to the germ groupoid. Restricted to the infinite Kazhdan subgroup `Γ`, `ψ` 
   (`rank-two-prefix-replacement-groups-contain-infinite-kazhdan`).
 - Compact generation and expansivity cannot be the distinguishing hypotheses of a Haagerup
   proof for `2V`.
+- **Hausdorffness is a second escape, not covered by the word "only" above.** See the
+  audit below, D1.
+
+## Attempts
+
+- **Adversarial audit, 2026-09-18 (`e2-w2-audit-nv2`, wave `swarm-0917`). Verdict:
+  survives.** Full record in
+  `research/artifacts/nv2-expansivity-calibration-audit-2026-09-18.md`. The five claims
+  that landed on 2026-09-17 without a referee — this one,
+  `ample-groupoid-products-expansive-iff-factors-are`,
+  `nekrashevych-expansive-groupoid-criteria`,
+  `ad-nuclear-crossed-product-gives-amenable-action` and
+  `robertson-steger-word-products-and-boundary-topology` — were re-checked against
+  independently re-downloaded TeX sources (arXiv:1511.08241, arXiv:math/0005014,
+  arXiv:1302.5593). Every imported sentence matches character by character, with the same
+  standing hypotheses. All five keep ESTABLISHED.
+  - **Citation lens.** Nekrashevych's reading of "expansive groupoid" adopted by the import
+    node is confirmed, not merely consistent: Theorem `th:universalcov` ("A compactly
+    generated groupoid `𝒢` is expansive if and only if there exists a finite generating set
+    `𝒮` of bisections such that …") presupposes exactly it. Anantharaman-Delaroche
+    Theorem 3.4's hypotheses (`X` locally compact, `G` locally compact, discrete for
+    (4) ⇒ (1)) are the ones used. Robertson–Steger's (H0)-(H3) are in force for a
+    `PGL_3(K)` lattice, `K` nonarchimedean of characteristic zero.
+  - **Proof-gap lens.** Every step of both non-transcription proofs was re-derived. No step
+    is wrong. The checks that could have failed and did not are listed in §2 of the audit;
+    in particular the openness of the refined generating set in the product proof's
+    "only if" direction, the fixed second coordinate `z` in its projection step, and here
+    the undecorated restriction in Lemma A(e) and the strict-refinement argument behind
+    the minimal shape `m` in Step 2.
+  - **D1 (material, recorded, not refuting).** "What survives … **only** proofs using
+    effectiveness and amenability together with expansivity" overstates. `R` is Hausdorff
+    but is not known to be effective; the germ groupoid is effective but is not known to be
+    Hausdorff. So a Haagerup proof from **{Hausdorff, étale, Cantor unit space, compactly
+    generated, expansive, minimal, effective, no invariant probability measure}** — the
+    list `G_2^n` actually satisfies, and the setting of every recorded theorem in this area
+    including Matui's — is refuted by neither host. `(L_germ)` as written omits
+    Hausdorffness, so the claim is true as stated; the kill simply does not reach the
+    standard framework.
+  - **What closes D1.** Topological freeness of `Γ ↷ Ω` (that
+    `int{ω : γω = ω} = ∅` for every `γ ≠ 1`). It would give `R = germ groupoid`, hence one
+    groupoid with every listed property of `G_2^n` except the product factorization, hosting
+    an infinite Kazhdan group. Two routes and their first falsifiable steps are in §3.1 of
+    the audit: an internal Robertson–Steger route that reduces to the shape equality
+    `σ(ū) = σ(v̄)` (which should follow from thickness making
+    `m ↦ #{w ∈ W_m : o(w) = a}` strictly increasing), and a flag-variety route that needs
+    the `Γ`-equivariant identification of `Ω` with `G/B(K)`, an import the graph lacks.
+  - **D2 (free strengthening).** Nekrashevych's Proposition `pr:essprincipalHaus` also says
+    "Every second countable groupoid of germs is essentially principal", and its proof does
+    not use Hausdorffness of the groupoid. The germ groupoid here is second countable, so it
+    is **essentially principal** at no cost, and that property — one of the five that
+    `brin-thompson-groups-nv-are-a-t-menable` lists for `G_2^n` — can be added to
+    `(L_germ)`. This isolates Hausdorffness as the only remaining structural escape at the
+    effective end, alongside amenability and Matui pure infiniteness of the germ groupoid.
+  - **D3 (implicit step, filled).** `robertson-steger-word-products-and-boundary-topology`
+    derives "`D` is finite" from "`A` is finite", but Robertson–Steger only fix `A` finite
+    as a Section 1 convention and then *redefine* `A = Γ\𝔗` in Section 7 without proving
+    that quotient finite. It is finite, because `ℬ` is locally finite and `Γ` has finitely
+    many vertex orbits. The step is load-bearing: `D` finite makes `𝒜` unital
+    (Remark `finitedecorate`), which is what lets Remark `previous` — and hence the Remark
+    after `main2`, the source of simplicity, nuclearity and pure infiniteness — apply.

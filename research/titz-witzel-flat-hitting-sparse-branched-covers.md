@@ -51,3 +51,31 @@ statement converts the answer into a statement about hyperbolic groups.
 * **Curvature and L2-invariants.**  `chi(X) = 7N - sum_b (d_b - 1) > 0` for
   small `beta`.  This is compatible with a torsion-free hyperbolic 2-complex
   group, so there is no L2-Betti obstruction.
+
+## Attempts
+
+* **2026-09-17 (swarm-0917-w8): reduction to soficity plus 2-dimensional
+  virtual torsion-freeness.** Route
+  `titz-witzel-flat-hitting-via-soficity-and-2d-vtf`, through the new
+  unconditional theorem `sofic-lattice-plus-hyperbolic-vtf-gives-flat-hitting-covers`
+  (proof `sofic-plus-vtf-flat-hitting-covers-proof`; unreviewed). The
+  construction:
+  1. Start from sofic-model monodromy covers `X_n` with small `beta`.
+  2. Take `S` to be the non-tame vertices together with a random hitting set,
+     of density about `(log A(rho) + rho)/rho^2`. It meets every locally
+     isometric `3 rho`-disk, because flat disks are few (at most `e^(kappa rho)`
+     per centre) and fat (at least `c rho^2` vertices).
+  3. Build a complex of groups over `X_n` with finite vertex groups
+     `pi_1(Lk)/N` of girth at least `g_y` at `S`, and trivial groups elsewhere.
+     It is nonpositively curved and flat-free, so its fundamental group `Gamma`
+     is hyperbolic.
+  4. Hypothesis (V2), `two-dimensional-cat0-hyperbolic-groups-virtually-torsion-free`,
+     gives a torsion-free normal subgroup of finite index. The quotient is the
+     required cover.
+
+  Consequently, with `titz-witzel-kernel-sofic-via-connected-link-covers`,
+  under (V2) this claim is **equivalent** to `titz-witzel-kernel-sofic`. A
+  refutation of this claim yields either a nonsofic `K` or a hyperbolic group
+  that is neither virtually torsion-free nor residually finite. The combinatorial
+  content of (G) and (H) is fully discharged. The open inputs are
+  `titz-witzel-kernel-sofic` and (V2).

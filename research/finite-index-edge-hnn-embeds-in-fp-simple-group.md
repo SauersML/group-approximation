@@ -58,3 +58,7 @@ groups are residually finite by the argument of (L1), and residual finiteness is
 a commensurability invariant. This is the boundary the authors state.
 
 The derivation is `finite-index-edge-hnn-embeds-in-fp-simple-group-proof`.
+
+## Update (bh-free-05, 2026-09-18)
+
+On (L3): for ascending HNN extensions of finitely generated free groups the different injectivity argument asked for there exists. See `ascending-hnn-of-free-groups-satisfy-boone-higman` (b6bb206cf). The map F*_φ → Y*_Φ, with Y = F * Z and Φ a Hall extension of φ between equal-index subgroups, fails the subgroup criterion. It is still injective because its kernel lies in the ascending base ⋃ t^-k F t^k, on which the map is injective. For HNN extensions with both edge groups of infinite index this argument does not apply.
