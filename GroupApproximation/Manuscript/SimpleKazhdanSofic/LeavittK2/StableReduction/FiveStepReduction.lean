@@ -136,7 +136,7 @@ the conjunction is equivalent to the step. -/
 theorem binaryLeavittK2FiveStep_of_central_of_cornerInjective
     (hC : BinaryLeavittK2FiveCentralStatement) (hσ : BinaryLeavittFiveCornerInjectiveStatement) :
     BinaryLeavittK2FiveStepStatement :=
-  fiveStep_k2StabInjective_of_central_of_cornerInjective (BinaryLeavitt.family (ZMod 2))
+  fiveStep_k2StabInjective_of_central_of_cornerInjective (BinaryLeavitt.family (ZMod 2)) (n := 5)
     (by omega) (Fin.last 4) ⟨0, by omega⟩
     (fun e => by
       have h1 : (0 : ℕ) = 4 := congrArg Fin.val e
@@ -156,7 +156,8 @@ theorem binaryLeavittK2FiveCentral_of_fiveStep (hS : BinaryLeavittK2FiveStepStat
 /-- The step gives injectivity of the corner endomorphism. -/
 theorem binaryLeavittFiveCornerInjective_of_fiveStep (hS : BinaryLeavittK2FiveStepStatement) :
     BinaryLeavittFiveCornerInjectiveStatement :=
-  fiveStep_cornerInjective_of_k2StabInjective (BinaryLeavitt.family (ZMod 2)) (Fin.last 4) hS
+  fiveStep_cornerInjective_of_k2StabInjective (BinaryLeavitt.family (ZMod 2)) (n := 5)
+    (Fin.last 4) hS
 
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittFiveCornerInjective_of_fiveStep
