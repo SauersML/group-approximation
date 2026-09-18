@@ -112,7 +112,8 @@ theorem rels_finite {S : Set R} (hS : S.Finite) : (rels I R S).Finite := by
         (Monoid.Coprod.inl (elementaryRoot p.1 p.2 hp (1 : R)) : FreeAff I R) *
           Monoid.Coprod.inr (FreeGroup.of p.2) *
           (Monoid.Coprod.inl (elementaryRoot p.1 p.2 hp (1 : R)))⁻¹ *
-          (Monoid.Coprod.inr (FreeGroup.of p.2) * Monoid.Coprod.inr (FreeGroup.of p.1))⁻¹).subset ?_
+          (Monoid.Coprod.inr (FreeGroup.of p.2) *
+            Monoid.Coprod.inr (FreeGroup.of p.1))⁻¹).subset ?_
     rintro _ ⟨i, j, h, rfl⟩
     exact ⟨(i, j), dif_neg h⟩
   have h3 : (relsC3 I R).Finite := by
@@ -133,9 +134,9 @@ theorem isFinitelyPresented_presAff [Group.IsFinitelyPresented (elementaryGroup 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_presAff
 
 /-- A finitely generated commutative ring has a finite generating set containing `1`. -/
-theorem exists_finite_subring_closure_eq_top (R : Type*) [CommRing R]
-    [Algebra.FiniteType ℤ R] : ∃ t : Set R, t.Finite ∧ (1 : R) ∈ t ∧ Subring.closure t = ⊤ := by
-  obtain ⟨t, ht, hadj⟩ := Subalgebra.fg_def.mp (Algebra.FiniteType.out (R := ℤ) (A := R))
+theorem exists_finite_subring_closure_eq_top (A : Type*) [CommRing A]
+    [Algebra.FiniteType ℤ A] : ∃ t : Set A, t.Finite ∧ (1 : A) ∈ t ∧ Subring.closure t = ⊤ := by
+  obtain ⟨t, ht, hadj⟩ := Subalgebra.fg_def.mp (Algebra.FiniteType.out (R := ℤ) (A := A))
   refine ⟨insert 1 t, ht.insert 1, Set.mem_insert 1 t, ?_⟩
   apply top_unique
   intro r _
@@ -146,3 +147,57 @@ theorem exists_finite_subring_closure_eq_top (R : Type*) [CommRing R]
   exact Subring.closure_mono (Set.subset_insert 1 t) (mem_subalgebraOfSubring.mp hr)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.exists_finite_subring_closure_eq_top
+
+/-- The generators of the presented group satisfy the affine relations. -/
+theorem affineRel_presAff {S : Set R} (h1 : (1 : R) ∈ S) (hcl : Subring.closure S = ⊤)
+    (hI : 4 ≤ Fintype.card I) : AffineRel S (xP I R S) (τP I R S) where
+  add i j h a b :=
+    (congrArg (φP I R S) (elementaryRoot_mul i j h a b).symm).trans (map_mul (φP I R S) _ _)
+  comm i j k l hij hkl hjk hli a b :=
+    (elementaryRoot_commute_of_ne i j k l hij hkl hjk hli a b).map (φP I R S)
+  adj i j k hij hjk hik a b :=
+    (map_commutatorElement (φP I R S) _ _).symm.trans
+      (congrArg (φP I R S) (elementaryRoot_commutator i j k hij hjk hik a b))
+  c1 i j h ε hε k hk := by
+    have hw : ⁅(Monoid.Coprod.inl (elementaryRoot i j h ε) : FreeAff I R),
+        Monoid.Coprod.inr (FreeGroup.of k)⁆ ∈ rels I R S :=
+      Set.mem_union_left _ (Set.mem_union_left _ ⟨i, j, h, ε, hε, k, hk, rfl⟩)
+    have e : QuotientGroup.mk' (relN I R S) ⁅(Monoid.Coprod.inl (elementaryRoot i j h ε) :
+        FreeAff I R), Monoid.Coprod.inr (FreeGroup.of k)⁆ = 1 :=
+      (QuotientGroup.eq_one_iff _).mpr (Subgroup.subset_normalClosure hw)
+    rw [map_commutatorElement] at e
+    exact commutatorElement_eq_one_iff_commute.mp e
+  c2 i j h := by
+    have hw : (Monoid.Coprod.inl (elementaryRoot i j h (1 : R)) : FreeAff I R) *
+        Monoid.Coprod.inr (FreeGroup.of j) *
+        (Monoid.Coprod.inl (elementaryRoot i j h (1 : R)))⁻¹ *
+        (Monoid.Coprod.inr (FreeGroup.of j) * Monoid.Coprod.inr (FreeGroup.of i))⁻¹ ∈
+          rels I R S :=
+      Set.mem_union_left _ (Set.mem_union_right _ ⟨i, j, h, rfl⟩)
+    have e : QuotientGroup.mk' (relN I R S)
+        ((Monoid.Coprod.inl (elementaryRoot i j h (1 : R)) : FreeAff I R) *
+          Monoid.Coprod.inr (FreeGroup.of j) *
+          (Monoid.Coprod.inl (elementaryRoot i j h (1 : R)))⁻¹ *
+          (Monoid.Coprod.inr (FreeGroup.of j) * Monoid.Coprod.inr (FreeGroup.of i))⁻¹) = 1 :=
+      (QuotientGroup.eq_one_iff _).mpr (Subgroup.subset_normalClosure hw)
+    simp only [map_mul, map_inv] at e
+    exact mul_inv_eq_one.mp e
+  c3 k l := by
+    have hw : ⁅(Monoid.Coprod.inr (FreeGroup.of k) : FreeAff I R),
+        Monoid.Coprod.inr (FreeGroup.of l)⁆ ∈ rels I R S :=
+      Set.mem_union_right _ ⟨k, l, rfl⟩
+    have e : QuotientGroup.mk' (relN I R S) ⁅(Monoid.Coprod.inr (FreeGroup.of k) :
+        FreeAff I R), Monoid.Coprod.inr (FreeGroup.of l)⁆ = 1 :=
+      (QuotientGroup.eq_one_iff _).mpr (Subgroup.subset_normalClosure hw)
+    rw [map_commutatorElement] at e
+    exact commutatorElement_eq_one_iff_commute.mp e
+  one_mem := h1
+  closure := hcl
+  four := exists_ne_three hI
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.affineRel_presAff
+
+end AffineFP
+end Metabelian
+end BooneHigman
+end GroupApproximation

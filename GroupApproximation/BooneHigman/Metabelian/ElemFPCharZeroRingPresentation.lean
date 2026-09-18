@@ -46,7 +46,7 @@ theorem freeToPoly_surjective : Function.Surjective (freeToPoly n) := by
   | C a =>
       refine ⟨(a : FreeAlgebra ℤ (Fin n)), ?_⟩
       rw [map_intCast]
-      exact (eq_intCast MvPolynomial.C a).symm
+      exact (eq_intCast (MvPolynomial.C : ℤ →+* MvPolynomial (Fin n) ℤ) a).symm
   | add P Q hP hQ =>
       obtain ⟨x, hx⟩ := hP
       obtain ⟨y, hy⟩ := hQ
@@ -74,12 +74,12 @@ theorem polyRelators_finite (hG : G.Finite) : (polyRelators n G).Finite :=
 
 theorem liftRel_mem_polyRelators {g : MvPolynomial (Fin n) ℤ} (hg : g ∈ G) :
     liftRel n g ∈ polyRelators n G :=
-  Or.inl ⟨g, hg, rfl⟩
+  Set.mem_union_left _ ⟨g, hg, rfl⟩
 
 theorem comm_mem_polyRelators (i j : Fin n) :
     FreeAlgebra.ι ℤ i * FreeAlgebra.ι ℤ j - FreeAlgebra.ι ℤ j * FreeAlgebra.ι ℤ i ∈
       polyRelators n G :=
-  Or.inr ⟨(i, j), rfl⟩
+  Set.mem_union_right _ ⟨(i, j), rfl⟩
 
 /-- The quotient ring `ℤ⟨Fin n⟩ / (polyRelators n G)`. -/
 abbrev RelQuot : Type := (TwoSidedIdeal.span (polyRelators n G)).ringCon.Quotient

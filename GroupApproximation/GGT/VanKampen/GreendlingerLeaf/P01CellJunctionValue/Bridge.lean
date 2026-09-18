@@ -13,7 +13,8 @@ A dart `d` with `f` on both sides is impossible (`no_selfEdge`): with `L` least 
 `facePerm^(L + 1) d = α d`, the face walk `A_d = facePerm d, …, facePerm^L d` closes past `α d`;
 `L = 0` is a leaf (against `DartMinimal`), and by strong induction on `L` some dart of `A_d` has `C`
 across it, so `C` is enclosed by `A_d`.  The same holds for `α d`, and the dart of `A_{α d}` with
-`C` across lies on `A_d` (else `f` is enclosed by `A_d`); the minimality of both lengths refutes this.
+`C` across lies on `A_d` (else `f` is enclosed by `A_d`); the minimality of both lengths refutes
+this.
 
 Hence no side is a cutting path, and every side is of kind `cell j` (`kind_eq_cell`).
 -/
@@ -113,7 +114,7 @@ theorem selfSeg_firstTurn (hL0 : L ≠ 0) (hL : (M.facePerm ^ (L + 1)) d = M.alp
 variable {f C : M.Face}
 
 /-- **Some dart of the self walk has `C` across.** -/
-theorem exists_cross_of_return (hM : M.IsPlanar) (hfC : f ≠ C)
+theorem exists_cross_of_return (hM : M.IsPlanar) (_hfC : f ≠ C)
     (hacross : ∀ y, M.faceOf y = f → M.faceOf (M.alpha y) = f ∨ M.faceOf (M.alpha y) = C)
     (hnoleaf : ∀ d, M.faceOf d = f → M.facePerm d ≠ M.alpha d) :
     ∀ (L : ℕ) (d : M.Dart), M.faceOf d = f → (M.facePerm ^ (L + 1)) d = M.alpha d →
@@ -199,7 +200,7 @@ theorem no_selfEdge (hM : M.IsPlanar) (hfC : f ≠ C)
   obtain ⟨r, hrL, hr⟩ := mem_seg.mp hy₂mem
   obtain ⟨r', hr'L, hr'⟩ := mem_seg.mp hy₂
   rw [← pow_succ_apply'] at hr hr'
-  rcases le_or_lt r r' with hrr | hrr
+  rcases le_or_gt r r' with hrr | hrr
   · have h := pow_cancel (show r + 1 ≤ r' + 1 by omega) (hr'.trans hr.symm)
     rcases Nat.eq_zero_or_pos (r' - r) with h0 | h0
     · rw [show r' + 1 - (r + 1) = 0 by omega, pow_zero, Perm.one_apply] at h
