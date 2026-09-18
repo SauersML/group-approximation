@@ -192,3 +192,28 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
     - Its discrete case `thompson-t-co-amenable-subgroup-kills-real-euler-class`: a co-amenable
       `H ≤ T` with `e_R|_H = 0`. Such an `H` has no finite orbit on `S^1` and is nonamenable.
     - Concrete test: is `PSL_2(Z)` (preimage `B_3`) co-amenable in `T`? A yes proves this claim.
+- 2026-09-18 (swarm-0917-w10-w10-nv-pull, cohomology-index): a `C^0`-continuity kill inside (MT),
+  with a Fuchsian calibration. Status stays OPEN.
+  - *Class-kill (established).* `thompson-t-c0-continuous-affine-actions-are-trivial`.
+    - Named invariant: unitary triviality of `Homeo+(S^1)` and `Homeo~(S^1)`. Point stabilizers
+      are `≅ H+[0,1]` (Megrelishvili 2001), and point-fixing elements generate. `T` and `T̄` are
+      `C^0`-dense in these groups.
+    - Death step: `C^0`-continuity extends the representation to the closure, where it is
+      trivial. So `κ = 1`, `T` acts trivially a.e., and `β(·, x)` is a homomorphism `T̄ → R`
+      with `z ↦ 1`, contradicting perfectness.
+    - Killed:
+      - every C^0-continuous unitary representation, affine action or cnd function of `T` or
+        `T̄`;
+      - every (MT)-witness with `C^0`-continuous Koopman representation, including every
+        `T`-invariant probability on a Polish space with a continuous `Homeo+(S^1)`-action;
+      - in particular the transplant `Homeo+(S^1)/PSL2(Z)` of the Fuchsian witness, which
+        carries no `T`-invariant probability at all. This holds with `β` arbitrary measurable
+        and `X` not mapping to `S^1`.
+  - *Calibration.* `Δ̃(2,3,7)` is perfect with a bounded Euler class, like `T̄`, yet it has a pmp
+    witness `PSL2(R)/Λ_0` with `Λ_0` a free lattice. So what separates `T̄` from the Fuchsian case
+    is the unitary triviality of its `C^0` closure, not perfectness.
+  - *What survives.*
+    - (MT)-witnesses whose Koopman representation is `C^0`-discontinuous (dyadic, PL or
+      breakpoint data, such as `T/H` or Farley-type cubical data).
+    - Merely quasi-invariant measures on circle-functorial spaces.
+    - The co-amenability test for `PSL2(Z)` is untouched, since invariant means are not measures.
