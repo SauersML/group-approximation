@@ -38,6 +38,13 @@ odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ
     odometer.
   - Still open: contracting `G` beyond bounded activity (polynomial activity, where the base carries characters), and
     general self-similar `G`.
+- **Item 2 for contracting `G` of polynomial activity, all `m`: ESTABLISHED** as
+  `rover-nekrashevych-polynomial-activity-tower-sigma-full` (unreviewed). It gives `Σ^∞(V_{d,r}G) = S` and type `F_∞`.
+  - The route climbs the Belk–Hyde–Matucci activity tower `V_{d,r} <= V_{d,r}G_0 <= ... <= V_{d,r}G_n`.
+  - Characters that are nonzero on the base are handled by `germ-extension-base-nontrivial-characters-via-point-fixers`
+    and `germ-extension-point-fixer-sigma-heredity`.
+  - This settles the polynomial-activity case left open in the previous bullet. Still open: self-similar `G` that is
+    not contracting, or has super-polynomial activity.
 - **Item 2 when `G` is not of type `F_m` but `Γ` is: OPEN beyond bounded automata** (see the previous bullet for
   Basilica and all bounded automata groups). Nekrashevych (arXiv:1312.5654, Theorem 5.9)
   gives finite presentation of `V_d(G)` for every contracting `G`, finitely presented or not. The Basilica group has
