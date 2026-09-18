@@ -5960,6 +5960,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionE
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ExistsSystem
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Ultramatricial
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Decidable
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCornerShift.Conjugation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCornerShift.CornerMap
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCornerShift.StableK2
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
