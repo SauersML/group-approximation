@@ -24,7 +24,8 @@ section KarNormGroup
 
 variable {G : Type*} [Group G]
 
-theorem k2KarNorm_conj_mul (g a b : G) : g * (a * b) * g⁻¹ = g * a * g⁻¹ * (g * b * g⁻¹) := by
+theorem k2KarNorm_conj_mul (g a b : G) :
+    g * (a * b) * g⁻¹ = g * a * g⁻¹ * (g * b * g⁻¹) := by
   group
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_conj_mul
@@ -34,7 +35,8 @@ theorem k2KarNorm_conj_inv (g a : G) : g * a⁻¹ * g⁻¹ = (g * a * g⁻¹)⁻
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_conj_inv
 
-theorem k2KarNorm_conj_conj (g h a : G) : g * h * a * (g * h)⁻¹ = g * (h * a * h⁻¹) * g⁻¹ := by
+theorem k2KarNorm_conj_conj (g h a : G) :
+    g * h * a * (g * h)⁻¹ = g * (h * a * h⁻¹) * g⁻¹ := by
   group
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_conj_conj
@@ -50,7 +52,8 @@ theorem k2KarNorm_conj_of_commute {g a : G} (hc : Commute g a) : g * a * g⁻¹ 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_conj_of_commute
 
-theorem k2KarNorm_conj_commutator (g a b : G) : g * ⁅a, b⁆ * g⁻¹ = ⁅g * a * g⁻¹, g * b * g⁻¹⁆ := by
+theorem k2KarNorm_conj_commutator (g a b : G) :
+    g * ⁅a, b⁆ * g⁻¹ = ⁅g * a * g⁻¹, g * b * g⁻¹⁆ := by
   simp only [commutatorElement_def]
   group
 
@@ -58,12 +61,13 @@ theorem k2KarNorm_conj_commutator (g a b : G) : g * ⁅a, b⁆ * g⁻¹ = ⁅g *
 
 end KarNormGroup
 
-section KarNormDefs
+section KarNormDefs0
 
-variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [CommRing R]
+variable {R : Type*} [CommRing R]
 
 /-- `z_ij(a, r) = x_ji(r) · x_ij(a) · x_ji(r)⁻¹`. -/
-def k2KarNorm_z (i j : ι) (hij : i ≠ j) (a r : R) : SteinbergGroup ι R :=
+def k2KarNorm_z {ι : Type*} [Fintype ι] [DecidableEq ι] (i j : ι) (hij : i ≠ j) (a r : R) :
+    SteinbergGroup ι R :=
   x j i hij.symm r * x i j hij a * (x j i hij.symm r)⁻¹
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_z
@@ -81,6 +85,12 @@ def k2KarNorm_H (ι : Type*) [Fintype ι] [DecidableEq ι] (J : Ideal R) :
   Subgroup.closure (k2KarNorm_gens ι J)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarNorm_H
+
+end KarNormDefs0
+
+section KarNormDefs
+
+variable {ι R : Type*} [Fintype ι] [DecidableEq ι] [CommRing R]
 
 variable {J : Ideal R}
 
