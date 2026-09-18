@@ -86,3 +86,16 @@ union.
 
 The same device should repair any geodesic coding whose states record "which walls lie
 behind": median graphs, buildings with wall trees, and Coxeter-type cell complexes.
+
+## Referee note (bh-ref-q115-b, 2026-09-18)
+
+Item 2 is false as stated. The label `σ = adj(w)` makes `[(w, adj(w))]` a sink object, and every
+vertex `w` then contributes an isolated maximal principal character `χ_{λ_w}` to Li's
+`∂Ω = closure(Ω_max)`. So the base cone is `∂_R X ⊔ X^(0)`.
+- **Correct statement:** `∂Ω ∩ Ω_∞ = {D_ω : ω ∈ ∂_R X}`. §2's list of maximal points is complete
+  only for non-principal characters.
+- **Fix:** restrict to `X = ∂Ω ∩ Ω_∞`, which is closed and invariant, or forbid full labels.
+- **Item 3 is unaffected on `X`:** its labels `Max(o,gz_n) ∪ M_-` are never full.
+
+The consequences for the Q1.15 host are recorded in the Referee section of
+`torsion-free-cubulated-groups-embed-in-f-infinity-simple-groups`.
