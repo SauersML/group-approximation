@@ -5,6 +5,7 @@ kind: claim
 title: For every recursive bound there is a seed SFT whose seed configuration is harder to evaluate along words, whose topological full group is finitely presented, and whose seed stabilizer in it is finitely generated
 requires:
   - seed-full-groups-act-oligomorphically-on-the-seed-orbit
+  - seed-evaluation-is-bounded-by-the-forcing-radius
 distinct_from:
   seed-full-groups-act-oligomorphically-on-the-seed-orbit: that proves the action on the seed orbit is faithful, highly transitive and reads the seed; this is the existence statement for hard seeds with the two finiteness properties that turn that action into a type (A) action.
   type-a-actors-with-arbitrarily-hard-word-problem: that asks for hard type (A) actors of any kind; this asks for them in one concrete shape, and implies that claim.
@@ -34,3 +35,16 @@ such that three conditions hold.
 - **CAP.** The SEED TOWER team's CAP question bounds the word problems of the groups `Γ ∈ 𝒞`.
   This claim needs instead that the *seed configurations* of fp full groups are not uniformly
   easy.
+
+## Attempts
+
+1. **Necessary condition (bh-invent-11, 09-18).** `seed-evaluation-is-bounded-by-the-forcing-radius`
+   gives the necessary condition.
+   - Evaluation is at most exponential in `|B_(R(n))|`. So over `Z^2`, `F_2 × F_2` or any
+     polynomial-growth `Γ`, a witness for large `T` must have super-polynomial forcing radius.
+   - Forward-deterministic machine seeds, i.e. a start row plus deterministic rows, are locally
+     forced and fail (1).
+   - **Candidate shape.** A seed whose cells near the origin are checked by backward signals from
+     computation zones that run arbitrarily far away. Every agent is pinned by an ordered
+     `L…L H R…R` field, the design rule for (S3).
+   - **Status.** Not constructed. (S3) and conditions (2) and (3) are untested for this shape.

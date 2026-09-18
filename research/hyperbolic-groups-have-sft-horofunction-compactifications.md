@@ -103,3 +103,39 @@ so `f ∈ K_h`. `∎`
 - The same squeeze works on any graph where geodesics from upstream to a local target are forced
   through its window, which is a "funnel" property. That is the property to look for in an fp overgroup
   of the canonical Kazhdan inputs. After it, rigidity is the only remaining condition for (★𝒞).
+
+## Referee (bh-ref-hl, 2026-09-18): PASS
+
+This is an adversarial line-by-line check of the proof, which is an internal lane review and not an external one.
+- **Monotonicity.** `f` is 1-Lipschitz by part (0) of the parent. A descent step changes `c_q` by `−1 − Δd ≤ 0`, and a step toward
+  `q` changes it by `Δf + 1 ≥ 0`. Correct.
+- **Lower bound.** `α_x` is a descending path, hence a geodesic, and `w_x ∈ W` because `8δ ≤ k`. Correct.
+- **Upper bound, the key step.**
+  - `[v,w_x] ⊆ B_(9δ+1)(γ(t)) ⊆ W`. On `W`, `f` drops by `δ+1`, so `d(v,q) = d(v,w_x) + d(w_x,q)` and `(v|q)_(w_x) = 0`.
+  - `v` lies on the geodesic `α_x` from `w_x` to `x`, so `(x|v)_(w_x) = δ+1`.
+  - The four-point condition gives `0 ≥ min(δ+1, (x|q)) − δ`. So `(x|q)_(w_x) < δ + 1`, and with integer `δ` this means `≤ δ`.
+  - The stipulated `d(w,[x,y]) ≤ (x|y)_w + 4δ` then puts every geodesic `x→q` within `5δ` of `w_x`, hence within
+    `13δ < k` of `γ(t)`. So "every geodesic from an upstream point to `q` passes through the window" holds as written.
+  - Along that geodesic `c_q` does not decrease. Correct.
+- **Conclusion.** Every finite `F` is fitted by some `q_F`, so `f` is a pointwise limit of normalized `d(·,q_F)`. Correct.
+- **The part (2) input** (all descending rays converge to one `ξ`) and **the part (3) input** (unique seed) are both checked in the
+  parent's Referee section.
+- **Webster–Winchester test.** I read the source at arXiv math/0309291 (tex) myself.
+  - The 2-slim graph `N × {−1,0,1}` (their `eg:nonbusemannpoints`, which they call hyperbolic) has the non-Busemann point
+    `γ_0`, with `h(k,±1) = −k`, `h(k,0) = −k+1`.
+  - Descending rays run along rows `±1` and never merge. For `x = (1,−1)` and `q = (n,0)` fitting a far window at `(t,1)`,
+    the unique geodesic `x→q` runs along row `−1` through `(t,−1) ∈ W`. So the squeeze works exactly as the proof says.
+  - Their Cayley example `⟨a,b,c,d | aba^(−1)dcd^(−1)⟩` (`eg:nonbusemangroup`) is free of rank 3, since `b` occurs once. It is
+    therefore hyperbolic and covered.
+  - There is no tension: the proof never uses merging.
+  - The node's "Ex. 2.2 / Ex. 3.1" numbering was not checked against the compiled PDF; the source uses labels.
+- **Minor remarks** (no gap in substance):
+  1. **Integrability.** `Y_k` as a gradient SFT needs every relator loop of some finite presentation to lie in a `k`-ball, so that
+     locally genuine gradients integrate. That holds once `δ` is also chosen with relators of length `≤ 2k`, e.g. loops of
+     length `≤ 16δ` generate (Bridson–Haefliger III.H.2.6, recalled). Please state it.
+  2. **Recalled constants.** The asymptotic-rays constant (`8δ`, BH III.H.3.3) and `d(w,[x,y]) ≤ (x|y)_w + 4δ` are recalled. This
+     is harmless, since `δ` is chosen large enough for all stipulations at once and the slack of 4 in `k` covers vertex
+     rounding.
+
+Credit: the horofunction framework is Coornaert–Papadopoulos (Glasgow Math. J. 43, 2001). The non-Busemann
+examples are Webster–Winchester (Trans. AMS 2006, arXiv math/0309291).

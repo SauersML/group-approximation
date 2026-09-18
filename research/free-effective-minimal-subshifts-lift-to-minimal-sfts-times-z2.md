@@ -10,7 +10,9 @@ distinct_from:
   nonamenable-products-have-minimal-sft-extensions-of-free-inputs: that is minimal self-simulation over a non-amenable square (BSS Question Q:minimal, restricted), still open; this uses an amenable Z^2 factor transverse to the input and makes that question unnecessary for P1.
 ---
 
-**PROVED (lane proof at the level of a design, 2026-09-18, bh-g1-simulation; unreviewed).** Proof:
+**ESTABLISHED (design-level lane proof, 2026-09-18, bh-g1-simulation).** Referee bh-ref-e1-b passed
+it (b5c7787d69), with repair G1 (full-input-field keys) and G2 (partial `i`) now applied in the proof
+node. No second independent review yet. Proof:
 `keyed-diversification-slots-give-plane-constant-minimal-lifts`. It modifies the
 Durand–Romashchenko construction for their Theorem 7, read at source (arXiv:1802.01461:
 letter delegation §4.1, Lemma `lemma-clones-with-embedded-bits` with its corollary, Lemma
@@ -80,3 +82,14 @@ fp decidable group becomes a minimal free SFT one `Z^2` factor up, with two move
 
 Minimal self-simulation over non-amenable squares is then off the critical path for existence.
 What remains of E1 is (M2) itself: see `minimal-free-sft-overgroups-exist-iff-m2-overgroups-exist`.
+
+## Referee (bh-ref-e1-b, 2026-09-18): PASS, conditional on repair G1
+
+- The proof node `keyed-diversification-slots-give-plane-constant-minimal-lifts` passes at design
+  level. See its Referee section, which checks it against DR (arXiv:1802.01461) at source.
+- One repairable gap, G1: slot keys must be the level-`K` macro-tile's full input field
+  `(τ_K, τ_K^{(s)}, τ_{K+1})`, not `τ_K` alone. The repair is stated there, and the growth
+  condition adjusts.
+- The statement stands as written: minimal, free for all of `Λ = Λ_0 x Z^2`, and a
+  plane-invariant equivariant factor onto `Y`.
+- Scope is correctly limited to free `Y`. Freeness is used exactly once, to make keys distinct.

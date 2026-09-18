@@ -172,3 +172,62 @@ Ara--Cortiñas supply that input for every regular supercoherent `B`. So the Boo
 question for inputs linear over `B` reduces to one algebraic question: which finitely
 presented central simple algebras containing the input are regular supercoherent? This is
 the precise reason the tensor-power case `d >= 3` needed a separate `K`-theory claim.
+
+## Referee (bh-ref-misc, 2026-09-18): source match with Khanh's preprint; PASS, with one correction to the trust classification
+
+**Credit.** The ring-side finite presentation and acyclicity of every Leavitt-tensor host in this
+graph comes from Huynh Viet Khanh, *General linear and Steinberg groups over the Leavitt algebra
+`L_(F_2)(1,2)`*, arXiv:2609.08428v1 (8 Sep 2026). The graph uses:
+- his acyclicity criterion (frame complexes with Quillen scalar weights);
+- his Steinberg comparison criterion via Brown's presentation;
+- his reduction of finite presentation to Krstić–McCool.
+
+The repository steps are transfers of his arguments. They are not independent proofs.
+
+**Source.** I read the v1 e-print (the only version on arXiv on 2026-09-18), TeX
+`hvkhanh_general_linear_L_1,2_.tex` (sha256 `91d3f540…`, 761 lines, fetched on MSI to
+`/scratch.global/sauer354/bhrefmisc/khanh/`), §§2–6 in full. What it proves, with its hypotheses:
+
+| Khanh | Statement at source | Hypotheses at source |
+|---|---|---|
+| Thm 2.2 (`thm:acyclicity-criterion`) | `H_n(A^x) = 0` for all `n > 0` | `A` is a nonzero unital `F_2`-algebra (section convention, l.95); `A² ≅ A`; standard inclusions `Γ_(n+2) → Γ_(n+3)` are zero on `H_n`; `H̃_i(X_r(A)) = 0` for `i ≤ r−3`, `r ≥ 4` |
+| Lem 2.3, 2.4 | Quillen weights; `2^n K_n = 0`, `(K_n)_C = 0` | characteristic 2 (`F_(2^m)`, 2-primary torsion, odd `d`) |
+| Prop 3.2, Lem 4.1, Prop 4.2, Cor 4.3, Thm 4.4 | zero padding, word multiplier, frame cone, acyclicity | `R = L_(F_2)(1,2)` only |
+| Thm 5.1 (`thm:raw-criterion`) | `St_n(B) → GL_n(B)` iso | `B` of characteristic two, `n ≥ 4`, `GL_(n−1) = E_(n−1)`, `GL_(n−2) = E_(n−2)`, `j_(n−1)(N_(n−1)) = 1`, the realization of `X_n(B)` simply connected |
+| Lem 5.2 | `j_m(N_m)` central in `St_(m+1)` | any unital ring, `m ≥ 3` |
+| Lem 5.3, Thm 5.4, Thm 6.1 | `GL_m = E_m`; `St_r ≅ GL_r` for `r ≥ 3` (Voronetsky); `R^x` finitely presented (Krstić–McCool Thm 3) | `R = L_(F_2)(1,2)` only |
+
+**Match with this audit.**
+- **`p = 2`.** Thm 2.2, Thm 5.1 and Lem 5.2 are used exactly as stated. `L_2 ⊗ L_2` is an
+  `F_2`-algebra of characteristic two. The `R`-specific results are correctly redone here for
+  `B ⊗ L` (items 3–5, 8, 9).
+- **Odd `p`: correction.** Section 2 of the source is for `F_2`-algebras only. So at odd `p`,
+  Thm 2.2 and Lem 2.4 are also used in transferred form, not "as stated", in addition to the Lem 2.3
+  and Thm 5.1 transfers listed in (T2). (T1) above should read "Theorem 2.2 and Lemmas 2.3–2.4 at
+  `p = 2`; their odd-`p` forms are in (T2)".
+  - I located every place the proofs of Lem 2.3, Lem 2.4 and Thm 2.2 use characteristic 2:
+    - the embedding `F_(2^m) → M_m(F_2) → A`, which becomes `F_(p^m) → M_m(F_p) → A`;
+    - `2H_j(V) = 0` (the lens-space complex gives `pH_j(V) = 0`);
+    - `H^*(V; F_2)` polynomial, which becomes `Λ(V^*) ⊗ S(βV^*)`;
+    - Quillen's count. It holds with at most `j < m ≤ m(p−1)` summands, so the carry never reaches
+      all digits `p−1`;
+    - exactness of coinvariants of the order-`(p^m−1)` group on `p`-primary modules;
+    - `p^n K_n = 0`.
+
+    All transfer. The rest of the proof of Thm 2.2 is characteristic-free.
+  - In the proof of Thm 5.1, characteristic 2 enters only through `w_12² = 1` and the sign-free
+    Weyl action. With the Tits lifts of item 7:
+    - `τ' b_1 = b_2`, and `τ'` normalizes `K` with `η'(k(a,b,H)) = k(−b, a, H)`;
+    - the path computation for the triangle relation is unchanged (`τ'` fixes `b_3`);
+    - the central correction `z` makes `ψ(T) = Wz` satisfy both relations.
+
+    So item 7 is correct.
+- **The node's degree-truncated form.** Part 1 of `prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre`
+  ("`K_i = 0` for `i ≤ N` gives `H_n = 0` for `n ≤ N`") is not stated by Khanh. It follows from his
+  proof: the induction in Thm 2.2 uses hypothesis (1) one degree at a time, and Prop 3.2's plus
+  construction gives `H_n(GL_∞) = 0` for `n ≤ N` by Hurewicz.
+
+**Verdict.** No hypothesis mismatch affects any conclusion. The only defect is the (T1)/(T2)
+bookkeeping at odd `p`, corrected above. The trust surface is Khanh's unrefereed v1, used at `p = 2`
+as stated and at odd `p` through routine transfers checked here, together with the classical
+results he cites.

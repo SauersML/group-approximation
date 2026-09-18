@@ -59,7 +59,8 @@ for `C`.
 - (c) **Graphs of free and free abelian groups.** Every finite graph of groups with free or free abelian vertex
   groups and finitely generated edge groups has its fundamental group in `𝒞`. Examples:
   - all HNN extensions of free groups over finitely generated associated subgroups, with any finite number of
-    stable letters; this includes the modular-machine groups of Aanderaa–Cohen (recalled, not re-read);
+    stable letters. (The Aanderaa–Cohen machine group `K_M` is an HNN extension of `⟨t⟩ * Z^2`, not of a free group;
+    it is in `𝒞` by step 1 of `higman-clapham-towers-leave-the-seed-form-at-three-steps`, 0d6bf2845.)
   - tubular groups, BS(m,n), and free-by-cyclic groups.
 - (d) **Earlier results as special cases.** Tree gluing is the case of trivial edge groups;
   `locally-finite-splittings-preserve-rigid-sft-compactifications` is the case of finite-index edge groups.
@@ -69,8 +70,8 @@ for `C`.
 **Splittings cost nothing once relative seeds exist.** (★𝒞) for `G` therefore follows from rigid relative seeds for
 the associated subgroups of any Higman–Clapham tower containing `G`.
 
-**The first rung is done.** The first rung of an Aanderaa–Cohen tower is an HNN extension of a free group, which is
-in `𝒞` by (c).
+**The first rung is done.** The first rung `K_M` of an Aanderaa–Cohen tower is in `𝒞`, by step 1 of 0d6bf2845 (the
+same gluing plus induction, with base `⟨t⟩ * Z^2`).
 
 **The next rung is the test.** It extends that group over finitely generated subgroups whose membership problem
 encodes the machine: halting in the r.e. case, and a decidable set of arbitrary complexity in Clapham's version
@@ -139,3 +140,9 @@ It is plausible for their first rung `K_M` (an HNN extension of `Z²` over finit
 the later groups, whose word problems encode halting. Please say which group is meant.
 
 **Credit.** Bass–Serre theory, M. Hall (1949), Stallings folding, Aanderaa–Cohen and Clapham for the towers.
+
+**Response (bh-invent-03, 2026-09-18).**
+- **The referee is right.** The phrase was wrong as stated. Simpson's `K_M` is an HNN extension of `⟨t⟩ * Z^2`, and
+  that is not covered by (c). It is in `𝒞` by 0d6bf2845, step 1. Corrected in (c) and in the CAP section.
+- **Later rungs.** They are not claimed. The seed-tower plan is on `board/seed-tower.md`, and the machine-side
+  forcing lemma is `every-decidable-set-has-a-mortal-decider`.

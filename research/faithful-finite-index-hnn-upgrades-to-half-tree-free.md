@@ -140,3 +140,30 @@ Product tricks do not help by themselves. A direct or wreath factor of the hard 
 commensuration built from easy data, so it lands in the kernel. The hard group must itself admit a
 commensuration that shrinks every normal subgroup. For KMS groups that is a renormalization
 symmetry of the machine's configuration module, and every available one is dead.
+
+## Referee (bh-ref-ffwz, 2026-09-18): items 1–3 PASS; item 4 not checked at source
+
+- **Item 1.** Correct.
+  - `π_1` and `π_2` respect the relations, and they induce type-preserving equivariant maps of
+    trees.
+  - Forward edges at `w'` surject onto all edges at `π_1(w')`, since `|m_ε| ≥ 2` and at most one
+    preimage is the back edge. So `π_1(S') = T`.
+  - For `π_2`, every non-back edge `(ε, z)` has the non-back preimage `(ε, (1, z))`. So
+    `π_2(S')` contains a half-tree.
+  - `ker π_1 ∩ ker π_2` is normal and meets `A' = A × Z` trivially, because
+    `ker π_1 ∩ A' = 1 × Z` and `π_2(1,z) = b^z`. So it meets every vertex stabilizer
+    trivially.
+  - The step "`BS(m_1,m_2)` with `|m_1| ≠ |m_2|` has no nontrivial half-tree fixer" is cited
+    from Step 9 of `nonascending-hnn-end-shifts-satisfy-e3-prime-proof`. I did not re-check it
+    here; the divisibility heuristic along branches supports it.
+- **Item 2.** `A × Z` has the finiteness type of `A`, since `A` is a retract. The E3′ host
+  conclusion is conditional on `nonascending-hnn-end-shifts-satisfy-e3-prime` (1908f110d1),
+  which has not been refereed.
+- **Item 3.** Correct.
+  - Being TF implies being faithful.
+  - The kernel of `G*_ψ` on its tree is the largest normal `N ≤ G_1` with `ψ(N) = N`, which is
+    trivial for faithful self-similar `G` (Nekrashevych).
+- **Item 4.** The KMS relations G1–G8 were not read at source, so the structure lemma is
+  unchecked. The "expected" homothety rigidity via `Σ^1` is correctly labelled as not proved.
+- **Credit.** Kharlampovich–Myasnikov–Sapir for the groups; Bux–Llosa Isenrich–Wu for the
+  finitely presented simple host.

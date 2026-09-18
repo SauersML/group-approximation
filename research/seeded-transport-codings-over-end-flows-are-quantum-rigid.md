@@ -86,3 +86,35 @@ mechanism in operator form, for seeded coordinates of any finite phase type.
   - `relational-spine-couplings-are-splittable-or-not-minimal` proves that the functional clock is
     minimal. It also proves that every relational coupling either splits or is not minimal.
   - What these codings still lack is input complexity, which is v6's CAP question.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked `seeded-transport-rigidity-downhill-proof` line by line.
+
+- **Step 0.**
+  - `ι` is a homomorphism onto `𝒜`, by (B), and `Y_D ⊆ B`, since the rules of `B` have radius
+    `<= D`. So cylinder implications on `B` hold in `𝒜`.
+  - Constancy follows by ball sums and adjacency.
+  - (Sp\*) uses bijectivity of `α_s`: the ball-sum identity is `[p]C_c(λ) = [p]C_(α(c))(λs)` in both
+    directions.
+  - (Ti\*) holds for any `β` in the summed form `[p]C_c(z) = Σ_(β(g)=c) [p]C_g(parent)`. So the
+    Remark that bijectivity of `β` is not used is correct.
+- **Step 1, downhill induction.**
+  - Seed and toward terms are immediate.
+  - Away terms: if the arrow at `v'` points away from `a_1`, then on `B` the arrow at `w'` points
+    along the geodesic toward `v'`. This is an implication of cylinders on `B`, so `[p]b = δ[p]`
+    in `𝒜`. With `[p]X = X[p]`, this gives `[[p]X, b] = 0`.
+- **Step 2.** Induction on `d_H` via (Sp\*) is correct.
+- **Step 3.**
+  - The reduction to one space coordinate uses central `𝒜`.
+  - In the away case, `[p]` forces `parent(a_j) = a_(j−1)` along the geodesic. Expanding upward kills
+    every other parent, so `[p]C(μ,u') ∈ alg(𝒜, C(μ,v'))`.
+  - `X` sits at a neighbour of `(μ,v')`, so it commutes with that algebra.
+
+The theorem holds over every field, on modules of any dimension.
+
+**Not checked:**
+- the "Unsplittable spine" paragraph, which rests on the far-modification Lemma of
+  `minimal-sfts-with-a-finite-modification-are-not-quantum-rigid`;
+- the Instances;
+- hypothesis (B)'s citation to `quantum-rigidity-is-product-stable`.

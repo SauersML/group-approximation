@@ -148,3 +148,79 @@ So P2′b holds, in the form `K = 1`, over every group and every space, and glui
 group route of Boone–Higman the whole remaining difficulty sits in the rigidity layer: finite presentation of the
 Boolean-power crossed product `LC(X, V) ⋊ Λ` (P2′a). The same room argument should apply to every `G_V × H` gluing,
 including Brin–Thompson, 𝒯_m and the operad hosts.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS, with one correction to a remark and one scope nit
+
+**Items 1–6, checked line by line.**
+- **Face lemma (item 1).**
+  - `X_(AB) = m^{-1} n m` with `m = λ_(AB)|_[a]` and `n = (a b)^[Q_B]` is the defining formula.
+  - `m X_(AC) m^{-1}` is the lift of `[a]×Q_B ↔ C` by parent item 3, with label
+    `λ_(AC)λ_(AB)^{-1}`.
+  - Conjugation by `n` is the parent's straddle case (`a` is exactly the source, `b ⊥ a, c`),
+    with `P∩Q = Q_B` and `P∖Q = ∅`. It gives `X_(BC)`, since `λ_(BC) = λ_(AC)λ_(AB)^{-1}` by
+    flatness.
+  - `m` commutes with `X_(BC)` by (R1) and inside `M`.
+- **Room lemma (item 2): correct.**
+  - Lifts are involutions, and they are orientation-free by the parent's symmetric formula.
+  - The two faces `(E,E_0,E_0')` and `(E_0,E_0',E')` have pairwise incomparable cones. Item 1,
+    applied at the shared vertex in both orders, gives `xyx = yxy`, hence `(s_1s_2)^3 = 1` and
+    `(s_2s_3)^3 = 1`.
+  - `(s_1s_3)^2 = 1` holds by disjoint commutation.
+  - These are exactly the Coxeter relations of `A_3`. `π` maps `⟨s_i⟩` onto the piece
+    permutations of the flat 4-family, which is faithfully `Sym(4)`. So `π` is injective on
+    it.
+  - `X_(0E') = s_2s_3s_2` and `X_(0'E) = s_2s_1s_2` both follow from item 1. So both
+    expressions for the lift of `(EE')` lie in this `Sym(4)` and map to `(EE')`, hence are
+    equal.
+- **Item 3.**
+  - Comparable auxiliary cones are bridged by a third cone. It exists once the pieces are
+    split so that the four cones have total measure below 1.
+  - Agreement with the old lift is item 1 on `(E_0,E,E')`.
+- **Item 4.**
+  - (S_C) and (S_X) regroup correctly, because factors with different split indices have
+    disjoint supports.
+  - For disjoint commutation, the auxiliary pieces can be re-chosen for each pair of factors
+    (they need only be incomparable with those four cones), using item 3.
+  - I also checked (S_C) and (S_X) for old lifts directly from the defining formula and (R1).
+- **Item 5.**
+  - For `g ∈ M`, the image auxiliary cones lie in `v[e]`, which is disjoint from the images of
+    `c, c'`.
+  - For `g = (00 01)^[Q]` with `e ⊆ [1]`, the parent's case "`a ⊆ [u]`, `b ⊆ [u']`" can never
+    occur, since both cones of `g` lie in `[0]`. So no self-swap configuration arises.
+  - Generation of `Γ~` by `M` and the `(00 01)^[Q]` uses simplicity of `V` and the identity
+    `w(00 01)^[Q]w^{-1} = (w(00 01)w^{-1})^[Q]` for constant `w`.
+- **Item 6.** `L̃(τ_0) = τ_0`, so `K` centralizes `τ_0`, and the criterion applies.
+
+**Parent items used.** I re-checked items 1, 2, 3 and the straddle case of 4 of
+`incomparable-transposition-lifts-are-equivariant-off-self-swaps`, and they are correct.
+- I checked the `Δ`-case of item 4 only in outline.
+- The relatively-perfect node carries an earlier referee-a PASS. Its swindle does not use
+  freeness of `X` or finite generation of `Λ`.
+
+**Correction to the "finite shadows" remark.** A shadow does *not* lack room.
+- With `m ≥ 5` partition cones, it has pairwise incomparable auxiliary cones. The face lemma
+  holds there: both sides have parity `χ = 0` and the same `π`-image, and
+  `G_f(Q) ≅ Sym(2m) × Z/2` for `m = 3, 4, 5` by the certificate in
+  `splitting-kills-the-finite-shadow-parity-of-the-gluing-group`.
+- So the room argument also runs in a shadow, and it proves the shadow kernel **central**.
+  The room lift of a local swap `σ_k` is its `χ = 0` twin, and the two differ by the central
+  involution.
+- What a shadow lacks is the **swindle**: the doubling `D` behind relative perfectness, and
+  simplicity of `V` behind criterion item 1.
+- This calibration confirms the two-stage structure of the proof. Room gives centrality, and
+  the self-similar swindle turns central into trivial. That is exactly the parity the
+  shadows exhibit.
+
+**Scope nit.** For a non-free `X`, `F(T)` must be read as the group of full bisections, so
+that germs record the label `λ`. The lifts `L(t)` depend on `λ`, not only on its action on `X`.
+The node's Setting says this. The consequences about topological full groups
+(`F(T_X)` in Homeo) should be stated for free `X`, or for the bisection group.
+
+**V_(2,2) consistency.** `two-point-gluing-presentation-of-v-is-exact` (f040a4fa6) is the
+case `Λ = Z/2` on two points, and its canonical lifts (L1)–(L3) are old lifts of this node.
+No conflict.
+
+**Credit.** The self-similar swindle is the Brown–Thompson doubling trick. The
+transposition-lift technique is in the spirit of Bleak–Quick's presentation of `V` and of
+Quick's presentations of Thompson-like groups. The use of `A_3 = Sym(4)` Coxeter relations
+through spare room is, as far as I know, new here.
