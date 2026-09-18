@@ -50,3 +50,21 @@ This is the open part of a named problem.
    with open premise `out-free-groups-virtually-embed-in-aut-free-groups`. Every
    construction by lifting to a finite-index subgroup of `F_n` is a virtual
    section of `Aut(F_n) → Out(F_n)` (`outer-covering-lifts-are-virtual-sections`).
+4. **Necessary condition on a direct type (A) actor** (bh-free-40,
+   `out-free-pair-finite-stabilizers-contain-fully-irreducibles`; lane proof).
+   - **The condition.** In any action of `Out(F_n)` with finitely many pair
+     orbits, the stabilizer `H` of a point with infinite orbit has these
+     properties:
+     - unbounded orbits on the free factor complex;
+     - it contains fully irreducibles (Handel–Mosher);
+     - no finite-index subgroup fixes a proper free factor class;
+     - it is not commensurated.
+   - **What it excludes.** Every geometric stabilizer: free factors, free factor
+     systems, free splittings, non-filling conjugacy classes, and points of
+     Outer space.
+   - **Relation to BLIW.** Commensurator rigidity, which kills BLIW Theorem C
+     here (`commensurator-rigid-groups-have-no-faithful-bs-members`), does not
+     touch this route, since type (A) stabilizers are never commensurated.
+   - **Next test.** The stabilizer of the conjugacy class of a filling element,
+     e.g. a one-boundary surface word: does it have finitely many double
+     cosets?
