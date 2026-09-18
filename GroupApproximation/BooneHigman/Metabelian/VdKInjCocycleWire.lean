@@ -27,7 +27,7 @@ For `p` prime, `k > 0` and `sr(R_k) ≤ r`, some `φ : rowStab(e_last) →* St_{
 * It is **equivalent** to `vdkInjAct_CocycleStatement` restricted to the polynomial family
   (the per-ring equivalence `vdkInjCocycle_cocycle_iff_retract`).
 * Under Step A (`vdkInjCoset_RowStabStatement`) it is **equivalent** to injectivity of
-  `K2Stab (r + 3) R_k` for the family (`vdkInjCocycle_polyRetract_iff_injective_of_rowStab`).
+  `K2Stab (r + 3) R_k` for the family (`vdkInjCocycle_polyRetract_iff_inj_of_rowStab`).
   By `vdkRowCoreX_diag_iff_injective`, that is `vdkInj_DiagStatement` itself.
 * Without Step A it is a priori **stronger** than injectivity.  A retraction on the parabolic
   image `P` alone is exactly injectivity (`vdkInjCocycle_parRetract_iff_injective`).  The
@@ -98,7 +98,7 @@ theorem vdkInjCocycle_polyRetract_of_cocycle (h : vdkInjAct_CocycleStatement) :
 /-- **Strength (LOUD).**  Under Step A the residual is equivalent to `K2Stab` injectivity for
 the family.  By `vdkRowCoreX_diag_iff_injective`, that is `vdkInj_DiagStatement`.  The `⟸`
 direction is also the truth check of the residual. -/
-theorem vdkInjCocycle_polyRetract_iff_injective_of_rowStab
+theorem vdkInjCocycle_polyRetract_iff_inj_of_rowStab
     (hA : vdkInjCoset_RowStabStatement) :
     vdkInjCocycle_PolyRetractStatement ↔
       ∀ p : ℕ, p.Prime → ∀ k r : ℕ, 0 < k →
@@ -112,6 +112,6 @@ theorem vdkInjCocycle_polyRetract_iff_injective_of_rowStab
       (hA (MvPolynomial (Fin k) (ZMod p)) r (r + 3) hsr le_rfl)).mpr (h p hp k r hk hsr)
 
 #audit_axioms
-  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_polyRetract_iff_injective_of_rowStab
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjCocycle_polyRetract_iff_inj_of_rowStab
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

@@ -79,7 +79,7 @@ theorem suslinCongVac_mem_of_trace_adj21 {A S : Type*} [CommRing A] [CommRing S]
     (suslinCongVac_mem_of_trace _ ?_ ?_)
   · rw [suslinCongVac_det_mul_elem, hdet]
   · rw [suslinCongVac_val_mul_elem, Matrix.add_apply, Matrix.add_apply,
-      Matrix.mul_single_apply_same, Matrix.mul_single_apply_of_ne 1 0 1 1 hne]
+      Matrix.mul_single_apply_same, Matrix.mul_single_apply_of_ne (1 : Fin 2) (0 : Fin 2) (1 : Fin 2) (1 : Fin 2) hne]
     linear_combination htr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_mem_of_trace_adj21
@@ -96,7 +96,8 @@ theorem suslinCongVac_mem_of_trace_adj12 {A S : Type*} [CommRing A] [CommRing S]
     (suslinCongVac_mem_of_trace _ ?_ ?_)
   · rw [suslinCongVac_det_mul_elem, hdet]
   · rw [suslinCongVac_val_mul_elem, Matrix.add_apply, Matrix.add_apply,
-      Matrix.mul_single_apply_of_ne 0 1 0 0 hne, Matrix.mul_single_apply_same]
+      Matrix.mul_single_apply_of_ne (0 : Fin 2) (1 : Fin 2) (0 : Fin 2) (0 : Fin 2) hne,
+      Matrix.mul_single_apply_same]
     linear_combination htr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_mem_of_trace_adj12
@@ -123,7 +124,7 @@ theorem suslinCongVac_mem_of_trace_loc {A : Type*} [CommRing A] [IsDomain A]
     (htr : (σ : Matrix (Fin 2) (Fin 2) (Polynomial (Localization.AtPrime 𝔭))) 0 0 +
       (σ : Matrix (Fin 2) (Fin 2) (Polynomial (Localization.AtPrime 𝔭))) 1 1 = 2) :
     σ ∈ SuslinCongLocGen A (Polynomial (Localization.AtPrime 𝔭)) := by
-  haveI : IsDomain (Localization.AtPrime 𝔭) := IsLocalization.isDomain_of_local_atPrime ‹_›
+  haveI : IsDomain (Localization.AtPrime 𝔭) := IsLocalization.isDomain_of_local_atPrime (P := 𝔭) ‹𝔭.IsPrime›
   exact suslinCongVac_mem_of_trace σ hdet htr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_mem_of_trace_loc
