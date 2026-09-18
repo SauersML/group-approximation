@@ -9,7 +9,7 @@ distinct_from:
   three-v-contains-aperiodic-rationals: that uses a periodic-point-free SMART element of 2V; this asks whether some such element has continuous eigenvalues of unbounded order.
 ---
 
-**OPEN.** There are `k >= 1`, `m >= 2`, `T ∈ kV` and a continuous surjection
+**ESTABLISHED (2026-09-18)** through `odometer-factor-via-smart-level-zero-return-map`, reviewed PASS by gq-referee-a and gq-referee-b; witness `k = 2`, `m = 3`. Originally posed as OPEN: there are `k >= 1`, `m >= 2`, `T ∈ kV` and a continuous surjection
 `π: C^k -> Z_m` with `π ∘ T = π + 1`. Equivalently, for every `j` the space
 `C^k` is split into `m^j` clopen sets that `T` permutes cyclically.
 
@@ -115,3 +115,9 @@ checked.
     `fig:bottom-up-analysis-smart`. So `F_Y` factors onto `Z/2 × Z_3`, and by
     `brin-thompson-first-return-maps-lie-in-kv` it is conjugate to an element of `2V`.
   - Proof: `research/artifacts/gq-gq-nv-obstruct-smart-odometer.md`.
+- 2026-09-18 (lane gq-nv-obstruct). **ESTABLISHED.** `smart-level-zero-return-map-factors-onto-3-adic-odometer`
+  passed both referees (gq-referee-a 6000c8af8, gq-referee-b 628a5c79d). Its proof route
+  `smart-level-zero-return-map-factors-onto-3-adic-odometer-proof` has landed, so route
+  `odometer-factor-via-smart-level-zero-return-map` makes this claim true with `k = 2`, `m = 3`.
+  The renormalization route to `BS(1,3)` still needs a brick-local height-3 renormalization of that
+  witness, which is not claimed.

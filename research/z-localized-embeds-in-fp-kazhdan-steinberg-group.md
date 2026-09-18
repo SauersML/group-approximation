@@ -3,6 +3,7 @@ rg: 2
 id: z-localized-embeds-in-fp-kazhdan-steinberg-group
 kind: claim
 artifacts:
+  - research/artifacts/gq-referee-a-z-localized-embeds-in-fp-kazhdan-steinberg-group.md
   - research/artifacts/gq-referee-b-z-localized-embeds-in-fp-kazhdan-steinberg-group.md
 title: For every prime l and N >= 4, Z_(l) embeds in the finitely presented Kazhdan group St_N(R_l) of the eight-relator resolvent ring
 distinct_from:
@@ -12,7 +13,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `z-localized-embeds-in-fp-kazhdan-steinberg-group-proof`.
-The lane assembly passed citation review (gq-referee-b, artifact above). The finite
+The lane assembly passed proof-gap review (gq-referee-a) and citation review
+(gq-referee-b); both reports are in `artifacts`. The finite
 presentation and property (T) are imported.
 
 **Statement.** Let `l` be a prime, `R_l` the finitely presented ring of

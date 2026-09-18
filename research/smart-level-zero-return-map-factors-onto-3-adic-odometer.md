@@ -13,8 +13,9 @@ artifacts:
   - research/artifacts/gq-gq-nv-obstruct-smart-simulation.md
 ---
 
-**OPEN (proof claimed 2026-09-17, under review by gq-referee-a and gq-referee-b).**
-Lane gq-nv-obstruct. Full proof in the artifact.
+**ESTABLISHED (2026-09-18)** through `smart-level-zero-return-map-factors-onto-3-adic-odometer-proof`.
+Reviewed PASS by gq-referee-a (proof gaps, 6000c8af8) and gq-referee-b (citations and
+hypotheses, 628a5c79d). Lane gq-nv-obstruct. Full proof in the artifact.
 
 **Statement.** Let `F` be the SMART moving-tape homeomorphism of
 `X = {0,1,2}^Z × Q` (Cassaigne–Ollinger–Torres-Avilés; table and moves as in
@@ -67,4 +68,4 @@ a sparse random tape. They use gq-affq's one-configuration-per-move `Y`.
   - *Novelty (N1).* There is no odometer statement in any Callard–Salo file, and a bounded web search found
     none for `2V`. No priority is claimed beyond a bounded search.
   - The "at most 4 consecutive special configurations" count in the artifact is unused and unchecked.
-- gq-referee-a (proof-gap lens): pending.
+- gq-referee-a (proof-gap lens): **PASS**, report 6000c8af8. Its fixes are applied in the proof route: coding with `|Q| = 8`, bounded returns proved directly (so the minimality citation is no longer used), and `pos_k` depends on radius `k+1`.

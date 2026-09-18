@@ -42,6 +42,51 @@ Problem 2.7.
     Bruhat–Tits flag varieties.
   - No construction is known to this lane. Such a construction would also
     decide the Haagerup part of Problem 2.7 negatively, so expect it to be hard.
+- 2026-09-17 (e-nv-heretic, heretic lane toward the NO side of Zaremsky 2.7,
+  host-geometry). **Fibred embeddings of a Kazhdan partner are dead; what survives
+  is forced to mix coordinates.**
+  - *Established:* `kazhdan-subgroups-of-fibred-subgroups-of-nv-are-finite`.
+    - The subgroup `Fib_J ≤ nV` preserving a coordinate fibration `pr_J` is
+      `C(C^J,(n−|J|)V) ⋊ |J|V`.
+    - A current extension `C(X,Λ) ⋊ H` has an infinite Kazhdan subgroup iff `H` or `Λ`
+      does.
+    - Consequently the triangular subgroups `T_n`, the fibred subgroups `C(C,V) ⋊ V`
+      of `2V`, and every iterate `Γ ↦ C(C,Γ) ⋊ V ≤ (n+1)V` contain no infinite Kazhdan
+      subgroup that was not already there.
+    - At the least `n_0` with an infinite Kazhdan subgroup in `n_0V`, no such subgroup
+      preserves any coordinate fibration.
+  - *Where every fibred construction dies.* The base image in `|J|V` is a Kazhdan
+    quotient, hence finite at the least dimension. The finite-index kernel is a finitely
+    generated current group, so it lies in a finite power of `(n−|J|)V`.
+  - *Decomposition of the Kazhdan case.* A torsion-free hyperbolic Kazhdan `G ≤ nV`, with
+    `n` least, needs all of the following. Each can fail on its own.
+    - (P1) A faithful action on `C^n` by prefix replacements. The boundary and flag
+      actions fail here (nontrivial states, above).
+    - (P2) Some minimal closed invariant set with no invariant probability measure, by
+      `kazhdan-subgroups-of-nv-finite-iff-invariant-sets-carry-measures`. So there are
+      infinite orbits, and on them the offset cocycle is unbounded.
+    - (P3) No coordinate fibration preserved by the image, by the new claim. The
+      generators must transfer digits between coordinates, like the baker's map or the
+      reversible Turing machine elements of `2V`.
+    - (P4) Orbit Schreier graphs that are not all amenable. Otherwise the full-shift
+      argument in the Attempts of `kazhdan-subgroups-of-brin-thompson-groups-are-finite`
+      applies.
+    - `rank-two-prefix-replacement-groups-contain-infinite-kazhdan` shows that (P1),
+      (P2) and (P4) are compatible for a rank-two word system without product
+      factorization. The open step is to realize the product factorization while keeping
+      (P3).
+  - *Dead ends tested here, with the step where each dies.*
+    - **Measure and Radon–Nikodym tests.** The product measure on `C^n` has derivative
+      `2^{−Σ c}` along the offset cocycle `c`. Kazhdan groups do act amenably and
+      nonsingularly, for instance on their boundaries. So quasi-invariance forbids
+      nothing.
+    - **Germ tests at fixed points.** Germs embed in `Z^n`, and finite-order elements
+      have clopen fixed sets. This constrains only torsion, and torsion-free partners
+      survive.
+    - **Connectedness of the boundary.** Kazhdan hyperbolic groups are one-ended (property
+      FA), so `∂G` is connected and is not a Cantor set. A locally constant cocycle is
+      constant on `∂G`, but on a Cantor cover `X → ∂G` it can vary across fibres. The
+      argument therefore dies at the passage from `∂G` to a Cantor cover.
 - 2026-09-17 (lane c-hyp-nv, transplanter via symbolic-dynamics, unreviewed):
   **a slope-lattice class kill, and the two slope shapes a Kazhdan embedding must
   realize.** The claim stays OPEN.

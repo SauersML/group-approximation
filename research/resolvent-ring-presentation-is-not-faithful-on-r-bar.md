@@ -2,6 +2,8 @@
 rg: 2
 id: resolvent-ring-presentation-is-not-faithful-on-r-bar
 kind: claim
+artifacts:
+  - research/artifacts/gq-referee-a-resolvent-ring-presentation-is-not-faithful-on-r-bar.md
 title: The eight-relator resolvent ring R_l does not present its residually finite model R̄_l, since e x e - e x^q e is nonzero in R_l and zero in R̄_l
 distinct_from:
   rf-resolvent-ring-has-z-localized-corner: that constructs the residually finite ring R̄_l as a subring of a product of finite matrix rings; this shows the natural finite presentation R_l maps onto R̄_l with nonzero kernel.
@@ -9,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `resolvent-ring-presentation-is-not-faithful-on-r-bar-proof`.
-Lane proof, not independently reviewed.
+Lane proof; proof-gap review PASS by gq-referee-a (report in `artifacts`).
 
 **Statement.** Let `l` be a prime and `q != l` a prime. In the finitely presented ring
 
