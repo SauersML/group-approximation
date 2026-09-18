@@ -133,6 +133,93 @@ theorem rnNF_mk_nfH (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) [N.No
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_mk_nfH
 
+/-- **Normal form in any quotient containing the four relator families.** -/
+theorem rnNF_all (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) [N.Normal]
+    (hH : IsSelfSimilar H) (x₀ : X) (hcomm : nfCommRelators H x₀ ⊆ N)
+    (hdisj : nfDisjRelators H x₀ ⊆ N) (hsplit : nfSplitRelators H x₀ ⊆ N)
+    (hroot : nfRootRelators H x₀ ⊆ N) (q : RNFree X H ⧸ N) :
+    ∃ (v : ↥(higmanThompsonV X)) (L : List (↥(higmanThompsonV X) × List X × ↥H)),
+      (∀ p ∈ L, MapsCone (p.1 : Equiv.Perm (Cantor X)) [x₀] p.2.1) ∧
+      L.Pairwise (fun p p' => ¬ p.2.1 <+: p'.2.1 ∧ ¬ p'.2.1 <+: p.2.1) ∧
+      q = rfV H N v * (L.map fun p => rfConjL H N p.1 p.2.2).prod := by
+  have key : ∀ x : RNFree X H, RNNFStep H N x₀ (x : RNFree X H ⧸ N) := by
+    intro x
+    refine Monoid.Coprod.induction_on
+      (C := fun x : RNFree X H => RNNFStep H N x₀ (x : RNFree X H ⧸ N)) x
+      (fun u => ?_) (fun y => ?_) (fun a b ha hb => ?_)
+    · show RNNFStep H N x₀ (rfV H N u)
+      intro v P hv hp
+      exact rnNF_mul_rfV H N hH x₀ hcomm hsplit v P hv hp u
+    · refine Monoid.Coprod.induction_on
+        (C := fun y : Monoid.Coprod ↥H ↥H =>
+          RNNFStep H N x₀ ((Monoid.Coprod.inr y : RNFree X H) : RNFree X H ⧸ N)) y
+        (fun h => ?_) (fun h => ?_) (fun a b ha hb => ?_)
+      · show RNNFStep H N x₀ ((nfH H h : RNFree X H) : RNFree X H ⧸ N)
+        obtain ⟨l, hl, hall⟩ := rcore_exists_list (X := X)
+        have hA : RNNFStep H N x₀
+            (rfV H N (rcoreShift [] (TreeAut.rootPerm (h : TreeAut X)))) := by
+          intro v P hv hp
+          exact rnNF_mul_rfV H N hH x₀ hcomm hsplit v P hv hp _
+        rw [rnNF_mk_nfH H N hH x₀ hroot hl hall h]
+        exact rnNF_step_mul hA
+          (rnNF_mul_prod H N hH x₀ hcomm hdisj hsplit (fun x => rcoreE x₀ [x])
+            (rcoreSt H hH h) l)
+      · show RNNFStep H N x₀ (rfL H N h)
+        exact rnNF_mul_rfL H N hH x₀ hcomm hdisj hsplit h
+      · show RNNFStep H N x₀ ((Monoid.Coprod.inr (a * b) : RNFree X H) : RNFree X H ⧸ N)
+        rw [map_mul, QuotientGroup.mk_mul]
+        exact rnNF_step_mul ha hb
+    · show RNNFStep H N x₀ ((a * b : RNFree X H) : RNFree X H ⧸ N)
+      rw [QuotientGroup.mk_mul]
+      exact rnNF_step_mul ha hb
+  obtain ⟨x, rfl⟩ := QuotientGroup.mk_surjective q
+  obtain ⟨v, L, hv, hp, h⟩ :=
+    key x 1 [] (fun _ h => absurd h List.not_mem_nil) List.Pairwise.nil
+  simp only [map_one, one_mul, List.map_nil, List.prod_nil] at h
+  exact ⟨v, L, hv, hp, h⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_all
+
 end
+
+/-- **Endpoint.** The normal-form lemma. -/
+theorem rnNF_normalForm : RNKerNormalFormStatement := by
+  intro X _ _ H hH _ _
+  obtain ⟨x₀⟩ := (inferInstance : Nonempty X)
+  have hC : nfCommRelators H x₀ ⊆ nfRelators H x₀ := by
+    intro r hr
+    unfold nfRelators
+    exact Set.mem_union_left _ (Set.mem_union_left _ (Set.mem_union_left _ hr))
+  have hD : nfDisjRelators H x₀ ⊆ nfRelators H x₀ := by
+    intro r hr
+    unfold nfRelators
+    exact Set.mem_union_left _ (Set.mem_union_left _ (Set.mem_union_right _ hr))
+  have hS : nfSplitRelators H x₀ ⊆ nfRelators H x₀ := by
+    intro r hr
+    unfold nfRelators
+    exact Set.mem_union_left _ (Set.mem_union_right _ hr)
+  have hR : nfRootRelators H x₀ ⊆ nfRelators H x₀ := by
+    intro r hr
+    unfold nfRelators
+    exact Set.mem_union_right _ hr
+  exact ⟨x₀, rnNF_all H (Subgroup.normalClosure (nfRelators H x₀)) hH x₀
+    (Set.Subset.trans hC Subgroup.subset_normalClosure)
+    (Set.Subset.trans hD Subgroup.subset_normalClosure)
+    (Set.Subset.trans hS Subgroup.subset_normalClosure)
+    (Set.Subset.trans hR Subgroup.subset_normalClosure)⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_normalForm
+
+/-- The kernel statement, unconditionally. -/
+theorem rnNF_kernel : RNRelatorsCoreKernelStatement :=
+  rnKer_kernel_of_normalForm rnNF_normalForm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_kernel
+
+/-- The finite-core statement, unconditionally. -/
+theorem rnNF_finiteCore : RNRelatorsFiniteCoreStatement :=
+  rnKer_finiteCore_of_normalForm rnNF_normalForm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rnNF_finiteCore
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope
