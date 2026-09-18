@@ -50,3 +50,13 @@ groups then realize the tree's coset spaces as clopen orbits.
   supply exactly that.
 - Residually finite host classes (linear, self-similar, automaton) are structurally blind here,
   not just technically.
+
+## Referee (bh-ref-bs12, 2026-09-18): partial check, no verdict
+
+This is a light check, done as a dependency of the BS(1,2) chain.
+- **Step 3 of the proof checks:** `Stab_G(2Z_2) = Γ_0` and `[H : Γ_0] <= 3`. The pole, the distance
+  scaling and the entries in `Z[1/(2m)] ∩ Z_2 = Z[1/m]` are all correct.
+- **Not re-refereed:** the cited lemmas `wreaths-over-clopen-stabilizer-cosets-lie-in-b-a`,
+  `rational-iwahori-group-is-union-of-fp-self-similar-groups` and Scott's finite-presentation
+  criterion.
+- **Convention:** the node uses **restricted** wreath products, and downstream uses must respect that.

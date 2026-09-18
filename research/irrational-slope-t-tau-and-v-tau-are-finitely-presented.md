@@ -7,7 +7,16 @@ distinct_from:
   pl-rearrangement-groups-have-two-transitive-orbit-actions: that proves the orbit action of V(A,P) is of type (A) exactly when V(A,P) is finitely presented; this is the finite presentation itself for A = Z[τ] and P = <τ>.
 ---
 
-**OPEN (as a graph node).** Let `τ = (√5 − 1)/2`. The groups `T_τ` (piecewise-linear
+**ESTABLISHED (2026-09-18, lane `bh-near-actions`; lane proofs, not reviewed)** through
+`irrational-slope-t-tau-and-v-tau-fp-via-simplex-and-pisot-coding`:
+- `T_τ` is of type `F_∞` (`circle-pl-groups-inherit-finiteness-from-interval-groups`);
+- `V_τ` is finitely presented as a full contracting RSG on the golden-mean shift
+  (`pisot-unit-slope-stein-groups-are-finitely-presented`).
+
+**Update (later 09-18):** `V_τ` is also of type `F_∞`, by `irrational-slope-v-tau-is-of-type-f-infinity` (golden
+subdivision category, Witzel's criterion), which writes out BNR's assertion. The text below records why the node was OPEN before (09-13).
+
+**Was OPEN (as a graph node).** Let `τ = (√5 − 1)/2`. The groups `T_τ` (piecewise-linear
 orientation-preserving homeomorphisms of the circle with breakpoints in `Z[τ]` and
 slopes powers of `τ`) and `V_τ` (the analogous left-continuous piecewise-linear
 bijections of `(0,1]`) are finitely presented.
@@ -29,7 +38,7 @@ bijections of `(0,1]`) are finitely presented.
   arXiv:1806.00108, l.137: "Cleary proved that the group is of type $F_\infty$, so in
   particular, it is finitely presented".
 
-## Why this node is OPEN
+## Why this node was OPEN (09-13)
 
 The type `F_∞` statement for `T_τ` and `V_τ` is asserted with its proof deferred to
 "the methods of Stein". No written proof was found or checked here, so it is recorded

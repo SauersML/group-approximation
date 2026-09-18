@@ -84,3 +84,39 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
   use features `F` lacks, such as the base `B` not being finitely presented, or `B ∉ SG`.
 - **No positive tool is known.** Nothing in this lane's reading proves `FP_3` for any finitely
   presented ascending HNN extension of a weakly branch group.
+- **No finitely presented ascending base (2026-09-18, bh-openq-lists; closes the homotopical base route).**
+  `basilica-hnn-has-no-finitely-presented-ascending-base` proves that `B~` is not an ascending HNN extension of any
+  finitely presented group.
+  - Mechanism: `σ` is section-inverting at vertex `1`, so any base contains `g σ^q(B) g^(−1)` after conjugation. Its
+    stabilizer of a suitable vertex then maps onto `B`, a finitely presented cover inside the amenable `B`, which
+    Erschler's theorem forbids.
+  - So the "Changing the base" attempt above can never give `F_3`.
+  - Also closed (same day): bases of type `FP_2`. `basilica-fp2-covers-contain-free-subgroups` transfers de
+    Cornulier's argument, so the Basilica group is not even `FP_2`. Still open: any certificate not coming
+    from an ascending decomposition.
+  - **Literature (checked 09-18).** Bartholdi–Virág, Grigorchuk–Żuk, Benli–Grigorchuk–de la Harpe
+    (arXiv:1206.2072) and Hartung (arXiv:1106.1098) state nothing on `FP_n` of `B~` for `n ≥ 3`. Hartung computes
+    the Dwyer quotients `M_c(B)` for `c ≤ 103` and only conjectures their pattern: `Z^2` plus 2-primary cyclic
+    groups of unbounded order, which would make `H_2(B; Z)` infinitely generated.
+- **Constraints on a 2-dimensional certificate (2026-09-18, bh-openq-lists; necessary conditions only).**
+  Consider a Brown-type certificate for `FP_3`: an action of `B~` on a 2-acyclic complex `X` with cocompact
+  3-skeleton, where the stabilizer of each `p`-cell is of type `FP_(3−p)`.
+  1. **Strictly 2-dimensional certificates.** If `X` is acyclic and 2-dimensional, then some cell stabilizer has
+     infinite cd, because `cd G ≤ sup_σ (cd G_σ + dim σ)` for actions on acyclic complexes (Brown, *Cohomology of
+     groups*, VIII.2) and `cd B~ = ∞`.
+  2. **No vertex or edge stabilizer inside `N` contains a conjugate of `B`.** Such a stabilizer would be an `FP_2`
+     subgroup of `N` containing a conjugate of `B`, which is excluded by
+     `basilica-hnn-has-no-finitely-presented-ascending-base`, item 3.
+  3. **If `B` fixes a vertex, the regress is the same problem.**
+     - The vertex stabilizer `S ⊇ B` is `FP_3` and, by 2, not contained in `N`. So `χ|_S ≠ 0`.
+     - `S` is amenable and of type `FP_2`, and `χ|_S` maps onto an infinite cyclic group. By Bieri–Strebel
+       (recalled, not re-read) `S` is then an ascending HNN extension over a finitely generated base in
+       `S ∩ N`, and that base contains a conjugate of `B`.
+     - Therefore a certificate in which `B` is elliptic proves `FP_3` for another finitely presented ascending HNN
+       extension over a base containing `B`, not for anything simpler.
+  - **Consequence.** A certificate that makes progress must let `B` act without a fixed vertex. This is the
+    Thompson pattern: `F` acts on the Stein–Farley complex with no large elliptic subgroups, and the certificate is a
+    Morse-filtration argument rather than a cocompact one.
+  - **Candidates not yet examined.** Nekrashevych's self-similarity complex of the contracting group `B`, which is
+    Gromov-hyperbolic with boundary the limit space, the Basilica Julia set, together with the dilation `t`. Also
+    Farley-type diagram complexes for the Bartholdi–Virág presentation.

@@ -67,3 +67,17 @@ half of Aubrun–Barbieri–Thomassé, and it is necessary for any SFT-based rou
 minimal free SFT is an instance of it. Attacks should look for aperiodicity constraints with
 computable look-ahead, i.e. flexible or self-correcting constraint systems, not for
 recurrence schemes.
+
+**Proved at design level (2026-09-18, bh-g1-simulation; unreviewed).**
+`decidable-groups-carry-flexible-free-subshifts` implies this statement, for every infinite
+finitely generated group with solvable word problem, `St_10(R_L)` included.
+- **The subshift.** Nested maximal separated markers carry identifiers that are locally
+  distinct at each level, encoded bottom-up in four symbols. Freeness follows from those
+  identifiers.
+- **The computable look-ahead asked for above.** This is lemma (E) of
+  `identifier-markers-give-decidable-free-subshifts`: a pattern on `B(ρ)` extends iff it
+  extends validly to `B(ρ + 10r_{J(ρ)})`. Greedy marker systems have no dead ends past that
+  horizon. Pockets are detected, not avoided.
+- **Consequence.** Combined with `free-products-with-z-inherit-m2-from-decidable-free-subshifts`
+  and `minimal-free-sft-via-m2-overgroups-and-keyed-plane-lifts`, this gives (P1) without the
+  minimal self-simulation premise.

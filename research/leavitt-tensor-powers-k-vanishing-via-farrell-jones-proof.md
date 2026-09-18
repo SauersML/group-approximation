@@ -89,3 +89,42 @@ virtually cyclic subgroups are `1` and the infinite cyclic groups `Zλ`.
   were not re-read from Davis–Lück here.
 
 **Step 5.** Bijectivity in Step 2 gives `K_n(L^(⊗d)) = 0` for every `n ∈ Z`. ∎
+
+## Referee (bh-ref-misc, 2026-09-18): PASS, including Step 3.2
+
+Internal referee lane, not an external review. The application that matters is `d = 4` over `F_p`,
+which gives `K_1 = K_2 = 0` for `L_p^(⊗4)`.
+
+**Step 3.2 (regular coherence of `C[Z^m]`).** The step is correct and complete.
+- **The definition.** It is the one in the Bartels–Lück hypothesis, as quoted in
+  `regular-coherent-laurent-coefficients-kill-twisted-nil-terms`: every finitely presented module
+  is of type FP. So coherence does not need a separate check. If every finitely presented module is
+  FP, then a finitely generated submodule of a finitely presented `M` is the kernel of a map between
+  FP modules, and so is FP.
+- **The argument.**
+  - The monomials are central non-zero-divisors of `R = C[t_1, …, t_m]`, so `R ⊆ S^(−1)R`.
+  - A presentation matrix over `S^(−1)R` becomes a matrix over `R` after multiplying its rows by
+    central units, which leaves the cokernel unchanged. So `M ≅ S^(−1)R ⊗_R N` with `N` finitely
+    presented, by right exactness.
+  - Base change along the flat map `R → S^(−1)R` carries a finite resolution of `N` by finitely
+    generated projectives to one of `M`.
+  - The involution `x_i ↔ y_i` preserves `L_0`, so left and right modules behave the same.
+- **The open problem Bartels–Lück record is not used here.** That problem asks whether regular
+  coherence passes from `R` to `R[t]` in general. Here the polynomial case is proved directly (part 2
+  of `leavitt-crossed-product-coefficient-ring-is-k-trivial`: `C[t_1, …, t_p]` is a colimit of
+  `M_N(L[t_1, …, t_p])` along free extensions, and `L` is regular supercoherent by Ara–Cortiñas
+  Lemma 6.1). The Laurent case then needs only central localization.
+
+**The rest of the chain**, checked:
+- `L^(⊗d)` is strongly `Z^d`-graded, and `v = λ + (Σ v_i) e_d` with `λ ∈ Λ` is unique. So
+  `L^(⊗d) = ⊕_λ u^λ C`, and the `u_j` and their inverses check.
+- The `Zλ`-subrings are skew Laurent rings: `u^(mλ)(u^λ)^(−m)` has `Λ`-degree `0`.
+- `K_*(C) = colim K_*(L) = 0`, by Ara–Cortiñas Proposition 6.2 with `R = k`.
+- The Farrell–Jones inputs are theorems for `Z^(d−1)` with additive coefficients and for crossed
+  products (Bartels–Reich).
+
+**Trust surface.**
+- The literature: Ara–Cortiñas; Bartels–Lück Theorem `the:The_non_connective_K-theory_of_additive_categories`;
+  Lück–Steimle; Farrell–Jones for `Z^n`; Bartels–Reich.
+- Step 4's two standard properties of `Or`-spectrum homology theories (recalled, not read).
+- No step is special to `d = 2`, so `d = 4` is covered.

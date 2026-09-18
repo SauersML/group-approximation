@@ -27,6 +27,14 @@ Then `G` embeds in a finitely presented simple group.
   node is stated as an embedding claim, and it is a Boone--Higman instance only once
   that input is confirmed.
 
+- **Isolated embedding (CGP Question 4) for the calibration example: ESTABLISHED**
+  (2026-09-18). Hall's `A_3/Z` and every finitely generated subgroup of `A_{n,p}/C`
+  embed in isolated groups, since `A_3/Z ≤ A_4/Z`, which is isolated by
+  Cornulier–Guyot–Pitsch Prop. 5.7. See
+  `hall-type-prufer-quotients-embed-in-isolated-abels-groups`.
+  - So Boone–Higman for Hall's group follows from Boone–Higman for the one finitely
+    presented 3-solvable group `A_{4,p}/Z`.
+
 ## The remaining case
 
 Suppose `τ(G)` is infinite. For minimax `G` this is the non-residually-finite case
@@ -123,6 +131,16 @@ Either:
      - (b) Finite presentation of `Alt_fin(Ω) ⋊ Γ_p` on the dense orbit
        `Ω = Z[1/p]^2 × Q_p/Z_p`. The point stabilizer is `Z[1/p]^3 ⋊ Z^2`, which is finitely
        generated. The lampshuffler obstruction needs a free action, so it does not apply.
+       Its generalization `levelled-actions-make-finitary-extensions-not-fp2` (every virtual character
+       must be nonzero on point stabilizers) is passed too, because the stabilizer contains the
+       torus. The better candidate is `Ω' = Γ_p/T`, whose point and two-point stabilizers are
+       finitely generated. What remains is deriving the pair-of-transposition relations from
+       finitely many of them.
+       By `fp-split-finitary-extensions-force-local-presentations-of-fsym`, this is the question whether
+       `FSym(Ω')` is the colimit of the `Sym(B)` over subsets of translates of one finite set. Two
+       points of a fibre of the central `C_(p^∞)` with a large-order difference never share a
+       translate, and `P` acts isometrically, so no Houghton-type induction on distance is
+       available. Open.
      - Gate (b) gives Boone–Higman for `B/C` and `Γ_p` directly, by
        `fp-finitary-permutation-overgroups-are-type-a-actors`. Gate (a) gives a finitely presented
        host, whose simplicity or type (A) is then checked as usual (Belk–Hyde–Matucci Theorem 1.3,

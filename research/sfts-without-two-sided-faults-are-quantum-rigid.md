@@ -79,3 +79,33 @@ Rigidity of a Z^2 SFT is decided at its two-sided faults.
 For the master route this changes what to build, not only what to check. A rigid free minimal SFT needs one-sided
 information flow across *every* line (the "one-way flow" design rule), or else a noncommutative mechanism at slab faults.
 Walls are what to avoid, and the thin-wall test decides them in one step for self-similar designs.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS, with one minor correction
+
+I checked `sfts-without-two-sided-faults-rigidity-proof` line by line against Item 1 of
+`determinism-closure-certifies-quantum-rigidity` (its definition of the closure `C` and of rules).
+
+- **Step 1.**
+  - (⇒) Continuous injective restriction on a compact space, then uniform continuity, gives a
+    finite rule `F` in the open half-plane.
+  - (⇐) The margin `η'` propagates agreement.
+- **Step 2.** The sets `U_F` are open and cover `S^1` together with `−U_F`, including at irrational
+  lines. `g > 0` is continuous, so `η` exists, and `η <= ρ`.
+- **Step 3.** The estimate is correct: `|v|² <= (R+η/4)²` and `−2η|v| < −2ηR` together give
+  `R² − (3/2)ηR + η²/16 + ρ² <= R²` once `R >= ρ²/η + ρ`.
+  - The case `ε = −1` also follows directly from (z), since `|v − f|` obeys the same bound.
+  - The base `B^E_(R_0) ⊆ B^∞_(2D)` holds, and `D = ρ + ⌈R_0/2⌉` meets both constraints.
+- **Step 4.**
+  - Item 3: the slab `S_M` contains the initial ball, is symmetric, and is closed under (w) and (z).
+    Otherwise a rule would lie in an open half-plane. So `C ⊆ S_M`.
+  - The wall-to-fault argument (b) and the diagonal slab family (c) are correct.
+
+**Correction (fixed-point corollary).** The initial ball is the sup-norm `B^∞_(2D)`, where
+`max |⟨t,n⟩| = 2D|n|_1`, while the ℓ¹ ball `B_(R)` gives `R|n|_∞`. Leaving every slab therefore
+needs `R(D) > 4D`, not `R(D) > 2D`. This holds, since `R(D) = N(2D+2) − 2 >= 4D + 2` for zoom `N >= 2`,
+so the corollary stands with that inequality.
+
+**Not checked:**
+- the wall certificate cited from `sft-crossed-product-fp-iff-quantum-rigid`;
+- the Corollaries' cross-links;
+- the companion OPEN node `free-minimal-sft-without-two-sided-faults-exists`, which is only posed.

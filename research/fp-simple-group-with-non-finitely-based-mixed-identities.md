@@ -90,3 +90,32 @@ closure in `S * <x>` of the substitution instances of `W`.
    - *Reframing.* `J_1(T) = J_1(Homeo+(S^1); T)`, so at `T` the question is one
      about mixed identities of the Polish group `Homeo+(S^1)` with constants
      from `T`.
+6. **Overgroups of `T` acting on the Cantor set: die (2026-09-18, bh-ffwz-q59, lane proof).**
+   `thompson-t-identities-one-word-basis-over-cantor-overgroups` gives one explicit word
+   `E ∈ J_1(T)`, a three-arc nested commutator with a "squeeze" layer. Any `M` with
+   `T ≤ M ≤ Homeo(C)` or `Homeo(S^1)`, `T` in its standard action, that satisfies `E` preserves the
+   cyclic order, and so satisfies all of `J_k(T)`.
+   - *Mechanism.* `T` moves any orientation break into the configuration
+     `h(A_1) ⊆ A_2`, `h(A_2) ⊆ A_1`, `h(A_3) ⊆ A_3`. It then squeezes three conjugates into
+     one arc, where the nested commutator is nontrivial.
+   - *What dies.* `V`, Röver--Nekrashevych-type and other Cantor groups containing `T`, and
+     `⟨T, g⟩` for any order-breaking homeomorphism `g` of `C` or `S^1`.
+   - *What survives.* Abstract overgroups with no faithful action on `C` extending `T`
+     (amalgams, HNN extensions, `(T * <x>)/N_W`), and the rational-orbit blow-ups of Attempt 5.
+7. **Rational-orbit blow-ups with the derivative gap action: die (2026-09-18, bh-ffwz-q59, lane
+   proof).** `thompson-t-identities-hold-on-linearized-blow-ups`: every `M ≤ Homeo+(C_Q)`
+   containing `T` acting on the gaps by one-sided slopes satisfies all of `J_k(T)`. The orbits may
+   be rational or irrational.
+   - *Mechanism.* A violating trajectory is mirrored into `S^1`, a gap point `s ∈ I_q` going to
+     `q + εs`, where constants act by exactly those slopes.
+   - *Still alive.* Blow-ups whose gap action is not the germ action (for example trivial, or
+     `T_q ≅ F` acting faithfully on the gap), orientation-reversing blow-up groups, and abstract
+     `T`-groups.
+8. **Products and circle-orbit wreath products: die (2026-09-18, bh-ffwz-q59, lane proof).**
+   `thompson-t-identities-hold-in-circle-orbit-wreath-overgroups`: for every group `B` and every
+   `T`-orbit `X ⊂ S^1`, every overgroup of `T` inside `B^X ⋊ T` satisfies all of `J_k(T)`. This
+   includes `T × B`, and every mixed identity of `T` has trivial constant-deletion.
+   - *Mechanism.* Free lamps sit in derivative blow-up gaps, commuting with the stabilizer germs.
+     Arbitrary lamp groups reduce to free ones by sending distinct values to free generators.
+   - *Still alive.* Extensions by modules induced from non-point stabilizers, amalgams and HNN
+     extensions over subgroups containing all constants of `E`, and non-germ blow-ups.
