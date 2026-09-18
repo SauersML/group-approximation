@@ -47,7 +47,7 @@ def CharZeroK2NilStepFGDiagStatement : Prop :=
 /-- **Endpoint (lane `bh-met-95b`).**  The residual gives `CharZeroK2NilFGPosStatement`. -/
 theorem charZeroK2NilFGPos_of_stepFGDiag (h : CharZeroK2NilStepFGDiagStatement) :
     CharZeroK2NilFGPosStatement := by
-  intro m k N hk hkN h5N
+  intro m k N _hk hkN h5N
   obtain ⟨j', rfl⟩ : ∃ j' : ℕ, N = j' + 5 := ⟨N - 5, by omega⟩
   refine fg_ker_constantCoeff_of_steps (Localization.Away (m : ℤ)) (Fin (j' + 5)) k
     fun j hj ↦ ?_
