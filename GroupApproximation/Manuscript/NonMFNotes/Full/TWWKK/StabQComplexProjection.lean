@@ -154,8 +154,10 @@ theorem nHomotopic_iff_projectionPath (φ ψ : ℂ →⋆ₙₐ[ℂ] B) :
     refine ⟨fun t => complexHom (P t) (hproj t), fun z => ?_, ?_, ?_⟩
     · show Continuous fun t => z • P t
       exact hP.const_smul z
-    · exact complexHom_ext (by rw [complexHom_apply_one, h0])
-    · exact complexHom_ext (by rw [complexHom_apply_one, h1])
+    · show complexHom (P 0) (hproj 0) = φ
+      exact complexHom_ext (by rw [complexHom_apply_one, h0])
+    · show complexHom (P 1) (hproj 1) = ψ
+      exact complexHom_ext (by rw [complexHom_apply_one, h1])
 
 theorem nHomotopic_complexHom_iff (p q : B) (hp : IsStarProjection p)
     (hq : IsStarProjection q) :

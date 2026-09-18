@@ -55,7 +55,7 @@ theorem arvesonPair_exists_average [Nontrivial B] (π : B →⋆ₐ[ℂ] C)
     ∃ h : B, h ∈ arvesonKernel π ∧ IsSelfAdjoint h ∧ ‖1 - h‖ ≤ 1 ∧
       (∀ y ∈ Y, ‖h * y - y * h‖ ≤ ε) ∧ ∀ x ∈ X, ‖x - h * x‖ ≤ ‖π x‖ + η := by
   -- a single bound for all the defects
-  set M : ℝ := 4 * ∑ z ∈ Y, ‖z‖ with hMdef
+  obtain ⟨M, hMdef⟩ : ∃ M : ℝ, M = 4 * ∑ z ∈ Y, ‖z‖ := ⟨_, rfl⟩
   -- how many members to average
   obtain ⟨N, hN0, hNbig⟩ : ∃ N : ℕ, 0 < N ∧ 2 * M ^ 2 / ε ^ 2 ≤ (N : ℝ) := by
     refine ⟨⌈2 * M ^ 2 / ε ^ 2⌉₊ + 1, Nat.succ_pos _, ?_⟩
@@ -123,7 +123,6 @@ theorem arvesonPair_exists_average [Nontrivial B] (π : B →⋆ₐ[ℂ] C)
         hδpos.le hε.le ?_ ?_ hsize
       · intro i _
         show ‖s i * y - y * s i‖ ≤ M
-        rw [hMdef]
         exact (arvesonPair_norm_commutator_le (hs i).2.2.1 y).trans (by linarith)
       · intro i hi j hj hij
         show ‖(s i * y - y * s i) * star (s j * y - y * s j)‖ ≤ δ
