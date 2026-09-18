@@ -65,3 +65,43 @@ needs a generator with non-equicontinuous (tree-boundary) dynamics, as in BLIW.
 No new "striking" theorem was found within one attempt. Every candidate from the directive was either already known
 (§1) or blocked (§2). The landed lemma is a modest, checkable obstruction. Its use is to steer explicit-host
 constructions away from odometer generators for non-solvable Baumslag-Solitar groups. Priority: not claimed.
+
+## 5. Free-mode pass (after the creativity order): three designs for explicit non-solvable Baumslag-Solitar hosts
+
+**5a. Rational-base (Katsura) odometers: landed, negative.** The natural design is to replace the binary odometer of
+`2V_τ` by the Katsura "add one in rational base `n/m`" map `σ_{m,n}` (Exel-Pardo `KatsuraExample`, `A = (m)`,
+`B = (n)`). Then `σ^m(jξ) = jσ^n(ξ)`, so the baker map conjugates `(σ × id)^m` to `(σ × id)^n`: the `BS(m,n)` relation
+holds on the nose. But for coprime `m, n` the action is level-transitive, so `σ_{m,n}` is just the `m`-adic odometer in
+disguise.
+- The strengthened rigidity lemma (item 4: the image is abelian-by-cyclic for every `t`) then shows that this design,
+  or any twist of the conjugator, gives only the metabelian shadow `Z[1/mn] ⋊_{n/m} Z` of `BS(m,n)`.
+- Nodes: `katsura-one-vertex-actions-are-odometers` (+ `-proof`), and item 4 of
+  `odometer-generators-carry-no-nonsolvable-baumslag-solitar`.
+
+**5b. Root amalgams in plain Brin-Thompson groups: attempted, obstruction recorded (not a node).**
+- *Design.* `BS(m, mk) = <a> *_{a^m = s} BS(1,k)`, e.g. `BS(3,9) = Z *_{3Z} BS(1,3)`, or `BS(2,6)`, which is
+  non-Hopfian. With SMART's `BS(1,3) = <s, u> ≤ 3V` (`bs13-embeds-in-brin-thompson-3v`), `s = U × id` has cube roots in
+  `3V` (register roots), and adjoining a root `a` in a fresh coordinate is easy.
+- *Target.* Faithfulness via amalgam ping-pong needs sets `X_A`, `X_B` with `(B \ <s>) X_A ⊆ X_B`, disjoint from `X_A`.
+- *Obstruction (proved here by direct computation, for the SMART realization).* Write the third coordinate in the
+  complete code `c_0, c_1, c_2` as a ternary register. By induction on `j`, the root `s^{3^-j} = u^-j s u^j` sends
+  `(x, c_{i_1} … c_{i_j} y)` to `(x, c_{i_1} … c_{i_j + 1} y)` whenever `i_j < 2`. So for every nonempty open
+  `U ⊆ C^3` and all large `j`, `s^{3^-j} U ∩ U ≠ ∅`. No ping-pong set with interior exists for this realization.
+- *Consequence.* The naive root-in-a-new-coordinate construction only gives the induced group, inside `B ≀ Z/m`,
+  which is residually finite and so cannot contain `BS(m, mk)`.
+- *What a repair needs.* A realization of `BS(1,k)` in some `nV` with an open "coset piece": a clopen `D` with
+  `s D = D` and `b D ∩ D = ∅` for all `b ∉ <s>`. As computed here, this forces pairwise disjoint `s`-invariant clopen
+  sets `F_j = u^j`-images carrying towers of height `k^j`, arranged like the induced action `B ×_{<s>} D`. So `s` needs
+  clopen cycles of unbounded period accumulating somewhere. That is the precise open design question.
+
+**5c. The faithful model is the two-vertex Bass-Serre graph (not landed; known territory).** `BS(m,n)` acting on the
+ends of its tree is an Exel-Pardo self-similar action of `Z` on a two-vertex graph.
+- The vertices are the arrival types "via an `m`-type edge" and "via an `n`-type edge". The cocycle multiplies by
+  `n/m` on one type and `m/n` on the other. The stable letter is a path-shift bisection.
+- Its full group contains `BS(m,n)` faithfully, since the tree action is faithful. This is the tree method of
+  Bux-Llosa Isenrich-Wu (and Spielberg's path-category models of Baumslag-Solitar groups), so no priority is claimed
+  and no node is landed.
+
+**Verdict.** No striking new theorem after two real attempts. The landed content fully explains why rational-base
+odometer hosts fail and why the plain-`nV` root-amalgam route needs a new `BS(1,k)` realization with an open coset
+piece.

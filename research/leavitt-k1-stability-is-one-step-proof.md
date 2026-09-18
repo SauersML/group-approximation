@@ -29,4 +29,5 @@ requires:
 **Item 3.**
 - `α_n` is a bijection on classes. So `s_n` onto means that every class is `[τ_e(A')]`.
 - Let `τ_e(H) in E_n` and write `H = τ_e(A') X` with `X in E_n`. Then `τ_e(H) = τ_e(τ_e(A')) τ_e(X) = c_U(τ_e(A')) τ_e(X)`.
-- `c_U` preserves `E_n`, which is normal in `GL_n`, and `τ_e(X) in E_n`. So `τ_e(A') in E_n`, and then `H in E_n`.
+- `c_U` preserves `E_n`, because `U` is an invertible diagonal matrix and `U t_ij(a) U^-1 = t_ij(u_i a u_j^-1)`. Also
+  `τ_e(X) in E_n`. So `τ_e(A') in E_n`, and then `H in E_n`.

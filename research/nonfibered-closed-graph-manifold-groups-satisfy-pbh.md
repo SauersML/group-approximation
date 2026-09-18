@@ -122,3 +122,20 @@ extensions.
       of rank `2h'`, whose relator product is `T_x^{m'} T_y^{n'}` with boundary slope ratio
       `m'/n' ∉ [-1, 0)` (pushing gives `-1`), plus injectivity of the amalgam. A solution
       with `S` punctured would put that example in `B_A`.
+11. **Partially pushed leaf blocks** (bh-3manifold, 2026-09-18). *Sharpening of attempt 10;
+    not constructed.* Put the `w` block in `Mod(Q, p)`, where `Q` has boundary `x` and
+    `y ⊂ Q` bounds a pair of pants with `x` and the puncture `p` (the geometry of a pushed
+    block). Forgetting `p` sends `T_y` to the boundary twist `T_x` of `Q̂ = Q ∪ {p}`. So
+    `Π [ρ(a'_i), ρ(b'_i)] = T_x^{m'} T_y^{n'}` maps to `Π [ā'_i, b̄'_i] = T_x^{e}` in `Mod(Q̂)`
+    with `e = m' + n'`, and the ratio is `m'/n' = e/n' - 1`.
+    - Pure pushing is `ā'_i = b̄'_i = 1`, so `e = 0` and the ratio is `-1` (fibered).
+    - With `v` pushed, non-fibered needs `e != 0`; non-virtually-fibered (reading Svetlov)
+      needs `e/n' < 0` or `e/n' >= 1`.
+    - If `e != 0`, the image of the block in `Mod(Q̂)` is not free, because its relator goes
+      to the central `T_x^e != 1`. So freeness of the block must come from the
+      point-pushing kernel: the block is a lift of a non-free surface-group image with a
+      nontrivial boundary-twist relator. Such images need `T_x^e` to be a product of `h'`
+      commutators in `Mod(Σ_{h',1})`, which fails for `h' = 1` (there
+      `Mod(Σ_{1,1})^ab = Z` and `T_x = (T_a T_b)^6` maps to `12`).
+    - Still open: choosing lifts whose kernel part is exactly `(T_y T_x^-1)^{-n'}`,
+      freeness of the lift, and injectivity of the amalgam.
