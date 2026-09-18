@@ -7,6 +7,7 @@ distinct_from:
   rational-slope-germ-groups-have-bs-but-no-heisenberg: that proves E contains every BS(1,m) and no Heisenberg group; this asks whether all rational dilations and translations fit together in E.
   aff-q-does-not-embed-in-aut-thompson-f: that excludes Aff(Q) from T-bar and Aut(F), where the translations meet a central shift; in E the shift is not central, so that obstruction does not apply.
   gl-n-q-embeds-in-fp-simple-group: that is the target; this is a germ-level stepping stone toward a finite germ extension of V containing Aff(Q).
+  commensurating-end-germ-groups-omit-aff-q: that proves no finitely generated subgroup of this E contains Aff_K(Q) for non-finitely-generated K; this asks the same for E itself, which is not finitely generated.
 artifacts:
   - research/artifacts/gq-gq-q-in-germs-anatomy.md
 ---
@@ -63,4 +64,22 @@ the local ingredient; the global host must spread the dilations over infinitely 
 
 ## Attempts
 
-None beyond the necessary conditions above (lane `gq-q-in-germs`, 2026-09-17).
+1. **Necessary conditions** (lane `gq-q-in-germs`, 2026-09-17): the three conditions above
+   and the host caveat.
+2. **Finitely generated subgroups of `E` are settled negatively** (lane `gq-va-affq`,
+   780e84702: `commensurating-end-germ-groups-omit-aff-q`). Its `Comm_inf` is this `E`.
+   - No finitely generated subgroup of `E` contains `Aff_K(Q)` for any `K <= Q_{>0}`
+     that is not finitely generated. That covers `Aff⁺(Q)`, `SL_2(Q)` and `PSL_2(Q)`.
+   - The mechanism is `aff-q-forces-distortion-in-abelian-kernels`: a distorted pair lands
+     in `ker λ`, whose finitely generated subgroups lie in one `C(z^q) ≅ T-bar`.
+   - This agrees with conditions 1–2 here: they force `λ(E_0) ⊇ K` for any finitely
+     generated `E_0` containing the copy.
+3. **Every periodic-point germ host is settled negatively** (lane `gq-va-affq`, ff94a5e66:
+   `periodic-point-germ-groups-omit-aff-q`). A finite germ extension of any `V_{d,r}` has,
+   at finitely many eventually periodic points, finitely generated germ groups that
+   commensurate the local contraction. Their product contains no `Aff_K(Q)`.
+   - So an affirmative answer to this node can no longer feed a Belk–Hyde–Matucci host
+     whose relevant germs sit at finitely many periodic points.
+   - What remains open is only the germ-level question for the non-finitely-generated `E`
+     itself. A host would need infinitely many germ orbits or germs at non-periodic
+     points.
