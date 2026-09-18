@@ -54,3 +54,21 @@ descending links, which is where finite type of `X` should enter. Not attempted.
 
 **What would kill it.** One pair `(Λ, X)` as above for which `A(T)` has a
 non-finitely-generated `H_2`, or a retract or quotient visibly not of type `FP_2`.
+
+**Attempt 2 (2026-09-17): a necessary condition by a basis-switching representation.** *Obstruction
+proved; P2 not refuted.*
+- *The theorem.* `fp-v-times-subshift-full-groups-force-connected-differences`. If `A(T) = F(T)` is
+  finitely presented, there is `m` with every difference set `Δ(x, y)` of `X` `m`-connected. So
+  the minimal SFT `X` has no finite asymptotic pairs and `|L_F(X)| <= |A|^|∂F|`, which gives zero
+  entropy over amenable `Λ`.
+- *The mechanism.* Split `Δ(x, y)` into two far parts. The lift of `F(T)` to `C_0 × Λ.x ⊔ C_0 × Λ.y`,
+  written with a two-dimensional fibre, is conjugated by `[[1, 1], [0, 1]]` on one part. Every short
+  relator reads only one part, so it still holds. But two commuting site-conditioned 3-cycles, one
+  reading each part, stop commuting.
+- *What P2 now needs.* Its hosts must be boundary-deterministic. Over amenable `Λ`, a minimal SFT
+  with a finite asymptotic pair is one with positive entropy (route, Section 5, sketch). So a
+  counterexample to P2 by this route is exactly a minimal free SFT with a finite asymptotic pair,
+  over an infinite finitely presented group. Whether one exists is open here.
+- *Earlier test not yet run.* Over non-amenable one-ended `Λ` the bound says nothing quantitative.
+  A kill there needs a minimal free SFT whose difference sets split into two far parts, for example
+  two independent defect regions separated by a wide strip on which the two points agree.
