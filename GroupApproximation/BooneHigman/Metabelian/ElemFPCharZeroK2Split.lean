@@ -140,7 +140,9 @@ theorem charZeroK2BaseFG_of_stableK2FG (h : CharZeroStableK2FGStatement) :
     (f := K2Map (I := Fin N)
       (MvPolynomial.constantCoeff :
         MvPolynomial (Fin 0) (Localization.Away (m : ℤ)) →+* Localization.Away (m : ℤ)))
-    fun v ↦ ⟨K2Map MvPolynomial.C v, ElemFP.K2Map_constantCoeff_K2Map_C v⟩
+    fun v ↦ ⟨K2Map (I := Fin N) (MvPolynomial.C :
+        Localization.Away (m : ℤ) →+* MvPolynomial (Fin 0) (Localization.Away (m : ℤ))) v,
+      ElemFP.K2Map_constantCoeff_K2Map_C v⟩
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2BaseFG_of_stableK2FG

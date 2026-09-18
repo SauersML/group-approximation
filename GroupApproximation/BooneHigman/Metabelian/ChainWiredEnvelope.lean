@@ -66,7 +66,8 @@ theorem fpSelfSimilarEnvelope_of_frontier (hV : Envelope.HigmanVFinSectionStatem
           (Envelope.rnFreeSection_of_finSection_core hV hcore)))
       hfi
       (Envelope.rnCommutatorSimple_of_prime
-        (Envelope.rnCommutatorSimple_of_gap (Envelope.rnDisplaceCompress_of_compress_fragments hC hF)))
+        (Envelope.rnCommutatorSimple_of_gap
+          (Envelope.rnDisplaceCompress_of_compress_fragments hC hF)))
       hw)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.fpSelfSimilarEnvelope_of_frontier

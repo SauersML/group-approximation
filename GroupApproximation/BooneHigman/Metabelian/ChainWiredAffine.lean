@@ -12,8 +12,9 @@ generated commutative ring `R` and `n ≥ 4`, if `E_n(R)` is finitely presented 
 product for the action `AffineFP.affAction (Fin n) R`.
 
 The two actions are equal: both send `g ∈ E_n(R)` to `v ↦ g *ᵥ v`.  In `ChainHost` this goes
-through `DistribMulAction.toAddAut` and `MulAutMultiplicative`, where `g • v = (g : M) • v = g *ᵥ v`
-(`Units.smul_def`, `Matrix.smul_eq_mulVec`, both `rfl`); in `AffineFPModel` it is `vecEquiv`.
+through `DistribMulAction.toAddAut` and `MulAutMultiplicative`, where
+`g • v = (g : M) • v = g *ᵥ v` (`Units.smul_def`, `Matrix.smul_eq_mulVec`, both `rfl`); in
+`AffineFPModel` it is `vecEquiv`.
 So the two semidirect products are the same type, and the leaf follows (`subst`).
 
 * `affineAction_eq_affAction`: the two actions agree.
@@ -37,7 +38,8 @@ theorem affineAction_eq_affAction (n : ℕ) (R : Type) [CommRing R] :
 
 /-- Finite presentability of `N ⋊[φ] G` only depends on `φ` up to equality. -/
 theorem isFinitelyPresented_semidirectProduct_of_eq {N G : Type} [Group N] [Group G]
-    {φ ψ : G →* MulAut N} (h : φ = ψ) (hφ : Group.IsFinitelyPresented (SemidirectProduct N G φ)) :
+    {φ ψ : G →* MulAut N} (h : φ = ψ)
+    (hφ : Group.IsFinitelyPresented (SemidirectProduct N G φ)) :
     Group.IsFinitelyPresented (SemidirectProduct N G ψ) := by
   subst h
   exact hφ

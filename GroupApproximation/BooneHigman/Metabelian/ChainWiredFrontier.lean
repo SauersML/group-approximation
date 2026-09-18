@@ -34,15 +34,16 @@ envelope through `fpSelfSimilarEnvelope_of_frontier` (`ChainWiredEnvelope`).
 **The frontier (14 open Statements):**
 1. `Coprimary.PureCharPrimeSplitStatement`: linearity in characteristic `p` of f.g. subgroups of
    split extensions `B ⋊ Q` (bh-met-26);
-2. `Coprimary.PureCharLinearityZeroStatement`: linearity of f.g. metabelian groups with torsion-free
-   derived subgroup (bh-met-19);
+2. `Coprimary.PureCharLinearityZeroStatement`: linearity of f.g. metabelian groups with
+   torsion-free derived subgroup (bh-met-19);
 3. `Absorption.PolynomialSuslinStatement`: `SL_N ⊆ E_N` over `F_p[s]` and `ℤ[1/m][t]`, `N ≥ 3`;
 4. `ElemFP.PolyK2StabRangeDiagStatement`: injective `K₂` stability on `ker ev₀` at `N = k + 4`;
 5. `ElemFP.PolyK2OneVarNilStatement`: the one-variable nil part of `K₂(N, F_p[s])`;
 6. `ElemFP.FieldK2VanishingStatement`: `K₂(N, F_p) = 0` for `N ≥ 5` (bh-met-15);
 7. `CharZeroHost.FGSubringCoordinatesStatement`: f.g. subrings of char-zero fields embed in
    matrices over `ℤ[1/m][t]`;
-8. `ElemFPCharZero.CharZeroStableK2FGStatement`: `K₂(N, ℤ[1/m][t])` is f.g. for `N ≥ k + 4, 5`;
+8. `ElemFPCharZero.CharZeroStableK2FGStatement`: `K₂(N, ℤ[1/m][t])` is f.g. for
+   `N ≥ k + 4, 5`;
 9. `Envelope.HigmanVFinSectionStatement` and 10. `Envelope.RNFreeSectionCoreStatement`: finite
    presentation of Röver–Nekrashevych groups;
 11. `Envelope.RNCommutatorFiniteIndexStatement`: `[V, V]` has finite index;
@@ -53,7 +54,8 @@ envelope through `fpSelfSimilarEnvelope_of_frontier` (`ChainWiredEnvelope`).
 Among equivalent alternatives the refined name is used: `PolyK2OneVarNilStatement` for
 `PolyK2NilPosStatement` (`ElemFP.polyK2NilPos_of_oneVar`), `PolyK2StabRangeDiagStatement` for
 `PolyK2NilStabilityPosStatement` (`ElemFP.polyK2NilStabilityPos_of_diag`), compression and
-fragmentation for `RNDisplaceCompressStatement` (`Envelope.rnDisplaceCompress_of_compress_fragments`).
+fragmentation for `RNDisplaceCompressStatement`
+(`Envelope.rnDisplaceCompress_of_compress_fragments`).
 -/
 
 namespace GroupApproximation
