@@ -5813,6 +5813,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Gene
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Tables
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.CornerBasic
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Split
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKAugmentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
