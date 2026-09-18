@@ -153,6 +153,8 @@ drop	skf-degrees	8fd0348904ee	sk16: key names no sentence of the manuscript at 2
 drop	skf-degrees	4037fa331dbb	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-abstract-intro-rekey	768ac9454e9b	sk16: this row says partial; zz-full-sk16 records open from the landed Full endpoint (row note)
 drop	swarm-abstract-intro	ea436a85317e	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	5b6a5a222cdd	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+drop	swarm-abstract-intro	6e81aea57b64	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-abstract-intro	b727e9e6c738	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-abstract-intro	dea966a4a2a5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-abstract-intro	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
@@ -162,12 +164,10 @@ drop	swarm-abstract-intro	deed079bd31d	sk16: key names no sentence of the manusc
 drop	swarm-abstract-intro	2e7c7d9ab149	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-abstract-intro	2314300dcf63	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-abstract-intro	a5870ebea004	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
-drop	swarm-audit-ozawa-llp	5b6a5a222cdd	sk16: this row says formalized; zz-full-sk16 records partial from the landed Full endpoint (row note)
 drop	swarm-boone-higman	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-finite-models-brown	97c23b19a1af	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-finite-models-brown	5b15f5d8faae	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-flip-converse	2e7c7d9ab149	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
-drop	swarm-fp-simple-kazhdan	6e81aea57b64	sk16: this row says formalized; zz-full-sk16 records partial from the landed Full endpoint (row note)
 drop	swarm-fp-simple-kazhdan	460d289c5b0f	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 drop	swarm-halfline-a	fb18060da264	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-host	LINE:559@1eefb3bbbf0eafe710276b85dbf87512c6ddc95a	sk16: keyed at 1eefb3bb, whose tex equals 22cdba8c; zz-full-sk16 carries this sentence by its hash
@@ -188,7 +188,7 @@ drop	swarm-skrows-03	97c23b19a1af	sk16: this row says provenance; zz-full-sk16 r
 drop	swarm-skrows-04	97c23b19a1af	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-skrows-05	e19e0d3328ad	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-skrows-06	af3a1cf3d48e	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
-drop	swarm-skrows-07	5b6a5a222cdd	sk16: this row says provenance; zz-full-sk16 records partial from the landed Full endpoint (row note)
+drop	swarm-skrows-07	5b6a5a222cdd	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-skrows-09	5b15f5d8faae	sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-thm-main-a	2d5abd159c20	sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 drop	swarm-thompson-construction	fd312b860bb5	sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
