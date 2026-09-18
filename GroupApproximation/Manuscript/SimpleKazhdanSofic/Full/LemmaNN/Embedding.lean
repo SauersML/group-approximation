@@ -234,7 +234,7 @@ theorem embeddingΔ_mem_commutator (hω : (ω : Filter ℕ) ≤ cofinite) (x : �
   obtain ⟨j, hj, rfl⟩ := M.surj x
   have hp := conjPow_mem_delta M ω (2 ^ (2 * j - 1))
   have hq := conjPow_mem_delta M ω (4 ^ j)
-  have he : embeddingΔ M ω hω (M.γ j) = ⁅(⟨_, hp⟩ : Delta M ω), ⟨_, hq⟩⁆ :=
+  have he : embeddingΔ M ω hω (M.γ j) = ⁅(⟨_, hp⟩ : Delta M ω), (⟨_, hq⟩ : Delta M ω)⁆ :=
     Subtype.ext (embedding_γ M ω hω hj)
   rw [he, commutator_def]
   exact Subgroup.commutator_mem_commutator (Subgroup.mem_top _) (Subgroup.mem_top _)
