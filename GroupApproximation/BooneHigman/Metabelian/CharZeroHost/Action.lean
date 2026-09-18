@@ -36,7 +36,8 @@ theorem act_nil (x : Aff n (MvPolynomial (Fin k) A)) : act D x [] = [] := by
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.act_nil
 
-theorem act_cons (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) (w : List (Letter p n k)) :
+theorem act_cons (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k)
+    (w : List (Letter p n k)) :
     act D x (ℓ :: w) = letter D x ℓ :: act D (stateG D x ℓ) w := by
   rw [act]
 
@@ -62,10 +63,11 @@ theorem act_prefix (x : Aff n (MvPolynomial (Fin k) A)) (w v : List (Letter p n 
 
 variable [NeZero p]
 
-theorem letter_one (ℓ : Letter p n k) : letter D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = ℓ := by
+theorem letter_one (ℓ : Letter p n k) :
+    letter D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = ℓ := by
   refine Prod.ext (funext fun j => ?_) rfl
-  show dig D ℓ.2 (((1 : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) *ᵥ castVec ℓ.1 + 0) j) =
-    ℓ.1 j
+  show dig D ℓ.2
+      (((1 : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) *ᵥ castVec ℓ.1 + 0) j) = ℓ.1 j
   rw [Matrix.one_mulVec, add_zero, dig_castVec]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.letter_one
@@ -78,17 +80,20 @@ theorem letter_mul (x y : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) :
 
 variable [IsDomain A] [CharZero A]
 
-theorem stateG_one (ℓ : Letter p n k) : stateG D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = 1 := by
+theorem stateG_one (ℓ : Letter p n k) :
+    stateG D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = 1 := by
+  have hl : outDigit D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = ℓ.1 :=
+    congrArg Prod.fst (letter_one D ℓ)
   have hz : z D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ = 0 := by
-    rw [z, letter_one_fst D ℓ, mat_one, vec_one, Matrix.one_mulVec, add_zero, sub_self]
+    rw [z, hl, mat_one, vec_one, Matrix.one_mulVec, add_zero, sub_self]
   have hp : (p : MvPolynomial (Fin k) A) ≠ 0 := Nat.cast_ne_zero.2 (NeZero.ne p)
   refine eq_one_of_vec_mat ?_ ?_
   · funext j
     have h := sigmaZ_z D (1 : Aff n (MvPolynomial (Fin k) A)) ℓ j
     rw [hz, Pi.zero_apply, map_zero] at h
     exact (mul_eq_zero.1 h.symm).resolve_left hp
-  · show ((Matrix.GeneralLinearGroup.map (sigmaZ p ℓ.2) 1 :
-      GL (Fin n) (MvPolynomial (Fin k) A)) : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) = 1
+  · show ((Matrix.GeneralLinearGroup.map (sigmaZ p ℓ.2) 1 : GL (Fin n) (MvPolynomial (Fin k) A)) :
+      Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) A)) = 1
     rw [map_one, Units.val_one]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.stateG_one
@@ -137,12 +142,12 @@ theorem rho_smul (x : Aff n (MvPolynomial (Fin k) A)) (w : List (Letter p n k)) 
 theorem state_rho (x : Aff n (MvPolynomial (Fin k) A)) (ℓ : Letter p n k) :
     Trees.TreeAut.state (rho D x) [ℓ] = rho D (stateG D x ℓ) := by
   refine Trees.TreeAut.ext fun v => Trees.TreeAut.state_smul_eq_of_smul_append _ ?_
-  rw [rho_smul, rho_smul, rho_smul, List.cons_append, List.nil_append, act_cons, act_cons,
-    act_nil, List.cons_append, List.nil_append]
+  show act D x (ℓ :: v) = act D x [ℓ] ++ act D (stateG D x ℓ) v
+  rw [act_cons, act_cons, act_nil, List.cons_append, List.nil_append]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.state_rho
 
-theorem isSelfSimilar_range_rho : Trees.IsSelfSimilar (rho D (n := n) (k := k)).range :=
+theorem isSelfSimilar_range_rho : Trees.IsSelfSimilar (rho (n := n) (k := k) D).range :=
   (Trees.isSelfSimilar_range_iff (rho D)).2 fun x ℓ => ⟨stateG D x ℓ, state_rho D x ℓ⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.isSelfSimilar_range_rho

@@ -82,7 +82,7 @@ theorem module_finite [Group.FG G] :
       (Submodule.span (MonoidAlgebra ℤ (Abelianization G)) (Set.image2 commClass T T)) :=
     fun s hs t ht => mem_pieceSubgroup.mpr
       ⟨Subgroup.commutator_mem_commutator (Subgroup.mem_top s) (Subgroup.mem_top t),
-        Submodule.subset_span (Set.mem_image2_of_mem hs ht)⟩
+        Submodule.subset_span (Set.mem_image2_of_mem (f := commClass) hs ht)⟩
   obtain ⟨_, h⟩ := mem_pieceSubgroup.mp (commutator_le_of_closure hT hgen a.2)
   exact h
 

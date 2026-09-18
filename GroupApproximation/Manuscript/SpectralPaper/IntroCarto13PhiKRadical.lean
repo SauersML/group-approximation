@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.SpectralPaper.IntroCarto13PhiKKernel
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.TorsionTelescope
 import GroupApproximation.Manuscript.NonMFNotes.Full.VisibleQuotient.LamplighterRF
 import GroupApproximation.Analysis.PeterWeylSeparation
+import Mathlib.GroupTheory.Abelianization.Finite
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
