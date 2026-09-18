@@ -5504,6 +5504,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Corollaries
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Manuscript
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Action
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Macbeath
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Endpoint.ProductExample
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
