@@ -215,6 +215,33 @@ must build genuinely Hamming-approximate sofic models.
     or Dehn filling, extension-type certificates such as (RLT) of item 12,
     left-orderability, and linear models avoiding every fixed congruence level.
     This node stays OPEN.
+
+16. **Sources infranormal in the kernel (2026-09-18, minimal-counterexample).**
+    `infranormal-kernel-sources-die-in-sofic-mapping-tori` is ESTABLISHED. Let `G` be sofic with
+    `G/K = Z`, `K` Kazhdan, and `L <= K` Kazhdan and infranormal in `K`. Put `N = <<L>>^K`.
+    - (IS0): Kun--Thom makes `C_G(L) = C_G(N)`. So only compressors with `s^m N s^-m < N`
+      strictly contribute to the defect, and they have degree `m != 0`.
+    - (IS2): then `K/N` is an infinite non-Hopfian Kazhdan group.
+    - (IS3): the defect lies in `< C_K(s^j N s^-j) >`. If it is all of `K`, finite generation and
+      a Frobenius bound on the strict degree semigroup (gcd 1) make a translate of `N` central.
+      Then `L` is finite, and no strict compressor exists.
+    - (IS4): in general `D_G(L) <= U_0 ... U_(g-1)`, where the `U_rho` are proper normal
+      subgroups of `K` permuted by `s`, and `g >= 2` is the degree gcd.
+
+    Dead:
+    - `L = K`, `L` normal in `K`, `L` normally generating `K`;
+    - simple `K`, such as the Titz Mite--Witzel kernels, now with the compressor outside `K`;
+    - every `K` with a unique maximal normal subgroup;
+    - degree gcd 1.
+
+    No torsion-freeness, finite presentation or quotientlessness is used.
+    - *Invariant.* `<<L>>^K` and the strict degree semigroup.
+    - *Step where every member dies.* The central-translate step of (IS3).
+
+    Survivors:
+    - sources `L` whose compressors in `K` generate a proper, non-Kazhdan subgroup;
+    - necklace kernels `K = U_0 ... U_(g-1)` with `g >= 2`, which must also be non-tame in the
+      sense of `compression-defects-need-strict-kernel-centralizer-towers`.
 15. **Kernel centralizer towers (2026-09-17, reframing, swarm-0917-w6-w6-titz-last2).** This
     attempt extends the KCF kill of `abelian-extensions-kill-kcf-compression-defects` to its natural
     escape: products of KCF kernels, with the automorphism permuting or twisting the factors.
