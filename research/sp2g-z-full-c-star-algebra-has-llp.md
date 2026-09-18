@@ -95,6 +95,46 @@ discussion after Question 1.10; source-verified 2026-08-21).
   from tensor-norm generalities: the Kirchberg characterization
   `LLP <=> (x)_max B(l^2) = (x)_min B(l^2)` has never been verified or
   refuted directly for any lattice.
+- **Literature gate and Klingen Theorem C reframing (2026-09-17, d-sp2g).**
+
+  *Gate.*  No published theorem refutes the LLP for `Sp_4(Z)`.
+  Ioana--Spaas--Wiersma (arXiv:2006.01874, e-print TeX line 341) prove
+  only the LP failure: "Since $C^*(\text{SL}_3(\mathbb Z))$ and
+  $C^*(\text{Sp}_4(\mathbb Z))$ do not have the \text{LP} by (i) and
+  (ii)...".  Pisier (arXiv:2304.01667) writes: "It remains an open
+  question whether all discrete groups with property (T) fail the LP
+  or even the LLP."  The Kirchberg-type obstruction (LLP + (T) +
+  hyperlinear gives residually finite) does not bite, because `Sp_4(Z)`
+  is residually finite.  `g >= 3` stays refuted via `SL_3(Z)`.
+
+  *Reframing.*  Rerun Theorem C on the Klingen subgroup
+  `Gamma = H_omega x| Sigma`, not on `Sp_4(Z)`.  A success would refute
+  this claim at `g = 2` by subgroup permanence.
+  - New, ESTABLISHED: `klingen-heisenberg-pair-has-relative-property-t`,
+    that `(H_omega x| Sigma, H_omega)` has relative (T).  NPSgen forces
+    `z^2` to act trivially on almost invariant vectors, and Burger
+    finishes.  This closes the "unchecked sketch" of the 09-16 note.
+  - New, ESTABLISHED: `theorem-c-on-klingen-subgroups-needs-non-free-radical-action`.
+    - The radical cannot act essentially freely (ISW line 287: `H^2 = 0`
+      for free amenable actions).  So Bernoulli/Jiang supply is dead
+      there.
+    - When a power of the center acts trivially, the commutator
+      1-cocycle `c(g,z^j)c(z^j,g)^*` is a coboundary by relative (T).
+      So `c_n|Lambda` untwists to a class inflated from the virtually
+      abelian `Lambda/<z^j>`.  This kills the solenoid / `T^2`
+      `E^{1,1} = H^1(Z^2, L^0)` candidate.
+
+  *Where it stops.*  Two supply cases remain, both OPEN:
+  - (S1) classes inflated from `Lambda/N` outside the inflation kernel
+    `T * e_N`;
+  - (S2) the center acts freely, but the radical does not (stabilizers
+    abelian).
+
+  Connes embeddability of the twisted crossed products is expected to be
+  easy here (amenable radical; the virtually free Levi untwists cocycle
+  actions; amalgamated free products over an injective base).  That
+  needs a verbatim Brown--Dykema--Jung import and is not recorded as
+  established.
 
 ## Parabolic audit
 
