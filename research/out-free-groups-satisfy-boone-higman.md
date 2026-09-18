@@ -108,3 +108,16 @@ This is the open part of a named problem.
    - **Not decided.** Either a rigidity theorem (finitely generated plus finitely
      many double cosets implies finite index), or a finitely generated
      Dehn-filling replacement for a Hull–Osin stabilizer.
+8. **Calibration of the rigidity direction** (bh-free-40,
+   `hyperbolic-groups-have-fg-subgroups-with-two-double-cosets`; lane proof).
+   - **The naive statement is false in hyperbolic groups.** The rigidity
+     statement was: finitely generated plus finitely many double cosets implies
+     finite index. Rips' construction over Thompson's `V`, with the finitely
+     generated point stabilizer `Stab_V(0^∞)` of a highly transitive action,
+     gives a hyperbolic group with a finitely generated infinite-index subgroup
+     having exactly two double cosets. That subgroup is not core-free.
+   - **Quasiconvex subgroups are rigid**, via the limit-set lemma.
+   - **The correct target for Out(F_n)** is core-free rigidity. A core-free,
+     finitely generated subgroup with finitely many double cosets is exactly a
+     type (A) point stabilizer, up to finite presentation of pair stabilizers.
+     That is open here, and even for hyperbolic groups.
