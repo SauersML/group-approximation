@@ -1,7 +1,7 @@
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Statement
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Cases
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Split
-import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.ORDERMODULE
+import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Order
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

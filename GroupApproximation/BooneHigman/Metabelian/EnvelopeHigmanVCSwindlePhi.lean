@@ -90,6 +90,7 @@ theorem higSw_E_phi {d : ℕ} (c : List (Fin d)) (q : higmanVCCommon_Q d) :
       localize c ((higmanVCTreeNF_E d q : ↥(higmanThompsonV (Fin d))) :
         Equiv.Perm (Cantor (Fin d))) := by
   obtain ⟨g, rfl⟩ := higmanVCTreeNF_mk_surjective d q
+  rw [higSw_phi_mk, higmanVCTreeNF_E_mk, higmanVCTreeNF_E_mk]
   exact higSw_perm_lift c g
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_E_phi
