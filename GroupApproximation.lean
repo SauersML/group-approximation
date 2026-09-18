@@ -6112,6 +6112,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQnSeparable
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbQuasicentralStep
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbQuasicentralSeq
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbQuasicentral
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgStabMuAux
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

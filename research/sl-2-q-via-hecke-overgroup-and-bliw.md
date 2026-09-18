@@ -4,13 +4,20 @@ id: sl-2-q-via-hecke-overgroup-and-bliw
 kind: route
 title: Ihara's amalgam plus a finitely presented Hecke overgroup of SL_2(Z_(l)) puts SL_2(Q) in an HNN extension covered by Bux--Llosa Isenrich--Wu Theorem C
 target: sl-2-q-embeds-in-fp-simple-group
+artifacts:
+  - research/artifacts/gq-referee-a-sl-2-q-via-hecke-overgroup-and-bliw.md
+  - research/artifacts/gq-referee-b-sl-2-q-via-hecke-overgroup-and-bliw.md
 requires:
   - sl-2-z-localized-has-fp-hecke-overgroup
   - sl-2-q-is-an-amalgam-of-sl-2-z-localized-at-ell
   - bliw-locally-finite-tree-actions-embed-in-fp-simple-groups
 ---
 
-Lane proof of the implication, not independently reviewed. Take `l, Λ, ι, C_1,
+Lane proof of the implication. Reviewed PASS by two referees:
+`research/artifacts/gq-referee-a-sl-2-q-via-hecke-overgroup-and-bliw.md` (proof gaps) and
+`research/artifacts/gq-referee-b-sl-2-q-via-hecke-overgroup-and-bliw.md` (citations, BLIW
+Theorem C and the class `BS_G` checked verbatim). The hypothesis
+`sl-2-z-localized-has-fp-hecke-overgroup` itself was not reviewed and is OPEN. Take `l, Λ, ι, C_1,
 C_2, φ` as in `sl-2-z-localized-has-fp-hecke-overgroup`, and let
 `K = <Λ, t | t x t^-1 = φ(x) (x in C_1)>` be the HNN extension.
 
