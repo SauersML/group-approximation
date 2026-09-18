@@ -64,3 +64,13 @@ artifacts:
    - The pumping fails for `RTM` because the tape, and with it `Γ_x`, changes along
      a path. No torsion-local-finiteness argument for `RTM` is known here, and no
      infinite torsion subgroup was constructed.
+   - **The oblivious writing machines are torsion locally finite too.** For `OB`
+     (head movement independent of the tape, arbitrary local writing),
+     Barbieri–Kari–Salo (arXiv:1603.08715, Proposition 3) give an average-movement
+     homomorphism `α : OB -> Z^d` with kernel `LP`, which is locally finite. A
+     torsion subgroup of `OB` maps to a torsion subgroup of `Z^d`, so it lies in
+     `LP` and is locally finite. So one stack (`V`), a read-only moving head
+     (`RFA`) and oblivious writing (`OB`) are each torsion locally finite. A
+     counterexample in `2V` must couple tape-dependent movement with writing, as in
+     the elementary machines `EL = <RFA, LP>`, whose torsion problem is
+     undecidable (arXiv:2303.17270, Theorem 1.2).
