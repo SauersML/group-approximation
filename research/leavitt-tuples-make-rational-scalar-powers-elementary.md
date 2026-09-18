@@ -3,13 +3,16 @@ rg: 2
 id: leavitt-tuples-make-rational-scalar-powers-elementary
 kind: claim
 title: In a ring containing Q and a Leavitt (1,d)-tuple, every (d-1)-th power of a rational scalar is elementary, so the scalar budget fails
+artifacts:
+  - research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md
 distinct_from:
   leavitt-centralizer-units-are-elementary-in-rank-three: that is the case d = 2 (a Leavitt pair), where every scalar is elementary; this is every d >= 2, where the (d-1)-th powers are.
   rational-scalars-obstruct-fp-elementary-hosts: that shows the elementary rational scalars of a projective-elementary host must form a finitely generated group; this shows that group contains (Q^x)^(d-1), which is not finitely generated, whenever the ring has a Leavitt (1,d)-tuple.
 ---
 
 **ESTABLISHED (2026-09-18)** through `leavitt-tuples-make-rational-scalar-powers-elementary-proof`.
-Lane proof (`gq-steinberg-q`), elementary, not independently reviewed.
+Lane proof (`gq-steinberg-q`), elementary. `gq-referee-a` PASS, proof-gap lens
+(`research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md`, which covers both nodes); `gq-referee-b` pending.
 
 **Statement.** Let `d >= 2`. Let `S` be a unital ring with `Q ⊆ S` and elements `x_1, …, x_d, y_1, …, y_d`
 satisfying `y_i x_j = δ_ij` and `Σ_i x_i y_i = 1`. Then:
@@ -43,6 +46,9 @@ Hence no such `S` satisfies condition 3 of `q-algebra-with-fp-simple-projective-
    determinant 1 lie in `E_(d+1)(Z)`. So `diag(1, u, …, u, 1) ≡ diag(u^(d-1), 1, …, 1)` modulo `E_(d+1)(S)`.
    Stabilize to any `m >= d+1`.
 4. **Scalars.** `q ∈ Q^x` is central in `S` (the inverse of a central unit is central), so it commutes with
-   the tuple. `q^(d-1) I_m` is a product of `m` conjugates of `diag(q^(d-1), 1, …)` by permutation matrices.
+   the tuple. `q^(d-1) I_m` is a product of `m` conjugates of `diag(q^(d-1), 1, …)` by signed permutation
+   matrices of determinant 1. These lie in `E_m(Z)`, so the conjugates stay in `E_m(S)`. Plain permutation
+   matrices need not normalize `E_m` over a noncommutative ring. Because `q^(d-1)` is central, the signs do not
+   change the conjugate.
    `(Q^x)^(d-1)` contains `p^(d-1)` for every prime `p`, so it is free abelian of infinite rank modulo
    torsion, and not finitely generated.
