@@ -221,7 +221,8 @@ theorem vdkInjAct_cocycle_of_rowStab (hA : vdkInjCoset_RowStabAt n R)
     (hK : Function.Injective (K2Stab n R)) :
     ∃ c : vdkInjAct_Cocycle n R, vdkInjAct_IsCocycle c ∧ vdkInjAct_IsBased c := by
   have hinj := vdkRowParInjective_of_K2Stab_injective hK
-  exact ⟨_, vdkInjAct_isCocycle_of_mul _ (vdkInjAct_truthPhi_mul hA hinj),
+  exact ⟨fun u i j hij a ↦ vdkInjAct_truthPhi u (x i j hij a),
+    vdkInjAct_isCocycle_of_mul vdkInjAct_truthPhi (vdkInjAct_truthPhi_mul hA hinj),
     vdkInjAct_truthPhi_based hinj⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkInjAct_cocycle_of_rowStab

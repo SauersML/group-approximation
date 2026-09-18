@@ -99,3 +99,93 @@ theorem k2PolyAmal_g_not_mem {K : Finset I} {L m : I} (hLm : L ≠ m) :
   exact Polynomial.X_ne_C _ e.symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_g_not_mem
+
+/-- `g = x̄_Lm(X) ∈ P̄` (via `V`). -/
+theorem k2PolyAmal_g_mem_P {K : Finset I} {m L n : I} (hmL : m ≠ L) (hmn : m ≠ n)
+    (hLn : L ≠ n) (hmK : m ∈ K) :
+    projection (x L m hmL.symm (Polynomial.X : Polynomial (ZMod p))) ∈
+      (k2PolyDeg_P p K m L n hmL hmn hLn).map projection := by
+  refine Subgroup.mem_map_of_mem _ ?_
+  unfold k2PolyDeg_P
+  exact Subgroup.mem_sup_right (Subgroup.mem_sup_right
+    (x_mem_rootSpan (p := fun i j => i = L ∧ j ∈ K) hmL.symm _ ⟨rfl, hmK⟩))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_g_mem_P
+
+/-- `s = x̄_km(X) x̄_Lm(X) ∈ P̄` (via `S` and `V`). -/
+theorem k2PolyAmal_s_mem_P {K : Finset I} {m L n k : I} (hmL : m ≠ L) (hmn : m ≠ n)
+    (hLn : L ≠ n) (hmK : m ∈ K) (hkK : k ∈ K) (hkm : k ≠ m) :
+    projection (x k m hkm (Polynomial.C (1 : ZMod p) * Polynomial.X) *
+        x L m hmL.symm Polynomial.X) ∈ (k2PolyDeg_P p K m L n hmL hmn hLn).map projection := by
+  refine Subgroup.mem_map_of_mem _ ?_
+  unfold k2PolyDeg_P
+  exact Subgroup.mem_sup_right (Subgroup.mul_mem _
+    (Subgroup.mem_sup_left (x_mem_rootSpan (p := fun i j => i ∈ K ∧ j ∈ K) hkm _ ⟨hkK, hmK⟩))
+    (Subgroup.mem_sup_right
+      (x_mem_rootSpan (p := fun i j => i = L ∧ j ∈ K) hmL.symm _ ⟨rfl, hmK⟩)))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_s_mem_P
+
+/-- `a, g, s ∈ Ḡ`. -/
+theorem k2PolyAmal_mem_G {K : Finset I} {m L k : I} (hmL : m ≠ L) (hmK : m ∈ K) (hkK : k ∈ K)
+    (hkm : k ≠ m) (hkL : k ≠ L) :
+    projection (x k L hkL (Polynomial.C (1 : ZMod p))) ∈ (k2PolyDeg_G p K L).map projection ∧
+      projection (x L m hmL.symm (Polynomial.X : Polynomial (ZMod p))) ∈
+        (k2PolyDeg_G p K L).map projection ∧
+      projection (x k m hkm (Polynomial.C (1 : ZMod p) * Polynomial.X) *
+        x L m hmL.symm Polynomial.X) ∈ (k2PolyDeg_G p K L).map projection := by
+  have hL : L ∈ insert L K := Finset.mem_insert_self L K
+  have hm : m ∈ insert L K := Finset.mem_insert_of_mem hmK
+  have hk : k ∈ insert L K := Finset.mem_insert_of_mem hkK
+  have hxLm : x L m hmL.symm (Polynomial.X : Polynomial (ZMod p)) ∈ k2PolyDeg_G p K L :=
+    x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hmL.symm _ ⟨hL, hm⟩
+  refine ⟨Subgroup.mem_map_of_mem _ ?_, Subgroup.mem_map_of_mem _ hxLm,
+    Subgroup.mem_map_of_mem _ (Subgroup.mul_mem _ ?_ hxLm)⟩
+  · exact x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hkL _ ⟨hk, hL⟩
+  · exact x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hkm _ ⟨hk, hm⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_mem_G
+
+/-- Relation (C1): `a g a⁻¹ = s`. -/
+theorem k2PolyAmal_rel {k L m : I} (hkL : k ≠ L) (hLm : L ≠ m) (hkm : k ≠ m) :
+    projection (x k L hkL (Polynomial.C (1 : ZMod p))) *
+        projection (x L m hLm (Polynomial.X : Polynomial (ZMod p))) *
+        (projection (x k L hkL (Polynomial.C (1 : ZMod p))))⁻¹ =
+      projection (x k m hkm (Polynomial.C (1 : ZMod p) * Polynomial.X) *
+        x L m hLm Polynomial.X) := by
+  rw [← conj_x_left k L m hkL hLm hkm, map_mul, map_mul, map_inv]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_rel
+
+/-- **The amalgam statement fails as soon as `K` has two elements `k ≠ m`.** -/
+theorem k2PolyAmal_false_of_two (hAm : k2PolyDeg_AmalgamStatement) (K : Finset I)
+    (m L n k : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) (hLK : L ∉ K) (hmK : m ∈ K)
+    (hkK : k ∈ K) (hkm : k ≠ m) : False := by
+  have hkL : k ≠ L := fun e => hLK (e ▸ hkK)
+  obtain ⟨Φ, hΦ₁, hΦ₂⟩ := hAm p K m L n hmL hmn hLn hLK hmK
+    (Monoid.PushoutI (k2PolyAmal_incl ((k2PolyDeg_A p K L).map projection)
+      ((k2PolyDeg_P p K m L n hmL hmn hLn).map projection)))
+    (Monoid.PushoutI.of (φ := k2PolyAmal_incl ((k2PolyDeg_A p K L).map projection)
+      ((k2PolyDeg_P p K m L n hmL hmn hLn).map projection)) true)
+    (Monoid.PushoutI.of (φ := k2PolyAmal_incl ((k2PolyDeg_A p K L).map projection)
+      ((k2PolyDeg_P p K m L n hmL hmn hLn).map projection)) false)
+    (fun z h₁ h₂ => k2PolyAmal_compat _ _ z h₁ h₂)
+  obtain ⟨haG, hgG, hsG⟩ := k2PolyAmal_mem_G (p := p) hmL hmK hkK hkm hkL
+  exact k2PolyAmal_no_extension ((k2PolyDeg_A p K L).map projection)
+    ((k2PolyDeg_P p K m L n hmL hmn hLn).map projection) ((k2PolyDeg_G p K L).map projection)
+    (k2PolyAmal_a_mem hkL hkK) (k2PolyAmal_a_not_mem hmL hmn hLn hLK hkL)
+    (k2PolyAmal_g_mem_P hmL hmn hLn hmK) (k2PolyAmal_g_not_mem hmL.symm)
+    (k2PolyAmal_s_mem_P hmL hmn hLn hmK hkK hkm) (k2PolyAmal_rel hkL hmL.symm hkm)
+    haG hgG hsG Φ (fun z h₁ h => hΦ₁ z h₁ h) (fun z h₂ h => hΦ₂ z h₂ h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_false_of_two
+
+/-- **Endpoint.**  `k2PolyDeg_AmalgamStatement` is false: it fails for `p = 2`, `I = Fin 3`,
+`K = {0, 1}`, `m = 0`, `L = 2`, `n = 1` (witness `k = 1`). -/
+theorem k2PolyAmal_not_amalgamStatement : ¬ k2PolyDeg_AmalgamStatement := fun hAm =>
+  k2PolyAmal_false_of_two (p := 2) (I := Fin 3) hAm {0, 1} 0 2 1 1 (by decide) (by decide)
+    (by decide) (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_not_amalgamStatement
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
