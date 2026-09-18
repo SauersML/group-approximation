@@ -128,5 +128,6 @@ generators.
 - **Locally finite splittings.** Their seeds are pointers plus one sink, so they certify only Britton normal forms
   over the sink. The seed layer itself never adds complexity.
 - **Where a CAP test must live.** A real test (rung 1c) needs relative seeds over infinite-index associated
-  subgroups whose distortion encodes a computation. The right quantity to bound is forcing length, not forcing
-  radius.
+  subgroups whose membership problem is hard. Forcing length is only an upper-bound resource: over the
+  Baumslag–Gersten group it is non-elementary while the word problem is polynomial
+  (`baumslag-gersten-seed-forcing-length-is-non-elementary`).
