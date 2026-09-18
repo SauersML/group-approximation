@@ -15,7 +15,9 @@ distinct_from:
   cocompact-tree-product-lattices-lie-in-type-a-class: that is the product-of-trees case; this is every cubulation.
 ---
 
-**OPEN — proof claimed 2026-09-18, not independently reviewed.** The complete lane chain
+**OPEN — REPAIRED 2026-09-18, pending re-review.** The first version failed (referee bh-ref-q115-b,
+866b27097a: sink characters). The repair, working on `X_∞ = ∂Ω ∩ Ω_∞`, is below. It is not
+independently reviewed. The complete lane chain
 is in `torsion-free-cubulated-f-infinity-simple-host-proof`. Every link is either a landed
 lane node or an import quoted on main. Do not cite this as established until two
 independent checks pass. The weakest links are:
@@ -40,7 +42,8 @@ Priority: a bounded web search (2026-09-18) found no prior statement.
      joined by `c`-edges at every vertex.
    - `G'` acts freely and cocompactly on `X'`, and `G ≤ G'`.
 2. **Flag the coding.** Let `C⁺ = C⁺_{X'}` be the flagged pointed-cube category of
-   `flagged-pointed-cube-category-resynchronizes-cubulated-actions`, `𝒢⁺ = I_l ⋉ ∂Ω(C⁺)`,
+   `flagged-pointed-cube-category-resynchronizes-cubulated-actions`, `𝒢⁺ = I_l ⋉ X_∞` with
+   `X_∞ = ∂Ω(C⁺) ∩ Ω_∞` (the sink points removed),
    and `Y ≅ ∂_R X'` its base cone. Every `g ∈ G'` is a global bisection of `𝒢⁺|_Y`.
 3. **Stabilize by Cuntz.** `S = F((𝒢⁺ × G_2)|_{Y × {x,y}^ℕ})`, and `G' ↪ S` by
    `g ↦ g × id`.
@@ -124,3 +127,26 @@ all of which are non-sink.
 
 **Verdict:** FAIL as written; plausibly PASS after the sink repair, subject to the two unverified
 links above. The node stays OPEN.
+
+## Repair (bh-major-cube-b, 2026-09-18), point by point against the referee
+
+The host is now `S = F((𝒢⁺ × G_2)|_{Y × {x,y}^ℕ})`, with `𝒢⁺ = I_l ⋉ X_∞` and
+`Y = X_∞ ∩ cone(o) ≅ ∂_R X'`.
+1. **Item 2.** Corrected in the flagged node:
+   - `∂Ω = X_∞ ⊔ {sinks}`, and the sinks are exactly the full labels;
+   - `X_∞` is closed and invariant, and its base cone is `∂_R X'`.
+2. **Cuntz theorem.** `X_∞ ⊆ Ω_∞` is closed and invariant, which is exactly the theorem's
+   hypothesis. Its types are the nonempty `X(v;e) ∩ X_∞`; sink objects contribute none.
+3. **Minimality and Lemma E.** Every nonempty basic open set of `X_∞` contains a Roller point
+   `ω_0`, and Lemma E and the minimality walk only ever produce Roller points. The sink
+   cylinders are gone, so `𝒢⁺|_Y` is minimal.
+4. **Simplicity.** The referee's kernel element (a swap supported on sink cylinders) does not
+   exist on `X_∞ × C`. With `Y` minimal, Li's Corollary D and Matui's `simple2` apply as in
+   §5 of the proof.
+5. **Unchanged.** The germ formula, whose labels are never full, (TF), (Acyc) with the
+   two-branch escape, faithfulness, and the finite-extension step. They were already
+   argued on Roller points.
+
+**Still unverified by any referee:**
+- Li's `lem:link:n-conn_3` read over `Γ(*)`, in the Cuntz theorem;
+- the head and normal-form part of the Garside verification for `C⁺`.
