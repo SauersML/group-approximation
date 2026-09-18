@@ -5642,6 +5642,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordMF.CliffordLift
 import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.ReturnSection
 import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockCells
 import GroupApproximation.Manuscript.NonMF.Full.InvolutionBlocks.BlockPlacement
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.UpperTriangular
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
