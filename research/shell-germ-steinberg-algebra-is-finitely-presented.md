@@ -63,7 +63,32 @@ kernel puts the perfect group `P` in a finitely presented simple group. By
 
 ## Attempts
 
-None yet. The obvious first test is `P = Z`, where `E_nu` is a one-point germ extension of
-`V` by a single cofinite-shift-like germ, and the question is whether the germ generator can
-be presented over `L_(F_2)(1,2)` by finitely many relations involving the cylinder
-idempotents.
+1. **Wreath recursions: the finite-state case, and what it costs (bh-ck-kernel, 09-18).**
+   *The gate acquires a residual condition of the same shape as the group gate, so it is
+   not automatically easier.*
+
+   Suppose every generator of `Γ = E_nu` is finite-state for the standard self-similar
+   structure on `C`. In `A` the germ class `u_q` of each automaton state `q` satisfies, for
+   each letter `x in {0,1}`,
+
+       u_q s_x = s_(q(x)) u_(q|_x) ,
+
+   which is finitely many relations, because the automaton has finitely many states.
+   Together with the two Leavitt relations and finitely many group relations, they define a
+   finitely presented `F_2`-algebra `B` with a surjection `B ->> A`. Consequences:
+   - **the gate reduces to finite generation of `ker(B ->> A)` as a two-sided ideal**, the
+     algebra analogue of the group gate reducing to finite normal generation of a kernel
+     (`fp-quotient-iff-kernel-finitely-normally-generated`);
+   - for `Γ = V` the automaton is trivial, `B = L_(F_2)(1,2) = A`, and the kernel is zero;
+   - the germ of the first test case (`P = Z`, with `rho` a near shift) is finite-state, and
+     conjugation by the isometry `s_0` implements `n -> n+1` on all shells at once:
+     `s_0 (s_0^n s_1 t_1 t_0^n) t_0 = s_0^(n+1) s_1 t_1 t_0^(n+1)`. That is why a near shift
+     costs finitely many relations while an arbitrary permutation of the shells does not.
+
+   **What this does not give.** Finite-state germs cannot serve every input, by
+   `decidable-fp-groups-need-not-embed-in-rational-group`. So a universal proof needs
+   relations that encode a computation rather than an automaton. That is the algebra
+   analogue of Higman embedding (Belyaev, recorded in Attempt 2 of
+   `simple-inputs-have-fp-elementary-leavitt-tensor-hosts`), and it does not preserve
+   simplicity. The exchange of gates therefore buys the cylinder idempotents and the
+   compression of the `V`-relations, and nothing more; whether that is enough is open.
