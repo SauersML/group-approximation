@@ -154,7 +154,7 @@ presented case stays OPEN; the exact gap is Attempt 2 on
 | # | Question (source, TeX line) | Node | Status |
 |---|---|---|---|
 | F1 | Tarocchi arXiv:2310.14660v3 l.1605 (also thesis 2412.02339 l.5583): "Is $[G_3, G_3]$ simple?" | `dendrite-rearrangement-group-g3-has-simple-commutator-subgroup` | **ANSWERED yes** (lane proof, this pass) |
-| F2 | Tarocchi 2310.14660v3 l.1081–1085: dendrite rearrangement groups "Are they finitely presented? Are they $F_\infty$?" | `dendrite-rearrangement-groups-are-finitely-presented` | OPEN |
+| F2 | Tarocchi 2310.14660v3 l.1081–1085: dendrite rearrangement groups "Are they finitely presented? Are they $F_\infty$?" | `dendrite-rearrangement-groups-are-finitely-presented` | ANSWERED in the literature: Perego–Tarocchi arXiv:2412.04138v1 prove every $G_n$ is $F_\infty$ (bh-dendrite, 09-18) |
 | F3 | Hill–Kwak–Udall–West arXiv:2508.21264 l.297: "whether the Boone--Higman conjecture for the graph Houghton group is true … whether the Boone--Higman conjecture holds for all Houghton-type groups" | `graph-houghton-groups-satisfy-boone-higman` | OPEN. The preprints review had screened this paper as low relevance, missing the BH question |
 | F4 | Bodart–D'Angeli–Perego–Rodaro arXiv:2608.02111 sec7 l.134: "Does any (weakly) branch group embed in Thompson's $V$?" | `finitely-generated-weakly-branch-group-embeds-in-thompson-v` | OPEN for f.g. groups. The literal reading is answered yes by the finitary automorphism group (lane remark on the node) |
 | F5 | Kodama arXiv:2602.04839 l.869: "it is not known whether $G_0(n)$ is a subgroup of $\PPSL$ or not" | `n-adic-lodha-moore-groups-embed-in-piecewise-projective-group` | OPEN. It bears on the Higman-group obstruction |
