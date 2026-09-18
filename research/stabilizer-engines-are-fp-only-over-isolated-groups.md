@@ -47,6 +47,10 @@ the same way.
    - (d) **The flux-free test is not decided.** Thompson's `F` is isolated: it is finitely
      presented, and every nontrivial normal subgroup contains `F'`. Thompson's `V` is isolated
      (finitely presented and simple). So the theorem is silent for `B = F` and `B = V`.
+     *Superseded (bh-invent-18, 58db3f3f9):* `stabilizer-engines-need-torsion-vertex-groups`
+     collapses a deep subgroup into the base edge stabilizer and shows `F_B` is infinitely
+     presented whenever `B` has an element of infinite order, so `B = F, T, V` are decided
+     negatively.
 
 ## Proof of 1
 **Tables.** An element `f ∈ F_B` is given by a table:
