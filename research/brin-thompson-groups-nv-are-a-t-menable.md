@@ -64,6 +64,60 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     must use structure beyond this class, such as the zipper, product-of-trees or
     local-similarity combinatorics of `G_2^n`, or expansivity. Matui's SFT theorem
     (`sft-topological-full-groups-have-the-haagerup-property`) uses such structure.
+  - **Compact generation and expansivity are now calibrated (2026-09-17, e-nv-calibrate).**
+    - `ample-groupoid-products-expansive-iff-factors-are` (established): products are
+      compactly generated when the factors are, and expansive iff both factors are. `G_2`
+      is expansive. So `(M ⋊ Γ) × G_2` is compactly generated for every action of a
+      finitely generated `Γ`, and it is expansive iff `Γ ↷ M` is a subshift. For the host's
+      `M` (inside `X' × Z`, with `X' ⊆ T^Γ` and `T` infinite) this is not settled.
+    - `rs-boundary-groupoid-is-expansive-amenable-kazhdan-host` (established): let `Γ` be a
+      Kazhdan `PGL_3(K)` lattice acting on its Robertson–Steger boundary `Ω`. This action is
+      an amenable, minimal, expansive subshift on a Cantor set, with no invariant measure.
+      Both `Γ × Ω` and `(Γ × Ω) × G_2` are compactly generated, expansive and minimal, and
+      `Γ` sits in their full groups. The germ groupoid is expansive, minimal and effective,
+      and also contains `Γ`.
+    - **Killed in addition:** proofs using compact generation and/or expansivity together
+      with amenability, minimality, no invariant measure and a simple nuclear purely
+      infinite C\*-algebra. Also killed: expansivity with effectiveness. They die at the same
+      step (restriction of `ψ` to `Γ`).
+    - **Still not ruled out at groupoid level:** proofs using effectiveness, amenability and
+      expansivity *together*. The free host above is not known to be expansive, and the
+      Robertson–Steger action is not known to be topologically free. Its germ groupoid is
+      not known to be amenable.
+- **Calibration table (2026-09-17, e-nv-calibrate).** The worlds are:
+  - W1 = `(M ⋊ Γ) × G_2`, `Γ = Z^3 ⋊ SL_3(Z)` (open on citations; free, compactly
+    generated);
+  - RS = the Robertson–Steger boundary groupoid above, or its product with `G_2`;
+  - SFT = SFT full groups (Haagerup, Matui);
+  - 1V = `V` (Haagerup, Farley).
+
+  For each route or proposal, the world it cannot tell from `2V`:
+  - **Groupoid-generic** (amenable, minimal, effective, purely infinite): W1.
+  - **The same plus compact generation:** W1, which is compactly generated (proved).
+  - **Expansivity-based** (amenable, minimal, expansive, no invariant measure, simple nuclear
+    purely infinite): RS. Only effectiveness is left out.
+  - **Word-system / Z²-cocycle proposals** (prefix replacements with shape offsets, AF
+    kernels of the degree cocycle): RS
+    (`rank-two-prefix-replacement-groups-contain-infinite-kazhdan`).
+  - **Farley charts, Stein–Farley, any cubical or wall-space proof:** not a world question.
+    They die for `2V` itself (Callard–Salo distortion).
+  - **Triangular split R1/R2:** R2 is fibred over the coordinate tower `C^n → ... → C`,
+    which exists only for product word systems. RS has no such tower, so this route is not
+    refuted by any world above. R1 must still be non-cubical.
+  - **Negative routes** (non-Haagerup of `2V` via a Kazhdan or relative-(T) subgroup, or
+    Problem B failing for the fibres): every step must fail for SFT and 1V, which are
+    Haagerup. A step that only uses rank-one expansive structure proves a false statement.
+  - **Lodha's groups:** not used. Their Haagerup status is not recorded on the graph, so
+    they calibrate nothing yet.
+
+  **Which property of `2V` a positive proof must use.**
+  - Not compact generation: W1 and RS have it.
+  - Not expansivity alone: RS has it.
+  - Not distortion: it only constrains R1 (non-cubical).
+  - What is left is the **product structure**: tiles `A = A_1 × A_2`, commuting row and
+    column matrices `J ⊗ I`, `I ⊗ J`, each factor a rank-one SFT with Haagerup full
+    group. At the groupoid level the conjunction effective + amenable + expansive is the
+    only remaining unkilled alternative.
   - **Not ruled out:** proofs that use compact generation or expansivity of the
     groupoid. It is not known whether `(M ⋊ Γ) × G_2` is compactly generated.
 - **Split along the triangular subgroup (2026-09-17, swarm-0917-w4-nv-cocycle; route tree
