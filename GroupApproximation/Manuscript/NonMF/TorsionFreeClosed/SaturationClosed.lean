@@ -3,7 +3,7 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.Assembly
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# `lem:saturation` and its two `thm:hull` proof steps, closed
+# `lem:saturation` and its two `thm:hull` proof steps, over the two open Greendlinger residuals
 
 `non_mf_groups_exist.tex`, lines 2134–2158:
 
@@ -22,18 +22,27 @@ applies"), `2f997e5af4e6` ("apply `thm:hull` to `N₀`").
 
 ## Route
 
-Lane nm-torsionfree-02.  `TorsionFreeClosed/SaturationLemma.lean` proves each endpoint over the
-single binder `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` (Osin's
-Lemma 4.4 at least-area diagrams; every other wall is discharged there by closed producers).  This
-module discharges that binder with the universe-polymorphic, binder-free closer
-`GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea`
-(`GreendlingerLeaf/Assembly.lean`), instantiated at `.{0, 0, 0}`.  The alphabet is not
-specialised: the closer is applied as the whole statement at those universes.
+Lane nm-torsionfree-02; honesty repair gl-asm-14.  `TorsionFreeClosed/SaturationLemma.lean` proves
+each endpoint over the single binder
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0}` (Osin's Lemma 4.4 at
+least-area diagrams; every other wall is discharged there by closed producers).  This module
+discharges that binder with
+`GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
+(`GreendlingerLeaf/Assembly.lean`) at `.{0, 0, 0}`, so every endpoint takes the two open leaf
+residuals
+
+* `hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0}`;
+* `hjunction : GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}`.
+
+An earlier version stated these endpoints binder-free, citing a leaf closer
+`GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea` that did not build (it cited the
+missing names `Piece06.proof` and `Piece10.proof`).  The binder-free names are removed; nothing
+imported them.
 
 ## Manuscript status
 
-Every endpoint here has no inputs and is audited with `#audit_closed_axioms`.  They close the three
-rows once `GreendlingerLeaf/Assembly.lean` (and so its piece proofs) builds.
+NOT closed.  Every endpoint takes `hoff` and `hjunction` and is audited with `#audit_axioms`.  The
+three rows stay `partial` until both residual Statements are proved.
 -/
 
 namespace GroupApproximation
@@ -41,50 +50,79 @@ namespace Manuscript
 namespace NonMF
 namespace TorsionFreeClosed
 
-/-- **`lem:saturation` as printed** (lines 2134–2140), closed. -/
-theorem manuscriptSentence_saturation : TorsionFreePrinted.PrintedSaturationNoOmega.{0} :=
+/-- **`lem:saturation` as printed** (lines 2134–2140), over the two open Greendlinger residuals. -/
+theorem manuscriptSentence_saturation_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
+    TorsionFreePrinted.PrintedSaturationNoOmega.{0} :=
   manuscriptSentence_saturation_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
-/-- **`lem:saturation` at Osin's notion** (lines 2134–2140), closed. -/
-theorem manuscriptSentence_saturation_osin : TorsionFreeOsinNotion.PrintedSaturationOsin :=
+/-- **`lem:saturation` at Osin's notion** (lines 2134–2140), over the two open Greendlinger
+residuals. -/
+theorem manuscriptSentence_saturation_osin_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
+    TorsionFreeOsinNotion.PrintedSaturationOsin :=
   manuscriptSentence_saturation_osin_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
-/-- **`lem:saturation` at the limit-set notion** (lines 2134–2140), closed. -/
-theorem manuscriptSentence_saturation_limitSet :
+/-- **`lem:saturation` at the limit-set notion** (lines 2134–2140), over the two open Greendlinger
+residuals. -/
+theorem manuscriptSentence_saturation_limitSet_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
     TorsionFreeLimitSetNotion.PrintedSaturationLimitSet :=
   manuscriptSentence_saturation_limitSet_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
 /-- **The pair `h₁, h₂` and `thm:hull` again** (lines 2146–2150, in the proof of
-`lem:saturation`), closed. -/
-theorem manuscriptSentence_saturationPairAndHullAgain :
+`lem:saturation`), over the two open Greendlinger residuals. -/
+theorem manuscriptSentence_saturationPairAndHullAgain_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
     TorsionFreeSectionSentencesFourLeaves.PrintedSaturationPairAndHullAgain :=
   manuscriptSentence_saturationPairAndHullAgain_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
 /-- **"Apply Theorem `thm:hull` to `N₀`"** (lines 2150–2152, in the proof of `lem:saturation`),
-closed. -/
-theorem manuscriptSentence_saturationApplyHull :
+over the two open Greendlinger residuals. -/
+theorem manuscriptSentence_saturationApplyHull_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
     TorsionFreeSectionSentencesFourLeaves.PrintedSaturationApplyHull :=
   manuscriptSentence_saturationApplyHull_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
-/-- **The `lem:saturation` rows, bundled and closed** (census rows `2f55113239ce`,
-`2d1cd22e5f49`, `2f997e5af4e6`). -/
-theorem saturationLemmaRows : SaturationLemmaRows :=
+/-- **The `lem:saturation` rows, bundled, over the two open Greendlinger residuals** (census rows
+`2f55113239ce`, `2d1cd22e5f49`, `2f997e5af4e6`). -/
+theorem saturationLemmaRows_of_residuals
+    (hoff : GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement.{0, 0, 0})
+    (hjunction :
+      GGT.VanKampen.GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement.{0, 0, 0}) :
+    SaturationLemmaRows :=
   saturationLemmaRows_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
+    (GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+      hoff hjunction)
 
 end TorsionFreeClosed
 end NonMF
 end Manuscript
 end GroupApproximation
 
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_osin
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_limitSet
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationPairAndHullAgain
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationApplyHull
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.saturationLemmaRows
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_of_residuals
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_osin_of_residuals
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturation_limitSet_of_residuals
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationPairAndHullAgain_of_residuals
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.manuscriptSentence_saturationApplyHull_of_residuals
+#audit_axioms GroupApproximation.Manuscript.NonMF.TorsionFreeClosed.saturationLemmaRows_of_residuals
