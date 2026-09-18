@@ -41,9 +41,9 @@ namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
 open Topology
 
 /-- Generator support separation on a clopen neighbourhood basis.  For every isomorphism `Φ`, every
-point `x` and every open `W ∋ x`, SOME clopen `V` with `x ∈ V ⊆ W` and SOME generating sets
-`G₁ ⊇`-generating `F_V`, `G₂`-generating `F_{Vᶜ}` have `Φ`-images with pairwise disjoint moved
-sets.  TRUE (`rubinBasisGeneratorSeparation_of_rigidPolarBasisOpenTransport`). -/
+point `x` and every open `W ∋ x`, there are SOME clopen `V` with `x ∈ V ⊆ W` and SOME sets `G₁`,
+`G₂` with `F_V ≤ ⟨G₁⟩` and `F_{Vᶜ} ≤ ⟨G₂⟩`, such that `Φ f`, `Φ k` have disjoint moved sets for
+all `f ∈ G₁`, `k ∈ G₂`.  TRUE (`rubinBasisGeneratorSeparation_of_rigidPolarBasisOpenTransport`). -/
 def RubinBasisGeneratorSeparationStatement : Prop :=
   ∀ (X Y : Type) [TopologicalSpace X] [TopologicalSpace Y] [CompactSpace X] [T2Space X]
     [TotallyDisconnectedSpace X] [PerfectSpace X] [Nonempty X]
