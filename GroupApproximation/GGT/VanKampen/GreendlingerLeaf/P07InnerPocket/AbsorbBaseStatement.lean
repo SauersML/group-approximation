@@ -25,8 +25,8 @@ lake-filled witness works.
 **Why Base is not proved outright.**  The premise `hno` rules out the witness walk itself.  What
 remains open for the lake-filled witness `F₁` is:
 1. `F₁ ⊆ sideFaces K.walk`.  A lake of `F₀` can contain faces outside the pocket, such as `Π_j`
-   inside a `G₁`-loop, or a component of `sideOutside K.walk` that is fenced off by `F₀`.  Ruling this
-   out needs the outer Euler hypothesis (connectivity of `sideOutside`), and the corpus has no
+   inside a `G₁`-loop, or a component of `sideOutside K.walk` that is fenced off by `F₀`.  Ruling
+   this out needs the outer Euler hypothesis (connectivity of `sideOutside`), and the corpus has no
    lemma turning that into dual connectivity.
 2. An enclosed successor walk for `F₁`.  `exists_enclosedFaceSetSucc_of_connected` needs
    connectivity of the keep map of `F₁`, and this is not available.

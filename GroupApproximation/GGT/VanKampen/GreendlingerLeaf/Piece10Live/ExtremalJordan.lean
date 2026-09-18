@@ -92,5 +92,5 @@ theorem extremalJordan_arcEnd_of_uniform (K : PocketFaceSet D eps X lo hi)
     ExtremalJordanArcEnd K r l := by
   refine ⟨l, [], (List.append_nil l).symm, ?_⟩
   rcases hl with hall | hnone
-  · exact Or.inl ⟨hall, fun x hx => absurd hx List.not_mem_nil⟩
-  · exact Or.inr ⟨hnone, fun x hx => absurd hx List.not_mem_nil⟩
+  · exact Or.inl ⟨hall, fun _ hx => absurd hx List.not_mem_nil⟩
+  · exact Or.inr ⟨hnone, fun _ hx => absurd hx List.not_mem_nil⟩
