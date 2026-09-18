@@ -101,3 +101,42 @@ Two remarks, neither of them a claim about any particular enumeration.
 
 DERIVATION
 fp-window-group-shell-germ-proof
+
+## Attempts
+
+**Attempt 1 (the direct product with window zero): dead.** The cheapest way to make the
+window group finitely presented is `N = 0`, where `W = lambda(P)` is a copy of `P`. For an
+accessible input that is not virtually cyclic this is impossible:
+`accessible-shell-inputs-admit-no-shift-normalizing-enumeration` shows every candidate
+twisted near-bijection has index `0`, not `1`. Its end Euler measure count is exactly the
+obstruction to the shape "`sigma` is affine `y -> phi(y)c_i` on each infinite piece of a
+Cayley graph minus a finite set", which is what a normalizing enumeration has to be. So
+`N >= 1`, and the window group properly contains `lambda(P)`.
+
+**Attempt 2 (commuting copies at window one): reduces to the same index count, not
+pursued further.** The next cheapest target is `W_1 = P x P`, which asks the two copies
+`c_0 = lambda(P)` and `c_1 = s lambda(P) s^-1` to commute near infinity. For a one-ended
+input this forces the shape that the accessible node's count kills, as follows.
+
+1. The near centralizer of `lambda(P)` in the near permutation group consists of the near
+   permutations `f` with `f(hx) = h f(x)` for almost all `x`, for each `h` in `S`. For a
+   one-ended input, the almost-everywhere induction of
+   `one-ended-shell-shift-normalization-proof` upgrades this to `f = rho_c` near infinity
+   for a single `c`, where `rho_c(x) = xc`: the "constant" cannot vary, because a
+   one-ended group has no nontrivial almost-invariant partition.
+2. So `c_1 <= c_0'` near infinity forces `s lambda_h s^-1 = rho_(theta(h))` with `theta`
+   an anti-homomorphism, that is, `sigma` intertwines left translations with right
+   translations.
+3. Writing that out, `sigma(hx) = sigma(x) theta(h)` for almost all `x`, so
+   `sigma = L_c o theta'` near infinity for an injective anti-endomorphism `theta'` of
+   `P`. This is again the affine shape of the accessible node, with `phi` replaced by an
+   anti-endomorphism, and its index count then reads `(k^n - 1) mu(Pbar) = mn` for
+   `k = [P : theta'(P)]`, which has no solution.
+
+Step 1 and step 3 reuse the mechanism of the two landed obstruction nodes rather than a
+new argument, and the anti-endomorphism version of the count is not landed here, so this
+is recorded as an attempt and not as a claim. Its usable content is a design constraint: a
+finitely presented window group cannot be built from copies that commute near infinity, so
+the junction corrections must be non-abelian in an essential way. That is consistent with
+the failure mechanism of the square spiral, where the junction group is an infinite rank
+abelian group of line shifts.

@@ -181,4 +181,83 @@ def roseLobeMulti_Statement : Prop :=
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_Statement
 
+/-- **The singleton residual from the two-dart residual**: if the conclusion failed, each of the
+five exclusions would be violated by the proved case lemmas (`roseLobeMulti_lake_pair`,
+`_lake_wrap`, `_lobe_pair`, `_lobe_wrap`, `_kept_pair`), so the residual applies. -/
+theorem roseLobeMulti_choice_of (h : roseLobeMulti_Statement.{u, w, v}) :
+    roseLobeChoice_Statement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hpl hiff hcov
+    hside hI hT hIn hKept hOut
+  by_contra hne
+  apply hne
+  refine h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hpl hiff hcov hside hI hT
+    hIn hKept hOut ?_ ?_ ?_ ?_ ?_
+  · intro A C a b hc hAC hab hlone hO hS
+    exact hne (Or.inr (roseLobeMulti_lake_pair
+      (f := ⇑X.toCombMap.alpha)
+      (PO := fun x => X.toCombMap.faceOf x = X.outerFace)
+      (PS := fun x => X.toCombMap.faceOf x = (cell X K.source).face)
+      K.boundary.cycle_nodup hc hAC hab hlone hO hS))
+  · intro M a b hc hM hab hlone hO hS
+    exact hne (Or.inr (roseLobeMulti_lake_wrap
+      (f := ⇑X.toCombMap.alpha)
+      (PO := fun x => X.toCombMap.faceOf x = X.outerFace)
+      (PS := fun x => X.toCombMap.faceOf x = (cell X K.source).face)
+      K.boundary.cycle_nodup hc hM hab hlone hO hS))
+  · intro A C a b hc hab hlone hx hIab hTab
+    obtain ⟨x, hxk, hax⟩ := hx
+    exact hne (Or.inl (roseLobeMulti_lobe_pair
+      (kp := fun x => X.toCombMap.faceOf x = (cell X K.kept).face)
+      K.boundary.cycle_nodup hc hab hlone hxk hax
+      (roseLobeChoice_kept_on K hcov hside hxk) hIab hTab))
+  · intro M a b hc hab hlone hx hTab
+    obtain ⟨x, hxk, hax⟩ := hx
+    exact hne (Or.inl (roseLobeMulti_lobe_wrap
+      (kp := fun x => X.toCombMap.faceOf x = (cell X K.kept).face)
+      (I := invDarts X K.sourceArc.darts)
+      K.boundary.cycle_nodup hc hab hlone hxk hax
+      (roseLobeChoice_kept_on K hcov hside hxk) hTab))
+  · intro A C a b x hc hAC hxk hax hab hlone hTab
+    exact hne (Or.inl (roseLobeMulti_kept_pair
+      (kp := fun x => X.toCombMap.faceOf x = (cell X K.kept).face)
+      (I := invDarts X K.sourceArc.darts)
+      K.boundary.cycle_nodup hc hAC hxk hax hab hlone hTab))
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_choice_of
+
+/-- **The region choice from the two-dart residual.** -/
+theorem roseLobeMulti_region_of (h : roseLobeMulti_Statement.{u, w, v}) :
+    roseLobeRegion_Statement.{u, w, v} :=
+  roseLobeChoice_region_of (roseLobeMulti_choice_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_region_of
+
+/-- **The planar core from the two-dart residual.** -/
+theorem roseLobeMulti_core_of (h : roseLobeMulti_Statement.{u, w, v}) :
+    roseLobeCore_Statement.{u, w, v} :=
+  roseLobeChoice_core_of (roseLobeMulti_choice_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_core_of
+
+/-- **The Greendlinger leaf from the two-dart residual.** -/
+theorem roseLobeMulti_green_of
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobeMulti_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobeChoice_green_of hoff (roseLobeMulti_choice_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_green_of
+
+/-- **The outer-pinch step from the two-dart residual.** -/
+theorem roseLobeMulti_pinch_of (h : roseLobeMulti_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobeChoice_pinch_of (roseLobeMulti_choice_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeMulti_pinch_of
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
