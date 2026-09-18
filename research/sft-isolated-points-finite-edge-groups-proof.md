@@ -62,8 +62,8 @@ edges.
   labels on `I(f)`.
 - **(UE)** Suppose `W ∩ A_f^+ = ∅`. Then `y_*|_(A_f^+)` is the only configuration on `A_f^+` that
   satisfies the constraints at the sites of `A_f^+` and along the edges meeting `A_f^+`, where sites
-  outside `A_f^+` carry the labels of `y_*`. By the cut property those outside neighbours lie in
-  `I(f) ∖ A_f^+`.
+  outside `A_f^+` carry the labels of `y_*`. For an HNN extension the outside neighbours lie in
+  `I(f) ∖ A_f^+`; for an amalgam they lie in the parent piece (referee note).
   - *Proof.* Put any such configuration on `A_f^+` and keep `y_*` elsewhere. Every constraint of `Y` then
     holds, so the result lies in `Y`. It agrees with `y_*` on `W`, so it is `y_*`.
 

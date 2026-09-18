@@ -120,3 +120,17 @@ extension of the Basilica group `B` along `σ : b ↦ a, a ↦ b^2`
   - **Candidates not yet examined.** Nekrashevych's self-similarity complex of the contracting group `B`, which is
     Gromov-hyperbolic with boundary the limit space, the Basilica Julia set, together with the dilation `t`. Also
     Farley-type diagram complexes for the Bartholdi–Virág presentation.
+- **Exact algebraic form of `FP_3` (2026-09-18, bh-openq-lists).**
+  - Since `B~` is `FP_2`, Bieri's criterion (Brown, *Cohomology of groups*, VIII.4.8) gives: `B~` is `FP_3` iff
+    `H_2(B~; ∏_I ZB~) = 0` for every index set `I`.
+  - Put `M = ∏_I ZB~`, restricted to `B`, and `α = 1 − t·σ_*`. The Mayer–Vietoris sequence of the ascending HNN
+    extension (vertex group and edge group `B`) turns this into two conditions: **`α` is onto `H_2(B; M)` and `α`
+    is injective on `H_1(B; M)`.** `FP_2` of `B~` is the statement that `α` is onto `H_1(B; M)`.
+  - Here `H_1(B; M) ≠ 0`, because `B` is not `FP_2` (`basilica-fp2-covers-contain-free-subgroups`).
+  - `basilica-hnn-self-similar-geometry-gives-no-brown-certificate` shows that the self-similar trees give no Brown
+    certificate. So this algebraic condition, a rewriting system, or a free Morse-theoretic complex is what is left.
+- **Farley and diagram-group route closed (2026-09-18, bh-openq-lists).** `basilica-group-is-not-bi-orderable`: take
+  `x = (a, a^b)`. It commutes with `b^2 = (a, a)` but not with `b`, so `B` is not bi-orderable. By Guba–Sapir
+  (diagram groups are bi-orderable), `B~` is not a subgroup of any diagram group. So Farley's free cube-complex
+  certificate, the one that gives `F_∞` for Thompson's `F`, is unavailable. Free actions on other cube complexes are
+  not excluded.

@@ -64,8 +64,14 @@ transplant theorems).
 
 ## Corollary (gates G2(c) and G2 over Kazhdan lattices)
 
-Let `Ω_min` be the one-way variant (A4) of `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`: free,
-minimal, quantum rigid, SW-deterministic. Put `Y = Ω_min ∘ M^(-1)` with `M(−e_1) = (2,1)`,
+Let `Ω_min` be the minimal crossing-wire shift in the causal diagonal-time layout, `Ω_SW` of
+`sw-minimal-crossing-wire-shift-is-rigid`. It is free, minimal, quantum rigid and SW-deterministic, conditional
+on that node's §2 layout. **Correction (bh-invent-04, after the referee FAIL of the SW Layout Lemma).** An
+earlier version of this sentence cited the "one-way (A4) variant" with a generic one-way zone. The
+causality lemma in that node rules that variant out. The transplant needs a cone-deterministic fibre, so
+this Corollary, including the `F_m × F_n` case, rests on the causal layout. It does not rest on the
+two-way-head fibre of `minimal-crossing-wire-fixed-point-shift-is-quantum-rigid`, which is not
+cone-deterministic. Put `Y = Ω_min ∘ M^(-1)` with `M(−e_1) = (2,1)`,
 `M(−e_2) = (1,1)`. Recoding by `GL_2(Z)` keeps minimality, freeness and rigidity at large scale.
 - **`F_m × F_n`, `m, n >= 2`.** The transplant is an SFT that is **free, minimal and quantum rigid**
   over every field. This combines items 1, 2 and 4 of `tree-product-busemann-transplants-preserve-quantum-rigidity`
