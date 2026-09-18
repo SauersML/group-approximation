@@ -51,3 +51,15 @@ Finite presentability would be stronger than needed.
   - Where it stops: no obstruction and no proof. It is not checked whether
     `C(C, Z) ⋊ V` is FP_2, and descending links for the two-parameter filtration
     were not attempted.
+- 2026-09-18 (swarm-0917-w6b-w6b-re-pull-z-3, reframing), **the fixed-point test
+  passes, node still OPEN.**
+  - `C(C, Z) ⋊ V` is the one-point abstract twisted Brin–Thompson group
+    `{s}V_Z`. The trivial action `Z ↷ {s}` is of type [A_2], so FFWZ Theorem
+    4.1(ii) makes it finitely presented
+    (`cantor-integer-maps-by-v-are-of-type-fp2`).
+  - So item 2 of `v-times-shift-fp2-forces-fp2-of-every-subshift-restriction`
+    holds, and the cheapest open test named above cannot kill the route. Any
+    obstruction must come from the shift dynamics, meaning infinite subshifts or
+    `Σ` itself.
+  - Where it stops: periodic orbits of period `n ≥ 2` were not checked, and no
+    finiteness proof for `A(G)` was attempted.
