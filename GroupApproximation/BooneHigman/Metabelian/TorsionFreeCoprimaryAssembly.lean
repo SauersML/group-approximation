@@ -32,7 +32,7 @@ theorem torsionFreeModuleLinearity_of_coprimary (h : CoprimaryTorsionFreeLineari
   haveI := GroupRing.isNoetherianRing_intGroupRing Q
   obtain ⟨n, S, P, e, hS, -, hP⟩ :=
     Primary.exists_coprimary_decomposition (MonoidAlgebra ℤ Q) W
-  choose K hF d ρ ι hchar hinj hequiv using
+  choose K _ d ρ ι hchar hinj hequiv using
     fun j : {i : Fin n // IsAddTorsionFree (W ⧸ S i)} =>
       h Q hfg (W ⧸ S j.1) inferInstance j.2 (P j.1) (e j.1) (hP j.1)
   haveI : ∀ j, CharZero (K j) := fun j =>

@@ -41,7 +41,7 @@ theorem rel_of_isChain_stretch (f g : α → β) {d e : α} {B C : List α}
   | cons b₀ B' =>
     obtain ⟨hhead, htail⟩ := List.isChain_cons.mp hc
     obtain ⟨b₁, hb₁⟩ : ∃ b₁, (b₀ :: B').getLast? = some b₁ :=
-      ⟨_, List.getLast?_eq_getLast (List.cons_ne_nil b₀ B')⟩
+      ⟨_, List.getLast?_eq_some_getLast (List.cons_ne_nil b₀ B')⟩
     have hmem : b₁ ∈ (b₀ :: B').getLast? := Option.mem_def.mpr hb₁
     exact (hhead b₀ (Option.mem_def.mpr rfl)).trans
       ((hB b₀ (Option.mem_def.mpr rfl) b₁ hmem).trans

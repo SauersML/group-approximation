@@ -31,7 +31,7 @@ theorem exists_common_field (K₁ K₂ : Type) [Field K₁] [Field K₂] [CharZe
   haveI : Nontrivial (K₁ ⊗[ℚ] K₂) :=
     Algebra.TensorProduct.nontrivial_of_algebraMap_injective_of_isDomain ℚ K₁ K₂
       (algebraMap ℚ K₁).injective (algebraMap ℚ K₂).injective
-  obtain ⟨m, hm⟩ := Ideal.exists_maximal (K₁ ⊗[ℚ] K₂)
+  obtain ⟨m, _⟩ := Ideal.exists_maximal (K₁ ⊗[ℚ] K₂)
   letI : Field (K₁ ⊗[ℚ] K₂ ⧸ m) := Ideal.Quotient.field m
   let f₁ : K₁ →+* K₁ ⊗[ℚ] K₂ ⧸ m :=
     (Ideal.Quotient.mk m).comp (Algebra.TensorProduct.includeLeftRingHom :

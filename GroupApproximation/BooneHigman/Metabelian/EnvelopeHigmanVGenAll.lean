@@ -33,7 +33,8 @@ theorem vgen_step {n : ℕ} (hn : 3 ≤ n)
     have huz : (u ++ [z]).length ≤ n := by
       simp only [List.length_append, List.length_singleton, hu]
       omega
-    exact vgen_shorten_both x z hpu hup (ih p u (by omega) (by omega)) (ih (u ++ [x]) (u ++ [z]) hux huz)
+    exact vgen_shorten_both x z hpu hup (ih p u (by omega) (by omega))
+      (ih (u ++ [x]) (u ++ [z]) hux huz)
   · intro hvw hwv
     have hpw : ¬ p <+: q ++ [z] := by
       intro h
