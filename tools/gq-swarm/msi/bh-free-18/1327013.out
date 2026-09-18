@@ -1,0 +1,23 @@
+== planted (must be UNSAT at once)
+empty nogood from check P-old
+  planted leaves=1 clauses=1 eliminated=1/1728000 sizes={0: 1} 0s
+VERDICT UNSAT mode=planted leaves=1 clauses=1 eliminated=1/1728000 sizes={0: 1} 0s
+  smallest nogood 0 []
+== orbit calibration (hierarchical tapes, default fill last: must be SAT)
+SAT fill 432104321043210 [((0, ('T<', 0)), (1, 'P>')), ((0, ('T<', 1)), (1, 'X<')), ((0, ('T<', 2)), (2, 'P>')), ((0, ('X<', 1)), (0, 'T<')), ((0, ('X<', 2)), (2, 'X<')), ((1, ('S>', 2)), (1, 'P>')), ((1, ('T<', 1)), (1, 'X<')), ((1, ('T<', 2)), (2, 'P>')), ((1, ('X<', 1)), (0, 'T<')), ((1, ('X<', 2)), (2, 'X<')), ((2, ('S>', 2)), (1, 'P>')), ((2, ('T<', 1)), (1, 'X<')), ((2, ('T<', 2)), (2, 'P>')), ((2, ('X<', 1)), (0, 'T<')), ((2, ('X<', 2)), (2, 'X<'))]
+  orbit leaves=1 clauses=0 eliminated=0/1728000 sizes={} 1s
+VERDICT SAT mode=orbit leaves=1 clauses=0 eliminated=0/1728000 sizes={} 1s
+== full criterion
+  full leaves=4 clauses=8 eliminated=4/1728000 sizes={1: 2, 2: 6} 2s
+  spot-check: 10 random completions of learned nogoods, 0 did NOT fail (must be 0)
+  full leaves=8 clauses=16 eliminated=138/1728000 sizes={1: 6, 2: 8, 3: 2} 232s
+  full leaves=48 clauses=96 eliminated=129609/1728000 sizes={1: 10, 2: 38, 3: 38, 4: 10} 262s
+VERDICT UNSAT mode=full leaves=188 clauses=376 eliminated=1728000/1728000 sizes={1: 10, 2: 38, 3: 78, 4: 130, 5: 96, 6: 24} 287s
+  smallest nogood 1 [(2, ('S>', 2), (2, 'X<'))]
+  smallest nogood 1 [(2, ('S>', 2), (1, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (2, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (2, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (2, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (2, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (1, 'X<'))]
+  smallest nogood 1 [(1, ('S>', 2), (1, 'X<'))]
