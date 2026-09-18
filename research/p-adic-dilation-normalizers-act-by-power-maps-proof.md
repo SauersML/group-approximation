@@ -44,12 +44,13 @@ Lane proof. Notation as in the claim. Write `log` for the `p`-adic logarithm, an
   `log(E) ⊆ p^2 Z_p` (`8Z_2` when `p = 2`).
 - **p-adic six exponentials theorem.** If `x_1, x_2` and `y_1, y_2, y_3` in `C_p`
   are each linearly independent over `Q`, and all `x_i y_j` lie in the domain
-  of `exp_p`, then some `exp_p(x_i y_j)` is transcendental. This is the p-adic
-  analogue of the six exponentials theorem of Lang and Ramachandra. For the
-  p-adic statement see S. Lang, *Introduction to Transcendental Numbers* (1966),
-  and M. Waldschmidt, *Diophantine Approximation on Linear Algebraic Groups*
-  (Springer, 2000). The precise source and theorem number are not pinned; this
-  is flagged for the citation referee.
+  of `exp_p`, then some `exp_p(x_i y_j)` is transcendental. This is J.-P. Serre,
+  *Dépendance d'exponentielles p-adiques*, Sém. Delange--Pisot--Poitou 7
+  (1965/66), exposé 15, Théorème 1, p. 15-02, by Lang's method (S. Lang,
+  *Introduction to Transcendental Numbers*, 1966). Serre's form: `A` free of rank
+  `a`, exponents `b_1, ..., b_b` with all `exp(b_i x)`, `x in A`, algebraic, and
+  `b > a/(a-1)`, force the `b_i` to be dependent over `Q`. Here `a = 3`, `b = 2`,
+  `A = ⊕ Z y_j`, `(b_1, b_2) = (1, α)`.
 - With `(x_1, x_2) = (1, α)` all six values are rational, a contradiction. So
   `α = a/b` with `a != 0`, `b >= 1`.
 
@@ -58,7 +59,7 @@ Lane proof. Notation as in the claim. Write `log` for the `p`-adic logarithm, an
   in `E`, on which `log` is injective, so `β(u)^b = u^a`. This is item 1.
 - **Item 2.** For a prime `q in Q_0`, take `M` with `q^M in Q_1`. Then
   `β(q)^(Mb) = q^(Ma)`, and `β(q)` is rational. By unique factorization,
-  `β(q) = ± q^(a/b)`.
+  `β(q) = ± q^e` with `e = a/b` an integer.
   - So `β(q_0) = q_1` is impossible for distinct primes.
   - The relations of item 2 generate `Q_0 = <q_0, q_1, q_2>`, of rank three.
     Since `c d_u c^-1 = d_(β(u))` is multiplicative in `u`, `β` is the shift on

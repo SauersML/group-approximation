@@ -131,7 +131,7 @@ The first two constraints are from
      finitely generated self-similar overgroup of `Γ_p`, the first overgroup of
      that kind. The reason is that `Γ_p(1)` is self-similar and `W` is closed
      under states.
-     - By the two nodes above, the generators of `W` must be wild, and no
+     - By the two nodes above, some generator of `W` must be wild, and no
        element of `W` shifts three dilations.
      - Whether finitely many wild finite-state maps generate a group containing
        infinitely many `d_q` is open. Finite presentation would be a separate
