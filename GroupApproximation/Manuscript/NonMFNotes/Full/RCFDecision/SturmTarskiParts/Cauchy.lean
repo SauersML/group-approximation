@@ -189,7 +189,7 @@ theorem sgn_neg (a : ℝ) : sgn (-a) = -sgn a := by
   rw [show -a = (-1) ^ 1 * a by ring, sgn_neg_one_pow_mul, pow_one, neg_one_mul]
 
 /-- Pointwise form of `cind_rel`. -/
-theorem jmp_rel (x : ℝ) {A B D S : ℝ[X]} (hA : A ≠ 0) (hB : B ≠ 0) (hD : D ≠ 0) {c d : ℝ}
+theorem jmp_rel (x : ℝ) {A B D S : ℝ[X]} (hA : A ≠ 0) (_hB : B ≠ 0) (hD : D ≠ 0) {c d : ℝ}
     (hc : 0 < c) (hd : 0 < d) (hrel : C c * A + C d * D = S * B) :
     jmp x B A = -jmp x B D := by
   have hCA : C c * A ≠ 0 := mul_ne_zero (C_ne_zero.mpr hc.ne') hA
