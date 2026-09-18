@@ -29,3 +29,25 @@ arithmetic half of that split, and it involves no winding estimate.
 - **2026-09-18, swarm-0917-w7-w7-deligne-break: posed.** No test has been run. The tensor-power amplification of
   `deligne-sep8-first-order-tensor-threshold` needs `o(|t|)` errors with `t -> 0`. It does not start from one fixed
   parameter `1/3` with nonzero error, so it gives no leverage here.
+- **2026-09-18, swarm-0917-w8-w8-deligne-last1 (cohomology-index): virtual descent is killed as a class, and the
+  hole stays OPEN.** See `deligne-parameter-group-is-a-virtual-invariant`, ESTABLISHED.
+  - *Finite-index invariance.* `P_op` is the same on every finite-index `Gamma'`. Twisted induction preserves the
+    operator-norm defect blockwise.
+  - *Divisibility.* If `[b|Gamma'] = n[beta] + tors`, then `P(Gamma',beta) = n P_op`. By Deligne, `n` is always
+    in `{+-1, +-2}`, and `n = 2` is attained.
+    - A virtual division by an odd prime or by `4` would make the matching `E_q` a finite-index extension of a
+      fibre product `Gamma' x_(Z/s) F`, hence residually finite.
+  - *What dies.* An attempt to get `1/9`, or any parameter outside `(1/6)Z/Z`, from a `1/3`-model dies at "divide
+    by `3` on a finite-index subgroup". The attempt may use tensor products, sums, rephasing, automorphisms,
+    restriction, induction and virtual division. The hypothetical `P_op = (1/6)Z/Z` is closed under all of them.
+    The invariant is the virtual divisibility set `{+-1, +-2}` of the Maslov class.
+  - *Remaining algebraic loophole.* Block-monomial models have genuine finite `Gamma`-sets as block patterns (V6).
+    What (V5) does not cover is sequences whose stabilizers change along the sequence, with index going to
+    infinity. Apart from that, a proof of this hole needs analytic input about operator-norm approximation, beyond
+    virtual cohomology.
+  - *Side observations (not proved in a node).*
+    - Suppose some relator `r` has `3 not | k`. Then a `1/3`-model in dimension `d` with `3 not | d` has defect at
+      least of order `1/d` on `W_r`, since `det W_r = 1` while `omega^(kd) != 1`. So the dimensions of a norm
+      model must eventually be divisible by `3`, or tend to infinity.
+    - Property (T) of `E_infinity` gives a uniform spectral gap for representations with `zeta != 1`, but it yields
+      no contradiction with a `1/3`-model.
