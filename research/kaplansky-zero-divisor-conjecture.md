@@ -159,3 +159,10 @@ fixed finitely presented torsion-free group `U`.
     FSP's open q:HF
     (`universal-division-rings-do-not-iterate-over-graphs-of-groups`). Over
     non-amenable edges, only Hughes-free/Linnell vertex rings can still iterate.
+  - **q:HF, elliptic half (w5-059).** In `U(D_A *_{D_C} D_B)`, every locally
+    elliptic subgroup is Linnell, in every characteristic and for any edge. So
+    q:HF reduces to Hughes pairs `(H, N)` whose kernel `N` contains a hyperbolic
+    element. The missing input is a subgroup-field compatibility for `N`, which
+    Cohn inner rank over the coproduct does not supply
+    (`fsp-q-hf-reduces-to-hyperbolic-kernel-pairs`). Higman's group is perfect,
+    so this applies only to its locally indicable subgroups.
