@@ -77,6 +77,9 @@ Burnside input, and each does so through a specific mechanism:
    orbit its elements are prefix replacements, where the pumping of `almost-automorphism-torsion-subgroups-are-rf`
    applies. So non-residually-finite torsion can live only in the **singular germs**. The Burnside test gives the
    shell route no obstruction beyond its finite-presentation gate, but it says where the gate must carry torsion.
+   Made precise by `torsion-subgroups-of-almost-v-groups-localize-at-singular-germs`: a finitely generated torsion
+   subgroup either has infinite orbits on its singular support, or is locally-finite-by-(germs at finitely many
+   fixed points).
 7. **Type (A) and shift-compiler routes (twisted Brin–Thompson `SV_G` over a finitely presented strongly
    shift-similar or type (A) actor `G ⊇ P`).** The actor `G` itself contains `P`. So these routes need finitely
    presented actors with non-residually-finite torsion, for instance a finitely presented strongly shift-similar

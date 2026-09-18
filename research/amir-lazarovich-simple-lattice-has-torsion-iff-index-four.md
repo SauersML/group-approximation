@@ -134,7 +134,13 @@ AL = Amir–Lazarovich, arXiv:2605.09493. Artifact §A records the data below, w
 
 ## Scope
 
-- **Not decided.** Nothing here decides which alternative holds for any explicit `Λ'`.
+- **Decided later, elsewhere.**
+  - `amir-lazarovich-simple-lattices-have-torsion` (bh-free-extensions) proves the torsion
+    alternative `Λ = Λ'^+` for AL's explicit scaffolding (d ≥ 9) and for seeds with a collapsed pair
+    `a_j a_k ∈ FR(Γ)`.
+  - `amir-lazarovich-plus-subgroup-is-perfect` shows that `Λ'^+` is perfect for every seed. So the
+    torsion-free alternative always needs a nonabelian finite simple quotient of `Λ'^+`.
+  - This node by itself decides nothing for an explicit `Λ'`.
   - Radu's (6,6)-groups have index exactly 4 in 158 of 160 cases (artifact §C). That is weak
     evidence for the torsion alternative, and it concerns BMW groups, not AL lattices.
   - A positive answer to 21.46 along this route needs a proper finite-index subgroup of `Λ'^+`.
@@ -148,3 +154,16 @@ AL = Amir–Lazarovich, arXiv:2605.09493. Artifact §A records the data below, w
     - `⟨ζ_y : y ∈ Y⟩` is transitive on `V` and on `E(O_d)`;
     - `δ_D(y) ≠ y` forces `ζ_y` to fix D and all its neighbours;
     - `⟨δ_D⟩` is transitive on Z, and some `δ_D` is trivial.
+
+## Lesson for general BH
+
+- **The mechanism.** A group acting simply transitively on the vertices of a product has "legal
+  moves": the relator `yDy = υ(D)`, where the state y is untwisted at D. They conjugate generators of
+  the same type into each other, and the twisted moves fix what they touch. So a large, transitive
+  group of legal moves makes every generator of one type conjugate.
+- **Consequence for simple hosts.** Once one "diagonal" dies in a finite quotient, the whole
+  quotient collapses to the colouring. So the finite residual of an NST lattice is either the
+  explicit colour-preserving subgroup or it is cut out by a nonabelian quotient.
+- **Tool.** One relator `r ∈ Γ^(∞)` from an embedded non-residually-finite seed computes the finite
+  residual as `⟨⟨r⟩⟩` (Radu's device). This gives explicit presentations of NST-simple hosts, which
+  matters wherever BH hosts must be written down, for instance for formal verification.

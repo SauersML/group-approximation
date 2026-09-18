@@ -134,6 +134,31 @@ for every Leavitt path algebra of a finite graph (AC Lemma 6.1). So the same aud
 The centre of a simple unital Leavitt path algebra is the coefficient field (Aranda
 Pino--Crow 2011; cited, not read here).
 
+## Master-route form (gate G3r)
+
+**Corollary.** Let `B` satisfy three conditions:
+- it is a finitely presented ring;
+- it is a simple `F_p`-algebra with centre `F_p`;
+- `K_1(B ⊗ L_p) = K_2(B ⊗ L_p) = 0`.
+
+Then `(B ⊗ L_p)^x / F_p^x` is finitely presented and simple, and it contains `B^x` and every
+`GL_n(B)`. The trust is the same as (T1)--(T3) above.
+
+`B` may be an algebraic crossed product `C(X, F_p) ⋊ Λ` once it is simple with centre `F_p`.
+
+*Why only `K_1` and `K_2`.* The audit items use the `K`-theory hypothesis at two points only.
+- Item 5 needs `H_n(GL_∞(R)) = 0` for `n <= 2`. `BGL(R)^+` is an H-space with `π_1 = K_1` and
+  `π_2 = K_2`, so Hurewicz gives this from `K_1 = K_2 = 0`.
+- Khanh's Theorem 2.2 induction, run up to degree 2, gives `H_1 = H_2 = 0` for every `GL_r(R)`.
+  That is all item 7 (`N_3 = [S_3, N_3]`) and item 8 (perfectness) use.
+
+The other items use only the three listed properties of `B`. Item 10 becomes
+`Z(B ⊗ L_p) = Z(B) ⊗ F_p = F_p`.
+
+*The gate itself.* By `leavitt-tensor-k-theory-is-carried-by-nil-groups`, the hypothesis
+`K_1 = K_2 = 0` holds as soon as `B ⊗ L_p` is `K_1`- and `K_2`-regular. So the ring side of the
+master route needs Nil-vanishing for `B ⊗ L_p`, and no further `K`-theory computation.
+
 ## Lesson for general BH
 
 Once its hypotheses are audited, the Khanh machine is a **general host theorem with one

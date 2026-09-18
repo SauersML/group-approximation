@@ -1,299 +1,300 @@
-# Boone–Higman: master route (synthesis v1, 2026-09-18)
+# Boone–Higman: master route (synthesis v2, 2026-09-18)
 
-This is the lead synthesis of the 09-18 BH swarm, written by lane `bh-synth-lead`. It was
-written from `gq-bh-bh-writeup-state.md`, from `board/LESSONS.md` (38 lines at 10:58 CDT),
-and from the route and obstruction nodes cited below, read on origin/main.
+Lead synthesis of the 09-18 BH swarm (lane `bh-synth-lead`). v1 was 12a123bf1. v2 merges the
+reductions (87daac9eb), obstructions (5f923fc28) and hosts (03663c211) syntheses. It is a
+strategy document, not a proof; most cited nodes are unreviewed lane proofs whose status
+lines govern. The live lane table is `board/SYNTHESIS.md`.
 
-Scope and caveats:
-- It is a strategy document, not a proof, and it asserts no new theorem.
-- Most nodes it cites are unreviewed lane proofs; their status lines govern.
-- The sibling synthesis lanes (hosts, obstructions, reductions) had not posted when v1
-  was written. §8 is reserved for merging them.
+## 0. Thesis
 
-## 0. Thesis in one paragraph
+Four independent synthesis lanes reach **one route and one missing theorem.**
 
-Almost every obstruction found this week is the same obstruction, and almost every
-success is the same success.
+- **The route:** `boone-higman-via-leavitt-units-of-rigid-sft-overgroups` (ring side), with
+  its group-side twin `boone-higman-via-v-times-aperiodic-sft-full-groups`.
+- **Why each lane lands there:**
+  - **Reductions (canonical inputs).** Every universal host must contain the simple
+    Kazhdan groups H_Γ = EL_3(R_Γ), where R_Γ is a Cantor crossed-product algebra
+    (`decidable-host-classes-reduce-to-canonical-kazhdan-groups`). The master host,
+    units of a Leavitt tensor of a Cantor crossed product, has exactly this shape.
+  - **Obstructions (complexity wall).** Every finite-presentation certificate on main
+    certifies *deterministic* local rules. Those cap the word problem and push a Kazhdan
+    input into a unit or actor group, which is a recursion trap. A universal host needs
+    finite presentation for *non-deterministic* finite-type dynamics: 2D SFTs and
+    fixed-point tilings.
+  - **Hosts (one machine).** B_A = (faithful coded action) + (fp of the Cuntz-stabilized
+    full group). Unit groups of coded groupoids act residually finitely, and rank one is
+    local. So simple Kazhdan inputs need rank ≥ 2, and the top missing engine is a
+    finiteness theorem for **non-LCM** splitting categories.
+  - **This lane (the local rigidity principle, LRP).** A host is fp only if its global
+    structure is the unique solution of finitely many local rules. Every kill this week is
+    a non-rigid model; every success is a rigid finite-type coding.
 
-- **Why constructions fail.** A finite presentation can only see finitely many local
-  configurations. A host is finitely presented only if its global combinatorial
-  structure is pinned down by finitely many local rules, with no independent far-away
-  perturbation. Call this the **local rigidity principle (LRP)**.
-- **Why constructions succeed.** Each successful host is a *rigid finite-type coding* of
-  its input: a Li degree category with unique factorization, a finite-nucleus RSG, a
-  building whose links force the global structure, or a self-similar tree-pair calculus.
-- **Where decidability comes in.** Jeandel's theorem ties decidability to exactly this
-  kind of object: a finitely presented group carrying a strongly aperiodic SFT has
-  solvable word problem.
+**The unifying statement.**
+- *The missing theorem is:*
+  > **(FTR) finite type + local rigidity ⇒ finite presentation, for non-deterministic
+  > codings.**
+- *Where FTR stands today:*
+  - **Ring side, proved:** `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products`.
+    This is the one non-deterministic certificate on main.
+  - **Group side, open:** the P2′ gate below, and the hosts lane's "Li without lcms"
+    (non-LCM means several refinements exist, i.e. non-determinism).
+- *What's left for the route:* the rigid object itself. Over a finitely presented
+  decidable envelope of each input, we need
+  > **(★) a quantum-rigid free minimal SFT.**
+- *Decidability* is consumed exactly at (★) (Jeandel: fp + strongly aperiodic SFT ⇒ decidable WP).
 
-**The master route.** Embed each decidable group G in a finitely presented group Λ
-carrying an **effective, finite-type, locally rigid Cantor coding**. Then take the
-Cuntz-stabilized full group. Comparison, type (A), simplicity and the embedding into a
-finitely presented simple group are already proved. So the whole of Boone–Higman, in its
-strong permutational form, is concentrated in one object: **rigid aperiodic tilings of
-decidable groups**.
+## 1. The local rigidity principle (LRP): the evidence
 
-## 1. The local rigidity principle: evidence from today's nodes
-
-Every obstruction row below is a *non-rigid model*. Each is a second solution of the
-finitely many local rules, invisible to short relators. Every success row is a
-*uniqueness mechanism*.
-
-| Kind | Node | The non-rigidity or rigidity mechanism |
+| Kind | Node | Mechanism |
 |---|---|---|
-| kill | `free-shift-houghton-like-envelopes-are-not-fp` | a generic enumeration is locally stable, so far-away transplants are invisible |
-| kill | `fsym-containing-fp-groups-are-pinned-by-finitely-many-equations` | Schreier-ball test: a second enumeration with the same L-balls means not fp |
-| kill | `houghton-like-envelope-fp-pins-the-enumeration-by-near-relators` | fp forces ν to be the unique solution of finitely many local rules |
-| kill | `fp-pl-groups-with-f-have-no-transcendental-support-endpoints` | deformation: relators see finitely many inequalities, so perturb the parameter |
-| kill | `fp-alternating-full-groups-of-free-subshifts-force-sft` | fp forces finite type, i.e. finitely many local rules |
-| kill | `v-times-golden-silver-wang-product-full-group-is-not-fp` | two independent faults can be translated apart (the difference set splits) |
-| kill | `fp-v-times-subshift-full-groups-force-quantum-rigidity` | every operator-valued model of the local rules must commute |
-| kill | `annular-free-product-germ-hosts-are-not-finitely-presented` | independent finite quotients per depth; no rule carries depth n to depth n+1 |
-| kill | `block-power-germ-schedules-with-fp-germ-group-are-exponential` | fp germ group forces a linear recurrence, so schedules are rigidly bounded |
-| kill | `eventually-periodic-genuine-shell-actions-give-fp-envelopes` | in dimension one, the only rigid structures are periodic, so the inputs are virtually abelian |
-| success | `finitely-coded-cantor-actions-give-type-a-hosts` | Li's (UFP\*): unique factorization of degrees, so Li's F_n theorem applies |
-| success | `a2-lattices-embed-in-fp-simple-groups` | projective-plane links force the tile graph to be irreducible (local to global) |
-| success | `cocompact-tree-product-lattices-lie-in-type-a-class` | a cube k-graph, with power and phase to force loops |
-| success | `hyperbolic-groups-lie-in-the-permutational-class` | a finite nucleus: the horofunction boundary is a finite-state coding |
-| success | `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products` | ring side: quantum rigidity suffices for finite presentation |
+| kill | `free-shift-houghton-like-envelopes-are-not-fp` | generic enumeration locally stable; far transplants invisible |
+| kill | `houghton-like-envelope-fp-pins-the-enumeration-by-near-relators` | fp ⇒ ν is the unique solution of finitely many local rules |
+| kill | `fp-pl-groups-with-f-have-no-transcendental-support-endpoints` | relators see finitely many inequalities, so deform |
+| kill | `fp-alternating-full-groups-of-free-subshifts-force-sft` | fp ⇒ finite type |
+| kill | `v-times-golden-silver-wang-product-full-group-is-not-fp` | two independent faults translate apart |
+| kill | `fp-v-times-subshift-full-groups-force-quantum-rigidity` | every operator model of the rules must commute |
+| kill | `annular-free-product-germ-hosts-are-not-finitely-presented` | independent depths; no rule carries depth n to depth n+1 |
+| kill | `eventually-periodic-genuine-shell-actions-give-fp-envelopes` | in 1D, rigid means periodic, so only virtually abelian inputs |
+| success | `finitely-coded-cantor-actions-give-type-a-hosts` | Li's (UFP\*): unique factorization |
+| success | `a2-lattices-embed-in-fp-simple-groups` | pencil closure in projective-plane links (local → global) |
+| success | `cocompact-tree-product-lattices-lie-in-type-a-class` | cube k-graph, power and phase |
+| success | `quantum-rigid-sfts-over-fp-groups-have-fp-crossed-products` | ring side: rigidity suffices |
 
-**Corollaries of the LRP.** These are design rules for every lane.
-1. **Dimension one is too small.** N-indexed codings of one-ended groups (Houghton-like
-   routes, shells) cannot be both rigid and aperiodic. Rigid means periodic in dimension
-   one, which leaves only virtually abelian inputs. Λ-indexed codings of a one-ended Λ
-   can be both, because Robinson and Mozes tilings exist. Cohen's theorem (strongly
-   aperiodic SFTs need one end) is the matching necessary condition. **The Houghton and
-   shell failures are one-dimensional shadows of the tiling route.**
-2. **Products create independent faults.** Two uncoupled codings on the factors of
-   Λ₁ × Λ₂ give non-rigid models (golden–silver). Simulation designs of the form
-   "input constant along Z²-planes" must couple their hierarchy across all directions.
-3. **Invariant measures block the known fp mechanisms.** Every recorded
-   finite-presentation theorem runs through compression, i.e. pure infiniteness, or
-   through a group law. A full-support invariant measure, which exists for every
-   free Z²-SFT, excludes compression on the crossed-product side. **Prefer non-amenable Λ**
-   (Λ₀ × F₂, or Λ₀ × a hyperbolic group), where free minimal subshifts can be
-   paradoxical (`f2-groups-have-paradoxical-free-minimal-subshifts`). Stabilizing by the
-   Cuntz groupoid supplies compression on the group side in any case.
-4. **Complexity lives in the units or the acting group.** Finite unit groups cap the word
-   problem at exponential time (`finite-k-graph-full-groups-have-exponential-word-problem`,
-   `complexity-bounded-host-classes-are-not-universal`). A universal host must contain
-   the input's own finitely presented envelope Λ as a genuine acting group, as the SFT
-   route does, not as germs of V.
-5. **Kazhdan inputs.** They cannot pass through V-germ hosts
-   (`normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`). They can pass
-   through Λ-acting hosts, because Λ ≤ F(T) is a global inclusion.
-6. **Central extensions** whose class survives on point stabilizers cannot be coded over
-   a boundary (`central-extension-untwisting-over-boundaries`). So Deligne-type inputs
-   need a free coding of their own. The route below provides one: free SFTs are free.
-7. **Masses must not be self-similar in a single ratio.** Hosts for Q-divisible inputs
-   (GL_n(Q)) need infinitely many independent scaling ratios
-   (`no-free-q-odd-action-by-v-has-a-doubling-intertwiner`, lesson). Over a
-   Λ-coding that contains GL_n(Q) inside Λ this constraint is vacuous, because the
-   divisibility sits in Λ, not in the dynamics.
+The LRP is the obstructions lane's (R) (fp-rigidity in marked groups); its (Z) is the group-side face.
 
-## 2. Strategy 1 (master route): rigid aperiodic tilings of decidable envelopes
+**Design rules (for every lane).**
+1. **Rank ≥ 2, one-ended.** Rigid N-codings are periodic. Houghton and shell routes are
+   1D shadows. Rank-one hosts confine zero sets and put FW inputs in local groups (hosts:
+   `rank-one-cone-hosts-put-fw-groups-in-local-map-groups`).
+2. **Couple product factors.** Uncoupled factors give independent faults (golden–silver).
+3. **Never rely on amenability of Λ.** Osajda inputs force non-exact Λ; invariant measures block
+   compression, the known fp mechanism. Prefer Λ₀ × F₂.
+4. **Complexity must sit in Λ, not in units.** Units act residually finitely
+   (`finitely-coded-unit-groups-act-residually-finitely`), and finite units give an
+   exponential cap.
+5. **Kazhdan inputs enter by global Λ-inclusion,** i.e. hosts' slot (P). The
+   canonical-input filter kills amenable, Haagerup, RF and finite-Kazhdan host classes.
+6. **Central classes need free codings.** Boundary covers cannot untwist a class that
+   survives on stabilizers. A free SFT carries all of Λ, centre included.
+7. **Q-divisibility sits in Λ,** never in dynamical masses or the degree monoid.
 
-**The chain.** It is already on main as two routes, which share one open core:
-`boone-higman-via-v-times-aperiodic-sft-full-groups` (group side) and
-`boone-higman-via-leavitt-units-of-rigid-sft-overgroups` (ring side).
+## 2. Strategy 1, the master route
 
 ```
 G decidable
- └─(G0: Clapham)→ Λ₀ ⊇ G, finitely presented, solvable WP        [supplied]
-    └─(G1: existence)→ Λ = Λ₀ × H and a free minimal SFT X ⊆ A^Λ   [OPEN]
-       └─(G2: rigidity)→ X quantum rigid (at every large D, over F_2)  [OPEN; the crux]
-          ├─ ring side:  B = LC(X,F_2) ⋊ Λ is fp (established given G2)
-          │               └─(G3r: K)→ K_1 = K_2 = 0 for B ⊗ L_{F_2}(1,2)  [OPEN]
-          │                    └─(G4r)→ (B⊗L)^× fp simple ⊇ G   [conditional on Khanh import]
-          └─ group side: (G3g: P2′) quantum rigid ⇒ A(G_V × (Λ⋉X)) fp   [OPEN]
-                          └─(G4g)→ simple, type (A) ⇒ PBH for G   [supplied]
+ └ G0  Clapham: Λ₀ ⊇ G fp, solvable WP                         [supplied]
+   └ G1  (P1) Λ = Λ₀ × H with a free minimal SFT X               [OPEN] = M2 + M1
+     └ G2  X quantum rigid (large D, over F₂)                    [OPEN, THE CRUX]
+       ├ ring: (E) B = LC(X,F₂) ⋊ Λ fp            (FTR ring side: established)
+       │       └ G3r (K): K₁ = K₂ = 0 for B ⊗ L_{F₂}(1,2)      [OPEN; torsion-free FJ Λ done]
+       │         └ A0 Khanh import ⇒ (B⊗L)^× fp simple ⊇ G      [conditional, cheap to discharge]
+       └ group: G3g (P2′ = FTR group side): A(G_V × Λ⋉X) fp    [OPEN, unattempted]
+                └ G4: simple + type (A) ⇒ PBH                    [supplied]
 ```
 
-**G0 (supplied).** `clapham-fp-embedding-preserves-word-problem`. By
-`boone-higman-iff-simple-kazhdan-decidable-inputs`, G may be assumed simple, Kazhdan,
-FA and decidable. The first hard concrete input is Λ₀ = St₁₀(R_L). It is finitely
-presented with solvable word problem, both refereed (`leavitt-resolvent-k2-stability-holds`),
-quasisimple, and contains every GL_n(Q).
+- **G0.**
+  - *The input.* It may be simple Kazhdan, or the canonical H_Γ.
+  - *For BBMZ 5.3(5).* Take Λ₀ = **St₁₀(R_L)**: fp, with solvable WP (refereed),
+    containing every GL_n(Q). Over F₂ its central Q^× lies in the *acting group*, not in
+    the ring's scalars, so the scalar obstruction does not arise (§8.1).
+- **G1.**
+  - *Supplied:*
+    - the necessity results (Jeandel, Cohen);
+    - `plane-constant-minimal-sft-factors-are-effective-minimal`;
+    - the split into M2 (an effective minimal free subshift on Λ₀) and M1 (a group
+      Durand–Romashchenko minimal simulation one Z² up);
+    - paradoxical free minimal subshifts.
+  - *Missing:* M2 for any non-abelian simple Kazhdan envelope; M1 beyond Z^d.
+- **G2.**
+  - *Supplied:*
+    - rigidity ⇔ fp crossed product over Z², with sufficiency over every fp Λ;
+    - wall rigidity ⇔ an idempotent commutator ideal;
+    - Labbé's shift is wall-rigid;
+    - permutive-triangle SFTs are rigid;
+    - three kills: periodic quantum tilings, positive entropy, split faults.
+  - *Missing:* **no quantum-rigid free minimal SFT is known over any group.**
+  - *Tools:* Ã₂ pencil closure; the (UFP\*) analogy; Labbé's crossing faults;
+    fixed-point parse uniqueness (§9).
+- **G3r.**
+  - *Supplied:* the gq Leavitt toolkit (one-step stabilization, refereed K₂ stability);
+    Ara–Brustenga–Cortiñas with KH vanishing; the case of torsion-free Farrell–Jones Λ.
+  - *Missing:* the NK-terms for non-regular B; Λ with torsion.
+- **A0.** Read Khanh arXiv:2609.08428 at source. This discharges the conditional of the
+  whole Leavitt route, and of bh-free-26's coNP^⊕P host.
+- **G3g.**
+  - *Idea:* a Stein–Farley complex on prefix-tree × pattern-cylinder partitions, where
+    rigidity should make the "mergeable pattern" descending links highly connected.
+  - *Why pair it:* it is the same theorem type as hosts' non-LCM gate (§8.3), so one lane
+    should attack both.
+  - *Payoff:* PBH.
 
-**G1, existence: a free minimal SFT on Λ = Λ₀ × H.**
-- *Supplied:*
-  - Jeandel: the decidability hypothesis is necessary, so this gate consumes it.
-  - Cohen: one-endedness is necessary; any product with an infinite H is one-ended.
-  - Barbieri–Sablik–Salo: strongly aperiodic SFTs on products (context only; must be
-    read at source).
-  - Durand–Romashchenko: minimality for Z^d.
-  - `plane-constant-minimal-sft-factors-are-effective-minimal`.
-  - The (M1)/(M2) split in `minimal-free-sft-via-plane-constant-minimal-simulation`.
-- *Missing:*
-  - (M2) an effectively closed minimal free subshift on Λ₀, for any non-abelian simple
-    Kazhdan envelope;
-  - (M1) a minimal SFT simulation beyond Z^d.
-- *Transferable tools:*
-  - decidable language from minimality plus effectivity;
-  - hierarchical (Robinson or Mozes) layers;
-  - `f2-groups-have-paradoxical-free-minimal-subshifts`.
+## 3. Strategy 1b: coded groupoids (the hosts program)
 
-**G2, rigidity (THE crux).** It is necessary for the group side and sufficient for the
-ring side.
-- *Supplied:*
-  - quantum rigidity is equivalent to finite presentation of the Z² crossed product
-    (`sft-crossed-product-fp-iff-quantum-rigid`), and sufficiency holds over every
-    finitely presented Λ;
-  - wall rigidity (first-order rigidity) is equivalent to an idempotent commutator ideal;
-  - Labbé's shift is wall-rigid (`labbe-shift-is-wall-rigid`);
-  - permutive-triangle SFTs are rigid;
-  - periodic quantum tilings refute rigidity, and positive entropy kills it;
-  - the golden–silver design warning.
-- *Missing:* **no free minimal SFT over any group is yet known to be quantum rigid**,
-  not even over Z² (`free-minimal-z2-sft-is-quantum-rigid`). The local-to-global step
-  (`wall-rigid-z2-sft-is-quantum-rigid`) is open.
-- *Transferable tools:*
-  - the Ã₂ link argument, a genuine local-to-global mechanism: pencil closure in
-    projective-plane links spreads a property from one tile to all tiles;
-  - Li's (UFP\*): unique factorization is rigidity;
-  - the crossing-fault network of Labbé's Markov partition.
+- **The statement** (Li `thm:ZS` + `finitely-coded-cantor-actions-give-type-a-hosts`). A
+  finite-object left-cancellative (UFP\*) category with (F), enough loops and F_n units
+  gives type (A) automatically.
+- **What fits already.** Hyperbolic groups, tree and Ã₂ lattices, CT_P(Z), RCWA groups and
+  2V_τ.
+- **The limit.** These categories are deterministic, and their units act residually
+  finitely, so they reach structured classes, not the universal hard input.
+- **The upgrade.** "Li without lcms" (dissection categories) is the group-side FTR.
+- **The bridge.** Rigid SFT ⇒ non-LCM extension-move category. It would make P2′ follow
+  from a non-LCM Li theorem.
 
-**G3r, K-theory (ring side).** K₁ = K₂ = 0 for the Leavitt tensor of a free crossed
-product (`free-action-leavitt-tensor-hosts-have-trivial-k1-k2`).
-- *Supplied:*
-  - the gq Leavitt toolkit: unstable K-theory equals stable, one-step stabilization,
-    and a refereed K₂ stability chain;
-  - the Ara–Brustenga–Cortiñas sequence;
-  - working over F₂ avoids the rational-scalar obstruction
-    (`leavitt-scalar-commutators-block-fp-central-quotients` kills only Q ⊆ Z(R)).
-- *Missing:* control of the K-theory of B ⊗ L for non-regular B. Homotopy K-theory
-  vanishes, so the nil-terms are the issue. Also, the Khanh finite-presentation import
-  must be read at source.
+## 4. Strategy 2: algebra BH in characteristic p
 
-**G3g, P2′ (group side).** "Quantum rigid ⇒ A(G_V × (Λ ⋉ X)) is finitely presented" is
-the converse of the proved necessity theorem. Nobody has attempted it.
-- *Tool:* a Stein–Farley complex whose vertices are prefix-tree × pattern-cylinder
-  partitions, with Brown's criterion.
-- *Where rigidity should enter:* the descending links are joins of "mergeable pattern"
-  complexes. Rigidity (unique local extensions) should be what makes them highly
-  connected, as UFP\* does in Li's proof.
-- *Payoff:* a positive P2′ gives **PBH**, not just BH, through
-  `fp-v-times-minimal-action-full-groups-have-type-a-actions`.
+- **Route.** G ≤ F_p[G]^× ≤ A^× for an fp simple A with K₁ = K₂ = 0 for L ⊗ A. This is
+  `decidable-group-algebras-have-fp-central-simple-hosts`.
+- **Gates.** (A1) algebra BH, starting from the Bokut and Belyaev lineage at source.
+  (A2) is G3r.
+- **Relation to Strategy 1.** LC(X,F₂) ⋊ Λ is one such A.
 
-**G4 (supplied).**
-- Nekrashevych's simplicity of A(T) for minimal T.
-- `v-times-ample-full-groups-are-generated-by-transpositions`.
-- Type (A) from finite presentation.
-- `central-simple-leavitt-tensor-unit-groups-are-simple`.
+## 5. Strategy 3 (backup): BH ⇔ PBH, and closures of B_A
 
-## 3. Strategy 1b: rigid codings in Li's form (finiteness supplied, coding missing)
+- **The equivalence.** BH ⇔ PBH is BFFHZ Q3.4, or FFWZ Q5.9 after the FFWZ stabilizer gap
+  is repaired.
+- **The one known gap.** The only recorded fp simple group not known to be in B_A is the
+  Titz Mite–Witzel kernel. Its MIF would close product closure and joint embedding for every
+  recorded group.
+- **The limit.** Closure theorems calibrate BH but cannot prove it (the reductions
+  lane's collapse theorems).
 
-`finitely-coded-cantor-actions-give-type-a-hosts` and Li's Theorem `thm:ZS` together
-make finite presentation *automatic*. It holds for a finite-object left cancellative
-category with degree map, (UFP\*), condition (F), two loops of every colour, and unit
-groups of type F_n. So:
+## 6. Lanes
 
-> G ∈ B_A whenever some finitely presented Λ ⊇ G acts faithfully by global bisections
-> of such a finitely coded, connected-in-pieces groupoid, with finitely presented unit
-> groups.
+See `board/SYNTHESIS.md` for names and status. By gate:
+- **G2** (6): labbe, permutive, f2f2, buildings, obstruct, and fixedpoint (proposed).
+- **G1** (4): simulation, M2 ×2, rigid-simulation.
+- **G3g + non-LCM** (2).
+- **G3r** (1), **A0** (1), **S2** (1), **S3** (2: Titz Mite–Witzel MIF; FFWZ Q5.9), **verification** (2).
 
-- **What already fits.** Hyperbolic groups, tree-product lattices, Ã₂ lattices, CT_P(Z),
-  RCWA groups and 2V_τ are all instances.
-- **What is missing.** A coding with *complex units*, since finite units cap the word
-  problem at exponential time, that is also *effective* on the boundary. One object with
-  unit group Λ is a self-similar structure, which forces Λ to be residually finite.
-  Several objects with a Λ-labelled product structure are not effective.
-- **The live design.** Cube-type categories whose objects are local states of a Λ-tiling
-  (bh-free-36's pointed cube category for cubulated groups is the prototype,
-  `cubulated-groups-act-by-bisections-of-a-pointed-cube-category`). Its morphisms are
-  rigid extensions of tiles, and Λ acts by bisections.
-- **How it links to Strategy 1.** A rigid SFT should give a Li-coded groupoid of
-  "extension moves". Proving that correspondence would make G3g a corollary of Li's
-  theorem. This is the most promising bridge.
+**Retire or re-scope** isolated test-group lanes (H4, BG, BS(2,3), Out(F_n) stabilizers,
+Artin atoms, dendrites). Each becomes "a rigid finite-type coding over an fp overgroup?",
+an instance of G1 ∧ G2.
 
-## 4. Strategy 2 (algebraic, characteristic p): algebra BH plus Leavitt transfer
+**Structured-class lanes.** These use the hosts program and are not on the universal path:
+- closed MCG (𝒯_m) and Deligne (2V_Λ): the non-LCM gate;
+- higher-rank germ extensions: test PE_N(R_L), Deligne, Q_{g,2}.
 
-G ↪ F_p[G]^×. If F_p[G] ↪ A, with A a finitely presented simple F_p-algebra such that
-L ⊗ A has K₁ = K₂ = 0, then PE_N(L ⊗ A) is a finitely presented simple group
-containing G.
+## 7. Assessment: true or false?
 
-**Gates.**
-- (A1) algebra BH for group algebras of decidable groups, which is OPEN on main.
-  Check the classical literature (Bokut, Belyaev) at source first: a classical algebra
-  Higman embedding with simplicity would remove A1.
-- (A2) K-theory and stability for L ⊗ A, the same gate as G3r.
+**Leaning true, about 65/35.** The obstructions lane concurs: "the obstructions give no
+evidence for falsity".
 
-**What it supplies.** It avoids dynamics entirely, and the ring-side equivalence
-"fp ⇔ quantum rigidity" shows the two strategies meet. The crossed product
-LC(X, F₂) ⋊ Λ is one specific A.
+**For:**
+1. Every obstruction is an LRP or (Z) instance aimed at one host family, not an invariant
+   of all fp simple groups.
+2. Separators must omit nested Kazhdan decidable hosts and cannot be Π₃ properties.
+3. Jeandel's duality puts decidability exactly at the route's one consuming gate.
+4. Four independent syntheses, and bh-writeup's pass (408c4dc50: "wrapper solved, the
+   actor is everything", "fp is regularity"), converge on one route.
 
-## 5. Strategy 3 (structural backup): make BH ⇔ PBH, then close B_A
+**Against:**
+1. No quantum-rigid free minimal SFT is known over any group, and compression is blocked
+   for amenable Λ.
+2. Rigidity may not survive simulation, because reading pressure grows exponentially.
+3. Three separator candidates survive: a uniform recursive WP bound, exactness, and
+   coarse embeddability of all fp simple groups. The data cannot rule out the WP bound.
 
-- **The equivalence.** BH ⇔ PBH is exactly BFFHZ Q3.4 (MIF envelopes), or FFWZ Q5.9
-  (kernel removal). The FFWZ non-faithful stabilizer gap flagged by bh-typeA-universal
-  needs repair first.
-- **Why it's worth closing.** B_A is extraordinarily closed:
-  - under products, free products and graph products;
-  - under finite-index overgroups;
-  - under free, surface and finite-Out hyperbolic kernels;
-  - under centralizer amalgams, good coset wreaths, and identity-edge HNN extensions over
-    good edges.
-- **The only obstruction left.** The one recorded finitely presented simple group not
-  known to be in B_A is the Titz Mite–Witzel kernel. Showing it is MIF closes product
-  closure and joint embedding for every recorded group.
-- **Status.** This strategy does not prove BH. It makes Strategy 1's output maximally
-  reusable, and it certifies that no *known* finitely presented simple group separates
-  BH from PBH.
+**Decisive objects:**
+- *Toward true:* one quantum-rigid free minimal SFT over a one-ended group, a non-amenable
+  one or a fixed-point tiling.
+- *Toward false:* a rigidity obstruction for all free minimal SFTs over one-ended groups,
+  or a uniform complexity bound.
 
-## 6. Lane assignment table (proposed; the coordinator decides)
+## 8. Merged sibling syntheses: reconciliation
 
-| Gate | Lanes | What each should try |
-|---|---|---|
-| **G2 rigidity, Z² calibration** | 2 | (a) local-to-global for Labbé: turn the crossing-fault network plus the idempotent ideal into J_D = 0 (`labbe-crossed-product-fp-via-wall-rigidity`); (b) a free minimal *permutive-triangle* SFT (non-sofic rows from bipermutive cellular automata), or a proof that none exists |
-| **G2 rigidity, non-amenable** | 2 | (c) a quantum-rigid free minimal SFT over F₂ × F₂ or Λ₀ × F₂, using paradoxical subshifts and compression (which escapes the invariant-measure heuristic); (d) a rigid SFT from building links: Mozes-type SFTs over products of trees or Ã₂ tilings, where the pencil-closure argument gives local-to-global rigidity |
-| **G2 obstruction side** | 1 | (e) find an invariant forcing a noncommuting quantum family for *every* free minimal SFT over some Λ (entropy, amenability, periodic quantum tilings). A proof would kill Strategy 1, so it must be tried honestly |
-| **G1 existence** | 3 | (f) (M2) an effective minimal free subshift on St₁₀(R_L) (first Kazhdan target) and on general decidable finitely presented groups; (g) (M1) a group simulation theorem over Λ₀ × Z² and Λ₀ × F₂ with *coupled* hierarchy, reading Durand–Romashchenko and Barbieri–Sablik–Salo at source; (h) a *rigid simulation theorem*: does coupling preserve quantum rigidity? |
-| **G3g P2′** | 2 | (i) a Stein–Farley / Brown proof of "rigid ⇒ A(G_V × (Λ⋉X)) finitely presented", with Z² Labbé as the test case; (j) the Strategy 1b bridge: rigid SFT ⇒ Li-coded extension category, so Li's theorem gives P2′ |
-| **G3r K-theory** | 2 | (k) K₁ = K₂ = 0 for (LC(X,F₂) ⋊ Λ) ⊗ L, reusing the gq stability toolkit; (l) read the Khanh import at source and discharge its conditions |
-| **Strategy 2** | 1 | (m) the literature and proof of algebra BH for F_p[G] (Bokut and Belyaev lineage), feeding A2 = G3r |
-| **Strategy 3** | 2 | (n) Titz Mite–Witzel kernels are MIF (bh-testcases); (o) the FFWZ gap and kernel removal Q5.9 |
-| **Verification** | 2 | adversarial checks of the load-bearing nodes: the necessity theorem, the ring sufficiency theorem, the golden–silver refutation, Labbé wall rigidity, and the Ã₂ link theorem |
+### 8.1 Reductions (87daac9eb)
 
-That is 17 lanes on the master route. Lanes on isolated test groups (H4, BG, BS(2,3), Out(F_n) stabilizers,
-triangle Artin atoms, dendrites) should be retired or re-scoped. Each should ask: "does my group
-have a rigid finite-type coding over an fp overgroup?" That question is one instance of G1 plus G2.
+**Canonical inputs** (`decidable-host-classes-reduce-to-canonical-kazhdan-groups`, proved).
+For *every* class 𝒦, 𝒦 hosts all decidable groups iff it hosts every H_Γ = EL_3(R_Γ), where
+R_Γ = LC(2^{C(Γ)},F₂) ⋊ (Z/2≀C(Γ)).
+- *Reconciled.* This explains the master host's shape: H_Γ already lives in (R_Γ⊗L)^×.
+- *Sharper form.* The route becomes a **Higman embedding theorem for Cantor crossed
+  products**: replace the fg crossed product R_Γ by an fp one over a larger Λ. (E) is this
+  statement. For BH it suffices that Γ ≤ Λ.
 
-## 7. Honest assessment: is BH more likely true or false?
+**Collapse theorems.** Closures reach all decidable groups only if their base does. So
+closure lanes calibrate but cannot finish; this is Strategy 3's scope.
 
-**Leaning true, about 65/35.**
+**Ranking "M2 first".** I adopt it as the execution order, with one correction.
+- *The correction.* M1 + M2 give (P1) = G1 only, not (E). (E) needs G2: golden–silver is
+  minimal, free and finite type, yet not rigid. No lane should build on (M1 ∧ M2 ⇒ E).
+- *Reconciled ranking:*
+  1. M2;
+  2. in parallel, G2 on the Z² calibration;
+  3. a rigidity-preserving M1;
+  4. A0;
+  5. K;
+  6. P2′;
+  7. closures.
 
-**Reasons for.**
-1. **No general obstruction exists.** Every obstruction in the graph is an LRP instance
-   aimed at one host family (V-germs, trees, RF, CAT(0), products). None is an invariant
-   of finitely presented simple groups in general.
-2. **Separators are forced to be exotic.** They must omit nested Kazhdan decidable hosts
-   (`bh-separators-must-omit-nested-decidable-hosts`), and they cannot come from any Π₃
-   property of presentations (the Σ₃ index-set theorem).
-3. **Decidability sits exactly where tilings need it.** Jeandel's duality (strongly
-   aperiodic SFT ⇒ decidable) and the fact that the SFT route consumes decidability at
-   exactly one gate, G1, are a structural coincidence one expects from a true theorem.
-4. **Hard classes keep falling.** Hyperbolic groups, linear groups, all Ã₂ and tree
-   lattices, and CT_P(Z) all fell to *rigid codings*, never to ad-hoc tricks.
+**"GL_n(Q) via (E), not R_L".** Adopted as follows.
+- *Dead:* the Steinberg-quotient route over R_L. Its central Q^× is not fg
+  (`leavitt-scalar-commutators-block-fp-central-quotients`).
+- *Surviving:* St₁₀(R_L) as the *acting group* Λ₀ of (E), where over F₂ the Q^× is a
+  harmless central subgroup of Λ.
+- *Consequence:* 5.3(5) = G1 ∧ G2 for Λ₀ = St₁₀(R_L), or for any fp decidable
+  Λ₀ ⊇ GL_n(Q).
 
-**Reasons against.**
-1. **No rigid example exists yet.** No quantum-rigid free minimal SFT is known over any
-   group. For amenable Λ the heuristic points against one: an invariant measure blocks
-   compression.
-2. **Rigidity may not transfer.** Rigidity may not survive the simulation needed to put
-   an arbitrary Λ₀ inside Λ; reading pressure grows exponentially for Λ₀ of exponential
-   growth.
-3. **BH would force a monster.** BH predicts a single finitely presented simple group that
-   is non-exact, not coarsely embeddable, fails BCC, contains an infinite bounded-exponent
-   group, and has word problem beyond any recursive bound. None is known.
+### 8.2 Obstructions (5f923fc28)
 
-**What would change the estimate.**
-- *Toward true:* one quantum-rigid free minimal SFT over one one-ended non-amenable
-  group. That is the single most informative object the swarm could produce.
-- *Toward false:* a rigidity obstruction valid for all free minimal SFTs over all
-  one-ended groups.
+**(Z) zero-set confinement** (`zero-set-confinement-unifies-host-obstructions`, proved).
+BS roots and FH/FW subgroups land in the zero set of every stable length. Rank-one hosts
+confine the zero set; rank ≥ 2 hosts do not.
+- *Reconciled:* design rule 1. Λ ⋉ X is rank ≥ 2 by construction.
 
-## 8. Sibling synthesis inputs
+**The complexity wall.**
+- *Reconciled:* it is exactly why G2 is the crux. X *is* non-deterministic finite-type
+  dynamics, and the ring-side FTR is the one certificate of that kind on main.
+- *Their "decisive technical question"* (fp certificates for hierarchical tilings) is G2.
 
-Reserved for bh-synth-hosts, bh-synth-obstructions and bh-synth-reductions. None had
-posted at v1 (10:58 CDT; only a node dump existed in `work/bh-synth-reductions`).
-`board/SYNTHESIS.md` carries the live version.
+**Master candidate** (a DRS fixed-point tiling groupoid, programmed with the WP and
+stabilized by O₂). This is the route with X chosen as a fixed-point tiling.
+
+**The Q-exact diagnostic.**
+- *Ring side:* it does not bind, since the host is a unit group.
+- *Group side:* Λ ⋉ X is non-amenable whenever Λ is non-exact, as rule 3 requires.
+
+### 8.3 Hosts (03663c211)
+
+**One machine.** B_A = coded action + fp stabilized full group, with a Stein–Farley / Li
+engine. This is Strategy 1b.
+
+**Units act residually finitely** (`finitely-coded-unit-groups-act-residually-finitely`).
+- *Reconciled:* this is rule 4, and it is why the route puts the input in Λ (slot P) and
+  never in units.
+- It also sharpens the complexity wall: in a coded groupoid, a hard input can only enter
+  as piecewise elements.
+
+**Rank one is local** (`rank-one-cone-hosts-put-fw-groups-in-local-map-groups`).
+- *Reconciled:* rule 1. Hosts' master reduction (rank ≥ 2 coded action + fp) is the
+  group-side form of the route, applied to finitely coded groupoids.
+
+**Top gate: "Li without lcms"** (dissection categories; 𝒯_m for closed MCG, 2V_Λ for
+Deligne). It is an instance of the group-side FTR, since non-LCM means non-deterministic.
+- *Proposal:* one theorem-type lane on non-LCM Stein–Farley complexes, serving P2′,
+  𝒯_m and 2V_Λ at once.
+
+**Higher-rank germ extensions** (BHM over 2V). A structured route: it avoids rank-one
+locality but not the complexity wall. Its test cases are PE_N(R_L), Deligne and Q_{g,2}.
+
+## 9. New synthesis insight: fixed-point tilings supply the cross-depth rule
+
+Three independent lessons ask for one ingredient:
+- **bh-free-22:** fp needs "a finite rule transporting depth n to depth n+1".
+- **Ã₂ pencil closure:** local structure propagates to global irreducibility.
+- **(★):** rigidity must pass from windows to the whole plane.
+
+A self-simulating (fixed-point) tiling has exactly this. Each level-k macro-tile is
+determined by one finite rule applied to its level-(k−1) parse, with the same rule at every
+level.
+
+> **Conjecture (G2-fp).** A fixed-point tiling with locally unique parse is quantum rigid.
+
+- **Proof strategy:** induction on levels. A commuting operator family on level-(k−1)
+  supertiles extends uniquely to one on level-k supertiles; this is the operator version of
+  unique parsing.
+- **Over Z²:** it gives (★), the calibration gate T and `free-minimal-z2-sft-is-quantum-rigid`.
+- **Over Λ₀ × Z²:** combined with a rigid simulation, it gives (E), hence BH, for every
+  decidable input through the ring side.
+- **Lane:** the proposed bh-g2-fixedpoint.

@@ -703,3 +703,301 @@ if __name__ == '__main__' and sys.argv[1] == 'verify':
     verify('main'); verify('control')
     print("elapsed", round(time.time() - T0), "s")
 ```
+
+## 8. Finite index is local; twisted `C_2*C_3` local search (2026-09-18, after the 10:48 INSIGHT FIRST order)
+
+**General tool landed.** `finite-index-in-a-full-group-is-local-fullness-at-one-cone`:
+- *Criterion.* A compressible subgroup of a purely infinite minimal full group `F` contains `D(F)`
+  iff it contains `D(F_C)` for one clopen `C` (Matui `simple2`, read at source).
+- *Compressibility.* It is free from any tree-like piece.
+- *Obstruction.* The only obstruction mechanism is equicontinuity of rigid stabilizers, and tree
+  compatibility is one instance of it.
+- *Instances.* Both open instances, the unequal-radix `A_5*A_6` shell and bh-shell-germ's twisted
+  `C_2*C_3` shell, reduce to local certificates.
+
+**Twisted `C_2*C_3` (bh-shell-germ's instance, now mine): bounded MSI search, no certificate.**
+- *Setup.* `R = <tau, w, b>` with `b = x_1^-1 a x_1`, binary Cantor set, lowest-digit-first residues.
+- *Localization.* Elements supported in a proper cone are conjugated into `[0]` and pulled back by
+  `y -> 2y`, which gives the local group `L`.
+- *Targets.* `x_0, x_1, tau, pi_[00][01], pi_[00][10]`.
+- *Calibration.* A planted local `x_0` is recovered. In the untwisted control `<tau, w, a>`, only
+  tree-type targets appear locally (`tau`, `pi_[00][01]`).
+- *Twisted run (7 min).*
+  - 1.19M localized commutators gave 285 local elements with ≤ 16 leaves.
+  - The closure of products with ≤ 10 leaves reached 871k elements.
+  - No target was found.
+- *Lesson from the failed search.* On `T_3` many depth-changing local elements, including `x_0`, are
+  tree automorphisms. A certificate needs `x_1` or `pi_[00][10]`, whose local copies were not reached
+  within 10 leaves. The question stays OPEN.
+- *MSI budget.* About 40 minutes of the approved hour is used, and nothing is left running.
+
+**Process slips (reported).** On two occasions I ran an empty `python3 -` heredoc locally, which did
+nothing, and once a `git fetch` (earlier, stopped). All computation ran on MSI.
+
+### Lesson for general BH
+Finite index in any full-group host is decided on one cone. This converts every "is this near group
+almost everything?" question into a finite certificate problem. Tree-type local elements are useless
+for it: a certificate must contain a local element that is not equicontinuous. That is exactly why
+tree-compatible encodings of free products fail, and it is the design target for any successful
+encoding.
+
+### Scripts `c2c3_local.py`, `c2c3_cert.py`
+
+```python
+#!/usr/bin/env python3
+"""Local-certificate search for bh-shell-germ's twisted C_2*C_3 enumeration.
+X = {0,1}^N (one root, radix 2, lowest digit first: cone [w] = residue sum w_i 2^(i-1) mod 2^|w|).
+R = <tau, w, b>, b = x1^-1 a x1 (or x1 a x1^-1), a = odometer.  B = <V, a>.
+Goal: elements of R supported in the cone [0]; pulled back to X they form the local group L.
+If L contains x0, x1, tau, pi_{00,01}, pi_{00,10} then L >= V (T = <F,tau>, V = <all cone
+transpositions>), hence R >= Rist_V([0]), hence R >= V by extreme proximality of <tau,w>, hence R = B.
+usage: c2c3_local.py MODE SECONDS   MODE = twist | twistinv | untwisted (control) | planted
+"""
+import sys, random, time
+from rnu_tables import compose, inverse, is_identity_leaf, merge
+T0 = time.time()
+BUDGET = float(sys.argv[2]) if len(sys.argv) > 2 else 500.0
+R2 = [2]
+def left(): return BUDGET - (time.time() - T0)
+def m(*gs):
+    r = gs[-1]
+    for g in reversed(gs[:-1]):
+        r = merge(compose(g, r), R2)
+    return r
+def L(a, M, b, N, G=0): return (0, a, M, 0, b, N, G)
+ID = [L(0, 1, 0, 1)]
+TAU = [L(0, 2, 1, 2), L(1, 2, 0, 2)]
+W3 = [L(1, 2, 2, 4), L(2, 4, 0, 4), L(0, 4, 1, 2)]
+X0 = [L(0, 2, 0, 4), L(1, 4, 2, 4), L(3, 4, 1, 2)]           # [0]->[00],[10]->[01],[11]->[1]
+X1 = [L(0, 2, 0, 2), L(1, 4, 1, 8), L(3, 8, 5, 8), L(7, 8, 3, 4)]
+A = [L(0, 1, 0, 1, 1)]
+PI_00_01 = [L(0, 4, 2, 4), L(2, 4, 0, 4), L(1, 2, 1, 2)]
+PI_00_10 = [L(0, 4, 1, 4), L(1, 4, 0, 4), L(2, 4, 2, 4), L(3, 4, 3, 4)]
+def canon(g): return tuple(sorted(merge(g, R2)))
+TARGETS = {canon(X0): 'x0', canon(inverse(X0)): 'x0^-1', canon(X1): 'x1', canon(inverse(X1)): 'x1^-1',
+           canon(TAU): 'tau', canon(PI_00_01): 'pi_00_01', canon(PI_00_10): 'pi_00_10'}
+def nontriv(g): return [x for x in g if not is_identity_leaf(x)]
+def carry_free(g): return all(x[6] == 0 for x in g)
+def support_cone(g):
+    """smallest cone (r mod 2^j) containing all moved leaves' domains, or None if trivial."""
+    non = nontriv(g)
+    if not non: return None
+    j = 0
+    while True:
+        J = 2 ** (j + 1)
+        if all(x[2] % J == 0 for x in non) and len(set(x[1] % J for x in non)) == 1:
+            j += 1
+        else:
+            break
+    return (non[0][1] % (2 ** j), 2 ** j)
+def pull_back_from0(g):
+    """g supported in [0] (residue 0 mod 2): conjugate by psi(y)=2y and return element on X."""
+    out = []
+    for (e, a, M, f, b, N, G) in g:
+        if a % 2 == 0 and M % 2 == 0:
+            assert b % 2 == 0 and N % 2 == 0
+            out.append((0, a // 2, M // 2, 0, b // 2, N // 2, G))
+    return merge(out, R2)
+def push_to0(g):
+    """if the support lies in a proper cone, conjugate into [0] (by tau if needed) and pull back."""
+    c = support_cone(g)
+    if c is None or c[1] == 1: return None
+    if c[0] % 2 == 1:
+        g = m(TAU, g, TAU)
+    return pull_back_from0(g)
+
+def main(mode):
+    random.seed(5)
+    x1i = inverse(X1)
+    if mode == 'twist': b = m(x1i, A, X1)
+    elif mode == 'twistinv': b = m(X1, A, x1i)
+    else: b = A
+    gens = [('t', TAU), ('w', W3), ('W', inverse(W3)), ('b', b), ('B', inverse(b))]
+    print("== mode", mode, "b leaves", len(b), flush=True)
+    pool = {}
+    def consider(name, h):
+        if h is None: return
+        c = canon(h)
+        if len(c) == 1 and is_identity_leaf(c[0]): return
+        if c in TARGETS: print("  TARGET FOUND", TARGETS[c], "=", name, flush=True)
+        if len(c) <= 24 and c not in pool: pool[c] = name
+    if mode == 'planted':  # calibration: plant a local copy of x0 in [0]
+        planted = m(TAU, TAU)  # identity
+        loc = [(0, 2 * a, 2 * M, 0, 2 * bb, 2 * N, G) for (e, a, M, f, bb, N, G) in X0] + [L(1, 2, 1, 2)]
+        consider('planted', push_to0(loc))
+    # phase 1: random commutators, localized
+    tried = 0
+    while left() > BUDGET * 0.45:
+        w1 = [random.choice(gens) for _ in range(random.randint(1, 5))]
+        w2 = [random.choice(gens) for _ in range(random.randint(1, 5))]
+        g1 = m(*[t[1] for t in w1]); g2 = m(*[t[1] for t in w2])
+        k = m(g1, g2, inverse(g1), inverse(g2))
+        tried += 1
+        nm = '[%s,%s]' % (''.join(t[0] for t in w1), ''.join(t[0] for t in w2))
+        consider(nm, push_to0(k))
+    print("  phase1 tried %d, local pool %d (<=24 leaves)" % (tried, len(pool)), flush=True)
+    # phase 2: bootstrap inside L (products and commutators of pool elements, keep small)
+    items = sorted(pool.items(), key=lambda kv: len(kv[0]))
+    items = items[:300]
+    cf_small = {}
+    it = 0
+    while left() > 15 and items:
+        (c1, n1) = random.choice(items); (c2, n2) = random.choice(items)
+        g1, g2 = list(c1), list(c2)
+        for (nm, h) in (('(%s)(%s)' % (n1, n2), m(g1, g2)), ('[%s,%s]' % (n1, n2), m(g1, g2, inverse(g1), inverse(g2)))):
+            it += 1
+            c = canon(h)
+            if len(c) == 1 and is_identity_leaf(c[0]): continue
+            if c in TARGETS: print("  TARGET FOUND", TARGETS[c], "=", nm[:300], flush=True)
+            if carry_free(c) and len(c) <= 6 and c not in cf_small:
+                cf_small[c] = nm
+            if len(c) <= 12 and c not in pool and len(items) < 3000:
+                pool[c] = nm; items.append((c, nm))
+    print("  phase2 products %d, pool %d, small carry-free elements %d" % (it, len(pool), len(cf_small)), flush=True)
+    for c, nm in sorted(cf_small.items(), key=lambda kv: len(kv[0]))[:25]:
+        print("   cf", len(c), [x[1:6] for x in c], "  via", nm[:120], flush=True)
+
+if __name__ == '__main__':
+    main(sys.argv[1])
+    print("elapsed", round(time.time() - T0), "s")
+```
+
+```python
+#!/usr/bin/env python3
+"""Certificate search: does R = <tau, w, b> contain Rist_V([0])?  Structured expressions, then
+independent pointwise re-verification of every target found.
+usage: c2c3_cert.py MODE SECONDS   MODE = twist | twistinv | untwisted
+"""
+import sys, random, time
+from rnu_tables import compose, inverse, is_identity_leaf, merge, evaluate
+from c2c3_local import (m, TAU, W3, X0, X1, A, PI_00_01, PI_00_10, canon, support_cone,
+                        pull_back_from0, nontriv, carry_free)
+T0 = time.time()
+BUDGET = float(sys.argv[2]) if len(sys.argv) > 2 else 400.0
+def left(): return BUDGET - (time.time() - T0)
+
+MODE = sys.argv[1]
+if MODE == 'twist': B = m(inverse(X1), A, X1)
+elif MODE == 'twistinv': B = m(X1, A, inverse(X1))
+else: B = A
+GEN = {'t': TAU, 'w': W3, 'W': inverse(W3), 'b': B, 'B': inverse(B)}
+TARGETS = {canon(X0): 'x0', canon(X1): 'x1', canon(TAU): 'tau', canon(PI_00_01): 'pi_00_01',
+           canon(PI_00_10): 'pi_00_10'}
+
+# expressions: global word = string over GEN; local expr: ('push', w1, w2) = local of [w1,w2]
+# (conjugated by tau if its support is in [1]); ('mul', e, f); ('inv', e)
+def gword(wd): return m(*[GEN[c] for c in wd]) if len(wd) > 1 else GEN[wd]
+def push(k):
+    c = support_cone(k)
+    if c is None or c[1] == 1: return None, None
+    flip = (c[0] % 2 == 1)
+    if flip: k = m(TAU, k, TAU)
+    return pull_back_from0(k), flip
+def eval_local(e):
+    if e[0] == 'push':
+        g1, g2 = gword(e[1]), gword(e[2])
+        k = m(g1, g2, inverse(g1), inverse(g2))
+        h, flip = push(k)
+        assert flip == e[3]
+        return h
+    if e[0] == 'mul': return merge(compose(eval_local(e[1]), eval_local(e[2])), [2])
+    if e[0] == 'inv': return inverse(eval_local(e[1]))
+
+def main():
+    random.seed(5)
+    pool = {}   # canon -> expr
+    found = {}
+    tried = 0
+    while left() > BUDGET * 0.55:
+        w1 = ''.join(random.choice('twWbB') for _ in range(random.randint(1, 5)))
+        w2 = ''.join(random.choice('twWbB') for _ in range(random.randint(1, 5)))
+        g1, g2 = gword(w1), gword(w2)
+        k = m(g1, g2, inverse(g1), inverse(g2))
+        tried += 1
+        h, flip = push(k)
+        if h is None: continue
+        c = canon(h)
+        if len(c) == 1 and is_identity_leaf(c[0]): continue
+        if len(c) <= 16 and c not in pool: pool[c] = ('push', w1, w2, flip)
+    print("== %s: phase1 %d commutators, local pool %d" % (MODE, tried, len(pool)), flush=True)
+    # BFS closure among small elements
+    items = list(pool.items())
+    for c, e in items:
+        if c in TARGETS: found.setdefault(TARGETS[c], e)
+    frontier = list(items)
+    rounds = 0
+    while left() > 25 and len(found) < len(TARGETS):
+        rounds += 1
+        new = []
+        base = sorted(pool.items(), key=lambda kv: len(kv[0]))[:400]
+        for (c1, e1) in frontier:
+            for (c2, e2) in base:
+                for (h, e) in ((merge(compose(list(c1), list(c2)), [2]), ('mul', e1, e2)),
+                               (merge(compose(list(c1), inverse(list(c2))), [2]), ('mul', e1, inv_expr(e2)))):
+                    c = canon(h)
+                    if len(c) > 10 or c in pool: continue
+                    if len(c) == 1 and is_identity_leaf(c[0]): continue
+                    pool[c] = e; new.append((c, e))
+                    if c in TARGETS and TARGETS[c] not in found:
+                        found[TARGETS[c]] = e
+                        print("  FOUND", TARGETS[c], "round", rounds, "t=%ds" % (time.time() - T0), flush=True)
+                if left() < 25: break
+            if left() < 25: break
+        frontier = new[:2000]
+        print("  round %d: new %d, pool %d, found %s" % (rounds, len(new), len(pool), sorted(found)), flush=True)
+        if not new: break
+    # independent verification of each found target
+    random.seed(99)
+    for name, e in sorted(found.items()):
+        h = eval_local(e)
+        ok_table = canon(h) == [k for k, v in TARGETS.items() if v == name][0]
+        # pointwise check of the global element behind the leaves: rebuild global element by
+        # pushing forward: g = psi o h o psi^-1 on [0], identity on [1]; compare against
+        # evaluating the expression's global commutators point by point
+        bad = 0
+        for _ in range(300):
+            y = random.randint(0, 10 ** 6)
+            gy = global_point(e, 2 * y)
+            if gy != (0, 2 * evaluate(h, 0, y)[1]): bad += 1
+            yo = 2 * y + 1
+            if global_point(e, yo) != (0, yo): bad += 1
+        print("  VERIFY %s: table-match=%s pointwise-bad=%d expr-size=%d" % (name, ok_table, bad, size(e)), flush=True)
+        print("    EXPR", name, show(e)[:2000], flush=True)
+
+def gpoint_word(wd, y):
+    pt = (0, y)
+    for c in reversed(wd):
+        pt = evaluate(GEN[c], *pt)
+    return pt[1]
+def ginv_point_word(wd, y):
+    # inverse of word applied pointwise: apply inverses of letters left to right
+    inv = {'t': 't', 'w': 'W', 'W': 'w', 'b': 'B', 'B': 'b'}
+    return gpoint_word(''.join(inv[c] for c in reversed(wd)), y)
+def global_point(e, y):
+    """Evaluate the GLOBAL element represented by local expr e (conjugated back), pointwise,
+    using only generator tables (no compose/merge)."""
+    if e[0] == 'push':
+        w1, w2 = e[1], e[2]
+        # k = g1 g2 g1^-1 g2^-1 applied right to left; possibly conjugated by tau (global)
+        def k(yy):
+            yy = ginv_point_word(w2, yy); yy = ginv_point_word(w1, yy)
+            yy = gpoint_word(w2, yy); yy = gpoint_word(w1, yy)
+            return yy
+        if e[3]:
+            return (0, evaluate(TAU, 0, k(evaluate(TAU, 0, y)[1]))[1])
+        return (0, k(y))
+    if e[0] == 'mul':
+        return global_point(e[1], global_point(e[2], y)[1])
+def inv_expr(e):
+    if e[0] == 'push': return ('push', e[2], e[1], e[3])
+    if e[0] == 'mul': return ('mul', inv_expr(e[2]), inv_expr(e[1]))
+def size(e):
+    return 1 if e[0] == 'push' else 1 + sum(size(x) for x in e[1:] if isinstance(x, tuple))
+def show(e):
+    if e[0] == 'push': return '[%s,%s]' % (e[1], e[2])
+    if e[0] == 'mul': return '(%s)(%s)' % (show(e[1]), show(e[2]))
+    if e[0] == 'inv': return '(%s)^-1' % show(e[1])
+
+if __name__ == '__main__':
+    main()
+    print("elapsed", round(time.time() - T0), "s")```
