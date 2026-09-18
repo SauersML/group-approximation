@@ -73,7 +73,9 @@ theorem p06RoseUncut_move_of_cellFilterMove {K : CellPocketFaceSet D eps X i j} 
   have hs₂ : (K.secondSide.filter p).length ≤ eps :=
     (List.length_filter_le p _).trans K.secondSide_length_le
   exact ⟨faces, kept, i, j, K.firstArc, K.secondArc, K.firstSide.filter p,
-    K.secondSide.filter p, _, _, hij, hout, hkept, hperm, hmem, rfl, K.firstArc_pos,
+    K.secondSide.filter p, K.firstSide.filter p ++ invDarts X K.firstArc.darts ++
+      K.secondSide.filter p ++ invDarts X K.secondArc.darts,
+    K.boundary.cycle.filter (fun d => !p d), hij, hout, hkept, hperm, hmem, rfl, K.firstArc_pos,
     K.secondArc_pos, hfirst, hsecond, hs₁, hs₂, hwalk', x, hx', y, hy', hxy⟩
 
 #audit_axioms p06RoseUncut_move_of_cellFilterMove
