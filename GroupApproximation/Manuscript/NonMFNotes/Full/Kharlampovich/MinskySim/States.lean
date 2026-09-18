@@ -117,6 +117,8 @@ def tm : TMachine 5 (St (mm.size ^ 2)) where
 
 /-! ## The instruction table on indexed states -/
 
+/-- The instruction at `delta_divA` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_divA {r : ℕ} (hr : r < mm.size) :
     (tm mm).δ (St.divA (ix mm r)) = some (TInstr.test 0
       (if r + 1 < mm.size then St.divA (ix mm (r + 1)) else St.carA)
@@ -128,8 +130,12 @@ theorem delta_divA {r : ℕ} (hr : r < mm.size) :
   rw [hv] at e0
   exact e0
 
+/-- The instruction at `delta_carA` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_carA : (tm mm).δ St.carA = some (TInstr.add 2 (St.divA (ix mm 0))) := rfl
 
+/-- The instruction at `delta_divB` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_divB (a : ℕ) {r : ℕ} (hr : r < mm.size) :
     (tm mm).δ (St.divB (ix mm a) (ix mm r)) = some (TInstr.test 1
       (if r + 1 < mm.size then St.divB (ix mm a) (ix mm (r + 1)) else St.carB (ix mm a))
@@ -142,9 +148,13 @@ theorem delta_divB (a : ℕ) {r : ℕ} (hr : r < mm.size) :
   rw [hv] at e0
   exact e0
 
+/-- The instruction at `delta_carB` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_carB (a : ℕ) :
     (tm mm).δ (St.carB (ix mm a)) = some (TInstr.add 3 (St.divB (ix mm a) (ix mm 0))) := rfl
 
+/-- The instruction at `delta_disp_eq` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_disp_eq {a b : ℕ} (ha : a < mm.size) (hb : b < mm.size) :
     (tm mm).δ (St.disp (ix mm a) (ix mm b)) = Option.elim (mm.quad a b)
       (if a = 0 ∧ b = 0 then some (TInstr.test 2 St.stuck St.chk0) else none)
@@ -156,6 +166,8 @@ theorem delta_disp_eq {a b : ℕ} (ha : a < mm.size) (hb : b < mm.size) :
   rw [dispInstr, hva, hvb] at e0
   exact e0
 
+/-- The instruction at `delta_disp_true` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_disp_true {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
     (h : mm.quad a b = some (c, true)) :
     (tm mm).δ (St.disp (ix mm a) (ix mm b)) =
@@ -164,6 +176,8 @@ theorem delta_disp_true {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
   rw [h] at e0
   exact e0
 
+/-- The instruction at `delta_disp_false` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_disp_false {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
     (h : mm.quad a b = some (c, false)) :
     (tm mm).δ (St.disp (ix mm a) (ix mm b)) =
@@ -172,6 +186,8 @@ theorem delta_disp_false {a b c : ℕ} (ha : a < mm.size) (hb : b < mm.size)
   rw [h] at e0
   exact e0
 
+/-- The instruction at `delta_disp_none` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_disp_none {a b : ℕ} (ha : a < mm.size) (hb : b < mm.size)
     (h : mm.quad a b = none) (hab : ¬ (a = 0 ∧ b = 0)) :
     (tm mm).δ (St.disp (ix mm a) (ix mm b)) = none := by
@@ -179,6 +195,8 @@ theorem delta_disp_none {a b : ℕ} (ha : a < mm.size) (hb : b < mm.size)
   rw [h, if_neg hab] at e0
   exact e0
 
+/-- The instruction at `delta_disp_zero` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_disp_zero :
     (tm mm).δ (St.disp (ix mm 0) (ix mm 0)) = some (TInstr.test 2 St.stuck St.chk0) := by
   have e0 := delta_disp_eq mm mm.size_pos mm.size_pos
@@ -186,26 +204,139 @@ theorem delta_disp_zero :
   rw [mm.quad_zero_zero, if_pos h00] at e0
   exact e0
 
+/-- The instruction at `delta_chk0` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_chk0 : (tm mm).δ St.chk0 = some (TInstr.test 3 St.stuck St.stop) := rfl
 
+/-- The instruction at `delta_stuck` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_stuck : (tm mm).δ St.stuck = none := rfl
 
+/-- The instruction at `delta_mulR` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_mulR (c : Fin (mm.size ^ 2 + 1)) :
     (tm mm).δ (St.mulR c) = some (TInstr.test 2 (St.addR c (ix mm (mm.size ^ 2))) (St.plusR c)) :=
   rfl
 
+/-- The instruction at `delta_trR` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_trR : (tm mm).δ St.trR = some (TInstr.test 3 St.trR' (St.divA (ix mm 0))) := rfl
 
+/-- The instruction at `delta_trR'` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_trR' : (tm mm).δ St.trR' = some (TInstr.add 1 St.trR) := rfl
 
+/-- The instruction at `delta_trL` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_trL (c : Fin (mm.size ^ 2 + 1)) :
     (tm mm).δ (St.trL c) = some (TInstr.test 2 (St.trL' c) (St.mulL c)) := rfl
 
+/-- The instruction at `delta_trL'` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_trL' (c : Fin (mm.size ^ 2 + 1)) :
     (tm mm).δ (St.trL' c) = some (TInstr.add 0 (St.trL c)) := rfl
 
+/-- The instruction at `delta_mulL` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
 theorem delta_mulL (c : Fin (mm.size ^ 2 + 1)) :
     (tm mm).δ (St.mulL c) = some (TInstr.test 3 (St.addL c (ix mm (mm.size ^ 2))) (St.plusL c)) :=
   rfl
+
+/-- The instruction at `delta_addR_zero` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_addR_zero (c : Fin (mm.size ^ 2 + 1)) :
+    (tm mm).δ (St.addR c (ix mm 0)) = some (TInstr.test 4 (St.mulR c) (St.mulR c)) := by
+  have hv : (ix mm 0).val = 0 := val_ix mm (Nat.zero_le _)
+  have hz : (0 : ℕ) = 0 := rfl
+  have e0 : (tm mm).δ (St.addR c (ix mm 0)) = if (ix mm 0).val = 0 then
+      some (TInstr.test 4 (St.mulR c) (St.mulR c))
+      else some (TInstr.add 0 (St.addR c (ix mm ((ix mm 0).val - 1)))) := rfl
+  rw [hv, if_pos hz] at e0
+  exact e0
+
+/-- The instruction at `delta_addR_succ` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_addR_succ (c : Fin (mm.size ^ 2 + 1)) {j : ℕ} (hj : j + 1 ≤ mm.size ^ 2) :
+    (tm mm).δ (St.addR c (ix mm (j + 1))) = some (TInstr.add 0 (St.addR c (ix mm j))) := by
+  have hv : (ix mm (j + 1)).val = j + 1 := val_ix mm hj
+  have hne : j + 1 ≠ 0 := by omega
+  have e0 : (tm mm).δ (St.addR c (ix mm (j + 1))) = if (ix mm (j + 1)).val = 0 then
+      some (TInstr.test 4 (St.mulR c) (St.mulR c))
+      else some (TInstr.add 0 (St.addR c (ix mm ((ix mm (j + 1)).val - 1)))) := rfl
+  rw [hv, if_neg hne, Nat.add_sub_cancel] at e0
+  exact e0
+
+/-- The instruction at `delta_plusR_zero` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_plusR_zero :
+    (tm mm).δ (St.plusR (ix mm 0)) = some (TInstr.test 4 St.trR St.trR) := by
+  have hv : (ix mm 0).val = 0 := val_ix mm (Nat.zero_le _)
+  have hz : (0 : ℕ) = 0 := rfl
+  have e0 : (tm mm).δ (St.plusR (ix mm 0)) = if (ix mm 0).val = 0 then
+      some (TInstr.test 4 St.trR St.trR)
+      else some (TInstr.add 0 (St.plusR (ix mm ((ix mm 0).val - 1)))) := rfl
+  rw [hv, if_pos hz] at e0
+  exact e0
+
+/-- The instruction at `delta_plusR_succ` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_plusR_succ {j : ℕ} (hj : j + 1 ≤ mm.size ^ 2) :
+    (tm mm).δ (St.plusR (ix mm (j + 1))) = some (TInstr.add 0 (St.plusR (ix mm j))) := by
+  have hv : (ix mm (j + 1)).val = j + 1 := val_ix mm hj
+  have hne : j + 1 ≠ 0 := by omega
+  have e0 : (tm mm).δ (St.plusR (ix mm (j + 1))) = if (ix mm (j + 1)).val = 0 then
+      some (TInstr.test 4 St.trR St.trR)
+      else some (TInstr.add 0 (St.plusR (ix mm ((ix mm (j + 1)).val - 1)))) := rfl
+  rw [hv, if_neg hne, Nat.add_sub_cancel] at e0
+  exact e0
+
+/-- The instruction at `delta_addL_zero` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_addL_zero (c : Fin (mm.size ^ 2 + 1)) :
+    (tm mm).δ (St.addL c (ix mm 0)) = some (TInstr.test 4 (St.mulL c) (St.mulL c)) := by
+  have hv : (ix mm 0).val = 0 := val_ix mm (Nat.zero_le _)
+  have hz : (0 : ℕ) = 0 := rfl
+  have e0 : (tm mm).δ (St.addL c (ix mm 0)) = if (ix mm 0).val = 0 then
+      some (TInstr.test 4 (St.mulL c) (St.mulL c))
+      else some (TInstr.add 1 (St.addL c (ix mm ((ix mm 0).val - 1)))) := rfl
+  rw [hv, if_pos hz] at e0
+  exact e0
+
+/-- The instruction at `delta_addL_succ` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_addL_succ (c : Fin (mm.size ^ 2 + 1)) {j : ℕ} (hj : j + 1 ≤ mm.size ^ 2) :
+    (tm mm).δ (St.addL c (ix mm (j + 1))) = some (TInstr.add 1 (St.addL c (ix mm j))) := by
+  have hv : (ix mm (j + 1)).val = j + 1 := val_ix mm hj
+  have hne : j + 1 ≠ 0 := by omega
+  have e0 : (tm mm).δ (St.addL c (ix mm (j + 1))) = if (ix mm (j + 1)).val = 0 then
+      some (TInstr.test 4 (St.mulL c) (St.mulL c))
+      else some (TInstr.add 1 (St.addL c (ix mm ((ix mm (j + 1)).val - 1)))) := rfl
+  rw [hv, if_neg hne, Nat.add_sub_cancel] at e0
+  exact e0
+
+/-- The instruction at `delta_plusL_zero` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_plusL_zero :
+    (tm mm).δ (St.plusL (ix mm 0)) =
+      some (TInstr.test 4 (St.divA (ix mm 0)) (St.divA (ix mm 0))) := by
+  have hv : (ix mm 0).val = 0 := val_ix mm (Nat.zero_le _)
+  have hz : (0 : ℕ) = 0 := rfl
+  have e0 : (tm mm).δ (St.plusL (ix mm 0)) = if (ix mm 0).val = 0 then
+      some (TInstr.test 4 (St.divA (ix mm 0)) (St.divA (ix mm 0)))
+      else some (TInstr.add 1 (St.plusL (ix mm ((ix mm 0).val - 1)))) := rfl
+  rw [hv, if_pos hz] at e0
+  exact e0
+
+/-- The instruction at `delta_plusL_succ` (input for `thm:fixed-radical-membership`,
+`non_mf_group_notes.tex`). -/
+theorem delta_plusL_succ {j : ℕ} (hj : j + 1 ≤ mm.size ^ 2) :
+    (tm mm).δ (St.plusL (ix mm (j + 1))) = some (TInstr.add 1 (St.plusL (ix mm j))) := by
+  have hv : (ix mm (j + 1)).val = j + 1 := val_ix mm hj
+  have hne : j + 1 ≠ 0 := by omega
+  have e0 : (tm mm).δ (St.plusL (ix mm (j + 1))) = if (ix mm (j + 1)).val = 0 then
+      some (TInstr.test 4 (St.divA (ix mm 0)) (St.divA (ix mm 0)))
+      else some (TInstr.add 1 (St.plusL (ix mm ((ix mm (j + 1)).val - 1)))) := rfl
+  rw [hv, if_neg hne, Nat.add_sub_cancel] at e0
+  exact e0
 
 end GroupApproximation.Full.Kharlampovich.MinskySim
