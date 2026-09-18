@@ -213,3 +213,25 @@ construction is currently known; nearby-spectrum mixing is also not covered.
   - **Scope.**  This is not a proof of `(HMF3)`, since `H^2 = 0` supplies no
     perturbation theorem.  The success of the same lane on
     `SL_4(F_q[t^(+-1)])` depended on torsion, which `Hig` lacks.
+- **2026-09-18, swarm-0917-w6-w6-ptm-pull (reframing).**
+  Results: `higman-seam-gate-needs-only-padded-bs-correction` (established,
+  elementary) and `bs1n-rq-padded-opnorm-stability` (established, imported).
+  I also opened the route `higman-collapse-via-trivially-padded-bs-correction`.
+  - **Statement 1 of the gate is not needed.**  Same-dimension correction of
+    approximate `BS(1,2)` pairs is the open Eilers--Shulman--Sorensen question.
+    It can be replaced by correction after block sum with an identity block,
+    `bs12-trivially-padded-opnorm-correction`.  That statement together with the
+    glued exact-cycle collapse `higman-exact-packet-cycles-collapse-opnorm`
+    implies `(HMF5)`.  Conversely, `(HMF5)` implies that collapse.
+  - **Published padded stability does not close it.**  Willett arXiv:2408.13350,
+    Theorem 7.9 and Example 7.11, gives operator-norm `R_q`-stability of
+    `BS(1,n)`.  The auxiliary summand there is an uncontrolled finite-quotient
+    representation.
+  - **Class killed.**  Per-seam padded corrections with uncontrolled
+    auxiliaries die when the auxiliary summands of different seams are glued.
+    Exactly glued auxiliaries are trivial, by a smallest-prime chain on odd
+    orders.  Approximately glued auxiliaries are themselves a collapse input.
+    So such methods reach the gate only through trivially padded instances.
+  - **Bounded-order collapse.**  The quantitative prime chain proves collapse
+    for exact-packet cycles with `o_i o_(i+1) eta < 2`.  It dies on fine clocks
+    with orders `>= eta^(-1/2)`.
