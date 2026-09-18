@@ -12,8 +12,8 @@ import GroupApproximation.Meta.AxiomGuard
   into any basic pair.
 * `FourPieceWitness.absorbLobe_iterate`: Base, plus an Improve step that is only required at
   maximal pairs, gives a good pair or the escape.
-* `FourPieceWitness.noPlanarDegenStep_of_absorbLobe`: `AbsorbLobeStatement` implies the target.
-* `FourPieceWitness.absorbLobe_of_absorbFaceSet`, `absorbFaceSet_of_absorbLobe`,
+* `FourPieceWitness.absorbLobe_noPlanarDegenStep`: `AbsorbLobeStatement` implies the target.
+* `FourPieceWitness.absorbLobe_of_absorbFaceSet`, `absorbLobe_absorbFaceSet`,
   `absorbLobe_iff_absorbFaceSet`, `absorbLobe_iff_noPlanarDegenStep`: the equivalences.
 
 ## LOUD: EQUIVALENT to the target; Base NOT proved
@@ -85,7 +85,7 @@ theorem absorbLobe_iterate {β : Type*} {γ : Type*} [Fintype β]
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_iterate
 
 /-- **The target from one maximal absorption step.**  See the module docstring. -/
-theorem noPlanarDegenStep_of_absorbLobe (h : AbsorbLobeStatement.{u, w, v}) :
+theorem absorbLobe_noPlanarDegenStep (h : AbsorbLobeStatement.{u, w, v}) :
     NoPlanarDegenStepStatement.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbj hdisj hlet hW hK1 hK2 G₁ hG₁ G₂ hG₂ hw
     hout hinE houtE C hC hCf hCa hCb hno hnc
@@ -101,7 +101,7 @@ theorem noPlanarDegenStep_of_absorbLobe (h : AbsorbLobeStatement.{u, w, v}) :
   · exact Or.inl ⟨F, ow, E, hc, hsub, hd, h1, h2, h3, h4, s1, s2, s3, s4⟩
   · exact Or.inr hR
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.noPlanarDegenStep_of_absorbLobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_noPlanarDegenStep
 
 /-- **`AbsorbFaceSetStatement` implies `AbsorbLobeStatement`**: drop the maximality hypothesis. -/
 theorem absorbLobe_of_absorbFaceSet (h : AbsorbFaceSetStatement.{u, w, v}) :
@@ -115,23 +115,23 @@ theorem absorbLobe_of_absorbFaceSet (h : AbsorbFaceSetStatement.{u, w, v}) :
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_of_absorbFaceSet
 
 /-- **`AbsorbLobeStatement` implies `AbsorbFaceSetStatement`**, through the target. -/
-theorem absorbFaceSet_of_absorbLobe (h : AbsorbLobeStatement.{u, w, v}) :
+theorem absorbLobe_absorbFaceSet (h : AbsorbLobeStatement.{u, w, v}) :
     AbsorbFaceSetStatement.{u, w, v} :=
-  absorbFaceSet_of_noPlanarDegenStep (noPlanarDegenStep_of_absorbLobe h)
+  absorbFaceSet_of_noPlanarDegenStep (absorbLobe_noPlanarDegenStep h)
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbFaceSet_of_absorbLobe
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_absorbFaceSet
 
 /-- **The maximal-step statement and the absorption iteration are equivalent.** -/
 theorem absorbLobe_iff_absorbFaceSet :
     AbsorbLobeStatement.{u, w, v} ↔ AbsorbFaceSetStatement.{u, w, v} :=
-  ⟨absorbFaceSet_of_absorbLobe, absorbLobe_of_absorbFaceSet⟩
+  ⟨absorbLobe_absorbFaceSet, absorbLobe_of_absorbFaceSet⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_iff_absorbFaceSet
 
 /-- **The maximal-step statement and the target are equivalent.** -/
 theorem absorbLobe_iff_noPlanarDegenStep :
     AbsorbLobeStatement.{u, w, v} ↔ NoPlanarDegenStepStatement.{u, w, v} :=
-  ⟨noPlanarDegenStep_of_absorbLobe,
+  ⟨absorbLobe_noPlanarDegenStep,
     fun h => absorbLobe_of_absorbFaceSet (absorbFaceSet_of_noPlanarDegenStep h)⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.absorbLobe_iff_noPlanarDegenStep

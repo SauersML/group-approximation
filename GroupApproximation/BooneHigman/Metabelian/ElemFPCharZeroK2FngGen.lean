@@ -34,7 +34,7 @@ onto a finitely presented group has finitely normally generated kernel. -/
 theorem czK2Fng_ker_of_fg {E W : Type*} [Group E] [Group W] [hE : Group.FG E]
     [Group.IsFinitelyPresented W] (f : E →* W) (hf : Function.Surjective f) :
     f.ker.IsFinitelyNormallyGenerated := by
-  obtain ⟨α, hα, φ, hφ⟩ := (Group.fg_iff_exists_freeGroup_hom_surjective_finite (G := E)).mp hE
+  obtain ⟨α, _hα, φ, hφ⟩ := (Group.fg_iff_exists_freeGroup_hom_surjective_finite (G := E)).mp hE
   have hcomp : Function.Surjective (f.comp φ) := hf.comp hφ
   have hker : (f.comp φ).ker.IsFinitelyNormallyGenerated :=
     Tietze.isFinitelyNormallyGenerated_ker (f.comp φ) hcomp
