@@ -45,6 +45,15 @@ Every `G_U` here has word problem decidable in polynomial time, uniformly in `E`
    So any faithful action must move points between the regions indexed by
    different lamps. The naive "each lamp acts inside a window of fundamental
    domains of `t`" design used for `Z ≀ Z ≤ F` cannot extend to `E ≠ ∅`.
+6. **No lamplighter hosts of the naive form (corollary of 5).** Suppose `E ≠ ∅`,
+   and let `H` be any group. Then there is no embedding `G_U -> H ≀ Z` sending
+   `a` into the base and `t` to an element with nonzero `Z`-component `s`.
+   - **Why:** `a_j` is supported in `supp(a) + js`. So each coordinate projection
+     of the base kills every `a_j` outside a set of `j` of diameter
+     `≤ diam(supp a)/|s|`. The coordinate projections are jointly injective on the
+     base, so item 5 applies.
+   - **Scope:** this is not a general obstruction. A host `H` containing `G_U`,
+     with `t` in the base, trivially works.
 
 ## Candidate hosts
 
