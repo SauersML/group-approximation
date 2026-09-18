@@ -127,8 +127,9 @@ theorem suslinDilAn_estimate_of_mem (hN : 2 < N)
   · rintro _ ⟨i, j, hij, c, rfl⟩
     exact suslinDilAn_estimate_unit φ s hsurj i j hij c
   · rintro _ ⟨i, j, hij, c, rfl⟩
-    rw [suslinDilAn_elementaryUnit_inv]
-    exact suslinDilAn_estimate_unit φ s hsurj i j hij (-c)
+    have e := suslinDilAn_estimate_unit φ s hsurj i j hij (-c)
+    rw [← suslinDilAn_elementaryUnit_inv] at e
+    exact e
   · exact suslinDilAn_estimate_one φ s
   · intro x y hx _ hx' hy'
     exact suslinDilAn_estimate_mul φ s hN hsurj hx hx' hy'

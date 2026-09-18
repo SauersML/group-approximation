@@ -74,10 +74,11 @@ theorem locAmenTrace_exists_ucpMatrixApproximation {A : Type u} [CStarAlgebra A]
     rw [map_smul, map_smul, ← smul_sub, smul_inv_smul₀ ht]
   have hkey : (R + 1) * (4 * (ε / (4 * (R + 1)))) = ε := by
     rw [← mul_assoc, mul_comm (R + 1) 4, mul_div_cancel₀ ε h4R.ne']
-  rw [hlin, norm_smul, hnorm_t]
-  calc (R + 1) * ‖additiveUnitalization up omegaY
-          (additiveUnitalization down omegaA (t⁻¹ • a)) - t⁻¹ • a‖
-      ≤ (R + 1) * (4 * (ε / (4 * (R + 1)))) := mul_le_mul_of_nonneg_left hfour hR1.le
+  calc ‖additiveUnitalization up omegaY (additiveUnitalization down omegaA a) - a‖
+      = (R + 1) * ‖additiveUnitalization up omegaY
+          (additiveUnitalization down omegaA (t⁻¹ • a)) - t⁻¹ • a‖ := by
+        rw [hlin, norm_smul, hnorm_t]
+    _ ≤ (R + 1) * (4 * (ε / (4 * (R + 1)))) := mul_le_mul_of_nonneg_left hfour hR1.le
     _ = ε := hkey
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearAmenable.locAmenTrace_exists_ucpMatrixApproximation

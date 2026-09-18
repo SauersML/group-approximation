@@ -64,7 +64,7 @@ theorem rnKer_kernel_of_normalForm (hNF : RNKerNormalFormStatement) :
     unfold nfRelators
     exact Set.mem_union_left _ (Set.mem_union_right _ hr)
   have hsplit : nfSplitRelators H x₀ ⊆ Subgroup.normalClosure (nfRelators H x₀) :=
-    hS.trans Subgroup.subset_normalClosure
+    Set.Subset.trans hS Subgroup.subset_normalClosure
   have hNker : Subgroup.normalClosure (nfRelators H x₀) ≤ (rnFreeHom H x₀).ker :=
     Subgroup.normalClosure_le_normal (nfRelators_subset_ker H x₀)
   have hk1 : rnFreeToPerm H x₀ k = 1 := (nf_mem_ker_iff H x₀ k).mp hk
@@ -86,7 +86,7 @@ theorem rnKer_kernel_of_normalForm (hNF : RNKerNormalFormStatement) :
       (Subgroup.list_prod_mem _ fun y hy => ?_)
     obtain ⟨p, hp, rfl⟩ := List.mem_map.mp hy
     exact rnKer_rfConjL_mem_range H _ hH x₀ hsplit D p.2.2 (hD p hp) p.1
-  obtain ⟨u, hu⟩ := hrange
+  obtain ⟨u, hu⟩ := MonoidHom.mem_range.mp hrange
   have hu' : ((nfV H u : RNFree X H) :
       RNFree X H ⧸ Subgroup.normalClosure (nfRelators H x₀)) = k := hu
   have hmem := hNker (QuotientGroup.eq.mp hu')
