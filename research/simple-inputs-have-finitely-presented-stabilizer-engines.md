@@ -10,7 +10,6 @@ distinct_from:
   stabilizer-engines-force-fp-vertex-groups: that proves a finitely presented engine forces a finitely presented vertex group; this asserted finite presentation of the engine for all decidable simple inputs, which that result refutes.
 refuted_by:
   - regular-cyclic-twisted-core-has-non-fp-stabilizer-engine
-refuted_by:
   - stabilizer-engines-of-non-fp-simple-groups-are-not-fp
 ---
 
