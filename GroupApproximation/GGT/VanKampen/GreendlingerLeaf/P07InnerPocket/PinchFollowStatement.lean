@@ -143,7 +143,7 @@ def pinchFollow_ResidualStatement : Prop :=
               (outerWalk[p] ∈ G₁.darts ∨ outerWalk[p] ∈ G₂.darts) ∧
               ¬ PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
           pinchFollow_Conclusion a b K G₁ G₂ C.face ∨
-            ∃ (w' : List X.toCombMap.Dart) (hw' : IsNoncrossingClosedWalk X.toCombMap w'),
+            ∃ (w' : List X.toCombMap.Dart) (_hw' : IsNoncrossingClosedWalk X.toCombMap w'),
               X.outerFace ∉ sideFaces X.toCombMap w' ∧
               pinchFollow_OuterTurn X.toCombMap w' ∧
               (EnclosedFaceSetSucc X (sideFaces X.toCombMap w') (invDarts X w') →
