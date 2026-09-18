@@ -151,7 +151,7 @@ theorem regionMoveLoose_false_of_pair (K : PocketFaceSet D eps X lo hi) (hK : K.
     intro h
     apply K.boundary_alpha_not_mem hd₀
     rw [h]
-    exact List.next_mem hd₀
+    exact List.next_mem _ _ hd₀
   have hv : X.toCombMap.vertexOf (X.toCombMap.alpha d₀) =
       X.toCombMap.vertexOf (K.boundary.cycle.next d₀ hd₀) :=
     OuterPinchIsolated.rel_next_of_isChain K.boundary.cycle_nonempty K.boundary.cycle_nodup
@@ -167,7 +167,7 @@ theorem regionMoveLoose_false_of_pair (K : PocketFaceSet D eps X lo hi) (hK : K.
     rw [X.toCombMap.alpha_involutive d₀]
     exact ((K.boundary.cycle_mem_iff d₀).mp hd₀).1
   have hy : X.toCombMap.faceOf (K.boundary.cycle.next d₀ hd₀) ∈ K.faces :=
-    ((K.boundary.cycle_mem_iff _).mp (List.next_mem hd₀)).1
+    ((K.boundary.cycle_mem_iff _).mp (List.next_mem _ _ hd₀)).1
   have hE := regionMoveLoose_even_crossers K.boundary.cycle_nodup
     (fun z => X.toCombMap.faceOf z ∈ K.faces) (fun z => K.boundary.cycle_mem_iff z) hP hk0 hk
     hmin hx hy

@@ -243,4 +243,60 @@ theorem relKer_swap_fix' (a b : J) (hab : a ≠ b) (A B : R) (r c : J) (hrc : r 
 
 end Conj
 
+/-! ### The swaps and the four states -/
+
+section State
+
+variable {R : Type*} [Ring R] (D : CohnRelativeK1.CohnTwoData R) {n K : ℕ}
+  (ω : Fin K → List (Fin 2))
+
+/-- The swap attached to `γ = (i, s)`: it exchanges `lo i` and `hi i s`. -/
+def relKer_w (γ : Fin n × Fin K) : SteinbergGroup (Fin (n + n * K)) R :=
+  relKer_swap (relKer_lo n K γ.1) (relKer_hi n K γ.1 γ.2) (relKer_lo_ne_hi γ.1 γ.1 γ.2)
+    (D.word (ω γ.2) * D.p) (D.p * D.coword (ω γ.2))
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_w
+
+/-- The four states of `x_{lo i, lo j}(u(ω s, ω t))`. -/
+def relKer_state (i j : Fin n) (hij : i ≠ j) (s t : Fin K) :
+    Bool → Bool → SteinbergGroup (Fin (n + n * K)) R
+  | false, false => x (relKer_lo n K i) (relKer_lo n K j) (relKer_lo_ne hij) (D.unit (ω s) (ω t))
+  | true, false => x (relKer_hi n K i s) (relKer_lo n K j) (relKer_lo_ne_hi j i s).symm
+      (-(D.p * D.coword (ω t)))
+  | false, true => x (relKer_lo n K i) (relKer_hi n K j t) (relKer_lo_ne_hi i j t)
+      (-(D.word (ω s) * D.p))
+  | true, true => x (relKer_hi n K i s) (relKer_hi n K j t) (relKer_hi_ne hij s t) D.p
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_state
+
+/-- The swap at `(i, s)` sets the first flag. -/
+theorem relKer_stepI (i j : Fin n) (hij : i ≠ j) (s t : Fin K) (b : Bool) :
+    relKer_w D ω (i, s) * relKer_state D ω i j hij s t false b * (relKer_w D ω (i, s))⁻¹ =
+      relKer_state D ω i j hij s t true b := by
+  cases b with
+  | false =>
+      exact relKer_colFF D (relKer_lo n K i) (relKer_hi n K i s) (relKer_lo n K j)
+        (relKer_lo_ne_hi i i s) (relKer_lo_ne hij) (relKer_lo_ne_hi j i s).symm (ω s) (ω t)
+  | true =>
+      exact relKer_colFT D (relKer_lo n K i) (relKer_hi n K i s) (relKer_hi n K j t)
+        (relKer_lo_ne_hi i i s) (relKer_lo_ne_hi i j t) (relKer_hi_ne hij s t) (ω s)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_stepI
+
+/-- The swap at `(j, t)` sets the second flag. -/
+theorem relKer_stepJ (i j : Fin n) (hij : i ≠ j) (s t : Fin K) (b : Bool) :
+    relKer_w D ω (j, t) * relKer_state D ω i j hij s t b false * (relKer_w D ω (j, t))⁻¹ =
+      relKer_state D ω i j hij s t b true := by
+  cases b with
+  | false =>
+      exact relKer_rowFF D (relKer_lo n K i) (relKer_lo n K j) (relKer_hi n K j t)
+        (relKer_lo_ne_hi j j t) (relKer_lo_ne hij) (relKer_lo_ne_hi i j t) (ω s) (ω t)
+  | true =>
+      exact relKer_rowTF D (relKer_hi n K i s) (relKer_lo n K j) (relKer_hi n K j t)
+        (relKer_lo_ne_hi j j t) (relKer_lo_ne_hi j i s).symm (relKer_hi_ne hij s t) (ω t)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_stepJ
+
+end State
+
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
