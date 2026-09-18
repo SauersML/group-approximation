@@ -8,6 +8,7 @@ distinct_from:
   fpbs-sphere-two-point-rate-right-continuous-universal: that asks the sphere-mass growth rate g(p) to vanish as p decreases to p_c; this controls sums of tau^q, which may converge while sphere masses grow exponentially, and the two hypotheses are incomparable a priori.
 artifacts:
   - research/artifacts/fpbs/docs/lq-two-point-walk-rate-2026-09-17.md
+  - research/artifacts/fpbs/docs/lq-threshold-power-monotonicity-2026-09-17.md
 ---
 
 **OPEN.** Let `G` be a nonamenable Cayley graph and set
@@ -65,3 +66,18 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     `fpbs-integrated-sensitivity-via-fourier-algebra-two-point`).
   - *Calibration:* on trees both holes hold, and `p_A = p_2` lies strictly
     below `p_q` and `p_u`.
+* **Thinning power-coupling (swarm-0917-w8, transplanter).**
+  - *Proved* (`fpbs-lq-threshold-power-monotonicity`, established):
+    - `tau_(p^g) >= tau_p^g`, proved self-contained;
+    - `p_(q') <= p_q^(q/q')`, `p_1 = p_c`, `p_2 <= sqrt(p_c)`, and
+      `q -> p_q` is continuous;
+    - `{q : p_q > p_c} = (q_0, infinity)` for one invariant `q_0 in [1, infinity]`.
+      So [Q] iff `q_0 <= 2`, and `p_c < p_2` iff `q_0 < 2`. Trees have
+      `q_0 = 1`, with equality throughout.
+  - *Where it dies:* at the exponent `log p/log p'`. Transporting
+    `Z_q(p') < infinity` down to `(p_c, p')` gives exactly
+    `q_0 <= q log(1/p')/log(1/p_c)`. The input `(p')^q > p_c^2` that this
+    transport needs is equivalent to `q_0 < 2`, which is the conclusion.
+    Thinning is an equality on trees, so no monotone parameter coupling can
+    improve the exponent. New information is needed at `p_c + 0`.
+    See Section 5 of `lq-threshold-power-monotonicity-2026-09-17.md`.
