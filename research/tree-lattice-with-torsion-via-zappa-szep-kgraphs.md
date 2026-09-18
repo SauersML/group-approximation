@@ -44,8 +44,8 @@ many orbits (Lemma P). It is virtually free, so it has a finite-index free subgr
 `H'_α` acting freely. Closed colour-`j` walks of `C` at `v` of length `n` are
 non-backtracking walks of length `n` from `e_j` that end in `H_α e_j`. They include
 the lifts of closed walks at `[e_j]` in the Hashimoto graph of `H'_α \ T_j`, which
-is irreducible with spectral radius greater than 1. So a common multiple `N` of the
-periods gives at least two loops of every colour at every vertex of `C_N`. Strong
+is irreducible with spectral radius greater than 1. So a sufficiently large common multiple `N` of the
+periods (bh-refute nit N1) gives at least two loops of every colour at every vertex of `C_N`. Strong
 connectivity of `C` follows as in Step 3 of the phase route, because the quotient
 map from that Hashimoto graph to the colour-`j` classes is onto. `C_N` then splits
 into strongly connected pieces as in Step 1 of
