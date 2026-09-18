@@ -67,3 +67,17 @@ Mayer-Vietoris summation of the cube proof does not apply to it directly.
 **First step.** Prove the case `N = 2` with ideal two-wall windows. There, a Chern
 computation on `C_1 x C_2`, with the four slices and one ancestor factor, decides whether the
 two drops must share a point.
+
+## Attempts
+
+- **Decided `N = 2`: the drops need not coincide, and `c <= 1/2`.**
+  `toms-overlap-window-drops-need-not-coincide` (w10-113). With ideal two-wall windows:
+  - Joint coprime divisibility over `prod_nu Y_nu` forces depth `>= 1` when `N D <= min j_nu`.
+  - The target `G ⊕ psi_1 ⊕ (Pbar_2 L_(2,+) ⊕ Qbar_2 L_(2,-))` has depth exactly `1`. Node 2
+    absorbs its overlap, and only node 1's walls drop.
+  - Pairing an absorbing node with a bare node gives depth `ceil(N/2)` for every `N`. So the
+    statement is false for `c > 1/2`.
+  - Split targets have depth `>= ceil(N/2)`, so `c = 1/2` is the right constant.
+
+  The route to the target only needs some `c > 0`. The open case is non-split targets, where
+  a candidate argument bounds how many nodes can absorb.
