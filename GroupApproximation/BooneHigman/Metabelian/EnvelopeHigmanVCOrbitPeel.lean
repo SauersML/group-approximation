@@ -63,7 +63,8 @@ theorem higmanVCOrbit_mk_of_mul {d : ℕ} (C : Finset (List (Fin d))) (x y : ↥
 every subgroup containing the letters between leaves without `p`. -/
 theorem higmanVCOrbit_mem_of_fix {d : ℕ} {C : Finset (List (Fin d))}
     (hC : higmanVCTreeNFWitPivot_IsAC C) (p : ↥C → Prop) {K : Subgroup (higmanVCCommon_Q d)}
-    (hK : ∀ x y : ↥C, ¬ p x → ¬ p y → higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) ∈ K) :
+    (hK : ∀ x y : ↥C, ¬ p x → ¬ p y →
+      higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) ∈ K) :
     ∀ (k : ℕ) (r : FreeGroup (↥C × ↥C)), (higmanVCOrbit_pi C r).support.card ≤ k →
       (∀ c, p c → higmanVCOrbit_pi C r c = c) →
         higmanVCCommon_mk d (higmanVCAll_iota C r) ∈ K := by
@@ -98,5 +99,55 @@ theorem higmanVCOrbit_mem_of_fix {d : ℕ} {C : Finset (List (Fin d))}
     rwa [inv_mul_cancel_left] at h2
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_mem_of_fix
+
+/-- **Balanced/fixed split.**  If `π r` preserves the length of every leaf with property
+`p`, then `ι r = u * σ` with `u ∈ U` and `σ` in every subgroup `K` that contains the
+letters between leaves without `p`.  The proof peels `(x, π x)` for a moved `p`-leaf `x`.
+That letter is balanced, and the invariant survives the peel. -/
+theorem higmanVCOrbit_split {d : ℕ} {C : Finset (List (Fin d))}
+    (hC : higmanVCTreeNFWitPivot_IsAC C) (p : ↥C → Prop) {K : Subgroup (higmanVCCommon_Q d)}
+    (hK : ∀ x y : ↥C, ¬ p x → ¬ p y →
+      higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) ∈ K) :
+    ∀ (k : ℕ) (r : FreeGroup (↥C × ↥C)), (higmanVCOrbit_pi C r).support.card ≤ k →
+      (∀ c, p c → (higmanVCOrbit_pi C r c).1.length = c.1.length) →
+        ∃ u ∈ higmanVCTreeNF_U d, ∃ σ ∈ K,
+          higmanVCCommon_mk d (higmanVCAll_iota C r) = u * σ := by
+  intro k
+  induction k with
+  | zero =>
+    intro r hk _
+    refine ⟨1, Subgroup.one_mem _, 1, K.one_mem, ?_⟩
+    rw [higmanVCOrbit_mk_eq_one hC (Equiv.Perm.card_support_eq_zero.mp (Nat.le_zero.mp hk)),
+      one_mul]
+  | succ k ih =>
+    intro r hk hlen
+    by_cases hex : ∃ x, p x ∧ higmanVCOrbit_pi C r x ≠ x
+    · obtain ⟨x, hpx, hx⟩ := hex
+      have hlt := Equiv.Perm.card_support_swap_mul hx
+      have hpi : higmanVCOrbit_pi C (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) =
+          Equiv.swap x (higmanVCOrbit_pi C r x) * higmanVCOrbit_pi C r := by
+        rw [map_mul, higmanVCOrbit_pi_of]
+      have hlen' : ∀ c, p c → (higmanVCOrbit_pi C
+          (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) c).1.length = c.1.length := by
+        intro c hc
+        rw [hpi, Equiv.Perm.mul_apply, Equiv.swap_apply_def]
+        split_ifs with h1 h2
+        · rw [hlen x hpx, ← h1, hlen c hc]
+        · rw [(higmanVCOrbit_pi C r).injective h2]
+        · exact hlen c hc
+      obtain ⟨u, hu, σ, hσ, heq⟩ :=
+        ih (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) (by rw [hpi]; omega) hlen'
+      have hl : higmanVCCommon_mk d (FreeGroup.of (x.1, (higmanVCOrbit_pi C r x).1)) ∈
+          higmanVCTreeNF_U d := higmanVCTreeNF_letter_mem (hlen x hpx).symm
+      refine ⟨(higmanVCCommon_mk d (FreeGroup.of (x.1, (higmanVCOrbit_pi C r x).1)))⁻¹ * u,
+        Subgroup.mul_mem _ (Subgroup.inv_mem _ hl) hu, σ, hσ, ?_⟩
+      rw [mul_assoc, ← heq, higmanVCOrbit_mk_of_mul, inv_mul_cancel_left]
+    · have hfix : ∀ c, p c → higmanVCOrbit_pi C r c = c := fun c hc => by
+        by_contra hne
+        exact hex ⟨c, hc, hne⟩
+      exact ⟨1, Subgroup.one_mem _, higmanVCCommon_mk d (higmanVCAll_iota C r),
+        higmanVCOrbit_mem_of_fix hC p hK (k + 1) r hk hfix, (one_mul _).symm⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_split
 
 end GroupApproximation.BooneHigman.Metabelian.Envelope
