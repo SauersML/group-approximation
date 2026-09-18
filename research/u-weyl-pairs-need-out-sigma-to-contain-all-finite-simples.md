@@ -62,3 +62,18 @@ to (d) is dead in type `F`. If there is one, it is the only possible shape
 of `Σ` for a normalized witness of `N_U`.
 
 Proof: route `u-weyl-pairs-need-out-sigma-to-contain-all-finite-simples-proof`.
+
+## Attempts
+
+- **The open question is bypassed: the Weyl route is dead in type `F`**
+  (proposed-established, w9-117, 2026-09-18).
+  - The extensions `Σ.A_n` that a type `F` Weyl pair supplies lie inside the
+    torsion-free group `Λ`.
+  - Browder's exponent argument in Tate hypercohomology of
+    `Z ⊗_{ZΣ} P_*` bounds every elementary abelian `p`-subgroup of
+    `N_Λ(Σ)/Σ` by `2 cd Σ + Σ_i rk_p Aut H_i(Σ; Z)`.
+  - `U ⊇ (Z/2)^r` for all `r`, so no normalized type `F` witness for `N_U`
+    exists, whatever `Out(Σ)` looks like.
+  - The `Out` question itself (torsion extensions) stays open but no longer
+    matters for the route.
+  - See `type-f-weyl-groups-have-bounded-elementary-abelian-ranks`.
