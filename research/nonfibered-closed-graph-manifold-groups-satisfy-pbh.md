@@ -196,3 +196,38 @@ extensions.
       proves nothing. (b) Injectivity of the amalgam. Candidate tools, untried: ping-pong
       on the curve complex (Koberda / Clay--Mangahas type combination theorems), or
       Bass--Serre theory for the pushed leaf through the Birman exact sequence.
+14. **Correction to attempt 13: that `H` is not free** (bh-3manifold, 2026-09-18).
+    - **Why.** `t_{X_12} t_{A_1}^-1`, `t_{X_13}` and `ψ` lie in `Mod(Σ')`, so they commute with its
+      boundary twist `T_y`, the image of the relator `r = [a_1, b_1][a_2, b_2]`. So
+      `[r, a_1] != 1` in `F_4` maps to `1`, and the candidate of attempt 13 fails at (a).
+    - **Criterion.** In `Push(pi_1(Q̂, p)) ⋊ Mod(Σ')`, `(u, a)` commutes with `(1, T_y)` iff
+      `u ∈ <ℓ>`. `T_y` acts by conjugation by `ℓ^{±1}`, and `ℓ`, the boundary loop, generates
+      its own centralizer.
+    - **Necessary condition for any freely lifted block.** In a free group the centralizer
+      of `r` is `<r>`. So every element of the lifted block whose push part lies in `<ℓ>`
+      must be a power of the relator image. In particular all four generators need push
+      parts outside `<ℓ>`, not just one.
+    - **What survives.** The factorization, the lattice matching and the host are unaffected.
+      What is needed is a lift `(u_i, A_i), (v_i, B_i)` with all push parts outside `<ℓ>`,
+      relator exactly `T_y`, and the centralizer condition above.
+    - **Multiplier freedom.** Each generator may be multiplied by an element of its
+      partner's centralizer, e.g. `B_1 -> B_1 ζ` with `ζ ∈ C(A_1)`. This keeps the relator
+      and the attempt-13 fixed-loop condition. Such multipliers in `Mod(Σ')` do not add
+      push parts, so they cannot cure the defect alone. Not constructed.
+15. **Pushing all four generators** (bh-3manifold, 2026-09-18). *Simplest method dies for
+    every lantern-based factorization; general case handed to bh-free-21.*
+    - **Formula.** In `Push ⋊ Mod(Σ')` with `(u, a)(v, b) = (u·a(v), ab)`, the commutator
+      `[(u, a), (v, b)]` is `(P, [a, b])` with `P = u · a(v) · c(u)^-1 · [a, b](v)^-1`, where
+      `c = a b a^-1`. For two pairs the relator is `(P_1 · [a_1, b_1](P_2), T_y)`.
+    - **Common fixed loops.** If `a(w) = b(w) = w`, the lifts `(w^k, a)` and `(w^j, b)` give
+      `P = 1` for all `k, j`. So a pair with a common fixed based loop `w ∉ <ℓ>` can be pushed
+      without changing the relator.
+    - **Why it dies.** The first pair `[t_X t_{A_i}^-1, φ]`, with `φ(X) = A_j` and
+      `φ(A_i) = Y`, always involves two lantern curves `X != Y`, which share exactly one hole.
+      A loop fixed by the pair misses `X`, `A_i`, `A_j` and `Y`. From the collar of `y` such a
+      loop stays on the `y`-side of both `X` and `Y` and cannot leave the lantern sphere
+      through a hole without crossing one of them. So it lies in `<ℓ>`.
+    - **Remaining freedom.** Twisted solutions of `P_1 · [a_1, b_1](P_2) = 1` with `P_i != 1`;
+      non-lantern factorizations of `T_y` whose pairs have common fixed loops; the
+      centralizer condition of attempt 14; then freeness and injectivity.
+    - **Handoff.** The whole two-leaf test case is handed to bh-free-21 (see its board).

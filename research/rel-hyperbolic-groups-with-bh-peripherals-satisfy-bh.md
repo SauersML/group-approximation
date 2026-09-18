@@ -39,6 +39,13 @@ hyperbolic theorem.
   class, `H *_{E(h)} (E(h) × P)` (hyperbolic relative to `E(h) × P`) embeds in a finitely
   presented simple group. This is the first case here that is neither hyperbolic, nor
   linear, nor a free product.
+- **Cusp extensions, general.** `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`:
+  for any finitely generated relatively hyperbolic `G ∈ B_A` (torsion allowed, for
+  example any hyperbolic group), adding finitely many cusps `E(g_i) × K_i` along
+  pairwise non-commensurable loxodromic elements, with `K_i ∈ B_A`, stays in `B_A`, and
+  the result is hyperbolic relative to the old and new peripheral subgroups. The key
+  input is `pbh-coset-condition-passes-to-finite-index-overgroups`: `E(g)` contains the
+  centralizer `C(g)` with finite index.
 
 ## Consequences and reductions (landed)
 
@@ -97,7 +104,8 @@ this gives `pbh-class-closed-under-centralizer-amalgams`, and hence the cusp ext
 above. What remains for this claim: peripheral structures that are not obtained from a
 hyperbolic group by amalgamating along centralizers (for example general Dehn-filling
 preimages), peripherals in the Boone--Higman class but not the permutational one, and
-hyperbolic groups with torsion (where `C_H(h)` can be a proper subgroup of `E(h)`).
+hyperbolic groups with torsion (where `C_H(h)` can be a proper subgroup of `E(h)`). The
+torsion case is now settled by `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`.
 
 ## Scope
 

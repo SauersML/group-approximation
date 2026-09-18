@@ -99,3 +99,7 @@ tree. This is the known automaton realization up to a change of alphabet.
   groups `T ⋊ Q`: by item 2 they are self-similar as soon as `Q` is and the
   configuration module `T` carries a self-similar module structure. That is recorded
   as the OPEN claim `kms-configuration-modules-carry-self-similar-structures`.
+- **Necessary condition.** `λ` is `Q`-invariant, so it vanishes on `I_Q·M`. If
+  `M = I_Q·M`, the only restriction-closed equivariant map to `L^{X^*}` is zero. Every KMS
+  configuration module has this property (`kms-configuration-modules-have-trivial-coinvariants`),
+  and so does every lamp ring in which `u − 1` is a unit for some `u ∈ Q`.
