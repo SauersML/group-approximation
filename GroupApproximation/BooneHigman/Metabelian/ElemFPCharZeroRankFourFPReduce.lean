@@ -49,8 +49,6 @@ generate `K₂(ℤ[1/m])` (for `m = 5` the tame symbol misses half of `F₅^×`)
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
 
-open GroupApproximation.BooneHigman.SteinbergBasic
-
 /-- **`SL_N(ℤ[1/m]) ≃* E_N(ℤ[1/m])`** for `N ≥ 1`: the inclusion `SL_N → GL_N` lands in
 `E_N` (Euclidean elimination), is injective, and hits every elementary matrix since those have
 determinant one. -/
@@ -61,7 +59,7 @@ noncomputable def czRankFourFP_slEquiv (m : ℕ) {N : ℕ} (hN : 0 < N) :
     ((Matrix.SpecialLinearGroup.toGL).codRestrict
       (elementaryGroup (Fin N) (Localization.Away (m : ℤ))) fun g ↦
         Absorption.specialLinearInElementary_away m hN (Matrix.SpecialLinearGroup.toGL g) g.prop)
-    ⟨(MonoidHom.injective_codRestrict _ _ _).mpr Matrix.SpecialLinearGroup.toGL_injective, by
+    ⟨fun _ _ hab ↦ Matrix.SpecialLinearGroup.toGL_injective (congrArg Subtype.val hab), by
       rintro ⟨u, hu⟩
       exact ⟨⟨(u : Matrix (Fin N) (Fin N) (Localization.Away (m : ℤ))),
         Absorption.suslin_det_eq_one_of_mem_elementaryGroup hu⟩, Subtype.ext (Units.ext rfl)⟩⟩
@@ -117,7 +115,8 @@ theorem czRankFourFP_sl_of_rankFourFP (h : CharZeroRankFourFPStatement) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czRankFourFP_sl_of_rankFourFP
 
-/-- **Endpoint (requested wiring).**  `hgen` from the existing leaf `CharZeroRankFourFPStatement`. -/
+/-- **Endpoint (requested wiring).**  `hgen` from the existing leaf
+`CharZeroRankFourFPStatement`. -/
 theorem czRankFourFP_posStabGen_of_rankFourFP (h : CharZeroRankFourFPStatement) :
     CharZeroK2PosStabGenStatement :=
   czTriOff_posStabGen_of_rankFour (czK2FngRankFour_of_rankFourFP h)
