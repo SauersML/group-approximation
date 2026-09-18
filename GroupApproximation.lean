@@ -5829,6 +5829,22 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h1.DoublingLabels
 import GroupApproximation.Manuscript.NonMF.Full.GL06h1.SubdiagramLabels
 import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Progress
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDefs
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.RelSix
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.KTwoVanish
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFModelLift
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureBasic
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.MatrixCorner
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridRounding
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridLDL
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridApproximation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiDecompose
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.H2
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GHWAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.PermAlg
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecPoly
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecWords
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Reduction
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineAction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
