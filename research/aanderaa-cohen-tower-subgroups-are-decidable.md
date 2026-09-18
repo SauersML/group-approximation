@@ -9,6 +9,7 @@ requires:
 distinct_from:
   relative-seeds-glue-graphs-of-groups-into-class-c: that glues rigid relative seeds along graphs of groups and puts K_M in class C; this checks, rung by rung, the necessary condition (decidable membership, its item 3) for the relative seeds the Aanderaa–Cohen tower needs above K_M, and locates where gluing stops.
   relative-seeds-descend-to-quotients-and-consume-membership: that shows towers over subgroups containing normal subgroups only relocate the problem; this treats the core-free machine tower.
+  higman-clapham-towers-leave-the-seed-form-at-three-steps: that reads both towers at source and records that Cohen's Proposition 20 gives only "WP(G_M) solvable ⇒ H_0(M) recursive"; this proves the missing converse for the Aanderaa–Cohen tower (every associated subgroup is decidable from WP(C) and H_0(M)). The premise "a decider compiles to a machine with H_0(M) recursive over all configurations" stays open in both.
 ---
 
 **ESTABLISHED** by `aanderaa-cohen-tower-subgroups-are-decidable-proof` (lane
@@ -66,6 +67,8 @@ Let `C = ⟨c_1, …, c_n | S⟩` have solvable word problem, and let `M` be as 
   - Decidable `H_0(M)` can have arbitrarily high complexity. So rigid relative seeds for `(K_M, T'_M)`
     over such machines would make CAP false.
   - The input group `C` plays no role in this rung.
+  - The rung `(H_2, A_+)` of `higman-clapham-towers-leave-the-seed-form-at-three-steps` is the version
+    needed for (★𝒞). Its `K_M`-part is exactly `T'_M`, since `A_+ ∩ H_1 = T'_M * F(b) * ⟨d⟩`.
 - **Gluing alone does not reach the input.**
   - `H_1` is a free product with the factor `C × F_n`. Gluing over its trivial edges needs
     `(C × F_n, 1) ∈ 𝓡`, that is, `C × F_n ∈ 𝒞`.
