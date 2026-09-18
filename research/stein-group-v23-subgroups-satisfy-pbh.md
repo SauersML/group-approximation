@@ -19,5 +19,8 @@ presented simple subgroup.
 presented simple groups that are not MIF (arXiv:2503.21882v2, l.246). This route needs
 no MIF.
 
-**Status.** OPEN in Cairn. The route `stein-group-v23-pbh-via-orbit-action` waits only on
-`stein-groups-t23-and-v23-are-finitely-presented`.
+**Status.** ESTABLISHED (2026-09-18, lane `bh-near-actions`, lane proof, not reviewed) through the route
+`stein-group-v23-pbh-via-k-graph-finiteness`: `V_{2,3}` is the full group of a one-vertex 2-graph, hence of
+type `F_∞` (`integral-slope-stein-v-groups-are-k-graph-full-groups`), and it is simple. The older route
+`stein-group-v23-pbh-via-orbit-action` still waits on `stein-groups-t23-and-v23-are-finitely-presented`, whose
+`T_{2,3}` half is open; it is no longer needed.
