@@ -857,6 +857,7 @@ def zeroInputEndpoints : List Name :=
    -- Each is a conjunction of the types of landed `Full.SKxx` endpoints; `manuscript` is the
    -- conjunction of all of them.
    ``GroupApproximation.Full.SKRoot.abstract_claims,
+   ``GroupApproximation.Full.SKRoot.intro_ozawa_thom,
    ``GroupApproximation.Full.SKRoot.thm_main,
    ``GroupApproximation.Full.SKRoot.thm_main_brown_form,
    ``GroupApproximation.Full.SKRoot.thm_main_definitions,
