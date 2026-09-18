@@ -59,3 +59,13 @@ measure) is the natural next step.
   - The drift lemma above then constrains such `z`, but doesn't decide the claim.
     No literature result on nilpotent or Heisenberg subgroups of nV (n ≥ 2) was
     found by a bounded arXiv search.
+- 2026-09-18 (lane bh-free-38, second pass; PARKED). **The slope-free case.**
+  `kazhdan-central-aperiodic-parts-in-2v-carry-no-measure` (ESTABLISHED, lane
+  proof). For an infinite-order `z ∈ Z(K)` with `K ≤ 2V` Kazhdan:
+  - the aperiodic set `Y` of `z` is nonempty, closed and `K`-invariant, and it
+    carries no `K`-invariant measure on any closed invariant subset;
+  - `z` never returns into its own reading bricks there;
+  - all exponent-sum data of `z` are `K`-quasi-invariant.
+  - Not closed: this needs a commensurated set built from those data, a closing
+    lemma at the reading scale, or an invariant mean. The node records the three
+    options. The line is parked here.
