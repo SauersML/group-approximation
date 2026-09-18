@@ -171,11 +171,6 @@ theorem gfaceWindTen_card_lt {M : CombMap.{v}} (hM : M.IsPlanar) {W L : List M.D
   rw [heq] at hb
   exact (hW.isBoundaryDart_sideFaces_iff hM x).mp hb
 
-end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
-
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_step
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_class_head
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_outside
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_transfer
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_nest
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindTen_card_lt
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
