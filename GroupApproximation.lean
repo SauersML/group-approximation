@@ -6019,6 +6019,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionR
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalSixTermExt
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalSixTermStd
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.Endpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientBlocks
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
