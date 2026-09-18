@@ -91,7 +91,8 @@ analysis, NOT proved: the KMS structure lemmas were not re-derived over `Z`.
   - The structure of `T` is Lemma 4.14 (label `l097`): `T` is "the direct product of cyclic subgroups generated
     by the elements `x_(i,w)`". It is proved by linear independence of the images in the model `T_1` of a group
     `Ḡ`, built over `F_p` (Lemmas 4.9–4.13).
-  - The finite-index step is Lemma 4.15 (`l096`): `T(V_R)` is normal and of finite index. Finite index holds
+  - A finite-index step is Lemma 4.15 (`l096`); the proof of Theorem 4.17 redoes finite index inline, with
+    `Y_D`, and never cites 4.15. Lemma 4.15: `T(V_R)` is normal and of finite index. Finite index holds
     because `T/T(V_R)` is spanned by finitely many `x_(i,w)` of order `p`.
 - *If the model works over `Z`.* Then `T` is free abelian on the `x_(i,w)`, and `T(V_R)` has
   finitely generated free abelian cokernel.
@@ -121,7 +122,8 @@ analysis, NOT proved: the KMS structure lemmas were not re-derived over `Z`.
   Theorem 4.17 ("Since every finitely generated metabelian group is residually finite"). It is P. Hall's theorem,
   Proc. LMS 1959, NOT read at source.
 - *Finitely generated metabelian groups embed in direct products of linear groups.* KMS §1.4 cites Wehrfritz,
-  "On finitely generated soluble linear groups", Math. Z. 170 (1980), 155–167.
+  "On finitely generated soluble linear groups", Math. Z. 170 (1980), 155–167. Only the KMS citation was checked;
+  Wehrfritz's paper is NOT read at source.
 - *Residual finiteness of finitely generated abelian-by-polycyclic groups* (Roseblade, Jategaonkar). NOT read at
   source. It does not apply to `G_l`, whose top `Z ≀ Z` is not polycyclic.
 - *Hall's centre-by-metabelian groups with centre `Q`* show that finitely generated abelian-by-metabelian groups

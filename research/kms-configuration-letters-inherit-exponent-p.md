@@ -7,12 +7,15 @@ distinct_from:
   kms-minsky-groups-contain-no-z-localized: that excludes the groups G(M) themselves, using their exponent-p base; this shows the base exponent law is redundant for almost all generators, so the naive characteristic-0 variant, which drops only that law, keeps the whole machine in p-torsion.
   z-localized-embeds-in-fp-rf-group: that is the bottleneck; this is a calibration result for the proposed characteristic-0 variant of the KMS construction.
 artifacts:
+  - research/artifacts/gq-referee-a-kms-configuration-letters-inherit-exponent-p.md
+  - research/artifacts/gq-referee-b-kms-configuration-letters-inherit-exponent-p.md
   - research/artifacts/gq-gq-infinite-primes-kms-reading.md
 ---
 
-**ESTABLISHED** through `kms-configuration-letters-inherit-exponent-p-proof`. Lane proof, not
-independently reviewed. It uses only the relations G1, G5 a), G5 c) and G7 of the KMS
-presentation, as read from the arXiv:1204.6506v5 source.
+**ESTABLISHED** through `kms-configuration-letters-inherit-exponent-p-proof`. Lane proof; proof-gap
+review PASS by gq-referee-a and citation review PASS by gq-referee-b (reports in `artifacts`). It
+uses only the relations G1, G5 a) and G5 c) of the KMS presentation, as read from the
+arXiv:1204.6506v5 source.
 
 **Setting.** Let `G^0(M)` be the group given by the KMS generators and relations G1–G8 of §4.1, except
 that the law "`H_0` has exponent `p`" in G1 is omitted. `G^0(M)` still has these laws:

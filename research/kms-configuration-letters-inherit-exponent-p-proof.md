@@ -7,20 +7,20 @@ target: kms-configuration-letters-inherit-exponent-p
 requires: []
 ---
 
-Direct proof from the relations, as printed in arXiv:1204.6506v5, §4.1 (conventions there:
-`u^a = a^(-1) u a`, `[x, y] = x^(-1) y^(-1) x y`).
+Direct proof from the relations, as printed in arXiv:1204.6506v5, §4.1 (conventions: `u^a = a^(-1) u a`, as printed there; `[x, y] = x^(-1) y^(-1) x y`,
+which is implied by the equalities (e00) in the proof of KMS Lemma 4.5 but not printed. The
+conclusion holds under either commutator convention.)
 - G5 a): if `u` does not contain `A_i`, then `[x_u, A_i] = x_(uA_i)`, that is,
   `x_u^(A_i) = x_u x_(uA_i)`.
 - G5 c): if `u'` contains `A_i` and `z in M_i`, then `[x_(u'), z] = 1`. Here `A_i in M_i` for
   `i >= 1`, and `A_0 in M_0`. Applied to `u' = uA_i` and `z = A_i`: `x_(uA_i)^(A_i) = x_(uA_i)`.
-- G7 with all exponents `α_i = 0`: `[x_u, x_v] = 1` for all `u, v in U`.
 - G1: `A_i^p = 1`.
 
 **Induction.** `x_u^(A_i^0) = x_u`. If `x_u^(A_i^n) = x_u x_(uA_i)^n`, then
 
     x_u^(A_i^(n+1)) = (x_u x_(uA_i)^n)^(A_i) = x_u^(A_i) (x_(uA_i)^(A_i))^n = x_u x_(uA_i) x_(uA_i)^n,
 
-by G5 a) and G5 c). By G7 this is `x_u x_(uA_i)^(n+1)`.
+by G5 a) and G5 c), which is `x_u x_(uA_i)^(n+1)` by associativity.
 
 **Conclusion.** Taking `n = p` and using `A_i^p = 1` gives `x_u = x_u x_(uA_i)^p`, so
 `x_(uA_i)^p = 1`.

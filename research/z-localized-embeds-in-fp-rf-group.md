@@ -129,3 +129,15 @@ open part is finite presentation. One concrete route is
      survive, with finitely generated abelian quotients of `T` in place of finite ones. But the base would be free
      abelian, so the group would contain no `Z_(l)`. The crux moves to ingredient (2): a module relation with a
      non-unit scalar, such as the Euler relation of `G_l`. With that relation, ingredient (3) is hard again.
+6. **Ingredient (2) for the Euler base: the freest extension fails (2026-09-18, lane gq-infinite-primes).**
+   `euler-base-annihilator-over-lamplighter-is-not-fg`:
+   - Over the ring `D` the Euler base `M = Z_(l)[y^(±1)]` needs one left relation and one two-sided relation
+     (the Euler element `r = xβx^(-1) - β - l`).
+   - Over `Z[Z≀Z]` its annihilator is not finitely generated. So finitely many of the shifted Euler relations
+     `r x^k f_0 = 0` never suffice.
+   - The induced module over any overgroup `Q ⊇ Z≀Z`, Baumslag's finitely presented metabelian group
+     included, is not finitely presented.
+   - At the generator, the Euler relation is a BR-conjoint relation (KMS Lemma 4.1 form, pair `(β_(-1), β)`,
+     polynomial `t - l`). But BR propagates along the lamps, not along `x`.
+   - Open: a finitely presented base that is a proper quotient of the induced module and still contains `M`.
+     Deliverable (a), an explicit finite presentation, is not achieved.
