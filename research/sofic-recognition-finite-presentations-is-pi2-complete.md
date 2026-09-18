@@ -31,3 +31,19 @@ missing is the finite-output compiler
     c_(n+1)` spreads triviality both ways, so "finitely many `w_n = 1`" collapses as well.
   - *What is missing.*  An infinite family of collapse gadgets glued so that a kill at stage `n` does not
     propagate to stages `< n`: a one-way propagator.  Or an argument that no such gadget calculus exists.
+- **w3-111, 2026-09-17: ceiling for the gadget calculus (obstruction).**
+  - *Result.*  [[amenable-edge-assemblies-have-delta2-sofic-locus]] answers sw-111's "or an argument that no
+    such gadget calculus exists".  Take any computable family of finite graph-of-groups assemblies whose edge
+    maps may be non-injective, with edge groups that are amenable, satisfy max-n and have uniformly decidable
+    quotient word problems (cyclic, abelian, polycyclic, metabelian), and whose vertex soficity table is
+    `Delta^0_2`.  Its sofic locus is `Delta^0_2`, so no such family reduces `INF`.
+  - *Tame cyclic edges.*  With an omega-c.e. vertex table the locus is omega-c.e. with a computable bound.  That
+    exactly matches sw-111's lower bound.
+  - *Exact step.*  Normalising the edge kernels with a `0'` oracle stops after finitely many steps by max-n, and
+    each step is a `Sigma^0_1` question once the quotient word problem is decidable.
+  - *What remains.*  A `Pi^0_2`-hardness proof needs at least one of:
+    - a non-amenable edge (the rope);
+    - an amenable edge with an undecidable word problem, such as a Kharlampovich-Myasnikov-Sapir machine group
+      used as an **edge**;
+    - a non-`Delta^0_2` vertex table;
+    - a construction that is not a colimit (lamp modules).
