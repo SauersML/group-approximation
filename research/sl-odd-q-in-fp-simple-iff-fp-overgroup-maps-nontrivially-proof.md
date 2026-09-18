@@ -4,7 +4,7 @@ id: sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially-proof
 kind: route
 title: The kernel meets the simple subgroup in a proper normal subgroup; a finitely presented simple host is its own overgroup
 target: sl-odd-q-in-fp-simple-iff-fp-overgroup-maps-nontrivially
-requires: [sl-odd-q-simple-inputs-for-gl-n-q-root, fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree]
+requires: [sl-odd-q-simple-inputs-for-gl-n-q-root]
 ---
 
 **Clause 1.** `ker(φ) ∩ SL_m(Q)` is normal in `SL_m(Q)`, and it does not contain
@@ -31,13 +31,10 @@ clause 2 of `sl-odd-q-simple-inputs-for-gl-n-q-root`.
   finitely presented groups with solvable word problem: ... (2) The group
   GL_n(Q) for all n ≥ 2." Its proof goes through Higman–Neumann–Neumann and
   Clapham.
-- **Kazhdan host.** `P_m` is finitely generated, so
-  `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` applies. Its clause 1
-  gives an infinite finitely generated simple Kazhdan `H_m` containing `P_m`,
-  and its clause 3 says `WP(H_m) ≤_T WP(P_m)`, so `H_m` is decidable.
-- **The chain.** Boone–Higman gives an embedding of `H_m`. An embedding of `H_m`
-  restricts to one of `P_m`. An embedding of `P_m` in a finitely presented
-  simple `K` gives `Σ_(P_m,s)` in `K`. That gives the root by clause 3.
+- **The chain.** `P_m` is finitely generated with solvable word problem, so
+  Boone–Higman embeds it in a finitely presented simple `K`. That embedding does
+  not kill `s`, so `Σ_(P_m,s)` holds in `K`, and clause 3 gives the root. The
+  Kazhdan remark in the claim is not used.
 
 **Clause 5.** This is the contrapositive of clause 3, for every admissible
 `(m, P, s)`. ∎

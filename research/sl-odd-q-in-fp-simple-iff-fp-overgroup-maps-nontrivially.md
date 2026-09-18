@@ -29,14 +29,16 @@ Let `m >= 3` be odd and fix `s in SL_m(Q)`, `s ≠ 1`.
    (`sl-odd-q-simple-inputs-for-gl-n-q-root`).
 4. **Decidable overgroups exist.** Survey arXiv:2306.16356v3, Proposition 3.3(2),
    gives a finitely presented `P_m ⊇ GL_m(Q) ⊇ SL_m(Q)` with solvable word problem.
-   By `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree`, `P_m` lies in an
-   infinite finitely generated simple group `H_m` with property (T) and solvable
-   word problem. So the root for `GL_n(Q)`, `n < m`, follows from any of these,
-   each weaker than the one before:
+   So the root for `GL_n(Q)`, `n < m`, follows from any of these, each weaker
+   than the one before:
    - the full Boone–Higman conjecture;
-   - Boone–Higman for the single finitely generated group `H_m`;
    - Boone–Higman for the single finitely presented group `P_m`;
    - the single sentence `Σ_(P_m,s)` in some finitely presented simple group.
+
+   *Remark (not used).* By `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree`,
+   `P_m` also lies in an infinite finitely generated simple Kazhdan group `H_m`
+   with solvable word problem, and Boone–Higman for `H_m` implies it for `P_m`.
+   This places the root below one simple Kazhdan decidable input.
 5. **Counterexample certificate.** If `GL_n(Q)` embeds in no finitely presented
    simple group, then for every odd `m >= n + 1`, every finitely presented
    `P ⊇ SL_m(Q)` and every `s ≠ 1`, the universal sentence
