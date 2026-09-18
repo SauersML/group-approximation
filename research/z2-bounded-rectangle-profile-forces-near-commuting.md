@@ -148,3 +148,29 @@ non-permutation unitary construction.
       `rho >~ |F| n lambda_1` for `n` non-neutral clusters is still missing;
     - *non-free fibres and general permutation pairs*: a charge may move only a few points, so the box count
       `|F|/2` per box fails. This is the step that separates the regular-cover results from the full statement.
+- **w10-124, 2026-09-18 — any number of charges, and non-free fibres. Landed: F(K) = O(K^4) on all regular torus
+  covers; dist <= 608 rho^4 (rho + |Y|) on all covers with fibre Y.**
+  - **Multi-charge lower bound** (`regular-torus-covers-rank-distance-polynomial-in-profile`). Cluster the lifted
+    charges at a threshold `theta`, merging when translated bounding boxes come within `l^inf` distance `theta`.
+    - When `lambda_1 >= 2(n+1) theta`, a cluster that is not neutral is isolated by `(theta+1)^2` boxes with
+      distinct corners, each with holonomy conjugate to the cluster's. This gives
+      `rho > theta sigma / (4(n+1))`, where `sigma` is the support size of the cluster holonomy.
+    - So `theta ~ 4(n+1) rho/|F|` forces every cluster to be neutral.
+    - The bound is not of the form `|F| n lambda_1` asked for. Instead it picks a scale at which every cluster is
+      neutral.
+  - **Theorem A.** Every regular `F`-cover has `dist <= 10^4 rho^4/|F|^3`. There are two cases.
+    - Thick tori: pushes inside disjoint cluster boxes.
+    - Thin tori (`lambda_1 < 2(n+1) theta`): the strip cut at every charged-row gap of more than `2l`, walks of at
+      most `2n` steps into a digital band, and rungs. This costs `3 n lambda_1 + 2 n^2` sites.
+  - **Non-free fibres (Theorem B).** The replacement for `|F|/2` is `|supp hol|/2`. It weighs the lower bounds
+    (`sum supp <= 4 rho`, so `n <= 2 rho`) and the push costs (supports are subadditive). This gives
+    `dist <= 384 rho^5` on tori with `lambda_1 >= 96 rho^3`, for every fibre, and `dist <= 608 rho^4 (rho + |Y|)` in
+    general.
+  - **Computation.** `multicharge.py` ran on 600 covers with fibres `S_3`, `Q_8`, `A_4`, `S_3` on 3 points and `S_4`
+    on 4 points, and up to 13 charges. All steps and bounds were checked, including 171 box-count lemmas.
+  - **Open.**
+    - *Thin tori with large fibres.* There, strip redirects and rungs cost `|Y|` each. Every pair on `d` points is a
+      cover of the one-square torus, so removing this factor, or finding thick equivariant quotients with small
+      fibres, is the remaining step to the full statement.
+    - *Linearity.* A heuristic multi-scale `Z/2` example suggests that single-scale box counting cannot give
+      `O(K)`.

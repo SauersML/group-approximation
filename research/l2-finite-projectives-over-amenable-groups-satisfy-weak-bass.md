@@ -61,3 +61,37 @@ The obstruction items 4–6 of `amenable-cd-two-bass-defect-equals-euler-charact
 finite corners of `E` and the `U`-dimensions alone cannot carry the argument. A proof has to use
 the relation `E² = E` over `Z[G]` globally, for example through a trace on a suitable ideal of
 column-finite matrices that restricts to the Hattori–Stallings trace on finite corners.
+
+## Attempts
+
+- **2026-09-18 (lane `w13-112`): specialization from the universal field. Proved for locally
+  indicable and virtually locally indicable groups. Flat arguments work for exactly the locally
+  indicable groups.** See `flat-weak-bass-holds-exactly-for-locally-indicable-groups`
+  (proposed ESTABLISHED).
+  - *Characterization.* For every group `G`, the following are equivalent:
+    - `G` is locally indicable;
+    - `rank_Q ε(A) <= rk_U(A)` for every matrix `A` over `Z[G]`;
+    - `rank_Q(Q ⊗ M) <= dim_U(U ⊗ M)` for every flat module `M`.
+
+    The proof of the forward direction: by Jaikin-Zapirain (2021), `D(G)` is the universal
+    division ring of fractions, and Cohn specialization to the augmentation gives the rank
+    inequality. Lazard's theorem then carries it to flat modules. The converse: Fox matrices of
+    a finitely generated subgroup with `b_1 = 0` give a flat module `M_B` of positive defect.
+  - *New cases of this node.* The statement holds for every locally indicable group, amenable or
+    not, and for all flat modules. It is subgroup-closed. By Swan's theorem it passes up finite
+    index, with `rank_Q(Q ⊗_G C) = rank_Q(Q ⊗_N C)/[G:N]`. So it holds for every virtually
+    locally indicable group, and a proof for `K` may pass to any finite-index subgroup first.
+  - *Obstruction.* Item 5 of `amenable-cd-two-bass-defect-equals-euler-characteristic` was a
+    Hantzsche–Wendt example. It now holds for every group that is not locally indicable. In
+    particular the counterexample `K` itself carries a countably generated flat module of defect
+    `>= 1`. `K` is not virtually locally indicable, since otherwise it would be elementary
+    amenable. So every case of this node that matters for the flagship lies outside the reach
+    of flat arguments.
+  - *Where the difference is visible.* Hantzsche–Wendt separates the flat statement from the
+    projective one. There the statement holds only because of Swan's theorem: the
+    `Q[G/N]`-module `Q[G/N] ⊗ C` is free, so its trivial isotypic part is exactly its `1/[G:N]`
+    share. `M_B` violates this.
+  - *Next step.* Find a replacement for Swan's theorem when `K` has no finite-index locally
+    indicable subgroup. Concretely, for `N ⊴ K` with `K/N` infinite and amenable, does
+    `Z[K/N] ⊗_{Z[K]} C` satisfy an isotypic-share identity in the sense of `U(K/N)`? This is an
+    "L²-Swan" statement for big projectives over the quotient.

@@ -178,3 +178,24 @@ The same statement for the non-simple limit `A` of Toms's Section 4 is the test 
     `2` per node at a transit point, while Theorem 1 needs room `1`. Find, inside the chain
     `psi(a_n) <~ a_(M') <~ a_M`, a target with room one per node on a box. Then
     `eps_M >= 1/(2 d_n)` follows.
+- **Room-one extraction is circular; overlap excess is the invariant (w9-113, 2026-09-18).**
+  - *Result.* `toms-transit-windows-fill-unless-their-ranks-overlap`. Lower semicontinuity
+    gives `R(s) + R(1-s) <= ceil(d_n c) - 1` along every swap path. So every transit window of
+    `psi(a_n)` has room `> 1` per node. Any target `Q` above `a_M` has
+    `rank Q >= U - d_M eps_M`. So Theorem 1's premise `rank Q <= g + N`, with `N = K/2`,
+    already says `eps_M >= 1/(2 d_n)`. The requested step assumes its conclusion.
+  - *Dichotomy.* The right invariant is the overlap excess
+    `kappa = max R + max R(1-.) - d_n c` of a window. If `kappa <= 0` at every node, the
+    constant bundle of the leaf maxima, padded to rank `U`, dominates the pushforward with no
+    drop. This covers the single-jump windows of the ideal `floor(d_n F)`, where `kappa = 0`.
+    If `kappa >= 1`, one node is forced to drop, by coprime divisibility of `c(V)` by
+    `(1 + alpha u)^Pbar` and `(1 + beta u)^Qbar` on the vertex slice. Forcing windows exist at all
+    `K/2` bottom nodes once `eps_n + 1/(2 d_n) < phi(1/2 + w) - phi(1/2)`. The smallest forcing
+    window has two walls: two lines per facet and room `3`.
+  - *Reduction.* `toms-leaf-average-rank-via-overlap-window-cubes`: the target follows from
+    `toms-overlap-window-cubes-force-linear-depth` (OPEN). That statement asks for a common
+    drop of depth `cN` on a box of `N` ancestor-twisted overlap windows. Only linear depth is
+    needed, not depth `N`.
+  - *Next.* Prove the case `N = 2` of the overlap cube conjecture with ideal two-wall windows.
+    The gap is that the room-three facet data lie outside the band space of the cube proof,
+    and the `N = 1` obstruction is a divisibility statement, not a single class.

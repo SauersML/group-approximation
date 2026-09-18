@@ -1,0 +1,45 @@
+# rank 2, cap 24, C2 26: 2-tunnels seeded from the 922 tunnel-only states (lane w7-082, 2026-09-18)
+# thzsearch 2 24 20000000 xxxYYYY xyxYXY dump -> s24r2.txt (261720, EXHAUSTED); grow 2 24 s24r2.txt newcanon.txt new922r2.txt -> 922
+# round 1: t2m A 2 24 26 s24r2.txt,new922r2.txt 261720 262642 mseed2.txt
+DONE A 261720..262642 moves 2227960 capped 6497 tunnels 2221463 in-range 61712 classes 4340 PRIM 0
+# m classes by length: 25: 2512, 26: 1828
+# t2m B 2 24 26 s24r2.txt,new922r2.txt mseed2.txt 0 4340
+DONE B 0..4340 moves 10261440 capped 86297 tunnels 10175143 NEW 3209 PRIM 0 next-level 9126 goals-of-m PRIM 0 planar 4340 THICK 0 PROJ 0 thick-calls 4340 undecided 0
+# NEW lines: 2197 capped products from m, 1012 reduced products; 156 classes (22: 3, 23: 20, 24: 133)
+# grow 2 24 t24r2.txt c2a.txt g2a.txt
+EXHAUSTED new states 224 processed 224 tunnels 515302 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 224 undecided 0
+# rounds 2-5: iter.sh / loop.sh
+round r2b: new states 224, m classes new 1154
+B chunk 0 exit 0
+B RANK 2 CAP 24 C2 26 base 262866 mlist 1154 (classes 1154) entries 0..1154
+DONE B 0..1154 moves 2604440 capped 22895 tunnels 2581545 NEW 1679 PRIM 0 next-level 3119 goals-of-m PRIM 0 planar 1154 THICK 0 PROJ 0 thick-calls 1154 undecided 0
+landings: 81 classes
+EXHAUSTED new states 131 processed 131 tunnels 292346 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 131 undecided 0
+ROUND r2b DONE new 131
+round r2r3: new states 131, m classes new 722
+B chunk 0 exit 0
+B RANK 2 CAP 24 C2 26 base 262997 mlist 722 (classes 722) entries 0..722
+DONE B 0..722 moves 1617040 capped 16138 tunnels 1600902 NEW 802 PRIM 0 next-level 2386 goals-of-m PRIM 0 planar 722 THICK 0 PROJ 0 thick-calls 722 undecided 0
+landings: 38 classes
+EXHAUSTED new states 53 processed 53 tunnels 116933 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 53 undecided 0
+ROUND r2r3 DONE new 53
+round r2r4: new states 53, m classes new 311
+B chunk 0 exit 0
+B RANK 2 CAP 24 C2 26 base 263050 mlist 311 (classes 311) entries 0..311
+DONE B 0..311 moves 698200 capped 6970 tunnels 691230 NEW 124 PRIM 0 next-level 1061 goals-of-m PRIM 0 planar 311 THICK 0 PROJ 0 thick-calls 311 undecided 0
+landings: 8 classes
+EXHAUSTED new states 17 processed 17 tunnels 37788 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 17 undecided 0
+ROUND r2r4 DONE new 17
+round r2r5: new states 17, m classes new 87
+B chunk 0 exit 0
+B RANK 2 CAP 24 C2 26 base 263067 mlist 87 (classes 87) entries 0..87
+DONE B 0..87 moves 199060 capped 1991 tunnels 197069 NEW 0 PRIM 0 next-level 265 goals-of-m PRIM 0 planar 87 THICK 0 PROJ 0 thick-calls 87 undecided 0
+landings: 0 classes
+EXHAUSTED new states 0 processed 0 tunnels 0 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 0 undecided 0
+ROUND r2r5 DONE new 0
+LOOP CLOSED at round r2r5 base 263067

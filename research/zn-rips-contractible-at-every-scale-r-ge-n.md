@@ -62,3 +62,13 @@ Status on main, by dimension:
     but none at `(6, 7)`–`(6, 9)`.
   - *Next.* Link-collapse (K) certificates at `(8, 8)`, aimed at the self-blocking set, and a scan at `(8, r ≥ 9)`
     for the scales where the greatest self-blocking set is `{e_8}`.
+- **w6-103, link-collapse certificates.** `(8, 8)` is closed: `z8-rips-contractible-at-scale-8`.
+  - *Certificate.* The (D) prefix of the lifted domination core stops at the D-stuck set `a8_8` (40,442 points).
+    From there, 5,152 (K) moves, all on norm-8 points, release (D) cascades that reach `{e_8}`. The certificates for
+    `k ≤ 7` need at most 672 K moves each.
+  - *Verification.* Two verifiers that share no code with the search replay every line from all of `Lmax_k`, with
+    explicit `d_1` distances (`experiments/zn-rips-link-collapse-2026-09-18/`).
+  - *Next.* `(8, 9)`. The D-stuck set after the prefix has 113,321 points, 2.8 times as many as `a8_8`. A (K)
+    search on it fits in about 1.6 GB of bit rows. At `(8, 8)` the search needed about 4,000 s of wall time for
+    5,152 K moves, and at `(8, 9)` both the rows and the links are larger. So `(8, 9)` needs many budgeted stages,
+    or a partition-level (orbit) form of the (K) move.

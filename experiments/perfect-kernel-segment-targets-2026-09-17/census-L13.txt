@@ -1,0 +1,32 @@
+# python3 retract_segment_certify.py census 13
+# length 2 done, 0.0s
+# length 3 done, 0.0s
+# length 4 done, 0.0s
+# length 5 done, 0.0s
+# length 6 done, 0.1s
+# length 7 done, 0.4s
+# length 8 done, 1.2s
+# length 9 done, 3.8s
+# length 10 done, 13.5s
+# length 11 done, 46.7s
+# length 12 done, 153.9s
+# length 13 done, 563.8s
+length  landed+rule1  +ruleR  count
+2 True True 2
+3 True True 2
+4 True True 6
+5 True True 12
+6 True True 34
+7 True True 78
+8 True True 217
+9 True True 546
+10 True True 1516
+11 False True 2
+11 True True 4024
+12 False True 10
+12 True True 11176
+13 False True 28
+13 True True 30632
+uncertified:
+time 563.8s
+EXIT 0
