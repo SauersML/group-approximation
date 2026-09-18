@@ -23,7 +23,8 @@ implies FW.
 2. **The kernel is trivial.** `ker φ` is normal in `S`, so it is `1` or `S`. If it were
    `S`, then `h^-1 S h` would be an infinite Kazhdan subgroup of `V`. By
    `thompson-v-has-haagerup-property`, every Kazhdan subgroup of `V` is finite. So
-   `ker φ = 1`.
+   `ker φ = 1`. In particular `F ≠ ∅`: for `F = ∅` the product is trivial and
+   `ker φ = S`.
 3. **One coordinate is injective.** Each coordinate `φ_y : S -> (S)_y` has kernel `1` or
    `S`. If every kernel were `S`, then `φ` would be trivial, contradicting item 2. So
    some `φ_y` is injective, and `S ≅ φ_y(S) <= (E)_y`.
@@ -31,9 +32,13 @@ implies FW.
    `y` with some `v ∈ V`, and then `v(y) = y`. So `(E)_y` lies in the germ group of
    `Stab_V(y)` at `y`. That group is abelian. Near `y`, `v` replaces a prefix `u` of `y`
    by a prefix `u'` of `y`, so `y = uz = u'z`. If `|u| = |u'|` then `u = u'` and the
-   germ is trivial. If `|u| ≠ |u'|` then `y` is eventually periodic, and the germ is
-   the shift of the periodic tail by `|u'| - |u|` periods, so the germ group embeds in
-   `Z`. An infinite simple group is non-abelian, so it cannot embed in `(E)_y`.
+   germ is trivial. If `|u| < |u'|`, both are prefixes of `y`, so `u' = ua` with `a`
+   nonempty, and `uz = uaz` gives `z = az`, so `z = a^∞` and `y = u a^∞` is eventually
+   periodic (the case `|u| > |u'|` is symmetric). The germ is then the shift of the
+   periodic tail by a whole number of periods of the primitive root of `a`. So the
+   germ group at `y` is trivial when `y` is not eventually periodic, and infinite
+   cyclic when it is. Either way it is abelian, and an infinite simple group is
+   non-abelian, so it cannot embed in `(E)_y`.
    Hence `y ∈ sing(E)`.
 5. **Finite presentation.** Theorem 2.1 of Belk--Hyde--Matucci at `n = 2` asks that
    `SingFix_E({y},{y})` have type `F_2`, so it is finitely presented. By
