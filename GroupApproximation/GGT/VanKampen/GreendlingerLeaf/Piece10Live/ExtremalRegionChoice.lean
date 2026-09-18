@@ -15,14 +15,17 @@ region `r` (a class of `FaceClassStep` for the walk `K.boundary.cycle`), without
 * `StretchesClosed K r`: between two consecutive darts of `K.boundary.cycle` kept by the move at
   `r` (`P10ExtremalResidual.keptPred`), the removed stretch `B` is a closed walk: it starts at the
   vertex where it ends.
-* `flipClauses_of_regionChoice`: `RegionChoice` gives the three flip clauses (exterior face
+* `flipClauses_of_avoid`: the data of `RegionChoice` gives the three flip clauses (exterior face
   avoided, source face not flipped, kept face flipped).
 * `isChain_filter_keptPred_of_stretchesClosed`: in a pocket in walk order, closed stretches make
   the kept darts a walk (`ExtremalRegionLists.isChain_filter_of_closedStretches`).
 
-Truth of `RegionChoice`: in the finite plane Eulerian model of the pocket boundary (lane
-gl-p10-12b/13/14 search, `subarc_search`), a valid region avoids the exterior region, the source
-region and the region of some kept cell; this is exactly `RegionChoice`.
+Truth of `RegionChoice`: it is implied by the first three clauses of
+`ExtremalBlockNoWrapClauses` (for a region inside `K.faces` the kept face of the flip lies in
+`K.faces` away from the region; for a region outside, `K.kept` works), so it holds whenever the
+open core statement does.  In the finite plane Eulerian model of the pocket boundary (lane
+gl-p10-14 search) a valid region avoids the exterior region, the source region and the region of
+some kept cell.
 
 ## Manuscript status
 
