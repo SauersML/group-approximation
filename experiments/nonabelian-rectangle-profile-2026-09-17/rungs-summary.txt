@@ -1,0 +1,53 @@
+rungs.py: regular F-covers of square-tiled tori with <= 2 charged faces, F in {S3, Q8, A4}.
+Runs: python3 rungs.py G 11 1500 24 (random HNF tori, N <= 24, modes one/pair/neutral) and
+      python3 rungs.py G 12 800 48 thin (a in 2..4, N <= 48, random charge pairs).
+Every case: construction of the proof, all assertions (band simple+closed, seam charges adjacent to band,
+rung closing value exists, final pair commutes, sites <= case bound, dist <= |F| sites, dist <= 36 rho_lower) pass.
+rho_lower = max over 1 <= s,t <= M of rank([b^s,c^t]-I)/(s+t), M = min(40, max(lam1,|g|_1)+4) (a lower bound for rho).
+
+run-A4-thin.log SUMMARY A4 cases 800 {'neutral': 112, 'one': 97, 'strip': 275, 'short': 168, 'pathcut': 121, 'flat': 27} bands closed 884 bands where tree-only fails 700 worst dist/rho_lower 7.097
+   flat     cases   27  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  112  worst dist/rho_lower 1.105  worst sites/lam1 0.75  bands 0, tree-only fails on 0
+   one      cases   97  worst dist/rho_lower 2.667  worst sites/lam1 1.00  bands 97, tree-only fails on 97
+   pathcut  cases  121  worst dist/rho_lower 2.095  worst sites/lam1 2.50  bands 69, tree-only fails on 69
+   short    cases  168  worst dist/rho_lower 3.056  worst sites/lam1 1.75  bands 168, tree-only fails on 168
+   strip    cases  275  worst dist/rho_lower 7.097  worst sites/lam1 6.00  bands 550, tree-only fails on 366
+run-A4.log SUMMARY A4 cases 1500 {'strip': 188, 'short': 318, 'one': 310, 'flat': 230, 'pathcut': 77, 'neutral': 377} bands closed 1045 bands where tree-only fails 889 worst dist/rho_lower 4.667
+   flat     cases  230  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  377  worst dist/rho_lower 1.250  worst sites/lam1 0.80  bands 0, tree-only fails on 0
+   one      cases  310  worst dist/rho_lower 4.000  worst sites/lam1 1.00  bands 310, tree-only fails on 310
+   pathcut  cases   77  worst dist/rho_lower 2.500  worst sites/lam1 2.50  bands 41, tree-only fails on 41
+   short    cases  318  worst dist/rho_lower 3.111  worst sites/lam1 1.80  bands 318, tree-only fails on 318
+   strip    cases  188  worst dist/rho_lower 4.667  worst sites/lam1 6.00  bands 376, tree-only fails on 220
+run-Q8-thin.log SUMMARY Q8 cases 800 {'strip': 298, 'pathcut': 117, 'one': 85, 'short': 79, 'flat': 52, 'neutral': 169} bands closed 805 bands where tree-only fails 422 worst dist/rho_lower 5.542
+   flat     cases   52  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  169  worst dist/rho_lower 1.125  worst sites/lam1 0.75  bands 0, tree-only fails on 0
+   one      cases   85  worst dist/rho_lower 3.000  worst sites/lam1 1.00  bands 85, tree-only fails on 85
+   pathcut  cases  117  worst dist/rho_lower 2.250  worst sites/lam1 2.50  bands 45, tree-only fails on 45
+   short    cases   79  worst dist/rho_lower 2.368  worst sites/lam1 1.75  bands 79, tree-only fails on 79
+   strip    cases  298  worst dist/rho_lower 5.542  worst sites/lam1 6.00  bands 596, tree-only fails on 213
+run-Q8.log SUMMARY Q8 cases 1500 {'one': 210, 'neutral': 508, 'strip': 166, 'flat': 416, 'short': 150, 'pathcut': 50} bands closed 701 bands where tree-only fails 464 worst dist/rho_lower 5.000
+   flat     cases  416  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  508  worst dist/rho_lower 1.333  worst sites/lam1 0.80  bands 0, tree-only fails on 0
+   one      cases  210  worst dist/rho_lower 4.500  worst sites/lam1 1.00  bands 210, tree-only fails on 210
+   pathcut  cases   50  worst dist/rho_lower 2.250  worst sites/lam1 2.50  bands 9, tree-only fails on 9
+   short    cases  150  worst dist/rho_lower 3.000  worst sites/lam1 1.75  bands 150, tree-only fails on 150
+   strip    cases  166  worst dist/rho_lower 5.000  worst sites/lam1 5.67  bands 332, tree-only fails on 95
+run-S3-thin.log SUMMARY S3 cases 800 {'one': 138, 'flat': 56, 'strip': 246, 'short': 107, 'neutral': 153, 'pathcut': 100} bands closed 786 bands where tree-only fails 523 worst dist/rho_lower 6.708
+   flat     cases   56  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  153  worst dist/rho_lower 1.050  worst sites/lam1 0.75  bands 0, tree-only fails on 0
+   one      cases  138  worst dist/rho_lower 2.000  worst sites/lam1 1.00  bands 138, tree-only fails on 138
+   pathcut  cases  100  worst dist/rho_lower 2.250  worst sites/lam1 2.50  bands 49, tree-only fails on 49
+   short    cases  107  worst dist/rho_lower 2.250  worst sites/lam1 1.75  bands 107, tree-only fails on 107
+   strip    cases  246  worst dist/rho_lower 6.708  worst sites/lam1 6.00  bands 492, tree-only fails on 229
+run-S3.log SUMMARY S3 cases 1500 {'strip': 169, 'one': 277, 'short': 194, 'neutral': 434, 'flat': 362, 'pathcut': 64} bands closed 835 bands where tree-only fails 643 worst dist/rho_lower 4.561
+   flat     cases  362  worst dist/rho_lower 0.000  worst sites/lam1 0.00  bands 0, tree-only fails on 0
+   neutral  cases  434  worst dist/rho_lower 1.250  worst sites/lam1 0.80  bands 0, tree-only fails on 0
+   one      cases  277  worst dist/rho_lower 2.667  worst sites/lam1 1.00  bands 277, tree-only fails on 277
+   pathcut  cases   64  worst dist/rho_lower 2.500  worst sites/lam1 2.50  bands 26, tree-only fails on 26
+   short    cases  194  worst dist/rho_lower 3.370  worst sites/lam1 1.80  bands 194, tree-only fails on 194
+   strip    cases  169  worst dist/rho_lower 4.561  worst sites/lam1 5.50  bands 338, tree-only fails on 146
+
+Reading: 'tree-only fails' = the ordered charge product around the band is nontrivial, so the abelian
+tree cancellation (a spanning path of the band, closing rung kept) cannot flatten the piece; the rung
+lemma's closing value always exists. 'one' cases are single-charge covers: tree-only fails on every one.
