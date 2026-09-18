@@ -110,7 +110,8 @@ def gfaceWindCollapse_Excise (K : PocketFaceSet D eps X lo hi) : Prop :=
       (gfaceWindCollapse_CutStep X.toCombMap (extremalGFaceProve_bd X.toCombMap (K.faces \ S)))
       K.boundary.cycle c ∧
     (∀ x ∈ c, extremalGFaceProve_bd X.toCombMap (K.faces \ S) x = true) ∧
-    ((∀ d ∈ invDarts X K.sourceArc.darts, Surgery.MapCollapse.IsBoundaryDart X.toCombMap S d) ∨
+    ((∀ d ∈ invDarts X K.sourceArc.darts,
+        Surgery.MapCollapse.IsBoundaryDart X.toCombMap S d) ∨
       ∀ d ∈ invDarts X K.sourceArc.darts,
         ¬ Surgery.MapCollapse.IsBoundaryDart X.toCombMap S d) ∧
     ((∀ d ∈ K.targetArc.darts, Surgery.MapCollapse.IsBoundaryDart X.toCombMap S d) ∨
