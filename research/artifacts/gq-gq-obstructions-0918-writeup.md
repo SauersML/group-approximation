@@ -1,6 +1,8 @@
 # Obstruction theorems of 2026-09-18: an expert summary
 
-Compiled by lane `gq-writeup` from the Cairn nodes on origin/main at `476938cdb` (2026-09-18 03:39 local). Each
+Compiled by lane `gq-writeup` from the Cairn nodes on origin/main at `476938cdb` (2026-09-18 03:39 local).
+Five nodes changed while it was written, and those entries follow their text at `f8798d30a`: items 15, 16 and
+23, the T_p candidate, and `prime-shift-group-k2-is-finitely-presented`. Each
 theorem is restated from the current text of its node, and each carries the review status that the node itself
 records. This summary makes no claims of its own. Where a lane board and a node disagree, the node is reported,
 and the disagreement is listed in §5.
@@ -170,7 +172,7 @@ nor `E_N(R_l)/C` with `C` a finite normal subgroup is finitely presented.
 For `N ≥ 5`, if `St_N(T_l)_rf` is finitely normally generated, so is `St_N(D)_rf`. So the Euler base, and `Z_(l)`
 with it, plays no role in the `K_2` question.
 
-**15. `euler-ring-symbols-in-small-finite-quotients`** (lane proof; see §5 on the review record).
+**15. `euler-ring-symbols-in-small-finite-quotients`** (2 referees; gq-referee-a nits N1–N5 applied).
 1. Every `c_q` dies in `K_2(N, F_(2,l))`, for all primes `l`, `q ≠ l` and `N ≥ 3`. For `l` odd and
    `1 ≤ r ≤ l − 1`, the image `C_r = Z[u]/(l,u)^r` has `K_2(N, C_r) = 0`, so every `c_q` dies in every
    `F_(r,N)`, `r ≤ l − 1`.
@@ -180,11 +182,12 @@ with it, plays no role in the `K_2` question.
 
 The node does not treat `F_(r,N)` with `r ≥ max(l, 3)`, or `K_2(ρ_m(D))`.
 
-**16. `one-sided-inverses-cannot-repair-the-steinberg-residual`** (lane proof; see §5).
+**16. `one-sided-inverses-cannot-repair-the-steinberg-residual`** (2 referees).
 - For every ideal `I ⊆ I_rf(T)`, `Γ_N(T) = St_N(T)/St_N(T)_rf ≅ Γ_N(T/I)`, when `N ≥ 3`.
 - If `γπ = 1`, then `1 − πγ ∈ I_rf(T)`, because residually finite rings are Dedekind-finite.
 - So replacing lamp inverses by one-sided inverses gives the same residually finite quotient, and the same
-  finite-normal-generation question.
+  finite-normal-generation question. When `T` is the presentation of `D` with `π_0^(-1)` replaced by a one-sided
+  inverse `γ_0`, then `T′ ≅ D`.
 
 ### I.C The live candidates, and exactly what is open
 
@@ -217,9 +220,17 @@ The node does not treat `F_(r,N)` with `r ≥ max(l, 3)`, or `K_2(ρ_m(D))`.
 - *Open.*
   - **C1: residual finiteness of `B` and `T_p`.** The lamps do not commute even in finite quotients, and adding
     finitely many commutations does not force the rest.
-  - **C2: `K_2`.** The Euler symbols do not lift to the commutative lamp base `A_p` (base level). The
-    skew-Laurent level and the noncommutative `B` are not covered. The cheap sufficient condition, `K_2(N, T_p)`
-    finitely generated and central, is not established.
+  - **C2: `K_2`.** At the stable level (Attempt 4, lane proof), a `t`-homotopy shows that the image of `K_2(B) → K_2(D)` has order at
+    most 4. Quillen homotopy invariance is used as a textbook input, not re-read. So the image
+    of `K_2(T_p) → K_2(T_l)` meets the span of the `c_q` only in `0`, and the Euler obstruction does not come
+    from `T_p`. Three things are not covered:
+    - classes in `ker(K_2(T_p) → K_2(T_l))`;
+    - unstable `K_2(N, ·)`;
+    - whether such classes die in every finite quotient.
+  - **The ideal side** (Attempt 5, lane proof). For any ring `T` and `N ≥ 3`, a finitely normally generated
+    `St_N(T)_rf` forces `I_rf(T)` to be finitely generated as a two-sided ideal. For `T_p` the route therefore
+    needs `I_rf(B) ∩ (p−1)B` finitely generated, and the clean case is `B` residually finite. That is open, and
+    needs a normal form for `B`.
   - **C3: finite quotients.** In the Euler-type Fitting components, a `c_q`-type obstruction could reappear.
 
 ## Part II. Prime mixing and type (A) actors for GL_n(Q), SL_2(Q) and Aff(Q)
@@ -254,7 +265,9 @@ and route `aff-q-bh-via-prime-shift-type-a-action` fails in its stated form.
 5. Germs on `GL_n(Z)`-invariant domains of points cannot detect `e`.
 
 Finite presentation of `K_2`, the prime-shift group for `n = 2` (not the K-group), stays OPEN:
-`prime-shift-group-k2-is-finitely-presented`.
+`prime-shift-group-k2-is-finitely-presented`. Its Attempt 3 (lane gq-ring-fp-simple) is recorded as stalled. It
+shows that `e ∈ N` if and only if one explicit element `r`, fixing three lines pointwise, lies in `N`. It also
+shows that no scalar formula on those three lines decides this.
 
 **19. `fg-restricted-product-actions-have-finite-support`** (lane proof).
 - A finitely generated group of monomial bijections of a restricted product `∏′(Ω_i, o_i)` satisfies
@@ -301,13 +314,16 @@ Let `N ≥ 3`.
 
 Only the line action is excluded.
 
-**23. `graded-rings-with-degree-one-units-fail-the-k-budget`** (lane proof). Let `R ⊇ Q` be `Z`-graded with a unit
+**23. `graded-rings-with-degree-one-units-fail-the-k-budget`** (1 referee: gq-referee-a PASS, report 223c763b9, W1
+applied). Let `R ⊇ Q` be `Z`-graded with a unit
 in degree one. Then `R = R_0[u^(±1); σ]`, and exactly one of the following holds:
 - `ker(Q^x → K_1(R))` is not finitely generated;
 - the symbols `{λ, u}`, `λ ∈ Q^x`, generate an infinitely generated subgroup of `K_2(R)`, and then neither
   `E_N(R)` nor `E_N(R)/C` with `C` finite normal is finitely presented, for any `N ≥ 3`.
 
-This covers ring lamplighters and Baumslag-type homogeneous extensions.
+The ring lamplighters `U_n ⋊ Z` and `U_Q ⋊ Z` fall in the second case, since `Q^x → K_1(U_n)` has finite kernel. So
+no `E_N` of them is finitely presented. Adding homogeneous relations keeps a ring under the dichotomy, but can move
+it to the first case (referee a, W1).
 
 ### What survives in Part II
 
@@ -371,11 +387,9 @@ moves.
 
 ## §5. Graph hygiene for the owners
 
-1. **Review record missing from two nodes** (owner gq-k2-q). `euler-ring-symbols-in-small-finite-quotients` and
-   `one-sided-inverses-cannot-repair-the-steinberg-residual` still say "not independently reviewed". Yet PASS
-   reports are on main (`gq-referee-a-euler-ring-symbols-in-small-finite-quotients.md` and
-   `gq-referee-a-one-sided-inverses-cannot-repair-the-steinberg-residual.md`), and gq-referee-a's board lists both
-   as PASS. This summary reports the node status.
+1. **Resolved while this was compiled.** `euler-ring-symbols-in-small-finite-quotients` and
+   `one-sided-inverses-cannot-repair-the-steinberg-residual` said "not independently reviewed" at `476938cdb`,
+   although gq-referee-a had PASSed both. At `f8798d30a` both record PASS from referees a and b. No action needed.
 2. **Stale sentence in the Z_(l) root** (`z-localized-embeds-in-fp-rf-group`, Attempt 3). It still calls
    `resolvent-steinberg-rf-residual-is-infinitely-normally-generated` "OPEN until two cited K-theory inputs are
    confirmed". The node is ESTABLISHED, with both inputs read at the source.
@@ -389,12 +403,11 @@ moves.
    - `fg-metabelian-groups-have-roots-at-finitely-many-primes`, with its addendum;
    - `resolvent-elementary-groups-are-not-fp`;
    - `fg-restricted-product-actions-have-finite-support`;
-   - `graded-rings-with-degree-one-units-fail-the-k-budget`;
    - `renormalization-return-times-tend-to-zero-adically`;
    - the verified facts of the T_p host.
 
-   Three nodes have one referee each: `resolvent-ring-corner-symbols-survive-in-k2` (b),
-   `euler-triangular-steinberg-retracts-to-euler-steinberg` (a) and `unimodular-line-pairs-detect-cyclic-quotients`
-   (a). Item 12 was checked by b only.
+   Four nodes have one referee each: `resolvent-ring-corner-symbols-survive-in-k2` (b),
+   `euler-triangular-steinberg-retracts-to-euler-steinberg` (a), `unimodular-line-pairs-detect-cyclic-quotients` (a)
+   and `graded-rings-with-degree-one-units-fail-the-k-budget` (a). Item 12 was checked by b only.
 6. **British spellings in node text.** "centre", in `prime-shift-kn-fp-reduces-to-a-metabelian-quotient` and
    elsewhere, if the American-English rule is meant to cover node text.
