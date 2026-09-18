@@ -8,6 +8,17 @@ requires:
   - perron-substitution-finiteness-for-garside-full-groups
 ---
 
+**INVALID (2026-09-18).** This route is invalidated by
+`perron-weights-do-not-give-li-finiteness` (ba9176b48a).
+- §1 below is wrong: `lem:link:n-conn_3` uses the packing number `ρ'(x) ≥ R`, not the
+  height.
+- The `F_k` reduced-word coding satisfies (Perron) but has non-simply-connected
+  `|E(x_N)|` for all `N ≥ 3`.
+- The repaired criterion is height plus (Pack). Its Cuntz-stabilized form is
+  `cuntz-stabilized-garside-full-groups-are-f-infinity` (16be960ff1).
+
+The original text is kept below as a record of the error.
+
 **Lane proof, not independently reviewed.** Li's proof of `thm:Fn`
 (arXiv:2110.04505v2) is used as a black box **except** at the one lemma where `(t<d)`
 enters, which is replaced. All section/lemma labels below are Li's, read at source in
