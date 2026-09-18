@@ -3,7 +3,6 @@ rg: 2
 id: shell-germ-algebra-fp-forces-fp-germ-group
 kind: claim
 title: If the germ-groupoid Steinberg algebra of a shell envelope is finitely presented, then its germ group at the singular point is finitely presented
-requires: [shell-germ-steinberg-algebra-is-finitely-presented, shell-germ-fp-is-an-ascending-hnn-gate]
 distinct_from:
   shell-envelope-fp-forces-fp-germ-group: that derives a finitely presented germ group from finite presentation of the shell GROUP; this asks the same conclusion from finite presentation of the ALGEBRA, which would make the algebra gate at least as hard as half of the group gate.
   bhm-singfix-condition-forces-fp-germ-groups: that derives it from the SingFix hypothesis of Belk--Hyde--Matucci Theorem 2.1; this derives it from an algebra presentation.
@@ -102,3 +101,22 @@ without a genuine action to pull back. No such construction is written here.
      Grigorchuk group, is recursively presented with the infinite families `σ^n(CACACAC)` and
      `σ^n(DACACAD)` (arXiv math/0410226, theorem `thm:=2:pres`, read from the e-print). So it gives no finitely presented instance. Search log:
      `research/artifacts/gq-bh-bh-free-53-algebra-gate-counterexample-search.md`.
+3. **swarm-0917-w13-bh-last1 (2026-09-18): proved, over any field.** Route:
+   `shell-germ-algebra-fp-singular-ball-proof`. It supersedes the "OPEN" line above, which this
+   lane may not edit.
+   - **Why Attempt 1 stopped at bounded input length.** In the fibre model `K[G_p]` over
+     `K[Q]`, every generator entry is a power of `τ` except the `(p,p)` entries `r_g`.
+     - The unbounded exponents `rho_g(n) - n` of Attempt 1 live in far columns, where every word
+       is freely a power of `τ`. There, relations are free consequences.
+     - Only the finitely many columns whose relator paths visit `p` contribute. Their matched
+       words present `Q`.
+     - The comparison uses `m_W e_n = e_n` for `W = 1` in `Q`: the unit space is open, even in
+       the non-Hausdorff case.
+   - **Consequence 1.** The algebra gate for `A_nu` contains the germ half of the group gate.
+   - **Consequence 2.** For generic `nu`, `A_nu` is not finitely presented
+     (`generic-shell-germ-algebras-are-not-finitely-presented`, via the graph-product retraction
+     onto `P^(0) * P^(D)`).
+   - **What remains.** `A_nu/J` finitely presented with `A_nu` not. The same argument gives the
+     finitely presented local algebra `K[Q]/J_p`, together with local rigidity of the
+     Schreier boundary (`shell-germ-quotient-algebra-fp-forces-fp-local-algebra`).
+   - **Open question.** Is `K[Q_gen]/ω(F_e)ω(F_o)K[Q_gen]` finitely presented?
