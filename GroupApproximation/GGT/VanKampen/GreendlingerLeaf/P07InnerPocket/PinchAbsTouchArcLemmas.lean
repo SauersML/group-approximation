@@ -33,16 +33,15 @@ universe u w v
 open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
 
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
-  {X : DiscDiagram.{u, w, v} W}
 
 /-- `invDarts` is an involution. -/
 theorem pinchAbsTouchArc_invInv (X : DiscDiagram.{u, w, v} W) (l : List X.toCombMap.Dart) :
     invDarts X (invDarts X l) = l := by
-  unfold invDarts
-  rw [List.map_reverse, List.reverse_reverse, List.map_map]
+  simp only [invDarts, List.map_reverse, List.reverse_reverse, List.map_map]
   exact List.map_id'' (fun x => X.toCombMap.alpha_involutive x) l
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsTouchArc_invInv
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsTouchArc_invInv
 
 /-- `invDarts` reverses an append. -/
 theorem pinchAbsTouchArc_invAppend (X : DiscDiagram.{u, w, v} W)
@@ -106,9 +105,9 @@ theorem pinchAbsTouchArc_exists_idx {α : Type*} {l : List α} {m : ℕ} {S Q : 
 /-- **One step of an enclosed outside walk.**  Two darts adjacent in a rotation of `ow` and on the
 same face follow the face permutation, unless the first is pinched and its face successor is not
 kept by `ow`; in that residual case `hres` is used. -/
-theorem pinchAbsTouchArc_step {F : Finset X.toCombMap.Face} {ow : List X.toCombMap.Dart}
-    (E : EnclosedFaceSetSucc X F ow) {m : ℕ} {S Q : List X.toCombMap.Dart}
-    {x y : X.toCombMap.Dart} (h : ow.rotate m = S ++ x :: y :: Q)
+theorem pinchAbsTouchArc_step {X : DiscDiagram.{u, w, v} W} {F : Finset X.toCombMap.Face}
+    {ow : List X.toCombMap.Dart} (E : EnclosedFaceSetSucc X F ow) {m : ℕ}
+    {S Q : List X.toCombMap.Dart} {x y : X.toCombMap.Dart} (h : ow.rotate m = S ++ x :: y :: Q)
     (hface : X.toCombMap.faceOf y = X.toCombMap.faceOf x)
     (hres : ¬ PocketRun.PinchFreeAt X.toCombMap x →
       ¬ walkKeep X.toCombMap ow (X.toCombMap.facePerm x) → X.toCombMap.facePerm x = y) :
