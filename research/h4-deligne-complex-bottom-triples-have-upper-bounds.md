@@ -114,6 +114,26 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   - **The single flat is exhausted.** An `A_3` pair lemma (1910 tests, 0 violations, unproved) would give every
     `ι`-cabled hexagon a centre. So a single `I_2(5)` flat cannot produce a counterexample, and a proof of
     Case 1 must use its rotation-invariant form with multi-flat or non-fibred shadows.
+- **Single-edge case: the pair lemma, and all braid shadows have centres** (w8-042,
+  `braid-pure-single-edge-hexagons-always-have-a-centre`,
+  `h4-fibred-braid-shadows-cannot-certify-case1-counterexamples`).
+  - **`Z/2` Helly lemma (proved).** Let `x_i` be arcs from punctures to a boundary point `d_0` of a punctured
+    disc. The set of punctures in the `d_1`-region of `⋃x_i` is the intersection of the sets for the pairs
+    `x_i ∪ x_j`.
+    - Proof: the face boundary of a separated puncture is a mod-2 cycle. It splits into tails `π_i(v)` running to
+      `d_0`, and these pair up into cycles on `x_i ∪ x_j`.
+    - Consequence: every pure single-edge hexagon in the `(A_X, A_Y)` arc model of `B_n` has a spider centre.
+      The `A_Y` are spider stabilisers, and all ranks are covered.
+    - This proves w7-042's `A_3` pair lemma. Cross-check: 0 violations in 1910 / 3663 / 4223 triples at
+      `n = 4, 5, 6`.
+  - **Obstruction.** The `A_2` and `I_2(5)` fibred shadows, and products of them such as `N_V ∩ N_{V'}`, send
+    Case 1 hexagons to pure braid hexagons, so every image has a centre.
+    - No fibred braid shadow can certify a centreless Case 1 hexagon. This kills the cabling route
+      unconditionally, and the whole class `𝓗_V` as a source of certificates.
+    - For the `A_2` flats (onto `P_5`), some image centre even lies in the image layer.
+    - What is left is lifting. In an `I_2(5)` shadow: is some centre in `Ω(x_1∪x_2∪x_3)` a spider whose
+      restriction to the cluster `C` is `Δ_C^{2j}y_0`, and does it lift to an `H_4`-adjacent vertex? That is
+      form (R).
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

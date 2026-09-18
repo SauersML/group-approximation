@@ -559,6 +559,32 @@ content in that region.
   Near spine birth, `C(r)` must diverge, at least like `theta/D_n`. The open
   input is the attachment quasi-multiplicativity
   `g(n) <= C theta^{-1} g(k) g(n-k)` of the tilted cluster.
+* **Folded paths kill the plain-volume Br route (2026-09-18, w11-123).**
+  `fpbs-hairpin-paths-break-uniform-bridge-ratio`. Every environment has
+  `n D_n >= 2`, so `Br/TJT <= (n-2)/(2r)`: linear order is the worst case.
+
+  That order is attained. Take the column environment: all vertical edges,
+  plus each horizontal edge whose three stacked iid Bernoulli(q) labels are
+  not all 0. It is a connected, `Z^2`-invariant, range-1 monotone factor of
+  iid with `theta = 1`. On a hairpin path with two arms two rows apart, it has
+  closed forms: `Br/TJT >= c(r,q) n` and `K_n >= kappa^{n/2-1}` with
+  `kappa > 1`. A straight path in the same environment has
+  `D_n = lambda + 1/lambda` and `K = 1`.
+
+  **Where it dies:**
+  * `Br <= C(r) TJT` uniformly over plain volumes;
+  * any geometry-free bound `K <= C/theta` on multi-run patterns;
+  * lower bounds on `D_n` that use only FKG and supermultiplicativity.
+
+  **What survives:**
+  * Strict reduction (Theorem 3): for finite-range monotone environments,
+    the fold width `w_R` of the path gives `Br/TJT <= 1/(r lambda_min^{2w})`
+    and `K <= pi_+^{-2w}`. So geodesic paths are safe.
+  * Box exhaustions.
+  * For the percolation spine, Monte Carlo shows the same fold excess at a
+    small rate, about 0.0024 per column at `p' = 0.55` (Conjecture 5, open).
+    The next step is the multi-run `K` bound for the spine on geodesic paths,
+    with spine decorrelation in place of finite range.
 * **Untilting the path bridge ratio (2026-09-18, w10-123).**
   `fpbs-path-bridge-ratio-untilted-coverage-decorrelation`. Expand `r^N`
   over covered subsets `S`. The bridge mass and the gap-split part of `TJT`
