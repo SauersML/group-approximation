@@ -1,0 +1,3 @@
+R 6 CAP 8 vertices checked 10300 bad 0 max depth from first earlier neighbour 4
+depth histogram [(0, 880), (1, 3584), (2, 3780), (3, 1320), (4, 736)]
+DONE
