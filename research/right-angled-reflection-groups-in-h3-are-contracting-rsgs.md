@@ -41,8 +41,22 @@ Then:
   of `R_2`.
 - **(c).** `m` together with two non-adjacent faces of `R_2` is a triangle in `𝒩`.
 
-So Question 1.1 holds for every closed hyperbolic 3-manifold group commensurable with the right-angled dodecahedral
-reflection group. The Löbell polyhedra are expected to behave the same way; that has not been checked here.
+**The Löbell polyhedra `L(n)`, `n ≥ 5`**, satisfy (a)–(c). `L(5)` is the dodecahedron; `L(6)` has two hexagonal faces and
+twelve pentagons. Right-angled realizations are due to Löbell (1931), recalled and not read at source here.
+- **Labels.** Top and bottom `n`-gons `T`, `B`; pentagon rings `u_1..u_n` (adjacent to `T`) and `d_1..d_n` (adjacent to
+  `B`); `u_i` is adjacent to `u_{i±1}, d_i, d_{i+1}`.
+- **The vertices** are `(T,u_i,u_{i+1})`, `(B,d_i,d_{i+1})`, `(u_i,u_{i+1},d_{i+1})` and `(u_i,d_i,d_{i+1})`.
+- **(a).**
+  - Top vertex: `B` is missed.
+  - Bottom vertex: `T` is missed.
+  - `(u_i,u_{i+1},d_{i+1})`: its three faces and their neighbours are `T, B, u_{i−1..i+2}, d_{i..i+2}`, so `u_{i+3}` is
+    missed (`n ≥ 5`).
+  - `(u_i,d_i,d_{i+1})`: they are `T, B, u_{i−1..i+1}, d_{i−1..i+2}`, so `u_{i+2}` is missed.
+- **(b).** `T`–`B`, `T`–every `d_i`, and `B`–every `u_i`.
+- **(c).** `T, d_1, d_3` is a triangle.
+
+So Question 1.1 holds for every closed hyperbolic 3-manifold group commensurable with the reflection group of any
+`L(n)`, `n ≥ 5`.
 
 ## What this says about Question 1.1
 

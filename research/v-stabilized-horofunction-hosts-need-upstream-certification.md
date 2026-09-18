@@ -14,7 +14,7 @@ distinct_from:
   cocompact-tree-end-shift-hosts-are-f-infinity: that is the tree calibration, where certification holds; this is the first carrier class where it fails.
 ---
 
-**OPEN.** This is E3′ (`v-times-rigid-topologically-free-sft-full-groups-are-fp`) for the hyperbolic seed
+**ESTABLISHED** for every Γ acting topologically freely on `∂_h Γ` whose full group `[[Γ | ∂_h Γ]]` is a full contracting RSG (for example every Γ with a proper Z free factor), by `v-stabilized-full-contracting-rsgs-are-finitely-presented` (bh-p2b-exact, 2026-09-18, lane proof, unreviewed), which closes the gap of item 4 below. Otherwise OPEN. This is E3′ (`v-times-rigid-topologically-free-sft-full-groups-are-fp`) for the hyperbolic seed
 compactifications of `hyperbolic-groups-have-sft-horofunction-compactifications`, at the level of finite
 presentation. Items 1–3 below are ESTABLISHED (lane proof, bh-p2b-exact, 2026-09-18, elementary; unreviewed).
 Item 4 is a route with one named gap.

@@ -167,7 +167,7 @@ theorem mem_nonnegStab_of_isClassTransposition {g : Equiv.Perm ℤ}
 
 theorem classTranspositionGroup_le_nonnegStab : classTranspositionGroup ≤ nonnegStab := by
   unfold classTranspositionGroup
-  exact Subgroup.closure_le.mpr fun g hg => mem_nonnegStab_of_isClassTransposition hg
+  exact (Subgroup.closure_le _).mpr fun g hg => mem_nonnegStab_of_isClassTransposition hg
 
 theorem sigmaFlip_not_mem : sigmaFlip ∉ classTranspositionGroup := by
   intro h

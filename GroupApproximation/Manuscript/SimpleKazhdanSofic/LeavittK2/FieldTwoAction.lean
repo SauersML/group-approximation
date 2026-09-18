@@ -56,6 +56,7 @@ def unitVec (k : I) : I → R := fun m => if m = k then 1 else 0
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.unitVec
 
+omit [Fintype I] in
 theorem unitVec_apply (k m : I) : unitVec (R := R) k m = if m = k then 1 else 0 := rfl
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.unitVec_apply
