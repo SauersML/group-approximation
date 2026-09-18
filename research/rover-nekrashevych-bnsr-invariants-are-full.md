@@ -38,6 +38,13 @@ odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ
     odometer.
   - Still open: contracting `G` beyond bounded activity (polynomial activity, where the base carries characters), and
     general self-similar `G`.
+- **Item 2 for contracting `G` of polynomial activity, all `m`: ESTABLISHED** as
+  `rover-nekrashevych-polynomial-activity-tower-sigma-full` (unreviewed). It gives `Σ^∞(V_{d,r}G) = S` and type `F_∞`.
+  - The route climbs the Belk–Hyde–Matucci activity tower `V_{d,r} <= V_{d,r}G_0 <= ... <= V_{d,r}G_n`.
+  - Characters that are nonzero on the base are handled by `germ-extension-base-nontrivial-characters-via-point-fixers`
+    and `germ-extension-point-fixer-sigma-heredity`.
+  - This settles the polynomial-activity case left open in the previous bullet. Still open: self-similar `G` that is
+    not contracting, or has super-polynomial activity.
 - **Item 2 when `G` is not of type `F_m` but `Γ` is: OPEN beyond bounded automata** (see the previous bullet for
   Basilica and all bounded automata groups). Nekrashevych (arXiv:1312.5654, Theorem 5.9)
   gives finite presentation of `V_d(G)` for every contracting `G`, finitely presented or not. The Basilica group has
@@ -45,3 +52,24 @@ odometer `a = σ(1, a)` the sphere is `S^0`, and item 2 says both kernels of `Γ
   `Σ^2(V_2(Basilica))` is the first test where item 2 could fail. The stabilizer route gives nothing there, because
   `Basilica^n` is not finitely presented. A proof would need a different complex, such as the nucleus-based
   presentation of Nekrashevych.
+- **2026-09-18 (swarm-0917-w7-w7-z-last1): Item 2 in full, for every `d >= 2`, every self-similar `G` and every `m`
+  with `Γ` of type `F_m`: ESTABLISHED** via route `rover-nekrashevych-bnsr-full-via-type-one-partitions`
+  (unreviewed). Item 1 is taken from `rover-nekrashevych-characters-are-sum-invariant`.
+  - The complex is the order complex of the partitions of `C` into type-1 clopen sets (cone count `≡ 1 mod d−1`) with
+    between `m+1` and `(m+1)d−1` blocks. `Γ` acts on it cocompactly.
+  - Cell stabilizers are virtually `Γ^n` with `n >= m+1`, by the new node
+    `rover-nekrashevych-type-one-clopen-stabilizers-are-copies`. They are products of copies of `Γ`, not of `G`, so the
+    finiteness of `G` never enters and the Basilica obstruction above does not arise.
+  - Descending links are rank-selected `1 mod k` partition lattices, by the new node
+    `one-mod-k-partition-posets-are-highly-connected` (Björner–Wachs, imported verbatim from Wachs's notes).
+  - Characters live on every factor, so `characters-living-on-m-plus-one-factors-lie-in-sigma-m` and Meinert's
+    criterion close the argument.
+- **2026-09-18 (w6-101): both items for every `r`, for `V_{d,r}(G)`: ESTABLISHED** as
+  `rover-nekrashevych-vdr-sigma-full-for-every-r` via `rover-nekrashevych-vdr-sigma-full-via-type-r-partitions`
+  (unreviewed).
+  - Item 1 holds for `V_{d,r}G`: characters restrict to the sum-invariant characters, and they live on every nonempty
+    clopen set.
+  - Item 2 holds for every self-similar `G` and every `r`, whenever `V_{d,r}G` has type `F_m`.
+  - For `gcd(r, d−1) > 1` the type-`r` partitions are not directed. Contractibility then comes from the new node
+    `r-mod-k-partition-posets-truncations-highly-connected` (Wachs 1999, nonpure shellability), used as a directed
+    union of finite layers.

@@ -1,0 +1,7 @@
+RANK 2 CAP 24 base 261720 seeds 649 (already known 0) new after seeding 649
+EXHAUSTED new states 922 processed 922 tunnels 2221463 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 922 undecided 0
+
+real	0m10.030s
+user	0m7.649s
+sys	0m0.043s

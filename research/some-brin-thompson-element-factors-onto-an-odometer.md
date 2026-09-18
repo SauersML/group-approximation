@@ -122,17 +122,12 @@ checked.
   The renormalization route to `BS(1,3)` still needs a brick-local height-3 renormalization of that
   witness, which is not claimed.
 
-- 2026-09-18 (lane gq-affq). **The remaining renormalization step is not a tape deletion.**
-  MSI search and a structural argument, `research/artifacts/gq-affq-smart-renormalization-search.md`.
-  A brick-local height-3 renormalization `φ` of the induced witness `U` (which by the entry above
-  exists and factors onto `Z/2 × Z_3`) cannot be a bounded-radius deletion of a tape cell:
-  - a deletion re-indexes an entire tail, so it is not a bounded prefix change, hence not
-    brick-local in `2V` (the same defect that keeps the binary odometer out of `V`);
-  - a constraint search confirms it: a radius-2 deletion rule intertwines `φ S^3 = S φ` within
-    equality radius 40 (validation 3524/3524) but every rule collapses at equality radius 150,
-    because deleting a `0` inside a level-`k` zero-block is invisible only up to the block
-    boundary, and `k` is unbounded.
-  So a height-3 renormalization must be a bounded prefix operation on the odometer coordinate
-  (`smart-level-zero-return-map-factors-onto-3-adic-odometer`), consuming one `3`-adic digit as
-  the roots `s_n^{n+1} = s_{n-1}` do in `rationals-embed-in-brin-thompson-group-2v-proof`, not an
-  edit of SMART's tape. That coordinate is lane gq-nv-obstruct's.
+- 2026-09-18 (lane gq-affq). **Corrected: the renormalization IS a bounded edit next to the head.**
+  An earlier version of this entry (0e1078f57) said a tape deletion cannot be brick-local. That was
+  wrong. In the moving-tape coding, deleting the neighbour of the head is the prefix replacement
+  `P(q,c_0) D(c_1) -> P(q,c_0)`; every `u w -> v w` with `|u| != |v|` shifts the tail relative to the
+  head, and so does every move of `F`. The apparent collapse at equality radius 150 was a harness
+  bug: that radius exceeded the materialised window (120), so it compared independent random cells.
+  The explicit rule of `smart-induced-map-has-brick-local-height-3-renormalization` passes 55,000
+  whole-tape checks of `phi S^3 = S phi` with exact tower period 3 and an explicit inverse
+  (`research/artifacts/gq-affq-smart-renormalization-validation.md`).

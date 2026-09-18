@@ -1,0 +1,2 @@
+{'test': 'exactness_on_F2_tree', 'ball_radius': 9, 'seed_radius': 2, 'reps': 30, 'D_equals_closure': True}
+{'test': 'seed_certificate', 'p': 2, 'c': 4, 'n': 8192, 'seeds': 848, 'ratio': 0.103516, 'closure_full': True, 'union_find_classes': 1, 'exactness_tests': 30}

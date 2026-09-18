@@ -370,3 +370,72 @@ None recorded before 2026-09-17.
       `prime-shift-dilation-normalizers-are-nowhere-continuous`: every permutation shifting the primes on the dilation
       group is `c·σ` on each half-line and discontinuous everywhere (real on `Q^x`, all `p`-adic), so no tame
       version of `σ` exists. The open question is whether `Π_1 -> A_1` is injective.
+    - *Open questions as nodes, 2026-09-18:* `prime-shift-hnn-map-to-a1-is-injective`,
+      `prime-shift-affine-group-a1-is-finitely-presented` and `prime-shift-affine-group-a1-has-fg-point-stabilizer`.
+      The last two feed the route `aff-q-bh-via-prime-shift-type-a-action` into `aff-q-embeds-in-fp-simple-group`.
+
+19. **Derived units of the Leavitt resolvent ring, 2026-09-18: dead.** The route
+    `gl-n-q-bh-via-leavitt-resolvent-units` embeds `GL_n(Q)` in `D/Z(D)`, where `D = [R_L^x, R_L^x]`. It needs
+    `D/Z(D)` to be finitely presented and simple (`leavitt-resolvent-derived-units-mod-centre-fp-simple`).
+    `leavitt-resolvent-derived-units-mod-centre-not-fp` refutes the finite presentation, so the route can never
+    fire.
+
+20. **Complexes of groups over the adelic median graph `∏'_p T_p`, 2026-09-18: the development and its coordinatewise
+    thickenings are dead as hosts (lanes gq-sl2q and gq-union-obstruct; critic pass 2, family 1).**
+    - gq-sl2q: the action is not cocompact (`cocompact-fg-stabilizer-actions-force-finite-generation`), and no finitely
+      generated subgroup of `Aut(∏'_p T_p)` contains the standard `SL_2(Q)`
+      (`adelic-median-graph-automorphisms-are-restricted-products`). The permanence form is the OPEN
+      `sl2-q-in-permutational-boone-higman-class`.
+    - `sl-2-q-root-group-is-parabolic-in-every-prime-factor`: `U(Q)` fixes one end in every factor and no vertex. It is
+      the kernel of the infinite-rank Busemann map `B(Q) -> ⊕_p Z`. `u(1/m!)` displaces the base vertex by
+      `2Ω(m!) >= 2(m-1)`, so a host acting isometrically on a space containing the graph has
+      `|u(1/m!)| >= 2Ω(m!)/C`.
+    - `fg-restricted-product-actions-have-finite-support`: a finitely generated coordinatewise group of bijections of
+      any restricted product fixes almost all base coordinates. So no coordinatewise thickening, and no product of
+      per-prime hosts, contains the adelic `SL_2(Q)`, `GL_n(Q)` or `Aff(Q)`. A factor-permuting host must put all
+      primes into finitely many orbits, and then `|u(1/m!)| >= π(m)/s`.
+    - One end per factor kills nothing by itself: `SL_2(Q)` realizes it with residually finite vertex groups. Hosts must
+      mix the primes, as the prime shift of item 18 does. See `research/artifacts/gq-gq-union-obstruct.md` §7.
+
+21. **Germ implant U2, 2026-09-18 (lane gq-typeA-design; critic pass 3, U2).** It is dead as stated, and it
+    reduces to one explicit shell input.
+    - *The idea.* Build a finite germ extension of `V` whose germ group at one point is a quotient of a finitely
+      presented group containing `GL_n(Q)`, such as `St_N(R_L)`. The hope was that the `K_2` or scalar relations
+      sit in the locally trivial part, since Belk--Hyde--Matucci Theorem 2.1 asks only for finitely presented
+      `SingFix` groups.
+    - *Where it dies.* Hypothesis (2) of that theorem at `({p},{p})` forces the germ group to be finitely
+      presented (`bhm-singfix-condition-forces-fp-germ-groups`). The theorem was read at source, from the arXiv
+      LaTeX. The locally trivial part `RStab_V(p)` is simple, so it contributes one relator.
+    - *What survives.* Use `P = St_4(R_L)` itself as the shell input. For every enumeration its envelope is simple
+      and contains every `GL_n(Q)`, and only finite presentation is open
+      (`steinberg-resolvent-shell-envelope-is-finitely-presented`, route `gl-n-q-bh-via-steinberg-shell-envelope`).
+      The gates are decidable triviality in `K_2(4,R_L)`, a finitely presented shell germ group, and a computable
+      enumeration.
+    - Full hypothesis table: `research/artifacts/gq-gq-typea-design-u2-germ-implant.md`.
+22. **Oligomorphic actors in Kropholler's class HF, 2026-09-18 (lane bh-lit): no F∞ twisted Brin–Thompson
+    host from such an actor; type (A) untouched.**
+    - *Source.* Fournier-Facio–Kropholler–Lyman–Zaremsky, *Finiteness properties of stabilisers of
+      oligomorphic actions*, arXiv:2506.02319 (v2 2026-02-27, to appear in Publ. Mat.), Theorem 1.1, as returned
+      by the arXiv HTML page: "Let G be a group in HF acting on an infinite set S. If the action is
+      oligomorphic, then there exists a non-empty finite subset of S whose stabiliser in G is not of type FP∞."
+      Oligomorphic there means finitely many orbits on n-element subsets for every n.
+    - *The class.* HF is "the smallest class of groups that contains finite groups and has the property that
+      if G admits a cell-permuting action on a finite-dimensional contractible CW-complex with stabilisers in
+      HF, then G is in HF". It "includes all groups of finite virtual cohomological dimension, of any
+      cardinality, and all soluble and linear groups of cardinality ≤ ℵ_ω", and it is "subgroup closed,
+      extension closed, and closed under the formation of fundamental groups of graphs of groups".
+      Theorem 1.2 of the same paper: for G in HF acting on an infinite set S, the twisted Brin–Thompson group
+      ˢV_G is not of type FP∞.
+    - *For this root.* GL_n(Q) is countable and linear, so it lies in HF. Since it is not finitely generated,
+      it is never itself a type (A) actor. What the theorem constrains is an actor Γ ⊇ GL_n(Q): if Γ lies in HF,
+      for example because it is linear, soluble, of finite vcd, or assembled from such groups by extensions and
+      graphs of groups, then no oligomorphic action of Γ has all finite-set stabilisers of type FP∞. So no
+      twisted Brin–Thompson host ˢV_Γ built from such Γ is of type F∞ (FWZ arXiv:2603.24687 Theorem B:
+      F∞ iff the action is of type [A_∞]).
+    - *What it does not touch.* Finite presentation needs only type (A) = [A_2]: Γ finitely presented, point
+      stabilisers finitely generated, finitely many orbits on 2-element subsets (Zaremsky arXiv:2405.18354
+      Theorem A). The same paper's Corollary 1.6 gives, for a simple Burger–Mozes group Γ, an ˢV_Γ that is
+      finitely presented but not FP∞. So the obstruction is to the F∞ strengthening only, and the root asks
+      only for finite presentation. It also says nothing about actors outside HF, nor about hosts that are not
+      twisted Brin–Thompson groups.
+    - Survey entry: `research/artifacts/gq-bh-bh-lit-survey.md`, flag F4.

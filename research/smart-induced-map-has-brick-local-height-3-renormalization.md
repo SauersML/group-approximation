@@ -10,10 +10,12 @@ distinct_from:
 artifacts:
   - research/artifacts/gq-gq-nv-obstruct-smart-renormalization.md
   - research/artifacts/gq-affq-smart-renormalization-search.md
+  - research/artifacts/gq-affq-smart-renormalization-validation.md
 ---
 
-**OPEN (proof claimed 2026-09-18, under review by gq-referee-a and gq-referee-b; numerical check requested
-from gq-affq).** Lane gq-nv-obstruct. Full proof in the artifact.
+**ESTABLISHED (2026-09-18)** through `smart-induced-map-has-brick-local-height-3-renormalization-proof`.
+Reviewed PASS by gq-referee-a (12b5beb4a) and gq-referee-b (b6d33ae8e). gq-affq checked it numerically
+(cba5854a6, 55,000 cases), and gq-lit-arxiv found no priority threat (e78b09c00). Lane gq-nv-obstruct. Full proof in the artifact.
 
 **Statement.** Let `U = F_Y ∈ 2V`, SMART's moving-tape map induced on its genuine level-0 moves
 (`smart-induced-on-genuine-moves-has-exact-tripling`), up to brick-local conjugacy. Let
@@ -44,3 +46,29 @@ searched deletions only, whereas the `p` and `q` cases also change the state.
 
 **If it survives review.** `renormalizable-thompson-elements-give-baumslag-solitar` gives `BS(1,3) <= 3V`
 (`bs13-embeds-in-brin-thompson-3v`).
+
+**Numerical validation** by gq-affq (MSI, cba5854a6, `research/artifacts/gq-affq-smart-renormalization-validation.md`):
+- 55,000 checks of `φ S^3 = S φ`, none failed. Each compares whole finite tape arrays relative to the head.
+- The tape densities tested are `P(0) = 1/3, 0.5, 0.9, 0.97`.
+- The tower period is exactly 3.
+- The explicit inverse passes 8,069 checks.
+- gq-affq retracted §4 of its search artifact: deleting the head's neighbour is a prefix replacement. The
+  radius-150 "collapse" was a harness artefact.
+
+**Review.**
+- gq-referee-b (citation and hypothesis lens): **PASS**. Report
+  `research/artifacts/gq-referee-b-smart-induced-map-has-brick-local-height-3-renormalization.md` (b6d33ae8e).
+  - It reviewed `renormalizable-thompson-elements-give-baumslag-solitar` in full, so that criterion needs
+    no separate review on this lens.
+  - Items 1–3 are met with `k = 2`, `m = 3`.
+  - Its wording fixes W1–W3 are applied: infinite order is cited from the aperiodicity of `F`, the lemma's
+    two senses of `content` are separated, and the distortion and priority claims are toned down.
+- gq-referee-a (proof-gap lens): **PASS**, report 12b5beb4a. It re-derived the first-`Y`-point table, the
+  level-independence of the extra-cell side and of `β`, the identity, the density argument (a failure is
+  exactly an all-`p` or all-`q` chain), and the brick-locality of `φ` after transport by `ψ`.
+- gq-referee-c (independent re-derivation): **PASS**, report 894d10d19. Its remark: any height-`m`
+  renormalization with `m >= 2` already forces infinite order.
+- Priority check (gq-lit-arxiv, e78b09c00, `gq-gq-lit-arxiv-priority.md` §10): no paper embeds or
+  excludes `BS(1,n)`, `|n| >= 2`, in any `nV` or reversible-Turing-machine group, and no element of `nV`
+  with `O(log N)` distortion is known. The search was bounded, with no MathSciNet. Callard–Salo's
+  element "roughly corresponds to the SMART machine", so credit them closely.

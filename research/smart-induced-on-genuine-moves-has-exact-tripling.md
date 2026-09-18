@@ -6,13 +6,14 @@ title: SMART induced on its level-zero moves is an element of 2V whose level-k s
 distinct_from:
   brin-thompson-first-return-maps-lie-in-kv: that is the general inducing tool; this names the clopen set for SMART, checks the bounded return, and proves the exact count 3^k.
   some-brin-thompson-element-factors-onto-an-odometer: that asks for an element of some kV with an odometer factor; this gives the exactly tripled candidate, and does not prove an odometer factor.
-  renormalizable-thompson-elements-are-odometer-codes: that characterizes height-m renormalizations; this supplies the candidate whose renormalization identity is still to be checked.
-  smart-level-zero-return-map-factors-onto-3-adic-odometer: that is lane gq-nv-obstruct's independent version, which induces on all level-0 configurations (2·3^k steps per move) and claims the Z/2 x Z_3 factor, pending referees; this induces on phase-2 leaves only (3^k steps) and adds the explicit return bound and two renormalization checkpoints.
+  renormalizable-thompson-elements-are-odometer-codes: that characterizes height-m renormalizations; this supplies the candidate, whose height-3 renormalization is `smart-induced-map-has-brick-local-height-3-renormalization`.
+  smart-level-zero-return-map-factors-onto-3-adic-odometer: that is lane gq-nv-obstruct's independent version, which induces on all level-0 configurations (2·3^k steps per move) and proves the Z/2 x Z_3 factor (ESTABLISHED, referees a and b PASS); this induces on phase-2 leaves only (3^k steps) and adds the explicit return bound and two renormalization checkpoints.
   three-v-contains-aperiodic-rationals: that uses SMART's moving-tape map only for its lack of periodic points; this induces it on a clopen set to remove the per-level overhead.
 ---
 
-**ESTABLISHED** through `smart-induced-on-genuine-moves-has-exact-tripling-proof`. Lane proof,
-not independently reviewed. It rests on Callard–Salo's Proposition 3.2 and the 8-state SMART
+**ESTABLISHED** through `smart-induced-on-genuine-moves-has-exact-tripling-proof`. Lane proof.
+Reviewed: gq-referee-c PASS
+(`research/artifacts/gq-referee-c-smart-induced-on-genuine-moves-has-exact-tripling.md`, 282b018d4). It rests on Callard–Salo's Proposition 3.2 and the 8-state SMART
 table (arXiv:2208.00685v3, `distortion-1-smart.tex`, read from the e-print source; transcription
 checked reversible in `experiments/nv-measured-walls-2026-09-17/smart_belt_periods.py`).
 
@@ -55,8 +56,11 @@ level-0 moves**:
    (`▶ ↦ ▶◀⊳`, `◀ ↦ ◀▶⊲`, `⊳ ↦ ▶⊲⊳`, `⊲ ↦ ◀⊳⊲`). The first letters `▶, ◀, ▶` are the states at
    `S^0, S^3, S^6`.
 
-**Not established.** A clopen `A` and a brick-local `φ` with `S^3 = φ^{-1} S φ` on `A` and
-`X_Y = A ⊔ SA ⊔ S^2 A`. The same goes for any continuous eigenvalue `e^{2πi/3}` of `S`. The
-evidence is only item 2 together with the two checkpoints in item 3. The substitution route
-of lane gq-nv-obstruct (`some-brin-thompson-element-factors-onto-an-odometer`, Attempts) decides
-the eigenvalue question independently.
+**Renormalization, now established.** A clopen `A` and a brick-local `φ` with `S^3 = φ^{-1} S φ`
+on `A` and `X_Y = A ⊔ SA ⊔ S^2 A` are given by `smart-induced-map-has-brick-local-height-3-renormalization`,
+for this induced element (called `U` there). That node is ESTABLISHED and refereed PASS by gq-referee-a
+(12b5beb4a), gq-referee-b (b6d33ae8e) and gq-referee-c
+(`gq-referee-c-smart-induced-map-has-brick-local-height-3-renormalization.md`). Item 2 and the two
+checkpoints in item 3 were the first evidence for it. Lane gq-nv-obstruct's substitution route, for the map
+induced on all level-0 configurations, is `smart-level-zero-return-map-factors-onto-3-adic-odometer`
+(ESTABLISHED).

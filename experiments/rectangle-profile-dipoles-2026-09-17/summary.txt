@@ -1,0 +1,20 @@
+# dc 2 40: exact rectangle profile of Z/2 dipole covers, all HNF lattices N<=40, all g
+# cases: 35205
+# max rho: 40 4 0 20 20 5 4.4444 4 5
+# max min(|g|,lam1)/rho 1.7142857142857142 36 12 3 19 19 6 3.5000 3 5 lam1=6
+# min 0.5249895002099958 40 1 0 20 20 20 1.9048 1 20 lam1=1
+# anneal sweep N<=26 (lower bound on word profile sup rank(W-I)/|W| over closed loops, vs rho_rect)
+# cases: 9440
+# max (anneal rank/(|W|/2)) / rho_rect = 1.2500  line: 21 7 3 15 3 2.0000 1.2500 20 16   [fields: N N1 C g |g|_1 rho_rect bestratio F P; |W|=P]
+# surgery.py 2 22: explicit commuting pairs, ub=min(path,thin) rank distance vs rho
+# cases: 5749
+# WORST ub/rho 2.5
+# worst-case line: 8 8 1 4 rho=1.600 path=4 thin=4 v= (-1, -1) k= 1 ub/rho=2.500
+# worst-case line: 8 8 7 4 rho=1.600 path=4 thin=4 v= (-1, 1) k= 1 ub/rho=2.500
+# worst-case line: 9 9 1 4 rho=1.600 path=4 thin=4 v= (-1, -1) k= 1 ub/rho=2.500
+# worst-case line: 9 9 1 5 rho=1.600 path=4 thin=4 v= (-1, -1) k= 1 ub/rho=2.500
+# worst-case line: 9 9 8 4 rho=1.600 path=4 thin=4 v= (-1, 1) k= 1 ub/rho=2.500
+# max thin cost: 40
+# reproduce: gcc -O2 -o dc dc.c && ./dc 2 40 > scan40.txt ; python3 lam.py scan40.txt
+#            gcc -O2 -o anneal anneal.c && sh sweep.sh 4 26 > sweep26.txt
+#            python3 surgery.py 2 22 > surgery22.out   (asserts commutation; prints WORST ub/rho)

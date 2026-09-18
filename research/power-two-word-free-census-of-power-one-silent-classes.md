@@ -35,6 +35,60 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory_r1_4887_m2.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_len8_m2_open_entries.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_m3_open_entries.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword_m2_4012_ab3_duals.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword_m3_4887_ab2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/scan_pairs.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/scan_pairs_m2_4887_ab6.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r1_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r2_4887_m2_timeout.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r2_4012_m2_killed.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory_r2_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory_r2_4012_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory_selftest_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask_sweep.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sp_mask_sweep_r2_m2_4887_4012.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_4887_ac_noprop.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_4012_ac_noprop.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_rho.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_rho_r2_m2_mask_ac.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_4887_mask_ac.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_4012_mask_ac.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/sweep_r2_m2_open12.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_rho_r2_m2_open_entries.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_61_abAB.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_108_acAC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_108_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_198_acAC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_198_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_1632_abAB.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_1632_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_1633_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_1744_acAC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_4485_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_61_mask_abAB.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_108_mask_acAC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_108_mask_bcBC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_198_mask_acAC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_198_mask_bcBC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_1632_mask_abAB.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_1632_mask_bcBC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_1633_mask_bcBC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_1744_mask_acAC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/farkas_r2_m2_4485_mask_bcBC.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_masked_r2_m2_2429_bcBC.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/lift_word_m2_2429_w4.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/surfaces_m2_census/phi2429.json
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_surface_phi2429_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_chain.sh
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_r2_4887_m2_chain.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_full_r2_4012_m2_chain.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -177,3 +231,112 @@ entries, one per line).
     obstruction at power three lies in the realisation of words, not in the local polygon LP.
   - What remains: multiword boundaries at power two or three, or single words longer than 8. A
     certificate for an open entry needs one of these.
+
+- **2026-09-18, addendum (w5-074): multiword boundaries by column generation; no certificate yet, and no obstruction at memory two.**
+  - `cg_multiword.py` solves the multiword LP of `balanced-power-boundaries-lift-to-folded-certificates`
+    (boundary `n_w` copies of `(w, f^m(w)^{-1})` for each `w` in a word set `W`) by column generation. Pricing
+    over all vertex polygons is exact, by min-plus products over gate blocks, so the polygon set is never
+    enumerated and the LP fits in 2GB. Infeasibility is declared only when the phase-1 Lagrangian bound
+    (master value plus bounded polygon mass times the most negative reduced cost) is positive. These are float
+    computations with exact pricing, not exact Farkas checks.
+  - Entry 4012 at power two, with `W = {a, b, ab, aab, abb}` and inverses (10 words, any multiplicities),
+    is infeasible (`cg_multiword_m2_4012_ab3_duals.log`, which also lists the phase-1 dart duals).
+  - Entry 4887 at power three, with `W = {a, b, ab}` and inverses, is infeasible, with Lagrangian bound `0.498`
+    (`cg_multiword_m3_4887_ab2.log`).
+  - Entry 4887 at power two, with every two-word boundary `{u, v^{-1}}` where `u, v` are over `{a, b}`,
+    `|u|, |v| <= 6` and `[u] = [v]` in `H_1` (`scan_pairs.py`): all 30 pairs are infeasible
+    (`scan_pairs_m2_4887_ab6.log`).
+  - `W` = all words over `{a, b}` of length `<= 4` (16 words), at power two, on 4887 and 4012: the 1200 s limit
+    stopped both with phase-1 values 1.34 and 1.28, so this is undecided.
+  - `cg_memory.py` is the same column generation for the word-free memory-`r` LP of `lp_memory.py`. At `r = 1`
+    it reproduces the enumerated optimum `-1/2` on 4887 (`cg_memory_r1_4887_m2.log`).
+  - At `r = 2` (114 windows) neither run converged: on 4887 phase 1 stopped at 2.39 at the time limit, and on
+    4012 the run was stopped at 6.33 (`cg_memory_r2_*`). So `r = 2` is undecided.
+  - Support propagation (`support_propagation_memory.py`), which is exact, leaves 96 and 100 of the 114 windows
+    alive, with a zero-homology circulation. So no combinatorial obstruction exists at `r = 2`
+    (`support_propagation_memory_r2_*`).
+  - `verify_farkas_memory.py` turns a phase-1 dual dump of `cg_memory.py` into an integer Farkas vector and checks
+    it exactly, maximising over all typed polygons by max-plus products. On 4887 at power two with `r = 1`
+    (446704 polygons), it matches brute force on three random integer vectors
+    (`verify_farkas_memory_selftest_4887_m2.log`).
+    - If the `r = 2` LP is infeasible or has optimum `>= 0` on an entry, this checker makes that an exact proof
+      that the entry has no power-two certificate at all.
+  - Status of the 14 open entries: unchanged. The multiword infeasibilities rule out only the listed word sets,
+    at float tier.
+
+- **2026-09-18, addendum (w6-074): on 4887 and 4012, no power-two certificate has all its boundary words in a rank-two free factor spanned by two of the letters. Exact.**
+  - Take the memory-2 word-free LP of `lp_memory.py` and keep only the window columns whose three letters lie in one
+    two-letter alphabet `{x, y}^{+-1}`. A legal `f^2`-folded fatgraph whose `partial^-` words are all words in `x, y`
+    projects to a feasible point of this restricted LP. So infeasibility of the restricted LP rules out every such
+    certificate, for any word lengths and any multiplicities.
+  - `{a, b}` and `{b, c}`: support propagation restricted to the mask (`sp_mask.py`, exact boolean arc consistency)
+    kills every window, on both entries (`sp_mask_sweep_r2_m2_4887_4012.log`).
+  - `{a, c}`: propagation leaves 8 of the 16 windows alive (`aaa, aac, aca, caa` and inverses on 4887; `aac, aca, caa, cac`
+    and inverses on 4012), with a zero-homology circulation. So there is no combinatorial obstruction there.
+    - `cg_masked.py --noprop` (column generation on the masked LP with exact min-plus pricing restricted to live darts)
+      reaches a positive phase-1 Lagrangian bound on both entries (`cg_masked_r2_*_ac_noprop.log`).
+    - `farkas_rho.py` turns its dual into an exact integer Farkas vector by a dart shift.
+      1. Round `D y` with `D = 10^6`.
+      2. Subtract `R_d = ceil(max charge of a k-gon through d / k)` from each dart. This is an exact max-plus maximum,
+         so every polygon charge becomes `<= 0`.
+      3. Set `z_norm` to the least window slack. Types that carry no masked window get dual `-10^12`, and pair slots
+         into them get `-+ 5*10^11`. All values stay below `2^53`, so the float64 integer arithmetic is exact.
+    - It then re-checks the vector with `verify_farkas_memory.max_polygon_charge`. Both entries give `FARKAS VERIFIED`,
+      with `z_norm / D = 0.789` on 4887 and `0.510` on 4012 (`farkas_rho_r2_m2_mask_ac.log`).
+    - The integer certificates are in `farkas_r2_m2_{4887,4012}_mask_ac.json`, and `python3 farkas_rho.py <cert>`
+      re-verifies them.
+  - Consequence: at power two, any certificate for 4887 or 4012 has `partial^-` words that together use all three letters
+    `a, b, c`. This contains, and makes exact, the `{a, b}` word-set infeasibilities listed above.
+  - Still undecided: the full `r = 2` LP, where all 114 windows are allowed. `farkas_rho.py` without `--mask` certifies it
+    from any dual whose shifted value is positive, so the remaining step is a converged phase-1 dual.
+
+- **2026-09-18, addendum (w6-074, continued): entry 2429 is certified. On the 12 other open entries, as on 4887 and 4012, no power-two certificate has all its boundary words in a two-letter free factor. Exact.**
+  - **Sweep.** I ran the masked memory-2 support propagation of `sp_mask.py` (exact) on the 12 open entries other than 4887
+    and 4012, for each alphabet `{a, b}`, `{a, c}` and `{b, c}` (`sweep_r2_m2_open12.log`; its window lists are
+    truncated to 12). Propagation kills every window in 25 of the 36 cases. That covers all three alphabets for 228, 464,
+    1635 and 2298.
+  - **Farkas vectors for 10 of the 11 surviving cases.** These are 61 `{a, b}`; 108 `{a, c}`, `{b, c}`; 198 `{a, c}`, `{b, c}`;
+    1632 `{a, b}`, `{b, c}`; 1633 `{b, c}`; 1744 `{a, c}`; and 4485 `{b, c}`.
+    - Every feasible point of the masked LP vanishes on the windows that propagation kills. So the masked LP is infeasible
+      exactly when the LP on the surviving windows is.
+    - `cg_masked.py --propwin` (61: `--live` with the same 16 windows) runs column generation on the LP over the surviving
+      windows, with exact min-plus pricing. It reaches a positive phase-1 Lagrangian bound in all ten cases
+      (`cg_masked_r2_m2_<entry>_<letters>.log`).
+    - `farkas_rho.py` then gives an integer Farkas vector, with `z_norm / D` between 0.011 and 1.12. The ten vectors are in
+      `farkas_r2_m2_<entry>_mask_<letters>.json`.
+    - `python3 farkas_rho.py <cert>` re-checks each one in two exact steps. It re-runs the masked propagation and confirms
+      that only listed windows survive. It then checks every polygon charge by max-plus products, and every window charge.
+    - All ten give `FARKAS VERIFIED` (`farkas_rho_r2_m2_open_entries.log`).
+  - **2429 on `{b, c}`, the one remaining case.** 14 windows survive, and the LP on them is feasible with optimum `-3/2`
+    (`cg_masked_r2_m2_2429_bcBC.log`). A feasible point of this restricted LP is feasible for the full memory-2 LP. So the
+    full memory-2 LP of 2429 has optimum at most `-3/2`.
+    - The optimal window flow puts `1/8` on each of `bbc`, `cbb` and their inverses. It splits the rest between `bcb, ccc`
+      and `bcc, ccb`, and their inverses.
+    - Reading boundary words off this flow gives `W = {bbc, bbccc, CBB, CCCBB}`.
+  - **Entry 2429 is certified.** Here `phi : a -> abb, b -> bcaa, c -> babb`.
+    - The MILP of `lift_word.py` on `W` at power 2 has an integer point with one copy of each word, `chi = -24` and 100
+      vertices. Its realisation is a legal `f^2`-folded fatgraph with `partial^- = {bbc, bbccc, CBB, CCCBB}`: 248 darts,
+      `V = 100`, `E = 124`, `chi(X) = -24`, one component, cover degree 1 and 16 `f`-corners
+      (`surfaces_m2_census/phi2429.json`, `lift_word_m2_2429_w4.log`).
+    - `verify_surface.py` and `verify_surface_multi.py` both give `CERTIFICATE OK`. They check an explicit inverse,
+      `M^2 > 0`, and `chi_M = t^3 - 2t^2 - 6t + 1`, which has no rational root. The genus of `S*_f(X)` is 13.
+    - `validate_certificates.py` projects the certificate to a feasible point of the power-two LP with `chi = -24`
+      (`0 failures`). All three outputs are in `verify_surface_phi2429_m2.log`.
+    - By Step 4 and Step 5 of the proof, `G = F x|_phi Z` is one-ended hyperbolic and contains a closed genus-13 surface
+      group. `|T| = |chi_M(1)| = 6`.
+    - `chi_M` equals that of the power-one entries 192 and 2441 (`legal-folded-certificates-at-power-one-census`). So the
+      Alexander polynomial is not new, and whether these groups are isomorphic is not decided here.
+  - **Status.** 11 classes are certified at power two. 13 LP-negative representatives remain open: 61, 108, 198, 228, 464,
+    1632, 1633, 1635, 1744, 2298, 4012, 4485 and 4887.
+    - On all 13, every power-two certificate has `partial^-` words that together use all three letters `a, b, c`
+      (this addendum, and the previous one for 4887 and 4012). This is exact, for any word lengths and multiplicities.
+    - Certificates with boundary words in a two-letter factor are therefore exhausted at memory 2 on this census.
+  - **The full memory-2 LP on 4887 and 4012 is still undecided.** `cg_full_chain.sh` chains 900 s runs of `cg_full.py`,
+    each reloading the pruned columns of the previous run.
+    - Over 11 runs on 4887 the phase-1 value falls 0.283, 0.182, 0.171, 0.167, ..., 0.1631, 0.1622, and appears to
+      level off. Over 10 runs on 4012 it falls 0.930, 0.457, ..., 0.323, 0.314.
+    - The best dart-shift bounds stay negative on both entries, at -4.57 on 4887 and -9.71 on 4012. So neither run proves
+      infeasibility (`cg_full_r2_{4887,4012}_m2_chain.log`). This is a float computation.
+    - A positive limit on 4887 would mean the entry has no power-two certificate at all. Proving it needs a dual whose
+      dart-shifted value is positive, which then goes to `farkas_rho.py` without `--mask`. Plain column generation has
+      tailed off before reaching one, so the next step is a stabilised master.

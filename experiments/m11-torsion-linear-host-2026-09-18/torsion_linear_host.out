@@ -1,0 +1,26 @@
+M_11 order 7920 ; alpha, beta in M_11: True
+(1) g = a@1 (a@2)^-1: True  (expected True)
+(1) g = a alpha^-1 a^-1 alpha: True  (expected True)
+(1) [a@1, a@2] = 1: True  (expected True)
+(1) U = prod_k b^-k c b^k = 1  (e_c(U) = 11): True  (expected True)
+(1) b^55 = 1: True  (expected True)
+(1) b^11 = 1: False  (expected False)
+(1) c^11 = 1: False  (expected False)
+(1) c^121 = 1: False  (expected False)
+(1) g^11 = 1: False  (expected False)
+(1) a^11 = 1: False  (expected False)
+(1) [b, c] = 1: False  (expected False)
+    e_c(U) = 11, e_a(U) = 0, |U| = 121
+(1') calibration, old c = (c, a, 1, ...): U = 1 is False  (expected False)
+(2) e_a and e_c mass identities, e_g mass = e_c, and length bound hold on all 271452 words of length <= 5
+(3) 141702 stable (word, point) pairs up to length 6; max |e_a| = 1
+(4) trivial reduced words of length <= 5: 0; with e_a != 0: 0
+(5) screen old R = <M11,a,b,c>, c=(c,a): chi = (t - 1)^3; b_1 <= 3
+(5) screen new R' , c=(c,g), g=(a,a^-1): chi = (t)^1 (t - 1)^3; b_1 <= 3
+(5) screen design z=(z,h), h=(z,z,1..)alpha: chi = (t - 2)^1 (t + 1)^1; b_1 <= 1
+(5) screen design z=(z,h), h=(z,z,z,1..)alpha: chi = (t**2 - t - 3)^1; b_1 <= 0
+done
+
+real	2m14.812s
+user	0m25.690s
+sys	0m0.043s

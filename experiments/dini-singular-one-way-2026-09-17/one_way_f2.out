@@ -1,0 +1,16 @@
+s=0: max |h| found = 0  (bound 4s+1 = 1; search depth 11)
+s=1: max |h| found = 2  (bound 4s+1 = 5; search depth 11)
+s=2: max |h| found = 4  (bound 4s+1 = 9; search depth 11)
+s=3: max |h| found = 6  (bound 4s+1 = 13; search depth 11)
+n=1: partial Dini lower sum >= 2
+n=2: partial Dini lower sum >= 6
+n=3: partial Dini lower sum >= 14
+n=4: partial Dini lower sum >= 30
+n=5: partial Dini lower sum >= 62
+n=6: partial Dini lower sum >= 126
+n=7: partial Dini lower sum >= 254
+n=8: partial Dini lower sum >= 510
+n=9: partial Dini lower sum >= 1022
+n=10: partial Dini lower sum >= 2046
+n=11: partial Dini lower sum >= 4094
+n=12: partial Dini lower sum >= 8190

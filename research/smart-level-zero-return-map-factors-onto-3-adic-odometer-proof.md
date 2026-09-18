@@ -12,6 +12,8 @@ artifacts:
 ---
 
 Lane gq-nv-obstruct. Reviewed PASS by gq-referee-a (6000c8af8) and gq-referee-b (628a5c79d).
+Step 5 (the prefix-code encoding into 2V) was also checked by gq-referee-c: PASS, 282b018d4
+(`research/artifacts/gq-referee-c-smart-prefix-code-encoding-into-2v.md`).
 
 **Imported, verbatim.** Callard–Salo, arXiv:2208.00685v3, `distortion-1-smart.tex`. The inputs are the
 8-state transition table (l. 2–35) and Proposition `prop:smart-moves` (l. 52–97), with its proof giving

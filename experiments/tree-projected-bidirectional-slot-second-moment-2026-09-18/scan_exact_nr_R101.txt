@@ -1,0 +1,7 @@
+nr R=-1,0,1 m  4  m*p_crit 0.27586  m*p* 0.27211  rho_up 1.01581 rho_low 1.01581 lumped 1.03019 fail  (3s)
+nr R=-1,0,1 m  6  m*p_crit 0.27697  m*p* 0.27741  rho_up 0.99814 rho_low 0.99814 lumped 1.01504 PASS  (24s)
+nr R=-1,0,1 m  7  m*p_crit 0.27682  m*p* 0.27896  rho_up 0.99078 rho_low 0.99078 lumped 1.00726 PASS  (61s)
+nr R=-1,0,1 m  8  m*p_crit 0.27655  m*p* 0.28014  rho_up 0.98448 rho_low 0.98448 lumped 1.00032 PASS  (59s)
+nr R=-1,0,1 m 10  m*p_crit 0.27598  m*p* 0.28180  rho_up 0.97448 rho_low 0.97448 lumped 0.98895 PASS  (193s)
+nr R=-1,0,1 m 12  m*p_crit 0.27549  m*p* 0.28293  rho_up 0.96708 rho_low 0.96708 lumped 0.98029 PASS  (248s)
+nr R=-1,0,1 m 14  m*p_crit 0.27510  m*p* 0.28373  rho_up 0.96145 rho_low 0.96145 lumped 0.97357 PASS  (291s)

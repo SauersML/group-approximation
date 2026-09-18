@@ -42,4 +42,4 @@ finitely generated point stabilizers already at the level of finite generation.
   `SL_X(Q)·Mon(X)`. Part 2 still applies whenever the coinvariants of `K_2(Q)` are not
   finitely generated. Whether every automorphism of `SL_inf(Q)` acts on `K_2(Q)` through a
   finite group is not settled here.
-- `E_(n+1)(R_T)`, whose generators are not of this form.
+- `E_(n+1)(R_Toep)`, whose generators are not of this form.

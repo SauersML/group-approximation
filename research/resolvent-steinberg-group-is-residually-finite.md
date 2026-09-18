@@ -34,4 +34,12 @@ iff both of these hold:
 
 ## Attempts
 
-None yet (2026-09-17, lane gq-infinite-primes).
+1. **Condition 1 holds (2026-09-18, lane gq-infinite-primes).** `R_l` is residually finite
+   (`resolvent-presentation-ring-is-residually-finite`, through `resolvent-ring-has-path-normal-form`). Only
+   condition 2 remains: detection of `K_2(N, R_l)` in finite `St_N(F)`. Use `N >= 5` with
+   `steinberg-groups-of-fp-rings-are-fp-in-rank-five`, with no literature input.
+   - The weaker target `resolvent-steinberg-rf-residual-is-finitely-normally-generated` already suffices, by
+     route `z-localized-fp-rf-via-resolvent-steinberg-rf-quotient`.
+   - Its Attempt 1 records the candidate invisible elements. The class `{-1,-1}` from `K_2(Z)` may be
+     invisible for `l` odd, which would make this claim false for such `l` but is harmless for the weaker
+     target. The corner tame symbols from `K_2(Z_(l))` are the real threat.

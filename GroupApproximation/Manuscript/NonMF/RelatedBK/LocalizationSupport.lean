@@ -165,7 +165,7 @@ theorem localization_quadForm_smul {W : Type} [Fintype W] (H : Matrix W W ℂ) (
 theorem localization_nonpos_of_forall_sq_mul_le {a b : ℝ} (h : ∀ r : ℝ, r ^ 2 * a ≤ b) :
     a ≤ 0 := by
   by_contra ha
-  push_neg at ha
+  push Not at ha
   have h1 := h (Real.sqrt ((|b| + 1) / a))
   rw [Real.sq_sqrt (div_nonneg (by positivity) ha.le), div_mul_cancel₀ _ ha.ne'] at h1
   linarith [le_abs_self b]
@@ -249,7 +249,7 @@ theorem localization_support (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] {
       (f (localizationTarget X T Φ)).re < (f z).re + δ := by
   classical
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   obtain ⟨c, hc⟩ := localization_exists_coeff f
   have hFexp : f (localizationTarget X T Φ) =
       ∑ i, ∑ j, Φ (localizationCoeff X T c i j) i j := by

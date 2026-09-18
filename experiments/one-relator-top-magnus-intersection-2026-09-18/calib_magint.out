@@ -1,0 +1,5 @@
+CALIB comm s=a0 EXCEPTIONAL-CANDIDATE {0: (2, False)}
+CALIB comm s=a2 EXCEPTIONAL-CANDIDATE {0: (2, False)}
+CALIB free s=a0 NONEXC {0: (1, True)}
+CALIB free s=a2 NONEXC {0: (1, True)}
+SENTINEL_DONE

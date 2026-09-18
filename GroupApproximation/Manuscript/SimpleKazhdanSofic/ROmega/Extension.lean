@@ -126,7 +126,7 @@ theorem mul_add_mul_lt {B C S x y ε : ℝ} (hB : 0 ≤ B) (hC : 0 ≤ C) (hS : 
   have h2 : C * (y * S) ≤ C * ε := mul_le_mul_of_nonneg_left hy.le hC
   have h3 : (B + C) * ε < S * ε := mul_lt_mul_of_pos_right hS hε
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have h4 : ε * S ≤ (B * x + C * y) * S := mul_le_mul_of_nonneg_right hcon hSpos.le
   nlinarith
 

@@ -1,0 +1,77 @@
+Artifact re-run log, audit 2026-09-18, agent e2-w2-audit-f.
+Every artifact of f-dyadic-rare-confinement-rate-at-most-cogrowth-exponent was re-run in this
+worktree and compared line by line with the recorded log.
+
+== psl_return.py --steps 26            vs psl_return.log rows t <= 26 : IDENTICAL
+== cloning.py --n 1000                 vs cloning_main.log            : IDENTICAL
+== band_long.py --Cmax 8 --only F      vs band_F.log                  : IDENTICAL
+== band_long.py --Rmax 9 --only PSL    vs band_PSL.log                : IDENTICAL
+== lambda_long.py --which F            vs lambda_F.log                : IDENTICAL
+== lambda_long.py --which PSL          vs lambda_PSL.log              : IDENTICAL
+
+PROVENANCE NOTE.  lambda_F.log and lambda_PSL.log were produced by two SEPARATE invocations, each
+with a fresh random.Random(11).  The json files confirm it: lambda_F.json carries only the key
+"F_dyadic" and lambda_PSL.json only "PSL_P1Q".  The script's default, --which both, runs F first and
+then PSL on the continued rng stream; it reproduces lambda_F.log exactly but gives a different PSL
+run (cumulative 0.0535, windows [0.0642, 0.0577, 0.0541, 0.0532, 0.0529, 0.0515, 0.0481, 0.0466]
+instead of 0.0523 and [0.0616, 0.055, 0.0539, 0.0493, 0.0524, 0.0514, 0.0473, 0.0476]).  The same
+applies to band_long.py, whose two recorded logs come from --only F and --only PSL.  So a referee
+must re-run each model separately; the default flags do not reproduce both recorded logs at once.
+No number in the claim changes: the recorded logs are exactly reproducible, model by model.
+
+----- psl_return.py --steps 26
+2 7 0.3333333333333333 0.57735 nan
+4 23 0.18518518518518517 0.656 0.74536
+6 65 0.12482853223593965 0.70695 0.82102
+8 175 0.09251638469745466 0.74264 0.8609
+10 463 0.07236363020542262 0.76905 0.8844
+12 1217 0.058555888612282454 0.7894 0.89955
+14 3191 0.048496028303758605 0.8056 0.91006
+16 8359 0.04084935993150326 0.81884 0.91778
+18 21889 0.03485560362296688 0.82988 0.92373
+20 57311 0.03004700404474478 0.83925 0.92846
+22 150047 0.026118388901212708 0.84731 0.93234
+24 392833 0.02286136321097693 0.85434 0.93557
+26 1028455 0.020128362134139273 0.86052 0.93832
+
+----- cloning.py --n 1000
+F relators hold and x0,x1 do not commute: True
+F_dyadic_Lambda 35.1s [(800, 0.06103492808762244, 52), (900, 0.059521237785241134, 59), (1000, 0.05771089759042645, 62)]
+F2_self_Lambda 55.8s [(800, 0.3038149570407602, 85), (900, 0.30101259442411343, 91), (1000, 0.29827552041926575, 101)]
+Z3_self_Lambda 35.3s [(800, 0.20260945356770052, 114), (900, 0.19629167327933, 116), (1000, 0.19087307649626836, 122)]
+lamplighter_self_Lambda 58.0s [(800, 0.1265737340359164, 55), (900, 0.12331099524498505, 56), (1000, 0.12044359150222539, 58)]
+F_band_C1 1.7s [(800, 0.6934023202903119, 1), (900, 0.6938761305175486, 1), (1000, 0.6944061904172494, 1)]
+F_band_C2 3.5s [(800, 0.33124409602065924, 3), (900, 0.3325722875838341, 3), (1000, 0.33247122765652654, 3)]
+F_band_C3 7.2s [(800, 0.1954353725953813, 7), (900, 0.19584602180017896, 7), (1000, 0.1962255898925141, 7)]
+F_band_C4 14.1s [(800, 0.1282459384140914, 15), (900, 0.12934848553586875, 15), (1000, 0.1300811818847716, 15)]
+F_band_C5 29.7s [(800, 0.08958150250376068, 31), (900, 0.09097648496061006, 31), (1000, 0.09163604777533038, 31)]
+F_band_C6 61.0s [(800, 0.06233271898047967, 63), (900, 0.0639302709629808, 63), (1000, 0.06473505076380023, 63)]
+inexact halvings: 0
+
+----- band_long.py --Cmax 8 --only F
+F C=2 m=3 5s {'cumulative': 0.3362, 'window': 500, 'window_rates': [0.3373, 0.3355, 0.3302, 0.339, 0.3356, 0.3398], 'm': 3}
+F C=3 m=7 14s {'cumulative': 0.2058, 'window': 500, 'window_rates': [0.1951, 0.2084, 0.2057, 0.2185, 0.2061, 0.2011], 'm': 7}
+F C=4 m=15 29s {'cumulative': 0.1432, 'window': 500, 'window_rates': [0.1283, 0.1459, 0.1394, 0.1417, 0.1484, 0.1556], 'm': 15}
+F C=5 m=31 63s {'cumulative': 0.1056, 'window': 500, 'window_rates': [0.0833, 0.0991, 0.1129, 0.1171, 0.1125, 0.1086], 'm': 31}
+F C=6 m=63 125s {'cumulative': 0.0785, 'window': 500, 'window_rates': [0.0558, 0.076, 0.084, 0.0808, 0.0875, 0.0868], 'm': 63}
+F C=7 m=127 209s {'cumulative': 0.0707, 'window': 500, 'window_rates': [0.0443, 0.0588, 0.0671, 0.0887, 0.0841, 0.0815], 'm': 127}
+F C=8 m=255 390s {'cumulative': 0.0508, 'window': 500, 'window_rates': [0.0332, 0.0391, 0.05, 0.0552, 0.0674, 0.0596], 'm': 255}
+inexact halvings 0
+
+----- band_long.py --Rmax 9 --only PSL
+PSL R=1 m=2 2s {'cumulative': 0.2939, 'window': 500, 'window_rates': [0.2964, 0.2933, 0.294, 0.2933, 0.2923, 0.294], 'm': 2}
+PSL R=2 m=4 3s {'cumulative': 0.1428, 'window': 500, 'window_rates': [0.1419, 0.1419, 0.1419, 0.1441, 0.144, 0.1429], 'm': 4}
+PSL R=3 m=6 5s {'cumulative': 0.1116, 'window': 500, 'window_rates': [0.1122, 0.1109, 0.1119, 0.1121, 0.1105, 0.112], 'm': 6}
+PSL R=4 m=10 8s {'cumulative': 0.0857, 'window': 500, 'window_rates': [0.0843, 0.0865, 0.0871, 0.0865, 0.0861, 0.084], 'm': 10}
+PSL R=5 m=16 11s {'cumulative': 0.0726, 'window': 500, 'window_rates': [0.072, 0.0743, 0.0718, 0.0716, 0.0711, 0.0747], 'm': 16}
+PSL R=6 m=26 23s {'cumulative': 0.0629, 'window': 500, 'window_rates': [0.0596, 0.0626, 0.0642, 0.0628, 0.0658, 0.0628], 'm': 26}
+PSL R=7 m=42 32s {'cumulative': 0.0542, 'window': 500, 'window_rates': [0.0524, 0.0558, 0.0555, 0.052, 0.0545, 0.0552], 'm': 42}
+PSL R=8 m=68 48s {'cumulative': 0.0508, 'window': 500, 'window_rates': [0.0475, 0.0507, 0.0507, 0.0522, 0.0525, 0.0515], 'm': 68}
+PSL R=9 m=110 87s {'cumulative': 0.0455, 'window': 500, 'window_rates': [0.0459, 0.0465, 0.0442, 0.0455, 0.0463, 0.0446], 'm': 110}
+inexact halvings 0
+
+----- lambda_long.py --which F
+F_dyadic 507s cumulative 0.0462 windows [0.0677, 0.0487, 0.0474, 0.0396, 0.0401, 0.0419, 0.0419, 0.0427]
+
+----- lambda_long.py --which PSL
+PSL_P1Q 110s cumulative 0.0523 windows [0.0616, 0.055, 0.0539, 0.0493, 0.0524, 0.0514, 0.0473, 0.0476]

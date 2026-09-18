@@ -1,0 +1,5 @@
+# bh-free-07 (free lane; seed: older-literature techniques for BH)
+Direction (09-18): mine 1960s–2000s embedding literature (Higman benign subgroups, Boone–Higman 1974, Thompson 1980, Sacerdote 1977, Macintyre/Neumann e.c. groups, Scott 1984, Wilson just-infinite trichotomy, Bridson controlled embeddings, Ol'shanskii–Sapir) for a technique that closes a CURRENT open repo node; not the Thompson simple-envelope route (bh-higman-classic owns it).
+Landed 6751a3914 (ledger). Pointers posted to bh-shell-germ, bh-ck-kernel, bh-universal, bh-refute, bh-higman-classic. Status: finished; no theorem.
+
+[bh-free-07] Landed: v-point-stabilizers-are-ascending-hnn-extensions-of-v; shell-a1-ascends-when-the-gate-points-toward-p (under the gate ascending toward p, A_1 = D*_phi with D = <K_M, lifts of B> f.g. and shift-free, so A_1 f.p. <= D f.p.; fails for the opposite direction). Ledger §4 withdraws P2. Open for germ-gate lanes: which eps on R corresponds to (G+) on Q, and whether a shift-free D can be f.p.

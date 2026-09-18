@@ -1,0 +1,77 @@
+# pwcheck.py (PNX=1): exact block sums (pairx.c) vs the pointwise generic row, all letter contexts, all generic h in range; parameter caps asserted
+## python3 pwcheck.py 5 4
+chain0       m=5 KAP=4 maxr=1/1 c=1 p=0.0700  max exact/PW-bound = 0.9882
+chain0       m=5 KAP=4 maxr=1/1 c=1 p=0.0560  max exact/PW-bound = 0.9926
+chain1       m=5 KAP=4 maxr=1/1 c=2 p=0.0700  max exact/PW-bound = 0.9882
+chain1       m=5 KAP=4 maxr=1/1 c=2 p=0.0560  max exact/PW-bound = 0.9926
+chain2       m=5 KAP=4 maxr=1/1 c=5 p=0.0700  max exact/PW-bound = 0.9882
+chain2       m=5 KAP=4 maxr=1/1 c=5 p=0.0560  max exact/PW-bound = 0.9926
+chain3       m=5 KAP=4 maxr=1/1 c=13 p=0.0700  max exact/PW-bound = 0.9882
+chain3       m=5 KAP=4 maxr=1/1 c=13 p=0.0560  max exact/PW-bound = 0.9926
+largest ratio 0.9926 OK
+## python3 pwcheck.py 6 4
+rand1 c=2    m=6 KAP=4 maxr=2/2 c=2 p=0.0700  max exact/PW-bound = 0.9814
+rand1 c=2    m=6 KAP=4 maxr=2/2 c=2 p=0.0467  max exact/PW-bound = 0.9912
+wide0 c=1    m=6 KAP=4 maxr=2/2 c=1 p=0.0700  max exact/PW-bound = 0.9814
+wide0 c=1    m=6 KAP=4 maxr=2/2 c=1 p=0.0467  max exact/PW-bound = 0.9912
+wide1 c=2    m=6 KAP=4 maxr=2/2 c=2 p=0.0700  max exact/PW-bound = 0.9814
+wide1 c=2    m=6 KAP=4 maxr=2/2 c=2 p=0.0467  max exact/PW-bound = 0.9912
+wide3 c=4    m=6 KAP=4 maxr=2/2 c=4 p=0.0700  max exact/PW-bound = 0.9814
+wide3 c=4    m=6 KAP=4 maxr=2/2 c=4 p=0.0467  max exact/PW-bound = 0.9912
+chain0       m=6 KAP=4 maxr=2/2 c=1 p=0.0700  max exact/PW-bound = 0.9814
+chain0       m=6 KAP=4 maxr=2/2 c=1 p=0.0467  max exact/PW-bound = 0.9912
+chain1       m=6 KAP=4 maxr=2/2 c=2 p=0.0700  max exact/PW-bound = 0.9814
+chain1       m=6 KAP=4 maxr=2/2 c=2 p=0.0467  max exact/PW-bound = 0.9912
+chain2       m=6 KAP=4 maxr=2/2 c=5 p=0.0700  max exact/PW-bound = 0.9814
+chain2       m=6 KAP=4 maxr=2/2 c=5 p=0.0467  max exact/PW-bound = 0.9912
+chain3       m=6 KAP=4 maxr=2/1 c=13 p=0.0700  max exact/PW-bound = 0.9814
+chain3       m=6 KAP=4 maxr=2/1 c=13 p=0.0467  max exact/PW-bound = 0.9912
+largest ratio 0.9912 OK
+## python3 pwcheck.py 7 4
+rand0 c=1    m=7 KAP=4 maxr=3/3 c=1 p=0.0700  max exact/PW-bound = 0.9764
+rand0 c=1    m=7 KAP=4 maxr=3/3 c=1 p=0.0400  max exact/PW-bound = 0.9908
+rand1 c=2    m=7 KAP=4 maxr=3/3 c=2 p=0.0700  max exact/PW-bound = 0.9764
+rand1 c=2    m=7 KAP=4 maxr=3/3 c=2 p=0.0400  max exact/PW-bound = 0.9908
+rand2 c=3    m=7 KAP=4 maxr=3/3 c=3 p=0.0700  max exact/PW-bound = 0.9764
+rand2 c=3    m=7 KAP=4 maxr=3/3 c=3 p=0.0400  max exact/PW-bound = 0.9908
+wide0 c=1    m=7 KAP=4 maxr=3/3 c=1 p=0.0700  max exact/PW-bound = 0.9764
+wide0 c=1    m=7 KAP=4 maxr=3/3 c=1 p=0.0400  max exact/PW-bound = 0.9908
+wide3 c=4    m=7 KAP=4 maxr=3/3 c=4 p=0.0700  max exact/PW-bound = 0.9764
+wide3 c=4    m=7 KAP=4 maxr=3/3 c=4 p=0.0400  max exact/PW-bound = 0.9908
+wide5 c=6    m=7 KAP=4 maxr=3/3 c=11 p=0.0700  max exact/PW-bound = 0.9764
+wide5 c=6    m=7 KAP=4 maxr=3/3 c=11 p=0.0400  max exact/PW-bound = 0.9908
+chain0       m=7 KAP=4 maxr=3/3 c=1 p=0.0700  max exact/PW-bound = 0.9764
+chain0       m=7 KAP=4 maxr=3/3 c=1 p=0.0400  max exact/PW-bound = 0.9908
+chain1       m=7 KAP=4 maxr=3/3 c=2 p=0.0700  max exact/PW-bound = 0.9764
+chain1       m=7 KAP=4 maxr=3/3 c=2 p=0.0400  max exact/PW-bound = 0.9908
+chain2       m=7 KAP=4 maxr=2/2 c=5 p=0.0700  max exact/PW-bound = 0.9764
+chain2       m=7 KAP=4 maxr=2/2 c=5 p=0.0400  max exact/PW-bound = 0.9908
+chain3       m=7 KAP=4 maxr=2/2 c=13 p=0.0700  max exact/PW-bound = 0.9764
+chain3       m=7 KAP=4 maxr=2/2 c=13 p=0.0400  max exact/PW-bound = 0.9908
+largest ratio 0.9908 OK
+## python3 pwcheck.py 8 4 6
+wide0 c=1    m=8 KAP=4 maxr=4/4 c=1 p=0.0700  max exact/PW-bound = 0.9732
+wide0 c=1    m=8 KAP=4 maxr=4/4 c=1 p=0.0350  max exact/PW-bound = 0.9909
+wide1 c=2    m=8 KAP=4 maxr=4/3 c=2 p=0.0700  max exact/PW-bound = 0.9732
+wide1 c=2    m=8 KAP=4 maxr=4/3 c=2 p=0.0350  max exact/PW-bound = 0.9909
+wide2 c=3    m=8 KAP=4 maxr=3/3 c=3 p=0.0700  max exact/PW-bound = 0.9732
+wide2 c=3    m=8 KAP=4 maxr=3/3 c=3 p=0.0350  max exact/PW-bound = 0.9909
+wide3 c=4    m=8 KAP=4 maxr=4/4 c=4 p=0.0700  max exact/PW-bound = 0.9732
+wide3 c=4    m=8 KAP=4 maxr=4/4 c=4 p=0.0350  max exact/PW-bound = 0.9909
+chain2       m=8 KAP=4 maxr=2/2 c=5 p=0.0700  max exact/PW-bound = 0.9732
+chain2       m=8 KAP=4 maxr=2/2 c=5 p=0.0350  max exact/PW-bound = 0.9909
+chain3       m=8 KAP=4 maxr=3/3 c=13 p=0.0700  max exact/PW-bound = 0.9736
+chain3       m=8 KAP=4 maxr=3/3 c=13 p=0.0350  max exact/PW-bound = 0.9909
+largest ratio 0.9909 OK
+## python3 pwcheck.py 9 3 5
+rand0 c=1    m=9 KAP=3 maxr=4/5 c=1 p=0.0700  max exact/PW-bound = 0.9669
+rand0 c=1    m=9 KAP=3 maxr=4/5 c=1 p=0.0311  max exact/PW-bound = 0.9896
+rand1 c=2    m=9 KAP=3 maxr=4/4 c=2 p=0.0700  max exact/PW-bound = 0.9669
+rand1 c=2    m=9 KAP=3 maxr=4/4 c=2 p=0.0311  max exact/PW-bound = 0.9896
+wide0 c=1    m=9 KAP=3 maxr=4/4 c=1 p=0.0700  max exact/PW-bound = 0.9669
+wide0 c=1    m=9 KAP=3 maxr=4/4 c=1 p=0.0311  max exact/PW-bound = 0.9896
+chain2       m=9 KAP=3 maxr=3/3 c=5 p=0.0700  max exact/PW-bound = 0.9669
+chain2       m=9 KAP=3 maxr=3/3 c=5 p=0.0311  max exact/PW-bound = 0.9896
+chain3       m=9 KAP=3 maxr=2/2 c=13 p=0.0700  max exact/PW-bound = 0.9670
+chain3       m=9 KAP=3 maxr=2/2 c=13 p=0.0311  max exact/PW-bound = 0.9896
+largest ratio 0.9896 OK

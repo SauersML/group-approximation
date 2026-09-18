@@ -79,3 +79,70 @@ every finite quotient.
    - **Not attempted.** Deciding (M2) by computing Waldhausen's Nil terms for
      `T_U(B)`.
 
+2. **Annihilator symbols of prime order, detected by a Hochschild trace
+   (2026-09-18, swarm-0917-w7-w7-z-follow).** *Dead as a route to refuting (M2).
+   Attempt 1's symbols are trivial.*
+   - **Idea.** Find elements `h_p` of `K_2(3,R)` whose images in the stable,
+     central `K_2(R)` have order `p` for infinitely many primes `p`. The
+     normal closure in `St_m(R)` of finitely many elements of `K_2(m,R)` maps
+     onto a finitely generated subgroup of `K_2(R)`. So such `h_p` would show
+     that `K_2(m,R)` is not finitely normally generated for any `m`, and would
+     kill (M2).
+     - The candidates are `h = <a,b> = [x_12(a), x_21(b)]` with `ab = ba = 0`,
+       for example `a = x^i e x^j` and `b = x^k e x^p e x^l`, where
+       `p ∤ j+k` and `p ∤ l+i`, so that `pb = 0`.
+     - The detector is `Phi`: a ring map `R -> M_d(F_p[eps1,eps2]/(eps)^2)`,
+       followed by the Dennis trace into `HH_2`, then the map to
+       `Omega^2 (x) F_p = F_p eps1^eps2`. This sends `h` to
+       `2(tr(D1a D2b) - tr(D2a D1b))`.
+     - These finite rings are not of the form `M_d(Z/N)`, so Attempt 1's
+       bound of order 2 does not apply to them.
+   - **Proved (splitting criterion, in `St_3`).** Suppose `ab1 = 0` and
+     `b2 a = 0`. Then `x_21(b1 b2) = [x_23(b1), x_31(b2)]`, and both factors
+     commute with `x_12(a)`, so `[x_12(a), x_21(b1 b2)] = 1`. The same holds
+     for `a = a1 a2` with `b a1 = 0` and `a2 b = 0`.
+     - Hence Attempt 1's words `<u, r_n>` are trivial in `St_m(R)`: take
+       `b1 = e` and `b2 = x^n e`, and use `ue = 0` and `x^n e u = 0`.
+   - **Where every member dies (split-point orders).** Let `ab = ba = 0` and
+     `b = b1 b2`. Put `c1 = a b1` and `c2 = b2 a`. The following hold:
+     - `c1 b2 c1 = (ab) a b1 = 0` and `c2 b1 c2 = b2 (ab) a = 0`;
+     - `1 + c1 b2 = 1`;
+     - `(b2 a b1)^2 = 0`.
+
+     So the Dennis–Stein identities apply:
+     - (D3) `<a, b1 b2> = <c1, b2><c2, b1>`;
+     - (D2) `<c, y>^q = <qc, y>` whenever `cyc = 0`.
+
+     Therefore `h^(q1 q2) = 1`, where `q1` and `q2` are the additive orders of
+     `c1` and `c2`. The same holds for factorizations of `a`.
+     - For words, `q1` and `q2` are gcds of merged middle indices (the normal
+       form of `counting-ring-rf-every-additive-order-proof`). They are not the
+       index `p` in the middle of `b`.
+     - In the family above, `q1 = j+k` and `q2 = l+i`, both prime to `p`,
+       while `h^p = 1`. So `h = 1`.
+     - The same holds for every symbol of word pairs of `e`-degrees
+       `(1,2)` or `(2,1)`. There, `ord(A) = beta` is forced prime to both
+       split orders by `AB = BA = 0`.
+     - A sample of degree `(3,2)` survives one split with bound `p`, but dies
+       at the next split with bound 2.
+     - D2 and D3 are the standard Dennis–Stein relations. They are imported
+       for noncommutative rings (Keune; Kolster, J. Algebra 1985) **without a
+       verbatim citation**, so this kill is conditional on that import.
+   - **Computation.**
+     `experiments/counting-ring-steinberg-2026-09-17/phi_dennis_trace_scout.py`
+     solves for the full tangent space of first-order deformations of
+     block-shift base representations over `F_p`. It checks `ab = ba = 0` to
+     first order, then computes the form `Phi`.
+     - Result: `rank(Phi) = 0` in every case run. These were `p = 3, 5, 7`,
+       `d <= 10` and random `e_0` for `a = ex` and `b = x e x^p e x^2`, plus
+       `p = 3`, `d = 9` for `a = x^2 e x^2` and `b = x^3 e x^3 e x^3`.
+     - This agrees with the kill.
+   - **What this changes.** Annihilator symbols built from words carry only
+     the torsion present at their split points. So "unbounded prime torsion in
+     `K_2`" is not produced by symbols whose `p`-torsion sits in an unsplit
+     middle index.
+     - A refutation of (M2) still needs a symbol whose recursive split bounds
+       all share a prime `p`, for infinitely many `p`, or the Nil-term
+       computation.
+     - (M1) is untouched.
+

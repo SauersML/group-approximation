@@ -38,3 +38,17 @@ with bounded windings.
 ## Attempts
 - **2026-09-18, swarm-0917-w7-w7-deligne-break: posed.** The Dadarlat construction goes through quasidiagonality and
   gives no dimension control, so it decides neither side. No test has been run.
+- **2026-09-18, swarm-0917-w7-w7-deligne-follow (cohomology-index): the determinant class is killed, and the
+  prerequisite is weakened.** See `sp4-winding-ratio-sharp-constant-is-gromov-dual`, ESTABLISHED.
+  - *Exact formula.* `kappa_r/d = <beta_pi, c_r>`, where `beta_pi = (1/(2 pi i d)) Tr log D` is the determinant
+    cocycle of the defects and `c_r` is the relator 2-cycle.
+  - *Sharp constants.* The ratio `limsup S_W/eps` is at most `N_W/(2 pi)`, and `N_W` decreases to `nu`, the l1
+    seminorm of `[r]`. `P_op = R/Z` forces the ratio to at least
+    `|k|/(2 pi beta*_W)` on every window, a bound that increases to the same `nu/(2 pi)`.
+  - *Class kill.* Item 8: the determinant relaxation, meaning local cocycle, the `a(eps)` bound and integrality, is
+    solved by `lambda (b + delta psi*)` with ratio `|k|/(2 pi beta*_W)`. So Tr log, determinant, `K_1` and
+    winding-integrality arguments cannot prove this claim, nor even the weaker deficit. Such an argument dies at the
+    bound on `<beta_pi, c_r>`. Any proof must control the traceless part of the defects.
+  - *Weaker route.* The flagship needs only `sp4-quasirep-winding-ratio-has-a-deficit`, a strict inequality against
+    the explicit constant, via `deligne-triple-cover-via-winding-deficit`. This claim implies that one
+    (`sp4-quasirep-winding-ratio-has-a-deficit-from-sublinear`).

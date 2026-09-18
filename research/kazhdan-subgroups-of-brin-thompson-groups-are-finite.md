@@ -166,3 +166,31 @@ For every `n ≥ 1` and every subgroup `K ≤ nV` with property (T), `K` is fini
       finite-state transducer. So that coding is expected to die at this step
       (heuristic, unproved).
     - Details in `research/artifacts/rank-two-prefix-replacement-kazhdan-2026-09-17.md`.
+- 2026-09-18 (lane bh-free-38; unreviewed). **Literature check and a dead Haagerup
+  route.**
+  - **Literature: open.** arXiv API searches on "Brin-Thompson" together with
+    Haagerup, a-T-menable, property (T) or Kazhdan, and on "Haagerup" with
+    "Thompson", find no paper that settles the Haagerup property or (T) for nV,
+    n ≥ 2. Brothier–Jones (arXiv:1805.02177) treat F, T and V. Hughes
+    (arXiv:0804.0610) treats locally finitely determined groups of local
+    similarities of compact ultrametric spaces. Zaremsky's arXiv listing has
+    nothing on this question.
+  - **The Hughes route is dead for n ≥ 2** (abstract read). Hughes proves that
+    locally finitely determined groups of local similarities have the Haagerup
+    property. Farley's appendix shows that his sufficient condition is equivalent
+    to a proper action on a space with walls.
+    - Properness on a discrete wall space passes to subgroups.
+    - `brin-thompson-nv-no-cubical-action-proper-mod-triangular` (item 1, with
+      trivial `H`), and Callard–Salo Cor 1.2 as imported in
+      `brin-thompson-mv-contains-a-distortion-element`, exclude such an action
+      for nV.
+    - So for n ≥ 2, nV embeds in no Hughes group. Every Haagerup proof for nV
+      must use a non-wall cnd function, as already recorded for the transversal
+      half.
+  - **Weaker targets that suffice for the BH test cases.** Deligne's lattices
+    and the Torelli lower-central quotients `Q_{g,c}` (g ≥ 3, c ≥ 2) are excluded
+    from every mV by either of two open statements, each weaker than this claim:
+    - `kazhdan-subgroups-of-brin-thompson-groups-have-finite-center`. Each of
+      these groups contains an infinite Kazhdan group with infinite center.
+    - `heisenberg-group-embeds-in-no-brin-thompson-group`, via
+      `deligne-lattices-and-torelli-quotients-contain-heisenberg-groups`.

@@ -5,7 +5,7 @@ kind: claim
 title: A finitely generated split extension of finitary SL(Q) by monomial matrices is never finitely presented
 distinct_from:
   gl-n-q-explicit-natural-fp-overgroup: that is the open Problem 2.7; this kills one class of candidate answers, the linear hosts SL_X(Q) x| M with a monomial complement.
-  gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring: that is an embedding into E_(n+1)(R_T), whose elementary generators are not finitary-times-monomial; this obstruction does not apply to it.
+  gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring: that is an embedding into E_(n+1)(R_Toep), whose elementary generators are not finitary-times-monomial; this obstruction does not apply to it.
   fg-groups-with-normal-q-n-have-non-fp-quotients: that obstructs a normal abelian subgroup Q^n; this obstructs a normal finitary SL_X(Q), through the central extension by K_2(Q).
   integral-form-algebras-have-no-fg-subring-containing-q: that is a finite-generation obstruction for rings with an integral form; this is a finite-presentation obstruction for groups whose subgroups can be finitely generated.
   weighted-monomial-hosts-of-sl-q-need-wild-stabilizers: that constrains the monomial part at the level of finite generation; this rules out finite presentation of every split host.
@@ -72,6 +72,6 @@ permutation groups with weights) are all excluded as finitely presented overgrou
 - Non-split `Γ`, where `M ∩ SL_X(Q) ≠ 1` cannot be avoided. The lift of `M ∩ SL_X(Q)` to the
   Steinberg group is a nontrivial central extension, and the proof does not treat it.
 - Complements acting on `SL_X(Q)` by non-monomial automorphisms.
-- `E_(n+1)(R_T)` of `gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring`. A K_2 obstruction there needs
-  `St_(n+1)(R_T)` to be finitely presented and `K_2(n+1, R_T)` to be central with a
+- `E_(n+1)(R_Toep)` of `gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring`. A K_2 obstruction there needs
+  `St_(n+1)(R_Toep)` to be finitely presented and `K_2(n+1, R_Toep)` to be central with a
   non-finitely-generated image of `K_2(Q)`. Neither is proved.

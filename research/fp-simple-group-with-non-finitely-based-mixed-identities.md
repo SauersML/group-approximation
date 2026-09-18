@@ -66,3 +66,27 @@ closure in `S * <x>` of the substitution instances of `W`.
    finitely presented simple MIF group by a different actor. Part (A) of
    `bffhz-q32-forces-finitely-based-mixed-identities` rules out only the Theorem C
    actor of `S` itself.
+5. **Circle overgroups of `T`: die (2026-09-18, belief breaker, family
+   `host-geometry`).** By `circle-overgroups-of-thompson-t-satisfy-all-its-mixed-identities`,
+   every `M` with `T <= M <= Homeo+(S^1)`, in the standard action, has
+   `J_k(M; T) = J_k(T)` for all `k`.
+   - *Why.* `T` is uniformly dense in `Homeo+(S^1)`, by Lemma L2 (T) on a fine
+     dyadic grid, and word maps are continuous.
+   - *What dies.* Every candidate of Attempt 3, with breakpoints in `Z[1/(2q)]`
+     and slopes in `<2, q>`. The dying step is "the three-arc mechanism needs an
+     arc arrangement that must fail somewhere in such an overgroup": no identity
+     of `T` fails in any circle overgroup.
+   - *Also dead.* Ultrapowers of `T`, products of dead overgroups, and Denjoy
+     blow-ups along irrational `T`-orbits with arbitrary gap maps. Density does
+     not reach the last case. It dies because stabilizers of irrational points
+     have trivial germs, so gaps can be mirrored by small arcs.
+   - *Named invariant.* A witness `M_W` must be non-T-dense: no Hausdorff group
+     topology on a group containing `M_W` puts `M_W` in the closure of `T`.
+   - *What survives.* Among circle overgroups that collapse onto the standard
+     action along gaps, only blow-ups along rational orbits survive. There the
+     stabilizer germs are nontrivial. Circle actions of `T` of other kinds are
+     not examined. Off the circle, amalgams, HNN extensions and the canonical
+     quotients `(T * <x>) / N_W` survive.
+   - *Reframing.* `J_1(T) = J_1(Homeo+(S^1); T)`, so at `T` the question is one
+     about mixed identities of the Polish group `Homeo+(S^1)` with constants
+     from `T`.

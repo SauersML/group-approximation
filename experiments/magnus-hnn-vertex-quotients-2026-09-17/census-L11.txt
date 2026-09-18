@@ -1,0 +1,35 @@
+length old new count
+2 True True 2
+3 True True 2
+4 True True 6
+5 True True 12
+6 True True 34
+7 True True 74
+7 False True 4
+8 True True 217
+9 True True 522
+9 False True 24
+10 True True 1453
+10 False True 63
+11 True True 3828
+11 False True 190
+11 False False 8
+first new-only certificates:
+7 A A A b A A B root-tower
+9 A A A A A b A A B root-tower
+10 A A A A A A b A A B root-tower
+11 A A A A A A A b A A B root-tower
+uncertified (up to LIMIT per length):
+11 A A A A B B A b A B B nielsen(open-rank2)
+11 A A A A b b A B A b b nielsen(open-rank2)
+11 A A B a b a B B a a b nielsen(open-rank2)
+11 A A B a B A b b a B B nielsen(open-rank2)
+11 A A B a a b b a B a b nielsen(open-rank2)
+11 A A B a b a B A A b b nielsen(open-rank2)
+11 A A B a a b A B A b b nielsen(open-rank2)
+11 A A B B A A b a B a b nielsen(open-rank2)
+time 31.7s
+
+real	0m32.056s
+user	0m9.248s
+sys	0m0.020s

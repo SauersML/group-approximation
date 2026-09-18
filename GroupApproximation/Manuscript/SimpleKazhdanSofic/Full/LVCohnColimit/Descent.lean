@@ -43,7 +43,7 @@ theorem projection_eq_one_of_fst_snd (u : SteinbergGroup I (R × K))
   rw [LVCohnK2.projection_ringMap] at h1 h2
   apply Subtype.ext
   apply Units.ext
-  ext i j
+  refine Matrix.ext fun i j ↦ ?_
   have e1 := congrArg
     (fun g : elementaryGroup I R => ((g : (Matrix I I R)ˣ) : Matrix I I R) i j) h1
   have e2 := congrArg

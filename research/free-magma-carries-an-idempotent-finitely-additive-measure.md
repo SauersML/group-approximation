@@ -3,6 +3,7 @@ rg: 2
 id: free-magma-carries-an-idempotent-finitely-additive-measure
 kind: claim
 title: The free magma on one generator carries a finitely additive probability measure ν with ν^ν = ν (Moore's nonassociative Ellis lemma)
+refuted_by: [free-binary-systems-carry-no-idempotent-mean]
 distinct_from:
   thompson-f-finite-state-flows-cannot-prove-nonamenability: that uses idempotent state measures of finite tree automata to kill expansion certificates; this asks for an idempotent measure on the infinite free magma itself, which would give an invariant mean.
   moore-ramsey-criterion-for-amenability: that is the published Ramsey criterion; this is the existence statement of Moore's withdrawn arXiv:1209.2063.
@@ -63,3 +64,23 @@ Withdrawal comment on arXiv, verbatim:
   - *Dies at / survives.* A refutation must use infinitely many nested congruences, or non-congruence sets. An existence
     proof must control the right-topological semigroup `(Pr(T), ^)` without associativity, which is exactly where Lemma
     4.13 failed.
+- **2026-09-18 (swarm-0917-w7-w7-f-last1, minimal-counterexample). REFUTED** by
+  `free-binary-systems-carry-no-idempotent-mean`. The body above still says OPEN because the lane contract lets it
+  edit only frontmatter and Attempts. The compiled status comes from `refuted_by`.
+  - *Source.* J. T. Moore, *Idempotent means on free binary systems do not exist*, arXiv:1807.05469 (2018),
+    Canad. Math. Bull. Its abstract, verbatim: "Free binary systems are shown to not admit idempotent means. This
+    refutes a conjecture of the author." The product there is `μ*ν(f) = ∫(∫ f(s*t) dν(t)) dμ(s)`, the same
+    convention as `μ^ν` here.
+  - *The refutation.* Define `T_0 = T`, `T_{p+1} = (T∖Z)^T_p` and `Z = ⋃_k S_k^T_k` by recursion on the leaf count,
+    where `S_k` is the set of trees with `k` leaves. An idempotent `ν` would have `ν(S_k) = 0` and
+    `ν(T_p) = (1−r)^p` with `r = ν(Z)`.
+    - If `r > 0`, then `r ≤ (1−r)^n` for every `n`, which is impossible.
+    - If `r = 0`, then every section `{t : s^t ∈ Z} = T_{#s}` has measure 1, so `ν(Z) = 1`.
+    - Re-proved in full in `free-binary-systems-carry-no-idempotent-mean-proof`. The identities are checked by
+      `experiments/free-magma-idempotent-2026-09-17/check_moore_z_set.py` up to 11 leaves.
+  - *What the earlier entry predicted.* The refutation is exactly of the predicted shape. `Z` is not a
+    finite-congruence set: it uses the infinite chain `T_p`, so it escapes the Brouwer class kill above.
+  - *Consequence.* The route `thompson-f-amenable-via-idempotent-magma-measure` is disabled. The root
+    `thompson-f-is-amenable` loses one of its two routes that were one hole from complete. The miss was a
+    bookkeeping one: the graph already cited arXiv:1807.05469 in
+    `research/artifacts/thompson-f-monomial-doubling-2026-09-13.md`, but the citation was never attached to this hole.

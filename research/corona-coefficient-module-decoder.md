@@ -198,3 +198,39 @@ fixed Morita carrier, must admit a common summand on which a non-scalar
 opposite-root/Whitehead occurrence authenticates the coefficient products.
 All-positive-root coherence, even with the object-erasing fold, is below the
 proved finite-regular-model firewall.
+
+## Attempts
+
+- **2026-09-18 (swarm-0917-w7-w7-ptl-last1, logic-computability).
+  Target-equivalence audit.** This is not a decoder construction.
+  `gap-refuted-witness-holes-are-collapse-equivalent` (C) proves that this
+  claim, for a fixed datum `(R,n,i,j,r_0)`, is equivalent to:
+
+  ```text
+  no norm-corona representation has rho(x_ij(r_0)) != 1.
+  ```
+
+  - **Forward.** Suppose a surviving `rho` exists. The established carrier
+    theorem gives `P_rho != 0`. The requested unital `R -> End(P_rho)` and
+    the last clause of `corona-projective-hilbert-hotel-cancellation` then
+    force `P_rho=0`, a contradiction.
+  - **Converse.** Vacuous.
+  - **Literal datum.** Here the claim is `Rad_MF`-membership of `x_13(q)`,
+    which is total collapse by normal generation. So this ⚑ "last missing"
+    hole of `property-t-free-leavitt-via-corona-module-decoder` is the goal
+    restated. The route's other four inputs only guarantee `P_rho != 0`.
+  - **Where the approach class dies.** Take any proof that builds the four
+    Leavitt arrows on `P_rho` from the finite-window data. Run it on a
+    surviving `rho`, and it must output operators that the corona
+    Hilbert-hotel cancellation forbids on every nonzero carrier. So its
+    construction step is a proof by contradiction from a surviving model.
+    That is the goal itself, not a smaller coherence theorem.
+  - **Why the recorded work was not a decomposition.** The mixed-root return
+    narrowing, the saturation fence and the parabolic-orbit fence above are
+    all correct. But they narrow an output that no nonzero carrier can
+    inhabit, by the hotel lemma. So they rule out ways of reaching the goal,
+    and none of them isolates a strictly smaller statement.
+  - **Next.** A replacement prerequisite must pass criterion (NV) of that
+    node: its output must be a finite-matrix inequality that some surviving
+    model can satisfy. The atomic and HS decoders (BLAMR, APC) fall to the
+    same audit, by parts (A) and (B) there.

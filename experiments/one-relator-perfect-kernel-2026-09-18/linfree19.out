@@ -1,0 +1,17 @@
+LINFREE AAtATattAATaTattaTT W0=XXYxZZyxz a0=YYXyxYXy a1=YxyXYxyXy a2=YxyXYxyyxYXYXyxYXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtATattATaTattaaTT W0=XXYxZyxzz a0=YxYXyx a1=XYxyy a2=XYxyXXyxYxYXyx sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtATattaTaTattAATT W0=XXYxzyxZZ a0=xYXyy a1=YYxyXYXy a2=YYxyXYYxyXyxYXyy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtATattaaTaTattATT W0=XXYxzzyxZ a0=YXyxYXyXy a1=YxYxyXYxxy a2=YxYxyXYxxYxyXXXyxYXyXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtAATTataTattaTT W0=XXYZZxyxz a0=YYXyxYXy a1=YxyXYxyxyXYxyXy a2=YxyXYxyyxYXYXyxYXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtATTataTattaaTT W0=XXYZxyxzz a0=YxYXyx a1=XYxyXyXYxyy a2=XYxyXXyxYxYXyx sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtaTTataTattAATT W0=XXYzxyxZZ a0=xYXyy a1=YYxyXYYxyXYXy a2=YYxyXYYxyXyxYXyy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtaTTattAATataTT W0=XXYzxZZyz a0=XYYXXYxyxyyx a1=XYYXXYXYxyyyxxyyx a2=XYYXXYXYxyxyyx sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtaaTTataTattATT W0=XXYzzxyxZ a0=YXyxYXyXy a1=YxYxyXYxxYxyXYxxy a2=YxYxyXYxxYxyXXXyxYXyXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtAtaaTTattATatATT W0=XXYzzxZyZ a0=YXyxyyxYXYXYxy a1=XYXYxyXYYXYxy a2=XYYXYxy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtaTattATATattaaTT W0=XXyxZYxzz a0=YYXyxYXy a1=YXYXyxYXy a2=YxyXYxyyxYXYXyxYXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtaTattaTATattAATT W0=XXyxzYxZZ a0=YXyxYXyXy a1=xYXyXy a2=YxYxyXYxxYxyXXXyxYXyXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtaTattaaTATattATT W0=XXyxzzYxZ a0=xYXyy a1=YXyxYXyy a2=YYxyXYYxyXyxYXyy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtatAATTatATattaTT W0=XXyZZxYxz a0=YxYXyx a1=YxxYXyxYxYXyx a2=XYxyXXyxYxYXyx sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtatATTatATattaaTT W0=XXyZxYxzz a0=YYXyxYXy a1=YXYXyxYXYXyxYXy a2=YxyXYxyyxYXYXyxYXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+LINFREE AAtataTTatATattAATT W0=XXyzxYxZZ a0=YXyxYXyXy a1=xYXyXXyxYXyXy a2=YxYxyXYxxYxyXXXyxYXyXy sZ=(2, 2) |V|=4 H=1 t=4 hloops=0 tloops=0 cycle=False -> PASS
+SENTINEL_DONE

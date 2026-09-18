@@ -101,6 +101,32 @@ The exact pair gap `eps_d = min(delta_u + delta_v)` over non-commuting Weyl pair
    The antiparity example at `d = 3` shows that the small-angle picture is not the whole story for
    small `d`.
 
+4. *Commutator-Gram trace norm* (w5-078, 2026-09-18). This settles one qudit and reduces the
+   general case.
+   - Both "missing" ingredients of Attempt 3 are supplied by one inequality, Lemma L of
+     `qudit-weyl-rounding-one-qudit-constant-is-2d-over-sqrt3-pi-proof`:
+     `sum w_i delta_i >= ||D C D||_1/4`, with `C_ij = <[u_i^*, u_j]>`. `C` is the difference of
+     the Gram matrices of `(u_i - 1)psi` and `(u_i^* - 1)psi`. It is exact at leading order for the
+     Harper pair and for the triangle.
+   - On one qudit, line-measurement rounding plus the Frobenius form of Lemma L proves
+     `c_d^(1) <= 2d/(sqrt3 pi) + 4 + 1.21/d` for `d >= 5`. The `K_4`-free structure of the `+-1` graph on
+     the lines of `F_d^2`, together with Turán's theorem, handles four or more lines. With the
+     triangular lower bound, `c_d^(1) = 2d/(sqrt3 pi) + O(1)`
+     (`qudit-weyl-rounding-one-qudit-constant-is-2d-over-sqrt3-pi`). This settles "What is missing" 3
+     asymptotically, but not the exact values at `d = 5, 7`.
+   - On `n` qudits, commuting-set rounding works iff a threshold vector is in STAB of the
+     noncommutation graph. Lemma L puts it there once the Hermitian edge inequality
+     `hermitian-edge-trace-norm-vs-independence` holds. So that inequality implies
+     `c_d = 2d/(sqrt3 pi) + O(1)` for all `n` (route
+     `qudit-weyl-rounding-constant-2d-over-sqrt3-pi-via-trace-norm`, one direction only). The
+     replacement conjecture is `qudit-weyl-rounding-constant-is-2d-over-sqrt3-pi`.
+   - Heretic check of "What is missing" 2 for `d >= 5`: semiclassical searches over all integer
+     symplectic Gram matrices with up to 7 directions never beat the one-qudit triangle
+     (`experiments/qudit-weyl-rounding-multiqudit-2026-09-18/`).
+   - This attempt dies at the Hermitian edge inequality for graphs with large cliques or non-clique
+     facets, such as odd cycles. There Frobenius is too weak and a genuine trace-norm rounding is
+     needed.
+
 **What is missing.**
 1. The leak lemma in Attempt 2. The Harper example suggests that the per-term defect is
    the Harper gap `2pi/d`.

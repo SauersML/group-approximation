@@ -1,0 +1,9 @@
+brute-force check of S^b(iota_d(v)) = pushforward of S2(v): 155 random words agree
+k=4 w0=[f3a,f3b] |w0|=250 P=2: |u1|=512, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+k=4 w0=[f3a,f3b] |w0|=250 P=4: |u1|=1232, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+k=4 w0=[f3a,f3b] |w0|=250 P=8: |u1|=15632, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+  symbolic (N_1 = M formal): 108 nonzero formal terms, p-range 5, c0-range 5; formal keys stay distinct, so S2 != 0, for every M > 10
+k=4 w0=[f3a,f3c] |w0|=280 P=2: |u1|=568, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+k=4 w0=[f3a,f3c] |w0|=280 P=4: |u1|=1336, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+k=4 w0=[f3a,f3c] |w0|=280 P=8: |u1|=16696, S(u1) nonzero: False, S2(u1) nonzero: True (108 terms, l1 = 108)
+  symbolic (N_1 = M formal): 108 nonzero formal terms, p-range 5, c0-range 9; formal keys stay distinct, so S2 != 0, for every M > 18

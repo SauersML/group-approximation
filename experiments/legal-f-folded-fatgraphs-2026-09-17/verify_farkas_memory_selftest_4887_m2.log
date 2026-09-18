@@ -1,0 +1,3 @@
+selftest trial 0 polygons 446704 brute 320.0 dp 320.0 OK
+selftest trial 1 polygons 446704 brute 314.0 dp 314.0 OK
+selftest trial 2 polygons 446704 brute 332.0 dp 332.0 OK

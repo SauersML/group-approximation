@@ -33,7 +33,7 @@ presented simple ring if and only if it embeds in a finitely presented simple
 - Evans--Mandelberg--Neff, *Embedding algebras with solvable word problems in simple
   algebras -- some Boone--Higman type theorems*, Studies in Logic and the Foundations of
   Mathematics 80 (1975), 259--277.
-  - Per its abstract (ScienceDirect), the paper gives the universal-algebraic first half:
+  - Per its abstract (ScienceDirect; not re-read by the referee, whose access failed), the paper gives the universal-algebraic first half:
     finitely presented simple algebras have solvable word problem.
   - For particular varieties it gives "the analogue of the second half up to but not
     including the embedding in a finitely presented algebra", that is, the weak form:

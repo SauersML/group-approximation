@@ -1,0 +1,3 @@
+n=500 greedy contagious density=0.1120  crossing m=62 slots=31 >= 2(m-|S cap I|)=12  (1.8 m = 112)
+n=1000 greedy contagious density=0.1120  crossing m=125 slots=52 >= 2(m-|S cap I|)=26  (1.8 m = 225)
+n=2000 greedy contagious density=0.1080  crossing m=250 slots=127 >= 2(m-|S cap I|)=68  (1.8 m = 450)

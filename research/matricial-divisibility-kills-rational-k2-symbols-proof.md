@@ -15,9 +15,12 @@ requires: []
   `a ↦ a I_n`, and let `μ: K_*(A) ≅ K_*(M_n(A))` be the Morita isomorphism. Then
   `δ_* = n·μ`. The reason: `δ` is the orthogonal sum of the `n` corner embeddings, which are
   conjugate to each other; each induces `μ`; and `K_*` is additive on orthogonal sums of ring
-  maps. This is standard (for example Weibel, *The K-book*) and is cited from memory. On
-  `K_1` it is the elementary fact that a block-diagonal matrix has the sum of the classes of
-  its blocks.
+  maps. Referee C re-derived this from Milnor, *Introduction to Algebraic K-theory*, Theorems 5.1
+  and 5.10. The block map `St(M_n B) -> St(B)` is an isomorphism, because both are universal
+  central extensions of `E(B)`. The `n` block copies of a `K_2` class coincide, because
+  conjugation by a lift of a block swap fixes the central `K_2`. See
+  `research/artifacts/gq-referee-c-matricial-divisibility-kills-rational-k2-symbols.md`. On `K_1`
+  it is the elementary fact that a block-diagonal matrix has the sum of the classes of its blocks.
 
 **Proof.** Let `z ∈ K_2(Q)`. By (T), `z` has finite order `t`. Choose `n` with `t | n` and a
 unital isomorphism `φ: M_n(R_n) -> R`.

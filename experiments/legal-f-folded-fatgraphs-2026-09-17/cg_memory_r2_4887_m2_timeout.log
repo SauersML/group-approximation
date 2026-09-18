@@ -1,0 +1,43 @@
+phi0 {'a': 'ab', 'b': 'bbca', 'c': 'aab'} m 2 r 2 windows 114 types 1164 maxval 4
+phase 1 it 1 obj 7.000000 cols 3000 pairs 459 min rc -4 LB -35 {2: -2.0, 3: -3.0, 4: -4.0} added 3000 t 3.0 tm 0.0
+phase 1 it 2 obj 7.000000 cols 6000 pairs 1115 min rc -6 LB -56 {2: -4.0, 3: -4.0, 4: -6.0} added 3000 t 5.8 tm 0.0
+phase 1 it 3 obj 7.000000 cols 9000 pairs 2331 min rc -6.055 LB -56.58 {2: -4.0, 3: -6.0, 4: -6.0552} added 3000 t 9.2 tm 0.3
+phase 1 it 4 obj 7.000000 cols 12000 pairs 2619 min rc -5.98 LB -55.79 {2: -3.9805, 3: -4.8231, 4: -5.9795} added 3000 t 12.8 tm 0.9
+phase 1 it 5 obj 7.000000 cols 15000 pairs 3385 min rc -6 LB -56 {2: -4.0, 3: -5.3229, 4: -6.0} added 3000 t 16.5 tm 1.8
+phase 1 it 6 obj 6.884615 cols 18000 pairs 3814 min rc -5.94 LB -55.14 {2: -4.0, 3: -4.8846, 4: -5.9398} added 3000 t 20.7 tm 3.5
+phase 1 it 7 obj 6.783920 cols 21000 pairs 4559 min rc -5.62 LB -51.62 {2: -3.9991, 3: -4.511, 4: -5.6199} added 3000 t 26.0 tm 5.7
+phase 1 it 8 obj 6.766761 cols 24000 pairs 5312 min rc -5.166 LB -46.87 {2: -4.0, 3: -4.516, 4: -5.1657} added 3000 t 33.2 tm 9.5
+phase 1 it 9 obj 6.644450 cols 27000 pairs 6751 min rc -5.782 LB -53.04 {2: -4.0, 3: -4.3118, 4: -5.7818} added 3000 t 40.3 tm 13.3
+phase 1 it 10 obj 6.597576 cols 30000 pairs 7576 min rc -6 LB -55.2 {2: -4.0, 3: -4.5223, 4: -6.0} added 3000 t 48.8 tm 18.0
+phase 1 it 11 obj 6.514473 cols 33000 pairs 8708 min rc -5.813 LB -53.11 {2: -4.0, 3: -4.504, 4: -5.8128} added 3000 t 57.5 tm 23.7
+phase 1 it 12 obj 6.258075 cols 36000 pairs 9479 min rc -5.655 LB -51.02 {2: -4.0, 3: -4.5523, 4: -5.655} added 3000 t 66.7 tm 29.9
+phase 1 it 13 obj 5.965033 cols 39000 pairs 10751 min rc -5.622 LB -50.16 {2: -4.0, 3: -4.3766, 4: -5.6219} added 3000 t 76.5 tm 36.9
+phase 1 it 14 obj 5.805324 cols 42000 pairs 11774 min rc -5.21 LB -45.79 {2: -3.6025, 3: -4.4297, 4: -5.2098} added 3000 t 89.2 tm 46.7
+phase 1 it 15 obj 5.633780 cols 45000 pairs 12749 min rc -5.008 LB -43.53 {2: -3.5871, 3: -4.0, 4: -5.0081} added 3000 t 102.4 tm 57.0
+phase 1 it 16 obj 5.488868 cols 48000 pairs 13782 min rc -5.438 LB -47.5 {2: -4.0, 3: -3.95, 4: -5.4381} added 3000 t 117.8 tm 68.9
+phase 1 it 17 obj 5.415255 cols 51000 pairs 15596 min rc -4.281 LB -36.15 {2: -3.9225, 3: -3.9509, 4: -4.2813} added 3000 t 133.2 tm 81.4
+phase 1 it 18 obj 5.350903 cols 54000 pairs 17114 min rc -4.656 LB -39.69 {2: -3.931, 3: -3.7328, 4: -4.6557} added 3000 t 153.2 tm 98.5
+phase 1 it 19 obj 5.273667 cols 57000 pairs 18278 min rc -4.897 LB -41.92 {2: -3.6911, 3: -3.7828, 4: -4.8967} added 3000 t 170.5 tm 113.5
+phase 1 it 20 obj 5.247125 cols 60000 pairs 19749 min rc -4.76 LB -40.56 {2: -3.5993, 3: -3.651, 4: -4.7601} added 3000 t 188.5 tm 128.8
+phase 1 it 21 obj 4.824160 cols 63000 pairs 21127 min rc -5.056 LB -42.77 {2: -4.0, 3: -4.2512, 4: -5.0564} added 3000 t 209.8 tm 147.3
+phase 1 it 22 obj 4.588466 cols 66000 pairs 22499 min rc -4.572 LB -37.9 {2: -3.9778, 3: -3.6821, 4: -4.5719} added 3000 t 232.8 tm 168.0
+phase 1 it 23 obj 4.347066 cols 69000 pairs 24137 min rc -4.551 LB -37.4 {2: -3.2371, 3: -3.5671, 4: -4.5508} added 3000 t 257.3 tm 189.9
+phase 1 it 24 obj 4.045524 cols 72000 pairs 25332 min rc -5.022 LB -41.26 {2: -3.4497, 3: -3.7102, 4: -5.0216} added 3000 t 291.2 tm 220.8
+phase 1 it 25 obj 3.988448 cols 75000 pairs 26814 min rc -4.87 LB -39.82 {2: -3.4275, 3: -3.9287, 4: -4.8702} added 3000 t 331.5 tm 257.6
+phase 1 it 26 obj 3.743387 cols 78000 pairs 27846 min rc -5.393 LB -44.1 {2: -4.0, 3: -4.2507, 4: -5.3926} added 3000 t 370.5 tm 293.7
+phase 1 it 27 obj 3.572649 cols 81000 pairs 29068 min rc -5.337 LB -43.32 {2: -3.9447, 3: -3.9579, 4: -5.3366} added 3000 t 408.3 tm 327.5
+phase 1 it 28 obj 3.421446 cols 84000 pairs 30034 min rc -5.237 LB -42.19 {2: -3.8474, 3: -4.055, 4: -5.2368} added 3000 t 448.7 tm 365.0
+phase 1 it 29 obj 3.296174 cols 87000 pairs 31567 min rc -4.665 LB -37.04 {2: -3.7237, 3: -3.6555, 4: -4.6646} added 3000 t 494.6 tm 407.8
+phase 1 it 30 obj 3.172818 cols 90000 pairs 32785 min rc -4.753 LB -37.64 {2: -3.9492, 3: -4.0317, 4: -4.7535} added 3000 t 538.4 tm 448.8
+phase 1 it 31 obj 3.085084 cols 93000 pairs 34250 min rc -4.441 LB -34.85 {2: -3.5736, 3: -3.9917, 4: -4.4409} added 3000 t 590.1 tm 497.3
+phase 1 it 32 obj 2.995667 cols 96000 pairs 35448 min rc -5.017 LB -39.64 {2: -3.5899, 3: -3.5416, 4: -5.0171} added 3000 t 650.5 tm 554.1
+phase 1 it 33 obj 2.947917 cols 99000 pairs 36607 min rc -5.628 LB -44.74 {2: -3.3605, 3: -3.6926, 4: -5.6277} added 3000 t 711.6 tm 611.6
+phase 1 it 34 obj 2.876057 cols 102000 pairs 37734 min rc -4.206 LB -32.61 {2: -3.1535, 3: -3.4057, 4: -4.2059} added 3000 t 781.7 tm 678.5
+phase 1 it 35 obj 2.776603 cols 105000 pairs 39064 min rc -4.434 LB -34.41 {2: -3.5619, 3: -3.6268, 4: -4.4337} added 3000 t 843.1 tm 737.2
+phase 1 it 36 obj 2.669660 cols 108000 pairs 40412 min rc -4.3 LB -33.17 {2: -3.4693, 3: -3.4224, 4: -4.3002} added 3000 t 912.2 tm 803.3
+phase 1 it 37 obj 2.552390 cols 111000 pairs 41705 min rc -4.572 LB -35.29 {2: -3.1275, 3: -3.768, 4: -4.5721} added 3000 t 981.8 tm 869.7
+phase 1 it 38 obj 2.470970 cols 114000 pairs 43050 min rc -4.927 LB -38.11 {2: -3.5008, 3: -3.5786, 4: -4.9273} added 3000 t 1055.7 tm 940.6
+phase 1 it 39 obj 2.389387 cols 117000 pairs 44028 min rc -4.185 LB -31.9 {2: -3.0817, 3: -3.5254, 4: -4.1848} added 3000 t 1142.9 tm 1023.9
+time limit
+RESULT ('timeout', -31.90382404541159)
+window flow {'aaa': 0.003126109145223474, 'aab': 0.01586484818166336, 'aac': 0.00254939478568308, 'aaB': 0.01573681191661279, 'aba': 0.00546081149555658, 'abb': 0.0010211331185660856, 'abc': 0.00404095798500548, 'abA': 0.0013431006285551323, 'abC': 0.00847018976374901, 'aca': 0.014085474409757966, 'acb': 0.023466169095871632, 'acc': 0.003813839762595242, 'acB': 0.01881908871341595, 'aBa': 0.003151

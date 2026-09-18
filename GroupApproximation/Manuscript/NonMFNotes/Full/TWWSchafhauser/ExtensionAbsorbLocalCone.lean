@@ -274,7 +274,7 @@ theorem CompressesOn.norm_le [One S] {ℓ φ : S → StdBdd J} {G : Finset S}
   have hv' : ‖v‖ * ‖v‖ ≤ 1 + ‖φ 1‖ + ‖v‖ := by
     nlinarith [mul_nonneg (sub_nonneg.mpr hδ) (norm_nonneg v)]
   by_contra hlt
-  push_neg at hlt
+  push Not at hlt
   have ht : 0 < ‖v‖ := by linarith [norm_nonneg (φ 1)]
   nlinarith [mul_lt_mul_of_pos_right hlt ht,
     mul_nonneg (norm_nonneg (φ 1)) (by linarith : (0 : ℝ) ≤ ‖v‖ - 2)]

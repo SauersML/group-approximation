@@ -6,6 +6,7 @@ title: "Iterated commutators with powers of the three-strand full twist multiply
 target: brunnian-burau-kernel-mod-cyclotomic-products-nontrivial
 requires:
   - brunnian-four-braids-are-pseudo-anosov
+  - moody-congruence-holds-for-arcs-ending-at-alpha-endpoints
 artifacts:
   - experiments/moody-witness-equivalence-2026-09-17/cyclotomic_jets.py
   - experiments/moody-witness-equivalence-2026-09-17/cyclotomic_jets.log
@@ -67,6 +68,14 @@ Throughout, `T_k = Δ_3^{2k} = (σ_1σ_2)^{3k} ∈ B_4`, `z = A_{14}A_{24}A_{34}
      `ρ_4(Φ_0) ≡ I mod 𝔞`, and `ρ_5(f(Φ_0)) = ρ_4(Φ_0) ⊕ 1 ≡ I mod 𝔞`.
    - Theorem A of the artifact (§5, for any `Γ ∈ B_5` and both orders) and Lemma 3.1 give
      `(1 − t^s)(𝕄_{f(Φ_0)Γ} − 𝕄_Γ) ∈ (F·(t−1))`.
+     **(2026-09-18, referee.)** This bullet holds as written only for `Γ` whose arc
+     `(β_*^3)Γ` ends at a marked point other than `p_1, p_2` — in particular for every pure
+     `Γ`, hence for all `Γ ∈ K_5`, which is the only case the claim's consequences use.
+     Theorem A is about the intersection form `I`, and the bridge to `𝕄` is Lemma 3.1, whose
+     construction requires the small circle to miss `α`; for `Γ` whose permutation sends `3`
+     to `1` or `2` that is unsatisfiable and Lemma 3.1 is false. Quantifying over all
+     `Γ ∈ B_5`, as Part 2 of the target does, therefore needs the added prerequisite
+     `moody-congruence-holds-for-arcs-ending-at-alpha-endpoints`.
    - `1 − t^{±1}` is a unit times `t − 1`, and `Z[t^{±1}]` is a UFD, so the difference lies in
      `(F)`. ∎
 

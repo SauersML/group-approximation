@@ -252,3 +252,53 @@ genericity.
 
 *Where it stops.* Neither (N) nor path selection is proved for any group
 without a known (M2) instance.
+
+**Attempt 5 (2026-09-18, swarm-0917-w8-w8-bh-pull, local-designs): the greedy
+maximal tower removes path selection; what remains is dead-end freeness.**
+Stays OPEN.
+
+*Reduction (complete).* Route
+`effective-minimal-free-subshifts-via-greedy-maximal-tower`. Fix `A`, a
+computable `R`, and `m_n = n`. Put `L_0 = A`, and let `L_{n+1}` be the set of
+ALL patterns on the least admissible ball that satisfy (C) and (K) relative to
+`L_n` together with (A).
+- Nothing is chosen, so the tower is computable as soon as each level's finite
+  search halts.
+- (G) `greedy-maximal-margin-towers-never-stall` therefore implies (M2).
+- This is the "path with no branching" that Attempt 4 left open. The Π⁰₁ basis
+  problem disappears and is replaced by a Π⁰₂ statement about finite patch
+  sets.
+
+*Depth lemma (proved here).* Let `q ∈ F_n(R)`,
+`g ∈ B(R − m_{n+1})`, and `s` with `R(s) + |s| ≤ m_n`. Then some
+`μ ∈ B(R(s))` has `q(μg) ≠ q(μsg)`, with no use of clause (A) of `F_n`.
+- By (C), `g = g'h` with `|g'| ≤ R_n − m_n ≤ R_n − R(s) − |s|` and
+  `p = w_{R_n}(q,h) ∈ L_n`.
+- Condition (A) for `p` at `c = g'` gives `p(μg') ≠ p(μsg')`, that is,
+  `q(μg) ≠ q(μsg)`.
+- Both arguments lie in `B(R)`, because `R(s) + |s| + R_n − m_n + |h| ≤ R`.
+- So in the greedy recursion clause (A) only binds for large `s`
+  (`R(s) + |s| > m_n`) or near the rim of `q`. Asymmetry for small `s` is
+  inherited through the covering and never causes a stall.
+
+*Where it stops: dead ends.*
+- Every `p ∈ L_n` must occur in every `q ∈ L_{n+1}` inside an `L_n`-covered
+  context.
+- So the recursion stalls forever as soon as one member of `L_n` has no
+  `L_n`-covered (A)-valid extension containing all of `L_n`.
+- (G) thus requires the maximal admissible level-`n` systems to be
+  dead-end free. That is a gluing, or strong-irreducibility, property, with
+  seams for large `s` as the only nontrivial asymmetry constraint.
+- Pruning does not remove the issue. Restrict `L_n` to members that extend `j`
+  levels further, for any fixed computable `j`. That is still decidable, but
+  extendability to all levels is only co-r.e.
+- A decidable pruning that removes every dead end would be a decidable
+  extendability test, which is exactly the surviving method class that
+  Attempt 4 names.
+
+No dead-end-free data are known for any group without an (M2) instance, and no
+stalling data are known either.
+
+*Refutation target.* Take data for which one could prove that every
+admissible level eventually contains a dead end. That would kill the greedy
+family, but not (M2), because (G) ⇒ (M2) is one way only.
