@@ -180,3 +180,58 @@ theorem extremalJordan_classStretches_of_arcEnd (K : PocketFaceSet D eps X lo hi
     extremalJordan_not_both_of_arcEnd K r hdecS hsrc A d B e C hc hd he hB hne⟩
 
 end ArcEnd
+
+/-- **OPEN (lane gl-p10-17).**  Existence of a class with the choice property, linked runs, and
+each of the two arcs met through one end.  Strictly between `ExtremalMinimalUniformStatement`
+and `RoseExtremalClassStatement` in the finite model (see the module docstring). -/
+def ExtremalJordanStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, ExtremalClassChoice K r ∧ ExtremalMinimalLinkedRuns K r ∧
+          ExtremalJordanArcEnd K r K.targetArc.darts ∧
+          ExtremalJordanArcEnd K r (invDarts X K.sourceArc.darts)
+
+/-- **The old uniform-arc gap implies the new one.** -/
+theorem extremalJordan_of_extremalMinimalUniform
+    (h : ExtremalMinimalUniformStatement.{u, w, v}) :
+    ExtremalJordanStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hchoice, hlink, extremalJordan_arcEnd_of_uniform K r _ hT,
+    extremalJordan_arcEnd_of_uniform K r _ hS⟩
+
+/-- **The new gap implies the rose extremal class target.** -/
+theorem roseExtremalClass_of_extremalJordan
+    (h : ExtremalJordanStatement.{u, w, v}) :
+    RoseExtremalClassStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hchoice, extremalJordan_classStretches_of_arcEnd K r hlink hT hS⟩
+
+/-- **Chain consequence**: the relative Greendlinger statement from the four-piece-off
+statement and the new gap. -/
+theorem extremalJordan_relativeGreendlinger
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : ExtremalJordanStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlinger_of_extremalClass hoff (roseExtremalClass_of_extremalJordan h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanArcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_arcEnd_of_uniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_not_both_of_arcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_classStretches_of_arcEnd
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_of_extremalMinimalUniform
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.roseExtremalClass_of_extremalJordan
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordan_relativeGreendlinger
