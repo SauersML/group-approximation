@@ -1,0 +1,5 @@
+fibonacci best margins L-maxgap: [(983, 2580, 1597), (976, 2573, 1597), (969, 2566, 1597), (962, 2559, 1597)] ratio min 0.6189922480620155
+tribonacci best margins L-maxgap: [(322, 2027, 1705), (315, 2020, 1705), (308, 2013, 1705), (301, 2006, 1705)] ratio min 0.8404351767905711
+thue-morse best margins L-maxgap: [(-8, 8, 16), (-16, 16, 32), (-17, 15, 32), (-18, 14, 32)] ratio min 2.0
+period-doubling best margins L-maxgap: [(-1, 31, 32), (-1, 15, 16), (-2, 30, 32), (-2, 14, 16)] ratio min 1.0034296913277805
+chacon best margins L-maxgap: [(-1, 40, 41), (-1, 13, 14), (-2, 39, 41), (-2, 12, 14)] ratio min 1.0045913682277319

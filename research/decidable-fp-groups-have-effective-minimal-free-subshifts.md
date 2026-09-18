@@ -162,3 +162,51 @@ independently:
   (R_k) enforced;
 - (b) boundary-straddling hyperaperiodic witnesses placed computably in the same
   hierarchy, i.e. an effective GJS blueprint colouring.
+
+**Attempt 3 (2026-09-17, swarm-0917-w6-w6-bh-last1): margin covering towers
+remove the global modulus.** Stays OPEN.
+
+*Established here.* `covering-towers-iff-effective-minimal-free-subshifts`
+(complete hand route) proves the following for every f.g. group with solvable
+word problem.
+- (M2)-type existence is equivalent to a computable tower of finite nonempty
+  patch families `L_n` on `B(R_n)`, with `m_n → ∞` and `R_n − m_n → ∞`,
+  satisfying:
+  - (C) margin covering: every point of `B(R_{n+1} − m_{n+1})` lies within
+    `R_n − m_n` of an `L_n`-window of each `L_{n+1}`-patch;
+  - (K) containment;
+  - (A) local asymmetry.
+- The subshift is the explicit set
+  `Y = {z : every g has an L_n-window within R_n − m_n}`. It has decidable
+  forbidden balls, a computable recurrence radius, and freeness from (A).
+- Nonemptiness comes by downward induction.
+
+*Why Attempt 2 stopped where it did.*
+- Hierarchies of disjoint copies with gaps cannot satisfy (C) unless `L_n` also
+  lists the patches that straddle copy boundaries.
+- (K) for those patches is exactly Attempt 2's circular (R_k).
+- So decomposition (a) should be replaced by: *build overlapping patch families
+  satisfying (C) and (K)*. A computable global modulus is then automatic.
+- The freeness "conjugator" issue is a convention artifact, as Attempt 2
+  already noted. (A) is a radius-`R(s) + |s|` window condition checked inside
+  the patches.
+
+*One-patch extreme (new OPEN premise).*
+- `|L_n| = 1` means an overlap-recurrent computable point: the central patch
+  `P_n` recurs within `R_n − m_n` of every site. Its orbit closure equals
+  `Y_OC`, and (OC) reduces to finite internal checks.
+- Recorded as `decidable-groups-have-overlap-recurrent-aperiodic-points`, with
+  route `effective-minimal-free-subshifts-via-overlap-recurrence`.
+
+*Where it stops.*
+- No tower is constructed over any group without an established (M2) instance.
+- *Lemma T.* If the returns of `P_n` contain a subgroup `H_n` with
+  `B(R_n)H_n = G`, then `y` is `H_n`-periodic. So subgroup or Toeplitz skeletons
+  cannot provide (OC).
+- *Numerics over `Z`* (experiments/overlap-recurrence-2026-09-17). (OC) holds
+  for Fibonacci and Tribonacci, but fails for Thue--Morse, period doubling and
+  Chacon. The one-patch extreme is rigid.
+- *The missing step.* Over infinite simple (Kazhdan) inputs, where no
+  finite-index skeleton or compact internal model exists, it remains to
+  construct computable families satisfying (C) and (K) with (A). This is a
+  finite-combinatorics problem on balls, with no limit step left.
