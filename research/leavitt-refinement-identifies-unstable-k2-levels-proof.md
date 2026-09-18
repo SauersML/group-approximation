@@ -34,7 +34,7 @@ hypothesis on stable rank".
   gives `stab ∘ D_r = c_V ∘ stab` as homomorphisms `St_r(R) -> St(R)`. Both lift the same map to `E(R)`. Their
   difference is a homomorphism from the perfect group `St_r(R)` to the central `K_2(R)`, hence trivial. This is the
   argument of `leavitt-doubling-is-stably-conjugate-to-stabilization`, item 2.
-- `GL(R)` acts trivially on the centre `K_2(R)` of `St(R)` (Milnor). So `ι_(r+1) D_r = ι_r` on `K_2(r, R)`.
+- `GL(R)` acts trivially on the centre `K_2(R)` of `St(R)` (Weibel, K-book III, Thm 5.5 and Ex. 1.13, p. 39). So `ι_(r+1) D_r = ι_r` on `K_2(r, R)`.
 - `D_r` is an isomorphism `K_2(r) -> K_2(r+1)` compatible with `ι`, so it maps `U_r = ker ι_r` onto `U_(r+1)`.
 
 **Item 3.**
@@ -49,7 +49,8 @@ hypothesis on stable rank".
 - **Two homomorphisms.** Assume `V in E_(r+2)(R)`, and let `ω_0 in St_(r+2)(R)` lift it. The maps `x -> j(D_r x)`
   and `x -> ω_0 j j(x) ω_0^-1`, from `St_r(R)` to `St_(r+2)(R)`, lift the same map to `E_(r+2)(R)`, by item 2. So their
   quotient `c(x)` lies in `K_2(r+2, R)`.
-- **Padded centrality** (Khanh, Lemma `lem:padded-centrality`, proof included there, any unital ring, `m >= 3`):
+- **Padded centrality** (Khanh, Lemma `lem:padded-centrality`, `khanh.tex` l. 498--508, proof checked by gq-referee-b; any
+  unital ring, `m >= 3`):
   `j_m(K_2(m, R))` is central in `St_(m+1)(R)`. So after one more stabilization, `j(c(x))` is central in `St_(r+3)(R)`.
 - **The difference is trivial.** `x -> j(c(x))` is then a homomorphism into a central subgroup. It is trivial
   because `St_r(R)` is perfect for `r >= 3`. With `ω = j(ω_0)`, this gives `j j D_r(x) = ω j j j(x) ω^-1`.
