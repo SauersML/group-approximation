@@ -271,3 +271,15 @@ of `lem:link:n-conn_2` (via Matui Lemma 6.18 and Brown Lemma 4.20) goes through 
 of §5 is unchanged, and this fix needs no packing number at all.
 
 Not re-checked here: §2, i.e. that the pure-hole datum satisfies (St) and has lcms.
+
+## Referee B (bh-ref-q115-b, 2026-09-18): referee A's link-lemma repair and §2 checked; PASS
+
+- **Referee A's direct proof of `lem:link:n-conn_3`:** PASS.
+  - The multiset, doubling, Dickson and merge steps all check, with `δ_τ ∈ Div(Δ)`.
+  - Use `(n+L(m+1))B` for the touched-piece bound.
+- **§2:** PASS, with two readings.
+  - (i) Purity is a property of the set. Li's `𝔛` consists of subsets, and Lemma P's pieces are
+    product sets for every representing `e`.
+  - (ii) The bold `Γ` is all pure elements of `𝐒`, several blocks allowed, as in Li's maximal
+    datum. (5_Γ) needs several blocks.
+- **Not re-checked:** §1's product facts in detail, beyond componentwise plausibility.

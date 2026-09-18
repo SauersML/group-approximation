@@ -114,7 +114,8 @@ theorem padCol_single (p : Fin n) (a : R) :
     padCol (Pi.single p a) = x p.castSucc (Fin.last n) (Fin.castSucc_lt_last p).ne a := by
   show colPi (fun q => Multiplicative.ofAdd ((Pi.single p a : Fin n → R) q)) = _
   rw [ofAdd_single p a]
-  exact MonoidHom.noncommPiCoprod_mulSingle _ p (Multiplicative.ofAdd a)
+  exact MonoidHom.noncommPiCoprod_mulSingle (hcomm := colHom_commute)
+    (colHom (R := R) (n := n)) p (Multiplicative.ofAdd a)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.padCol_single
 
@@ -122,7 +123,8 @@ theorem padRow_single (p : Fin n) (a : R) :
     padRow (Pi.single p a) = x (Fin.last n) p.castSucc (Fin.castSucc_lt_last p).ne' a := by
   show rowPi (fun q => Multiplicative.ofAdd ((Pi.single p a : Fin n → R) q)) = _
   rw [ofAdd_single p a]
-  exact MonoidHom.noncommPiCoprod_mulSingle _ p (Multiplicative.ofAdd a)
+  exact MonoidHom.noncommPiCoprod_mulSingle (hcomm := rowHom_commute)
+    (rowHom (R := R) (n := n)) p (Multiplicative.ofAdd a)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.padRow_single
 

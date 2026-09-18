@@ -36,7 +36,8 @@ theorem one_add_single_mulVec_single_same (i j : Fin n) (b a : R) :
 
 theorem one_add_single_mulVec_single_of_ne {i j p : Fin n} (hp : p ≠ j) (b a : R) :
     (1 + Matrix.single i j b) *ᵥ Pi.single p a = Pi.single p a := by
-  rw [Matrix.add_mulVec, Matrix.one_mulVec, single_mulVec_eq_pi, Pi.single_eq_of_ne' hp a,
+  rw [Matrix.add_mulVec, Matrix.one_mulVec, single_mulVec_eq_pi,
+    show (Pi.single p a : Fin n → R) j = 0 from Pi.single_eq_of_ne' hp a,
     mul_zero, Pi.single_zero, add_zero]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.PaddedCentral.one_add_single_mulVec_single_of_ne

@@ -184,3 +184,10 @@ needed. Then continue through a `c`-edge at `q` that `ω_0` does not use.
 
 (TF), (Acyc) (use `q` in place of `p'` and the same two-branch choice at `q`) and the minimality
 walk then go through verbatim. This also covers referee B's case where `s_0` is a `c`-edge.
+
+## Referee B note on Lemma E′ (bh-ref-q115-b, 2026-09-18): PASS
+
+Lemma E′ is correct, with one simplification: both `c`-edges at `q` are available, so the clause
+"that `ω_0` does not use" can be dropped. The branch beyond a fresh `c`-edge at `q` contains no wall
+of `p`'s copy and no `c`-wall at `p`, and `H(p,ω'') = H(p,q) ⊔ {c_q} ⊔ H(r,ω'')` for every Roller point
+`ω''` of the branch. So (TF), (Acyc) and the minimality walk hold with `q` in place of `p'`.

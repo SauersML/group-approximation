@@ -77,6 +77,7 @@ theorem h_projection_val (i j : I) (hij : i ≠ j) (u : Rˣ) :
     hDA, hDB, hDC, hDD]
   abel
 
+set_option linter.unusedSimpArgs false in
 /-- **Diagonal matrix in unit form.**  `diag(u at i, u⁻¹ at j, 1 elsewhere)` equals
 `1 - E_ii(1) - E_jj(1) + E_ii(u) + E_jj(u⁻¹)`. -/
 theorem diagonal_weyl_eq (i j : I) (hij : i ≠ j) (u : Rˣ) :
@@ -85,9 +86,21 @@ theorem diagonal_weyl_eq (i j : I) (hij : i ≠ j) (u : Rˣ) :
       1 - Matrix.single i i 1 - Matrix.single j j 1 + Matrix.single i i (u : R) +
         Matrix.single j j ((u⁻¹ : Rˣ) : R) := by
   ext r c
-  simp only [Matrix.diagonal_apply, Matrix.add_apply, Matrix.sub_apply, Matrix.one_apply,
-    Matrix.single_apply]
-  split_ifs <;> simp_all
+  by_cases hrc : r = c
+  · subst c
+    by_cases hri : r = i
+    · subst r
+      have hjr : ¬ j = i := fun h => hij h.symm
+      simp [Matrix.diagonal_apply, Matrix.one_apply, Matrix.single_apply, hjr]
+    · by_cases hrj : r = j
+      · subst r
+        simp [Matrix.diagonal_apply, Matrix.one_apply, Matrix.single_apply, hri, hij]
+      · simp [Matrix.diagonal_apply, Matrix.one_apply, Matrix.single_apply, hri, hrj,
+          Ne.symm hri, Ne.symm hrj]
+  · have h1 : ¬ (i = r ∧ i = c) := fun h => hrc (h.1.symm.trans h.2)
+    have h2 : ¬ (j = r ∧ j = c) := fun h => hrc (h.1.symm.trans h.2)
+    simp only [Matrix.diagonal_apply, Matrix.add_apply, Matrix.sub_apply, Matrix.one_apply,
+      Matrix.single_apply, if_neg hrc, if_neg h1, if_neg h2, sub_zero, add_zero]
 
 /-- **Endpoint (diagonal elements).**  The canonical projection sends
 `h_ij(u) = w_ij(u) w_ij(-1)` to `diag(u at i, u⁻¹ at j, 1 elsewhere)`. -/
