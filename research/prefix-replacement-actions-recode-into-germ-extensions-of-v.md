@@ -109,3 +109,19 @@ independently reviewed; no priority claimed).
 - **Choosing the codes.** The codes can be chosen to make cycle code words primitive and
   cyclically distinct. That fixes `(V)_p` and separates the orbits. This is how
   `z2-free-z-lies-in-an-fp-full-germ-extension-of-v` applies the theorem.
+
+## Lesson for general BH
+
+*Added 2026-09-18.*
+
+**Finiteness is local.** Over the base `V`, finite presentation and type (A) of the full germ
+closure depend only on the germ groups at finitely many orbits of rational points. So BH for `G`
+reduces to two things:
+- a faithful *almost-V* action of `G`, meaning V-local off finitely many rational points;
+- finite presentation of its local germ quotients.
+
+**The limits of this mechanism.**
+- `rational-germ-groups-of-germ-extensions-of-v-embed-in-2v` shows that those germ groups are
+  spiral groups inside `2V`. So this is a Brin--Thompson-local mechanism.
+- Where the singular set is not finite, the recoding is void. Examples are Niblo--Reeves codings
+  of products of thick trees (bh-free-36) and product normal forms.

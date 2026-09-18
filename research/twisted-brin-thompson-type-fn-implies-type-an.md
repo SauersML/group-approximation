@@ -8,7 +8,11 @@ distinct_from:
   twisted-brin-thompson-finite-presentation-criterion: that is the n = 2 characterization; this is necessity for every n, including n = 2.
 ---
 
-**ESTABLISHED (literature import)** by `twisted-bt-type-fn-necessity-citation`.
+**ESTABLISHED (literature import)** by `twisted-bt-type-fn-necessity-citation`. Citations
+checked by referee b (**PASS**,
+`research/artifacts/gq-referee-b-twisted-brin-thompson-type-fn-criterion.md`, 68ed8a399). The
+wreath-product equivalence is cited by FFWZ at lines 96–98 [dC06, BdCK15]; those two
+sources themselves were not read.
 
 Let a group `G` act on a non-empty set `S`, faithfully or not, and let `SV_G` be the
 (abstract) twisted Brin--Thompson group. For `n ∈ N`:

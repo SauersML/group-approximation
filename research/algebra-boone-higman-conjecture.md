@@ -45,8 +45,15 @@ route.*
    this to them for rings of characteristic `p`. Belyaev (1976--78) gives a
    Higman embedding for associative algebras, and Bokut gives finitely generated
    simple envelopes. Neither theorem provides finite presentation and simplicity
-   at once. *Dies*: all three were read from secondary sources only
+   at once. *Dies.* This was first recorded from secondary sources
    (`research/artifacts/boone-higman-frontier-2026-09-12.md` §4).
+   *Update, 2026-09-18 (bh-free-53):* Bokut 1976 (Algebra i Logika 15:2) and Bokut's survey
+   "Embedding of rings" (Russian Math. Surveys 42:4, 1987, §5.1 and §5.5) have now been read at
+   source. They give simple envelopes that are finitely generated, and Belyaev's finitely
+   presented envelopes, and no theorem combining the two. EMN is still unread, blocked by the
+   publisher. See `research/artifacts/gq-bh-bh-free-53-algebra-bh-literature-at-source.md`.
+   For group algebras there is a canonical central simple candidate that is only finitely
+   generated (`group-algebras-embed-in-shell-essential-algebras`).
 2. **Maximal-ideal quotient.** Embed in a finitely presented `P`, then pass to
    `P/M` for a maximal ideal `M` missing the input. *Dies*: `P/M` is finitely
    presented only if `M` is finitely generated as an ideal. That is the ring

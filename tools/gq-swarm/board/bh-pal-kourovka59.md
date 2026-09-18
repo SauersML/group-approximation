@@ -8,3 +8,6 @@ Direction: elementary proof of PC = CT(Z) first (per bh-pal-scope T5), Lean only
   support without lying in it. Three variants recorded with why each fails. Same coherence gap as
   `class-transposition-relations-present-ct-p-z`.
 - No Lean written (standing rule: Lean after solving). GroupApproximation/Kourovka1759/ not created.
+- 0e0c97d15: node now ESTABLISHED (tree types + exchange lemma + commutation + cancellation; base x = b(a,b)).
+  17.59 node got an "Elementary route" remark. Does NOT close the relations node (generation only).
+- Lean: proving bh-pal-surface's kourovka_17_59 statement verbatim in GroupApproximation/Kourovka1759/.
