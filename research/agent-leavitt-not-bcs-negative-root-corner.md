@@ -464,3 +464,28 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Window models and bounded-depth alternating constituents (swarm-0917-w10-w10-nh-last1, 2026-09-18, family
+local-designs).** Landed as `jacobson-head-dies-on-bounded-depth-window-constituents` (established, unreviewed). It runs
+the `A_m`-configuration test above, and the test fails.
+- *Statement.* Let `π(q) ∈ Sym(F)` be `ε`-truncations of a genuine action of `EL_20(J)` on any countable set
+  `X ⊇ F`. Then every representation `ρ` of `Sym(F)`, or of `Alt(F)`, with constituents of depth `<= D` has
+  `‖ρ(π(w)) - 1‖_2 <= 2(ℓDε)^(1/2) + (4√2/κ)(Dε)^(1/4)` for every length-`ℓ` word `w` with value in `L`.
+- *Death step.* Each depth-`D` isotypic block of `ℓ²(F^(D))` has constant diagonal. So the truncation error is a
+  `2(Dε)^(1/2)` corner defect for the genuine action on `ℓ²(X^(D))`. `(KFM1)` of
+  `kazhdan-unitary-corners-require-finite-dimensional-mass` puts the block on finite-dimensional subrepresentations,
+  and those kill `L` by Mal'cev and simplicity.
+- *Kills.* Truncations of vectors, subspaces and flags of `J^20`, of coset spaces, and of `m`-point configurations of
+  any of these, including the Toeplitz truncation. It kills them together with all their Sym and Alt constituents of
+  depth `o(1/ε)`.
+- *Where it stops (hole stays OPEN).* A certificate that sees the head needs one of two things.
+  - Generator permutations that are not close to the restriction of any genuine `E`-action (non-window sofic
+    models).
+  - Head mass on constituents of depth `D >= c/ε`.
+- **Next falsifiable step.** Build a sofic model of `EL_20(J)` that is non-window on a set of density bounded below:
+  no genuine `E`-set agrees with it on density `1 - o(1)`. Or show none exists.
+  - A window model on density `1 - o(1)` fixes the head on almost every point, by `D = 1` above.
+  - Thom's LEF Kazhdan non-residually-finite group shows that property (T) alone does not force windowness. The
+    non-window part must be paid for by relations of `E` itself.
+  - The open `kazhdan-consistent-partial-models-round-to-finite-actions` is the corresponding rounding statement. It
+    needs its globalization step repaired.
