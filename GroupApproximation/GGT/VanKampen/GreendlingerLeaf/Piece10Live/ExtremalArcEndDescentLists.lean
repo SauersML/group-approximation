@@ -129,7 +129,7 @@ theorem extremalArcEndDescent_false_of_order (p : α → Bool) (c : Bool)
     intro z h₁ h₂
     have h₃ : c = !c := h₁.symm.trans h₂
     cases c <;> exact absurd h₃ (by decide)
-  rcases List.append_eq_append_iff.mp h with ⟨as, _, hpost'⟩ | ⟨bs, hpre', htail⟩
+  rcases List.append_eq_append_iff.mp h with ⟨s₁, _, hpost'⟩ | ⟨bs, hpre', htail⟩
   · exact key y hy (hpost y (by rw [hpost']; simp))
   · cases bs with
     | nil =>
