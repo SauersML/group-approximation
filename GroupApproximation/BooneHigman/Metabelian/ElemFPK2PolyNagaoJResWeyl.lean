@@ -25,6 +25,7 @@ open GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl (w w_conj_x_row_
 
 variable {I : Type} [Fintype I] [DecidableEq I] {p : ℕ} [Fact p.Prime]
 
+omit [Fact p.Prime] in
 /-- `act x_ik(c)` at the row `i`: `v_i + c v_k`. -/
 theorem k2PolyNagaoJRes_act_x_self {i k : I} (hik : i ≠ k) (c : Polynomial (ZMod p))
     (v : I → Polynomial (ZMod p)) : act (x i k hik c) v i = v i + c * v k := by
@@ -32,6 +33,7 @@ theorem k2PolyNagaoJRes_act_x_self {i k : I} (hik : i ≠ k) (c : Polynomial (ZM
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_act_x_self
 
+omit [Fact p.Prime] in
 /-- `w_ab(1) = x_ab(1) x_ba(-1) x_ab(1)`. -/
 theorem k2PolyNagaoJRes_om_eq {m j : I} (hmj : m ≠ j) :
     w m j hmj (1 : (Polynomial (ZMod p))ˣ) =
@@ -41,6 +43,7 @@ theorem k2PolyNagaoJRes_om_eq {m j : I} (hmj : m ≠ j) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_om_eq
 
+omit [Fact p.Prime] in
 /-- `(ω v)_m = v_j`. -/
 theorem k2PolyNagaoJRes_om_m {m j : I} (hmj : m ≠ j) (v : I → Polynomial (ZMod p)) :
     act (w m j hmj (1 : (Polynomial (ZMod p))ˣ)) v m = v j := by
@@ -62,6 +65,7 @@ theorem k2PolyNagaoJRes_om_m {m j : I} (hmj : m ≠ j) (v : I → Polynomial (ZM
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_om_m
 
+omit [Fact p.Prime] in
 /-- `(ω v)_j = -v_m`. -/
 theorem k2PolyNagaoJRes_om_j {m j : I} (hmj : m ≠ j) (v : I → Polynomial (ZMod p)) :
     act (w m j hmj (1 : (Polynomial (ZMod p))ˣ)) v j = -v m := by
@@ -80,6 +84,7 @@ theorem k2PolyNagaoJRes_om_j {m j : I} (hmj : m ≠ j) (v : I → Polynomial (ZM
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_om_j
 
+omit [Fact p.Prime] in
 /-- `(ω v)_l = v_l` for `l ∉ {m, j}`. -/
 theorem k2PolyNagaoJRes_om_other {m j : I} (hmj : m ≠ j) (v : I → Polynomial (ZMod p))
     {l : I} (hlm : l ≠ m) (hlj : l ≠ j) :
@@ -98,6 +103,7 @@ theorem k2PolyNagaoJRes_om_mem_Q {K : Finset I} {m j : I} (L : I) (hmj : m ≠ j
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRes_om_mem_Q
 
+omit [Fact p.Prime] in
 /-- **The Weyl trick**: `x_jL(c) = ω⁻¹ x_mL(c) ω`. -/
 theorem k2PolyNagaoJRes_xjL_eq {m j L : I} (hmj : m ≠ j) (hmL : m ≠ L) (hjL : j ≠ L)
     (c : Polynomial (ZMod p)) :
