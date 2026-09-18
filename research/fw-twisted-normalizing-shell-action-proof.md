@@ -28,21 +28,30 @@ permutations that agree off a finite set have the same index. `ind(s^m) = m`.
    `Y ∩ N_fin`. The index is additive over this splitting, and the infinite part
    contributes `0`. So `f` restricted to `N_fin` is a near permutation of `N_fin` of index
    `m`.
-3. **Chains.** Choose `M` such that `f = s^m` on `[M, ∞)`. Enlarge it so that every finite
-   orbit meeting `[M', ∞)` lies in `[M, ∞)`: only finitely many orbits meet `[0, M)`. For a
-   finite orbit `O ⊆ [M, ∞)`, `f(O) = O + m` is a finite orbit. If `O ⊆ [M+m, ∞)`, then
-   `O - m = f^-1(O)` is one too. So the finite orbits in `[M, ∞)` form disjoint chains
-   `O_i + km`, `k >= 0`, with base orbits `O_i` whose minimum lies in `[M, M+m)`. There are
-   at most `m` bases. On their union `F`, `s^m` shifts each chain by one step, so as a near
-   permutation of `N_fin` it has index `Σ_i |O_i|`. It agrees with `f` off a finite set, so
-   `Σ_i |O_i| = m`.
-4. **Density.** Chain `i` puts at least `|O_i|(L - c)` points into `[M, M + Lm)`, for a
-   constant `c` independent of `L`. So `F` has at least `m(L - c)` of the `Lm` points
-   there, and `[M, ∞) \ F` is finite. An infinite orbit has infinitely many points in
-   `[M, ∞)`, so **every orbit is finite**. The orbits in `[M, ∞)` have at most `m` points,
-   and there are finitely many others, so all orbits have at most `K` points for some `K`.
-5. **Conclusion.** `P` is finitely generated (a countable FW group has property FA, hence is
-   finitely generated). So it has finitely many homomorphisms to `Sym(K)`. The
+3. **Residue classes.** Choose `M` such that `f(a) = a + m` for every `a in X ∩ [M, ∞)`,
+   and such that `[M, ∞) ⊆ X`. Let `A = N_fin ∩ [M, ∞)`. **For all but finitely many `a`,
+   `a in A` iff `a + m in A`.**
+   - If `a in A`, then `f` maps the finite orbit of `a` onto a finite orbit containing
+     `f(a) = a + m`.
+   - Conversely, `Y \ f(X ∩ [M, ∞))` is finite. Outside it, `a + m in N_fin` means
+     `a + m = f(a)` with `a >= M`, and the orbit of `a` is `f^-1` of a finite orbit.
+
+   So along each residue class mod `m`, membership in `A` is eventually constant, and
+   `A` agrees up to a finite set with `⋃_{r in R} (r + mN)` for a set `R` of residues.
+4. **Index.** On `N_fin`, `f` agrees with `s^m` off a finite set, and `N_fin` agrees with
+   `A` up to a finite set. As a near permutation of `N_fin`, `s^m` shifts each of the `|R|`
+   arithmetic rays by one step, so its index is `|R|`. By step 2 it is `m`. So `R` is
+   every residue, and `[M, ∞) \ N_fin` is finite. An infinite orbit would have infinitely
+   many points there, so **every orbit is finite**.
+5. **Bounded orbits.** Call a finite orbit `O` a *base* if it is not `O' + m = f(O')` for an
+   orbit `O' ⊆ [M, ∞)`. A base contains no point of `f(X ∩ [M, ∞))`: if `a = f(b)` with
+   `b >= M`, then `O = f(orbit of b) = (orbit of b) + m`. That set has finite complement,
+   so there are finitely many bases. Every orbit meeting `[M+m, ∞)` either is a base or
+   comes from an orbit with smaller minimum by adding `m`. Iterating down, every orbit is a
+   translate of a base or one of the finitely many orbits meeting `[0, M+m)`. So all orbits
+   have at most `K` points for some `K`.
+6. **Conclusion.** `P` is finitely generated, since a countable FW group has property FA
+   and so is finitely generated. So it has finitely many homomorphisms to `Sym(K)`. The
    intersection of their kernels is a finite-index subgroup acting trivially on every
    orbit, hence on `N`. Every nontrivial element moves infinitely many points, so that
    subgroup is trivial and `P` is finite. This contradicts the hypothesis. `∎`
