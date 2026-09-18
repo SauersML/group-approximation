@@ -5661,6 +5661,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Forward.Confi
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.LEFBound
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.LEF
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Chain
+import GroupApproximation.Manuscript.NonMFNotes.Full.CliffordMF.LampKernel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
