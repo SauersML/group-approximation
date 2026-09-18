@@ -119,3 +119,48 @@ Distortion certifies nothing, and a second boundary can seed what a tree cannot.
   while `WP(BG)` is polynomial. It is a design-dependent upper bound, not a CAP invariant.
 - **The CAP invariant.** It is the complexity of the membership oracles, so rung-1c tests need subgroups with
   hard membership.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS for BG ∈ 𝒞; §3 is a statement about the natural glued seed, and §4 is a sketch, as labeled
+
+I checked §§1–3 against the definitions (RS1)–(RS3) and Statement 1 of
+`relative-seeds-glue-graphs-of-groups-into-class-c`, which is refereed.
+
+- **Setting.**
+  - `ba = (2,1) = a²b`.
+  - The distortion recurrence is `f(j+1) = 2f(j) + 5`, with `f(0) = 1`, so `f(j) = 6·2^j − 5`. This gives
+    `|a^{N_j}| ≤ 6·2^j` and distortion at least `tower(⌊log₂ n − 3⌋)`.
+- **`(V, ⟨a⟩) ∈ 𝓡`.** Both edge images `⟨a⟩`, `⟨a²⟩ ≤ ⟨a⟩` have finite index. Statement 1 (second
+  bullet) applies.
+- **The real-cut seed `Y_R`, (RS1).**
+  - `σ` satisfies (Rb) and (Ra).
+  - From `*` at `1`: (Rb) spreads it down the `b`-line. At level `k`, `*→−→−…` rightward and `…+←+←*`
+    leftward force `σ` on `2^kZ`.
+  - Every dyadic `r` is reached at a low enough level.
+  - `(g.y_R)(r,k) = σ(r − s)` for `g = (s,m)`, so `Stab = ⟨b⟩`, and seeds sit exactly on `⟨b⟩`.
+- **(RS2).**
+  - Points depend only on `r`, and chaining (Ra) at a common level makes them monotone with at most
+    one `*`. Conversely every such labelling satisfies the rules.
+  - Limits of translates give every cut: non-dyadic cuts, both one-sided dyadic cuts (`s_n ↑ s` or
+    `s_n ↓ s`) and both constants.
+- **(RS3).**
+  - The forbidden adjacent pairs `*+, **, −+, −*` give `E_−(h) ≤ E_−(ha)`, `E_*(h) ≤ E_−(ha)`,
+    `E_+(ha) ≤ E_+(h)` and `E_*(ha) ≤ E_+(h)`. Transitivity of `≤` then yields commutation at all
+    distances along the chains.
+  - I also derived the cross cases the node leaves implicit.
+    - `E_+(r)` commutes with `E_*(r')`: for `r < r'`, `E_*(r') ≤ E_+(r)`; for `r > r'`,
+      `E_*(r') ≤ E_−(r) ⊥ E_+(r)`.
+    - Then `E_−(r') = I − E_+(r') − E_*(r')` settles the rest.
+  - So `Y_R` is rigid for every `D ≥ 1` over every field. `(V, ⟨b⟩) ∈ 𝓡`.
+- **§2.** `BG` is the HNN extension of `V` along `⟨a⟩ → ⟨b⟩`, both images are in `𝓡`, and `V ∈ 𝒞`.
+  So `BG ∈ 𝒞` by the gluing theorem. **Correct.**
+- **§3.**
+  - The lower bound is correct for unit propagation on the natural glued seed, given that the
+    sink-line `C_Z` letters enter only the `C_Z` rules along `a`: `−` at `a^m` is forced only from
+    `*`/`−` at `a^(m−1)`.
+  - The explicit rule set of `Y_BG` is described, not written out, so this is checked only at that
+    level.
+  - The comparison with `WP(BG)` cites Myasnikov–Ushakov–Won 2011, recalled.
+- **§4.** A sketch, as labeled.
+
+This is independent of `baumslag-gersten-groups-lie-in-class-c` (the line-sink seed, d15e53b53), which
+bh-ref-misc refereed separately (PASS, d1a5012563).

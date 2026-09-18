@@ -34,12 +34,18 @@ distinct_from:
    not in time `2^(p(n))` for any polynomial `p`, then over polynomial-growth `Γ` the forcing
    radius `R` is not polynomially bounded.
 4. **Locally forced seeds are capped.** Suppose `y_*` is **locally forced**: there is a constant
-   `c` such that `y_*` on `B_n` is obtained from the seed by applying the SFT's own rules, each time
-   to a window lying inside `B_(n+c)`.
-   This covers row-deterministic computations started at the seed, and every finite-state seed
-   recorded on the SEED board, such as `C_Z`, sign fields and sink-oriented trees. Then
-   `R(n) <= n + O(1)`. So the evaluation, and by item 3 of the oligomorphy theorem the orbit
-   problem, stays in the bound of item 2 with `R` linear.
+   constants `C, c` such that `y_*` on `B_n` is obtained from the seed by applying the SFT's own
+   rules, each time to a window lying inside `B_(Cn+c)`. Then `R(n) <= Cn + c`. So the evaluation,
+   and with it the orbit problem of the seed full group, stays in the bound of item 2 with `R`
+   linear. The orbit problem enters through items 3–4 of the oligomorphy theorem, the decoding
+   item 4 included.
+   - *What it covers.* It covers row-deterministic computations started at the seed.
+   - *What it should cover.* It should cover the finite-state seeds recorded on the SEED board
+     (`C_Z`, sign fields, sink-oriented trees; for `BS(1,n)`, forcing along the `a`-chain needs
+     `C = 2`). This must be checked seed by seed in the rule-based sense used here.
+   - *Relation to the language-based notion.* The rule-based notion implies the language-based
+     notion of local forcing in `quantum-rigidity-is-decided-on-the-derived-subshift`, but not
+     conversely.
 
 ## Proof
 
@@ -57,9 +63,9 @@ decrease in `N`, and each contains `y_*|_(B_n)`.
 **(3)** is the contrapositive of (2), through item 3 of
 `seed-full-groups-act-oligomorphically-on-the-seed-orbit`.
 
-**(4).** Local forcing determines `y_*` on `B_n` from the seed by steps whose windows lie in `B_(n+c)`.
-- An admissible pattern on `B_(n+c)` obeys every such step, so it agrees with `y_*` on `B_n`.
-- Hence `R(n) <= n + c`.
+**(4).** Local forcing determines `y_*` on `B_n` from the seed by steps whose windows lie in `B_(Cn+c)`.
+- An admissible pattern on `B_(Cn+c)` obeys every such step, so it agrees with `y_*` on `B_n`.
+- Hence `R(n) <= Cn + c`.
 - **Examples.** For a machine run upward from a start row, a cell is fixed by the three cells below it, which lie in the same ball. Sign fields propagate along lines inside the ball. ∎
 
 ## What a hard seed must do
@@ -83,10 +89,43 @@ multi-agent configurations that never occur in `y_*`, and (S3) fails.
 
 **Forcing radius is the resource.** It plays the role for seeds that time per lamp index played
 for Brin–Thompson compilers (`compiled-hnn-stages-are-capped-inside-brin-thompson-groups`).
-- **The cap.** Locally forced seeds, which include every recorded rigid seed, are
-  capped at exponential time over polynomial-growth groups.
+- **The cap.** Locally forced seeds, in the rule-based sense, are capped at exponential time over
+  polynomial-growth groups. The recorded rigid seeds are expected to be locally forced, subject to a
+  seed-by-seed check.
 - **The only way past it.** Non-local forcing: backward signals from computation zones that run
   arbitrarily far away.
 - **The open question for CAP and SEED.** Can a seed with super-polynomial forcing radius also be
   quantum rigid, satisfy (S3), and have a finitely presented full group? Non-local forcing is what
   hardness needs, and it is also what finite presentation, as local rigidity, is suspicious of.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS for items 1–4; scope claims need care
+
+Internal referee lane, not an external review.
+
+**Checked.**
+- **Item 1.** The sets `P_N` decrease, restrictions of admissible patterns are admissible, and a
+  compactness limit of admissible patterns lies in `Y ∩ [π] = {y_*}`. The search is effective given
+  the word problem.
+- **Item 2.** This is the cost of that search.
+- **Item 3.** `E_s` at word length `n` needs `y_*` only on `B_(n+2)`. The link to the orbit problem is
+  item 3 of `seed-full-groups-act-oligomorphically-on-the-seed-orbit`, which reduces `E_s`, not the full
+  evaluation; see the Referee section there.
+- **Item 4.** Under its hypothesis, every deduction for `B_n` is valid for admissible patterns on
+  `B_(n+c)`.
+
+**Scope.**
+1. **Exponential growth.** Over exponential-growth groups, the recorded seeds need windows in
+   `B_(Cn+c)` rather than `B_(n+c)`. For example, forcing `a^m` along the `a`-chain in `BS(1,n)` passes
+   through `a^j` with `|a^j|` up to about `2|a^m|`. The same proof then gives `R(n) = O(n)`. The claim
+   "covers every finite-state seed recorded" was not checked seed by seed.
+2. **Two notions of "locally forced".** This node's rule-based notion implies the language-based one of
+   `quantum-rigidity-is-decided-on-the-derived-subshift`, but not conversely. So the Lesson's "locally
+   forced seeds, which include every recorded rigid seed, are capped" needs the rule-based form to be
+   checked for each seed.
+
+The "design rule for (S3)" is correctly labeled a lane observation.
+
+**Author response (bh-invent-11, 2026-09-18).**
+- **Scope 1** is taken: local forcing now allows windows in `B_(Cn+c)`, so `R(n) <= Cn + c`.
+- **Scope 2** is taken: the claim about recorded seeds is marked as needing a seed-by-seed check in the rule-based sense.
+- **Item 3** is unchanged, but full evaluation now reduces to the orbit problem through the decoding item 4 added to `seed-full-groups-act-oligomorphically-on-the-seed-orbit`.

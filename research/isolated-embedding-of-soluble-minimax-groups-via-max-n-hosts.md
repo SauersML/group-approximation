@@ -2,7 +2,7 @@
 rg: 2
 id: isolated-embedding-of-soluble-minimax-groups-via-max-n-hosts
 kind: claim
-title: A finitely generated soluble minimax group embeds in an isolated group as soon as it embeds in some finitely presented group satisfying max-n (for example a finitely presented soluble minimax group, or any quotient of an Abels group); in general it embeds in an isolated group iff some homomorphism to an isolated group is injective on a finite G-discriminating subset of its periodic radical
+title: A finitely generated soluble minimax group embeds in an isolated group as soon as it embeds in some finitely presented group satisfying max-n; in general it embeds in an isolated group iff some homomorphism to an isolated group is injective on a finite G-discriminating subset of its periodic radical
 requires:
   - fp-groups-with-max-n-are-limits-of-isolated-groups
   - ascending-hnn-of-isolated-groups-embed-in-isolated-groups
@@ -40,16 +40,17 @@ Let `G` be a finitely generated soluble minimax group, and let `τ = τ(G)`.
    - some homomorphism from `G` to an isolated group is injective on `Φ`.
 3. **Max-n hosts.** If `G` embeds in a finitely presented group `P` in which every normal
    subgroup is finitely normally generated (max-n), then `G` embeds in an isolated group.
-4. **Examples of such `P`.** Here `G` can be any finitely generated subgroup:
-   - of any quotient `A_{n,p}/N`, `n >= 4`, by any normal subgroup `N`. `A_n` is finitely
-     presented (CGP Prop. 5.6). Max-n holds by P. Hall's criterion (standard, not re-read): the
-     unipotent radical `U` is nilpotent, and `A_n/U'` is finitely generated
-     abelian-by-abelian;
-   - of any finitely presented abelian-by-polycyclic-by-finite group, which has max-n by P.
-     Hall (1954; standard, not re-read), provided `G` is minimax.
-
-   This extends `hall-type-prufer-quotients-embed-in-isolated-abels-groups` from central
-   quotients to all quotients of Abels groups.
+4. **Examples of such `P`, CORRECTED 2026-09-18.** An earlier version listed every quotient
+   `A_{n,p}/N` of an Abels group as a max-n host. That is **false**. Abels' group `A_4(Z[1/p])`
+   is finitely presented, but its centre `≅ Z[1/p]` is not finitely normally generated (Abels,
+   LNM 1261, 0.2.17, answering P. Hall's question). Also, a group with a normal Prüfer
+   subgroup never has max-n, because the layers `C_(p^k)` form an ascending chain.
+   - What remains true: finitely presented abelian-by-polycyclic-by-finite groups have max-n
+     (P. Hall; standard, not re-read), and finitely presented simple groups have max-n
+     trivially. These are not the natural hosts for non-residually-finite soluble inputs.
+   - The natural hosts are the isolated groups of `partial-torus-abels-quotients-are-isolated`
+     and `hall-type-prufer-quotients-embed-in-isolated-abels-groups`. Item 2 applies to them
+     directly, since they are isolated themselves, and max-n is not needed.
 
 ## Proof
 
@@ -94,7 +95,7 @@ Let `G` be a finitely generated soluble minimax group, and let `τ = τ(G)`.
   *Does every finitely generated soluble minimax group embed in a finitely presented group
   with max-n?*
 
-  - A finitely presented soluble minimax overgroup would do.
+  - A finitely presented soluble minimax overgroup would NOT automatically do: such groups need not have max-n (Abels 0.2.17). The operative form is item 2, with isolated hosts; see the correction in item 4.
   - This is the minimax analogue of the Baumslag–Remeslennikov theorem that every
     finitely generated metabelian group embeds in a finitely presented metabelian group,
     which satisfies max-n.
@@ -105,8 +106,8 @@ Let `G` be a finitely generated soluble minimax group, and let `τ = τ(G)`.
 - **Obstruction check.** Every previously known obstruction for the non-residually-finite
   soluble inputs concerns locally moving or skew-product hosts
   (`hall-quotient-avoids-v-circle-groups-and-periodic-ends`,
-  `compact-skew-products-cannot-carry-divisible-fiber-subgroups`). None applies to max-n
-  arithmetic hosts.
+  `compact-skew-products-cannot-carry-divisible-fiber-subgroups`). None applies to the isolated
+  arithmetic hosts (partial-torus-abels-quotients-are-isolated).
 
 ## Lesson for general BH
 
@@ -117,8 +118,11 @@ Let `G` be a finitely generated soluble minimax group, and let `τ = τ(G)`.
   quotient sees, here the Chernikov radical) is discriminated by finitely many elements.
   Everything else is handled by residually finite, hence linear, means.
 
-**Consequence for the soluble world.** Question 4 for soluble minimax inputs reduces to
-finding finitely presented Noetherian overgroups, which is a classical kind of embedding
-problem. Boone–Higman additionally needs those isolated quotients to embed in simple
-groups: the per-input existential sentence of
-`boone-higman-iff-isolated-hosts-and-local-boone-higman`.
+**Consequence for the soluble world (corrected 2026-09-18).** Question 4 for soluble minimax
+inputs reduces to one condition: a map to an isolated group injective on the finite set `Φ`.
+- Noetherian hosts are one sufficient source.
+- The arithmetic hosts that carry non-residually-finite radicals are not Noetherian (Abels
+  0.2.17). They are isolated outright, by the commutator-descent argument of
+  `partial-torus-abels-quotients-are-isolated`.
+- Boone–Higman additionally needs those isolated groups to embed in simple groups: the
+  per-input existential sentence of `boone-higman-iff-isolated-hosts-and-local-boone-higman`.

@@ -123,3 +123,24 @@ linearity (rings) and contraction (nucleus).
 This is the tree-automaton form of the carrier principle: the input's arithmetic (all primes) cannot be compressed
 into finitely many states. It has to be carried either by a ring, which pays in `K_2`, or by a non-contracting,
 non-linear automaton group, for which no finiteness theorem is known.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** Lane bh-gln-tracka's argument is correct and clean.
+- **Part 1.** The sections `c_w = ([w] + c − r)/m^k` are right. For `c = M/ℓ`, `m^k | Nℓ + M` keeps the
+  exact denominator `ℓ`, and the bound `|c_w| < 2` holds.
+- **Part 2.** The centralizer of a full `m^k`-cycle is the cyclic group it generates. Roots commute
+  with `a`. `ℓz = 1` has a solution in `Z_m` iff `ℓ ∉ S`.
+- **Part 3.** Both uses of `uA = A` hold:
+  - `uA = A` with `Z ⊆ A ⊆ Z_(S)` forces `u, u^{-1} ∈ Z_(S)`, so `u ∈ Z_m^×`;
+  - density of `Z` and continuity then give `x τ_z x^{-1} = τ_{uz}` on all of `Z_m`, and
+    `μ_u^{-1} x` centralizes `a`.
+- **Parts 4(a)–(d).**
+  - Affine groups lie in `∏_{p∈S} GL_2(Q_p) ↪ GL_{2|S|}(C)`.
+  - A finite nucleus cannot contain translations of infinitely many exact denominators.
+  - All `m^k` sections of `τ_{1/ℓ}` at level `k` are nontrivial, so its activity is exponential.
+
+  Each step uses `fg-linear-groups-have-roots-at-finitely-many-primes` as stated. I did not re-referee
+  that node.
+- **Scope remark.** Level-transitive automorphisms are conjugate to the odometer. This is correct, and
+  the node correctly does not claim (c) or (d) for such conjugates.

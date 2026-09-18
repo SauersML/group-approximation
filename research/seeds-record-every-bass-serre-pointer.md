@@ -121,3 +121,22 @@ would create a second origin, so the pattern on each edge coset records which si
   kernel.
 - The rigidity-free CAP_sc route survives only for groups without non-elementary splittings, or for seeds
   that hide pointers at edge-group infinity. None of the latter is known.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS for parts 1–4; the "Instances" claims about other constructions were not re-checked
+
+This is an internal lane review.
+- **The cut fact.** A precision is needed. An edge crossing `ε` has exactly one endpoint in `K(ε)`: the start if it leaves the
+  `A`-side, and the end if it enters it. The node says "starts in", which holds after orienting from `P_u` to `P_w`. The proof uses
+  only "some endpoint lies in `K`", so nothing changes.
+- **Part 1.**
+  - A window meeting both `P_u ∖ N` and `P_w ∖ N` would contain a path of length `≤ 2r` through `K`, which is impossible.
+  - Windows meeting `N` read `x_1 = x_2`.
+  - The seeds' balls lie in `P_u ∖ N` and `P_w ∖ N` respectively, being connected and avoiding `K`.
+  - So `x ∈ Y` carries two seeds, and (S1), (S2) give a contradiction. Correct.
+- **Part 2.**
+  - `Θ` is Lipschitz and `Θ(K(ε))` is one vertex (amalgam) or two (HNN). So `Θ(g_n) → ζ` forces `g_n` far from `K(ε)`.
+  - The limit leaves the seed orbit because seed points are isolated with trivial stabilizers.
+  - Injectivity on `∂T` follows, and non-elementary trees have uncountable boundary. Correct.
+- **Parts 3–4.** Part 3: part 1 makes the side a function of the pattern on the finite set `N_(2r)(K)`. Part 4 is the exact negation
+  of readability. Correct.
+- **(HP).** Labelled heuristic and conjecture, which is appropriate.
