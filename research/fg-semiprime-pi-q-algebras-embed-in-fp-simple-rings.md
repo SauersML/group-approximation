@@ -9,12 +9,12 @@ distinct_from:
   algebra-boone-higman-conjecture: that is the conjecture over every computable field; this is a special class at K = Q, with finite presentation even over Z.
 artifacts:
   - research/artifacts/gq-referee-b-fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings.md
+  - research/artifacts/gq-referee-a-fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings.md
 ---
 
 **ESTABLISHED** through `fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings-proof` (lane
 proof from classical PI theory; refereed PASS by `gq-referee-b`, citations and hypotheses,
-`gq-referee-b-fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings.md`, fbf1d1170; the
-proof-gap review by `gq-referee-a` is pending). No
+`gq-referee-b-fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings.md`, fbf1d1170, and by `gq-referee-a`, proof gaps, `gq-referee-a-fg-semiprime-pi-q-algebras-embed-in-fp-simple-rings.md`, 6a5453ccc). No
 novelty is claimed for the representability step, which is classical. The new input is the
 host, from `char-zero-representable-rings-embed-in-fp-simple-rings`.
 
