@@ -7,6 +7,9 @@ requires:
   - free-product-boundary-groupoids-carry-the-vertex-group-homology
 distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that is the proved necessary condition (decidable vertex group); this is the open sufficiency statement for simple inputs.
+  stabilizer-engines-force-fp-vertex-groups: that proves a finitely presented engine forces a finitely presented vertex group; this asserted finite presentation of the engine for all decidable simple inputs, which that result refutes.
+refuted_by:
+  - regular-cyclic-twisted-core-has-non-fp-stabilizer-engine
 ---
 
 **OPEN** (stated by bh-free-60, 2026-09-18). Notation `F_B`, `D(F_B)` is as in
@@ -62,3 +65,30 @@ Use a Stein–Farley complex on cone partitions.
 - **The difficulty.** The automorphisms of a cone are its local full group. They must be
   replaced by rigid canonical models, for example through the doubled `Γ`-coding of
   item 3.
+
+## Attempts
+
+- **2026-09-18, swarm-0917-w12-w12-bh-last1: REFUTED.**
+  - **Obstruction.** `free-factor-isotropy-of-fp-full-subgroups-is-fp` studies the germ
+    cocycle `β(s, y) = g_{sy}^{-1} λ g_y ∈ B`, taken with the free-product
+    normal-form transversal. At the orbit of `v = 1B` it has finite support. So finitely
+    many relator loops present a group `Q`, and `B` is a retract of `Q`. The
+    neighbourhood kernel dies by conjugation with a 3-cycle supported near `v`.
+  - **Specialization.** `stabilizer-engines-force-fp-vertex-groups` specializes this to
+    the engine. If `D(F_B)` or `F_B` is finitely presented, then `B` is finitely
+    presented.
+  - **Counterexample.** `T = Z V_Z` is infinite, finitely generated, simple and
+    decidable, but not finitely presented. So `D(F_T)` is not finitely presented
+    (`regular-cyclic-twisted-core-has-non-fp-stabilizer-engine`).
+  - **Status.** The **OPEN** status line above is superseded: the claim is false.
+  - **Where the class dies.** The route `boone-higman-via-stabilizer-engines` needs
+    `D(F_S)` to be finitely presented for a simple envelope `S` of the input. That
+    already forces `S` to be a finitely presented simple group containing the input. So
+    the route is circular.
+  - **Other hosts.** The same step kills every host in which the input, or its simple
+    envelope, is the full isotropy of a free factor of a finitely presented, locally
+    moving full group. Hosts that escape must break the finite support of the cocycle,
+    for example amalgams or HNN extensions over infinite edge groups. Or they must make
+    the input a proper subgroup of a point isotropy.
+  - **Reid's test case.** The test case `B = Z` is unaffected, because `Z` is finitely
+    presented.
