@@ -82,3 +82,26 @@ This excludes `F` and all point and finite-set stabilizers.
     of `Λ` (D3), and `T/H` is an infinite amenable coset space.
   - Whether `T` has *any* proper co-amenable subgroup remains open. A no would kill this node,
     and with it this discrete route to `lifted-thompson-t-is-a-t-menable`.
+- 2026-09-18 (swarm-0917-w10-w10-nv-follow): the decomposition was sharpened, and a barrier
+  proved. No candidate was decided. Everything is through
+  `thompson-t-amenable-actions-are-free-off-fixed-points` (ESTABLISHED).
+  - *Barrier.* A witness `H` is proper, since `T̄` is perfect. By item 1 of that claim (Dudko--Medynets
+    character rigidity for `T`), every invariant mean on `T/H` is then essentially free, so `T` is
+    sofic and hence `F` is sofic. The routes are:
+    - `thompson-t-fixed-point-free-amenable-action-from-euler-subgroup`;
+    - `thompson-t-sofic-from-fixed-point-free-amenable-action`;
+    - `thompson-f-sofic-from-t-sofic`.
+
+    So this node is at least as hard as `thompson-f-is-sofic`. Its prerequisite
+    `thompson-t-has-a-fixed-point-free-amenable-action` can fail on its own, and if it fails
+    this node is false.
+  - *New forced shape.* Beyond (D1)–(D2), and past any finite-index reduction:
+    - (D4) for each finite `P ⊆ T \ {e}`, mean-almost every conjugate `tHt^(-1)` misses `P`;
+    - (D5) `H` is not confined;
+    - (D6) `H` fixes no finitely additive probability on the algebra of dyadic half-open arcs.
+
+    (D6) contains the w9 "test for a no" for `Y = S^1`, (D1), and the amenable half of (D2).
+  - *Sharper test for a no.* `H` is not co-amenable exactly when
+    `T/H = A_1 ∪ ... ∪ A_l ∪ Fix(p_1) ∪ ... ∪ Fix(p_k)` with the `g_jA_j, h_jA_j` pairwise
+    disjoint (Elek--Szabó Theorem 3, via item 1). A paradoxical decomposition modulo finitely
+    many fixed sets is enough.
