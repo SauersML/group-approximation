@@ -19,8 +19,8 @@ stabilizers `Γ_x` (Serre, *Trees*, §I.5.4; standard, not re-read). `T` is loca
 finite, so `[Γ_v : Γ_e] <= deg(v)` for `e ∋ v`, and every edge inclusion has finite
 index.
 
-**Step 2 (fibres).** `Γ_v` preserves the fibre `F_v = Y × {v} ≅ Y`, and it acts
-properly, since `Γ` does.
+**Step 2 (fibres).** `Γ_v` preserves the fibre `F_v = Y × {v} ≅ Y`, because
+`γ_T v = v` for `γ ∈ Γ_v`. It acts properly, since `Γ` does.
 - **Cocompactness.** Let `C` be compact with `ΓC = Y × T`. Then `pr_T(C)` meets
   finitely many vertices `w_1, ..., w_s`. For each `w_j ∈ Γv`, fix `g_j` with
   `g_j w_j = v`.
@@ -38,8 +38,8 @@ commensurable with `G = Γ_v`. Hence `Γ ∈ BS_G`, which is item 1. Item 2 is
 - **Degenerate `T`.** If every vertex of `T` has degree `<= 2`, then `T` is a
   finite path or a line; a ray has no cocompact isometry group.
   - For a line, `Γ` acts properly and cocompactly on `E^(n+1)`.
-  - For a finite path, `Γ` preserves the fibre over its center and acts on it
-    properly and cocompactly.
+  - For a finite path, `Γ` preserves the fibre over its center, which may be the
+    midpoint of an edge, and acts on it properly and cocompactly.
   - In both cases the fibre-group argument below shows that `Γ` is virtually free
     abelian, hence linear over `Z`, and
     `char-zero-linear-groups-satisfy-permutational-boone-higman` applies.

@@ -5,13 +5,20 @@ kind: claim
 title: A generic free product V * Z inside Homeo(Cantor) is a finitely presented dense subgroup none of whose clopen stabilizers is finitely generated
 requires:
   - permutational-boone-higman-iff-dense-cantor-actors
+refuted_by:
+  - v-and-a-homeomorphism-never-generate-a-free-product
 distinct_from:
   permutational-boone-higman-iff-dense-cantor-actors: that proves PBH is equivalent to embedding in a finitely presented dense subgroup of Homeo(C) with finitely generated clopen stabilizers; this shows the stabilizer clause cannot be dropped, since finite presentation plus density does not give type (A) on clopens.
   fp-full-binary-cantor-groups-have-type-a-actions: that gives finitely generated clopen stabilizers for finitely presented FULL groups containing standard V; the group here contains standard V and is not full.
 ---
 
-**ESTABLISHED** (lane proof, elementary, not reviewed; no novelty claimed. Generic
-free products in Polish permutation groups are a standard device).
+**REFUTED** (09-18, bh-free-19) by `v-and-a-homeomorphism-never-generate-a-free-product`:
+for every `t ≠ 1` the relation `[[t,a],b] = [a^{-1},b]` (with `a, b ∈ V` supported in a
+clopen `U` that `t` moves off itself) holds in `Homeo(C)` but not in `V * ⟨t⟩`, so
+`⟨V,t⟩` is never the free product. The Baire argument below fails at "freshness makes
+every point produced by a `v_i` new": syllables of `V` fix open sets pointwise, so a
+fresh point can be fixed and the reading collapses. The text below is kept as the
+record of the refuted claim. (It was: lane proof, elementary, not reviewed.)
 
 Let `C = {0,1}^N`, give `Homeo(C)` the compact-open topology, and let `V ≤ Homeo(C)`
 be standard Thompson's `V`. Let `Ω` be the set of proper nonempty clopen subsets.
