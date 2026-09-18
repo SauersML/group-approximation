@@ -370,6 +370,9 @@ None recorded before 2026-09-17.
       `prime-shift-dilation-normalizers-are-nowhere-continuous`: every permutation shifting the primes on the dilation
       group is `c·σ` on each half-line and discontinuous everywhere (real on `Q^x`, all `p`-adic), so no tame
       version of `σ` exists. The open question is whether `Π_1 -> A_1` is injective.
+    - *Open questions as nodes, 2026-09-18:* `prime-shift-hnn-map-to-a1-is-injective`,
+      `prime-shift-affine-group-a1-is-finitely-presented` and `prime-shift-affine-group-a1-has-fg-point-stabilizer`.
+      The last two feed the route `aff-q-bh-via-prime-shift-type-a-action` into `aff-q-embeds-in-fp-simple-group`.
 
 19. **Derived units of the Leavitt resolvent ring, 2026-09-18: dead.** The route
     `gl-n-q-bh-via-leavitt-resolvent-units` embeds `GL_n(Q)` in `D/Z(D)`, where `D = [R_L^x, R_L^x]`. It needs
