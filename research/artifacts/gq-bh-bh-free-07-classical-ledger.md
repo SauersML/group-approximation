@@ -77,3 +77,28 @@ mechanism is P2. It explains the recorded shell germ-gate failures as a one/two-
 phenomenon, and it isolates the missing object: a base whose germ group at a single point has
 at least three ends while its cells shrink to that point. P1 and P4 need sources nobody on the
 swarm has read.
+
+## 4. Correction to P2 (same day, after a real attempt at a multi-ray shell)
+
+P2's mechanism, "ray count governs the germ gate, as in Houghton groups", is withdrawn. Two
+reasons, both proved here in one line each.
+
+- **Rays are invisible at the germ level.** Let `Q` be a group of near permutations of a
+  countable cell set `X` containing a regular action of a one-ended f.g. group `P` (any
+  labeling of `X` by rays). The near Schreier graph of `Q` (finite generating set containing
+  one for `P`) contains the Cayley graph of `P` as a spanning subgraph. Adding edges to a
+  locally finite connected graph cannot increase its number of ends: each infinite
+  component of `Γ' − F` contains an infinite component of `Γ − F`. So the near action of `Q`
+  is one-ended whatever the ray structure. Houghton's `H_k` uses `k` ends, so there is no
+  analogue for one-ended inputs, which include every simple Kazhdan input.
+- **At the lift level, V-coefficients already make one ray enough.** `Stab_V(0^infinity)` is
+  an ascending HNN extension of `V`, hence `F_infinity`, even though its kernel `K` is not
+  finitely generated. By contrast, Houghton's one-ray group `FSym(N)` is not finitely
+  generated. See `v-point-stabilizers-are-ascending-hnn-extensions-of-v`.
+
+**What replaces P2.** `shell-a1-ascends-when-the-gate-points-toward-p`:
+- if the germ gate ascends toward `p`, the one-singularity stabilizer `A_1` is an ascending
+  HNN extension of an explicit f.g. subgroup `D` with no shift, so `A_1` is f.p. if `D` is;
+- with the opposite direction, the construction fails.
+So what matters is the direction of the gate and a shift-free lift problem, not the number
+of rays.
