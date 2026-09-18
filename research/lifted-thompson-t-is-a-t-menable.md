@@ -166,3 +166,29 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
     - *Dead end: Farley's `ψ_k`.* The periodic images `ι_k(s)` have about `2^k` carets, so the
       convergence forces `a_k = o(2^{-k})`. The resulting `ψ` stays bounded on `⟨z⟩`. This is
       sketched only, not written out.
+- **2026-09-18 (swarm-0917-w9-w9-nv-follow, probability-random): measurable Euler splitting.**
+  Status stays OPEN.
+  - *Sufficient criterion (established).*
+    `central-extension-haagerup-from-measurable-euler-splitting`.
+    - Hypotheses: `T` is Haagerup, and there is a nonsingular `T`-space `X` whose Koopman
+      representation has almost invariant vectors.
+    - If some measurable cocycle `β : T̄ × X → R` has `β(z, ·) = 1`, then `T̄` is Haagerup.
+    - Mechanism: in the skew product `X × R`, `z` is unit translation, and flat bump vectors
+      have coefficients that decay along `z`-cosets.
+    - No integrability of `β` is needed.
+    - New route: `lifted-thompson-t-a-t-menable-via-measurable-euler-splitting`.
+  - *Class-kill (established).* `perfect-extension-splittings-are-not-uniformly-integrable`.
+    - Named invariant: `Hom(T̄, R) = 0`.
+    - Death step: averaging `β` against the almost invariant densities gives an asymptotically
+      additive function, whose ultralimit is a homomorphism with `u(z) = 1`.
+    - Killed:
+      - every uniformly integrable splitting, including bounded ones and `L¹` ones over pmp
+        spaces;
+      - through the bounded integer-part splitting over `S^1`, every `T`-space mapping
+        equivariantly to `S^1`. This recovers the Koopman half of the circle kill from
+        perfectness alone.
+  - *New holes (OPEN), each able to fail on its own.*
+    - `thompson-t-euler-class-splits-over-almost-invariant-space` (MT).
+    - Its discrete case `thompson-t-co-amenable-subgroup-kills-real-euler-class`: a co-amenable
+      `H ≤ T` with `e_R|_H = 0`. Such an `H` has no finite orbit on `S^1` and is nonamenable.
+    - Concrete test: is `PSL_2(Z)` (preimage `B_3`) co-amenable in `T`? A yes proves this claim.
