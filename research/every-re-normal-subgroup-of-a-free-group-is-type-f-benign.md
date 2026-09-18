@@ -98,3 +98,14 @@ of type `F` benign subgroups.
   - The Weyl route survives only if some type `F` group has `A_n` in its
     Torelli `Out` for infinitely many `n`.
   - See `u-weyl-pairs-need-out-sigma-to-contain-all-finite-simples`.
+- **Kill: `U` is not type `F` Weyl, so the normalized route is dead**
+  (proposed-established, w9-117, 2026-09-18).
+  - In a torsion-free pair, every elementary abelian `p`-subgroup of
+    `N_Λ(Σ)/Σ` has rank `≤ 2 cd Σ + Σ_i rk_p Aut H_i(Σ; Z)`. This is
+    Browder's exponent bound on the projective complex `Z ⊗_{ZΣ} P_*`.
+  - `U ⊇ (Z/2)^r` for all `r`, so `N_U` has no `F(B)`-normalized type `F`
+    witness.
+  - The same holds for `V`, `Z/2 ≀ Z` and Grigorchuk's group.
+  - What remains for (d) is non-normalized witnesses only, or `F_m` variants
+    with torsion in `Λ`.
+  - See `type-f-weyl-groups-have-bounded-elementary-abelian-ranks`.

@@ -4,6 +4,7 @@ id: unimodular-line-pairs-detect-cyclic-quotients-proof
 kind: route
 title: Compute the quotient of R^N by the sum of the standard line and a transvected line, and read idempotent classes in K_0
 target: unimodular-line-pairs-detect-cyclic-quotients
+requires: []
 ---
 
 **Item 1.**

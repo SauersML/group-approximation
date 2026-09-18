@@ -533,6 +533,32 @@ content in that region.
   `D^A <= kappa X J X` are therefore dead as a separator of uniqueness.
   Surviving: inputs not bounded by the norm of `X J X`, and the Br route
   (`Br <= C T J T` over plain volumes).
+* **The Br route on path volumes (2026-09-18, w9-123).**
+  `fpbs-percolation-spine-path-bridge-ratio-criterion`. On a chordless
+  path, for any environment, `Br/TJT = gamma_n/(r D_n)`. Here `gamma_n` is
+  the `r^N`-tilted interior-gap density and `D_n = TJT/(n T)` measures the
+  exponential-scale decorrelation of spine coverage.
+
+  For the Z^2 percolation spine, a three-edge bypass deletion with FKG gives
+  `c theta/D_n <= Br/TJT <= 1/(r D_n)`. So on paths the Br route is exactly
+  `inf_n D_n > 0`.
+
+  Importance-sampled Monte Carlo (supercritical `p' in [0.52, 0.85]`,
+  critical proxies down to `theta ≈ 0.45`, and two-route rectangles) gives
+  the following:
+  * `Br/TJT <= 0.5` throughout;
+  * the ratio is bounded in `n` for each fixed spine;
+  * as the spine thins, `gamma` stays flat, while `D_n` drops below its
+    geometric value and carries all of the growth (effective exponent
+    about `0.8` in `1/theta`).
+
+  The second route adds nothing. The heuristic prediction is
+  `sup_n Br/TJT ≍ theta^{-48/53}`.
+
+  **Where it stands:** there is no bridge-driven failure at bounded density.
+  Near spine birth, `C(r)` must diverge, at least like `theta/D_n`. The open
+  input is the attachment quasi-multiplicativity
+  `g(n) <= C theta^{-1} g(k) g(n-k)` of the tilted cluster.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
