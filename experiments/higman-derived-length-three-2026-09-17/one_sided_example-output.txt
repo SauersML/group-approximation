@@ -1,0 +1,6 @@
+relations b^a=b^2, c^b=c^2 hold in G_1
+c'^b' and c'^2 agree in G_1 and their translation parts differ by b^-1 x (f-value 0)
+f(g) = f(gb) + f(gbc) on 40 random g
+f(u g) = f(g) for u in A_1', f(c g) = t f(g), 40 random g
+f(pi(z'^(c'^-j))) = t^(j-1) for j=0..4 (nonzero, t-scaled): Y-span infinite
+f o pi is additive on A' and kills commutators of A' elements (15 random pairs)
