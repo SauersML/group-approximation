@@ -155,3 +155,26 @@ Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
    presented (Behr), so no finite set of group relations suffices, and the
    argument must use the pro-p topology. This remains heuristic support for
    Open 2, not a proof. See `kms-hc1-iwahori-h2-serre-plus-kassel-all-degrees`.
+4. **Restricted (Zassenhaus / group-algebra) initial forms.** This route is
+   obstructed in every Kassel degree. The degree-`p` relations `a^[p]=0`
+   are exactly what the ordinary Lie computations of Attempts 1–3 do not
+   see, so one might hope they kill the Kassel class. They do not. For every
+   `p>=5` and `m>=1`, the Kassel extension `N` of `L_p/(height>3mp)` has a
+   restricted structure, by Jacobson's criterion. The key facts are:
+   - `(ad e)^3=0` for root vectors;
+   - the factor `pk` kills `omega(h t^{pk}, .)`.
+
+   In `N`, `a^[p]=b^[p]=c^[p]=0` and the Serre relations hold. So both
+   initial-form models `FreeRes/(a^[p],...,Serre)` and
+   `FreeLie_{F_p[pi]}/(pi a,...,Serre)` exceed `L_p` by at least one
+   dimension at every `3mp`. If the criterion holds, some element of the
+   relator subgroup `R` has an initial form in degree `3mp` outside the ideal
+   of the nine initial forms. So no argument that uses the relators only
+   through their associated graded can prove the criterion. This covers
+   restricted-Lie cohomology, Gröbner/Anick resolutions of
+   `F_p<X>/(X^p, Serre)` and Golod–Shafarevich counts. The graded form of
+   the central-extension statement "splits over the three vertex groups
+   implies trivial" is false: `N` splits over each vertex subalgebra. What is
+   left is group-level input with no graded shadow, namely the
+   non-homogeneous tails of `(1+X)^p` and of the Heisenberg commutators. See
+   `kms-hc1-kassel-classes-survive-restricted-initial-forms`.

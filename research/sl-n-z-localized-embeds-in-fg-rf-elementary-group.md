@@ -21,13 +21,16 @@ unital `θ : Z_(l) -> e R̄_l e`. For `A in M_n(Z_(l))` put
 `Θ(A) = θ(A) + (1 - e) I_n in M_n(R̄_l)`.
 1. `Θ` restricts to injective homomorphisms `SL_n(Z_(l)) -> E_n(R̄_l)` for `n >= 2`,
    and `GL_n(Z_(l)) -> GL_n(R̄_l)`.
-2. `g -> diag(Θ(g), Θ(g)^(-1))` embeds `GL_n(Z_(l))` in `E_(2n)(R̄_l)`.
+2. `g -> Θ(diag(g, det(g)^(-1)))` embeds `GL_n(Z_(l))` in `E_(n+1)(R̄_l)`. (Corrected 2026-09-18:
+   the earlier map `g -> diag(Θ(g), Θ(g)^(-1))` into `E_(2n)` is not a homomorphism for nonabelian
+   groups, since `diag(g,g^(-1)) diag(h,h^(-1)) = diag(gh, g^(-1)h^(-1))`. The error was found by
+   gq-referee-b in the analogous `G_l` statement.)
 3. For `N >= 3`, `E_N(R̄_l)` is finitely generated, by the elementary matrices whose
    entry is `1` or one of the five generators.
 4. `GL_N(R̄_l)`, hence `E_N(R̄_l)`, is residually finite.
 
 So Z_(l) (as `e_12(θ(Z_(l)))`), `SL_2(Z_(l))` (inside `E_3(R̄_l)`) and `GL_n(Z_(l))`
-(inside `E_(2n)(R̄_l)`) lie in explicit finitely generated residually finite groups.
+(inside `E_(n+1)(R̄_l)`, `n >= 2`) lie in explicit finitely generated residually finite groups.
 So does every `GL_n(Z[1/P])` with `l ∉ P`.
 
 **Consistency with the obstructions.** These hosts are necessarily

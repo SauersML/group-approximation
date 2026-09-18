@@ -159,6 +159,48 @@ frontier ratio is about 2.
 - Not proved. The 6+6 ternary scan covered only 2/9 of the space, and the growth-0 search was not
   exhaustive.
 
+## 3e. Correction to §3d, and the return-time test (2026-09-18)
+
+**Correction.** The phase-conflict counts in §3d are wrong.
+- The cause: `rtm_induce` hashed the state and the first window cell into the same FNV byte, so
+  `(state 3, cell 0)` and `(state 2, cell 1)` collided.
+- `rtm_certcheck`, an independent re-simulation, printed the two "conflicting" windows and they differed.
+- The hash has been fixed (state multiplied in separately, plus a second 64-bit hash). With the fix, for
+  all three exact-doubling machines:
+  - `mod 2` and `mod 4` show **0 conflicts** at radius 6 and 9;
+  - the remaining `mod 8` conflicts all involve one early configuration of the orbit.
+- So the §3d sentences "mod 4: hundreds of conflicts at radius 12" and "mod 8: about 10^6 conflicts at
+  radius 12–15" are withdrawn.
+
+**Return-time test** (`renormalization-return-times-tend-to-zero-adically`, item 3). `rtm_recur` fixes
+the first `Y`-configuration `y` at or after `t_1`. It lists later `Y`-times whose state and window of
+radius `r` equal those of `y`, with the induced index difference `n`.
+
+| machine (`Y`) | radius | returns found | `n mod 2^j` (or `3^j`) |
+|---|---|---|---|
+| SMART, genuine level-0 moves (calibration, `m = 3`) | 6 | 2 in `4·10^7` steps | `n ≡ 0 mod 729` (3-adically small, as required) |
+| `M°`, mask 21, β = 3,4,11,0,1,8,16,2,10,13,5,7,6,17,12,9,14,15, start 2, 52 zero-overhead types | 10 | `n` = 14852, 29700, 44548, 59396 | **`n ≡ 4 mod 64`** each |
+| same | 14 | `n` = 237572, 475140, 712708, 950276 | **`n ≡ 4 mod 64`** each |
+| same (`rtm_cert` certificates, checked by `rtm_certcheck`) | 12 / 15 / 16 / 18 | `n = 29·2^m + 4` for `m = 11, 14, 15, 17` | `n ≡ 4 mod 8` |
+
+The other two exact-doubling machines of §3d show the same pattern: their first `mod 8` conflicts have
+phase difference 4.
+
+**Reading.**
+- Every return of `y` found so far, up to radius 18, has `n ≡ 4 mod 8`, and the matching radius grows
+  with `m`. If `U°^{n_m} y → y` along `n_m = 29·2^m + 4` (all radii), then item 3 shows that `U°` has no
+  height-2 renormalization, indeed no `mod 8` phase. That convergence is certified only up to radius 18,
+  so this remains OPEN.
+- **Why 3 passes and 2 fails here.** In SMART induced on genuine moves, every level-`k` move starts at an
+  induced time `≡ 0 mod 3^k`: sub-moves are consecutive blocks, and the specials are exactly the
+  non-`Y` steps. So returns are 3-adically small.
+- In `M°` the zero-overhead `Y` gives exact doubling of counts, with blocks of `29·2^m`. But the
+  configuration `y` recurs at induced offset `+4`, at every level: two points at different `mod 8`
+  phases agree on ever larger windows. That is a recognizability failure, not a counting failure.
+- Consistent with that, the parity lemma (`crossing-move-hierarchies-have-odd-branching`) forces binary
+  hierarchies to use returns, and SMART's recognizability comes from a boundary-cell parent table that
+  crossing-only hierarchies have. **Not proved for a class.**
+
 ## 4. What is left
 
 1. Finish the 8+8 binary mirror-symmetric search: split it by direction mask into ≤ 10-minute runs.
@@ -782,6 +824,186 @@ int main(int argc, char **argv) {
     for (int j = 0; j < nj && j < 32; j++) printf(" %ld", ytimes[j]); printf("\n");
     for (int k = 1; k <= K; k++) printf("k=%d radius=%d distinct=%ld conflicts=%ld\n", k, rmul * k + radd, nd[k - 1], conf[k - 1]);
     printf("RTM_INDUCE_DONE\n");
+    return 0;
+}
+```
+
+### `rtm_cert.c` (md5 46d061a070b4676baaa6e21ec61a5bd2)
+
+```c
+/* rtm_cert.c (from rtm_induce.c; prints the first conflicting pair per k as a certificate) -- for one machine and start (anchored zero tape), choose Y = the local types tau (phase, state,
+ * head cell, two neighbours) whose level overhead v_j(tau) = n_{j+1}(tau) - 2 n_j(tau) vanishes on the last L
+ * levels; then report (1) the maximal gap between consecutive Y-times, (2) Y-counts at the frontier times,
+ * (3) for k = 1..K and window radius r, whether (window at Y-time) determines the induced index mod 2^k,
+ *     counting conflicts (the orbit starts at t = 0, taken as phase 0 at every level).
+ * Lane gq-nv-obstruct, 2026-09-18. MSI only.
+ * Usage: rtm_induce n g mask beta start_state start_phase steps L K rmul radd  (radius r = rmul*k + radd)
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static int n, g, mask, dir[16], perm[128];
+static long W = 1L << 23;
+
+static void run(unsigned char *tape, int s0, int ph0, long steps, long *cnt, int NT, int *inY, long *ytimes,
+                long *ny, long *tj, int *nj, long (*snap)[1024], int wantY, int K, int rmul, int radd,
+                long *conf, long *ndist) {
+    memset(tape, 0, W); long h = W / 2; tape[h] = 1; int s = s0, phase = ph0;
+    long maxr = h, minl = h; int njr = 0, njl = 0; long tr[64], tl[64];
+    static long (*snr)[1024], (*snl)[1024];
+    if (!snr) { snr = malloc(64 * sizeof *snr); snl = malloc(64 * sizeof *snl); }
+    memset(cnt, 0, NT * sizeof(long));
+    long yi = 0, lastY = -1, maxgap = 0;
+    /* phase tables: hash (window) -> phase for each k */
+    #ifndef HSBITS
+#define HSBITS 21
+#endif
+    const long HS = 1L << HSBITS;
+    static unsigned long long *hk; static int *hv; static long *T1;
+    if (wantY && !hk) { hk = malloc(K * HS * sizeof *hk); hv = malloc(K * HS * sizeof *hv); T1 = malloc(K * HS * sizeof *T1); }
+    if (wantY) { memset(hk, 0, K * HS * sizeof *hk); for (int k = 0; k < K; k++) conf[k] = ndist[k] = 0; }
+    for (long t = 0; t < steps; t++) {
+        int tau = (((phase * n + s) * g + tape[h]) * g + tape[h - 1]) * g + tape[h + 1];
+        cnt[tau]++;
+        if (wantY && inY[tau]) {
+            if (lastY >= 0 && t - lastY > maxgap) maxgap = t - lastY;
+            lastY = t;
+            for (int k = 1; k <= K; k++) {
+                int r = rmul * k + radd;
+                unsigned long long key = (1469598103934665603ULL ^ (unsigned long long)(phase * n + s + 101)) * 1099511628211ULL; unsigned long long key2 = (14695981039346656037ULL ^ (unsigned long long)(phase * n + s + 7)) * 6364136223846793005ULL;
+                for (long c = h - r; c <= h + r; c++) { key = (key ^ (tape[c] + 1)) * 1099511628211ULL; key2 = (key2 ^ (tape[c] + 3)) * 6364136223846793005ULL + 1442695040888963407ULL; } key ^= key2 >> 1;
+                key |= 1ULL;
+                if (ndist[k - 1] > (HS / 10) * 7) continue;
+                long slot = key % HS; unsigned long long *K1 = hk + (k - 1) * HS; int *V1 = hv + (k - 1) * HS;
+                int ph = (int)(yi % (1L << k));
+                while (K1[slot] && K1[slot] != key) slot = (slot + 1) % HS;
+                if (!K1[slot]) { K1[slot] = key; V1[slot] = ph; T1[(k - 1) * HS + slot] = t; ndist[k - 1]++; }
+                else if (V1[slot] != ph) { if (conf[k - 1] == 0) printf("CERT k=%d r=%d t1=%ld t2=%ld phase1=%d phase2=%d\n", k, r, T1[(k - 1) * HS + slot], t, V1[slot], ph); conf[k - 1]++; }
+            }
+            yi++;
+        }
+        if (phase == 1) { h += dir[s]; phase = 0; }
+        else { int a = tape[h]; int idx = s * g + a; tape[h] = perm[idx] % g; s = perm[idx] / g; phase = 1; }
+        if (h <= 64 || h >= W - 64) break;
+        if (h > maxr) { maxr = h; if (njr < 64) { tr[njr] = t + 1; memcpy(snr[njr], cnt, NT * sizeof(long)); if (wantY) ytimes[njr] = yi; njr++; } }
+        if (h < minl) { minl = h; if (njl < 64) { tl[njl] = t + 1; memcpy(snl[njl], cnt, NT * sizeof(long)); if (wantY) ytimes[32 + njl] = yi; njl++; } }
+    }
+    if (njr >= njl) { *nj = njr; memcpy(tj, tr, sizeof tr); memcpy(snap, snr, 64 * sizeof *snr); }
+    else { *nj = njl; memcpy(tj, tl, sizeof tl); memcpy(snap, snl, 64 * sizeof *snl); if (wantY) memmove(ytimes, ytimes + 32, 32 * sizeof(long)); }
+    *ny = maxgap;
+}
+
+int main(int argc, char **argv) {
+    n = atoi(argv[1]); g = atoi(argv[2]); mask = atoi(argv[3]); const char *bs = argv[4];
+    int s0 = atoi(argv[5]), ph0 = atoi(argv[6]); long steps = atol(argv[7]); int L = atoi(argv[8]), K = atoi(argv[9]);
+    int rmul = atoi(argv[10]), radd = atoi(argv[11]);
+    const char *p = bs; for (int i = 0; i < n * g; i++) { perm[i] = atoi(p); while (*p && *p != ',') p++; if (*p) p++; }
+    for (int i = 0; i < n; i++) dir[i] = (mask >> i & 1) ? +1 : -1;
+    int NT = 2 * n * g * g * g;
+    unsigned char *tape = malloc(W); long *cnt = malloc(NT * sizeof(long));
+    long (*snap)[1024] = malloc(64 * sizeof *snap); long tj[64]; int nj; long gap; long ytimes[64];
+    int *inY = calloc(NT, sizeof(int)); long conf[32], nd[32];
+    run(tape, s0, ph0, steps, cnt, NT, inY, ytimes, &gap, tj, &nj, snap, 0, K, rmul, radd, conf, nd);
+    int ny = 0;
+    for (int tau = 0; tau < NT; tau++) {
+        if (snap[nj - 1][tau] == 0) continue;
+        int ok = 1;
+        for (int j = nj - 1 - L; j < nj - 1; j++) if (snap[j + 1][tau] - 2 * snap[j][tau] != 0) ok = 0;
+        inY[tau] = ok; ny += ok;
+    }
+    printf("levels=%d  Y types=%d\n", nj, ny);
+    { FILE *yf = fopen("yt.txt", "w"); for (int tau = 0; tau < NT; tau++) if (inY[tau]) { int ph = tau / (n * g * g * g), rest = tau % (n * g * g * g); fprintf(yf, "%d %d %d %d %d\n", ph, rest / (g * g * g), (rest / (g * g)) % g, (rest / g) % g, rest % g); } fclose(yf); }
+    run(tape, s0, ph0, steps, cnt, NT, inY, ytimes, &gap, tj, &nj, snap, 1, K, rmul, radd, conf, nd);
+    printf("max gap between Y-times: %ld\nY-count at frontier times:", gap);
+    for (int j = 0; j < nj && j < 32; j++) printf(" %ld", ytimes[j]); printf("\n");
+    for (int k = 1; k <= K; k++) printf("k=%d radius=%d distinct=%ld conflicts=%ld\n", k, rmul * k + radd, nd[k - 1], conf[k - 1]);
+    printf("RTM_INDUCE_DONE\n");
+    return 0;
+}
+```
+
+### `rtm_certcheck.c` (md5 790ed734669864659ae3f17c20b24cac)
+
+```c
+/* rtm_certcheck.c -- independent check of a phase-conflict certificate: re-simulate the machine from the
+ * anchored zero tape and print, at times t1 and t2, the state and the cells within radius r of the head, and
+ * the number of Y-times strictly before each (the induced index). Y is given as an explicit list of local types
+ * (phase,state,head,left,right) read from a file "yt.txt" (one "ph st a l r" per line).
+ * Lane gq-nv-obstruct, 2026-09-18. MSI only.
+ * Usage: rtm_certcheck n g mask beta start_state start_phase t1 t2 r
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(int argc, char **argv) {
+    int n = atoi(argv[1]), g = atoi(argv[2]), mask = atoi(argv[3]); const char *bs = argv[4];
+    int s = atoi(argv[5]), phase = atoi(argv[6]); long t1 = atol(argv[7]), t2 = atol(argv[8]); int r = atoi(argv[9]);
+    int perm[128]; const char *p = bs; for (int i = 0; i < n * g; i++) { perm[i] = atoi(p); while (*p && *p != ',') p++; if (*p) p++; }
+    int dir[16]; for (int i = 0; i < n; i++) dir[i] = (mask >> i & 1) ? +1 : -1;
+    int NT = 2 * n * g * g * g; int *inY = calloc(NT, sizeof(int));
+    FILE *f = fopen("yt.txt", "r"); int ph, st, a, l, rr, ny = 0;
+    while (fscanf(f, "%d %d %d %d %d", &ph, &st, &a, &l, &rr) == 5) { inY[(((ph * n + st) * g + a) * g + l) * g + rr] = 1; ny++; }
+    long W = 1L << 23; unsigned char *tape = calloc(W, 1); long h = W / 2; tape[h] = 1; long yi = 0;
+    printf("Y types read: %d\n", ny);
+    for (long t = 0; t <= t2; t++) {
+        int tau = (((phase * n + s) * g + tape[h]) * g + tape[h - 1]) * g + tape[h + 1];
+        if (t == t1 || t == t2) {
+            printf("t=%ld inY=%d induced_index=%ld mod4=%ld mod8=%ld state=(%d,%d) window:", t, inY[tau], yi, yi % 4, yi % 8, phase, s);
+            for (long c = h - r; c <= h + r; c++) printf("%d", tape[c]); printf("\n");
+        }
+        if (inY[tau]) yi++;
+        if (phase == 1) { h += dir[s]; phase = 0; }
+        else { int x = tape[h]; int idx = s * g + x; tape[h] = perm[idx] % g; s = perm[idx] / g; phase = 1; }
+    }
+    printf("RTM_CERTCHECK_DONE\n");
+    return 0;
+}
+```
+
+### `rtm_recur.c` (md5 6a6e4cb121c1d1db9bf82bfb9fbca3d0)
+
+```c
+/* rtm_recur.c -- return-time test for a continuous m-adic phase. Simulate from the anchored zero tape; take
+ * the configuration y at the first Y-time >= t1 (Y = local types listed in yt.txt), and print every later
+ * Y-time whose (state, cells within radius r) equals y's, with the induced index difference n and n mod m^j.
+ * If U^n y -> y along returns with n not tending to 0 m-adically, U has no continuous m^j-th-root eigenvalue.
+ * Lane gq-nv-obstruct, 2026-09-18. MSI only.
+ * Usage: rtm_recur n g mask beta start_state start_phase steps t1 r m maxprint
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int main(int argc, char **argv) {
+    int n = atoi(argv[1]), g = atoi(argv[2]), mask = atoi(argv[3]); const char *bs = argv[4];
+    int s = atoi(argv[5]), phase = atoi(argv[6]); long steps = atol(argv[7]), t1 = atol(argv[8]);
+    int r = atoi(argv[9]), m = atoi(argv[10]), maxp = atoi(argv[11]);
+    int perm[128]; const char *p = bs; for (int i = 0; i < n * g; i++) { perm[i] = atoi(p); while (*p && *p != ',') p++; if (*p) p++; }
+    int dir[16]; for (int i = 0; i < n; i++) dir[i] = (mask >> i & 1) ? +1 : -1;
+    int NT = 2 * n * g * g * g; int *inY = calloc(NT, sizeof(int));
+    FILE *f = fopen("yt.txt", "r"); int ph, st, a, l, rr, ny = 0;
+    while (fscanf(f, "%d %d %d %d %d", &ph, &st, &a, &l, &rr) == 5) { inY[(((ph * n + st) * g + a) * g + l) * g + rr] = 1; ny++; }
+    long W = 1L << 24; unsigned char *tape = calloc(W, 1); long h = W / 2; tape[h] = 1; long yi = 0;
+    unsigned char *ref = malloc(2 * r + 1); int refstate = -1; long refyi = -1, reft = -1; int printed = 0;
+    printf("Y types: %d  radius %d  modulus base %d\n", ny, r, m);
+    for (long t = 0; t < steps; t++) {
+        int tau = (((phase * n + s) * g + tape[h]) * g + tape[h - 1]) * g + tape[h + 1];
+        if (inY[tau]) {
+            int cur = phase * n + s;
+            if (refstate < 0 && t >= t1) { refstate = cur; memcpy(ref, tape + h - r, 2 * r + 1); refyi = yi; reft = t; printf("reference t=%ld induced=%ld\n", t, yi); }
+            else if (refstate == cur && memcmp(ref, tape + h - r, 2 * r + 1) == 0) {
+                long d = yi - refyi; long mj = 1; printf("return t=%ld n=%ld", t, d);
+                for (int j = 1; j <= 6; j++) { mj *= m; printf(" mod%ld=%ld", mj, d % mj); }
+                printf("\n");
+                if (++printed >= maxp) break;
+            }
+            yi++;
+        }
+        if (phase == 1) { h += dir[s]; phase = 0; }
+        else { int x = tape[h]; int idx = s * g + x; tape[h] = perm[idx] % g; s = perm[idx] / g; phase = 1; }
+        if (h <= r + 2 || h >= W - r - 2) break;
+    }
+    printf("RTM_RECUR_DONE\n");
     return 0;
 }
 ```

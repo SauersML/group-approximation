@@ -42,3 +42,26 @@ and three occurrences would remain.
 
 **The exact missing step** is a type `F` witness for joins or normal closures
 of type `F` benign subgroups.
+
+## Attempts
+
+- **The normal-closure lemma is the whole problem, not a step; the classical
+  join witness is not even finitely presented** (proposed-established,
+  w6-117, 2026-09-18).
+  - The statement is equivalent to: `<<C>>` is `F_m`-benign for every
+    finitely generated `C ≤ F`.
+  - It follows from: every finitely generated subgroup of `F × F` is
+    `F_m`-benign. One join suffices: `<C × 1, ΔF> ∩ (F × 1) = <<C>> × 1`.
+  - The classical witness for that join is the Mikhailova fibre product
+    `F ×_P F`, which is not finitely presented for infinite `P` (BHMS).
+  - See `type-f-normal-closure-lemma-is-the-whole-benign-problem`.
+- **Separable witnesses are dead** (proposed-established, w6-117).
+  - If `Σ` is profinitely closed in `Λ`, then `F/N` is residually finite.
+  - `U` is not residually finite, so every witness for `N_U` has a
+    non-closed `Σ`.
+  - This kills, as a class: LERF hosts, virtual retracts of residually finite
+    hosts, type `FP_k` subgroups of products of `k` limit groups (so every
+    type `F` witness in a product of free groups), and Bestvina--Brady or
+    Kropholler-type kernels in residually finite groups.
+  - The Boone-tower base case is consistent: its `Σ` is non-separable.
+  - See `separable-benign-witness-forces-rf-quotient`.

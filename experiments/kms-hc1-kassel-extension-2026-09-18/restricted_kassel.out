@@ -1,0 +1,48 @@
+== p m = 3 1
+jacobi triples of total height n: 81 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 72 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
+== p m = 5 1
+jacobi triples of total height n: 275 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 123 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
+== p m = 7 1
+jacobi triples of total height n: 582 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 171 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
+== p m = 5 2
+jacobi triples of total height n: 1256 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 566 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
+== p m = 11 1
+jacobi triples of total height n: 1536 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 267 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
+== p m = 7 2
+jacobi triples of total height n: 2550 fails: 0
+Jacobson (ad e)^p = ad(e^[p]) checks: 790 fails: 0
+Serre relations vanish in N: True
+a^p, b^p, c^p zero: True
+z = [E12 t, E21 t^(mp-1)] - [..]_L, omega = 1
+omega not a coboundary (same L-bracket, omega 1 vs 2): True
+RESULT PASS
