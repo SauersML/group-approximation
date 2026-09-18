@@ -75,9 +75,10 @@ theorem regionMoveCoreClose_rotationBetween_iff {M : CombMap.{v}} {x y n z : M.D
       rw [pow_succ', Equiv.Perm.mul_apply, ← hz] at hax
       exact M.sigma.injective hax
     rcases Nat.eq_zero_or_pos a with rfl | hpos
-    · exact (hx (by simpa using hax')).elim
+    · rw [pow_zero, Equiv.Perm.one_apply] at hax'
+      exact (hx hax').elim
     · exact ⟨a, hpos, hax', fun b hb1 hb2 => hb b hb1 (by omega)⟩
-  · rintro ⟨a, ha, hax, hb⟩
+  · rintro ⟨a, -, hax, hb⟩
     refine ⟨a + 1, by omega, ?_, fun b hb1 hb2 => ?_⟩
     · rw [pow_succ', Equiv.Perm.mul_apply, hax, hz]
     · rcases Nat.lt_or_ge b (a + 1) with hlt | hge
@@ -128,3 +129,38 @@ theorem regionMoveCoreClose_not_crossed_of_tight (K : PocketFaceSet D eps X lo h
     rw [h]
     exact List.next_mem hd₀
   exact regionMoveCoreClose_rotationBetween_iff htd hx hy
+
+/-- **The rose configuration has a loose crossing**: a pocket not in first-turn order, all of
+whose non-first turns are crossed, has a non-first turn that is not tight, crossed by another
+passage that is not tight either. -/
+theorem regionMoveCoreClose_looseCross (K : PocketFaceSet D eps X lo hi)
+    (hnft : ¬ K.FirstTurns) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K) :
+    RegionMoveCoreCloseLooseCross K := by
+  obtain ⟨d₀, hd₀, hnf⟩ := K.exists_not_firstTurn hnft
+  have hnt : ¬RegionMoveCoreCloseTight K d₀ hd₀ := fun ht =>
+    hnf (regionMoveCoreClose_firstTurn_of_sigma ht)
+  obtain ⟨d, hd, hne, hsc, hcross⟩ := hrose d₀ hd₀ hnf
+  have htd : ¬RegionMoveCoreCloseTight K d hd := fun ht =>
+    hcross (regionMoveCoreClose_not_crossed_of_tight K hd₀ hd ht)
+  exact ⟨d₀, hd₀, d, hd, hnf, hnt, hne, htd, hsc, hcross⟩
+
+/-- **The rose configuration has two distinct loose passages.** -/
+theorem regionMoveCoreClose_exists_two_loose (K : PocketFaceSet D eps X lo hi)
+    (hnft : ¬ K.FirstTurns) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K) :
+    ∃ (d₁ : X.toCombMap.Dart) (h₁ : d₁ ∈ K.boundary.cycle) (d₂ : X.toCombMap.Dart)
+      (h₂ : d₂ ∈ K.boundary.cycle), d₁ ≠ d₂ ∧ ¬RegionMoveCoreCloseTight K d₁ h₁ ∧
+        ¬RegionMoveCoreCloseTight K d₂ h₂ := by
+  obtain ⟨d₀, hd₀, d, hd, -, hnt, hne, htd, -⟩ := regionMoveCoreClose_looseCross K hnft hrose
+  exact ⟨d, hd, d₀, hd₀, hne, htd, hnt⟩
+
+end Pocket
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveCoreClose_firstTurn_of_sigma
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveCoreClose_rotationBetween_iff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.RegionMoveCoreCloseTight
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.RegionMoveCoreCloseLooseCross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveCoreClose_not_crossed_of_tight
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveCoreClose_looseCross
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove.regionMoveCoreClose_exists_two_loose
