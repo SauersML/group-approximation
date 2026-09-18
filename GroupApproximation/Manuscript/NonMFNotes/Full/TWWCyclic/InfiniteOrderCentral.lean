@@ -28,20 +28,19 @@ theorem eq_zero_of_zpow_mem (hinf : ∀ m : ℕ, 0 < m → k ^ m ∉ H) {n : ℤ
     n = 0 := by
   obtain ⟨m, rfl | rfl⟩ := Int.eq_nat_or_neg n
   · rw [zpow_natCast] at hn
-    by_contra hne
-    have hm : 0 < m := by omega
-    exact hinf m hm hn
+    rcases Nat.eq_zero_or_pos m with hm | hm
+    · rw [hm, Nat.cast_zero]
+    · exact absurd hn (hinf m hm)
   · rw [zpow_neg, zpow_natCast, inv_mem_iff] at hn
-    by_contra hne
-    have hm : 0 < m := by omega
-    exact hinf m hm hn
+    rcases Nat.eq_zero_or_pos m with hm | hm
+    · rw [hm, Nat.cast_zero, neg_zero]
+    · exact absurd hn (hinf m hm)
 
 theorem zpow_eq_of_mul_mem (hinf : ∀ m : ℕ, 0 < m → k ^ m ∉ H) {a : G} (ha : a ∈ H)
     {p n : ℤ} (h : a * k ^ p * k ^ (-n) ∈ H) : n = p := by
   have h1 : a⁻¹ * (a * k ^ p * k ^ (-n)) ∈ H := H.mul_mem (H.inv_mem ha) h
   rw [mul_assoc, inv_mul_cancel_left, ← zpow_add] at h1
-  have h2 := eq_zero_of_zpow_mem hinf h1
-  omega
+  exact (add_neg_eq_zero.mp (eq_zero_of_zpow_mem hinf h1)).symm
 
 open scoped Classical in
 /-- The exponent of `k` in `x = a * k ^ p` with `a ∈ H` (`0` if there is none). -/

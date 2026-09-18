@@ -84,14 +84,12 @@ theorem blockUnitHom_blockMap (hI : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ 
     change blockUnitHom (blockMap hI (x (i, k) (j, l) h a)) =
       ((projection (x (i, k) (j, l) h a) : elementaryGroup (I × J) R) :
         (Matrix (I × J) (I × J) R)ˣ)
-    rw [projection_x]
+    rw [projection_x, elementaryRoot_val]
     by_cases hij : i = j
     · subst hij
       rw [blockMap_x_eq hI i k l h a,
         blockUnitHom_diagElem i (auxIndex hI i) (auxIndex_ne hI i) k l (pair_snd_ne h).symm a]
-      rfl
     · rw [blockMap_x_ne hI i j k l h hij a, blockUnitHom_x i j hij k l a]
-      rfl
   exact DFunLike.congr_fun hh g
 
 /-- `blockMap` maps only `K₂(I × J, R)` into `K₂(I, M_J(R))`.

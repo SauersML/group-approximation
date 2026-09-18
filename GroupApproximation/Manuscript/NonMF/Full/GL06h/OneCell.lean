@@ -78,9 +78,9 @@ theorem false_of_allCells_of_rCellCount_eq_one
     rw [List.length_map, List.length_map, List.length_reverse]
     exact hlen
   have hprod := Xi.relatorValues_prod_eq_boundaryValue
-  rcases hcells : Xi.relatorCells with _ | ⟨C, _ | ⟨C', rest⟩⟩
-  · rw [hcells] at hXi1
-    simp at hXi1
+  rcases hcells : Xi.relatorCells with _ | ⟨C, _ | ⟨_, _⟩⟩
+  · rw [hcells, List.length_nil] at hXi1
+    omega
   · have hmem : C ∈ Xi.relatorCells := by
       rw [hcells]
       exact List.mem_singleton_self C
@@ -92,7 +92,10 @@ theorem false_of_allCells_of_rCellCount_eq_one
     unfold RelatorCell.value at hval
     cases hrev : C.reversed with
     | false =>
-      rw [if_neg (by rw [hrev]; decide)] at hval
+      have hf : ¬ (C.reversed = true) := by
+        rw [hrev]
+        decide
+      rw [if_neg hf] at hval
       exact hshort C.word C.word_mem hne C.conjugator Xi.boundaryWord hu hlenu hval
     | true =>
       rw [if_pos hrev] at hval
@@ -105,8 +108,8 @@ theorem false_of_allCells_of_rCellCount_eq_one
         (by
           rw [HullSC.RelWord.listVal_revInv]
           exact hval)
-  · rw [hcells] at hXi1
-    simp at hXi1
+  · rw [hcells, List.length_cons, List.length_cons] at hXi1
+    omega
 
 /-- **The all-cells short enclosed face set with one relator cell, beyond thresholds** (Osin,
 proof of Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121).  The hypothesis list and

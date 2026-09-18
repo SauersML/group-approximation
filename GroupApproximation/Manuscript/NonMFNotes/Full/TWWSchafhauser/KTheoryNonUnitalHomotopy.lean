@@ -11,7 +11,7 @@ M. Rørdam, F. Larsen, N. Laustsen, *An introduction to K-theory for C⋆-algebr
 
 Two non-unital ⋆-homomorphisms `φ ψ : J → J'` that are homotopic (`TWWKK.NHomotopic`, a pointwise
 continuous path) induce the same map `KOneN J → KOneN J'`. For a unitary `v` over `J⁺`, the unitaries
-`w t = (p t)⁺(v)` form a continuous path, so `(w 0)⁻¹ * w 1` lies in the identity component, and
+`w t = (p t)⁺(v)` form a continuous path. So `(w 0)⁻¹ * w 1` lies in the identity component, and
 `[w 0] = [w 1]` in `U_n(J'⁺)/U_n(J'⁺)₀`.
 -/
 
@@ -20,6 +20,9 @@ namespace Full
 namespace TWWSchafhauser
 
 noncomputable section
+
+/- The matrix topology over `J⁺` uses the spectral order on the unitization. -/
+attribute [local instance] unitizationOrder unitizationStarOrderedRing
 
 /-- A continuous path `w : ℝ → G` in a topological group joins `1` to `(w 0)⁻¹ * w 1`. -/
 theorem joined_inv_mul_of_continuous {G : Type*} [Group G] [TopologicalSpace G] [ContinuousMul G]
@@ -54,8 +57,6 @@ theorem continuous_matMapUnitary_starMap {p : ℝ → (J →⋆ₙₐ[ℂ] J')}
 end Path
 
 section KOne
-
-attribute [local instance] unitizationOrder unitizationStarOrderedRing
 
 variable {J J' : Type} [NonUnitalCStarAlgebra J] [NonUnitalCStarAlgebra J']
 

@@ -74,24 +74,33 @@ def cutSubalgebra (D : StarSubalgebra ℂ B) (J : NonUnitalStarSubalgebra ℂ B)
     intro y y' hy hy'
     obtain ⟨j, hj, rfl⟩ := mem_conjSet.mp hy
     obtain ⟨j', hj', rfl⟩ := mem_conjSet.mp hy'
-    exact mem_conjSet.mpr ⟨j + j', add_mem hj hj', by rw [mul_add, add_mul]⟩
-  zero_mem' := mem_conjSet.mpr ⟨0, zero_mem _, by rw [mul_zero, zero_mul]⟩
+    have hj0 : j ∈ sepIdeal D J := SetLike.mem_coe.mp hj
+    have hj0' : j' ∈ sepIdeal D J := SetLike.mem_coe.mp hj'
+    exact mem_conjSet.mpr ⟨j + j', SetLike.mem_coe.mpr (add_mem hj0 hj0'),
+      by rw [mul_add, add_mul]⟩
+  zero_mem' := mem_conjSet.mpr ⟨0, SetLike.mem_coe.mpr (zero_mem (sepIdeal D J)),
+    by rw [mul_zero, zero_mul]⟩
   mul_mem' := by
     intro y y' hy hy'
     obtain ⟨j, hj, rfl⟩ := mem_conjSet.mp hy
     obtain ⟨j', hj', rfl⟩ := mem_conjSet.mp hy'
+    have hj0 : j ∈ sepIdeal D J := SetLike.mem_coe.mp hj
+    have hj0' : j' ∈ sepIdeal D J := SetLike.mem_coe.mp hj'
+    have hee : star e * e ∈ D := mul_mem (star_mem he) he
     refine mem_conjSet.mpr ⟨j * (star e * e) * j',
-      mul_mem (mul_mem_sepIdeal_right hJR (mul_mem (star_mem he) he) hj) hj', ?_⟩
+      SetLike.mem_coe.mpr (mul_mem (mul_mem_sepIdeal_right hJR hee hj0) hj0'), ?_⟩
     simp only [mul_assoc]
   smul_mem' := by
     intro r y hy
     obtain ⟨j, hj, rfl⟩ := mem_conjSet.mp hy
-    exact mem_conjSet.mpr ⟨r • j, SMulMemClass.smul_mem r hj,
+    have hj0 : j ∈ sepIdeal D J := SetLike.mem_coe.mp hj
+    exact mem_conjSet.mpr ⟨r • j, SetLike.mem_coe.mpr (SMulMemClass.smul_mem r hj0),
       by rw [mul_smul_comm, smul_mul_assoc]⟩
   star_mem' := by
     intro y hy
     obtain ⟨j, hj, rfl⟩ := mem_conjSet.mp hy
-    exact mem_conjSet.mpr ⟨star j, star_mem hj,
+    have hj0 : j ∈ sepIdeal D J := SetLike.mem_coe.mp hj
+    exact mem_conjSet.mpr ⟨star j, SetLike.mem_coe.mpr (star_mem hj0),
       by rw [star_mul, star_mul, star_star, mul_assoc]⟩
 
 /-- **Checking pure largeness on the cut itself.**  If `D` is closed and separable and
@@ -106,8 +115,10 @@ theorem isPurelyLargeIdeal_of_cut {D : StarSubalgebra ℂ B} {J : NonUnitalStarS
   have hsub : conjSet e (sepIdeal D J) ⊆ (D : Set B) := by
     intro y hy
     obtain ⟨j, hj, rfl⟩ := mem_conjSet.mp hy
-    exact mul_mem (mul_mem he (mem_sepIdeal.mp hj).1) (star_mem he)
-  refine ⟨(cutSubalgebra D J hJR he).topologicalClosure, fun _ hx => hx, isClosed_closure,
+    have hj0 : j ∈ sepIdeal D J := SetLike.mem_coe.mp hj
+    exact SetLike.mem_coe.mpr (mul_mem (mul_mem he (mem_sepIdeal.mp hj0).1) (star_mem he))
+  refine ⟨(cutSubalgebra D J hJR he).topologicalClosure, fun _ hx => hx,
+    NonUnitalStarSubalgebra.isClosed_topologicalClosure _,
     hD.2.mono (closure_minimal hsub hD.1), (h e he heJ).1, (h e he heJ).2⟩
 
 /-- `‖a b − a' b'‖ ≤ ‖a − a'‖ ‖b‖ + ‖a'‖ ‖b − b'‖`. -/
@@ -183,7 +194,7 @@ theorem isHRStable_closure {S : Set B}
   have hM : 0 < 8 * M := by rw [hMdef]; linarith
   obtain ⟨η, hηdef⟩ : ∃ η : ℝ, η = ε / (8 * M) := ⟨_, rfl⟩
   have hη : 0 < η := by rw [hηdef]; exact div_pos hε hM
-  have h8 : 8 * M * η = ε := by rw [hηdef]; exact mul_div_cancel₀ ε (ne_of_gt hM)
+  have h8 : 8 * M * η = ε := by rw [hηdef]; exact mul_div_cancel₀ ε hM.ne'
   obtain ⟨c', hc'S, hcc'⟩ := Metric.mem_closure_iff.mp hc (min 1 η) (lt_min one_pos hη)
   rw [dist_eq_norm] at hcc'
   have hcc1 : ‖c - c'‖ ≤ 1 := hcc'.le.trans (min_le_left _ _)

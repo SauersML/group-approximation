@@ -168,3 +168,112 @@ structure NearestCellCut {W : Set (List (RelLetter G Lambda))}
             Nonempty (OEquivalentDiscDiagram Delta Y) ∧
               b.2.target = some t ∧ b.2.source ≠ t ∧
               b.contiguityDegree = a.contiguityDegree
+
+/-! ## The count -/
+
+/-- **Osin's contradiction at the nearest cell** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121).  Clause (b) below the relator count of `Δ`, applied to the cut,
+gives a degree sum above `1 − 13μ`; the three short sections contribute below `μ/2` each and the
+cell section below `μ` by O52, at most `5μ/2`, impossible for `μ ≤ 1/16`. -/
+theorem NearestCellCut.false_of_below {D : RelGenSet G Lambda}
+    {W : Set (List (RelLetter G Lambda))} {lambda c mu : ℝ} {eps rho : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W}
+    (cut : NearestCellCut D lambda c eps Delta)
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (4 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    (hlea : Delta.LeastArea)
+    (hbelow : OsinLemma97Below.{u, w, v} D lambda c mu eps W Delta.rCellCount) :
+    False := by
+  obtain ⟨T, _source, present, region, _hsource, htargets, _hdisjoint, hsum⟩ :=
+    hbelow cut.enclosed cut.sections cut.leastArea cut.rCellCount_pos cut.rCellCount_lt
+  have hboundary : T.diagram.boundaryWord = cut.enclosed.boundaryWord :=
+    T.equiv.boundaryWord_eq
+  have hlarge3 : lambda⁻¹ * (3 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ) := by
+    have hmono : lambda⁻¹ * (3 * (eps : ℝ) + c) ≤ lambda⁻¹ * (4 * (eps : ℝ) + c) := by
+      apply mul_le_mul_of_nonneg_left _ (inv_nonneg.mpr hlambda.le)
+      have heps : (0 : ℝ) ≤ eps := Nat.cast_nonneg _
+      linarith
+    linarith
+  have hbound : ∀ j ∈ present, (region j).contiguityDegree ≤
+      (if (j : ℕ) = 2 then mu else mu / 2) := by
+    intro j hj
+    have hj4 : (j : ℕ) < 4 := by
+      have hlt := j.isLt
+      have hc := cut.count_eq
+      omega
+    by_cases hcell : (j : ℕ) = 2
+    · rw [if_pos hcell]
+      obtain ⟨Y, b, t, ⟨EY⟩, htarget, hne, hdeg⟩ :=
+        cut.transport j hcell T.diagram T.equiv (region j) (htargets j hj)
+      rw [← hdeg]
+      exact le_of_lt (RegionCandidate.contiguityDegree_lt_mu_of_o52 Embedded.o52LeastArea
+        hcondition hlambda hmu hrho hlarge3 (EY.leastArea hlea) b htarget hne)
+    · rw [if_neg hcell]
+      have hL : (region j).2.targetArc.length ≤ eps + eps := by
+        by_cases hzero : (j : ℕ) = 0
+        · have hs := cut.side_short j hzero
+          have h1 := (htargets j hj).2.1
+          have h2 := (htargets j hj).2.2
+          omega
+        · have hnear : (j : ℕ) = 1 ∨ (j : ℕ) = 3 := by omega
+          exact cut.near j hnear T.diagram T.equiv (region j) (htargets j hj)
+      exact le_of_lt (contiguityDegree_lt_half_mu_of_targetArc_le hcondition hlambda hmu hrho
+        hlarge hboundary (region j) (htargets j hj) hL)
+  have hle := Finset.sum_le_sum hbound
+  have htotal : (∑ j ∈ present, (if (j : ℕ) = 2 then mu else mu / 2)) ≤
+      ∑ j : Fin cut.sections.count, (if (j : ℕ) = 2 then mu else mu / 2) := by
+    apply Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ present)
+    intro j _ _
+    split_ifs <;> linarith
+  have hfour : (∑ j : Fin cut.sections.count, (if (j : ℕ) = 2 then mu else mu / 2)) =
+      5 * mu / 2 := by
+    have hc := cut.count_eq
+    revert hc
+    generalize cut.sections.count = n
+    intro hn
+    subst hn
+    simp only [Fin.sum_univ_succ, Fin.sum_univ_zero, Fin.val_zero, Fin.val_succ]
+    norm_num <;> ring
+  linarith
+
+/-! ## The refutation at fixed parameters -/
+
+/-- **A short boundary is refuted below the inductive bound, from its parts** (Osin, proof of
+Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121).  One cell: the boundary word is a short
+letter word conjugate to a nontrivial relator value (`false_of_oneCell`).  Two or more cells: a
+least-area diagram of the same relator count carries a nearest-cell cut
+(`NearestCellCut.false_of_below`). -/
+theorem shortBoundaryRefutedBelowInput_of_parts {D : RelGenSet G Lambda}
+    {W : Set (List (RelLetter G Lambda))} {lambda c mu : ℝ} {eps rho : ℕ}
+    (hcondition : OsinCCondition D W eps mu lambda c rho)
+    (hlambda : 0 < lambda) (hmu : 0 < mu) (hmuUpper : mu ≤ 1 / 16) (hrho : 0 < rho)
+    (hlarge : lambda⁻¹ * (4 * (eps : ℝ) + c) < mu / 2 * (rho : ℝ))
+    (hconj : ∀ word ∈ W, RelLetter.listVal word ≠ 1 →
+      ∀ (g : G) (u : List (RelLetter G Lambda)),
+        (∀ x ∈ u, (symmetricLabelAlphabet D).IsLetter x) →
+        u.length ≤ eps + eps →
+          RelLetter.listVal u ≠ g * RelLetter.listVal word * g⁻¹)
+    (hcut : ∀ Xi : DiscDiagram.{u, w, v} W, Xi.LeastArea →
+      (∀ d, (symmetricLabelAlphabet D).IsLetter (Xi.label d)) →
+      (∀ word ∈ W, 1 < word.length) → 2 ≤ Xi.rCellCount →
+      Xi.boundaryWord.length ≤ eps + eps →
+        ∃ Delta : DiscDiagram.{u, w, v} W, Delta.LeastArea ∧
+          Delta.rCellCount = Xi.rCellCount ∧
+          Nonempty (NearestCellCut D lambda c eps Delta)) :
+    ShortBoundaryRefutedBelowInput.{u, w, v} D lambda c mu eps W := by
+  intro Xi hlea hbelow hletters hW hpos hshort
+  by_cases hone : Xi.rCellCount = 1
+  · exact false_of_oneCell hcondition.inv_mem hconj Xi hlea hletters hone hshort
+  · have htwo : 2 ≤ Xi.rCellCount := by omega
+    obtain ⟨Delta, hleaD, hcount, ⟨cut⟩⟩ := hcut Xi hlea hletters hW htwo hshort
+    rw [← hcount] at hbelow
+    exact cut.false_of_below hcondition hlambda hmu hmuUpper hrho hlarge hleaD hbelow
+
+end GroupApproximation.Full.GL06h3
+
+#audit_axioms GroupApproximation.Full.GL06h3.contiguity_sourceArc_length_le_of_targetArc_le
+#audit_axioms GroupApproximation.Full.GL06h3.sourceArc_length_le_of_targetArc_le
+#audit_axioms GroupApproximation.Full.GL06h3.contiguityDegree_lt_half_mu_of_targetArc_le
+#audit_axioms GroupApproximation.Full.GL06h3.NearestCellCut.false_of_below
+#audit_axioms GroupApproximation.Full.GL06h3.shortBoundaryRefutedBelowInput_of_parts
