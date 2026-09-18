@@ -455,3 +455,207 @@ s=6 N=15 shapes=26 bad=2 (5, 3, 3, 2, 1, 1) (4, 3, 3, 2, 2, 1)
 s=6 N=16 shapes=35 bad=0
 s=6 N=17 shapes=44 bad=1 (5, 4, 3, 2, 2, 1)
 s=6 N=18 shapes=58 bad=0
+# Section F: ./sphere_nop s 55 70 4 for s = 1..7; stopped by hand during s = 7, N = 59 (sphere_s1-7_55-70.log)
+s=1 N=55 shapes=1 bad=0
+s=1 N=56 shapes=1 bad=0
+s=1 N=57 shapes=1 bad=0
+s=1 N=58 shapes=1 bad=0
+s=1 N=59 shapes=1 bad=0
+s=1 N=60 shapes=1 bad=0
+s=1 N=61 shapes=1 bad=0
+s=1 N=62 shapes=1 bad=0
+s=1 N=63 shapes=1 bad=0
+s=1 N=64 shapes=1 bad=0
+s=1 N=65 shapes=1 bad=0
+s=1 N=66 shapes=1 bad=0
+s=1 N=67 shapes=1 bad=0
+s=1 N=68 shapes=1 bad=0
+s=1 N=69 shapes=1 bad=0
+s=1 N=70 shapes=1 bad=0
+exit=0
+s=2 N=55 shapes=27 bad=0
+s=2 N=56 shapes=28 bad=0
+s=2 N=57 shapes=28 bad=0
+s=2 N=58 shapes=29 bad=0
+s=2 N=59 shapes=29 bad=0
+s=2 N=60 shapes=30 bad=0
+s=2 N=61 shapes=30 bad=0
+s=2 N=62 shapes=31 bad=0
+s=2 N=63 shapes=31 bad=0
+s=2 N=64 shapes=32 bad=0
+s=2 N=65 shapes=32 bad=0
+s=2 N=66 shapes=33 bad=0
+s=2 N=67 shapes=33 bad=0
+s=2 N=68 shapes=34 bad=0
+s=2 N=69 shapes=34 bad=0
+s=2 N=70 shapes=35 bad=0
+exit=0
+s=3 N=55 shapes=252 bad=0
+s=3 N=56 shapes=261 bad=0
+s=3 N=57 shapes=271 bad=0
+s=3 N=58 shapes=280 bad=0
+s=3 N=59 shapes=290 bad=0
+s=3 N=60 shapes=300 bad=0
+s=3 N=61 shapes=310 bad=0
+s=3 N=62 shapes=320 bad=0
+s=3 N=63 shapes=331 bad=0
+s=3 N=64 shapes=341 bad=0
+s=3 N=65 shapes=352 bad=0
+s=3 N=66 shapes=363 bad=0
+s=3 N=67 shapes=374 bad=0
+s=3 N=68 shapes=385 bad=0
+s=3 N=69 shapes=397 bad=0
+s=3 N=70 shapes=408 bad=0
+exit=0
+s=4 N=55 shapes=1215 bad=0
+s=4 N=56 shapes=1285 bad=0
+s=4 N=57 shapes=1350 bad=0
+s=4 N=58 shapes=1425 bad=0
+s=4 N=59 shapes=1495 bad=0
+s=4 N=60 shapes=1575 bad=0
+s=4 N=61 shapes=1650 bad=0
+s=4 N=62 shapes=1735 bad=0
+s=4 N=63 shapes=1815 bad=0
+s=4 N=64 shapes=1906 bad=0
+s=4 N=65 shapes=1991 bad=0
+s=4 N=66 shapes=2087 bad=0
+s=4 N=67 shapes=2178 bad=0
+s=4 N=68 shapes=2280 bad=0
+s=4 N=69 shapes=2376 bad=0
+s=4 N=70 shapes=2484 bad=0
+exit=0
+s=5 N=55 shapes=3765 bad=0
+s=5 N=56 shapes=4033 bad=0
+s=5 N=57 shapes=4319 bad=0
+s=5 N=58 shapes=4616 bad=0
+s=5 N=59 shapes=4932 bad=0
+s=5 N=60 shapes=5260 bad=0
+s=5 N=61 shapes=5608 bad=0
+s=5 N=62 shapes=5969 bad=0
+s=5 N=63 shapes=6351 bad=0
+s=5 N=64 shapes=6747 bad=0
+s=5 N=65 shapes=7166 bad=0
+s=5 N=66 shapes=7599 bad=0
+s=5 N=67 shapes=8056 bad=0
+s=5 N=68 shapes=8529 bad=0
+s=5 N=69 shapes=9027 bad=0
+s=5 N=70 shapes=9542 bad=0
+exit=0
+s=6 N=55 shapes=8442 bad=0
+s=6 N=56 shapes=9192 bad=0
+s=6 N=57 shapes=9975 bad=0
+s=6 N=58 shapes=10829 bad=0
+s=6 N=59 shapes=11720 bad=0
+s=6 N=60 shapes=12692 bad=0
+s=6 N=61 shapes=13702 bad=0
+s=6 N=62 shapes=14800 bad=0
+s=6 N=63 shapes=15944 bad=0
+s=6 N=64 shapes=17180 bad=0
+s=6 N=65 shapes=18467 bad=0
+s=6 N=66 shapes=19858 bad=0
+s=6 N=67 shapes=21301 bad=0
+s=6 N=68 shapes=22856 bad=0
+s=6 N=69 shapes=24473 bad=0
+s=6 N=70 shapes=26207 bad=0
+exit=0
+s=7 N=55 shapes=14950 bad=0
+s=7 N=56 shapes=16475 bad=0
+s=7 N=57 shapes=18138 bad=0
+s=7 N=58 shapes=19928 bad=0
+Terminated
+exit=143
+# Section G: ./sphere_nop 7 N N 4 for even N = 58..70 (sphere_s7_even58-70.log)
+s=7 N=58 shapes=19928 bad=0
+exit=0
+s=7 N=60 shapes=23961 bad=0
+exit=0
+s=7 N=62 shapes=28652 bad=0
+exit=0
+s=7 N=64 shapes=34082 bad=0
+exit=0
+s=7 N=66 shapes=40340 bad=0
+exit=0
+s=7 N=68 shapes=47527 bad=0
+exit=0
+s=7 N=70 shapes=55748 bad=0
+exit=0
+# Section H: ./sphere_nop2 8 N N 4 for even N = 38..70 (sphere_s8_even_nop2.log)
+s=8 N=38 shapes=2462 bad=0
+exit=0
+s=8 N=40 shapes=3319 bad=0
+exit=0
+s=8 N=42 shapes=4417 bad=0
+exit=0
+s=8 N=44 shapes=5812 bad=0
+exit=0
+s=8 N=46 shapes=7564 bad=0
+exit=0
+s=8 N=48 shapes=9749 bad=0
+exit=0
+s=8 N=50 shapes=12450 bad=0
+exit=0
+s=8 N=52 shapes=15765 bad=0
+exit=0
+s=8 N=54 shapes=19805 bad=0
+exit=0
+s=8 N=56 shapes=24699 bad=0
+exit=0
+s=8 N=58 shapes=30588 bad=0
+exit=0
+s=8 N=60 shapes=37638 bad=0
+exit=0
+s=8 N=62 shapes=46031 bad=0
+exit=0
+s=8 N=64 shapes=55974 bad=0
+exit=0
+s=8 N=66 shapes=67696 bad=0
+exit=0
+s=8 N=68 shapes=81457 bad=0
+exit=0
+s=8 N=70 shapes=97539 bad=0
+exit=0
+# Section I: ./sphere_nop 8 N N 4 for even N = 42..54, independent of sphere_nop2; N = 52 was stopped by hand (exit=143), N = 54 completed (sphere_s8_even.log)
+s=8 N=42 shapes=4417 bad=0
+exit=0
+s=8 N=44 shapes=5812 bad=0
+exit=0
+s=8 N=46 shapes=7564 bad=0
+exit=0
+s=8 N=48 shapes=9749 bad=0
+exit=0
+s=8 N=50 shapes=12450 bad=0
+exit=0
+Terminated
+exit=143
+s=8 N=54 shapes=19805 bad=0
+exit=0
+# Section J: ./sphere_nop2 8 30 37 4, identical to Section C at N = 30..37 (sphere_s8_nop2_30-37.log)
+s=8 N=30 shapes=638 bad=7 (9,6,5,4,2,2,1,1) (8,7,5,3,3,2,1,1) (8,7,4,3,3,2,2,1) (8,6,5,4,3,2,1,1)
+s=8 N=31 shapes=764 bad=123 (12,4,4,3,3,2,2,1) (11,5,5,4,2,2,1,1) (11,5,5,3,3,2,1,1) (11,5,5,3,2,2,2,1)
+s=8 N=32 shapes=919 bad=4 (9,7,5,4,3,2,1,1) (8,7,5,4,3,2,2,1) (7,6,5,4,4,3,2,1) (6,5,5,4,4,3,3,2)
+s=8 N=33 shapes=1090 bad=151 (13,4,4,4,3,2,2,1) (12,5,5,5,2,2,1,1) (12,5,5,4,3,2,1,1) (12,5,5,3,3,2,2,1)
+s=8 N=34 shapes=1297 bad=3 (9,8,5,4,3,2,2,1) (9,7,6,4,4,2,1,1) (7,6,5,5,4,3,3,1)
+s=8 N=35 shapes=1527 bad=156 (13,5,5,5,3,2,1,1) (13,5,5,4,3,2,2,1) (12,6,5,5,2,2,2,1) (12,6,5,4,3,3,1,1)
+s=8 N=36 shapes=1801 bad=1 (8,7,6,5,4,3,2,1)
+s=8 N=37 shapes=2104 bad=182 (14,5,5,5,3,2,2,1) (13,6,6,5,2,2,2,1) (13,6,6,4,3,3,1,1) (13,6,6,4,3,2,2,1)
+# Section K: python3 crosscheck.py 7 33 40, stopped by timeout 1200 after N = 34 (crosscheck_s7.log); agrees with Section B
+s=7 N=33 shapes=1009 bad=3 (9, 8, 5, 4, 3, 2, 2) (9, 7, 6, 4, 4, 2, 1) (7, 6, 5, 5, 4, 3, 3)
+s=7 N=34 shapes=1175 bad=0
+exit=124
+# Section L: ./sphere_nop2 8 N N 4 for odd N = 43, 45, ... (sphere_s8_odd_nop2.log, snapshot); every odd N has unbalanced partitions, so no odd scale is claimed
+s=8 N=43 shapes=5066 bad=170 (15,7,7,5,3,3,2,1) (15,7,7,4,3,3,2,2) (15,7,6,5,4,3,2,1) (14,8,8,5,3,3,1,1)
+exit=0
+s=8 N=45 shapes=6630 bad=186 (16,7,7,5,4,3,2,1) (15,8,8,5,3,3,2,1) (15,8,8,4,3,3,2,2) (15,8,6,5,4,4,2,1)
+exit=0
+s=8 N=47 shapes=8588 bad=157 (16,8,7,5,4,3,2,2) (16,7,7,6,4,4,2,1) (15,9,9,5,4,2,2,1) (15,9,8,5,4,3,2,1)
+exit=0
+s=8 N=49 shapes=11018 bad=155 (17,8,8,5,4,3,2,2) (17,8,7,6,4,4,2,1) (16,9,9,5,4,3,2,1) (16,9,8,5,4,3,2,2)
+exit=0
+s=8 N=51 shapes=14012 bad=125 (17,9,9,5,4,3,2,2) (16,10,7,5,4,4,3,2) (16,9,9,6,4,4,2,1) (16,9,6,5,5,4,3,3)
+exit=0
+s=8 N=53 shapes=17674 bad=110 (17,10,9,6,4,4,2,1) (17,10,6,5,5,4,3,3) (17,9,7,6,5,4,3,2) (16,11,9,7,4,3,2,1)
+exit=0
+s=8 N=55 shapes=22122 bad=100 (18,10,7,6,5,4,3,2) (17,11,9,7,4,4,2,1) (17,11,7,5,5,4,3,3) (17,10,8,6,5,4,3,2)
+exit=0
+s=8 N=57 shapes=27493 bad=79 (18,11,8,6,5,4,3,2) (17,12,9,8,4,3,2,2) (17,12,7,6,5,4,3,3) (17,11,10,8,4,4,2,1)
+exit=0

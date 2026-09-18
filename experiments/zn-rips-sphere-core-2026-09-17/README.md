@@ -1,7 +1,8 @@
 # The sphere / balanced-dominator criterion for VR(Z^n, d_1; r)
 
 This folder supports `research/zn-rips-sphere-balanced-dominator-criterion.md` and its consequences
-`research/z7-rips-contractible-at-scales-20-to-54-even-and-36-to-54.md`.
+`research/z7-rips-contractible-at-scales-20-to-54-even-and-36-to-54.md` and
+`research/z8-rips-contractible-at-even-scales-38-to-70.md`.
 
 ## The criterion in one line
 
@@ -20,6 +21,11 @@ collapses onto `e_k`.
   - Build and run: `g++ -O2 -o sphere_nop sphere_nop.cpp`, then `./sphere_nop s Nmin Nmax [printlimit]`.
   - Output per `(s, N)`: `shapes` is the number of partitions and `bad` the number of unbalanced ones, with
     examples.
+- `sphere_nop2.cpp`: `sphere_nop.cpp` with one extra stage before the complete search. It tries the scaled
+  candidates `y = ⌊xt/N⌋, ⌈xt/N⌉, round(xt/N)` for `t = 1..N−1`, each checked by the same all-sign-vector test.
+  A partition is declared unbalanced only after the complete search fails, so the verdicts do not change. It only
+  makes balanced partitions faster to certify: `s = 8`, `N = 50` takes 0.1 s instead of more than 5 minutes. It
+  reproduces `sphere_nop` on `s = 8` at `N = 30..38`, `40`, `42..50` and `54` (Sections C, H, I, J).
 - `crosscheck.py`: an independent reimplementation that uses the split form of balance and the full box. It agrees
   with `sphere_nop` on `s = 5`, `N = 5..14`, and on `s = 6`, `N = 15..18` (see `results.txt`, Section E).
 - `sphere_check.cpp`: a point-level replay. It is not part of the proof, but it tests Lemma 3 and the code.
@@ -56,4 +62,8 @@ and a prescribed coordinate `k`. It fails up to `|x| ≈ 2^{s−1} + 1`, which i
 - `sphere_s8.log`: `s = 8`, `N ≤ 41`. Every `N` from 8 to 37 has an unbalanced partition, and so do `N = 39` and
   `N = 41` (about 180 each). `N = 38` and `N = 40` have none;
 - `sphere_check.log`;
-- the Python cross-checks.
+- the Python cross-checks (`s = 5, 6`, and `s = 7`, `N = 33, 34`);
+- `N = 55..70`: `s ≤ 6` all `N`, `s = 7` at `N = 55..58` and even `N = 58..70`, all with `bad=0`;
+- `s = 8` via `sphere_nop2`: `bad=0` at every even `N = 38..70` (97539 partitions at `N = 70`), confirmed by
+  `sphere_nop` at `N = 42..50` and `54`. Every odd `N` checked from 37 to 57 has between 79 and 186 unbalanced
+  partitions.
