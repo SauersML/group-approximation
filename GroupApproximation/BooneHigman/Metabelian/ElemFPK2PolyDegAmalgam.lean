@@ -18,6 +18,10 @@ Lane `bh-met-91c`.  Notation of `ElemFPK2PolyDegSpans`; bars denote images under
   `k2PolyDeg_const_of_amalgam` (the `k2PolyField_ConstStatement` for `F_p`, `N ≥ 5`) and
   `k2PolyDeg_level_zero_of_amalgam` (`nk2Slice_LevelStatement (ZMod p) 0` for every prime `p`).
 
+**LOUD: REFUTED.**  `k2PolyDeg_AmalgamStatement` is FALSE whenever `|K| ≥ 2`
+(`k2PolyAmal_not_amalgamStatement`, `ElemFPK2PolyAmalRefute.lean`, lane `bh-met-91r`); the
+Soulé "amalgam" reading below is wrong for `|K'| ≥ 3`.  The endpoints of this file are vacuous.
+
 **LOUD strength note.**  `k2PolyDeg_AmalgamStatement` is a statement about *matrix groups only*:
 it never mentions `K₂` or the Steinberg group, since `H` is arbitrary and `Ā, P̄, Ḡ` are
 subgroups of `E_I(F_p[X]) ≤ GL_I(F_p[X])`.  It is **not** an equivalent restatement of the target,
