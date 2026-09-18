@@ -9,10 +9,11 @@ distinct_from:
   tracial-harmonic-ring-keeps-rational-scalars: that is one tracial crossed product by Z; this is the class of all crossed-product rings whose odometer factor exposes an indicable finite-index subgroup.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-uhf-class-verdict.md
+  - research/artifacts/gq-referee-a-matrix-corner-laurent-rings-block-fp-elementary-groups.md
 ---
 
-**ESTABLISHED** by `matrix-corner-laurent-rings-block-fp-elementary-groups-proof` (lane proof, not
-independently reviewed). It inherits trust surface T1 of
+**ESTABLISHED** by `matrix-corner-laurent-rings-block-fp-elementary-groups-proof` (lane proof; referee
+gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-matrix-corner-laurent-rings-block-fp-elementary-groups.md`). It inherits trust surface T1 of
 `laurent-rational-symbols-block-fp-elementary-groups`, and in the tracial case trust surface T2 (the
 Fuglede–Kadison statement from a secondary source) of `tracial-harmonic-ring-keeps-rational-scalars`.
 

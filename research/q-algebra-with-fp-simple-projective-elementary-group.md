@@ -158,3 +158,19 @@ Let `N >= 3` be one of the ranks.
    - **Remnant.** Acting groups with finite abelianization along the whole chain, e.g. `SL_n(Z)`, `n >= 3`.
      Open risks: non-divisible cylinder corners, and torsion index units whose symbols factor through
      `Q^x ⊗ Z/d`.
+7. **The SL_3(Z) remnant: first candidate (2026-09-18, lane gq-deep-adelic-1).**
+   `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`: a finitely generated simple ring `R_T` over a
+   Toeplitz `SL_3(Z)`-subshift (Cecchi Bernales–Cortez–Gómez) with an odometer factor. It has:
+   - `Q ⊆ R_T`, by `harmonic-elimination-puts-q-in-odometer-crossed-products`, with no clopen sets
+     needed;
+   - centre `Q`;
+   - `Λ_N ⊆ {±1}`, so conditions 1 and 3 hold, and `GL_n(Q) ⊆ PE_N(R_T)`;
+   - `K_2(Q)` killed by matricial divisibility;
+   - no Laurent unit on any block;
+   - trivial rational symbols on group units and block units
+     (`sl3-congruence-transfer-kills-abelianization`: the transfer `Γ(d)^ab -> Γ(d^2)^ab` vanishes).
+
+   Open: the rest of condition 4's K-theoretic necessary part
+   (`sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget`: letter-cylinder corners and general units),
+   and then finite presentation and simplicity of `PE_N(R_T)`. See
+   `research/artifacts/gq-deep-adelic-1-sl3-remnant.md`.

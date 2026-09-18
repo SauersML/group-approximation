@@ -9,10 +9,12 @@ distinct_from:
   fg-q-rings-have-no-matrix-representations: that is the representation lemma used here; this applies it to groupoid rings.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-uhf-class-verdict.md
+  - research/artifacts/gq-referee-a-af-groupoid-rings-have-no-fg-subring-containing-q.md
 ---
 
-**ESTABLISHED** by `af-groupoid-rings-have-no-fg-subring-containing-q-proof` (lane proof, not
-independently reviewed; elementary).
+**ESTABLISHED** by `af-groupoid-rings-have-no-fg-subring-containing-q-proof` (lane proof; referee
+gq-referee-a PASS, proof-gap lens, `research/artifacts/gq-referee-a-af-groupoid-rings-have-no-fg-subring-containing-q.md`;
+elementary).
 
 ## Setting
 
@@ -34,7 +36,15 @@ Call `G` **AF** if every compact subset of `G` lies in a compact open subgroupoi
 
 ## Statement
 
-If `G` is AF, then no finitely generated unital subring of `F_c(G, Q)` contains `Q`.
+If `G` is AF, then no finitely generated unital subring of `F_c(G, Q)` contains `Q`, meaning a unital
+copy of `Q` whose unit is `1 = χ_(G^(0))`.
+
+**Non-unital copies (referee remark).** The same holds for a copy of `Q` whose unit is an idempotent
+`e != 0`. The representations `π_x` are jointly faithful, since `π_x(f)δ_x = f|_(H_x)`, so some
+`E = π_x(e) != 0`. The matrices `π_x(r)`, `r ∈ R`, have entries in some `Z[1/N]`, because finitely many
+generators take finitely many values on `H_x`. If `q_p` is the element with `p q_p = e`, then
+`E = p π_x(q_p)` for every prime `p`. So each entry of `E` is divisible in `Z[1/N]` by every prime
+`p ∤ N`, which forces `E = 0`.
 
 ## Consequence
 
