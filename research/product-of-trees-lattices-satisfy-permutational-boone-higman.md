@@ -99,8 +99,9 @@ distinct_from:
      Busemann lag, and `N` is chosen so that every vertex has two loops of every
      colour. That group is `F_∞` by Li's higher-rank-graph theorem
      (`torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`).
-   - **Type (A).** Stabilizing by the Cuntz groupoid kills `H_0`. With Matui's
-     comparison theorem, the clopen action is then of type (A)
+   - **Type (A).** After stabilizing by the Cuntz groupoid, refining cylinder
+     decompositions makes any two nonempty clopen sets in a strongly connected
+     piece equivalent, so the clopen action is of type (A)
      (`stabilized-kgraph-full-groups-have-type-a-actions`).
    - **Remaining gap.** Only lattices with no torsion-free subgroup of finite
      index. For three trees, they must also be irreducible with a discrete normal
