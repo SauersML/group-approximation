@@ -53,7 +53,8 @@ theorem exists_injective_hom_elementaryGroup (R : Type*) [CommRing R] {M N : ℕ
   apply absorptionUnits_injective (R := R) M N h
   exact h1
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.exists_injective_hom_elementaryGroup
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.exists_injective_hom_elementaryGroup
 
 /-- **The isolated input (Suslin's theorem for the two coefficient families).**  For `N ≥ 3`,
 `SL_N(F_p[s_0, ..., s_{k-1}]) ⊆ E_N` for every prime `p`, and
@@ -72,7 +73,8 @@ theorem charPElementaryAbsorptionStatement_of_suslin (hS : PolynomialSuslinState
   intro p _ k M N hN hMN
   exact exists_injective_hom_elementaryGroup (Chain.CharPPoly p k) hMN (hS.1 p k N hN)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.charPElementaryAbsorptionStatement_of_suslin
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.charPElementaryAbsorptionStatement_of_suslin
 
 /-- **Characteristic zero absorption from Suslin's theorem.** -/
 theorem charZeroElementaryAbsorptionStatement_of_suslin (hS : PolynomialSuslinStatement) :
@@ -80,7 +82,8 @@ theorem charZeroElementaryAbsorptionStatement_of_suslin (hS : PolynomialSuslinSt
   intro m k M N hN hMN
   exact exists_injective_hom_elementaryGroup (Chain.SIntPoly m k) hMN (hS.2 m k N hN)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.charZeroElementaryAbsorptionStatement_of_suslin
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.charZeroElementaryAbsorptionStatement_of_suslin
 
 /-- Both absorption leaves of the chain skeleton from the single isolated input. -/
 theorem elementaryAbsorptionStatements_of_suslin (hS : PolynomialSuslinStatement) :
@@ -88,7 +91,8 @@ theorem elementaryAbsorptionStatements_of_suslin (hS : PolynomialSuslinStatement
   ⟨charPElementaryAbsorptionStatement_of_suslin hS,
     charZeroElementaryAbsorptionStatement_of_suslin hS⟩
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.elementaryAbsorptionStatements_of_suslin
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.elementaryAbsorptionStatements_of_suslin
 
 end Absorption
 end Metabelian

@@ -35,7 +35,7 @@ rank is `sr(R_k) ≤ k + 1`.  Injective stability for `K₂` (van der Kallen 197
 K₂(n+1, R)` injective for `n ≥ sr(R) + 2`; already Dennis's older bound `n ≥ d + 3`,
 `d = dim Max(R)`) applies at `n = k + 4 ≥ sr(R_k) + 3`, with one step of margin.  The restriction
 to `ker ev₀` only weakens it.  As a sanity check at the smallest case `k = 1`, `N = 5`: `F_p[s]`
-is a euclidean domain, `sr = 1`, and injectivity from rank `3` on is classical.
+is a principal ideal domain, `sr ≤ 2`, and van der Kallen's bound asks only for `n ≥ 4`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
@@ -54,7 +54,8 @@ theorem eq_one_of_K2Stab_retract {R S Z : Type*} [Ring R] [Ring S] [Ring Z] {n :
     rw [K2Map_K2Map, hcc, hu0]
   have hv : K2Stab n S (K2Map f u) = 1 :=
     (K2IndexMap_K2Map (Fin.castSuccEmb : Fin n ↪ Fin (n + 1)) f u).trans
-      ((congrArg (K2Map (I := Fin (n + 1)) f) hu).trans (map_one (K2Map (I := Fin (n + 1)) f)))
+      ((DFunLike.congr_arg (K2Map (I := Fin (n + 1)) f) hu).trans
+        (map_one (K2Map (I := Fin (n + 1)) f)))
   calc u = K2Map g (K2Map f u) := (K2Map_K2Map_of_comp_eq_id g f hgf u).symm
     _ = K2Map g 1 := by rw [h _ hv0 hv]
     _ = 1 := map_one (K2Map (I := Fin n) g)
