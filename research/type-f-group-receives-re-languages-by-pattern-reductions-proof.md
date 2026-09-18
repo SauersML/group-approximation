@@ -2,7 +2,7 @@
 rg: 2
 id: type-f-group-receives-re-languages-by-pattern-reductions-proof
 kind: route
-title: "Proof: compress the Boone configuration words by a Baumslag--Solitar stable letter and read the input's binary digits letter by letter"
+title: "Proof: compress the Boone configuration words by a stable letter that fixes t and x and multiplies y, and read the input's binary digits letter by letter"
 target: type-f-group-receives-re-languages-by-pattern-reductions
 requires:
   - boone-final-group-is-of-type-f
@@ -18,8 +18,8 @@ artifacts:
 Verification tier: proposed-established. Steps 0 and 1 use theorems that are
 already machine-checked in `GroupApproximation/Computability`. Step 0 also
 reuses a machine-checked proof body for a different code, which is not a new
-Lean theorem. Steps 2 to 7 are paper proofs. The free-word identity of Step 4
-and the Horner identity of Step 3 are also checked by the experiment.
+Lean theorem. Steps 2 to 7 are paper proofs. The Horner identity of Step 3 and the
+free-word identity of Step 4 are also checked by the experiment.
 
 ## Step 0. The compile chain for an arbitrary `ToPartrec` code
 
@@ -109,122 +109,154 @@ significant first:
 
 ## Step 2. The host `H_M` is of type F and contains `G_M`
 
-`y` has infinite order in `G_M`, for three reasons:
+Let `B = <t, x, y> ≤ G_M`. By `boone-hnn-tower-embeds-base-group`, the base
+group `<t,x,y | [x,y]> = Z * Z^2` embeds in the tower `G'_M`. The tower embeds
+in `G_M`, which is an HNN extension of it. So `B ≅ Z * Z^2`. The endomorphism
 
-- the base group `G = <t,x,y | [x,y]> = Z * Z^2` embeds in the tower `G'_M` (`boone-hnn-tower-embeds-base-group`);
-- the tower embeds in `G_M`, which is an HNN extension of it;
-- `y` generates a direct factor of `Z^2`.
+    sigma : B -> B,   t -> t,  x -> x,  y -> y^m    (m >= 2)
 
-So `y -> y` and `y -> y^m` (`m >= 2`) are both injective homomorphisms
-`Z -> G_M`, and
+is injective. It is the free product of `id_Z` with the injective map
+`(x,y) -> (x, y^m)` of `Z^2`, and a free product of injective maps is injective
+(normal forms). So `B -> G_M` and `sigma` followed by `B -> G_M` are both
+injective, and
 
-    H_M = < G_M, s | s^-1 y s = y^m >
+    H_M = < G_M, s | s^-1 t s = t,  s^-1 x s = x,  s^-1 y s = y^m >
 
-is an HNN extension. `G_M` embeds in it by Britton's lemma.
+is an HNN extension of `G_M` with associated subgroups `B` and `sigma(B)`.
+`G_M` embeds in it by Britton's lemma.
 
 **Classifying space.** `boone-final-group-is-of-type-f` gives a finite
-aspherical 3-complex `X` with `π1 X = G_M`. Take loops `γ_1` and `γ_2` in `X`
-representing `y` and `y^m`, and glue a cylinder `S^1 × [0,1]` to `X` along
-`γ_1` at one end and `γ_2` at the other. This is a graph of spaces with one
-vertex space `X` and one edge space `S^1`. Both edge maps are π1-injective, so
-the total space is aspherical (Scott--Wall, Proposition 3.6, the tool already
-used in `boone-final-group-is-of-type-f-proof`) and its fundamental group is
-`H_M`. It is a finite complex of dimension 3, so `H_M` is of type `F`.
+aspherical 3-complex `X` with `π1 X = G_M`.
+
+- Let `E = S^1 v T^2`, a `K(B,1)`.
+- Let `f_0 : E -> X` realize the inclusion `B -> G_M`.
+- Let `f_1 = f_0 ∘ (id v p)`, where `p : T^2 -> T^2` is the covering map of degree `(1, m)`. It realizes `sigma` followed by the inclusion.
+- Glue `E × [0,1]` to `X` by `f_0` at one end and `f_1` at the other.
+
+This is a graph of spaces with vertex space `X` and edge space `E`. Both edge
+maps are π1-injective, so the total space is aspherical (Scott--Wall,
+Proposition 3.6, the tool of `boone-final-group-is-of-type-f-proof`). Its
+fundamental group is `H_M`. It is a finite complex of dimension 3, so `H_M` is
+of type `F`.
 
 **Presentation and r.e.** A finite presentation of `G_M`
-(`boone-final-group-finitely-presented`), plus the letter `s` and one relator,
-presents `H_M`. So `H_M` is finitely presented and `WP(H_M)` is r.e.
+(`boone-final-group-finitely-presented`), plus the letter `s` and three
+relators, presents `H_M`. So `H_M` is finitely presented and `WP(H_M)` is r.e.
 (`rePred_wordProblemPred` for that presentation code).
 
-## Step 3. Horner compression
+## Step 3. Horner compression, most significant digit first
 
 **Lemma H.** In any group where `s^-1 y s = y^m`, for all naturals
 `d_0, ..., d_N`,
 
-    Y(d_0 ... d_N) := y^{d_0} s^-1 y^{d_1} s^-1 ... s^-1 y^{d_N} s^N  =  y^{sum_i d_i m^i}.
+    y^{sum_i d_i m^i}  =  s^-(N+1) · (s y^{d_N}) (s y^{d_{N-1}}) ... (s y^{d_0}).
 
-*Proof.* By induction on `N`; `N = 0` is trivial. Write
-`Y(d_0 ... d_N) = y^{d_0} s^-1 Y(d_1 ... d_N) s`, which is a free-word
-identity: the inner word ends in `s^{N-1}`. By induction the inner word equals
-`y^B` with `B = sum_{i >= 1} d_i m^{i-1}`, and `s^-1 y^B s = y^{m B}`. ∎
+*Proof.* By induction on `N`. For `N = 0` the right side is `s^-1 s y^{d_0}`.
+For the step, the right side is `s^-1 · [s^-N (s y^{d_N}) ... (s y^{d_1})] · s y^{d_0}`.
+By induction the bracket is `y^{B'}` with `B' = sum_{i >= 1} d_i m^{i-1}`, and
+`s^-1 y^{B'} s = y^{m B'}`. ∎
 
-Hence `U(v) := x^{a_0} Y(d_0 ... d_N) = x^{a_0} y^{B(v)}` in `H_M`. This is the element
-`rawSh (a_0, B(v))`, and `|U(v)| = a_0 + N + sum_i d_i + N = O(e_L + k l)`, with
-constants depending only on `M`.
+`check_pattern_words.py` also checks the least-significant-first variant
+`y^{d_0} s^-1 y^{d_1} ... s^-1 y^{d_N} s^N` and the resulting two-homomorphism
+pattern. Neither is needed below.
 
-## Step 4. The pattern form
+## Step 4. The one-homomorphism pattern
 
-Let `rho(a)` be the product over `rev beta(a)` of `s^-1 y^{c_bit}`, let
-`phi(a) = rho(a)^-1` (a fixed word) and `psi(a) = s^k`. Extend both
-multiplicatively to monoid homomorphisms `A* -> F(gens H_M)`. Reading off the
-digit list of Step 1, as an identity of free words after free reduction:
+By Step 1, the digits `d_N, ..., d_0` of `B(v)`, most significant first, are
+the codes of the least-significant-first bits of `n(v)`, followed by `c_cons`:
 
-    Y(d_0 ... d_N) = y^{c_cons} s^-1 y^{c_1} · rho(v_{l-1}) ... rho(v_0) · s^-1 y^{c_0} (s^-1 y^{c_1})^{e_L} · s^{e_L + 2} · s^{k l}
+    d_N ... d_0 = c_1^{e_L}, c_0, beta(v_0), ..., beta(v_{l-1}), c_1, c_cons
 
-and `rho(v_{l-1}) ... rho(v_0) = phi(v)^-1`, `s^{k l} = psi(v)`. So
+(each bit replaced by its code). Let `Z(v) = (s y^{d_N}) ... (s y^{d_0})`. As
+free words, letter for letter,
 
-    U(v) = C_1 · phi(v)^-1 · C_2 · psi(v),
-    C_1 = x^{a_0} y^{c_cons} s^-1 y^{c_1},   C_2 = s^-1 y^{c_0} (s^-1 y^{c_1})^{e_L} s^{e_L + 2}.
+    Z(v) = C_1 · phi(v) · C_2,
+    C_1 = (s y^{c_1})^{e_L} s y^{c_0},   C_2 = s y^{c_1} s y^{c_cons},
+    phi(a) = product over the bits b of beta(a), least significant first, of s y^{c_b},
 
-`check_pattern_words.py` verifies this letter for letter, and Lemma H in the
-faithful representation `y -> [[1,1],[0,1]]`, `s -> [[1/m,0],[0,1]]` of
-`BS(1,m)`, on 3000 random instances (`results.txt`).
+where `phi : A* -> F(gens H_M)` is ONE free-monoid homomorphism with no
+inverses. By Lemma H, `u = x^{a_0} y^{B(v)} = x^{a_0} s^-(N+1) Z(v)` in `H_M`.
+Since `s` commutes with `t` and `x` in `H_M`,
 
-Put `U_0(X, Z) = C_1 X^-1 C_2 Z` and
+    t(a_0, B(v)) = u^-1 t u = Z(v)^-1 s^{N+1} (x^-{a_0} t x^{a_0}) s^-(N+1) Z(v) = Z(v)^-1 T_0 Z(v),
+    T_0 = x^-{a_0} t x^{a_0}.
 
-    omega_L(X, Z) = k^-1 U_0^-1 t U_0 k U_0^-1 t^-1 U_0.
+Put `Z_0(X) = C_1 X C_2` and
 
-Then `W(v) := omega_L(phi(v), psi(v)) = k^-1 t(a_0,B(v)) k t(a_0,B(v))^-1` in
-`H_M`, where `t(a_0,B) = u^-1 t u` and `u = x^{a_0} y^B`. This is the element of
-`rawComm (a_0, B(v))`. Its length is `|omega_L| + 4 |phi(v)| + 4 |psi(v)|`,
-linear in `l`, and a two-pass transducer writes it in linear time. The
-`X^-1` needs one backward pass.
+    omega_L(X) = k^-1 Z_0^-1 T_0 Z_0 k Z_0^-1 T_0^-1 Z_0.
+
+Then `W(v) := omega_L(phi(v)) = k^-1 t(a_0,B(v)) k t(a_0,B(v))^-1` in `H_M`,
+which is the element of `rawComm (a_0, B(v))`. The variable `X` occurs four
+times in `omega_L`: twice as `X`, twice as `X^-1`. The length is
+`|omega_L| + 4 |phi(v)|` with `|phi(a)| <= k (1 + max(c_0, c_1))`, so it is
+linear in `l`, and `W(v)` is written in linear time: one forward and one
+backward pass for `X^-1`.
+
+`check_pattern_words.py` verifies, on 3000 random instances (`results.txt`):
+
+- Lemma H in the faithful representation `y -> [[1,1],[0,1]]`, `s -> [[1/m,0],[0,1]]` of `BS(1,m)`;
+- the letter-for-letter identity `Z(v) = C_1 phi(v) C_2`;
+- the digit layout of Step 1, through Mathlib's least-significant-first `trNat` recurrence;
+- `N = e_L + 2 + k l`.
 
 ## Step 5. Correctness
 
 `rawComm (a_0,B) = 1` in `G_M` iff `M.Halts (a_0,B)`
-(`boone-commutator-criterion-for-halting`; in Lean
-`commElt_eq_one_iff_halts` through `exists_boone_words`). `G_M` embeds in
-`H_M` (Step 2), so the same holds in `H_M`. With Step 1:
+(`boone-commutator-criterion-for-halting`; in Lean `commElt_eq_one_iff_halts`
+through `exists_boone_words`). `G_M` embeds in `H_M` (Step 2), so the same
+holds in `H_M`. With Step 1:
 
-    v ∈ L  <->  M.Halts (a_0, B(v))  <->  W(v) = 1 in G_M  <->  omega_L(phi(v), psi(v)) = 1 in H_M.
+    v ∈ L  <->  M.Halts (a_0, B(v))  <->  W(v) = 1 in G_M  <->  omega_L(phi(v)) = 1 in H_M.
 
-Only `omega_L` (through `e_L`) depends on `L`. `phi` and `psi` depend only on
-`A`, `b` and `M`. For a finitely generated recursively presented group `G`
-with generators `S`, `WP(G) ⊆ (S ∪ S^-1)*` is r.e., so it is an instance with
-`A = S ∪ S^-1`. The letters `a` and `a^-1` get unrelated codes `b(a)` and
-`b(a^-1)`, so `phi(a^-1) != phi(a)^-1` in general. ∎
+Only `omega_L` depends on `L`, through `e_L`. `phi` depends only on `A`, `b`
+and `M`.
 
-## Step 6. Lemma E
+For a finitely generated recursively presented group `G` with generators `S`,
+`WP(G) ⊆ (S ∪ S^-1)*` is r.e., so it is an instance with `A = S ∪ S^-1`. The
+letters `a` and `a^-1` get unrelated codes, so `phi(a^-1)` is not
+`phi(a)^-1`. ∎
 
-Let `phi : (S ∪ S^-1)* -> F(T)` be a monoid homomorphism with
-`phi(a^-1) = phi(a)^-1`, such that `v = 1` in `G = <S | R>` iff `phi(v) = 1`
-in `H = <T | R'>`.
+## Step 6. Lemma E: one occurrence is embedding
 
-- `phi` induces a group homomorphism `F(S) -> F(T) -> H`.
-- Every relator `r ∈ R` satisfies `r = 1` in `G`, hence `phi(r) = 1` in `H`. So the map factors through `G`.
-- If `v` maps to `1` then `v = 1` in `G`, so the factored map is injective.
+**Lemma E.** Let `G = <S | R>` and `H = <T | R'>`. Let
+`phi : (S ∪ S^-1)* -> F(T)` be any monoid homomorphism, let `P` and `Q` be
+words and let `eps = ±1`. Suppose that for every `v`,
+`v = 1` in `G` iff `P phi(v)^eps Q = 1` in `H`. Then `a -> phi(a)^eps` for
+`a ∈ S` extends to an injective homomorphism `G -> H`. Conversely every
+injective homomorphism gives such a reduction with `P = Q = 1`, `eps = 1`.
 
-Conversely, an injective homomorphism `j : G -> H` with words `phi(a)`
-representing `j(a)`, and `phi(a^-1) := phi(a)^-1`, satisfies
-`phi(v) = j(v)`, so `phi(v) = 1 <-> v = 1`. ∎
+*Proof.* If `eps = -1`, rewrite `P phi(v)^-1 Q = 1` as `Q^-1 phi(v) P^-1 = 1`
+and use `eps = 1`. Now let `eps = 1`.
+
+- The empty word is `1` in `G`, so `PQ = 1` in `H`. Hence `v = 1` in `G` iff `phi(v) = 1` in `H`.
+- For `a ∈ S`, `a a^-1 = 1` in `G`, so `phi(a) phi(a^-1) = 1` in `H`, i.e. `phi(a^-1) = phi(a)^-1` in `H`.
+- So `j : F(S) -> H`, `j(a) = phi(a)`, satisfies `j(v) = phi(v)` in `H` for every word `v`.
+- Relators of `G` are `1` in `G`, so they map to `1`, and `j` factors through `G`.
+- If `j(v) = 1` then `phi(v) = 1`, so `v = 1` in `G`, and the factored map is injective. ∎
+
+This holds for arbitrary `phi`: the inverse-respecting property is forced,
+not assumed.
 
 ## Step 7. The obstruction
 
-Every inverse-respecting substitution is a pattern reduction:
-`omega = X`, `psi` trivial. So every embedding gives a pattern reduction of
-word problems, and every reducibility `R` containing pattern reductions
-satisfies "`G <= H` implies `WP(G) <=_R WP(H)`". An obstruction through `R`
-needs a `G` with `WP(G) not <=_R WP(H)` for every type `F_{n+1}` group `H`.
+A **`r`-occurrence pattern reduction** is `v -> omega(phi(v))`, where `phi` is a
+free-monoid homomorphism and `omega(X)` is a fixed word in the generators and
+`X^{±1}` with exactly `r` letters `X^{±1}`. Inserting `X X^-1` changes no
+value, so a relation `WP(G) <= WP(H)` witnessed at `r` is also witnessed at
+`r + 2`.
 
-- If `G` is recursively presented, Step 5 gives `WP(G) <=_R WP(H_M)`, and `H_M` is of type `F`, hence of type `F_{n+1}`, by Step 2.
-- If `G` is not recursively presented, then `WP(G)` is not r.e., so `G` embeds in no finitely presented group. The r.e. property already excludes it, and `R` adds nothing.
+- **r = 4, and every even r >= 4: dead.**
+  - By Step 5, for every finitely generated recursively presented `G`, `WP(G)` reduces to `WP(H_M)` by a 4-occurrence pattern, and `H_M` is of type `F`. By padding it also reduces by an `r`-occurrence pattern for every even `r >= 4`.
+  - A non-recursively-presented `G` has a non-r.e. `WP(G)`. It reduces to no r.e. set, and it embeds in no finitely presented group.
+  - Let `R` be any reducibility containing the 4-occurrence patterns: linear-time, polynomial-time and log-space many-one reductions are examples. The inference "`WP(G)` is `R`-reducible to the word problem of no type `F_{n+1}` group, so `G` has no type `F_{n+1}` host" never excludes a group that r.e.-ness does not already exclude. This holds for every `n` at once.
+- **r = 1: circular.** By Lemma E, "`WP(G)` reduces to `WP(H)` by a 1-occurrence pattern for some `H` of type `F_{n+1}`" is exactly "`G` embeds in a group of type `F_{n+1}`", which is Problem 1.1.
+- **r = 2 and 3: open.**
+  - For `omega = P X Q X^-1 R`, the empty word gives `R = (PQ)^-1`, so `omega(phi(v)) = 1` iff `phi(v)` commutes with `Q`. This is a letter-local reduction of `WP(G)` to membership in the centralizer `C_H(Q)`.
+  - No embedding follows formally: the monoid `phi(A*)` acting on the coset space `H / C_H(Q)` need not give a subgroup of `H`.
+  - `omega = P X Q X R` and the 3-occurrence patterns are likewise unsettled. So are odd `r >= 5`, where padding does not apply. ∎
 
-So `R` excludes nothing that the r.e. property does not exclude. By Lemma E,
-at the finest end, inverse-respecting substitution, the relation "`WP(G) <= WP(H)`
-for some `H` of type `F_{n+1}`" is the embedding question of Problem 1.1
-verbatim. Any word-problem-reducibility obstruction must use a reducibility
-strictly finer than two-homomorphism patterns and strictly coarser than
-substitution. Otherwise it is either dead (Step 5) or circular (Lemma E). ∎
-
-**Calibration.** Non-recursively-presented groups are not pattern-reducible to `WP(H_M)`, because the pattern preimage of an r.e. set is r.e.; this matches Higman's theorem that only recursively presented groups embed in finitely presented ones.
+**Calibration.** Non-recursively-presented groups are not pattern-reducible
+to `WP(H_M)`, because the pattern preimage of an r.e. set is r.e. This matches
+Higman's theorem that only recursively presented groups embed in finitely
+presented ones. At `r = 1`, Lemma E reproduces the fact that `WP(G) <= WP(H)`
+by substitution holds for subgroups `G ≤ H`.

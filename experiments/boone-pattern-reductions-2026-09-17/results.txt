@@ -1,4 +1,4 @@
-checked 3000 random (m, codes, alphabet, e, v): Horner identity in BS(1,m) and pattern form both hold
+checked 3000 random (m, codes, alphabet, e, v): Horner identity in BS(1,m) and pattern form both hold; MSB-first Horner identity and one-homomorphism form Z = C1 phi(v) C2 hold
 digits=  5  compressed |Y| =    23   uncompressed |y^b| = 8.403e+03
 digits= 17  compressed |Y| =    83   uncompressed |y^b| = 1.163e+14
 digits= 65  compressed |Y| =   323   uncompressed |y^b| = 4.269e+54
