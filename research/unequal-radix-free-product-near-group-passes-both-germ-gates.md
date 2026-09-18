@@ -63,3 +63,7 @@ presentation of `E_nu` would remain.
   benchmark, lacks such elements. This is a necessary condition for `[H : R_nu] < infinity`, and it
   holds. Finite index itself remains OPEN; the next test is whether conjugates of `k` generate the
   rigid stabilizer of root 0 in `H'`.
+- **Finite index is local (bh-shell-arith).** `finite-index-in-a-full-group-is-local-fullness-at-one-cone`
+  (Matui `simple2`) applies to `H`, and `lambda(P)` makes `R_nu` compressible. So `[H : R_nu] < infinity`
+  iff `R_nu ⊇ D(H_C)` for one cone `C`, plus finite index of the image in `H^ab`. The remaining question
+  is exactly local.
