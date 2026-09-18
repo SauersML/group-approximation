@@ -44,3 +44,17 @@ pushing ray `1` outward from ray `2`.
   `n ∈ {3,4,5}`. For those `n`, a lower bound would have to use the shortage of
   auxiliary rays. Any 2-cochain or corridor argument must fail when two more rays
   are added.
+- 2026-09-18 (swarm-0917-w12-w12-z-break, reframing): `n = 5` is excluded by
+  `houghton-five-rays-polynomial-dehn-via-path-words`. For `n = 3` the family is
+  bounded by one explicit pour rewrite
+  (`houghton-h3-far-commutation-bounded-by-two-ray-pour-rewrite`):
+  `Area(w_k) <= 4A_3(k-2) + 2k^3 + 14k`, where `A_3(m)` is the `H_3`-area of
+  `λ_ac^m λ_cb^m = λ_ab^m ρ_b(m)`. The same `A_3` bounds `H_4` through Remark 3.1 of
+  `research/artifacts/zp-houghton-four-rays-via-h3-2026-09-18.md`. So a proof of this
+  claim for `n = 3` must show that `A_3` is superpolynomial. The same holds for
+  `n = 4`, since `A_3 ≼ m^D` gives `δ_(H_4) ≼ x^(6+D)`. The Hanoi recursion `R(k) <= 2R(k-1) + O(k)` is
+  replaced by the non-recursive bound `R(j) <= 2A_3(j) + O(j^3)`.
+  The converse, `A_3 ≼ poly(F_3)`, is not proved. It dies at renormalizing two-ray
+  words after each `λ_ac`-conjugation in the `u_j` telescoping: that step needs a
+  polynomial count of `S_∞` Coxeter moves, which is not bounded here. See the
+  artifact `research/artifacts/zp-houghton-h3-far-commutation-via-pour-rewrite-2026-09-18.md`.
