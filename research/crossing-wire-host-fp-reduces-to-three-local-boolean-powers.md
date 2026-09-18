@@ -2,7 +2,7 @@
 rg: 2
 id: crossing-wire-host-fp-reduces-to-three-local-boolean-powers
 kind: claim
-title: The crossing-wire Z^2 host is finitely presented provided (a) every triple of macrotile input bits is co-located in one tile and (b) Boolean powers of V are 3-local, i.e. presented by their triple joins (a Curtis–Tits statement); pairwise crossings do not suffice, because conjunction of conditioned subgroups is a commutator, which is not associative
+title: The crossing-wire Z^2 host is finitely presented provided (a) every triple of macrotile input bits is co-located in one tile and (b) Boolean powers of V are 3-local, i.e. presented by their triple joins (a Curtis–Tits statement); pairwise crossings are not known to suffice, because conjunction of conditioned subgroups is a commutator, which is not associative
 requires:
   - crossing-wire-fixed-point-tile-sets-are-quantum-rigid
   - one-scale-filling-decides-fp-of-v-times-subshift-hosts
@@ -58,7 +58,7 @@ leaves only
   `[H_{P∧c'@r}, H_{c@r}] = 1  ⟺  [H_{P∧c@r}, H_{c'@r}] = 1`.
 
 So the two triple relations are equivalent to each other. No derivation of either from pairwise
-data is known; in the linear case the analogue is immediate. In the linear case they hold for free. In the group case each needs its own local
+data is known, whereas in the linear case the analogue is immediate. In the group case each seems to need its own local
 certificate, involving three conditions at once. Pairwise crossings (L3) give only two co-located
 bits. This is the precise sense in which "group rigidity = ring rigidity + something": the
 something is 3-way joint structure.
@@ -107,8 +107,8 @@ macrotile's input sites and their neighbours. So:
 
 > For a fixed triple-crossing tile set, it suffices to check (b) for finitely many finite `B`.
 
-That is a finite, if large, computation: coset enumeration in finitely presented groups built
-from `V`-powers. It is the group-side counterpart of the scale-≤5 rigidity certificates. It is
+If (b) holds for a given `B`, a finite derivation certifies it, so the check is semi-decidable
+(a certificate search, not a decision procedure). It is the group-side counterpart of the scale-≤5 rigidity certificates. It is
 not run here.
 
 ## Lesson for general BH
@@ -116,8 +116,7 @@ not run here.
 The whole gap between the ring side (rigidity ⇒ finite presentation, proved) and the group side
 (open) is **higher joint structure**. Commuting idempotents form a Boolean algebra as soon as they
 commute pairwise, because multiplication is associative. Conditioned subgroups of `V` combine by
-commutators, which are not associative, so pairwise co-location leaves the triple relations
-undetermined. Hall–Witt shows that they come only in equivalent pairs.
+commutators, which are not associative, so no known derivation gets the triple relations from pairwise co-location. Hall–Witt shows that they come only in equivalent pairs.
 
 The group-side analogue of the crossing-wire design therefore needs:
 - **triple co-location**, which is cheap in the tile set;

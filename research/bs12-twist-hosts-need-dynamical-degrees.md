@@ -66,7 +66,7 @@ Put `b_m = a^m b a^-m`, so `b_m^(2^m) = b`.
   `2^m`. These orbits leave every annulus, so they accumulate at a singular point of `b`. That point is
   the repeller of `a` or an attractor of `a`.
 - **The tame and linear routes are closed.** No tame host exists
-  (`tame-power-conjugators-have-more-hyperbolic-points`), and no linear one (linear groups are
+  (`tame-power-conjugators-have-more-hyperbolic-points`), and no linear one (linear groups
   contain no chain configuration, by `higman-chain-group-pbh-iff-chain-configuration`).
 - **The problem is dynamical.** The first open case is a single homeomorphism `b` of the Cantor set,
   singular at finitely many points. It needs a coherent family of `2^m`-th roots, whose orbits through

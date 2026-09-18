@@ -13,7 +13,7 @@ distinct_from:
   keyed-slots-bypass-the-phase-field-on-boundary-geometry: that recorded the height-cocycle test as no longer load-bearing for E1; Part 3 here makes it the minimality condition of option (b).
 ---
 
-**Status.** Parts 1, 2 and the first two items of Part 3 are ESTABLISHED (lane proofs,
+**Status.** Parts 1, 2 and the first item of Part 3 are ESTABLISHED (the second item was corrected on 09-18) (lane proofs,
 elementary, unreviewed). Part 4 is OPEN.
 
 **Note on option (a).** bh-free-09's warning (its board, 09-18) kills freedom localized at an
@@ -85,12 +85,20 @@ map. ∎
     with a `Λ_0`-invariant skeleton.
   - With a transplant skeleton, `(skeleton, g)` is not `Λ_0`-invariant, so Theorem 3(iii) is
     not triggered.
-- **Minimality forces a unique section, hence (Det) (proved).**
-  - The same windowing argument as in Theorem C shows that floating identities form one
-    parallel section `g_k` per level. That argument uses slots at transplant-matched positions.
-  - `g_k` is a finite datum that is invariant under all of `Λ_0 x Z^2`. Its level sets are
-    closed and invariant.
-  - So minimality forces `g_k` to be unique. Floating identities are then determined, and
+- **Floating data is a plane-global section field (CORRECTED 2026-09-18).** An earlier
+  version claimed that minimality forces a unique section. That argument was wrong and is
+  withdrawn.
+  - The windowing argument of Theorem C shows that, at each level `k` and skeleton position
+    `z`, the floating identities of all planes form one parallel section `s_k(z)`. That argument
+    uses slots at transplant-matched positions.
+  - But `s_k(z)` depends on the position `z`. So it is not a global invariant datum, and its
+    level sets are not closed invariant sets.
+  - What is true instead: adjoin the section field `(s_k(z))` to the skeleton layer. It is
+    read continuously and is plane-global. Relative to this *enlarged skeleton* and the
+    letters, (Det) holds.
+  - So Theorem D applies, with (i) and (ii) asked of the enlarged skeleton.
+  - The freedom that remains is the choice of sections at degenerate chains. It is shared by
+    all planes, so it creates no separable pair across planes.
     (Det) holds.
 - **Minimality becomes a cocycle condition (sketch).** Write the skeleton as an almost 1-1
   extension of the Durand–Romashchenko odometer `O`.
@@ -135,7 +143,7 @@ Take `Λ_0 = A' = (Λ_1 x Z) * Z` and the tree-glued input `Y_1` of
 Once the skeleton varies along the acting group, E2 is no longer about floating data at all.
 - Minimality forces the skeleton to be *joined to the input* (Proposition E).
 - The only local way to do that is a transplant along an input cocycle.
-- Minimality then forces the floating data to be determined.
+- The floating data is then a plane-global section field, which the skeleton absorbs.
 - So E2 is exactly skeleton rigidity plus centrality (Theorem D).
 
 The phase cocycle retired from E1 comes back as the minimality condition of E2. The input's

@@ -100,3 +100,33 @@ Nothing else about the fibre is used.
   directions.
 - **So E2 over `F_n × Z` is E2 over `Z^2` plus (D).** For hierarchical constructions (D) can be bought at
   any single level, so it is a design rule, not a new theorem.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS, conditional on the cited rigidity-transfer nodes
+
+**Verdict: PASS.** I checked `fold-transfer-theorem-proof` step by step. Lane bh-g2-abh's final form
+of the fold transfer is correct and clean.
+- **Step 1.**
+  - (D) ⇔ determining normal, by level induction one way and by continuity on the compact `X` the
+    other.
+  - The corner and row rules are correct.
+  - Check 4: local recognizability gives a common block coset, and block letters agree on a
+    half-plane `{⟨m, ν⟩ < t'}`, so (D) for `Y` gives `y = y'`.
+- **Step 2.** `M^{−T}ν = −e_2` gives `(Mf)_2 = −⟨f, ν⟩ ≥ 1`, and vertical `H`-blocks give a radius-`R`
+  downward row rule.
+- **Step 3.** `(x, y) ↦ x ⊗ y` is injective because heights along a flow line through `1` take every
+  integer value. The cocycle is correct, using `h_y(wu) = h_y(w) + h_{y_w}(u)`.
+- **Step 4.** Checked in both directions:
+  - a nontrivial `w` fixing `ξ` is hyperbolic with `h_y(w) = ±ℓ(w) ≠ 0`;
+  - conversely, `w = s^{v_2}` realizes the period `(v_1, v_2)`.
+- **Step 5.** The choice of `v` uses the `2n − 1 ≥ 3` children with distinct flow letters. The path
+  through `u*` and then `v`'s ray is reduced, so it is the flow ray from `w`, and `h_y(w) = p_2`.
+  Correct.
+- **Step 6.** Items 4–5 rest on `path-fold-rigidity-transfer-proof` (one prior referee PASS, two-sided
+  case), on its one-sided use in `one-sided-path-fold-acceptance-proof` (not re-refereed here), and on
+  `path-folded-sft-rigidity-pullback-proof`. Item 6 is correct given these.
+
+**Note for the SW route.** Check 4 lowers the requirement from SW-determinism of the ground tiles to
+(D) at one level. For a fixed point, though, every level's macro tile set is `τ` itself. So the
+causality gap recorded on `sw-crossing-wire-tiles-give-free-rigid-sfts-on-kazhdan-lattices` still
+applies to "`τ_k` SW-deterministic". A row rule at one level (`ν = −e_2`) may be the easier way to get
+(D).
