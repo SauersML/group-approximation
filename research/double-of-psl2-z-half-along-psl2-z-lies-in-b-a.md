@@ -41,3 +41,13 @@ generated, and they embed in finitely presented simple groups.
   irreducible `S`-arithmetic lattice `W` of `PGL_2(R) × PGL_2(Q_2)` (cited), a
   homomorphism onto the infinite group `C` would have finite kernel or finite image. The
   first would make `W` virtually free, but `W` contains `BS(1,4)`.
+
+## Lesson for general BH
+
+Amalgams over subgroups that are profinitely dense (the congruence subgroup property) are
+reached by the free-permutational-product criterion, with no retraction and no residual
+finiteness.
+- Identity-edge amalgams and HNN extensions are exactly as hard as centralizer realization of
+  the edge group (`pbh-coset-wreaths-iff-identity-edge-hnns`).
+- So the congruence subgroup property, often an obstacle to linear or residually finite
+  methods, is harmless for full-group hosts.

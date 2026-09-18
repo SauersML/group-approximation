@@ -39,3 +39,11 @@ Thompson's `V`, or any finitely presented simple group with a type (A) action).
   same Mihailova construction is harmless as soon as the quotient is in `B_A`.
 - Under the permutational Boone–Higman conjecture, `P ∈ CR(F × F)` iff `Q` has solvable word
   problem, for finitely generated `F` and `Q`.
+
+## Lesson for general BH
+
+Mihailova subgroups, the standard source of undecidability, are harmless as soon as their
+quotient is in `B_A`. The line between closure and failure of the decidable wreath closure
+over `F × F` is exactly the line between `Q ∈ B_A` and `Q` with unsolvable word problem. The
+general statement for all subgroups with finitely generated projections is
+`product-subgroups-lie-in-cr-when-goursat-quotient-in-b-a`.

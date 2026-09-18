@@ -46,3 +46,15 @@ ac8c87777) and bh-verify-metabelian (05d6a15ff); both are internal checks. LISW
 Theorem 1.4 already covers subgroups of `GL_n(Q)` by self-similar split extensions;
 the question as printed is for arbitrary fields. A MathSciNet/zbMATH priority check
 has not been done.
+
+## Lesson for general BH
+
+Linear groups in every characteristic are absorbed by finitely presented self-similar affine
+groups over polynomial rings:
+- transcendental parameters become extra tree coordinates;
+- the 1/m denominators become units of `Z_p`.
+
+So the self-similar (Röver–Nekrashevych) route to BH is limited not by linearity but by
+residual finiteness. Every self-similar host is residually finite, so inputs that are not
+residually finite, or that force such hosts, need Thompson-like full groups
+(`z-wr-psl2-z-half-is-not-residually-finite`).
