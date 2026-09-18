@@ -161,3 +161,17 @@ None recorded before 2026-09-17.
    2.10. A host for `n >= 3` needs aperiodic, non-normalizing (shell-type) germs whose finite products contain
    finite-index subgroups of `SL_3(Z)`. In the VA-pattern regime the germ groups also carry no `BS(1,2)`, so
    the distortion required by O4 cannot live in them either. `n = 2` stays open outside `VA`.
+
+7. **Adelic covering lifts with deck group `Q^n`, 2026-09-17: dead for the natural affine part.**
+   `adelic-deck-lifts-exclude-affine-q-n-and-fp-bases` (lane gq-adelic), via
+   `fg-groups-with-normal-q-n-have-non-fp-quotients`. Take the adelic analogue of `R -> S^1`, the covering
+   `A^n -> (A/Q)^n` with deck group `Q^n`. The deck group is a normal copy of `Q^n` in any lift group, which gives
+   two facts:
+   - a finitely generated lift group has monodromy in some `GL_n(Z[1/m])`, so it never carries `Aff_n(Q)` with the
+     deck group as translations;
+   - its base is never finitely presented, so a finitely presented Thompson-type group of the solenoid has no
+     finitely generated lift group.
+
+   Together with attempt 1, which kills lifts whose deck group is `Q`-free, covering lifts supply the divisible
+   unipotent part only in a finitely generated lift group over a base that is not finitely presented, and only
+   through divisible subgroups that are not contained in the deck group.
