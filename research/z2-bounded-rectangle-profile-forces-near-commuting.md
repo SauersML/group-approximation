@@ -110,3 +110,16 @@ non-permutation unitary construction.
     defects: it must change both generators, as the abelian path cuts do. For general permutation
     pairs, the open step is a local two-sided surgery around non-commuting cone points whose cost
     is bounded by the profile.
+- **w8-124, 2026-09-18 — two-sided strip cut for abelian dipoles. Landed: F(K) <= 24 K on dipole covers.**
+  See `torus-dipole-covers-rank-distance-linear-in-profile`.
+  - **Method.** Cut the row circle of the shortest lattice direction at the two charged rows, and reglue each
+    arc into its own torus. This redirects `2 lambda_1` moves. Then cancel the seam charges along a
+    digital line of `lambda_1` squares. In total `6 lambda_1` sites change, so `dist <= 6|A| lambda_1 <= 24 K`.
+  - **Result.** This replaces the `3072 K^4` of the dipole case. It is linear, as the data had
+    suggested.
+  - **Computation.** Checked assertion by assertion on 4342 exhaustive cases (`N <= 20`). The construction
+    has `dist/K <= 4.5`, and the best of all two-cuts has `dist/K <= 1.67` (`N <= 16`).
+  - **Open.** Two steps remain:
+    - several charges, where the merged clusters are not neutral; a cost of `O(|A|(n lambda_1 + n^2))` looks
+      plausible for the thin case;
+    - non-abelian fibres, where band cancellation needs the ordered product of the charges to be trivial.

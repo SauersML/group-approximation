@@ -1,0 +1,25 @@
+free rank-2 log2|F/P_k| = [ 2, 5, 10, 18, 32, 55 ]
+Syntax warning: Unbound global variable in pro2_structure.g:11
+  g:=List(GeneratorsOfGroup(G),x->Image(P,x));; L:=PCentralSeries(I,2);;
+                                        ^
+Syntax warning: Unbound global variable in pro2_structure.g:14
+    gg:=List(g,x->Image(h,x)); A:=Group(gg[1],gg[3]); B:=Group(gg[2],gg[4]);
+                        ^
+n=3 k=1 log2|G|=4 log2|A|=2 log2|B|=2 |AcapB|=1 ord=[ 2, 2, 2, 2 ]
+n=3 k=2 log2|G|=10 log2|A|=5 log2|B|=5 |AcapB|=1 ord=[ 4, 4, 4, 4 ]
+n=3 k=3 log2|G|=20 log2|A|=10 log2|B|=10 |AcapB|=1 ord=[ 8, 8, 8, 8 ]
+n=3 k=4 log2|G|=36 log2|A|=18 log2|B|=18 |AcapB|=1 ord=[ 16, 16, 16, 16 ]
+n=3 k=5 log2|G|=64 log2|A|=32 log2|B|=32 |AcapB|=1 ord=[ 32, 32, 32, 32 ]
+n=3 k=6 log2|G|=110 log2|A|=55 log2|B|=55 |AcapB|=1 ord=[ 64, 64, 64, 64 ]
+n=5 k=1 log2|G|=4 log2|A|=2 log2|B|=2 |AcapB|=1 ord=[ 2, 2, 2, 2 ]
+n=5 k=2 log2|G|=10 log2|A|=5 log2|B|=5 |AcapB|=1 ord=[ 4, 4, 4, 4 ]
+n=5 k=3 log2|G|=20 log2|A|=10 log2|B|=10 |AcapB|=1 ord=[ 8, 8, 8, 8 ]
+n=5 k=4 log2|G|=36 log2|A|=18 log2|B|=18 |AcapB|=1 ord=[ 16, 16, 16, 16 ]
+n=5 k=5 log2|G|=64 log2|A|=32 log2|B|=32 |AcapB|=1 ord=[ 32, 32, 32, 32 ]
+n=5 k=6 log2|G|=110 log2|A|=55 log2|B|=55 |AcapB|=1 ord=[ 64, 64, 64, 64 ]
+n=7 k=1 log2|G|=4 log2|A|=2 log2|B|=2 |AcapB|=1 ord=[ 2, 2, 2, 2 ]
+n=7 k=2 log2|G|=10 log2|A|=5 log2|B|=5 |AcapB|=1 ord=[ 4, 4, 4, 4 ]
+n=7 k=3 log2|G|=20 log2|A|=10 log2|B|=10 |AcapB|=1 ord=[ 8, 8, 8, 8 ]
+n=7 k=4 log2|G|=36 log2|A|=18 log2|B|=18 |AcapB|=1 ord=[ 16, 16, 16, 16 ]
+n=7 k=5 log2|G|=64 log2|A|=32 log2|B|=32 |AcapB|=1 ord=[ 32, 32, 32, 32 ]
+n=7 k=6 log2|G|=110 log2|A|=55 log2|B|=55 |AcapB|=1 ord=[ 64, 64, 64, 64 ]

@@ -29,6 +29,19 @@ It covers the torus of free phases (after gauging the star at vertex 1 to be rea
 | log | run | outcome |
 |---|---|---|
 | `k4_full_torus.log` | `m = 4`, whole torus `[0, 2pi)^3`, no symmetry used, `n0 = 4` | ALL CLOSED: 584 boxes, 740 SDP solves, smallest half-width 0.196, 12 s |
+| `k5_partial_runs.log` | `m = 5`, `n0 = 3`, first phase in slice `[i pi/32, (i+1) pi/32]` for `i = 0, 1, 2, 6, 7, 11, 12` (7 of the 16 slices of `[0, pi/2]`), other five phases over `[0, 2pi)^5` | each ALL CLOSED: 28,538-31,685 boxes and 40,994-45,402 SDP solves per slice, 943-1,040 s per slice; smallest box-centre value 7.255 (target 6.928) |
 
 Numerical context: the minimum over the torus of `min_t ||K||_1` is `2 + 2 sqrt3 = 5.4641`, at flux
 `(2pi/3, 2pi/3, 2pi/3)`, found by a `12^3` grid of SDPs. The target is `3 sqrt3 = 5.1962`.
+
+**m = 5 status.** Slices `3, 4, 5, 8, 9, 10, 13, 14, 15` are not yet certified. To finish, run
+
+```text
+./k5lane.sh 16 3 4 5 8 9      # lane A
+./k5lane.sh 16 10 13 14 15    # lane B
+```
+
+Each slice takes about 16 minutes on one core. The lanes resume from their checkpoints after the
+1200 s per-try wall limit. The symmetry reduction to `theta_23 in [0, pi/2]` is explained in
+`research/hermitian-edge-trace-norm-clique-inequality-k5.md`. Slice 0 was run by an earlier
+launcher; it used the same algorithm without checkpoints, and its log tag is `s0`.

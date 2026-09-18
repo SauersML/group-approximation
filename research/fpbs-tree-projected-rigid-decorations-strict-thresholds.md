@@ -181,3 +181,31 @@ established claims:
   applies to these graphs, and the route `fpbs-tree-projected-via-critical-sphere-bubble`
   reduces the root to a critical estimate. **Where it stops:** that estimate is open,
   and rigidity gives it no extra structure.
+* **Chain-number caps and an exact pointwise generic row (2026-09-18).**
+  `fpbs-tree-projected-chain-deficient-slot-second-moment` (ESTABLISHED,
+  computer-assisted, unreviewed) replaces the non-AP gain `m - 2` by `m - chi(D)`, where
+  `chi(D)` is the least number of `gamma`-chains of `D` over `gamma != 0`. It bounds
+  Pollard pairs by `m (m - chi)` and certifies the pointwise generic row exactly, by
+  weak LP duality over the parameter box. For rank two, `v = 2` and rigid decorations,
+  it proves `p_c < p_u` in these cases:
+  * `m = 9` with `chi >= 3`, i.e. neither letter set is a union of two progressions
+    with a common difference;
+  * `m = 8, 7, 6` with `chi >= 4`;
+  * `m = 5` with Sidon letter sets.
+
+  **Where it stops:**
+  * `m = 9, chi = 2` has exact ratio `1.00535`, and this is the whole remaining
+    `m = 9` rigid case. `(8,3)` gives `1.0027`, `(4,3)` gives `1.0035`, and `(3,2)`
+    (which includes `S_rig`) gives `1.0573`.
+  * The step proposed above, a pointwise `W(h)` with `y(h) = a + b (r_{D_a} + r_{D_b})(h)`,
+    fails when `W` is bounded pointwise by the same exact counts `R_kappa(h + jc)`: the
+    optimum is `b = 0` with ratio `1.0053` at `m = 9`. The generic part of `W` is about
+    `2.10 · 3w^2` per letter against parameter coefficients of at most `0.011 · 3w^2`. The relevant
+    mass is order-4 (`1_D * 1_(-D) * 1_D * 1_(-D)`), which one parameter per term cannot
+    carry.
+
+  Per decoration, the exact `m = 9` transfer is `0.973-0.979` for the `chi = 2`
+  decoration `{0..7,9}, {0..6,8,9}`, so the loss is in the uniform count. Next step for
+  `m = 9, chi = 2`: `r_D(g) = 7` forces `g = ±gamma_D`, so couple the autocorrelation
+  caps at `h - c, h, h + c` (at most one of them equal to `7` per sign) and test the
+  cut box in float.

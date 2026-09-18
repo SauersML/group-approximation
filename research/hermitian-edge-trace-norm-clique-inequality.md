@@ -58,6 +58,13 @@ certificate on the complex sphere. What is left:
   (with a 4-fold symmetry reduction). About 41,000 SDP solves cover one sixteenth of the reduced
   domain, and the run is in progress.
 
+- *`m = 5`, partial certificate (w6-078, later on 2026-09-18).* The reduced domain `theta_23 in [0, pi/2]`
+  is cut into 16 slices. Slices `0, 1, 2, 6, 7, 11, 12` are certified (`ALL CLOSED`), and the smallest
+  box-centre value is `7.255`, against `6.928` (`hermitian-edge-trace-norm-clique-inequality-k5`). The other
+  nine slices are a mechanical run of the landed `k5lane.sh`, about 2.5 CPU-hours. The route
+  `hermitian-edge-trace-norm-clique-inequality-by-size` assembles (UCI) for every `m`, and it is complete
+  once `m = 5` is.
+
 **Known.** `m = 2`: `||C||_1 = 2|C_12|`. `m = 3`: `tr C = 0` gives `||C||_1 >= sqrt2 ||C||_F >= 2 sqrt3`,
 tight at flux `pi/2`. Frobenius alone gives `sqrt(2m(m-1))`, which is below `sqrt3 (m-1)` for `m >= 4`.
 Since `tr C = 0`, `||C||_1 >= 2 ||C||_op`, but `||C||_op` can be as small as about `sqrt(m-1)` for

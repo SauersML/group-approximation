@@ -112,3 +112,11 @@ settle `c_d = 2d/(sqrt3 pi) + O(1)`.
    with about 41,000 SDP solves, and the full run is in progress. If `m = 5` closes, Theorem C gives
    (**) for every h-perfect graph, including every perfect graph. The non-clique, non-hole facets would
    then be all that remains.
+7. *`K_5` partly certified (w6-078, 2026-09-18).* The same branch-and-bound run on `T^6` (the first
+   phase reduced to `[0, pi/2]` by symmetry, in 16 slices) has certified 7 of the 16 slices:
+   `0, 1, 2, 6, 7, 11, 12`. Each slice needs about 42,000 SDP solves, and the smallest box-centre value is
+   `7.255 > 6.928`. The partial result is recorded in `hermitian-edge-trace-norm-clique-inequality-k5`.
+   `hermitian-edge-trace-norm-clique-inequality-by-size` assembles (UCI) for all `m` from the `m <= 3`, `K_4`,
+   `K_5` and `m >= 6` nodes. **Next step:** run `k5lane.sh 16 3 4 5 8 9 10 13 14 15` (about 2.5 CPU-hours,
+   resumable), then mark `K_5` ESTABLISHED. That gives (**) for all h-perfect and all perfect graphs, by
+   Theorem 5(b) of `hermitian-edge-trace-norm-k4-free-h-perfect-proof`.
