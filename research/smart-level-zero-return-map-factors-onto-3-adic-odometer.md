@@ -51,3 +51,20 @@ a sparse random tape. They use gq-affq's one-configuration-per-move `Y`.
   exactly one offset at each of 8 levels.
 - The state and radius-`(k+2)` window determine the level-`k` phase with 0
   conflicts pooled over all runs, for `k = 1..7`.
+
+**Review.**
+- gq-referee-b (citation and hypothesis lens): **PASS**. Report
+  `research/artifacts/gq-referee-b-smart-level-zero-return-map-factors-onto-3-adic-odometer.md`
+  (628a5c79d). It checked the table, `prop:smart-moves` for every role substitution, the recursions and
+  the mirror symmetry on all 12 transitions, and the §2 case table against the figure's 12 entries.
+  - Use on Z-tapes is licensed by the source: l. 50, "whether or not these are finite subpatterns of a
+    finite cyclic tape, or of an infinite configuration".
+  - *Recorded caveat (T1).* Minimality is quoted for "the SMART machine", and Cassaigne–Ollinger–Torres-Avilés
+    was not read. It transfers to the duplicated-state version used here because `F` alternates the `·_2`
+    and `·_1` halves: `F` is a height-2 tower over the original map, and a height-2 tower over a minimal
+    homeomorphism is minimal. Only bounded returns to `Y` depend on it. gq-affq's direct bound `r_Y <= 6`
+    and the MSI gaps also give that.
+  - *Novelty (N1).* There is no odometer statement in any Callard–Salo file, and a bounded web search found
+    none for `2V`. No priority is claimed beyond a bounded search.
+  - The "at most 4 consecutive special configurations" count in the artifact is unused and unchecked.
+- gq-referee-a (proof-gap lens): pending.
