@@ -108,3 +108,23 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
       sits inside `A`.
     - Option 2: prove continuity of the matched-pair transducer action of `H4(n)` on
       `(Z_2 * Z_2)`-words with `Z_2` exponents.
+- **w11-053 (question (a): the torsion regime is a family of tree lattices).** Landed
+  `higman-torsion-generator-quotients-factor-through-tree-lattices` (claim and proof route).
+  - Universality. Every quotient of `H4(n)` whose four generators are torsion, with lcm of orders
+    `m`, has `m | n^m - 1` and factors through `Gamma(n,m) = H4(n)/<<a^m,b^m,c^m,d^m>>`.
+  - Structure. `Gamma(n,m) = K1 *_A K2 = L1 *_B L2`, with vertex groups `Z/m ⋊_n Z/m` and
+    `A ≅ B ≅ Z/m * Z/m` of index `m`. It is a uniform lattice in `Aut(T_m) x Aut(T_m)`, and its
+    generators have order exactly `m`. Item 4 here (`D_oo x D_oo`) is the case `m = 2`, and the
+    base-two torsion lemma is the arithmetic fact that `m | 2^m - 1` forces `m = 1`.
+  - Reduction for (a) with `R = [a,c]^2`. If `A/<<R>>` embeds in `K_i/<<R>>` for `m = 2^e` and
+    infinitely many `e`, then `a` has infinite order in `H4(3)/<<[a,c]^2>>`. This holds when
+    `m | n + 1` (Kaloujnine–Krasner coordinates), so `Gamma(3,4)/<<[a,c]^2>>` is an amalgam and `a`
+    has order 4 there. At `m = 8, 16` the induced representation is certified not to kill `R`.
+  - Data. `Gamma(3,2^e)` is virtually torsion-free for `e <= 5`: all four vertex groups inject into
+    a finite 2-quotient. In `Gamma(3,2^e)/<<[a,c]^2>>`, `ord(a) = 2^e` for `e <= 5`.
+  - Dead: short self-similar models. All 8450 cyclically symmetric wreath recursions on `T_2` with
+    sections of length at most 2 give `ord(a) <= 2` at level 10. By universality, every
+    finite-level image is a quotient of some `Gamma(3,2^e)`.
+  - Next: prove a Freiheitssatz for the proper power `[a,c]^2` over `K1 = G(a,b) *_<b> G(b,c)` for
+    `m = 2^e >= 8`, that is, `A/<<R>>_A` embeds in `K1/<<R>>_K1`. With the proof's Lemma 6.1 and
+    Corollary 6.2 this settles infinite order in (a). Amenability of `A` stays open.
