@@ -126,11 +126,8 @@ theorem extremalArcEnd_kept_of_countP_eq_zero (K : PocketFaceSet D eps X lo hi)
   intro x hx
   have h : ¬((!P10ExtremalResidual.keptPred K r x) = true) :=
     (List.countP_eq_zero.mp hl) x hx
-  cases hk : P10ExtremalResidual.keptPred K r x with
-  | false =>
-    rw [hk] at h
-    exact (h rfl).elim
-  | true => rfl
+  revert h
+  cases P10ExtremalResidual.keptPred K r x <;> decide
 
 /-- **A class removing no arc dart meets both arcs through one end.** -/
 theorem extremalArcEnd_both_of_removed_eq_zero (K : PocketFaceSet D eps X lo hi)
