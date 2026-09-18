@@ -281,3 +281,43 @@ instead of `4`) changes no conclusion.
   higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
   pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
   OPEN.
+
+- **census-computation, swarm-0917 (swarm-0917-w10-w10-ptl-break), 2026-09-18:
+  trap-relator shadow of `P_{2,2}(J)` -- Loewy length is not the invariant;
+  every abelian-orbit model dies.**
+
+  *Proposal.* Take the finitely presented shadow `Gamma_trap`: seven
+  involutions `x_12(S), x_12(T), x_21(1), x_34(1), x_43(S), x_43(T), x_13(1)`
+  with the three trap relations, Levi commutation and eight unipotent
+  commutations. All of these hold in `P`, where the head `h` survives. Search
+  its finite quotients for one that keeps `h`, starting with Loewy-3 models,
+  which the w9 entry left open.
+
+  *Result.* `double-parabolic-head-dies-on-commuting-right-orbits`
+  (established, route `-proof`, `requires: []`).
+  - In any group satisfying the trap relations, suppose the right `d`-orbit
+    `Z` of `x_13(1)` is finite, where `d_g x = x g x g`, and suppose the left
+    and right `d`-maps commute on `Z` (equivalently, certain conjugates of
+    orbit elements commute). Then `h = 1`.
+  - So every finite model in which the normal closure of `x_13(1)` is abelian
+    kills the head, whatever its Loewy length. This includes permutation
+    models and the finite two-step models.
+  - Hence an LEF witness for `P_{2,2}(J)` must make two conjugates of orbit
+    elements fail to commute in its finite target, although in `P` they lie
+    in the abelian group `n(M_2(J))`.
+  - By the same theorem, `Z` is infinite in `P`.
+
+  *Invariant.* The finite orbit `Z` with the commutation condition (C).
+
+  *Step where it dies.* The pigeonhole: `Lambda_t Lambda_s = id` on the
+  finite set `Z` forces `Lambda_s Lambda_t = id`.
+
+  *Evidence, bounded searches only.*
+  - Permutation quotients of `Gamma_trap` of degree 4 and 6 are UNSAT.
+  - Exact `GF(2)` Loewy-3 census over Laurent-quotient Levi layers: 12167
+    tensor triples and 3000 direct-sum triples, 0 head-keeping models.
+
+  *What is left.* If every finite quotient of `Gamma_trap` kills `h`, then
+  `P_{2,2}(J)` is not LEF, which is a four-index witness. The missing step is
+  to show that the unipotent commutations force (C) on all of `Z`. The claim
+  stays OPEN.
