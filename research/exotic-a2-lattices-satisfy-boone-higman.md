@@ -88,3 +88,11 @@ proofs, unreviewed).
   of the 65 exotic CMSZ buildings of order 3, and all their subgroups.
 - **Still open.** This node stays OPEN for exotic lattices with torsion, and for groups that
   are type preserving with no type-transitive overgroup.
+
+**Update (2026-09-18, final).** The type-preserving case is also done:
+`type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups` (lane proof).
+- **Covered.** Every lattice acting freely on the vertices of an exotic Ã₂ building by type
+  rotating automorphisms now embeds in a finitely presented simple group
+  (`vertex-free-type-rotating-a2-groups-satisfy-boone-higman`, ESTABLISHED as lane proofs).
+- **Still open.** Lattices with torsion, that is, with nontrivial vertex stabilizers. The
+  gap is exactly the non-free case.

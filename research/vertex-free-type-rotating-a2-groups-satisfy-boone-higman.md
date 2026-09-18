@@ -10,7 +10,12 @@ artifacts:
   - research/artifacts/hl-bh-a2-boundary-hosts-2026-09-14.md
 ---
 
-**OPEN.** Let `B` be a locally finite thick Ã₂ building and `Γ` a group of type rotating
+**ESTABLISHED** (2026-09-18, bh-groupoid; lane proofs, not independently reviewed): see the
+final update below. The type-transitive and type-preserving cases are
+`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups` and
+`type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups`.
+
+**Statement.** Let `B` be a locally finite thick Ã₂ building and `Γ` a group of type rotating
 automorphisms of `B` acting freely on the vertices with finitely many orbits. Then `Γ`
 embeds in a finitely presented simple group.
 
@@ -51,3 +56,12 @@ with torsion, or not type rotating, are not covered.
 (`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`) is ESTABLISHED, as lane
 proofs. This node remains OPEN only for type-preserving groups with no type-transitive
 overgroup; see frontier §6 for a sketched route.
+
+**Final update (2026-09-18, bh-groupoid).** ESTABLISHED, by case distinction on the
+type-rotation character `θ`:
+- **θ ≠ 0:** `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`;
+- **θ = 0:** `type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups`.
+
+The second reruns the Li–Matui embedding on the phase-0 reduction, with the skew-product
+group `L/nZ²` for the index-3 degree lattice `L`. Everything is lane proofs plus imports
+pinned at source, none independently reviewed.
