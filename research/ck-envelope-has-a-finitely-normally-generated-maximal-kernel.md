@@ -2,8 +2,10 @@
 rg: 2
 id: ck-envelope-has-a-finitely-normally-generated-maximal-kernel
 kind: claim
+refuted_by: [poisoned-ck-envelopes-have-no-fng-maximal-kernel]
 title: The finitely presented normal-generator envelope has a maximal proper normal subgroup that is finitely normally generated
 distinct_from:
+  poisoned-ck-envelopes-have-no-fng-maximal-kernel: that is the counterexample to this universal statement -- for every core and normal generator, an envelope supplied by Chatterji--Kassabov (and a marked Steinberg cover over it) all of whose nontrivial quotients have unsolvable word problem; this is the refuted assertion that every such envelope has a finitely normally generated maximal kernel.
   finite-infranormal-subgroup-is-normal: that is the elementary fact that a FINITE infranormal subgroup is normal, about conjugation preserving cardinality; this asks for a finite NORMAL GENERATING SET of a maximal normal subgroup, which is a condition on generating data rather than on the subgroup's size -- the kernel here is expected to be infinite.
   fp-quotient-iff-kernel-finitely-normally-generated: that is the general equivalence between finite presentability of a quotient and finite normal generation of its kernel, true for every finitely presented group; this asserts that one particular class of envelopes actually HAS such a kernel at a maximal element, which is the open existence statement the equivalence turns the conjecture into.
   boone-normal-closure-of-t-finitely-generated: that concerns the Boone HNN tower and finite generation of a normal closure AS A SUBGROUP; this concerns finite NORMAL generation of a maximal normal subgroup of an elementary matrix group, a different group, a different construction and a strictly weaker finiteness condition.
@@ -285,3 +287,36 @@ argument.
       proof must use decidability of the marking at some step.
     - *Credit.* The same mechanism was first posted on the bus by `c-ckmax`,
       via a Heisenberg shift group; those nodes never entered the graph.
+
+11. **Inverter: the biography of a counterexample becomes a construction.**
+    *The statement as written is false for every `(S, s)`.* See
+    [[poisoned-ck-envelopes-have-no-fng-maximal-kernel]].
+
+    **The construction.**
+    - Written into the commutators `[b, a^-n b a^n]` of a shift-invariant Heisenberg group, a pair
+      of recursively inseparable sets gives a computably presented group `Q_k` with a central `c`
+      of order `k`. Every quotient keeping `c` alive has unsolvable word problem
+      ([[inseparable-heisenberg-shift-group-poisons-its-center]]).
+    - Feed `S *_{s=c} Q_k` to CK Theorem 3 with normal generator `s`. The output `Gamma` is
+      finitely presented, has property (T), contains `S`, and has `Gamma = <<s>>`.
+    - Core survival keeps `c = s` alive in every proper quotient. So every nontrivial quotient is
+      undecidable and no maximal kernel is even r.e.
+    - The same holds for the marked Steinberg cover with this `Gamma` as its marking.
+
+    **Where the old approaches die, and what survives.**
+    - This corrects Attempt 4. The effective maximal kernel is not a different target: it is a
+      **necessary prerequisite** that can fail on its own. It fails exactly when a core element is
+      WP-poisoned in some finitely generated subgroup.
+    - Every approach that uses only the envelope's hypotheses dies at the final
+      `Gamma/M`-finitely-presented step. Those hypotheses are finite presentation, (T), normal
+      generation, perfectness, no finite quotients, and a Steinberg/elementary cover over an
+      arbitrary finitely presented marking.
+    - A tenable restatement must name the specific marking of
+      `boone-higman-via-ck-maximal-kernel` (Clapham's decidable envelope, then a derived-subgroup
+      host `T`). It must split into (a) some simple quotient of that cover has solvable word
+      problem, and (b) such a quotient is finitely presented.
+    - The existential version ("some envelope of `S` has an fng maximal kernel") is merely
+      Boone--Higman for `S` again, taking the fp simple envelope itself with `M = 1`. So only the
+      specific-object version carries content.
+    - Whether `U = Z[T]<p,q>/(p(1-g)q-1)` or `T` for the clean marking contains a poisoned
+      element is open.
