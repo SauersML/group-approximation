@@ -61,3 +61,17 @@ same kernel makes `A/K` not recursively presented (as in
    value `w(g)` normally generates `Γ`. That only re-derives co-r.e. Membership
    in `J_k(Γ)` needs a certificate for a universal statement, and no general
    one was found.
+6. **Closure principle (bh-free-08, 2026-09-18).** *Kills whole classes.*
+   `homeomorphism-group-mixed-identities-depend-only-on-closure`: for
+   `Γ ≤ Homeo(X)`, `J_k(Γ)` is determined by the closure of `Γ`.
+   - Cantor-dense groups are MIF. This covers `V`, `nV`, Röver–Nekrashevych groups,
+     rational similarity groups containing `V_d`, `VA` and twisted Brin–Thompson groups.
+   - Dense subgroups of `Homeo_+` of the interval or circle with semialgebraic generators
+     have `J_k` decided by Tarski–Seidenberg. This covers `F`, `T`, Stein, algebraic
+     irrational-slope and piecewise-projective groups.
+   - What remains: a witness must have no faithful action with such a closure. It needs
+     either non-tame generators on a 1-manifold (e.g. `TA`, whose germs come from Brin's
+     group `A`; untested), or an action whose closure preserves more than an order.
+   - One-variable universal sentences are fragile: they do not pass to overgroups, while
+     cyclic-subgroup patterns do (`fp-decidable-group-whose-e-is-not-recursively-presented`).
+     So a witness cannot simply be an envelope of a non-simple example.

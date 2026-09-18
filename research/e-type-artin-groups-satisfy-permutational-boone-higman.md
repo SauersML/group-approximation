@@ -42,3 +42,5 @@ for every spherical-type Artin group.
      direct products. The permutational form came later, from
      `char-zero-linear-groups-satisfy-permutational-boone-higman` (2026-09-13),
      through `spherical-artin-groups-satisfy-permutational-boone-higman`.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS conditional. The same dependency as `spherical-artin-groups-satisfy-permutational-boone-higman`. The "independent review PASS" above is the internal review-pbh lane of 2026-09-13, not an external review. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.

@@ -151,3 +151,113 @@ the Kaplansky zero-divisor conjecture."
    - Next: `S - S` meeting `Dist(Gamma)`, e.g. `1 + a^{10} + b`.  Use the long
      exterior arc (many consecutive flanked blocks in `(S - S) ∩ Dist`) or
      the coefficients along the walk.
+10. **Few-line a-supports in Steenbock's graphs (proposed established; `rips-segev-steenbock-few-line-a-supports-are-regular`).**
+   - Steenbock's explicit gluing (arXiv:1307.0981) is reconstructed there.
+     The `b`-edges are in bijection with the edges of a girth-`> 41`
+     covering `Phi` of the bouquet of four circles.  Every vertex has at most
+     one `b`-edge in and one out, and `b`-runs have at most 2 edges.
+   - Both inputs of the chain-criterion example of attempt 9 hold.
+     `gamma >= girth(Phi) >= 42`, and `v_{1,0} -> v_{1,10}` would be a loop of
+     `Phi`.  So `1 + a^{10} + b` and every two-layer element of span
+     `<= 89` are regular.
+   - Stronger: a backtrack-free path projects to a non-backtracking walk in
+     `Phi`.  So the `q(42) = 11` hops of a chain lie on pairwise distinct
+     lines of `L_S = {i : (S - S) ∩ Dist_i != ∅}`.
+   - Hence `beta in k[a^S <b>]` is regular whenever `|L_S| <= 10`, for any
+     number of layers.  In particular this holds for every `a`-span
+     `< 10^{51}`.
+   - Next: `|L_S| >= 11`, e.g. contiguous `S` of span `>= 10^{51}`.  Chains
+     through 11 distinct lines exist, so the coefficients of `alpha beta = 0`
+     must be tracked along the walk.
+11. **Eleven-point a-supports in Steenbock's graphs (proposed established; `rips-segev-steenbock-eleven-point-a-supports-are-regular`).**
+   - Steenbock's rows are super-increasing: `min Dist_r^+ = 10^{5r-4}`
+     exceeds the sum of all larger elements of lower rows.
+   - So one pair of `S` per line of `L_S` gives a forest on `S`.  A cycle
+     would be a signed sum of distinct-row differences equal to zero.  Hence
+     `|L_S| <= |S| - 1` for every finite `S`.
+   - With attempt 10: every `beta in k[a^S <b>]` (or `k[<b> a^S]`) with
+     `|S| <= 11` is regular, whatever the spread of `S`, for any number of
+     layers and any field.
+   - A zero divisor of this shape therefore needs at least 12 distinct
+     `a`-exponents and `a`-span `>= 10^{51}`.
+   - The support method stops at some `S` with `|S| <= q(gamma) + 1 <= 25`
+     (12 if `gamma = 42`).  A shortest relator cycle gives a chain there, so
+     the coefficients must enter beyond it.
+12. **Support-method threshold is exactly q(gamma) (proposed established; `rips-segev-support-method-threshold-is-exactly-q-gamma`).**
+   - In an `(N_S, N_J)`-chain of length `q(gamma)` the hop lines are
+     pairwise distinct.  A repeated hop line closes the segment between the
+     two hops into a cycle of free-product length `<= 2(q - 1) < gamma`.
+     No girth or looplessness hypothesis on `Phi` is used.
+   - So `|L_S| < q(gamma)` gives regularity, and for Steenbock's graphs every
+     `beta in k[a^S <b>]` with `|S| <= q(gamma)` is regular.  The previous
+     silent support has `|S| = q(gamma) + 1`, so the `12..q(gamma)` gap is
+     closed.
+   - `gamma` depends on `Phi`: `g <= gamma <= 2g`.  `gamma = 42` is realized
+     by the Cayley graph of a finite quotient of `<x | (x_4 x_1)^{21}>`
+     (Newman spelling theorem, Wise residual finiteness).  For that `Phi`,
+     12-point supports sit exactly at the threshold.
+13. **One-copy configurations carry no zero divisors (proposed established; `rips-segev-one-copy-configurations-carry-no-zero-divisors`).**
+   - This is the coefficient contradiction on the `Gamma`-local configuration,
+     for every support, including the silent 12-point `S`.
+   - Suppose `alpha (u(a) + w(a) b) = 0` with `alpha, w != 0`.  Then
+     `alpha u` and `alpha w` cannot both lie in one translate of `g(V(Gamma))`.
+   - Proof.  Exact encoding (the witness node's Lemma 1, extended to
+     `a`-corrections) gives line ports `P_i = f_i u` in `In_i` and
+     `Q_i = f_i w` in `Out_i`, matched along `b`-edges.
+     `P_i Q_j = P_j Q_i` and row separation force
+     `supp P_i = supp Q_i ⊆ {0, C_i}`.  The `x_1`/`x_2` edges leaving `0`
+     and `C` then hit ports `I_1`/`I_2`, which is absurd.
+   - This answers the port-data obstruction: the balanced configuration
+     `Gamma` has no coefficients.  A control with all lines in one row does
+     have solutions, so row separation is essential.
+   - Next: relations spread over two or more translates of `g(V)` glued
+     along pieces, which is van Kampen-type coset configurations.
+14. **Two-copy configurations carry no zero divisors (proposed established; `rips-segev-two-copy-configurations-carry-no-zero-divisors`).**
+   - Suppose `alpha (u(a) + w(a) b) = 0` with `alpha, w != 0`.  Then
+     `alpha u` and `alpha w` cannot both lie in the union of two translates
+     of `g(V(Gamma))`, over any field, in `k[K]` and in `k[G]`.
+   - Gluing lemma.  Between two links of two copies the van Kampen diagram
+     has no faces, since each face would have boundary `< 8 < gamma`.  So two
+     copies meet in one `b`-bridge only, or in at most three `<a>`-cosets
+     that are pairwise joined by shared `b`-runs (rigidity plus
+     `girth(Phi) > 12`).
+   - Ports.  On clean cosets the one-copy port constraints hold verbatim.
+     Two clean active lines in one copy have dirty, distinct flanking lines
+     meeting the same other copy, which the gluing lemma forbids.  So at most
+     `2 + 3` cosets are active.
+   - Their port graph closes a positive relation `b a^{n_0} ... b a^{n_{L-1}}`
+     with `L <= 5`, which is too short to hold in `K`.
+   - Exhaustive `F_2`/`F_3` port searches on two-copy models with separated
+     rows found no solution for any gluing.  A single-row control does have
+     solutions.
+   - Three copies reduce to one gap, *mixed flanks*: the two flanking lines of
+     a clean line are dirty through different copies.  Excluding them leaves
+     `<= 12` active cosets, and `24 < 5 gamma/8 - 1` still closes the proof.
+     For `N >= 4` copies the count exceeds 12.  Since the copies cover `K`,
+     the `N`-copy theorem for all `N` is the whole `b`-degree-one case.
+   - Next: a mixed-flank lemma for three copies, then a Greendlinger-type
+     bound on the number of copies a short port cycle can cross, for general `N`.
+15. **Three-copy configurations carry no zero divisors (proposed established; `rips-segev-three-copy-configurations-carry-no-zero-divisors`).**
+   - *Rank-one lemma.*  Suppose two active cosets have port supports whose
+     difference sets meet only in `0`.  Then `P_T Q_T' = P_T' Q_T` holds
+     coefficientwise, so `P_T` is a scalar multiple of `Q_T` and `u = c w`.
+     Then `(alpha w)(c + b) = 0`, which is impossible.  This holds over any
+     field and in any group.
+   - So two clean active cosets on different lines are contradictory,
+     whatever the number of copies.  Each copy has at most one clean active
+     coset, and the mixed-flank lemma of item 14 is not needed.
+   - Three copies then have at most `3 + 9` active cosets.  Their port cycle
+     is a positive relation of length `<= 24 < 5 gamma/8 - 1`, which is
+     impossible.  This settles three copies, in `k[K]` and in `k[G]`.
+   - For `N` copies it holds whenever `3N^2 - N <= 5 gamma/8 - 1`.
+   - *Shell lemma (toward `N >= 4`).*  Every port cycle has a Greendlinger
+     shell in some copy `C_M`.  The shell arc crosses 11 distinct active
+     cosets on distinct lines of `C_M`, and at most one of them is pure (rank
+     one again).  Each impure one links `C_M` to another covering copy, at
+     most 3 per copy.  So at least 4 covering copies differ from `C_M`.
+   - For `N = 4` this forces every shell copy outside the covering, with all
+     11 arc cosets dirty.  For girth `g` it covers `N` up to about `5g/48`,
+     linear in the girth.
+   - Next: an extremal-copy lemma (some copy of a minimal covering meets the
+     others in `<= 3` links) and a rank-one removal of that copy, which would
+     give induction on `N`.  Counting alone cannot handle every `N`.

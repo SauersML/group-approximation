@@ -14,12 +14,27 @@ distinct_from:
 artifacts:
   - research/artifacts/bh-metabelian-products-2026-09-12.md
   - research/artifacts/bh-quasi-linear-pbh-2026-09-13.md
+  - research/artifacts/gq-bh-bh-verify-metabelian-report.md
 ---
 
 **ESTABLISHED (2026-09-13)** through `fp-metabelian-bh-via-quasi-linear-pbh`
 (lane `bh-metabelian`). **Independently reviewed: PASS** (`research/artifacts/review-metabelian-bh-2026-09-13.md`, 2026-09-13). Every finitely presented
 metabelian group embeds in a finitely presented simple group. In fact every
 finitely generated metabelian group lies in the permutational class `B_A`.
+
+**Adversarial re-check (2026-09-18, lane `bh-verify-metabelian`): the chain holds,
+modulo standard inputs.** The trigger was that the literature (arXiv through
+2609.01868) still lists BBMZ Problem 5.3(7) as open. So main has a new theorem, checked
+only inside this repository, not an error. Re-read at source:
+- Wehrfritz 1975, Corollary 1.2;
+- Zaremsky arXiv:2405.09722, Theorem 1.1 and Definition 2.1;
+- BFFHZ arXiv:2503.21882, Theorem C, Remark 3.5 and l.203.
+
+The parameter-coordinate states were re-derived. The remaining trust inputs (textbook
+commutative algebra, Weibel's K-book pages, Zaremsky 2405.18354 Prop. 5.5) are listed in
+`research/artifacts/gq-bh-bh-verify-metabelian-report.md`. No priority is claimed: the
+novelty search is bounded to arXiv, and Scholar and MathSciNet were unreachable. An
+expert human read is advised before any external claim.
 
 - **How.** Each characteristic-`p` factor now sits inside a finitely presented
   self-similar affine group over `F_p[s_1..s_k]`

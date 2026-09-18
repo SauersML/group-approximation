@@ -40,3 +40,11 @@ invariant of `P` such that every `nu` has
 - **Deferred: product inputs `P_0 x Z`.** The route `boone-higman-via-infinite-shift-compiler` only needs such
   inputs. No enumeration of any input that is not virtually cyclic is known to have a finitely generated
   two-sided window. This lane is deferred until (G1) is decided for one explicit enumeration of `Z^2`.
+- **Unequal-radix free products (bh-shell-arith, 2026-09-18).** The equal-radix arithmetic enumeration of `A*A`
+  dies because every generator is an automorphism of one digit tree (`arithmetic-a5-near-group-is-not-finitely-presented`).
+  For `A_0*A_1` with `|A_0| != |A_1|`, the least-significant-first mixed-radix enumeration is still arithmetic, so mixed
+  relations hold. But its shift is a radix conversion and not a cone map, so that proof does not transfer. The candidate
+  is `unequal-radix-free-product-near-group-passes-both-germ-gates` (OPEN). Its perfect instance is `A_5*A_6`. A route
+  to it is `finite-index-in-a-kernel-fg-near-host-passes-both-germ-gates`: finite index in a finitely presented near host
+  with finitely generated near-index kernel gives both (G1) and (G2). The open inputs are the finiteness of the two-radix
+  odometer host and the generation question `[H:R_nu] < infinity`.

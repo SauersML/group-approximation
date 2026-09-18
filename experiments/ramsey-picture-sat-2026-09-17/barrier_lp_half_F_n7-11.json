@@ -1,0 +1,57 @@
+[
+ {
+  "group": "F",
+  "n": 7,
+  "ball": 3957,
+  "interior": 1381,
+  "M_n": 1.457142857142857,
+  "exact_M": "51/35",
+  "status": 0,
+  "seconds": 0.2,
+  "w": "half"
+ },
+ {
+  "group": "F",
+  "n": 8,
+  "ball": 11237,
+  "interior": 3957,
+  "M_n": 1.4931506849315068,
+  "exact_M": "109/73",
+  "status": 0,
+  "seconds": 0.7,
+  "w": "half"
+ },
+ {
+  "group": "F",
+  "n": 9,
+  "ball": 31589,
+  "interior": 11237,
+  "M_n": 1.6848137535816616,
+  "exact_M": "588/349",
+  "status": 0,
+  "seconds": 3.1,
+  "w": "half"
+ },
+ {
+  "group": "F",
+  "n": 10,
+  "ball": 88253,
+  "interior": 31589,
+  "M_n": 1.7320940404592675,
+  "exact_M": "9112639/5261048",
+  "status": 0,
+  "seconds": 19.7,
+  "w": "half"
+ },
+ {
+  "group": "F",
+  "n": 11,
+  "ball": 244823,
+  "interior": 88257,
+  "M_n": 1.8820058997050146,
+  "exact_M": "14941017/7938871",
+  "status": 0,
+  "seconds": 177.5,
+  "w": "half"
+ }
+]

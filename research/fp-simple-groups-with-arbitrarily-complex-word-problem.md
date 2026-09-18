@@ -84,3 +84,97 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      evidence". Zaremsky (arXiv:2305.15176) gives the first finitely presented
      simple groups with at least exponential Dehn function; that bounds nothing
      here from below. Pins in `research/artifacts/hl-bh-hard-simple-2026-09-13.md`.
+5. **Faithful finite-index HNN extensions of hard vertex groups** (bh-free-02,
+   2026-09-18). `finite-index-edge-hnn-embeds-in-fp-simple-group` needs no envelope
+   for the vertex group. So one finitely presented residually finite `A` with a hard
+   word problem and a faithful HNN extension over finite-index subgroups would settle
+   this root.
+   - *Scaling shape: dies.* For `A = M ⋊ H` with `M` elementary abelian and a
+     scaling fixing `H`, which is the shape a Kharlampovich--Myasnikov--Sapir group
+     `T ⋊ H` offers first, faithfulness forces `A` to be linear over `F_p((x))`
+     (`equivariant-scaling-hnn-vertex-groups-are-linear`). Linear groups share the
+     classical low bound, so this shape cannot supply hard inputs.
+   - *Still open:* scalings that move `H`; non-ascending extensions over two proper
+     edges whose isomorphism is not the restriction of an automorphism.
+   - Notes: `research/artifacts/gq-bh-bh-free-02-complexity-root-notes.md`.
+6. **Piecewise prefix-and-automaton hosts are capped** (bh-free-02, 2026-09-18).
+   `automaton-tail-full-groups-have-conp-relative-word-problem` covers every
+   finitely generated group of homeomorphisms that act piecewise by prefix
+   replacement followed by elements of automaton groups `H_i` on the tails. This
+   includes `nV`, Rover--Nekrashevych groups of automaton groups, and the product
+   2-graph hosts `2V_τ` and `2V_H`. Each such group has word problem in
+   `coNP^{WP(H_i)}`, and hence in `PSPACE`.
+   - *Dies as a family* for this root: the family shares the bound `PSPACE`.
+   - *Calibration.* The new hosts `2V_τ` and `2V_{G_N}` are coNP-complete, exactly
+     Birget's level. Zaremsky's exponential-Dehn hosts have word problem in `coNP`.
+   - *Beating coNP needs a finitely presented automaton group with word problem
+     outside `P`,* for example `NP`- or `PSPACE`-hard. It then passes up through
+     Zaremsky's Theorem 1.1. Beating every recursive bound needs infinite-state
+     coefficient groups.
+7. **Linear superposition beats coNP: `(L ⊗ L)^x` is `coNP^⊕P`-complete** (bh-free-26,
+   2026-09-18, `leavitt-square-units-have-conp-parity-p-complete-word-problem`; lane proof,
+   not reviewed).
+   - *Result.* The group `(L_(F_2)(1,2) ⊗ L_(F_2)(1,2))^x` has word problem complete for
+     `coNP^⊕P = ∀·⊕P`, so it is outside PH unless PH collapses (Toda). Hardness for an
+     explicit finitely generated subgroup and the upper bound are unconditional. That the
+     group is finitely presented and simple comes from
+     `leavitt-square-unit-group-is-fp-simple-and-acyclic`, **conditional on the Khanh and
+     Ara--Cortiñas imports**. Modulo those imports and the standard hypothesis, it is the
+     first finitely presented simple group here beyond Birget's coNP level. Cross-checked
+     by bh-free-02 (math PASS, e0faf3f03).
+   - *Mechanism.* The superposition letters `τ = s_0 + s_1` and `σ = t_0 + t_1` enter through
+     slot units and one commutator. The second tensor factor supplies baker scrolling, so
+     reversible circuits have polynomial length. This is not a piecewise-prefix host, which is
+     why item 6's cap does not apply: its elements are linear combinations, not homeomorphisms.
+   - *Every prime.* With a characteristic-free slot unit, the (conditionally) finitely presented simple group
+     `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem, for every prime `p`
+     (`leavitt-square-units-mod-p-complete-word-problem`). By Toda--Ogiwara,
+     none of these word problems lies in PH unless PH collapses.
+   - *Limit, now a theorem.* `leavitt-tensor-unit-word-problems-have-one-counting-quantifier`:
+     every finitely generated linear group over any Leavitt tensor algebra over `F_q` has word
+     problem in `∀·Mod_pP`. Over `Z[1/M]` the bound is `C_=P`, attained by an integral group
+     `Γ_Z`. So more tensor factors give nothing new, and this family can reach `PSPACE` only
+     if `PSPACE ⊆ ∀·Mod_pP` or `PSPACE = PP`. The obstruction is finite depth. Beating it
+     needs self-similar elements, as in item 6. Boone--Higman applied to `Γ_Z` predicts a
+     finitely presented simple group with `C_=P`-hard word problem.
+8. **Hard real parameters in PL hosts: die by order rigidity** (bh-free-32, 2026-09-18; lane
+   proofs, not reviewed).
+   - *Idea.* Keep the combinatorics of a Thompson-like host, but let one breakpoint or slope be a
+     computable transcendental `λ` whose digits are hard. A bump `u` with endpoint `e(λ)` and an
+     `F`-bump `k_r` on `(r, 1)` commute iff `e(λ) < r`, so the word problem decides the digits.
+   - *Dies.* `fp-pl-groups-with-f-have-no-transcendental-support-endpoints`: no finitely
+     generated PL group of an interval or circle with data in `Q(λ)` that contains a dyadic `F`
+     and such a bump is finitely presented. The reason is that the finitely many relators persist
+     when `λ` moves slightly, while `[u, k_r]` does not. For line groups,
+     `fp-bieri-strebel-line-groups-are-deformation-rigid` shows more: a finitely presented
+     `G(R;A,P)` has algebraic slopes, and its breakpoints lie in `Q(P)` after rescaling. So its
+     parameters live in a number field, where the word problem is arithmetic of bounded
+     complexity. This also shows that the necessary conditions of Bieri--Strebel D13.3 are not
+     sufficient, e.g. for `G(R; Z[1/2] + Z[1/2]τ, gp(2))` with any irrational `τ`.
+   - *Update (bh-free-32): every definable-parameter host dies.*
+     `definable-parameter-hosts-cap-simple-subgroups-at-pspace` covers two kinds of host: groups
+     acting by semialgebraic bijections in any dimension, and groups acting on Cantor space by
+     ω-automatic bijections (`V`, `nV`, Röver--Nekrashevych, extended along arbitrary addresses).
+     In both, the parameters may be arbitrary real numbers or arbitrary addresses. If such a group
+     is finitely presented, it specializes to tame parameters on every finite set. So its finitely
+     generated simple subgroups, and every input they contain, have word problem in PSPACE. This
+     family therefore shares one bound for this root.
+     `fp-piecewise-projective-groups-rigidity-criterion` gives the matching test for finite
+     presentation, e.g. `⟨F, F^λ⟩` is not finitely presented for transcendental `λ`.
+   - *Lesson.* Hardness has to sit in the combinatorial rule of the host, not in its constants,
+     and its generators must not be definable in a decidable tame structure. Notes:
+     `research/artifacts/gq-bh-bh-free-32-order-rigidity.md`.
+9. **Transcendental-slope Thompson groups as inputs** (bh-free-19, 2026-09-18; lane proof, not
+   reviewed). Route `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`.
+   - *Established half.* `transcendental-slope-thompson-groups-have-hard-word-problems`. The Sturmian
+     detector `[u', ρ^n w' ρ^{-n}] = 1 ⟺ ⌊(n+1)λ⌋ = ⌊nλ⌋` lives inside `D(V_λ)`, which contains no
+     dyadic `F`. With a Liouville `λ` that carries hard digits, this makes the 2-generated simple
+     group `D(V_λ)` beat any given recursive `T`.
+   - *Open half.* `transcendental-slope-thompson-groups-satisfy-boone-higman`. Attempt 8 excludes PL
+     hosts carrying `λ`. So a host must compute `λ`'s digits by other means, and this route shows the
+     open half is at least as strong as this root.
+   - *Every one-dimensional piecewise-projective host is capped* (same lane):
+     `fp-piecewise-projective-groups-specialize-to-algebraic-data`. A finitely presented simple group
+     of piecewise-projective maps of an interval, circle or line, with arbitrary real data, is
+     isomorphic to one over a real number field and has polynomial-time word problem. This settles
+     the piecewise-projective part of Attempt 8's "still open" item; germ-type hosts remain.

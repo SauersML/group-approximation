@@ -12,7 +12,8 @@ Lane proof. Notation as in the claim; `n >= 2`.
 
 **Item 1.**
 - `σ` is multiplicative on `Q` with `σ(0) = 0`, so `σ_n(t w) = σ(t) σ_n(w)`.
-  Linear maps satisfy `g(t w) = t g(w)`.
+  Linear maps satisfy `g(t w) = t g(w)`. Inverses: substituting `k^-1(w)` for `w`
+  and `σ^-a(t)` for `t` in `k(t w) = σ^a(t) k(w)` gives `k^-1(t w) = σ^-a(t) k^-1(w)`.
 - If `k(t w) = σ^a(t) k(w)` and `k'(t w) = σ^b(t) k'(w)` for all `t, w`, then
   `k'k(t w) = σ^(a+b)(t) k'k(w)`. So every element of `K_n` has such an exponent.
 - Uniqueness: `t = 0` gives `k(0) = 0`, so `k(w) != 0` for `w != 0`. Then two
@@ -52,14 +53,17 @@ Lane proof. Notation as in the claim; `n >= 2`.
 - `N` is the normal closure of a finite generating set of `GL_n(Z)`. So if `K_n`
   is finitely presented, so is `G = K_n/N = M ⋊ <t>`, where `M = Q_>0/I_n` is
   written additively. Let `χ : G -> Z` be the projection.
-- **Bieri--Strebel.** A finitely presented group with an epimorphism
+- **Bieri--Strebel.** This is the only step that uses it: it turns finite
+  presentation of `G` into one-sided finite generation of `M`. A finitely presented group with an epimorphism
   `χ` onto `Z` is an HNN extension `<B, t | t C t^-1 = D>`, where:
   - `B ⊆ ker χ` is finitely generated;
   - `C, D ⊆ B` are finitely generated;
   - `χ(t) = 1`.
 
   The source is R. Bieri and R. Strebel, *Almost finitely presented soluble
-  groups*, Comment. Math. Helv. 53 (1978); the theorem number is not pinned.
+  groups*, Comment. Math. Helv. 53 (1978) 258--278; the theorem number is not
+  pinned. The statement is checked against the secondary source D. Cooper and
+  S. Tillmann, arXiv:1506.01793v1, §3.1, which also proves it in §3.3.
 - **The HNN is ascending.** Suppose `C != B` and `D != B`.
   - By Bass--Serre theory, `B` and `tBt^-1` generate
     `B *_(D) tBt^-1` inside `ker χ`. Here `D = tCt^-1` is proper in both factors.
@@ -110,7 +114,9 @@ Lane proof. Notation as in the claim; `n >= 2`.
   quotient of `<a, s | [a, s^j a s^-j], j in Z> = Z ≀ Z`.
 - The composite `Z ≀ Z -> K_n'/<<GL_n(Z)>> -> Γ` is the identity on generators.
   So the first map is injective, and both maps are isomorphisms.
-- `Z ≀ Z` is not finitely presented (G. Baumslag, Math. Z. 75, 1961), and
+- `Z ≀ Z` is not finitely presented (G. Baumslag, Math. Z. 75 (1961) 22--28; also
+  item 4 applied to `Z[t,t^-1] ⋊ Z`, whose base is not finitely generated over
+  `Z[t]` or over `Z[t^-1]`), and
   `GL_n(Z)` is finitely generated. So `K_n'` is not finitely presented.
 - `c(e e_1) = 2 != 1 = c(e e_2)`, while `c(e_1) = c(e_2)`. Every element of
   `K_n'` maps vectors of equal content to vectors of equal content, so `e ∉ K_n'`.

@@ -59,6 +59,15 @@ This premise feeds `out-fn-bh-via-virtual-embedding-in-aut-fn`.
      nonabelian input for surfaces.
    - **Only abelian candidate left.** The integral class, of order dividing
      `n − 1`, might die on a finite-index subgroup. That was not decided.
+   - **Decided (09-18, lane bh-outfn): it dies.**
+     `aut-out-free-abelianized-extension-virtually-splits`: dividing the Fox
+     cocycle by `n − 1` on `{[φ] : h(φ) ∈ (n − 1)H}` splits the abelianized
+     extension there. So no cohomology of the abelianized extension, rational or
+     integral, obstructs a virtual section. A virtual splitting of the
+     extension of that finite-index subgroup by `[F_n, F_n]` would give a
+     virtual section. The converse needs `k∘s` to be virtually principal
+     (gq-referee-b, W1). The nilpotent levels of this nonabelian question are
+     `aut-out-free-nilpotent-tower-virtually-splits` (OPEN from class 2).
 5. **Side choice on rank-one splittings.**
    `free-splitting-fa-lifts-choose-a-side`, applicable for `n ≥ 5` via (T) for
    `Aut(F_{n−1})`: a section over a finite-index `Γ`, restricted to the

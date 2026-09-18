@@ -49,3 +49,35 @@ has empty interior in the cone topology.
    sums. `N(g)` is not a fixed-point set, and the set
    `{g : int N(g) ≠ ∅}` is only known to be closed under inverses and
    conjugation, since `N(g⁻¹) = g·N(g)` and `N(ugu⁻¹) = u·N(g)`.
+5. **Strongly regular elements are not domestic, with explicit witnesses** (bh-testcases,
+   2026-09-18; lane proof, same imports (I1)–(I7) as
+   `strongly-regular-opposition-proximality-proof`).
+   - **Setup.** Let `a` be strongly regular, with translation apartment `A`, translation `τ`
+     and forward/backward germs `β_±(z)` at special vertices `z ∈ A`.
+   - **The witness sets.** For every special `z ∈ A` and every chamber `α` of `Lk(z)`
+     opposite both `β_-(z)` and `β_+(z)` (one exists by (I5)), put
+     `W(z, α) = {c : germ_z Q(z, c) = α, germ_(z−τ) Q(z−τ, c) = β_+(z−τ)}`. It is open and
+     nonempty: take `c` in an apartment containing `Q(z, c_-)` and a sector with germ `α`,
+     by (I1). It is disjoint from `N(a)`.
+   - **Why `W(z, α)` misses `N(a)`.** `Q(z, ac) = a Q(z−τ, c)`, so
+     `germ_z Q(z, ac) = a β_+(z−τ) = β_+(z)`, which is opposite `α`. By (I1), `ac` is opposite
+     `c`.
+   - **What this does not give.** Every `c ∈ O(c_-)` leaves `A` at some special `z` with a
+     germ `α_c` opposite `β_-(z)`, and it lies in `W(z, α_c)` exactly when `α_c` is also
+     opposite `β_+(z)`. The undecided chambers are those whose exit germs are adjacent to
+     `β_+(z)`. So nowhere density of `N(a)` reduces to showing that these adjacent exits do
+     not fill an open set. Non-strongly-regular elements (singular axis direction) are
+     not touched; they are the genuine crux, as the product-of-trees element `(1, g_2)`
+     shows (Attempt 3).
+   - **Lesson for general BH.** Non-domesticity is automatic in the regular directions. What
+     can fail is only transverse behaviour along singular (wall) directions: an element
+     acting trivially "across" a panel tree, the higher-rank form of a reducible factor.
+     So (D1) is an irreducibility statement about the panel-tree actions of the lattice.
+6. **Vertex reduction** (bh-testcases, 2026-09-18,
+   `rank-two-building-non-domesticity-is-vertex-non-domesticity`). For `C̃₂` this claim is
+   equivalent to vertex non-domesticity: no `g ∈ Γ̌ ∖ {1}` maps a nonempty open set of points
+   at infinity to collinear-or-equal points, or a nonempty open set of lines to
+   concurrent-or-equal lines. The same node shows that for products of trees and for
+   `Ã₂` the condition is exactly topological freeness on the vertex spaces at infinity.
+   So the crux is only the polygon-specific local domesticity phenomenon of
+   quadrangles.

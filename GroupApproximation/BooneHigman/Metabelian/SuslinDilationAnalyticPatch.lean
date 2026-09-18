@@ -116,7 +116,7 @@ theorem suslinDilAn_patch (hker : ∀ b : B, φ b = 0 → ∃ n : ℕ, s ^ n * b
   have hDUV : elementaryMatrixUnitMap (ι := Fin N) (suslinDilAnDilate (s ^ m)) U =
       elementaryMatrixUnitMap (ι := Fin N) (suslinDilAnDilate (s ^ m)) V := by
     apply Units.ext
-    ext i j
+    refine Matrix.ext fun i j ↦ ?_
     rw [suslinDilAn_map_apply, suslinDilAn_map_apply, ← sub_eq_zero, ← map_sub]
     refine suslinDilAn_dilate_eq_zero (h0 i j) ?_
     rw [Polynomial.C_pow]

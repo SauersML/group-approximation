@@ -320,3 +320,22 @@ argument.
       specific-object version carries content.
     - Whether `U = Z[T]<p,q>/(p(1-g)q-1)` or `T` for the clean marking contains a poisoned
       element is open.
+
+12. **Calibrate on the binary Leavitt host, and transfer stable K_2 (bh-ck-kernel,
+    09-18).** *Establishes a positive instance of the existential reading and one
+    transfer lemma. The specific-object version stays OPEN.*
+    - *Instance.* [[ck-hole-holds-for-perfect-binary-leavitt-unit-subgroups]]: for every
+      perfect `S <= L_(F_2)(1,2)^x`, the marking `T = H = E_4(L)`, `g = e_12(1)` gives a CK
+      marked Steinberg cover with a finitely normally generated maximal kernel (regime
+      R4, quotient `PE_4(L) ≅ L^x`). By Attempt 11 this is Boone--Higman for `S` again,
+      so it adds no new case; it confirms the four-regimes machinery end to end on one
+      explicit host.
+    - *Transfer.* Clause (b) of [[ck-sandwich-ring-has-fp-projective-simple-quotient]]
+      fails whenever the image of `K_2(4,R) -> K_2(R)` is not finitely generated. So every
+      stable symbol obstruction on main also excludes the ring as an R4 witness. Stable
+      `K_1` obstructions do not transfer to clause (c), since that clause concerns unstable
+      rank-four `K_1`.
+    - *Where it stops.* For the Clapham marking of the route, a witness needs a finitely
+      presented simple quotient ring of `U` whose stable `K_2` image from rank four is
+      finitely generated and whose rank-four scalar `K_1` kernel is finitely generated.
+      No such quotient is known, and no obstruction to one is known.

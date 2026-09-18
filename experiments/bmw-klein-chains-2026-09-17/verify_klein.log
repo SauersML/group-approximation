@@ -1,0 +1,208 @@
+$ python3 verify_klein.py ../bmw-census-left-orders-2026-09-17/census_40_40.json chains_40_40.json --trace
+  v03|h inverts v|h01:
+    v0 v3 h0 h1 v3 v0 h0 h1
+    = v0 v3 h0 v3 h0 v0 h0 h1
+    = v0 v3 v3 h1 h0 v0 h0 h1
+    = v0 h1 h0 v0 h0 h1
+    = v0 h1 v0 h0 h0 h1
+    = v0 v0 h1 h0 h0 h1
+    = h1 h0 h0 h1
+    = h1 h1
+    = 1
+  v|h3023 inverts v03|h:
+    h3 h0 h2 h3 v0 v3 h3 h2 h0 h3 v0 v3
+    = h3 h0 h2 v0 h3 v3 h3 h2 h0 h3 v0 v3
+    = h3 h0 v1 h2 h3 v3 h3 h2 h0 h3 v0 v3
+    = h3 v1 h0 h2 h3 v3 h3 h2 h0 h3 v0 v3
+    = v3 h3 h0 h2 h3 v3 h3 h2 h0 h3 v0 v3
+    = v3 h3 h0 h2 v1 h3 h3 h2 h0 h3 v0 v3
+    = v3 h3 h0 v0 h2 h3 h3 h2 h0 h3 v0 v3
+    = v3 h3 v0 h0 h2 h3 h3 h2 h0 h3 v0 v3
+    = v3 v0 h3 h0 h2 h3 h3 h2 h0 h3 v0 v3
+    = v3 v0 h3 h0 h2 h2 h0 h3 v0 v3
+    = v3 v0 h3 h0 h0 h3 v0 v3
+    = v3 v0 h3 h3 v0 v3
+    = v3 v0 v0 v3
+    = v3 v3
+    = 1
+  v2012|h inverts v|h3023:
+    v2 v0 v1 v2 h3 h0 h2 h3 v2 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 v2 h3 h0 h2 v2 h3 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 v2 h3 h0 v2 h1 h3 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 v2 h3 v2 h0 h1 h3 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 v2 v2 h3 h0 h1 h3 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 h3 h0 h1 h3 v1 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 h3 h0 h1 v3 h3 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 h3 h0 v3 h0 h3 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 h3 v3 h1 h0 h3 v0 v2 h3 h0 h2 h3
+    = v2 v0 v1 v1 h3 h1 h0 h3 v0 v2 h3 h0 h2 h3
+    = v2 v0 h3 h1 h0 h3 v0 v2 h3 h0 h2 h3
+    = v2 v0 h3 h1 h0 v0 h3 v2 h3 h0 h2 h3
+    = v2 v0 h3 h1 v0 h0 h3 v2 h3 h0 h2 h3
+    = v2 v0 h3 v0 h1 h0 h3 v2 h3 h0 h2 h3
+    = v2 v0 v0 h3 h1 h0 h3 v2 h3 h0 h2 h3
+    = v2 h3 h1 h0 h3 v2 h3 h0 h2 h3
+    = v2 h3 h1 h0 v2 h3 h3 h0 h2 h3
+    = v2 h3 h1 v2 h0 h3 h3 h0 h2 h3
+    = v2 h3 v2 h2 h0 h3 h3 h0 h2 h3
+    = v2 v2 h3 h2 h0 h3 h3 h0 h2 h3
+    = h3 h2 h0 h3 h3 h0 h2 h3
+    = h3 h2 h0 h0 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h01 inverts v2012|h:
+    h0 h1 v2 v0 v1 v2 h1 h0 v2 v0 v1 v2
+    = h0 v2 h2 v0 v1 v2 h1 h0 v2 v0 v1 v2
+    = v2 h0 h2 v0 v1 v2 h1 h0 v2 v0 v1 v2
+    = v2 h0 v1 h2 v1 v2 h1 h0 v2 v0 v1 v2
+    = v2 v1 h0 h2 v1 v2 h1 h0 v2 v0 v1 v2
+    = v2 v1 h0 v0 h2 v2 h1 h0 v2 v0 v1 v2
+    = v2 v1 v0 h0 h2 v2 h1 h0 v2 v0 v1 v2
+    = v2 v1 v0 h0 v2 h1 h1 h0 v2 v0 v1 v2
+    = v2 v1 v0 v2 h0 h1 h1 h0 v2 v0 v1 v2
+    = v2 v1 v0 v2 h0 h0 v2 v0 v1 v2
+    = v2 v1 v0 v2 v2 v0 v1 v2
+    = v2 v1 v0 v0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 193 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v3023|h inverts v|h02:
+    v3 v0 v2 v3 h0 h2 v3 v2 v0 v3 h0 h2
+    = v3 v0 v2 v3 h0 v3 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 v3 v3 h1 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 h1 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 h1 v1 h1 v0 v3 h0 h2
+    = v3 v0 v2 v2 h2 h1 v0 v3 h0 h2
+    = v3 v0 h2 h1 v0 v3 h0 h2
+    = v3 v0 h2 v0 h1 v3 h0 h2
+    = v3 v0 v0 h2 h1 v3 h0 h2
+    = v3 h2 h1 v3 h0 h2
+    = v3 h2 v3 h0 h0 h2
+    = v3 v3 h2 h0 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h3123 inverts v3023|h:
+    h3 h1 h2 h3 v3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 h1 h2 v3 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 h1 v3 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 v3 h0 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 h2 v1 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 v2 h1 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 v2 h0 h1 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 h1 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 h1 v2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 v1 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 v1 h0 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 h2 v3 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 v3 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 v3 h1 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h2 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 v3 v0 v2 v3
+    = v3 v2 v0 v0 v2 v3
+    = v3 v2 v2 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h3123:
+    v1 v2 h3 h1 h2 h3 v2 v1 h3 h1 h2 h3
+    = v1 v2 h3 h1 h2 v2 h3 v1 h3 h1 h2 h3
+    = v1 v2 h3 h1 v1 h1 h3 v1 h3 h1 h2 h3
+    = v1 v2 h3 v2 h2 h1 h3 v1 h3 h1 h2 h3
+    = v1 v2 v2 h3 h2 h1 h3 v1 h3 h1 h2 h3
+    = v1 h3 h2 h1 h3 v1 h3 h1 h2 h3
+    = v1 h3 h2 h1 v0 h3 h3 h1 h2 h3
+    = v1 h3 h2 v0 h1 h3 h3 h1 h2 h3
+    = v1 h3 v0 h2 h1 h3 h3 h1 h2 h3
+    = v1 v1 h3 h2 h1 h3 h3 h1 h2 h3
+    = h3 h2 h1 h3 h3 h1 h2 h3
+    = h3 h2 h1 h1 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h02 inverts v12|h:
+    h0 h2 v1 v2 h2 h0 v1 v2
+    = h0 v2 h1 v2 h2 h0 v1 v2
+    = v2 h0 h1 v2 h2 h0 v1 v2
+    = v2 h0 v1 h2 h2 h0 v1 v2
+    = v2 v1 h0 h2 h2 h0 v1 v2
+    = v2 v1 h0 h0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 281 Klein chain of length 4 verified: Gamma^+ is not left-orderable
+  v3023|h inverts v|h02:
+    v3 v0 v2 v3 h0 h2 v3 v2 v0 v3 h0 h2
+    = v3 v0 v2 v3 h0 v3 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 v3 v3 h1 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 h1 h2 v2 v0 v3 h0 h2
+    = v3 v0 v2 h1 v1 h2 v0 v3 h0 h2
+    = v3 v0 v2 v2 h1 h2 v0 v3 h0 h2
+    = v3 v0 h1 h2 v0 v3 h0 h2
+    = v3 v0 h1 v0 h1 v3 h0 h2
+    = v3 v0 v0 h2 h1 v3 h0 h2
+    = v3 h2 h1 v3 h0 h2
+    = v3 h2 v3 h0 h0 h2
+    = v3 v3 h2 h0 h0 h2
+    = h2 h0 h0 h2
+    = h2 h2
+    = 1
+  v|h3123 inverts v3023|h:
+    h3 h1 h2 h3 v3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 h1 h2 v3 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 h1 v3 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = h3 v3 h0 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 h2 h3 v0 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 h2 v1 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 h0 v2 h2 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 h3 v2 h0 h2 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 h2 h3 v2 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 h2 v2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 h0 v1 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 h3 v1 h0 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 h2 h3 v3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 h2 v3 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 h0 v3 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 h3 v3 h1 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h2 h3 h3 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h2 h2 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h1 h1 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 h3 h3 v3 v0 v2 v3
+    = v3 v2 v0 v3 v3 v0 v2 v3
+    = v3 v2 v0 v0 v2 v3
+    = v3 v2 v2 v3
+    = v3 v3
+    = 1
+  v12|h inverts v|h3123:
+    v1 v2 h3 h1 h2 h3 v2 v1 h3 h1 h2 h3
+    = v1 v2 h3 h1 h2 v2 h3 v1 h3 h1 h2 h3
+    = v1 v2 h3 h1 v1 h2 h3 v1 h3 h1 h2 h3
+    = v1 v2 h3 v2 h1 h2 h3 v1 h3 h1 h2 h3
+    = v1 v2 v2 h3 h1 h2 h3 v1 h3 h1 h2 h3
+    = v1 h3 h1 h2 h3 v1 h3 h1 h2 h3
+    = v1 h3 h1 h2 v0 h3 h3 h1 h2 h3
+    = v1 h3 h1 v0 h1 h3 h3 h1 h2 h3
+    = v1 h3 v0 h2 h1 h3 h3 h1 h2 h3
+    = v1 v1 h3 h2 h1 h3 h3 h1 h2 h3
+    = h3 h2 h1 h3 h3 h1 h2 h3
+    = h3 h2 h1 h1 h2 h3
+    = h3 h2 h2 h3
+    = h3 h3
+    = 1
+  v|h02 inverts v12|h:
+    h0 h2 v1 v2 h2 h0 v1 v2
+    = h0 v2 h2 v2 h2 h0 v1 v2
+    = v2 h0 h2 v2 h2 h0 v1 v2
+    = v2 h0 v1 h2 h2 h0 v1 v2
+    = v2 v1 h0 h2 h2 h0 v1 v2
+    = v2 v1 h0 h0 v1 v2
+    = v2 v1 v1 v2
+    = v2 v2
+    = 1
+class 332 Klein chain of length 4 verified: Gamma^+ is not left-orderable
