@@ -33,3 +33,13 @@ at the source here).
   bi-synchronizing transducers admit infinitely divisible elements (roots of every order of
   one element of `O_2`)? A "no" kills this claim through fact 1, since `Q ⊂ Aff(Q)` would have
   to embed in `O_2`.
+- 2026-09-18 (gq-infinite-primes): the root test, calibrated. `out-v-contains-the-root-problem-for-the-full-2-shift`.
+  Not decided.
+  - The Lipschitz part `L_2` of `O_2` is `Aut(X_2^Z, σ)/<σ> ≅ Inert(σ_2)` (Belk--Bleak--Cameron--Olukoya). It is
+    residually finite, so it contains no `Q`. A copy of `Q` in `O_2` needs non-Lipschitz transducers, and its orbits
+    on prime cyclic words have unbounded length.
+  - An obstruction showing that no nontrivial element of `O_2` has roots of infinitely many orders, or of all
+    orders, would answer the corresponding case of Boyle's open root problem for the full 2-shift. It would also
+    show `Z[1/2]` is not in the class of groups of cellular automata, which Salo (arXiv:2305.17946) records as open.
+    So an obstruction must use the coherence of roots, or structure outside `L_2`.
+  - Core growth class is invariant under powers (Olukoya, arXiv:2004.00516), so it cannot separate roots.

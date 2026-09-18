@@ -6,7 +6,7 @@ title: Some enumeration of St_4(R_L) gives a finitely presented shell envelope, 
 distinct_from:
   perfect-decidable-inputs-have-fp-shell-envelopes: that asks for a finitely presented shell envelope of every infinite perfect finitely presented group with decidable word problem; this asks it for one explicit input, St_4(R_L), whose word problem is not known to be decidable.
   decidable-inputs-have-fp-shell-envelopes: that is the universal form for all decidable finitely presented inputs; this is one input chosen to contain every GL_n(Q).
-  gl-n-q-explicit-via-st-4-of-resolvent-ring: that gives the finitely presented, non-simple overgroup St_4(R_L) of every GL_n(Q); this asks for a finitely presented simple overgroup built from it by germ implantation.
+  one-steinberg-group-contains-every-gl-n-q: that gives the finitely presented, non-simple overgroup St_4(R_L) of every GL_n(Q); this asks for a finitely presented simple overgroup built from it by germ implantation.
   steinberg-leavitt-resolvent-groups-have-no-type-a-action: that excludes St_N(R_L) as its own type (A) actor; this uses St_4(R_L) only as the germ input of a Cantor shell.
 artifacts:
   - research/artifacts/gq-gq-typea-design-u2-germ-implant.md
