@@ -29,6 +29,9 @@ variable (v w : Fin (n + 1) →₀ ℕ)
 
 section equivT
 
+-- Mathlib's lakefile builds the original proofs with this option (core default: 1).
+set_option maxSynthPendingDepth 3
+
 /-- `up` is defined as `2 + f.totalDegree`. Any big enough number would work. -/
 local notation3 "up" => 2 + f.totalDegree
 
