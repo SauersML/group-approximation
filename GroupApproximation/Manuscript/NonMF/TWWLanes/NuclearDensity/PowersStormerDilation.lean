@@ -5,8 +5,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Lane nm-tww-26, part 2: a unitary dilation of a Hermitian contraction
 
-Let `Yd` be Hermitian with `‖Yd‖ ≤ 1` (L2 operator norm). Diagonalise it as
-`Yd = V diag(f) Vᴴ`. Then `|fᵢ| ≤ 1`, because `‖diag f‖ = ‖Vᴴ Yd V‖ ≤ 1`. Put
+Let `Yd` be Hermitian with `1 − Yd² ≥ 0`. Diagonalise it as
+`Yd = V diag(f) Vᴴ`. Then `fᵢ² ≤ 1`, because `Vᴴ(1 − Yd²)V = diag(1 − fᵢ²) ≥ 0`. Put
 `D = V diag(√(1 − fᵢ²)) Vᴴ`. This `D` is Hermitian, commutes with `Yd`, and satisfies
 `D² = 1 − Yd²`. So `U = Yd + iD` is unitary.
 
@@ -25,28 +25,24 @@ noncomputable section
 variable {n : Type*} [Fintype n] [DecidableEq n]
 
 /-- **Square-root defect of a Hermitian contraction.** -/
-theorem powersStormer_exists_dilation {Yd : Matrix n n ℂ} (hY : Ydᴴ = Yd) (hn : ‖Yd‖ ≤ 1) :
+theorem powersStormer_exists_dilation {Yd : Matrix n n ℂ} (hY : Ydᴴ = Yd)
+    (hp : (1 - Yd * Yd).PosSemidef) :
     ∃ D : Matrix n n ℂ, Dᴴ = D ∧ Yd * D = D * Yd ∧ D * D = 1 - Yd * Yd := by
   obtain ⟨V, f, hV1, hV2, hdiag⟩ := PowersStormer.exists_unitary_diagonalize (d := Yd) hY
   have hYd : Yd = V * diagonal (fun i ↦ (f i : ℂ)) * Vᴴ := by
     rw [← hdiag]
     simp only [← mul_assoc]
     rw [hV1, one_mul, mul_assoc, hV1, mul_one]
-  have hdn : ‖diagonal (fun i ↦ (f i : ℂ))‖ ≤ 1 := by
-    rw [← hdiag]
-    have hVn : ‖V‖ ≤ 1 := powersStormer_norm_le_one_of_conjTranspose_mul_self hV2
-    have hVhn : ‖Vᴴ‖ ≤ 1 := by
-      rw [l2_opNorm_conjTranspose]
-      exact hVn
-    calc ‖Vᴴ * Yd * V‖ ≤ ‖Vᴴ * Yd‖ * ‖V‖ := l2_opNorm_mul _ _
-      _ ≤ (‖Vᴴ‖ * ‖Yd‖) * ‖V‖ :=
-          mul_le_mul_of_nonneg_right (l2_opNorm_mul _ _) (norm_nonneg _)
-      _ ≤ 1 := mul_le_one₀ (mul_le_one₀ hVhn (norm_nonneg _) hn) (norm_nonneg _) hVn
-  rw [l2_opNorm_diagonal] at hdn
+  have e : Vᴴ * (1 - Yd * Yd) * V
+      = 1 - diagonal (fun i ↦ (f i : ℂ)) * diagonal (fun i ↦ (f i : ℂ)) := by
+    rw [mul_sub, sub_mul, mul_one, hV2, ← PowersStormer.conj_mul_conj hV1 Yd Yd, hdiag]
   have hf : ∀ i, f i * f i ≤ 1 := fun i ↦ by
-    have h1 : ‖((f i : ℝ) : ℂ)‖ ≤ 1 := (norm_le_pi_norm (fun i ↦ (f i : ℂ)) i).trans hdn
-    rw [Complex.norm_real, Real.norm_eq_abs] at h1
-    nlinarith [abs_mul_abs_self (f i), abs_nonneg (f i)]
+    have h0 := (hp.conjTranspose_mul_mul_same V).diag_nonneg (i := i)
+    have h1 : (Vᴴ * (1 - Yd * Yd) * V) i i = ((1 - f i * f i : ℝ) : ℂ) := by
+      rw [e]
+      simp [Matrix.diagonal_mul_diagonal]
+    rw [h1, Complex.zero_le_real] at h0
+    linarith
   have hstar : (star fun i ↦ ((Real.sqrt (1 - f i * f i) : ℝ) : ℂ))
       = fun i ↦ ((Real.sqrt (1 - f i * f i) : ℝ) : ℂ) := by
     funext i

@@ -33,8 +33,9 @@ theorem higmanVPresent_section {K H : Type*} [Group K] [Group H] (φ : K →* H)
     ∃ s : H → K ⧸ N, s 1 = 1 ∧ ∀ (h : H) (k : K), s h * (k : K ⧸ N) = s (h * φ k) := by
   have key : ∀ a b : K, φ a = φ b → (a : K ⧸ N) = b := by
     intro a b hab
-    refine QuotientGroup.eq.mpr (hN ?_)
-    rw [MonoidHom.mem_ker, map_mul, map_inv, hab, inv_mul_cancel]
+    have hk : a⁻¹ * b ∈ φ.ker := by
+      rw [MonoidHom.mem_ker, map_mul, map_inv, hab, inv_mul_cancel]
+    exact QuotientGroup.eq.mpr (hN hk)
   refine ⟨fun h => ((Function.surjInv hφ h : K) : K ⧸ N), ?_, fun h k => ?_⟩
   · show ((Function.surjInv hφ 1 : K) : K ⧸ N) = 1
     exact (key (Function.surjInv hφ 1) 1 (by rw [Function.surjInv_eq hφ 1, map_one])).trans

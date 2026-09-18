@@ -4,8 +4,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # The cone substitution `R[s_0] → R[s_0, s_1]`, `s_0 ↦ s_0 s_1`
 
-Lane `bh-met-61`, helper module.  For a commutative ring `R` write `j = cubeCone R`, the substitution
-`s_0 ↦ s_0 s_1` from `R[s_0]` to `R[s_0, s_1]`, and `r = cubeConeRetract R`, the substitution
+Lane `bh-met-61`, helper module.  For a commutative ring `R` write `j = cubeCone R`, the
+substitution `s_0 ↦ s_0 s_1` from `R[s_0]` to `R[s_0, s_1]`, and `r = cubeConeRetract R`, the substitution
 `s_0 ↦ s_0`, `s_1 ↦ 1` back.
 
 * `cubeConeRetract_comp_cubeCone`: `r ∘ j = id`, checked on constants and on `s_0`.
