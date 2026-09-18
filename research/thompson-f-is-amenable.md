@@ -90,6 +90,14 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   Dies at `P_(2,2)`: the survey's cardinality method needs a set with `|S Y| < 2|Y|`
   for the nine degree-two monomials `S`, and none is known. Unit-coefficient
   multiples fail outright: `Z_+[M]` is not Ore (survey Theorem 3.6).
+  2026-09-17, compute scout, OPEN: `thompson-f-p22-cylinder-functional-needs-thin-skeletons`.
+  - The doubling ratio `h(S)` is the infimum of an exactly computable functional on cylinder
+    partitions of the critical Boltzmann local limit.
+  - The best value found is `h(S_(3,5)) <= 20143/8698 ≈ 2.3158` (3802 cells), below the degree-12
+    exact value 2.6676 but still far from 2.
+  - Dies at the refinement strategy. Generic refinement gains only about 0.04 per 24-fold increase in
+    cells, and for `X_1` it stays near 1.2 while vine partitions with 4228 cells reach `103/100`. A
+    certificate needs a guessed thin skeleton for `S_(3,5)`.
 - **Density of Cayley graphs.** Amenability is equivalent to finite subgraphs of density
   arbitrarily close to `2m`. The best known is density `> 3.5` for `{x_0, x_1}` (Guba,
   arXiv:2210.12304, improving Belk--Brown's `3.5`), with sets of size about

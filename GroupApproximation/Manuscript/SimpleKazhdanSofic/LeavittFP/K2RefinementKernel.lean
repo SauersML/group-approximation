@@ -112,6 +112,7 @@ theorem refine_mulVec (g : SteinbergGroup (Fin n) R) (v : Fin n → R) :
 
 /-- `K₂(n, R) = ⊥` implies `K₂(n + 1, R) = ⊥` for a ring with a Leavitt family, once `n ≥ 2`
 (witnessed by two distinct indices `r` and `k`). -/
+include L in
 theorem K2_eq_bot_succ (k : Fin n) (hk : k ≠ r)
     (h : BooneHigman.SteinbergBasic.K2 (Fin n) R = ⊥) :
     BooneHigman.SteinbergBasic.K2 (Fin (n + 1)) R = ⊥ := by
