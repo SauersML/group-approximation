@@ -7,6 +7,7 @@ distinct_from:
   decidable-residually-finite-non-exact-group-exists: that constructs the input group G and proves its word problem solvable; this is the Boone--Higman embedding question for that one explicit input.
   fp-simple-nonexact-group: that asks for any finitely presented simple non-exact group; this node implies it, since exactness passes to subgroups, but it asks for a host containing one specific non-exact group.
   exactness-separates-boone-higman-iff-fp-simple-groups-exact: that shows Boone--Higman fails if every finitely presented simple group is exact; this names the concrete input on which that separation would bite.
+  graphical-small-cancellation-inputs-satisfy-boone-higman: that is the whole family of graphical small cancellation groups with finite components and solvable word problem, and it implies this node; this is the single explicit non-exact member of that family, kept as a named test case.
 artifacts:
   - research/artifacts/gq-bh-bh-testcases-ranking.md
 ---
@@ -45,7 +46,10 @@ self-similar host would itself have to be non-exact.
 
 ## Attempts
 
-None yet. The conjecture-free route `fp-simple-nonexact-group-via-free-algebra-linear-groups`
+This node is the non-exact instance of `graphical-small-cancellation-inputs-satisfy-boone-higman`
+(lane bh-graphical-sc); work on the family belongs there.
+
+No attempt specific to this group yet. The conjecture-free route `fp-simple-nonexact-group-via-free-algebra-linear-groups`
 reaches a finitely presented simple non-exact group if
 `binary-free-algebra-linear-group-nonexact` holds, but that host is built from a
 different non-exact group. Whether it contains `G` is not addressed.

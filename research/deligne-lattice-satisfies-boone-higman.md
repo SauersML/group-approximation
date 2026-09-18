@@ -135,6 +135,44 @@ simple group contains `Gamma~`.
       markings form a product of trees, and the Kazhdan marking argument does not
       transfer;
     - finite presentation of any `S(M,M')`, or of `E_nu` itself.
+- **Every finite germ extension of `V` (2026-09-18, lane `bh-kazhdan-inputs`):
+  constraints on the center and on the germ regime, no exclusion.**
+  - *The center is singular.* By
+    `kazhdan-subgroups-of-almost-v-have-no-central-v-elements`, no nontrivial
+    element of `ker p` lies in any `H`-conjugate of `V`. The proof descends the
+    action to the orbit space of an attracting basin, where it runs through `V`
+    and then through translation numbers.
+  - *One germ group.* By `deligne-lattice-in-almost-v-sits-in-one-germ-group`, a
+    finite-index subgroup of `Gamma~`, center included, embeds in a single
+    singular germ group, which is finitely presented when Theorem 2.1 certifies
+    the host. This kills the central kernel that the trivial-centre argument of
+    `almost-v-fw-subgroups-act-through-finitely-many-germs` could not handle.
+  - *The Corollary 2.10 regime is dead.* By
+    `normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`, if every
+    singular germ group is virtually the `V`-germ group, or normalizes the
+    `V`-dilation at a periodic point, then every Kazhdan subgroup is finite. So
+    `Gamma~` needs a singular germ group that is aperiodic with infinite germs, or
+    whose germs do not normalize the local dilation. Shell envelopes are of the
+    second kind, and their finite presentation stays open.
+- **Odometer lift over the Lagrangian Grassmannian (2026-09-18, lane `bh-free-14`):
+  the lift half is done; a finitely presented host is open.**
+  - *The lift.* By `deligne-extension-dies-on-lagrangian-cantor-covers`, Deligne's class
+    dies on every faithful Cantor `Sp_{2n}(Z)`-space `Y` with an equivariant map to
+    `Λ_n(R)`. So `Gamma~` acts faithfully on `Z_2 × Y` by
+    `(x, y) ↦ (x + k(γ̃, y), γy)`, and the centre acts by `x ↦ x + 2`. It lies in the
+    full group of `O_τ × (Γ ⋉ Y)`. For `Γ ≤ V` this is the mechanism of
+    `odometer-lift-central-extensions-of-v-subgroups-into-2v-tau`. `Sp_{2n}(Z)` is not
+    in `V`, so the base must be a higher-rank space. The natural candidate is a
+    "Lagrangian Thompson group" of piecewise-`Sp_{2n}(Z)` maps on `Λ_n(R)` Cantorized
+    along rational Maslov cycles. Its finite presentation is open, of the same kind
+    as survey Remark 5.5.
+  - *Necessary condition.* By
+    `groupoid-lifts-of-central-extensions-need-no-invariant-measure`, no lift of this
+    form exists over a compact `Γ`-space with an invariant probability measure. That
+    covers every equicontinuous model, and so every self-similar or profinite one,
+    because the class is nonzero in `H^2(Γ; R)`.
+  - *Circles are excluded.* Higher-rank lattices act on `S^1` with finite image, so
+    no one-dimensional model of `T̄` type exists.
 - **Not yet tested:**
   - Brin--Thompson groups `nV` with `n >= 2`, where the FW argument for cone
     structures does not transfer;
