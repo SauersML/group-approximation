@@ -18,7 +18,8 @@ import GroupApproximation.Meta.AxiomGuard
 Truth check.  Put `H = stab h`.  Then `padRow (w ᵥ* padMat h) = H⁻¹ · padRow w · H`
 (`stab_conj_padRow`) and `padCol (padMat h⁻¹ *ᵥ c) = H⁻¹ · padCol c · H` (`stab_conj_padCol`
 at `h⁻¹`).  So inserting `H H⁻¹` between consecutive factors gives
-`stab g₁ · P V U V · stab g₂ = stab (g₁ h) · (H⁻¹ P H) (H⁻¹ V H) (H⁻¹ U H) (H⁻¹ V H) · stab (h⁻¹ g₂)`,
+`stab g₁ · P V U V · stab g₂ =
+stab (g₁ h) · (H⁻¹ P H) (H⁻¹ V H) (H⁻¹ U H) (H⁻¹ V H) · stab (h⁻¹ g₂)`,
 and each conjugated factor has the same shape.
 -/
 

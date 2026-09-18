@@ -3,6 +3,8 @@ import Mathlib.RingTheory.Localization.Integer
 import Mathlib.Algebra.GroupWithZero.NonZeroDivisors
 import Mathlib.Algebra.Order.Group.Unbundled.Int
 import Mathlib.Algebra.Order.BigOperators.Group.Finset
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Choose
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -63,7 +65,8 @@ theorem surjStabGauss_int_supp (hn : 0 < n) (w0 : Fin n → ℤ)
 /-- Euclid: every integral row `s · w₀` reaches a single, by induction on `∑ |w₀ k|`. -/
 theorem surjStabGauss_int_reach (hn : 0 < n) (s : R) (N : ℕ) :
     ∀ w0 : Fin n → ℤ, ∑ k, (w0 k).natAbs = N →
-      ∃ (i : Fin n) (β : R), SurjStabGaussReach (fun k => s * ((w0 k : ℤ) : R)) (Pi.single i β) := by
+      ∃ (i : Fin n) (β : R),
+        SurjStabGaussReach (fun k => s * ((w0 k : ℤ) : R)) (Pi.single i β) := by
   induction N using Nat.strong_induction_on with
   | _ N ih =>
     intro w0 hN
@@ -117,6 +120,7 @@ theorem surjStabGauss_away_reach_single {m : ℕ} (hn : 0 < n)
   rw [hw]
   exact hr
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabGauss_away_reach_single
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStabGauss_away_reach_single
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

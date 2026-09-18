@@ -37,6 +37,15 @@ artifact.
    none of them embeds in `T̄`. Neither does any group containing one of them, such as
    `SL_n(Q)`, `GL_n(Q)`, `B_n(Q)` for `n ≥ 2`.
 
-**Scope.** `T̄ ≤ Aut₊(F) ≤ VA`. The statement says nothing about `VA`, where disjoint
-supports give `⊕_ω Q` and the germs are not confined to `±∞`. For `n ≥ 3`, VA is
-already excluded by `SL_3(Z)` (survey Remark 4.12). **For `n = 2`, VA stays open.**
+**Scope and relation to O4.** `T̄ ≤ Aut₊(F) ≤ VA`. Root obstruction O4 of
+`gl-n-q-embeds-in-fp-simple-group` (2688d4128; Burillo--Felipe, arXiv:2605.09763v1,
+unrefereed) says that `VA` contains no group with distorted cyclic subgroups.
+- **Items 3 and 4 follow from O4 as well**, for all of `VA`. `Aff(Q)`, `SL_2(Q)`,
+  `GL_2(Q)` contain the distorted `BS(1,2)` or `BS(1,4)`, and `U_3(Q)` contains the
+  Heisenberg group. For `Aut(F)` apply O4 to the index-2 subgroup `Aut₊(F) ≤ VA`,
+  which meets each of these groups in a subgroup of index at most 2 that is still
+  distorted. So O4 also puts `U_3(Q)` outside `Aut(F)`.
+- **The proof here is independent of O4.** It uses only BHM Proposition 13, Brin's
+  model and Higman's root bound, not the unrefereed arXiv:2605.09763.
+- **Items 1 and 2 are not implied by O4**, since `Q × Q` has no distorted cyclic
+  subgroups. `Q × Q ≤ VA` (disjoint supports), so item 1 is special to `T̄`.

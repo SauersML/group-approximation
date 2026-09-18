@@ -134,3 +134,40 @@ Nothing found on nilpotent non-abelian groups (H_3(Z)) in nV. The Cairn node
     R is not finitely generated, so this says nothing about contracting RSGs.
 - **The question looks unasked.** A lane could land it as an OPEN claim ("some full contracting RSG
   contains (Q,+)") with O3's root argument as the first test.
+
+## 6. Priority check for gq-ring-fp-simple (2026-09-17): finitely presented simple ring of characteristic 0
+
+Asked: is it known that a unital ring, finitely presented over Z, can be simple of characteristic 0?
+Equivalently (node `fp-simple-ring-of-characteristic-zero-exists`), does Q embed in a finitely presented
+simple ring? The candidate is `leavitt-resolvent-ring-is-fp-simple-of-char-zero` (aaf4b1279).
+
+**Verdict: no source found stating it, either way.** This is a bounded search: web and arXiv only, no
+MathSciNet or zbMATH, and the Dniester Notebook and the Kharlampovich–Sapir survey (IJAC 1995) were not
+read. What was found:
+- **Over a field K, finitely presented as K-algebras.** Leavitt algebras L_K(1,n) are simple and finitely
+  presented. For K = F_p this gives finitely presented simple rings over Z of characteristic p. For K = Q,
+  L_Q(1,n) is finitely presented over Q but is not a finitely generated ring.
+- **Finitely generated but not finitely presented.** Bokut, "Embeddings into simple associative algebras",
+  Algebra i Logika 15 (1976) 73–90: every countably generated algebra over a countable field embeds in a
+  two-generated simple algebra. So finitely generated simple rings containing Q exist. Finite
+  presentation is not addressed.
+- **Finitely presented but not simple.** Belyaev, "Subrings of finitely presented associative rings",
+  Algebra i Logika 17 (1978) 627–638, gives a Higman embedding theorem. A secondary source says it covers
+  algebras over a field that is a finite extension of its prime subfield.
+- **Weak Boone–Higman.** Evans–Mandelberg–Neff (Logic Colloquium '73, 1975) embed an algebra with solvable
+  word problem in a simple algebra inside a finitely presented algebra. Survey arXiv:2306.16356v3 §3 lists
+  it for "rings of characteristic p".
+- None of these gives finite presentation and simplicity at once in characteristic 0. The survey's
+  restriction to characteristic p fits with the characteristic-0 case being unrecorded. Treat the result
+  as possibly new, **pending an expert check with MathSciNet**, since it could be folklore (for example
+  via algebraic Cuntz–Pimsner rings, Carlsen–Ortega).
+
+**Hand check (gq-lit-arxiv) of item 1 of the node: Q ⊆ R_L.** It uses only the defining relations.
+- From N s_1 = s_1(N+1) and N s_2 = 0, induction gives N s_1^(m-1) s_2 = (m-1) s_1^(m-1) s_2.
+- So (N+1) s_1^(m-1) s_2 = m s_1^(m-1) s_2. Multiplying by A on the left gives
+  m·A s_1^(m-1) s_2 = s_1^(m-1) s_2.
+- Hence m·(t_2 t_1^(m-1) A s_1^(m-1) s_2) = t_2 t_1^(m-1) s_1^(m-1) s_2 = 1.
+- The Fock-type model on Q^(X) is a nonzero representation, so R_L ≠ 0. So R_L is a nonzero finitely
+  presented ring that is a Q-algebra.
+
+Simplicity (item 2) is what needs the referees. It was not checked here.
