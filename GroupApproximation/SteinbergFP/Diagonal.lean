@@ -12,7 +12,7 @@ their roots live on disjoint index blocks.  Their product is the block-diagonal 
 `diagMap : St_I(S) →* St_{I × V}(S)`, `x_{ab}(r) ↦ ∏_i x_{(a,i),(b,i)}(r)`.
 
 On elementary matrices `diagMap` is `M ↦ blockDiagonal (fun _ ↦ M)`
-(`diagMap_projection`).
+(`stMatrix_diagMap`).
 -/
 
 namespace GroupApproximation.SteinbergFP

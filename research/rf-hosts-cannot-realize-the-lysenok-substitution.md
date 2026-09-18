@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof below, elementary; the input that `Γ̃` is not residually finite is cited from Sapir–Wise,
-J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-read here; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-cannot-realize-the-lysenok-substitution.md`.
+J. Pure Appl. Algebra 166 (2002) 191–202, via secondary sources and not re-read here; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-rf-hosts-cannot-realize-the-lysenok-substitution.md`. The citation is no longer needed: `rf-hosts-cannot-realize-branch-substitutions` proves directly that every group containing `Γ` and such a `t` is not residually finite.
 
 ## Statement
 
