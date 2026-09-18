@@ -15,7 +15,8 @@ that concerns the target algebra only.
   The rotation path is orthogonal to `ι₁` on orthogonal elements;
 * `CuntzStable.sum`: the Cuntz sum `x ⊕ x' = ι₁ ∘ x + ι₂ ∘ x'`, which respects homotopy in each
   variable;
-* `CuntzStable.nHomotopic_orthSum_sum`: an orthogonal sum is homotopic to the Cuntz sum.
+* (`CuntzStable.mk_orthSum` in `StabQGroupAbstract`): an orthogonal sum is homotopic to the Cuntz
+  sum.
 
 Manuscript: `non_mf_group_notes.tex`, UCT hypothesis of `thm:fixed-radical-membership`
 (Tikuisis--White--Winter).  This is infrastructure for `WO-TWWKK-B` (`stabQGroups`,

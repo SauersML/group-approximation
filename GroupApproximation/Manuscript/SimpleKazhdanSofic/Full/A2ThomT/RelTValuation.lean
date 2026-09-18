@@ -204,21 +204,23 @@ theorem mu_upX (chi : characterSpace ℂ (S.toRelTPlane.represented rho).algebra
   show S.dualUp rho X chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ n)) =
     chi ((S.toRelTPlane.represented rho).coordinate (X ^ (n + 1), 0)) *
       chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ n))
-  rw [S.dualUp_coordinate, zero_add, ← pow_succ', S.chi_coordinate_mk rho chi (X ^ (n + 1))]
+  rw [S.dualUp_coordinate, zero_add, ← pow_succ',
+    S.chi_coordinate_mk rho chi (X ^ (n + 1)) (X ^ n)]
 
 theorem mu_up1 (chi : characterSpace ℂ (S.toRelTPlane.represented rho).algebra) (n : ℕ) :
     S.mu rho (S.dualUp rho 1 chi) n = S.lam rho chi n * S.mu rho chi n := by
   show S.dualUp rho 1 chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ n)) =
     chi ((S.toRelTPlane.represented rho).coordinate (X ^ n, 0)) *
       chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ n))
-  rw [S.dualUp_coordinate, zero_add, one_mul, S.chi_coordinate_mk rho chi (X ^ n)]
+  rw [S.dualUp_coordinate, zero_add, one_mul, S.chi_coordinate_mk rho chi (X ^ n) (X ^ n)]
 
 theorem lam_lowX (chi : characterSpace ℂ (S.toRelTPlane.represented rho).algebra) (n : ℕ) :
     S.lam rho (S.dualLow rho X chi) n = S.mu rho chi (n + 1) * S.lam rho chi n := by
   show S.dualLow rho X chi ((S.toRelTPlane.represented rho).coordinate (X ^ n, 0)) =
     chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ (n + 1))) *
       chi ((S.toRelTPlane.represented rho).coordinate (X ^ n, 0))
-  rw [S.dualLow_coordinate, zero_add, ← pow_succ', S.chi_coordinate_mk rho chi (X ^ n)]
+  rw [S.dualLow_coordinate, zero_add, ← pow_succ',
+    S.chi_coordinate_mk rho chi (X ^ n) (X ^ (n + 1))]
   exact mul_comm _ _
 
 theorem lam_low1 (chi : characterSpace ℂ (S.toRelTPlane.represented rho).algebra) (n : ℕ) :
@@ -226,7 +228,7 @@ theorem lam_low1 (chi : characterSpace ℂ (S.toRelTPlane.represented rho).algeb
   show S.dualLow rho 1 chi ((S.toRelTPlane.represented rho).coordinate (X ^ n, 0)) =
     chi ((S.toRelTPlane.represented rho).coordinate (0, X ^ n)) *
       chi ((S.toRelTPlane.represented rho).coordinate (X ^ n, 0))
-  rw [S.dualLow_coordinate, zero_add, one_mul, S.chi_coordinate_mk rho chi (X ^ n)]
+  rw [S.dualLow_coordinate, zero_add, one_mul, S.chi_coordinate_mk rho chi (X ^ n) (X ^ n)]
   exact mul_comm _ _
 
 /-! ### The four regions -/

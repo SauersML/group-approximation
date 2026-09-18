@@ -189,6 +189,69 @@ theorem comp_addClass_left (S' : CuntzStable E') (y : HomotopyClass E E')
           _ = S'.addClass (HomotopyClass.mk (k.comp f)) (HomotopyClass.mk (k.comp g)) := by
               rw [hk₁, hk₂]
 
+/-- **`[id ⊕ ν] = 0` from a matrix rotation.**  Suppose `w₁ ⊥ w₂ : D → W` have null-homotopic
+orthogonal sum, and `Φ : W → D` combines them into `ι₁` and `ι₂ ∘ ν`.  Then the Cuntz sum
+`id ⊕ ν` is null-homotopic.  For `D = 𝒦 ⊗ qA`: `W = 𝒦 ⊗ M₂(qA)`, `w₁ = 𝒦 ⊗ e₁₁`,
+`w₂ = 𝒦 ⊗ (e₂₂ ∘ flip)`, and the null-homotopy is the q-rotation (Cuntz 1987, Prop. 1.4). -/
+theorem mk_sum_id_eq_zero {W : Type*} [NonUnitalCStarAlgebra W] (SD : CuntzStable D)
+    (ν : D →⋆ₙₐ[ℂ] D) (Φ : W →⋆ₙₐ[ℂ] D) (w₁ w₂ : D →⋆ₙₐ[ℂ] W) (hw : NOrth w₁ w₂)
+    (h₁ : Φ.comp w₁ = SD.ι₁) (h₂ : Φ.comp w₂ = SD.ι₂.comp ν)
+    (hz : NHomotopic (orthSum w₁ w₂ hw) 0) :
+    HomotopyClass.mk (SD.sum (NonUnitalStarAlgHom.id ℂ D) ν) = HomotopyClass.mk 0 := by
+  have e : SD.sum (NonUnitalStarAlgHom.id ℂ D) ν = Φ.comp (orthSum w₁ w₂ hw) :=
+    NonUnitalStarAlgHom.ext fun d => by
+      show SD.ι₁ d + SD.ι₂ (ν d) = Φ (w₁ d + w₂ d)
+      have a₁ : Φ (w₁ d) = SD.ι₁ d := DFunLike.congr_fun h₁ d
+      have a₂ : Φ (w₂ d) = SD.ι₂ (ν d) := DFunLike.congr_fun h₂ d
+      rw [map_add, a₁, a₂]
+  exact (congrArg HomotopyClass.mk e).trans
+    ((HomotopyClass.mk_eq_mk_of_nHomotopic (NHomotopic.comp_left Φ hz)).trans
+      (congrArg HomotopyClass.mk (comp_zero_hom Φ)))
+
+/-- Composing with the zero class on the right gives the zero class. -/
+theorem comp_mk_zero (x : HomotopyClass D E) :
+    HomotopyClass.comp x (HomotopyClass.mk (0 : D' →⋆ₙₐ[ℂ] D)) = HomotopyClass.mk 0 := by
+  induction x using HomotopyClass.ind with
+  | mk f =>
+    show HomotopyClass.mk (f.comp 0) = HomotopyClass.mk 0
+    rw [comp_zero_hom]
+
+/-- **Negatives**: if `[id ⊕ ν] = 0`, then `[x] ⊕ [x ∘ ν] = 0`. -/
+theorem addClass_comp_neg (SD : CuntzStable D) (ν : D →⋆ₙₐ[ℂ] D)
+    (hν : HomotopyClass.mk (SD.sum (NonUnitalStarAlgHom.id ℂ D) ν) = HomotopyClass.mk 0)
+    (x : HomotopyClass D E) :
+    S.addClass x (HomotopyClass.comp x (HomotopyClass.mk ν)) = HomotopyClass.mk 0 := by
+  calc S.addClass x (HomotopyClass.comp x (HomotopyClass.mk ν))
+      = S.addClass (HomotopyClass.comp x (HomotopyClass.id D))
+          (HomotopyClass.comp x (HomotopyClass.mk ν)) :=
+        (congrArg (fun z => S.addClass z (HomotopyClass.comp x (HomotopyClass.mk ν)))
+          (HomotopyClass.comp_id x)).symm
+    _ = HomotopyClass.comp x (SD.addClass (HomotopyClass.id D) (HomotopyClass.mk ν)) :=
+        (SD.comp_addClass_left S x _ _).symm
+    _ = HomotopyClass.comp x (HomotopyClass.mk (SD.sum (NonUnitalStarAlgHom.id ℂ D) ν)) := rfl
+    _ = HomotopyClass.comp x (HomotopyClass.mk (0 : D →⋆ₙₐ[ℂ] D)) :=
+        congrArg (HomotopyClass.comp x) hν
+    _ = HomotopyClass.mk 0 := comp_mk_zero x
+
+/-- **The Cuntz abelian group structure** on `[D, E]`.  The sum is `addClass`, zero is `[0]`,
+and `-[x] = [x ∘ ν]` for an endomorphism `ν` with `[id ⊕ ν] = 0` (Cuntz 1987, §1--3;
+Blackadar 17.8). -/
+def cuntzAddCommGroup (SD : CuntzStable D) (ν : D →⋆ₙₐ[ℂ] D)
+    (hν : HomotopyClass.mk (SD.sum (NonUnitalStarAlgHom.id ℂ D) ν) = HomotopyClass.mk 0) :
+    AddCommGroup (HomotopyClass D E) where
+  add := S.addClass
+  add_assoc x y z := S.addClass_assoc x y z
+  zero := HomotopyClass.mk 0
+  zero_add x := S.zero_addClass x
+  add_zero x := S.addClass_zero x
+  nsmul := nsmulRec
+  neg x := HomotopyClass.comp x (HomotopyClass.mk ν)
+  zsmul := zsmulRec
+  neg_add_cancel x :=
+    (S.addClass_comm (HomotopyClass.comp x (HomotopyClass.mk ν)) x).trans
+      (S.addClass_comp_neg SD ν hν x)
+  add_comm x y := S.addClass_comm x y
+
 end CuntzStable
 
 end

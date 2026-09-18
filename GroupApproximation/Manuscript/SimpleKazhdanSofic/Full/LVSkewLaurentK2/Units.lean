@@ -1,5 +1,6 @@
 import GroupApproximation.Leavitt.ElementaryGroup
 import GroupApproximation.Algebra.FinitaryLinearBinarySimple
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.Interface
 
 /-!
 # `K₁ = 0` for ultramatricial `𝔽₂`-rings (lane LVSkewLaurentK2-3c)
@@ -18,7 +19,8 @@ unstable, finite-rank form of that vanishing: every invertible `ι × ι` matrix
 * `units_mem_elementaryGroup_of_ringEquiv`: ring isomorphisms;
 * `units_mem_elementaryGroup_of_subrings`: directed unions of subrings;
 * `units_mem_elementaryGroup_of_ultramatricial`: the assembly, under the ultramatricial
-  hypothesis of WO-LVCohnK2-3.
+  hypothesis of WO-LVCohnK2-3;
+* `k1Statement_of_ultramatricial`: the lane-3c statement of `Interface.lean`.
 -/
 
 namespace GroupApproximation.Full.LVSkewLaurentK2
@@ -62,6 +64,16 @@ theorem piMatrixUnitsEquiv_apply_val {J : Type*} {A : J → Type*} [∀ j, Ring 
       (g : Matrix ι ι (Π j, A j)) k l j :=
   rfl
 
+/-- The `j`-th coordinate of an elementary unit over a product ring is the elementary unit with
+the `j`-th coordinate of the coefficient. -/
+theorem piMatrixUnitsEquiv_elementaryUnit {J : Type*} {A : J → Type*} [∀ j, Ring (A j)]
+    {ι : Type*} [Fintype ι] [DecidableEq ι] (k l : ι) (hkl : k ≠ l) (x : Π j, A j) (j : J) :
+    piMatrixUnitsEquiv (elementaryUnit k l hkl x) j = elementaryUnit k l hkl (x j) := by
+  have h := elementaryMatrixUnitMap_elementaryUnit (ι := ι) (Pi.evalRingHom A j) k l hkl x
+  apply Units.ext
+  ext k' l'
+  exact congrArg (fun z : (Matrix ι ι (A j))ˣ => (z : Matrix ι ι (A j)) k' l') h
+
 /-- The elementary unit with coefficient supported in one coordinate is the elementary unit of
 that coordinate, and `1` in the others. -/
 theorem piMatrixUnitsEquiv_elementaryUnit_single {J : Type*} [DecidableEq J] {A : J → Type*}
@@ -69,35 +81,13 @@ theorem piMatrixUnitsEquiv_elementaryUnit_single {J : Type*} [DecidableEq J] {A 
     (k l : ι) (hkl : k ≠ l) (j : J) (a : A j) :
     piMatrixUnitsEquiv (elementaryUnit k l hkl (Pi.single j a : Π j, A j)) =
       Pi.mulSingle j (elementaryUnit k l hkl a) := by
-  have hsame : piMatrixUnitsEquiv (elementaryUnit k l hkl (Pi.single j a : Π j, A j)) j =
-      elementaryUnit k l hkl a := by
-    apply Units.ext
-    ext k' l'
-    rw [piMatrixUnitsEquiv_apply_val, elementaryUnit_val, elementaryUnit_val]
-    change (1 : Matrix ι ι (Π j, A j)) k' l' j +
-        Matrix.single k l (Pi.single j a : Π j, A j) k' l' j =
-      (1 : Matrix ι ι (A j)) k' l' + Matrix.single k l a k' l'
-    rw [Matrix.one_apply, Matrix.one_apply, Matrix.single_apply, Matrix.single_apply]
-    split_ifs <;> simp
-  have hother : ∀ j' : J, j' ≠ j →
-      piMatrixUnitsEquiv (elementaryUnit k l hkl (Pi.single j a : Π j, A j)) j' = 1 := by
-    intro j' hj
-    apply Units.ext
-    ext k' l'
-    rw [piMatrixUnitsEquiv_apply_val, elementaryUnit_val, Units.val_one]
-    change (1 : Matrix ι ι (Π j, A j)) k' l' j' +
-        Matrix.single k l (Pi.single j a : Π j, A j) k' l' j' =
-      (1 : Matrix ι ι (A j')) k' l'
-    have hs : (Pi.single j a : Π j, A j) j' = 0 := Pi.single_eq_of_ne hj a
-    rw [Matrix.one_apply, Matrix.one_apply, Matrix.single_apply, ite_apply, ite_apply, hs,
-      Pi.one_apply, Pi.zero_apply, ite_self, add_zero]
   funext j'
+  rw [piMatrixUnitsEquiv_elementaryUnit]
   by_cases hj : j' = j
   · subst hj
-    rw [Pi.mulSingle_eq_same]
-    exact hsame
-  · rw [Pi.mulSingle_eq_of_ne hj]
-    exact hother j' hj
+    rw [Pi.single_eq_same, Pi.mulSingle_eq_same]
+  · rw [Pi.single_eq_of_ne hj, Pi.mulSingle_eq_of_ne hj]
+    exact elementaryUnit_zero k l hkl
 
 /-- If every invertible matrix over each factor is elementary, so is every invertible matrix over
 the finite product.  (ABC 2009, `K₁` of ultramatricial algebras;
@@ -115,9 +105,10 @@ theorem units_mem_elementaryGroup_pi {J : Type*} [Fintype J] [DecidableEq J] {A 
           (MonoidHom.mulSingle (fun j => (Matrix ι ι (A j))ˣ) j) := by
       refine Subgroup.closure_le.mpr ?_
       rintro _ ⟨k, l, hkl, a, rfl⟩
-      rw [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.mulSingle_apply, Subgroup.mem_map]
-      exact ⟨elementaryUnit k l hkl (Pi.single j a : Π j, A j), elementaryUnit_mem k l hkl _,
-        piMatrixUnitsEquiv_elementaryUnit_single k l hkl j a⟩
+      show (Pi.mulSingle j (elementaryUnit k l hkl a) : Π j, (Matrix ι ι (A j))ˣ) ∈
+        (elementaryGroup ι (Π j, A j)).map (piMatrixUnitsEquiv (ι := ι) (A := A)).toMonoidHom
+      exact Subgroup.mem_map.mpr ⟨elementaryUnit k l hkl (Pi.single j a : Π j, A j),
+        elementaryUnit_mem k l hkl _, piMatrixUnitsEquiv_elementaryUnit_single k l hkl j a⟩
     exact hle (hA j (piMatrixUnitsEquiv (ι := ι) (A := A) g j))
   have hsymm := Subgroup.mem_map_equiv.mp hΦ
   rwa [MulEquiv.symm_apply_apply] at hsymm
@@ -172,10 +163,12 @@ theorem units_mem_elementaryGroup_of_subrings {ι S : Type*} [Fintype ι] [Decid
     rfl
   have hGH : G * H = 1 := by
     apply hinj
-    rw [map_mul, map_one, hG, hH, Units.mul_inv]
+    rw [map_mul, map_one, hG, hH]
+    exact Units.mul_inv g
   have hHG : H * G = 1 := by
     apply hinj
-    rw [map_mul, map_one, hG, hH, Units.inv_mul]
+    rw [map_mul, map_one, hG, hH]
+    exact Units.inv_mul g
   let u : (Matrix ι ι T)ˣ := ⟨G, H, hGH, hHG⟩
   have hu : elementaryMatrixUnitMap T.subtype u = g := by
     apply Units.ext
@@ -208,5 +201,14 @@ theorem units_mem_elementaryGroup_fin_of_ultramatricial {S : Type*} [Ring S]
     g ∈ elementaryGroup (Fin n) S := by
   haveI : Nontrivial (Fin n) := Fin.nontrivial_iff_two_le.mpr hn
   exact units_mem_elementaryGroup_of_ultramatricial hS g
+
+/-- **Lane 3c of WO-LVCohnK2-3**: `K1Statement S` (`GL_n(S) = E_n(S)` for `n ≥ 2`) for every
+ultramatricial `𝔽₂`-ring `S`.  (Ara–Brustenga–Cortiñas 2009, `thm:skewyao`, the term
+`ker(1 - φ on K₁ S)`, `yaoseq6.tex` l.574-640; `simple_kazhdan_sofic_group.tex` l.733-735,
+leaf T1b.iii.) -/
+theorem k1Statement_of_ultramatricial {S : Type*} [Ring S] (hS : IsUltramatricialF2 S) :
+    K1Statement S := by
+  intro n hn g
+  exact units_mem_elementaryGroup_fin_of_ultramatricial hS n hn g
 
 end GroupApproximation.Full.LVSkewLaurentK2

@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingEndpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPullback
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionLiftModel
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionTraceTransfer
 
 /-!
 # The trace-kernel extension pulled back along a tracial embedding
@@ -29,14 +30,14 @@ Proved here, with no hypotheses:
   **nuclear liftability.**  The ucp lift of lane 3b gives a linear splitting
   `a ↦ (a, [E.lift a])` of `P → A`.  Its second coordinate is the corona class of
   a sequence of unital completely positive maps.
-* `normCoronaToOmegaCorona`: the canonical quotient `ℓ∞/c₀ → ℓ∞/c_ω`.  It connects
-  the cofinite corona of lane 3b with the `ω`-corona of lane 3d.
 * `TraceKernelLift E hω`: the output of Schafhauser's lifting step (Crelle 759,
   Theorem 5.1).  It is a unital ⋆-homomorphism `ψ : A → Q_ω` with
   `π ∘ ψ = Ad u ∘ E.hom` for a unitary `u ∈ Q^ω`, together with a ucp lift of `ψ`.
 * `TraceKernelLift.toCoronaLiftModel`, `hasCoronaLiftModel_of_traceKernelLift`:
   such a lift is a `CoronaLiftModel τ X ω` (lane 3d), so it makes `τ`
-  quasidiagonal.  The trace condition comes from `tr_ω (u x u⋆) = tr_ω x`.
+  quasidiagonal.  The trace condition comes from `tr_ω (u x u⋆) = tr_ω x`
+  (`ultratrace_conj`), and the corona is moved from `ℓ∞/c₀` to `ℓ∞/c_ω` by
+  `normCoronaToFilterCorona` (both from `ObstructionTraceTransfer.lean`, lane 3d1).
 
 The existence of a `TraceKernelLift` is the absorption-plus-obstruction argument of
 Schafhauser §4--5 (Elliott--Kucerovsky absorption, then the vanishing of the
@@ -127,37 +128,7 @@ theorem TracialEmbedding.snd_pullbackLinearSplitting {A : Type u} [CStarAlgebra 
       = normMatrixCStarCoronaMk (fun n => X n) (E.lift a) :=
   rfl
 
-/-! ## From the cofinite corona to the `ω`-corona -/
-
-/-- **The canonical quotient `ℓ∞/c₀ → ℓ∞/c_ω`.**  A sequence that is null along
-`cofinite` is null along `ω ≤ cofinite`. -/
-def normCoronaToOmegaCorona (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-    (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ cofinite) :
-    NormMatrixCStarCorona (fun n => X n) →⋆ₐ[ℂ]
-      FilterMatrixCStarCorona (fun n => X n) (ω : Filter ℕ) := by
-  unfold NormMatrixCStarCorona
-  exact filterMatrixCoronaStarLift (fun n => X n) cofinite
-    (filterMatrixCStarCoronaQuotient (fun n => X n) (ω : Filter ℕ))
-    (fun a ha => (filterMatrixCStarCoronaMk_eq_zero_iff (fun n => X n)
-      (ω : Filter ℕ) a).mpr (ha.mono_left hω))
-
-theorem normCoronaToOmegaCorona_mk (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-    (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ cofinite)
-    (a : TracialUltraproduct.ModelBoundedSequence X) :
-    normCoronaToOmegaCorona X ω hω (normMatrixCStarCoronaMk (fun n => X n) a)
-      = filterMatrixCStarCoronaMk (fun n => X n) (ω : Filter ℕ) a :=
-  rfl
-
 /-! ## The lifting step and its consumer -/
-
-/-- The ultratrace is invariant under unitary conjugation. -/
-theorem ultratrace_conj (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
-    (ω : Ultrafilter ℕ) (v x : TracialUltraproduct.TracialMatrixQuotient X (ω : Filter ℕ))
-    (hv : star v * v = 1) :
-    TracialUltraproduct.ultratrace X ω (v * x * star v)
-      = TracialUltraproduct.ultratrace X ω x := by
-  rw [TracialUltraproduct.ultratrace_mul_comm X ω (v * x) (star v), ← mul_assoc, hv,
-    one_mul]
 
 /-- **A lift of the tracial embedding through the trace-kernel extension, up to
 unitary equivalence, with a ucp lift** (Schafhauser, Crelle 759 (2020),
@@ -198,13 +169,12 @@ theorem TraceKernelLift.tendsto_trace {A : Type u} [CStarAlgebra A] {τ : A → 
     Tendsto (fun n => ‖τ a - normTrace (X n) (L.map n a)‖) (ω : Filter ℕ) (nhds 0) := by
   have htr : TracialUltraproduct.seqUltratrace X ω (L.seq a) = τ a := by
     rw [← ultratrace_traceKernelQuotient_mk X ω hω (L.seq a), L.mk_seq a, L.lifts a,
-      ultratrace_conj X ω L.unit (E.hom a) L.star_unit_mul,
+      ultratrace_conj X ω L.star_unit_mul (E.hom a),
       ← TracialUltraproduct.ultratraceCLM_apply]
     exact E.trace a
-  have h := TracialUltraproduct.tendsto_seqUltratrace X ω (L.seq a)
+  have h := tendsto_norm_sub_normTrace X ω (L.seq a)
   rw [htr] at h
-  refine (tendsto_iff_norm_sub_tendsto_zero.1 h).congr fun n => ?_
-  rw [L.seq_apply a n, norm_sub_rev]
+  simpa only [L.seq_apply] using h
 
 /-- **A trace-kernel lift is a lifted corona model** (lane 3d).  The
 ⋆-homomorphism is `ψ` followed by the quotient `Q_ω → ℓ∞/c_ω`, and the ucp lift
@@ -213,14 +183,14 @@ def TraceKernelLift.toCoronaLiftModel {A : Type u} [CStarAlgebra A] {τ : A → 
     {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)] {ω : Ultrafilter ℕ}
     {E : TracialEmbedding τ X ω} {hω : (ω : Filter ℕ) ≤ cofinite}
     (L : TraceKernelLift E hω) : CoronaLiftModel τ X (ω : Filter ℕ) where
-  hom := (normCoronaToOmegaCorona X ω hω).comp L.hom
+  hom := (normCoronaToFilterCorona X (ω : Filter ℕ) hω).comp L.hom
   map := L.map
   map_one := L.map_one
   completelyPositive := L.completelyPositive
   seq := L.seq
   seq_apply := L.seq_apply
-  mk_seq a := (normCoronaToOmegaCorona_mk X ω hω (L.seq a)).symm.trans
-    (congrArg (normCoronaToOmegaCorona X ω hω) (L.mk_seq a))
+  mk_seq a := (normCoronaToFilterCorona_mk X (ω : Filter ℕ) hω (L.seq a)).symm.trans
+    (congrArg (normCoronaToFilterCorona X (ω : Filter ℕ) hω) (L.mk_seq a))
   tendsto_trace := L.tendsto_trace
 
 /-- **A trace-kernel lift makes `τ` have a lifted corona model**, hence, on a

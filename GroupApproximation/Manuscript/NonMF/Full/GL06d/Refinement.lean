@@ -83,9 +83,8 @@ theorem project_pow (R : RotationRefinement M M') (K : ℕ) :
       ∃ k, k ≤ K ∧ (0 < K → 0 < k) ∧ (M.sigma ^ k) x = y ∧
         ∀ t, 0 < t → t < k → ∃ b, 0 < b ∧ b < K ∧
           (M'.sigma ^ b) (R.map x) = R.map ((M.sigma ^ t) x) := by
-  induction K using Nat.strong_induction_on with
-  | _ K ih =>
-  intro x y hK
+  refine Nat.strong_induction_on K ?_
+  intro K ih x y hK
   rcases Nat.eq_zero_or_pos K with h0 | hpos
   · subst h0
     simp only [pow_zero, Perm.one_apply] at hK
@@ -192,7 +191,7 @@ def refl (M : CombMap.{v}) : RotationRefinement M M where
   map d := d
   injective _ _ h := h
   alpha_map _ := rfl
-  step _ := ⟨1, Nat.one_pos, by rw [pow_one], fun _ _ ht1 => absurd ht1 (by omega)⟩
+  step _ := ⟨1, Nat.one_pos, by rw [pow_one], fun _ ht ht1 => absurd ht1 (by omega)⟩
 
 /-- **Refinements compose.** -/
 def comp (R₁ : RotationRefinement M M') (R₂ : RotationRefinement M' M'') :
@@ -205,7 +204,7 @@ def comp (R₁ : RotationRefinement M M') (R₂ : RotationRefinement M' M'') :
     obtain ⟨K, hKpos, -, hK, hKmid⟩ := R₂.lift_pow (R₁.map z) m
     refine ⟨K, hKpos hm, ?_, fun t ht htK w hw => ?_⟩
     · show (M''.sigma ^ K) (R₂.map (R₁.map z)) = R₂.map (R₁.map (M.sigma z))
-      rw [hK, pow_one, hmz]
+      rw [hK, hmz]
     obtain ⟨s, hs, hsm, hsw⟩ := hKmid t ht htK (R₁.map w) hw
     exact hmmid s hs hsm w hsw
 
@@ -220,9 +219,9 @@ noncomputable def edgeInsertion {a b : M.Dart} (hab : a ≠ b) :
     refine ⟨m, hm, hmz, fun t ht htm w hw => ?_⟩
     rcases hmmid t ht htm with h | h
     · rw [h] at hw
-      exact Option.noConfusion hw
+      simp [EdgeInsertion.embed] at hw
     · rw [h] at hw
-      exact Option.noConfusion (Option.some.inj hw)
+      simp [EdgeInsertion.embed] at hw
 
 end RotationRefinement
 

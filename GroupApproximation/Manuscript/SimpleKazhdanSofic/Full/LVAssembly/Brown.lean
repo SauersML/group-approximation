@@ -23,6 +23,7 @@ to all of `GL_4(L)` once the edge relation, `t² = f(τ²)` and the triangle rel
 
 namespace GroupApproximation.Full.LVAssembly
 
+open scoped Matrix
 open GroupApproximation.Full.LVFrame
 
 noncomputable section
@@ -51,8 +52,8 @@ theorem projection_injective_of_liftsRoots
       (a : GLFour) • nextVertex = nextVertex → (b : GLFour) = swapLast * a * swapLast⁻¹ →
         weylLast * stabSection σ a * weylLast⁻¹ = stabSection σ b := by
     intro a b ha hb
-    have ha' : ((Subgroup.inclusion stabilizer_eq_vertexStab.le a : vertexStab) : GLFour) *ᵥ
-        prevCol = prevCol := congrArg Subtype.val ha
+    have ha' : (((Subgroup.inclusion stabilizer_eq_vertexStab.le a : vertexStab) : GLFour) :
+        Matrix (Fin 4) (Fin 4) BinL) *ᵥ prevCol = prevCol := congrArg Subtype.val ha
     exact edgeRelation_of_liftsRoots σ hσ (Subgroup.inclusion stabilizer_eq_vertexStab.le a)
       (Subgroup.inclusion stabilizer_eq_vertexStab.le b) ha' hb
   have hone : Subgroup.inclusion stabilizer_eq_vertexStab.le
