@@ -174,6 +174,32 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     amenability of `F`. Not covered: extensive amenability proved without recurrence
     (`f-dyadic-ea-iff-inverted-orbit-confinement`), germ-groupoid variants, and analytic
     routes. (swarm-0917, obstructor.)
+- **Uniform stability, asymptotic cohomology and separable bounded cohomology.**
+  `lamplighter-closure-invariants-cannot-decide-f-amenability`. Let `LC` be the smallest class
+  containing every `G ≀ Z` and closed under quotients by amenable normal subgroups and under
+  coamenable overgroups. `LC` contains every amenable group, the non-amenable `F_2 ≀ Z`, `F'` and
+  `F`. For `F` the chain is `Γ_0 ≀ Z → ⟨Γ_0, g⟩ ≤ F' ≤ F`, following the Fournier-Facio–Rangarajan
+  proof.
+  - *Status:* the barrier node is OPEN. Items 1 to 4 and every individual kill below are proved,
+    but a referee found the completeness sentence unsupported: the imports cover only
+    submultiplicative norms, while the normalized Hilbert--Schmidt norm and normalized Hamming
+    distance are finite-dimensional targets using the same sup over pairs that are not
+    submultiplicative. That gap is parked as
+    `lamplighter-closure-covers-normalized-nonsubmult-targets`.
+  - *Invariant:* satisfying the three closure axioms. Uniform `U_f`-stability with a linear
+    estimate does, for every submultiplicative norm.
+  - Dies: the Kazhdan contrapositive, and `U(1)`/quasimorphism instability witnesses, die at "`F`
+    is unstable": every uniform asymptotic homomorphism of `F` is close to one through `Z^2`. The
+    converse "stable implies amenable" dies at `F_2 ≀ Z`, `T` and `V`.
+  - Finitary asymptotic-cohomology vanishing holds on `F'` and on `F_2 ≀ Z`.
+  - Monod's separable-coefficient bounded acyclicity holds on `F`, on all `G ≀ Z` and on amenable
+    groups.
+  - Uniform non-approximability of `F` is shared with the amenable group `S_3 ≀ Z`.
+  - Not covered: pointwise relator stability (`thompson-f-relator-system-stable-in-permutations`),
+    strong Ulam stability on infinite-dimensional `U(H)` (which breaks the lamplighter axiom at
+    `F_2 ≀ Z`), Johnson-type non-separable coefficients, and — the referee's addition — uniform
+    stability for normalized non-submultiplicative finite-dimensional targets. (swarm-0917,
+    e-f-transplant, stability-approximation.)
 - **Juschenko–Monod twisted embeddings: extensive amenability plus a functor cocycle
   with amenable kernel** (JMBMdlS arXiv:1503.04977, corollary and remark in §1).
   - *Germ-groupoid variant with recurrence.* `thompson-f-point-orbits-are-transient`
