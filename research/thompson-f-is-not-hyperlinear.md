@@ -51,6 +51,30 @@ of the two relators of `F` almost commute, uniformly in the dimension.
   - **Calibration.** Spatial permutation models that follow `F` on `[0,1]` almost commute
     (`thompson-f-spatial-permutation-models-almost-commute`). So the natural geometric frame is
     degenerate, consistent with the dying step.
+- **Reframing: germ-local (inverse-semigroup) unitary models** (d-nhg-p3, 2026-09-17). Dead as a route
+  to this claim; the class-killing half is recorded as `thompson-f-germ-local-hs-models-almost-commute`.
+  - **Class killed.** HS models with an approximately covariant dyadic frame `P_w` that is also
+    approximately germ-local, `U_g P_w ≈ U_h P_w` when `g|_[w] = h|_[w]`. Such models satisfy
+    `||U_c − 1||_2 ≤ 2η_loc + 2 sqrt(1/N + η_cov)`. This covers Koopman representations for every
+    quasi-invariant measure, quasi-regular representations on orbits, Pythagorean (direct-sum Jones)
+    representations, restrictions of `O_2` representations through `F ≤ V ≤ U(O_2)`, and every
+    finite-rank almost-invariant compression of these.
+  - **Invariant and dying step.** The invariant is germ-locality at the two end germs. Interior cylinders
+    have `N` disjoint `x_0^3`-translates, so a central state gives them mass `≤ 1/N`. All frame mass sits
+    on `[0^m] ∪ [1^m]`, where `F'` acts trivially by locality, so `t = 0` in
+    `thompson-f-character-simplex`.
+  - **Why this is not a route.** The intended reformulation was "every witness admits an approximately
+    covariant frame, and covariant frames can be made local", which would prove this claim. It dies at
+    the second clause. Covariance can always be arranged: if `σ_n` is a witness and `λ_n` are the
+    `x_0`-ray permutation models, then `λ_n ⊗ σ_n` is a witness with approximately covariant frame
+    `P_w ⊗ 1`. Its locality defect at `c` is about `||σ_n(c) − 1||_2`, however the frame is chosen
+    among amplified frames. So "covariant ⇒ almost commuting" is equivalent to this claim, and
+    "covariant ⇒ local" presupposes `t = 0`. A locality-extraction step cannot be proved without
+    already knowing the answer.
+  - **What it rules out for `thompson-f-is-hyperlinear`.** No witness is a compression of a
+    direct-sum/Cuntz/Koopman representation. The only natural unitary families left are tensor-type
+    Jones representations (Temperley–Lieb–Jones functors) and Koopman representations of generalized
+    Bernoulli actions, which carry no evident germ-local frame.
 - **Inverter biography: group-level permanence cannot reach `F`** (lane swarm-0917-w5-pull-nh-2,
   2026-09-17). Recorded as `thompson-f-in-permanence-closure-only-via-base-copy`.
   - **Invariant.** "Contains a subgroup isomorphic to `F`". It is preserved backwards by subgroups, directed

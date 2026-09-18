@@ -5684,6 +5684,28 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Chains
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Semantics
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Vars
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.CPoly
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiThinRoom
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingEndpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Macros
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.BorelSolvable
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridCoarse
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerPerm
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InducedMat
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.FiniteIndex
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.RelTSpectral
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.RealForms
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.CompletionRep
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.RealDilation
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.CompactExtraction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TraceModels
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.TensorSquare
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Frame
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Kirchberg.Theorem
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.WellFormed.Decide
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.Compress
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupCocycle
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HaagerupProper
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.Reduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
