@@ -28,18 +28,19 @@ of one class along the pocket walk, plus the two arc-end conditions.
 
 ## Truth check (finite model of lanes gl-p10-17/21/27, exact linear Lean forms)
 
-* `ExtremalJordanStatement` holds at every pocket walk of 3 to 6 darts (6 darts: 6,489,102
-  instances) and at 8 darts with vertex degree at most 3 (5,024,192 instances): no failure.
-* `ExtremalJordanRerouteStatement` holds at 8 darts, degree at most 3, on every instance: some
-  choice class meets both arcs through one end and has at most one cyclic removed run other than
-  single loop darts (such a class satisfies `ExtremalJordanRerouteLoopRun`).
+* `ExtremalJordanStatement` holds at every pocket walk of 3 to 7 darts (6 darts: 6,489,102
+  instances; 7 darts: 215,705,028) and at 8 darts with vertex degree at most 3 (5,024,192
+  instances): no failure.
+* `ExtremalJordanRerouteStatement` holds on every one of the same 7-dart and 8-dart
+  (degree at most 3) instances, in the exact linear form stated here.
 * The loop-free variant FAILS: "one run (`ExtremalArcEndExistsOneRun`) or pinned, and both arc
   ends" has no witness in 224 instances at 8 darts, degree at most 3, for example vertices
   `[1,0,0,1,0,1,2,2]` (tail of dart `i` is vertex `i-1`, head is vertex `i`), region pairs
   `[(0,1),(2,3),(4,5),(2,1),(4,1),(4,3),(0,1),(6,1)]`, target arc `[6,7,0]`, empty source arc.
   The loop darts are what the rerouting uses.
 * Sanity in the model: every class with `ExtremalJordanRerouteLoopRun` or
-  `ExtremalArcEndExistsPinned` has linked runs (checked for all classes, all base points).
+  `ExtremalArcEndExistsPinned` has linked runs (every class, every base point, 7 darts and
+  8 darts of degree at most 3), as proved here.
 
 ## Manuscript status
 
@@ -78,7 +79,8 @@ end RerouteOneRun
 exists that meets each arc through one end and has one removed run up to loops or is pinned at
 one vertex.  LOUD: logically STRONGER than `ExtremalJordanStatement`
 (`extremalJordanReroute_extremalJordan`), strictly smaller in proof content (linked runs are
-proved); true in the model at 8 darts, degree at most 3 (see the module docstring). -/
+proved); true in the model at 7 darts and at 8 darts, degree at most 3 (see the module
+docstring). -/
 def ExtremalJordanRerouteStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
