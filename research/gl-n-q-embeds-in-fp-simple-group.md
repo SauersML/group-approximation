@@ -313,3 +313,20 @@ None recorded before 2026-09-17.
       `fg-subrings-of-integral-form-algebras-omit-q`, `integral-form-algebras-have-no-fg-subring-containing-q`,
       `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields`, and `rational-scalars-obstruct-fp-elementary-hosts`
       (over a ring containing `Q`, `PE_N(R)` is infinitely presented).
+
+16. **Leaving out one prime, 2026-09-17 (lane gq-infinite-primes; artifact `gq-gq-infinite-primes.md`).**
+    - *Where O1 bites.* For `P` missing a prime `l`,
+      `GL_n(Z[1/P]) <= Aff_n(Z_(l))` is residually finite and finite-state self-similar
+      (`aff-n-over-z-localized-at-ell-is-rf-and-self-similar`). So O1 separates exactly the all-primes case.
+    - *No linear shortcut.* The co-nonempty case `gl-n-z-localized-at-ell-embeds-in-fp-simple-group` is OPEN and
+      implied by this root. Linear embeddings between the `GL_n(Z[1/P])` go only along inclusion of `P`
+      (`z-localizations-embed-in-gl-n-only-along-inclusion`).
+    - *One-prime amalgam.* For `n = 2` the bridge back is Ihara's
+      `SL_2(Q) = SL_2(Z_(l)) *_{Γ_0(l)} SL_2(Z_(l))^{diag(1,l)}`
+      (`sl-2-q-is-an-amalgam-of-sl-2-z-localized-at-ell`). `PSL_2(Q)` meets every hypothesis of Bux--Llosa
+      Isenrich--Wu Theorem B except finite presentation of edge stabilizers.
+    - *Conditional route.* `sl-2-q-via-hecke-overgroup-and-bliw` derives `sl-2-q-embeds-in-fp-simple-group` from
+      a finitely presented, necessarily residually finite, overgroup of `SL_2(Z_(l))` in which the Hecke
+      conjugation by `diag(1,l)` extends to finite-index subgroups (`sl-2-z-localized-has-fp-hecke-overgroup`).
+    - *Beyond n = 2.* A higher-dimensional BLIW theorem for locally finite buildings would carry this to
+      `SL_m(Q)`.
