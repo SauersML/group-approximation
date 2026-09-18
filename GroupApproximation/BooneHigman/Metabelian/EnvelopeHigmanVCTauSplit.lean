@@ -109,7 +109,8 @@ theorem higmanVCTauSplit_core {d : ℕ} (hd : 1 < d) :
 /-- **Split family.**  For the canonical `τ`, `ψ_τ` kills every split relator. -/
 theorem higmanVCTauSplit_split (d : ℕ) (hd : 1 < d) (v w : List (Fin d)) (hvw : ¬ v <+: w)
     (hwv : ¬ w <+: v) :
-    higmanVC_psi d (higmanVCTau_tau d) (FreeGroup.of (v, w) * (higmanVC_splitAll v w)⁻¹) = 1 := by
+    higmanVC_psi d (higmanVCTau_tau d)
+      (FreeGroup.of (v, w) * (higmanVC_splitAll v w)⁻¹) = 1 := by
   rw [map_mul, map_inv, mul_inv_eq_one, higmanVCTauSplit_psi_of, higmanVCTauSplit_psi_splitAll]
   exact higmanVCTauSplit_core hd _ v w le_rfl hvw hwv
 

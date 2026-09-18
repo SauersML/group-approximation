@@ -21,7 +21,8 @@ namespace GroupApproximation.BooneHigman.Metabelian.Envelope
 theorem higmanVCTauSplit_incomp_desc {d : ℕ} {m o : List (Fin d)} (hmo : ¬ m <+: o)
     (hom : ¬ o <+: m) (hPo : ¬ higmanVCTau_descP m o <+: o)
     (hoP : ¬ o <+: higmanVCTau_descP m o) (hm : 3 ≤ m.length) :
-    ¬ higmanVCTau_dM m o <+: higmanVCTau_dO m o ∧ ¬ higmanVCTau_dO m o <+: higmanVCTau_dM m o := by
+    ¬ higmanVCTau_dM m o <+: higmanVCTau_dO m o ∧
+      ¬ higmanVCTau_dO m o <+: higmanVCTau_dM m o := by
   unfold higmanVCTau_dM higmanVCTau_dO
   split_ifs with h
   · obtain ⟨s, hs⟩ := h

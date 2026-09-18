@@ -153,7 +153,8 @@ theorem higmanVCTauSplit_pair_len {d : ℕ} (hd : 1 < d) {v w : List (Fin d)}
 
 /-- Appending a letter to both words fixes `P`, `Q` and appends it to `X`, `Y`. -/
 theorem higmanVCTauSplit_pair_append {d : ℕ} {v w : List (Fin d)}
-    (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) (hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2)) (a : Fin d) :
+    (hvw : ¬ v <+: w) (hwv : ¬ w <+: v) (hs : ¬ (v.length ≤ 2 ∧ w.length ≤ 2))
+    (a : Fin d) :
     higmanVCTau_pP (v ++ [a], w ++ [a]) = higmanVCTau_pP (v, w) ∧
       higmanVCTau_pQ (v ++ [a], w ++ [a]) = higmanVCTau_pQ (v, w) ∧
         higmanVCTau_pX (v ++ [a], w ++ [a]) = higmanVCTau_pX (v, w) ++ [a] ∧

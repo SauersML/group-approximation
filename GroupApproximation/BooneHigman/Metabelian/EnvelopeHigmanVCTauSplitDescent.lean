@@ -39,7 +39,8 @@ theorem higmanVCTauSplit_psi_of (d : ℕ) (p : List (Fin d) × List (Fin d)) :
 /-- **Fuel independence** of the descent value. -/
 theorem higmanVCTauSplit_val_fuel {d : ℕ} (hd : 1 < d) :
     ∀ n k : ℕ, ∀ v w : List (Fin d), v.length + w.length + 1 ≤ n →
-      v.length + w.length + 1 ≤ k → higmanVCTau_val d n (v, w) = higmanVCTau_val d k (v, w) := by
+      v.length + w.length + 1 ≤ k →
+        higmanVCTau_val d n (v, w) = higmanVCTau_val d k (v, w) := by
   intro n
   induction n with
   | zero =>

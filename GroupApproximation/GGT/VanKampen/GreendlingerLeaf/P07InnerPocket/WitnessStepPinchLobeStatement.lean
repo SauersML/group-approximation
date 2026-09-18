@@ -6,8 +6,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 Lane gl-p07-55.  The target is `FourPieceWitness.WitnessStepPinchCutStatement`
 (`WitnessStepPinchCutStatement.lean`, lane gl-p07-54).  This file states the residual
-`FourPieceWitness.WitnessStepPinchLobeStatement`.  `WitnessStepPinchLobeProof.lean` proves the target
-from it (`witnessStepPinchLobe_pinchCut_of_pinchLobe`), and also proves the converses, so the
+`FourPieceWitness.WitnessStepPinchLobeStatement`.  `WitnessStepPinchLobeProof.lean` proves the
+target from it (`witnessStepPinchLobe_pinchCut_of_pinchLobe`), and also proves the converses, so the
 chain `PinchOff ↔ PinchCut ↔ PinchLobe` is recorded in Lean.  Certifies no printed sentence on its
 own.  NOT COMPILED: this lane was authored without running Lean.
 
