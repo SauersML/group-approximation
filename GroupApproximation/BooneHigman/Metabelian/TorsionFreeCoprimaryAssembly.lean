@@ -27,7 +27,7 @@ namespace Coprimary
 /-- **Reduction to the coprimary case.** -/
 theorem torsionFreeModuleLinearity_of_coprimary (h : CoprimaryTorsionFreeLinearityStatement) :
     TorsionFreeModuleLinearityStatement := by
-  intro Q _ hfg W _ _ hfin htf
+  intro Q _ hfg W _ _ _ _
   haveI : Group.FG Q := hfg
   haveI := GroupRing.isNoetherianRing_intGroupRing Q
   obtain ⟨n, S, P, e, hS, -, hP⟩ :=
@@ -35,7 +35,8 @@ theorem torsionFreeModuleLinearity_of_coprimary (h : CoprimaryTorsionFreeLineari
   choose K hF d ρ ι hchar hinj hequiv using
     fun j : {i : Fin n // IsAddTorsionFree (W ⧸ S i)} =>
       h Q hfg (W ⧸ S j.1) inferInstance j.2 (P j.1) (e j.1) (hP j.1)
-  haveI : ∀ j, CharZero (K j) := fun j => (CharP.ringChar_zero_iff_CharZero (R := K j)).mp (hchar j)
+  haveI : ∀ j, CharZero (K j) := fun j =>
+    (CharP.ringChar_zero_iff_CharZero (R := K j)).mp (hchar j)
   haveI : Fintype {i : Fin n // IsAddTorsionFree (W ⧸ S i)} := Fintype.ofFinite _
   haveI : DecidableEq {i : Fin n // IsAddTorsionFree (W ⧸ S i)} := Classical.decEq _
   obtain ⟨L, _, _, hL⟩ := exists_common_field_finset K Finset.univ
@@ -43,9 +44,10 @@ theorem torsionFreeModuleLinearity_of_coprimary (h : CoprimaryTorsionFreeLineari
   obtain ⟨d', ρ', ι', hinj', hequiv'⟩ :=
     exists_linearization_of_field_pieces (fun q w => MonoidAlgebra.of ℤ Q q • w) K f d ρ
       (fun j => (ι j).comp (S j.1).mkQ.toAddMonoidHom)
-      (fun w hw => eq_zero_of_mem_torsionFree_pieces S hS hP w fun i hi =>
-        (Submodule.Quotient.mk_eq_zero (S i)).mp
-          (hinj ⟨i, hi⟩ ((hw ⟨i, hi⟩).trans (map_zero (ι ⟨i, hi⟩)).symm)))
+      (fun w hw => eq_zero_of_mem_torsionFree_pieces S hS hP w fun i hi => by
+        have h0 : ι ⟨i, hi⟩ (Submodule.Quotient.mk w) = ι ⟨i, hi⟩ 0 :=
+          (hw ⟨i, hi⟩).trans (map_zero (ι ⟨i, hi⟩)).symm
+        exact (Submodule.Quotient.mk_eq_zero (S i)).mp (hinj ⟨i, hi⟩ h0))
       (fun j q w => hequiv j q (Submodule.Quotient.mk w))
   exact ⟨L, inferInstance, d', ρ', ι', ringChar.eq_zero (R := L), hinj', hequiv'⟩
 
