@@ -84,3 +84,19 @@ groups, where they are the sharpest open part:
      - BBMZ Theorem 3.1 (`thrm:fin_pres`) gives only finite presentability;
      - the Skipper–Zaremsky question (`contracting-rover-nekrashevych-groups-are-f-infinity`) is itself
        OPEN, and it is the Röver–Nekrashevych special case of `quest:F_infty`.
+
+5. **(bh-free-44, 09-18) Braid groups and bordered mapping class groups: the quasi-isometric half holds.**
+   - `braid-groups-quasi-isometrically-embed-in-fp-simple-groups` (ESTABLISHED, lane proof):
+     - every `B_n` quasi-isometrically embeds in the finitely presented simple group `SV_Γ`,
+       `Γ = Aut_V(V*F_{2n})`;
+     - so does every `Mod(S_g^b)` with `b >= 1`, in the corresponding host.
+   - Route: cap every hole or boundary circle with a handle, landing in `Map(S_{m,1})`. That group is a
+     Lipschitz retract of `Out(F_{2m})` by Hamenstädt–Hensel, `once-punctured-mcg-is-lipschitz-retract-of-out-free`.
+     Then lift along the remaining boundary to `Aut(F_{2m})`, and use item 2.
+   - Warning, `loop-braid-groups-are-distorted-in-aut-free-groups`: the symmetric-automorphism route
+     distorts loop braid groups, by the Handel–Mosher coindex ≥ 2 theorem. So for braid groups the choice of
+     embedding into `Aut(F_m)` matters.
+   - Still open from Zaremsky's list:
+     - the F_∞ half for every class;
+     - quasi-isometric embeddings for mapping class groups of punctured surfaces without boundary;
+     - closed surfaces, `Out(F_n)` and CAT(0) groups, where even the plain embedding is open.
