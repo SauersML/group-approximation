@@ -2,7 +2,7 @@
 rg: 2
 id: isometric-shift-frames-over-uhf-bases-fail-the-k-budget
 kind: claim
-title: An isometric shift frame s t = 1, t s = p over a matricial base containing Q forces either a unit class of finite order or, in a graded ring, a degree-one unit; so every such design fails the scalar K-budget
+title: An isometric shift frame s t = 1, t s = p over a matricial base containing Q forces either a unit class of finite order or, in a graded ring, a degree-one unit; so every such design of index other than 1, and every graded one of index 1, fails the scalar K-budget
 distinct_from:
   rational-leavitt-path-k1-k2-scalar-dichotomy: that is Leavitt path algebras of finite graphs over Q, through the Ara--Brustenga--Cortiñas computation; this is any ring with an isometric frame over a matricial base such as U_Q, with an elementary K_0 argument and no graph.
   graded-rings-with-degree-one-units-fail-the-k-budget: that assumes a degree-one unit; this produces one from an index-one frame, and handles the other indices by K_0.
@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `isometric-shift-frames-over-uhf-bases-fail-the-k-budget-proof`. Refereed:
-gq-referee-a PASS, proof-gap lens (report cec484d63, nits applied); one referee. Elementary, given `rational-k1-detection-forces-infinite-order-unit-class` and
+gq-referee-a PASS, proof-gap lens (report cec484d63, nits applied); gq-referee-b PASS, citation and scope lens (report a141e77ba,
+W1 applied to the title). Elementary, given `rational-k1-detection-forces-infinite-order-unit-class` and
 `graded-rings-with-degree-one-units-fail-the-k-budget`. No priority is claimed.
 
 **Setting.** `R` is a unital ring and `B ⊆ R` a unital subring with `Q ⊆ B`. An *isometric frame of size `k` over
