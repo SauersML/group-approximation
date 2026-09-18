@@ -26,7 +26,8 @@ variable {X : Type*} [TopologicalSpace X]
 /-- `f` and `k` commute, and `f` commutes with each conjugate `g f g⁻¹` by an element `g` of
 the centraliser of `f * k`. -/
 def RubinInvolutionDisjointFormula {G : Type*} [Group G] (f k : G) : Prop :=
-  f * k = k * f ∧ ∀ g : G, g * (f * k) = (f * k) * g → f * (g * f * g⁻¹) = (g * f * g⁻¹) * f
+  f * k = k * f ∧
+    ∀ g : G, g * (f * k) = (f * k) * g → f * (g * f * g⁻¹) = (g * f * g⁻¹) * f
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.RubinInvolutionDisjointFormula
 
