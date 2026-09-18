@@ -33,8 +33,9 @@ variable {n : ℕ} {R : Type*} [CommRing R]
 
 theorem vdkOmegaFree_padRow_eq_rowVec (v : Fin n → R) : padRow v = rowVec v := by
   induction v using Pi.single_induction with
-  | zero => rw [padRow_zero, rowVec_zero]
-  | add f g hf hg => rw [padRow_add, rowVec_add, hf, hg]
+  | zero => exact padRow_zero.trans rowVec_zero.symm
+  | add f g hf hg =>
+    exact (padRow_add f g).trans ((congrArg₂ (· * ·) hf hg).trans (rowVec_add f g).symm)
   | single p a => exact (padRow_single p a).trans (rowVec_update_zero p a).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_padRow_eq_rowVec

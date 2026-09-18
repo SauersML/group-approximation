@@ -63,3 +63,5 @@ Two tools, both proved in the route:
 - **For even graphs** it reduces the permutational form of Boone--Higman to
   irreducible even Artin groups on complete graphs. The open ones start with the
   hyperbolic triangles `(2,4,6)`, `(2,6,6)`, `(4,4,4)` and `(4,4,6)`.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. The retraction lemma, the pushout splitting and the induction were re-checked. The claim rests on `pbh-class-closed-under-common-retract-amalgams`, whose Steps 0--4 were re-derived. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.
