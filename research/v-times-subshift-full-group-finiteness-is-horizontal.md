@@ -114,7 +114,7 @@ argument.
   `k/T_N` pieces.
 - **Bad simplices.** Call the nonempty all-X-merge simplices bad. For a bad `σ` with `s`
   vertices, the good link is the C-merge complex on the at least `k − 2sT_N` pieces outside
-  `supp σ`. Here a minimal X-block has at most `|A| ≤ T_N` pieces.
+  `supp σ`. Here a minimal X-block has at most `T_N` pieces, at most one per occurring symbol.
 - **Arithmetic.** It remains to check that `k ≥ κ_m` makes this good link `(m+1−s)`-connected and
   `L_C` `m`-connected. Then Hatcher–Vogtmann applies.
 
@@ -131,7 +131,7 @@ So the attaching link is the join `U * W`, with `|W| ≃ L(untouched pieces)`.
 - **Mixed `Q`** (some minimal block `μ`). The map "keep `μ`" gives a conical contraction of `U`:
   `x ≥ h(x) ≤ c`, where `c` releases everything except `μ`. So the link is contractible.
 - **Pure `Q`** (non-minimal blocks `θ_1, …, θ_𝔫` and `𝔩` untouched pieces).
-  - `U` is the open interval of `∏_i [θ_i, released]`. By Walker it is a suspension of the join
+  - `U` is the open interval of `∏_i [θ_i, released]`. By Walker it is an `(𝔫−1)`-fold suspension of the join
     of the splitting posets `(θ_i, released)`.
   - Each splitting poset is nonempty: split along one direction `j ∈ J` first, then jointly along
     `J \ j`.
