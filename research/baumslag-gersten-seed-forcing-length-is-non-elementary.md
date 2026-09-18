@@ -101,8 +101,8 @@ distinct_from:
   - We expect `Eval(y_*)` to be polynomial through power circuits: every label is a sign, a parity or a tree
     position of a power-circuit normal form.
   - That is a sketch, not proved here.
-- **Conclusion.** Either way, what the seed certifies is the power-circuit normal form, not the non-elementary
-  distortion.
+- **Conclusion.** The seed encodes only easy memberships. The non-elementary distortion shows up as forcing length,
+  not as a certified hard function. Evaluation lies between `WP(BG) ∈ P` and forcing-length-bounded search.
 
 ## Lesson for general BH
 
