@@ -138,3 +138,26 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     compactness proof of [Q] needs a uniform `Z_q` bound on an open subset of
     every closed `Y ⊆ K_r`, which is exactly as hard as the l2 kernel
     problem.
+* **Qualitative replica meet (swarm-0917-w13, transplanter, reframing).**
+  The idea replaces the mean `Z_k = E|K^1 ∩ ... ∩ K^k|` by a.s. finiteness of
+  the meet `M_k(o)`.
+  - *Proved* (`fpbs-replica-meet-threshold-sandwich`, established):
+    - `p_k <= p_cap^(k) <= min(p_u, p_c^(1/k))`, with `p_cap^(k)` increasing
+      in `k`;
+    - the bound `p_cap^(k) <= p_u` comes from an invariant-finite-set lemma
+      applied to the intersection of unique infinite clusters;
+    - on `T_d`, `p_cap^(k) = p_k = (d-1)^(-1/k)`, which tends to `p_u = 1`.
+  - *New hole:* [cap_fin], `fpbs-replica-meet-threshold-gap-universal`. It
+    is qualitative, and the chain is `[Q] => [Q_fin] => [cap_fin] => BS`
+    (routes `fpbs-replica-meet-gap-from-some-lq` and
+    `fpbs-bs-via-replica-meet-threshold`).
+  - *Where it dies for [Q]:*
+    - An a.s.-finite meet does not upgrade to a finite mean, and the mean is
+      exactly `Z_k`. [Q] allows `q_0 = 2`, so it gives `p_cap^(3) > p_c` but
+      not `p_cap^(2) > p_c`.
+    - The a.s.-finite set contains `[0, p_c]` (BLPS), and openness at `p_c` is
+      again the whole content.
+    - On trees the meet is exactly the Bernoulli(`p^k`) cluster. The non-tree
+      multi-path part `M_k \ K_(∧omega)` at `p_c + 0` is what any proof must
+      control.
+    - See Section 3 of `replica-meet-threshold-2026-09-18.md`.
