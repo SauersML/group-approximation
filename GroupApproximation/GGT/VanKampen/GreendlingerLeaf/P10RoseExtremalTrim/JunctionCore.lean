@@ -29,8 +29,8 @@ hold: Euler characteristic `2`, boundary darts `= c`, closed walk, non-first tur
 crossed, every label a letter, least area by the sign argument of the base model (relators odd,
 boundary value even and `≠ 1`).  The walk classes are `{0}`, `{2,6,16,18}`, `{4}`,
 `{8,12,20,22}`, `{10}` and one outside class that contains the exterior dart `15`.  The exhaustive
-evaluator of gl-p10-46 finds `0` witnesses (also with `hi = |exterior|`, and for two and three
-subdivisions with `ε = 1, 2`); the base model has `22` to `24`.  By hand: `{0}` removes the kept
+evaluator of gl-p10-46 finds `0` witnesses (also with `hi = |exterior|`, for two subdivisions at
+`ε = 1, 2` and three at `ε = 2`); the base model has `22` to `24`.  By hand: `{0}` removes the kept
 cell, `{4}` and `{10}` break a junction or a length bound, `{2,6,16,18}` breaks a junction, and
 `{8,12,20,22}` disconnects the new boundary.
 
@@ -40,8 +40,9 @@ On the counterexample the lobe `{2,6,16,18} ∪ {4}`, the two inside classes wit
 on `c`, works for `RoseRegionMoveSubArcStatement`: `F' = {f₀, f₄, f₆}`, the kept cycle is
 `[0,8,20,10,12,22]`, source `S`, kept `K₀`, `t₁ = [1]`, `t₂ = [8,20,10,12,22]`, `s₁ = s₂ = []`,
 and the listing is a closed walk.  A search over all sets of inside classes rooted on `c` finds
-witnesses on the base model and on one, two and three subdivisions (`150`, `176`, `256` at
-`ε = 1`; `597`, `717` at `ε = 2`), none of them a single class.
+closed-walk witnesses on the base model (`150` at `ε = 1`) and on one, two and three
+subdivisions (`176`, `256` at `ε = 1`; `597` at two, `717` at three subdivisions with `ε = 2`);
+on the subdivided models none of them is a single class (lobes of two to four classes).
 
 * `roseJunctionCore_lobeColour` and its API (all proved): the colouring `true` exactly on the
   union of the walk classes of a list of roots; it is region-constant, reduces to `regionColour`

@@ -71,7 +71,8 @@ theorem suslinKill_pseudoDiv {C : Type*} [CommRing C] [IsDomain C] (g : C[X]) (h
         omega
       · rw [← hpd]
         exact Polynomial.natDegree_lt_natDegree hz hsub
-    obtain ⟨N, q, hq⟩ := ih _ (by omega)
+    obtain ⟨N, q, hq⟩ := ih (Polynomial.C g.leadingCoeff * h -
+      Polynomial.C h.leadingCoeff * (X : C[X]) ^ k * g) (by omega)
     refine ⟨N + 1, Polynomial.C g.leadingCoeff ^ N *
       (Polynomial.C h.leadingCoeff * (X : C[X]) ^ k) + q, ?_⟩
     have heq : Polynomial.C g.leadingCoeff ^ (N + 1) * h -
