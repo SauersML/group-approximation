@@ -90,15 +90,16 @@ theorem evalC_sumProd (ζ : ℕ → ℂ) (n d : ℕ) (f g : ℕ → ℕ × Bool)
     have hs : sumProd n (d + 1) f g = sumProd n d f g ++ [((false, n), [f d, g d])] := by
       show (List.range (d + 1)).map (fun l => ((false, n), [f l, g l])) =
         (List.range d).map (fun l => ((false, n), [f l, g l])) ++ [((false, n), [f d, g d])]
-      rw [List.range_succ, List.map_append]
-      rfl
+      rw [List.range_succ, List.map_append, List.map_singleton]
     rw [hs, evalC_append, ih, Finset.sum_range_succ, mul_add]
     show _ + ((coefVal (false, n) : ℂ) * (litC ζ (f d) * (litC ζ (g d) * 1)) + 0) = _
     rw [coefVal_false, Complex.ofReal_natCast, mul_one, add_zero]
 
 theorem evalC_sumProd_fin (ζ : ℕ → ℂ) (n d : ℕ) (f g : ℕ → ℕ × Bool) :
     evalC ζ (sumProd n d f g) = (n : ℂ) * ∑ l : Fin d, litC ζ (f l) * litC ζ (g l) := by
-  rw [evalC_sumProd, Fin.sum_univ_eq_sum_range (fun l => litC ζ (f l) * litC ζ (g l)) d]
+  rw [evalC_sumProd]
+  exact congrArg (fun t => (n : ℂ) * t)
+    (Fin.sum_univ_eq_sum_range (fun l => litC ζ (f l) * litC ζ (g l)) d).symm
 
 /-- The list of polynomials `F j k` for `j, k < d`. -/
 def grid (d : ℕ) (F : ℕ → ℕ → CPoly) : List CPoly :=
@@ -119,7 +120,8 @@ theorem kdelta_cast {d : ℕ} (j k : Fin d) :
   rw [Matrix.one_apply]
   by_cases h : j = k
   · rw [if_pos h, kdelta, if_pos (congrArg Fin.val h), Nat.cast_one]
-  · rw [if_neg h, kdelta, if_neg (fun h' => h (Fin.ext h')), Nat.cast_zero]
+  · have h2 : ¬((j : ℕ) = (k : ℕ)) := fun h' => h (Fin.ext h')
+    rw [if_neg h, kdelta, if_neg h2, Nat.cast_zero]
 
 /-- The `d × d` matrix block `(b, e)` of an assignment. -/
 def blk (ζ : ℕ → ℂ) (d b e : ℕ) : Matrix (Fin d) (Fin d) ℂ :=

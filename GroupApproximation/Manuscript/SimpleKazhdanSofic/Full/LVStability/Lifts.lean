@@ -73,7 +73,7 @@ theorem exists_lift_of_ker_le_center {n : ℕ} (hn : 5 ≤ n) {R Q H : Type*} [R
         exact ⟨⟨(g, q), (hmem (g, q)).2 hq.symm⟩, rfl⟩
       ker_le_center := by
         intro e he
-        have h1 : e.1.1 = 1 := he
+        have h1 : e.1.1 = 1 := MonoidHom.mem_ker.1 he
         have hq : e.1.2 ∈ Subgroup.center Q := by
           apply hker
           rw [MonoidHom.mem_ker, ← (hmem e.1).1 e.2, h1, map_one]
@@ -104,10 +104,10 @@ variable {G H : Type*} [Group G] [Group H]
 abbrev relCommutator (π : G →* H) : Subgroup G := ⁅(⊤ : Subgroup G), π.ker⁆
 
 instance relCommutator_normal (π : G →* H) : (relCommutator π).Normal :=
-  Subgroup.commutator_normal
+  Subgroup.commutator_normal ⊤ π.ker
 
 theorem relCommutator_le_ker (π : G →* H) : relCommutator π ≤ π.ker :=
-  Subgroup.commutator_le_right
+  Subgroup.commutator_le_right ⊤ π.ker
 
 /-- The homomorphism `G ⧸ ⁅G, ker π⁆ → H` induced by `π`. -/
 def quotHom (π : G →* H) : G ⧸ relCommutator π →* H :=
@@ -120,7 +120,7 @@ theorem quotHom_mk (π : G →* H) (x : G) :
 
 theorem quotHom_comp_mk' (π : G →* H) :
     (quotHom π).comp (QuotientGroup.mk' (relCommutator π)) = π :=
-  rfl
+  MonoidHom.ext fun _ => rfl
 
 theorem quotHom_surjective (π : G →* H) (hπ : Function.Surjective π) :
     Function.Surjective (quotHom π) := by
@@ -133,7 +133,7 @@ theorem quotHom_ker_le_center (π : G →* H) :
     (quotHom π).ker ≤ Subgroup.center (G ⧸ relCommutator π) := by
   intro z hz
   obtain ⟨x, rfl⟩ := QuotientGroup.mk_surjective z
-  have hx : x ∈ π.ker := hz
+  have hx : x ∈ π.ker := MonoidHom.mem_ker.2 (MonoidHom.mem_ker.1 hz)
   rw [Subgroup.mem_center_iff]
   intro w
   obtain ⟨y, rfl⟩ := QuotientGroup.mk_surjective w
@@ -141,8 +141,7 @@ theorem quotHom_ker_le_center (π : G →* H) :
     (QuotientGroup.eq_one_iff _).2
       (Subgroup.commutator_mem_commutator (Subgroup.mem_top y) hx)
   have hyx : y * x = ⁅y, x⁆ * (x * y) := by
-    rw [commutatorElement_def]
-    group
+    rw [commutatorElement_def, mul_assoc _ x⁻¹, inv_mul_cancel_left, inv_mul_cancel_right]
   rw [← QuotientGroup.mk_mul, ← QuotientGroup.mk_mul, hyx, QuotientGroup.mk_mul, hc,
     one_mul]
 
