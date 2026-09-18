@@ -48,3 +48,27 @@ as a named problem in the literature.
   - It dies at degree `>= 3`. Ioana's theorem controls 1-cocycles into groups, which reach degree two through
     extensions. No rigidity is known for measurable `q`-cochains with `q >= 3`. So the high-degree half used by
     `torsion-free-hyperbolic-mod-p-classes-die-virtually` has no measurable reformulation.
+- **Symbolic-dynamics transplant (swarm-0917-w12).** The idea was to replace finite quotients by compact
+  `G`-spaces on which a class dies, and to find finite orbits by symbolic dynamics.
+  - `primitive-shifts-detect-virtual-vanishing` (ESTABLISHED, elementary) shows the dictionary is exact in
+    every degree. Each class `x ∈ H^q(G;A)` has a primitive shift `Σ(z) = {ψ : ψ∘∂_q = z}`.
+    - `Σ(z)` is an affine SFT with an invariant Haar measure.
+    - It is the terminal effacer: `x` dies over `X` exactly when there is a `G`-map `X -> Σ(z)`.
+    - `Σ(z)^H ≠ ∅` exactly when `res_H x = 0`.
+  - So goodness is exactly the statement "every primitive shift has a finite orbit".
+  - **Where it dies.** It dies at the step from an effacer to a finite-index subgroup. That step is the
+    existence of a periodic point in `Σ(z)`, which is `res_H x = 0` itself.
+    - SFT, invariant measure, minimality, freeness (Gao–Jackson–Seward products) and expansiveness all come
+      free for effacers, so none of them carries information.
+    - Profinite odometers efface only effaceable classes.
+  - **The principles are the wrong strength.** The principles that would supply periodic points fail.
+    - On `Γ(3) <= SL_3(Z)`, the persistent classes of `sl3z-level-three-fails-degree-two-goodness` give a
+      measured affine SFT with no finite orbit. They also give a linear SFT, on a torsion-free Kazhdan group
+      of type F, whose periodic points are not dense.
+    - `linear-coset-shift-periodic-density-iff-separable` (ESTABLISHED) shows that periodic density for
+      linear SFTs forces LERF. So it fails on the good, non-LERF, Rips-construction hyperbolic groups, and it
+      is strictly stronger than goodness.
+  - **What survives.** "Primitive shifts of degree `>= 3` on torsion-free hyperbolic groups have finite
+    orbits". This is equivalent to `torsion-free-hyperbolic-mod-p-classes-die-virtually`, not a reduction
+    of it.
+  - Artifact: `research/artifacts/primitive-shift-goodness-dictionary-2026-09-18.md`.
