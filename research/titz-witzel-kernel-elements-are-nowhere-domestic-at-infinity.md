@@ -73,3 +73,11 @@ has empty interior in the cone topology.
      can fail is only transverse behaviour along singular (wall) directions: an element
      acting trivially "across" a panel tree, the higher-rank form of a reducible factor.
      So (D1) is an irreducibility statement about the panel-tree actions of the lattice.
+6. **Vertex reduction** (bh-testcases, 2026-09-18,
+   `rank-two-building-non-domesticity-is-vertex-non-domesticity`). For `C̃₂` this claim is
+   equivalent to vertex non-domesticity: no `g ∈ Γ̌ ∖ {1}` maps a nonempty open set of points
+   at infinity to collinear-or-equal points, or a nonempty open set of lines to
+   concurrent-or-equal lines. The same node shows that for products of trees and for
+   `Ã₂` the condition is exactly topological freeness on the vertex spaces at infinity.
+   So the crux is only the polygon-specific local domesticity phenomenon of
+   quadrangles.
