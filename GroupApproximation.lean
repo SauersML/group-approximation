@@ -5827,6 +5827,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.OpsA
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.PolyOps
 import GroupApproximation.Manuscript.NonMF.Full.GL06h1.DoublingLabels
 import GroupApproximation.Manuscript.NonMF.Full.GL06h1.SubdiagramLabels
+import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Progress
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
