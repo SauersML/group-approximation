@@ -103,6 +103,7 @@ theorem rnNF_split_deep (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) [
           refine ⟨sa, Pa, hsa, hva, hpa, fun b hb => ?_, hea⟩
           obtain ⟨x, hx⟩ := hwa b hb
           have hlen := (hw a ha).2
+          show a.2.1 <+: b.2.1 ∧ b.2.1.length = w.length + (n + 1)
           rw [hx, List.length_append, List.length_singleton]
           exact ⟨List.prefix_append _ _, by omega⟩
     refine ⟨s * s₁, P'', fun z hz => ?_, hv'', hp'', fun b hb => ?_, ?_⟩

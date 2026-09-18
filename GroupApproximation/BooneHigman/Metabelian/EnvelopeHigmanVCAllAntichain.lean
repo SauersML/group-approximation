@@ -94,7 +94,7 @@ theorem higmanVCAll_mapsCone_word {d : ℕ} {C : Finset (List (Fin d))}
   induction r using FreeGroup.induction_on with
   | C1 =>
     intro c
-    simp only [map_one]
+    simp only [map_one, Subgroup.coe_one, Equiv.Perm.one_apply]
     exact mapsCone_one c.1
   | of x =>
     intro c
@@ -122,8 +122,116 @@ theorem higmanVCAll_pi_eq_one {d : ℕ} (hd : 0 < d) {C : Finset (List (Fin d))}
     FreeGroup.lift (fun p : ↥C × ↥C => Equiv.swap p.1 p.2) r = 1 := by
   refine Equiv.ext fun c => ?_
   rw [Equiv.Perm.one_apply]
-  have h := higmanVCAll_mapsCone_word hC r c (fun _ => (⟨0, hd⟩ : Fin d))
+  obtain ⟨s⟩ : Nonempty (Cantor (Fin d)) := ⟨fun _ => ⟨0, hd⟩⟩
+  have h : ((higmanVC_evalAll d (higmanVCAll_iota C r) : ↥(higmanThompsonV (Fin d))) :
+      Equiv.Perm (Cantor (Fin d))) (prepend c.1 s) =
+      prepend (FreeGroup.lift (fun p : ↥C × ↥C => Equiv.swap p.1 p.2) r c).1 s :=
+    higmanVCAll_mapsCone_word hC r c s
   rw [hr] at h
-  exact (higmanVCAll_eq_of_prepend hC _ h).symm
+  simp only [Subgroup.coe_one, Equiv.Perm.one_apply] at h
+  exact (higmanVCAll_eq_of_prepend (a := c)
+    (b := FreeGroup.lift (fun p : ↥C × ↥C => Equiv.swap p.1 p.2) r c) hC s h).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_pi_eq_one
+
+/-- The image of the letter `(a, b)`, `a, b ∈ C`, in the quotient by the standard relators. -/
+noncomputable def higmanVCAll_gen (d : ℕ) (C : Finset (List (Fin d))) (a b : ↥C) :
+    FreeGroup (List (Fin d) × List (Fin d)) ⧸
+      Subgroup.normalClosure (higmanVC_rels d fun _ => True) :=
+  QuotientGroup.mk' (Subgroup.normalClosure (higmanVC_rels d fun _ => True))
+    (FreeGroup.of (a.1, b.1))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen
+
+/-- Relator family (comparable letters): `t a a = 1`. -/
+theorem higmanVCAll_gen_self {d : ℕ} {C : Finset (List (Fin d))} (a : ↥C) :
+    higmanVCAll_gen d C a a = 1 := by
+  rw [higmanVCAll_gen, ← MonoidHom.mem_ker, QuotientGroup.ker_mk']
+  refine Subgroup.subset_normalClosure ?_
+  rw [higmanVC_rels, Set.mem_setOf_eq]
+  exact Or.inl ⟨a.1, a.1, trivial, trivial, fun h => h.1 (List.prefix_refl a.1), rfl⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_self
+
+/-- Relator family (involutions): `t a b * t a b = 1`. -/
+theorem higmanVCAll_gen_sq {d : ℕ} {C : Finset (List (Fin d))} (a b : ↥C) :
+    higmanVCAll_gen d C a b * higmanVCAll_gen d C a b = 1 := by
+  rw [higmanVCAll_gen, ← map_mul, ← MonoidHom.mem_ker, QuotientGroup.ker_mk']
+  refine Subgroup.subset_normalClosure ?_
+  rw [higmanVC_rels, Set.mem_setOf_eq]
+  exact Or.inr (Or.inl ⟨a.1, b.1, trivial, trivial, rfl⟩)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_sq
+
+/-- The letter `(a, b)` with `a ≠ b` carries the cone at `c` onto the cone at `swap a b c`. -/
+theorem higmanVCAll_mapsCone_coneSwap {d : ℕ} {C : Finset (List (Fin d))}
+    (hC : ∀ u ∈ C, ∀ v ∈ C, u ≠ v → ¬ u <+: v) {a b : ↥C} (hpq : ¬ a.1 <+: b.1)
+    (hqp : ¬ b.1 <+: a.1) (c : ↥C) :
+    MapsCone (coneSwap a.1 b.1 hpq hqp) c.1 (Equiv.swap a b c).1 := by
+  have h := higmanVCAll_mapsCone_gen hC a b c
+  rw [vgenSwapOrOne_eq hpq hqp] at h
+  exact h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mapsCone_coneSwap
+
+/-- Relator family (conjugations):
+`t a b * t c e * (t a b)⁻¹ = t (swap a b c) (swap a b e)`. -/
+theorem higmanVCAll_gen_conj {d : ℕ} {C : Finset (List (Fin d))}
+    (hC : ∀ u ∈ C, ∀ v ∈ C, u ≠ v → ¬ u <+: v) (a b c e : ↥C) :
+    higmanVCAll_gen d C a b * higmanVCAll_gen d C c e * (higmanVCAll_gen d C a b)⁻¹ =
+      higmanVCAll_gen d C (Equiv.swap a b c) (Equiv.swap a b e) := by
+  by_cases hab : a = b
+  · rw [hab, higmanVCAll_gen_self]
+    simp only [Equiv.swap_self, Equiv.refl_apply, one_mul, inv_one, mul_one]
+  by_cases hce : c = e
+  · rw [hce, higmanVCAll_gen_self, higmanVCAll_gen_self, mul_one, mul_inv_cancel]
+  have hpq := higmanVCAll_incomp hC hab
+  have hqp := higmanVCAll_incomp hC (Ne.symm hab)
+  have hce' : Equiv.swap a b c ≠ Equiv.swap a b e := (Equiv.swap a b).injective.ne hce
+  have hmem : FreeGroup.of (a.1, b.1) * FreeGroup.of (c.1, e.1) * (FreeGroup.of (a.1, b.1))⁻¹ *
+      (FreeGroup.of ((Equiv.swap a b c).1, (Equiv.swap a b e).1))⁻¹ ∈
+      higmanVC_rels d fun _ => True := by
+    rw [higmanVC_rels, Set.mem_setOf_eq]
+    exact Or.inr (Or.inr (Or.inl ⟨a.1, b.1, c.1, e.1, (Equiv.swap a b c).1,
+      (Equiv.swap a b e).1, trivial, trivial, trivial, trivial, trivial, trivial, hpq, hqp,
+      higmanVCAll_mapsCone_coneSwap hC hpq hqp c, higmanVCAll_mapsCone_coneSwap hC hpq hqp e,
+      higmanVCAll_incomp hC hce, higmanVCAll_incomp hC (Ne.symm hce),
+      higmanVCAll_incomp hC hce', higmanVCAll_incomp hC (Ne.symm hce'), rfl⟩))
+  have hk := Subgroup.subset_normalClosure hmem
+  rw [SetLike.mem_coe, ← QuotientGroup.ker_mk'
+      (Subgroup.normalClosure (higmanVC_rels d fun _ => True)), MonoidHom.mem_ker,
+    map_mul, map_mul, map_mul, map_inv, map_inv] at hk
+  exact mul_inv_eq_one.mp hk
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_gen_conj
+
+/-- The quotient map after the inclusion of `C` is the evaluation `(a, b) ↦ t a b`. -/
+theorem higmanVCAll_mk_iota {d : ℕ} (C : Finset (List (Fin d))) (r : FreeGroup (↥C × ↥C)) :
+    QuotientGroup.mk' (Subgroup.normalClosure (higmanVC_rels d fun _ => True))
+        (higmanVCAll_iota C r) =
+      FreeGroup.lift (fun p : ↥C × ↥C => higmanVCAll_gen d C p.1 p.2) r :=
+  DFunLike.congr_fun (FreeGroup.ext_hom
+    ((QuotientGroup.mk' (Subgroup.normalClosure (higmanVC_rels d fun _ => True))).comp
+      (higmanVCAll_iota C))
+    (FreeGroup.lift fun p : ↥C × ↥C => higmanVCAll_gen d C p.1 p.2)
+    fun p => by
+      rw [MonoidHom.comp_apply, higmanVCAll_iota_of, FreeGroup.lift_apply_of, higmanVCAll_gen])
+    r
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_mk_iota
+
+/-- **Faithfulness on an antichain.**  If `C` is a finite antichain and a word `r` in the
+letters of `C` evaluates to `1` in `V_d`, then `ι r` is a consequence of the standard
+relators. -/
+theorem higmanVCAll_antichain_mem {d : ℕ} (hd : 0 < d) (C : Finset (List (Fin d)))
+    (hC : ∀ u ∈ C, ∀ v ∈ C, u ≠ v → ¬ u <+: v) (r : FreeGroup (↥C × ↥C))
+    (hr : higmanVC_evalAll d (higmanVCAll_iota C r) = 1) :
+    higmanVCAll_iota C r ∈ Subgroup.normalClosure (higmanVC_rels d fun _ => True) := by
+  rw [← QuotientGroup.ker_mk' (Subgroup.normalClosure (higmanVC_rels d fun _ => True)),
+    MonoidHom.mem_ker, higmanVCAll_mk_iota]
+  exact higmanVCAll_lift_eq_one (higmanVCAll_gen d C) higmanVCAll_gen_self higmanVCAll_gen_sq
+    (higmanVCAll_gen_conj hC) r (higmanVCAll_pi_eq_one hd hC r hr)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCAll_antichain_mem
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope
