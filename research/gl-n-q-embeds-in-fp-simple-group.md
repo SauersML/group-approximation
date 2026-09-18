@@ -69,6 +69,13 @@ open. That paper's Theorem 1.2 covers only the finitely generated subgroups
   cyclic subgroups. By contrast Kojima--Sheng, arXiv:2603.18410v3 (Prop. 4.1,
   Thm. 4.2), embed `(Q,+)` in the Brin--Thompson groups `nV` for `n >= 2`, and
   distortion there is not settled here.
+- **O5, one-manifolds (n >= 3, any copy).** `gl-n-q-hosts-cannot-act-on-one-manifolds` (5a140f21e,
+  Witte via Parwani): no group acting faithfully on a one-manifold with finitely many components contains
+  `GL_n(Q)` for `n >= 3`, and none acting on the line or an interval contains `SL_2(Q)`.
+- **O6, scaled rational lines.** `pl-quasi-similarity-groups-scale-rational-lines-by-ratio` and
+  `fg-pl-quasi-similarity-groups-contain-no-gl-2-q` (c8e0b926e): in a periodic PL quasi-similarity group of the
+  line an element normalizing a copy of `(Q,+)` scales it by its own similarity ratio, so no finitely generated
+  such group contains `Aff(Q)`, `B_2(Q)`, `SL_n(Q)` or `GL_n(Q)`.
 
 ## Attempts
 
