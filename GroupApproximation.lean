@@ -5582,6 +5582,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Retracti
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Poly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Main
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Dichotomy
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.Gluing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
