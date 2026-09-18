@@ -110,3 +110,71 @@ theorem not_both_of_allOrNone (K : PocketFaceSet D eps X lo hi) (r : X.toCombMap
     exact absurd hbad (by decide)
   · have hbad : true = false := hd.symm.trans (hnone d hde.1)
     exact absurd hbad (by decide)
+
+/-- **The extremal class stretches from linked runs and uniform arcs.** -/
+theorem classStretches_of_linkedRuns (K : PocketFaceSet D eps X lo hi) (r : X.toCombMap.Dart)
+    (hlink : ExtremalLinkedRuns K r) (htgt : ExtremalArcAllOrNone K r K.targetArc.darts)
+    (hsrc : ExtremalArcAllOrNone K r (invDarts X K.sourceArc.darts)) :
+    ExtremalClassStretches K r := by
+  intro A d B e C hc hd he hB hne
+  have hdecT : K.boundary.cycle =
+      (K.firstSide ++ invDarts X K.sourceArc.darts ++ K.secondSide) ++ K.targetArc.darts ++ [] :=
+    K.decomposition.trans (List.append_nil _).symm
+  have hdecS : K.boundary.cycle =
+      K.firstSide ++ invDarts X K.sourceArc.darts ++ (K.secondSide ++ K.targetArc.darts) := by
+    rw [K.decomposition]
+    simp only [List.append_assoc]
+  exact ⟨hlink A d B e C hc hd he hB hne,
+    not_both_of_allOrNone K r hdecT htgt A d B e C hc hd hB hne,
+    not_both_of_allOrNone K r hdecS hsrc A d B e C hc hd hB hne⟩
+
+end Minimal
+
+/-- **The extremal minimal statement** (OPEN, PLAUSIBLE; lane gl-p10-16 search found no
+counterexample in 9010 configurations): under the premises of `RoseExtremalClassStatement`, some
+class `r` has `ExtremalClassChoice`, linked removed runs, and both arcs uniform.  Logically
+STRONGER than `RoseExtremalClassStatement` (see the module docstring). -/
+def RoseExtremalMinimalStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ r : X.toCombMap.Dart, ExtremalClassChoice K r ∧ ExtremalLinkedRuns K r ∧
+          ExtremalArcAllOrNone K r K.targetArc.darts ∧
+          ExtremalArcAllOrNone K r (invDarts X K.sourceArc.darts)
+
+/-- **The extremal class statement from the extremal minimal statement.** -/
+theorem roseExtremalClass_of_minimal (h : RoseExtremalMinimalStatement.{u, w, v}) :
+    RoseExtremalClassStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨r, hchoice, hlink, hT, hS⟩ :=
+    h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact ⟨r, hchoice, classStretches_of_linkedRuns K r hlink hT hS⟩
+
+/-- **The extremal region statement from the extremal minimal statement.** -/
+theorem roseExtremalRegion_of_minimal (h : RoseExtremalMinimalStatement.{u, w, v}) :
+    RoseExtremalRegionStatement.{u, w, v} :=
+  roseExtremalRegion_of_extremalClass (roseExtremalClass_of_minimal h)
+
+/-- **Relative Greendlinger from the extremal minimal statement.** -/
+theorem relativeGreendlinger_of_minimal
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : RoseExtremalMinimalStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlinger_of_extremalClass hoff (roseExtremalClass_of_minimal h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalArcAllOrNone
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalLinkedRuns
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.not_both_of_allOrNone
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.classStretches_of_linkedRuns
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.RoseExtremalMinimalStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.roseExtremalClass_of_minimal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.roseExtremalRegion_of_minimal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.relativeGreendlinger_of_minimal
