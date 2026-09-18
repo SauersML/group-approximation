@@ -75,3 +75,96 @@ each imply (K).
      (Hermon–Hutchcroft, via `fpbs-hermon-hutchcroft-finite-tail-input`) gives
      `E_p[|K_o|; |K_o| < infinity] < infinity` for every `p > p_c`. So the
      split needs only (a), which is a ball form of (K').
+
+2. **Worst-pair Russo budget against uniqueness-phase bridge bounds
+   (2026-09-18, swarm-0917-w8-w8-bs-follow; OPEN, nothing closed).**
+   - **The (a)/(b) split is not a decomposition. It dies as circular.**
+     - `E_p|K_o ∩ B_n| = sum_(v in B_n) tau_p(o,v)` splits into a
+       finite-cluster part and part (a). The finite-cluster part is at most
+       `chi_f(p) < infinity` by Hermon–Hutchcroft.
+     - So, given (b), (a) at rate `c` is equivalent to
+       `E_p|K_o ∩ B_n| <= e^((log gr - c)n + O(1))`. This is the statement
+       `g(p) < log gr`, because the ball and sphere sums have the same
+       exponential rate. That statement is (K') itself.
+     - Therefore "only (a) remains" means "(K') remains", and (K') ⟹ (K) is
+       already item 4 of `fpbs-worst-pair-connectivity-rate-kernel`. The
+       split adds no prerequisite that can fail on its own.
+   - **Established here: under collapse, the worst-pair budget is spent in
+     exponentially thin windows, as exponential pivotal spikes at deterministic
+     endpoints.**
+     - *Setting.* Suppose `p_c = p_u`. Fix `alpha in (0, (log gr)/2)` and let
+       `v_n in A_n` be a critical worst pair, so `tau_(p_c)(o,v_n) <= gr^(-n)`
+       (tradeoff item 1). Put `s_n = p_c + e^(-alpha n)`.
+     - *Lower bound at `s_n`.* Uniqueness at `s_n` gives
+       `tau_(s_n)(o,v_n) >= theta(s_n)^2`, by item 2 of the kernel claim. The
+       linear lower bound `theta(p_c+epsilon) >= K epsilon`
+       (`fpbs-transitive-sharpness-linear-lower-bound`) then gives
+       `tau_(s_n)(o,v_n) >= K^2 e^(-2 alpha n)`.
+     - *Passing to a finite ball.* `P(o <-> v inside B_R)` increases to `tau`
+       as `R` grows. So some `R_n >= n` has
+       `tau^(R_n)_(s_n)(o,v_n) >= K^2 e^(-2 alpha n)/2`. Also
+       `tau^(R_n)_(p_c) <= tau_(p_c) <= gr^(-n)`.
+     - *Russo and the mean value.* Russo's identity for the polynomial
+       `tau^(R_n)` is exact. The mean-value inequality then gives some
+       `q_n in (p_c, s_n)` with
+
+       ```text
+       E_(q_n)[ N^(R_n)(o,v_n) | o <-> v_n inside B_(R_n) ]
+           >=  ( (log gr - 2 alpha) n + log(K^2/2) ) / log(s_n/p_c)
+           >=  p_c ( (log gr - 2 alpha) n - O(1) ) e^(alpha n) .
+       ```
+
+     - *Comparison with `fpbs-collapse-exponential-pivotal-spikes`.* That
+       claim has walk-averaged endpoints and exponent
+       `lambda_0 = log(1/rho)`. This version has deterministic endpoints and
+       the larger exponent `log gr`. It is larger because
+       `log(1/rho) <= arccosh(1/rho) <= log gr`, and the range of `alpha`
+       roughly doubles on trees.
+     - *Status.* This is a necessary condition under collapse, not a
+       contradiction. It is recorded here and not as a new claim.
+   - **Obstruction: bounds taken at a fixed q and uniform in the endpoint
+     cannot see the spikes.** Call `B` an *endpoint-uniform majorant* on
+     `(s,t]` if, for all `v` and all `s < s' < t' <= t`,
+
+     ```text
+     log tau_(t')(o,v) - log tau_(s')(o,v) <= int_(s')^(t') B(q) dq/q .
+     ```
+
+     A bound `sup_(v,R) E_q[N^R | o <-> v inside B_R] <= B(q)` gives such a
+     majorant by letting `R` go to infinity. This is the form that
+     `fpbs-global-pivotal-tail-at-uniqueness` and
+     `fpbs-uniqueness-pivotals-are-dangling-bridges` would take.
+     - *Claim (proved here).* If `t` is a uniqueness parameter, then every
+       endpoint-uniform majorant on `(p_c,t]` has
+
+       ```text
+       int_s^t B dq/q >= 2 log( theta(t)/theta(s) )   for every s in (p_c,t),
+       ```
+
+       and so `int_(p_c)^t B dq/q = infinity`. This holds on every
+       nonamenable Cayley graph, whether or not the thresholds collapse.
+     - *Proof.* Take `s > p_c`.
+       - The events `{o <-> S_R(o)}` and `{v <-> S_R(v)}` use disjoint edge
+         sets once `d(o,v) > 2R+1`, so they are independent.
+       - `P(d(o,v) <= |K_o| < infinity)` tends to `0`.
+       - Together these give `limsup_(v -> infinity) tau_s(o,v) <= theta(s)^2`.
+       - Uniqueness at `t` gives `tau_t(o,v) >= theta(t)^2`.
+       - Finally, `theta` is right-continuous, being an infimum of increasing
+         polynomials, and `theta(p_c) = 0` by
+         `fpbs-critical-no-infinite-cluster`.
+     - *Where the class dies.* Any majorant obtained from fixed-`q` structure
+       of the uniqueness phase must already blow up at least like
+       `2 d log theta`. So comparing such a majorant with the budget
+       `n log gr` never produces a contradiction: the whole budget sits in
+       windows `(p_c, p_c + e^(-alpha n))` whose position depends on `n`, and
+       the spikes above live there.
+     - *Consequence.* A proof of (K) through Russo must control how the
+       conditional pivotal count at the worst pairs depends on `n` for
+       `q - p_c` exponentially small in `n`. This is the same demand as the
+       limit-order non-interchange of
+       `fpbs-critical-pivotal-concentration-under-collapse`, now at the
+       exponent `log gr`.
+   - **Trivial corollary, noted so no one reclaims it.** Item 1 of the
+     tradeoff claim, together with `kappa_p(n) >= p^n`, gives
+     `p_c <= 1/gr`. This is already folklore from
+     `chi_p >= |S_n| p^n` and sharpness.
