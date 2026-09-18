@@ -41,10 +41,10 @@ no ring of characteristic `p` contains `Q` at all.
   denominators at infinitely many primes. An example of the needed kind is an operator
   such as `D = 1/(1 + number of leading ones)` adjoined to the Leavitt operators on a
   space of functions, whose products have unbounded denominators.
-- **What is not settled here: group-level embeddings.** Every finitely generated
-  subgroup of `U(L_K(1,2))` lies in `U(L_A(1,2))` for a finitely generated subring
-  `A <= K`, since its generators and their inverses have coordinates in one such
-  `A`. Whether `U(L_A(1,2))` can contain `(Q,+)` by means that are not ring-linear
-  is left open. The obvious reduction modulo the maximal ideals of `A` fails,
-  because `V <= U(L_F(1,2))` (via the permutation units `sum_i x_{beta_i} y_{alpha_i}`)
-  already contains the divisible group `Q/Z` (survey Theorem 4.3(3)).
+- **Group-level embeddings are not excluded.** Every finitely generated subgroup of
+  `U(L_K(1,2))` lies in `U(L_A(1,2))` for a finitely generated subring `A <= K`,
+  since its generators and their inverses have coordinates in one such `A`. That
+  does not forbid `(Q,+)`: `integral-leavitt-unit-group-contains-q` embeds `(Q,+)`
+  group-theoretically (not ring-linearly) in the finitely generated subgroup
+  `<V, 1 + x_{01} y_{00}>` of `U(L_Z(1,2))`. So this claim removes coefficient-ring
+  routes, not Leavitt unit groups as hosts.
