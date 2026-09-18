@@ -2,6 +2,7 @@
 rg: 2
 id: divisible-elements-act-elliptically-on-trees-proof
 kind: route
+title: Direct proof from the absence of divisible subgroups in residually finite groups
 target: divisible-elements-act-elliptically-on-trees
 requires:
   - sl-n-q-lies-in-finite-residual-of-every-overgroup

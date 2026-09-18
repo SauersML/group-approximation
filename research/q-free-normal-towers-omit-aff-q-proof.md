@@ -2,6 +2,7 @@
 rg: 2
 id: q-free-normal-towers-omit-aff-q-proof
 kind: route
+title: Direct proof with Higman's theorem as the only outside input
 target: q-free-normal-towers-omit-aff-q
 requires: []
 ---

@@ -2,6 +2,7 @@
 rg: 2
 id: commensurating-end-germ-groups-omit-aff-q-proof
 kind: route
+title: Apply the abelian-kernel distortion corollary to the commensurated germ
 target: commensurating-end-germ-groups-omit-aff-q
 requires:
   - aff-q-forces-distortion-in-abelian-kernels

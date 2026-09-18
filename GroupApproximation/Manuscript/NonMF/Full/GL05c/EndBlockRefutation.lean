@@ -23,8 +23,8 @@ the docstring of `GL05c/Statement` has no such class.
 * The cycle is `[] ++ [R2a, q2, R2b] ++ [p] ++ [R1a, q1, R1b]`, so `t₁⁻¹ = [R2a, q2, R2b]` and
   `t₂ = [R1a, q1, R1b]` (`start 1`, `length 3` in `outerDarts = [e2, R1a, q1, R1b, p]`).
 * Its first turns fail only at `w`, and there the three passages pairwise cross, so
-  `AllNonFirstTurnsCrossed` holds and `FirstTurns` fails.  `¬Unpinched`: the face set touches `w`
-  three times.
+  `AllNonFirstTurnsCrossed` holds and `FirstTurns` fails.  `¬Unpinched`: the boundary darts
+  `R2a`, `p`, `R1a` all start at `w`.
 * Labels (group `Multiplicative ℤ`, one generator family equal to `⊤`, so every label is a
   letter).  Either all six inner faces are relator cells of value `1`
   (`p = q1 = q2 = 1`, `R1a = R2a = 2`, `R1b = R2b = -1`, `e1 = -3`, boundary value `6`, so area

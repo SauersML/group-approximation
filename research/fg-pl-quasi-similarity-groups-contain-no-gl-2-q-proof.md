@@ -2,6 +2,7 @@
 rg: 2
 id: fg-pl-quasi-similarity-groups-contain-no-gl-2-q-proof
 kind: route
+title: Each listed group scales a copy of Q by ratios that no PL quasi-similarity can realize
 target: fg-pl-quasi-similarity-groups-contain-no-gl-2-q
 requires:
   - pl-quasi-similarity-groups-scale-rational-lines-by-ratio

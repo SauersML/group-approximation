@@ -2,6 +2,7 @@
 rg: 2
 id: no-q-in-tree-product-actions-with-finite-stabilizers-proof
 kind: route
+title: Direct proof from the elliptic action of divisible elements on each tree factor
 target: no-q-in-tree-product-actions-with-finite-stabilizers
 requires:
   - divisible-elements-act-elliptically-on-trees

@@ -75,9 +75,11 @@ So there are two uniformly computable schemata (§2 and §3). In neither does `p
     `steinberg-finite-presentation-and-kazhdan-theorem`, Krstić–McCool; primary source not obtained there).
   - The whole K_2 burden is therefore normal finite generation of `K_2(n,R)` in `St_n(R)`. A necessary sign: the
     images of the infinitely many Tate symbols `{g_p, p}` of `K_2(n,Q)` must follow from finitely many relators.
-  - **Spark:** for `R ≅ R^2` as modules (e.g. Leavitt `L_Q(1,2)`) stable `K_*(R)` vanishes ([C] Ara–Brustenga–
-    Cortiñas, K-theory of Leavitt path algebras). All Tate symbols die stably, and only the unstable kernel is at
-    issue. This is for gq-ring-leavitt / gq-en-ring.
+  - **Stable vanishing [R].** `K_*(L_Q(1,2)) = 0`: node `abc-leavitt-path-k-theory-exact-sequence`
+    (Ara–Brustenga–Cortiñas Thm 7.6, read at source there) with `1 - N^t = -1`, as recorded by gq-cuntz-cstar in
+    `harmonic-cuntz-simple-group-is-finitely-presented`. So for any unital `R ⊇ L_Q(1,2)`, `K_2(Q) -> K_2(R)` is zero:
+    all Tate symbols die in the stable `St(R)`. Only the unstable kernel (`St_3`, `St_4`) is at issue, and that is
+    open.
 - **N5.** Tree hosts see `Ẑ^n = lim (Z/m!)^n`, where `GL_n(Z)` acts. The primes `e_p` do not act on `Ẑ^n` (they are
   not invertible there), but they do act on the finite adeles `A_f^n = ∪_m (1/m!) Ẑ^n`. The chain's natural space is
   this increasing union of compact-open pieces, as `BS(1,2)` lives on `Q_2 = ∪ 2^-k Z_2`. A host needs a

@@ -53,6 +53,7 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RegionMove
 universe u w v
 
 open Embedded Surgery.MapCollapse SimpleClosedWalkSides
+open scoped Classical
 
 /-- **A tight turn is a first turn**: one rotation step from `n` reaches `α d`. -/
 theorem regionMoveCoreClose_firstTurn_of_sigma {M : CombMap.{v}} {c : List M.Dart}

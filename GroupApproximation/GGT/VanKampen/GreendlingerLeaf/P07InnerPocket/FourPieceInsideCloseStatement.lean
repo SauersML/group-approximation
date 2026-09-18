@@ -16,8 +16,8 @@ the inside clause from clause 3 of branch 1 of `PocketFourPieceArcAuditResidualS
 `A₁` and `A₂` are both empty.  In the four-piece reading `R₁ ++ U₁ ++ R₂ ++ U₂`, the runs `U₁` and
 `U₂` are then empty, so the cyclic word is `R₁ ++ R₂`.
 * The four-piece order (`FourPiece.exists_fourPiece`) is run with the labels
-  `Pa' e := α e ∈ a.sideFrom j ∧ e ∉ Ḡ₁ ∧ e ∉ Ḡ₂` and `Pb' e := α e ∈ b.sideFrom i ∧ e ∉ Ḡ₁ ∧ e ∉ Ḡ₂`.
-  Here `Ḡ` is short for `invDarts X G.darts`.
+  `Pa' e := α e ∈ a.sideFrom j ∧ e ∉ Ḡ₁ ∧ e ∉ Ḡ₂` and
+  `Pb' e := α e ∈ b.sideFrom i ∧ e ∉ Ḡ₁ ∧ e ∉ Ḡ₂`.  Here `Ḡ` is short for `invDarts X G.darts`.
 * The two class hypotheses that mention `Pb` are pointwise equivalent with `Pb'`.  `Pa` occurs in
   none of them.
 * So every entry of `R₁ ++ R₂` avoids `Ḡ₁` and `Ḡ₂`.  With both arcs empty, **the outside walk reads
@@ -72,8 +72,8 @@ universe u w v
 
 open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
 
-/-- **Residual of lane gl-p07-45.**  This is `PocketFourPieceArcAuditResidualStatement` with clause 3
-of branch 1 (`faces ⊆ sideFaces K.walk`) asked only for witnesses whose outside walk reads no
+/-- **Residual of lane gl-p07-45.**  This is `PocketFourPieceArcAuditResidualStatement` with
+clause 3 of branch 1 (`faces ⊆ sideFaces K.walk`) asked only for witnesses whose outside walk reads no
 dart of `invDarts G₁` or `invDarts G₂`.  See the module docstring. -/
 def FourPieceInsideCloseResidualStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
