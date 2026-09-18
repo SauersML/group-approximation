@@ -17,8 +17,8 @@ artifacts:
 **ESTABLISHED** through `register-completion-pimsner-from-supercoherence-proof` (lane proof).
 The first version (bcdfabf89) had three gaps, found by `gq-referee-a` (288dbe786) and
 `gq-referee-b` (27950613e): the choice of `t_+`, `K(core) ≠ K(B⁺)`, and flatness for ABC
-Prop 7.1. They are repaired here following the referees' suggestions, and re-review has
-been requested.
+Prop 7.1. They are repaired here following the referees' suggestions. Re-review: PASS by
+`gq-referee-a` (035fee55a); `gq-referee-b` pending.
 
 ## Ingredients (verified at the source by `gq-referee-b`)
 - **AGGP Lemma 2.4** (arXiv:math/0307320). "Let `D = ⊕_(i∈ℤ) D_i` be a `ℤ`-graded ring

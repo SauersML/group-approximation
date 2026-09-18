@@ -48,8 +48,11 @@ supercoherent.
 - **The transitions are flat, on both sides.**
   - The padding maps are block maps whose blocks are `B⁺` viewed through the substitutions
     `σ_x`, cut down by availability idempotents. These are flat by part 4 of that node.
-  - The spine maps `φ` are untwisted corner embeddings. Over the image corner, the
-    remaining blocks are standard column modules, which are finitely generated projective.
+  - The spine maps `φ` are untwisted corner embeddings. Over the image corner
+    `e = φ(1)`, the remaining blocks are standard column modules, which are finitely
+    generated projective. On the `(1−e)` part, the unitized transition
+    `(a, λ) ↦ (φ(a) + λ(1−e), λ)` acts only through the `Q` factor, so it is flat as well
+    (referee a).
   - The `Q` factor is a field.
 - **Filtered colimits.** A filtered colimit of regular supercoherent rings along flat maps
   is regular supercoherent, by an elementary argument.

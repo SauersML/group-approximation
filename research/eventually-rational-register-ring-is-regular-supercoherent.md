@@ -12,7 +12,8 @@ artifacts:
   - research/artifacts/gq-referee-a-eventually-rational-register-ring-is-regular-supercoherent.md
 ---
 
-**ESTABLISHED** through the proof below (lane proof; re-review requested). The first
+**ESTABLISHED** through the proof below (lane proof; re-review PASS by `gq-referee-a`, proof gaps, 035fee55a; re-review by
+`gq-referee-b` pending). The first
 version covered only the full-tail ring; referees a (288dbe786) and b (27950613e) passed
 its part 1 with one correction, now made: over a von Neumann regular ring every module is
 *flat*, and only finitely presented modules are projective. Part 2 is also a citation:
@@ -63,7 +64,8 @@ indicators, reciprocals and resolvents, is a finite product of such rings, one p
 - **Splitting.** Then `I = eI ⊕ (1−e)I`. The first summand is an ideal of `Q^(M')`, hence
   projective. The second is `d·(1−e)B⁺_T`: it contains `(1−e)d = Σ(1−e)a_i f_i`, and each
   `(1−e)f_i = (1−e)b_i d`. Multiplication by `d` is injective on `(1−e)B⁺_T`, since `d`
-  has no zeros there, so the second summand is free of rank `1`.
+  has no zeros there, so the second summand is isomorphic to `(1−e)B⁺_T`, which is
+  projective (a direct summand of `B⁺_T`).
 
 So `I` is projective. Semihereditary rings are coherent of weak dimension `<= 1`. ∎
 
@@ -103,8 +105,8 @@ module of flat dimension `m` has a resolution by finitely generated free modules
 - **Tail primes.** `𝔭 ⊇ J`: every `1 − 1_([0,m))` is inverted, and the localization is
   `T_𝔮`, a DVR or `Q(t)`.
   - For `N ↦ N + a` or `N ↦ pN + r`, `σ` carries `1 − 1_([0,m))` to an eventual indicator.
-    So the localized module is the tail ring `T'` with `T_𝔮` acting through the injective
-    substitution `r ↦ r(t + a)` or `r ↦ r(pt + r')`. It is torsion-free, since `T'` is a
+    So the localized module is a localization of the tail ring `T'`, with `T_𝔮` acting
+    through the injective substitution `r ↦ r(t + a)` or `r ↦ r(pt + r')`. It is torsion-free, since `T'` is a
     domain, and torsion-free modules over a DVR are flat.
   - For a reset `N ↦ c`, `σ(1 − 1_([0,m))) = 0` for `m > c`, so the localized module is
     `0`.
