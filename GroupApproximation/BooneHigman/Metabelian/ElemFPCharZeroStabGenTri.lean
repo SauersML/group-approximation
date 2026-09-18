@@ -39,12 +39,14 @@ We have `n ≥ 4`.  Pick distinct `j, j' ∉ {i, k}`.  The matrix `M = proj T` i
 `a c_i + b c_k + e c_L = 1`, where `c` is the last column of `M`.  Set:
 
 * `X1 = X_{e_{j'}}` and `Y2 = Y_{a e_i + b e_k + (e - 1) e_{j'}}`;
-* `X3 = X_{-u}`, where `u` is the upper part of the last column of `Y2 X1 M` (whose `L`-entry is `1`);
+* `X3 = X_{-u}`, where `u` is the upper part of the last column of `Y2 X1 M` (whose
+  `L`-entry is `1`);
 * `Y4 = Y_{r A⁻¹}`.
 
 Then `M = X1⁻¹ Y2⁻¹ X3⁻¹ Y4 · diag(A, 1)`, where `A ∈ SL₃(ℤ[1/m])` sits on `{i, k, j'}` and
 `r` is the last row of `X3 Y2 X1 M`.  Every vector vanishes at `j`.  `A` lies in `E₃` on
-`{i, k, j'}` because `ℤ[1/m]` is Euclidean: row reduction gives a unit upper-triangular matrix.
+`{i, k, j'}` because `ℤ[1/m]` is Euclidean.  Row reduction gives an upper-triangular matrix
+with unit diagonal and determinant `1`, which lies in `E₃` by the elementary Whitehead identity.
 So `g₂` is a product of roots inside `{i, k, j'}`, hence avoiding `j`, and `g₁ = 1`.
 
 This was checked for `m ∈ {1, 2, 3, 5, 6, 10}`, with 40 random parameter tuples each
@@ -92,7 +94,7 @@ theorem czStabGen_surjStabLength_of_off (j : Fin n) {y : St (n + 1) R}
     Subgroup.mem_map.mp (czStabGen_mem_map_of_off j hK (mul_mem hy (inv_mem hq)))
   have hyq : y = stab n R k0 * q := by rw [hk0, inv_mul_cancel_right]
   rw [hyq]
-  exact surjStabLength_mem_stab_mul ⟨g₁, g₂, v, w, c, w', hqdef⟩ k0
+  exact surjStabLength_mem_stab_mul (y := q) ⟨g₁, g₂, v, w, c, w', hqdef⟩ k0
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStabGen_surjStabLength_of_off
