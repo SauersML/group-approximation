@@ -5844,6 +5844,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Perm
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecPoly
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.PrimrecWords
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Reduction
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAffineAction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
