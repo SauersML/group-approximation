@@ -97,7 +97,8 @@ theorem cubeNilField_dies_fieldCase {N : ℕ} (u : K2 (Fin N) (MvPolynomial (Fin
     K2DiesAfterPadding u := by
   have hu' : K2Map (cubeKill R (0 : Fin (0 + 1)))
       (K2IndexMap (Fin.castLEEmb (Nat.le_add_right N 1)) u) = 1 := by
-    rw [← K2IndexMap_K2Map, hu, map_one]
+    rw [← K2IndexMap_K2Map (Fin.castLEEmb (Nat.le_add_right N 1))
+      (cubeKill R (0 : Fin (0 + 1))) u, hu, map_one]
   have hv : ∀ i : Fin (1 + 1), K2Map (cubeKill R i)
       (K2Map (cubeCone R) (K2IndexMap (Fin.castLEEmb (Nat.le_add_right N 1)) u)) = 1 :=
     fun i ↦ K2Map_cubeKill_K2Map_cubeCone hu' i
@@ -129,3 +130,35 @@ def PolyK2CubeNilFieldPosStatement : Prop :=
               (quillenDiff (K2Map (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv.toRingHom u) s)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2CubeNilFieldPosStatement
+
+/-- **Endpoint**: the gap for bases that are not fields gives `PolyK2CubeNilLocalStatement`.
+For `k ≥ 1` it is the gap itself.  For `k = 0` take `s = 1 ∉ m`: the field case
+`cubeNilField_dies_fieldCase`, fed by the gap at `k = 1` and rank `N + 1 ≥ 6`, makes `u` die,
+hence also `ψ u` and `v_1(ψ u)`. -/
+theorem polyK2CubeNilLocal_of_cubeNilFieldPos (h : PolyK2CubeNilFieldPosStatement) :
+    PolyK2CubeNilLocalStatement := by
+  intro p hp k N hkN u hu m hm
+  rcases Nat.eq_zero_or_pos k with rfl | hk
+  · refine ⟨1, (Ideal.ne_top_iff_one _).mp hm.ne_top, ?_⟩
+    exact diesAfterPadding_quillenDiff_of_diesAfterPadding
+      (diesAfterPadding_K2Map (MvPolynomial.finSuccEquiv (ZMod p) 0).toRingEquiv.toRingHom
+        (cubeNilField_dies_fieldCase u (hu 0) (h p hp 1 (N + 1) Nat.one_pos (by omega)))) 1
+  · exact h p hp k N hk hkN u hu m hm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2CubeNilLocal_of_cubeNilFieldPos
+
+/-- Conversely (trivially), `PolyK2CubeNilLocalStatement` gives the gap: it is a sub-family. -/
+theorem cubeNilFieldPos_of_polyK2CubeNilLocal (h : PolyK2CubeNilLocalStatement) :
+    PolyK2CubeNilFieldPosStatement :=
+  fun p hp k N _ hkN ↦ h p hp k N hkN
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilFieldPos_of_polyK2CubeNilLocal
+
+/-- **Endpoint**: the gap gives the frontier item `PolyK2OneVarNilStatement`. -/
+theorem polyK2OneVarNil_of_cubeNilFieldPos (h : PolyK2CubeNilFieldPosStatement) :
+    PolyK2OneVarNilStatement :=
+  polyK2OneVarNil_of_cubeLocal (polyK2CubeNilLocal_of_cubeNilFieldPos h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2OneVarNil_of_cubeNilFieldPos
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

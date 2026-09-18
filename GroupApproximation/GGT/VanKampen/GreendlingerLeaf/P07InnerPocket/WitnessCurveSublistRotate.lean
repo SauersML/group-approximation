@@ -40,7 +40,7 @@ theorem exists_rotate_sublist_of_steps {w l : List α} (hw : w.Nodup) (hl : l.No
       exact List.sublist_append_right u (y :: z)
     refine ⟨s.length, ?_⟩
     rw [hrot]
-    refine (sublist_of_forward hw hwu ?_).trans hyz
+    refine (sublist_of_forward (l := t ++ s) hw hwu ?_).trans hyz
     intro s' t' x y' h
     rcases hstep s.length s' t' x y' (hrot.trans h) with hxy | ⟨u', z', hw', hu'⟩
     · exact hxy
@@ -53,9 +53,8 @@ theorem exists_rotate_sublist_of_steps {w l : List α} (hw : w.Nodup) (hl : l.No
         exact List.nodup_rotate.mpr hl
       have h2 : [] ++ y :: (t ++ s) = (s' ++ [x]) ++ y :: t' := by
         rw [List.nil_append, h, List.append_assoc, List.singleton_append]
-      have h3 := congrArg List.length (append_cons_inj_of_nodup hnd h2).1
-      simp only [List.length_nil, List.length_append, List.length_cons] at h3
-      omega
+      exact List.append_ne_nil_of_right_ne_nil s' (List.cons_ne_nil x [])
+        (append_cons_inj_of_nodup hnd h2).1.symm
   · refine ⟨0, ?_⟩
     have hnil : l = [] := List.eq_nil_iff_forall_not_mem.mpr fun x hx => hex ⟨x, hx, hsub x hx⟩
     rw [hnil, List.rotate_zero]
@@ -82,7 +81,7 @@ theorem exists_rotate_reverse_sublist_of_steps {w l : List α} (hw : w.Nodup) (h
   obtain ⟨n, hn⟩ := exists_rotate_sublist_of_steps hw (List.nodup_reverse.mpr hl)
     (fun e he => hsub e (List.mem_reverse.mp he)) hrev
   refine ⟨l.length - n % l.length, ?_⟩
-  rw [← List.rotate_reverse]
+  rw [List.rotate_reverse l n] at hn
   exact hn
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.WitnessCurveSublistList.exists_rotate_reverse_sublist_of_steps
