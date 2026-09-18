@@ -63,3 +63,17 @@ wall counts.
   - **Surviving:** characters whose natural cut is infinite (random open or nowhere-dense closed
     sets with infinitely many leaves). There no normalizable equivariant leaf weighting exists.
   - A positive R1 must place its witnesses there.
+- **2026-09-18 (swarm-0917-w8-w8-nv-pull): V-fixed-point witnesses (die; class-kill).**
+  - R1 implies Problem B(Z), which needs a cnd function on `C(C,Z) ⋊ V ≤ 2V` that is unbounded on
+    `Z·1_C`. Established `cantor-central-v-elliptic-witnesses-die`: every cnd function on
+    `C(C,Z) ⋊ V` that is bounded on `V` is bounded on `Z·1_C`.
+  - *Class.* Affine actions with a `V`-fixed point. Equivalently, `V`-invariant cnd functions
+    `ψ(f) = Φ(Im f)` on `C(C,Z)`, or exactly `V`-invariant spectral laws. The class includes the
+    additive split `ψ_A + ψ_V∘p`, `L^α` constructions whose norm depends on the image set, and
+    `E g(X(f))` for a random real homomorphism `X` with invariant law (such an `X` is `0` a.s.).
+  - **Invariant:** the exchangeable phases `χ(1_{[1^{i-1}0]})`, whose partial sums all have one law.
+  - **Where every member dies:** de Finetti's directing measure `ν`. Cesàro averaging gives
+    `φ(k·1_U) = P(ν̂(k) = 1) ≥ P(ν = δ_0) = φ(1_U)`, hence `ψ(k·1_C) ≤ 4ψ(1_{[0]})`.
+  - **Surviving:** witnesses unbounded on `V` whose spectral laws are almost invariant with
+    non-vanishing defect. The argument needs exchangeability under all of `S_n` for every `n`, and
+    it has no quantitative version under a fixed finite set.
