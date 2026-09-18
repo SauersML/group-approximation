@@ -64,3 +64,17 @@ partial, not a proof.
   cannot be deformed to trivial ones because the spectrum of `Z` is rigid in
   the odd roots of unity.  So Willett's `R_q`-padding does not specialize to
   trivial padding.
+
+2026-09-18 (reframing, swarm-0917-w12-w12-ptm-pull).  **The padding is
+worthless.**  `bs12-identity-padding-is-removable-in-operator-norm` proves that
+an exact packet within `eps` of `(A (+) 1_k, B (+) 1_k)` can be replaced by an exact
+packet in `U(n)` within `O(1/log(1/eps))` of `(A,B)`, uniformly in `n` and `k`.
+So `(TPC)` is *equivalent* to same-dimension operator-norm stability of
+`BS(1,2)`, which is ESS Question 3 (`n=1, m=2`).  The claim stays **OPEN**, and it is
+now exactly a published open question.
+- *Class kill.* Strategies that use the identity padding are dead. Invariant: the
+  almost-invariant vectors of the correcting packet. They lie within
+  `sqrt(2a) eps` of the fixed space of a nearby exact packet, obtained by excising
+  deep binary runs.
+- *Where the remaining difficulty sits.* Any proof or counterexample must address
+  the unpadded conjugator problem itself.
