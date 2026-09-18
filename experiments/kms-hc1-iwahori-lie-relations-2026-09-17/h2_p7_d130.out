@@ -1,0 +1,9 @@
+p=7 degree 3: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=9, Lambda3=1)
+p=7 degree 21: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=75, Lambda3=582)
+p=7 degree 42: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=151, Lambda3=2550)
+p=7 degree 63: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=229, Lambda3=5904)
+p=7 degree 84: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=305, Lambda3=10649)
+p=7 degree 105: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=383, Lambda3=16780)
+p=7 degree 126: dim L_k=2 H_1=0 H_2=1  (dim Lambda2=459, Lambda3=24301)
+p=7: degrees <= 130 with H_2 != 0: [(3, 6), (21, 1), (42, 1), (63, 1), (84, 1), (105, 1), (126, 1)]
+exit 0 elapsed 151s

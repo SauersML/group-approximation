@@ -1,0 +1,10 @@
+p=3 degree 3: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=9, Lambda3=1)
+p=3 degree 6: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=19, Lambda3=28)
+p=3 degree 9: dim L_k=2 H_1=0 H_2=7  (dim Lambda2=31, Lambda3=81)
+p=3 degree 12: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=41, Lambda3=165)
+p=3 degree 15: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=53, Lambda3=275)
+p=3 degree 18: dim L_k=2 H_1=0 H_2=7  (dim Lambda2=63, Lambda3=415)
+p=3 degree 21: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=75, Lambda3=582)
+p=3 degree 24: dim L_k=2 H_1=0 H_2=6  (dim Lambda2=85, Lambda3=779)
+p=3: degrees <= 24 with H_2 != 0: [(3, 6), (6, 6), (9, 7), (12, 6), (15, 6), (18, 7), (21, 6), (24, 6)]
+elapsed 0s
