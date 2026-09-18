@@ -34,12 +34,18 @@ proved here in Lean, using the Kervaire lift, Khanh's Lemma 5.2 and the Leavitt 
 
 ## Loud negative finding: the retraction route is false
 
-A homomorphism `ρ : St_N(L) → St_5(L)` with `ρ ∘ pad = (inner automorphism)` does **not** exist
-for `N ≥ 6`, not even up to `K₂`.  Choose `λ ∈ L` with `λ ≠ 0, 1` in the center-free sense and let
-`y` lift `diag(1_5, λ, 1, …)` in `E_N(L)`.  Then `y` commutes with `pad(St_5)` modulo `K₂`, so
-`proj ∘ ρ` kills the normal closure of a non-central element of the simple group `E_N(L)`.  That
-forces `proj ∘ ρ = 1`, which contradicts `proj ∘ ρ ∘ pad = (inner automorphism of E_5)`.  The route
-internal to `L` that works is the refinement descent above, not a retraction.
+For `N ≥ 7` (any ring `R ≠ 0`) there is **no** homomorphism `ρ : St_N(R) → St_5(R)` with
+`ρ ∘ pad = c_g`, an inner automorphism.
+*Counterexample argument.*
+* `y = x_{6,7}(1)` commutes with `pad(St_5)`, since the indices are disjoint.
+* So `ρ y` commutes with `ρ(pad St_5) = St_5` and is central.
+* The normal closure of `y` is all of `St_N`: `[x_{i6}(a), y] = x_{i7}(a)` and
+  `[x_{i7}(a), x_{7j}(b)] = x_{ij}(ab)`.
+* Hence `ρ(St_N)` lies in the abelian group `⟨ρ y⟩`, and perfectness of `St_N` forces `ρ = 1`.
+  That contradicts `ρ ∘ pad = c_g`.
+The same holds if `ρ ∘ pad = c_g` only modulo the centre of `St_5`, since `ρ(pad St_5)` then
+still covers `St_5` up to central factors, so `ρ y` is still central.  Since any stable argument needs arbitrarily large `N`, the retraction route is dead.  The
+route internal to `L` that works is the refinement descent above.
 -/
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

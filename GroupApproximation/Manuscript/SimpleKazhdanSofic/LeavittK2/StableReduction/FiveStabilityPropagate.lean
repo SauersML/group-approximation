@@ -54,6 +54,7 @@ theorem fiveStability_indexMap_swap_injective {n N : ℕ} (h : n ≤ N) :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_indexMap_swap_injective
 
+include L in
 /-- **Stable injectivity climbs one rank.**  For `n ≥ 4` with a spare index `k ≠ r`, if every
 `K₂(n)` element dying in some `St_N(R)` is trivial, the same holds at rank `n + 1`. -/
 theorem fiveStability_propagate {n : ℕ} (hn : 4 ≤ n) (r k : Fin n) (hk : k ≠ r)

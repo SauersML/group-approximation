@@ -86,8 +86,9 @@ theorem eAffineHom_injective (κ : B → (Fin d → K)) (ρ : Q →* GeneralLine
     hx.trans fromBlocks_one.symm
   obtain ⟨hA, hB, -, -⟩ := fromBlocks_inj.mp hx'
   have hr : x.right = 1 := hρi (by rw [map_one]; exact Units.ext hA)
-  have hl : x.left = 1 := hκi (by rw [hzero]; exact replicateCol_injective
-    (hB.trans replicateCol_zero.symm))
+  have hl : x.left = 1 := hκi (by
+    rw [hzero]
+    exact replicateCol_injective (hB.trans replicateCol_zero.symm))
   exact SemidirectProduct.ext hl hr
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eAffineHom_injective

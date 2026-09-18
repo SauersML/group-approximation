@@ -5,8 +5,8 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Greendlinger leaf P07, lane gl-p07-29: proof of the pinch-bounded arc audit
 
-This file proves `FourPieceWitness.ArcsAuditPinchStatement` (`FourPieceArcsAuditPinchStatement.lean`).
-The uncorrected `ArcsAuditStatement` is false (model M11 there).
+This file proves `FourPieceWitness.ArcsAuditPinchStatement`
+(`FourPieceArcsAuditPinchStatement.lean`).  The uncorrected `ArcsAuditStatement` is false (model M11 there).
 
 ## Proof route
 

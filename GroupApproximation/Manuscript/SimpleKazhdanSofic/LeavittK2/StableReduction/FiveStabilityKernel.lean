@@ -106,6 +106,7 @@ theorem fiveStability_eq_one_of_refineHom_eq_one {n : ℕ} (hn : 4 ≤ n) (r k :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_eq_one_of_refineHom_eq_one
 
+include L in
 /-- **Centrality of `K₂` climbs one rank.**  `D` maps `K₂(n)` onto `K₂(n + 1)` and is onto, so a
 central `K₂(n)` gives a central `K₂(n + 1)`. -/
 theorem fiveStability_K2_le_center_succ {n : ℕ} (r k : Fin n) (hk : k ≠ r)

@@ -108,7 +108,7 @@ theorem suslinLocalGlobalRestrict_comp_C :
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalGlobalRestrict_comp_C
 
 /-- Functoriality of `elementaryMatrixUnitMap`. -/
-theorem suslinLocalGlobal_map_map {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
+theorem suslinLocalGlobal_map_map {R S T : Type*} [Ring R] [Ring S] [Ring T]
     {N : ℕ} (f : S →+* T) (g : R →+* S) (u : Matrix.GeneralLinearGroup (Fin N) R) :
     elementaryMatrixUnitMap (ι := Fin N) f (elementaryMatrixUnitMap (ι := Fin N) g u) =
       elementaryMatrixUnitMap (ι := Fin N) (f.comp g) u := by
@@ -119,7 +119,7 @@ theorem suslinLocalGlobal_map_map {R S T : Type*} [CommRing R] [CommRing S] [Com
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinLocalGlobal_map_map
 
 /-- `elementaryMatrixUnitMap` of the identity. -/
-theorem suslinLocalGlobal_map_id {R : Type*} [CommRing R] {N : ℕ}
+theorem suslinLocalGlobal_map_id {R : Type*} [Ring R] {N : ℕ}
     (u : Matrix.GeneralLinearGroup (Fin N) R) :
     elementaryMatrixUnitMap (ι := Fin N) (RingHom.id R) u = u := by
   apply Units.ext

@@ -51,6 +51,7 @@ theorem fiveStability_refineLast_indexMap {n M : ℕ} (h : n ≤ M) :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineLast_indexMap
 
+include L in
 /-- **Descending one rank.**  If `K₂(M + 1, R)` is central and `4 ≤ n ≤ M`, an element of
 `St_n(R)` dying in `St_{M+2}(R)` dies in `St_{M+1}(R)`. -/
 theorem fiveStability_descend {n M : ℕ} (hn : 4 ≤ n) (h : n ≤ M)
