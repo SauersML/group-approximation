@@ -82,7 +82,9 @@ theorem witnessStepDescent_turnSum_eq_zero {f : α → ℕ} {N : ℕ} (ps : List
   | nil => rfl
   | cons q ps ih =>
     have ht : witnessStepDescent_turn f N q = 0 := if_pos (h q List.mem_cons_self)
-    rw [witnessStepDescent_turnSum_cons, ih (fun p hp => h p (List.mem_cons_of_mem q hp)), ht]
+    have h0 := ih (fun p hp => h p (List.mem_cons_of_mem q hp))
+    rw [witnessStepDescent_turnSum_cons]
+    omega
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepDescent_turnSum_eq_zero
 
