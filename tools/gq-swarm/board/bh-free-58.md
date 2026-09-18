@@ -24,3 +24,12 @@ LANDED 99e1c5dc3 (09-18), Kourovka 21.73 torsion case: `ct-z-finite-subgroups-ar
 - This kills Salo-type routes for 21.73: they rely on finite-order yes-instances, and in CT(Z) those are decidable.
 - Also noted: "blind multiplication", a second obstruction for counter-coded blinkers.
 Lesson paragraph added to 71b76e027's node in b230a5543. Now: looking for an infinite-order conjugacy reduction for 21.73.
+LANDED a95cb1edf (09-18): Kourovka 21.73 is UNDECIDABLE. Node `ct-z-conjugacy-problem-is-undecidable`.
+- For each reversible counter machine M with initial configuration x*, explicit words A_M, B_M satisfy: halting ⟹ conjugate by an explicit involution in CT_{3,5,7,11,13}(Z); non-halting ⟹ not conjugate, even in RCWA(Z).
+- Key tool: "arithmetic rigidity at infinity". Rcwa conjugators are linear on the far ends of multiplicative orbits, so non-S cofactors are end invariants.
+- It holds in the fp simple group CT_P(Z) too. Input: Morita universality (not read at source).
+- Remaining: 21.74(a).
+LANDED 7c6468c08 (09-18), 21.74(a) obstruction: `ct-z-residue-partitions-cannot-carve-thin-invariant-sets`.
+- Components lie in single classes, so a special invariant set W is visible to (a) only if it contains a co-class.
+- Invariant sets inside pZ (p odd) never contain one, which kills machine-plus-single-mixer reductions.
+- (a) stays OPEN. Next steps: thick (prefix-coded) special structure, or decidability on V via revealing pairs.
