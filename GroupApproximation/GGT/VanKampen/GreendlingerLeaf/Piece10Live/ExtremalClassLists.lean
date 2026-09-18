@@ -74,7 +74,8 @@ theorem exists_block_of_noGap (p : α → Bool) (l : List α)
       | cons y₀ pre' =>
         cases mid with
         | nil =>
-          refine ⟨[], [x], (y₀ :: pre') ++ post, by simp [ht], fun _ hy => by simp at hy, ?_, ?_⟩
+          refine ⟨[], [x], (y₀ :: pre') ++ post, by simp [ht], fun _ hy => by simp at hy,
+            ?_, ?_⟩
           · intro y hy
             rw [List.mem_singleton.mp hy]
             exact hx
@@ -104,7 +105,8 @@ theorem exists_filter_block_of_noGap (p : α → Bool) {l : List α}
   have h₂ : mid.filter p = mid := List.filter_eq_self.mpr hmid
   have h₃ : post.filter p = [] := List.filter_eq_nil_iff.mpr fun x hx => by simp [hpost x hx]
   refine ⟨pre, mid, post, hl, ?_⟩
-  rw [hl, List.filter_append, List.filter_append, h₁, h₂, h₃, List.nil_append, List.append_nil]
+  rw [hl, List.filter_append, List.filter_append, h₁, h₂, h₃, List.nil_append,
+    List.append_nil]
 
 end ClassLists
 

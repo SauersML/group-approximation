@@ -74,8 +74,7 @@ theorem sourceNoGap_of_classStretches (K : PocketFaceSet D eps X lo hi) (r : X.t
       invDarts X C ++ X.toCombMap.alpha e ::
         (invDarts X B ++ X.toCombMap.alpha d :: invDarts X A) := by
     rw [hs]
-    simp only [invDarts, List.reverse_append, List.reverse_cons, List.map_append, List.map_cons,
-      List.map_nil, List.append_assoc, List.singleton_append]
+    simp [invDarts]
   have hc : K.boundary.cycle =
       (K.firstSide ++ invDarts X C) ++ X.toCombMap.alpha e ::
         (invDarts X B ++ X.toCombMap.alpha d ::
