@@ -129,6 +129,118 @@ theorem relKer_sn {α β : List (Fin 2)} (h : α ≠ β) (X : R) :
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_sn
 
+/-- `u(α, β) W γ p = 0` for `β ≠ γ`. -/
+theorem relKer_Z1 {α β γ : List (Fin 2)} (h : β ≠ γ) :
+    D.unit α β * (D.word γ * D.p) = 0 := by
+  calc D.unit α β * (D.word γ * D.p)
+      = D.word α * (D.p * (D.coword β * (D.word γ * D.p))) := by
+        simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc]
+    _ = 0 := by rw [relKer_sn0 D h, mul_zero]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_Z1
+
+/-- `-(p V β) W γ p = 0` for `β ≠ γ`. -/
+theorem relKer_Z2 {β γ : List (Fin 2)} (h : β ≠ γ) :
+    -(D.p * D.coword β) * (D.word γ * D.p) = 0 := by
+  rw [neg_mul, mul_assoc, relKer_sn0 D h, neg_zero]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_Z2
+
+/-- `p V γ u(α, β) = 0` for `γ ≠ α`. -/
+theorem relKer_Z3 {γ α β : List (Fin 2)} (h : γ ≠ α) :
+    D.p * D.coword γ * D.unit α β = 0 := by
+  calc D.p * D.coword γ * D.unit α β
+      = D.p * (D.coword γ * (D.word α * D.p)) * D.coword β := by
+        simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc]
+    _ = 0 := by rw [relKer_sn0 D h, zero_mul]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_Z3
+
+/-- `p V γ (-(W α p)) = 0` for `γ ≠ α`. -/
+theorem relKer_Z4 {γ α : List (Fin 2)} (h : γ ≠ α) :
+    D.p * D.coword γ * -(D.word α * D.p) = 0 := by
+  rw [mul_neg, mul_assoc, relKer_sn0 D h, neg_zero]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_Z4
+
 end Ring
+
+/-! ### Explicit swap conjugations -/
+
+section Conj
+
+variable {J R : Type*} [Fintype J] [DecidableEq J] [Ring R] (D : CohnRelativeK1.CohnTwoData R)
+
+/-- Column move: `x_ac(u(α, β)) ↦ x_bc(-(p V β))`. -/
+theorem relKer_colFF (a b c : J) (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (α β : List (Fin 2)) :
+    relKer_swap a b hab (D.word α * D.p) (D.p * D.coword α) * x a c hac (D.unit α β) *
+        (relKer_swap a b hab (D.word α * D.p) (D.p * D.coword α))⁻¹ =
+      x b c hbc (-(D.p * D.coword β)) := by
+  have hBc : D.p * D.coword α * D.unit α β = D.p * D.coword β := by
+    simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc, relKer_ss D]
+  have hc : D.word α * D.p * (D.p * D.coword α * D.unit α β) = D.unit α β := by
+    rw [hBc]
+    simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc, relKer_pp D]
+  rw [relKer_swap_conj_col a b c hab hac hbc (D.word α * D.p) (D.p * D.coword α)
+    (D.unit α β) hc, hBc]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_colFF
+
+/-- Column move: `x_ac(-(W α p)) ↦ x_bc(p)`. -/
+theorem relKer_colFT (a b c : J) (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (α : List (Fin 2)) :
+    relKer_swap a b hab (D.word α * D.p) (D.p * D.coword α) * x a c hac (-(D.word α * D.p)) *
+        (relKer_swap a b hab (D.word α * D.p) (D.p * D.coword α))⁻¹ = x b c hbc D.p := by
+  have hBc : D.p * D.coword α * -(D.word α * D.p) = -D.p := by
+    rw [mul_neg, mul_assoc, relKer_ss0 D]
+  have hc : D.word α * D.p * (D.p * D.coword α * -(D.word α * D.p)) = -(D.word α * D.p) := by
+    rw [hBc, mul_neg, mul_assoc, D.p_mul_p]
+  rw [relKer_swap_conj_col a b c hab hac hbc (D.word α * D.p) (D.p * D.coword α)
+    (-(D.word α * D.p)) hc, hBc, neg_neg]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_colFT
+
+/-- Row move: `x_ra(u(α, β)) ↦ x_rb(-(W α p))`. -/
+theorem relKer_rowFF (r a b : J) (hab : a ≠ b) (hra : r ≠ a) (hrb : r ≠ b)
+    (α β : List (Fin 2)) :
+    relKer_swap a b hab (D.word β * D.p) (D.p * D.coword β) * x r a hra (D.unit α β) *
+        (relKer_swap a b hab (D.word β * D.p) (D.p * D.coword β))⁻¹ =
+      x r b hrb (-(D.word α * D.p)) := by
+  have hcA : D.unit α β * (D.word β * D.p) = D.word α * D.p := by
+    simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc, relKer_ss0 D]
+  have hc : D.unit α β * (D.word β * D.p) * (D.p * D.coword β) = D.unit α β := by
+    rw [hcA]
+    simp only [CohnRelativeK1.CohnTwoData.unit, mul_assoc, relKer_pp D]
+  rw [relKer_swap_conj_row r a b hab hra hrb (D.word β * D.p) (D.p * D.coword β)
+    (D.unit α β) hc, hcA]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_rowFF
+
+/-- Row move: `x_ra(-(p V β)) ↦ x_rb(p)`. -/
+theorem relKer_rowTF (r a b : J) (hab : a ≠ b) (hra : r ≠ a) (hrb : r ≠ b)
+    (β : List (Fin 2)) :
+    relKer_swap a b hab (D.word β * D.p) (D.p * D.coword β) * x r a hra (-(D.p * D.coword β)) *
+        (relKer_swap a b hab (D.word β * D.p) (D.p * D.coword β))⁻¹ = x r b hrb D.p := by
+  have hcA : -(D.p * D.coword β) * (D.word β * D.p) = -D.p := by
+    rw [neg_mul, mul_assoc, relKer_ss0 D]
+  have hc : -(D.p * D.coword β) * (D.word β * D.p) * (D.p * D.coword β) =
+      -(D.p * D.coword β) := by
+    rw [hcA, neg_mul, ← mul_assoc, D.p_mul_p]
+  rw [relKer_swap_conj_row r a b hab hra hrb (D.word β * D.p) (D.p * D.coword β)
+    (-(D.p * D.coword β)) hc, hcA, neg_neg]
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_rowTF
+
+/-- The fixing criterion in the form used below. -/
+theorem relKer_swap_fix' (a b : J) (hab : a ≠ b) (A B : R) (r c : J) (hrc : r ≠ c) (e : R)
+    (hbr : b ≠ r) (hcb : c ≠ b) (h2 : c = a → e * A = 0) (h3 : a = r → B * e = 0) :
+    relKer_swap a b hab A B * x r c hrc e * (relKer_swap a b hab A B)⁻¹ = x r c hrc e :=
+  relKer_swap_fix a b hab A B r c hrc e (fun h => absurd h hbr) h2 h3 (fun h => absurd h hcb)
+    (fun h => hbr h.1) (fun h => hcb h.2)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_swap_fix'
+
+end Conj
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2
