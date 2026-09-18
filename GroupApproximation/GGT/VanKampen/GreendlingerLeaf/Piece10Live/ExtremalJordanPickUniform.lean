@@ -177,7 +177,7 @@ theorem extremalJordanPickUniform_changes_eq_zero (K : PocketFaceSet D eps X lo 
   rintro ⟨a, b⟩ hab
   obtain ⟨ha, hb⟩ := List.of_mem_zip hab
   have h₁ := hall a ha
-  have h₂ := hall b (List.mem_rotate.mp hb)
+  have h₂ := hall b ((List.mem_rotate (n := 1)).mp hb)
   show ¬(P10ExtremalResidual.keptPred K r a != P10ExtremalResidual.keptPred K r b) = true
   rw [h₁, h₂]
   decide
