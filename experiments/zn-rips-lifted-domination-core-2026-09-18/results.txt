@@ -1,0 +1,163 @@
+# gfp: greatest self-blocking set K*(k,r), computed from Lmax_k (start file only where noted)
+# build: g++ -O2 -o gfp gfp.cpp ; g++ -O2 -o kchk kchk.cpp   (g++ 13.3, single thread)
+
+## ./gfp 4 4 K4_4.txt
+initial |K| = 160
+k=4 r=4 |Lmax|=160
+pass 1: removed 159, |K| = 1, cached rechecks 0, dfs nodes 15367, t=0s
+pass 2: removed 0, |K| = 1, cached rechecks 0, dfs nodes 15367, t=0s
+K by norm: 1:1
+RESULT k=4 r=4 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 5 5 K5_5.txt
+initial |K| = 841
+k=5 r=5 |Lmax|=841
+pass 1: removed 719, |K| = 122, cached rechecks 0, dfs nodes 833585, t=0s
+pass 2: removed 121, |K| = 1, cached rechecks 12, dfs nodes 928105, t=0s
+pass 3: removed 0, |K| = 1, cached rechecks 0, dfs nodes 928105, t=0s
+K by norm: 1:1
+RESULT k=5 r=5 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 5 6 K5_6.txt
+initial |K| = 1826
+k=5 r=6 |Lmax|=1826
+pass 1: removed 1825, |K| = 1, cached rechecks 0, dfs nodes 1899443, t=0s
+pass 2: removed 0, |K| = 1, cached rechecks 0, dfs nodes 1899443, t=0s
+K by norm: 1:1
+RESULT k=5 r=6 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 5 9 K5_9.txt
+initial |K| = 11181
+k=5 r=9 |Lmax|=11181
+pass 1: removed 11180, |K| = 1, cached rechecks 0, dfs nodes 62263560, t=1s
+pass 2: removed 0, |K| = 1, cached rechecks 0, dfs nodes 62263560, t=1s
+K by norm: 1:1
+RESULT k=5 r=9 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 6 6 K6_6.txt
+initial |K| = 4494
+k=6 r=6 |Lmax|=4494
+pass 1: removed 3595, |K| = 899, cached rechecks 0, dfs nodes 34069806, t=1s
+pass 2: removed 16, |K| = 883, cached rechecks 14072, dfs nodes 46702683, t=1s
+pass 3: removed 0, |K| = 883, cached rechecks 28631, dfs nodes 46702683, t=1s
+K by norm: 1:6 2:28 3:71 4:90 5:420 6:268
+RESULT k=6 r=6 |K|=883 K != {e_k}: NO (D)-only certificate exists
+
+## ./gfp 6 7 K6_7.txt
+initial |K| = 9912
+k=6 r=7 |Lmax|=9912
+pass 1: removed 8802, |K| = 1110, cached rechecks 0, dfs nodes 170357787, t=3s
+pass 2: removed 1109, |K| = 1, cached rechecks 144, dfs nodes 194082760, t=3s
+pass 3: removed 0, |K| = 1, cached rechecks 0, dfs nodes 194082760, t=3s
+K by norm: 1:1
+RESULT k=6 r=7 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 6 8 K6_8.txt
+initial |K| = 20040
+k=6 r=8 |Lmax|=20040
+pass 1: removed 20039, |K| = 1, cached rechecks 0, dfs nodes 289215217, t=5s
+pass 2: removed 0, |K| = 1, cached rechecks 0, dfs nodes 289215217, t=5s
+K by norm: 1:1
+RESULT k=6 r=8 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 6 9 K6_9.txt
+initial |K| = 37758
+k=6 r=9 |Lmax|=37758
+pass 1: removed 35640, |K| = 2118, cached rechecks 0, dfs nodes 2549686822, t=39s
+pass 2: removed 2117, |K| = 1, cached rechecks 42, dfs nodes 2699511428, t=42s
+pass 3: removed 0, |K| = 1, cached rechecks 0, dfs nodes 2699511428, t=42s
+K by norm: 1:1
+RESULT k=6 r=9 |K|=1 K = {e_k}: no obstruction
+
+## ./gfp 7 7 K7_7.txt
+initial |K| = 24319
+k=7 r=7 |Lmax|=24319
+pass 1: removed 16407, |K| = 7912, cached rechecks 0, dfs nodes 1798476718, t=22s
+pass 2: removed 1192, |K| = 6720, cached rechecks 68532, dfs nodes 3015380633, t=37s
+pass 3: removed 0, |K| = 6720, cached rechecks 441339, dfs nodes 3015787760, t=37s
+K by norm: 1:7 2:40 3:129 4:232 5:1256 6:1336 7:3720
+RESULT k=7 r=7 |K|=6720 K != {e_k}: NO (D)-only certificate exists
+
+## ./gfp 7 8 K7_8.txt
+initial |K| = 54272
+k=7 r=8 |Lmax|=54272
+pass 1: removed 43760, |K| = 10512, cached rechecks 0, dfs nodes 8585838786, t=107s
+pass 2: removed 120, |K| = 10392, cached rechecks 328286, dfs nodes 12698320901, t=162s
+pass 3: removed 0, |K| = 10392, cached rechecks 948151, dfs nodes 12698320901, t=162s
+K by norm: 1:7 2:40 3:129 4:232 5:1200 6:1336 7:4648 8:2800
+RESULT k=7 r=8 |K|=10392 K != {e_k}: NO (D)-only certificate exists
+
+## ./gfp 7 9 K7_9.txt
+initial |K| = 112071
+k=7 r=9 |Lmax|=112071
+pass 1: removed 84775, |K| = 27296, cached rechecks 0, dfs nodes 51812707581, t=700s
+pass 2: removed 3466, |K| = 23830, cached rechecks 748327, dfs nodes 84530674587, t=1060s
+pass 3: removed 0, |K| = 23830, cached rechecks 3713191, dfs nodes 84530687424, t=1060s
+K by norm: 1:6 2:40 3:112 4:232 5:1064 6:1336 7:4192 8:2800 9:14048
+RESULT k=7 r=9 |K|=23830 K != {e_k}: NO (D)-only certificate exists
+real	17m39.904s
+
+## ./gfp 8 8 K8_8.txt p8/k8_8.txt   (start set: the stalled D+K greedy set, see README)
+start set read: 16114 points
+initial |K| = 16114
+k=8 r=8 |Lmax|=132864
+pass 1: removed 0, |K| = 16114, cached rechecks 0, dfs nodes 27475308846, t=267s
+K by norm: 1:8 2:54 3:211 4:490 5:2435 6:3702 7:5274 8:3940
+RESULT k=8 r=8 |K|=16114 K != {e_k}: NO (D)-only certificate exists
+real	4m26.935s
+
+## ./gfp 8 9 K8_9.txt p8/k8_8.txt   (start set K8_8; collapses, so this says nothing about (8,9))
+start set read: 16114 points
+initial |K| = 16114
+k=8 r=9 |Lmax|=299208
+pass 1: removed 16113, |K| = 1, cached rechecks 0, dfs nodes 2339576518, t=26s
+pass 2: removed 0, |K| = 1, cached rechecks 0, dfs nodes 2339576518, t=26s
+K by norm: 1:1
+RESULT k=8 r=9 |K|=1 K = {e_k}: no obstruction
+real	0m26.048s
+
+## ./gfp 8 9 K8_9full.txt   (full, from Lmax_8): killed by timeout 1200 before pass 1 ended
+initial |K| = 299208
+k=8 r=9 |Lmax|=299208
+real	20m0.012s
+
+## ./gfp 8 8 (full, from Lmax_8): pass 1 took 850 s and left 40,496 points; then killed by timeout 1200
+
+## ./gfp 7 10 K7_10.txt K710.txt   (start: the 34,040-point lifted D-greedy remainder at (7,10)): killed by timeout 1200 before pass 1 ended
+
+# kchk on the landed cores (files as in cores/, unzipped)
+$ ./kchk 6 6 K6_6.txt
+OBSTRUCTION VERIFIED: k=6 r=6 |K|=883, every x in K\{e_k} blocked for all 28711 (x,w) pairs (2140509 distance tests)
+$ ./kchk 7 7 K7_7.txt
+OBSTRUCTION VERIFIED: k=7 r=7 |K|=6720, every x in K\{e_k} blocked for all 442643 (x,w) pairs (97947252 distance tests)
+$ ./kchk 7 8 K7_8.txt
+OBSTRUCTION VERIFIED: k=7 r=8 |K|=10392, every x in K\{e_k} blocked for all 948823 (x,w) pairs (447560162 distance tests)
+$ ./kchk 7 9 K7_9.txt
+OBSTRUCTION VERIFIED: k=7 r=9 |K|=23830, every x in K\{e_k} blocked for all 3717471 (x,w) pairs (2676912141 distance tests)
+$ ./kchk 8 8 K8_8.txt
+OBSTRUCTION VERIFIED: k=8 r=8 |K|=16114, every x in K\{e_k} blocked for all 1567975 (x,w) pairs (712820417 distance tests)
+
+# negative controls (each must FAIL)
+$ ./kchk 8 9 K8_8.txt            # same set, one scale up
+FAIL: x = -1 -1 -1 -1 -1 -1 0 1  dominated by w = 0 0 0 0 0 0 0 1
+$ ./kchk 8 8 K8_8-minus-e8.txt  # 16113 points
+FAIL: e_k not in K
+$ ./kchk 8 8 K8_8-plus-(-e8).txt
+FAIL: point not in Lmax
+$ ./kchk 6 7 K6_6.txt            # same set, one scale up
+FAIL: x = -1 -1 -1 -1 -1 1  dominated by w = 0 0 0 0 0 1
+$ ./kchk 6 6 K6_6-thinned.txt   # every 5th line dropped, e6 kept: 707 points
+FAIL: x = -1 -1 0 1 -1 1  dominated by w = 0 -1 0 1 0 1
+
+# data point, not a control: thinning K8_8 (drop lines with NR%5==3, keep e8) stays self-blocking
+$ ./kchk 8 8 K8_8-thinned.txt   # 12891 points
+OBSTRUCTION VERIFIED: k=8 r=8 |K|=12891, every x in K\{e_k} blocked for all 1252319 (x,w) pairs (458528729 distance tests)
+
+# hybrid orbit/point run at (8,8): ./hyb 8 8 h8_8.txt 400 1100, then ./vcert2 8 8 h8_8.txt
+k=8 r=8 |Lmax|=132864 orbits=673
+m=8 passes=2 deferred orbits=17 points=16150 orbitMoves=212 pointMoves=6378 t=856s nodes=74240273971
+m=7 passes=1 deferred orbits=180 points=50382 orbitMoves=212 pointMoves=6378 t=1100s nodes=101592932616
+k=8 r=8 orbitMoves=212 pointMoves=6378 lines=62442 left=70422 t=1100s TIMEOUT
+deferred: [2 2 1 1 1 1 0 0 x320] [3 1 1 1 1 1 0 0 x160] [2 1 1 1 1 2 0 0 x160] [1 1 1 1 1 3 0 0 x32] [2 1 1 1 1 1 1 0 x384] [2 2 1 1 1 0 1 0 x1920] [3 1 1 1 1 0 1 0 x960] [1 1 1 1 1 1 2 0 x64] [2 1 1 1 1 0 2 0 x960] [1 1 1 1 1 0 3 0 x192]
+k=8 r=8 |B|=265729 start present=132864 (= |Lmax|)
+moves: D=62442 (K steps 0) left=70422 dfs=252881098 -> all moves valid; end set is not {e_k}
