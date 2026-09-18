@@ -608,6 +608,30 @@ content in that region.
   `∫ dr/theta(r) < infinity` at the spine birth. That holds for a spine born
   with exponent `< 1` (the Z^2 percolation spine has `5/36`), and fails, with
   a log divergence, for linear birth.
+* **Multi-run decorrelation for the planar spine by dual circuits
+  (2026-09-18, w12-123).**
+  `fpbs-planar-spine-multirun-decorrelation-by-dual-circuits`. In `Z^2`, a
+  declared-open run misses infinity exactly when a dual-open circuit
+  surrounds it. Cut the dual edges at the Euclidean bisector of the two
+  sides of the split. The half-plane events are then independent and do not
+  see the other side's pattern. Harris returns to the one-sided events at
+  the cost of circuits that leave the half-plane, and such a circuit around
+  `x` must reach distance `delta(x)/2`. For every `p' > 1/2`, every chordless
+  path and every pattern, this gives
+  `K_n <= prod_x max(theta, 1 - psi(delta(x)/2))^{-1}`, with `psi` the
+  exponentially decaying dual circuit tail.
+
+  On geodesic paths, `K_n <= C(p')` uniformly in `n`, in the split and in the
+  pattern. So `Br/TJT <= C(p')` and `inf_n D_n > 0` for all `r`: the path
+  form of the Br route is proved at every fixed supercritical density. This
+  is the percolation analogue of the fold-width Theorem 3, with the dual
+  decay scale in place of the finite range. On hairpins the bound is
+  exponential in the fold, the same order as Conjecture 5.
+
+  **Where it stands:** `C(p')` is of order `theta^{-c xi}`, not `C/theta`,
+  because Harris charges each vertex near the cut separately. The birth
+  scaling that the gate integral needs, and non-planar graphs, remain open.
+  The next step is an outermost-exiting-circuit decomposition near the cut.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
