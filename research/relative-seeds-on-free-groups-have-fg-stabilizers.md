@@ -118,3 +118,24 @@ of Muller–Schupp cone types. This is a sketch only; the node claims just the f
   - a rigid relative seed that forces the distorted coset structure.
 
   Clapham–Cohen's step 4 and Mikhailova fibre products are the two concrete places to try.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS** for Parts 1–3 and for consequences (a) and (c). Lane bh-g1-universal-point's
+splicing argument is correct. It agrees with item 3 of
+`sft-isolated-points-are-finite-state-across-finite-edge-groups` (bh-g3-topfree), which extends it to
+virtually free groups.
+- **Splicing.** A rule window meeting both sides of `e` contains `e`, so it lies in `W_e`. The seed
+  ball is on the near side.
+- **Part 1.** `λ = g'g^{-1}` carries `T_far(e)` onto `T_far(e')`, and `λ·y ∈ Y` agrees with `y` on
+  `W_{e'}`. Child types are read off the parent's type.
+- **Part 2.** The depth-`j` validity sets decrease and are updated by a fixed monotone map, so they
+  stabilize in `≤ N` steps. König plus branch independence then gives the linear forcing radius.
+  The constant `c` may need an extra `2u_0`, but only its existence is claimed.
+- **Part 3.** `C^{-1} = C` is the regular set of reduced `g` with `y(g·) = p`, so it is rational and,
+  by Anisimov–Seifert, finitely generated. Correct.
+- **Consequences.**
+  - (a) The rope's infinitely generated free factor cannot be a relative-seed stabilizer. Correct.
+  - (c) The `2^{O(|g|)}·T_A` membership bound for undistorted edges is correct.
+  - (b) and (d) rest on the cited bi-Lipschitz and sandwich nodes, which I did not re-referee.
+- **Mikhailova remark.** The coset invariant `π(v)^{-1}π(u)` is correct.
