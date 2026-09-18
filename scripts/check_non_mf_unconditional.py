@@ -1490,11 +1490,527 @@ def _one_line(text: str, width: int = 90) -> str:
     return collapsed if len(collapsed) <= width else collapsed[: width - 1] + "…"
 
 
+# ---------------------------------------------------------------------------
+# Binder hygiene: poisoned and refuted statements taken as hypotheses
+# ---------------------------------------------------------------------------
+
+#: Statements no `\leanverified` endpoint may take as a hypothesis, however far
+#: down a chain of named `Prop`s.  Each packages literature the corpus has not
+#: proved (or has proved false at the printed strength), so an endpoint that
+#: binds one is a reduction, not a theorem, whatever its conclusion says.
+POISONED_BINDER_NAMES: dict[str, str] = {
+    "FournierFacioParagraph":
+        "the printed Fournier-Facio paragraph, an unproved literature package "
+        "(Manuscript/NonMF/FournierFacioParagraph.lean)",
+    "HullPrintedInputs":
+        "the printed hull inputs, an unproved literature package "
+        "(Manuscript/NonMF/HullPrintedInputs.lean)",
+    "RelativeGreendlingerQuasiGeodesicLeastAreaStatement":
+        "the relative Greendlinger least-area statement, unproved at the "
+        "printed strength (GGT/VanKampen/Estimating/OsinAppendixSections.lean)",
+}
+
+#: Statements this corpus proves FALSE (or, where marked over-strong, stronger
+#: than anything true that is available).  A theorem taking one as a hypothesis
+#: is vacuous: it holds because its hypothesis cannot be supplied.  The value
+#: says where the refutation lives; `None` marks an over-strong input with no
+#: refutation, which is exempt from the refutation-still-exists check.
+REFUTED_BINDER_PROPS: dict[str, str | None] = {
+    "CellPocketPinchPosStatement": "Estimating/OsinPocketCellPinchRefutation.lean",
+    "PocketPinchLabelledPosStatement": "Estimating/OsinPocketPinchPosModels.lean",
+    "PocketPinchStatement": "Estimating/OsinPocketWrapRose.lean",
+    "PocketPinchPinchedStatement": "Estimating/OsinPocketWrapRose.lean",
+    "PocketPinchLabelledStatement": "Estimating/OsinPocketWrapRose.lean",
+    "PocketPinchStepStatement": "Estimating/OsinPocketWrapRose.lean",
+    "RefutedUnboundConstructionStatement": "Estimating/UnboundEmptyDisc.lean",
+    "EstimatingUnboundOutputHistoricalStatement":
+        "Estimating/UnboundSmallMuCounterexample.lean",
+    "EstimatingUnboundRepairedStatement":
+        "Estimating/UnboundSmallMuCounterexample.lean",
+    "EstimatingUnboundOutputStatement": "Estimating/UnboundScaledCounterexample.lean",
+    "RelativeLinearAreaTransferStatement":
+        "HullSCLemma44AreaTransferRefutation.lean",
+    "RelativeDehnTransferStatement": "HullSCLemma44DehnTransferRefutation.lean",
+    "UnrestrictedRelativePowerEscapeStatement":
+        "RelHypOsin24ClassificationBridge.lean",
+    "RelativeExteriorArcConversionAtWordStatement": "ExteriorArcCounterexample.lean",
+    "RegionShellingStatement": "RegionShellingSpurCounterexample.lean",
+    "Lemma62ComponentPartitionStatement":
+        "Estimating/UnboundSmallMuCounterexample.lean",
+    "Lemma62ComponentDecompositionStatement":
+        "Estimating/UnboundSmallMuCounterexample.lean",
+    "KerNormallyGeneratedStatement": "Manuscript/NonMF/HullFillKernelRefutation.lean",
+    "FreeProductStatement": "HullSCCommonQuotientCorrected.lean",
+    "EnclosedLeastAreaFilterStatement": "ClosedWalkEnclosedOutOfOrderModel.lean",
+    "FaceSetEarStatement": "FaceSetEarSpurCounterexample.lean",
+    "FaceSetEarDataStatement": "FaceSetEarSpurCounterexample.lean",
+    "DGOProposition435PrintedStatement": "DGOProposition435PrintedCounterexample.lean",
+    "OsinLemma94PolygonSideBudgetInput": None,
+}
+
+#: Legacy root theorems that already take a refuted statement as a hypothesis,
+#: with the names they take.  These are vacuous reductions left over from before
+#: the refutations landed; nothing may cite them.  A root theorem taking a
+#: refuted name that is not listed here fails, and an entry that no longer
+#: matches fails too, so the register only shrinks.
+REFUTED_BINDER_LEGACY: dict[str, tuple[str, ...]] = {
+    "GroupApproximation.GGT.RelHyp.canonicalQuotientFamilyPreservation_of_jointPreservation":
+        ("DGOProposition435PrintedStatement",),
+    "GroupApproximation.GGT.RelHyp.isRelativelyHyperbolic_original_of_jointPreservation":
+        ("DGOProposition435PrintedStatement",),
+    "GroupApproximation.GGT.RelHyp.isRelativelyHyperbolic_original_of_jointPreservation_of_cyclic":
+        ("DGOProposition435PrintedStatement",),
+    "GroupApproximation.GGT.VanKampen.CellPocketFaceSet.copyRegion_of_pinch":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.Embedded.faceSetBoundaryPeeling_of_earData":
+        ("FaceSetEarDataStatement",),
+    "GroupApproximation.GGT.VanKampen.Embedded.faceSetBoundaryPeeling_of_earStatement":
+        ("FaceSetEarStatement",),
+    "GroupApproximation.GGT.VanKampen.Embedded.faceSetEarStatement_of_earData":
+        ("FaceSetEarDataStatement",),
+    "GroupApproximation.GGT.VanKampen.Estimating.estimatingUnboundOutput_of_decomposition":
+        ("Lemma62ComponentDecompositionStatement",),
+    "GroupApproximation.GGT.VanKampen.Estimating.estimatingUnboundOutput_of_repaired":
+        ("EstimatingUnboundRepairedStatement",),
+    "GroupApproximation.GGT.VanKampen.Estimating.estimatingUnboundRepaired_of_componentPartition":
+        ("Lemma62ComponentPartitionStatement",),
+    "GroupApproximation.GGT.VanKampen.Estimating.estimatingUnboundRepaired_of_decomposition":
+        ("Lemma62ComponentDecompositionStatement",),
+    "GroupApproximation.GGT.VanKampen.Estimating.lemma62ComponentPartition_of_decomposition":
+        ("Lemma62ComponentDecompositionStatement",),
+    "GroupApproximation.GGT.VanKampen.cellPocketPinchSectionStatement_of_pos":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.copyRegion_of_offSideWalk":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.copyRegion_of_offSideWalkEuler":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.estimatingDataConstruction_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.GGT.VanKampen.estimatingPieceConstruction_of_ear":
+        ("FaceSetEarStatement",),
+    "GroupApproximation.GGT.VanKampen.estimatingPieceConstruction_of_earStatement":
+        ("FaceSetEarStatement",),
+    "GroupApproximation.GGT.VanKampen.estimatingPieceConstruction_of_shelling":
+        ("RegionShellingStatement",),
+    "GroupApproximation.GGT.VanKampen.faceSetWordHomotopy_of_regionShelling":
+        ("RegionShellingStatement",),
+    "GroupApproximation.GGT.VanKampen.leastArea_of_enclosedLeastAreaFilter":
+        ("EnclosedLeastAreaFilterStatement",),
+    "GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinch":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinchOrder":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.multipleEdgePocketRegionCopyInput_of_pinchOrderEuler":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.osinDescentSection_of_residuals":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.osinDescentSection_of_residualsPos":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.osinLemma94PolygonCountInput_of_sideBudget":
+        ("OsinLemma94PolygonSideBudgetInput",),
+    "GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopySection_of_pinch":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopySection_of_pinchOrder":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.osinMultipleEdgePocketRegionCopySection_of_pinchOrderEuler":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_pieces":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_residuals":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.osinSectionPocketCutSection_of_residualsPos":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchLabelledPosStatement_of_labelled":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchLabelledSectionStatement_of_pos":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchLabelledStatement_of_pocketPinchStatement":
+        ("PocketPinchStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchLabelledStatement_of_step":
+        ("PocketPinchStepStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchStatement_of_pinched":
+        ("PocketPinchPinchedStatement",),
+    "GroupApproximation.GGT.VanKampen.pocketPinchStepPosStatement_of_step":
+        ("PocketPinchStepStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_openResiduals":
+        ("OsinLemma94PolygonSideBudgetInput", "PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsPos":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2Copy":
+        ("CellPocketPinchPosStatement", "PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrder":
+        ("CellPocketPinchPosStatement", "PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyOrderEuler":
+        ("CellPocketPinchPosStatement", "PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopyProper":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2CopySection":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV2_of_copy":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV3":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Euler":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4EulerSplit":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesicLeastArea_of_residualsV4Split":
+        ("CellPocketPinchPosStatement",),
+    "GroupApproximation.GGT.VanKampen.relativeGreendlingerQuasiGeodesic_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_pieces":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_residuals":
+        ("PocketPinchLabelledStatement",),
+    "GroupApproximation.GGT.VanKampen.sectionPocketCutInput_of_residualsPos":
+        ("PocketPinchLabelledPosStatement",),
+    "GroupApproximation.HullSC.exists_realized_embeddedBoundaryContiguity_of_components_and_geodesicBoundary":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.exists_realized_relativeGreendlingerWitness_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.exists_relativeBallInjectivityParameters_of_estimating":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.freeProductStatementCorrected_of_freeProductStatement":
+        ("FreeProductStatement",),
+    "GroupApproximation.HullSC.hullBallFormNG_of_quasiGeodesicLeaves":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullCommonQuotient_of_oneStep":
+        ("FreeProductStatement",),
+    "GroupApproximation.HullSC.hullCommonQuotient_of_tower":
+        ("FreeProductStatement",),
+    "GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_dehnTransfer":
+        ("RelativeDehnTransferStatement",),
+    "GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_greendlinger_of_linearAreaTransfer":
+        ("RelativeLinearAreaTransferStatement",),
+    "GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_of_quasiGeodesicLeaves":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_dehnTransfer":
+        ("RelativeDehnTransferStatement",),
+    "GroupApproximation.HullSC.hullLemma44CanonicalQuotientStatement_zero_of_linearAreaTransfer":
+        ("RelativeLinearAreaTransferStatement",),
+    "GroupApproximation.HullSC.hullLemma49GeodesicPowerDiagram_of_inputs":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_estimating":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49KernelPowerStatement_of_quasiGeodesicLeaves":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagramStatement_of_estimating":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullLemma49ShortestGeodesicPowerDiagram_of_estimating_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullOneStepStatement_of_quasiGeodesicLeaves":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.hullSC_relativeGreendlingerStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.relativeDehnTransferStatement_of_linearAreaTransfer":
+        ("RelativeLinearAreaTransferStatement",),
+    "GroupApproximation.HullSC.relativeExteriorArcConversion_of_atWord":
+        ("RelativeExteriorArcConversionAtWordStatement",),
+    "GroupApproximation.HullSC.relativeGreendlingerBaseGeodesicStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.relativeGreendlingerGeodesicLengthStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingAtStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.relativeGreendlingerQuasiGeodesicSpellingStatement_of_components":
+        ("EstimatingUnboundOutputStatement",),
+    "GroupApproximation.HullSC.relativeIsoperimetricBridgeStatement_of_dehnTransfer":
+        ("RelativeDehnTransferStatement",),
+    "GroupApproximation.HullSC.relativeIsoperimetricBridgeStatement_of_linearAreaTransfer":
+        ("RelativeLinearAreaTransferStatement",),
+}
+
+_HYGIENE_ARROW_STOPS = (",", "↔", ":=")
+
+
+def hygiene_name_pattern(names) -> re.Pattern[str]:
+    """A written occurrence of one of `names`, qualified or not."""
+    alternatives = "|".join(re.escape(name)
+                            for name in sorted(names, key=len, reverse=True))
+    if not alternatives:
+        return re.compile(r"(?!)")
+    return re.compile(
+        rf"(?<![\w'!?.])(?:[^\W\d][\w'!?]*\.)*({alternatives})(?![\w'!?])")
+
+
+def _negated_at(text: str, index: int) -> bool:
+    """Is the name starting at `index` written under a `¬`?"""
+    return text[:index].rstrip(" \t\n(").endswith("¬")
+
+
+def _telescopes(text: str, depths: list[int], opener: str) -> list[tuple[int, int]]:
+    """Spans from each quantifier in `opener` to its comma at the same depth."""
+    spans = []
+    for match in re.finditer(opener, text):
+        depth = depths[match.start()]
+        index = match.end()
+        while index < len(text):
+            if depths[index] < depth or (depths[index] == depth and text[index] == ","):
+                break
+            index += 1
+        spans.append((match.start(), index))
+    return spans
+
+
+def binder_mentions(text: str, pattern: re.Pattern[str]) -> set[str]:
+    """Names matched by `pattern` that `text` takes as a hypothesis.
+
+    An occurrence is a hypothesis when it sits in a `∀`/`Π` telescope, in a
+    bracket group `(h : …)` after its colon, or in front of an `→` at its own
+    depth.  An occurrence whose innermost telescope is an `∃` is exhibited, not
+    assumed, and an occurrence under `¬` is a refutation being used, which is
+    sound whatever the refuted name is.
+    """
+    depths = _depths(text + " ")
+    exists = _telescopes(text, depths, r"∃!?")
+    universals = _telescopes(text, depths, r"[∀Π]")
+    hits: set[str] = set()
+    for match in pattern.finditer(text):
+        position = match.start()
+        if _negated_at(text, position):
+            continue
+        enclosing = [span for span in exists + universals
+                     if span[0] <= position < span[1]]
+        if enclosing:
+            innermost = max(enclosing)
+            if innermost in exists:
+                continue
+            hits.add(match.group(1))
+            continue
+        # an enclosing bracket group with a type-ascription colon before us
+        depth = depths[position]
+        index, current, colon = position - 1, depth, False
+        while index >= 0:
+            char = text[index]
+            if char in CLOSERS:
+                current += 1
+            elif char in OPENERS:
+                if current == depth:
+                    break
+                current -= 1
+            elif (current == depth and char == ":"
+                    and not text.startswith(":=", index)
+                    and (index == 0 or text[index - 1] != ":")):
+                colon = True
+            index -= 1
+        if index >= 0 and colon and text[index] in "({⦃":
+            hits.add(match.group(1))
+            continue
+        # an arrow antecedent at our own depth
+        relative, index = 0, match.end()
+        while index < len(text):
+            char = text[index]
+            if char in OPENERS:
+                relative += 1
+            elif char in CLOSERS:
+                if relative == 0:
+                    break
+                relative -= 1
+            elif relative == 0:
+                if char == "→":
+                    hits.add(match.group(1))
+                    break
+                if any(text.startswith(stop, index) for stop in _HYGIENE_ARROW_STOPS):
+                    break
+            index += 1
+    return hits
+
+
+def _declaration_text(declaration: Declaration) -> str:
+    """Header, section variables and statement, as one written type."""
+    binders = " ".join(
+        f"({' '.join(binder.names)} : {binder.type_text})" if binder.names
+        else f"[{binder.type_text}]"
+        for binder in declaration.header + declaration.variables)
+    return binders + " : " + declaration.statement
+
+
+def _positive_props(corpus: Corpus, text: str, namespace: str) -> list[Declaration]:
+    """Named `Prop` definitions `text` mentions other than under a `¬`."""
+    out = []
+    for match in re.finditer(IDENT, text):
+        if _negated_at(text, match.start()):
+            continue
+        short = corpus.resolve(match.group(0), namespace).rsplit(".", 1)[-1]
+        if short not in corpus.corpus_props:
+            continue
+        target = corpus.by_name.get(short)
+        if target is not None and target.keyword in ("def", "abbrev"):
+            out.append(target)
+    return out
+
+
+def hygiene_closure(corpus: Corpus, targets) -> set[str]:
+    """`targets`, plus every named `Prop` that mentions one positively."""
+    poisoned = set(targets)
+    references = {
+        declaration.short_name: {
+            target.short_name for target in _positive_props(
+                corpus, _declaration_text(declaration) + " := " + declaration.value,
+                declaration.namespace)}
+        for declaration in corpus.by_name.values()
+        if declaration.keyword in ("def", "abbrev")
+        and declaration.short_name in corpus.corpus_props
+    }
+    changed = True
+    while changed:
+        changed = False
+        for name, mentioned in references.items():
+            if name not in poisoned and mentioned & poisoned:
+                poisoned.add(name)
+                changed = True
+    return poisoned
+
+
+def transitive_binder_hits(
+    corpus: Corpus, declaration: Declaration, poisoned: set[str], depth: int = 8,
+) -> set[tuple[str, str]]:
+    """(name, via) for each poisoned name `declaration` assumes, through named
+    `Prop`s: `theorem t : S` with `def S : Prop := ∀ (h : P), …` assumes `P`."""
+    pattern = hygiene_name_pattern(poisoned)
+    hits: set[tuple[str, str]] = set()
+    frontier = [(declaration, _declaration_text(declaration), "")]
+    seen: set[str] = set()
+    for _ in range(depth):
+        following = []
+        for current, text, via in frontier:
+            hits.update((name, via) for name in binder_mentions(text, pattern))
+            for target in _positive_props(corpus, text, current.namespace):
+                if target.short_name in seen or target.short_name not in poisoned:
+                    continue
+                seen.add(target.short_name)
+                following.append((
+                    target, _declaration_text(target) + " := " + target.value,
+                    f"{via}through `{target.short_name}`, "))
+        frontier = following
+        if not frontier:
+            break
+    return hits
+
+
+def root_modules(root: Path) -> set[str]:
+    """Every module `GroupApproximation.lean` imports, transitively."""
+    modules: set[str] = set()
+    stack = ["GroupApproximation"]
+    while stack:
+        module = stack.pop()
+        if module in modules:
+            continue
+        modules.add(module)
+        path = root / (module.replace(".", "/") + ".lean")
+        try:
+            source = path.read_text(encoding="utf-8")
+        except OSError:
+            continue
+        stack.extend(re.findall(r"(?m)^\s*import\s+(GroupApproximation[\w.]*)", source))
+    return modules
+
+
+def binder_hygiene_problems(
+    root: Path, corpus: Corpus, badges: list[tuple[str, Declaration]],
+    poison: dict[str, str], refuted: dict[str, str | None],
+    legacy: dict[str, tuple[str, ...]],
+) -> list[str]:
+    """Hard failures: badges assuming a poisoned or refuted statement, and root
+    theorems assuming a refuted one outside the legacy register."""
+    problems: list[str] = []
+    definitions: dict[str, int] = {}
+    negated: set[str] = set()
+    names = set(poison) | set(refuted)
+    refutation = re.compile(
+        rf"¬\s*\(?\s*(?:[^\W\d][\w'!?]*\.)*({'|'.join(map(re.escape, names))})(?![\w'!?])"
+        if names else r"(?!)")
+    for declarations in corpus.declarations.values():
+        for declaration in declarations.values():
+            if declaration.short_name in names:
+                definitions[declaration.short_name] = (
+                    definitions.get(declaration.short_name, 0) + 1)
+            negated.update(refutation.findall(
+                declaration.statement + " " + declaration.value))
+    for name in sorted(names):
+        count = definitions.get(name, 0)
+        if count != 1:
+            problems.append(
+                f"binder blacklist entry `{name}` is defined {count} times in the "
+                "corpus; the blacklist matches short names, so update the entry")
+    for name in sorted(n for n, where in refuted.items() if where is not None):
+        if name not in negated:
+            problems.append(
+                f"refuted binder `{name}` is no longer refuted anywhere in the "
+                f"corpus (expected `¬ {name}` in {refuted[name]}); if the "
+                "statement is true after all, delete its REFUTED_BINDER_PROPS entry")
+
+    def where(declaration: Declaration) -> str:
+        return f"{declaration.path.relative_to(root)}:{declaration.line}"
+
+    def spelled(via: str) -> str:
+        return ", " + via.rstrip(", ") if via else ""
+
+    closure = hygiene_closure(corpus, names)
+    for name, declaration in badges:
+        for hit, via in sorted(transitive_binder_hits(corpus, declaration, closure)):
+            reason = (poison.get(hit) or
+                      (f"refuted in {refuted[hit]}" if refuted.get(hit)
+                       else "a named `Prop` built from one"))
+            problems.append(
+                f"\\leanverified {name} ({where(declaration)}) takes `{hit}` as a "
+                f"hypothesis{spelled(via)} ({reason}); a badge must cite a theorem, "
+                "not a reduction from it")
+
+    refuted_closure = hygiene_closure(corpus, refuted)
+    modules = root_modules(root)
+    matched: set[tuple[str, str]] = set()
+    for path, declarations in sorted(corpus.declarations.items()):
+        module = ".".join(path.relative_to(root).with_suffix("").parts)
+        if module not in modules:
+            continue
+        for declaration in declarations.values():
+            if declaration.keyword not in ("theorem", "lemma"):
+                continue
+            listed = legacy.get(declaration.full_name, ())
+            for hit, via in sorted(
+                    transitive_binder_hits(corpus, declaration, refuted_closure)):
+                if hit in listed:
+                    matched.add((declaration.full_name, hit))
+                    continue
+                problems.append(
+                    f"{declaration.full_name} ({where(declaration)}) takes `{hit}` "
+                    f"as a hypothesis{spelled(via)}, but that statement is refuted or "
+                    "over-strong (REFUTED_BINDER_PROPS), so the theorem is vacuous; "
+                    "prove it from a true statement instead")
+    for full_name in sorted(legacy):
+        for hit in legacy[full_name]:
+            if (full_name, hit) not in matched:
+                problems.append(
+                    f"stale entry in REFUTED_BINDER_LEGACY: {full_name} no longer "
+                    f"takes `{hit}` as a hypothesis in a root module; delete it")
+    return problems
+
+
 def validate(
     root: Path, tex_path: Path, roster_path: Path,
     known: dict[str, str] | None = None,
+    *,
+    poison: dict[str, str] | None = None,
+    refuted: dict[str, str | None] | None = None,
+    legacy: dict[str, tuple[str, ...]] | None = None,
 ) -> tuple[list[Finding], list[str], int]:
     known = KNOWN_CONDITIONAL_DECLARATIONS if known is None else known
+    poison = POISONED_BINDER_NAMES if poison is None else poison
+    refuted = REFUTED_BINDER_PROPS if refuted is None else refuted
+    legacy = REFUTED_BINDER_LEGACY if legacy is None else legacy
     problems: list[str] = []
     roster, roster_problems = read_roster(roster_path)
     problems.extend(roster_problems)
@@ -1507,6 +2023,7 @@ def validate(
     corpus = build_corpus(root)
     findings: list[Finding] = []
     seen: set[str] = set()
+    badges: list[tuple[str, Declaration]] = []
 
     for anchor, module, name in references(tex):
         path = root / "GroupApproximation" / f"{module}.lean"
@@ -1527,8 +2044,12 @@ def validate(
         if name in seen:
             continue
         seen.add(name)
+        badges.append((name, declaration))
         for detector, detail in classify(corpus, declaration, roster, name, known):
             findings.append(Finding(anchor, name, detector, detail))
+
+    problems.extend(binder_hygiene_problems(
+        root, corpus, badges, poison, refuted, legacy))
 
     for name in sorted(known):
         if name not in seen:
@@ -1721,6 +2242,100 @@ PRODUCER_FIXTURE_EXPECTED: dict[str, str | None] = {
 }
 
 
+#: Binder hygiene, both directions.  `FournierFacioParagraph` is planted as the
+#: poisoned name and `RefutedStatement` as the refuted one.  The badges whose
+#: names start `poisoned_` assume the poison (in the header, as an arrow
+#: antecedent, and one named `Prop` down); the `clean_` badges only conclude it,
+#: exhibit it under `∃`, or use a refutation.  In the root module `new_reduction`
+#: is unlisted and must fail, `legacy_reduction` is listed and must not, and the
+#: orphan module is out of scope.
+HYGIENE_FIXTURE = """\
+namespace GroupApproximation
+def FournierFacioParagraph : Prop := True
+def RefutedStatement : Prop := 0 = 1
+theorem not_refutedStatement : ¬ RefutedStatement := by decide
+def NotRefutedYet : Prop := True
+def WrapsPoison : Prop := ∀ (_h : FournierFacioParagraph), True
+def ExhibitsPoison : Prop := ∃ (_h : FournierFacioParagraph), True
+def RefutationPackage : Prop := ¬ RefutedStatement
+theorem poisoned_header (_h : FournierFacioParagraph) : True := trivial
+theorem poisoned_arrow : FournierFacioParagraph → True := fun _ => trivial
+theorem poisoned_through : WrapsPoison := fun _ => trivial
+theorem clean_concludes : FournierFacioParagraph := trivial
+theorem clean_exhibits : ExhibitsPoison := ⟨trivial, trivial⟩
+theorem clean_exhibits_inline : ∃ (_h : FournierFacioParagraph), True :=
+  ⟨trivial, trivial⟩
+theorem clean_uses_refutation (_h : ¬ RefutedStatement) : True := trivial
+theorem clean_uses_package (_h : RefutationPackage) : True := trivial
+theorem legacy_reduction (_h : RefutedStatement) : True := trivial
+theorem new_reduction : ∀ (_n : Nat), RefutedStatement → True :=
+  fun _ _ => trivial
+end GroupApproximation
+"""
+
+HYGIENE_ORPHAN = """\
+namespace GroupApproximation
+theorem orphan_reduction (_h : RefutedStatement) : True := trivial
+end GroupApproximation
+"""
+
+
+def hygiene_self_test(root: Path) -> int:
+    fake = root / "GroupApproximation" / "Fake"
+    fake.mkdir(parents=True)
+    (fake / "Hygiene.lean").write_text(HYGIENE_FIXTURE, encoding="utf-8")
+    (fake / "Orphan.lean").write_text(
+        "import GroupApproximation.Fake.Hygiene\n" + HYGIENE_ORPHAN, encoding="utf-8")
+    (root / "GroupApproximation.lean").write_text(
+        "import GroupApproximation.Fake.Hygiene\n", encoding="utf-8")
+    roster = root / "roster.txt"
+    roster.write_text("# empty\n", encoding="utf-8")
+    tex = root / "paper.tex"
+    badges = ("poisoned_header", "poisoned_arrow", "poisoned_through",
+              "clean_concludes", "clean_exhibits", "clean_exhibits_inline",
+              "clean_uses_refutation", "clean_uses_package")
+    tex.write_text("".join(
+        r"\leanverified{Fake/Hygiene}{GroupApproximation." + name + "}\n"
+        for name in badges), encoding="utf-8")
+    poison = {"FournierFacioParagraph": "planted"}
+    refuted = {"RefutedStatement": "Fake/Hygiene.lean"}
+    legacy = {"GroupApproximation.legacy_reduction": ("RefutedStatement",)}
+
+    def problems_for(**overrides) -> list[str]:
+        registers = {"poison": poison, "refuted": refuted, "legacy": legacy}
+        registers.update(overrides)
+        return validate(root, tex, roster, {}, **registers)[1]
+
+    problems = problems_for()
+    flagged = {name for name in badges + ("legacy_reduction", "new_reduction",
+                                          "orphan_reduction")
+               if any(f"GroupApproximation.{name} (" in problem
+                      for problem in problems)}
+    want = {"poisoned_header", "poisoned_arrow", "poisoned_through", "new_reduction"}
+    if flagged != want or len(problems) != len(want):
+        print(f"self-test: binder hygiene flagged {sorted(flagged)}, expected "
+              f"{sorted(want)}; problems: {problems}", file=sys.stderr)
+        return 1
+
+    stale = problems_for(legacy={**legacy, "GroupApproximation.gone":
+                                 ("RefutedStatement",)})
+    if not any("stale entry in REFUTED_BINDER_LEGACY" in p for p in stale):
+        print("self-test: a stale legacy binder entry was not reported",
+              file=sys.stderr)
+        return 1
+    unrefuted = problems_for(refuted={**refuted, "NotRefutedYet": "nowhere"})
+    if not any("no longer refuted" in p for p in unrefuted):
+        print("self-test: a blacklisted statement nothing refutes was accepted",
+              file=sys.stderr)
+        return 1
+    undefined = problems_for(poison={**poison, "NoSuchStatement": "planted"})
+    if not any("defined 0 times" in p for p in undefined):
+        print("self-test: a blacklist entry naming nothing was accepted",
+              file=sys.stderr)
+        return 1
+    return 0
+
+
 def self_test() -> int:
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
@@ -1893,7 +2508,10 @@ def self_test() -> int:
 )
         tex.write_text("".join(badge(name) for name in cited), encoding="utf-8")
         known = {"GroupApproximation.honest": "pinned by hand"}
-        findings, problems, checked = validate(root, tex, roster, known)
+        # the binder-hygiene registers name real corpus statements, so the
+        # classification fixtures run with them empty; they get their own below
+        quiet: dict = {"poison": {}, "refuted": {}, "legacy": {}}
+        findings, problems, checked = validate(root, tex, roster, known, **quiet)
         if problems or checked != len(cited):
             print(f"self-test: unexpected setup failure: {problems}", file=sys.stderr)
             return 1
@@ -2002,14 +2620,15 @@ def self_test() -> int:
         # A pinned name that is no longer cited must be reported, so the roster
         # cannot outlive the problem it records.
         _findings, problems, _checked = validate(
-            root, tex, roster, {"GroupApproximation.gone": "pinned by hand"})
+            root, tex, roster, {"GroupApproximation.gone": "pinned by hand"},
+            **quiet)
         if not any("stale entry" in problem for problem in problems):
             print("self-test: stale roster entry was not reported", file=sys.stderr)
             return 1
 
         # The roster must be able to condemn a name the structural rule clears.
         roster.write_text("IsSometimesProved\n", encoding="utf-8")
-        findings, _problems, _checked = validate(root, tex, roster, {})
+        findings, _problems, _checked = validate(root, tex, roster, {}, **quiet)
         if not any(finding.detector == "literature-input" for finding in findings):
             print("self-test: literature roster did not fire", file=sys.stderr)
             return 1
@@ -2018,7 +2637,7 @@ def self_test() -> int:
         tex.write_text(
             r"\leanverified{Fake/Inputs}{GroupApproximation.ReductionData}",
             encoding="utf-8")
-        _findings, problems, _checked = validate(root, tex, roster, {})
+        _findings, problems, _checked = validate(root, tex, roster, {}, **quiet)
         if not any("asserts nothing" in problem for problem in problems):
             print("self-test: badge on a structure was accepted", file=sys.stderr)
             return 1
@@ -2031,7 +2650,7 @@ def self_test() -> int:
                 "def buildable (_r : ReductionData) : BuildableData := ⟨0⟩"),
             encoding="utf-8")
         tex.write_text(badge("via_buildable"), encoding="utf-8")
-        findings, _problems, _checked = validate(root, tex, roster, {})
+        findings, _problems, _checked = validate(root, tex, roster, {}, **quiet)
         if not any(finding.detector == "conditional-data" for finding in findings):
             print("self-test: transitive discharge closure is too generous",
                   file=sys.stderr)
@@ -2102,6 +2721,9 @@ def self_test() -> int:
                 print(f"self-test: baseline did not report a {expected}",
                       file=sys.stderr)
                 return 1
+
+        if hygiene_self_test(root / "hygiene"):
+            return 1
 
     print("check-non-mf-unconditional: self-test passed")
     return 0

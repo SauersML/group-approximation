@@ -7,7 +7,7 @@
       "id": "def:E",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "070823e5404eaa431d532ea4c374e1abb883291f5cf40455ceb4bf6bcfb20f8b",
+      "statement_sha256": "f2d825bc221efd8d484913db9c62214d18aace157e06ca3f7f7881c16df04a82",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -75,7 +75,6 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "con:clifford",
         "lem:linear",
         "def:E"
       ],
@@ -99,9 +98,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
         "def:E",
-        "lem:unitarycorona"
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -128,8 +126,7 @@
         "thm:collapse",
         "cor:pullback",
         "prop:witness",
-        "prop:univquot",
-        "thm:kazhdan-clifford"
+        "prop:univquot"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -159,12 +156,12 @@
       "id": "thm:reduced",
       "environment": "mainthm",
       "title": "the reduced group algebra of $E$",
-      "statement_sha256": "942e85e1ef739f8366b5bf0a0c2f300d912a06fb05d1be38407d71781a20f879",
+      "statement_sha256": "d79b15de84ad6dd284ccef3118e096257d671d9f8b755863755470ced77f71be",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "lem:faithfultrace"
+        "lem:faithfultrace",
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -230,10 +227,10 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
         "def:E",
         "thm:Esofic",
-        "lem:mftrace-group"
+        "lem:mftrace-group",
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -251,7 +248,7 @@
       "id": "thm:transport-variants",
       "environment": "theorem",
       "title": "one-sided conjugation at an arbitrary weight",
-      "statement_sha256": "8c52c78392b71e52437ef36d8539625c36f7a313dfeaf8e5a02c27b70371c682",
+      "statement_sha256": "b50f90d41fbc39e9aafd73f883b8dc3921269da9ddae659c0b505c8825403b37",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -291,7 +288,7 @@
       "id": "def:invisible",
       "environment": "definition",
       "title": "universal $2$-norm triviality",
-      "statement_sha256": "a9bfafac2d6d94fc70e3d7b852b4366305918e8f88dcac57d1729368733e13c2",
+      "statement_sha256": "d15c08f77e02beba0433ddd568d75cd5224be0fbc1216348f6b1951d8753da24",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -316,7 +313,8 @@
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "def:pattern",
-        "thm:kazhdan-transport"
+        "thm:transport-variants",
+        "def:invisible"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -331,6 +329,35 @@
       ]
     },
     {
+      "id": "cor:marked-obstruction",
+      "environment": "corollary",
+      "title": "the marked obstruction",
+      "statement_sha256": "bb4da4897f1cf47dad40b831b92f19adc75e9a6c81422e8a51473337b046d4ce",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "prop:witness",
+        "thm:criterion"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFEndpoint",
+          "declaration": "GroupApproximation.LiteralNonMFEndpoint.literal_mark_mem_manuscriptCoronaMFResidual",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Sofic/LiteralNonMFLinearWitness",
+          "declaration": "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
       "id": "cor:generaltransport",
       "environment": "corollary",
       "title": "transport by the compression semigroup",
@@ -338,7 +365,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:kazhdan-transport"
+        "thm:transport-variants"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -360,7 +387,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:kazhdan-transport"
+        "cor:generaltransport",
+        "thm:criterion"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -383,7 +411,7 @@
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:normal-kazhdan",
-        "prop:mf-equivalences"
+        "def:invisible"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -405,9 +433,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:pattern",
-        "thm:kazhdan-transport",
-        "prop:mf-equivalences"
+        "def:pattern"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -451,9 +477,7 @@
       "statement_sha256": "08b9b0b0dda2eb6a3bfc5dfd87e69121016499618c04fa5f5510d08efed84b21",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:exactfd"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -474,8 +498,9 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:exactfd",
-        "prop:witness"
+        "prop:witness",
+        "def:E",
+        "thm:exactfd-intrinsic"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -497,8 +522,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:exactfd",
-        "con:clifford"
+        "def:E",
+        "thm:exactfd-intrinsic"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -520,8 +545,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "thm:kazhdan-clifford"
+        "lem:linear"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -539,7 +563,7 @@
       "id": "def:radical",
       "environment": "definition",
       "title": "",
-      "statement_sha256": "7d420d674dd7b990e60da084fd80892a02af14536dd5536c5f557c0fcc319f50",
+      "statement_sha256": "161b049037102b47565998d166c0102157220e7b181799d24648dd5a8bac56a6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -563,8 +587,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "def:radical"
+        "def:radical",
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -586,9 +610,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "def:radical",
-        "lem:lift",
-        "lem:unitarycorona"
+        "def:radical"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -654,10 +676,7 @@
       "statement_sha256": "16b1ff39a1704a468b5a547e038a3ef995c3ca3f5e2c8f0a364d20621ebe6a99",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
-      "dependencies": [
-        "prop:mf-equivalences",
-        "lem:tensor-amplification"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [
         "decidability of fixed-dimensional unitary feasibility over the real closed field"
@@ -673,9 +692,9 @@
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
       "dependencies": [
-        "thm:A",
         "def:radical",
-        "lem:permanence"
+        "lem:permanence",
+        "prop:univquot"
       ],
       "extra_assumptions": [],
       "external_inputs": [
@@ -692,7 +711,6 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
         "def:radical"
       ],
       "extra_assumptions": [],
@@ -721,7 +739,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A"
+        "cor:marked-obstruction",
+        "prop:witness"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -775,8 +794,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "lem:permanence"
+        "lem:permanence",
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -840,8 +859,7 @@
       "dependencies": [
         "def:invwitness",
         "def:radical",
-        "lem:unitarycorona",
-        "thm:kazhdan-transport"
+        "thm:projection-collapse"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -965,17 +983,22 @@
       "environment": "theorem",
       "title": "",
       "statement_sha256": "0db1a30bb905f8d2632e715ea78f7880af8adb1e1609875eb3ae447dbdcb811c",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript; its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:notes-spectral-motion"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "character separation for torsion-free abelian groups and the printed telescope-window approximation"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFNotes/Full/AbelianBoundary/Boundary",
+          "declaration": "GroupApproximation.Full.NN06.notesAbelianBoundary",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:faithfultrace",
@@ -1081,8 +1104,8 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A",
-        "lem:portable"
+        "lem:portable",
+        "cor:marked-obstruction"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -1134,14 +1157,14 @@
         },
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
+          "module": "Manuscript/NonMFNotes/Full/AdianRabin/Unconditional",
+          "declaration": "GroupApproximation.Full.NN13AR.operatorMF_recognition_undecidable",
           "covers": "one printed clause; the listed declarations are collective"
         },
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem",
+          "module": "Manuscript/NonMFNotes/Full/AdianRabin/Unconditional",
+          "declaration": "GroupApproximation.Full.NN13AR.operatorMF_negative_side_not_re",
           "covers": "one printed clause; the listed declarations are collective"
         }
       ]
@@ -1168,11 +1191,12 @@
       "id": "thm:torsionfree",
       "environment": "theorem",
       "title": "a torsion-free example",
-      "statement_sha256": "f4ccacc6d17f3123fbcd9b129ef03cec228401c4c37749b35605592cc8007511",
+      "statement_sha256": "24cfc9fcbb71e09991b55c7070ae36d3d58d621fabd20aaf8a8546fc3305fa37",
       "status": "literature-input",
       "object_identity": "The printed environment consumes the stated literature input; its machine-checked inputs are badged in the surrounding discussion.",
       "dependencies": [
-        "cor:intrinsic-nk"
+        "cor:intrinsic-nk",
+        "thm:torsion-free"
       ],
       "extra_assumptions": [],
       "external_inputs": [

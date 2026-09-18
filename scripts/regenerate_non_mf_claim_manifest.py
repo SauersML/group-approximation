@@ -7,12 +7,17 @@ declaration that states the whole proposition.  A paper-proved claim records
 the external inputs consumed by the complete proof printed in the manuscript.
 The generator also records every additional exact badge printed in the same
 environment, so a multi-conclusion statement cannot hide an unreviewed badge.
+
+Each manuscript has its own maps: `non_mf_groups_exist.tex` uses the
+unprefixed maps and `non_mf_group_notes.tex` the `NOTES_` maps.  The notes also
+record literature-input claims, whose stated input is not formalized.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+from dataclasses import dataclass
 from pathlib import Path
 
 from check_non_mf_claim_manifest import read_printed_claims
@@ -100,10 +105,12 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankDescentPrintedLemmas",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankDescentPrinted."
         "manuscriptRankTwoNormalGeneration"),
+    # `thm:amenable-trace` retargeted 2026-09-17 to the countable form (W and
+    # W_0 countable, not MF both as IsOperatorMF and IsCDEOperatorMF).
     "thm:amenable-trace": (
-        "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
-        "GroupApproximation.AmenableTraceTheorem."
-        "manuscriptAmenableNonquasidiagonalTrace"),
+        "Manuscript/NonMF/Full/AmenableCountable/TraceCountable",
+        "GroupApproximation.Full.NM08."
+        "manuscriptAmenableNonquasidiagonalTraceCountable"),
     "prop:clifford-locally-rf": (
         "Sofic/CliffordWitnessSoficPrinted",
         "GroupApproximation.AmenableTraceTheorem.manuscriptCliffordLocallyRF"),
@@ -122,6 +129,45 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankFourCompressionCellPrinted",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "RankFourCompressionCellPrinted.manuscriptRankFourCompressionCell"),
+    # The torsion-defect proposition, the Leavitt corollary and the seven
+    # chain-core environments moved to EXACT_TARGETS 2026-09-17: each now
+    # prints a closed declaration stating the whole environment.
+    "prop:torsion-defect-ring": (
+        "Manuscript/OneSidedMFRadical/TorsionComplementaryIdempotents",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "TorsionComplementaryIdempotents."
+        "manuscriptTorsionComplementaryIdempotents"),
+    "cor:leavitt-mf-quotient": (
+        "Manuscript/NonMFSentences/LeavittKOneFormulaSentences",
+        "GroupApproximation.LeavittKOneFormulaSentences."
+        "manuscriptLeavittMFQuotientFull"),
+    "lem:chain-core-models": (
+        "Manuscript/NonMF/Full/ChainCoreModels/PrintedLemma",
+        "GroupApproximation.Full.NM12.printedChainCoreModels_closed"),
+    "lem:transient-matrices": (
+        "Manuscript/NonMFSentences/TransientMatricesClosed",
+        "GroupApproximation.Manuscript.NonMFSentences.TransientMatrices."
+        "printedTransientMatrices_closed"),
+    "thm:core-ring-reflection": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedCoreRingReflection_closed"),
+    "prop:bilateral-three": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedBilateralThree_closed"),
+    "thm:core-mf-radical": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedCoreMFRadical_closed"),
+    "lem:involution-localization": (
+        "Dynamics/TransientCellsClosed",
+        "GroupApproximation.ClopenCrossedProduct."
+        "printedInvolutionLocalization_closed"),
+    "cor:dynamic-rank-budget": (
+        "Manuscript/NonMFSentences/ChainCoreClosures",
+        "GroupApproximation.ChainCore.ChainCoreClosures."
+        "printedDynamicRankBudget_closed"),
 }
 
 
@@ -145,22 +191,8 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # own single exact badge; both moved to EXACT_TARGETS.
     # `prop:torsion-defect-ring` is a new printed proposition as of
     # 2026-09-09 (the torsion-defect complement to `thm:full-defect-ring`);
-    # its proof is written out in the manuscript with no margin badge, so
-    # it is a paper-proof claim.  Its only literature input is property (T)
-    # of `EL_3(S)`; its internal dependencies
-    # (`thm:compression-criterion`, `lem:ring-compression-cell`) are
-    # recorded in DEPENDENCIES, not here.
-    "prop:torsion-defect-ring": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    # The dynamical core results have self-contained paper proofs.  Their
-    # analytic input is the existing torsion-defect proposition, recorded
-    # below as an internal dependency; no Lean counterpart is asserted.
-    "lem:chain-core-models": (),
-    "lem:transient-matrices": (),
-    "thm:core-ring-reflection": (),
-    "thm:core-mf-radical": (),
-    "prop:bilateral-three": ("Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:involution-localization": (),
-    "cor:dynamic-rank-budget": (),
+    # it was a paper-proof claim until 2026-09-17, when it and the
+    # dynamical core results moved to EXACT_TARGETS (see the note there).
     # `thm:full-defect-ring` moved to EXACT_TARGETS 2026-09-07:
     # `PropertyT/IntegralColumnPlaneClosure.lean` closed
     # `FinitelyGeneratedRingGeneralRankElementaryPropertyT` unconditionally
@@ -204,7 +236,6 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     # MFQuotientCanonicalKOne.manuscriptMFQuotientUnitsKOneAtBaseRing), so the
     # AGP/Menal-Moncasi/Blackadar-Kirchberg inputs below are now internal to
     # those proofs rather than boundary citations.
-    "cor:leavitt-mf-quotient": ("Khanh--Thanh, proof of Theorem 7.2",),
 }
 
 
@@ -300,8 +331,353 @@ DEPENDENCIES: dict[str, list[str]] = {
 }
 
 
-def _check_inventory(claim_ids: set[str]) -> None:
-    mapped = EXACT_TARGETS.keys() | PAPER_PROOFS.keys()
+# One declaration stating the complete printed proposition of each exact
+# environment of `non_mf_group_notes.tex`.  For a collective claim the entry
+# is one of the printed clause declarations; see NOTES_COLLECTIVE_CLAIMS.
+NOTES_EXACT_TARGETS: dict[str, tuple[str, str]] = {
+    "def:E": (
+        "Sofic/LiteralNonMFPresentation",
+        "GroupApproximation.LiteralNonMFPresentation."
+        "manuscriptLiteralPresentation"),
+    "prop:literal-base-T": (
+        "Sofic/LiteralBaseP13PropertyTBridge",
+        "GroupApproximation.LiteralBaseP13PropertyTBridge."
+        "manuscriptBaseHasKazhdanPropertyT"),
+    "lem:linear": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptLinearModel"),
+    "prop:witness": (
+        "Sofic/LiteralNonMFLinearWitness",
+        "GroupApproximation.LiteralNonMFLinearWitness.literal_mark_ne_one"),
+    "cor:relator-uniform": (
+        "Sofic/LiteralRelatorObstruction",
+        "GroupApproximation.LiteralRelatorObstruction."
+        "literal_relator_uniform_obstruction"),
+    "thm:signfree": (
+        "Sofic/LiteralSignFreeQuotient",
+        "GroupApproximation.LiteralSignFreeQuotient."
+        "signFreeQuotient_not_isCDEOperatorMF"),
+    "thm:reduced": (
+        "Sofic/LiteralNonMFEndpoint",
+        "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremD"),
+    "thm:Esofic": (
+        "Sofic/LiteralSoficAssembly",
+        "GroupApproximation.LiteralSoficAssembly.markedGroup_isSofic"),
+    "lem:mftrace-group": (
+        "Sofic/TraceSeparationEndpoint",
+        "GroupApproximation.manuscriptMFTraceGroupBridge"),
+    "thm:trace": (
+        "Sofic/TraceSeparationEndpoint",
+        "GroupApproximation.manuscriptTraceSeparation"),
+    "thm:transport-variants": (
+        "Sofic/ManuscriptSubgroupSpecializations",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptWeightedTransportSubgroup"),
+    "def:pattern": (
+        "Sofic/ConjugationDatumAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptMarkedKazhdanPattern_anyUniverse"),
+    "def:invisible": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptHSInvisibleCharacterization"),
+    "thm:criterion": (
+        "Sofic/FiniteNormalAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptFiniteNormalObstructionCriterion_anyUniverse"),
+    "cor:marked-obstruction": (
+        "Sofic/LiteralNonMFEndpoint",
+        "GroupApproximation.LiteralNonMFEndpoint."
+        "literal_mark_mem_manuscriptCoronaMFResidual"),
+    "cor:generaltransport": (
+        "Sofic/DefectActionAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant."
+        "compressionGroup_transport_both_anyUniverse"),
+    "thm:compression-radical": (
+        "Sofic/DefectRadicalAnyUniverse",
+        "GroupApproximation.KazhdanAsymptoticCommutant."
+        "manuscriptCompressionRadical_anyUniverse"),
+    "thm:abstract-nk": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptAbstractNormalKazhdanObstruction"),
+    "thm:normal-kazhdan": (
+        "Sofic/NormalKazhdanAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptNormalKazhdanObstruction_anyUniverse"),
+    "cor:intrinsic-nk": (
+        "Sofic/NormalKazhdanAnyUniverse",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptIntrinsicNormalKazhdanRadical_anyUniverse"),
+    "thm:exactfd-intrinsic": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB"),
+    "cor:notRFD": (
+        "Sofic/LiteralFiniteDimensionalObstruction",
+        "GroupApproximation.LiteralFiniteDimensionalObstruction."
+        "manuscriptFiniteDimensionalConsequences"),
+    "thm:cyclic": (
+        "Monsters/LiteralCyclicCalibration",
+        "GroupApproximation.LiteralCyclicCalibration."
+        "manuscriptCyclicCalibration"),
+    "cor:scaling-family": (
+        "Sofic/ScalingFamilyEndpoint",
+        "GroupApproximation.ScalingFamilyEndpoint.manuscriptTheoremFamily"),
+    "def:radical": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers.manuscriptMFRadical"),
+    "lem:portable": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptRadicalPortability"),
+    "prop:univquot": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptUniversalMFQuotient"),
+    "cor:exactradical": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptExactRadicalFromCandidateQuotient"),
+    "cor:pullback": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptRadicalReductionToQuotient"),
+    "thm:fixed-radical-computer": (
+        "Computability/MFRadicalComputer",
+        "GroupApproximation.MFRadicalComputer.closed_package"),
+    "cor:nofaithful": (
+        "Sofic/LiteralNonMFConsequences",
+        "GroupApproximation.LiteralNonMFConsequences."
+        "literal_no_faithful_corona_subalgebra_target"),
+    "lem:permanence": (
+        "Sofic/OperatorMFPositiveControls",
+        "GroupApproximation.IsOperatorMF.subgroup"),
+    "cor:quotclosure": (
+        "Sofic/LiteralMFQuotientControls",
+        "GroupApproximation.LiteralMFQuotientControls."
+        "manuscriptQuotientNonclosure"),
+    "thm:projection-collapse": (
+        "Sofic/ProjectionCompressionCollapse",
+        "GroupApproximation.ProjectionCompressionCollapse."
+        "corona_projection_collapse"),
+    "def:invwitness": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptInvolutiveCollapsePattern"),
+    "thm:collapse": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptInvolutiveCollapse"),
+    "cor:collapsequot": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptCollapseRadicalReduction"),
+    "thm:notes-spectral-motion": (
+        "Manuscript/SpectralPaper/MainTheorems",
+        "GroupApproximation.SpectralPaper.spectralCompressionTheorem"),
+    "lem:faithfultrace": (
+        "Sofic/ManuscriptExactWrappers",
+        "GroupApproximation.ManuscriptExactWrappers."
+        "manuscriptFaithfulTraceAndStableFiniteness"),
+    "prop:blocknormalform": (
+        "Sofic/LiteralBlockNormalForm",
+        "GroupApproximation.LiteralBlockNormalForm.markedGroupEquivModel"),
+    "lem:window": (
+        "Sofic/BlockCliffordTowerSofic",
+        "GroupApproximation.BlockCliffordTowerSofic."
+        "manuscriptResiduallyFiniteWindow"),
+    "prop:horn": (
+        "Sofic/LiteralUniversalHorn",
+        "GroupApproximation.LiteralUniversalHorn."
+        "manuscriptLiteralUniversalHorn"),
+    "thm:notes-abelian-boundary": (
+        "Manuscript/NonMFNotes/Full/AbelianBoundary/Boundary",
+        "GroupApproximation.Full.NN06.notesAbelianBoundary"),
+    "cor:undecidable": (
+        "Computability/BooneWordProblemUndecidable",
+        "GroupApproximation.Computability.not_computablePred_wordProblemPred"),
+}
+
+
+# Environments of the notes with a complete proof in the manuscript and no
+# in-environment badge, with the outside results that proof consumes.
+NOTES_PAPER_PROOFS: dict[str, tuple[str, ...]] = {
+    "thm:mf-radical-arithmetic": (
+        "decidability of fixed-dimensional unitary feasibility over the real "
+        "closed field",
+    ),
+    "thm:fixed-radical-membership": (
+        "Kharlampovich's finitely presented solvable group with undecidable "
+        "word problem",
+    ),
+    "thm:exact-mf-residual": (
+        "Malcev residual-finiteness theorem; Shulman, Theorem 10; normal "
+        "forms for amalgamated free products",
+    ),
+    "thm:notes-visible-quotient": (
+        "Mal'cev residual-finiteness theorem; Peter--Weyl point separation",
+    ),
+    "cor:notes-a5-relation": (
+        "elementary structure of A_5 and the printed telescope-window "
+        "approximation",
+    ),
+    "thm:mf-arithmetic": (
+        "Adian--Rabin theorem; decidability of fixed-dimensional unitary "
+        "feasibility over the real closed field",
+    ),
+}
+
+
+# Environments of the notes that consume a stated literature input which is
+# not itself formalized: (external inputs, coverage gap).
+NOTES_LITERATURE_INPUTS: dict[str, tuple[tuple[str, ...], str]] = {
+    "thm:torsionfree": (
+        (
+            "Fournier-Facio, Section 2; Hull, Theorem 7.1; Osin, Lemma 7.1",
+        ),
+        "The literature input itself is not formalized."),
+}
+
+
+# No single badge in these notes environments includes every printed clause.
+NOTES_COLLECTIVE_CLAIMS: set[str] = {
+    "cor:marked-obstruction",
+    "lem:permanence",
+    "thm:notes-spectral-motion",
+    "cor:undecidable",
+}
+
+
+# The dependency graph of the notes.  A name that is not a numbered claim of
+# the notes is a claim of `non_mf_groups_exist.tex`, resolved through the
+# companion manifest by `check_non_mf_claim_manifest.py`.
+NOTES_DEPENDENCIES: dict[str, list[str]] = {
+    "def:E": [],
+    "prop:literal-base-T": ["def:E"],
+    "lem:linear": ["def:E"],
+    "prop:witness": ["lem:linear", "def:E"],
+    "cor:relator-uniform": ["def:E", "cor:marked-obstruction"],
+    "thm:signfree": [
+        "def:E", "def:invwitness", "thm:collapse", "cor:pullback",
+        "prop:witness", "prop:univquot"],
+    "thm:reduced": ["lem:faithfultrace", "cor:marked-obstruction"],
+    "thm:Esofic": ["def:E", "prop:blocknormalform", "lem:window"],
+    "lem:mftrace-group": [],
+    "thm:trace": [
+        "def:E", "thm:Esofic", "lem:mftrace-group", "cor:marked-obstruction"],
+    "thm:transport-variants": [],
+    "def:pattern": [],
+    "def:invisible": [],
+    "thm:criterion": [
+        "def:pattern", "thm:transport-variants", "def:invisible"],
+    "cor:marked-obstruction": ["prop:witness", "thm:criterion"],
+    "cor:generaltransport": ["thm:transport-variants"],
+    "thm:compression-radical": ["cor:generaltransport", "thm:criterion"],
+    "thm:abstract-nk": ["thm:normal-kazhdan", "def:invisible"],
+    "thm:normal-kazhdan": ["def:pattern"],
+    "cor:intrinsic-nk": ["thm:abstract-nk", "thm:compression-radical"],
+    "thm:exactfd-intrinsic": [],
+    "cor:notRFD": ["prop:witness", "def:E", "thm:exactfd-intrinsic"],
+    "thm:cyclic": ["def:E", "thm:exactfd-intrinsic"],
+    "cor:scaling-family": ["lem:linear"],
+    "def:radical": [],
+    "lem:portable": ["def:radical", "cor:marked-obstruction"],
+    "prop:univquot": ["def:radical"],
+    "cor:exactradical": ["def:radical"],
+    "cor:pullback": ["lem:portable", "def:radical"],
+    "thm:mf-radical-arithmetic": [],
+    "thm:fixed-radical-membership": [
+        "def:radical", "lem:permanence", "prop:univquot"],
+    "thm:fixed-radical-computer": ["def:radical"],
+    "cor:nofaithful": ["cor:marked-obstruction", "prop:witness"],
+    "lem:permanence": [],
+    "cor:quotclosure": ["lem:permanence", "cor:marked-obstruction"],
+    "thm:projection-collapse": [],
+    "def:invwitness": [],
+    "thm:collapse": [
+        "def:invwitness", "def:radical", "thm:projection-collapse"],
+    "cor:collapsequot": ["thm:collapse", "cor:pullback", "cor:exactradical"],
+    "thm:exact-mf-residual": [
+        "thm:signfree", "cor:pullback", "cor:exactradical"],
+    "thm:notes-spectral-motion": ["thm:projection-collapse"],
+    "thm:notes-visible-quotient": ["thm:notes-spectral-motion"],
+    "cor:notes-a5-relation": ["thm:notes-visible-quotient"],
+    "thm:notes-abelian-boundary": ["thm:notes-spectral-motion"],
+    "lem:faithfultrace": [],
+    "prop:blocknormalform": [],
+    "lem:window": [],
+    "prop:horn": ["lem:portable", "cor:marked-obstruction"],
+    "cor:undecidable": [],
+    "thm:mf-arithmetic": ["cor:undecidable", "lem:permanence"],
+    "thm:torsionfree": ["cor:intrinsic-nk", "thm:torsion-free"],
+}
+
+
+@dataclass(frozen=True)
+class ProofBoundaries:
+    """The reviewed proof-boundary maps of one manuscript."""
+
+    exact_targets: dict[str, tuple[str, str]]
+    paper_proofs: dict[str, tuple[str, ...]]
+    literature_inputs: dict[str, tuple[tuple[str, ...], str]]
+    collective_claims: set[str]
+    dependencies: dict[str, list[str]]
+    status_policy: str
+    paper_identity: str
+    paper_identity_with_inputs: str
+
+
+LITERATURE_IDENTITY = (
+    "The printed environment consumes the stated literature input; its "
+    "machine-checked inputs are badged in the surrounding discussion.")
+
+
+BOUNDARIES: dict[str, ProofBoundaries] = {
+    "non_mf_groups_exist.tex": ProofBoundaries(
+        exact_targets=EXACT_TARGETS,
+        paper_proofs=PAPER_PROOFS,
+        literature_inputs={},
+        collective_claims=COLLECTIVE_CLAIMS,
+        dependencies=DEPENDENCIES,
+        status_policy=(
+            "Every numbered theorem-like environment records its proof "
+            "boundary explicitly: an exact Lean counterpart or a complete "
+            "paper proof. Exact claims carry exact-role margin declarations; "
+            "paper-proved claims carry none."),
+        paper_identity="The complete proof is given in the manuscript.",
+        paper_identity_with_inputs=(
+            "The complete proof is given in the manuscript. Its external "
+            "inputs are listed explicitly."),
+    ),
+    "non_mf_group_notes.tex": ProofBoundaries(
+        exact_targets=NOTES_EXACT_TARGETS,
+        paper_proofs=NOTES_PAPER_PROOFS,
+        literature_inputs=NOTES_LITERATURE_INPUTS,
+        collective_claims=NOTES_COLLECTIVE_CLAIMS,
+        dependencies=NOTES_DEPENDENCIES,
+        status_policy=(
+            "Every numbered theorem-like environment records its proof "
+            "boundary explicitly: exact Lean counterpart, complete paper "
+            "proof, or stated literature input. Exact claims carry exact-role "
+            "margin declarations; paper and literature claims carry none."),
+        paper_identity="The complete proof is given in the manuscript.",
+        paper_identity_with_inputs=(
+            "The complete proof is given in the manuscript; its external "
+            "inputs are listed explicitly."),
+    ),
+}
+
+
+def _check_inventory(claim_ids: set[str], b: ProofBoundaries) -> None:
+    maps = (b.exact_targets.keys(), b.paper_proofs.keys(),
+            b.literature_inputs.keys())
+    overlap = sorted(
+        claim for i, first in enumerate(maps) for second in maps[i + 1:]
+        for claim in first & second)
+    if overlap:
+        raise SystemExit(
+            f"claims with more than one proof boundary: {', '.join(overlap)}")
+    mapped = maps[0] | maps[1] | maps[2]
     missing = sorted(claim_ids - mapped)
     retired = sorted(mapped - claim_ids)
     if missing:
@@ -310,7 +686,12 @@ def _check_inventory(claim_ids: set[str]) -> None:
     if retired:
         raise SystemExit(
             f"proof boundaries with no numbered claim: {', '.join(retired)}")
-    dependency_keys = set(DEPENDENCIES)
+    stray_collective = sorted(b.collective_claims - b.exact_targets.keys())
+    if stray_collective:
+        raise SystemExit(
+            "collective claims with no exact target: " +
+            ", ".join(stray_collective))
+    dependency_keys = set(b.dependencies)
     if dependency_keys != claim_ids:
         missing_dependencies = sorted(claim_ids - dependency_keys)
         retired_dependencies = sorted(dependency_keys - claim_ids)
@@ -325,35 +706,52 @@ def _check_inventory(claim_ids: set[str]) -> None:
 
 
 def generate(tex: Path) -> dict:
+    b = BOUNDARIES.get(tex.name)
+    if b is None:
+        raise SystemExit(
+            f"{tex.name}: no proof-boundary maps; known manuscripts: " +
+            ", ".join(sorted(BOUNDARIES)))
     claims = read_printed_claims(tex)
-    _check_inventory({claim.claim_id for claim in claims})
+    _check_inventory({claim.claim_id for claim in claims}, b)
     entries = []
     for claim in claims:
-        if claim.claim_id in PAPER_PROOFS:
+        if claim.claim_id in b.paper_proofs or \
+                claim.claim_id in b.literature_inputs:
+            literature = claim.claim_id in b.literature_inputs
+            kind = "literature-input" if literature else "paper-proof"
             if claim.badges:
                 raise SystemExit(
-                    f"{claim.claim_id}: paper-proof claim carries an "
+                    f"{claim.claim_id}: {kind} claim carries an "
                     "in-environment Lean badge")
-            external_inputs = list(PAPER_PROOFS[claim.claim_id])
-            identity = "The complete proof is given in the manuscript."
-            if external_inputs:
-                identity += " Its external inputs are listed explicitly."
+            if literature:
+                inputs, coverage_gap = b.literature_inputs[claim.claim_id]
+                external_inputs = list(inputs)
+                if not external_inputs:
+                    raise SystemExit(
+                        f"{claim.claim_id}: literature-input claim states no "
+                        "external input")
+                identity = LITERATURE_IDENTITY
+            else:
+                external_inputs = list(b.paper_proofs[claim.claim_id])
+                coverage_gap = ""
+                identity = (b.paper_identity_with_inputs if external_inputs
+                            else b.paper_identity)
             entries.append({
                 "id": claim.claim_id,
                 "environment": claim.environment,
                 "title": claim.title,
                 "statement_sha256": claim.statement_sha256,
-                "status": "paper-proof",
+                "status": kind,
                 "object_identity": identity,
-                "dependencies": DEPENDENCIES[claim.claim_id],
+                "dependencies": b.dependencies[claim.claim_id],
                 "extra_assumptions": [],
                 "external_inputs": external_inputs,
-                "coverage_gap": "",
+                "coverage_gap": coverage_gap,
                 "lean": [],
             })
             continue
 
-        module, declaration = EXACT_TARGETS[claim.claim_id]
+        module, declaration = b.exact_targets[claim.claim_id]
         if not claim.badges:
             raise SystemExit(
                 f"{claim.claim_id}: exact claim has no margin declaration")
@@ -362,7 +760,7 @@ def generate(tex: Path) -> dict:
             raise SystemExit(
                 f"{claim.claim_id}: reviewed exact declaration is not among "
                 "the printed margin declarations")
-        collective = claim.claim_id in COLLECTIVE_CLAIMS
+        collective = claim.claim_id in b.collective_claims
 
         def coverage(pm: str, pd: str) -> str:
             if collective:
@@ -383,7 +781,7 @@ def generate(tex: Path) -> dict:
                 if collective else
                 "The printed environment and the named declaration use the "
                 "same literal objects and outer proposition."),
-            "dependencies": DEPENDENCIES[claim.claim_id],
+            "dependencies": b.dependencies[claim.claim_id],
             "extra_assumptions": [],
             "external_inputs": [],
             "coverage_gap": "",
@@ -399,11 +797,7 @@ def generate(tex: Path) -> dict:
     return {
         "schema_version": 1,
         "manuscript": tex.name,
-        "status_policy": (
-            "Every numbered theorem-like environment records its proof "
-            "boundary explicitly: an exact Lean counterpart or a complete "
-            "paper proof. Exact claims carry exact-role margin declarations; "
-            "paper-proved claims carry none."),
+        "status_policy": b.status_policy,
         "claims": entries,
     }
 

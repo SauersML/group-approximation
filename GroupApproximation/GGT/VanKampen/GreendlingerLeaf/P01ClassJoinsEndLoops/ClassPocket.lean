@@ -71,14 +71,14 @@ theorem getLast?_classDarts (Q : OsinLemma94ClassPolygons P) {k : Fin P.count} {
     ∃ sl, (Q.classSides k i').getLast? = some sl ∧ sl < P.sideCount k ∧
       (Q.classDarts k i').getLast? = (P.sideDarts k sl).getLast? := by
   obtain ⟨sl, hsl⟩ : ∃ sl, (Q.classSides k i').getLast? = some sl :=
-    ⟨_, List.getLast?_eq_getLast (Q.classSides_ne_nil k i' hi')⟩
+    ⟨_, List.getLast?_eq_some_getLast (Q.classSides_ne_nil k i' hi')⟩
   obtain ⟨ys, hys⟩ := List.getLast?_eq_some_iff.mp hsl
   have hlt : sl < P.sideCount k := Q.lt_sideCount_of_mem k i' hi' sl (List.mem_of_getLast? hsl)
   have hgap : Q.gap k sl = [] := Q.gap_last k i' hi' sl (Option.mem_def.mpr hsl)
   refine ⟨sl, hsl, hlt, ?_⟩
   show ((Q.classSides k i').flatMap fun s => P.sideDarts k s ++ Q.gap k s).getLast? = _
   rw [hys, List.flatMap_append, List.flatMap_singleton, hgap, List.append_nil,
-    List.getLast?_append, List.getLast?_eq_getLast (P.side_ne_nil k sl hlt), Option.some_or]
+    List.getLast?_append, List.getLast?_eq_some_getLast (P.side_ne_nil k sl hlt), Option.some_or]
 
 /-- A dart across a cell side lies in a class of kind `cell i`, which is the reverse of a face
 walk of cell `i`. -/
@@ -173,3 +173,14 @@ theorem single_pocket (Q : OsinLemma94ClassPolygons P) {k : Fin P.count}
 end Classes
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.head?_reverse_map_seg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.getLast?_reverse_map_seg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.mem_of_alpha_mem_reverse_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.alpha_mem_reverse_map
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.head?_classDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.getLast?_classDarts
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.exists_class
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.single_value
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.single_closed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01ClassJoinsEndLoops.single_pocket

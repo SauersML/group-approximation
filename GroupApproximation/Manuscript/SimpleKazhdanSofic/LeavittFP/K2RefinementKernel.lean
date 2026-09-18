@@ -14,6 +14,7 @@ inverse `contractVec L r`.  So if `D w` has trivial matrix, then `stMat n w *ᵥ
 
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+open scoped Matrix
 open GroupApproximation.SteinbergGroup
 
 variable {R : Type*} [Ring R] (L : LeavittFamily R) {n : ℕ} (r : Fin n)
@@ -111,6 +112,7 @@ theorem refine_mulVec (g : SteinbergGroup (Fin n) R) (v : Fin n → R) :
 
 /-- `K₂(n, R) = ⊥` implies `K₂(n + 1, R) = ⊥` for a ring with a Leavitt family, once `n ≥ 2`
 (witnessed by two distinct indices `r` and `k`). -/
+include L in
 theorem K2_eq_bot_succ (k : Fin n) (hk : k ≠ r)
     (h : BooneHigman.SteinbergBasic.K2 (Fin n) R = ⊥) :
     BooneHigman.SteinbergBasic.K2 (Fin (n + 1)) R = ⊥ := by
@@ -140,4 +142,8 @@ theorem K2_eq_bot_succ (k : Fin n) (hk : k ≠ r)
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP
 
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_row
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_col
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec_x
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.refine_mulVec
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP.K2_eq_bot_succ

@@ -42,8 +42,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/AmenableTraceTheorem",
-          "declaration": "GroupApproximation.AmenableTraceTheorem.manuscriptAmenableNonquasidiagonalTrace",
+          "module": "Manuscript/NonMF/Full/AmenableCountable/TraceCountable",
+          "declaration": "GroupApproximation.Full.NM08.manuscriptAmenableNonquasidiagonalTraceCountable",
           "covers": "the complete printed proposition"
         }
       ]
@@ -452,6 +452,12 @@
           "module": "Manuscript/OneSidedMFRadical/FullDefectRingEJZUnconditional",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.FullDefectRingEJZUnconditional.manuscriptUnitGroupNotMFAllCharacteristics",
           "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMF/Full/RankTwoElementary/PrintedSentence",
+          "declaration": "GroupApproximation.Full.NM10.printedOneSidedRingMaximalGroupClausesRankTwo",
+          "covers": "one printed clause; the listed declarations are collective"
         }
       ]
     },
@@ -460,18 +466,23 @@
       "environment": "proposition",
       "title": "torsion complementary idempotents",
       "statement_sha256": "9a8a7b086e9576e66407e6b3d76b9a38d75d75f6cc4c1aeb38044b9f38767883",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:compression-criterion",
         "lem:ring-compression-cell"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Ershov--Jaikin-Zapirain, Theorem 1.1"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/TorsionComplementaryIdempotents",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.TorsionComplementaryIdempotents.manuscriptTorsionComplementaryIdempotents",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:mf-quotient-units",
@@ -506,53 +517,78 @@
       "environment": "corollary",
       "title": "Leavitt unit groups",
       "statement_sha256": "e86f121406d4b4adb79c4eab43175a009cff6609f51545b101a20e469b3a14ab",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:mf-quotient-units"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Khanh--Thanh, proof of Theorem 7.2"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/LeavittKOneFormulaSentences",
+          "declaration": "GroupApproximation.LeavittKOneFormulaSentences.manuscriptLeavittMFQuotientFull",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:chain-core-models",
       "environment": "lemma",
       "title": "the chain-recurrent core",
       "statement_sha256": "a4137897360ddef801621069894d5f45ef3f3fb69e6b68d694772059fd9f7c8c",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMF/Full/ChainCoreModels/PrintedLemma",
+          "declaration": "GroupApproximation.Full.NM12.printedChainCoreModels_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:transient-matrices",
       "environment": "lemma",
       "title": "the transient ideal",
       "statement_sha256": "981db16b7c42cb0d0fb22e50f0f1117a5c0f55bd2ec262ed7232a369432650a4",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "lem:chain-core-models"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/TransientMatricesClosed",
+          "declaration": "GroupApproximation.Manuscript.NonMFSentences.TransientMatrices.printedTransientMatrices_closed",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMF/Full/ClopenShrink/TransientMatricesCompact",
+          "declaration": "GroupApproximation.Full.NM11.printedTransientMatrices_compact_closed",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
     },
     {
       "id": "thm:core-ring-reflection",
       "environment": "theorem",
       "title": "the universal directly finite quotient",
       "statement_sha256": "c60d9338ff6396999ed2794df6817ca5bf23544014c0a4295d89d7bfaa8edd9b",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "lem:chain-core-models",
         "lem:transient-matrices"
@@ -560,15 +596,22 @@
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/ChainCoreClosures",
+          "declaration": "GroupApproximation.ChainCore.ChainCoreClosures.printedCoreRingReflection_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "prop:bilateral-three",
       "environment": "proposition",
       "title": "three-coordinate bilateral compression",
       "statement_sha256": "fb36e11414ce2070069ba3693614ef490fdf6d2551d54457c4ffe952b9ec04f6",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "thm:compression-criterion",
         "lem:chain-core-models",
@@ -576,19 +619,24 @@
         "thm:core-ring-reflection"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Ershov--Jaikin-Zapirain, Theorem 1.1"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/ChainCoreClosures",
+          "declaration": "GroupApproximation.ChainCore.ChainCoreClosures.printedBilateralThree_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:core-mf-radical",
       "environment": "theorem",
       "title": "the exact MF radical",
       "statement_sha256": "2799620c3ada28eb9500463694563675efe7db6934ec558d65cd91672f208082",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "prop:torsion-defect-ring",
         "lem:chain-core-models",
@@ -598,15 +646,22 @@
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/ChainCoreClosures",
+          "declaration": "GroupApproximation.ChainCore.ChainCoreClosures.printedCoreMFRadical_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "lem:involution-localization",
       "environment": "lemma",
       "title": "localization by one involution",
       "statement_sha256": "3822d4055bd190f09e395641cb6d0bbc94794e281183824cb4d15b35174f00dd",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "lem:transient-matrices",
         "thm:core-mf-radical"
@@ -614,15 +669,22 @@
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Dynamics/TransientCellsClosed",
+          "declaration": "GroupApproximation.ClopenCrossedProduct.printedInvolutionLocalization_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "cor:dynamic-rank-budget",
       "environment": "corollary",
       "title": "unit groups and rank two",
       "statement_sha256": "f7802094ca0930344b3d69df9e5da3d956d802f455e824849a0e8c8be38a5621",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
         "prop:bilateral-three",
         "thm:core-mf-radical",
@@ -633,7 +695,14 @@
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMFSentences/ChainCoreClosures",
+          "declaration": "GroupApproximation.ChainCore.ChainCoreClosures.printedDynamicRankBudget_closed",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:factorization-nonmf-trace",
