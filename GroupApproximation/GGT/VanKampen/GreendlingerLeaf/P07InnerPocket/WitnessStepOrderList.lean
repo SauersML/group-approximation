@@ -28,8 +28,8 @@ theorem witnessStepOrder_before_iff_pair {α : Type*} {L : List α} {c d : α} :
     WitnessStepGenusBefore L c d ↔ [c, d] <+ L := by
   constructor
   · rintro ⟨u, v, z, rfl⟩
-    exact (List.cons_sublist_cons.mpr (List.singleton_sublist.mpr (by simp))).trans
-      (List.sublist_append_right u _)
+    have h1 : [d] <+ v ++ d :: z := List.singleton_sublist.mpr (by simp)
+    exact (List.cons_sublist_cons.mpr h1).trans (List.sublist_append_right u _)
   · intro h
     obtain ⟨r₁, r₂, rfl, hc, hd⟩ := List.cons_sublist_iff.mp h
     obtain ⟨u, v, rfl⟩ := List.append_of_mem hc
@@ -47,10 +47,11 @@ theorem witnessStepOrder_before_asymm {α : Type*} {L : List α} {c d : α} (hL 
     rw [h]
     simp
   have hd : d ∈ u ++ c :: v := witnessStepPinchArc_mem_pre_of_before hL hw h' (by simp)
-  have hsub : [d, d] <+ L := by
+  have hsub : [d] ++ [d] <+ L := by
     rw [hw]
     exact (List.singleton_sublist.mpr hd).append (List.singleton_sublist.mpr (by simp))
-  exact (List.nodup_cons.mp (hsub.nodup hL)).1 (by simp)
+  have hnd : [d, d].Nodup := hsub.nodup hL
+  exact (List.nodup_cons.mp hnd).1 (by simp)
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepOrder_before_asymm
 
