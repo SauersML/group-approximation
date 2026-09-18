@@ -135,3 +135,30 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
    - **What is left.** A certificate must change both relators beyond conjugation, and in
      this move graph it must pass through total length above 22.
      - Endpoints with no separable relator are the only ones Theorem A′ does not constrain.
+
+7. **Heretic lane, second pass: thickenable pairs versus a meet-in-the-middle (w6-082, 2026-09-18).**
+   - *Theorem.* `thickenable-z-pairs-lie-in-the-move-class-of-a-basis-pair`, proposed
+     established. It cites Scharlemann–Thompson and uses a disc-slide lemma.
+     - Every orientably thickenable Z-pair in F_3 is reached from the basis pair by moves
+       (P1)–(P2).
+     - So the THICK and PRIM endpoints of Attempt 6 have the same reach. A bidirectional
+       search with thickenable Z-pairs as the far side adds nothing below the cap, and a
+       meeting with AK(3) needs cap ≥ 25.
+   - *Tunnels.* `ak3-aut-tunnel-closed-exhaustion`, proposed established by computation.
+     - A tunnel is one AC product of any length, followed by Whitehead reduction back
+       under the cap.
+     - Rank 2, cap 24: the AK(3) component closed under capped moves and tunnels is
+       finite. It has 262642 classes, which is S_24 plus 922. It contains no PRIM or THICK
+       state. Over 534.6M tunnels, none ends in an entry of length 1.
+     - Rank 3, cap 24: finite with 281927 classes, which is S_24 plus 1714. It contains
+       no PRIM, THICK or PROJ state, and none of 810.9M tunnels ends in an entry of length 1.
+     - Two AC products per excursion ("2-tunnels") add states: 161 against 150 at cap 16,
+       still with no goal.
+     - Corollary (Whitehead peak reduction): a path from AK(3) to (x, y) by (M1) moves and
+       automorphisms needs an excursion above length 24 that contains two AC products, or
+       one that starts with an automorphism.
+     - The capped move graph is directed. One tunnel endpoint reaches all of S_24, but
+       S_24 does not reach it.
+   - **Next.** Search at cap 25–26 with excursions carrying two AC products ("2-tunnels":
+     M1, reduce, M1, reduce), seeded from the 922 tunnel-only classes. These are the only
+     part of the component that the capped searches never saw.
