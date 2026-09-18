@@ -1067,3 +1067,33 @@ is MF with a regular trace and hence hyperlinear.  In particular,
 non-hyperlinearity of `EL_5(J)` would already prove the goal.
 
 The hole itself is not closed here.
+
+**2026-09-18 (swarm-0917 w13, belief breaker): the target is a solved group, and three holes are (T)-theorems.**
+`leavitt-st20-t-free-holes-hold-via-kazhdan` is ESTABLISHED, but its proof goes through property (T), so it is not routed here.
+1. **Identification.** Khanh's `(KH2)` (`leavitt-steinberg-map-iso-from-rank-three`) gives
+   `Delta ~= GL_20(R) = EL_20(R) ~= R^x`. So `Delta` is simple and its Steinberg kernel is trivial.
+   The caveat "no simplicity assertion for the Steinberg central cover is used" above is now moot.
+   The same identification appears in `leavitt-corner-host-is-the-simple-leavitt-unit-group`.
+2. **The equation is already a theorem through (T).** `binary-leavitt-all-ranks-full-mf-radical` transports to `Delta`.
+   The open content of this goal is purely the proof-method restriction.
+3. **Ill-typed holes.** The displayed sentences of three holes are true through (T):
+   - `binary-leavitt-steinberg-mf-characters-are-trivial`. This is the last-missing hole of
+     `property-t-free-leavitt-via-mf-character-triviality`, with impact 54, and it would flip this goal.
+   - `binary-leavitt-haar-row-profile-is-not-mf-character-restriction`.
+   - `binary-leavitt-atomic-morita-return`. It is vacuous: below the presentation modulus the rounded mark is `1` and `p_U=0`.
+
+   Linking the new claim to any of them would dishonestly establish this goal. Each should be restated with an explicit
+   "by a proof not using property (T)" clause, or replaced by a statement that full radical does not imply.
+   `opnorm-leavitt-coarse-fine-return-row` and `binary-leavitt-dimension-descent-operation` are likewise vacuous in their
+   accurate regimes.
+4. **New decomposition.** `property-t-free-leavitt-via-el20-comparison` reduces this goal to
+   `property-t-free-el20-full-mf-radical` through `(KH2)`, which is (T)-free. The two Kazhdan-free goals concern one group.
+   The EL20 note that the St20 goal "must control its central Steinberg kernel" is obsolete.
+5. **Obstruction to generalizing away (T).** For any countable `R` with a binary Leavitt family and `n>=16`, the
+   finitely generated Leavitt subring `S` has Kazhdan `E_n(S)`, which normally generates `E_n(R)`. So every
+   coefficient-ring or rank generalization of this goal is again a (T)-theorem. It cannot serve as a test that the
+   method avoids (T).
+
+   A test that genuinely avoids (T) must use a target with no infinite Kazhdan subgroup that normally generates it.
+   Examples are a Haagerup group, or Thompson's `V` inside `R^x` (Haagerup, MF status open);
+   `a-t-menable-groups-have-no-rigid-compression-defect` fences the compression engine there.
