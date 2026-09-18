@@ -347,3 +347,19 @@ None recorded before 2026-09-17.
     - *Open:* `regular-germ-extensions-have-no-bs-relations`. The remaining type, with an explicit
       depth-gain-zero infinite-order germ that neither length function sees, would close `n = 2` for the
       whole regime.
+
+18. **Prime-shift permutation overgroups and bounded-dilation registers, 2026-09-18 (lane gq-deep-typeA-2).**
+    - `gl-n-q-lies-in-prime-shift-permutation-group`. One multiplicative permutation `σ` of `Q`, shifting the
+      primes along a `Z`-indexing, makes every prime dilation conjugate to `x -> 2x`. This gives two finitely
+      generated 2-transitive overgroups:
+      - `GL_n(Q)` lies in `K_n = <GL_n(Z), diag(2,1,...,1), σ_n>`, which is 2-transitive on `P^(n-1)(Q)`;
+      - `Aff(Q)` lies in `A_1 = <x+1, 2x, -x, σ>`, which is 2-transitive on `Q`.
+    - `σ` is continuous for no real or `p`-adic topology, so the natural-action kills above (attempts 2, 3, 10
+      and 12) do not reach these groups.
+    - For each group, type (A) reduces to finite presentation plus one finitely generated point stabilizer; both
+      are OPEN. `Stab_(A_1)(0)` is strictly larger than `Q^x ⋊ <σ>`.
+    - Registers on which `×p` is a bounded rewrite (gq-bt-kojima Spark 3) die in three forms. See
+      `research/artifacts/gq-deep-typeA-2-register-dilations.md`.
+      - *Slot formats with placeholders:* the translations `+1/p` lose uniform rewrite depth.
+      - *Shifted formats:* compactness allows only finitely many primes.
+      - *One register per prime with a shared overflow:* the actor must already contain `Aff^+(Q)`.
