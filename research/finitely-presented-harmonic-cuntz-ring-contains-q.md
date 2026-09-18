@@ -9,11 +9,14 @@ distinct_from:
   algebra-boone-higman-conjecture: that asks for simple finitely presented algebras containing decidable ones; this is a finitely presented ring containing Q with no simplicity claim.
 artifacts:
   - research/artifacts/gq-gq-cuntz-cstar-dictionary.md
+  - research/artifacts/gq-referee-a-finitely-presented-harmonic-cuntz-ring-contains-q.md
 ---
 
-**ESTABLISHED** by `finitely-presented-harmonic-cuntz-ring-proof` (elementary; not
-independently reviewed; no priority claimed: an explicit finitely presented ring
-containing `Q` may well be folklore).
+**ESTABLISHED** by `finitely-presented-harmonic-cuntz-ring-proof` (elementary;
+proof-gap review PASS by lane `gq-referee-a`,
+`research/artifacts/gq-referee-a-finitely-presented-harmonic-cuntz-ring-contains-q.md`;
+no priority claimed: an explicit finitely presented ring containing `Q` may well be
+folklore).
 
 Let `R_Q` be the unital ring with generators `s_0, s_1, t_0, t_1, h, g` and relations
 - (L) `t_i s_j = δ_ij` for `i, j ∈ {0,1}`, and `s_0 t_0 + s_1 t_1 = 1`;
@@ -34,10 +37,17 @@ Then:
    continuous functions `η, ζ` gives a unital *-homomorphism into `O_2` whose image
    is dense.
 
-So `GL_n(Q) ⊂ GL_n(R_Q) ≅ R_Q^x` for every `n`. The steps below only use the six
-generators and five relation families, which makes `R_Q` the natural input for
-finite-presentation arguments about Steinberg groups
-(`harmonic-cuntz-simple-group-is-finitely-presented`).
+So `GL_n(Q) ⊂ GL_n(R_Q) ≅ R_Q^x` for every `n`. The proof uses only the six
+generators and five relation families, so `R_Q` is a concrete input for
+finite-presentation arguments about Steinberg groups.
+- **Central quotients fail.** `R_Q` contains `Q` centrally and a Leavitt family, so
+  by `leavitt-scalar-commutators-block-fp-central-quotients` no central quotient of
+  `R_Q^x`, or of `E_N(R_Q)` modulo its centre, is finitely presented.
+- **Steinberg overgroups (referee's remark, not checked here).** The review artifact
+  notes that the landed Steinberg finite-presentation lemmas (commits fbbb1c736 and
+  0b381f2c1, the latter conditional on its citations) apply to `R_Q`. So `St_4(R_Q)`
+  and `St_(6n+7)(R_Q)` would be further finitely presented overgroups of `GL_n(Q)`.
+  They are not simple.
 
 **Open.** Is `R_Q -> C_h` injective? `C_h` is simple, so the kernel is a maximal
 ideal.
