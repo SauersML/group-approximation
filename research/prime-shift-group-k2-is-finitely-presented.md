@@ -7,6 +7,8 @@ distinct_from:
   prime-shift-kn-fp-reduces-to-a-metabelian-quotient: that proves finite presentation of K_n forces a one-sided relation between e and the prime dilations modulo GL_n(Z); this is the open question whether K_2 is finitely presented.
   prime-shift-affine-group-a1-is-finitely-presented: that is the affine analogue, refuted by deep-denominator germs; the germ argument has no analogue here (item 5 of the reduction).
   gl-n-q-in-permutational-boone-higman-class: that is the type (A) target; finite presentation of K_2 is one of its two open inputs for n = 2.
+artifacts:
+  - research/artifacts/gq-ring-fp-simple-k2-hidden-relation-search.md
 ---
 
 **OPEN.** Is `K_2 = <GL_2(Z), e = diag(2,1), σ_2> <= Sym(Q^2)` finitely presented?
@@ -111,3 +113,23 @@ Notation as in `gl-n-q-lies-in-prime-shift-permutation-group`.
   - **Status.** Stalled after this attempt, per the stall rule. Membership of `k`, equivalently of `r`, is
     open. The Bieri--Strebel test (`prime-shift-kn-fp-reduces-to-a-metabelian-quotient`) and
     `torus-amalgams-of-adelic-groups-are-not-finitely-presented` still apply unchanged.
+- **Attempt 4 (2026-09-18, gq-ring-fp-simple): bounded MSI search for the hidden relation. None found.**
+  This is evidence, not proof. The details, code and outputs are in the artifact
+  `gq-ring-fp-simple-k2-hidden-relation-search.md`.
+  - *Searched.* Words in the generators `σ_2^j X^(±1) σ_2^-j` and `σ_2^j Y^(±1) σ_2^-j`, plus `W` and `D`, all in `N`:
+    - for `|j| <= 1`, lengths <= 5 completely and length 6 partially: 1.64 million elements up to probe
+      equality;
+    - for `|j| <= 2`, lengths <= 4;
+    - with the shears `X^(±2)` and `Y^(±2)` added, lengths <= 4.
+  - *Tests.*
+    - A left-linear key finds words `V_1`, `V_2` with `V_1 = L V_2` for some linear `L`. Such an `L` would
+      put `|det L|` in `I_2`, and `|det L| != 1` would be a hidden relation.
+    - An `r`-translated key finds `V = L r V'`, giving `|det L|/2 in I_2`.
+  - *Result.* No hit of either kind.
+    - "No hit" is sound for the searched words, apart from the listed overflow words: a true relation agrees
+      on the probe points, and deduplication by probe images loses nothing.
+    - The calibration mode, which adds `e`, finds the expected hits. The independent verifier (sympy) passes
+      its controls.
+  - *Near misses.* Thousands of words fix both axes and `(1,-1)`. None agrees with `r` on any other probe.
+  - *Reading.* Consistent with `I_2 = 1`, and hence with `K_2` not finitely presented. It says nothing
+    about longer words, `|j| >= 3`, or conjugators other than powers of `σ_2`. Stopped at the budget.
