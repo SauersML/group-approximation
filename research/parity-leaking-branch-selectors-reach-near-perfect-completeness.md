@@ -56,6 +56,18 @@ a cycle of equations through the window.
   bit is exactly uniform given the view, so honest completeness is at most
   `1/2 + w_bad/2` over subexponential equivariant menus. Only global views,
   unclustered menus or non-honest certificates survive.
+* **Near-perfect selectors on DKKMS-form instances in the covering regime
+  (2026-09-18).** **Dead under NP not in RP.** Killed by
+  `near-perfect-selectors-on-rigid-dkkms-instances-put-np-in-rp`. When `D(I)` is
+  the DKKMS construction, after any polynomial-time 3LIN map, at `(l,k)` with
+  `SD* <= 10^(-5)` and Corollary-A admissibility, a selector with any views,
+  global or parity-leaking, with or without a certificate, and YES lift value
+  `>= 1 - 10^(-5)` puts the source in RP. Falsifier (i) is realised at
+  completeness `1 - 10^(-5)` for every selector, not only honest ones. For
+  advice dimension `q >= 2` the regime is every admissible point with `l >= 43`.
+  Survivors: completeness in `(1/2, 1 - 10^(-5))`; `q = 1` with
+  `k_A(l) <= k < k_0(l)`; non-DKKMS `D(I)` (another inner test or outer game).
+  The claim stays OPEN for those.
 * **Spectral-gap gate on the host (2026-09-18).** **Conditional kill, OPEN.**
   - *What is proved.* Gate (G) of
     `akkstv-rounding-holds-on-all-loop-free-constraint-graphs` is
