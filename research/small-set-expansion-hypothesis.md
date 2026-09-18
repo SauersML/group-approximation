@@ -111,6 +111,55 @@ density `1/k`, restricted to transversals.
       of every spread support.
   - Where it stops: the kill does not touch (H1) or (H2), and it proves nothing
     toward the hypothesis itself.
+* **Subgroup dominance on `F_2^k` Cayley graphs (census and decomposition, 2026-09-17, swarm-0917).**
+  Both results below were drafted as ESTABLISHED, but this lane's referee stage
+  returned no verdicts, so both land **OPEN** with their proofs kept as attempts
+  under `research/artifacts/`. No referee refuted either one; none read them.
+  - *Census* (OPEN, `f2-cayley-sse-exact-census-small-k`; certified replay kept as
+    an attempt, driver
+    `experiments/sse-small-instances-2026-09-17/run_census.py`). It covers exact
+    optima by branch and bound for `k <= 7`, with the admissibility of the
+    pruning bound unaudited:
+    - In all 39 noisy-cube cases, subcubes are exactly optimal.
+    - The basic SDP (the Delsarte LP) overshoots by `0.004` to `0.015` at `s = 8`,
+      and pure spectral certificates by `0.08` to `0.14`.
+    - The only non-subgroup optimum found is `Cay(F_2^7, |a| <= 2)`, and there the
+      SDP is exact.
+  - *Theorem, claimed but unrefereed* (OPEN,
+    `f2-cayley-subgroup-sets-lose-at-most-log-inverse-density`; the proof is kept
+    as an attempt).
+    - *Statement.* Every `S` of measure `2^-c` in `F_2^k` has a law on subgroups
+      `H` with `|H| = |S|` such that `Pr[a not in H] <= (E_c/2) d_S(a)` for
+      all `a`, where `E_c <= c + 1.61`.
+    - *Proof.* Sample characters from the spectral measure of `S` until they span
+      dimension `c`. The subspace mass bound `mu(V) <= |V| 2^-c` bounds the
+      stopping time, and Wald's identity gives the bound.
+    - *Consequence.* For every weight law some subgroup has
+      `Phi(H) <= (E_c/2) Phi(S)`, so subgroup enumeration decides
+      `Gap-SSE(eta, 2^-c)` on `F_2^k` Cayley graphs in time `N^(c + O(1))`
+      whenever `eta (c + 3.61) < 2`.
+    - *Where it stops.* SSEH needs `delta <= 2^-(2/eta - 3.61)`, which is exactly
+      the log-loss regime (the noisy cube again). So nothing is killed yet.
+  - *Decomposition.* A new decomposition, whose prerequisite can fail:
+    - `f2-cayley-subgroup-sets-are-constant-factor-optimal` (OPEN) asks that the
+      subgroup-dominance constant satisfy `C* = sup C(S) < infinity`.
+    - Route `f2-cayley-gap-sse-by-subgroup-enumeration` then gives
+      `gap-sse-on-f2-cayley-graphs-is-polynomial`.
+    - That would kill every SSEH reduction whose outputs are `F_2^k` Cayley
+      graphs.
+    - Contrapositive: an SSEH-hard `F_2^k` Cayley family forces `C* = infinity`.
+      Some sets would then need to be `(1-eta)/eta`-far from every subgroup mixture.
+    - *Evidence.* `C = 1` for `|S| = 4` and at `c = 1`, and `C` does not grow
+      under products. The data maximum is `22/21`, including exhaustively at
+      `(k, s) = (4, 8)`. Suggested attack: polynomial Freiman--Ruzsa applied to
+      `A_theta = {a : d_S(a) <= theta}`.
+  - Where it stops:
+    - Neither result is refereed, so neither is established; treat both as
+      drafted attempts until a referee pass survives.
+    - Nothing is proved for general graphs.
+    - The conjecture is open beyond size `4` and `c = 1`.
+    - Cayley structure hidden behind an adjacency matrix is not addressed.
+    - Groups other than `F_2^k` are not treated.
 * **Label-extended lifts: value plus base profile (reframing, 2026-09-17).**
   `lifts-over-multiscale-expanders-expand-unless-ug-value-large` (ESTABLISHED,
   exact replay) splits the NO case of any reduction that outputs label-extended
