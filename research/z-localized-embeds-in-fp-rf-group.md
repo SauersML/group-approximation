@@ -141,3 +141,19 @@ open part is finite presentation. One concrete route is
      polynomial `t - l`). But BR propagates along the lamps, not along `x`.
    - Open: a finitely presented base that is a proper quotient of the induced module and still contains `M`.
      Deliverable (a), an explicit finite presentation, is not achieved.
+7. **A finitely presented host with no corner obstruction (2026-09-18, lane gq-infinite-primes).**
+   - *The ring.* Put the Euler base in the off-diagonal corner of `T_l = [[D, D/Du],[0, Z]]`
+     (`euler-triangular-ring-is-fp-rf`). `T_l` is a finitely presented residually finite ring.
+   - *The group.* `St_N(T_l)` is finitely presented for `N >= 5` (rank-five node) and contains the Euler base
+     `M ⊇ Z_(l)` through `x_12` (`euler-base-embeds-in-fp-steinberg-group`). `E_N(T_l)` is finitely generated,
+     residually finite, and contains `G_l`.
+   - *Why the corner obstruction goes away.* The Steinberg commutator relations carry the `D`-action on `M`,
+     so the Euler relation needs only the finitely many relations of the ring `D`. `Z_(l)` is now a
+     square-zero bimodule, not a corner ring, so the tame-symbol obstruction for `R_l` has no analogue.
+   - *What remains.* Only residual finiteness:
+     - `euler-triangular-steinberg-rf-residual-is-fng` suffices (route
+       `z-localized-fp-rf-via-euler-triangular-steinberg`);
+     - in turn it follows from `euler-triangular-ring-has-fg-central-unstable-k2`.
+     - Heuristically, stable `K_2(T_l) = K_2(D) ⊕ K_2(Z)` is finite. Three inputs are unread: triangular
+       K-theory, the twisted Laurent theorem, and stability.
+   - This is the most promising live route to the bottleneck.
