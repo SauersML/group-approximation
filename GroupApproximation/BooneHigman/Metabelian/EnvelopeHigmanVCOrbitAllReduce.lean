@@ -1,4 +1,4 @@
-import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCOrbitAllFam
+import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCOrbitAllSwap2
 import GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVCOrbitGenWire
 import GroupApproximation.Meta.AxiomGuard
 
@@ -12,7 +12,9 @@ path-atom class `u · m(a p, b p y y) · (t v t⁻¹)` (`u, v ∈ U`, any word `
 and every `h` whose twist `t⁻¹ h⁻¹ t⁻¹` lies in it, satisfies `h t ∈ S`.  This contains the
 atom class of `EnvelopeHigmanVCOrbitGenAtom` for **every** letter `x` (`p = [x]`, `y = x`),
 not only the head of `List.finRange d` (`higmanVCOrbitAll_famCls_of_cls`,
-`higmanVCOrbitAll_cls_of_gen`).
+`higmanVCOrbitAll_cls_of_gen`).  It also contains every single swap `m(a e, b e')` with
+`e, e'` comparable and `||e'| - |e|| = 2` (`EnvelopeHigmanVCOrbitAllSwap2`).  So the only
+single swaps left in the residual have `||e'| - |e|| ≥ 3`.
 
 **Residual `W⁗` = `HigmanVCOrbitAllStatement`.**  This is `HigmanVCOrbitGapStatement`
 (`W''`) with the pivot closure required only for `h` that is neither mixed nor in the

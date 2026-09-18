@@ -94,12 +94,11 @@ theorem witnessStepSub_succ_lift (M : CombMap.{u}) (L l : List M.Dart)
       (M.sigma ^ j) (M.alpha c.1) := hje
   obtain ⟨h1, h2⟩ := hnot j hj hjm
   refine ⟨fun hz => h1 ?_, fun hz => h2 ?_⟩
-  · have h3 := (witnessStepSub_mem_lift M L l hl _).mp hz
-    rw [hval] at h3
-    exact h3
+  · have h3 : (((walkMap M L).sigma ^ k) ((walkMap M L).alpha c)).1 ∈ l :=
+      (witnessStepSub_mem_lift M L l hl _).mp hz
+    exact Eq.mp (congrArg (fun z => z ∈ l) hval) h3
   · have h3 : M.alpha (((walkMap M L).sigma ^ k) ((walkMap M L).alpha c)).1 ∈ l :=
       (witnessStepSub_mem_lift M L l hl _).mp hz
-    rw [hval] at h3
-    exact h3
+    exact Eq.mp (congrArg (fun z => M.alpha z ∈ l) hval) h3
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepSub_succ_lift
