@@ -10,7 +10,9 @@ distinct_from:
   pbh-class-closed-under-graph-products: that is closure under graph products, where whole vertex groups commute; here only the centralizer commutes with the new factor.
 ---
 
-**ESTABLISHED** by `pbh-centralizer-amalgam-closure-proof` (lane proof, not reviewed;
+**ESTABLISHED** by `pbh-centralizer-amalgam-closure-proof` and, independently of the
+lane-proved relative-holomorph closure, by `pbh-centralizer-amalgam-via-theorem-e-proof`
+(which uses only BFFHZ Theorems C and E besides the elementary embedding) (lane proofs, not reviewed;
 no priority claimed; the arXiv HTML of BFFHZ arXiv:2503.21882 was checked and does
 not mention centralizers).
 
