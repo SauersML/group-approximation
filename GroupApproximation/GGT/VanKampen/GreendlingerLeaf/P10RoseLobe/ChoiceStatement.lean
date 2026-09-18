@@ -201,7 +201,7 @@ theorem roseLobeChoice_region_of (h : roseLobeChoice_Statement.{u, w, v}) :
       K.decomposition K.boundary.cycle_nodup hxk hdk hdkx hlone hoth hdT))
   · rintro y hy hlone hO hS hoth
     exact hne (Or.inr (roseLobeChoice_lake_out
-      (f := X.toCombMap.alpha)
+      (f := ⇑X.toCombMap.alpha)
       (PO := fun x => X.toCombMap.faceOf x = X.outerFace)
       (PS := fun x => X.toCombMap.faceOf x = (cell X K.source).face)
       K.boundary.cycle_nodup hy hlone hO hS hoth))

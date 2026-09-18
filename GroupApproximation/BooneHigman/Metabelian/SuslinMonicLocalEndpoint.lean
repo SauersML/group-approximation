@@ -50,7 +50,7 @@ theorem suslinMonicLocal_step {R : Type*} [CommRing R] [IsLocalRing R] {n : ℕ}
     rw [h, natDegree_one] at hFdeg
     omega
   have hmd := modByMonic_add_div g F
-  refine suslinMonicLocal_good_of_col_right (g' := g %ₘ F) (-(C ((v⁻¹ : Rˣ) : R) * (g /ₘ F)))
+  refine suslinMonicLocal_colRight (g' := g %ₘ F) (-(C ((v⁻¹ : Rˣ) : R) * (g /ₘ F)))
     ?_ (by linear_combination hmd - (g /ₘ F) * hF)
   intro τ hdet h0 h1
   obtain ⟨c, hc⟩ : ∃ c : R[X], (τ : Matrix (Fin 2) (Fin 2) R[X]) 1 0 = c := ⟨_, rfl⟩
