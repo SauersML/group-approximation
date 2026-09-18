@@ -2,7 +2,7 @@
 rg: 2
 id: rational-function-fields-embed-in-fp-simple-rings
 kind: claim
-title: For every k the rational function field Q(t_1..t_k) embeds unitally in an explicit finitely presented simple ring
+title: For every k the rational function field Q(t_1..t_k) embeds unitally in an explicit simple ring finitely presented as a ring (over Z)
 distinct_from:
   leavitt-resolvent-ring-is-fp-simple-of-char-zero: that is the case k = 0, with one register N and constants Q; this adds k central transcendentals and 2k+1 further registers, so the constants are Q(t_1..t_k).
   polynomially-representable-algebras-have-fp-simple-envelopes: that embeds polynomial and free K-algebras in finitely presented simple K-algebras over a field K; this is finite presentation as a ring over Z, and it contains the field Q(t_1..t_k), so every nonzero polynomial is inverted.
@@ -11,7 +11,17 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `rational-function-fields-embed-in-fp-simple-rings-proof`
-(lane proof, not independently reviewed). No priority is claimed beyond a bounded search.
+(lane proof; refereed PASS by `gq-referee-a` (proof gaps, `gq-referee-a-rational-function-fields-embed-in-fp-simple-rings.md`, 69a3cc64f); `gq-referee-c` also checked the application of the completion criterion to `R_k` (`gq-referee-c-leavitt-nekrashevych-completion-simplicity-criterion.md`, 282b018d4) and `gq-referee-b` (citations and hypotheses, `gq-referee-b-rational-function-fields-embed-in-fp-simple-rings.md`, d7414d7a4; its report covers all four ring-envelope claims)). No priority is claimed beyond a bounded search.
+
+**Known and credit.** Finitely presented simple *algebras over a field* of characteristic
+zero are classical: the Weyl algebra `A_1(Q)`, the Leavitt algebras `L_Q(1,n)`, and
+Nekrashevych algebras are finitely presented over `Q` and simple. The point here is finite
+presentation *as a ring*, that is, as a `Z`-algebra, which forces all of `Q` to be generated
+by finitely many elements. This is the characteristic-zero case of the algebra form of
+Boone--Higman (`algebra-boone-higman-conjecture`, with finite presentation over `Z`) for
+these inputs. No printed source asks this question, so it is not an answer to an open
+problem. A bounded search (web and arXiv; no MathSciNet, zbMATH or Dniester Notebook;
+`gq-gq-lit-arxiv-priority.md` §§6, 9) found no prior construction.
 
 **Statement.** Fix `k >= 1` and write `F_k = Q(t_1, ..., t_k)`. There is a unital ring
 `R_k`, given by an explicit finite presentation over `Z`, such that

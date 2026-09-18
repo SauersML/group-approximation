@@ -1,0 +1,25 @@
+Syntax warning: Unbound global variable in diag_tower.g:14
+  gg:=List(g,x->Image(h,x)); A:=Group(gg[1],gg[3]); B:=Group(gg[2],gg[4]);
+                      ^
+k=1 log2|G|=4 log2ord=[ 1, 1, 1, 1 ] log2|A|=2 log2|B|=2 A^ab=[ 2, 2 ] B^ab=
+[ 2, 2 ] j(b,d in A)=[ 1, 1 ] j(a,c in B)=[ 1, 1 ]
+k=2 log2|G|=10 log2ord=[ 2, 2, 2, 2 ] log2|A|=5 log2|B|=5 A^ab=[ 4, 4 ] B^ab=
+[ 4, 4 ] j(b,d in A)=[ 2, 2 ] j(a,c in B)=[ 2, 2 ]
+k=3 log2|G|=19 log2ord=[ 3, 3, 3, 3 ] log2|A|=9 log2|B|=10 A^ab=[ 8, 8 ] B^ab=
+[ 8, 8 ] j(b,d in A)=[ 3, 3 ] j(a,c in B)=[ 3, 3 ]
+k=4 log2|G|=32 log2ord=[ 4, 4, 4, 4 ] log2|A|=14 log2|B|=18 A^ab=
+[ 16, 16 ] B^ab=[ 16, 16 ] j(b,d in A)=[ 4, 4 ] j(a,c in B)=[ 4, 4 ]
+k=5 log2|G|=52 log2ord=[ 4, 5, 4, 5 ] log2|A|=20 log2|B|=32 A^ab=
+[ 16, 16 ] B^ab=[ 32, 32 ] j(b,d in A)=[ 5, 5 ] j(a,c in B)=[ 4, 4 ]
+k=6 log2|G|=84 log2ord=[ 4, 6, 4, 6 ] log2|A|=29 log2|B|=55 A^ab=
+[ 16, 16 ] B^ab=[ 64, 64 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 4, 4 ]
+k=7 log2|G|=141 log2ord=[ 5, 6, 5, 6 ] log2|A|=47 log2|B|=94 A^ab=
+[ 16, 16 ] B^ab=[ 64, 64 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 5, 5 ]
+k=8 log2|G|=231 log2ord=[ 5, 6, 5, 6 ] log2|A|=70 log2|B|=161 A^ab=
+[ 16, 16 ] B^ab=[ 64, 64 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 5, 5 ]
+k=9 log2|G|=395 log2ord=[ 6, 6, 6, 6 ] log2|A|=114 log2|B|=281 A^ab=
+[ 16, 16 ] B^ab=[ 64, 64 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 6, 6 ]
+k=10 log2|G|=672 log2ord=[ 6, 7, 6, 7 ] log2|A|=179 log2|B|=494 A^ab=
+[ 16, 16 ] B^ab=[ 64, 128 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 6, 6 ]
+k=11 log2|G|=1172 log2ord=[ 7, 7, 7, 7 ] log2|A|=291 log2|B|=883 A^ab=
+[ 16, 16 ] B^ab=[ 128, 128 ] j(b,d in A)=[ 6, 6 ] j(a,c in B)=[ 7, 7 ]

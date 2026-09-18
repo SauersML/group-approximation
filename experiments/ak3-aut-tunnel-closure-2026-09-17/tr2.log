@@ -1,0 +1,51 @@
+== tbfs 2 13 AK(3) tunnels on
+TBFS RANK 2 CAP 13 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 0 states 1 processed 1; via tunnel 0; tunnels tried 840
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 1 undecided 0; planar-prefilter rejections 0
+exit 0 time 0s
+== tbfs 2 14 AK(3) tunnels on
+TBFS RANK 2 CAP 14 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 0 states 1 processed 1; via tunnel 0; tunnels tried 840
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 1 undecided 0; planar-prefilter rejections 0
+exit 0 time 0s
+== tbfs 2 15 AK(3) tunnels on
+TBFS RANK 2 CAP 15 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 7 states 69 processed 69; via tunnel 18; tunnels tried 72075
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 69 undecided 0; planar-prefilter rejections 0
+exit 0 time 0s
+== tbfs 2 16 AK(3) tunnels on
+TBFS RANK 2 CAP 16 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 11 states 150 processed 150; via tunnel 39; tunnels tried 168447
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 150 undecided 0; planar-prefilter rejections 0
+exit 0 time 1s
+== tbfs 2 17 AK(3) tunnels on
+TBFS RANK 2 CAP 17 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 12 states 616 processed 616; via tunnel 152; tunnels tried 781334
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 616 undecided 0; planar-prefilter rejections 0
+exit 0 time 6s
+== tbfs 2 18 AK(3) tunnels on
+TBFS RANK 2 CAP 18 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 12 states 1144 processed 1144; via tunnel 338; tunnels tried 1551143
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 1144 undecided 0; planar-prefilter rejections 0
+exit 0 time 12s
+== tbfs 2 19 AK(3) tunnels on
+TBFS RANK 2 CAP 19 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 16 states 3903 processed 3903; via tunnel 1157; tunnels tried 5898059
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 3903 undecided 0; planar-prefilter rejections 0
+exit 0 time 43s
+== tbfs 2 20 AK(3) tunnels on
+TBFS RANK 2 CAP 20 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 19 states 6955 processed 6955; via tunnel 2097; tunnels tried 11082356
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 6955 undecided 0; planar-prefilter rejections 0
+exit 0 time 80s
+== tbfs 2 21 AK(3) tunnels on
+TBFS RANK 2 CAP 21 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 22 states 23515 processed 23515; via tunnel 6671; tunnels tried 41226133
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 23515 undecided 0; planar-prefilter rejections 0
+exit 0 time 343s
+== tbfs 2 22 AK(3) tunnels on
+TBFS RANK 2 CAP 22 NPERM 8 NWA 12 tunnels on
+EXHAUSTED depth 24 states 41531 processed 41531; via tunnel 12520; tunnels tried 75833783
+goals PRIM 0 THICK 0 PROJ 0 PRIM-tunnel-endpoints 0; thick calls 41531 undecided 0; planar-prefilter rejections 0
+exit 0 time 711s
+ALLDONE

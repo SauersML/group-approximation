@@ -1,0 +1,7 @@
+|L_2| on level 6 = 19131876
+|L_2| on level 5 = 708588
+|phi_0(Stab_{L_2}(0))| on level 5 = 236196
+phi_0(Stab_{L_2}(0)) <= L_2 on level 5: true   index 3
+each of the 8 generators lies in phi_0(Stab_{L_2}(0)) mod level 5: 
+[ true, true, true, false, true, false, false, true ]
+Reading file "l2test.g" has been aborted.

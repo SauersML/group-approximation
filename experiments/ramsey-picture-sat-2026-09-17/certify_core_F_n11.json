@@ -1,0 +1,14 @@
+{
+ "group": "F",
+ "n": 11,
+ "core_rows": 18,
+ "cnf_clauses": 360,
+ "variables": 71,
+ "drat_verified": true,
+ "irreducible": true,
+ "drat_tail": [
+  "s VERIFIED",
+  "",
+  "c verification time: 0.057 seconds"
+ ]
+}

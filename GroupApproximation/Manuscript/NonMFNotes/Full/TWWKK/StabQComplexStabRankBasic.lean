@@ -193,7 +193,7 @@ theorem compress_mem {x : Ambient ℂ} (hx : x ∈ closedSubalgebra ℂ) :
 
 theorem exists_vec : ∃ v : RepSpace ℂ, e v ≠ 0 := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   exact e_ne_zero (ContinuousLinearMap.ext fun v =>
     (hcon v).trans (ContinuousLinearMap.zero_apply v).symm)
 

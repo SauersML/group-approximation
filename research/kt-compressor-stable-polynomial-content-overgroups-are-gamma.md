@@ -67,3 +67,9 @@ below the normal closure that does not collapse to `hyperlinear-wreath-model`.
   one-variable analogue holds with no compressors (`SL_r(F_q[t])` is maximal in
   `SL_r(F_q[t^(±1)])`). The density argument behind it dies for `d ≥ 2` because no
   valuation ring meets `R` in `A`.
+* **Kernel case proved (w5-121).** `kt-compressor-stable-kernel-overgroups-are-polynomial`
+  is proved by `kt-kernel-overgroups-polynomial-via-vertex-compressors-proof`. For each bad
+  exponent, one positive unimodular compressor, with all rows in a single normal cone of the
+  column's Newton polytope, makes the column a monomial times an `A`-unimodular vector, and
+  it also exposes the bad exponent. With `kt-sandwich-from-kernel-polynomiality` this proves
+  the claim.

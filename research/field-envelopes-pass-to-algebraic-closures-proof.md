@@ -40,8 +40,9 @@ Lane proof, not independently reviewed. Write `L_F = L_F(1,2)` for a field `F`.
 ## 3. Algebraic extensions
 Let `E ⊇ F` be a countable algebraic extension, a union of finite extensions
 `F = E_0 ⊆ E_1 ⊆ E_2 ⊆ ...`, and let `d_i = [E_i : F]`.
-- Choose `F`-bases compatibly: a basis of `E_(i+1)` over `F` consists of the products
-  `b c`, with `b` running over the basis of `E_i` and `c` over an `E_i`-basis of `E_(i+1)`.
+- Start from `E_0 = F`, `d_0 = 1`. Choose `F`-bases compatibly: a basis of `E_(i+1)` over
+  `F` consists of the products `b c`, with `b` running over the basis of `E_i` and `c` over
+  an `E_i`-basis of `E_(i+1)`, ordered with the `E_i`-index `b` outer, as in `κ_i`.
 - With these bases, the regular representation `ρ_(i+1)` of `E_(i+1)` restricts on `E_i`
   to `κ_i ∘ ρ_i`.
 - So `α ↦ ι_i(ρ_i(α))` for `α ∈ E_i` is a well-defined unital injective ring

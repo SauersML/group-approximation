@@ -1,0 +1,101 @@
+[
+ {
+  "group": "F2",
+  "n": 2,
+  "ball": 17,
+  "interior": 5,
+  "M_n": 0.5,
+  "exact_M": "1/2",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 3,
+  "ball": 53,
+  "interior": 17,
+  "M_n": 0.6666666666666666,
+  "exact_M": "2/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 4,
+  "ball": 161,
+  "interior": 53,
+  "M_n": 0.75,
+  "exact_M": "3/4",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 5,
+  "ball": 485,
+  "interior": 161,
+  "M_n": 0.8333333333333334,
+  "exact_M": "5/6",
+  "status": 0,
+  "seconds": 0.1,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 6,
+  "ball": 1457,
+  "interior": 485,
+  "M_n": 0.875,
+  "exact_M": "7/8",
+  "status": 0,
+  "seconds": 0.7,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 7,
+  "ball": 4373,
+  "interior": 1457,
+  "M_n": 0.9166666666666667,
+  "exact_M": "11/12",
+  "status": 0,
+  "seconds": 0.2,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 8,
+  "ball": 13121,
+  "interior": 4373,
+  "M_n": 0.9375,
+  "exact_M": "15/16",
+  "status": 0,
+  "seconds": 0.5,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 9,
+  "ball": 39365,
+  "interior": 13121,
+  "M_n": 0.9583333333333334,
+  "exact_M": "23/24",
+  "status": 0,
+  "seconds": 2.1,
+  "w": "third"
+ },
+ {
+  "group": "F2",
+  "n": 10,
+  "ball": 118097,
+  "interior": 39365,
+  "M_n": 0.96875,
+  "exact_M": "31/32",
+  "status": 0,
+  "seconds": 8.1,
+  "w": "third"
+ }
+]

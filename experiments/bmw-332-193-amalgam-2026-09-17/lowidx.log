@@ -1,0 +1,16 @@
+A12_332V.g #subgroups of index<=9 containing G1: 2
+  not containing letter 3: 1
+  index 3
+  perms: [ (2,3), (), (2,3), (1,2) ]
+A12_332H.g #subgroups of index<=9 containing G1: 2
+  not containing letter 3: 1
+  index 3
+  perms: [ (), (2,3), (), (1,2) ]
+A12_193V.g #subgroups of index<=9 containing G1: 2
+  not containing letter 1: 1
+  index 3
+  perms: [ (), (1,2), (), (2,3) ]
+A12_193H.g #subgroups of index<=9 containing G1: 2
+  not containing letter 1: 1
+  index 3
+  perms: [ (), (1,2), (2,3), () ]

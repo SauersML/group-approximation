@@ -1,0 +1,101 @@
+[
+ {
+  "group": "F2",
+  "n": 2,
+  "ball": 17,
+  "interior": 5,
+  "M_n": 0.6666666666666666,
+  "exact_M": "2/3",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 3,
+  "ball": 53,
+  "interior": 17,
+  "M_n": 0.8333333333333334,
+  "exact_M": "5/6",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 4,
+  "ball": 161,
+  "interior": 53,
+  "M_n": 0.888888888888889,
+  "exact_M": "8/9",
+  "status": 0,
+  "seconds": 0.0,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 5,
+  "ball": 485,
+  "interior": 161,
+  "M_n": 0.9444444444444444,
+  "exact_M": "17/18",
+  "status": 0,
+  "seconds": 0.2,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 6,
+  "ball": 1457,
+  "interior": 485,
+  "M_n": 0.962962962962963,
+  "exact_M": "26/27",
+  "status": 0,
+  "seconds": 0.8,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 7,
+  "ball": 4373,
+  "interior": 1457,
+  "M_n": 0.9814814814814815,
+  "exact_M": "53/54",
+  "status": 0,
+  "seconds": 0.2,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 8,
+  "ball": 13121,
+  "interior": 4373,
+  "M_n": 0.9876543209876544,
+  "exact_M": "80/81",
+  "status": 0,
+  "seconds": 0.7,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 9,
+  "ball": 39365,
+  "interior": 13121,
+  "M_n": 0.9938271604938271,
+  "exact_M": "161/162",
+  "status": 0,
+  "seconds": 2.6,
+  "w": "half"
+ },
+ {
+  "group": "F2",
+  "n": 10,
+  "ball": 118097,
+  "interior": 39365,
+  "M_n": 0.9958847736625515,
+  "exact_M": "242/243",
+  "status": 0,
+  "seconds": 13.4,
+  "w": "half"
+ }
+]

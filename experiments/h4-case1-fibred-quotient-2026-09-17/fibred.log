@@ -1,0 +1,8 @@
+H3 walls 15 |A_x| 5 |A_y| 3 |A_z| 1 |A'| 7 |A_y\A_z| 2
+ (1)+(2) collisions of fibre points lie on A_z walls: True
+ pairs (w in A_y\A_z, w' in A_x\A_z) by number of walls through w cap w': {2: 2, 3: 2, 5: 4}
+ distinct walls outside A_x u A_y through non-commuting such flats: 8
+H4 walls 60 |A_x| 15 |A_y| 6 |A_z| 3 |A'| 18 |A_y\A_z| 3
+ (1)+(2) collisions of fibre points lie on A_z walls: True
+ pairs (w in A_y\A_z, w' in A_x\A_z) by number of walls through w cap w': {2: 12, 3: 9, 5: 15}
+ distinct walls outside A_x u A_y through non-commuting such flats: 25

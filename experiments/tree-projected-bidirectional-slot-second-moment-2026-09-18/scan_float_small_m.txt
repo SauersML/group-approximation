@@ -1,0 +1,21 @@
+== nz_101_K1.txt  (flags: nz=NZREF, rg=NZREF+RIGID, rg2=+RIGID2; m2_K2 = R=-2..2, K=2)
+J 1 K 1 R (-1, 0, 1) terms 994 time 2.7
+11 m*p_crit 0.28447 m*p* 0.28241 rho(p*) 1.00812 fail
+12 m*p_crit 0.28321 m*p* 0.28293 rho(p*) 1.00115 fail
+== rg_101_K1.txt  (flags: nz=NZREF, rg=NZREF+RIGID, rg2=+RIGID2; m2_K2 = R=-2..2, K=2)
+J 1 K 1 R (-1, 0, 1) terms 1002 time 4.0
+10 m*p_crit 0.28456 m*p* 0.2818 rho(p*) 1.01081 fail
+11 m*p_crit 0.28328 m*p* 0.28241 rho(p*) 1.00345 fail
+12 m*p_crit 0.28224 m*p* 0.28293 rho(p*) 0.99722 PASS
+13 m*p_crit 0.28138 m*p* 0.28336 rho(p*) 0.99188 PASS
+== rg_m2_K2.txt  (flags: nz=NZREF, rg=NZREF+RIGID, rg2=+RIGID2; m2_K2 = R=-2..2, K=2)
+J 1 K 2 R (-2, -1, 0, 1, 2) terms 3934 time 14.3
+10 m*p_crit 0.2843 m*p* 0.2818 rho(p*) 1.00979 fail
+11 m*p_crit 0.28304 m*p* 0.28241 rho(p*) 1.00251 fail
+12 m*p_crit 0.28203 m*p* 0.28293 rho(p*) 0.99635 PASS
+== rg2_101_K1.txt  (flags: nz=NZREF, rg=NZREF+RIGID, rg2=+RIGID2; m2_K2 = R=-2..2, K=2)
+J 1 K 1 R (-1, 0, 1) terms 990 time 3.0
+9 m*p_crit 0.28614 m*p* 0.28106 rho(p*) 1.01952 fail
+10 m*p_crit 0.28454 m*p* 0.2818 rho(p*) 1.01072 fail
+11 m*p_crit 0.28326 m*p* 0.28241 rho(p*) 1.00338 fail
+12 m*p_crit 0.28222 m*p* 0.28293 rho(p*) 0.99716 PASS

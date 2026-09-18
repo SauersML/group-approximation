@@ -1,0 +1,6 @@
+n= 3 2cot(pi/2n)=3.464102 flux-scan=3.464102 random-min=3.540870 local-min=3.464102 need sqrt3(n+1)/2=3.4641
+n= 5 2cot(pi/2n)=6.155367 flux-scan=6.155367 random-min=6.332570 local-min=6.155367 need sqrt3(n+1)/2=5.1962
+n= 7 2cot(pi/2n)=8.762573 flux-scan=8.762573 random-min=9.254683 local-min=8.762573 need sqrt3(n+1)/2=6.9282
+n= 9 2cot(pi/2n)=11.342564 flux-scan=11.342564 random-min=12.163502 local-min=11.342564 need sqrt3(n+1)/2=8.6603
+n=11 2cot(pi/2n)=13.910306 flux-scan=13.910306 random-min=14.943330 local-min=13.910306 need sqrt3(n+1)/2=10.3923
+n=13 2cot(pi/2n)=16.471482 flux-scan=16.471482 random-min=17.910195 local-min=16.471482 need sqrt3(n+1)/2=12.1244

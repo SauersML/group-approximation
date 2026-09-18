@@ -1,0 +1,11 @@
+$ python3 experiments/free-magma-product-means-2026-09-17/check_product_mean_identities.py
+fact1: 200/200 random exact trials passed
+fact3: 200/200 random exact trials passed
+right_marginal: 200/200 random exact trials passed
+x2_preimage: 200/200 random exact trials passed
+Y_identity: 200/200 random exact trials passed
+lemmaM_tails: 200/200 random exact trials passed
+lemmaM_Z: 200/200 random exact trials passed
+Moore's Z: |Z cap S_n| for n=1..9: [0, 0, 1, 2, 5, 14, 42, 132, 429]
+|S_n| for n=1..9: [1, 1, 2, 5, 14, 42, 132, 429, 1430]
+ALL CHECKS PASSED

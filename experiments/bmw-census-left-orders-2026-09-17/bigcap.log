@@ -1,0 +1,12 @@
+{"census": "census_51_30.json", "idx": 506, "cap": 60000, "finH": 6, "finV": 6912}
+{"census": "census_40_40.json", "idx": 176, "cap": 60000, "finH": null, "finV": null}
+40_40 176 exit=0
+{"census": "census_40_40.json", "idx": 193, "cap": 60000, "finH": null, "finV": null}
+40_40 193 exit=0
+{"census": "census_40_40.json", "idx": 256, "cap": 60000, "finH": null, "finV": null}
+40_40 256 exit=0
+{"census": "census_40_40.json", "idx": 281, "cap": 60000, "finH": null, "finV": null}
+40_40 281 exit=0
+{"census": "census_40_40.json", "idx": 332, "cap": 60000, "finH": null, "finV": null}
+40_40 332 exit=0
+FIN

@@ -52,3 +52,85 @@ both sides are `∞`, AMP(D) holds trivially for every `D`, and this claim is fa
     so it need not be a product coloring, and nothing forces the trials to be independent with respect to `E`.
   - *A model group where AMP fails.* There is no candidate yet. Such a group needs a non-elementary Følner function
     (Known facts). No Ramsey function of such a group has been computed in the literature this lane read.
+- **2026-09-18 (swarm-0917-w8-w8-f-break, census computation).** This entry gives the first exact values of the
+  Ramsey function of `F`, using a sharper unit-ball precision. It decides nothing about AMP. The node is
+  `thompson-f-b1-ramsey-witnesses-are-at-most-one-third`, and its route certifies everything with DRAT-checked
+  SAT and exact rational duals.
+  - *Exact values.*
+    - `R(1) = R(1, 1/2) = 3`, the same as in `F_2`.
+    - `R(1, ε) = 7` for `1/3 ≤ ε < 1/2`.
+    - `R(1, ε) ≥ 11` for `ε < 1/3`, since the profile `ρ_F(n)` is exactly `1/3` on radii 7 to 10.
+    - The sharper precision costs `+4` radii from `1/2` to `1/3`. In `F_2` it never arrives, because
+      `ρ_{F_2} ≡ 1/2`. This is the first point where `F` separates from the free group in Ramsey terms.
+  - *Why this cannot decide AMP.* AMP compares `R̃(m, 1/u)` with the tower `exp_D(R(exp_D(m+u)) + u)`.
+    - For `D ≥ 1` and every `m, u ≥ 1`, the bound `R(M) ≥ M` (criterion node) makes the right side at least
+      `exp_D(exp_D(2) + 1)`. That is at least `2^5 = 32` when `exp_1(x) ≥ 2^x`.
+      So the census values, which are small lower bounds on the left side, are consistent with AMP(D) and with ¬AMP.
+    - `R` at the arguments AMP needs, such as `R(exp_D(2))`, is far out of computational reach. The census bears
+    only on the qualitative question behind AMP: whether amplification in `F` is free-group-like.
+  - *Function side (exact, item 5 of the node).* Take the extremal direction
+    `w = (1/3)(x_0^{-1} − x_0) + (2/3)(x_1 − x_1^{-1})`.
+    - An exactly checked `f : B_11 → [0,1]` has `Σ_a w_a f(ag) ≥ 0.3404` on `I_11`, so `R̃(1, 1/3) ≥ 12`.
+    - The `{0,1}` version of the same direction dies at radius 11, and a DRAT-checked configuration of 71 elements
+      is the obstruction. So along this direction, sets and functions (`R` versus `R̃`) separate in `F` by radius 11.
+    - The floating LP optima of the relaxation in `F` agree with the exact `F_2` values
+      `11/12, 15/16, 23/24, 31/32` for `n = 7..10`, and are about `47/48` at `n = 11`. So fractionally, `F` stays
+      free-like in this direction.
+  - *Belief update.* Neither branch gains support from the data. `F` looks free through radius 6. It then loses the
+    ping-pong witness, and set witnesses are capped at `1/3`, while the fractional relaxation stays free-like
+    through radius 11. The one structural lesson for AMP is that in `F` the obstruction to set witnesses appears
+    well before the obstruction to function witnesses.
+- **2026-09-18 (swarm-0917-w8-w8-f-follow, operator-algebras).** The hole is reduced to a set-versus-measure gap.
+  It stays OPEN. The established parts are `coarse-ball-invariance-gives-fine-reiter-measures` and
+  `thompson-f-ramsey-amplification-is-the-ramsey-reiter-gap`.
+  - *Precision amplification is free for measures.* Suppose one measure is moved by at most 1 in ℓ¹ by all of
+    `B_{2K}`. Then `K−1` lazy-walk steps applied to its square root give a Reiter measure with error `O(K^{−1/2})`.
+    The proof uses log-convexity of the even return moments. So `R̃(m, 1/u) ≤ F(m, 1/u) ≤ CR(exp_3(m+u)) + exp_3(m+u)`,
+    where `CR` is the coarse Reiter radius. Consequently, if `CR(N) ≤ exp_E(R(exp_E N))` for all `N`, then AMP(E+3)
+    holds and this claim is false. Every proof of ¬AMP must therefore show that `R_F` is non-elementarily below `CR_F`
+    (RGAP₁). Majority, product-trial and nested-Ramsey amplification are all attacks on the wrong step.
+  - *The converse direction is almost tight.* Towsner's Proposition 3.1 gives `CR(M) ≤ R̃(R̃(1, 1/4M), 1/4M)`.
+    Hence AMP(D) bounds `CR` by a bounded tower around two compositions of `R`. So RGAP₂ implies this claim. That is
+    the new route `thompson-f-costly-amplification-via-double-ramsey-reiter-gap`.
+  - *Translation coding dies.* The idea was to code many colorings into one set `E` by far-apart translates
+    `w_i ∈ B_M`, so that one Ramsey call balances all of them. It dies because the witness `ν` has support radius
+    about `n ≥ M`. The regions `w_i·B_m·supp ν` then overlap, and the codes interfere.
+  - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at precision 1/2. A minimax over coarse `B_M`-invariance
+    needs about `|B_M|` test functions, which means Towsner compositions of height about `5^M`. Nothing
+    F-specific was found that either separates `R` from `CR` or collapses them.
+- **2026-09-18 (swarm-0917-w9-w9-f-break, quantifier-shift).** Calibration of RGAP₁ at small windows, plus one
+  class kill. It stays OPEN. Established (unreviewed): `small-window-ramsey-and-coarse-reiter-radii-of-f-and-f2`.
+  - *Exact duals.* Minimax turns both radii into finite linear certificates.
+    - `R(m) > n` iff there are one set `E ⊆ B_n` and a probability `λ` on `B_m²` with
+      `Σλ(a,b)(1_E(ax) − 1_E(bx)) > 1/2` on `I_n`.
+    - `CR(M) > r` iff there is a probability on pairs `(g, D)` with `Σμ(1_D(gx) − 1_D(x)) > 1/2` on `B_r`.
+    - The push-forward `(a,b) ↦ (b^{-1}a, b^{-1}E)` is the sandwich inequality `R(m) ≤ CR(2m) + m`. A Ramsey
+      certificate is exactly a coarse certificate supported on one translate family of one set.
+  - *Free calibration.* In `F_2`:
+    - `R(1) = 3`, imported from the census.
+    - `CR(M) = ∞` for all `M`, by a forest count and coarea.
+    - `R(2) = ∞`, from the explicit witness "first letter `b^{±1}`" with a six-pair `λ` of exact value 5/6.
+  - *Thompson data.* In `F`:
+    - `R(1) = 3`.
+    - `CR(1) = 5`. The exact coarse Reiter values at the unit ball are
+      `54/53, 162/161, 56/65, 102/125, 92/119, 334/449` for `r = 3..8`. They equal the free value `1 + 1/|B_r|`
+      exactly while `B_r(F)` has the free size, and fall below 1 at `r = 5`, where `|B_5| = 475 < 485`.
+    - `CR(2) ≥ 7`, with exact `v_2(4) = 3134/2387`, `v_2(5) = 5441/4299` and `v_2(6) = 2207/1795`.
+    - `R(2) ≥ 9`, from MILP-found sets of exact value `3/5` at `n = 7` and `7/12` at `n = 8`, rechecked
+      independently. The transplanted free cones die at `n = 7`, and the search stalls at `29/60` at `n = 9`.
+  - *Class kill (window-preserving decoupling).*
+    - Class: arguments that bound a coarse certificate's radius by a Ramsey radius at the same window, of the
+      form `CR(M) ≤ f(M, R(g(M)))` with `g(1) ≤ 1`, and valid in every finitely generated group. This includes
+      every argument that assembles the sets `D` of a paradoxical or coarse certificate at window `M` into a
+      single Ramsey witness at window `M`.
+    - `F_2` is a counterexample: `R_{F_2}(1) = 3`, but `CR_{F_2}(1) = ∞`, and ping-pong paradoxicality holds at
+      window 1.
+    - Invariant: the Ramsey test sees `E` only through the convex hull of its picture vectors
+      `{X_E(x) : x ∈ I_n}`, a marginal of one set.
+    - Dying step: merging the several sets `D` of a coarse certificate into one `E` without enlarging the window.
+      In `F_2` this costs exactly one window step (`R(2) = ∞`), so the window shift in the sandwich is necessary,
+      not an artefact.
+    - Consequence: any proof of AMP must be `F`-specific, or must shift windows as the sandwich does.
+  - *Where it dies.* The step from `∀E ∃ν` to `∃ν ∀E` at comparable windows, which is again the quantifier
+    exchange. At windows 1 and 2, `F` sits between free-like and amenable-like: `R(1) = 3 < CR(1) = 5 ≤ R(2) − 4`.
+    Radii this small cannot decide RGAP₁, and no belief moves in either direction.

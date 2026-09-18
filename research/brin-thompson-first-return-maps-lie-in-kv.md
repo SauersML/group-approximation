@@ -9,7 +9,8 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-17)** through `brin-thompson-first-return-maps-lie-in-kv-proof`.
-Lane proof (gq-nv-obstruct). Not independently reviewed.
+Lane proof (gq-nv-obstruct). Reviewed PASS by gq-referee-c (282b018d4,
+`research/artifacts/gq-referee-c-brin-thompson-first-return-maps-lie-in-kv.md`).
 
 **Statement.** Let `T ∈ kV`, and let `Y ⊆ C^k` be a nonempty clopen set with
 `C^k = Y ∪ T^-1 Y ∪ ⋯ ∪ T^-R Y` for some `R`. Every point enters `Y` within `R`

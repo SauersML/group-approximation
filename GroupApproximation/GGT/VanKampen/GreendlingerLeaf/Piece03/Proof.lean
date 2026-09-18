@@ -118,7 +118,7 @@ theorem proof_of_short (h : EnclosedSubdiagramLoopCutSuccShortStatement.{u, w, v
   · exact enclosedSubdiagramLoopCutSuccLong.{u, w, v} D eps rho mu lambda c hcondition hlambda hc
       hW Delta X hlea equiv hlabel faces outerWalk E C hC hCf i hi A s hdec hnorm
   · have hshort : ∃ word ∈ W, word.length ≤ 1 := by
-      push_neg at hW
+      push Not at hW
       exact hW
     exact h D eps rho mu lambda c hcondition hlambda hc hshort Delta X hlea equiv hlabel faces
       outerWalk E C hC hCf i hi A s hdec hnorm

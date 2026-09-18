@@ -1,0 +1,44 @@
+{
+  "V_general": "-u1*u2*(alpha - beta)**2*(alpha + beta)*(u1 - u2)",
+  "V_expected": "-u1*u2*(alpha - beta)**2*(alpha + beta)*(u1 - u2)",
+  "V_matches_expected": true,
+  "V_independent_of_G": true,
+  "U_classes_vanish": true,
+  "V_classes_vanish": true,
+  "all_degree6_monomials": {
+    "c1^0 c2^0 c3^0 y^3": "0",
+    "c1^0 c2^0 c3^1 y^0": "0",
+    "c1^0 c2^1 c3^0 y^1": "0",
+    "c1^1 c2^0 c3^0 y^2": "-u1*u2*(alpha - beta)**2*(alpha + beta)*(u1 - u2)",
+    "c1^1 c2^1 c3^0 y^0": "0",
+    "c1^2 c2^0 c3^0 y^1": "u1*u2*(alpha - beta)**2*(alpha + beta)*(u1 - u2)",
+    "c1^3 c2^0 c3^0 y^0": "0"
+  },
+  "twists": {
+    "L1=O(-2),L2=O(-1)": {
+      "1": "0",
+      "2": "3*u1**2*u2 - 3*u1*u2**2",
+      "3": "3*u1**2*u2 - 3*u1*u2**2"
+    },
+    "O(2),O(1)": {
+      "1": "0",
+      "2": "-3*u1**2*u2 + 3*u1*u2**2",
+      "3": "-3*u1**2*u2 + 3*u1*u2**2"
+    },
+    "O(1),O(-1)": {
+      "1": "0",
+      "2": "0",
+      "3": "0"
+    },
+    "O(1),O(0)": {
+      "1": "0",
+      "2": "-u1**2*u2 + u1*u2**2",
+      "3": "-u1**2*u2 + u1*u2**2"
+    },
+    "untwisted": {
+      "1": "0",
+      "2": "0",
+      "3": "0"
+    }
+  }
+}

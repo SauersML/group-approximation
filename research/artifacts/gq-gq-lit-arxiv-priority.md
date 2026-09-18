@@ -322,3 +322,43 @@ Q(t_1..t_k), embed in finitely presented simple rings.
   algebra Boone–Higman question (`algebra-boone-higman-conjecture`), for the single input Q. The survey's
   characteristic-p framing of EMN supports this reading. Check the Dniester Notebook (4th edition, 1993)
   and the Kharlampovich–Sapir survey before any write-up.
+
+## 10. Priority check for gq-nv-obstruct (2026-09-18): BS(1,n) in Brin–Thompson and Turing-machine groups
+
+The claim: `bs13-embeds-in-brin-thompson-3v`, BS(1,3) ≤ 3V via a height-3 renormalization of SMART
+(`smart-induced-map-has-brick-local-height-3-renormalization`, 1cf2b3283). Bounded web and arXiv search
+over 2016–2026, no MathSciNet.
+
+**Verdict: no priority threat found.** No paper or preprint embeds or excludes BS(1,n), |n| ≥ 2, in any
+Brin–Thompson group nV or in a group of reversible Turing machines. No element of nV with
+|g^N| = O(log N) is known.
+- **Callard–Salo**, arXiv:2208.00685v3 (Ergodic Theory Dynam. Systems 44, 2024), states the question as
+  open. Verbatim: "It is not known whether the Heisenberg group or the Baumslag-Solitar group BS(1,2)
+  embed in Aut(A^ℤ)."
+  - Their Theorem D: "The group of Turing machines RTM(n,k) contains a distortion element; … |f^n|_F =
+    O(log^4 n)."
+  - Their Theorem E: "The Brin-Thompson group mV contains a distortion element; indeed there is an element
+    f such that |f^n| = O(log^4 n)."
+  - Their bound: "the radius of g^n as a cellular automaton is Θ(log n), so the true growth of word norms
+    of powers of our automorphism is between Ω(log n) and O(log^4 n)."
+  - They say their element "roughly corresponds to the SMART machine of Cassaigne, Ollinger, and
+    Torres-Avilés". This is the same machine the lane renormalizes, so cite them closely: the novelty is
+    getting exact exponential distortion from a height-3 brick-local renormalization.
+- **Zero-entropy obstruction.** Cyr–Franks–Kra–Petite, arXiv:1611.05913 (J. Mod. Dyn. 2018): BS(1,n) and
+  every group with an exponentially distorted element do not embed in Aut(X) when h_top(X) = 0. This does
+  not apply to full shifts or to nV. Callard–Salo solve "the second subquestion of [CFKP, Question 5.1]".
+  I did not read the first subquestion, so it is not verified whether it asks for BS(1,n).
+- **Other Thompson-like groups containing BS(1,2), not nV.**
+  - Kodama, arXiv:2602.04839 (2026-02-04): "the Baumslag-Solitar group BS(1,2) is undistorted in the
+    Lodha-Moore group G₀". This is piecewise projective, relevant to family C.
+  - BLIW arXiv:2408.05673: BS groups inside finitely presented simple twisted Brin–Thompson groups SV_G,
+    through a type (A) actor.
+  - V excludes BS(m,n) with |m| ≠ |n| (undistorted cyclics; Bleak–Matucci–Neunhöffer, Burillo–Cleary–Röver).
+- **Withdrawn.** Sheng arXiv:2209.11982 v2 (2025-04-02) was withdrawn over a flawed proof. Do not cite it
+  as excluding BS groups from nV or SV_G.
+- **What the claim would give, if the referees pass it:**
+  - the first exponentially distorted element in a Brin–Thompson group, improving Callard–Salo's
+    O(log^4 N) for 3V to the optimal Θ(log N) at the group level;
+  - an nV answer to the BS(1,n) half of the Callard–Salo question. Their question is about Aut(A^ℤ),
+    which is a different group, so do not claim it is answered unless the construction also lives there.
+  - Salo's question for Aut_2 (known to the lane) has the same caveat.

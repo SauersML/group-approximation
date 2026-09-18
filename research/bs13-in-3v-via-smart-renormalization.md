@@ -9,8 +9,9 @@ requires:
   - renormalizable-thompson-elements-give-baumslag-solitar
 ---
 
-`U ∈ 2V` has infinite order, since it has no periodic points: it factors onto `Z_3`
-(`smart-level-zero-return-map-factors-onto-3-adic-odometer`). The pair `(A, φ)` is a height-3
+`U ∈ 2V` has infinite order. SMART's moving-tape map `F` has no periodic points
+(`three-v-contains-aperiodic-rationals`, item 1). A periodic point of the first-return map `U = F_Y`
+would be a periodic point of `F`. The pair `(A, φ)` is a height-3
 renormalization in the sense of items 1–3 of
 `renormalizable-thompson-elements-give-baumslag-solitar`. That node, with `k = 2` and `m = 3`, gives
 `s = U × id ∈ 3V` and `u ∈ 3V` with `u s u^-1 = s^3`, so `BS(1,3) ≅ ⟨s, u⟩ ≤ 3V`.

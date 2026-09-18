@@ -54,3 +54,5 @@ and BFFHZ Corollary F), the property passes to any Artin group commensurable
 with a direct or free product of groups of types A, B, D, I_2(m), Ã, C̃.
 
 The derivation is `c-tilde-artin-pbh-via-braid-group-embedding-proof`.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. It is independent of linearity. The plain and permutational properties both pass to subgroups trivially, so A(C̃_n) <= B_(n+2) <= Aut(F_(n+2)) and BFFHZ Theorem A suffice; Zaremsky's Corollary B is not needed. This is an immediate consequence of BFFHZ Corollary B and the classical Charney--Crisp embedding. BFFHZ and survey Remark 5.4 list C̃_n (n >= 3) as open, which looks like a bookkeeping oversight in those sources, not a new theorem. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.

@@ -1,0 +1,2 @@
+# bh-free-58 (free lane)
+Direction (09-18): Kourovka 21.74 (Kohl) — decidability, for g in CT(Z), of (a) permutes a nontrivial residue-class partition, (b) has only finite cycles, (c) has no finite cycles. Plan: encode reversible counter machines as class permutations (FRACTRAN-type, positive canonical class-to-class pieces, preserving N_0) and reduce from Kari–Ollinger periodicity/immortality undecidability. Possibly 21.73 (conjugacy) afterwards. Claimed on UNOWNED.md.

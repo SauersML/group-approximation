@@ -1,0 +1,7 @@
+relator maps to identity: True
+pi(u): {0: [[1, 2, 1], [0, 1, 0], [0, 0, 1]]}
+pi(b1): {0: [[1, 0, 2], [0, 1, 0], [0, 0, 1]]}
+pi(v): {0: [[1, 1, 1/2], [0, 1, 0], [0, 0, 1]]}
+coordinate-0 generators of pi(F_-): [[1, -1, -1], [0, 1, -1], [0, 0, 1]] [[1, 0, 0], [0, -1, 1], [0, 0, -1]]
+pi(v) at coordinate 0 is non-integral: True
+pi(u) != 1: True  pi(b1) != 1: True

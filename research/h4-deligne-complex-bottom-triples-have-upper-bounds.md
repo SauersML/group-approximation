@@ -70,6 +70,85 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     - With `b ∈ R_X(2)`, witnesses of length 2 are needed (index up to 1802).
     - So the witness length tracks the length of `b`, which is consistent with a quasi-centre built
       from the middle letter.
+- **Single-edge case: normal form and fibred quotient** (w5-042,
+  `h4-case1-pure-normal-form-and-fibred-obstruction`). Case 1 (hexagon projecting to one edge) is equivalent
+  to tuples `α_i ∈ F = ker(ρ_X|P_Y) ≅ F_3` and `β_i ∈ N = ker(ρ_Y|P_X)` with `∏α_i = ∏β_i = 1` and
+  `α_1β_1α_2β_2α_3β_3 = 1`.
+  - Any sub-arrangement of `𝒜_x ∪ 𝒜_y` is blind to the last relation, because `[N, F] = 1` in its `π_1`. So an
+    `H_4` auxiliary arrangement must use other walls.
+  - Adding the third wall of an `A_2` flat `w ∩ w'` gives a 19-wall arrangement in which `ℓ_x` is still
+    modular. Its `π_1` is `F_4 ⋊ P_X`. In it `[N, F] ≠ 1`, and the relation becomes a nontrivial
+    point-pushing identity.
+  - Open: turning that identity into a centre (the Gauss–Bonnet step).
+- **Single-edge case: braid monodromy of the fibred shadows** (w6-042,
+  `h4-a2-fibred-shadows-are-a4-pure-braid-retractions`).
+  - Every `ℓ_x`-fibred shadow embeds the hexagon relation in a pure braid group `P_{k+1}`.
+  - For each of the 9 `A_2` flats, the monodromy `P_X → P_4` kills 9 of the 15 meridians and sends the other 6
+    to the `A_ij`.
+  - The shadow is the retraction `P ↠ P_5` onto an `A_4` braid sub-arrangement, with `F ↦ ⟨A25,A35,A45⟩` and
+    `N ↦ ⟨A12,A13,A14⟩`.
+  - Consequence: the point-pushing identity in one `A_2` shadow is exactly the `A_4` single-edge hexagon
+    relation, so it cannot force a label-5 centre. The `A_2` augmentations are dead as `H_4` analogues of
+    Huang's arrangement I.
+  - What remains among single fibred flats is the three `I_2(5)` flats: 6 fibre points, a `P_7` shadow, and
+    collision arrangement `χ = (t−1)(t−4)(t−5)`.
+- **Single-edge case: the `I_2(5)` fibred shadows** (w6-042,
+  `h4-i25-fibred-shadows-are-rigid-cluster-braid-groups`).
+  - Four fibre points form a rigid cluster `p_c + s·{0, 1, φ^{-1}, φ}`, the `I_2(5)` pencil, and they all
+    collide on one wall.
+  - The shadow is `f^{-1}(⟨Δ²_C⟩) ⊂ P_7`, the subgroup where the cluster moves only by full twists.
+  - The identity is an `A_6` single-edge hexagon whose `N`-letters lie in the rigid-cluster subgroup `N_V`.
+  - Open: whether every such constrained hexagon has a centre `ρ_V(y_2)` or `ρ_V(s_4^k)A_{Y''}`.
+- **Single-edge case: centre forms in the `I_2(5)` shadow** (w7-042,
+  `h4-i25-shadow-centre-forms-hold-only-up-to-rotation`).
+  - **The literal forms fail.** A cabling embedding `ι : P_4 → P_7` (`F → F''`, `N → N_V`, `A_{12} ↦ Δ_C^2`)
+    carries an exact `A_3` tuple to a hexagon of the constrained class. Certified in curver, that hexagon has:
+    - `y_2 ≁ x_1`;
+    - no centre `Δ_C^{2j}A_{Y''}` for any `j`, by the twist inequality;
+    - but its own vertex `y_3` as a centre.
+  - **Rotated, the forms hold.** "`y_3` is a centre" is form (Y2) after re-basing at `(x_2, y_1)`. On every tested
+    tuple, some rotation has form (Y2) or (TW):
+    - 224 exact `A_3` tuples;
+    - 180 exact `A_6` tuples;
+    - all 32 closing `A_3` hexagons that fail the base-edge forms, each of which has `y_3` as a centre.
+  - **The single flat is exhausted.** An `A_3` pair lemma (1910 tests, 0 violations, unproved) would give every
+    `ι`-cabled hexagon a centre. So a single `I_2(5)` flat cannot produce a counterexample, and a proof of
+    Case 1 must use its rotation-invariant form with multi-flat or non-fibred shadows.
+- **Single-edge case: the pair lemma, and all braid shadows have centres** (w8-042,
+  `braid-pure-single-edge-hexagons-always-have-a-centre`,
+  `h4-fibred-braid-shadows-cannot-certify-case1-counterexamples`).
+  - **`Z/2` Helly lemma (proved).** Let `x_i` be arcs from punctures to a boundary point `d_0` of a punctured
+    disc. The set of punctures in the `d_1`-region of `⋃x_i` is the intersection of the sets for the pairs
+    `x_i ∪ x_j`.
+    - Proof: the face boundary of a separated puncture is a mod-2 cycle. It splits into tails `π_i(v)` running to
+      `d_0`, and these pair up into cycles on `x_i ∪ x_j`.
+    - Consequence: every pure single-edge hexagon in the `(A_X, A_Y)` arc model of `B_n` has a spider centre.
+      The `A_Y` are spider stabilisers, and all ranks are covered.
+    - This proves w7-042's `A_3` pair lemma. Cross-check: 0 violations in 1910 / 3663 / 4223 triples at
+      `n = 4, 5, 6`.
+  - **Obstruction.** The `A_2` and `I_2(5)` fibred shadows, and products of them such as `N_V ∩ N_{V'}`, send
+    Case 1 hexagons to pure braid hexagons, so every image has a centre.
+    - No fibred braid shadow can certify a centreless Case 1 hexagon. This kills the cabling route
+      unconditionally, and the whole class `𝓗_V` as a source of certificates.
+    - For the `A_2` flats (onto `P_5`), some image centre even lies in the image layer.
+    - What is left is lifting. In an `I_2(5)` shadow: is some centre in `Ω(x_1∪x_2∪x_3)` a spider whose
+      restriction to the cluster `C` is `Δ_C^{2j}y_0`, and does it lift to an `H_4`-adjacent vertex? That is
+      form (R).
+- **Single-edge case: (L_V) is dead, image-layer centres always exist** (w9-042,
+  `h4-i25-shadow-hexagons-have-image-layer-centres`).
+  - **Ejection-arc lemma (proved).** Every `I_2(5)` shadow hexagon `ρ_V(H)` has a centre `hA_{Y''}` with
+    `h ∈ G_V`. Equivalently, `⋂_i ρ_V(p_iP_XP_Y) ≠ ∅`.
+    - If the cluster point `p_c` lies in the `d_1`-region `Ω`, every twist class `D^j` is realised.
+    - Otherwise the arc ejecting `p_c` to `d_0` is unique in the forgotten 4-point disc. It is shared by every
+      pair region that ejects `p_c`, and in `B_4` a 3-leg spider has exactly one disjoint such arc. This pins
+      the class of *every* centre to `f(h) ∈ D^m P_{123}`, with one `m` common to those pairs.
+  - So the last single-flat certificate, (L_V), never holds. The lifting step (b) is equivalent to Case 1:
+    `ρ_V(⋂p_iP_XP_Y) ⊆ ⋂ρ_V(p_iP_XP_Y)`, and the gap is `ker ρ_V`.
+  - **Two flats are not fibred.** For every pair of the three `I_2(5)` flats, `ℓ_x` is not modular in
+    `ℬ_V ∪ ℬ_{V'}` (23 walls, 8 fibre points). The new cluster points of the two flats collide on 2 hyperplanes
+    that are not `H_4` walls (`twoflat.py`). So there is no braid picture with two rigid clusters. A multi-flat
+    joint certificate has to be computed in the non-fibre-type group `π_1M(ℬ_V ∪ ℬ_{V'})`, or in a
+    non-fibred shadow.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

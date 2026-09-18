@@ -1,0 +1,10 @@
+== verify_surface.py surfaces_m2_census/phi2429.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "darts": 248, "V": 100, "E": 124, "chi(X)": -24, "components": 1, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "gates": "abbABA", "f-corners": 16, "genus of S*_f(X)": 13}
+exit=0
+== verify_surface_multi.py surfaces_m2_census/phi2429.json
+CERTIFICATE OK {"automorphism": "explicit inverse verified", "charpoly": [1, -2, -6, 1], "M^k>0 at k": 2, "components of X": 1, "darts": 248, "V": 100, "E": 124, "chi(X)": -24, "valences": [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], "components of S*": 1, "gates": "abbABA", "f-corners": 16, "genus of S*_f(X)": 13}
+exit=0
+== validate_certificates.py
+surfaces_m2_census/phi2429.json phi0={"a": "abb", "b": "bcaa", "c": "babb"} minus=bbc,bbccc,CBB,CCCBB maxval=4 polygons=31735 vertices=100 chi=-24.0 feasible=True
+summary: 1 certificates, 0 failures
+exit=0

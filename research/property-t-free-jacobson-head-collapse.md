@@ -80,3 +80,204 @@ noncommuting coefficient packet or the Laurent symbol relations), not finer
 rank bookkeeping on the locally finite certificate.  No new node was
 created; the refinement `rank(1-T_m)=2p(1-2^(1-m))` (row constant `2`
 instead of `4`) changes no conclusion.
+
+- **operator-algebras, swarm-0917 (swarm-0917-w7-w7-ptl-follow): root-column
+  transport through relative (T) of `EL_2(J) x| J^2` -- dies at `P_N in A_K`.**
+
+  *Proposal.* Run `thm:transport` and `cor:defect-hs` with `L` replaced by
+  the amenable root column `N=X_13(J)X_23(J)`. This column already carries the
+  cell certificate: `uNu^(-1)<=N`, `c in C_G(N)`, and
+  `[ucu^(-1),x_23(1)]=x_13(Q)`. Obtain the missing projection `P_N` onto
+  `Fix sigma~(N)` from relative (T) of the pair
+  `(K,N)=(<X_12,X_21,N>, N)`.
+
+  *Result.* Recorded in `root-column-fixed-projection-is-not-in-root-pair-cstar`.
+  1. If `P_N in B`, transport goes through with no (T), and gives the HS head
+     collapse.
+  2. But in every `delta_e`-profile model, `P_N notin C*(sigma~(K))`.
+
+  *Invariant.* The tempered quasi-regular representation
+  `lambda_(K/C_K(y))` for `y=x_14(1)`.
+  - It is realized exactly on `Fix(N)` by the centralizing root vectors
+    `[V_n(y)]`.
+  - It is realized weakly on `Fix(N)^perp` through the trace.
+  - `C_K(y)` is amenable because `U(J)` is locally finite.
+
+  *Step where it dies.* A central projection of `A_K` splitting two
+  summands that share a weak quotient.
+
+  *Consequence.* Relative (T), Markov functional calculus and window averages
+  all land in `A_K`. So none can close this route. No relative Kazhdan
+  projection exists in `C*_max(K)` at all.
+
+  *What is left.* A (T)-free proof on this column must place `P_N` in `B`
+  from outside every such `A_K`, and must still pass from HS to operator norm.
+  The claim stays OPEN.
+
+- **host-geometry, swarm-0917 (swarm-0917-w8-w8-ptl-pull): rank-two
+  (T)-free collapse, dies because `EL_2(J)` is LEF.**
+
+  *Proposal.* The rank-two block has no Kazhdan subgroup. Its relations still
+  carry the whole Toeplitz structure: the Whitehead involution
+  `w = e_12(S) e_21(T) e_12(S) = [[Q,S],[T,0]]` with `w^2 = 1`, the braid
+  identity `w = e_21(T) e_12(S) e_21(T)`, and the non-amenable symbol extension
+  `L_2 -> EL_2(J) -> SL_2(F_2[z^(+-1)])`. The plan was to kill `e_12(Q)`
+  (conjugate to `x_13(Q)`) in corona representations of this block alone.
+
+  *Result.* `binary-jacobson-el2-is-lef`, established unreviewed.
+  - `psi(g) = K tau(g)^(-t) K^(-1)` is an automorphism of `EL_2(J)` that
+    inverts the symbol. Here `tau` is the anti-automorphism `S <-> T` and
+    `K = [[0,1],[-1,0]]`.
+  - Composed with `S -> T'`, `T -> S'`, it gives a symbol-preserving lift to
+    the mirror end.
+  - Gluing the Toeplitz end at `0` to this mirror end at `M` embeds every ball
+    of `EL_2(J)` in `GL_(2(M+1))(F_2)`.
+  - So `EL_2(J)` is LEF and MF, `Rad_MF(EL_2(J)) = 1`, and the head survives.
+
+  *Invariant.* The mirror lift `psi`. It exists because transpose-inverse is
+  inner in `SL_2` and outer in `SL_n` for `n >= 3`.
+
+  *Where every member dies.* Any argument that uses only relations among
+  `x_ij(J)` and `x_ji(J)` for one index pair. This includes Toeplitz index and
+  direct finiteness, the Whitehead involution, and the rank-two symbol cocycle.
+
+  *What is left.* A (T)-free proof must use a Steinberg commutator in three
+  distinct indices. The target stays OPEN. This is the first non-amenable
+  calibration, strengthening the `SL_fin ⋊ <u>` calibration above.
+
+- **operator-algebras, swarm-0917 (swarm-0917-w8-w8-ptl-follow): corona
+  saturation -- the column prerequisite `P_N in B` is false; every amenable
+  transport subgroup dies.**
+
+  *Proposal.* Follow the one step left by the root-column entry above: place
+  `P_N` in `B` through non-group elements of the corona, or failing that
+  through some other amenable `L<=St_5(J)` that carries the cell certificate.
+
+  *Result.* There are two new established nodes.
+  1. `corona-fixed-projection-membership-is-finite-markov-gap` holds for every
+     subgroup `L`. By ultraproduct saturation over all free ultrafilters,
+     `P_L in pi(B)` iff a finite symmetric `F subset L` has
+     `Fix(F)=Fix(L)` and a spectral gap of `h_F` at `1`. In that case
+     `P_L=chi_{1}(h_F) in C*(sigma~(<F>))`. So no non-group element of `B`
+     can supply a transport projection, and `P_N in B` already implies
+     `P_N in A_K`.
+  2. `amenable-subgroup-fixed-projection-is-never-in-adjoint-corona`. Suppose
+     `L` is amenable, has an infinite class `O=L.g`, and `tr V_n -> delta_e` on
+     `<L,g>`. Then `delta_o -> [V_n(o)]` embeds `l^2(O)` isometrically in
+     `Fix(L)^perp`, and Folner pushforwards give almost-invariant vectors there.
+     So `P_L notin B`.
+     - Since `x_13(a)x_21(1)x_13(a)^(-1)=x_21(1)x_23(a)`, the prerequisite
+       "`P_N in B`" is **false** in every `delta_e`-profile model on `K`.
+     - Since `Z(EL_5(J))=1` (because `Z(J)=F_2`) and `EL_5(J)` is finitely
+       generated, **no infinite amenable `L<=EL_5(J)`** has `P_L in B` in the
+       `delta_e`-profile models of `EL_5(J)`. These are exactly the models
+       that `jacobson-regular-character-not-mf-without-property-t` must exclude.
+
+  *Invariant.* The amenable conjugation representation on `l^2` of an infinite
+  `L`-class, embedded in the ultraproduct by the trace profile.
+
+  *Step where it dies.* Producing `P_L in B` for an amenable `L`, by any
+  means: relative (T), Markov calculus, Folner or window averages, carrier
+  projections, corona modules. It is a gap statement for a finite subset
+  (saturation), and it is refuted by the Folner vectors.
+
+  *What is left.* Transport can only run through a **nonamenable** `L` whose
+  conjugation action is uniformly non-amenable on all its infinite classes,
+  with a model-specific, non-generic proof of `(MSG)` for a finite subset.
+  By `model-spectral-gap-quantifier-ladder`, a representation-generic proof is
+  a Kazhdan theorem. The claim stays OPEN.
+
+- **calibration, swarm-0917 (swarm-0917-w9-w9-ptl-pull): maximal parabolics of
+  EL_3(J) are LEF -- every one-parabolic argument dies.**
+
+  *Proposal.* Test whether the head can be killed inside the nonamenable
+  subgroup that all three-index attempts so far have used. That subgroup is
+  the column parabolic `G_1 = J^2 x| EL_2(J) = <x_12, x_21, x_13, x_23>`, the
+  w7 group `K`. It contains both commutator families, the Toeplitz commutator,
+  the compressor `u` and the whole Levi `EL_2(J)`.
+
+  *Result.* `jacobson-rank-three-parabolics-are-lef` (established, route
+  `jacobson-rank-three-parabolics-lef-proof`, script
+  `experiments/jacobson-parabolic-lef-2026-09-17/check_parabolic_lef.py`).
+  1. `[[g, X], [0, c]]` with `g in EL_2(J)`, `X in M_(2 x m)(J)` and
+     `c in GL_m(F)` form an LEF group. The model is
+     `[[Phi_M(g), ev_d(X)], [0, c (x) 1]]`, where `Phi_M` is the mirror-glued
+     model of `binary-jacobson-el2-is-lef` and `ev_d(X)` evaluates the column
+     on `e_0, ..., e_(d-1)`. The map `ev_d` is left `J`-equivariant, and it is
+     injective on `T`-degree `< d`.
+  2. Every proper parabolic of `EL_3(J)` is conjugate to `G_1`, or is sent to
+     it by `g -> (g^tau)^(-1)`. So every proper parabolic is LEF, and the
+     head survives there.
+  3. Every finite quotient of `G_1` kills the head. An `EL_2(J)`-invariant
+     finite-index `W <= J^2` is `I ⊕ I`, and `J/I` finite forces `ST = 1`.
+     So `G_1` is LEF but not residually finite, and it is not finitely
+     presented.
+  4. `<G_1, x_31(1)> = <G_1, x_32(1)> = EL_3(J)`.
+
+  *Invariant.* The local embedding `Psi_(M,d)` into
+  `GL(W_M ⊕ F^(md))`, which is exactly multiplicative on balls and keeps
+  `x_13(Q)` at distance `sqrt 2` from `1` in the regular representation.
+
+  *Step where it dies.* Consider any argument that uses only relations and
+  asymptotic multiplicativity inside one proper parabolic of one index
+  triple. Examples:
+  - Whitehead, symbol or index relations of `EL_2(J)`;
+  - `u N u^(-1) <= N`;
+  - either three-index commutator family;
+  - relative-(T)-style projections for `(K, N)`;
+  - finite-image module collapse.
+
+  Any such argument would kill the head in the LEF group `G_1`. This covers
+  the nonamenable-`L` transport left open by the previous entry whenever `L`
+  lies in one parabolic. It also subsumes the rank-two obstruction
+  `binary-jacobson-el2-is-lef`: three indices alone are not enough.
+
+  *What is left.* Two distinct maximal parabolics on a triple already
+  generate `EL_3(J)`. So by `binary-jacobson-mark-dichotomy-holds-from-rank-two`,
+  a three-index proof is the same as proving that `EL_3(J)` is not MF. That is
+  open, and stronger than what the rank-five (T) route gives. A (T)-free proof
+  must either prove `EL_3(J)` is not MF, or use at least four indices in an
+  essential way.
+
+  Open spark: is the two-by-two parabolic `M_2(J) x| (EL_2(J) x EL_2(J))`
+  inside `EL_4(J)` LEF? `ev_d` is not right equivariant for nonconstant right
+  multiplication. If this group is not LEF, it is the smallest four-index
+  witness. The claim stays OPEN.
+
+- **finite-models, swarm-0917 (swarm-0917-w9-w9-ptl-follow): the double
+  parabolic traps every two-step model.**
+
+  *Proposal.* Extend the w9 column-evaluation LEF models to the w9 spark
+  `P_{2,2} = M_2(J) x| (EL_2(J) x EL_2(J)) <= EL_4(J)`. The candidates are
+  block-affine models `[[Phi(A), X(Y)], [0, Psi(B)]]`, and more generally any
+  finite-dimensional partial model with a Levi-stable filtration.
+
+  *Result (established class kill).*
+  `jacobson-double-parabolic-two-step-models-kill-head`: for a partial model
+  on one explicit finite ball, and any Levi-stable filtration on which the
+  unipotent radical has uniform degree `d`, the degree-`d` symbol of the head
+  `x_13(Q)` vanishes. In the two-step case the head maps to `1`.
+
+  *Mechanism.* Write `v` for the symbol of `x_13(1)`. Then:
+  - the left Levi gives `Lambda(T) Lambda(S) v = v`, from `TS = 1`;
+  - the right Levi gives a commuting algebra with `M(b) v = Lambda(b) v`;
+  - so the finite-dimensional space `𝓜 v` traps the one-sided inverse, and
+    `Lambda(S) Lambda(T) v = v`.
+
+  The same holds for every parabolic of `EL_n(R)` with `ts = 1` in which the
+  root carrying the head has both Levi blocks of size at least 2. The
+  one-sided `P_{2,1}` escapes, and the artifact computes the defect `ev_d(Q)`
+  there. So the w9 LEF mechanism has no four-index extension.
+
+  *Step where it dies.* The method only controls the leading symbol. Some
+  models remain possible:
+  - models where the unipotent radical has Loewy length at least 3 on every
+    Levi-stable flag, such as permutation or regular-type models;
+  - norm-approximate (MF) models.
+
+  Neither kind is excluded, and LEF-ness of `P_{2,2}(J)` stays open.
+
+  Open spark: either build a Loewy-length-3 model that keeps the head in
+  higher degree, or find a finitely presented shadow of `P_{2,2}(J)` for the
+  pigeonhole argument of `cohn-elementary-group-is-not-lef`. The claim stays
+  OPEN.

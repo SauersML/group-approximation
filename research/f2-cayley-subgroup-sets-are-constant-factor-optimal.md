@@ -101,3 +101,22 @@ that no mixture of subgroups tracks, which is new behaviour for abelian groups.
   - *Result.* The largest value found is `22/21`.
   - *Where it dies.* The search cannot reach `k >= 8`, because the number of
     subgroups in the LP grows as `2^(c(k-c))`.
+* **Spectral relaxations (2026-09-17, swarm-0917-w7, entropy-measure).**
+  - *Mass profile alone is order `c` (class kill).*
+    `mass-only-spectral-relaxation-of-subgroup-dominance-is-order-c`: the law
+    `2^-c (delta_0 + sum_(i<2^c) delta_(e_i))` meets every subspace mass bound
+    and has `C(nu) >= c 2^(c-1)/(2^c - 1) > c/2`. So the spectral-sampling repair
+    above, and every argument that sees `S` only through `W -> nu_S(W)`, dies at
+    the charging step with factor `>= c/2`. The proved `E_c/2` is within `0.81` of
+    optimal for that information.
+  - *Harper quotient bound (established).*
+    `f2-set-spectral-laws-obey-quotient-collision-and-harper-bounds`: every set law
+    satisfies `2 sum_i nu{chi.b_i = 1} >= log2 1/nu(B^perp)`. The order-`c` witness
+    violates this.
+  - *New prerequisite.* `f2-cayley-mass-harper-spectral-relaxation-is-bounded`
+    (OPEN), via route `f2-cayley-dominance-from-bounded-mass-harper-relaxation`.
+    This is a Boolean-free convex relaxation. Climbing lower bounds on it are
+    `15/14`, `12/11` and `15/14` at `(5,2)`, `(6,3)` and `(7,4)`, against order
+    `c/2` for the mass-only relaxation. This suggests that `(H)` is the missing
+    ingredient. A growing law in the relaxation would refute only the relaxation,
+    not this claim.

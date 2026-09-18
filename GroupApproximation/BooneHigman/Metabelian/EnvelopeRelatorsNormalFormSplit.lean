@@ -40,7 +40,8 @@ theorem rnNF_split_one (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) [N
       apply hz
       have h1 := prepend_dropN_of_isStreamPrefix _ _ h0
       have h2 : z = prepend w (dropN [x₀].length ((e : Equiv.Perm (Cantor X))⁻¹ z)) := by
-        rw [← he, h1, Equiv.Perm.apply_inv_self]
+        rw [← he, h1]
+        exact (Equiv.apply_symm_apply (e : Equiv.Perm (Cantor X)) z).symm
       rw [h2]
       exact isStreamPrefix_prepend _ _
     rw [Subgroup.coe_mul, Subgroup.coe_mul, Subgroup.coe_inv, Equiv.Perm.mul_apply,
@@ -48,7 +49,8 @@ theorem rnNF_split_one (H : Subgroup (TreeAut X)) (N : Subgroup (RNFree X H)) [N
       show ((rcoreShift [x₀] (TreeAut.rootPerm (k : TreeAut X)) : ↥(higmanThompsonV X)) :
           Equiv.Perm (Cantor X)) =
         localize [x₀] (nfRootShift (TreeAut.rootPerm (k : TreeAut X))) from rfl,
-      localize_apply_of_not hz', Equiv.Perm.apply_inv_self]
+      localize_apply_of_not hz']
+    exact Equiv.apply_symm_apply (e : Equiv.Perm (Cantor X)) z
   · obtain ⟨x, -, rfl⟩ := List.mem_map.mp ha
     exact (rcoreE_spec x₀ (List.cons_ne_nil x₀ [x])).comp (he.append [x])
   · rw [List.pairwise_map]

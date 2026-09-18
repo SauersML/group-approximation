@@ -115,3 +115,140 @@ theorem witnessStepPinch_junction_A_G₁ {a b : RegionCandidate D eps X}
     (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₁ hK)) hm.1 hm.2
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_junction_A_G₁
+/-- **Junction `B → A`** when `G₂ = []`. -/
+theorem witnessStepPinch_junction_B_A {a b : RegionCandidate D eps X}
+    {G₂ : CyclicArc (cellDarts X j)} {F : Finset X.toCombMap.Face}
+    (hFa : ∀ f ∈ F, f ∉ a.1) (hFb : ∀ f ∈ F, f ∉ b.1) (hFj : (cell X j).face ∉ F) (hij : i ≠ j)
+    (hai : a.JoinsCells i j) (hbi : b.JoinsCells i j) (haj₁ : 0 < (a.cellArcList j).length)
+    (hbj₁ : 0 < (b.cellArcList j).length) (K₂ : CyclicArc (cellDarts X j))
+    (hK₂ : K₂.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {p r : List X.toCombMap.Dart} {d g : X.toCombMap.Dart} (hS : b.sideFrom i = p ++ [d])
+    (hG : G₂.darts = []) (hA : a.sideFrom j = g :: r) :
+    WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha d) g := by
+  obtain ⟨q, z, hq⟩ := witnessStepPinch_exists_last hbj₁
+  obtain ⟨z', q', hq'⟩ := List.exists_cons_of_ne_nil (List.ne_nil_of_length_pos haj₁)
+  have hzK : z ∈ K₂.darts := by
+    rw [hK₂, hq]
+    simp
+  have hzb : z ∈ b.cellArcList j := by
+    rw [hq]
+    simp
+  have hz'K : z' ∈ K₂.darts := by
+    rw [hK₂, hq']
+    simp
+  have hz'a : z' ∈ a.cellArcList j := by
+    rw [hq']
+    simp
+  have hm := witnessStepPinch_arc_mid_faces_alpha hFb hbi hFj K₂ hzK hzb
+  have hm' := witnessStepPinch_arc_mid_faces hFa hai hFj K₂ hz'K hz'a
+  have hK : K₂.darts = q ++ z :: z' :: q' := by
+    rw [hK₂, hq, hG, hq']
+    simp
+  exact witnessStepPinch_fan_trans
+    (witnessStepPinch_fan_trans (witnessStepPinch_fan_sideI_end hFb hij hbi hS hq)
+      (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₂ hK)) hm.1 hm.2)
+    (witnessStepPinch_fan_sideJ_start hFa hij hai hq' hA) hm'.1 hm'.2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_junction_B_A
+
+/-- **Junction `G₂ → G₁`** when `A = []`. -/
+theorem witnessStepPinch_junction_G₂_G₁ {a b : RegionCandidate D eps X}
+    {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cellDarts X j)}
+    {F : Finset X.toCombMap.Face} (hFa : ∀ f ∈ F, f ∉ a.1) (hFi : (cell X i).face ∉ F)
+    (hFj : (cell X j).face ∉ F) (hij : i ≠ j) (hai : a.JoinsCells i j)
+    (hai₁ : 0 < (a.cellArcList i).length) (haj₁ : 0 < (a.cellArcList j).length)
+    (K₁ : CyclicArc (cellDarts X i))
+    (hK₁ : K₁.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (K₂ : CyclicArc (cellDarts X j))
+    (hK₂ : K₂.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {p r : List X.toCombMap.Dart} {d g : X.toCombMap.Dart} (hG : G₂.darts = p ++ [d])
+    (hA : a.sideFrom j = []) (hG1 : G₁.darts = g :: r) :
+    WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha d) g := by
+  obtain ⟨q, z'', hq⟩ := witnessStepPinch_exists_last hai₁
+  obtain ⟨z', q', hq'⟩ := List.exists_cons_of_ne_nil (List.ne_nil_of_length_pos haj₁)
+  have hz'K : z' ∈ K₂.darts := by
+    rw [hK₂, hq']
+    simp
+  have hz'a : z' ∈ a.cellArcList j := by
+    rw [hq']
+    simp
+  have hz''K : z'' ∈ K₁.darts := by
+    rw [hK₁, hq]
+    simp
+  have hz''a : z'' ∈ a.cellArcList i := by
+    rw [hq]
+    simp
+  have hm' := witnessStepPinch_arc_mid_faces hFa hai hFj K₂ hz'K hz'a
+  have hm'' := witnessStepPinch_arc_mid_faces_alpha hFa hai hFi K₁ hz''K hz''a
+  have hK₂' : K₂.darts = (b.cellArcList j ++ p) ++ d :: z' :: q' := by
+    rw [hK₂, hG, hq']
+    simp
+  have hK₁' : K₁.darts = q ++ z'' :: g :: (r ++ b.cellArcList i) := by
+    rw [hK₁, hq, hG1]
+    simp
+  exact witnessStepPinch_fan_trans
+    (witnessStepPinch_fan_trans
+      (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₂ hK₂'))
+      (witnessStepPinch_fan_cellJ_cellI hFa hij hai hA hq' hq) hm'.1 hm'.2)
+    (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₁ hK₁')) hm''.1 hm''.2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_junction_G₂_G₁
+
+/-- **Junction `B → G₁`** when `G₂ = A = []`. -/
+theorem witnessStepPinch_junction_B_G₁ {a b : RegionCandidate D eps X}
+    {G₁ : CyclicArc (cellDarts X i)} {G₂ : CyclicArc (cellDarts X j)}
+    {F : Finset X.toCombMap.Face} (hFa : ∀ f ∈ F, f ∉ a.1) (hFb : ∀ f ∈ F, f ∉ b.1)
+    (hFi : (cell X i).face ∉ F) (hFj : (cell X j).face ∉ F) (hij : i ≠ j)
+    (hai : a.JoinsCells i j) (hbi : b.JoinsCells i j) (hai₁ : 0 < (a.cellArcList i).length)
+    (haj₁ : 0 < (a.cellArcList j).length) (hbj₁ : 0 < (b.cellArcList j).length)
+    (K₁ : CyclicArc (cellDarts X i))
+    (hK₁ : K₁.darts = a.cellArcList i ++ G₁.darts ++ b.cellArcList i)
+    (K₂ : CyclicArc (cellDarts X j))
+    (hK₂ : K₂.darts = b.cellArcList j ++ G₂.darts ++ a.cellArcList j)
+    {p r : List X.toCombMap.Dart} {d g : X.toCombMap.Dart} (hS : b.sideFrom i = p ++ [d])
+    (hG : G₂.darts = []) (hA : a.sideFrom j = []) (hG1 : G₁.darts = g :: r) :
+    WitnessStepPinchFan X.toCombMap F (X.toCombMap.alpha d) g := by
+  obtain ⟨q, z, hq⟩ := witnessStepPinch_exists_last hbj₁
+  obtain ⟨z', q', hq'⟩ := List.exists_cons_of_ne_nil (List.ne_nil_of_length_pos haj₁)
+  obtain ⟨q'', z'', hq''⟩ := witnessStepPinch_exists_last hai₁
+  have hzK : z ∈ K₂.darts := by
+    rw [hK₂, hq]
+    simp
+  have hzb : z ∈ b.cellArcList j := by
+    rw [hq]
+    simp
+  have hz'K : z' ∈ K₂.darts := by
+    rw [hK₂, hq']
+    simp
+  have hz'a : z' ∈ a.cellArcList j := by
+    rw [hq']
+    simp
+  have hz''K : z'' ∈ K₁.darts := by
+    rw [hK₁, hq'']
+    simp
+  have hz''a : z'' ∈ a.cellArcList i := by
+    rw [hq'']
+    simp
+  have hm := witnessStepPinch_arc_mid_faces_alpha hFb hbi hFj K₂ hzK hzb
+  have hm' := witnessStepPinch_arc_mid_faces hFa hai hFj K₂ hz'K hz'a
+  have hm'' := witnessStepPinch_arc_mid_faces_alpha hFa hai hFi K₁ hz''K hz''a
+  have hK₂' : K₂.darts = q ++ z :: z' :: q' := by
+    rw [hK₂, hq, hG, hq']
+    simp
+  have hK₁' : K₁.darts = q'' ++ z'' :: g :: (r ++ b.cellArcList i) := by
+    rw [hK₁, hq'', hG1]
+    simp
+  exact witnessStepPinch_fan_trans
+    (witnessStepPinch_fan_trans
+      (witnessStepPinch_fan_trans (witnessStepPinch_fan_sideI_end hFb hij hbi hS hq)
+        (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₂ hK₂')) hm.1 hm.2)
+      (witnessStepPinch_fan_cellJ_cellI hFa hij hai hA hq' hq'') hm'.1 hm'.2)
+    (witnessStepPinch_fan_of_facePerm (witnessStepPinch_facePerm_of_arc K₁ hK₁')) hm''.1 hm''.2
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepPinch_junction_B_G₁
+
+end PinchJunction
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

@@ -98,3 +98,52 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
      presented and `Stab_{A_1}(0)` is finitely generated. Both are open.
    - *Why the earlier obstructions miss it.* `σ` is continuous for no real or
      `p`-adic topology, so H3 does not apply.
+6. **The `p = 3` dilation in a Brin–Thompson group (2026-09-18, lanes gq-nv-obstruct and gq-affq).**
+   - *The piece, ESTABLISHED (d4064ce79).* `bs13-embeds-in-brin-thompson-3v`, through
+     `smart-induced-map-has-brick-local-height-3-renormalization`. Referees: gq-referee-a
+     12b5beb4a, gq-referee-b b6d33ae8e, gq-referee-c 894d10d19. Numerical validation: cba5854a6.
+     Priority check (bounded, no MathSciNet): e78b09c00. It gives `s, u ∈ 3V` with `u s u^-1 = s^3`, where
+     `s = U × id` and `U` is SMART induced on its level-0 moves.
+   - *What is still missing for `Aff(Q)` through an `nV` host.*
+     - One copy of `Q` must contain a nontrivial `h` with a conjugate `f_p h f_p^-1 = h^p` for
+       every prime `p`.
+     - The `f_p` must commute and act on that copy compatibly.
+     - The root tower `Q_T` of `three-v-contains-aperiodic-rationals` and the element `s` above
+       both sit over SMART-type bases. Whether one element can serve as base for both, and
+       whether a height-`p` renormalization exists for primes `p ≠ 3`, is open. `Aff(Q)` contains
+       `BS(1,2)` (the dilation `x ↦ 2x`), so an `nV` host needs `BS(1,2) ≤ nV`
+       (`bs12-embeds-in-brin-thompson-2v`, still OPEN). That calls for a binary analogue of SMART's
+       ternary hierarchy.
+7. **One base for several primes: first obstructions (2026-09-18, gq-affq).**
+   - *Proved:* `renormalization-heights-force-eigenvalue-roots`.
+     - A height-`m` renormalization forces `E(T) = {μ : μ^m ∈ E(T)}`. One base carrying every
+       prime height therefore factors onto `Ẑ`, if it is minimal.
+     - A height-`q` renormalization multiplies every `p`-adic clock by `q^{-1}`. That is a unit
+       map with unbounded carries.
+     - SMART's `U` is known only to factor onto `Z/2 × Z_3`. If that factor is maximal, `U`
+       carries no height with a prime factor `≠ 3`.
+   - *MSI* (`research/artifacts/gq-affq-coprime-renormalization-test.md`). A product base needs a
+     "coprime speed-up" `ψ ∘ U^q = U ∘ ψ`. Sound pointwise refutations show that no one-cell
+     bounded edit gives one for `q = 5` or `q = 7`; this is the same class that carries the
+     height-3 renormalization.
+   - *Conjectured:* by Durand's Cobham theorem for substitutions (arXiv:1010.4009), no single
+     aperiodic machine-type base carries brick-local renormalizations of heights `2` and `3`. If
+     so, the dilations for different primes cannot all come from renormalizing one `s = T × id`,
+     and the `nV` route to `Aff(Q)` needs another mechanism for combining primes.
+8. **Katsura–Exel–Pardo host for the Baumslag–Solitar gate (2026-09-18, gq-affq; critic's U3).**
+   - `odometer-2v-is-fp-simple-and-contains-bs12`: `2V_τ = ⟨2V, τ × id⟩` is the full group of the Katsura
+     odometer triple `A=(2)`, `B=(1)` acting self-similarly on the product 2-graph. It is `F_∞` (Li, Example
+     ex:ZS (III)) and simple (Matui, Theorem simple2, after a perfectness count), and it contains `BS(1,2)`,
+     `(Q,+)` and `2V`.
+   - The odometer is renormalizable natively (`0w ↦ w` is a groupoid bisection), and the baker map of `2V` makes
+     the conjugacy global.
+   - *Not reached:* `Q ⋊ ⟨2⟩`. The conjugator `u` squares `s` and `u^{-1}su` is the first root in the tower `Q_τ`,
+     but `u` is not shown to normalize `Q_τ`. Nor is it known whether `2V_τ` embeds in any `nV`.
+9. **`Q ⋊ ⟨2⟩` in Katsura–Exel–Pardo 2V-hosts: every finite prime set, not all (2026-09-18, gq-affq).**
+   - `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`: `Z[1/2N] ⋊ ⟨2⟩` (not finitely generated) lies in the
+     simple group `2V_{G_N}`, `G_N = Z[1/N] ⋊ ⟨p | N⟩`. For `N = 3` the host is `F_∞`, and it contains
+     `Z[1/6] ⋊ ⟨2⟩`, `BS(1,2)`, `BS(1,3)` and `2V ⊇ Q`.
+   - The natural `Q ⋊ ⟨2⟩` lies in no `2V_H` with `H ≤ Aff(Q)` finitely generated, by bounded denominators (the
+     mechanism of `finite-state-mobius-pieces-see-finitely-many-primes`).
+   - Torus amalgams, adelic finite support and p-adic power maps are escaped or not triggered (claim node).
+   - *Open:* wild copies, and non-affine coefficient groups containing `Z_(2)`.

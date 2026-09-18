@@ -48,9 +48,56 @@ artifacts:
   - It is the piecewise-analytic counterpart of Rivas--Triestino Theorem C, which
     treats `C^1` actions. By their Theorem A, `H4` does act faithfully on the line
     by homeomorphisms.
+- **Finite-entropy hosts: odometer-type generators dead; entropy is 0 or infinity** (2026-09-18,
+  `equicontinuous-bs-bases-force-conjugator-entropy`, lane proof, unreviewed).
+  - Each generator is conjugate to its square, so its entropy `h` satisfies `h = 2h`, hence
+    `h ∈ {0, ∞}` in any compact metrizable host.
+  - In finite-entropy hosts (`nV`, `2V_tau`, the affine `2V_(G_N)`, every isometric-section brick
+    group) all four generators have `h = 0`. By the new node, no generator can then be an
+    equicontinuous map whose closure has a continuous quotient `Z/2` and fixes no point by an
+    element outside `cl<γ^2>`. This kills, as generators, the `2V_tau` odometer `s`, all its
+    conjugates, and all free 2-adic translations, whatever the conjugators are.
+  - **Design lead, not a claim.** A host in which generators have `h = ∞` escapes every
+    finite-entropy obstruction on this node at once. Such elements exist in twisted Brin--Thompson
+    groups `SV_G` whenever `G` has infinite orbits on `S` (coordinate shifts of `C^S`). Also, the
+    coordinate shift `σ` of `C^Z` is conjugate to `σ^2` in `Homeo(C^Z)`: pair coordinates
+    `(2j, 2j+1) ↦ j` through a homeomorphism `C × C ≅ C`. Whether a conjugator can be chosen inside
+    some `SV_G` is open. One heuristic obstruction, not proved: at a constant configuration (fixed
+    by every coordinate permutation), the brick labels of an element of `SV_G` would force `σ` to be
+    conjugate to `σ^2` modulo finitary permutations, which fails when `σ` has finitely many
+    infinite orbits (the number of ends changes). This uses the per-brick description of `SV_G`
+    elements, recalled from Belk--Zaremsky and not re-read at source. So an `SV_G` host for `H4`
+    would need generators whose coordinate labels have infinitely many infinite orbits, or labels
+    that vary between bricks.
+
 - **Not yet tested:**
   - rational similarity groups, beyond the germ constraint `rsg-proper-power-conjugate-germs-torsion-at-finite-orbits` (at a rational periodic point of `g_(i+1)` with finite `g_i`-orbit, a power of `g_(i+1)` is the identity nearby); the equicontinuity question is `finite-nucleus-rsg-proper-power-conjugates-are-equicontinuous`;
   - full groups of shifts of finite type with several cone types, or of non-amenable groupoids;
   - twisted Brin--Thompson envelopes over a finitely presented type (A) actor containing `H4`.
 
   Any host has to contain `BS(1,2)` and has to act on its Cantor space with at least one generator of `H4` not equicontinuous.
+
+- **Proper cocompact CAT(0) hosts: dead** (2026-09-18,
+  `homogeneous-conjugation-invariants-vanish-on-bs-bases`, lane proof, unreviewed).
+  A conjugation-invariant homogeneous quantity is zero or infinite on any element
+  conjugate to a proper power of itself. Taking the quantity to be asymptotic
+  translation length gives `l(g_i) = 0` in every isometric action of every
+  overgroup on every metric space, so no generator is ever loxodromic. In a proper
+  cocompact isometric action on a complete CAT(0) space every element is
+  semisimple and point stabilizers are finite, so an infinite-order element with
+  `l = 0` cannot exist. Since every nontrivial image of `H4` contains `BS(1,2)`,
+  **no group acting properly and cocompactly by isometries on a CAT(0) space
+  contains `H4`.** This excludes the Burger--Mozes groups, Wise's lattices and
+  every finitely presented simple group acting properly cocompactly on a CAT(0)
+  cube complex. Martin's cocompact action of `H4` itself is consistent with this,
+  because it is not proper: its vertex stabilizers are infinite. The same
+  quantity also gives `scl(g_i) = 0` for every generator.
+- **The permutational closure theorems cannot be applied through `H4`'s own
+  splittings** (2026-09-18, `retracts-inherit-proper-power-conjugacy`, lane proof,
+  unreviewed). A retract inherits every proper-power conjugacy of its own
+  elements, so the edge group of each amalgam decomposition on main, and of the
+  index-two twisted double, is a retract of neither side; and `H4` is perfect,
+  hence not an HNN extension. So `pbh-class-closed-under-common-retract-amalgams`,
+  `pbh-class-closed-under-graph-products` and clause (T) of
+  `pbh-class-closed-under-relative-holomorphs` all fail at their hypotheses here.
+  This is a method-kill and not an obstruction: `B_A` is closed under subgroups.

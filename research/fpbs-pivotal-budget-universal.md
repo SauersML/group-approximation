@@ -367,3 +367,27 @@ OPEN research hypothesis P2. There exist graph-dependent C>0 and p0 in (pc,1) su
     - The one rigorous price, `C >= log(1/rho)/log(p_u/p_c)`, is the
       contrapositive of the conditional theorem and adds no new constraint.
     - No new node was filed.
+* **Make the parameter complex (reframing).**
+  * *The idea.* `p (d/dp) log a_(n,R)` is a logarithmic derivative, so bound
+    `log a_(n,R)` on a complex domain rather than its derivative on a real
+    segment.
+  * *What it proves (written, unrefereed; kept OPEN).* `fpbs-zero-free-connectivity-gives-flat-rate` (Harnack,
+    Montel, identity theorem). Suppose the walk-averaged polynomials
+    `a_(n,R)(z)` have no zeros (Z) and satisfy `|a_(n,R)| <= exp(Mn)` (G) on a
+    simply connected domain meeting `(0,p_c]` and `(p_c,1)`, uniformly in
+    `n>=n_0` and `R>=n`. Then:
+    - `lambda=rho` on the interval past `p_c`, so `p_c<p_u`;
+    - this budget holds on compact intervals away from `p_c`.
+  * *How it relates to this hole.* It is a separate decomposition of the goal
+    (`fpbs-zero-free-connectivity-route`, open hypothesis
+    `fpbs-connectivity-polynomials-zero-free-around-criticality`), and neither
+    implies the other. It yields no budget on `[p_c,p_0]` itself, and it forces
+    a flat rate where this claim gives only a Lipschitz one.
+  * *Where it can die.*
+    - (N2) a fixed-`n` singularity of `a_n` at `p_c`;
+    - (N3) the growth step (G) as `R -> infinity`.
+  * *Evidence.* `T_3` is numerically zero-free near `p_c` for `n<=200`, and
+    (G) holds there with `M=0`. The parallel-routes toy grows without bound off
+    the real axis. The first killing test is exact `a_(n,R)(z)` on a small
+    Cayley graph with overlapping cycles as `R` grows
+    (`research/artifacts/fpbs-zero-free-connectivity-2026-09-17.md`).

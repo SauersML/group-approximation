@@ -9,6 +9,11 @@ requires:
   - leavitt-resolvent-derived-units-mod-centre-fp-simple
 ---
 
+**Dead (2026-09-18).** The second prerequisite, `leavitt-resolvent-derived-units-mod-centre-fp-simple`, is
+REFUTED by `leavitt-resolvent-derived-units-mod-centre-not-fp`: the derived unit group of `R_L` is not finitely
+presented modulo its centre. So this route can never establish its target. The deduction below is kept as a
+record.
+
 Deduction. Let `n >= 2`.
 
 By `leavitt-resolvent-ring-is-fp-simple-of-char-zero`, part 3:

@@ -1,0 +1,49 @@
+S_rig        m=3 p=0.0700  max E/T = 0.9645   w_bound/w_exact = 1.000000
+S_rig        m=3 p=0.0933  max E/T = 0.9269   w_bound/w_exact = 1.000000
+S_rig c=2    m=3 p=0.0700  max E/T = 0.9620   w_bound/w_exact = 1.000000
+S_rig c=2    m=3 p=0.0933  max E/T = 0.9217   w_bound/w_exact = 1.000000
+S_rig c=3    m=3 p=0.0700  max E/T = 0.9639   w_bound/w_exact = 1.000000
+S_rig c=3    m=3 p=0.0933  max E/T = 0.9253   w_bound/w_exact = 1.000000
+AP4 c=1      m=4 p=0.0700  max E/T = 0.9732   w_bound/w_exact = 1.000000
+AP4 c=1      m=4 p=0.0700  max E/T = 0.9732   w_bound/w_exact = 1.000000
+AP4 c=2      m=4 p=0.0700  max E/T = 0.9631   w_bound/w_exact = 1.000000
+AP4 c=2      m=4 p=0.0700  max E/T = 0.9631   w_bound/w_exact = 1.000000
+AP4 dil c=1  m=4 p=0.0700  max E/T = 0.9632   w_bound/w_exact = 1.000000
+AP4 dil c=1  m=4 p=0.0700  max E/T = 0.9632   w_bound/w_exact = 1.000000
+nr5 c=1      m=5 p=0.0700  max E/T = 0.9497   w_bound/w_exact = 1.000000
+nr5 c=1      m=5 p=0.0560  max E/T = 0.9725   w_bound/w_exact = 1.000000
+nr5 c=2      m=5 p=0.0700  max E/T = 0.9470   w_bound/w_exact = 1.000000
+nr5 c=2      m=5 p=0.0560  max E/T = 0.9710   w_bound/w_exact = 1.000000
+nr5 c=9      m=5 p=0.0700  max E/T = 0.9272   w_bound/w_exact = 1.000000
+nr5 c=9      m=5 p=0.0560  max E/T = 0.9558   w_bound/w_exact = 1.000000
+sidon4 c=1   m=4 p=0.0700  max E/T = 0.9425   w_bound/w_exact = 1.000000
+sidon4 c=1   m=4 p=0.0700  max E/T = 0.9425   w_bound/w_exact = 1.000000
+rand5 c=3    m=5 p=0.0700  max E/T = 0.9328   w_bound/w_exact = 1.000000
+rand5 c=3    m=5 p=0.0560  max E/T = 0.9570   w_bound/w_exact = 1.000000
+AP6 c=1      m=6 p=0.0700  max E/T = 0.9545   w_bound/w_exact = 1.000000
+AP6 c=1      m=6 p=0.0467  max E/T = 0.9857   w_bound/w_exact = 1.000000
+nr6 c=1      m=6 p=0.0700  max E/T = 0.9399   w_bound/w_exact = 1.000000
+nr6 c=1      m=6 p=0.0467  max E/T = 0.9802   w_bound/w_exact = 1.000000
+nr6 c=4      m=6 p=0.0700  max E/T = 0.9242   w_bound/w_exact = 1.000000
+nr6 c=4      m=6 p=0.0467  max E/T = 0.9737   w_bound/w_exact = 1.000000
+nr7 c=1      m=7 p=0.0700  max E/T = 0.9294   w_bound/w_exact = 1.000000
+nr7 c=1      m=7 p=0.0400  max E/T = 0.9849   w_bound/w_exact = 1.000000
+nr7 c=2      m=7 p=0.0700  max E/T = 0.9272   w_bound/w_exact = 1.000000
+nr7 c=2      m=7 p=0.0400  max E/T = 0.9843   w_bound/w_exact = 1.000000
+nr7 c=20     m=7 p=0.0700  max E/T = 0.9237   w_bound/w_exact = 1.000000
+nr7 c=20     m=7 p=0.0400  max E/T = 0.9739   w_bound/w_exact = 1.000000
+nr2_6 c=1    m=6 p=0.0700  max E/T = 0.9395   w_bound/w_exact = 1.000000
+nr2_6 c=1    m=6 p=0.0467  max E/T = 0.9801   w_bound/w_exact = 1.000000
+tri5 c=1     m=5 p=0.0700  max E/T = 0.9497   w_bound/w_exact = 1.000000
+tri5 c=1     m=5 p=0.0560  max E/T = 0.9725   w_bound/w_exact = 1.000000
+tri5 c=2     m=5 p=0.0700  max E/T = 0.9470   w_bound/w_exact = 1.000000
+tri5 c=2     m=5 p=0.0560  max E/T = 0.9710   w_bound/w_exact = 1.000000
+dil5 c=1     m=5 p=0.0700  max E/T = 0.9400   w_bound/w_exact = 1.000000
+dil5 c=1     m=5 p=0.0560  max E/T = 0.9672   w_bound/w_exact = 1.000000
+dil5 c=2     m=5 p=0.0700  max E/T = 0.9451   w_bound/w_exact = 1.000000
+dil5 c=2     m=5 p=0.0560  max E/T = 0.9703   w_bound/w_exact = 1.000000
+rand6 c=1    m=6 p=0.0700  max E/T = 0.9292   w_bound/w_exact = 1.000000
+rand6 c=1    m=6 p=0.0467  max E/T = 0.9743   w_bound/w_exact = 1.000000
+rand6 c=3    m=6 p=0.0700  max E/T = 0.9293   w_bound/w_exact = 1.000000
+rand6 c=3    m=6 p=0.0467  max E/T = 0.9734   w_bound/w_exact = 1.000000
+largest ratio exact/bound: 0.9857  OK

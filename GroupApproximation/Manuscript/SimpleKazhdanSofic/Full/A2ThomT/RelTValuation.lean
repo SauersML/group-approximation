@@ -340,7 +340,7 @@ theorem mem_regions_of_ne_one [NeZero p]
     chi ∈ S.regionA rho ∪ S.regionB rho ∪ S.regionC rho ∪ S.regionD rho := by
   have hex : ∃ n, S.lam rho chi n ≠ 1 ∨ S.mu rho chi n ≠ 1 := by
     by_contra hnone
-    push_neg at hnone
+    push Not at hnone
     apply hab
     have h1 : ∀ c : Polynomial (ZMod p),
         chi ((S.toRelTPlane.represented rho).coordinate (c, 0)) = 1 := fun c ↦

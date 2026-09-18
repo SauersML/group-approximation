@@ -111,3 +111,24 @@ of the two relators of `F` almost commute, uniformly in the dimension.
       LLP of `C*(F)`, or at least the conclusion of `llp-makes-hyperlinear-traces-amenable` for `tau_reg`.
     - Conversely, a compression-model proof that `F` is hyperlinear proves the factorization property. If
       `F` is nonamenable, that makes `C*(F)` nonexact (`nonamenable-factorization-groups-have-nonexact-full-cstar`).
+- **Symbolic-dynamics transplant: shift-covariant (QCA/tensor-shift) models** (lane
+  swarm-0917-w7-w7-nh-pull, 2026-09-17). Recorded as
+  `thompson-f-exact-shift-covariant-models-force-amenability`. The claim stays OPEN.
+  - **Ansatz.** `F` is an ascending HNN extension along the shift `phi`. So put `x_0 = a` and
+    `x_1 = sigma(a)` for a trace-preserving endomorphism `sigma`. All relations of `F` then reduce to two
+    relations on one unitary: `a* sigma(a) a = sigma^2(a)` and `a* sigma^2(a) a = sigma^3(a)`.
+  - **Exact models die at injectivity.** A non-commuting exact model in a host `M` makes `L(F)` a direct
+    summand of `pi(F)'' ⊆ M`. This uses the character simplex and Radon–Nikodym.
+    - In `R`, or any injective host, exact models exist iff `F` is amenable.
+    - In the Bernoulli algebra, finitely supported exact models are scalars.
+  - **Approximate local Bernoulli models.** Defect `delta` on `L` sites forces
+    `||[a, sigma a]||_2 <= (5^(L-1) - 1) delta`, so the support must grow like `log(1/delta)`. A
+    non-commuting sequence would prove `thompson-f-is-hyperlinear`. An `L`-uniform linear bound would kill
+    the class, but not prove this claim, since not every witness is known to be shift-covariant.
+  - **Numerics.** `experiments/thompson-f-shift-covariant-2026-09-17/results.txt` is qubits, `L = 2, 3`,
+    best found, uncertified. There, a commutator of `c` costs a defect of about `sqrt(2c)` at `L = 2`
+    and about `sqrt(1.5c)` at `L = 3`. So `c` is roughly quadratic in the defect, well inside the proved
+    linear ceiling. Two sizes cannot show a trend in `L`.
+  - **Where it stops.** This is the same place as the entropy transplant: sites. Symbolic and QCA tools need
+    a tensor-site structure, and exactness inside a hyperfinite site algebra is amenability. What remains
+    is quantitative: the propagation constant of the site-peeling step as `L` grows.

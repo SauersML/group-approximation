@@ -1,0 +1,11 @@
+n=6 |F|=0 N=6 mode=QF: colim^ab rank mod p = {2: 30, 3: 31, 5: 30, 7: 30, 1000003: 30}; H1(P) rank = 30
+n=7 |F|=1 N=6 mode=QF: colim^ab rank mod p = {2: 42, 3: 43, 5: 42, 7: 42, 1000003: 42}; H1(P) rank = 42
+n=7 |F|=0 N=7 mode=QF: colim^ab rank mod p = {2: 42, 3: 42, 5: 42, 7: 42, 1000003: 42}; H1(P) rank = 42
+n=8 |F|=1 N=7 mode=QF: colim^ab rank mod p = {2: 56, 3: 56, 5: 56, 7: 56, 1000003: 56}; H1(P) rank = 56
+n=8 |F|=0 N=8 mode=QF: colim^ab rank mod p = {2: 56, 3: 56, 5: 56, 7: 56, 1000003: 56}; H1(P) rank = 56
+n=7 |F|=0 N=7 mode=Y: colim^ab rank mod p = {2: 42, 3: 44, 5: 42, 7: 42, 1000003: 42}; H1(P) rank = 42
+n=8 |F|=1 N=7 mode=Y: colim^ab rank mod p = {2: 56, 3: 58, 5: 56, 7: 56, 1000003: 56}; H1(P) rank = 56
+n=9 |F|=2 N=7 mode=Y: colim^ab rank mod p = {2: 72, 3: 74, 5: 72, 7: 72, 1000003: 72}; H1(P) rank = 72
+n=8 |F|=0 N=8 mode=Y: colim^ab rank mod p = {2: 56, 3: 56, 5: 56, 7: 56, 1000003: 56}; H1(P) rank = 56
+n=9 |F|=1 N=8 mode=Y: colim^ab rank mod p = {2: 72, 3: 72, 5: 72, 7: 72, 1000003: 72}; H1(P) rank = 72
+n=9 |F|=0 N=9 mode=Y: colim^ab rank mod p = {2: 72, 3: 72, 5: 72, 7: 72, 1000003: 72}; H1(P) rank = 72

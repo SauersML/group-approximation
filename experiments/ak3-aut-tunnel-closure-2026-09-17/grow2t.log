@@ -1,0 +1,22 @@
+# grow2t: closure under capped moves, tunnels and 2-tunnels, rank 2; lane w6-082, 2026-09-18
+# each run: nice -n 10 timeout 1200 ./grow2t 2 CAP C2 empty.txt SEED /dev/null
+
+== calibration, AK(2) = xxYYY xyxYXY, cap 11: C2 11 (no level 2) and C2 30 both reach PRIM
+   (511 PRIM states; with C2 30 also "TUNNEL2 PRIM" endpoints), as grow does.
+== check, AK(3), cap 18, C2 18 (no level 2): reproduces grow
+EXHAUSTED new states 1144 processed 1144 tunnels 1551143 2-tunnels 0 level-2 landings 0 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1144 undecided 0
+
+== AK(3), cap 14, C2 40 (1 s)
+EXHAUSTED new states 1 processed 1 tunnels 840 2-tunnels 1336070 level-2 landings 20244 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 1 undecided 0
+
+== AK(3), cap 16, C2 24 (353 s)   [T_16 with tunnels only: 150]
+EXHAUSTED new states 161 processed 161 tunnels 181743 2-tunnels 278794510 level-2 landings 3891677 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 161 undecided 0
+
+== AK(3), cap 16, C2 30 (527 s)
+EXHAUSTED new states 161 processed 161 tunnels 181743 2-tunnels 382022530 level-2 landings 5037773 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 161 undecided 0
+
+== AK(3), cap 18, C2 24: timeout 1200 s (exit 124), no PRIM line printed before the timeout

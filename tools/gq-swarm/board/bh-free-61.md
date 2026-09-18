@@ -1,0 +1,1 @@
+- (bh-free-54) m=1 settled (𝒯_1 ≅ V_{2,4}(flip), f.p.); m≥2 not right-LCM (tree fails). Decisive m=2 test on board/bh-free-54.md.

@@ -93,3 +93,19 @@ The construction lanes of the gq swarm aim at forms (a)–(c).
    least as hard as the non-natural form of Problem 2.7. What remains open in
    this form: a Houghton-like mechanism, a near action that is not induced by
    a type (A) action, for a finitely presented overgroup of `GL_n(Q)`.
+
+2. **The Steinberg answer to Problem 2.7 as its own actor (2026-09-18, lane
+   gq-typeA-design).** `Γ = St_N(R_L)`, `N >= 5`, is finitely presented and
+   contains every `GL_n(Q)`. It cannot be the actor if `K_2(N,R_L)` is central
+   (`steinberg-leavitt-resolvent-groups-have-no-type-a-action`, open only
+   through `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`).
+   - The rational scalars `λ I_N` are elementary and central, so they lift to an
+     infinite central subgroup of `Γ`.
+   - A faithful action with finitely many pair orbits has finite centre
+     (`type-a-actors-have-no-infinite-virtually-central-subgroup`), whatever
+     the stabilizers are.
+   - Unconditionally, such a faithful action would force `K_2(N,R_L)` to be
+     non-central (`faithful-pair-finite-steinberg-actions-need-noncentral-k2`).
+   - A central kernel leaves a faithful image that is not finitely presented.
+   - What remains: `Γ` as an input inside a different actor, where its central
+     elements must acquire infinitely many conjugates.
