@@ -73,4 +73,4 @@ The theorem says:
 - if the doubling branches (d = 2) are almost-automorphic, then R_{1/p} is almost-automorphic for only finitely many primes p;
 - but §2 needs every odd p.
 
-So no such 𝒯 exists, and the hypothesis of the §2 theorem is never satisfied. Any embedding Q ⋊ ⟨2⟩ ≤ 2V_τ with 1 ↦ s therefore needs, by §1, a free action ρ of Q_odd/Z on C by elements of V, and a g ∈ V with σ∘g∘ρ(a) = ρ(2a)∘σ∘g, such that (C, ρ, σ∘g) is **not** topologically conjugate to (X′, rotations, doubling). §3 excludes one more natural candidate. Whether an exotic pair exists is OPEN.
+So no such 𝒯 exists, and the hypothesis of the §2 theorem is never satisfied. Any embedding Q ⋊ ⟨2⟩ ≤ 2V_τ with 1 ↦ s therefore needs, by §1, a free action ρ of Q_odd/Z on C by elements of V, and a g ∈ V with σ∘g∘ρ(a) = ρ(2a)∘σ∘g, such that (C, ρ, σ∘g) is **not** topologically conjugate to (X′, rotations, doubling). §3 excludes one more natural candidate. No such pair exists, exotic or not: `no-free-q-odd-action-by-v-has-a-doubling-intertwiner` proves this with an invariant-measure argument that places no condition on the action maps.

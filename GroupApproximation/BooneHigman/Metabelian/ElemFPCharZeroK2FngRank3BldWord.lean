@@ -100,9 +100,7 @@ noncomputable def czK2FngRank3Bld_genE (m p : ℕ) :
 
 theorem czK2FngRank3Bld_projection_genSt (m p : ℕ) (a : czK2FngRank3Bld_Letter) :
     projection (czK2FngRank3Bld_genSt m p a) = czK2FngRank3Bld_genE m p a := by
-  cases a <;> first
-    | exact projection_x _ _ _ _
-    | simp only [czK2FngRank3Bld_genSt, czK2FngRank3Bld_genE, projection_x]
+  cases a <;> simp only [czK2FngRank3Bld_genSt, czK2FngRank3Bld_genE, projection_x]
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Bld_projection_genSt
@@ -187,9 +185,10 @@ theorem czK2FngRank3Bld_evSt_u01_pow (m p : ℕ) :
       x (0 : Fin 3) 1 (by decide) ((p : Localization.Away ((m * p : ℕ) : ℤ)) *
         (IsLocalization.Away.invSelf ((m * p : ℕ) : ℤ) :
           Localization.Away ((m * p : ℕ) : ℤ))) := by
-  rw [map_pow, czK2FngRank3Bld_evSt_of, ← nsmul_eq_mul]
-  exact czK2FngRank3Bld_x_pow (0 : Fin 3) 1 (by decide)
-    (IsLocalization.Away.invSelf ((m * p : ℕ) : ℤ) : Localization.Away ((m * p : ℕ) : ℤ)) p
+  rw [map_pow, czK2FngRank3Bld_evSt_of]
+  exact (czK2FngRank3Bld_x_pow (0 : Fin 3) 1 (by decide)
+    (IsLocalization.Away.invSelf ((m * p : ℕ) : ℤ) : Localization.Away ((m * p : ℕ) : ℤ))
+    p).trans (by rw [nsmul_eq_mul])
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngRank3Bld_evSt_u01_pow

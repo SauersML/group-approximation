@@ -3,6 +3,8 @@ rg: 2
 id: lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map
 kind: claim
 title: Some odd root of the 2V_tau odometer built from a V-torsion lift is squared by a doubling element, the first step toward Q semidirect 2 inside the F_infinity simple host 2V_tau
+refuted_by:
+  - no-free-q-odd-action-by-v-has-a-doubling-intertwiner
 target: affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q
 requires:
   - odometer-2v-is-fp-simple-and-contains-bs12
