@@ -96,3 +96,10 @@ that the letters of `g` trace.
 - In the `F_2` case, antipodal pairs in `Σ^c` are allowed and this obstruction says nothing. That case (one-ended
   inputs containing `F_2`) is exactly where Boone–Higman is open. A route kill there needs a mechanism not based on
   Σ-invariants.
+- **Sharpening (after bh-free-48).**
+  - Case (b) does not depend on `nu`: `R_nu ⊇ lambda(P)`, so every input containing `F_2` has `R_nu ⊇ F_2` for
+    every enumeration.
+  - Pinning cannot supply the missing step. Polyhedral one-ended designs pass it
+    (`square-spiral-z2-enumeration-is-ball-rigid`).
+  - So the gates split: pinning kills generic, free and infinite-index-supported designs, and zero flux kills
+    F_2-free polyhedral designs. Inputs containing `F_2` need an obstruction that works for non-amenable near groups.

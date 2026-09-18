@@ -36,4 +36,18 @@ self-similar in the Thompson sense: a binary tree of copies of `P` indexed by cy
 tree maps, and the unitary Leavitt units (a copy of Thompson's `V` inside `L(1,2)^x`) permuting the copies. This
 suggests a general host shape, `St_N(R) ⋊ V` with `V` acting by last-coordinate twists. It is finitely presented
 whenever `St_N(R)` is, and it contains every linear group over `R`. It is a candidate for combining the shell and
-type-(A) routes, since `V` supplies the Cantor dynamics and `St_N` the linear content. Not yet tested.
+type-(A) routes, since `V` supplies the Cantor dynamics and `St_N` the linear content. Tested and closed: see Attempt 1.
+
+## Attempts
+
+**Attempt 1 (gq-stv-host, 09-18): the host `St_N(R) ⋊ V` has been tested, and it fails.** This is recorded as
+`leavitt-steinberg-thompson-extensions-add-nothing`.
+- **Why.** For unitary `u ∈ V`, the twist `Σ^(u)` is conjugation by `diag(1, …, 1, u)`, which lies in `E_N(R_L)`
+  because `V -> K_1(R_L) = Z` is trivial. So the action of `V` is inner. Since `V` is acyclic, it splits off:
+  `St_N(R_L) ⋊ V ≅ St_N(R_L) × V`.
+- **Consequences.**
+  - The only simple quotients are `V` and `PE_N(R_L)`, and `PE_N(R_L)` is not finitely presented.
+  - The central `K_2` still rules out every type (A) action.
+  - All the FW shell obstructions of `St_N(R_L)` carry over.
+- **Lesson.** The Thompson self-similarity inside a Leavitt ring is inner, so it cannot move the centre. A host must
+  contain `St_N(R_L)` non-normally, and must give its central `Q^x` infinitely many conjugates.

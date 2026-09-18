@@ -141,10 +141,10 @@ remains:
      - word length counts the separating tiling walls;
      - the atoms of `B_n` are the unbounded cells of the finite arrangement `𝒲_n`;
      - `∂_h` has no isolated points, so the BBMZ image is an RSG with finite nucleus;
-     - half-plane cells are gated.
-   - **Remaining.** A single recurrent type component. Walls that cross a boundary wall can have
-     their wall distance attained on the near side, and control of that effect is the one open
-     step.
-   - **Comparison with Attempt 4.** The coset gates of Attempt 4 and the half-plane gates here are
-     the same device. Both give a separating set together with an incoming profile. What fails in
-     each case is recurrence of the base profile.
+     - no cell is a half-plane, because every wall of `𝒲_n` is crossed by another wall of `𝒲_n`
+       (corrected: the first landing stated a gate lemma that turned out to be vacuous).
+   - **Remaining.** A single recurrent type component. Atoms near the ideal boundary are bounded
+     by at least two crossing walls, so the open step concerns sector cells at tiling vertices.
+   - **Comparison with Attempt 4.** The coset gates of Attempt 4 need a separating finite set.
+     One-ended groups have none, and here that shows up concretely: no cell is cut off by a single
+     wall.

@@ -22,3 +22,20 @@ section-closed generating set) is a finitely generated lift ideal; equivalently,
 - The overgroup is residually finite and has word problem in the same space class as `G` (finite-state),
   so neither residual finiteness nor Rauzy's effective-RF invariant obstructs this claim.
 - No attempt yet beyond the formulation.
+
+## Consequences and test input (bh-free-02, 2026-09-18)
+
+- **PSPACE rung.** Applied to one Wächter–Weiß group, this claim gives a finitely presented simple
+  group with PSPACE-complete word problem
+  (`pspace-fp-simple-via-lift-presented-automaton-overgroups`). Every host it produces is
+  capped at PSPACE (`automaton-tail-full-groups-have-conp-relative-word-problem`). So this claim
+  settles `fp-simple-group-with-pspace-complete-word-problem` and cannot reach
+  `fp-simple-groups-with-arbitrarily-complex-word-problem`.
+- **Hardest known test input.** The Wächter–Weiß group `G_R` with finite `R` is PSPACE-hard and
+  non-contracting. It has exponential activity, so neither Nekrashevych's contracting theorem nor
+  the cycling criterion `polynomial-automata-reduce-to-cycling-relators` applies.
+  - *Its own action* is lift-presented only if the binary check-mark group `C` is
+    (`lift-presentation-passes-to-invariant-subalphabets`). Undecided.
+  - *Converse direction.* Adding letters can destroy lift-presentation (the persistent Grigorchuk
+    calibration there). So an overgroup construction must add states that kill relators, not letters
+    that repeat them.

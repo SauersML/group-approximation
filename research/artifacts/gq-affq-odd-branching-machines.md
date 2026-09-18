@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
 }
 ```
 
-## 4. The SMART pipeline transfers to M_5 (MSI evidence)
+## 4. SMART's pipeline run on M_5 (MSI evidence; NOT a transfer, see the correction at the end)
 
 **Inducing set.** SMART's genuine level-0 moves are
 `Y = {filled at phase 2 with a nonzero source cell} ∪ {hollow at phase 2 with a nonzero target cell}`
@@ -164,3 +164,19 @@ The "lowest edit" choice is not canonical, so equivalent edits are split across 
 - any proof.
 
 So `BS(1,5) ≤ 3V` is supported, not established.
+
+## 6. Correction: the sweeps of M_m break bounded return
+
+`M_m`'s rule `H0 → (2j, H, pass)` is a **sweep**: after marking the far cell, the hollow head runs over the whole
+zero block. Every sweep step is a hollow phase-2 step with a zero target, so it lies outside SMART's `Y`.
+- A hollow head over `0^∞` never returns to `Y`, so `Y` is not a bounded-return section, and the first-return tool
+  does not apply.
+- §4–§5 hold as stated. They are counts along the hierarchy and random-tape checks, and random tapes have short
+  zero blocks, so they are **blind to sweeps**.
+- The `M_m` route to `BS(1,m)` fails at the inducing step as stated. `SMART_m` has no sweep: its hollow state on 0
+  writes `y_1` and turns filled.
+
+**Lesson for general BH.** Bounded glue must be checked on the worst configurations, such as long blocks of the
+background symbol, not on typical ones. Exact counts along the hierarchy and random-tape validation are both blind
+to unbounded sweeps. For any renormalization witness, test the maximal return time to `Y` on the configurations
+`s+ 0^k` with the head in every state and direction, for growing `k`.

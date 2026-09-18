@@ -98,6 +98,12 @@ with `Σ = W ∪ {e_1, …, e_5}`; it satisfies the commutator-mode hypothesis.
   passes to quasi-retracts) and Skipper--Witzel--Zaremsky Theorem 4.15, `V_d(G)` is then
   finitely presented iff `G` is. So a Röver--Nekrashevych overgroup cannot make
   finite presentation easier in that setting.
+- **Lift-presentation, the condition Boone–Higman actually needs.** Finite presentation of `G_R` is
+  more than `lift-presented-automaton-groups-satisfy-boone-higman` needs: it needs only a finitely
+  generated lift ideal. The own action of `G_R` has one only if `C` does
+  (`lift-presentation-passes-to-invariant-subalphabets`). A positive answer, for `G_R` or for any
+  automaton overgroup, gives a finitely presented simple group with PSPACE-complete word problem
+  (`pspace-fp-simple-via-lift-presented-automaton-overgroups`).
 - **Finitely presented self-similar overgroups.** Any finitely presented self-similar
   group containing `H_R` would have PSPACE-hard word problem. By
   `fp-self-similar-groups-embed-in-fp-simple-groups`, it would give a finitely

@@ -8,7 +8,7 @@ distinct_from:
   finitary-extensions-preserve-lift-presentability: that adds states with base sections at a fixed depth; here the new states also loop along a letter, which compression removes first.
 ---
 
-**ESTABLISHED** (lane proof below; not yet refereed; no priority claimed).
+**ESTABLISHED** (lane proof below; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-level-regrouping-finitary-and-spinal-extensions.md`. For the spine instance, hypothesis 4 needs no Theorem A: the empty section at `2` reduces it to binary Grigorchuk, covered by `polynomial-automata-reduce-to-cycling-relators`.
 
 ## Statement
 

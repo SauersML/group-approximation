@@ -9,8 +9,9 @@ distinct_from:
   rover-nekrashevych-finite-presentation-criteria: that imports Nekrashevych's FP2 for contracting groups; for bounded automata this node reduces finite presentation to cycling relators, which are the analogue of his nucleus relations.
 ---
 
-**ESTABLISHED** (lane proof below, elementary; its consequence for `V_d(G)` uses Theorem A of
-`rover-nekrashevych-fp-iff-finite-lift-presentation`, not yet refereed; no priority claimed).
+**ESTABLISHED** (lane proof below, elementary; no priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-cycling-relators-odometer-automaton-and-descent.md`. The equivalence "`N = ⟨⟨R⟩⟩_lift` iff every cycling relator lies in it" is unconditional. Consequences 1–2 use the sufficiency half of Theorem A of `rover-nekrashevych-fp-iff-finite-lift-presentation`; the `V_d(G)` equivalence and consequence 3 use its necessity half, not yet refereed.
+
+Letter convention: `F = F(S_0)` with `S = S_0 ⊔ S_0^{-1}` and inverse letters formal; the weight of `s^{-1}` is that of `s`, and its sections are `(s^{-1})|_x = (s|_{s^{-1}(x)})^{-1}`.
 
 ## Setting
 
@@ -50,7 +51,7 @@ generated lift ideal. In particular:
 
 "Only if" is immediate. For "if", let `M = ⟨⟨R⟩⟩_lift` and assume the cycling relators lie in `M`.
 
-**Weights.** Choose a linear order `λ` on the strongly connected components with `λ(C) > λ(C')` whenever `C'`
+**Weights.** Choose an injective map `λ` from the strongly connected components to `N` (a linear order) with `λ(C) > λ(C')` whenever `C'`
 is reachable from `C ≠ C'` (the component graph is acyclic). Put `μ(s) = λ(C(s))` for nontrivial `s`, and let
 `c(w)` be the multiset of weights of the letters of the reduced word `w`, under the (well-founded) multiset
 order. Each letter's section is `1` or a single letter of weight `<=` its own, with equality exactly when the
