@@ -210,3 +210,45 @@ word problem.
   finite-index skeleton or compact internal model exists, it remains to
   construct computable families satisfying (C) and (K) with (A). This is a
   finite-combinatorics problem on balls, with no limit step left.
+
+**Attempt 4 (2026-09-18, swarm-0917-w7-w7-bh-pull, quantifier-shift): towers
+form a Π⁰₁ class, so (M2) = non-effective existence + path selection.** Stays
+OPEN.
+
+*Established here.* `tower-classes-are-computably-bounded-pi01-classes`
+(complete hand route) says the following. Fix computable radii `R_n` and `m_n`
+and a computable asymmetry bound `φ`. Then:
+- The set `T_D` of all margin covering towers for these data, computable or
+  not, is a computably bounded Π⁰₁ class.
+- Every member of `T_D` gives a nonempty minimal free subshift with modulus
+  `≤ β_D` and freeness radius `≤ φ`.
+- Conversely, every minimal free subshift whose two moduli are computably
+  bounded gives a member of some `T_D`.
+- (M2)-type existence is exactly a computable member of some `T_D`.
+
+*Resulting decomposition.* (M2) for `Λ` is the conjunction of two parts.
+- (N) `free-minimal-subshifts-with-computable-moduli-exist`: some minimal free
+  subshift on `Λ`, not necessarily effective, has computably bounded modulus
+  and freeness radius. This is equivalent to `T_D ≠ ∅` for some computable `D`.
+- *Path selection:* a computable path in such a `T_D`.
+
+(M2) ⇒ (N). So refuting (N) for one `Λ` refutes (M2) by pure dynamics.
+- Recorded as route `effective-minimal-free-subshifts-via-tower-class-basis`.
+- Its path-selection premise is `nonempty-tower-classes-yield-computable-towers`.
+
+*Class obstruction.* Consider any method that proves only that the tree of
+`T_D` is infinite: Zorn inside ABT (Attempt 1), compactness limits (Attempt 2's
+partial fallback), local lemma plus compactness (the w5-bh-4 lease), or
+genericity.
+- Such a method establishes (N) at best.
+- It dies at path selection, where the invariant is the Turing degree of the
+  chosen path.
+- Nonempty computably bounded Π⁰₁ classes without computable members exist
+  (context only), so this step is real.
+- Methods that survive must build the path level by level with a decidable
+  extendability test, or find a path with no branching. The one-patch premise
+  `decidable-groups-have-overlap-recurrent-aperiodic-points` is the special case
+  `|L_n| = 1`.
+
+*Where it stops.* Neither (N) nor path selection is proved for any group
+without a known (M2) instance.

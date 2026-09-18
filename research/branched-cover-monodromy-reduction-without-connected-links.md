@@ -3,6 +3,8 @@ rg: 2
 id: branched-cover-monodromy-reduction-without-connected-links
 kind: claim
 title: The monodromy construction of sparse branched covers works on locally CAT(0) 2-complexes whose vertex links are allowed to be disconnected
+refuted_by:
+  - finite-branched-covers-force-connected-vertex-links
 distinct_from:
   sparse-branched-covers-with-sofic-pi1-give-sofic-lattice: that is the soficity transfer itself, whose Setting quantifies over branched covers and says nothing about the links of the base; this isolates the base-side hypothesis that its proof's Step 4 silently uses when it builds a cover from a sofic model.
   sparse-fully-branched-covers-iff-sofic-simple-residual: that is the equivalence between soficity and fully branched sparse covers; this is the one missing input to its Step B, and is stated purely about the construction, with no simple subgroup and no soficity anywhere in it.
@@ -67,3 +69,27 @@ repair is not yet available either.
   been made to prove it; the counterexample above is the reason to expect a
   refutation rather than a proof, and the useful next move is the restriction,
   not this claim.
+- 2026-09-18 (swarm-0917-w7-w7-titz-last1, minimal-counterexample): **refuted
+  and restricted.**
+  * *Refutation.*  `finite-branched-covers-force-connected-vertex-links`
+    (proof `finite-branched-covers-force-connected-vertex-links-proof`, no
+    prerequisites): onto link coverings make `p(X)` open, closed and all of
+    `Y`, so a base with a nonempty finite branched cover has connected vertex
+    links.  The minimal countermodel is the wedge `W` of two unit squares at a
+    corner: contractible, locally CAT(0), `pi_1 = 1` sofic, and no finite
+    branched cover at all.  Step 4 applied to `W` would produce one.  The same
+    shows Part 2 of `sparse-branched-covers-with-sofic-pi1-give-sofic-lattice`
+    is false as stated (Parts 1 and 3 unaffected).
+  * *Restriction.*  `sparse-fully-branched-covers-iff-sofic-with-connected-links`
+    (proof `sparse-fully-branched-covers-iff-sofic-connected-links-proof`)
+    proves the equivalence with "every vertex link of `Y` is connected" added
+    to item 1.  Step B0 redoes Step 4 under connected links: `Y°` connected,
+    `Y°` retracts to a finite graph, van Kampen with path-connected
+    intersections, cone points with connected links, and the word bound
+    `(W)` (`2 l epsilon n`, fixing the `Sigma(k)^(-1)` bookkeeping).
+  * *Consequences.*  `titz-witzel-kernel-sofic-via-connected-link-covers`
+    routes `titz-witzel-kernel-sofic` with the single open prerequisite
+    `titz-witzel-flat-hitting-sparse-branched-covers`.
+    `titz-witzel-kernel-nonsofic-from-unrestricted-cover-equivalence` records
+    that the unrestricted `sparse-fully-branched-covers-iff-sofic-simple-residual`
+    implies `titz-witzel-kernel-nonsofic`.

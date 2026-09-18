@@ -62,5 +62,5 @@ open part is finite presentation. One concrete route is
      (arXiv:1204.6506) state nothing about divisible or infinitely generated abelian subgroups. The obstructions
      found for finitely generated subgroups are solvable word problem and effective residual finiteness,
      and the explicit host `G_l` of `z-localized-embeds-in-fg-rf-soluble-group` satisfies both. So an affirmative
-     answer to the Kharlampovich--Myasnikov--Sapir question for effectively residually finite groups would give
-     this claim. The Kharlampovich--Myasnikov--Sapir groups themselves are soluble of class 3, as is `G_l`.
+     answer to the effective-RF form of the Kharlampovich--Myasnikov--Sapir question, left open by Rauzy,
+     would give this claim. The Kharlampovich--Myasnikov--Sapir groups themselves are soluble of class 3, as is `G_l`.

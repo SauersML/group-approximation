@@ -36,8 +36,10 @@ are two. Such subgroups have solvable word problem, and they are effectively
 residually finite (Rauzy, arXiv:2002.02540v2, whose counterexample fails the second).
 `G_l` passes both, so neither rules out `z-localized-embeds-in-fp-rf-group`.
 
-An affirmative answer to the Kharlampovich--Myasnikov--Sapir question
-(arXiv:1204.6506, §1.1.7), restricted to effectively residually finite groups with
-solvable word problem, would settle the bottleneck through `G_l`. Rauzy refuted only
+An affirmative answer to the effective-RF form of the Kharlampovich--Myasnikov--Sapir
+question (arXiv:1204.6506, §1.1.7), left open by Rauzy, would settle the bottleneck
+through `G_l`. That form asks whether every finitely generated, effectively residually
+finite group with solvable word problem embeds in a finitely presented residually
+finite group. Kharlampovich--Myasnikov--Sapir ask the unrestricted question. Rauzy refuted only
 the unrestricted form. The lane found no source settling the restricted form, on a
 bounded search.

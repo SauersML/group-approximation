@@ -48,3 +48,20 @@ subgroup that is not co-amenable, and is then covered by
   - for subgroups of finite index the relative threshold is the global one.
 - *So this is the exact home of the goal's hard core.* Its members are periodic
   groups where every percolation argument must be global.
+
+## Attempts
+
+* **2026-09-18, relative thresholds on the whole class (swarm-0917-w7-w7-bs-break).**
+  Dead as a route, and now proved dead on every Cayley graph, not only on the
+  tree. `fpbs-co-amenable-subgroup-relative-threshold-is-pc` proves
+  `p_c(I;G) = p_c(G)` and `chi^I_p = infinity` for all `p > p_c(G)`, for
+  every co-amenable `I`, normal or not, on every Cayley graph. So on this class
+  every infinite subgroup is blind.
+  * **Where it dies:** condition 1 of
+    `fpbs-relative-gap-along-any-subgroup-separates`, for every subgroup at once.
+  * **Invariant:** a Folner set of `Sch(I\Gamma,S)`, pulled back to a union
+    of `I`-orbits, on which mass transport along the free `I`-action forces
+    trifurcation density at most `|∂F|/|F|`.
+  * **Consequence:** a proof on this class cannot pass through any subgroup.
+    It must separate `p_c` from `p_u` by a global argument, which is the
+    goal itself restricted to the class.
