@@ -39,8 +39,7 @@ theorem higmanVCTauBridge_two_le {d : ℕ} {u e z : Fin d} {W : List (Fin d)} (h
     [e, z].length ≤ (u :: W).length := by
   rcases W with _ | ⟨v, W⟩
   · exact absurd rfl h
-  · simp only [List.length_cons, List.length_nil]
-    omega
+  · simp
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBridge_two_le
 

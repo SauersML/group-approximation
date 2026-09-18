@@ -55,7 +55,7 @@ theorem k2Dilate_scale_eq_zero (s : A) (f : Polynomial A) (h0 : f.coeff 0 = 0)
     rcases Nat.eq_zero_or_pos n with rfl | hpos
     · rw [h0, zero_mul]
     · have hkn : k n ≤ r * n :=
-        ((Finset.le_sup hn).trans hr).trans (Nat.le_mul_of_pos_right r hpos)
+        ((Finset.le_sup (f := k) hn).trans hr).trans (Nat.le_mul_of_pos_right r hpos)
       rw [← pow_mul, ← Nat.sub_add_cancel hkn, pow_add, mul_comm (f.coeff n), mul_assoc, hk n,
         mul_zero]
   rw [hz, map_zero, zero_mul]

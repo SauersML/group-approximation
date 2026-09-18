@@ -90,9 +90,9 @@ theorem higmanVCTauBridge_aword_p {d : ℕ} (hd : 1 < d) {a q0 : Fin d}
   refine ⟨?_, ?_⟩
   · rintro rfl
     have h1 := higmanVCTauBridge_grow hd hpq hqp hsm
-      (by simp only [List.length_cons, List.length_nil]; omega) hqm
+      (by simp) hqm
     have h2 := higmanVCTauBridge_grow hd hpq hqp hso
-      (by simp only [List.length_cons, List.length_nil]; omega) hqo
+      (by simp) hqo
     omega
   · rcases higmanVCTauBridge_moves hd hpq hqp hsm hso hlt with h | h | h | h
     · exact Or.inl h
@@ -114,9 +114,9 @@ theorem higmanVCTauBridge_aword_q {d : ℕ} (hd : 1 < d) {a p0 : Fin d}
   refine ⟨?_, ?_⟩
   · rintro rfl
     have h1 := higmanVCTauBridge_grow' hd hpq hqp hsm
-      (by simp only [List.length_cons, List.length_nil]; omega) hpm
+      (by simp) hpm
     have h2 := higmanVCTauBridge_grow' hd hpq hqp hso
-      (by simp only [List.length_cons, List.length_nil]; omega) hpo
+      (by simp) hpo
     omega
   · rcases higmanVCTauBridge_moves hd hpq hqp hsm hso hlt with h | h | h | h
     · exact absurd h hpm
