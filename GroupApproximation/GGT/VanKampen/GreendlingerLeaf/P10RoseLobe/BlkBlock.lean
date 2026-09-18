@@ -233,3 +233,119 @@ theorem roseLobeBlk_block_of_side {c A B C : List M.Dart} {z : M.Dart → Bool}
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_block_of_side
 
 end Removed
+
+/-- **The lobe step with one contiguous removed block** (OPEN, PLAUSIBLE; truth-checked, see the
+module docstring; LOUD: only EQUIVALENT to `roseLobeFL_BlockStatement`, with smaller proof
+content).  As `roseLobeFL_BlockStatement`, except that the block clause asks only that the
+boundary cycle is `A ++ B ++ C` where either `P` removes all of `B` and keeps all of
+`A ++ C ≠ []`, or `P` keeps all of `B ≠ []` and removes all of `A ++ C`: no closed-walk
+requirement. -/
+def roseLobeBlk_BlockStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ rs : List X.toCombMap.Dart,
+          ((rs ≠ [] ∧ ∀ r ∈ rs, r ∈ K.boundary.cycle) ∨
+            ∃ r, rs = [r] ∧
+              (∀ x, X.toCombMap.faceOf x = X.outerFace → ¬Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r x) ∧
+              ∃ y ∈ K.boundary.cycle, Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r y ∨
+                Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle)) r (X.toCombMap.alpha y)) ∧
+          (cell X K.source).face ∉ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+            X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs) ∧
+          (cell X K.kept).face ∈ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+            X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs) ∧
+          (invDarts X K.sourceArc.darts).filter (movePred X.toCombMap
+              (roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+                rs)) <:+: invDarts X K.sourceArc.darts ∧
+          (∃ k, K.targetArc.start.1 + k ≤ (outerDarts X).length ∧
+            K.targetArc.darts.filter (movePred X.toCombMap
+              (roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+                rs)) <+: K.targetArc.darts.drop k) ∧
+          ∃ A B C : List X.toCombMap.Dart, K.boundary.cycle = A ++ B ++ C ∧
+            ((B.filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∧
+                (A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = A ++ C ∧
+                A ++ C ≠ []) ∨
+              (B.filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = B ∧
+                (A ++ C).filter (movePred X.toCombMap (roseJunctionCore_lobeColour X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle) rs)) = [] ∧
+                B ≠ []))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_BlockStatement
+
+/-- **The block statement from contiguity alone.**  The lobe colouring is constant along the
+face-class steps and lies on one side of the walk, so the removed block and the kept block close
+up by vertex balance. -/
+theorem roseLobeBlk_block_of_weak (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    roseLobeFL_BlockStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hroot, hsource, hkept, hb, hcc, A, B, C, hABC, hblk⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hw : IsClosedDartWalk X.toCombMap K.boundary.cycle :=
+    ⟨K.boundary.cycle_nonempty, hK.1, hK.2⟩
+  have hroot' : (∀ r ∈ rs, r ∈ K.boundary.cycle) ∨ ∃ r, rs = [r] := by
+    rcases hroot with ⟨-, hrs⟩ | ⟨r, hr, -⟩
+    · exact Or.inl hrs
+    · exact Or.inr ⟨r, hr⟩
+  exact ⟨rs, hroot, hsource, hkept, hb, hcc, A, B, C, hABC,
+    roseLobeBlk_block_of_side
+      (roseJunctionCore_lobeColour_step X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)
+      (roseLobeBlk_side K.boundary.cycle_mem_iff hroot') hw K.boundary.cycle_nodup hABC hblk⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_block_of_weak
+
+/-- **The converse**: the old block statement implies the new one (a closed dart walk is
+nonempty), so the two are equivalent. -/
+theorem roseLobeBlk_weak_of_block (h : roseLobeFL_BlockStatement.{u, w, v}) :
+    roseLobeBlk_BlockStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hroot, hsource, hkept, hb, hcc, A, B, C, hABC, hblk⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  refine ⟨rs, hroot, hsource, hkept, hb, hcc, A, B, C, hABC, ?_⟩
+  rcases hblk with ⟨h1, h2, h3, -⟩ | ⟨h1, h2, ⟨hne, -⟩⟩
+  · exact Or.inl ⟨h1, h2, h3⟩
+  · exact Or.inr ⟨h1, h2, hne⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_weak_of_block
+
+/-- **The filtered lobe listing from contiguity alone.** -/
+theorem roseLobeBlk_filterListing_of_weak (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    roseLobe_FilterListingStatement.{u, w, v} :=
+  roseLobeFL_filterListing_of_block (roseLobeBlk_block_of_weak h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_filterListing_of_weak
+
+/-- **The lobe removal from contiguity alone.** -/
+theorem roseLobeBlk_lobeRemoval_of_weak (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} :=
+  roseLobeFL_lobeRemoval_of_block (roseLobeBlk_block_of_weak h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_lobeRemoval_of_weak
+
+/-- **The Greendlinger leaf from contiguity alone.** -/
+theorem roseLobeBlk_relativeGreendlinger_of_weak
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobeFL_relativeGreendlinger_of_block hoff (roseLobeBlk_block_of_weak h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_relativeGreendlinger_of_weak
+
+/-- **The outer-pinch step from contiguity alone.** -/
+theorem roseLobeBlk_outerPinchStep_of_weak (h : roseLobeBlk_BlockStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobeFL_outerPinchStep_of_block (roseLobeBlk_block_of_weak h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeBlk_outerPinchStep_of_weak
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe

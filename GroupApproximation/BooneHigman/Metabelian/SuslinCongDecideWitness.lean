@@ -67,7 +67,7 @@ theorem suslinCongDecide_map_km_of_C {A S : Type*} [CommRing A] [CommRing S] (f 
   change f.mapMatrix (suslinCongDecide_kmMat q k) = 1 + Matrix.single 0 1 (f ((X ^ k) ^ 3))
   refine Matrix.ext fun i j ↦ ?_
   fin_cases i <;> fin_cases j <;>
-    simp [suslinCongDecide_kmMat, Matrix.one_apply, Matrix.single_apply, hq]
+    simp [RingHom.mapMatrix_apply, suslinCongDecide_kmMat, hq]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongDecide_map_km_of_C
 
@@ -80,7 +80,7 @@ theorem suslinCongDecide_map_km_of_X {A S : Type*} [CommRing A] [CommRing S] (f 
   change f.mapMatrix (suslinCongDecide_kmMat q k) = 1 + Matrix.single 1 0 (f (C q ^ 3))
   refine Matrix.ext fun i j ↦ ?_
   fin_cases i <;> fin_cases j <;>
-    simp [suslinCongDecide_kmMat, Matrix.one_apply, Matrix.single_apply, hX, hk, zero_pow]
+    simp [RingHom.mapMatrix_apply, suslinCongDecide_kmMat, hX, zero_pow hk]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongDecide_map_km_of_X
 
@@ -108,7 +108,8 @@ theorem suslinCongDecide_wit_det {A : Type*} [CommRing A] (q : A) (k : ℕ) :
 theorem suslinCongDecide_map_wit_of_X {A S : Type*} [CommRing A] [CommRing S]
     (f : A[X] →+* S) (hX : f X = 0) (q : A) {k : ℕ} (hk : k ≠ 0) :
     elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_wit q k) = 1 := by
-  have h0 : f (-((X ^ k) ^ 3)) = 0 := by simp [hX, hk, zero_pow]
+  have h0 : f (-((X ^ k) ^ 3)) = 0 := by
+    rw [map_neg, map_pow, map_pow, hX, zero_pow hk, zero_pow three_ne_zero, neg_zero]
   have h1 : f (C q ^ 3) + f (-(C q ^ 3)) = 0 := by rw [map_neg, add_neg_cancel]
   rw [suslinCongDecide_wit, map_mul, map_mul, suslinCongDecide_map_km_of_X f hX q hk,
     elementaryMatrixUnitMap_elementaryUnit, elementaryMatrixUnitMap_elementaryUnit, h0,
@@ -120,7 +121,8 @@ theorem suslinCongDecide_map_wit_of_X {A S : Type*} [CommRing A] [CommRing S]
 theorem suslinCongDecide_map_wit_of_C {A S : Type*} [CommRing A] [CommRing S]
     (f : A[X] →+* S) {q : A} (hq : f (C q) = 0) (k : ℕ) :
     elementaryMatrixUnitMap (ι := Fin 2) f (suslinCongDecide_wit q k) = 1 := by
-  have h0 : f (-(C q ^ 3)) = 0 := by simp [hq, zero_pow]
+  have h0 : f (-(C q ^ 3)) = 0 := by
+    rw [map_neg, map_pow, hq, zero_pow three_ne_zero, neg_zero]
   have h1 : f ((X ^ k) ^ 3) + f (-((X ^ k) ^ 3)) = 0 := by rw [map_neg, add_neg_cancel]
   rw [suslinCongDecide_wit, map_mul, map_mul, suslinCongDecide_map_km_of_C f hq k,
     elementaryMatrixUnitMap_elementaryUnit, elementaryMatrixUnitMap_elementaryUnit,
