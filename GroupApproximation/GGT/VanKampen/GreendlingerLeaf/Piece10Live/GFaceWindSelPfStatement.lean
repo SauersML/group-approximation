@@ -59,7 +59,22 @@ It tests:
 
 See the table below; the failure counts are all zero.
 
-TRUTH_TABLE
+| run (mode, seed, secs) | residual states | min lobes | no-clean lobes | Sel/R1/R2 fail |
+|---|---|---|---|---|
+| walk 5 60 | 191457 | 337985 | 43 | 0 / 0 / 0 |
+| reach rand 9 60 | 121887 | 278022 | 0 | 0 / 0 / 0 |
+| walk 11 250 | 179897 | 316964 | 29 | 0 / 0 / 0 |
+| walk 12 250 | 182143 | 322473 | 31 | 0 / 0 / 0 |
+| reach wit 15 250 | 121467 | 230429 | 0 | 0 / 0 / 0 |
+| reach rand 16 250 | 125854 | 267792 | 0 | 0 / 0 / 0 |
+| spiral 0 7 250 (k ≤ 6) | 110099 | 233440 | 0 | 0 / 0 / 0 |
+| spiral 0 13 250 (k ≤ 6) | 122325 | 235738 | 0 | 0 / 0 / 0 |
+| spiral 1 8 250 (k ≤ 4) | 80428 | 139011 | 4 | 0 / 0 / 0 |
+| spiral 1 14 250 (k ≤ 4) | 120292 | 196038 | 13 | 0 / 0 / 0 |
+
+Total: 1355849 residual states and 2557892 minimal lobes, 120 of them in the exact no-clean
+regime; no failures. Caveat: only 120 lobes satisfy the exact `hall` hypothesis. The chord
+configuration is not filtered, so the positive evidence in the precise regime is thin.
 
 ## Remaining gap
 

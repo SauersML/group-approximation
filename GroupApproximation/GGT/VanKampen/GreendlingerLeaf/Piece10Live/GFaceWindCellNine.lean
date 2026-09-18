@@ -198,3 +198,53 @@ theorem gfaceWindCellNine_of_arcs (K : PocketFaceSet D eps X lo hi) (hK : K.Clos
 
 end CellNine
 
+/-- **The arc-keeping winding statement without clause 5, on pockets of relator cells** (OPEN;
+**LOUD: LOGICALLY EQUIVALENT to `gfaceWindCell_NineStatement`**, strictly smaller in proof
+content only, see the module docstring).  Under the premises of `gfaceWindCell_NineStatement`,
+an arc-keeping winding choice without clause 5 exists. -/
+def gfaceWindCellNine_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K → ¬ gfaceChoose_Loop K →
+      gfaceWindCell_RCells K → gfaceWindCellNine_Arcs K
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_Statement
+
+/-- **The cell arc-keeping statement from its form without clause 5** (clause 5 from the r-cell
+premise, `gfaceWindCellNine_arcs_of`). -/
+theorem gfaceWindCellNine_nine_of (h : gfaceWindCellNine_Statement.{u, w, v}) :
+    gfaceWindCell_NineStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL hR
+  exact gfaceWindCellNine_arcs_of K hK hR
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL hR)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_nine_of
+
+/-- **LOUD: the converse**, so the residual is equivalent to the target
+(`gfaceWindCellNine_of_arcs`). -/
+theorem gfaceWindCellNine_of_nine (h : gfaceWindCell_NineStatement.{u, w, v}) :
+    gfaceWindCellNine_Statement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL hR
+  exact gfaceWindCellNine_of_arcs K hK
+    (h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose hL hR)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_of_nine
+
+/-- **The face-set flip statement from the residual and the `0`-cell residual**
+(`gfaceWindCell_extremal_of_cell`). -/
+theorem gfaceWindCellNine_extremal_of (h : gfaceWindCellNine_Statement.{u, w, v})
+    (hC : gfaceWindCell_CollapseStatement.{u, w, v}) :
+    extremalGFaceProve_Statement.{u, w, v} :=
+  gfaceWindCell_extremal_of_cell (gfaceWindCellNine_nine_of h) hC
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_extremal_of
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind

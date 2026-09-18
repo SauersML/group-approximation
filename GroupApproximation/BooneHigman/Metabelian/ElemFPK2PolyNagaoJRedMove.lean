@@ -43,7 +43,6 @@ theorem k2PolyNagaoJRed_group_id {G : Type*} [Group G] (A B C D X Y : G) :
 
 variable {p : ℕ} [Fact p.Prime]
 
-omit [Fintype I] in
 /-- The root `x_ij(a)`, `i ∈ K ∪ {L}`, `j ∈ K \ {m}`, lies in `Q^m`. -/
 theorem k2PolyNagaoJRed_x_mem_Qm {K : Finset I} {m L i j : I} (hij : i ≠ j)
     (a : Polynomial (ZMod p)) (hi : i ∈ insert L K) (hj : j ∈ K.erase m) :
@@ -52,7 +51,6 @@ theorem k2PolyNagaoJRed_x_mem_Qm {K : Finset I} {m L i j : I} (hij : i ≠ j)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_x_mem_Qm
 
-omit [Fintype I] in
 /-- An orbit vector vanishes outside `K ∪ {L}`. -/
 theorem k2PolyNagaoJRed_orbit_out {K : Finset I} {L : I} {v : I → Polynomial (ZMod p)}
     (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v) {k : I} (hk : k ∉ insert L K) :
