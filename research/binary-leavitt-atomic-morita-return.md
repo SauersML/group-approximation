@@ -161,3 +161,26 @@ classification.  That approach proves nothing about the projection that
 What survives has to control tau-null spectrum of one Markov element in
 the norm corona.  The next undecided rung is stably finite C-star targets,
 which contain the coronas.  The claim stays OPEN.
+
+2026-09-17 (d-ptf-morita, transplanter, entropy-measure).  This attempt
+transplanted 1-bounded entropy and regularity invariants of `L(L)` as a
+replacement for property `(T)` of the compressed subgroup.  It dies at the
+subgroup-intrinsic step.  `z-direct-factor-kills-intrinsic-t-substitutes`
+takes the involutive cyclic compression group `G_0` of
+`finite-order-central-compression-defect-survives-mf`, forms `G_0 x K` for
+an arbitrary countable MF group `K`, and uses the tensor model.  For the
+compressed subgroup `L=Z x K`, the defect `[uc'u^-1,l]` tends to `-I` in
+operator norm and in normalized Hilbert--Schmidt norm, and the Kazhdan
+normal subgroup `{1,d'}` of `D_G(L)` survives in an MF group.  So both
+conclusions of the compression criterion fail for `L=Z x F_2` (nonamenable,
+Haagerup, exact, RF) and for `L=Z x SL_3(Z)` (infinite normal Kazhdan
+subgroup, relative `(T)`).  They also fail for every `L` with `h(L(L))<=0`
+coming from a central diffuse `L(Z)`; that case is cited from Hayes and is
+not verified in-graph.
+
+The resulting invariant: any subgroup-intrinsic substitute for `(T)` must
+fail for every `Z x K`.  Such a substitute must be of ICC,
+trivial-amenable-radical, or non-inner-amenable type, or of the kind that
+`(T)` itself satisfies.  Otherwise the proof must use ambient data, such as
+simplicity of `EL_20` or Leavitt coefficients, which forbid the tensor
+splitting.  This does not prove `(BLAMR)`, and the claim stays OPEN.
