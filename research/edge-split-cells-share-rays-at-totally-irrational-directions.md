@@ -128,6 +128,42 @@ Notation of `edge-split-sync-reduces-to-totally-irrational-shared-rays`.
      use the free choice of edge at each step. This is the "fat cells at fat scales"
      mechanism asked for above.
 
+4. **Tracking through containing cells is a bounded-residue property of left
+   reduction** (lane bh-major-mcg-2, 2026-09-18). Parts (a)–(c) are exact lane
+   proofs; part (d) is a remark.
+   - **(a) The containing cells.** Let `φ ⊆ c` be cells with frames `Φ` and `W_c`,
+     and put `N = W_c^{-1}Φ`, which is nonnegative. The cells `g ∈ Desc(c)` with
+     `g ⊇ φ` are exactly `cone(W_c M)` for `M ∈ 𝕄` with `M^{-1}N ≥ 0`.
+     - Writing `M = T_{a_1b_1} ⋯ T_{a_kb_k}`, every prefix quotient
+       `T_{a_ib_i} ⋯ T_{a_kb_k} M^{-1}N` is a product of nonnegative matrices.
+     - So these cells are precisely the stages of the left-reduction sequences of
+       `N` in the matrix game of `unimodular-cells-synchronize-under-edge-splits`.
+     - At the cell reached, `W_g^{-1}Φ` is the current matrix, the *residue*.
+   - **(b) Tracking from the residue.** If some left-reduction sequence of
+     `N = W_c^{-1}φ_t` ends at a residue `R` with `‖R‖ ≤ B`, then the cell reached is
+     a tracking cell for `(T_K)` with bound `max(B, ‖R^{-1}‖)`. That cell contains
+     `φ_t`, hence `ξ`. Left reductions lower the entry sum, so maximal sequences give
+     the smallest residues along their path. A permutation residue means
+     `φ_t ∈ Desc(c)`, which is exact tracking.
+   - **(c) What a stuck residue means, for `m = 2`.** A residue is stuck exactly when
+     `φ` meets both open sides of each first-split plane `y_a = y_b` of the current
+     cell `g`. These planes are the three medians of `g`, through the centroid
+     `w_0 + w_1 + w_2`.
+     - So a large stuck residue says that a much smaller `φ` sits across all three
+       medians of `g`, next to the centroid of `g` in `g`'s coordinates.
+     - The centroid is a ray of a depth-two descendant of `g` containing `ξ`, since
+       subset sums of rays are always captured.
+     - So the obstruction to tracking is a centroid event: `ξ` very close, in `g`'s
+       frame, to the sum of the rays of a large descendant.
+   - **(d) Remark.** By the bounded search of
+     `unimodular-cells-synchronize-under-edge-splits`, every stuck residue of entry
+     sum at most 36 is won with split depth at most 24. So in rank three, a bound of
+     36 on the residue sum would already give a common descendant of `g` and `φ_t`
+     that contains `ξ` and is at bounded distance from `φ_t`.
+   - **Open.** Whether one can choose, at recurrence times, a reduction order that
+     avoids centroid events of unbounded size. The free choice enters here: different
+     orders reach different residues, since reduction is not confluent.
+
 ## Lesson for general BH
 
 - **The Serret gate is Diophantine.** For hosts built from `GL_n(Z)` acting on a

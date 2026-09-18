@@ -27,6 +27,14 @@ Then `G` embeds in a finitely presented simple group.
   node is stated as an embedding claim, and it is a Boone--Higman instance only once
   that input is confirmed.
 
+- **Isolated embedding (CGP Question 4) for the calibration example: ESTABLISHED**
+  (2026-09-18). Hall's `A_3/Z` and every finitely generated subgroup of `A_{n,p}/C`
+  embed in isolated groups, since `A_3/Z ≤ A_4/Z`, which is isolated by
+  Cornulier–Guyot–Pitsch Prop. 5.7. See
+  `hall-type-prufer-quotients-embed-in-isolated-abels-groups`.
+  - So Boone–Higman for Hall's group follows from Boone–Higman for the one finitely
+    presented 3-solvable group `A_{4,p}/Z`.
+
 ## The remaining case
 
 Suppose `τ(G)` is infinite. For minimax `G` this is the non-residually-finite case

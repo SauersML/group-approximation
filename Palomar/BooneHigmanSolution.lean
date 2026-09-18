@@ -19,22 +19,25 @@ import Mathlib.GroupTheory.QuotientGroup.Defs
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import GroupApproximation.BooneHigman.Statement.API
+import GroupApproximation.SteinbergFP.Challenge
 
 /-!
 # Proofs for the Boone–Higman megasubmission (work in progress)
 
 This file repeats the challenge's shared block byte for byte.
 
-**Status: skeleton.** No selected theorem is proved outright yet. Every one appears under a
-name ending `_of` and takes, as a hypothesis, the proposition the development still owes:
+**Status.** `explicit_fp_overgroup_of_all_gl_n_q` (Kourovka 14.10(c)) is proved outright, from
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q`; it is also available
+under its `_of` name. Every other selected theorem appears under a name ending `_of` and takes,
+as a hypothesis, the proposition the development still owes:
 
 * the two metabelian theorems and the linear theorem take the development endpoints
   `GroupApproximation.BooneHigman.FinitelyGeneratedMetabelianStatement` and
   `GroupApproximation.BooneHigman.FinitelyGeneratedLinearStatement`;
-* the others take a proposition named here (`ExplicitOvergroupOwed`, `LinearSelfSimilarOwed`,
-  `Kourovka1757Owed`, `Kourovka1759Owed`, `Kourovka1761Owed`, `GraphProductOwed`,
-  `MixedIdentitiesOwed`), which is the challenge statement itself until the construction that
-  proves it lands.
+* the others take a proposition named here (`LinearSelfSimilarOwed`, `Kourovka1757Owed`,
+  `Kourovka1759Owed`, `Kourovka1760Owed`, `Kourovka1761Owed`, `Kourovka2175Owed`,
+  `KohlFactorizationOwed`, `GraphProductOwed`, `MixedIdentitiesOwed`), which is the challenge
+  statement itself until the construction that proves it lands.
 
 The unsuffixed theorems that `Palomar/comparator-boone-higman.json` selects are added, and the
 hypotheses removed, as the development discharges them.
@@ -43,23 +46,33 @@ hypotheses removed, as the development discharges them.
 * The metabelian and linear endpoints wait on the development's open gap statements; a wiring
   file stating them from those gaps is being written, and its `_of` forms will replace the
   endpoint hypotheses here.
-* `ExplicitOvergroupOwed` needs finite presentation of Steinberg groups of finitely presented
-  rings in rank at least five, the ring `R_L` with a faithful module, and the Leavitt-pair
-  embedding of every `GL_n(ℚ)` into `St_10(R_L)` (`GroupApproximation/SteinbergFP/`).
 * `Kourovka1757Owed`: automorphisms of `CT(ℤ)` are spatial (Matui); a normalizing
   homeomorphism, after the reflection, restricts to a bijection of the nonnegative integers
   that is both 2-regular and 3-regular, hence affine on a residue class (Adamczewski–Bell).
 * `Kourovka1759Owed`: the elementary proof by products of class transpositions is complete
   as a written argument; its Lean development is in progress.
-* `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an explicit one-vertex
-  higher-rank graph, simple and of type `F_∞` by Li's theorems.
+* `Kourovka1760Owed`, `Kourovka1761Owed`: `CT_P(ℤ)` is the topological full group of an
+  explicit one-vertex higher-rank graph, simple and of type `F_∞` by Li's theorems; Matui's
+  spatial realization and the germ groups at rational points then recover `P`.
+* `Kourovka2175Owed`: elementary, by transporting class transpositions through boxes of
+  modulus four with products of class transpositions of the other group.
+* `KohlFactorizationOwed`: from Kourovka 17.59, after removing class shifts and class
+  reflections to fix the nonnegative integers.
 * `GraphProductOwed`: graph products reduce to amalgams `X ∗_C (C × K)` over retracts, which a
   twisted conjugation realizes inside the automorphism groups `Aut_G(G ∗ F_n)` of BFFHZ.
 * `MixedIdentitiesOwed`: the witness is Thompson's group `T`.
 
-**Deferred candidates**, not yet in the configuration: the exceptional spherical Artin groups;
-Kourovka 17.60; and Zaremsky's Oberwolfach 2018 question on Higman's group in Lodha–Moore and
-Monod groups.
+**Review status of the mathematics** (research/artifacts/gq-bh-results-summary.md; [R] is an
+internal referee pass, [IC] an adversarial check by a second lane; none is an external review):
+Kourovka 14.10(c) [R] and proved here in Lean; Kourovka 17.60, 21.75 and Kohl's
+factorization conjecture [R]; Kourovka 17.57, 17.59 and 17.61, BFFHZ Questions 3.1 and 3.3,
+the metabelian and linear theorems and LISW Question 1.11 [IC].
+
+**Not yet in the configuration**, because their statements need vocabulary Mathlib lacks
+(finiteness properties `F_n`, Thompson-like groups, decision problems over `CT(ℤ)`):
+Belk–Zaremsky Conjecture H and the FFWZ §1.2 conjecture, Kourovka 21.73 and 21.74(b),(c), Zaremsky's
+Oberwolfach 2018 Question 110, Tarocchi's and Lodha's questions, and the remaining rows of the
+summary; also the exceptional spherical Artin groups.
 
 The prose of this module was written by Claude (Anthropic), under the user's direction.
 -/
@@ -160,12 +173,12 @@ def integerReflection : Equiv.Perm ℤ where
   right_inv n := show -(-n - 1) - 1 = n by omega
 
 /-- `m` has no prime factor outside `P ∪ {2}`. -/
-def IsSmoothModulus (P : Finset ℕ) (m : ℤ) : Prop :=
+def IsSmoothModulus (P : Set ℕ) (m : ℤ) : Prop :=
   ∀ p : ℕ, p.Prime → (p : ℤ) ∣ m → p = 2 ∨ p ∈ P
 
 /-- `g` is a class transposition (as in `IsClassTransposition`) of two residue classes whose
 moduli have only prime factors in `P ∪ {2}`. -/
-def IsClassTranspositionOver (P : Finset ℕ) (g : Equiv.Perm ℤ) : Prop :=
+def IsClassTranspositionOver (P : Set ℕ) (g : Equiv.Perm ℤ) : Prop :=
   ∃ r₁ m₁ r₂ m₂ : ℤ, IsSmoothModulus P m₁ ∧ IsSmoothModulus P m₂ ∧
     0 ≤ r₁ ∧ r₁ < m₁ ∧ 0 ≤ r₂ ∧ r₂ < m₂ ∧
     (∀ t₁ t₂ : ℤ, r₁ + t₁ * m₁ ≠ r₂ + t₂ * m₂) ∧
@@ -175,8 +188,20 @@ def IsClassTranspositionOver (P : Finset ℕ) (g : Equiv.Perm ℤ) : Prop :=
       g n = n
 
 /-- Kohl's group `CT_P(ℤ)`, generated by the class transpositions over `P`. -/
-def classTranspositionGroupOver (P : Finset ℕ) : Subgroup (Equiv.Perm ℤ) :=
+def classTranspositionGroupOver (P : Set ℕ) : Subgroup (Equiv.Perm ℤ) :=
   Subgroup.closure {g | IsClassTranspositionOver P g}
+
+/-- `g` is Kohl's class shift `ν_{r(m)}`: it maps `r + t m ↦ r + (t + 1) m` for every `t` and
+fixes every integer outside `r(m)`. -/
+def IsClassShift (g : Equiv.Perm ℤ) : Prop :=
+  ∃ r m : ℤ, 0 ≤ r ∧ r < m ∧ (∀ t : ℤ, g (r + t * m) = r + t * m + m) ∧
+    ∀ n : ℤ, (∀ t : ℤ, n ≠ r + t * m) → g n = n
+
+/-- `g` is Kohl's class reflection `ς_{r(m)}`: it maps `r + t m ↦ r - t m`, that is
+`n ↦ -n + 2r` on `r(m)`, and fixes every integer outside `r(m)`. -/
+def IsClassReflection (g : Equiv.Perm ℤ) : Prop :=
+  ∃ r m : ℤ, 0 ≤ r ∧ r < m ∧ (∀ t : ℤ, g (r + t * m) = r - t * m) ∧
+    ∀ n : ℤ, (∀ t : ℤ, n ≠ r + t * m) → g n = n
 
 /-- An action of type (A) of `Γ` (Zaremsky; Belk–Fournier-Facio–Hyde–Zaremsky, §1): a
 faithful action on a set `S` such that `Γ` is finitely presented, every point stabilizer is
@@ -215,19 +240,23 @@ theorem embedsInFinitelyPresentedSimpleGroup_iff {G : Type} [Group G] :
     EmbedsInFinitelyPresentedSimpleGroup G ↔
       GroupApproximation.BooneHigman.EmbedsInFinitelyPresentedSimpleGroup G :=
   Iff.rfl
-
-/-- The proposition the Steinberg development owes for Kourovka 14.10(c). -/
-def ExplicitOvergroupOwed : Prop :=
-  Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
-    ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
-      SteinbergGroup 10 LeavittResolventRing, Function.Injective f
-
-/-- Kourovka 14.10(c), from the proposition the Steinberg development owes. -/
-theorem explicit_fp_overgroup_of_all_gl_n_q_of (h : ExplicitOvergroupOwed) :
+/-- **Kourovka 14.10(c), BBMZ Problem 2.7**, proved outright:
+`GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q` states the same
+proposition over byte-identical copies of the shared definitions, so it closes this one by
+definitional unfolding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q :
     Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
       ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
         SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
-  h
+  GroupApproximation.SteinbergFP.explicit_fp_overgroup_of_all_gl_n_q
+
+/-- The same statement under its `_of` name; no hypothesis is outstanding. -/
+theorem explicit_fp_overgroup_of_all_gl_n_q_of :
+    Group.IsFinitelyPresented (SteinbergGroup 10 LeavittResolventRing) ∧
+      ∀ n : ℕ, ∃ f : Matrix.GeneralLinearGroup (Fin n) ℚ →*
+        SteinbergGroup 10 LeavittResolventRing, Function.Injective f :=
+  explicit_fp_overgroup_of_all_gl_n_q
+
 
 /-- The finitely generated metabelian form, from the development endpoint. -/
 theorem finitely_generated_metabelian_embeds_in_finitely_presented_simple_of
@@ -308,15 +337,55 @@ theorem kourovka_17_59_of (h : Kourovka1759Owed) :
       {g | IsResidueClassWiseAffine g ∧ ∀ n : ℤ, 0 ≤ n ↔ 0 ≤ g n} :=
   h
 
+/-- The proposition the class-transposition development owes for Kourovka 17.60. -/
+def Kourovka1760Owed : Prop :=
+  ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
+    Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q
+
+/-- Kourovka 17.60, from the proposition the class-transposition development owes. -/
+theorem kourovka_17_60_of (h : Kourovka1760Owed) :
+    ∀ P Q : Set ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) → (∀ p ∈ Q, p.Prime ∧ p ≠ 2) →
+      Nonempty (classTranspositionGroupOver P ≃* classTranspositionGroupOver Q) → P = Q :=
+  h
+
 /-- The proposition the class-transposition development owes for Kourovka 17.61. -/
 def Kourovka1761Owed : Prop :=
-  ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+  ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
     Group.IsFinitelyPresented (classTranspositionGroupOver P)
 
 /-- Kourovka 17.61, from the proposition the class-transposition development owes. -/
 theorem kourovka_17_61_of (h : Kourovka1761Owed) :
-    ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
+    ∀ P : Set ℕ, P.Finite → (∀ p ∈ P, p.Prime ∧ p ≠ 2) →
       Group.IsFinitelyPresented (classTranspositionGroupOver P) :=
+  h
+
+/-- The proposition the class-transposition development owes for Kourovka 21.75. -/
+def Kourovka2175Owed : Prop :=
+  ∀ P₁ P₂ : Set ℕ, (∀ p ∈ P₁, p.Prime ∧ p ≠ 2) → (∀ p ∈ P₂, p.Prime ∧ p ≠ 2) →
+    classTranspositionGroupOver P₁ ⊔ classTranspositionGroupOver P₂ =
+      classTranspositionGroupOver (P₁ ∪ P₂)
+
+/-- Kourovka 21.75, answered negatively, from the proposition the class-transposition
+development owes. -/
+theorem kourovka_21_75_of (h : Kourovka2175Owed) :
+    ∀ P₁ P₂ : Set ℕ, (∀ p ∈ P₁, p.Prime ∧ p ≠ 2) → (∀ p ∈ P₂, p.Prime ∧ p ≠ 2) →
+      classTranspositionGroupOver P₁ ⊔ classTranspositionGroupOver P₂ =
+        classTranspositionGroupOver (P₁ ∪ P₂) :=
+  h
+
+/-- The proposition the class-transposition development owes for Kohl's factorization
+conjecture. -/
+def KohlFactorizationOwed : Prop :=
+  {g : Equiv.Perm ℤ | IsResidueClassWiseAffine g} =
+    (Subgroup.closure {g | IsClassShift g ∨ IsClassReflection g ∨ IsClassTransposition g} :
+      Set (Equiv.Perm ℤ))
+
+/-- Kohl's factorization conjecture, from the proposition the class-transposition
+development owes. -/
+theorem kohl_factorization_conjecture_of (h : KohlFactorizationOwed) :
+    {g : Equiv.Perm ℤ | IsResidueClassWiseAffine g} =
+      (Subgroup.closure {g | IsClassShift g ∨ IsClassReflection g ∨ IsClassTransposition g} :
+        Set (Equiv.Perm ℤ)) :=
   h
 
 /-- The proposition the graph-product development owes for BFFHZ Question 3.1. -/

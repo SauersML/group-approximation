@@ -40,6 +40,9 @@ Two steps of the proof are of independent use.
    - Over `Z^2`, quantum rigidity is equivalent to finite presentation of `LC(X, k) ⋊ Z^2`
      (`sft-crossed-product-fp-iff-quantum-rigid`). So it is invariant under conjugacy and under
      `GL_2(Z)`, and the condition is rigidity of `X_0` itself. That is open.
+   - `X_0` is the Jeandel–Rao minimal subshift, which is Kakutani equivalent to Labbé's 19-tile shift
+     `Ω_U`. So by `jeandel-rao-minimal-subshift-is-quantum-rigid-iff-labbe-shift-is`, the condition is
+     exactly `J_2(Ω_U) = 0`: Labbé's scale-2 question.
 3. **Payoff.** Let `X` be any `Z^2` SFT with an expansive rational direction (after recoding) that is
    quantum rigid, minimal and free. Then `Z` is a quantum rigid, minimal, free SFT over the one-ended,
    non-amenable, torsion-free, finitely presented group `F_n × Z`. Minimality and freeness are ABHT's.

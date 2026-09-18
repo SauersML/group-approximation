@@ -75,8 +75,9 @@ together with `x(u) ≠ a` is unsatisfiable. This is r.e., and exactly one `a` p
   - The algorithm's running time is governed by the **seed-collapse function**
     `κ(n) = max over |w| ≤ n with w ≠ 1 of the least size of a contradiction for Γ_w`,
     together with the time to enumerate `N_w`.
-  - CAP says the word problems of all fp seeded groups lie in one class. That is a uniform
-    bound on `κ`, and nothing here gives one.
+  - CAP says the word problems of all fp seeded groups lie in one class. A uniform computable
+    bound on `κ` over the class implies CAP (`seed-collapse-is-bounded-by-forcing-radius-and-dehn`);
+    the converse fails, and nothing here gives such a bound.
   - ¬CAP needs fp seeded groups whose seed contradictions must be arbitrarily large, that
     is, seeds that code hard inputs. That is (SEED) for hard inputs itself.
 
@@ -87,5 +88,5 @@ together with `x(u) ≠ a` is unsatisfiable. This is r.e., and exactly one `a` p
 - **What it gives.** Finitely presented plus a seed implies solvable word problem, with no
   rigidity and no density. Seeds play for (SEED) the role that finite discriminability plays
   for isolated groups: they consume exactly the decidability Clapham supplies.
-- **What is left for CAP.** CAP is now purely a statement about the size of the seed's
-  contradiction certificates, the seed-collapse function `κ`.
+- **What is left for CAP.** A uniform bound on the size of the seed's contradiction
+  certificates (the seed-collapse function `κ`) would give CAP.

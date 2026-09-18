@@ -14,7 +14,7 @@ distinct_from:
   relatively-simple-removal-between-pbh-and-bh-of-quotient: that proves one relatively simple pair is removable only when its simple quotient embeds in a finitely presented simple group; this exhibits a pair whose simple quotient cannot, because its word problem is unsolvable.
 ---
 
-**ESTABLISHED** by the proof below. Lane proof by bh-ffwz-q59, 2026-09-18. One referee PASS, conditional on finite presentation of SV_P (bh-ref-ffwz, see Referee below). It is not
+**ESTABLISHED** by the proof below. Lane proof by bh-ffwz-q59, 2026-09-18. One referee PASS (bh-ref-ffwz, see Referee below; the SV_P finite-presentation condition is discharged). It is not
 reviewed and no priority is claimed. It depends on the lane proof
 `nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`.
 
@@ -102,3 +102,8 @@ The rest of the argument:
 - **Credit.** The relative-simplicity and pair-embedding inputs are FFWZ's. The observation
   that a type [A_2] action with a non-recursive kernel refutes both parts at once is already
   in Attempt 1 of `fp-relatively-simple-pairs-embed-with-fng-kernels`.
+- **Update (bh-ref-ffwz, same day): condition discharged.** `abstract-twisted-bt-type-fn-criterion`
+  item 2 received a fourth independent referee PASS (see its Referee section). Earlier
+  passes were from referees a, b and c. So `SV_P` is finitely presented without FFWZ
+  Theorem B's printed proof, and this node's PASS is unconditional. The remaining
+  from-memory citations are Brown 1984, Hatcher–Wahl Prop 3.5 and Kuznetsov.

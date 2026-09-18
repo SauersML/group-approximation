@@ -188,3 +188,36 @@ not make `G` linear sofic through a rank model, because the host has none.
        the commuting isometries `s_0 ⊗ 1`, `1 ⊗ s_0`, which generate `F[x,y]`.
        - Brownlowe–Sørensen (arXiv:1603.03618) exclude this only for unital
          `*`-maps.
+**Reframing of (E): the boundary factor is only a binary Leavitt factor (swarm-0917, lane w13-bh-pull).**
+- `boundary-tensor-hosts-equal-binary-leavitt-tensor-hosts` is ESTABLISHED. For every unital `B` and every `d >= 2`,
+  `F_2[G]` embeds unitally in `B ⊗ L_∂(d)` if and only if it embeds unitally in `B ⊗ L_(F_2)(1,2)`.
+  - One direction is Brownlowe–Sørensen.
+  - The other uses a binary Leavitt family in the corner `e = Σ_(i<d) s_i t_i`, then the augmentation extension.
+- So (E) is equivalent to: every decidable `F_2[G]` embeds unitally in `B_Ω ⊗ L_(F_2)(1,2)` for some admissible `Ω`.
+  The choice of `d` and the free-group boundary contribute nothing beyond `L(1,2)`.
+- This is the container of reduction R2 in the artifact. The boundary factor buys finite presentation of the host
+  through Theorem P. It does not buy extra embedding room.
+
+**Consequence for the `Z^4` test case.** A NO for `F_2[Z^4]` would refute (E).
+- By corollary (C2) of that claim, the sufficient condition "a corner of `L_∂` contains a Laurent ring in two
+  commuting variables" is equivalent to the negation of `leavitt-commuting-units-are-algebraically-dependent`.
+  That claim is OPEN, and exact centralizer computations support it.
+- So any embedding of `F_2[Z^4]` must use one of three mechanisms, each of which can fail separately:
+  - (i) the Leavitt corner. This is equivalent to refuting `leavitt-commuting-units-are-algebraically-dependent`.
+    Because of the firewall on that claim, doing so would not decide Ara–Cortiñas Q5.7.
+  - (ii) `F_2[Z^3]` in `B_Ω`, or in a corner of it. This is a rank-3 question for crossed products of `Z^2`-SFTs.
+    It is the `s = 2` case of the commutative-rank heuristic, under which a `Z^s`-graded Steinberg algebra with an
+    AF kernel has no commutative domain of transcendence degree `s + 1`.
+  - (iii) an entangled embedding that uses neither tensor factor separately.
+- Monomial embeddings are already excluded (the z4 no-monomial-embedding node on the fork branch, not yet in this
+  tree).
+
+- A parallel lane (w12-z-pull, the homogeneous Laurent-rank bound for algebraic-core gradings, not in this tree)
+  kills two subcases:
+  - gauge-homogeneous units in (i);
+  - `Z^3`-lattice, gauge-homogeneous and locally PI units in (ii).
+
+  So what survives is inhomogeneous, locally non-PI units.
+
+**Where it stops.** Nothing here constructs or rules out an embedding, so the claim stays OPEN. The next test is
+(ii): does any free minimal `Z^2`-SFT crossed product over `F_2` contain `F_2[Z^3]`?
