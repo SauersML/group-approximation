@@ -159,13 +159,13 @@ theorem x_inl_commute_x_inr (hI : ∀ i j : I, ∃ m : I, m ≠ i ∧ m ≠ j)
     (i j : I) (hij : i ≠ j) (a : R) (k l : I) (hkl : k ≠ l) (b : S) :
     Commute (x i j hij ((a, 0) : R × S)) (x k l hkl ((0, b) : R × S)) := by
   by_cases hjk : j = k
-  · cases hjk
+  · subst hjk
     by_cases hil : i = l
-    · cases hil
+    · subst hil
       obtain ⟨m, hmi, hmj⟩ := hI i j
       exact commute_inl_inr_opposite i j hij m hmi hmj a b
     · exact commute_inl_inr_adjacent i j l hij hkl hil a b
   · by_cases hil : i = l
-    · cases hil
+    · subst hil
       exact commute_inl_inr_adjacent' i j k hij hkl hjk a b
     · exact x_commute_of_ne i j k l hij hkl hjk (fun e => hil e.symm) _ _

@@ -27,7 +27,7 @@ import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketTwoArcSection
 import GroupApproximation.GGT.VanKampen.Estimating.OsinPocketPinchSection
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P08ProperArc.Proof
 import GroupApproximation.Manuscript.NonMF.Full.GL02.GapSpan
-import GroupApproximation.Manuscript.NonMF.Full.GL06d.Statement
+import GroupApproximation.Manuscript.NonMF.Full.GL06f.Statement
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -53,9 +53,11 @@ The remaining residuals are hypotheses, discharged in `Full/GL06/Assembly`:
 * `hcopy`: binder 5 below the bound, `OsinMultipleEdgePocketRegionCopyBelowSectionStatement`;
 * `hstep`: residual 10, `PocketOuterPinchStepSectionStatement`.
 
-`outerPinchStep_of_cases` splits residual 10 into the rose case (`P10ChordLift.RoseStepStatement`)
-and its complement (`Full.GL06d.NonRoseStepStatement`), by excluded middle on
-`P10ChordLift.AllNonFirstTurnsCrossed`.
+`outerPinchStep_of_cases` splits residual 10 into the rose case (`Full.GL06f.RoseStepStatement`)
+and its complement (`Full.GL06.NonRoseStepStatement`, stated here), by excluded middle on
+`Full.GL06f.AllNonFirstTurnsCrossed`.  The foreign `GreendlingerLeaf/P10ChordLift/Predicate` (and so
+`Full/GL06d/Statement`, which imports it through `GoodSector`) is not imported: it does not
+compile, since its `List.next` has no decidable equality of darts in scope.
 
 ## Manuscript status
 
