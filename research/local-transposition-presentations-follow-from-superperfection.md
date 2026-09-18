@@ -150,3 +150,36 @@ The same mechanism, transport implies central implies trivial, closes the gluing
 transport one step at a time inside `Γ~`. There the relative perfectness `K = [K, Γ~]` replaces `H_2`. The
 hard part of P2′b is therefore no longer overlapping (C): it is one-step transport of lifts in the gluing
 group.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS, with one repairable nit
+
+- **Items 1–2.** Correct.
+  - Regular refinement along a word makes every one-letter conjugation an instance of (C).
+  - The transported labels are the germs of `ε(h)`, which are constant on `E` and on `F`, so
+    (S_C) and (S_X) reassemble.
+  - A kernel element has trivial germs everywhere, so it commutes with every generator.
+- **Item 3 (nit).** The conjugator `g` mapping `α → α0` and `β → β0` fibrewise needs nonempty
+  complements on both sides in each fibre. This fails, for example, for `u = ∅`, or for
+  `u = 0`, `u' = 1` over `P ∩ λP`. Repair: first split `t` by (S_C) until `|u|, |u'| ≥ 2`.
+  Then both complements are nonempty clopens of `C`, hence prefix-equivalent. Also
+  `[t] = Σ [split factors]`, so it suffices to kill the long-cone generators.
+- **Item 4.**
+  - A perfect central extension is a quotient of the universal one, and superperfection makes
+    it split. Both steps are correct.
+  - **Li, arXiv:2209.08087, checked at source (TeX).** The vanishing corollary
+    (`introcor:Vanish`, Corollaries `cor:HVanish` and `cor:Acyclic`) is stated for ample
+    groupoids with locally compact Hausdorff unit space without isolated points, minimal, with
+    comparison: if `H_*(G) = 0` for all `* ≥ 0`, then `F(G)` is integrally acyclic and
+    `F(G) = D(G)`.
+    - Effectiveness is **not** assumed.
+    - `F(G)` is the group of global compact open bisections, which matches this node.
+  - The pure-infiniteness argument for comparison is correct.
+  - `H_*(G_V) = 0` for the `O_2` groupoid is correct.
+  - Matui's Künneth formula (Proc. LMS 104 (2012), Thm 2.4) was not re-read. Its standard
+    statement gives `H_*(T) = 0` from `H_*(G_V) = 0`.
+- **"What remains".** The gluing-presentation question has since been settled. `K = 1` is
+  proved in `v-times-gluing-presentations-are-exact` (22a3770d9, refereed), and independently
+  in `research/artifacts/gq-bh-one-relator-independent-proof-of-gluing-exactness.md`
+  (9752ecd5d). The Lemma T suggested here is realized there by the auxiliary-cone lifts.
+- **Credit.** The homological input is entirely Li's; the groupoid homology is Crainic–Moerdijk
+  and Matui.
