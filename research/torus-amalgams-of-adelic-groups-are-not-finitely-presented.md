@@ -9,14 +9,16 @@ distinct_from:
   fg-restricted-product-actions-have-finite-support: that constrains monomial hosts of the adelic action; this constrains the presentation of amalgam envelopes, with no action assumed.
 ---
 
-**ESTABLISHED** through `torus-amalgams-of-adelic-groups-are-not-finitely-presented-proof`. Lane proof, not
-independently reviewed. Elementary apart from the cited theorem of Cornulier, which is used only in item 4.
+**ESTABLISHED** through `torus-amalgams-of-adelic-groups-are-not-finitely-presented-proof`. Refereed:
+gq-referee-a PASS, proof-gap lens (report 9a409b0c2, fix W1 applied); gq-referee-b PASS, citation lens (report
+581236183; Cornulier read at source). Elementary apart from the cited theorem of Cornulier, used only in item 4.
 No priority is claimed for items 1--2.
 
 **Setting.** Let `(Γ, C)` be one of the following pairs.
 - `Γ = GL_n(Q)` or `SL_n(Q)` with `n >= 2`, and `C` any subgroup of `Γ` that contains the diagonal subgroup of
   `Γ` and meets the lower root group `x_21(Q)` trivially. Examples: the diagonal subgroup, the monomial
-  subgroup, the upper triangular Borel subgroup, any upper parabolic.
+  subgroup, the upper triangular Borel subgroup, and the upper parabolics whose first block has size 1. (An upper
+  parabolic with first block of size at least 2 contains `x_21(Q)`; for `C = Γ` the amalgam is just `B`.)
 - `Γ = Aff(Q) = Q ⋊ Q^x` acting on `Q`, and `C = Q^x`, the dilations `m_r : x -> r x`. Write `τ : x -> x+1`.
 
 Let `B` be a finitely generated group and `C -> B` an injective homomorphism. Put `Γ(Z) = GL_n(Z)`,
