@@ -101,7 +101,7 @@ theorem higmanVCTree_step {d n : ℕ} (hd : 1 < d)
     higmanVCCommon_mk d (FreeGroup.of (u, v)) ∈ higmanVCTree_S d := by
   rcases List.eq_nil_or_concat u with hu | ⟨p, a, hu⟩
   · rw [hu] at h1
-    exact absurd List.nil_prefix h1
+    exact (h1 List.nil_prefix).elim
   have hu' : u = p ++ [a] := by rw [hu, List.concat_eq_append]
   subst hu'
   have hla : (p ++ [a]).length = p.length + 1 := by simp
