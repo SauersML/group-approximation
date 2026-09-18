@@ -128,3 +128,73 @@ theorem gfaceWindCellNine_ne_nil (K : PocketFaceSet D eps X lo hi) {c : List X.t
   · obtain ⟨d, hd⟩ := List.exists_mem_of_ne_nil _ h
     exact List.ne_nil_of_mem (ht d hd)
   · exact h
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_ne_nil
+
+/-- **Clause 5 at a nonempty reached walk on a pocket of relator cells**: a dart `x` of the walk
+lies on `∂K`, so its face is in `K.faces`, hence a relator cell (`gfaceWindCell_c5`). -/
+theorem gfaceWindCellNine_c5 (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hR : gfaceWindCell_RCells K) {c : List X.toCombMap.Dart} {g : X.toCombMap.Face → ℤ}
+    (hr : Relation.TransGen (gfaceWind_Step X.toCombMap X.outerFace)
+      (K.boundary.cycle, gfaceWind_ind K.faces) (c, g))
+    (hne : c ≠ []) : gfaceWindNine_C5 K c g := by
+  obtain ⟨x, hx⟩ := List.exists_mem_of_ne_nil _ hne
+  exact gfaceWindCell_c5 K hR g hx ((gfaceWindCellNine_sub K hK hr).1 x hx)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_c5
+
+/-- **Clause 5 forces a nonempty reached walk**: at `c = []` the face function vanishes
+(`gfaceWindSix_nil`), so no relator cell has value `1`, and no dart lies on `c`. -/
+theorem gfaceWindCellNine_ne_nil_of_c5 (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    {c : List X.toCombMap.Dart} {g : X.toCombMap.Face → ℤ}
+    (hr : Relation.TransGen (gfaceWind_Step X.toCombMap X.outerFace)
+      (K.boundary.cycle, gfaceWind_ind K.faces) (c, g))
+    (h5 : gfaceWindNine_C5 K c g) : c ≠ [] := by
+  obtain ⟨-, hcob, ho⟩ := gfaceWindCellNine_sub K hK hr
+  intro hc0
+  subst hc0
+  rcases h5 with ⟨x, hx, -⟩ | ⟨i, hi⟩
+  · simp at hx
+  · rw [gfaceWind_mem_faces] at hi
+    have h0 := gfaceWindSix_nil (X.toCombMap.connected_of_planar X.planar) hcob ho
+      (cell X i).face
+    rw [hi] at h0
+    exact absurd h0 one_ne_zero
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_ne_nil_of_c5
+
+/-- **An arc-keeping winding choice without clause 5**: `gfaceWindNine_Arcs K` with clause 5
+replaced by "an arc is nonempty, or the reached walk is nonempty". -/
+def gfaceWindCellNine_Arcs (K : PocketFaceSet D eps X lo hi) : Prop :=
+  ∃ (c : List X.toCombMap.Dart) (g : X.toCombMap.Face → ℤ),
+    Relation.TransGen (gfaceWind_Step X.toCombMap X.outerFace)
+      (K.boundary.cycle, gfaceWind_ind K.faces) (c, g) ∧
+    ((∀ f, g f = 0 ∨ g f = 1) ∨ ((c.map X.toCombMap.vertexOf).Nodup ∧ ∀ f, 0 ≤ g f)) ∧
+    (∀ d ∈ invDarts X K.sourceArc.darts, d ∈ c) ∧ (∀ d ∈ K.targetArc.darts, d ∈ c) ∧
+    (K.sourceArc.darts ≠ [] ∨ gfaceWindNine_C4 K c g) ∧
+    (K.sourceArc.darts ≠ [] ∨ K.targetArc.darts ≠ [] ∨ c ≠ [])
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_Arcs
+
+/-- **The arc-keeping choice from its form without clause 5**, on a pocket of relator cells. -/
+theorem gfaceWindCellNine_arcs_of (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hR : gfaceWindCell_RCells K) (h : gfaceWindCellNine_Arcs K) : gfaceWindNine_Arcs K := by
+  obtain ⟨c, g, hr, h01, hs, ht, h4, hne⟩ := h
+  exact ⟨c, g, hr, h01, hs, ht, h4,
+    gfaceWindCellNine_c5 K hK hR hr (gfaceWindCellNine_ne_nil K hs ht hne)⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_arcs_of
+
+/-- **The form without clause 5 from the arc-keeping choice** (the converse; no r-cell premise
+is needed). -/
+theorem gfaceWindCellNine_of_arcs (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (h : gfaceWindNine_Arcs K) : gfaceWindCellNine_Arcs K := by
+  obtain ⟨c, g, hr, h01, hs, ht, h4, h5⟩ := h
+  exact ⟨c, g, hr, h01, hs, ht, h4,
+    Or.inr (Or.inr (gfaceWindCellNine_ne_nil_of_c5 K hK hr h5))⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindCellNine_of_arcs
+
+end CellNine
+
