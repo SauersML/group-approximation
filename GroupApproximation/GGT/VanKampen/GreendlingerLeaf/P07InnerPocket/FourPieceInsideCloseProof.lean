@@ -160,13 +160,15 @@ theorem fourPieceInsideClose_of_residual
   have hnb' : FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
       (¬ e ∈ invDarts X G₂.darts ∧ (X.toCombMap.alpha e ∈ b.sideFrom i ∧
         ¬ e ∈ invDarts X G₁.darts ∧ ¬ e ∈ invDarts X G₂.darts)))
-      (invDarts X outerWalk) :=
-    fourPieceInsideClose_noInterleave_congr hnb fun _ => fourPieceInsideClose_iff_b
+      (invDarts X outerWalk) := by
+    refine fourPieceInsideClose_noInterleave_congr hnb fun _ => ?_
+    exact fourPieceInsideClose_iff_b
   have hna' : FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
       (¬ e ∈ invDarts X G₂.darts ∧ ¬ (X.toCombMap.alpha e ∈ b.sideFrom i ∧
         ¬ e ∈ invDarts X G₁.darts ∧ ¬ e ∈ invDarts X G₂.darts)))
-      (invDarts X outerWalk) :=
-    fourPieceInsideClose_noInterleave_congr hna fun _ => fourPieceInsideClose_iff_a
+      (invDarts X outerWalk) := by
+    refine fourPieceInsideClose_noInterleave_congr hna fun _ => ?_
+    exact fourPieceInsideClose_iff_a
   obtain ⟨m, R₁, U₁, R₂, U₂, hrot, hU₁, hU₂, hcase⟩ :=
     FourPiece.exists_fourPiece (P1 := fun e => e ∈ invDarts X G₁.darts)
       (P2 := fun e => e ∈ invDarts X G₂.darts)

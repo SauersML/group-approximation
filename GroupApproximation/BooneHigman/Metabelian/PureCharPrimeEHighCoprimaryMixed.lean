@@ -70,6 +70,7 @@ theorem eHighCoprimary_pureCharPrimeEHighModule_of_mixed (h : EHighCoprimaryMixe
     PureCharPrimeEHighModuleStatement :=
   pureCharPrimeEHighModule_of_eHighDevissageCoprimary (eHighCoprimary_devissage_of_mixed h)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_pureCharPrimeEHighModule_of_mixed
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighCoprimary_pureCharPrimeEHighModule_of_mixed
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary

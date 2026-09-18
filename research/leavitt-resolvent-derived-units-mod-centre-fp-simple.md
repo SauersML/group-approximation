@@ -7,6 +7,8 @@ distinct_from:
   leavitt-resolvent-ring-is-fp-simple-of-char-zero: that is the ring statement (finitely presented, simple, contains Q); this is the group statement needed to reach the root.
   leavitt-unit-group-finitely-presented: that is Khanh's finite presentation of L_(F_2)(1,2)^x in characteristic two; this is the characteristic-zero analogue for R_L, whose unit group has the non-finitely-generated centre Q^x.
   binary-leavitt-unit-group-is-simple: that is simplicity of L_(F_2)(1,2)^x = EL_3; this asks for simplicity modulo the centre in characteristic zero.
+refuted_by:
+  - leavitt-resolvent-derived-units-mod-centre-not-fp
 ---
 
 **OPEN.** Let `R_L` be the ring of `leavitt-resolvent-ring-is-fp-simple-of-char-zero`,
@@ -62,3 +64,18 @@ simple.
    contains all of `Q^x` centrally, because `diag(λ,1)` and its `V`-conjugate multiply
    to `λ`. So the finitely presented simple group must come from a subgroup that avoids
    `Q^x`, or from a ring where `ker(Q^x -> K_1)` is finitely generated.
+4. **Refuted (2026-09-17, lane `gq-ring-leavitt`):**
+   `leavitt-resolvent-derived-units-mod-centre-not-fp`. Attempt 3's conclusion holds
+   unconditionally, without its three unproved inputs (AGP for `R_L`, perfectness of
+   `D`, the exact sequence).
+   - **Inputs used.** The Leavitt family of `R_L` generates a unital copy of
+     `L_Q(1,2)`, which is simple. Its unit group is perfect over every field
+     (`leavitt-unit-groups-over-every-field-are-simple-mod-scalars`). So the central
+     scalars `Q^x` lie in `[D, D] ∩ Z(D)`.
+   - **Group lemma.** If a non-finitely-generated `C_0 ≤ Z(H) ∩ [H,H]`, then no
+     quotient `H/C` with `C_0 ≤ C ≤ Z(H)` is finitely presented
+     (`leavitt-scalar-commutators-block-fp-central-quotients`, part 0). No
+     perfectness of `D` and no Schur multiplier are needed.
+   - **Conclusion.** `D/Z(D)` is not finitely presented, so this claim is false. The
+     same obstruction covers `R_L^x`, `E_N(R_L)` and every ring with an infinite
+     central field and a Leavitt family.

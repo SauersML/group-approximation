@@ -73,8 +73,8 @@ universe u w v
 open Embedded HullSC WordMetric SimpleClosedWalkSides Surgery.MapCollapse
 
 /-- **Residual of lane gl-p07-45.**  This is `PocketFourPieceArcAuditResidualStatement` with
-clause 3 of branch 1 (`faces ⊆ sideFaces K.walk`) asked only for witnesses whose outside walk reads no
-dart of `invDarts G₁` or `invDarts G₂`.  See the module docstring. -/
+clause 3 of branch 1 (`faces ⊆ sideFaces K.walk`) asked only for witnesses whose outside walk
+reads no dart of `invDarts G₁` or `invDarts G₂`.  See the module docstring. -/
 def FourPieceInsideCloseResidualStatement : Prop :=
   ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
     (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W)

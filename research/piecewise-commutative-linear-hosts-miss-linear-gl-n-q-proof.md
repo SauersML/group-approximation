@@ -73,6 +73,12 @@ Notation as in the target claim.
    - A projective map of `P^{m-1}(K)` fixes pointwise the union of its projectivized
      eigenspaces. That is a finite union of proper closed subspaces with empty
      interior, unless one eigenspace is everything, i.e. the map is scalar.
+   - **Sphere of rays.** Let `g ∈ GL_m(R)` fix every ray in a nonempty open cone
+     `C ⊆ R^m \ 0`. Then every `v ∈ C` is an eigenvector with a positive eigenvalue.
+     `C` spans `R^m`, and a linear map for which every vector of a spanning open
+     set is an eigenvector is scalar (compare `v`, `w` and `v + w` for independent
+     `v, w ∈ C` with `v + w ∈ C`). So `g = c I` with `c > 0`, which is trivial in
+     `GL_m(R)/R_{>0}`.
    - **Adelic and d-adic.** A nonempty open subset of `A_f^n` (or of
      `∏_p P^{m-1}(Q_p)`, or of `Z_d[1/d]^n = ∏_{p|d} Q_p^n`)
      contains a product `∏_{p∈S} W_p × ∏_{p∉S} Z_p^n` (resp. `P^{m-1}(Q_p)`) with
@@ -91,6 +97,9 @@ Notation as in the target claim.
      has kernel the invertible scalars, because commuting with all matrix units
      forces a scalar. So `GL_m(A_f)/A_f^×` and `PGL_n(R)` are linear.
      `GL_m(A_f)` acts coordinatewise on `∏_p P^{m-1}(Q_p)`, with kernel `A_f^×`.
+   - `GL_m(R)/R_{>0} ≅ SL^±_m(R)`: write `g = |det g|^{1/m} g_0` with
+     `det g_0 = ±1`. The map `g ↦ g_0` is a homomorphism with kernel `R_{>0}`, onto
+     the linear group `SL^±_m(R) ≤ GL_m(R)`.
    - `Aff_1(Q_2) ≀ S_n ≤ GL_{2n}(Q_2)` by block permutation matrices.
 
 8. **Membership of the named groups.**
@@ -99,6 +108,8 @@ Notation as in the target claim.
      `αψ ↦ βψ` is `z ↦ b + d^{|β|−|α|}(z − a)`. So `V_d`, `nV`, `Sc(n)` and
      Röver–Nekrashevych groups of affine self-similar groups are piecewise in the
      stated `L` with `S_f = ∅`.
-   - **`T`.** `T` is the group of piecewise-`PSL_2(Z)` homeomorphisms of `RP^1`
-     with finitely many rational breakpoints (survey Remark 5.5).
+   - **`T`.** `T` is isomorphic to the group of PIP homeomorphisms of `RP^1`
+     (survey Remark 5.5, citing Greenberg and Cannon--Floyd--Parry §7). Such a
+     homeomorphism has finitely many pieces in `PGL_2(Z) ≤ PGL_2(R)`, so this
+     group is in instance 4.
 ∎
