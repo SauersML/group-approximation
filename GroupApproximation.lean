@@ -5538,6 +5538,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.LabelledMap
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGate.ShellAssembly
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.KMSPresentation
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVBrown.Lifts
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.OneSum
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2LocalLifting.TraceVanishing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
