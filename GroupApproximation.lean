@@ -5721,6 +5721,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Euclid
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.LaurentWidth
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2ThomT.SL3Laurent
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.Relations
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
