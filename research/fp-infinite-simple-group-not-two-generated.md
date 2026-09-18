@@ -27,3 +27,8 @@ subgroups) are the natural places to look, and those whose rank is known are
 abelianization and finite quotients give nothing. Lower bounds from actions (e.g.
 ranks of germ groups or of stabilizers in type (A) actions) are the natural
 candidates.
+
+**Also printed.** AIM problem list *Amenability of discrete groups*
+(http://aimpl.org/amenablediscrete), section "Other problems", Problem 5.2: "Is there a
+finitely presented simple group that is not 2-generated?" (accessed 2026-09-18; recorded
+in `research/artifacts/gq-bh-openq-lists.md`).
