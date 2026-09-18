@@ -6040,6 +6040,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUn
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTDecay
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.FieldK2
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKEndpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrtLeafNorms
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
