@@ -66,7 +66,8 @@ finite quotient. If so, and `K_2(N, D)` is central, this claim fails.
      where the commutative part still sees `c_q`.
 4. **Towards a uniform kill (2026-09-18, lane gq-k2-q).** Not decided.
    - *Proved:* every `c_q` dies in every folding quotient `F_(r,N)` with `r <= l − 1`, for `l` odd.
-     `euler-ring-symbols-in-small-finite-quotients`, Part 4, shows `K_2(N, Z[u]/(l,u)^r) = 0`.
+     `euler-ring-symbols-in-small-finite-quotients` (item 1), proved in Part 4 of its route
+     `euler-ring-symbols-in-small-finite-quotients-proof`, shows `K_2(N, Z[u]/(l,u)^r) = 0`.
    - *Reduction to genuine crossed products (elementary).* Let `F = D/J` be finite, `Ā` the image of `A`, and `X` the
      image of `x`, of order `m`.
      - `D -> Ā ⋊ Z/m`, `x -> X`, is well defined and onto a finite ring, and `F` is a quotient of it.
