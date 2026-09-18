@@ -101,6 +101,81 @@ theorem eHighWittLin_isWP_add {w : σ → ℕ} {co : N → σ → L} {g h : N �
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWP_add
 
+/-- Left Witt multiplication by a constant preserves weight-polynomiality. -/
+theorem eHighWittLin_isWP_mul {w : σ → ℕ} {co : N → σ → L} (a : eHighWitt_W2 L p)
+    {g : N → eHighWitt_W2 L p} (hg : eHighWittLin_IsWP w co g) :
+    eHighWittLin_IsWP w co (fun x => eHighWittLin_mul a (g x)) := by
+  obtain ⟨Φ₀, Φ₁, h₀, h₁, hΦ⟩ := hg
+  have hp : IsWeightedHomogeneous (eHighWitt_hwt w) (Φ₀ ^ p) p :=
+    eHighWitt_isWH_of_eq (h₀.pow p) (by simp only [smul_eq_mul, mul_one])
+  refine ⟨C a.x0 * Φ₀, C (a.x0 ^ p) * Φ₁ + C a.x1 * Φ₀ ^ p, h₀.C_mul _,
+    (h₁.C_mul _).add (hp.C_mul _), fun x => ⟨?_, ?_⟩⟩
+  · show a.x0 * (g x).x0 = aeval (eHighWitt_hpt (co x)) (C a.x0 * Φ₀)
+    simp only [map_mul, aeval_C, Algebra.algebraMap_self_apply, (hΦ x).1]
+  · show a.x0 ^ p * (g x).x1 + a.x1 * (g x).x0 ^ p =
+      aeval (eHighWitt_hpt (co x)) (C (a.x0 ^ p) * Φ₁ + C a.x1 * Φ₀ ^ p)
+    simp only [map_add, map_mul, map_pow, aeval_C, Algebra.algebraMap_self_apply, (hΦ x).1,
+      (hΦ x).2]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWP_mul
+
+/-- Finite sums, in the group `W₂(L)`, of weight-polynomial maps are weight-polynomial. -/
+theorem eHighWittLin_isWP_sum [Fact p.Prime] {ι : Type} {w : σ → ℕ} {co : N → σ → L}
+    (s : Finset ι) (f : ι → N → eHighWitt_W2 L p)
+    (hf : ∀ i ∈ s, eHighWittLin_IsWP w co (f i)) :
+    eHighWittLin_IsWP w co (fun x => ∑ i ∈ s, f i x) := by
+  classical
+  induction s using Finset.induction_on with
+  | empty =>
+    simp only [Finset.sum_empty]
+    exact eHighWittLin_isWP_zero w co
+  | insert a s ha ih =>
+    simp only [Finset.sum_insert ha]
+    exact eHighWittLin_isWP_add (hf a (Finset.mem_insert_self a s))
+      (ih fun i hi => hf i (Finset.mem_insert_of_mem hi))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWP_sum
+
+/-- A coordinate projection `x ↦ x j` of `W₂(L)ⁿ` is weight-polynomial. -/
+theorem eHighWittLin_isWP_proj {n : ℕ} (j : Fin n) :
+    eHighWittLin_IsWP (eHighWitt_wt p n)
+      (eHighWitt_coord : (Fin n → eHighWitt_W2 L p) → Fin n ⊕ Fin n → L)
+      (fun x => x j) :=
+  ⟨X (some (Sum.inl j)), X (some (Sum.inr j)), isWeightedHomogeneous_X L _ _,
+    isWeightedHomogeneous_X L _ _, fun x =>
+      ⟨(aeval_X (R := L) (eHighWitt_hpt (eHighWitt_coord x)) (some (Sum.inl j))).symm,
+        (aeval_X (R := L) (eHighWitt_hpt (eHighWitt_coord x)) (some (Sum.inr j))).symm⟩⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_isWP_proj
+
+/-- The action of a `W₂(L)`-matrix on `W₂(L)ⁿ`: `x ↦ (∑ₗ A i l * x l)ᵢ`. -/
+def eHighWittLin_mulVec [Fact p.Prime] {n : ℕ} (A : Fin n → Fin n → eHighWitt_W2 L p)
+    (x : Fin n → eHighWitt_W2 L p) : Fin n → eHighWitt_W2 L p :=
+  fun i => ∑ l, eHighWittLin_mul (A i l) (x l)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_mulVec
+
+/-- **Endpoint (proved outright).**  Every `W₂(L)`-matrix action is weight-polynomial for the
+Witt weights. -/
+theorem eHighWittLin_mulVec_isWeightPoly [Fact p.Prime] {n : ℕ}
+    (A : Fin n → Fin n → eHighWitt_W2 L p) :
+    eHighWitt_IsWeightPoly (eHighWitt_wt p n) eHighWitt_coord (eHighWittLin_mulVec A) := by
+  have h : ∀ i : Fin n, eHighWittLin_IsWP (eHighWitt_wt p n) eHighWitt_coord
+      (fun x : Fin n → eHighWitt_W2 L p => eHighWittLin_mulVec A x i) := fun i =>
+    eHighWittLin_isWP_sum Finset.univ
+      (fun (l : Fin n) (x : Fin n → eHighWitt_W2 L p) => eHighWittLin_mul (A i l) (x l))
+      (fun l _ => eHighWittLin_isWP_mul (A i l) (eHighWittLin_isWP_proj l))
+  intro v
+  cases v with
+  | inl i =>
+    obtain ⟨Φ₀, _, h₀, _, hΦ⟩ := h i
+    exact ⟨Φ₀, h₀, fun x => (hΦ x).1⟩
+  | inr i =>
+    obtain ⟨_, Φ₁, _, h₁, hΦ⟩ := h i
+    exact ⟨Φ₁, h₁, fun x => (hΦ x).2⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittLin_mulVec_isWeightPoly
+
 end
 
 end GroupApproximation.BooneHigman.Metabelian.Coprimary
