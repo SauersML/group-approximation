@@ -25919,9 +25919,9 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
-- 2026-09-18 · mod-s2-quasirep-windings-vanish-on-fixed-window-proof [COMPLETE] Take Tr log of the defect cocycle identity, fill each 2-cycle of Mod(S_2) by a 3-chain using torsion H_2, and propagate by paths and block-diagonal restriction
-- 2026-09-18 · mod-s2-quasirep-windings-vanish-on-fixed-window [ESTABLISHED] Every quasi-representation of Mod(S_2) with defect below one on a fixed window has zero winding on every 2-cycle, so Voiculescu pairs and virtual windings never extend to Mod(S_2)
-- 2026-09-18 · mod-s2-is-point-norm-matricially-stable [OPEN] The genus-two mapping class group is point-norm matricially stable
+- 2026-09-18 · jacobson-haar-orbit-relation-summand-proof [COMPLETE] Compute the rank of an affine element, split the Haar character by whether the translation lies in the image, and cut the orbit-relation summand out by a central projection
+- 2026-09-18 · jacobson-haar-character-restricts-to-orbit-relation-summand [ESTABLISHED] On the affine subgroup V x| EL_n(J) of EL_(n+1)(J), every Haar rank character splits off the Haar orbit-relation trace of EL_n(J) as a convex summand
+- 2026-09-18 · agent-leavitt-not-bcs-negative-root-corner [OPEN] Put the fixed non-CE BCS in the negative corner of the binary-Leavitt marked root
 - 2026-09-18 · fpbs-mal-floor-iff-deep-promotion-floor-proof [COMPLETE] Telescope cheap one-step promotions with the stage shift, truncate labels to a finite stage, and transport each stage triple to F_2
 - 2026-09-18 · fpbs-mal-floor-iff-deep-promotion-floor [ESTABLISHED] The Gamma_mal Bernoulli floor holds iff promoting E_{phi^{j+1}(F_2)} to E_{phi^j(F_2)} inside the Bernoulli shift of F_2 costs at least a fixed c > 0 at every depth j
 - 2026-09-18 · fpbs-mal-bernoulli-single-stage-floor [OPEN] The Bernoulli shift of Gamma_mal has positive relative cost over the orbit relation of one free stage

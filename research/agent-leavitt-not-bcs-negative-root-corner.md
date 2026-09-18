@@ -464,3 +464,23 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Affine sandwich for the Haar route (swarm-0917-w10-w10-nh-break, 2026-09-18, family entropy-measure, revive of
+the w4 transplant).** Landed as `jacobson-haar-character-restricts-to-orbit-relation-summand` (established,
+unreviewed).
+- *Statement.* `V_n x| EL_n(J)` sits in `EL_(n+1)(J)` as the matrices `[[g, v],[0, 1]]` with `v in (JQ)^n`. On it,
+  `e sigma_m^(n+1) = (1 - 2^-m) psi_m + 2^-m (e sigma_m^(n)) o pr`, where `psi_m(v,g) = e sigma_m(g) [v in Im(g-1)]`.
+  `psi_1` is the canonical trace of the Haar orbit-relation factor `L(R_n)` of `EL_n(J) ↷ F_2^(N x n)`.
+- *Consequence.* The chain `m in S_(n+1) => psi_m CE => m in S_n` holds. In particular, `phi_1` CE on `EL_21(J)`
+  implies `L(R_20)` CE, which implies `phi_1` CE on `EL_20(J)`. And `phi_1` is CE at every rank iff `L(R_n)` is
+  CE at every rank.
+- *What changes.* The relation-permanence step at which `swarm-0917-w4-pull-nh-1` died (an amenable tail
+  relation extended freely by the Kazhdan `EL_n(F_2[z^(±1)])`) is **forced, not merely sufficient**, for any
+  Haar-character proof carried out at rank `n+1`. It cannot be bypassed by working with `phi_1` directly. Only
+  the index `m = ∞`, hyperlinearity itself, escapes the sandwich.
+- *Where it stops (hole stays OPEN).* CE of `L(R_n) = R ⋊_(α,c) EL_n(F_2[z^(±1)])` is not decided. `1 in S_n` is
+  not shown to follow from hyperlinearity.
+- **Next falsifiable step.** Decide whether the free cocycle action of `EL_20(F_2[z^(±1)])` on the tail factor
+  `L(E_0)` lifts to the normalizer of `R` in `R^omega` (`finitary-extension-ce-iff-action-lifts-to-normalizer`).
+  The lift has to reproduce the tail relation's `L^∞` Cartan, which is extra structure that `phi_1` alone did not
+  carry.
