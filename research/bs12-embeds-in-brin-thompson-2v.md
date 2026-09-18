@@ -116,3 +116,32 @@ If `g, f ∈ nV` satisfy `f g f^-1 = g^2`, and `g` has infinite order, then
      - Attempt 3 only bounded `f`.
      - The gap is untouched: a witness needs an aperiodic core with `L(g^N)` of
        order `log N`, and no small table has one.
+5. **Constraints and the renormalization route, 2026-09-17** (GL_n(Q) swarm lanes).
+   - *Necessary conditions.*
+     - `scaled-rationals-in-nv-need-aperiodic-core-elements` and
+       `nv-rational-subgroups-with-power-conjugacy-are-flat`: a copy of `Q` in `nV`
+       scaled by some `a != ±1` (as in `Aff(Q)`) consists of zero-exponent
+       aperiodic-core elements. The odometer copy of `Q` in `2V` is scaled by
+       nothing.
+     - gq-nv-obstruct's drift lemma (`research/artifacts/gq-gq-nv-obstruct-verdict.md`
+       §4): every invariant measure of a witness `s` has zero drift.
+   - *Sufficient route.* `renormalizable-thompson-elements-give-baumslag-solitar`:
+     an infinite-order `T ∈ kV` with a height-`m` renormalization gives
+     `BS(1,m) <= (k+1)V`.
+   - *What the route needs.* `renormalizable-thompson-elements-are-odometer-codes`:
+     such `T` are exactly bounded odometers of brick codes, so they factor onto
+     `Z_m`. Hence the route needs
+     `some-brin-thompson-element-factors-onto-an-odometer` (OPEN).
+     - Single-insertion codes give `τ × id`, which is not in `kV`.
+     - Elements of the full-shift full group fix points, so they are excluded.
+   - *Reversible Turing machines.* Barbieri--Kari--Salo (arXiv:2303.17270,
+     Proposition 2.3) identify `RTM(Z^d,n,k)` with the automorphisms of the sofic
+     subshift `X_(n,k)` fixing `X_(n,0)`. So a witness among tape-length-preserving
+     machines would put `BS(1,m)` in `Aut(X_(n,k))`, the subshift analogue of the
+     Callard--Salo question quoted above. The resource `nV` adds is local
+     insertion and deletion: an element of `kV` can be read as one step of a reversible
+     `k`-stack machine.
+   - *Lead.* The SMART level timings `f(k+1) = 3 f(k) + 4` used by Callard--Salo.
+     A variant with `f(k+1) = 3 f(k)` exactly is the natural candidate for a
+     height-3 renormalization.
+   - *Verdict.* Still open either way.
