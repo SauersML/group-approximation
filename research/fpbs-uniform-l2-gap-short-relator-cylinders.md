@@ -53,3 +53,25 @@ Section 4 of `research/artifacts/fpbs-l2-baire-kernel-2026-09-17.md`.
     `research/artifacts/fpbs/exploration.md` shows that nonamenability together
     with finite-cluster averaging does not control the operator there.
   - No piece is decided.
+* **Calibrate the piece `w = s_k^2` at trees by free products with an amenable
+  factor (swarm-0917-w11, 2026-09-17).**
+  `fpbs-l2-threshold-not-lsc-at-trees` (ESTABLISHED) proves the following. For
+  infinite amenable `A`, `Cay(A * Z/2)` has edge expansion at least `1/2` and
+  `p_(2->2) <= p_c(A)`. The finite-by-`Z^m` approximants `A_R -> F_m` give
+  groups `G_R` in `Z_(k,eta_k,s_k^2)`, with `eta_k = 1/(8(2k-1)^2)`, that
+  converge to the tree `T_(2k-1)`. For `k = 3`:
+  * `limsup p_(2->2)(G_R) <= 1/3 < 1/2 <= p_(2->2)(T_5)`;
+  * `limsup slack(G_R) <= 1/12 < 1/4 <= slack(T_5)`.
+
+  **What it gives.** In this piece the point `T_5` is interior to no
+  `U_(M,delta)` with `delta > 1/12`. So any proof of this piece's
+  `(M_w, delta_w)` must choose `delta_w <= 1/12` near `T_5`, and in general
+  `delta_w <= 1/((2k-3)(2k-2))`. Such a proof cannot transplant the tree's own
+  slack by ball agreement, and cannot use `rho` as the controlling datum,
+  since `rho` jumps along the family for `k >= 4`.
+
+  **Where it stops:** the slack of the family,
+  `slack(G_R) <= p_c(A_R) - p_c(G_R)`, stays bounded away from `0`. The
+  free-product theorem gives each `G_R` a gap. So the piece is not refuted.
+  To refute it, one would need a family in the piece with `slack -> 0`, and
+  free products with Z/2 cannot supply one.
