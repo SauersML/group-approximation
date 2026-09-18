@@ -77,3 +77,97 @@ def extremalGFace_Clauses (K : PocketFaceSet D eps X lo hi) (z : X.toCombMap.Dar
     K.sourceArc.darts.filter (movePred X.toCombMap z) = mid) ∧
   (∃ pre mid post : List X.toCombMap.Dart, K.targetArc.darts = pre ++ mid ++ post ∧
     K.targetArc.darts.filter (movePred X.toCombMap z) = mid)
+
+/-- **The in-place step from a flip at a union of walk regions**, pointwise: `t₁` is the sub-arc
+of `K.sourceArc` reading its kept block, `t₂` the non-wrapping sub-arc of `K.targetArc` reading
+its kept block, `s₁, s₂` the kept darts of the sides; the listing is the filtered cycle
+(`P10ExtremalResidual.filter_decomposition`), and `step_of_regionMove` flips. -/
+theorem extremalGFace_step (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hwrap : hi ≤ (outerDarts X).length)
+    (hlabel : ∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d))
+    (hsrc : K.sourceArc.length < (cellDarts X K.source).length)
+    (htgt : K.targetArc.length < (outerDarts X).length)
+    {z : X.toCombMap.Dart → Bool} (h : extremalGFace_Clauses K z) :
+    ∃ K' : PocketFaceSet D eps X lo hi, K'.ClosedWalk ∧
+      K'.sourceArc.length < (cellDarts X K'.source).length ∧
+      K'.targetArc.length < (outerDarts X).length ∧ K'.repeatedVisits < K.repeatedVisits := by
+  obtain ⟨hz, hind, hout, hsource, ⟨_, hkept⟩, ⟨_, hy, hpy⟩, hne, hch,
+      ⟨pre₁, mid₁, post₁, hs₁, hf₁⟩, ⟨pre₂, mid₂, post₂, hs₂, hf₂⟩⟩ := h
+  have hnw : P10ExtremalResidual.TargetBlockNoWrap K pre₂ := targetBlockNoWrap_of_le K hwrap hs₂
+  have hp : ∀ d, movePred X.toCombMap z (X.toCombMap.alpha d) = movePred X.toCombMap z d :=
+    fun d => P10ExtremalResidual.movePred_alpha X.toCombMap z d
+  have ht₁ := P07InnerPocket.CyclicArc.subArcArc_darts K.sourceArc pre₁ mid₁ post₁ hs₁
+  have ht₂ := P10ExtremalResidual.noWrapSubArc_darts K.targetArc pre₂ mid₂ post₂ hs₂ hnw
+  have hlen₁ := P07InnerPocket.CyclicArc.length_add_of_darts_eq K.sourceArc hs₁
+  have hlen₂ := P07InnerPocket.CyclicArc.length_add_of_darts_eq K.targetArc hs₂
+  have hlist := (P10ExtremalResidual.filter_decomposition X (movePred X.toCombMap z) hp
+    K.decomposition (hf₁.trans ht₁.symm) (hf₂.trans ht₂.symm)).symm
+  have hchain := hch
+  rw [← hlist] at hchain
+  have hwalk := P10RoseExtremal.isClosedDartWalk_of_perm_filter K.boundary.cycle_nodup
+    K.boundary.cycle_mem_iff hz hind (List.Perm.of_eq hlist)
+    (fun hnil => hne (hlist.symm.trans hnil)) hchain
+  refine step_of_regionMove K hK hlabel hz hind hout hy hpy hsource hkept (List.Perm.of_eq hlist)
+    hwalk ((List.length_filter_le _ _).trans K.firstSide_length_le)
+    ((List.length_filter_le _ _).trans K.secondSide_length_le) ?_ ?_ ?_ ?_
+  · show lo ≤ K.targetArc.start.1 + pre₂.length
+    have := K.lo_le
+    omega
+  · show K.targetArc.start.1 + pre₂.length + mid₂.length ≤ hi
+    have := K.le_hi
+    omega
+  · show mid₁.length < (cellDarts X K.source).length
+    omega
+  · show mid₂.length < (outerDarts X).length
+    omega
+
+end Clauses
+
+/-- **The G-face tolerant flip statement** (OPEN, TRUE on the checks of the module docstring).
+Under the premises of `RoseInPlaceStepNoWrapStatement`, some colouring `z` of the walk regions
+satisfies `extremalGFace_Clauses`. -/
+def extremalGFace_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ z : X.toCombMap.Dart → Bool, extremalGFace_Clauses K z
+
+/-- **The no-wrap in-place step from the G-face tolerant flip statement.** -/
+theorem extremalGFace_inPlaceStepNoWrap (h : extremalGFace_Statement.{u, w, v}) :
+    RoseInPlaceStepNoWrapStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨z, hz⟩ := h D eps X lo hi hwrap hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  exact extremalGFace_step (z := z) K hK hwrap hlabel hsrc htgt hz
+
+/-- **The no-wrap outer-pinch step from the G-face tolerant flip statement.** -/
+theorem extremalGFace_stepNoWrap (h : extremalGFace_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionNoWrapStatement.{u, w, v} :=
+  stepNoWrap_of_inPlaceStepNoWrap (extremalGFace_inPlaceStepNoWrap h)
+
+/-- **Osin's Lemma 4.4 at least-area diagrams from the four-piece-off residual and the G-face
+tolerant flip statement**: the term of `relativeGreendlinger_of_residualsNoWrap` with the step
+from `extremalGFace_stepNoWrap`. -/
+theorem extremalGFace_relativeGreendlinger
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : extremalGFace_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  relativeGreendlinger_of_binderFiveBelowNoWrap Piece01.proof.{u, w, v} Piece04.proof.{u, w, v}
+    (P06Bypass.osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
+      (P06Bypass.refutedBelowSection_of_innerPocketEnclosed
+        (P07InnerPocket.innerPocketEnclosed_of_fourPieceOff hoff)))
+    (extremalGFace_stepNoWrap h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_Clauses
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_step
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_Statement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_inPlaceStepNoWrap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_stepNoWrap
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalWrap.extremalGFace_relativeGreendlinger

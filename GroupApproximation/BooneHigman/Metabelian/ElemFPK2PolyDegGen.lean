@@ -54,7 +54,7 @@ theorem k2PolyDeg_inv_apply (f : G →* N) (X : Subgroup G) (hX : ∀ x ∈ X, f
   have h1 : (⟨z, hz⟩ : X.map f) = k2PolyDeg_equiv f X hX ⟨x, hx⟩ := Subtype.ext e.symm
   rw [h1]
   show ((k2PolyDeg_equiv f X hX).symm (k2PolyDeg_equiv f X hX ⟨x, hx⟩) : G) = x
-  exact congrArg Subtype.val (MulEquiv.symm_apply_apply _ _)
+  exact congrArg Subtype.val ((k2PolyDeg_equiv f X hX).symm_apply_apply ⟨x, hx⟩)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyDeg_inv_apply
 
