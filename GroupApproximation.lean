@@ -5815,6 +5815,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06d.CornerBasic
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinchOrder.Split
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKAugmentation
 import GroupApproximation.Manuscript.NonMF.Full.GL06h2.Statement
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFLift
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Independence
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
