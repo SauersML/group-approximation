@@ -269,8 +269,8 @@ theorem rose_of_regionMoveSubArc (hsub : RoseRegionMoveSubArcStatement.{u, w, v}
     ⟨OEquivalentDiscDiagram.refl X⟩, hlabel, ⟨hchain, hclose⟩, ht₁, ht₂, ?_⟩
   obtain ⟨ha, hpa⟩ := List.mem_filter.mp (hperm.mem_iff.mp (List.head_mem hne))
   obtain ⟨e, he, f, hf, hpe, hpf, hef⟩ :=
-    exists_transition (p := GL05b.movePred X.toCombMap z) K.boundary.cycle_nonempty hKchain hKclose
-      ha hpa hy hpy
+    exists_transition (p := GL05b.movePred X.toCombMap z) K.boundary.cycle_nonempty
+      hKchain hKclose ha hpa hy hpy
   have hef' : X.toCombMap.vertexOf (X.toCombMap.alpha e) = X.toCombMap.vertexOf f := hef
   have heL : e ∈ s₁ ++ invDarts X t₁.darts ++ s₂ ++ t₂.darts :=
     hperm.mem_iff.mpr (List.mem_filter.mpr ⟨he, hpe⟩)

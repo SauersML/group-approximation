@@ -30,7 +30,6 @@ universe u w v
 
 open GroupApproximation.GGT GroupApproximation.GGT.VanKampen
 open GroupApproximation.GGT.VanKampen.Embedded
-open GroupApproximation.GGT.VanKampen.EdgeInsertion
 open GroupApproximation.GGT.VanKampen.EnclosedBridgeDoubling
 
 section Doubling
