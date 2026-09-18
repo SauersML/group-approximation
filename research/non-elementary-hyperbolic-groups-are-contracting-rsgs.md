@@ -169,3 +169,14 @@ remains:
    - **Coverage.** This covers every closed hyperbolic surface group and every cocompact Fuchsian group.
    - **What remains of Question 1.1.** One-ended groups without a Bowen–Series-type coding (3-manifold groups, Kazhdan
      groups), and infinitely-ended groups that are not virtually torsion-free.
+8. **2026-09-18 (lane `bh-partials`), right-angled 3-dimensional reflection groups and their commensurability classes
+   (lane proof, not reviewed).**
+   - `right-angled-reflection-groups-in-h3-are-contracting-rsgs` covers:
+     - the right-angled dodecahedral reflection group `W`;
+     - every finite-index subgroup of `W`, including closed hyperbolic 3-manifold groups;
+     - every group commensurable with `W`;
+     - more generally, every compact right-angled polyhedron satisfying three face-graph conditions.
+   - **The coding.** The greedy map "reflect in the smallest-labelled separating face plane" on the Roller boundary,
+     with states the cells of one tile's face-circle arrangement, refined by cosets for subgroups.
+   - **What remains for 3-manifold groups.** Commensurability classes without right-angled reflection groups. There the
+     walls are only quasiconvex (Bergeron–Wise), so a "quasiconvex greedy coding" is the missing tool.

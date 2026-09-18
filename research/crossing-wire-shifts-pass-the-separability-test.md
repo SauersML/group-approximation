@@ -110,3 +110,19 @@ bits on the `Σ` sides suffices: a difference of types is already a difference o
   above.
 - **Where to look for a failure.** Any component that bypasses the crossing box is exactly where a
   separable freedom, and hence a rigidity failure, would appear.
+
+## Referee (bh-ref-ffwz, 2026-09-18): Crossing Lemma and item 1 PASS; items 2–4 correctly labelled as audit
+
+- **Crossing Lemma.** The induction is correct, given (L0)–(L3) of
+  `crossing-wire-fixed-point-tile-sets-are-quantum-rigid`, which I did not re-verify here.
+  - With a shared decomposition, a type difference is a data-bit difference.
+  - (L2) propagates it along the wire.
+  - (L3) gives a child carrying both differences.
+  - When `β_1 = β_2`, any wire tile works.
+- **Item 1.** Correct. Injectivity of `S` means a differing child forces a differing parent.
+- **Scope.** This shows that two modifications which share the decomposition and touch a common
+  macrotile have intersecting difference sets, so they are never more than `2D` apart. Changes
+  of the decomposition, and faults, are covered only by the audit (item 2). The claim "the test
+  is passed" is therefore as strong as that audit.
+- **What the test gives.** Passing the separability test is necessary for rigidity, not
+  sufficient. The node says so.

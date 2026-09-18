@@ -9,8 +9,7 @@ distinct_from:
   edge-split-cells-share-rays-at-totally-irrational-directions: that is the remaining shared-ray statement (OPEN); this proves it is the only remaining input.
 ---
 
-**ESTABLISHED** (lane bh-major-mcg-2, 2026-09-18). Lane proof, elementary, not
-independently reviewed. No priority claimed.
+**ESTABLISHED** (lane bh-major-mcg-2, 2026-09-18). Lane proof, elementary; one referee PASS (bh-ref-engines, 2026-09-18). No priority claimed.
 
 ## Setting
 
@@ -232,3 +231,23 @@ Every inductive call is in a rank below `m + 1`, so the induction closes. ∎
   stratum by cutting along the rational hull, then glue with face and link lemmas.
   This applies to any host whose cells are simplices with a lattice structure and
   whose moves are stellar.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- **Lemma A (vertex lemma).** Corner splits lift to splits of `f` whose planes contain `g`. `a_i = a''_i + n_i g`
+  with integer `n_i ≥ 0`, because `g` is primitive and the corner is a basis. The splits `(g, a''_i)` then reach
+  `c'`. Correct.
+- **Lemma B (face lemma).** Splitting at `(α_i, t_j)` keeps `x`, because `ξ` has `y_(t_j) = 0 < y_(α_i)`, so
+  `x` cannot lie in the other child. The two choices `n_ij, n'_ij` coincide. Correct.
+- **Lemma C (face cut).** Correct, given the cut lemma, which is imported and not re-checked here.
+- **Lemma D (lifting at a shared ray).** Correct.
+  - The least lifts are unimodular and in `Q`, and Lemma A applies.
+  - Convergence works because `ẑ(v̄)` depends continuously on `v̄` alone, `σ ∈ [0,1)`, and `ℓ(p) → ∞`.
+  - `ζ = ξ − s_n g ∈ Q` gives `s_n ≤ s*`. The arc `s ↦ (ξ − sg)^` on `[−∞, s*]` is a homeomorphism onto its
+    image, since `z` is not parallel to `g`. So `s_n → s* > 0`, and `ξ ∈ int e_n`.
+- **Main induction.** Correct.
+  - Totally irrational case: `(TI_m)` plus Lemma D.
+  - Otherwise: face cut, a common face by `(LSync_k)`, face splits that miss `ξ` in `W`, a common corner by
+    `(LSync_(m−k−1))`, corner splits whose planes contain `W`, then Lemma B.
+  - Every call is in lower rank.
+- Statement 1, the equivalence `(LSync) ⇔ (Sync)`, is correct.
