@@ -5908,6 +5908,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Elim
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemSem
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionUHFNuclearLift
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Dichotomy
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKVanishing
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.KZero
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
