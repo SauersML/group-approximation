@@ -9,10 +9,13 @@ distinct_from:
   finitely-presented-harmonic-cuntz-ring-contains-q: that is an abstract finitely presented ring mapping onto this one; this is the concrete operator ring, where division and the centre can be computed.
 artifacts:
   - research/artifacts/gq-gq-cuntz-cstar-dictionary.md
+  - research/artifacts/gq-referee-a-harmonic-cuntz-ring-is-purely-infinite-simple.md
 ---
 
 **ESTABLISHED** by `harmonic-cuntz-ring-is-purely-infinite-simple-proof`
-(elementary; not independently reviewed; no novelty claimed).
+(elementary; proof-gap review PASS by lane `gq-referee-a`,
+`research/artifacts/gq-referee-a-harmonic-cuntz-ring-is-purely-infinite-simple.md`;
+no novelty claimed).
 
 ## Definitions
 

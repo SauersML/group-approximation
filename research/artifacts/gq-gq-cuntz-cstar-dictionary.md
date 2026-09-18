@@ -41,24 +41,33 @@ ring stays finitely generated.
 
 ## 3. Where the transplant breaks
 
-The C*-side has no finite presentation. Analytic completeness is exactly what brings
-`Q` in. Finite presentation lives only in the algebraic shadow, and there it is
-**the whole remaining content** of the root along this route
-(`harmonic-cuntz-simple-group-is-finitely-presented`).
+**Update (same day, after review).** `Λ_h` is **not** finitely presented, so this route
+does not reach the root. `harmonic-cuntz-simple-group-is-finitely-presented` is
+refuted by `harmonic-cuntz-simple-group-is-not-finitely-presented` (lane
+`gq-malcev-ring`, 7ce417eef). Item 2 below gives the reason. The ring results and the
+finitely generated simple group stand (proof-gap review PASS, `gq-referee-a`, 84eb81f44).
+
+The C*-side has no finite presentation, and analytic completeness is exactly what
+brings `Q` in. Finite presentation lives only in the algebraic shadow, and there the
+central scalars block every central quotient.
 
 1. **Ring level.** Is `R_Q -> C_h` injective? If so, `C_h` is a finitely presented
    ring. Unknown. `C_h` is simple, so the kernel is a maximal ideal of `R_Q`.
 2. **Central scalars.** `Q^x · I ⊂ EL_3(C_h)`: the inclusion `L_Q(1,2) ⊂ C_h` and
    `GL_3 = EL_3` over `L_Q(1,2)` put every scalar in. `Q^x` is not finitely
-   generated. For a finitely presented `G` and central `Z`, `G/Z` is finitely
-   presented only if `Z` is finitely generated (B. H. Neumann). So **`EL_3(C_h)` and
-   `Λ_h` are never both finitely presented**. The right target is `Λ_h`.
+   generated. If `H` is finitely generated, `C` is central and `H/C` is finitely
+   presented, then `C` is a quotient of `R/[F,R]`, hence finitely generated. So
+   **`Λ_h` is not finitely presented**: it is a central quotient of the finitely
+   generated `EL_3(C_h)`. The same follows from perfectness through the five-term
+   sequence (`leavitt-scalar-commutators-block-fp-central-quotients`, part 0). A
+   finitely presented simple host built from `C_h` needs a non-central kernel, or no
+   full `L_Q(1,2)^x` inside. (The first version of this item said only "never both
+   finitely presented", which was too weak.)
 3. **K_2.** Steinberg covers are natural finite-presentation candidates.
    - Stable: `K_2(Q) -> K_2(C_h)` factors through `K_2(L_Q(1,2)) = 0` (ABC). So
      Tate's non-finitely-generated `K_2(Q) = Z/2 ⊕ ⊕_p F_p^x` imposes no relation,
      and the stable `St(C_h)` contains `SL(Q) = ⋃ SL_N(Q)`.
-   - Unstable: whether `K_2(Q)` also dies in `St_3` is not known here. This is the
-     kind of relation a finite presentation of `Λ_h` must produce from finitely many.
+   - Unstable: whether `K_2(Q)` also dies in `St_3` is not known here.
 4. **Steinberg finite presentation.** Is `St_3` (or a Thompson-type Steinberg
    group) of a finitely presented ring with a Leavitt family finitely presented?
    There are finitely many generators `x_ij(s)`. The question is whether finitely
