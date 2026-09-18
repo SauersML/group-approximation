@@ -128,3 +128,20 @@ Let `N >= 3` be one of the ranks.
      `t_i s_j = δ_ij` and `Σ s_i t_i != 1`). That pair is enough for
      `1/m = t_2 t_1^(m-1) A s_1^(m-1) s_2`. Whether the result is simple, and whether
      `[1]` stays of infinite order, is open.
+5. **Tracial hosts and the stable symbol lemma (2026-09-17, lane gq-deep-adelic-1).**
+   - **Condition 3 can be met.** `tracial-harmonic-ring-keeps-rational-scalars` is finitely
+     generated, simple, with centre `Q` and `Λ_N ⊆ {±1}`. It is the harmonic function inside
+     `C(X) ⋊_σ Z` over a minimal subshift, and the Fuglede–Kadison determinant keeps the scalars
+     out of `E_N`. So conditions 1 and 3 hold together for a finitely generated simple ring.
+   - **It dies at condition 4.** `laurent-rational-symbols-block-fp-elementary-groups`: for every
+     skew Laurent ring over a base that detects `Q^x` in `K_1`, the symbols `{λ, u}` are
+     infinitely generated in `K_2`, so no `E_N` is finitely presented.
+   - **The centrality proviso of item 4 is not needed.**
+     `infinitely-generated-symbols-block-fp-elementary-groups`: if `E_N(R)` is finitely
+     presented, the image of `K_2(N, R)` in stable `K_2(R)` is finitely generated and contains
+     every Steinberg symbol. So an infinitely generated image of `K_2(Q) -> K_2(R)` excludes `R`,
+     whether or not `K_2(N, R)` is central.
+   - **What is left.** A finitely generated simple `R ⊇ Q` with the "UHF K-budget": `Q^x`
+     detected in `K_1` up to a finitely generated kernel, and finitely generated rational symbols
+     in `K_2`. `U_Q = colim M_(n!)(Q)` has it but is not finitely generated. See
+     `research/artifacts/gq-deep-adelic-1-k-budget.md`.

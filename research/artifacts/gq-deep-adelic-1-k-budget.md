@@ -15,8 +15,9 @@ For a ring host `R ⊇ Q` and `N >= 3`, finite presentation of `PE_N(R)` needs t
   `λ` must survive in `K_1(R)`.
 - **(K2) The kernel clause.** `ker(St_N(R) -> E_N(R))` must be finitely normally generated
   (`projective-elementary-fp-kernel-criterion`). Its image in stable `K_2(R)` must then be
-  finitely generated (Neumann plus Kervaire, as in (e) of
-  `laurent-rational-symbols-block-fp-elementary-groups-proof`).
+  finitely generated, and that image contains every Steinberg symbol of commuting units
+  (`infinitely-generated-symbols-block-fp-elementary-groups`: Neumann plus Kervaire). No
+  centrality at rank `N` is needed.
 
 The rational part of `K_2` is built from `K_1` by products. For a unit `x` commuting with `λ` (all
 units do, since `λ` is central), `λ ↦ {λ, x}` is a homomorphism `Q^x -> K_2(R)`. In
@@ -28,6 +29,7 @@ wants `λ · [x]` and `{λ, μ} · [1_R]` to generate only a finitely generated 
 | Ring shape | (K1) scalars in K_1 | (K2) rational symbols in K_2 | Verdict |
 |---|---|---|---|
 | Purely infinite: `L_Q(1,2)`, the harmonic Cuntz ring `C_h`, the Leavitt resolvent ring `R_L` | die: `[1] = 2[1]` makes `[λ] = 0`, so `Λ_N = Q^x` | `K_2(Q)` dies (ABC Thm 7.6; Leavitt-pair swindle) | dead at K1 (`rational-scalars-obstruct-fp-elementary-hosts`, `harmonic-cuntz-simple-group-is-not-finitely-presented`) |
+| Purely infinite with `[1]` of infinite order: `L_Q(E)` (not f.g.) and f.g. completions over it | survive, up to `±1` (`rational-leavitt-path-k1-k2-scalar-dichotomy`) | image of `K_2(Q)` not finitely generated (same node) | dead at K2 for any f.g. completion that keeps that image (`infinitely-generated-symbols-block-fp-elementary-groups`) |
 | Tracial crossed product by Z with a harmonic function: `R_h` | survive: `Λ_N ⊆ {±1}` (`tracial-harmonic-ring-keeps-rational-scalars`) | `{λ, u}` embeds `Q^x` (`laurent-rational-symbols-block-fp-elementary-groups`) | dead at K2 |
 | Any `B[u^(±1); σ]` with commutative `B ⊇ Q` | survive in `K_1(B)` | `{λ, u}` embeds `Q^x` | dead at K2 (same node) |
 | Universal UHF `U_Q = colim M_(n!)(Q)` | survive: `K_1 = Q^x ⊗ Q` | vanish: `K_2 = K_2(Q) ⊗ Q = 0` | both clauses hold, but not finitely generated |
@@ -39,11 +41,14 @@ wants `λ · [x]` and `{λ, μ} · [1_R]` to generate only a finitely generated 
 The two known ways to make a finitely generated simple ring contain `Q` are:
 
 - **purely infinite compressions** (Leavitt or Cuntz isometries cut a corner and move it back
-  onto `1`). They force `[1] = 2[1]`, and so kill every scalar in `K_1`.
+  onto `1`). With a Leavitt `(1, d)` family they force `(d-1)[1] = 0`, and so kill scalars in
+  `K_1`. With `[1]` of infinite order the scalars survive, but `K_2(Q)` comes along
+  (`rational-leavitt-path-k1-k2-scalar-dichotomy`).
 - **tracial tilings** (translates of a small clopen piece tile the space). They need an
   invertible translation `u`, and `u` pairs with every surviving scalar to give `{λ, u}` in `K_2`.
 
-The first fails (K1) and the second fails (K2).
+Every version fails (K1) or (K2). What decides the matter is whether `[1]` is divisible by every
+integer in `K_0` (section 4); no finitely generated example is known.
 
 ## 4. The shape a host must have
 
