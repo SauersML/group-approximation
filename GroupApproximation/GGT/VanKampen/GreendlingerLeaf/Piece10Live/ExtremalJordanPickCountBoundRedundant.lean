@@ -87,6 +87,56 @@ theorem extremalJordanPickCountBound_sigma_next [DecidableEq M.Dart]
   have := extremalJordanPickCountBound_sigma_eq M c z ⟨M.alpha d, hkeep⟩ m hm0 hm hfree
   rw [this]
 
+/-- **The invariant step** along the walk rotation at the vertex of `α d₁`. -/
+theorem extremalJordanPickCountBound_inv_step [DecidableEq M.Dart] (hnodup : c.Nodup)
+    (hvn : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (c.next d hd))
+    (faces : Finset M.Face)
+    (hc : ∀ d, d ∈ c ↔ M.faceOf d ∈ faces ∧ M.faceOf (M.alpha d) ∉ faces)
+    (R' : M.Dart → M.Dart → Prop)
+    (hFC : ∀ a b, CombMap.FaceClassStep M (walkKeep M c) a b → R' a b)
+    {d₁ : M.Dart} (hd₁ : d₁ ∈ c)
+    (hsf : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d₁) →
+      SectorNoninterleaving.SectorFree M c (c.next d hd) (M.alpha d))
+    (hlink : ∀ d (hd : d ∈ c), M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d₁) → d ≠ d₁ →
+      Relation.EqvGen R' d (c.next d hd))
+    (z : (walkMap M c).Dart)
+    (hz : extremalJordanPickCountBound_inv M c R' (Relation.EqvGen R' d₁ (c.next d₁ hd₁)) d₁
+      (M.vertexOf (M.alpha d₁)) z) :
+    extremalJordanPickCountBound_inv M c R' (Relation.EqvGen R' d₁ (c.next d₁ hd₁)) d₁
+      (M.vertexOf (M.alpha d₁)) ((walkMap M c).sigma z) := by
+  have hnot : ∀ d ∈ c, M.alpha d ∉ c := fun d hd hα => ((hc d).mp hd).2 ((hc _).mp hα).1
+  have hvσ := extremalJordanPickCountBound_vertexOf_sigma M c z
+  rcases hz with hg | ⟨hvx, ⟨hz, hE⟩ | ⟨hz, hE⟩⟩
+  · exact Or.inl hg
+  · obtain ⟨d, hd, hnext⟩ : ∃ d, ∃ hd : d ∈ c, c.next d hd = z.1 :=
+      ⟨_, List.prev_mem c z.1 hz, List.next_prev c hnodup z.1 hz⟩
+    have hdx : M.vertexOf (M.alpha d) = M.vertexOf (M.alpha d₁) := by
+      rw [hvn d hd, hnext]
+      exact hvx
+    have hσ := extremalJordanPickCountBound_sigma_next M c hnot z hd hnext (hsf d hd hdx)
+    by_cases hdd : d = d₁
+    · subst hdd
+      rw [← hnext] at hE
+      exact Or.inl hE
+    · have hl := hlink d hd hdx hdd
+      rw [hnext] at hl
+      refine Or.inr ⟨hvσ.trans hvx, Or.inr ⟨?_, ?_⟩⟩
+      · rw [hσ, M.alpha_involutive d]
+        exact hd
+      · rw [hσ, M.alpha_involutive d]
+        exact Relation.EqvGen.trans _ _ _ hE (Relation.EqvGen.symm _ _ hl)
+  · have hW := extremalJordanPickCountBound_faceClass_sigma M c z
+    have hin : M.faceOf ((walkMap M c).sigma z).1 ∈ faces :=
+      (extremalJordanPickCountBound_side M c faces hc hW).mp ((hc _).mp hz).1
+    have hmem : ((walkMap M c).sigma z).1 ∈ c := by
+      rcases ((walkMap M c).sigma z).2 with h | h
+      · exact h
+      · refine (((hc _).mp h).2 ?_).elim
+        rw [M.alpha_involutive]
+        exact hin
+    exact Or.inr ⟨hvσ.trans hvx, Or.inl ⟨hmem,
+      Relation.EqvGen.trans _ _ _ hE (extremalJordanPickCountBound_eqvGen_mono hFC hW)⟩⟩
+
 end BoundRedundant
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
