@@ -4,9 +4,10 @@ import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PocketRu
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Greendlinger leaf P07, lane gl-p07-21c: the reading part from the corrected residual
+# Greendlinger leaf P07, lane gl-p07-21c: helpers for the reading part
 
-`pocketFourPieceInside_of_arcAuditResidual` proves `PocketFourPieceInsideStatement`
+These are the helpers for `pocketFourPieceInside_of_arcAuditResidual`
+(`FourPieceArcAuditInside.lean`).  That theorem proves `PocketFourPieceInsideStatement`
 (`FourPieceOffSplit.lean`) from the corrected residual `PocketFourPieceArcAuditResidualStatement`
 (`FourPieceArcAuditStatement.lean`).
 * **Branch 2**, or an all-`G₁` or all-`G₂` walk (clause 4b): the walk is one cell arc.  Read it as
