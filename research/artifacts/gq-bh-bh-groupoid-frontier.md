@@ -177,3 +177,56 @@ Writing this out would cover all vertex-free type rotating `Γ`.
 
 **Remaining gate for the whole Ã₂ programme:** pin `finite-k-graph-boundary-groupoid-standard-facts`
 (Kumjian–Pask identification, products, effectiveness) at source.
+
+## 7. The chain is closed (2026-09-18, later)
+
+**`finite-k-graph-standard-facts-proof`** proves all four standard facts (lane proof). Item 1
+is proved from Li's own definitions, read at source (arXiv:2110.04501, `def:Omega`, the
+transformation groupoid, `lem:infpaths`, `lem:Omegamax`):
+- Li's maximal characters are exactly the infinite paths, so `∂Ω = Ω_max ≅ Λ^∞`;
+- the germ `[cd^{-1}, χ_{dz}]` corresponds to the Kumjian–Pask arrow `(cz, d(c)−d(d), dz)`.
+
+Products, topology and effectiveness are elementary.
+
+**Status after this landing** (every link is a lane proof or an import pinned at source;
+nothing is independently reviewed):
+- `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple`: ESTABLISHED.
+- `type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`: ESTABLISHED. This
+  covers every vertex-free, finite-orbit, type rotating group on a thick Ã₂ building that is
+  not type preserving. That includes all CMSZ groups, the 65 exotic CMSZ buildings of order
+  3, and their subgroups.
+- `exotic-a2-lattices-satisfy-boone-higman`, the exotic Ã₂ subcase of BBMZ Problem 5.3(10):
+  settled for vertex-free type-transitive lattices; still open with torsion or when type
+  preserving without a type-transitive overgroup.
+
+**Review priority for referees.** In order:
+1. `a2-rs-matrices-irreducible-and-primitive-iff-type-transitive`, the new idea;
+2. `a2-group-embeds-in-rs-two-graph-geometric-proof`;
+3. `finite-k-graph-standard-facts-proof`;
+4. the imported Li–Matui chain.
+
+## 8. The type-preserving case (2026-09-18, final)
+
+`type-preserving-vertex-free-a2-groups-embed-in-fp-simple-groups` (lane proof) makes the
+§6 sketch rigorous.
+- Restrict to the phase-0 cylinders `X_0`. They contain the decorations, and every arrow
+  there has degree in `L = {a + 2b ≡ 0 mod 3}`.
+- Rescale by `n = 3m`, and compress using the skew product over `L/nZ²`.
+- Then run Li–Matui on the reduction to phase 0.
+
+**So `vertex-free-type-rotating-a2-groups-satisfy-boone-higman` is ESTABLISHED** (lane
+proofs plus pinned imports, unreviewed). This is Boone–Higman for every group acting freely,
+with finitely many orbits, by type rotating automorphisms on the vertices of a thick Ã₂
+building, exotic buildings included. For exotic lattices the only remaining gap on
+`exotic-a2-lattices-satisfy-boone-higman` is torsion, meaning nontrivial vertex stabilizers.
+
+**Natural next targets.**
+1. **Lattices with torsion.** A torsion-free finite-index subgroup `Γ_0` has BH, but BH is
+   not inherited by finite extensions in general. Check
+   `boone-higman-type-a-class-closed-under-finite-extensions`, and whether its hypotheses can
+   be met, for example via a type (A) action.
+2. **Other buildings.** C̃₂ and G̃₂ buildings, using tile systems of rank 2. The link
+   argument of `a2-rs-matrices-irreducible-and-primitive-iff-type-transitive` uses
+   generalized 3-gons, and should adapt to generalized 4-gons and 6-gons.
+3. **Products of trees**, as Ã₁ × Ã₁, via RS §7's second example. On main this is already
+   PBH through type (A); it would serve as a cross-check.

@@ -32,3 +32,22 @@ requires:
   `Y_(μν) = t_μ y s_ν in B⁺`.
 - `B⁺` consists of functions `N -> Q`, and `q_k c = c(k) q_k`. So `t_2 t_1^k c s_1^k s_2 = c(k) t_2 t_1^k s_1^k s_2 = c(k)`.
   Choose `k` with `c(k) != 0`. Then `(c(k)^-1 t_2 t_1^k t_μ) y (s_ν s_1^k s_2) = 1`.
+
+**Item 4.**
+- **Common level.** Write `x = Σ_d x_d` with `x_d in O_d`. Using `s_μ b t_ν = s_(μ1) b(N+1) t_(ν1) + s_(μ2) b(0) t_(ν2)`, refine
+  every term to one large level `L`: `x_d = Σ_(|α| = L+d, |β| = L) s_α Y^(d)_(αβ) t_β` with `Y^(d)_(αβ) in B⁺`.
+- **Extract a coefficient.** Pick `d_0` with `x_(d_0) != 0`, and `α_0, β_0` with `Y^(d_0)_(α_0 β_0) =: Y != 0`. Put
+  `z_0 = t_(α_0) x s_(β_0)`.
+  - Since `|β| = |β_0|`, `t_β s_(β_0) = δ_(β β_0)`.
+  - `t_(α_0) s_α` is `δ` for `d = d_0`. For `d < d_0` it is a `t`-word `t_a` with `a` nonempty or `0`, and for `d > d_0` it is an
+    `s`-word `s_b` or `0`.
+  - So `z_0 = Y + Σ_i t_(a_i) g_i + Σ_j s_(b_j) h_j` with nonempty words `a_i, b_j` and `g_i, h_j in B⁺`.
+- **Compress with a tagged vacuum.** Choose `k` with `Y(k) != 0`, `m` larger than every `|a_i|` and `|b_j|`, and put
+  `w = 1^k 2 1^m 2`, `v = s_w`.
+  - For `g in B⁺`, `g v = v g(k)`, since `g s_1^k = s_1^k g(N+k)` and `g(N+k) s_2 = s_2 g(k)`. So `v* Y v = Y(k)`.
+  - `v* t_a g v = g(k) (s_(aw))* s_w` and `v* s_b h v = h(k) (s_w)* s_(bw)`. These vanish unless one of `w`, `aw` (respectively
+    `w`, `bw`) is a prefix of the other.
+  - `aw` is longer, so only "`w` prefix of `aw`" is possible. That forces a letter `2` of `w` into a block of `1`s: if
+    `a = 1^j` with `j <= k`, compare position `k + 1`; otherwise the first `2` of the copy of `w` inside `aw` falls in the block
+    `1^m` of `w`, because `1 <= |a| <= m`. So these terms are `0`.
+  - Hence `v* z_0 v = Y(k) =: c`, a nonzero rational, and `y = c^-1 t_w t_(α_0)`, `z = s_(β_0) s_w` give `y x z = 1`.

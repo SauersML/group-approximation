@@ -74,3 +74,9 @@ the kernel of `St_N(R_L) -> E_N(R_L)`. Items 1–3 hold for every such `N`. They
    - If a Leavitt block `V'` is elementary, (i) is equivalent to injectivity of two-step stabilization at every level.
    - An absolute input at one level is still missing. Khanh's frame-complex criterion needs `GL = E` and
      `H_2 = 0`, and both fail for `R_L`.
+4. **Condition (i) proved, 2026-09-18 (lane gq-infinite-primes).** `leavitt-resolvent-k2-stability-holds`.
+   - The ingredients are Khanh's comparison argument for `E_n(R_L)` on its highly connected frame complex
+     (`leavitt-resolvent-frame-complex-is-highly-connected`), `K_1`-stability through GE and compression
+     (`leavitt-ge-rings-have-stable-k1-at-rank-three`), and Weyl lifts supported on three coordinates.
+   - Together they give surjective stability, hence injective stability, for every `N >= 3`. With condition (ii),
+     `St_N(R_L)` has solvable word problem.

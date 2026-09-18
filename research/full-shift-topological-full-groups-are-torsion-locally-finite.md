@@ -103,10 +103,24 @@ path gives `w^N(σ^u y') = σ^{u + Nqp} y'`. Since `w^N = 1`, this forces
   `RTM(Z,2,1) ≤ 2V` (Barbieri--Kari--Salo, arXiv:2303.17270, as quoted from its
   HTML). That group is LEF (arXiv:1603.08715, Theorem 6), and its elementary
   subgroup has undecidable torsion problem (arXiv:2303.17270, Theorem 1.2).
+- **Extension to irreducible SFTs (proved, same lane).** Let `X` be an infinite
+  irreducible two-sided SFT of step `k`. Then every finitely generated torsion
+  subgroup of `[[σ_X]]` is finite. Run the proof inside `X` with windows of radius
+  `max(2R, k)`.
+  - The pumped `y` lies in `X`, since the windows at `c_1` and `c_2` agree.
+  - For Step 4, the window `W` at `c_1` is a vertex on the loop `u = x_{[c_1,c_2)}`
+    of the presentation graph. That graph is irreducible and not a single cycle, so
+    `W` has two distinct first-return loops `α ≠ β`.
+  - Take `y' = …ααα·u^M·βββ…`. It lies in `X`, agrees with `y` on `u^M`, and is not
+    periodic, because its two tails `α^∞` and `β^∞` differ.
 - **Matte Bon.** This is consistent with Matte Bon (arXiv:1408.0762), who finds
   infinite finitely generated torsion subgroups in `[[σ_X]]` for minimal subshifts
-  `X`. Step 3 needs the pumped periodic tape to lie in the subshift, which fails
-  for minimal aperiodic `X`. The same proof works for any subshift of finite type
-  that contains, near the pumped periodic orbit, a non-periodic point agreeing
-  with it on arbitrarily long blocks. This extension is recorded but not claimed
-  here.
+  `X`. Step 3 needs the pumped periodic tape to lie in the subshift, which fails for
+  minimal aperiodic `X`.
+- **For the Schreier-subshift route to periodic subgroups of `nV`.** In
+  `nv-periodic-groups-via-schreier-subshift-factors`, `[[T]]` lifts injectively into
+  `[[g|_U]] <= nV`. If `g|_U` is conjugate to an infinite irreducible SFT, that full
+  group is torsion locally finite by the extension above, so no infinite periodic
+  group can arise. This excludes baker-map and shift-type elements. The element `g`
+  must have genuinely non-SFT dynamics on `U` (consistently, a minimal infinite
+  factor `X` is never sofic).

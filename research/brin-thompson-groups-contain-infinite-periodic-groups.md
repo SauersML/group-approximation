@@ -22,6 +22,11 @@ distinct_from:
   too, and `brin-thompson-torsion-has-clopen-fixed-sets` item 4 says exactly what it would take.
 - A Sheng preprint (arXiv:2209.11982) claimed torsion obstructions for `nV` "similar to V"; it was
   withdrawn ("a flaw in one of the proofs"), so no result is imported from it.
+- Kojima–Sheng, arXiv:2603.18410v3 (current, 23 May 2026), Theorem 1.1, claims the negative answer:
+  "nV is torsion locally finite for n ≥ 1". Its proof rests on the two-generator criterion
+  `Cor:TwoGenerator`, which is false already in `V`
+  (`kojima-sheng-two-generator-torsion-criterion-fails-in-v`). So nothing is imported from it and the
+  question stays OPEN (lane bh-free-50, 2026-09-18).
 
 ## Constraints already proved
 

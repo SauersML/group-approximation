@@ -72,3 +72,12 @@ hyperbolic groups, not both of order 2.
 - **One-ended attempt** (Attempt 2 on the Q1.1 node): Bowen–Series-type Markov codings satisfy
   the RSG condition automatically, since `g_β^{-1} g_α` is the canonical similarity. Rationality,
   the finite nucleus and irreducibility remain unverified.
+
+## Update (fourth landing): the one-ended obstacle made precise
+- `sft-irreducible-core-iff-unique-recurrent-component`: when there are no isolated points or
+  empty cones, an irreducible core is the same as a unique recurrent strongly connected
+  component, which is then a sink.
+- Attempt 3 on the Q1.1 node:
+  - each recurrent component carries loxodromics that act as canonical shifts on a cone;
+  - uniqueness reduces to an exact distance-germ gate property, which cut vertices supply in
+    free products and which is open for one-ended groups.

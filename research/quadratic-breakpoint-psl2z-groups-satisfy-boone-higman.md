@@ -8,8 +8,7 @@ distinct_from:
   lodha-circle-group-is-finitely-presented-and-simple: that imports Lodha's piecewise projective simple group; this uses only his Cantor model of Thompson's T, and not the group S.
 ---
 
-**ESTABLISHED** by `quadratic-breakpoint-psl2z-groups-satisfy-boone-higman-proof` (lane proof, not
-independently reviewed). No priority is claimed. An arXiv search on "piecewise projective" and
+**ESTABLISHED** by `quadratic-breakpoint-psl2z-groups-satisfy-boone-higman-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/gq-referee-a-periodic-germ-extensions-of-v-and-breakpoint-consumers.md`, 135cfebbf), nits N1–N3 applied. No priority is claimed. An arXiv search on "piecewise projective" and
 "simple" found no statement of this kind.
 
 **Statement.**

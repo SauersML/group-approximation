@@ -41,7 +41,7 @@ finitely presented and has decidable word problem. Smallest instance:
   action with locally virtually abelian stabilizers is excluded.
 - For `h_0 = h_1` this enumeration is exactly the dead A*A benchmark.
 
-A positive answer would give the first non-virtually-cyclic enumeration passing
+A positive answer would give the first non-virtually-cyclic regular enumeration passing
 gates (G1) and (G2) of `mz-envelope-fp-forces-two-sided-fg-near-index-kernel`, and
 the shell germ gate. Gate (G3), finite presentation of `A_1`, and finite
 presentation of `E_nu` would remain.

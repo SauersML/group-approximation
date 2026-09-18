@@ -201,3 +201,13 @@ admissible `P`:
      - So window zero for `St_N(R_L)` is dead if `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`
        holds. Otherwise it needs a self-similar highly transitive action in which `K_2` acts
        transitively on some orbit.
+
+## Attempts (gate 1)
+
+- **2026-09-18 (lane gq-infinite-primes): gate 1 closed, subject to review.** `leavitt-resolvent-k2-stability-holds`.
+  - For every `N >= 3`, `K_2(N, R_L) -> K_2(R_L) ≅ Q^x` is an isomorphism and `K_2(N, R_L)` is central.
+  - With the halting-search detector (`leavitt-resolvent-stable-k2-class-is-computable`), `St_N(R_L)` has solvable
+    word problem, for `N = 4` and `N = 10` alike.
+  - The proof runs Khanh's frame-complex comparison for `E_n(R_L)` modulo the central `j(K_2(n-1))`.
+  - What remains for this claim is gates 2--3: finite presentation of the germ group `Q_ν` for some enumeration `ν`,
+    which needs `R_ν`, `R_ν ×_Z R_ν` and the ascending HNN condition, and a computable `ν`.

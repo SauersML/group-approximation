@@ -116,4 +116,6 @@ Candidate levers recorded when the node was opened:
    - Also excluded: finitely presented simple Kac–Moody lattices with 2-dimensional buildings, e.g. `Λ_(2,4,6)(q)`,
      and every group acting with finite point stabilizers on a finite product of 2-dimensional CAT(0) triangle
      complexes and trees (`two-dim-cat0-product-groups-are-torsion-locally-finite`, from Norin–Osajda–Przytycki).
-     Kac–Moody lattices with buildings of dimension `>= 3` remain open.
+     Kac–Moody lattices with Weyl group containing no `Z^2` (word-hyperbolic `W`, any building dimension) are
+     excluded too (`hyperbolic-kac-moody-lattices-are-torsion-locally-finite`, from Haettel–Osajda and
+     Caprace–Haglund). Open: Kac–Moody lattices with `Z^2 ≤ W` and a spherical triple.

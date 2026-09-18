@@ -67,3 +67,7 @@ Contrapositive: one commuting pair with no rational solution of (Q) shows that
    the inner automorphism `ι_w`, and `ad: Λ²H → Hom(H, L_3)` is injective for
    `n ≥ 2`. Substituting these gives the traceless form. Consequences 1–3 are
    read off directly.
+
+**Update (09-18).** The test is empty:
+`abelian-subgroups-of-out-free-virtually-lift-to-aut` (Feighn--Handel principal
+sets) gives commuting lifts of suitable powers of every commuting pair.

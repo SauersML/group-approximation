@@ -9,9 +9,13 @@ requires: [cat0-groups-with-a-tree-factor-lie-in-type-a-class, arithmetic-lie-la
 
 **Item 1.**
 - **Degenerate `T`.** If every vertex of `T` has degree `<= 2`, `T` is a line or a
-  finite path (a ray has no cocompact isometry group). Then `Γ` acts geometrically on `H^2 × R`, and is virtually `S × Z` for a closed
-  surface group `S` (Scott, *The geometries of 3-manifolds*, for `H^2 × R`;
-  cited, not re-read). Or `Γ` preserves one fibre `H^2` (over the center of the
+  finite path (a ray has no cocompact isometry group). Then `Γ` acts geometrically on `H^2 × R`. Its image in `Isom(H^2 × R)` is a lattice, with finite kernel.
+  Pass to a torsion-free finite-index subgroup of the image (Selberg), the
+  fundamental group of a closed `H^2 × R`-manifold, which is virtually `S × Z` for a
+  closed surface group `S` (Scott, *The geometries of 3-manifolds*, for `H^2 × R`;
+  cited, not re-read). The finite kernel is removed as in the fibre argument below:
+  a central extension of `S × Z` by a finite abelian group dies on a finite cover,
+  since `H^2(S × Z; A)` is killed by finite covers. Or `Γ` preserves one fibre `H^2` (over the center of the
   path, possibly a midpoint) and acts on it geometrically, and the fibre argument
   below shows it is virtually a surface group. Either way `Γ` is linear in characteristic 0 (a surface group, and `S × Z`, embed in
   `PSL_2(R)`-type matrix groups; linearity passes to finite-index overgroups by

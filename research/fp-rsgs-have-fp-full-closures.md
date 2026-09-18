@@ -53,4 +53,21 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
 
 ## Attempts
 
-(none yet)
+1. **The germ groupoid of the test family (bh-higman-classic, 2026-09-18).** *Reduction, not decided.*
+   - **The groupoid.** Take `t` of infinite order in `Out(V)`. By
+     [[v-normalizer-groupoids-carry-lag-cocycle-iff-lipschitz]], `[[Γ_t]]` is the topological full group
+     of `O ⋊_t Z`, and the lag cocycle extends iff `t` is Lipschitz.
+   - **The Lipschitz case** (`t ∈ L_2 ≅ Inert(σ_2)`). The groupoid is Z-graded: a "rank-two Cuntz"
+     groupoid built from the commuting pair `(σ, F)` of the full 2-shift and an inert `F`. That is the
+     nearest known shape to the `k`-graph groupoids whose full groups X. Li proves are of type `F_∞`
+     (`li-finite-k-graph-full-groups-are-f-infinity`).
+   - **Why Li does not apply as stated.**
+     - His self-similar and Zappa–Szép cases need a degree-preserving action.
+     - An inert `F` of infinite order is intrinsically asynchronous
+       ([[synchronous-cores-in-out-v-have-order-at-most-two]]).
+     - Recoding by higher blocks makes `F` causal, but `F^{-1}` then still needs lookahead. Only one-sided
+       automorphisms (the identity and the flip) are causal both ways.
+   - **No homological obstruction expected (heuristic).** A Wang-type exact sequence for `O ⋊ Z`, together
+     with `H_*(O_2) = 0`, would give `H_*(G_t) = 0`. That sequence was not checked at source.
+   - **Next.** Either (a) a Garside or Stein–Farley complex for `[[Γ_t]]` built from the lag grading
+     (Lipschitz case), or (b) an obstruction for non-Lipschitz `t`, where no Z-grading exists.

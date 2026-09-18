@@ -43,3 +43,9 @@ gives `steinberg-leavitt-resolvent-groups-have-no-type-a-action`.
 ## Attempts
 
 None.
+
+## Attempts
+
+- **2026-09-18 (lane gq-infinite-primes): proved, subject to review.** `leavitt-resolvent-k2-stability-holds`,
+  item 3. For every `N >= 3`, `K_2(N, R_L) = j(K_2(N-1, R_L))` is central (by padded centrality and the refinement
+  isomorphisms), and `K_2(N, R_L) ≅ Q^x`.

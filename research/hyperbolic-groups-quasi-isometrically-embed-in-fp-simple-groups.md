@@ -27,3 +27,19 @@ groups, where they are the sharpest open part:
   V and of VA are undistorted (Burillo–Cleary–Stein–Taback; Burillo–Felipe
   arXiv:2605.09763), which is consistent with a positive answer; distortion of
   hyperbolic subgroups inside RSGs has not been studied on main.
+
+## Attempts
+
+1. **(bh-free-45, 09-18) The undistorted half is settled.** `hyperbolic-groups-undistortedly-embed-in-fp-simple-groups`
+   (ESTABLISHED, lane proof) shows the BBMZ embedding `G <= G*Z <= Γ = [[G*Z | ∂_h(G*Z)]] <= SV_Γ` is
+   undistorted at each step:
+   - `G <= G*Z` by the free-factor retraction;
+   - `G*Z <= Γ` because `G*Z` acts locally faithfully on `∂_h(G*Z)`
+     (`g-free-z-acts-locally-faithfully-on-horofunction-boundary`) and label length is subadditive on full
+     groups (`full-group-label-length-bounds-distortion`);
+   - `Γ <= SV_Γ` because the coordinate-permutation label is locally determined.
+
+   So every hyperbolic group quasi-isometrically embeds in a finitely presented simple group. What remains
+   open here is only the type F_∞ requirement on the host. For this host it is tied to two open questions: BBMZ Question
+   `quest:F_infty` (is `Γ` of type F_∞?) and the Belk–Zaremsky type F_n criterion for `SV_G` at n ≥ 3, which
+   is a conjecture (arXiv:2001.04579). Any other undistorted host of type F_∞ would also do.

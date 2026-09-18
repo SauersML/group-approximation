@@ -10,3 +10,7 @@ Sources fetched (MSI → $GQ/src/bh-free-24/): FFKLZ 2506.02319v2 TeX, BFFHZ 250
   - FFKLZ constraint: S_q is in HF, so in any HT action, for infinitely many k no k-set stabilizer is FP∞.
 - Warned bh-free-20 that the AH route is dead: SQ-universality, per Attempt 1 on main.
 - Open: (E) for the (2,4,6) Levi amalgam.
+- LANDED 71640ad93: Attempt 7 on the KM HT node.
+  - A star-shaped partial link always completes. But the growth order forces vertices whose partial links are unions of stars, so link-by-link free completion can close up.
+  - Lemma C: simplicity forces Σ 1/girth(Γ_J) ≥ 1/2. So the development is not CAT(−1), and Ronan–Tits style free constructions don't apply.
+  - (E) OPEN. Next idea, not started: a global mechanism, such as perturbing orbits of the X_+ action.

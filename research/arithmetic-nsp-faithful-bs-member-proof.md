@@ -46,8 +46,10 @@ Since `c ∈ M`, some `c^m`, `m >= 1`, lies in `K <= G`. This is a contradiction
   forces `|λ| <= 1` and `r^m <= 1`, which is false for `m >= 1`.
 
 **Instance 2.** `Λ` is a cocompact lattice in `L = PGL_2(Q_p) × PGL_2(Q_q)`
-(cocompactness of definite quaternion S-arithmetic groups: the compactness criterion
-for Q-anisotropic groups; not pinned at source). `G` is then a cocompact lattice in
+(cocompactness of definite quaternion S-arithmetic groups: Godement's criterion for
+S-arithmetic groups, Witte Morris math/0106063v6 App. C (5.3.1_S), p. 461, citing
+Platonov--Rapinchuk Thm 5.7(2), since `PD^×(Q)` has no unipotents when `D` is a
+division algebra; finite presentation by (4.7.10_S); pinned by referee b). `G` is then a cocompact lattice in
 the open subgroup `G_1 × G_2` of `L`, as the Bader--Shalom node requires: `D` is
 definite, so the archimedean factor is compact. The diagonal map
 `PD^×(Q) → PGL_2(Q_p)` is injective.

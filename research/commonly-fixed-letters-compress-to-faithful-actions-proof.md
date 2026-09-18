@@ -13,7 +13,7 @@ Notation of the claim.
 ## 1. σ is an endomorphism with eventually periodic powers
 
 Every `g in G` fixes `x`, so `(gh)|_x = g|_{h(x)} h|_x = g|_x h|_x`: `σ` is an endomorphism of `G`, and
-`σ(G) = ⟨σ(S)⟩`. On the finite set `S`, `σ^p` is idempotent, so `σ^p = σ^{p+q}` on `S` and hence on `G`
+`σ(G) = ⟨σ(S)⟩`. By the choice of `p` and `q`, `σ^p = σ^{p+q}` on `S`, hence on `G`
 (both are endomorphisms agreeing on generators). So `σ^b = σ^{[b]}` for every `b >= 0`.
 
 ## 2. The compressed recursion is a homomorphism into Aut(A^*)
@@ -40,4 +40,4 @@ acts on `A^ω` by §2. (`κ` is onto but not injective when some `b_j >= p+q`.)
 Suppose `g` acts trivially on `A^*`. By §3 the old image of `ξ in Ω` has the same run lengths `b_j` and letters
 `y_j' = y_j`, so `g` fixes every point of `Ω`. `Ω` is dense and `g` is continuous, so `g = 1`. ∎
 
-**Remark.** The only input from `loop-retraction-forces-fp-eventual-section-groups` is the choice of `p` and `q`.
+**Remark.** No input from `loop-retraction-forces-fp-eventual-section-groups` is needed beyond the notation.

@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/hl-bh-a2-boundary-hosts-2026-09-14.md
 ---
 
-**OPEN (standard facts, not yet pinned at source).** Let `Λ` be a finite `k`-graph such
+**ESTABLISHED** (2026-09-18) by `finite-k-graph-standard-facts-proof` (lane proof, bh-groupoid; not independently reviewed). That proof derives item 1 from Li's own definitions and lemmas, read at source in arXiv:2110.04501 (Definition `def:Omega`, the transformation groupoid, Lemma `lem:infpaths`, Lemma `lem:Omegamax`), and needs only "no sources". Items 2–4 are proved there directly. The original (weaker) hypothesis note follows. Let `Λ` be a finite `k`-graph such
 that every vertex receives and emits at least one edge of each colour (no sources and no
 sinks in each colour).
 
@@ -26,7 +26,6 @@ sinks in each colour).
 
 These are recalled from Kumjian–Pask, *Higher rank graph C*-algebras*, New York J. Math. 6
 (2000); Spielberg, *Groupoids and C*-algebras for left cancellative small categories*; and
-X. Li, arXiv:2110.04501. They have not been read at source in this lane; the TeX fetched
-for arXiv:math/9912002 did not contain the expected text. Each is standard, and the
+X. Li, arXiv:2110.04501. (Superseded by the proof route above.) They had not been read at source in the lane that wrote this node; the TeX fetched for arXiv:math/9912002 did not contain the expected text. Each is standard, and the
 proof of `primitive-aperiodic-two-graph-full-groups-embed-in-fp-simple` uses exactly
 items 1–4.
