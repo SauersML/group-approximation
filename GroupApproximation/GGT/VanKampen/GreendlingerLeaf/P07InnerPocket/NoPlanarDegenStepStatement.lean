@@ -21,8 +21,8 @@ successor outside walk (hypothesis `hno`).
 * **M8 (empty-arc island, lane 23).**  `F` is an annulus, so there is no walk.  Branch 1 holds with
   `faces = P' ∪ a.1`, and the walk reads `Ḡ₁ · B̄ · Ḡ₂` (lane 28).  The variant M8', where the
   island touches `G₁` at one vertex, behaves the same: that vertex pinches `a`, not `Π_i`.
-* **M9 with a hole (a `b`-lobe cut off inside the pocket).**  There is no walk.  Branch 1 holds with the whole pocket,
-  `faces = sideFaces K.walk`, as lane 31 reads M9.  The lake-filled witness alone fails clause 3.
+* **M9 with a hole (a `b`-lobe cut off inside the pocket).**  There is no walk.  Branch 1 holds
+  with the whole pocket, `faces = sideFaces K.walk`, as lane 31 reads M9.  The lake-filled witness alone fails clause 3.
 * **M11 with a hole, `C` in the `O`-pocket.**  There is no walk.  Branch 1 holds with `faces = O ∪`
   the `λ`, `ν` and `λ'` discs `∪` the hole: absorbing the loops removes the jumps at `v`.
 

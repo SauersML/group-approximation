@@ -66,7 +66,7 @@ theorem col_mul_weyl (hthird : ∀ a b : I, ∃ m : I, m ≠ a ∧ m ≠ b) {j L
     _ = x j L hj (1 : ZMod 2) * x L j hj.symm 1 * x j L hj 1 * x L j hj.symm 1 * x j L hj 1 *
           x j L hj 1 := by rw [h1]
     _ = x j L hj 1 * x L j hj.symm 1 * x j L hj 1 * x L j hj.symm 1 := by
-        rw [mul_assoc _ (x j L hj 1) (x j L hj 1), ha, mul_one]
+        rw [mul_assoc _ (x j L hj (1 : ZMod 2)) (x j L hj (1 : ZMod 2)), ha, mul_one]
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.col_mul_weyl
 

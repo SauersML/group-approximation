@@ -45,7 +45,7 @@ theorem fieldK2_bot_of_bruhatBigCell (hstat : BruhatBigCellStatement) (p : ℕ) 
 /-- **Symbol generation** from rank `n₀ ≥ 3`, from the big Bruhat cell statement. -/
 theorem symbolGeneration_of_bruhatBigCell (hstat : BruhatBigCellStatement) (n₀ : ℕ)
     (hn₀ : 3 ≤ n₀) : SymbolGenerationStatement n₀ := by
-  intro p hp N hN
+  intro p _ N hN
   have hN3 : 3 ≤ N := le_trans hn₀ hN
   refine ⟨⟨0, by omega⟩, ⟨1, by omega⟩, fun e => absurd (congrArg Fin.val e) (by simp), ?_⟩
   rw [fieldK2_bot_of_bruhatBigCell hstat p N hN3]

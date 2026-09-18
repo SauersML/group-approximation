@@ -39,6 +39,7 @@ theorem rootSpan_induction {p : I → I → Prop} {Q : SteinbergGroup I R → Pr
     (mul : ∀ g k, g ∈ rootSpan (R := R) p → k ∈ rootSpan (R := R) p → Q g → Q k →
       Q (g * k))
     {g : SteinbergGroup I R} (hg : g ∈ rootSpan (R := R) p) : Q g := by
+  unfold rootSpan at hg
   induction hg using Subgroup.closure_induction'' with
   | mem g hx =>
     obtain ⟨i, j, h, a, hp, rfl⟩ := hx

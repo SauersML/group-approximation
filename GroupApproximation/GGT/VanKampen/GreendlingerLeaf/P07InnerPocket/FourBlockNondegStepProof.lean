@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlockNondegStepStatement
 import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlockList
+import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourBlockWitnessWeaken
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

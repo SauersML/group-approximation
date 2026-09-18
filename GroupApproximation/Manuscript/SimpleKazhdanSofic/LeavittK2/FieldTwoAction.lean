@@ -15,6 +15,7 @@ import GroupApproximation.Meta.AxiomGuard
 namespace GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo
 
 open GroupApproximation.SteinbergGroup
+open scoped Matrix
 
 variable {I R : Type*} [Fintype I] [DecidableEq I] [Ring R]
 
