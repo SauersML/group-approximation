@@ -135,7 +135,8 @@ theorem binaryLeavittKernelThreeCoinvariant_of_swindle
   refine hgen.trans (Subgroup.normalClosure_le_normal ?_)
   intro k hk
   obtain ⟨g, hg⟩ := hconj k hk
-  exact mem_commutator_top_of_conj_eq_mul_self (hS hk) hg
+  have hk' : k ∈ K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) := hS hk
+  exact mem_commutator_top_of_conj_eq_mul_self hk' hg
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_swindle
 
@@ -158,7 +159,7 @@ theorem binaryLeavittKernelThreeSwindle_of_forall_conj
     BinaryLeavittKernelThreeSwindleStatement := by
   refine ⟨(K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) :
       Set (St 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)))),
-    fun _ hk => hk, fun _ hk => Subgroup.subset_normalClosure hk, ?_⟩
+    fun _ hk => hk, Subgroup.le_normalClosure, ?_⟩
   intro k hk
   exact h k hk
 
@@ -189,7 +190,8 @@ theorem binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
   refine le_bot_iff.mp (hgen.trans (Subgroup.normalClosure_le_normal ?_))
   intro k hk
   obtain ⟨g, hg⟩ := hconj k hk
-  exact Subgroup.mem_bot.mpr (eq_one_of_conj_eq_mul_self_of_mem_center (hc (hS hk)) hg)
+  have hk' : k ∈ K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) := hS hk
+  exact Subgroup.mem_bot.mpr (eq_one_of_conj_eq_mul_self_of_mem_center (hc hk') hg)
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
 
