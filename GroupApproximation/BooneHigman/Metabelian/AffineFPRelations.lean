@@ -41,6 +41,8 @@ structure AffineRel {I R P : Type*} [CommRing R] [Group P] (S : Set R)
   closure : Subring.closure S = ⊤
   four : ∀ a b c : I, ∃ d : I, d ≠ a ∧ d ≠ b ∧ d ≠ c
 
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.AffineRel
+
 namespace AffineRel
 
 variable {I R P : Type*} [CommRing R] [Group P] {S : Set R}

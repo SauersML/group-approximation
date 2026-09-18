@@ -48,13 +48,13 @@ theorem usedRankFourClose_of_le {n m : ℕ} (hnm : n ≤ m)
     (hP : ∀ k ∈ GroupApproximation.BooneHigman.SteinbergBasic.K2 (Fin m) R,
       ∃ (N : ℕ) (h : m ≤ N), GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h) k = 1) :
     ∀ k ∈ GroupApproximation.BooneHigman.SteinbergBasic.K2 (Fin n) R,
-      ∃ (N : ℕ) (h : n ≤ N), GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h) k = 1 := by
+      ∃ (N : ℕ) (h : n ≤ N),
+        GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb h) k = 1 := by
   intro k hk
   obtain ⟨N, hN, e⟩ := hP (GroupApproximation.SteinbergGroup.indexMap (Fin.castLEEmb hnm) k)
     (GroupApproximation.BooneHigman.SteinbergBasic.indexMap_mem_K2 (Fin.castLEEmb hnm) hk)
   refine ⟨N, hnm.trans hN, ?_⟩
-  rw [← CohnTwo.indexMap_castLE_castLE hnm hN]
-  exact e
+  exact (CohnTwo.indexMap_castLE_castLE hnm hN k).symm.trans e
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.usedRankFourClose_of_le
 
@@ -99,7 +99,8 @@ theorem binaryLeavittStableK2Trivial_of_leavittK2UsedRankFour
     (h4 : LeavittK2UsedRankFourStatement) : BinaryLeavittStableK2TrivialStatement := by
   intro n k hk
   by_cases hn : n ≤ 4
-  · exact usedRankFourClose_of_le hn h4 k hk
+  · exact usedRankFourClose_of_le
+      (R := GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) hn h4 k hk
   · obtain ⟨j, rfl⟩ : ∃ j, n = j + 4 := ⟨n - 4, by omega⟩
     exact usedRankFourClose_add_four h4 j k hk
 

@@ -43,7 +43,7 @@ theorem pair_sublist_antisymm {x y : α} {T : List α} (hnd : T.Nodup) (h₁ : [
   | cons a T ih =>
     obtain ⟨ha, hT⟩ := List.nodup_cons.mp hnd
     rcases List.sublist_cons_iff.mp h₁ with h₁ | ⟨r₁, hr₁, hs₁⟩ <;>
-      rcases List.sublist_cons_iff.mp h₂ with h₂ | ⟨r₂, hr₂, hs₂⟩
+      rcases List.sublist_cons_iff.mp h₂ with h₂ | ⟨_, hr₂, -⟩
     · exact ih hT h₁ h₂
     · exact ha (by
         rw [← (List.cons.inj hr₂).1]

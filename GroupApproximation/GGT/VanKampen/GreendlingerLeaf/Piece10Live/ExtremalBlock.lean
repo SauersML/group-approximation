@@ -35,11 +35,16 @@ and junctions, and the block shapes.
   `b₁ b₂`, which is not a walk.  They hold only for an extremal choice of `r` (moving `B₁`
   works).  No combinatorial lemma about `flipFaces` gives them; they are planarity plus
   extremality, and they stay in (b).
-* `TargetBlockNoWrap` is **not refuted**.  The model search (scratchpad `gl-p10-13/wrap_search.py`,
-  the model of `gl-p10-12b/inorder_search.py`) found, in all 542 configurations with at most five
-  petals and 9010 with at most six, a valid region whose kept target block is a prefix
-  (`pre = []`), where `TargetBlockNoWrap` is automatic.  The model does not see the base point,
-  least area, labels, or relator cells.
+* `TargetBlockNoWrap` is **not guaranteed** under the premises: `PocketFaceSet.le_hi` does not
+  bound `hi` by `|outerDarts X|` (lane gl-p10-12a), so the target arc may wrap past the base
+  point.  Since `core_of_roseExtremalBlock` shows (b) equivalent to the block statement, (b)
+  carries the same risk.  The corrected form is `RoseExtremalBlockNoWrapCoreStatement`
+  (`Piece10Live/ExtremalBlockNoWrap`), with the premise `hi ≤ |outerDarts X|` and no wrap clause.
+  Not refuted in the model: the search (scratchpad `gl-p10-13/wrap_search.py`, the model of
+  `gl-p10-12b/inorder_search.py`) found, in all 542 configurations with at most five petals and
+  9010 with at most six, a valid region whose kept target block is a prefix (`pre = []`), where
+  `TargetBlockNoWrap` is automatic.  The model does not see the base point, least area, labels,
+  or relator cells.
 
 ## Manuscript status
 

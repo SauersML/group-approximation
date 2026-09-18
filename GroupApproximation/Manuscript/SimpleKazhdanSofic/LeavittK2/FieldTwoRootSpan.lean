@@ -36,7 +36,8 @@ theorem x_mem_rootSpan {p : I → I → Prop} {i j : I} (h : i ≠ j) (a : R) (h
 /-- Induction over the generating roots of a root span. -/
 theorem rootSpan_induction {p : I → I → Prop} {Q : SteinbergGroup I R → Prop}
     (gen : ∀ (i j : I) (h : i ≠ j) (a : R), p i j → Q (x i j h a)) (one : Q 1)
-    (mul : ∀ g k, g ∈ rootSpan (R := R) p → k ∈ rootSpan (R := R) p → Q g → Q k → Q (g * k))
+    (mul : ∀ g k, g ∈ rootSpan (R := R) p → k ∈ rootSpan (R := R) p → Q g → Q k →
+      Q (g * k))
     {g : SteinbergGroup I R} (hg : g ∈ rootSpan (R := R) p) : Q g := by
   induction hg using Subgroup.closure_induction'' with
   | mem g hx =>
@@ -118,7 +119,8 @@ theorem exists_split {p q : I → I → Prop} {i₀ j₀ : I} (h₀ : i₀ ≠ j
     {g : SteinbergGroup I R} (hg : g ∈ rootSpan (R := R) p) :
     ∃ d : R, ∃ g' ∈ rootSpan (R := R) q, g = x i₀ j₀ h₀ d * g' := by
   refine rootSpan_induction
-    (Q := fun g => ∃ d : R, ∃ g' ∈ rootSpan (R := R) q, g = x i₀ j₀ h₀ d * g') ?_ ?_ ?_ hg
+    (Q := fun g => ∃ d : R, ∃ g' ∈ rootSpan (R := R) q, g = x i₀ j₀ h₀ d * g')
+    ?_ ?_ ?_ hg
   · intro i j h a hp
     rcases hsplit i j h hp with ⟨rfl, rfl⟩ | hq
     · exact ⟨a, 1, Subgroup.one_mem _, (mul_one _).symm⟩

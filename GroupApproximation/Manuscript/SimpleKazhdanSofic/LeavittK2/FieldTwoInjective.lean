@@ -30,7 +30,8 @@ theorem eq_one_of_col_fix_finset (L : I) (T : Finset I) (hLT : L ∉ T) :
     intro u hu _
     exact rootSpan_induction (Q := fun g => g = 1)
       (fun i _ _ _ hp => absurd hp.2 (Finset.notMem_empty i)) rfl
-      (fun _ _ _ _ h1 h2 => by rw [h1, h2, mul_one]) hu
+      (fun g k _ _ h1 h2 => show g * k = 1 by
+        rw [show g = 1 from h1, show k = 1 from h2, mul_one]) hu
   | insert b T hbT ih =>
     intro u hu hfix
     have hbL : b ≠ L := fun h => hLT (by rw [← h]; exact Finset.mem_insert_self b T)
@@ -64,8 +65,8 @@ theorem eq_one_of_col_fix (L : I) {u : SteinbergGroup I R}
     (hfix : act u (unitVec L) = unitVec L) : u = 1 := by
   refine eq_one_of_col_fix_finset L (Finset.univ.erase L) (Finset.notMem_erase L _) u ?_ hfix
   exact rootSpan_mono (p := fun _ j => j = L)
-    (fun i j hij hj => ⟨hj, Finset.mem_erase.mpr ⟨by rw [← hj]; exact hij, Finset.mem_univ i⟩⟩)
-    hu
+    (fun i j hij hj =>
+      ⟨hj, Finset.mem_erase.mpr ⟨by rw [← hj]; exact hij, Finset.mem_univ i⟩⟩) hu
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.eq_one_of_col_fix
 
@@ -77,7 +78,8 @@ theorem eq_one_of_row_zero_finset (L : I) (T : Finset I) (hLT : L ∉ T) :
     intro v hv _
     exact rootSpan_induction (Q := fun g => g = 1)
       (fun _ j _ _ hp => absurd hp.2 (Finset.notMem_empty j)) rfl
-      (fun _ _ _ _ h1 h2 => by rw [h1, h2, mul_one]) hv
+      (fun g k _ _ h1 h2 => show g * k = 1 by
+        rw [show g = 1 from h1, show k = 1 from h2, mul_one]) hv
   | insert b T hbT ih =>
     intro v hv hfix
     have hbL : b ≠ L := fun h => hLT (by rw [← h]; exact Finset.mem_insert_self b T)
@@ -91,8 +93,8 @@ theorem eq_one_of_row_zero_finset (L : I) (T : Finset I) (hLT : L ∉ T) :
         (by rw [hq.1]; exact hbL) (by rw [← hq.1]; exact h.symm) c a) hv
     have h1 : act v' (unitVec b) = unitVec b :=
       act_eq_self_of_rootSpan (p := fun i j => i = L ∧ j ∈ T)
-        (fun _ j hp => by rw [unitVec_apply, if_neg (fun hjb => hbT (by rw [← hjb]; exact hp.2))])
-        hv'
+        (fun _ j hp => by
+          rw [unitVec_apply, if_neg (fun hjb => hbT (by rw [← hjb]; exact hp.2))]) hv'
     have hd : d = 0 := by
       have e := hfix b hbL
       rw [act_mul, h1, act_x_apply, if_pos rfl] at e
@@ -110,8 +112,8 @@ theorem eq_one_of_row_zero (L : I) {v : SteinbergGroup I R}
     (hfix : ∀ k, k ≠ L → act v (unitVec k) L = 0) : v = 1 := by
   refine eq_one_of_row_zero_finset L (Finset.univ.erase L) (Finset.notMem_erase L _) v ?_ hfix
   exact rootSpan_mono (p := fun i _ => i = L)
-    (fun i j hij hi => ⟨hi, Finset.mem_erase.mpr ⟨by rw [← hi]; exact hij.symm, Finset.mem_univ j⟩⟩)
-    hv
+    (fun i j hij hi =>
+      ⟨hi, Finset.mem_erase.mpr ⟨by rw [← hi]; exact hij.symm, Finset.mem_univ j⟩⟩) hv
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo.eq_one_of_row_zero
 
