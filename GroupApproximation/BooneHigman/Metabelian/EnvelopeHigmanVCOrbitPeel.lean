@@ -55,7 +55,7 @@ theorem higmanVCOrbit_mk_of_mul {d : ℕ} (C : Finset (List (Fin d))) (x y : ↥
     higmanVCCommon_mk d (higmanVCAll_iota C (FreeGroup.of (x, y) * r)) =
       higmanVCCommon_mk d (FreeGroup.of (x.1, y.1)) *
         higmanVCCommon_mk d (higmanVCAll_iota C r) := by
-  rw [map_mul, map_mul, higmanVCAll_iota_of]
+  simp only [map_mul, higmanVCAll_iota_of]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbit_mk_of_mul
 
@@ -89,7 +89,7 @@ theorem higmanVCOrbit_mem_of_fix {d : ℕ} {C : Finset (List (Fin d))}
     have hlt := Equiv.Perm.card_support_swap_mul hx
     have hpi : higmanVCOrbit_pi C (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) =
         Equiv.swap x (higmanVCOrbit_pi C r x) * higmanVCOrbit_pi C r := by
-      rw [map_mul, higmanVCOrbit_pi_of]
+      simp only [map_mul, higmanVCOrbit_pi_of]
     have hmem := ih (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) (by rw [hpi]; omega)
       (fun c hc => by
         rw [hpi, Equiv.Perm.mul_apply, hfix c hc]
@@ -126,7 +126,7 @@ theorem higmanVCOrbit_split {d : ℕ} {C : Finset (List (Fin d))}
       have hlt := Equiv.Perm.card_support_swap_mul hx
       have hpi : higmanVCOrbit_pi C (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) =
           Equiv.swap x (higmanVCOrbit_pi C r x) * higmanVCOrbit_pi C r := by
-        rw [map_mul, higmanVCOrbit_pi_of]
+        simp only [map_mul, higmanVCOrbit_pi_of]
       have hlen' : ∀ c, p c → (higmanVCOrbit_pi C
           (FreeGroup.of (x, higmanVCOrbit_pi C r x) * r) c).1.length = c.1.length := by
         intro c hc

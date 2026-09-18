@@ -66,7 +66,7 @@ theorem czTriOff_det_padHom {ι κ R : Type*} [Fintype ι] [DecidableEq ι] [Fin
   classical
   rw [ElementaryPadding.padHom_apply, Matrix.det_reindex_self]
   exact (Matrix.det_fromBlocks_zero₂₁ _ _ _).trans
-    (by first | rw [Matrix.det_one, mul_one] | simp)
+    (by rw [Matrix.det_one, mul_one])
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czTriOff_det_padHom
 
