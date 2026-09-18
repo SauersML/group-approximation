@@ -161,3 +161,8 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
    - *Open half.* `transcendental-slope-thompson-groups-satisfy-boone-higman`. Attempt 8 excludes PL
      hosts carrying `λ`. So a host must compute `λ`'s digits by other means, and this route shows the
      open half is at least as strong as this root.
+   - *Every one-dimensional piecewise-projective host is capped* (same lane):
+     `fp-piecewise-projective-groups-specialize-to-algebraic-data`. A finitely presented simple group
+     of piecewise-projective maps of an interval, circle or line, with arbitrary real data, is
+     isomorphic to one over a real number field and has polynomial-time word problem. This settles
+     the piecewise-projective part of Attempt 8's "still open" item; germ-type hosts remain.
