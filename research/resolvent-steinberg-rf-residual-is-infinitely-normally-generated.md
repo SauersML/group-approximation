@@ -11,7 +11,9 @@ artifacts:
 ---
 
 **OPEN, with a complete proof modulo two classical inputs cited but not read at source (2026-09-18, lane
-gq-k2-q).** Flip to ESTABLISHED after a referee confirms them:
+gq-k2-q).** `gq-referee-b` checked steps 1–4 given these inputs and found them correct, but could not read either primary at
+the source (`research/artifacts/gq-referee-b-resolvent-ring-corner-symbols-survive-in-k2.md`). The node stays
+OPEN until they are read, for instance through the MSI paywalled-PDF route. The two inputs are:
 - (DS) Dennis–Stein: `K_2(Z/l^r) = 0` for `l` odd, and `K_2(Z/2^r)` has order at most `2`. This is input (K-b)
   of `resolvent-steinberg-rf-residual-is-finitely-normally-generated`, recorded there from `gq-referee-b`.
 - (vdK) van der Kallen: for a local ring, `K_2(N, ·) -> K_2(·)` is injective for `N >= 3`.
