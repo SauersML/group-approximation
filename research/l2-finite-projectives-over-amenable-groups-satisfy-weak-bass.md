@@ -95,3 +95,28 @@ column-finite matrices that restricts to the Hattori–Stallings trace on finite
     indicable subgroup. Concretely, for `N ⊴ K` with `K/N` infinite and amenable, does
     `Z[K/N] ⊗_{Z[K]} C` satisfy an isotypic-share identity in the sense of `U(K/N)`? This is an
     "L²-Swan" statement for big projectives over the quotient.
+- **2026-09-18 (lane `w14-112`): L²-Swan. It is weak Bass over the quotient and cannot be
+  lifted. Over residually finite groups the target is Lück approximation.** See
+  `rf-weak-bass-defect-is-degree-two-approximation-defect` (proposed ESTABLISHED).
+  - *Finite-quotient Swan for big projectives.* For any `K`, any `C` with `r(C) < ∞` and any
+    finite quotient `F`, `Q[F] ⊗ C ≅ Q[F]^{r(C)}`. The proof: Bass's big-projectives theorem
+    forces `Z[F] ⊗ C` to be finitely generated, and then Swan applies.
+  - *Residually finite `K`.* `D(C) >= 0` always. `D(C)` equals the failure of Lück approximation
+    for `C`, given by an explicit interchange-of-limits formula over row truncations. So this
+    node, for residually finite groups, says exactly: the idempotent's row truncations approximate
+    uniformly.
+  - *cd 2.* Without finite presentability, `χ_Q` is multiplicative on finite-index subgroups. In
+    the residually finite amenable case, `D(P) = χ_Q = lim b_2(N_i)/[K:N_i]`.
+  - *Consequence: Kropholler's question for residually finite groups is equivalent, in both
+    directions, to `b_2(N_i) = o([K:N_i])`.* This is Lück approximation in degree 2, and it is
+    also equivalent to this node for relation modules. A residually finite counterexample has
+    `b_2(N) >= [K:N] − 1` for every finite-index `N`.
+  - *Obstruction for L²-Swan.* For `C = P` and `Γ = K/N` infinite, L²-Swan is the inequality
+    `χ^{(2)}(K; Γ) >= χ_Q(K)`, i.e. this node over `Γ`. Lifting it from `Γ` to `K` needs
+    `χ^{(2)}(K; Γ) <= 0`. In a counterexample the two cannot both hold, for any `Γ`. The lifting
+    inequality is false for finitely presented modules (`Z²`, `Z[K]/(x−1)`). If `b_1(K) = 0`, the
+    only locally indicable quotient is trivial.
+  - *Next step.* Degree-2 Lück approximation for residually finite amenable groups of cd 2
+    without type `FP_2`. Show `b_2(N_i)/[K:N_i] → 0`, or build a residually finite amenable
+    `K` with `b_1 = 0` whose `b_2` grows linearly with slope `1 + b_2(K)`. Non-residually-finite
+    counterexamples remain outside this reduction.

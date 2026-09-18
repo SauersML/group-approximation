@@ -108,3 +108,41 @@ as simple amenable groups, which is why item 4's base-uniformity matters.
       sits inside `A`.
     - Option 2: prove continuity of the matched-pair transducer action of `H4(n)` on
       `(Z_2 * Z_2)`-words with `Z_2` exponents.
+- **w12-053 (question (a): the edge-group Freiheitssatz is false).** Landed
+  `higman-edge-relator-twist-breaks-tree-lattice-freiheitssatz` (claim and proof route).
+  - Reduction tested. The w11 reduction asks that `<a,c>/<<[a,c]^2>>` embed in
+    `<a,b,c>/<<[a,c]^2>>` inside `Gamma(3, 2^e)`, for infinitely many `e`.
+  - Result: the embedding fails for every `m = 2^e >= 8`.
+    - Conjugating by `b` gives `b^-1 [a,c] b = a^-1 c^-lambda a c^3`, where `lambda = 3^(3^-1 mod m)`
+      and `lambda = 3 mod 8`.
+    - So `S = (a^-1 c^-lambda a c^3)^2` is a conjugate of `R` that lies in `<a,c>`.
+    - `S` survives in a class-7 2-quotient of `<a,c | a^8, c^8, [a,c]^2>`.
+  - The same twist proves the w9/w10 observations as bounds. In every quotient with 2-power-order
+    generators:
+    - `A^ab` is a quotient of `(Z/16)^2`;
+    - `b^64` and `d^64` lie in `A`, because `e_c(S)` has 2-adic valuation 4.
+  - For `e >= 7`, `<<R>>` is not inside `A`, and no splitting over the image of `A` keeps index `m`.
+  - Dead: every argument that routes `ord(a) = 2^e` through the A-splitting.
+  - Next: the B-splitting Freiheitssatz, that `<d,a,b>` embeds in `Gamma(3,2^e)/<<[a,c]^2>>`.
+    Over `<b,d>`, `R` is an exponent-2 proper power of length 8. Alternatively, pro-2 growth of
+    `ord(a)` compatible with `b^64 in A`.
+- **w11-053 (question (a): the torsion regime is a family of tree lattices).** Landed
+  `higman-torsion-generator-quotients-factor-through-tree-lattices` (claim and proof route).
+  - Universality. Every quotient of `H4(n)` whose four generators are torsion, with lcm of orders
+    `m`, has `m | n^m - 1` and factors through `Gamma(n,m) = H4(n)/<<a^m,b^m,c^m,d^m>>`.
+  - Structure. `Gamma(n,m) = K1 *_A K2 = L1 *_B L2`, with vertex groups `Z/m ⋊_n Z/m` and
+    `A ≅ B ≅ Z/m * Z/m` of index `m`. It is a uniform lattice in `Aut(T_m) x Aut(T_m)`, and its
+    generators have order exactly `m`. Item 4 here (`D_oo x D_oo`) is the case `m = 2`, and the
+    base-two torsion lemma is the arithmetic fact that `m | 2^m - 1` forces `m = 1`.
+  - Reduction for (a) with `R = [a,c]^2`. If `A/<<R>>` embeds in `K_i/<<R>>` for `m = 2^e` and
+    infinitely many `e`, then `a` has infinite order in `H4(3)/<<[a,c]^2>>`. This holds when
+    `m | n + 1` (Kaloujnine–Krasner coordinates), so `Gamma(3,4)/<<[a,c]^2>>` is an amalgam and `a`
+    has order 4 there. At `m = 8, 16` the induced representation is certified not to kill `R`.
+  - Data. `Gamma(3,2^e)` is virtually torsion-free for `e <= 5`: all four vertex groups inject into
+    a finite 2-quotient. In `Gamma(3,2^e)/<<[a,c]^2>>`, `ord(a) = 2^e` for `e <= 5`.
+  - Dead: short self-similar models. All 8450 cyclically symmetric wreath recursions on `T_2` with
+    sections of length at most 2 give `ord(a) <= 2` at level 10. By universality, every
+    finite-level image is a quotient of some `Gamma(3,2^e)`.
+  - Next: prove a Freiheitssatz for the proper power `[a,c]^2` over `K1 = G(a,b) *_<b> G(b,c)` for
+    `m = 2^e >= 8`, that is, `A/<<R>>_A` embeds in `K1/<<R>>_K1`. With the proof's Lemma 6.1 and
+    Corollary 6.2 this settles infinite order in (a). Amenability of `A` stays open.

@@ -91,3 +91,14 @@ the products `bπ`.
 - Section-exponent screen (item 6 of `m11-torsion-linear-host-has-b1-one`): in the basis
   `b, u` the matrix is `[[1, 0], [1, 1]]`, with `det(t − μ) = (t − 1)^2`. The screen
   allows `b_1 ≤ 2`, so the finer descent is what gives the exact value `0`.
+
+## Attempts
+
+- **2026-09-18 (w11-030): finite presentation decided negatively.**
+  `m11-odometer-free-host-is-not-finitely-presented` shows that `R''` is not finitely
+  presented, and neither is `Γ⁺`.
+  - The ray-loop subgroup of `R''` at `1^∞` is `⟨b, u⟩ ≅ L × C_5`, where `L = ⟨α, b⟩` has
+    finite index in the contracting branch group `R_0`.
+  - The loop obstruction `fp-self-similar-groups-have-fp-ray-loop-subgroups` then applies.
+  - The `H_2(R''; Q)` test above is now moot for finite presentation, and it is still
+    undecided.

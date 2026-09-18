@@ -1,0 +1,9 @@
+(1) u = c b^-1 and b^11 = (b^11, 1, beta, 1, ..., 1) at depth 4
+(2) b_k = (b at k, alpha at k+1, beta at k+2) for all 11 k; [b_k, b_(k+2)] = [beta, b]@(k+2)
+(3) [beta, b] != 1; first level with a moved vertex: 2
+(4) section at the stable prefix equals W_eta(w) at depth 2 on 2947 random (word, eta) pairs
+(5) b^55: trivial at depth 3 = True; (eta, W_eta trivial, |W_eta|): [((), True, 55), ((0, 0, 1), True, 0), ((0, 1), True, 0), ((1,), True, 0), ((2,), True, 0), ((3, 4), True, 0), ((5, 1), True, 0)]
+(5) u^55: trivial at depth 3 = True; (eta, W_eta trivial, |W_eta|): [((), True, 55), ((0, 0, 1), True, 55), ((0, 1), True, 55), ((1,), True, 55), ((2,), True, 0), ((3, 4), True, 0), ((5, 1), True, 0)]
+(5) [b, u^alpha^3]: trivial at depth 3 = True; (eta, W_eta trivial, |W_eta|): [((), True, 2), ((0, 0, 1), True, 0), ((0, 1), True, 0), ((1,), True, 0), ((2,), True, 0), ((3, 4), True, 0), ((5, 1), True, 0)]
+(5) b^11 (not a relator): trivial at depth 3 = False; (eta, W_eta trivial, |W_eta|): [((), False, 11), ((0, 0, 1), True, 0), ((0, 1), True, 0), ((1,), True, 0), ((2,), True, 0), ((3, 4), True, 0), ((5, 1), True, 0)]
+done

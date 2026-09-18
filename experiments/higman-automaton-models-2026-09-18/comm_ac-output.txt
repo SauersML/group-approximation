@@ -1,0 +1,19 @@
+    P:=EpimorphismPGroup(G,2,K);; g:=List(GeneratorsOfGroup(G),x->Image(P,x));\
+;
+                                                                        ^
+[ a^-1*c^-1*a*c ] class 2 log2|P|=9 log2ord=[ 2, 2, 2, 2 ]
+[ a^-1*c^-1*a*c ] class 3 log2|P|=16 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c ] class 4 log2|P|=24 log2ord=[ 3, 4, 3, 4 ]
+[ a^-1*c^-1*a*c ] class 5 log2|P|=38 log2ord=[ 3, 5, 3, 5 ]
+[ a^-1*c^-1*a*c ] class 6 log2|P|=59 log2ord=[ 3, 5, 3, 5 ]
+[ a^-1*c^-1*a*c ] class 7 log2|P|=96 log2ord=[ 3, 5, 3, 5 ]
+[ a^-1*c^-1*a*c ] class 8 log2|P|=160 log2ord=[ 3, 5, 3, 5 ]
+[ a^-1*c^-1*a*c ] class 9 log2|P|=273 log2ord=[ 3, 5, 3, 5 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 2 log2|P|=8 log2ord=[ 2, 2, 2, 2 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 3 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 4 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 5 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 6 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 7 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 8 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
+[ a^-1*c^-1*a*c, b^-1*d^-1*b*d ] class 9 log2|P|=12 log2ord=[ 3, 3, 3, 3 ]
