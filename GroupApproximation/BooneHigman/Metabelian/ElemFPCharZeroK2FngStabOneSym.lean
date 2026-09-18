@@ -99,3 +99,85 @@ theorem czK2FngStabOne_F_rel5 : czK2FngStabOne_F (LiteralP13Presentation.p13Rela
   exact czK2FngStabOne_adj 2 1 0 (by decide) (by decide) (by decide)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel5
+
+theorem czK2FngStabOne_F_rel6 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 6) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(0, true), (1, true), (0, false), (1, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 0 1 0 2 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel6
+
+theorem czK2FngStabOne_F_rel7 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 7) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(0, true), (5, true), (0, false), (5, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 0 1 2 1 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel7
+
+theorem czK2FngStabOne_F_rel8 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 8) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(1, true), (3, true), (1, false), (3, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 0 2 1 2 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel8
+
+theorem czK2FngStabOne_F_rel9 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 9) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(2, true), (3, true), (2, false), (3, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 1 0 1 2 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel9
+
+theorem czK2FngStabOne_F_rel10 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 10) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(2, true), (4, true), (2, false), (4, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 1 0 2 0 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel10
+
+theorem czK2FngStabOne_F_rel11 : czK2FngStabOne_F (LiteralP13Presentation.p13Relator 11) = 1 := by
+  show czK2FngStabOne_F (FreeGroup.mk [(4, true), (5, true), (4, false), (5, false)]) = 1
+  simp only [czK2FngStabOne_F_mk, List.map_cons, List.map_nil, cond_true, cond_false,
+    List.prod_cons, List.prod_nil, mul_one]
+  exact czK2FngStabOne_comm 2 0 2 1 (by decide) (by decide) (by decide) (by decide)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_rel11
+
+/-- `F` kills the twelve Steinberg relators of `P13`. -/
+theorem czK2FngStabOne_F_relator :
+    ∀ i : Fin 13, i ≠ 12 → czK2FngStabOne_F (LiteralP13Presentation.p13Relator i) = 1
+  | 0, _ => czK2FngStabOne_F_rel0
+  | 1, _ => czK2FngStabOne_F_rel1
+  | 2, _ => czK2FngStabOne_F_rel2
+  | 3, _ => czK2FngStabOne_F_rel3
+  | 4, _ => czK2FngStabOne_F_rel4
+  | 5, _ => czK2FngStabOne_F_rel5
+  | 6, _ => czK2FngStabOne_F_rel6
+  | 7, _ => czK2FngStabOne_F_rel7
+  | 8, _ => czK2FngStabOne_F_rel8
+  | 9, _ => czK2FngStabOne_F_rel9
+  | 10, _ => czK2FngStabOne_F_rel10
+  | 11, _ => czK2FngStabOne_F_rel11
+  | 12, h => absurd rfl h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_F_relator
+
+/-- The symbol word `F((e₁₂ e₂₁⁻¹ e₁₂)⁴)` in `St_3(ℤ[1/1])`. -/
+noncomputable def czK2FngStabOne_sym : St 3 R₁ :=
+  czK2FngStabOne_F (LiteralP13Presentation.p13Relator 12)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sym
+
+theorem czK2FngStabOne_sym_mem_K2 : czK2FngStabOne_sym ∈ K2 (Fin 3) R₁ := by
+  apply surjStab_mem_K2_of_padMat_eq_one
+  have h1 : LiteralP13Presentation.p13Word (LiteralP13Presentation.p13Relator 12) = 1 :=
+    PresentedGroup.one_of_mem
+      (Finset.mem_coe.mpr (LiteralP13Presentation.p13Relator_mem 12))
+  rw [czK2FngStabOne_sym, czK2FngStabOne_padMat_F, h1, map_one, map_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngStabOne_sym_mem_K2
