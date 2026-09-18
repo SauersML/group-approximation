@@ -28,3 +28,12 @@ coordinate.
 A window-`N` enumeration `ν : P -> N` needs `s^-ε λ(P) s^ε ⊆ <s^(εj) λ(P) s^(-εj) : j <= N>`. The splitting of item 4
 suggests enumerating `P` along the binary tree of twists, so that the shift moves between sibling copies. This is
 offered as a design input for the construction arm, split with gq-typeA-design. No enumeration is constructed here.
+
+## Lesson for general BH
+
+The splitting uses only a Leavitt pair and injective stability. So Steinberg groups over any such ring are
+self-similar in the Thompson sense: a binary tree of copies of `P` indexed by cylinders, with the corner twists as the
+tree maps, and the unitary Leavitt units (a copy of Thompson's `V` inside `L(1,2)^x`) permuting the copies. This
+suggests a general host shape, `St_N(R) ⋊ V` with `V` acting by last-coordinate twists. It is finitely presented
+whenever `St_N(R)` is, and it contains every linear group over `R`. It is a candidate for combining the shell and
+type-(A) routes, since `V` supplies the Cantor dynamics and `St_N` the linear content. Not yet tested.

@@ -28,3 +28,12 @@ lens (report b8e762b33, nits applied).
 4. **Word problem (gate 1).** `St_N(R_L)` has solvable word problem for every `N >= 3`: a word is trivial if and only
    if its image in `E_N(R_L)` is `1` and the halting search of `leavitt-resolvent-stable-k2-class-is-computable`
    returns `λ = 1`. With `St_N(R_L)` finitely presented for `N >= 4`, this is gate 1 of the shell route.
+
+## Lesson for general BH
+
+The argument is general for fp purely infinite simple `Q`-algebras with a Leavitt pair: refinement absorbs
+stabilization, compression gives GE and `K_1`-stability, and Khanh's frame complex gives surjective `K_2`-stability.
+So unstable `K_2` is never the obstruction for Steinberg hosts over such rings, and the word problem reduces to a
+computable description of stable `K_2`. What blocks these hosts is elsewhere: the rational scalars, since a Leavitt
+pair makes `Λ_N = Q^x` and `PE_N` is never finitely presented, and the shell gates. Effort on Steinberg-type BH hosts
+should go to rings without Leavitt tuples, or to envelopes that keep `St_N` and never pass to `PE_N`.
