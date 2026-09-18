@@ -5678,6 +5678,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCP
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Statement
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.RotationHoms
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.VertexSection
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.ExistsCode
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
