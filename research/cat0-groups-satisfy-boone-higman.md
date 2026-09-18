@@ -46,6 +46,19 @@ space embeds in a finitely presented simple group.
    definite quaternion lattice over two primes, by
    `arithmetic-nsp-lattices-have-faithful-bs-members`.
 
+7. **Every group acting properly and cocompactly on `H^2 × T`,** in `B_A`, and
+   every group on `X × T` (`X` symmetric of noncompact type) whose fibre groups are
+   residually finite irreducible arithmetic lattices:
+   `cat0-groups-on-hyperbolic-plane-times-tree-lie-in-type-a-class` (2026-09-18, lane
+   proof). The input is `arithmetic-lie-lattices-have-faithful-bs-members`, which puts
+   `BS_G` in `B_A` for every arithmetic lattice `G`, surface groups included.
+8. **Every group acting geometrically on `X × T` with virtually torsion-free fibre
+   groups,** for `X` an irreducible symmetric space of noncompact type, in `B_A`:
+   `cat0-groups-on-symmetric-space-times-tree-lie-in-type-a-class` (2026-09-18, lane
+   proof). Fibre lattices with non-discrete commensurator get faithful Hecke members.
+   Those with discrete commensurator force a virtual product `K × F`
+   (`commensurator-rigid-bs-classes-are-virtual-products`), which is linear.
+
 ## Attempts
 
 1. **Every known method fails on Kazhdan building lattices.** Take a cocompact
@@ -84,11 +97,14 @@ space embeds in a finitely presented simple group.
      (`cat0-groups-with-a-tree-factor-lie-in-type-a-class`, item 1).
    - One faithful member of `BS_G` puts all of `BS_G` in `B_A`
      (`bs-class-with-faithful-member-lies-in-type-a-class`).
-   - Faithful members are now known for `G` virtually `Z^n`, virtually free,
-     `SL_n(Z)`-commensurable (`n >= 3`) and definite-quaternion-commensurable
-     (`arithmetic-nsp-lattices-have-faithful-bs-members`). The last two come from a
-     commensurator element and the normal subgroup theorem.
+   - Faithful members are now known for `G` virtually `Z^n`, for definite quaternion
+     lattices on two trees (`arithmetic-nsp-lattices-have-faithful-bs-members`, via the
+     normal subgroup theorem), and for every arithmetic lattice in a semisimple Lie
+     group, free and surface groups included
+     (`arithmetic-lie-lattices-have-faithful-bs-members`, via Borel density and
+     Kazhdan--Margulis, with no normal subgroup theorem).
    - **Remaining gap for this method:** fibre groups `G` that are not residually
-     finite (Wise, Burger--Mozes, Radu fibres in three trees), and non-arithmetic
+     finite (Wise, Burger--Mozes, Radu fibres in three trees), non-arithmetic
+     lattices such as Gromov--Piatetski-Shapiro fibres on `H^n × T`, and non-arithmetic
      residually finite `G` with the normal subgroup property but no commensurator
      element outside a finite extension of `G`.

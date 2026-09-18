@@ -92,11 +92,20 @@ is exactly PBH, which is OPEN, and the theorem gives the following sharper readi
 
 ## The stabilizer clause cannot be dropped
 
-It is not true that every finitely presented dense subgroup of `Homeo(C)` has
-finitely generated clopen stabilizers.
-`fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers` shows that a generic
-`t` gives `⟨V,t⟩ ≅ V * Z`. That group is finitely presented and dense, but none of
-its clopen stabilizers is finitely generated. So the clause in (2) carries real
-content. It holds for finitely presented full groups containing standard `V`
+It is not true that every finitely presented dense subgroup of `Homeo(C)` has finitely
+generated clopen stabilizers. By `homeo-cantor-has-dense-free-subgroups-without-fg-stabilizers`,
+the shift `σ` on `{0,1}^Z` and a generic homeomorphism `t` generate a dense free group
+`⟨σ,t⟩ ≅ F_2`. It is finitely presented, yet none of its clopen stabilizers is finitely
+generated, since free groups have no transitive actions with finitely many orbits on
+pairs and finitely generated stabilizers
+(`free-groups-have-no-pair-finite-actions-with-fg-stabilizers`). So the clause in (2)
+carries real content.
+
+*History (09-18, bh-free-19).* An earlier version cited
+`fp-dense-cantor-subgroups-need-not-have-fg-clopen-stabilizers`, whose witness
+`⟨V,t⟩ ≅ V * Z` does not exist: that claim is REFUTED by
+`v-and-a-homeomorphism-never-generate-a-free-product`.
+
+The clause does hold for finitely presented full groups containing standard `V`
 (`fp-full-binary-cantor-groups-have-type-a-actions`) and for twisted Brin–Thompson
-groups, but not for free-product enlargements of `V`.
+groups.
