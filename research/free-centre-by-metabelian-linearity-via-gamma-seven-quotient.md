@@ -37,3 +37,17 @@ Write `T_n` for the torsion subgroup of `C_n` and `ρ_n` for the corner represen
    - By Gupta–Levin Lemma 2.2(i), `ker(θ on C_n) = K_6(F)[F'',F]/[F'',F]`. By Lemma
      2.2(iii) this has exponent 2, so it lies in `T_n`.
    - With step 4, `∩_c γ_c(C_n) ⊆ T_n ∩ γ_7(C_n) = 1`. ∎
+
+## Attempts
+
+- **Verification note (bh-verify-cbm, 2026-09-18; report `research/artifacts/gq-bh-bh-verify-cbm-report.md`).**
+  - **The flaw.** In step 3, "every nontrivial subgroup of a cyclic group of even order contains that
+    involution" is false (`Z/3 ≤ Z/6`). The step needs `|T_4|` to be a power of 2. Kuz'min's `d = 2` supplies
+    that, but it was cited, not read.
+  - **Repair without Kuz'min.** It uses only Gupta–Levin Lemma 2.2(i),(iii) and Lemma 4.4, read at source.
+    - `∩_c γ_c(C_n) ⊆ ker(θ|C_n) = K_6[F'', F]/[F'', F]`, which is elementary abelian of exponent 2 and lies in `T_n`.
+    - In the cyclic group `T_4` this forces `ker θ ∩ T_4 = {1, u_6}`.
+    - Since `u_6 ∉ γ_7`, we get `T_4 ∩ ∩_c γ_c = 1`, and retractions give `∩_c γ_c(C_n) = 1`.
+    - `T_n` is finite, so `T_n ∩ γ_c(C_n) = 1` for some finite `c ≥ 7`. Then `C_n ↪ ρ_n(C_n) × C_n/γ_c(C_n)`.
+  - **Effect.** The target theorem (linear, residually nilpotent, residually finite, in `B_A`) holds either way.
+    The specific bound `c = 7` needs `d = 2`.
