@@ -98,3 +98,26 @@ Kida, arXiv:1309.3739, links the pair property to stability: if `(G, C)` does no
       functions on `R` with density weight `(a^(-1))'^(1/2+s)`, where `z` acts by the scalar
       `e(−θ)`. Ask whether it has almost invariant vectors as `θ → 0`. For `θ = 0` this is the
       twisted Koopman question for `T` on `S^1`.
+- **2026-09-18 (swarm-0917-w9-w9-z-break, entropy-measure): the order-convex wall class dies.**
+  - *Result (ESTABLISHED, `lifted-thompson-t-convex-line-walls-are-trivial`).* `T` preserves no
+    nonzero Radon measure on `(S^1 × S^1) \ Δ`.
+    - Proof: for disjoint dyadic arcs `A, B`, two elements of `T` contract `A × B` onto two
+      different corners.
+    - Consequence: every `T̄`-invariant measured wall structure on `R` with order-convex walls
+      has `d(p,q) = μ{p} + μ{q}`. So its cnd function is bounded on all of `T̄`. The same holds
+      for walls pulled back along equivariant maps to `R`, and for walls indexed by intervals of
+      `R` through a locally finite measure.
+  - *Where every member dies.* The step is "the index measure on endpoint pairs is Radon". The
+    winding class `⌊y − x⌋` is `T̄`-invariant, and in each class the measure descends to a
+    `T`-invariant Radon measure on `U` or on `S^1`, which is zero.
+    - This kills the lifted-Liouville template taken from Fuchsian lattices, which uses
+      `dx dy / sin²(π(x−y))`.
+    - A cnd function proper on `⟨z⟩` needs walls that are not convex on the lifted line, but
+      must still detect the winding.
+  - *Remark, not verified.* The divisibility `z = r_k^(2^k)`, where `r_k(x) = x + 2^(-k)` lies in
+    `T̄`, should make `z` elliptic in every action of `T̄` on a finite-dimensional CAT(0) cube
+    complex. The input is Haglund's combinatorial semisimplicity (arXiv:0705.3386, not read
+    verbatim): after cubical subdivision, a hyperbolic automorphism has an integer translation
+    length `≥ 1`, so `ℓ(z) = 2^k ℓ(r_k)` is impossible. If this holds, the Euler-class caveat in
+    the previous attempt's cubical constraint is unnecessary.
+  - Unchanged: this does not decide the claim. Steps (a) and (b) above remain the next steps.
