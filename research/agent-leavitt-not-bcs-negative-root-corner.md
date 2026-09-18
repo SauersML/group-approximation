@@ -368,6 +368,42 @@ untwisting uses unitaries of `R`, which are not finite-rank perturbations), and 
 decompositions of `pi^(-1)(Gamma)` along normal subgroups other than `L`. The remaining decision points are the
 Popa vanishing-cohomology test for the corner action and wall-rigid approximations of `P`, both recorded above.
 
+### Gapped finite-group models kill the head: a class-kill for the refutation side (swarm-0917-w9-w9-ptm-pull, obstruction-miner, stability-approximation, 2026-09-18)
+
+*Approach tried.* Refute this hole the cheapest way, by exhibiting the `EL_20(J)` decision point, a trace with
+`tau(z) != 1`, as a limit of finite models. The models are the ones every Toeplitz construction so far produces:
+- window, periodic and bilateral truncations;
+- configuration, Haar and permutation-module models;
+- Weil representations;
+- rank transfers through the ambient finite linear group.
+
+All of these have the form `pi(g) = c(g) rho(phi(g))`. Here `phi` is an arbitrary map into `GL_d(F_2)`, or into
+some finite quasi-simple classical group, `rho` is a representation of that group, and `c` is an arbitrary scalar
+one-cochain.
+
+*Where it dies* (`jacobson-head-dies-in-gapped-finite-group-models`, established; route
+`jacobson-head-dies-in-gapped-finite-group-models-proof`).
+- **Rigidity invariant.** For every representation, every noncentral `D`, every scalar `lambda` and every `y`, the
+  target family satisfies `||rho(y)-1||_2 <= C ||rho(D)-lambda||_2`.
+  - `C = 8 sqrt 2` for `GL_d(F_2)`, `d >= 5`, via two commutator steps down to a transvection and the transvection floor.
+  - `C < 37.3` for all quasi-simple classical groups, via Larsen-Shalev-Tiep.
+- **Death step.**
+  - If a defect on the fixed finite set `F_1` is noncentral, `rho` is globally `C·def`-trivial.
+  - Otherwise `phi` mod center is a homomorphism of the finitely presented `St_4(J)` into a finite group. It kills
+    `x_12(Q)` by the pigeonhole Steinberg chain, and the commutator `z = [x_12(Q), x_23(1)]` absorbs the central values.
+  - Either way, `||pi(z)-1||_2 <= (7+8C) def_{F_1}(pi)`, so every limit trace has `tau(z) = 1`, factoring through the
+    symbol quotient.
+- The same bound holds in `Delta = St_20(R)`, via `J -> R`, `S -> s_2`, `T -> t_2`.
+
+*Hole stays OPEN.* Nothing here proves `LNC3` or non-hyperlinearity of `EL_20(J)`. The refutation branch survives only
+through:
+- targets without a uniform character-ratio gap (alternating or symmetric groups of unbounded degree, or unboundedly
+  long products);
+- unitary models that are not scalar multiples of a finite-group representation image.
+
+A proof of this hole in the positive direction would need exactly the missing case: control of `z` in
+alternating-constituent models, compare `fp-simple-finite-group-models-reduce-to-alternating-constituents`.
+
 ### Wall-asymmetric traces of P are inert (swarm-0917-w9-w9-nh-pull, symbolic-dynamics / calibrator, 2026-09-18)
 
 *Approach tried.* Take up step (i) of the mirror-head swap entry: build head-seeing traces of `P` from traces of `P`
