@@ -9,6 +9,7 @@ distinct_from:
   torelli-lower-central-quotients-are-not-residually-finite: that proves failure of residual finiteness; this is the embedding question, which also needs the word problem.
 requires:
   - torelli-lower-central-quotients-are-not-residually-finite
+  - torelli-lower-central-quotients-have-solvable-word-problem
 artifacts:
   - research/artifacts/gq-bh-bh-free-38-torelli-quotients.md
 ---
@@ -27,35 +28,59 @@ bh-preprints flagged these groups as new hard test cases (7405a25d0).
   group commensurable with a Deligne lattice over `Sp_2g(Z)`
   (`torelli-lower-central-quotients-are-not-residually-finite`).
 
-**Word problem: OPEN, and required before BH makes sense.**
-- **Reduction.** Triviality of `x ∈ Mod(S_g)` in `Q_{g,c}` means membership in
-  `T_g[c+1]`. That set is recursively enumerable: recognize `T_g` via the action
-  on `H_1`, and enumerate products of `(c+1)`-fold commutators, using the solvable
-  word problem of `Mod`.
-- **Where the reduction stands.** Deciding non-membership is the open part. The
-  McKinsey–Mal'cev route fails because `Q_{g,c}` is not residually finite. The
-  Johnson filtration `J(c+1) ⊇ T_g[c+1]` is decidable (the action on
-  `pi_1/gamma_{c+2}`). So the word problem reduces to deciding membership in
-  `T_g[c+1]` inside the finitely generated nilpotent group `J(c+1)/T_g[c+1]`.
-- **Heuristic, not landed.** For `c = 2` this gap should be virtually `Z` plus a
-  finite group, with the `Z` detected by Morita's Casson core `d: K_g -> Q`,
-  which is `Mod`-invariant and so kills `[T_g, K_g] ⊇ T_g[3]`. That would reduce
-  the word problem to detecting a finite torsion part. Neither the identification
-  of the gap with Hain's line nor that detection is proved here.
+- **Solvable word problem**, for every `c >= 1`
+  (`torelli-lower-central-quotients-have-solvable-word-problem`). The proof is
+  the extension lemma: `N_{g,c}` is finitely generated nilpotent, and `Sp_2g(Z)`
+  is finitely presented with solvable word problem. So for `c >= 2` these are
+  genuine Boone–Higman inputs. The first version of this node (cf691c5e9) called
+  the word problem open; that was too cautious and is superseded.
 
-**Hosts ruled out.**
-- **Residually finite hosts, all of them:** linear groups; groups acting
-  faithfully on locally finite rooted trees
-  (`self-similar-hosts-contain-only-residually-finite-groups`), which includes
-  automaton and self-similar groups; and residually finite type-(A) actors.
-- **Hosts that exclude Deligne-type lattices.** Any host must contain a group
-  that is, modulo a finite central subgroup, commensurable with the Deligne
-  lattice `S~` over `Sp_2g(Z)`. So hosts excluded for Deligne lattices, such as
-  Röver–Nekrashevych groups (`deligne-lattice-embeds-in-no-rover-nekrashevych-group`,
-  stated there for `Sp_4`), are expected to be excluded here too. The transfer to
-  `Sp_2g` and to "commensurable modulo finite central" is not checked.
+**Hosts ruled out.** `Q_{g,c}` is itself an infinite Kazhdan group that is not
+residually finite. So every exclusion of the form "Kazhdan subgroups of X are
+residually finite, or finite" applies to it directly. No transfer through Deligne
+lattices is needed.
+- **Every residually finite host:**
+  - linear groups;
+  - groups acting faithfully on locally finite rooted trees
+    (`self-similar-hosts-contain-only-residually-finite-groups`), which includes
+    automaton and self-similar groups;
+  - residually finite type-(A) actors.
+- **Every Röver–Nekrashevych group** `V_d(H)` or `V_(d,r)(H)`, for any
+  self-similar `H`, and all their subgroups
+  (`kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf`). This is the same
+  argument that excludes Deligne's lattice
+  (`deligne-lattice-embeds-in-no-rover-nekrashevych-group-proof`, §3), and it
+  applies verbatim.
+- **Every Cremona group** `Bir(P^n_k)`, over any field
+  (`kazhdan-subgroups-of-cremona-groups-are-residually-finite`).
+- **Thompson's V**, whose Kazhdan subgroups are finite
+  (`thompson-v-has-haagerup-property`).
+- **Full groups of essentially free measure-preserving actions of amenable
+  groups** (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`).
+- **Open for this input:** `nV` with `n >= 2`. It is excluded if
+  `kazhdan-subgroups-of-brin-thompson-groups-are-finite` holds, which is open for
+  `n >= 2`.
 
-**Scope.** The case `c = 1` is different. `Q_{g,1}` is finite-by-(virtually
-arithmetic `Mod/K_g`). Its residual finiteness is decided by whether Johnson's
-finite 2-group `K_g/[T_g,T_g]` survives in finite quotients, which is not
-addressed here.
+**Deligne-type sublattices.** Modulo a finite central subgroup, `Q_{g,c}`
+contains a group commensurable with the Deligne lattice over a congruence
+subgroup of `Sp_2g(Z)`
+(`torelli-lower-central-quotients-are-not-residually-finite`). So a host for
+`Q_{g,c}` also hosts such a lattice up to a finite central subgroup. This is a
+second, independent reason the exclusions above hold. Nothing further transfers
+from `deligne-lattice-satisfies-boone-higman`, because that node's own
+exclusions are exactly the Kazhdan non-residually-finite ones listed here.
+
+**Scope: `c = 1`.**
+- **The structure.** By Johnson, `B = K_g/[T_g,T_g]` is a finite 2-group, the
+  torsion of `H_1(T_g)`. So `1 -> B -> Q_{g,1} -> Mod(S_g)/K_g -> 1`. Morita
+  (cited, not read here) embeds `Mod/K_g` in `(1/2)Λ³H ⋊ Sp_2g(Z)`, so it is
+  linear and residually finite.
+- **The criterion** (elementary, lane proof). A finite-by-(residually finite)
+  group is residually finite exactly when some finite-index subgroup meets the
+  finite kernel trivially. For `Q_{g,1}` that means `[T_g,T_g]` is closed in the
+  profinite topology of `Mod(S_g)`, or equivalently that finite quotients of
+  `Mod(S_g)` detect every Birman–Craggs–Johnson class in `B`.
+- **Status.** Not decided here. Finite central extensions of `Sp_2g(Z)` by
+  2-groups can fail to be residually finite (the Deligne covers of degree
+  `2^k`, `k >= 2`, have finite residual `<z^2>`), so a positive answer is not
+  automatic.
