@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `houghton-like-germ-groups-are-index-zero-products-proof`. This is a lane proof. Its inputs are elementary, plus two Σ-invariant imports already on main.
-*Referee a PASS for items 1–4 (`research/artifacts/gq-referee-a-houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group.md`, 01bc75a40). Item 5 is conditional on `regular-enumerations-can-make-near-shift-free-product`, which has an elementary route on main but no status line (W1).*
+*Referee a PASS for items 1–4 (`research/artifacts/gq-referee-a-houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group.md`, 01bc75a40). Item 5 depends on `regular-enumerations-can-make-near-shift-free-product`. That node is now ESTABLISHED, refereed PASS by referee a (afbbd1818), so W1 is discharged.*
 
 **Setting.**
 - `G <= Sym(N)` is an infinite strongly shift-similar group (Mallery--Zaremsky Definition 3.17), and

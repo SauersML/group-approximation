@@ -14,9 +14,10 @@ artifacts:
 
 **ESTABLISHED** (route `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman-proof`; lane
 proof, not reviewed). It rests on three cited inputs, none re-proved here:
-- (C) type `F_∞` of `V(Z[ε],⟨ε⟩,ℓ)` for quadratic `ε`: Cleary, RMJM 25 (1995) and Illinois J. Math. 44
-  (2000). This is read via Matui, arXiv:2412.05492, Remark on Stein's groups; Cleary's papers themselves were
-  not obtained. Burillo--Nucinkis--Reeves (arXiv:2006.02401) state the golden case and say it follows by
+- (C) finite presentation of `V(Z[ε],⟨ε⟩,ℓ)` for the metallic `ε`. **Corrected 09-18:** Cleary (RMJM 1995; Illinois
+  J. Math. 2000), now read at source, proves only the F-versions. The V-versions are finitely presented by
+  `pisot-unit-slope-stein-groups-are-finitely-presented`, since `1/ε` is a unit with (F), so (C) no longer rests on
+  Cleary or Matui's paraphrase. Burillo--Nucinkis--Reeves (arXiv:2006.02401) state the golden case and say it follows by
   Stein's methods, without writing it out.
 - (L) the groupoid homology `H_0 = Γ/(1−ε)Γ` and `H_k ≅ H_{k+1}(Γ ⋊ Λ)` for `k ≥ 1` (Li), and the AH exact
   sequence for `V(Γ,Λ,ℓ)` (Li, Corollary E), both as stated by Tanner, arXiv:2312.07375.

@@ -155,3 +155,14 @@ Cantor-host gap between `decidable-groups-embed-in-fp-locally-moving-groups` and
    - **Remaining routes.** Li's general Garside-category criterion (arXiv:2110.04505) for the category
      of composite branches of `(σ, τ)`, or a Stein–Farley complex of layered normal forms (Attempt 3).
      Either would answer Question 1.4 positively for the Lipschitz part `L_2` of the family.
+   - **What Li's criterion needs, read at source.** Li's TeX (local copy
+     `$GQ/src/kep/li-garside-II-2110.04505v2.tex`, §`s:Gars-deg`, l. 1835) defines a degree map as a
+     functor `d : C → P` with `d^{-1}(1) = C^*` satisfying the unique factorization property (UFP*): a
+     morphism of degree `pq` factors as `ab` with `d(a) = p`, `d(b) = q`, uniquely up to a unit.
+     - With trivial units, the branch category above violates (UFP*) at degree `(1,1)`, by the example
+       above.
+     - Allowing `V` as units does not help. Li's route to adjoining units is a Zappa–Szép product with a
+       self-similar action (Corollary `intro:ZS`), and `V` has no self-similar action on finite words:
+       `g·p` is not a word when `g(C_p)` is not a cone.
+     - So Li's framework needs a genuinely new branch system for `(σ, τ)` satisfying (UFP*), or it does
+       not apply to this family.
