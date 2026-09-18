@@ -81,3 +81,59 @@ theorem higmanVCOrbitGen_atom_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_atom_mem_S
 
+/-- **The atom class**: `h = u · m(a₁, b₃) · (t v t⁻¹)` with `u, v ∈ U`, where `x` is the
+head of `List.finRange d`. -/
+def higmanVCOrbitGen_Atom (d : ℕ) (a b : List (Fin d)) (h : higmanVCCommon_Q d) : Prop :=
+  ∃ u ∈ higmanVCTreeNF_U d, ∃ x : Fin d, (∃ tl : List (Fin d), List.finRange d = x :: tl) ∧
+    ∃ v ∈ higmanVCTreeNF_U d, h = u *
+      higmanVCCommon_mk d (FreeGroup.of (a ++ [x], b ++ [x] ++ [x] ++ [x])) *
+        (higmanVCCommon_mk d (FreeGroup.of (a, b)) * v *
+          (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_Atom
+
+/-- Every element of the atom class passes the pivot. -/
+theorem higmanVCOrbitGen_atom_class_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) (hlen : b.length = a.length + 1) {h : higmanVCCommon_Q d}
+    (hh : higmanVCOrbitGen_Atom d a b h) :
+    h * higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈ higmanVCTreeNFWitPivot_S d := by
+  obtain ⟨u, hu, x, ⟨tl, hfr⟩, v, hv, rfl⟩ := hh
+  have e : u * higmanVCCommon_mk d (FreeGroup.of (a ++ [x], b ++ [x] ++ [x] ++ [x])) *
+      (higmanVCCommon_mk d (FreeGroup.of (a, b)) * v *
+        (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹) *
+      higmanVCCommon_mk d (FreeGroup.of (a, b)) =
+      u * (higmanVCCommon_mk d (FreeGroup.of (a ++ [x], b ++ [x] ++ [x] ++ [x])) *
+        higmanVCCommon_mk d (FreeGroup.of (a, b))) * v := by
+    simp only [mul_assoc, inv_mul_cancel, mul_one]
+  rw [e]
+  exact higmanVCTreeNFWitPivot_S_mul_U
+    (higmanVCPivotAC_U_mul_S hu (higmanVCOrbitGen_atom_mem_S hab hba hlen hfr)) hv
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_atom_class_mem_S
+
+/-- The atom class together with its twists `t⁻¹ h⁻¹ t⁻¹`. -/
+def higmanVCOrbitGen_Cls (d : ℕ) (a b : List (Fin d)) (h : higmanVCCommon_Q d) : Prop :=
+  higmanVCOrbitGen_Atom d a b h ∨
+    higmanVCOrbitGen_Atom d a b ((higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ * h⁻¹ *
+      (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_Cls
+
+/-- **Class discharge.**  Every `h` in the atom class or its twist satisfies `h t ∈ S`. -/
+theorem higmanVCOrbitGen_cls_mem_S {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) (hlen : b.length = a.length + 1) {h : higmanVCCommon_Q d}
+    (hh : higmanVCOrbitGen_Cls d a b h) :
+    h * higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈ higmanVCTreeNFWitPivot_S d := by
+  rcases hh with hh | hh
+  · exact higmanVCOrbitGen_atom_class_mem_S hab hba hlen hh
+  · have e : h * higmanVCCommon_mk d (FreeGroup.of (a, b)) =
+        ((higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ * h⁻¹ *
+          (higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ *
+            higmanVCCommon_mk d (FreeGroup.of (a, b)))⁻¹ := by
+      group
+    rw [e]
+    exact higmanVCOrbit_inv_mem_S (higmanVCOrbitGen_atom_class_mem_S hab hba hlen hh)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitGen_cls_mem_S
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

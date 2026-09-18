@@ -33,8 +33,9 @@ are known at level `n`.
 keeps the instances where the options and flexible A/B on both sides all fail.
 * `L = 4`: 5696 residual instances of 52544 equal-level ones;
 * `L = 5`: 28992 of 300864;
-* `L = 6`: 124736 of 1388864.
-Every residual instance has a decomposition: 0 left for `L = 4, 5, 6`.  The form `aba` alone
+* `L = 6`: 124736 of 1388864;
+* `L = 7`: 512832 of 5957952.
+Every residual instance has a decomposition: 0 left for `L = 4, 5, 6, 7`.  The form `aba` alone
 leaves 1664 at `L = 4` and 7680 at `L = 5`.  So both forms are needed.  Sub-instances known
 only through "one side below `n`" or "all short" are not enough either: 5312 are left at
 `L = 4`.  Level-`n` options on sub-instances are used.  The model of `MapsCone (coneSwap P Q)`
@@ -55,7 +56,7 @@ def higmanVCTauEqTwo_Decomp (d n : ℕ) (p q x y x' y' : List (Fin d)) (hpq : ¬
 /-- **Remaining gap (word combinatorics).**  Every `d = 2` equal-level residual instance has
 a decomposition (`higmanVCTauEqTwo_Decomp`).  Strictly smaller in proof content than
 `higmanVCTauEqLvl_D2Residual`: it has no group theory.  Not proved here.  Brute force: true
-for words of length `≤ 6`. -/
+for words of length `≤ 7`. -/
 def higmanVCTauEqTwo_DecompStatement : Prop :=
   ∀ d : ℕ, d = 2 → ∀ n : ℕ,
     ∀ (p q x y x' y' : List (Fin d)) (hpq : ¬ p <+: q) (hqp : ¬ q <+: p),
