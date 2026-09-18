@@ -11,10 +11,24 @@ artifacts:
   - research/artifacts/gq-affq-kep-odometer-host.md
 ---
 
-**ESTABLISHED** through `odometer-2v-is-fp-simple-and-contains-bs12-proof`. Lane proof, not independently
-reviewed. Its inputs are verbatim theorems of X. Li (arXiv:2110.04505v2, Example ex:ZS (III)) and H. Matui
-(arXiv:1210.5800v3, Theorem simple2), quoted with line numbers in the artifact. No priority is claimed: the
-finiteness is an application of Li's theorem, which he states covers self-similar actions on higher-rank graphs.
+**ESTABLISHED** through `odometer-2v-is-fp-simple-and-contains-bs12-proof`. Lane proof. Reviewed:
+gq-referee-a PASS, proof-gap lens (`research/artifacts/gq-referee-a-odometer-2v-is-fp-simple-and-contains-bs12.md`,
+bbada3b68; nits N1 and N2 applied in the route), and gq-referee-b PASS, citation lens (72a3c51ff). Its inputs are
+verbatim theorems of X. Li (arXiv:2110.04505v2, Example ex:ZS (III)) and H. Matui (arXiv:1210.5800v3, Theorem
+simple2), quoted with line numbers in the artifact.
+
+**No novelty for Boone–Higman.** That `BS(1,2)`, indeed every Baumslag–Solitar group, embeds in a finitely
+presented simple group is known: BBMZ arXiv:2306.16356v3, footnote 8, and
+`baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman`. What this node adds is the **specific host**. It is
+Brin's `2V` extended by a single odometer, a Katsura–Exel–Pardo / higher-rank-graph full group that sits directly
+over `2V`. Its value is for `bs12-embeds-in-brin-thompson-2v` (how close to `nV` a finitely presented simple host of
+`BS(1,2)` can be) and for `aff-q-embeds-in-fp-simple-group` (a host holding `BS(1,2)` and `(Q,+)` together).
+
+**Priority check** (bounded; artifact §5). Exel–Pardo (arXiv:1409.1107), Li (arXiv:2110.04505v2) and Matui
+(arXiv:1210.5800v3) do not mention Baumslag–Solitar groups or odometers anywhere in their TeX sources. The nearest
+work found is Valente–Yang, arXiv:2405.07062. They study "higher rank Baumslag–Solitar semigroups … related to
+products of odometers" and their C*-algebras, but the abstract states no group embedding. That the odometer's
+Zappa–Szép monoid is the Baumslag–Solitar monoid is classical. No priority is claimed for the embedding.
 
 **Setting.**
 - `C = {0,1}^N`, `X = C × C`, and `τ` is the binary odometer: `τ(0w) = 1w`, `τ(1w) = 0τ(w)`. This is the
@@ -37,9 +51,10 @@ finiteness is an application of Li's theorem, which he states covers self-simila
    infinitely divisible in `2V_τ`. The mixed-radix root tower of that node, run with base `τ` in the first
    coordinate, gives `Q_τ ≅ Q` containing `s`, and its first root is `s_1 = u^{-1} s u`.
 
-So there is an explicit, finitely presented, simple group of Cantor-set homeomorphisms containing
+So one explicit finitely presented simple group of Cantor-set homeomorphisms, lying directly over `2V`, contains
 `BS(1,2)`, `(Q,+)` and `2V` together. The Baumslag–Solitar gate of `aff-q-embeds-in-fp-simple-group` (H2, and H5
-for `nV`) is therefore passed inside this Katsura–Exel–Pardo host.
+for `nV`) is passed inside this host. The next step, `Q ⋊ ⟨2⟩`, is analysed in
+`affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`.
 
 **How the easy obstruction is avoided.** In the 1D Katsura groupoid, `τ^2` restricted to `C(0)` is conjugate to `τ`
 only by the non-global bisection `0w ↦ w`: this is the Katsura relation `φ(a^2, e_0) = a`. No homeomorphism

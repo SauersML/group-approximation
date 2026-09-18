@@ -2,8 +2,14 @@
 
 Target (coordinator; critic's U3 in `research/artifacts/gq-gq-critic-pass-3.md` §4): does a finitely presented
 Katsura–Exel–Pardo (KEP) groupoid group contain `BS(1,2)`, or give a height-2 renormalization? Answer landed as
-`odometer-2v-is-fp-simple-and-contains-bs12`. This note records the source statements (TeX e-prints fetched on
-MSI, copies in `$GQ/src/kep/`) and the checks against the landed obstruction nodes.
+`odometer-2v-is-fp-simple-and-contains-bs12` (both referees PASS: bbada3b68, 72a3c51ff). This note records the
+source statements (TeX e-prints fetched on MSI, copies in `$GQ/src/kep/`), the checks against the landed obstruction
+nodes, the priority check, and the two follow-up items (Q ⋊ ⟨2⟩, and bs12 proper).
+
+**Framing.** Boone–Higman for `BS(1,2)`, and for every Baumslag–Solitar group, is known (BBMZ arXiv:2306.16356v3,
+footnote 8; `baumslag-solitar-and-free-by-cyclic-satisfy-boone-higman`). No novelty is claimed there. What is new is
+the host: Brin's `2V` extended by one odometer, a KEP / higher-rank-graph full group directly over `2V`. It matters
+for `bs12-embeds-in-brin-thompson-2v` and for `aff-q-embeds-in-fp-simple-group`.
 
 ## 1. Sources, verbatim
 
@@ -78,3 +84,51 @@ with restriction `a`. On `Ω_∞` this is `τ × id`. `D = Λ ⋈ Z`, and `2V_τ
 - No copy of `Q ⋊ ⟨2⟩` is claimed. The root tower `Q_τ` of `s` meets `u^{-1}⟨s⟩u` in `⟨s_1⟩`, where
   `s_1 = u^{-1}su`, but `u` is not shown to normalize `Q_τ`. Heuristic: making the odd-radix roots compatible with
   `u` requires doubling a mixed-radix fraction, which is not a bounded prefix operation.
+
+## 5. Priority check (bounded)
+
+- The three TeX sources (Exel–Pardo 1409.1107, Li 2110.04505v2, Matui 1210.5800v3) contain no occurrence of
+  "Baumslag", "Solitar", "BS(1", "odometer", "adding machine" or "2-adic" (grep, 2026-09-18).
+- Web search found Valente–Yang, arXiv:2405.07062 (v2, 2025-04-24). Abstract, verbatim: "we initiate the study of
+  higher rank Baumslag-Solitar semigroups and their related C*-algebras. We focus on two extreme, but interesting,
+  classes - one is related to products of odometers …". It concerns semigroups, C*-algebras and von Neumann
+  algebras, and states no group embedding.
+- That the odometer's Zappa–Szép monoid is the Baumslag–Solitar monoid is classical.
+- Not searched: MathSciNet, and the body of Li–Yang *Self-similar k-graph C*-algebras*. No priority is claimed.
+
+## 6. Item 1: `Q ⋊ ⟨2⟩` (node `affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q`)
+
+- *Model.* Read `X = C × C` as `{0,1}^Z`. Then `Q_2` acts by addition with upward carries, and `u` is `×2`. So
+  `Q ⋊ ⟨2⟩` acts naturally. In `2V_τ` this action gives exactly `Z[1/2] ⋊ ⟨2⟩ = BS(1,2)`: odd roots of `s` would be
+  `+1/q` on colour 1, and those are not pieces of the odometer groupoid.
+- *Reach.* Replace `⟨τ⟩` by the affine self-similar group `G_N = Z[1/N] ⋊ ⟨p | N⟩` on `Z_2`. Then
+  `Z[1/2N] ⋊ ⟨2⟩ ≤ 2V_{G_N}`. That group is not finitely generated, and `2V_{G_N}` is simple and is `F_n`
+  whenever `G_N` is. For `N = 3`, `G_3 = BS(1,3)` is `F_∞`, so `2V_{BS(1,3)}` is an `F_∞` simple group containing
+  `Z[1/6] ⋊ ⟨2⟩`, `BS(1,2)`, `BS(1,3)` and `2V ⊇ Q`.
+- *Limit.* For finitely generated `H ≤ Aff(Q)` acting on `Z_2`, the colour-1 pieces of `2V_H` lie in `Aff(Z[1/N'])`,
+  so `x ↦ x + 1/q` is missing for `q ∤ 2N'`. The natural `Q ⋊ ⟨2⟩` is in no such host. This is the mechanism of
+  `finite-state-mobius-pieces-see-finitely-many-primes`.
+- *Prime-mixing checks.*
+  - Torus amalgams (item 20): escaped. This is not an amalgam; the finite-prime-set phenomenon reappears as the
+    limit instead.
+  - Adelic finite support: escaped, since the host is not coordinatewise.
+  - p-adic power maps (item 8): not triggered, since only one dilation is used.
+- *Open.* Wild copies, for example on the mixed-radix root tower `Q_τ`. Heuristic against it: the doubling would
+  have to multiply a most-significant-first mixed-radix fraction by `2`, which carries from the far end. Also open:
+  non-affine finitely generated coefficient groups containing `Z_(2)`.
+
+## 7. Item 2: `bs12` proper (one attempt; recorded as an Attempt on `bs12-embeds-in-brin-thompson-2v`)
+
+- *Lemma (lane argument).*
+  - A brick-local homeomorphism of `C^k` onto itself is an element of `kV`: a finite union of brick prefix
+    replacements whose images partition. So brick-local conjugation preserves `kV`.
+  - `τ × id^{k-1} ∉ kV`: on every brick `C(1^L) × …` it acts as `1^L w ↦ 0^L τ(w)`, which is never canonical, because
+    `τ(w) ≠ w`.
+  - Hence, by `brin-thompson-first-return-maps-lie-in-kv`, **no first-return map with bounded return times of any
+    `W ∈ kV` is brick-locally conjugate to `τ × id^{k-1}`**.
+  - With unbounded return times the first-return map is not in `kV` at all.
+- *Consequence.* The free-colour and first-return route cannot import the odometer itself into `nV`. A witness for
+  `BS(1,2) ≤ nV` must use a non-equicontinuous base whose odometer is only a factor, as SMART's induced map `U` has
+  the `Z_3` factor for `BS(1,3)`. That is lane gq-nv-obstruct's binary-hierarchy problem.
+- Whether `2V_τ` embeds abstractly in some `nV` is open. It would imply `bs12`, since `BS(1,2) ≤ 2V_τ`, and no
+  spatial route to it is known.

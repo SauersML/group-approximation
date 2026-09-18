@@ -30,18 +30,21 @@ cylinder `μX = C(p) × C(w)`. The source statements are quoted, with line numbe
 - *Basic bisections.* For paths `λ, μ` and `n ∈ Z`, let `Z(λ,n,μ)` be the germs of `μ y ↦ λ (a^n·y)`, with source
   `μX` and range `λX`. Every element of `I_l(D)` acts on `X` locally in this form: `Λ` has lcms, since
   `(p,w)Λ ∩ (p',w')Λ` is empty or a single cylinder. So compact open bisections are finite unions of basic ones.
-- *Fixed sets.* Suppose `μ y ↦ λ (a^n·y)` is the identity on a cylinder `μνX`. Comparing the paths `μνz` and
-  `λ (a^n·ν)(a^n|_ν·z)` for all `z` forces three things:
-  - `d(λ) = d(μ)`, since otherwise a fixed prefix would have to absorb a shifted copy of `z`;
-  - `a^n·ν = ν` and `a^n|_ν = 1`, so by pseudo-freeness `n = 0`;
-  - `λ = μ`, by unique factorization.
+- *Fixed sets.* Suppose `μ y ↦ λ (a^n·y)` is the identity on a cylinder `μνX`. Write `a^n·ν = ν'` and
+  `a^n|_ν = a^c`, so that `μνz = λν'(a^c·z)` for all `z`. Compare colour by colour (referee a, N1):
+  - colour 2, where `a` acts trivially: `w_μ w_ν z_2 = w_λ w_ν z_2` for all `z_2` forces `|w_λ| = |w_μ|`;
+  - colour 1: `p_μ p_ν z_1 = p_λ p_{ν'} τ^c(z_1)` for all `z_1`, and `τ^c` is onto, so `|p_λ| = |p_μ|` and `τ^c = id`,
+    that is `c = 0`;
+  - then `a^n` fixes `ν` with restriction `1`, i.e. strongly fixes it, so `n = 0` by pseudo-freeness, and `λ = μ`.
 
   So only units act trivially on open sets. The groupoid is effective, `F(I_l(D) ⋉ X)` acts faithfully on `X`,
   and it is the group of global finite unions of basic bisections. That is the concrete description in the claim.
 - *Hausdorff.* The unit-germ set of `Z(λ,n,μ)` is `μX` if `λ = μ` and `n = 0`, and empty otherwise.
   - If `d(λ) = d(μ)` but `(λ,n) ≠ (μ,0)`, the fixed set is empty: `τ^n × id` has no fixed points for `n ≠ 0`.
   - If `d(λ) ≠ d(μ)`, the fixed set lies in `{x : some coordinate of x is eventually periodic}`, which has empty
-    interior.
+    interior. In the colour where the lengths differ, a fixed point solves an affine equation over `Z_2`, for
+    example `b + 2^j x = b' + 2^{j'}(x + n)` with `j ≠ j'`. So that coordinate is rational, hence eventually
+    periodic.
 
   Every unit-germ set is therefore clopen, so the groupoid of germs is Hausdorff.
 - *Essentially principal.* Points with nontrivial isotropy have an eventually periodic coordinate. They form a
@@ -85,7 +88,10 @@ Take `𝔢_P = ∅`, so the reduction is to `Y = X`: by Li l.1178, `X(v; 𝔢)` 
 so `u ∈ 2V`, and `u^{-1}(x_0x', y) = (x', x_0y)`. Then
 `u s u^{-1}(x_0x', y) = u(τx', x_0y) = (x_0 τx', y) = (τ^2(x_0x'), y) = s^2(x_0x', y)`,
 since `τ^2(jw) = jτ(w)`. `s` has infinite order. The hand check of `bs12-embeds-in-brin-thompson-2v` (every
-proper quotient of `BS(1,2)` kills a power of the generator) gives `⟨s,u⟩ ≅ BS(1,2)`. ∎ (items 1–4)
+proper quotient of `BS(1,2)` kills a power of the generator) gives `⟨s,u⟩ ≅ BS(1,2)`. In one line (referee a,
+N2): in `BS(1,2) = Z[1/2] ⋊ Z`, an element `(b, t^m)` with `m ≠ 0` does not centralize `Z[1/2]`. So a nontrivial
+normal subgroup `N` meets `Z[1/2]` in some `c ≠ 0`, and `c` is conjugate, by a power of the stable letter, to some
+`a^k` with `k ≠ 0`. Since `s` has infinite order, the map `a ↦ s`, `t ↦ u` kills no such `N`. ∎ (items 1–4)
 
 **F. `Q`.** `2V ≤ 2V_τ` and `rationals-embed-in-brin-thompson-group-2v` give `(Q,+) ≤ 2V_τ`. For `Q_τ`: the pieces
 `(x, y_jw) ↦ (τ^q x, y'_jw)` (`q ∈ {0,1}`) of the mixed-radix elements `s_n`, run with base `τ` in place of `t`, are
