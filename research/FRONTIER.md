@@ -25834,6 +25834,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · deligne-finite-parameter-group-has-period-prime-to-three [OPEN] If Deligne's norm-parameter group is finite then its order is prime to three
 - 2026-09-18 · thompson-f-ramsey-amplification-needs-unbounded-tower-overhead [OPEN] In Thompson's F, amplifying 1/2-Ramsey balls to (1/u)-Ramsey balls costs more than any bounded number of exponentials over the Ramsey function
 - 2026-09-18 · thompson-f-b1-ramsey-witnesses-at-most-one-third-proof [COMPLETE] Reduce Moore's Ramsey condition for the unit ball to balancedness of realized picture collections, then settle radii 3 to 11 of F by DRAT-checked SAT for the upper bounds and explicit sets with exact rational duals for the lower bounds
 - 2026-09-18 · thompson-f-b1-ramsey-witnesses-are-at-most-one-third [ESTABLISHED] In Thompson's F the Ramsey profile of the unit ball is 1/2 on radii 3 to 6 and 1/3 on radii 7 to 10, so no set is a unit-ball Ramsey witness of strength above 1/3, while in F_2 the value 1/2 persists at every radius
@@ -25841,7 +25842,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · jacobson-symbol-sequence-does-not-split [ESTABLISHED] The symbol sequence of the binary Jacobson elementary group does not split, not even over Z/3 x Z, because an odd-order constant cuts an isotypic block of nonzero Fredholm index
 - 2026-09-18 · agent-leavitt-not-bcs-negative-root-corner [OPEN] Put the fixed non-CE BCS in the negative corner of the binary-Leavitt marked root
 - 2026-09-18 · locally-read-witnesses-planted-coupling-proof [COMPLETE] Translate a sound NO right-hand side by the planted image, match the laws of every read set on which it is locally satisfiable, and transfer the NO soundness of the reduction to the planted YES inputs constraint by constraint
-- 2026-09-18 · locally-read-witnesses-are-sound-on-planted-2to1-inputs [ESTABLISHED] On the proved Grassmann 2-to-1 instances, any witness map from right-hand sides to orientation-lift labellings has average value on planted YES inputs at most the soundness plus the mass of constraints whose read set refutes a sound NO right-hand side, for every orientation and with no efficiency assumption
 
 ## Active claims
 
