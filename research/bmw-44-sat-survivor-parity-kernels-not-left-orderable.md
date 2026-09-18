@@ -153,3 +153,35 @@ second is implausible for a vertex stabilizer, which favours irreducibility at l
   - `τa_2` becomes `z ↦ (z+u)/(suz+1)`, of infinite order. So `K` is infinite and not torsion, and
     `Γ` is irreducible. The earlier Gupta–Sidki torsion reading is wrong.
   - For `#281`, this claim is now exactly: `Γ^+` is not left-orderable.
+- (w5-107, 2026-09-18) **Exact self-replication certificates for `#332` and `#193` are blocked; #332 is reduced to an orbit property of a dual transducer.**
+  - **Obstruction (ESTABLISHED, `bmw-332-193-self-similar-certificates-need-new-relation`).**
+    - For `K(332V)`, `K(332H)`, `K(193V)` and `K(193H)`, `K` is a quotient of a virtually free amalgam
+      `A`: `V_4 * C_2` or `C_2^3 *_{C_2} S_3`.
+    - `K` and `A` have the same cyclically reduced relations of length `≤ 12`, and the wreath recursion
+      descends to `A`.
+    - `G_1 = φ_0(St(0))` lies in the preimage of an index-3 subgroup `M` of `A`, under a map
+      `ρ : A → S_3` that is not a level quotient. The missing letter is not in `M`.
+    - Hence "express letter 3 (resp. 1) as a word in `G_1`", branching `N × N × 1 ≤ ψ(N)`, and
+      section-chain closure all need a relation of `K` of length `≥ 13` that fails in `A`. All three are
+      impossible if `K ≅ A`, which is exactly the case in which `Γ` is irreducible.
+    - The earlier "letter 3 is in `G_1` modulo levels 5–6" is an artefact of the non-congruence of `ρ`.
+  - **Reduction (ESTABLISHED implication, `bmw-40-40-332-irreducible-if-dual-orbit-parity`).**
+    - Sections of alternating words `τd_n⋯τd_1` are read by the 3-state dual transducer `B`, and the
+      sign of the root permutation is `(−1)^{#a_0}`.
+    - So if every `⟨B⟩`-orbit on `{a_0,a_1,a_2}^n` contains an odd-`a_0` sequence (e.g. `⟨B⟩`
+      level-transitive), then `K(332V) ≅ V_4 * C_2`, `#332` is irreducible, and this claim for `#332`
+      becomes left-orderability of `Γ^+`.
+    - `⟨B⟩` is transitive through level 8, so `K(332V)` and `V_4 * C_2` agree on all words of length
+      `≤ 17`.
+    - `B` contains the `#281` `V_4` (relabelled). But `B` meets the same index-3 non-congruence
+      obstruction, so its self-replication is not the route either.
+  - **Dead:**
+    - the largest `B`-invariant even-`a_0` set as a regular language (2, 12, 648 states, then above
+      2 GB);
+    - words of length `≤ 13` for `c_1 ∈ φ_2(St_B(2))`.
+  - **Next:** prove level-transitivity of `⟨B⟩` (or just the orbit-parity condition) without
+    self-replication. For example:
+    - find a spherically transitive element, or an odometer-type conjugacy of a suitable product;
+    - or find an invariant compatible with `ρ`.
+    For `#193` and `332H`, the analogous duality has three independent `D`-letters generating
+    `C_2^3` and the `S_3` relation `(τc)^3 = 1`, so it needs its own parity lemma.
