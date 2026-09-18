@@ -133,3 +133,19 @@ The same shape is expected for any finite group `Q` acting on a finite set. Ther
 `S_m ≀ Q` carries the label-sum character to `Q^(ab)`, and splitting kills it. So the finite models of
 P2′b-exactness are a finite, checkable programme. For the two-point model, the remaining difficulty is
 consistency across partitions, not local relations.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS, conditional on the GAP run
+
+Items 1(a), 1(b), 2 and 3 were checked by hand, and they are correct:
+- 1(a): the parity character;
+- 1(b): the Coxeter presentation along the path, with both braids conjugate to one defect;
+- 2: the doubling `x = x_0 x_1` into commuting factors via (R1), inside shadows with `m = 4` and
+  `m = 5`;
+- 3.
+
+For 1(c), I checked the artifact's GAP script:
+- its relators are exactly those of `N_f`, of `M_f`, the amalgamation, and the disjoint-support
+  commutators, all of which hold in `Γ~`;
+- the counting argument (`|G_f| ≤ C(2m,m)·2(m!)^2 = 2(2m)!`) is correct.
+
+The printed indices 20/70/252 and 10/35/126 were not re-run here.
