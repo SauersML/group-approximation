@@ -122,3 +122,65 @@ def pinchAbsFol_ResidualStatement : Prop :=
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_ResidualStatement
+
+/-- **The `_of_` reduction of lane gl-p07-79.**  In the follows case `OUT` is proved
+(`pinchAbsOut_outside_of_follows`) and the tail of one circuit gives the conclusion; in the pinched
+case the absorbed lobe cut is given. -/
+theorem pinchAbsFol_of_statement (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
+    pinchAbs_ResidualStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
+    hw hout hinner houter C hC hCf hCa hCb hcase hP
+  exact pinchAbsFol_conclusion hw hCf hCa hCb hout
+    (h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hout hinner
+      houter C hC hCf hCa hCb hcase hP)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_of_statement
+
+/-- **P07's top target** from this statement (no `pinchAbsSub_OutsideStatement`). -/
+theorem pinchAbsFol_off_of_statement (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
+    PocketFourPieceOffStatement.{u, w, v} :=
+  pinchAbs_off (pinchAbsFol_of_statement h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_off_of_statement
+
+/-- **LOUD: the residual of gl-p07-74 gives this one** (clauses (a), (c) give one circuit with
+`C.face` on its side, `pinchAbsTouch_tail_of_touchTail`), so this one is no stronger. -/
+theorem pinchAbsFol_of_out (h : pinchAbsOut_ResidualStatement.{u, w, v}) :
+    pinchAbsFol_ResidualStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
+    hw hout hinner houter C hC hCf hCa hCb hcase hP
+  rcases h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hout hinner
+    houter C hC hCf hCa hCb hcase hP with hc | hr
+  · exact Or.inl hc
+  · exact Or.inr ⟨fun hfo => pinchAbsTouch_tail_of_touchTail hG₁ hG₂ (hr.1 hfo), hr.2⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_of_out
+
+/-- **LOUD: the converse.**  This statement gives the residual of gl-p07-74: in the follows case
+through its first disjunct (`pinchAbsFol_follow`).  So the two are EQUIVALENT as Props. -/
+theorem pinchAbsFol_out_of_statement (h : pinchAbsFol_ResidualStatement.{u, w, v}) :
+    pinchAbsOut_ResidualStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
+    hw hout hinner houter C hC hCf hCa hCb hcase hP
+  rcases h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hout hinner
+    houter C hC hCf hCa hCb hcase hP with hc | ⟨ht, hcut⟩
+  · exact Or.inl hc
+  · by_cases hfo : (hw.outerCycle X.planar).FollowsBoundary
+    · exact Or.inl (pinchAbsFol_follow hw hCf hCa hCb hout hfo (ht hfo))
+    · exact Or.inr ⟨fun hfo' => absurd hfo' hfo, fun _ => hcut hfo⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_out_of_statement
+
+/-- **LOUD: the target of gl-p07-70 gives this statement**, so it is equivalent as a Prop to the
+earlier residuals. -/
+theorem pinchAbsFol_of_residual (h : pinchRestDone_ResidualStatement.{u, w, v}) :
+    pinchAbsFol_ResidualStatement.{u, w, v} :=
+  pinchAbsFol_of_out (pinchAbsOut_statement_of_sub (pinchAbsSub_statement_of_residual h))
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsFol_of_residual
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
