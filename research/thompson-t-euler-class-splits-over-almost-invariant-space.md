@@ -56,3 +56,26 @@ excluded too.
 
 - 2026-09-18 (swarm-0917-w9-w9-nv-follow): statement isolated; forced shape (F1) and (F2)
   proved; discrete special case split off. Not decided.
+- 2026-09-18 (swarm-0917-w11-w11-nv-pull, operator-algebras): the probability-measure case of
+  (MT) was reformulated, and the Bernoulli and Gaussian candidates were killed, conditionally.
+  - *Reformulation.* For an invariant probability `μ`, the Koopman hypothesis is automatic,
+    since `1` is invariant. So pmp (MT) says exactly that `e_R ↦ 0` in
+    `H²(T; L⁰(X, R))` for some pmp `T`-space `X`.
+  - *Universal space.* Equivalently, the following `T`-action has an invariant Borel
+    probability. The space is `Q_0 = {q : T̄ → R : q(1) = 0, q(zg) = q(g) + 1}`. The action is
+    `(h·q)(g) = q(gh) − q(h)`, on which `z` acts trivially.
+    - Given `β`, the map `x ↦ β(·, x)` is equivariant into `Q_0`.
+    - Conversely, `β(g, q) = q(g)` is a splitting over `Q_0`.
+    - The displacement map `x ↦ (g ↦ g(x̃) − x̃)` embeds `S^1` equivariantly into `Q_0`.
+      Invariant measures with integrable coordinates would have a barycentre fixed point, which
+      is impossible. This recovers (F1) and (F2).
+  - *Kill.* `thompson-t-bernoulli-euler-splittings-need-amenable-f` (ESTABLISHED as an
+    implication): if `F` is nonamenable, no generalized Bernoulli space (over `T`, or over
+    `T/PSL_2(Z)`, and so on) and no weakly mixing Gaussian space with spectral gap on `F_A`
+    is a witness.
+    - The proof untwists `e^{2πiθβ}` on the commuting pair `F_A × F_B` by Popa's
+      spectral-gap theorem.
+    - It then spreads the untwisting along overlapping arcs to all of `T̄`, and perfectness
+      forces `e^{2πiθ} = 1`.
+  - *Surviving pmp witnesses* must be non-Bernoulli and non-Gaussian over `F_A × F_B` (for
+    example, with some `F_J` not weakly mixing), unless `F` is amenable.
