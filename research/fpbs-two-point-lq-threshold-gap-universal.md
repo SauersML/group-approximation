@@ -138,3 +138,56 @@ artifact shows that a failure of [Q] would not by itself refute (IS).
     compactness proof of [Q] needs a uniform `Z_q` bound on an open subset of
     every closed `Y ⊆ K_r`, which is exactly as hard as the l2 kernel
     problem.
+* **Calibration transplant (swarm-0917-w12, transplanter, calibration;
+  obstruction, dies on arrival).** The idea was to import the calibration
+  worlds of the goal and find the step at which each [Q] tool fails there.
+  - *Proved, on every transitive graph and at every root of a.e. realization
+    of a unimodular random graph:* if `Z_q(p) < infinity` for one `q`, then `p`
+    does not have a unique infinite cluster. Suppose `p` has a unique infinite
+    cluster. Then Harris gives
+    `tau_p(o,x) >= theta_p(o) theta_p(x)`, and `theta_p(x) >= p^(d(o,x)) theta_p(o)`
+    gives `theta_p(o) > 0`. On a transitive graph `theta_p` is constant. On an
+    infinite unimodular random graph, the
+    invariantly defined set `{x : theta_p(x) >= c}` is, for small `c > 0`,
+    a.s. empty or infinite. The standard mass-transport argument rules out a
+    finite nonempty invariant set. So `Z_q(p) = infinity` for every `q`. Hence
+    `q_0 = infinity` on every world with uniqueness throughout `(p_c, 1)`.
+    This is quenched, at every root of a.e. realization.
+  - *Consequence.* On the Angel--Hutchcroft graph `H~(M)`
+    (`fpbs-walk-rate-holes-fail-on-unimodular-random-graphs`, which quotes
+    arXiv:1710.03003v1, Proposition 4.2 and the proof of Lemma 4.3, verbatim)
+    there is a unique infinite cluster for every `p > p_c`. So [Q] and [Q_fin]
+    fail there, quenched and at every root. This avoids the root-averaging
+    objection that referees raised against the class-kill on that node,
+    because `Z_q(p)` is a per-root quantity. The following survive on each
+    realization, since they use no group structure:
+    - the thinning inequality `tau_(p^g) >= tau_p^g` of
+      `fpbs-lq-threshold-power-monotonicity`;
+    - the Russo--BK majorant;
+    - `p_c <= p_q <= p_u`.
+
+    So none of these proves [Q] without an input that `H~` lacks.
+  - *Where it dies: the vacuity step.* This is not a [Q]-specific
+    obstruction. By the first bullet, [Q] implies nonuniqueness on each such
+    graph. So every calibration world that refutes BS also refutes [Q]
+    automatically, whether it is transitive or a unimodular random graph.
+    Calibration by BS counterexamples (URGs, amenable
+    reservoirs) therefore carries no information that separates [Q] from BS.
+    The invariant is the `theta^2` floor: every calibration world with
+    `p_c = p_u` hits it at the first `p > p_c`, before any [Q] tool is used.
+  - *Where a real calibration would have to live.* It needs a world with a
+    nonuniqueness window `(p_c, p_u)` and `q_0 > 2`. Such a world would show
+    that the route `[Q] => (IS) => BS` loses information.
+    - Transitive graphs cannot supply one with current knowledge. Every
+      transitive class where `p_c < p_u` is proved has `p_c < p_{2->2}`, and
+      so `q_0 < 2`: trees, hyperbolic, nonunimodular, highly nonamenable.
+    - "Amenable reservoir" URGs cannot supply one either. These carry the
+      near-critical infinite cluster on infinite invariantly amenable pieces.
+      That is what makes `q_0` large, since `tau >= theta^2` inside a piece.
+      But the Lemma 4.3 gluing then forces uniqueness.
+    - Trees of finite fat blobs give `q_0 = 1` heuristically. Blob size
+      enters `Z_q` only linearly.
+
+    Any candidate must get `q_0 > 1` from heterogeneity at `p_c`: `chi = infinity`
+    is carried by few pairs with large `tau`, while `Z_q` is carried by many
+    pairs with small `tau`. This is recorded as a spark, not proved.
