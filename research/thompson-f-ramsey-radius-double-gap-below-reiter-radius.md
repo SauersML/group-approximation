@@ -60,3 +60,20 @@ route is dead.
     `(f, g)` with `f` a test function. Supporting that mixture needs about `|B_M|` test functions, and Towsner's
     scheme pays one `R̃`-composition per function. Any refutation of RGAP₂ must break this per-function cost with a
     coupling argument that no single coloring detects. This lane did not find one.
+- **2026-09-18 (swarm-0917-w10-w10-f-follow, operator-algebras).** The CR side of RGAP₁ is reduced to one
+  eigenvalue. RGAP₂ itself stays OPEN.
+  - *Established (new node `coarse-reiter-radius-is-a-ball-compressed-walk-eigenvalue`, holds in every group).*
+    `h(M) ≤ WR(M) ≤ CR(M) ≤ h(2J_M) + J_M` with `J_M = ⌈16kM² ln 2⌉`. Here `WR` freezes the test weight to the
+    lazy-walk law `q_N`, and `h(N)` is the least `r` at which `Q^N` compressed to `ℓ²(B_r)` has top eigenvalue at
+    least 1/2. The proof uses a Bhattacharyya bound, log-convexity of return moments, and squaring back. So RGAP₁ is
+    equivalent to its spectral form SGAP₁ and its single-weight form WGAP₁, because the quadratic change of window is
+    absorbed by the tower.
+  - *What a kill now needs.* To show that the costly-amplification route is dead (CRE), it suffices, and by (3) is
+    also necessary, to prove RRET: for some `E` and every `N`, some unit `η ≥ 0` on `B_n` with
+    `n = exp_E(R(exp_E N))` has `⟨η, Q^N η⟩ ≥ 1/2`. This is one "Ramsey balance forces an ℓ² return" statement.
+  - *Calibration and killed class.* Time-shift pairs `(q_i, q_j)` of the walk law are ℓ¹-balanced in every group,
+    including `F_2`, where `h(N) = ∞` for `N ≥ 13` because `‖Q‖ < 0.947`. So no RRET argument can get its pairs from
+    the walk itself.
+  - *Data.* Eigenvalue certificates to radius 9 for `F` and radius 8 for `F_2`: `h(1..5) = 0, 1, 1, 2, 2` in both,
+    and `h_F(6) = 3`. These are loose at small windows (`CR_F(1) = 5`, from the LP node) and matter only
+    asymptotically.
