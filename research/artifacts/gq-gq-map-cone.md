@@ -22,7 +22,7 @@ group: `(Q,+) <= 2V` (`rationals-embed-in-brin-thompson-group-2v`, Kojima–Shen
 explicit mixed-radix odometer proof; unrev.). `2V` is finitely presented and simple, so the
 additive group `Q` is settled on main. There is **no** node for Belk–Hyde–Matucci's
 `Q <= T̄ <= VA` or for "every countable abelian group embeds in `VA`" (see §6, gap G1).
-Everything linear or self-similar is killed by O1. What survives is:
+Everything linear or self-similar is killed by O1. `VA` itself is killed for every `n >= 2` by the root's distortion obstruction O4 (Burillo–Felipe), and so are the stepping stones `Aff(Q)` and `U_3(Q)` in `VA`. Any host must contain exponentially distorted cyclic subgroups. What survives is:
 1. the **type (A) machine** (§2), which turns *any* finitely presented group with a
    suitable action containing `GL_n(Q)` into a finitely presented simple overgroup, and
    has four concrete host shapes;
@@ -34,21 +34,22 @@ Everything linear or self-similar is killed by O1. What survives is:
 For `n >= 3`, the `nV` family depends on the open question whether `SL_3(Z)` embeds in
 `2V` (§3.1).
 
-## 1. Obstructions (root O1–O3, plus what the graph adds)
+## 1. Obstructions (root O1–O4, plus M1–M8 found in the graph)
 
 | # | Obstruction | Source | Kills |
 |---|---|---|---|
 | O1 | `(Q,+) <= GL_n(Q)` is divisible, so it lies in no residually finite group | root | every linear group over a f.g. ring, every group acting faithfully on a locally finite rooted tree, so all self-similar hosts, RN coefficient groups `H`, the polynomial S-integer hosts |
 | O2 | `n >= 3`: `SL_3(Z) <= GL_3(Q)` embeds in neither `V` nor `VA` | root (survey Thm 4.4, Rem. 4.12) | `V`, `VA` as hosts for `n >= 3` |
 | O3 | `Q ⊄ V` (Higman: an infinite-order element of `V` has roots of only boundedly many orders) | root; restated in `rationals-embed-in-brin-thompson-group-2v` | `V` for all `n >= 2` |
-| O4 | f.g. simple unit groups mod central units of char-0 rings with **bounded divisibility** (condition (D)) contain no unipotent elements | `char-zero-algebra-unit-hosts-exclude-unipotents` (ESTABLISHED) | every char-0 ring host of the Zaremsky/matrix-unit type whose coefficient subring is a subgroup of a free `Z[1/m]`-module, or lies in `M_n(B_0)` for a f.g. commutative domain `B_0`. A host ring containing `Q` violates (D), so this does **not** kill Q-containing rings. It says the ring must have unbounded divisibility. |
-| O5 | point germ groups of subgroups of `nV` are free abelian of rank `<= n` (slope cocycle) | `nv-point-germ-groups-embed-in-zn-by-slope` | realizing a natural action of `GL_n(Q)` with non-abelian point germs (e.g. on `P^{n-1}(Q_p)`, which has `SL_{n-1}` germs) as a closed invariant subsystem of any `nV`. It does not forbid an abstract embedding. |
-| O6 | an f.g. simple subgroup of piecewise-projective homeomorphisms of a compact **interval** is trivial | `fg-simple-projective-interval-groups-are-trivial` (ESTABLISHED) | interval hosts for the simple envelope. Circle, line and Cantor hosts are untouched. |
-| O7 | a finitely presented shell envelope forces a finitely presented near group `R_nu` (and the ascending-HNN gate) | `shell-envelope-fp-forces-fp-germ-group` (unrev.) | shells over non-f.g. inputs, and over f.g. inputs whose near group fails the gate |
-| O8 | the type `[A_2]` / relative route does not avoid finite presentation: the simple quotient `SV_{G/K}` is f.p. iff `G/K` is | `abstract-btb-simple-quotient-fp-gate` | hoping that a non-faithful action removes the need for a f.p. faithful image |
-| O9 | a commutative f.g. ring cannot contain `Q` (Nullstellensatz: a maximal ideal has a finite residue field) | folklore, no node (gap G5) | every commutative coefficient ring. A ring host containing `Q` must be noncommutative, or not f.g. |
-| O10 | a unital ring embeds in a simple unital ring iff it has prime characteristic or torsion-free additive group | `ring-simple-envelope-characteristic-obstruction` | nothing here (`Z[G]`, `Q[G]`, `F_2[G]` all qualify). It is a calibration for ring lanes. |
-| O11 | `EL_4(L)` has the central `{±I_4}` whenever `2 != 0` in `L`, so it is not simple | `rank-four-elementary-center-obstructs-simplicity` | any ring route claiming `EL_4(R)` simple in characteristic `!= 2`. Use `EL_n/Z`, or rank 3. |
+| O4 | distortion: every infinite-order element of `VA` is undistorted, and `VA` contains no group with distorted cyclic subgroups (Burillo--Felipe arXiv:2605.09763v1, Thm 1, Cor. 5). `GL_2(Q) ⊇ BS(1,2)` has exponential distortion, and `U_3(Q)` has a quadratically distorted centre | root (added 2688d4128) | `VA` for **every** `n >= 2`, and also for the stepping stones `Aff(Q)`, `U_3(Q)`. More generally, **every host must contain exponentially distorted cyclic subgroups**, so `V` and `VA` are out, and any undistortion theorem is a kill. `2V` passes (Callard–Salo distortion elements). |
+| M1 | f.g. simple unit groups mod central units of char-0 rings with **bounded divisibility** (condition (D)) contain no unipotent elements | `char-zero-algebra-unit-hosts-exclude-unipotents` (ESTABLISHED) | every char-0 ring host of the Zaremsky/matrix-unit type whose coefficient subring is a subgroup of a free `Z[1/m]`-module, or lies in `M_n(B_0)` for a f.g. commutative domain `B_0`. A host ring containing `Q` violates (D), so this does **not** kill Q-containing rings. It says the ring must have unbounded divisibility. |
+| M2 | point germ groups of subgroups of `nV` are free abelian of rank `<= n` (slope cocycle) | `nv-point-germ-groups-embed-in-zn-by-slope` | realizing a natural action of `GL_n(Q)` with non-abelian point germs (e.g. on `P^{n-1}(Q_p)`, which has `SL_{n-1}` germs) as a closed invariant subsystem of any `nV`. It does not forbid an abstract embedding. |
+| M3 | an f.g. simple subgroup of piecewise-projective homeomorphisms of a compact **interval** is trivial | `fg-simple-projective-interval-groups-are-trivial` (ESTABLISHED) | interval hosts for the simple envelope. Circle, line and Cantor hosts are untouched. |
+| M4 | a finitely presented shell envelope forces a finitely presented near group `R_nu` (and the ascending-HNN gate) | `shell-envelope-fp-forces-fp-germ-group` (unrev.) | shells over non-f.g. inputs, and over f.g. inputs whose near group fails the gate |
+| M5 | the type `[A_2]` / relative route does not avoid finite presentation: the simple quotient `SV_{G/K}` is f.p. iff `G/K` is | `abstract-btb-simple-quotient-fp-gate` | hoping that a non-faithful action removes the need for a f.p. faithful image |
+| M6 | a commutative f.g. ring cannot contain `Q` (Nullstellensatz: a maximal ideal has a finite residue field) | folklore, no node (gap G5) | every commutative coefficient ring. A ring host containing `Q` must be noncommutative, or not f.g. |
+| M7 | a unital ring embeds in a simple unital ring iff it has prime characteristic or torsion-free additive group | `ring-simple-envelope-characteristic-obstruction` | nothing here (`Z[G]`, `Q[G]`, `F_2[G]` all qualify). It is a calibration for ring lanes. |
+| M8 | `EL_4(L)` has the central `{±I_4}` whenever `2 != 0` in `L`, so it is not simple | `rank-four-elementary-center-obstructs-simplicity` | any ring route claiming `EL_4(R)` simple in characteristic `!= 2`. Use `EL_n/Z`, or rank 3. |
 
 Not an obstruction: `complexity-bounded-host-classes-are-not-universal` limits fixed-complexity
 host classes for *all* inputs. `GL_n(Q)` has a polynomial-time word problem in its standard
@@ -88,7 +89,16 @@ finitely presented object":
 - `centerless-fp-finitely-many-conjugacy-classes-gives-pbh`: a f.p. centreless group with
   finitely many conjugacy classes gives type (A) through the conjugation action.
   Candidate shape: a f.p. group containing `GL_n(Q)` with finitely many conjugacy classes.
-- `abstract-btb-pairs-fp-and-relatively-simple` (FFWZ import) and O8.
+- `abstract-btb-pairs-fp-and-relatively-simple` (FFWZ import) and M5.
+
+**Landed by the gq swarm after the first version of this map** (7ee358237):
+- `gl-n-q-in-permutational-boone-higman-class` (OPEN): `GL_n(Q) ∈ B_A`. This is the recommended
+  target. Route `gl-n-q-bh-via-permutational-class` gives the root from it.
+- `permutational-host-forms-agree-for-countable-inputs` (ESTABLISHED, unrev.): the host forms
+  agree for arbitrary, non-f.g. inputs, which removes the "stated for f.g. `H`" caveat in H1.
+- `gl-n-q-targets-are-cofinal-in-n` (ESTABLISHED, unrev.): `GL_n(Q) <= SL_(n+1)(Q)`,
+  `PGL_(n+1)(Q)`, `GL_(n^2)(Q)`. Any hereditary property for all large `n` gives it for all
+  `n`, so lanes may work with `SL_N(Q)` or `PGL_N(Q)` for large `N`.
 
 ## 3. Cantor-homeomorphism hosts
 
@@ -104,6 +114,8 @@ finitely presented object":
   on main.
 - every RAAG: `every-raag-embeds-in-brin-thompson-group-2v` (Salo import);
 - `GL_2(Z) <= V <= 2V`;
+- caution: `brin-thompson-2v-embeds-in-no-zipper-group` is OPEN (demoted at landing, no referee
+  votes). Do not rely on its undistortion clause until it passes review.
 - distortion elements: `brin-thompson-mv-contains-a-distortion-element` (Callard–Salo import).
   So the undistortion argument that keeps `H_3(Z)` out of `V` fails in `2V`.
 
@@ -113,7 +125,7 @@ finitely presented object":
   `brin-thompson-2v-is-not-a-t-menable` (Zaremsky Problem 2.7). If `nV` is Haagerup, no infinite
   Kazhdan group embeds, so `SL_3(Z) ⊄ nV` and the whole family is dead for `n >= 3`.
 
-**Constraint O5:** point germ groups are abelian of rank `<= n`.
+**Constraint M2:** point germ groups are abelian of rank `<= n`.
 
 **Verdict:**
 - `n = 2`: ALIVE. Nothing in the graph blocks `GL_2(Q) <= 2V` or `<= mV`.
@@ -133,7 +145,7 @@ First stepping stones in this family:
 - Finite presentation is the entire difficulty:
   - `decidable-inputs-have-fp-shell-envelopes` and `decidable-inputs-have-fp-shell-stabilizers`
     are OPEN;
-  - the necessary condition O7: the near group `R_nu` must be f.p.;
+  - the necessary condition M4: the near group `R_nu` must be f.p.;
   - route `boone-higman-via-shell-germ-stabilizers` uses Belk–Hyde–Matucci arXiv:2407.03149
     Thm 2.1 (finite presentation of finite germ extensions from finite presentation of the
     stabilizers `S(M,M')`, `|M'| <= 2`).
@@ -144,7 +156,9 @@ First stepping stones in this family:
   `(Q,+)` embed in `R`? If not, every such host needs non-orbit-preserving transports, as `VA`
   presumably has.
 - Verdict: ALIVE. The natural place for divisibility is the **germ group at a singular
-  point**. `VA` does exactly this for `Q` (gap G1: import it). Lanes: gq-germ-design,
+  point**. `VA` does exactly this for `Q` (gap G1: import it), but `VA` itself is excluded for
+  `GL_n(Q)` by root O4 (no distortion). A germ-extension host must combine a VA-type divisible
+  germ with a source of exponential distortion, which the `2V` slope cocycle has. Lanes: gq-germ-design,
   gq-q-in-germs, gq-germ-necessary, gq-va-*.
 
 ### 3.3 Rational similarity groups, RN groups, Scott groups
@@ -181,7 +195,7 @@ First stepping stones in this family:
 
 ### 3.4 Piecewise projective / line and circle hosts (untested on main)
 
-- O6 kills compact-**interval** hosts for the simple envelope. It leaves intermediate groups
+- M3 kills compact-**interval** hosts for the simple envelope. It leaves intermediate groups
   alone, and it says nothing about the circle.
 - **Hyde–Lodha `Q_n`** (`hyde-lodha-fp-simple-groups-contain-thompson-f`, arXiv:2302.04805):
   f.p. simple groups of type `F_∞` containing `F`. They are candidate hosts; whether they
@@ -243,12 +257,12 @@ The simplicity and `K`-theory of the envelope are the whole gap. Sibling route:
 ### 4.3 Characteristic-0 rings (ALIVE only for noncommutative Q-containing rings)
 
 **Kill results.**
-- **Kills commutative f.g. rings (O9).** The Q-containing ring must be noncommutative, or not f.g.
-- **Kills bounded-divisibility rings (O4).** Every coefficient ring must have unbounded
+- **Kills commutative f.g. rings (M6).** The Q-containing ring must be noncommutative, or not f.g.
+- **Kills bounded-divisibility rings (M1).** Every coefficient ring must have unbounded
   divisibility, which is consistent with containing `Q`.
 - **Kills a Weyl-algebra route in characteristic 0.** `weyl-algebra-blocks-a-universal-leavitt-host`:
   `A_1(K)` does not embed in `L_K(1,2)` for char `K = 0`.
-- **Kills `EL_4` simplicity in characteristic `!= 2` (O11).**
+- **Kills `EL_4` simplicity in characteristic `!= 2` (M8).**
 
 **Positive tools.**
 - `ample-steinberg-el-simple-mod-centre-without-hausdorff` (ESTABLISHED, un-verify PASS): for any
@@ -258,7 +272,7 @@ The simplicity and `K`-theory of the envelope are the whole gap. Sibling route:
   that form.
 - `elementary-groups-over-polynomial-s-integers-are-fp` (reviewed): `E_n(Z[1/m][t])` is f.p.;
 - `affine-extension-of-fp-elementary-group-is-fp` (reviewed): for commutative f.g. rings only.
-  Both are KILLED for `Q` by O9. They are the template for "St_n + K_2 control ⇒ f.p." and are
+  Both are KILLED for `Q` by M6. They are the template for "St_n + K_2 control ⇒ f.p." and are
   CONTEXT for a noncommutative ring `R ⊇ Q`.
 - `agp-purely-infinite-simple-k1-is-unit-abelianization`: `K_1(R) = U(R)^ab` for purely
   infinite simple `R` (Ara–Goodearl–Pardo, import).
@@ -319,6 +333,13 @@ here is only as calibration.
 
 A natural answer is still open.
 
+**Swarm literature artifacts:**
+- `research/artifacts/gq-gq-lit-arxiv-priority.md` (6505750b9): no priority threat for G; an
+  announcement for 2.7;
+- `research/artifacts/gq-gq-lit-hosts.md` (75e692ae0): verbatim hypotheses of the host theorems
+  (germ extensions, type (A)). Read it before using BHM Thm 2.1 or Zaremsky Thm A.
+- `research/artifacts/gq-gq-state-of-attack.md`: the running board summary.
+
 ## 6. Gaps: things the target needs that have no node on main
 
 - **G1.** Belk–Hyde–Matucci: `Q <= T̄`, `T̄ <= A`, `VA` finitely presented (type `F_∞`) and
@@ -331,7 +352,7 @@ A natural answer is still open.
   are free abelian (survey Thm 4.4) as a node. It is only paraphrased inside other nodes.
 - **G4.** A node for "`GL_n(Q)` has no locally finite normal subgroup outside `{±I}`" and for
   O1 as its own claim. Those two are what H1 and every RF-based kill consume.
-- **G5.** O9, the fact that a commutative f.g. ring cannot contain `Q`, as a node.
+- **G5.** M6, the fact that a commutative f.g. ring cannot contain `Q`, as a node.
 - **G6.** `nV` finitely presented and simple (Brin; Hennig–Matucci; Brin simplicity), if not
   already a node. Search `brin-thompson-nv-*` before adding.
 
