@@ -63,3 +63,13 @@ For inputs without FW, the non-free one-ended case of that node stays open.
 - Nothing is claimed about window `N >= 1`, about finite presentation of `R_rho`, `Q_rho` or `E_rho`, or about actions whose orbits are all finite. The last case can only occur for residually finite `P`.
 - **The surviving configuration of item 5 is not excluded.** Highly transitive faithful actions of Kazhdan groups exist in general; Hull–Osin constructs them for acylindrically hyperbolic groups, a result recalled and not read. Whether a simple Kazhdan group has a highly transitive action in which a point stabilizer contains an infinite-index copy `psi(P)` acting on the complement as `P` acts on the whole orbit is open.
 - If that self-similar configuration were constructed with `P` finitely presented, `R_rho ≅ P *_psi` would be finitely presented and would pass the ascending gate with window zero. Finite presentation of the one-point stabilizers `S(M, M')` would still have to be checked.
+
+## Attempts
+
+1. **Descending case (bh-shell-kazhdan, 09-18).** Four facts, recorded in the artifact's fourth pass:
+   - the exact model `G^+ ⊆ G`;
+   - the identities `out_(psi g)(k+1) = out_g(k)` and `pi∘psi ≅ pi ⊕ 1`;
+   - when `rho` is transitive, the Kazhdan-projection images give `pi(C*_max P) ⊇ K`;
+   - a collapse computation: the infinite-order `F_2` twist `a ↦ b`, `b ↦ bab^-1` forces eventual 2-periodicity.
+
+   None of these closes the case for Kazhdan inputs, and it remains OPEN.

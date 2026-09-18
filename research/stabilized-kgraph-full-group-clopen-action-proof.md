@@ -4,7 +4,7 @@ id: stabilized-kgraph-full-group-clopen-action-proof
 kind: route
 title: Refining cylinder decompositions spreads every clopen set over its whole strongly connected piece, the Cuntz colour then equalizes counts, and that comparison gives a type (A) action on clopen sets
 target: stabilized-kgraph-full-groups-have-type-a-actions
-requires: [type-a-action-gives-boone-higman-for-subgroups, boone-higman-type-a-class-closed-under-finite-extensions]
+requires: [type-a-action-gives-boone-higman-for-subgroups, boone-higman-type-a-class-closed-under-finite-extensions, li-finite-k-graph-full-groups-are-f-infinity]
 ---
 
 Notation as in the target. Clopen sets `U, W ⊆ C''` are *equivalent*, `U ~ W`, if

@@ -54,7 +54,10 @@ Never write a `requires: []` route into this claim.
 - **Non-obstructions.** Some properties of nV pass to subgroups but do not
   obstruct hyperbolic groups:
   - solvable word problem;
-  - torsion local finiteness (Kojima–Sheng, arXiv:2603.18410, unrefereed);
+  - torsion local finiteness, if it holds (claimed by Kojima–Sheng, arXiv:2603.18410;
+    for `n >= 2` the proof is invalid by
+    `kojima-sheng-two-generator-torsion-criterion-fails-in-v` (a22c90a4a), and the
+    statement is open, `brin-thompson-2v-is-torsion-locally-finite`, `brin-thompson-groups-contain-infinite-periodic-groups`);
   - abelian germ groups. The germ at x of an element of nV fixing x is
     determined by its vector of prefix-length changes in `Z^n`: an element with
     zero vector at a fixed point is the identity on the whole subcube containing
