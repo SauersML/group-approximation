@@ -71,6 +71,10 @@ route realizes the abstract group as the `S`-colored subgroup of the faithful `S
 the `S`-colored Stein complex, whose vertex stabilizers are the correct `G ≀ Σ_m`. The nodes
 listed above can cite that node in place of FFWZ Theorem B(ii), (iii) for non-faithful
 actions.
+- `abstract-btb-pairs-fp-and-relatively-simple` now has a second derivation,
+  `abstract-btb-pairs-fp-via-colored-stein-complex`, which avoids the gap.
+- `abstract-btb-simple-quotient-fp-gate` (FFWZ Corollary 4.2) is **not** affected. Its proof
+  uses only the necessity half of Theorem B(ii) and the faithful case.
 
 ## Lesson for general BH
 

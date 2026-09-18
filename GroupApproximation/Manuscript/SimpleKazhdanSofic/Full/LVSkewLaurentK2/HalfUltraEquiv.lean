@@ -68,8 +68,8 @@ theorem skHalfK2_revEquiv_constMap (a : S) :
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
 theorem skHalfK2_revEquiv_tPow :
     (skHalfK2_revEquiv S).toRingHom (tPow S (-1)) = tPow (skHalfK2_Rev S) 1 := by
-  show skHalfK2_fwd S (SkewMonoidAlgebra.single (Multiplicative.ofAdd (-1)) (1 : S)) =
-    SkewMonoidAlgebra.single (Multiplicative.ofAdd 1) (1 : skHalfK2_Rev S)
+  show skHalfK2_fwd S (SkewMonoidAlgebra.single (Multiplicative.ofAdd (-1 : ℤ)) (1 : S)) =
+    SkewMonoidAlgebra.single (Multiplicative.ofAdd (1 : ℤ)) (1 : skHalfK2_Rev S)
   rw [skHalfK2_fwd_single, map_one (skHalfK2_toRevRingEquiv S), ofAdd_neg, inv_inv]
 
 #audit_axioms GroupApproximation.Full.LVSkewLaurentK2.skHalfK2_revEquiv_tPow

@@ -67,3 +67,18 @@ Equivalently `K_q = V ⋊ ⟨X, T⟩` with `V = ⊕_(i∈Z) Z[1/q]·e_i`, where 
 `K_q` is a finitely generated, residually finite, abelian-by-nilpotent group with solvable
 word problem, and no quasi-linear route reaches it. Its Boone--Higman status is recorded in
 `q-difference-lamplighter-satisfies-boone-higman`.
+
+## Lesson for general BH
+
+Quasi-linearity is ruled out by one algebraic-group fact. An automorphism of a commutative
+algebraic group that agrees with `u ↦ u^m`, `|m| >= 2`, on a dense subgroup kills its torus
+and its vector part. So any input with a commutator acting as a nontrivial power map on a
+torsion-free abelian section is outside every host built from matrices over commutative
+rings, or over products of fields.
+
+Such inputs are affine over noncommutative rings instead. `K_q` is the affine group of the
+cyclic module `W/W(T − 1) ≅ Z[1/q][x^±]` over the quantum torus
+`W = Z[1/q]⟨X^±, T^±⟩/(XTX^-1T^-1 = q^-1)`. Wehrfritz's faithful representations of finitely
+generated abelian-by-polycyclic groups are over division rings (QJM 1984; title only). The
+natural next host class is noncommutative coefficient rings.
+Equivalently, it is dynamics in which a "dilation of the parameter" is self-similar.

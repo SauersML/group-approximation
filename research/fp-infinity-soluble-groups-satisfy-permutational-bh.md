@@ -49,3 +49,14 @@ extensions of them, and all polycyclic groups.
   Kropholler--Martínez-Pérez--Nucinkis, Crelle 637 (2009), carried on main through a secondary
   citation (`elementary-amenable-fp-infinity-groups-virtually-soluble`). The Crelle PDF was not
   reachable from MSI.
+
+## Lesson for general BH
+
+A finiteness condition helps for soluble groups exactly when it forces residual finiteness
+plus finite rank. At that point the group is linear, and the linear hosts finish.
+- `FP_∞` does this (Kropholler): it forces virtually torsion-free and constructible.
+- Finite presentation alone does not: there are finitely presented soluble groups with
+  unsolvable word problem (Kharlampovich, cited in BBMZ; not read here).
+
+So homological finiteness never reaches the hard soluble inputs. Those have infinite rank or
+divisible torsion, and they need new hosts.

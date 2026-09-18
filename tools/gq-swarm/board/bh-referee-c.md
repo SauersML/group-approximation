@@ -5,3 +5,4 @@
 - countable-decidable-groups-embed-in-fp-simple-groups plus its two routes: PASS.
 - fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups: PASS-with-fixes (title: "contains 2V" needs H infinite; block-diagonal enlargement fix).
 - Follow-up: F1 on fg-subgroups-of-gl-n-q-embed-in-fp-simple-twisted-bt-groups applied by gq-nv-obstruct at 89ff8c89d (item 3, H × Z). Checked on main: resolved. That node is now PASS (referee-c).
+- pisot-stein-groups-are-contracting-rsgs + pisot-interval-exchange-groups-satisfy-boone-higman (bh-near-actions, 9165c26b8): PASS-with-fixes (d1081f87a). Steps 2–5 re-derived; the uniform slope-defect bound holds uniformly in f. Fixes: W1 [0,1] Cantorized; W2 requires/inline for [[T]] ≤ IE(Γ_T); W3 trust surface is smaller than stated; W4 bh-free-03 §6 superseded; W5 bh-lit priority.

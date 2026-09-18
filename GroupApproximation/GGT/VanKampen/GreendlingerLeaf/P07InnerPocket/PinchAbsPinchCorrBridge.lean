@@ -25,7 +25,7 @@ This file links the widened statements of `PinchAbsPinchCorrStatement.lean` to
 **LOUD.**  The last two bridges show that `pinchAbsPinchCorr_OffStatement` is EQUIVALENT to
 `InnerPocketEnclosedTwoArcCorrected`.  `InnerPocketEnclosedTwoArcCorrected` is not yet proved in
 the library.  `GL03BPinch/Endpoint.lean` is a draft outside the library.  It imports the missing
-module `GL03BPinchOrder.ORDERMODULE` and uses `GL03BPinchOrder.lakeWalk_reverse_map_alpha_sublist`,
+module `GL03BPinchOrder.Order` and uses `GL03BPinchOrder.lakeWalk_reverse_map_alpha_sublist`,
 which is defined nowhere.  So this file imports nothing from it, and the endpoints here are
 reductions to that statement.
 -/
