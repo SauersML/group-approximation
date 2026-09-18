@@ -114,3 +114,12 @@ squares.** Route `minimal-free-sft-via-minimal-self-simulation-of-squares`.
 - **Constraint.** By `simple-subgroups-act-trivially-on-equicontinuous-factors`, any
   witness over an envelope of an infinite simple input is not almost automorphic. The
   input lives inside the fibers of its maximal equicontinuous factor.
+
+**Reduction (2026-09-18, bh-g1-simulation): (P1) is equivalent to (M2) on overgroups.**
+- `minimal-free-sft-overgroups-exist-iff-m2-overgroups-exist` proves, input by input, that (P1)
+  holds iff `decidable-groups-embed-in-fp-groups-satisfying-m2` does. The proof uses route
+  `minimal-free-sft-via-m2-overgroups-and-keyed-plane-lifts` with `Λ = Λ_0 x Z^2`, which has one
+  open premise.
+- Jeandel's theorem (fp + strongly aperiodic SFT ⇒ decidable word problem, arXiv:1501.06831) is
+  now read at source; the abstract states it verbatim.
+- So the finite-type condition costs nothing, and the open content of (P1) is exactly (M2).
