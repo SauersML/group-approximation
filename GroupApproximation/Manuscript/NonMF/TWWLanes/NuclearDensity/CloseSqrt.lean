@@ -70,19 +70,16 @@ def ContractionSqrtCommutatorStatement : Prop :=
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.ContractionSqrtCommutatorStatement
 
-section Gram
-
-variable {n : Type*} [Fintype n] [DecidableEq n]
-
 /-- The squared Hilbert--Schmidt norm is nonnegative. -/
-theorem re_trace_gram_nonneg (Z : Matrix n n ℂ) : 0 ≤ (Matrix.trace (Zᴴ * Z)).re := by
+theorem re_trace_gram_nonneg {Y : FiniteModel} (Z : Matrix Y Y ℂ) :
+    0 ≤ (Matrix.trace (Zᴴ * Z)).re := by
   rw [ConnesTrick.re_trace_conjTranspose_mul_self]
   exact Finset.sum_nonneg fun _ _ ↦ Finset.sum_nonneg fun _ _ ↦ Complex.normSq_nonneg _
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.re_trace_gram_nonneg
 
 /-- **The parallelogram bound** `‖X + W‖₂² ≤ 2‖X‖₂² + 2‖W‖₂²`. -/
-theorem re_trace_gram_add_le (X W : Matrix n n ℂ) :
+theorem re_trace_gram_add_le {Y : FiniteModel} (X W : Matrix Y Y ℂ) :
     (Matrix.trace ((X + W)ᴴ * (X + W))).re
       ≤ 2 * (Matrix.trace (Xᴴ * X)).re + 2 * (Matrix.trace (Wᴴ * W)).re := by
   have e : Matrix.trace ((X + W)ᴴ * (X + W)) + Matrix.trace ((X - W)ᴴ * (X - W))
@@ -99,15 +96,17 @@ theorem re_trace_gram_add_le (X W : Matrix n n ℂ) :
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.re_trace_gram_add_le
 
 /-- Scalars pull out of the squared Hilbert--Schmidt norm as `|c|²`. -/
-theorem re_trace_gram_smul (c : ℂ) (Z : Matrix n n ℂ) :
-    (Matrix.trace ((c • Z)ᴴ * (c • Z))).re = Complex.normSq c * (Matrix.trace (Zᴴ * Z)).re := by
+theorem re_trace_gram_smul {Y : FiniteModel} (c : ℂ) (Z : Matrix Y Y ℂ) :
+    (Matrix.trace ((c • Z)ᴴ * (c • Z))).re
+      = Complex.normSq c * (Matrix.trace (Zᴴ * Z)).re := by
   rw [Matrix.conjTranspose_smul, smul_mul_assoc, mul_smul_comm, smul_smul, Matrix.trace_smul,
     smul_eq_mul, Complex.star_def, ← Complex.normSq_eq_conj_mul_self, Complex.re_ofReal_mul]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.re_trace_gram_smul
 
 /-- **Four terms.**  If `|dᵢ|² ≤ r` and `‖Zᵢ‖₂² ≤ e`, then `‖∑ dᵢ Zᵢ‖₂² ≤ 22 r e`. -/
-theorem re_trace_gram_four_le (d : Fin 4 → ℂ) (Z : Fin 4 → Matrix n n ℂ) {r e : ℝ}
+theorem re_trace_gram_four_le {Y : FiniteModel} (d : Fin 4 → ℂ) (Z : Fin 4 → Matrix Y Y ℂ)
+    {r e : ℝ}
     (hd : ∀ i, Complex.normSq (d i) ≤ r) (hZ : ∀ i, (Matrix.trace ((Z i)ᴴ * Z i)).re ≤ e) :
     (Matrix.trace ((d 0 • Z 0 + d 1 • Z 1 + d 2 • Z 2 + d 3 • Z 3)ᴴ
       * (d 0 • Z 0 + d 1 • Z 1 + d 2 • Z 2 + d 3 • Z 3))).re ≤ 22 * (r * e) := by
@@ -123,8 +122,8 @@ theorem re_trace_gram_four_le (d : Fin 4 → ℂ) (Z : Fin 4 → Matrix n n ℂ)
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.re_trace_gram_four_le
 
 /-- The commutator with `T` is linear in the element, over a four-term decomposition. -/
-theorem commutator_eq_four {A : Type u} [CStarAlgebra A] (ρ : A →ₗ[ℂ] Matrix n n ℂ)
-    (T : Matrix n n ℂ) {a : A} (d : Fin 4 → ℂ) (w : Fin 4 → A)
+theorem commutator_eq_four {A : Type u} [CStarAlgebra A] {Y : FiniteModel}
+    (ρ : A →ₗ[ℂ] Matrix Y Y ℂ) (T : Matrix Y Y ℂ) {a : A} (d : Fin 4 → ℂ) (w : Fin 4 → A)
     (ha : a = d 0 • w 0 + d 1 • w 1 + d 2 • w 2 + d 3 • w 3) :
     ρ a * T - T * ρ a
       = d 0 • (ρ (w 0) * T - T * ρ (w 0)) + d 1 • (ρ (w 1) * T - T * ρ (w 1))
@@ -134,8 +133,6 @@ theorem commutator_eq_four {A : Type u} [CStarAlgebra A] (ρ : A →ₗ[ℂ] Mat
   abel
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.commutator_eq_four
-
-end Gram
 
 /-- A positive semidefinite matrix has a positive semidefinite square root.  Take the
 eigenvalue calculus `S` at `√λᵢ` and then `|S|`, so that `|S|² = SᴴS = S² = h`. -/
