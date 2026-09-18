@@ -48,6 +48,9 @@ read at any point of the trace `gP` is the same, and the mark is well defined on
     for `(H_1, P_±)`. The lead's core-marked Kurosh gluing reads this locally; that step is cited, not re-proved.
 - **No computation runs on digit paths.**
   - `E` is free, so an `E`-coset contains no `Z²`, and no space-time diagram fits in it.
+  - Independently, bh-invent-15 (27b0124da) shows that a reader which is a deterministic function of the seed
+    along the tree is a sliding-block factor, so it marks only residue-periodic predicates. `[h ∈ P_± E]` depends
+    on the halting set and is not residue-periodic in general, so every digit-path evaluation fails.
   - The only grid nearby is `K = ⟨x, y⟩ ≅ Z²` inside `K_M`.
   - The negative certificate therefore cannot be laid out along the digit letters. It must be computed on `K_M`'s
     sheet and read at `g_k`.
