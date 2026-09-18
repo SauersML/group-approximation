@@ -72,3 +72,25 @@ No irreducible candidate is SAT.
 | 42_30 | 105 | 103 | 0 | 2 | 0 |
 | 42_31 | 81 | 79 | 0 | 2 | 0 |
 | 42_42 | 118 | 110 | 0 | 8 (Janzen–Wise, #98) | 0 |
+
+## Four-vertex complexes (minimal-covolume torsion-free lattices)
+
+This part backs `research/minimal-torsion-free-small-tree-lattices-not-left-orderable.md`. Its proof route is
+`research/minimal-torsion-free-small-tree-lattices-not-lo-proof.md`.
+
+It covers torsion-free type-preserving lattices in `Aut(T_m) × Aut(T_n)` with four vertex orbits.
+
+```sh
+python3 cx4.py enum && python3 cx4.py run census_cx4_33.json 0 11 > out_cx4_33.jsonl   # degree (3,3)
+python3 cxmn.py enum 3 4 && python3 cxmn.py run 3 4 0 98 > out_cx_34.jsonl         # degree (3,4)
+python3 cxmn.py enum 3 3                                                            # census_cx_33.json
+python3 crosscheck_cx.py      # backtracker = brute force; orbits partition the data
+python3 summarize_cx.py       # tally; asserts every candidate stops UNSAT
+python3 cx4_parity.py         # (3,3) BMW parity kernels -> four-vertex classes
+python3 cxmn_parity.py        # (4,3) BMW parity kernels -> (3,4) four-vertex classes
+```
+
+| degree | classes | certified reducible | candidates | UNSAT at R4 | R6 (short 4) | R8 (short 2) |
+|---|---|---|---|---|---|---|
+| (3,3) | 11 | 9 | 2 | 1 | 1 (Radu, #6) | 0 |
+| (3,4) | 98 | 64 | 34 | 13 | 20 | 1 (#72) |

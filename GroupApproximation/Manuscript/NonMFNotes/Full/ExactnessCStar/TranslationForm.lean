@@ -145,7 +145,9 @@ theorem exists_translationForm_approx (z : MinTensorProduct B (ReducedGroupCStar
   have hbound : ‖∑ i, minTensorIn B (ReducedGroupCStar G) (v i ⊗ₜ[ℂ] (k i - a i))‖
       ≤ M * (ε / (2 * (M + 1))) := by
     refine (norm_sum_le _ _).trans ?_
-    rw [hM, Finset.sum_mul]
+    have hsum : M * (ε / (2 * (M + 1))) = ∑ i, ‖v i‖ * (ε / (2 * (M + 1))) := by
+      rw [← Finset.sum_mul, ← hM]
+    rw [hsum]
     refine Finset.sum_le_sum fun i _ ↦ ?_
     rw [norm_minTensorIn_tmul]
     exact mul_le_mul_of_nonneg_left (ha i).le (norm_nonneg _)

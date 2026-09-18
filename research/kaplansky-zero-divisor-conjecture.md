@@ -148,3 +148,14 @@ fixed finitely presented torsion-free group `U`.
     unique-product, amenable or residually finite groups.
   - **What a host must do.** A host that splits over amenable subgroups needs a
     vertex group whose group ring embeds in no division ring.
+  - **Amenability is sharp for arbitrary vertex rings (w3-059).** `k0[F2 x Z]`
+    embeds epically in the Heisenberg Ore field with the `Z` factor sent into the
+    closure of `F2`. The transversals of the non-amenable edge `F2` are then
+    dependent, and the coproduct construction for `F2 x F2 = V *_F2 V` is not
+    injective (`nonamenable-edges-break-division-ring-compatibility`).
+  - **Universal rings do not iterate (w3-059).** The Promislow group is the
+    amalgam `Klein *_(Z^2) Klein` of Lewin groups, and it has no universal ring.
+    For locally indicable fundamental groups, the Linnell iteration is exactly
+    FSP's open q:HF
+    (`universal-division-rings-do-not-iterate-over-graphs-of-groups`). Over
+    non-amenable edges, only Hughes-free/Linnell vertex rings can still iterate.

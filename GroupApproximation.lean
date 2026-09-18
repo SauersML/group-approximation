@@ -5978,6 +5978,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapInductiveLi
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVK2Route.SubringMV
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtBridge
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbDominant
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.Transversal
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientCore
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

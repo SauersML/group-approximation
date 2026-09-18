@@ -103,7 +103,7 @@ All calibration runs use `(La,Lb,Lc,Lu,Lu2) = (2,2,2,2,4)`, `K = 4`, `K2 = 5`.
 |---|---|---|---|---|---|---|---|
 | `H4_11112.out` | (7, 39, 7, 40, 1811) | 3, 5 | 1911 | 480 | 480 | 0 | 0 |
 | `H4_21212.out` | (36, 39, 36, 40, 1811) | 3, 5 | 50544 | 4520 | 4520 | 0 | 0 |
-| `H4_22222.out` (one JSON line per `a`) | (36, 1810, 36, 1811, 1811) | 4, 5 | 130320 (a-chunks 0-1 of 36, in progress) | 7369 | 7369 | 0 | 0 |
+| `H4_22222.out` (one JSON line per `a`; `batch3.sh`, resumed by `batch3r.sh` after a restart) | (36, 1810, 36, 1811, 1811) | 4, 5 | 4300560 | 168240 | 168240 | 0 | **0** |
 
 - In the runs with `b ∈ R_X(1)`, `max_u_index_used` shows that every common upper bound lies in
   `R_X(1) A_Y` or is `y2`.
@@ -127,7 +127,7 @@ balls. They are taken modulo `A_Z`, with the `u`-balls as before.
 | `PB3_22224.out` | B3, true | (25, 49, 25, 31, 446) | 5, 6 | 2464 | 2464 | **0** |
 | `PH3_22224.out` | H3, true | (25, 81, 25, 53, 1366) | 5, 6 | 3232 | 3232 | **0** |
 | `PH4_21212.out` | **H4** | (69, 25, 69, 40, 1811) | 4, 5 | 7934 | 7934 | **0** |
-| `PH4_22212.out` (one line per `a`) | **H4** | (69, 709, 69, 40, 1811) | 4, 5 | 164002 (all 69 a, 4305048 triples) | 164002 | **0** |
+| `PH4_22212.out` (one line per `a`; `batch4.sh` + `batch4r.sh`) | **H4** | (69, 709, 69, 40, 1811) | 4, 5 | 164002 (all 69 a, 4305048 triples) | 164002 | **0** |
 
 In `PH4_21212` every common upper bound found lies among the first 6 elements of `R_X(1)`.
 

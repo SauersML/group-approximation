@@ -101,3 +101,18 @@ nothing about images that are not p-groups, and nothing about `Gamma_p` itself
 beyond what the B2 edge towers in the experiment directory record.
 
 Proof: `kms-hc1-a2-pro-p-completion-is-iwahori-criterion-proof`.
+
+## Attempts
+
+1. **Graded Lie-algebra cohomology (Lazard-style bound on `r(I_1)`).** This
+   route is obstructed. The associated graded `L_p = n^+(sl_3)+t sl_3[t]` has
+   `dim H_2(L_p)=infinity`: there is a Kassel class in every degree `3mp`, and
+   `I_1` is not p-adic analytic. So no purely graded argument gives
+   `r(I_1)<=9`. What survives is a deviation bound: the towers can first
+   differ only at a degree in `D_p={k : H_2(L_p)_k != 0}`. Computation gives
+   `D_p={3}+{3mp}`, with dimensions 6 and 1, in ranges up to degree 141 for
+   `5<=p<=23`. Together with pq towers (class 50 for `p=5`, class 45 for
+   `p=7`, class 35 for `p=11`), condition (R) holds for p-images of class
+   `<=59` (`p=5`), `<=62` (`p=7`) and `<=65` (`p=11`). Open: prove `D_p={3}+3pN` for all `p>=5`, and that each
+   Kassel direction dies in `Gamma^`. See
+   `kms-hc1-a2-iwahori-towers-deviate-only-at-kassel-degrees`.

@@ -13,6 +13,7 @@ artifacts:
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p5_d130.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p7_d130.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p11.out
+  - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p11_d135.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p13.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p17_d105.out
   - experiments/kms-hc1-iwahori-lie-relations-2026-09-17/h2_p19_d117.out
@@ -68,7 +69,7 @@ minimal relations of `L_p` are `H_2(L_p)_k = (I/[F,I])_k`. Put
   |---|---|---|
   | 5 | `<= 130` | `(3,6)`, and `(15m,1)` for `m=1..8` |
   | 7 | `<= 130` | `(3,6)`, and `(21m,1)` for `m=1..6` |
-  | 11 | `<= 70` | `(3,6)`, `(33,1)`, `(66,1)` |
+  | 11 | `<= 135` | `(3,6)`, and `(33m,1)` for `m=1..4` |
   | 13 | `<= 80` | `(3,6)`, `(39,1)`, `(78,1)` |
   | 17 | `<= 105` | `(3,6)`, `(51,1)`, `(102,1)` |
   | 19 | `<= 117` | `(3,6)`, `(57,1)`, `(114,1)` |

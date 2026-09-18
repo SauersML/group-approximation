@@ -1,0 +1,783 @@
+== A. ./slack_crit 7 10 54
+n=7 r=10 unbalanced=4: some unbalanced partition has fewer than n parts, not handled
+n=7 r=11 unbalanced=8: some unbalanced partition has fewer than n parts, not handled
+n=7 r=12 unbalanced=3 (x,k)=9 without-y=0
+n=7 r=13 unbalanced=10: some unbalanced partition has fewer than n parts, not handled
+n=7 r=14 unbalanced=4 (x,k)=13 without-y=0
+n=7 r=15 unbalanced=12: some unbalanced partition has fewer than n parts, not handled
+n=7 r=16 unbalanced=2 (x,k)=8 without-y=0
+n=7 r=17 unbalanced=14: some unbalanced partition has fewer than n parts, not handled
+n=7 r=18 unbalanced=1 (x,k)=5 without-y=0
+n=7 r=19 unbalanced=14 (x,k)=56 without-y=0
+n=7 r=20 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=21 unbalanced=17 (x,k)=74 without-y=0
+n=7 r=22 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=23 unbalanced=12 (x,k)=58 without-y=0
+n=7 r=24 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=25 unbalanced=14 (x,k)=71 without-y=0
+n=7 r=26 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=27 unbalanced=10 (x,k)=51 without-y=0
+n=7 r=28 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=29 unbalanced=6 (x,k)=36 without-y=0
+n=7 r=30 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=31 unbalanced=3 (x,k)=19 without-y=0
+n=7 r=32 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=33 unbalanced=3 (x,k)=17 without-y=0
+n=7 r=34 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=35 unbalanced=1 (x,k)=7 without-y=0
+n=7 r=36 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=37 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=38 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=39 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=40 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=41 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=42 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=43 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=44 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=45 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=46 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=47 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=48 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=49 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=50 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=51 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=52 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=53 unbalanced=0 (x,k)=0 without-y=0
+n=7 r=54 unbalanced=0 (x,k)=0 without-y=0
+exit=1
+
+== B. slack_crosscheck.py n=7 (input lists: U7.txt, U7small.txt)
+-- r = 33, 29, 27, 25, 23, 21, 19
+n=7 r=33 unbalanced=3 without-y=0
+exit=0 r=33
+n=7 r=29 unbalanced=6 without-y=0
+exit=0 r=29
+n=7 r=27 unbalanced=10 without-y=0
+exit=0 r=27
+n=7 r=25 unbalanced=14 without-y=0
+exit=0 r=25
+n=7 r=23 unbalanced=12 without-y=0
+exit=0 r=23
+n=7 r=21 unbalanced=17 without-y=0
+exit=0 r=21
+n=7 r=19 unbalanced=14 without-y=0
+exit=0 r=19
+n=7 r=12 unbalanced=3 without-y=0
+exit=0 r=12
+n=7 r=14 unbalanced=4 without-y=0
+exit=0 r=14
+n=7 r=16 unbalanced=2 without-y=0
+exit=0 r=16
+n=7 r=18 unbalanced=1 without-y=0
+exit=0 r=18
+n=7 r=31 unbalanced=3 without-y=0
+exit=0 r=31
+n=7 r=35 unbalanced=1 without-y=0
+exit=0 r=35
+
+== C. ./slack_crit 4 4 30; ./slack_crit 5 5 30; ./slack_crit 6 6 40
+n=4 r=4 unbalanced=1 (x,k)=1 without-y=0
+n=4 r=5 unbalanced=1 (x,k)=2 without-y=0
+n=4 r=6 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=7 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=8 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=9 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=10 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=11 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=12 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=13 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=14 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=15 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=16 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=17 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=18 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=19 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=20 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=21 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=22 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=23 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=24 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=25 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=26 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=27 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=28 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=29 unbalanced=0 (x,k)=0 without-y=0
+n=4 r=30 unbalanced=0 (x,k)=0 without-y=0
+exit=0
+n=5 r=5 unbalanced=2: some unbalanced partition has fewer than n parts, not handled
+n=5 r=6 unbalanced=1 (x,k)=2 without-y=0
+n=5 r=7 unbalanced=2 (x,k)=4 without-y=0
+n=5 r=8 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=9 unbalanced=1 (x,k)=3 without-y=0
+n=5 r=10 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=11 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=12 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=13 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=14 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=15 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=16 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=17 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=18 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=19 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=20 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=21 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=22 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=23 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=24 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=25 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=26 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=27 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=28 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=29 unbalanced=0 (x,k)=0 without-y=0
+n=5 r=30 unbalanced=0 (x,k)=0 without-y=0
+exit=1
+n=6 r=6 unbalanced=2: some unbalanced partition has fewer than n parts, not handled
+n=6 r=7 unbalanced=3: some unbalanced partition has fewer than n parts, not handled
+n=6 r=8 unbalanced=2 (x,k)=4 without-y=0
+n=6 r=9 unbalanced=4: some unbalanced partition has fewer than n parts, not handled
+n=6 r=10 unbalanced=1 (x,k)=3 without-y=0
+n=6 r=11 unbalanced=3 (x,k)=9 without-y=0
+n=6 r=12 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=13 unbalanced=4 (x,k)=13 without-y=0
+n=6 r=14 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=15 unbalanced=2 (x,k)=8 without-y=0
+n=6 r=16 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=17 unbalanced=1 (x,k)=5 without-y=0
+n=6 r=18 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=19 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=20 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=21 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=22 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=23 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=24 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=25 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=26 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=27 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=28 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=29 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=30 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=31 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=32 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=33 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=34 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=35 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=36 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=37 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=38 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=39 unbalanced=0 (x,k)=0 without-y=0
+n=6 r=40 unbalanced=0 (x,k)=0 without-y=0
+exit=1
+
+== D. sphere_free point-level replays
+== sphere_free 4 5
+n=4 r=5 |Lmax|=340 sphere=180 unbalanced=32 slack1-dominated=32 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 5 6
+n=5 r=6 |Lmax|=1826 sphere=985 unbalanced=80 slack1-dominated=80 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 5 7
+n=5 r=7 |Lmax|=3591 sphere=1765 unbalanced=240 slack1-dominated=240 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 5 9
+n=5 r=9 |Lmax|=11181 sphere=4645 unbalanced=480 slack1-dominated=480 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 6 8
+n=6 r=8 |Lmax|=20040 sphere=10128 unbalanced=672 slack1-dominated=672 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 6 10
+n=6 r=10 |Lmax|=67122 sphere=29364 unbalanced=1920 slack1-dominated=1920 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+== sphere_free 6 11
+n=6 r=11 |Lmax|=113652 sphere=46530 unbalanced=5760 slack1-dominated=5760 slack1-candidate-failed=0 other-dominated=0 undominated=0
+exit=0
+
+== E. ./slack_crit 8 r r, odd r from 69 down (timeout 1200 s per scale)
+n=8 r=69 unbalanced=11 (x,k)=88 without-y=0
+exit=0 r=69
+n=8 r=67 unbalanced=22 (x,k)=170 without-y=0
+exit=0 r=67
+n=8 r=65 unbalanced=29 (x,k)=218 without-y=0
+exit=0 r=65
+n=8 r=63 unbalanced=32 (x,k)=243 without-y=0
+exit=0 r=63
+n=8 r=61 unbalanced=48 (x,k)=364 without-y=0
+exit=0 r=61
+n=8 r=59 unbalanced=66 (x,k)=492 without-y=0
+exit=0 r=59
+
+== F. Limit of top-sphere-first deletion: hull_rounds.py (any hull dominator, full current set) and sphere_rounds (slack-one, rounds)
+n=5 r=5 |Lmax|=841 sphere=501 unbalanced=176
+  round 1: deleted 80 of 176
+  round 2: deleted 0 of 96
+n=5 r=5 never-deleted=96 examples=[(-2, -1, -1, 0, 1), (-2, -1, -1, 1, 0), (-2, -1, 1, 0, 1)]
+exit=0
+n=4 r=5 |Lmax|=340 sphere=180 unbalanced=32
+  round 1: deleted 32 of 32
+n=4 r=5 never-deleted=0 examples=[]
+exit=0
+n=6 r=6 |Lmax|=4494 sphere=2668 unbalanced=512
+  round 1: deleted 228 of 512
+  round 2: deleted 0 of 284
+n=6 r=6 never-deleted=284 examples=[(-2, -1, -1, -1, 0, 1), (-2, -1, -1, -1, 1, 0), (-2, -1, -1, 0, 1, 1)]
+exit=0
+n=5 r=5 unbalanced=2 points=176
+  round 1: deleted 72 of 176
+  round 2: deleted 0 of 104
+  stuck x=(2,1,1,1,0)
+  stuck x=(-2,1,1,1,0)
+  stuck x=(2,-1,1,1,0)
+  stuck x=(-2,-1,1,1,0)
+  stuck x=(1,2,1,1,0)
+n=5 r=5 unbalanced=2 points=176 rounds=2 never-deleted=104
+exit=1
+n=6 r=6 unbalanced=2 points=512
+  round 1: deleted 0 of 512
+  stuck x=(2,1,1,1,1,0)
+  stuck x=(-2,1,1,1,1,0)
+  stuck x=(2,-1,1,1,1,0)
+  stuck x=(-2,-1,1,1,1,0)
+  stuck x=(1,2,1,1,1,0)
+n=6 r=6 unbalanced=2 points=512 rounds=1 never-deleted=512
+exit=1
+n=6 r=7 unbalanced=3 points=1632
+  round 1: deleted 576 of 1632
+  round 2: deleted 0 of 1056
+  stuck x=(3,1,1,1,1,0)
+  stuck x=(-3,1,1,1,1,0)
+  stuck x=(3,-1,1,1,1,0)
+  stuck x=(-3,-1,1,1,1,0)
+  stuck x=(1,3,1,1,1,0)
+n=6 r=7 unbalanced=3 points=1632 rounds=2 never-deleted=1056
+exit=1
+n=6 r=9 unbalanced=4 points=4672
+  round 1: deleted 2384 of 4672
+  round 2: deleted 16 of 2288
+  round 3: deleted 0 of 2272
+  stuck x=(3,2,2,1,1,0)
+  stuck x=(-3,2,2,1,1,0)
+  stuck x=(3,-2,2,1,1,0)
+  stuck x=(-3,-2,2,1,1,0)
+  stuck x=(2,3,2,1,1,0)
+n=6 r=9 unbalanced=4 points=4672 rounds=3 never-deleted=2272
+exit=1
+n=7 r=10 unbalanced=4 points=18816
+  round 1: deleted 0 of 18816
+  stuck x=(3,2,2,1,1,1,0)
+  stuck x=(-3,2,2,1,1,1,0)
+  stuck x=(3,-2,2,1,1,1,0)
+  stuck x=(-3,-2,2,1,1,1,0)
+  stuck x=(2,3,2,1,1,1,0)
+n=7 r=10 unbalanced=4 points=18816 rounds=1 never-deleted=18816
+exit=1
+n=5 r=6 unbalanced=1 points=80
+  round 1: deleted 80 of 80
+n=5 r=6 unbalanced=1 points=80 rounds=1 never-deleted=0
+exit=0
+n=6 r=8 unbalanced=2 points=672
+  round 1: deleted 672 of 672
+n=6 r=8 unbalanced=2 points=672 rounds=1 never-deleted=0
+exit=0
+n=7 r=12 unbalanced=3 points=22400
+  round 1: deleted 22400 of 22400
+n=7 r=12 unbalanced=3 points=22400 rounds=1 never-deleted=0
+exit=0
+
+== E (continued). n=8 sharded runs: U8.txt status lines, then shard logs (stream A: n8a.log, stream B: n8b.log)
+exit=0 r=57
+exit=0 r=55
+exit=0 r=53
+exit=0 r=51
+exit=0 r=49
+exit=0 r=47
+exit=0 r=45
+exit=0 r=43
+exit=0 r=41
+exit=0 r=39
+exit=0 r=37
+exit=0 r=36
+exit=0 r=34
+exit=0 r=32
+exit=0 r=30
+exit=0 r=28
+exit=0 r=26
+exit=0 r=24
+exit=0 r=22
+exit=0 r=20
+-- n8a.log
+## r=57 |U|=79 shards=6 start 01:54:02
+n=8 r=57 unbalanced=79 shard=0/6 (x,k)=101 without-y=0
+exit=0 r=57 shard=0/6 01:55:38
+n=8 r=57 unbalanced=79 shard=1/6 (x,k)=92 without-y=0
+exit=0 r=57 shard=1/6 01:57:05
+n=8 r=57 unbalanced=79 shard=2/6 (x,k)=94 without-y=0
+exit=0 r=57 shard=2/6 01:58:17
+n=8 r=57 unbalanced=79 shard=3/6 (x,k)=94 without-y=0
+exit=0 r=57 shard=3/6 01:59:37
+n=8 r=57 unbalanced=79 shard=4/6 (x,k)=94 without-y=0
+exit=0 r=57 shard=4/6 02:00:57
+n=8 r=57 unbalanced=79 shard=5/6 (x,k)=96 without-y=0
+exit=0 r=57 shard=5/6 02:02:28
+## r=53 |U|=110 shards=11 start 02:02:28
+n=8 r=53 unbalanced=110 shard=0/11 (x,k)=74 without-y=0
+exit=0 r=53 shard=0/11 02:03:58
+n=8 r=53 unbalanced=110 shard=1/11 (x,k)=70 without-y=0
+exit=0 r=53 shard=1/11 02:05:17
+n=8 r=53 unbalanced=110 shard=2/11 (x,k)=72 without-y=0
+exit=0 r=53 shard=2/11 02:06:38
+n=8 r=53 unbalanced=110 shard=3/11 (x,k)=74 without-y=0
+exit=0 r=53 shard=3/11 02:08:09
+n=8 r=53 unbalanced=110 shard=4/11 (x,k)=69 without-y=0
+exit=0 r=53 shard=4/11 02:09:12
+n=8 r=53 unbalanced=110 shard=5/11 (x,k)=72 without-y=0
+exit=0 r=53 shard=5/11 02:10:39
+n=8 r=53 unbalanced=110 shard=6/11 (x,k)=74 without-y=0
+exit=0 r=53 shard=6/11 02:12:11
+n=8 r=53 unbalanced=110 shard=7/11 (x,k)=71 without-y=0
+exit=0 r=53 shard=7/11 02:13:28
+n=8 r=53 unbalanced=110 shard=8/11 (x,k)=70 without-y=0
+exit=0 r=53 shard=8/11 02:14:49
+n=8 r=53 unbalanced=110 shard=9/11 (x,k)=74 without-y=0
+exit=0 r=53 shard=9/11 02:16:18
+n=8 r=53 unbalanced=110 shard=10/11 (x,k)=71 without-y=0
+exit=0 r=53 shard=10/11 02:17:43
+## r=49 |U|=155 shards=21 start 02:17:43
+n=8 r=49 unbalanced=155 shard=0/21 (x,k)=54 without-y=0
+exit=0 r=49 shard=0/21 02:18:55
+n=8 r=49 unbalanced=155 shard=1/21 (x,k)=53 without-y=0
+exit=0 r=49 shard=1/21 02:19:58
+n=8 r=49 unbalanced=155 shard=2/21 (x,k)=55 without-y=0
+exit=0 r=49 shard=2/21 02:21:00
+n=8 r=49 unbalanced=155 shard=3/21 (x,k)=54 without-y=0
+exit=0 r=49 shard=3/21 02:22:05
+n=8 r=49 unbalanced=155 shard=4/21 (x,k)=55 without-y=0
+exit=0 r=49 shard=4/21 02:23:18
+n=8 r=49 unbalanced=155 shard=5/21 (x,k)=54 without-y=0
+exit=0 r=49 shard=5/21 02:24:16
+n=8 r=49 unbalanced=155 shard=6/21 (x,k)=56 without-y=0
+exit=0 r=49 shard=6/21 02:25:28
+n=8 r=49 unbalanced=155 shard=7/21 (x,k)=54 without-y=0
+exit=0 r=49 shard=7/21 02:26:24
+n=8 r=49 unbalanced=155 shard=8/21 (x,k)=49 without-y=0
+exit=0 r=49 shard=8/21 02:27:19
+n=8 r=49 unbalanced=155 shard=9/21 (x,k)=50 without-y=0
+exit=0 r=49 shard=9/21 02:28:08
+n=8 r=49 unbalanced=155 shard=10/21 (x,k)=47 without-y=0
+exit=0 r=49 shard=10/21 02:29:06
+n=8 r=49 unbalanced=155 shard=11/21 (x,k)=49 without-y=0
+exit=0 r=49 shard=11/21 02:30:02
+n=8 r=49 unbalanced=155 shard=12/21 (x,k)=47 without-y=0
+exit=0 r=49 shard=12/21 02:30:52
+n=8 r=49 unbalanced=155 shard=13/21 (x,k)=46 without-y=0
+exit=0 r=49 shard=13/21 02:31:41
+n=8 r=49 unbalanced=155 shard=14/21 (x,k)=46 without-y=0
+exit=0 r=49 shard=14/21 02:32:16
+n=8 r=49 unbalanced=155 shard=15/21 (x,k)=50 without-y=0
+exit=0 r=49 shard=15/21 02:33:07
+n=8 r=49 unbalanced=155 shard=16/21 (x,k)=47 without-y=0
+exit=0 r=49 shard=16/21 02:33:51
+n=8 r=49 unbalanced=155 shard=17/21 (x,k)=50 without-y=0
+exit=0 r=49 shard=17/21 02:34:49
+n=8 r=49 unbalanced=155 shard=18/21 (x,k)=49 without-y=0
+exit=0 r=49 shard=18/21 02:35:38
+n=8 r=49 unbalanced=155 shard=19/21 (x,k)=46 without-y=0
+exit=0 r=49 shard=19/21 02:36:23
+n=8 r=49 unbalanced=155 shard=20/21 (x,k)=46 without-y=0
+exit=0 r=49 shard=20/21 02:37:05
+## r=45 |U|=186 shards=29 start 02:37:05
+n=8 r=45 unbalanced=186 shard=0/29 (x,k)=48 without-y=0
+exit=0 r=45 shard=0/29 02:37:36
+n=8 r=45 unbalanced=186 shard=1/29 (x,k)=45 without-y=0
+exit=0 r=45 shard=1/29 02:38:25
+n=8 r=45 unbalanced=186 shard=2/29 (x,k)=43 without-y=0
+exit=0 r=45 shard=2/29 02:39:05
+n=8 r=45 unbalanced=186 shard=3/29 (x,k)=47 without-y=0
+exit=0 r=45 shard=3/29 02:39:57
+n=8 r=45 unbalanced=186 shard=4/29 (x,k)=44 without-y=0
+exit=0 r=45 shard=4/29 02:40:38
+n=8 r=45 unbalanced=186 shard=5/29 (x,k)=41 without-y=0
+exit=0 r=45 shard=5/29 02:41:01
+n=8 r=45 unbalanced=186 shard=6/29 (x,k)=46 without-y=0
+exit=0 r=45 shard=6/29 02:41:44
+n=8 r=45 unbalanced=186 shard=7/29 (x,k)=42 without-y=0
+exit=0 r=45 shard=7/29 02:42:19
+n=8 r=45 unbalanced=186 shard=8/29 (x,k)=46 without-y=0
+exit=0 r=45 shard=8/29 02:42:54
+n=8 r=45 unbalanced=186 shard=9/29 (x,k)=45 without-y=0
+exit=0 r=45 shard=9/29 02:43:30
+n=8 r=45 unbalanced=186 shard=10/29 (x,k)=44 without-y=0
+exit=0 r=45 shard=10/29 02:44:07
+n=8 r=45 unbalanced=186 shard=11/29 (x,k)=44 without-y=0
+exit=0 r=45 shard=11/29 02:44:41
+n=8 r=45 unbalanced=186 shard=12/29 (x,k)=41 without-y=0
+exit=0 r=45 shard=12/29 02:45:02
+n=8 r=45 unbalanced=186 shard=13/29 (x,k)=39 without-y=0
+exit=0 r=45 shard=13/29 02:45:39
+n=8 r=45 unbalanced=186 shard=14/29 (x,k)=37 without-y=0
+exit=0 r=45 shard=14/29 02:45:57
+n=8 r=45 unbalanced=186 shard=15/29 (x,k)=40 without-y=0
+exit=0 r=45 shard=15/29 02:46:34
+n=8 r=45 unbalanced=186 shard=16/29 (x,k)=38 without-y=0
+exit=0 r=45 shard=16/29 02:47:05
+n=8 r=45 unbalanced=186 shard=17/29 (x,k)=38 without-y=0
+exit=0 r=45 shard=17/29 02:47:30
+n=8 r=45 unbalanced=186 shard=18/29 (x,k)=39 without-y=0
+exit=0 r=45 shard=18/29 02:48:04
+n=8 r=45 unbalanced=186 shard=19/29 (x,k)=39 without-y=0
+exit=0 r=45 shard=19/29 02:48:28
+n=8 r=45 unbalanced=186 shard=20/29 (x,k)=41 without-y=0
+exit=0 r=45 shard=20/29 02:48:58
+n=8 r=45 unbalanced=186 shard=21/29 (x,k)=39 without-y=0
+exit=0 r=45 shard=21/29 02:49:22
+n=8 r=45 unbalanced=186 shard=22/29 (x,k)=40 without-y=0
+exit=0 r=45 shard=22/29 02:49:50
+n=8 r=45 unbalanced=186 shard=23/29 (x,k)=37 without-y=0
+exit=0 r=45 shard=23/29 02:50:09
+n=8 r=45 unbalanced=186 shard=24/29 (x,k)=36 without-y=0
+exit=0 r=45 shard=24/29 02:50:22
+n=8 r=45 unbalanced=186 shard=25/29 (x,k)=39 without-y=0
+exit=0 r=45 shard=25/29 02:50:42
+n=8 r=45 unbalanced=186 shard=26/29 (x,k)=41 without-y=0
+exit=0 r=45 shard=26/29 02:51:04
+n=8 r=45 unbalanced=186 shard=27/29 (x,k)=41 without-y=0
+exit=0 r=45 shard=27/29 02:51:26
+n=8 r=45 unbalanced=186 shard=28/29 (x,k)=43 without-y=0
+exit=0 r=45 shard=28/29 02:51:47
+## r=41 |U|=180 shards=27 start 02:51:47
+n=8 r=41 unbalanced=180 shard=0/27 (x,k)=44 without-y=0
+exit=0 r=41 shard=0/27 02:52:02
+n=8 r=41 unbalanced=180 shard=1/27 (x,k)=46 without-y=0
+exit=0 r=41 shard=1/27 02:52:18
+n=8 r=41 unbalanced=180 shard=2/27 (x,k)=43 without-y=0
+exit=0 r=41 shard=2/27 02:52:33
+n=8 r=41 unbalanced=180 shard=3/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=3/27 02:52:48
+n=8 r=41 unbalanced=180 shard=4/27 (x,k)=43 without-y=0
+exit=0 r=41 shard=4/27 02:53:06
+n=8 r=41 unbalanced=180 shard=5/27 (x,k)=44 without-y=0
+exit=0 r=41 shard=5/27 02:53:20
+n=8 r=41 unbalanced=180 shard=6/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=6/27 02:53:35
+n=8 r=41 unbalanced=180 shard=7/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=7/27 02:53:49
+n=8 r=41 unbalanced=180 shard=8/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=8/27 02:54:04
+n=8 r=41 unbalanced=180 shard=9/27 (x,k)=44 without-y=0
+exit=0 r=41 shard=9/27 02:54:20
+n=8 r=41 unbalanced=180 shard=10/27 (x,k)=46 without-y=0
+exit=0 r=41 shard=10/27 02:54:41
+n=8 r=41 unbalanced=180 shard=11/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=11/27 02:54:56
+n=8 r=41 unbalanced=180 shard=12/27 (x,k)=46 without-y=0
+exit=0 r=41 shard=12/27 02:55:12
+n=8 r=41 unbalanced=180 shard=13/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=13/27 02:55:31
+n=8 r=41 unbalanced=180 shard=14/27 (x,k)=45 without-y=0
+exit=0 r=41 shard=14/27 02:55:49
+n=8 r=41 unbalanced=180 shard=15/27 (x,k)=43 without-y=0
+exit=0 r=41 shard=15/27 02:56:10
+n=8 r=41 unbalanced=180 shard=16/27 (x,k)=43 without-y=0
+exit=0 r=41 shard=16/27 02:56:27
+n=8 r=41 unbalanced=180 shard=17/27 (x,k)=41 without-y=0
+exit=0 r=41 shard=17/27 02:56:48
+n=8 r=41 unbalanced=180 shard=18/27 (x,k)=37 without-y=0
+exit=0 r=41 shard=18/27 02:57:01
+n=8 r=41 unbalanced=180 shard=19/27 (x,k)=36 without-y=0
+exit=0 r=41 shard=19/27 02:57:15
+n=8 r=41 unbalanced=180 shard=20/27 (x,k)=37 without-y=0
+exit=0 r=41 shard=20/27 02:57:33
+n=8 r=41 unbalanced=180 shard=21/27 (x,k)=39 without-y=0
+exit=0 r=41 shard=21/27 02:57:48
+n=8 r=41 unbalanced=180 shard=22/27 (x,k)=36 without-y=0
+exit=0 r=41 shard=22/27 02:57:58
+n=8 r=41 unbalanced=180 shard=23/27 (x,k)=37 without-y=0
+exit=0 r=41 shard=23/27 02:58:10
+n=8 r=41 unbalanced=180 shard=24/27 (x,k)=39 without-y=0
+exit=0 r=41 shard=24/27 02:58:24
+n=8 r=41 unbalanced=180 shard=25/27 (x,k)=37 without-y=0
+exit=0 r=41 shard=25/27 02:58:36
+n=8 r=41 unbalanced=180 shard=26/27 (x,k)=36 without-y=0
+exit=0 r=41 shard=26/27 02:58:47
+## r=37 |U|=182 shards=28 start 02:58:47
+n=8 r=37 unbalanced=182 shard=0/28 (x,k)=39 without-y=0
+exit=0 r=37 shard=0/28 02:58:55
+n=8 r=37 unbalanced=182 shard=1/28 (x,k)=40 without-y=0
+exit=0 r=37 shard=1/28 02:59:03
+n=8 r=37 unbalanced=182 shard=2/28 (x,k)=39 without-y=0
+exit=0 r=37 shard=2/28 02:59:12
+n=8 r=37 unbalanced=182 shard=3/28 (x,k)=42 without-y=0
+exit=0 r=37 shard=3/28 02:59:21
+n=8 r=37 unbalanced=182 shard=4/28 (x,k)=40 without-y=0
+exit=0 r=37 shard=4/28 02:59:32
+n=8 r=37 unbalanced=182 shard=5/28 (x,k)=43 without-y=0
+exit=0 r=37 shard=5/28 02:59:43
+n=8 r=37 unbalanced=182 shard=6/28 (x,k)=38 without-y=0
+exit=0 r=37 shard=6/28 02:59:53
+n=8 r=37 unbalanced=182 shard=7/28 (x,k)=39 without-y=0
+exit=0 r=37 shard=7/28 03:00:03
+n=8 r=37 unbalanced=182 shard=8/28 (x,k)=40 without-y=0
+exit=0 r=37 shard=8/28 03:00:13
+n=8 r=37 unbalanced=182 shard=9/28 (x,k)=39 without-y=0
+exit=0 r=37 shard=9/28 03:00:24
+n=8 r=37 unbalanced=182 shard=10/28 (x,k)=37 without-y=0
+exit=0 r=37 shard=10/28 03:00:30
+n=8 r=37 unbalanced=182 shard=11/28 (x,k)=43 without-y=0
+exit=0 r=37 shard=11/28 03:00:43
+n=8 r=37 unbalanced=182 shard=12/28 (x,k)=39 without-y=0
+exit=0 r=37 shard=12/28 03:00:53
+n=8 r=37 unbalanced=182 shard=13/28 (x,k)=44 without-y=0
+exit=0 r=37 shard=13/28 03:01:03
+n=8 r=37 unbalanced=182 shard=14/28 (x,k)=38 without-y=0
+exit=0 r=37 shard=14/28 03:01:12
+n=8 r=37 unbalanced=182 shard=15/28 (x,k)=37 without-y=0
+exit=0 r=37 shard=15/28 03:01:21
+n=8 r=37 unbalanced=182 shard=16/28 (x,k)=37 without-y=0
+exit=0 r=37 shard=16/28 03:01:30
+n=8 r=37 unbalanced=182 shard=17/28 (x,k)=37 without-y=0
+exit=0 r=37 shard=17/28 03:01:41
+n=8 r=37 unbalanced=182 shard=18/28 (x,k)=36 without-y=0
+exit=0 r=37 shard=18/28 03:01:52
+n=8 r=37 unbalanced=182 shard=19/28 (x,k)=35 without-y=0
+exit=0 r=37 shard=19/28 03:02:01
+n=8 r=37 unbalanced=182 shard=20/28 (x,k)=35 without-y=0
+exit=0 r=37 shard=20/28 03:02:11
+n=8 r=37 unbalanced=182 shard=21/28 (x,k)=36 without-y=0
+exit=0 r=37 shard=21/28 03:02:22
+n=8 r=37 unbalanced=182 shard=22/28 (x,k)=34 without-y=0
+exit=0 r=37 shard=22/28 03:02:33
+n=8 r=37 unbalanced=182 shard=23/28 (x,k)=34 without-y=0
+exit=0 r=37 shard=23/28 03:02:42
+n=8 r=37 unbalanced=182 shard=24/28 (x,k)=35 without-y=0
+exit=0 r=37 shard=24/28 03:02:50
+n=8 r=37 unbalanced=182 shard=25/28 (x,k)=34 without-y=0
+exit=0 r=37 shard=25/28 03:02:59
+n=8 r=37 unbalanced=182 shard=26/28 (x,k)=32 without-y=0
+exit=0 r=37 shard=26/28 03:03:05
+n=8 r=37 unbalanced=182 shard=27/28 (x,k)=33 without-y=0
+exit=0 r=37 shard=27/28 03:03:12
+## done
+-- n8b.log
+## r=55 |U|=100 shards=9 start 02:01:14
+n=8 r=55 unbalanced=100 shard=0/9 (x,k)=85 without-y=0
+exit=0 r=55 shard=0/9 02:02:53
+n=8 r=55 unbalanced=100 shard=1/9 (x,k)=74 without-y=0
+exit=0 r=55 shard=1/9 02:04:21
+n=8 r=55 unbalanced=100 shard=2/9 (x,k)=79 without-y=0
+exit=0 r=55 shard=2/9 02:05:49
+n=8 r=55 unbalanced=100 shard=3/9 (x,k)=82 without-y=0
+exit=0 r=55 shard=3/9 02:07:22
+n=8 r=55 unbalanced=100 shard=4/9 (x,k)=78 without-y=0
+exit=0 r=55 shard=4/9 02:08:39
+n=8 r=55 unbalanced=100 shard=5/9 (x,k)=80 without-y=0
+exit=0 r=55 shard=5/9 02:10:05
+n=8 r=55 unbalanced=100 shard=6/9 (x,k)=81 without-y=0
+exit=0 r=55 shard=6/9 02:11:42
+n=8 r=55 unbalanced=100 shard=7/9 (x,k)=82 without-y=0
+exit=0 r=55 shard=7/9 02:13:29
+n=8 r=55 unbalanced=100 shard=8/9 (x,k)=76 without-y=0
+exit=0 r=55 shard=8/9 02:14:45
+## r=51 |U|=125 shards=14 start 02:14:45
+n=8 r=51 unbalanced=125 shard=0/14 (x,k)=60 without-y=0
+exit=0 r=51 shard=0/14 02:15:36
+n=8 r=51 unbalanced=125 shard=1/14 (x,k)=63 without-y=0
+exit=0 r=51 shard=1/14 02:16:46
+n=8 r=51 unbalanced=125 shard=2/14 (x,k)=60 without-y=0
+exit=0 r=51 shard=2/14 02:17:48
+n=8 r=51 unbalanced=125 shard=3/14 (x,k)=62 without-y=0
+exit=0 r=51 shard=3/14 02:19:01
+n=8 r=51 unbalanced=125 shard=4/14 (x,k)=66 without-y=0
+exit=0 r=51 shard=4/14 02:20:20
+n=8 r=51 unbalanced=125 shard=5/14 (x,k)=63 without-y=0
+exit=0 r=51 shard=5/14 02:21:24
+n=8 r=51 unbalanced=125 shard=6/14 (x,k)=60 without-y=0
+exit=0 r=51 shard=6/14 02:22:31
+n=8 r=51 unbalanced=125 shard=7/14 (x,k)=68 without-y=0
+exit=0 r=51 shard=7/14 02:24:02
+n=8 r=51 unbalanced=125 shard=8/14 (x,k)=65 without-y=0
+exit=0 r=51 shard=8/14 02:25:30
+n=8 r=51 unbalanced=125 shard=9/14 (x,k)=61 without-y=0
+exit=0 r=51 shard=9/14 02:26:23
+n=8 r=51 unbalanced=125 shard=10/14 (x,k)=63 without-y=0
+exit=0 r=51 shard=10/14 02:27:34
+n=8 r=51 unbalanced=125 shard=11/14 (x,k)=61 without-y=0
+exit=0 r=51 shard=11/14 02:28:21
+n=8 r=51 unbalanced=125 shard=12/14 (x,k)=59 without-y=0
+exit=0 r=51 shard=12/14 02:29:18
+n=8 r=51 unbalanced=125 shard=13/14 (x,k)=54 without-y=0
+exit=0 r=51 shard=13/14 02:30:03
+## r=47 |U|=157 shards=21 start 02:30:03
+n=8 r=47 unbalanced=157 shard=0/21 (x,k)=52 without-y=0
+exit=0 r=47 shard=0/21 02:30:57
+n=8 r=47 unbalanced=157 shard=1/21 (x,k)=49 without-y=0
+exit=0 r=47 shard=1/21 02:31:40
+n=8 r=47 unbalanced=157 shard=2/21 (x,k)=52 without-y=0
+exit=0 r=47 shard=2/21 02:32:36
+n=8 r=47 unbalanced=157 shard=3/21 (x,k)=55 without-y=0
+exit=0 r=47 shard=3/21 02:33:34
+n=8 r=47 unbalanced=157 shard=4/21 (x,k)=55 without-y=0
+exit=0 r=47 shard=4/21 02:34:28
+n=8 r=47 unbalanced=157 shard=5/21 (x,k)=55 without-y=0
+exit=0 r=47 shard=5/21 02:35:19
+n=8 r=47 unbalanced=157 shard=6/21 (x,k)=52 without-y=0
+exit=0 r=47 shard=6/21 02:36:17
+n=8 r=47 unbalanced=157 shard=7/21 (x,k)=53 without-y=0
+exit=0 r=47 shard=7/21 02:37:06
+n=8 r=47 unbalanced=157 shard=8/21 (x,k)=52 without-y=0
+exit=0 r=47 shard=8/21 02:37:46
+n=8 r=47 unbalanced=157 shard=9/21 (x,k)=52 without-y=0
+exit=0 r=47 shard=9/21 02:38:39
+n=8 r=47 unbalanced=157 shard=10/21 (x,k)=47 without-y=0
+exit=0 r=47 shard=10/21 02:39:24
+n=8 r=47 unbalanced=157 shard=11/21 (x,k)=49 without-y=0
+exit=0 r=47 shard=11/21 02:40:16
+n=8 r=47 unbalanced=157 shard=12/21 (x,k)=44 without-y=0
+exit=0 r=47 shard=12/21 02:40:57
+n=8 r=47 unbalanced=157 shard=13/21 (x,k)=46 without-y=0
+exit=0 r=47 shard=13/21 02:41:43
+n=8 r=47 unbalanced=157 shard=14/21 (x,k)=43 without-y=0
+exit=0 r=47 shard=14/21 02:42:12
+n=8 r=47 unbalanced=157 shard=15/21 (x,k)=47 without-y=0
+exit=0 r=47 shard=15/21 02:42:44
+n=8 r=47 unbalanced=157 shard=16/21 (x,k)=50 without-y=0
+exit=0 r=47 shard=16/21 02:43:13
+n=8 r=47 unbalanced=157 shard=17/21 (x,k)=51 without-y=0
+exit=0 r=47 shard=17/21 02:43:48
+n=8 r=47 unbalanced=157 shard=18/21 (x,k)=48 without-y=0
+exit=0 r=47 shard=18/21 02:44:20
+n=8 r=47 unbalanced=157 shard=19/21 (x,k)=48 without-y=0
+exit=0 r=47 shard=19/21 02:44:56
+n=8 r=47 unbalanced=157 shard=20/21 (x,k)=48 without-y=0
+exit=0 r=47 shard=20/21 02:45:41
+## r=43 |U|=170 shards=25 start 02:45:41
+n=8 r=43 unbalanced=170 shard=0/25 (x,k)=44 without-y=0
+exit=0 r=43 shard=0/25 02:46:13
+n=8 r=43 unbalanced=170 shard=1/25 (x,k)=45 without-y=0
+exit=0 r=43 shard=1/25 02:46:44
+n=8 r=43 unbalanced=170 shard=2/25 (x,k)=44 without-y=0
+exit=0 r=43 shard=2/25 02:47:08
+n=8 r=43 unbalanced=170 shard=3/25 (x,k)=42 without-y=0
+exit=0 r=43 shard=3/25 02:47:32
+n=8 r=43 unbalanced=170 shard=4/25 (x,k)=40 without-y=0
+exit=0 r=43 shard=4/25 02:47:59
+n=8 r=43 unbalanced=170 shard=5/25 (x,k)=46 without-y=0
+exit=0 r=43 shard=5/25 02:48:30
+n=8 r=43 unbalanced=170 shard=6/25 (x,k)=48 without-y=0
+exit=0 r=43 shard=6/25 02:49:03
+n=8 r=43 unbalanced=170 shard=7/25 (x,k)=47 without-y=0
+exit=0 r=43 shard=7/25 02:49:28
+n=8 r=43 unbalanced=170 shard=8/25 (x,k)=46 without-y=0
+exit=0 r=43 shard=8/25 02:50:04
+n=8 r=43 unbalanced=170 shard=9/25 (x,k)=46 without-y=0
+exit=0 r=43 shard=9/25 02:50:30
+n=8 r=43 unbalanced=170 shard=10/25 (x,k)=46 without-y=0
+exit=0 r=43 shard=10/25 02:50:49
+n=8 r=43 unbalanced=170 shard=11/25 (x,k)=44 without-y=0
+exit=0 r=43 shard=11/25 02:51:04
+n=8 r=43 unbalanced=170 shard=12/25 (x,k)=43 without-y=0
+exit=0 r=43 shard=12/25 02:51:21
+n=8 r=43 unbalanced=170 shard=13/25 (x,k)=45 without-y=0
+exit=0 r=43 shard=13/25 02:51:40
+n=8 r=43 unbalanced=170 shard=14/25 (x,k)=42 without-y=0
+exit=0 r=43 shard=14/25 02:51:58
+n=8 r=43 unbalanced=170 shard=15/25 (x,k)=45 without-y=0
+exit=0 r=43 shard=15/25 02:52:20
+n=8 r=43 unbalanced=170 shard=16/25 (x,k)=41 without-y=0
+exit=0 r=43 shard=16/25 02:52:38
+n=8 r=43 unbalanced=170 shard=17/25 (x,k)=45 without-y=0
+exit=0 r=43 shard=17/25 02:53:00
+n=8 r=43 unbalanced=170 shard=18/25 (x,k)=41 without-y=0
+exit=0 r=43 shard=18/25 02:53:14
+n=8 r=43 unbalanced=170 shard=19/25 (x,k)=47 without-y=0
+exit=0 r=43 shard=19/25 02:53:35
+n=8 r=43 unbalanced=170 shard=20/25 (x,k)=38 without-y=0
+exit=0 r=43 shard=20/25 02:53:48
+n=8 r=43 unbalanced=170 shard=21/25 (x,k)=37 without-y=0
+exit=0 r=43 shard=21/25 02:54:00
+n=8 r=43 unbalanced=170 shard=22/25 (x,k)=38 without-y=0
+exit=0 r=43 shard=22/25 02:54:13
+n=8 r=43 unbalanced=170 shard=23/25 (x,k)=43 without-y=0
+exit=0 r=43 shard=23/25 02:54:29
+n=8 r=43 unbalanced=170 shard=24/25 (x,k)=41 without-y=0
+exit=0 r=43 shard=24/25 02:54:44
+## r=39 |U|=177 shards=27 start 02:54:44
+n=8 r=39 unbalanced=177 shard=0/27 (x,k)=41 without-y=0
+exit=0 r=39 shard=0/27 02:54:56
+n=8 r=39 unbalanced=177 shard=1/27 (x,k)=43 without-y=0
+exit=0 r=39 shard=1/27 02:55:10
+n=8 r=39 unbalanced=177 shard=2/27 (x,k)=43 without-y=0
+exit=0 r=39 shard=2/27 02:55:25
+n=8 r=39 unbalanced=177 shard=3/27 (x,k)=39 without-y=0
+exit=0 r=39 shard=3/27 02:55:32
+n=8 r=39 unbalanced=177 shard=4/27 (x,k)=42 without-y=0
+exit=0 r=39 shard=4/27 02:55:49
+n=8 r=39 unbalanced=177 shard=5/27 (x,k)=40 without-y=0
+exit=0 r=39 shard=5/27 02:55:59
+n=8 r=39 unbalanced=177 shard=6/27 (x,k)=39 without-y=0
+exit=0 r=39 shard=6/27 02:56:11
+n=8 r=39 unbalanced=177 shard=7/27 (x,k)=42 without-y=0
+exit=0 r=39 shard=7/27 02:56:25
+n=8 r=39 unbalanced=177 shard=8/27 (x,k)=44 without-y=0
+exit=0 r=39 shard=8/27 02:56:39
+n=8 r=39 unbalanced=177 shard=9/27 (x,k)=45 without-y=0
+exit=0 r=39 shard=9/27 02:56:53
+n=8 r=39 unbalanced=177 shard=10/27 (x,k)=40 without-y=0
+exit=0 r=39 shard=10/27 02:57:05
+n=8 r=39 unbalanced=177 shard=11/27 (x,k)=40 without-y=0
+exit=0 r=39 shard=11/27 02:57:16
+n=8 r=39 unbalanced=177 shard=12/27 (x,k)=44 without-y=0
+exit=0 r=39 shard=12/27 02:57:31
+n=8 r=39 unbalanced=177 shard=13/27 (x,k)=40 without-y=0
+exit=0 r=39 shard=13/27 02:57:42
+n=8 r=39 unbalanced=177 shard=14/27 (x,k)=42 without-y=0
+exit=0 r=39 shard=14/27 02:57:58
+n=8 r=39 unbalanced=177 shard=15/27 (x,k)=38 without-y=0
+exit=0 r=39 shard=15/27 02:58:10
+n=8 r=39 unbalanced=177 shard=16/27 (x,k)=34 without-y=0
+exit=0 r=39 shard=16/27 02:58:18
+n=8 r=39 unbalanced=177 shard=17/27 (x,k)=38 without-y=0
+exit=0 r=39 shard=17/27 02:58:27
+n=8 r=39 unbalanced=177 shard=18/27 (x,k)=37 without-y=0
+exit=0 r=39 shard=18/27 02:58:36
+n=8 r=39 unbalanced=177 shard=19/27 (x,k)=34 without-y=0
+exit=0 r=39 shard=19/27 02:58:45
+n=8 r=39 unbalanced=177 shard=20/27 (x,k)=34 without-y=0
+exit=0 r=39 shard=20/27 02:58:52
+n=8 r=39 unbalanced=177 shard=21/27 (x,k)=38 without-y=0
+exit=0 r=39 shard=21/27 02:59:04
+n=8 r=39 unbalanced=177 shard=22/27 (x,k)=36 without-y=0
+exit=0 r=39 shard=22/27 02:59:15
+n=8 r=39 unbalanced=177 shard=23/27 (x,k)=34 without-y=0
+exit=0 r=39 shard=23/27 02:59:22
+n=8 r=39 unbalanced=177 shard=24/27 (x,k)=39 without-y=0
+exit=0 r=39 shard=24/27 02:59:36
+n=8 r=39 unbalanced=177 shard=25/27 (x,k)=39 without-y=0
+exit=0 r=39 shard=25/27 02:59:47
+n=8 r=39 unbalanced=177 shard=26/27 (x,k)=37 without-y=0
+exit=0 r=39 shard=26/27 02:59:58
+## r=36 |U|=1 shards=1 start 02:59:58
+n=8 r=36 unbalanced=1 shard=0/1 (x,k)=8 without-y=0
+exit=0 r=36 shard=0/1 02:59:58
+## r=34 |U|=3 shards=1 start 02:59:58
+n=8 r=34 unbalanced=3 shard=0/1 (x,k)=19 without-y=0
+exit=0 r=34 shard=0/1 02:59:58
+## r=32 |U|=4 shards=1 start 02:59:58
+n=8 r=32 unbalanced=4 shard=0/1 (x,k)=26 without-y=0
+exit=0 r=32 shard=0/1 02:59:58
+## r=30 |U|=7 shards=1 start 02:59:58
+n=8 r=30 unbalanced=7 shard=0/1 (x,k)=43 without-y=0
+exit=0 r=30 shard=0/1 02:59:59
+## r=28 |U|=10 shards=1 start 02:59:59
+n=8 r=28 unbalanced=10 shard=0/1 (x,k)=55 without-y=0
+exit=0 r=28 shard=0/1 02:59:59
+## r=26 |U|=16 shards=1 start 02:59:59
+n=8 r=26 unbalanced=16 shard=0/1 (x,k)=82 without-y=0
+exit=0 r=26 shard=0/1 03:00:00
+## r=24 |U|=12 shards=1 start 03:00:00
+n=8 r=24 unbalanced=12 shard=0/1 (x,k)=60 without-y=0
+exit=0 r=24 shard=0/1 03:00:01
+## r=22 |U|=18 shards=1 start 03:00:01
+n=8 r=22 unbalanced=18 shard=0/1 (x,k)=79 without-y=0
+exit=0 r=22 shard=0/1 03:00:01
+## r=20 |U|=14 shards=1 start 03:00:01
+n=8 r=20 unbalanced=14 shard=0/1 (x,k)=57 without-y=0
+exit=0 r=20 shard=0/1 03:00:01
+## done
