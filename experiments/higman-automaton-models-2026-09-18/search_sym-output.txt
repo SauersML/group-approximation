@@ -1,0 +1,2 @@
+n=3 maxlen=2 checked=8450 survivors(level 10)=7538
+order of a at level 10 Counter({1: 4225, 2: 3313})

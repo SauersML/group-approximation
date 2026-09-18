@@ -8,6 +8,7 @@ distinct_from:
   countable-group-embeds-in-two-generator-simple-group: that embeds groups into simple groups; this constructs a language of normal forms and a boundary action for a group given as it stands, and embeds nothing.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/gq-bh-bh-free-21-automatic-germ-extensions.md
 ---
 
 Let `G` be an infinite finitely generated group.  Then there are a finite
@@ -59,3 +60,26 @@ canonical representatives, build the dense Bernoulli configuration
 recursively — but "recursive" is very far from "regular", and no way was
 found to compress the language into a finite automaton while keeping the
 full-shift boundary.
+
+## Source check (bh-free-21, 2026-09-18)
+
+The preprint is now publicly readable:
+`https://jimbelk.github.io/web/RationalEmbeddingsContinuousAutomaticPreliminary.pdf`, preliminary
+version, read in full through p. 8. Record in
+`research/artifacts/gq-bh-bh-free-21-automatic-germ-extensions.md` §1.
+
+- **The question.** Remark 1.2 (p. 3) reads: "We do not know whether every infinite, finitely
+  generated group G has a continuous normal form L such that G acts faithfully on ∂L."
+- **The definitions match this node's statement.**
+  - A language of normal forms (p. 3): one word per element over a finite symmetric generating
+    set.
+  - It is continuous (p. 3) if the natural left action extends to a continuous action on
+    `L ∪ ∂L`.
+  - The continuity criterion is over monoid generators (Prop. 1.3 = Prop. 2.1). The proof route's
+    Step 5 is exactly that check.
+  - Neither regularity nor automaticity is part of the definition.
+- **So the reading is verified.** This node answers the question of Remark 1.2 affirmatively, in
+  its literal form. The authors' interest is in automatic normal forms (their §1.1 and
+  Cor. 1.9), and the padded language here is not regular. So the answer is literal only, and it
+  is recorded that way. It is a preliminary version, so the remark's numbering or wording may
+  change. No priority is claimed.

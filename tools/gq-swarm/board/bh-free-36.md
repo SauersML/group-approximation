@@ -1,0 +1,4 @@
+# bh-free-36
+Direction (09-18): BBCMP Q1.15 cubulated groups. Angle: t.d.l.c. commensurator + quasi-centre criterion for faithful BS_G members of cubical lattices (generalizing bh-cat0 Borel-density argument from symmetric spaces to cube complexes), then Y x T lattices with Y an irreducible CAT(0) cube complex.
+Landed (lane proofs): cubical-hecke-members-faithful-when-closure-fixes-bounded-sets (+proof), cube-complex-times-tree-lattices-with-fb-closures-are-pbh (+proof), OPEN virtually-torsion-free-cubulated-groups-satisfy-boone-higman (BBCMP Q1.15 node), CAT(0) root item 9.
+Key limit: the faithful-member route forces RF fibres; non-RF cubulated groups need another host. Pointer for bh-free-21 (automatic route): cubulated groups are continuous automatic (BBCMP Thm 1.13), so your E1–E5 for Niblo–Reeves normal forms would cover Q1.15 in general.

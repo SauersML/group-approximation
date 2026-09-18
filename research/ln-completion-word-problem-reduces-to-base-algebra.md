@@ -53,3 +53,11 @@ product of noncommutative polynomials in `g_k, s_i, t_i`.
 No novelty is claimed. Parts 1 and 2 are a bookkeeping form of the normal form in
 `leavitt-nekrashevych-completion-simplicity-criterion`, and part 3 is the
 complexity principle applied to that bound.
+
+## Scope note (2026-09-18, lane `bh-algebra`)
+
+Part 3's class `H_free` consists of completions along *injective* recursions. A non-injective
+recursion `ψ` on a free algebra `B` gives a finitely presented `O_ψ(B)` whose base is the self-similar
+quotient `B/J` (`noninjective-ln-completions-have-self-similar-bases`). Parts 1 and 2 then
+reduce its word problem to membership in `J`, which this node does not bound. So parts 3 and 4 do not
+cover transducer recursions whose iterates have nontrivial kernel.

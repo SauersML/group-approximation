@@ -135,6 +135,11 @@ theorem exists_mem_eqvGen_of_connected {M : CombMap.{v}} (hM : M.IsConnected)
   · refine ⟨M.alpha x, hk, Or.inr ?_⟩
     rwa [M.alpha_involutive x]
 
+-- LOUD: REFUTED (lane gl-p10-48; Python model, not yet in Lean).
+-- `RoseExtremalCoreStatement` is FALSE:
+-- it implies `RoseExtremalJunctionStatement`, which fails on the gl-p10-40 G-face model with
+-- the label-1 edges subdivided once (24 darts).  Corrected residual:
+-- `P10RoseExtremalTrim.roseJunctionCore_LobeRemovalStatement` (`JunctionCore.lean`).
 /-- **The extremal-region core** (OPEN, PLAUSIBLE; the isolated planarity core of the rose step).
 `P10RoseExtremalTrim.RoseExtremalJunctionStatement` without the clause "some dart of the cycle, or
 its reverse, lies in the class of `r`", which `exists_mem_eqvGen_of_connected` proves. -/

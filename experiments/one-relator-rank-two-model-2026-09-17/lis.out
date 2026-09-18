@@ -1,0 +1,26 @@
+Syntax warning: Unbound global variable in lis.g:17
+  img := function(w) return Image(hom, MappedWord(w, [a,t], GeneratorsOfGroup(\
+G))); end;
+                                  ^^^
+index 8 |Q|=576 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 7 |Q|=5040 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 7 |Q|=2520 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 6 |Q|=36 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=40320 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=20160 ord(u)=5 b1 survives=true v in pi(F_-)=true
+index 3 |Q|=6 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 6 |Q|=12 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 5 |Q|=20 ord(u)=5 b1 survives=true v in pi(F_-)=true
+index 7 |Q|=42 ord(u)=7 b1 survives=true v in pi(F_-)=true
+index 7 |Q|=21 ord(u)=7 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=20160 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=336 ord(u)=7 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=168 ord(u)=7 b1 survives=true v in pi(F_-)=true
+index 6 |Q|=18 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 8 |Q|=288 ord(u)=3 b1 survives=true v in pi(F_-)=true
+index 6 |Q|=6 ord(u)=3 b1 survives=true v in pi(F_-)=true
+rec(
+  bothsurv := 53,
+  subgroups := 253,
+  usurv := 53,
+  vsep := 0 )

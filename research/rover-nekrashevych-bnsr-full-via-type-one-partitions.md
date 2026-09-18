@@ -123,3 +123,14 @@ subset of `Y` lies in some `Y_{b<=M}`.
 - **Other `r`.** For `V_{d,r}(G)` the same argument runs on partitions into blocks of type `r`: coarsenings are
   `1 mod k/gcd(r,k)` partitions, and stabilizers are virtually `V_{d,r}(G)^n`. The missing input is the analogue of
   Copies 6, the character description of `V_{d,r}(G)`. It is not claimed here.
+
+## Attempts
+
+- 2026-09-18 (w6-101): the "Other `r`" remark needs one more change besides the character input.
+  - Step 2's directedness fails when `gcd(r, d−1) > 1`. For `d = 3` and `r = 2`, `{C_0 ∪ C_{10}, C_{11} ∪ C_{12}}`
+    and `{C_0 ∪ C_{11}, C_{10} ∪ C_{12}}` meet in single cones, which have odd type, so they have no common type-2
+    refinement.
+  - Both gaps are closed in `rover-nekrashevych-vdr-sigma-full-via-type-r-partitions`:
+    - the characters of `V_{d,r}G`, with living on clopen sets;
+    - contractibility, as a directed union of truncated `r mod k` partition posets
+      (`r-mod-k-partition-posets-truncations-highly-connected`).

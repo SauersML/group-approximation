@@ -94,3 +94,17 @@ Genus at most two and all surfaces with a puncture or boundary are
    - **Still open.**
      - Actions whose stabilizers are large but finitely generated.
      - Actors that properly contain `Mod(Σ)`.
+8. **Full Cantor hosts, including Brin--Thompson `nV` (lane bh-mcg, 2026-09-18).**
+   Route `closed-mcg-bh-via-full-cantor-host`, with open premise
+   `closed-mcg-virtually-embeds-in-fp-full-cantor-group`. A finite-index subgroup
+   inside any finitely presented, full, clopen-transitive Cantor group suffices,
+   through `fp-clopen-transitive-full-cantor-groups-have-type-a-actions` and the
+   finite-index closure of `B_A`.
+   - The `V` exclusion of Attempt 6 does not extend to `nV`, `n ≥ 2`: `Z² ∗ Z ≤ 2V`
+     (`every-raag-embeds-in-brin-thompson-group-2v`).
+   - The Heisenberg obstruction cannot apply, since solvable subgroups of
+     `Mod(Σ)` are virtually abelian. The Kazhdan obstruction is open for `nV`, and
+     it would need an infinite subgroup of `Mod(Σ)` with (T).
+   - No embedding is known. The candidate mechanism, a cylinder coding of `PMF`
+     for the PIP action of Remark 5.5, is recorded on the premise.
+   - An arXiv re-check on 2026-09-18 found no result on closed surfaces.

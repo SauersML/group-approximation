@@ -13,7 +13,12 @@ artifacts:
   - research/artifacts/fp-minimal-crossed-products-homoclinic-kill-2026-09-17.md
 ---
 
-**ESTABLISHED (unreviewed).** Let `P` be a finitely generated group, `A` a finite alphabet, `X ⊆ A^P`
+**OPEN** as stated (demoted 2026-09-18; see Attempts). Item 1 (no homoclinic pair), the wall
+lemma and the recurrence splice are proved. Item 2 is proved only with the width-`2r` shell
+`N_{2r}(F) \ F`; at the width `r` written below it needs the new hole
+`fp-minimal-crossed-product-patterns-fill-width-r-shells`, now required by the route.
+
+Let `P` be a finitely generated group, `A` a finite alphabet, `X ⊆ A^P`
 an infinite minimal subshift and `k` a field. Suppose `LC(X,k) ⋊ P` is finitely presented. Then:
 1. **No homoclinic pair.** There are no `T_1 != T_2` in `X` differing on a finite set.
 2. **Unique shell filling.** Let `r` be the SFT radius of `X`. For every finite `F ⊆ P`, any two points of
@@ -37,3 +42,43 @@ bits, and strongly irreducible minimal SFTs. The quantitative consequences are i
 
 DERIVATION
 fp-minimal-crossed-products-have-no-homoclinic-pairs-proof
+
+## Attempts
+
+- 2026-09-18 (adversarial referee pass, outcome refuted as stated, verdict 38d515af): **item 2
+  states the shell at half its proved width.** Referee's reason, verbatim:
+  - "Compiled status on current origin/main was ESTABLISHED (route
+    fp-minimal-crossed-products-have-no-homoclinic-pairs-proof marked COMPLETE), so review was
+    required. Citation lens PASSES: the sole prerequisite fp-crossed-products-force-sft-over-any-group
+    is ESTABLISHED and says exactly what is used (X is defined by forbidding n-ball patterns, i.e.
+    window radius r, same quantifiers, right direction). Calibration lens PASSES: Lemma 1 genuinely
+    uses group-only input — invertibility of u_p in step 4 (e_a commutes with u_p e_b u_p^{-1})
+    collapses over a monoid, and left-invariance of d is used both for the locality of monomials
+    (sites lie in z^{-1}B_l) and for N_w(gF)=gN_w(F) in the splice; nothing non-unimodular or
+    tree-automaton-specific is smuggled in. Gaps lens DECIDES and fails, at route Step 6 = artifact
+    Corollary 3: it asserts 'every r-window meeting F lies in N_r(F)'. That is false. A window is
+    y|_{pB_r}; if pB_r meets F then p in F B_r, hence pB_r is only contained in F B_{2r} =
+    N_{2r}(F). So the spliced point z (= y on F, x elsewhere) is only certified to lie in X when
+    x = y on N_{2r}(F)\\F, not on N_r(F)\\F as the claim's item 2 states. The artifact contradicts
+    itself here: Theorem 2 Step 4 uses the correct inclusion ('it meets D_0, it lies in N_{2r}(D_0)
+    = K'), and the concurrent sibling fp-crossed-products-force-connected-differences states the
+    same result with layer width 2r (∂F = {p in F : pB_{2r} not contained in F}) and proves it via
+    'a window pB_r meeting I at q lies in qB_{2r}'. The underlying general principle invoked at
+    radius r is demonstrably false: the period-4 orbit of (0011)^inf in {0,1}^Z is a minimal SFT of
+    window radius r = 1 (allowed 3-blocks 001, 011, 110, 100; follower graph is a single 4-cycle so
+    the SFT is exactly that 4-point orbit) with no homoclinic pairs, yet the two points with shell
+    (x(-1),x(1)) = (0,1) differ at 0 — verified by script; at 2r = 2 the collision disappears. Item
+    1 (no homoclinic pair), Lemma 1 (two-basis module on k[P] ⊗ k^2, the relator-vanishing and
+    non-commuting-idempotent steps) and the recurrence splice all survive scrutiny, but claim item
+    2 as written is unproved, so the route is not COMPLETE and the claim is not ESTABLISHED as
+    stated. It also propagates: artifact Corollary 4 (|L_F(X)| <= |A|^{|N_r(F)\\F|}) inherits the
+    wrong exponent. Fix is to restate items 2 and Cor. 3/4 with N_{2r}(F)\\F. No computation is
+    asserted by the claim (artifacts list only
+    research/artifacts/fp-minimal-crossed-products-homoclinic-kill-2026-09-17.md; nothing under
+    experiments/)."
+  - **The exact step that fails.** Step 6 of the route (= Corollary 3 of the artifact): "its
+    windows meeting `F` lie in `N_r(F)`".
+  - **Demotion.** The missing statement is now
+    `fp-minimal-crossed-product-patterns-fill-width-r-shells` (OPEN), added to the route's
+    `requires:`. The proof file is kept: items 1 and the wall lemma stand, and Step 6 proves item 2
+    at width `2r`.

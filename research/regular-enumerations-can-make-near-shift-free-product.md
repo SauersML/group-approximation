@@ -7,6 +7,15 @@ artifacts:
   - research/artifacts/boone-higman-free-shift-presentation-obstruction-2026-09-08.md
 ---
 
+**ESTABLISHED** by `regular-free-shift-fresh-trajectory-proof`, an
+elementary back-and-forth construction. Referee a PASS
+(`research/artifacts/gq-referee-a-free-shift-houghton-envelopes-and-regular-enumerations.md`,
+afbbd1818). Status line added by bh-map, 2026-09-18.
+
+A finite prescription fixes finitely many values of both nu and
+nu^-1, so the basic open sets of the topology below are given by
+finite partial bijections (referee a, N3).
+
 Let P be a countably infinite group. For nu:P->N, transport its
 left regular action to lambda(P) and let s be the cofinite shift
 n->n+1. The set of enumerations for which the canonical surjection

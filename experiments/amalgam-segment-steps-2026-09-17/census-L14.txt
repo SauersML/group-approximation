@@ -1,0 +1,149 @@
+# L=14 shard 0/12 amalgam=True time 168.3s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False True 4
+False True True 2
+True True True 8928
+needs-new-rule-or-open:
+14 AAAbAABabaBAAb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABBabAbaBBAb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABaBaabABAAbb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABaBaabbaaBAb CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+14 AABBaabaBAAbAb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABBaabABAAbab CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+EXIT 0
+# L=14 shard 1/12 amalgam=True time 179.4s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False False 2
+False False True 2
+False True True 2
+True True True 9794
+needs-new-rule-or-open:
+14 AAABBAAAbaaBab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=2)
+14 AAABBAAAbaBaab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABBABabAbaaB open(nielsen-searched 13 images)
+14 AABaBAAbaBABab open(nielsen-searched 17 images)
+14 AABaBAAbABaabb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABaBAAbbaaBAb CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+EXIT 0
+# L=14 shard 2/12 amalgam=True time 157.1s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False True True 1
+True True True 7625
+needs-new-rule-or-open:
+14 AAAbABBabAbaBB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=3)
+EXIT 0
+# L=14 shard 3/12 amalgam=True time 139.4s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False True 2
+False True True 2
+True True True 4983
+needs-new-rule-or-open:
+14 AAAbbaBABabbAB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAbAbaBBabAbAB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABBAAbaBaabAb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABBAAbABaabab CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+EXIT 0
+# L=14 shard 4/12 amalgam=True time 150.3s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False False 1
+True True True 6666
+needs-new-rule-or-open:
+14 AAAbbAbaBABaab open(nielsen-searched 13 images)
+EXIT 0
+# L=14 shard 5/12 amalgam=True time 134.5s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False True True 1
+True True True 5191
+needs-new-rule-or-open:
+14 AABAABaabAbaaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+EXIT 0
+# L=14 shard 6/12 amalgam=True time 160.6s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False False 2
+False False True 4
+False True True 3
+True True True 7086
+needs-new-rule-or-open:
+14 AAABaabaBAAAbb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=2)
+14 AAABaabAbaabaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABaabAbaBABB open(nielsen-searched 13 images)
+14 AAABaabABAbaaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABaabbabbaaB open(nielsen-searched 10 images)
+14 AABAbaaBaBaabb CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+14 AABAbaaBaBAAbb CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+14 AABAbaaBBaabab CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+14 AABAbaaBBAAbab CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+EXIT 0
+# L=14 shard 7/12 amalgam=True time 196.3s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False False 3
+False True True 5
+True True True 8509
+needs-new-rule-or-open:
+14 AAABabaabAbaaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABabaaBAAAbb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAABabbaBabbaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABaabAAbaBBaB open(nielsen-searched 14 images)
+14 AABaabAbbAbaaB open(nielsen-searched 13 images)
+14 AABaabABBAbaaB open(nielsen-searched 14 images)
+14 AABaabABBAbbaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABAbAbaBBabAb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=2)
+EXIT 0
+# L=14 shard 8/12 amalgam=True time 207.4s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False nielsen 1
+False False False 5
+False True True 2
+True True True 7764
+needs-new-rule-or-open:
+14 AAABaBBAAABBaB CERT nielsen-search(d=1,X0X0X1X0X1X0X1X0X0x1X0X1X0X1X0X1X0x1)[nielsen(root-tower)] 
+14 AABaaBaaBAAbab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABaaBAAbaBBab open(nielsen-searched 14 images)
+14 AABaaBAbbaBBab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABaaBAbbAbaab open(nielsen-searched 14 images)
+14 AABaaBABBAbaab open(nielsen-searched 14 images)
+14 AABAbbaBBabbAB open(nielsen-searched 13 images)
+14 AABAbbABBabbaB open(nielsen-searched 14 images)
+EXIT 0
+# L=14 shard 9/12 amalgam=True time 165.6s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False False 2
+False False True 2
+False True True 5
+True True True 5934
+needs-new-rule-or-open:
+14 AAAbaaBAbABaab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAAbaaBABaaBab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAAbaaBABabAbb open(nielsen-searched 13 images)
+14 AAAbaaBBaBBaab open(nielsen-searched 10 images)
+14 AAABAAbaBabAAB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABababAbbabaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=2)
+14 AABABaabaBAAbb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABABaabbaaBab CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+14 AABABabbaBABAb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+EXIT 0
+# L=14 shard 10/12 amalgam=True time 176.0s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False False nielsen 1
+False False False 3
+False False True 2
+False True True 1
+True True True 7145
+needs-new-rule-or-open:
+14 AAAbabbAAAbbab CERT nielsen-search(d=1,X0X0X1X0x1x0x1x0x1X0X1X0X0x1x0x1x0x1)[nielsen(root-tower)] 
+14 AAABAbbaBABabb CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=3)
+14 AABabAAbaBAAbb open(nielsen-searched 14 images)
+14 AABabAABBAAbaB open(nielsen-searched 14 images)
+14 AABabAbaBAAbab open(nielsen-searched 17 images)
+14 AABABAAbaBaabb CERT root-tower top:malcev-root(k=2,c=2,al=1,be=1)
+14 AABABAAbbaaBab CERT root-tower bottom:malcev-root(k=2,c=2,al=1,be=1)
+EXIT 0
+# L=14 shard 11/12 amalgam=True time 124.0s
+landed+rule1  +ruleR  +ruleN(+nielsen-search)  count
+False True True 3
+True True True 6086
+needs-new-rule-or-open:
+14 AAAbaBaaBABaab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AAAbaBBabaBBab CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+14 AABabbABBAbaaB CERT nielsen(root-tower) top:retract-hnn(al=1,be=1,stab=1)
+EXIT 0

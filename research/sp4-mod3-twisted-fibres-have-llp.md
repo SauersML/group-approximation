@@ -196,3 +196,26 @@ hyperlinear whenever `E_3` is hyperlinear.  Thus this claim **alone** forces
   `Sp_4(Z)` contains no recorded LLP-failing subgroup, and no
   twisted-algebra LLP failure is published for any group.  So the fence is
   real but symmetric, and `(TF3)` stays OPEN in both directions.
+- **2026-09-18, swarm-0917-w9-w9-deligne-last1 (operator-algebras): the
+  Kazhdan-projection refutation dies over every WEP host, and the hole stays
+  OPEN.**  The earlier entries showed that the Ioana--Spaas--Wiersma
+  mechanism is vacuous with finite-dimensional hosts.  The natural repair
+  replaces `prod M_k / (+) M_k` by an arbitrary WEP host `C`, for example
+  `prod B(H_n) / (+) B(H_n)`, carrying genuine infinite-dimensional
+  `t_n`-representations of `Gamma~` with `t_n -> -1/3`.  This repair is
+  killed as a class by `wep-host-kazhdan-tests-cannot-refute-odd-maslov-llp`,
+  ESTABLISHED.
+  - *Min side.* The min-side vanishing always holds.
+  - *Max side.* A max-side invariant state `psi(u_g (x) v_g) = 1` would pass
+    through Lance's weak expectation to an Ad-invariant hypertrace `Phi` of
+    the host lift with `Phi(W_z^2) = omega^(-2) != 1`.
+  - *The contradiction.* By `universal-cover-lattice-hypertraces-kill-z-squared`,
+    ESTABLISHED, every such hypertrace has `Phi(W_z^2) = 1`.  That node
+    combines Kirchberg--Brown trace rigidity with Deligne's finite residual
+    and needs no descent of amenability.
+  - *Invariant.* The value `Phi(W_z^2)` of an invariant hypertrace.
+  - *Where every member dies.* At the max-side state.
+  - *What survives.*
+    - hosts with no genuine lift (where the norm `1/3`-models live);
+    - non-WEP hosts;
+    - certificates other than the `Gamma`-invariant projection.

@@ -8,10 +8,12 @@ distinct_from:
   euler-lamplighter-has-a-faithful-finite-state-action: that asks whether some faithful action is finite-state; this is one explicit faithful action, and it is not claimed to be finite-state.
 artifacts:
   - research/artifacts/gq-gq-k2-q-rf-hosts.md
+  - research/artifacts/gq-referee-a-euler-lamplighter-acts-faithfully-on-the-l-ary-tree.md
 ---
 
 **ESTABLISHED (2026-09-18)** through `euler-lamplighter-acts-faithfully-on-the-l-ary-tree-proof`. Lane proof (gq-k2-q),
-elementary, not independently reviewed.
+elementary. *Reviewed:* PASS by `gq-referee-a`
+(`research/artifacts/gq-referee-a-euler-lamplighter-acts-faithfully-on-the-l-ary-tree.md`). Nits N1–N4 are applied.
 
 ## Setting
 
@@ -40,4 +42,6 @@ Let `Λ = Z_l[[T]]`.
    is `Λ` itself, because `∩ E = 0` and `Λ` is complete. The tree coordinates are the `l`-adic digits `d_(a,b)` of the
    coefficients of `T^b`, read in the order `a + b` ascending, then `a` ascending.
 
-In particular `G_l ≤ Aut(T_l)`, an explicit form of its residual `l`-finiteness.
+5. **Level images are `l`-groups.** The image of `G_l` in the permutations of each level of the tree is a finite
+   `l`-group. So `G_l ≤ Aut(T_l)` is an explicit form of its residual `l`-finiteness. For odd `l` this is not
+   automatic from the tree, since the level quotients of `Aut(T_l)` are not `l`-groups.

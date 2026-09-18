@@ -1,0 +1,10 @@
+# python3 exact9.py 9 6 (float; stopped by timeout 1200 after 5 random decorations). exact_up/low: bounds on the per-offset radius / 3w^2; lumped: 4-class lumping of the same exact sums
+m 9 p* 0.03122907782891986
+nearAP     c=1 A=[0, 1, 2, 3, 4, 5, 6, 7, 9] B=[0, 1, 2, 3, 4, 5, 6, 8, 9] exact_up 0.97909 low 0.97909 lumped 0.99424
+nearAP     c=2 A=[0, 1, 2, 3, 4, 5, 6, 7, 9] B=[0, 1, 2, 3, 4, 5, 6, 8, 9] exact_up 0.97807 low 0.97807 lumped 0.99412
+nearAP     c=5 A=[0, 1, 2, 3, 4, 5, 6, 7, 9] B=[0, 1, 2, 3, 4, 5, 6, 8, 9] exact_up 0.97281 low 0.97281 lumped 0.98646
+rand0      c=1 A=[1, 2, 3, 4, 11, 12, 17, 18, 20] B=[1, 2, 6, 7, 13, 16, 21, 22, 26] exact_up 0.94921 low 0.94921 lumped 0.96226
+rand1      c=7 A=[3, 7, 14, 36, 37, 40, 48, 52, 53] B=[2, 3, 8, 14, 18, 25, 35, 36, 37] exact_up 0.93861 low 0.93860 lumped 0.94948
+rand2      c=2 A=[1, 2, 3, 8, 9, 10, 13, 15, 17] B=[0, 1, 3, 6, 8, 9, 11, 13, 16] exact_up 0.95598 low 0.95598 lumped 0.96948
+rand3      c=50 A=[20, 23, 27, 29, 34, 37, 43, 48, 49] B=[5, 11, 15, 19, 36, 44, 50, 52, 53] exact_up 0.93603 low 0.93603 lumped 0.95089
+rand4      c=50 A=[4, 7, 18, 21, 26, 28, 32, 38, 46] B=[2, 4, 9, 10, 21, 26, 31, 42, 48] exact_up 0.93623 low 0.93623 lumped 0.94881
