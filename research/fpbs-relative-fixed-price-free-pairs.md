@@ -87,3 +87,19 @@ Scripts in `experiments/fpbs-fold-bootstrap-2026-09-17/`.
   (iid single-site seeds need more than `5/32`), or labels outside
   `K b^{±1} K`.
 
+**Amenable bridges (September 18, 2026, swarm-0917-w9-w9-fp-last1,
+probability-random).** Node `fpbs-malnormal-cosets-admit-no-amenable-bridges`,
+ESTABLISHED.
+- Tried: get `relC(E_L ; E_K) = 0` from an amenable `E ⊆ E_L` with
+  `E ∩ E_K` aperiodic and `E_K ∨ E = E_L`, via
+  `relC(E_L ; E_K) ≤ relC(E ; E ∩ E_K)`. This is the amenable-subrelation
+  extension of infinite-contact repair.
+- Where it dies: for malnormal `K` and every free action, such an `E` lies in
+  `E_K`. An `E`-invariant field of boundary measures on the orbit trees must
+  be carried by the limit set of each infinite `E ∩ E_K`-piece; this is a mass
+  transport to the heaviest hull vertices. Distinct `K`-cosets have disjoint
+  limit sets. So each `E`-class meets at most one coset in infinite pieces.
+- What survives: amenable `E` whose trace on `E_K` has large finite classes
+  (approximate bridges, of small positive relative cost), and non-amenable
+  bridges such as the fold graphings `b|_A`.
+
