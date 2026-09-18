@@ -43,8 +43,9 @@ simplicity node).
   in the reduced class of `boone-higman-iff-simple-kazhdan-decidable-inputs` (finitely
   generated, simple, Kazhdan; solvable word problem, see the note below), and it is not
   co-Hopfian. So the endomorphism condition alone does not close
-  window zero for the reduced class. What remains open is whether a genuine action with
-  infinite supports realizes the descending relation `s ρ_g s^-1 = ρ_(F(g))`.
+  window zero for the reduced class. No genuine action with infinite supports realizes the descending relation
+  `s ρ_g s^-1 = ρ_(F(g))`: the image `F(P)` commutes with its conjugate by the corner swap,
+  which `descending-shell-endomorphisms-have-finite-exponent-centralizers` (item 3) excludes.
 - **A calibration for that question.** The natural twisted-equivariant maps for `F` do not
   have cofinite image. Left multiplication by `s_1` on a Chen module, and prepending `1` on a
   tail class of infinite words (for the monomial copy of `V` in `L^x`), both satisfy

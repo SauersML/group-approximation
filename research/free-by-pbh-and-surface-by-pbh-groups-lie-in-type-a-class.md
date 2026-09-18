@@ -132,3 +132,14 @@ The embedding of item 1 finishes. Instances: `(F_2 x F_2)`-by-`Z^m`, and
 - The open 3-manifold case `nonfibered-closed-graph-manifold-groups-satisfy-pbh` is not
   reached. By `nonfibered-graph-manifold-groups-have-no-fg-normal-subgroups`, those
   groups have no free or surface normal subgroup to use as `Γ`.
+- **Infinite outer image (not treated).** In general item 1 embeds `H` in `Â x Q`, where
+  `Â <= Aut(Γ)` is the extension of the outer image `Q̄` by `Inn(Γ)`. So the question is
+  `Â ∈ B_A`.
+  - For `Q̄ = <φ>` infinite cyclic, `Â` is a mapping torus `Γ ⋊_φ Z`.
+  - For one-ended hyperbolic `Γ`, a finite power of `φ` preserves the cyclic JSJ splitting
+    and is built from Dehn twists and mapping classes of its quadratically hanging pieces
+    (Levitt; not re-read here).
+  - When some quadratically hanging piece carries a pseudo-Anosov, `Γ ⋊ Z` is a graph of
+    (surface-with-boundary)-by-`Z` groups over `Z^2` edge groups. That is the same shape
+    as the graph manifold groups of `nonfibered-closed-graph-manifold-groups-satisfy-pbh`.
+    So this case is expected to be as hard as the open 3-manifold case.

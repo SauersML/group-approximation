@@ -21,14 +21,16 @@ tarball sha256 `ac0f66f7...190eab4`, fetched via MSI):
 - every component of `B - A` of a revealing pair contains an attractor, and an attractor
   gives an attracting fixed point of a power of the element whose basin contains a cone
   (Lemma `AttractorProps`, l. 1053--1075); the set of periodic attracting points is finite
-  (l. 1098--1101).
+  (l. 1100--1102).
 If `w` has infinite order, a revealing pair has `A ≠ B`. Both trees have the same number of
 leaves, so neither contains the other, and `B - A` is nonempty. So **`w` has at least one
 attracting periodic point, and the set `𝒜_w` of them is finite.** Here "attracting
 periodic" is topological: `w^q(a) = a` and every point of a neighborhood of `a` converges
 to `a` under `w^q`. This is invariant under conjugation by homeomorphisms commuting with
-`w`. The combinatorial set of the source is exactly this set: its other periodic points are
-repelling or lie in cones fixed pointwise by a power.
+`w`. The combinatorial set of the source is exactly this set. By l. 1136--1139, the periodic
+points split as `Per(α) = 𝓡_α ⊔ 𝒜_α ⊔ 𝒫_α`: the points of `𝒫_α` lie in cones fixed pointwise by
+a power, so they are not attracting; those of `𝓡_α` are repelling; those of `𝒜_α` attract a
+cone basin.
 
 **Local form at an attracting point.** Let `w^q(a) = a` with `a` attracting. Some cone
 `cone(u)` containing `a` is mapped by `w^q` by a prefix replacement `ux ↦ u'x`, with `u'` a

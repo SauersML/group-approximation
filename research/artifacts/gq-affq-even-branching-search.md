@@ -44,3 +44,17 @@ machines found has.
 
 **Not run** (compute budget): non-mirror classes `2×4`, `3×3` and larger. The pipeline
 `even_dfs → percheck → ysubsets → eig2` runs unattended and is ready for them.
+
+**Periodic points kill a table outright.** `odometer-factor-witnesses-mix-coordinates` shows that an odometer-factor
+witness has no periodic points, because `Z_m` is torsion-free.
+- A renormalization of any height gives such a factor (`renormalizable-thompson-elements-are-odometer-codes`).
+- If `Y` has bounded return, every `F`-orbit meets `Y`, so a periodic point of the moving-tape map `F` gives a
+  periodic point of `S = F_Y`.
+- `percheck.c` detects an exact repeat: the head stays inside a window of width ≤ 64, and the window contents,
+  state and head offset recur, while the tape outside the window is untouched. That is a genuine periodic point
+  of `F`, up to hash collisions.
+
+So every table with a detected cycle is excluded for every height and every bounded-return `Y`; the eigenvalue
+test is not needed for them. Undefined pairs in partial tables are a separate issue. A useful search needs
+**aperiodic** reversible machines, as SMART and `SMART_m` are (Kari–Ollinger aperiodicity). Periodic points are
+semi-decidable, so they make a cheap first filter.

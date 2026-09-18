@@ -55,3 +55,18 @@ act with finitely many local actions. For any coding by a fixed SFT with finitel
 `d ∈ Z[λ^{±1}] ∩ [0,1)` arising at deep cones would have to form a finite set closed under the renormalization
 `d ↦ λ^{-1}d − (digit)`. That forces `λ` to be algebraic. So a host for this case must be something other than
 a contracting RSG over such a coding. This is a heuristic remark, not a proof.
+
+## Calibration: the general case implies the Birget root (09-18, bh-free-19)
+
+`transcendental-slope-thompson-groups-have-hard-word-problems` (lane proof, not reviewed):
+- **Detector.** Explicit `u', w', ρ ∈ D(V_λ)` satisfy `[u', ρ^n w' ρ^{-n}] = 1` iff
+  `⌊(n+1)λ⌋ = ⌊nλ⌋`. Here `ρ` is a rotation by `λ^{j+1}` of `[0, λ^j)` doubled with its inverse, and
+  `u`, `w` are PL bumps. So the word problem computes the Sturmian word of `λ` with length-linear
+  words.
+- **Hard slopes.** For every recursive `T`, a computable Liouville `λ` whose digits encode a
+  diagonal set makes the word problem of `D(V_λ)` solvable but not `T`-bounded.
+- **Consequence.** This claim, for all computable transcendental `λ`, implies
+  `fp-simple-groups-with-arbitrarily-complex-word-problem` (route
+  `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`).
+- **What survives.** A proof for all `λ` must build hosts that run `λ`'s algorithm. The cases
+  `λ = 1/e`, `π − 3` and other slopes with cheap digits are not touched by this calibration.

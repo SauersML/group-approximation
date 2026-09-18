@@ -99,3 +99,35 @@ and stopped at a uniform bound on the "level defect". Step 3 of the route suppli
 **Referee targets.** Step 3 (the boundary-straddling argument) and step 2 (the length lemma) are the
 load-bearing points. The claim that the level-`n` left endpoints are exactly the points of length `≤ n` uses
 (F) and Parry's theorem.
+
+## Addendum 3 (09-18): Cleary read at source; Hollander and FS via ARS; (F)-field characterization
+
+**Cleary.** Obtained from Project Euclid on MSI (cookie-jar route), stored at gq/src/bh-near-actions/cleary/.
+- Cleary 1995 (RMJM 25, 935–955) proves: `F(1, Z[√2], ⟨(√2+1)^i⟩)` is finitely presented and `FP_∞`, via
+  Brown's criterion on a poset of ω-regular subdivisions. On p. 954 he adds that the same argument works for
+  `λ` with `1 = nλ + λ²`, the metallic means.
+- Cleary 2000 (Illinois J. Math. 44, 453–464) develops τ-regular subdivision for the golden ratio and applies
+  it to F-type groups.
+- **Neither paper treats V-versions or norm +1 slopes.** Matui's Remark (2412.05492, l. 859) overstates this
+  ("V(Z[λ],⟨λ⟩,ℓ) … λ an algebraic integer of degree two").
+- **Consequences, all corrected on main:**
+  - `stein-v-groups-act-with-type-a-on-breakpoints`: its quadratic instance is now limited to norm −1 slopes;
+    norm +1 is OPEN.
+  - `quadratic-interval-exchange-full-groups-satisfy-boone-higman`: now norm −1 fields only.
+  - `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`: input (C) is now
+    `pisot-unit-slope-stein-groups-are-finitely-presented`.
+
+**FS and Hollander.** Akiyama--Rao--Steiner, "A certain finiteness property of Pisot number systems" (JNT 107,
+2004; open PDF at irif.fr/~steiner/weak.pdf, copied to gq/src/bh-near-actions/beta/ars-weak.pdf), p. 2, states
+verbatim:
+- **Theorem A** (Frougny--Solomyak): the dominant root of `x^d − b_1x^{d−1} − … − b_d` with `b_1 ≥ … ≥ b_d > 0`
+  is Pisot with (F).
+- **Theorem B** (Hollander): the same with `b_1 > Σ_{i≥2} b_i`, `b_i ≥ 0`.
+
+These are the (F) criteria used in `f-unit-fields-are-characterized-by-isolated-sign-units`.
+
+**(F)-unit fields.** `every-real-number-field-lies-in-an-f-unit-field` is refuted.
+- **Necessary condition.** An isolated-sign unit, via Akiyama's Proposition 1 and a parity count of real roots.
+- **Counterexample.** `Q(√3)`.
+- **Totally real fields.** There the condition is also sufficient, via `β = ε_0 u^{2N}` and Theorem A.
+- **Complex cubic fields.** They all qualify, because their unit arguments are dense.

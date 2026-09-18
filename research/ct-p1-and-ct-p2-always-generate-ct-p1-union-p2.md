@@ -7,7 +7,19 @@ artifacts:
   - research/artifacts/gq-bh-bh-kourovka-problems.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). The proof is elementary and self-contained: it
+**Second proof.** Lane bh-artin proved the same theorem independently, in
+`ct-p1-and-ct-p2-generate-ct-of-the-union` with proof
+`ct-p1-and-ct-p2-generate-ct-of-the-union-proof` (311b5a0f3). That node is marked there as
+the second proof, and this node is the one to cite.
+- bh-artin's proof normalizes by `CT_∅(Z)`, then conjugates `τ_{0(4),2(4)}` by a two-step
+  transport, one step in each group.
+- The proof below routes each factor through a modulus-4 box and transports the `P1`-part
+  by a two-transposition element of `CT_P2(Z)`.
+
+This lane read bh-artin's proof step by step and found no gap. Until a referee reads either,
+the two proofs cross-check each other.
+
+**Status**: lane proof, not reviewed. The proof is elementary and self-contained: it
 uses only the definition of a class transposition, with no groupoid theory and no cited
 theorem. Every step is an identity between explicit permutations of `Z`, which can be
 checked by hand or in Kohl's RCWA package.

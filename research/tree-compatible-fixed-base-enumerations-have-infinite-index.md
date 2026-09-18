@@ -67,3 +67,27 @@ of Thompson's generator. Its calibration target was recovered.
 - Nothing is claimed about finite presentation of `R_nu` itself, only its index in `B`.
 - Item 2 needs `lambda_g` in `Aut_B(T)` for the given tree `T`. An enumeration may be
   tree-compatible for no tree and still fail.
+
+## Attempts
+
+**Attempt 1 (twisted enumeration of C_2*C_3): escapes this node, generation undecided.**
+- *Criterion (proved, elementary).* For `h = 2, r = 1`, the shift is the odometer `a` and
+  `B = <V, a>`, while `V` is infinite and simple. So a fixed-base near shift group `R`
+  containing `s` satisfies `[B : R] < infinity` iff `V <= R` iff `R = B`.
+- *The twist.* For `g in V`, `nu' = g o nu` is again an enumeration, because `V` acts on `N`
+  by genuine permutations. Then `R_nu' = g <lambda(P), g^-1 s g> g^-1`. With `g = x_1`
+  (Thompson's second generator, not a `T_3`-automorphism), `lambda(P) = <tau, w>` lies in
+  `Aut(T_3)` while `x_1^-1 a x_1` does not. So item 2 no longer applies, and by the
+  criterion `[B : R_nu'] < infinity` iff `<tau, w, x_1^-1 a x_1>` contains `V`.
+- *Bounded search (artifact, second section; evidence only).*
+  - All words of length at most 10: 777k elements.
+  - Of the 3482 elements with trivial odometer labels up to length 9, 3328 are neither
+    `T_3`-automorphisms, nor automorphisms of the twisted trees `x_1^(+-1)(T_3)`, nor in
+    Thompson's `T`. So no tree invariant of the obvious kind survives.
+  - No generator of `V` was found: not `x_1`, nor the swaps `v_0`, `v_1`, `v_10`, nor
+    `a` itself. A bootstrapped search, over products of three of the 80 shortest
+    label-free elements, also found none.
+  - The planted calibration element was recovered at word length 4.
+- *Status.* OPEN. The twisted enumeration is the natural next candidate for the first
+  finite-index fixed-base near shift group. Deciding it needs either a generation proof, or
+  an invariant preserved by `tau`, `w` and `x_1^-1 a x_1` that `V` violates.
