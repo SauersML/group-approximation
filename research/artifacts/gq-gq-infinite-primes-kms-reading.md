@@ -22,8 +22,8 @@ arXiv:1204.6506v5 (22 Mar 2013).
   ("Also fix a prime p (say, p=2)").
   - Generators: `L_0 = {x_u : u in U}` (configurations), `L_1 = {A_0,...,A_K}`,
     `L_2 = {a_i, a_i', ã_i, ã_i' : i = 1..K}`.
-  - Relations: G1 (`H_0`, `H_1` abelian of exponent `p`; `H_2` abelian), G2–G4 (Baumslag–Remeslennikov
-    "BR-conjoints", Lemma 4.1), G5–G7, and G8 (one relation per command of `M`).
+  - Relations: G1 (`H_0`, `H_1` abelian of exponent `p`; `H_2` abelian), G2 (block commutation), G3–G4
+    (Baumslag–Remeslennikov "BR-conjoints", Lemma 4.1), G5–G7, and G8 (one relation per command of `M`).
 - **Theorem 4.3(a), verbatim:** "The group G(M) belongs to 𝒜_p^2𝒜 ∩ 𝒵𝒩_{K+1}𝒜."
 - **Lemma 4.4:** `<H_1 ∪ H_2>` is metabelian, and is the semidirect product of an abelian normal subgroup of
   exponent `p` by `H_2`.
@@ -31,14 +31,16 @@ arXiv:1204.6506v5 (22 Mar 2013).
 - **Theorem 4.17, verbatim:** "If a Minsky machine M is sym-universally halting then the group G(M) is residually
   finite. Its word problem is at least as hard as the halting problem for M."
   - Hypothesis: sym-universally halting, meaning the transition graph is a vertex-disjoint union of finite trees
-    (§1.1.6; also §1.6).
+    (§1.1.6 and §2.2).
   - The proof uses finite exponent at the key step: "the image of the set of elements (\ref{e:x}) with u in Y_D in G'(M)
     form a normal N subgroup of G'(M) of finite index (because T is an Abelian group of finite exponent p)".
 - **Theorems 4.18 and 4.19.** 4.19 is referred to as "Theorem 4.20" in the introduction's cross-reference. These
   give finitely presented residually finite groups, soluble of class 3, with Dehn function, respectively depth
   function, above any recursive `f`.
+- **Caution (W7, gq-referee-b):** Theorem 4.19 asserts `𝒵𝒩_3𝒜` for its 4-glass machines, but Theorem 4.3(a) and §6
+  give `𝒵𝒩_5𝒜`. This lane uses only the `𝒜_p^2𝒜` conjunct.
 - **Theorem 4.16 (Kh81):** a finitely presented group in `𝒜_p^2𝒜 ∩ 𝒵𝒩_3𝒜` with undecidable word problem.
-- **Theorems 5.5 and 5.6:** finitely generated subgroups of `F_2 × F_2`, respectively `S_3 × S_3`, closed in the
+- **Theorems 5.5 and 5.6:** finitely generated subgroups of `F_2 × F_2`, respectively `S_3(X) × S_3(X)` (`S_3(X)` the free soluble group of class 3), closed in the
   profinite topology, with distortion and relative depth above any recursive `f`.
 - **Remark 1.2:** "although our groups are not linear they are (elementary Abelian)-by-linear since they are
   solvable of class 3 with the second derived subgroup elementary Abelian."
@@ -66,8 +68,8 @@ generated base. A finitely presented residually finite host of KMS type for it w
    - For the action of this lane (`β = 1 + l·y d/dy`), the element `s` must conjugate `β` to `β · β_(±1)`.
    - That changes the spectrum `{1 + lj}` to `{(1+lj)(1 + l(j±1))}`, so the base must be enlarged. Not attempted.
 2. **Finite presentation of the base as a module over the top,** in the style of KMS relations G5–G8 (BR-conjoints).
-3. **A new residual-finiteness proof.** KMS's proof of Theorem 4.17 needs finite exponent, so that "all but
-   finitely many basis elements" span a subgroup of finite index. With a `Z_(l)`-module base one would instead
+3. **A new residual-finiteness proof.** KMS's proof of Theorem 4.17 needs finite exponent, so that the span of all
+   but finitely many basis elements has finite index. With a `Z_(l)`-module base one would instead
    reduce modulo `l^r` and fold. That is the `M_(r,N)` argument of `z-localized-embeds-in-fg-rf-soluble-group`, but
    it has to be made compatible with the finitely many module relations.
 

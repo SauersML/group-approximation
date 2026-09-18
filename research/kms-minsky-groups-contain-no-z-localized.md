@@ -8,12 +8,13 @@ distinct_from:
   fg-metabelian-groups-have-roots-at-finitely-many-primes: that excludes finitely generated metabelian hosts; the KMS groups are soluble of class 3 but torsion-by-abelian, which excludes them for a different reason.
   z-localized-embeds-in-fg-rf-soluble-group: that host G_l is abelian-by-metabelian with torsion-free base, the same shape as the KMS groups but with the exponent-p base replaced by a Z_(l)-module; this shows the KMS groups themselves cannot contain it.
 artifacts:
+  - research/artifacts/gq-referee-b-kms-minsky-groups-contain-no-z-localized.md
   - research/artifacts/gq-referee-a-kms-minsky-groups-contain-no-z-localized.md
   - research/artifacts/gq-gq-infinite-primes-kms-reading.md
 ---
 
 **ESTABLISHED** through `kms-minsky-groups-contain-no-z-localized-proof`. Lane proof; proof-gap
-review PASS by gq-referee-a (report in `artifacts`). Elementary once the structure theorem is imported.
+review PASS by gq-referee-a and citation review PASS by gq-referee-b (reports in `artifacts`). Elementary once the structure theorem is imported.
 
 **Source.** O. Kharlampovich, A. Myasnikov, M. Sapir, *Algorithmically complex residually
 finite groups*, arXiv:1204.6506v5. Read from the arXiv e-print source (KMS-322.tex) on
@@ -23,7 +24,7 @@ finite groups*, arXiv:1204.6506v5. Read from the arXiv e-print source (KMS-322.t
   `a_i, a_i', ã_i, ã_i'` (`i = 1..K`), and relations G1–G8.
 - **Theorem 4.3(a), verbatim:** "The group `G(M)` belongs to
   `𝒜_p^2 𝒜 ∩ 𝒵𝒩_(K+1) 𝒜`." Here `𝒜_p` is the variety of abelian groups of exponent `p`,
-  and products of varieties are classes of extensions (§4, first paragraph).
+  and products of varieties are classes of extensions (§4, second paragraph).
 - **Theorem 4.17:** if `M` is sym-universally halting, then `G(M)` is residually finite.
   Theorems 4.18 and 4.19 (4.19 is cited as 4.20 in the introduction) derive the
   finitely presented residually finite groups with large Dehn and depth functions from
@@ -37,7 +38,7 @@ nonempty, `(Q,+)`, or the Euler lamplighter `G_l` of
 
 **Reading for the bottleneck.** The Kharlampovich--Myasnikov--Sapir paper proves no
 embedding theorem. Its §1.1.7 ("What next?") only poses the residually finite Higman
-question, in its unrestricted form. Its finitely presented residually finite groups are
+question, in its unrestricted form. The finitely presented residually finite groups it constructs in §4 are
 torsion-by-abelian, so they cannot witness `z-localized-embeds-in-fp-rf-group`.
 
 Their proof of residual finiteness (Theorem 4.17) uses that the base
