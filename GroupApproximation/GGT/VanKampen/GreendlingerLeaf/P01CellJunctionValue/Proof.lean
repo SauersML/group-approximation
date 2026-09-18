@@ -92,4 +92,6 @@ theorem proof : OsinLemma94CellJunctionValueInput.{u, w, v} := by
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue
 
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.noCellInside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.c_lt_lambda_mul
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.proof

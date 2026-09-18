@@ -4,6 +4,7 @@ import Mathlib.RingTheory.Localization.Submodule
 import Mathlib.RingTheory.PrincipalIdealDomain
 import Mathlib.Algebra.CharP.Algebra
 import Mathlib.Data.Nat.Prime.Infinite
+import Mathlib.Algebra.EuclideanDomain.Int
 import GroupApproximation.Meta.AxiomGuard
 
 /-!

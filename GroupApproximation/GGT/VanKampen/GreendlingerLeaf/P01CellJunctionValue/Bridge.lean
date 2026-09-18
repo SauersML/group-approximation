@@ -272,3 +272,16 @@ theorem kind_eq_cell (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listV
       exact (CellHairThickening.relatorFace_not_mem hvalue (cell_mem S.diagram j) a hmemα).elim
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.pow_cancel
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.firstTurn_two
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.exists_least_return
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.pow_ne_self
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.selfSeg_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.alpha_not_mem_selfSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.not_mem_selfSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.selfSeg_firstTurn
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.exists_cross_of_return
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.no_selfEdge
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.no_selfEdge_face
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.kind_eq_cell

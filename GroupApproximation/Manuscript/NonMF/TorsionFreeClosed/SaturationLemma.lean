@@ -31,28 +31,24 @@ again applies" half carries the leaf.  The single remaining binder is
 Osin's Lemma 4.4 at least-area diagrams.  `SaturationLemmaRows` bundles the five forms the three
 rows cite, and `saturationLemmaRows_of_greendlinger` is its reduction.
 
-## Closer that a later landing plugs in
+## The leaf is still open
 
-The leaf is closed, without binders and universe-polymorphically, by
+There is no binder-free closer of the leaf.  The honest leaf endpoint is
 
-  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea`
+  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
 
-in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`, not imported here because its
-`Piece01..Piece10` proofs have not landed.  Once it builds, the closed endpoints are
-
-```
-theorem manuscriptSentence_saturation : TorsionFreePrinted.PrintedSaturationNoOmega.{0} :=
-  manuscriptSentence_saturation_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
-```
-
-and likewise for `_osin`, `_limitSet`, `manuscriptSentence_saturationPairAndHullAgain`,
-`manuscriptSentence_saturationApplyHull` and `saturationLemmaRows`, each audited with
-`#audit_closed_axioms`.
+in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`, over the two open Statements
+`GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement` and
+`GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement`.
+`TorsionFreeClosed/SaturationClosed.lean` applies it, giving `manuscriptSentence_saturation_of_residuals`
+and likewise `_osin_of_residuals`, `_limitSet_of_residuals`,
+`manuscriptSentence_saturationPairAndHullAgain_of_residuals`,
+`manuscriptSentence_saturationApplyHull_of_residuals` and `saturationLemmaRows_of_residuals`.
 
 ## Manuscript status
 
-Every theorem here takes `hgreendlinger`, so the three rows stay `partial` until the closer lands.
+Every theorem here takes `hgreendlinger`, so the three rows stay `partial` until both residual
+Statements are proved.
 -/
 
 namespace GroupApproximation

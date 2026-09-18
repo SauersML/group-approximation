@@ -208,3 +208,10 @@ theorem region_fact (hvalue : ∀ C ∈ S.diagram.relatorCells, RelLetter.listVa
 end Family
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.sideClass_cases
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.chain_forall
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.mem_of_boundaryStep
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.cell_eq_of_alpha_mem
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.region_false
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.region_fact

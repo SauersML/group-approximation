@@ -179,3 +179,7 @@ theorem main (hNo : NoCellInside S.diagram)
   exact absurd (h2.trans hcard) (by norm_num)
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.corner_data
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.listVal_junctionGap_of_reach
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.main

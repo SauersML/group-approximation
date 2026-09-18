@@ -185,3 +185,17 @@ theorem listVal_gap_eq_one (X : DiscDiagram.{u, w, v} W) (hNo : NoCellInside X)
   rwa [invDarts_gapSeg] at hval
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.pow_add_apply_of_fix
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.mem_gapSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.faceOf_of_mem_gapSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.gapSeg_nodup
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.gapSeg_getLast
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.not_walkKeep_b
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.not_walkKeep_alpha_a
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.gapSeg_firstTurn
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.invDarts_gapSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.NoCellInside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.exists_arc_gapSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.outerFace_not_mem_gapSeg
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P01CellJunctionValue.listVal_gap_eq_one

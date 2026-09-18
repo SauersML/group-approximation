@@ -33,29 +33,21 @@ five forms the three rows cite, and `hullTheoremRows_of_greendlinger` is its red
 The alphabet is not specialised: the leaf is taken at universes `.{0, 0, 0}` exactly as the
 `TorsionFreeGreendlingerLeaf` endpoints consume it (cartography pitfall F2).
 
-## Closer that a later landing plugs in
+## The leaf is still open
 
-The leaf is closed, without binders and universe-polymorphically, by
+There is no binder-free closer of the leaf.  The honest leaf endpoint is
 
-  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea`
+  `GroupApproximation.GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals`
 
-in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`.  That module is not imported
-here: its `Piece01..Piece10` proofs have not landed.  Once it builds, the closed endpoints are
-
-```
-theorem manuscriptSentence_hullTheorem :
-    TorsionFreeSectionSentences.PrintedHullSmallCancellationCurrent.{0} :=
-  manuscriptSentence_hullTheorem_of_greendlinger
-    GGT.VanKampen.GreendlingerLeaf.relativeGreendlingerQuasiGeodesicLeastArea.{0, 0, 0}
-```
-
-and likewise for `_osin`, `_limitSet`, `manuscriptSentence_hullTorsionFree`,
-`manuscriptSentence_hullProofParagraph` and `hullTheoremRows`, each audited with
-`#audit_closed_axioms`.
+in `GroupApproximation/GGT/VanKampen/GreendlingerLeaf/Assembly.lean`, over the two open Statements
+`GreendlingerLeaf.P07InnerPocket.PocketFourPieceOffStatement` and
+`GreendlingerLeaf.P10RoseExtremalTrim.RoseExtremalJunctionStatement`.  Feeding it (at
+`.{0, 0, 0}`) to the endpoints here gives the forms over those two residuals.
 
 ## Manuscript status
 
-Every theorem here takes `hgreendlinger`, so the three rows stay `partial` until the closer lands.
+Every theorem here takes `hgreendlinger`, so the three rows stay `partial` until both residual
+Statements are proved.
 -/
 
 namespace GroupApproximation
