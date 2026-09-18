@@ -64,3 +64,25 @@ such that `a` dies in `(V * <t>)/<<w>>`.
    - **What a violation needs.** A violation of variable length at most seven with generator
      coefficients lies in the frontier and needs a coset budget above `200000`. Longer words
      or coefficients beyond the generators are untouched.
+4. **Internal roots after endomorphisms (2026-09-17, d-klv).** No violation found. The
+   method is dead as a general mechanism.
+   - **Frontier search.** The certificate is `w^phi(t0) = 1` with `phi` an injective
+     endomorphism of V and `t0 in V`. The search tried the `g+1` and `delta1` endomorphisms
+     on the `90550` frontier words that remain after weight certificates.
+     - `43831` words were processed before the run was stopped.
+     - `1495` roots were verified independently, so these words are certified injective
+       (`experiments/kl-thompson-v-internal-roots-2026-09-17/root_certificates.txt`).
+     - NOROOT is capped and certifies nothing.
+     - Details are in `research/artifacts/kl-thompson-v-internal-roots-2026-09-17.md`,
+       Section 4.
+   - **Class kill.** `higman-thompson-roots-miss-a-kl-word-over-thompson-v`: no homomorphism
+     `V_w -> V_{n,1}` is non-trivial on V for `w = ctataT`, although KL holds for that word.
+     - It imports Matte Bon's classification of homomorphisms `V -> V_{n,1}`
+       (`thompson-v-homomorphisms-into-higman-thompson-are-coded`).
+     - The method dies at Step 3 of its proof. The equivariant coding map keeps
+       `<a,c> ≅ S_3` of orbit type `{1,3}` on the ambient, and
+       `cantor-homeomorphisms-miss-a-unimodular-root`, item 2, then forbids the root.
+     - The gate `thompson-v-endomorphism-breaking-the-s3-orbit-type` is refuted.
+   - **What survives.** Internal roots combined with localization to the coefficient
+     subgroup, and ambients whose homomorphisms from V are not spatial. The frontier is at
+     most `89055` words, and the unprocessed words still need a search.
