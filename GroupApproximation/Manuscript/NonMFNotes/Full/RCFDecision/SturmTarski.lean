@@ -44,12 +44,12 @@ theorem jmp_deriv (x : ℝ) {P Q : ℝ[X]} (hP : P ≠ 0) (hx : P.IsRoot x)
       ((j + 1 : ℕ) : ℝ) * eval x P0 := by
     rw [eval_add, eval_mul, eval_mul, eval_C, eval_sub, eval_X, eval_C, sub_self, zero_mul,
       add_zero]
-  have hcpos : (0 : ℝ) < ((j + 1 : ℕ) : ℝ) := Nat.cast_pos.mpr (Nat.succ_pos j)
+  have hcpos : (0 : ℝ) < ((j + 1 : ℕ) : ℝ) := Nat.cast_pos.mpr (by omega)
   have hD1 : eval x (C ((j + 1 : ℕ) : ℝ) * P0 + (X - C x) * derivative P0) ≠ 0 := by
     rw [hD0]
     exact mul_ne_zero hcpos.ne' hP0
   obtain ⟨hdm, hdl⟩ := of_decomp hder hD1
-  obtain ⟨k, Q0, hk, hQQ, hQ0, hlq⟩ := exists_decomp x hQ
+  obtain ⟨k, Q0, hk, hQQ, _, hlq⟩ := exists_decomp x hQ
   obtain ⟨hmu, hlc⟩ := mu_lc0_mul x hP' hQ
   unfold jmp
   rw [hmu, hlc, hdm, hdl, hD0, hm, hl, hk, hlq]

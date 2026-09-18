@@ -50,16 +50,17 @@ theorem absorbsRegular_of_cls_eq_zero (L : LeavittFamily R) (P : FGProj R)
     have h0 : AlgKZero.cls P = AlgKZero.cls (FGProj.zero (R := R)) := by
       rw [h, AlgKZero.cls_zero]
     exact h0
-  obtain ⟨⟨c, _⟩, hc⟩ := (AddSubmonoid.LocalizationMap.eq_iff_exists _).1 h1
+  obtain ⟨⟨c, _⟩, hc⟩ := (AddSubmonoid.LocalizationMap.eq_iff_exists
+    (AddLocalization.addMonoidOf (⊤ : AddSubmonoid (AlgVMonoid R)))).1 h1
   obtain ⟨Q, rfl⟩ := Quot.exists_rep c
   have h2 : Quot.mk (FGProj.Iso (R := R)) (Q.sum P) =
       Quot.mk (FGProj.Iso (R := R)) (Q.sum (FGProj.zero (R := R))) := hc
   have hequiv : Equivalence (FGProj.Iso (R := R)) := by
     refine ⟨fun T => ⟨LinearEquiv.refl R T.carrier⟩, ?_, ?_⟩
-    · intro T T' hT
+    · intro _ _ hT
       obtain ⟨f⟩ := hT
       exact ⟨f.symm⟩
-    · intro T T' T'' hT hT'
+    · intro _ _ _ hT hT'
       obtain ⟨f⟩ := hT
       obtain ⟨g⟩ := hT'
       exact ⟨f.trans g⟩

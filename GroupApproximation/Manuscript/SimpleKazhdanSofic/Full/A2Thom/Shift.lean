@@ -146,7 +146,8 @@ theorem isThomShape_shiftMat (u : Rˣ) {M : Matrix (Fin 5) (Fin 5) R} (hM : IsTh
 theorem transvection_zero_four_apply_of_not {k l : Fin 5} (h : ¬(k = 0 ∧ l = 4)) (c : R) :
     Matrix.transvection (0 : Fin 5) 4 c k l = (1 : Matrix (Fin 5) (Fin 5) R) k l := by
   rw [Matrix.transvection, Matrix.add_apply,
-    Matrix.single_apply_of_ne (h := fun h' => h ⟨h'.1.symm, h'.2.symm⟩), add_zero]
+    Matrix.single_apply_of_ne (0 : Fin 5) (4 : Fin 5) c k l
+      (fun h' => h ⟨h'.1.symm, h'.2.symm⟩), add_zero]
 
 /-- The shift multiplies the corner entry: `diag(u,1,1,1,1) e_15(c) diag(u⁻¹,1,1,1,1) =
 e_15(uc)`. -/
