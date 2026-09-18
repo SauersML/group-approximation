@@ -69,12 +69,17 @@ So every configuration enters `Y` within `1 + 4 = 5` steps, and `r_Y <= 6`.
   `S = ψ F_Y ψ^{-1} ∈ 2V`. ∎
 
 **Item 3**, by the step lists above. Times count `F`-steps from `y_{k+1}`.
-- *Fine run.* The steps in `Y` are at times 0, 2, 4, 8, 10, 12, 18, …:
-  - time 8 is `◀_2` on cell 2, which holds the `1` written at time 7;
-  - time 12 is `⊲_2` on cell 2, with cells 1 and 2 equal to `1`.
+- *Fine run.* The steps in `Y` are at times 0, 2, 4, 8, 10, 12, 18, … These are
+  `S^0, …, S^6`:
+  - time 8 (`S^3`) is `◀_2` on cell 2, which holds the `1` written at time 7;
+  - time 18 (`S^6`) is `▶_2` on cell 1, which holds the `2` written at time 17 (by `⊳_1`, `0|2`), with
+    cell 2 equal to `1`. On the way: at time 13, `⊲_1` rewrites cell 1 from `1` to `0`; at time 14 an
+    extra `m` takes the head onto `s_+`; at time 15 `◀_1` reads `s_+`; at time 16 an extra `m` moves
+    it back to cell 1.
 - *Coarse run from `y_k`.* The steps in `Y` are at times 0, 2, 4, 8, …:
   - time 2 is `◀_2` on cell 1, which holds a `1`;
   - time 4 is `⊳_2` on `s_+`.
 
-Comparing time 8 of the fine run with time 2 of the coarse run, and time 12 with time 4, gives
-the two checkpoints stated in item 3. ∎
+Comparing time 8 of the fine run with time 2 of the coarse run, and time 18 with time 4, gives
+the two checkpoints stated in item 3. An earlier landing (eddfd3d4b) compared time 12, which is
+`S^5`, with time 4; that was an indexing error, corrected here. ∎

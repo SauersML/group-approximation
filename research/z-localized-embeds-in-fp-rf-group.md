@@ -47,4 +47,20 @@ open part is finite presentation. One concrete route is
 
 ## Attempts
 
-None beyond the routes above (2026-09-17, lane gq-infinite-primes).
+1. **Verdict, second pass (2026-09-17, lane gq-infinite-primes): still OPEN, reduced to residual finiteness of
+   one explicit finitely presented group.**
+   - *The finitely presented half is done.* `Z_(l)` embeds in the finitely presented Kazhdan group
+     `St_N(R_l)`, `N >= 4` (`z-localized-embeds-in-fp-kazhdan-steinberg-group`, via Krstić--McCool). The claim now
+     follows from `resolvent-steinberg-group-is-residually-finite` (route
+     `z-localized-fp-rf-via-rf-resolvent-steinberg-group`).
+   - *A necessary condition.* That needs `R_l` to be residually finite (`steinberg-rf-forces-ring-rf`,
+     `resolvent-presentation-ring-is-residually-finite`), and then the kernel of `St_N(R_l) -> E_N(R_l)` to be
+     detected in finite `St_N(F)`.
+   - *Sub-question 1 of `rf-resolvent-elementary-group-is-fp` fails.* `R_l` does not present `R̄_l`
+     (`resolvent-ring-presentation-is-not-faithful-on-r-bar`).
+   - *No known obstruction applies.* Rauzy (arXiv:2002.02540v2) and Kharlampovich--Myasnikov--Sapir
+     (arXiv:1204.6506) state nothing about divisible or infinitely generated abelian subgroups. The obstructions
+     found for finitely generated subgroups are solvable word problem and effective residual finiteness,
+     and the explicit host `G_l` of `z-localized-embeds-in-fg-rf-soluble-group` satisfies both. So an affirmative
+     answer to the Kharlampovich--Myasnikov--Sapir question for effectively residually finite groups would give
+     this claim. The Kharlampovich--Myasnikov--Sapir groups themselves are soluble of class 3, as is `G_l`.

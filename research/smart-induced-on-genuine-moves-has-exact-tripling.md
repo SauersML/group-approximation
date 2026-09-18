@@ -7,6 +7,7 @@ distinct_from:
   brin-thompson-first-return-maps-lie-in-kv: that is the general inducing tool; this names the clopen set for SMART, checks the bounded return, and proves the exact count 3^k.
   some-brin-thompson-element-factors-onto-an-odometer: that asks for an element of some kV with an odometer factor; this gives the exactly tripled candidate, and does not prove an odometer factor.
   renormalizable-thompson-elements-are-odometer-codes: that characterizes height-m renormalizations; this supplies the candidate whose renormalization identity is still to be checked.
+  smart-level-zero-return-map-factors-onto-3-adic-odometer: that is lane gq-nv-obstruct's independent version, which induces on all level-0 configurations (2·3^k steps per move) and claims the Z/2 x Z_3 factor, pending referees; this induces on phase-2 leaves only (3^k steps) and adds the explicit return bound and two renormalization checkpoints.
   three-v-contains-aperiodic-rationals: that uses SMART's moving-tape map only for its lack of periodic points; this induces it on a clopen set to remove the per-level overhead.
 ---
 
@@ -42,10 +43,17 @@ level-0 moves**:
 
    So `S^3(y_{k+1})` is `S(y_k)` with one `0` inserted immediately left of the head. This is
    consistent with a height-3 renormalization whose coarsening deletes a zero next to the
-   head. At the next checkpoint the correspondence is no longer a pure zero deletion.
-   `S^6(y_{k+1})` is `⊲_2` on the second cell of `s_+ 1 1 0^{k-1} s_*`, while `S^2(y_k)` is
-   `⊳_2` on `s_+` in `s_+ 1 0^{k-1} s_*`. A coarsening there must also change the state and move
-   the head two cells.
+   head. At the next checkpoint the correspondence is a bounded local change, but not a pure
+   zero deletion.
+   - `S^6(y_{k+1})` is `▶_2` on cell 1 of `s_+ 2 1 0^{k-1} s_*`.
+   - `S^2(y_k)` is `⊳_2` on `s_+` in `s_+ 1 0^{k-1} s_*`.
+
+   So the fine configuration is the coarse one with a `2` inserted right of `s_+`, the head
+   moved one cell onto it, and the state changed from `⊳` to `▶`. Along the fine run the states
+   at the `Y`-visits are `▶◀⊳ ◀▶⊲ ▶…`. These are the images `σ(▶) σ(◀) σ(⊳)…` of the coarse
+   sequence `▶◀⊳…` under the substitution of `smart-level-zero-return-map-factors-onto-3-adic-odometer`
+   (`▶ ↦ ▶◀⊳`, `◀ ↦ ◀▶⊲`, `⊳ ↦ ▶⊲⊳`, `⊲ ↦ ◀⊳⊲`). The first letters `▶, ◀, ▶` are the states at
+   `S^0, S^3, S^6`.
 
 **Not established.** A clopen `A` and a brick-local `φ` with `S^3 = φ^{-1} S φ` on `A` and
 `X_Y = A ⊔ SA ⊔ S^2 A`. The same goes for any continuous eigenvalue `e^{2πi/3}` of `S`. The
