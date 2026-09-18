@@ -8,7 +8,8 @@ requires:
   - durand-romashchenko-minimal-sft-simulation
 ---
 
-**Proof (lane proof at design level, bh-g1-simulation, 2026-09-18; unreviewed).**
+**Proof (lane proof at design level, bh-g1-simulation, 2026-09-18).** Referee bh-ref-e1-b: PASS
+at design level. Repairs G1 and G2 are applied below; see "Repair applied".
 - The fixed-point machinery is DR's, read at source (arXiv:1802.01461). The references are: the
   self-simulating tiling with variable zoom (§2.5), the input fields (i)–(vi) of letter delegation
   (§4.1), frames of diversification slots with properties (p1)–(p4) (§3.2 and §5), Lemma
@@ -23,6 +24,12 @@ requires:
 - `F_k = B_{Λ_0}(r_k)`, with `r_k` computable, nondecreasing and unbounded, and slow enough for
   condition (G) below.
 - The **table** of plane `λ` at level `k` is `T_λ|F_k`, where `T_λ(f) = y(λf)`.
+- **Two conventions (step 3 versus steps 4–6).** The group acts on `X` by
+  `((μ,w)·x)(λ,z) = x(μ^{-1}λ, z − w)`.
+  - So plane indices move by LEFT multiplication, and `T_λ(μ·y) = T_{μ^{-1}λ}(y)`.
+  - The rules move between planes by RIGHT multiplication (`λ ~ λs`).
+  - Step 3 uses the action, and steps 4–6 use the rules. That is why the stabilizer in step 3 is
+    `λ`, while the separating element in step 5 is `f'^{-1}f`.
 
 ## Construction of X
 
@@ -36,7 +43,9 @@ requires:
    letter chunks (iv) and (v):
    - `τ_k ∈ B^{F_k}`, its own table;
    - `τ_k^{(s)}` for `s ∈ S`, copies of the neighbours' tables;
-   - `τ_{k+1}`, its father's table.
+   - `τ_{k+1}`, its father's table;
+   - `κ_{k+1} = (τ_{k+1}, (τ_{k+1}^{(s)})_s, τ_{k+2})`, its father's full input field, with the same
+     coherence rule (repair G1). Its own full input field is `κ_k = (τ_k, (τ_k^{(s)})_s, τ_{k+1})`.
 
    The rules are:
    - **Base.** At level 0, `τ_0(1) = ℓ`.
@@ -54,19 +63,25 @@ requires:
 5. **(D) Keyed slots.** Fix a level `K` and a window type `π`: a position of a 2×2 window of
    level-`(K-1)` macro-tiles that touches a computation zone, a wire or a border of level-`K`
    macro-tiles. Border windows may straddle two or four fathers, as in DR §5.
-   - `Adm_π(τ)` is the finite set of assignments of the non-table, non-position part of the
-     identities in window `π` that are realizable with table data `τ`.
-   - For each `π` and each map `i` with `i(τ) ∈ Adm_π(τ)` for all `τ ∈ B^{F_K}`, reserve a slot
-     with a DR frame in the free zone of every level-`K` macro-tile.
-   - The frame tiles read `(π, i)` from their position and `τ_K` from their father-table field.
-     They force the slot's inner window to believe it sits at `π`, with identities `i(τ_K)` and
-     the real table fields. This is DR's property (p2), with the displayed pattern computed
-     rather than fixed.
+   - **Keys (repair G1).** The key of a level-`K` macro-tile is its full input field `κ_K`, a
+     function of `T` on `F_{K+1} ∪ ⋃_s sF_K ⊆ F_{K+1}S`.
+   - `Adm_π(κ)` is the finite set of assignments of the non-table, non-position part of the
+     identities in window `π` that are realizable next to the input bits `κ`.
+   - For each `π` and each partial map `i`, reserve a slot with a DR frame in the free zone of
+     every level-`K` macro-tile.
+     - `i` is defined exactly on the keys with `Adm_π(κ) ≠ ∅` (repair G2). The other keys never
+       occur in `X`.
+     - It satisfies `i(κ) ∈ Adm_π(κ)`.
+   - The frame tiles read `(π, i)` from their position and `κ_K` from their father-field. They
+     force the slot's inner window to believe it sits at `π`, with identities `i(κ_K)`.
+     - The window displays the real `κ_K` bits, so twin checks inside slots compare real data.
+     - This is DR's property (p2), with the displayed pattern computed rather than fixed.
 6. **(G) Growth.** Slot counts must fit and evaluations must terminate in time.
    - The number of window types is `O(N_K log N_K)`, and each `|Adm_π| ≤ c`.
-   - It is enough that `|B|^{|F_K|} ≤ log log N_K`. Then the slot count is
+   - It is enough that `|B|^{|F_{K+1}|(|S|+2)} ≤ log log N_K` (repair G1). This holds for a slowly
+     growing computable `r_k`, since `log log N_K → ∞`. Then the slot count is
      `N_K^{1+o(1)} · (log N_K)^{log c} ≪ N_K^2`.
-   - `i(τ_K)` is then computable inside a level-`(K-1)` zone, in time `poly log N_K`, which is
+   - `i(κ_K)` is then computable inside a level-`(K-1)` zone, in time `poly log N_K`, which is
      `poly log N_{K-1}` for DR's doubly exponential zoom.
 
 ## Proof
@@ -110,10 +125,10 @@ requires:
      identity tuple `(σ_f)`, and `T_{λf}` on `F_{K+1}S`.
    - **Skeleton-only windows.** Here `σ_f` depends on the skeleton alone, and siblings with the
      same type occur in every level-`(K+1)` macro-tile of every plane.
-   - **Other windows.** Here `σ_f ∈ Adm_π(T_{λf}|F_K)`. Take any `λ'` with
-     `T_{λ'f} = T_{λf}` on `F_{K+1}S` for all `f ∈ F`.
-     - By step 5 the keys `T_{λ'f}|F_K` are distinct, so some admissible `i` sends each to
-       `σ_f`.
+   - **Other windows.** Here `σ_f ∈ Adm_π(κ_K^{λf})`. Take any `λ'` with `T_{λ'f} = T_{λf}` on
+     `F_{K+1}S` for all `f ∈ F`, so that `κ_K^{λ'f} = κ_K^{λf}`.
+     - By step 5 the `τ_K`-parts of the keys `κ_K^{λ'f}` are distinct, so the keys are distinct.
+       Some admissible partial `i` therefore sends each of them to `σ_f`.
      - The slot `(π, i)` of every level-`K` macro-tile shows `σ_f` in plane `λ'f`.
      - Take such macro-tiles at the same position in their fathers as the original fathers. By
        step 4 their slots reproduce `(W_f)`, and hence `P`.
@@ -206,3 +221,14 @@ elsewhere, since those keys never occur in `X`.
 touch the argument's structure. Credit: the frame, slot and variable-zoom machinery is
 Durand–Romashchenko's (arXiv:1802.01461, and Durand–Romashchenko–Shen for fixed-point tilings).
 The new ideas here are the transverse `Z^2` factor and keying the slots by each plane's own table.
+
+## Repair applied (bh-g1-simulation, 2026-09-18)
+
+- **G1.** Children carry the father's full input field `κ_{k+1}` (construction item 3). Slots are
+  keyed by `κ_K` and display the real `κ_K` bits (item 5). (G) becomes
+  `|B|^{|F_{K+1}|(|S|+2)} ≤ log log N_K` (item 6). Step 6 uses `Adm_π(κ_K)`, and its keys are
+  distinct because their `τ_K`-parts are.
+- **G2.** `i` is partial, defined where `Adm_π(κ) ≠ ∅`.
+- **Conventions.** Step 3 reads the left action on plane indices, and steps 4–6 read the
+  right-multiplication rules. This is stated under Conventions.
+- The structure of the argument is unchanged, as the referee predicted.
