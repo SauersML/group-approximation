@@ -13,8 +13,8 @@ nothing in it needs `n ≥ 4`. This file runs it at `n = 3`, `R = ℤ[1/1]`, and
 * `czK2FngStabOne_le_map_of_tri`: `K₂(4, ℤ[1/1]) ≤ stab K₂(3, ℤ[1/1])`, and hence
 * `czK2FngStabOne_stabOne_of_tri`: `czK2FngTorus_StabOneStatement`.
 
-`czK2FngStabOne_TriStatement` is not a residual. It is discharged in
-`ElemFPCharZeroK2FngStabOneTransfer`, starting from a pure matrix statement.
+`czK2FngStabOne_TriStatement` is not a residual. It is proved outright as
+`czK2FngStabOne_tri` in `ElemFPCharZeroK2FngStabOneTransfer`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

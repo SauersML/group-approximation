@@ -63,7 +63,8 @@ theorem k2KarInd_snd_injective (hs : s ≠ 0) : Function.Injective (k2PullRel_sn
 theorem k2KarInd_mul_eq_zero (hs : s ≠ 0) (a b : k2DilateSt_pullback s) (h : a * b = 0) :
     a = 0 ∨ b = 0 := by
   haveI := k2KarInd_isDomain hs
-  have e : k2PullRel_snd s a * k2PullRel_snd s b = 0 := by rw [← map_mul, h, map_zero]
+  have e : k2PullRel_snd s a * k2PullRel_snd s b = 0 := by
+    rw [← map_mul (k2PullRel_snd s), h, map_zero]
   have hi := (injective_iff_map_eq_zero _).mp (k2KarInd_snd_injective hs)
   rcases mul_eq_zero.mp e with e | e
   · exact Or.inl (hi a e)
@@ -84,7 +85,8 @@ theorem k2KarInd_one_ne_zero (hs : s ≠ 0) : (1 : k2DilateSt_pullback s) ≠ 0 
 theorem k2KarInd_padMat_eq_one (hs : s ≠ 0) {n : ℕ} {y : St n (k2DilateSt_pullback s)}
     (hy : ringMap (k2PullRel_snd s) y = 1) : padMat y = 1 := by
   refine Matrix.ext fun p q ↦ k2KarInd_snd_injective hs ?_
-  rw [← k2KarInd_padMat_ringMap (k2PullRel_snd s) y p q, hy, map_one]
+  rw [← k2KarInd_padMat_ringMap (k2PullRel_snd s) y p q, hy,
+    map_one (padMat (R := Polynomial (Localization.Away s)) (n := n))]
   by_cases hpq : p = q
   · rw [hpq, Matrix.one_apply_eq, Matrix.one_apply_eq, map_one]
   · rw [Matrix.one_apply_ne hpq, Matrix.one_apply_ne hpq, map_zero]
