@@ -106,3 +106,84 @@ theorem czCubeResFieldConeRetract_X_last {n : ℕ} :
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResFieldConeRetract_X_last
+
+variable (R) in
+/-- `r ∘ j = id`. -/
+theorem czCubeResField_retract_comp_cone (n : ℕ) :
+    (czCubeResFieldConeRetract R n).comp (czCubeResFieldCone R n) =
+      RingHom.id (MvPolynomial (Fin (n + 1)) R) :=
+  MvPolynomial.ringHom_ext
+    (fun r ↦ by
+      simp only [RingHom.comp_apply, czCubeResFieldCone_C, czCubeResFieldConeRetract_C,
+        RingHom.id_apply])
+    fun l ↦ by
+      rw [RingHom.comp_apply, RingHom.id_apply]
+      by_cases hl0 : l = 0
+      · subst hl0
+        rw [czCubeResFieldCone_X_zero, map_mul, czCubeResFieldConeRetract_X_castSucc,
+          czCubeResFieldConeRetract_X_last, mul_one]
+      · rw [czCubeResFieldCone_X_of_ne hl0, czCubeResFieldConeRetract_X_castSucc]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_retract_comp_cone
+
+/-- `π_i ∘ j = j ∘ π_i` for `i ≤ n`. -/
+theorem czCubeResField_cubeKill_castSucc_comp_cone {n : ℕ} (i : Fin (n + 1)) :
+    (cubeKill R (Fin.castSucc i)).comp (czCubeResFieldCone R n) =
+      (czCubeResFieldCone R n).comp (cubeKill R i) :=
+  MvPolynomial.ringHom_ext
+    (fun r ↦ by simp only [RingHom.comp_apply, czCubeResFieldCone_C, cubeKill_C])
+    fun l ↦ by
+      rw [RingHom.comp_apply, RingHom.comp_apply]
+      by_cases hl0 : l = 0
+      · subst hl0
+        by_cases hi : (0 : Fin (n + 1)) = i
+        · subst hi
+          rw [czCubeResFieldCone_X_zero, map_mul, cubeKill_X_of_eq (R := R) rfl, zero_mul,
+            cubeKill_X_of_eq (R := R) rfl, map_zero]
+        · rw [czCubeResFieldCone_X_zero, map_mul,
+            cubeKill_X_of_ne (R := R)
+              (show Fin.castSucc (0 : Fin (n + 1)) ≠ Fin.castSucc i from
+                fun h ↦ hi (Fin.castSucc_inj.mp h)),
+            cubeKill_X_of_ne (R := R) (Fin.castSucc_ne_last i).symm,
+            cubeKill_X_of_ne (R := R) hi, czCubeResFieldCone_X_zero]
+      · rw [czCubeResFieldCone_X_of_ne hl0]
+        by_cases hi : l = i
+        · subst hi
+          rw [cubeKill_X_of_eq (R := R) rfl, cubeKill_X_of_eq (R := R) rfl, map_zero]
+        · rw [cubeKill_X_of_ne (R := R)
+              (show Fin.castSucc l ≠ Fin.castSucc i from fun h ↦ hi (Fin.castSucc_inj.mp h)),
+            cubeKill_X_of_ne (R := R) hi, czCubeResFieldCone_X_of_ne hl0]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_cubeKill_castSucc_comp_cone
+
+/-- `π_{n+1} ∘ j = j ∘ π_0`, because `π_{n+1}(s_0 s_{n+1}) = 0`. -/
+theorem czCubeResField_cubeKill_last_comp_cone {n : ℕ} :
+    (cubeKill R (Fin.last (n + 1))).comp (czCubeResFieldCone R n) =
+      (czCubeResFieldCone R n).comp (cubeKill R (0 : Fin (n + 1))) :=
+  MvPolynomial.ringHom_ext
+    (fun r ↦ by simp only [RingHom.comp_apply, czCubeResFieldCone_C, cubeKill_C])
+    fun l ↦ by
+      rw [RingHom.comp_apply, RingHom.comp_apply]
+      by_cases hl0 : l = 0
+      · subst hl0
+        rw [czCubeResFieldCone_X_zero, map_mul, cubeKill_X_of_eq (R := R) rfl, mul_zero,
+          cubeKill_X_of_eq (R := R) rfl, map_zero]
+      · rw [czCubeResFieldCone_X_of_ne hl0, cubeKill_X_of_ne (R := R) (Fin.castSucc_ne_last l),
+          cubeKill_X_of_ne (R := R) hl0, czCubeResFieldCone_X_of_ne hl0]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_cubeKill_last_comp_cone
+
+/-- If `u` is killed by every `π_i`, `i ≤ n`, then `j u` is killed by every `π_i`, `i ≤ n + 1`. -/
+theorem czCubeResField_K2Map_cubeKill_cone {n N : ℕ}
+    {u : K2n N (MvPolynomial (Fin (n + 1)) R)}
+    (hu : ∀ i : Fin (n + 1), K2Map (cubeKill R i) u = 1) (j : Fin (n + 1 + 1)) :
+    K2Map (cubeKill R j) (K2Map (czCubeResFieldCone R n) u) = 1 := by
+  rcases Fin.eq_castSucc_or_eq_last j with ⟨i, rfl⟩ | rfl
+  · rw [K2Map_K2Map, czCubeResField_cubeKill_castSucc_comp_cone, ← K2Map_K2Map, hu i, map_one]
+  · rw [K2Map_K2Map, czCubeResField_cubeKill_last_comp_cone, ← K2Map_K2Map, hu 0, map_one]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_K2Map_cubeKill_cone
