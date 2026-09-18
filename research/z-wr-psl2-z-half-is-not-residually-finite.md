@@ -5,6 +5,7 @@ kind: claim
 title: The permutational wreath product A wr_X PSL_2(Z[1/n]) over the cosets of PSL_2(Z) is not residually finite, so it lies in no self-similar group
 distinct_from:
   z-wr-psl2-z-half-embeds-in-fp-self-similar-group: that is the printed question (arXiv:2609.01868, Question 1.1) asking for a finitely presented self-similar overgroup; this proves no self-similar overgroup of any kind exists, which refutes it.
+  lamp-wreath-representation-of-2609-01868-is-not-faithful: that pins the source's error inside its own construction (every lamp acts as the same tree automorphism, and (Ω) holds); this proves that no faithful self-similar representation exists at all.
   double-of-psl2-z-half-along-psl2-z-lies-in-b-a: that uses the same profinite density of PSL_2(Z) in PSL_2(Z[1/2]), via Serre's congruence subgroup theorem (cited), to show the double is not residually finite; this proves the density elementarily and applies it to the wreath product.
   lamp-wreaths-over-psl2-tree-vertices-lie-in-b-a: that proves the same wreath product embeds in a finitely presented simple group; this is compatible with it (finitely presented simple groups need not be residually finite) and says the host can never be residually finite.
 ---
@@ -86,9 +87,11 @@ stabilizers, whose intersection is trivial.
     So `N ≠ 1` lies in the `f`-core, the kernel of their tree action. For `K = PSL_2(Z)`, the
     density in item (1) gives `KH_i = G` for every finite-index `H_i`. The same `N` is exactly
     the obstruction of item (2).
-  - **Scope.** I did not re-derive their virtual endomorphism `f` for `PSL_2(Z[1/2])`. If
-    their check of `(Ω)` for `PSL_2(Z)` is correct, Theorem A is false as stated, with this
-    as a counterexample. Either way B(3) is false. Their lower-triangular example
+  - **Theorem A is false as stated.** `lamp-wreath-representation-of-2609-01868-is-not-faithful`
+    (bh-self-similar) checks that their `(Ω)` verification for `PSL_2(Z)` is correct, and that
+    in their representation every lamp acts as the same tree automorphism. So
+    `(PSL_2(Z[1/2]), PSL_2(Z))` satisfies Theorem A's hypotheses but not its conclusion, and B(3)
+    is false. Their lower-triangular example
     (Corollary near l.831, `K = ` lower-triangular in `PSL_2(Z[1/p])`) is not touched, since
     there `KH_i ≠ G` and lamps outside `KH_i` are killed.
   - **The Cornulier citation is a misreading.** Cornulier (arXiv:math/0509090v2, TeX read on
