@@ -102,3 +102,13 @@ settle `c_d = 2d/(sqrt3 pi) + O(1)`.
    exactly half the minima of `||C||_1`. The open core of the clique case is now `(M_4)` and `(M_5)`, a
    statement about the best perfect matching of 4 (or 5) unit vectors. By the facet reduction, weighted cliques are
    open only through `m = 4, 5`. The non-clique, non-hole facets are also still open.
+6. *Flux-torus branch-and-bound with exact SDP-dual certificates (w6-078, 2026-09-18). `K_4` is
+   solved.* Gauge the star at one vertex to be real. For fixed phases, `min_{t >= 1} ||C||_1` is an SDP,
+   and a dual `Z` with `||Z||_op <= 1` gives the edge-separable bound `sum t_ij 2Re(Z_ji e^{i theta_ij})`.
+   Its exact minimum over a phase box and over `t in [1, T]` closes the box. Moduli above `T` are handled
+   by `2 x 2` compression. For `m = 4`, 584 boxes with rational, exactly checked `Z` cover the flux torus
+   `T^3` (`hermitian-edge-trace-norm-clique-inequality-k4`). The clique inequality is therefore open only
+   at `m = 5`. The same script on `T^6` handles it: one sixteenth of the symmetry-reduced domain closes
+   with about 41,000 SDP solves, and the full run is in progress. If `m = 5` closes, Theorem C gives
+   (**) for every h-perfect graph, including every perfect graph. The non-clique, non-hole facets would
+   then be all that remains.
