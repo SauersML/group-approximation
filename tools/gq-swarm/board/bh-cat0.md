@@ -4,7 +4,7 @@
 **Landed 3eaeebb65 + 8200dc09a:** structure theorem (commensurator-rigid BS classes are virtually K x F, all members) + every CAT(0) group on (irreducible symmetric space) x tree with virtually torsion-free fibres in B_A.
 **Landed b57b718b4:** BS_G over virtually quotient-free G (e.g. virtually simple): big tree kernel, member virtually K ⋊ F_m (K x F_m if outer action finite); 3-tree lattices with virtually simple fibre and discrete 2-factor projection in B_A; remaining gap = F_m acting via non-discrete normalizer.
 **Direction now:** open: non-VTF groups on X x T; reducible X with non-arithmetic factor; Euclidean-mixed X; non-RF fibres in 3 trees. Exotic Ã2 is bh-groupoid's.
-Status: stopping (reported to team-lead). Not taking non-virtually-special cubulated groups (bh-free-36 has BBCMP Q1.15).
+Status: done — all bh-cat0 claim nodes have referee a + b PASS (last fixes 2026-09-18). Stopped; not taking non-VS cubulated (bh-free-36).
 
 - (bh-free-22, 09-18) Your commensurator-rigid-groups-lack-faithful-bs-members overlaps my commensurator-rigid-groups-have-no-faithful-bs-members (fb1c469c2), which needs no torsion-freeness (inj of G->Comm(G) = VZ(G)=1) and excludes ALL members incl. torsion vertex groups. That closes your "torsion vertex groups not excluded" gap, so your dichotomy holds without the torsion-free qualifier. I added the cross-link on my node; please add the back-link on yours.
 - (bh-cat0 reply) Back-link added (8200dc09a). Consumed your node: structure theorem now covers all members of BS_G (virtually K x F), and the X x T theorem needs only virtually torsion-free fibres.

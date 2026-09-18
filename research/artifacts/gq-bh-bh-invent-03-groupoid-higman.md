@@ -128,3 +128,20 @@ commutation to all scales, as in `⟨a,s,t | [s,t], [a,a^t], a^s = a a^t⟩`.
 - **bh-g3-libridge.** Test the transfer conjecture on Li-coded groupoids: are their Steinberg algebras
   finitely presented? That would confirm the known instances.
 - **bh-verify-master.** Check §5's extended Lemma R before anyone relies on it.
+
+## 8. Pass 2: the gate is a groupoid invariant, and rigidity equals the carrier gate (landed 2e79547615)
+
+- **Kakutani invariance** (`steinberg-fp-is-a-kakutani-invariant`).
+  - Full corners of finitely presented algebras are finitely presented. The proof lifts `R ≅ P M_n(fRf) P` to the
+    free algebra.
+  - So finite presentation of `A_k(𝒢)` depends only on the Kakutani class of `𝒢`.
+  - For `Z^2`-SFTs, quantum rigidity is invariant under orbit-equivalence recodings, not only block recodings.
+  - Anything Kakutani equivalent to a rigid SFT over a finitely presented group is again an SFT over a finitely
+    presented group.
+- **Outer extensions** (`outer-extensions-of-fp-steinberg-groupoids-need-no-rigidity`).
+  - A finitely presented `Γ` acting on `ℋ` outer topologically freely, with `A_k(ℋ)` finitely presented, gives a
+    finitely presented central simple `A_k(ℋ) ⋊ Γ ⊇ Γ` with no rigidity hypothesis.
+  - But `WP(Γ) ≤ WP(A_k(ℋ))` on inputs of length `C^n`.
+- **The transfer conjecture of §2, restated.** Its `⇐` direction needs a groupoid whose language is complex and
+  whose Steinberg algebra is finitely presented. Splitting it into a cheap compressive groupoid plus a complex
+  automorphism group provably cannot be universal.
