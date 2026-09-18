@@ -25,7 +25,7 @@ By route `gl-n-q-type-a-via-projective-extension`, the claim gives
 `gl-n-q-in-permutational-boone-higman-class`, and so the root
 `gl-n-q-embeds-in-fp-simple-group`.
 
-## Reformulations (hand proofs, not independently reviewed)
+## Reformulations (hand proofs; referee gq-referee-a, proof-gap lens: PASS, report c6ca7f182)
 
 - **Strong form needs only two conditions.** `PGL_m(Q)` acts faithfully and
   2-transitively on `P^(m-1)(Q)` for `m >= 2`. So any `Γ` with
@@ -37,8 +37,10 @@ By route `gl-n-q-type-a-via-projective-extension`, the claim gives
     stabilizers are automatically finitely generated
     (`fp-finitary-alternating-overgroups-have-type-a-actions`).
 - **Subgroup form.** The claim for a given `m` is equivalent to the existence of:
-  - a finitely presented `Γ ≥ PGL_m(Q)`, with a type (A) action on a set `S_1`
-    (which may be empty); and
+  - a finitely presented `Γ ≥ PGL_m(Q)`, with an action on a set `S_1` (which may
+    be empty) that has finitely generated point stabilizers and finitely many
+    orbits on two-element subsets; faithfulness is required only on
+    `S_1 ⊔ Γ/Λ`, below; and
   - a finitely generated `Λ ≤ Γ` with `P(Q) ≤ Λ`, `PGL_m(Q) ⊄ Λ`, finitely many
     double cosets `ΛgΛ`, and finitely many `Λ`-orbits on `S_1`;
   - such that `Γ` acts faithfully on `S_1 ⊔ Γ/Λ`.
@@ -64,7 +66,8 @@ By route `gl-n-q-type-a-via-projective-extension`, the claim gives
    the pieces are rational it lies in the image of `GL_m(Z[1/N])` for one `N`
    (`germ-extensions-omit-standard-gl-n-q`, items 2–3 and Corollaries (b)–(c)).
    So no such `Γ` contains `PGL_m(Q)`.
-2. **Near actions on `P^(m-1)(Q)`: dead** (hand proof, this lane). Suppose every
+2. **Near actions on `P^(m-1)(Q)`: dead** (hand proof, this lane; gq-referee-a
+   PASS, c6ca7f182). Suppose every
    `γ ∈ Γ ≤ Sym(P^(m-1)(Q))` agrees with some `h_γ ∈ PGL_m(Q)` outside a finite
    set. This covers `FSym ⋊ PGL_m(Q)` and Houghton-type extensions of the
    natural action.
