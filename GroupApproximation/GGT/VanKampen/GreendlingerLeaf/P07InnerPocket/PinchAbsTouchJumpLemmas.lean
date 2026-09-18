@@ -68,7 +68,7 @@ theorem pinchAbsTouchJump_walk_of_rotate (M : CombMap.{v}) (H : Finset M.Face)
 theorem pinchAbsTouchJump_pow_facePerm (M : CombMap.{v}) (x : M.Dart) (m : ℕ) :
     (M.sigma ^ m) (M.alpha (M.alpha (M.facePerm x))) = (M.sigma ^ (m + 1)) (M.alpha x) := by
   rw [M.alpha_involutive (M.facePerm x), PocketRun.facePerm_eq_sigma_alpha,
-    pow_succ M.sigma m,     Equiv.Perm.mul_apply]
+    pow_succ M.sigma m, Equiv.Perm.mul_apply]
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchAbsTouchJump_pow_facePerm
