@@ -5766,6 +5766,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosFi
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.FrameAction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.FrameSwaps
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.Brown
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.TwistedExt
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
