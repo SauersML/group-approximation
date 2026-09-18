@@ -113,7 +113,7 @@ theorem extremalJordanReroute_linked_of_loopRun (K : PocketFaceSet D eps X lo hi
     by_cases hall : ∀ x ∈ B0,
         X.toCombMap.vertexOf x = X.toCombMap.vertexOf (X.toCombMap.alpha x)
     · exact extremalJordanReroute_loops_pocket K hK hdec0 hall
-    push_neg at hall
+    push Not at hall
     obtain ⟨b, hbB0, hbl⟩ := hall
     have hbB : b ∈ B := hrem b (by
       rw [← hdec, hdec0]

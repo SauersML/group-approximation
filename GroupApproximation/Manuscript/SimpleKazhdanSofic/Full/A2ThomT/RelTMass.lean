@@ -84,7 +84,7 @@ theorem one_le_sq_mul_norm_sub_one_sq {p : ℕ} (hp0 : p ≠ 0) {ω : ℂ} (hω 
     exact_mod_cast Nat.pos_of_ne_zero hp0
   have hone : 1 ≤ (p : ℝ) * ‖ω - 1‖ := by
     by_contra hlt
-    push_neg at hlt
+    push Not at hlt
     have hmul := mul_lt_mul_of_pos_left hlt hp
     linarith
   calc (1 : ℝ) = 1 ^ 2 := (one_pow 2).symm

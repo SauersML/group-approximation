@@ -136,7 +136,7 @@ abbrev colSpan (N : ℕ) : Submodule ℂ (Ambient ℂ) :=
 theorem exists_mul_ne_zero {Y : Ambient ℂ} (hY : Y ∈ closedSubalgebra ℂ) (hY0 : Y ≠ 0) :
     ∃ k : ℕ, Y * matUnit ℂ k 0 (rep ℂ 1) ≠ 0 := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have hunit : ∀ (i j : ℕ) (d : ℂ), Y * matUnit ℂ i j (rep ℂ d) = 0 := by
     intro i j d
     have e : matUnit ℂ i j (rep ℂ d) = matUnit ℂ i 0 (rep ℂ 1) * matUnit ℂ 0 j (rep ℂ d) := by

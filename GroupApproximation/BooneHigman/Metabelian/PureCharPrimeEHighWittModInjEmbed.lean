@@ -15,7 +15,8 @@ statement holds for every Artinian `D`-module; its `Module.Finite` hypothesis is
 * `eHighWittModInj_exists_ne_zero`: for `n ≠ 0` in a `D`-module `N` there is a linear
   `f : N → D` with `f n ≠ 0`. Let `K = ann(n)`. Every `r ∈ K` has `r p = 0`, because either
   `r` is a unit (then `n = 0`) or `r ∈ pD` (then `r p ∈ p²D = 0`). So `r ↦ r p` factors
-  through `D ⧸ K ≅ D n ⊆ N`, and self-injectivity extends it to `f : N → D` with `f n = p ≠ 0`.
+  through `D ⧸ K ≅ D n ⊆ N`, and self-injectivity extends it to `f : N → D`
+  with `f n = p ≠ 0`.
 * `eHighWittModInj_embed_of_artinian`: choose a minimal kernel `ker (f₁, …, fₛ)` among all
   finite families of maps `N → D` (the module is Artinian). If `x ≠ 0` were in it, a map `g`
   with `g x ≠ 0` would give the strictly smaller kernel `ker (g, f₁, …, fₛ)`.
