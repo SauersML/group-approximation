@@ -45,3 +45,11 @@ Then:
      so `(-m)^j = 1`, `j = 0`, and `N = 1`. ∎
 
 **Corollary** (`bs-1-minus-m-embeds-in-brin-thompson-3v-for-odd-m`). `BS(1,-m) ≤ 3V` for every odd `m ≥ 3`.
+
+**Lesson for general BH.** Power-conjugacy realized by dynamics can always be symmetrized.
+- Put `T` on one cone and `T^-1` on the other. The union keeps every renormalization of `T`, and
+  the swap of the cones adds a conjugacy to its inverse.
+- So the set of `m` with `BS(1,m) ≤ nV` via renormalization is closed under `m ↦ -m`.
+- More generally, any host construction for an ascending HNN extension of `Z` extends to the
+  twisted one (`t a t^-1 = a^-m`) at no cost.
+- Obstructions to such embeddings therefore see only `|m|`.

@@ -40,3 +40,12 @@ Callard–Salo). So undistortion depends on the embedding. The proof uses two fa
 - **A lower bound from the belts.** A reduced word is covered by at most `ω` chains of pairwise
   non-commuting syllables. After reordering the word, Salo's faithfulness configuration follows the
   heaviest chain, so the head moves by about twice that chain's exponent sum.
+
+## Lesson for general BH
+
+Commutation structure can be linearized. The syllable heap of a reduced word has width at most the clique
+number, so one chain of pairwise non-commuting syllables carries a fixed fraction of the length. Reordering
+the word makes a single moving head follow that chain. Combined with one subadditive germ cocycle, this
+proves undistortion in a Thompson-like host from one well-chosen configuration. The template applies to
+any embedding whose faithfulness proof tracks a single point, such as graph products built from conveyor
+belts.

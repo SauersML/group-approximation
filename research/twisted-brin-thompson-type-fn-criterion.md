@@ -10,8 +10,11 @@ distinct_from:
   type-a-action-gives-boone-higman-for-subgroups: that is Zaremsky's finitely presented simple envelope for subgroups of type (A) actors; this gives type F_n simple envelopes for subgroups of type (A_n) actors.
 ---
 
-**ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18,
-**not yet reviewed**). No priority claimed beyond the literature check below.
+**ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18).
+Referee a (proof gaps): **PASS**,
+`research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md` (16bd2d9b5),
+with nits N1–N6 applied. Referee a recommends a second independent proof-gap pass (requested
+from gq-referee-c) and a citation pass (gq-referee-b, pending) before downstream use. No priority claimed beyond the literature check below.
 
 ## The conjecture, and what BZ proved
 
@@ -86,6 +89,25 @@ The stabilizer of a grid interval is commensurable to `∏ Stab_G(C_i)` with `|C
 (BZ Proposition `prop:stabs`). So it is of type `F_{n−e}`, which is exactly what a
 homological Brown criterion for filtered complexes needs. The proof then gets `FP_n`, and
 `F_n` follows because `SV_G` is already finitely presented.
+
+## Lesson for general BH
+
+**The twisted Brin--Thompson route loses no finiteness.** For faithful actions, FFWZ Cor 4.18
+together with this node gives:
+`SV_G` is `F_n`  ⟺  `(A_n)`  ⟺  `Z ≀_S G` is `F_n`,
+the last step by de Cornulier and Bartholdi--de Cornulier--Kochloukova.
+- So the simple group has exactly the finiteness of the lamplighter over the same action.
+  Building finitely presented, or `F_n`, simple envelopes through `SV` becomes the problem of
+  building a faithful actor `G ⊇ H` whose permutational wreath product `Z ≀_S G` is finitely
+  presented, or `F_n`. The simplicity costs nothing.
+- For every `n` this gives an `F_n` form of permutational Boone--Higman with the same shape:
+  `H` embeds in an `F_n` simple twisted Brin--Thompson group iff `H` embeds in an
+  `(A_n)`-actor.
+- **Method.** A Brown-criterion obstruction coming from bad simplex stabilizers can be an
+  artifact of the cell structure. Filter by intervals, compute which intervals are
+  homologically essential and in which degree, and ask for finiteness only of their
+  stabilizers. This transfers to other Stein-type complexes (Röver--Nekrashevych, cloning
+  systems, full groups of groupoids) wherever intervals are lattices of partitions.
 
 ## Scope
 

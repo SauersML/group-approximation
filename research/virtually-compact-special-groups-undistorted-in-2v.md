@@ -53,3 +53,11 @@ Zaremsky, arXiv:2201.00711v1, TeX l.495–497 (node `hyperbolic-groups-quasi-iso
   that the host is F_∞ and simple, which the BBMZ host `SV_Γ` is not known to be.
 - Virtually compact special groups are virtually CAT(0). Finite extensions of CAT(0) groups need not be
   CAT(0), so item 2 is phrased for the class itself.
+
+## Lesson for general BH
+
+"Undistorted in an F_∞ simple host" propagates along the same closure operations as Boone–Higman
+embeddings (finite extensions, products, undistorted subgroups). The reason is that germ cocycles of
+local copies equal those of the original. So one F_∞ simple group (here `2V`) that hosts the building
+blocks undistortedly settles both of Zaremsky's refinements for the whole closure. The general route is to
+look for a single F_∞ host of the basic pieces rather than a host per input.

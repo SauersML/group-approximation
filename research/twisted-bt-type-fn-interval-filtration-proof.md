@@ -27,18 +27,22 @@ in degrees `0..n`, and a chain map `φ: P → K` with `H_i(φ)` bijective for `i
 surjective for `i = n`.
 
 - **(a) Modules.** If `M` is of type `FP_{n−e}` and `0 ≤ e ≤ n`, then `M[e]` (placed in
-  degree `e`) is n-finite: shift a partial resolution `F_{n−e} → ... → F_0 → M`. If
+  degree `e`) is n-finite: shift a partial resolution `F_{n−e} → ... → F_0 → M`. (N1: if
+  `e = n` only `FP_0`, i.e. finite generation, is needed, so stabilizers of `n`-sets enter
+  only through grid intervals with `e ≥ n`.) If
   `e > n`, then `M[e]` is n-finite with `P = 0`. More generally any complex with
   `H_i = 0` for `i ≤ n` is n-finite with `P = 0`.
 - **(b) Quasi-isomorphism.** n-finiteness is invariant under quasi-isomorphism. A map from a
-  bounded complex of free modules lifts along a quasi-isomorphism up to homotopy.
+  bounded complex of free modules lifts along a quasi-isomorphism up to homotopy. A complex
+  `K` with homology concentrated in degree `e` is quasi-isomorphic to `H_e(K)[e]` through the
+  zigzag `K ← τ_{≥e}K → H_e(K)[e]`, where `(τ_{≥e}K)_e = Z_e(K)` (N2).
 - **(c) Sums.** A finite direct sum of n-finite complexes is n-finite. A direct sum of an
   n-finite complex and any complex with `H_i = 0` for `i ≤ n` is n-finite.
 - **(d) Extensions.** If `0 → K → L → M → 0` is exact and `K`, `M` are n-finite, then `L`
   is n-finite. Take witnesses `φ: P → K` and `ψ: Q → M`.
   1. Lift `ψ` to a graded map `λ: Q → L`. Then `dλ − λd = ατ` for a map `τ: Q → K` of
      degree `−1` with `dτ = −τd`, i.e. a chain map `Q⁻ → K`. Here `Q⁻_i = Q_{i+1}` and
-     `d_{Q⁻} = −d_Q`.
+     `d_{Q⁻} = −d_Q` (sign convention used throughout, N3).
   2. The cone `C` of `φ` has `H_i(C) = 0` for `i ≤ n`. `Q⁻` is a complex of free modules in
      degrees `−1..n−1`, so every chain map `Q⁻ → C` is null-homotopic, by building the
      homotopy degree by degree.
@@ -74,7 +78,8 @@ an `m`.
 - For an elementary interval `I = [v, w]`, the length is `rank(w) − rank(v)`. Every chain in
   `[v, w]` is elementary (BZ §5, "and hence v_i ⪯ v_j"), so `|I| ⊆ X_m` when
   `rank(w) ≤ m`.
-- Every simplex of `X_m` lies in `|[v_0, v_k]|`.
+- Every simplex of `X_m` lies in `|[v_0, v_k]|`. A coarsening of an elementary dyadic
+  partition is elementary, so sub-intervals of elementary intervals are elementary (N4).
 - Let `F_d` be the union of `|I|` over elementary intervals of length `≤ d` in `X_m`. These
   are `Γ`-subcomplexes, with `F_0` the vertex set and `F_{m−1} = X_m`.
 - A simplex lies in `F_d \ F_{d−1}` iff its (min, max) interval `I` has length `d`. Its
@@ -114,8 +119,8 @@ Induction is exact, so by Step 0(b),(c) `C_*(F_d)/C_*(F_{d−1})` is quasi-isomo
 - `Γ` is transitive on vertices of each rank (BZ proof of Proposition `prop:cocpt`), with
   stabilizer `𝒢(r) ≅ G ≀ Σ_r` (BZ Lemma `lem:vtx_stab`).
 - Grid intervals with bottom `[id_r]` correspond to tuples `(C_1, ..., C_r)` of finite color
-  sets. A twist `γ` at root `i` sends `C_i` to `γ C_i` (BZ Lemma `lem:stab_spectrum`), and
-  permutations permute roots.
+  sets. A twist `γ` at root `i` sends the full `C_i`-split to the full `γC_i`-split (BZ Lemma
+  `lem:Relations`(7), N5; compare `lem:stab_spectrum`), and permutations permute roots.
 - So `Γ`-orbits of grid intervals with `e ≤ n` and bottom of rank `r` correspond to multisets
   of `G`-orbits of subsets of size `≤ n`. There are finitely many, because finitely many
   orbits on `S^n` give finitely many orbits on `S^k` for `k ≤ n` (embed `S^k` in `S^n` by

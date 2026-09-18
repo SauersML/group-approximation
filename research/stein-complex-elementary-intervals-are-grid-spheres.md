@@ -7,7 +7,9 @@ distinct_from:
   twisted-brin-thompson-type-fn-criterion: that is the finiteness characterization of SV_G; this is the local homotopy computation of open intervals that its proof consumes.
 ---
 
-**ESTABLISHED** by `stein-interval-grid-sphere-proof` (lane proof). The computation is the
+**ESTABLISHED** by `stein-interval-grid-sphere-proof` (lane proof). Referee a (proof gaps):
+**PASS** (`research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md`,
+16bd2d9b5). The computation is the
 nerve argument in the proof of Belk--Zaremsky, arXiv:2001.04579, Lemma `lem:all_big`
 ("Descending split link, second case"). There it is applied to the descending links of the
 Stein complex; here it is stated for an arbitrary elementary interval. No priority claimed.
@@ -50,3 +52,10 @@ Consequently `H_k(|[v,w]|, |[v,w)| ∪ |(v,w]|) ≅ H̃_{k−2}(|(v,w)|)` is `Z`
   two contractible components, so it is `≃ S^0`, with `e = 2`, although the interval has
   length 3.
 - `(x_b ⊕ id) x_r`: `(v, w)` is one point, contractible (`SSpec = {r} ≠ {r, b} = Spec`).
+
+## Lesson for general BH
+
+The homological dimension of a piece of the Stein complex is the number of colors it
+spends, not its length. That is exactly the index that the `(A_n)` stabilizer hypotheses
+count. The same computation works in any poset of partitions whose atoms are single splits
+and in which joins of atoms exist.
