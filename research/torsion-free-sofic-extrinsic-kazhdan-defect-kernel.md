@@ -19,6 +19,7 @@ distinct_from:
   infranormal-sources-never-saturate-sofic-mapping-tori: That obstruction proves no source infranormal in the kernel saturates it, for any number of beads, because saturation would make the kernel nilpotent; this is the construction problem, which must therefore use a source whose compressors in K generate a proper subgroup.
   compression-defects-grow-under-centralizer-closure: That proves the defect is monotone along the centralizer Galois closure, so saturating sources may be taken closed, and kills sources whose closed kernel core contains a Kazhdan subgroup infranormal in K; this is the construction problem, which must use a closed source whose centralizer K does not normalize.
   sofic-normalization-fails-for-finite-index-kazhdan-pairs: That calibration refutes every pairwise sofic normalization theorem for compressed Kazhdan pairs and isolates the chain-envelope statement (CKN); this is the construction problem that (CKN) would kill.
+  ckn-forces-nonsofic-incompressible-affine-coset-wreath: That proves the chain-in-Kazhdan-envelope normalization input for killing (EK1) implies nonsoficity of an explicit affine coset wreath containing the summit wreath; this is the construction problem that input was meant to kill.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
@@ -453,5 +454,39 @@ must build genuinely Hamming-approximate sofic models.
     - An audit that closes (KT\*).
     - A proof that some sofic representation of a mapping torus `K ⋊ Z` gives the
       stable letter bounded cluster period, which would kill the node outright.
+20. **The chain-envelope normalization is a summit-strength nonsoficity statement (2026-09-18,
+    reframing, swarm-0917-w12-w12-titz-break).** Established
+    `ckn-forces-nonsofic-incompressible-affine-coset-wreath`. It tests the input W10 proposed
+    for killing (EK1):
+
+    ```text
+    (CKN)  G sofic, L Kazhdan, u in Comp_G(L), union_n u^-n L u^n inside a Kazhdan M
+           ==>  u normalizes C_G(L).
+    ```
+
+    - For any Kazhdan `M`, `alpha in Aut(M)` and Kazhdan `L <= M` with `alpha(L) < L`, the coset
+      wreath `W' = B^(G_0/L) semidirect (M semidirect_alpha Z)` satisfies the CKN hypotheses and
+      violates its conclusion: the root lamp centralizes `L`, and `u` moves it to a lamp that
+      does not. `W'` is sofic iff `B^(M/L) semidirect M` is sofic (orbit splitting plus
+      Elek--Szabo). So CKN implies that `B^(M/L) semidirect M` is nonsofic.
+    - Affine instance: `M_p = Z[1/p]^3 semidirect SL_3(Z[1/p])`, `L = Z^3 semidirect SL_3(Z)`,
+      `alpha` = conjugation by `pI`. Here `Comp_(M_p)(L) = L`, so Kun--Thom is silent. The summit
+      wreath `W_p` is a subgroup of `W_aff,p = C_2^(M_p/L) semidirect M_p`.
+    - Consequence: CKN implies `W_aff,p` is nonsofic, and a sofic `W_aff,p` would refute CKN and
+      make `W_p` sofic.
+
+    Invariant and death:
+    - *Invariant.* The compression semigroup of `L` inside the Kazhdan envelope `M`. In the
+      affine instance it is trivial.
+    - *Step where every member dies.* Every proof of CKN must control the root lamp once it is
+      moved by a compressor lying outside the envelope. With no compressor inside `M`, this is
+      a compression-free nonsoficity theorem for `W_aff,p`, at least as hard as the summit's
+      nonsoficity side. So the chain-envelope route to killing (EK1) is closed unless the summit
+      fork is resolved.
+
+    Survivors: a weaker, root-specific input that uses that `L` lies in the kernel `K` of a
+    mapping torus with no finite quotient. In the affine counter-wreath the kernel of the
+    height map is `C_2^(X) semidirect M_p`, which surjects onto the residually finite linear
+    group `M_p` and so has finite quotients. It therefore does not constrain that input.
 
     This node stays OPEN.
