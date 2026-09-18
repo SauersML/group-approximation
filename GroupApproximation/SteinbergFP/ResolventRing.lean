@@ -23,8 +23,9 @@ six generators and nine relations.  This file
   group of a free algebra and the finite normal generation of the kernel of a Steinberg
   quotient map;
 * proves, for any ring carrying the nine relations (`IsResolventTuple`), that every positive
-  integer is a unit (`IsResolventTuple.natCast_isUnit`), so that `ℚ` maps to the ring
-  (`IsResolventTuple.ratHom`) with central image (`IsResolventTuple.ratHom_commute`).
+  integer is a unit (`IsResolventTuple.natCast_isUnit`), so that `ℚ` maps into the center of
+  the ring (`IsResolventTuple.ratHomCenter`, `IsResolventTuple.ratHom`,
+  `IsResolventTuple.ratHom_commute`).
 
 The unit computation is the one of the research node
 `leavitt-resolvent-ring-is-fp-and-contains-q`: with `X = s₁^(m-1) s₂` one has
