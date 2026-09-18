@@ -25,12 +25,13 @@ each imply this claim, so each is at least as hard:
 A counterexample, meaning a proof that no finitely presented residually finite group
 contains `Z_(l)` for any `l`, would kill all three routes at once.
 
-A fourth consumer needs only the weaker semilocal form "(SL): some finitely presented residually finite group contains
-`Z_(S)` for some finite set `S` of primes", which this claim implies (`S = {l}`). It is the boundary route to (★′) for
-every input containing `(Q,+)`, such as `GL_n(Q)`: a topologically free end-shift SFT over a finitely presented group
-acting on a locally finite tree forces a vertex group that is finitely presented, residually finite and contains
-`Z_(S)` (`end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups`, lane bh-gln-tracka). A refutation of (SL)
-would kill all four routes.
+The whole Bux–Llosa Isenrich–Wu method needs at least the weaker semilocal form "(SL): some finitely presented
+residually finite group contains `Z_(S)` for some finite set `S` of primes", which this claim implies (`S = {l}`).
+Every group acting faithfully and cocompactly on a locally finite tree with finitely presented edge stabilizers
+(BLIW Theorem A), and containing `(Q,+)`, has a vertex group that is finitely presented, residually finite and
+contains `Z_(S)` (`end-shift-codings-of-q-inputs-need-fp-rf-semilocal-vertex-groups`, part 5, lane bh-gln-tracka).
+The Hecke route above is one instance, and the tree end-shift route to (★′) is another. A refutation of (SL) would
+kill every BLIW host of `GL_n(Q)`, `Aff(Q)`, `U_3(Q)` and `(Q,+)`.
 
 **Constraints on a witness Λ.**
 - *Not linear, not metabelian.* `Λ` is not linear over any field
