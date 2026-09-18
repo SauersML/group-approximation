@@ -1015,3 +1015,27 @@ the two-tail model persists through both native crossings, while the first
 raw forward prefix jumps directly to the existing Jacobson head-root MF
 problem.  It supplies no smaller marked finite model and no new proof of MF
 collapse.
+
+## Attempts
+
+**2026-09-18 (swarm-0917 w8, operator-algebras): regular pullback.**
+`leavitt-mf-survivor-yields-jacobson-regular-character` (ESTABLISHED,
+no property `(T)`) shows that any failure of the full radical produces the
+regular MF character of `EL_5(J)`.  The argument has four steps:
+1. The torsion criterion gives a nontrivial MF character.
+2. Diracizing it gives `1_K` with `K` a proper normal subgroup.
+3. The mark survives modulo `K`, because it normally generates.
+4. The head-faithfulness of `EL_5(J)` makes `iota^(-1)(K)` trivial.
+
+The new route `property-t-free-leavitt-via-jacobson-regular-character`
+therefore has the single open hole
+`jacobson-regular-character-not-mf-without-property-t`.  That hole is
+implied by `property-t-free-jacobson-head-collapse`, so this route is never
+harder than the older Jacobson route.  The hole also implies the `EL_n(R)`
+regular hole for `n>=5`.
+
+Two consequences hold unconditionally: either the goal holds, or `EL_5(J)`
+is MF with a regular trace and hence hyperlinear.  In particular,
+non-hyperlinearity of `EL_5(J)` would already prove the goal.
+
+The hole itself is not closed here.
