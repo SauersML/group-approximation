@@ -73,3 +73,31 @@ Proposition 3.27, Theorem 3.28, and Example 3.31 (p. 194).  Source checked
   missing clauses are the three groups in
   [[decidable-inputs-have-fp-shell-stabilizers]]. The shared regular
   enumeration does not identify the two finite-presentation problems.
+- **Antitwisted germ gate (heretic, Σ-invariants).** This attempt denies three
+  assumptions shared by the attempts above:
+  - that the shell fiber product models the germs of `E_nu(P)`;
+  - that finite presentation must be attacked by building presentations;
+  - that the obstruction is algorithmic.
+
+  [[mz-envelope-germ-group-is-an-antitwisted-fiber-product]] shows that
+  `E_nu(P)/FSym(N)` contains, with index 2, the product
+  `F^- = {(a,b) : eta(a)+eta(b)=0}` of the near shift group, not `R x_Z R`.
+  [[mz-envelope-fp-forces-two-sided-fg-near-index-kernel]] then uses Renz's
+  kernel criterion and the Bieri–Geoghegan product formula over `Z` in
+  dimension 2 to prove:
+  - `E_nu(P)/FSym` is finitely presented iff `R_nu` is finitely presented and
+    `ker eta` is finitely generated. The last condition is a TWO-sided window,
+    strictly stronger than the one-sided shell gate.
+  - For the same `nu`, finite presentation of `E_nu(P)` implies finite
+    presentation of the shell germ group.
+  - The square spiral enumeration of `Z^2`, and every injective `P*<s>` near
+    group, give non-finitely-presented envelopes.
+
+  Route [[infinite-shift-compiler-via-two-sided-germ-gate]] decomposes this
+  claim into two OPEN prerequisites:
+  - the necessary germ gate
+    [[decidable-inputs-admit-two-sided-fg-near-index-kernel]];
+  - the non-formal lifting gate [[mz-germ-finite-presentation-lifts-to-the-envelope]].
+    `H_2` has index 2 in `E_2` and has a finitely presented germ group.
+
+  The claim itself stays OPEN.
