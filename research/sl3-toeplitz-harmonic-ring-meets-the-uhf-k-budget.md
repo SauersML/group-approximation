@@ -1,0 +1,47 @@
+---
+rg: 2
+id: sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget
+kind: claim
+title: The SL_3(Z) Toeplitz harmonic ring meets both clauses of the UHF K-budget, in every full corner and for every unit
+distinct_from:
+  sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational: that proves the ring is finitely generated, simple and K_1-rational, kills K_2(Q) at the unit and in block corners, and trivializes the symbols of block units; this asks for the remaining corners and units.
+  q-algebra-with-fp-simple-projective-elementary-group: that is the host premise, which also needs PE_N finitely presented and simple; this is only the K-theoretic necessary part, for one candidate.
+artifacts:
+  - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
+---
+
+**OPEN.** Let `R_T` be the ring of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`. Then:
+
+- **(R1) Full corners.** For every nonzero idempotent `e ∈ R_T`, the image of
+  `K_2(Q) -> K_2(e R_T e)` is finite. This is required by `full-corners-must-kill-rational-k2-symbols`
+  when `E_N(R_T)` is finitely presented.
+- **(R2) Rational symbols.** The symbols `{λ, x}`, `λ ∈ Q^x`, `x ∈ R_T^x`, generate a finitely generated
+  subgroup of `K_2(R_T)`. This is required by `infinitely-generated-symbols-block-fp-elementary-groups`.
+
+## Known
+
+- **(K1).** Detection of `Q^x` in `K_1` with kernel in `{±1}`.
+- **R1 for the unit and for every block.** Every corner at a union of blocks, i.e. the preimage of an
+  odometer clopen, is matricially divisible, so it kills `K_2(Q)`.
+- **R2 for the group units `u_γ` and for block units** `χ_C u_γ + (1 - χ_C)`, `γ ∈ Γ(d)`, and all
+  their products. This uses the vanishing transfer `sl3-congruence-transfer-kills-abelianization`.
+
+## What remains
+
+- **R1 for non-saturated clopens.** The letter cylinders `[a]` of `X` are not unions of fibres of
+  `π : X -> K`, so the class `[χ_[a]] ∈ K_0(R_T)` can differ from pulled-back classes by an
+  "infinitesimal" part that need not be divisible.
+  - A sufficient condition: every clopen `A ⊆ X` is equidecomposable in `R_T`, by pieces `χ_D u_g`,
+    into `n` equivalent pieces for `n` cofinal. This is a comparison and divisibility property of the
+    groupoid `Γ ⋉ X`.
+  - For the odometer itself it is automatic; for Toeplitz extensions over a group with property (T)
+    it is unknown.
+- **R2 for all units.** The combinatorial units with non-saturated pieces, i.e. elements of the
+  topological full group of `Γ ⋉ X`, have `K_1` classes governed by `H_1(Γ; C(X, Z))`. Only the
+  odometer part `H_1(Γ; C(K, Z)) = 0` is known. Non-combinatorial units, e.g. those built from the
+  harmonic coefficient ring, are uncontrolled.
+- **A cleaner test ring.** On the odometer `K` itself, the ring `R_K = ⟨u_s^(±1), f⟩` contains `Q`
+  (`harmonic-elimination-puts-q-in-odometer-crossed-products`) and is tracial through Haar measure. All
+  its clopen classes are divisible, so R1 at clopens is automatic. But its coefficient ring may have
+  no idempotents beyond `0, 1`, and neither its simplicity nor the divisibility of `[1]` is known. See
+  the artifact.
