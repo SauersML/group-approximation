@@ -63,3 +63,27 @@ Accessed 2026-09-18; recorded in `research/artifacts/gq-bh-openq-lists.md`.
        action;
      - a genuinely new finite presentation, where the SFT's local rules would have to supply the finitely many
        relations.
+2. **Correction to Attempt 1: the open core is minimal free SFTs, not "non-residually-finite actions" (2026-09-18,
+   lane `bh-free-12`).**
+   - **What Attempt 1 missed.** Attempt 1 overlooked `zd-derived-full-group-fp-forces-finite-type` (on main
+     before it). By that node, for every free minimal `Z^N`-subshift, `D` finitely presented forces `X` to be of
+     finite type. A residually finite free minimal subshift is never of finite type (see the Relation-to-main
+     section of `rf-free-minimal-zn-actions-have-non-fp-derived-full-groups`), so the residually finite case of
+     Attempt 1 was already decided on main, for subshifts.
+   - **What remains, for subshifts.** Exactly the free minimal `Z^N` SFTs (`N >= 2`), which are automatically not
+     residually finite. The known instance is Labbé's `Ω_U` (`labbe-shift-derived-full-group-is-finitely-presented`).
+     Abelian obstructions die on the recognizable self-similar ones
+     (`self-similar-tiling-full-groups-abelian-obstructions-vanish`, `z2-derived-full-group-h2-fg-iff-mod-two-cohomology-finite`).
+   - **The Robinson minimal subsystem `Ξ_min`.** It is decided exactly when one knows whether `Ξ_min` is of finite
+     type. Gähler–Julien–Savinien (arXiv:1203.1387, App. A.1, read at source) show that "sheared" two-supertile
+     tilings, with shear any multiple of 2, lie in the Robinson SFT but not in `Ξ_min`. If the witnessing bad patch
+     grows with the 2-adic valuation of the shear, `Ξ_min` is not an SFT and `D` is not finitely presented. The patch
+     size was not determined here. Mod-2 homology gives no obstruction: from GJS Thm 5.1,
+     `H^2(Ω; Z/2) ≅ (Z/2)^9` and `H^1(Ω; Z/2) ≅ (Z/2)^2`.
+   - **Non-subshift actions.** Not treated. If `D` is not finitely generated for non-expansive actions, those cases
+     are trivial. That was not checked.
+   - **Lesson for general BH.** Z^N full-group hosts of finitely presented simple groups live only on strongly
+     aperiodic SFTs. Every obstruction family on main (LEF / periodic approximation, finite type, abelian homology)
+     is silent exactly there. So the question has become: do the local rules of an aperiodic SFT supply finitely many
+     relations? That is the same "finite type ⇒ finite presentation" gate as premise (P2) of
+     `boone-higman-via-v-times-aperiodic-sft-full-groups`.
