@@ -141,8 +141,8 @@ theorem gfaceChoose_chain_cut {p A q : List M.Dart} (hA : A ≠ [])
   have hq : q ≠ [] := by
     rintro rfl
     simp at hy
-  rw [List.getLast?_eq_getLast hp, Option.mem_some_iff] at hx
-  rw [List.head?_eq_head hq, Option.mem_some_iff] at hy
+  rw [List.getLast?_eq_some_getLast hp, Option.mem_some_iff] at hx
+  rw [List.head?_eq_some_head hq, Option.mem_some_iff] at hy
   subst hx hy
   have h1 : M.vertexOf (M.alpha (p.getLast hp)) = M.vertexOf (A.head hA) :=
     hpA.rel_getLast_head_of_append hp hA

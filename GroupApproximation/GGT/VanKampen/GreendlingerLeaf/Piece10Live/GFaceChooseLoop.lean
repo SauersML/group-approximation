@@ -102,15 +102,16 @@ theorem gfaceChoose_of_loop (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk
     exact List.mem_append_left q (List.mem_append_right p hd)
   have hS := hw.isBoundaryDart_sideFaces_iff hM
   have hne_of : ∀ F : Finset X.toCombMap.Face,
-      (∀ x, extremalGFaceProve_bd X.toCombMap F x = true ↔ x ∈ K.boundary.cycle ∧ x ∉ A) →
-        F ≠ K.faces := by
+      (∀ x, extremalGFaceProve_bd X.toCombMap F x = true ↔
+        x ∈ K.boundary.cycle ∧ x ∉ A) → F ≠ K.faces := by
     rintro F hb rfl
     have hd := List.head_mem hw.ne_nil
     have h1 : extremalGFaceProve_bd X.toCombMap K.faces (A.head hw.ne_nil) = true :=
       (extremalGFaceProve_bd_eq_true_iff _ _ _).mpr ((hc _).mp (hAc _ hd))
     exact ((hb _).mp h1).2 hd
   have key : ((∀ x, extremalGFaceProve_bd X.toCombMap F' x = true ↔ x ∈ A) ∨
-      (∀ x, extremalGFaceProve_bd X.toCombMap F' x = true ↔ x ∈ K.boundary.cycle ∧ x ∉ A)) ∧
+      (∀ x, extremalGFaceProve_bd X.toCombMap F' x = true ↔
+        x ∈ K.boundary.cycle ∧ x ∉ A)) ∧
       X.outerFace ∉ F' ∧ F' ≠ K.faces := by
     rcases hF with ⟨rfl, hout⟩ | ⟨rfl, hSK⟩ | ⟨rfl, hKS, hOS⟩
     · refine ⟨Or.inl (gfaceChoose_bd_keep hw hM), hout, fun hK' => hpinch ?_⟩
@@ -125,8 +126,8 @@ theorem gfaceChoose_of_loop (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk
       · exact K.outerFace_not_mem h'
       · exact (mem_sideOutside_iff X.toCombMap A _).mp h' hOS
   obtain ⟨hbd, hout, hne⟩ := key
-  have hB : ∀ d, X.toCombMap.faceOf d ∈ F' → X.toCombMap.faceOf (X.toCombMap.alpha d) ∉ F' →
-      d ∈ K.boundary.cycle := by
+  have hB : ∀ d, X.toCombMap.faceOf d ∈ F' →
+      X.toCombMap.faceOf (X.toCombMap.alpha d) ∉ F' → d ∈ K.boundary.cycle := by
     intro d h1 h2
     have hd := (extremalGFaceProve_bd_eq_true_iff X.toCombMap F' d).mpr ⟨h1, h2⟩
     rcases hbd with hb | hb
@@ -140,7 +141,8 @@ theorem gfaceChoose_of_loop (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk
   rcases hbd with hb | hb
   · rw [gfaceChoose_filter_keep hnd hb]
     exact hw.chain
-  · have hb' : ∀ x ∈ p ++ A ++ q, extremalGFaceProve_bd X.toCombMap F' x = true ↔ x ∉ A := by
+  · have hb' : ∀ x ∈ p ++ A ++ q,
+        extremalGFaceProve_bd X.toCombMap F' x = true ↔ x ∉ A := by
       intro x hx
       refine (hb x).trans ⟨fun h => h.2, fun h => ⟨?_, h⟩⟩
       rw [hseg]
