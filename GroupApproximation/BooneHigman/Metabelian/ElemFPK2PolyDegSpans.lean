@@ -27,6 +27,7 @@ root group (`k2PolyDeg_h_conj_exists`).  With `S ≤ N(V)` and `T ≤ N(S ⊔ V)
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 open GroupApproximation.SteinbergGroup
+open scoped Pointwise
 open GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl (w h x_congr conj_of_commute
   conj_x_right)
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (rootSpan
