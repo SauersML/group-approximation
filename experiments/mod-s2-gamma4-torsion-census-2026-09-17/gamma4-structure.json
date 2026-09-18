@@ -1,0 +1,39 @@
+{
+ "classes_over_splitting": [
+  16,
+  16,
+  16,
+  16,
+  16,
+  16,
+  16,
+  16,
+  16,
+  16
+ ],
+ "h1_rank": 54,
+ "rank_of_classes_over_each_splitting": [
+  10,
+  10,
+  10,
+  10,
+  10,
+  10,
+  10,
+  10,
+  10,
+  10
+ ],
+ "transversal_relations": 1024,
+ "W_rank": 106,
+ "span_rank_of_transversal": 106,
+ "transversal_generate_W": false,
+ "index_in_W_snf": [
+  2,
+  2,
+  2,
+  2,
+  2
+ ],
+ "W_snf": []
+}

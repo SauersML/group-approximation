@@ -9,7 +9,7 @@ requires:
   - ct-p-z-is-a-one-vertex-k-graph-full-group
 ---
 
-**ESTABLISHED** (lane proof, not reviewed).
+**ESTABLISHED** (lane proof; one adversarial referee PASS with minor gaps, bh-ref-kourovka-a 09-18, see Referee).
 - **Proof.** Elementary: valuations and one finiteness count.
 - **Input (H).** The universality of reversible counter machines (Morita, TCS 168
   (1996) 303–320). Kari–Ollinger use the same input; Morita's paper was not read at
@@ -198,3 +198,59 @@ at the ends of multiplicative orbits. So `S`-adic cofactors are invariants at in
 This gives a non-conjugacy and non-embedding test for elements, and plausibly for
 subgroups, of RCWA-type hosts. It is the arithmetic counterpart of the symbolic
 "bounded conjugator" argument used for `nV`.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS for Kourovka 21.73, with two minor gaps
+
+**Verdict.** The answer to Kourovka 21.73 is correct: conjugacy in `CT(Z)` is undecidable, and
+indeed Σ⁰₁-complete. It is conditional only on the standard input (H). The printed question
+(21st issue, "Is the conjugacy problem in CT(Z) algorithmically decidable?", S. Kohl, with CT(Z)
+as in 17.57) is exactly what is answered. The answer does not depend on how elements are given:
+a word gives an rcwa table effectively, and a table of an element known to lie in `CT(Z)` gives a
+word by enumeration.
+
+**Checked, no gap found.**
+- **Normal form.** Consider the fresh-state machine `M'`. By reverse determinism of `M`, a
+  post-pattern at `t` determines `(s, i, φ)`. Each fresh state needs two instructions per
+  post-pattern (`c = 0` and `c > 0`), and both have the same reverse, so `M'` is reversible.
+  States of `M` are entered only through a `c`-increment, so every `c = 0` configuration is initial.
+- **`D` is a bijection.** On `e = 0`, the images of forward non-halting steps
+  (`Conf ∖ Init`) and of backward switches (`Init`) partition the target, and dually on `e = 1`.
+  The halting, initial and touch predicates read only `v_3, v_5 ∈ {0, 1, ≥2}` and `v_7`, so
+  everything is constant on classes mod `L`.
+- **Canonicity.** Each denominator of a step multiplier `λ_c` (3, 5, `7^k` with `k < N`, 11, 13)
+  divides both `c` and `L`. So `α` maps `c(L)` canonically onto `(λ_c c)(λ_c L)`, and the
+  `s_1`/`s_2` composite is `α` on `X`, `2α^{-1}(·/2)` on `2X`, and the identity elsewhere.
+- **Twist.** `C = 20020` is `≡ 0 mod 10010` and `≡ 1 mod 3`. So `ρ ↦ ρ + C` is a bijection from
+  the residues coprime to `S` that are `≡ 1 mod 3` to those that are `≡ 2 mod 3`. A class
+  transposition keeps the index `k` in `ρ + k m_0 ↔ ρ' + k m_0`, so `T` preserves the sign.
+  `T(w) ≢ w mod 3`, and `T_Λ` is supported exactly on the codes with `S`-part `Λ`.
+- **`B_M`.** It equals `β` on `X` and `2β^{-1}(·/2)` on `2X`, because
+  `β^{-1} = T_* α^{-1}`.
+- **Halting case.** The `D`-cycle has length `4(L+1)` and exactly two touches, including when
+  `L = 0`. Going around the cycle, `k(y) = 2 − J(y) ≡ J(y)` at the last point, so
+  `k(Dy) + k(y) ≡ J(y)` everywhere, and `γ̃` is an explicit involution in `CT_S(Z)`.
+- **Non-halting case.** Steps 1–3 are correct:
+  - An infinite `A_M`-orbit stays in `X` or in `2X`, and its multipliers are positive.
+  - A nonzero coefficient pins `n_t`.
+  - A nonzero `μ` would take infinitely many values.
+  - Comparing non-`S` valuations forces the unit factor to be `±1`.
+  - So `T(q)/q` lies in a finite set fixed by `c`, and `q` is free.
+
+**Gaps.**
+1. **(minor, scope of the explicit prime set)** The normal form adds a step counter, so a
+   2-counter machine becomes a 3-counter one, and one more prime is needed (say 17). As written,
+   the proof therefore gives `CT_{3,5,7,11,13,17}(Z)`. The claim for `CT_{3,5,7,11,13}(Z)`, and the
+   "second fp simple group" corollary at that `P`, needs (H) for reversible 2-counter machines
+   started at an initial configuration. That holds if Morita's machines have an initial state with
+   no incoming transition, but this is not verified. Either verify it at source, or state the
+   corollaries for `P = {3,5,7,11,13,17}`. 21.73 is unaffected.
+2. **(citation)** (H) was not read at source; Morita, TCS 168 (1996) could not be fetched by
+   script. Indirect support: Kari–Ollinger (read at source, p. 422) cite the same paper for an
+   effective conversion of counter machines into reversible 2-counter machines. (H) is standard,
+   and it is acceptable as the one literature input.
+- **Not checked.** The remark "after Salo's `2V`". It also depends on the lane proof of Kourovka
+  17.61 (`ct-p-z-is-a-one-vertex-k-graph-full-group`) for finite presentation.
+
+**Priority.** The arXiv API search `abs:"class transpositions"` (09-18) returned 2409.13341,
+2504.08595 (orders of products, 18.48), 2604.12553 (Pan, `CT_(n) ≅ S_N`), 2607.17477 (Morrison,
+Kourovka 18.50 and seven others) and 2401.15642. None treats 21.73.

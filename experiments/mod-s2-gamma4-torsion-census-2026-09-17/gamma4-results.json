@@ -1,0 +1,19 @@
+{
+ "cosets": 61440,
+ "h1_rank": 54,
+ "h1_torsion": [],
+ "classes": 160,
+ "class_coset_counts": [
+  384
+ ],
+ "W_rank": 106,
+ "W_basis_snf_nonunit": [],
+ "gcd_aug": 10,
+ "d": "1/30",
+ "theta_values": [
+  "3/10"
+ ],
+ "cert_l1": 10,
+ "cert_aug": 10,
+ "cert_support": 10
+}
