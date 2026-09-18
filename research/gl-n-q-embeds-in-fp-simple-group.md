@@ -292,3 +292,24 @@ None recorded before 2026-09-17.
     a-T-menable, and it lies in no `nV`. This generalizes Attempt 6's Theorem A from `SL_3(Z)` to all
     S-arithmetic `SL_3(Z[1/m])`, and to all almost-V groups. The method says nothing for `n = 2`, since every
     FW subgroup of `GL_2(Q)` is finite.
+
+15. **Index of further recorded obstructions, 2026-09-17 (compiled by lane gq-integrate).** These established
+    claims are not cited above. Each gives one line; the node has the exact statement and scope.
+    - *Thompson-like and germ hosts.* `aff-q-does-not-embed-in-aut-thompson-f`: none of `Aff(Q)`, `SL_2(Q)`,
+      `GL_2(Q)` lies in `T-bar` or `Aut(F)`, and `T-bar` has no `Q^2`. `commensurating-end-germ-groups-omit-aff-q`:
+      finitely generated dyadic PL end-germ groups commensurating `x -> x+1` omit `Aff(Q)` and `SL_2(Q)`.
+      `rational-slope-germ-groups-have-bs-but-no-heisenberg`: rational-slope germs carry every `BS(1,m)` but no
+      nonabelian nilpotent group. `type-a-orbit-accumulation-forces-fg-nontrivial-germs`: type (A) actions by
+      homeomorphisms have nontrivial finitely generated germ groups at recurrent points.
+    - *Trees and permutation groups.* `gl-n-q-fixes-a-vertex-in-free-splittings`,
+      `bffhz-closures-cannot-create-gl-n-q` (the BFFHZ free-product and mapping-torus closures),
+      `aperiodic-tree-almost-automorphism-fg-subgroups-are-rf`,
+      `rf-near-image-permutation-groups-omit-rationals` (Houghton-type hosts),
+      `abelian-lamp-wreaths-cannot-create-u3-q-or-aff-q`, and `gl2-q-fa-subgroups-are-finite` (for `n = 2`,
+      fixed-point arguments exclude no host).
+    - *Normal series and lifts.* `q-free-normal-towers-omit-aff-q`, `q-free-lifts-reach-only-lattice-affine-q-groups`,
+      `aff-q-forces-distortion-in-abelian-kernels`.
+    - *Linear and ring hosts.* `infinite-prime-localizations-embed-in-no-fg-linear-group`,
+      `fg-subrings-of-integral-form-algebras-omit-q`, `integral-form-algebras-have-no-fg-subring-containing-q`,
+      `integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields`, and `rational-scalars-obstruct-fp-elementary-hosts`
+      (over a ring containing `Q`, `PE_N(R)` is infinitely presented).
