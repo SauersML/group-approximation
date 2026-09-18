@@ -7,8 +7,8 @@ import GroupApproximation.Meta.AxiomGuard
 
 Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).  Lanes gl-p10-16, gl-p10-16c.
 
-A sufficient condition for `ExtremalClassStretches K r`, proved here and offered as a route for
-discharging the gap `ExtremalMinimalLeastStatement` of `Piece10Live/ExtremalMinimal`:
+A sufficient condition for `ExtremalClassStretches K r`, proved here; it is the reduction behind
+the gap `ExtremalMinimalUniformStatement` of `Piece10Live/ExtremalMinimal`:
 
 * `ExtremalMinimalLinkedRuns K r`: consecutive kept darts of `K.boundary.cycle` separated by a
   nonempty removed run have linked ends;
