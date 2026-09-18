@@ -162,7 +162,8 @@ theorem czK2FngRank3Bld_residual_of_loop (h : czK2FngRank3Bld_LoopStatement) :
       (K2 (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ)) :
         Set (SteinbergGroup (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ)))) := by
     rintro _ ⟨ℓ, hℓ, rfl⟩
-    exact (mem_K2_iff _).mpr (by rw [czK2FngRank3Bld_projection_evSt]; exact hL1 ℓ hℓ)
+    exact (mem_K2_iff (czK2FngRank3Bld_evSt m p ℓ)).mpr
+      (by rw [czK2FngRank3Bld_projection_evSt]; exact hL1 ℓ hℓ)
   have hle : K2 (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ)) ≤
       czK2FngGtOneRank3_N (czK2FngGtOneRank3_locMap m p) (czK2FngRank3Bld_evSt m p '' L) := by
     intro k hk

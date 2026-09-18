@@ -56,7 +56,7 @@ The value `n = 2` gives the literal `Sp_4` statement of
    - The naive Farey rule fails, as recorded in item 2 of
      `lagrangian-thompson-group-is-finitely-presented`. Cells are not rigid: the Levi
      `GL_n(Z)` stabilizes each cell of a frame.
-3. **A concrete first test: dissection (open, lane remark).** Is every element of `𝔅_u` a
+3. **A concrete first test: dissection (answered no at n = 2).** Is every element of `𝔅_u` a
    finite disjoint union of single cells, modulo `Λ^0`? This is true for `n = 1` (Farey
    arcs). The first case for `n = 2` is the unimodular triangle.
    - **The triangle.** Take the frames `(e,f)`, `(e+f, f)` and `(e, e+f)`.
@@ -72,11 +72,14 @@ The value `n = 2` gives the literal `Sp_4` statement of
      - We expect the stabilizer of such an atom to be finite. The reason is that it
        should permute the three walls, and a unimodular transverse triple has finite
        stabilizer (Levi `A` with `A A^T = I`).
-     - Whether the mixed atom is a finite union of cells is not known.
-   - **What a yes would give.** A positive answer makes elements of `[[𝒢_n]]` into
+     - **Answer: no.** The mixed atom is not a finite union of unimodular cells
+       (`unimodular-maslov-cells-do-not-dissect-mixed-atoms`, lane proof by rank-one
+       slices of the wall `Σ(G)`).
+   - **What a yes would have given.** A positive answer would have made elements of `[[𝒢_n]]` into
      "cell diagrams", like tree-pair diagrams, with arithmetic cell stabilizers. That is
      the input a Stein–Farley complex with vertex stabilizers commensurable to products of
      `GL_n(Z)`-type groups would need.
-   - **What a no would give.** A negative answer would mean `𝔅_u` is not "Thompson-like",
-     and a proof would have to use the dyadic factor to absorb the non-rigid Maslov
+   - **What the no means.** `𝔅_u` is not "Thompson-like" in the Farey sense,
+     so a proof must take atoms of arrangements as its basic pieces, or use the dyadic
+     factor to absorb the non-rigid Maslov
      pieces.

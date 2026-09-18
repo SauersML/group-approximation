@@ -57,5 +57,8 @@ Let `k >= 1`, `n_1, ..., n_k >= 2`, and `A_K = L_K(1,n_1) ⊗_K ... ⊗_K L_K(1,
   generated with decidable word problem. Every finitely presented simple overgroup of it has
   `C_=P`-hard word problem, and by Toda--Ogiwara (`PH ⊆ BPP^(C_=P)`) that word problem is
   outside PH unless PH collapses. No finitely presented simple overgroup of `Γ_Z` is known.
+  None exists among Leavitt-linear groups over `Z[1/M]`, and none among rational or
+  finite-field ones unless `C_=P ⊆ ∀·Mod_pP`
+  (`integral-counting-group-avoids-leavitt-linear-simple-hosts`).
   Reduction mod `p` maps `Γ_Z` onto `Γ_p`, but no single prime is injective on `Γ_Z`, since
   the counts `X_1 - X_2` can be any integer.
