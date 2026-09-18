@@ -9,10 +9,16 @@ distinct_from:
   fg-subrings-of-integral-form-algebras-omit-q: that forbids ring-linear copies of Q in finitely generated subrings of integral-form algebras; this embeds (Q,+) group-theoretically, not ring-linearly, in the unit group of the integral form L_Z(1,2).
   gl-n-q-embeds-in-fp-simple-group: that is the root embedding problem for GL_n(Q); this is one divisibility mechanism inside a candidate host family, and it embeds only (Q,+).
   leavitt-subalgebra-linear-groups-satisfy-boone-higman: that embeds linear groups over subalgebras of L_{F_2}(1,2) in its unit group; this is characteristic 0 and embeds the non-linear-over-a-f.g.-ring group (Q,+).
+artifacts:
+  - research/artifacts/gq-referee-a-integral-leavitt-unit-group-contains-q.md
+  - research/artifacts/gq-referee-b-integral-leavitt-unit-group-contains-q.md
 ---
 
-**ESTABLISHED** through `integral-leavitt-unit-group-contains-q-proof` (lane
-proof, not independently reviewed; novelty not searched).
+**ESTABLISHED** through `integral-leavitt-unit-group-contains-q-proof`. Two
+independent reviews PASS: proof gaps (`research/artifacts/gq-referee-a-integral-leavitt-unit-group-contains-q.md`)
+and citations and hypotheses, with one amendment applied
+(`research/artifacts/gq-referee-b-integral-leavitt-unit-group-contains-q.md`). Novelty not
+searched.
 
 **Setting.** `L = L_Z(1,2)` is the binary Leavitt algebra over `Z`: generators
 `x_0, x_1, y_0, y_1` with `y_i x_j = delta_ij` and `x_0 y_0 + x_1 y_1 = 1`. For a

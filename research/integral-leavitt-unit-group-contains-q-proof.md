@@ -7,7 +7,15 @@ target: integral-leavitt-unit-group-contains-q
 requires: []
 ---
 
-Notation as in the target claim. For words `u, w`: `y_u x_w = 0` if `u, w` are
+Notation as in the target claim. Throughout, `L = L_Z(1,2)` is a free `Z`-module on its
+normal-form monomials: see Tomforde, *Leavitt path algebras with coefficients in a
+commutative ring*, J. Pure Appl. Algebra 215 (2011), for the basis over commutative
+rings (not re-read here), or the diamond-lemma argument over `Z` in part 0 of
+`integral-unit-hosts-for-gl-n-q-reduce-to-finite-fields-proof`. Steps 1, 5 and 7
+use this. Simplicity of `L_Q(1,2)`, used for faithfulness at the end, is
+Abrams--Aranda Pino, Theorem 4.2 (checked at source by the second review).
+
+For words `u, w`: `y_u x_w = 0` if `u, w` are
 incomparable, and `y_u x_{u w'} = x_{w'}`. For any complete prefix code `(w_j)`,
 `sum_j x_{w_j} y_{w_j} = 1`.
 
