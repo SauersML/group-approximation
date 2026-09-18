@@ -13,8 +13,10 @@ distinct_from:
 **ESTABLISHED** by `twisted-bt-type-fn-interval-filtration-proof` (lane proof, 2026-09-18).
 Referee a (proof gaps): **PASS**,
 `research/artifacts/gq-referee-a-twisted-brin-thompson-type-fn-criterion.md` (16bd2d9b5),
-with nits N1–N6 applied. Referee a recommends a second independent proof-gap pass (requested
-from gq-referee-c) and a citation pass (gq-referee-b, pending) before downstream use. No priority claimed beyond the literature check below.
+with nits N1–N6 applied. Referee c (independent second proof-gap pass): **PASS**,
+`research/artifacts/gq-referee-c-twisted-brin-thompson-type-fn-criterion.md` (b74ee10f0), at
+version 329a4461c. A citation pass (gq-referee-b) is pending, for FFWZ Cor 4.18, Cameron, and
+the wreath-product equivalence. No priority claimed beyond the literature check below.
 
 ## The conjecture, and what BZ proved
 
@@ -103,6 +105,13 @@ the last step by de Cornulier and Bartholdi--de Cornulier--Kochloukova.
 - For every `n` this gives an `F_n` form of permutational Boone--Higman with the same shape:
   `H` embeds in an `F_n` simple twisted Brin--Thompson group iff `H` embeds in an
   `(A_n)`-actor.
+  - `⇐` is this node.
+  - `⇒` (referee c asked for an argument): if `SV_G` is `F_n`, then `SV_G` is itself an
+    `(A_n)`-actor, through its clopen action on the proper nonempty clopen subsets of `C^S`
+    (`twisted-btb-clopen-action-is-type-a`). That action is faithful and oligomorphic.
+  - The pointwise stabilizer of a finite set of clopens is the product of the copies of
+    `SV_G` supported on its Boolean atoms, by fullness (`bbmz-oligomorphic-twisted-questions-proof`,
+    Step 1). So it is `F_n`, and so is the finite-index setwise stabilizer.
 - **Method.** A Brown-criterion obstruction coming from bad simplex stabilizers can be an
   artifact of the cell structure. Filter by intervals, compute which intervals are
   homologically essential and in which degree, and ask for finiteness only of their
