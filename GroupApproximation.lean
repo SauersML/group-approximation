@@ -5745,6 +5745,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZeroCore.Filtration
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiFragment
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.IntOps
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexProjection
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
