@@ -33,6 +33,11 @@ and torsion-free, with finitely many vertex orbits on `X`. So `Γ` acts freely o
    Garside categories II*, arXiv:2110.04505v2, Theorem `thm:k-graphs` and the
    corollary after it.
 
+**Prior art for the construction.** The cube `k`-graph of a group acting simply
+transitively on the vertices of a product of trees is in Mutter--Radu--Vdovina,
+arXiv:2012.05561 (read at source; see the priority check on
+`cocompact-tree-product-lattices-lie-in-type-a-class`).
+
 **Scope.**
 - Residual finiteness, irreducibility and the factor closures play no role. This
   includes the torsion-free Burger--Mozes and Wise lattices, and any torsion-free

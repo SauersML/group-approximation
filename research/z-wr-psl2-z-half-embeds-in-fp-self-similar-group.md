@@ -3,13 +3,17 @@ rg: 2
 id: z-wr-psl2-z-half-embeds-in-fp-self-similar-group
 kind: claim
 title: The permutational wreath product Z wr_X PSL_2(Z[1/2]) over X = PSL_2(Z)\PSL_2(Z[1/2]) embeds in a finitely presented self-similar group
+refuted_by:
+  - z-wr-psl2-z-half-is-not-residually-finite
 distinct_from:
   pbh-closed-under-permutational-wreaths-with-infinite-stabilizers: that is the general closure of B_A under permutational wreaths with infinite stabilizers (Zaremsky Question 5.7); this is one explicit instance, asked in the self-similar form.
 artifacts:
   - research/artifacts/gq-bh-openq-papers-list.md
 ---
 
-**OPEN.** Printed question of M. R. Almeida, A. C. Dantas, A. S. de Oliveira-Tosti,
+**REFUTED** by `z-wr-psl2-z-half-is-not-residually-finite` (2026-09-18, lane proof, elementary, not reviewed). The wreath product is not residually finite: `PSL_2(Z)` maps onto every finite quotient of `PSL_2(Z[1/2])`, so all lamps become equal in every finite quotient. Hence it embeds in no self-similar group at all, and the printed question has a negative answer. The original text is kept below as the record.
+
+Printed question of M. R. Almeida, A. C. Dantas, A. S. de Oliveira-Tosti,
 *On the self-similarity of permutational wreath products and their embedding into
 finitely presented simple groups*, arXiv:2609.01868v1 (TeX main.tex l.226–228):
 

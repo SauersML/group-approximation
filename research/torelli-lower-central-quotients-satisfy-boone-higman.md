@@ -57,9 +57,12 @@ lattices is needed.
   (`thompson-v-has-haagerup-property`).
 - **Full groups of essentially free measure-preserving actions of amenable
   groups** (`kazhdan-subgroups-of-amenable-orbit-full-groups-are-rf`).
-- **Open for this input:** `nV` with `n >= 2`. It is excluded if
-  `kazhdan-subgroups-of-brin-thompson-groups-are-finite` holds, which is open for
-  `n >= 2`.
+- **Open for this input:** `nV` with `n >= 2`. It is excluded if any one of three
+  open statements holds:
+  - `kazhdan-subgroups-of-brin-thompson-groups-are-finite`;
+  - the weaker `kazhdan-subgroups-of-brin-thompson-groups-have-finite-center`;
+  - `heisenberg-group-embeds-in-no-brin-thompson-group`, since `Q_{g,c}` contains
+    `H_3(Z)` (`deligne-lattices-and-torelli-quotients-contain-heisenberg-groups`).
 
 **Deligne-type sublattices.** Modulo a finite central subgroup, `Q_{g,c}`
 contains a group commensurable with the Deligne lattice over a congruence

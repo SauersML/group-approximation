@@ -18,7 +18,11 @@ symmetric-space fibres, in `cat0-groups-on-hyperbolic-plane-times-tree-lie-in-ty
 
 **Setting.** `Y` is a proper CAT(0) space and `T` a locally finite tree. `Γ` acts
 properly and cocompactly by isometries on `Y × T`, preserving the product
-decomposition. `G` is the `Γ`-stabilizer of a vertex of `T`.
+decomposition, and acting on `T` by tree automorphisms. The last condition is
+automatic when `T` has a vertex of degree `>= 3`: isometries preserve branch
+vertices, and the vertices are exactly the points at integer distance from a branch
+vertex. It can fail when `T` is a line, where the translation parts may be dense.
+`G` is the `Γ`-stabilizer of a vertex of `T`.
 
 1. `G` acts properly and cocompactly on `Y`, so it is finitely presented. Every
    vertex and edge stabilizer of the action on `T` is abstractly commensurable

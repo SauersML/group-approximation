@@ -67,3 +67,29 @@ would also do, through `leavitt-tensor-elementary-host-criterion` applied to
    - **The remaining gap, stated sharply.** A twisted form of Proposition 6.2: `K(D[t; α] ⊗ L) = 0`
      for regular supercoherent `D` and an automorphism `α`. Equivalently, regular supercoherence of
      twisted Laurent rings over `D`.
+5. **Reduction to K-theory of the point-indicator base** (2026-09-18, lane `bh-algebra`). Two clean
+   pieces, and one remaining check.
+   - *(a) The vanishing is inherited from the base.* Let `B⁺_2` be the char-2 point-indicator base of
+     Attempt 4 (the `σ`-closure of `t`, `P`, the reciprocal `Γ`, and the vacuum projections `e_u`), so
+     that `R_2` is the register completion with base `B⁺_2`. Run ABC Theorem 3.6 (as in
+     `register-completion-pimsner-from-supercoherence`) on `R_2 ⊗ L` over the coefficient ring
+     `B⁺_2 ⊗ L`. Its spectrum is `hocofiber(1 − φ_* : K(B⁺_2 ⊗ L) -> K(B⁺_2 ⊗ L))` once the twisted `NK`
+     terms vanish. So if `K_*(B⁺_2 ⊗ L) = 0`, then `K_*(R_2 ⊗ L) = 0`, and in particular `K_1 = K_2 = 0`.
+   - *(b) `K_*(B⁺_2 ⊗ L) = 0` from regular supercoherence of `B⁺_2`.* By Ara--Cortiñas Proposition 6.2
+     (`ara-cortinas-leavitt-tensor-k-theory-vanishes`), `K_*(L ⊗ R) = 0` for every regular supercoherent
+     `R`. So this reduces to: `B⁺_2` is regular supercoherent.
+   - *Remaining check.* `B⁺_2` is the two-variable analogue of
+     `eventually-rational-register-ring-is-regular-supercoherent`: functions on the Horner tree valued in
+     `F_2(t)`-tails, plus the resolvent along the curves `P = f_u(t)`. Over the field `F_2` the
+     semihereditary argument (gcd in the PID of tails, splitting off a finitary corner) goes through for
+     the `P`-direction; the extra variable `t` requires that the tail ring be a localization of
+     `F_2[t]` closed under `t ↦ t^2`, which it is, and that generic freeness along the curves `P = f_u`
+     hold, as in Part 2 of that node. Writing this out is the one open step; it is a regularity
+     computation over `F_2`, with no `K`-theory left.
+   - *(c) Twisted `NK` vanishing.* The same as in the char-0 node: the core `D ⊗ L` is a filtered colimit
+     of regular supercoherent rings along flat maps, so ABC Lemma 7.2 kills `NK(D ⊗ L; φ̂ ⊗ 1)_±`. This
+     uses regular supercoherence of `B⁺_2 ⊗ L`, which holds when `B⁺_2` is regular supercoherent, since
+     `L` is (Ara--Cortiñas Lemma 6.1) and the relevant tensor is handled exactly as the base case there.
+     [This step reuses the char-0 machinery verbatim once (b) is in hand.]
+   So the whole gate reduces to regular supercoherence of the explicit commutative-plus-indicators ring
+   `B⁺_2`, with no remaining `K`-theory.

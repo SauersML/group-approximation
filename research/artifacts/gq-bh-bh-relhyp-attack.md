@@ -93,3 +93,53 @@ a subgroup `P ≤ G`, work in the relative holomorph `(G * <t>) ⋊ Aut_G(G * <t
 retract of `M`, which rarely gives anything beyond free products. It was aimed at
 graph-manifold gluings: leaf pieces have non-primitive boundary curves, so neither
 side retracts. Left for bh-3manifold.
+
+## Update 2: torsion, graphs of groups, graph manifolds
+
+**Landed (lane proofs, not reviewed):**
+- `pbh-coset-condition-passes-to-finite-index-overgroups`: the indicator of a finite set of
+  cosets gives the setwise stabilizer as a centralizer. Item 2 was also found independently
+  as part 1 of `pbh-coset-wreath-subgroups-closure-properties`.
+- `cusp-extensions-of-rel-hyperbolic-groups-satisfy-pbh`: cusps `E(g_i) × K_i` along
+  non-commensurable loxodromic elements of any relatively hyperbolic `G ∈ B_A`, torsion
+  allowed.
+- `pbh-graphs-of-groups-over-realized-good-edges`: the graph-of-groups criterion stated
+  below.
+- `rel-hyperbolic-permanence-implies-finite-edge-amalgams`: calibration.
+
+**The criterion.** A finite graph of groups lies in `B_A` if there are
+- a group `D ∈ B_A`,
+- embeddings `α_v : G_v → D`, and
+- elements `w_e ∈ D`
+
+such that `α_{e^-} ι_e^- = c_{w_e} ∘ α_{e^+} ι_e^+` on each `G_e`, and each edge image is
+good in `D`. The proof maps `t_e ↦ s_e w_e` into the identity-edge multiple HNN of `D`
+and checks Britton's lemma.
+
+**Graph manifolds.** Use product pieces `V_v = F_v × <f_v>`. Passing to them needs a
+finite cover; that step is a trust note and was not checked.
+
+- *Two pieces, one torus.* Take `D = F_1 × F_2` with
+  - `α_1(w f_1^k) = (w, ρ_1(w) ∂_2^{νk})`;
+  - `α_2(w' f_2^k) = (λ_2(w') ∂_1^{pk}, w')`.
+
+  Write the gluing as `f_2 = ∂_1^p f_1^q` and `∂_2 = ∂_1^r f_1^s`, with `Δ = ps − qr = ±1`.
+  The torus condition then needs
+  - `ρ_1(∂_1) = ∂_2^μ`, where `μ = −q/Δ` and `ν = p/Δ`;
+  - `λ_2(∂_2) = ∂_1^r`;
+  - `p ≠ 0`.
+
+  With one boundary component per piece, each `∂_i` is a product of commutators. That
+  forces `q = r = 0`, the flip gluing, and flip manifolds are already NPC (BBMZ survey,
+  Theorem 5.1(7)). So nothing new comes from this `D`.
+- *Obstruction for product ambient groups.* The fiber image `α_v(f_v)` lies in every
+  torus at `v`, so every neighbour must reproduce its coordinates. That fails as soon as
+  there are two neighbours, or two tori between the same two pieces: either
+  `α_v(f_v) = 1`, or elements such as `[∂_e, ∂_{e'}]` die. So a working `D` cannot be a
+  product of vertex-type factors.
+- *Route left open.* Take an NPC graph manifold `M'` with the same pieces. Its group is
+  virtually special, hence linear, hence in `B_A`. Realize each twist `τ_e ∈ GL_2(Z)`
+  between the gluings of `M` and `M'` by an element that normalizes the torus in some
+  faithful linear representation of `π_1(M')`. Adjoining these elements keeps `D`
+  finitely generated and linear. What remains is keeping the tori good in the enlarged
+  `D`. Not attempted; left for bh-3manifold.

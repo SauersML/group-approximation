@@ -10,8 +10,9 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `commensurator-rigid-bs-products-proof` (lane proof,
-elementary given `commensurator-rigid-groups-have-no-faithful-bs-members`; not
-independently reviewed; no priority claimed).
+elementary given `commensurator-rigid-groups-have-no-faithful-bs-members`; referee a PASS,
+`research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`;
+no priority claimed).
 
 **Hypotheses.** `G` is finitely generated and infinite. The map
 `G → Comm(G)`, `g ↦ [conj_g]`, is injective (equivalently `VZ(G) = 1`) and has

@@ -198,9 +198,10 @@ admissible `P`:
      - For `P = St_N(R_L)` this forces `K_2(N,R_L)` to be non-central. If `K_2` were central,
        the centre would contain `π^-1(Q^x I_N)`.
      - `E_N(R_L)` fails outright, because its centre contains `Q^x I_N`.
-     - So window zero for `St_N(R_L)` is dead if `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring`
-       holds. Otherwise it needs a self-similar highly transitive action in which `K_2` acts
-       transitively on some orbit.
+     - `k2-central-in-steinberg-groups-of-leavitt-resolvent-ring` now holds, via
+       `leavitt-resolvent-k2-stability-holds` (a lane proof, not independently reviewed), and gives
+       `Z(St_N(R_L)) ⊇ K_2(N,R_L) ≅ Q^x`. So **window zero is dead in both directions for every
+       admissible `P`**, and for every genuine action.
 
 ## Attempts (gate 1)
 
@@ -211,3 +212,34 @@ admissible `P`:
   - The proof runs Khanh's frame-complex comparison for `E_n(R_L)` modulo the central `j(K_2(n-1))`.
   - What remains for this claim is gates 2--3: finite presentation of the germ group `Q_ν` for some enumeration `ν`,
     which needs `R_ν`, `R_ν ×_Z R_ν` and the ascending HNN condition, and a computable `ν`.
+
+3. **Windows `N >= 1` for FW inputs, 2026-09-18 (lane gq-typeA-design): partial obstruction.**
+   - *Commuting windows are dead.* `fw-inputs-fail-commuting-shell-windows` (872c2039c).
+     - Suppose the copies `c_0, …, c_N` pairwise commute and the direction is `ε = 1`.
+     - Shift invariance forces `c_(-1) <= A·c_N`, with `A` central in `W_N`.
+     - Then the derived subgroup passes window zero for `s^(N+1)`, which is impossible for
+       infinite finitely generated FW inputs.
+     - So the positive shape `W = P^(N+1)` suggested in `fp-window-group-makes-shell-germ-group-fp`
+       is closed for `St_N(R_L)`, `Sp_2n(Z)` and `SL_n(Z)`.
+     - With `ε = -1`, the argument reduces to descending window zero for `s^(N+1)` on `[P,P]`.
+       `fw-descending-shift-power-windows-force-torsion-centre` (e851421ae) closes that case
+       whenever `Z([P,P])` has infinite exponent. For `St_N(R_L)` it does, since the centre
+       contains `Q^x`, so **commuting windows fail in both directions for every admissible
+       `P`**.
+   - *Level designs with fixed collars are dead at every width.* This is a lane remark, not a
+     node.
+     - The design: `ρ(P)` preserves finite levels, `s` is the breadth-first successor, and
+       `ρ(P)` fixes a collar of `N+1` consecutive points at each level boundary, so that every
+       `c_j` acts levelwise as `r^j ρ r^-j`.
+     - `W_N` fixes the common fixed points of the `c_j`. So `c_(-1) <= W_N` forces `ρ(P)` to
+       fix the next point after every run of `N+1` fixed points.
+     - The fixed set then spreads along each level, and `ρ` is trivial there.
+   - *Where the general case stops.* For non-commuting windows no invariant has been found
+     that the inclusion `c_(-1) <= W_N` violates.
+     - Limits at infinity of the Schreier graphs make every near relation exact. But `s`
+       becomes a bijection there, and the index information is lost.
+     - Orbit-partition arguments give no information for transitive `ρ`.
+   - *Construction arm.* Lane gq-infinite-primes is testing non-commuting sibling copies from
+     the self-similar splitting `st-n-of-r-l-is-generated-by-two-copies-of-itself`.
+     - Any genuine action factoring through `E_N(R_L)` kills the central `K_2`, so it is not
+       near-faithful.

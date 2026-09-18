@@ -2,7 +2,7 @@
 rg: 2
 id: quadratic-interval-exchange-full-groups-satisfy-boone-higman
 kind: claim
-title: Every subgroup of the topological full group of a minimal interval exchange with parameters in a real quadratic field, in particular its finitely generated simple derived subgroup, embeds in a finitely presented simple group
+title: Every subgroup of the topological full group of a minimal interval exchange with parameters in a real quadratic field with a unit of norm −1, in particular its finitely generated simple derived subgroup, embeds in a finitely presented simple group
 requires:
   - stein-v-groups-act-with-type-a-on-breakpoints
 distinct_from:
@@ -14,8 +14,15 @@ artifacts:
   - research/artifacts/gq-bh-bh-near-actions-stein-slopes-reading.md
 ---
 
-**ESTABLISHED** (lane proof; a corollary of `stein-v-groups-act-with-type-a-on-breakpoints`, so it inherits that
-node's input (C), Cleary's `F_∞`, cited via Matui; no priority claimed).
+**ESTABLISHED for real quadratic fields with a unit of norm −1** (lane proof; no priority claimed).
+
+**CORRECTION (09-18).** This node first claimed every real quadratic field, using the type (A) route with
+"Cleary's `F_∞`" as cited by Matui. Cleary was then read at source: he treats only norm −1 F-versions. So:
+- The norm −1 case stands. Take `λ = ε_m`; the host is `V(Z[ε_m],⟨ε_m⟩,N)`, with finite presentation from
+  `pisot-unit-slope-stein-groups-are-finitely-presented`. Equivalently use `pisot-interval-exchange-groups-satisfy-boone-higman`.
+- Norm +1 fields, such as `Q(√3)`, are **withdrawn here**. They lie in no (F)-unit field
+  (`f-unit-fields-are-characterized-by-isolated-sign-units`). Only `IET(Z+αZ)` is covered, via bh-free-03's substitutive route.
+  General minimal interval exchanges over them are open.
 
 ## Statement
 
@@ -37,7 +44,7 @@ When the minimal interval exchange codes a minimal subshift, `[[T]]` is its topo
    - `T` maps `Γ_T` to itself, so every element of `[[T]]` is an interval exchange with breakpoints and
      translations in `Γ_T`.
    - So `[[T]] ≤ IE(Γ_T)`.
-2. **A quadratic Stein host.** Let `λ ∈ (0,1)` be a unit of infinite order of `K`, replaced by `±λ^{±1}` if
+2. **A quadratic Stein host (norm −1 fields only).** Let `λ ∈ (0,1)` be the norm −1 unit `ε_m` of `K`, replaced by `±λ^{±1}` if
    needed. `Z[λ]` spans `K`, so `NΓ_T ⊆ Z[λ]` for some integer `N ≥ 1`.
    - Rescaling by `N` embeds `IE(Γ_T)` in `V(Z[λ],⟨λ⟩,N)`.
    - Every subgroup of that group embeds in a finitely presented simple group by

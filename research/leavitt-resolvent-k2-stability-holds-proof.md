@@ -30,13 +30,17 @@ Fix `n >= 5`. Write `S = St_n(R_L)`, `G = E_n(R_L)`, `φ : S -> G`, and let `j` 
 **Step 1: the presentation of `G`.**
 - Let `P_12` and `P_23` be the permutation matrices. `P_12 = τ̃ · diag(-1, 1, ...)` with `τ̃` the signed transposition,
   so `P_12 in G` by (K1). Likewise `P_23 in G`.
-- The stabilizer of the vertex `b_1` is `J = {j(b, H) = [[1, b], [0, H]] in G}`. Here `j(b, H)` is `x_1(b) diag(1, H)`, so
+- The stabilizer of the vertex `b_1` is `J = {j(b, H) = [[1, b], [0, H]] in G}`. Here `j(b, H)` is `diag(1, H) x_1(b)`, matching `σ = ℓ(H) x_1(b)` (gq-referee-b, W1), so
   `j(b, H) in G` if and only if `diag(1, H) in G`, which by (K1) means `H in E_(n-1)`.
 - The stabilizer of the ordered edge `(b_1, b_2)` is `K = {k(a, b, H)}`, with `H in E_(n-2)` by (K1), since `n - 2 >= 3`.
-- By (X), Khanh's Borel-construction argument (Brown's theorem) presents
+- By (X), Khanh's Borel-construction argument presents
   `G = <J, T | T k T^-1 = η(k) (k in K), T h T = h T h>`, with `T = P_12`, `h = P_23` and `η = conjugation by P_12`.
-  Khanh's derivation uses only transitivity in dimensions `0, 1, 2`, simple connectivity, `T b_1 = b_2`, `h in J`,
-  `h^2 = 1` and `T^2 = 1`. All of these hold here.
+  Khanh verifies the presentation directly through the path groupoid (khanh.tex l. 458--460), so Brown is not needed
+  (gq-referee-b, W3). The derivation uses only:
+  - transitivity in dimensions `0, 1, 2`, and simple connectivity (used only at l. 462);
+  - `T b_1 = b_2`, `h in J` and `h^2 = 1`;
+  - the explicit stabilizers `J` of `b_1` and `K` of `(b_1, b_2)`, with `η(K) = K` (gq-referee-b, W4).
+  `T^2 = 1` is derived from these, not imposed, so `ψ(T)^2 in C` is not needed; it holds anyway.
 
 **Step 2: exact Weyl lifts on two coordinates.**
 - **Signs.** Let `a = ee* - ff*` and `W = ef* + fe*`, with `(e, f) = (s_1, s_2)`. Then `a² = W² = 1` and `W a W = -a`, so

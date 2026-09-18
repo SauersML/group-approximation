@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof below, from `loop-retraction-forces-fp-eventual-section-groups`; no priority
-claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`.
+claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-loop-retraction-linear-activity-persistent-automata.md`. Referee b (citations, scope) PASS: `research/artifacts/gq-referee-b-loop-retraction-linear-activity-persistent-automata.md`.
 
 ## The automaton
 
@@ -40,7 +40,10 @@ Let `G = ⟨S⟩ <= Aut({0,1,2}^*)`.
   itself, so `p = 1`, `S_∞ = {1, ŝ_a, …, ŝ_d}`, and the eventual section group is `G_∞ = ⟨ŝ_a,…,ŝ_d⟩ ≅ Γ`,
   which is not finitely presented. By `loop-retraction-forces-fp-eventual-section-groups`, `V_3(G)` is not
   finitely presented.
-- **(1).** `a` has activity `0` below the root. `b, c, d` are bounded: at level `n` their only nontrivial
+- **(1).** In Sidki's terms (Sidki, J. Math. Sci. 100 (2000), as stated in Bondarenko arXiv:1101.3200 §2: an
+  automaton is polynomial iff distinct nontrivial cycles are disjoint, of degree `m` iff at most `m+1` cycles are
+  chained), the nontrivial cycles are the triangle `b -> c -> d -> b` and the four loops of the `ŝ_x`, pairwise
+  disjoint, and `ŝ_b, ŝ_c, ŝ_d` reach the triangle through the letter `0`: degree `1`. Directly: `a` has activity `0` below the root. `b, c, d` are bounded: at level `n` their only nontrivial
   sections are along `1^n` and at one child of it, so at most `2`. `ŝ_γ` has nontrivial sections only at
   `2^n` and inside the cones `2^k 0`, where they are sections of `γ`; so at most `1 + Σ_{k<n} 2 = O(n)`.
 - **(2).** `ŝ_γ|_{2^n} = ŝ_γ` for every `n` and each of the infinitely many distinct `ŝ_γ`, `γ in Γ`. A

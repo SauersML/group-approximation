@@ -10,8 +10,9 @@ distinct_from:
   houghton-like-envelopes-lift-finite-presentation-from-germs: that is the lifting claim; P = Z with a free-shift enumeration and n = 3 is a counterexample to it.
 ---
 
-**ESTABLISHED** by `free-shift-houghton-envelopes-local-stability-proof`, a lane proof that is elementary and not
-independently reviewed.
+**ESTABLISHED** by `free-shift-houghton-envelopes-local-stability-proof`, a lane proof that is elementary.
+Referee a PASS (`research/artifacts/gq-referee-a-free-shift-houghton-envelopes-and-regular-enumerations.md`,
+afbbd1818).
 
 **Setting.**
 - `P` is infinite and finitely generated, and `nu : P -> N` is a bijection.
@@ -24,8 +25,8 @@ independently reviewed.
   `houghton-like-groups-are-strongly-shift-similar` for `n >= 2`, and is the definition of `E_nu(P)` for `n = 1`.
 
 **Statement.**
-1. **Local stability.** Suppose the canonical map `P * <s> -> R_nu` is injective. Let `w` be any word in these
-   generators with `w = 1` in `Γ_nu`. Then there is a finite set `S ⊂ P` such that `w = 1` also in `Γ_nu'` (same
+1. **Local stability.** Suppose the canonical map `P * <s> -> R_nu` is injective. Let `w` be any word in a finite
+   generating set of `K` and the letters `rho^(k)_g`, with `w = 1` in `Γ_nu`. Then there is a finite set `S ⊂ P` such that `w = 1` also in `Γ_nu'` (same
    `K`, the letters `rho^(k)_g` read with `nu'`) for every bijection `nu'` agreeing with `nu` on `S`.
 2. **Not finitely presented.** Under the same hypothesis, `Γ_nu = H_n(E_nu(P))` is not finitely presented, for
    every `n >= 1`.
@@ -36,8 +37,7 @@ independently reviewed.
    `houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group` item 3, the germ group
    `H_3(E_nu(Z))/FSym` is finitely presented, since `R_nu ≅ F_2`. By item 2, `H_3(E_nu(Z))` is not. So
    `houghton-like-envelopes-lift-finite-presentation-from-germs` is false. Such `nu` exist by
-   `regular-enumerations-can-make-near-shift-free-product`, whose elementary route this lane read; that node carries
-   no status line on main.
+   `regular-enumerations-can-make-near-shift-free-product` (refereed PASS, afbbd1818).
 
 **Reading.**
 - Along any permutation envelope route, the free-shift enumerations are dead in every form: n = 1, every

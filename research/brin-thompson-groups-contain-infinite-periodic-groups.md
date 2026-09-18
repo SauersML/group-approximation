@@ -63,3 +63,14 @@ topological full group of a minimal subshift").
      Toeplitz subshift, with the fragmentation piece index locally readable. Periodicity of the lift is
      automatic by `aperiodic-full-groups-lift-along-factor-maps` (the lift is an isomorphism onto its
      image), so no control of garbage configurations beyond the factor map is needed.
+2. **Attempt 2 (2026-09-18, bh-free-01): the factor route reduced to a single-element property, and SMART
+   ruled out.**
+   - `graded-renormalization-gives-ternary-toeplitz-factor` (ESTABLISHED, lane proof): a height-3
+     self-renormalization `Ψ` of `g` that cycles a clopen 3-colouring gives a factor onto the ternary
+     valuation Toeplitz subshift, hence (route `nv-periodic-groups-via-graded-renormalization`) Nekrashevych's
+     ternary fragmentation in `nV`. `Ψ` need not be brick-local. Its Lemma A: any Toeplitz factor forces a
+     non-open odometer factor at the holes.
+   - `smart-renormalization-admits-no-graded-basins` (ESTABLISHED, lane proof): SMART's landed renormalization
+     and all its finite skew-product lifts have no such colouring (the zero-insertion attractor is approached
+     from all depth classes).
+   - Open input: `some-nv-element-has-a-graded-height-3-renormalization`. Handed to bh-free-50.

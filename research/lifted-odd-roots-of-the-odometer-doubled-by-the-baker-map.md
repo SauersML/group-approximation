@@ -3,6 +3,8 @@ rg: 2
 id: lifted-odd-roots-of-the-odometer-doubled-by-the-baker-map
 kind: claim
 title: Some odd root of the 2V_tau odometer built from a V-torsion lift is squared by a doubling element, the first step toward Q semidirect 2 inside the F_infinity simple host 2V_tau
+refuted_by:
+  - no-free-q-odd-action-by-v-has-a-doubling-intertwiner
 target: affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q
 requires:
   - odometer-2v-is-fp-simple-and-contains-bs12
@@ -11,6 +13,8 @@ distinct_from:
   affine-2v-hosts-reach-z-1-2n-by-doubling-but-not-q: that node proves the NATURAL (translation) copy of Q semidirect <2> lies in no finitely generated affine 2V_H host, and leaves wild copies open; this claim proposes a specific wild copy, built from lifts of torsion of V as in the odometer-lift node, and reduces its first step to explicit functional equations.
   odometer-generators-carry-no-nonsolvable-baumslag-solitar: that forbids BS(m,n) with m or n odd on the odometer generator itself; here the doubling conjugation is u r u^{-1} = r^2, a BS(1,2) relation on the odd root r, which that node does not exclude.
 ---
+
+**REFUTED** (full target) by `no-free-q-odd-action-by-v-has-a-doubling-intertwiner`: no single doubling element serves all odd q, so there is no Q ⋊ ⟨2⟩ in 2V_τ with 1 ↦ s. Each single q holds (`odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators`). The original text follows as the record.
 
 **OPEN.** Lane bh-free-30 (09-18), a construction target outside the ring and prime-shift frames of the GL_n(Q) campaign. It is the n = 1 affine step: Q ⋊ ⟨2⟩ ≤ Aff(Q) ≤ GL_2(Q).
 
@@ -58,3 +62,26 @@ So the q = 3 step reduces to two things:
 - (ii) a linear cocycle equation for k.
 
 The full target also needs ONE u' working for all odd q at once.
+
+## Attempt 2 (bh-free-30): every single odd q is solved; the uniform doubling element is open
+
+- **Each q separately.** `odd-roots-of-the-2v-tau-odometer-have-doubling-conjugators` settles (i) and (ii) for every odd q, with explicit formulas.
+  - For (i): with ρ a single q-cycle of cones A_i, the element g(A_i x w) = x A_{2i} w of V satisfies gρg^{-1} = Φ(ρ²), with f = 0.
+  - For (ii): take k odd with orbit sums 1. Then k̃ = (k + k∘ρ)/2, and j solves one coboundary equation.
+  - So for each odd q, 2V_τ contains a q-th root r_q of s and a u_q = u∘c_q with u_q r_q u_q^{-1} = r_q².
+  - Note that for general q the target condition is gρg^{-1} = Ψ_f(ρ²). The earlier form Ψ_f(ρ^{-1}) is the special case q = 3.
+- **Reduction for the full target** (sketch only, not claimed). Elements commuting with s should be fibered, (x + k(y), ρy). The reason: τ is minimal, so s-orbit closures are the fibers, and the centralizer of the odometer in Homeo(Z_2) is Z_2. If so, the ansatz is general, and Q ⋊ ⟨2⟩ with s = 1 ↦ odometer needs three things:
+  - a free action ρ of L = Q_odd/Z on C by V;
+  - ONE g ∈ V with gρ(a)g^{-1} = Ψ_{f_a}(ρ(2a)) for all a ∈ L, so that C ≅ C^{×2} ⊔ C^{×2} as L-spaces via a V-map;
+  - a cocycle k: Q_odd × C → Z lifting ρ, with k_1 = 1 and the e-conditions for one j.
+  The per-level solutions don't glue. Along a tower q_1 | q_2 the canonical g's move different letters to the front, so the open problem is to design a "self-similar" free L-action.
+
+## Attempt 3 (bh-free-30): uniform problem reduced; the odd-odometer shape is ruled out
+
+See `q-semidirect-2-in-2v-tau-reduces-to-a-circle-coding` for proofs.
+- **The ansatz is general.** The centralizer of s is fibered, (x + k(y), gy) with g ∈ V, so the Attempt 2 sketch is now proved.
+- **A canonical model.** Q ⋊ ⟨2⟩ acts on the Cantorized 2-adic solenoid Z_2 × X′, where X′ is the circle blown up at Q/Z. In this action T_1 = s and M is the baker map; the cocycle and the e-conditions are solved with j = 0 and k_a = ⌊ỹ + a⌋.
+- **What remains.** Q ⋊ ⟨2⟩ ≤ 2V_τ follows from one binary tree 𝒯 on X′ under which the odd rotations and doubling are local similarities.
+- **Ruled out.** On the odd mixed-radix odometer L-space (circle blown up at Q_odd/Z), no continuous σ′ satisfies σ′R_a = R_{2a}σ′. So that shape cannot work.
+- **A necessary condition.** 𝒯 needs infinitely many split ratios.
+- **Update, Attempt 3b.** bh-free-16's `rational-rotations-and-doubling-have-no-common-tree-coding` rules out the tree 𝒯 needed above: a local 𝒯-similarity is exactly an almost-automorphism, and doubling forces only finitely many primes among the rotations that are almost-automorphic. So the canonical solenoid route is dead. What survives is the case of exotic free Q_odd/Z-actions (C, ρ, σ∘g) that are not conjugate to the rational rotations of the Cantorized circle.

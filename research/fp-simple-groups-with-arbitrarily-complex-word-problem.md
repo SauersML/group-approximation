@@ -124,7 +124,45 @@ the retired duplicate root `bh-forces-unbounded-fp-simple-wp-complexity`.)
      slot units and one commutator. The second tensor factor supplies baker scrolling, so
      reversible circuits have polynomial length. This is not a piecewise-prefix host, which is
      why item 6's cap does not apply: its elements are linear combinations, not homeomorphisms.
-   - *Limit.* `coNP^⊕P` is one fixed class, and every finitely generated subgroup of the unit
-     group of any `L_(F_2)(1,2)^(⊗d)` stays in it. So this route cannot give unbounded
-     complexity. Over `F_p` the same proof gives `coNP^(Mod_p P)` for finitely generated
-     subgroups; finite presentation of those hosts is not claimed.
+   - *Every prime.* With a characteristic-free slot unit, the finitely presented simple group
+     `(L_(F_p)(1,2)^(⊗2))^x / F_p^x` has `∀·Mod_pP`-complete word problem, for every prime `p`
+     (`leavitt-square-units-mod-p-complete-word-problem`). By Toda--Ogiwara,
+     none of these word problems lies in PH unless PH collapses.
+   - *Limit, now a theorem.* `leavitt-tensor-unit-word-problems-have-one-counting-quantifier`:
+     every finitely generated linear group over any Leavitt tensor algebra over `F_q` has word
+     problem in `∀·Mod_pP`. Over `Z[1/M]` the bound is `C_=P`, attained by an integral group
+     `Γ_Z`. So more tensor factors give nothing new, and this family can reach `PSPACE` only
+     if `PSPACE ⊆ ∀·Mod_pP` or `PSPACE = PP`. The obstruction is finite depth. Beating it
+     needs self-similar elements, as in item 6. Boone--Higman applied to `Γ_Z` predicts a
+     finitely presented simple group with `C_=P`-hard word problem.
+8. **Hard real parameters in PL hosts: die by order rigidity** (bh-free-32, 2026-09-18; lane
+   proofs, not reviewed).
+   - *Idea.* Keep the combinatorics of a Thompson-like host, but let one breakpoint or slope be a
+     computable transcendental `λ` whose digits are hard. A bump `u` with endpoint `e(λ)` and an
+     `F`-bump `k_r` on `(r, 1)` commute iff `e(λ) < r`, so the word problem decides the digits.
+   - *Dies.* `fp-pl-groups-with-f-have-no-transcendental-support-endpoints`: no finitely
+     generated PL group of an interval or circle with data in `Q(λ)` that contains a dyadic `F`
+     and such a bump is finitely presented. The reason is that the finitely many relators persist
+     when `λ` moves slightly, while `[u, k_r]` does not. For line groups,
+     `fp-bieri-strebel-line-groups-are-deformation-rigid` shows more: a finitely presented
+     `G(R;A,P)` has algebraic slopes, and its breakpoints lie in `Q(P)` after rescaling. So its
+     parameters live in a number field, where the word problem is arithmetic of bounded
+     complexity. This also shows that the necessary conditions of Bieri--Strebel D13.3 are not
+     sufficient, e.g. for `G(R; Z[1/2] + Z[1/2]τ, gp(2))` with any irrational `τ`.
+   - *Still open:* hard parameters in non-PL families (piecewise projective, germs), where the
+     same deformation argument should apply but is not written out. Notes:
+     `research/artifacts/gq-bh-bh-free-32-order-rigidity.md`.
+9. **Transcendental-slope Thompson groups as inputs** (bh-free-19, 2026-09-18; lane proof, not
+   reviewed). Route `arbitrarily-complex-fp-simple-via-transcendental-slope-thompson`.
+   - *Established half.* `transcendental-slope-thompson-groups-have-hard-word-problems`. The Sturmian
+     detector `[u', ρ^n w' ρ^{-n}] = 1 ⟺ ⌊(n+1)λ⌋ = ⌊nλ⌋` lives inside `D(V_λ)`, which contains no
+     dyadic `F`. With a Liouville `λ` that carries hard digits, this makes the 2-generated simple
+     group `D(V_λ)` beat any given recursive `T`.
+   - *Open half.* `transcendental-slope-thompson-groups-satisfy-boone-higman`. Attempt 8 excludes PL
+     hosts carrying `λ`. So a host must compute `λ`'s digits by other means, and this route shows the
+     open half is at least as strong as this root.
+   - *Every one-dimensional piecewise-projective host is capped* (same lane):
+     `fp-piecewise-projective-groups-specialize-to-algebraic-data`. A finitely presented simple group
+     of piecewise-projective maps of an interval, circle or line, with arbitrary real data, is
+     isomorphic to one over a real number field and has polynomial-time word problem. This settles
+     the piecewise-projective part of Attempt 8's "still open" item; germ-type hosts remain.

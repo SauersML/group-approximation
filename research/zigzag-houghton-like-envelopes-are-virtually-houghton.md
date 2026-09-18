@@ -48,6 +48,10 @@ map of `H_n(G')`, and the index is preserved. ∎
   confines it to virtually cyclic inputs. A non-virtually-cyclic input needs an enumeration that is rigid in the
   sense of `fsym-containing-fp-groups-are-pinned-by-finitely-many-equations`: every far transplant of
   `rho`-edges must create a Schreier ball that does not already occur. Eventually periodic `rho` is rigid because
-  `rho`-edges stay a bounded structural distance from their source. The natural next candidates are unbounded
-  but locally linear patterns, where near relations such as `lambda s lambda^-1 = s^k` make every local
-  transplant detectable.
+  `rho`-edges stay a bounded structural distance from their source.
+- **Correction (same lane).** An earlier version proposed near relations `lambda s lambda^-1 = s^k` as the
+  mechanism. These are impossible. The near index is invariant under conjugation, which forces `k = 1`, and
+  `lambda` near-commuting with the shift forces `lambda` to be finitary.
+- **What happened next.** The locally linear class, successor maps that are piecewise translations over polyhedral
+  pieces, dies at the germ level for `Z^2`: see `piecewise-translation-z2-enumerations-are-not-fp`.
+  Piecewise-isometric (reflecting or rotating) enumerations remain open. The zigzag is of that kind.

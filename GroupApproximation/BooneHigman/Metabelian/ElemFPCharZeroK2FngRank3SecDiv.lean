@@ -78,9 +78,9 @@ theorem czK2FngRank3Sec_sectionProp_of_surjective {R S : Type*} [CommRing R] [Co
     unfold czK2FngGtOneRank3_Q
     exact Subgroup.mem_sup_left (MonoidHom.mem_range.mpr (hsurj g))
   refine ⟨fun _ ↦ 1, hQ _, fun _ _ _ ↦ ?_, fun _ _ _ ↦ ?_⟩
-  · intro y
+  · intro _
     exact hQ _
-  · intro y
+  · intro _
     exact hQ _
 
 #audit_axioms

@@ -43,3 +43,23 @@ Problem 2.5: "Find an example of a Z²-action on a Cantor set such that the comm
 subgroup of the topological full group is f.p." This allows Z² actions that are not free
 or not minimal. So even if this node holds, the AIM problem stays open for those actions.
 Accessed 2026-09-18; recorded in `research/artifacts/gq-bh-openq-lists.md`.
+
+## Attempts
+
+1. **The residually finite case is settled; the rest is isolated (2026-09-18, lane `bh-free-12`).**
+   - **Settled.** `rf-free-minimal-zn-actions-have-non-fp-derived-full-groups`: if `φ` is residually finite in the
+     Kerr–Nowak sense, then `[[φ]]` is LEF (Ma, arXiv:2209.00580, Thm 5.5, read at source). So `D([[φ]])`, being simple
+     and infinite, is not finitely presented (Vershik–Gordon).
+     - This covers every product `φ_1 × ⋯ × φ_N` of minimal Cantor `Z`-systems, and every free `Z^N`-odometer.
+     - For `N = 1` it is the Grigorchuk–Medynets argument.
+   - **Where the LEF route stops.** `zn-subshift-is-rf-iff-periodically-approximable`: a `Z^N`-subshift is residually
+     finite iff its patterns are uniformly approximable by configurations with finite orbit. So every minimal subsystem
+     of a weakly aperiodic `Z^N`-SFT is **not** residually finite, and Ma's theorem says nothing about it.
+   - **What is still open.** The question stands for free minimal `Z^N` actions that are not residually finite. These
+     are not covered even by `circle-rotation-zd-derived-full-groups-are-not-fp`. Every minimal subsystem of a strongly
+     aperiodic SFT, e.g. Robinson's, is such an action, and those are the natural test cases for AIM Problem 2.5. A
+     decision there needs one of:
+     - a proof of LEF (or of some other finite-presentation obstruction) that does not come from finite models of the
+       action;
+     - a genuinely new finite presentation, where the SFT's local rules would have to supply the finitely many
+       relations.
