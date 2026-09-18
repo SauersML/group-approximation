@@ -30,8 +30,8 @@ noncomputable def higmanVC_evalAll (d : ℕ) :
 
 /-- The generator `(v, w)` evaluates to `vgenSwapOrOne v w`. -/
 theorem higmanVC_evalAll_of {d : ℕ} (v w : List (Fin d)) :
-    higmanVC_evalAll d (FreeGroup.of (v, w)) = vgenSwapOrOne v w := by
-  rw [higmanVC_evalAll, FreeGroup.lift_apply_of]
+    higmanVC_evalAll d (FreeGroup.of (v, w)) = vgenSwapOrOne v w :=
+  FreeGroup.lift_apply_of (f := fun p : List (Fin d) × List (Fin d) => vgenSwapOrOne p.1 p.2)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVC_evalAll_of
 
