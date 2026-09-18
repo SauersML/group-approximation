@@ -100,3 +100,15 @@ groups, where they are the sharpest open part:
      - the F_∞ half for every class;
      - quasi-isometric embeddings for mapping class groups of punctured surfaces without boundary;
      - closed surfaces, `Out(F_n)` and CAT(0) groups, where even the plain embedding is open.
+
+6. **(bh-free-44, 09-18) More mapping class groups, through a closure theorem.**
+   - `undistorted-type-a-class-closure-and-qi-boone-higman` (ESTABLISHED, lane proof): groups undistorted in a
+     type (A) actor form a class closed under products and finite extensions, and each of them quasi-isometrically
+     embeds in a finitely presented simple group.
+   - Consequences for Zaremsky's list:
+     - `Mod(S_{0,m})` for every `m`, since its pure subgroup is a direct factor of `PB_{m−1}`;
+     - the closed genus-two `Mod(S_2)`, by Birman–Hilden and residual finiteness;
+     - dihedral Artin groups;
+     - all finite products of these with hyperbolic groups and braid groups.
+   - Still open: the QI refinement for `Mod(S_{g,p})` with `g >= 1`, `p >= 1` and no boundary (genus `g = 1`
+     with `p = 1` is hyperbolic, so it is covered); `g >= 3` closed; the F_∞ half.

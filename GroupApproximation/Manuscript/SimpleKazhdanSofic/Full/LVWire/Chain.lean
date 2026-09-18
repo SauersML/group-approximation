@@ -94,11 +94,12 @@ theorem skLVWire_steinbergInjective_of_cohnLimit
 #audit_axioms GroupApproximation.Full.LVWire.skLVWire_steinbergInjective_of_cohnLimit
 
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittFP in
+open GroupApproximation.Manuscript.SimpleKazhdanSofic.FPSimpleKazhdan in
 /-- **#7: `EL_5(L_{𝔽₂}(1,2))` is finitely presented** (Khanh, Thm 5.4 and Lemma 5.3;
 tex l.733-735). -/
 theorem skLVWire_elementaryFP_of_cohnLimit
     (hD : LVH2GL3.StableK2Trivial LVCohnColimit.CohnLimit) :
-    Manuscript.SimpleKazhdanSofic.FPSimpleKazhdan.BinaryLeavittElementaryFinitelyPresentedStatement :=
+    BinaryLeavittElementaryFinitelyPresentedStatement :=
   binaryLeavittElementaryFinitelyPresented_of_binaryLeavittSteinbergInjective
     (skLVWire_steinbergInjective_of_cohnLimit hD)
 

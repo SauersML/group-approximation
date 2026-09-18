@@ -71,7 +71,9 @@ surjective for `i = n`.
 Proposition `prop:E_hi_conn` (descending links `E_m` are at least
 `min(ν(m/2)−2, log_2(m/2)−2)`-connected), BZ Proposition `prop:cible` (`X` contractible) and
 Bestvina--Brady Morse theory. It uses no hypothesis on `G ↷ S` beyond faithfulness. Fix such
-an `m`.
+an `m`. (Referee a noted that BZ's proof of `lem:VE_conn` misdescribes `VE_m^{i,j}`: it also
+contains vertices matching neither `i` nor `j`. The lemma survives, since `VE_m^{i,j}` is a
+join `|A| * |VE_{m−2}|`; see `abstract-twisted-bt-type-fn-colored-stein-proof`, Step 1.)
 
 ## Step 2. The interval filtration
 
@@ -110,7 +112,8 @@ Induction is exact, so by Step 0(b),(c) `C_*(F_d)/C_*(F_{d−1})` is quasi-isomo
 - `N = ker χ` has index `≤ 2`, so it is also `FP_{n−e}`. `Z_χ` has a resolution by finitely
   generated free `Z[Γ_I/N]`-modules, and `Z[Γ_I/N] = Ind_N^{Γ_I} Z` is `FP_{n−e}` over
   `ZΓ_I`. So `Z_χ` is `FP_{n−e}` over `ZΓ_I` (dimension shifting), and so is
-  `Ind_{Γ_I}^{Γ} Z_χ` over `ZΓ`.
+  `Ind_{Γ_I}^{Γ} Z_χ` over `ZΓ`. (A shorter argument, from referee c: the ring automorphism
+  `g ↦ χ(g) g` of `ZΓ_I` carries `Z` to `Z_χ`.)
 - By Step 0(a), `Ind Z_χ[e]` is n-finite for every grid `I`. For `e > n` no hypothesis is
   needed.
 
