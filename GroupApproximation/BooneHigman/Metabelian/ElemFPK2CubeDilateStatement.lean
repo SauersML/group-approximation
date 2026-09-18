@@ -45,7 +45,8 @@ theorem k2CubeDilate_evalZero_stDiff (w : SteinbergGroup (Fin N) (Polynomial B))
       (cubeDiagDilate_stDiff w a) = 1 := by
   rw [cubeDiagDilate_stDiff, map_mul, map_inv, SteinbergBasic.ringMap_ringMap,
     SteinbergBasic.ringMap_ringMap, k2CubeDilate_evalZero_comp_shift,
-    k2CubeDilate_evalZero_comp_C, mul_inv_cancel]
+    k2CubeDilate_evalZero_comp_C]
+  exact mul_inv_cancel _
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2CubeDilate_evalZero_stDiff
 
