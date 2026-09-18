@@ -65,7 +65,8 @@ theorem elementaryAbsorptionStatements_of_patching (h : SuslinPatchingStatement)
     Chain.CharPElementaryAbsorptionStatement ∧ Chain.CharZeroElementaryAbsorptionStatement :=
   elementaryAbsorptionStatements_of_oneVariable (suslinOneVariable_of_patching h)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.elementaryAbsorptionStatements_of_patching
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.elementaryAbsorptionStatements_of_patching
 
 end Absorption
 end Metabelian

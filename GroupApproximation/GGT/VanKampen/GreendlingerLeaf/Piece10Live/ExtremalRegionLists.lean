@@ -56,7 +56,7 @@ theorem exists_split_of_mem_head?_filter (p : α → Bool) {t : List α} {y : α
   | cons x t ih =>
     by_cases hx : p x = true
     · rw [List.filter_cons_of_pos hx] at hy
-      have hxy : x = y := by simpa using hy
+      have hxy : x = y := Option.some.inj (Option.mem_def.mp hy)
       exact ⟨[], t, by simp [hxy], fun _ h => by simp at h, by rw [← hxy]; exact hx⟩
     · rw [List.filter_cons_of_neg hx] at hy
       obtain ⟨B, C, hBC, hB, hpy⟩ := ih hy

@@ -117,7 +117,7 @@ noncomputable def quillenIdeal (u : K2 (Fin N) (Polynomial B)) : Ideal B where
   carrier := {a | K2DiesAfterPadding (quillenDiff u a)}
   add_mem' := fun ha hb ↦ diesAfterPadding_quillenDiff_add u ha hb
   zero_mem' := diesAfterPadding_quillenDiff_zero u
-  smul_mem' := fun c _ ha ↦ diesAfterPadding_quillenDiff_mul u c ha
+  smul_mem' := fun c ha ↦ diesAfterPadding_quillenDiff_mul u c ha
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenIdeal
 
@@ -126,3 +126,52 @@ theorem mem_quillenIdeal (u : K2 (Fin N) (Polynomial B)) (a : B) :
   Iff.rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.mem_quillenIdeal
+
+/-- If `ev_{t=0} u = 1` and `1 ∈ Q(u)`, then `u` dies after padding. -/
+theorem diesAfterPadding_of_one_mem_quillenIdeal {u : K2 (Fin N) (Polynomial B)}
+    (hu : K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1)
+    (h1 : (1 : B) ∈ quillenIdeal u) : K2DiesAfterPadding u := by
+  have h := diesAfterPadding_K2Map (quillenCollapse B) ((mem_quillenIdeal u 1).mp h1)
+  rwa [quillenDiff_one_collapse hu] at h
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_of_one_mem_quillenIdeal
+
+/-- **Patching** (the Quillen half of the local-global principle).  If `ev_{t=0} u = 1` and every
+maximal ideal of `B` misses some element of the Quillen ideal `Q(u)`, then `u` dies after
+padding. -/
+theorem diesAfterPadding_of_local {u : K2 (Fin N) (Polynomial B)}
+    (hu : K2Map (Polynomial.evalRingHom 0 : Polynomial B →+* B) u = 1)
+    (hloc : ∀ m : Ideal B, m.IsMaximal → ∃ s : B, s ∉ m ∧ K2DiesAfterPadding (quillenDiff u s)) :
+    K2DiesAfterPadding u := by
+  have htop : quillenIdeal u = ⊤ := by
+    by_contra hne
+    obtain ⟨m, hm, hle⟩ := Ideal.exists_le_maximal (quillenIdeal u) hne
+    obtain ⟨s, hsm, hs⟩ := hloc m hm
+    exact hsm (hle ((mem_quillenIdeal u s).mpr hs))
+  exact diesAfterPadding_of_one_mem_quillenIdeal hu ((Ideal.eq_top_iff_one _).mp htop)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_of_local
+
+/-- Conversely, if `u` dies after padding, then every `v_a(u)` dies after padding. -/
+theorem diesAfterPadding_quillenDiff_of_diesAfterPadding {u : K2 (Fin N) (Polynomial B)}
+    (hu : K2DiesAfterPadding u) (a : B) : K2DiesAfterPadding (quillenDiff u a) :=
+  diesAfterPadding_mul (diesAfterPadding_K2Map (quillenShift B a) hu)
+    (diesAfterPadding_inv
+      (diesAfterPadding_K2Map (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) hu))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.diesAfterPadding_quillenDiff_of_diesAfterPadding
+
+/-- Conversely, if `u` dies after padding, then `Q(u) = B`. -/
+theorem quillenIdeal_eq_top_of_diesAfterPadding {u : K2 (Fin N) (Polynomial B)}
+    (hu : K2DiesAfterPadding u) : quillenIdeal u = ⊤ :=
+  (Ideal.eq_top_iff_one _).mpr ((mem_quillenIdeal u 1).mpr
+    (diesAfterPadding_quillenDiff_of_diesAfterPadding hu 1))
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.quillenIdeal_eq_top_of_diesAfterPadding
+
+end QuillenIdeal
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP

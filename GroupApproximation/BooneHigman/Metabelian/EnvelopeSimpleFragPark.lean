@@ -62,7 +62,7 @@ theorem frag_park_of_family (H : Subgroup (TreeAut X)) {u : List X} (hu : 4 ≤ 
       by_cases hx' : x' ∈ cone u
       · obtain ⟨y, rfl⟩ := mem_cone_iff.mp hx'
         rw [S3, localize_apply_prepend, hfix]
-      · rw [S2 x' hx', localize_apply_of_not hx' e]
+      · rw [S2 x' hx', localize_apply_of_not (w := u) (x := x') hx' e]
     · have hex : e x ∉ cone u := by
         intro h
         obtain ⟨y, hy⟩ := mem_cone_iff.mp h

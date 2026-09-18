@@ -72,7 +72,8 @@ theorem suslinMonic_specialLinearInElementary_polynomial_of_normalized {A : Type
   have hmem := mul_mem (hnorm (σ * w⁻¹) hτdet hτ0) hw
   rwa [inv_mul_cancel_right] at hmem
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonic_specialLinearInElementary_polynomial_of_normalized
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonic_specialLinearInElementary_polynomial_of_normalized
 
 end Absorption
 end Metabelian
