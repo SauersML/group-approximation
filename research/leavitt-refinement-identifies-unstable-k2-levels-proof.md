@@ -26,7 +26,8 @@ hypothesis on stable rank".
 - **The block conjugation.** Let `V : R^(r+2) -> R^(r+2)` be the identity on the first `r - 1` coordinates. On the last
   three coordinates, where `R ⊕ R^2` is the last coordinate of `R^r` followed by the two padding coordinates, it acts
   by `V'`, which sends `(x, y, z)` to `(e*x, f*x, ey + fz)`.
-- `V'` is invertible, with inverse `(p, q, w) -> (ep + fq, e*w, f*w)`, by the Leavitt identities.
+- `V'` is invertible, with inverse `(p, q, w) -> (ep + fq, e*w, f*w)`, by the Leavitt identities. In block form
+  `V = T_r ⊕ u` with `u(y, z) = ey + fz` and `u^-1 = (e*; f*)` (gq-referee-a, N1).
 - For `A in GL_r(R)`, `V (A ⊕ 1 ⊕ 1) V^-1 = α_r(A) ⊕ 1`. The part on `R^r` is carried by `T_r`, and the padding `R^2` is
   carried isomorphically onto the last coordinate.
 - **Stably.** So `stab(α_r(A)) = c_V(stab(A))` in `GL(R)`. Lifting to `St(R)`, with `GL(R)` acting on `St(R)` (Milnor),

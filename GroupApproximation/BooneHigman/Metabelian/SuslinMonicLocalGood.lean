@@ -13,8 +13,8 @@ EVERY `τ ∈ SL₂(S)` with first row `(f, g)` has `diag(τ, 1) ∈ E₃(S)`.  
 basic closure properties of this predicate over every commutative ring:
 * it depends on the first row only (`suslinMonicLocal_stab_of_row`: two `SL₂` matrices with the
   same first row differ by a left `x₂₁(·)`);
-* unit entries are good (`suslinMonicLocal_good_of_isUnit`, `…_of_isUnit_right`);
-* column moves (`…_of_col_right`, `…_of_col_left`) and the swap `(f, g) ↦ (g, -f)`.
+* unit entries are good (`suslinMonicLocal_good_of_isUnit`, `…_good_unitRight`);
+* column moves (`…_colRight`, `…_colLeft`) and the swap `(f, g) ↦ (g, -f)`.
 The Mennicke product rule is in `SuslinMonicLocalMennicke.lean`.
 -/
 
@@ -113,7 +113,7 @@ theorem suslinMonicLocal_good_of_isUnit {S : Type*} [CommRing S] {f : S} (g : S)
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_of_isUnit
 
 /-- **Column move on the second entry.**  `(f, g)` is good once `(f, g + f t)` is. -/
-theorem suslinMonicLocal_good_of_col_right {S : Type*} [CommRing S] {f g g' : S} (t : S)
+theorem suslinMonicLocal_colRight {S : Type*} [CommRing S] {f g g' : S} (t : S)
     (h : suslinMonicLocal_Good f g') (hg : g' = g + f * t) : suslinMonicLocal_Good f g := by
   intro τ hdet h0 h1
   have h01 : (0 : Fin 2) ≠ 1 := by decide
@@ -128,10 +128,10 @@ theorem suslinMonicLocal_good_of_col_right {S : Type*} [CommRing S] {f g g' : S}
   · rw [hE, Units.val_mul, mul_elementaryUnit_apply, if_neg h01, h0]
   · rw [hE, Units.val_mul, mul_elementaryUnit_apply, if_pos rfl, h0, h1, hg]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_of_col_right
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_colRight
 
 /-- **Column move on the first entry.**  `(f, g)` is good once `(f + g t, g)` is. -/
-theorem suslinMonicLocal_good_of_col_left {S : Type*} [CommRing S] {f f' g : S} (t : S)
+theorem suslinMonicLocal_colLeft {S : Type*} [CommRing S] {f f' g : S} (t : S)
     (h : suslinMonicLocal_Good f' g) (hf : f' = f + g * t) : suslinMonicLocal_Good f g := by
   intro τ hdet h0 h1
   have h10 : (1 : Fin 2) ≠ 0 := by decide
@@ -146,14 +146,14 @@ theorem suslinMonicLocal_good_of_col_left {S : Type*} [CommRing S] {f f' g : S} 
   · rw [hE, Units.val_mul, mul_elementaryUnit_apply, if_pos rfl, h0, h1, hf]
   · rw [hE, Units.val_mul, mul_elementaryUnit_apply, if_neg h10, h1]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_of_col_left
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_colLeft
 
 /-- **Swap.**  `(f, g)` is good once `(g, -f)` is (three column moves). -/
 theorem suslinMonicLocal_good_of_swap {S : Type*} [CommRing S] {f g h : S}
     (H : suslinMonicLocal_Good g h) (hh : h = -f) : suslinMonicLocal_Good f g := by
-  refine suslinMonicLocal_good_of_col_right (g' := g + f * (-1)) (-1) ?_ rfl
-  refine suslinMonicLocal_good_of_col_left (f' := g) 1 ?_ (by ring)
-  exact suslinMonicLocal_good_of_col_right (-1) H (by rw [hh]; ring)
+  refine suslinMonicLocal_colRight (g' := g + f * (-1)) (-1) ?_ rfl
+  refine suslinMonicLocal_colLeft (f' := g) 1 ?_ (by ring)
+  exact suslinMonicLocal_colRight (-1) H (by rw [hh]; ring)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_of_swap
 
@@ -168,11 +168,11 @@ theorem suslinMonicLocal_good_swap {S : Type*} [CommRing S] {f g : S}
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_swap
 
 /-- A first row with a unit `(0,1)` entry is good. -/
-theorem suslinMonicLocal_good_of_isUnit_right {S : Type*} [CommRing S] (f : S) {g : S}
+theorem suslinMonicLocal_good_unitRight {S : Type*} [CommRing S] (f : S) {g : S}
     (hg : IsUnit g) : suslinMonicLocal_Good f g :=
   suslinMonicLocal_good_of_swap (suslinMonicLocal_good_of_isUnit (-f) hg) rfl
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_of_isUnit_right
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinMonicLocal_good_unitRight
 
 end Absorption
 end Metabelian
