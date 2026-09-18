@@ -14,10 +14,9 @@ the free product `E_I(R) ∗ F(I)` modulo the finitely many relations
 * (C1) `⁅x_{ij}(ε), τ_k⁆` for `ε ∈ S`, `k ≠ j`;
 * (C2) `x_{ij}(1) τ_j x_{ij}(1)⁻¹ (τ_j τ_i)⁻¹`;
 * (C3) `⁅τ_k, τ_l⁆`.
-
 * `isFinitelyPresented_presAff`: the quotient is finitely presented when `E_I(R)` is;
 * `affineRel_presAff`: its generators satisfy `AffineRel S xP τP` when `1 ∈ S` generates `R`;
-* `exists_finite_subring_closure_eq_top`: a finitely generated ring has such an `S`.
+* `exists_finite_ring_generators`: a finitely generated ring has such an `S`.
 -/
 
 namespace GroupApproximation
@@ -134,19 +133,17 @@ theorem isFinitelyPresented_presAff [Group.IsFinitelyPresented (elementaryGroup 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.isFinitelyPresented_presAff
 
 /-- A finitely generated commutative ring has a finite generating set containing `1`. -/
-theorem exists_finite_subring_closure_eq_top (A : Type*) [CommRing A]
+theorem exists_finite_ring_generators (A : Type*) [CommRing A]
     [Algebra.FiniteType ℤ A] : ∃ t : Set A, t.Finite ∧ (1 : A) ∈ t ∧ Subring.closure t = ⊤ := by
   obtain ⟨t, ht, hadj⟩ := Subalgebra.fg_def.mp (Algebra.FiniteType.out (R := ℤ) (A := A))
   refine ⟨insert 1 t, ht.insert 1, Set.mem_insert 1 t, ?_⟩
   apply top_unique
   intro r _
-  have hr : r ∈ Algebra.adjoin ℤ t := by
-    rw [hadj]
-    exact Algebra.mem_top
+  have hr : r ∈ Algebra.adjoin ℤ t := hadj ▸ Algebra.mem_top
   rw [Algebra.adjoin_int] at hr
   exact Subring.closure_mono (Set.subset_insert 1 t) (mem_subalgebraOfSubring.mp hr)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.exists_finite_subring_closure_eq_top
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.AffineFP.exists_finite_ring_generators
 
 /-- The generators of the presented group satisfy the affine relations. -/
 theorem affineRel_presAff {S : Set R} (h1 : (1 : R) ∈ S) (hcl : Subring.closure S = ⊤)

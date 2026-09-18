@@ -67,7 +67,7 @@ theorem polynomialFpK2Vanishing_of_split (hstab : PolyK2InjectiveStabilityStatem
   obtain ⟨M, hNM, v, huv⟩ := hhom p hp k N hkN h5N ⟨g, hg⟩
   have hv : v = 1 := eq_one_of_K2_eq_bot (hfield p hp M (h5N.trans hNM)) v
   rw [hv, map_one] at huv
-  refine GroupApproximation.Full.LVH2GL3.eq_one_of_indexMap_eq_one
+  refine GroupApproximation.Full.LVH2GL3.eq_one_of_indexMap_eq_one (n := N)
     (fun m hm ↦ k2StabInjective_of_injective (hstab p hp k m (hkN.trans hm) (h5N.trans hm)))
     ((mem_K2_iff g).mp hg) M hNM ?_
   exact congrArg Subtype.val huv

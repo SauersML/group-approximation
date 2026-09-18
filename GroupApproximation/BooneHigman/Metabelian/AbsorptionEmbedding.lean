@@ -29,6 +29,7 @@ section Blocks
 variable {R : Type*} [CommRing R]
 variable {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
 
+omit [DecidableEq m] [DecidableEq n] in
 /-- Block-diagonal matrices multiply blockwise. -/
 theorem fromBlocks_diag_mul (A A' : Matrix m m R) (D D' : Matrix n n R) :
     Matrix.fromBlocks A 0 0 D * Matrix.fromBlocks A' 0 0 D' =
@@ -128,7 +129,7 @@ theorem invTransposeHom_val (g : (Matrix m m R)ˣ) :
 
 end Blocks
 
-section Fin
+section FinBlocks
 
 variable {R : Type*} [CommRing R]
 
@@ -147,7 +148,8 @@ noncomputable def absorptionUnits (M N : ℕ) (h : 2 * M ≤ N) :
       (1 : (Matrix (Fin (N - 2 * M)) (Fin (N - 2 * M)) R)ˣ))
   map_one' := by
     show elementaryReindexUnitEquiv (R := R) (absorptionIndexEquiv M N h)
-        (blockUnits (blockUnits (1 : (Matrix (Fin M) (Fin M) R)ˣ) (invTransposeHom 1))
+        (blockUnits (blockUnits (1 : (Matrix (Fin M) (Fin M) R)ˣ)
+            (invTransposeHom (1 : (Matrix (Fin M) (Fin M) R)ˣ)))
           (1 : (Matrix (Fin (N - 2 * M)) (Fin (N - 2 * M)) R)ˣ)) = 1
     rw [map_one, blockUnits_one, blockUnits_one, map_one]
   map_mul' g g' := by
@@ -191,7 +193,7 @@ theorem absorptionUnits_det (M N : ℕ) (h : 2 * M ≤ N) (g : (Matrix (Fin M) (
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.absorptionUnits_det
 
-end Fin
+end FinBlocks
 
 end Absorption
 end Metabelian
