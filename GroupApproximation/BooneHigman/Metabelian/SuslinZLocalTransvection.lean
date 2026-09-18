@@ -50,7 +50,8 @@ theorem suslinZLocal_stab_mem_of_mem_TSet {R : Type*} [CommRing R]
     simp only [dotProduct, Fintype.sum_sum_type, Fin.sum_univ_two, Sum.elim_inl, Sum.elim_inr,
       Pi.zero_apply, mul_zero, Finset.sum_const_zero, add_zero]
     exact hwv
-  obtain ⟨u, hu, hval⟩ := suslinNormal_inE_of_dot_zero hyk hyx
+  obtain ⟨u, hu, hval⟩ := suslinNormal_inE_of_dot_zero (x := Sum.elim v 0) (y := Sum.elim w 0)
+    (k := Sum.inr ()) hyk hyx
   have heq : u = stabilizeUnit (R := R) (κ := Unit) g := by
     refine Units.ext ?_
     rw [hval, stabilizeUnit_val, hgv]
