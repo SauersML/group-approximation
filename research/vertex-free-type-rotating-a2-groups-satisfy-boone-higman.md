@@ -45,3 +45,9 @@ with torsion, or not type rotating, are not covered.
 - **Type-preserving case.** `θ = 0` without a type-transitive overgroup is still open. A
   sketch of a variant route through the index-3 degree lattice is in
   `research/artifacts/gq-bh-bh-groupoid-frontier.md` §6.
+
+**Update (2026-09-18, later).** The standard facts are proved
+(`finite-k-graph-standard-facts-proof`). So the type-transitive part
+(`type-transitive-vertex-free-a2-groups-embed-in-fp-simple-groups`) is ESTABLISHED, as lane
+proofs. This node remains OPEN only for type-preserving groups with no type-transitive
+overgroup; see frontier §6 for a sketched route.

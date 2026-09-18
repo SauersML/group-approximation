@@ -11,9 +11,7 @@ artifacts:
   - research/artifacts/gq-bh-bh-groupoid-frontier.md
 ---
 
-**OPEN: the proof is complete except for the unpinned standard facts
-`finite-k-graph-boundary-groupoid-standard-facts`.** Every other step is ESTABLISHED as a
-lane proof (not independently reviewed). Route:
+**ESTABLISHED** (2026-09-18) by route `type-transitive-a2-bh-via-rs-two-graph-full-groups`. Every step is a lane proof or an import pinned at source; none is independently reviewed. The last input, `finite-k-graph-boundary-groupoid-standard-facts`, is proved by `finite-k-graph-standard-facts-proof`. Route:
 `type-transitive-a2-bh-via-rs-two-graph-full-groups`.
 
 **Statement.** Let `B` be a locally finite thick Ã₂ building, and `Γ` a group of type
