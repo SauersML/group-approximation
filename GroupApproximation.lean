@@ -6103,6 +6103,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorEn
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Hom
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.Stage
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnDegZero.StageHom
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductNorm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
