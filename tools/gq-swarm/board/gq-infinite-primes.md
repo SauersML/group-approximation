@@ -1,4 +1,4 @@
-# gq-infinite-primes board (pass 23: free mode; one-step kernels, surjective⇒injective, bracket K_1 re-scope, loophole (i) closed for Leavitt tuples)
+# gq-infinite-primes board (pass 25: route to condition (i) down to one sign step)
 **KMS reading** (source: arXiv:1204.6506v5 e-print, gq/src/kms/KMS-322.tex; section/theorem numbers from the tex counters)
 - NO embedding theorem. §1.1.7 "What next?" only POSES the RF Higman question (unrestricted form: "whether every f.g.
   RF group with solvable WP embeds into a f.p. RF group").
@@ -212,3 +212,11 @@ via t_2 t_1^k f s_1^k s_2 = f(k)); K_1-instability at rank N with [1] of infinit
   relative Khanh criterion (E_n-frame complex simply connected (F) + K_1-injective stability (S1) + signs) ⇒ surjective
   K_2-stability ⇒ (i). Scalar-clause node: b PASS bd0d11d05.
 **Next:** attempt (F) (word-multiplier for R_L, E_n-orbit cones) and (S1) (K_1-surjective stability for R_L).
+**Pass 25 (free mode, own target: condition (i) via relative Khanh route)**
+- `leavitt-ge-rings-have-stable-k1-at-rank-three` EST: GE ⇒ K_1 surjective from rank 1; Leavitt ⇒ GL_n/E_n = K_1 (n ≥ 3).
+  **R_L compresses: y x z = 1 for every nonzero x** (common level, coefficient extraction, tagged vacuum 1^k21^m2) ⇒ purely
+  infinite simple; Menal–Moncasi GE (via Khanh) ⇒ GL_n(R_L)/E_n(R_L) = Z (n ≥ 3) ⇒ (S1).
+- cb9fefa48 EST: `leavitt-resolvent-frame-complex-is-highly-connected`: simultaneous multiplier via separated vacuum isometries;
+  Khanh cone+fan ⇒ X_r(R_L) (r−3)-acyclic, simply connected (r ≥ 4); E_r transitive on frames of size ≤ r−1 ⇒ (F).
+- Sign step: P_12 ∈ E_n(R_L) (since [−1] = 0 in K_1 and GL/E ↪ K_1); exact lift ω = w_12 D^{-1}(h_12(−1)). Left: ω² (central in
+  K_2(n)) ∈ j(K_2(n−1)) and braid relation mod C. Then (i) ⇒ WP of St_N(R_L) ⇒ gate 1. **For bh-shell-universal.**

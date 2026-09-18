@@ -8,6 +8,7 @@ distinct_from:
   free-products-with-a-finite-factor-are-contracting-rsgs: that is the case of a finite free factor, established; this is the whole question.
   free-products-of-hyperbolic-groups-are-contracting-rsgs: that is the freely decomposable case, established; this is the whole question.
   virtually-free-product-hyperbolic-groups-are-contracting-rsgs: that is the virtually freely decomposable case, established; this is the whole question.
+  sft-irreducible-core-iff-unique-recurrent-component: that is the graph-theoretic form of obstacle (ii), established; this is the whole question.
   contracting-rsgs-closed-under-products-with-finite-groups: that is a closure lemma used for the known cases; this is the question itself.
 artifacts:
   - research/artifacts/gq-bh-bh-free-23-rsg-q11.md
@@ -80,3 +81,25 @@ remains:
      of identity maps unless the surface group embeds in `V_{Γ,E}`, which is not known (compare
      survey Question 4.7). So a proof should expect to control non-identity local actions
      `g_β s g_α^{-1}`.
+3. **2026-09-18 (lane `bh-free-23`), what the one-ended case requires.**
+   - **Reformulation (proved).** By `sft-irreducible-core-iff-unique-recurrent-component`, for
+     a hyperbolic `G` with `∂_h G` without isolated points, obstacle (ii) says exactly this: the
+     atom-type graph has a single strongly connected component containing a cycle. Such a
+     component is then automatically a sink and not a single cycle.
+   - **Recurrent components come with loxodromics (proved, elementary).** Let `c` be a cycle
+     at a node `v` of a recurrent component `S`, and let `C_α` be a proper cone of type `v`.
+     The RSG property gives `h ∈ G` mapping `C_{αc}` onto `C_α` by the canonical similarity.
+     Then `h^{-1}(αω) = αcω`, so `h` has infinite order. Its attracting fixed point `αc^∞` has
+     its tail in `S`. So a second recurrent component would be carried by a second family of
+     loxodromic elements whose attracting rays can never pass into the first component.
+   - **Missing geometric input.** Exact agreement of distance germs. By BBMZ
+     `prop:MakeMorphisms`, `g` is a morphism from an atom `A` to an atom `A'` as soon as `g`
+     carries the finite entrance data of `A` onto that of `A'`: `N̂(A)`, the profile of `d_A`
+     on it, and the cone types there. That holds, for example, when `d(·,1) − d(·,g)` is
+     exactly constant on a ball of radius `R(δ)` around the relevant points, and `1`, `gx`,
+     `gz` are aligned.
+   - **Target.** Uniqueness of the recurrent component would follow from this: for any two
+     entrance configurations that recur along geodesic rays, some `g` exists with this exact
+     germ agreement at a point deep inside the first configuration's subtree. In free products
+     the cut vertices supply such `g`. For one-ended groups this exact-gate property is the
+     open point.
