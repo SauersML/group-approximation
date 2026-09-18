@@ -5923,6 +5923,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06h.OneCell
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderShift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderCentral
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWCyclic.InfiniteOrderPeriodic
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductCovariant
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
