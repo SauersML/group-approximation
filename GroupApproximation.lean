@@ -6084,6 +6084,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionE
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.Closure
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Transfer
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B5Canonical
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientSolvable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
