@@ -52,9 +52,11 @@ Route A can also start from `GL06h4.gl06h4Nearest_shortPocketStatement`,
 `GL06h3.NearestCellCutSectionStatement` or `GL06h5.gl06h5_descentPocketStatement`
 (`NMWire2.Copy`).  Each of these implies the all-cells refutation, so only that one is listed.
 
-The draft route `GL06g.proof_of_innerPocketEnclosed` would have derived the all-cells refutation
-from the corrected pocket.  It is not used: it still has an unresolved gap
-(`ALLCELLS_REFUTATION_PENDING`).
+`GL06g/Endpoint` does not remove this residual.  `GL06g.proof_of_innerPocketEnclosed` and
+`GL06g.proof_of_allCells` take the all-cells refutation as the explicit hypothesis `hall`
+(`GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement`), and `proof_of_allCells` supplies the
+corrected pocket from the proved `GL03BPinch.innerPocketEnclosedTwoArcCorrected`.  So Route A's
+binder 5 residual is still exactly the all-cells refutation above.
 
 This module is routing only.  It certifies no printed sentence on its own.
 -/
