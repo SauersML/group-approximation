@@ -174,3 +174,18 @@ non-permutation unitary construction.
       fibres, is the remaining step to the full statement.
     - *Linearity.* A heuristic multi-scale `Z/2` example suggests that single-scale box counting cannot give
       `O(K)`.
+- **w11-124, 2026-09-18 — removing the `|Y|` factor on thin tori. Obstruction: neither proposed route works. Landed
+  `two-torus-cross-slit-forces-sqrt-d-loss-in-thin-closing`.**
+  - **The family.** Take `(Z/p)^2 ⊔ (Z/(p+1))^2` with the unit translations. Swap the images of `(0,0)` and `(0,0)`
+    under `b`, and do the same under `c`. This gives `rho <= 2` and `dist = 1`.
+  - **No thick quotient.** The coprime row lengths `p` and `p+1` force the period lattice to be `Z^2`. So the
+    one-square torus is the only grid torus the pair covers, and route (ii), in the form of an exact equivariant map
+    to a thick torus, has nothing to map to.
+  - **One-sided thin closing.** There Theorem B's thin construction makes no push and changes one rung, so it keeps
+    one generator. The merged `b`-cycle of length `2p+1` is unique, so every `c'` in `C(b)` disagrees with `c` at
+    `4p+2` points, and the cost is at least `2p+1 > sqrt(2d) - 1`. Route (i), weighting the rungs by support, cannot
+    help: it is still one-sided. The count `4p+2` is exact for `p <= 15` (`twotorus.py`).
+  - **What it leaves.** A proof for all pairs must include a two-sided surgery that is not equivariant, done on the
+    square-tiled surface itself (here, undoing the slit). The next target is a *slit-pair lemma*. At a cone point
+    with excess, find two parallel saddle connections of `l^1` length `poly(rho)` whose swap lowers the total excess.
+    There are at most `2 rho` excess units, so iterating the lemma would finish the proof.
