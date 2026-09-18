@@ -114,4 +114,104 @@ theorem cubeDiagDilate_stDies_indexMap {N' : ℕ} (h : N ≤ N') {x : SteinbergG
 
 end StDies
 
+section StDiff
+
+variable {B : Type*} [CommRing B] {N : ℕ}
+
+/-- `v_a(g) = σ_a(g) · C(g)⁻¹ = g(t + a y) · g(t)⁻¹ ∈ St(N, B[t][y])`, for any `g ∈ St(N, B[t])`. -/
+noncomputable def cubeDiagDilate_stDiff (g : SteinbergGroup (Fin N) (Polynomial B)) (a : B) :
+    SteinbergGroup (Fin N) (Polynomial (Polynomial B)) :=
+  SteinbergGroup.ringMap (quillenShift B a) g *
+    (SteinbergGroup.ringMap (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) g)⁻¹
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff
+
+theorem cubeDiagDilate_stDiff_zero (g : SteinbergGroup (Fin N) (Polynomial B)) :
+    cubeDiagDilate_stDiff g 0 = 1 := by
+  rw [cubeDiagDilate_stDiff, quillenShift_zero, mul_inv_cancel]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_zero
+
+theorem cubeDiagDilate_stDiff_one (a : B) :
+    cubeDiagDilate_stDiff (1 : SteinbergGroup (Fin N) (Polynomial B)) a = 1 := by
+  rw [cubeDiagDilate_stDiff, map_one, map_one, inv_one, mul_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_one
+
+/-- `σ_a ∘ C = C ∘ C` on `B`. -/
+theorem cubeDiagDilate_quillenShift_comp_C (a : B) :
+    (quillenShift B a).comp (Polynomial.C : B →+* Polynomial B) =
+      (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)).comp Polynomial.C :=
+  RingHom.ext fun b ↦ by rw [RingHom.comp_apply, RingHom.comp_apply, quillenShift_C]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_quillenShift_comp_C
+
+/-- Constants have trivial Quillen differences: `v_a(C h) = 1` for `h ∈ St(N, B)`. -/
+theorem cubeDiagDilate_stDiff_C (h : SteinbergGroup (Fin N) B) (a : B) :
+    cubeDiagDilate_stDiff (SteinbergGroup.ringMap (Polynomial.C : B →+* Polynomial B) h) a = 1 := by
+  rw [cubeDiagDilate_stDiff, SteinbergBasic.ringMap_ringMap, SteinbergBasic.ringMap_ringMap,
+    cubeDiagDilate_quillenShift_comp_C, mul_inv_cancel]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_C
+
+/-- `μ_c v_a = v_{c a}`. -/
+theorem cubeDiagDilate_ringMap_quillenScale_stDiff (g : SteinbergGroup (Fin N) (Polynomial B))
+    (c a : B) :
+    SteinbergGroup.ringMap (quillenScale B c) (cubeDiagDilate_stDiff g a) =
+      cubeDiagDilate_stDiff g (c * a) := by
+  rw [cubeDiagDilate_stDiff, cubeDiagDilate_stDiff, map_mul, map_inv,
+    SteinbergBasic.ringMap_ringMap, SteinbergBasic.ringMap_ringMap, quillenScale_comp_shift,
+    quillenScale_comp_C]
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_ringMap_quillenScale_stDiff
+
+/-- `v_{a + b} = τ_b(v_a) · v_b`. -/
+theorem cubeDiagDilate_stDiff_add (g : SteinbergGroup (Fin N) (Polynomial B)) (a b : B) :
+    cubeDiagDilate_stDiff g (a + b) =
+      SteinbergGroup.ringMap (quillenTranslate B b) (cubeDiagDilate_stDiff g a) *
+        cubeDiagDilate_stDiff g b := by
+  rw [cubeDiagDilate_stDiff, cubeDiagDilate_stDiff, cubeDiagDilate_stDiff, map_mul, map_inv,
+    SteinbergBasic.ringMap_ringMap, SteinbergBasic.ringMap_ringMap, quillenTranslate_comp_shift,
+    quillenTranslate_comp_C, mul_assoc, inv_mul_cancel_left]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_add
+
+/-- **Crossed homomorphism**: `v_a(g₁ g₂) = v_a(g₁) · C(g₁) v_a(g₂) C(g₁)⁻¹`. -/
+theorem cubeDiagDilate_stDiff_mul (g₁ g₂ : SteinbergGroup (Fin N) (Polynomial B)) (a : B) :
+    cubeDiagDilate_stDiff (g₁ * g₂) a =
+      cubeDiagDilate_stDiff g₁ a *
+        (SteinbergGroup.ringMap (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) g₁ *
+          cubeDiagDilate_stDiff g₂ a *
+          (SteinbergGroup.ringMap
+            (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) g₁)⁻¹) := by
+  simp only [cubeDiagDilate_stDiff, map_mul]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_mul
+
+/-- `v_a(g⁻¹) = C(g)⁻¹ v_a(g)⁻¹ C(g)`. -/
+theorem cubeDiagDilate_stDiff_inv (g : SteinbergGroup (Fin N) (Polynomial B)) (a : B) :
+    cubeDiagDilate_stDiff g⁻¹ a =
+      (SteinbergGroup.ringMap (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) g)⁻¹ *
+        (cubeDiagDilate_stDiff g a)⁻¹ *
+        SteinbergGroup.ringMap (Polynomial.C : Polynomial B →+* Polynomial (Polynomial B)) g := by
+  simp only [cubeDiagDilate_stDiff, map_inv]
+  group
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_stDiff_inv
+
+/-- Padding commutes with Quillen differences. -/
+theorem cubeDiagDilate_indexMap_stDiff {N' : ℕ} (h : N ≤ N')
+    (g : SteinbergGroup (Fin N) (Polynomial B)) (a : B) :
+    SteinbergGroup.indexMap (Fin.castLEEmb h) (cubeDiagDilate_stDiff g a) =
+      cubeDiagDilate_stDiff (SteinbergGroup.indexMap (Fin.castLEEmb h) g) a := by
+  rw [cubeDiagDilate_stDiff, cubeDiagDilate_stDiff, map_mul, map_inv,
+    GroupApproximation.Full.LVStableK2.indexMap_ringMap,
+    GroupApproximation.Full.LVStableK2.indexMap_ringMap]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeDiagDilate_indexMap_stDiff
+
+end StDiff
+
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

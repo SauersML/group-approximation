@@ -16,7 +16,8 @@ there is a faithful "conjugation representation":
 
 * `κ m` is the permutation matrix of the translation `x ↦ m + x` of `M`;
 * `ρ q` is the permutation matrix of the automorphism `x ↦ f q • x`;
-* `ρ q * κ m * (ρ q)⁻¹ = κ (f q • m)`, since `f q • (m + f q⁻¹ • x) = f q • m + x`.
+* `ρ q * κ m * (ρ q)⁻¹ = κ (f q • m)`,
+  since `f q • (m + f q⁻¹ • x) = f q • m + x`.
 
 This uses no exponent, coprimary or characteristic hypothesis.  With `K = ZMod p` it gives
 `ringChar K = p`.  It discharges every *finite* module in the mixed coprimary gap
@@ -98,7 +99,7 @@ theorem eHighMixed_permMatrixUnits_injective (K : Type*) [Field K] (n : ℕ) :
   have h0 : (Matrix.permMatrixHom (n := Fin n) (R := K)) σ = 1 := by
     have h := congrArg Units.val hσ
     rwa [MonoidHom.coe_toHomUnits, Units.val_one] at h
-  have h1 : (σ⁻¹).permMatrix K = (Equiv.refl (Fin n)).permMatrix K := by
+  have h1 : (σ⁻¹).permMatrix K = Equiv.Perm.permMatrix K (Equiv.refl (Fin n)) := by
     rw [Matrix.permMatrix_refl]
     exact h0
   have h2 : (σ⁻¹).toPEquiv = (Equiv.refl (Fin n)).toPEquiv :=
@@ -137,7 +138,8 @@ end Matrices
 section Finite
 
 /-- **Finite modules, over any field.**  A finite abelian group `M` with a `Q`-action through
-`f : Q →* R` embeds into `GL_{|M|}(K)` by a faithful `κ`, and the action is conjugation by `ρ`. -/
+`f : Q →* R` embeds into `GL_{|M|}(K)` by a faithful `κ`, and the action is conjugation
+by `ρ`. -/
 theorem eHighMixed_exists_gl_of_finite (K : Type*) [Field K] {Q R : Type*} [Group Q] [Monoid R]
     (f : Q →* R) (M : Type*) [AddCommGroup M] [DistribMulAction R M] [Finite M] :
     ∃ (d : ℕ) (κ : Multiplicative M →* Matrix.GeneralLinearGroup (Fin d) K)
