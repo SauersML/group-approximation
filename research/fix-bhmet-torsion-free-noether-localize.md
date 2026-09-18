@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-torsion-free-noether-localize
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize: unexpected token ':='; expected '}'"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean
 error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:120:5: Fields missing: `map_one'`, `map_mul'`
 error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeNoetherLocalize.lean:121:10: invalid {...} notation, expected type is not known
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-torsion-free-noether-localize`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.TorsionFreeNoetherLocalize` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

@@ -10,9 +10,23 @@ requires:
   - chamber-fixing-building-lattice-elements-translate-horospheres
 ---
 
-Lane proof (bh-invent-04, 2026-09-18). It is elementary and algebraic, and it has not been reviewed.
-Notation is that of the target. `|·|` on an apartment is the hexagonal (graph) norm. On a sector,
-`|αa + βb| = α + β`.
+Lane proof (bh-invent-04, 2026-09-18). It is elementary and algebraic. One adversarial referee
+PASS (bh-ref-kourovka-a, 09-18); the referee's two fixes are marked below. Notation is that of the
+target. `|·|` on an apartment is the hexagonal (graph) norm. On a sector, `|αa + βb| = α + β`.
+
+**Metric convention (referee fix 1).** A site `γ ∈ Γ` is identified with the vertex `γo ∈ V_0`.
+Every distance statement below ("within `r` of `v`") is a building distance on `V_0`, while (Q2),
+(Q3) and ball sums use the word metric of `Λ = Λ_0 × Γ` (the `ℓ^1` sum of the two word metrics).
+Give `Γ` the finite generating set `S_4 = {γ ≠ 1 : d(o, γo) <= 4}`. Then
+`d_Γ(γ, γ') <= ⌈d(γo, γ'o)/2⌉ <= d(γo, γ'o)` for `γ ≠ γ'`.
+- Take a building geodesic `x_0, …, x_d`. Every vertex is equal or adjacent to a vertex of `V_0`,
+  so choose `y_j ∈ V_0` with `d(x_j, y_j) <= 1`, `y_0 = x_0` and `y_d = x_d`.
+- The hops `y_0 → y_2 → y_4 → … → y_d` have length `<= 4`. Since `Γ` acts simply transitively on
+  `V_0`, each hop is right multiplication by an element of `S_4`.
+
+So a building ball of radius `r` about `γo` lies in the word ball of radius `r` about `γ`. Every
+building-distance bound below therefore implies the word-metric bound that (Q2) and the ball sums
+need. The rigidity scales `D_s` and `D_Y` are taken in these word metrics.
 
 ## Step 0. Items 1 and 2
 
@@ -183,15 +197,23 @@ F_a(λ, z) = Σ_v c_{z,v} T_a(λ, v).
   - **(Q1).** Holds because the coefficients are orthogonal central idempotents summing to `I`.
   - **(Q2).** Suppose `d((λ,z), (λ',z')) <= 2D_Y`. The surviving terms pair sites at distance
     `<= 2μ D_Y <= 2D`.
+  - **The base shift (referee fix 2).** The Setting does not assume `M(N^2) ⊆ C̄`. So fix
+    `u_* ∈ Z^2` with `M u_* ∈ C°`; any `u` with `(w, u) ∈ W` will do. Let `N_0` be the least `N >= 0`
+    with `M f + N M u_* ∈ C̄` for every `f ∈ Z^2` with `|f|_1 <= D_Y`. It exists because `C°` is
+    an open cone containing `M u_*` and `|M f| <= μ D_Y`. Put
+    `κ = μ D_Y + N_0 |M u_*|`, which bounds the norm of every such offset.
+    - When `M(N^2) ⊆ C̄`, as in the NE example of the target and for the `M` of
+      `busemann-transplants-give-free-sfts-on-building-lattices`, take `u_* = 𝟏` and `N_0 <= D_Y`.
+      Then `κ <= 3μ D_Y`, which recovers the original constant.
   - **(Q3).** Let `α` be a pattern on `(λ_p, z_p) B_{D_Y}` that does not occur in `Y`, and put
-    `z_* = z_p − D_Y 𝟏`.
+    `z_* = z_p − N_0 u_*`.
     - Multiply each term `e ∏_f T_{α(f)}(λ_p f_0, v_f)` of the product by
       `Σ_{v_*} c_{z_*, v_*} = I`.
-    - Where `e c_{z_*,v_*} ≠ 0`, the ball sits at offsets `M(f_z + D_Y 𝟏) ∈ M(N^2) ⊆ C̄` of norm
-      `<= 3μ D_Y` in `Q(v_*, c)`. So `e c_{z_*,v_*} ⊑ e'`, where `e'` is `ρ` of the event "these
-      offsets from `v_*` land at the `v_f`". By (F3) that event is a polynomial in skeleton marginals
-      within `3μ D_Y` of `v_*`.
-    - `e' ∏ T` expands into unrealised partial patterns inside a ball of radius `(3μ + 1) D_Y <= D`,
+    - Where `e c_{z_*,v_*} ≠ 0`, the ball sits at the offsets `M f_z + N_0 M u_* ∈ C̄`, of norm
+      `<= κ`, in `Q(v_*, c)`. Here `v_f = p_{M f_z + N_0 M u_*}(v_*)` by nesting. So
+      `e c_{z_*,v_*} ⊑ e'`, where `e'` is `ρ` of the event "these offsets from `v_*` land at the
+      `v_f`". By (F3) that event is a polynomial in skeleton marginals within `κ` of `v_*`.
+    - `e' ∏ T` expands into unrealised partial patterns inside a ball of radius `κ + D_Y <= D`,
       since a realising point's fibre would contain `α`.
     - So `e' ∏ T = 0` by ball sums, and each term vanishes.
 
@@ -215,7 +237,8 @@ T_a(λ, v) = Σ_z ρ(1{b(v) = Mz}) F_a(λ, z).
 
 - **Commutation.** Letters are finite combinations, with orthogonal central coefficients, of pairwise
   commuting `F`'s, so they commute. The skeleton is central, and `E_(g,a) = P_g T_a`. So the family
-  commutes, and `Y^Γ` is `D`-quantum rigid for `D >= max(D_s, K + R_0, (3μ + 1) D_Y)`.
+  commutes, and `Y^Γ` is `D`-quantum rigid for `D >= max(D_s, K + R_0, κ + D_Y)`, with `κ`
+  from Step 6. When `M(N^2) ⊆ C̄`, `κ + D_Y <= (3μ + 1) D_Y`.
 - **The converse** is the fold lemma. The map `(λ, γ) ↦ (λ, M^(-1) b_c(γo))` along one skeleton point is
   onto and Lipschitz. After rescaling the metric of `Z^2` it is 1-Lipschitz, and rigidity at large
   scale does not depend on the metric (`fp-v-times-subshift-full-groups-force-quantum-rigidity`). ∎

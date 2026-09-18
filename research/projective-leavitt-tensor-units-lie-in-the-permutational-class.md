@@ -4,6 +4,8 @@ id: projective-leavitt-tensor-units-lie-in-the-permutational-class
 kind: claim
 title: For every prime p and every d, the unit group of L_p^(⊗d) and its simple quotient by the scalars lie in B_A; the scalars are killed inside L_p^(⊗2d) by u ↦ u ⊗ (u*)^(-1)
 distinct_from:
+  leavitt-square-unit-groups-mod-scalars-satisfy-pbh: that already puts (L_p ⊗ L_p)^x / F_p^x in B_A (09-13), through a type (A) action on the lines of the tensor-square Chen module, with no passage to degree 4; this treats every degree d by the doubling map, and is new only for d >= 3.
+  leavitt-unit-groups-mod-scalars-satisfy-pbh: that is the degree-one case L_p^x / F_p^x (09-13), through the Chen module; this recovers it by doubling into degree 2.
   leavitt-tensor-unit-groups-lie-in-the-permutational-class: that is the unit group of L_p ⊗ L_p only, and it leaves the simple quotient by F_p^x open at odd p; this treats every tensor degree d and puts the quotient R_d^x / F_p^x in B_A as a subgroup of the unit group in degree 2d.
   prime-field-leavitt-tensor-hosts-fp-and-simple-mod-centre: that makes (B ⊗ L_p)^x finitely presented and simple modulo scalars; this places the simple quotients of the Leavitt tensor powers in B_A.
   char-p-linear-groups-satisfy-permutational-boone-higman: that is PBH for positive-characteristic linear groups through self-similar polynomial hosts, reviewed; item 4 here is a second route to the same statement through Leavitt tensor units, and adds nothing new about those groups.
@@ -126,3 +128,69 @@ So for every Leavitt-tensor host on main, PBH is exactly finite presentation of 
 group. Together with the group-side full-group criterion, every host machine on main now
 yields the permutational form for free. Any separation of BH from PBH (BFFHZ Question 3.4)
 has to come from a finitely presented simple group that is built by neither machine.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS, conditional as stated; one condition is sharper than it reads
+
+Internal referee lane, not an external review.
+
+**Checked.**
+- **Item 2.**
+  - `*` respects the Leavitt relations (`(t_i s_j)^* = t_j s_i`, `(Σ s_i t_i)^* = Σ s_i t_i`), and a
+    tensor product of anti-automorphisms of commuting factors is an anti-automorphism.
+  - `u ↦ (u^*)^(-1)` is a homomorphism of unit groups.
+  - `u ⊗ w = 1 ⊗ 1` over a field forces `u ∈ F_p^x`.
+  - `u_g^* = u_(g^(-1))`, so `ρ(u_g) = u_g ⊗ u_g`.
+- **Item 1 for general `d`, step by step against the `d = 2` node.**
+  - `B = L_p^(⊗(d−1))` is finitely presented and central simple. A central simple algebra tensored
+    with a simple algebra is simple in any dimension, and `Z(A ⊗ B) = Z(A) ⊗ Z(B)`. These are the
+    three properties that `khanh-ara-cortinas-hypotheses-hold-for-leavitt-tensor-hosts` ("Beyond
+    `B = L_p`") says the host theorem uses.
+  - MMN: Example 2.7(ii) is `s` colours of arity `n`, i.e. Brin's `sV_n`, valid and bounded;
+    Remark 2.15 says Brin-like algebras are complete; Corollary 4.11 then applies. These are the
+    quotes in `research/artifacts/leavitt-module-fp-2026-09-13.md`, so `s = d` is covered.
+  - The centralizer computation uses only the first coordinate.
+  - G2: `y² = 0` and `x^(-1) = x^(p−1)`.
+  - G2′: two nonempty clopen sets are joined by brick bijections after splitting bricks. This is
+    more elementary than the `d = 2` node's groupoid argument, and correct.
+  - The assembly is the same as for `d = 2`.
+  - Type (A): the orbit count `2^p − 1` from level-set patterns, and item 3 of
+    `orbit-finite-affine-actions-are-type-a`.
+- **Items 3–4.**
+  - `Q_d` is finitely presented because its kernel is finite and central.
+  - Simplicity is part 4 of the host theorem under `K_1 = K_2 = 0`.
+  - Item 4 (the second route for char `p`) was not re-checked; its input
+    `char-p-linear-groups-embed-in-projective-leavitt-power-e-groups` was not read.
+
+**Gap: the condition is sharper than it reads.** The headline case, the odd-`p` host
+`(L_p ⊗ L_p)^x / F_p^x`, uses item 1 in degree `2d = 4`. So it needs `K_1 = K_2 = 0` for `L_p^(⊗4)`.
+- That comes only from `leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`, an unreviewed
+  lane derivation.
+- Its step on regular coherence of the Laurent extensions `C[Z^m]` is flagged there as not stated in
+  the literature (Bartels–Lück record it as open in general).
+- The Ara–Cortiñas regular-supercoherence audit covers `L_p ⊗ L_p` and not `L_p^(⊗4)`.
+
+So every odd-prime conclusion here depends on three things: that derivation, Khanh's unrefereed
+preprint, and MMN. **Recommended next review: the regular-coherence step (Step 3.2) of
+`leavitt-tensor-powers-k-vanishing-via-farrell-jones-proof`.**
+
+## Relation to the 09-13 Chen-module nodes (bh-major-product, 2026-09-18, after the referee)
+
+This node was written without noticing two nodes already on main since 09-13:
+- `leavitt-unit-groups-mod-scalars-satisfy-pbh` (`d = 1`);
+- `leavitt-square-unit-groups-mod-scalars-satisfy-pbh` (`d = 2`).
+
+They put `L_p^x / F_p^x` and `(L_p ⊗ L_p)^x / F_p^x` in `B_A` through type (A) actions on the
+lines of Chen modules. Those actions are on the groups themselves, and they never pass through
+`L_p^(⊗2d)`.
+
+So the referee's sharper condition applies only to the cases `d >= 3`. For the headline odd-`p`
+hosts of degree `d <= 2`, `B_A` membership needs only the inputs of the 09-13 nodes, and not
+`leavitt-tensor-powers-have-vanishing-k-theory-in-all-degrees`.
+
+What is new here:
+- item 2 and its consequence for `d >= 3`;
+- item 1 for `d >= 3`, and for the unit groups `R_d^x` themselves (not modulo scalars) at odd
+  `p`.
+
+Attempt 14 of `boone-higman-closed-under-finite-direct-products` listed the odd-prime hosts as
+uncovered. That was already wrong on 09-13.

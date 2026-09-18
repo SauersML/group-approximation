@@ -9,7 +9,7 @@ distinct_from:
   v-times-minimal-free-sft-alternating-full-groups-are-fp: that is the P2 statement; with P2′a this claim gives its rigid form P2′.
 ---
 
-**OPEN.** Gate (P2′b) of `v-times-sft-full-groups-split-into-two-wreath-pieces`.
+**ESTABLISHED in the strong form K = 1** (lane proof, unreviewed) by `v-times-gluing-presentations-are-exact` (bh-p2b-exact, 2026-09-18), for every Λ and every X. Gate (P2′b) of `v-times-sft-full-groups-split-into-two-wreath-pieces`. Earlier status: OPEN.
 
 **Statement.** Let `Λ` be finitely presented and `X` a free subshift. Let `Γ~` be the self-similar gluing group of
 that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure of finitely many elements.
@@ -83,6 +83,14 @@ that node (item 5). Then the kernel `K` of `Γ~ -> F(T)` is the normal closure o
      symmetric cone partition. Finite shadows with 3 to 5 cones are exact up to a parity `Z/2`, and Thompson
      splitting kills it
      (`splitting-kills-the-finite-shadow-parity-of-the-gluing-group`).
+   - The whole test is exact: `V_(2,2)` is that amalgam modulo `[M_0, N_1] = 1`
+     (`two-point-gluing-presentation-of-v-is-exact`, via natural canonical lifts and Bleak–Quick).
+
+5. **Exactness in general (bh-p2b-exact, 2026-09-18).** *Proved (lane proof).* See `v-times-gluing-presentations-are-exact`.
+   - Every transposition, including those between nested or equal cones, is lifted through an auxiliary piece placed in spare room.
+   - Two auxiliary pieces span a `Sym(4)` whose Coxeter relations involve only incomparable cones, so the lift does not depend on the choice.
+   - Placing the auxiliary piece away from the conjugator avoids self-swaps, so the lift is equivariant under `M` and under `(00 01)^[Q]`.
+   - Then `K` centralizes `τ_0`, and `K = 1`, by `v-times-gluing-exactness-is-commutation-with-one-transposition`.
 
 **Lesson for general BH.**
 - The gluing half of P2′ is a statement about Thompson-type self-similarity, not about dynamics. If the target
