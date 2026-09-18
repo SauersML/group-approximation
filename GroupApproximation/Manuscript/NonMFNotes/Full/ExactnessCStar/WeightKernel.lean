@@ -34,7 +34,7 @@ section Kernel
 
 variable {G : Type u} [Group G] {R : Finset G} {ε : ℝ}
 
-local instance : DecidableEq G := Classical.decEq G
+local instance decEqWeightKernel : DecidableEq G := Classical.decEq G
 
 /-- The window `a · template`, which carries the measure attached to `a`. -/
 def window (W : PropertyAWitness G R ε) (a : G) : Finset G :=

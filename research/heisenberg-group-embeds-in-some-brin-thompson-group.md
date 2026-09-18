@@ -54,3 +54,24 @@ A no here gives a no to Zaremsky 2.19(c), through
     shift `[[Z^3 ↷ ({0,1}^Z)^3]]`, which maps into `6V` by the same coding, and reversible Turing
     machine groups, whose orbits change the tape and grow exponentially. Whether `H_3 ≤ W(Z^3)`
     is the first falsifiable question.
+- 2026-09-18 (swarm-0917-w6-w6-z-break, host-geometry, unreviewed): **cubic abelian hosts are dead;
+  high-rank abelian hosts are alive.** See `heisenberg-not-in-full-groups-of-z3-actions` and
+  `heisenberg-group-embeds-in-wobbling-group-of-some-zn`.
+  - *Answer to the falsifiable question.* `H_3 ≰ [[Z^3 ↷ X]]` for every `Z^3`-set `X`. This covers
+    `W(Z^3)`, all `Z^3`-subshift full groups, and the cubic product-shift full group that maps into
+    `6V`.
+  - *Mechanism.*
+    - An orbit with a period vector of norm `≤ 10K` has quadratic growth, and the 2026-09-17
+      count applies.
+    - Otherwise relator loops have zero displacement. The displacement map `f : H → Z^3` is then
+      `K`-Lipschitz, and its fibres are stabilizer cosets. When `c` has period `m`, a stabilizer
+      meets a word ball of radius `ρ ≤ √m` in `≤ 81ρ` points.
+    - Blowing down along orbits with `m_j ≥ j^3` gives a Lipschitz `u : H_3(R) → R^3`. Pansu's
+      theorem makes `u` nearly planar on a small ball: a lattice-point count gives `~ε(rj)^3`
+      values, against `≥ c(rj)^3`.
+  - *Limit of the method.* By Assouad, `H_3 ≤ W(Z^N)` for some `N`. Orbit growth and blow-down
+    alone cannot exclude abelian full groups of higher rank.
+  - *What remains.*
+    - Product shifts `[[Z^N ↷ ({0,1}^Z)^N]]` with `N ≥ 4`. The first open case is `W(Z^4)`.
+    - Reversible Turing machine hosts.
+    - Any no-proof must use prefix locality or the product coding. It cannot rest on growth.
