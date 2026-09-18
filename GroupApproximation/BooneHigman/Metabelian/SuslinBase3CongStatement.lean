@@ -102,7 +102,7 @@ theorem suslinBase3Cong_mod_of_modPow {A ι : Type*} [CommRing A] [Fintype ι] [
         (elementaryMatrixUnitMap (ι := ι)
           (Polynomial.mapRingHom (Ideal.Quotient.mk (𝔪 ^ N))) σ) := by
     apply Units.ext
-    ext i j
+    refine Matrix.ext fun i j ↦ ?_
     change ((σ : Matrix ι ι A[X]) i j).map (Ideal.Quotient.mk 𝔪) =
       (((σ : Matrix ι ι A[X]) i j).map (Ideal.Quotient.mk (𝔪 ^ N))).map
         (Ideal.Quotient.factor (Ideal.pow_le_self hN))

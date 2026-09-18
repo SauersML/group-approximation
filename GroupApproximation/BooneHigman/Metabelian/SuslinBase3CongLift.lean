@@ -78,8 +78,8 @@ theorem suslinBase3Cong_isUnit_diag {A ι : Type*} [CommRing A] [Fintype ι] [De
     exact h
   have hcoef : ∀ k : ℕ, ((σ : Matrix ι ι A[X]) i i - 1).coeff k ∈ 𝔪 := by
     intro k
-    rw [← Ideal.Quotient.eq_zero_iff_mem, ← Polynomial.coeff_map, Polynomial.map_sub, hent,
-      Polynomial.map_one, sub_self, Polynomial.coeff_zero]
+    rw [← Ideal.Quotient.eq_zero_iff_mem, ← Polynomial.coeff_map (Ideal.Quotient.mk 𝔪),
+      Polynomial.map_sub, hent, Polynomial.map_one, sub_self, Polynomial.coeff_zero]
   have hnil : IsNilpotent (((σ : Matrix ι ι A[X]) i i - 1).map (Ideal.Quotient.mk (𝔪 ^ N))) := by
     refine Polynomial.isNilpotent_iff.mpr fun k ↦ ?_
     rw [Polynomial.coeff_map]
