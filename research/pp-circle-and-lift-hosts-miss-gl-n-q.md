@@ -8,10 +8,15 @@ distinct_from:
   piecewise-commutative-linear-hosts-miss-linear-gl-n-q: that excludes only the natural, globally linear copies; this excludes every abstract embedding into the one-dimensional hosts listed.
   pp-circle-divisible-subgroups-act-freely: that is the general statement about divisible abelian subgroups; this is its consequence for the named groups and hosts of the GL_n(Q) problem.
   gl-n-q-embeds-in-fp-simple-group: that is the open problem; this closes one family of candidate hosts. Obstruction O4 there closes the subgroups of VA by distortion, while the hosts here may contain BS(1,2), so O4 does not reach them.
+artifacts:
+  - research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md
 ---
 
 **ESTABLISHED** through `pp-circle-and-lift-hosts-miss-gl-n-q-proof`. This is
-a lane proof; it has not been independently reviewed.
+a lane proof. Referee gq-referee-a gave it a PASS under its proof-gap lens; the
+report is `research/artifacts/gq-referee-a-pp-circle-divisible-subgroups-act-freely.md`.
+Citation fidelity (Lodha, Calegari, Ghys--Sergiescu, Belk--Hyde--Matucci) is still
+to be checked by gq-referee-b.
 
 ## Statement
 
