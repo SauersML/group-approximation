@@ -72,3 +72,23 @@ proved; P2 not refuted.*
 - *Earlier test not yet run.* Over non-amenable one-ended `Λ` the bound says nothing quantitative.
   A kill there needs a minimal free SFT whose difference sets split into two far parts, for example
   two independent defect regions separated by a wide strip on which the two points agree.
+
+**Attempt (2026-09-18, swarm-0917-w6-w6-bh-last2): refute P2 through a finite asymptotic pair.**
+*Dead over unique-product groups; the obstruction is proved.* This is the refutation left open by
+the connected-difference necessary condition (worker bh-break, need 65f52e90).
+- *The theorem.* `minimal-sfts-on-up-groups-have-no-finite-asymptotic-pairs`. If a minimal SFT has
+  a finite asymptotic pair `(x, x')`, then some nonzero `a >= 0` supported on a syndetic window
+  satisfies `a * ν_b = 0` in `R[Λ]` for every letter `b`, where
+  `ν_b = [x = b] - [x' = b]`.
+  - So over every unique-product group there is no such pair, and patterns are determined by
+    their boundary layers.
+  - This covers `Z^d`, bi-orderable groups and their direct products, and non-amenable examples
+    such as `F_2 x F_2 x Z^2`.
+- *The mechanism.* Flip `p' -> p` at occurrences, which stays inside `X`. The change of a site
+  potential `Ψ = Σ ψ(k, y(k))` under a flip at `g` is a fixed row `(Mψ)_g`. Gordan's alternative
+  gives either a `ψ` whose descent removes `p'` from a syndetic window, contradicting minimality,
+  or a nonnegative zero divisor.
+- *What remains for a refutation of P2.* Either an acting group with a nonnegative zero divisor
+  (torsion suffices, as with `(1 + t)(1 - t) = 0`), or a minimal free SFT whose infinite
+  difference sets split into two far parts. Over unique-product `Λ`, including `Z^2` and every
+  Durand--Romashchenko hierarchy, only the second remains.
