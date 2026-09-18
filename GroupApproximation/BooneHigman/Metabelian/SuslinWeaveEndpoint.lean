@@ -101,10 +101,10 @@ theorem suslinWeave_localHorrocks (hc : SuslinR1FinIntCoordStatement)
 theorem suslinWeave_inputs_of_localHorrocks (h : SuslinLocalHorrocksStatement) :
     SuslinR1FinIntCoordStatement ∧ SuslinR2IndBaseStatement :=
   ⟨suslinR1Fin_intCoord_of_localHorrocks h,
-    fun p _ k hk hA ↦ suslinWeave_blockLocal_of_normalized
+    ⟨fun p _ k hk hA ↦ suslinWeave_blockLocal_of_normalized
       ((suslinPatching_of_localHorrocks h).1 p k 3 hk hA le_rfl),
     fun m k hA ↦ suslinWeave_blockLocal_of_normalized
-      ((suslinPatching_of_localHorrocks h).2 m k 3 hA le_rfl)⟩
+      ((suslinPatching_of_localHorrocks h).2 m k 3 hA le_rfl)⟩⟩
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.Absorption.suslinWeave_inputs_of_localHorrocks
