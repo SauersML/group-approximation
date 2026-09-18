@@ -97,6 +97,28 @@ fix representatives `x_1, …, x_r` of its orbits and a finite generating set. D
    (c) The generators act by finitely many prefix replacements, which are pushdown rules once the
    tail is read as the bottom symbol; apply the recalled facts. ∎
 
+## Without injectivity
+
+Item 1 and the stabilizer-membership half of item 2 never use injectivity of `ρ`. Evaluating the image
+group `⟨Γ, π⟩` on encoded points is primitive recursive relative to `OP(Γ,X)` and `Δ_{D_1}`, `Δ_{D_2}`,
+whether or not `ρ` is injective. The only further source of complexity is the word problem of
+`⟨Γ, π⟩` itself. By (a) of `permutation-hnn-realization-of-type-a-actor-is-a2`, that word problem is
+the recursion problem of the free kernel `K = ker ρ`. So complexity enters a one-permutation stage in
+exactly two ways:
+- the distortion of an edge group, in the injective case;
+- the kernel, in the non-injective case.
+
+The kernel case pays for this with finite presentation of the image `L/K`, which is not automatic
+(`a2-action-with-non-finitely-presented-image`).
+
+The other constructions of type (A) actors on main are conservative for a simpler reason: their actions
+are computed coordinatewise from the inputs' actions. These are products and finite wreaths
+(`type-a-actions-closed-under-products-and-finite-wreaths`), type (A) lamp wreaths
+(`type-a-actors-closed-under-type-a-lamp-wreaths`), and towers of twisted Brin--Thompson groups (the
+iteration clause of `twisted-brin-thompson-wp-equals-actor-orbit-problem`). The one-permutation stage was
+the only construction on this list whose new generator is an arbitrary permutation. This node shows that
+even that generator is pinned by finitely many values.
+
 ## What survives for hard actors
 
 Items 2–5 place the complexity of any tower of injective one-permutation stages in the distortion of its
