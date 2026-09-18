@@ -84,3 +84,27 @@ is `Z` itself.
     cannot see.
   - The rule applies directly to simulations over `Λ₁ × Λ₁`, where skeleton, data and computation
     layers live on one group.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS (claim and `fibre-product-rigidity-kill-and-transport-proof`)
+
+- **Step 1.**
+  - `Y ↔ Z` via `σ(a,b) = (−a,b)` preserves (Q2) and (Q3).
+  - Rigidity of Ledrappier's shift is cited from `permutive-triangle-sfts-are-quantum-rigid`,
+    which I did not re-check here.
+- **Step 2.** Both recursions are correct over `F_2`: I checked the rule at `a ≤ 0` (and
+  `a ≥ 0`), at the boundary column, and in the recursion zone. The "no opposite configuration"
+  inductions are correct.
+- **Item 1 kill.** It follows directly from the far-modification lemma. Translate `(y_+,0)` by
+  `Ne_1`, with `N > 2D`, so the two modifications of `0` are more than `2D` apart. So the kill
+  holds at every `D` without the wall theorem, as `cross-layer-separable-modifications-kill-quantum-rigidity`
+  also notes.
+- **Failure of (C).** It follows from rigidity relative to each base point plus the
+  decomposition theorem, which I did not referee.
+- **Item 3 (transport closure).** Correct.
+  - The `Z`-marginals form a `D`-family, by the expansion over the `Y`-coordinates.
+  - The rule identity `E^Z_c(v) = Σ_{π∈L_F(c)} ∏ E^Z_{π(f)}(vf)` follows from (Q1)–(Q3) inside one
+    `D`-ball.
+  - The Z-step and Y-step induction is correct, and so is
+    `E_(a,c)(u) = E^Y_a(u)E^Z_c(u)`.
+- **Step 5.** Correct. Translated one-sided points kill all rules inside the facing half-planes,
+  so `K ⊆ {a ≤ 2D}`.

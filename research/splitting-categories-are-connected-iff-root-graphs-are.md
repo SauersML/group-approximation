@@ -12,8 +12,7 @@ distinct_from:
   stein-complex-elementary-intervals-are-grid-spheres: that computes the full homotopy type for twisted Brin–Thompson grids; this gives connectivity only, for every dissection operad.
 ---
 
-**ESTABLISHED** (lane bh-invent-07, 2026-09-18). This is an elementary lane proof and has not
-been independently reviewed. No priority is claimed.
+**ESTABLISHED** (lane bh-invent-07, 2026-09-18). This is an elementary lane proof; one referee PASS (bh-ref-engines, 2026-09-18), with the hypothesis corrected to non-atoms; see Referee section. No priority is claimed.
 
 ## Setting
 
@@ -179,6 +178,13 @@ Induction on the number of pieces:
   - For each minimal one found, check whether `E_12` (or another atom) lies below it with
     smaller common upper bounds for both new pairs.
   - If none exist up to a bound that also closes the argument, (B_E) holds.
+- **Update (search, 2026-09-18).** Exotic two-sided bounds do exist.
+  - In rank 4 the commuting pair `E_01, E_23` has a 13-piece minimal common upper bound that
+    is not above the square, with root graph `{E_01, E_23}` and no edge
+    (`disjoint-edge-splits-have-an-exotic-two-sided-minimal-bound`).
+  - So (B_E) in the form "only squares and flops" is false.
+  - (R_E) now asks for bounded degree of these pinwheel-type elements in each rank.
+  - In rank 3 nothing exotic was found in the searched range.
 
 ## Lesson for general BH
 
@@ -192,3 +198,28 @@ For Thompson-like hosts built from local moves (the closed-MCG and Deligne disse
 the finiteness gate therefore changes. It is no longer "is the spine finite?" but "do pairs of
 atoms have finitely many two-sided minimal common upper bounds?". That is a question about two
 moves at a time.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS, with one hypothesis corrected
+
+I checked Lemmas 1–4, both directions of the Theorem, and Corollaries 1–3.
+- *Lemma 1.* A split tree of `D`, extended by trees of the `Θ|_p`, has a cherry `Q` strictly below the root,
+  since `D` is nontrivial. So `D ≤ D_Q ∈ 𝒜(Θ)`.
+- *Lemma 3 (coherence).* Minimal common upper bounds exist below any common upper bound, because a dissection
+  has only finitely many coarsenings. Same-root moves stay off the top.
+- *Lemma 4.* Correct in both cases.
+- *`⇐`.* Correct.
+- *`⇒`.* The `U_i` are disjoint up-sets covering `𝒜(Θ)`. Disjointness is exactly the missing root-graph
+  edge.
+- *Corollaries.* Corollary 3's free factor follows from van Kampen for a cone on a `c`-component link
+  attached to a connected complex. It is correctly stated as a limit on the Morse method only.
+
+**Hypothesis fix.** "At least three pieces" should read "**not an atom**". An atom of degree `≥ 3`, for
+example a tree split with three children, has `𝒜(Θ) = ∅` (disconnected) but a one-vertex, connected root
+graph. Every non-atom has at least three pieces. The nonemptiness steps in Lemma 1 and in `⇒` use exactly
+non-atomicity. All applications concern strictly elementary classes, which are never atoms, so no corollary
+changes.
+
+**The index correction to `thumann-finiteness-without-finite-type`** made in 5a7d8353eb is checked there.
+
+**Credit.** Thumann (arXiv:1409.1085) for the spine, the corona and Obs. `61724`. The Brin–Thompson calibration
+(full splits in two colours give `S^0`) matches the grid-sphere computation.

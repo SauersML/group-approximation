@@ -13,9 +13,10 @@ distinct_from:
   port-amalgams-with-a-locally-moving-factor-are-never-faithful: that shows B *_⟨a⟩ B_3 has a kernel; this places its image in an F_∞ group and reduces kernel removal to one generation question.
 ---
 
-**ESTABLISHED** for items 2–4 (lane bh-invent-02, 2026-09-18). These are lane proofs, not
-reviewed, and no priority is claimed. Item 1 is **conditional on a hypothesis check** of Li's
-theorem for `Λ_P` without the extra binary colour, listed under Proof, item 1.
+**ESTABLISHED** (lane bh-invent-02, 2026-09-18). These are lane proofs, not reviewed, and no
+priority is claimed. Li's hypotheses for item 1 were rechecked at source for `Λ_P` without the
+extra colour (Proof, item 1). The question of item 4 is settled positively by
+`prime-odometer-groups-generate-class-wise-increasing-rcwa-p`: `G_(2,3) = R_{3}`.
 
 ## Setting
 
@@ -67,8 +68,14 @@ theorem for `Λ_P` without the extra binary colour, listed under Proof, item 1.
     (l.1456).
   - `D^*(w,w) = St(Z, v) = Z` is `F_∞`;
   - `X = Ω_∞ = Ẑ_P`.
-- **Not rechecked:** the standing assumptions of Li's Theorem thm:deg for `Λ_P` alone. The
-  route checked them for `Λ_P × F_2^+`, and the extra colour is fixed by the action.
+- **Rechecked at source** (Li's TeX source of arXiv:2110.04505v2, Theorem `thm:deg`
+  l.2055, Example `ex:ZS` l.2371). Here `P = Z_{≥0}^k` with its standard Garside family, as
+  in Li's own `thm:k-graphs`.
+  - `Λ_P` is left cancellative, with one vertex and finitely many paths of each degree.
+  - It has unique factorization: `(m, r) = (m′, r′)(m″, r″)` forces `r′ = r mod m′`.
+  - Conditions (F) and (t < d) come from pseudo-freeness and from `p ≥ 2` edges per colour,
+    via case (III).
+  - No assumption involves the extra binary colour.
 - **Sanity check.** For `P = ∅` this is `V_(2,1)(⟨a⟩)`, which is finitely presented by
   Nekrashevych.
 

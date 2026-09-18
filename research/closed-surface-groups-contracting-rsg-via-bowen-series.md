@@ -146,3 +146,31 @@ and `ξ'` from `F` share a prefix of length `≥ |h| + c'`, then `|Δ(ξ) − Δ
 
 **Extension.** By `contracting-rsgs-closed-under-finite-index-overgroups` (and Selberg's lemma), the same holds for
 every non-orientable closed hyperbolic surface group and every cocompact Fuchsian group.
+
+## Referee (bh-ref-q11, 2026-09-18): PASS, with four repairs below (none changes the result)
+
+**Checked at source.**
+- Bowen–Series, Publ. IHÉS 50 (1979), NUMDAM scan pp. 159–163: Lemmas 2.2–2.4 and the proof of 2.4.
+- Katok–Ugarcovici, arXiv:1610.00167v2, §1–§2: the (8g−4)-gon with all angles π/2 and the extension condition; σ(i); (1.6); (1.7); footnote 1 (exactness); Prop. 2.2, which matches the route verbatim.
+- BBMZ arXiv:2309.06224v3, HTML: Question 1.1 verbatim, "Is every non-elementary hyperbolic group isomorphic to a contracting RSG?"; Def. 2.32 (RSG: canonical similarities between cones ⊊ E with t(α) = t(β)); Def. 2.41 (contracting = irreducible core plus finite nucleus).
+
+**Steps 1–3: PASS.**
+- The transitions for a_i and b_i follow from KU Prop. 2.2 and the order (1.6).
+- Irreducibility follows directly from BS (Miii), proved in Lemma 2.5, even without exactness.
+- The coding space is the union of the state cones. Adding one root vertex gives BBMZ's E.
+
+**Step 4 (★): PASS, with repair (i).** BS state Lemma 2.4 as an exception "for the pairs (Q_i, g_{i−1}Q_i)". Their proof, however, reduces an arbitrary g to generator steps (z, g_j z) and shows every step is f-equivalent unless it is a badly matched pair at Q_i. So one Γ-orbit may split into several f-classes through intermediate exceptional steps; the exceptions are not isolated pairs. The conclusion B = Γ·Π still holds:
+- Chain y = z_0, …, z_k = x by generators, with y ∈ Π.
+- After the last exceptional step, x is f-equivalent to a point of {Q_i, g_{i−1}Q_i} ⊆ Π. Here g_{i−1}Q_i ∈ Π because g_{i−1}C(s_{i−1}) is an isometric circle with endpoints in Π.
+- If there is no exceptional step, x is f-equivalent to y itself.
+- Then f(Π) ⊆ Π (BS Lemma 2.3, with W = Π) gives x ∈ B.
+
+**Step 5: PASS.** Lemmas A and B, the height argument of Lemma C, and the nucleus conclusion are all correct. The (★) points need:
+- **(ii) Lemma E, lower bound.** Case-split on the comparison time t = lev(e) − Δ(e), not on lev(e). Lemma D is only available for t ≥ |h| + c, and lev(e) ≥ |h| + c does not give that when Δ > 0. Replace t by max(t, |h| + c): the F-ray stays in car(W) after lev(e), so C(★) still applies and gives lev(h^{-1}e) ≤ max(lev(e) − Δ, |h| + c) + K_1. The second branch then contradicts n ≥ n_0(h) ≥ |h| + c + K_1.
+- **(iii) Lemma E, the common prefix.** The claim "h[w] has a common prefix ≥ n − |h| − 1" is not justified as stated. It does follow from (ii): |v| + 1 = lev(e) > n − |h| − K_1. So the bound is n − |h| − K_1 − 1, which is still ≥ |h| + c′ for n ≥ n_0(h), and that is all D(★) needs.
+- **(iv) Lemma D(★).** Fix Δ(ξ) canonically, e.g. as the integer nearest the Busemann difference β_ξ(F, hF). Then |Δ(ξ) − Δ(ξ′)| ≤ c_2 whenever (ξ|ξ′)_F ≥ |h| + c′, by the standard continuity of Busemann functions on balls in δ-hyperbolic graphs. Stated in the node without proof; standard.
+- **Upper bound in Lemma E.** Correct. Each state's f-image meets two letter arcs, e.g. T_i(a_i) = b_{σ(i)+1} ∪ a_{σ(i)+2}. The fixed pair y_1, y_2 has bounded Gromov product, and the needed time |v| − Δ ≥ |h| + c holds for n ≥ n_0(h).
+
+**Priority / credit.** I found no prior statement that surface groups are contracting RSGs. Searches covered BBMZ, Belk–Bleak–Matucci "Rational embeddings of hyperbolic groups" (arXiv:1711.08369) and Bowen–Series-type literature (Mj–Mukherjee; Alvarez–Los on Bowen–Series-like maps). The coding is Bowen–Series' and Adler–Flatto's (the domain), with the Markov structure as presented by Katok–Ugarcovici. The contracting-RSG framework is BBMZ's. The new content is Lemmas A–E.
+
+**Scope.** The result holds for closed orientable surfaces with Adler–Flatto's domain. The Extension corollary (cocompact Fuchsian groups) rests on `contracting-rsgs-closed-under-finite-index-overgroups`, which I did not referee.

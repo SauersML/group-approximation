@@ -129,3 +129,47 @@ low digits converging to an `m`-adic `α_∞`.
   finite free choice. Rope seeding therefore reduces to one clean question: is a
   finite-state choice at infinity rigidity-neutral? A co-deterministic reader would make it
   a deterministic extension.
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): parts 1–2 PASS; part 3 PASS after a required correction; part 4 correctly OPEN
+
+- **Part 1.**
+  - `A_i = g(⟨x^m,y^m⟩ * ⟨t⟩)g^(-1)` with `g ∈ Z²`, so `A_i ∩ Z² = ⟨x^m, y^m⟩`, and likewise for the
+    image `⟨x^(m²), y⟩`.
+  - The subgroup criterion is standard: `⟨L, stable letters⟩` is the HNN extension of `L` when
+    `φ(L ∩ A) = L ∩ φ(A)`, by Britton's lemma.
+  - Both edge groups have index `m²`. Correct.
+- **Part 2.** `S_M ∈ 𝒞` by `locally-finite-splittings-preserve-rigid-sft-compactifications`. I did not
+  re-check the linear forcing radius.
+- **Part 3, a required correction.** The transport rules of layer M and the reader rule of layer Q
+  are consistent only if they are **conditioned on the tree orientation of the part-2 pointers**, so
+  that they are applied only along edges that point away from the sink.
+  - Each coset `P` has `m²` `l`-children `P x^a y^b l Z²` (origin `o_P x^a y^b l`) and `m²`
+    `l^(-1)`-children `P y^(b'') l^(-1) Z²` (origin `o_P y^(b'') l^(-1)`, with `b'' ∈ [0, m²−1]`).
+  - In an `l^(-1)`-child `C`, an element `h` at `(α, 0)` with `α ≡ 0 mod m` has `hl` in the parent, at
+    position `(α/m, b'')`. For `b'' ≠ 0` that is off row 0, where `q = ⊥`.
+  - So the unconditioned rules `q(h) = δ(q(hl), ·)`, and the transport formula along that `l`-edge,
+    contradict the seed. The forced point would not exist.
+  - **The fix.** Apply both rules only when `hl` lies in a child coset, which the pointer at `h` shows,
+    and put `q = ⊥` otherwise.
+  - Only the first step of an `l`-path can go to a parent, because a coset entered along an `l`-edge
+    has its parent edge on the `l^(-1)` side.
+  - With the fix, `v(h) = [α ∈ I]` holds for every `h` whose `l`-edge points away from the sink. That
+    includes the whole sink coset, which carries the rope marks `v(x^α)`.
+  - The sentence "on other cosets the same bound holds" is true only in that range. It fails at
+    `α ≡ 0 mod m` in `l^(-1)`-children.
+- **Part 3, a smaller wording point.** "Markers and residues of `hl` are functions of those of `h`" is
+  inaccurate for residues, because `⌊α/m⌋ mod m` is the next digit. The residues of each coset are
+  forced within the coset, from its origin, by `x`/`y` steps. Only the origin location and the signs
+  are transported along `l`.
+- **Part 3, checked.**
+  - Origins: `hl` is the origin of the `(a,b)`-child iff `h` sits at exactly `(a,b)`, which is a local
+    check.
+  - Reading along `l` gives `(⌊α/m^k⌋, 0)`, with most significant digits first from the origin, so
+    `q(h) = 𝒜(numeral(α))`.
+  - `|x^(m^k)| ≤ 2k+1` (from `x^m = l x l^(-1)`), so the forcing radius is `O(|x^α|)`.
+- **Part 4.** The limit argument for unanchored chains and the `{ok, bad}` free bit is correct, so
+  (RR) is correctly stated as OPEN.
+
+**Not checked:**
+- the claim that "no sliding-block factor can mark `I`" (a heuristic);
+- the derived-subshift criterion cited for (RR).

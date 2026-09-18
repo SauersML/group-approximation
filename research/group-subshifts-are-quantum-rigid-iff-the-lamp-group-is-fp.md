@@ -121,3 +121,28 @@ invariant end, so no infinite exponent-`p` module over `F_n` has a finitely pres
 product. The dictionary also runs the other way: every finitely presented lamp group over a
 non-amenable `Λ` is a rigid, measure-preserving, non-amenable action. So (RA) is a statement about
 **minimal** dynamics only.
+
+## Referee (bh-ref-hl, 2026-09-18): PASS for items 1–4; item 5 not re-checked
+
+This is an internal lane review.
+- **Item 1.**
+  - *Families ⇒ `Q_D`.* On a ball the product of the `U`'s expands over patterns. Illegal patterns vanish by (Q3), and legal
+    patterns take the value 1, since a relation of `M` is a character trivial on `X`.
+  - *`Q_D` ⇒ families.* The Fourier idempotents need `char k ≠ p` and `μ_p ⊆ k`. An illegal pattern `α ∉ X|_B` gives a zero
+    idempotent: some `ψ ∈ (X|_B)^⊥` has `ψ(α) ≠ 1`, and `(X|_B)^⊥` is exactly the relations supported in `B`.
+  - So rigidity holds iff `Q_D` is abelian iff `Q_D = M_D`. Correct.
+- **Item 2.**
+  - (⇐) `Q_D ⋊ Λ` and a finite presentation of `L` have the same generators. Each is a quotient of the other once the finitely many
+    relators of `L` follow from radius-`D` relations. So the two groups are isomorphic, `M = M_D`, and `X = X_D` is `D`-rigid.
+  - (⇒) Up to `Λ`-conjugation there are finitely many relators, and `Λ` is finitely presented. Correct.
+- **Item 3.**
+  - An infinite compact group has no isolated point.
+  - `ξ(0)` would be an `F_n`-fixed end. This now also follows from `rigid-subshifts-without-isolated-points-factor-onto-the-ends`,
+    item 2 (PASS above).
+  - **Calibration I added.** With item 5 and Cornulier's criterion, item 3 predicts that no finitely generated infinite-index
+    `H ≤ F_n` has finitely many double cosets. That matches the known behaviour of quasiconvex subgroups of hyperbolic groups
+    (recalled).
+  - **Recommendation.** The corollary "`M ⋊ F_n` is never finitely presented" looks new and notable, and it deserves a literature
+    check (Bieri–Strebel-type results for non-abelian quotients) and an external referee.
+- **Item 4.** Correct, given the slab tightness of the free-factor node, which was not reviewed here.
+- **Item 5.** Not re-checked. It relies on the Cornulier-regime node and Corollary 3 of the clustering node.
