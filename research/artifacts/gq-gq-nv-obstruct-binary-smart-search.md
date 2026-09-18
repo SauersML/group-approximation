@@ -101,6 +101,24 @@ each of its 16 starts, and the score is `max_τ |n_{j+1}(τ) - 2n_j(τ)|` over t
   the walk. The parity argument of §1 is the reason. If so, `BS(1,2)` needs a `kV`-native element (one
   that inserts and deletes cells next to the head), a second head, or a different base altogether.
 
+## 3c. The full mirror-symmetric 8+8 binary class, and the parity lemma
+
+- **Search.** Each direction mask takes 70 s. All masks give 4,560 passes, and the classes are identical
+  up to relabeling within mirror pairs, so mask 0 represents the whole space.
+- **Ranking.** The full mask-0 class was ranked, 4,200 machines with at least 10 levels. The best class
+  is again the bounded skeleton plus a linear walk, with overhead 4 → 6. So in mirror-symmetric
+  one-head binary machines with 8+8 states there is **no** binary SMART.
+- **Parity lemma** (`crossing-move-hierarchies-have-odd-branching`). Crossing-only hierarchies branch
+  oddly. A binary hierarchy needs returns that turn one cell short of the domain end, triggered by marks
+  near the head.
+- **kV-native options, not built.** A `kV` element can delete or insert a cell next to the head. That
+  lets a move change its own domain length, which a Turing machine cannot do.
+  - The parity lemma still applies whenever domains grow by a bounded amount per level. So insertion
+    helps only by changing *where* the domain ends are, for example by keeping the anchor adjacent to the
+    head.
+  - A design would have to keep bounded junctions and bounded junction chains. Neither was attempted
+    here.
+
 ## 4. What is left
 
 1. Finish the 8+8 binary mirror-symmetric search: split it by direction mask into ≤ 10-minute runs.
