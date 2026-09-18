@@ -178,7 +178,9 @@ This is the coordinator's design target of 2026-09-18.
       Part 2 argument of `single-register-rings-divide-unit-at-finitely-many-primes` is uniform in the type: shifts
       commute with the level shift `t` on every type, so multi-type shift/reset designs give a finitely generated
       `Z[t]`-module modulo a finitely generated subgroup. They are closed by generic freeness, whether or not they
-      are top-determined. This reading of its scope is to be confirmed by gq-k2-q. **Open:** multi-type designs with
+      are top-determined. gq-k2-q confirmed this reading (2026-09-18): a shift letter between any two types is `t^a` composed with a type
+      transfer, hence `Λ`-linear, and top determination is never used. A dilation is only semilinear,
+      `D(t y) = t^p D(y)`. **Open:** multi-type designs with
       dilation letters and never-top directions. There the level couplings `k -> (k - r)/p` break the `Z[t]`-module
       structure, and dilations add periodic tail classes on the `S`-adic completion, `S` the dilation primes. Not
       decided.
