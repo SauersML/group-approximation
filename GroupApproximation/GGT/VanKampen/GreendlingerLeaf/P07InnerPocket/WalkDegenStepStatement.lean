@@ -91,3 +91,95 @@ def WalkDegenStepStatement : Prop :=
             0 < (b.cellArcList i).length ∧ 0 < (b.cellArcList j).length ∧
             (∀ d ∈ G₁.darts, PocketRun.PinchFreeAt X.toCombMap d) ∧
             (∀ d ∈ G₂.darts, PocketRun.PinchFreeAt X.toCombMap d)) →
+        ¬ (FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts)
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave
+              (fun e => e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts)
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+              (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∈ b.sideFrom i))
+              (invDarts X outerWalk) ∧
+            FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+              (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∉ b.sideFrom i))
+              (invDarts X outerWalk) ∧
+            ((∃ d ∈ outerWalk, d ∉ G₁.darts) →
+              ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₁.darts →
+                outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                  (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₁.darts →
+                walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+            ((∀ d ∈ outerWalk, d ∈ G₁.darts) →
+              ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q) ∧
+            ((∃ d ∈ outerWalk, d ∉ G₂.darts) →
+              ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₂.darts →
+                outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                  (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₂.darts →
+                walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+            ((∀ d ∈ outerWalk, d ∈ G₂.darts) →
+              ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                  PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q)) →
+          (∃ (faces : Finset X.toCombMap.Face) (outerWalk : List X.toCombMap.Dart),
+            EnclosedFaceSetSucc X faces outerWalk ∧ C.face ∈ faces ∧
+              faces ⊆ sideFaces X.toCombMap K.walk ∧
+              (∀ d ∈ outerWalk,
+                X.toCombMap.alpha d ∈ invDarts X G₁.darts ∨
+                X.toCombMap.alpha d ∈ invDarts X G₂.darts ∨
+                (X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ sideFaces X.toCombMap K.walk ∧
+                  X.toCombMap.faceOf (X.toCombMap.alpha d) ∉ a.1 ∧
+                  X.toCombMap.faceOf (X.toCombMap.alpha d) ∉ b.1 ∧
+                  (walkKeep X.toCombMap K.walk (X.toCombMap.alpha d) ∨
+                    walkKeep X.toCombMap a.2.boundary.cycle (X.toCombMap.alpha d) ∨
+                    walkKeep X.toCombMap b.2.boundary.cycle (X.toCombMap.alpha d)))) ∧
+              FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts)
+                (invDarts X outerWalk) ∧
+              FourPiece.CyclicNoInterleave
+                (fun e => e ∉ invDarts X G₁.darts ∧ e ∈ invDarts X G₂.darts)
+                (invDarts X outerWalk) ∧
+              FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+                (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∈ b.sideFrom i))
+                (invDarts X outerWalk) ∧
+              FourPiece.CyclicNoInterleave (fun e => e ∈ invDarts X G₁.darts ∨
+                (e ∉ invDarts X G₂.darts ∧ X.toCombMap.alpha e ∉ b.sideFrom i))
+                (invDarts X outerWalk) ∧
+              ((∃ d ∈ outerWalk, d ∉ G₁.darts) →
+                ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₁.darts →
+                  outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                    (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₁.darts →
+                  walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+              ((∀ d ∈ outerWalk, d ∈ G₁.darts) →
+                ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                  ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                  ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q) ∧
+              ((∃ d ∈ outerWalk, d ∉ G₂.darts) →
+                ∀ (p : ℕ) (hp : p < outerWalk.length), outerWalk[p] ∈ G₂.darts →
+                  outerWalk[(p + 1) % outerWalk.length]'(Nat.mod_lt _
+                    (Nat.lt_of_le_of_lt (Nat.zero_le p) hp)) ∈ G₂.darts →
+                  walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) ∧
+              ((∀ d ∈ outerWalk, d ∈ G₂.darts) →
+                ∀ (p q : ℕ) (hp : p < outerWalk.length) (hq : q < outerWalk.length),
+                  ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[p]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[p]) →
+                  ¬ (walkKeep X.toCombMap outerWalk (X.toCombMap.facePerm outerWalk[q]) ∨
+                    PocketRun.PinchFreeAt X.toCombMap outerWalk[q]) → p = q)) ∨
+          (∃ (faces : Finset X.toCombMap.Face) (outerWalk : List X.toCombMap.Dart) (n : ℕ),
+            EnclosedFaceSetSucc X faces outerWalk ∧ C.face ∈ faces ∧
+              ((∃ A : CyclicArc (cellDarts X i),
+                  invDarts X (outerWalk.rotate n) = invDarts X A.darts) ∨
+                (∃ A : CyclicArc (cellDarts X j),
+                  invDarts X (outerWalk.rotate n) = invDarts X A.darts)))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PinchCase.WalkDegenStepStatement
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.PinchCase

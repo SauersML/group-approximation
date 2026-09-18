@@ -4,8 +4,9 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Shortening the longest targets by one cone swap
 
-Let `f` be a prefix substitution of depth `N` whose targets have length `≤ N + B + 1`, let `q' ++ [x]`
-be a target of maximal length `N + B + 1`, and let `p` be a target of length `< N`.  Then `p` and
+Let `f` be a prefix substitution of depth `N` whose targets have length `≤ N + B + 1`, let
+`q' ++ [x]` be a target of maximal length `N + B + 1`, and let `p` be a target of length `< N`.
+Then `p` and
 `q'` are incomparable (`swapGen_move_incomparable`), and composing with `coneSwap p q'` turns
 every target either into a word of length `≤ N + B`, or leaves it unchanged when it does not
 extend `q'` (`swapGen_move`).

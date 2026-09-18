@@ -37,7 +37,8 @@ theorem higmanVPresent_section {K H : Type*} [Group K] [Group H] (φ : K →* H)
     rw [MonoidHom.mem_ker, map_mul, map_inv, hab, inv_mul_cancel]
   refine ⟨fun h => ((Function.surjInv hφ h : K) : K ⧸ N), ?_, fun h k => ?_⟩
   · show ((Function.surjInv hφ 1 : K) : K ⧸ N) = 1
-    exact (key _ 1 (by rw [Function.surjInv_eq hφ 1, map_one])).trans (QuotientGroup.mk_one N)
+    exact (key (Function.surjInv hφ 1) 1 (by rw [Function.surjInv_eq hφ 1, map_one])).trans
+      (QuotientGroup.mk_one N)
   · show ((Function.surjInv hφ h : K) : K ⧸ N) * (k : K ⧸ N) =
       ((Function.surjInv hφ (h * φ k) : K) : K ⧸ N)
     rw [← QuotientGroup.mk_mul]

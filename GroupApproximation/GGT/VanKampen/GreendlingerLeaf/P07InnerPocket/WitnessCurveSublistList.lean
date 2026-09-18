@@ -128,7 +128,7 @@ theorem sublist_of_forward {w : List α} (hw : w.Nodup) :
       y :: l <+ y :: z := by
   intro l
   induction l with
-  | nil => intro y u z _ _; exact List.cons_sublist_cons.mpr (List.nil_sublist _)
+  | nil => intro _ _ _ _ _; exact List.cons_sublist_cons.mpr (List.nil_sublist _)
   | cons y' l ih =>
     intro y u z hwu hstep
     obtain ⟨u', v, z', hw'⟩ := hstep [] l y y' rfl

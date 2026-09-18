@@ -35,8 +35,10 @@ namespace GroupApproximation.BooneHigman.Metabelian.Coprimary
 theorem eHighDevissage_natCast_pow_eq_zero (p e : ℕ) (Q : Type) [CommGroup Q] :
     ((p : ℕ) : MonoidAlgebra (ZMod (p ^ e)) Q) ^ e = 0 := by
   rw [← Nat.cast_pow]
-  exact (MonoidAlgebra.natCast_def (p ^ e)).trans
-    (by rw [ZMod.natCast_self, MonoidAlgebra.single_zero])
+  show (MonoidAlgebra.single (1 : Q) ((p ^ e : ℕ) : ZMod (p ^ e)) :
+    MonoidAlgebra (ZMod (p ^ e)) Q) = 0
+  rw [ZMod.natCast_self]
+  exact MonoidAlgebra.single_zero (1 : Q)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighDevissage_natCast_pow_eq_zero
 
@@ -57,7 +59,7 @@ theorem pureCharPrimeEHighModule_of_eHighDevissageCoprimary
   have hpP : ∀ j, ((p : ℕ) : MonoidAlgebra (ZMod (p ^ e)) Q) ∈ P j := by
     intro j
     refine (hP j).isPrime.mem_of_pow_mem e ?_
-    rw [eHighDevissage_natCast_pow_eq_zero]
+    rw [eHighDevissage_natCast_pow_eq_zero p e Q]
     exact (P j).zero_mem
   choose K _ d κ ρ hchar hinj hequiv using
     fun j : Fin n => hc p hp e he Q hfg (M ⧸ S j) inferInstance (P j) (k j) (hP j) (hpP j)
@@ -78,7 +80,9 @@ theorem pureCharPrimeEHighModule_of_eHighDevissageCoprimary
           Multiplicative.ofAdd (0 : M ⧸ S i) :=
         hinj i h1
       exact (Submodule.Quotient.mk_eq_zero (S i)).mp (Multiplicative.ofAdd.injective h2)
-    rw [← ofAdd_toAdd m, h0, ofAdd_zero]
+    calc m = Multiplicative.ofAdd (Multiplicative.toAdd m) := (ofAdd_toAdd m).symm
+      _ = Multiplicative.ofAdd (0 : M) := by rw [h0]
+      _ = 1 := ofAdd_zero
   have hpc : ∀ (j : Fin n) (q : Q) (m : Multiplicative M),
       κM j (Multiplicative.ofAdd
         (MonoidAlgebra.of (ZMod (p ^ e)) Q q • Multiplicative.toAdd m)) =

@@ -43,7 +43,7 @@ theorem eHighDevissage_exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G
     (LinearMap.toMatrixAlgEquiv b).toRingEquiv.toMonoidHom
   have he : Function.Injective e := fun x y hxy => (LinearMap.toMatrixAlgEquiv b).injective hxy
   refine ⟨Module.finrank L V, (e.comp κ).toHomUnits, (e.comp ρ).toHomUnits, ?_, fun q g => ?_⟩
-  · refine (injective_iff_map_eq_one _).mpr fun g hg => hinj g (he ?_)
+  · refine (injective_iff_map_eq_one (e.comp κ).toHomUnits).mpr fun g hg => hinj g (he ?_)
     have h1 : e (κ g) = 1 := congrArg Units.val hg
     exact h1.trans (map_one e).symm
   · refine eq_mul_inv_of_mul_eq (Units.ext ?_)
