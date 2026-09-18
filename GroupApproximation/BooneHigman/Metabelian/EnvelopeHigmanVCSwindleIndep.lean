@@ -60,11 +60,11 @@ theorem higSw_conj_phi {d : ℕ} {c c' : List (Fin d)} (hcc : ¬ c <+: c') (hcc'
   | inv_of p ih =>
     simp only [map_inv]
     rw [← ih]
-    group
+    simp only [mul_inv_rev, inv_inv, mul_assoc]
   | mul g₁ g₂ ih₁ ih₂ =>
     simp only [map_mul]
     rw [← ih₁, ← ih₂]
-    group
+    simp only [mul_assoc, inv_mul_cancel_left]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higSw_conj_phi
 
