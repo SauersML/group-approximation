@@ -18,9 +18,11 @@ Then `e_i^{-1} = φ T^{-i}` on `T^i A`, which is the `S` above.
 - `x` lies in a depth-`D` brick of some `T^i A`, on which `S = φT^{-i}` is canonical. By the definition of
   `P`, the depth-`(D + (j-1)P)` brick of `Sx` is determined by the depth-`(D + jP)` brick of `x`.
 - So `π mod m^{j+1}` is constant on depth-`(D + jP)` bricks.
-- For the tape coding, a depth-`d` brick in each coordinate fixes the state and the cells within
-  `(d - c_0)/c_1` of the head, where `c_0` and `c_1` bound the prefix-code lengths. This gives the radius
-  form.
+- For the tape coding, the needed direction is "cells determine the brick". Every code word has length
+  at least 1. So the state and the cells within radius `r(d) = d` of the head determine the depth-`d`
+  brick in each coordinate: the first `d` bits of a coordinate come from at most `d` code words. Hence
+  `π mod m^j` is a function of the state and the cells within radius `D + (j-1)P`. That is the radius
+  form, with `a = D - P` and `b = P` (referee note N1).
 
 **Item 3.** By continuity and item 1, `π(y) + n_i = π(T^{n_i} y) → π(y)` in `Z_m`, so `n_i → 0`. If
 `m^j ∤ n_i` for all `i`, then `n_i` stays out of the neighbourhood `m^j Z_m` of 0, a contradiction. So no

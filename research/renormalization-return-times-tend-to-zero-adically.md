@@ -9,7 +9,8 @@ distinct_from:
 ---
 
 **ESTABLISHED (2026-09-18)** through `renormalization-return-times-tend-to-zero-adically-proof`.
-Lane proof (gq-nv-obstruct). Reviewed PASS by gq-referee-b, citation and scope lens (fba51b1a0).
+Lane proof (gq-nv-obstruct). Reviewed PASS by gq-referee-b, citation and scope lens (fba51b1a0), and by gq-referee-a, proof-gap
+lens (d4e505ddd; its note N1 on the direction of the tape-coding step is applied in the proof route).
 
 **Setting.** Let `T` be a homeomorphism of `X = C^k` with a height-`m` renormalization `(A, φ)` in the
 sense of `renormalizable-thompson-elements-give-baumslag-solitar`:
