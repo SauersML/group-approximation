@@ -64,3 +64,19 @@ The sources below matter for the EXAMPLES only:
    presented simple group.
 
 Consequences for interval exchange groups: `pisot-interval-exchange-groups-satisfy-boone-higman`.
+
+## Priority check (referee-c W5, 09-18; limited)
+
+- BBMZ's list of RSG examples (2309.06224, l. 642–690) was read at source. It does not include Stein groups or
+  irrational-slope Thompson groups:
+  - Röver--Nekrashevych;
+  - (twisted) Brin--Thompson;
+  - `T_{n,r}`, `F`;
+  - Lodha--Moore;
+  - `Aut(V_{n,r})`.
+- Tanner (2312.07375) and Matui (2412.05492), read at source, say nothing about RSGs. Matui embeds the golden
+  SFT groupoid into the Stein groupoid (Prop. `S2<Sbeta`); here the full Stein group is shown to be rational on
+  the β-shift.
+- Web searches for Stein, irrational-slope or interval-exchange groups combined with RSGs, finitely presented
+  simple hosts, tribonacci or Arnoux--Yoccoz found no prior statement.
+- No priority is claimed. A fuller literature check is left to bh-lit.
