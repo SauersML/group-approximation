@@ -118,7 +118,7 @@ def EHighETwoUnitsStatement : Prop :=
 residual, by the linearization `eHighETwo_exists_gl_of_units`. -/
 theorem eHighETwo_of_units (h : EHighETwoUnitsStatement) : EHighETwoStatement := by
   intro p hp Q _ hfg M _ _ hfin P k hM hpP hk hne hinf
-  obtain ⟨K, hK, B, hB, hA, hBfin, hchar, θ, σ, hθ, hequiv⟩ :=
+  obtain ⟨K, hK, B, _, _, _, hchar, θ, σ, hθ, hequiv⟩ :=
     h p hp Q hfg M hfin P k hM hpP hk hne hinf
   obtain ⟨d, κ, ρ, hκ, hrel⟩ := eHighETwo_exists_gl_of_units
     (fun (q : Q) (m : M) => MonoidAlgebra.of (ZMod (p ^ 2)) Q q • m) θ hθ σ hequiv

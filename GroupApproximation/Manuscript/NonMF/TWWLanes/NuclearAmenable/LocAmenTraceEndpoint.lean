@@ -72,7 +72,7 @@ theorem locAmenTrace_ucpKraus_of_isNuclear {A : Type u} [CStarAlgebra A]
     · exact (NuclearDensity.choiEffros_krausMap_one
           (locAmenTraceColumn Z (Fintype.card Z) P)).symm.trans
         ((congrArg (NuclearDensity.choiEffrosKrausMap (locAmenTraceColumn Z (Fintype.card Z) P))
-          (ConnesTrick.layer_one (fun _ ↦ Fintype.card Z)).symm).trans ((hP 1).trans hψ1))
+          (ConnesTrick.layer_one (fun _ : Z ↦ Fintype.card Z)).symm).trans ((hP 1).trans hψ1))
     · intro a ha
       exact (congrArg (fun x ↦ ‖x - a‖) (hP (ρ₀ a))).trans_le (happ a ha)
 
