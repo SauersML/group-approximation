@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/abelianized-cover-injective-corona-model-carries-nonzero-twist.md
   - research/implemented-corona-actions-of-countable-groups-are-unconstrained.md
+  - research/dummy-abelianized-cover-df-splits-regular-trace-and-shadow.md
   - research/relation-lamp-wreath-is-mf-with-nontrivial-fd-radical.md
 ---
 
@@ -62,6 +63,32 @@ claimed.
   - A counterexample must realize such a cocycle exactly with commuting
     conjugates.  The Bernoulli construction does not: its permutation
     holonomy lies only in the commutant.
+- **Regular-trace / shadow split for the dummy presentation (2026-09-18).**
+  `dummy-abelianized-cover-df-splits-regular-trace-and-shadow` proves the
+  following for the dummy cover `E_z`, where `C(M_z) = M_z`.
+  - Every nontrivial normal subgroup of `E_z` meets `M_z`.
+  - `delta_e` is an operator-norm MF character of `E_z` iff the shadow
+    residual `S(E_z)` is trivial, iff every nonzero `m in M_z` has some
+    operator-norm MF character with `tau(m) != 1`.  The proof averages the
+    witnesses, Diracizes the average, and uses the self-centralizing kernel
+    to force the scalar kernel to be trivial.
+  - So DF for `E_z` is equivalent to `(REG)` and `(SH)`:
+    - `(REG)`: no operator-norm microstates of `delta_e`.  These would come
+      with `C(hat M_z)` at Haar trace, full spectrum, and a mixing,
+      essentially free dual action.
+    - `(SH)`: `S(E_z) != 1` implies `Rad_MF(E_z) != 1`.
+  - DF for `E` implies DF for `E_z`, because `E` is a retract of `E_z`.
+
+  **Where it dies.**
+  - The attempt to get more than this from a surviving `[E,M]` element fails
+    at the renormalized trace `tr(y_n)/tr(a_n)`.  When `tr(a_n) -> 0` it is
+    not a corona invariant: lift changes and operator-norm defects are
+    `o(1)`, not `o(tr a_n)`.  So tracially blind models such as
+    `rho (+) 1_(N_n)` cannot be handled by trace renormalization.
+  - Handling those models is exactly `(SH)`.
+  - `mf-vs-tracial-radical-strict-gap` shows `(SH)` is not formal for
+    abelian-by-`G` lamp extensions.
+  - Neither `(REG)` nor `(SH)` is proved.
 - **Dummy lamp calibration: every argument that ignores `[R,R] = 1` dies at an
   MF group (2026-09-18).**
   `relation-lamp-wreath-is-mf-with-nontrivial-fd-radical` works with the
