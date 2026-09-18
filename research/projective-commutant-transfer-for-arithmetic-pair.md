@@ -527,6 +527,41 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   sparse, but cannot kill its correlation with the selected inner vector.
   A completion must add selected-vector incidence or prove that inner
   automorphisms cannot concentrate in these arithmetic heat cutoffs.
+- **The rank-two instance is gated by an explicit `F_2 x F_2` crossed product
+  (2026-09-17, d-projct).**  Established as
+  `f2xf2-crossed-products-ce-make-sl2-centralizer-hnn-hyperlinear`.
+
+  *The construction.*  `SL_2(Z[1/p])` is a lattice in `SL_2(R) x SL_2(Q_p)`, and so is the
+  reducible free lattice `Gamma(3) x Lambda' ≅ F_3 x F_r`.  Their measure-equivalence coupling
+  algebra has two corners:
+  - one corner contains `M_2^(p)` trace-preservingly;
+  - the other is the crossed product of the right action of `Gamma(3) x Lambda'` on the
+    S-arithmetic quotient.
+
+  An explicit partial-isometry transfer plus a moment limit moves Connes embeddability from the
+  second corner to the first.  Induction to `F_2 x F_2` then gives the gate.
+
+  *The gate.*  If every essentially free crossed product of `F_2 x F_2` is Connes-embeddable,
+  then at every prime:
+  - `M_2^(p)` embeds;
+  - `(PRT1)` fails at `(2,p)`;
+  - `H_p` is hyperlinear;
+  - `SL_2(Z[1/p])` is not flexibly HS-stable.
+
+  Contrapositively, a proof of this claim at `n = 2`, by any method, produces an explicit
+  essentially free `F_2 x F_2` action with a non-Connes-embeddable crossed product.  In
+  particular it would settle `f2xf2-admits-nonsofic-action`.
+
+  *Consequences for the lane.*  So the `n = 2` lane is at least as hard as an explicit non-CE
+  crossed product of a Haagerup group.  No Kazhdan mechanism can be the whole proof there.
+  The gate does not reach `n >= 3`: lattices of `SL_n(R)` have (T), and (T) is ME-invariant.
+  So bounty-relevant effort on the approximate outlier sector should concentrate on `n >= 3`,
+  where `sl3-noncorrectable-lambda-sector-has-no-projective-leak` is the residual.
+
+  *Not new.*  A conductor mass-balance LP over the Iwahori transition graph adds nothing.
+  Its content is already the established uniform half-loss, one-third gap and linear repair
+  theorems for pure-dyadic packets; the open sector is exactification of approximate
+  non-congruence representations, which no finite LP on exact packets reaches.
 - **Product-lattice coupling gates add nothing at higher rank
   (2026-09-17, operator-algebras, inverter).**  Refutation lane, `n >= 3`.
   Put `H = SL_n(R) x SL_n(Q_p)`, `A = SL_n(Z[1/p])`, `Gamma'' = C' x Lambda''`

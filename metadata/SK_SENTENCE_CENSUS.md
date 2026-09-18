@@ -8,15 +8,14 @@ Rows: 228 (223 prose sentences, 5 displays).  Assignments do not attest to a suc
 
 | status | rows |
 | --- | --- |
-| `formalized` | 164 |
+| `formalized` | 166 |
 | `definition` | 26 |
 | `structural` | 19 |
 | `attribution` | 16 |
-| `partial` | 2 |
 | `open` | 1 |
 | **total** | **228** |
 
-Completely formalized or definitional: **190/228** (83.3%).
+Completely formalized or definitional: **192/228** (84.2%).
 
 ## Rows dropped by override (metadata/SK_SENTENCE_OVERRIDES.tsv)
 
@@ -172,6 +171,8 @@ Completely formalized or definitional: **190/228** (83.3%).
 * rows/skf-degrees.tsv:5 `4037fa331dbb` (formalized) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-abstract-intro-rekey.tsv:2 `768ac9454e9b` (partial) --- sk16: this row says partial; zz-full-sk16 records open from the landed Full endpoint (row note)
 * rows/swarm-abstract-intro.tsv:3 `ea436a85317e` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+* rows/swarm-abstract-intro.tsv:5 `5b6a5a222cdd` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
+* rows/swarm-abstract-intro.tsv:6 `6e81aea57b64` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-abstract-intro.tsv:9 `b727e9e6c738` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-abstract-intro.tsv:13 `dea966a4a2a5` (structural) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-abstract-intro.tsv:14 `460d289c5b0f` (partial) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
@@ -181,12 +182,10 @@ Completely formalized or definitional: **190/228** (83.3%).
 * rows/swarm-abstract-intro.tsv:18 `2e7c7d9ab149` (partial) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-abstract-intro.tsv:19 `2314300dcf63` (structural) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-abstract-intro.tsv:20 `a5870ebea004` (attribution) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
-* rows/swarm-audit-ozawa-llp.tsv:1 `5b6a5a222cdd` (formalized) --- sk16: this row says formalized; zz-full-sk16 records partial from the landed Full endpoint (row note)
 * rows/swarm-boone-higman.tsv:1 `fd312b860bb5` (attribution) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-finite-models-brown.tsv:13 `97c23b19a1af` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-finite-models-brown.tsv:15 `5b15f5d8faae` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-flip-converse.tsv:1 `2e7c7d9ab149` (partial) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
-* rows/swarm-fp-simple-kazhdan.tsv:1 `6e81aea57b64` (formalized) --- sk16: this row says formalized; zz-full-sk16 records partial from the landed Full endpoint (row note)
 * rows/swarm-fp-simple-kazhdan.tsv:2 `460d289c5b0f` (partial) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
 * rows/swarm-halfline-a.tsv:2 `fb18060da264` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-host.tsv:6 `LINE:559@1eefb3bbbf0eafe710276b85dbf87512c6ddc95a` (formalized) --- sk16: keyed at 1eefb3bb, whose tex equals 22cdba8c; zz-full-sk16 carries this sentence by its hash
@@ -207,7 +206,7 @@ Completely formalized or definitional: **190/228** (83.3%).
 * rows/swarm-skrows-04.tsv:1 `97c23b19a1af` (provenance) --- sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-skrows-05.tsv:1 `e19e0d3328ad` (provenance) --- sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-skrows-06.tsv:1 `af3a1cf3d48e` (provenance) --- sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
-* rows/swarm-skrows-07.tsv:1 `5b6a5a222cdd` (provenance) --- sk16: this row says provenance; zz-full-sk16 records partial from the landed Full endpoint (row note)
+* rows/swarm-skrows-07.tsv:1 `5b6a5a222cdd` (provenance) --- sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-skrows-09.tsv:1 `5b15f5d8faae` (provenance) --- sk16: this row says provenance; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-thm-main-a.tsv:2 `2d5abd159c20` (partial) --- sk16: this row says partial; zz-full-sk16 records formalized from the landed Full endpoint (row note)
 * rows/swarm-thompson-construction.tsv:1 `fd312b860bb5` (partial) --- sk16: key names no sentence of the manuscript at 22cdba8c (an older hash); every current sentence is assigned by zz-full-sk16
@@ -225,8 +224,8 @@ Completely formalized or definitional: **190/228** (83.3%).
 | `11e5734b503c` | 45–46 | formalized | One such host contains every recursively presented finitely generated LEF group. |
 | `562e5e07a357` | 50–50 | structural | Can an infinite simple group with property~\textup{(T)} be hyperlinear? |
 | `5c1db38e8d0c` | 51–53 | attribution | Brown asked this in 2001 as a question about embeddings into unitary groups of McDuff factors that embed in a… |
-| `5b6a5a222cdd` | 54–57 | partial | Ozawa stated the hyperlinear form in 2003, noting that the full $C^*$-algebra of such a group cannot have the… |
-| `6e81aea57b64` | 57–60 | partial | Thom constructed a finitely generated Kazhdan group that is locally embeddable into finite groups but not res… |
+| `5b6a5a222cdd` | 54–57 | formalized | Ozawa stated the hyperlinear form in 2003, noting that the full $C^*$-algebra of such a group cannot have the… |
+| `6e81aea57b64` | 57–60 | formalized | Thom constructed a finitely generated Kazhdan group that is locally embeddable into finite groups but not res… |
 | `7fa04e9ea602` | 60–63 | attribution | Pestov and Kwiatkowska wrote that a hope of constructing groups that are not hyperlinear from property~\textu… |
 | `aaf5fe1a98c3` | 63–66 | attribution | Arzhantseva listed the sofic form among open questions, and gave an infinite simple Kazhdan group that is asy… |
 | `b727e9e6c738` | 66–67 | formalized | The groups below answer all three forms of the question positively. |
