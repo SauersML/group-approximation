@@ -5680,6 +5680,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.RotationHom
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRelBrown.VertexSection
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.ExistsCode
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVRefine.Vectors
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Chains
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
