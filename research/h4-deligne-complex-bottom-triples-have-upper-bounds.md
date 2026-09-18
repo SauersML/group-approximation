@@ -99,6 +99,21 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
   - The shadow is `f^{-1}(⟨Δ²_C⟩) ⊂ P_7`, the subgroup where the cluster moves only by full twists.
   - The identity is an `A_6` single-edge hexagon whose `N`-letters lie in the rigid-cluster subgroup `N_V`.
   - Open: whether every such constrained hexagon has a centre `ρ_V(y_2)` or `ρ_V(s_4^k)A_{Y''}`.
+- **Single-edge case: centre forms in the `I_2(5)` shadow** (w7-042,
+  `h4-i25-shadow-centre-forms-hold-only-up-to-rotation`).
+  - **The literal forms fail.** A cabling embedding `ι : P_4 → P_7` (`F → F''`, `N → N_V`, `A_{12} ↦ Δ_C^2`)
+    carries an exact `A_3` tuple to a hexagon of the constrained class. Certified in curver, that hexagon has:
+    - `y_2 ≁ x_1`;
+    - no centre `Δ_C^{2j}A_{Y''}` for any `j`, by the twist inequality;
+    - but its own vertex `y_3` as a centre.
+  - **Rotated, the forms hold.** "`y_3` is a centre" is form (Y2) after re-basing at `(x_2, y_1)`. On every tested
+    tuple, some rotation has form (Y2) or (TW):
+    - 224 exact `A_3` tuples;
+    - 180 exact `A_6` tuples;
+    - all 32 closing `A_3` hexagons that fail the base-edge forms, each of which has `y_3` as a centre.
+  - **The single flat is exhausted.** An `A_3` pair lemma (1910 tests, 0 violations, unproved) would give every
+    `ι`-cabled hexagon a centre. So a single `I_2(5)` flat cannot produce a counterexample, and a proof of
+    Case 1 must use its rotation-invariant form with multi-flat or non-fibred shadows.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)

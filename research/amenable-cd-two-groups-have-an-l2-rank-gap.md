@@ -51,3 +51,32 @@ counterexample needs integral group-ring elements whose finite kernel densities 
   `C` iff it is elementary amenable, so placing the Remark R subgroup in `C` is the target itself.
   What remains open: (Q_ab). The finite-index step is where it stalls, because passing strong
   Atiyah to finite extensions is open, so virtual `b_1 > 0` would not suffice.
+- **2026-09-18 (lane `w11-112`): (Q_ab) on the counterexample K. Literature record, two
+  reductions, and the finite-index barrier removed without free subsemigroups.**
+  - *Literature: what is already solved.*
+    - Elementary amenable: Hillman–Linnell. Kropholler–Linnell–Lück: a finitely generated EA group
+      of cd at most 2 is `1`, `Z` or `BS(1,m)`.
+    - `FP_2`: solved; a counterexample is never `FP_2`
+      (`amenable-fp-iff-affiliated-top-homology-vanishes`). Almost coherent groups reduce to this.
+    - Linear groups: Tits alternative.
+    - Branch groups and the Grigorchuk groups: infinite cd.
+    - Residually finite: I found no result. Virtually indicable: not known to suffice in general.
+  - *Directed unions and extensions.* See
+    `kropholler-dim-two-counterexamples-live-in-generating-classes`. Obstruction: a two-dimensional
+    counterexample in the extension-union closure `ED(X)` of a subgroup-closed amenable class `X`
+    contains a finitely generated one lying in `X`. So no construction by extensions and directed
+    unions from non-counterexample pieces can produce `K`. The step that absorbs each extension is
+    the EA-radical theorem: a finitely generated subgroup meets the kernel, or embeds one level
+    lower.
+  - *No free subsemigroups.* See
+    `subexp-amenable-cd-two-kropholler-iff-no-intermediate-growth`. Rosset-type kernels plus
+    item 3(c) of `amenable-cd-two-ascending-hnn-groups-are-baumslag-solitar` give: a finitely
+    generated amenable NFS group of cd 2 with virtual `b_1 > 0`, or with any infinite EA quotient,
+    is `Z²` or `Kb`. So in the NFS class the finite-index stall above disappears. Both-direction
+    reductions: Kropholler in dimension 2 for `SG` holds iff no group of intermediate growth has cd at
+    most 2. For `ED(amenable NFS)` it holds iff every finitely generated amenable NFS cd-2 group is
+    virtually indicable.
+  - *What remains.* Two cases are left. A counterexample `K` with a free subsemigroup, where the
+    Rosset kernels fail (`BS(1,2)` shows why). Or an NFS `K`, where every finite-index subgroup has
+    finite abelianization and there are no infinite EA quotients. The second case contains every
+    possible counterexample of intermediate growth.

@@ -1,0 +1,18 @@
+A A A A B B A b A B B | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: A A B a a B A b A B a a B | t = a | rewrite: X0X2x1X0X2 | top:root2-step(al=1,be=x0)
+A A A A b b A B A b b | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: A A b a a b A B A b a a b | t = a | rewrite: x0x2X1x0x2 | top:root2-step(al=1,be=x0)
+A A B a b a B B a a b | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: A A B a b a B A A B a a b | t = a | rewrite: X0x1X2X0x2 | top:hnn-step(al=1,be=1)
+A A B a B A b b a B B | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: A b b A B a B A b b a B B | t = b | rewrite: X0X2x1X0x2 | top:hnn-step(al=1,be=1)
+A A B a a b b a B a b | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: B a a b A A b a B a b A A | t = a | rewrite: X0x2x0X1x2 | top:root2-step(al=1,be=X0)
+A A B a b a B A A b b | edge-injective rules: False nielsen(open-rank2) | + segment steps: False nielsen(open-rank2)
+    nielsen: A A B a b a B A A b a a b | t = a | rewrite: X0x1X2x0x2 | None
+A A B a a b A B A b b | edge-injective rules: False nielsen(open-rank2) | + segment steps: True nielsen(root-tower)
+    nielsen: A A B a a b A B A b a a b | t = a | rewrite: X0x2X1x0x2 | top:root2-step(al=1,be=X0)
+A A B B A A b a B a b | edge-injective rules: False nielsen(open-rank2) | + segment steps: False nielsen(open-rank2)
+    nielsen: B a a B A A b a B a b A A | t = a | rewrite: X0X2x0X1x2 | None
+a a b a b a a B B | edge-injective rules: True root-tower | + segment steps: True root-tower
+    nielsen: a a b a b a a B B | t = b | rewrite: x0x0x1x2x2 | top:root2-step(al=1,be=1)

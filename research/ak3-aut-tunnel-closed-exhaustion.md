@@ -2,7 +2,7 @@
 rg: 2
 id: ak3-aut-tunnel-closed-exhaustion
 kind: claim
-title: The AK(3) relator-pair component stays finite and goal-free when single AC products of any length followed by Whitehead reduction ("tunnels") are allowed; in rank 2 at cap 24 it has 262642 classes, so a path to the basis pair needs an excursion above length 24 with two AC products or one that starts with an automorphism
+title: The AK(3) relator-pair component stays finite and goal-free when single AC products of any length followed by Whitehead reduction ("tunnels") are allowed; at cap 24 it has 262642 classes in rank 2 and 281927 in rank 3, so a path to a goal needs an excursion above length 24 with two AC products or one that starts with an automorphism
 distinct_from:
   one-stabilization-ac-trivial-from-thickenable-z-pair: that defines the goals and records the capped search, in which every intermediate state has total length at most the cap; this lets one AC product per excursion go to any length and still exhausts the component
   thickenable-z-pairs-lie-in-the-move-class-of-a-basis-pair: that shows the thickenable and primitive goals have the same reach, so a meeting can only happen above cap 24; this rules out the cheapest paths above cap 24, those whose excursions contain a single AC product
@@ -13,6 +13,10 @@ artifacts:
   - experiments/ak3-aut-tunnel-closure-2026-09-17/sweep2.log
   - experiments/ak3-aut-tunnel-closure-2026-09-17/grow2.log
   - experiments/ak3-aut-tunnel-closure-2026-09-17/growcaps.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/sweep3.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow3.log
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow2t.c
+  - experiments/ak3-aut-tunnel-closure-2026-09-17/grow2t.log
 ---
 
 **Proposed ESTABLISHED** by computation, through `ak3-aut-tunnel-closed-exhaustion-proof`.
@@ -49,15 +53,23 @@ searched in `one-stabilization-ac-trivial-from-thickenable-z-pair`.
 2. **Smaller caps.** T_C is exhausted with no goal, no THICK state and no PRIM tunnel
    endpoint for these caps:
 
-   | cap C | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 |
-   |---|---|---|---|---|---|---|---|---|
-   | rank 2, \|T_C\| | 69 | 150 | 616 | 1144 | 3903 | 6955 | 23515 | 41531 |
-   | rank 2, \|S_C\| | | 146 | | 1110 | | 6867 | | 41257 |
-   | rank 3, \|T_C\| | 69 | 150 | 616 | 1144 | 3906 | 6963 | 23785 | |
+   | cap C | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 |
+   |---|---|---|---|---|---|---|---|---|---|
+   | rank 2, \|T_C\| | 69 | 150 | 616 | 1144 | 3903 | 6955 | 23515 | 41531 | 139897 |
+   | rank 2, \|S_C\| | | 146 | | 1110 | | 6867 | | 41257 | |
+   | rank 3, \|T_C\| | 69 | 150 | 616 | 1144 | 3906 | 6963 | 23785 | 42435 | |
 
-   At caps 13 and 14, T_C = S_C = {AK(3)}.
-3. **Rank 3, cap 24.** Pending; see Attempts. S_24 has 280213 states, and a one-step
-   tunnel sweep over it is running.
+   At caps 13 and 14, T_C = S_C = {AK(3)}. Rank 3 at cap 23 was not run to the end: the
+   run from scratch hit the 1200 s limit. Cap 24 is done by the other method (claim 3).
+3. **Rank 3, cap 24.** T_24 is finite, with 281927 states. It consists of S_24 (280213
+   states) and 1714 more states of length 21–24. No state is PRIM, THICK or PROJ (3428
+   Neuwirth tests, 0 undecided), and no tunnel has a PRIM endpoint. In all, 810,881,319
+   tunnels were tested: 805,596,332 from S_24 and 5,284,987 from the new states.
+4. **Two AC products at cap 16 (rank 2).** Allow also *2-tunnels*: an (M1) product above
+   the cap, Whitehead reduction to m, then any (M1) product from m (for |m| ≤ C2), and
+   reduction again. With these, the component at cap 16 has 161 states, against 150 with
+   tunnels only. It has no goal and no PRIM endpoint, at C2 = 24 and at C2 = 30 (382M
+   2-tunnels). At cap 14 with C2 = 40 it is still {AK(3)}.
 
 ## Consequence for paths
 
@@ -68,6 +80,10 @@ states of length at most 24.
 
 **Corollary.** Some excursion either contains at least two (M1) moves, or begins with an
 automorphism and contains an (M1) move.
+
+The same holds in F_3, by moves (M1) and automorphisms of F_3, for a path from AK(3) to any
+PRIM, THICK or PROJ state of total length at most 24. Such a path would stay in the rank-3
+T_24, and that set has no goal (claim 3).
 
 The endpoint of an excursion made of one (M1) move followed by automorphisms lies in T_24
 (Step 3 of the proof, by Whitehead peak reduction). So does the endpoint of an excursion
@@ -89,3 +105,10 @@ two AC products per excursion.
 - **Length of endpoints.** The Whitehead-minimal endpoints of all tunnels from S_24 have
   length 13 to 45 (histogram in `sweep2.log`). The 2194 new ones within cap 24 have length
   21 (2), 22 (13), 23 (358) and 24 (1821). They fall into 649 classes.
+- **Rank 3 behaves the same.** S_24 is closed under capped (M1): 0 violations over
+  20,159,284 capped products. Its tunnels give 16420 new endpoint pairs in 1397 classes, of
+  length 21 (1), 22 (4), 23 (308) and 24 (1084). Growth from them adds 1714 states, and the
+  closure has no goal.
+- **Two products per excursion do add states.** At cap 16, 2-tunnels add 11 states to the
+  150 states of T_16. So the next level is not empty, and a search at cap ≥ 25 with 2-tunnels
+  is not redundant with this one.

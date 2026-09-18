@@ -9,6 +9,8 @@ distinct_from:
 artifacts:
   - experiments/kms-hc1-kassel-extension-2026-09-18/restricted_kassel.py
   - experiments/kms-hc1-kassel-extension-2026-09-18/restricted_kassel.out
+  - experiments/kms-hc1-kassel-extension-2026-09-18/heis_formal.py
+  - experiments/kms-hc1-kassel-extension-2026-09-18/heis_formal5.out
 ---
 
 Notation of `kms-hc1-a2-pro-p-completion-is-iwahori-criterion` and
@@ -71,9 +73,25 @@ step `3mp`:
 - graded-algebra splittings over the three vertex Heisenberg algebras.
 
 The Kassel direction can die only through the non-homogeneous tails of the
-relators. Those tails are the higher-degree terms of `a^p - 1` and
-`[a,b,a] - 1` in `F_p<<X>>`, i.e. the terms of `(1+X)^p` and of the group
-commutators beyond their initial Lie forms.
+relators. In the Magnus algebra `F_p<<X>>`, with `a = 1 + X_a`, the relator
+`a^p - 1 = X_a^p` is homogeneous. So in the Zassenhaus / group-algebra model
+the only tails are those of the six commutator relators `[x,y,x] - 1`: their
+terms of degree `>= 4`.
+
+Remark: these tails are already visible at one vertex. Take `p = 5`. Let `U`
+be the Heisenberg group, and let `u(heis)` be the restricted enveloping
+algebra of its graded Lie algebra, with generators `X, Y` and `Z = [X, Y]`.
+There is no algebra isomorphism `F_5[U] -> u(heis)` that maps
+`F_5[<a>]` into `F_5[X]` and `F_5[<b>]` into `F_5[Y]`. The search
+`heis_formal.py 5` tries all `5^6` normalized edge coordinates
+`a -> 1+f(X)`, `b -> 1+g(Y)`, and none satisfies the Heisenberg relators;
+see `heis_formal5.out`. For linear `f` and any `p`, the obstruction can be
+seen by hand. The relator `[[A,B],A] = 1` forces `(log(1+g))' = const` in
+`F_p[Y]/Y^p`. That fails at `Y^{p-1}`, because `1/(p-1)! = -1 != 0`. So the
+colimit `F_p[Gamma]` of the vertex group algebras is not the colimit
+`u(Lambda_p)` of their graded algebras, even vertex by vertex. Open 2 asks
+whether these vertex tails, glued around the triangle, reach every Kassel
+degree.
 
 **(S) The graded form of the central-extension step is false.** Take the
 statement "every central `F_p`-extension of `I_1` of Kassel degree `3mp` that

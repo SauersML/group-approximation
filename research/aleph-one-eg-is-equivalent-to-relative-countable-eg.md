@@ -58,3 +58,13 @@ Suppose the Eilenberg--Ganea conjecture fails for some group of size `≤ ℵ_1`
   - For degree-one admissible bases, `H_1(H)` is torsion-free. This yields a two-cell normal form (`[u_0] = ap`, `[u_1] = bp`, fundamental class `b e_0 - a e_1`) in which `ab ≠ 0` is allowed.
 
   So the natural "drop core relations" reduction realizes nothing new. A counterexample to `REG_ω` for f.g. pairs must have admissible `H` outside the w-one-relator class, and every core must carry a 2-cycle on at least two cells. No such pair was found and no `ρ ≥ 1` admissible pair was produced. Next: for `n(C) = 2` with no single-occurrence basis element, decide whether `⟨S, y | λ(u_0), λ(u_1)⟩ → G` is an isomorphism (non-triangular elimination), or build an admissible degree-one base with `ab ≠ 0` and test it.
+- **w8-048, 2026-09-18: two-cell core deletions need a unit Fox coefficient.** Landed `two-cell-core-deletions-need-a-unit-fox-coefficient`, which answers the `n(C) = 2` open test of `core-relation-elimination-bounds-relative-defect`.
+  - `π_2` of the core relative presentation `⟨B, S | u_0, u_1, x = φ(x)⟩` is `ZG` on one explicit identity. Its cylinder coefficients are `c_x = ε g ∂_x u_0 - ∂_x u_1`, with `g = t_1 t_0^{-1} ∉ H`.
+  - Admissibility is exactly unimodularity of the row `c` over `ZG`.
+  - Deleting one cylinder `y = φ(y)`, in any free basis and for any `y`, presents `G` iff `c_y` is a unit and the kernel `N_y` is trivial. Also, `c_y` is a unit iff `N_y` is perfect.
+  - The coset splitting `ZG = Z[gH] ⊕ Z[H] ⊕ …` together with trivial units (local indicability plus Higman) shows that `c_y` is a unit only when one Fox coefficient is `0` and the other is `±h`. That forces `ab = 0`.
+  - So for `ab ≠ 0` the map `⟨S, y | λ(u_0), λ(u_1)⟩ → G` is **never** an isomorphism, including in no-singleton cases. The ab = 0 regime reduces to a ZH-Fox-singleton test plus a perfect-kernel test.
+  - Handle slides act on `c` by elementary column operations. RP via extra-generator elimination for `ab ≠ 0` is therefore an elementary-completion question for the unimodular row `c` over `ZG`, and it stays open.
+  - Construction side, as a negative computation: exhaustive, surface-guided and 20000 random two-w-cycle foldings (`experiments/two-cell-core-ratio-2026-09-17`) found dependent w-cycle classes only with `[u_1] = ±[u_0]` (never degree one, and not admissible by the row test) or with one class zero. No `(a,b) = (1,2)` core was found.
+
+  Next: prove that a degree-one admissible two-cell core has `ab = 0`, which would make the w-one-relator/Fox-singleton regime the whole two-cell story. Otherwise, find an `ab ≠ 0` core and test whether its `c` is elementarily completable over `ZG`.

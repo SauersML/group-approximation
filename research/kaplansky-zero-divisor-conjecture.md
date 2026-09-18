@@ -209,3 +209,12 @@ fixed finitely presented torsion-free group `U`.
       to this conjecture. The division-ring embeddings on this node that
       *do* bear on it are the ones for groups that are not locally indicable,
       such as `Lambda *_Z P` above.
+    - **Twisted Magnus segment steps (w8-059), Hughes-free only.**
+      [[magnus-segment-steps-put-one-relator-groups-in-h]] turns each Magnus
+      segment step into a root adjunction or a cyclic HNN after a basis change
+      `a_m = α^{-1} σ β^{-1}`, and tests the maps to `Z` it needs against an
+      exactly computed window space. It certifies 6 of the 8 open length-11
+      and 63 of the 73 open length-12 relators. All 12 survivors have
+      perfect kernel (`e = (0, ±1, 0)`). As audited above, this bears on
+      Hughes-free existence in characteristic `p` and for crossed products,
+      not on zero divisors.

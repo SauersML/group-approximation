@@ -60,8 +60,21 @@ Node: `research/ak3-aut-tunnel-closed-exhaustion.md`.
     an entry of length 1. It found 16383 new endpoints, which are 649 classes.
   - `grow2.log`: growth from those 649 classes ends EXHAUSTED with 922 new states,
     2,221,463 tunnels, and goals PRIM 0, THICK 0 (0 undecided).
-- **Caps 13–22.** `tr2.log` and `tr3.log` (tbfs), and `growcaps.log` (grow from scratch)
-  are all EXHAUSTED, with no goal.
+- **Rank 3, cap 24.** T_24 = S_24 ∪ 1714 new states, 281927 in all.
+  - `sweep3.log`: one tunnel step from all 280213 states. The timed-out chunk
+    240000–270000 was rerun in halves by `resweep.sh`. There were 805,596,332 tunnels and
+    20,159,284 capped products, with 0 violations and 0 PRIM endpoints. The new endpoints
+    fall into 1397 classes (`newcanon3.txt`).
+  - `grow3.log`: growth from those classes ends EXHAUSTED with 1714 new states, 5,284,987
+    tunnels, and goals PRIM 0, THICK 0, PROJ 0 (0 undecided).
+- **Caps 13–23.** `tr2.log` and `tr3.log` (tbfs), and `growcaps.log` (grow from scratch)
+  are all EXHAUSTED with no goal, except rank 3 at cap 23, which hit the time limit.
+- **2-tunnels.** `grow2t.c` adds a second (M1) product from each reduced tunnel endpoint of
+  length at most C2. Build it like `grow`; usage is `grow2t RANK CAP C2 base seeds out`.
+  `grow2t.log` records the runs:
+  - With C2 = CAP it reproduces `grow`.
+  - For AK(3) at cap 16, with C2 = 24 or 30, it gives 161 states (against 150 with tunnels
+    only), with no goal.
 - **Asymmetry.** `thzsearch 2 24 20000000 XXXXYYY XXXXYYYYYYxyXyxyy dump` gives 261722
   states, which contain all of S_24. So a new endpoint reaches S_24 by capped moves, while
   S_24 does not reach it.

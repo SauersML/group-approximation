@@ -39,3 +39,17 @@ centreless invisible core, and `T_3` is the basic example.
   origin are the candidates named in [[finite-twisted-kazhdan-cone-is-sofic]].
 - *Sofic.*  Build sofic approximations of `T_3`.  They cannot come from finite quotients of `T_3`.  This would be the first soficity theorem for an
   amalgam over a Kun-Thom subgroup that is not a free factor.
+
+## Attempts
+
+- **w8-111r, 2026-09-18: hypersurface-level subpairs (obstruction).**
+  - *Result.*  By [[divisor-level-subpairs-cannot-certify-rank-three-twisted-cone]], graded diagonal twists
+    `B = D (EL_3(F_q[L]) x| H) D^-1` satisfy the centraliser condition.  Their origin image lies in the torus, and
+    `B` is Kazhdan with `B ∩ Gamma` infranormal and not normal in `B`.  But `B ∩ Gamma` maps onto an infinite
+    Borel subgroup over `F_q[x_2..x_d]`, so it is not Kazhdan.  The relative groups `EL_3(R, I) x| Stab(I)` fail
+    too, for every ideal `I`: either `psi(B ∩ Gamma) = F`, or `B ∩ Gamma` has an infinite abelian quotient.
+  - *Why.*  Both families shrink `psi(B ∩ Gamma)` by a level along a hypersurface, and that level becomes an
+    infinite amenable quotient of the edge.
+  - *What is left.*  A Kazhdan edge with a level only at the origin, such as `ker ev_0` or `ev_0^-1(Borel)`,
+    inside a subgroup `B` that avoids the nonnegative compressors.  Or build sofic approximations.
+  - *Graph.*  This node now feeds the route [[sofic-fp-completeness-from-rank-three-twisted-kazhdan-cones]].
