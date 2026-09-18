@@ -91,8 +91,9 @@ theorem higmanVCTauConj_eq_of_prefix_core [Nontrivial X] {σ : Equiv.Perm (Canto
   · exact (List.append_nil z).symm
   · obtain ⟨e', he'⟩ := exists_ne e
     have hne' : e' :: c ≠ e :: c := fun h' => he' (List.cons.inj h').1
-    have r1 := higmanVCTauConj_len_or_eq h hq hfix rfl hne'
-    have r2 := higmanVCTauConj_len_or_eq (higmanVCTauConj_mapsCone_symm h hσ) hp
+    have r1 := higmanVCTauConj_len_or_eq (u := e' :: c) h hq hfix rfl hne'
+    have r2 := higmanVCTauConj_len_or_eq (u := e' :: c)
+      (higmanVCTauConj_mapsCone_symm h hσ) hp
       (fun w h1 h2 h3 h4 => hfix w h3 h4 h1 h2) rfl hne'
     rcases r1 with r1 | r1
     · rcases r2 with r2 | r2
