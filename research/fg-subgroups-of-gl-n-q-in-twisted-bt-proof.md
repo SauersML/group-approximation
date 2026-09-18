@@ -46,6 +46,13 @@ an infinite set, so `S` is infinite and every `kV` embeds. Then
 `countable-virtually-abelian-groups-embed-in-2v` give `(Q,+) <= 2V <= SV_Γ` and
 every countable virtually abelian group inside `SV_Γ`.
 
+**Item 3** (bh-referee-c, fix F1). Let `H <= GL_n(Q)` be finitely generated, possibly finite.
+- Put `H' = diag(H, 1) <= GL_(n+1)(Q)` and `z = diag(I_n, 2)`. Then `H' ≅ H`, `z` commutes with `H'`, and
+  `z^k ∈ H'` only for `k = 0`, because the last diagonal entry of `z^k` is `2^k`.
+- So `⟨H', z⟩ = H' × ⟨z⟩ ≅ H × Z`. This group is finitely generated and infinite.
+- Items 1 and 2, applied to `H × Z <= GL_(n+1)(Q)`, give a finitely presented simple `SV_Γ` with `S`
+  infinite. It contains `H × Z`, hence `H`, and it contains every `kV`, `2V` and `(Q,+)`.
+
 **Examples.** `GL_n(Z[1/m])` is finitely generated, being an S-arithmetic group.
 It contains `BS(1,2)` when `2 | m` and `n >= 2`, and it contains `SL_3(Z)` and
 `H_3(Z)` when `n >= 3`. ∎
