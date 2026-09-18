@@ -72,3 +72,9 @@ The route gives a complete argument.
 ## Attempts
 
 - Proved; see the route. The Basilica group and the odometer are degree 0 and were already covered.
+- The base-nontrivial branch is not vacuous (w6-101). `contracting-positive-degree-base-nontrivial-characters`
+  exhibits two contracting groups on 3 letters, `⟨t, a⟩` of degree 1 and `⟨t, a, b⟩` of degree 2. In both, the
+  `t`-exponent sum is the unique sum-invariant character, and it is nonzero on the odometer `t in G_0`. So for every
+  `r`, `V_{3,r}G` has a character nonzero on `Γ_0`, and the Meinert/point-fixer branch is needed.
+  `sum-invariant-characters-of-contracting-groups-via-nucleus` computes the character sphere of any contracting `G`
+  from its nucleus.

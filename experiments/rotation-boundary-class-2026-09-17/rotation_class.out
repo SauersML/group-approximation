@@ -1,0 +1,17 @@
+(1) inversion identity + reducedness: 0 failures in 2000 random (theta,j,m)
+(2) min over m<=1500 of 4m * L_m = 1.0000  (>= 1 proves L_m >= 1/(4m) on arcs)
+    m      sum_{k<=m} L_k    /log m     S_0(mu|A) partial   /log m
+     10        0.83564    0.34849        0.0003084   0.0001286
+     30        1.14791    0.33428        0.0003084   0.0000898
+    100        1.50566    0.32624        0.0005634   0.0001221
+    300        1.84681    0.32360        0.0007900   0.0001384
+   1000        2.21637    0.32081        0.0010165   0.0001471
+   1500        2.32672    0.31812        0.0010860   0.0001485
+(4) 20000 random pairs: count = first disagreement index; max count = 20000;
+    max of count * ||x - y|| = 1.0241  (bounded: count <= C/||x-y||, finite off x = y)
+    P(count >=   1) = 0.49740   k * P = 0.4974
+    P(count >=   3) = 0.19190   k * P = 0.5757
+    P(count >=  10) = 0.06370   k * P = 0.6370
+    P(count >=  30) = 0.02045   k * P = 0.6135
+    P(count >= 100) = 0.00550   k * P = 0.5500
+    P(count >= 300) = 0.00160   k * P = 0.4800

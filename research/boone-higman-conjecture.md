@@ -319,6 +319,29 @@ The August audit and the September correction artifacts carry the arguments.
      - *What is left.* A non-contracting finitely presented fully self-replicating `R`
        with root image `M_11`, `M_23` or `PSL(2,8)`. This is a case of the open
        finitely presented branch-group question.
+   - *Infinite-order invariants are blind too. The first non-contracting `M_11`
+     candidate reduces to one kernel* (prover lane w8-030, 2026-09-18). See
+     `self-wreathing-groups-have-full-sigma-invariants` and
+     `m11-linear-activity-self-replicating-group`.
+     - *What holds, part 1: blindness.* Every finitely generated `R ≅ R ≀_X P` has
+       `Σ¹(R) = S(R)`. Characters restrict to `(λ, …, λ)` on `R^X`. Over a field, it has
+       full `Σ^n` below degree `|X|`, and `b^{(2)}_j(R) = 0` for `j < |X|`. So
+       Bieri--Strebel HNN arguments, BNS/Renz invariants and `L²`/deficiency arguments
+       cannot obstruct `FP_2`, just as finite quotients cannot.
+     - *What holds, part 2: the candidate.* `R = ⟨M_11, a, b, c⟩`, with
+       `a = (a, 1, …) α` an odometer and `c = (c, a, 1, …)`. It is fully
+       self-replicating, not contracting, of linear activity, and amenable. Its Tits
+       host is a new finitely generated simple (P) group on `T_12`.
+     - *What holds, part 3: the cover.* The canonical L-presentation
+       `⟨S | Q_0 | σ⟩` has `Q_0` = the `M_11` relators plus commutators. It presents a cover
+       `G ≅ G ≀ M_11` with `b_1(G) ≥ 2`. So `G` is not finitely presented: this is the
+       L-presentation signature, obtained without contraction.
+     - *Where it stops.* `R = G/K`, where `K ≅ K^X` is the tree-action kernel of the cover.
+       - If `K = 1`, `R` is dead.
+       - If `R` is finitely presented, some relator outside the L-presentation has
+         nonzero `a`- or `c`-exponent sum.
+     - *What is left.* Decide `b_1(R) ∈ {0, 1, 2}`, or equivalently whether `K` kills
+       `χ_a` or `χ_c`. The value `2` kills `R`.
    - *What is left.* A Tits-(P) host needs infinite valence, or edge stabilizers
      that are not finitely presented, or a positive answer to the finitely
      presented branch-group question. The open first step is whether some

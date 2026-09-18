@@ -1,0 +1,29 @@
+===== G1 = <t,a>
+activity degrees of minimized nontrivial states: [0, 0, 1]
+nucleus size 7
+   1 = ( 1, 1, 1 ) (0, 1, 2)
+   t = ( 1, 1, t ) (1, 2, 0)
+   a = ( a, t, T ) (0, 2, 1)
+   T = ( T, 1, 1 ) (2, 0, 1)
+   at = ( t, T, at ) (2, 1, 0)
+   Ta = ( Ta, t, T ) (2, 1, 0)
+   Tat = ( t, T, Tat ) (1, 0, 2)
+dimension of sum-invariant characters: 1
+  normalized chi on nucleus: {'t': '1', 'a': '0', 'T': '-1', 'at': '1', 'Ta': '-1', 'Tat': '0'}
+inverses (state -> inverse state): {'t': 'T', 'a': 'a', 'T': 't'}
+relation check up to length 16 : words 196606 elements 183168 relations violating t-exponent sum: 0
+===== G2 = <t,a,b>
+activity degrees of minimized nontrivial states: [0, 0, 1, 2]
+nucleus size 8
+   1 = ( 1, 1, 1 ) (0, 1, 2)
+   t = ( 1, 1, t ) (1, 2, 0)
+   a = ( a, t, T ) (0, 2, 1)
+   T = ( T, 1, 1 ) (2, 0, 1)
+   b = ( a, b, a ) (2, 1, 0)
+   at = ( t, T, at ) (2, 1, 0)
+   Ta = ( Ta, t, T ) (2, 1, 0)
+   Tat = ( t, T, Tat ) (1, 0, 2)
+dimension of sum-invariant characters: 1
+  normalized chi on nucleus: {'t': '1', 'a': '0', 'T': '-1', 'b': '0', 'at': '1', 'Ta': '-1', 'Tat': '0'}
+inverses (state -> inverse state): {'t': 'T', 'a': 'a', 'T': 't', 'b': 'b'}
+relation check up to length 10 : words 118097 elements 117941 relations violating t-exponent sum: 0
