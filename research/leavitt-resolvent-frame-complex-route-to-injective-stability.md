@@ -31,7 +31,9 @@ requires:
    `U_N = 1` for every `N >= 3`. Then `St_N(R_L)` has solvable word problem.
 
 **Open inputs.**
-- **(F) Simple connectivity of `X^E_n(R_L)`.**
+- **(F) Simple connectivity: now supplied** by `leavitt-resolvent-frame-complex-is-highly-connected`. The full frame complex
+  is simply connected for `n >= 4`, and `E_n` is transitive on its frames of size at most `n - 1`, so `X^E_n` may be
+  taken to be `X_n` in low dimensions. The former notes follow.
   - Khanh's cone argument needs a simultaneous word multiplier, and the analogue for `R_L` looks available. Take
     isometries `θ_k = s_1^(M_k) s_2` with widely spaced `M_k`. Then `t_2 t_1^(M_i) c s_1^(M_k) s_2 = 0` for `i != k` and
     bounded `c`, because `t_2 s_1 = 0 = t_1 s_2`.
@@ -40,4 +42,5 @@ requires:
 - **(S1) `K_1`-injective stability at `n - 1` and `n - 2`: now supplied** by `leavitt-ge-rings-have-stable-k1-at-rank-three`,
   via Menal--Moncasi GE (read through Khanh) and the compression `y x z = 1` for `R_L`. So `GL_m(R_L)/E_m(R_L) = Z` for
   `m >= 3`. For `n = 4` the edge stabilizer needs `m = n - 2 = 2`, so take `n >= 5`.
-- **Signs.** The characteristic-`0` bookkeeping of the Weyl and triangle relations.
+- **Signs (the only remaining input).** The characteristic-`0` Brown presentation: `T^2 = diag(-1, -1, 1, ...)` sends `b_1`
+  to `-b_1`, so one more relation is needed, and its lift `w_12^2 = h_12(-1)` must match modulo `C`.
