@@ -5741,6 +5741,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.Stage
 import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Backward
 import GroupApproximation.Manuscript.NonMF.Full.GL06a.Endpoint
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStability.SwindleStep
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiTowerCoords
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
