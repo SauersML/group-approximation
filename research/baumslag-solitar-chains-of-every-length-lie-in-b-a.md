@@ -14,7 +14,7 @@ distinct_from:
   baumslag-gersten-group-satisfies-boone-higman: BG is the bi-infinite chain extended by its shift; this handles every finite piece of that chain, but not the shift.
 ---
 
-**ESTABLISHED** (lane proof, elementary; not reviewed; no priority claimed). It inherits the status of
+**OPEN**: referee FAIL by inheritance, 2026-09-18, bh-ref-bs12; see the Referee section. The lane proof was marked established and not reviewed; no priority claimed. It inherits the status of
 `higman-chain-group-lies-in-b-a` and its lane chain.
 
 A subgroup `D ≤ G` is **realized** if some `L ∈ B_A` contains `G` and an element `m` with `C_G(m) = D`.
@@ -84,3 +84,23 @@ from the twisted lamplighter quotient. So the wreath trick and the centralizer t
 graph-of-groups towers of Baumslag–Solitar type climb to any finite height. What resists is **global
 symmetry**. For `H_4` and `BG` the difficulty is not any finite piece of the tower. It is an automorphism
 (the cyclic rotation, or the shift) that the top-down wreath construction must respect.
+
+## Referee (bh-ref-bs12, 2026-09-18): FAIL by inheritance
+
+**Verdict: the proof fails, because it rests on items 1 and 4 of `higman-chain-group-lies-in-b-a`.**
+That node's Referee section shows that its Kaloujnine–Krasner map lands in the *unrestricted* wreath
+product. Both steps of this induction inherit the gap:
+- **(B_n)** is item 4 applied with `A = T_(n-1)`.
+- **(R_n)** embeds `T_n/[N, N]` into `Y wr_(G/C) G` by item 1, and then into `L = L_1 wr_(G/C) G`. For
+  this to work, `L` would have to contain the unrestricted image. But `L ∈ B_A` is proved only for the
+  restricted product, via (e) ⟹ (b) of `pbh-coset-wreaths-iff-identity-edge-hnns`.
+
+**What does check.** The realization calculus is sound, and it can be reused once the twisted
+lamplighter is placed in `B_A` by some other argument:
+- the diagonal embedding `g ↦ (g, φ(g))` realizes the preimage `D_1`;
+- `D_2 = C_(T_n)(x_n) = N_0`: `x_n` fixes exactly one vertex of the Bass–Serre tree, since `N_0` is
+  normal in `Y` and `N_0 ∩ C = 1`;
+- `D_1 ∩ D_2 = ⟨x_n⟩`.
+
+So the node's general principle, "realization propagates through quotients into `B_A` groups", holds.
+Only its input fails.
