@@ -13,6 +13,12 @@ artifacts:
   - research/artifacts/zp-burau-parity-t-minus-one-obstruction-2026-09-16.md
 ---
 
+**OPEN** as stated (demoted 2026-09-18; see Attempts). Part 1 is proved. Part 2 is proved for
+every **pure** `Γ`, in particular for all `Γ ∈ K_5`, which is the only case the "what this
+kills" discussion and `brunnian-four-braids-have-five-strand-moody-witness` use; the quantifier
+"every `Γ ∈ B_5`" is not established. The missing input is
+`moody-congruence-holds-for-arcs-ending-at-alpha-endpoints`, now required by the route.
+
 Let `F = ∏_{d ≠ 3} Φ_d^{m_d}` be any finite product of cyclotomic polynomials not divisible by
 `Φ_3 = t² + t + 1`.
 
@@ -39,3 +45,58 @@ residue of `𝕄` modulo `F`. This class includes:
 A proof of the witness claim must therefore let the modulus depend on `Φ` (for instance
 `F = ∏_{d | N} Φ_d` with `N` growing with the length of `Φ`), work exactly over `Z[t^{±1}]`, or
 use `Φ_3`.
+
+## Attempts
+
+- 2026-09-18 (adversarial referee pass, outcome refuted as stated): **Part 2's quantifier over
+  all of `B_5` is not established; the gaps lens decides.** Referee's reason, verbatim:
+  - "Compiled status on current origin/main (21ed703eb) was ESTABLISHED via route
+    brunnian-burau-kernel-mod-cyclotomic-products-nontrivial-proof [COMPLETE], sole prerequisite
+    brunnian-four-braids-are-pseudo-anosov [ESTABLISHED] — so a review was owed.
+  - WHAT HOLDS. Proof steps 1-4 (Part 1 of the claim) are correct and I re-verified them with an
+    independent exact Laurent-polynomial implementation, going beyond the shipped script:
+    P=(rho_4(Delta_3^2)-I)/(t^3-1) is idempotent with Phi_3*P integral, rho_4(T_k)=I+(t^{3k}-1)P,
+    rho_4(T_d) = I mod Q_d and Phi_d | Q_d for d=1,2,4,5,6,7,12 (and Phi_3 does NOT divide Q_3, so
+    the exclusion is genuinely needed), [T_d,b] has rho != I and = I mod (t-1)Q_d, and the
+    two-step X=[T_7,[T_4,b]] satisfies rho = I mod (t-1)Phi_4*Phi_7. The shipped
+    experiments/moody-witness-equivalence-2026-09-17/cyclotomic_jets.py reruns clean ('ALL CHECKS
+    PASS: True', exit 0) and matches its log. The commutator-ideal lemma (step 2), Delta_4^2 =
+    Delta_3^2 z, and the nontriviality argument (step 4: X commutes with z^k; X,z in the free
+    group K_4; cyclic centralizer; delete p_1, where z has exponent sum 4, so u-bar has infinite
+    order and X Brunnian forces q=0) all check out.
+  - WHAT FAILS — step 5 of research/brunnian-burau-kernel-mod-cyclotomic-products-nontrivial-proof.md,
+    third bullet: 'Theorem A of the artifact (§5, for any Gamma in B_5 and both orders) and Lemma
+    3.1 give (1 - t^s)(M_{f(Phi_0)Gamma} - M_Gamma) in (F(t-1)).' Theorem A of
+    research/artifacts/zp-burau-parity-t-minus-one-obstruction-2026-09-16.md is indeed valid for
+    all Gamma in B_5, but it is a statement about the intersection form I of loop classes, not
+    about M. The bridge to M is Lemma 3.1 (§3), whose construction explicitly requires 'the circle
+    is small enough to miss alpha' — i.e. the arc's terminal marked point p must not be p_1 or
+    p_2, since alpha runs from p_1 to p_2 and any small circle about p_1 crosses alpha° exactly
+    once. For Gamma in B_5 whose underlying permutation sends 3 to 1 or 2, the arc
+    (beta_*^3)Gamma ends at p_1 or p_2 and that hypothesis is unsatisfiable. Concretely Lemma 3.1
+    is then false: take A a simple arc from p_* to p_1 meeting alpha° nowhere, so M(alpha,A)=0
+    while I([c~_A]) = ±t^{k_0} != 0 (the one crossing contributed by the small circle). Redoing
+    the computation gives I([c~_A]) = (1-t^s)M_A + eps_0 t^{k_0}, and since the two arcs
+    A=(beta_*^3)f(Phi_0)Gamma and B=(beta_*^3)Gamma generally sit over different sheets, the extra
+    terms differ by eps_0 t^{k_0}(t^delta - 1), which is only in (t-1), not in (F(t-1)). So the
+    mod-F conclusion does not follow for those Gamma, and Corollary 3.2 (well-definedness of M) is
+    likewise unproved there.
+  - SCOPE OF THE DEFECT. The claim's operative content is untouched: Part 1 stands, and Part 2
+    stands for every pure Gamma, in particular for all Gamma in K_5 = pi_1(D_4,p_5), which is the
+    only case the 'what this kills' section and brunnian-four-braids-have-five-strand-moody-witness
+    use. The headline ('no fixed-modulus Moody certificate avoiding Phi_3 can prove the witness
+    claim') therefore survives. But the compiled statement asserts 'every Gamma in B_5', and that
+    quantifier is not established by the route. No other node depends on this claim, so the fix is
+    to restrict Part 2 to pure Gamma (or Gamma in K_5) and re-land. Note the same over-broad
+    quantifier is inherited from the artifact's Proposition 9.1 / Theorem B, i.e. it also affects
+    the already-established parity-clean-arc-counts-see-only-burau-mod-t-plus-one and
+    parity-correcting-push-fails-for-a-brunnian-four-braid.
+  - Citations lens: the one external import (Artin's formula; MKS/Lyndon-Schupp cyclic centralizers
+    in free groups) is used with correct hypotheses and direction. Calibration lens: the
+    construction genuinely uses B_4-specific input (freeness of K_4 = ker(P_4 -> P_3),
+    torsion-freeness of B_3, the idempotent P coming from Delta_3^2), and it correctly does not
+    extend to Phi_3 (verified: rho_4([T_4,b]) is not = I mod Phi_3). The decisive lens is gaps."
+  - **The exact step that fails.** Step 5 of the route, third bullet.
+  - **Demotion.** The missing statement is now
+    `moody-congruence-holds-for-arcs-ending-at-alpha-endpoints` (OPEN), added to the route's
+    `requires:`. The proof file and the scripts are kept: everything else in them stands.

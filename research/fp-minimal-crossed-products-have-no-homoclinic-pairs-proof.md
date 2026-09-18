@@ -4,7 +4,7 @@ id: fp-minimal-crossed-products-have-no-homoclinic-pairs-proof
 kind: route
 title: A two-basis module on k[P] ⊗ k^2 refutes walls over any group, and recurrence splices a homoclinic pair into a wall
 target: fp-minimal-crossed-products-have-no-homoclinic-pairs
-requires: [fp-crossed-products-force-sft-over-any-group]
+requires: [fp-crossed-products-force-sft-over-any-group, fp-minimal-crossed-product-patterns-fill-width-r-shells]
 artifacts:
   - research/artifacts/fp-minimal-crossed-products-homoclinic-kill-2026-09-17.md
 ---
@@ -39,3 +39,16 @@ This is Lemma 1, Theorem 2 and Corollary 3 of the artifact.
      contradicts Step 3.
 6. **Shell filling.** If `x = y` on `N_r(F) \ F`, let `z` be `y` on `F` and `x` elsewhere. Its windows
    meeting `F` lie in `N_r(F)`, where `z = y`, so `z ∈ X` and `Δ(x,z) ⊆ F`. By Step 5, `z = x`. `∎`
+
+**2026-09-18, referee: Step 6 is wrong at this width.** A window is `y|_(p B_r)`; if `p B_r`
+meets `F` at `f` then `f ∈ p B_r`, so `p ∈ f B_r` and the window lies in `f B_(2r) ⊆ N_(2r)(F)`,
+not in `N_r(F)`. The containment is sharp: take `F = {f}` and `p` at distance exactly `r` from
+`f`, and the window reaches distance `2r` from `f`. The artifact itself gets this right in
+Theorem 2, step 4, which puts a window meeting `D_0` in `N_(2r)(D_0) = K`. With `x = y` only on
+`N_r(F) \ F`, the spliced point `z` is a mix of `x` and `y` on the windows poking into
+`N_(2r)(F) \ N_r(F)`, those patterns need not lie in `L_(B_r)(X)`, and `z` need not lie in `X`.
+What Step 6 proves verbatim is the statement with `N_(2r)(F) \ F`, which is also what the
+concurrent `fp-crossed-products-force-connected-differences` states. Item 2 of the target, as
+written at width `r`, therefore needs the added prerequisite
+`fp-minimal-crossed-product-patterns-fill-width-r-shells`. Steps 1-5 and item 1 (no homoclinic
+pair) are unaffected: Step 5 uses `K = N_(2r)(D_0)` correctly.
