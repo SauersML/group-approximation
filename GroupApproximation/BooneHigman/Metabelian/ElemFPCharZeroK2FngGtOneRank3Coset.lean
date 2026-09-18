@@ -86,3 +86,104 @@ def czK2FngGtOneRank3_CosetStatement : Prop :=
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_CosetStatement
+
+/-- **The residual gives the one-prime step.** -/
+theorem czK2FngGtOneRank3_step_of_coset (h : czK2FngGtOneRank3_CosetStatement) :
+    czK2FngGtOneRank3_StepStatement := by
+  intro m p hm hp
+  obtain ⟨s, hsfin, hsK, σ, h0, h1, hu⟩ := h m p hm hp
+  refine ⟨s, hsfin, hsK, ?_⟩
+  intro k hk
+  have hmp : m * p ≠ 0 := Nat.mul_ne_zero hm.ne' hp.ne_zero
+  have htop : czK2FngGtOneRank3_good (czK2FngGtOneRank3_Q (czK2FngGtOneRank3_locMap m p) s) σ =
+      ⊤ :=
+    czK2FngGtOneRank3_eq_top (m * p) 3 (by omega) _
+      (fun i j hij ↦ czK2FngGtOneRank3_mem_good.mpr (h1 i j hij))
+      (fun i j hij ↦ czK2FngGtOneRank3_mem_good.mpr (hu i j hij))
+  have hkQ := czK2FngGtOneRank3_mem_Q_of_top _ σ (QuotientGroup.mk 1) h0 htop hk
+  exact czK2FngGtOneRank3_mem_N_of_mem_Q (czK2FngGtOneRank3_locMap m p)
+    (czK2FngGtOneRank3_locMap_injective m p hmp) s hsK hkQ hk
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_step_of_coset
+
+/-- **The residual gives the target** `czK2FngGtOne_RankThreeStatement`. -/
+theorem czK2FngGtOneRank3_rankThree_of_coset (h : czK2FngGtOneRank3_CosetStatement) :
+    czK2FngGtOne_RankThreeStatement :=
+  czK2FngGtOneRank3_rankThree_of_step (czK2FngGtOneRank3_step_of_coset h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_rankThree_of_coset
+
+section Converse
+
+variable {R S : Type*} [CommRing R] [CommRing S]
+
+/-- **Converse direction.**  If `K₂(3, S) ≤ N`, then any section that lifts coset
+representatives passes the check for every `g`. -/
+theorem czK2FngGtOneRank3_check_of_le (φ : R →+* S) (s : Set (SteinbergGroup (Fin 3) S))
+    (hle : K2 (Fin 3) S ≤ czK2FngGtOneRank3_N φ s)
+    (σ : (elementaryGroup (Fin 3) S ⧸ (elementaryGroupMap (ι := Fin 3) φ).range) →
+      SteinbergGroup (Fin 3) S)
+    (hσ : ∀ y, projection (σ y) = y.out) (g : SteinbergGroup (Fin 3) S) :
+    czK2FngGtOneRank3_Check (czK2FngGtOneRank3_Q φ s) σ g := by
+  intro y
+  apply czK2FngGtOneRank3_mem_Q_of_projection φ s hle
+  rw [map_mul, map_mul, map_inv, hσ, hσ]
+  have h1 : (QuotientGroup.mk (projection g * y.out) :
+      elementaryGroup (Fin 3) S ⧸ (elementaryGroupMap (ι := Fin 3) φ).range) =
+      projection g • (QuotientGroup.mk y.out :
+        elementaryGroup (Fin 3) S ⧸ (elementaryGroupMap (ι := Fin 3) φ).range) :=
+    rfl
+  rw [QuotientGroup.out_eq'] at h1
+  rw [mul_assoc]
+  exact QuotientGroup.eq.mp (by rw [QuotientGroup.out_eq', h1])
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_check_of_le
+
+/-- **Converse direction.**  If `K₂(3, S) ≤ N`, then a section as in `SectionProp` exists for
+every coefficient `u`. -/
+theorem czK2FngGtOneRank3_exists_section (φ : R →+* S) (s : Set (SteinbergGroup (Fin 3) S))
+    (hle : K2 (Fin 3) S ≤ czK2FngGtOneRank3_N φ s) (u : S) :
+    czK2FngGtOneRank3_SectionProp φ s u := by
+  obtain ⟨σ, hσ⟩ : ∃ σ : (elementaryGroup (Fin 3) S ⧸
+      (elementaryGroupMap (ι := Fin 3) φ).range) → SteinbergGroup (Fin 3) S,
+      ∀ y, projection (σ y) = y.out :=
+    ⟨fun y ↦ (projection_surjective y.out).choose,
+      fun y ↦ (projection_surjective y.out).choose_spec⟩
+  refine ⟨σ, ?_, fun i j hij ↦ czK2FngGtOneRank3_check_of_le φ s hle σ hσ (x i j hij 1),
+    fun i j hij ↦ czK2FngGtOneRank3_check_of_le φ s hle σ hσ (x i j hij u)⟩
+  apply czK2FngGtOneRank3_mem_Q_of_projection φ s hle
+  rw [hσ]
+  have h2 := QuotientGroup.eq.mp (QuotientGroup.out_eq' (QuotientGroup.mk 1 :
+    elementaryGroup (Fin 3) S ⧸ (elementaryGroupMap (ι := Fin 3) φ).range))
+  rw [mul_one] at h2
+  exact inv_mem_iff.mp h2
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_exists_section
+
+end Converse
+
+/-- **Converse (LOUD: the residual is equivalent to the step).** -/
+theorem czK2FngGtOneRank3_coset_of_step (h : czK2FngGtOneRank3_StepStatement) :
+    czK2FngGtOneRank3_CosetStatement := by
+  intro m p hm hp
+  obtain ⟨s, hsfin, hsK, hle⟩ := h m p hm hp
+  have hle' : K2 (Fin 3) (Localization.Away ((m * p : ℕ) : ℤ)) ≤
+      czK2FngGtOneRank3_N (czK2FngGtOneRank3_locMap m p) s := hle
+  exact ⟨s, hsfin, hsK, czK2FngGtOneRank3_exists_section _ s hle' _⟩
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_coset_of_step
+
+/-- **Converse (LOUD: the residual is equivalent to the target).** -/
+theorem czK2FngGtOneRank3_coset_of_rankThree (h : czK2FngGtOne_RankThreeStatement) :
+    czK2FngGtOneRank3_CosetStatement :=
+  czK2FngGtOneRank3_coset_of_step (czK2FngGtOneRank3_step_of_rankThree h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czK2FngGtOneRank3_coset_of_rankThree
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
