@@ -9,6 +9,7 @@ distinct_from:
   elek-free-minimal-cantor-actions-with-invariant-measures: that constructs some measured minimal Cantor action for every countable group; this asks that every minimal set of the given action of a Kazhdan subgroup of nV is measured.
 artifacts:
   - research/artifacts/kazhdan-nv-measure-criterion-2026-09-17.md
+  - research/artifacts/kazhdan-nv-slope-distortion-and-tail-gate-2026-09-17.md
 ---
 
 Let `C = {0,1}^ω`, `n >= 1`, and `K <= nV` with property (T). Then every minimal
@@ -50,3 +51,22 @@ invariant probability measure of `K` is carried by `U_K`.
   hole to this claim; no progress on the claim itself. The shape-weighted brick
   families and the twisted Koopman representation of the Lebesgue measure both fail to
   give almost invariant vectors without an invariant measure (artifact Section 6).
+- 2026-09-17 (lane swarm-0917-w6-w6-re-pull-z-2, group-rings / transplanter). Three
+  routes, none closing the claim; details in
+  `research/artifacts/kazhdan-nv-slope-distortion-and-tail-gate-2026-09-17.md`.
+  - Distortion route. Proved: `|s(w,x)|_1 <= B|w|_S`. So a nonzero slope at a periodic
+    point makes the element undistorted, and a distorted element has `o(k)` slope
+    growth. Dies at the passage to bounded slope at one point of a minimal set (the
+    hypothesis of the Gottschalk–Hedlund node of lane c-kaznv). Bounded generation in
+    `SL_3(Z)` needs exponents up to `exp(cL)`, so the bound stays linear. The route
+    gives nothing for Kazhdan groups with undistorted cyclic subgroups (e.g. uniform
+    `Sp(m,1)` lattices).
+  - Product-tail gate. Proved: the orbit relation of `K` lies in `E_t^{×n}`, and each
+    slope coordinate is the lag of that coordinate alone. The rank-two Robertson–Steger
+    system has the same items without the per-coordinate witness. OPEN gate question:
+    does `Γ ↷ Ω` admit continuous injective `(π_1, π_2) : Ω -> C²` whose coordinates
+    witness the shape offsets as tail lags? "No" makes the product-factorization class
+    kill formal. "Yes" is a step toward a counterexample.
+  - Autonomous-coordinate induction. Duplicates the fibration-stabilizer node of lane
+    c-kaznv. It dies at the first projection once coordinates are coupled (for example
+    by a controlled flip).
