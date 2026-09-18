@@ -26,9 +26,20 @@ and let `t` be a homeomorphism of `X` with `t a^m t^-1 = a^n`.
    not injective: its kernel contains `[t a t^-1, a]` (case `nK = K`) or `[t^-1 a t, a]` (case `mK = K`), and both
    are nontrivial in `BS(m,n)` by Britton's lemma.
 
+4. **Metabelian image.** If `nK = K` or `mK = K`, then `<a, t>` is abelian-by-cyclic: the conjugates `t^k a t^-k`,
+   `k ∈ Z`, pairwise commute and generate an abelian normal subgroup with cyclic quotient. So `<a, t>` is a quotient
+   of the largest abelian-by-cyclic quotient of `BS(m,n)` (for coprime `m, n` this is `Z[1/mn] ⋊_{n/m} Z`, with `x_k -> (n/m)^k`; standard, not re-proved), whatever
+   `t` is.
+
 So an odometer-type generator can carry a faithful non-solvable `BS(m,n)` only if **both** `m` and `n` are
 non-invertible on `K`. For `K = Z_S` (the `S`-adic integers) this means that both `m` and `n` have a prime factor in
-`S`.
+`S`. Otherwise it carries at most the metabelian shadow of `BS(m,n)`.
+
+**Sharpness (remark, standard facts, not re-proved).** For `|m| ≠ |n|` the action of `BS(m,n)` on the ends of its
+Bass-Serre tree is faithful: the kernel is the largest normal subgroup inside `<a>`, which is trivial. There `a` fixes
+a vertex, so it acts equicontinuously, and it permutes the `m` edges of one type and the `n` of the other type
+cyclically. So equicontinuous generators with closure sensitive to the primes of both `m` and `n` do occur in faithful
+actions.
 
 ## Consequences for the swarm's hosts
 

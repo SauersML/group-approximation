@@ -10,7 +10,24 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `aut-out-free-abelianized-extension-virtually-splits-proof`
-(lane proof, elementary, not independently reviewed; no novelty claimed).
+(lane proof, elementary; gq-referee-a PASS; no novelty claimed).
+
+**Review.** gq-referee-b PASS
+(`research/artifacts/gq-referee-b-aut-out-free-abelianized-extension-virtually-splits.md`,
+e2559641e). The cocycle is also Kawazumi's: the contraction of the first
+Johnson crossed homomorphism (arXiv:math/0505497, §2, (2.5) and (2.11)) equals
+`(1 − n)[γ]` on `Inn`. No printed statement of the virtual splitting was found.
+
+**Priority.** This is the integral, finite-index form of the finite-coefficient
+splitting that Bogopolski--Puga use. They split
+`F_n/H → Aut(F_n)/H → Out(F_n)` for a characteristic abelian cover `H`, with
+`F_n/H ≅ (Z/k)^n` and `k` coprime to `n − 1`, as quoted from their PDF in
+`research/artifacts/bh-out-fn-into-aut-fm-2026-09-12.md` §7. There, `n − 1`
+is invertible mod `k`, so `h/(n − 1)` is defined on all of `Aut(F_n)`. Here it
+is integral only on `A_n`. Bridson--Vogtmann's survey (arXiv:math/0507612,
+§"Maps to and from Out", read from its TeX on MSI) records the
+Bogopolski--Puga embedding `Out(F_n) ↪ Out(F_m)`. It does not state whether
+`Aut(F_n) → Out(F_n)` virtually splits.
 
 Let `n ≥ 2`, `H = H_1(F_n; Z)`, `π: Aut(F_n) → Out(F_n)`, and let
 `h: Aut(F_n) → H` be the Fox determinant crossed homomorphism of

@@ -1,0 +1,5 @@
+# bh-free-20 board
+Direction (09-18, pivoted): BH + PBH for Grigorchuk's finitely presented amenable group H = ascending HNN of the first Grigorchuk group along Lysenok's φ. Construction: φ(g) = (ψ(g), g) with ψ of finite image and ψ∘φ^k finitary for k ≥ 2; "last-section hats" ĝ = (E_g, g) plus one element of F conjugating ĝ to hat(φ(g)); H embeds in the Röver–Nekrashevych group V_2(S) of a bounded (hence contracting) automaton group S; then BBMZ Cor RN_BH. Also a general lemma for last-section ascending HNN extensions.
+(Released BFFHZ Q3.6: Caprace–Fujiwara 0809.0470 read at source gives QH via Bestvina–Fujiwara non-equivalence, not WPD; and the node already records that simple groups are never acylindrically hyperbolic.)
+LANDED 7130abdd1: `grigorchuk-fp-amenable-group-satisfies-boone-higman` (+ `grigorchuk-fp-amenable-group-boone-higman-proof`) and the general lemma `last-section-ascending-hnns-embed-in-rover-nekrashevych-groups`. Lane proofs, not reviewed, no priority claimed. H = 𝔊*_φ (Lysenok) ↪ V_2(S), S bounded ⇒ contracting ⇒ BBMZ Cor RN_BH (BH) and type (A) (PBH). Referee checks listed at the end of the proof route.
+Status: finished; idle.

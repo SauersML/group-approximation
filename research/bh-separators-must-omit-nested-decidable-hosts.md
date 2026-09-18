@@ -18,7 +18,8 @@ distinct_from:
 
 **ESTABLISHED** (lane proof, elementary; inputs cited below). §§1–3: gq-referee-a PASS
 (proof gaps, `research/artifacts/gq-referee-a-bh-separators-must-omit-nested-decidable-hosts.md`,
-90752e2d8), nits N1–N3 applied; citation review by gq-referee-b pending. No priority claimed.
+90752e2d8), nits N1–N3 applied. gq-referee-b PASS (citations,
+`research/artifacts/gq-referee-b-bh-separators-must-omit-nested-decidable-hosts.md`, cabab5c05), W1–W3 applied. No priority claimed.
 
 Setting: `P` is a class of groups closed under isomorphism and subgroups. As in
 `hereditary-approximation-disproofs-of-boone-higman`, `P` **separates**
@@ -55,9 +56,9 @@ Each fails (S1), witnessed by one finitely presented simple group.
 
 | class `P`: every finitely generated subgroup has … | fails (S1) at | source |
 |---|---|---|
-| decidable torsion problem (is `g` of finite order?) | `2V` | Belk–Bleak, arXiv:1405.0982, abstract (read 2026-09-18): "the torsion problem for elements of the Brin–Thompson group 2V is undecidable"; `2V` is finitely presented and simple (Brin 2004, 2005; not re-read) |
-| decidable membership in its finitely generated subgroups | `V` | `V×V <= V` (commuting copies supported on the halves `0C`, `1C`), `F_2 <= V`, and Mihailova (1958): `F_2 × F_2` has a finitely generated subgroup with undecidable membership (classical, not re-read) |
-| solvable conjugacy problem | `V` | `F_2 × F_2 <= V` as above; C. F. Miller III (1971): `F_2 × F_2` has finitely generated subgroups with unsolvable conjugacy problem (classical, not re-read) |
+| decidable torsion problem (is `g` of finite order?) | `2V` | Belk–Bleak, arXiv:1405.0982, abstract (read 2026-09-18): "the torsion problem for elements of the Brin–Thompson group 2V is undecidable"; `2V` is simple (Brin, math/0406046) and finitely presented (Brin, math/0501082), both pinned by gq-referee-b |
+| decidable membership in its finitely generated subgroups | `V` | `V×V <= V` (commuting copies supported on the halves `0C`, `1C`), `F_2 <= V` (Bleak–Salazar-Díaz, arXiv:0911.0979, abstract), and Mihailova (1958): `F_2 × F_2` has a finitely generated subgroup with undecidable membership (pinned through Bogopolski–Ventura, arXiv:0810.0690, p. 1) |
+| solvable conjugacy problem | `V` | `F_2 × F_2 <= V` as above; C. F. Miller III (1971): `F_2 × F_2` has finitely generated subgroups with unsolvable conjugacy problem (classical; **not pinned**, W3: no secondary source read so far names the conjugacy problem) |
 
 Plain "solvable conjugacy problem" is not subgroup-closed, so only the hereditary
 form is a candidate, and it dies at `V`. A Turing-degree invariant cannot separate
@@ -66,11 +67,12 @@ either: every finitely presented simple group and every input has degree `0`
 
 ## 3. What survives among decision problems: complexity bounds, and nothing else of Kuznetsov type
 
-For recursive `T`, let `P_T` be the class of groups all of whose finitely generated
+For recursive non-decreasing `T` (W2), let `P_T` be the class of groups all of whose finitely generated
 subgroups have a word-problem algorithm within `C·T(C·l) + C·l + C` for some finite
 generating set and constant `C`. It is subgroup-closed by the same definitional argument. Changing the
 finite generating set of a subgroup `H` only changes `C`: a word of `H`-length `l` has
-`S`-length at most `C_0·l`, and (S2) holds for every `T` by
+`S`-length at most `C_0·l`, so the bound becomes `C·T(C·C_0·l) + …`, of the same form since `T` is
+non-decreasing. (S2) holds for every `T` by
 `complexity-bounded-host-classes-are-not-universal`. Hence:
 
 **`P_T` separates Boone–Higman iff every finitely presented simple group meets the bound
@@ -78,8 +80,10 @@ finite generating set of a subgroup `H` only changes `C`: a word of `H`-length `
 fails. That root is OPEN. Zaremsky, arXiv:2305.15176v2 (read 2026-09-18), p. 3, expects it
 to hold ("a priori there is not any reason to doubt that arbitrarily large, recursive Dehn
 functions are possible"); the only superpolynomial Dehn lower bounds known are his at least
-exponential examples (p. 1–2), and the hardest known word problem is coNP-complete
-(`nV`, Birget arXiv:1902.03852).
+exponential examples (p. 1–2). Among finitely presented simple groups whose word-problem
+complexity this lane found determined, the hardest is `nV`, whose word problem is coNP-complete
+(Birget, arXiv:1902.03852). This is a bounded-search remark (W1), not a statement from the
+literature.
 
 **Kuznetsov-profile bounds reduce to `P_T`.** For a finitely presented simple
 `S = <X | R>` and a fixed generator `x ≠ 1`, put

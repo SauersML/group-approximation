@@ -97,6 +97,54 @@ Zelmanov (`restricted-burnside-finiteness`: every finite `m`-generated group of 
 of the finite group `R(m,N)`, so a residually finite `m`-generated group of exponent `N` is a quotient of
 `R(m,N)`). ∎
 
+## Step 6. Items 4 and 5
+
+- **Item 4, "if".** Let `G` be torsion locally finite and `H ≤ V_d(G)` finitely generated torsion. By item 2, `K_n`
+  has finite index in `H`, so it is finitely generated, and it embeds in `G^(d^n)`. Its image under each coordinate
+  projection is a finitely generated torsion subgroup of `G`, hence finite. So `K_n` embeds in a finite product of
+  finite groups, `K_n` is finite, and so is `H`.
+- **Item 4, "only if".** `G ≤ V_d(G)`, and subgroups of a torsion locally finite group are torsion locally finite.
+- **The examples.** A torsion-free group is torsion locally finite. So is a self-similar group of finite exponent:
+  it acts faithfully on the rooted tree, so it is residually finite, and Zelmanov applies to its finitely generated
+  subgroups.
+- **Item 5.** This is item 2 with `G = 𝔊`. Subgroups of `𝔊^k` are residually finite 2-groups.
+
+## Step 6b. Item 7 (characterization)
+
+**Only if.** Let `E ≤ 𝒩_d` be finitely generated torsion. By item 1, `K_n` has finite index in `E`, and by Step 4 it
+embeds in `Aut(X*)^(d^n)`. The product acts on the `d^n` subtrees below level `n`, so it is the level-`n` rigid
+product inside `Aut(X*)` and embeds there.
+
+If moreover `E ≤ V_d(G)`, then `K_n ≤ G^(d^n)`, acting at level `n`. Let `G'` be the subgroup of `Aut(X*)` generated
+by the rigid copies `G^(d^j)` acting at levels `0 <= j <= n`.
+- **Self-similar.** The sections of an element of `G^(d^j)` at a first-level vertex lie in `G^(d^(j−1))` for
+  `j >= 1`. At `j = 0` they lie in `G`, since `G` is self-similar. So `G'` is closed under sections.
+- **Finitely generated.** `G'` is finitely generated when `G` is.
+- **Containment.** `K_n ≤ G'`.
+
+**If.** Let `E' ≤ E` have finite index `k`. By Kaloujnine–Krasner, `E` embeds in `E' ≀ Sym(k)`. Choose `L` with
+`d^L >= k`, and use `k` of the depth-`L` cones.
+- **The permutation part.** `Sym(k)` acts by permuting those cones by prefix replacement, which is an element of
+  `V_d`.
+- **The base part.** An element of `(E')^k` acts on the `i`-th cone by `p_i w ↦ p_i e_i(w)`.
+- **Faithfulness.** Both parts lie in `𝒩_d`, and in `V_d(G')` if `E' ≤ G'` with `G'` self-similar. The resulting
+  action of `E' ≀ Sym(k)` is faithful.
+
+## Step 7. Item 6 (graph version)
+
+Replace words by finite paths of `E` and `X^ω` by `E^∞`, with the metric `λ^(−|common prefix|)` for any `λ > 1`.
+Every step goes through verbatim:
+- **Step 0.** The injectivity argument uses only that each tail map `g` is a bijection between full path spaces at a
+  vertex.
+- **Step 1.** Unchanged.
+- **Step 2.** The pigeonhole counts paths of length `D + K`, and there are finitely many. The contraction
+  `T w ↦ T y k(w)` requires `T y` to be a path from the same range vertex as `T`, which holds because `h` maps `[T]`
+  into itself.
+- **Steps 3–5.** Unchanged, with finitely many paths of each bounded length.
+- **Matui's groups.** Every piece of an element of the topological full group of the one-sided shift groupoid has the
+  form `α w ↦ β w`, with `α` and `β` ending at the same vertex, i.e. trivial tail. So `K_n = 1`, as in the case
+  `G = 1`.
+
 ## Calibration
 
 - **V.** For `G = 1`, item 2 is Röver's theorem that `V` is torsion locally finite (BCR arXiv:1402.3860v2, Thm 1.3,
