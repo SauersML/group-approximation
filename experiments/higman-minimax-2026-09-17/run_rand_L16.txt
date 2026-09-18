@@ -1,0 +1,2 @@
+start 0 L=16: max def=0.9024172 defects=[np.float64(0.902417), np.float64(0.902417), np.float64(0.902417), np.float64(0.902417)] ||U_i-1||=[np.float64(1.9954), np.float64(1.9996), np.float64(1.999), np.float64(1.9983)] opp comm=[np.float64(1.988), np.float64(1.998)]
+start 1 L=16: max def=1.1444441 defects=[np.float64(1.144444), np.float64(1.144444), np.float64(1.144444), np.float64(1.144444)] ||U_i-1||=[np.float64(1.9984), np.float64(1.998), np.float64(1.9993), np.float64(1.9974)] opp comm=[np.float64(1.987), np.float64(1.992)]

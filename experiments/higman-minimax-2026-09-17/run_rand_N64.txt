@@ -1,0 +1,7 @@
+  start0 beta=10: def=0.393161
+  start0 beta=30: def=0.332787
+  start0 beta=100: def=0.311952
+  start0 beta=300: def=0.305903
+  start0 beta=1000: def=0.303990
+  start0 beta=3000: def=0.303468
+start0 N=64: polished def=0.303254 ||P-1||=1.9999

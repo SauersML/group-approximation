@@ -1,0 +1,29 @@
+  start0 beta=10: def=0.401387
+  start0 beta=30: def=0.352372
+  start0 beta=100: def=0.339921
+  start0 beta=300: def=0.336238
+  start0 beta=1000: def=0.334937
+  start0 beta=3000: def=0.334561
+start0 N=16: polished def=0.334401 ||P-1||=1.9987
+  start1 beta=10: def=0.401700
+  start1 beta=30: def=0.336686
+  start1 beta=100: def=0.321133
+  start1 beta=300: def=0.316556
+  start1 beta=1000: def=0.314980
+  start1 beta=3000: def=0.314530
+start1 N=16: polished def=0.314373 ||P-1||=1.9950
+  start2 beta=10: def=0.393334
+  start2 beta=30: def=0.353253
+  start2 beta=100: def=0.338025
+  start2 beta=300: def=0.333710
+  start2 beta=1000: def=0.332182
+  start2 beta=3000: def=0.331749
+start2 N=16: polished def=0.331586 ||P-1||=1.9887
+  start3 beta=10: def=0.404683
+  start3 beta=30: def=0.369603
+  start3 beta=100: def=0.357218
+  start3 beta=300: def=0.353684
+  start3 beta=1000: def=0.352468
+  start3 beta=3000: def=0.352119
+start3 N=16: polished def=0.351972 ||P-1||=1.9999
+BEST far N=16: 0.314373
