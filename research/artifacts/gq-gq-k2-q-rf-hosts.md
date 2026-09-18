@@ -60,3 +60,21 @@ primes `q`, as `BS(1,m)` does for the primes of `m`.
 - **G_l is residually `l`.** Sketch: its quotients `(Z/l^k)[y]/(y^(l^m) − 1) ⋊ (image of H)` are finite `l`-groups
   when `m >= k − 1`, and they separate points. So `G_l` acts faithfully on the rooted `l`-ary tree. Whether some such
   action is finite-state or self-similar is open, and is the natural first test for the self-similar route.
+
+## 5. The finite-state test for G_l (second pass, 2026-09-18)
+
+- **Explicit tree action (ESTABLISHED, `euler-lamplighter-acts-faithfully-on-the-l-ary-tree`).** `G_l` acts by
+  continuous affine maps on `Λ = Z_l[[T]]`, the Iwasawa algebra of `l`-adic measures on `Z_l`:
+  - `x` translates measures by `−1`;
+  - `M` adds finitely supported measures;
+  - the Euler element `β` multiplies measures by the function `1 + l x`.
+
+  An `l`-step refinement of the `(l,T)`-adic filtration is invariant, so the action is on `T_l`, and it is faithful.
+- **Finite-state (OPEN, `euler-lamplighter-has-a-faithful-finite-state-action`).**
+  - In the two natural coordinatizations, `β` restricted to the cylinder over `a` is the scalar `1 + la` up to
+    higher-order terms. These scalars are pairwise distinct, which suggests infinitely many sections.
+  - No obstruction for arbitrary actions is proved. State counts of the roots `f_0/q` do not give one.
+  - arXiv:2405.16678, which closes automata subgroups under `A ≀ −` with `A` finitely generated abelian, covers
+    `H = Z ≀ Z` but not `G_l`.
+- **Verdict:** undecided. What a positive answer needs is a transducer structure on the lamp index that carries the
+  arithmetic multipliers `1 + lj`.
