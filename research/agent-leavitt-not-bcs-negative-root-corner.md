@@ -464,3 +464,36 @@ survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
   forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
   into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
   test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
+
+**Probability-random transplant: random Hecke packets and random cocycle periodization (swarm-0917-w10-w10-ptl-pull,
+2026-09-18, family probability-random). DEAD; hole stays OPEN.** Two probabilistic mechanisms were tested. Both die at a
+step that is already recorded, and neither adds any probabilistic content.
+- *(a) Random isotypic packets.* Take `A_x` as signed sums of central idempotents `e_a in C[H]` of finite subgroups
+  `H <= Delta` with `z in H`. Exact local lemma: for finite `H, K <= Delta` with `D = H cap K`, multiplication
+  `C[H] (x)_{C[D]} C[K] -> C[HK]` is a bijection. Since `e_a (x) e_b` generates the bimodule
+  `e_a C[H] (x)_D C[K] e_b`, we get `e_a e_b = 0` exactly when `Res_D a` and `Res_D b` share no constituent. So every
+  exact overlap relation between packets from two subgroups is decided on their intersection. A packet solution with one
+  finite subgroup per context is therefore a finite-readout decoder in the sense of
+  `finite-readout-bcs-decoders-are-phase-surviving-local-colimits`, with the noncentral `z` in place of the central phase.
+  That statement then applies verbatim: the solution needs a phase-surviving, non-acyclic local colimit. Randomizing
+  which isotypic idempotents are chosen changes nothing, because exact relations have probability 0 unless they are
+  forced by that colimit. *Dies at:* the recorded local-colimit gate.
+- *(b) Random periodization, aimed at the Toeplitz survivor (soficity of `E = EL_20(J)`).* By Kaloujnine-Krasner,
+  `E <= L Wr Q`, with `L = GL_fin(F_2)`, `Q = SL_20(F_2[z^{+-1}])` and cocycle `f_g(q) = s(q)^{-1} g s(g^{-1}q)`.
+  `L^Q` is locally residually finite, because projections of finitely generated subgroups are finite. The plan was to
+  periodize `f` along a random finite-index `N <| Q` and truncate `L`.
+  - *Exact periodization is impossible (proved here, not landed).* Suppose `f` is `N`-periodic for some section `s`, and
+    put `E_N = pi^{-1}(N)`. Then `E_N -> L^{Q/N}` is a homomorphism that is injective on `L`, so its kernel `K'` meets
+    `L` trivially. Both `K'` and `L` are normal, so `[K', L] = 1`. Moreover `C_E(L) = 1`: an element of `M_20(J)`
+    commuting with every `1 + (finite-support matrix)` on `F_2^(N) (x) F_2^20` is scalar, hence `1`. So `E_N` embeds in
+    `L^{[Q:N]}`, which is locally finite. But `E_N` is finitely generated and contains the infinite group `L`,
+    a contradiction.
+  - *Approximate periodization.* Every fundamental domain of the Kazhdan quotient `Q/N` has boundary mass at least the
+    uniform Cheeger constant `h(Q) > 0`. On a positive fraction of points the periodized relators therefore compare cocycle
+    values at distinct `N`-translates. The model is sofic exactly when those values are Hamming-close after truncation.
+    That is the soficity of `E` itself, and the probability gives no gain. The only permanence that would help is soficity
+    of the unrestricted wreath product `L Wr Q` with a non-locally-finite base. Hayes-Sale covers only restricted wreath
+    products, and this case is an instance of the open amenable-by-sofic permanence recorded by the entropy-measure attempt.
+  - *Dies at:* the Cheeger boundary of `Q/N` combined with `C_E(L) = 1`.
+- *Invariant.* In (a), the colimit of the finite subgroups carrying the packets. In (b), the centralizer `C_E(L) = 1`,
+  which turns any exactly periodic cocycle into an embedding of `E_N` into a locally finite group.
