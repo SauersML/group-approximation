@@ -154,8 +154,9 @@ theorem bumpSum_one (e : ℕ → G) (n : ℕ) (K : Subgroup G) :
 /-- `f_n(1) = 1`. -/
 theorem bump_one (e : ℕ → G) (n : ℕ) (K : Subgroup G) :
     bump e n K (QuotientGroup.mk (1 : G)) = 1 := by
+  have hpos : (0 : ℝ) < (n : ℝ) + 1 := Nat.cast_add_one_pos n
   rw [bump, bumpSum_one]
-  exact div_self (Nat.cast_add_one_pos n).ne'
+  exact div_self hpos.ne'
 
 /-- `f_n` vanishes off the image of the ball of radius `n`. -/
 theorem bump_eq_zero (e : ℕ → G) {n : ℕ} {K : Subgroup G} {y : G ⧸ K}
@@ -176,7 +177,7 @@ theorem ind_layer_le (e : ℕ → G) {n : ℕ} {K : Subgroup G} {t : G} (ht : t 
     (k : ℕ) (y : G ⧸ K) :
     ind (layer e n K k) y ≤ ind (layer e n K (k + 1)) (t • y) := by
   by_cases hy : y ∈ layer e n K k
-  · obtain ⟨c, hc, hcy⟩ := hy
+  · obtain ⟨c, hc, hcy⟩ : y ∈ (QuotientGroup.mk : G → G ⧸ K) '' ball e n k := hy
     have hmem : t • y ∈ layer e n K (k + 1) := by
       refine ⟨t * c, mul_mem_ball e ht hc, ?_⟩
       have h1 : t • y = t • (QuotientGroup.mk c : G ⧸ K) := by rw [hcy]
