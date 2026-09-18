@@ -1,7 +1,7 @@
-s=0: max |h| found = 0  (bound 4s = 0; search depth 11)
-s=1: max |h| found = 2  (bound 4s = 4; search depth 11)
-s=2: max |h| found = 4  (bound 4s = 8; search depth 11)
-s=3: max |h| found = 6  (bound 4s = 12; search depth 11)
+s=0: max |h| found = 0  (bound 4s+1 = 1; search depth 11)
+s=1: max |h| found = 2  (bound 4s+1 = 5; search depth 11)
+s=2: max |h| found = 4  (bound 4s+1 = 9; search depth 11)
+s=3: max |h| found = 6  (bound 4s+1 = 13; search depth 11)
 n=1: partial Dini lower sum >= 2
 n=2: partial Dini lower sum >= 6
 n=3: partial Dini lower sum >= 14

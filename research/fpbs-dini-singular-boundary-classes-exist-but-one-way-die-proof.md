@@ -272,18 +272,123 @@ up to a bounded conjugator, in typical points. The Schottky codes above are rigi
 and (O2), no long positive block ever reappears inverted.
 
 *Remark 3 (why size and reversal must be combined).* One-wayness is not a size condition. The classes of Theorem 1
-are small but one-way. The previous claim kills every positive-dimensional class whatever its support. Theorem A needs
+are Dini-singular but one-way. The previous claim kills every positive-dimensional class whatever its support. Theorem A needs
 only one of the two escapes, for one measure dominating the boundary class. What is left is a class with neither
 escape.
 
-*Remark 4 (the next test).* For a small, two-way class the shadow sum may diverge. For its Maharam extension, the
-sharp return sum of the previous proof, Remark 3, is `sum_g a_U(g) a_V(g)`, where `a_W(g)` counts only points of
-`W ∩ g^{-1} W` at which `|log D_g| <= R`. A certificate needs this sum to diverge. The natural small two-way candidate is
-a reversal-symmetric block code: its blocks come in pairs `w`, `z w^{-1} z^{-1}` with `z` bounded. Deciding whether
-some such code has divergent sharp sum is the named open step.
+*Remark 4 (the next test).* The natural two-way candidate was a reversal-symmetric block code. Proposition 4 below
+kills the simplest one, and shows that two-wayness does not imply smallness. For a genuinely small class the shadow sum
+diverges. For its Maharam extension, the sharp return sum of the previous proof, Remark 3, is `sum_g a_U(g) a_V(g)`,
+where `a_W(g)` counts only points of `W ∩ g^{-1} W` at which `|log D_g| <= R`. A certificate needs this sum to
+diverge too.
+
+## Proposition 4: a two-way Dini-singular class that is still shadow-summable
+
+The claim's first version named reversal-symmetric block codes as the natural candidate for a class that is small and
+two-way. This section tests the simplest one, in `F_2 = <a,b>` with the word metric of the free basis, and kills it.
+It also shows that one-wayness is not the invariant that matters.
+
+**The code.** Let `U_0 = a` and `U_n = U_{n-1} t_n U_{n-1}^{-1}`, where the `t_n` in `{b, b^{-1}}` are independent fair
+coins. Then:
+- `U_n` is reduced;
+- `U_{n-1}` is a prefix of `U_n`;
+- `|U_n| = 2^{n+1} - 1`;
+- `U_n^{-1}` is `U_n` with `t_n` replaced by `t_n^{-1}`.
+
+The limit ray `zeta(t)` is a paperfolding word. Write each position `p >= 1` as `p = 2^e o` with `o` odd, and put
+`sign(p) = +1` if `o = 1 (mod 4)` and `-1` otherwise. The letter of `zeta` at position `p` is `a^{sign(p)}` if `e = 0`,
+and `t_e^{sign(p)}` if `e >= 1`. (This is a direct induction on `n`.) In particular:
+- the letter type (`a`-letter or `b`-letter) at position `p` depends only on the parity of `p`;
+- the prefix of length `n` is determined by `t_1, ..., t_J`, where `J` is the integer part of `log2 n`.
+
+Let `lambda` be the law of `zeta(t)`, let `K` be its support, and put `nu = sum_h c_h h_* lambda`. Here
+`c_h = c 2^{-|h|} 3^{-3|h|}`, with `c` normalizing `nu` to a probability measure.
+
+**Proposition 4.**
+1. `nu` is `F_2`-quasi-invariant and nonatomic, and it is singular to every finite Dini measure.
+2. `K` is **not** one-way: `rho_K(0) = infinity`.
+3. `S_s(nu) < infinity` for every `s >= 0`.
+
+Consequently no imp action whose boundary class is dominated by `nu` is PDR, by Theorem A of
+`fpbs-dini-boundary-class-diagonal-dissipative`. This does not use ergodicity, which is not claimed here.
+
+**Proof of 1.** Quasi-invariance and nonatomicity are immediate. A cylinder of length `n` on `K` has
+`lambda`-mass `2^{-J} >= 1/n`. Let `mu` be a Dini measure with nondecreasing modulus `omega`. Then
+`sum_n omega(e^{-eps n}) < infinity`, and since this series has nonincreasing terms, `n omega(e^{-eps n}) -> 0`. So the
+ratio `nu(C_n(zeta)) / mu(C_n(zeta))` tends to infinity for every `zeta` in `K`, and likewise on each translate `hK`
+(where lengths shift by at most `|h|`). The Lebesgue--Radon--Nikodym step is then Step 4 of Theorem 1, using martingale
+convergence on the cylinder filtration. It gives `nu` singular to `mu`.
+
+**Proof of 2.** `h = U_n` and `h^{-1} = U_n(t_n -> t_n^{-1})` are both prefixes of rays in `K`. So both lie in
+`Gamma_0(K)`, with `y = e`, and `|U_n|` is unbounded.
+
+**Lemma 3 (reversal matches are paid for twice).** Let `i, j >= 0` and `ell >= 8(i+j+1)`. Put `D = i+j+1` and
+`m = ell + D`. Let `zeta = zeta(t)` and `zeta' = zeta(t')` be independent. Let `M(i,j,ell)` be the event that
+`zeta_P^{-1} = zeta'_{m-P}` for every `P` in `I = (i, i+ell]`. Write `m = 2^k o` with `o` odd. Then
+
+`Pr[M(i,j,ell)] <= (4/ell) min(1, 16/o).`
+
+*Proof.* The argument has four steps.
+
+1. **`m` is even, so `k >= 1`.** Take consecutive `P, P+1` in `I`. Odd positions carry `a`-letters and even positions
+   carry `b`-letters, in both rays. So `P` and `m-P` have the same parity.
+2. **Many bits of `t'` are forced.** On `M`, the word `zeta'` restricted to `[j+1, j+ell]` is a function of `t`. An
+   interval of length `ell` contains a position `2^e * odd` for every `e` with `2^{e+1} <= ell`. So `t'_1, ..., t'_{J-1}`
+   are functions of `t`, where `J` is the integer part of `log2 ell`. Since `t'` is independent of `t`, this costs
+   `2^{-(J-1)} < 4/ell`.
+3. **Ties inside `t`.** Let `P = 2^{k+e} r'` lie in `I`, with `e >= 1` and `r'` odd. Then `m - P = 2^k (o - 2^e r')`,
+   and `o - 2^e r'` is odd. So `M` forces `t'_k = sigma_{e} t_{k+e}`, with a deterministic sign `sigma_e`. Such a `P`
+   exists for every `e` from `1` to `E = J - k - 1`. So `t_{k+2}, ..., t_{k+E}` are all determined by `t_{k+1}`. This
+   is an event in `t` alone, of probability `2^{-(E-1)}` when `E >= 1`.
+4. **Counting `E`.** Since `D <= ell`, we have `m <= 2 ell < 2^{J+2}`. So `k + log2 o < J + 2`, which gives
+   `E >= [log2 o] - 2` and `2^{-(E-1)} <= 16/o`.
+
+The events in Steps 2 and 3 concern `t'` given `t`, and `t` alone, respectively. So the probabilities multiply. QED.
+
+**Summing Lemma 3.** Fix `(i,j)`. As `ell` ranges over `ell >= 8D`, `m = ell + D` ranges over distinct integers with
+`ell >= m/2`. Hence
+
+`sum_{ell >= 8D} Pr[M(i,j,ell)] <= sum_{k >= 1} sum_{o odd} (8/(2^k o)) (16/o) = 128 * pi^2/8 =: C_pf < 160.`
+
+This bound is uniform in `(i,j)`. Levels `ell < 8D` contribute at most `8D`.
+
+**Proof of 3.** Fix `h, h'` and `s`. Put `R = 2s + |h| + |h'| + 2`.
+
+*Reduction to Lemma 3.* In the tree, `alpha = h zeta` is reduced as `u . zeta[i+1..]`, with `i <= |h|` and
+`|u| <= |h|` (and `i` takes at most `|h|+1` values). Similarly `beta = h' zeta' = u' . zeta'[j+1..]`.
+
+Suppose `alpha` is in `O_s(g)` and `beta` is in `O_s(g^{-1})`, with `|g| = n`. Then `alpha_p = g_p` and
+`beta_{n+1-p} = g_p^{-1}` for `s < p <= n - s`. Removing the prefixes `u` and `u'` gives
+`zeta_P^{-1} = zeta'_{M-P}` on an interval of length `ell = n - max(s,|u|) - max(s,|u'|)`. Its shifts `i*` and `j*`
+are at most `s + |h|` and `s + |h'|`, and `M = i* + j* + ell + 1`. So `M(i*, j*, ell)` holds.
+
+*Counting.* Given `alpha` and `n`, the element `g` is determined up to its last `s` letters, which leaves at most `4^s`
+choices. Elements with `n <= R` number at most `3^{R+1}`. Hence
+
+`int int N_s(h zeta, h' zeta') dlambda dlambda <= 3^{R+1} + 4^s (|h|+1)(|h'|+1)(C_pf + 8(2s+|h|+|h'|+1)).`
+
+The right side is at most `A_s 3^{|h|+|h'|} (1+|h|+|h'|)^3`. Then `S_s(nu) = sum_{h,h'} c_h c_{h'} int int N_s`. Since
+there are at most `4 * 3^{n-1}` elements of length `n`, the double sum is bounded by
+`A_s (sum_n 4 * 3^n 3^{-3n} 2^{-n} 3^n (1+n)^3)^2`, which is finite. QED.
+
+**Numerical check.** `experiments/dini-singular-one-way-2026-09-17/paperfold_f2.py` enumerates all `2^{K-1}` codes to
+depth `2^K - 1` and computes `S_s(lambda)` exactly (base measure only) for `s <= 3`.
+- The collision levels are exactly `ell + 1 = 4 * 2^k, 5 * 2^k, 6 * 2^k` (shifted by `s`). Only odd parts
+  `o in {1,3,5}` survive, which is sparser than the Lemma 3 bound allows.
+- The partial sums stabilise: `S_0(lambda) = 1.3076...` at `K = 10`, and it is `1.3112...` at `K = 12`
+  (depth 4095). The increments shrink geometrically, as Lemma 3 predicts.
+
+**What Proposition 4 changes.** The obstruction to shadow-summability is not two-wayness. It is *collision density*:
+reversal matches `M(i,j,ell)` of non-summable total mass. Lemma 3 shows that palindromic self-similarity pays twice for
+each match. It pays once in the forced bits of the partner ray, about `1/ell`, and once in internal ties, about `1/o`.
+So its collision levels are summable against `1/ell`. A small class must beat this. It needs reversal matches at a set
+of levels `ell` whose mass is not summable, uniformly under every change of density. The claim's named open statement
+is restated accordingly.
 
 ## Where the argument stops
 
 - Theorem 2 needs a single one-way compact set carrying the whole class. A class that is two-way is not touched.
+- Proposition 4 handles one two-way code by a direct reversal-match count (Lemma 3). A code whose reversal matches
+  are cheap at a non-summable set of scales is not touched. None is known, and none may exist (the claim's conjecture).
 - Proposition 3.2 imports (Ol) and the standard Schottky and Morse estimates (S). Everything else is proved here.
 - The free-group case is complete without (Ol).

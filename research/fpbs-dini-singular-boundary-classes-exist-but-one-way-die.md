@@ -9,7 +9,7 @@ distinct_from:
 ---
 
 **ESTABLISHED (written proof; see `research/fpbs-dini-singular-boundary-classes-exist-but-one-way-die-proof.md`,
-calibration script `experiments/dini-singular-one-way-2026-09-17/one_way_f2.py`). The free-group case is
+calibration scripts `experiments/dini-singular-one-way-2026-09-17/one_way_f2.py` and `paperfold_f2.py`). The free-group case is
 self-contained. For a general hyperbolic group, Proposition 3 imports one standard existence fact about loxodromic
 elements (Ol'shanskii 1993, Lemma 3.8).**
 
@@ -66,11 +66,23 @@ Let `C` be a quasi-invariant class carried by `Gamma K` for a one-way compact `K
    Then for suitable Schottky powers and a suitable `n_0`, the set `K = f(2^N)` of Theorem 1 is one-way, with
    `rho_K(s) <= A s + A'`.
 
-**Corollary.** For every nonelementary hyperbolic group, the Schottky-coded Dini-singular classes of Theorem 1
-cannot be the boundary class of a BB certificate. A BB certificate needs a nonatomic ergodic quasi-invariant class
-with these two properties:
-- **(small)** no finite measure dominating it is shadow-summable (in particular it is singular to every Dini measure);
-- **(two-way)** it is not carried by `Gamma K` for any one-way compact `K`.
+**Proposition 4 (the reversal-symmetric candidate dies too; one-wayness is not the invariant).** In `F_2`, consider the
+inverse-paperfolding code `U_0 = a`, `U_n = U_{n-1} t_n U_{n-1}^{-1}`, where the `t_n` in `{b, b^{-1}}` are fair coins,
+so that `U_n^{-1}` is `U_n` with `t_n` flipped. It gives a nonatomic quasi-invariant class `nu` with these properties:
+- `nu` is singular to every Dini measure, since cylinder mass is about `1/length`;
+- `nu` is carried by `Gamma K` for a set `K` that is **not** one-way;
+- `nu` is nevertheless shadow-summable.
+
+The key is a reversal-match estimate (Lemma 3 of the proof). A match of length `ell` against the reversal, centred at
+`m = 2^k o` with `o` odd, has probability at most `(4/ell) min(1, 16/o)`. The two factors come from bits of the partner
+ray that the match forces, and from ties the match forces inside the ray itself. Summed over levels, this gives
+`sum_m (1/m)(1/o(m)) < infinity`. The script finds that the actual collision levels are `ell + 1 in {4,5,6} * 2^k`.
+
+**Corollary.** For every nonelementary hyperbolic group, the Schottky-coded Dini-singular classes of Theorem 1 cannot
+be the boundary class of a BB certificate. In `F_2` the same holds for the paperfolding class of Proposition 4. A BB
+certificate needs a nonatomic ergodic quasi-invariant class that is **small**: no finite measure dominating it is
+shadow-summable. In particular such a class is singular to every Dini measure, and by Theorem 2 it is not carried by
+`Gamma K` for any one-way `K`. By Proposition 4, being two-way is necessary but not sufficient for smallness.
 
 **Calibration.**
 - *The nonelementary hypothesis is load-bearing.* For `Gamma = Z`, `K = {+infinity}` is one-way and `delta_{+infinity}`
@@ -79,15 +91,26 @@ with these two properties:
 - *Atomic loxodromic classes agree with the previous claim.* For loxodromic `a`, `K = {a^+}` is one-way exactly when no
   `u` in `Gamma` sends `a^+` to `a^-`. If some `u` does, then `y = u^{-1}` gives `y a^{-n} in Gamma_s(K)` for all `n`
   once `s >= |u| + c`, so `rho_K = infinity`. This matches the previous claim: the shadow sum of an atomic class
-  diverges exactly when the class charges both fixed points.
-- *Free and surface groups.* Their cost exceeds 1, so no class may yield a certificate. Theorems 1--2 are consistent
-  with this: Theorem 1 creates classes and Theorem 2 removes them.
-- *Script.* `one_way_f2.py` enumerates all reduced words of length at most 11 in `F_2`. For `s <= 3` it finds
-  `rho(s) = 2s`, which is within the proved bound `4s + 1`. It also prints the divergent Dini lower sums of Theorem 1.
+  diverges exactly when the class charges both fixed points. In a torsion-free hyperbolic group no such `u` exists: `u`
+  would normalise the cyclic group `E(a)` by inversion.
+- *Free and surface groups.* Their cost exceeds 1, so no class may yield a certificate. Theorems 1--2 and
+  Proposition 4 are consistent with this: Theorem 1 creates classes, and Theorem 2 and Proposition 4 remove them.
+- *Scripts.*
+  - `one_way_f2.py` enumerates all reduced words of length at most 11 in `F_2`. For `s <= 3` it finds `rho(s) = 2s`,
+    within the proved bound `4s + 1`. It also prints the divergent Dini lower sums of Theorem 1.
+  - `paperfold_f2.py` computes the exact reversal-collision sums `S_s(lambda)` of the paperfolding code for `s <= 3`.
+    They stabilise; for example `S_0 = 1.3076...` at depth 1023.
 
-**Named open statement left.** Does a cocompact `Sp(n,1)` lattice have a nonatomic ergodic quasi-invariant class that
-is both small and two-way? The same question is open already for `F_2`, where it cannot yield a certificate, but where
-it tests whether Theorem A can be completed. The natural candidate is a *reversal-symmetric* block code, whose blocks are
-closed under `w -> w^{-1}` up to a bounded conjugator. Its shadow sum is not controlled by Theorem 2. For such a class,
-the sharp Maharam sum `sum_g a_U(g) a_V(g)` of the previous claim (Remark 3) is the next test. If every small class is
-one-way, then by Theorem 2 and the previous claim no hyperbolic group has a BB certificate.
+**Named open statement left (collision density).** Is there a cocompact `Sp(n,1)` lattice, or already `F_2` as a test
+case, with a nonatomic ergodic quasi-invariant class `nu` such that `S_s(phi nu) = infinity` for every density `phi`
+and every large `s`?
+
+Equivalently, the reversal matches `M(i,j,ell)` of pairs of `nu`-typical rays would need non-summable total mass at a
+set of levels that no reweighting can thin. Lemma 3 shows why self-similar palindromic codes fail: each match costs
+about `1/ell` in forced partner bits, and a further `1/o` in internal ties. A small class must make reversal matches
+cheap at a non-summable set of scales.
+
+**Conjecture (heretic's bet).** In a torsion-free hyperbolic group every quasi-invariant class contains a
+shadow-summable measure. If so, then by Theorem A of the previous claim no hyperbolic group has a BB certificate. For a
+lattice with torsion this would be applied to a torsion-free subgroup of finite index. If some class is small, the sharp
+Maharam sum `sum_g a_U(g) a_V(g)` (Remark 3 of the previous proof) is the next test.
