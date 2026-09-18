@@ -6064,6 +6064,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexIndexFun
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseLiftIdeal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexStabRankBasic
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapDirectSum
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
