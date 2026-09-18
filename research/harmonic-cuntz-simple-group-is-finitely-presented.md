@@ -7,6 +7,8 @@ distinct_from:
   harmonic-cuntz-el3-is-fg-simple-over-all-gl-n-q: that proves the group finitely generated, simple and containing every GL_n(Q); this asks for a finite presentation.
   rational-leavitt-simple-group-embeds-in-fp-simple-group: that asks for some finitely presented simple overgroup of L_Q(1,2)^x/Q^x; this names one candidate, which contains that group.
   finitely-presented-harmonic-cuntz-ring-contains-q: that is finite presentation of a ring mapping onto C_h; this is finite presentation of the simple group.
+refuted_by:
+  - harmonic-cuntz-simple-group-is-not-finitely-presented
 artifacts:
   - research/artifacts/gq-gq-cuntz-cstar-dictionary.md
 ---
@@ -47,3 +49,11 @@ once (route `gl-n-q-via-harmonic-cuntz-host`), and
     `R_Q -> C_h`, and the scalars) is normally generated.
 
   Neither is done. Shared with `gq-en-ring`, `gq-k2-q` and `gq-malcev-ring`.
+- **Refuted (lane `gq-malcev-ring`, 2026-09-17).** The claim is false:
+  `harmonic-cuntz-simple-group-is-not-finitely-presented`. `EL_3(C_h)` is perfect, and
+  its centre `Q^x·I` is not finitely generated. By the five-term sequence, a finitely
+  presented central quotient would make that centre a quotient of the finitely
+  generated `H_2(Λ_h; Z)` (group lemma, part 0 of
+  `leavitt-scalar-commutators-block-fp-central-quotients`). So the Neumann remark
+  above is not symmetric: `Λ_h` is never finitely presented, whatever `EL_3(C_h)`
+  is.
