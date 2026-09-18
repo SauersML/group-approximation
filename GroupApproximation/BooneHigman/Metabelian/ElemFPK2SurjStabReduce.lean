@@ -36,7 +36,8 @@ theorem surjStab_eq_conj_of_mem_center {a z : G} (h : z * a * z⁻¹ ∈ Subgrou
   rw [inv_mul_cancel_right] at h2
   exact (mul_left_cancel h2).symm
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_eq_conj_of_mem_center
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_eq_conj_of_mem_center
 
 theorem surjStab_conj_triple (a b c : G) : c * (a * b * c) * c⁻¹ = c * a * b := by
   group
@@ -58,7 +59,8 @@ theorem surjStab_mem_K2_of_padMat_eq_one {g : St n R} (h : padMat g = 1) :
     g ∈ K2 (Fin n) R :=
   (mem_K2_iff g).mpr (Subtype.ext (Units.ext h))
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_mem_K2_of_padMat_eq_one
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_mem_K2_of_padMat_eq_one
 
 /-- (B) `K₂(n+1) ∩ (stab St_n · padCol R^n) ⊆ stab K₂(n)`. -/
 theorem surjStab_stab_mul_padCol_mem_map {g : St n R} {v : Fin n → R}
@@ -86,7 +88,8 @@ theorem surjStab_stab_mul_padCol_mem_map {g : St n R} {v : Fin n → R}
   rw [padCol_zero, mul_one]
   exact Subgroup.mem_map_of_mem (stab n R) (surjStab_mem_K2_of_padMat_eq_one hg1)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_stab_mul_padCol_mem_map
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_stab_mul_padCol_mem_map
 
 /-- (A)+(B) `K₂(n+1) ∩ P Q ⊆ stab K₂(n)`. -/
 theorem surjStab_col_row_mem_map {g h : St n R} {v w : Fin n → R}
@@ -138,7 +141,8 @@ theorem surjStab_mem_map_of_conjTriple {x : St (n + 1) R} (hx : x ∈ K2 (Fin (n
   rw [surjStab_eq_conj_of_mem_center (map_stab_K2_le_center hy)]
   exact hy
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_mem_map_of_conjTriple
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_mem_map_of_conjTriple
 
 /-- Surjective `K₂` stability from `P Q P` conjugates, over any ring. -/
 theorem surjStab_k2_le_map_of_conjTriple
@@ -147,6 +151,7 @@ theorem surjStab_k2_le_map_of_conjTriple
   intro x hx
   exact surjStab_mem_map_of_conjTriple hx (h x hx)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_k2_le_map_of_conjTriple
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_k2_le_map_of_conjTriple
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

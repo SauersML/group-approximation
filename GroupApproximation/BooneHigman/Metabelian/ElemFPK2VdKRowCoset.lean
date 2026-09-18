@@ -37,7 +37,7 @@ variable {n R}
 theorem vdkRowCoset_mk_mul (p : (Fin n → R) × St n R) (h : St (n + 1) R) :
     Quotient.mk (QuotientGroup.rightRel (vdkRowParSubgroup n R)) (vdkRowPar p * h) =
       Quotient.mk (QuotientGroup.rightRel (vdkRowParSubgroup n R)) h :=
-  Quotient.sound (QuotientGroup.rightRel_apply.mpr (by
+  Quotient.eq.mpr (QuotientGroup.rightRel_apply.mpr (by
     rw [mul_inv_rev, mul_inv_cancel_left]
     exact (vdkRowParSubgroup n R).inv_mem ((mem_vdkRowParSubgroup _).mpr ⟨p, rfl⟩)))
 

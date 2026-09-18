@@ -54,7 +54,8 @@ theorem surjStab_conjTriple_of_mem_map {R : Type*} [Ring R] {n : ℕ} {x : St (n
   refine ⟨1, k, 1, 1, 0, 0, 0, ?_⟩
   simp only [padCol_zero, padRow_zero, map_one, mul_one, one_mul, inv_one]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_conjTriple_of_mem_map
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.surjStab_conjTriple_of_mem_map
 
 /-- **Surjective stability** over `ℤ[1/m]` from the `P Q P` statement. -/
 theorem charZeroK2SurjStab_of_conjTriple (h : SurjStabConjTripleStatement) :
@@ -62,7 +63,8 @@ theorem charZeroK2SurjStab_of_conjTriple (h : SurjStabConjTripleStatement) :
       (K2 (Fin n) (Localization.Away (m : ℤ))).map (stab n (Localization.Away (m : ℤ))) :=
   fun m n hm hn => surjStab_k2_le_map_of_conjTriple (h m n hm hn)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2SurjStab_of_conjTriple
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2SurjStab_of_conjTriple
 
 /-- The gap is equivalent to `hsurj` (converse direction). -/
 theorem surjStabConjTriple_of_surj
@@ -80,6 +82,7 @@ theorem charZeroK2PosStabGen_of_fg_of_conjTriple
     (h : SurjStabConjTripleStatement) : CharZeroK2PosStabGenStatement :=
   charZeroK2PosStabGen_of_fg_of_surj hfg (charZeroK2SurjStab_of_conjTriple h)
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2PosStabGen_of_fg_of_conjTriple
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.charZeroK2PosStabGen_of_fg_of_conjTriple
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

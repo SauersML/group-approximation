@@ -60,12 +60,11 @@ theorem fiveStep_projection_eq_one_of_cornerHom_eq_one {n : ℕ} (r : Fin n)
       (projection w) = 1 := by
     rw [← Full.LVH2GL3.projection_indexMap, h1, map_one]
   exact ElementaryPadding.elementaryPad_injective (Fin.castLEEmb (Nat.le_succ n))
-    (h2.trans (map_one _).symm)
+    (by rw [h2, map_one])
 
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStep_projection_eq_one_of_cornerHom_eq_one
 
-include L in
 /-- **Under centrality, a death one rank up is a death under the corner endomorphism.**  `D_r` is
 injective when `K₂(n)` is central, and `D_r (σ_r w) = pad w`. -/
 theorem fiveStep_cornerHom_eq_one_of_indexMap_eq_one {n : ℕ} (hn : 4 ≤ n) (r k : Fin n)
@@ -80,7 +79,6 @@ theorem fiveStep_cornerHom_eq_one_of_indexMap_eq_one {n : ℕ} (hn : 4 ≤ n) (r
 #audit_axioms
   GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStep_cornerHom_eq_one_of_indexMap_eq_one
 
-include L in
 /-- **One-step injective stability from centrality and corner injectivity.** -/
 theorem fiveStep_k2StabInjective_of_central_of_cornerInjective {n : ℕ} (hn : 4 ≤ n)
     (r k : Fin n) (hk : k ≠ r)
