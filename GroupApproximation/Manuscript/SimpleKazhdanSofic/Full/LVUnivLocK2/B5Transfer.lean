@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVStableK2.Reduction
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.Coefficients
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVUnivLocK2.B1Stable
 
 /-!
 # From an exact localization sequence to finite-stage base surjectivity (lane LVUnivLocK2, B5)
@@ -23,6 +24,8 @@ while `StableK2BaseSurjective` is a statement about finite-stage Steinberg group
 * `stableK2BaseSurjective_of_surjective`, `surjective_of_stableK2BaseSurjective`,
   `stableK2BaseSurjective_iff_surjective`: for natural `α`, finite-stage base surjectivity is
   exactly surjectivity of `α`;
+* `StableK2Model.toK2ExactAt`: exactness of `A → B → C` at `B`, for a natural `α : A → B`,
+  yields the finite-stage exactness `K2ExactAt f C` of `B1Stable`;
 * `stableK2BaseSurjective_of_exact`: exactness of `A → B → C` at `B` with `C` trivial gives
   base surjectivity.  This is the form in which the localization sequence is used, with
   `C = K₁(T)` for the torsion category `T`.
@@ -115,14 +118,14 @@ section Transfer
 
 variable {R S : Type*} [Ring R] [Ring S] {A B C : Type*} [Group A] [Group B] [Group C]
 
-/-- **B5, surjective form.**  If a homomorphism `α` between models of stable `K₂(R)` and
-`K₂(S)` is natural for `f` and surjective, then `f` is stably surjective on finite-stage `K₂`.
-(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
-theorem stableK2BaseSurjective_of_surjective (f : R →+* S) (MR : StableK2Model R A)
-    (MS : StableK2Model S B) (α : A →* B) (hnat : MR.Natural MS f α)
-    (hα : Function.Surjective α) : LVStableK2.StableK2BaseSurjective f := by
-  intro n k hk
-  obtain ⟨a, ha⟩ := hα (MS.cls n k hk)
+/-- **Lifting a class.**  If the class of `k ∈ K₂(n, S)` is the image under a natural `α` of an
+element of the model of `K₂(R)`, then `k` is, after padding, the image of an element of some
+`K₂(N, R)`.  (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem StableK2Model.lift_of_cls_eq (f : R →+* S) (MR : StableK2Model R A)
+    (MS : StableK2Model S B) (α : A →* B) (hnat : MR.Natural MS f α) {n : ℕ}
+    {k : SteinbergGroup (Fin n) S} (hk : projection k = 1) (a : A) (ha : α a = MS.cls n k hk) :
+    ∃ (N : ℕ) (h : n ≤ N) (y : SteinbergGroup (Fin N) R),
+      projection y = 1 ∧ ringMap f y = indexMap (Fin.castLEEmb h) k := by
   obtain ⟨N, y, hy1, hya⟩ := MR.exists_cls a
   have hcl : MS.cls N (ringMap f y) (projection_ringMap_eq_one f hy1) = MS.cls n k hk := by
     rw [hnat N y hy1, hya, ha]
@@ -131,6 +134,16 @@ theorem stableK2BaseSurjective_of_surjective (f : R →+* S) (MR : StableK2Model
   refine ⟨M, hnM, indexMap (Fin.castLEEmb hNM) y,
     LVH2GL3.projection_indexMap_eq_one _ hy1, ?_⟩
   exact (LVStableK2.indexMap_ringMap (Fin.castLEEmb hNM) f y).symm.trans heq
+
+/-- **B5, surjective form.**  If a homomorphism `α` between models of stable `K₂(R)` and
+`K₂(S)` is natural for `f` and surjective, then `f` is stably surjective on finite-stage `K₂`.
+(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem stableK2BaseSurjective_of_surjective (f : R →+* S) (MR : StableK2Model R A)
+    (MS : StableK2Model S B) (α : A →* B) (hnat : MR.Natural MS f α)
+    (hα : Function.Surjective α) : LVStableK2.StableK2BaseSurjective f := by
+  intro n k hk
+  obtain ⟨a, ha⟩ := hα (MS.cls n k hk)
+  exact MR.lift_of_cls_eq f MS α hnat hk a ha
 
 /-- **B5, converse.**  Finite-stage base surjectivity makes every natural `α` surjective.
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
@@ -156,6 +169,28 @@ theorem stableK2BaseSurjective_iff_surjective (f : R →+* S) (MR : StableK2Mode
   ⟨surjective_of_stableK2BaseSurjective f MR MS α hnat,
     stableK2BaseSurjective_of_surjective f MR MS α hnat⟩
 
+/-- **B5, exactness in finite-stage form.**  If `A → B → C` is exact at `B` (every `b` with
+`δ b = 1` comes from `A`) and `α` is natural for `f`, then `k ↦ δ (cls k)` is a boundary on
+`K₂(n, S)` exhibiting the finite-stage exactness `K2ExactAt f C` of `B1Stable`.  Applied with the
+Neeman–Ranicki sequence `K₂(R) → K₂(Σ⁻¹R) → K₁(T)`.
+(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+def StableK2Model.toK2ExactAt (f : R →+* S) (MR : StableK2Model R A) (MS : StableK2Model S B)
+    (α : A →* B) (δ : B →* C) (hnat : MR.Natural MS f α)
+    (hexact : ∀ b : B, δ b = 1 → ∃ a : A, α a = b) : K2ExactAt f C where
+  boundary n k hk := δ (MS.cls n k hk)
+  lift_of_boundary n k hk hδ := by
+    obtain ⟨a, ha⟩ := hexact (MS.cls n k hk) hδ
+    exact MR.lift_of_cls_eq f MS α hnat hk a ha
+
+/-- The boundary of `StableK2Model.toK2ExactAt` is `δ` applied to the class.
+(`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
+theorem StableK2Model.toK2ExactAt_boundary (f : R →+* S) (MR : StableK2Model R A)
+    (MS : StableK2Model S B) (α : A →* B) (δ : B →* C) (hnat : MR.Natural MS f α)
+    (hexact : ∀ b : B, δ b = 1 → ∃ a : A, α a = b) (n : ℕ) (k : SteinbergGroup (Fin n) S)
+    (hk : projection k = 1) :
+    (MR.toK2ExactAt f MS α δ hnat hexact).boundary n k hk = δ (MS.cls n k hk) :=
+  rfl
+
 /-- **B5, localization form.**  If `A → B → C` is exact at `B` (every `b` with `δ b = 1` comes
 from `A`), `C` is trivial, and `α` is natural for `f`, then `f` is stably surjective on
 finite-stage `K₂`.  Applied with the Neeman–Ranicki sequence `K₂(R) → K₂(Σ⁻¹R) → K₁(T)` and
@@ -164,7 +199,7 @@ theorem stableK2BaseSurjective_of_exact (f : R →+* S) (MR : StableK2Model R A)
     (MS : StableK2Model S B) (α : A →* B) (δ : B →* C) (hnat : MR.Natural MS f α)
     (hexact : ∀ b : B, δ b = 1 → ∃ a : A, α a = b) (hC : ∀ c : C, c = 1) :
     LVStableK2.StableK2BaseSurjective f :=
-  stableK2BaseSurjective_of_surjective f MR MS α hnat fun b => hexact b (hC (δ b))
+  (MR.toK2ExactAt f MS α δ hnat hexact).baseSurjective_of_boundary_eq_one fun _ _ _ => hC _
 
 end Transfer
 

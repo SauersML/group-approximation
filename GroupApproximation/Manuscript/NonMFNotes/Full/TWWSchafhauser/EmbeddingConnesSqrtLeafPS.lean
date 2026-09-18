@@ -111,15 +111,21 @@ theorem powersStormer_core {a b U : Matrix n n ℂ} (ha : a.PosSemidef) (hb : b.
   refine Finset.sum_le_sum fun i _ ↦ ?_
   rw [hd i, hs i, ← Complex.ofReal_mul, ← Complex.ofReal_mul, Complex.ofReal_re,
     Complex.re_ofReal_mul, Complex.add_re]
-  have h1 := hlam i
+  have e : lam i * lam i = lam i * (((Uᴴ * a * U) i i).re - ((Uᴴ * b * U) i i).re) := by
+    rw [hlam i]
   have hα := hA i
   have hβ := hB i
   by_cases h : 0 ≤ lam i
   · rw [if_pos h]
-    nlinarith [mul_nonneg h hβ]
+    nlinarith [mul_nonneg h hβ, e]
   · rw [if_neg h]
     have h' : 0 ≤ -lam i := by linarith [not_le.mp h]
-    nlinarith [mul_nonneg h' hα]
+    nlinarith [mul_nonneg h' hα, e]
+
+/-- A sign squares to one. -/
+theorem sign_mul_sign (x : ℝ) :
+    ((if 0 ≤ x then 1 else -1 : ℝ) : ℂ) * ((if 0 ≤ x then 1 else -1 : ℝ) : ℂ) = 1 := by
+  split_ifs <;> norm_num
 
 /-- **Powers--Størmer duality.**  For positive semidefinite `a, b` there is a Hermitian
 unitary `S` (the sign of `a − b`) with `re tr((a−b)²) ≤ re tr((a² − b²) S)`. -/
@@ -135,11 +141,12 @@ theorem powersStormer (a b : Matrix n n ℂ) (ha : a.PosSemidef) (hb : b.PosSemi
           (fun i ↦ ((if 0 ≤ hH.eigenvalues i then 1 else -1 : ℝ) : ℂ) *
             ((if 0 ≤ hH.eigenvalues i then 1 else -1 : ℝ) : ℂ))
         = ExactInvolutionLifts.eigenCalc (a - b) hH (fun _ ↦ (1 : ℂ)) :=
-          ExactInvolutionLifts.eigenCalc_congr (a - b) hH fun i ↦ by split_ifs <;> norm_num
+          ExactInvolutionLifts.eigenCalc_congr (a - b) hH fun i ↦ sign_mul_sign _
       _ = 1 := ExactInvolutionLifts.eigenCalc_one (a - b) hH
   · have hU : (hH.eigenvectorUnitary : Matrix n n ℂ)ᴴ * (hH.eigenvectorUnitary : Matrix n n ℂ)
         = 1 := Unitary.star_mul_self_of_mem hH.eigenvectorUnitary.2
     exact powersStormer_core ha hb hU (d := fun i ↦ (hH.eigenvalues i : ℂ))
+      (s := fun i ↦ ((if 0 ≤ hH.eigenvalues i then 1 else -1 : ℝ) : ℂ))
       (lam := hH.eigenvalues) (fun _ ↦ rfl)
       (ExactInvolutionLifts.eq_eigenCalc_eigenvalues (a - b) hH) (fun _ ↦ rfl)
 
