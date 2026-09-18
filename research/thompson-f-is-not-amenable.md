@@ -199,6 +199,57 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
   - A surviving certificate needs a non-invariant order in which every deep `m` is a two-sided local
     maximum.
   - Computed: caret-count-first orders survive on sampled deep monoid elements but fail in group form.
+- **Pivot orders: the tail splits off, and the staircase law (2026-09-18).** Two results on the
+  pivot-order class, which is the certificate of
+  `thompson-f-private-pivot-orders-give-doubling-and-non-ore-pairs`.
+  - *Tail splitting* (`thompson-f-stubborn-sets-split-off-the-tail`, OPEN — demoted at landing on
+    2026-09-18, see below). Writing `z ∈ M` as `(u ; v)` with `u` the first `K(S)` roots,
+    `s z = (s̄ u ; v)` and **every** factorisation `w = s' z'` keeps the same tail `v`. So
+    stubbornness is a fibrewise property of the finite prefix worlds
+    `P_a = {forests with K roots and a carets}`, `|P_a| = f(K+a, K)`. Two consequences: a private
+    pivot order exists iff `core(P_a) = ∅` for every `a`, a sequence of finite computations with no
+    truncation parameter; and the published `letters <= L` windows were complete, so every "no core"
+    row is a statement about the whole layer `M_a` (this removes the "computed only, inside
+    `M_(D, m+D)`" caveat on the `X_m` layers below `D = m`). Two of three referee lenses refuted the
+    third advertised consequence — that an empty core in all layers `<= A` certifies
+    `|S Y| >= 2|Y|` "strictly stronger than `Λ_S(D) >= 2`". It is not stronger but *equivalent*:
+    `thompson-f-monomial-doubling-ratio-is-a-finite-computation` defines `Λ_S(D)` as an infimum over
+    every finite subset of the whole layer and proves the window lossless, so that corollary is a
+    re-derivation of an established finite criterion, and it reaches strictly fewer layers than the
+    exact `Λ` values do (`S_(3,5)`: `A = 6` versus `D <= 12`). The reduction itself (items 1, 2, 3,
+    5) was checked line by line and reproduced by all three lenses, in three independent
+    implementations; it is parked OPEN pending a referee pass on the corrected text.
+  - *The search order does not matter, only the depth* (`thompson-f-staircase-sets-have-stubborn-layers`,
+    OPEN). For the staircase sets `S(m,d) = X_m X_(m+1) ... X_(m+d-1)` the first stubborn layer obeys
+    `2 a_min + 1 = 3^(d-1) (2m+1)` on all fourteen computed cases, with no failure: `a_min = m` for
+    `d = 1`, `m = 1..6` (proved); 1, 4, 7, 10, **13** for `d = 2`, `m = 0..4`; 4 and **13** for
+    `d = 3`, `m = 0, 1`; **13** for `d = 4`, `m = 0`. The three bold entries were predictions made
+    before the layer was computed, and each required an empty core one layer below and a verified
+    stubborn core at the layer itself — at `(4,2)` that is an empty core on 31 865 925 points and a
+    7 470 184-point core on **121 580 760** points. *The invariant is the depth, not the order.*
+    Consequence: the survivor recorded in the bullet above,
+    `{x_a x_b x_c : a <= 2, b <= 3, c <= 4} = S(2,3)`, is predicted to have `a_min = 22`; the census
+    now reaches `a = 12` (17 298 645 points) and is ten layers short, so its "survival" is an
+    artefact of depth. Under the law no staircase set admits a private pivot order at all, and the
+    class is dead on the whole Guba family. Also proved: a common left factor is invisible
+    (`S = t S''` has the same cores as `S''`), so `a_min(S(0,d)) = a_min(S(1,d-1))`, checked at a
+    33-million-point layer.
+  - *And plausibly the class is dead outright* (`thompson-f-monomial-sets-all-have-stubborn-layers`,
+    OPEN). An exhaustive census of the degree-2 monomial sets with letters `<= 3` finds **no** set
+    with `|S| >= 2` and no stubborn layer. If that holds in general, the triangular doubling
+    certificate has no instance anywhere in `F`, and any doubling proof must be non-triangular (a
+    Hall 2-to-1 matching not induced by an order, or a flow). All 57 sets with letters `<= 2`, and
+    all 165 sets of size 2 or 3 with letters `<= 3`, are resolved with `a_min <= 10`. A congruence
+    shortcut is excluded: the divisibility in the staircase law fails for 26 of those 57 sets.
+  - *Dead here:* need 176cdb5a, an order making every deep `m ∈ R(S_(3,5))` a two-sided local
+    maximum, is vacuous as a route step: it is necessary for a pivot certificate of `P_(2,2)`,
+    whose sufficient condition `thompson-f-p22-monomials-admit-no-private-pivot-order` already
+    refutes. Also dead: bounded-size gadgets. The 24-point `S(1,2)` core is a *minimal* stubborn set
+    (no one-point deletion and no subset of size `<= 4` is stubborn), and inside each of its six
+    mirror-paired profile classes every point has five private successors out of `|S| = 5`. So a
+    proof of the law needs a gadget whose size grows with the core (2, 24, 1092, 81224 along
+    `d = 2`), not a fixed pattern.
+  (e2-w2-f-pivot-order, swarm-0917, compute-scout, census-computation.)
 - **Co-amenable non-amenable hosts (heretic, swarm-0917).** The routes above share three
   assumptions:
   1. the certificate lives on `F` itself;
