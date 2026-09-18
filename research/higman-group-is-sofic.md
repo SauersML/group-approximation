@@ -105,6 +105,32 @@ equivalent to `H4` having some nontrivial sofic quotient
      - **The candidate.** `[z, z^alpha]` is not usable as stated, since `b^P` does not normalize
        `<alpha,gamma>`. The `phi`-stable pieces are `u_k = gamma^(alpha^k)`, with
        `u_k^(b^(P^k)) = u_k^2`.
+   - **Virtually derived-length-3 `A` of any rank is impossible, and so is any tree splitting over
+     such edge groups (w5-053, 2026-09-18).** See `higman-derived-length-three-edge-images-collapse`.
+     The two-sided closure does not stay in `P'' ∩ P_d''`. In fact `ncl_H4(F''') = H4`.
+     - **The chain.** Take an explicit `w_0 in <alpha,gamma>'''`. Conjugate it by `b`, then
+       `gamma^n`, then `d`, then `alpha^n'`, then `b`. Each `b`- or `d`-step replaces letters by powers
+       `N_j = 2^(P^j)`.
+     - **The result.** A word with exponent sums `(0, Y)`, `Y != 0`. A Fox-type count shows it: the
+       `d`-step sends a formal sum `S(u_1)` to `P/P'`, and `N_(j+1) >= N_j^2` prevents cancellation.
+     - **Collapse.** The mirror chain gives `(Y, 0)`. Then `<alpha^Y, gamma^Y> <= A'`, which is
+       metabelian, and the metabelian theorem applies.
+     - **Certification.** `S(u_1) != 0` is certified exactly for `m <= 4` and symbolically for all
+       `m >= 2` (`experiments/higman-two-sided-ladder-2026-09-18`).
+     - **Consequence.** `H4/<<F'''>>` is trivial, so it offers no amenable edge image.
+   - **Virtually solvable `A` of derived length `<= 11` is impossible, and so is any tree splitting
+     over such edge groups (w5-053, 2026-09-18).** See
+     `higman-bounded-derived-length-edge-images-collapse`, with proof
+     `higman-bounded-derived-length-tower-chain-proof`. `ncl_H4(F^(11)) = H4`.
+     - **Reduction.** The `k`-step chain `b, gamma^n, d, alpha^n', b, ...` reduces derived length `k`
+       to `k - 1`. It needs an order-`(k-2)` tower invariant `S_(k-2)(iota_b(w_0))` to be nonzero for
+       some `w_0 in F^(k)`. The invariants are signed counts of letters by nested types, and they
+       survive the `h -> N_h` substitution because `N_(h+1) >= N_h^2`.
+     - **Certification.** This is done for `k <= 11`: exactly for `m <= 4`, and symbolically in
+       `M = 2^P` for `m >= 5` (`experiments/higman-two-sided-ladder-2026-09-18/tower.py`).
+     - **Narrowing of the Open item below.** Its solvable survivors now need every finite-index
+       subgroup to have derived length `>= 12`, as well as `A_0''` of infinite Hirsch length. Proving
+       nonvanishing for all `k` would remove the solvable case entirely.
    - Open: amenable `A` that is not virtually metabelian and has infinite Hirsch length (e.g.
      derived length at least 3), and non-elementary-amenable `A`. GAP could not decide the
      metabelian-type relators at `2*10^6` cosets. After sw-053b, the solvable survivors are those
