@@ -53,4 +53,6 @@ Faces omitting the min or the max have shorter intervals. Hence
   vertices.
 - *Conclusion.* It has finitely many orbits of cells, finitely presented vertex stabilizers
   and finitely generated edge stabilizers. By Brown's presentation theorem (K. S. Brown,
-  J. Pure Appl. Algebra 32 (1984); not re-read at source), `Γ` is finitely presented.
+  J. Pure Appl. Algebra 32 (1984); not re-read at source; see also Khanh, arXiv:2609.08428,
+  lines 458–460, for the two-dimensional Borel-construction argument), `Γ` is finitely
+  presented.
