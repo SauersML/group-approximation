@@ -20,13 +20,14 @@ so the state `(σ_α(g) e + σ_α(b) - c) / s_0` of the node is a polynomial.
 
 Everything is proved over an arbitrary commutative ring `R` and index type `ι` with a
 distinguished uniformizer index `i₀`; `charPSubst`/`charPCarry` specialize to
-`MvPolynomial (Fin k) (ZMod p)` with `i₀ = 0`.  The parameter is `α : ι → R`, and `α i₀` is not
-used.  (Primality of `p` is not needed for the carry lemma.)
+`MvPolynomial (Fin k) (ZMod p)` with `i₀ = 0`.  The parameter is `α : ι → R`, and `α i₀` is
+not used.  (Primality of `p` is not needed for the carry lemma.)
 
 **Route.** `exists_eq_C_eval_add_X_mul`: if an `R`-algebra endomorphism `φ` satisfies
 `φ(X_i) ≡ β_i (mod X_{i₀})` for every `i`, then `φ(P) ≡ P(β) (mod X_{i₀})` for every `P`; this
-is induction over `MvPolynomial.induction_on` (constants, sums, multiplication by a variable).  For
-`σ_α` the hypothesis is immediate with `β = carryBase i₀ α = (0 at i₀, α elsewhere)`.
+is induction over `MvPolynomial.induction_on` (constants, sums, multiplication by a
+variable).  For `σ_α` the hypothesis is immediate with
+`β = carryBase i₀ α = (0 at i₀, α elsewhere)`.
 
 Main declarations:
 * `carrySubst i₀ α`, with `carrySubst_X_self`, `carrySubst_X_of_ne`;
@@ -69,6 +70,7 @@ theorem carrySubst_X_of_ne (i₀ : ι) (α : ι → R) {i : ι} (hi : i ≠ i₀
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharPHost.carrySubst_X_of_ne
 
+omit [DecidableEq ι] in
 /-- **Carry criterion.** If an `R`-algebra endomorphism of `R[X_ι]` sends every variable `X_i` to
 `β_i` modulo `X_{i₀}`, then it sends every polynomial `P` to `P(β)` modulo `X_{i₀}`. -/
 theorem exists_eq_C_eval_add_X_mul (i₀ : ι) (φ : MvPolynomial ι R →ₐ[R] MvPolynomial ι R)

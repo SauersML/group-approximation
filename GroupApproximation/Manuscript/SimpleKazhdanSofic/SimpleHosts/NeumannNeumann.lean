@@ -147,7 +147,9 @@ def levelZeroMulZ (x : G) : Perm ((G × ℤ) × ℤ) :=
 theorem levelZeroMulZ_mul (x y : G) :
     levelZeroMulZ G (x * y) = levelZeroMulZ G x * levelZeroMulZ G y := by
   refine Equiv.ext fun z => ?_
-  by_cases hi : z.2 = 0 <;> simp [levelZeroMulZ, hi, Equiv.coe_mulLeft]
+  by_cases hi : z.2 = 0
+  · simp [levelZeroMulZ, hi, Equiv.coe_mulLeft, mul_assoc]
+  · simp [levelZeroMulZ, hi]
 
 theorem eq_one_of_levelZeroMulZ_eq_one {x : G} (h : levelZeroMulZ G x = 1) : x = 1 := by
   have h1 := Equiv.congr_fun h ((1, 0), 0)
@@ -262,11 +264,13 @@ theorem exists_twoGenerated_commutator_embedding (Γ : Type) [Group Γ] [Countab
     exact ⟨n + 1, Nat.le_add_left 1 n, by rw [Nat.add_sub_cancel]⟩
   have hinr : Function.Injective (MonoidHom.inr Γ (Multiplicative ℤ)) :=
     fun _ _ h => congrArg Prod.snd h
+  have hinl : Function.Injective (MonoidHom.inl Γ (Multiplicative ℤ)) :=
+    fun _ _ h => congrArg Prod.fst h
   refine ⟨Delta (Γ × Multiplicative ℤ) (fun j => e (j - 1)), inferInstance,
     Infinite.of_injective _ ((embeddingΔ_injective _ (fun j => e (j - 1)) hsurj).comp hinr),
     Group.closure_finite_fg _,
     (embeddingΔ _ (fun j => e (j - 1)) hsurj).comp (MonoidHom.inl Γ (Multiplicative ℤ)),
-    (embeddingΔ_injective _ (fun j => e (j - 1)) hsurj).comp fun _ _ h => congrArg Prod.fst h,
+    (embeddingΔ_injective _ (fun j => e (j - 1)) hsurj).comp hinl,
     fun γ => embeddingΔ_mem_commutator _ (fun j => e (j - 1)) hsurj
       (MonoidHom.inl Γ (Multiplicative ℤ) γ)⟩
 
