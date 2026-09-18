@@ -80,3 +80,88 @@ theorem roseLobe_length_invDarts {G : Type u} [Group G] {Lambda : Type w}
   simp only [invDarts, List.length_map, List.length_reverse]
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobe_length_invDarts
+
+/-- **The lobe step in the order of the cycle** (OPEN, PLAUSIBLE; truth-checked, see the module
+docstring; LOUD: logically STRONGER than `roseJunctionCore_LobeRemovalStatement`, with smaller
+proof content).  Under the rose hypotheses there are roots `rs` as in the lobe statement such
+that, with `z = lobeColour rs`, the source cell of `K` stays outside and the kept cell of `K`
+stays inside the flipped face set, the kept darts of `K.sourceArc⁻¹` are `t₁⁻¹` for one arc `t₁`
+of the source cell, the kept darts of `K.targetArc` are one arc `t₂` of `∂X` inside the window
+of `K.targetArc`, and the kept darts of the cycle form a closed dart walk. -/
+def roseLobe_FilterListingStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+        ∃ rs : List X.toCombMap.Dart,
+          ((rs ≠ [] ∧ ∀ r ∈ rs, r ∈ K.boundary.cycle) ∨
+            ∃ r, rs = [r] ∧
+              (∀ x, X.toCombMap.faceOf x = X.outerFace → ¬Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r x) ∧
+              ∃ y ∈ K.boundary.cycle, Relation.EqvGen
+                (CombMap.FaceClassStep X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) r y ∨
+                Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                  (walkKeep X.toCombMap K.boundary.cycle)) r (X.toCombMap.alpha y)) ∧
+          (cell X K.source).face ∉ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+            X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs) ∧
+          (cell X K.kept).face ∈ flipFaces X.toCombMap K.faces (roseJunctionCore_lobeColour
+            X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs) ∧
+          (∃ t₁ : CyclicArc (cellDarts X K.source),
+            (invDarts X K.sourceArc.darts).filter (movePred X.toCombMap
+              (roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+                rs)) = invDarts X t₁.darts) ∧
+          (∃ t₂ : CyclicArc (outerDarts X),
+            K.targetArc.darts.filter (movePred X.toCombMap
+              (roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)
+                rs)) = t₂.darts ∧
+            K.targetArc.start.1 ≤ t₂.start.1 ∧
+            t₂.start.1 + t₂.length ≤ K.targetArc.start.1 + K.targetArc.length) ∧
+          IsClosedDartWalk X.toCombMap (K.boundary.cycle.filter (movePred X.toCombMap
+            (roseJunctionCore_lobeColour X.toCombMap (walkKeep X.toCombMap K.boundary.cycle) rs)))
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobe_FilterListingStatement
+
+/-- **The lobe removal from the listing in the order of the cycle.**  The sides are the kept darts
+of the old sides; the listing is the kept part of the cycle, so the `List.Perm` is an equality;
+each bound follows from the old one since filtering never lengthens a list. -/
+theorem roseLobe_lobeRemoval_of_filterListing (h : roseLobe_FilterListingStatement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  obtain ⟨rs, hcase, hsource, hkept, ⟨t₁, ht₁⟩, ⟨t₂, ht₂, hst, hend⟩, hwalk⟩ :=
+    h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  have hfilt := roseLobe_filter_four K.decomposition ht₁ ht₂
+  have h₁ := roseLobe_length_le_of_filter_eq ht₁
+  have h₂ := roseLobe_length_le_of_filter_eq ht₂
+  simp only [roseLobe_length_invDarts, CyclicArc.darts_length] at h₁ h₂
+  rw [hfilt] at hwalk
+  exact ⟨rs, hcase, K.source, K.kept, hsource, hkept, t₁, t₂, _, _, List.Perm.of_eq hfilt.symm,
+    hwalk, (List.length_filter_le _ _).trans K.firstSide_length_le,
+    (List.length_filter_le _ _).trans K.secondSide_length_le, K.lo_le.trans hst,
+    hend.trans K.le_hi, h₁.trans_lt hsrc, h₂.trans_lt htgt⟩
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobe_lobeRemoval_of_filterListing
+
+/-- **The Greendlinger leaf from the listing in the order of the cycle**: the route of
+`roseJunctionCore_relativeGreendlinger_of_lobeRemoval` with the lobe residual replaced by
+`roseLobe_FilterListingStatement`. -/
+theorem roseLobe_relativeGreendlinger_of_filterListing
+    (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobe_FilterListingStatement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseJunctionCore_relativeGreendlinger_of_lobeRemoval hoff
+    (roseLobe_lobeRemoval_of_filterListing h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobe_relativeGreendlinger_of_filterListing
+
+/-- **The outer-pinch step from the listing in the order of the cycle.** -/
+theorem roseLobe_outerPinchStep_of_filterListing (h : roseLobe_FilterListingStatement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  Piece10.roseJunctionCore_proof_of_lobeRemoval (roseLobe_lobeRemoval_of_filterListing h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobe_outerPinchStep_of_filterListing
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
