@@ -38,6 +38,10 @@ Lane proof, not independently reviewed. Notation as in the target.
 
 ## Step 2. Item 1, germs of H_n(G)
 
+By Definition 4.1, an element of `H_n(G)` is given by arbitrary finite sets `M_+`, `M_-` with `|M_+| = |M_-|`, an
+arbitrary bijection `σ : M_+ -> M_-`, and arbitrary `g_1, ..., g_n in G` (referee a, N1). Write it
+`[M_-, σ(g_1..g_n), M_+]`.
+
 Identify the ray `{k} x N` with `N` by `(k,i) <-> i`. For a finite `M`, let `m_k = |M ∩ {k} x N|`. The increasing
 enumeration `beta_{k,M} : N -> Q(k,M)` satisfies `beta_{k,M}(j) = (k, j + m_k)` for large `j`, so it is near
 equal to `s̄^(m_k)`.

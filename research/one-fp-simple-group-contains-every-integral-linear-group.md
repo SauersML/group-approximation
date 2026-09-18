@@ -9,9 +9,13 @@ distinct_from:
   all-hyperbolic-groups-lie-in-one-fp-simple-group: that is the hyperbolic class; this is the integral linear class.
 ---
 
-**OPEN.** There is a finitely presented simple group containing a copy of `GL_n(Z)`
+**ESTABLISHED** (lane proof, not reviewed; load-bearing, referee review requested) via route
+`integral-linear-one-host-via-twisted-integral-affine-full-group`: the twisted integral-affine
+Brin–Thompson group `W` of `twisted-integral-affine-full-group-is-finitely-presented` is such a host.
+
+There is a finitely presented simple group containing a copy of `GL_n(Z)`
 for every `n` (equivalently, of every finitely generated subgroup of every `GL_n(Z)`).
-It would contain at once every polycyclic group, every finitely generated nilpotent
+It contains at once every polycyclic group, every finitely generated nilpotent
 group, every finite group, every arithmetic subgroup of every `GL_n(O_K)`, and every
 finitely generated virtually special group.
 
@@ -24,7 +28,13 @@ finitely generated virtually special group.
      `integral-linear-one-host-via-elementary-shift-group`.
   2. Zaremsky Problem 2.19(c), `every-gl-n-z-embeds-in-some-brin-thompson-group`: then
      every `GL_n(Z)` lies in `U = DV_F`: route `every-integral-linear-group-in-one-host-via-nv`.
-  3. Boone–Higman itself, via `common-decidable-hosts-iff-uniform-word-problem`: the
+  3. Boone–Higman for the explicit finitely presented group `E(Z; D) ⋊ F`
+     (`finitary-steinberg-extensions-by-oligomorphic-actions-are-fp`): route
+     `integral-linear-one-host-via-fp-elementary-thompson-group`.
+  4. **(Used.)** Finite presentation and simplicity of the twisted integral-affine
+     Brin–Thompson group (`twisted-integral-affine-full-group-is-finitely-presented`): route
+     `integral-linear-one-host-via-twisted-integral-affine-full-group`.
+  5. Boone–Higman itself, via `common-decidable-hosts-iff-uniform-word-problem`: the
      standard finite presentations of the `GL_n(Z)` form a c.e. class with uniformly
      solvable word problem (matrix multiplication).
 - **Why neither known method applies.** `Σ` is not linear and not residually finite, so

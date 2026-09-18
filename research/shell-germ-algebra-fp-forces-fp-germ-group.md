@@ -59,3 +59,20 @@ onto a Cantor set as in `shell-cantor-embeddings-are-finite-germ-extensions`. Th
 does not yet work is that `R_nu` acts on `N` only as a near action (germs modulo finitary
 permutations), so an `R_M` near action with the right local structure has to be built
 without a genuine action to pull back. No such construction is written here.
+
+## Attempts
+
+1. **The input-letter truncation (bh-ck-kernel, 09-18).** *Proves the part of the claim that
+   survives, and isolates what remains.*
+   [[shell-germ-algebra-fp-forces-bounded-germ-presentation]]: truncating by the number of
+   input letters, not by word length, the model of "The expected proof" above can be built
+   inside a matrix representation over `F_2[Q']`, with no near action at all. Result: if `A`
+   is finitely presented, then `Q` has a presentation whose relators have boundedly many
+   input letters, but arbitrary exponents of the shift `τ`.
+   - **What remains for this claim:** bounding the shift exponents. That is exactly the
+     Bieri--Strebel / ascending-HNN clause of `shell-germ-fp-is-an-ascending-hnn-gate`, and
+     nothing in the algebra argument forces it. One algebra relator, read along shell `n`,
+     produces germ relations with shift exponent `rho_g(n) - n`.
+   - **Consequence.** The algebra gate, if it holds, may avoid the ascending-HNN clause that
+     the group gate needs. The way to refute this claim is an enumeration whose germ group is
+     boundedly but not finitely presented, with a finitely presented algebra.

@@ -10,8 +10,8 @@ distinct_from:
   mz-envelope-germ-group-is-an-antitwisted-fiber-product: that computes E_nu(P)/FSym; this computes H_n(G)/FSym for every strongly shift-similar G and every n, and specializes it.
 ---
 
-**ESTABLISHED** by `houghton-like-germ-groups-are-index-zero-products-proof`. This is a lane proof, not
-independently reviewed. Its inputs are elementary, plus two Σ-invariant imports already on main.
+**ESTABLISHED** by `houghton-like-germ-groups-are-index-zero-products-proof`. This is a lane proof. Its inputs are elementary, plus two Σ-invariant imports already on main.
+*Referee a PASS for items 1–4 (`research/artifacts/gq-referee-a-houghton-like-envelopes-have-fp-germs-iff-fp-near-shift-group.md`, 01bc75a40). Item 5 is conditional on `regular-enumerations-can-make-near-shift-free-product`, which has an elementary route on main but no status line (W1).*
 
 **Setting.**
 - `G <= Sym(N)` is an infinite strongly shift-similar group (Mallery--Zaremsky Definition 3.17), and
@@ -51,9 +51,13 @@ independently reviewed. Its inputs are elementary, plus two Σ-invariant imports
 - **`G = H_k`.** Here `H_n(H_k) ≅ H_(nk)` (Mallery--Zaremsky Proposition 5.5). Items 1–2 give a finitely
   presented germ group `Z^(nk-1)`, as expected.
 
-**What this changes.** For the Houghton-like envelope, the germ-level gate for Boone--Higman is just "some `nu`
-makes `R_nu` finitely presented". Generic enumerations already achieve this for every infinite finitely
-presented input. The two-sided window of the Mallery--Zaremsky compiler and the one-sided window of the shell
-route are not needed. What remains is the passage from the germ group to `H_n(G)` itself:
-`houghton-like-envelopes-lift-finite-presentation-from-germs` (OPEN). The route
-`boone-higman-via-houghton-like-shift-envelopes` records what that would give. No lifting is claimed here.
+**What this changes.**
+- *Corrected the same day.* At the germ level, the gate for the Houghton-like envelope is only "`R_nu` finitely
+  presented"; the two-sided and one-sided windows are not needed.
+- The free-shift enumerations of item 5 do NOT give finitely presented envelopes, though. By
+  `free-shift-houghton-like-envelopes-are-not-fp`, `H_n(E_nu(P))` is not finitely presented for every `n` when
+  `R_nu = P*Z`. So finite presentation does not lift from germs in general, and
+  `houghton-like-envelopes-lift-finite-presentation-from-germs` is refuted.
+- A successful enumeration needs, besides a finitely presented `R_nu`, near relations that pin `nu` down at
+  infinity (item 3 of that node).
+- The first version of this paragraph said the lifting was the only remaining gap. That was wrong.

@@ -50,3 +50,28 @@ residually finite, so not LEF. In every finite quotient `a` has order prime to 6
 (Britton's lemma: `a ∉ ⟨a^2⟩`). So an isolated quotient near `BS(2,3)` must be infinite and
 keep this commutator. Whether `BS(2,3)` is itself finitely discriminable (which would make it
 isolated) is not checked here.
+
+## Attempts
+
+1. **`BS(2,3)` is a pivot (lane bh-free-27, 2026-09-18).**
+   `residual-solvability-reduces-cgp-question-1-to-question-3`: `BS(2,3)` is free-by-metabelian
+   (`baumslag-solitar-groups-are-free-by-metabelian`), hence the limit of its solvable quotients, and
+   the class of limits of isolated groups is closed. So a positive answer to Question 3 already gives
+   Question 1 at every Baumslag--Solitar group, and a proof that `BS(2,3)` is not such a limit would
+   answer Questions 1 and 3 negatively together.
+2. **Two construction mechanisms, neither yet applied to `BS(2,3)`.**
+   - `fp-groups-with-max-n-are-limits-of-isolated-groups`: works when some maximal normal subgroup
+     avoiding each finite set is finitely normally generated. `BS(2,3)` fails max-n (its non-Hopfian
+     surjection `a ↦ a^2, t ↦ t` has strictly increasing iterated kernels), so this needs the finer
+     per-`F` form, which is unchecked.
+   - `finitary-perturbations-give-isolated-quotients`: isolated quotients as
+     finite-index subgroups of `FSym(S) ⋊ P`, for a finitely presented quotient `P` close to the input
+     with a highly transitive action. Its rigidity half shows that faithful actions of the torsion-free
+     `BS(2,3)` are useless, so a proper quotient `P` with a type (A)-like action is required. None is
+     known.
+3. **Thompson-type hosts are excluded at `BS(2,3)`.** `coprime-baumslag-solitar-images-in-va-are-metabelian`:
+   every image of `BS(2,3)` in `VA` (so in `F`, `T`, `V`, `T̄`) is cyclic-by-cyclic, so the
+   commutator `[tat^{-1}, a]` dies there. The isolated finitely presented subgroups of `V` with a
+   locally moving simple subgroup therefore never approximate `BS(2,3)`. More generally, in any
+   quotient of `BS(2,3)` in which `a` has finite order that commutator dies, so every isolated quotient
+   near `BS(2,3)` keeps `a` of infinite order and is not a subgroup of `VA`.

@@ -78,3 +78,31 @@ distinct_from:
      is outside `B_A` must be irreducible, with some non-discrete factor closure
      that is not just-non-compact. For locally quasiprimitive closures this means
      `QZ(Ḡ_i) ≠ 1` (Burger--Mozes).
+6. **Kernel commutation, no normal subgroup theorem (bh-lattices, 2026-09-18).**
+   *Sharpens Attempt 5 for three trees.*
+   `three-tree-lattices-escape-only-via-discrete-normal-subgroups`: kernels on
+   different factors commute modulo their intersection, and commuting normal
+   subgroups cannot both act nontrivially on a thick tree. So a three-tree
+   lattice outside `B_A` is irreducible, has no faithful factor, and has a
+   nontrivial, infinitely generated normal subgroup `N_ij = K_i ∩ K_j` acting only
+   on `T_k`. Its image is a nontrivial discrete normal subgroup of `Ḡ_k`, inside
+   `QZ(Ḡ_k)`.
+   - **Criterion.** Trivial quasi-centres of the three factor closures (for
+     example locally `∞`-transitive closures) force a faithful factor, hence `B_A`.
+   - **Exact gap.** Irreducible three-tree lattices with such an `N_ij`. Existence
+     unknown.
+7. **Boundary k-graphs (bh-lattices, 2026-09-18).** *Works for every virtually
+   torsion-free lattice, any number of factors.*
+   `virtually-torsion-free-tree-lattices-satisfy-pbh`, in three steps:
+   - **Embedding.** A torsion-free lattice embeds in the topological full group of
+     the `N`-th power of its cube k-graph. A phase coordinate `(Z/N)^k` absorbs the
+     Busemann lag, and `N` is chosen so that every vertex has two loops of every
+     colour. That group is `F_∞` by Li's higher-rank-graph theorem
+     (`torsion-free-tree-lattices-embed-in-fp-kgraph-full-groups`).
+   - **Type (A).** After stabilizing by the Cuntz groupoid, refining cylinder
+     decompositions makes any two nonempty clopen sets in a strongly connected
+     piece equivalent, so the clopen action is of type (A)
+     (`stabilized-kgraph-full-groups-have-type-a-actions`).
+   - **Remaining gap.** Only lattices with no torsion-free subgroup of finite
+     index. For three trees, they must also be irreducible with a discrete normal
+     subgroup in a factor closure (Attempt 6).
