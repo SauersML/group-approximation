@@ -29,12 +29,10 @@ The value `n = 2` gives the literal `Sp_4` statement of
 - **Calibration, n = 1.** `2V_Λ(1) ≅ 2V`, which is finitely presented (Brin;
   Hennig–Matucci; textbook, not read at source). The same construction puts `B_3` inside
   it.
-- **Possibly simple itself.** `H_*(𝒢_n × G_2) = 0`, by the Künneth formula and
-  `H_*(G_2) = 0` (`matui-groupoid-homology-kunneth-and-full-shift-vanishing`).
-  - So Matui's AH conjecture for this groupoid would give `[[𝒢]]^{ab} = 0`. Then
-    `2V_Λ(n)` is simple and equal to its commutator subgroup.
-  - The conjecture is proved in wide generality by X. Li. Its hypotheses are not checked
-    here.
+- **Simple and acyclic itself (2026-09-18).** `2V_Λ(n) = D(2V_Λ(n))`, and it is simple
+  and integrally acyclic, by `cuntz-stabilized-minimal-full-groups-are-acyclic-and-simple`
+  (X. Li, Corollary D). So the claim is equivalently finite presentation of `2V_Λ(n)`
+  itself. There is no homological obstruction, since `H_2 = 0`.
 
 ## Attempts
 
@@ -81,5 +79,24 @@ The value `n = 2` gives the literal `Sp_4` statement of
      `GL_n(Z)`-type groups would need.
    - **What the no means.** `𝔅_u` is not "Thompson-like" in the Farey sense,
      so a proof must take atoms of arrangements as its basic pieces, or use the dyadic
-     factor to absorb the non-rigid Maslov
-     pieces.
+     factor to absorb the non-rigid Maslov pieces.
+4. **Which finiteness engines are left (2026-09-18, lane `bh-free-55`).**
+   - **Pair diagrams are excluded at `n = 2` (established).** By
+     `maslov-cantorizations-have-no-finite-dissection-type`, no Maslov Cantorization of
+     `Λ_2`, including `Y_u` and `Y_Λ`, has finite dissection type.
+     - The reason is that rational light cones meet at corners over `Q(√(2p))` for every
+       odd prime `p`, and `Sp_4(Z)` preserves fields of definition.
+     - Pair diagrams with `Sp_4(Z)`-rigid pieces would force finite dissection type. So
+       the Stein–Farley method of `V`, `nV`, `SV_G`, `𝒯_1` and `W` does not transfer in
+       its standard form.
+   - **Tree engines in `Γ`-rigid form are excluded too.** A rooted hierarchy of finitely many
+     `Γ`-rigid tile types would give finite dissection type. This covers X. Li's Garside/LCM
+     engine and Nekrashevych's contracting engine when their tiles are `Γ`-rigid.
+   - **Still open:**
+     - a non-`Γ`-rigid diagram calculus, that is, a non-algebraic `Γ`-equivariant
+       recoordinatization of `Λ` with rational corners (a "Lagrangian question-mark
+       function", the analogue of the map that turns Farey arcs into dyadic arcs);
+     - a finiteness proof not based on diagrams;
+     - a proof that `2V_Λ(2)` is *not* finitely presented. The free-subshift criterion
+       `fp-alternating-full-groups-of-free-subshifts-force-sft` is the nearest model; it
+       needs free actions, and ours is not free.
