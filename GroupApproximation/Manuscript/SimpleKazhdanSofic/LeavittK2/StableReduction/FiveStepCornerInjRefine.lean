@@ -58,7 +58,8 @@ theorem fiveStepCornerInj_cornerHom_comp_refineHom (r j₀ : Fin n) (hj : j₀ �
       have hcj : ¬ Fin.castSucc j = Fin.castSucc j₀ :=
         fun h => hj0 (Fin.castSucc_injective n h)
       rw [LeavittFP.refineRoot_of_col L r hij a hi hjr,
-        LeavittFP.refineRoot_of_col L r hij _ hi hjr, map_mul, fiveStepCornerHom_x, fiveStepCornerHom_x]
+        LeavittFP.refineRoot_of_col L r hij _ hi hjr, map_mul, fiveStepCornerHom_x,
+        fiveStepCornerHom_x]
       by_cases hi0 : i = j₀
       · rw [fiveStepCornerCoeff_of_row L j₀ (j := j) a hi0,
           fiveStepCornerCoeff_of_row L (Fin.castSucc j₀) (j := Fin.castSucc j) (a * L.s0)
