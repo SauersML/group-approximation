@@ -50,11 +50,12 @@ variable {A : Type*} [CommRing A]
 suppose that `λ g` dies after padding over `A_s[X]`.  Then `ι_0 g` dies after padding over
 `P = A ×_{A_s} A_s[X]`. -/
 def k2DilateSt_PullbackDiesAt (s : A) : Prop :=
-  ∀ N : ℕ, 5 ≤ N → ∀ g : SteinbergGroup (Fin N) (Polynomial A), g ∈ K2 (Fin N) (Polynomial A) →
-    SteinbergGroup.ringMap (Polynomial.evalRingHom (0 : A)) g = 1 →
-      cubeDiagDilate_StDies
-          (SteinbergGroup.ringMap (Polynomial.mapRingHom (algebraMap A (Localization.Away s))) g) →
-        cubeDiagDilate_StDies (SteinbergGroup.ringMap (k2DilateSt_toPullback s 0) g)
+  ∀ N : ℕ, 5 ≤ N → ∀ g : SteinbergGroup (Fin N) (Polynomial A),
+    g ∈ K2 (Fin N) (Polynomial A) →
+      SteinbergGroup.ringMap (Polynomial.evalRingHom (0 : A)) g = 1 →
+        cubeDiagDilate_StDies (SteinbergGroup.ringMap
+          (Polynomial.mapRingHom (algebraMap A (Localization.Away s))) g) →
+          cubeDiagDilate_StDies (SteinbergGroup.ringMap (k2DilateSt_toPullback s 0) g)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2DilateSt_PullbackDiesAt
 
