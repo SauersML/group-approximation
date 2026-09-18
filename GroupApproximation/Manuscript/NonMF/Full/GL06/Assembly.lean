@@ -69,30 +69,30 @@ hyperbolic relative generating set and `0 < λ ≤ 1`, `0 ≤ c`, `0 < μ ≤ 1/
 relator set whose boundary is `(λ, c)`-quasi-geodesic has an O-equivalent diagram. That diagram
 has a relator cell whose external contiguity arc is longer than `(1 - 13μ)` of the cell's
 boundary length. -/
-theorem relativeGreendlingerQuasiGeodesicLeastArea_of_allCells_of_core
-    (hall : GroupApproximation.Full.GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{u, w, v})
-    (hcore : GroupApproximation.Full.GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{u, w, v}) :
+theorem relativeGreendlinger_of_allCells_of_core
+    (hall : GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{u, w, v})
+    (hcore : GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{u, w, v}) :
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
   relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
     GroupApproximation.Full.GL06a.budget.{u, w, v}
     GroupApproximation.Full.GL06b.twoGonCleanCopy.{u, w, v}
     GroupApproximation.Full.GL06c.wholeSectionTwoArc.{u, w, v}
     (osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
-      (GroupApproximation.Full.GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected_of_allCells
+      (GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected_of_allCells
         GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected.{u, w, v} hall))
     (outerPinchStep_of_cases GroupApproximation.Full.GL06d.nonRoseStep.{u, w, v}
       (GroupApproximation.Full.GL06f.rose_of_regionMoveSubArc
         (GroupApproximation.Full.GL03D.gl03dKept_roseRegionMoveSubArc_of_core hcore)))
 
-/-- The universe-`0` instance of `relativeGreendlingerQuasiGeodesicLeastArea_of_allCells_of_core`,
+/-- The universe-`0` instance of `relativeGreendlinger_of_allCells_of_core`,
 **CONDITIONAL on the same two unproved residuals**. -/
-theorem relativeGreendlingerQuasiGeodesicLeastArea_zero_of_allCells_of_core
-    (hall : GroupApproximation.Full.GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0})
-    (hcore : GroupApproximation.Full.GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0}) :
+theorem relativeGreendlinger_zero_of_allCells_of_core
+    (hall : GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{0, 0, 0})
+    (hcore : GL03DKept.gl03dKept_KeptSubwalkCoreStatement.{0, 0, 0}) :
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{0, 0, 0} :=
-  relativeGreendlingerQuasiGeodesicLeastArea_of_allCells_of_core.{0, 0, 0} hall hcore
+  relativeGreendlinger_of_allCells_of_core.{0, 0, 0} hall hcore
 
 end GroupApproximation.Full.GL06
 
-#audit_axioms GroupApproximation.Full.GL06.relativeGreendlingerQuasiGeodesicLeastArea_of_allCells_of_core
-#audit_axioms GroupApproximation.Full.GL06.relativeGreendlingerQuasiGeodesicLeastArea_zero_of_allCells_of_core
+#audit_axioms GroupApproximation.Full.GL06.relativeGreendlinger_of_allCells_of_core
+#audit_axioms GroupApproximation.Full.GL06.relativeGreendlinger_zero_of_allCells_of_core
