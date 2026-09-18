@@ -30,3 +30,16 @@ extension step has room.
 ## Attempts
 
 1. **Envelope by the Kazhdan lamplighter host (2026-09-17).** *Settles the claim.*
+
+2. **Rigidity search on the Houghton-like route (2026-09-18, lane bh-free-34).** *No rigidity mechanism found.*
+   - **The question.** Can (T) of the input make the relations of a Houghton-like envelope finite?
+   - **Where the gate sits.** The envelope's remaining gate is the near relations pinning the enumeration
+     `nu` down (`free-shift-houghton-like-envelopes-are-not-fp`). These relations are between `lambda(P)` and
+     the shift for the chosen finitely presented overgroup `P`, not for the input `S`.
+   - **Why (T) doesn't help.** `P` can always be replaced by the non-FW overgroup `P * Z`, so a Kazhdan
+     hypothesis on `S` neither helps nor hurts the gate.
+   - **Landed:** `fg-simple-subgroups-of-houghton-like-groups-embed-in-germs`. Every finitely generated
+     infinite simple subgroup of `H_n(G)` embeds in `G/FSym(N)`, and for free-shift envelopes every simple FA
+     subgroup embeds in `P`. So the Houghton-like route passes the Kazhdan filter: its hosts keep the germ
+     group's simple Kazhdan subgroups, unlike the germ-extension regime of
+     `normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`. But it creates no new ones.
