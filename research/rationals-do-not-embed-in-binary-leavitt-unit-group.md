@@ -6,6 +6,7 @@ title: The additive group of the rationals does not embed in the unit group of t
 invalidates:
   - gl-n-q-bh-via-binary-leavitt-unit-group
 distinct_from:
+  rationals-embed-in-binary-leavitt-unit-group: that is the positive statement, the negation of this claim.
   leavitt-unit-group-has-no-integer-heisenberg-subgroup: that excludes H_3(Z); this excludes (Q,+), which has no Heisenberg subgroup and no distorted element, so neither exclusion implies the other.
   thompson-units-have-few-roots-in-leavitt-unit-group: that proves no nonzero element of a copy of (Q,+) is a conjugate of an infinite-order Thompson unit; this asks that no copy exists at all.
   gl-n-q-embeds-in-binary-leavitt-unit-group: that is the positive embedding question for GL_n(Q), n >= 2; this is its obstruction, since (Q,+) <= GL_n(Q).
@@ -30,4 +31,19 @@ distinct_from:
 
 ## Attempts
 
-None beyond the reduction above.
+**Necessary conditions for a copy (lane gq-ring-alt, 2026-09-18).**
+- Its span is a commutative subalgebra inside `[R,R]` (`leavitt-germ-traces-satisfy-frobenius`, part 4).
+- Every nonzero element has infinite centralizer rank (`unit-roots-divide-centralizer-rank`).
+
+**Calibration: this claim is at least as hard as Ara--Cortiñas Question 5.7 over `F_2`.**
+- By `diagonal-copy-nonconjugacy-from-no-rationals` it implies `leavitt-units-are-not-conjugate-to-diagonal-copies`.
+- That implies `no-unital-map-from-leavitt-tensor-square-to-leavitt-over-f2`
+  (`tensor-square-nonembedding-from-no-diagonal-conjugacy`).
+- The mechanism is `tbar-embeds-in-laurent-leavitt-unit-group`: any infinite-order unit in a relative commutant
+  embeds `L ⊗ F_2[t^±1]`, hence `T̄` and `(Q,+)`, in `U`.
+- A proof must therefore exclude infinite-order units from every relative commutant.
+
+**Mod-2 reduction of the integral copy: dead.** The divisible element of `integral-leavitt-unit-group-contains-q`
+is a transvection, and it has order 2 over `F_2`. The elements this lane found conjugate to their diagonal copies
+are constant matrices over `F_2`, and these are torsion in characteristic 2
+(`infinite-order-leavitt-unit-conjugate-to-its-diagonal-copy`, Attempts).
