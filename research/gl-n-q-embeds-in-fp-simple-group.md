@@ -266,3 +266,14 @@ None recorded before 2026-09-17.
      contain all rational scalars.
    - `leavitt-units-over-s-integers-are-finitely-presented` (OPEN): the Khanh route fails as stated over `Z[1/m]`,
      because GE via Menal–Moncasi needs a simple ring.
+
+14. **Every almost-V host, 2026-09-17: for n >= 3 the problem moves into one germ group (lane
+    gq-germ-necessary).** `gl-n-q-almost-v-hosts-need-lattice-germs`, via the general FW germ reduction
+    `almost-v-fw-subgroups-act-through-finitely-many-germs`. Let `E` be any finitely generated group of Cantor
+    homeomorphisms that are locally in `V` off finite sets; this covers every finite germ extension of `V`,
+    with no hypothesis on the germs. If `E >= GL_n(Q)` with `n >= 3`, then one singular germ group `(E)_p`
+    contains a finite-index subgroup of every `SL_3(Z[1/m])`. The inputs are Kazhdan, the normal subgroup
+    theorem, trivial centre, and the finiteness of FW subgroups of `V`. So `(E)_p` is neither amenable nor
+    a-T-menable, and it lies in no `nV`. This generalizes Attempt 6's Theorem A from `SL_3(Z)` to all
+    S-arithmetic `SL_3(Z[1/m])`, and to all almost-V groups. The method says nothing for `n = 2`, since every
+    FW subgroup of `GL_2(Q)` is finite.
