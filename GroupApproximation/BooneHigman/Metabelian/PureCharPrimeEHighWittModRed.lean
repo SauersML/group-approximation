@@ -50,8 +50,10 @@ theorem eHighWittModRed_module_of_iface (hI : EHighWittModSelfInjStatement)
   haveI : P.IsPrime := hM.isPrime
   obtain ⟨d, ψ, hS, hψ⟩ := eHighWittModRed_normalization p Q P hpP
   letI : Module (MvPolynomial (Fin d) (ZMod (p ^ 2))) M := Module.compHom M ψ
+  have hsm : ∀ (a : MvPolynomial (Fin d) (ZMod (p ^ 2))) (x : M), a • x = ψ a • x :=
+    fun _ _ => rfl
   haveI : Module.Finite (MvPolynomial (Fin d) (ZMod (p ^ 2))) M :=
-    eHighWittModRed_finite ψ (fun _ _ => rfl) P hψ k (by omega) hM.smul_eq_zero_of_mem_pow
+    eHighWittModRed_finite ψ hsm P hψ k (by omega) hM.smul_eq_zero_of_mem_pow
   haveI : IsArtinianRing (eHighWittCoeff_D p (Fin d)) := eHighWittModRed_isArtinianRing p d
   obtain ⟨s, ι, hι⟩ := hE p d (LocalizedModule (eHighWittCoeff_S p (Fin d)) M)
     inferInstance inferInstance

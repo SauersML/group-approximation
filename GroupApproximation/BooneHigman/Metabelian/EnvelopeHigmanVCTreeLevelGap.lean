@@ -110,7 +110,8 @@ theorem higmanVCTreeLevel_word_mem {d : ℕ} (r : FreeGroup (higmanVCTree_Small 
     obtain ⟨⟨u, v⟩, h1, h2⟩ := p
     refine ⟨u.length + v.length, fun n hn a b ha hb hab hba => ?_⟩
     rw [higmanVCTree_iota_of]
-    exact higmanVCTreeLevel_small_mem ha hb hab hba h1 h2 (by omega) (by omega)
+    exact higmanVCTreeLevel_small_mem (u := u) (v := v) ha hb hab hba h1 h2 (by omega)
+      (by omega)
   | inv_of _ ih =>
     obtain ⟨N, hN⟩ := ih
     refine ⟨N, fun n hn a b ha hb hab hba => ?_⟩
