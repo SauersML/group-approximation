@@ -1,0 +1,41 @@
+# Recorded outputs, 2026-09-18 (swarm-0917-w11-w11-bs-pull). Graph Cay(F_k x Z, {a_i, t}) = T_{2k} x Z.
+# rho2v.py / certschur.py are the programs of experiments/fpbs-rigid-certificates-2026-09-17/
+# with the ladder offsets D_a = D_b = {0} (standard generators a, b, t; 6-regular).
+
+## l2 side, k = 2: exact Busemann-weighted Schur certificate (u = 1732/1000)
+$ python3 certschur.py 4 1732/1000 400 1732/1000 4145/1000
+float lam 4.1446516920848655
+ell 4 u 1732 / 1000 states 150 exact max ratio 4.1446516946774175 <= lam 829/200 : True
+$ python3 certschur.py 6 1732/1000 400 1732/1000 4113/1000
+ell 6 u 1732 / 1000 states 3606 exact max ratio 4.1123783901164 <= lam 4113/1000 : True
+$ python3 certschur.py 2 1732/1000 400 1732/1000 4302/1000
+ell 2 u 1732 / 1000 states 6 exact max ratio 4.301796527841289 <= lam 2151/500 : True
+
+## Float Schur values (python3 rho2v.py ell 1732/1000 400), 1/lam = certified lower bound on p_{2->2}
+ell 1 lam 5.46410 (= 2 + 2 sqrt 3 = ||A||)  1/lam 0.183013
+ell 2 lam 4.30180 (root of lam + 5/lam = ||A||, non-backtracking)  1/lam 0.232461
+ell 3 = ell 2 (T_4 x Z has no 3-cycles)
+ell 4 lam 4.14465  1/lam 0.241275
+ell 6 lam 4.11238  1/lam 0.243168
+ell 8 lam 4.10179  1/lam 0.243796
+
+## GW and adjacency-norm side, all k (python3 certify_all.py)
+k=2  m(236/1000) = 1.008887958344918 True | (241/1000)(829/200) = 0.998945 True
+k=3  m(193/1250) = 1.0006783595251165 True | 309/2000 ||A|| < 1: True
+k=4  m(3/25) = 1.036757434852039 True | 13/100 ||A|| < 1: True
+k=5..59 elementary checks: True
+simulated mean k=2 p=0.236: 1.011935 formula: 1.008887958344918   (200000 samples)
+ALL OK
+# independent 2e6-sample check of E[3(1-(1-p)^L)] at p=0.236, seed 7: 1.0089529 (formula 1.0088880)
+
+## Roots of m_k(p) = 1 (fibre-interval GW upper bound on p_c)
+k=2 0.234307   k=3 0.154313   k=4 0.116379
+
+## Monte Carlo (gcc -O2 -o mc mc.c; ./mc p 2000 100000 2), P(|C(o)| >= n)
+p=0.2 T=2000: P(>=10)=0.3440 P(>=100)=0.0575 P(>=1000)=0.0000 P(>=10000)=0.0000 P(>=100000)=0.0000
+p=0.21 T=2000: P(>=10)=0.3695 P(>=100)=0.1235 P(>=1000)=0.0285 P(>=10000)=0.0010 P(>=100000)=0.0000
+p=0.215 T=2000: P(>=10)=0.3960 P(>=100)=0.1615 P(>=1000)=0.0665 P(>=10000)=0.0485 P(>=100000)=0.0485
+p=0.22 T=2000: P(>=10)=0.4120 P(>=100)=0.1800 P(>=1000)=0.1155 P(>=10000)=0.1110 P(>=100000)=0.1110
+p=0.225 T=2000: P(>=10)=0.4455 P(>=100)=0.2340 P(>=1000)=0.1910 P(>=10000)=0.1905 P(>=100000)=0.1905
+p=0.23 T=2000: P(>=10)=0.4570 P(>=100)=0.2755 P(>=1000)=0.2425 P(>=10000)=0.2425 P(>=100000)=0.2425
+# => p_c(T_4 x Z) is about 0.212, just above the tree anchor 0.21085 and far below 0.2412.
