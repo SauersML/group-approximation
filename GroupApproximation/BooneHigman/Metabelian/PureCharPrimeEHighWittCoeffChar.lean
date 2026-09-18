@@ -55,7 +55,7 @@ theorem eHighWittCoeff_sum_carry_L [Fact p.Prime] [CharP L p] :
 
 theorem eHighWittCoeff_natCast_x0 [Fact p.Prime] [CharP L p] (n : ℕ) :
     ((n : eHighWitt_W2 L p)).x0 = n :=
-  map_natCast eHighWittCoeff_x0Hom n
+  map_natCast (eHighWittCoeff_x0Hom (L := L) (p := p)) n
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittCoeff_natCast_x0
 
