@@ -5904,6 +5904,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Holds
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionRosenbergSchochetComap
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Moves
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnColimit.Descent
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Elim
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.SystemSem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
