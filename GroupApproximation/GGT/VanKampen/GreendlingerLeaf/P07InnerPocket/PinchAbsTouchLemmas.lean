@@ -17,9 +17,10 @@ For a face set `F` and a boundary circuit `comp` of its complement, `w' = pinchL
 * `pinchAbsTouch_side_of_mem`: hence every face of `F` dual connected inside `F` to the face
   across a dart of the circuit is on the side of `w'`.
 * `pinchAbsTouch_exists_comp`: **for every `f ∈ F`, with the exterior face off `F`, some circuit
-  of the complement has `f` on the side of its reversal.**  `Embedded.exists_boundaryDart_dualConnected`
-  gives a boundary dart `q` of `F` whose face is dual connected to `f` inside `F`; the circuit is
-  the one through `alpha q` (as in `pinchAbs_touch_of_dart`), and `q ∈ w'`.
+  of the complement has `f` on the side of its reversal.**
+  `Embedded.exists_boundaryDart_dualConnected` gives a boundary dart `q` of `F` whose face is
+  dual connected to `f` inside `F`; the circuit is the one through `alpha q` (as in
+  `pinchAbs_touch_of_dart`), and `q ∈ w'`.
 -/
 
 namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
