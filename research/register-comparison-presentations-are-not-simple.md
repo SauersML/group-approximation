@@ -2,15 +2,21 @@
 rg: 2
 id: register-comparison-presentations-are-not-simple
 kind: claim
-title: A register presentation with a translation chain and a finite-fibre comparison between two unbounded registers is never simple, whatever finitely many commutative relations are added
+title: A register presentation with a translation chain and a finite-fibre comparison between two unbounded registers is never simple, whatever finitely many base-closure relations are added
 distinct_from:
   capacity-chain-presentation-is-not-simple: that is one presentation and one bad module; this is the general theorem covering every presentation with a translation chain and a comparison, and every finite set of added commutative relations.
   single-register-rings-divide-unit-at-finitely-many-primes: that is the other half of the squeeze (one unbounded register per type gives divisibility at finitely many primes); this covers designs that compare two unbounded registers.
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the design target these no-go results constrain.
+artifacts:
+  - research/artifacts/gq-referee-a-register-comparison-presentations-are-not-simple.md
+  - research/artifacts/gq-referee-b-register-comparison-presentations-are-not-simple.md
 ---
 
 **ESTABLISHED** through `register-comparison-presentations-are-not-simple-proof` (lane
-proof, not independently reviewed; referee requests sent).
+proof; refereed PASS by `gq-referee-a`, proof gaps, `gq-referee-a-register-comparison-presentations-are-not-simple.md`, b82951dcd, and by `gq-referee-b`, scope and
+hypotheses, `gq-referee-b-register-comparison-presentations-are-not-simple.md`, 86f70e504.
+The `M_k` verification in the instance rests on
+`capacity-chain-presentation-is-not-simple-proof` §2, which referee a passed separately).
 
 ## Scope: which presentations are covered
 A **register presentation** `𝒫` consists of the following data.
@@ -75,16 +81,18 @@ finitely many resolvents `Q` nonzero on `M_Z`. Then, for all but finitely many `
 So `ker(R(𝒫) -> R_conc)` is a nonzero proper ideal, and `R(𝒫)` is not simple.
 
 **Instance.** The capacity-chain presentation of `capacity-chain-resolvent-ring-has-rational-k0`,
-with or without `a_u`, together with *any* finite set of extra commutative relations true
+with or without `a_u`, together with *any* finite set of extra relations from `ℬ` true
 in its concrete model and any finitely many extra resolvents. Here `F_k = {0..k}`,
 `λ_k = t_d t_st ε_(k−1) s_st s_d`, `ε_i = t_c^i e_Δ s_c^i`, and `M_k` is the module of
 `capacity-chain-presentation-is-not-simple-proof` with `δ` transcendental. See the proof,
 §4.
 
 ## Not covered (explicit loopholes)
-- **Dilation-driven fibres.** Designs whose growing fibres are not traversed by a
-  translation letter `σ_c(Δ) = Δ − 1`, for example fibres counted by dilations
-  `N ↦ pN + r`. (C1) fails.
+- **Dilation-driven fibres: not covered by this theorem.** These are designs whose growing
+  fibres are not traversed by a translation letter `σ_c(Δ) = Δ − 1`, for example fibres
+  counted by dilations `N ↦ pN + r`; (C1) fails. The proof uses (C1) only through the
+  `c`-chain of (C4). So the same argument applies to any design with a `δ`-generic chain
+  meeting (C2)–(C4), and the dilation case is open, not shown to escape (referee b, W3).
 - **Noncommutative relations.** Relations not in the base closure, for example
   `sl_2`-type commutator relations among letters, or relations between letters beyond
   (D6). Lane `gq-k2-q` shows the `sl_2` route hides the same comparison, between the

@@ -41,8 +41,14 @@ only on `𝒫` and defined wherever the resolvents involved are nonzero, such th
   Transports along words are iterates of this step. ∎
 
 **The generic cell.** `K^(Y_ρ)` is irreducible, and the cells are constructible and finite
-in number. So exactly one cell `C_f` contains a nonempty Zariski-open set. Choose a nonzero
-`P_f ∈ Z[Y_ρ]`, with the resolvents of `f` among its factors, such that `{P_f ≠ 0} ⊆ C_f`.
+in number. So exactly one cell `C_f` contains a nonempty Zariski-open set. Written in
+disjunctive normal form, a dense constructible set has a term with no equations, and two
+disjoint cells cannot both contain opens (referee a). Take `P_f ∈ Z[Y_ρ]` to be the product
+of ALL nonzero polynomials occurring in the Boolean description of `f`'s cells, resolvents
+included (referee b, W1). Then `{P_f ≠ 0}` is the atom where every such polynomial is
+nonzero. That atom lies in the equation-free term, hence in `C_f`. Then `{P_f ≠ 0} ⊆ C_f` holds as
+a formula, so it holds over every field `K ⊇ Q`, in particular over `Q(δ)`, where the
+`δ`-values of `M_k` live.
 Write `g_f = a/b` for the rational function on `C_f`.
 
 ## 2. Density
@@ -58,7 +64,9 @@ Write `g_f = a/b` for the rational function on `C_f`.
 
 ## 3. Proof of the statement
 - **The finitely many polynomials to avoid.** Let `f_1..f_q` be the extra relations and
-  `Q_1..Q_r` the extra resolvents, and put `P_* = Π P_(f_j) · Π Q_i`.
+  `Q_1..Q_r` the extra resolvents. Apply the lemmas type by type to `f_j p_ρ`, and put
+  `P_*` for the product over all types `ρ` and all `j` of `P_(f_j p_ρ)`, times `Π Q_i`
+  (referee a).
 - **Choosing k.** By the third bullet of (C4), only finitely many `k ∈ K` have a
   `δ`-dependent value of `M_k` at which `P_*` vanishes. Fix `k` outside that set.
 - **Part 1: `M_k` satisfies the full presentation.**
@@ -105,5 +113,5 @@ Take the presentation of `capacity-chain-resolvent-ring-has-rational-k0`, with o
     finitely many `k` are affected.
 
 So the capacity-chain presentation stays non-simple after adding any finitely many
-commutative relations true in its concrete model, and any finitely many resolvents
+relations from `ℬ` true in its concrete model, and any finitely many resolvents
 nonzero there.
