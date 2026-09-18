@@ -152,3 +152,27 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
     non-honest heretic H2.
   - Not established here: that the Khot--Minzer--Safra 2-to-2 instances satisfy
     (E) and (M). The claim node gives the argument.
+* **Make the honest-witness selector kill apply to the proved DKKMS 2-to-1
+  instances themselves.** **Done for 2-to-1, and ESTABLISHED:**
+  `dkkms-2to1-instances-satisfy-selector-decoding-hypotheses`
+  (swarm-0917-w6-w6-re-pull2-unique-1, 2026-09-17). This answers live need
+  `1cb0e45a` for the 2-to-1 instances, checked against ECCC TR16-198.
+  - Membership, with each hypothesis read off Section 4.2:
+    - (E) holds with `tau = 2^(l-1-2k)`. The new direction is uniform off
+      `L' + H_U`, not off an `(l-1)`-space, so the parent's `2^(l-1-3k)` was
+      wrong.
+    - (M) holds with `K = 1`. Validity conditioning leaves the U-marginal
+      uniform.
+    - (B) holds up to the dirty-tuple mass `eps_out <= k eps_3`, because folding
+      unfolds `a|_R` to `a|_L` on clean tuples.
+    - Folded aggregated constraints embed into the multi-edge game with at least
+      the same lift values.
+  - Outer soundness is Lemma 5.4 of the paper, applied to players who ignore
+    `Q`. Inner soundness and Hypothesis 3.6 are not used.
+  - Corollary, under `NP not in RP`: no polynomial-time selector on these
+    instances lifts an honest encoding `a|_R` of a good 3LIN assignment to value
+    `>= 1/2 + gamma`. The same holds for any lift labelling within mass
+    `gamma/4` of such an encoding.
+  - Survivor: H2 witnesses, far from every honest encoding on the *clean* mass.
+    Different labels on dirty tuples are absorbed by the corollary.
+  - Still unchecked: membership of the KMS 2-to-2 instances.
