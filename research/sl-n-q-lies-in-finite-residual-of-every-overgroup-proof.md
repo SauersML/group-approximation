@@ -1,6 +1,7 @@
 ---
 rg: 2
 id: sl-n-q-lies-in-finite-residual-of-every-overgroup-proof
+title: Direct proof of: sl n q lies in finite residual of every overgroup
 kind: route
 target: sl-n-q-lies-in-finite-residual-of-every-overgroup
 requires: []

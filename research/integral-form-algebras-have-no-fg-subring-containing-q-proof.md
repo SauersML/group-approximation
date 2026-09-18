@@ -1,6 +1,7 @@
 ---
 rg: 2
 id: integral-form-algebras-have-no-fg-subring-containing-q-proof
+title: Direct proof of: integral form algebras have no fg subring containing q
 kind: route
 target: integral-form-algebras-have-no-fg-subring-containing-q
 requires: []

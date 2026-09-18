@@ -1,6 +1,7 @@
 ---
 rg: 2
 id: q-embeds-in-a-corner-of-a-fp-toeplitz-ring-proof
+title: Direct proof of: q embeds in a corner of a fp toeplitz ring
 kind: route
 target: q-embeds-in-a-corner-of-a-fp-toeplitz-ring
 requires: []

@@ -1,6 +1,7 @@
 ---
 rg: 2
 id: gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring-proof
+title: Direct proof of: gl n q embeds in e n plus 1 of a fp ring
 kind: route
 target: gl-n-q-embeds-in-e-n-plus-1-of-a-fp-ring
 requires:

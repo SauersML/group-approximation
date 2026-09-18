@@ -1,6 +1,7 @@
 ---
 rg: 2
 id: extension-product-closures-cannot-create-sl-n-q-proof
+title: Direct proof of: extension product closures cannot create sl n q
 kind: route
 target: extension-product-closures-cannot-create-sl-n-q
 requires: []
