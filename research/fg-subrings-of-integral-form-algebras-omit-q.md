@@ -4,12 +4,18 @@ id: fg-subrings-of-integral-form-algebras-omit-q
 kind: claim
 title: A finitely generated subring of an algebra with finitely generated structure constants contains no copy of Q
 distinct_from:
+  integral-form-algebras-have-no-fg-subring-containing-q: that is the same obstruction for M_n(A (x) K) with (A,+) free abelian, landed first (7bbbef172); this allows structure constants in any finitely generated subring of K, not only Z, and adds that a nonzero element has only finitely many prime divisors.
+  infinite-field-leavitt-units-are-not-finitely-generated: its part 3 is the Leavitt case of clause 2 here.
   gl-n-q-embeds-in-fp-simple-group: that is the root embedding problem for the group GL_n(Q); this is a ring-level obstruction that removes one family of coefficient rings from the routes to it.
   leavitt-subalgebra-linear-groups-satisfy-boone-higman: that embeds GL_n(A) in the binary Leavitt unit group for unital subalgebras A of L_{F_2}(1,2); this shows that in characteristic 0 no finitely generated subring of any Leavitt algebra can contain Q, so GL_n(Q) is never reached that way.
 ---
 
 **ESTABLISHED** through `fg-subrings-of-integral-form-algebras-omit-q-proof`
-(lane proof, not independently reviewed).
+(lane proof, not independently reviewed). The case of scalar extensions of rings with free
+abelian additive group was landed independently, first, as
+`integral-form-algebras-have-no-fg-subring-containing-q`; the Leavitt case also as part 3
+of `infinite-field-leavitt-units-are-not-finitely-generated`. This node adds structure
+constants outside `Z` and the bound on prime divisors.
 
 **Statement.** Let `K` be a field of characteristic 0 and `B` a `K`-algebra with a
 `K`-basis `(b_j)_{j in J}` such that all structure constants `c^l_{ij}`

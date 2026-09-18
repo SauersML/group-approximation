@@ -83,6 +83,13 @@ A method should reproduce these, or say why it does not need to.
     does not host `BS(1,2)`.
   - Whether some `nV` contains `BS(1,2)` is **OPEN** (`bs12-embeds-in-brin-thompson-2v` *(node)*). So every
     `nV`-based route for `n = 2`, or for `Aff(Q)`, first needs that node or a replacement.
+  - The reduction is now a node: `rational-stepping-stones-in-nv-need-bs12-or-heisenberg` *(node)*,
+    dc7ed0ea3. `Aff(Q)`, `B_2(Q)`, `SL_2(Q)` or `GL_n(Q)` in `nV` forces `BS(1,2)` there. `U_3(Q)` or
+    `GL_n(Q)` with `n >= 3` forces `H_3(Z)`, and `GL_n(Q)` with `n >= 3` forces `SL_3(Z)`, which has (T).
+  - A copy of `Q` in `nV` that some element scales by `a != ±1` must consist of aperiodic-core elements:
+    every periodic point has exponent 0 (`scaled-rationals-in-nv-need-aperiodic-core-elements` *(node)*,
+    2d0a728bd). So the repo's odometer copy of Kojima–Sheng's `Q`, which has a periodic point with
+    exponent `(1,0)`, cannot be scaled. A scaled copy has to be built from new elements.
 - **Pass:** exhibit an element of the host that is conjugate to its own square, or cite a subgroup that
   contains `BS(1,2)`.
 
