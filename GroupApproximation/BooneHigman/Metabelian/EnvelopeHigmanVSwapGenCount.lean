@@ -68,3 +68,76 @@ theorem swapGen_source_eq_of_prefix [Nontrivial X] {f : Equiv.Perm (Cantor X)}
   exact ((prefix_of_prepend_eq key hlen.symm.le).eq_of_length hlen.symm).symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_source_eq_of_prefix
+
+/-- **Pigeonhole on leaves.** If every word of length `N` has a target of length `≥ N`, every
+such target has length exactly `N`. -/
+theorem swapGen_length_eq_of_le [Finite X] [Nontrivial X] {f : Equiv.Perm (Cantor X)} {N : ℕ}
+    (hf : ∀ w : List X, w.length = N → ∃ v, MapsCone f w v ∧ N ≤ v.length)
+    {w v : List X} (hw : w.length = N) (hv : MapsCone f w v) : v.length = N := by
+  choose t ht htl using hf
+  haveI : Finite ↥{l : List X | l.length = N} := (finite_words_length_eq N).to_subtype
+  let π : ↥{l : List X | l.length = N} → ↥{l : List X | l.length = N} := fun l =>
+    ⟨(t l.1 l.2).take N, by
+      show ((t l.1 l.2).take N).length = N
+      rw [List.length_take]
+      exact min_eq_left (htl l.1 l.2)⟩
+  have hsurj : Function.Surjective π := by
+    rintro ⟨u, hu⟩
+    have hu' : u.length = N := hu
+    obtain ⟨a, -, -⟩ := exists_pair_ne X
+    obtain ⟨w', v', y, hw', hv', hy⟩ :=
+      swapGen_exists_source (fun w h => ⟨t w h, ht w h⟩) (prepend u (fun _ => a))
+    have hvv : t w' hw' = v' := MapsCone.unique (ht w' hw') hv'
+    have hNv' : N ≤ v'.length := hvv ▸ htl w' hw'
+    refine ⟨⟨w', hw'⟩, Subtype.ext ?_⟩
+    show (t w' hw').take N = u
+    rw [hvv, swapGen_take_eq_of_prepend_eq hy hNv' hu'.ge, List.take_of_length_le hu'.le]
+  have hinj : Function.Injective π := Finite.injective_iff_surjective.mpr hsurj
+  have hvt : t w hw = v := MapsCone.unique (ht w hw) hv
+  have hNv : N ≤ v.length := hvt ▸ htl w hw
+  by_contra hne
+  have hlt : N < v.length := lt_of_le_of_ne hNv (Ne.symm hne)
+  obtain ⟨c, hc⟩ := exists_ne (v[N]'hlt)
+  obtain ⟨w', v', y, hw', hv', hy⟩ :=
+    swapGen_exists_source (fun w h => ⟨t w h, ht w h⟩) (prepend (v.take N) (fun _ => c))
+  have hvv' : t w' hw' = v' := MapsCone.unique (ht w' hw') hv'
+  have hNv' : N ≤ v'.length := hvv' ▸ htl w' hw'
+  have hNt : ¬ N < (v.take N).length := by
+    rw [List.length_take]
+    omega
+  have htake : v'.take N = v.take N := by
+    have h1 := swapGen_take_eq_of_prepend_eq hy hNv' (by rw [List.length_take]; omega)
+    rwa [List.take_of_length_le (List.length_take_le N v)] at h1
+  have h2 : π ⟨w', hw'⟩ = π ⟨w, hw⟩ := by
+    apply Subtype.ext
+    show (t w' hw').take N = (t w hw).take N
+    rw [hvv', hvt, htake]
+  have hww : w' = w := congrArg Subtype.val (hinj h2)
+  subst hww
+  have hvv2 : v' = v := MapsCone.unique hv' hv
+  subst hvv2
+  have h3 := congrFun hy N
+  rw [prepend_getElem v' y hlt, prepend_of_length_le (v'.take N) (fun _ => c) hNt] at h3
+  exact hc h3.symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_length_eq_of_le
+
+/-- If every word of length `N` has a target of length `≤ N`, then every word of length `N` has
+an `f⁻¹`-target of length `≥ N`. -/
+theorem swapGen_inv_ge [Nontrivial X] {f : Equiv.Perm (Cantor X)} {N : ℕ}
+    (hf : ∀ w : List X, w.length = N → ∃ v, MapsCone f w v ∧ v.length ≤ N)
+    (u : List X) (hu : u.length = N) : ∃ v, MapsCone f⁻¹ u v ∧ N ≤ v.length := by
+  obtain ⟨a, -, -⟩ := exists_pair_ne X
+  obtain ⟨w, v, y, hw, hv, hy⟩ :=
+    swapGen_exists_source (fun w h => (hf w h).imp fun _ h' => h'.1) (prepend u (fun _ => a))
+  obtain ⟨v₀, hv₀, hl⟩ := hf w hw
+  have hvv : v₀ = v := MapsCone.unique hv₀ hv
+  subst hvv
+  obtain ⟨s, rfl⟩ := prefix_of_prepend_eq hy (by omega)
+  refine ⟨w ++ s, (hv₀.append s).inv, ?_⟩
+  rw [List.length_append]
+  omega
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.swapGen_inv_ge
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

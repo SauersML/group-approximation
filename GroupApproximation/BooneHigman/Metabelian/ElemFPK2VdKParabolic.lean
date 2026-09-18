@@ -37,8 +37,8 @@ variable {R : Type*} [Ring R] {n : ℕ}
 /-- Applying an elementary matrix to a column vector. -/
 theorem vdkMulVec_elementary (i j : Fin n) (a : R) (v : Fin n → R) :
     (1 + Matrix.single i j a) *ᵥ v = v + Pi.single i (a * v j) := by
-  rw [Matrix.add_mulVec, Matrix.one_mulVec, Matrix.single_mulVec]
-  rfl
+  have h : Matrix.single i j a *ᵥ v = Pi.single i (a * v j) := Matrix.single_mulVec i j a v
+  rw [Matrix.add_mulVec, Matrix.one_mulVec, h]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkMulVec_elementary
 
