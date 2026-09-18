@@ -6061,6 +6061,7 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06c.RegionArcs
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.RegionCut
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbLocalState
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexIndexFun
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
