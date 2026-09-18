@@ -188,8 +188,9 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      `w = b_(k_1) ⋯ b_(k_r)` and any position `i`, `u·w = p·(w ∖ i) − (1 + k_i l)·w`, where `w ∖ i` deletes the
      `i`-th letter.
    - *Positional relations.* Comparing two positions gives `p(w ∖ i − w ∖ i') = (k_i − k_(i')) l · w`. These
-     relations, together with centrality of `p`, present the positive-degree part of the lamp subring as a
-     `Z[p]`-module spanned by lamp words.
+     relations hold in `B`. The positive-degree part of the lamp subring is spanned over `Z[p]` by lamp words.
+     That the positional relations generate all relations among words is expected but not verified: the check
+     that higher powers of `u` add nothing is not done.
    - *Consequences.*
      - `w = b_k b_j b_k` with `i = 1`, `i' = 3` gives `p [b_j, b_k] = 0`. So each lamp commutator is killed by `p`,
        by `(k−j) l`, and on the left by `π_j` and `π_k`. It vanishes where `p` is a unit, which is consistent with
