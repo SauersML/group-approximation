@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/gq-bh-bh-free-58-kari-ollinger-source.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed).
+**ESTABLISHED** (lane proof; referee PASS on 2026-09-18, conditional on the published theorems of Kari–Ollinger; see Referee).
 
 - **Inputs.**
   - Kari–Ollinger, MFCS 2008, Theorems 3 and 6, read at source (see the artifact). They
@@ -170,3 +170,71 @@ the `λ_c` and `Y` are all computed from `T` by finite checks mod `L'`. ∎
   difficulty is turning that computation into a homomorphism, i.e. relations that hold
   identically. The dynamical properties of the element must not leak into the image
   subgroup.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** The reduction is complete and correct. Its only external inputs are Kari–Ollinger
+Theorems 3 and 6, used exactly as printed.
+
+**Checked against sources.**
+- **Kourovka Notebook**, arXiv:1401.0300v46 (1 Sep 2026), Problem 21.74 (S. Kohl), read verbatim.
+  - The three parts quoted under Statement match the printed text word for word.
+  - There is no asterisk, so the problem is unsolved in that issue.
+  - Parts (b) and (c) are exactly what the Theorem answers.
+- **Kari–Ollinger, MFCS 2008**, the PDF recorded in the artifact (md5 6d5a3e72…), pp. 419–424, read
+  directly.
+  - The machine model (p. 421–422) is the one used in (R1) and (R2):
+    - no decrement at a zero counter;
+    - determinism means the state and the test vector fix the rest;
+    - the three reversed-instruction rules are as used.
+  - Theorem 3 (p. 423) reads: "It is undecidable whether a given 2-RCM is periodic". Periodicity is
+    defined only for complete systems, as "every configuration is periodic" (p. 420), and the proof
+    sketch builds complete machines. So part 1 reduces from exactly this problem.
+  - Theorem 6 (p. 423) makes it undecidable whether a given complete 3-RCM, or a given not
+    necessarily complete 2-RCM, admits a periodic configuration. Part 2 uses the 2-RCM clause.
+
+**Step-by-step checks.**
+- **(R1).** The reverse of the instruction used at `x` applies at `y = G(x)` and returns `x`,
+  for each of `φ ∈ {−,0,+}`. Determinism of `T^{-1}` makes that reverse action unique.
+  Correct.
+- **(R2).** The image of one instruction is a union of cells. `Halt` is a union of
+  (state, pattern) sets. Correct.
+- **Claim 1.** The three domains, and the three images, partition `X`, and `f` is injective on
+  each piece. Along backward rays `e_11` strictly decreases, and only backward rays map into
+  backward rays. Forward rays are absorbing, and `e_13` increases along them. So every finite
+  cycle consists of configuration codes, on which `f = G`. Every configuration has a code. Correct.
+- **Claim 2.** A residue mod `p^a` determines `min(e_p, a)`, including for negative `n`. The class
+  `0(L)` does not meet `X`, since `X` consists of odd numbers. The data that fix membership and the
+  formula (state, and counter cells `{0, 1, ≥2}`) are read mod `L`. Each denominator of `λ_c`
+  divides both `L` and `n`, hence `c`. Correct.
+- **`F_M`.** The families `{c(L)}`, `{2c(2L)}` and `{f(c(L))}` are pairwise disjoint, because
+  `X` is odd, `2X` is even and `f` is a bijection. So `s_1` and `s_2` are involutions with the stated
+  action.
+  - `F_M` is `f` on `X` and a copy of `f^{-1}` on `2X`.
+  - With the other composition convention it is `f^{-1}` on `X`, with the same cycles.
+  - Parts 1 and 2 follow as written. Correct.
+- **Filler.** `Y = Z ∖ (X ∪ 2X)` is a union of classes mod `2L`, hence mod `L′`. The required node's
+  formula and its items 1 and 3 were checked (see the Referee section there). Correct.
+- **Moduli.** All moduli are `L`, `2L`, `λ_c L`, `4L′` or `16L′`, all `{2,3,5,7,11,13}`-smooth. So
+  the instances lie in `CT_P(Z)` with `P = {3,5,7,11,13}`. Correct.
+
+**Notes** (none affects the verdict).
+1. **Literature input.** Kari–Ollinger print proof sketches only ("Due to page constraints most
+   proofs are short sketches of the main idea", p. 421).
+   - Theorem 3 rests on their Theorem 1: Hooper 1966, via Morita's 2-RCM simulation.
+   - The 2-RCM clause of Theorem 6 rests on a one-sentence claim that Morita's conversion from
+     3 counters to 2 preserves periodic orbits.
+   - For (c) that last step can be avoided. The complete-3-RCM clause has a fuller sketch, and the
+     construction here codes a third counter by a new prime (say `17`, keeping `11` and `13` for
+     the rays; see "More counters"). So (c) holds in `CT_{P ∪ {17}}(Z)` using only that clause.
+   - Cite the result as "conditional on the published theorems of Kari–Ollinger", as the node does.
+2. **Remark on 21.74(a).** The sentence "products of multiplicative class maps with odd multipliers"
+   is loosely worded. Read it as "elements of CT(Z) all of whose affine pieces have odd numerator
+   and denominator". Such elements preserve `{0(2), 1(2)}`, so they are yes-instances. The remark is
+   not load-bearing.
+3. **Priority** (searched 2026-09-18: class transpositions with decidability, and "21.74"). Nothing
+   treats 21.74.
+   - arXiv:2607.17477 solves Kourovka 21.8 only among the class-transposition problems, as its
+     HTML confirms.
+   - arXiv:2604.12553 is about horizontal class transpositions.
+   - Boege, arXiv:1612.05136, concerns single recursive permutations, not this problem.
