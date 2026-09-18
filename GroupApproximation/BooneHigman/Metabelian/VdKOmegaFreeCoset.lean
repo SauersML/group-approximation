@@ -118,8 +118,67 @@ theorem vdkOmegaFree_E_injective (hπ : Function.Injective π) :
 /-- For injective `π`, the bijection `P × π(P) \ Γ ≃ Γ`. -/
 noncomputable def vdkOmegaFree_Eequiv (hπ : Function.Injective π) :
     P × vdkOmegaFree_Orb π ≃ Γ :=
-  Equiv.ofBijective (vdkOmegaFree_E π) ⟨vdkOmegaFree_E_injective π hπ, vdkOmegaFree_E_surjective π⟩
+  Equiv.ofBijective (vdkOmegaFree_E π)
+    ⟨vdkOmegaFree_E_injective π hπ, vdkOmegaFree_E_surjective π⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_Eequiv
 
+theorem vdkOmegaFree_Eequiv_apply (hπ : Function.Injective π) (c : P × vdkOmegaFree_Orb π) :
+    vdkOmegaFree_Eequiv π hπ c = vdkOmegaFree_E π c :=
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_Eequiv_apply
+
 end Orb
+
+section Glue
+
+variable {N G N' Γ : Type*} [Group N] [Group G] [Group N'] [Group Γ]
+  {φ : G →* MulAut N} {φ' : G →* MulAut N'}
+  (π : N ⋊[φ] G →* Γ) (π' : N' ⋊[φ'] G →* Γ)
+  (hπ : Function.Injective π) (hπ' : Function.Injective π')
+
+/-- `Ψ = E'⁻¹ ∘ E`. -/
+noncomputable def vdkOmegaFree_Psi :
+    (N ⋊[φ] G) × vdkOmegaFree_Orb π ≃ (N' ⋊[φ'] G) × vdkOmegaFree_Orb π' :=
+  (vdkOmegaFree_Eequiv π hπ).trans (vdkOmegaFree_Eequiv π' hπ').symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_Psi
+
+theorem vdkOmegaFree_E_Psi (ω : (N ⋊[φ] G) × vdkOmegaFree_Orb π) :
+    vdkOmegaFree_E π' (vdkOmegaFree_Psi π π' hπ hπ' ω) = vdkOmegaFree_E π ω :=
+  (vdkOmegaFree_Eequiv π' hπ').apply_symm_apply (vdkOmegaFree_Eequiv π hπ ω)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_E_Psi
+
+theorem vdkOmegaFree_E_Psi_symm (ω' : (N' ⋊[φ'] G) × vdkOmegaFree_Orb π') :
+    vdkOmegaFree_E π ((vdkOmegaFree_Psi π π' hπ hπ').symm ω') = vdkOmegaFree_E π' ω' :=
+  (vdkOmegaFree_Eequiv π hπ).apply_symm_apply (vdkOmegaFree_Eequiv π' hπ' ω')
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_E_Psi_symm
+
+/-- **`Ψ` is `G`-equivariant** once `π`, `π'` agree on `G`. -/
+theorem vdkOmegaFree_Psi_equivariant
+    (hinr : ∀ g : G, π (SemidirectProduct.inr g) = π' (SemidirectProduct.inr g)) :
+    vdkOmegaFree_Equivariant (vdkOmegaFree_Psi π π' hπ hπ') := by
+  intro g p x
+  apply vdkOmegaFree_E_injective π' hπ'
+  rw [vdkOmegaFree_E_Psi, vdkOmegaFree_E_mul, vdkOmegaFree_E_mul, hinr]
+  exact congrArg (π' (SemidirectProduct.inr g) * ·) (vdkOmegaFree_E_Psi π π' hπ hπ' (p, x)).symm
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_Psi_equivariant
+
+/-- Left multiplication by `q` on the `Ψ`-side is carried by `E` to left multiplication by
+`π' q`. -/
+theorem vdkOmegaFree_E_Psi_symm_mul (q : N' ⋊[φ'] G) (ω : (N ⋊[φ] G) × vdkOmegaFree_Orb π) :
+    vdkOmegaFree_E π ((vdkOmegaFree_Psi π π' hπ hπ').symm
+      (q * (vdkOmegaFree_Psi π π' hπ hπ' ω).1, (vdkOmegaFree_Psi π π' hπ hπ' ω).2)) =
+      π' q * vdkOmegaFree_E π ω := by
+  rw [vdkOmegaFree_E_Psi_symm, vdkOmegaFree_E_mul]
+  exact congrArg (π' q * ·) (vdkOmegaFree_E_Psi π π' hπ hπ' ω)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.vdkOmegaFree_E_Psi_symm_mul
+
+end Glue
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
