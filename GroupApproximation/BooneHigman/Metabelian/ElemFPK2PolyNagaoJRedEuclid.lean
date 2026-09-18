@@ -94,3 +94,73 @@ theorem k2PolyNagaoJRed_row {K : Finset I} {m L i j : I} (hij : i ≠ j) (hi : i
   linear_combination -(EuclideanDomain.div_add_mod (v i) (v j))
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_row
+
+/-- **The normal form.**  If `v j` is the only nonzero `J`-coordinate of the orbit vector `v`,
+the rows `m` and `L` reduced modulo `v j` give the residual normal form, and the check moves
+back along both roots (`k2PolyNagaoJRed_transfer`). -/
+theorem k2PolyNagaoJRed_normal {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hLK : L ∉ K) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    (hres : ∀ w : I → Polynomial (ZMod p), (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = w) →
+      ∀ j ∈ K.erase m, (∀ k, k ≠ m → k ≠ L → k ≠ j → w k = 0) → w j ≠ 0 →
+      (w m).degree < (w j).degree → (w L).degree < (w j).degree →
+      k2PolyNagaoJRed_Chk p K m L hmL w)
+    {v : I → Polynomial (ZMod p)} (hv : ∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = v)
+    (hone : ∀ j ∈ K.erase m, ∀ j' ∈ K.erase m, v j ≠ 0 → v j' ≠ 0 → j = j')
+    {j : I} (hj : j ∈ K.erase m) (hvj : v j ≠ 0) : k2PolyNagaoJRed_Chk p K m L hmL v := by
+  have hjm : j ≠ m := Finset.ne_of_mem_erase hj
+  have hLj : L ≠ j := fun e => hLK (by rw [e]; exact Finset.mem_of_mem_erase hj)
+  obtain ⟨g1, hG1, c1m, c1⟩ :=
+    k2PolyNagaoJRed_row (L := L) hjm.symm (Finset.mem_insert_of_mem hmK) hj v
+  have hv1 := k2PolyNF_orbit_act
+    (k2PolyNagaoWide_Q_le_G K L (k2PolyNagaoWide_Qm_le_Q K m L hG1)) hv
+  obtain ⟨g2, hG2, c2L, c2⟩ :=
+    k2PolyNagaoJRed_row (m := m) hLj (Finset.mem_insert_self L K) hj (act g1 v)
+  have hv2 := k2PolyNF_orbit_act
+    (k2PolyNagaoWide_Q_le_G K L (k2PolyNagaoWide_Qm_le_Q K m L hG2)) hv1
+  have hwj : act g2 (act g1 v) j = v j := by rw [c2 j hLj.symm, c1 j hjm]
+  have hwm : act g2 (act g1 v) m = v m % v j := by rw [c2 m hmL, c1m]
+  have hwL : act g2 (act g1 v) L = v L % v j := by rw [c2L, c1 L hmL.symm, c1 j hjm]
+  refine k2PolyNagaoJRed_transfer hmL hmK hLK hthird hStab hG1 hv
+    (k2PolyNagaoJRed_transfer hmL hmK hLK hthird hStab hG2 hv1
+      (hres _ hv2 j hj (fun k hkm hkL hkj => ?_) ?_ ?_ ?_))
+  · rw [c2 k hkL, c1 k hkm]
+    by_cases hkK : k ∈ K
+    · exact Classical.byContradiction fun hk0 =>
+        hkj (hone k (Finset.mem_erase.2 ⟨hkm, hkK⟩) j hj hk0 hvj)
+    · exact k2PolyNagaoJRed_orbit_out hv (fun h => (Finset.mem_insert.1 h).elim hkL hkK)
+  · rw [hwj]
+    exact hvj
+  · rw [hwm, hwj]
+    exact Polynomial.degree_mod_lt _ hvj
+  · rw [hwL, hwj]
+    exact Polynomial.degree_mod_lt _ hvj
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_normal
+
+/-- **The `J`-reduction of the root check.**  The check of `σ` at `x_mL(1)` follows from the
+check at the supported orbit vectors (`hsupp`) and at the residual normal forms (`hres`). -/
+theorem k2PolyNagaoJRed_check_all {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m ∈ K)
+    (hLK : L ∉ K) (hthird : ∀ a b : I, ∃ k, a ≠ k ∧ b ≠ k)
+    (hStab : k2PolyNagaoWide_Stab p (K.erase m) m)
+    (hsupp : ∀ w : I → Polynomial (ZMod p), (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = w) →
+      k2PolyNagaoWide_Supp m L w → k2PolyNagaoJRed_Chk p K m L hmL w)
+    (hres : ∀ w : I → Polynomial (ZMod p), (∃ y ∈ k2PolyDeg_G p K L, act y (unitVec L) = w) →
+      ∀ j ∈ K.erase m, (∀ k, k ≠ m → k ≠ L → k ≠ j → w k = 0) → w j ≠ 0 →
+      (w m).degree < (w j).degree → (w L).degree < (w j).degree →
+      k2PolyNagaoJRed_Chk p K m L hmL w) :
+    k2PolyEuclid_Check p K L (k2PolyNagaoWide_sigma p K m L hmL)
+      (x m L hmL (1 : Polynomial (ZMod p))) := by
+  intro v hv
+  refine k2PolyNagaoJRed_reduce hmL hmK hLK hthird hStab (fun w hw hone => ?_) _ v rfl hv
+  by_cases hex : ∃ j ∈ K.erase m, w j ≠ 0
+  · obtain ⟨j, hj, hwj⟩ := hex
+    exact k2PolyNagaoJRed_normal hmL hmK hLK hthird hStab hres hw hone hj hwj
+  · refine hsupp w hw (fun k hkm hkL => ?_)
+    by_cases hkK : k ∈ K
+    · exact Classical.byContradiction fun hk0 => hex ⟨k, Finset.mem_erase.2 ⟨hkm, hkK⟩, hk0⟩
+    · exact k2PolyNagaoJRed_orbit_out hw (fun h => (Finset.mem_insert.1 h).elim hkL hkK)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoJRed_check_all
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
