@@ -106,7 +106,7 @@ theorem k2Karoubi_coe_alpha (d : SteinbergGroup (Fin M) (Localization.Away s))
     ((k2Karoubi_alpha s M d z : k2Karoubi_kerB s M) :
         SteinbergGroup (Fin M) (Polynomial (Localization.Away s))) =
       ringMap Polynomial.C d * z * (ringMap Polynomial.C d)⁻¹ :=
-  MulAut.conjNormal_apply _ _
+  MulAut.conjNormal_apply (ringMap Polynomial.C d) z
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_coe_alpha
 
@@ -118,6 +118,68 @@ theorem k2Karoubi_coe_u (i j : Fin M) (hij : i ≠ j) (h : Polynomial (Localizat
   rw [ringMap_x, k2PullRel_snd_lift]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_coe_u
+
+/-- `F1` for the canonical witness. -/
+theorem k2Karoubi_F1 : k2PullRel_F1 (k2Karoubi_q s M) (k2Karoubi_alpha s M) := by
+  intro i j k l hij hkl hjk hli _ _
+  apply Subtype.ext
+  rw [k2Karoubi_coe_alpha, k2Karoubi_coe_u, ringMap_x,
+    (x_commute_of_ne k l i j hkl hij hli hjk _ _).eq, mul_inv_cancel_right]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_F1
+
+/-- `F2` for the canonical witness. -/
+theorem k2Karoubi_F2 : k2PullRel_F2 (k2Karoubi_q s M) (k2Karoubi_alpha s M) := by
+  intro i j k hij hjk hik t h
+  apply Subtype.ext
+  simp only [Subgroup.coe_mul, k2Karoubi_coe_alpha, k2Karoubi_coe_u, ringMap_x]
+  rw [mul_inv_eq_iff_eq_mul]
+  have e : Polynomial.C t * h - Polynomial.C ((Polynomial.C t * h).eval 0) =
+      Polynomial.C t * (h - Polynomial.C (h.eval 0)) := by
+    simp only [Polynomial.eval_mul, Polynomial.eval_C, map_mul]
+    ring
+  rw [e]
+  exact (k2PullRel_comm_iff _ _ _).mp (x_commutator i j k hij hjk hik _ _)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_F2
+
+/-- `F3` for the canonical witness. -/
+theorem k2Karoubi_F3 : k2PullRel_F3 (k2Karoubi_q s M) (k2Karoubi_alpha s M) := by
+  intro i j k hij hjk hik t h
+  apply Subtype.ext
+  simp only [Subgroup.coe_mul, k2Karoubi_coe_alpha, k2Karoubi_coe_u, ringMap_x]
+  have e : -(h * Polynomial.C t) - Polynomial.C ((-(h * Polynomial.C t)).eval 0) =
+      -((h - Polynomial.C (h.eval 0)) * Polynomial.C t) := by
+    simp only [Polynomial.eval_neg, Polynomial.eval_mul, Polynomial.eval_C, map_neg, map_mul]
+    ring
+  rw [e, x_neg]
+  exact k2Karoubi_conj_of_comm
+    ((k2PullRel_comm_iff _ _ _).mp (x_commutator i j k hij hjk hik _ _))
+    (x_commute_of_ne i k i j hik hij hik.symm hij.symm _ _).eq
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_F3
+
+/-- `Compat` for the canonical witness. -/
+theorem k2Karoubi_Compat : k2PullRel_Compat (k2Karoubi_q s M) (k2Karoubi_alpha s M) := by
+  intro c i j hij b _
+  apply Subtype.ext
+  rw [k2Karoubi_coe_alpha]
+  show _ * ringMap (k2PullRel_snd s) (x i j hij b) * _ =
+    ringMap (k2PullRel_snd s)
+      (ringMap (k2PullRel_const s) c * x i j hij b * (ringMap (k2PullRel_const s) c)⁻¹)
+  rw [map_mul, map_mul, map_inv, k2PullRel_ringMap_snd_const]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_Compat
+
+/-- **Faithfulness of the canonical witness is `R1` at level `M`**. -/
+theorem k2Karoubi_faithful_of_inj
+    (h : ∀ y : SteinbergGroup (Fin M) (k2DilateSt_pullback s),
+      ringMap (k2PullRel_fst s) y = 1 → ringMap (k2PullRel_snd s) y = 1 →
+        cubeDiagDilate_StDies y) :
+    k2PullRel_Faithful (k2Karoubi_q s M) := fun y hy ↦
+  h y (k2PullRel_mem_ker.mp y.2) (congrArg Subtype.val hy)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2Karoubi_faithful_of_inj
 
 end KaroubiWitness
 
