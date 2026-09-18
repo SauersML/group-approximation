@@ -13,7 +13,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-emitter-b, 2026-09-18; elementary given the parent nodes and
-Baumslag's theorem that `Z ≀ Z` is not finitely presented; not reviewed). Notation `F_B`,
+Baumslag's theorem that `Z ≀ Z` is not finitely presented; one referee PASS, bh-ref-engines 2026-09-18, see Referee section). Notation `F_B`,
 `D(F_B)` as in `free-product-boundary-groupoids-carry-the-vertex-group-homology`, with `k = 2`.
 
 ## Statement
@@ -78,3 +78,13 @@ be true for any engine that reads its input through locally faithful labels. Suc
 retracts onto its input, so it is only as presented as the input. Simplicity of the input
 buys nothing on the finiteness side. What must be supplied is a finitely presented,
 decidable input, and the engine's job is only to make it simple.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- `D(F_{Z≀Z})` is simple (parent) and finitely generated.
+- It is infinite: the commutator `[b, a]` has infinite order in `Z/2 * B`.
+- It is decidable, by the lemma: nonemptiness of atoms is decidable from the finite edge list.
+- It is not finitely presented, by Baumslag (Math. Z. 1961) through the quasi-retraction.
+- The refutation of `simple-inputs-have-finitely-presented-stabilizer-engines` stands. It is
+  now also implied by `stabilizer-engines-need-torsion-vertex-groups`, since infinite simple
+  vertex groups are excluded outright.

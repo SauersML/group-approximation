@@ -122,3 +122,37 @@ Two consequences follow:
 - **Proving PBH.** The whole content of the actor problem is finite presentation of a full
   clopen-transitive host containing the input. The move system is only a tool for proving that
   finiteness.
+
+## Referee (bh-ref-misc, 2026-09-18): PASS for items 1–5 and Corollaries (a)–(c); the planar remark is imprecise
+
+Internal referee lane, not an external review. I checked every step of
+`symmetric-operad-groups-full-cantor-proof`:
+- **Step 1.** The inverse system is directed, by left cancellation and Ore. It is perfect by (N):
+  every cylinder has two disjoint nonempty subcylinders. The action is well defined because the down
+  sets under `a` and under `b` are isomorphic via `ρ`, and cofinal.
+- **Fullness (Step 2).** The partition of `e`-leaves into the sets `y_i` is correct. `ω` is a morphism
+  because the operad is symmetric. `(Loc)` gives `f = e∘d^{-1}` on each `∂_c(i)`.
+- **Step 3.**
+  - "Common `→*`-descendant" is transitive via Ore, and it equals equality in `M(𝒪)`.
+  - With no arity-0 operations, no nonempty clopen set has class 0.
+  - For disjoint `U` and `W`, a colour-preserving permutation exchanges them.
+  - The splitting in the case `U ∪ W = ∂X` works because `∂X` is perfect.
+  - With one colour, the classes are residues modulo `gcd(k − 1)`.
+- **Steps 4–5.** These are the hypotheses of `fp-clopen-transitive-full-cantor-groups-have-type-a-actions`
+  as stated there. The transposition shows that the image `Γ̄` is nontrivial.
+- **Corollary (b) ⇒.** `SV_{Γ_0}` is the operad group of the twisted cube operad, with boundary
+  `C^S`. It is faithful, and has one nonzero class.
+
+**Gaps and scope.**
+1. **Planar case.** The step "its subgroups lie in `B_A`" should read "subgroups of its boundary image,
+   or subgroups of `Γ` meeting the boundary kernel trivially". The symmetrized operad was not shown to
+   satisfy the calculus of fractions.
+2. **Scope for Q3.4.** This settles BFFHZ Q3.4 only for finitely presented simple symmetric operad
+   groups whose `M(𝒪)` has one nonzero element. With several nonzero classes (e.g. `V_(n,r)` with
+   `n ≥ 3`), the ordered-partition trick of `twisted-integral-affine-groups-lie-in-the-permutational-class`
+   should apply to partitions into pieces of class `[∂X]`. That extension is not proved here.
+3. **Priority.** Not searched beyond the node's own remark that fullness is classical for the standard
+   examples.
+
+`bounded-refinement-operads-reduce-to-their-carriers` (same commit) was checked separately; it is a
+PASS, and its Referee section is on that node.

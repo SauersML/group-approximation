@@ -14,7 +14,7 @@ distinct_from:
   relatively-simple-removal-between-pbh-and-bh-of-quotient: that proves one relatively simple pair is removable only when its simple quotient embeds in a finitely presented simple group; this exhibits a pair whose simple quotient cannot, because its word problem is unsolvable.
 ---
 
-**ESTABLISHED** by the proof below. Lane proof by bh-ffwz-q59, 2026-09-18. It is not
+**ESTABLISHED** by the proof below. Lane proof by bh-ffwz-q59, 2026-09-18. One referee PASS, conditional on finite presentation of SV_P (bh-ref-ffwz, see Referee below). It is not
 reviewed and no priority is claimed. It depends on the lane proof
 `nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`.
 
@@ -78,3 +78,27 @@ kernel.
   kernel of its own envelope is finitely normally generated, using that envelope's
   structure. For `SV_G`, that is finite presentation of the action image
   (`abstract-btb-simple-quotient-fp-gate`).
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS, conditional on finite presentation of SV_P
+
+I read the statements of FFWZ Theorem A and Lemma 5.2 in their TeX source (arXiv:2603.24687v2).
+- **Theorem A:** "every proper normal subgroup of SV_G lies in the kernel of SV_G → SV_{G/K}".
+  It is unconditional, which gives item 1.
+- **Lemma 5.2:** "(G,K) sharply embeds in SV_G". It is unconditional.
+
+The rest of the argument:
+- **Item 2.** `P/K` contains `⟨Φ⟩`, which is finitely generated with unsolvable word problem.
+  So `H/M ⊇ P/K` has unsolvable word problem. This is correct.
+- **Item 3.** `ι(H) ∩ M' = ι(M)` makes `H/M ↪ H'/M'`. `H'/M'` is simple by relative
+  simplicity and finitely presented because `M'` is finitely normally generated. Kuznetsov
+  then gives a contradiction. This is correct.
+- **The one external dependency is that `H = SV_P` is finitely presented.** It rests on FFWZ
+  Theorem B (fp iff type [A_2], non-faithful case). That theorem is stated in their paper,
+  but the repo records a gap in its printed proof. The node therefore invokes
+  `abstract-twisted-bt-type-fn-criterion` item 2, which I did not referee here. Referee that
+  node before citing part 2 unconditionally.
+- **Reading of "sharply embeds" for pairs.** The same equality reading is used; see the
+  referee note on `nonrecursive-a2-kernel-from-abstract-rover-nekrashevych-groups`.
+- **Credit.** The relative-simplicity and pair-embedding inputs are FFWZ's. The observation
+  that a type [A_2] action with a non-recursive kernel refutes both parts at once is already
+  in Attempt 1 of `fp-relatively-simple-pairs-embed-with-fng-kernels`.

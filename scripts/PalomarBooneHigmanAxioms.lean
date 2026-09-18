@@ -11,9 +11,8 @@ the `_of` forms are sorry-free (their outstanding propositions are hypotheses, n
 their axiom closure is already the closure the finished theorems will rest on. A `sorryAx`
 here means a selected statement is reached through an unfinished proof in the development.
 
-The names carry `_of` because the configuration's unsuffixed names do not exist yet, except
-`exists_finitely_presented_infinite_simple`, which is proved outright and is checked under both
-names. The loop does not stop at the first failure.
+The names carry `_of` because the configuration's unsuffixed names do not exist yet. The loop
+does not stop at the first failure.
 -/
 
 open Lean Elab Command
@@ -28,9 +27,10 @@ def compared : List Name :=
    `BooneHigman.finitely_generated_metabelian_embeds_in_finitely_presented_simple_of,
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_simple_of,
    `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar_of,
-   `BooneHigman.exists_finitely_presented_infinite_simple,
-   `BooneHigman.exists_finitely_presented_infinite_simple_of,
+   `BooneHigman.kourovka_17_57_of,
    `BooneHigman.kourovka_17_59_of,
+   `BooneHigman.kourovka_17_61_of,
+   `BooneHigman.graph_product_embeds_in_type_a_group_of,
    `BooneHigman.exists_fp_simple_with_mixed_identities_not_finitely_normally_generated_of]
 
 /-- The axioms `Palomar/comparator-boone-higman.json` permits. -/

@@ -13,6 +13,12 @@ https://zaremsky.github.io/open_problems.pdf), Section 2, Problem 8, verbatim:
 "Find an infinite dimensional torsion-free group of type F∞ that does not
 contain F."
 
+**Also printed as Kourovka 21.140** (arXiv:1401.0300v46, 1 September 2026, S. Witzel and M. C. B. Zaremsky):
+"Let $G$ be a torsion-free group of type $F_\infty$ of infinite cohomological dimension. Must $G$ contain a copy
+of Thompson's group $F$?" A construction answers it **no**. The sharpest construction route is
+`basilica-hnn-fp-infinity-answers-kourovka-21-140`: the finitely presented Basilica HNN extension is torsion-free, has
+infinite cd and provably contains no `F`, so only its type `FP_∞` is open.
+
 This claim is the question. It is established only through an answer route:
 
 - **Construction**: `zaremsky-2-08-by-construction` requires
