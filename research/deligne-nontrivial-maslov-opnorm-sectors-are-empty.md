@@ -177,3 +177,39 @@ operator-norm asymptotic representations.
   - Under (A), the gate is equivalent to (B_op). This meets the w6-last2
     calibration, since the route uses operator-norm liftability. Neither
     prerequisite was proved here, so the gate stays OPEN.
+
+- **2026-09-18, swarm-0917-w14-w14-deligne-pull (entropy-measure, third pass on
+  this node): free-entropy and winding transplants die; no survivor.**
+  - *Invariant.* A point-norm `alpha`-model `u_n` has an ultralimit trace
+    `tau = lim tr_(d_n) o u_n`. It is a trace on the twisted fibre
+    `C^*(Sp_4(Z), alpha)`, so it is the canonical trace (the character
+    rigidity already used by `deligne-sector-gap-is-exactly-nonhyperlinearity`).
+    Any microstate entropy counts matrix tuples through trace moments only.
+    That covers Voiculescu `chi` and `delta_0`, the Jung--Shlyakhtenko bound
+    `delta_0 <= 1` for property `(T)` generators, Hayes 1-bounded entropy, and
+    sofic or `f`-invariant entropy of the fibre.
+  - *Where every trace-level member dies.* An op-model gives microstates for
+    `tau`, but so does every normalized-HS model. A trace-level entropy
+    argument that refutes op-models therefore proves the microstate space of
+    `(L_alpha(Sp_4 Z), tau)` is empty. That is non-hyperlinearity of `E_3`,
+    which is the flagship itself (w6-last2 calibration). An argument that the
+    space is only small (`delta_0 <= 1`, 1-boundedness) contradicts nothing,
+    since op-microstates are a subset.
+  - *The only op-level member.* This is Hadwin--Li--Shen topological free
+    entropy, whose microstates are norm-approximate relation solutions.
+    `delta_top = -infinity` for the Kazhdan generator system with multiplier
+    `alpha` is a verbatim restatement of this gate. The inequality
+    `delta_top <= sup_tau delta_0` gives only the trace-level bound again. So
+    the class gives no new prerequisite.
+  - *Winding and K-theory tests on route (A),
+    `mod-s2-is-point-norm-matricially-stable`, all vanish.* For an asymptotic
+    homomorphism of `M = Mod(S_2)`, the Dadarlat winding is additive on
+    `H_2(M;Z) = Z/2`, so it vanishes on the Bott class of every commuting-twist
+    `Z^2 < M`. Voiculescu pairs therefore cannot occur on such a `Z^2` inside
+    an `M`-model. Windings pulled back from finite-index subgroups die under
+    transfer, because `H_2(M;Q) = 0`. Determinants see only `d mod 3`
+    (`deligne-sector-determinants-see-only-dimension-mod-three`).
+  - *Conclusion.* An entropy-measure proof of this gate would have to use a
+    norm-level invariant that is not a restatement of the gate, and none is
+    known. The gate stays OPEN. Live routes are unchanged: (A) with (B_op),
+    the Schreier cellular floor, and the HS gap.
