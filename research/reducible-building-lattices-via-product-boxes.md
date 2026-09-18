@@ -41,7 +41,7 @@ stabilizers and finitely many orbits, by the argument of Lemma P in
 proper cocompact actions on products of locally finite complexes.
 - **One factor.** Moves in factor `i` alone, with `α` fixed, are governed by the
   factor-`i` transition counts for `H_α`. By complete reducibility from counting
-  (Step 4 of the Euclidean node for building factors; Hashimoto graphs, as in Step T4
+  (Step 3 of the Euclidean node for building factors; Hashimoto graphs, as in Step T4
   of the torsion route, for tree factors), reachability under these moves is
   symmetric.
 - **All factors.** Every morphism factors into single-factor, single-colour steps
