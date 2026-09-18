@@ -121,7 +121,8 @@ So `P = Γ *_A D` is type [A_2]. Since `D ↷ X × [2^n]` is faithful, `D ∩ ke
   `fsym-by-odometer-group-on-the-integers-is-fp` (lane proof).
   - Its point stabilizer `Stab(0)` maps onto `B` (correct `b` by the transposition
     `(0 b(0))`), with kernel `FSym(Z∖{0})`.
-  - Finite generation of `Stab(0)` is **not checked here**, so this host is conditional on it.
+  - `Stab(0)` is finitely generated, and so is `Stab_B(0)`, so `B` itself is a host
+    (`higman-closure-of-abelian-cofinite-hosts-is-port-faithfulness`, item 1).
 
 All of these are already in the permutational class. **No group with Boone--Higman open is
 yet known to embed in an abelian-cofinite host.** Finding one is

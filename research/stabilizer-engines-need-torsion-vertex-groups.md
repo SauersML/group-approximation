@@ -19,7 +19,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, bh-invent-18, 2026-09-18; elementary given the parent nodes;
-**not reviewed**). No priority is claimed.
+one referee PASS with a repaired lemma statement, bh-ref-engines 2026-09-18, see Referee section). No priority is claimed.
 
 **Notation.** As in `free-product-boundary-groupoids-carry-the-vertex-group-homology`: `k ≥ 2`,
 `A = Z/k`, `B` is infinite with finite generating set `S`, `D = A * B`, `T` is the Bass–Serre
@@ -166,3 +166,66 @@ Every deep subgroup is visible this way, not only the normal ones.
   constraints that the collapsed amalgam cannot satisfy: an SFT with a nontrivial extension
   problem, as in the finite-type blow-ups. Otherwise the input's hardness must sit in an acting
   group with finite local branching (Track A).
+
+## Referee (bh-ref-engines, 2026-09-18): PASS, with one lemma statement repaired
+
+I checked this node together with `stabilizer-engines-are-fp-only-over-isolated-groups` and
+`free-product-emitter-full-groups-need-isolated-vertex-groups`, since all three rest on the same
+table transport. I checked every step of the transport lemma, the construction of `ρ_K`, Test 1 and
+items 2–3 line by line. The theorem and corollaries (a)–(c) hold.
+
+**What holds exactly as written.**
+- *Amalgam normal form.* `D/⟨⟨[A,K]⟩⟩ = B *_K (K × A)`. For `1 ≠ δ` with `‖δ‖ ≤ 4r`, the
+  `D`-normal form is reduced in the amalgam, since `A`-syllables lie in `(K×A) \ K` and short
+  `B`-syllables lie in `B \ K` by depth. So `π(δ) ∉ K`, and also `π(δ) ∈ B` iff `δ ∈ B` and
+  `π(δ) ∈ K×A` iff `δ ∈ A`.
+- *Subtree.* The edges of norm `≤ 2r` form a prefix-closed set containing the base edge, hence a
+  subtree. `π` maps it isomorphically, equivariantly for labels of norm `≤ r`.
+- *`ρ_K` is a homomorphism,* and `ρ_K|_B = π|_B` on **all** of `B`: two homomorphisms that agree on
+  `S` agree everywhere. This is the key point, and it is correct. Long elements `k ∈ K` are
+  never transported by tables. They enter only through the homomorphism.
+- *Test 1.* The relation `[kτ_bk^{-1}, τ_b] = 1` holds in `F_B` for every `k ∈ K \ 1`, since
+  `|k| > 1` gives `k ∉ {1, b, b^{-1}}`. Its image is `[(P R), (P Q)] = 1`, where
+  `(P Q)(P R)` sends `R` to `Q` and `(P R)(P Q)` sends `R` to `P`. So `R = Q`. `P, Q, R` are
+  nonempty because `T_K` has no leaves (valences `k ≥ 2` and `[B:K] ≥ 2`).
+- *Items 2–3.* The deep cyclic subgroup `⟨g^J⟩`, the count of prime-order subgroups and the
+  non-simplicity argument are all correct.
+
+**Gap (repaired; conclusions unaffected).** The transport lemma claims that emptiness of atoms is
+preserved in **both** directions. The proof counts `[B:K] ≥ |Ball_S(2r)| > 2r ≥` (number of chosen
+edges at a vertex). That count is wrong:
+- A table of radius `r` may choose up to about `|Ball_S(4r)|` edges at one `B`-vertex, not `2r`.
+- For a finite-index deep `K` (for example `B = Z`, `K = (4r+1)Z`, and a table using every branch
+  `b` with `|b| ≤ 2r` at `v`), the atom `{v} ∪ (other branches)` is nonempty in `X_B` but empty in
+  `X_K`.
+
+The argument only ever uses the direction **empty in `T` ⇒ empty in `T_K`**, and that direction
+holds unconditionally. An empty atom is a single `A`-vertex with all `k` edges chosen, and its
+image is a `(K×A)`-vertex with the same `k` distinct edges chosen. That direction is what is
+needed for each of the following:
+- the transported tables being partitions, since disjointness, covering and containment are
+  emptiness identities;
+- relators mapping to `1`, since every nonempty piece in `T_K` is nonempty in `T`, where its
+  label is `1`;
+- `ρ_K(s) = π(s)` and `ρ_K(τ_b) = π(τ_b)`.
+
+Repair: either state the lemma one-directionally, or require `K` to be `(8r+2)`-deep. Then
+`[B:K] ≥ |Ball_S(4r+1)| > |Ball_S(4r)|` bounds the chosen edges at any vertex, since balls of an
+infinite group grow strictly. Also, "`π` injective on `{‖d‖ ≤ 4r}`" should read "on
+`{‖d‖ ≤ 2r}`". What is proved is `π(δ) ∉ K` for `1 ≠ δ`, `‖δ‖ ≤ 4r`. The corollaries for `V, T, F`
+use cyclic `K = ⟨g^J⟩` of infinite index, where no atom at a `B`-vertex can empty out, so they
+need no repair.
+
+**Counterexample search.** I looked for an infinite `B` with `F_B` finitely presented, and for a
+known finitely presented group of this form that the theorem would forbid. I found neither.
+- The finite-`B` case (Higman–Thompson type) is consistent.
+- Brown's theorem that Houghton's `H_2` is not finitely presented is recovered by the same scheme
+  (calibration in the parallel node).
+- The theorem's conclusion (an infinite finitely presented torsion group with finitely many
+  elements of prime order) is a long-standing open existence question, so it does not contradict
+  any known theorem.
+
+**Credit.** The collapse is in the spirit of Zaremsky's finiteness criterion for twisted
+Brin–Thompson groups (finitely many orbits on pairs), as the node says. The bounded-configuration
+transfer is the standard "a finitely presented group's marked neighbours are its quotients"
+argument of Cornulier–Guyot–Pitsch (J. Algebra 2007).

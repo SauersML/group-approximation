@@ -83,3 +83,36 @@ and minimal, then `D([[G]])` is simple. By 2, `D(W)` has finite index, so it is 
 **4.** For `n ≥ 3`, `E_n(R)` is perfect, so `E(R; D) ≤ D(W)`. `GL_n(R)` embeds in
 `SL_{n+1}(R) = E_{n+1}(R)` by `g ↦ diag(g, det g^{-1})`, using `SK_1(R) = 0`. `F' ≤ D(W)`.
 For `ℓ = 2`, `W` itself is simple, by the parent's simplicity node. ∎
+
+## Referee (bh-ref-misc, 2026-09-18): item 1 PASS (second internal pass)
+
+Internal referee lane, not an external review. This is a second, independent check of item 1, after
+`research/artifacts/gq-bh-bh-verify-W-report.md` §3. That pass also PASSed and fixed the stabilizer
+generating set of `s-integral-splitting-stabilizers-are-finitely-generated`.
+
+**The `ℓ`-ary substitutions**, checked:
+- **Directions.** A continuous homomorphism `χ : Z_ℓ^T → F_ℓ` restricted to an open subgroup `L` has
+  image `0` or `F_ℓ`, because `ℓ` is prime. So a direction is constant on a piece or splits it into
+  `ℓ` cosets. This is the "constant or split" dichotomy of Step 1 of the route.
+- **Pieces.** An open subgroup of `Z_ℓ^T` has `ℓ`-power index. It is `M Z_ℓ^T` with `M` integral and
+  `det M = ±ℓ^j`, so pieces are identified with `X` over `Z[1/ℓP]`.
+- **Global elements.** `Z_ℓ ∩ Z[1/ℓP] = Z[1/P]`, so the global elements are `Γ^P`.
+- **Orbits.** `Z[1/P] → F_ℓ` is onto, since `ℓ ∉ P`. So the image of `E(R; D)` is finitary `SL(F_ℓ; D)`.
+  A `k`-tuple of lines lies in a subspace of dimension at most `k`, and there are finitely many
+  configurations in `F_ℓ^k`. So there are finitely many orbits on tuples and on subspaces of each
+  dimension.
+- **Lemma 7.6 over `F_ℓ`.** The proof of `non-spanning-subsets-of-an-f2-space-are-highly-connected`
+  (hyperplane cover, nerve lemma, crosscut, Solomon–Tits) never uses `q = 2`. For lines in `U`, the
+  non-spanning complex is `(dim U − 3)`-connected.
+  - The join formula gives `(Σ d_i − 3)`: `Σ (d_i − 3) + 2(q − 1) + (q − 1)`.
+  - A full tree has `ℓ^(dim U_i)` leaves.
+  - `Σ ℓ^(d_i) ≤ ℓ^(Σ d_i)` for `d_i ≥ 1`, which gives `log_ℓ(m − μ_1) ≤ Σ dim U_i`.
+- **Morse data.** An `ℓ`-ary tree with `k` splits has `1 + k(ℓ−1)` leaves, so "fat" at `2ℓ − 1` is
+  the `ℓ`-ary form of BZ22's threshold 3.
+
+**Trust surface.** Not re-checked here:
+- Brown's linear connectivity bound for the matching complex of the complete `ℓ`-uniform hypergraph
+  (recalled on the node and in the report, not read);
+- the classical inputs of the two stabilizer nodes (recalled);
+- the `ℓ = 2` transfer of BZ22 §§5–7 and Z24 §§3–4, which is covered by the verify-W report and not
+  redone here.

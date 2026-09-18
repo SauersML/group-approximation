@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-char-p-host-tree-word
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord: automatically included section variable(s) unused in theorem ..."
 ---
 
@@ -16,6 +17,8 @@ error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:82:0: a
 error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:98:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.map_one_shift`:
 error: GroupApproximation/BooneHigman/Metabelian/CharPHost/TreeWord.lean:119:0: automatically included section variable(s) unused in theorem `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeHost.image_mul`:
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-char-p-host-tree-word`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CharPHost.TreeWord` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.
