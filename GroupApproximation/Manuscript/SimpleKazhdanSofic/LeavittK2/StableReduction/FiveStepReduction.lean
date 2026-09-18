@@ -36,10 +36,10 @@ What the split buys, unconditionally:
 * **Every retraction `St_6 → St_5` fails already for `N = 6`, at the level of `E`.**  The
   elements `diag(I₅, u)` centralize `pad(E₅)`, so they must go to `Z(GL₅(L)) = 1`.  Their normal
   closure is everything.
-* **`σ` has no left inverse.**  At the level of `E`, `σ² = Ad(U) ∘ σ` for a unit `U`, built from
-  the partial isomorphism between the idempotents `s₀t₀` and `s₀s₀t₀t₀`.  On a central `K₂` this
-  makes `σ_*` idempotent.  So corner injectivity on `K₂` is equivalent to `σ = id` on `K₂(5)`.
-  This is not formalized.
+* **`σ` has no left inverse.**  At the level of `E`, a hand computation gives `σ² = Ad(U) ∘ σ`
+  for a unit `U` built from a partial isomorphism of idempotents of `L`.  On a central `K₂` this
+  would make `σ_*` idempotent, so corner injectivity on `K₂(5)` would be equivalent to `σ = id`
+  on `K₂(5)`.  None of this is formalized.
 * `EndpointInterfaces.BinaryLeavittStabKernelThreeTrivialStatement` implies the step through
   proved machinery, but it is equivalent to the global gap.  It is stronger, not weaker.
 -/
