@@ -1,7 +1,7 @@
 import GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroTriOffEndpoint
 import GroupApproximation.BooneHigman.Metabelian.ElemFPCharZeroK2FngEndpoint
 import GroupApproximation.BooneHigman.Metabelian.AbsorptionSuslinEuclidInstances
-import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 import GroupApproximation.Meta.AxiomGuard
 
@@ -56,7 +56,7 @@ noncomputable def czRankFourFP_slEquiv (m : ℕ) {N : ℕ} (hN : 0 < N) :
     Matrix.SpecialLinearGroup (Fin N) (Localization.Away (m : ℤ)) ≃*
       elementaryGroup (Fin N) (Localization.Away (m : ℤ)) :=
   MulEquiv.ofBijective
-    ((Matrix.SpecialLinearGroup.toGL).codRestrict
+    ((Matrix.SpecialLinearGroup.toGL (n := Fin N) (R := Localization.Away (m : ℤ))).codRestrict
       (elementaryGroup (Fin N) (Localization.Away (m : ℤ))) fun g ↦
         Absorption.specialLinearInElementary_away m hN (Matrix.SpecialLinearGroup.toGL g) g.prop)
     ⟨fun _ _ hab ↦ Matrix.SpecialLinearGroup.toGL_injective (congrArg Subtype.val hab), by
@@ -109,7 +109,7 @@ theorem czRankFourFP_posStabGen_of_sl (h : czRankFourFP_SLFourStatement) :
 /-- The existing leaf `CharZeroRankFourFPStatement` implies the residual. -/
 theorem czRankFourFP_sl_of_rankFourFP (h : CharZeroRankFourFPStatement) :
     czRankFourFP_SLFourStatement := by
-  intro m hm
+  intro m _
   haveI := czK2Fng_elemFour_fp_of_rankFourFP h m
   exact Group.IsFinitelyPresented.equiv (czRankFourFP_slEquiv m (N := 4) (by omega)).symm
 
