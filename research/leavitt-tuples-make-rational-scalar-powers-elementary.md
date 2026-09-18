@@ -5,6 +5,7 @@ kind: claim
 title: In a ring containing Q and a Leavitt (1,d)-tuple, every (d-1)-th power of a rational scalar is elementary, so the scalar budget fails
 artifacts:
   - research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md
+  - research/artifacts/gq-referee-b-bounded-harmonic-rings-are-not-finitely-presented.md
 distinct_from:
   leavitt-centralizer-units-are-elementary-in-rank-three: that is the case d = 2 (a Leavitt pair), where every scalar is elementary; this is every d >= 2, where the (d-1)-th powers are.
   rational-scalars-obstruct-fp-elementary-hosts: that shows the elementary rational scalars of a projective-elementary host must form a finitely generated group; this shows that group contains (Q^x)^(d-1), which is not finitely generated, whenever the ring has a Leavitt (1,d)-tuple.
@@ -12,13 +13,16 @@ distinct_from:
 
 **ESTABLISHED (2026-09-18)** through `leavitt-tuples-make-rational-scalar-powers-elementary-proof`.
 Lane proof (`gq-steinberg-q`), elementary. `gq-referee-a` PASS, proof-gap lens
-(`research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md`, which covers both nodes); `gq-referee-b` pending.
+(`research/artifacts/gq-referee-a-bounded-harmonic-rings-are-not-finitely-presented.md`, which covers both nodes); `gq-referee-b` PASS, citation and hypothesis lens (`research/artifacts/gq-referee-b-bounded-harmonic-rings-are-not-finitely-presented.md`).
 
 **Statement.** Let `d >= 2`. Let `S` be a unital ring with `Q ⊆ S` and elements `x_1, …, x_d, y_1, …, y_d`
 satisfying `y_i x_j = δ_ij` and `Σ_i x_i y_i = 1`. Then:
 - `diag(u^(d-1), 1, …, 1) ∈ E_m(S)` for every `m >= d+1` and every unit `u` commuting with all `x_i`, `y_i`;
-- in particular `q^(d-1) I_m ∈ E_m(S)` for every `q ∈ Q^x`, and these scalars are central;
-- so `Λ_m(S) ⊇ (Q^x)^(d-1)`, which is not finitely generated.
+- in particular `q^(d-1) I_m ∈ E_m(S)` for every `q ∈ Q^x` and every `m >= d+1`, and these scalars are
+  central;
+- so `Λ_m(S) ⊇ (Q^x)^(d-1)` for every `m >= d+1`, which is not finitely generated.
+
+Nothing is proved here for `3 <= m <= d`.
 
 Hence no such `S` satisfies condition 3 of `q-algebra-with-fp-simple-projective-elementary-group`, and no
 `Q`-algebra with a Leavitt `(1,d)`-tuple is a projective-elementary host. This covers:
