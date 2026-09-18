@@ -90,7 +90,7 @@ def HigmanVCTreeNFWitPivotStatement : Prop :=
 
 theorem higmanVCTreeNFWitPivot_IsAC_empty (d : ℕ) :
     higmanVCTreeNFWitPivot_IsAC (∅ : Finset (List (Fin d))) :=
-  fun u hu => by simp at hu
+  fun _ hu => by simp at hu
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTreeNFWitPivot_IsAC_empty
 
