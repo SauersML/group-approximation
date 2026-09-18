@@ -5976,6 +5976,8 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPur
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.StdOperatorAlgebraNorm
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapInductiveLimitSum
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVK2Route.SubringMV
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSplitExtBridge
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbDominant
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
