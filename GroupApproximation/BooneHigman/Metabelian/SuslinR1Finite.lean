@@ -9,7 +9,7 @@ Lane `bh-met-90j`.  R1 (`SuslinR1MonicLocal`, monic production) is reduced to
 `SuslinR1FiniteLocal`: for normalized `τ ∈ SL_N(A[X])` and maximal `𝔪`, some `τ_𝔪 F`, with `F`
 elementary over `B[X]` (`B = A_𝔪`), has a row `r` and a column `t` such that
 `B[X] / (entries of row r outside column t)` is a finite `B`-module.  The reduction
-(`suslinR1_monicLocal_of_finiteLocal`) proves: finiteness makes the class of `X` integral, so the
+(`suslinR1_monicLocal_of_finite`) proves: finiteness makes the class of `X` integral, so the
 ideal contains a monic `p = ∑_{j ≠ t} c_j f_j`; adding `X^n c_j` times column `j` to column `t`
 makes the entry at `(r, t)` equal to `f_t + X^n p`, which is monic for large `n`
 (`SuslinR1Columns.lean`).
@@ -27,9 +27,9 @@ a row generate an ideal with finite (i.e. integral over `B`) quotient.
 `(f₁, f₂, f₃) = ((1-yX)(1-2yX), yX(1-2yX), yX(1-yX))`, with `char k ≠ 2`.  It is unimodular
 (python/sympy Groebner basis `[1]`, for `k = F_3, F_5, F_7`) and equals `(1, 0, 0)` at `X = 0`.
 But no pair of its entries generates an ideal containing a monic, since
-`(f₂, f₃) ⊆ (yX)`, `(f₁, f₃) ⊆ (1-yX)` and `(f₁, f₂) ⊆ (1-2yX)`.  All three generators of each
-ideal vanish at a point `X = 0`, `X = 1/y`, `X = 1/(2y)` of the generic fibre, and a monic cannot.
-So the Statement genuinely needs the elementary factor `F`.
+`(f₂, f₃) ⊆ (yX)`, `(f₁, f₃) ⊆ (1-yX)` and `(f₁, f₂) ⊆ (1-2yX)`, and every nonzero multiple of
+`yX`, `1-yX` or `1-2yX` has leading coefficient in `(y)`, hence is not monic.  So the Statement
+genuinely needs the elementary factor `F`.
 
 **Truth check.**  TRUE for the families: the local case (`SuslinLocalCaseFamilyStatement`, true
 by Suslin's theorem) gives R1 (take `F = τ_𝔪⁻¹`), and R1 gives the finiteness Statement by the
@@ -61,7 +61,7 @@ def SuslinR1FiniteLocal (A : Type*) [CommRing A] (N : ℕ) : Prop :=
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.SuslinR1FiniteLocal
 
 /-- **The reduction**: the finite form gives R1, in every rank and for every coefficient ring. -/
-theorem suslinR1_monicLocal_of_finiteLocal {A : Type*} [CommRing A] {N : ℕ}
+theorem suslinR1_monicLocal_of_finite {A : Type*} [CommRing A] {N : ℕ}
     (h : SuslinR1FiniteLocal A N) : SuslinR1MonicLocal A N := by
   intro τ hdet h0 𝔪 h𝔪
   obtain ⟨F, hF, r, t, hfin⟩ := h τ hdet h0 𝔪 h𝔪
@@ -70,7 +70,7 @@ theorem suslinR1_monicLocal_of_finiteLocal {A : Type*} [CommRing A] {N : ℕ}
   rw [← mul_assoc]
   exact hmon
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_monicLocal_of_finiteLocal
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_monicLocal_of_finite
 
 /-- **The family finite Statement**: `SuslinR1FiniteLocal` for the two coefficient families,
 under the hypotheses of `SuslinHorrocksR1Statement`. -/
@@ -86,17 +86,17 @@ def SuslinR1FiniteStatement : Prop :=
 
 /-- **R1 from the finite Statement.** -/
 theorem suslinR1_R1_of_finite (h : SuslinR1FiniteStatement) : SuslinHorrocksR1Statement :=
-  ⟨fun p _ k N hk hA hN ↦ suslinR1_monicLocal_of_finiteLocal (h.1 p k N hk hA hN),
-    fun m k N hA hN ↦ suslinR1_monicLocal_of_finiteLocal (h.2 m k N hA hN)⟩
+  ⟨fun p _ k N hk hA hN ↦ suslinR1_monicLocal_of_finite (h.1 p k N hk hA hN),
+    fun m k N hA hN ↦ suslinR1_monicLocal_of_finite (h.2 m k N hA hN)⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_R1_of_finite
 
 /-- **The gap from the finite Statement and R2**: `SuslinLocalHorrocksStatement`. -/
-theorem suslinR1_localHorrocks_of_finite_R2 (h1 : SuslinR1FiniteStatement)
+theorem suslinR1_localHorrocks_of_fin (h1 : SuslinR1FiniteStatement)
     (h2 : SuslinHorrocksR2Statement) : SuslinLocalHorrocksStatement :=
   suslinR1_localHorrocks_of_R1_R2 (suslinR1_R1_of_finite h1) h2
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_localHorrocks_of_finite_R2
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1_localHorrocks_of_fin
 
 end Absorption
 end Metabelian

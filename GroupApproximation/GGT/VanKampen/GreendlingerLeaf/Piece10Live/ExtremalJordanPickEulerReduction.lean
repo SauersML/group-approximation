@@ -128,3 +128,111 @@ def ExtremalJordanPickEulerLocal (K : PocketFaceSet D eps X lo hi) : Prop :=
     ExtremalJordanPickEulerThreeAtVertex K
 
 end EulerLocal
+
+section EulerLocalProofs
+
+variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+  {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {lo hi : ℕ}
+
+/-- **Alternation holds.** -/
+theorem extremalJordanPickEuler_alternates (K : PocketFaceSet D eps X lo hi) :
+    ExtremalJordanPickEulerAlternates K := fun _ ha _ hk hfree hkeep =>
+  extremalJordanPickEuler_alpha_mem_of_firstKept K.boundary.cycle_mem_iff ha hk hfree hkeep
+
+/-- **First passages are the passages with a free sector.** -/
+theorem extremalJordanPickEuler_firstIff (K : PocketFaceSet D eps X lo hi) :
+    ExtremalJordanPickEulerFirstIff K := fun _ hd =>
+  (not_congr (extremalJordanPickEuler_nonFirst_iff K hd)).trans Classical.not_not
+
+/-- **First passages cross nothing.** -/
+theorem extremalJordanPickEuler_firstUncrossed (K : PocketFaceSet D eps X lo hi) :
+    ExtremalJordanPickEulerFirstUncrossed K := fun _ hd₀ _ hd h =>
+  extremalJordanPickEuler_first_uncrossed K hd₀ hd h
+
+/-- **Every non-first passage has a non-first successor.** -/
+theorem extremalJordanPickEuler_nextNonFirst (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) : ExtremalJordanPickEulerNextNonFirst K := fun _ hd₀ hnf =>
+  extremalJordanPickEuler_next_nonFirst K hK hd₀ hnf
+
+/-- **The local lemma `n_v ≥ 1 ⇒ n_v ≥ 3` holds.** -/
+theorem extremalJordanPickEuler_threeAtVertex (K : PocketFaceSet D eps X lo hi)
+    (hK : K.ClosedWalk) (hrose : P10ChordLift.AllNonFirstTurnsCrossed K) :
+    ExtremalJordanPickEulerThreeAtVertex K := fun _ hd₀ hnf =>
+  extremalJordanPickEuler_three_nonFirst K hK hrose hd₀ hnf
+
+/-- **The local package holds** for a pocket in walk order in the rose configuration. -/
+theorem extremalJordanPickEuler_local (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedWalk)
+    (hrose : P10ChordLift.AllNonFirstTurnsCrossed K) : ExtremalJordanPickEulerLocal K :=
+  ⟨extremalJordanPickEuler_alternates K, extremalJordanPickEuler_firstIff K,
+    extremalJordanPickEuler_firstUncrossed K, extremalJordanPickEuler_nextNonFirst K hK,
+    extremalJordanPickEuler_threeAtVertex K hK hrose⟩
+
+end EulerLocalProofs
+
+/-- **OPEN (lane gl-p10-39): the global Euler count.**  This is
+`ExtremalJordanPickThreeTwoOutsideStatement` with the proved local package
+`ExtremalJordanPickEulerLocal K` as an extra hypothesis.  What is left is Euler's identity
+`#linked + #outside = 2 + Σ_v max(n_v - 1, 0)` on the genus-0 walk map, and the parity step.
+
+LOUD: this is EQUIVALENT in logical strength to the TwoOutside statement
+(`extremalJordanPickEuler_twoOutside_of_count`, `extremalJordanPickEuler_count_of_twoOutside`).
+It is NOT weaker.  It is strictly smaller in proof content, because the local package is proved
+(`extremalJordanPickEuler_local`).  It held on every model instance at 3 to 6 darts
+(`SP/gl-p10-38/ex7.py`). -/
+def ExtremalJordanPickEulerCountStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+    hi ≤ (outerDarts X).length → X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      ExtremalJordanPickThreeTwoOutside K →
+      ExtremalJordanPickEulerLocal K →
+        ∃ r₁ ∈ K.boundary.cycle, ∃ r₂ ∈ K.boundary.cycle, ∃ r₃ ∈ K.boundary.cycle,
+          ¬ExtremalJordanPickThreeLinked K r₁ r₂ ∧ ¬ExtremalJordanPickThreeLinked K r₁ r₃ ∧
+            ¬ExtremalJordanPickThreeLinked K r₂ r₃
+
+/-- **The endpoint**: the global count gives the TwoOutside statement. -/
+theorem extremalJordanPickEuler_twoOutside_of_count
+    (h : ExtremalJordanPickEulerCountStatement.{u, w, v}) :
+    ExtremalJordanPickThreeTwoOutsideStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo
+  exact h D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo
+    (extremalJordanPickEuler_local K hK hrose)
+
+/-- **The converse**: the TwoOutside statement gives the global count (so the two are
+equivalent). -/
+theorem extremalJordanPickEuler_count_of_twoOutside
+    (h : ExtremalJordanPickThreeTwoOutsideStatement.{u, w, v}) :
+    ExtremalJordanPickEulerCountStatement.{u, w, v} := by
+  intro _ _ _ _ D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo _
+  exact h D eps X lo hi hhi hla hlabel K hK hft hsrc htgt hpin hrose htwo
+
+/-- **The endpoint for the Three statement**: the global count gives
+`ExtremalJordanPickRegionThreeStatement`. -/
+theorem extremalJordanPickEuler_three_of_count
+    (h : ExtremalJordanPickEulerCountStatement.{u, w, v}) :
+    ExtremalJordanPickRegionThreeStatement.{u, w, v} :=
+  extremalJordanPickThree_three_of_twoOutside (extremalJordanPickEuler_twoOutside_of_count h)
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerAlternates
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerFirstIff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerFirstUncrossed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerNextNonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerThreeAtVertex
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerLocal
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_alternates
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_firstIff
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_firstUncrossed
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_nextNonFirst
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_threeAtVertex
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_local
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.ExtremalJordanPickEulerCountStatement
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_twoOutside_of_count
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_count_of_twoOutside
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10ExtremalRegion.extremalJordanPickEuler_three_of_count
