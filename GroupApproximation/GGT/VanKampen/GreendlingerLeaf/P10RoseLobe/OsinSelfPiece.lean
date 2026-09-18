@@ -10,7 +10,8 @@ Lane gl-p10-81.  Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 
 Relator cells `i`, `j` of a disc diagram `X` (now allowing `i = j`).  Cell `i` rotated by `n`
 reads `a :: (A ++ S)`, and cell `j` rotated by `m` reads `T ++ (a :: A).reverse.map α`.
-Write `v = ℓ(a :: (A ++ S))` and `v' = revInv ℓ(rotate m (cell j))`, so `v' = ℓ(a :: A) ++ …`.
+Write `v = ℓ(a :: (A ++ S))` and `v' = revInv ℓ(rotate m (cell j))`.  Then `v'` starts
+with `ℓ(a :: A)`.
 
 ## Generic overlaps are pieces: `roseLobeOsinSelf_isPiece_gen`
 
