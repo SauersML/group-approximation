@@ -534,3 +534,35 @@ bare approximate actor can.
     wreath is sofic, so (CCR) fails there.  The finite-dimensional profile,
     together with a compressor and relative (T), therefore cannot prove (AC).
     Full (T) of `Gamma` has to be used.
+
+**2026-09-18, swarm-0917-w6-w6-nh-last1 (reframing): the cheap refutation is
+the floor claim, and the floor has three shapes.** The recorded suggestion
+was that one hyperlinear intermediate wreath `W_Delta` (a cone subgroup, or
+`<Gamma,t>`) refutes (AC) cheaply. That is not a discount. By
+`kt-intermediate-coset-wreaths-are-nonsofic`, any such witness missing `E` is a
+hyperlinear nonsofic group, and the refutation is exactly
+`kt-pair-hyperlinear-floor-below-normal-closure`.
+
+The new established node
+`kt-hyperlinear-floor-is-root-invisible-laurent-overgroup` computes what
+the floor `K_Gamma` can be:
+
+- `K_Gamma<=E` unconditionally, because `W_E` is residually finite. So
+  `<Gamma,t>` witnesses only through `<Gamma,t> cap E`.
+- `K_Gamma` is `SL_d(N)`-compressed, and its entry ring is a compressor-stable
+  subring. So it is `R_+`, which forces `K_Gamma=Gamma` by Suslin, or it is `R`.
+- If `E` is not contained in `K_Gamma`, the per-model wall transfers to the
+  floor: `K_Gamma` contains no non-polynomial root and no torus.
+
+Trichotomy: `K_Gamma=E` ((CCR) in every canonical model), or `K_Gamma=Gamma`
+(`hyperlinear-wreath-model`), or a root-invisible Laurent overgroup, which
+gives a hyperlinear nonsofic `W_(K_Gamma)`.
+
+Obstruction to a class of attacks. Refuting (AC) through an intermediate
+wreath means producing a compressed subgroup between `Gamma` and `E` whose
+entries generate `R` but which contains no Laurent root. Proving (AC) through
+the floor means placing one element of `E \ Gamma` in `K_Gamma`. That element
+is a root or torus only if (CCR) already holds everywhere.
+
+The claim stays OPEN. None of this touches the approximate microstate
+formulation or its dependence on `t`.
