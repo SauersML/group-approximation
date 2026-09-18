@@ -75,3 +75,23 @@ reviewed; no priority claimed).
 The bottleneck is the same on every route. `GL_n(Q)` needs `Z_(S)` inside a finitely presented residually finite
 group, whether through BLIW trees, self-similar product hosts, or adders. A cyclic module over a non-Noetherian
 group ring of an automaton group is the only place left where such a `Z_(S)` could appear.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked `adder-hosts-linearize-odd-odometer-roots-proof` line by line. Lane
+bh-free-16's adder construction is a neat device.
+- **Step 1.** The composition law `(ψ,g)(ψ',g') = (ψ' + ψ∘g', gg')` is right. The conjugate
+  `(0,g)^{-1}(ι,1)(0,g) = (g,1)` gives `G_Γ = M ⋊ Γ`, and `ι∘T_1 − ι = 1` puts `Z ⊆ M`.
+- **Step 2.** Writing `ψ(y_0 + 2y') = e + 2ψ'(y')` with `ψ' = Σ n_g g|_{y_0} ∈ M` is correct. The
+  section is `F_{ψ' + (x_0+e−j)/2}`, and it lies in `G_Γ`.
+- **Step 3.** The translation by `c ∈ Z_(2)` touches only nonnegative positions and equals `F_c`.
+  Conjugating by the shift gives `c/2^k`, so the copy of `Q ⋊ ⟨2⟩` is correct.
+  - **Pseudo-freeness.** Fixing a vertex `(w, v)` of length `k` forces `ψ ≡ 0 mod 2^k` on the
+    cylinder, and a trivial section forces `ψ = 0` there. So the stated condition is exactly the
+    right one.
+  - **Relies on.** The framework of `natural-q-rtimes-2-in-2v-h-iff-odd-odometer-roots`
+    (2V_H over the product 2-graph), which I did not re-referee.
+- **Step 4.** The metabelian obstruction uses the cited node. The piecewise-affine obstruction is
+  correct, and it does not need finite generation.
+- **Step 5.** Faithful action on a rooted tree implies residually finite, so the reduction to (SL)
+  at `l = 2` is correct.

@@ -172,3 +172,8 @@ in Step 6 against the source (`$GQ/src/kep/li-garside-II-2110.04505v2.tex`, `thm
   `(m'/k')^j u ∈ Z` for all `j`, so `u = 0`, and (TF) holds.
 - If `|m| = |k|`, `N = lcm Z ≠ 0`.
 - `H = Z` is `F_∞`, so Steps 6–7 give the calibration statement.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+See the Referee section of the target. Steps 0–6 and 8–9 were checked line by line. Li's `ex:ZS` (II) and
+`rem:ZS-Stab` were spot-checked at source. Step 7 rests on imported nodes, which were not re-checked here.

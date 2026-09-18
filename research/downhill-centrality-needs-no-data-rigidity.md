@@ -132,3 +132,28 @@ For v6's CAP question this is a sharp statement. A seeded transport coding carri
 rigidity of its input layer, so seeding cannot manufacture rigidity for a complex input. The complex
 input must come already rigid, as a rigid seed over `Λ_0`. The end-flow layer is then a free
 minimality-and-freeness device on top of it.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS
+
+- **Part A (the downhill lemma).** Correct.
+  - The ball-sum expansion of `C_c(z)` by (F3) gives seed terms, descending terms, and forced
+    terms.
+  - Descending terms are handled by induction on `δ_b` for fixed `b`.
+  - The forced-term computation `[p]Xb = X[p]b = δ[p]X = b[p]X` is correct. It uses that `[p]`
+    and `X` commute inside `zB_R ⊆ zB_D`, and (F1) and (F2).
+  - The identity `[flow part] b = δ[flow part]` is a flow-algebra identity. It is realized
+    through `ρ`, because the flow marginals commute.
+- **Part B, item 1.** Correct. Constancy along `H` and along `F_m` holds as operator identities:
+  `P_s(t) = P_s(t)P_s(ts) = P_s(ts)`. So (F2) reduces to one site. Rigidity of the boundary
+  flow is cited from `free-group-boundary-shifts-are-quantum-rigid`.
+- **Part B, item 2 (sufficiency).** It reduces to hypothesis (B) of
+  `seeded-transport-codings-over-end-flows-are-quantum-rigid`, which I did not referee here.
+- **Part B, item 2 (necessity).** Correct.
+  - The pulled-back family along a fixed non-spine end satisfies (Q2) at scale `D`, because the
+    input windows lie in one ball of diameter `2D + 2R`.
+  - For (Q3), terms with inadmissible input vanish, terms whose computation letters disagree
+    with `val` vanish, and the remaining terms are excluded by (Surj) with uniqueness.
+- **Part B, item 3.** Correct as a sketch. Anchored points are dense, the completion is
+  continuous at anchored base points, and the base is minimal.
+- **Consequence for CAP.** Stated precisely: seeding transports rigidity but cannot create it,
+  so a complex input must already be rigid.

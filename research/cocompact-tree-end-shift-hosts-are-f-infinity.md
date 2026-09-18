@@ -18,8 +18,7 @@ distinct_from:
 
 **ESTABLISHED** (lane proof, bh-invent-17, 2026-09-18; the finiteness input is Thumann's
 Theorem `41762`, arXiv:1409.1085, read in the LaTeX source at `$GQ/src/bh-invent-07/thumann.tex`
-l.2649–2669 for Defs. `77101`, `26536`, `13449`, `24121` and the theorem; not independently
-reviewed; no priority claimed).
+l.2649–2669 for Defs. `77101`, `26536`, `13449`, `24121` and the theorem; one referee PASS, bh-ref-engines 2026-09-18; no priority claimed).
 
 ## Setting
 
@@ -146,3 +145,44 @@ the infinite-type regime:
 - inputs that need non-residually-finite unit data.
 
 There a one-scale filling theorem is the missing ingredient.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+I checked the proof step by step, and checked Thumann's hypotheses against his source (`thumann.tex`: Def.
+`77101`, color-tame; Def. `26536`, finite type; the `F_∞^+` groupoid definition at l.2650; Thm. `41762`).
+
+**Operad and hypotheses.**
+- The transformations act faithfully by strong faithfulness: fixing `∂H(e_j)` pointwise fixes the leafless
+  half-tree.
+- *Color-tame.* A word with a repeated colour is the domain of the C-merge `X_j X_j → X_j`, so reduced objects
+  have at most `c` letters.
+- *Ore.* Every piece of a dissection is a cone `[u]×∂H(e)`, and a common uniform refinement is reachable from
+  both. The two labels of one uniform piece differ by an element of `Λ_(e_(j'))`, which is a transformation.
+- *Finite type.* The very elementary classes are exactly `C_j` and `T_j`, stable under left and right
+  transformations since `g T_j = T_j ∘ (permutation and transformations)`. Their join is the joint split. So
+  the spine is finite.
+- *`F_∞^+`.* Thumann's hypothesis is on the automorphism groups of **colours** (degree-one operations). His
+  proof uses only subgroups of `Aut(c)` inside products with pure braid or symmetric groups. So `Λ_(e_j)` of
+  type `F_∞^+` is exactly what is needed, and no closure under products is required.
+- *`π_1(𝒪, X) = F`.* The operad is concrete. Fractions are canonical on cones. Conversely, for `f ∈ F`, first
+  refine the image to a globally uniform (reachable) partition, then pull back through the canonical cone maps.
+  This gives relatively uniform, reachable refinements of the domain cones. Correct.
+
+**Imported, not re-checked here:**
+- `F = A`, simplicity and type (A) (`fp-v-times-minimal-action-full-groups-have-type-a-actions`). This is
+  consistent: `H_*(G_V) = 0` gives `F_ab = 0` by Künneth plus Matui.
+- The (A_N) equivalence (`v-times-subshift-full-group-finiteness-is-horizontal`).
+- The end-shift conjugacy (`locally-finite-tree-end-shifts-are-quantum-rigid-sfts`).
+
+**Wording fix.** In item 3, "graphs of virtually polycyclic groups" and "graphs of finite groups" are instances
+only when their action is strongly faithful, which is not automatic. The node states strong faithfulness as a
+hypothesis, so the examples should repeat it. For `BS(m,n)`, `2 ≤ |m| ≠ |n|`, strong faithfulness holds. In
+every half-tree the exponent of an elliptic `a^k` is multiplied by the non-integral ratio along some branch,
+which agrees with Step 9 of the non-ascending HNN node, proved independently through Li.
+
+**Credit.**
+- Thumann (arXiv:1409.1085) for the operad finiteness engine.
+- The Stein–Farley complex / Brown's criterion method it abstracts.
+- Li (arXiv:2110.04505) for the parallel Zappa–Szép route.
+- The rigid-permutation-group embeddings the node cites as BLIW, for prior embeddings of this class into
+  finitely presented simple groups.

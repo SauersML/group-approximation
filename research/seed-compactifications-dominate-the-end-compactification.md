@@ -12,7 +12,7 @@ distinct_from:
   fp-v-times-subshift-full-groups-force-connected-differences: that forces coarse connectivity of difference sets from finite presentation of a full group; this forces it from the seed axioms alone, with no host and no rigidity.
 ---
 
-**ESTABLISHED** (lane bh-star-a, 2026-09-18; elementary lane proof below; not reviewed; no priority
+**ESTABLISHED** (lane bh-star-a, 2026-09-18; elementary lane proof below; one referee PASS, bh-ref-engines 2026-09-18; no priority
 claimed). Rigidity, density and finite presentation are not used.
 
 ## Setting
@@ -116,3 +116,28 @@ A seed must **see the ends** of its group.
 - So the quantum condition of CAP is live only on perfect kernels, which ends force. CAP's scattered part
   over one-ended groups is a purely combinatorial question about how much computation a countable,
   locally forced SFT compactification can carry.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- **Part 1 is correct.**
+  - Points of `K_0` lie outside `M`, since a point adjacent to `C` and in `M` would be in `C`. So they are more
+    than `2r` from `Δ(g)`, `B_(R_0)` and `gB_(R_0)`. The strict inequality gives `N ∩ Δ(g) = ∅`.
+  - A window of diameter `≤ 2r` meeting both `C_1 ∖ N` and the outside of `C_1 ∪ N` would contain a geodesic
+    crossing `K_0` within `2r` of its first point. So windows see only one of the two points.
+  - `B_(R_0)` and `gB_(R_0)` are connected, miss `N`, and lie on opposite sides. The two seeds force
+    `y_* = g.y_*`.
+- **Part 2 is correct.**
+  - The same gluing across a finite cut separating `ξ` from `η` gives the contradiction `g_n = h_m`.
+  - `Φ` is well defined, continuous by the uniqueness plus a diagonal choice, equivariant, and onto: every end
+    is a limit, and `Ȳ` is compact.
+- **Part 3 is correct.**
+  - The scattered part of a compact metrizable space is countable, and it contains the isolated orbit `Γy_*`.
+  - So `K ⊆ ∂Y`, and `Φ(K)` is a closed set containing the cocountable, hence dense, part of the Cantor end
+    space.
+  - Scattered seeds therefore exist only over groups with at most two ends.
+- **Dependence.** The CAP section (rigidity "for free" on scattered seeds) rests on
+  `quantum-rigidity-is-decided-on-the-derived-subshift` (bh-invent-10, Corollary B), which I did not referee.
+  So `(CAP_sc)` as a rigidity-free subproblem of CAP is conditional on that node.
+- **Credit.** The cut-and-glue argument across a finite separating set is the one D. B. Cohen used to show that
+  groups with more than one end carry no strongly aperiodic SFT (Adv. Math. 2017). This node extends it to seeds
+  and to the end map, and should cite him. Also credit Freudenthal–Hopf for the end space.
