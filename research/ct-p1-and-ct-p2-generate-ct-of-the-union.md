@@ -2,11 +2,14 @@
 rg: 2
 id: ct-p1-and-ct-p2-generate-ct-of-the-union
 kind: claim
-title: For any two sets P_1, P_2 of odd primes, CT_(P_1)(Z) and CT_(P_2)(Z) together generate CT_(P_1 ∪ P_2)(Z); this answers Kourovka Problem 21.75 negatively
+title: Second, independent proof that CT_(P_1)(Z) and CT_(P_2)(Z) generate CT_(P_1 ∪ P_2)(Z) (Kourovka 21.75, negative answer); the primary node is ct-p1-and-ct-p2-always-generate-ct-p1-union-p2
 distinct_from:
+  ct-p1-and-ct-p2-always-generate-ct-p1-union-p2: that is the primary node for the same theorem (lane bh-free-37, claimed first on the UNOWNED board, landed 10:12 on 09-18); this is an independent proof landed a minute earlier by lane bh-artin without knowledge of it, routing every class transposition through a single conjugation of τ_(0(4),2(4)) by a two-step transport, rather than through a 2-power box and a product of six class transpositions.
   ct-p-z-groups-are-pairwise-nonisomorphic: that is Kourovka 17.60, that distinct sets P give non-isomorphic groups CT_P(Z); this is Kourovka 21.75, about the subgroup the groups for two incomparable sets generate inside the group for their union, which turns out to be everything.
   ct-p-z-is-a-one-vertex-k-graph-full-group: that identifies CT_P(Z) with a full group of a one-vertex k-graph; this uses only class transpositions and their canonical affine maps.
 ---
+
+**DUPLICATE (second proof).** Same statement as `ct-p1-and-ct-p2-always-generate-ct-p1-union-p2` (bh-free-37), which owns 21.75 and is the node to cite; this node is kept only as an independent second proof. It was written in lane bh-artin without seeing that claim (a collision on the UNOWNED board, 09-18).
 
 **ESTABLISHED** (route `ct-p1-and-ct-p2-generate-ct-of-the-union-proof`; lane proof, elementary, not independently reviewed). No priority is claimed. The Kourovka Notebook, 21st issue (2026, TeX `gq/src/kourovka/21tkt.tex` in the swarm scratchpad, l.13919–13922), lists 21.75 as unsolved; a bounded arXiv search (`abs:"class transpositions"`, newest 5 hits, including arXiv:2607.17477) found no answer.
 
