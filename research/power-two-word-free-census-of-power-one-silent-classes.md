@@ -35,6 +35,20 @@ artifacts:
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp_memory_r1_4887_m2.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_len8_m2_open_entries.log
   - experiments/legal-f-folded-fatgraphs-2026-09-17/lp5_single_word_m3_open_entries.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword_m2_4012_ab3_duals.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_multiword_m3_4887_ab2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/scan_pairs.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/scan_pairs_m2_4887_ab6.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r1_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r2_4887_m2_timeout.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/cg_memory_r2_4012_m2_killed.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory_r2_4887_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/support_propagation_memory_r2_4012_m2.log
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory.py
+  - experiments/legal-f-folded-fatgraphs-2026-09-17/verify_farkas_memory_selftest_4887_m2.log
 ---
 
 **ESTABLISHED (computer-certified).** Proof in
@@ -177,3 +191,35 @@ entries, one per line).
     obstruction at power three lies in the realisation of words, not in the local polygon LP.
   - What remains: multiword boundaries at power two or three, or single words longer than 8. A
     certificate for an open entry needs one of these.
+
+- **2026-09-18, addendum (w5-074): multiword boundaries by column generation; no certificate yet, and no obstruction at memory two.**
+  - `cg_multiword.py` solves the multiword LP of `balanced-power-boundaries-lift-to-folded-certificates`
+    (boundary `n_w` copies of `(w, f^m(w)^{-1})` for each `w` in a word set `W`) by column generation. Pricing
+    over all vertex polygons is exact, by min-plus products over gate blocks, so the polygon set is never
+    enumerated and the LP fits in 2GB. Infeasibility is declared only when the phase-1 Lagrangian bound
+    (master value plus bounded polygon mass times the most negative reduced cost) is positive. These are float
+    computations with exact pricing, not exact Farkas checks.
+  - Entry 4012 at power two, with `W = {a, b, ab, aab, abb}` and inverses (10 words, any multiplicities),
+    is infeasible (`cg_multiword_m2_4012_ab3_duals.log`, which also lists the phase-1 dart duals).
+  - Entry 4887 at power three, with `W = {a, b, ab}` and inverses, is infeasible, with Lagrangian bound `0.498`
+    (`cg_multiword_m3_4887_ab2.log`).
+  - Entry 4887 at power two, with every two-word boundary `{u, v^{-1}}` where `u, v` are over `{a, b}`,
+    `|u|, |v| <= 6` and `[u] = [v]` in `H_1` (`scan_pairs.py`): all 30 pairs are infeasible
+    (`scan_pairs_m2_4887_ab6.log`).
+  - `W` = all words over `{a, b}` of length `<= 4` (16 words), at power two, on 4887 and 4012: the 1200 s limit
+    stopped both with phase-1 values 1.34 and 1.28, so this is undecided.
+  - `cg_memory.py` is the same column generation for the word-free memory-`r` LP of `lp_memory.py`. At `r = 1`
+    it reproduces the enumerated optimum `-1/2` on 4887 (`cg_memory_r1_4887_m2.log`).
+  - At `r = 2` (114 windows) neither run converged: on 4887 phase 1 stopped at 2.39 at the time limit, and on
+    4012 the run was stopped at 6.33 (`cg_memory_r2_*`). So `r = 2` is undecided.
+  - Support propagation (`support_propagation_memory.py`), which is exact, leaves 96 and 100 of the 114 windows
+    alive, with a zero-homology circulation. So no combinatorial obstruction exists at `r = 2`
+    (`support_propagation_memory_r2_*`).
+  - `verify_farkas_memory.py` turns a phase-1 dual dump of `cg_memory.py` into an integer Farkas vector and checks
+    it exactly, maximising over all typed polygons by max-plus products. On 4887 at power two with `r = 1`
+    (446704 polygons), it matches brute force on three random integer vectors
+    (`verify_farkas_memory_selftest_4887_m2.log`).
+    - If the `r = 2` LP is infeasible or has optimum `>= 0` on an entry, this checker makes that an exact proof
+      that the entry has no power-two certificate at all.
+  - Status of the 14 open entries: unchanged. The multiword infeasibilities rule out only the listed word sets,
+    at float tier.
