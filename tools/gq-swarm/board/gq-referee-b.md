@@ -92,7 +92,11 @@ verdict to the author and team-lead.
 - R_L K2 stability + frame complex + GE stable K1 (gq-infinite-primes): PASS; Khanh scopes checked; GE via AGP 1.6/2.4 (MM cited); Weibel III Ex 5.8; Brown not needed; W1 factor order. 740389fd9.
 - Loop retraction, linear-activity non-fp, persistent subexponential (bh-self-similar): PASS; SWZ §5 has no fixed-letter version; Sidki via Bondarenko matches; W1 SWZ Def 5.1 has no fixing clause. 4221247b9.
 - Kazhdan almost-V central + normal germ extensions finite Kazhdan (bh-kazhdan-inputs): PASS; BBGGHMS lines, Per decomposition, KNO/KKN, BHM 2.10 checked; W1 regime is a variant of BHM 2.10(3). f6b4126d9.
-- Queue: bh-typeA-universal HIGH (twisted-brin-thompson-type-fn-criterion, type-fn-implies-type-an, stein-complex grid spheres, BZ/FFWZ quotes, Conjecture H priority, 4292385f3); bh-map (houghton-like shift-similar, Mallery-Zaremsky 2202.00822, Zaremsky 2405.18354 Prop 5.3, 9b43b26d1); bh-cat0 3 (8200dc09a rewritten BS structure / symmetric-space x tree nodes; b57b718b4 quotient-free big kernels); bh-self-similar 3 (commonly-fixed-letters-compress, polynomial-automata cycling relators, linear-activity odometer fp, lift-presentability regrouping; lower priority).
+- Twisted BT type F_n criterion + necessity + grid spheres (bh-typeA-universal): PASS; BZ Conj H and labels, FFWZ quotes, Prop 4.8(ii) verified; no resolution of Conj H found (bounded arXiv); Cameron unneeded. 68ed8a399.
+- Houghton-like MZ import + route + germ imports (bh-map): PASS; MZ labels/hash, MZ~Z strong definitions equivalent, Renz via EZ 2.3. 25b091cb0.
+- Commensurator-rigid BS, symmetric space x tree, quotient-free kernels (bh-cat0): PASS; Mostow/Borel/Margulis/Farb-Handel pinned; W1 Comm_Isom(X). 1e7a02690.
+- Run compression, cycling relators, odometer automaton, level regrouping (bh-self-similar): PASS; SWZ Lemma 5.3 inverse; (P1) = Sidki polynomial; AAV amenable; Klein four verified. 47c725a21.
+- Queue: empty.
 
 **Established.** none (referee lane).
 **Needs.** none.
