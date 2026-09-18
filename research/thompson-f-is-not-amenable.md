@@ -222,6 +222,42 @@ map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     non-amenable, and that is a direct certificate for `F`.
   - Not covered: `nV`, the group `⟨t ↦ t + 1/2, b⟩`, and hosts certified by other witnesses.
   - Denial 3 is already recorded as `thompson-f-ore-obstructions-must-see-finite-support`.
+- **Crossing the observation gate: the exact tail is inert above an idempotent prefix reading
+  (2026-09-17; refereed, and the first framing of it was refuted on scope).** Working inside the gate's
+  own definitions, `thompson-f-exact-tail-observations-have-zero-defect` computes the shadow defect of
+  an observation that is *not* coarse. Fix finite `S ⊆ M`, let `I` be its largest generator index,
+  `D = max deg s`, `K = I + D + 1` (so `K = m + 2d` for `S = S_(m+1,m+d+1)`), let `(Q, δ, ℓ)` be a tree
+  invariant whose reachable states carry an **idempotent** probability, and let
+  `Ξ(y) = ((q(t_0), ..., q(t_(K−1))), (t_K, t_(K+1), ...))`: the `Q`-states of the first `K` trees, and
+  the **exact shapes** of every later tree. Then `δ_1(Ξ) = 0`, and also with the germ datum at the
+  endpoint `0` (the leftmost-leaf depth of `t_0`) adjoined. *Where it dies:* the splits of `S` touch only
+  the first `I + 1` trees and create `I + d + 1`, so for a forest of i.i.d. idempotent towers the coupling
+  of `split_s Y` at `N = n` with `Y` at `N = n + d` is an **exact identity** on the tail and on the
+  prefix state vector, and the whole cost is the `d/(L − n_0 + 1)` of mixing over the tree count.
+  - *What it closes.* The part of the gate's Scope marked open ("observations reading unbounded data of
+    individual trees (sizes, depths, shapes)") for every tree outside a bounded window, **provided** the
+    bounded window is read through an idempotent-carrying invariant: sizes, depths, spines, exact subtree
+    structure and every unbounded invariant of all but `K` trees contribute nothing on top of such a
+    prefix reading.
+  - *What it does **not** close, and the referee's reason for refuting the node's first framing
+    (event `31e58aeb`).* It does **not** follow that a certificate must read the exact shapes of the
+    first `K` trees. Idempotency is load-bearing, and prefix **depth** and prefix **size** carry no
+    idempotent probability — for depth, `F(k) = P(depth <= k)` would satisfy `F(k) = F(k−1)^2`, forcing
+    `F ≡ 0` or `F ≡ 1`. So `Ψ(y) = ((depth t_0, ..., depth t_(K−1)), (t_K, t_(K+1), ...))` is a
+    coarsening of no such `Ξ`, reads no exact prefix shape, and is untouched. The residue is therefore
+    not `π_K` alone but the whole interval between idempotent-carrying prefix observations and `id_M` —
+    every (non-idempotent prefix invariant, exact tail) pair, of which `(Ξ, |y|)` is one member.
+  - *Sharpness:* blurring only the first `K − 1` trees leaves total variation `15/16` for `S_(2,3)`,
+    `s = x_1` (exact arithmetic) — a statement about this model family, not a lower bound on `δ`.
+  - *Residue, partly recorded as `thompson-f-prefix-observation-shadow-defect`:* (1) is `δ_λ(π_K) > 0`
+    for the prefix observation `π_K(y) = (t_0, ..., t_(K−1))`? — a yes proves this root; (2) does
+    `δ_1(π_K) = 0` transfer back to `δ_1(id_M) = 0`? — a yes with (1) no proves
+    `thompson-f-is-amenable`. Also open: `(Ξ, |y|)` and, more generally, every prefix invariant with no
+    idempotent state measure paired with the exact tail.
+  - Script and exact numbers (reproduced byte-identically by all three referees):
+    `experiments/thompson-f-shadow-defect-2026-09-17/exact_tail_shadow_defect.py`,
+    `experiments/thompson-f-shadow-defect-2026-09-17/output.txt`.
+  (swarm-0917, e2-w2-f-shadow-defect, inverter, probability-random.)
 - **Unaccepted claims.** arXiv:1408.2188 claims non-amenability, and Shavgulidze's
   papers claim amenability (critiqued in arXiv:1102.0747). Neither is an accepted
   result. They are recorded so that no lane cites them as theorems.
