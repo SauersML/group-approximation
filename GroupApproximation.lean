@@ -5883,6 +5883,10 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Lift
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTCliffordSystem
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactResidualMF.Endpoint
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesCompression
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDiagonalMatrix
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesDiagonalize
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesLayerModel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
