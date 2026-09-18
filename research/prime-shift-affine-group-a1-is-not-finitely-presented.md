@@ -9,13 +9,14 @@ distinct_from:
   prime-shift-hnn-map-to-a1-is-injective: that asks whether Π_1 -> A_1 is injective; this settles finite presentation of A_1 without answering that, and confines the kernel.
 artifacts:
   - research/artifacts/gq-referee-a-prime-shift-affine-group-a1-is-not-finitely-presented.md
+  - research/artifacts/gq-referee-b-prime-shift-affine-group-a1-is-not-finitely-presented.md
 ---
 
 **ESTABLISHED** through `prime-shift-affine-group-a1-is-not-finitely-presented-proof`
 (lane proof, elementary; inputs are Baumslag's wreath product theorem and item 1 of
 `prime-shift-hnn-groups-are-not-finitely-presented`; refereed PASS by `gq-referee-a`,
-proof gaps, `gq-referee-a-prime-shift-affine-group-a1-is-not-finitely-presented.md`;
-review by `gq-referee-b` pending).
+proof gaps, `gq-referee-a-prime-shift-affine-group-a1-is-not-finitely-presented.md`, and by
+`gq-referee-b`, citations and scope, `gq-referee-b-prime-shift-affine-group-a1-is-not-finitely-presented.md`).
 
 **Notation.** As in `gl-n-q-lies-in-prime-shift-permutation-group`:
 - `A_1 = <τ, δ, ι, σ> <= Sym(Q)`, with `τ = (x ↦ x+1)`, `δ = (x ↦ 2x)` and
@@ -48,7 +49,10 @@ review by `gq-referee-b` pending).
   `ker(Π_1 -> A_1) ⊆ <<τ>>_(Π_1)·<ι>`. Any hidden relation lies in the translation part.
   Whether one exists stays open (`prime-shift-hnn-map-to-a1-is-injective`).
 
-**Scope.** The germ argument is specific to `n = 1`. For `n >= 2`, `GL_n(Z)` moves a deep
-denominator between coordinates. The corresponding invariant would be a determinant
-valuation, which points of `Q^n` do not see. So finite presentation of `K_n` is not
-decided here.
+**Scope.** The germ argument is specific to `n = 1`, and finite presentation of `K_n`
+(`n >= 2`) is not decided here. `GL_n(Z)` does preserve the vector valuation
+`min_i v_p(x_i)`, so moving denominators between coordinates is harmless. What breaks the
+germ are the dilations `diag(r,1,…,1)`: they shift that valuation or not depending on
+which coordinate attains the minimum (referee b). A determinant-valuation invariant is a
+heuristic suggestion only. Also, a finitely presented overgroup of `A_1` carrying a type
+(A) action is not ruled out; only `A_1` itself is.
