@@ -27,8 +27,8 @@ and `ker(dim) ≅ L_2`. Here `ker(dim)` is the group of inert automorphisms.
 - Subgroups of residually finite groups are residually finite, and `(Q,+)` has no nontrivial finite quotient. So
   `Q` does not embed in `Aut`, nor in `L_2`.
 - If `D ≅ Q` lies in `O_2`, then `D ∩ L_2` is a residually finite subgroup of `D`, so `D ∩ L_2 != D`.
-- `D` contains an element outside `L_2`, which violates the Lipschitz constraint SL3 on some circuit. Such an element
-  changes the length of the corresponding periodic orbit.
+- `D` contains an element outside `L_2`, which violates the Lipschitz constraint SL3 on some circuit, since
+  `L_2 = O_2 ∩ SL_2` and `SL_2` is defined by SL3 alone.
 
 **Item 3.**
 - Let `π : Aut -> L_2` be the quotient map, with kernel `<σ>`. If `h^n = g` in `Aut`, then `π(h)^n = π(g)`.

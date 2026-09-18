@@ -11,7 +11,8 @@ artifacts:
 ---
 
 **ESTABLISHED** through `out-v-contains-the-root-problem-for-the-full-2-shift-proof`, by citation plus a short
-argument. Lane proof, not independently reviewed. The inputs were read in TeX at source, except Boyle--Lind--Rudolph
+argument. Refereed: gq-referee-a PASS, proof-gap lens (report 0da548b9b, W1 and N1
+applied); one referee so far. The inputs were read in TeX at source, except Boyle--Lind--Rudolph
 and Boyle 2008, which were read through Salo. See the artifact. No priority is claimed.
 
 **Notation.** `O_2 ≅ Out(V)` is the group of non-initial bi-synchronizing core transducers over `{0,1}` (BCMNO).
@@ -23,9 +24,11 @@ as its input. `σ` is the shift of `X_2^Z = {0,1}^Z`, and `Aut = Aut(X_2^Z, σ)`
    representation `dim : Aut -> <2> ⊂ Q^x`. So `L_2` embeds in `Aut`.
 2. **No `Q` there.** `L_2` is residually finite. So `L_2` contains no copy of `(Q,+)`, and every copy `D` of `Q` in `O_2`
    meets `L_2` in a proper subgroup of `D`. A copy of `Q` in `Out(V)` must therefore contain transducers that
-   violate the Lipschitz constraint, that is, elements that change the lengths of periodic orbits.
+   violate the Lipschitz constraint SL3 on some circuit. (Whether such an element must change the length of some
+   periodic orbit is not shown here; gq-referee-a, W1.)
 3. **Transfer of roots.** Let `g in Aut` have infinite order and `n`-th roots in `Aut` for every `n` in a set `I`.
-   If `I` is infinite, then the image of `g` in `L_2 ⊂ O_2` is nontrivial and has `n`-th roots for every `n in I`.
+   If `I` is infinite, then the image of `g` in `L_2 ⊂ O_2` has infinite order and has `n`-th roots for every `n in I`.
+   So the transfer gives exactly Boyle's form of the question inside `L_2` (gq-referee-a, N1).
    Also, `Z[1/2]` embeds in `Aut` if and only if it embeds in `L_2`.
 4. **Calibration.**
    - Suppose an argument shows that no nontrivial element of `O_2` has roots of infinitely many orders. Then it
