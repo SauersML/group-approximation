@@ -294,6 +294,48 @@ The August audit and the September correction artifacts carry the arguments.
      Kharlampovich--Myasnikov--Sapir group gives an infinite-state faithful
      action is open.
 
+9. **Just-infinite lattice hosts via the Bader--Shalom normal subgroup theorem**
+   (heretic lane c-bhdec1, 2026-09-17).
+   - *The idea.* The families here share three further unstated assumptions:
+     - finite presentation must be engineered on the host;
+     - simplicity is proved element by element in a group with no finite
+       quotients;
+     - the host is a discrete transformation group built from the input's
+       combinatorics.
+
+     Deny them in turn. Finite presentation passes for free to finite-index
+     subgroups and retracts. Simplicity can come from global just-infiniteness
+     plus one simple subgroup. The host can be a uniform lattice in a product of
+     locally compact groups.
+   - *Established.* `just-infinite-over-simple-subgroup-gives-fp-simple-host`: a
+     finitely generated group that is just-infinite above an infinite simple
+     subgroup `S` is virtually `T^k` with `S ↪ T` simple, and `T` is fp iff the
+     host is. Hence `boone-higman-iff-fp-just-infinite-hosts`: the conjecture is
+     equivalent to embedding every infinite decidable finitely generated group in
+     a finitely presented just-infinite group. Also imported:
+     `bader-shalom-normal-subgroup-theorem` and
+     `product-lattice-fp-iff-factors-compactly-presented`.
+   - *The route.* `boone-higman-via-bader-shalom-lattice-hosts` has two independent
+     OPEN prerequisites:
+     - `decidable-simple-groups-embed-in-bader-shalom-lattices` (P1);
+     - `simple-in-bader-shalom-lattice-forces-compact-presentation` (P2).
+
+     P2, the cheaper one, was attacked. It reduces exactly to finite presentability
+     of the simple group `T` read off the lattice.
+   - *Where it dies.* P1 dies for three classes of factors:
+     - linear factors, on either side: the projection is injective, so the host is
+       residually finite;
+     - two Haagerup factors: the simple Kazhdan probe from
+       `fg-groups-have-simple-kazhdan-hosts-of-same-wp-degree` is squeezed into a
+       compact set;
+     - properly cocompact CAT(0) factors: complexity bound, conditional on the
+       unpinned BORS bound of Idea 14 in
+       `research/artifacts/ideas-bh-round2-2026-09-14.md`.
+
+     This covers every Burger--Mozes-type and arithmetic example. P1 needs a
+     genuinely new lattice in a product of two non-linear, non-Haagerup, non-CAT(0)
+     factors.
+
 A ninth non-attempt, recorded because it looks tempting from inside this
 program: Schupp's envelope
 (`countable-group-embeds-in-two-generator-simple-group`) is two-generator but
