@@ -126,4 +126,50 @@ theorem gl06h7_descends_of_fewer (D : RelGenSet G Lambda) {eps : ℕ}
 
 end Descends
 
+/-- **GL06h6's residual gives this one** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121): a non-descending `Δ` has no shortcut. -/
+theorem gl06h7_minimalPocket_of_noShortcutPocket
+    (h : GL06h6.gl06h6_noShortcutPocketStatement.{u, w, v}) :
+    gl06h7_minimalPocketStatement.{u, w, v} := by
+  intro _G _ _Lambda D eps W Delta hlea hletters hW hcells hboundary hno
+  exact h D eps W Delta hlea hletters hW hcells hboundary
+    (gl06h7_not_shortcut_of_not_descends D hlea hletters hno)
+
+#audit_axioms GroupApproximation.Full.GL06h7.gl06h7_minimalPocket_of_noShortcutPocket
+
+/-- **The descent from the minimal pocket** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121): a descent is the right disjunct, and otherwise `Y = Δ` has the
+pocket. -/
+theorem gl06h7_descentPocket_of_minimalPocket
+    (h : gl06h7_minimalPocketStatement.{u, w, v}) :
+    GL06h5.gl06h5_descentPocketStatement.{u, w, v} := by
+  intro _G _ _Lambda D eps W Delta hlea hletters hW hcells hboundary
+  by_cases hd : GL06h6.gl06h6_Descends D eps Delta
+  · obtain ⟨Y, hleaY, hlettersY, hcountY, hshortY, hposY, hdesc⟩ := hd
+    exact ⟨Y, hleaY, hlettersY, hcountY, hshortY, Or.inr ⟨hposY, hdesc⟩⟩
+  · exact ⟨Delta, hlea, hletters, Nat.le_refl _, hboundary,
+      Or.inl (h D eps W Delta hlea hletters hW hcells hboundary hd)⟩
+
+#audit_axioms GroupApproximation.Full.GL06h7.gl06h7_descentPocket_of_minimalPocket
+
+/-- **The short-boundary refutation beyond thresholds, from the minimal pocket** (Osin, proof
+of Lemma 9.7(b); `thm:hull`, non_mf_groups_exist.tex ~2121). -/
+theorem gl06h7_shortBoundaryRefutedBelowSection_of_minimalPocket
+    (h : gl06h7_minimalPocketStatement.{u, w, v}) :
+    GL06h3.ShortBoundaryRefutedBelowSectionStatement.{u, w, v} :=
+  GL06h5.gl06h5_shortBoundaryRefutedBelowSection_of_descent
+    (gl06h7_descentPocket_of_minimalPocket h)
+
+#audit_axioms
+  GroupApproximation.Full.GL06h7.gl06h7_shortBoundaryRefutedBelowSection_of_minimalPocket
+
+/-- **GL06e's all-cells clause, from the minimal pocket** (Osin, proof of Lemma 9.7(b);
+`thm:hull`, non_mf_groups_exist.tex ~2121). -/
+theorem gl06h7_allCellsShort_of_minimalPocket
+    (h : gl06h7_minimalPocketStatement.{u, w, v}) :
+    GL06e.AllCellsShortEnclosedRefutedBelowSectionStatement.{u, w, v} :=
+  GL06h5.gl06h5_allCellsShort_of_descent (gl06h7_descentPocket_of_minimalPocket h)
+
+#audit_axioms GroupApproximation.Full.GL06h7.gl06h7_allCellsShort_of_minimalPocket
+
 end GroupApproximation.Full.GL06h7
