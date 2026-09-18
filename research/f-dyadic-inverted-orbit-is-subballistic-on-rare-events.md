@@ -32,3 +32,18 @@ of the inverse walk must, with only subexponentially small probability, stay con
 fraction of the dyadics it would typically escape through. This is a spectral-radius / cogrowth question
 for the dyadic lamplighter, of the same order of difficulty as the unsettled cogrowth numerics for `F`
 itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
+
+## Attempts
+
+- 2026-09-17, swarm-0917-w6-w6-f-last1 (family probability-random): quantitative class kill, the hole stays OPEN.
+  The spectral route `f-dyadic-inverted-orbit-confinement-needs-tower-times-proof` works for `μ` uniform on
+  `{e, x_0^{±1}, x_1^{±1}}` and `x_0 = 1/2`. Take a good return ratio of the switch-walk, project onto
+  root-switch invariant functions, take a union of `r` samples, and apply
+  `thompson-f-dyadic-ea-witnesses-need-tower-size`. This proves
+  `f-dyadic-inverted-orbit-confinement-needs-tower-times`:
+  - `E 2^{−|O_{2n}|} ≤ exp(−n C^{−2 log* n − O_C(1)}/O_C((log* n)²))` at every time;
+  - the first `N` with `P(|O_N| < εN) > e^{−εN}` is at least a tower of height about `½ log_C(1/ε)`.
+  Invariant: Moore's Følner tower, carried to finite dyadic sets by the breakpoint cocycle. Dying step: exhibiting
+  the confinement time `n(ε)` or the lower-bound profile. Explicit times of bounded tower height die there, and so
+  do profiles `exp(−n/g(n))` with `log g/log* n → ∞`, including stretched exponentials. The hole itself needs only
+  a vanishing rate, and item 2 allows rates `C^{−2 log* n}`, so nothing here decides it.
