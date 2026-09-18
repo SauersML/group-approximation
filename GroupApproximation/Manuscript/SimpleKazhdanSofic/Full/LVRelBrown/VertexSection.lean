@@ -53,7 +53,7 @@ def stabRowToJ : stabRow 3 BinL →* vertexStab :=
     vertexStab (fun g => projection_mem_vertexStab g.1 g.2)
 
 theorem stabRowToJ_val (g : stabRow 3 BinL) :
-    ((stabRowToJ g : vertexStab) : Matrix (Fin 4) (Fin 4) BinL) =
+    (((stabRowToJ g : vertexStab) : GLFour) : Matrix (Fin 4) (Fin 4) BinL) =
       elMat (projection (g : SteinbergGroup (Fin 4) BinL)) :=
   rfl
 
@@ -82,10 +82,13 @@ theorem stabRowToJ_surjective : Function.Surjective stabRowToJ := by
   have hu' : ∀ i j : Fin 3, elMat (projection u) i j =
       ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL) i.castSucc j.castSucc := fun i j =>
     congrArg (fun U : (Matrix (Fin 3) (Fin 3) BinL)ˣ => (U : Matrix (Fin 3) (Fin 3) BinL) i j) hu
+  have hmem : castSuccStab 3 BinL u *
+      rowVec (lastRowVec ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL)) ∈ stabRow 3 BinL :=
+    mem_stabRow.mpr ⟨u, lastRowVec ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL), rfl⟩
   refine ⟨⟨castSuccStab 3 BinL u *
-      rowVec (lastRowVec ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL)),
-    mem_stabRow.mpr ⟨u, _, rfl⟩⟩, ?_⟩
-  exact Subtype.ext (Units.ext (stabRow_decomp _ hcol hlast u hu'))
+      rowVec (lastRowVec ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL)), hmem⟩, ?_⟩
+  exact Subtype.ext (Units.ext
+    (stabRow_decomp ((k : GLFour) : Matrix (Fin 4) (Fin 4) BinL) hcol hlast u hu'))
 
 /-- **The kernel of `stabRowToJ` is killed by `Ψ`** once `Ψ` kills
 `castSuccStab (K₂(3, L))` (Khanh, Thm 5.1). -/

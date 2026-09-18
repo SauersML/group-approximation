@@ -20,8 +20,8 @@ Grigorchuk–Medynets (2014, §3).  Let `Y` be a clopen set with `Y ∩ T^j Y = 
 * `isThreeCycleDatum_thin`: if `6K + 2 ≤ L`, the sets `Z`, `T^N Z`, `T^{2N} Z` are pairwise disjoint
   for `Z = thin T Y K` and `N = 2K + 1`;
 * `commutatorElement_mem_of_supportedIn_thin`: then `⁅a, b⁆ ∈ A` for all `a, b ∈ [[T]]` supported in
-  `Z`.  The three-cycle along `T^N` on `Z` lies in `A` and displaces `Z`, so this is the displacement
-  step `commutatorElement_mem_of_displaced`.
+  `Z`.  The three-cycle along `T^N` on `Z` lies in `A` and displaces `Z`, so this is the
+  displacement step `commutatorElement_mem_of_displaced`.
 -/
 
 namespace GroupApproximation
@@ -107,12 +107,15 @@ theorem toEquiv_zpow_mem_fullGroup [TopologicalSpace X] [CompactSpace X] [T2Spac
 theorem isThreeCycleDatum_thin [TopologicalSpace X] {T : X ≃ₜ X} {Y : Set X} {L K : ℕ}
     (hY : Wandering T Y L) (hKL : 6 * K + 2 ≤ L) :
     IsThreeCycleDatum (T ^ ((2 * K + 1 : ℕ) : ℤ)).toEquiv (thin T Y K) := by
-  refine ⟨fun x hx => zpow_apply_notMem_thin hY (by omega) (by omega) hx, fun x hx => ?_⟩
+  refine ⟨fun x hx =>
+    zpow_apply_notMem_thin hY (d := ((2 * K + 1 : ℕ) : ℤ)) (by omega) (by omega) hx,
+    fun x hx => ?_⟩
   have e : (T ^ ((2 * K + 1 : ℕ) : ℤ)).toEquiv ((T ^ ((2 * K + 1 : ℕ) : ℤ)).toEquiv x) =
       (T ^ (((2 * K + 1 : ℕ) : ℤ) + ((2 * K + 1 : ℕ) : ℤ))) x :=
     zpow_apply_zpow_apply T _ _ x
   rw [e]
-  exact zpow_apply_notMem_thin hY (by omega) (by omega) hx
+  exact zpow_apply_notMem_thin hY (d := ((2 * K + 1 : ℕ) : ℤ) + ((2 * K + 1 : ℕ) : ℤ))
+    (by omega) (by omega) hx
 
 /-- **Room on a thin set** (Matui 2006, Lemma 3.4; tex l.307–315): commutators of elements of
 `[[T]]` supported in `thin T Y K` lie in `alternatingFullGroup T` when `6K + 2 ≤ L`. -/

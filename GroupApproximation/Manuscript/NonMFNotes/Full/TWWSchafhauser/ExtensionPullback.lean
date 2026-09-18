@@ -123,7 +123,7 @@ theorem extensionPullbackSnd_mem_ker {S E Q : Type*} [CStarAlgebra S] [CStarAlge
 def extensionPullbackKernelElement {S E Q : Type*} [CStarAlgebra S] [CStarAlgebra E]
     [CStarAlgebra Q] (π : E →⋆ₐ[ℂ] Q) (θ : S →⋆ₐ[ℂ] Q) (j : E) (hj : π j = 0) :
     extensionPullback π θ :=
-  ⟨(0, j), (mem_extensionPullback π θ (0, j)).2 (by rw [map_zero, hj])⟩
+  ⟨(0, j), (mem_extensionPullback π θ (0, j)).2 ((map_zero θ).trans hj.symm)⟩
 
 theorem extensionPullbackFst_kernelElement {S E Q : Type*} [CStarAlgebra S]
     [CStarAlgebra E] [CStarAlgebra Q] (π : E →⋆ₐ[ℂ] Q) (θ : S →⋆ₐ[ℂ] Q) (j : E)

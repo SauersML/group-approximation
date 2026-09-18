@@ -43,15 +43,17 @@ def wfReduceStep (hd : ℕ × Bool) : List (ℕ × Bool) → List (ℕ × Bool)
   | hd2 :: tl2 => if hd.1 = hd2.1 ∧ hd.2 = !hd2.2 then tl2 else hd :: hd2 :: tl2
 
 theorem wf_primrec_reduceStep : Primrec₂ wfReduceStep := by
-  have hc : PrimrecPred fun r : ((ℕ × Bool) × List (ℕ × Bool)) × ((ℕ × Bool) × List (ℕ × Bool)) =>
-      r.1.1.1 = r.2.1.1 ∧ r.1.1.2 = !r.2.1.2 :=
+  have hc : PrimrecPred
+      fun r : ((ℕ × Bool) × List (ℕ × Bool)) × ((ℕ × Bool) × List (ℕ × Bool)) =>
+        r.1.1.1 = r.2.1.1 ∧ r.1.1.2 = !r.2.1.2 :=
     PrimrecPred.and
       (Primrec.eq.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
         (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)))
       (Primrec.eq.comp (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
         (Primrec.not.comp (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))))
-  have hh : Primrec fun r : ((ℕ × Bool) × List (ℕ × Bool)) × ((ℕ × Bool) × List (ℕ × Bool)) =>
-      if r.1.1.1 = r.2.1.1 ∧ r.1.1.2 = !r.2.1.2 then r.2.2 else r.1.1 :: r.2.1 :: r.2.2 :=
+  have hh : Primrec
+      fun r : ((ℕ × Bool) × List (ℕ × Bool)) × ((ℕ × Bool) × List (ℕ × Bool)) =>
+        if r.1.1.1 = r.2.1.1 ∧ r.1.1.2 = !r.2.1.2 then r.2.2 else r.1.1 :: r.2.1 :: r.2.2 :=
     Primrec.ite hc (Primrec.snd.comp Primrec.snd)
       (Primrec.list_cons.comp (Primrec.fst.comp Primrec.fst)
         (Primrec.list_cons.comp (Primrec.fst.comp Primrec.snd)
@@ -103,10 +105,12 @@ theorem wf_reduce_map_fst {α β : Type*} [DecidableEq α] [DecidableEq β] {f :
       by_cases h : hd.1 = hd2.1 ∧ hd.2 = !hd2.2
       · have h' : f hd.1 = f hd2.1 ∧ hd.2 = !hd2.2 := ⟨congrArg f h.1, h.2⟩
         exact (if_pos h').trans
-          (congrArg (List.map fun p : α × Bool => (f p.1, p.2)) (if_pos h)).symm
+          (congrArg (List.map fun p : α × Bool => (f p.1, p.2))
+            (if_pos (t := tl2) (e := hd :: hd2 :: tl2) h)).symm
       · have h' : ¬(f hd.1 = f hd2.1 ∧ hd.2 = !hd2.2) := fun h2 => h ⟨hf h2.1, h2.2⟩
         exact (if_neg h').trans
-          (congrArg (List.map fun p : α × Bool => (f p.1, p.2)) (if_neg h)).symm
+          (congrArg (List.map fun p : α × Bool => (f p.1, p.2))
+            (if_neg (t := tl2) (e := hd :: hd2 :: tl2) h)).symm
 
 /-! ## The two checks as equalities of raw words -/
 
@@ -135,7 +139,8 @@ theorem wf_exprChecks_iff (P : PresentationCode) (w : List (ℕ × Bool)) (π : 
       FreeGroup.reduce (GroupApproximation.Computability.normLetters P
         (WordProblemRE.testWord P w π)) = [] := by
   show rawValue P π = PresentationCodes.wordOf P w ↔ _
-  rw [← WordProblemRE.wordOf_testWord_eq_one_iff, GroupApproximation.Computability.wordOf_eq_one_iff]
+  rw [← WordProblemRE.wordOf_testWord_eq_one_iff,
+    GroupApproximation.Computability.wordOf_eq_one_iff]
   exact (FreeGroup.toWord_eq_nil_iff (α := ℕ)).symm
 
 /-! ## Well-formedness is primitive recursive -/

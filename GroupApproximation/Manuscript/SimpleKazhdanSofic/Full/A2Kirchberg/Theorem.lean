@@ -28,8 +28,6 @@ finite-dimensional orthogonal representation, and residual finiteness follows.
 
 namespace GroupApproximation.Full.A2Kirchberg
 
-open Matrix
-
 universe u
 
 /-- The real part of the normalized trace. -/

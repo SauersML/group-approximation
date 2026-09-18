@@ -1,5 +1,7 @@
+import Mathlib.Algebra.Category.Grp.Abelian
 import Mathlib.Algebra.Category.Grp.Injective
 import Mathlib.Algebra.Homology.DerivedCategory.Ext.EnoughInjectives
+import Mathlib.Tactic.Abel
 
 /-!
 # `Ext¹_ℤ` into a divisible group vanishes
@@ -55,7 +57,7 @@ def toDivisibleBy (hD : IsDivisibleGroup D) : DivisibleBy D ℤ where
 
 /-- Mathlib's `DivisibleBy D ℤ` gives `IsDivisibleGroup D`. -/
 theorem of_divisibleBy [DivisibleBy D ℤ] : IsDivisibleGroup D :=
-  fun _ hn a => ⟨DivisibleBy.div a _, DivisibleBy.div_cancel a hn⟩
+  fun n hn a => ⟨DivisibleBy.div a n, DivisibleBy.div_cancel a hn⟩
 
 /-- The zero group is divisible. -/
 theorem of_subsingleton [Subsingleton D] : IsDivisibleGroup D :=
@@ -99,6 +101,7 @@ theorem exists_section (hD : IsDivisibleGroup D) {E : Type v} {Q : Type w}
   have hc : ∀ q : Q, p (c q) = q := fun q => Classical.choose_spec (hp q)
   refine ⟨AddMonoidHom.mk' (fun q => c q - i (r (c q))) ?_, ?_⟩
   · intro a b
+    show c (a + b) - i (r (c (a + b))) = (c a - i (r (c a))) + (c b - i (r (c b)))
     have hab : p (c (a + b)) = p (c a + c b) := by rw [map_add, hc, hc, hc]
     rw [key (c (a + b)) (c a + c b) hab, map_add r, map_add i]
     abel
@@ -126,12 +129,14 @@ graded `Ext¹_ℤ(K_*(S), K_{*+1}(J))` is `Ext¹(K₀ S, K₁ J) × Ext¹(K₁ S
 `K₁(J) = 0` and `K₀(J)` is divisible. -/
 theorem gradedExt_one_subsingleton [CategoryTheory.HasExt.{w} AddCommGrpCat.{u}]
     (K0S K1S : AddCommGrpCat.{u}) (K0J K1J : Type u) [AddCommGroup K0J] [AddCommGroup K1J]
-    (h0 : IsDivisibleGroup K0J) (h1 : Subsingleton K1J) :
+    [Subsingleton K1J] (h0 : IsDivisibleGroup K0J) :
     Subsingleton (CategoryTheory.Abelian.Ext.{w} K0S (AddCommGrpCat.of K1J) 1 ×
       CategoryTheory.Abelian.Ext.{w} K1S (AddCommGrpCat.of K0J) 1) := by
-  haveI hA := ext_one_subsingleton_of_isDivisibleGroup K0S K1J
-    (IsDivisibleGroup.of_subsingleton (D := K1J))
-  haveI hB := ext_one_subsingleton_of_isDivisibleGroup K1S K0J h0
+  haveI : Subsingleton (CategoryTheory.Abelian.Ext.{w} K0S (AddCommGrpCat.of K1J) 1) :=
+    ext_one_subsingleton_of_isDivisibleGroup K0S K1J
+      (IsDivisibleGroup.of_subsingleton (D := K1J))
+  haveI : Subsingleton (CategoryTheory.Abelian.Ext.{w} K1S (AddCommGrpCat.of K0J) 1) :=
+    ext_one_subsingleton_of_isDivisibleGroup K1S K0J h0
   refine ⟨fun x y => ?_⟩
   obtain ⟨x1, x2⟩ := x
   obtain ⟨y1, y2⟩ := y

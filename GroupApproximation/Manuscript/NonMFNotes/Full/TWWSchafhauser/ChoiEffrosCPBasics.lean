@@ -32,11 +32,9 @@ namespace GroupApproximation
 namespace Full
 namespace TWWSchafhauser
 
-open scoped InnerProductSpace
-
 noncomputable section
 
-universe u v w
+universe u v
 
 /-! ## The GNS representation of a state as a `⋆`-homomorphism -/
 
@@ -91,8 +89,9 @@ theorem norm_apply_le_of_norm_map_one_le {A : Type u} {B : Type v}
     [CStarAlgebra A] [CStarAlgebra B] {L : A →ₗ[ℂ] B}
     (hL : CStarExactness.IsCompletelyPositive L) (h1 : ‖L 1‖ ≤ 1) (a : A) :
     ‖L a‖ ≤ ‖a‖ :=
-  (norm_apply_le_norm_map_one hL a).trans
-    (by simpa using mul_le_mul_of_nonneg_right h1 (norm_nonneg a))
+  calc ‖L a‖ ≤ ‖L 1‖ * ‖a‖ := norm_apply_le_norm_map_one hL a
+    _ ≤ 1 * ‖a‖ := mul_le_mul_of_nonneg_right h1 (norm_nonneg a)
+    _ = ‖a‖ := one_mul _
 
 /-! ## Compressions -/
 

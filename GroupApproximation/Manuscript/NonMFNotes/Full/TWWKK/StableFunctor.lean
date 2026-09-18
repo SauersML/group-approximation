@@ -93,7 +93,7 @@ theorem toKasparovTheory_grp [∀ A B, AddCommGroup (F.Hom A B)]
 /-- Bilinear composition gives a bilinear Kasparov product. -/
 theorem toKasparovTheory_isBilinear [∀ A B, AddCommGroup (F.Hom A B)] (h : F.CompBilinear) :
     F.toKasparovTheory.IsBilinear := by
-  intro A B C x x' y y'
+  intro _ _ _ x x' y y'
   exact h x x' y y'
 
 /-- An additive identification of a morphism group transfers to the Kasparov group. -/

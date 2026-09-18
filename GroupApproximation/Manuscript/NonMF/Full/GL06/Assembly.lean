@@ -7,7 +7,6 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06b.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
 import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
-import GroupApproximation.Manuscript.NonMF.Full.GL06h.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL06f.Reduction
 import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Endpoint
 import GroupApproximation.Manuscript.NonMF.Full.GL03D.Endpoint
@@ -35,15 +34,11 @@ remaining binders come from sibling lanes. Names marked PROVISIONAL are not land
   (`Full/GL06/BinderFive`) applied to PROVISIONAL
   `Full.GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected :
     Full.GL03BPinch.InnerPocketEnclosedTwoArcCorrected →
-    Full.GL06.EnclosedAllRelatorCellsRefutedSectionStatement →
-    Full.GL06e.CellPocketWalkRefutedBelowSectionStatement`, with arguments
-  * PROVISIONAL `Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected`, and
-  * PROVISIONAL `Full.GL06h.enclosedAllRelatorCellsRefuted`, which excludes the all-cells disjunct
-    (statement in `Full/GL06/EnclosedAllCells`).
-
-  GL03BPinch found on paper that `Full.GL03B.InnerPocketEnclosedTwoArcLocal`, its pinched form and
-  the foreign `P07LakeExclusion.InnerPocketEnclosedTwoArcStatement` are false.  No consumer of them
-  is used here.
+    Full.GL06e.CellPocketWalkRefutedBelowSectionStatement`, applied to PROVISIONAL
+  `Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected`.  The all-cells disjunct of the corrected
+  statement is excluded inside that endpoint, through the refutation of lane GL06h (WO-GL06-7).
+  The original `Full.GL03B.InnerPocketEnclosedTwoArcLocal` is false (GL03BPinch), so it is not
+  consumed.
 * `hstep` (residual 10): `Full.GL06.outerPinchStep_of_cases` of
   * PROVISIONAL `Full.GL06d.nonRoseStep`, whose type must be definitionally
     `Full.GL06.NonRoseStepStatement` (over `Full.GL06f.AllNonFirstTurnsCrossed`, not the
@@ -76,8 +71,7 @@ theorem relativeGreendlingerQuasiGeodesicLeastArea :
     GroupApproximation.Full.GL06c.wholeSectionTwoArc.{u, w, v}
     (osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
       (GroupApproximation.Full.GL06e.refutedBelowSection_of_innerPocketEnclosedCorrected
-        GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected.{u, w, v}
-        GroupApproximation.Full.GL06h.enclosedAllRelatorCellsRefuted.{u, w, v}))
+        GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcCorrected.{u, w, v}))
     (outerPinchStep_of_cases GroupApproximation.Full.GL06d.nonRoseStep.{u, w, v}
       (GroupApproximation.Full.GL06f.rose_of_regionMoveSubArc
         GroupApproximation.Full.GL03D.roseRegionMoveSubArc.{u, w, v}))

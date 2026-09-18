@@ -89,7 +89,8 @@ infrastructure for `thm:hull`, `non_mf_groups_exist.tex`).  A duplicate-free lis
 boundary darts of `F` has as many darts starting at `x` as darts ending at `x`: the boundary
 successor `FaceSetCircuits.boundaryPerm` starts where its argument ends. -/
 theorem boundary_countP_balanced (M : CombMap.{v}) [DecidableEq M.Vertex] (F : Finset M.Face)
-    (c : List M.Dart) (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d)
+    (c : List M.Dart) (hnodup : c.Nodup)
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M F d)
     (x : M.Vertex) :
     c.countP (fun d => decide (M.vertexOf d = x)) =
       c.countP (fun d => decide (M.vertexOf (M.alpha d) = x)) := by
@@ -146,7 +147,8 @@ closes up: its last dart ends where its first dart starts.  The kept darts start
 the first dart as often as they end there, and a walk that does not close up would start there
 once more than it ends there. -/
 theorem isClosedDartWalk_of_perm_filter {M : CombMap.{v}} {faces : Finset M.Face}
-    {c : List M.Dart} (hnodup : c.Nodup) (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
+    {c : List M.Dart} (hnodup : c.Nodup)
+    (hc : ∀ d, d ∈ c ↔ Surgery.MapCollapse.IsBoundaryDart M faces d)
     {z : M.Dart → Bool}
     (hz : ∀ x y, CombMap.FaceClassStep M (walkKeep M c) x y → z x = z y)
     (hind : ∀ d ∈ c, z d = false ∨ z (M.alpha d) = false) {L : List M.Dart}
