@@ -71,7 +71,8 @@ theorem skCohnLimK2_exists_stage_of_mem {x : LVCohnRelK1.CohnTwoF2}
 theorem skCohnLimK2_exists_stage (s : Finset LVCohnDegZero.cohnDegreeZero) :
     ∃ n, ∀ x ∈ s, (x : LVCohnRelK1.CohnTwoF2) ∈ LVCohnDegZero.stage n := by
   choose ix hx using fun x : LVCohnDegZero.cohnDegreeZero => skCohnLimK2_exists_stage_of_mem x.2
-  exact ⟨s.sup ix, fun x hxs => skCohnLimK2_stage_monotone (Finset.le_sup hxs) (hx x)⟩
+  exact ⟨s.sup ix, fun x hxs =>
+    skCohnLimK2_stage_monotone (Finset.le_sup (f := ix) hxs) (hx x)⟩
 
 #audit_axioms GroupApproximation.Full.LVCohnColimit.skCohnLimK2_exists_stage
 

@@ -83,7 +83,7 @@ theorem gl06h4Nearest_nearWindow_of_width (D : RelGenSet G Lambda) (eps : ℕ)
 theorem gl06h4Nearest_nearWindow_of_nearOrShort {D : RelGenSet G Lambda} {eps : ℕ}
     {X : DiscDiagram.{u, w, v} W} {P : PocketRegion X} {lo hi : ℕ}
     (h : gl06h4Nearest_NearOrShort D eps P lo hi) : NearWindow D eps P lo hi :=
-  h.elim (gl06h4Nearest_nearWindow_of_width D eps P) id
+  Or.elim h (gl06h4Nearest_nearWindow_of_width D eps P) id
 
 /-- **The slit pocket with near-or-short sides** (Osin, proof of Lemma 9.7(b); `thm:hull`,
 non_mf_groups_exist.tex ~2121).  `NearestCellPocket` with each slit side a near window or at
