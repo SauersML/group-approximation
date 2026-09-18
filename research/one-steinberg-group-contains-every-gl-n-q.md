@@ -33,6 +33,23 @@ distinct_from:
 `v·sw = v(1 - wv)sw = 0`, `vt·w = vt(1 - wv)w = 0`, using `sw = (1-wv)sw` and
 `vt = vt(1-wv)`, which follow from `x_2 y_2 x_2 = x_2`, `y_2 x_2 y_2 = y_2`.
 
+**Credit and scope** (priority check, `research/artifacts/gq-gq-lit-arxiv-priority.md` §8).
+- **Existence is classical.** Some finitely presented group contains every `GL_n(Q)`:
+  `GL_∞(Q)` is countable and computably presented, so Higman--Neumann--Neumann and Higman
+  embed it in a finitely presented group (survey Corollary 2.4). Chatterji--Kassabov even
+  give Kazhdan hosts. The new part claimed here is an *explicit* group, the Steinberg group
+  of a named finitely presented ring.
+- **Folklore input.** With a Leavitt pair, `M_n(S) ≅ S` (Leavitt 1962), so `GL_n(Q) ≤ S^x`
+  for all `n`. The addition here is lifting this to the finitely presented group
+  `St_4(S)` by killing `K_2`.
+- **Problem 2.7.** Mikaelian (arXiv:2507.04347) announces an explicit finitely presented
+  2-generator overgroup for each `n`, construction not seen. Do not call this the first
+  explicit answer. Whether `St_4(D)` is "natural" in the survey's sense is for experts.
+- **Nearest unstable-over-Leavitt result:** Khanh arXiv:2609.08428, Theorem 5.4
+  (`St_r = GL_r` over `L_(F_2)(1,2)`, `r >= 3`).
+- **Rests on** `finitely-presented-divisible-ring-engine`, which has not been independently
+  reviewed.
+
 ## Attempts
 
 1. **Proof claimed (lane `gq-deep-free-1`), not independently reviewed.**
