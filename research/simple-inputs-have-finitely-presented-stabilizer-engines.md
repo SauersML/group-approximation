@@ -12,6 +12,8 @@ refuted_by:
   - regular-cyclic-twisted-core-has-non-fp-stabilizer-engine
 refuted_by:
   - stabilizer-engines-of-non-fp-simple-groups-are-not-fp
+  - stabilizer-engines-of-non-fp-simple-groups-are-not-fp
+  - regular-cyclic-twisted-core-has-non-fp-stabilizer-engine
 ---
 
 **REFUTED (2026-09-18)** by `stabilizer-engines-of-non-fp-simple-groups-are-not-fp`: a finitely

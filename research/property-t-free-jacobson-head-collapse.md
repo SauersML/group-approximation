@@ -594,3 +594,38 @@ instead of `4`) changes no conclusion.
   holds iff `P_{2,2}(J)` is not MF. This is an MF/quasidiagonality question
   about `lambda_P`, not a finite-model question. If `C*_r(P_{2,2}(J))` is MF,
   the P22 lane is dead. That is undecided. The claim stays OPEN.
+- **group-rings, swarm-0917 (swarm-0917-w12-w12-ptl-follow): the double
+  parabolic `P_{2,2}(J)` is not LEF, by conjugation pigeonhole.**
+
+  *Result (established, with a class kill).* `p22-double-parabolic-is-not-lef`.
+  Take `g = diag(wK, 1)` in the left Levi, `e = x_12(1)`, `u = x_13(1)`,
+  `r1 = x_34(1)` and `r2 = x_43(S) x_34(1)`. They satisfy:
+  - `[g, r_i] = 1`;
+  - `g u g^{-1} = x_13(S) = (r2 u r2^{-1})(r1 u r1^{-1})^{-1}`;
+  - `e` commutes with `u`, `r1` and `r2`;
+  - `[e, g^{-1} u g] = x_13(Q)`.
+
+  So `Ad g` maps `A = <R-conjugates of u>` into `A`. In any finite image
+  pigeonhole makes this onto, and in any finite-dimensional linear image the
+  Zariski closure does. Then `g^{-1}ug` lies in `A`, which `e` centralizes,
+  and the head dies.
+  - `P_{2,2}(J)` is not LEF and has no faithful finite-dimensional
+    representation.
+  - The same holds for `P_{2,2}(R)` whenever `ts = 1 != st`.
+  - The witness `Gamma_pig`, with 5 generators and 6 relators, is finitely
+    presented and not residually finite.
+  - `EL_4(J)` is not LEF, without using the finite presentation of `St_4`.
+  - The w9 question "is `P_{2,2}` LEF?" is answered negatively, and the
+    Gamma_trap/(C)-propagation programme is moot.
+  - Exact checks exit 0, over `F_2` and signed over `Z`.
+
+  *Where it dies (for the hole).*
+  - In any unitary head survivor, `Ad sigma(g)` restricted to
+    `C*(sigma(A)) = C(Y)` is a proper endomorphism. Its dual `f: Y ->> Y` is
+    not injective.
+  - This is no obstruction in quasidiagonal algebras. For example, `Ad t`
+    on `C*(a)` in `C*(BS(1,2))` is such an endomorphism.
+  - So the P22-local MF question (is `P` MF?) remains. Any MF head survivor
+    must be a non-LEF MF model realizing `f` non-injectively.
+  - A toy calibration is `BS(1,2) *_<a> (<a> x <e>)`.
+  - The claim stays OPEN.

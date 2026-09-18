@@ -203,12 +203,15 @@ Every inductive call is in a rank below `m + 1`, so the induction closes. ∎
   routed through `𝒯_m`, the synchronization input in rank `m + 1` is exactly
   `(TI_k)` for `k ≤ m`. That covers the closed-MCG host, and the Deligne host of
   `deligne-bh-via-rational-projective-full-group` at `m + 2`.
-- **Which route this serves.** This is the directedness input of the descent-poset
-  (Stein–Farley) route of `rational-projective-full-groups-are-finitely-presented`.
-  It does not address `edge-split-dissections-respecting-an-atom-plane-split-there`
-  (LD_atom), which is the operad-order input of the Thumann route
-  `closed-mcg-bh-via-edge-split-operad`. Synchronization compares descendant sets of
-  cells; LD_atom compares split trees.
+- **Which routes this serves.**
+  - It is the directedness input of the descent-poset (Stein–Farley) route of
+    `rational-projective-full-groups-are-finitely-presented`.
+  - Since `edge-split-ore-iff-synchronization-and-tree-domination` (landed after this
+    node), it is also the synchronization half of Ore's condition for the Thumann route
+    `closed-mcg-bh-via-edge-split-operad`: `(Sync_m) ⇒ (Sync′)`, and
+    `(Ore) ⟺ (Sync′) ∧ (TD)`.
+  - The other half, tree domination, is untouched here. LD_atom, the earlier
+    candidate for it, is refuted.
 
 ## Lesson for general BH
 
