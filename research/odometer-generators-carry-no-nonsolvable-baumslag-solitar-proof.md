@@ -31,7 +31,16 @@ represents `1` only if it contains a pinch `t a^{km} t^-1` or `t^-1 a^{kn} t`. T
 only if `m | 1` or `n | 1`. So for `|m|, |n| >= 2` the commutator is nontrivial, and likewise `[t^-1 a t, a]`. By
 Steps 2 and 3, one of them maps to `1` in `<a, t>`, so the natural map from `BS(m,n)` is not injective.
 
-**Remark (explicit case, sketch; not claimed in items 1-3).** Take `K = Z_2`, `Y` Cantor, `m = 2`, `n = 3`. Then `3` is
+**Step 5 (item 4).** Suppose `nK = K`. By induction, `t^k a^{m^k} t^-k = a^{n^k}` for `k >= 1`:
+`t^{k+1} a^{m^{k+1}} t^{-(k+1)} = t (t^k a^{m^k} t^-k)^m t^-1 = t a^{m n^k} t^-1 = (t a^m t^-1)^{n^k} = a^{n^{k+1}}`.
+- Since `n^k K = K`, Steps 1-2 apply to the pair `(a, t^k)` with exponents `(m^k, n^k)`. So `t^k a t^-k` commutes with
+  `a` for every `k >= 1`.
+- Conjugating by `t^l`, the elements `x_k = t^k a t^-k` commute pairwise for all `k, l ∈ Z`.
+- `N = <x_k : k ∈ Z>` is abelian. It is normal in `<a, t>`: `a = x_0` commutes with every `x_k`, and `t x_k t^-1 = x_{k+1}`.
+- `<a, t> = N <t>`, so `<a, t>/N` is cyclic.
+- If instead `mK = K`, apply the same argument to `t^-1`, using `t^-1 a^n t = a^m`.
+
+**Remark (explicit case, sketch; not claimed in items 1-4).** Take `K = Z_2`, `Y` Cantor, `m = 2`, `n = 3`. Then `3` is
 invertible on `Z_2`, so every `Phi: BS(2,3) -> Homeo(X)` with `Phi(a) = a` kills `[t a t^-1, a]`.
 - In `BS(2,3)` the normal closure of `[t a t^-1, a]` is exactly `ker(phi)` for the non-Hopfian surjection
   `phi: a -> a^2, t -> t`. Indeed, `psi: a -> t a t^-1 a^-1, t -> t` is a homomorphism from `BS(2,3)` to

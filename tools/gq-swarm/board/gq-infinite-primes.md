@@ -1,4 +1,4 @@
-# gq-infinite-primes board (pass 22: condition (i) level-independent via Voronetsky refinement; absolute input open)
+# gq-infinite-primes board (pass 25: route to condition (i) down to one sign step)
 **KMS reading** (source: arXiv:1204.6506v5 e-print, gq/src/kms/KMS-322.tex; section/theorem numbers from the tex counters)
 - NO embedding theorem. §1.1.7 "What next?" only POSES the RF Higman question (unrestricted form: "whether every f.g.
   RF group with solvable WP embeds into a f.p. RF group").
@@ -187,4 +187,36 @@
 - Missing: absolute input at one level. Khanh's criterion needs GL = E, H_2 = 0 (fail for R_L); relative version needs his
   simultaneous word-multiplier lemma for R_L. No explicit element of U_N found.
 - Attempt 3 on gq-k2-q's WP node.
-**Stall:** one attempt. Awaiting coordinator.
+**Stall (pass 22):** one attempt.
+  Refinement node: a PASS items 2–4 (2d373a8ea), b PASS item 1 (dcf202f7c; Voronetsky read at source). K_2(R_L) node: b PASS 298991936.
+**Pass 23 (free mode; user reminder: be creative)**
+- c3f866213 EST (lane): `leavitt-stabilization-kernels-are-one-step`. D_(N+1) j_N = j_(N+1) j_N ⇒ U_N = ker j_N (one step, no
+  hypothesis); j_N = D_N Σ^(e) (isometric twist of last coordinate). **(i) ⟺ Σ^(s_1) injective on St_3(R_L).**
+- e73333e45 EST (lane): `leavitt-surjective-k2-stability-implies-injective`. Unit u = eee* + fe*f* + eff*f* equals e on ee*R ⇒
+  Σ^(e) = Σ^(u) on H_(ee*) ⇒ U_N ∩ H_(ee*) = 1. Surjective K_2-stability ⇒ injective. R_L: K_2(N) ∩ H_(ee*) = S;
+  (i) ⟺ surjective stability ⟺ K_2(N) ⊆ H_(ee*).
+- 2ffc2bea8: bracket node re-scoped (bh-ck-kernel 2768a5be1): K_1 branches exclude designs declaring the stable clause; hosts only
+  under rank-N K_1 injectivity; loophole (i) added.
+- 5ff76dde9 EST (lane): `leavitt-tuples-make-the-scalar-clauses-agree`. Leavitt (1,d)-tuple ⇒ Λ_N = Λ_(N+d−1) ⊇ ker ι ⇒
+  clauses agree; (i) empty for Leavitt-tuple designs; Λ_N(R_L) = Q^x. (i) lives only in index-1 / fractional-index designs.
+**Sparks:** relative Khanh frame complex for R_L (word-multiplier with θ_k = s_1^(M_k) s_2 transfers; R_L purely infinite simple
+via t_2 t_1^k f s_1^k s_2 = f(k)); K_1-instability at rank N with [1] of infinite order (construction target for (i)).
+- `algebraic-closure-makes-rational-k1-classes-divisible` EST (lane): Q̄ ⊆ R ⇒ ι(Q^x) ⊆ divisible ῑ(Q̄^x) ⊆ K_1(R). Widened gate:
+  stable clause needs infinite-rank divisible K_1; reduced K_1 ⇒ ker ι = Q^x ⇒ host only via loophole (i), no Leavitt tuple.
+  Construction target sharpened to (A) divisible K_1 ⊇ scalars, or (B) reduced K_1 + large unstable K_1 defect at fixed rank N.
+**Stall (pass 23):** loophole-(i) construction not found; constraint landed.
+**Pass 24 (coordinator: (B) or prove (B) forces Leavitt tuple; else own target)**
+- (B): commutative pieces can't help (det detects scalars stably; SK_1 instability lives in SL_N). Not decided; not landed.
+- 6035beb9a EST (lane): `leavitt-k1-stability-is-one-step` (K_1 analog: one-step kernels; s = α τ_e; τ_e = c_U on image;
+  surjective K_1-stability ⇒ injective). OPEN route `leavitt-resolvent-frame-complex-route-to-injective-stability`:
+  relative Khanh criterion (E_n-frame complex simply connected (F) + K_1-injective stability (S1) + signs) ⇒ surjective
+  K_2-stability ⇒ (i). Scalar-clause node: b PASS bd0d11d05.
+**Next:** attempt (F) (word-multiplier for R_L, E_n-orbit cones) and (S1) (K_1-surjective stability for R_L).
+**Pass 25 (free mode, own target: condition (i) via relative Khanh route)**
+- `leavitt-ge-rings-have-stable-k1-at-rank-three` EST: GE ⇒ K_1 surjective from rank 1; Leavitt ⇒ GL_n/E_n = K_1 (n ≥ 3).
+  **R_L compresses: y x z = 1 for every nonzero x** (common level, coefficient extraction, tagged vacuum 1^k21^m2) ⇒ purely
+  infinite simple; Menal–Moncasi GE (via Khanh) ⇒ GL_n(R_L)/E_n(R_L) = Z (n ≥ 3) ⇒ (S1).
+- cb9fefa48 EST: `leavitt-resolvent-frame-complex-is-highly-connected`: simultaneous multiplier via separated vacuum isometries;
+  Khanh cone+fan ⇒ X_r(R_L) (r−3)-acyclic, simply connected (r ≥ 4); E_r transitive on frames of size ≤ r−1 ⇒ (F).
+- Sign step: P_12 ∈ E_n(R_L) (since [−1] = 0 in K_1 and GL/E ↪ K_1); exact lift ω = w_12 D^{-1}(h_12(−1)). Left: ω² (central in
+  K_2(n)) ∈ j(K_2(n−1)) and braid relation mod C. Then (i) ⇒ WP of St_N(R_L) ⇒ gate 1. **For bh-shell-universal.**

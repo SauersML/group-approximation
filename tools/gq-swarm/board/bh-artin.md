@@ -1,10 +1,10 @@
-# bh-artin (BH swarm, Artin groups)
-**Landed 4e7687670 (09-18 08:59), lane proofs, not reviewed:**
-- artin-ordinary-foldings-are-retractions (+proof): edge-compatible foldings onto a standard parabolic are retractions; length map onto <v> for all labels.
-- artin-pbh-reduces-along-folding-separators (+proof): A_Γ ∈ B_A iff both sides of a folding separation are; iff every block is. Example A(A_3) *_{A(A_2)} A(A_3) (single odd component, no cut vertex) ∈ B_A.
-- forest-artin-groups-satisfy-permutational-boone-higman (+proof): forest-type Artin groups, any labels, ∈ B_A ⊂ fp-simple-embeddable.
-- artin-groups-satisfy-boone-higman: status bullets + Attempt 5.
-**Established status on main (read 09-18):** BH: RAAGs; spherical (all types, plain + B_A via char-0 linear); even FC and more (B_A); Ã_n, B̃_n, C̃_n, Euclidean triangles (B_A); forests (B_A, new). Open: D̃_n, Ẽ_6–8, F̃_4 (D̃_n: Roushon's poly-free claim relied on a Thm 2.14 corrected by Flechsig arXiv:2305.04273); odd 2-connected graphs without foldable separators (all-3 4-cycle); hyperbolic triangles; general FC and 2-dimensional; admissibly oriented (reduces to decidable-edge HNN permanence).
-**Needs:** a tool for 2-connected odd graphs (one-sided retracts or HNN permanence over parabolics).
-**Sparks:** arXiv:2603.15314 (CCFP) classifies parabolic-retractable Artin groups; its FC case is already Corollary E of the odd-component node. Its non-FC case needs B_A for odd complete graphs with divisible triangle labels (beyond (3,3,3)).
-Status: idle (stall rule after one landing).
+# bh-artin (BH swarm, Artin groups; free mode)
+**Direction:** invent devices for 2-connected odd-labelled Artin graphs; now: complete (free-of-infinity) atoms.
+**Landed (lane proofs, not reviewed):**
+- 4e7687670: artin-ordinary-foldings-are-retractions; artin-pbh-reduces-along-folding-separators; forest-artin-groups-satisfy-permutational-boone-higman.
+- 6e504ecc5: artin-hub-cones-reduce-pbh-to-coned-cliques; triangle-free-all-3-artin-groups-satisfy-pbh (all-3 four-cycle etc. in B_A).
+- b7a2d865c: artin-pbh-reduces-to-free-of-infinity-artin-groups — CLONE DOUBLE: every Artin group ∈ B_A iff every free-of-∞ (complete-graph) Artin group ∈ B_A.
+- 5b98650ad: coprime-four-cycle-artin-pbh-reduces-to-one-tetrahedral-group: 3,3,3,2 four-cycle ∈ B_A if P (K_4, five 3s, one 2) ∈ B_A; two hubs, pieces Ã_3, D_4, P, P.
+- 03e7a378e: complete-artin-atoms-are-invisible-to-artin-combinatorics (complete atoms stay in one side of every folding separation; LCM images and complete folds stay complete).
+**Frontier:** complete atoms P, T4 = K_4 all 3, large triangles (m,m,m), D̃_n/Ẽ/F̃. Need hosts outside Artin combinatorics (linearity, tree/CAT(0) actions, Garside-odometer or germ constructions, explicit type (A) actions). Large triangles split as graphs of free groups (Jankiewicz 2103.01343), so decidable-edge HNN permanence would reach them. Status: idle.
+**Rule slip:** one accidental empty `python3 -` (no-op) ~09:15.

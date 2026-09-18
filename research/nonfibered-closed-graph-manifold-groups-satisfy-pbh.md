@@ -112,3 +112,53 @@ extensions.
    in the abelian factor, or twist realizations in a mapping class group with each fiber a
    twist about curves disjoint from the rest of the block's support. Designs must instead
    produce such a rational fiber relation, e.g. through chain or lantern relations. Untested.
+10. **Twist realizations of charged two-leaf examples** (bh-3manifold, 2026-09-18).
+    *Reduced, not constructed.* `two-leaf-graph-manifold-twist-realizations`:
+    - For two leaf blocks, fibering is parallelism of the two boundary words in the JSJ
+      torus, and (reading Svetlov) non-virtual-fibering is `β_v β_w ∉ (0, 1]`.
+    - If the torus goes to a two-curve twist group `<T_x, T_y>` of `Mod^+(S)`, each fiber
+      is a power of one twist. Point pushing on both sides lands exactly on the fibered case.
+    - What remains is a single design problem: a leaf block with `ρ(F_w) <= Stab^+(x)` free
+      of rank `2h'`, whose relator product is `T_x^{m'} T_y^{n'}` with boundary slope ratio
+      `m'/n' ∉ [-1, 0)` (pushing gives `-1`), plus injectivity of the amalgam. A solution
+      with `S` punctured would put that example in `B_A`.
+11. **Partially pushed leaf blocks** (bh-3manifold, 2026-09-18). *Sharpening of attempt 10;
+    not constructed.* Put the `w` block in `Mod(Q, p)`, where `Q` has boundary `x` and
+    `y ⊂ Q` bounds a pair of pants with `x` and the puncture `p` (the geometry of a pushed
+    block). Forgetting `p` sends `T_y` to the boundary twist `T_x` of `Q̂ = Q ∪ {p}`. So
+    `Π [ρ(a'_i), ρ(b'_i)] = T_x^{m'} T_y^{n'}` maps to `Π [ā'_i, b̄'_i] = T_x^{e}` in `Mod(Q̂)`
+    with `e = m' + n'`, and the ratio is `m'/n' = e/n' - 1`.
+    - Pure pushing is `ā'_i = b̄'_i = 1`, so `e = 0` and the ratio is `-1` (fibered).
+    - With `v` pushed, non-fibered needs `e != 0`; non-virtually-fibered (reading Svetlov)
+      needs `e/n' < 0` or `e/n' >= 1`.
+    - If `e != 0`, the image of the block in `Mod(Q̂)` is not free, because its relator goes
+      to the central `T_x^e != 1`. So freeness of the block must come from the
+      point-pushing kernel: the block is a lift of a non-free surface-group image with a
+      nontrivial boundary-twist relator. Such images need `T_x^e` to be a product of `h'`
+      commutators in `Mod(Q̂)`. *Correction (attempt 12):* the ambient is `Mod(Q̂)`, of any
+      genus `g`, not `Mod(Σ_{h',1})`. For `g >= 2`, Baykur (arXiv:1206.3512, abstract) gives
+      commutator length `floor((|e|+3)/2)` for `T_∂^e`, so this is possible iff
+      `|e| <= 2h' - 2`. In particular it fails for `h' = 1` and works for `h' = 2`, `e = ±1`.
+    - Still open: choosing lifts whose kernel part is exactly `(T_y T_x^-1)^{-n'}`,
+      freeness of the lift, and injectivity of the amalgam.
+12. **Lifting the capped relator** (bh-3manifold, 2026-09-18). *Reduced to one explicit
+    condition plus freeness and injectivity; not constructed.* Let `Σ' ⊂ Q̂` be the
+    complement of the collar between `y` and `x = ∂Q̂`, so `∂Σ' = y` and `p` lies in the
+    collar. `Mod(Σ')` meets the pushing kernel trivially, so
+    `Push(pi_1(Q̂, p)) ⋊ Mod(Σ') <= Mod(Q, p)`, with `Mod(Σ')` acting on `pi_1(Q̂, p)` by based
+    automorphisms. Write elements as `(u, a)`.
+    - **Relator.** Take `a_1, b_1, a_2, b_2 ∈ Mod(Σ')` with `[a_1, b_1][a_2, b_2] = T_y` (Baykur,
+      genus of `Σ' >= 2`), and the lifts `(u, a_1), (1, b_1), (1, a_2), (1, b_2)`. A direct
+      computation gives `[(u, a_1), (1, b_1)] = (u · c(u)^-1, [a_1, b_1])` with
+      `c = a_1 b_1 a_1^-1`. So the relator product is `Push(u c(u)^-1) T_y`, which equals `T_y`,
+      i.e. `m' = 0`, `n' = 1`, exactly when `c` fixes `u`.
+    - **Consequence.** With the `v` block pushed, that is the non-virtually-fibered case
+      `m'/n' = 0` (attempt 10, item 5).
+    - **Non-degeneracy.** `T_y` acts on `pi_1(Q̂, p)` as conjugation by the boundary loop
+      `ℓ` (`T_y = T_x Push(ℓ)^-1`, and `T_x` acts trivially). So `T_y` is not central in the
+      lifted block, as it must not be, iff `u ∉ <ℓ>`.
+    - **The explicit condition.** Find a Baykur factorization in which `a_1 b_1 a_1^-1` fixes
+      some based loop `u ∉ <ℓ>`, e.g. `b_1` supported on a proper subsurface `W` with
+      `a_1(W)` missing a loop through the collar.
+    - **Still open:** that condition, freeness of the four lifts (their capped images are
+      not free), and injectivity of the amalgam with the pushed leaf.

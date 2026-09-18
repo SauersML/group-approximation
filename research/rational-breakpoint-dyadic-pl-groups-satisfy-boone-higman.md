@@ -8,8 +8,7 @@ distinct_from:
   periodic-germ-extensions-of-v-are-virtually-simple: that is the host; this is one family of groups that lifts into it.
 ---
 
-**ESTABLISHED** by `rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman-proof` (lane proof,
-not independently reviewed). No priority is claimed.
+**ESTABLISHED** by `rational-breakpoint-dyadic-pl-groups-satisfy-boone-higman-proof` (lane proof). *Reviewed:* gq-referee-a PASS (`research/artifacts/gq-referee-a-periodic-germ-extensions-of-v-and-breakpoint-consumers.md`, 135cfebbf), nits N1–N3 applied. No priority is claimed.
 
 **Statement.**
 - Let `PL_2(Q)` be the group of homeomorphisms of the circle `R/Z` that are piecewise of the form

@@ -59,3 +59,25 @@ hyperbolic groups, not both of order 2.
   and for its products with finite groups.
 - **What remains:** freely indecomposable groups, i.e. one-ended groups and splittings only
   over nontrivial finite groups, and non-split finite radicals.
+
+## Update (third landing): finite-index overgroups
+- `contracting-rsgs-closed-under-finite-index-overgroups` (+ proof): the induced action on one
+  labelled copy of `E` per coset. Each element acts on each copy by an element of `H`, so the
+  nucleus stays inside `Nuc_H`, and `g = t_j h t_i^{-1}` supplies the RSG moves.
+- `virtually-free-product-hyperbolic-groups-are-contracting-rsgs` (+ proof): every
+  non-elementary virtually free group is a contracting RSG, including `SL_2(Z)` and `GL_2(Z)`.
+  So is every virtually torsion-free hyperbolic group with infinitely many ends.
+- **Q1.1 now reduces to the one-ended case**, apart from hypothetical infinitely-ended
+  hyperbolic groups that are not virtually torsion-free.
+- **One-ended attempt** (Attempt 2 on the Q1.1 node): Bowen–Series-type Markov codings satisfy
+  the RSG condition automatically, since `g_β^{-1} g_α` is the canonical similarity. Rationality,
+  the finite nucleus and irreducibility remain unverified.
+
+## Update (fourth landing): the one-ended obstacle made precise
+- `sft-irreducible-core-iff-unique-recurrent-component`: when there are no isolated points or
+  empty cones, an irreducible core is the same as a unique recurrent strongly connected
+  component, which is then a sink.
+- Attempt 3 on the Q1.1 node:
+  - each recurrent component carries loxodromics that act as canonical shifts on a cone;
+  - uniqueness reduces to an exact distance-germ gate property, which cut vertices supply in
+    free products and which is open for one-ended groups.

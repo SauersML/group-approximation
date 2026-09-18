@@ -148,3 +148,77 @@ the kind a nucleus allows beyond `V`, cannot supply a rank-two free action eithe
 - Nothing on extra-large-type Artin groups, which are HHGs by Hagen--Martin--Sisto.
   Artin-group BH is carried by `artin-groups-satisfy-boone-higman` and its
   neighbors.
+
+## 7. Second pass (2026-09-18): transport along orbits, and one dead end
+
+**Transport along orbits.** `rsg-z2-locally-trivial-along-rational-attraction` carries
+the germ lemma backwards along orbits. If `a^{n_k} x → ω`, with `ω` rational and with
+finite `A`-orbit, then the element of `A` that is locally trivial at `ω` is also
+locally trivial at `x`. In `V` the hypothesis always holds off the `a`-periodic
+points, because attractors of revealing pairs are rational.
+
+**Rational attractors in Röver--Nekrashevych groups (sketch).** Let `H` be finite-state
+and `g ∈ V_d(H)`. Suppose `g` maps a cone `C_α` into a proper subcone `C_{αβ}` with
+local action `h ∈ H`, so `g(α w) = α β h(w)`. The attracting fixed point is `ω = α y`,
+where `y` is the unique solution of `y = β h(y)`.
+- **The letters of `y` are forced one at a time.** `y_j = β_j` for `j < |β|`. After that,
+  `y_{j+|β|}` is the output of `h` on the letter `y_j`, from the state `h` is in after
+  reading `y_0 ⋯ y_{j-1}`. This uses that `h` acts synchronously.
+- **A finite deterministic system.** So the pair (state of `h`, window
+  `y_j ⋯ y_{j+|β|-1}`) evolves by a deterministic map on a finite set, since `h` is
+  finite-state.
+- **Conclusion.** That pair is eventually periodic, so `y` and `ω` are eventually
+  periodic, hence rational.
+- **Correction.** The version landed in a6ff86235 wrote `ω` as a product of sections of
+  `h` along `β^n`. That formula was wrong; this replaces it.
+
+For a general finite-nucleus RSG the same
+argument needs the relevant local actions to lie in the finite nucleus, which holds
+for deep cones. It also needs an analogue of the statement "wandering points converge
+to such cycles", which is the unproved step.
+
+**Dead end, recorded so it is not repeated: product-of-trees lattices by Zappa--Szép
+self-similarity.**
+- Let `Γ` act freely and transitively on the vertices of `T_1 × ⋯ × T_n`.
+- For each factor `i` there is a unique factorization `Γ = W_i K_i`, where `W_i` is the
+  set of reduced words in the edge labels at a base vertex and `K_i` is a vertex
+  stabilizer.
+- `K_i` then acts self-similarly, and pseudo-freely, on the path category of the
+  non-backtracking graph of the labels.
+- `Γ` acts on `∂T_i` through the topological full group of the Zappa--Szép groupoid.
+  Li's arXiv:2110.04505v2, Example `ex:ZS` (III), makes that group `F_∞` under his
+  condition (F).
+- The route dies because (F) needs `Γ` to act faithfully on `T_i`. Then `K_i` embeds in
+  the profinite group `Aut(T_i, x_0)` and is residually finite, and `Γ` itself is a
+  faithful member of `BS_{K_i}`. So Bux--Llosa Isenrich--Wu Theorem C
+  (`bliw-locally-finite-tree-actions-embed-in-fp-simple-groups`,
+  `cat0-groups-with-a-tree-factor-lie-in-type-a-class`) already applies. The
+  non-residually-finite fibres left open there remain out of reach.
+
+## 8. BBCMP Question 1.16 (2026-09-18, third pass)
+
+**Source.** BBCMP preliminary PDF, `gq/src/bbcmp/`. Pages 1–16 were read as rendered
+pages.
+- Question 1.16 is on p. 7, and is quoted verbatim in
+  `mapping-class-groups-are-continuous-automatic`.
+- Definitions are on pp. 3–4.
+- The continuity criterion is Proposition 2.1 (p. 8).
+- The Garside sequential left action is in the proof of Theorem 2.4, case (1)
+  (pp. 11–12).
+- Groupoids are Theorem 2.12 (p. 15).
+- The commensurability part of Proposition 1.4 is stated on p. 4, but its proof is not in
+  pp. 1–16.
+
+**Landed.**
+- `artin-groups-mod-central-garside-power-are-continuous-automatic` (+ `-proof`):
+  - `A/⟨Δ^c⟩` for a central Garside power, with normal forms the positive Deligne forms
+    that have fewer than `c` leading `Δ`s;
+  - continuity follows from the sequential left action once one checks that left
+    multiplication moves the infimum by at most one.
+- `low-complexity-mapping-class-groups-are-continuous-automatic` (+ `-proof`):
+  `S_{0,n}`, `S_{1,0}`, `S_{1,1}`, `S_{2,0}`.
+
+**The pattern in all BBCMP examples.** The left action of a generator is a letter-to-letter
+transducer read from the front: Garside carries, normal cube paths, Baumslag–Solitar
+forms. A continuous automatic structure for `Mod(S_g)`, `g ≥ 3`, needs normal forms with
+this property. Candidates are recorded in the node's Attempts.

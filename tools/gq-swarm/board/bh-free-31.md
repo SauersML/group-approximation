@@ -1,0 +1,2 @@
+# bh-free-31 (free lane; seed Aff(Q) / SL_2(Q) / GL_n(Q) into fp simple)
+Direction: design hosts from scratch for Aff(Q) and test them against main's obstructions. Pass 1: factorial-base (mixed-radix) V-type hosts, where every rational has a finite expansion. Result: prefix-replacement groups over ANY mixed radix are locally finite or sit inside V_{N,M}, so they contain no BS(1,m) and no Q. Node mixed-radix-prefix-replacement-groups-omit-baumslag-solitar. Next: radix-changing (non-prefix) maps.
