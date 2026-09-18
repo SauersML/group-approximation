@@ -21,8 +21,8 @@ any lake statement; this file and `LakeReadFixOff.lean` repair the lake route it
 
 The false clause asks, when a contact arc on `Π_i` is empty and the lake-fill reading has
 `A₁ = A₂ = 0`, for a relator cell off the lake fill `absorbed (sideFaces L) o`.  In the gl-p07-18
-model (`Π_i`, `Π_j` hang off `K` at one vertex each, the rest of the pocket is one cell `C`) the lake
-fill of `L = ∂C` swallows `Π_i` and `Π_j`, and no cell is off it.
+model (`Π_i`, `Π_j` hang off `K` at one vertex each, the rest of the pocket is one cell `C`) the
+lake fill of `L = ∂C` swallows `Π_i` and `Π_j`, and no cell is off it.
 
 `LakeReadFixStatement` keeps every other clause and replaces that off cell by **an alternative
 witness**: some enclosed face set `faces ∋ C` with its own four-piece reading and the off-cell
