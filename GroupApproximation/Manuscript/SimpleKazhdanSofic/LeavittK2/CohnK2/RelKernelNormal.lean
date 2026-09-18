@@ -137,3 +137,110 @@ theorem relKer_third {N : ℕ} (hN : 3 ≤ N) (i j : Fin N) : ∃ m : Fin N, m �
   exact ⟨⟨t, by omega⟩, fun h => hti (congrArg Fin.val h), fun h => htj (congrArg Fin.val h)⟩
 
 #audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_third
+/-- **Non-opposite conjugation.**  If `x_kl` is not opposite to `x_ij` and `a ∈ (p)`, then
+`x_kl(b) x_ij(a) x_kl(b)⁻¹ ∈ U`. -/
+theorem relKer_conj_nonopp {N : ℕ} (i j k l : Fin N) (hij : i ≠ j) (hkl : k ≠ l) (a b : C₂)
+    (ha : a ∈ CohnTwo.pIdeal (ZMod 2)) (h : j ≠ k ∨ l ≠ i) :
+    x k l hkl b * x i j hij a * (x k l hkl b)⁻¹ ∈ relKer_U N := by
+  by_cases hjk : j = k
+  · have hli : l ≠ i := h.resolve_left (fun h' => h' hjk)
+    subst hjk
+    rw [relKer_conj_right _ _ _ hij hkl (fun h' => hli h'.symm) a b]
+    exact (relKer_U N).mul_mem
+      (relKer_x_mem_U N _ _ _ _ ((CohnTwo.pIdeal (ZMod 2)).neg_mem
+        ((CohnTwo.pIdeal (ZMod 2)).mul_mem_right _ _ ha)))
+      (relKer_x_mem_U N _ _ hij a ha)
+  · by_cases hli : l = i
+    · subst hli
+      rw [relKer_conj_left _ _ _ hkl hij (fun h' => hjk h'.symm) b a]
+      exact (relKer_U N).mul_mem
+        (relKer_x_mem_U N _ _ _ _ ((CohnTwo.pIdeal (ZMod 2)).mul_mem_left _ _ ha))
+        (relKer_x_mem_U N _ _ hij a ha)
+    · rw [(x_commute_of_ne k l i j hkl hij hli (fun h' => hjk h'.symm) b a).eq,
+        mul_inv_cancel_right]
+      exact relKer_x_mem_U N i j hij a ha
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_conj_nonopp
+
+/-- **Conjugating a generator.**  For `N ≥ 3`, every conjugate of `x_ij(u(α, β))` by a root
+lies in `U`.  In the opposite case, split `x_ij(u(α, β))` as a commutator through a third
+index. -/
+theorem relKer_conj_gen {N : ℕ} (hN : 3 ≤ N) (i j k l : Fin N) (hij : i ≠ j) (hkl : k ≠ l)
+    (u v : List (Fin 2)) (b : C₂) :
+    x k l hkl b * x i j hij ((D₂).unit u v) * (x k l hkl b)⁻¹ ∈ relKer_U N := by
+  by_cases hop : j = k ∧ l = i
+  · obtain ⟨hjk, hli⟩ := hop
+    obtain ⟨m, hmi, hmj⟩ := relKer_third hN i j
+    have hu : (D₂).unit u v = (D₂).unit u v * (D₂).unit v v := by
+      rw [(D₂).unit_mul_unit u v v v, if_pos rfl]
+    rw [hu, ← x_commutator i m j (fun h => hmi h.symm) hmj hij ((D₂).unit u v)
+      ((D₂).unit v v), relKer_conj_commutator]
+    exact relKer_commutator_mem (relKer_U N)
+      (relKer_conj_nonopp i m k l (fun h => hmi h.symm) hkl _ b (relKer_unit_mem u v)
+        (Or.inl (fun h => hmj (h.trans hjk.symm))))
+      (relKer_conj_nonopp m j k l hmj hkl _ b (relKer_unit_mem v v)
+        (Or.inr (fun h => hmi (h.symm.trans hli))))
+  · exact relKer_conj_nonopp i j k l hij hkl _ b (relKer_unit_mem u v) (not_and_or.mp hop)
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_conj_gen
+
+/-- For `N ≥ 3`, `U` is stable under conjugation by a root. -/
+theorem relKer_conj_x_mem {N : ℕ} (hN : 3 ≤ N) (k l : Fin N) (hkl : k ≠ l) (b : C₂)
+    (g : SteinbergGroup (Fin N) C₂) (hg : g ∈ relKer_U N) :
+    x k l hkl b * g * (x k l hkl b)⁻¹ ∈ relKer_U N := by
+  obtain ⟨S, hS⟩ := (relKer_mem_U_iff N g).mp hg
+  clear hg
+  induction hS using Subgroup.closure_induction with
+  | mem y hy =>
+      obtain ⟨i, j, hij, u, v, _, _, rfl⟩ := hy
+      exact relKer_conj_gen hN i j k l hij hkl u v b
+  | one =>
+      rw [mul_one, mul_inv_cancel]
+      exact (relKer_U N).one_mem
+  | mul y z _ _ hy hz =>
+      rw [relKer_grp_conj_mul]
+      exact (relKer_U N).mul_mem hy hz
+  | inv y _ hy =>
+      rw [relKer_grp_conj_inv]
+      exact (relKer_U N).inv_mem hy
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_conj_x_mem
+
+/-- **Normality.**  For `N ≥ 3`, `U` is a normal subgroup of `St_N(C_2)`. -/
+theorem relKer_U_normal {N : ℕ} (hN : 3 ≤ N) : (relKer_U N).Normal := by
+  have key : ∀ c : SteinbergGroup (Fin N) C₂, ∀ g ∈ relKer_U N,
+      c * g * c⁻¹ ∈ relKer_U N ∧ c⁻¹ * g * c⁻¹⁻¹ ∈ relKer_U N := by
+    intro c
+    have hc : c ∈ Subgroup.closure
+        (Set.range (PresentedGroup.of (rels := relations (I := Fin N) (R := C₂)))) := by
+      rw [PresentedGroup.closure_range_of]
+      exact Subgroup.mem_top c
+    induction hc using Subgroup.closure_induction with
+    | mem y hy =>
+        obtain ⟨⟨k, l, hkl, b⟩, rfl⟩ := hy
+        change ∀ g ∈ relKer_U N, x k l hkl b * g * (x k l hkl b)⁻¹ ∈ relKer_U N ∧
+          (x k l hkl b)⁻¹ * g * (x k l hkl b)⁻¹⁻¹ ∈ relKer_U N
+        intro g hg
+        refine ⟨relKer_conj_x_mem hN k l hkl b g hg, ?_⟩
+        rw [← x_neg k l hkl b]
+        exact relKer_conj_x_mem hN k l hkl (-b) g hg
+    | one =>
+        intro g hg
+        simp only [one_mul, inv_one, mul_one, and_self]
+        exact hg
+    | mul c d _ _ hc hd =>
+        intro g hg
+        refine ⟨?_, ?_⟩
+        · rw [relKer_grp_conj_conj c d g]
+          exact (hc _ (hd g hg).1).1
+        · rw [relKer_grp_conj_conj' c d g]
+          exact (hd _ (hc g hg).2).2
+    | inv c _ hc =>
+        intro g hg
+        refine ⟨(hc g hg).2, ?_⟩
+        simpa only [inv_inv] using (hc g hg).1
+  exact ⟨fun g hg c => (key c g hg).1⟩
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.relKer_U_normal
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

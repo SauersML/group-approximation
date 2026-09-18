@@ -49,7 +49,7 @@ def SuslinLocalCaseStatement (A : Type*) [CommRing A] (N : ℕ) : Prop :=
   ∀ τ : Matrix.GeneralLinearGroup (Fin N) (Polynomial A),
     Matrix.det (τ : Matrix (Fin N) (Fin N) (Polynomial A)) = 1 →
       elementaryMatrixUnitMap (ι := Fin N) (Polynomial.constantCoeff (R := A)) τ = 1 →
-        ∀ 𝔪 : Ideal A, 𝔪.IsMaximal →
+        ∀ (𝔪 : Ideal A) (_ : 𝔪.IsMaximal),
           elementaryMatrixUnitMap (ι := Fin N)
               (Polynomial.mapRingHom (algebraMap A (Localization.AtPrime 𝔪))) τ ∈
             elementaryGroup (Fin N) (Polynomial (Localization.AtPrime 𝔪))
