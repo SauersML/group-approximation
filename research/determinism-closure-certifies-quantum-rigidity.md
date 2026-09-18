@@ -119,3 +119,9 @@ slabs in two directions.
   fault-free free minimal SFTs, which is Conjecture G2-fp.
 - The closure is also a mechanical test that any proposed rigid SFT over Λ₀ × H can be run through before
   anyone attempts a proof.
+
+**Update (2026-09-18, bh-g2-labbe).** The "case split by near-fault patterns" in the heuristic above is now a sound
+criterion, `contextual-closure-certifies-quantum-rigidity`. For Labbé at scale 2 it crosses both axis fault normals at
+distance 5, where this closure is exactly `B_4`. The resonance prediction is confirmed at `(6,0)`: explicit window
+representations exclude certificates supported in windows of height `<= 11`
+(`labbe-scale-two-commutation-crosses-faults-at-distance-five`).

@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-coprimary-module
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CoprimaryModule: failed to compile definition, consider marking it as 'noncomputable' ..."
 ---
 
@@ -14,6 +15,8 @@ Source changed on main since that build: no.
 ```
 error: GroupApproximation/BooneHigman/Metabelian/CoprimaryModule.lean:133:9: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'MonoidAlgebra.semiring', which is 'noncomputable'
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-coprimary-module`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.CoprimaryModule` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

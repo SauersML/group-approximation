@@ -123,3 +123,14 @@ squares.** Route `minimal-free-sft-via-minimal-self-simulation-of-squares`.
 - Jeandel's theorem (fp + strongly aperiodic SFT ⇒ decidable word problem, arXiv:1501.06831) is
   now read at source; the abstract states it verbatim.
 - So the finite-type condition costs nothing, and the open content of (P1) is exactly (M2).
+
+**Chain complete at design level (2026-09-18, bh-g1-simulation; unreviewed).** The chain runs:
+- Clapham envelope `A`;
+- a (U)+(H) point on `A`, by `universal-hyperaperiodic-points-via-decidable-free-subshifts`;
+- (M2) on `A * Z`, by `free-products-with-z-inherit-m2-from-universal-points`;
+- a minimal free SFT on `(A * Z) x Z^2`, by
+  `minimal-free-sft-via-m2-overgroups-and-keyed-plane-lifts`.
+
+Together these give (P1) for every decidable input. Three links need review: lemma (E) of
+`identifier-markers-give-decidable-free-subshifts`, the free-product lemma, and the keyed-slot
+lift. Quantum rigidity (E2) is not addressed.

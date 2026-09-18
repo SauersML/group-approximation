@@ -85,3 +85,13 @@ remaining ways forward are:
 - a scale-2 operator tiling.
 
 No renormalization or level induction can shortcut either: scale is invariant.
+
+## Attempt on J_2 (2026-09-18, bh-g2-labbe)
+
+See `labbe-scale-two-commutation-crosses-faults-at-distance-five`.
+- **Certified.** Commutation at 26 of the 40 offsets at distance 5, via context splits plus the determinism steps they
+  unlock.
+- **Frontier.** The diagonal offsets `(±5,±5)`, `(±5,±4)`, `(±4,±5)`, `±(3,−5)`.
+- **Excluded.** At the resonant `(6,0)`, any certificate supported in a `7 × 11` window.
+
+A Gröbner run cannot terminate on `C_2` (one commutation orbit per displacement), so the window framework replaces it.

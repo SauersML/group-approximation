@@ -25,6 +25,8 @@ here are the solution's, which are byte-identical to the challenge's.
 * `IsSmoothModulus`: `1` is smooth over every `P`; `3` is not smooth over `∅`.
 * `IsClassTranspositionOver`: the identity is not one, and every one is a class transposition,
   so `CT_P(ℤ) ≤ CT(ℤ)`.
+* `IsClassShift` and `IsClassReflection`: `n ↦ n + 1` is a class shift and `n ↦ -n` a class
+  reflection; the identity is neither.
 * `HasTypeAAction` and `EmbedsInTypeAGroup`: the trivial group acts on a point with type (A);
   `ℝ` embeds in no group with an action of type (A), since such a group is countable.
 * `graphProductRelators` and `GraphProduct`: over the edgeless graph there are no relators,
@@ -114,7 +116,7 @@ theorem nonneg_iff_integerReflection_neg (n : ℤ) : 0 ≤ n ↔ integerReflecti
   show 0 ≤ n ↔ -n - 1 < 0 by omega
 
 /-- **Positive model.** `1` has no prime factors, so it is smooth over every `P`. -/
-theorem isSmoothModulus_one (P : Finset ℕ) : IsSmoothModulus P 1 := by
+theorem isSmoothModulus_one (P : Set ℕ) : IsSmoothModulus P 1 := by
   intro p hp hd
   have h1 := Int.le_of_dvd one_pos hd
   have h2 := hp.two_le
@@ -122,29 +124,51 @@ theorem isSmoothModulus_one (P : Finset ℕ) : IsSmoothModulus P 1 := by
   omega
 
 /-- **Negative model.** `3` is not smooth over the empty set of odd primes. -/
-theorem not_isSmoothModulus_empty_three : ¬ IsSmoothModulus ∅ 3 := by
+theorem not_isSmoothModulus_empty_three : ¬ IsSmoothModulus (∅ : Set ℕ) 3 := by
   intro h
   rcases h 3 Nat.prime_three ⟨1, by norm_num⟩ with h3 | h3
   · omega
   · simp at h3
 
 /-- **Negative model.** The identity is not a class transposition over any `P`. -/
-theorem one_not_isClassTranspositionOver (P : Finset ℕ) : ¬ IsClassTranspositionOver P 1 := by
+theorem one_not_isClassTranspositionOver (P : Set ℕ) : ¬ IsClassTranspositionOver P 1 := by
   rintro ⟨r₁, m₁, r₂, m₂, -, -, -, -, -, -, hdisj, hswap, -⟩
   have h := (hswap 0).1
   apply hdisj 0 0
   simpa using h
 
 /-- Every class transposition over `P` is a class transposition. -/
-theorem isClassTransposition_of_isClassTranspositionOver {P : Finset ℕ} {g : Equiv.Perm ℤ}
+theorem isClassTransposition_of_isClassTranspositionOver {P : Set ℕ} {g : Equiv.Perm ℤ}
     (h : IsClassTranspositionOver P g) : IsClassTransposition g := by
   obtain ⟨r₁, m₁, r₂, m₂, -, -, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩ := h
   exact ⟨r₁, m₁, r₂, m₂, h₁, h₂, h₃, h₄, h₅, h₆, h₇⟩
 
 /-- `CT_P(ℤ)` is a subgroup of `CT(ℤ)`, as in Kourovka 17.60. -/
-theorem classTranspositionGroupOver_le (P : Finset ℕ) :
+theorem classTranspositionGroupOver_le (P : Set ℕ) :
     classTranspositionGroupOver P ≤ classTranspositionGroup :=
   Subgroup.closure_mono fun _ hg => isClassTransposition_of_isClassTranspositionOver hg
+
+/-- **Positive model.** `n ↦ n + 1` is the class shift `ν_{0(1)}`. -/
+theorem addRight_one_isClassShift : IsClassShift (Equiv.addRight (1 : ℤ)) :=
+  ⟨0, 1, le_refl 0, one_pos, fun t => by simp, fun n hn => (hn n (by omega)).elim⟩
+
+/-- **Negative model.** The identity is not a class shift. -/
+theorem one_not_isClassShift : ¬ IsClassShift 1 := by
+  rintro ⟨r, m, h0, hm, hshift, -⟩
+  have h := hshift 0
+  simp at h
+  omega
+
+/-- **Positive model.** `n ↦ -n` is the class reflection `ς_{0(1)}`. -/
+theorem neg_isClassReflection : IsClassReflection (Equiv.neg ℤ) :=
+  ⟨0, 1, le_refl 0, one_pos, fun t => by simp, fun n hn => (hn n (by omega)).elim⟩
+
+/-- **Negative model.** The identity is not a class reflection. -/
+theorem one_not_isClassReflection : ¬ IsClassReflection 1 := by
+  rintro ⟨r, m, h0, hm, hrefl, -⟩
+  have h := hrefl 1
+  simp at h
+  omega
 
 /-- **Positive model.** The trivial group acts on a point with type (A). -/
 theorem unit_hasTypeAAction : HasTypeAAction Unit := by
