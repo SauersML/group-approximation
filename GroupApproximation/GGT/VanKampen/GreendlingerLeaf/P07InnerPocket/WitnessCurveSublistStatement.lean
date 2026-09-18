@@ -14,9 +14,9 @@ of Lemma 9.7(b).  This file states the residual `FourPieceWitness.WitnessCurveSu
 ## Notation
 
 * `l = invDarts X outerWalk`, the inverse outside walk of the witness face set.
-* `w = witnessSublistCurve a b G₁ G₂ = invDarts G₁ ++ sideAWord ++ cellG2Word ++ sideBWord`, the
-  priority-filtered inverse pocket curve (`FourBlockCurve.lean`).  It is definitionally the word in
-  the conclusion of the target.
+* `w = witnessSublistCurve a b G₁ G₂ = invDarts G₁ ++ sideAWord ++ cellG2Word ++ sideBWord`,
+  the priority-filtered inverse pocket curve (`FourBlockCurve.lean`).  It is definitionally the
+  word in the conclusion of the target.
 * `StepNext w l x y` (`WitnessCurveSublistList.lean`): `x` comes before `y` in `w`, or `y` is the
   first entry of `w` that lies in `l`.
 
@@ -74,8 +74,8 @@ section Curve
 variable {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
   {D : RelGenSet G Lambda} {eps : ℕ} {X : DiscDiagram.{u, w, v} W} {i j : Fin X.rCellCount}
 
-/-- **The priority-filtered inverse pocket curve** `Ḡ₁ · Ā · Ḡ₂ · B̄`.  It is the word in the
-conclusion of `WitnessCurveSublistNondegStatement`. -/
+/-- **The priority-filtered inverse pocket curve** `Ḡ₁ · Ā · Ḡ₂ · B̄`.  It is the word in
+the conclusion of `WitnessCurveSublistNondegStatement`. -/
 noncomputable def witnessSublistCurve (a b : RegionCandidate D eps X)
     (G₁ : CyclicArc (cellDarts X i)) (G₂ : CyclicArc (cellDarts X j)) : List X.toCombMap.Dart :=
   invDarts X G₁.darts ++ FourBlock.sideAWord a b G₁ G₂ ++ FourBlock.cellG2Word G₁ G₂ ++

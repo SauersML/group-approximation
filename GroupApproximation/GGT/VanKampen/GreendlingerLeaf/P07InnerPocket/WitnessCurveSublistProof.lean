@@ -86,12 +86,12 @@ theorem witnessSublist_mem_curve {a b : RegionCandidate D eps X}
   by_cases h2 : e ∈ invDarts X G₂.darts
   · refine List.mem_append_left _ (List.mem_append_right _ ?_)
     unfold FourBlock.cellG2Word
-    exact List.mem_filter.mpr ⟨h2, @decide_eq_true _ _ ⟨h1, h2⟩⟩
+    exact List.mem_filter.mpr ⟨h2, @decide_eq_true _ (_) ⟨h1, h2⟩⟩
   by_cases hb : X.toCombMap.alpha e ∈ b.sideFrom i
   · refine List.mem_append_right _ ?_
     unfold FourBlock.sideBWord
     exact List.mem_filter.mpr ⟨(Embedded.mem_invDarts_iff _ _).mpr hb,
-      @decide_eq_true _ _ ⟨h1, h2, hb⟩⟩
+      @decide_eq_true _ (_) ⟨h1, h2, hb⟩⟩
   have ha : X.toCombMap.alpha e ∈ a.sideFrom j := by
     rcases he with h | h | h | h
     · exact absurd h h1
@@ -101,7 +101,7 @@ theorem witnessSublist_mem_curve {a b : RegionCandidate D eps X}
   refine List.mem_append_left _ (List.mem_append_left _ (List.mem_append_right _ ?_))
   unfold FourBlock.sideAWord
   exact List.mem_filter.mpr ⟨(Embedded.mem_invDarts_iff _ _).mpr ha,
-    @decide_eq_true _ _ ⟨h1, h2, hb⟩⟩
+    @decide_eq_true _ (_) ⟨h1, h2, hb⟩⟩
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessSublist_mem_curve
 
@@ -116,8 +116,9 @@ theorem witnessCurveSublistNondeg_of_step (h : WitnessCurveSublistStepStatement.
   have hl : (invDarts X outerWalk).Nodup := Embedded.invDarts_nodup E.nodup
   have hsub : ∀ e ∈ invDarts X outerWalk, e ∈ witnessSublistCurve a b G₁ G₂ :=
     fun e he => witnessSublist_mem_curve (hlab e he)
-  rcases h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁ hG₁ G₂
-      hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab with hstep | hstep
+  rcases h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
+      hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb
+      hlab with hstep | hstep
   · obtain ⟨n, hn⟩ := WitnessCurveSublistList.exists_rotate_sublist_of_steps hwn hl hsub hstep
     exact ⟨n, Or.inl hn⟩
   · obtain ⟨n, hn⟩ :=

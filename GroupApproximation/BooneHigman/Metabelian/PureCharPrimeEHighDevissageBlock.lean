@@ -56,7 +56,8 @@ theorem eHighDevissage_exists_gl_of_end_conj {Q G V L : Type} [Group Q] [Group G
 that embed in `L` and jointly detect `1` combine into one faithful conjugation representation
 over `L`. -/
 theorem eHighDevissage_exists_gl_of_field_pieces {Q G J L : Type} [Group Q] [Group G]
-    [Fintype J] [Field L] (act : Q → G → G) (K : J → Type) [∀ j, Field (K j)] (f : ∀ j, K j →+* L) (d : J → ℕ)
+    [Fintype J] [Field L] (act : Q → G → G) (K : J → Type) [∀ j, Field (K j)]
+    (f : ∀ j, K j →+* L) (d : J → ℕ)
     (κ : ∀ j, G →* GeneralLinearGroup (Fin (d j)) (K j))
     (ρ : ∀ j, Q →* GeneralLinearGroup (Fin (d j)) (K j))
     (hdet : ∀ g, (∀ j, κ j g = 1) → g = 1)

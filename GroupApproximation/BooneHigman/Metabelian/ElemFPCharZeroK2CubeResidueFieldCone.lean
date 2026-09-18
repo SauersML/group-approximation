@@ -187,3 +187,36 @@ theorem czCubeResField_K2Map_cubeKill_cone {n N : ℕ}
 
 #audit_axioms
   GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_K2Map_cubeKill_cone
+
+/-- **One cone step.**  If every element of `K₂(N, R[s_0..s_{n+1}])` killed by every `π_i` dies
+after padding, then so does every element of `K₂(N, R[s_0..s_n])` killed by every `π_i`: its cone
+image dies, and the retraction `r` with `r ∘ j = id` carries this back. -/
+theorem czCubeResField_dies_of_cone_step {N : ℕ} (n : ℕ)
+    (h : ∀ v : K2n N (MvPolynomial (Fin (n + 1 + 1)) R),
+      (∀ j : Fin (n + 1 + 1), K2Map (cubeKill R j) v = 1) → K2DiesAfterPadding v)
+    (u : K2n N (MvPolynomial (Fin (n + 1)) R))
+    (hu : ∀ i : Fin (n + 1), K2Map (cubeKill R i) u = 1) : K2DiesAfterPadding u := by
+  have hd := diesAfterPadding_K2Map (czCubeResFieldConeRetract R n)
+    (h _ (czCubeResField_K2Map_cubeKill_cone hu))
+  rwa [K2Map_K2Map_of_comp_eq_id _ _ (czCubeResField_retract_comp_cone R n)] at hd
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_dies_of_cone_step
+
+/-- **Iterated cone.**  At a fixed rank `N`, the cube form with `n + r + 1` variables gives the
+cube form with `n + 1` variables. -/
+theorem czCubeResField_dies_of_cone_iter {N : ℕ} (n r : ℕ)
+    (h : ∀ v : K2n N (MvPolynomial (Fin (n + r + 1)) R),
+      (∀ j : Fin (n + r + 1), K2Map (cubeKill R j) v = 1) → K2DiesAfterPadding v) :
+    ∀ u : K2n N (MvPolynomial (Fin (n + 1)) R),
+      (∀ i : Fin (n + 1), K2Map (cubeKill R i) u = 1) → K2DiesAfterPadding u := by
+  induction r with
+  | zero => exact h
+  | succ r ih => exact ih (czCubeResField_dies_of_cone_step (n + r) h)
+
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czCubeResField_dies_of_cone_iter
+
+end Cone
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero

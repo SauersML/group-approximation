@@ -127,6 +127,73 @@ theorem cubeNilPosLocalRetract_comp_cone (k : ℕ) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocalRetract_comp_cone
 
+/-- `π_i ∘ j = j ∘ π_i` for `i ≤ k` (the index `i` read in `Fin (k + 1 + 1)` via `castSucc`). -/
+theorem cubeNilPosLocal_cubeKill_castSucc_comp_cone (k : ℕ) (i : Fin (k + 1)) :
+    (cubeKill R (Fin.castSucc i)).comp (cubeNilPosLocalCone R k) =
+      (cubeNilPosLocalCone R k).comp (cubeKill R i) :=
+  MvPolynomial.ringHom_ext
+    (fun r ↦ by simp only [RingHom.comp_apply, cubeNilPosLocalCone_C, cubeKill_C])
+    fun l ↦ by
+      rw [RingHom.comp_apply, RingHom.comp_apply]
+      by_cases hl : l = 0
+      · subst hl
+        rw [cubeNilPosLocalCone_X_zero, map_mul,
+          cubeKill_X_of_ne (R := R) (Fin.ne_of_gt (Fin.castSucc_lt_last i))]
+        by_cases hi : (0 : Fin (k + 1)) = i
+        · rw [cubeKill_X_of_eq (R := R) (congrArg Fin.castSucc hi), zero_mul,
+            cubeKill_X_of_eq (R := R) hi, map_zero]
+        · have hi' : Fin.castSucc (0 : Fin (k + 1)) ≠ Fin.castSucc i :=
+            fun h ↦ hi (Fin.castSucc_inj.mp h)
+          rw [cubeKill_X_of_ne (R := R) hi', cubeKill_X_of_ne (R := R) hi,
+            cubeNilPosLocalCone_X_zero]
+      · rw [cubeNilPosLocalCone_X_of_ne hl]
+        by_cases hi : l = i
+        · rw [cubeKill_X_of_eq (R := R) (congrArg Fin.castSucc hi), cubeKill_X_of_eq (R := R) hi,
+            map_zero]
+        · have hi' : Fin.castSucc l ≠ Fin.castSucc i := fun h ↦ hi (Fin.castSucc_inj.mp h)
+          rw [cubeKill_X_of_ne (R := R) hi', cubeKill_X_of_ne (R := R) hi,
+            cubeNilPosLocalCone_X_of_ne hl]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_castSucc_comp_cone
+
+/-- `π_{k+1} ∘ j = j ∘ π_0`: both send `s_0` to `0`. -/
+theorem cubeNilPosLocal_cubeKill_last_comp_cone (k : ℕ) :
+    (cubeKill R (Fin.last (k + 1))).comp (cubeNilPosLocalCone R k) =
+      (cubeNilPosLocalCone R k).comp (cubeKill R (0 : Fin (k + 1))) :=
+  MvPolynomial.ringHom_ext
+    (fun r ↦ by simp only [RingHom.comp_apply, cubeNilPosLocalCone_C, cubeKill_C])
+    fun l ↦ by
+      rw [RingHom.comp_apply, RingHom.comp_apply]
+      by_cases hl : l = 0
+      · subst hl
+        rw [cubeNilPosLocalCone_X_zero, map_mul,
+          cubeKill_X_of_eq (R := R) (rfl : Fin.last (k + 1) = Fin.last (k + 1)), mul_zero,
+          cubeKill_X_of_eq (R := R) (rfl : (0 : Fin (k + 1)) = 0), map_zero]
+      · rw [cubeNilPosLocalCone_X_of_ne hl,
+          cubeKill_X_of_ne (R := R) (Fin.ne_of_lt (Fin.castSucc_lt_last l)),
+          cubeKill_X_of_ne (R := R) hl, cubeNilPosLocalCone_X_of_ne hl]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_last_comp_cone
+
+/-- If `u ∈ K₂(N, R[s_0..s_k])` is killed by every `π_i`, so is `j u ∈ K₂(N, R[s_0..s_{k+1}])`. -/
+theorem cubeNilPosLocal_cubeKill_cone {k N : ℕ} {u : K2n N (MvPolynomial (Fin (k + 1)) R)}
+    (hu : ∀ i : Fin (k + 1), K2Map (cubeKill R i) u = 1) (i : Fin (k + 1 + 1)) :
+    K2Map (cubeKill R i) (K2Map (cubeNilPosLocalCone R k) u) = 1 := by
+  rcases Fin.eq_castSucc_or_eq_last i with ⟨i', rfl⟩ | rfl
+  · rw [K2Map_K2Map, cubeNilPosLocal_cubeKill_castSucc_comp_cone, ← K2Map_K2Map, hu i',
+      map_one]
+  · rw [K2Map_K2Map, cubeNilPosLocal_cubeKill_last_comp_cone, ← K2Map_K2Map, hu 0, map_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_cubeKill_cone
+
+/-- If the cone image `j u` dies after padding, so does `u = r (j u)`. -/
+theorem cubeNilPosLocal_dies_of_cone {k N : ℕ} (u : K2n N (MvPolynomial (Fin (k + 1)) R))
+    (hv : K2DiesAfterPadding (K2Map (cubeNilPosLocalCone R k) u)) : K2DiesAfterPadding u := by
+  have h := diesAfterPadding_K2Map (cubeNilPosLocalRetract R k) hv
+  rwa [K2Map_K2Map_of_comp_eq_id _ _ (cubeNilPosLocalRetract_comp_cone R k)] at h
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.cubeNilPosLocal_dies_of_cone
+
 end Cone
 
 end GroupApproximation.BooneHigman.Metabelian.ElemFP

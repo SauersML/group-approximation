@@ -60,8 +60,7 @@ theorem pureCharPrimeEHighModule_of_eHighDevissageCoprimary
   have hpP : ∀ j, ((p : ℕ) : MonoidAlgebra (ZMod (p ^ e)) Q) ∈ P j := by
     intro j
     refine (hP j).isPrime.mem_of_pow_mem e ?_
-    rw [eHighDevissage_natCast_pow_eq_zero p e Q]
-    exact (P j).zero_mem
+    exact (congrArg (· ∈ P j) (eHighDevissage_natCast_pow_eq_zero p e Q)).mpr (P j).zero_mem
   choose K _ d κ ρ hchar hinj hequiv using
     fun j : Fin n => hc p hp e he Q hfg (M ⧸ S j) inferInstance (P j) (k j) (hP j) (hpP j)
   haveI : ∀ j, CharP (K j) p := fun j => ringChar.eq_iff.mp (hchar j)
