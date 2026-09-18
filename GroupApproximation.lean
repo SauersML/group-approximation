@@ -5898,6 +5898,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterFoln
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacterState
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.TrivialCharacter
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductOperators
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Formula
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Evals
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.Holds
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
