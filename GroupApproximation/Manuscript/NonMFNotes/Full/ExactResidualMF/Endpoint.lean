@@ -61,7 +61,8 @@ theorem exists_forall_mem_exhaustSet (f : ℕ → G) (hf : Function.Surjective f
   obtain ⟨i, rfl⟩ := hf g
   refine ⟨i + 1, fun n hn => ?_⟩
   unfold exhaustSet
-  exact Finset.mem_union_left _ (Finset.mem_image.mpr ⟨i, Finset.mem_range.mpr (by omega), rfl⟩)
+  exact Finset.mem_union_left _
+    (Finset.mem_image.mpr ⟨i, Finset.mem_range.mpr (by omega), rfl⟩)
 
 /-- A word has all its letters in the eventual letter sets. -/
 theorem exists_forall_letters_mem (S : ℕ → Finset G) (hSex : ∀ g, ∃ N, ∀ n, N ≤ n → g ∈ S n)
@@ -102,7 +103,7 @@ theorem one_le_opLength_wordEval_of_colE {X : ℕ → FiniteModel}
       Matrix (X n) (X n) ℂ)) l) j i) (hij : i ≠ j) :
     1 ≤ opLength (X n) (wordEval G (fun b g => Φ b g) l n) := by
   refine one_le_opLength_of_colE _ ?_ hij
-  rw [coe_wordEval_apply]
+  rw [coe_wordEval_apply Φ l n]
   exact h
 
 end Words
@@ -125,7 +126,8 @@ theorem isOperatorMF_symmetricDouble_of_stages (S : ℕ → Finset G)
     (hSinv : ∀ n g, g ∈ S n → g⁻¹ ∈ S n) (hSex : ∀ g, ∃ N, ∀ n, N ≤ n → g ∈ S n)
     (Y : ℕ → FiniteModel) (act : ∀ n, Bool → G →* Equiv.Perm (Y n))
     (ι : ∀ n, SymmetricDouble G Γ → Y n)
-    (hinj : ∀ n, Set.InjOn (ι n) (dblBall G Γ (S n) (n + (n + 1)) : Set (SymmetricDouble G Γ)))
+    (hinj : ∀ n, Set.InjOn (ι n)
+      (dblBall G Γ (S n) (n + (n + 1)) : Set (SymmetricDouble G Γ)))
     (hact : ∀ n, StageCompatible (S n) n (act n) (ι n)) :
     IsOperatorMF (SymmetricDouble G Γ) := by
   refine isOperatorMF_symmetricDouble_of_gluing G Γ (fun n => blockSumModel (Y n) (Y n))
@@ -157,7 +159,9 @@ theorem isOperatorMF_symmetricDouble_of_stages (S : ℕ → Finset G)
     have hlet : ∀ p, p ∈ l → p.2 ∈ S n := hN n (le_of_max_le_left hn)
     have hlen : l.length ≤ n := le_of_max_le_right hn
     refine one_le_opLength_wordEval_of_colE (stageFamily S Y act ι) l n
-      (colE_wordEval _ (fun l' => Sum.inl (ι n (wordEval G (fun b g => inDouble G Γ b g) l')))
+      (colE_wordEval _ (fun l' : List (Bool × G) =>
+        (Sum.inl (ι n (wordEval G (fun b g => inDouble G Γ b g) l')) :
+          blockSumModel (Y n) (Y n)))
         l ?_) ?_
     · rintro ⟨b, g⟩ l' hsuf
       have hsub : ∀ p, p ∈ l' → p.2 ∈ S n :=
@@ -177,9 +181,12 @@ theorem isOperatorMF_symmetricDouble_of_stages (S : ℕ → Finset G)
       apply hne
       have hB : wordEval G (fun b g => inDouble G Γ b g) l ∈ dblBall G Γ (S n) (n + (n + 1)) :=
         dblBall_mono (by omega) (wordEval_mem_dblBall l hlet)
+      have h10 : (1 : SymmetricDouble G Γ) ∈ dblBall G Γ (S n) 0 := by
+        rw [dblBall_zero]
+        exact Finset.mem_singleton_self 1
       have h1B : (1 : SymmetricDouble G Γ) ∈ dblBall G Γ (S n) (n + (n + 1)) :=
-        dblBall_mono (Nat.zero_le _) (Finset.mem_singleton_self 1)
-      exact hinj n hB h1B (Sum.inl_injective heq)
+        dblBall_mono (Nat.zero_le _) h10
+      exact hinj n (Finset.mem_coe.mpr hB) (Finset.mem_coe.mpr h1B) (Sum.inl_injective heq)
 
 end Stages
 
@@ -192,7 +199,7 @@ theorem isOperatorMF_symmetricDouble_of_residuallyFinite (G : Type) [Group G] [C
   choose Y act ι hinj hact using fun n : ℕ =>
     exists_localModel G Γ (dblBall G Γ (exhaustSet f n) (n + (n + 1)))
   exact isOperatorMF_symmetricDouble_of_stages (exhaustSet f)
-    (fun n _ hg => inv_mem_exhaustSet f hg) (exists_forall_mem_exhaustSet f hf) Y act ι hinj hact
+    (fun _ _ hg => inv_mem_exhaustSet f hg) (exists_forall_mem_exhaustSet f hf) Y act ι hinj hact
 
 /-- **The terminal amalgam `Σ *_B (B × C₂)` is operator MF** (`thm:exact-mf-residual`,
 `non_mf_group_notes.tex`). -/

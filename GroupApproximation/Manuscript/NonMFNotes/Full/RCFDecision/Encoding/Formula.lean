@@ -49,9 +49,10 @@ def encDisp (P : PresentationCode) (d : ℕ) (w : List (ℕ × Bool)) (tag t r :
 def encLowerPoly (P : PresentationCode) (d : ℕ) (w : List (ℕ × Bool)) (t : ℕ) : MvP :=
   mvMul (mvConst 16) (encNormSq d (encDisp P d w 1 t)) ++ mvConst (-1)
 
-/-- The polynomial `‖u_t‖² - 4^n ‖(w(U) - 1) u_t‖²` (upper bound `‖w(U) - 1‖ ≤ 2^{-n}`). -/
+/-- The polynomial `‖u_t‖² - (2^n)² ‖(w(U) - 1) u_t‖²` (upper bound `‖w(U) - 1‖ ≤ 2^{-n}`). -/
 def encUpperPoly (P : PresentationCode) (n d : ℕ) (w : List (ℕ × Bool)) (t : ℕ) : MvP :=
-  encNormSq d (encVecCoord 2 t d) ++ mvMul (mvConst (-(4 : ℤ) ^ n)) (encNormSq d (encDisp P d w 2 t))
+  encNormSq d (encVecCoord 2 t d) ++
+    mvMul (mvConst (-((2 : ℤ) ^ n) ^ 2)) (encNormSq d (encDisp P d w 2 t))
 
 /-- The equations of the sentence. -/
 def encEqs (P : PresentationCode) (d : ℕ) (S : List (List (ℕ × Bool))) : List MvP :=

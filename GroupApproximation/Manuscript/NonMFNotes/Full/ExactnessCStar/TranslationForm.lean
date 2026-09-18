@@ -16,6 +16,8 @@ works with *translation forms* `∑_g b_g ⊗ λ_g`, finitely supported in `g`.
   vector functional of the defining representation;
 * `sliceLeft_coeffFunctional_translationForm` --- the `h`-th coefficient slice
   of `∑_g f(g) ⊗ λ_g` is `f(h)`;
+* `norm_mk_translationForm_apply_le` --- the coefficients of an approximant of
+  a kernel element of `q ⊗ id` are almost in the ideal;
 * `exists_translationForm_approx` --- translation forms are dense in
   `B ⊗_min C*_r(G)`.
 -/
@@ -34,7 +36,7 @@ section Form
 
 variable (G : Type u) [Group G]
 
-local instance : DecidableEq G := Classical.decEq G
+local instance decEqTranslationForm : DecidableEq G := Classical.decEq G
 
 variable (B : Type v) [CStarAlgebra B]
 
@@ -79,6 +81,20 @@ theorem sliceLeft_coeffFunctional_translationForm (h : G) (f : G →₀ B) :
     · rw [if_pos hgh, if_pos hgh, one_smul]
     · rw [if_neg hgh, if_neg hgh, zero_smul]
   exact LinearMap.congr_fun hlin f
+
+/-- **The coefficients of an approximant of a kernel element are almost in the
+ideal**: if `(q ⊗ id) z = 0`, then `‖q(f(h))‖ ≤ ‖∑_g f(g) ⊗ λ_g - z‖_min`. -/
+theorem norm_mk_translationForm_apply_le [Nontrivial B] (I : Ideal B) [I.IsTwoSided]
+    [IsStarStable I] [IsClosed (I : Set B)] [Nontrivial (B ⧸ I)] (f : G →₀ B) (h : G)
+    {z : MinTensorProduct B (ReducedGroupCStar G)} (hz : quotientMinTensorMap I z = 0) :
+    ‖Ideal.Quotient.mk I (f h)‖
+      ≤ ‖minTensorIn B (ReducedGroupCStar G) (translationForm G B f) - z‖ := by
+  have h1 := norm_mk_sliceLeft_le I
+    (StarRep.ofStarAlgHom (reducedGroupCStarSubalgebra G).subtype)
+    (lp.single 2 (1 : G) (1 : ℂ)) (lp.single 2 h (1 : ℂ)) (translationForm G B f) hz
+  rw [norm_single_one, norm_single_one, one_mul, one_mul] at h1
+  rw [← sliceLeft_coeffFunctional_translationForm G B h f]
+  exact h1
 
 end Form
 

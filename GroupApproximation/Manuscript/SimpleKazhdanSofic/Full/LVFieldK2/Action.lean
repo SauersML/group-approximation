@@ -91,8 +91,10 @@ theorem act_w_apply (a b : Fin N) (hab : a ≠ b) (u : Fin N → ZMod 2) (k : Fi
 /-- The standard basis vector `e_q`. -/
 noncomputable def e (q : Fin N) : Fin N → ZMod 2 := Pi.single q 1
 
-theorem e_self (q : Fin N) : e q q = 1 := Pi.single_eq_same q (1 : ZMod 2)
+theorem e_self (q : Fin N) : e q q = 1 := by
+  rw [e, Pi.single_eq_same]
 
-theorem e_ne {q k : Fin N} (h : k ≠ q) : e q k = 0 := Pi.single_eq_of_ne h (1 : ZMod 2)
+theorem e_ne {q k : Fin N} (h : k ≠ q) : e q k = 0 := by
+  rw [e, Pi.single_eq_of_ne h]
 
 end GroupApproximation.Full.LVFieldK2

@@ -131,11 +131,11 @@ theorem collect_spec (ρ : ℕ → ℝ) (i : ℕ) :
         NormSpec ρ (coeffX i a.2) o) c os → CollectSpec ρ i c (collectAtoms c os)
   | [], [], _ => by
       show CollectSpec ρ i [] (some [])
-      refine (collectSpec_some ρ i [] []).2 ⟨fun x hx => absurd hx List.not_mem_nil, fun r => ?_⟩
+      refine (collectSpec_some ρ i [] []).2 ⟨fun _ hx => absurd hx List.not_mem_nil, fun _ => ?_⟩
       exact ⟨fun _ => rfl, fun _ => guardHolds_nil _⟩
   | [], _ :: _, h => False.elim h
   | _ :: _, [], h => False.elim h
-  | (true, p) :: c, none :: os, h => by
+  | (true, p) :: c, none :: _, h => by
       obtain ⟨hn, _⟩ := h
       have h0 : toPoly ρ (coeffX i p) = 0 := hn
       show CollectSpec ρ i ((true, p) :: c) none

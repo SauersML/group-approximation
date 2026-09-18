@@ -190,11 +190,109 @@ instance : NatCast (PreFree A) := ⟨fun n => (n : ℂ) • (1 : PreFree A)⟩
 instance : IntCast (PreFree A) := ⟨fun n => (n : ℂ) • (1 : PreFree A)⟩
 
 /-- Powers, by recursion. -/
-def npowRec' : ℕ → PreFree A → PreFree A
+def preNpow : ℕ → PreFree A → PreFree A
   | 0, _ => 1
-  | n + 1, x => npowRec' n x * x
+  | n + 1, x => preNpow n x * x
 
-instance : Pow (PreFree A) ℕ := ⟨fun x n => npowRec' n x⟩
+instance : Pow (PreFree A) ℕ := ⟨fun x n => preNpow n x⟩
+
+/-! ## The embedding into the product over all representations -/
+
+/-- All values of an element, as a point of the product over all representations. -/
+def toPi (x : PreFree A) : ∀ i : Rep A, i.D :=
+  fun i => evalQ i x
+
+theorem toPi_injective : Function.Injective (toPi (A := A)) := by
+  intro x y h
+  obtain ⟨s, rfl⟩ := exists_mk x
+  obtain ⟨t, rfl⟩ := exists_mk y
+  exact mk_eq_mk fun i => congrFun h i
+
+theorem toPi_zero : toPi (0 : PreFree A) = 0 :=
+  rfl
+
+theorem toPi_one : toPi (1 : PreFree A) = 1 :=
+  rfl
+
+theorem toPi_add (x y : PreFree A) : toPi (x + y) = toPi x + toPi y := by
+  obtain ⟨s, rfl⟩ := exists_mk x
+  obtain ⟨t, rfl⟩ := exists_mk y
+  rfl
+
+theorem toPi_mul (x y : PreFree A) : toPi (x * y) = toPi x * toPi y := by
+  obtain ⟨s, rfl⟩ := exists_mk x
+  obtain ⟨t, rfl⟩ := exists_mk y
+  rfl
+
+theorem toPi_neg (x : PreFree A) : toPi (-x) = -toPi x := by
+  obtain ⟨s, rfl⟩ := exists_mk x
+  rfl
+
+theorem toPi_smul (c : ℂ) (x : PreFree A) : toPi (c • x) = c • toPi x := by
+  obtain ⟨s, rfl⟩ := exists_mk x
+  rfl
+
+theorem toPi_star (x : PreFree A) : toPi (star x) = star (toPi x) := by
+  obtain ⟨s, rfl⟩ := exists_mk x
+  rfl
+
+theorem toPi_sub (x y : PreFree A) : toPi (x - y) = toPi x - toPi y :=
+  ((toPi_add x (-y)).trans (congrArg (fun z => toPi x + z) (toPi_neg y))).trans
+    (sub_eq_add_neg (toPi x) (toPi y)).symm
+
+theorem toPi_nsmul (n : ℕ) (x : PreFree A) : toPi (n • x) = n • toPi x :=
+  (toPi_smul (n : ℂ) x).trans (Nat.cast_smul_eq_nsmul ℂ n (toPi x))
+
+theorem toPi_zsmul (n : ℤ) (x : PreFree A) : toPi (n • x) = n • toPi x :=
+  (toPi_smul (n : ℂ) x).trans (Int.cast_smul_eq_zsmul ℂ n (toPi x))
+
+theorem toPi_natCast (n : ℕ) : toPi (n : PreFree A) = n :=
+  (toPi_smul (n : ℂ) (1 : PreFree A)).trans
+    ((Nat.cast_smul_eq_nsmul ℂ n (1 : ∀ i : Rep A, i.D)).trans (nsmul_one n))
+
+theorem toPi_intCast (n : ℤ) : toPi (n : PreFree A) = n :=
+  (toPi_smul (n : ℂ) (1 : PreFree A)).trans
+    ((Int.cast_smul_eq_zsmul ℂ n (1 : ∀ i : Rep A, i.D)).trans (zsmul_one n))
+
+theorem toPi_npow (x : PreFree A) : ∀ n : ℕ, toPi (x ^ n) = toPi x ^ n
+  | 0 => (pow_zero (toPi x)).symm
+  | n + 1 => ((toPi_mul (x ^ n) x).trans
+      (congrArg (fun z => z * toPi x) (toPi_npow x n))).trans (pow_succ (toPi x) n).symm
+
+/-! ## Algebraic structure -/
+
+instance instRing : Ring (PreFree A) :=
+  Function.Injective.ring toPi toPi_injective toPi_zero toPi_one toPi_add toPi_mul toPi_neg
+    toPi_sub toPi_nsmul toPi_zsmul toPi_npow toPi_natCast toPi_intCast
+
+/-- `toPi` as an additive homomorphism. -/
+def toPiAdd : PreFree A →+ ∀ i : Rep A, i.D where
+  toFun := toPi
+  map_zero' := toPi_zero
+  map_add' := toPi_add
+
+instance instModule : Module ℂ (PreFree A) :=
+  Function.Injective.module ℂ toPiAdd toPi_injective toPi_smul
+
+theorem smul_mul_pre (c : ℂ) (x y : PreFree A) : c • x * y = c • (x * y) :=
+  toPi_injective (by rw [toPi_mul, toPi_smul, toPi_smul, toPi_mul, smul_mul_assoc])
+
+theorem mul_smul_pre (c : ℂ) (x y : PreFree A) : x * c • y = c • (x * y) :=
+  toPi_injective (by rw [toPi_mul, toPi_smul, toPi_smul, toPi_mul, mul_smul_comm])
+
+instance instAlgebra : Algebra ℂ (PreFree A) :=
+  Algebra.ofModule smul_mul_pre mul_smul_pre
+
+instance instStarRing : StarRing (PreFree A) where
+  star_involutive x := toPi_injective (by rw [toPi_star, toPi_star, star_star])
+  star_mul x y := toPi_injective (by
+    rw [toPi_star, toPi_mul, toPi_mul, toPi_star, toPi_star, star_mul])
+  star_add x y := toPi_injective (by
+    rw [toPi_star, toPi_add, toPi_add, toPi_star, toPi_star, star_add])
+
+instance instStarModule : StarModule ℂ (PreFree A) where
+  star_smul c x := toPi_injective (by
+    rw [toPi_star, toPi_smul, toPi_smul, toPi_star, star_smul])
 
 end
 

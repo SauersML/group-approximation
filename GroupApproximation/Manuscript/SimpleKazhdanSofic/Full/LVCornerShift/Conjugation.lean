@@ -30,7 +30,7 @@ variable {G : Type*} [Group G]
 
 /-- Conjugation by a product is the composite of the conjugations.
 (`simple_kazhdan_sofic_group.tex` l.733-735, leaf T1b.iii.) -/
-theorem conj_mul (a b h : G) : a * b * h * (a * b)⁻¹ = a * (b * h * b⁻¹) * a⁻¹ := by
+theorem corner_conj_mul (a b h : G) : a * b * h * (a * b)⁻¹ = a * (b * h * b⁻¹) * a⁻¹ := by
   simp only [mul_inv_rev, mul_assoc]
 
 /-- Conjugation distributes over products.
@@ -128,7 +128,7 @@ variable {A B : I} (hAB : A ≠ B) {u v : S}
 theorem cornerConj_x_left {K : I} (hAK : A ≠ K) (hBK : B ≠ K) (hvu : v * u = 1) (b : S) :
     cornerConj hAB u v * x A K hAK b * (cornerConj hAB u v)⁻¹ = x A K hAK (u * b) := by
   have e0 : x A K hAK b = x A K hAK b * x B K hBK 0 := by rw [x_zero, mul_one]
-  rw [cornerConj, conj_mul, conj_mul, conj_mul, conj_mul, e0,
+  rw [cornerConj, corner_conj_mul, corner_conj_mul, corner_conj_mul, corner_conj_mul, e0,
     col_upper hAB hAK hBK b 0 (-1) b (by rw [mul_zero, add_zero]),
     col_lower hAB hAK hBK b 0 1 b (by rw [one_mul, add_zero]),
     col_upper hAB hAK hBK b b (u - 1) (u * b) (by rw [sub_mul, one_mul, add_sub_cancel]),
@@ -141,7 +141,7 @@ theorem cornerConj_x_left {K : I} (hAK : A ≠ K) (hBK : B ≠ K) (hvu : v * u =
 theorem cornerConj_x_right {J : I} (hJA : J ≠ A) (hJB : J ≠ B) (hvu : v * u = 1) (b : S) :
     cornerConj hAB u v * x J A hJA b * (cornerConj hAB u v)⁻¹ = x J A hJA (b * v) := by
   have e0 : x J A hJA b = x J A hJA b * x J B hJB 0 := by rw [x_zero, mul_one]
-  rw [cornerConj, conj_mul, conj_mul, conj_mul, conj_mul, e0,
+  rw [cornerConj, corner_conj_mul, corner_conj_mul, corner_conj_mul, corner_conj_mul, e0,
     row_upper hAB hJA hJB b 0 (-1) b (by rw [mul_neg, mul_one, neg_neg, add_zero]),
     row_lower hAB hJA hJB b b 1 0 (by rw [mul_one, add_neg_cancel]),
     row_upper hAB hJA hJB 0 b (u - 1) b (by rw [neg_zero, zero_mul, zero_add]),
@@ -158,7 +158,7 @@ theorem cornerConj_x_other {i j : I} (hij : i ≠ j) (hiA : i ≠ A) (hiB : i �
     (x_commute_of_ne A B i j hAB hij hiB.symm hjA t b).mul_inv_cancel
   have hL : ∀ t : S, x B A hAB.symm t * x i j hij b * (x B A hAB.symm t)⁻¹ = x i j hij b :=
     fun t => (x_commute_of_ne B A i j hAB.symm hij hiA.symm hjB t b).mul_inv_cancel
-  rw [cornerConj, conj_mul, conj_mul, conj_mul, conj_mul, hU (-1), hL 1, hU (u - 1), hL (-v),
+  rw [cornerConj, corner_conj_mul, corner_conj_mul, corner_conj_mul, corner_conj_mul, hU (-1), hL 1, hU (u - 1), hL (-v),
     hU u]
 
 end Corner

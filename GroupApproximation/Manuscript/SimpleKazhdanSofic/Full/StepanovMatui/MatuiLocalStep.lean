@@ -60,18 +60,18 @@ theorem exists_local_eight_tower [TopologicalSpace X] [CompactSpace X] [T2Space 
     (∑ p : Fin 8, ∑ q : Fin 8, (E p - E q).natAbs) x
   have hfc : Continuous f := IsFullGroupElement.continuous (mem_fullGroup.mp hf)
   refine ⟨C ∩ n ⁻¹' {n x} ∩ ⇑f ⁻¹' (n ⁻¹' {n (f x)}) ∩ ⋂ j : Fin 5, ⇑(T ^ m j) ⁻¹' V,
-    ((hCc.inter ((isClopen_discrete {n x}).preimage hn)).inter
-      (((isClopen_discrete {n (f x)}).preimage hn).preimage hfc)).inter
+    ((hCc.inter ((isClopen_discrete ({n x} : Set ℤ)).preimage hn)).inter
+      (((isClopen_discrete ({n (f x)} : Set ℤ)).preimage hn).preimage hfc)).inter
       (isClopen_iInter_of_finite fun j => hV.preimage (T ^ m j).continuous),
-    ⟨⟨⟨hxC, Set.mem_singleton _⟩, Set.mem_singleton _⟩, Set.mem_iInter.mpr hmV⟩,
+    ⟨⟨⟨hxC, Set.mem_singleton (n x)⟩, Set.mem_singleton (n (f x))⟩, Set.mem_iInter.mpr hmV⟩,
     E, hE0, ?_, ?_, ?_, ?_⟩
   · intro A hAW i j y hi hj
     by_contra hij
     have hw₁ : (T ^ (-E i)) y ∈ C := by
-      rw [← toEquiv_zpow_apply]
+      rw [← toEquiv_zpow_apply T (-E i) y]
       exact (hAW hi).1.1.1
     have hw₂ : (T ^ (-E j)) y ∈ C := by
-      rw [← toEquiv_zpow_apply]
+      rw [← toEquiv_zpow_apply T (-E j) y]
       exact (hAW hj).1.1.1
     have heq : (T ^ (E j - E i)) ((T ^ (-E j)) y) = (T ^ (-E i)) y := by
       rw [zpow_apply_zpow_apply, show E j - E i + -E j = -E i by ring]

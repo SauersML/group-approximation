@@ -145,8 +145,8 @@ theorem minTensorNorm_lTensor_schurMultiplier_le [Nontrivial B] (W : PropertyAWi
   exact minTensorNorm_lTensor_compress_le (ampRegRep G) (schurDilation W)
     (norm_schurDilation_le W) (schurMultiplier W) (schurMultiplier_apply W) y
 
-omit [CStarAlgebra B] in
-theorem lTensor_regInclusion_eq [CStarAlgebra B] (W : PropertyAWitness G R ε)
+/-- `id ⊗ J = id ⊗ (J - Φ) + id ⊗ Φ`. -/
+theorem lTensor_regInclusion_eq (W : PropertyAWitness G R ε)
     (y : B ⊗[ℂ] ReducedGroupCStar G) :
     LinearMap.lTensor B (regInclusion G) y
       = LinearMap.lTensor B (schurDefect W) y + LinearMap.lTensor B (schurMultiplier W) y := by
@@ -277,7 +277,7 @@ theorem norm_lTensor_schurMultiplier_mul_le (W : PropertyAWitness G R ε) (f : G
     rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, norm_minTensorIn_tmul]
     exact (mul_le_of_le_one_right (norm_nonneg _)
       (norm_schurMultiplier_reducedLeftRegular_le W g)).trans (hη g hg)
-  refine (Finset.sum_le_sum h).trans ?_
+  refine (Finset.sum_le_sum h).trans_eq ?_
   rw [Finset.sum_const, nsmul_eq_mul]
 
 /-- **The defect part is controlled by two approximants**: a short
