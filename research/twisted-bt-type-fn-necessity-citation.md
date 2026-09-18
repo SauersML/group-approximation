@@ -4,7 +4,8 @@ id: twisted-bt-type-fn-necessity-citation
 kind: route
 title: Import FFWZ Definition 1.3, Proposition 4.17 and Corollary 4.18
 target: twisted-brin-thompson-type-fn-implies-type-an
-requires: []
+requires:
+  - abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one
 ---
 
 Source: F. Fournier-Facio, X. Wu, M. C. B. Zaremsky, *Abstract twisted Brin--Thompson
@@ -30,3 +31,8 @@ groups*, arXiv:2603.24687v2. Read 2026-09-18 from the PDF text extracted on MSI,
 The case `n = 1` needs `[A_1]` as a hypothesis of Proposition 4.17. That hypothesis holds
 because `SV_G` finitely generated forces `[A_1]` (their Theorem 4.1(i), line 748). The statements
 were read in full; the proof of Proposition 4.17 was read but not re-checked line by line.
+
+For non-faithful actions, Proposition 4.17 uses germinal twists in `G`. These are well defined
+as germinal twists in the faithful realization of
+`abstract-twisted-bt-group-is-colored-subgroup-of-faithful-one` (referee c, 488bd5ce1). That
+node is required here for the non-faithful case.

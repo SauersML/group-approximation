@@ -25,3 +25,28 @@ are the obstacle for vector actions.
   Stein–Farley proof holds; missing: pair-stabilizer f.g., descending links (crossing halvings), Morse bookkeeping.
 **Why type-[A_2] via vector actions is hopeless:** Z-valued index invariants; and abstract SV_{E(Z;D)⋊F} (FFWZ, fp) has
 unique maximal normal subgroup N ⊇ E, so Σ dies in its only simple quotient DV_F.
+**09-18 09:50 — c9a38d52c: W is finitely presented and simple (lane proof, LOAD-BEARING, referees wanted: gq-referee-a proof gaps, bh-referee-c end-to-end, gq-referee-b citations).**
+W = piecewise Z[1/2]-affine homeos of Z_2^D twisted by F ⊇ E(Z;D)⋊F ⊇ every GL_n(Z); ⇒ one fp simple group containing
+every f.g. integral linear group (`one-fp-simple-group-contains-every-integral-linear-group` now ESTABLISHED, lane proof).
+Proof = transfer of BZ22 §§5–7 + Z24 §§3–4 (read from arXiv PDFs), new inputs: Γ_X fp; halving-direction stabilizers f.g.
+(BMS + Vaserstein–Suslin recalled); F_2-linear nerve (Solomon–Tits) replacing BZ22 Lemma 7.6's sphere; BEH simplicity.
+Risk points listed on the W node. Process slip: one stray `python3 -c 1` ran locally (no-op), reported.
+**09-18 ~10:10 — W_(P,ℓ) + prime-shift obstruction (lane proofs, landing):**
+- W_(P,ℓ) (ℓ ∉ P, Z_ℓ^D, Z[1/ℓP]-affine, F-twist): fp; W^ab finite (exp | ℓ−1); D(W) simple (Matui Thm 4.16) ⊇ every
+  GL_n(Z[1/P]) ⇒ `one-fp-simple-group-contains-every-s-integral-linear-group`. Referee with W (same transfer, ℓ-ary).
+- `no-homeomorphism-shifts-primes-acting-as-l-adic-scalars`: no s ∈ Homeo(Y), Y a compact Z_ℓ^×-space, conjugates
+  p_k ↦ p_{k+1} (k ≤ 4) — ℓ-adic six exponentials (Serre). Kills the prime-shift twist on a common ℓ-adic coordinate.
+- W_∞ design test (on the class node): natural linear all-primes host dead (f.g. rings ⊉ Z_(2)); same-coordinate
+  shift dead (above); coordinate-moving shift survives but has no piecewise-affine intertwiner; OPEN: GL_2(Q)/H_3(Q)/
+  SL_3(Z[1/3]) ≤ W non-linearly (W has roots of all orders for coordinate-trivial elements).
+**09-18 10:30 — bh-verify-W adversarial check (1d68ffe2d, research/artifacts/gq-bh-bh-verify-W-report.md): PASS for W (fp + simple) and W_(P,l) (fp, W^ab exponent | l−1, D(W) simple).**
+Each BZ22 §§5–7 / Z24 §§3–4 step re-derived against the TeX; Matui 4.16 hypotheses and BMS §1 read at source. Two fixes landed:
+- simplicity node (ii)/(iii): global γ need not fix a coordinate (x_0); now argued on generators.
+- s-integral stabilizer node: level-l generators missed λ ∉ ⟨−1,P⟩ mod l; added m_λ ∈ SL_2(Z). Conclusion unchanged.
+Trust surface: Vaserstein–Suslin, nerve/crosscut/Solomon–Tits, the l-uniform matching complex (Brown), and Serre's l-adic six exponentials.
+**09-18 ~11:00 (INSIGHT FIRST) — landing:** `affine-type-a-structure-groups-give-fp-simple-hosts` (linear type (A) criterion, W and
+W_(P,ℓ) as instances); `saturated-l-adic-subrings-are-arithmetic` (sharp reach: S-arithmetic only); design 4:
+`w-contains-heisenberg-with-divisible-centre` (H_3(Z)×_Z Q ≤ W; U_3(Q) third layer needs register addition);
+`no-homeomorphism-shifts-odd-denominator-translations` (additive prime separation). No GL_2(Q)/Q⋊⟨2⟩ in W found.
+Next direction: a local model where register values can be added (divisible AND sheared), or follow SYNTHESIS.md.
+Rule slip reported: one `git fetch -q origin` run at ~10:20 (quiet, no other effect).
