@@ -2,6 +2,7 @@
 rg: 2
 id: u3-q-not-in-q-free-cantor-wreaths-proof
 kind: route
+title: In a continuous wreath product over a Q-free base the kernel of the base projection swallows the centre of U_3(Q), and then the Cantor orbit of a point is finite or minimal infinite, each contradicting local constancy against unbounded denominators
 target: u3-q-not-in-q-free-cantor-wreaths
 requires: []
 ---
