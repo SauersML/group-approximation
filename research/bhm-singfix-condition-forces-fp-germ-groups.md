@@ -10,10 +10,13 @@ distinct_from:
   gl-n-q-almost-v-hosts-need-lattice-germs: that says a germ group of a GL_n(Q) host must contain lattices; this says that a germ group certified by Theorem 2.1 must be finitely presented.
 artifacts:
   - research/artifacts/gq-gq-typea-design-u2-germ-implant.md
+  - research/artifacts/gq-referee-a-bhm-singfix-condition-forces-fp-germ-groups.md
 ---
 
 **ESTABLISHED** by `bhm-singfix-condition-forces-fp-germ-groups-proof` (lane proof,
-elementary, not independently reviewed; no novelty claimed).
+elementary; gq-referee-a PASS, proof-gap lens,
+`research/artifacts/gq-referee-a-bhm-singfix-condition-forces-fp-germ-groups.md`,
+852826b2e, nits N1 and N2 applied; no novelty claimed).
 
 ## Statement
 

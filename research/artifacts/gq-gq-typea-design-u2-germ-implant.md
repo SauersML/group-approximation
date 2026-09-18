@@ -198,7 +198,7 @@ The corrected form is `steinberg-resolvent-shell-envelope-is-finitely-presented`
    finitely generated subgroup `St_4(R_L)` does
    (`simple-envelope-forces-solvable-word-problem`).
    - `R_L` is a nonzero finitely presented simple ring, so its word problem is decidable,
-     by the ring form of Kuznetsov's argument. This is a lane remark, not reviewed.
+     by the ring form of Kuznetsov's argument. This lane remark was checked by gq-referee-a (PASS, 852826b2e).
      Hence so is that of `E_4(R_L)`.
    - What is left is deciding triviality of words of `St_4(R_L)` that lie in
      `K_2(4,R_L)`. It is open.
