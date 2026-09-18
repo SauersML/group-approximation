@@ -131,3 +131,23 @@ This is the "yes" answer to the Haagerup part of Zaremsky Problem 2.7
     This extends §3(g) of the 2026-09-16 artifact.
   - **Not ruled out:** signed drifts that cancel to first order. Relative (T) of `(G, Z·1_C)`
     stays open. The inequality is second order, so it cannot give a spectral gap.
+- **Vertically triangular chart cocycles are bounded (2026-09-17, swarm-0917-w6-w6-nv-pull;
+  class-kill).**
+  - `nv-vertically-triangular-chart-cocycles-are-bounded` (established). Let
+    `v: X → H` be supported on charts with `pr_n∘φ(x, y) = w(x)·y`, twisted by any unitary
+    representation. If `v − g·v ∈ ℓ²` for `g_i = h_i × id` and for all vertical swaps
+    `id × s_w`, then `‖v‖² ≤ 100 Σ_i ‖v − g_i·v‖²`. So the cocycle is a coboundary and bounded
+    on `nV`.
+  - In particular, every infinite weighted sum of brick wall counts `Σ_k w_k|gA_k Δ A_k|` that is
+    finite on `nV` is bounded by `400 Σ_i ψ(g_i)`. This closes the loophole "infinite weighted
+    sums of wall counts" left open above.
+  - **Invariant:** the paradoxical spectral gap `1/10` of `V` on ℓ² of any `V`-set with a
+    `V`-equivariant extraction to `Prob(C)` (here `φ ↦ (pr_1∘φ)_*λ`).
+  - **Step where every member dies:** the codimension-one sweep. The swap `id × s_w` at the
+    depth of a row's vertical prefix pushes the whole row out of the support. So `v` is ℓ² on
+    each `V × id`-invariant row, and the gap then bounds each row by three fixed elements.
+  - **Consequence:** P1, P2, P3 and both routes R1 and R2 need cnd functions not of this form.
+    The same goes for any proof of non-(T) or non-FW.
+  - **Not ruled out:** supports with some `V × id`-invariant piece where `v` is not ℓ². Examples
+    are charts with non-triangular last coordinate, all charts, point orbits, and non-chart
+    parameter spaces.
