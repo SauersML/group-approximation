@@ -85,15 +85,18 @@ theorem pureCharLinearityPrime_of_split (h : PureCharPrimeSplitStatement) :
     funext fun x => Subtype.ext (mul_comm_of_mem_commutator hG (a x).2 (b x).2)
   have hexp : ∀ b : (Γ ⧸ commutator Γ) → ↥(commutator Γ), b ^ (p ^ e) = 1 := fun b =>
     funext fun x => Subtype.ext (he _ (b x).2)
-  have hH : (κ.range ⊔ (SemidirectProduct.inr : (Γ ⧸ commutator Γ) →*
-      Envelope.RegularWreath ↥(commutator Γ) (Γ ⧸ commutator Γ)).range).FG :=
-    Subgroup.FG.sup ((Group.fg_iff_subgroup_fg κ.range).mp (Group.fg_range κ))
-      ((Group.fg_iff_subgroup_fg _).mp (Group.fg_range _))
+  obtain ⟨H, hH, hκH, hQH⟩ : ∃ H : Subgroup
+      (Envelope.RegularWreath ↥(commutator Γ) (Γ ⧸ commutator Γ)), H.FG ∧ (∀ γ, κ γ ∈ H) ∧
+      (SemidirectProduct.inr : (Γ ⧸ commutator Γ) →*
+        Envelope.RegularWreath ↥(commutator Γ) (Γ ⧸ commutator Γ)).range ≤ H :=
+    ⟨κ.range ⊔ (SemidirectProduct.inr : (Γ ⧸ commutator Γ) →*
+        Envelope.RegularWreath ↥(commutator Γ) (Γ ⧸ commutator Γ)).range,
+      Subgroup.FG.sup ((Group.fg_iff_subgroup_fg κ.range).mp (Group.fg_range κ))
+        ((Group.fg_iff_subgroup_fg _).mp (Group.fg_range _)),
+      fun γ => Subgroup.mem_sup_left (MonoidHom.mem_range.mpr ⟨γ, rfl⟩), le_sup_right⟩
   obtain ⟨K, _, d, ρ, hK, hρ⟩ := h _ _ (Envelope.shiftHom ↥(commutator Γ) (Γ ⧸ commutator Γ))
-    hB quotient_commutator_mul_comm p hp e hexp _ hH le_sup_right
-  refine ⟨K, inferInstance, d,
-    ρ.comp (κ.codRestrict _ fun γ => Subgroup.mem_sup_left (MonoidHom.mem_range.mpr ⟨γ, rfl⟩)),
-    hK, ?_⟩
+    hB quotient_commutator_mul_comm p hp e hexp H hH hQH
+  refine ⟨K, inferInstance, d, ρ.comp (κ.codRestrict H hκH), hK, ?_⟩
   exact hρ.comp fun a b hab => hκ (congrArg Subtype.val hab)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.pureCharLinearityPrime_of_split

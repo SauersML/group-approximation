@@ -59,7 +59,7 @@ theorem rigidPolarSupportSeparation_of_rigidPolarRecognition
 theorem rigidPolarRecognition_of_rigidPolarSupportSeparation
     (h : RigidPolarSupportSeparationStatement) : RigidPolarRecognitionStatement :=
   fun Y _ _ _ _ _ _ _ S hS P hP => by
-    obtain ⟨hcc, -, -, -⟩ := hP
+    obtain ⟨hcc, hbot, h3, h4⟩ := hP
     have hO : IsOpen (⋃ p : P, movedSet (((p : topologicalFullGroup S) : Y ≃ₜ Y))) :=
       isOpen_iUnion fun p => isOpen_movedSet_of_t2Space _
     refine ⟨⋃ p : P, movedSet (((p : topologicalFullGroup S) : Y ≃ₜ Y)), hO,
@@ -72,5 +72,16 @@ theorem rigidPolarRecognition_of_rigidPolarSupportSeparation
           (⋃ p : P, movedSet (((p : topologicalFullGroup S) : Y ≃ₜ Y)))ᶜ := by
         refine supportedIn_iff_movedSet_subset.2 fun y hy => Set.mem_compl fun hyO => ?_
         obtain ⟨p, hpy⟩ := Set.mem_iUnion.1 hyO
-        exact Set.disjoint_left.1 (h Y S hS P ⟨hcc, ‹_›, ‹_›, ‹_›⟩ p p.2 q hq) hpy hy
-      sorry
+        exact Set.disjoint_left.1 (h Y S hS P ⟨hcc, hbot, h3, h4⟩ p p.2 q hq) hpy hy
+      have hqC : q ∈ Subgroup.centralizer (rubinRigidSubgroup S
+          (⋃ p : P, movedSet (((p : topologicalFullGroup S) : Y ≃ₜ Y))) :
+            Set (topologicalFullGroup S)) := by
+        rw [centralizer_rubinRigidSubgroup hS hO]
+        exact mem_rubinRigidSubgroup.2 hqsupp
+      exact (Subgroup.mem_centralizer_iff.1 hqC k hk).symm
+
+end GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse
+
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.RigidPolarSupportSeparationStatement
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rigidPolarSupportSeparation_of_rigidPolarRecognition
+#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.FlipConverse.rigidPolarRecognition_of_rigidPolarSupportSeparation
