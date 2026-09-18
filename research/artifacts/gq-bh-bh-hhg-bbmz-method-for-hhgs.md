@@ -148,3 +148,39 @@ the kind a nucleus allows beyond `V`, cannot supply a rank-two free action eithe
 - Nothing on extra-large-type Artin groups, which are HHGs by Hagen--Martin--Sisto.
   Artin-group BH is carried by `artin-groups-satisfy-boone-higman` and its
   neighbors.
+
+## 7. Second pass (2026-09-18): transport along orbits, and one dead end
+
+**Transport along orbits.** `rsg-z2-locally-trivial-along-rational-attraction` carries
+the germ lemma backwards along orbits. If `a^{n_k} x → ω`, with `ω` rational and with
+finite `A`-orbit, then the element of `A` that is locally trivial at `ω` is also
+locally trivial at `x`. In `V` the hypothesis always holds off the `a`-periodic
+points, because attractors of revealing pairs are rational.
+
+**Rational attractors in Röver--Nekrashevych groups (sketch).** Let `H` be finite-state
+and `g ∈ V_d(H)`. Suppose `g` maps a cone `C_α` into a proper subcone `C_{αβ}` with
+local action `h ∈ H`, so `g(α w) = α β h(w)`. The attracting fixed point is
+`ω = α β h(β) h_β(β) h_{ββ}(β) ⋯`, where `h_{β^n}` is the section of `h` at `β^n`.
+Finitely many states means the sequence `h_{β^n}` is eventually periodic, so `ω` is
+eventually periodic, hence rational. For a general finite-nucleus RSG the same
+argument needs the relevant local actions to lie in the finite nucleus, which holds
+for deep cones. It also needs an analogue of the statement "wandering points converge
+to such cycles", which is the unproved step.
+
+**Dead end, recorded so it is not repeated: product-of-trees lattices by Zappa--Szép
+self-similarity.**
+- Let `Γ` act freely and transitively on the vertices of `T_1 × ⋯ × T_n`.
+- For each factor `i` there is a unique factorization `Γ = W_i K_i`, where `W_i` is the
+  set of reduced words in the edge labels at a base vertex and `K_i` is a vertex
+  stabilizer.
+- `K_i` then acts self-similarly, and pseudo-freely, on the path category of the
+  non-backtracking graph of the labels.
+- `Γ` acts on `∂T_i` through the topological full group of the Zappa--Szép groupoid.
+  Li's arXiv:2110.04505v2, Example `ex:ZS` (III), makes that group `F_∞` under his
+  condition (F).
+- The route dies because (F) needs `Γ` to act faithfully on `T_i`. Then `K_i` embeds in
+  the profinite group `Aut(T_i, x_0)` and is residually finite, and `Γ` itself is a
+  faithful member of `BS_{K_i}`. So Bux--Llosa Isenrich--Wu Theorem C
+  (`bliw-locally-finite-tree-actions-embed-in-fp-simple-groups`,
+  `cat0-groups-with-a-tree-factor-lie-in-type-a-class`) already applies. The
+  non-residually-finite fibres left open there remain out of reach.

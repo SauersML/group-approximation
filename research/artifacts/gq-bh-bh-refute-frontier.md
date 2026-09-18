@@ -89,6 +89,7 @@ It must fail on the nested pair `K <= C`. By §1 and §4 it cannot be:
 
 The live candidates are therefore coarse-geometric or operator-algebraic properties that no
 finitely presented simple group is known to lack: hyperlinearity, exactness, CE, BCC, and the
-bounded-exponent torsion property. Proving (S1) for any one of them is a theorem about all
+bounded-exponent torsion property. The one live candidate of the reverse type is isolation: its
+(S1) is free and its (S2) is the negation of CGP Question 4. Proving (S1) for any one of them is a theorem about all
 finitely presented simple groups. No proof technique for such a theorem is known. The
 nonsoficity of `L^x` shows that finitely presented simple groups can be analytically wild.

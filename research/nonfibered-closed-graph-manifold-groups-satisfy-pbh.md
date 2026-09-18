@@ -112,3 +112,13 @@ extensions.
    in the abelian factor, or twist realizations in a mapping class group with each fiber a
    twist about curves disjoint from the rest of the block's support. Designs must instead
    produce such a rational fiber relation, e.g. through chain or lantern relations. Untested.
+10. **Twist realizations of charged two-leaf examples** (bh-3manifold, 2026-09-18).
+    *Reduced, not constructed.* `two-leaf-graph-manifold-twist-realizations`:
+    - For two leaf blocks, fibering is parallelism of the two boundary words in the JSJ
+      torus, and (reading Svetlov) non-virtual-fibering is `β_v β_w ∉ (0, 1]`.
+    - If the torus goes to a two-curve twist group `<T_x, T_y>` of `Mod^+(S)`, each fiber
+      is a power of one twist. Point pushing on both sides lands exactly on the fibered case.
+    - What remains is a single design problem: a leaf block with `ρ(F_w) <= Stab^+(x)` free
+      of rank `2h'`, whose relator product is `T_x^{m'} T_y^{n'}` with boundary slope ratio
+      `m'/n' ∉ [-1, 0)` (pushing gives `-1`), plus injectivity of the amalgam. A solution
+      with `S` punctured would put that example in `B_A`.
