@@ -9,8 +9,9 @@ requires:
   - graded-rings-with-degree-one-units-fail-the-k-budget
 ---
 
-**Input (cited, not read at source).** **(BC) Bass cancellation.** In Vaserstein's normalization (`sr` of a
-field is `1`): if `B` has stable range `d`, then every finitely
+**Input.** **(BC) Bass cancellation**, pinned by gq-referee-b (report 5d2294421) to Weibel, *The K-book*, Ch. I,
+Exercise 1.5, p. 4, for general rings, citing Bass V.3.5. In Weibel's `sr` (`sr` of a field is `1`): if `B` has stable
+range `d`, then every finitely
 generated projective module `P` with `P ⊕ B^a ≅ B^(n+a)` and `n >= d` is free of rank `n`. This is Bass (1964) for
 commutative rings, and Vaserstein and Warfield for the noncommutative stable-range condition.
 
@@ -55,3 +56,8 @@ has degree `-1`; `s t - 1` has degree `0`. A quotient of a graded ring by a homo
 - A localization of the PID `Q[N]` is a PID, so its finitely generated projectives are free, `K_0 = Z`, and its
   stable range is at most `2`.
 - For `R_L`, `p = t s = I_2`, so `r = 2`.
+
+**Item 3a.** Under (R3), `r = 1` and `m[p] = m[1_B]` in the torsion-free group `K_0(B) = Z[1_B]` give `[p] = [1_B]`.
+So `p B^k ≅ B` by (R3), which is item 2 with `j = 1`. The construction of item 3 with `j = 1` gives `x in M_(k×1)(B)`
+and `y in M_(1×k)(B)` with `x y = p` and `y x = 1`, and `U = s x in R_1` is a unit of `R` with inverse `y t`. The graded
+node applies to `R` directly.
