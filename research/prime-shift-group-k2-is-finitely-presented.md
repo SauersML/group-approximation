@@ -79,3 +79,35 @@ Notation as in `gl-n-q-lies-in-prime-shift-permutation-group`.
     defines `χ`, a homomorphism to `Q^x` on the degree-0 part with `χ(diag(r,1)) = r`. It vanishes on
     pointwise axis-fixers. By the axis agreement, `χ(N ∩ Stab)` contains every `D` above, among them `2`.
     So `χ` cannot separate `e` from `N`. A decision needs an invariant of the pointwise axis-fixers.
+- **Attempt 3 (2026-09-18, gq-ring-fp-simple): a third fixed line, and a reduction to three-line fixers.
+  Not decided.** Notation of Attempt 2, with `p_1 = 3`, `σ(5) = 2`, `σ(11) = 5`. Put `ℓ_x`, `ℓ_y` for the axes
+  and `ℓ_- = Q(1,-1)`. Let `A_3` be the elements of `K_2^0` that fix `ℓ_x`, `ℓ_y` pointwise and map `ℓ_-` to
+  itself; they act on `ℓ_-` by a scalar `χ_3`, a homomorphism `A_3 -> Q^x`.
+  - **A family in `A_3`.** Take `g = [[a, a-1],[1,1]] in SL_2(Z)` and `j in Z`, and put
+    `n = σ^j(g)^-1 σ_2^j g σ_2^-j`.
+    - `g(1,-1) = (1,0)` is fixed by `σ_2^j`.
+    - So `n(1,-1) = σ^j(g)^-1(1,0) = (1,-1)/D` with `D = σ^j(a) - σ^j(a-1) = det σ^j(g)`.
+    - Hence `n in A_3`, `χ_3(n) = 1/D`, and `diag(D,1)·n in N`.
+    - The element `k` of Attempt 2 is `a = 2`, `j = 1`: it fixes both axes pointwise and halves `ℓ_-`.
+  - **Members of `N ∩ A_3` found have `χ_3 = ±1`.** Example: `g = [[11,10],[1,1]]`, `j = 1`. Then
+    `σ(g) = [[5,6],[1,1]]` has determinant `-1`, so `n in N`, and `n(1,-1) = -(1,-1)`.
+    - This is consistent with the class map `A_3 -> K_2^0/N` being `|χ_3|` on the family, which is
+      what `I_2 = 1` would predict.
+    - It is not a proof: `N ∩ A_3` is not understood.
+  - **Reduction to three-line fixers (rigorous).**
+    - The involution `M = [[1,0],[-1,-1]] in GL_2(Z)` swaps `ℓ_x` and `ℓ_-` and preserves `ℓ_y`. The swap
+      `(x,y) -> (y,x)` swaps the axes and preserves `ℓ_-`.
+    - Conjugating `k` by these gives elements with scalars `(1/2,1,1)`, `(1,1/2,1)` and `(1,1,1/2)` on
+      `(ℓ_x, ℓ_y, ℓ_-)`, all with the same class as `k` in the abelian group `K_2^0/N`.
+    - Their product times `2I` is an element `r` fixing all three lines pointwise, with `r ≡ e^-1` mod `N`:
+      its class is `(1/2)^3 · 2^2 = 1/2`, since `|det(2I)| = 4`.
+    - So `e in N` if and only if this three-line fixer `r` is in `N`. Either `e in N`, or the class of an
+      element is not a function of its scalars on three lines.
+  - **Why no scalar formula can decide it.** A homomorphism `F(λ_x, λ_y, λ_-)` that is symmetric under the
+    `S_3` above and equals `χ_3` on the family must be `λ_x λ_y λ_-`. That gives `c^3` on `cI`, while its class is
+    `|det| = c^2`, and `c^3 = c^2` in `Q_>0/I_2` for `c = 1/2` exactly when `e in N`. So if `e ∉ N`, no
+    scalar formula on these three lines computes the class, and a separating invariant must use the action
+    off them.
+  - **Status.** Stalled after this attempt, per the stall rule. Membership of `k`, equivalently of `r`, is
+    open. The Bieri--Strebel test (`prime-shift-kn-fp-reduces-to-a-metabelian-quotient`) and
+    `torus-amalgams-of-adelic-groups-are-not-finitely-presented` still apply unchanged.
