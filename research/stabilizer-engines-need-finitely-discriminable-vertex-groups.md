@@ -13,10 +13,20 @@ distinct_from:
   fp-stabilizer-engines-need-decidable-vertex-groups: that shows a finitely presented engine forces a solvable word problem for B; this shows it forces B to be finitely discriminable. Neither condition implies the other (Z is decidable and not finitely discriminable).
   simple-inputs-have-finitely-presented-stabilizer-engines: that is the sufficiency claim for simple B, already refuted by stabilizer-engines-of-non-fp-simple-groups-are-not-fp; simple groups are finitely discriminable, so this obstruction is not what refutes it.
   fp-decidable-vertex-groups-have-fp-stabilizer-engines: that conjectured D(F_B) finitely presented for every infinite finitely presented decidable B; B = Z refutes it here.
+  free-product-emitter-full-groups-need-isolated-vertex-groups: proved independently at the same time; it gets the stronger conclusion that B is isolated (finitely presented and finitely discriminable) by perturbing B to nearby marked groups; this node gets the finite-discrimination half by quotients only, and adds the abstract schema of Remark 2.
+  stabilizer-engines-are-fp-only-over-isolated-groups: a third independent proof of the isolation statement, by marked-group approximation.
 ---
 
 **ESTABLISHED** (lane proof, bh-emitter-a, 2026-09-18; elementary; not reviewed). No
 priority is claimed.
+
+**Parallel proofs.** The same obstruction was found independently at the same time.
+- `free-product-emitter-full-groups-need-isolated-vertex-groups` and
+  `stabilizer-engines-are-fp-only-over-isolated-groups` both prove the stronger statement
+  that a finitely presented engine forces `B` to be isolated.
+- Read this node for two things they do not contain: the explicit transfer lemma along
+  quotient maps (Lemma 1), and the abstract schema of Remark 2, with checkable hypotheses
+  (a) and (b) for other host constructions.
 
 **Notation.** As in `free-product-boundary-groupoids-carry-the-vertex-group-homology`:
 - `k >= 2`, `A = Z/k`, `B` a finitely generated infinite group, and `D = A * B`.
@@ -193,11 +203,12 @@ map `Φ : S → F_Q` such that:
 
    Then `E(B)` can be finitely presented only if `B` is finitely discriminable, with the
    same proof.
-   - **Lampshufflers.** The schema covers the lampshuffler `FSym(B) ⋊ B`, with transfer
-     to `FSym(B/N) ⋊ B/N` and `x`, `y` transpositions near `1`. So the lampshuffler is
-     not finitely presented for any fg `B` that is not finitely discriminable. For
-     `B = Z` this recovers Brown's theorem that the Houghton group `H_2` is not finitely
-     presented. That was the heuristic recorded in the Reid node.
+   - **Lampshufflers.** The schema covers the lampshuffler `FSym(B) ⋊ B`, with transfer to
+     `FSym(B/N) ⋊ B/N` and `x`, `y` transpositions near `1`. So the lampshuffler is not
+     finitely presented for any fg `B` that is not finitely discriminable.
+   - For `B = Z` this is Brown's theorem on the Houghton group `H_2`. For virtually indicable
+     `B` the stronger non-`FP_2` statement is `lampshuffler-groups-are-not-fp2-over-q`.
+   - The schema adds the non-indicable, non-finitely-discriminable cases.
 3. **Isolated vertex groups.** By `fp-stabilizer-engines-need-fp-vertex-groups`, a finitely
    presented `D(F_B)` also forces `B` to be finitely presented. Together with this node,
    `D(F_B)` finitely presented implies that `B` is **isolated** in the sense of
@@ -218,7 +229,8 @@ map `Φ : S → F_Q` such that:
   - By Remark 3 this would be a characterization.
   - The repaired route is `boone-higman-via-isolated-stabilizer-engines`. It starts from an
     isolated envelope of the input, the setting of Cornulier–Guyot–Pitsch Question 4
-    (`every-decidable-group-embeds-in-an-isolated-group`).
+    (`every-decidable-group-embeds-in-an-isolated-group`). The same correction is recorded
+    inside `boone-higman-via-fp-stabilizer-engines`.
 - **Calibration.** Reid's group was the proposed first test. Its negative answer is forced
   by residual finiteness of `Z` and says nothing about isolated vertex groups.
   - Informative tests need isolated `B`.
