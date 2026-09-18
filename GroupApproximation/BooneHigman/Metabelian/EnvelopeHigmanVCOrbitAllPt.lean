@@ -73,4 +73,46 @@ theorem higmanVCOrbitAll_cent1 {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitAll_cent1
 
+/-- `m(a₂, b₂)⁻¹ t ∈ H_C` for **every** letter `x`. -/
+theorem higmanVCOrbitAll_Pt_mem {d : ℕ} {a b : List (Fin d)} (hab : ¬ a <+: b)
+    (hba : ¬ b <+: a) (x : Fin d) :
+    (higmanVCCommon_mk d (FreeGroup.of (a ++ [x] ++ [x], b ++ [x] ++ [x])))⁻¹ *
+        higmanVCCommon_mk d (FreeGroup.of (a, b)) ∈
+      higmanVCTreeNFWitPivot_H d (higmanVCOrbitGen_C a b x) := by
+  obtain ⟨l₁, l₂, hfr⟩ := List.append_of_mem (List.mem_finRange x)
+  have hx : x ∉ l₁ ++ l₂ := by
+    have hnd := List.nodup_finRange d
+    rw [hfr] at hnd
+    exact (List.nodup_cons.mp (List.nodup_middle.mp hnd)).1
+  have hne1 : ∀ j ∈ l₁, j ≠ x := fun j hj h => hx (List.mem_append_left l₂ (h ▸ hj))
+  have hne2 : ∀ j ∈ l₂, j ≠ x := fun j hj h => hx (List.mem_append_right l₁ (h ▸ hj))
+  have i1 : ¬ a ++ [x] <+: b ++ [x] :=
+    higmanVCOrbitGen_incomp hab hba (List.prefix_append a [x]) (List.prefix_append b [x])
+  have i1' : ¬ b ++ [x] <+: a ++ [x] :=
+    higmanVCOrbitGen_incomp hba hab (List.prefix_append b [x]) (List.prefix_append a [x])
+  have hA₀ := higmanVCOrbitGen_split_mem a b l₁ fun j hj =>
+    higmanVCOrbitAll_cent0 hab hba (hne1 j hj)
+  have hA₁ := higmanVCOrbitGen_split_mem (a ++ [x]) (b ++ [x]) l₁ fun j hj =>
+    higmanVCOrbitAll_cent1 hab hba (hne1 j hj)
+  have hc := (Subgroup.mem_centralizer_iff.mp ((Subgroup.centralizer _).mul_mem hA₀ hA₁) _
+    (Set.mem_singleton _)).symm
+  rw [higmanVCOrbitAll_split_mid hfr hab hba, higmanVCOrbitAll_split_mid hfr i1 i1',
+    higmanVCOrbitAll_elim hc]
+  refine (higmanVCTreeNFWitPivot_H d _).mul_mem ((higmanVCTreeNFWitPivot_H d _).mul_mem ?_ ?_)
+    ((higmanVCTreeNFWitPivot_H d _).mul_mem ?_ ?_)
+  · exact higmanVCOrbitGen_split_mem a b l₁ fun j hj =>
+      higmanVCLeafExp_letter_mem_H (higmanVCOrbitGen_mem_a0 a b (hne1 j hj))
+        (higmanVCOrbitGen_mem_b0 a b (hne1 j hj))
+  · exact higmanVCOrbitGen_split_mem (a ++ [x]) (b ++ [x]) l₁ fun j hj =>
+      higmanVCLeafExp_letter_mem_H (higmanVCOrbitGen_mem_a1 a b x j)
+        (higmanVCOrbitGen_mem_b1 a b (hne1 j hj))
+  · exact higmanVCOrbitGen_split_mem (a ++ [x]) (b ++ [x]) l₂ fun j hj =>
+      higmanVCLeafExp_letter_mem_H (higmanVCOrbitGen_mem_a1 a b x j)
+        (higmanVCOrbitGen_mem_b1 a b (hne2 j hj))
+  · exact higmanVCOrbitGen_split_mem a b l₂ fun j hj =>
+      higmanVCLeafExp_letter_mem_H (higmanVCOrbitGen_mem_a0 a b (hne2 j hj))
+        (higmanVCOrbitGen_mem_b0 a b (hne2 j hj))
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCOrbitAll_Pt_mem
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
