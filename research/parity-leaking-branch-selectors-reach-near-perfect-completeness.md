@@ -171,3 +171,18 @@ a cycle of equations through the window.
 
     (C4) is a selector-free statement about B-labels alone. Also still alive:
     2-to-2 inner games.
+* **Closing the constant-bias escape by single-reference seed rigidity
+  (2026-09-17).** **Dead** as a universal statement. Killed by
+  `dkkms-seed-rigidity-fails-on-homogeneous-kernel-mixtures`, which refutes
+  (Seed) (need 16613d6f).
+
+  On inputs with a homogeneous kernel `(φ, z)` of rank `l+1` generic on
+  tuples, take the mixture that uses `x` where `φ|_(L′)` is injective and
+  `y = x + z` elsewhere. It has DKKMS value `0.711`, and its satisfied seed
+  labels are dishonest on mass `0.289 > gamma` against every reference.
+
+  The branch is a function of `L′`, not of `V`. The transfer to hard padded
+  families is conditional on DKKMS Lemma 5.4 at the padded soundness.
+
+  Still alive: (List-Seed) with `O_gamma(1)` references (need a06a9ee8), or
+  (Seed) restricted to inputs with no generic rank-`(l+1)` homogeneous kernel.
