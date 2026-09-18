@@ -25,8 +25,8 @@ arcs (whose stabilizers fix the endpoints), and the regular `T`-set.
 ## Proof
 
 **Reductions.**
-- The `T`-map `xH ↦ x·S` onto the orbit `Y = T·S` makes `Z[Y]` a quotient module of `Z[X]`. So it
-  suffices to treat `X = Y`, the orbit of a finite set `S` with `m ≥ 2` points.
+- The `T`-map `xH ↦ x·S` onto the orbit `Ω_S = T·S` makes `Z[Ω_S]` a quotient module of `Z[X]`. So it
+  suffices to treat `X = Ω_S`, the orbit of a finite set `S` with `m ≥ 2` points.
 - **Fox calculus.** For `w ∈ T * ⟨x⟩` with `w|_T = 1`, and `(l, h) ∈ Z[X] ⋊ T`, we have
   `w(l, h) = (σ_w(h) l, 1)`, where `σ_w(h) ∈ Z[T]` is the Fox derivative `∂w/∂x` evaluated at
   `x = h`.
@@ -45,8 +45,8 @@ arcs (whose stabilizers fix the endpoints), and the regular `T`-set.
 `σ_E(h) = (P − 1) · d · (a_3 − 1)(1 − β_3)`,
 from `∂[P, Q] = (1 − PQP^{−1}) ∂P + (P − [P, Q]) ∂Q` and `∂s_33(h) = (a_3 − 1)(1 − β_3)`.
 
-**A point where it does not vanish.** `T` is dense in `Homeo+(S^1)`, so the orbit `Y` meets every
-cyclically ordered product of open arcs. Choose `S = {p, q} ∪ R` in `Y` with:
+**A point where it does not vanish.** `T` is dense in `Homeo+(S^1)`, so the orbit `Ω_S` meets every
+cyclically ordered product of open arcs. Choose `S = {p, q} ∪ R` in `Ω_S` with:
 - `p ∈ supp β_3 ⊆ G_12`;
 - `q ∈ d^{−1}(supp Y) ⊆ d^{−1}(O_1) ⊆ A_3`, so `z := dq` is moved by `Y`;
 - `R` inside the gap `G_23`.
