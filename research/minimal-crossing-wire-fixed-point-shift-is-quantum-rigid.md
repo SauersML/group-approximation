@@ -92,7 +92,8 @@ TeX source was not re-read; items R1–R3 are the conditions.
 - `sfts-without-two-sided-faults-are-quantum-rigid` is sufficient only. Its trichotomy leaves rigid shifts with
   two-sided faults possible (zone (c)).
 - `no-two-sided-fault-sfts-have-rich-strips-in-all-directions` constrains only shifts without two-sided faults. The
-  evidence below is that this shift is one, with every rational line having both sides determining, hence expansive.
+  fault analysis in 2 suggests (argued, not proved) that this shift is one: every rational line has both sides
+  determining, hence is expansive.
   Then its strip automata are injective and its strips are aperiodic, non-sofic and of quadratic complexity, all
   consistent with the hierarchy.
 - The only casualty is my heuristic lesson on that node ("irreversible arrow across every rational line"; "must run
