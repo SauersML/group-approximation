@@ -242,7 +242,8 @@ theorem ord_pos_lt (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar)
   · refine (Nat.lt_or_ge b a).resolve_right (fun hge => ?_)
     exact ord_false_of_cross hw hM hinner x₀ hx₀ hn h0 hj0 hjk hk ha hb (by omega) (by omega)
       (ord_alpha_X_eq_wd hw hM x₀ hx₀ 0 (w.length - 1) hn hL0)
-      (ord_alpha_X_eq_wd hw hM x₀ hx₀ j a ha hwa) (ord_alpha_X_eq_wd hw hM x₀ hx₀ k b hb hwb)
+      (ord_alpha_X_eq_wd hw hM x₀ hx₀ j a ha hwa)
+      (ord_alpha_X_eq_wd hw hM x₀ hx₀ k b hb hwb)
 
 /-- **The lake reads the walk backwards.**  Let `w` be a noncrossing closed walk in a planar map
 whose inner reclosing keeps the Euler characteristic, and let `x₀` be a walk-map dart whose
