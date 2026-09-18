@@ -1,0 +1,367 @@
+[
+ {
+  "case": "sp4",
+  "index": 1,
+  "b1": 0,
+  "torsion": [
+   10
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   1
+  ],
+  "q_order_of_mult_mod_W": 5,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "1/5",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    5
+   ]
+  ],
+  "seconds": 0.5
+ },
+ {
+  "case": "theta-odd",
+  "index": 6,
+  "b1": 0,
+  "torsion": [
+   40
+  ],
+  "classes": 1,
+  "rank_W": 1,
+  "mult_set": [
+   6
+  ],
+  "q_order_of_mult_mod_W": 5,
+  "e_upper_exact": "1/10",
+  "kappa_at_upper": "3/5",
+  "e_milp_float": 0.1,
+  "h_upper": [
+   "1/10"
+  ],
+  "cert_L": 10,
+  "e_lower": "1/10",
+  "cert_vectors": [
+   [
+    10
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "theta-even",
+  "index": 10,
+  "b1": 1,
+  "torsion": [
+   2
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   1,
+   9
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/10",
+  "kappa_at_upper": "1",
+  "e_milp_float": 0.09999999999999999,
+  "h_upper": [
+   "1/10",
+   "1/10"
+  ],
+  "cert_L": 10,
+  "e_lower": "1/10",
+  "cert_vectors": [
+   [
+    9,
+    1
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "pt-2",
+  "index": 15,
+  "b1": 1,
+  "torsion": [
+   2,
+   2
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   6,
+   9
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "3",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    2,
+    3
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "lag-2",
+  "index": 15,
+  "b1": 1,
+  "torsion": [
+   2,
+   2
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   6,
+   9
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "3",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    3,
+    2
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "plane-2",
+  "index": 20,
+  "b1": 1,
+  "torsion": [
+   4
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   2,
+   18
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/10",
+  "kappa_at_upper": "2",
+  "e_milp_float": 0.09999999999999999,
+  "h_upper": [
+   "1/10",
+   "1/10"
+  ],
+  "cert_L": 10,
+  "e_lower": "1/10",
+  "cert_vectors": [
+   [
+    1,
+    9
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "flag-2",
+  "index": 45,
+  "b1": 2,
+  "torsion": [
+   2,
+   2,
+   2
+  ],
+  "classes": 3,
+  "rank_W": 1,
+  "mult_set": [
+   9,
+   18
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "9",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    2,
+    1,
+    2
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "frame-2",
+  "index": 720,
+  "b1": 9,
+  "torsion": [
+   2
+  ],
+  "classes": 10,
+  "rank_W": 1,
+  "mult_set": [
+   72
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/10",
+  "kappa_at_upper": "72",
+  "e_milp_float": 0.1,
+  "h_upper": [
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10",
+   "1/10"
+  ],
+  "cert_L": 10,
+  "e_lower": "1/10",
+  "cert_vectors": [
+   [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  ],
+  "seconds": 0.3
+ },
+ {
+  "case": "pt-3",
+  "index": 40,
+  "b1": 1,
+  "torsion": [
+   2,
+   6
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   8,
+   32
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "8",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    1,
+    4
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "lag-3",
+  "index": 40,
+  "b1": 1,
+  "torsion": [
+   2
+  ],
+  "classes": 2,
+  "rank_W": 1,
+  "mult_set": [
+   16,
+   24
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "8",
+  "e_milp_float": 0.2,
+  "h_upper": [
+   "1/5",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    2,
+    3
+   ]
+  ],
+  "seconds": 0.0
+ },
+ {
+  "case": "plane-3",
+  "index": 90,
+  "b1": 1,
+  "torsion": [
+   6
+  ],
+  "classes": 3,
+  "rank_W": 2,
+  "mult_set": [
+   2,
+   24,
+   64
+  ],
+  "q_order_of_mult_mod_W": 1,
+  "e_upper_exact": "1/5",
+  "kappa_at_upper": "2",
+  "e_milp_float": 0.19999999999999996,
+  "h_upper": [
+   "1/5",
+   "-1/20",
+   "1/5"
+  ],
+  "cert_L": 5,
+  "e_lower": "1/5",
+  "cert_vectors": [
+   [
+    1,
+    0,
+    4
+   ],
+   [
+    0,
+    4,
+    1
+   ]
+  ],
+  "seconds": 0.0
+ }
+]
