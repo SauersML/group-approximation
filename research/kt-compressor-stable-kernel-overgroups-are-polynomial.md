@@ -80,3 +80,13 @@ matrices needs coefficients in `R`, which `H` does not contain.
   avoids the cone gap `∩ P^(-1)(N^d) ⊋ N^d` of the fixed-shape compressors `I + kE_21`.
   It also treats the Koszul-type columns `(x_1,x_2,x_3)` like any other column. In `d = 1`,
   where `P = 1`, it reproves the maximality calibration.
+* **Referee check (w6-121): Lemma 2 and step 5 pass.** Lemma 2: on `V` one has
+  `⟨ρ,m⟩ ≤ |ρ|(m_(i0) + ε|m|) < 0` since `m_(i0) ≤ −1`; `C` is `V` cut by finitely many strict
+  inequalities, so an open cone with a primitive integer point `w`; adding `N·w` to the other
+  basis rows keeps determinant `1`, and `(b_k + Nw)/N → w` puts every row in `C ⊂ R^d_(>0)`, so
+  `P ∈ M_d(N)`. Step 5: `P` acts by the ring automorphism `x^m ↦ x^(Pm)` of `R`, which is
+  `F_q`-linear and bijective on exponents, so `(P·Y)_(ab)` has the monomial `x^(Pm)` with the
+  same coefficient, and `P·Y = (P·u)(P·v)^T`. Steps 2-4 also check (`X^2 = 0`, `y_r = 0`,
+  `P·Y = g^(-1)e_r y^T g`), and the transvection criterion is Skolem–Noether with
+  `det h = 1` killing the monomial unit. No gap found. The body still reads **OPEN**; the
+  graph derives ESTABLISHED through the w5-121 route.

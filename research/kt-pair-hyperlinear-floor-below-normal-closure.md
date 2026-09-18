@@ -48,3 +48,17 @@ groups `W_Δ`; the action version brings no discount.
   equivalent to `hyperlinear-wreath-model`
   (`kt-pair-floor-reduces-to-wreath-model-via-compressor-sandwich`). Otherwise such
   counterexamples are the only remaining candidates for Δ.
+
+## Attempts
+
+* **Reduced to `hyperlinear-wreath-model`, both directions (w6-121).** With the compressor
+  sandwich proved (`kt-kernel-overgroups-polynomial-via-vertex-compressors-proof`), the
+  per-model saturation zero-one law `kt-gamma-saturation-is-gamma-or-contains-e` holds: for
+  every homomorphism `π` of `G` into any group, the bicommutant saturation `Γ^sat(π)` is `Γ`
+  or contains `E`. Hence the floor `K_Γ = Δ_hl ∩ E` is `Γ` or `E`, and this node holds iff
+  `W_Γ` is hyperlinear. The residual candidates of the Progress section (non-split
+  `Mon`-stable overgroups) do not exist, and no `Δ` with `Γ < Δ`, `E ⊄ Δ` gives anything that
+  `Δ = Γ` does not. The node is now as hard as `hyperlinear-wreath-model` and no easier;
+  the sharpest form of both is the single-enemy criterion (Corollary 3 there): one
+  canonical CE model of the residually finite group `G` with one `Γ`-central element that
+  fails to commute with `σ(e_12(x_1^(-1)))`.
