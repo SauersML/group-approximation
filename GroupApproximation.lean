@@ -5579,6 +5579,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.Matui
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiAssembly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Absorb
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVLowKZero.Retraction
+import GroupApproximation.Manuscript.NonMFNotes.Full.LiteralDecidable.Poly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
