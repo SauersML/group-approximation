@@ -9,7 +9,8 @@ distinct_from:
 
 **ESTABLISHED (2026-09-17)** through
 `st-n-of-ring-quotient-adds-one-relator-per-ideal-generator-proof`. Lane proof
-(`gq-steinberg-q`), elementary, not independently reviewed.
+(`gq-steinberg-q`), elementary. Checked by gq-referee-c (PASS, 5d6390c47) and in
+gq-referee-b's St_(3N+1) review (f60c835bf).
 
 **Statement.** Let `F` be a unital ring, let `ρ_1, …, ρ_l ∈ F`, let `I` be the
 two-sided ideal they generate, and let `n >= 4`. Then the natural map induces

@@ -7,7 +7,7 @@ target: gl-n-q-explicit-natural-fp-overgroup
 requires:
   - leavitt-pairs-embed-sl-n-q-in-steinberg-groups
   - leavitt-resolvent-ring-is-fp-and-contains-q
-  - steinberg-finite-presentation-and-kazhdan-theorem
+  - steinberg-groups-of-fp-rings-are-fp-in-rank-five
 artifacts:
   - research/artifacts/gq-referee-a-leavitt-pairs-embed-sl-n-q-in-steinberg-groups.md
   - research/artifacts/gq-referee-b-leavitt-pairs-embed-sl-n-q-in-steinberg-groups.md
@@ -17,11 +17,12 @@ artifacts:
 Let `n >= 2`, and let `R_L` be the six-generator, nine-relator ring of
 `leavitt-resolvent-ring-is-fp-and-contains-q`. Put `Γ_n = St_(6n+7)(R_L)`.
 
-1. **Finitely presented.** `R_L` is a finitely presented unital ring and `6n+7 >= 4`, so
-   `Γ_n` is finitely presented (`steinberg-finite-presentation-and-kazhdan-theorem`;
-   Krstić–McCool, Theorem 3, source record in
-   `research/artifacts/gq-steinberg-q-krstic-mccool-source.md`). By the same node `Γ_n`
-   has property (T).
+1. **Finitely presented.** `R_L` is a finitely presented unital ring and `6n+7 >= 5`, so
+   `Γ_n` is finitely presented, with an explicit presentation
+   (`steinberg-groups-of-fp-rings-are-fp-in-rank-five`, refereed by a and b). This is also
+   Krstić–McCool's Theorem 3 (`steinberg-finite-presentation-and-kazhdan-theorem`, whose
+   primary text is unread), which the route no longer needs. That node also gives property
+   (T); the target does not need it.
 2. **Contains GL_n(Q).** `Q ⊆ R_L` unitally, and `(s_1, s_2, t_1, t_2)` is a Leavitt pair.
    Apply `leavitt-pairs-embed-sl-n-q-in-steinberg-groups` with `N = n+1`: `SL_(n+1)(Q)`
    embeds in `St_(6n+7)(R_L)`. So does `GL_n(Q)`, via `g -> diag(g, det(g)^(-1))`.
@@ -35,9 +36,9 @@ Let `n >= 2`, and let `R_L` be the six-generator, nine-relator ring of
 - `c(N,s_1) c(s_1,N)^(-1) x_12(-s_1)`, `c(N,s_2)`;
 - `c(A,N) x_12(A) x_12(-1)`, `c(N,A) x_12(A) x_12(-1)`.
 
-So `Γ_n` has finitely many relators added to Krstić–McCool's presentation of
-`St_(6n+7)(F_6)`. Their primary text was not accessible (paywall), so that presentation, and hence
-`Γ_n`, is explicit only relative to their construction. It is not written out here.
+So `Γ_n` is the explicit presentation of `St_(6n+7)(F_6)` from
+`steinberg-groups-of-fp-rings-are-fp-in-rank-five`, plus these nine words. It is fully
+explicit and does not rely on Krstić–McCool.
 
 **Remark on naturality.** `Γ_n` is the Steinberg group of a named ring with an explicit
 presentation. It is not obtained by running an embedding algorithm on a presentation of
