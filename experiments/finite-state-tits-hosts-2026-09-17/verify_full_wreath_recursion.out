@@ -1,0 +1,8 @@
+pair projection coords (1,2): order 3600
+pair projection coords (1,3): order 3600
+pair projection coords (1,4): order 3600
+pair projection coords (2,3): order 3600
+pair projection coords (2,4): order 3600
+pair projection coords (3,4): order 3600
+H = 1 x A_5^4: True
+psi(R) = R wr A_5: True
