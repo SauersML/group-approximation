@@ -65,3 +65,42 @@ checked.
     gives a constant-length-3 substitution in the column shift. By Dekking's theorem, a primitive
     aperiodic constant-length-3 substitution has `Z_3` in its maximal equicontinuous factor, and that
     would answer this claim YES.
+
+- 2026-09-17 (lane gq-affq). **Not decided. The exact-tripling target is already met by SMART after recounting.**
+  - *Table.* This entry uses the transcription in
+    `experiments/nv-measured-walls-2026-09-17/smart_belt_periods.py` (checked reversible there). Its states
+    are `(shape, dir, phase)`, with shape `F` or `H`, dir `±`, phase 1 or 2. Phase 2 moves by dir and enters
+    phase 1. Phase 1 reads, writes and enters phase 2:
+    - `(F,±)`: on `0` it writes `1` and goes to `(F,∓)`; on `1` or `2` it keeps the symbol and goes to
+      `(H,∓)`;
+    - `(H,±)`: on `0` it writes `2` and goes to `(F,±)`; on `1` it writes `0` and goes to `(F,±)`; on `2`
+      it writes `0` and goes to `(H,∓)`.
+  - *Recursion, checked by hand.* Crossing `s+ 0^(k+1) s*` from `(F,+,2)` on `s+` runs, in order:
+    - `M▶(k)`, taking the last zero as `s*`;
+    - one step: `(F,+,1)` reads that zero and writes `1`;
+    - `M◀(k)` back to `s+`;
+    - one step: `(F,-,1)` reads `s+`;
+    - `M⊳(k)`, taking the new `1` as right delimiter;
+    - one step: `(H,+,1)` rewrites that `1` as `0`;
+    - one step: the move onto `s*`.
+
+    So `f(k+1) = 3 f(k) + 4`. The case `k = 1` takes 7 steps, and the tape is restored.
+  - *No defect after shifting.* Put `g(k) = f(k) + 2 = 3^(k+1)`. Then `g(k+1) = 3 g(k)` exactly.
+    - Counting a crossing together with two joint steps already gives exact tripling. So "a variant with
+      `f(k+1) = 3 f(k)`" is a matter of accounting, not a new machine.
+    - The blocks of `g(k)` consecutive fine steps inside a level-`(k+1)` unit do not align with the
+      three sub-crossings. The second block ends one step into the third sub-crossing.
+    - In macro steps (read plus move) the crossing time is `c(k) = 3(3^k - 1)/2`. It satisfies
+      `c(k+1) = 3(c(k) + 1)`, and `c(k) ≡ 0 mod 3` for every `k`. So crossing times give no obstruction to
+      a continuous eigenvalue `e^{2πi/3}`: every crossing has the same residue.
+  - *What a height-3 renormalization would still need (heuristic, not a proof).* By item 3(c) of
+    `renormalizable-thompson-elements-are-odometer-codes`, `T^3 e_0 = e_0 T`. So a configuration and its
+    coarsening must differ within a bounded window of the head at all times. For SMART that window must
+    carry "one extra zero in the block being crossed", together with a local phase shift of one step at
+    each joint.
+    - Zeros are interchangeable, so inside a zero block the extra zero costs nothing.
+    - SMART never shifts nonzero cells. So once the head leaves the block for good, the extra zero is
+      stranded far behind the head, unless the hierarchy always brings the head back to that block.
+    - Deciding this needs SMART's global substitution. That is the plan of lane gq-nv-obstruct above,
+      which reads it from the e-print source. Coarsening that deletes a zero next to the head is the
+      candidate `e_0^{-1}` to test there.
