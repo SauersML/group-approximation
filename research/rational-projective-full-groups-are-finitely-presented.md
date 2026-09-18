@@ -175,7 +175,9 @@ is finitely presented.
      - It is equivalent to directedness of dissections ordered by descent.
      - It follows from a finite matrix game: left row reductions against right
        edge splits.
-     - A won game for every unimodular `X` would place all of `𝒯_m` in the
-       operad group of the finitely generated edge-split suboperad. That is the
-       finite-type suboperad Attempt 3 asks for.
+     - It is the main step toward placing all of `𝒯_m` in the operad group of the
+       finitely generated edge-split suboperad, the finite-type suboperad that
+       Attempt 3 asks for. One more step is needed and is not checked. Every
+       dissection of a cell into its descendants must be refined by a split tree
+       of the cell whose leaves inside each piece form a split tree of that piece.
      - Proposed route: a split-lemma induction on the least reachable entry sum.
