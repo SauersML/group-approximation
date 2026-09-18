@@ -22,15 +22,20 @@ This is the coordinator's design target of 2026-09-18.
 ## Necessary shape (from landed nodes)
 - **Stateless, not stably finite.** By `resolvent-vacuum-rings-have-no-k0-state`, `R` has no
   state on `K_0` and is not stably finite. So there are no UHF, Bratteli, or traced
-  groupoid models. The K-theoretic model is `O_∞ ⊗ UHF_Q`: `K_0 ⊇ Q·[1]` with every class
+  groupoid models. The K-theoretic model, heuristically, is `O_∞ ⊗ UHF_Q`: `K_0 ⊇ Q·[1]` with every class
   positive.
 - **Not a unital Leavitt--Nekrashevych completion.** Every `O_ψ` with `ψ : B -> M_d(B)`
   unital and `d >= 2` contains `L_d` unitally, a Leavitt tuple, so `(d−1)[1] = 0`. This
   covers `R_L` and `R_k`.
-- **Not a finite graph algebra over a finite base.** For a finite graph `E` over
-  coefficients with finitely generated `K_0`, the group `coker(1 − A^t)` is finitely
-  generated, so `[1]` cannot be divisible by every `n` unless it is torsion.
-  - Example: `A = [[3,1],[2,2]]` gives `K_0 ≅ Z` with `[1]` a generator. Condition 4 holds
+- **Not a finite graph algebra over a field.** For a finite graph `E` and coefficients `k`
+  regular supercoherent, for example a field, Ara--Brustenga--Cortiñas (Thm 7.6) give
+  `K_0(L_k(E)) = coker(1 − A^t)` on `K_0(k)^(E^0)`. That group is finitely generated when
+  `K_0(k)` is, so `[1]` cannot be divisible by every `n` unless it is torsion.
+  - Example: `A = [[3,1],[2,2]]`, with the convention `A_ij = #` edges `i -> j`, gives
+    `K_0 ≅ Z` with `[1]` a generator. The relators are `(−2,−1)` twice, the cokernel map is
+    `(a,b) ↦ a − 2b`, and `[1] ↦ −1`. With the transposed convention the image is
+    `Z(1,1)` and `[1] = 0` (referee b, W3). The convention matters here, even though it
+    does not affect determinants or Smith invariants. Condition 4 holds
     but condition 3 fails.
 - **Where the room is.** Cuntz--Pimsner-type completions whose correspondence has
   K-theoretic index `1` on `[1]`. Their `K_0` coker must be non-finitely generated, for

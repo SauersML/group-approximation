@@ -9,11 +9,12 @@ distinct_from:
   leavitt-resolvent-ring-is-fp-simple-of-char-zero: that is one ring with the mechanism, R_L; this is a structural consequence shared by R_L, R_Toep, R_k and every future host of this type.
 artifacts:
   - research/artifacts/gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md
+  - research/artifacts/gq-referee-b-resolvent-vacuum-rings-have-no-k0-state.md
 ---
 
 **ESTABLISHED** through `resolvent-vacuum-rings-have-no-k0-state-proof` (lane proof,
-elementary; refereed PASS by `gq-referee-a`, proof gaps, `gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md`, 061bc8d2d; the
-citation review by `gq-referee-b` is pending).
+elementary; refereed PASS by `gq-referee-a`, proof gaps, `gq-referee-a-resolvent-vacuum-rings-have-no-k0-state.md`, 061bc8d2d, and by `gq-referee-b`, citations and hypotheses,
+`gq-referee-b-resolvent-vacuum-rings-have-no-k0-state.md`, 9a2dd39e7).
 
 **Setting (a resolvent vacuum).** A unital ring `R` has a *resolvent vacuum* if it contains
 a nonzero idempotent `E`, an element `N`, and, for infinitely many indices `m`, elements
@@ -45,7 +46,8 @@ These are exactly the elements through which the resolvent produces `1/m`.
    - (a) `R` is not stably finite: some matrix ring `M_k(R)` is not directly finite;
    - (b) `(K_0(R), V(R), [1])` has no state. There is no additive `f : K_0(R) -> R` with
      `f >= 0` on `V(R)` and `f([1]) = 1`. In particular `R` carries no trace or dimension
-     function normalized at `1`.
+     function normalized at `1` that is nonnegative on the idempotents of all matrix
+     rings `M_k(R)`. Positivity on those idempotents is what makes it a state.
 
 **Consequences for the design of a group host.**
 - **No stably finite model.** A finitely presented simple ring that gets `Q` from a
@@ -55,7 +57,7 @@ These are exactly the elements through which the resolvent produces `1/m`.
   mechanism, and anything with a faithful dimension function.
 - **What the targets become.** "No Leavitt tuple" and "`[1]` of infinite order in `K_0`"
   are compatible with this, since `[1]` of infinite order already excludes any Leavitt
-  `(1,d)`-tuple, which would force `(d−1)[1] = 0`. But the host must be stateless, of the
+  `(1,d)`-tuple, which would force `(d−1)[1] = 0`. But the host must be stateless. Heuristically it is of the
   type `O_∞ ⊗ UHF_Q`: purely infinite behaviour, with `K_0 ⊇ Q·[1]`.
 - **What remains open.** This is recorded in
   `fp-simple-resolvent-ring-with-divisible-unit-class`.
