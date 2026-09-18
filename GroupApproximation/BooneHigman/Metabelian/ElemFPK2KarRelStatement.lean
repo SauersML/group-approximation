@@ -90,7 +90,7 @@ theorem k2KarRel_boundedAt_one {A : Type u} [CommRing A] (s : A) : k2KarRel_Boun
     have hb0 : b = 0 := k2PullRel_ext (by rw [hb, map_zero]) (by rw [hb2, map_zero])
     rw [hb0, x_zero, mul_one, mul_inv_cancel]
     exact cubeDiagDilate_stDies_one
-  · simp only [List.length_cons] at hlen
+  · rw [List.length_cons, List.length_cons] at hlen
     omega
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarRel_boundedAt_one

@@ -124,3 +124,5 @@ theorem higmanVCTauFix3Vac_caseDiff {d : ℕ} (hd : 1 < d) {p q t' y' : List (Fi
   · exact he (List.cons.inj (hc.symm.trans hc')).1.symm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauFix3Vac_caseDiff
+
+end GroupApproximation.BooneHigman.Metabelian.Envelope

@@ -40,7 +40,7 @@ theorem k2KarRel_const_mul_lift (a : A) (f : Polynomial (Localization.Away s)) :
   refine k2PullRel_ext ?_ ?_
   · simp only [map_mul, k2PullRel_fst_const, k2PullRel_fst_lift, mul_zero]
   · simp only [map_mul, k2PullRel_snd_const, k2PullRel_snd_lift, Polynomial.eval_mul,
-      Polynomial.eval_C, Polynomial.C_mul]
+      Polynomial.eval_C]
     ring
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2KarRel_const_mul_lift
