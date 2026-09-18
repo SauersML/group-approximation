@@ -125,3 +125,23 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
   is not MF.
 - `titz-witzel-exact-kazhdan-mf-radical-over-z` is open, not established. Its correction records
   the two cases. An MF kernel would instead be hyperlinear (`kazhdan-mf-hyperlinear-fragment`).
+
+## Attempts
+
+- **2026-09-18, swarm-0917-w9-w9-titz-break (breaker, calibration).  Status: OPEN.**
+  - New MF-killing criterion `kazhdan-centralizer-commuting-conjugates-kill-derived-subgroup`:
+    `L` Kazhdan, `uLu^-1 <= L`, `C <= C_G(L)` with `[uCu^-1, l uCu^-1 l^-1] = 1`, and
+    `D <= [C,C]` Kazhdan and normalized by `C` give `<<D>> <= Rad_MF(G)`.  It needs no
+    normality and no local finiteness.
+  - Heuristic refuted by `torsion-free-kazhdan-lamp-wreath-radical-has-kazhdan-subgroups`:
+    `W = Gamma(3)^(X) semidirect H_aff` is torsion-free, finitely generated and sofic, and its
+    MF radical (computed exactly) contains infinite Kazhdan subgroups.  So an obstruction to this
+    root cannot rest on "sofic torsion-free radicals contain no infinite Kazhdan subgroup".  It
+    must use that the radical is Kazhdan, that `G/K ≅ Z`, or finite presentation.
+  - Calibration for this root:
+    - (KC3) inside a sofic group with a Kazhdan compressor and infranormal `L`, the criterion is
+      vacuous;
+    - (KC4) for a normal Kazhdan radical reached through a single root, it is subsumed by
+      `normal-kazhdan-defect-non-mf`.
+    So the criterion does not yet produce an exact Kazhdan radical here.  The surviving routes
+    need non-infranormal sources or a compressor of nonzero degree.
