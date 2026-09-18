@@ -5672,6 +5672,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.FaceWords
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.RawConfig
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Setup
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingAmenable
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StableFunctor
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
