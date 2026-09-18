@@ -37,8 +37,8 @@ def liftableSubgroup : Subgroup (SteinbergGroup I S) where
     classical
     rintro a b ⟨s, hs⟩ ⟨t, ht⟩
     refine ⟨s ∪ t, fun T hT => mul_mem (hs T ?_) (ht T ?_)⟩
-    · exact fun c hc => hT (Finset.mem_union_left t hc)
-    · exact fun c hc => hT (Finset.mem_union_right s hc)
+    · exact fun c hc => hT (Finset.mem_coe.mpr (Finset.mem_union_left t (Finset.mem_coe.mp hc)))
+    · exact fun c hc => hT (Finset.mem_coe.mpr (Finset.mem_union_right s (Finset.mem_coe.mp hc)))
   inv_mem' := by
     rintro a ⟨s, hs⟩
     exact ⟨s, fun T hT => inv_mem (hs T hT)⟩
@@ -54,7 +54,8 @@ theorem exists_finset_lift (k : SteinbergGroup I S) :
       ?_ k
     rintro ⟨i, j, hij, a⟩
     refine ⟨{a}, fun T hT => ?_⟩
-    have ha : a ∈ T := hT (Finset.mem_singleton_self a)
+    have ha : a ∈ T :=
+      SetLike.mem_coe.mp (hT (Finset.mem_coe.mpr (Finset.mem_singleton_self a)))
     refine MonoidHom.mem_range.mpr ⟨x i j hij ⟨a, ha⟩, ?_⟩
     exact ringMap_x T.subtype i j hij ⟨a, ha⟩
   exact hk
