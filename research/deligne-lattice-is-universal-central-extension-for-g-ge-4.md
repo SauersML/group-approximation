@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** (item 1 by citation, read at source; items 2--3 lane proof, elementary,
-not independently reviewed; no priority claimed). Item 4 is conditional.
+not independently reviewed; no priority claimed). Item 4 by citation, read at source
+(Lavrenov); Stein's super-perfectness theorem is read only through Lavrenov's quotation.
 
 ## 1. Source facts
 
@@ -59,15 +60,30 @@ not say `Γ~_g` misses such hosts; it says the criterion of item 2 cannot be use
 this way must carry an infinite-order class in `H_2` coming from the symplectic (Maslov)
 class, as `T` does for its Euler class.
 
-## 4. Conditional Steinberg form
+## 4. Steinberg form
 
-If the symplectic Steinberg group `StSp_2g(Z)` is the universal central extension of
-`Sp_2g(Z)` for `g ≥ 4` (a stability theorem of Stein / van der Kallen type; **not read at
-source**), then `Γ~_g ≅ StSp_2g(Z)`, and `Γ~_g` embeds in `StSp_2g(R)` for every ring
-`R ⊇ Z` for which `Sp_2g(Z) → Ep_2g(R)` is injective and `KSp_2(2g, Z) → KSp_2(2g, R)` is
-injective. That puts the test case alongside the Steinberg shell route
-(`steinberg-resolvent-shell-envelope-is-finitely-presented`), with symplectic `K_2` in
-place of linear `K_2`.
+Lavrenov, "Another presentation for symplectic Steinberg groups", arXiv:1405.4296v2, read
+from the PDF (pp. 1--3):
+- Main Theorem: "Let R be an arbitrary commutative ring, l ≥ 3, let φ denote the natural
+  projection φ: StSp(2l, R) ↠ Ep(2l, R), and let K_2Sp(2l, R) be its kernel Ker φ. Then
+  one has K_2Sp(2l, R) ≤ Cent StSp(2l, R), or, in other words, φ is a central extension."
+- p. 2: "Stein shows in [33] that StSp(2l, R) is super-perfect for l ≥ 4."
+- Corollary 1: for `l ≥ 4`, "K_2Sp(2l, R) = H_2(Ep(2l, R), Z)".
+
+A central extension with a super-perfect total group is the universal central extension.
+So for `R = Z` and `g ≥ 4`, `StSp_2g(Z) → Ep_2g(Z)` is universal. `Ep_2g(Z) = Sp_2g(Z)`
+(standard, not re-read). With item 1:
+
+```text
+Γ~_g ≅ StSp_2g(Z)  and  KSp_2(2g, Z) = H_2(Sp_2g(Z)) = Z   (g ≥ 4).
+```
+
+**Base change to Leavitt rings is dead.** Take any ring with an involution-compatible
+Leavitt pair, `R_L` included. In rank at least `6g`, base change from `Z` kills
+`H_2(Sp_2g(Z))`, so every lift of `Γ~_g` to a central extension kills its centre
+(`leavitt-swindle-kills-deligne-center-in-ring-induced-hosts`). So `StSp_2g(Z) → StSp(R_L)`
+does not put the test case on the GL_n(Q) shell instance
+`steinberg-resolvent-shell-envelope-is-finitely-presented`.
 
 ## Scope
 

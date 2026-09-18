@@ -73,7 +73,7 @@ theorem k2PolyNagaoWide_S_mem_Qm {K : Finset I} {m L : I} (hmK : m ∈ K)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_S_mem_Qm
 
-omit [Fact p.Prime] in
+omit [Fintype I] [Fact p.Prime] in
 /-- A vector supported on `{m, L}` is `r_m e_m + r_L e_L`. -/
 theorem k2PolyNagaoWide_decomp {m L : I} (hmL : m ≠ L) {r : I → Polynomial (ZMod p)}
     (hr : k2PolyNagaoWide_Supp m L r) : r = r m • unitVec m + r L • unitVec L := by

@@ -43,8 +43,9 @@ Deligne-type central extension.
   hosts, every residually finite group: linear groups, groups acting faithfully on
   locally finite rooted trees (`self-similar-hosts-contain-only-residually-finite-groups`),
   and automaton groups.
-- The McKinsey–Mal'cev route to a solvable word problem is unavailable. The word
-  problem is recorded as open in `torelli-lower-central-quotients-satisfy-boone-higman`.
+- The McKinsey–Mal'cev route to a solvable word problem is unavailable, but the
+  word problem is solvable anyway, by the extension lemma
+  (`torelli-lower-central-quotients-have-solvable-word-problem`).
 - **The mechanism.** Hain's rational central line (weight −2, in
   `t_g[2] \ t_g[3]`) is killed in the relative completion. In the discrete group
   it shows up as a central `Z` whose extension class restricts, on a virtual

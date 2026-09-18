@@ -4,6 +4,7 @@ id: km-building-open-subgroups-have-infinite-ht-orbits
 kind: claim
 title: In every highly transitive action of a Kac--Moody lattice over a finite field, every building-open subgroup and each of its finite-index subgroups has only infinite orbits
 distinct_from:
+  km-negative-completion-building-open-dichotomy: that gives these orbit constraints for negatively building-open subgroups, such as B_-; this proves them for positively building-open ones.
   km-building-open-subgroups-have-infinite-bi-index: that is the double-coset dichotomy for building-open subgroups; this applies it to point stabilizers and set stabilizers of multiply transitive actions and to the closures of subgroups of finite bi-index.
   kac-moody-lattice-confined-subgroups-are-lim-free-and-mif: that shows confined subgroups pass the Le Boudec--Matte Bon obstructions, so the confined route cannot refute high transitivity; this constrains non-confined subgroups (chamber fixators, parabolics) in a hypothetical highly transitive action, which Le Boudec--Matte Bon Theorem 1.1 does not address.
   fp-simple-type-a-actions-iff-finite-bi-index-subgroups: that identifies type (A) actions with finitely generated proper subgroups of finite bi-index; this shows that for Kac--Moody lattices the closure of such a subgroup in the building completion is non-open or of finite index.

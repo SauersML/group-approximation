@@ -8,8 +8,8 @@ distinct_from:
   leavitt-ge-rings-have-stable-k1-at-rank-three: that proves the compression y x z = 1 and GL_r(R_L)/E_r(R_L) = Z; this uses both, for the frame multiplier and for E_r-transitivity.
 ---
 
-**ESTABLISHED** through `leavitt-resolvent-frame-complex-is-highly-connected-proof`. Lane proof, not independently
-reviewed. The cone and fan arguments are Khanh's (arXiv:2609.08428, Proposition `prop:frame-cone`, Corollary
+**ESTABLISHED** through `leavitt-resolvent-frame-complex-is-highly-connected-proof`. Refereed: gq-referee-b
+PASS, citation and scope lens (report 740389fd9); proof-gap review by gq-referee-a pending. The cone and fan arguments are Khanh's (arXiv:2609.08428, Proposition `prop:frame-cone`, Corollary
 `cor:frame-homology`, and the fan in the proof of Theorem `thm:steinberg-isomorphism`, read in TeX). What is new is
 the multiplier for `R_L`, which replaces Khanh's argument over `F_2`. No priority is claimed.
 
