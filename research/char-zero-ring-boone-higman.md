@@ -29,6 +29,20 @@ presented simple ring if and only if it embeds in a finitely presented simple
   benchmark `no-fp-simple-algebra-hosts-every-decidable-algebra`, which a proof of the
   full claim must clear with hosts that vary with the input.
 
+## The characteristic-p analogue
+- Evans--Mandelberg--Neff, *Embedding algebras with solvable word problems in simple
+  algebras -- some Boone--Higman type theorems*, Studies in Logic and the Foundations of
+  Mathematics 80 (1975), 259--277.
+  - Per its abstract (ScienceDirect), the paper gives the universal-algebraic first half:
+    finitely presented simple algebras have solvable word problem.
+  - For particular varieties it gives "the analogue of the second half up to but not
+    including the embedding in a finitely presented algebra", that is, the weak form:
+    a simple envelope with solvable word problem, not a finitely presented one. The BBMZ
+    survey, arXiv:2306.16356v3, §3, lists rings of characteristic `p` among these.
+  - So even in characteristic `p` the finitely presented form is open
+    (`algebra-boone-higman-conjecture`). This lane found no source for characteristic `0`
+    in either form (lane `gq-lit-arxiv`, `gq-gq-lit-arxiv-priority.md` §6).
+
 ## Attempts
 1. **Why the lane's constructions stop here (2026-09-17, lane `gq-ring-fp-simple`).** In
    the register method (`rational-function-fields-embed-in-fp-simple-rings`), one
