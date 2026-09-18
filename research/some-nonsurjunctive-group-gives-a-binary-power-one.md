@@ -80,6 +80,20 @@ distinct_from:
   - *Side remark (unproved).* Products `τ × ψ` have `R(τ × ψ)` equal to the tensor product of the digraphs. The
     classes of that product appear not to beat those of powers of `τ` for lowering `g`. This was not checked in
     general.
+- **Separated defects never occur** (swarm-0917-w12-w12-gs-follow, calibration, 2026-09-18). Recorded as
+  `strict-automata-never-omit-separated-patterns` (ESTABLISHED).
+  - *The result.* The hypotheses of the entry above are never met. For `N ⊲ G` with `G/N` surjunctive, `τ`
+    restricts to an injective, hence onto, automaton on the `N`-periodic configurations. With `N = G` this means
+    every letter occurs. With `N` the core of a separating finite-index `H`, every pattern on `F` occurs.
+  - *Sharpening.* Every omitted pattern `w ∈ A^F` takes different values at some `f, f'` with
+    `f^(-1) f' ∈ Σ(G) \ {1}`. Here `Σ(G)` is the sofic residual, and `Σ(G) ⊆ K(G)`. The proof combines finitely
+    many sofic quotients using Elek–Szabó. The same holds in every `G_L`.
+  - *Invariant.* Every omitted pattern takes two values on one coset of `Σ`.
+  - *Where it dies.* Every attack that makes a defect visible in a surjunctive quotient dies at the bijection on
+    `Fix(N)`. This covers omitted letters, regrouping over finite-index subgroups, separation in covers, and
+    sub-alphabets checked on periodic points.
+  - *Consequence.* `separated-omitted-patterns-make-nonsurjunctive-sizes-cofinite` is true but vacuous, and its
+    search target ("an image that misses one symbol") does not exist. The residue it named is the whole problem.
 - **Where it stops.** No construction is known that removes an odd prime from a failing size, for any explicit
   strict table pair, over any group. The frontier notes
   `notes/gottschalk-surjunctivity-conjecture-frontier-swarm-2026-09-16.md` record the ascent designs tried on the
