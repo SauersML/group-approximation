@@ -31,9 +31,9 @@ theorem higmanVCTauDecomp_flexU {d : ℕ} {α β γ g v0 w0 u0 : Fin d} (u v' : 
     higmanVCTauComm_FlexA d [β, g] [α, v0] (β :: γ :: u0 :: u) (β :: g :: v') hc1 hc2 := by
   have hPQ := higmanVCTauBridge_inc_cons [γ, u0] [w0] hαβ.symm
   unfold higmanVCTauComm_FlexA
-  refine ⟨[β, γ, u0], [α, w0], α :: w0 :: u, β :: g :: v', [β, γ, u0], [α, w0], α :: w0 :: u,
-    α :: v0 :: v', hPQ.1, hPQ.2, by simp, by simp, ?_, ?_, ?_, ?_, ?_, by simp, by simp, ?_, ?_,
-    ?_⟩
+  refine ⟨[β, γ, u0], [α, w0], α :: w0 :: u, β :: g :: v', [β, γ, u0], [α, w0],
+    α :: w0 :: u, α :: v0 :: v', hPQ.1, hPQ.2, by simp, by simp, ?_, ?_, ?_, ?_, ?_, by simp,
+    by simp, ?_, ?_, ?_⟩
   · exact (mapsCone_coneSwap_right hPQ.1 hPQ.2).append u
   · exact higmanVCTauD2_fix hPQ.1 hPQ.2 (higmanVCTauD2_inc2 (e := β) v' [u0] hg)
       (higmanVCTauBridge_inc_cons (g :: v') [w0] hαβ.symm)
@@ -82,7 +82,7 @@ theorem higmanVCTauDecomp_optA {d : ℕ} (hd : 1 < d) {α β γ g u0 u1 u2 : Fin
     higmanVCTauShort_OptionA d [α, u0] [β, g] (α :: u0 :: u1 :: u2 :: r) [β, γ] ha1 ha2 := by
   have hw := higmanVCTauSplit_other_ne hd u0
   have hle : ([β, γ] : List (Fin d)).length ≤ (α :: u0 :: u1 :: u2 :: r).length := by
-    simp only [List.length_cons, List.length_nil] <;> omega
+    simp
   have hne : ¬ ([β, γ] : List (Fin d)).head? = some α := fun h =>
     hαβ (Option.some.inj (show some β = some α from h)).symm
   have hdP : higmanVCTau_descP (α :: u0 :: u1 :: u2 :: r) [β, γ] =
@@ -93,8 +93,7 @@ theorem higmanVCTauDecomp_optA {d : ℕ} (hd : 1 < d) {α β γ g u0 u1 u2 : Fin
   unfold higmanVCTauShort_OptionA
   refine ⟨fun h => ?_, [α, higmanVCTau_other u0], [β, g, u1],
     α :: higmanVCTau_other u0 :: u2 :: r, [β, γ], ?_, ?_, by simp, by simp, ?_, ?_, ?_⟩
-  · have h1 := h.1
-    simp only [List.length_cons] at h1 <;> omega
+  · exact absurd h.1 (by simp)
   · rw [higmanVCTauSplit_pP_of_le hle, hdP]
     exact higmanVCTauD2_fix ha1 ha2 (higmanVCTauD2_inc2 (e := α) [] [] hw)
       (higmanVCTauBridge_inc_cons [higmanVCTau_other u0] [g] hαβ)
