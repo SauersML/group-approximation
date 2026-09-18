@@ -58,8 +58,8 @@ Restrict the action to `H` and apply (FV).
   `α(w) = w n` with `n ∈ N`. Then
   `α(w g w^-1) = (w n w^-1) (w g w^-1) (w n w^-1)^-1`, and `w n w^-1 ∈ N`.
 - **Right translations.** The maps `x_i -> x_i g` (`g ∈ M`, other letters
-  fixed) lie in `K_M` and give `M^op`, one copy per letter. Maps for different
-  letters commute, so they give `M^m` up to the anti-isomorphism.
+  fixed) lie in `K_M` and satisfy `α_g ∘ α_h = α_(gh)`, so they give a copy of `M` for each letter. Maps
+  for different letters commute, so together they give `M^m`.
 
 **The `M = V` remark.** `V` contains no `(Q,+)` (Higman; BBMZ survey
 arXiv:2306.16356v3, Theorem 4.4), and `(Q,+)` lies in each `H'`. Items 1 and 2
