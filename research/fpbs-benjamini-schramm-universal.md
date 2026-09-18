@@ -559,6 +559,29 @@ content in that region.
   Near spine birth, `C(r)` must diverge, at least like `theta/D_n`. The open
   input is the attachment quasi-multiplicativity
   `g(n) <= C theta^{-1} g(k) g(n-k)` of the tilted cluster.
+* **Untilting the path bridge ratio (2026-09-18, w10-123).**
+  `fpbs-path-bridge-ratio-untilted-coverage-decorrelation`. Expand `r^N`
+  over covered subsets `S`. The bridge mass and the gap-split part of `TJT`
+  then carry the same weights, so for every environment and every `r`,
+  `Br/TJT <= K`. Here `K` is the untilted ratio
+  `max P(S ⊆ Z) / (P(S^- ⊆ Z) P(S^+ ⊆ Z))`, taken over patterns split at one
+  missing edge. Also `D_n >= (1-2/n)/K`.
+
+  For Bernoulli spines on any graph and any target, a last-exit union bound
+  with FKG gives `K <= 2/theta` on patterns with one run on each side. This
+  yields the requested one-arm quasi-multiplicativity
+  `g(n) <= 2 theta^{-1} g(k) g(n-k)` for **every** `k`, and
+  `limsup_{r->0} Br/TJT <= 2/theta` uniformly in `n`.
+
+  **Where it stands:** the open kernel is `K <= C/theta` on multi-run
+  patterns, where runs on one side can reach the target through the other
+  side. The computation (`n = 16, 64`, `theta` from `0.89`
+  down to `0.48`) gives `K` growing like `1/theta`, with `K theta` between
+  `0.64` and `0.93` for every pattern. Even with `C(r) ~ 1/theta(r)`, the Br
+  route closes the Russo-plus-bridge part of (G) only when
+  `∫ dr/theta(r) < infinity` at the spine birth. That holds for a spine born
+  with exponent `< 1` (the Z^2 percolation spine has `5/36`), and fails, with
+  a log divergence, for linear birth.
 * **Refuting the conjecture** is represented by
   `fpbs-benjamini-schramm-counterexample-exists`, not by a route into this
   goal.
