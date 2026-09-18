@@ -47,6 +47,18 @@ as Lodha's `S`" among the candidate classes left open by the vigorous-group theo
 finitely generated simple circle group containing `T`, whatever its finiteness properties. What survives on
 the circle is a finitely presented simple circle group that contains no conjugate of `T`.
 
+## Lesson for general BH
+
+Commutator extraction is a packing principle, not a fact about the circle. A shift `t` that permutes a Sidon
+family of disjoint pieces lets one element, spread over the family, carry any finite list of piece-supported
+elements: all their commutators come back as `[t^(-u_a) f t^(u_a), t^(-u_b) f t^(u_b)]`. So in any host that
+has such a shift and whose piece stabilizers generate, finitely many local data collapse into two generators.
+- For Boone–Higman, generation rank is never an obstruction inside dynamical hosts. Circle hosts containing
+  `T` and vigorous Cantor hosts are 2-generated.
+- The finite data needed to embed an input group (images of its generators placed in one piece) can be packed
+  into a single element of a fixed finitely presented host. This is the in-host analogue of the
+  Higman–Neumann–Neumann and Schupp two-generator embeddings.
+
 ## Scope
 
 - Finite presentability plays no role. The theorem needs `T ≤ G` only through three facts:
