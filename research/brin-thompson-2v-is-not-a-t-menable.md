@@ -23,3 +23,20 @@ part of Zaremsky Problem 2.7 negatively.
 - **Infinite Kazhdan subgroups.** An infinite (T) subgroup of `2V` would do.
   This is exactly the open side of Problem 2.19 for `2V`.
 - Both are untested.
+- 2026-09-18 (swarm-0917-w12-w12-nv-pull): the relative-(T) route, decomposed and partly killed.
+  - *Reduction.* Suppose some `Z^2 ≤ nV` has non-amenable normalizer image `Γ ≤ GL_2(Z)`. Lift
+    free generators of `Γ` to get `⟨Z^2, Φ, Ψ⟩`, a quotient of `Z^2 ⋊ F_2` whose kernel `K`
+    meets `Z^2` trivially. Then `[K, Z^2] ≤ K ∩ Z^2 = 1`, and `F_2` acts faithfully, so `K = 1`.
+    So `Z^2 ⋊ F_2 ≤ nV`, and Burger's relative (T) for `(Z^2 ⋊ Γ', Z^2)` would refute
+    Haagerup. The Burger theorem is cited from memory, not verbatim.
+  - *Decomposition via the compiler.* Build codes over a common `Z^2`:
+    - P1: an `mI` code;
+    - P2: an `mA` code with `A` hyperbolic, which gives a Sol lattice in `(k+1)V`;
+    - P3: an `mB` code with `⟨A, B⟩` free, which gives the Burger pair.
+  - *Kill.* `coordinate-shadows-rigidify-abelian-normalizers-in-nv` (ESTABLISHED) shows that over
+    any block-split `Z^2`, including every SMART-odometer product, all twisting matrices are
+    diagonal. So P2 dies there. More generally, the route dies whenever some coordinate-shadow
+    set `D_J` is finite and nonempty.
+  - *Survivors.* A survivor must be a coordinate-mixing `Z^2`, with every `D_J` empty or
+    infinite. No such `Z^2` with a hyperbolic normalizer element is known. Finding one, or
+    proving that none exists, is the open step.
