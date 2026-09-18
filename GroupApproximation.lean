@@ -5914,6 +5914,7 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.Root.Intro
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.ChainOps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAlgebraDef
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUnitalHomotopy
+import GroupApproximation.Manuscript.NonMF.Full.GL06h3.NearestCell
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
