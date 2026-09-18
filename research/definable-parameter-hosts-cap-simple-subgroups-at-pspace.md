@@ -73,6 +73,17 @@ are not automatic. This single statement classifies the geometric host families 
 semialgebraic in any dimension, `V`/`nV`/Röver--Nekrashevych with any addresses) as capped for the
 Birget root.
 
+**Where the live routes escape.** The routes that are still open on the root lie exactly outside
+this class:
+- twisted Brin--Thompson hosts `SV_Γ` (Attempt 1), which permute infinitely many Cantor coordinates
+  and so are not synchronous-automatic;
+- infinite-state self-similar hosts (Attempt 2), whose graphs are not ω-regular;
+- finite-index HNN inputs (Attempt 5), which are not given by an action at all.
+
+The routes that died (Attempts 3, 4 orbit-preserving, 6, 8) are all definable. So the theorem is a
+test to run on any proposed host: *is its generating rule tamely definable?* If it is, the host is
+capped at PSPACE.
+
 ## Not claimed
 
 - Sharpness. Automaton groups with PSPACE-complete word problem exist (D'Angeli--Rodaro--Wächter,
