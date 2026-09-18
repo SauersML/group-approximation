@@ -212,3 +212,28 @@ the Kaplansky zero-divisor conjecture."
      have solutions, so row separation is essential.
    - Next: relations spread over two or more translates of `g(V)` glued
      along pieces, which is van Kampen-type coset configurations.
+14. **Two-copy configurations carry no zero divisors (proposed established; `rips-segev-two-copy-configurations-carry-no-zero-divisors`).**
+   - Suppose `alpha (u(a) + w(a) b) = 0` with `alpha, w != 0`.  Then
+     `alpha u` and `alpha w` cannot both lie in the union of two translates
+     of `g(V(Gamma))`, over any field, in `k[K]` and in `k[G]`.
+   - Gluing lemma.  Between two links of two copies the van Kampen diagram
+     has no faces, since each face would have boundary `< 8 < gamma`.  So two
+     copies meet in one `b`-bridge only, or in at most three `<a>`-cosets
+     that are pairwise joined by shared `b`-runs (rigidity plus
+     `girth(Phi) > 12`).
+   - Ports.  On clean cosets the one-copy port constraints hold verbatim.
+     Two clean active lines in one copy have dirty, distinct flanking lines
+     meeting the same other copy, which the gluing lemma forbids.  So at most
+     `2 + 3` cosets are active.
+   - Their port graph closes a positive relation `b a^{n_0} ... b a^{n_{L-1}}`
+     with `L <= 5`, which is too short to hold in `K`.
+   - Exhaustive `F_2`/`F_3` port searches on two-copy models with separated
+     rows found no solution for any gluing.  A single-row control does have
+     solutions.
+   - Three copies reduce to one gap, *mixed flanks*: the two flanking lines of
+     a clean line are dirty through different copies.  Excluding them leaves
+     `<= 12` active cosets, and `24 < 5 gamma/8 - 1` still closes the proof.
+     For `N >= 4` copies the count exceeds 12.  Since the copies cover `K`,
+     the `N`-copy theorem for all `N` is the whole `b`-degree-one case.
+   - Next: a mixed-flank lemma for three copies, then a Greendlinger-type
+     bound on the number of copies a short port cycle can cross, for general `N`.
