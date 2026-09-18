@@ -11,7 +11,9 @@ distinct_from:
 
 **ESTABLISHED** by `interval-spherical-brown-criterion-proof` (lane proof, assembling the
 arguments of `twisted-bt-type-fn-interval-filtration-proof` and
-`abstract-twisted-bt-type-fn-colored-stein-proof`; not reviewed). It is a variant of Brown's
+`abstract-twisted-bt-type-fn-colored-stein-proof`). Referee c (independent second pass): **PASS**,
+`research/artifacts/gq-referee-c-abstract-twisted-bt-type-fn-criterion.md` (72d2941ac), which covers this node.
+Citation pass (gq-referee-b) requested. It is a variant of Brown's
 criterion. Filtering by intervals is standard (Belk--Zaremsky use it for contractibility);
 the graded use of stabilizers is the point. No priority claimed.
 
@@ -46,8 +48,9 @@ in infinitely many orbits and have arbitrary stabilizers.
 2. each interval in `𝓘` is graded by `ρ`, so covers have rank difference one;
 3. vertex stabilizers are finitely presented, and stabilizers of covers are finitely
    generated;
-4. there are finitely many orbits of vertices, of covers, and of intervals `I` for which
-   `|(v, w)|` is disconnected.
+4. there are finitely many orbits of vertices, of covers, and of intervals `I` of length
+   `≥ 2` for which `|(v, w)|` is disconnected. Covers have `(v, w) = ∅` and are counted
+   separately.
 
 Then `Γ` is finitely presented. Intervals whose open part is connected impose no condition.
 
