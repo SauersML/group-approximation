@@ -45,8 +45,9 @@ image consists of *class-wise increasing* RCWA permutations.
 Let `h ∈ RCWA_P(Z)` be class-wise increasing, affine on the classes `r_i(m)`,
 `0 ≤ r_i < m`. The argument of `ct-z-is-the-rcwa-group-fixing-the-nonnegative-integers`,
 steps 1–2, applies verbatim, since positivity of the slopes was all it used there.
-- **Images are residue classes.** `h(r_i(m))` is a residue class `s_i(n_i)`, with
-  `0 ≤ s_i < n_i` and `n_i = (a_i/c_i) m` a `P'`-smooth integer. These classes partition `Z`.
+- **Images are residue classes.** Integrality of `(a_i(r_i + tm) + b_i)/c_i` for all `t` gives
+  `c_i | a_i m` (referee N3). So `h(r_i(m))` is a residue class `s_i(n_i)`, with
+  `0 ≤ s_i < n_i` and `n_i = a_i m/c_i` a `P'`-smooth integer. These classes partition `Z`.
 - **Integer shift.** There is an integer `c_i` with `h(r_i + t m) = s_i + (t + c_i) n_i` for all
   `t`.
 
@@ -97,7 +98,9 @@ and `a^c = a^n|_ν`.
   `z = 1` gives `M = M'`. The residues lie in `[0, M)`, so `c = 0` and `μ_P ν_P = λ_P ν'_P`.
   Degrees are preserved, so `d(μ_P) = d(λ_P)`, and unique factorization gives `μ_P = λ_P`.
 - **Binary part.** `μ_∗ ν_∗ = λ_∗ ν_∗`, so `μ_∗ = λ_∗`.
-- **Conclusion.** `a^n` strongly fixes `ν`, so `n = 0` and the bisection is a unit.
+- **Conclusion.** `a^n` strongly fixes `ν`, so `n = 0` and `λ = μ`. Hence `s·e = e` for the
+  idempotent `e` of `μνX` and `s = Z(λ, n, μ)`, which is what "the germ is a unit" means in
+  `I_l(D) ⋉ X` (referee N2).
 
 **Hausdorff.** The unit-germ set of `Z(λ, n, μ)` is the interior of its fixed set.
 - **Equal degrees, `(λ, n) ≠ (μ, 0)`.** The fixed set is empty.

@@ -1,0 +1,112 @@
+---
+rg: 2
+id: pbh-via-degree-monoid-boundary-full-groups
+kind: claim
+title: Finiteness transfer - for a countable cancellative monoid with a unique-factorization degree map to N^k, lcms, finite residues and an F_infinity unit group, whose boundary groupoid is Hausdorff and effective, the full group of that groupoid times the Cuntz groupoid is F_infinity, simple and highly transitive, so every group acting by its boundary germs satisfies the permutational Boone-Higman conjecture
+requires:
+  - fp-simple-highly-transitive-groups-satisfy-pbh
+  - rcwa-groups-over-pids-satisfy-boone-higman
+distinct_from:
+  rcwa-groups-over-pids-satisfy-boone-higman: that proves the host properties for the ax+b monoids of specific rings; this isolates the five monoid axioms those proofs used, as a general host theorem with the unit group as the only group-theoretic input.
+  permutational-boone-higman-via-v-times-aperiodic-sft-full-groups: that builds hosts from full groups of SFTs over V; this builds them from boundary groupoids of monoids with nontrivial F_infinity unit groups, where the unit group supplies the infinite local symmetry.
+  fp-self-similar-subgroups-satisfy-permutational-boone-higman: that uses rank-one Röver-Nekrashevych envelopes of finitely presented self-similar groups; this is a higher-rank monoid form, where the units need not act self-similarly on a tree.
+---
+
+**ESTABLISHED** (lane proof, not reviewed). The proof is the argument of
+`rcwa-over-pids-bh-via-ax-plus-b-monoid-hosts-proof`, Steps 2–5, together with Lemma 2 of
+`rcwa-groups-satisfy-permutational-boone-higman`. Only the monoid axioms below are used.
+The inputs are:
+- Li arXiv:2110.04505v2, Theorem `thm:deg` and the lemma after it;
+- Li arXiv:2209.08087, Corollary `introcor:Vanish`;
+- Matui's Künneth theorem, as quoted in FKPS arXiv:1808.07807;
+- Matui arXiv:1210.5800v3, Theorem `simple2`;
+- BFFHZ Theorem C.
+
+No priority is claimed for the general statement. It is a packaging of these theorems.
+
+## Statement
+
+Let `C` be a countable monoid that is a submonoid of a group. Suppose:
+
+- **(M1) Degree map with unique factorization.** There is a degree map `d : C → N^k` with
+  `d^{-1}(0) = C^*`, satisfying Li's (UFP*).
+- **(M2) lcms.** `aC ∩ bC` is empty or equal to `cC` for some `c`.
+- **(M3) Finite residues.** Each degree has finitely many elements up to right units, and
+  each basis degree `e_j` has at least two.
+- **(M4) Units.** `C^*` is of type `F_∞`.
+- **(M5) The groupoid.** Li's boundary groupoid `G_C = I_l(C) ⋉ ∂Ω` is Hausdorff and
+  effective.
+
+Let `H_C = F(G_C × G_{O_2})` be the topological full group on `∂Ω × {0,1}^N`. Then:
+1. `H_C` is of type `F_∞`, simple, and highly transitive on every orbit.
+2. Every subgroup of `H_C` lies in `B_A`, so it satisfies the permutational Boone–Higman
+   conjecture.
+   - This covers every group acting faithfully on `∂Ω` by homeomorphisms that are
+     piecewise, on finitely many cylinders, restrictions of the partial maps
+     `λ_a λ_b^{-1}` (`a, b ∈ C`). Such a group embeds in `H_C` by `g ↦ g × id`.
+
+## Proof
+
+- **`F_∞`.** `C × F_2^+` satisfies (M1)–(M4) with degree monoid `N^{k+1}`, and it is right
+  cancellative, which gives Li's (F). Li's Theorem `thm:deg` then gives `F_∞`, with (t < d)
+  from Li's lemma after it (Step 2 of the ax+b route).
+- **The product.** Li's product identification gives `G_C × G_{O_2}`.
+- **The unit space.** `∂Ω` is compact, metrizable and totally disconnected.
+  - It has no isolated points: each cylinder `∂Ω(a)` is the disjoint union of the at least
+    two cylinders `∂Ω(ab)`, `d(b) = e_j`, by (M1)–(M3).
+  - So the unit space of the product is a Cantor set.
+- **Minimal.** There is one object, so `λ_b λ_a^{-1}` maps `∂Ω(a)` onto `∂Ω(b)`. Hence every
+  orbit meets every cylinder, and cylinders form a basis by (M2)–(M3).
+- **Essentially principal.** The product of effective Hausdorff ample groupoids is effective
+  and Hausdorff, so it is essentially principal (Baire).
+- **Purely infinite, comparison, high transitivity.** Binary splitting in the `O_2` factor
+  gives pure infiniteness and comparison, as in Step 4 of the ax+b route. It also gives the
+  equivalence of any two nonempty clopen sets (Lemma 1 of the PBH node), hence high
+  transitivity on each orbit (Lemma 2 there).
+- **Simple.** `H_*(G_{O_2}) = 0` (FKPS), so `H_*(G_C × G_{O_2}) = 0` by Künneth. Li's
+  `introcor:Vanish` then makes `H_C` perfect, and Matui's `simple2` makes it simple.
+- **`B_A`.** BFFHZ Theorem C (iii) ⟹ (i) puts every subgroup of `H_C` in `B_A`. ∎
+
+## Instances on main
+
+| Monoid `C` | Unit group `C^*` | Groups hosted |
+|---|---|---|
+| `R ⋊ S_P`, `R` a number ring of class number one | `R ⋊ R^*` (polycyclic-by-finite) | `RCWA_P(R)` |
+| digit submonoid of `F_q[t] ⋊ S_P` | `F_q^*` | `RCWA_P(F_q[t])` |
+| `Z[1/N] ⋊ S_π` | `Z[1/N] ⋊ ⟨−1, q \| N⟩` (ascending HNN) | f.g. `RCWA(Z_(π))` |
+| `Λ_P ⋈ Z` (odometer) | `Z` | `RCWA_P(Z)` via sign doubling |
+| `Λ_P` (class-transposition k-graph) | trivial | `CT_P(Z)` |
+| the one-vertex `k`-graph `(F_2^+)^k` | trivial | Brin's `kV` |
+
+## Lesson for general BH
+
+A finitely presented simple host costs exactly one `F_∞` group, the unit group, plus
+combinatorics.
+- **What the unit group does.** Li's theorem transfers finiteness from `C^*` to the whole
+  full group.
+- **What the rest supplies.**
+  - The Cuntz factor supplies perfectness, simplicity and high transitivity for free.
+  - The monoid axioms (M1)–(M3) only ask that "residue classes" behave like boxes:
+    unique factorization of degrees, closure under intersection, and finitely many
+    classes per degree.
+- **The reduction.** BH or PBH for a group `G` therefore reduces to a representation
+  problem: find a monoid satisfying (M1)–(M5) whose boundary germs contain `G`.
+  - This is sharper than asking for a finitely presented simple overgroup, because the
+    group-theoretic finiteness is concentrated in `C^*`.
+  - Ax+b monoids of PIDs solve the representation problem for every RCWA group at once.
+- **Where it stops: matrix monoids.**
+  - For `n ≥ 2`, the monoid of affine maps `x ↦ Ax + b` with `A` nonsingular integral fails
+    (M1): a lattice of index `p²` lies in `p + 1` lattices of index `p`.
+  - This Hecke branching is the precise obstruction to lattice-coset hosts. That matters
+    for Kohl's `RCWA(Z^n)`, and for `GL_n(Q)`-type piecewise actions on `Ẑ^n`.
+  - The central Garside element `pI` suggests replacing (M1) by Li's general Garside
+    criterion (Li, Theorem `intro:Fn`), whose extra conditions (St), (LCM) and (t < d) are
+    not checked here.
+
+## Question
+
+Does every finitely generated group with solvable word problem act faithfully by the
+boundary germs of some monoid satisfying (M1)–(M5)? A positive answer implies the
+permutational Boone–Higman conjecture, and hence BH. It is not known whether BFFHZ's
+finitely presented twisted Brin–Thompson groups themselves arise this way. They are full
+groups over infinitely many colours twisted by an oligomorphic group, not over `N^k`.
