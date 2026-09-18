@@ -183,3 +183,23 @@ about tau_L tails, not route lengths. The reduced-circulation channel of the
 first attempt tolerates divergent routes, and it is the surviving quantitative
 channel. On F_r x Z (non-treeable) its route lengths diverge as Corollary B
 requires, while the reduced mass stays bounded.
+
+- **Interior-edge (cluster-bootstrap) Morse matchings for one-relator groups
+  with every letter used at least three times (swarm-0917-w12, 2026-09-18).**
+  Status: OPEN, not dead. The attempt split the cells of `<S | w^m>` into finite
+  invariant clusters. Inside a cluster, a cell `c` was matched to an edge `e`
+  only once every other cell on `e` had already been placed (bootstrap order).
+  This interior-edge condition turns out to be stronger than what
+  `fpbs-bernoulli-morse-collapse-criterion` asks for. Well-foundedness there
+  only forbids infinite chains of removed edges, so a matched edge need not be
+  free. The extra condition also costs mass. When only one letter `s` is used
+  and its incidence hypergraph (edge `gs` on the `k_s` cells `g T_s`) is a
+  hypertree, a finite sub-hypertree with `n` vertices carries at most
+  `(n-1)/(k_s-1)` complete hyperedges. That forces a root density of at least
+  `(k_s-2)/(k_s-1)`. For general matchings the only counting check found was
+  monotonicity of finite-cycle dimension in the cell/edge incidence graphing
+  (unnormalised `Z = L - 2|S| + 1` for torsion-free `<S|w>`). It gives no
+  obstruction. The `<a,b | a^3 b^3>` example (finite `a`-segments with two roots
+  each) still works. What survives is **finite-recovery-cluster matchings
+  without the interior-edge condition**. For `k_s >= 3` no construction or
+  obstruction is known.
