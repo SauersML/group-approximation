@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `unimodular-line-pairs-detect-cyclic-quotients-proof`. Refereed: gq-referee-a PASS,
-proof-gap lens (report 4652928f8, N1 applied); one referee. Elementary; no citation is needed except in the optional remark on purely infinite rings.
+proof-gap lens (report 4652928f8, N1 applied); gq-referee-b PASS, citation and scope lens (report 52fc925a5). Elementary; no citation is needed except in the optional remark on purely infinite rings.
 
 **Setting.** `R` is a unital ring and `N >= 2`. Vectors are columns and `R^N` is a right `R`-module. A *line* is a
 submodule `vR` with `v` unimodular, meaning `wv = 1` for some row `w`. Let `Ω_N(R)` be the set of lines and

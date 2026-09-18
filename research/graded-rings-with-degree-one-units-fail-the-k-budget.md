@@ -10,7 +10,8 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `graded-rings-with-degree-one-units-fail-the-k-budget-proof`. Refereed:
-gq-referee-a PASS, proof-gap lens (report 223c763b9, W1 and nits applied); one referee. Elementary given `laurent-rational-symbols-block-fp-elementary-groups`. No priority is claimed.
+gq-referee-a PASS, proof-gap lens (report 223c763b9, W1 and nits applied); gq-referee-b PASS, citation and scope lens
+(report e39e24bdb). Elementary given `laurent-rational-symbols-block-fp-elementary-groups`. No priority is claimed.
 
 **Statement.** Let `R` be a unital ring with a unital map `Q -> R`, and let `R = ⊕_(k in Z) R_k` be a grading
 (`R_i R_j ⊆ R_(i+j)`) with a unit `u in R_1`.

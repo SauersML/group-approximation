@@ -170,3 +170,19 @@ open part is finite presentation. One concrete route is
    - **Design constraint.** `Z_(l)` in the base comes from the lamps `π_k` acting invertibly. Finite
      presentation needs that invertibility as ring relations, which makes the `π_k` units and creates the
      symbols. This lane has no concrete way to decouple the two.
+9. **Decoupling the lamps from units: the ring repair (2026-09-18, lane gq-k2-q).** Still OPEN.
+   - *The Euler residual is not decided.* In `euler-ring-steinberg-rf-residual-is-fng`, every `c_q` dies in the
+     folding quotients `F_(r,N)` with `r <= l − 1` (`euler-ring-symbols-in-small-finite-quotients`). The
+     cyclotomic point detects `c_q` on `A`, but its σ-orbit does not.
+   - *One-sided inverses do not decouple.* `one-sided-inverses-cannot-repair-the-steinberg-residual`:
+     `Γ_N(T)` depends only on `T/I_rf(T)`, and residually finite rings are Dedekind-finite.
+   - *A central deformation does decouple, conditionally.* `central-deformation-euler-host-has-fng-steinberg-residual`
+     (PARKED).
+     - The host `T_p` is finitely presented, carries `Z_(l)` in its residually finite quotient, and has no lamp
+       units.
+     - A `t`-homotopy shows `K_2(T_p)` meets the Euler symbols in at most 4 classes (refereed PASS).
+     - It still needs three things:
+       1. `I_rf(B)` finitely generated, e.g. finite quotients separating the `Z`-torsion of `B`;
+       2. the part of `K_2(B, B_+)` that dies in every finite quotient to be finitely generated;
+       3. control of unstable `K_2(N, T_p)`.
+     - A Baumslag letter cannot remove the torsion, and regularity cannot give `NK_2 = 0`.
