@@ -485,3 +485,76 @@ instead of `4`) changes no conclusion.
 
   Spark: any LEF or MF model of `P_{2,2}(J)` that keeps the head must break
   the block decomposition of the unipotent radical. The claim stays OPEN.
+- **finite-models, swarm-0917 (swarm-0917-w11-w11-ptl-follow), 2026-09-18:
+  the depth-one candidate `Gamma_1`. Its degree-one layer is rigid, and
+  class three and higher local rings do not revive the head.**
+
+  *Proposal.* Follow the w10 lead: decide whether
+  `Gamma_1 = Gamma_trap + EXTRA_RELS + (C) at depth <= 1` has a finite
+  quotient that keeps `h`. Enlarge the w10/w11 class-two search along three
+  axes:
+  - nilpotency class three;
+  - higher local rings `(x+1)^k`;
+  - Levi images that are not ring actions.
+
+  *Result (established).* `gamma-trap-degree-one-layer-is-a-matrix-ring-module`
+  (route `-proof`, `requires: []`).
+  - Let `G` be any group of seven involutions satisfying (LR), (R1)-(R3) and
+    `[as,u] = [at,u] = [bs,u] = [bt,u] = 1`. Then `<<u>>^ab` is
+    `M_2(J)/M_2(I)` for a two-sided ideal `I`, with the Levi acting by the
+    ring action.
+  - When the layer is finite, it is `M_2(F_2[x]/(p))`, with `S -> x`.
+  - Proof. `L(a) v = R(a) v` by induction, `TS = 1` passes to the operators,
+    the four block families span and are closed, and the invariant subspaces
+    are matrix ideals, because the root operators generate `M_2(J)` on both
+    sides.
+  - Consequences:
+    - The degree-one layer of every finite quotient of `Gamma_1`, and of every
+      LEF target, is a ring module.
+    - Non-ring Levi searches are empty by theorem.
+    - The w11 class-two scans over `M_2(F_2[x]/(p))` are complete at degree
+      one for `deg p <= 5`.
+    - This recovers the envelope-commutator conclusion `h in [N,N]` from
+      sixteen relations.
+
+  *Computations (bounded; in
+  `experiments/p22-class-three-depth-one-2026-09-17/`).*
+  - *Class three* (`c3scan.py`, truncated tensor algebra with central
+    class-two layer), over `(x+1)^4`:
+    - the depth-0 survivor persists;
+    - depth-1 (C) kills the head (3 seeds).
+  - *Local rings.* Over `(x+1)^k`, `k = 6..10`, depth-1 (C) kills the head
+    (2 seeds each). `p = x+1` also dies.
+  - *Propagation* (`propagate.py`, `(x+1)^4`):
+    - depth-0 (C) is implied by trap + EXTRA;
+    - depth-1 (C) forces (C) at depths 2-4;
+    - without it, the counts of (C) differences outside `K` by depth are
+      `[0,2,2,4,0]`.
+
+    So the depth-one kill is the orbit trap, run through the class-two layer.
+  - *Non-ring Levi images* (`levi_search.py`):
+    - `S_4`: 299 trials, all with `W = 0`;
+    - `S_5`: 397 trials, with 379 giving `W = 0` and 18 over the order cap;
+    - `SL_2(F_4)` sanity check: `dim W = 8`.
+
+  *Invariant.* The degree-one layer `N/[N,N]` as a module over the root
+  operators `L(S), L(T), R(S), R(T)`. It is forced to be `M_2` of a quotient
+  of `J`.
+
+  *Step where the class dies.* Every model whose head-carrying layer is
+  degree one dies at Step 5 of the route: a finite quotient of `J` has
+  `ST = 1`.
+
+  *What is left.* Any head-keeping finite quotient of `Gamma_1` differs from
+  the scanned family only in `[N,N]` and above. There are three open cases:
+  1. A class-two extension not captured by the `G0`-equivariant tensor model
+     with random `c_u`. This needs an enumeration of the gauge classes
+     `c_u mod l(v)` and of the non-split cocycles.
+  2. `deg p >= 6`.
+  3. Class `>= 4`, or a non-nilpotent `<<u>>`.
+
+  In each case the orbit trap applies: the orbit is finite, so the quotient
+  must fail (C) at some right-orbit depth `>= 2`. In the tensor models,
+  however, depth-1 (C) forces (C) at depths 2-4. The next finite target is
+  therefore a proof that depth-1 (C) propagates, or a model in which it does
+  not. The claim stays OPEN.
