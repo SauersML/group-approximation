@@ -54,3 +54,14 @@ The d-ary version, with V_{d} and Z[1/d], works the same way for the primes p �
 - Only embeddings sending 1 ∈ Q to the odometer s of 2V_τ are excluded.
 - A copy of Q ⋊ ⟨2⟩ in 2V_τ in which 1 goes to an element that is not conjugate to s is not addressed.
 - Other hosts are not addressed either, for example ones where the centralizer of the "1" element is not fibered over a V-coordinate.
+
+## Lesson for general BH
+
+**The mechanism** is a *mass-module obstruction*. It has three ingredients:
+- **Divisibility in the input.** Q-roots of one element s force, through the fibered centralizer, free actions of Z/p for unboundedly many primes p on a transverse coordinate.
+- **Free torsion.** Every invariant mass on that coordinate must then contain 1/p for all those p in its value set on clopen sets.
+- **Self-similarity of the host.** Here that is the V-intertwiner with its doubled lift. It forces the cone masses of a suitably chosen invariant measure into a *finitely generated* Z[1/d]-module, which can hold only finitely many 1/p.
+
+**Transferable test.** For any candidate host that is a full group of an ample groupoid, the value group of invariant masses on clopen sets must be infinitely generated over Z[1/d] wherever divisible inputs are carried. Every host whose relevant maps are local similarities of one tree fails this. That includes nV, 2V_τ, SV_G on a fixed coordinate, and Röver–Nekrashevych groups.
+
+**Link to the ring route.** This is the dynamical twin of the ring-route gate "[1] divisible by every integer in K_0 with a finitely generated K-budget". In both routes, Q-divisibility demands an infinitely generated trace or dimension range, and finite presentation or self-similarity pushes toward finite generation. A host for GL_n(Q) must resolve exactly this tension, for example with infinitely many independent scaling ratios that are *not* related by a self-similar intertwiner.
