@@ -36,7 +36,8 @@ equal. So a piece of `h` on a nonempty open set is unique.
   - The states `s|_(0^k)` agree on `Z_p` with `ρ_(r_k)^-1 m_1 (w -> p^k w)` for
     suitable integers `r_k`, whose poles are `P/p^k`. These are pairwise distinct
     Möbius maps, so by rigidity the states `s|_(0^k)` are pairwise distinct.
-  - That contradicts finiteness of the state set. So `c = 0`, `m_1` is affine,
+  - States of states are states, so this contradicts finiteness of the state
+    set. So `c = 0`, `m_1` is affine,
     and so is `m`. This also proves the last bullet of item 2.
 - *Rational coefficients.* Let `s(w) = a w + b'` be an affine state of `h`.
   - The states `s|_(0^k)` are `w -> a w + (b' - [b']_k)/p^k`, where `[b']_k` is
