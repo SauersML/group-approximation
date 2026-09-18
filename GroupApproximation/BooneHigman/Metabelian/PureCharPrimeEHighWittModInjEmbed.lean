@@ -14,11 +14,11 @@ statement holds for every Artinian `D`-module; its `Module.Finite` hypothesis is
 
 * `eHighWittModInj_exists_ne_zero`: for `n ≠ 0` in a `D`-module `N` there is a linear
   `f : N → D` with `f n ≠ 0`. Let `K = ann(n)`. Every `r ∈ K` has `r p = 0`, because either
-  `r` is a unit (then `n = 0`) or `r ∈ pD` (then `r p ∈ p²D = 0`). So `r ↦ r p` factors through
-  `D ⧸ K ≅ D n ⊆ N`, and self-injectivity extends it to `f : N → D` with `f n = p ≠ 0`.
+  `r` is a unit (then `n = 0`) or `r ∈ pD` (then `r p ∈ p²D = 0`). So `r ↦ r p` factors
+  through `D ⧸ K ≅ D n ⊆ N`, and self-injectivity extends it to `f : N → D` with `f n = p ≠ 0`.
 * `eHighWittModInj_embed_of_artinian`: choose a minimal kernel `ker (f₁, …, fₛ)` among all
-  finite families of maps `N → D` (the module is Artinian). If `x ≠ 0` were in it, a map `g` with
-  `g x ≠ 0` would give the strictly smaller kernel `ker (g, f₁, …, fₛ)`.
+  finite families of maps `N → D` (the module is Artinian). If `x ≠ 0` were in it, a map `g`
+  with `g x ≠ 0` would give the strictly smaller kernel `ker (g, f₁, …, fₛ)`.
 -/
 
 namespace GroupApproximation.BooneHigman.Metabelian.Coprimary
@@ -63,7 +63,8 @@ theorem eHighWittModInj_embed_of_artinian [Fact p.Prime] {N : Type} [AddCommGrou
       (fs : Fin s → (N →ₗ[eHighWittCoeff_D p σ] eHighWittCoeff_D p σ)),
       K = LinearMap.ker (LinearMap.pi fs)}
     ⟨_, 0, Fin.elim0, rfl⟩
-  refine ⟨s, LinearMap.pi fs, LinearMap.ker_eq_bot.mp (LinearMap.ker_eq_bot'.mpr fun x hx => ?_)⟩
+  refine ⟨s, LinearMap.pi fs,
+    LinearMap.ker_eq_bot.mp (LinearMap.ker_eq_bot'.mpr fun x hx => ?_)⟩
   by_contra hne
   obtain ⟨g, hg⟩ := eHighWittModInj_exists_ne_zero p σ hne
   have hle : LinearMap.ker (LinearMap.pi
@@ -75,7 +76,8 @@ theorem eHighWittModInj_embed_of_artinian [Fact p.Prime] {N : Type} [AddCommGrou
     simpa only [LinearMap.pi_apply, Fin.cons_succ, Pi.zero_apply] using congrFun hy i.succ
   have heq := eq_of_le_of_not_lt hle (hmin _ ⟨s + 1, Fin.cons g fs, rfl⟩)
   have hx' : x ∈ LinearMap.ker (LinearMap.pi
-      (Fin.cons g fs : Fin (s + 1) → (N →ₗ[eHighWittCoeff_D p σ] eHighWittCoeff_D p σ))) := by
+      (Fin.cons g fs : Fin (s + 1) → (N →ₗ[eHighWittCoeff_D p σ] eHighWittCoeff_D p σ))) :=
+      by
     rw [heq]
     exact LinearMap.mem_ker.mpr hx
   rw [LinearMap.mem_ker] at hx'

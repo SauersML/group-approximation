@@ -150,10 +150,10 @@ theorem eHighWittModInj_ideal_trichotomy [Fact p.Prime] (I : Ideal (eHighWittCoe
   by_cases hU : ∃ u ∈ I, IsUnit u
   · obtain ⟨u, hu, hunit⟩ := hU
     exact Or.inr (Or.inr (Ideal.eq_top_of_isUnit_mem I hu hunit))
-  · push_neg at hU
+  · push Not at hU
     by_cases h0 : ∀ x ∈ I, x = 0
     · exact Or.inl ((Submodule.eq_bot_iff I).mpr h0)
-    · push_neg at h0
+    · push Not at h0
       obtain ⟨x0, hx0, hne⟩ := h0
       have hp := eHighWittModInj_p_mem p σ I hU hx0 hne
       refine Or.inr (Or.inl (le_antisymm (fun x hx => ?_)

@@ -42,7 +42,8 @@ theorem eHighWittModInj_baer [Fact p.Prime] :
     obtain ⟨c, hc⟩ := eHighWittModInj_ann p σ h1.symm
     refine ⟨LinearMap.toSpanSingleton _ _ c, fun x mem => ?_⟩
     obtain ⟨a, rfl⟩ := Ideal.mem_span_singleton'.mp mem
-    have e : (⟨_, mem⟩ : Ideal.span {((p : ℕ) : eHighWittCoeff_D p σ)}) = a • ⟨_, hpI⟩ :=
+    have e : (⟨_, mem⟩ : Ideal.span {((p : ℕ) : eHighWittCoeff_D p σ)}) =
+        a • ⟨_, hpI⟩ :=
       Subtype.ext (by rw [Submodule.coe_smul, Submodule.coe_mk, Submodule.coe_mk, smul_eq_mul])
     rw [LinearMap.toSpanSingleton_apply, e, map_smul, hc, smul_eq_mul, smul_eq_mul, mul_assoc]
   · have h1 : (1 : eHighWittCoeff_D p σ) ∈ (⊤ : Ideal (eHighWittCoeff_D p σ)) :=

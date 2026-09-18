@@ -51,14 +51,14 @@ theorem eHighWittModInj_red_eq_zero_of_p_mul [Fact p.Prime] {c : MvPolynomial σ
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittModInj_red_eq_zero_of_p_mul
 
 /-- Elements of `S` reduce to nonzero polynomials mod `p`. -/
-theorem eHighWittModInj_red_ne_zero_of_mem {s : MvPolynomial σ (ZMod (p ^ 2))}
+theorem eHighWittModInj_red_ne_zero_of_mem [Fact p.Prime] {s : MvPolynomial σ (ZMod (p ^ 2))}
     (hs : s ∈ eHighWittCoeff_S p σ) : eHighWittCoeff_red p σ s ≠ 0 :=
   nonZeroDivisors.ne_zero (Submonoid.mem_comap.mp hs)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Coprimary.eHighWittModInj_red_ne_zero_of_mem
 
 /-- An element with nonzero reduction mod `p` lies in `S`. -/
-theorem eHighWittModInj_mem_of_red_ne_zero {a : MvPolynomial σ (ZMod (p ^ 2))}
+theorem eHighWittModInj_mem_of_red_ne_zero [Fact p.Prime] {a : MvPolynomial σ (ZMod (p ^ 2))}
     (ha : eHighWittCoeff_red p σ a ≠ 0) : a ∈ eHighWittCoeff_S p σ :=
   Submonoid.mem_comap.mpr (mem_nonZeroDivisors_of_ne_zero ha)
 
@@ -66,7 +66,8 @@ theorem eHighWittModInj_mem_of_red_ne_zero {a : MvPolynomial σ (ZMod (p ^ 2))}
 
 /-- `p² = 0` in `D₀`. -/
 theorem eHighWittModInj_p_mul_p_R0 :
-    ((p : ℕ) : MvPolynomial σ (ZMod (p ^ 2))) * ((p : ℕ) : MvPolynomial σ (ZMod (p ^ 2))) = 0 := by
+    ((p : ℕ) : MvPolynomial σ (ZMod (p ^ 2))) * ((p : ℕ) : MvPolynomial σ (ZMod (p ^ 2))) =
+      0 := by
   rw [← Nat.cast_mul, ← pow_two,
     ← map_natCast (MvPolynomial.C : ZMod (p ^ 2) →+* MvPolynomial σ (ZMod (p ^ 2))) (p ^ 2),
     ZMod.natCast_self, map_zero]
