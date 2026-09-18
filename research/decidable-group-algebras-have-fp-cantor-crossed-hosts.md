@@ -99,6 +99,41 @@ criteria of Khanh arXiv:2609.08428v1), it is at least as hard as Boone–Higman.
    topologically free SFTs with finitely presented crossed products whose ball
    languages have no uniform recursive time bound (artifact
    `fp-crossed-product-shape-free-group-kill-2026-09-17`, Section 7, sketch).
+7. **Homoclinic kill over every acting group (c-pbh0, 2026-09-17).** The hole
+   stays OPEN, but the host must be shell-determined.
+   - `fp-minimal-crossed-products-have-no-homoclinic-pairs` (ESTABLISHED,
+     unreviewed): over any finitely generated `P`, if `LC(X,k) ⋊ P` is finitely
+     presented and `X` is infinite minimal, then `X` has no homoclinic pair, and
+     every pattern on `F` is determined by its `r`-shell. Engine: a wall lemma
+     over any group, using the module `k[P] ⊗ k^2` in two bases. The `Z^2`
+     family of `sft-wall-rigidity-iff-idempotent-commutator-ideal` needs no
+     property of `Z^2`. Recurrence splices one homoclinic pair into a wall.
+   - `fp-minimal-crossed-products-have-shell-bounded-complexity` (ESTABLISHED,
+     unreviewed) gives:
+     - `|L_F| <= |A|^(|N_r(F) \ F|)`;
+     - zero entropy over every amenable `P`;
+     - virtually cyclic `P` is impossible, independently of Attempts 1 and 4;
+     - `log|L_(B_N)| <= C N^(d-1)` over `Z^d`.
+   - Invariant: the homoclinic relation of `X` (equivalently, unique shell
+     filling). Failing step: finite presentation, since the two-basis module
+     satisfies every relator.
+   - Classes killed, over every `P`: strongly irreducible minimal SFTs, and
+     every construction that stores bits in locally re-colourable cells, such
+     as a rigid base with free decorations or independent local flips.
+     Consistent with `∂F_d` and with products over infinite factors, which have
+     no homoclinic pairs.
+   - Over `Z^2`, with the growth-counting lower bound `e^(cN)` for hosting
+     `F_2` (Attempt 8 on another branch, commit 37e605aea), ball complexity is
+     pinned to `e^(Θ(N))`. The hard language must come from which boundary rows
+     occur, with the bulk forced.
+   - Surviving shape: shell-determined minimal SFTs with hard language, i.e.
+     deterministic space-time simulations. Artifact
+     `research/artifacts/fp-minimal-crossed-products-homoclinic-kill-2026-09-17.md`.
+   - **Overlap.** Attempt 9 below, landed the same day on another lane, is an
+     independent derivation of the same wall obstruction, in the more general
+     form `fp-crossed-products-force-connected-differences`. Its parts 2 and 3
+     subsume both claims here; the two arrivals are a mutual check, not two
+     results.
 8. **Growth counting: polynomial-growth `P` with slow spaces die at input `F_2`
    (2026-09-17).** This attempt uses growth, not word-problem complexity.
    - `crossed-product-growth-bounded-by-ball-patterns` (ESTABLISHED,
