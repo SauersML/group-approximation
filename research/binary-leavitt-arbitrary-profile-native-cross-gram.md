@@ -440,3 +440,34 @@ literature theorem is permitted in this claim.
   one odd ordinary occurrence with both source and actual unequal-target
   Grams fixed in the Hecke frame, as in `(MSD7)`; global detector rank and a
   tautological word-conjugate range do not suffice.
+
+- **Reframe the profile as an exact tracial representation (swarm-0917,
+  d-ptf-p1, transplanter via reframing).**  Dictionary: an arbitrary
+  surviving norm-corona profile with its reblocked active core becomes the
+  exact representation `pi_Q` of `St_20(R)` on `Q N_omega Q`, where
+  `N_omega` is the tracial ultraproduct; exactified packets, the transports
+  `S_1,S_2`, the overlap corner and the relative polar gauge become exact
+  elements of `N_omega`; `(APG1)`, `(APG2)` and the `o(1)` commutator clause
+  become the exact conclusion `(XCG)`.  The translated statement is false
+  in every model, by the established
+  `native-cross-gram-conclusions-fail-in-every-tracial-model` (Steps 1--2 of
+  `native-cross-gram-tracial-inconsistency-proof`; Step 1 is the argument of
+  `arbitrary-profile-cross-gram-implies-shared-gauge-compiler` with every
+  `o(1)` replaced by `0`).  The left regular representation of `St_20(R)`
+  already satisfies every hypothesis this claim allows (exact rows, full
+  carrier, `tau((1-lambda(z))/2)=1/2`) and fails the lock clause with
+  `epsilon_g>=2/3` whenever the overlap mass is positive.
+
+  **Where it dies.**  At the gauge-lock clause, for every model at once.
+  Hence this claim holds iff no surviving profile exists, i.e. iff
+  `z in Rad_MF(St_20(R))`, which is its own consumer endpoint
+  `property-t-free-leavitt-full-mf-radical` restricted to `z`.  The route
+  `arbitrary-profile-cross-gram-implies-shared-gauge-compiler` is therefore a
+  proof by contradiction whose premise is the endpoint; it does not reduce
+  the goal, and the `⚑ last missing` marker and the dispatch bounty `56`
+  reflect only what the endpoint itself implies.  Any proof of this claim must
+  exclude the models outright, using an input that is false for `lambda` or
+  for `pi_Q` (an operator-norm, non-tracial property of matrix models);
+  no estimate of the overlap mass or of the gauge on a given model can
+  contribute.  Workers should not be dispatched here unless they bring such
+  an input; the claim stays **OPEN**.

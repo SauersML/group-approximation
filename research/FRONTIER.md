@@ -24981,6 +24981,7 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 
 ## Recently touched
 
+- 2026-09-18 · binary-leavitt-arbitrary-profile-native-cross-gram [OPEN] The native binary transports overlap on every surviving operator-norm active profile
 - 2026-09-18 · jacobson-boundary-amalgam-mixed-gap [OPEN] The TS word and first braid have a positive matrix gap over the exact Jacobson boundary amalgam
 - 2026-09-18 · jacobson-boundary-amalgam-gap-is-a-reduced-mf-gate-proof [COMPLETE] Pass marked corona maps through generated C*-algebras and test every dimension-free step on the literal regular pair
 - 2026-09-18 · jacobson-boundary-amalgam-gap-is-a-reduced-mf-gate [ESTABLISHED] The boundary-amalgam gap is exactly non-MF of every marked C*-image, and every argument valid in the literal reduced algebra dies
@@ -24988,7 +24989,6 @@ deligne-triple-cover-exact-mf-radical [OPEN] The MF radical of Deligne's triple 
 - 2026-09-18 · higman-opnorm-collapse-is-a-one-unitary-z4-problem [ESTABLISHED] Higman operator-norm collapse is a one-unitary problem over an exact order-four symmetry
 - 2026-09-18 · higman-four-cycle-intrinsic-mf-seed [OPEN] Higman's four-cycle is the concrete intrinsic torsion-free MF-seed test
 - 2026-09-18 · rich-2to1-games-conjecture [OPEN] Rich 2-to-1 games are NP-hard to approximate between near-perfect and near-zero value
-- 2026-09-18 · dkkms-selector-membership-proof [COMPLETE] Unfold the honest class label on clean k-tuples, read the Grassmann edge law as a uniform direction off L'+H_U, and run the selector decoder with the dirty mass subtracted from the advantage and Lemma 5.4 as outer soundness
 
 ## Active claims
 
