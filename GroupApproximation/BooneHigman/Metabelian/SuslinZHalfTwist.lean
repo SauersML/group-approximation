@@ -37,7 +37,7 @@ namespace Absorption
 open Polynomial
 
 /-- The twist `φ(ε σ ε')` of `σ ∈ GL₂(A[X])`. -/
-def suslinZHalf_twist {A : Type*} [CommRing A] (φ : A[X] ≃+* A[X])
+noncomputable def suslinZHalf_twist {A : Type*} [CommRing A] (φ : A[X] ≃+* A[X])
     (ε ε' σ : (Matrix (Fin 2) (Fin 2) A[X])ˣ) : (Matrix (Fin 2) (Fin 2) A[X])ˣ :=
   elementaryMatrixUnitMap (ι := Fin 2) φ.toRingHom (ε * σ * ε')
 

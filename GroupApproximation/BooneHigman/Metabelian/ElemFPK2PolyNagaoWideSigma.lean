@@ -71,6 +71,7 @@ theorem k2PolyNagaoWide_Q_le_G (K : Finset I) (L : I) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_Q_le_G
 
+omit [Fact p.Prime] in
 /-- `g r = w` gives `g⁻¹ w = r`. -/
 theorem k2PolyNagaoWide_act_inv {g : SteinbergGroup I (Polynomial (ZMod p))}
     {r w : I → Polynomial (ZMod p)} (h : act g r = w) : act g⁻¹ w = r := by

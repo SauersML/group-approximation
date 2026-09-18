@@ -10,8 +10,8 @@ distinct_from:
   haagerup-hosts-carry-no-weak-expander: that says Haagerup hosts contain no expander-type subgroup; this supplies a decidable expander-type group, so that kill becomes a kill of host classes at the universal Boone–Higman step.
 ---
 
-**ESTABLISHED** (lane proof; all inputs are read at source except the combinatorial
-Greendlinger lemma, which is textbook and not re-read). gq-referee-a PASS (proof gaps,
+**ESTABLISHED** (lane proof; every input is read at source, including the curvature formula behind the
+Greendlinger step, Gruber–Sisto Lemma 2.14). gq-referee-a PASS (proof gaps,
 `research/artifacts/gq-referee-a-decidable-expanders-and-ce-separator.md`, 3ef678ef5), nits N1–N2
 applied; citation review by gq-referee-b pending.
 No priority claimed: Osajda records recursiveness of the presentation (below), and the
@@ -72,20 +72,35 @@ So `|p| < λ min(girth Θ_n, girth Θ_(n'))`, which is at most `λ|γ|` for ever
 `γ` containing a lift. The labelling is reduced by Theorem 2.7. Hence `Γ` is Gr'(1/24), so
 Gr(7) and Gr(6).
 
-**Greendlinger step (trust surface).** Let `D` be a Γ-reduced diagram for a nonempty cyclically
-reduced word `w` with `w = 1`. By Gruber–Sisto p. 6, `D` is a (3,6)-diagram whose interior arcs
-satisfy `|a| < λ|∂Π|`. By the combinatorial core of Greendlinger's lemma for (3,6)-maps
-(Lyndon–Schupp, Ch. V, Thm 4.3, used as in the proof of Thm 4.4; not re-read), in its two-face
-form, some face `Π` has one exterior arc `e` and at most three interior arcs. Singular `D` (N1):
-- take an extremal disk component `D_0`, meeting the rest of `D` in at most one vertex `v`;
-- if `D_0` has at least two faces, the two-face form gives two such faces, and one of them has its
-  exterior arc avoiding `v`;
-- if `D_0` is a single face, its whole boundary, read from `v` back to `v`, is traversed contiguously
-  by `∂D`, and it serves as `e` with `|e| = |∂Π|`. Hence `|e| > (1 − 3λ)|∂Π| = (7/8)|∂Π|`.
-- The interior vertices of `e` have degree 2 in `D`, so `e` is traversed contiguously by `∂D`.
-  So its label is a cyclic subword of `w`.
+**Greendlinger step (from Strebel's formula, read at source).** Let `D` be a Γ-reduced diagram for a
+nonempty cyclically reduced word `w` with `w = 1` (Gruber–Sisto Lemma 2.4). By their p. 6, every interior
+arc is a piece, so under Gr'(λ) it has `|a| < λ|∂Π|`. Gr'(1/24) implies Gr(25) (their p. 5: "the
+Gr'(1/n)-condition is stronger than the Gr(n+1)-condition"), so an interior face has at least 25 interior arcs.
+
+Take a disk component `D_0` with at least two faces. Smooth away its degree-2 vertices so that edges become
+maximal arcs. Strebel's formula (Gruber–Sisto Lemma 2.14, p. 8, quoting [Str90, p. 241]) reads
+
+    6 = 2 Σ_v (3 − d(v)) + Σ_Π (6 − 2e(Π) − i(Π)).
+
+- Every vertex now has degree at least 3, so the first sum is `<= 0`.
+- Interior faces have `e = 0` and `i >= 25`, so they contribute negatively.
+- A boundary face of a disk component with at least two faces has `i >= e >= 1`: consecutive maximal arcs
+  of `∂Π` meet at a vertex of degree `>= 3`, and in a disk two consecutive exterior arcs cannot share a face.
+  This is the standard (3,k)-diagram bookkeeping of Gruber–Sisto §2.5, which referees should check.
+  So its term is `<= 3`, and it is positive only if `e = 1` and `i <= 3`.
+- Hence at least two faces of `D_0` have **one exterior arc `e` and at most three interior arcs**.
+
+For such a face, `|e| > (1 − 3λ)|∂Π| = (7/8)|∂Π|`.
+- **Singular `D`.** Take an extremal disk component `D_0`, meeting the rest of `D` in at most one vertex `v`.
+  If `D_0` has at least two faces, one of the two faces above has its exterior arc avoiding `v`. If `D_0` is a
+  single face, its whole boundary, read from `v` back to `v`, is traversed contiguously by `∂D`, and it serves
+  as `e` with `|e| = |∂Π|`.
+- The interior vertices of `e` have degree 2 in `D`, so `e` is traversed contiguously by `∂D`, and its label is
+  a cyclic subword of `w`.
 - `∂Π` lifts to a simple closed path `γ` in some `Θ_i`, and `e` lifts to a subpath of `γ`.
 - `|γ| = |∂Π| >= girth Θ_i`, so `girth Θ_i < (8/7)|w|`.
+
+This replaces the earlier appeal to Lyndon–Schupp Ch. V, which was not re-read. It is the same combinatorics.
 
 **Dehn algorithm.** Given `w`, freely and cyclically reduce it. Compute
 `N = max{i : girth Θ_i < (8/7)|w|}`; this is computable since `Θ` and `m` are recursive and girths

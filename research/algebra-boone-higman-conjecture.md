@@ -101,3 +101,10 @@ route.*
    (`char-p-rational-function-fields-in-fp-simple-algebras`, lane proof). Together with the
    characteristic-zero nodes, every countable field of finite transcendence degree lies in a
    finitely presented simple ring. What remains is `F(t_1, t_2, ...)`, in both characteristics.
+10. **Self-similar quotients escape the complexity fence** (2026-09-18, lane `bh-algebra`). A
+    non-injective recursion on a free algebra gives a finitely presented completion whose base is the
+    self-similar quotient `B/J` (`noninjective-ln-completions-have-self-similar-bases`).
+    The word-problem fence of `ln-completion-word-problem-reduces-to-base-algebra` covers only
+    injective recursions. New route `algebra-bh-via-simple-self-similar-completions`, through the open
+    premise `decidable-algebras-embed-in-simple-self-similar-completions`, with the monomial benchmark
+    as its test case.

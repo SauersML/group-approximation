@@ -6,6 +6,7 @@ title: A group acting with finite point stabilizers on a finite product of 2-dim
 distinct_from:
   circle-and-tree-product-periodic-subgroups-are-finite: that handles circle actions and proper actions on finite products of trees (rank-2 Kac–Moody lattices, Burger–Mozes and Wise lattices); this adds 2-dimensional CAT(0) factors through Norin–Osajda–Przytycki, which reaches rank-3 and other 2-dimensional Kac–Moody lattices and lattices in products of Ã2 and Fuchsian buildings.
   almost-automorphism-torsion-subgroups-are-rf: that excludes the Thompson-type Cantor hosts (V, V_{d,r}, Röver–Nekrashevych groups) by a depth-cocycle argument; this excludes a family of finitely presented simple lattices by fixed points in CAT(0) factors.
+  hyperbolic-kac-moody-lattices-are-torsion-locally-finite: that covers Kac–Moody lattices with word-hyperbolic Weyl group in any building dimension (Haettel–Osajda); this covers 2-dimensional buildings with any Weyl group (Norin–Osajda–Przytycki).
   fp-simple-kac-moody-lattices-satisfy-pbh: that puts the finitely presented simple Kac–Moody groups and all their subgroups in the permutational Boone–Higman class; this constrains which periodic groups can be among those subgroups when the buildings are 2-dimensional.
 artifacts:
   - research/artifacts/gq-bh-bh-lit-survey.md
@@ -45,7 +46,8 @@ Call a group **torsion locally finite** if every finitely generated torsion subg
 ## Scope
 
 - The finitely presented simple Kac–Moody lattices whose buildings have dimension `>= 3` (a spherical triple in `W`)
-  are **not** covered. For them the needed fixed point theorem is Norin–Osajda–Przytycki's Conjecture 1.5 ("every
+  are **not** covered here. Those with word-hyperbolic `W` are covered by
+  `hyperbolic-kac-moody-lattices-are-torsion-locally-finite`; the rest (Z^2 ≤ W and a spherical triple) are open. For them the needed fixed point theorem is Norin–Osajda–Przytycki's Conjecture 1.5 ("every
   finitely generated group acting without a global fixed point on a finite-dimensional CAT(0) complex contains an
   element of infinite order"). The conjecture is known for CAT(0) cube complexes (Sageev) and open in general.
 - Finite dimension matters. NOP (§1) note that Burnside groups act without global fixed point on
