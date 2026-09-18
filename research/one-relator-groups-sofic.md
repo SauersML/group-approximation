@@ -167,6 +167,21 @@ claim [[nonsofic-one-relator-group]].
      equation in `a_0` to linearize over an abelian normal layer. It also
      needs a seed group embedding in its own `Phi`-image, and separation of
      `B_0` from the rank-`n` subgroups `F_-` and `F_+`.
+   - **Towers reduce to amenable quotients of `G` (w6-073).**
+     [[magnus-prepend-towers-are-amenable-quotients-of-the-group]]: the
+     relative one-relator product `P(K) = (K * <X>)/<<W_0(X,c)>>` is the
+     universal prepend step. It is functorial by a pushout
+     (`P(L) = L *_K P(K)`) whenever the relative Freiheitssatz holds, e.g.
+     over locally indicable `K`; the Freiheitssatz fails over `Z/6` at a
+     singular extreme. But the literal `P`-tower from a free seed rebuilds
+     `G` itself: its limit is the forward Magnus half `N_+` and its
+     ascending HNN extension is `G`. Every prepend-limit-HNN tower is a
+     homomorphism of `G`, so an amenable tower witnesses (AA) iff
+     **(AA_G)**: `G` has amenable quotients separating finite subsets of
+     `B_0` from `F_-`, `F_+` and `1`. The tower is a construction method for
+     such quotients, not a weaker target. The open test is (AA_G) at the
+     doubly singular rank-two model `W_0 = a_2^(-1) u a_2 u^(-2)`,
+     `u = [a_0,a_1]`.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal
