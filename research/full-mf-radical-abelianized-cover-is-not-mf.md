@@ -13,6 +13,7 @@ artifacts:
   - research/dummy-abelianized-cover-df-splits-regular-trace-and-shadow.md
   - research/relation-lamp-wreath-is-mf-with-nontrivial-fd-radical.md
   - research/stable-abelianized-cover-is-subgroup-monotone.md
+  - research/abelianized-cover-df-forces-cofinite-congruence-df.md
 ---
 
 **OPEN.**  Let `F` be free of finite rank, `R` normal in `F`, and suppose
@@ -154,3 +155,49 @@ claimed.
   **Not done.**  Stable DF is not proved for any group.  The contrapositive
   says a DF counterexample at `G` makes the stable cover of every finitely
   generated infinite-index subgroup of `G` MF.
+- **Congruence gate: DF forces the torsion quotients to be non-MF
+  (2026-09-18).**
+  `abelianized-cover-df-forces-cofinite-congruence-df` (ESTABLISHED) proves
+  the following, with `H_N = E/NM = F/[R,R]R^N`.
+  - The Lyndon embedding is pure: `M cap N ZG^n = NM`, so `M/NM` embeds in
+    `(Z/N)[G]^n`.  A nonzero `m` lies in `NM` iff `N` divides its content
+    `c(m)`, the gcd of its integer coefficients.
+  - If `H_N` is MF, then `Rad_MF(E) <= NM`.  If `H_N` is MF for infinitely
+    many `N`, then `E` is residually MF, hence MF, and DF fails.
+  - The set of `N` with `H_N` MF is closed under `lcm`.
+  - Under DF there is some `c >= 1` such that `H_N` is non-MF for every `N`
+    not dividing `c`.  In particular `F/[R,R]R^p` is non-MF for all but
+    finitely many primes `p`.
+
+  **What this changes.**
+  - A counterexample search may restrict to models whose kernel image has
+    exponent `N`, for infinitely many `N`.  There the joint spectrum of the
+    kernel image is totally disconnected, and ranks of lifted projections
+    are exact corona invariants.  The renormalization death recorded above
+    does not occur in that setting.
+  - Non-MF-ness of `H_p` for all large `p` is a necessary condition for DF
+    that can fail on its own.  It is a statement about groups whose kernel
+    has exponent `p`.
+
+  **Where it stops.**
+  - The converse is open.  "Congruence lifting", meaning that an MF cover
+    has infinitely many MF congruence quotients, would make DF equivalent to
+    finiteness of the MF set.
+  - Rounding the kernel spectrum to `N`-th roots of unity is not
+    multiplicative.  This is the `K_1` / Bott obstruction for almost-commuting
+    unitaries.  So it does not prove congruence lifting.
+  - The rank-ratio measures on invariant clopen subsets of the spectrum of an
+    `H_N` model are genuine invariants, but they do not obstruct.  The dual
+    action is a factor of the shift on `((Z/N)^n)^G`, which carries Bernoulli
+    measures.
+
+  **Dead in this lane, not written as nodes.**
+  - **Near-fixed spectral filtration.**  The idea is to cut `C*(rho(M))` at
+    distance levels from the trivial character and force a `G`-invariant
+    level.  It dies at the pigeonhole.  Excluding a collapse needs about
+    `k_n` levels, but uniform stability of `G` supplies only `O(log 1/delta)`
+    geometric thresholds.  In the exponent-`N` case the thresholds are
+    linear, but the number of levels is still not controlled.
+  - **Virtual extraction.**  Passing to a finite-index torsion-free or
+    residually finite piece is impossible.  A nontrivial full-radical group
+    has no proper finite-index subgroup, because finite groups are MF.
