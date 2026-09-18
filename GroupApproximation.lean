@@ -6021,6 +6021,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.KTheoryNonUn
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.A2Thom.Endpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.QuotientBlocks
 import GroupApproximation.Manuscript.NonMF.Full.GL06h4.PocketAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeReduce
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
