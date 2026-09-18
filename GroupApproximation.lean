@@ -5997,6 +5997,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.HKTAction
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionSeparableKDist
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.OuterMonogonDiagram
 import GroupApproximation.Manuscript.NonMF.Full.GL06d.OuterMonogon
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionPurelyLargeChain
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
