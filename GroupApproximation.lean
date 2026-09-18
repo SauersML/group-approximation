@@ -5687,6 +5687,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Encoding.CPoly
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiThinRoom
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingEndpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Macros
+import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.BorelSolvable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
