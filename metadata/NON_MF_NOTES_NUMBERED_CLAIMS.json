@@ -1152,15 +1152,15 @@
         },
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_recognition_undecidable_of_wordProblem",
-          "covers": "the conditional transfer step inside the printed proof (an undecidable word problem transported along the Adian--Rabin map); the unconditional clause is covered by the declaration applying it to the proved inputs"
+          "module": "Manuscript/NonMFNotes/Full/AdianRabin/Unconditional",
+          "declaration": "GroupApproximation.Full.NN13AR.operatorMF_recognition_undecidable",
+          "covers": "one printed clause; the listed declarations are collective"
         },
         {
           "role": "exact",
-          "module": "Computability/AdianRabinVariantTransform",
-          "declaration": "GroupApproximation.AdianRabinVariantTransform.operatorMF_negative_side_not_re_of_wordProblem",
-          "covers": "the conditional transfer step inside the printed proof (an undecidable word problem transported along the Adian--Rabin map); the unconditional clause is covered by the declaration applying it to the proved inputs"
+          "module": "Manuscript/NonMFNotes/Full/AdianRabin/Unconditional",
+          "declaration": "GroupApproximation.Full.NN13AR.operatorMF_negative_side_not_re",
+          "covers": "one printed clause; the listed declarations are collective"
         }
       ]
     },
