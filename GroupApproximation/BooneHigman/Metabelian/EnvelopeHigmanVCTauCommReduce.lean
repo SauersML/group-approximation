@@ -35,7 +35,7 @@ letters (the core of Higman's presentation theorem) is needed.
 namespace GroupApproximation.BooneHigman.Metabelian.Envelope
 
 /-- **Remaining gap.**  The oriented top-level instances of `HigmanVCTauShortResidualStatement`
-that are not Option R and, at equal level, admit no flexible square on either side.
+that are not Option R and, at equal level, have no flexible square on either side.
 **EQUIVALENT** to `HigmanVCTauConjShortStatement` (`higmanVCTauComm_residual_iff_short`),
 smaller in proof content. -/
 def HigmanVCTauCommResidualStatement : Prop :=
