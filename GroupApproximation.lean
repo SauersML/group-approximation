@@ -6080,6 +6080,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapMinTensorMap
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabMatEmbed
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseDilationAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtInverseLiftForm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
