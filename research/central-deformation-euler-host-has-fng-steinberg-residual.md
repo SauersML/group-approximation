@@ -92,3 +92,25 @@ group `Γ_N(T_p) = St_N(T_p)/St_N(T_p)_rf` containing `Z_(l)`.
      has `[b_0, b_(J+1)] != 0`. The characteristic-`l` fibre `p = 0` behaves like a free lamplighter.
    - *Consequence.* Any finitely presented variant of this host has non-commuting lamps in its finite quotients.
      Whether that helps (no symbols) or hurts (large `K_2` from the coproduct) is check C2.
+2. **(C2, base level) The Euler symbols do not lift to the commutative lamp base (2026-09-18, lane gq-k2-q).**
+   This is a lane proof with textbook inputs: Quillen's fundamental theorem for the regular ring `A`, the DVR
+   localization sequence, and Matsumoto's theorem.
+   - *Claim.* For every `z ∈ K_2(A_p)`, the specialization `w = z|_(t=1) ∈ K_2(A)` has `∂_(π_k) w = 1` for every
+     `k`. Hence every `I_p(w) = 0`, and the image of `K_2(A_p) -> K_2(A)` meets the span of the `c_q` only in `0`.
+   - *The divisors `E_k`.* Let `v_k` be the exceptional valuation of `(u, t) = (−1−kl, 0)` on `Q(u, t)`, with
+     `v_k(π_k) = v_k(t) = 1`.
+     - It is `>= 0` on `A_p`: `v_k(t/π_k) = 0`, and `v_k(t/π_j) = 1` for `j != k`, since
+       `π_j ≡ (j−k)l`.
+     - Its center has local ring `Q[u, t/π_k]_((π_k))`, a DVR with residue field `Q(s_k)`, `s_k = t/π_k`.
+     - On `Q(u)` it restricts to `v_(π_k)` with ramification index `1`. So its tame symbol extends `∂_(π_k)`, with
+       `Q ⊆ Q(s_k)`.
+   - *The argument.*
+     - `A_p[1/t] = A[t^(±1)]`. By the fundamental theorem, the image of `z` there is `i(w) + α·{t}`, with
+       `α ∈ K_1(A)`. Only `a = det α ∈ A^x = {±Π π_j^(e_j)}` matters in `K_2(Q(u,t))`.
+     - `z` comes from the DVR at `E_k`, so `∂_(E_k)(z) = 1`. That is, `∂_(π_k)(w) · c_k s_k^(−e_k) = 1` in
+       `Q(s_k)^x`, with `c_k ∈ Q^x`.
+     - `s_k` is transcendental, so `e_k = 0` for all `k`, and `a = ±1`. Then `∂_(π_k)(w) = a^(-1)` for every `k`.
+       Since `w` has finitely many nontrivial residues, `a = 1`.
+     - So every `∂_(π_k)(w) = 1`. ∎
+   - *Not covered.* The skew-Laurent level, meaning the image of `K_2(A_p[x^(±1); σ]) -> K_2(D)`, where `I_p` lives
+     only on the `K_2(A)_σ` summand. And the non-commutative `B` itself.
