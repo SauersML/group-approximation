@@ -115,8 +115,14 @@ Let `N >= 3` be one of the ranks.
        not re-read, `Q^x -> K_1(L_Q(E))` is injective, so `Λ_N(L_Q(E)) ⊆ {±1}`.
      - `PE_N(L_Q(E))` is simple for `N >= 3`
        (`ample-steinberg-el-simple-mod-centre-without-hausdorff`).
-     - So this countable ring passes every test above except finite generation. A proof
-       that no host exists must use finite generation of `R`.
+     - So this countable ring passes conditions 1–3 except finite generation. A proof that
+       no host exists must use finite generation of `R`.
+     - **The next cost is in `K_2`.** By `rational-leavitt-path-k1-k2-scalar-dichotomy`
+       (lane `gq-malcev-ring`), when `[1]` has infinite order the image of
+       `K_2(Q) -> K_2(L_Q(E))` is not finitely generated. For a finitely presented host of
+       this type, that is the first thing to test against condition 4, finite normal
+       generation of `ker(St_N(R) -> E_N(R))`. It obstructs only if that kernel is
+       central or controlled by stable `K_2`.
    - **Spark (not pursued).** Add the resolvent generators `N, A` of `R_L` to `L_Z(E)`,
      using the Cuntz–Toeplitz pair `s_i = e_i + g_i` (loops at `u` plus loops at `w`, so
      `t_i s_j = δ_ij` and `Σ s_i t_i != 1`). That pair is enough for
