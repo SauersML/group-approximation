@@ -5671,6 +5671,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Sim
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.FaceWords
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Code.RawConfig
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.Setup
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingAmenable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
