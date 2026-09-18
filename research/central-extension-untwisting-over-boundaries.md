@@ -68,3 +68,9 @@ So a positive answer for finite central extensions of Burger--Mozes lattices wou
 need either a class that vanishes in `H²(Λ; C(Y, A))` for some Cantor `Λ`-space `Y`
 with a finitely presented full group, or a host that is not built over a Cantor
 action of `Λ`.
+
+**Lesson for general BH.** Hosts built from a Cantor action of `C̄` cannot see
+central extensions that are twisted at stabilizers. Unlike on the circle, finite
+covers of Cantor spaces are products. So closure of BH under finite central
+extensions, if true, needs either actions of `C` itself not factoring through `C̄`,
+or connected, circle-like boundary pieces.
