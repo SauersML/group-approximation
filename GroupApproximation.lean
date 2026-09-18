@@ -5872,6 +5872,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbs
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnRelK1.Realize
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureFunctorial
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.BootstrapClosureData
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaMap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
