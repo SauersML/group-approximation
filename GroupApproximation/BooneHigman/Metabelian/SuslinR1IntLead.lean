@@ -39,7 +39,7 @@ def suslinR1Int_leadIdeal (I : Ideal (Polynomial A)) (D : ℕ) : Ideal A where
     rintro a _ ⟨q, hq, hd, rfl⟩
     exact ⟨Polynomial.C a * q, I.mul_mem_left _ hq,
       (Polynomial.natDegree_C_mul_le a q).trans hd,
-      by rw [Polynomial.coeff_C_mul, smul_eq_mul]⟩
+      (Polynomial.coeff_C_mul q).trans (smul_eq_mul a _).symm⟩
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinR1Int_leadIdeal
 
@@ -97,7 +97,7 @@ theorem suslinR1Int_exists_prime_mem (P : Ideal A) (hP : P.IsPrime) :
     ∀ n : ℕ, 0 < n → (n : A) ∈ P → ∃ p : ℕ, p.Prime ∧ p ∣ n ∧ (p : A) ∈ P := by
   intro n
   induction n using Nat.strong_induction_on with
-  | _ n ih =>
+  | h n ih =>
     intro hn hmem
     by_cases h1 : n = 1
     · subst h1
