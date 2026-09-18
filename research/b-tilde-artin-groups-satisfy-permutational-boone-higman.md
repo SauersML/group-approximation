@@ -60,3 +60,5 @@ that the two most recent sources list as open.
   - F̃_4, Ẽ_6, Ẽ_7 and Ẽ_8 are not addressed.
 
 The derivation is `b-tilde-artin-pbh-via-free-fibre-kernel-proof`.
+
+**Verification (bh-verify-artin, 2026-09-18; lane check, not an external review).** PASS. It is independent of linearity. Each step was re-derived: the free action, the B̃_n chamber type, the D_n translations, the three changes of space, the fibre rank 3n·2^(n-1)+1, the centreless-kernel embedding and Krasner--Kaloujnine. Taken on trust: Li--Roushon's local triviality (published) and π_1(M/W) = A(B̃_n) (Nguyễn / van der Lek). The novelty search is arXiv-only. See `research/artifacts/gq-bh-bh-verify-artin-report.md`.
