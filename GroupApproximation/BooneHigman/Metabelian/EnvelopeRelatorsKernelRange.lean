@@ -69,16 +69,16 @@ theorem rnKer_rfConjL_mem_range [Nontrivial X] (H : Subgroup (TreeAut X))
       apply Subtype.ext
       have h0 := hh [] rfl
       rw [TreeAut.state_nil] at h0
-      rw [h0]
-      rfl
+      exact h0
     rw [h1, map_one]
     exact Subgroup.one_mem _
   | succ n ih =>
     intro h hh e
     rw [rcore_rfConjL_eq, rnKer_rfL_split H N hH x₀ hsplit hl hall h]
-    refine Subgroup.mul_mem _ (Subgroup.mul_mem _ ⟨e, rfl⟩
-      (Subgroup.mul_mem _ ⟨_, rfl⟩ (Subgroup.list_prod_mem _ fun y hy => ?_)))
-      (Subgroup.inv_mem _ ⟨e, rfl⟩)
+    refine Subgroup.mul_mem _ (Subgroup.mul_mem _ (MonoidHom.mem_range.mpr ⟨e, rfl⟩)
+      (Subgroup.mul_mem _ (MonoidHom.mem_range.mpr ⟨_, rfl⟩)
+        (Subgroup.list_prod_mem _ fun y hy => ?_)))
+      (Subgroup.inv_mem _ (MonoidHom.mem_range.mpr ⟨e, rfl⟩))
     obtain ⟨x, -, rfl⟩ := List.mem_map.mp hy
     refine ih (rcoreSt H hH h x) (fun t ht => ?_) (rcoreE x₀ [x₀, x])
     rw [rnKer_state_rcoreSt]
