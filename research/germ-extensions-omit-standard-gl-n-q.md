@@ -6,10 +6,16 @@ title: Groups that are locally in a finitely generated piecewise-projective or p
 distinct_from:
   gl-n-q-embeds-in-fp-simple-group: that is the open embedding problem; this is an obstruction that excludes one class of hosts for the standard (analytic) copy of GL_n(Q) and leaves nonstandard copies open.
   higman-group-embeds-in-no-piecewise-analytic-circle-group: that excludes Higman's group from piecewise-analytic circle groups by a dynamical argument; this bounds the globally projective elements of piecewise-projective groups and their germ extensions by analytic continuation.
+  piecewise-commutative-linear-hosts-miss-linear-gl-n-q: that is the case with no singular points, a finitely generated finitely piecewise host itself; this adds every group that agrees locally with such a host off a closed nowhere dense set, in particular all finite germ extensions and towers of them.
+artifacts:
+  - research/artifacts/gq-referee-b-germ-extensions-omit-standard-gl-n-q.md
 ---
 
-**ESTABLISHED** (elementary; lane-proved, not independently reviewed; no novelty
-claimed for the analytic-continuation argument itself).
+**ESTABLISHED** (elementary; lane-proved; no novelty claimed for the
+analytic-continuation argument itself). Referee gq-referee-b (citation and
+hypothesis lens): PASS with three wording amendments, applied here
+(`research/artifacts/gq-referee-b-germ-extensions-omit-standard-gl-n-q.md`).
+No proof-gap referee has reviewed it.
 
 ## Setting
 
@@ -44,17 +50,26 @@ nowhere dense set `sing(g)`. Then:
 **Corollaries.** Let `B` be as in 3, with `L` one of the examples, and `n >= 2`.
 - **(a) Finite germ extensions.** If `X` has no isolated points, every finite
   germ extension `G` of `B` in the sense of Belk--Hyde--Matucci
-  (arXiv:2407.03149v1, Notation 2.2: every element has finitely many singular
-  points, and outside them it agrees locally with elements of `B`) satisfies
+  (arXiv:2407.03149v1: definition in §1, setting in Notation 2.2) satisfies
   1--2, whatever its germs at the singular points, and whether or not `G` is
-  finitely generated. The same holds for towers of finite germ extensions over
-  `B`: the points where an element of the tower is not locally in `B` form a
-  closed set, which is nowhere dense because off a finite set it is locally
-  finite.
+  finitely generated. Only condition (1) of their definition is used: every
+  element has finitely many singular points, and outside them it agrees locally
+  with elements of `B`. The same holds for a tower
+  `B = G_0 <= G_1 <= ... <= G_k`, each a finite germ extension of the previous
+  one. Let `S(g)` be the set of points near which `g` agrees with no element of
+  `B`; it is closed. By induction on the level, `S(g)` is nowhere dense. For
+  `g in G_j` and `x` outside the finite set `sing_(j-1)(g)`, `g` agrees near
+  `x` with some `h in G_(j-1)`, so `S(g)` agrees near `x` with `S(h)`, which is
+  nowhere dense. Now let `O` be nonempty and open. It is infinite, because `X`
+  is Hausdorff with no isolated points, so `O` minus the finite set
+  `sing_(j-1)(g)` is nonempty and open. Inside it, `S(g)` agrees locally with
+  some nowhere dense `S(h)`, so `O` is not contained in `S(g)`.
 - **(b) No standard `GL_n(Q)`.** For `L = PGL_n(R)` (or `PGL_n(Q_p)`, or the
-  affine examples), `Δ` is a finitely generated linear group, hence residually
-  finite (Mal'cev). So `G ∩ L` has no nontrivial divisible subgroup. In
-  particular `G` contains neither the standard unipotent copy of `(Q,+)` nor
+  affine examples), `Δ` is a finitely generated linear group over a commutative
+  ring (a field, or the finite adeles `A_f` in the adelic case), hence residually
+  finite (Mal'cev; see step 3 of
+  `piecewise-commutative-linear-hosts-miss-linear-gl-n-q-proof`). So `G ∩ L`
+  has no nontrivial divisible subgroup. In particular `G` contains neither the standard unipotent copy of `(Q,+)` nor
   the standard copy of `PGL_n(Q)` (resp. `GL_n(Q)` acting linearly or
   affinely), for every such `G`.
 - **(c) Rational data.** If the pieces of the `b_i` lie in `PGL_n(Q)`, then
@@ -91,8 +106,9 @@ the identity principle.
 
 *Corollaries.* (a) A finite set in a Hausdorff space without isolated points is
 closed and nowhere dense. (b) `PGL_n(R)` embeds in `GL_{n^2}(R)` (adjoint
-action), so `Δ` is a finitely generated linear group, residually finite by
-Mal'cev. A divisible group has no nontrivial finite quotient, so it has trivial
+action); the affine groups act linearly on `K^{n+1}` or `A_f^{n+1}` in the
+usual block form. So `Δ` is a finitely generated linear group over a
+commutative ring, residually finite by Mal'cev's theorem for such groups. A divisible group has no nontrivial finite quotient, so it has trivial
 image in every finite quotient of `Δ`; hence no nontrivial divisible subgroup
 lies in `Δ`. The standard unipotent `(Q,+)` is divisible. (c) Lift each
 generator of `Δ` to `GL_n(Q)` and let `m` clear the denominators of the lifts
@@ -114,7 +130,6 @@ and of their inverses. If `diag(p,1,...,1) = λM` with `M in GL_n(Z[1/m])` and
   elements with infinitely many pieces. With finitely many pieces outside every
   neighbourhood of a singular set, those pieces accumulate at singular points.
 - **Relation to other lanes.** The special case `G = B` finitely generated and
-  finitely piecewise (no singular points) is the lemma being landed by lane
-  `gq-solenoid` as `piecewise-commutative-linear-hosts-miss-linear-gl-n-q`. This
-  claim adds arbitrary groups over such a base, in particular every finite germ
-  extension.
+  finitely piecewise (no singular points) is lane `gq-solenoid`'s
+  `piecewise-commutative-linear-hosts-miss-linear-gl-n-q`. This claim adds
+  arbitrary groups over such a base, in particular every finite germ extension.
