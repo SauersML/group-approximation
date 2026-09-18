@@ -94,3 +94,16 @@ algorithm running in time `C*T(C*l) + C*l + C` for any constant `C`.
        halting sets, compatibly with KMS's residual-finiteness proof (which needs
        sym-universal halting), is the open construction problem this reduces to.
        Nothing here is claimed as an obstruction.
+     - *Follow-up (bh-free-25): binomial encodings are dead.* Suppose the command
+       relations are binomials `x_q·a^n = x_{q'}·a^{n'}` in a free module over the
+       commutative group ring of the counter letters. Suppose also that a
+       Cartier-type `φ` acts as `C_0` (keep exponents divisible by `p`, divide them by
+       `p`) together with a state relabeling `σ`, and that `φ` carries the relation
+       submodule `R` into itself. Multiplying a relation by `a^m`, with `m ≡ −n`
+       (mod `p`), shows `n ≡ n'` (mod `p`). Otherwise one side of the image survives
+       alone and a configuration generator lies in `R`. `C_0` then turns the step
+       `n' − n` into `(n' − n)/p`, which must again be a step of `R`, hence again
+       divisible by `p`. By induction every step is divisible by every power of `p`,
+       so it is zero. A working design therefore cannot store counters as exponents
+       with monomial transitions. It must use genuinely polynomial operators, as KMS's
+       `P_i` are, or odometer-style counters whose carries are the sections.
