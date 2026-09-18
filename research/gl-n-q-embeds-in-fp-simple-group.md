@@ -221,6 +221,10 @@ None recorded before 2026-09-17.
    of Monod's `H(A)`, and the Stein and irrational-slope PL groups. These hosts can contain `BS(1,2)`, so O4 does
    not reach them, and `T-bar` contains `(Q,+)`, so divisibility alone is not excluded. Not covered: `RP^(n-1)` for
    `n >= 3`, infinitely many breakpoints, and Cantor-set hosts.
+   - *Germ-local form* (lane gq-deep-pp-1): `circle-groups-with-divisible-free-germs-omit-gl-n-q` assumes only
+     that the germ groups of point stabilizers are divisible-free. So it also covers breakpoints accumulating at
+     finitely many singular points with divisible-free germ groups, i.e. finite germ extensions of these circle
+     hosts, and index-2 overgroups with orientation-reversing elements.
 
 11. **Brin--Thompson groups `nV` and twisted Brin--Thompson registers, 2026-09-17: gated, not dead.**
    (lane gq-bt-kojima; `research/artifacts/gq-bt-kojima-mechanism.md`)
