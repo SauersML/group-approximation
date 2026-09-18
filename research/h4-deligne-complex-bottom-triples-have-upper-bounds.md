@@ -92,6 +92,13 @@ With `h3-deligne-complex-upward-flag-toward-5-edge` and
     Huang's arrangement I.
   - What remains among single fibred flats is the three `I_2(5)` flats: 6 fibre points, a `P_7` shadow, and
     collision arrangement `χ = (t−1)(t−4)(t−5)`.
+- **Single-edge case: the `I_2(5)` fibred shadows** (w6-042,
+  `h4-i25-fibred-shadows-are-rigid-cluster-braid-groups`).
+  - Four fibre points form a rigid cluster `p_c + s·{0, 1, φ^{-1}, φ}`, the `I_2(5)` pencil, and they all
+    collide on one wall.
+  - The shadow is `f^{-1}(⟨Δ²_C⟩) ⊂ P_7`, the subgroup where the cluster moves only by full twists.
+  - The identity is an `A_6` single-edge hexagon whose `N`-letters lie in the rigid-cluster subgroup `N_V`.
+  - Open: whether every such constrained hexagon has a centre `ρ_V(y_2)` or `ρ_V(s_4^k)A_{Y''}`.
 - **Status.** Open. The computation is evidence and a necessary check, not a proof. A proof needs
   an `H_4` analogue of the auxiliary arrangements of arXiv:2405.12068 §6. The label-5 obstruction to
   the flat-triangle convexity argument (Hoda–Huang arXiv:2602.17983, proof of Thm 5.17, labels ≥ 6)
