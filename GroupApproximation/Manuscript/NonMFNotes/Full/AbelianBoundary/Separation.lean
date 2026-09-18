@@ -42,8 +42,8 @@ theorem exists_hom_real_eq_pi [IsAddTorsionFree A] {a : A} (ha : a ≠ 0) :
   obtain ⟨θ, hθ⟩ := Module.Baer.extension_property_addMonoidHom (Module.Baer.of_divisible ℝ)
     (zmultiplesHom A a) hinj (zmultiplesHom ℝ Real.pi)
   refine ⟨θ, ?_⟩
-  have h : θ ((1 : ℤ) • a) = (1 : ℤ) • Real.pi := DFunLike.congr_fun hθ 1
-  rwa [one_zsmul, one_zsmul] at h
+  have h : θ (zmultiplesHom A a 1) = zmultiplesHom ℝ Real.pi 1 := DFunLike.congr_fun hθ 1
+  rwa [zmultiplesHom_apply, zmultiplesHom_apply, one_zsmul, one_zsmul] at h
 
 /-- In a residually finite group, a finite set not containing `1` is avoided by some
 finite-index subgroup. -/
