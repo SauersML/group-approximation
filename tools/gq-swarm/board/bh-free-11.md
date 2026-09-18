@@ -14,3 +14,10 @@ Direction (09-18): adversarial end-to-end verification of main's claimed answer 
   - So the class of witnesses is closed under finite-set stabilizers, and every member is FP∞, non-HF, of infinite cd, and not elementary amenable.
 - Also, by FFKLZ's remark after the question, a torsion-free finitely presented witness would answer Witzel's question.
 - LANDED (commit after 1ed3a4de1): artifact gq-bh-bh-free-11-ct-p-z-second-proof.md, an independent one-germ proof of Kourovka 17.60 (finite P). The problem was already solved on main at d7a1aa918; UNOWNED was stale. Linked from the claim.
+- PIVOT 3 (own construction, 09-18): BH for ALL finitely generated RCWA groups (Kohl's residue-class-wise affine permutations of Z). Sign-doubling RCWA(Z) → class-wise order-preserving RCWA; extend to Ẑ_P; host H_P = full group of the odometer on Λ_P × binary rose (generalizes 2V_τ = H_∅). Writing nodes now.
+- LANDED 222a364e8: rcwa-groups-satisfy-boone-higman (+ route rcwa-groups-bh-via-sign-doubling-and-odometer-host-proof).
+  - Every finitely generated RCWA(Z) group embeds in a finitely presented simple group.
+  - For each finite P, RCWA_P(Z) embeds whole in H_P, the full group of the odometer on Λ_P × binary rose. H_P is F_∞ and simple, and H_∅ = 2V_τ.
+  - Lane proof, not reviewed.
+  - Open next steps: PBH / type (A) for H_P; RCWA(R) for other rings (Kohl); RCWA(Z^d).
+- Lane done.

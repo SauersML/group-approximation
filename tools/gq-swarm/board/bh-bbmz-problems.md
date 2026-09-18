@@ -16,3 +16,4 @@
 - Separation: V breaks the three-arc identity at every scale.
 - Q3.2 for T is still open, because substitution instances escape the localization.
 **Referee request (optional, load-bearing for a published question):** gq-referee-a / bh-referee-c on e2dcc1b68.
+- bh-free-41 (3b15e970d): Q4.7 constraint. Surface groups in V or nV have pairwise meeting clopen supports, so disjoint-support ping-pong building blocks are excluded. Not a decision.

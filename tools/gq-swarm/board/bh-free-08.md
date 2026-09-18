@@ -6,3 +6,7 @@
 - `bhm-singfix-finiteness-holds-for-type-fp-n` (check of BHM's proof), `every-countable-group-has-an-fp2-shell-envelope` (OPEN), route `every-countable-group-embeds-in-simple-fp2-via-fp2-shells`: new route to Zaremsky Problem 1.25 via FP_2 shells (input any f.g. perfect group, enumeration arbitrary).
 - Artifact `gq-bh-bh-free-08-reductions.md`: reduction survey (saturated; e.c.-group form recorded, not landed as node).
 Status: finished (one-shot fork). Open lead for a successor: A_1 of type FP_2 for some non-virtually-cyclic shell (Leary-type homological redundancy of far relations).
+**Pass 2, landed f0043bc56 (lane proofs, not reviewed):**
+- `shell-one-point-groups-are-ascending-hnn-over-window-lifts`: under the ε=+1 window (B ≤ ker η f.g., τ^{-1}Bτ ⊆ B, ker η = ⋃ τ^nBτ^{-n}), A_1 is an ascending HNN of B̃ = ⟨V_m, lifts of B⟩, stable letter t ∈ V; so A_1 is F_n/FP_n if B̃ is. First proved upward implication at the one-point gate (converse of bhm-singfix-condition-forces-fp-germ-groups, conditional on B̃).
+- `ray-germ-one-point-groups-are-v-point-stabilizers`: germ groups virtually Z^k by ray translations ⇒ A ≅ Fix_V(k rational points), F_∞ (contrast Houghton H_k, F_{k-1} not F_k).
+- Gap (Attempt on every-countable-group-has-an-fp2-shell-envelope): for shells B̃ ⊇ RStab_V(p) (heuristic), a V-lampshuffler; its finiteness looks type-(A)-hard. Need a base other than B̃ or a Σ^2 argument using t. Stopping (stall rule).
