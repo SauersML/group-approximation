@@ -379,3 +379,25 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     nothing about whether `F` is exact or amenable.
   - *Not decided:* whether `F` is exact through actions with infinite stabilizers, or through non-cubical
     geometry. Nothing about amenability changes.
+- **Calibrating Moore's derivative amplification (swarm-0917-w12-w12-f-pull, 2026-09-18, quantifier-shift, obstruction-miner).**
+  - *Established:* `marginal-derivative-amplification-is-sharp-at-log-height`.
+    - Abstract Moore's mechanism as a derivative datum: a map `∂` equivariant on a good set, with
+      a `c`-thin (for example marginal) bad set.
+    - Then `μ({h ≥ n}) ≥ μ(S) − bd(μ)(qⁿ−1)/(2|Γ|)` with `q = 1 + 2c|Γ|`. So `ε`-Følner forces
+      height `⌊log_q(1 + 2|Γ|/ε)⌋`.
+    - A partial `F`-set with Moore's generators and a 1-marginal bad set attains height
+      `≤ log_c(1/ε) + O(1)`. Bundling derivatives does not change the rate.
+  - *Invariant:* the Følner ratio `bd(μ_i)/μ_i(S)` of the successive pushed measures.
+  - *Where every member dies:* the restriction step (Moore's Lemma 3.11/5.13). It multiplies the
+    ratio by `≍ c`, and the datum shows it really does.
+  - *Class killed:* every Følner lower bound built from a derivative with a thin bad set gives
+    height `Θ(log 1/ε)`. So Moore's tower is the ceiling of the method, not an artifact of its
+    bookkeeping.
+  - *Decomposition:*
+    - `thompson-f-folner-function-dominates-every-ackermann-level` (non-primitive-recursive
+      `Føl_F`, Moore's Question 1.2 for `F`) follows by the route
+      `thompson-f-ackermann-folner-via-tree-derivative-hierarchy`.
+    - That route needs the OPEN `thompson-f-trees-carry-an-ackermann-derivative-hierarchy`:
+      derivatives on `𝒯` with `Ack_k` contraction and thin bad sets.
+    - Two natural candidates die at Moore's Lemmas 5.10 and 5.7, because leaf count is additive
+      under the regrouping moves.
