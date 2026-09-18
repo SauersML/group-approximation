@@ -261,3 +261,64 @@ group containing every GL_n(Q). This is a bounded web and arXiv search, with no 
 overgroup of GL_n(Q). Existence of a finitely presented overgroup of all GL_n(Q) is classical, and an
 explicit per-n overgroup is announced by Mikaelian. Keep the node OPEN pending the three referees. Also
 review `finitely-presented-divisible-ring-engine` (D ⊇ Q, finite presentation), which the claim relies on.
+
+## 9. Priority checks for the coordinator (2026-09-17): ring envelopes, Q in U(L_Z(1,2)), stated problems
+
+Bounded web and arXiv search. No MathSciNet. The full texts of Evans–Mandelberg–Neff and the
+Kharlampovich–Sapir survey are paywalled (ScienceDirect and World Scientific refuse automated access).
+
+**(1) `char-zero-representable-rings-embed-in-fp-simple-rings` and `rational-function-fields-embed-in-fp-simple-rings`
+(36d65161f).** The claims: finitely generated subrings of M_n(F), F a field of characteristic 0, and
+Q(t_1..t_k), embed in finitely presented simple rings.
+
+**No prior finitely presented simple envelope found in characteristic 0.** What exists:
+- **Finitely generated simple envelopes, not finitely presented.**
+  - Bokut, Algebra i Logika 15 (1976) 73–90: every countably generated algebra over a countable field
+    embeds in a two-generated simple algebra.
+  - Bokut–Chen–Mo (arXiv:0908.1992): the same for Ω-algebras and differential algebras.
+  - Alahmadi–Alsulami–Jain–Zelmanov, arXiv:1703.08734 (Trans. AMS 372, 2019): matrix wreath products give
+    embeddings into finitely generated Jacobson radical, nil and primitive algebras. No finitely presented
+    simple envelope.
+- **Finitely presented, not simple.** Belyaev, Algebra i Logika 17 (1978) 627–638: a Higman theorem for rings.
+- **Weak form.** Evans–Mandelberg–Neff (Logic Colloquium '73, 1975): a simple algebra inside a finitely
+  presented algebra. The survey lists it for "rings of characteristic p".
+- **Finitely presented simple algebras over a field** are classical, but only as K-algebras:
+  - Leavitt L_K(1,n);
+  - the Weyl algebra A_1(Q) = Q⟨x,y | xy − yx = 1⟩, simple in characteristic 0;
+  - Nekrashevych algebras of contracting self-similar groups, which Steinberg–Szakács (arXiv:2008.04220,
+    Math. Ann. 2022) prove "are finitely presented", with an algorithm listing the field characteristics
+    for which they are simple.
+  - In characteristic p these give finitely presented simple rings over Z. In characteristic 0 they are
+    presented over Q, not finitely generated as rings, and the repo's claims need more: a finite
+    presentation over Z containing Q or Q(t).
+- **Credit risk.** The Weyl and Nekrashevych families show that "finitely presented over K and simple" is
+  classical. The claims are only new for presentations over Z. Say "finitely presented as a ring (over Z)"
+  in every statement.
+
+**(2) `integral-leavitt-unit-group-contains-q` (double-refereed).** The claim: (Q,+) ≤ ⟨V, 1 + x_01 y_00⟩ ≤ U(L_Z(1,2)).
+- **No prior art found.** V ≤ U(L_K(1,2)) by permutation units is standard (Nekrashevych, Brin, and the
+  Leavitt-path literature, e.g. arXiv:2504.01363 on Higman–Thompson groups in Leavitt path algebras).
+- Recent unit-group papers do not discuss divisible subgroups, roots of unipotent units, or Q:
+  - Khanh–Thanh arXiv:2607.10351 (matrix generators for L_K(1,d)^×; over a finite field, finite
+    presentability of L_d^× is equivalent to finite generation of unstable K_2(n, L_d));
+  - Hai–Khanh arXiv:2503.18558 (free subgroups in characteristic 0);
+  - Khanh arXiv:2609.08428.
+- Nearest group-level analogues: Q ≤ T̄ ≤ VA (Belk–Hyde–Matucci) and Q ≤ nV, n ≥ 2 (Kojima–Sheng
+  arXiv:2603.18410v3).
+- **Novelty plausible on this bounded search.** The node says "Novelty not searched"; it could now say
+  "bounded search, no prior art found".
+
+**(3) Is "Q embeds in a finitely presented simple ring" or "a finitely presented simple ring of characteristic 0 exists" a stated problem?**
+**Not found as a stated problem anywhere I could read.**
+- Survey arXiv:2306.16356v3 §3 mentions EMN only for "rings of characteristic p" and poses no ring question.
+- Kourovka (arXiv:1401.0300v46) is about groups. The GL part of 14.10 is a group question.
+- The Dniester Notebook could not be read. A problem there cannot be ruled out; it is the most likely
+  home for such a question, given the Novosibirsk school (Bokut, Belyaev).
+- Zelmanov's *Some open problems in the theory of infinite dimensional algebras* (J. Korean Math. Soc.
+  2007) was not read. Its known items (nil Jacobson radical of finitely presented algebras, PI images of
+  d-generator d²/4-relator algebras) are different.
+- The Kharlampovich–Sapir survey (IJAC 1995) was not read.
+- **Recommendation:** don't call it an "open problem". Present it as the characteristic-0 case of the
+  algebra Boone–Higman question (`algebra-boone-higman-conjecture`), for the single input Q. The survey's
+  characteristic-p framing of EMN supports this reading. Check the Dniester Notebook (4th edition, 1993)
+  and the Kharlampovich–Sapir survey before any write-up.
