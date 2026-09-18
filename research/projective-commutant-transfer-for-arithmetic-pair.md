@@ -593,3 +593,26 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   - **Consequence.** Non-congruence stabilizers do not escape the radial-shell firewall.
   - **What survives for the soficity side of the rank-two fork.** Only couplings whose vertex
     actions come from different A-sets, or from no A-set.
+- **Stability certificates on the HNN group itself: retraction fence (2026-09-17).** This does not
+  prove PRCC. It kills the idea that the centralizer extension
+  `H = <Gamma, t | [t, S_Lambda] = 1>` could be easier to stabilize than `Gamma` is.
+  - **Retraction.** `r : H -> Gamma` with `t |-> 1` is a retraction. The relators of `H` are those
+    of `Gamma` plus `[t, s]`. For any asymptotic homomorphism `phi_n` of `Gamma`, the map
+    `phi_n o r` has the same relator defect, and the `[t, s]` relators have defect zero.
+  - **Consequence.** If `phi_n o r` is close (strictly, or flexibly with `D_n / d_n -> 1`) to an
+    honest representation `psi_n` of `H`, then `psi_n |_Gamma` corrects `phi_n` in the same sense.
+    So every same-dimension or flexible HS stability property of `H` implies the same property
+    for `Gamma`.
+  - **Where it dies.** Take `n >= 3`. Then `Gamma` is infinite, finitely generated linear
+    (so hyperlinear), and has property (T). By
+    `infinite-hyperlinear-kazhdan-group-is-not-hs-stable` it is not even locally HS-stable, so `H`
+    is not strictly or locally HS-stable either. The Hadwin--Shulman criterion ("strictly stable
+    and non-MAP implies non-hyperlinear") is therefore vacuous for `H`, even though `H` is non-MAP.
+  - **What survives.** Only the flexible version: flexible stability of `H`, plus non-MAP, gives
+    non-hyperlinearity. It is never weaker than flexible stability of `Gamma`, which the graph
+    already uses directly (`sl2-half-stability-excludes-hnn-hyperlinearity`,
+    `non-hyperlinear-from-hnn-over-sln-z`).
+  - **Status.** The route adds no new gate. Any stability-type proof must be restricted to the
+    canonical-character projective sector (the inner-adjoint condition of
+    `sl3-rigidity-stops-before-inner-adjoint-correction`) and cannot be phrased as stability of
+    `H`.
