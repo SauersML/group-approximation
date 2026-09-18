@@ -110,3 +110,88 @@ theorem gl06h6_descends_of_enclosedShortcut (D : RelGenSet G Lambda) {eps : ℕ}
       exact hlt
 
 #audit_axioms GroupApproximation.Full.GL06h6.gl06h6_descends_of_enclosedShortcut
+
+/-- **A collar shortcut** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121): a pocket region whose cycles follow their boundaries, holding a
+relator cell, whose side has the value of a letter word `g` of length at most `ε + ε`; and a
+relator cell lies outside the pocket or `g` is shorter than `∂Δ`. -/
+def gl06h6_CollarShortcut (D : RelGenSet G Lambda) (eps : ℕ) (Delta : DiscDiagram.{u, w, v} W) :
+    Prop :=
+  ∃ P : PocketRegion Delta, P.inner.FollowsBoundary ∧ P.outer.FollowsBoundary ∧
+    (∃ i : Fin Delta.rCellCount, (Embedded.cell Delta i).face ∈ P.faces) ∧
+    ∃ g : List (RelLetter G Lambda), (∀ x ∈ g, (symmetricLabelAlphabet D).IsLetter x) ∧
+      RelLetter.listVal g =
+        RelLetter.listVal (Embedded.dartWord Delta (Embedded.invDarts Delta P.outer.cycle)) ∧
+      g.length ≤ eps + eps ∧
+      ((∃ j : Fin Delta.rCellCount, (Embedded.cell Delta j).face ∉ P.faces) ∨
+        g.length < Delta.boundaryWord.length)
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_CollarShortcut
+
+/-- **The side of a pocket with a cell is not trivial** (Osin, proof of Lemma 9.7(b);
+`thm:hull`, non_mf_groups_exist.tex ~2121): otherwise the least-area pocket diagram, which has a
+relator cell, would bound the empty relator product. -/
+theorem gl06h6_pocketValue_ne_one {Delta : DiscDiagram.{u, w, v} W} (hlea : Delta.LeastArea)
+    (P : PocketRegion Delta) {i : Fin Delta.rCellCount}
+    (hi : (Embedded.cell Delta i).face ∈ P.faces) :
+    RelLetter.listVal (Embedded.dartWord Delta (Embedded.invDarts Delta P.outer.cycle)) ≠ 1 := by
+  intro h1
+  have hpos : 0 < P.diagram.rCellCount :=
+    P.diagram_rCellCount_pos (Embedded.cell_mem Delta i) hi
+  have hval : P.diagram.boundaryValue = 1 := by
+    show RelLetter.listVal P.diagram.boundaryWord = 1
+    rw [P.diagram_boundaryWord]
+    exact h1
+  have hL : P.diagram.LeastArea := P.diagram_leastArea hlea
+  have hle : P.diagram.rCellCount ≤ 0 := hL (by
+    rw [hval]
+    exact RelatorDefectBudget.IsRelatorProduct.one)
+  omega
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_pocketValue_ne_one
+
+/-- **A collar shortcut descends** (Osin, proof of Lemma 9.7(b); `thm:hull`,
+non_mf_groups_exist.tex ~2121): the pocket diagram after the collar reads `g`. -/
+theorem gl06h6_descends_of_collarShortcut (D : RelGenSet G Lambda) {eps : ℕ}
+    {Delta : DiscDiagram.{u, w, v} W} (hlea : Delta.LeastArea)
+    (hletters : ∀ d, (symmetricLabelAlphabet D).IsLetter (Delta.label d))
+    (h : gl06h6_CollarShortcut D eps Delta) : gl06h6_Descends D eps Delta := by
+  obtain ⟨P, hin, hout, ⟨i, hi⟩, g, hg, hval, hglen, hcase⟩ := h
+  have hne := gl06h6_pocketValue_ne_one hlea P hi
+  have hgne : g ≠ [] := by
+    rintro rfl
+    exact hne (hval.symm.trans RelLetter.listVal_nil)
+  have hs : Embedded.invDarts Delta P.outer.cycle = [] → g = [] := by
+    intro hs
+    rw [hs] at hne
+    exact (hne (by simp only [Embedded.dartWord, List.map_nil, RelLetter.listVal_nil])).elim
+  obtain ⟨Delta'', E, P'', collar, ι, hlet'', -, -, hcyc, hcollar, -, -, -, -, hstay⟩ :=
+    GeodesicCollar.StripStep.geodesicCollarStatement_holds (symmetricLabelAlphabet D)
+      (symmetricLabelAlphabet.symmetric D) Delta hletters P hin hout
+      (Embedded.invDarts Delta P.outer.cycle) [] (List.append_nil _).symm g hg hval hs
+      (Or.inl hgne)
+  have hword : P''.diagram.boundaryWord = g := by
+    rw [P''.diagram_boundaryWord, hcyc, List.map_nil, List.append_nil, hcollar]
+  have hcount : Delta''.rCellCount = Delta.rCellCount := E.rCellCount_eq
+  have hle : P''.diagram.rCellCount ≤ Delta''.rCellCount :=
+    P''.diagram_rCellCount_le.trans (List.length_filter_le _ _)
+  refine ⟨P''.diagram, P''.diagram_leastArea (E.leastArea hlea), fun d => ?_,
+    hle.trans_eq hcount, ?_,
+    P''.diagram_rCellCount_pos (Embedded.cell_mem Delta'' (E.cellIndex i)) ((hstay i).mpr hi),
+    ?_⟩
+  · obtain ⟨d', hd'⟩ := GL06h1.pocketDiagram_label_exists P'' d
+    rw [hd']
+    exact hlet'' d'
+  · rw [hword]
+    exact hglen
+  · rcases hcase with ⟨j, hj⟩ | hlt
+    · refine Or.inl ?_
+      have hltj : P''.diagram.rCellCount < Delta''.rCellCount :=
+        P''.diagram_rCellCount_lt (Embedded.cell_mem Delta'' (E.cellIndex j))
+          (fun hm => hj ((hstay j).mp hm))
+      exact hltj.trans_eq hcount
+    · refine Or.inr ?_
+      rw [hword]
+      exact hlt
+
+#audit_axioms GroupApproximation.Full.GL06h6.gl06h6_descends_of_collarShortcut
