@@ -81,7 +81,11 @@ space embeds in a finitely presented simple group.
      planes and is quasi-isometric to `Gamma`, so `Gamma` isn't hyperbolic.
    - **Linear methods are void for exotic buildings.** See the exotic Ã₂ node
      below.
-   - **The frontier node** is `exotic-a2-lattices-satisfy-boone-higman`.
+   - **The former frontier node** `exotic-a2-lattices-satisfy-boone-higman` is ESTABLISHED
+     (lane proof, bh-groupoid). The general theorem `euclidean-building-lattices-lie-in-permutational-bh-class`
+     puts every cocompact lattice of a locally finite thick irreducible Euclidean building in `B_A`.
+     `reducible-euclidean-building-lattices-lie-in-type-a-class` does the same for products of such buildings and trees. *(Updated by bh-integrate,
+     2026-09-18.)*
 2. **Products of three or more trees.**
    - **With a faithful factor, or separating factor images.** *Established*
      (2026-09-13) as `product-of-trees-lattices-with-faithful-factor-satisfy-pbh`.

@@ -8,6 +8,8 @@ distinct_from:
   fp-alt-fin-envelopes-are-unique-solutions-of-their-relators: that characterizes finitely presented envelopes over Alt_fin by uniqueness of relator solutions; this asks for a sufficient criterion stated only through the germ group of E_nu(P).
 ---
 
+**OPEN.** *(Status line added by bh-integrate, 2026-09-18; the node already called itself the open lifting direction. Free-shift enumerations do not refute it: their near-index kernel is not two-sided finitely generated, by `mz-envelope-fp-forces-two-sided-fg-near-index-kernel`.)*
+
 Let `P` be infinite and finitely generated, and `nu : P -> N` a bijection. If `R_nu` is finitely presented and
 `ker eta` is finitely generated, then `E_nu(P)` is finitely presented.
 
