@@ -133,4 +133,81 @@ theorem gfaceWindSelPf_sink_empty_of_reach {M : CombMap.{v}} {S K : Finset M.Fac
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSelPf_sink_empty_of_reach
 
+/-- **The residual: no sink region at the minimal inside chord**. The hypotheses are those of
+`gfaceWindSel_Statement` verbatim. The conclusion says every sink region of `c` in the side of
+`W` is empty; it does not mention `g`. -/
+def gfaceWindSelPf_Statement : Prop :=
+  ∀ (M : CombMap.{v}), M.IsPlanar → ∀ (C : List M.Dart) (F : Finset M.Face) (o : M.Face),
+    C.Nodup → (∀ d, Surgery.MapCollapse.IsBoundaryDart M F d ↔ d ∈ C) →
+    C.IsChain (fun d e => M.vertexOf (M.alpha d) = M.vertexOf e) → gfaceWindSix_Bal M C →
+    o ∉ F → ∀ (c : List M.Dart) (g : M.Face → ℤ),
+      Relation.ReflTransGen (gfaceWind_Step M o) (C, gfaceWind_ind F) (c, g) →
+      (∀ f, 0 ≤ g f) → ¬ (c.map M.vertexOf).Nodup →
+      (¬ ∃ p A q : List M.Dart, c = p ++ A ++ q ∧ IsSimpleClosedWalk M A ∧
+        o ∈ SimpleClosedWalkSides.sideFaces M A) →
+      (¬ ∃ p A q : List M.Dart, c = p ++ A ++ q ∧ IsSimpleClosedWalk M (q ++ p) ∧
+        o ∈ SimpleClosedWalkSides.sideFaces M (q ++ p)) →
+      (¬ ∃ p A q : List M.Dart, c = p ++ A ++ q ∧ IsSimpleClosedWalk M A ∧
+        IsSimpleClosedWalk M (q ++ p)) →
+      (∀ W R : List M.Dart, gfaceWindEight_Lobe M c W R → ¬ gfaceWindEight_Clean M W R) →
+      ∀ W R : List M.Dart, gfaceWindEight_Lobe M c W R →
+      (∀ W' R' : List M.Dart, gfaceWindEight_Lobe M c W' R' →
+        (SimpleClosedWalkSides.sideFaces M W).card ≤
+          (SimpleClosedWalkSides.sideFaces M W').card) →
+      ∀ X₁ X₂ T : List M.Dart, c = X₁ ++ X₂ → X₂ ++ X₁ = W ++ T → (∀ x, x ∈ R ↔ x ∈ T) →
+        gfaceWindChord_Config M W T →
+        ∀ K : Finset M.Face, gfaceWindSelPf_Sink M (SimpleClosedWalkSides.sideFaces M W) c K →
+          K = ∅
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSelPf_Statement
+
+/-- **The residual implies Sel**. The boundary darts of `S = sideFaces M W` are the darts of
+`W`, which lie on `c`. So the zero set of `g` on `S` is a sink region
+(`gfaceWindSelPf_zero_sink`), and it is empty by the residual. -/
+theorem gfaceWindSelPf_sel_of_statement (h : gfaceWindSelPf_Statement.{v}) :
+    gfaceWindSel_Statement.{v} := by
+  intro M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 hall W R hl hmin X₁ X₂ T hc hZ
+    hRT hcfg
+  have hinv : gfaceWind_Inv M C o c g :=
+    gfaceWindSix_inv_rt (s := (C, gfaceWind_ind F)) (t := (c, g)) hM hC hr
+      (gfaceWind_inv_start hS hch ho)
+  have hsub : ∀ x ∈ c, x ∈ C := by
+    intro x hx
+    have hx' : x ∈ C.filter (gfaceWind_mem c) := by
+      rw [hinv.1]
+      exact hx
+    exact (List.mem_filter.mp hx').1
+  have hal : ∀ x ∈ c, M.alpha x ∉ c := fun x hx hax =>
+    ((hS x).mpr (hsub x hx)).2 ((hS _).mpr (hsub _ hax)).1
+  have hW : IsSimpleClosedWalk M W := gfaceWindTen_lobe_simple hl
+  have hWc : ∀ x ∈ W, x ∈ c := by
+    intro x hx
+    have hx' : x ∈ X₂ ++ X₁ := by
+      rw [hZ]
+      exact List.mem_append.mpr (Or.inl hx)
+    rw [hc]
+    exact List.mem_append.mpr (List.mem_append.mp hx').symm
+  have hbd : ∀ e : M.Dart, M.faceOf e ∈ SimpleClosedWalkSides.sideFaces M W →
+      M.faceOf (M.alpha e) ∉ SimpleClosedWalkSides.sideFaces M W → e ∈ c :=
+    fun e he hae => hWc e ((hW.isBoundaryDart_sideFaces_iff hM e).mp (And.intro he hae))
+  exact gfaceWindSelPf_pos_of_sink hinv.2.2.1 hal hpos hbd
+    (h M hM C F o hC hS hch hbal ho c g hr hpos hnd h1 h2 h3 hall W R hl hmin X₁ X₂ T hc hZ
+      hRT hcfg)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSelPf_sel_of_statement
+
+/-- **The residual implies `gfaceWindSeven_Statement`** (through `gfaceWindSel_seven`). -/
+theorem gfaceWindSelPf_seven_of_statement (h : gfaceWindSelPf_Statement.{v}) :
+    gfaceWindSeven_Statement.{v} :=
+  gfaceWindSel_seven (gfaceWindSelPf_sel_of_statement h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSelPf_seven_of_statement
+
+/-- **The residual implies `gfaceWindSix_PosStep`** (through `gfaceWindSel_posStep`). -/
+theorem gfaceWindSelPf_posStep_of_statement (h : gfaceWindSelPf_Statement.{v}) :
+    gfaceWindSix_PosStep.{v} :=
+  gfaceWindSel_posStep (gfaceWindSelPf_sel_of_statement h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind.gfaceWindSelPf_posStep_of_statement
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
