@@ -6028,6 +6028,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgCompletion
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgUniversal
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.QalgBase
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.Qalg
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbLocalCone
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
