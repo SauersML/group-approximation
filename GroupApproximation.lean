@@ -5840,6 +5840,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GridApproximat
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.StepanovMatui.MatuiDecompose
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVHopfH2.H2
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessGHW.GHWAssembly
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.PermAlg
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
