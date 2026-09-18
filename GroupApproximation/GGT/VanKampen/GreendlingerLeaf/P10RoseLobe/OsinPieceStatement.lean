@@ -98,3 +98,97 @@ theorem roseLobeOsinPiece_sharedArcBound_of {G : Type u} [Group G] {Lambda : Typ
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_sharedArcBound_of
+
+/-- **The cell-bound region choice with the shared-arc bound supplied** (OPEN, not refuted;
+LOGICALLY EQUIVALENT to `roseLobeOsinCore_Statement`, STRICTLY SMALLER IN PROOF CONTENT; see
+the module docstring).  `roseLobeOsinCore_Statement` with the extra premise
+`roseLobeOsinPiece_SharedArcBound X μ` after `X.LeastArea`. -/
+def roseLobeOsinPiece_Statement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} (D : RelGenSet G Lambda),
+    (∃ delta : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier delta) →
+    ∀ lambda c mu : ℝ, 0 < lambda → lambda ≤ 1 → 0 ≤ c → 0 < mu → mu ≤ 1 / 16 →
+      ∃ eps0 : ℕ, ∀ eps : ℕ, eps0 ≤ eps →
+        ∃ rho0 : ℕ, 0 < rho0 ∧ ∀ rho : ℕ, rho0 ≤ rho →
+          ∀ (W : Set (List (RelLetter G Lambda))) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ),
+            roseLobeOsinCore_CellBounds D W X eps mu lambda c rho → X.LeastArea →
+              roseLobeOsinPiece_SharedArcBound X mu →
+                (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+                ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+                  K.sourceArc.length < (cellDarts X K.source).length →
+                  K.targetArc.length < (outerDarts X).length →
+                  ¬Unpinched X.toCombMap K.faces →
+                  P10ChordLift.AllNonFirstTurnsCrossed K →
+                  (walkMap X.toCombMap K.boundary.cycle).IsPlanar →
+                  (∀ x y : (walkMap X.toCombMap K.boundary.cycle).Dart,
+                    Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                      (walkKeep X.toCombMap K.boundary.cycle)) x.1 y.1 ↔
+                      (walkMap X.toCombMap K.boundary.cycle).faceOf x =
+                        (walkMap X.toCombMap K.boundary.cycle).faceOf y) →
+                  (∀ x : X.toCombMap.Dart, ∃ y, walkKeep X.toCombMap K.boundary.cycle y ∧
+                    Relation.EqvGen (CombMap.FaceClassStep X.toCombMap
+                      (walkKeep X.toCombMap K.boundary.cycle)) x y) →
+                  (∀ x y : X.toCombMap.Dart, Relation.EqvGen (CombMap.FaceClassStep
+                      X.toCombMap (walkKeep X.toCombMap K.boundary.cycle)) x y →
+                    (X.toCombMap.faceOf x ∈ K.faces ↔ X.toCombMap.faceOf y ∈ K.faces)) →
+                  (∀ d ∈ invDarts X K.sourceArc.darts,
+                    X.toCombMap.faceOf (X.toCombMap.alpha d) = (cell X K.source).face) →
+                  (∀ d ∈ K.targetArc.darts,
+                    X.toCombMap.faceOf (X.toCombMap.alpha d) = X.outerFace) →
+                    roseLobeOsin_RegionAt K
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_Statement
+
+/-- **The reduction**: the residual gives the cell-bound region choice (same thresholds; the
+shared-arc bound comes from `roseLobeOsinPiece_sharedArcBound_of`). -/
+theorem roseLobeOsinPiece_core_of (h : roseLobeOsinPiece_Statement.{u, w, v}) :
+    roseLobeOsinCore_Statement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨eps0, heps0⟩ := h D hhyp lambda c mu h1 h2 h3 h4 h5
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
+  exact ⟨rho0, hrho0, fun rho hrho' W X lo hi hB hlea =>
+    hrho rho hrho' W X lo hi hB hlea (roseLobeOsinPiece_sharedArcBound_of hB hlea)⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_core_of
+
+/-- **Equivalence certificate**: the cell-bound region choice gives the residual (drop the
+shared-arc premise).  So the residual is logically equivalent to it, not weaker. -/
+theorem roseLobeOsinPiece_of_core (h : roseLobeOsinCore_Statement.{u, w, v}) :
+    roseLobeOsinPiece_Statement.{u, w, v} := by
+  intro G _ Lambda D hhyp lambda c mu h1 h2 h3 h4 h5
+  obtain ⟨eps0, heps0⟩ := h D hhyp lambda c mu h1 h2 h3 h4 h5
+  refine ⟨eps0, fun eps heps => ?_⟩
+  obtain ⟨rho0, hrho0, hrho⟩ := heps0 eps heps
+  exact ⟨rho0, hrho0, fun rho hrho' W X lo hi hB hlea _ => hrho rho hrho' W X lo hi hB hlea⟩
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_of_core
+
+/-- **The rose step from the residual.** -/
+theorem roseLobeOsinPiece_rose_of (h : roseLobeOsinPiece_Statement.{u, w, v}) :
+    P10ChordLift.RoseStepStatement.{u, w, v} :=
+  roseLobeOsinCore_rose_of (roseLobeOsinPiece_core_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_rose_of
+
+/-- **The outer-pinch step from the residual.** -/
+theorem roseLobeOsinPiece_pinch_of (h : roseLobeOsinPiece_Statement.{u, w, v}) :
+    PocketOuterPinchStepSectionStatement.{u, w, v} :=
+  roseLobeOsinCore_pinch_of (roseLobeOsinPiece_core_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_pinch_of
+
+/-- **The Greendlinger leaf from the residual.** -/
+theorem roseLobeOsinPiece_green_of (hoff : P07InnerPocket.PocketFourPieceOffStatement.{u, w, v})
+    (h : roseLobeOsinPiece_Statement.{u, w, v}) :
+    RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
+  roseLobeOsinCore_green_of hoff (roseLobeOsinPiece_core_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe.roseLobeOsinPiece_green_of
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10RoseLobe
