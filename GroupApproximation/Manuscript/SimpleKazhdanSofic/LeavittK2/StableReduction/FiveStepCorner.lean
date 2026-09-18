@@ -111,11 +111,13 @@ theorem fiveStepCornerGen_kills_relations (r : Fin n) (w : FreeGroup (SteinbergG
       rw [x_mul, fiveStepCornerCoeff_add, mul_inv_cancel]
   | commute i j k l hij hkl hjk hli a b =>
       simp only [map_commutatorElement, FreeGroup.lift_apply_of]
-      change ⁅x i j hij (fiveStepCornerCoeff L r i j a), x k l hkl (fiveStepCornerCoeff L r k l b)⁆ = 1
+      change ⁅x i j hij (fiveStepCornerCoeff L r i j a),
+        x k l hkl (fiveStepCornerCoeff L r k l b)⁆ = 1
       exact (x_commute_of_ne i j k l hij hkl hjk hli _ _).commutator_eq
   | adjacent i j k hij hjk hik a b =>
       simp only [map_mul, map_inv, map_commutatorElement, FreeGroup.lift_apply_of]
-      change ⁅x i j hij (fiveStepCornerCoeff L r i j a), x j k hjk (fiveStepCornerCoeff L r j k b)⁆ *
+      change ⁅x i j hij (fiveStepCornerCoeff L r i j a),
+          x j k hjk (fiveStepCornerCoeff L r j k b)⁆ *
         (x i k hik (fiveStepCornerCoeff L r i k (a * b)))⁻¹ = 1
       rw [x_commutator i j k hij hjk hik, fiveStepCornerCoeff_mul L r hij hjk hik, mul_inv_cancel]
 
