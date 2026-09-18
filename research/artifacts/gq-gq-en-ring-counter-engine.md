@@ -75,9 +75,10 @@ This lane has not decided any of them.
    there as a ring element.
 2. Variants that keep a full corner.
    - Replace the counter-dependent branching `n+2` by branching that is periodic in the
-     counter, so that the sector type repeats. With period `P`, this gives a Leavitt-type
-     `[1] = ([1]·(product over the period))`, which is torsion or dead by
-     `ibn-failure-makes-rational-scalars-elementary`.
+     counter, so that the sector type repeats. With period `P` and `b` the product of the
+     branchings over one period, `V_n ≅ V_(n+P)` and `V_n ≅ V_(n+P)^b`. So `(b-1)[P_n] = 0`: the
+     corner class is torsion, a Leavitt-type relation, and it is dead by
+     `rational-k1-detection-forces-infinite-order-unit-class`.
    - Or let the counter run over `Z` (a two-sided tape), so that no sector is initial. That
      reintroduces a translation of the counter, which is a Laurent-type unit and is dead by
      `laurent-rational-symbols-block-fp-elementary-groups`.
