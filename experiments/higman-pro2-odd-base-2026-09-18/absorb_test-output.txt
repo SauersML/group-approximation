@@ -1,0 +1,14 @@
+[ 672, 668, 662, 653, 640, 620, 588, 531, 441, 277, 0 ]
+Syntax warning: Unbound global variable in absorb_test.g:14
+  gg:=List(g,x->Image(h,x)); A:=Group(gg[1],gg[3]);
+                      ^
+1 log2|A|=2 A^ab=[ 2, 2 ] ord=[ 2, 2, 2, 2 ] b^2^s in A: s=1 d: s=1
+2 log2|A|=5 A^ab=[ 4, 4 ] ord=[ 4, 4, 4, 4 ] b^2^s in A: s=2 d: s=2
+3 log2|A|=9 A^ab=[ 8, 8 ] ord=[ 8, 8, 8, 8 ] b^2^s in A: s=3 d: s=3
+4 log2|A|=14 A^ab=[ 16, 16 ] ord=[ 16, 16, 16, 16 ] b^2^s in A: s=4 d: s=4
+5 log2|A|=20 A^ab=[ 16, 16 ] ord=[ 16, 32, 16, 32 ] b^2^s in A: s=5 d: s=5
+6 log2|A|=29 A^ab=[ 16, 16 ] ord=[ 16, 64, 16, 64 ] b^2^s in A: s=6 d: s=6
+7 log2|A|=47 A^ab=[ 16, 16 ] ord=[ 32, 64, 32, 64 ] b^2^s in A: s=6 d: s=6
+8 log2|A|=70 A^ab=[ 16, 16 ] ord=[ 32, 64, 32, 64 ] b^2^s in A: s=6 d: s=6
+9 log2|A|=114 A^ab=[ 16, 16 ] ord=[ 64, 64, 64, 64 ] b^2^s in A: s=6 d: s=6
+10 log2|A|=179 A^ab=[ 16, 16 ] ord=[ 64, 128, 64, 128 ] b^2^s in A: s=6 d: s=6
