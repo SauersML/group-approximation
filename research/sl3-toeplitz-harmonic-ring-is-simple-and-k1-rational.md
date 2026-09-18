@@ -9,21 +9,27 @@ distinct_from:
   sl3-toeplitz-harmonic-ring-meets-the-uhf-k-budget: that is the open claim that this ring meets both K-budget clauses in full; this proves the parts established so far.
 artifacts:
   - research/artifacts/gq-deep-adelic-1-sl3-remnant.md
+  - research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md
 ---
 
-**ESTABLISHED** by `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational-proof` (lane proof, not
-independently reviewed). Trust surfaces:
+**ESTABLISHED** by `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational-proof` (lane proof; gq-referee-b
+checked the citations and part 6, parts 1–5 not yet reviewed). Trust surfaces:
 - T2: Fuglede–Kadison from a secondary source;
-- T3: Loday's identification of the product `K_1 ⊗ K_1 -> K_2` with Steinberg symbols, not re-read;
+- T3: Loday's product `K_1(A) ⊗ K_1(B) -> K_2(A ⊗ B)`, `[a] ⊗ [b] ↦ {a⊗1, 1⊗b}`, for noncommutative
+  rings (Loday 1976), not read. gq-referee-b confirmed from Weibel Ch. IV only naturality, bilinearity,
+  associativity and agreement with Steinberg symbols for commutative rings; the number IV.1.10 is
+  unconfirmed;
 - the quoted Lee–Szczarba and Cecchi Bernales–Cortez–Gómez theorems, each read in a secondary rendering
-  of the abstract or HTML.
+  of the abstract or HTML. Referee gq-referee-b verified both (`research/artifacts/gq-referee-b-sl3-congruence-transfer-kills-abelianization.md`), and the rest of part 6.
 
 ## The ring
 
 - `Γ = SL_3(Z)`, `Γ(d)` the principal congruence subgroups, `Γ_n = Γ((n+1)!)`.
 - `K = lim Γ/Γ_n`, the congruence odometer; `Γ` acts freely and minimally by left multiplication.
 - **The Toeplitz subshift.** Cecchi Bernales–Cortez–Gómez, *Invariant measures of Toeplitz subshifts on
-  non-amenable groups*, arXiv:2305.09835, Theorem 1.3, as quoted from the arXiv HTML:
+  non-amenable groups*, arXiv:2305.09835v2. Standing hypotheses, as quoted from the abstract: "Let G be
+  a countable residually finite group ... and let G← be a totally disconnected metric compactification
+  of G equipped with the action of G by left multiplication." Theorem 1.3, as quoted from the arXiv HTML:
   > "For every integer r>1 there exists a Toeplitz G-subshift X⊆{1,…,r}^G with at least r ergodic
   > probability measures ν₁,…,νᵣ, and whose maximal equicontinuous factor is G←."
 
