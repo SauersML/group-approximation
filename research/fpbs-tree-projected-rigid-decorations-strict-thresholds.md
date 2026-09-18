@@ -70,6 +70,23 @@ established claims:
   `p_o = 5/44 > 0.0890 = p*`, while simulated `p_c ≈ 0.084`. A rank-two proof must
   count paths that return to a fibre they have already visited, or improve `p*` by
   using short cycles.
+* **Excursion second moment, rank two (2026-09-18).**
+  `fpbs-tree-projected-rank-two-excursion-second-moment` answers the rank-two
+  obstruction above. The trails may, before each step, leave the fibre along any other
+  letter and return along the same tree edge with a different decoration, so they use
+  all `4m` decorated tree edges. A lumped `2 x 2` transfer matrix (same vertex / same
+  fibre) is bounded symbolically by linear height equations and an inequality-forest
+  count. Paley–Zygmund then gives `p_c <= 7/(25m)` for every `m >= 40`, whatever the
+  heights. With `p* >= 1/(v + 2 sqrt 3 m)`, this settles rank two for:
+  * `v = 0`, `m >= 9`;
+  * `v = 2`, `m >= 18`;
+  * any `v`, `m >= max(40, 10v)`.
+
+  No rigidity is needed. **Where it stops:** small multiplicity. At `m = 3` the
+  criterion needs `m p >= 0.373`, while `m p* = 0.267` for `S_rig`. As `m -> infinity`
+  the criterion reaches the ensemble's own first-moment limit `0.27258`, and a lower
+  limit needs several excursions per slot. `S_rig` is certified separately in
+  `fpbs-rigid-f2xz-certified-strict-thresholds`.
 * **Relative gap along a subgroup.** **Where it dies:**
   `fpbs-central-amenable-relative-threshold-is-pu`. The central `Z` makes the
   premise at least as strong as `p_c < p_u` along every infinite subgroup (Attempts
