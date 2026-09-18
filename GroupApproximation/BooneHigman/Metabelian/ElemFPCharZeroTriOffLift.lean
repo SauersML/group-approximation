@@ -74,8 +74,10 @@ theorem czTriOff_block_lift {R : Type*} [CommRing R] {k : ℕ}
   have hdetB : B.det = 1 := by
     rw [← czTriOff_det_padHom (czTriOff_emb j) B, hpad, hdetD]
   obtain ⟨Bu, hBu⟩ := (Matrix.isUnit_iff_isUnit_det B).mpr (by rw [hdetB]; exact isUnit_one)
-  have hmem : Bu ∈ elementaryGroup (Fin k) R :=
-    hSL Bu (by first | (rw [hBu]; exact hdetB) | simpa [hBu] using hdetB)
+  have hdetBu : Matrix.det (Bu : Matrix (Fin k) (Fin k) R) = 1 := by
+    rw [hBu]
+    exact hdetB
+  have hmem : Bu ∈ elementaryGroup (Fin k) R := hSL Bu hdetBu
   obtain ⟨g', hg'⟩ := projection_surjective (I := Fin k) (R := R) ⟨Bu, hmem⟩
   refine ⟨g', ?_⟩
   rw [czTriOff_stab_indexMap, czTriOff_padMat_indexMap, czTriOff_padMat_eq g', hg']

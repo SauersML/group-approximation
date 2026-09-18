@@ -27,8 +27,9 @@ open Polynomial
 /-- **The stabilized normalized residual** at rank `n`.  For every `σ ∈ SL_n(A[X])` with
 `σ(0) = 1` and every maximal `𝔪`, `diag(σ_𝔪, 1) ∈ E_{n+1}(A_𝔪[X])`.  It is used at `n = 2`.
 It is TRUE for the two families, by Suslin's theorem, as a truth check only
-(`suslinBase3_global_of_localCaseFamily`).  It is NOT asserted for general `A`: over the cusp
-`k[t², t³]` it fails already at `X`-free level. -/
+(`suslinBase3_global_of_localCaseFamily`).  It is NOT asserted for general `A`: its content is
+a `K₁`-regularity statement, and `K₁`-regularity fails for non-regular rings such as the cusp
+`k[t², t³]` (`NK₁ ≠ 0`). -/
 def SuslinBase3StabLocal (A : Type*) [CommRing A] (n : ℕ) : Prop :=
   ∀ σ : Matrix.GeneralLinearGroup (Fin n) (Polynomial A),
     Matrix.det (σ : Matrix (Fin n) (Fin n) (Polynomial A)) = 1 →
