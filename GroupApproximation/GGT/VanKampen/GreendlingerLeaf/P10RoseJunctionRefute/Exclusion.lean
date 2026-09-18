@@ -147,4 +147,73 @@ theorem roseJunctionRefute_caseC5 (s₁ s₂ : List roseJunctionRefute_X.toCombM
     exact roseJunctionRefute_tail (e := 0) (f := 12) s₁ s₂ hperm (by decide) (by omega)
       (by omega) rfl (Option.mem_def.mpr rfl) hj₂ hj₃ roseJunctionRefute_endC5b
 
+/-- **No junction witness on the pocket `roseJunctionRefute_pK`.** -/
+theorem roseJunctionRefute_noWitness (r : roseJunctionRefute_X.toCombMap.Dart)
+    (hrout : ∀ x, roseJunctionRefute_X.toCombMap.faceOf x = roseJunctionRefute_X.outerFace →
+      ¬Relation.EqvGen roseJunctionRefute_stepRel r x)
+    (source kept : Fin roseJunctionRefute_X.rCellCount)
+    (hsource : (Embedded.cell roseJunctionRefute_X source).face ∉ roseJunctionRefute_flipF r)
+    (hkept : (Embedded.cell roseJunctionRefute_X kept).face ∈ roseJunctionRefute_flipF r)
+    (t₁ : Embedded.CyclicArc (Embedded.cellDarts roseJunctionRefute_X source))
+    (t₂ : Embedded.CyclicArc (Embedded.outerDarts roseJunctionRefute_X))
+    (s₁ s₂ : List roseJunctionRefute_X.toCombMap.Dart)
+    (hperm : (s₁ ++ Embedded.invDarts roseJunctionRefute_X t₁.darts ++ s₂ ++ t₂.darts).Perm
+      (roseJunctionRefute_pK.boundary.cycle.filter
+        (P10Rose.FilterMove.movePred roseJunctionRefute_X.toCombMap (roseJunctionRefute_col r))))
+    (hL : (s₁ ++ Embedded.invDarts roseJunctionRefute_X t₁.darts ++ s₂ ++ t₂.darts).IsChain
+      roseJunctionRefute_R)
+    (hj₂ : ∀ a ∈ (s₁ ++ Embedded.invDarts roseJunctionRefute_X t₁.darts).getLast?,
+      ∀ b ∈ s₂.head?, roseJunctionRefute_R a b)
+    (hj₃ : ∀ a ∈ (s₁ ++ Embedded.invDarts roseJunctionRefute_X t₁.darts ++ s₂).getLast?,
+      ∀ b ∈ t₂.darts.head?, roseJunctionRefute_R a b)
+    (hs₁ : s₁.length ≤ 1) (hs₂ : s₂.length ≤ 1) (hhi : t₂.start.1 + t₂.length ≤ 5)
+    (ht₁ : t₁.length < (Embedded.cellDarts roseJunctionRefute_X source).length) : False := by
+  have hsix : ∀ c : Fin 6, c = 0 ∨ c = 1 ∨ c = 2 ∨ c = 3 ∨ c = 4 ∨ c = 5 := by decide
+  rcases hsix (roseJunctionRefute_cid r) with hc | hc | hc | hc | hc | hc
+  · rcases roseJunctionRefute_cell_cases kept with rfl | rfl
+    · exact absurd (hc.symm.trans ((roseJunctionRefute_flipS r).mp hkept)) (by decide)
+    · exact (roseJunctionRefute_flipK r).mp hkept hc
+  · exact hrout 9 ((roseJunctionRefute_faceOf_eq_face 9 5).mpr (by decide))
+      ((roseJunctionRefute_eqvGen_iff r 9).mpr (hc.trans (by decide)))
+  · exact roseJunctionRefute_caseIso 4 hL
+      ((roseJunctionRefute_permF hc hperm).trans (List.Perm.of_eq roseJunctionRefute_filtC2))
+      (by decide) (by decide) (by decide) roseJunctionRefute_isoC2
+  · rcases roseJunctionRefute_cell_cases source with rfl | rfl
+    · have hC : (Embedded.cellDarts roseJunctionRefute_X roseJunctionRefute_iS).length = 7 :=
+        congrArg List.length roseJunctionRefute_cellDarts
+      have hw1 : Embedded.invDarts roseJunctionRefute_X t₁.darts =
+          roseJunctionRefute_win1 t₁.start.1 t₁.length :=
+        congrArg (Embedded.invDarts roseJunctionRefute_X)
+          (roseJunctionRefute_arcDarts roseJunctionRefute_cellDarts t₁)
+      have hw2 : t₂.darts = roseJunctionRefute_win2 t₂.start.1 t₂.length :=
+        roseJunctionRefute_arcDarts roseJunctionRefute_outerDarts t₂
+      have hp :=
+        (roseJunctionRefute_permF hc hperm).trans (List.Perm.of_eq roseJunctionRefute_filtC3)
+      rw [hw1, hw2] at hp
+      rw [hw1] at hj₂
+      rw [hw1, hw2] at hj₃
+      have hn := t₁.start.2
+      exact roseJunctionRefute_caseC3 s₁ s₂ _ _ _ _ (by omega) (by omega) hhi hp hs₁ hs₂ hj₂ hj₃
+    · exact absurd ((roseJunctionRefute_flipK r).mpr (by rw [hc]; decide)) hsource
+  · exact roseJunctionRefute_caseIso 10 hL
+      ((roseJunctionRefute_permF hc hperm).trans (List.Perm.of_eq roseJunctionRefute_filtC4))
+      (by decide) (by decide) (by decide) roseJunctionRefute_isoC4
+  · rcases roseJunctionRefute_cell_cases source with rfl | rfl
+    · have hC : (Embedded.cellDarts roseJunctionRefute_X roseJunctionRefute_iS).length = 7 :=
+        congrArg List.length roseJunctionRefute_cellDarts
+      have hw1 : Embedded.invDarts roseJunctionRefute_X t₁.darts =
+          roseJunctionRefute_win1 t₁.start.1 t₁.length :=
+        congrArg (Embedded.invDarts roseJunctionRefute_X)
+          (roseJunctionRefute_arcDarts roseJunctionRefute_cellDarts t₁)
+      have hw2 : t₂.darts = roseJunctionRefute_win2 t₂.start.1 t₂.length :=
+        roseJunctionRefute_arcDarts roseJunctionRefute_outerDarts t₂
+      have hp :=
+        (roseJunctionRefute_permF hc hperm).trans (List.Perm.of_eq roseJunctionRefute_filtC5)
+      rw [hw1, hw2] at hp
+      rw [hw1] at hj₂
+      rw [hw1, hw2] at hj₃
+      have hn := t₁.start.2
+      exact roseJunctionRefute_caseC5 s₁ s₂ _ _ _ _ (by omega) (by omega) hhi hp hs₁ hs₂ hj₂ hj₃
+    · exact absurd ((roseJunctionRefute_flipK r).mpr (by rw [hc]; decide)) hsource
+
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf
