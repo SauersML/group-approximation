@@ -69,8 +69,8 @@ theorem surjStabFactor_conj_rowSum_single (w : Fin n → R) (i : Fin n) (hw : w 
       · rw [map_mul (stab n R) g, map_inv (stab n R)]
         exact (hg k hk b').mul_left (surjStabFactor_commute_row i j k hij hk (a * w j) b').inv_left
       · calc _ = padRow (Pi.single j (w j)) *
-              (padRow (∑ j ∈ s, Pi.single j (w j)) * padCol (Pi.single i a) *
-                (padRow (∑ j ∈ s, Pi.single j (w j)))⁻¹) * (padRow (Pi.single j (w j)))⁻¹ := by
+              (padRow (∑ l ∈ s, Pi.single l (w l)) * padCol (Pi.single i a) *
+                (padRow (∑ l ∈ s, Pi.single l (w l)))⁻¹) * (padRow (Pi.single j (w j)))⁻¹ := by
               simp only [mul_assoc]
           _ = padRow (Pi.single j (w j)) * (stab n R g * padCol (Pi.single i a)) *
               (padRow (Pi.single j (w j)))⁻¹ := by rw [he]

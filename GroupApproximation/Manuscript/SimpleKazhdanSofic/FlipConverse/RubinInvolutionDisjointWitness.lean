@@ -40,7 +40,7 @@ theorem rubinInvDisj_exists_supportedIn_sq_ne [CompactSpace X] [T2Space X]
   have hσσ' : ∀ z, σ (σ z) = z := fun z => DFunLike.congr_fun hσσ z
   refine ⟨σ * τ, Subgroup.mul_mem _ hσ hτ, fun z hz => ?_, ?_⟩
   · show σ (τ z) = z
-    rw [hτW z fun hz' => hz hz'.1.1, hσW z hz]
+    rw [hτW z (fun hz' => hz hz'.1.1), hσW z hz]
   · show σ (τ (σ (τ x))) ≠ x
     rw [hτσy, hσσ']
     exact hτx
