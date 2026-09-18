@@ -150,3 +150,14 @@ None recorded before 2026-09-17.
      embeddable group suffices for infinitely many `n`; open form
      `psl-n-q-maps-nontrivially-to-fp-simple-groups`.
    - Borel side: `borel-two-q-is-units-times-aff-q` (`B_2(Q) = Q^x x Aff(Q)`).
+
+6. **VA-pattern finite germ extensions of Higman–Thompson groups, 2026-09-17: dead for every n >= 3, for every
+   embedding.** `normal-germ-extensions-of-thompson-v-contain-no-sl3z` (lane gq-germ-design). By property FW,
+   `SL_3(Z)` fixes a vertex of the Belk–Hyde–Matucci germ cube complex. Margulis's normal subgroup theorem then
+   embeds a finite-index subgroup into a finite product of germ groups (Theorem A, no hypothesis on the germs).
+   When every singular germ group contains `(V)_p` with finite index, or normalizes it at a periodic point, the
+   germ groups are abelian-by-(subgroups of `V`), and Higman's nilpotent theorem finishes (Theorem B). This
+   covers `VA`, bounded-automata Röver–Nekrashevych groups, and the regime of the Belk–Hyde–Matucci Corollary
+   2.10. A host for `n >= 3` needs aperiodic, non-normalizing (shell-type) germs whose finite products contain
+   finite-index subgroups of `SL_3(Z)`. In the VA-pattern regime the germ groups also carry no `BS(1,2)`, so
+   the distortion required by O4 cannot live in them either. `n = 2` stays open outside `VA`.
