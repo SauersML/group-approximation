@@ -115,6 +115,18 @@ The move list is the one printed in Shehper et al., arXiv:2408.15332v2,
      - The same computation kills first-relator routes in rank 2. Together with Attempt 5,
        both one-relator families are closed.
    - *Search.* `experiments/ak3-thick-z-pair-search-2026-09-17/thzsearch.c` tests the
+     primitive, thickenable and projection goals together.
+     - Rank 3: the AK(3) component in F_3 with total length ≤ 24 is exhausted. It has
+       280213 pairs, and 561002 Neuwirth tests leave none undecided. It contains no goal
+       (`ak3-rank3-caps14-22.log`, `ak3-rank3-cap24.log`).
+     - Rank 2: the AK(3) component in F_2 with total length ≤ 24 is exhausted. It has
+       261720 presentations, none primitive and none thickenable
+       (`ak3-rank2-caps14-24.log`). By Lackenby Thm 1.3 a thickenable member would make
+       AK(3) AC-trivial.
+   - *Denial 3: relator length need not be the search cost.* Guide the search by the genus
+     defect of the link-graph surface instead (`thzbest.c`, `thick2g.c`).
+   - **What is left.** A certificate must change both relators beyond conjugation, and in
+     this move graph it must pass through total length above 24, in rank 2 and in rank 3.
      primitive, thickenable and projection goals together. The AK(3) component in F_3
      (total length ≤ 22, 42161 pairs, 84442 Neuwirth tests, none undecided) contains no
      goal (`ak3-rank3-caps14-22.log`).
