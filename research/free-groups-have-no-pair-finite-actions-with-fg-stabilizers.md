@@ -81,3 +81,12 @@ generated. ∎
   have no type (A) actions on infinite sets either.
 - It is consistent with BFFHZ: free groups are in the permutational class only through
   overgroups (for example `F_2 ≤ V`), never as their own actors.
+
+## Lesson for general BH
+
+A type (A) actor needs a finitely generated infinite-index subgroup with finitely many double
+cosets. Free groups, and plausibly any hyperbolic group with quasiconvex point stabilizers, have
+none: folding shows that `H g_n H` grow without bound. So the permutational class `B_A` is not
+"actor-closed". Hyperbolic and virtually free inputs enter `B_A` only through overgroups whose
+stabilizers are far from quasiconvex (RSGs, `V`). General PBH constructions must therefore produce
+new actors rather than find actions of the inputs themselves.
