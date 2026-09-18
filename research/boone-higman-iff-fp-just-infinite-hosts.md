@@ -32,5 +32,29 @@ equivalence they were host engines only for inputs that happen to lie in lattice
 already. The new route consuming this is
 `boone-higman-via-bader-shalom-lattice-hosts`.
 
+**Also printed (added 2026-09-18, lane bh-openq-papers).** arXiv:2512.24266v3, *On the word
+problem for just infinite groups*, Introduction, after its Theorem 2.1 (TeX l.123–128): "Does a
+finitely generated group G have a decidable word problem if and only if G can be embedded
+into finitely presented just infinite group?" It is posed there as a weakened version of the
+Boone–Higman conjecture. The authors prove the "if" direction: finitely generated just
+infinite groups with recursively enumerable presentations have decidable word problem. By
+the equivalence above, the printed question is equivalent to Boone–Higman.
+
+**Per-input refinement (lane remark).** For a single finitely generated input `G` that is not
+residually finite, any finitely presented just-infinite host is virtually `S^k` with `S`
+finitely presented, infinite and simple. By the trichotomy that paper quotes (l.64: branch,
+or virtually `L^k` with `L` simple or hereditarily just infinite):
+- branch groups and residually finite hereditarily just-infinite groups give residually
+  finite hosts;
+- a hereditarily just-infinite group that is not residually finite has its finite residual
+  simple and of finite index;
+- `S` is finitely presented as a retract of the finite-index subgroup `S^k`.
+
+So the just-infinite relaxation gains room only for residually finite inputs.
+
+**Lesson for general BH.** Relaxing "simple" to "just infinite" moves only the
+residually finite inputs. Every input that is not residually finite still needs a
+finitely presented simple group, up to finite index and finite powers.
+
 DERIVATION
 boone-higman-iff-fp-just-infinite-hosts-proof
