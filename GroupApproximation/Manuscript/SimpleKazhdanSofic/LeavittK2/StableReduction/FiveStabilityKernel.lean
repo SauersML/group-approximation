@@ -39,7 +39,8 @@ theorem fiveStability_mem_K2_of_refineHom_eq_one {n : ℕ} (r : Fin n)
     exact Subgroup.one_mem _
   exact LeavittFP.mem_K2_of_refineHom_mem L r h1
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_mem_K2_of_refineHom_eq_one
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_mem_K2_of_refineHom_eq_one
 
 /-- **`ker D ≤ ⁅St_n, ker D⁆`** for `n ≥ 4` with a spare index.  The Kervaire lift of the
 identity of `St_{n+1}(R)` into `St_n(R) ⧸ ⁅St_n, ker D⁆`, composed with `D`, is the quotient map
@@ -67,7 +68,8 @@ theorem fiveStability_refineHom_ker_le_relCommutator {n : ℕ} (hn : 4 ≤ n) (r
     MonoidHom.mem_ker.mpr hq
   rwa [QuotientGroup.ker_mk'] at hmem
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineHom_ker_le_relCommutator
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_refineHom_ker_le_relCommutator
 
 /-- **Padding kills `ker D`.**  For `n ≥ 4` with a spare index, an element killed by the Leavitt
 refinement is killed by padding `St_n(R) → St_{n+1}(R)`.  Padding sends `K₂(n)` into the centre
@@ -88,7 +90,8 @@ theorem fiveStability_indexMap_eq_one_of_refineHom_eq_one {n : ℕ} (hn : 4 ≤ 
   exact MonoidHom.mem_ker.mp
     (hle (fiveStability_refineHom_ker_le_relCommutator L hn r k hk (MonoidHom.mem_ker.mpr hw)))
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_indexMap_eq_one_of_refineHom_eq_one
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_indexMap_eq_one_of_refineHom_eq_one
 
 /-- **`D` is injective when `K₂(n)` is central.**  For `n ≥ 4` with a spare index, the identity
 of `St_n(R)` is central on `ker D ≤ K₂(n)`, so it kills `⁅St_n, ker D⁆ ⊇ ker D`. -/
@@ -104,7 +107,8 @@ theorem fiveStability_eq_one_of_refineHom_eq_one {n : ℕ} (hn : 4 ≤ n) (r k :
   exact MonoidHom.mem_ker.mp
     (hle (fiveStability_refineHom_ker_le_relCommutator L hn r k hk (MonoidHom.mem_ker.mpr hw)))
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_eq_one_of_refineHom_eq_one
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_eq_one_of_refineHom_eq_one
 
 include L in
 /-- **Centrality of `K₂` climbs one rank.**  `D` maps `K₂(n)` onto `K₂(n + 1)` and is onto, so a
@@ -121,6 +125,7 @@ theorem fiveStability_K2_le_center_succ {n : ℕ} (r k : Fin n) (hk : k ≠ r)
   have e := congrArg (LeavittFP.refineHom L r) (Subgroup.mem_center_iff.mp (hC hw) g')
   simpa only [map_mul] using e
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_K2_le_center_succ
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.fiveStability_K2_le_center_succ
 
 end GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2

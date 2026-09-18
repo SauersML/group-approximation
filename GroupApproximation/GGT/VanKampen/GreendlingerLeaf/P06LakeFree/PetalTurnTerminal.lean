@@ -6,7 +6,7 @@ import GroupApproximation.Meta.AxiomGuard
 # Greendlinger leaf P06, cactus petal: a closed walk turns or has a bad repeat (lane gl-p06-18)
 
 Infrastructure for `P06LakeFree.PetalTurn.cellPocketLakeFreePetalTurn`
-(`P06LakeFree/PetalTurnStatement.lean`).  Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
+(`P06LakeFree/PetalTurnClose.lean`).  Osin, arXiv:math/0411039v3, §9, proof of Lemma 9.7(b).
 
 ## Truth check
 
