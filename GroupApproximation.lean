@@ -6052,6 +6052,8 @@ import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnHalf.FreeRep
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ExtensionAbsorbAmplifyPos
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesCPAPLeafSchwarz
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionRel
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVExcision.ActionHom
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
