@@ -177,3 +177,54 @@ The host is now `S = F((𝒢⁺ × G_2)|_{Y × {x,y}^ℕ})`, with `𝒢⁺ = I_l
 **Verdict:** PASS on the repair, conditional on the two links no referee has checked: Li's
 `lem:link:n-conn_3` read over `Γ(*)`, and the head and normal-form part of the Garside verification.
 The claim should stay OPEN until those two links are checked.
+
+## Referee A (bh-ref-q115-a, 2026-09-18, independent of referee B): PASS after two repairs, conditional
+
+**Question.** Checked verbatim at source (BBCMP, p. 7): "Question 1.15. Does every virtually
+torsion-free cubulated group admit an embedding into a finitely presented simple group?"
+- A bounded web search found no prior answer.
+- Credit: BBCMP's Theorems 1.13–1.14 (Niblo–Reeves normal cube paths and the Roller boundary)
+  are the starting point. The machinery is Li's (arXiv:2110.04505, 2209.08087), Matui's,
+  Niblo–Reeves's, Roller's and Witzel's.
+
+1. **Weakest link: Li's `lem:link:n-conn_3` over `Γ(*)`.** Li's text does not prove it. His
+   proof never distinguishes `Γ` from `Γ(*)`, so the counterexample to the literal reading
+   exposes a gap in his written argument.
+   - *Repaired.* For the pure-hole Cuntz datum there is a direct proof: eventual downward
+     closure of the reachable multisets (Dickson's lemma) plus a doubling atom. See the
+     Referee A section of `cuntz-stabilized-garside-full-groups-f-infinity-proof`.
+   - This repair needs one more check.
+2. **Li's hypotheses for `C⁺`: no error found.** I checked:
+   - Lemma C;
+   - the lcm formula;
+   - heads: the stated head is the lcm of all one-step left divisors and is itself a left
+     divisor;
+   - closure under right divisors;
+   - norms: Niblo–Reeves length is monotone on intervals, so `(𝔖^{≤L})^♯` is closed under
+     left divisors;
+   - the maximal-character list on `X_∞`, after referee B's sink repair;
+   - the germ formula (item 3).
+3. **Li's Corollary D and Matui's `simple2`: hypotheses hold** on `(𝒢⁺ × G_2)|_{Y×C}`.
+   - The groupoid is ample, Hausdorff and effective: on the cylinder of `μ`, `λμ^{-1}` acts as
+     `g^{-1} ≠ 1`, and (TF) applies.
+   - The unit space is Cantor.
+   - The groupoid is minimal and purely infinite, hence has comparison.
+   - `H_* = 0` by Matui's Künneth formula, since `H_*(G_2) = 0`.
+4. **Embedding: correct.**
+   - `G ≤ G' = G*F_r`, via the retraction `K' → K`.
+   - `G' ↪ F(𝒢⁺|_Y)` by item 3 and (TF). Edge stabilizers are trivial because `G'` is
+     torsion-free.
+   - Then `g ↦ g × id`.
+   - The finite-extension step is correct: Krasner–Kaloujnine, with `S ≀ Q ≤ S` via a prefix
+     code.
+5. **New gap: Lemma E is false as stated** (holes with witness walls beyond the first cube).
+   - *Repaired* by Lemma E′; see the Referee A note in
+     `torsion-free-cubulated-f-infinity-simple-host-proof`.
+   - (TF), (Acyc) and minimality go through with it.
+
+**Verdict: PASS, conditional on:**
+- (a) a check of the two repairs above;
+- (b) the imports: Li's `lem:link:n-conn_1`, the deduction of `_2` from `_3`, Witzel's
+  criterion, Li's Corollary D, and Matui's `simple2` and Künneth formula.
+
+Keep the node OPEN until (a) is done. With (a), both referees give conditional PASS.

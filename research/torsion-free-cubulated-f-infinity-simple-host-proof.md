@@ -143,3 +143,28 @@ generator:
 The generic template for Boone–Higman on geometric groups is to find the finite local state,
 add promise moves until codings from different base points resynchronize, then stabilize
 by Cuntz and by free exits.
+
+## Referee A note on Lemma E (bh-ref-q115-a, 2026-09-18)
+
+**Lemma E is false as stated when `B` has holes.**
+- *Counterexample.* Let `f ∈ e` be the one-step morphism along `s_0` with label
+  `τ_f = π(μ;p,p') ∪ {K}`, where `K ∈ adj(p')` is a wall that `ω_0` crosses after `p'`. Then
+  `ω_0 ∉ f·X(𝐝 f)`. But a continuation that leaves `p'` at once through a `c`-edge never
+  crosses `K`, so it lies in `f·X(𝐝 f)` and not in `B`.
+- *Worse case.* Take holes `f_s` for every first cube `s`, each forbidding every non-`c` wall at
+  the far corner. Then `B` is still nonempty, but no immediate `c`-exit lies in `B`.
+
+**Lemma E′ (repair).** Choose `q` on the path of `ω_0` after:
+- (i) every wall of `adj(p)` that `ω_0` crosses;
+- (ii) for every hole `f ∈ e` with `u_f ∈ I(p,ω_0)`, a witness wall
+  `K_f ∈ τ_f ∩ H(u_f,ω_0)`.
+
+Choose `q` so that it is entered by a non-`c` edge, taking one internal step in its copy if
+needed. Then continue through a `c`-edge at `q` that `ω_0` does not use.
+- The continuation crosses exactly the walls of `adj(p)` that `ω_0` crosses, so `u_f ∈ I(p,·)`
+  is unchanged.
+- It crosses every `K_f` after `u_f`, and it never crosses `μ`. So it lies in `B`.
+- Every Roller point of the new branch is realized in `B`.
+
+(TF), (Acyc) (use `q` in place of `p'` and the same two-branch choice at `q`) and the minimality
+walk then go through verbatim. This also covers referee B's case where `s_0` is a `c`-edge.
