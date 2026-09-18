@@ -441,3 +441,26 @@ hole.
     CE trace of `P` outside the closed, convex, product-closed set `N` by a mechanism that is not a limit of inherited
     traces.
   - Or exhibit a sequence of CE traces in `N` whose limit charges the head on the mirror-exact face.
+
+**Template concentration for the head (swarm-0917-w9-w9-nh-follow, 2026-09-18, family finite-models).** Landed as
+`jacobson-head-concentrates-on-template-constituents` (established, unreviewed). It closes the "unbounded products"
+survivor of `jacobson-head-dies-in-gapped-finite-group-models`.
+- *Statement.* Take any finite-group model `c·ρ∘φ` of a group receiving `St_4(J)`, with any finite `G`, any `ρ` and
+  any scalar cochain `c`. Then `‖π(z) - 1‖_2 <= K def + 2 sqrt(p_T)`, where `p_T` is the weight of template
+  constituents of `ρ|G^(L)`: those in which every `St_4(J)`-relator has character ratio `> θ` and some relator is not
+  a scalar. This holds for every `L`, `θ < 1`.
+- *Death step.* Push the generators into `G^(L)` by commutator words. Their zero exponent sums cancel `c`. Then split
+  constituent by constituent:
+  - if every relator is scalar, `St_4(J)` has a finite projective image, which kills `x_12(Q)`, so the head is exactly `1`;
+  - if some relator is `θ`-far from scalar, that costs `sqrt(2(1-θ))` of defect.
+- *Kills.* Every model through `∏ GL_{N_i}(q_i)`, with any number of factors, ranks and fields (including `q > 2`),
+  through their bounded-derived-length extensions, or through quotients of products of quasi-simple classical and
+  abelian groups. This includes tensor products and direct sums of truncation models at unboundedly many levels.
+- *Where it stops (hole stays OPEN).* A finite-group certificate of `EL_20(J)` that sees the head needs
+  `liminf p_T >= (1 - Re τ(z))/2` at every depth. Its mass must sit on non-gapped constituents of subgroups, such as
+  alternating deleted permutation modules. Unitary models that are not scalar multiples of finite-group representation
+  images are untouched.
+- **Next falsifiable step.** Decide whether the template constituents of `G^(L)`, taken for all `L` at once, can be
+  forced into bounded-dimension constituents (where `bounded-dimension-jacobson-head-has-algebraic-collapse` applies) or
+  into `A_m`-type primitive constituents (`template-constituents-primitive-or-small-minimal-degree`). For the latter,
+  test the head against `A_m` acting on `m`-point configurations of the Toeplitz truncation.
