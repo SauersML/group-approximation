@@ -122,8 +122,9 @@ theorem k2PolyDeg_eq_one_of_extension {K : Finset I} {m L n : I} (hmL : m ≠ L)
       (Subgroup.one_mem _) (fun _ _ _ _ h1 h2 => Subgroup.mul_mem _ h1 h2) hz
     intro i j hij a hq
     show x i j hij a ∈ k2PolyDeg_fixSub projection (k2PolyDeg_G p K L) Φ
-    have hq1 : i ∈ insert L K := hq.1
-    have hq2 : j ∈ insert L K := hq.2
+    have hq' : i ∈ insert L K ∧ j ∈ insert L K := hq
+    have hq1 : i ∈ insert L K := hq'.1
+    have hq2 : j ∈ insert L K := hq'.2
     have hxG : x i j hij a ∈ k2PolyDeg_G p K L :=
       x_mem_rootSpan (p := fun i j => i ∈ insert L K ∧ j ∈ insert L K) hij a ⟨hq1, hq2⟩
     by_cases hj : j ∈ K
