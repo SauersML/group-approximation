@@ -145,3 +145,19 @@ presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
       `normal-kazhdan-defect-non-mf`.
     So the criterion does not yet produce an exact Kazhdan radical here.  The surviving routes
     need non-infranormal sources or a compressor of nonzero degree.
+- **2026-09-18, swarm-0917-w12-w12-titz-last1 (reframer, reframing).  Status: OPEN.**
+  - New ESTABLISHED dichotomy `permanence-closure-radical-witnesses-have-lef-kernels`. For every
+    witness, `G` lies in the sofic permanence closure `𝒫` iff `K` lies in some member of `𝒫` iff `K`
+    is LEF.
+  - When this holds, `K` is MF with `Rad_MF(K)=1`. The witness is then of extrinsic type (DX) with
+    `Q=K`, `K` is not finitely presented, `G` is not LEF, and `(K,phi)` refutes (EKL1).
+  - Class kill: no intrinsic full-radical kernel can get its soficity from `𝒫`. This covers (P1) of
+    the automorphic route, the arithmetic saturated group and a non-MF Titz--Witzel kernel. The
+    invariant is LEF of Kazhdan subgroups, and every member dies at the step LEF ⇒ MF.
+  - Decomposition: goal ⇔ (W_lef) or (W_out).
+    - (W_lef) is the new route `torsion-free-sofic-exact-mf-radical-via-lef-kernel`. Its only open
+      prerequisite is `torsion-free-lef-kazhdan-kernel-with-exact-mapping-torus-radical`, and there
+      soficity is free. That claim needs (L1) a torsion-free quotientless LEF Kazhdan group, (L2)
+      failure of (EKL1), and (L3) a finite automorphic presentation of a non-finitely-presented kernel.
+    - (W_out) needs a non-LEF sofic Kazhdan kernel certified outside `𝒫`.
+  - Consequence: (EKL1) holds iff no witness lies in `𝒫`.
