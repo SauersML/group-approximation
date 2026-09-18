@@ -54,6 +54,24 @@ so `[x^a, y^b] = z^{ab}` and `Z(U_3(Q)) = [U_3(Q), U_3(Q)] = z^Q ≅ (Q,+)`.
   must already lie in the top group.
 - **Circle groups, even with Q in the base**: see Attempt 1. `U_3(Q)/⟨z⟩` has no
   faithful action by orientation-preserving circle homeomorphisms.
+- **Rational-slope germ groups**: `rational-slope-germ-groups-have-bs-but-no-heisenberg`.
+  Every nilpotent subgroup of the germ group `E` (germs at `+∞` of dyadic PL maps
+  with `φ(y+q) = φ(y)+r`) is abelian, although `E` contains every `BS(1,m)`. So no
+  germ group of `VA` type or rational-slope type carries even `H_3(Z)`. Whether a
+  germ extension of `V` by such germs could hold `H_3(Z)` through its `V`-part is
+  not decided there.
+- **Nilmanifold covering lifts** (`H_3(R) -> H_3(R)/H_3(Z)`, deck group `H_3(Z)`):
+  by `lifts-add-no-unipotent-divisibility` the base group must already contain
+  `(Q,+)`. This is test T5 of `research/artifacts/gq-gq-calibration-worlds.md`.
+
+**Not excluded: towers of two lifts.** `q-free-lifts-reach-only-lattice-affine-q-groups`
+part (C): `U_3(Q)` has the normal series
+`e_13(Z) < {(a,b,c) : a,b ∈ Z, c ∈ Q} < U_3(Q)` whose factors `Z`,
+`Z^2 x Q/Z` and `(Q/Z)^2` contain no `(Q,+)`. So
+`lifts-add-no-unipotent-divisibility` excludes `U_3(Q)` only in its fixed
+three-step shape. Towers of two lifts over groups without `(Q,+)` stay open for
+`U_3(Q)`. Part (A) of that node excludes them for `Aff(Q)`, `B_2(Q)` and
+`GL_n(Q)` through the dilation.
 
 ## Brin–Thompson hosts
 
