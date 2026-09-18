@@ -10,7 +10,7 @@ artifacts:
   - research/artifacts/gq-bh-bh-free-11-ct-p-z-second-proof.md
 ---
 
-**ESTABLISHED** (lane proof, not reviewed). No priority is claimed. For finite `P`, an
+**ESTABLISHED** (lane proof; one adversarial referee PASS with minor gaps, bh-ref-kourovka-a 09-18, see Referee). No priority is claimed. For finite `P`, an
 independent second proof with a different, one-germ invariant (continuous eigenvalues of
 the rotation a single isotropy germ induces on its stable core) is in
 `research/artifacts/gq-bh-bh-free-11-ct-p-z-second-proof.md`.
@@ -178,3 +178,79 @@ same prime. So `P' = Q'`, and `P = Q`, since `P` and `Q` consist of odd primes.
 - Related Kourovka problems, recorded in `research/artifacts/gq-bh-bh-kourovka-problems.md`:
   - 17.57 (`Out(CT(Z)) = C_2`?);
   - 21.73 and 21.74 (decision problems in `CT(Z)`).
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS for Kourovka 17.60, with three minor presentation gaps
+
+**Verdict.** The answer to Kourovka 17.60 is correct. The groups `CT_P(Z)` are pairwise
+non-isomorphic for all sets `P` of odd primes, finite or infinite. The printed question
+(17th issue, S. Kohl; still unmarked, i.e. open, in the 21st issue) is exactly what is answered.
+
+**Citations checked at source.** Matui arXiv:1210.5800, TeX, `gq/src/bh-ref-kourovka-a/`:
+- the standing assumption (l. 347): groupoids are second countable, locally compact and Hausdorff;
+- Definition `F` (class F, conditions F0–F3);
+- Theorem `spatial`: an isomorphism of class-F groups on Cantor sets is spatial;
+- Proposition `tfg=F`: for essentially principal, minimal, étale groupoids with Cantor unit space,
+  every `Γ ⊇ D([[G]])` is of class F;
+- the lemma before `spatial>iso`: if every orbit has at least 3 points, every groupoid element lies
+  in a compact open G-set `U` with `π_U ∈ D([[G]])`.
+
+All are used exactly as stated.
+
+**Item 3 of the parent.** It is load-bearing: it gives `F_P ≅ CT_P(Z)`, and so the germ groups.
+It now has two proofs. One is the groupoid route (Matui `simple2`, Li `cor:AHConj`, FKPS); it was
+not re-checked here. The other is the elementary `piecewise-canonical-permutations-are-transposition-products`
+(0e0c97d15). I read the elementary proof through and found no gap. The lemmas are: natural
+representatives, free bijection, transport, exchange, commutation, cancellation, and the type
+count `(2, {(3p−2)·2, p·p})` for both `u^x` and `v^x`. That reading is not a full referee pass.
+
+**Checked, no gap found.**
+- **Setup.** Boxes are clopen, `B ∩ Z = r(m)`, and canonical maps restrict canonically.
+  Restriction to the dense orbit `Z` is injective.
+- **Step 2.**
+  - At a non-rational `y`, `T_m(y) = T_{m'}(y)` forces `m = m'`. Coordinatewise in `Q_p` it forces
+    one rational value, with denominator prime to `P'`.
+  - At `y = c/b`, `|c'| ≤ |c|/p + b` gives eventual periodicity, so `p^t ∈ Γ_y`, using
+    `T_{p^n} = T_p^n`.
+- **Step 3.**
+  - `W(γ)` is the coordinate subspace on `{p : v_p(γ) > 0}`.
+  - The atoms are the axes, and each occurs via `q^t`.
+  - `H_q = {v_q = 0}`.
+  - The orbit space of `g_1` on the punctured axis is `c` shells `q^j Z_q^×`, with `H_q` acting
+    through `ρ`.
+- **Step 4.**
+  - `K ⊇ 1 + q^a Z_q`, including for `q = 2`, where `1 + 4Z_2 ≅ Z_2`.
+  - Minimal sets are the cosets `xK`, and continuous eigenvalues are `K^` via `χ ∘ ρ`.
+  - The `q`-primary part surjects onto `Q_q/Z_q`. For `ℓ ≠ q`, the `ℓ`-primary part lies in the
+    finite group `(K/(1+q^aZ_q))^`.
+- **Conclusion.** The case `|P'| = 1` and infinite `P` are both fine.
+
+**Gaps (all minor; none affects the result).**
+1. **Standing assumptions for infinite `P`.** Matui's standing assumptions (Hausdorff, second
+   countable) are verified in the parent only for finite `P`. For infinite `P` they hold as well:
+   - Countably many boxes gives second countability.
+   - A box map with `γ ≠ 1` has at most one fixed point, since `(1−γ)x = r − γr'` has at most one
+     solution in `X_P`. So the interior of every fixed-point set is empty or the whole domain,
+     hence closed, and the germ groupoid is Hausdorff.
+
+   One sentence should say this.
+2. **The germ of `W_V`.** The node should say why the germ at `y` of `W_V(g)` does not depend on
+   the clopen `V` inside the domain where `g` is linear. Stable points near `y` have
+   non-decreasing valuations, so they never leave a small box, and convergence forces `u_p = 0` on
+   the non-contracting coordinates. On the `Q` side, take `V` so small that `φ(V)` also lies in
+   the domain where `φgφ^{-1}` is linear.
+3. **The shell quotient.** It should be read at the germ level. Every `g_1`-orbit has points
+   arbitrarily close to `y`, and `h ∈ H_q` acts on an orbit by applying `h` to a representative
+   inside `h`'s domain. This is what makes the `H_q`-space intrinsic when `H_q` has elements with
+   different domains, for instance when `P` is infinite.
+
+**Remark.** Step 1 also follows from Rubin's theorem (Belk–Elliott–Matucci, arXiv:2203.05930,
+read). `CT_P(Z)` acts faithfully on the Cantor set `X_P`, and the action is locally dense: class
+transpositions among sub-boxes of a box `B ⊆ U` move a point of `B` into every deep sub-box of
+`B`. So Matui is not needed for spatiality. Item 3 is still needed in Step 2, to know that the
+germ group of `CT_P(Z)` at `y` is all of `Γ_y`.
+
+**Not reviewed here.** The second proof in `gq-bh-bh-free-11-ct-p-z-second-proof.md`.
+
+**Priority.** The arXiv API search `abs:"class transpositions"` (09-18) found nothing on 17.60.
+The hits were 2409.13341, 2504.08595, 2604.12553, 2607.17477 (Morrison: Kourovka 18.50 and
+others, not 17.60) and 2401.15642.

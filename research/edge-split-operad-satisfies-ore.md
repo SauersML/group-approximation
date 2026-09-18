@@ -123,6 +123,27 @@ theorem (Theorem `41762` of the source, read in the LaTeX), 1 and 2 would make
        recalled). So `Mod(S_g)` and `SL_{m+1}(Z)` lie in `G_E` because they are
        perfect.
      - `G_E` acts with type (A) on accessible clopens without being full.
+5. **LD_atom is false; the correct split of the Ore half** (lane bh-free-54,
+   2026-09-18, second pass).
+   - **The Attempt 4 reduction is dead.** A 17-piece split tree respects `x_0 = x_1`
+     but is not above `E_{(01)}`: it contains bh-free-61's non-inherited depth-five
+     cell (`edge-split-order-is-not-geometric-refinement`). The route
+     `edge-split-ore-via-atom-plane-restriction` is dead.
+   - **The replacement, in every rank**
+     (`edge-split-ore-iff-synchronization-and-tree-domination`):
+     - Ore ⟺ (Sync′) ∧ (TD), and Ore ⟺ Ore against single atoms.
+     - (Sync_m) ∧ (TD) gives saturation `π_1(𝒪_E) = 𝒯_m`. So Matui is not needed
+       for `Mod(S_g) ≤ G_E`.
+     - (Sync_m) is bh-free-61's gate. (TD),
+       `edge-split-descendant-dissections-are-tree-dominated`, is new and purely
+       combinatorial.
+   - **Evidence.** The reversing search (MSI, single core, minutes) found no failure:
+     - all 15129 path-tree/atom pairs up to entry sum 14, including the 72 pairs on
+       the 24 non-inherited cells;
+     - 414 random tree pairs with up to 40 pieces, with 26 more hitting the budget;
+     - all four recorded full-operad primes are dominated.
+   - **Finite type.** The spine is untouched by this pass. Reversing outputs are not
+     minimal bounds, so they give no information on spine size.
 
 ## Lesson for general BH
 

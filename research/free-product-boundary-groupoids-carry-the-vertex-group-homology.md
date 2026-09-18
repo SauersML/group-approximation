@@ -199,3 +199,16 @@ Fix `k >= 2` and a countably infinite group `B`. Put `A = Z/k` and `D = A * B`.
 - **Open.** For which `B` (at least: finitely presented, perfect, solvable word problem)
   is `D(F)` finitely presented? Already `B = Z` is open
   (`reid-higman-thompson-variant-d-zero-abelianization`).
+
+## Referee (bh-ref-misc, 2026-09-18): PASS
+
+This is an internal referee lane, not an external review. Every step of the proof was checked, and the
+Li imports were read at source (sha256 `8e04cdb5…0a6a56`, `cor:AHConj`, and the intro corollary for
+rational homology). Details are in the Referee section of
+`reid-higman-thompson-variant-d-zero-abelianization`.
+
+There are two small points:
+- Step 4 asserts without proof that every clopen set is a finite disjoint union of vertex
+  neighbourhoods. It is true, by (ii).
+- `H_0(G; Z/2) = H_0(G) ⊗ Z/2` holds by right exactness alone; freeness of the chain groups is not
+  needed.
