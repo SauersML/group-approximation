@@ -163,3 +163,28 @@ functional clock: rigid by the downhill theorem, and minimal by boundary complet
 - **What these codings lack is input complexity.** H-blind seeds compute only time mod `q`. The live
   question is v6's CAP: can seeded transport carry a word problem? That requires seeds or transports
   that read the input's data, and whether the downhill theorem survives such reading.
+
+## Referee (bh-ref-kourovka-b, 2026-09-18): PASS
+
+**Verdict: PASS.** I checked every step of lane bh-g2-fixedpoint-b's argument.
+- **Item 1.** Chains end at seeds at finite height, and every `τ ≥ 0` is realized. The base is
+  minimal, so points exist over every non-spine end, and each `R_s` must contain the diagonal of the
+  `β`-cycle of `κ`. Correct.
+- **Item 2.**
+  - *Only if.* `K` is closed and invariant. Spine completions exist for every `ψ ∈ Φ_R`, because
+    off-spine chains never reach the spine, where `{τ = ∞}` is exactly the spine.
+  - *If.* The re-rooting at `u` works: the choice of `r` (using `|S| = 2m ≥ 4`) makes `u` a non-rank-2
+    child. Spine values below `u` match. Off-spine chains in `B_{R_0}` stay below `u`.
+  - Continuity, the orbit argument and topological freeness are correct.
+- **Item 4.**
+  - (a) The bump `(j−a)g` on `[a, a+k]` has increments in `{0, g}`, using `kg = 0`, and far
+    modifications follow.
+  - (b) `Φ_R` is the set of non-decreasing sequences, and any two modification supports lie within
+    distance 1.
+  - (c) `1_{λM}` is admissible, and `w^{-1}a^{-N}b^N w'` is reduced, so the supports are at distance
+    `≥ 2N`.
+
+  All correct.
+
+The reversal recorded on `seeded-transport-codings-over-end-flows-are-quantum-rigid` is justified:
+over the end flow the functional clock is minimal as well as rigid.

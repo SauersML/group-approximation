@@ -44,6 +44,11 @@ For the step, let `t, t_1, t_2` be the three types of `M`.
   and in `x_2`.
 - *Descend.* Apply the induction hypothesis to `C`. `∎`
 
+**Refinement (determining sides).** Suppose the colours on a set `Σ` of sides determine every tile.
+For example, `Σ = {bottom, left}` for SW-deterministic tiles (A4 of
+`minimal-crossing-wire-fixed-point-shift-is-quantum-rigid-proof`). Then complete crossing among the
+bits on the `Σ` sides suffices: a difference of types is already a difference of `Σ`-colours.
+
 ## Theorem
 
 1. **Shared ancestors.** Let `x_1, x_2` be modifications of `x` that share all decompositions with
@@ -71,12 +76,21 @@ For the step, let `t, t_1, t_2` be the three types of `M`.
      input meets the column copy of the other, and it keeps blank corners. So it passes.
    - *Its Busemann transplants.* Preimages of intersecting difference sets intersect, and the
      skeleton is handled by bh-invent-04's transport theorem. So no independent clash can arise.
-   - *The minimal version (49939b957a, bh-g2-fixedpoint-a).* It passes **provided every component of
-     the macrotile side colours that the Durand–Romashchenko minimality adds (variable-zoom data,
-     diversification-slot data) is carried on wires that enter the complete-crossing box.** A side
-     component routed straight into a slot frame, without crossing the other inputs, escapes the
-     Crossing Lemma and is a candidate for separable freedom. That is the one thing to check in its
-     layout.
+   - *The minimal version (49939b957a, bh-g2-fixedpoint-a): checked, it passes.* The check was
+     whether some component of the side colours bypasses the crossing box. Its proof node lists every
+     component that the Durand–Romashchenko minimality adds:
+     - the rank field of DR §2.4, and the (p4) role pattern of the three encoding zones, are both fixed
+       by coordinates, so they are program-like and never differ between types of one position;
+     - every macro-colour bit, including the constant encoding zones, travels on wires that meet by
+       (M1) (A1 there);
+     - the diversification slots are 2×2 blocks forced by skeleton frames whose colours are functions
+       of real coordinates (A3 there), so they are the same in `S(t)` for every type `t` and a type
+       change never touches them.
+
+     The fake coordinates inside slots do not affect the lemma. It compares the real coordinates of a
+     macrotile in its father, which are carried by the connected non-slot skeleton (A2 there). So no
+     side component bypasses the crossing box, and the Crossing Lemma applies at every level of the
+     variable zoom.
 4. **Why crossing is needed (audit).** Without (L3), two changes of different input bits of one
    macrotile change disjoint wire sets. In a zone whose computation *merges* (an irreversible scan
    in which a flipped bit is later forgotten), their zone differences occupy disjoint time windows.
