@@ -53,3 +53,31 @@ into this claim (`brunnian-four-braids-avoid-burau-kernel-via-moody` uses it, an
 - The owner's open claim `brunnian-four-braids-admit-parity-correcting-push` packages what remains
   (parity for both arcs plus unequal counts).
 - Status: OPEN. No citation route may be written while G1 stands.
+- 2026-09-17 (c-burau4, compute-scout; artifacts
+  `experiments/moody-witness-equivalence-2026-09-17/spanning.py` and `cyclotomic_jets.py`, with logs).
+  **Reframing: this hole is the flagship in disguise.**
+  - *Equivalence.* New claim `moody-witness-exists-iff-outside-burau-kernel`, with route
+    `-proof` requiring only established nodes. For every `Φ ∈ B_4`, a witness (with `k = 1`) exists
+    iff `ρ_4(Φ) ≠ I`.
+    - The converse direction uses exact rank certificates. Over `Q(t)`, in every convention
+      variant, the `K_5`-orbit of the α-form column and the `B_4`-orbit of the loop-class row
+      each span `Q(t)^5` together with the fixed vectors of `f(B_4)`, and so do the two mixed
+      orbits.
+    - So a braid whose conjugates change no `𝕄_Γ` has `J(f(Φ)) = I`.
+    - The new route `five-strand-moody-witness-from-brunnian-burau-avoidance` gives
+      target ⟸ `brunnian-four-braids-avoid-burau-kernel`, and the via-moody route gives ⟹.
+    - Consequences: the target is equivalent to Brunnian Burau avoidance, hence to 4-strand Burau
+      faithfulness. The via-moody decomposition is circular, not a reduction. Allowing powers and
+      conjugates (G6) buys nothing, since `k = 1` is equivalent.
+  - *Obstruction.* New claim `brunnian-burau-kernel-mod-cyclotomic-products-nontrivial`. For
+    every fixed product `F` of `Φ_d` with `d ≠ 3`, to any multiplicity, there is a nontrivial
+    Brunnian `X_F` with `𝕄_{f(Φ_0)Γ} ≡ 𝕄_Γ mod F` for all conjugates `Φ_0` of powers of `X_F` and
+    all `Γ ∈ B_5`.
+    - Construction: iterated commutators with `Δ_3^{2d}`, using
+      `ρ_4(Δ_3^{2k}) = I + (t^{3k}−1)P` with `P² = P`. Nontriviality comes from cyclic
+      centralizers in the free group `K_4`.
+    - Every certificate that detects the witness through the residue of `𝕄` modulo a fixed `F`
+      dies on `X_F`: parity (`t = −1`), finite jets at roots of unity, and finite cyclic covers of
+      order prime to 3.
+    - Survivors: moduli that depend on `Φ`, exact computation, and `Φ_3`.
+  - Status stays OPEN (its only live routes need `brunnian-four-braids-avoid-burau-kernel`, or G1).
