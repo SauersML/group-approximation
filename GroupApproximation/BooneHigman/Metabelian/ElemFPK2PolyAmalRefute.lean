@@ -146,6 +146,7 @@ theorem k2PolyAmal_mem_G {K : Finset I} {m L k : I} (hmL : m ≠ L) (hmK : m ∈
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_mem_G
 
+omit [Fact p.Prime] in
 /-- Relation (C1): `a g a⁻¹ = s`. -/
 theorem k2PolyAmal_rel {k L m : I} (hkL : k ≠ L) (hLm : L ≠ m) (hkm : k ≠ m) :
     projection (x k L hkL (Polynomial.C (1 : ZMod p))) *
@@ -157,6 +158,7 @@ theorem k2PolyAmal_rel {k L m : I} (hkL : k ≠ L) (hLm : L ≠ m) (hkm : k ≠ 
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyAmal_rel
 
+include p in
 /-- **The amalgam statement fails as soon as `K` has two elements `k ≠ m`.** -/
 theorem k2PolyAmal_false_of_two (hAm : k2PolyDeg_AmalgamStatement) (K : Finset I)
     (m L n k : I) (hmL : m ≠ L) (hmn : m ≠ n) (hLn : L ≠ n) (hLK : L ∉ K) (hmK : m ∈ K)
