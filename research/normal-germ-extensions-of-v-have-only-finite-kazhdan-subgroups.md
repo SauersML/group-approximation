@@ -9,8 +9,8 @@ distinct_from:
   kazhdan-subgroups-of-rover-nekrashevych-groups-are-rf: that proves Kazhdan subgroups of Rover--Nekrashevych groups residually finite; for bounded automata groups, which lie in this regime, this upgrades residually finite to finite.
 ---
 
-**ESTABLISHED** by `normal-germ-extensions-finite-kazhdan-proof` (lane proof, short, from
-landed nodes; not independently reviewed; no novelty claimed beyond the generalization of
+**ESTABLISHED** by `normal-germ-extensions-finite-kazhdan-proof` (referee-a PASS, research/artifacts/gq-referee-a-kazhdan-almost-v-central-and-normal-germ-extensions.md, bdc9e959c; lane proof, short, from
+landed nodes; citation review by referee-b pending; no novelty claimed beyond the generalization of
 Theorem B of `normal-germ-extensions-of-thompson-v-contain-no-sl3z`).
 
 **Setting.** `V` acts on `C = {0,1}^N`, and `V <= G <= Homeo(C)` is a finite germ
