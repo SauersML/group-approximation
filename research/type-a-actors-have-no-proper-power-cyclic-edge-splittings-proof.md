@@ -6,7 +6,17 @@ title: Edge and vertex groups have finitely many orbits; a finite or proper-powe
 target: type-a-actors-have-no-proper-power-cyclic-edge-splittings
 requires:
   - type-a-actors-split-only-over-orbit-finite-edges
+  - ascending-baumslag-solitar-groups-have-no-type-a-action
 ---
+
+**2026-09-18.** The second prerequisite was added after a referee pass. Parts (a) and (b) of
+the statement, and the `BG`, `BS(|m|,|n| >= 2)`, finite-edge and GBS instances below, are
+proved here from the first prerequisite alone. What needs the second is the claim's advertised
+headline, "`BS(m,n)` with `|m| != |n|` carries no type (A) action": the instance proved below
+requires `|m|, |n| >= 2`, and `BS(1,n)` with `n >= 2` has `|m| != |n|` but is ascending, so its
+Bass-Serre tree has an invariant end and the irreducibility hypothesis of (b) fails. See
+`ascending-baumslag-solitar-groups-have-no-type-a-action` for why no other obstruction in the
+graph covers that case.
 
 Let `G`, `X` and `T` be as in the statement. By (2) of
 `type-a-actors-split-only-over-orbit-finite-edges`, every vertex stabilizer and

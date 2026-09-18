@@ -85,3 +85,14 @@ all of those is not known.
      (Boone--Rogers, through one finitely presented host). No suitable
      non-uniform family is on main. See root Attempts item 20 and
      `research/artifacts/gq-gq-union-obstruct.md` §7.
+5. **Torus amalgams and prime permutations, 2026-09-18 (gq-infinite-primes): dead as actors.**
+   `torus-amalgams-of-adelic-groups-are-not-finitely-presented`. For every finitely generated `B`
+   containing the diagonal, monomial or Borel subgroup `C`, `SL_2(Q) *_C B` is not finitely presented.
+   The relations `t_p^-1 x_21(1) t_p = x_21(1)^(p^2)` fail at every finite stage of the `S`-arithmetic
+   filtration.
+   - This covers the prime-shift groups for every prime-permuting group `H`. That includes Thompson's `T`
+     acting 2-transitively on the primes, where the metabelian obstruction of
+     `prime-shift-kn-fp-reduces-to-a-metabelian-quotient` is absent (Cornulier).
+   - So a prime-mixing actor for Attempt 3 must derive the Baumslag--Solitar relations at almost all primes
+     from finitely many relations. Conjugating the torus carries the `p`-relation to a `p`-relation, never
+     to the `q`-relation.

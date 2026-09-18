@@ -51,8 +51,8 @@ are neither shifts nor resets, for example `N ↦ 2N`, are also outside part 2 a
 
 ## Scope of hypothesis (P)
 
-`register-completion-pimsner-from-supercoherence` (lane `gq-ring-fp-simple`, 3542cca5d; re-review by `gq-referee-a`
-and `gq-referee-b` pending) proves (P) for single-register completions with a *spine*: each type is the range of
+`register-completion-pimsner-from-supercoherence` (lane `gq-ring-fp-simple`, 3542cca5d; re-review by `gq-referee-b`
+landed as 852a0771f; its scope amendment is the point-indicator clause below) proves (P) for single-register completions with a *spine*: each type is the range of
 a letter available on every target.
 - In that setting the statement above holds without assuming (P), provided the coefficient ring contains every point indicator `δ_n`, i.e. `⊕_N Q ⊆ B⁺` at each type (scope amendment db70a3dbb, from `gq-referee-b` 852a0771f). The `B⁺` described here, finitely supported functions plus tails, includes them.
 - The hypotheses match: one register per type; shift, dilation and reset letters; `B⁺` the eventually rational

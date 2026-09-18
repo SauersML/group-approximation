@@ -1,0 +1,467 @@
+{
+ "chamber_sum_equals_det": {
+  "N=2,m=(1, 2)": true,
+  "N=2,m=(3, 1)": true,
+  "N=3,m=(1, 2, 3)": true,
+  "N=3,m=(2, 1, 4)": true
+ },
+ "full_det": [
+  {
+   "N": 2,
+   "j_bottom": 1,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    1,
+    1,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 1,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    1,
+    1,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 1,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    1,
+    1,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 1,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    1,
+    1,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 2,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    2,
+    2,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 2,
+   "j_bottom": 2,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    2,
+    2,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 2,
+   "j_bottom": 2,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    2,
+    2,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 2,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    2,
+    2,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 2,
+   "j_bottom": 3,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    3,
+    3,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 2,
+   "j_bottom": 3,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    3,
+    3,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 2,
+   "j_bottom": 3,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    3,
+    3,
+    1
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 2,
+   "j_bottom": 3,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    3,
+    3,
+    1
+   ],
+   "nonzero": true,
+   "terms": 3
+  },
+  {
+   "N": 4,
+   "j_bottom": 1,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 4,
+   "j_bottom": 1,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 4,
+   "j_bottom": 1,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 4,
+   "j_bottom": 1,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 4,
+   "j_bottom": 2,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 35
+  },
+  {
+   "N": 4,
+   "j_bottom": 2,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 35
+  },
+  {
+   "N": 4,
+   "j_bottom": 2,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 1
+  },
+  {
+   "N": 4,
+   "j_bottom": 2,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    2,
+    2,
+    2,
+    2,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 35
+  },
+  {
+   "N": 4,
+   "j_bottom": 3,
+   "alpha": 1,
+   "beta": 2,
+   "cap": [
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 169
+  },
+  {
+   "N": 4,
+   "j_bottom": 3,
+   "alpha": -1,
+   "beta": -2,
+   "cap": [
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 169
+  },
+  {
+   "N": 4,
+   "j_bottom": 3,
+   "alpha": 1,
+   "beta": -1,
+   "cap": [
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 15
+  },
+  {
+   "N": 4,
+   "j_bottom": 3,
+   "alpha": -2,
+   "beta": -1,
+   "cap": [
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    4
+   ],
+   "nonzero": true,
+   "terms": 169
+  }
+ ],
+ "vandermonde": [
+  {
+   "N": 2,
+   "alpha": 1,
+   "beta": 2,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 1,
+   "room_minus_one_nonzero": false
+  },
+  {
+   "N": 2,
+   "alpha": 1,
+   "beta": -1,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 1,
+   "room_minus_one_nonzero": false
+  },
+  {
+   "N": 4,
+   "alpha": 1,
+   "beta": 2,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 6,
+   "room_minus_one_nonzero": false
+  },
+  {
+   "N": 4,
+   "alpha": 1,
+   "beta": -1,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 6,
+   "room_minus_one_nonzero": false
+  },
+  {
+   "N": 8,
+   "alpha": 1,
+   "beta": 2,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 28,
+   "room_minus_one_nonzero": false
+  },
+  {
+   "N": 8,
+   "alpha": 1,
+   "beta": -1,
+   "nonzero": true,
+   "terms": 1,
+   "degree": 28,
+   "room_minus_one_nonzero": false
+  }
+ ],
+ "calibration": [
+  {
+   "case": "alpha=beta",
+   "N": 2,
+   "j_bottom": 1,
+   "nonzero": false
+  },
+  {
+   "case": "no ancestor twist",
+   "N": 2,
+   "j_bottom": 1,
+   "old_hall_holds": false,
+   "nonzero": false
+  },
+  {
+   "case": "alpha=beta",
+   "N": 4,
+   "j_bottom": 1,
+   "nonzero": false
+  },
+  {
+   "case": "no ancestor twist",
+   "N": 4,
+   "j_bottom": 1,
+   "old_hall_holds": false,
+   "nonzero": false
+  },
+  {
+   "case": "alpha=beta",
+   "N": 4,
+   "j_bottom": 3,
+   "nonzero": false
+  },
+  {
+   "case": "no ancestor twist",
+   "N": 4,
+   "j_bottom": 3,
+   "old_hall_holds": false,
+   "nonzero": false
+  }
+ ]
+}

@@ -142,3 +142,31 @@ live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
     - The action is never faithful. With `w` from Attempt 4, `x_1 ↦ x_1 w(x_2)` is a
       non-trivial automorphism that acts trivially.
     - *Dies*: at best one more relative actor, behind the gate of Attempt 2.
+12. **Twisted Brin–Thompson envelopes whose actor is `S x T` itself** (lane
+    `bh-testcases`, 2026-09-18). *Dies, with an exact criterion.*
+    - By `product-of-simple-groups-type-a-actions-come-from-factors`, a faithful action of
+      `S x T` with finitely many orbits on pairs and finitely generated stabilizers exists
+      only if one of two things holds:
+      - `S` or `T` has a proper finitely generated subgroup of finite bi-index, which is
+        Attempt 8's intrinsic condition for that factor;
+      - `S ≅ T` with finitely many conjugacy classes
+        (`centerless-fp-finitely-many-conjugacy-classes-gives-pbh`).
+    - The proof runs through Goursat's lemma: a core-free stabilizer with full projections
+      is the graph of an isomorphism, and its double cosets are conjugacy classes.
+    - So coset actions of `S x T` on `S ⊔ T` or on `S x T`, the left-right action, and finite
+      unions of these cannot give a finitely presented envelope unless a factor is already
+      covered. Any product envelope has to enlarge the actor, as in Attempts 2 and 7.
+13. **Status of the known examples** (lane `bh-testcases`, 2026-09-18).
+    - The following are now in `B_A`:
+      - Amir–Lazarovich's finitely presented simple lattices
+        (`tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh`);
+      - Khanh's Leavitt unit group (`binary-leavitt-unit-group-satisfies-pbh`).
+    - So among finitely presented simple groups recorded in this graph, the only ones not
+      known to be in `B_A` are the five Titz Mite–Witzel kernels `Γ̌_i^q`
+      (`titz-witzel-simple-kazhdan-cat0-lattices-exist`; PBH open at
+      `titz-witzel-lattices-satisfy-permutational-boone-higman`).
+    - For every pair of other recorded groups the closure holds. The sharpest open
+      instances are `Γ̌ x Γ̌` (SQ for `Γ̌`) and `Γ̌ x V`.
+    - Even `Γ̌ x Z/2 ∈ 𝓑` is open. Equivalently: does some finitely presented simple group
+      contain `Γ̌` with nontrivial centralizer? It would follow from (SQ) for `Γ̌` and from
+      (FE).

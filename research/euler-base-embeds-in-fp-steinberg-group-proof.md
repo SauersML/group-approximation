@@ -21,6 +21,16 @@ injective.
   and 1, because `N >= 3` and `[e_ij(a), e_jk(b)] = e_ik(ab)`.
 - *Residually finite.* `T_l` is residually finite (item 2 of the ring node). For `1 != g in GL_N(T_l)`,
   some entry of `g - I` survives in a finite quotient ring, and `GL_N` of a finite ring is finite.
-- *Contains `G_l`.* `G_l <= T_l^×` by item 4 of the ring node.
-  `diag(a, a^(-1)) = e_12(a) e_21(-a^(-1)) e_12(a) · e_12(-1) e_21(1) e_12(-1)` for any unit `a` of a
-  ring (Whitehead). So `g -> diag(g, g^(-1), 1, ..., 1)` is an injective homomorphism into `E_N(T_l)`. ∎
+- *Contains `G_l`* (repair of gq-referee-a, d10cfaf1b). `G_l <= T_l^×` by item 4 of the ring node, with
+  `H = <x, 1+u> ≅ Z≀Z` and `p : G_l -> H` the quotient by `M`.
+  - *The map `c`.* Define `c : H -> D^×` by `c(x) = x^(-1)` and `c(1+u) = B = (1+u)^(-1)`. It respects the
+    lamp relations: conjugates of `1+u` by powers of `x` lie in the commutative ring `A`, and so do their
+    images. So `c` is a homomorphism.
+  - *The map `Φ`.* `Φ(g) = diag(g, c(p(g)), 1, ..., 1)` is an injective homomorphism, since its first entry is
+    `g`.
+  - *It lands in `E_2`.* For `h = s_1 ... s_k` with each `s_i in {x^(±1), (1+u)^(±1)}`,
+    `diag(h, c(h)) = Π_i diag(s_i, s_i^(-1))`. Each factor lies in `E_2(T_l)` by Whitehead:
+    `diag(a, a^(-1)) = e_12(a) e_21(-a^(-1)) e_12(a) · e_12(-1) e_21(1) e_12(-1)` for any unit `a`.
+  - *The `M`-part.* `diag(1 + ι(n), 1) = e_12(a) e_21(b) e_12(-a) e_21(-b)` with `a = ι(n)` and
+    `b = 1 - e`, because `ab = ι(n)`, `ba = 0` and `a^2 = 0`.
+  - So `Φ(G_l) ⊆ E_2(T_l) <= E_N(T_l)`. ∎

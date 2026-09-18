@@ -1,0 +1,12 @@
+# gq-leavitt-units board (DONE)
+**Approach** (family: group rings / operator algebras): unit + elementary groups of Leavitt algebras over Z, Z[1/m], Q, fields; simplicity, f.g./f.p., char-0 extension.
+**Established** (agent-verified, not refereed):
+- f1c245b25 `leavitt-unit-groups-over-every-field-are-simple-mod-scalars` (+ `-proof` route): every field k: L_k(1,2)^x perfect; normal subgroups ⊆ k^x or all; E_n(L_k) mod scalars simple (n>=3). Λ = L_Q^x/Q^x countable simple ⊇ GL_∞(Q), V, SL_3(Z).
+- f1c245b25 `infinite-field-leavitt-units-are-not-finitely-generated` (+ `infinite-field-leavitt-units-not-fg-proof`): infinite k ⇒ L_k^x, L_k^x/k^x not f.g.; char 0 ⇒ no f.g. subring of L_k(1,n) contains Q.
+- bc1ad1925 scalar obstruction (inside `q-coefficient-leavitt-tensor-unit-groups-are-fp`): f.p. G, central non-f.g. C ⇒ G/C not f.p.; so Q-algebra hosts with GL = E never give fp SIMPLE scalar quotients.
+**Open, landed**: af73b867d `rational-leavitt-simple-group-embeds-in-fp-simple-group` + route `gl-n-q-bh-via-rational-leavitt-simple-group` (→ root, all n); `leavitt-units-over-s-integers-are-finitely-presented` (gap: GE over non-simple Z[1/m], frame complex, K_2 map). bc1ad1925 `q-coefficient-leavitt-tensor-unit-groups-are-fp` (gap: H_2(GL_3)=0 in char 0), `fp-central-simple-q-ring-with-trivial-leavitt-k-theory`, route `gl-n-q-explicit-via-q-coefficient-leavitt-tensor-host` (→ Problem 2.7 node). 8c765ab41 root Attempts item 13.
+**Needs**: char-0 replacement for Khanh's scalar-weight Lemma 2.4 (H_2(GL_3(B⊗L)) = 0); a f.p. central simple Q-ring.
+**Dead**: Q in a f.g. subring of a Leavitt algebra over a field; fp simple scalar quotients of Q-coefficient Leavitt unit groups.
+**Sparks**: simple host must kill Q^x differently, e.g. a type (A)/twisted Brin–Thompson envelope of a f.p. (B⊗L)^x (its centre obstructs faithful actions only if central elements must act trivially — unchecked).
+- fac901c01 `cone-sl2-and-v-put-central-scalars-in-derived-subgroup` (+ `cone-sl2-and-v-central-scalars-proof`): ring with Leavitt family + infinite central field K; ANY H ≥ ⟨V, cone SL_2(K)⟩ has K^x ≤ [H,H] ∩ Z(H), so no fp central quotient (group lemma of 90ff0b8ea). Covers ⟨V, GL_n(Q)⟩ in R_L, B⊗L_Q, any char-0 simple Leavitt ring. So "avoid a full L_Q(1,d)^x" is no escape.
+**Resolvent units**: `leavitt-resolvent-derived-units-mod-centre-fp-simple` was REFUTED by another lane (90ff0b8ea). My independent K-theory-free proof (c^2 = c^3 via V-conjugate cone scalars) agreed; I did not land it as a duplicate.

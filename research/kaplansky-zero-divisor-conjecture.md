@@ -181,3 +181,40 @@ fixed finitely presented torsion-free group `U`.
       case (`baumslag-gersten-group-is-hughes-free-embeddable`).
     - **What stays open.** Magnus HNN extensions whose shift is not induced by
       a retraction.
+    - **Edge-injective quotients.** Injectivity on edge groups suffices when
+      the vertex groups already lie in `𝓗`: the kernel then acts with trivial
+      edge stabilizers. This puts in `𝓗` every cyclic-edge HNN with a map to
+      `Z` nonzero on both edges (so all `BS(p,q)`, and every span-one Magnus
+      HNN over a base in `𝓗`), root adjunctions, and Magnus root towers. An
+      example is `<a,b | a^2 b a b a^2 b^-2>`, of primitivity rank 2, whose
+      Magnus edge groups are rank-2 non-retracts. A certifier shows that
+      every torsion-free two-generator one-relator group with relator length
+      at most 10 lies in `𝓗`; 8 relators of length 11 stay open. Higman's
+      group `G_1 *_{F_2} G_2` shows that `𝓗` is not closed under amalgamation
+      along `F_2`, so the edge hypothesis cannot be dropped
+      (`edge-injective-quotients-give-hughes-free-division-rings`). Still
+      open: rank-2 Magnus HNNs in which both extreme letters occur in two or
+      more syllables.
+    - **Novelty audit: the `𝓗` line adds no case of this conjecture
+      (w8-059).** Every group in `𝓗` is locally indicable by definition.
+      Locally indicable groups are right-orderable (Burns–Hale), hence
+      unique-product, and Higman (1940) already proved their group rings over
+      domains have no zero divisors. So nothing proved about `𝓗`, or about any
+      Hughes-free division ring, can give a new case or a counterexample host.
+      For one-relator groups even the division-ring embedding is classical
+      (Lewin–Lewin 1978, every division ring). The `𝓗` results are new only
+      for *Hughes-free existence* in characteristic `p` (open for one-relator
+      groups of primitivity rank 2, FSP Question 7.13) and for crossed
+      products. That is input to char-`p` coherence and approximation, not
+      to this conjecture. The division-ring embeddings on this node that
+      *do* bear on it are the ones for groups that are not locally indicable,
+      such as `Lambda *_Z P` above.
+    - **Twisted Magnus segment steps (w8-059), Hughes-free only.**
+      [[magnus-segment-steps-put-one-relator-groups-in-h]] turns each Magnus
+      segment step into a root adjunction or a cyclic HNN after a basis change
+      `a_m = α^{-1} σ β^{-1}`, and tests the maps to `Z` it needs against an
+      exactly computed window space. It certifies 6 of the 8 open length-11
+      and 63 of the 73 open length-12 relators. All 12 survivors have
+      perfect kernel (`e = (0, ±1, 0)`). As audited above, this bears on
+      Hughes-free existence in characteristic `p` and for crossed products,
+      not on zero divisors.

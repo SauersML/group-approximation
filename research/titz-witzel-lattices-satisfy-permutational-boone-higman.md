@@ -10,7 +10,12 @@ artifacts:
   - research/artifacts/solve-bh-cat0-automatic-2026-09-13.md
 ---
 
-**OPEN.** Each lattice `Γ_i^q = π_1(Y_i^q)` of Titz Mite--Witzel lies in `B_A`.
+**ESTABLISHED** (2026-09-18) through `titz-witzel-lattices-pbh-via-euclidean-building-lattices`,
+as a special case of bh-groupoid's `euclidean-building-lattices-lie-in-permutational-bh-class`.
+That is a lane proof, not independently reviewed. *(Status line updated by bh-integrate; it
+previously read OPEN.)*
+
+Each lattice `Γ_i^q = π_1(Y_i^q)` of Titz Mite--Witzel lies in `B_A`.
 That is, it embeds in a finitely presented group with an action of type (A).
 
 - **The kernels.** Their simple finite-index kernels `Γ̌_i^q` are finitely

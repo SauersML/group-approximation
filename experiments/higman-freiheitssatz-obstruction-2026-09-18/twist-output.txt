@@ -1,0 +1,32 @@
+Part 1: identity b^-1[a,c]b = a^-1 c^-lam a c^3 in 2-quotients of K1(m)
+  e=2 lam=3 class 4 log2|P|=14 image of identity defect trivial: true
+  e=3 lam=3 class 5 log2|P|=29 image of identity defect trivial: true
+  e=4 lam=11 class 6 log2|P|=53 image of identity defect trivial: true
+  e=5 lam=27 class 7 log2|P|=95 image of identity defect trivial: true
+Part 2: S_e = (a^-1 c^-lam a c^3)^2 in 2-quotients of Abar_m
+  e=3 lam=3 lam mod 8=3 class 4 log2|P|=12 order of image of S_e: 1
+  e=3 lam=3 lam mod 8=3 class 5 log2|P|=18 order of image of S_e: 1
+  e=3 lam=3 lam mod 8=3 class 6 log2|P|=27 order of image of S_e: 1
+  e=3 lam=3 lam mod 8=3 class 7 log2|P|=43 order of image of S_e: 2
+  e=4 lam=11 lam mod 8=3 class 4 log2|P|=14 order of image of S_e: 1
+  e=4 lam=11 lam mod 8=3 class 5 log2|P|=20 order of image of S_e: 1
+  e=4 lam=11 lam mod 8=3 class 6 log2|P|=29 order of image of S_e: 1
+  e=4 lam=11 lam mod 8=3 class 7 log2|P|=47 order of image of S_e: 2
+  e=5 lam=27 lam mod 8=3 class 4 log2|P|=14 order of image of S_e: 1
+  e=5 lam=27 lam mod 8=3 class 5 log2|P|=22 order of image of S_e: 2
+  e=5 lam=27 lam mod 8=3 class 6 log2|P|=31 order of image of S_e: 2
+  e=5 lam=27 lam mod 8=3 class 7 log2|P|=49 order of image of S_e: 2
+  e=6 lam=59 lam mod 8=3 class 4 log2|P|=14 order of image of S_e: 1
+  e=6 lam=59 lam mod 8=3 class 5 log2|P|=22 order of image of S_e: 2
+  e=6 lam=59 lam mod 8=3 class 6 log2|P|=33 order of image of S_e: 4
+  e=6 lam=59 lam mod 8=3 class 7 log2|P|=51 order of image of S_e: 4
+Part 3: <a,c> in 2-quotients of Gamma(3,2^e)/<<[a,c]^2>>
+  e=4 class 5 log2ord=[ 4, 4, 4, 4 ] AbelianInvariants(<a,c>)=
+[ 16, 16 ] c^16 in <a,c>': true
+  e=4 class 6 log2ord=[ 4, 4, 4, 4 ] AbelianInvariants(<a,c>)=
+[ 16, 16 ] c^16 in <a,c>': true
+  e=5 class 6 log2ord=[ 4, 5, 4, 5 ] AbelianInvariants(<a,c>)=
+[ 16, 16 ] c^16 in <a,c>': true
+  e=5 class 7 log2ord=[ 5, 5, 5, 5 ] AbelianInvariants(<a,c>)=
+[ 16, 16 ] c^16 in <a,c>': true
+EXIT 0

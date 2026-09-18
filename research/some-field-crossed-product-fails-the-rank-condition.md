@@ -129,3 +129,17 @@ Every such argument fails at `G` where it would conclude domination for the prof
     ternary route), or (2) coefficient orbits in no finitely generated `σ_T`-stable subfield. The basic case of (2)
     is Bernoulli fields `F_p(x_g)` over a group `G` that is not known to be sofic; for sofic `G` a count over sofic
     models is expected to kill it, but that is not recorded.
+- **Root-of-unity specialization (swarm-0917-w8-w8-gs-pull, finite-models, 2026-09-17). Kills the twisted group
+  algebra test case as a barrier.** `twisted-group-algebra-failures-are-finite-field-cover-failures`
+  (ESTABLISHED, unreviewed):
+  - for trivial action, any field and any cocycle, a rank or stable finiteness failure of `K^α[G]` specializes
+    to one of `F_q[E_0]`, where `E_0` is a central extension of a subgroup of `G` by a locally cyclic `p'`-torsion
+    group. So a trivial-action witness refutes Gottschalk and the root `every-group-has-positive-rokhlin-entropy-action`
+    outright, and the profile barrier is never the strongest conclusion;
+  - **invariant:** the cocycle composed with a character `Λ -> F̄_p^x` that extends a residue map on the finitely
+    many relevant values. Divisibility of `F̄_p^x` makes the extension exist;
+  - **dying step:** the central idempotent of the finite cyclic value group makes the twisted algebra a corner of
+    a group algebra. The ternary (`±1`) and Deligne (`μ_3`) routes are the torsion special cases;
+  - **where the class stops.** An informative witness (one that does not already refute INF) needs a
+    nontrivial action. Either the orbit field is non-Bernoulli with no finitely generated stable subfield, or the
+    field is Bernoulli with a cocycle. Equivariant residue maps are the (P2) point-model problem.

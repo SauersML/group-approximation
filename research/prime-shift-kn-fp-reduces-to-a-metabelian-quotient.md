@@ -2,16 +2,21 @@
 rg: 2
 id: prime-shift-kn-fp-reduces-to-a-metabelian-quotient
 kind: claim
-title: The prime-shift groups K_n have a degree character and scalar centre, and K_n modulo GL_n(Z) is a cyclic metabelian group, so finite presentation needs the dilation e to be a one-sided product of prime dilations modulo GL_n(Z)
+title: The prime-shift groups K_n have a degree character and scalar centre, and K_n modulo GL_n(Z) is a cyclic metabelian group, a metabelian group with cyclic base, so finite presentation needs the dilation e to be a one-sided product of prime dilations modulo GL_n(Z)
 distinct_from:
-  prime-shift-hnn-groups-are-not-finitely-presented: that shows finite presentation of K_n needs some diag(r,1,...,1) in the normal closure of x_12(1); this computes K_n modulo that normal closure as (Q_>0/I_n) ⋊ Z and uses Bieri--Strebel to force a relation of a specific one-sided shape.
-  prime-shift-affine-group-a1-is-not-finitely-presented: that settles A_1 by deep-denominator germs on which τ acts trivially; this proves every germ of that kind on Q^n is blind to e, so the A_1 argument has no analogue for K_n.
+  prime-shift-hnn-groups-are-not-finitely-presented: that shows finite presentation of K_n needs some diag(r,1,...,1) in the normal closure of x_12(1); this computes K_n modulo <<GL_n(Z)>> = <<x_12(1), diag(-1,1,...,1)>> as (Q_>0/I_n) ⋊ Z and uses Bieri--Strebel to force a relation of a specific one-sided shape.
+  prime-shift-affine-group-a1-is-not-finitely-presented: that settles A_1 by deep-denominator germs on which τ acts trivially; this proves every germ of that kind on Q^n is blind to e, so the A_1 argument has no analogue for K_n with GL_n(Z)-invariant germ data.
   gl-n-q-lies-in-prime-shift-permutation-group: that constructs K_n; this adds the degree character, the centre of its kernel and the finite-presentation criterion.
+artifacts:
+  - research/artifacts/gq-referee-a-prime-shift-kn-fp-reduces-to-a-metabelian-quotient.md
+  - research/artifacts/gq-referee-b-prime-shift-kn-fp-reduces-to-a-metabelian-quotient.md
 ---
 
 **ESTABLISHED (2026-09-18)** through
 `prime-shift-kn-fp-reduces-to-a-metabelian-quotient-proof`. Lane proof,
-elementary apart from the cited Bieri--Strebel and Baumslag theorems. Whether
+elementary apart from the cited Bieri--Strebel theorem. Refereed PASS by
+`gq-referee-a` (proof gaps) and `gq-referee-b` (citations and scope); reports in
+`artifacts`, nits applied. Whether
 `K_n` is finitely presented stays open: `prime-shift-group-k2-is-finitely-presented`.
 
 **Notation** (as in `gl-n-q-lies-in-prime-shift-permutation-group`), `n >= 2`.
@@ -41,7 +46,11 @@ elementary apart from the cited Bieri--Strebel and Baumslag theorems. Whether
    for some finite product `r` of primes `p_k`, all with `k >= 1` or all with
    `k <= -1` (exponents in `Z`; the empty product is allowed),
    `e · diag(r,1,...,1)^-1 in <<GL_n(Z)>>_(K_n)`.
-   - This sharpens item 2 of `prime-shift-hnn-groups-are-not-finitely-presented`.
+   - This sharpens item 2 of `prime-shift-hnn-groups-are-not-finitely-presented`,
+     which is stated for `<<x_12(1)>>`. Modulo `<<x_12(1)>>` the image of
+     `diag(-1,1,...,1)` is central of order at most 2, so the relation gives
+     `diag(±2/r,1,...,1) in <<x_12(1)>>`, and its square `diag(4/r^2,1,...,1)` is a
+     nontrivial dilation there.
    - Contrapositive: if no such relation holds, for example if
      every element of `I_n` is a perfect square, then `K_n` is
      not finitely presented.
@@ -55,7 +64,7 @@ elementary apart from the cited Bieri--Strebel and Baumslag theorems. Whether
    - The domain of points with one uniquely deepest coordinate is not
      closed under `x_21(1)`, which sends `(λ,0,...)` to
      `(λ,λ,...)`. Enlarging it to a `GL_n(Z)`-invariant domain puts it under item 5.
-6. **The dilation is the whole obstruction.** The subgroup
+6. **Without e the group is not finitely presented.** The subgroup
    `K_n' = <GL_n(Z), 2I, σ_n>` is not finitely presented:
    - `c(k w) = ψ_k(c(w))` defines a homomorphism `ψ` of `K_n'` onto
      `Q_>0 ⋊_σ Z ≅ Z ≀ Z`, killing `GL_n(Z)`;

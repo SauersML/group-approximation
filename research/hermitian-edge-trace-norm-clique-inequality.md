@@ -6,11 +6,12 @@ title: Uniform clique inequality - a Hermitian matrix with zero diagonal and all
 artifacts:
   - experiments/hermitian-edge-trace-norm-2026-09-18/README.md
   - experiments/hermitian-edge-trace-norm-clique-energy-2026-09-18/README.md
+  - experiments/hermitian-edge-trace-norm-clique-small-m-2026-09-18/README.md
 distinct_from:
   hermitian-edge-trace-norm-vs-independence: that is (**) for every graph and weight; this is the single case G = K_m, w = 1, which by the facet reduction is equivalent to (**) for all h-perfect graphs (all perfect graphs) and is the only open case there.
 ---
 
-**OPEN only for m = 4 and m = 5 (proved for m <= 3 and, by `hermitian-edge-trace-norm-clique-inequality-large-m`, for every m >= 6; numerics for m <= 10).** For every `m >= 2` and every Hermitian
+**ESTABLISHED (computer-assisted for `m = 4, 5` and `m >= 6`; unreviewed, not Lean-verified; route `hermitian-edge-trace-norm-clique-inequality-by-size`).** It is proved for `m <= 3`, for `m = 4` by `hermitian-edge-trace-norm-clique-inequality-k4` and for `m = 5` by `hermitian-edge-trace-norm-clique-inequality-k5` (computer-assisted flux-torus branch-and-bound), and for every `m >= 6` by `hermitian-edge-trace-norm-clique-inequality-large-m`. Numerics cover `m <= 10`. For every `m >= 2` and every Hermitian
 `m x m` matrix `C` with `C_ii = 0` and `|C_ij| >= 1` for all `i != j`,
 
 ```text
@@ -20,7 +21,7 @@ distinct_from:
 **Why it matters.** By `hermitian-edge-trace-norm-k4-free-h-perfect` (Theorem C), (UCI) for all `m`
 is equivalent to (**) for all perfect graphs and all h-perfect graphs, and it is one of the two
 holes of `hermitian-edge-trace-norm-via-stab-facets`. (UCI) with `m <= 3` is what gives the proved
-class (K4-free h-perfect graphs). `K_4` is the smallest open instance, and `K_4`, `K_5` are the only ones.
+class (K4-free h-perfect graphs). `K_5` is now the only open instance (`K_4` is done).
 
 **Equivalent forms.**
 - *Dual.* (UCI) iff `sum_i Q_ii >= sqrt3 (m-1)` whenever `Q +- C >= 0`. With `A = (Q+C)/2`,
@@ -50,6 +51,20 @@ certificate on the complex sphere. What is left:
   `m = 4, 5`. The 4th and 5th roots of unity give `E = 2 + 4 sqrt2 = 7.657` and `E = 13.764`,
   below the needed `(sqrt3/2)(m-1)^2 = 7.794` and `13.856`. So `m = 4, 5` need the matching (non-averaged) structure.
 
+- *`m = 4` and the route for `m = 5`.* `hermitian-edge-trace-norm-clique-inequality-k4` proves `m = 4`
+  directly. After gauging, only the flux torus `T^3` is free. For fixed phases the problem is an SDP,
+  whose dual `Z` gives the separable lower bound `sum t_ij 2Re(Z_ji e^{i theta_ij})`. This covers `T^3`
+  with 584 boxes carrying exactly checked rational certificates. The same script runs `m = 5` on `T^6`
+  (with a 4-fold symmetry reduction). About 41,000 SDP solves cover one sixteenth of the reduced
+  domain, and the run is in progress.
+
+- *`m = 5`, partial certificate (w6-078, later on 2026-09-18).* The reduced domain `theta_23 in [0, pi/2]`
+  is cut into 16 slices. Slices `0, 1, 2, 6, 7, 11, 12` are certified (`ALL CLOSED`), and the smallest
+  box-centre value is `7.255`, against `6.928` (`hermitian-edge-trace-norm-clique-inequality-k5`). The other
+  nine slices are a mechanical run of the landed `k5lane.sh`, about 2.5 CPU-hours. The route
+  `hermitian-edge-trace-norm-clique-inequality-by-size` assembles (UCI) for every `m`, and it is complete
+  once `m = 5` is.
+
 **Known.** `m = 2`: `||C||_1 = 2|C_12|`. `m = 3`: `tr C = 0` gives `||C||_1 >= sqrt2 ||C||_F >= 2 sqrt3`,
 tight at flux `pi/2`. Frobenius alone gives `sqrt(2m(m-1))`, which is below `sqrt3 (m-1)` for `m >= 4`.
 Since `tr C = 0`, `||C||_1 >= 2 ||C||_op`, but `||C||_op` can be as small as about `sqrt(m-1)` for
@@ -73,3 +88,11 @@ All optima have unit moduli, and (up to sign, `C -> -C`) one eigenvalue of one s
 `C_ij = sqrt(d_i d_j) (<u_i,u_j> - 1)` with unit vectors `u_i`, and (UCI) in this regime reads
 `d_i d_j |1 - <u_i,u_j>|^2 >= 1 => sum d_i >= (sqrt3/2)(m-1)`. The ratio seems to increase slowly
 with `m`; a weak-limit heuristic suggests `min ||C||_1 ~ 2m`.
+
+## Attempts
+
+- 2026-09-18 (w7-078): **`m = 5` finished, so (UCI) holds for every `m`.** The remaining nine
+  symmetry slices of `hermitian-edge-trace-norm-clique-inequality-k5` (`3, 4, 5, 8, 9, 10, 13, 14, 15`) all
+  print `ALL CLOSED` (`k5_partial_runs.log`). The new route `hermitian-edge-trace-norm-clique-inequality-k5-proof`
+  closes `K_5`, and with it the route `hermitian-edge-trace-norm-clique-inequality-by-size` is complete.
+  The status paragraphs above describe the state before this entry.

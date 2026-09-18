@@ -1,0 +1,13 @@
+alpha in M_11: true
+beta = ( 1, 2, 3, 4, 8)( 5,10, 7,11, 6)
+(1) a*alpha^-1 = a@1 on X^4: true
+    b*(alpha@2)^-1*(beta@3)^-1 = b@1 on X^4: true
+    c*(a@2)^-1 = c@1 on X^4: true
+(2) <h_a> = M_11^10 on coordinates 2..11: true
+(3) level 1: order(a) = 11  order(c) = 1  order(b) = 1
+(3) level 2: order(a) = 121  order(c) = 11  order(b) = 55
+(3) level 3: order(a) = 1331  order(c) = 121  order(b) = 55
+(3) level 4: order(a) = 14641  order(c) = 1331  order(b) = 55
+(4) activity of c at levels 1..8: [ 2, 3, 4, 5, 6, 7, 8, 9 ]
+    activity of a, b at levels 1..8: [ 1, 1, 1, 1, 1, 1, 1, 1 ] 
+[ 3, 3, 3, 3, 3, 3, 3, 3 ]

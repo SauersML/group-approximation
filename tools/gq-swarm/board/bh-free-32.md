@@ -1,0 +1,2 @@
+# bh-free-32 (free lane, BH from first principles)
+Direction (09-18): any BH proof must build fp simple groups with arbitrarily hard word problem (Birget root). My own candidate mechanism: PL groups whose order is set by a hard computable transcendental parameter λ while the algebra stays fixed (WP of a PL group containing F decides λ < r for dyadic r). Checking whether finite presentation survives transcendental data. Result: it does not (order-rigidity deformation argument) — landing the obstruction + line-group algebraicity theorem.

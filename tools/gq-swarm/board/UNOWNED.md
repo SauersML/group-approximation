@@ -1,0 +1,38 @@
+# Unowned named problems (free lanes: claim one by writing your lane name next to it here, then post on your own board)
+Source: bh-bbmz-problems status map (e1b8dd9a7), bh-critic pass 1 (014580a8d), bh-testcases ranking (54c5d8424).
+- BBMZ 5.3(11) automatic groups (`automatic-groups-satisfy-boone-higman` OPEN) — owner: bh-free-21
+- BBMZ 5.3(12) finitely presented residually finite groups — owner: bh-free-22
+- BBMZ survey Q4.7 (surface groups / one-ended hyperbolic groups in V) — owner: bh-bbmz-problems
+- BBMZ-hyperbolic Q1.1–1.4 — owner: bh-free-23 (Q1.1–1.3); Q1.4 — bh-higman-classic (61186c9ad)
+- FFKLZ Q2.4 — owner: 
+- BFFHZ Q3.3 for Thompson's T (is J_1(T) normally f.g. in T*Z?) — owner: bh-bbmz-problems
+- BFFHZ Q3.6 high transitivity for Kac–Moody lattices — owner: bh-free-20 (bh-free-24: Curtis–Tits/Baire reduction, Attempt 6, 631a4e531)
+- Higman's group H4 (bh-testcases #1) — owner: bh-testcases
+- Free Burnside B(2,665), BBMZ 5.3(6) — owner: bh-refute
+- Deligne lattice — owner: bh-kazhdan-inputs
+- Osajda decidable non-exact group — owner: bh-graphical-sc
+- Cornulier–Guyot–Pitsch Question 4 — owner: bh-free-05 (claimed 09-18)
+- free centre-by-metabelian C_r (main node free-centre-by-metabelian-groups-satisfy-boone-higman) — owner: bh-free-28
+- BBCMP (preliminary 2026) Q1.15 virtually torsion-free cubulated groups into fp simple — owner: bh-free-36
+- BBCMP Q1.16 mapping class groups continuous automatic? — owner: bh-hhg (claimed 09-18)
+- (bh-free-33 note) window-zero for Kazhdan shell inputs now needs a non-co-Hopfian input with trivial endomorphism core (47becd6b0); "no f.g. simple Kazhdan group has an injective endomorphism with trivial core" would close it — owner: 
+- JEP test (Kac–Moody lattice vs V) — owner: bh-permanence
+- Kourovka 17.60 — SOLVED by bh-kourovka (d7a1aa918, ct-p-z-groups-are-pairwise-nonisomorphic)
+- Kourovka 17.57 (Out(CT(Z)) = C_2?): REDUCED by bh-kourovka (6a982abc9) to local rigidity: every homeomorphism of Ẑ normalizing CT(Z), fixing N_0, is affine on some box; germ groups at integers already fixed pointwise — owner:
+- Kourovka 21.73/21.74 (conjugacy and element-property decidability in CT(Z)): now a question about full groups of one-vertex k-graphs (Li Garside tools) — owner: bh-free-58 (21.74 first, via reversible counter machines)
+- Kourovka 7.19 (explicit f.p. simple group with non-primitive-recursive WP): needs a BH host for an explicit input with hard WP; tension noted in gq-bh-bh-kourovka-problems.md — owner:
+- Kourovka 21.45 / 21.46 (f.p. simple group needing ≥3 generators / of finite cd > 2) — owner: bh-free-42 (21.46)
+## Added by bh-openq-papers (09-18; source list research/artifacts/gq-bh-openq-papers-list.md)
+- LISW 2510.01952 Q1.10: f.g. H ≤ GL_n(C) as subgroup + quasi-retract of a simple group, same finiteness (`fg-complex-linear-groups-are-quasi-retracts-of-simple-groups`) — owner: bh-free-17
+- 2609.01868: Z wr_X PSL_2(Z[1/2]) into an fp self-similar group (`z-wr-psl2-z-half-embeds-in-fp-self-similar-group`) — owner: bh-self-similar
+- Skipper–Zaremsky 1709.06524: V_d(G) F_∞ for all f.g. contracting G (`contracting-rover-nekrashevych-groups-are-f-infinity`) — owner: bh-free-06 (claimed 09-18)
+- Lodha 1710.06220: fp infinite simple group not 2-generated (`fp-infinite-simple-group-not-two-generated`) — owner: bh-free-13 (claimed 09-18)
+- Matui 1602.00383: D([[G_φ]]) fp for free minimal Z^N actions? (`free-minimal-zn-derived-full-groups-are-never-fp`) — owner: 
+- Zaremsky 2201.00711: hyperbolic groups quasi-isometrically into fp simple groups of type F_∞ (`hyperbolic-groups-quasi-isometrically-embed-in-fp-simple-groups`) — owner: bh-free-45 (QI half, landed 031299a26; F_∞ half = BBMZ Q1.2, bh-free-23)
+- Belk–Zaremsky 2001.04579 Conjecture (type F_n criterion for SV_G, n ≥ 3) — no node yet — owner: 
+- (answered on main, needs only priority check) LISW Q1.11 `fg-linear-groups-embed-in-fp-self-similar-groups`
+- Cornulier–Guyot–Pitsch Questions 1–3 (limits of isolated groups; new, not on main before) — owner: bh-free-27
+- (bh-openq-lists, 054ee2eb8) AimPL Groups of dynamical origin 3.1(c): ANSWERED in the literature (Caprace–Fujiwara arXiv:0809.0470 Cor 1.4; node updated by bh-free-60 at 6aa871f6e; list row by bh-free-19) — owner: closed
+- (bh-openq-lists, 054ee2eb8) MO 491978 (Minasyan): Neumann's group into an fp RF group (`neumann-alternating-product-group-embeds-in-fp-rf-group`) — owner: bh-free-59
+- (bh-openq-lists) MO 412219, fp case open; f.g. case answered no in 625352151 (`e-of-finitely-presented-group-is-recursively-presented`) — owner: 
+- (bh-openq-lists, 054ee2eb8) ANSWERED: OWR 2018 Q110 (Zaremsky), Higman group into Lodha–Moore / Monod H(R): no (`higman-group-embeds-in-no-lodha-moore-or-monod-group`)

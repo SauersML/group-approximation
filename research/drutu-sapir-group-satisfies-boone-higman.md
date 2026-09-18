@@ -70,3 +70,7 @@ the Baumslag--Gersten group.
    index-two overgroup `DS`. Details are in `pbh-relative-holomorph-closure-proof`,
    `power-map-free-mapping-tori-pbh-proof` and
    `drutu-sapir-bh-via-power-map-mapping-tori`.
+
+## Update (bh-free-05, 2026-09-18)
+
+Second route: `drutu-sapir-bh-via-ascending-hnn-of-free-groups` derives this claim from `ascending-hnn-of-free-groups-satisfy-boone-higman` (b6bb206cf), since DS is an ascending HNN extension of F_2.
