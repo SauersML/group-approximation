@@ -34,12 +34,10 @@ theorem higmanVCTreeNFWitPivot_len {d : ℕ} (hd : 1 < d) {C : Finset (List (Fin
     (higmanVCCentral_mem_words_iff d L _).mpr (by rw [List.length_append]; omega)
   have hs' : higmanVCCommon_mk d (higmanVCAll_iota (higmanVCCentral_words d L) s) = β := hs
   have e1 := e
-  rw [← hs'] at e1
-  have e2 : higmanVC_evalAll d (higmanVCAll_iota C r) =
-      higmanVC_evalAll d (higmanVCAll_iota (higmanVCCentral_words d L) s) := e1
+  rw [← hs', higmanVCTreeNF_E_mk, higmanVCTreeNF_E_mk] at e1
   have h1 := (higmanVCAll_mapsCone_word hC r c).append e0
   have h2 := higmanVCAll_mapsCone_word (higmanVCCentral_words_antichain d L) s ⟨c.1 ++ e0, hw⟩
-  rw [← e2] at h2
+  rw [← e1] at h2
   have key : ∀ v : ↥(higmanVCCentral_words d L),
       (FreeGroup.lift (fun p : ↥C × ↥C => Equiv.swap p.1 p.2) r c).1 ++ e0 = v.1 →
         (FreeGroup.lift (fun p : ↥C × ↥C => Equiv.swap p.1 p.2) r c).1.length =
