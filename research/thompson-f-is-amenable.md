@@ -324,3 +324,22 @@ Source map: `research/artifacts/thompson-f-amenability-map-2026-09-12.md`.
     must use the planarity of forest diagrams, the one thing that separates `F` from `V`.
   - *Not decided:* whether `X_F` has property A as a metric space. If it does, `F` is exact. That is the only
     surviving cubical route to exactness, and it is not a route to amenability.
+- **Hyperbolic-boundary routes (swarm-0917-w10-w10-f-break, 2026-09-18, belief-breaker, class kill).**
+  - *Established (unrefereed):* `thompson-f-hyperbolic-actions-have-a-finite-boundary-orbit`, modulo the quoted DSU
+    classification. Let `F` act isometrically, with unbounded orbits, on any Gromov-hyperbolic metric space, proper
+    or not.
+    - There is an orbit `F·ξ ⊆ ∂X` of size at most 2, fixed pointwise by some `F_0 ⊇ F'` of index at most 2. The
+      action is parabolic, focal or lineal; general type would give a free subgroup.
+    - The Busemann pseudocharacter at `ξ` is a homomorphism `ℓ: F_0 → R` with `ℓ(F') = 0`, proved by a swindle
+      pushed by `h^2`. It equals `−log` of the boundary derivative. So `k` is loxodromic iff `k ∈ F_0` and
+      `ℓ(k) ≠ 0`, and no element of `F'` is ever loxodromic.
+  - *Invariant:* the finite boundary orbit, forced by `thompson-f-has-no-free-subgroups` alone.
+  - *Class killed, and where it dies:* amenability or exactness of `F` via a topologically amenable action on any
+    compact `F`-space receiving an equivariant map from `∂X`, or via a Zimmer amenable action with an atom on
+    `F·ξ`, is root-equivalent. The step where every member dies is averaging the maps `m_n: Z → Prob(F)` over
+    `F·ξ`, which already gives a Reiter sequence. Quantitatively this is the same Moore-tower pin as the Roller
+    kill.
+  - *Calibration:* Adian's non-amenable Burnside groups have the same invariant. Hyperbolic loxodromy of `F`
+    factors through `Z^2`.
+  - *Survives:* actions with bounded orbits, and atomless measure classes. Poisson boundaries are always amenable
+    and carry no information.
