@@ -12,6 +12,7 @@ artifacts:
   - experiments/ak3-two-tunnel-closure-2026-09-17/loop.sh
   - experiments/ak3-two-tunnel-closure-2026-09-17/calib16.log
   - experiments/ak3-two-tunnel-closure-2026-09-17/rank2-seeded.log
+  - experiments/ak3-two-tunnel-closure-2026-09-17/rank3-seeded.log
 ---
 
 States, moves, goals, tunnels, S_24 and T_24 are as in `ak3-aut-tunnel-closed-exhaustion`,
@@ -80,6 +81,22 @@ under capped moves, tunnels, and 2-tunnels from every state outside S_24:
 - the 6614 classes were run through mode B.
 
 This set is U_24, with 262642 + 425 = 263067 states.
+
+## Step 4: rank 3, seeded from the 1714 tunnel-only states
+
+`CHUNK=800 loop.sh 3 26 s24r3.txt empty.txt new1714r3.txt r3r 1` runs with the same tools in
+rank 3, where the automorphisms are the 90 Whitehead automorphisms. It makes 16 mode-B chunks,
+all exit 0, and every step is in `rank3-seeded.log`.
+
+| round | states in | new m classes | (M1) products | NEW landings (classes) | grown states |
+|---|---|---|---|---|---|
+| 1 | 1714 | 8148 | 25,699,856 | 3209 (156) | 224 |
+| 2 | 224 | 1154 | 3,646,216 | 1679 (81) | 131 |
+| 3–5 | 131, 53, 17 | 722, 311, 87 | 3,520,020 | 926 (46) | 53, 17, 0 |
+
+The goal tests are those of Step 3 plus PROJ, which in rank 3 is `goal()` with primitivity
+switched off. All counts are 0. The m classes took 30588 Neuwirth tests, with 0 undecided.
+The closure has 281927 + 425 = 282352 states.
 
 ## What is not covered
 

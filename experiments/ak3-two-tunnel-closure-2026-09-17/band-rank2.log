@@ -1,0 +1,56 @@
+# k-tunnels in the band (24,26], rank 2: ./band.sh 2 26 r2r5.base r2r5.mdone n2front b2r 1 30
+# n2front = the 14299 next-level classes of the seeded run not in r2r5.mdone. Stopped by hand during round b2r4 (frontier growing).
+band round b2r1: frontier 14299, base 263067
+B chunk 0 exit 0
+DONE B 0..5000 moves 11245860 capped 93221 tunnels 11152639 NEW 655 PRIM 0 next-level 12056 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 5000 exit 0
+DONE B 5000..10000 moves 11074880 capped 76816 tunnels 10998064 NEW 297 PRIM 0 next-level 12651 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 10000 exit 0
+DONE B 10000..14299 moves 9356620 capped 77117 tunnels 9279503 NEW 340 PRIM 0 next-level 9553 goals-of-m PRIM 0 planar 4299 THICK 0 PROJ 0 thick-calls 4299 undecided 0
+landings: 51 classes
+EXHAUSTED new states 124 processed 124 tunnels 291640 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 124 undecided 0
+BAND ROUND b2r1 DONE new states 124 next frontier 21534
+band round b2r2: frontier 21534, base 263191
+B chunk 0 exit 0
+DONE B 0..5000 moves 11262480 capped 81073 tunnels 11181407 NEW 602 PRIM 0 next-level 12034 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 5000 exit 0
+DONE B 5000..10000 moves 10380800 capped 63084 tunnels 10317716 NEW 166 PRIM 0 next-level 13208 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 10000 exit 0
+DONE B 10000..15000 moves 11150360 capped 86393 tunnels 11063967 NEW 938 PRIM 0 next-level 14862 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 15000 exit 0
+DONE B 15000..20000 moves 10543960 capped 113294 tunnels 10430666 NEW 79 PRIM 0 next-level 15886 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 20000 exit 0
+DONE B 20000..21534 moves 3498240 capped 28690 tunnels 3469550 NEW 539 PRIM 0 next-level 5731 goals-of-m PRIM 0 planar 1534 THICK 0 PROJ 0 thick-calls 1534 undecided 0
+landings: 111 classes
+EXHAUSTED new states 188 processed 188 tunnels 440538 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 188 undecided 0
+BAND ROUND b2r2 DONE new states 188 next frontier 34117
+band round b2r3: frontier 34117, base 263379
+B chunk 0 exit 0
+DONE B 0..5000 moves 11231680 capped 133587 tunnels 11098093 NEW 593 PRIM 0 next-level 13877 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 5000 exit 0
+DONE B 5000..10000 moves 10312200 capped 126519 tunnels 10185681 NEW 42 PRIM 0 next-level 14897 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 10000 exit 0
+DONE B 10000..15000 moves 10300500 capped 114179 tunnels 10186321 NEW 184 PRIM 0 next-level 14652 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 15000 exit 0
+DONE B 15000..20000 moves 11407000 capped 117048 tunnels 11289952 NEW 945 PRIM 0 next-level 14895 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 20000 exit 0
+DONE B 20000..25000 moves 10334700 capped 135518 tunnels 10199182 NEW 0 PRIM 0 next-level 15962 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 25000 exit 0
+DONE B 25000..30000 moves 10286400 capped 169351 tunnels 10117049 NEW 0 PRIM 0 next-level 16806 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 30000 exit 0
+DONE B 30000..34117 moves 9165400 capped 96263 tunnels 9069137 NEW 552 PRIM 0 next-level 12436 goals-of-m PRIM 0 planar 4117 THICK 0 PROJ 0 thick-calls 4117 undecided 0
+landings: 86 classes
+EXHAUSTED new states 110 processed 110 tunnels 261814 tunnel-PRIM 0
+goals PRIM 0 THICK 0 PROJ 0; thick calls 110 undecided 0
+BAND ROUND b2r3 DONE new states 110 next frontier 50829
+band round b2r4: frontier 50829, base 263489
+B chunk 0 exit 0
+DONE B 0..5000 moves 11348020 capped 116383 tunnels 11231637 NEW 1329 PRIM 0 next-level 11406 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 5000 exit 0
+DONE B 5000..10000 moves 10424800 capped 81382 tunnels 10343418 NEW 14 PRIM 0 next-level 12843 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 10000 exit 0
+DONE B 10000..15000 moves 10396900 capped 84267 tunnels 10312633 NEW 150 PRIM 0 next-level 12536 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
+B chunk 15000 exit 0
+DONE B 15000..20000 moves 10804040 capped 83236 tunnels 10720804 NEW 431 PRIM 0 next-level 14198 goals-of-m PRIM 0 planar 5000 THICK 0 PROJ 0 thick-calls 5000 undecided 0
