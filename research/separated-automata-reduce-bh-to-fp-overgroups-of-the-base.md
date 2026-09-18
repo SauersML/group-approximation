@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** by `separated-automata-reduce-bh-to-fp-overgroups-of-the-base-proof` (lane proof, elementary; no
-priority claimed; not yet refereed).
+priority claimed). Referee a (proof gaps) PASS: `research/artifacts/gq-referee-a-separated-automata-reduce-bh-to-fp-overgroups-of-the-base.md`.
 
 ## Separated automata
 
