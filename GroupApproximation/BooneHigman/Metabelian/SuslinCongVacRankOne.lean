@@ -81,8 +81,7 @@ theorem suslinCongVac_rankOne_of_trace {S : Type*} [CommRing S] [IsDomain S] [Is
   · have e00 : M 0 0 = 1 + g * r₀ := by linear_combination hα
     have e11 : M 1 1 = 1 + h * r₁ := by linear_combination htr + hδ
     refine Matrix.ext fun i j ↦ ?_
-    fin_cases i <;> fin_cases j <;>
-      simp [Matrix.vecMulVec_apply, e00, e11, hβ, hγ]
+    fin_cases i <;> fin_cases j <;> simp [e00, e11, hβ, hγ]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Absorption.suslinCongVac_rankOne_of_trace
 
