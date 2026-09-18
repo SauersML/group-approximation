@@ -13,7 +13,7 @@ distinct_from:
 ---
 
 **OPEN.** Posed by lane bh-star-b, 2026-09-18, as the adversarial form of (★′). No claim is made
-either way; the evidence is below.
+either way; the evidence is below. Partial results are in the section "Progress" at the end.
 
 ## Statement
 
@@ -44,7 +44,10 @@ finitely presented simple non-exact group would need, if it came from this route
 
 ## Evidence (calibrated)
 
-1. **Every proved rigid example is amenable.**
+1. **Every proved minimal, topologically free rigid example is amenable.** Minimality matters, though. The rigid full
+   coset shifts of the Cornulier regime (`cornulier-regime-coset-sfts-are-quantum-rigid`, for example Thompson's `V`
+   on the dyadic points) are topologically free and carry Bernoulli measures, so their actions are **not** amenable.
+   They are not minimal: constant points are fixed.
 
    | Example | Why the action is amenable |
    |---|---|
@@ -104,3 +107,49 @@ The master route inherits an analytic constraint that no combinatorial gate show
 So after (IE), the decisive adversarial question for (★′) is this one. Settling it either way changes
 the ranking: true confines the master route to exact inputs and promotes the `V`-less engines and Track B; false
 gives the first non-amenable rigid dynamics.
+
+## Progress (bh-star-b, 2026-09-18, later)
+
+- **(RA) holds over free groups.** Over `F_n` (`n >= 2`), every quantum-rigid subshift without
+  isolated points factors continuously and equivariantly onto `∂F_n`, so its action is topologically
+  amenable. Minimality and topological freeness are not needed.
+  - Over `Λ_0 × F_n`, an invariant probability measure lives on points determined by one thick slab.
+  - The mechanism: in a rigid subshift, the free branches of nested slabs converge to an equivariant
+    end, and `∂F_n` carries no invariant measure.
+  - Source: `rigid-subshifts-over-free-factors-are-tight-almost-everywhere`.
+- **Test (T1) is answered: the Mozes-type candidates are not rigid.** Two families fail:
+  - the covering-map SFT of a complete square complex, which is `Γ\Aut(T_1 × T_2)`;
+  - its algebraic homogeneous subshifts `Γ\(PGL_2(Q_p) × PGL_2(Q_l))`.
+
+  Both are measure-preserving over a reducible lattice. The reason is that compact stabilizers of slab
+  states rotate every branch at once (`tree-lattice-homogeneous-subshifts-are-not-quantum-rigid`).
+- **What is left of (RA)** splits into three parts:
+  - over `Λ_0 × F_n`: *tight* spacetimes, determined by one slab and carrying an invariant measure, or
+    non-amenable actions with no invariant measure;
+  - over groups with no free direct factor (for example one-ended Kazhdan `Λ_0`): open;
+  - (T2), rigid subshifts over non-exact groups: open.
+- **Tight spacetimes and algebraic dynamics** (`group-subshifts-are-quantum-rigid-iff-the-lamp-group-is-fp`).
+  - For group subshifts, quantum rigidity is equivalent to finite presentation of the lamp group.
+  - Over `Λ_0 × F_n`, rigid group subshifts are uniformly tight spacetimes.
+  - Every finitely presented lamp group over a non-amenable `Λ` is a rigid, measure-preserving,
+    non-amenable action, and never a minimal one. So the hypothesis *minimal* carries the whole content
+    of (RA).
+- **One-ended groups.** Over one-ended non-amenable groups the only recorded non-boundary rigidity is
+  the Cornulier regime, and there (IS) makes every minimal set a fixed point for `V`, `F`, `T` and
+  `CT_P(Z)`.
+  - So a counterexample to (RA) over a one-ended group would be a positive answer to
+    `finite-double-coset-space-with-free-minimal-coset-sft` whose action is not amenable.
+  - That would need, for instance, a non-exact group in the Cornulier regime.
+  - Conversely, (RA) implies that every positive answer to that question lives over an exact group.
+- **Ends reduce everything to one-ended groups** (`rigid-subshifts-without-isolated-points-factor-onto-the-ends`).
+  - A rigid subshift without isolated points factors continuously and equivariantly onto `Ends(Λ)`.
+  - So (RA) holds for every virtually free group.
+  - Over multi-ended groups, non-amenable isotropy sits only over the ends of one-ended vertex groups.
+- **The decisive weaker form (RA′).** If a finitely generated `Λ` carries a minimal, topologically
+  free, quantum-rigid subshift, is `Λ` exact?
+  - (RA) implies (RA′), and (RA′) at Osajda's group is exactly what the master route needs.
+  - A proof of (RA′) cannot go through a boundary map, since non-exact groups have no amenable actions
+    at all. It must be a non-existence theorem, for example producing property A from the
+    modification clouds of a minimal point.
+  - A counterexample must live over a one-ended non-exact piece, with rigidity from a source other
+    than boundaries and other than the Cornulier regime with (IS).

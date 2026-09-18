@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-envelope-finite-index-abel
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel: Unknown constant Subgroup.map_closure"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:36
 error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:56:42: Unknown constant `Subgroup.map_closure`
 error: GroupApproximation/BooneHigman/Metabelian/EnvelopeFiniteIndexAbel.lean:50:81: unsolved goals
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-envelope-finite-index-abel`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.EnvelopeFiniteIndexAbel` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

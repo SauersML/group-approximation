@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-envelope-higman-v-gen-family
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily: Unknown constant Subgroup.closure"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:8
 error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:84:10: Unknown constant `Subgroup.mem_map.mpr`
 error: GroupApproximation/BooneHigman/Metabelian/EnvelopeHigmanVGenFamily.lean:87:25: Unknown constant `Subgroup.mem_map.mp`
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-envelope-higman-v-gen-family`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.EnvelopeHigmanVGenFamily` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

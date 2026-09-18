@@ -68,3 +68,10 @@ Freeness is not required: (★′) of the master route asks for topological free
    the extremely expansive construction. It allows arcs of non-determining normals of length up to (not including) `π`,
    so CA spacetimes whose extra side determinisms cover the normals left open by the light cone are candidates, not
    only bipermutive ones.
+5. **Structure and exclusions (bh-free-35, 09-18,
+   `no-two-sided-fault-sfts-have-rich-strips-in-all-directions`).**
+   - In every rational direction a free example is the spacetime of a surjective strip automaton. At each
+     non-expansive line that automaton is non-injective, and its strip subshift is aperiodic, non-sofic and of at
+     least quadratic complexity.
+   - Products of Z-subshifts, in particular product substitution tilings, always have two-sided faults.
+   - Corner-deterministic (Kari–Papasoglu) sets qualify only if an axis seed is forced.

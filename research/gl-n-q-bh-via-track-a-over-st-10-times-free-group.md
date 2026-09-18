@@ -152,3 +152,18 @@ What such an input cannot buy is rigidity or a K-gate:
 For `GL_n(Q)` the decisive open object is one free, minimal, effective subshift on the quasisimple Kazhdan group
 `St_10(R_L)`, with no equicontinuous or tree structure. It is the same object as the general (M2) gate, but on one
 explicit group.
+
+## Update (2026-09-18, from bh-g1-simulation; design-level, unreviewed)
+
+The (M2) row of the gate map can move to the free product `St_10(R_L) * Z`, which is finitely presented, has solvable
+word problem and contains every `GL_n(Q)`:
+- `decidable-groups-carry-flexible-free-subshifts` gives every finitely generated group with decidable word problem,
+  `St_10(R_L)` included, a free subshift with decidable language, separated gluing and computable points. It is
+  transitive, not minimal, and neither almost automorphic nor tree-based, so it passes both filters above.
+- `free-products-with-z-inherit-m2-from-decidable-free-subshifts` then gives (M2) on `St_10(R_L) * Z`.
+- `free-effective-minimal-subshifts-lift-to-minimal-sfts-times-z2` lifts it to a minimal free SFT on
+  `(St_10(R_L) * Z) × Z^2`. That replaces the minimal product-simulation row.
+
+With `Λ_0 = (St_10(R_L) * Z) × Z^2`, the open rows for 5.3(5) are therefore rigidity (now the Z² gate 3, with no
+compression shortcut) and E3′. bh-g1-simulation flags lemma (E) of `identifier-markers-give-decidable-free-subshifts`
+as the review-critical step.

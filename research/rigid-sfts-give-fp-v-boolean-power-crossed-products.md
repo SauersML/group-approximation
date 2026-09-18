@@ -52,6 +52,42 @@ quantum rigid.
    `v-times-sft-full-groups-split-into-two-wreath-pieces` item 5 restrict to `Ñ`, and a swindle in the `C`
    coordinate moves any word to a cone where it is short. Not attempted.
 
+4. **After exact gluing (bh-p2b-exact, 2026-09-18).** *Role clarified; P2′a itself still OPEN.*
+   - **P2′a now implies E3′ for every topologically free X.** `v-times-gluing-presentations-are-exact`
+     (lane proof, under review) gives `F(T_X) ≅ Γ~_X = M *_(V×Λ) N_X / ⟨⟨R_0⟩⟩`, with `R_0` finite, for
+     every Λ-space `X`. For finitely presented `Λ`, `M = V(Λ)` is finitely presented. So if `N_X` is finitely
+     presented, so is `F(T_X)`. That is E3′ (`v-times-rigid-topologically-free-sft-full-groups-are-fp`), and
+     no freeness is needed.
+   - **P2′a is off the critical path wherever E3′ is proved directly.** The route
+     `boone-higman-via-v-times-rigid-topfree-sft-full-groups` consumes E3′, not P2′a. E3′ is established for
+     cocompact tree end-shift hosts at `F_∞` (`cocompact-tree-end-shift-hosts-are-f-infinity`, 58316c660),
+     for products of tree groups and for non-ascending HNN end shifts. For those rigid `X`, P2′a is not
+     needed.
+     - This corrects synthesis v5, which listed P2′a as "supplied by (★′)". This node was open throughout.
+   - **E3′ does not formally give P2′a.** With exactness, `F(T_X)` finitely presented says only that
+     finitely many relations of `N_X`, together with `M`, the amalgamation and `R_0`, present `Γ~`. This is
+     finite presentation of `N_X` *modulo the gluing*. A group can be finitely presented and finitely
+     presented relative to a non-finitely-presented subgroup (for example `H ⋊ Z` with `H` a non-fp
+     Bieri–Stallings kernel). So the tree end-shift result does not settle P2′a for tree end shifts.
+   - **The tree attempt, and where it stops.** Take Λ acting on a tree with `X = ∂T` the end shift, and
+     sites `p, q` on a geodesic `p = r_0, …, r_m = q` with backward directions `e_k`.
+     - Compression gives nested *site* cylinders `a@p ⊆ e_1@r_1 ⊆ ⋯ ⊆ e_m@r_m`, each step within window
+       distance 1. So the far-site relation `[v^[a@p], w^[b@q]] = 1` (`b ≠ e_m`) is a chain of local
+       containments of bounded complexity.
+     - It still does not follow in `Ñ`. From "`x^[a@p]` commutes with every `y^[e_k@r_k]`" one cannot
+       conclude that it commutes with elements conditioned on *proper subsets* of the complement at
+       `r_(k+1)`. Those are conjugates of the `y^[e_k@r_k]` by local elements that are not yet known to
+       commute.
+     - This conjugate-closure gap is the fibrewise obstruction that the necessity theorem linearizes. In
+       the gluing group, cone sliding removes it for disjoint V-supports, but `N_X` has no cone-localized
+       labels.
+   - **Split (09-18).**
+     - bh-p2b-exact: P2′a for tree end shifts. Try to close the conjugate-closure gap with the V-constants
+       trick: constants commute with conditioned elements of disjoint C-support, and V is perfect on every
+       cone.
+     - bh-one-relator: the crossing-wire Z² shift (49939b957) and the hyperbolic seed SFTs (b17ce0c51).
+       Decide first whether E3′ is proved there; if not, P2′a is the only route.
+
 **Lesson for general BH.** The ring side and the group side of the master route differ in exactly one point:
 rings carry the linear relations (partition of unity, orthogonality) that let rigidity act on the universal
 object, and groups do not. For the Boolean-power group, the transferable question is whether a group presented by
