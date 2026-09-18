@@ -93,7 +93,8 @@ theorem roseJunctionRefute_filtC5 : roseJunctionRefute_pK.boundary.cycle.filter
 
 /-- The dart `4` meets no other moved dart of the class `2`. -/
 theorem roseJunctionRefute_isoC2 : ∀ y ∈ roseJunctionRefute_F2, y ≠ 4 →
-    roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha 4) ≠ roseJunctionRefute_vClass y ∧
+    roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha 4) ≠
+      roseJunctionRefute_vClass y ∧
       roseJunctionRefute_vClass (roseJunctionRefute_X.toCombMap.alpha y) ≠
         roseJunctionRefute_vClass 4 := by
   decide

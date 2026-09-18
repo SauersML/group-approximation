@@ -14,8 +14,9 @@ import GroupApproximation.Meta.AxiomGuard
 namespace GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero
 
 /-- **The Steinberg half.** -/
-theorem czStFourFP_stFour : czSLFourFP_StFourStatement := fun m hm =>
-  czStFourFP_stFour_of_pos m hm
+theorem czStFourFP_stFour : czSLFourFP_StFourStatement := by
+  intro m hm
+  exact czStFourFP_stFour_of_pos m hm
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFPCharZero.czStFourFP_stFour
 

@@ -20,10 +20,11 @@ orbit.
   - `W = x_mL(1) x_Lm(-1) x_mL(1) = w_mL(1)`, and `x_mL(f) = W x_Lm(-f) W⁻¹`;
   - `x_iL(f) = ⁅x_im(1), x_mL(f)⁆` and `x_Lj(f) = ⁅x_Lm(f), x_mj(1)⁆`;
   - `x_ij(f) = ⁅x_iL(f), x_Lj(1)⁆` for `i, j ∈ K`.
-  So if these generators are good, every root of `G` is good (`k2PolyEuclid_good_all`).
-* `k2PolyEuclid_GenStatement` (**the residual**): a `σ` with `σ(e_L) ∈ Q` whose coset check
-  holds for the `2(|K| - 1)` constant roots `x_im(1)`, `x_mi(1)`, for the constant root
-  `x_mL(1)`, and for the single family `x_Lm(f)`.
+  So if these generators are good, every root of `G` is good (`k2PolyEuclid_good_all`,
+  in `ElemFPK2PolyEuclidRoots`).
+* `k2PolyEuclid_GenStatement` (**the residual**, in `ElemFPK2PolyEuclidWiring`): a `σ` with
+  `σ(e_L) ∈ Q` whose coset check holds for the `2(|K| - 1)` constant roots `x_im(1)`,
+  `x_mi(1)`, for the constant root `x_mL(1)`, and for the single family `x_Lm(f)`.
 * `k2PolyEuclid_coset_of_gen`: the residual gives `k2PolyNF_CosetStatement`.
   `k2PolyEuclid_gen_of_coset` gives the converse.
 * `k2PolyEuclid_K2_eq_bot_of_gen`: the residual gives `K₂(N, F_p[X]) = ⊥` for `N ≥ 5`.
@@ -46,10 +47,8 @@ namespace GroupApproximation.BooneHigman.Metabelian.ElemFP
 
 open scoped commutatorElement
 open GroupApproximation.SteinbergGroup
-open GroupApproximation.BooneHigman.SteinbergBasic
 open GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.FieldTwo (x_mem_rootSpan
   act unitVec act_mul act_one)
-open GroupApproximation.SimpleKazhdanSofic.SkRows.SteinbergWeyl (w x_congr)
 
 variable {I : Type} [Fintype I] [DecidableEq I]
 
