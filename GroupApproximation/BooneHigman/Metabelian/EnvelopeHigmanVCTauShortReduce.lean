@@ -132,7 +132,7 @@ theorem higmanVCTauShort_family_of_residual (hR : HigmanVCTauShortResidualStatem
 /-- The residual is a special case of the short statement. -/
 theorem higmanVCTauShort_residual_of_short (h : HigmanVCTauConjShortStatement) :
     HigmanVCTauShortResidualStatement := by
-  intro d hd n _ p q x y x' y' hpq hqp hp hq _ _ _ hs _ _ hmx hmy hxy hyx hxy' hyx'
+  intro d hd _ _ p q x y x' y' hpq hqp hp hq _ _ _ hs _ _ hmx hmy hxy hyx hxy' hyx'
   unfold higmanVCTauShort_conjEq
   exact (higmanVCTauConj_rel_iff d (p, q) (x, y) (x', y')).mp
     (h d hd p q x y x' y' hpq hqp hp hq hs hmx hmy hxy hyx hxy' hyx')
