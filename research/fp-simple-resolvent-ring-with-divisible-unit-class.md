@@ -110,3 +110,13 @@ This is the coordinator's design target of 2026-09-18.
    - `R_L` contains `Q̄`, so the literal symbol budget "finitely presented `⊇ Q` forces infinitely generated
      rational `K_2`" is false. A budget that bites must exclude `Q̄`. For example: no finitely presented ring
      with `[1]` of infinite order contains `Q̄` unitally. That is open.
+7. **Ring lamplighter and graded cures, 2026-09-18 (lane `gq-infinite-primes`): dead.**
+   `graded-rings-with-degree-one-units-fail-the-k-budget`. A Z-grading with a unit `u` in degree `1` makes `R` a
+   skew Laurent ring over `R_0 ⊇ Q`. Then either `Q^x -> K_1(R)` has a non-finitely generated kernel, or the
+   symbols `{λ, u}` are infinitely generated in `K_2`.
+   - This kills `U_n ⋊ Z`, whose `K_0 = Z[1/n]` has `[1]` of infinite order, and `U_Q ⋊ Z`.
+   - It also kills every Baumslag-type cure whose relations stay homogeneous with `u` a unit. So Baumslag's extra
+     generator does not transfer as it stands.
+   - Pimsner form: rational `K_1` classes of the base are fixed by `σ_*` and lift to `{λ, u}`. Item 5, over all
+     `{λ, x}`, is what forces `1 - [X]` to be injective on them, not `K_1` detection and not `K_0`.
+   - A cure must make the shift a non-unit (Cuntz--Pimsner isometries) or use inhomogeneous relations.
