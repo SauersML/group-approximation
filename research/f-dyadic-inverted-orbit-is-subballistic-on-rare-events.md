@@ -35,6 +35,33 @@ itself (recorded in `research/artifacts/ideas-wildcards-2026-09-14.md`).
 
 ## Attempts
 
+- **Last-mile audit, then a rate kill (2026-09-17, swarm-0917-w6-w6-f-last2, quantifier-shift).**
+  - *Closest route.* This hole is the only open prerequisite on `thompson-f-amenable-via-dyadic-extensive-amenability`,
+    the route into `thompson-f-is-amenable` with the fewest open prerequisites. But it is equivalent to the root
+    (`thompson-f-amenable-iff-dyadic-action-extensively-amenable`), so "last missing" here means the root itself.
+  - *Second route.* `thompson-f-amenable-via-exotic-co-amenable-subgroup` has two open prerequisites, and its first
+    one refutes the Brin–Sapir conjecture. Every sandwich split collapses by
+    `f-sandwich-splits-collapse-unless-kernel-is-brin-sapir-exotic`, and algebraic EA certificates die by
+    `f-ea-calculus-certificates-force-f-prime-to-act-trivially`. So no route is closer than the analytic target.
+  - *Established,* `f-dyadic-confinement-witness-times-match-folner-function`. Let `e ∈ supp μ`, and let
+    `N_μ(ε)` be the least `N` with `P(|O_N| < εN) > e^{−εN}`. Then
+    `log₂ Føl_Γ(1/η) / O(log²(1/η)) ≤ N_μ(ε)` whenever `ε ≤ η²/polylog(1/η)`, and `N_μ(ε) ≤ 2⌈4 Føl_Γ(8/ε)/ε⌉`.
+    - *Lower bound.* An almost invariant lamp law `f²` comes from a good return ratio of the switch-walk-switch
+      chain. Conjugated switches and unions of independent lamp sets make it a breakpoint-covering measure. The
+      box and cocycle push of `thompson-f-dyadic-ea-witnesses-need-tower-size-proof` turns that into a Følner set.
+    - *Upper bound.* A Følner set `U` lifts to `{(φ,g) : g ∈ U, supp φ ⊆ Ux_0}` in the lamplighter, and a spectral
+      lower bound on its return probability follows.
+    - *Credit.* The Moore instance, tower-size witness times, was obtained independently by swarm-0917-w6-w6-f-last1
+      (`f-dyadic-inverted-orbit-confinement-needs-tower-times`, uniform `μ` at the root `1/2`). This node answers that
+      sibling's spark about the tetration survivor band.
+  - *Invariant.* The witness-time function `N_μ(ε)`, compared with `log Føl_Γ`.
+  - *Class killed.* Passing to this hole in order to get a target quantitatively cheaper than Følner sets. Every
+    certified witness time is a certified Følner bound one exponential up (Step 5 of the proof). So effective
+    confinement proofs, and trap strategies bounded by a fixed tower, die against Moore's bound.
+  - *Dies at / survives.* The hole stays OPEN. The survivor band is exactly the Følner band: if `F` is amenable,
+    `N_μ(ε) ≤ Føl_Γ(8/ε)/ε`. So the hole is quantitatively the Følner problem, and no reduction through it can buy
+    more than one exponential.
+
 - 2026-09-17, swarm-0917-w6-w6-f-last1 (family probability-random): quantitative class kill, the hole stays OPEN.
   The spectral route `f-dyadic-inverted-orbit-confinement-needs-tower-times-proof` works for `μ` uniform on
   `{e, x_0^{±1}, x_1^{±1}}` and `x_0 = 1/2`. Take a good return ratio of the switch-walk, project onto
