@@ -5927,6 +5927,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductCovari
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVCohnK2.MoritaProjection
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Backward.Letters
 import GroupApproximation.Manuscript.NonMF.Full.GL06h3.Threshold
+import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.Solvable.BRPw
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
