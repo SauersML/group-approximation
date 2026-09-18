@@ -36,3 +36,29 @@ simple.
    quotient `D/Z(D)`. A weaker sufficient target is any finitely presented simple
    subquotient of `R_L^x` that still contains a copy of `SL_(n+2)(Q)` meeting the
    centre trivially.
+3. **Expected obstruction: the rational scalars (conditional, not proved).** This is
+   likely FALSE as stated.
+   - *Scalars die in `K_1`.* Covariance gives `ψ(λ) = λ I_2` for `λ ∈ Q^x`, so under
+     `M_2(R_L) ≅ R_L` the scalar `λ` corresponds to `diag(λ, λ)`, and in `K_1`,
+     `[λ] = 2[λ]`, so `[λ] = 0`. The algebraic Pimsner-type sequence (Carlsen--Ortega;
+     Ara--Brustenga--Cortiñas type) gives the same answer:
+     `(1 - [ψ])[λ] = -[λ]` on `K_1(B)`.
+   - *Scalars enter `D`.* If `K_1(R_L) = U(R_L)^ab`, as Ara--Goodearl--Pardo prove for
+     purely infinite simple rings, then `Q^x <= D` and `Q^x <= Z(D)`.
+   - *Consequence.* If moreover `D` is perfect and `D/Z(D)` were finitely presented, then
+     `D` would be a perfect central extension of a finitely presented perfect group. So
+     `Z(D)` would be a quotient of the finitely generated Schur multiplier
+     `H_2(D/Z(D))`. It would then be finitely generated, but it contains `Q^x`. That is a
+     contradiction.
+
+   Unproved inputs: purely infinite simplicity of `R_L` for the AGP theorem, perfectness
+   of `D`, and the exact sequence in this generality. The same heuristic applies to every
+   Leavitt--Nekrashevych completion of a `Q`-algebra, since `ψ(λ) = λ I_d` always kills
+   `(Q^x)^(d-1)` in `K_1`. It is the unit-group form of gq-en-ring's criterion
+   `rational-scalars-obstruct-fp-elementary-hosts` (`Λ_N` must be finitely generated).
+   **Where this leaves the route.** `R_L` settles the ring question
+   (`fp-simple-ring-of-characteristic-zero-exists`). For the group target, any overgroup
+   inside `R_L^x` that contains Thompson-type units together with `GL_n(Q)` probably
+   contains all of `Q^x` centrally, because `diag(λ,1)` and its `V`-conjugate multiply
+   to `λ`. So the finitely presented simple group must come from a subgroup that avoids
+   `Q^x`, or from a ring where `ker(Q^x -> K_1)` is finitely generated.
