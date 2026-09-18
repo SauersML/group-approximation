@@ -47,6 +47,7 @@ def k2PolyNagaoWide_Supp {R : Type} [Zero R] (m L : I) (r : I → R) : Prop :=
 
 variable {p : ℕ} [Fact p.Prime]
 
+omit [Fact p.Prime] in
 /-- The action is linear. -/
 theorem k2PolyNagaoWide_act_lin (g : SteinbergGroup I (Polynomial (ZMod p)))
     (a b : Polynomial (ZMod p)) (u v : I → Polynomial (ZMod p)) :
@@ -72,6 +73,7 @@ theorem k2PolyNagaoWide_S_mem_Qm {K : Finset I} {m L : I} (hmK : m ∈ K)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.k2PolyNagaoWide_S_mem_Qm
 
+omit [Fact p.Prime] in
 /-- A vector supported on `{m, L}` is `r_m e_m + r_L e_L`. -/
 theorem k2PolyNagaoWide_decomp {m L : I} (hmL : m ≠ L) {r : I → Polynomial (ZMod p)}
     (hr : k2PolyNagaoWide_Supp m L r) : r = r m • unitVec m + r L • unitVec L := by
@@ -157,7 +159,8 @@ theorem k2PolyNagaoWide_core {K : Finset I} {m L : I} (hmL : m ≠ L) (hmK : m �
       rw [hβ, k2PolyNagaoWeyl_tau_C hmL hmn hLn, inv_inv]
       exact k2PolyNagaoWide_Qr_le_Q K L (k2PolyDeg_torus_conj_rootSpan m L n hmL hmn hLn
         (fun i j => i ∈ insert L K ∧ j ∈ K) β (k2PolyNagaoWide_Q_le_Qr K L ht))
-    · rw [k2PolyNagaoSigma_tau, if_neg (fun e => hu (by rw [e]; exact isUnit_one)),
+    · rw [k2PolyNagaoSigma_tau,
+        if_neg (show r L ≠ 1 from fun e => hu (by rw [e]; exact isUnit_one)),
         dif_neg hu, inv_one, one_mul, mul_one]
       exact ht
   · have h := k2PolyNagaoWide_Gml_conj_Qm hmK hLK
