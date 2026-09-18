@@ -385,3 +385,48 @@ must build genuinely Hamming-approximate sofic models.
     centralizers of non-infranormal subgroups, which Kun--Thom does not give.
 
     This node stays OPEN.
+
+20. **Cluster period of compressors (2026-09-18, decomposition and obstruction,
+    swarm-0917-w11-w11-titz-last1).** This attacks the Attempt 19 survivors compressor by
+    compressor, instead of through a Kazhdan subgroup infranormal in `K`.
+    - Established `bounded-cluster-period-preserves-kazhdan-fixed-algebras`. Let
+      `u` compress a Kazhdan `L`, and let `sigma` be a sofic representation of `<L,u>`
+      whose dominant-target map on the `L`-clusters has bounded period on almost all the
+      mass (`BP_p`). Then the `<L,u>`-graph is expander-decomposable, and by Kun--Thom
+      Proposition 3.1 `sigma(<L,u>)` preserves `D^(sigma L)`. Property (T) of `<L,u>` is
+      not needed; that group is typically an ascending HNN quotient mapping onto `Z`.
+      Finite-dimensional `D^(sigma L)` forces `BP`.
+    - Isolated `ambient-decomposition-kun-thom-normalization` (KT\*, OPEN). This is Kun--Thom
+      4.1 with (T) of the ambient group replaced by an ambient expander decomposition of
+      the given representation. Proof inspection (quoted there) and the Lean assembly both
+      show that (T) of the ambient group is used only to build that decomposition. It can
+      fail on its own only if Section 4 uses (T) of `G` somewhere not quoted.
+    - New decomposition `bounded-period-compressors-carry-no-sofic-defect`, which rests on
+      the two nodes above. A tame compressor (one with `BP` in some sofic representation)
+      carries no defect.
+
+    Invariant and death:
+    - *Invariant.* The cluster period of each compressor `u ∈ Comp_G(L)` in sofic
+      representations of `G`.
+    - *Step where every member dies (modulo KT\*).* A finite period yields the ambient
+      decomposition that (KT\*) consumes. So `sigma(u)` normalizes `C(sigma L)`, and
+      injectivity kills `[u c u^-1, l]`.
+    - *What this kills.* Every source whose compressors are all tame. In particular, every
+      source with finite-dimensional `D^(sigma L)` in some sofic representation, whatever
+      the compressor group.
+
+    Survivors: a witness needs a **wild** compressor. In every sofic representation of `G`
+    and every cluster frame:
+    - the `u`-period on `L`-clusters is unbounded on non-negligible mass;
+    - `D^(sigma L)` is infinite-dimensional.
+
+    In finite permutation actions, compressors permute the `L`-orbits exactly and even
+    normalize `sigma(L)`. So wild behaviour must come from genuinely non-residually-finite
+    sofic approximations, consistent with the no-finite-quotient requirement on `K`.
+
+    Next steps:
+    - An audit that closes (KT\*).
+    - A proof that some sofic representation of a mapping torus `K ⋊ Z` gives the
+      stable letter bounded cluster period, which would kill the node outright.
+
+    This node stays OPEN.
