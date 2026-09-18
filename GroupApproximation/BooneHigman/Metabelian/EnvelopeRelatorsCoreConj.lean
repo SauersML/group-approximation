@@ -122,13 +122,15 @@ theorem rcore_commute_rfConjL_incomp [Nontrivial X] (H : Subgroup (TreeAut X))
     (he₂ : MapsCone (e₂ : Equiv.Perm (Cantor X)) [x₀] w) (h k : ↥H) :
     Commute (rfConjL H N e₁ h) (rfConjL H N e₂ k) := by
   obtain ⟨g, hgV, hgu, w', hgw, hxw', hw'x⟩ := rcore_exists_to_root x₀ huw hwu
-  have hc : Commute (rfL H N h) (rfConjL H N (⟨g, hgV⟩ * e₂) k) :=
-    rf_commute_of_mem (N := N) (hdisj ⟨h, k, ⟨g, hgV⟩ * e₂, w', he₂.comp hgw, hxw', hw'x, rfl⟩)
-  have hL : rfConjL H N (⟨g, hgV⟩ * e₁) h = rfL H N h := by
-    have h1 := rcore_rfConjL_mul_fix H N x₀ hcomm 1 (⟨g, hgV⟩ * e₁) (he₁.comp hgu) h
+  obtain ⟨g', rfl⟩ : ∃ g' : ↥(higmanThompsonV X), (g' : Equiv.Perm (Cantor X)) = g :=
+    ⟨⟨g, hgV⟩, rfl⟩
+  have hc : Commute (rfL H N h) (rfConjL H N (g' * e₂) k) :=
+    rf_commute_of_mem (N := N) (hdisj ⟨h, k, g' * e₂, w', he₂.comp hgw, hxw', hw'x, rfl⟩)
+  have hL : rfConjL H N (g' * e₁) h = rfL H N h := by
+    have h1 := rcore_rfConjL_mul_fix H N x₀ hcomm 1 (g' * e₁) (he₁.comp hgu) h
     rwa [one_mul, rcore_rfConjL_eq H N 1 h, map_one, one_mul, inv_one, mul_one] at h1
   rw [← hL, ← rcore_conj_rfConjL, ← rcore_conj_rfConjL] at hc
-  exact (Commute.conj_iff (rfV H N ⟨g, hgV⟩)).mp hc
+  exact (Commute.conj_iff (rfV H N g')).mp hc
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.rcore_commute_rfConjL_incomp
 

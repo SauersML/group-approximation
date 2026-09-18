@@ -123,3 +123,61 @@ theorem choiEffros_krausMap_one {Y : Type} [Fintype Y] [DecidableEq Y] (G : Y �
   rw [choiEffros_act_one]
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.choiEffros_krausMap_one
+
+/-- **Rank-one positivity.** `ψ_G(v v⋆) = c⋆ c` with `c = ∑_y (v y)⋆ • G y`. -/
+theorem choiEffros_krausMap_vecMulVec {Y : Type} [Fintype Y] (G : Y → A) (v : Y → ℂ) :
+    choiEffrosKrausMap G (vecMulVec v (star v)) =
+      star (∑ y, star (v y) • G y) * ∑ y, star (v y) • G y := by
+  rw [star_sum, Finset.sum_mul]
+  show ∑ y, star (G y) * ∑ y', vecMulVec v (star v) y y' • G y' = _
+  refine Finset.sum_congr rfl fun y _ ↦ ?_
+  rw [Finset.mul_sum, Finset.mul_sum]
+  refine Finset.sum_congr rfl fun y' _ ↦ ?_
+  rw [star_smul, star_star, smul_mul_smul_comm, Matrix.vecMulVec_apply, Pi.star_apply,
+    mul_smul_comm]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.choiEffros_krausMap_vecMulVec
+
+/-- **Stars.** `ψ_G(N⋆) = ψ_G(N)⋆`. -/
+theorem choiEffros_krausMap_star {Y : Type} [Fintype Y] (G : Y → A) (N : Matrix Y Y ℂ) :
+    choiEffrosKrausMap G (star N) = star (choiEffrosKrausMap G N) := by
+  have h1 : choiEffrosKrausMap G (star N) =
+      ∑ y, ∑ y', star (N y' y) • (star (G y) * G y') := by
+    show ∑ y, star (G y) * ∑ y', (star N) y y' • G y' = _
+    refine Finset.sum_congr rfl fun y _ ↦ ?_
+    rw [Finset.mul_sum]
+    refine Finset.sum_congr rfl fun y' _ ↦ ?_
+    rw [Matrix.star_apply, mul_smul_comm]
+  have h2 : star (choiEffrosKrausMap G N) =
+      ∑ y, ∑ y', star (N y y') • (star (G y') * G y) := by
+    show star (∑ y, star (G y) * ∑ y', N y y' • G y') = _
+    rw [star_sum]
+    refine Finset.sum_congr rfl fun y _ ↦ ?_
+    rw [star_mul, star_star, star_sum, Finset.sum_mul]
+    refine Finset.sum_congr rfl fun y' _ ↦ ?_
+    rw [star_smul, smul_mul_assoc]
+  rw [h1, h2]
+  exact Finset.sum_comm
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.choiEffros_krausMap_star
+
+/-- Shifting the left column: `⟨u - G c, v⟩ = ⟨u, v⟩ - c⋆ ⟨G, v⟩`. -/
+theorem choiEffros_pair_shift_left {Y : Type} [Fintype Y] (u G v : Y → A) (c : A) :
+    choiEffrosPair (choiEffrosShift u G c) v = choiEffrosPair u v - star c * choiEffrosPair G v := by
+  simp only [choiEffrosPair, choiEffrosShift, star_sub, star_mul, sub_mul, Finset.sum_sub_distrib,
+    Finset.mul_sum, mul_assoc]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.choiEffros_pair_shift_left
+
+/-- Shifting the right column: `⟨u, v - G c⟩ = ⟨u, v⟩ - ⟨u, G⟩ c`. -/
+theorem choiEffros_pair_shift_right {Y : Type} [Fintype Y] (u v G : Y → A) (c : A) :
+    choiEffrosPair u (choiEffrosShift v G c) = choiEffrosPair u v - choiEffrosPair u G * c := by
+  simp only [choiEffrosPair, choiEffrosShift, mul_sub, Finset.sum_sub_distrib, Finset.sum_mul,
+    mul_assoc]
+
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.NuclearDensity.choiEffros_pair_shift_right
+
+end
+
+end Manuscript.NonMF.TWWLanes.NuclearDensity
+end GroupApproximation
