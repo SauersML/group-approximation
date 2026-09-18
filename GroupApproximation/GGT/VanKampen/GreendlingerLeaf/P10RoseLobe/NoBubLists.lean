@@ -108,8 +108,7 @@ theorem roseLobeNoBub_tgt_avoid {P : α → Bool} {S T A B C : List α}
   rcases hblk with ⟨-, hAC, -⟩ | ⟨-, hAC, -⟩
   · have hf : T.filter P = T := List.filter_eq_self.mpr fun q hq =>
       List.filter_eq_self.mp hAC q (hm q hq)
-    rw [hf]
-    exact List.prefix_refl T
+    exact ⟨[], by rw [hf, List.append_nil]⟩
   · have hf : T.filter P = [] := List.filter_eq_nil_iff.mpr fun q hq =>
       List.filter_eq_nil_iff.mp hAC q (hm q hq)
     rw [hf]
