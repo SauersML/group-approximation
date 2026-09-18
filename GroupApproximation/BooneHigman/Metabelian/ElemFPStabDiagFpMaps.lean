@@ -14,8 +14,8 @@ second conjunct of `P1 = PolyK2NilGapStatementOver (ZMod p) 4`.  Write
 
 `stabDiagFp_MapsStatementOver p`: for `k ≥ 0` and `N ≥ k + 5`, an element
 `u ∈ K₂(N, R_{k+1})` with `K2Stab N u = 1` is trivial, provided `K2Map φ u = 1` for
-**every** ring map `φ : R_{k+1} →+* R_k`.  Unlike `stabDiagFp_SpecStatementOver`, the maps need not be augmented,
-and `cc u = 1` is not assumed.
+**every** ring map `φ : R_{k+1} →+* R_k`.  Unlike `stabDiagFp_SpecStatementOver`, the maps
+need not be augmented, and `cc u = 1` is not assumed.
 
 ## What is proved
 

@@ -179,3 +179,44 @@ theorem lobeRm86_lobeAt_of_src (K : PocketFaceSet D eps X lo hi) (hK : K.ClosedW
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_lobeAt_of_src
 
 end Case
+
+/-- **The lobe removal off the source-arc lobe case** (OPEN, PLAUSIBLE; vacuous on both known
+models, see the module docstring; LOUD: only EQUIVALENT to
+`roseJunctionCore_LobeRemovalStatement` as a closed proposition, pointwise strictly weaker).
+As `roseJunctionCore_LobeRemovalStatement`, with the extra hypothesis that the pocket is not in
+the source-arc lobe case `lobeRm86_SrcLobe`. -/
+def lobeRm86_ResidualStatement : Prop :=
+  ∀ {G : Type u} [Group G] {Lambda : Type w} {W : Set (List (RelLetter G Lambda))}
+    (D : RelGenSet G Lambda) (eps : ℕ) (X : DiscDiagram.{u, w, v} W) (lo hi : ℕ), X.LeastArea →
+    (∀ d, (symmetricLabelAlphabet D).IsLetter (X.label d)) →
+    ∀ K : PocketFaceSet D eps X lo hi, K.ClosedWalk → ¬ K.FirstTurns →
+      K.sourceArc.length < (cellDarts X K.source).length →
+      K.targetArc.length < (outerDarts X).length →
+      ¬Unpinched X.toCombMap K.faces →
+      P10ChordLift.AllNonFirstTurnsCrossed K →
+      ¬ lobeRm86_SrcLobe K →
+        roseLobeOsin_LobeAt K
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_ResidualStatement
+
+/-- **The lobe removal from the residual**: split on the source-arc lobe case. -/
+theorem lobeRm86_lobeRemoval_of (h : lobeRm86_ResidualStatement.{u, w, v}) :
+    roseJunctionCore_LobeRemovalStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose
+  by_cases hcase : lobeRm86_SrcLobe K
+  · exact lobeRm86_lobeAt_of_src K hK hsrc htgt hcase
+  · exact h D eps X lo hi hlea hlabel K hK hnft hsrc htgt hpinch hrose hcase
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_lobeRemoval_of
+
+/-- **The sub-arc region move from the residual** (route (a) of the rose step). -/
+theorem lobeRm86_regionMoveSubArc_of (h : lobeRm86_ResidualStatement.{u, w, v}) :
+    P10Rose.RoseRegionMoveSubArcStatement.{u, w, v} :=
+  roseJunctionCore_regionMoveSubArc_of_lobeRemoval (lobeRm86_lobeRemoval_of h)
+
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval.lobeRm86_regionMoveSubArc_of
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P10LobeRemoval

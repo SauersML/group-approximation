@@ -23,10 +23,11 @@ reduction proved here, the two are therefore interchangeable as propositions; th
 content**.  The residual only has to be proved for configurations where *no* colouring at all
 (not only a lobe colouring) has its kept darts listed in the order of the cycle with the kept
 parts of the two arcs as arcs and a closed kept walk.  Every configuration with a closed removed
-block placed as in `subArc_filterMove_of_block` is discharged, which includes the one- and
-two-dart lobes and lakes of `P10RoseLobe.MultiStatement` and every lobe witness of
-`P10RoseLobe.roseLobe_FilterListingStatement`.  It is not an equivalent restatement of any FALSE
-statement of the AVOID list: it asks for nothing beyond the target's own conclusion.
+block placed as in `subArc_filterMove_of_block` is discharged, and so is every configuration
+with a lobe witness of `P10RoseLobe.roseLobe_FilterListingStatement` (its lobe colouring, with
+the colour lemmas used by `P10RoseExtremalTrim.roseJunctionCore_regionMoveSubArc_of_lobeRemoval`,
+is an in-order filter move).  It is not a restatement of any FALSE statement of the AVOID list:
+it asks for nothing beyond the target's own conclusion.
 
 ## Truth check (not formalised)
 

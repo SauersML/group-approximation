@@ -21,7 +21,7 @@ the tents `w b w⁻¹` and `w' y w'⁻¹` (aperiodic `w`, `w'` at a quarter-peri
 `λ ≈ 1/2`, `c` is small, and the value is conjugate by `(w, w')` to `(b, y)` of norm `2`.
 
 **No Lean refutation is given.**  It needs words of several hundred letters, and checking
-`IsLambdaCQuasiGeodesicWord` and the piece bound for them without `native_decide` is out of
+`IsLambdaCQuasiGeodesicWord` and the piece bound for them by kernel evaluation alone is out of
 reach.  The obstruction is exactly the missing hyperbolicity: in a `δ`-hyperbolic `G`,
 quasi-geodesic long relators cannot be conjugate to short elements by a spur that fits.
 
@@ -93,11 +93,9 @@ theorem p07ShortLoop_proof_of_section (hsec : p07ShortLoop_SectionStatement.{u, 
   obtain ⟨rhoS, hrhoS⟩ := heps0 eps heps
   obtain ⟨rho1, hrho1⟩ := SameCellSimplePocket.exists_rho_large lambda c hmu eps
   refine ⟨max 2 (max rho1 rhoS), by omega, fun rho hrho W hcondition => ?_⟩
-  have hrho2 : 2 ≤ rho := le_trans (le_max_left _ _) hrho
-  have hrho1' : rho1 ≤ rho :=
-    le_trans (le_trans (le_max_left _ _) (le_max_right _ _)) hrho
-  have hrhoS' : rhoS ≤ rho :=
-    le_trans (le_trans (le_max_right _ _) (le_max_right _ _)) hrho
+  have hrho2 : 2 ≤ rho := by omega
+  have hrho1' : rho1 ≤ rho := by omega
+  have hrhoS' : rhoS ≤ rho := by omega
   have hlarge := hrho1 rho hrho1'
   have hshort := hrhoS rho hrhoS' W hcondition hrho2 hlarge
   intro Delta _ hlea hbelow S i j _ _ _ _ _ hij _ _ _ K _ _ _ _ hw hoff
