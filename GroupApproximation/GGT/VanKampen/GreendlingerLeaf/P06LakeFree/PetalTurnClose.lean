@@ -16,8 +16,8 @@ Endpoint: `P06LakeFree.PetalTurn.cellPocketLakeFreePetalTurn`, and through the r
 
 The target is TRUE; nothing false was found.  The search starts from the whole boundary
 `∂K = s₁ t̄₁ s₂ t̄₂` read backwards and cuts it at bad repeated vertices; the face of `C` stays
-on the side of one piece.  Only the noncrossing hypothesis `hw` (no repeats, no bridges, closed walk) and
-`C.face ∈ K.faces` are used; lake freeness, `i ≠ j`, letter labels and word lengths are not needed.
+on the side of one piece.  Only the noncrossing hypothesis `hw` (no repeats, no bridges, closed
+walk) and `C.face ∈ K.faces` are used; lake freeness, `i ≠ j`, letter labels and word lengths are not needed.
 
 ## The mathematical proof
 
