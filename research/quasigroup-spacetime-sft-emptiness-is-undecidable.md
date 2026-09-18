@@ -90,3 +90,28 @@ None of these covers the three one-sided cone determinisms of `X_⋆`.
   gains horizontal expansiveness from reversible partitioned automata. The obstruction above says reversibility of
   that kind is not enough here: the extreme-variable permutivity has to hold in the simulating layer itself, not in
   a garbage layer.
+
+- **2026-09-18, census-computation, swarm-0917-w12-w12-bh-follow: Frobenius obstruction in the linear class, and
+  more census (open).**
+  - **Bounded radii are already known.** The unchecked item "bounded radii in the sense of [13]" from attempt 1 is
+    settled by `triangle-permutive-sfts-have-one-sided-total-faults`, item 2: every non-side direction is expansive
+    with a width-2 staircase. The one item left for the GZ transfer is how [13] normalizes.
+  - **Proved.** `mersenne-stretch-forces-periodic-point-in-linear-spacetimes`: for
+    `x ⋆ y = αx + βy` over `F_q`, one row with an `m`-periodic stretch of length `2m + L - 1`, where
+    `m = q^k - 1`, forces a doubly periodic point.
+    - For Ledrappier, an `L`-word repeat at any distance `2^k` forces the zero point.
+    - So every row seed from a primitive 2-uniform substitution, such as Thue–Morse, whose Ledrappier point is
+      `D_2`-fixed, dies for every window.
+    - Consequence for this claim: a reduction that stays inside Ledrappier's shift cannot let a row repeat an
+      `L`-word at a dyadic distance. So 2-uniform hierarchies on rows are excluded. That points to other alphabets,
+      or to scale factors coprime to `q`. General self-similar hierarchies are not covered.
+  - **Census extension (partial, still zero candidates).** The search is
+    `experiments/quasigroup-window-extension-2026-09-17/search.py`, a copy of the tool from
+    `small-window-quasigroup-sub-sfts-have-periodic-points`. The runs were stopped before they finished, so this is
+    not a decision.
+
+    | Case | Log | Nodes explored | Leaves | Candidates |
+    |---|---|---|---|---|
+    | `k=2, L=7` | `run_k2_L7.log` | 4000+ | 0 | 0 |
+    | `k=3, L=4` | `run_k3_L4.log` | 12000+ | 0 | 0 |
+    | `k=4, L=3` | `run_k4_L3.log` | 28000+ | 0 | 0 |

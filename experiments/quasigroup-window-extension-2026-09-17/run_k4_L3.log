@@ -1,0 +1,17 @@
+k=4 L=3 P=8 nmax=60 squares=35
+    progress nodes=2000 {'nodes': 2000, 'empty_prune': 345, 'leaves': 0, 'maxlevel': 4, 'certified': 8, 'lang_prune': 1376}
+    progress nodes=4000 {'nodes': 4000, 'empty_prune': 486, 'leaves': 0, 'maxlevel': 4, 'certified': 10, 'lang_prune': 2929}
+    progress nodes=6000 {'nodes': 6000, 'empty_prune': 740, 'leaves': 0, 'maxlevel': 5, 'certified': 15, 'lang_prune': 4386}
+    progress nodes=8000 {'nodes': 8000, 'empty_prune': 875, 'leaves': 0, 'maxlevel': 5, 'certified': 16, 'lang_prune': 5940}
+    progress nodes=10000 {'nodes': 10000, 'empty_prune': 993, 'leaves': 0, 'maxlevel': 5, 'certified': 16, 'lang_prune': 7520}
+    progress nodes=12000 {'nodes': 12000, 'empty_prune': 1285, 'leaves': 0, 'maxlevel': 5, 'certified': 17, 'lang_prune': 8925}
+    progress nodes=14000 {'nodes': 14000, 'empty_prune': 1476, 'leaves': 0, 'maxlevel': 5, 'certified': 17, 'lang_prune': 10423}
+    progress nodes=16000 {'nodes': 16000, 'empty_prune': 1580, 'leaves': 0, 'maxlevel': 5, 'certified': 17, 'lang_prune': 12039}
+    progress nodes=18000 {'nodes': 18000, 'empty_prune': 1641, 'leaves': 0, 'maxlevel': 5, 'certified': 17, 'lang_prune': 13690}
+    progress nodes=20000 {'nodes': 20000, 'empty_prune': 1741, 'leaves': 0, 'maxlevel': 5, 'certified': 18, 'lang_prune': 15289}
+    progress nodes=22000 {'nodes': 22000, 'empty_prune': 1844, 'leaves': 0, 'maxlevel': 6, 'certified': 18, 'lang_prune': 16879}
+    progress nodes=24000 {'nodes': 24000, 'empty_prune': 1986, 'leaves': 0, 'maxlevel': 6, 'certified': 19, 'lang_prune': 18415}
+    progress nodes=26000 {'nodes': 26000, 'empty_prune': 2190, 'leaves': 0, 'maxlevel': 6, 'certified': 20, 'lang_prune': 19902}
+    progress nodes=28000 {'nodes': 28000, 'empty_prune': 2304, 'leaves': 0, 'maxlevel': 6, 'certified': 20, 'lang_prune': 21490}
+    progress nodes=30000 {'nodes': 30000, 'empty_prune': 2540, 'leaves': 0, 'maxlevel': 6, 'certified': 21, 'lang_prune': 22967}
+    progress nodes=32000 {'nodes': 32000, 'empty_prune': 2661, 'leaves': 0, 'maxlevel': 6, 'certified': 21, 'lang_prune': 24561}
