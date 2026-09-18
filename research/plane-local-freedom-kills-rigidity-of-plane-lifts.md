@@ -87,7 +87,7 @@ options are expected to number at least 2 for every table, not only for exceptio
 return-time set `{λ : λ^{-1}y ∈ Bad}` has bounded diameter for every `y`. Minimality of `Y`
 makes that implausible unless `Bad` is very thin (nowhere dense).
 
-**Design rule for E2.** The floating data must be *coupled across planes* so that no
+**Design rule for E2 (WITHDRAWN 2026-09-18 by `e2-for-plane-lifts-is-clustered-floating-freedom`, Theorem C: transport-coupled lifts are rigid but never minimal for a non-SFT input).** The floating data must be *coupled across planes* so that no
 modification is plane-local:
 - impose a cross-plane transport `σ_{λs} = β_s(T_λ, T_{λs}, σ_λ)` on floating identities, with
   each `β_s` a bijection of admissible sets;

@@ -111,3 +111,11 @@ closure in `S * <x>` of the substitution instances of `W`.
    - *Still alive.* Blow-ups whose gap action is not the germ action (for example trivial, or
      `T_q ≅ F` acting faithfully on the gap), orientation-reversing blow-up groups, and abstract
      `T`-groups.
+8. **Products and circle-orbit wreath products: die (2026-09-18, bh-ffwz-q59, lane proof).**
+   `thompson-t-identities-hold-in-circle-orbit-wreath-overgroups`: for every group `B` and every
+   `T`-orbit `X ⊂ S^1`, every overgroup of `T` inside `B^X ⋊ T` satisfies all of `J_k(T)`. This
+   includes `T × B`, and every mixed identity of `T` has trivial constant-deletion.
+   - *Mechanism.* Free lamps sit in derivative blow-up gaps, commuting with the stabilizer germs.
+     Arbitrary lamp groups reduce to free ones by sending distinct values to free generators.
+   - *Still alive.* Extensions by modules induced from non-point stabilizers, amalgams and HNN
+     extensions over subgroups containing all constants of `E`, and non-germ blow-ups.

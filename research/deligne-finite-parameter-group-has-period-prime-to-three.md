@@ -112,3 +112,23 @@ arithmetic half of that split, and it involves no winding estimate.
     models.
   - *Literature.* GLMR (arXiv:2301.00476) does not cover `Sp_4(Z)`. Its Prop 1.0.12 makes lattices in covers of
     Hermitian groups not uniformly `U(1)`-stable. BLSW needs every non-compact factor to have rank at least `3`.
+- **2026-09-18, swarm-0917-w13-w13-deligne-last1 (host-geometry): most of the monomial survivor is closed
+  uniformly in the Gamma-set, the rest is isolated, and the hole stays OPEN.** See
+  `deligne-opnorm-monomial-models-are-almost-flat-circle-bundles`, ESTABLISHED.
+  - *Duality (L1).* Operator-norm monomial `1/3`-models over an exact `Gamma`-set `X` are exactly almost-flat
+    circle bundles on the Schreier complex `Y_X`. The optimal defect is `4/3` times
+    `min ||f||_cell` over `f in kappa + 3 H^2(Y_X; Z)`, where `||.||_cell` is the `l^inf` quotient norm.
+  - *Killed uniformly in `X`,* including changing stabilizers of unbounded index, which is the w8-last1
+    survivor:
+    - classes nonzero on spherical cycles (K1), with invariant `M_0`, the `pi_2` generation mass;
+    - classes real-proportional to `kappa` (K2). The invariant is `D(Lambda) in {1,2}`, the order of `z` in
+      `H_1(Lambda~)`, obtained from Deligne's `Res_fin = <z^2>`. This is the monomial analogue of the
+      divisibility set `{+-1,+-2}` of w8, now with a defect floor `||kappa||_(cell,Y) / 6`.
+  - *Block models.* Block-monomial models with block size prime to 3 reduce to monomial ones through `det` (K3).
+  - *Where it dies.* At non-Kahler integral group classes `u in Hom(H_2(Lambda), Z)` with `u ≡ kappa` mod 3,
+    such as Eisenstein and boundary classes of congruence subgroups, and at blocks of size divisible by 3. Neither
+    invariant sees them.
+  - *New prerequisite.* The residue is posed as
+    `deligne-schreier-complexes-have-a-uniform-third-cellular-floor` (OPEN). It is *necessary* for the flagship:
+    its failure gives `1/3 in P_op` through permutation-with-phase matrices. It is sufficient for the monomial
+    part of this hole.

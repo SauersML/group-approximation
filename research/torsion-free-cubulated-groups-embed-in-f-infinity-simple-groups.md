@@ -150,3 +150,30 @@ The host is now `S = F((𝒢⁺ × G_2)|_{Y × {x,y}^ℕ})`, with `𝒢⁺ = I_l
 **Still unverified by any referee:**
 - Li's `lem:link:n-conn_3` read over `Γ(*)`, in the Cuntz theorem;
 - the head and normal-form part of the Garside verification for `C⁺`.
+
+## Re-review (bh-ref-q115-b, 2026-09-18, after repair eef9cb4f68): the sink gap is closed; conditional PASS
+
+1. **Sink gap: closed.**
+   - A principal character `↓x` is maximal iff `d(x)` has only its identity extension, i.e. the label
+     is full, because every other object admits a flag.
+   - Limits of sinks `↓(z_n, adj z_n)` are `D_ω`: membership of `(z,σ)` is decided by the finite sets
+     `H(o,z)` and `σ`, which converge in the Roller topology.
+   - So `∂Ω = X_∞ ⊔ {isolated sinks}`, with `X_∞ = {D_ω}` compact. It is closed, and invariant because
+     `I_l` preserves `Ω_∞` and `∂Ω`.
+2. **Cuntz hypothesis `X ⊆ Ω_∞`:** holds.
+3. **Resynchronization on `X_∞`:** holds. The tail's first step after `z_n` (resp. `gz_n`) crosses an
+   adjacent wall outside the label, so the labels are never full.
+4. **(TF), (Acyc), faithfulness, minimality:** hold, up to one small repairable gap in Lemma E.
+   - **The gap.** If the first cube `s_0` is itself a `c`-edge (forced when the label at `p` forbids
+     everything else), only one `c`-edge at `p'` is fresh, so the "two branches at `p'`" step fails.
+   - **The fix.** Take one internal step in the new copy to `p''`, which is allowed since its only
+     forbidden wall is the `c`-wall behind. Both `c`-edges at `p''` are fresh. Copies are infinite
+     when `G ≠ 1`.
+5. **Simplicity:** holds given Li's Corollary D and Matui's `simple2`.
+   - The hypotheses: `Y × C` is Cantor (no isolated points, by Lemma E), the groupoid is minimal,
+     essentially principal and purely infinite, and `H_*(G_2) = 0` gives `H_* = 0` by Künneth.
+   - The kernel I found no longer exists on `X_∞ × C`.
+
+**Verdict:** PASS on the repair, conditional on the two links no referee has checked: Li's
+`lem:link:n-conn_3` read over `Γ(*)`, and the head and normal-form part of the Garside verification.
+The claim should stay OPEN until those two links are checked.
