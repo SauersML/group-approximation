@@ -199,3 +199,44 @@ Put `M_j(b,a) = #{j`-successors of `i_a` in class `b}`.
 
 The free case is the special case in which all `K_a` are trivial and `𝒢_Γ` is the
 Kumjian–Pask groupoid. Step 5.5 then reproves aperiodicity without (H3).
+
+## Priority check (2026-09-18, bounded arXiv search)
+
+**Method.** I queried the arXiv API on MSI for items submitted since 2023, with these
+queries:
+- all fields: "Boone-Higman";
+- abstract: "Boone" AND "Higman";
+- abstract: "finitely presented simple" AND building, and AND lattice;
+- abstract: "Robertson-Steger";
+- abstract: "topological full group" AND "higher rank graph";
+- abstract: "affine building" AND "full group";
+- abstract: exotic AND building AND lattice;
+- abstract: "triangle presentation";
+- abstract: "simple envelope".
+
+**Result.** None of the hits claims Boone–Higman, or any finitely presented simple overgroup,
+for Ã₂ lattices or for lattices in 2-dimensional buildings.
+
+**The Boone–Higman hits since 2023:**
+- BBMZ survey (2306.16356) and hyperbolic groups (2309.06224, 2306.14863);
+- self-similar and contracting groups (2405.09722, 2405.10234);
+- twisted Brin–Thompson finite presentability (2405.18354) and the abstract version
+  (2603.24687);
+- finite germ extensions (2407.03149);
+- tree lattices (2408.05673);
+- Aut(F_n) and punctured mapping class groups (2503.21882);
+- oligomorphic stabilisers (2506.02319);
+- permutational wreath products (2609.01868).
+
+**Adjacent, not overlapping** (abstracts read):
+- **2403.01337** (embeddability of k-graphs in groupoids): C\*-algebraic. It contains
+  Robertson–Steger-type 2-graphs of Ã₂ groups as examples.
+- **2601.13092** (dynamical boundaries of affine buildings): C\*-simplicity. Its flag limit
+  sets of lattices are topologically free and minimal, which is consistent with Step 5.5
+  here.
+- **2511.08312:** the first chamber-regular C̃₂ lattices, which are exotic. These are the
+  natural C̃₂ test cases.
+- **2408.15763 and 2502.09536:** new families of triangle presentations, that is, new CMSZ
+  groups, which are covered here.
+
+No priority is claimed. A MathSciNet-level check was not available.

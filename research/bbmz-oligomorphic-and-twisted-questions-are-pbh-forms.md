@@ -51,7 +51,10 @@ for every `n` (Cameron), and the twisted Brin--Thompson group `SV_G` is defined 
 4. **Question 1.6, abstract reading.** If non-faithful actions are allowed, the answer is yes:
    by FFWZ Theorem C every finitely presented simple group sharply embeds in the pair
    `(G, ker(G ↷ S))` of a type [A_2] action, hence embeds in the finitely presented abstract
-   twisted Brin--Thompson group `SV_G`. That group is not simple when the action has a kernel
+   twisted Brin--Thompson group `SV_G`. **Caveat (2026-09-18):** finite presentation of the
+   abstract `SV_G` for a non-faithful `[A_2]` action is FFWZ Theorem B(ii), whose published
+   proof has a gap (`ffwz-nonfaithful-stein-stabilizers-contain-canonical-kernel`); only the
+   sharp embedding in the pair `(G, ker)` is secure. That group is not simple when the action has a kernel
    (it is relatively simple over `SK_G`), so the parenthetical "(simple)" of Question 1.6 is not
    met.
 5. **The gap between the readings** is, for each finitely presented simple group, removal of the

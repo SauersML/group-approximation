@@ -147,7 +147,7 @@ simple group contains `Gamma~`.
     singular germ group, which is finitely presented when Theorem 2.1 certifies
     the host. This kills the central kernel that the trivial-centre argument of
     `almost-v-fw-subgroups-act-through-finitely-many-germs` could not handle.
-  - *The Corollary 2.10 regime is dead.* By
+  - *A pointwise variant of the Corollary 2.10 germ regime is dead.* By
     `normal-germ-extensions-of-v-have-only-finite-kazhdan-subgroups`, if every
     singular germ group is virtually the `V`-germ group, or normalizes the
     `V`-dilation at a periodic point, then every Kazhdan subgroup is finite. So

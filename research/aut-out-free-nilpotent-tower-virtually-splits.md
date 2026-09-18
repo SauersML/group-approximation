@@ -114,3 +114,11 @@ if there is one, cannot come from the same invariant.
      `[k∪k]` plus the evaluation of Kawazumi's first Magnus cocycle on `k`, and
      injectivity of `π^*` (`aut-out-free-abelianized-extension-splits-rationally`)
      reduces `o_Q ≠ 0` to that class being nonzero.
+3. **(a) settled: `o_Q ≠ 0` (09-18).**
+   `fox-rational-section-fails-class-two-virtually`.
+   - For `n ≥ 4`, the Fox rational section fails to lift to class two on every
+     finite-index subgroup. The witness is the pair `K_12, K_34`, whose σ-lifts
+     have commutator `m²e_2∧e_4/(n−1)²`.
+   - So a virtual section over `Γ'` forces `H¹(Γ'; H_Q) ≠ 0`.
+   - Item (b) is now exactly this question: is `H¹(Γ'; H_Q) = 0` for every
+     finite-index `Γ' ≤ Out(F_n)`? A yes kills virtual sections for all `n ≥ 4`.

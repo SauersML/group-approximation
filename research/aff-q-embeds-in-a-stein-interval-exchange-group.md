@@ -20,3 +20,6 @@ distinct_from:
   has clopen periodic sets and acts rotation-like (without periodic points) on the rest. The known rotation-like Stein
   element, Boshernitzan's φ, has no roots of order ≥ 2 in any rational-slope PL group. So the next test is whether some
   minimal element of a Stein group V(1; Z[1/M], ⟨p|M⟩) is infinitely divisible there.
+- **Linearizable shapes closed (2026-09-18).** By `exponential-chart-minimal-pl-elements-have-bounded-roots`, a minimal
+  circle element whose Denjoy chart is piecewise exponential or affine has roots of only boundedly many orders. So an
+  infinitely divisible minimal Stein element needs a singular conjugacy, or a non-rotation AIET minimal component.

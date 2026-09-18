@@ -11,8 +11,8 @@ All nodes below are lane proofs, and none claims priority. Referee reviews exist
   on its f.g. subgroups, then `ℓ^{-1}Γ` consists of computable reals. For noncomputable `λ`, `D(V_λ)` is a
   2-generated simple group with unsolvable word problem.
 - **Type (A).** `stein-v-groups-act-with-type-a-on-breakpoints`: finitely presented Stein V-groups act with
-  type (A) on breakpoints. With Cleary's `F_∞`, all subgroups of quadratic-slope Stein V-groups satisfy
-  Boone--Higman, including norm +1 slopes.
+  type (A) on breakpoints. **Corrected:** Cleary proves only norm −1 F-versions, so norm +1 quadratic slopes are
+  OPEN.
 - **Contracting RSGs.** `pisot-stein-groups-are-contracting-rsgs`: for units `β` with (F), in any degree,
   `V(Z[β],⟨β⟩,ℓ)` is a contracting RSG on the β-shift. The key step is a uniform slope-defect bound from a
   conjugate-growth length lemma. **Referee-c: PASS with fixes (d1081f87a).**
@@ -23,14 +23,16 @@ All nodes below are lane proofs, and none claims priority. Referee reviews exist
   - `pisot-interval-exchange-groups-satisfy-boone-higman`: IET groups over `Q(β)` of any rank up to
     `deg β`, minimal IET full groups, and Sturmian Juschenko--Monod groups with cubic angles (tribonacci,
     plastic, d-bonacci);
-  - `quadratic-interval-exchange-full-groups-satisfy-boone-higman`: all real quadratic fields, via type (A);
+  - `quadratic-interval-exchange-full-groups-satisfy-boone-higman`: norm −1 quadratic fields. Its all-quadratic claim was
+    withdrawn after Cleary was read at source (09-18);
   - `norm-minus-one-sturmian-jm-groups-satisfy-boone-higman`;
   - `pisot-box-exchange-groups-satisfy-boone-higman`.
 - **Open:**
   - `transcendental-slope-thompson-groups-satisfy-boone-higman`: computable transcendental slopes, a
     Boone--Higman test case;
-  - `every-real-number-field-lies-in-an-f-unit-field`: a number-theoretic reduction. A yes would give all
-    algebraic IET groups.
+  - `every-real-number-field-lies-in-an-f-unit-field`: REFUTED by `Q(√3)`. See
+    `f-unit-fields-are-characterized-by-isolated-sign-units`: isolated-sign units are necessary in general and
+    sufficient for totally real fields, and all complex cubic fields qualify.
 
 ## Priority and credit
 - The quadratic Sturmian IET case was first done by bh-free-03 (`quadratic-rotation-iet-groups-...`) via

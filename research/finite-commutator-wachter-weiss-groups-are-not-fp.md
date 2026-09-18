@@ -69,6 +69,12 @@ with `Σ = W ∪ {e_1, …, e_5}`; it satisfies the commutator-mode hypothesis.
      (§"Encoding over Two Letters"), and its two directions use nothing else about `R`.
      The accepting direction needs a letter moved by the commutator; the rejecting
      direction uses Fact `fct:malformedWords`.
+5. **Split, and a retract.** The encoded check-mark states whose continuation after `$`
+   is `id` generate a subgroup `C_id <= G_R` that `ρ` maps isomorphically onto `C`. So
+   `G_R = K ⋊ C_id`, and `C` is a retract of `G_R`. Retracts of finitely presented groups
+   are finitely presented. **So if `G_R` is finitely presented, so is `C`.** Here `C` is one
+   explicit automaton group over the binary alphabet `W`, independent of `R` and of the
+   Turing machine.
 
 ## What this does and does not show
 
@@ -78,7 +84,9 @@ with `Σ = W ∪ {e_1, …, e_5}`; it satisfies the commutator-mode hypothesis.
 - **Whether `G_R` is finitely presented is open**, for finite `R` as for the binary
   headline group (`R` = Aleshin's `F_3` on `W`). The paper says nothing about finite
   presentation.
-  - *For finite `R`,* the question is about the extension `K -> G_R -> C`.
+  - *For finite `R`,* by item 5 it suffices to show that the check-mark automaton group
+    `C` is not finitely presented. That would settle the question negatively for every
+    finite `R` at once. It is not attempted here.
   - *For the Aleshin group,* the `R`-states act on `■0`, `■1` themselves, so even
     step 1 fails. The same holds for any `R` that moves the encoding letters.
 - **Röver--Nekrashevych overgroups.** Zaremsky's corollary `cor:simple_and_qr`
