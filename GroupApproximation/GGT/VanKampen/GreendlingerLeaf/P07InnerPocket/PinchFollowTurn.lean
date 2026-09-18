@@ -53,7 +53,7 @@ theorem pinchFollow_faceClass_sideOutside {M : CombMap.{v}} {w : List M.Dart} {y
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_faceClass_sideOutside
 
 /-- A dart internal to `sideOutside w` is not on an edge of `w`. -/
-theorem pinchFollow_not_walkKeep_of_internal {M : CombMap.{v}} {w : List M.Dart} {x : M.Dart}
+theorem pinchFollow_not_keep_of_internal {M : CombMap.{v}} {w : List M.Dart} {x : M.Dart}
     (h : InternalDart M (sideOutside M w) x) : ¬ walkKeep M w x := by
   intro hk
   obtain ⟨h1, h2⟩ := h
@@ -64,7 +64,7 @@ theorem pinchFollow_not_walkKeep_of_internal {M : CombMap.{v}} {w : List M.Dart}
       ((mem_sideFaces_iff M w (M.alpha x)).mpr ⟨M.alpha x, hx, Relation.EqvGen.refl _⟩)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_not_walkKeep_of_internal
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_not_keep_of_internal
 
 /-- The boundary successor of the dart at position `i` is the dart at position `i + 1`. -/
 theorem pinchFollow_boundaryPerm_getElem {M : CombMap.{v}} {faces : Finset M.Face}
@@ -80,7 +80,7 @@ theorem pinchFollow_boundaryPerm_getElem {M : CombMap.{v}} {faces : Finset M.Fac
 
 /-- **A boundary cycle follows its boundary if each position turns to the next one.**  The face
 classes (for `keep`) of the cycle darts must lie in `faces`. -/
-theorem pinchFollow_followsBoundary_of_turn {M : CombMap.{v}} {faces : Finset M.Face}
+theorem pinchFollow_follows_of_turn {M : CombMap.{v}} {faces : Finset M.Face}
     (B : BoundaryCycle M faces) (keep : M.Dart → Prop)
     (hclass : ∀ y ∈ B.cycle, ∀ x, Relation.EqvGen (CombMap.FaceClassStep M keep) y x →
       M.faceOf x ∈ faces)
@@ -92,14 +92,14 @@ theorem pinchFollow_followsBoundary_of_turn {M : CombMap.{v}} {faces : Finset M.
   intro d
   obtain ⟨i, rfl⟩ := B.positionEquiv.surjective d
   obtain ⟨m, hm, hme, hnk⟩ := hturn i.val i.isLt
-  have hb := boundaryWalk_of_run M keep faces B.cycle[i.val] hm hnk
+  have hb := boundaryWalk_of_run M keep faces (B.cycle[i.val]'i.isLt) hm hnk
     (hclass _ (List.getElem_mem i.isLt))
   rw [hme] at hb
   rw [pinchFollow_boundaryPerm_getElem]
   exact hb
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_followsBoundary_of_turn
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_follows_of_turn
 
 /-- **The outer turn condition of a closed walk.**  Write `L = w.reverse.map α`, the outer cycle.
 At each position `i`, some rotation `σ ^ m` with `0 < m` takes `α L[i]` to `L[i + 1]` (read
@@ -112,44 +112,47 @@ def pinchFollow_OuterTurn (M : CombMap.{v}) (w : List M.Dart) : Prop :=
     ∀ k, 0 < k → k < m →
       ¬ walkKeep M w ((M.sigma ^ k) (M.alpha ((w.reverse.map M.alpha)[i])))
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_OuterTurn
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_OuterTurn
 
 /-- The outer turn condition makes the outer cycle follow its boundary. -/
-theorem pinchFollow_outer_followsBoundary_of_turn {M : CombMap.{v}} {w : List M.Dart}
+theorem pinchFollow_outer_follows {M : CombMap.{v}} {w : List M.Dart}
     (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar) (hturn : pinchFollow_OuterTurn M w) :
     (hw.outerCycle hM).FollowsBoundary :=
-  pinchFollow_followsBoundary_of_turn (hw.outerCycle hM) (walkKeep M w)
+  pinchFollow_follows_of_turn (hw.outerCycle hM) (walkKeep M w)
     (fun y hy _ hx =>
       pinchFollow_faceClass_sideOutside (((hw.outerCycle hM).cycle_mem_iff y).mp hy).1 hx)
     hturn
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_outer_followsBoundary_of_turn
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_outer_follows
 
 /-- **The outer cycle follows its boundary exactly when the outer turn condition holds.** -/
-theorem pinchFollow_outer_followsBoundary_iff {M : CombMap.{v}} {w : List M.Dart}
+theorem pinchFollow_outer_follows_iff {M : CombMap.{v}} {w : List M.Dart}
     (hw : IsNoncrossingClosedWalk M w) (hM : M.IsPlanar) :
     (hw.outerCycle hM).FollowsBoundary ↔ pinchFollow_OuterTurn M w := by
-  refine ⟨fun hf i hi => ?_, pinchFollow_outer_followsBoundary_of_turn hw hM⟩
+  refine ⟨fun hf => ?_, pinchFollow_outer_follows hw hM⟩
+  intro i hi
   have hb := hf ((hw.outerCycle hM).positionEquiv ⟨i, hi⟩)
   rw [pinchFollow_boundaryPerm_getElem, BoundaryCycle.positionEquiv_apply_val] at hb
   obtain ⟨m, hm, hme, hint⟩ := EnclosedNoncrossing.exists_sigma_pow_of_boundaryWalk hb
-  exact ⟨m, hm, hme, fun k hk hkm => pinchFollow_not_walkKeep_of_internal (hint k hk hkm)⟩
+  exact ⟨m, hm, hme, fun k hk hkm => pinchFollow_not_keep_of_internal (hint k hk hkm)⟩
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_outer_followsBoundary_iff
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_outer_follows_iff
 
 /-- **The side of a noncrossing walk is an enclosed face set with successor turns**, when the
 exterior face is off its side and the outer turn condition holds. -/
-theorem pinchFollow_enclosedFaceSetSucc_of_turn {G : Type u} [Group G] {Lambda : Type w}
+theorem pinchFollow_enclosed_of_turn {G : Type u} [Group G] {Lambda : Type w}
     {W : Set (List (RelLetter G Lambda))} {X : DiscDiagram.{u, w, v} W}
     {walk : List X.toCombMap.Dart} (hw : IsNoncrossingClosedWalk X.toCombMap walk)
     (hout : X.outerFace ∉ sideFaces X.toCombMap walk)
     (hturn : pinchFollow_OuterTurn X.toCombMap walk) :
     EnclosedFaceSetSucc X (sideFaces X.toCombMap walk) (invDarts X walk) :=
   enclosedFaceSetSuccOfNoncrossing hw hout
-    (pinchFollow_outer_followsBoundary_of_turn hw X.planar hturn)
+    (pinchFollow_outer_follows hw X.planar hturn)
 
 #audit_axioms
-  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_enclosedFaceSetSucc_of_turn
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_enclosed_of_turn
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket

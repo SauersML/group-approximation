@@ -14,14 +14,14 @@ which needs `FollowsBoundary`.
 conclusion adds a second way out: give a noncrossing closed walk `w'` with the exterior face off
 its side and the *local* outer turn condition `pinchFollow_OuterTurn`, and prove the target's
 conclusion *assuming* `EnclosedFaceSetSucc X (sideFaces X w') (invDarts X w')`.  That face set is
-then built by `pinchFollow_enclosedFaceSetSucc_of_turn` (`PinchFollowTurn.lean`), and
+then built by `pinchFollow_enclosed_of_turn` (`PinchFollowTurn.lean`), and
 `pinchFollow_residual_of_statement` is the `_of_` reduction.
 
 **LOUD: logical strength.**  As a Prop the statement is *equivalent* to the target (see
 `pinchFollow_statement_of_residual`): the new disjunct implies the old one by the proved lemma.
-It is smaller only in proof content.  The construction of `EnclosedFaceSetSucc` for the new face
-set is reduced to a turn check, one position at a time, which `pinchFollow_outer_followsBoundary_iff`
-shows is exactly `FollowsBoundary`.
+It is smaller only in proof content.  The construction of `EnclosedFaceSetSucc` for the new
+face set is reduced to a turn check, one position at a time, which
+`pinchFollow_outer_follows_iff` shows is exactly `FollowsBoundary`.
 
 **LOUD: what is false.**
 * The natural weaker input, "noncrossing plus both Euler equalities gives `FollowsBoundary`", is
@@ -97,7 +97,8 @@ def pinchFollow_Conclusion {G : Type u} [Group G] {Lambda : Type w}
         (∃ A : CyclicArc (cellDarts X j),
           invDarts X (outerWalk.rotate n) = invDarts X A.darts)))
 
-#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_Conclusion
+#audit_axioms
+  GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_Conclusion
 
 /-- **Remaining gap of lane gl-p07-69.**  The premise block of `pinchRestDone_ResidualStatement`
 verbatim, (P) included.  The conclusion is that of the target, or a noncrossing closed walk `w'`
@@ -152,7 +153,7 @@ def pinchFollow_ResidualStatement : Prop :=
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_ResidualStatement
 
 /-- **The `_of_` reduction of lane gl-p07-69.**  The new disjunct gives the old conclusion through
-`pinchFollow_enclosedFaceSetSucc_of_turn`. -/
+`pinchFollow_enclosed_of_turn`. -/
 theorem pinchFollow_residual_of_statement (h : pinchFollow_ResidualStatement.{u, w, v}) :
     pinchRestDone_ResidualStatement.{u, w, v} := by
   intro G _ Lambda W D eps X i j a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂
@@ -160,7 +161,7 @@ theorem pinchFollow_residual_of_statement (h : pinchFollow_ResidualStatement.{u,
   rcases h D eps X a b K hij hai hbi hab hlabel hW hfirst hsecond G₁ hG₁ G₂ hG₂ hw hout hinner
     houter C hC hCf hCa hCb hcase hP with hc | ⟨w', hw', hout', hturn, hk⟩
   · exact hc
-  · exact hk (pinchFollow_enclosedFaceSetSucc_of_turn hw' hout' hturn)
+  · exact hk (pinchFollow_enclosed_of_turn hw' hout' hturn)
 
 #audit_axioms
   GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.pinchFollow_residual_of_statement
