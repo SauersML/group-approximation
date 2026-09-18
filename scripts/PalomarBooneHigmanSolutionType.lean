@@ -32,6 +32,8 @@ open Lean Meta in
      (true,  `BooneHigman.IsSmoothModulus),
      (true,  `BooneHigman.IsClassTranspositionOver),
      (true,  `BooneHigman.classTranspositionGroupOver),
+     (true,  `BooneHigman.IsClassShift),
+     (true,  `BooneHigman.IsClassReflection),
      (true,  `BooneHigman.HasTypeAAction),
      (true,  `BooneHigman.EmbedsInTypeAGroup),
      (true,  `BooneHigman.graphProductRelators),
@@ -43,7 +45,10 @@ open Lean Meta in
      (false, `BooneHigman.finitely_generated_linear_embeds_in_finitely_presented_self_similar_of),
      (false, `BooneHigman.kourovka_17_57_of),
      (false, `BooneHigman.kourovka_17_59_of),
+     (false, `BooneHigman.kourovka_17_60_of),
      (false, `BooneHigman.kourovka_17_61_of),
+     (false, `BooneHigman.kourovka_21_75_of),
+     (false, `BooneHigman.kohl_factorization_conjecture_of),
      (false, `BooneHigman.graph_product_embeds_in_type_a_group_of),
      (false, `BooneHigman.exists_fp_simple_with_mixed_identities_not_finitely_normally_generated_of)]
   let env ← getEnv

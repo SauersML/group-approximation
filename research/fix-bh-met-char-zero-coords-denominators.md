@@ -4,8 +4,10 @@ kind: route
 rg: 2
 title: "Fix GroupApproximation.BooneHigman.Metabelian.CharZeroCoordsDenominators: Application type mismatch: The argument (4 errors on main 3c8b417428)"
 target: fp-metabelian-groups-satisfy-boone-higman
-status: OPEN
+status: SUPERSEDED
 ---
+
+**SUPERSEDED by `fix-bhmet-char-zero-coords-denominators`.** Duplicate fix node for the same module, landed in parallel; its classification and target are merged there. Track this module only on `fix-bhmet-char-zero-coords-denominators`.
 
 **Module.** `GroupApproximation/BooneHigman/Metabelian/CharZeroCoordsDenominators.lean`. It is red on origin/main at 3c8b417428 with 4 hard errors, from bh-pal-integrate's trusted MSI build
 (error index kept by that lane; see `research/artifacts/gq-bh-pal-integrate-metabelian-chain-map.md`). The file is unchanged on main since then.
