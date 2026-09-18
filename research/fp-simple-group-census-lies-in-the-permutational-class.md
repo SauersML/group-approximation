@@ -30,6 +30,10 @@ requires:
   - leavitt-square-unit-groups-mod-scalars-satisfy-pbh
   - projective-leavitt-tensor-units-lie-in-the-permutational-class
   - twisted-integral-affine-groups-lie-in-the-permutational-class
+  - exotic-rank-two-building-lattices-are-mif
+  - titz-witzel-kernels-are-mif
+  - integral-slope-stein-v-groups-are-k-graph-full-groups
+  - pisot-number-slope-stein-groups-are-contracting-rsgs
 ---
 
 **ESTABLISHED as a census** (lane bh-major-product, 2026-09-18; assembly of landed nodes; not
@@ -49,15 +53,15 @@ independently reviewed). Each row carries the conditions of its covering node.
 | Twisted Brin–Thompson `SV_G` (Belk–Zaremsky) and the finitely presented simple quotients of FFWZ's `SV_A` | `twisted-btb-clopen-action-is-type-a` | Zaremsky's criterion |
 | `k`-graph full groups with two loops of every colour at every vertex, including Matui's SFT groups `V_A` of that kind | `stabilized-kgraph-full-groups-have-type-a-actions` | Li `thm:deg` |
 | BBMZ full contracting rational similarity groups | `hyperbolic-groups-lie-in-the-permutational-class` | refs a, b PASS |
-| Stein `V`- and `T`-groups; Cleary and Burillo–Nucinkis–Reeves `T_τ`, `V_τ` | `stein-v-groups-act-with-type-a-on-breakpoints`, `interval-exchange-pl-groups-act-with-type-a-on-breakpoints`, `circle-pl-groups-act-with-type-a-on-breakpoint-orbits` | Stein 1992 (not read), BNR l.101 |
+| Stein `V`- and `T`-groups; Cleary and Burillo–Nucinkis–Reeves `T_τ`, `V_τ` | `stein-v-groups-act-with-type-a-on-breakpoints`, `interval-exchange-pl-groups-act-with-type-a-on-breakpoints`, `circle-pl-groups-act-with-type-a-on-breakpoint-orbits` | Li k-graph theorem (integral case); Pisot RSG route (golden ratio); Stein 1992 not needed |
 | Finitely presented PL rearrangement groups | `pl-rearrangement-groups-have-two-transitive-orbit-actions` | their finite presentation |
 | Lodha's circle group `S` | `lodha-simple-circle-group-has-a-type-a-action` | Lodha, read at source |
-| Hyde–Lodha line groups `Q_n` | `hyde-lodha-simple-line-groups-lie-in-the-permutational-class` (**new**) | Stein 1992 |
+| Hyde–Lodha line groups `Q_n` | `hyde-lodha-simple-line-groups-lie-in-the-permutational-class` (**new**) | Li k-graph theorem |
 | Burger–Mozes, Wise, Rattaggi, Radu, and every cocompact lattice in a product of two trees | `product-of-two-trees-lattices-satisfy-permutational-boone-higman`; for Burger–Mozes also BFFHZ Remark 3.5 | BLIW |
 | Lattices in finite products of trees with a faithful factor | `product-of-trees-lattices-with-faithful-factor-satisfy-pbh` | BLIW |
 | Amir–Lazarovich lattices | `tree-by-complex-lattices-with-faithful-tree-factor-satisfy-pbh` | BLIW, lane proof |
-| Titz Mite–Witzel kernels, and every irreducible Euclidean building lattice | `euclidean-building-lattices-lie-in-permutational-bh-class` | Ciobotaru–Le Bars caveat, lane proof |
-| Caprace–Rémy non-affine Kac–Moody groups | `fp-simple-kac-moody-lattices-satisfy-pbh` | Rybak's MIF theorem |
+| Titz Mite–Witzel kernels, and every irreducible Euclidean building lattice | `euclidean-building-lattices-lie-in-permutational-bh-class` | Le Bars–Leibtag–Vigdorovich MIF (preprint), or the lane proof with their topological freeness |
+| Caprace–Rémy non-affine Kac–Moody groups | `fp-simple-kac-moody-lattices-satisfy-pbh` | Rybak's MIF theorem, re-read at source |
 | `L_p^×/F_p^×`, `(L_p ⊗ L_p)^×/F_p^×` (Khanh; bh-free-26) | `leavitt-unit-groups-mod-scalars-satisfy-pbh`, `leavitt-square-unit-groups-mod-scalars-satisfy-pbh` (09-13) | Khanh preprint |
 | `(L_p^(⊗d))^×/F_p^×`, `d >= 3` | `projective-leavitt-tensor-units-lie-in-the-permutational-class` | Khanh, FJ lane derivation, MMN |
 | `W`, `D(W_(P,ℓ))` | `twisted-integral-affine-groups-lie-in-the-permutational-class` | finite presentation of `W` (lane proof) |
@@ -89,17 +93,40 @@ independently reviewed). Each row carries the conditions of its covering node.
 - No "Bux–Mischler" family of finitely presented simple groups was found. A web search on
   2026-09-18 returned only Bux's finiteness papers.
 
-**The first place a census member might fail to be in `B_A`.** No published family is
-uncovered. The weakest links are the coverages that rest on unreviewed or conditional inputs,
-in order:
-1. **Titz Mite–Witzel kernels.** Coverage is a lane proof with the Ciobotaru–Le Bars trust
-   caveat. These are the only Kazhdan lattices in the census that are covered by a building
-   coding rather than by MIF.
-2. **Kac–Moody groups.** Coverage rests on Rybak's MIF theorem.
-3. **Stein, Hyde–Lodha and `T_τ`.** Coverage rests on Stein's `F_∞` theorem, cited and not read.
+**Where coverage is weakest** (updated 2026-09-18, after reading the three weakest links at source).
+No published family is uncovered. For each of the three links named earlier, here is what it rests
+on now.
+1. **Titz Mite–Witzel kernels: two routes.**
+   - *MIF route.* `titz-witzel-kernels-are-mif`, through Le Bars–Leibtag–Vigdorovich
+     arXiv:2609.17129 `Thm:MIF` (`exotic-rank-two-building-lattices-are-mif`), then BFFHZ Theorem C.
+     The authors draw this consequence themselves.
+   - *Euclidean route.* bh-groupoid's lane proof. Its topological-freeness input now comes from
+     their `thm:gq-open-dense-opposite-geometry`, whose proof was read here line by line.
+   - Neither route uses the Ciobotaru–Le Bars barycenter chain (trust note T1).
+   - Remaining trust: an unrefereed preprint of September 2026, and Ciobotaru–Le Bars Prop. 6.1 for
+     the MIF route. That proposition's written proof shows density of attracting chambers and then
+     says the general-type condition "suffices". That step is the one to referee.
+2. **Kac–Moody.** Rybak's chain was re-read at source (`fp-simple-kac-moody-lattices-are-mif`,
+   "Source re-read"). The ping-pong and the micro-support lemmas check. What remains is the
+   unrefereed preprint plus published inputs (Caprace–Fujiwara, Petyt–Spriano–Zalloum, Caprace 2007,
+   Dymara–Schick).
+3. **Stein-type groups.** No census coverage needs Stein 1992 any more.
+   - Stein's `T`- and `F`-groups, and Hyde–Lodha's `Q_n`, lie in the integral `V`-groups. Those are
+     `F_∞` by Li's k-graph theorem, read at source
+     (`integral-slope-stein-v-groups-are-k-graph-full-groups`, lane proof).
+   - `T_τ ≤ V_τ` and `V_τ` are covered by the golden-ratio instance (`β² = β + 1`, property (F)) of
+     `pisot-number-slope-stein-groups-are-contracting-rsgs`, a lane proof.
+   - Stein 1992 was not obtainable: the AMS server returned 403 to scripted requests. Tanner,
+     arXiv:2312.07375 (read at source), attributes `F_∞` of the integral groups to it, and gives the
+     k-graph identification.
 
-Failures in the `W` or Leavitt rows would not give a counterexample: if the lane finite
-presentation fails, the group is simply not in the census.
+The weakest remaining links are now the internal lane proofs:
+- `integral-slope-stein-v-groups-are-k-graph-full-groups`;
+- `pisot-number-slope-stein-groups-are-contracting-rsgs`;
+- `euclidean-building-lattices-lie-in-permutational-bh-class`;
+- finite presentation of `W`.
+
+`W` does not threaten the census, since it only decides whether `W` is a member.
 
 ## Lesson for general BH
 

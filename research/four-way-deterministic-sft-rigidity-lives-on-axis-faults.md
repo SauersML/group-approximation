@@ -86,9 +86,11 @@ whole row.
   `R`: here `v − e_1 ∈ B_R` and `v − e_2` was just added. Then run along the row `y = R+1` from
   `x = R−ρ+1` to `R+1`.
 - **SE corner, by rule (z) with the SE rule `{e_1, −e_2}`.** It needs `v − e_1` and `v + e_2`.
-  - Descend the column `x = R+1` from `y = −(R−ρ+1)` to `−(R+1)`.
+  - Descend the column `x = R+1` from `y = −(R−ρ+1)` to `−R` only.
   - Run along the row `y = −(R+1)` from `x = R−ρ+1` to `R`. It starts from the bottom segment given
-    by `C = −C`.
+    by `C = −C`, and `v + e_2` lies in `B_R`.
+  - Only then add the corner `(R+1, −(R+1))`. Its inputs `(R, −(R+1))` and `(R+1, −R)` are both present by now.
+    (Ordering corrected after the referee note below.)
 - **NW and SW corners.** These are the negatives of the SE and NE corners.
 
 So `B_(R+1) ⊆ C`. Starting from `B_(2D)`, induction gives `C = Z^2`.

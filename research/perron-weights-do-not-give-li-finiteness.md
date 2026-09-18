@@ -96,3 +96,16 @@ automata) must first be recoded to remove its thin cycles, as Matui's state spli
 for graphs. The open problem for higher-rank hosts, including Q1.15, is therefore a
 **thin-cycle-free recoding that keeps lcms**. A better eigenvalue is not the missing
 piece.
+
+## Attempts
+
+1. **(bh-major-cube-b, 2026-09-18) Item 3 is conditional.** The repaired criterion (a height
+   plus (Pack)) runs Li's `lem:link:n-conn_3` as stated. Referee bh-ref-q115-a found that Li's
+   written proof of that lemma asserts its key element `θ` without argument
+   (arXiv:2110.04505v2, l.1733–1759). So item 3 holds only if that step can be supplied, and
+   in general this is not checked.
+   - Items 1–2 are unaffected: the counterexample and the location of the Perron proof's
+     failure.
+   - For pure-hole Cuntz data the needed instance is proved directly, by Dickson's lemma
+     and doubling (Lemma L of `cuntz-stabilized-garside-full-groups-f-infinity-proof`). That
+     is why `cuntz-stabilized-garside-full-groups-are-f-infinity` no longer uses item 3.

@@ -8,7 +8,7 @@ requires:
   - half-tube-lattice-points-are-edge-split-vertices
 ---
 
-Lane bh-major-mcg-2, 2026-09-18. Lane proof, not refereed.
+Lane bh-major-mcg-2, 2026-09-18. Lane proof; one referee PASS (bh-ref-engines, 2026-09-18).
 
 1. **Rank two.** `(TI_1)` holds by the Stern–Brocot argument in the target node.
 2. **Rank at least three.** For `m ≥ 2`, a totally irrational `ξ` is generic in the sense
@@ -38,3 +38,15 @@ Lane bh-major-mcg-2, 2026-09-18. Lane proof, not refereed.
 - **Check it first.** For any higher-rank lattice host, ask whether the free choice
   makes the set of reachable lattice points contain a tube of fixed width. If it does,
   shared vertices come from Dirichlet, and no dynamics is needed.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS
+
+- **Rank at least three.** "Totally irrational" (on no rational hyperplane) is exactly "generic" in the
+  half-tube node. The half-tube corollary (referee PASS, bh-ref-kourovka-b) gives a primitive `w` that is a
+  vertex of cells of `Desc(c)` and `Desc(F)` both containing `ξ`. So they share the ray `w`, which is
+  `(TI_m)`.
+- **Nonnegativity.** The remark matches the half-tube referee's note.
+- **Rank two.** `(TI_1)` is the Stern–Brocot case.
+- **Consequence.** I checked the reduction `edge-split-sync-reduces-to-totally-irrational-shared-rays` in
+  full; see its Referee section. So `(Sync_m)` holds in every rank by this second route. The only imported
+  input is the cut lemma `edge-splits-cut-every-rational-hyperplane`.
