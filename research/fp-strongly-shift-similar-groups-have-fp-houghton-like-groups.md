@@ -15,8 +15,11 @@ distinct_from:
 ---
 
 **ESTABLISHED** (lane proof, elementary modulo the cited Mallery--Zaremsky facts and P. Hall's extension lemma;
-not independently reviewed; no priority claimed). An arXiv check found no answer to Question 5.13 after the
-source, but that check was bounded.
+not independently reviewed; no priority claimed). No literature search for later answers to Question 5.13 was
+made. (Correction: an earlier version of this node claimed a bounded arXiv check; none was run.)
+
+**Generalized** by `strongly-shift-similar-type-f-m-passes-to-houghton-like-groups`, which proves the same with
+`F_m` in place of finite presentation for every `m`.
 
 **Statement.** Let `G <= Sym(N)` be strongly shift-similar and finitely presented. Then `H_n(G)` is finitely
 presented for every `n >= 1`.
@@ -47,8 +50,10 @@ hold for all `n`?") positively for finite presentation. The `F_m` part of the qu
 - `G = FSym(N)` is not finitely generated, so it is excluded. That is consistent with `H_2 = H_2(FSym)` not being
   finitely presented.
 - `G = 1` is shift-similar, finitely presented and not strongly shift-similar, and `H_2(1) = H_2` is not finitely
-  presented. So "strongly" (equivalently, by the stabilizer node, containing `FSym(N)`) is used, exactly where
-  Question 5.13 separates the two cases.
+  presented. So "strongly" is used. It enters through `FSym(N) <= G` and the stabilizer isomorphism of
+  `strongly-shift-similar-point-stabilizers-are-copies-of-the-group`, which is exactly where Question 5.13 separates
+  the two cases. (Correction: an earlier version called containing `FSym(N)` equivalent to strong shift-similarity.
+  Only the forward implication is proved.)
 - `G = H_k` with `k >= 3`: `H_n(H_k) ≅ H_(nk)` (Proposition 5.5), finitely presented, as predicted.
 - `G = E_nu(P)` with a free-shift `nu`: `G` is not finitely presented, and `free-shift-houghton-like-envelopes-are-not-fp`
   shows every `H_n(G)` fails too. No conflict.
