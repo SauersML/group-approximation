@@ -7,11 +7,14 @@ distinct_from:
   sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational: that proves the ring is simple and K_1-rational; this is the group side, normal subgroups and the centre clause of E_N over it.
   sl3-toeplitz-harmonic-elementary-groups-are-fp: that is the open finite-presentation claim; this reduces the host premise for R_T to it.
   ample-steinberg-el-simple-mod-centre-without-hausdorff: that is for Steinberg algebras, whose coefficients are locally constant; this is for R_T, whose harmonic coefficient is not locally constant.
+artifacts:
+  - research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md
 ---
 
-**ESTABLISHED** by `sl3-toeplitz-harmonic-pe-groups-are-simple-proof` (lane proof, not independently
-reviewed). It is conditional on the lane proof of `sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`,
-which is also unreviewed; its parts 1–3 are used.
+**ESTABLISHED** by `sl3-toeplitz-harmonic-pe-groups-are-simple-proof`. Referee `gq-referee-b` PASS
+(`research/artifacts/gq-referee-b-sl3-toeplitz-harmonic-pe-groups-are-simple.md`), which checked the Lean
+signature against `R_T`. The claim is conditional on parts 1–3 of
+`sl3-toeplitz-harmonic-ring-is-simple-and-k1-rational`, which have one referee pass (`gq-referee-a`).
 
 ## Statement
 
