@@ -133,3 +133,31 @@ simple group.  This does not prove `(BLAMR)`, and the claim stays OPEN.
 The live bypass is now `(MSG)` for the root subgroups the manuscript
 compresses, or injectivity of the adjoint splitting map, in every
 `delta_e`-profile model.
+
+2026-09-17 (swarm-0917-w6-w6-ptl-last2, quantifier-shift).  The finite
+von Neumann rung of the `(MSG)` quantifier ladder is now decided by
+`tracial-model-spectral-gap-is-character-gap-weaker-than-t`.  Along every
+finite von Neumann target, `(MSG)` on `L` is equivalent to a uniform gap
+for `h_S` over the GNS representations of characters of the ambient group.
+
+This rung is strictly weaker than `(T)`:
+- `(V,V)` and `(V,F_2)` satisfy it by the Dudko--Medynets character
+  classification and Kesten, although every Kazhdan subgroup of `V` is
+  finite;
+- it depends on the ambient group, since `(F_2,F_2)` fails it.
+
+So ambient data can replace `(T)`, but only through characters.  For this
+claim that is useless.  In the adjoint corona of every `delta_e`-profile
+model, the tracial completion sees `lambda_G`, where the gap is automatic.
+Whenever `(MSG)` holds, the substitute eigenprojection is `tau`-null.
+
+The approach "prove `(MSG)` for the compressed root subgroup from a
+T-free tracial or character property of `Delta`" therefore dies at the
+step `pi_tau(P)=0`.  Such a property includes character rigidity of
+`Delta`, and it includes `Thompson V<=Delta` with its character
+classification.  That approach proves nothing about the projection that
+`(BLAMR)` and the transport consume.
+
+What survives has to control tau-null spectrum of one Markov element in
+the norm corona.  The next undecided rung is stably finite C-star targets,
+which contain the coronas.  The claim stays OPEN.

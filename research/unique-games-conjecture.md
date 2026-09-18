@@ -78,6 +78,32 @@ it is supplied, and the exponential pairing-support obstruction persists.
 
 ## Attempts
 
+- **Padding-line decomposition and repetition calibration
+  (swarm-0917-w6-ugc-break, 2026-09-18).**
+  - *Invariant:* `ug-hardness-deficit-ratio-padding-line` gives the deficit
+    ratio `R = (1-s)/(1-c)`, which is unchanged by satisfiable padding. `R > 2`
+    iff `s < 2c - 1`, and that forces `c > 1/2`. The proved point
+    `((1-eps)/2, eps)` has `R < 2`. So the "1/2 wall" is the padding line.
+  - *New failable prerequisite:* `unique-games-np-hard-below-the-padding-line`
+    (OPEN), which needs a single NP-hard point with `R > 2`. It is implied by
+    UGC (route `padding-line-hardness-from-ugc`, `eps = 1/4`, `R = 3`). An
+    algorithm for any gap below the line refutes UGC. The unconditional points
+    recorded here are all at `R <= 2`: 2-to-2 splits give `R -> 2`, and
+    O'Donnell--Wright give `5/4`. The w4 affine-view collapse below also lands
+    at `s >= 2c - 1`.
+  - *Class kill:* a padded proper split of any d-to-d game has `R <= d/(d-1)`,
+    whatever the source hardness. It dies at completeness, because exactly one
+    branch holds per satisfied constraint.
+  - *Calibration:* `parallel-repetition-collapses-threshold-rank-to-spectral-gap`
+    shows that `G^n` has threshold rank 1 or at least `n + 1`. So on repetition
+    pipelines with `n >= r*`, the w5 NO-side kill tests only the base game's
+    spectral gap, and its `eps0^(-1/2)` rank scale is silent. Weak-gap
+    amplification in the style of Rao (ECCC TR08-013, Thm 1.4, UGC restated at
+    `1 - eps^2` versus `1 - eps^(1-delta)`) passes the rank branch
+    automatically.
+  - *Survivors for the milestone:* improper splits, non-split outputs,
+    label re-encoding compositions, and amplification of a weak-gap core.
+
 - **NO-side spectral kill by the degree-2 SDP (swarm-0917-w5, 2026-09-17).**
   `spectral-gap-no-outputs-cannot-prove-ugc` proves, at every alphabet and
   without triangle inequalities, the bound
@@ -252,3 +278,25 @@ it is supplied, and the exponential pairing-support obstruction persists.
 * **Mainstream frontier.** The unconditional gap stands at completeness `1/2`
   (`two-to-two-games-theorem`, `unique-games-hard-at-completeness-one-half`). A
   second, one-way route into this root is `ugc-from-small-set-expansion-hypothesis`.
+* **Fixed-exponent reductions: a size gate under ETH (class kill, 2026-09-18,
+  wave 6).** `ugc-hardness-reductions-need-epsilon-dependent-size-exponent`
+  (ESTABLISHED as a conditional theorem) imports ABS
+  (`abs-subexponential-unique-games-and-sse-algorithms`).
+  - *What it proves.* Assume ETH. A 3SAT reduction with output size `n^A` has:
+    - `A >= c gamma^(-1/6)` for Gap-UG at completeness `1 - gamma` vs `1/2`;
+    - `A >= c eps^(-1/6)` for every 2-to-1 hardness that the BKM noise test
+      certifies at `eps`. The test has size `|E|^2 m^(6l)`. This covers
+      Gap-Rich at `1 - eta` and at `1`, and the smooth-design and finite-moment
+      holes, so it applies to all four BKM-test routes;
+    - `A >= c/eta` for SSE on regular graphs, repaired to exact measure
+      `delta`.
+  - *Invariant.* The size exponent.
+  - *Where it dies.* At decoding: `exp(k N^(O(eps)))` time on the output
+    is `2^(o(n))`.
+  - *Survivors.* Exponents growing as `eps^(-Omega(1))`, such as parallel
+    repetition whose number of rounds tends to infinity; failure of ETH;
+    irregular SSE outputs; completeness bounded away from 1.
+  - *Consequence.* A route from `two-to-two-games-theorem` must pay the forced
+    blow-up at completeness amplification, from `1/2` to `1 - gamma`.
+  - Where it stops: it constrains the shape of a proof and proves nothing
+    toward the conjecture.

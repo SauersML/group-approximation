@@ -129,3 +129,26 @@ alphabet-sized decoding list cannot supply the intended soundness gain.
     reduction with `o(1)` closure and no unique-game or affine skeleton.
   - Open spark: are the GKOPTW perfect-SDP 2-to-1 gap instances (ICALP 2010)
     rich, or can they be made rich without a merge skeleton?
+* **Close the orientation-lift completeness hole with an efficient branch
+  selector whose completeness witness is the honest encoding.** In the
+  orientation-lift decomposition posted on the live bus, richness and soundness
+  are free and one completeness hole remains: an efficient selector on proved
+  2-to-2 or 2-to-1 instances with lift completeness `1 - eta'`. That
+  decomposition has not landed in this graph. **Dead unless NP in RP
+  (2026-09-18)** -- `efficient-branch-selectors-list-decode-honest-outer-labels`.
+  - Scope: any randomized polynomial-time selector, view-local, parity-leaking
+    or global, on a linearly encoded composition satisfying (B), (E) and (M).
+    The selector must give the honest encoding of some outer labelling of value
+    `>= 1 - eps` a lift value `>= 1/2 + gamma`. Then a decoder finds outer
+    labellings of value `>= (gamma^3 2^(-l-2)/K)^2 - 2 eps`. So when the outer
+    soundness is below half of that, the source is in RP.
+  - Invariant: branch-bit advantage.
+  - Step: guess one seed label. The branch bits then predict `<lambda_a, x>`,
+    Parseval gives a list of `4/gamma^2`, and random list decoding beats the
+    outer soundness.
+  - Tight: under `P = NP` honest selectors reach `val_G(hon(lambda))`, so no
+    unconditional kill exists.
+  - Survivor: completeness witnesses far from every honest encoding, the
+    non-honest heretic H2.
+  - Not established here: that the Khot--Minzer--Safra 2-to-2 instances satisfy
+    (E) and (M). The claim node gives the argument.

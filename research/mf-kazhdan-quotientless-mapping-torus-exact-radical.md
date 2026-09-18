@@ -116,3 +116,19 @@ nothing: the flagship then needs a torsion-free sofic Kazhdan kernel with
      automorphisms.
 
    No surviving ring is known.
+6. **Stably finite certificates (2026-09-18, operator-algebras, dead class).**
+   `kazhdan-mapping-tori-have-proper-stably-finite-radical` (established)
+   proves that for every nontrivial MF Kazhdan `Q` and every `psi`, some
+   homomorphism `Q semidirectProduct_psi Z -> U(P)`, with `P` a finite von
+   Neumann algebra, is nontrivial on `Q`, with Kazhdan-constant defect at least
+   `kappa^2`.  So `Rad_sf(G)` is a proper subgroup of `Q x {0}`.
+   - *What dies.*  Any certificate valid in all stably finite targets:
+     Dedekind-finiteness identities `t p_L t^* = p_L`, infiniteness of
+     `C*_max`, K_0 and projection compression, and tracial obstructions.
+   - *Invariant.*  The normalized trace of the set where `t q t^-1 = psi(q)`
+     fails.
+   - *Death step.*  Evaluation at the Folner model `sigma_N`: the relation
+     fails on one wrap block of trace `1/N`, while the Kazhdan bound holds on
+     every block.
+   - *What survives.*  Norm-model arguments over the whole group, as in
+     Attempts 3--5.  This is the same wrap block where Attempt 1 dies.
