@@ -31,7 +31,8 @@ def higmanVCTau_other {d : ℕ} (a : Fin d) : Fin d :=
 def higmanVCTau_descP {d : ℕ} : List (Fin d) → List (Fin d) → List (Fin d)
   | [], _ => []
   | [_], _ => []
-  | a :: b :: _, o => if o.head? = some a then [higmanVCTau_other a] else [a, higmanVCTau_other b]
+  | a :: b :: _, o =>
+    if o.head? = some a then [higmanVCTau_other a] else [a, higmanVCTau_other b]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTau_descP
 
@@ -97,12 +98,14 @@ noncomputable def higmanVCTau_tau (d : ℕ) (p : List (Fin d) × List (Fin d)) :
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTau_tau
 
+/-- Zero fuel gives `1`. -/
 theorem higmanVCTau_val_zero (d : ℕ) (p : List (Fin d) × List (Fin d)) :
     higmanVCTau_val d 0 p = 1 :=
   rfl
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTau_val_zero
 
+/-- One step of the descent. -/
 theorem higmanVCTau_val_succ (d n : ℕ) (p : List (Fin d) × List (Fin d)) :
     higmanVCTau_val d (n + 1) p =
       if p.1.length ≤ 3 ∧ p.2.length ≤ 3 then higmanVCTau_letter d p
