@@ -59,3 +59,29 @@ All register designs are now bracketed:
 The open shapes are:
 - the singular case `det M_top = 0` in general;
 - hosts not of register type.
+
+## 7. The singular case (added after the coordinator's follow-up)
+
+Node `top-determined-register-rings-cannot-divide-the-unit`.
+
+**The reduction.** Replace invertibility of the top matrix by injectivity of the stacked top blocks `M_j`, meaning
+all equations whose top level is `j`, restricted to level `j`.
+- Only finitely many blocks occur, because letter multiplicities are bounded and residue patterns are eventually
+  periodic. So one common denominator serves all their left inverses.
+- Every harmonic functional is then a `Z[1/D]`-combination of finitely many initial values.
+- Overdetermined tops only cut down the initial-value space.
+- Conclusion: an infinite-order `[1]` is divisible by only finitely many primes.
+
+**One-type designs are always top-determined.** This covers every example the coordinator listed:
+- one loop plus dilations: the level-`k` unknown cancels, and the top is `⌊k/p_min⌋` with a positive coefficient;
+- `a ≠ 1` loops: the top is `k`, with coefficient `1 − a`.
+
+**What is left.** In a multi-type design, some type direction may never be a top, for instance a type reached only
+by larger-base dilations while the smallest-base letters land elsewhere.
+- Those directions are free parameters at every level.
+- Their consistency conditions come from tops that are determined twice. So far these have bounded coefficients:
+  differences of direct multiplicities, since the free values enter directly and not through expanded path
+  counts. In the tested case (two types, base 2 into one type and base 3 into the other) they force
+  neighbouring free values to agree, so there is no division.
+- An escape would need consistency conditions whose coefficient on the newest free parameter has unbounded prime
+  support. None is known.
