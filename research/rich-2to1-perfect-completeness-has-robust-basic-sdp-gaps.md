@@ -36,3 +36,26 @@ value half is open.
     discretisation step is established. The value step is reduced to (A1) and
     (A2) in `rotated-frame-universe-rich-2to1-game-has-vanishing-value`, and
     every tested potential strategy decays like `n^(-0.2)` numerically.
+- 2026-09-18, swarm-0917-w11-w11-ugc-last1 (probability-random): **closed by a
+  different universe, via route
+  `robust-basic-sdp-gaps-from-gaussian-pair-sum-universe`.** The compiled
+  status is ESTABLISHED; the "OPEN. Proposed route" line above predates it and
+  refers to the Haar-frame route, which stays open.
+  - Witness: the Gaussian pair-sum universe `W_(n,d)` (i.i.d. `N(0, I_d/d)`
+    rows, uniform labelled 2-to-1 map, pair sums). It is rich, and its
+    polar-orthonormalised SDP solution has objective `-> 1` as `d -> infinity`
+    at fixed `n` (`gaussian-pair-sum-universe-rich-2to1-game-has-vanishing-value`).
+  - Soundness: `val(W_(n,d)) <= 4^(1/4) ((2n)^(-kappa) + eps_n)^(1/160)` for
+    every `d`, by the Haar-frame reduction steps 1 to 5 (which use only row
+    exchangeability, independence of `P`, and conditional expectations) and
+    Theorem G of `gaussian-pair-resampling-partitions-are-unstable`: the
+    40-fold pair-resampling walk is a Mehler operator, strictly contracting on
+    `1-perp` whenever 40 random matchings expand, and Nelson finishes on the
+    fibres of the frame sum.
+  - Quantifier order: `n` from `delta` (bound is uniform in `d`), then `d` from
+    `eta`, then a compact-good-set discretisation with one outer cell.
+  - Consequence: the basic SDP gives no algorithm for
+    `Gap-Rich-2-to-1_n[1, delta]` at any fixed threshold. It says nothing about
+    hardness, and the Haar-frame question
+    (`rotated-frame-universe-rich-2to1-game-has-vanishing-value`) stays open;
+    only its role as the unique surviving witness is gone.
