@@ -114,3 +114,19 @@ homomorphism `Aff(Q) -> S`, where `Aff(Q) = {x ↦ a x + b : a ∈ Q^x, b ∈ Q}
        `BS(1,2)` (the dilation `x ↦ 2x`), so an `nV` host needs `BS(1,2) ≤ nV`
        (`bs12-embeds-in-brin-thompson-2v`, still OPEN). That calls for a binary analogue of SMART's
        ternary hierarchy.
+7. **One base for several primes: first obstructions (2026-09-18, gq-affq).**
+   - *Proved:* `renormalization-heights-force-eigenvalue-roots`.
+     - A height-`m` renormalization forces `E(T) = {μ : μ^m ∈ E(T)}`. One base carrying every
+       prime height therefore factors onto `Ẑ`, if it is minimal.
+     - A height-`q` renormalization multiplies every `p`-adic clock by `q^{-1}`. That is a unit
+       map with unbounded carries.
+     - SMART's `U` is known only to factor onto `Z/2 × Z_3`. If that factor is maximal, `U`
+       carries no height with a prime factor `≠ 3`.
+   - *MSI* (`research/artifacts/gq-affq-coprime-renormalization-test.md`). A product base needs a
+     "coprime speed-up" `ψ ∘ U^q = U ∘ ψ`. Sound pointwise refutations show that no one-cell
+     bounded edit gives one for `q = 5` or `q = 7`; this is the same class that carries the
+     height-3 renormalization.
+   - *Conjectured:* by Durand's Cobham theorem for substitutions (arXiv:1010.4009), no single
+     aperiodic machine-type base carries brick-local renormalizations of heights `2` and `3`. If
+     so, the dilations for different primes cannot all come from renormalizing one `s = T × id`,
+     and the `nV` route to `Aff(Q)` needs another mechanism for combining primes.
