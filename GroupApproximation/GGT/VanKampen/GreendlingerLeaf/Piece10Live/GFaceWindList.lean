@@ -29,8 +29,8 @@ namespace GroupApproximation.GGT.VanKampen.GreendlingerLeaf.GFaceWind
 open scoped Classical
 
 /-- **The dart indicator of a disjoint union.** -/
-theorem gfaceWind_lind_split {α : Type*} {c A B : List α} (h : ∀ x, x ∈ c ↔ x ∈ A ∨ x ∈ B)
-    (hd : ∀ x ∈ A, x ∉ B) (x : α) :
+theorem gfaceWind_lind_split {α : Type*} {c A B : List α}
+    (h : ∀ x, x ∈ c ↔ x ∈ A ∨ x ∈ B) (hd : ∀ x ∈ A, x ∉ B) (x : α) :
     gfaceWind_lind c x = gfaceWind_lind A x + gfaceWind_lind B x := by
   by_cases hA : x ∈ A
   · linarith [gfaceWind_lind_pos ((h x).mpr (Or.inl hA)), gfaceWind_lind_pos hA,
