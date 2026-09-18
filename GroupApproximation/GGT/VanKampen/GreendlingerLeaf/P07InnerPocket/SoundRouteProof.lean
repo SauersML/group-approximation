@@ -13,8 +13,8 @@ See the module docstring of `SoundRouteStatement.lean`.  This module proves:
 * `SoundRoute.arcAuditResidual_of_pinchCase`: the arc-audit residual from the residual, by the
   case split.  Case (i) uses the PROVED `FourPieceWitness.arcsAuditPinch`.
 * `SoundRoute.pocketFourPieceInside_of_pinchCase` and
-  **`SoundRoute.pocketFourPieceOff_of_pinchCase`**, through the proved `pocketFourPieceInside_of_arcAuditResidual` and
-  `pocketFourPieceOff_of_inside`.
+  **`SoundRoute.pocketFourPieceOff_of_pinchCase`**, through the proved
+  `pocketFourPieceInside_of_arcAuditResidual` and `pocketFourPieceOff_of_inside`.
 * `SoundRoute.pinchCase_of_arcAuditResidual_noninterleaveNondeg`: the residual is no stronger than
   the arc-audit residual together with lane 27's corrected noninterleave statement.
 * `SoundRoute.noPlanarDegenerate_of_pinchCase`: the residual gives lane 28's

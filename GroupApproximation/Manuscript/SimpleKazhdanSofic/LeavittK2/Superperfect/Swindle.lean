@@ -35,7 +35,8 @@ That conjugator is a single word identity in `St_3(L)`.  It implies the target
 
 ## Route analysis
 
-* Route (a), Eilenberg swindle (paper sketch, not formalized here).  Write `s₀, s₁, t₀, t₁` for the Leavitt generators.  The corner
+* Route (a), Eilenberg swindle (paper sketch, not formalized here).  Write `s₀, s₁, t₀, t₁`
+  for the Leavitt generators.  The corner
   endomorphisms `T_i : x_{jl}(a) ↦ x_{jl}(s_i a t_i)` of `St_3(L)` induce `X ↦ X ⊕ 1` and
   `X ↦ 1 ⊕ X` through `L³ ≅ L⁶`.  The entrywise ring map `σ(a) = s₀ a t₀ + s₁ a t₁` induces
   `X ↦ X ⊕ X`.  Modulo `C₃`, uniqueness of lifts out of the perfect group `St_3(L)` gives
@@ -45,9 +46,9 @@ That conjugator is a single word identity in `St_3(L)`.  It implies the target
   `σ ≡ id` comes for free.  The vanishing of `K_*(L)` comes from the Ara–Brustenga–Cortiñas
   localization sequence, using `K₁(𝔽₂) = K₂(𝔽₂) = 0`, not from a swindle.  Conjugation in
   `St_3(L)` induces an inner automorphism of `GL_3(L)`, while `σ` is an entrywise ring
-  endomorphism (not surjective onto `L`), so conjugation cannot realize `σ` directly.  Route (a)
-  therefore does not close the target.  It is the reason the gap is phrased as an explicit conjugation
-  certificate.
+  endomorphism (not surjective onto `L`), so conjugation cannot realize `σ` directly.
+  Route (a) therefore does not close the target.  It is the reason the gap is phrased as an
+  explicit conjugation certificate.
 * Route (b), `K₂(3, L) = ⊥` directly.  This is Khanh's Thm 5.4 as cited in
   `EndpointInterfaces`.  It is research-level (an unstable Brown/Bruhat analysis in rank 3) and
   is not attempted here.
@@ -83,7 +84,8 @@ theorem mem_commutator_top_of_conj_eq_mul_self {G : Type*} [Group G] {H : Subgro
   have hmem := Subgroup.commutator_mem_commutator (Subgroup.mem_top g) hk
   rwa [hc] at hmem
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.mem_commutator_top_of_conj_eq_mul_self
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.mem_commutator_top_of_conj_eq_mul_self
 
 /-- **Central square-conjugate elements are trivial.**  If `k` is central and
 `g k g⁻¹ = k²`, then `k = 1`. -/
@@ -95,7 +97,8 @@ theorem eq_one_of_conj_eq_mul_self_of_mem_center {G : Type*} [Group G] {k g : G}
     rw [mul_one, ← hg, h1]
   exact (mul_left_cancel h2).symm
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.eq_one_of_conj_eq_mul_self_of_mem_center
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.eq_one_of_conj_eq_mul_self_of_mem_center
 
 end Generic
 
@@ -122,7 +125,8 @@ def BinaryLeavittKernelThreeSwindleStatement : Prop :=
     ∀ k ∈ S, ∃ g : St 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)),
       g * k * g⁻¹ = k * k
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittKernelThreeSwindleStatement
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.BinaryLeavittKernelThreeSwindleStatement
 
 /-- **Lane sk-leavitt-31 endpoint (`_of_` reduction).**  A swindle certificate gives the
 rank-three coinvariant kernel statement `K₂(3, L) ≤ ⁅St_3(L), K₂(3, L)⁆`.  Each `k ∈ S` equals
@@ -139,7 +143,8 @@ theorem binaryLeavittKernelThreeCoinvariant_of_swindle
   have hk' : k ∈ K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) := hS hk
   exact mem_commutator_top_of_conj_eq_mul_self hk' hg
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_swindle
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeCoinvariant_of_swindle
 
 /-- **Swindle certificate to superperfect units.**  Compose with lane sk-leavitt-30's
 `binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant`. -/
@@ -149,7 +154,8 @@ theorem binaryLeavittUnitsSuperperfect_of_swindle
   binaryLeavittUnitsSuperperfect_of_kernelThreeCoinvariant
     (binaryLeavittKernelThreeCoinvariant_of_swindle h)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_swindle
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittUnitsSuperperfect_of_swindle
 
 /-- **Pointwise conjugation identity gives the certificate.**  If every `k ∈ K₂(3, L)` satisfies
 `g k g⁻¹ = k²` for some `g ∈ St_3(L)`, take `S = K₂(3, L)`. -/
@@ -164,7 +170,8 @@ theorem binaryLeavittKernelThreeSwindle_of_forall_conj
   intro k hk
   exact h k hk
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeSwindle_of_forall_conj
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeSwindle_of_forall_conj
 
 /-- **Truth check.**  `K₂(3, L) = ⊥` (Khanh Thm 5.4) gives the pointwise identity with `g = 1`,
 hence the certificate. -/
@@ -175,10 +182,10 @@ theorem binaryLeavittKernelThreeSwindle_of_K2_eq_bot
   intro k hk
   rw [h] at hk
   refine ⟨1, ?_⟩
-  rw [Subgroup.mem_bot.mp hk]
-  simp
+  simp [Subgroup.mem_bot.mp hk]
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeSwindle_of_K2_eq_bot
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittKernelThreeSwindle_of_K2_eq_bot
 
 /-- **LOUD strength check.**  If `K₂(3, L)` is central in `St_3(L)`, a swindle certificate
 forces `K₂(3, L) = ⊥`.  So the gap is at least as strong as `K₂(3, L) = ⊥` in that case. -/
@@ -194,7 +201,8 @@ theorem binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
   have hk' : k ∈ K2n 3 (GroupApproximation.BinaryLeavitt.BinaryLeavittAlgebra (ZMod 2)) := hS hk
   exact Subgroup.mem_bot.mpr (eq_one_of_conj_eq_mul_self_of_mem_center (hc hk') hg)
 
-#audit_axioms GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
+#audit_axioms
+  GroupApproximation.Manuscript.SimpleKazhdanSofic.LeavittK2.binaryLeavittK2Three_eq_bot_of_swindle_of_le_center
 
 end Leavitt
 
