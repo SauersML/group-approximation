@@ -209,7 +209,9 @@ def comp (R₁ : RotationRefinement M M') (R₂ : RotationRefinement M' M'') :
     RotationRefinement M M'' where
   map d := R₂.map (R₁.map d)
   injective := R₂.injective.comp R₁.injective
-  alpha_map d := by rw [R₂.alpha_map, R₁.alpha_map]
+  alpha_map d := by
+    show M''.alpha (R₂.map (R₁.map d)) = R₂.map (R₁.map (M.alpha d))
+    rw [R₂.alpha_map, R₁.alpha_map]
   step z := by
     obtain ⟨m, hm, hmz, hmmid⟩ := R₁.step z
     obtain ⟨K, hKpos, -, hK, hKmid⟩ := R₂.lift_pow (R₁.map z) m

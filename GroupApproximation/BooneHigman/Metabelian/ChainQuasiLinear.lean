@@ -86,7 +86,7 @@ theorem quasiLinearHostStatement_of_linearHost (hlin : Products.LinearHostStatem
 /-- **Composition for the quasi-linear node** from all leaves of its subtree. -/
 theorem quasiLinearHostStatement_of_chain
     (hcoordP : CharPCoords.CharPPolynomialCoordinatesStatement)
-    (habsP : CharPElementaryAbsorptionStatement) (hfpP : CharPElementaryFPStatement)
+    (habsP : CharPElementaryAbsorptionStatement) (hfpP : ElemFP.PolynomialFpElementaryFPStatement)
     (hssP : CharPAffineSelfSimilarStatement)
     (hcoord0 : CharZeroPolynomialCoordinatesStatement)
     (habs0 : CharZeroElementaryAbsorptionStatement) (hfp0 : CharZeroElementaryFPStatement)

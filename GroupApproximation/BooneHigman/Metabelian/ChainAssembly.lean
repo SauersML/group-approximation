@@ -21,7 +21,8 @@ The FRONTIER tree and its Lean statements:
 * `quasi-linear-groups-satisfy-permutational-boone-higman`: `QuasiLinearHostStatement`;
 * `char-p-linear-groups-satisfy-permutational-boone-higman`: `CharPLinearHostStatement`, with
   leaves `CharPCoords.CharPPolynomialCoordinatesStatement` (on disk, lane `bh-met-03`),
-  `CharPElementaryAbsorptionStatement`, `CharPElementaryFPStatement`,
+  `CharPElementaryAbsorptionStatement`, `ElemFP.PolynomialFpElementaryFPStatement` (on disk,
+  lane `bh-met-06`),
   `AffineExtensionFPStatement`, `CharPAffineSelfSimilarStatement`;
 * `char-zero-linear-groups-satisfy-permutational-boone-higman`: `CharZeroLinearHostStatement`,
   with leaves `CharZeroPolynomialCoordinatesStatement`, `CharZeroElementaryAbsorptionStatement`,
@@ -99,7 +100,7 @@ theorem metabelianPiecesStatement_of_quasiLinear (hcop : CoprimaryLinearQuotient
 theorem finitelyPresentedMetabelianStatement_of_chain
     (hcop : CoprimaryLinearQuotientsStatement)
     (hcoordP : CharPCoords.CharPPolynomialCoordinatesStatement)
-    (habsP : CharPElementaryAbsorptionStatement) (hfpP : CharPElementaryFPStatement)
+    (habsP : CharPElementaryAbsorptionStatement) (hfpP : ElemFP.PolynomialFpElementaryFPStatement)
     (hssP : CharPAffineSelfSimilarStatement)
     (hcoord0 : CharZeroPolynomialCoordinatesStatement)
     (habs0 : CharZeroElementaryAbsorptionStatement) (hfp0 : CharZeroElementaryFPStatement)

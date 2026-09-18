@@ -1,5 +1,6 @@
 import GroupApproximation.BooneHigman.Metabelian.ChainHost
 import GroupApproximation.BooneHigman.Metabelian.CharPCoordsStatement
+import GroupApproximation.BooneHigman.Metabelian.ElemFPEndpoint
 import Mathlib.Algebra.CharP.Defs
 import Mathlib.Algebra.MvPolynomial.Rename
 import Mathlib.Data.Fin.SuccPred
@@ -17,9 +18,10 @@ Research node `char-p-linear-groups-satisfy-permutational-boone-higman`, route
    `GL_M(R_k)`;
 2. (`CharPElementaryAbsorptionStatement`, no owning lane) `GL_M(R) ↪ E_N(R)` for `N ≥ 3`,
    `N ≥ 2M`, through `g ↦ diag(g, g⁻ᵀ, 1)`, which lies in `SL_N(R) = E_N(R)` (Suslin);
-3. (`CharPElementaryFPStatement`, research node
-   `elementary-groups-over-polynomial-f-p-rings-are-fp`, lane `bh-met-06`) `E_N(R_k)` is finitely
-   presented for `N ≥ k + 4` (weaker than the node's `N ≥ max(4, k + 3)`);
+3. (`ElemFP.PolynomialFpElementaryFPStatement`, research node
+   `elementary-groups-over-polynomial-f-p-rings-are-fp`, lane `bh-met-06`, imported from
+   `ElemFPEndpoint.lean`) `E_N(R_k)` is finitely presented for `N ≥ k + 4` (weaker than the node's
+   `N ≥ max(4, k + 3)`);
 4. (`AffineExtensionFPStatement`, lane `bh-met-05`, in `ChainHost.lean`) the affine host
    `R^N ⋊ E_N(R)` is finitely presented;
 5. (`CharPAffineSelfSimilarStatement`, research node
@@ -54,15 +56,6 @@ def CharPElementaryAbsorptionStatement : Prop :=
       Function.Injective f
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.CharPElementaryAbsorptionStatement
-
-/-- **Research node `elementary-groups-over-polynomial-f-p-rings-are-fp`** (lane `bh-met-06`;
-restated here since no such interface was on disk): `E_N(F_p[s_0, ..., s_{k-1}])` is finitely
-presented for `N ≥ k + 4`. -/
-def CharPElementaryFPStatement : Prop :=
-  ∀ (p : ℕ) [Fact p.Prime] (k N : ℕ), k + 4 ≤ N →
-    Group.IsFinitelyPresented (elementaryGroup (Fin N) (CharPPoly p k))
-
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.Chain.CharPElementaryFPStatement
 
 /-- **Research node `positive-char-polynomial-affine-groups-are-self-similar`** (lane `bh-met-02`;
 restated here since no such interface was on disk): for `k ≥ 1` and `n ≥ 1`, the affine host
@@ -112,17 +105,18 @@ theorem charPPoly_map_surjective (p k : ℕ) :
 /-- **Composition for the positive-characteristic node.** -/
 theorem charPLinearHostStatement_of_chain
     (hcoord : CharPCoords.CharPPolynomialCoordinatesStatement)
-    (habs : CharPElementaryAbsorptionStatement) (hfp : CharPElementaryFPStatement)
+    (habs : CharPElementaryAbsorptionStatement) (hfp : ElemFP.PolynomialFpElementaryFPStatement)
     (haff : AffineExtensionFPStatement) (hss : CharPAffineSelfSimilarStatement) :
     CharPLinearHostStatement := by
   intro K _ p hp hK n H hH
   obtain ⟨k, M, ψ, hψ⟩ := hcoord K p hp hK n H hH
   haveI : CharP K p := ringChar.of_eq hK
-  haveI : Fact p.Prime := ⟨(CharP.char_is_prime_or_zero K p).resolve_right (by omega)⟩
+  have hprime : p.Prime := (CharP.char_is_prime_or_zero K p).resolve_right (by omega)
+  haveI : Fact p.Prime := ⟨hprime⟩
   obtain ⟨f, hf⟩ := habs p (k + 1) M (k + 5 + 2 * M) (by omega) (by omega)
   have hE : Group.IsFinitelyPresented
       (elementaryGroup (Fin (k + 5 + 2 * M)) (CharPPoly p (k + 1))) :=
-    hfp p (k + 1) (k + 5 + 2 * M) (by omega)
+    hfp p hprime (k + 1) (k + 5 + 2 * M) (by omega)
   haveI : Group.IsFinitelyPresented
       (AffineElementaryGroup (k + 5 + 2 * M) (CharPPoly p (k + 1))) :=
     haff (CharPPoly p (k + 1))

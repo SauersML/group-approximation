@@ -40,7 +40,8 @@ theorem closure_commute (i j k l : Fin (d + 5)) (hij : i ≠ j) (hkl : k ≠ l) 
 def RootGroup (i j : Fin (d + 5)) (_hij : i ≠ j) : Type _ :=
   ↥(Subgroup.closure (rootWords X d i j))
 
-instance (i j : Fin (d + 5)) (hij : i ≠ j) : CommGroup (RootGroup X d i j hij) :=
+instance rootGroup_commGroup (i j : Fin (d + 5)) (hij : i ≠ j) :
+    CommGroup (RootGroup X d i j hij) :=
   { (inferInstanceAs (Group ↥(Subgroup.closure (rootWords X d i j)))) with
     mul_comm := fun a b => Subtype.ext
       (closure_commute X d i j i j hij hij (Ne.symm hij) hij (Subtype.property a)
@@ -169,6 +170,7 @@ end GroupApproximation.BooneHigman.Metabelian.ElemFP
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootWords
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.closure_commute
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.RootGroup
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootGroup_commGroup
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootElem
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.rootSum_add
