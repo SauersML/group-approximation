@@ -6042,6 +6042,8 @@ import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFieldK2.FieldK2
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVSkewLaurentK2.NKEndpoint
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.EmbeddingConnesSqrtLeafNorms
 import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVFreeAlgK2.ZModTwo
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMapOps
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ObstructionExtMap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
