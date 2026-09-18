@@ -103,3 +103,91 @@ theorem vdkT_add (i j : Fin (n + 1)) (hij : i ≠ j) (a b : R)
   · exact (hij rfl).elim
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.vdkT_add
+
+/-- Commutation of non-addable roots for `vdkT`, when some index is last. -/
+theorem vdkT_commute (i j k l : Fin (n + 1)) (hij : i ≠ j) (hkl : k ≠ l) (hjk : j ≠ k)
+    (hli : l ≠ i) (a b : R)
+    (hL : i = Fin.last n ∨ j = Fin.last n ∨ k = Fin.last n ∨ l = Fin.last n) :
+    ⁅D.vdkT i j a, D.vdkT k l b⁆ = 1 := by
+  rcases Fin.eq_castSucc_or_eq_last i with ⟨i', rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last j with ⟨j', rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last k with ⟨k', rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last l with ⟨l', rfl⟩ | rfl
+  · rcases hL with h | h | h | h <;> exact absurd h (Fin.castSucc_ne_last _)
+  · rw [D.vdkT_castSucc_castSucc_of_ne i' j' (ne_of_apply_ne Fin.castSucc hij) a,
+      D.vdkT_castSucc_last k' b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr
+      (vdkCol_mul_act_comm X k' i' j' (ne_of_apply_ne Fin.castSucc hij)
+        (ne_of_apply_ne Fin.castSucc hjk) b a).symm
+  · rw [D.vdkT_castSucc_castSucc_of_ne i' j' (ne_of_apply_ne Fin.castSucc hij) a,
+      D.vdkT_last_castSucc l' b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr
+      (D.row_act_comm l' i' j' (ne_of_apply_ne Fin.castSucc hij)
+        (ne_of_apply_ne Fin.castSucc hli) b a).symm
+  · exact (hkl rfl).elim
+  · rw [D.vdkT_castSucc_last i' a,
+      D.vdkT_castSucc_castSucc_of_ne k' l' (ne_of_apply_ne Fin.castSucc hkl) b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr
+      (vdkCol_mul_act_comm X i' k' l' (ne_of_apply_ne Fin.castSucc hkl)
+        (ne_of_apply_ne Fin.castSucc hli) a b)
+  · rw [D.vdkT_castSucc_last i' a, D.vdkT_castSucc_last k' b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr (vdkCol_mul_comm X i' k' a b)
+  · exact (hjk rfl).elim
+  · exact (hkl rfl).elim
+  · rw [D.vdkT_last_castSucc j' a,
+      D.vdkT_castSucc_castSucc_of_ne k' l' (ne_of_apply_ne Fin.castSucc hkl) b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr
+      (D.row_act_comm j' k' l' (ne_of_apply_ne Fin.castSucc hkl)
+        (ne_of_apply_ne Fin.castSucc hjk) a b)
+  · exact (hli rfl).elim
+  · rw [D.vdkT_last_castSucc j' a, D.vdkT_last_castSucc l' b]
+    exact commutatorElement_eq_one_iff_mul_comm.mpr (D.row_mul_comm_all j' l' a b)
+  · exact (hkl rfl).elim
+  all_goals exact (hij rfl).elim
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.vdkT_commute
+
+/-- The adjacent commutator relation for `vdkT`, when some index is last. -/
+theorem vdkT_adjacent (i j k : Fin (n + 1)) (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) (a b : R)
+    (hL : i = Fin.last n ∨ j = Fin.last n ∨ k = Fin.last n) :
+    ⁅D.vdkT i j a, D.vdkT j k b⁆ = D.vdkT i k (a * b) := by
+  rcases Fin.eq_castSucc_or_eq_last i with ⟨i', rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last j with ⟨j', rfl⟩ | rfl <;>
+    rcases Fin.eq_castSucc_or_eq_last k with ⟨k', rfl⟩ | rfl
+  · rcases hL with h | h | h <;> exact absurd h (Fin.castSucc_ne_last _)
+  · rw [D.vdkT_castSucc_castSucc_of_ne i' j' (ne_of_apply_ne Fin.castSucc hij) a,
+      D.vdkT_castSucc_last j' b, D.vdkT_castSucc_last i' (a * b)]
+    exact vdkAct_col_commutator X i' j' (ne_of_apply_ne Fin.castSucc hij) a b
+  · rw [D.vdkT_castSucc_last i' a, D.vdkT_last_castSucc k' b,
+      D.vdkT_castSucc_castSucc_of_ne i' k' (ne_of_apply_ne Fin.castSucc hik) (a * b)]
+    exact D.col_row_commutator i' k' (ne_of_apply_ne Fin.castSucc hik) a b
+  · exact (hjk rfl).elim
+  · rw [D.vdkT_last_castSucc j' a,
+      D.vdkT_castSucc_castSucc_of_ne j' k' (ne_of_apply_ne Fin.castSucc hjk) b,
+      D.vdkT_last_castSucc k' (a * b)]
+    exact D.row_act_commutator j' k' (ne_of_apply_ne Fin.castSucc hjk) a b
+  · exact (hik rfl).elim
+  all_goals exact (hij rfl).elim
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.vdkT_adjacent
+
+/-- Van der Kallen's action assembled from row data: a `LastRootAction` on the free `P̃`-set,
+whose action of `St_n(R)` is `vdkAct X`. -/
+def toLastRootAction : LastRootAction n R (VdKΩ n R X) where
+  act := vdkAct X
+  T i j _ a := D.vdkT i j a
+  compat i j hij _ a := D.vdkT_castSucc_castSucc_of_ne i j hij a
+  add := D.vdkT_add
+  commute := D.vdkT_commute
+  adjacent := D.vdkT_adjacent
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.toLastRootAction
+
+theorem toLastRootAction_act : D.toLastRootAction.act = vdkAct X :=
+  rfl
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.VdKRowData.toLastRootAction_act
+
+end VdKRowData
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
