@@ -2,7 +2,7 @@
 rg: 2
 id: quantum-rigidity-is-not-closed-under-fibre-products
 kind: claim
-title: Ledrappier's shift and its mirror image are quantum rigid, but their fibre product over the same Z^2 is not; centrality (C) fails there, and a transport closure certifies (C) exactly when no layer's one-sided freedom escapes the other's rules
+title: Ledrappier's shift and its mirror image are quantum rigid, but their fibre product over the same Z^2 is not; centrality (C) fails there, and a site transport closure certifies (C) when every direction is covered by one layer's rules
 requires:
   - permutive-triangle-sfts-are-quantum-rigid
   - antipodal-one-sided-group-shift-configurations-are-walls
@@ -71,11 +71,16 @@ is `Z` itself.
   A layer can have *one-sided freedom* in a direction `v`: a nonzero change supported in a half-space
   `{⟨n, v⟩ < 0}`, which also kills that layer's rules on the far side. Two such layers with opposite
   one-sided freedoms superpose to a wall.
-- **Design rule for G2.** Every direction in which one layer has one-sided freedom must be covered by
-  a rule of another layer (transport closure `K = Λ`).
-  - Operationally: give all layers a **common open determinism cone**.
-  - This is what makes bh-invent-04's tree and `Ã₂` transplants work. There the sector cylinders of
-    the germ layer transport along the tile layer's open-cone determinism (`M e_i` in the open
-    cone).
-  - It is also exactly what can go wrong in a simulation over `Λ₁ × Λ₁`, where skeleton, data and
-    computation layers live on one group.
+- **Design rule for G2 (corrected 2026-09-18).** The rule that matters is **no antipodal freedoms
+  across layers**: no layer may have one-sided freedom toward `+v` while another has it toward `−v`.
+  More generally, modification sets of different layers must never be separable by translation
+  (`cross-layer-separable-modifications-kill-quantum-rigidity`).
+  - A first version of this node said "give all layers a common open determinism cone". **That is
+    false as stated.** The two layers here share an open rule cone, since `{e_1, e_2}` and
+    `{e_1, e_1 + e_2}` both lie in the cone of directions `(−10°, 100°)`, and yet the product is not
+    rigid.
+  - A cone suffices in bh-invent-04's tree and `Ã₂` transplants only because of their (F2): the base
+    point is readable from the fibre's cone at every site, so the base has no freedom the cone
+    cannot see.
+  - The rule applies directly to simulations over `Λ₁ × Λ₁`, where skeleton, data and computation
+    layers live on one group.
