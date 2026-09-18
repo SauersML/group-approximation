@@ -5763,6 +5763,9 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurDilatio
 import GroupApproximation.Manuscript.NonMFNotes.Full.ExactnessCStar.SchurMultiplier
 import GroupApproximation.Manuscript.NonMFNotes.Full.Kharlampovich.MinskySim.Phases
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosFiniteDim
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.FrameAction
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.FrameSwaps
+import GroupApproximation.Manuscript.SimpleKazhdanSofic.Full.LVAssembly.Brown
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
