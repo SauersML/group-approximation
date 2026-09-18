@@ -128,3 +128,25 @@ emails anywhere, clobbering someone else's edit. Never write model names or ids 
 - No sorry, no new axioms, no local builds. Submission surface: American English, no research/*.md references, credit wording "under the user's direction", human names only in authors/maintainers.
 - NEVER put `python3` in any command, even a no-op: a bare `python3 -` blocks on stdin and hangs your tool call (09-18: several lanes hit this). Edit files with the Edit/Write tools or plain sed/awk/heredocs.
 - MSI (USER 09-18 ~10:10): use the `msi` wrapper. Fast-signal jobs only, with no job spam and no very long runs; if something is slow, fix speed or the iteration strategy. Kill your own unused, hung or outdated jobs, and never touch other users' jobs. sioux = acn112 + acl42 (128 cores, 503 GiB, shared): direct ssh or `sbatch --partition=sioux --nodelist=...`; other SLURM partitions are fine too. Never oversubscribe or use all the CPUs. Use /projects/standard or scratch, never /users/0 and never /tmp or other RAM dirs (/tmp there is RAM tmpfs) for builds or storage. `--output` goes on shared storage. Always use the existing warm caches and builds. Nothing heavy locally; emitting and reading ASM/IR/PTX locally is fine.
+
+## INSIGHT FIRST (USER ORDER 09-18 10:48)
+User: "make sure we extract insights to beautifully solve general BH not just mindless cexample spam. we want to do powerful learns that help us solve fully".
+- Before each new result, ask what general mechanism it shows and how it moves GENERAL Boone–Higman.
+- Prefer:
+  - general theorems and unifying mechanisms;
+  - reductions of BH to sharper equivalent statements;
+  - transferable tools (host constructions, closure theorems, obstructions that classify).
+  One-off test cases or counterexamples count only if they teach a transferable lesson.
+- Every landing gets a short "Lesson for general BH" paragraph.
+- Append your sharpest general lesson (1–3 lines, with the node id) to board/LESSONS.md. It is append-only; never rewrite others' lines.
+- The synthesis lanes (bh-synth-*) read LESSONS.md and the graph and propose the master route. Follow their board/SYNTHESIS.md when it exists.
+
+## MAJOR SOLVES (USER ORDER 09-18 ~11:45)
+User: "let's do major BH problblem solves, this can be open problems or things higher impact than open problems that no one wrote down but obsiously cool and useful".
+- Aim at major targets:
+  - the BBMZ 5.3 classes: GL_n(Q), closed MCG, Out(F_n), one-relator, CAT(0)/cubulated, automatic, fp RF;
+  - structural theorems: product closure, BH⇔PBH, universal hosts, F_∞ hosts;
+  - striking unwritten theorems of the same weight.
+- INSIGHT FIRST still applies: general mechanisms, not scattered cases.
+- Each major target has a team (see ROSTER "MAJOR"), and its lead lane owns the end-to-end proof skeleton on board/major-<target>.md.
+- Before claiming a named problem is solved, check the literature at source, including the question author's later arXiv papers.

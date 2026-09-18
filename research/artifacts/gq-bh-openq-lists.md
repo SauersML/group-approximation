@@ -71,6 +71,7 @@ actions. No MathSciNet search was made.
 **MathOverflow** (StackExchange API, 2026-09-18):
 - **324409** (Nyberg-Brodda, 2019, unanswered): is F₅ ∗_{F₂₅} F₅ (Caprace–Radu) the smallest simple Burger–Mozes-type amalgam? This is a fp-simple-group question, but it needs large computation. No node.
 - **339541** (2019, unanswered): the d = 0 member of a Higman–Thompson-type family of topological full groups. Its derived subgroup is f.g. and simple; finite presentation is open. A possible target for bh-groupoid (Li's F∞ theorem). No node.
+  - **Update (bh-free-60, 09-18): basic properties answered on main.** Node `reid-higman-thompson-variant-d-zero-abelianization`: groupoid homology Z, Z, 0, …; abelianization Z ⊕ Z/2 (Li's AH sequence); G' is simple, f.g. and rationally acyclic. The general mechanism is `free-product-boundary-groupoids-carry-the-vertex-group-homology` (Z/k * B: homology Z ⊕ H_{>=1}(B)). Finite presentation is still open.
 - **221091** (2015): does Higman's group have property (T)? It does not. H4 acts without a global fixed point on the Bass–Serre tree of its amalgam splitting (main: `higman-group-splits-as-amalgams-over-free-subgroups`), so it fails (FA) and hence (T). Answered.
 - **489460** (Mikaelian, 2025): explicit Higman embeddings. The list consists of Kourovka 14.10(a) (answered by BHM and Mikaelian) and his own algorithm, arXiv:2507.04347. No new open item.
 - **485085** (2024): how hard is classifying fp or fg simple groups? A meta question; no node.

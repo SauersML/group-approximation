@@ -108,3 +108,20 @@ Genus at most two and all surfaces with a puncture or boundary are
    - No embedding is known. The candidate mechanism, a cylinder coding of `PMF`
      for the PIP action of Remark 5.5, is recorded on the premise.
    - An arXiv re-check on 2026-09-18 found no result on closed surfaces.
+9. **Rank-one and Brin--Thompson hosts cannot carry curve data at points (lane
+   bh-free-51, 2026-09-18).** See `perfect-subgroups-are-locally-trivial-in-abelian-germ-hosts`.
+   - **Setting.** Consider an action of `Mod(Σ)`, `g ≥ 4`, by maps that are locally
+     `B` off finite sets, where `B` has torsion-free abelian point germs: `V`,
+     `nV`, a germ extension of `V`, or a normal-form boundary host.
+   - **Subsurface groups.** Every subsurface group `Mod(Σ ∖ R)` (`R` a one-holed
+     torus) is locally trivial at all but finitely many of its fixed points.
+   - **Curve points.** Any equivariant injective choice of points `p_d`, fixed by
+     `Stab^+(d)`, has `Stab^+(d)`, including `T_d`, acting trivially near `p_d`.
+   - **Consequence.** "Exploded" boundary designs with a twist pole per curve are
+     excluded in all these hosts, including `nV`.
+   - **What survives.** Curve data in fixed-point-free form (odometer-like), at
+     finitely many singular points with nonabelian germ groups, or in a host with
+     nonabelian point germs such as `𝒯_m`
+     (`closed-mcg-embeds-in-rational-projective-full-group`).
+   - **In `nV` (Attempt 8).** For an embedding in `nV` it gives a new necessary
+     condition: every such subsurface group has clopen fixed set.
