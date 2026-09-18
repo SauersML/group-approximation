@@ -70,8 +70,10 @@ theorem spatialHom_lTensor_compress_apply {H : Type*} [NormedAddCommGroup H]
           have hc : (StarRep.ofStarAlgHom (StarAlgHom.id ℂ (K →L[ℂ] K))).hom
                 (Φ c) q
               = ContinuousLinearMap.adjoint V
-                  ((StarRep.ofStarAlgHom ρ).hom c (V q)) :=
-            congrArg (fun T : K →L[ℂ] K ↦ T q) (hΦ c)
+                  ((StarRep.ofStarAlgHom ρ).hom c (V q)) := by
+            show Φ c q = ContinuousLinearMap.adjoint V (ρ c (V q))
+            rw [hΦ c, ContinuousLinearMap.comp_apply,
+              ContinuousLinearMap.comp_apply]
           rw [TensorProduct.mapL_tmul, TensorProduct.mapL_tmul,
             TensorProduct.mapL_tmul, TensorProduct.mapL_tmul,
             ContinuousLinearMap.id_apply, ContinuousLinearMap.id_apply, hc]
@@ -80,7 +82,6 @@ theorem spatialHom_lTensor_compress_apply {H : Type*} [NormedAddCommGroup H]
   | add y₁ y₂ h₁ h₂ =>
       simp only [map_add, add_apply, h₁, h₂]
 
-omit [Nontrivial B] [Nontrivial C] in
 /-- A contraction `V` gives `‖(1 ⊗ V) W‖ ≤ ‖W‖` on the algebraic Hilbert
 tensor product. -/
 theorem norm_mapL_id_apply_le {H : Type*} {E : Type*} {F : Type*}
@@ -147,14 +148,13 @@ theorem minTensorNorm_lTensor_compress_le [Nontrivial (K →L[ℂ] K)]
     (fun _ _ h ↦ h) p.2 p.1.gnsRep (LinearMap.lTensor B Φ y)).trans ?_
   rw [spatialNorm_apply]
   refine (norm_spatialHom_lTensor_compress_le p.1.gnsRep ρ V hV Φ hΦ y).trans ?_
-  rw [← spatialNorm_apply]
   exact spatialNorm_le_minTensorNorm p.1.gnsRep (StarRep.ofStarAlgHom ρ) y
 
-omit [Nontrivial B] [Nontrivial C] [CompleteSpace K] in
+omit [Nontrivial B] [Nontrivial C] in
 /-- Amplifying a ⋆-homomorphism in the second leg does not change the product
 representation. -/
 theorem spatialHom_lTensor_ofStarAlgHom {H : Type*} [NormedAddCommGroup H]
-    [InnerProductSpace ℂ H] [CompleteSpace K] (π : StarRep B H)
+    [InnerProductSpace ℂ H] (π : StarRep B H)
     (ρ₀ : C →⋆ₐ[ℂ] (K →L[ℂ] K)) (Φ : C →ₗ[ℂ] (K →L[ℂ] K))
     (hΦ : ∀ c, Φ c = ρ₀ c) (y : B ⊗[ℂ] C) :
     spatialHom π (StarRep.ofStarAlgHom (StarAlgHom.id ℂ (K →L[ℂ] K)))
@@ -165,7 +165,9 @@ theorem spatialHom_lTensor_ofStarAlgHom {H : Type*} [NormedAddCommGroup H]
       simp only [map_zero]
   | tmul a c =>
       have hc : (StarRep.ofStarAlgHom (StarAlgHom.id ℂ (K →L[ℂ] K))).hom (Φ c)
-          = (StarRep.ofStarAlgHom ρ₀).hom c := hΦ c
+          = (StarRep.ofStarAlgHom ρ₀).hom c := by
+        show Φ c = ρ₀ c
+        exact hΦ c
       rw [LinearMap.lTensor_tmul, spatialHom_tmul, spatialHom_tmul, hc]
   | add y₁ y₂ h₁ h₂ =>
       simp only [map_add, h₁, h₂]
@@ -181,14 +183,12 @@ theorem minTensorNorm_lTensor_of_injective [Nontrivial (K →L[ℂ] K)]
     refine ciSup_le fun p ↦ ?_
     refine (spatialNorm_gnsRep_le_right (StarAlgHom.id ℂ (K →L[ℂ] K))
       (fun _ _ h ↦ h) p.2 p.1.gnsRep (LinearMap.lTensor B Φ y)).trans ?_
-    rw [spatialNorm_apply, spatialHom_lTensor_ofStarAlgHom p.1.gnsRep ρ₀ Φ hΦ y,
-      ← spatialNorm_apply]
+    rw [spatialNorm_apply, spatialHom_lTensor_ofStarAlgHom p.1.gnsRep ρ₀ Φ hΦ y]
     exact spatialNorm_le_minTensorNorm p.1.gnsRep (StarRep.ofStarAlgHom ρ₀) y
   · rw [minTensorNorm_apply y]
     refine ciSup_le fun p ↦ ?_
     refine (spatialNorm_gnsRep_le_right ρ₀ hρ₀ p.2 p.1.gnsRep y).trans ?_
-    rw [spatialNorm_apply, ← spatialHom_lTensor_ofStarAlgHom p.1.gnsRep ρ₀ Φ hΦ y,
-      ← spatialNorm_apply]
+    rw [spatialNorm_apply, ← spatialHom_lTensor_ofStarAlgHom p.1.gnsRep ρ₀ Φ hΦ y]
     exact spatialNorm_le_minTensorNorm p.1.gnsRep
       (StarRep.ofStarAlgHom (StarAlgHom.id ℂ (K →L[ℂ] K))) _
 

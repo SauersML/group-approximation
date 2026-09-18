@@ -48,8 +48,8 @@ theorem map_ker_comp_mk' (f : F →* G) (hf : Function.Surjective f) (N : Subgro
 theorem ker_le_ker_comp_mk' (f : F →* G) (N : Subgroup G) [N.Normal] :
     f.ker ≤ ((QuotientGroup.mk' N).comp f).ker.comap (MonoidHom.id F) := by
   intro x hx
-  rw [Subgroup.mem_comap]
-  exact (mem_ker_comp_mk' f N).mpr (by rw [MonoidHom.mem_ker.mp hx]; exact one_mem N)
+  rw [Subgroup.mem_comap, MonoidHom.id_apply, mem_ker_comp_mk', MonoidHom.mem_ker.mp hx]
+  exact one_mem N
 
 /-- The map `H₂(G) → H₂(G ⧸ N)`, induced on `F ⧸ [F, R] → F ⧸ [F, S]` by the identity of `F`. -/
 def fiveTermH2Map (f : F →* G) (N : Subgroup G) [N.Normal] :

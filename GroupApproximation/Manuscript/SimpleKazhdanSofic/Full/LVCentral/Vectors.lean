@@ -53,7 +53,8 @@ def colVec : (Fin m → Multiplicative B) →* SteinbergGroup (Fin (m + 1)) B :=
 
 theorem colVec_mulSingle (i : Fin m) (a : Multiplicative B) :
     colVec (Pi.mulSingle i a) = x i.castSucc (Fin.last m) (Fin.castSucc_ne_last i) a.toAdd :=
-  (MonoidHom.noncommPiCoprod_mulSingle colRoot colRoot_commute i a).trans (colRoot_apply i a)
+  (MonoidHom.noncommPiCoprod_mulSingle (N := fun _ : Fin m => Multiplicative B) colRoot
+    (hcomm := colRoot_commute) i a).trans (colRoot_apply i a)
 
 theorem elMat_projection_colVec (v : Fin m → Multiplicative B) :
     elMat (projection (colVec v)) = 1 + colMatrix (Fin.last m) (padVec v) := by
@@ -172,7 +173,8 @@ def rowVec : (Fin m → Multiplicative B) →* SteinbergGroup (Fin (m + 1)) B :=
 
 theorem rowVec_mulSingle (j : Fin m) (a : Multiplicative B) :
     rowVec (Pi.mulSingle j a) = x (Fin.last m) j.castSucc (Fin.castSucc_ne_last j).symm a.toAdd :=
-  (MonoidHom.noncommPiCoprod_mulSingle rowRoot rowRoot_commute j a).trans (rowRoot_apply j a)
+  (MonoidHom.noncommPiCoprod_mulSingle (N := fun _ : Fin m => Multiplicative B) rowRoot
+    (hcomm := rowRoot_commute) j a).trans (rowRoot_apply j a)
 
 theorem elMat_projection_rowVec (v : Fin m → Multiplicative B) :
     elMat (projection (rowVec v)) = 1 + rowMatrix (Fin.last m) (padVec v) := by

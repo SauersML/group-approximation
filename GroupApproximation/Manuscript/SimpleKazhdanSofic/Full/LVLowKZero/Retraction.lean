@@ -74,7 +74,7 @@ theorem absorbsRegular_of_retraction (p : R →ₗ[R] P) (s : P →ₗ[R] R)
   · intro y z
     show s (y.1 + z.1) * a + (y.2 + z.2) * c = s y.1 * a + y.2 * c + (s z.1 * a + z.2 * c)
     rw [map_add, add_mul, add_mul]
-    abel
+    exact add_add_add_comm _ _ _ _
   · intro r y
     show s (r • y.1) * a + (r • y.2) * c = r • (s y.1 * a + y.2 * c)
     rw [map_smul, smul_eq_mul, smul_eq_mul, smul_eq_mul, mul_add, mul_assoc, mul_assoc]

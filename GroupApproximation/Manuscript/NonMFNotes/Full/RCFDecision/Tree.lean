@@ -41,7 +41,10 @@ theorem atomHolds_false (ρ : ℕ → ℝ) (p : MvP) :
 /-- Truth of a conjunction of atoms. -/
 def guardHolds (ρ : ℕ → ℝ) (g : List Atom) : Prop := ∀ a ∈ g, atomHolds ρ a
 
-theorem guardHolds_nil (ρ : ℕ → ℝ) : guardHolds ρ [] := fun _ h => (List.not_mem_nil h).elim
+theorem guardHolds_nil (ρ : ℕ → ℝ) : guardHolds ρ [] := by
+  unfold guardHolds
+  intro _ h
+  exact absurd h List.not_mem_nil
 
 theorem guardHolds_append (ρ : ℕ → ℝ) (g h : List Atom) :
     guardHolds ρ (g ++ h) ↔ guardHolds ρ g ∧ guardHolds ρ h := by
@@ -65,7 +68,7 @@ def qfHolds (ρ : ℕ → ℝ) (f : List (List Atom)) : Prop := ∃ c ∈ f, gua
 
 theorem qfHolds_nil (ρ : ℕ → ℝ) : ¬ qfHolds ρ [] := by
   unfold qfHolds
-  rintro ⟨c, hc, _⟩
+  rintro ⟨_, hc, _⟩
   exact List.not_mem_nil hc
 
 theorem qfHolds_cons (ρ : ℕ → ℝ) (c : List Atom) (f : QF) :
@@ -191,7 +194,7 @@ theorem monoEval_zero : ∀ e : List ℕ, monoEval (fun _ => 0) e = (monoZ e : �
       rw [monoEval_zero e, Int.cast_mul]
       by_cases hk : k = 0
       · subst hk
-        rw [pow_zero, if_pos rfl, Int.cast_one]
+        rw [pow_zero, if_pos (rfl : (0 : ℕ) = 0), Int.cast_one]
       · rw [zero_pow hk, if_neg hk, Int.cast_zero]
 
 /-- The value of a polynomial at the zero assignment. -/

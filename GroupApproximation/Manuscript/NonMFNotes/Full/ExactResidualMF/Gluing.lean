@@ -18,7 +18,7 @@ used later.
 
 namespace GroupApproximation.Full.NN01b
 
-open GroupApproximation
+open GroupApproximation Monoid
 
 section Words
 
@@ -120,7 +120,7 @@ theorem isOperatorMF_symmetricDouble_of_gluing (X : ℕ → FiniteModel)
       ∀ b g, ρ (inDouble G Γ b g) = QuotientGroup.mk' (nullCofiniteOpSubgroup X) (Φ b g) :=
     ⟨PushoutI.lift (fun b => (QuotientGroup.mk' (nullCofiniteOpSubgroup X)).comp (Φ b))
       (((QuotientGroup.mk' (nullCofiniteOpSubgroup X)).comp (Φ true)).comp Γ.subtype) hf,
-      fun b g => PushoutI.lift_of _ _ hf g⟩
+      fun b g => PushoutI.lift_of _ _ hf (i := b) g⟩
   refine ⟨X, hX, ρ, (injective_iff_map_eq_one ρ).mpr ?_⟩
   intro x hx
   obtain ⟨l, rfl⟩ := exists_word G Γ x
