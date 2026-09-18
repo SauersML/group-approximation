@@ -94,4 +94,63 @@ theorem evalZero_finSuccEquiv_comp_cubeKill_zero {R : Type*} [CommRing R] (k : �
             (MvPolynomial.X l : MvPolynomial (Fin (k + 1)) R))
         rw [cubeKill_X_of_ne hl]
 
-#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.evalZero_finSuccEquiv_comp_cubeKill_zero
+#audit_axioms
+  GroupApproximation.BooneHigman.Metabelian.ElemFP.evalZero_finSuccEquiv_comp_cubeKill_zero
+
+/-- **The isolated gap**: the local form of the cube gap.  For `N ≥ k + 5`, an element
+`u ∈ K₂(N, F_p[s_0..s_k])` killed by every substitution `s_i ↦ 0`, and a maximal ideal `m` of
+`B = F_p[s_1..s_k]`, some `s ∉ m` makes `v_s(ψ u) = (ψ u)(t + s y) · (ψ u)(t)⁻¹ ∈ K₂(N, B[t][y])`
+die after padding, where `ψ : F_p[s_0..s_k] ≅ B[t]` sends `s_0 ↦ t`. -/
+def PolyK2CubeNilLocalStatement : Prop :=
+  ∀ p : ℕ, p.Prime → ∀ k N : ℕ, k + 5 ≤ N →
+    ∀ u : K2n N (MvPolynomial (Fin (k + 1)) (ZMod p)),
+      (∀ i : Fin (k + 1), K2Map (cubeKill (ZMod p) i) u = 1) →
+        ∀ m : Ideal (MvPolynomial (Fin k) (ZMod p)), m.IsMaximal →
+          ∃ s : MvPolynomial (Fin k) (ZMod p), s ∉ m ∧
+            K2DiesAfterPadding
+              (quillenDiff (K2Map (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv.toRingHom u) s)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.PolyK2CubeNilLocalStatement
+
+/-- **Endpoint**: the local gap gives the cube gap `PolyK2CubeNilStatement`. -/
+theorem polyK2CubeNil_of_cubeLocal (h : PolyK2CubeNilLocalStatement) : PolyK2CubeNilStatement := by
+  intro p hp k N hk hkN _ u hu
+  obtain ⟨j, rfl⟩ : ∃ j : ℕ, k = j + 1 := ⟨k - 1, by omega⟩
+  have hev : K2Map (Polynomial.evalRingHom 0 :
+      Polynomial (MvPolynomial (Fin j) (ZMod p)) →+* MvPolynomial (Fin j) (ZMod p))
+        (K2Map (MvPolynomial.finSuccEquiv (ZMod p) j).toRingEquiv.toRingHom u) = 1 := by
+    rw [K2Map_K2Map, ← evalZero_finSuccEquiv_comp_cubeKill_zero (R := ZMod p) j, ← K2Map_K2Map,
+      hu 0, map_one]
+  obtain ⟨M, hNM, hM⟩ := diesAfterPadding_of_local hev (h p hp j N (by omega) u hu)
+  refine ⟨M, hNM, ?_⟩
+  rw [← K2Map_K2Map_of_comp_eq_id _ _
+      (MvPolynomial.finSuccEquiv (ZMod p) j).toRingEquiv.symm_toRingHom_comp_toRingHom u,
+    K2IndexMap_K2Map, hM, map_one]
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2CubeNil_of_cubeLocal
+
+/-- Conversely, the cube gap gives the local gap, with `s = 1`. -/
+theorem polyK2CubeNilLocal_of_cubeNil (h : PolyK2CubeNilStatement) :
+    PolyK2CubeNilLocalStatement := by
+  intro p hp k N hkN u hu _ hm
+  refine ⟨1, (Ideal.ne_top_iff_one _).mp hm.ne_top, ?_⟩
+  exact diesAfterPadding_quillenDiff_of_diesAfterPadding
+    (diesAfterPadding_K2Map (MvPolynomial.finSuccEquiv (ZMod p) k).toRingEquiv.toRingHom
+      (h p hp (k + 1) N (Nat.succ_pos k) (by omega) (by omega) u hu)) 1
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2CubeNilLocal_of_cubeNil
+
+/-- **Endpoint**: the local gap gives lane `bh-met-14`'s `PolyK2NilPosStatement`. -/
+theorem polyK2NilPos_of_cubeLocal (h : PolyK2CubeNilLocalStatement) : PolyK2NilPosStatement :=
+  polyK2NilPos_of_cubeNil (polyK2CubeNil_of_cubeLocal h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2NilPos_of_cubeLocal
+
+/-- **Endpoint**: the local gap gives the frontier item `PolyK2OneVarNilStatement`. -/
+theorem polyK2OneVarNil_of_cubeLocal (h : PolyK2CubeNilLocalStatement) :
+    PolyK2OneVarNilStatement :=
+  polyK2OneVarNil_of_cubeNil (polyK2CubeNil_of_cubeLocal h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.ElemFP.polyK2OneVarNil_of_cubeLocal
+
+end GroupApproximation.BooneHigman.Metabelian.ElemFP
