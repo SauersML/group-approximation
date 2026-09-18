@@ -217,3 +217,13 @@ theorem roseJunctionRefute_noWitness (r : roseJunctionRefute_X.toCombMap.Dart)
     · exact absurd ((roseJunctionRefute_flipK r).mpr (by rw [hc]; decide)) hsource
 
 end GroupApproximation.GGT.VanKampen.GreendlingerLeaf
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_R
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_col
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_flipF
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_permF
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_caseIso
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_tail
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_caseC3
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_caseC5
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.roseJunctionRefute_noWitness

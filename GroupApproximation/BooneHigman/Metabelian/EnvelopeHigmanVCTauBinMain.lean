@@ -125,4 +125,63 @@ theorem higmanVCTauBin_good {p q x y x' y' : List (Fin 2)} (hpq : ¬ p <+: q)
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_good
 
+/-- **Remaining gap (hop families).**  `HigmanVCTauClassifyTwoStatement` restricted to the
+hop families `higmanVCTauBin_Hop`.  **LOUD: EQUIVALENT to the target as a proposition** (a
+proper special case, instance-wise; see `higmanVCTauBin_classifyTwo_of_hop`). -/
+def HigmanVCTauBinHopStatement : Prop :=
+  ∀ n : ℕ,
+    ∀ (p q x y x' y' : List (Fin 2)) (hpq : ¬ p <+: q) (hqp : ¬ q <+: p),
+      p.length ≤ 3 → q.length ≤ 3 →
+      x.length + y.length = n → x'.length + y'.length = n →
+      ¬ (x.length ≤ 3 ∧ y.length ≤ 3 ∧ x'.length ≤ 3 ∧ y'.length ≤ 3) →
+      ¬ higmanVCTauShort_OptionA 2 p q x y hpq hqp →
+      ¬ higmanVCTauShort_OptionE 2 p q x y →
+      ¬ higmanVCTauComm_OptionR 2 p q x y →
+      ¬ higmanVCTauComm_FlexA 2 p q x y hpq hqp → ¬ higmanVCTauComm_FlexB 2 p q x y x' y' →
+      ¬ higmanVCTauComm_FlexA 2 p q x' y' hpq hqp →
+      ¬ higmanVCTauComm_FlexB 2 p q x' y' x y →
+      ¬ higmanVCTauLevel_HopA 2 n p q x y x' y' hpq hqp →
+      ¬ higmanVCTauLevel_HopA 2 n p q x' y' x y hpq hqp →
+      ¬ higmanVCTauLevel_HopC 2 n p q x y x' y' →
+      higmanVCTauBin_Hop p q x y →
+      MapsCone (coneSwap p q hpq hqp) x x' → MapsCone (coneSwap p q hpq hqp) y y' →
+      ¬ x <+: y → ¬ y <+: x → ¬ x' <+: y' → ¬ y' <+: x' →
+      higmanVCTauUnif_Shape 2 p q x y ∨ higmanVCTauUnif_Shape 2 p q y x
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.HigmanVCTauBinHopStatement
+
+/-- **Reduction.**  The binary classification from its hop-family restriction: outside the
+hop families the flexible-square hypotheses are contradicted by `higmanVCTauBin_good`. -/
+theorem higmanVCTauBin_classifyTwo_of_hop (h : HigmanVCTauBinHopStatement) :
+    HigmanVCTauClassifyTwoStatement := by
+  intro n p q x y x' y' hpq hqp hp hq hxn hxn' hs hOA hE hR hFA hFB hFA' hFB' hHA hHA'
+    hHC hmx hmy hxy hyx hxy' hyx'
+  by_cases hH : higmanVCTauBin_Hop p q x y
+  · exact h n p q x y x' y' hpq hqp hp hq hxn hxn' hs hOA hE hR hFA hFB hFA' hFB' hHA hHA'
+      hHC hH hmx hmy hxy hyx hxy' hyx'
+  · rcases higmanVCTauBin_good hpq hqp hp hq (by omega) hs hH hmx hmy hxy hyx with
+      (hG | hG | hG | hG) | hG | hG
+    · exact (hFA hG).elim
+    · exact (hFB hG).elim
+    · exact (hFA' hG).elim
+    · exact (hFB' hG).elim
+    · exact Or.inl hG
+    · exact Or.inr hG
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_classifyTwo_of_hop
+
+/-- **Wire.**  The deep residual from the hop-family restriction. -/
+theorem higmanVCTauBin_deep_of_hop (h : HigmanVCTauBinHopStatement) :
+    HigmanVCTauDeepResidualStatement :=
+  higmanVCTauClassify_deep_of_two (higmanVCTauBin_classifyTwo_of_hop h)
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_deep_of_hop
+
+/-- **Wire.**  The `τ` half from the hop-family restriction and the lower-level part. -/
+theorem higmanVCTauBin_tau_of_hop (h : HigmanVCTauBinHopStatement)
+    (hLt : HigmanVCTauLevelLtStatement) : HigmanVCTauStatement :=
+  higmanVCTauClassify_tau_of_two (higmanVCTauBin_classifyTwo_of_hop h) hLt
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauBin_tau_of_hop
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
