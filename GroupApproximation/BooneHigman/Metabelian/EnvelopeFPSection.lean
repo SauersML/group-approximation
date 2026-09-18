@@ -67,7 +67,6 @@ theorem rnFinitelyPresented_of_freeSection (hsec : RNFreeSectionStatement) :
     RNFinitelyPresentedStatement' := by
   intro X _ _ H hH hfp
   obtain ⟨hV, x₀, R, hR, hRker, s, hs1, hmul⟩ := hsec X H hH hfp
-  have : Group.IsFinitelyPresented (RNFree X H) := inferInstance
   exact RNPresentation.isFinitelyPresented_of_section (rnFreeHom H x₀)
     (rnFreeHom_surjective H x₀) R hR hRker (rnFreeGenerators H)
     (closure_rnFreeGenerators H) s hs1 hmul

@@ -7,7 +7,7 @@ import GroupApproximation.Meta.AxiomGuard
 
 This file gives the carrier of a Hilbert module `E` a normed space structure, as scoped
 instances in `KasparovStab.AbsOp`. The norm is `E.norm` by definition. Contents:
-* `norm_eq`: `‖x‖ = E.norm x`.
+* `absNorm_eq`: `‖x‖ = E.norm x`.
 * `completeSpace_of_isCompleteModule`: `IsCompleteModule E` gives `CompleteSpace E.carrier`.
   The proof is the one in `ExtendClosedGraph`.
 * `tendsto_inner_right_of_tendsto` and `tendsto_inner_left_of_tendsto`: the inner product is
@@ -38,9 +38,9 @@ noncomputable scoped instance instNormedSpace (E : CStarModule.{v, v} B) :
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.instNormedSpace
 
-theorem norm_eq {E : CStarModule.{v, v} B} (x : E.carrier) : ‖x‖ = E.norm x := rfl
+theorem absNorm_eq {E : CStarModule.{v, v} B} (x : E.carrier) : ‖x‖ = E.norm x := rfl
 
-#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.norm_eq
+#audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.absNorm_eq
 
 /-- Metric convergence is `IsLimit`. -/
 theorem isLimit_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E.carrier} {a : E.carrier}
@@ -49,7 +49,7 @@ theorem isLimit_of_tendsto {E : CStarModule.{v, v} B} {u : ℕ → E.carrier} {a
   obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp hu ε hε
   refine ⟨N, fun n hn => ?_⟩
   have h := hN n hn
-  rw [dist_eq_norm_sub, norm_eq] at h
+  rw [dist_eq_norm_sub, absNorm_eq (E := E)] at h
   exact h.le
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.isLimit_of_tendsto
@@ -63,13 +63,13 @@ theorem completeSpace_of_isCompleteModule {E : CStarModule.{v, v} B}
     obtain ⟨N, hN⟩ := Metric.cauchySeq_iff.mp hu ε hε
     refine ⟨N, fun m n hm hn => ?_⟩
     have h := hN m hm n hn
-    rw [dist_eq_norm_sub, norm_eq] at h
+    rw [dist_eq_norm_sub, absNorm_eq (E := E)] at h
     exact h.le
   obtain ⟨y, hy⟩ := hE u hc
   refine ⟨y, Metric.tendsto_atTop.mpr fun ε hε => ?_⟩
   obtain ⟨N, hN⟩ := hy (ε / 2) (half_pos hε)
   refine ⟨N, fun n hn => ?_⟩
-  rw [dist_eq_norm_sub, norm_eq]
+  rw [dist_eq_norm_sub, absNorm_eq (E := E)]
   exact lt_of_le_of_lt (hN n hn) (half_lt_self hε)
 
 #audit_axioms GroupApproximation.Manuscript.NonMF.TWWLanes.KasparovStab.AbsOp.completeSpace_of_isCompleteModule

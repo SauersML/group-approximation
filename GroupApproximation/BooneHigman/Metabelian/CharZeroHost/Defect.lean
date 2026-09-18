@@ -45,10 +45,12 @@ theorem natVec_zero : (natVec (0 : Fin n → ℕ) : Fin n → MvPolynomial (Fin 
 theorem natVec_single (j0 : Fin n) :
     (natVec (Pi.single j0 1) : Fin n → MvPolynomial (Fin k) A) = Pi.single j0 1 := by
   funext j
-  have h := Pi.apply_single (fun _ (m : ℕ) => ((m : ℕ) : MvPolynomial (Fin k) A))
-    (fun _ => Nat.cast_zero) j0 1 j
-  rw [Nat.cast_one] at h
-  exact h
+  by_cases h : j = j0
+  · subst h
+    show ((Pi.single j 1 j : ℕ) : MvPolynomial (Fin k) A) = Pi.single j 1 j
+    rw [Pi.single_eq_same, Pi.single_eq_same, Nat.cast_one]
+  · show ((Pi.single j0 1 j : ℕ) : MvPolynomial (Fin k) A) = Pi.single j0 1 j
+    rw [Pi.single_eq_of_ne h, Pi.single_eq_of_ne h, Nat.cast_zero]
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.CharZeroHost.natVec_single
 
