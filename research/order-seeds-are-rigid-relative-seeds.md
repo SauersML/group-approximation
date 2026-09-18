@@ -106,3 +106,33 @@ rigidity is again just monotone chains.
 - **The CAP question.** A rigid seed then certifies exactly the comparison problem of the order. Whether CAP
   fails becomes: can a finitely generated positive cone, or a monotone-connected action, have a hard comparison
   problem?
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked the Statement and Proof line by line.
+
+- **The rules.** They are uniform because `gs·p ≷ g·p` iff `s·p ≷ p`. `y_p` satisfies them.
+  Conversely, every monotone cut of `O` with at most one `=` satisfies them, since `(=,=)` is excluded
+  along strict steps.
+- **(RS1).**
+  - `=` spreads over `C` along `S ∩ C`.
+  - Along a monotone (M)-path from `1`, equal steps are exactly steps by elements of `C`. After the
+    first strict step only `>` is possible, and backwards only `<`.
+  - So `f = y_p`, and `Stab(y_p) = C` (take `g = h` in `cmp(g·p, h·p)`).
+- **(RS2).**
+  - Points descend to `O` and are cuts with at most one `=`. A cut with `=` at `h·p` is `h.y_p`.
+  - The remaining cuts are limits. I checked this with an enumeration of `O` and (D).
+  - A gap `l < u` with nothing between cannot occur, by (D), and `O` has no endpoints, by
+    transitivity.
+- **(RS3).** The same four order relations as in the real-cut seed, and the same cross cases, give
+  commutation for every `D ≥ 1`. Idempotents at `g` and `gc` (`c ∈ C`) are equal by transport.
+- **Instance 1.** It reproduces `y_R` exactly, with `< ↔ +`, `= ↔ *`, `> ↔ −`. (M) holds via `b`-moves
+  to a level where `2^j` divides `r′ − r`, then `a`-steps.
+- **Instance 2.** (M) holds because `g ≺ g s_1 ⋯ s_i` increases for `s_i ≻ 1`. So a dense left order
+  with a semigroup-generated positive cone gives `A ∈ 𝒞`.
+- **Oracle.** Positivity is decidable from `WP(A)`: positive, negative and trivial elements are each
+  c.e.
+
+**Not checked.** Whether the Dubrovina–Dubrovin orders are dense (the node says it is recalled).
+Orders with finitely generated positive cones are often discrete; in that case the "Discrete orbits"
+variant must be used, and it needs every gap to be crossed by a single step.
