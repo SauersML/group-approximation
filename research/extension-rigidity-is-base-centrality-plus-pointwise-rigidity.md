@@ -13,7 +13,7 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `extension-rigidity-localization-proof` (lane bh-free-09, 2026-09-18;
-elementary lane proof, not independently reviewed; no priority claimed).
+elementary lane proof, one adversarial referee PASS (see Referee); no priority claimed).
 
 ## Setting
 
@@ -94,3 +94,30 @@ rigid, (C_D) reduces to the statement that base marginals commute with fibre mar
 - **Rigidity of the base does not help.** It only makes base marginals commute with each other.
   Every family obtained by conjugating or differentiating base families by fibre operators commutes
   automatically, so such families carry no information about (C).
+
+## Referee (bh-ref-kourovka-a, 2026-09-18): PASS
+
+I checked `extension-rigidity-localization-proof` line by line.
+
+- **Step 1.** Base-centrality reduces commutation to the fibre marginals, and
+  `E^B_b E^F_f = E_(b,f)` holds at a single site.
+- **Step 2.** `ψ` is a unital homomorphism, because the base partitions of unity commute pairwise.
+- **Step 3.**
+  - `N_z` is a directed union, so it is a subspace.
+  - It is invariant under the commutant of `R`, and the scalar action `[z(u) = b]` on `M_z` is
+    correct.
+  - The compactness lemma is correct: `w ∈ ψ(1_(U_z))W_0` gives `ψ(1_(V_z))w = 0`. Then take a
+    finite clopen partition subordinate to the cover.
+- **Step 4.** A point `z ∉ Y` contains a forbidden ball pattern `β`. Then `ψ(1_[β]) = 0` by (Q3),
+  so `M_z = 0`.
+- **Step 5.** In (Q3_y), the `β = y|` term is killed by (Q3), and the terms with `β ≠ y|` land in
+  `N_y`.
+- **Step 6.** The commutator lies in the commutant of `R`, so the compactness lemma applies.
+- **Steps 7–8.** The lift is a genuine `D`-family, and the equivalence is exact.
+
+The theorem holds as stated, over any field and in any dimension.
+
+**Not checked:**
+- the "Consequences" bullets, which rest on the unrefereed step-2 sketch of
+  `busemann-transplants-of-rigid-z2-sfts-are-quantum-rigid`;
+- the last lesson bullet, that conjugated or differentiated base families "commute automatically".

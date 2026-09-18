@@ -70,3 +70,47 @@ depend on faithfulness: `SV_G`, faithful or abstract, has exactly the finiteness
 `Z ≀_S G`. So the kernel-removal problem (FFWZ Question 5.9) is purely about the action
 images. It never concerns finite presentation of the ambient relatively simple group, which
 is automatic from `[A_2]`.
+
+## Referee (bh-ref-ffwz, 2026-09-18): PASS for item 2 (fourth independent pass)
+
+This pass focuses on item 2, finite presentation from `[A_2]`, which is what FFWZ Q5.9 part 2
+needs. I checked, by hand:
+- `abstract-twisted-bt-colored-subgroup-proof`;
+- Step 1 and Step 3 of `abstract-twisted-bt-type-fn-colored-stein-proof`;
+- the statement of `stein-complex-elementary-intervals-are-grid-spheres`;
+- the `[A_n]` definition, in the FFWZ arXiv TeX.
+
+Results:
+- **Realization.** Ψ is injective. If Ψ(h) = id, each leaf brick maps to itself, so each
+  coordinate permutation `τ_{g_i}` is trivial. Then `g_i` fixes the free summand `G ⊆ S'`,
+  so `g_i = 1`, and faithfulness of `SV` finishes. The `S`-colored subgroupoid is closed
+  under composition, because `G` preserves the summand `S`.
+- **Stabilizers.**
+  - Vertex stabilizers are exactly `G ≀ Σ_r`, and Σ is transitive on each rank.
+  - Short-edge stabilizers are **exactly** a conjugate of `Stab_G(s) × (G ≀ Σ_{r−1})`, not
+    just commensurate with it. Twists at the split leaf must fix `s`, by
+    `x_{g.s} g = (g⊕g) x_s` and the fact that distinct colors give distinct partitions.
+  - Under `[A_2]` these stabilizers are finitely presented and finitely generated
+    respectively.
+- **The π_1 filtration is correct.**
+  - Attaching `|I| = v * w * |(v,w)|` along `∂I = Σ|(v,w)|` is correct. `(v,w) ≠ ∅` for
+    length ≥ 2, and the open cells of different intervals are disjoint.
+  - Contractible boundaries and `S^{e−1}` with `e ≥ 3` do not change π_1.
+  - The `e = 2` generators (the square, and the six-element hexagon of the grid-spheres
+    example) are short-edge loops. Chains in one component stay in that component.
+  - Attaching 2-cells along a superset of generators keeps `Y` simply connected.
+- **Finiteness of orbits.** There are finitely many orbits of vertices, short edges and 2-cells:
+  - ordered pairs `(s at i, t at j)`: orbits(S)²;
+  - one-leaf 2-subsets: finite, from finitely many orbits on `S²`.
+  Brown needs no 2-cell stabilizer condition, and the action is rigid.
+- **Morse threshold.** For simple connectivity of `X^S_m`,
+  `min(ν(r/2)−2, log_2(r/2)−2) ≥ 1` needs `r ≥ 22`.
+- **Nit (countability).** BZ assume `S` countable. That holds automatically on the
+  sufficiency side: `[A_1]` forces `G` finitely generated with finitely many orbits, so `S`
+  and `S' = S ⊔ G` are countable. It is worth one sentence in the statement.
+- **Not re-read at source.** Brown 1984 (the presentation theorem) and Hatcher–Wahl Prop 3.5
+  (complete join complexes) were checked against their standard statements from memory,
+  as earlier referees also did. Neither was re-read here.
+
+With this PASS, `fp-relatively-simple-pair-with-unsolvable-simple-quotient`, and so the
+second part of the FFWZ Q5.9 "no", no longer depends on FFWZ Theorem B's printed proof.

@@ -148,3 +148,35 @@ remains:
    - **Comparison with Attempt 4.** The coset gates of Attempt 4 need a separating finite set.
      One-ended groups have none, and here that shows up concretely: no cell is cut off by a single
      wall.
+6. **2026-09-18 (lane `bh-partials`), the one-ended case through the Bowen–Series coding.**
+   - **The new node.** `closed-surface-groups-are-contracting-rsgs`, with route
+     `closed-surface-groups-contracting-rsg-via-bowen-series` (OPEN).
+   - **Proved there from Katok–Ugarcovici (arXiv:1610.00167), read at source.** The Bowen–Series map of the right-angled
+     `(8g−4)`-gon gives an explicit SFT on `2(8g−4)` arc states. Canonical similarities are group elements `g_{w'}^{-1}g_w`
+     (Attempt 2's observation). Exactness of the map makes the graph primitive. So the irreducible core, the obstacle of
+     Attempts 3 and 5, is automatic in this coding.
+   - **Still open there.**
+     - `Γ`-invariance of the cut set (the wall endpoints must all reach `Π`);
+     - a finite nucleus, via a bounded level defect under generators. This is the same shape of lemma as step 3 of
+       `pisot-stein-groups-are-contracting-rsgs-proof`.
+   - **Lesson.** The irreducible core belongs to the coding, not to the group. Question 1.1 is now a contraction question.
+7. **2026-09-18 (lane `bh-partials`), the closed-surface case is settled (lane proof, not reviewed).**
+   - `closed-surface-groups-are-contracting-rsgs` is now ESTABLISHED through its Bowen–Series route.
+   - **Step 4.** `Γ` acts on the Cantorized circle. This follows from Bowen–Series Lemma 2.4, read at source: orbit
+     equivalence except the pairs `(Q_i, g_{i−1}Q_i)`, which lie in `Π`.
+   - **Step 5.** The nucleus is finite. Itineraries are directed geodesic tile rays. The level of a cut point equals the
+     time its ray enters the carrier of its wall. Fellow travelling then matches the level defect to the Busemann shift.
+   - **Coverage.** This covers every closed hyperbolic surface group and every cocompact Fuchsian group.
+   - **What remains of Question 1.1.** One-ended groups without a Bowen–Series-type coding (3-manifold groups, Kazhdan
+     groups), and infinitely-ended groups that are not virtually torsion-free.
+8. **2026-09-18 (lane `bh-partials`), right-angled 3-dimensional reflection groups and their commensurability classes
+   (lane proof, not reviewed).**
+   - `right-angled-reflection-groups-in-h3-are-contracting-rsgs` covers:
+     - the right-angled dodecahedral reflection group `W`;
+     - every finite-index subgroup of `W`, including closed hyperbolic 3-manifold groups;
+     - every group commensurable with `W`;
+     - more generally, every compact right-angled polyhedron satisfying three face-graph conditions.
+   - **The coding.** The greedy map "reflect in the smallest-labelled separating face plane" on the Roller boundary,
+     with states the cells of one tile's face-circle arrangement, refined by cosets for subgroups.
+   - **What remains for 3-manifold groups.** Commensurability classes without right-angled reflection groups. There the
+     walls are only quasiconvex (Bergeron–Wise), so a "quasiconvex greedy coding" is the missing tool.

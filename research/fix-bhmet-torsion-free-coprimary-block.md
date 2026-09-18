@@ -2,6 +2,7 @@
 rg: 2
 id: fix-bhmet-torsion-free-coprimary-block
 kind: route
+target: fp-metabelian-groups-satisfy-boone-higman
 title: "Fix GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock: expected token"
 ---
 
@@ -17,6 +18,8 @@ error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:
 error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:57:38: typeclass instance problem is stuck
 error: GroupApproximation/BooneHigman/Metabelian/TorsionFreeCoprimaryBlock.lean:104:65: expected token
 ```
+
+**Kind.** mechanical (Lean/Mathlib drift) (classification merged from the parallel node `fix-bh-met-torsion-free-coprimary-block`, now superseded).
 
 **What it needs.** Make `GroupApproximation.BooneHigman.Metabelian.TorsionFreeCoprimaryBlock` compile with the repository's `-DwarningAsError=true` settings, changing no statement.
 No imported module is red in that build, so this is a leaf: its errors are its own.

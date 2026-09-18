@@ -77,3 +77,22 @@ Both are claimed by lane ms-nm-partial-a (`Full/AtomRepresentat…`, probe queue
 - The binder scan reads only named-constant binders `(h… : P)`. A hypothesis written inline (a ∀-statement
   in a binder) is not seen. The register's `inlined-statement` class is exactly that case; both of its entries
   are accounted for above.
+
+## Live detector run (09-18 16:20 CDT, Slurm msismall job 1326470)
+
+`scripts/sentence_census.py --verify-unconditional` logic, instrumented (timing + per-row output, same
+classifier, filters and register), on an origin/main snapshot at 4a734659e: 717 records, 625 classified
+(formalized/definition/partial), 11.5 min wall (corpus 499 s, index 172 s, classification 14 s).
+
+- **NEW findings: 0.** **STALE register lines: 0.** **ACCEPTED: 78** occurrences of the 31 register entries.
+- By tex line:
+  - l.1604 (`prop:bilateral-three`): 1, the `inlined-statement` line for
+    `relativeElementary_killed_of_rootThree_killed`;
+  - l.2135 (`thm:hull`): 76, all Osin Lemma 9.4 pieces plus the two HullSC `buried-conditional` lines;
+  - l.2149 (`lem:saturation`): 1.
+- Sections 1–5 up to tex l.1300 (264 formalized rows): **no finding at all.** So there is nothing to discharge
+  under `Full/NMUncondA/`.
+
+Detector blind spot: a cited name that `lean_decls.build_index` cannot resolve is skipped silently
+(`decl is None: continue`). The grep check above found every cited short name declared on main, but it
+did not check full-name resolution.

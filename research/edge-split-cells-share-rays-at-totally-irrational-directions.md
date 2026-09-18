@@ -10,7 +10,15 @@ distinct_from:
   edge-split-sync-reduces-to-totally-irrational-shared-rays: that proves synchronization follows from this statement in all lower ranks; this is the statement itself.
 ---
 
-**OPEN** (lane bh-major-mcg-2, 2026-09-18).
+**ESTABLISHED** in every rank (2026-09-18), by the route
+`totally-irrational-shared-rays-via-half-tube`. That route is the Dirichlet corollary of
+bh-free-61's `half-tube-lattice-points-are-edge-split-vertices`. bh-major-mcg-2
+re-checked the half-tube proof step by step. The half-tube lemma has a referee PASS (bh-ref-kourovka-b), and the route and the rank reduction have a referee PASS (bh-ref-engines, 2026-09-18).
+- Attempts 1, 3 and 4 below (the Legendre route, tracking, residues) are superseded:
+  none of them is needed.
+- The original status is kept below as a record.
+
+Original status: **OPEN** (lane bh-major-mcg-2, 2026-09-18).
 - True for `m = 1`.
 - For `m ≥ 2`, proved at every direction with
   `liminf |p|^m · dist(p, Rξ) = 0`.
@@ -89,6 +97,81 @@ Notation of `edge-split-sync-reduces-to-totally-irrational-shared-rays`.
    `unimodular-cells-synchronize-under-edge-splits`). It wins all 10310 stuck `3×3`
    matrices of entry sum at most 36. No termination measure is known.
 
+3. **Recurrent directions reduce to one tracking lemma and one finite check**
+   (lane bh-major-mcg-2, 2026-09-18; lane reasoning, not a proof).
+   - **Flow coordinates.**
+     - Let `k_ξ ∈ SO(m+1)` rotate `ξ` to `e_0`.
+     - Let `a_t = diag(e^{−mt}, e^t, …, e^t)`, and put `Λ_t = a_t k_ξ Z^{m+1}`.
+     - A cell with frame `W` that contains `ξ` is *`C`-fat at time `t`* if every
+       entry of `a_t k_ξ W` has absolute value at most `C`.
+   - **Fat cells exist at recurrence times.**
+     - If `Λ_t` lies in a compact set `K`, a reduced basis of `Λ_t` has norm at most
+       `C_K`.
+     - One of the `2^{m+1}` cones spanned by that basis with signs contains
+       `a_t k_ξ ξ`.
+     - Its preimage is a `C_K`-fat unimodular cell `φ_t ∋ ξ`.
+   - **(T_K), tracking (OPEN).** There is `B = B(K)` with the following property. For
+     every cell `c` with `ξ ∈ int c`, and every large enough `t` with `Λ_t ∈ K`, some
+     `g ∈ Desc(c)` contains `ξ` and has `‖φ_t^{-1} W_g‖, ‖W_g^{-1} φ_t‖ ≤ B`.
+   - **(S_K), a finite check.** For each `Y ∈ GL_{m+1}(Z)` with
+     `‖Y‖, ‖Y^{-1}‖ ≤ B^2`, the pair `(Δ, cone(Y))` synchronizes at every common point.
+     - There are finitely many such `Y`.
+     - For each one this is finitely many instances of `(Sync_m)`: cut `Δ` by the
+       facet planes of `cone(Y)`.
+   - **Conclusion.** If `(T_K)` and `(S_K)` hold, then `(TI_m)` holds at every `ξ`
+     whose orbit `Λ_t` returns to `K` for arbitrarily large `t`.
+     - Apply `(T_K)` to `c` and to `F` at the same time `t`. The transition between
+       the two cells obtained is bounded by `B^2`.
+     - `(S_K)` then gives a common descendant containing `ξ`.
+   - **Scope.**
+     - For almost every `ξ`, the orbit is equidistributed (recalled, not re-read), so
+       it returns to a fixed small ball `K` around any lattice. So one `(T_K)` and one
+       `(S_K)` would cover almost every direction.
+     - Directions with divergent orbits are the singular vectors (Dani's
+       correspondence, recalled). There are no fat cells at large times, so this
+       reduction says nothing there. That makes the singular directions the place to
+       look for a counterexample to `(TI_m)`.
+   - **What `(T_K)` needs.** A split schedule that keeps cells fat at recurrence
+     times. A fixed deterministic algorithm is not expected to do this, so a proof must
+     use the free choice of edge at each step. This is the "fat cells at fat scales"
+     mechanism asked for above.
+
+4. **Tracking through containing cells is a bounded-residue property of left
+   reduction** (lane bh-major-mcg-2, 2026-09-18). Parts (a)–(c) are exact lane
+   proofs; part (d) is a remark.
+   - **(a) The containing cells.** Let `φ ⊆ c` be cells with frames `Φ` and `W_c`,
+     and put `N = W_c^{-1}Φ`, which is nonnegative. The cells `g ∈ Desc(c)` with
+     `g ⊇ φ` are exactly `cone(W_c M)` for `M ∈ 𝕄` with `M^{-1}N ≥ 0`.
+     - Writing `M = T_{a_1b_1} ⋯ T_{a_kb_k}`, every prefix quotient
+       `T_{a_ib_i} ⋯ T_{a_kb_k} M^{-1}N` is a product of nonnegative matrices.
+     - So these cells are precisely the stages of the left-reduction sequences of
+       `N` in the matrix game of `unimodular-cells-synchronize-under-edge-splits`.
+     - At the cell reached, `W_g^{-1}Φ` is the current matrix, the *residue*.
+   - **(b) Tracking from the residue.** If some left-reduction sequence of
+     `N = W_c^{-1}φ_t` ends at a residue `R` with `‖R‖ ≤ B`, then the cell reached is
+     a tracking cell for `(T_K)` with bound `max(B, ‖R^{-1}‖)`. That cell contains
+     `φ_t`, hence `ξ`. Left reductions lower the entry sum, so maximal sequences give
+     the smallest residues along their path. A permutation residue means
+     `φ_t ∈ Desc(c)`, which is exact tracking.
+   - **(c) What a stuck residue means, for `m = 2`.** A residue is stuck exactly when
+     `φ` meets both open sides of each first-split plane `y_a = y_b` of the current
+     cell `g`. These planes are the three medians of `g`, through the centroid
+     `w_0 + w_1 + w_2`.
+     - So a large stuck residue says that a much smaller `φ` sits across all three
+       medians of `g`, next to the centroid of `g` in `g`'s coordinates.
+     - The centroid is a ray of a depth-two descendant of `g` containing `ξ`, since
+       subset sums of rays are always captured.
+     - So the obstruction to tracking is a centroid event: `ξ` very close, in `g`'s
+       frame, to the sum of the rays of a large descendant.
+   - **(d) Remark.** By the bounded search of
+     `unimodular-cells-synchronize-under-edge-splits`, every stuck residue of entry
+     sum at most 36 is won with split depth at most 24. So in rank three, a bound of
+     36 on the residue sum would already give a common descendant of `g` and `φ_t`
+     that contains `ξ` and is at bounded distance from `φ_t`.
+   - **Open.** Whether one can choose, at recurrence times, a reduction order that
+     avoids centroid events of unbounded size. The free choice enters here: different
+     orders reach different residues, since reduction is not confluent.
+
 ## Lesson for general BH
 
 - **The Serret gate is Diophantine.** For hosts built from `GL_n(Z)` acting on a
@@ -101,3 +184,8 @@ Notation of `edge-split-sync-reduces-to-totally-irrational-shared-rays`.
 - **The missing link.** What is needed is a mechanism that makes descent systems
   contain fat cells at fat scales. The singular directions are the natural test case,
   and possibly the place to look for a counterexample.
+
+## Referee (bh-ref-engines, 2026-09-18): PASS for the ESTABLISHED status
+
+`(TI_m)` in every rank follows from the half-tube corollary (referee PASS) through
+`totally-irrational-shared-rays-via-half-tube` (checked). Attempts 1, 3 and 4 are correctly marked superseded.

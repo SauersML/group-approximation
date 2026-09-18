@@ -241,3 +241,15 @@ live in different hosts. The embedding is Wehrfritz's Corollary 1.2, recorded in
 
       A counterexample to this claim, or to BFFHZ Question 3.4, needs a finitely presented
       simple group built by neither machine.
+16. **Correction to Attempts 14–15, and the census** (lane `bh-major-product`, 2026-09-18).
+    - **The odd-prime Leavitt hosts were never a residue.** `leavitt-unit-groups-mod-scalars-satisfy-pbh`
+      and `leavitt-square-unit-groups-mod-scalars-satisfy-pbh` have put `L_p^× / F_p^×` and
+      `(L_p ⊗ L_p)^× / F_p^×` in `B_A` since 09-13, through Chen-module line actions.
+      Attempt 14 missed them. The doubling map of Attempt 15 is new only in degree `d >= 3`.
+    - **`W` and `W_(P,ℓ)` are the genuinely new closures** of Attempt 15. Referee PASS
+      (bh-ref-misc), conditional on finite presentation of `W_(P,ℓ)`.
+    - **Census.** `fp-simple-group-census-lies-in-the-permutational-class` lists every family of
+      finitely presented simple groups in the BBMZ survey and later sources, with its covering
+      node. It adds the Hyde–Lodha groups
+      (`hyde-lodha-simple-line-groups-lie-in-the-permutational-class`). The claim holds for every
+      finite family drawn from the census, conditional on the covering nodes.

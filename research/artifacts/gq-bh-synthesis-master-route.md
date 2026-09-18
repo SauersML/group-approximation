@@ -1,330 +1,225 @@
-# Boone–Higman: master route (synthesis v6, 2026-09-18)
+# Boone–Higman: master route (synthesis v8, 2026-09-18)
 
 Lead synthesis of the 09-18 BH swarm, lane `bh-synth-lead`.
-- **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f (Perron rows corrected
-  by 85b04172c).
-- **What v6 folds in:** every landing and LESSONS.md entry from 14:36 to 16:02 (§7).
-- **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and their
-  status lines govern. Items marked **(synthesis remark)** are my own short arguments. They are not nodes and
-  are unreviewed. The live table is `board/SYNTHESIS.md`.
+- **Versions:** v1 12a123bf1, v2 b344473a1, v3 8d0279a62, v4 fa0efca1c, v5 16bd19b7f, v6 b5ad39956,
+  v7 a85dd1c95.
+- **What v8 folds in:** every landing and LESSONS.md entry from 16:58 to 17:19 (§6).
+- **Status:** this is a strategy document, not a proof. Cited nodes are mostly unreviewed lane proofs, and
+  their status lines govern. Items marked **(synthesis remark)** are my own short arguments, unreviewed. The
+  live table is `board/SYNTHESIS.md`.
 
-## 0. Thesis (v6): one object, the seed
+## 0. Thesis (v8): every route builds type (A) actors, so the wall is complexity, not exactness
 
-Several independent lanes converged on one object.
-- bh-g2-buildings calls it an *SFT compactification* (bf61de7d0).
-- bh-invent-13 calls it a *finite-type S-compactification* (6a462d596).
-- Lanes bh-emitter-a and bh-emitter-b, and the E1 lanes, reach it from the other side.
+### What settled since v7
 
-**Definition (seed SFT).** Let Γ be finitely generated. A *seed SFT* over Γ is an SFT `Y ⊆ A^Γ` with a point
-`y_*` such that:
-- (S1) `y_*` is isolated in `Y`, i.e. some pattern π on a ball (the *seed*) has cylinder `{y_*}`;
-- (S2) `Stab(y_*) = 1`;
-- (S3) `Γ·y_*` is dense in `Y`.
+- **E1: PASS.** Both halves pass: the storage-column (D) and tree gluing (1b697300b), and the keyed-slot lift,
+  conditional on one repairable key-domain gap (b5c7787d6). The repair (G1): the key must cover the whole input
+  field. E1 closes with it.
+- **P2′b: PASS.** K = 1 for every Λ and X (bd5481ba2), with an independent second proof (9752ecd5d). So the
+  gluing layer is automatic and P2′ = P2′a. With exact gluing, N_X fp ⇒ F(T_X) fp. P2′a is a tool, not a gate
+  (e12544930).
+- **E3′: PASS for tree end-shift hosts** (092c2442f).
+- **F₂ × F₂ transplant (★′):** PASS, conditional on the fibre (c626199291).
+- **The minimal crossing-wire fibre:**
+  - two conditional PASSes (27c8ebe61, f757d5cbc), with one crossing-box fix pending;
+  - it passes the separability test (c4803daa3).
+- **Seed pieces.**
+  - PASS:
+    - the horofunction lemma for all hyperbolic groups, Kazhdan ones included (f2a29310d);
+    - finite-type seeds on Ã₂ lattices (e1de4c7e7);
+    - relative seeds glue;
+    - BG ∈ 𝒞, proved twice: the real-cut order seed (3ff9b63b2) and BG_n (d1a501256).
+  - Claimed: finite-type seeds on C̃₂ (547e567e0) and C̃_n lattices (21cd0dd3e); positive-cone seeds for braid
+    groups and Ito amalgams (8fb50b000); core-marked gluing (1c1eb8413).
+- **A carrier exists for special cubulated inputs.** Wall chains prove rigidity (f10ba67e9, under review), so
+  surface groups, RAAGs, RACGs and median Cayley graphs are in 𝒞, and tree gluing makes the carrier. But no
+  infinite FW group is in a wall member of 𝒞.
 
-Then `Γ·y_*` is an open, dense, discrete copy of Γ, and `∂Y = Y ∖ Γ·y_*` is the boundary.
-- This is exactly (C1)+(C2) of `tree-gluing-turns-rigid-sft-compactifications-into-rigid-sfts`.
-- It is also exactly "K of finite type" in part 3 of `stabilizer-engines-embed-in-every-branch-compactification`.
-- So **(IE′)(S) and "S has an SFT compactification" are the same statement** (synthesis remark; the definitions
-  coincide word for word once "isolated" is read as "Sx open").
-- 𝒞 is the class of groups with a seed SFT that is D-quantum rigid over every field for all large D.
-  - Known members: finite groups and Z (via `C_Z`, the SFT `…++*−−…` together with its two limit points `±∞`).
-  - 𝒞 is closed under × and ∗, which gives Z² and F_n.
+### Three facts that move the crux
 
-**THE UNIFIED GATE (SEED).** For every finitely generated `G` with solvable word problem there are:
-- a finitely presented `Λ₀ ⊇ G`;
-- a seed SFT `(Y, y_*)` over `Λ₀` that is quantum rigid, i.e. `Λ₀ ∈ 𝒞`.
+1. **The plane-lift route to (★′) is blocked.**
+   - Transport-coupled lifts are rigid but never minimal for a non-SFT input (b2a87978c,
+     `e2-for-plane-lifts-is-clustered-floating-freedom`).
+   - Bounded defect freedom kills rigidity (bh-free-09's warning).
+   - Varying-skeleton lifts reduce E2 to skeleton rigidity plus centrality (92dfb33c5, Part 4 OPEN). But they
+     share the infinite-level degeneracy recorded as open by bh-g1-simulation.
+   - **So on the minimal route the CARRIER must be a RIGID SEED on the fp overgroup Λ₀ itself**, followed by
+     tree gluing over Λ₀ ∗ Z.
+2. **(RA) blocks only the minimal-subshift tracks** (4ed22df89, `ra-counterexamples-are-minimal-sets-of-rigid-ambients`).
+   - A type (A) action has a coset ambient. That ambient is rigid, since full coset shifts are rigid iff the
+     double-coset space is finite, which is the pair condition of type (A) (696c37d57). It is also topologically
+     free and non-amenable, but it is never minimal.
+   - Its host is the twisted Brin–Thompson group SV_Λ, which is finitely presented by Conjecture H (PASS).
+   - So the **permutational route escapes the exactness wall.**
+   - Also: the Arzhantseva–Osajda wall-orientation lead weakens. Non-exact small-cancellation walls are not
+     locally short, so the wall ambient is not rigid at any scale, conditional on quasi-isometrically embedded
+     walls (2b88c6f58).
+   - (RA′) reduces to one-ended groups (6a95ce886).
+3. **Every constructive route outputs a type (A) actor.**
+   - The minimal route does: fp V-stabilized full groups of minimal actions have type (A) actions
+     (`fp-v-times-minimal-action-full-groups-have-type-a-actions`).
+   - The ring route is expected to. This is proved for L_p ⊗ L_p
+     (`leavitt-tensor-unit-groups-lie-in-the-permutational-class`, conditional on Khanh). The argument transfers to
+     Leavitt-type unit groups that contain a clopen-transitive Brin–Thompson group (bh-major-product's lesson), but
+     that is not a theorem for general `(B ⊗ L)^×`.
+   - The permutational route does so by definition.
+   - So a complexity cap on type (A) actors caps every route (synthesis remark).
 
-This is `decidable-groups-embed-in-rigid-sft-compactification-groups`, premise (★𝒞). For the ring route, add:
-- (S5) every finite subgroup of `Λ₀` acts freely on `∂Y`.
+### What is LEFT for full BH, precisely
 
-**Why this is the right object.** Each clause answers a v5 lesson.
-1. **It is compression on the input's own points.**
-   - Rigidity comes from monotone chains toward the seed, as in `C_Z` and the end shift. So it is cheap,
-     compression-type rigidity.
-   - But the seed orbit *is* `Λ₀`, so no commuting factor is involved. The attractor lemma
-     (`attracting-boundary-factors-fix-commuting-actions`, 377ea1e4d) named "type (A) on the input's own
-     points" as the only exit from geometric routes. A seed is that exit made finite-type.
-2. **Complexity sits in the groupoid.**
-   - `outer-extensions-of-fp-steinberg-groupoids-need-no-rigidity` (2e7954761) says rigidity and the carrier
-     principle are one gate: a rigid cheap groupoid plus a complex acting group cannot work.
-   - A seed over `Λ₀` carries `WP(Λ₀)` in its own language. By (S3) every pattern of `Y` occurs in `y_*`, and
-     `y_*` is computable from `WP(Λ₀)`.
-3. **Minimality and freeness come free.** Tree gluing with `C_Z` over `Λ₀ ∗ Z` produces a minimal,
-   topologically free, rigid SFT (bf61de7d0 parts 1–3). So the minimality gap of E1 does not arise, and no
-   free layer is needed (`free-rewritable-tape-layers-kill-finite-presentation`, 7ac816a5c).
-4. **It is what emitters lack.** The one-point compactification `S⁺` is never of finite type, and a seed is
-   the finite-type repair (6a462d596 part 3).
-5. **It is a groupoid-level object.** Finite presentation of the Steinberg algebra is a Kakutani invariant
-   (`steinberg-fp-is-a-kakutani-invariant`). So seeds may be built and checked on any Kakutani model.
+- **Permutational route (P):** BH ⇐ PBH-universality, i.e. every decidable fg G embeds in an fp group with a
+  faithful type (A) action. The finiteness step is Conjecture H (PASS), and no exactness or rigidity gate is left.
+- **Minimal route (M), for exact inputs:** BH ⇐ RS ∧ ( E3′ for the glued seed host ∨ ( FJ ∧ Khanh ) ).
+  - RS means a rigid seed on an fp Λ₀ ⊇ G.
+  - E3′ for a seed host reduces to its boundary host (2619448c3, 96c20c080).
+  - The crossing-wire host is fp given 3-locality of V-Boolean powers, a Curtis–Tits-type conjecture (0db1cb640).
 
-**Implications.** "Free form" means the E1/E3 premises for *free* SFTs. "Topologically free form" means E1′/E3′.
+### THE SINGLE DECISIVE STATEMENT (v8): HARD-(A)
 
-| From | Gives | Source |
-|---|---|---|
-| seed(Λ₀) | E1′ on `Λ₀ ∗ Z`: a minimal topologically free SFT | bf61de7d0 parts 1–2 (rigidity not used) |
-| rigid seed(Λ₀) = `Λ₀ ∈ 𝒞` | E1′ + E2 on `Λ₀ ∗ Z`: (★′) in group form | bf61de7d0 part 3 |
-| `Λ₀ ∈ 𝒞` with (S5) | (★′) with torsion-free isotropy on `Λ₀ ∗ Z` | isotropy of the glued SFT: ends ≤ Z, sink pieces = `Stab_{Λ₀}(ξ)`, ξ ∈ ∂Y |
-| seed(Λ₀), `WP(Λ₀)` solvable | (D′): a topologically free SFT on `Λ₀` with decidable language | synthesis remark (below) |
-| (D)(A): a free subshift with decidable language | (M2) on `A ∗ Z` (free form) | 876c511de |
-| (D)(Λ₁) ∧ MSS | E1 on `(Λ₁ ∗ Z)²` (free form) | 876c511de route |
-| (M2μ)(Λ₁) ∧ floating-locus control | E1 on `Λ₁ × W₃ × W₃` (free form) | fd33bb9f8 |
-| (IE′)(S) = seed(S) | the blow-up engine `F_S^Y` has finite type, and equals the full group of the glued SFT over `Z/2 ∗ S` | 6a462d596; identification (S1) below |
+> **HARD-(A)** (`type-a-actors-with-arbitrarily-hard-word-problem`): for every recursive time bound T, some
+> finitely presented group with a faithful type (A) action has a word problem harder than T.
 
-**Non-implications.**
-- A seed SFT over an infinite group is never shown to be free. `C_Z` has fixed points at `±∞`, and every
-  nonempty Z-SFT has periodic points, which lie in ∂Y. So seed ⇏ (D).
-- A seed carries no invariant probability measure on its discrete orbit. So seed is unrelated to (M2μ).
-- (D) ⇏ seed, since (D) asks for no isolated point and no finite type.
-- **Where this leaves (D), (M2) and (M2μ).** They are premises of the *free* form. The free form's finiteness
-  step needs an infinite-type theorem (`free-sft-hosts-admit-no-finite-type-coding`, 00a44f5d54). On the
-  primary, topologically free route the seed supersedes them: it gives E1′ as an SFT outright.
+- *Equivalent forms* (on main):
+  - some fp twisted Brin–Thompson group beats T;
+  - the same with the orbit problem in place of the word problem
+    (`twisted-brin-thompson-wp-equals-actor-orbit-problem`);
+  - some fp simple MIF group beats T (BFFHZ Theorem C).
+- *It implies Birget's question* (`fp-simple-groups-with-arbitrarily-complex-word-problem`): fp simple groups have
+  no uniform complexity bound. That is a necessary consequence of BH.
+- *If HARD-(A) is false:* PBH is false. By fact 3, every host the minimal and permutational routes can produce has
+  bounded word problem, and so does every ring-route host once the expected transfer holds. The routes die. BH would then need a host that is not a type (A) actor
+  (Q3.4 at that input), or it is false.
+- *If HARD-(A) is true:* it answers Birget's question, a named problem. The hard actor is the template for
+  PBH-universality.
+- *Why it replaces v7's ¬(RA):* (RA) now only decides *which* route serves non-exact inputs. HARD-(A) decides all
+  of them.
 
-**Synthesis remark (D′).** Let `Λ₀` have solvable word problem and a seed SFT.
-- By compactness, for each n there is an m such that exactly one B_n-pattern extends the seed to a locally
-  admissible B_m-pattern. Searching over m is effective, so `y_*` is computable.
-- By (S3), the language of `Y` is the set of patterns of `y_*`, which is c.e.
-- Non-occurrence is c.e. by compactness.
-- So the language is decidable.
+### Where hardness can live: one mechanism on both routes (synthesis remark)
 
-**Synthesis remark (S1): Track C is the glued seed over Z/2 ∗ S.**
-- Glue a seed `Y` over S with the finite-group seed of `Z/2`, as in bf61de7d0. That finite seed has empty
-  boundary.
-- By Step A there, the points of the glued SFT are the ends of the Bass–Serre tree, together with one sink
-  S-piece carrying a configuration in ∂Y. As a D-set, that is exactly `Ω^Y = ∂T ⊔ ⊔_v ∂_v` of 6a462d596.
-- So the finite-type engine `F_S^Y` is the full group of the glued seed SFT over `D = Z/2 ∗ S`. The topology
-  should agree, since both spaces are compact; one lane check is still needed.
-- **Tracks A′ and C are therefore one construction:** a glued seed over `Λ₀ ∗ H`. They differ only in:
-  - `H = Z` versus `H = Z/2`;
-  - with or without V;
-  - whether the vertex group is an fp overgroup or the simple input.
-  S ≤ D(F) uses only that S is perfect.
+Both routes need a **mortal decider** (termination built into the machine) whose fates propagate along
+**directed** chains.
 
-**Synthesis remark (S2): the bottom rung is already finitely presented.**
-- Take S = Z and `K = C_Z`, the two-point compactification.
-- `Ω^K` is the end space of the Cayley tree of `Z/2 ∗ Z` in the standard generators. A ray either stays in
-  one t-line, giving `±∞_v`, or crosses infinitely many a-edges, giving an end of the Bass–Serre tree.
-- `v-times-tree-boundary-full-groups-are-f-infinity` item 1 makes `(Z/2 ∗ Z) ⋉ ∂T` Matui's `G_A`, with A
-  irreducible and not a permutation matrix.
-- So the first blow-up `F_Z^±` of Reid's group is finitely presented, by Matui's theorem for one-sided SFT
-  groupoids (recalled, not re-read), and `F_Z ↪ F_Z^±`.
-- **Consequence.** The finite-type obstruction at an emitter is an artifact of the one-point compactification, and Reid's group is only the
-  bottom test.
+**On the minimal route (seeds):**
+- *Forcing radius.* Seed evaluation is bounded by the forcing radius (971d52e2f). Locally forced seeds are capped
+  at EXPTIME over polynomial growth, so a hard seed must force non-locally.
+- *Where the forcing lives.* Hardness sits at the core and rigidity on the boundary (96c20c080). Non-local forcing
+  leaves unforced tails in ∂, so the gate is lemma **CB**: convergent, non-terminating basins in a rigid SFT.
+  Seeds compute only where their rogue walks fill space (c1de03335).
+- *Geometry.*
+  - Finite cuts are finite-state (be079a987), so a computing seed must live in a one-ended group or cross an
+    infinite edge interface.
+  - Every splitting leaves a pointer in the seed (fcb34cf2d).
+  - Mikhailova edges transfer hardness but never create it (637e19dec).
+  - Order seeds are computable orders (49c6d7c8e).
+- *The rope/halting rung.*
+  - Mortal deciders exist for every decidable set, with forcing radius equal to running time (ceaf3f6e9).
+  - Mortality forces halting marks only on the genuine sheet (d03fdfb06).
+  - Rope readers must couple their chains (27b0124da). The coupled reader links every free chain into one bit and
+    is pointwise rigid (1ee36937b).
+  - Fate couplings are rigid only along directed implication chains (2e723c93e). Commutation does not propagate,
+    but order does.
+  - The halting pair (B₂, A_±) is set up (660e18f65).
 
-**Routes and conditional theorems v6.**
-- **R1 (ring).** BH ⇐ (SEED) ∧ (S5) ∧ (K′: Farrell–Jones for `Λ₀ ∗ Z` with coefficients) ∧ Khanh.
-  - It runs through `rigid-topfree-sfts-via-rigid-sft-compactifications` and
-    `boone-higman-via-leavitt-units-of-rigid-topologically-free-sfts`.
-  - No P2′ is needed. Finite presentation comes from rigidity by the ring FTR, so no finite-state cap applies.
-- **R2 (group).** BH and PBH ⇐ (SEED) ∧ E3′ for the glued SFT.
-  - E3′ ⇐ P2′a (topologically free form) ∧ FSG(F_n, A), by `gluing-kernels-descend-from-the-full-shift`
-    item 6 and `gluing-kernels-descend-from-the-free-group-full-shift`.
-  - R2 needs neither Farrell–Jones nor Khanh.
-- **Only (SEED) depends on the input on either route.**
+**On the permutational route (operads):**
+- Finite-state propagation caps operad hosts at doubly exponential (6c7a3fd0e), and so do rational frames
+  (29c54d27d).
+- Branching squares are the only escape (704f2a07b). There, Ore is a machine's halting theorem, and the machine
+  must be mortal with non-rational frames.
 
-## 1. The gates (v6)
+**Design target.** A mortal decider whose fate relation is a directed chain, realized in one of two ways:
+- as a rigid relative seed for the halting pair: minimal route, lanes on the seed tower;
+- as a branching-square machine operad: permutational route.
 
-### Gate 1, (SEED): the decisive gate
+Either one proves HARD-(A).
 
-**The decisive next statement is ¬CAP.**
-> **(CAP)** There is a fixed complexity class (say EXP) containing the word problem of every finitely presented
-> group in 𝒞.
-
-- *CAP ⇒ ¬(SEED).* Take a decidable G whose word problem is not in the class. Any fp `Λ₀ ⊇ G` has a word problem
-  at least as hard.
-- *So CAP true* kills R1, R2 and Track C at once. By the one-gate lesson (2e7954761), it would also block every
-  SFT-coordinate host.
-- *CAP false* gives one fp group of large complexity with a rigid seed. What remains after that is uniformity:
-  every decidable G.
-- *Why CAP is not decided by what is known.*
-  - Finite-state Li codings cap at `2^{Cl²}` (`finite-state-li-coded-full-groups-have-exponential-word-problem`).
-    But a seed need not be finite-state.
-  - The algorithm computing `y_*` searches to an extension radius m(n) that can be arbitrary.
-  - The two recorded rigid instances (trees, Ã₂) are finite-state (2914b739e). That is exactly why they carry
-    nothing hard.
-
-**Constructive attack: closure of 𝒞 under HNN extensions and amalgams along seed-coded associated subgroups.**
-- *Why HNN extensions.*
-  - 𝒞 is closed under × and ∗, but those operations never carry inputs: a simple group in A × B lies in a factor,
-    and an (FA) group in A ∗ B lies in a conjugate of a factor.
-  - Higman–Clapham-type embeddings, which put a decidable group into an fp decidable group, are built from
-    HNN extensions and amalgams over finitely generated associated subgroups (recalled).
-- *Why "seed-coded" is the right hypothesis* (synthesis remark). Suppose an associated subgroup's cosets are
-  marked by a deterministic layer over the seed. Then membership in it is read off the computable `y_*`, so it is
-  decidable. That is exactly the condition under which HNN extensions keep the word problem solvable, so the
-  hypothesis consumes decidability where Clapham consumes it.
-- *The rungs.*
-  - **(1a) BS(1,2) = Z ∗_{a↦a²}.** A seed is plausibly a sink-oriented Bass–Serre tree, with `C_Z` on the sink
-    vertex's a-line and a deterministic parity layer. Existence and rigidity are both unchecked. This is the
-    first HNN extension over a distorted edge.
-  - **(1b) H₃(Z) = Z² ⋊ Z.** The product seed on Z² is not shear-invariant: the central coordinate moves without
-    bound (bf61de7d0 test list). So this rung tests the compatibility hypothesis itself.
-  - **(1c) An HNN tower that simulates a machine** (a Sapir–Birget–Rips type group). This is the first real test
-    of CAP.
-- *Irreducible geometry.* Input groups with (FA), such as `H_Γ`, lie in a conjugate of a vertex group of any
-  splitting. So gluing cannot supply their geometry.
-  - Some seed must code a one-ended geometry with property (FA) directly: the Kazhdan filter, 813bff6dd, says
-    Y must code the input's geometry.
-  - **(1d) A rigid seed over a cocompact Ã₂ lattice.** Such a lattice acts simply transitively on vertices, so the
-    candidate is a locally checkable vector-distance field to one vertex. Its boundary shifts are already rigid
-    (9b3fdd027).
-  - A positive answer is the first seed over a Kazhdan group.
-- **Lanes:** bh-g2-buildings (closure, test list), bh-invent-13 / bh-emitter-a / bh-emitter-b (seed side of
-  emitters), plus new lanes for 1a–1d. (D) and (M2μ) (bh-g1-universal-point, bh-g1-bss) stay as free-form
-  premises.
-
-### Gate 2, finiteness on the group route (R2 only): P2′a and FSG
-
-- **P2′a.** For a rigid topologically free SFT X over an fp Λ, is `N_X = LC(X,V) ⋊ Λ` finitely presented?
-  - The node on main is stated for free SFTs (`rigid-sfts-give-fp-v-boolean-power-crossed-products`, OPEN). It is
-    reduced to far-site conditioning (bh-free-29), with cone sliding (3f547b04c) as the tool.
-  - **Correction to v5:** v5 said "P2′a is supplied by (★′)". That was too strong; P2′a is OPEN.
-- **P2′b = FSG.**
-  - For topologically free X, P2′b(X) is finite presentation of `F(T_X)` relative to `N_X`, which is necessary
-    for finite presentation (7054f9da2 item 6).
-  - The full shift is the universal case (a3332a1c4).
-  - Along quotients of the acting group, the universal case is **FSG(F_n, A)** (eb337c60f). It gives P2′b for
-    every subshift over every n-generated group, with no freeness needed.
-- **Decision on FSG(Z,2): not the decisive statement; kept as the top test of Gate 2.**
-  - *Refutations climb.* Z is a quotient of every F_n (n ≥ 1). By eb337c60f items 1–3, FSG(F_n, 2) ⇒ FSG(Z, 2),
-    and 2^{F_n} ⊆ A^{F_n} gives FSG(F_n, A) ⇒ FSG(F_n, 2). So **¬FSG(Z,2) ⇒ ¬FSG(F_n, A) for all n ≥ 1 and
-    |A| ≥ 2.** A no kills the uniform, dynamics-free P2′b programme, and R2 would then have to prove exactness
-    for each X separately.
-  - *Proofs do not climb.* A yes is only the rank-one base case, and F_n with n ≥ 2 adds branching in the label
-    group.
-  - *Why it is not the decisive statement.* FSG is off route R1 entirely. It is not input-dependent. And E3′
-    already holds on the recorded instances by Li's theory.
-  - *Why it is still the right first test.* `F(T_{2^Z})` embeds in 3V via the baker's map (bh-p2b-exact). So
-    FSG(Z,2) asks whether this subgroup of 3V is finitely presented relative to `LC(2^Z,V) ⋊ Z`. A Quick-type
-    local transposition presentation (0326d0d8a) is the natural attack, and conjugacy with overlapping supports
-    is the open part.
-- **Lanes:** bh-p2b-exact, bh-one-relator (FSG); bh-g3-tfc, bh-free-29 (P2′a).
-
-### Gate 3, programmable rigidity: the calibration for (SEED) over hard groups
-
-- **All of G2 in layered designs is centrality (C)** (4a734659e).
-  - Tree folds are rigidity-neutral: (C) is proved for the ABHT fold, so its F_n × Z SFT is rigid iff its Z²
-    fibre is (3c8b41742).
-  - So folds, products with boundary shifts, and automorphic extensions add no rigidity.
-- **Rigidity is a finite test for self-similar tile sets.**
-  - For fixed-point tile sets it is a bounded-range test, semi-decidable with a finite certificate (9c360c2ca).
-  - Thin walls refute it at every scale. The design rule is one-sided determining columns and no
-    information-free macrotile column.
-- **Labbé's shift is decided at scale 2**, by the 229 legal 5×5 patterns (1bf712168). That finite computation is
-  running on MSI (bh-g2-labbe).
-- **Why it matters for (SEED).**
-  - A seed over a hard-WP group must be non-finite-state, so its rigidity will be the rigidity of a hierarchy.
-  - DRS fixed-point tile sets are the only programmable hierarchies with a finite rigidity test.
-  - The first rigid fixed-point tile set is therefore the template for rung 1c.
-- **Lanes:** bh-g2-labbe, bh-free-35, bh-g2-fixedpoint-a, bh-free-09.
-
-### Gates 4–7
-
-- **4. Track C residue.** Can `D(F_S^K)` be finitely presented over a non-fp vertex group?
-  - bh-emitter-b's candidate says an fp engine forces an fp vertex group. That would make the simple-S version
-    circular, and Track C would merge fully into R2 with an fp perfect vertex group.
-  - Reid's group (MO 339541) stays a named question. It is no longer a gate, by (S2).
-- **5. Q3.4 = kernel removal** (FFWZ Q5.9; bh-ffwz-q59).
-  - Every move language is a full group in disguise (4060cc1fc). So operadic, Thompson-like and groupoid hosts
-    certify exactly B_A and never separate BH from PBH.
-  - Operads beat SV_G only through unbounded refinement depth.
-- **6. Imports.** (K′), Farrell–Jones for `Λ₀ ∗ Z`, is needed on R1 only. Khanh (arXiv:2609.08428, unrefereed) is
-  also needed on R1 only.
-- **7. Gate U (Track B) is linear and merges into (SEED).**
-  - Non-amenable scaffolds absorb the Leavitt factor, and the Kazhdan, ends and separation caps apply to
-    permutation matrices only (04323a8af). So gate U is posed linearly over one fixed non-amenable FJ scaffold.
-  - Its oracle language must then be carried by a rigid SFT groupoid (2e7954761 ceiling). That is the seed gate
-    again.
-  - Automorphisms do not help: they are outer over ICC scaffolds (9823dcde1).
-
-## 2. Structured classes (MAJOR teams): one lemma each
-
-- **Closed MCG (5.3(2)).** Synchronization in every rank reduces to shared rays at totally irrational directions
-  (abd02ad86). It is free at very well approximable directions, so the gate sits at Dirichlet-scale directions.
-  Ore for 𝒪_E is LD_atom alone in every rank. Lanes: bh-major-mcg-2, bh-free-54, bh-free-61.
-- **Cubulated (Q1.15).**
-  - **Correction to v5:** the Perron criterion is refuted (ba9176b48a). Li needs merge packing, which fails
-    exactly along thin cycles (63bf7063b).
-  - Cuntz stabilization gives packing for free: every Li-Garside full group with trivial units and (Acyc) is F_∞
-    after stabilization (16be960ff).
-  - Q1.15 is now purely dynamical: (G1) a closed bisection set, (G2) (Acyc), (G3) comparison or minimality.
-    Lane: bh-major-cube-b.
-- **One-relator / H4 / BG (5.3(9)).**
-  - Rank is a spectrum budget. A BS chain needs dilation rates 2^(2^n), so hosts need infinite Hirsch length
-    (f0eb931cd). PL germ towers are never faithful, and ascending germ towers give F_∞ extensions (398b7ad02).
-  - The target is non-ascending germ towers with fp SingFix groups. This is also rung 1a–1b territory for (SEED).
-- **GL_n(Q) (5.3(5)).**
-  - The primes must ride on the acting group or across coordinates:
-    - one-coordinate registers admit no dilation in nV, SV_G or 2V_τ (1d38dc7fd);
-    - single-radix coordinates are dead for `Q ⋊ ⟨d⟩` (541875e2c);
-    - monomial Leavitt units are never self-doubling (a89211082).
-  - The St₁₀(R_L) embedding half is kernel-checked in Lean (a7d68b30b). In seed terms, 5.3(5) is (SEED) for an
-    fp overgroup of St₁₀(R_L). Lanes: bh-gln-centralizer, bh-free-16.
-- **Product closure / JE.** The whole recorded fp simple census lies in B_A (2d9a15b01, 6b0d24a14). PBH is
-  finite presentation of the host on both machines. So a JE, (SQ) or Q3.4 counterexample must be built by
-  neither full groups nor Leavitt-tensor units.
-- **Kourovka / MO, named, off-route.** Referee PASS: 21.74(b),(c) and 21.75 (fac0259d6); 17.57, second pass
-  (de5229224); MO 339541 abelianization (6a0a3642f). Also: Conway's amusical permutation is the full 3-shift
-  inside CT(Z) (b8fa45c9d).
-
-## 3. Gate ranking v6 (decisiveness × tractability)
+## 1. Gate ranking v8
 
 | Rank | Gate | Lanes |
 |---|---|---|
-| 1 | **(SEED) via ¬CAP:** HNN/amalgam closure of 𝒞 along seed-coded subgroups; rungs 1a BS(1,2), 1b H₃(Z), 1c a machine-simulating HNN tower | bh-g2-buildings, new lanes |
-| 2 | **(SEED), irreducible geometry:** a rigid seed over a cocompact Ã₂ lattice (rung 1d) | bh-invent-13, bh-emitter-a/b, new lane |
-| 3 | **FSG(Z,2)** (rank-one test of FSG(F_n,A); a no climbs to all F_n), then FSG(F_2,A); **P2′a** (topologically free form) | bh-p2b-exact, bh-one-relator, bh-free-29, bh-g3-tfc |
-| 4 | **Programmable rigidity:** Labbé J₂ = 0 (MSI, running); a DRS certificate; (C) for fibre products | bh-g2-labbe, bh-free-35, bh-g2-fixedpoint-a, bh-free-09 |
-| 5 | **Track C residue:** fp engines over non-fp vertex groups | bh-emitter-b, bh-free-60 |
-| 6 | **Q3.4 / FFWZ Q5.9** | bh-ffwz-q59, bh-typeA-universal |
-| 7 | **Imports (K′), Khanh** (R1 only) | — |
-| — | Structured lemmas (§2) | MAJOR teams |
+| 1 | **HARD-(A):** a mortal decider with directed fate chains, as a rigid relative seed for the halting pair (K_M, R_0) / (B₂, A_±), or as a branching-square machine operad | bh-invent-03, bh-invent-14, bh-invent-15, bh-free-56, bh-typeA-universal, new |
+| 2 | **PBH-universality:** a type (A) actor over every decidable G. Permutational Higman closure = faithful port gluing (a5f6a15a5); kernel removal by generation (a2f925b55); Q3.4 residue BFFHZ Q3.2 at T | bh-invent-02, bh-typeA-universal, bh-ffwz-q59 |
+| 3 | **Rigid seeds without walls** (minimal route, Kazhdan inputs): horofunction-boundary rigidity of hyperbolic Kazhdan groups (lanes, 2d967a8bf); the Ã₂ perfect boundary (34b85fb09); C̃_n | bh-g2-buildings, bh-emitter-b, bh-invent-13 |
+| 4 | **(RA′) at one-ended non-exact groups:** decides whether route (M) can serve non-exact inputs | bh-star-b, bh-ra-counter |
+| 5 | **E3′ for seed hosts:** the boundary reduction (2619448c3); 3-locality of V-Boolean powers (0db1cb640); hyperbolic shadow bases need upstream certification (5ea9558cf) | bh-invent-11, bh-invent-17, bh-p2b-exact |
+| 6 | **Reviews:** Q1.15 (two conditional PASS: 9580d0563, d6778b5f5); crossing-wire box fix (f757d5cbc); wall-chain carrier (f10ba67e9); Kazhdan Ã₂ SW layout FAILED, repair route 6fa01acfb; G₁ ∈ B_A FAILED, repair eaca0ed9b | referee lanes |
+| 7 | **Imports for the ring route:** FJ, and Khanh (inputs checked against the preprint source, ae8e47a3a) | — |
 
-**Retired in v6:**
-- **The free form as the primary route.** No finite-type coding exists (00a44f5d54). (D), (M2), (M2μ) and MSS
-  remain free-form premises only.
-- **Reid's group as the top gate.** The emitter is only the bottom of the blow-up lattice, and the next rung is
-  Matui-fp (S2).
-- **Rigidity from a fixed compressive factor:** folds (3c8b41742), boundary products and time lifts (377ea1e4d),
-  automorphic extensions (2e7954761), and Aut or RCA hosts (9823dcde1).
-- **Minimality from noise, tape or surgery** (7ac816a5c).
-- **For GL_n(Q):** single-radix and one-coordinate registers of Q; monomial self-doubling units.
-- **Finite-Hirsch-length and cheap zoom-tower hosts** for BS chains.
-- **Gate-U caps as universal obstructions.** They are permutational only.
-- **Perron finiteness** (v5 error).
+## 2. Structured classes
 
-## 4. Corrections to v5
+- **Cubulated, BBCMP Q1.15:** claimed YES, with two conditional referee PASSes after the repairs (9580d0563,
+  d6778b5f5).
+- **Closed MCG, 5.3(2).**
+  - Ore = tree domination (141898aff).
+  - Least-damage single cuts (SC) are a Stern–Brocot mediant condition at median vertices (b25d8632d,
+    36ab182de).
+  - In rank 4, commuting splits have an exotic pinwheel minimal bound (157d529c4). So Thumann finiteness is
+    decided by finiteness of pinwheel reconciliations, not by finite spines.
+- **H4 / BG, 5.3(9).** **Correction:** `higman-chain-group-lies-in-b-a` and the BS-chain node failed review and are
+  OPEN again. The repair puts the twist in the actor (eaca0ed9b). BH for H4 reduces to one swap involution
+  (fb6908cb0), and BG to a shift criterion.
+- **BBMZ Q1.1 (contracting RSGs):** closed surface groups (6ef4e6c9c, referee wanted), and right-angled
+  reflection groups in H³ (a39f0aa94).
+- **GL_n(Q), 5.3(5).**
+  - Track A needs only finite presentation plus rigidity, and K_3 limits higher finiteness (7797bc29f).
+  - Adder hosts are (SL) witnesses (664717421).
+  - Automaton groups contain no Z_(S) as translations (2a993fc15).
+- **Hyperbolic F_∞.** The nucleus-tile operad is the wrong engine: condition (C) fails for the pentagon group
+  (22fc66382). Configuration tiles are needed.
+- **Named problems.**
+  - Kourovka 20.44 is Collatz-hard (7b84a747f, 1c4a8a43c, 41ac28651).
+  - Kourovka 21.46 has inputs and a finite density certificate (cf4c856f6, 4afe513c6).
+  - BFFHZ Q3.2 at T: the one-word basis candidate fails (291b9f586).
 
-1. "A negative Reid answer kills the whole engine family" was wrong. It kills only the bottom member (6a462d596),
-   and the next member is already fp (S2).
-2. "P2′a is supplied by (★′)" was too strong. P2′a is OPEN.
-3. The Perron criterion was cited as a success. It is refuted (ba9176b48a, corrected on main by 85b04172c).
+## 3. Retired in v8, and corrections to v7
 
-## 5. Reconciliation log (v6)
+- **Retired:**
+  - the plane-lift route to (★′) (b2a87978c, 92dfb33c5);
+  - exactness as the decisive wall (4ed22df89);
+  - the Arzhantseva–Osajda wall-orientation lead (2b88c6f58, conditional);
+  - the SW layout for Kazhdan Ã₂ as written (referee FAIL; repair route 6fa01acfb);
+  - the nucleus-tile operad for hyperbolic F_∞ (22fc66382);
+  - P2′a as a gate (e12544930);
+  - G₁ ∈ B_A as established (referee FAIL).
+- **Correction to v7:** "(RA) confines every track to exact inputs" was wrong. It confines only the minimal-subshift
+  tracks; the permutational route is untouched (4ed22df89).
+- **Correction to v7:** the decisive statement is restated from ¬(RA) to HARD-(A).
+- **Correction to v7:** G₁ ∈ B_A was listed as established. It is OPEN.
+- **Update to v7:** P2′b now passes review, so E3′ on the group route is the degree-one horizontal condition,
+  i.e. rigidity plus the open rigidity-to-fp step (7797bc29f).
 
-- **Seed convergence:** bf61de7d0, 6a462d596, 876c511de, fd33bb9f8, 2e7954761.
-- **Topologically free Track A:** 2914b739e.
-- **Rigidity:** 3c8b41742, 4a734659e, 9c360c2ca, 1bf712168.
-- **Kills:** 00a44f5d54, 377ea1e4d, 7ac816a5c, 9823dcde1.
-- **P2′b:** 7054f9da2, a3332a1c4, eb337c60f.
-- **Gate U:** 04323a8af.
-- **Q3.4 and census:** 4060cc1fc, 2d9a15b01, 6b0d24a14.
-- **Chains:** 398b7ad02, f0eb931cd.
-- **GL_n(Q):** 541875e2c, 1d38dc7fd, a89211082, a7d68b30b.
-- **MCG:** abd02ad86.
-- **Cubes:** ba9176b48a, 63bf7063b, 16be960ff.
-- **Named problems:** fac0259d6, de5229224, 6a0a3642f, b8fa45c9d.
-- **Summary:** c7f12fba7.
+## 4. Assessment
 
-## 6. Assessment
+**BH true: leaning yes, about 60/40.** The number is unchanged, but the risk has moved again.
+- **For:** the permutational route escapes the exactness wall, with its finiteness step (Conjecture H) proved.
+  E1 and P2′b pass review. Rigid seeds exist over every class tested with walls, and seeds exist (rigidity open)
+  over all hyperbolic and Ã₂/C̃₂ groups.
+- **Against:** every route produces type (A) actors, and no type (A) actor with hard word problem is known.
+  Every recorded class has bounded word problem, and every finite-state mechanism is capped.
+- **Most informative next proof:** HARD-(A). Build one mortal decider with directed fate chains, as a rigid
+  relative seed or a branching-square operad. It would also answer Birget's question.
 
-**BH true: leaning yes, about 65/35.** The number is unchanged, but the risk is now one question: can a locally
-checkable, quantum-rigid coordinate system with a unique origin carry an arbitrary decidable word problem?
-- **For:**
-  - The lanes converged on one object from four directions.
-  - Each route needs nothing else input-dependent.
-  - The bottom emitter rung is already fp, and every recorded fp simple group is in B_A.
-- **Against:**
-  - Every recorded rigid seed or compression coding is finite-state (trees, Ã₂, products).
-  - (FA) inputs cannot be glued in, so some seed must code one-ended Kazhdan geometry directly.
-- **Most informative next proof:** decide CAP on its first rungs. The cheapest is a rigid seed on BS(1,2) (an HNN
-  extension over a distorted edge), then H₃(Z), then a machine-simulating HNN tower.
+## 5. Named results since v7 (off-route)
+
+- Q1.15: two conditional referee PASSes.
+- Kourovka 17.61 and the gluing-exactness node: PASS.
+- T_{2,3} and T_τ are F_∞; Cleary's golden V_τ is F_∞ (c7909ca44).
+- Kourovka 20.44: a counterexample needs orbits of unbounded size.
+
+## 6. Reconciliation log (v8)
+
+- **E1:** 1b697300b, b5c7787d6, dd56f4237.
+- **P2′/E3′:** bd5481ba2, 9752ecd5d, e12544930, 092c2442f, 2619448c3, 96c20c080, 0db1cb640, 5ea9558cf, 6dfab238a,
+  e7fc5a5be.
+- **E2 / lifts:** b2a87978c, 92dfb33c5, c626199291, 27c8ebe61, f757d5cbc, c4803daa3, fd2ba58b6, 6fa01acfb,
+  c05f7793b, e1de4c7e7, 4febaf392, f44f9e3be.
+- **Seeds:**
+  - existence and geometry: f2a29310d, 2d967a8bf, 34b85fb09, 547e567e0, 21cd0dd3e, f10ba67e9, 3624d517a,
+    3ff9b63b2, d1a501256, 8fb50b000, 1c1eb8413, fcb34cf2d, be079a987, 637e19dec, 49c6d7c8e;
+  - hardness: 971d52e2f, c1de03335, ceaf3f6e9, d03fdfb06, 27b0124da, 1ee36937b, 2e723c93e, 660e18f65,
+    bccaf75d3, 5a72aa6a9.
+- **(RA):** 4ed22df89, 696c37d57, 6a95ce886, 9180ac550, 2b88c6f58, c930a62ab.
+- **Operads:** 6c7a3fd0e, 29c54d27d, 704f2a07b.
+- **Q3.4:** a2f925b55, 56b422d20, 291b9f586.
+- **Classes:** 9580d0563, d6778b5f5, 141898aff, b25d8632d, 36ab182de, 157d529c4, eaca0ed9b, fb6908cb0,
+  6ef4e6c9c, a39f0aa94, 7797bc29f, 664717421, 2a993fc15, 22fc66382, 7b84a747f, 1c4a8a43c, cf4c856f6, 4afe513c6,
+  c7909ca44.
