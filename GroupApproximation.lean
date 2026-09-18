@@ -5796,6 +5796,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.BKR
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupOrth
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupAbstract
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQGroupFunctor
+import GroupApproximation.Manuscript.NonMFNotes.Full.TWWKK.StabQComplexRank
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
