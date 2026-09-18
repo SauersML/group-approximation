@@ -10,15 +10,21 @@ distinct_from:
 ---
 
 **ESTABLISHED** through `cat0-symmetric-space-tree-type-a-proof` (lane proof;
-not independently reviewed; no priority claimed).
+referee a PASS,
+`research/artifacts/gq-referee-a-commensurator-rigid-bs-products-and-cat0-symmetric-tree.md`;
+no priority claimed).
 
 **Statement.** Let `X` be an irreducible Riemannian symmetric space of noncompact
 type, and `T` a locally finite tree. Let `Γ` act properly and cocompactly by
 isometries on `X × T`, preserving the product decomposition. The decomposition is
-preserved automatically when `T` has a branch point or is a line. If the
-stabilizers `Γ_v` of vertices of `T` are virtually torsion-free, which holds, for example, when `Γ` is virtually torsion-free or `Γ_v` is residually
-finite, then `Γ ∈ B_A`. So `Γ` and all its subgroups embed in
-finitely presented simple groups.
+preserved automatically when `T` has a branch point or is a line.
+- **`T` with a branch point, or `Γ` acting on `T` by tree automorphisms.** If the
+  stabilizers `Γ_v` of vertices of `T` are virtually torsion-free, which holds, for example, when `Γ` is virtually torsion-free or `Γ_v` is residually
+finite, then `Γ ∈ B_A`.
+- **`T` a line, any action.** If `Γ` is virtually torsion-free, then `Γ ∈ B_A`. Here
+  `Γ` need not act simplicially on `R`, so the fibre groups may not be defined.
+
+So `Γ` and all its subgroups embed in finitely presented simple groups.
 
 **The dichotomy behind it.** Let `G_0` be a torsion-free finite-index subgroup of a fibre group `Γ_v`. It is
 a cocompact lattice in `Isom(X)`, and `Γ ∈ BS_(G_0)`.
