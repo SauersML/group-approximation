@@ -103,4 +103,44 @@ theorem higmanVCTauClassify_ff1 {d : ℕ} {p q P u v E : List (Fin d)} (hp : p.l
 
 #audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_ff1
 
+/-- `FF`, `x = P u`, `y` incomparable with `P`: a square B through `(P, E)`. -/
+theorem higmanVCTauClassify_ff2 {d : ℕ} {p q P u y E : List (Fin d)} (hp : p.length ≤ 3)
+    (hq : q.length ≤ 3) (hP : P.length = 3) (hE : E.length = 2)
+    (hxp : higmanVCTauUnif_Inc (P ++ u) p) (hxq : higmanVCTauUnif_Inc (P ++ u) q)
+    (hyP : higmanVCTauUnif_Inc y P) (hEy : higmanVCTauUnif_Inc E y)
+    (hEp : higmanVCTauUnif_Inc E p) (hEq : higmanVCTauUnif_Inc E q)
+    (hEP : higmanVCTauUnif_Inc E P) :
+    higmanVCTauComm_FlexB d p q (P ++ u) y (P ++ u) y := by
+  have e1 : (P ++ u).length = P.length + u.length := List.length_append
+  have e2 : (E ++ u).length = E.length + u.length := List.length_append
+  have hPp := higmanVCTauClassify_inc_cut (List.prefix_append P u) (by omega) hxp
+  have hPq := higmanVCTauClassify_inc_cut (List.prefix_append P u) (by omega) hxq
+  have hfy := higmanVCTauUnif_fix hEP.2 hEP.1 hyP (higmanVCTauUnif_incS hEy)
+  exact ⟨P, E, E ++ u, y, p, q, E ++ u, y, hEP.2, hEP.1, by omega, by omega,
+    (mapsCone_coneSwap_right hEP.2 hEP.1).append u, hfy, by omega,
+    higmanVCTauUnif_fix hEP.2 hEP.1 (higmanVCTauUnif_incS hPp) (higmanVCTauUnif_incS hEp),
+    higmanVCTauUnif_fix hEP.2 hEP.1 (higmanVCTauUnif_incS hPq) (higmanVCTauUnif_incS hEq),
+    hp, hq, (mapsCone_coneSwap_left hEP.2 hEP.1).append u, hfy, by omega⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_ff2
+
+/-- `FF`, `x = P u`, `y` incomparable with `P`, `|p| ≤ 2`: a square B through `(P, p)`. -/
+theorem higmanVCTauClassify_ff3 {d : ℕ} {p q P u y : List (Fin d)} (hpq : ¬ p <+: q)
+    (hqp : ¬ q <+: p) (hp : p.length ≤ 2) (hq : q.length ≤ 3) (hP : P.length = 3)
+    (hxp : higmanVCTauUnif_Inc (P ++ u) p) (hxq : higmanVCTauUnif_Inc (P ++ u) q)
+    (hyP : higmanVCTauUnif_Inc y P) (hyp : higmanVCTauUnif_Inc y p) :
+    higmanVCTauComm_FlexB d p q (P ++ u) y (P ++ u) y := by
+  have e1 : (P ++ u).length = P.length + u.length := List.length_append
+  have e2 : (p ++ u).length = p.length + u.length := List.length_append
+  have hPp := higmanVCTauClassify_inc_cut (List.prefix_append P u) (by omega) hxp
+  have hPq := higmanVCTauClassify_inc_cut (List.prefix_append P u) (by omega) hxq
+  have hfy := higmanVCTauUnif_fix hPp.1 hPp.2 hyP hyp
+  exact ⟨P, p, p ++ u, y, P, q, p ++ u, y, hPp.1, hPp.2, by omega, by omega,
+    (mapsCone_coneSwap_right hPp.1 hPp.2).append u, hfy, by omega,
+    mapsCone_coneSwap_right hPp.1 hPp.2,
+    higmanVCTauUnif_fix hPp.1 hPp.2 (higmanVCTauUnif_incS hPq) ⟨hqp, hpq⟩, by omega, hq,
+    (mapsCone_coneSwap_left hPp.1 hPp.2).append u, hfy, by omega⟩
+
+#audit_axioms GroupApproximation.BooneHigman.Metabelian.Envelope.higmanVCTauClassify_ff3
+
 end GroupApproximation.BooneHigman.Metabelian.Envelope
