@@ -79,6 +79,7 @@ theorem higmanVCTauEqTwo_aba {d : ℕ} (hd : 1 < d) {n : ℕ}
     (hp : p.length ≤ 3) (hq : q.length ≤ 3) (hxy : ¬ x <+: y) (hyx : ¬ y <+: x)
     (hxy' : ¬ x' <+: y') (hyx' : ¬ y' <+: x') (h : higmanVCTauEqTwo_Aba d n p q x y x' y') :
     higmanVCTauShort_conjEq d p q x y x' y' := by
+  unfold higmanVCTauEqTwo_Aba at h
   obtain ⟨a1, a2, b1, b2, X1, Y1, X2, Y2, ha, ha', hb, hb', ha1, ha2, hb1, hb2, hap, haq,
     hax, hay, hbx, hby, hax', hay', k1, k2, k3⟩ := h
   have hX1 := higmanVCTauEqTwo_inc hd ha ha' hax hay hxy
@@ -106,6 +107,7 @@ theorem higmanVCTauEqTwo_sas {d : ℕ} (hd : 1 < d) {n : ℕ}
     (hxy' : ¬ x' <+: y') (hyx' : ¬ y' <+: x')
     (h : higmanVCTauEqTwo_Sas d n p q x y x' y' hpq hqp) :
     higmanVCTauShort_conjEq d p q x y x' y' := by
+  unfold higmanVCTauEqTwo_Sas at h
   obtain ⟨a1, a2, c1, c2, X1, Y1, X2, Y2, ha, ha', hc, hc', ha1, ha2, hc1, hc2, hsa, hsa',
     hax, hay, hsx, hsy, hcx, hcy, k1, k2, k3⟩ := h
   have hX1 := higmanVCTauEqTwo_inc hd ha ha' hax hay hxy

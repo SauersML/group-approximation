@@ -79,8 +79,10 @@ theorem higmanVCTauEqTwo_d2Residual_of_decomp (h : higmanVCTauEqTwo_DecompStatem
   intro d hd n hB p q x y x' y' hpq hqp hp hq hx hx' hSh hs hOA hOE hOR hFA hFB hFA' hFB'
     hmx hmy hxy hyx hxy' hyx'
   have hd1 : 1 < d := by omega
-  rcases h d hd n p q x y x' y' hpq hqp hp hq hx hx' hs hOA hOE hOR hFA hFB hFA' hFB' hmx
-    hmy hxy hyx hxy' hyx' with hD | hD
+  have hD := h d hd n p q x y x' y' hpq hqp hp hq hx hx' hs hOA hOE hOR hFA hFB hFA' hFB' hmx
+    hmy hxy hyx hxy' hyx'
+  unfold higmanVCTauEqTwo_Decomp at hD
+  rcases hD with hD | hD
   · exact higmanVCTauEqTwo_aba hd1 hB hSh hpq hqp hp hq hxy hyx hxy' hyx' hD
   · exact higmanVCTauEqTwo_sas hd1 hB hSh hpq hqp hp hq hxy hyx hxy' hyx' hD
 

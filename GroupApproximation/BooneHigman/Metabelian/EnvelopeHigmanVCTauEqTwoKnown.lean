@@ -59,8 +59,10 @@ theorem higmanVCTauEqTwo_opt_at {d : ℕ} (hd : 1 < d) {n : ℕ}
     higmanVCTauShort_Inst d p q x y x' y' := by
   unfold higmanVCTauShort_Inst
   intro hpq hqp hp hq hmx hmy hxy hyx hxy' hyx'
+  unfold higmanVCTauEqTwo_Opt at hO
   rcases hO with ⟨_, _, hOA⟩ | hE | hR | ⟨_, _, hF⟩ | hF
-  · obtain ⟨hlong, P', Q', X', Y', hP, hQ, hP3, hQ3, hX, hY, hlt⟩ := hOA
+  · unfold higmanVCTauShort_OptionA at hOA
+    obtain ⟨hlong, P', Q', X', Y', hP, hQ, hP3, hQ3, hX, hY, hlt⟩ := hOA
     have hC := higmanVCTauConj_len_lt hd hlong hxy hyx
     have e1 := hB p q (higmanVCTau_pX (x, y)) (higmanVCTau_pY (x, y)) X' Y'
       (by omega) (by omega)
@@ -84,6 +86,7 @@ theorem higmanVCTauEqTwo_inst_of_known {d : ℕ} (hd : 1 < d) {n : ℕ}
     (hB : higmanVCTauShort_Below d n) (hS : higmanVCTauShort_Shrink d n)
     {p q x y x' y' : List (Fin d)} (hK : higmanVCTauEqTwo_Known d n p q x y x' y') :
     higmanVCTauShort_Inst d p q x y x' y' := by
+  unfold higmanVCTauEqTwo_Known at hK
   rcases hK with ⟨h1, h2⟩ | ⟨h1, h2⟩ | hs | ⟨h1, h2, hO | hO⟩
   · exact hS p q x y x' y' h1 h2
   · exact higmanVCTauShort_symm (hS p q x' y' x y h1 h2)

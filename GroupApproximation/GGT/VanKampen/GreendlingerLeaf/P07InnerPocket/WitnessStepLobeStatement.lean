@@ -144,3 +144,69 @@ theorem witnessStepLobe_sublist_of_order (h : witnessStepReclose_OrderStatement.
       d ((witnessStepLobe_mem_invDarts_rotate (r := r)).mp hd)).mpr hcd
 
 #audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_sublist_of_order
+
+/-- **Lane gl-p07-64: the gl-p07-63 Cycle statement from the sublist residual.**  `O` is the
+collapsed set and `B` is `outerWalk.rotate r` (gl-p07-62).  Clause 2 holds for every `F`-faced
+curve entry (`witnessStepLobe_alpha_mem_rotate_of_mem_curve`); clause 3 holds with `k = 0`. -/
+theorem witnessStepLobe_cycle_of_sublist (h : witnessStepLobe_SublistStatement.{u, w, v}) :
+    witnessStepOrder_CycleStatement.{u, w, v} := by
+  intro G _ Lambda W D eps X i j a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst
+    hsecond G₁ hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  obtain ⟨r, hr⟩ :=
+    h D eps X a b K hij hai hbi hab hai₁ haj₁ hbi₁ hbj₁ hlabel hW hfirst hsecond G₁
+      hG₁ G₂ hG₂ hw hout hinner houter C hC hCf hCa hCb outerWalk E hnb hlab hpinch
+  have hnb' : ∀ d ∈ outerWalk.rotate r,
+      X.toCombMap.faceOf (X.toCombMap.alpha d) ∈ witnessFaces a b K C.face :=
+    fun d hd => hnb d (List.mem_rotate.mp hd)
+  have E' : EnclosedFaceSetSucc X (witnessFaces a b K C.face) (outerWalk.rotate r) :=
+    P07InnerPocket.EnclosedFaceSetSucc.rotate E r
+  refine ⟨witnessStepReclose_faces X.toCombMap (witnessFaces a b K C.face),
+    witnessStepReclose_cycle E' hnb', witnessStepReclose_followsBoundary E' hnb',
+    fun e he hF => ?_, 0, ?_⟩
+  · show X.toCombMap.alpha e ∈ outerWalk.rotate r
+    exact witnessStepLobe_alpha_mem_rotate_of_mem_curve hw hCa hCb hG₁ hG₂ E r he hF
+  · show (invDarts X (outerWalk.rotate r)).rotate 0 <+ witnessSublistCurve a b G₁ G₂
+    rw [List.rotate_zero]
+    exact hr
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_cycle_of_sublist
+
+/-- **Lane gl-p07-64: Order implies Cycle.**  With `witnessStepOrder_order_of_cycle` (gl-p07-63)
+this makes the Cycle statement **EQUIVALENT** to the Order statement. -/
+theorem witnessStepLobe_cycle_of_order (h : witnessStepReclose_OrderStatement.{u, w, v}) :
+    witnessStepOrder_CycleStatement.{u, w, v} :=
+  witnessStepLobe_cycle_of_sublist (witnessStepLobe_sublist_of_order h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_cycle_of_order
+
+/-- **Lane gl-p07-64: the Reclosed residual from the sublist residual.** -/
+theorem witnessStepLobe_reclosed_of_sublist (h : witnessStepLobe_SublistStatement.{u, w, v}) :
+    witnessStepBridge_ReclosedStatement.{u, w, v} :=
+  witnessStepReclose_reclosed_of_order (witnessStepLobe_order_of_sublist h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_reclosed_of_sublist
+
+/-- **Lane gl-p07-64: the Bridge from the sublist residual.** -/
+theorem witnessStepLobe_bridge_of_sublist (h : witnessStepLobe_SublistStatement.{u, w, v}) :
+    WitnessStepGenusBridgeStatement.{u, w, v} :=
+  witnessStepReclose_bridge_of_order (witnessStepLobe_order_of_sublist h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_bridge_of_sublist
+
+/-- **Lane gl-p07-64: the skip residual from the sublist residual.** -/
+theorem witnessStepLobe_skip_of_sublist (h : witnessStepLobe_SublistStatement.{u, w, v}) :
+    WitnessStepSkipStatement.{u, w, v} :=
+  witnessStepReclose_skip_of_order (witnessStepLobe_order_of_sublist h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_skip_of_sublist
+
+/-- **Lane gl-p07-64: the corner residual from the sublist residual.** -/
+theorem witnessStepLobe_corner_of_sublist (h : witnessStepLobe_SublistStatement.{u, w, v}) :
+    WitnessStepCornerResidualStatement.{u, w, v} :=
+  witnessStepReclose_corner_of_order (witnessStepLobe_order_of_sublist h)
+
+#audit_axioms GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket.FourPieceWitness.witnessStepLobe_corner_of_sublist
+
+end FourPieceWitness
+
+end GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P07InnerPocket
