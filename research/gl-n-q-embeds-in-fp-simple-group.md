@@ -55,10 +55,20 @@ open. That paper's Theorem 1.2 covers only the finitely generated subgroups
   intermediate group cannot contain `GL_n(Q)`.
 - **O2, n >= 3.** `SL_3(Z) <= GL_3(Q)` embeds in neither `V` (Higman, survey
   Theorem 4.4) nor `VA` (survey Remark 4.12). So for `n >= 3`
-  neither group can serve as the host. Whether `GL_2(Q)` embeds in `VA` is not
-  settled here.
+  neither group can serve as the host. For `n = 2`, see O4.
 - **O3.** `V` contains no copy of `(Q,+)` (Higman, survey Theorem 4.4), and
   `(Q,+) <= GL_n(Q)` for `n >= 2`. So `V` is no host for any `n >= 2`.
+- **O4, distortion (every n >= 2).** Burillo--Felipe, arXiv:2605.09763v1, Theorem 1:
+  "Let f in VA have infinite order. Then <f> is undistorted in VA", and Corollary 5:
+  "VA does not contain any group with cyclic subgroups that are distorted."
+  `GL_2(Q)` contains `BS(1,2) = <x -> x+1, x -> 2x> <= Aff(Z[1/2])`, where
+  `t^k a t^-k = a^(2^k)` is exponentially distorted, and `U_3(Q)` contains the
+  Heisenberg group with its quadratically distorted centre. So for every
+  `n >= 2` neither `GL_n(Q)`, `Aff(Q)` nor `U_3(Q)` embeds in `VA` or in any
+  subgroup of it (`V`, `T-bar`, Brin's `A`). Any host must have distorted
+  cyclic subgroups. By contrast Kojima--Sheng, arXiv:2603.18410v3 (Prop. 4.1,
+  Thm. 4.2), embed `(Q,+)` in the Brin--Thompson groups `nV` for `n >= 2`, and
+  distortion there is not settled here.
 
 ## Attempts
 
