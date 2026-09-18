@@ -5862,6 +5862,7 @@ import GroupApproximation.Manuscript.NonMFNotes.Full.TWWSchafhauser.ChoiEffrosCP
 import GroupApproximation.Manuscript.NonMFNotes.Full.TorsionFreeGateVK.Reduced
 import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.Computability.TreeOps
 import GroupApproximation.Manuscript.NonMFNotes.Full.TWWUCT.CrossedProductBasic
+import GroupApproximation.Manuscript.NonMFNotes.Full.RCFDecision.ConjElim
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
