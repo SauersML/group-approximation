@@ -1,30 +1,49 @@
-import GroupApproximation.GGT.VanKampen.GreendlingerLeaf.P06Bypass.WaistFrontier
-import GroupApproximation.Manuscript.NonMF.Full.GL03A.RotationTurn
--- GL03B and GL03C endpoint modules as named in fk/status/GL03B.md and fk/status/GL03C.md.
-import GroupApproximation.Manuscript.NonMF.Full.GL03B.Endpoint
-import GroupApproximation.Manuscript.NonMF.Full.GL03C.Endpoint
+import GroupApproximation.Manuscript.NonMF.Full.GL06.Waist
+import GroupApproximation.Manuscript.NonMF.Full.GL06.BinderFive
+-- PROVISIONAL sibling endpoint modules (not on origin/main yet; names from fk/status/<lane>.md,
+-- or proposed in GL06's work orders where the lane has not fixed one).
+import GroupApproximation.Manuscript.NonMF.Full.GL06a.Endpoint
+import GroupApproximation.Manuscript.NonMF.Full.GL06b.Endpoint
+import GroupApproximation.Manuscript.NonMF.Full.GL06c.Endpoint
+import GroupApproximation.Manuscript.NonMF.Full.GL06d.NonRose
+import GroupApproximation.Manuscript.NonMF.Full.GL06e.Refuted
+import GroupApproximation.Manuscript.NonMF.Full.GL06f.Bridge
+import GroupApproximation.Manuscript.NonMF.Full.GL03B.FollowsCase
+import GroupApproximation.Manuscript.NonMF.Full.GL03BPinch.Endpoint
+import GroupApproximation.Manuscript.NonMF.Full.GL03D.Endpoint
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # GL06: Osin's Lemma 4.4 at least-area diagrams, unconditionally
 
-The relative Greendlinger lemma (Osin, arXiv:math/0411039v3, Lemma 4.4, proved through Lemmas 9.4
-and 9.7(b)) at least-area diagrams: `GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement`
-(module `GGT.VanKampen.Estimating.OsinAppendixSections`). This is the Greendlinger waist of Hull's
-small cancellation theorem, `thm:hull` (non_mf_groups_exist.tex, around line 2121), used by the
-torsion-free results of non_mf_groups_exist.tex. It certifies no printed sentence on its own.
+The relative Greendlinger lemma at least-area diagrams:
+`GGT.VanKampen.RelativeGreendlingerQuasiGeodesicLeastAreaStatement` (module
+`GGT.VanKampen.Estimating.OsinAppendixSections`). Source: Osin, arXiv:math/0411039v3, Lemma 4.4,
+proved through Lemmas 9.4 and 9.7(b). This is the Greendlinger waist of Hull's small cancellation
+theorem, `thm:hull` (non_mf_groups_exist.tex, around line 2121), used by the torsion-free results of
+non_mf_groups_exist.tex. On its own it certifies no printed sentence.
 
-Route: the bypass frontier of the foreign swarm,
-`GreendlingerLeaf.P06Bypass.relativeGreendlingerQuasiGeodesicLeastArea_of_bypassFrontier`
-(module `P06Bypass.WaistFrontier`). Its three binders are supplied by the sibling lanes:
+Route: the Below waist with residuals as hypotheses,
+`Full.GL06.relativeGreendlingerQuasiGeodesicLeastArea_of_residuals` (`Full/GL06/Waist`), which
+already supplies residual 04 (`Full.GL02.gapSpan`) and residual 08 (`P08ProperArc.proof`). The
+remaining binders come from sibling lanes. Names marked PROVISIONAL are not landed yet.
 
-* `Full.GL03A.classPocketRotationTurn : Piece04.ClassPocketRotationTurnStatement` (residual 04);
-* `Full.GL03B.innerPocketEnclosedTwoArc : P07LakeExclusion.InnerPocketEnclosedTwoArcStatement`
-  (residual 07, through the refuted walk binder, which retires residual 06);
-* `Full.GL03C.roseRegionMoveSubArc : P10Rose.RoseRegionMoveSubArcStatement` (residual 10).
+* `hbudget` (residual 01): PROVISIONAL `Full.GL06a.budget`.
+* `htwocopy` (residual 05): PROVISIONAL `Full.GL06b.twoGonCleanCopy`.
+* `hwhole` (residual 09): PROVISIONAL `Full.GL06c.wholeSectionTwoArc`.
+* `hcopy` (binder 5, residuals 06 and 07): `Full.GL06.osinMultipleEdgePocketRegionCopyBelowSection_of_refuted`
+  (`Full/GL06/BinderFive`) applied to PROVISIONAL
+  `Full.GL06e.refutedBelowSection_of_innerPocketEnclosed`. That in turn is applied to the landed
+  `Full.GL03B.innerPocketEnclosedTwoArcLocal_of_pinched` of PROVISIONAL
+  `Full.GL03BPinch.innerPocketEnclosedTwoArcPinched`.
+* `hstep` (residual 10): `Full.GL06.outerPinchStep_of_cases` of
+  * PROVISIONAL `Full.GL06d.nonRoseStep`, and
+  * PROVISIONAL `Full.GL06f.rose_of_regionMoveSubArc` applied to PROVISIONAL
+    `Full.GL03D.roseRegionMoveSubArc : Full.GL06f.RoseRegionMoveSubArcStatement`.
 
-The waist supplies residual 01 (`Piece01.proof`), residuals 05, 08 and 09 (`AsmTrio.closedTrio`)
-and the non-rose step (`P10ChordLift.proof`).
+GL05c's counterexample (fk/orders/GL05c-counterexample.md) killed the rose junction route
+(`P10RoseExtremalTrim.RoseExtremalJunctionStatement`, GL03C Endpoint). The rose step is consumed
+only through the sub-arc region move.
 -/
 
 namespace GroupApproximation.Full.GL06
@@ -34,17 +53,24 @@ universe u w v
 open GroupApproximation.GGT.VanKampen
 
 /-- **Osin's Lemma 4.4 at least-area diagrams** (relative Greendlinger lemma; `thm:hull`
-infrastructure, non_mf_groups_exist.tex ~2121): for a hyperbolic relative generating set and
-`0 < λ ≤ 1`, `0 ≤ c`, `0 < μ ≤ 1/16`, there are `ε`, `ρ > 0` such that every least-area disc
-diagram over a `C(ε, μ, λ, c, ρ)` relator set with a `(λ, c)`-quasi-geodesic boundary has an
-O-equivalent diagram with a relator cell whose external contiguity arc exceeds `(1 - 13μ)` of its
-boundary length. -/
+infrastructure, non_mf_groups_exist.tex ~2121). Take a hyperbolic relative generating set and
+`0 < λ ≤ 1`, `0 ≤ c`, `0 < μ ≤ 1/16`. Then there are `ε` and `ρ > 0` with the following property.
+Every least-area disc diagram over a `C(ε, μ, λ, c, ρ)` relator set whose boundary is
+`(λ, c)`-quasi-geodesic has an O-equivalent diagram. That diagram has a relator cell whose external
+contiguity arc is longer than `(1 - 13μ)` of the cell's boundary length. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea :
     RelativeGreendlingerQuasiGeodesicLeastAreaStatement.{u, w, v} :=
-  GreendlingerLeaf.P06Bypass.relativeGreendlingerQuasiGeodesicLeastArea_of_bypassFrontier
-    GL03A.classPocketRotationTurn.{u, w, v}
-    GL03B.innerPocketEnclosedTwoArc.{u, w, v}
-    GL03C.roseRegionMoveSubArc.{u, w, v}
+  relativeGreendlingerQuasiGeodesicLeastArea_of_residuals
+    GroupApproximation.Full.GL06a.budget.{u, w, v}
+    GroupApproximation.Full.GL06b.twoGonCleanCopy.{u, w, v}
+    GroupApproximation.Full.GL06c.wholeSectionTwoArc.{u, w, v}
+    (osinMultipleEdgePocketRegionCopyBelowSection_of_refuted
+      (GroupApproximation.Full.GL06e.refutedBelowSection_of_innerPocketEnclosed
+        (GroupApproximation.Full.GL03B.innerPocketEnclosedTwoArcLocal_of_pinched
+          GroupApproximation.Full.GL03BPinch.innerPocketEnclosedTwoArcPinched.{u, w, v})))
+    (outerPinchStep_of_cases GroupApproximation.Full.GL06d.nonRoseStep.{u, w, v}
+      (GroupApproximation.Full.GL06f.rose_of_regionMoveSubArc
+        GroupApproximation.Full.GL03D.roseRegionMoveSubArc.{u, w, v}))
 
 /-- The universe-`0` instance consumed by the torsion-free endpoints. -/
 theorem relativeGreendlingerQuasiGeodesicLeastArea_zero :

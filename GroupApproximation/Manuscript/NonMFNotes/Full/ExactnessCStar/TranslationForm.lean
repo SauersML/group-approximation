@@ -95,9 +95,12 @@ theorem exists_translationForm_approx (z : MinTensorProduct B (ReducedGroupCStar
   obtain ⟨x, hx⟩ := (denseRange_minTensorIn (A := B) (B := ReducedGroupCStar G)).exists_dist_lt
     z (half_pos hε)
   obtain ⟨n, v, k, rfl⟩ := exists_fin_sum_tmul x
-  set M : ℝ := ∑ i, ‖v i‖ with hM
-  have hM0 : 0 ≤ M := Finset.sum_nonneg fun i _ ↦ norm_nonneg (v i)
-  have hη : 0 < ε / (2 * (M + 1)) := by positivity
+  obtain ⟨M, hM⟩ : ∃ M : ℝ, M = ∑ i, ‖v i‖ := ⟨_, rfl⟩
+  have hM0 : 0 ≤ M := by
+    rw [hM]
+    exact Finset.sum_nonneg fun i _ ↦ norm_nonneg (v i)
+  have hM1 : 0 < 2 * (M + 1) := mul_pos two_pos (by linarith)
+  have hη : 0 < ε / (2 * (M + 1)) := div_pos hε hM1
   have happrox : ∀ i : Fin n, ∃ (m : ℕ) (c : Fin m → ℂ) (γ : Fin m → G),
       ‖((k i : ReducedGroupCStar G) : GroupHilbert G →L[ℂ] GroupHilbert G)
         - ∑ j, c j • leftRegularOperator G (γ j)‖ < ε / (2 * (M + 1)) :=
@@ -107,7 +110,8 @@ theorem exists_translationForm_approx (z : MinTensorProduct B (ReducedGroupCStar
     ∑ j, c i j • reducedLeftRegular G (γ i j)
   have ha : ∀ i, ‖k i - a i‖ < ε / (2 * (M + 1)) := by
     intro i
-    change ‖(reducedGroupCStarSubalgebra G).subtype (k i - a i)‖ < _
+    change ‖(reducedGroupCStarSubalgebra G).subtype
+      (k i - ∑ j, c i j • reducedLeftRegular G (γ i j))‖ < _
     rw [map_sub, map_sum]
     simp only [map_smul]
     exact hk i
@@ -130,7 +134,7 @@ theorem exists_translationForm_approx (z : MinTensorProduct B (ReducedGroupCStar
     rw [norm_minTensorIn_tmul]
     exact mul_le_mul_of_nonneg_left (ha i).le (norm_nonneg _)
   have hsmall : M * (ε / (2 * (M + 1))) < ε / 2 := by
-    rw [mul_div_assoc', div_lt_div_iff₀ (by positivity) (by norm_num)]
+    rw [mul_div_assoc', div_lt_div_iff₀ hM1 (by norm_num)]
     nlinarith
   rw [dist_eq_norm] at hx
   calc ‖z - minTensorIn B (ReducedGroupCStar G)
