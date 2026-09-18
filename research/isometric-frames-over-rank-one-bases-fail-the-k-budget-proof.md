@@ -9,7 +9,8 @@ requires:
   - graded-rings-with-degree-one-units-fail-the-k-budget
 ---
 
-**Input (cited, not read at source).** **(BC) Bass cancellation.** If `B` has stable range `d`, then every finitely
+**Input (cited, not read at source).** **(BC) Bass cancellation.** In Vaserstein's normalization (`sr` of a
+field is `1`): if `B` has stable range `d`, then every finitely
 generated projective module `P` with `P ⊕ B^a ≅ B^(n+a)` and `n >= d` is free of rank `n`. This is Bass (1964) for
 commutative rings, and Vaserstein and Warfield for the noncommutative stable-range condition.
 

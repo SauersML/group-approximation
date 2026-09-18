@@ -9,16 +9,17 @@ distinct_from:
   fp-simple-resolvent-ring-with-divisible-unit-class: that is the ring gate; this closes its designs over rank-one bases, leaving only bases whose K_0 has rank at least two.
 ---
 
-**ESTABLISHED** through `isometric-frames-over-rank-one-bases-fail-the-k-budget-proof`. Lane proof, not
-independently reviewed. Elementary, given the graded node, apart from Bass's cancellation theorem in item 3.
+**ESTABLISHED** through `isometric-frames-over-rank-one-bases-fail-the-k-budget-proof`. Refereed:
+gq-referee-a PASS, proof-gap lens (report 128e1b392, N1--N3 applied); one referee. Elementary, given the graded node, apart from Bass's cancellation theorem in item 3.
 No priority is claimed.
 
 **Setting.** `R` is a unital ring and `B ⊆ R` a unital subring with `Q ⊆ B`. There is an isometric frame
 `s = (s_1, ..., s_k)`, `t = (t_1, ..., t_k)^T` with `s t = 1` and `p = t s in M_k(B)`, as in
 `isometric-shift-frames-over-uhf-bases-fail-the-k-budget`. Assume:
-- **(R1)** `K_0(B) ⊗ Q` is spanned by `[1_B]`, and `[1_B]` has infinite order. So `m[p] = n[1_B]` for unique coprime
-  integers `m >= 1` and `n >= 0`, and the *index* is `r = n/m`.
-- **(R2)** `B` has finite stable range `d`.
+- **(R1)** `K_0(B) ⊗ Q` is spanned by `[1_B]`, and `[1_B]` has infinite order. So `m[p] = n[1_B]` for some integers `m >= 1`
+  and `n`, and the *index* `r = n/m` is unique (the pair `(m, n)` need not be coprime; gq-referee-a, N1).
+- **(R2)** `B` has finite stable range `d`, in Vaserstein's normalization, where a field has stable range `1`
+  (gq-referee-a, N2).
 
 **Statement.**
 1. **Index `r != 1`.** `(m - n)[1_R] = 0`, so `ker(Q^x -> K_1(R))` is not finitely generated. This is item 1 of the
